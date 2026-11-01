@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/printer
-	name = "printer"
-	desc = "Computer-integrated printer with paper recycling module."
+	name = "drukarka"
+	desc = "Drukarka zintegrowana z komputerem, z modułem recyklingu papieru."
 	power_usage = 100
 	icon_state = "printer"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -82,8 +82,8 @@
 	return FALSE
 
 /obj/item/computer_hardware/printer/mini
-	name = "miniprinter"
-	desc = "A small printer with paper recycling module."
+	name = "minidrukarka"
+	desc = "Mała drukarka z modułem recyklingu papieru."
 	power_usage = 50
 	icon_state = "printer_mini"
 	w_class = WEIGHT_CLASS_TINY

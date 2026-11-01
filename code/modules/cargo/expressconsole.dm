@@ -1,8 +1,8 @@
 /obj/machinery/computer/cargo/express
-	name = "express supply console"
-	desc = "This console allows the user to purchase a package \
-		with 1/40th of the delivery time: made possible by Nanotrasen's new \"1500mm Orbital Railgun\".\
-		All sales are near instantaneous - please choose carefully"
+	name = "ekspresowa konsola zaopatrzenia"
+	desc = "Ta konsola pozwala kupić paczkę \
+		z czasem dostawy skróconym do 1/40: wszystko dzięki nowemu \"Orbitalnemu działu szynowemu 1500 mm\" Nanotrasen. \
+		Sprzedaż jest niemal natychmiastowa – wybieraj ostrożnie."
 	icon_screen = "supply_express"
 	circuit = /obj/item/circuitboard/computer/cargo/express
 
@@ -160,7 +160,7 @@
 					var/obj/item/supplypod_beacon/C = new /obj/item/supplypod_beacon(drop_location())
 					C.link_console(src, usr)//rather than in beacon's Initialize(), we can assign the computer to the beacon by reusing this proc)
 					printed_beacons++//printed_beacons starts at 0, so the first one out will be called beacon # 1
-					beacon.name = "Supply Pod Beacon #[printed_beacons]"
+					beacon.name = "nadajnik kapsuły zaopatrzeniowej nr [printed_beacons]"
 					. = TRUE
 
 
@@ -173,7 +173,7 @@
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
-			var/name = "*None Provided*"
+			var/name = "*Nie podano*"
 			var/rank = "*Nie podano*"
 			var/ckey = usr.ckey
 			if(ishuman(usr))
@@ -182,7 +182,7 @@
 				rank = H.get_assignment(hand_first = TRUE)
 			else if(issilicon(usr))
 				name = usr.real_name
-				rank = "Silicon"
+				rank = "Jednostka krzemowa"
 			var/reason = ""
 			var/list/empty_turfs
 			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason)

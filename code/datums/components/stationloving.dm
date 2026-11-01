@@ -50,7 +50,7 @@
 		var/turf/targetturf = relocate()
 		log_game("[parent] has been moved out of bounds in [loc_name(currentturf)]. Moving it to [loc_name(targetturf)].")
 		if(inform_admins)
-			message_admins("[parent] has been moved out of bounds in [ADMIN_VERBOSEJMP(currentturf)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
+			message_admins("[parent] wychodzi poza dozwolony obszar w [ADMIN_VERBOSEJMP(currentturf)]. Przenoszę do [ADMIN_VERBOSEJMP(targetturf)].")
 
 /datum/component/stationloving/proc/check_soul_imbue()
 	SIGNAL_HANDLER
@@ -87,13 +87,13 @@
 	var/turf/T = get_turf(parent)
 
 	if(inform_admins && force)
-		message_admins("[parent] has been !!force deleted!! in [ADMIN_VERBOSEJMP(T)].")
+		message_admins("[parent] zostaje !!siłowo usunięty!! w [ADMIN_VERBOSEJMP(T)].")
 		log_game("[parent] has been !!force deleted!! in [loc_name(T)].")
 
 	if(!force && !allow_death)
 		var/turf/targetturf = relocate()
 		log_game("[parent] has been destroyed in [loc_name(T)]. Moving it to [loc_name(targetturf)].")
 		if(inform_admins)
-			message_admins("[parent] has been destroyed in [ADMIN_VERBOSEJMP(T)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
+			message_admins("[parent] zostaje zniszczony w [ADMIN_VERBOSEJMP(T)]. Przenoszę do [ADMIN_VERBOSEJMP(targetturf)].")
 		return TRUE
 	return FALSE

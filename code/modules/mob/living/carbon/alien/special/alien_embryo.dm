@@ -1,7 +1,7 @@
 // This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
 // It functions almost identically (see code/datums/diseases/alien_embryo.dm)
 /obj/item/organ/body_egg/alien_embryo
-	name = "alien embryo"
+	name = "embrion obcego"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "larva0_dead"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/acid = 10)
@@ -86,7 +86,7 @@
 
 	bursting = TRUE
 
-	var/list/candidates = pollGhostCandidates("Do you want to play as an alien larva that will burst out of [owner]?", ROLE_ALIEN, /datum/role_preference/midround_ghost/xenomorph, 10 SECONDS, POLL_IGNORE_ALIEN_LARVA) // separate poll from xeno event spawns
+	var/list/candidates = pollGhostCandidates("Chcesz zagrać jako larwa obcego, która wyrwie się z ciała [owner]?", ROLE_ALIEN, /datum/role_preference/midround_ghost/xenomorph, 10 SECONDS, POLL_IGNORE_ALIEN_LARVA) // separate poll from xeno event spawns
 
 	if(QDELETED(src) || QDELETED(owner))
 		return

@@ -4,7 +4,7 @@
 
 /obj/machinery/dominator
 	name = "dominator"
-	desc = "A visibly sinister device. Looks like you can break it if you hit it enough."
+	desc = "Wyraźnie złowrogie urządzenie. Wygląda na to, że da się je zniszczyć, jeśli uderzy się je wystarczająco wiele razy."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
@@ -170,7 +170,7 @@
 		return
 
 	var/time = round(tempgang.determine_domination_time()/60,0.1)
-	if(alert(user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Confirm","Ready","Later") == "Ready")
+	if(alert(user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi")
 		if((tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
 			return 0
 
@@ -182,7 +182,7 @@
 		priority_announce("Wykryto włamanie do sieci w [locname]. Gang [gang.name] próbuje przejąć kontrolę nad stacją!", "Alarm sieciowy", SSstation.announcer.get_rand_alert_sound())
 		gang.domination()
 		SSshuttle.registerHostileEnvironment(src)
-		name = "[gang.name] Gang [name]"
+		name = "[name] (gang [gang.name])"
 		operating = TRUE
 		update_icon()
 

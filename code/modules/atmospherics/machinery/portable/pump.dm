@@ -5,8 +5,8 @@
 #define PUMP_DEFAULT_PRESSURE (ONE_ATMOSPHERE)
 
 /obj/machinery/portable_atmospherics/pump
-	name = "portable air pump"
-	desc = "It's a small portable air pump, capable of siphoning or pumping gasses into its surroundings. It has a decent internal gas storage, and a slot for external tanks. It can be wrenched to a connection port to join it into the pipe net."
+	name = "przenośna pompa powietrza"
+	desc = "Mała przenośna pompa powietrza, która potrafi wysysać gazy z otoczenia albo je do niego wtłaczać. Ma spory wewnętrzny zbiornik gazu i gniazdo na zewnętrzne butle. Można ją przykręcić kluczem do portu przyłączeniowego, żeby włączyć ją do sieci rur."
 	icon_state = "psiphon:0"
 	density = TRUE
 
@@ -122,7 +122,7 @@
 				var/constricted_plasma = air_contents.get_moles(GAS_CONSTRICTED_PLASMA)//NSV13
 				var/n2o = air_contents.get_moles(GAS_NITROUS)
 				if(n2o || plasma)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""][(n2o || plasma) && constricted_plasma ? " & " : ""][constricted_plasma ? "Constricted Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]") //NSV13 - constricted plasma
+					message_admins("[ADMIN_LOOKUPFLW(usr)] włącza pompę zawierającą [n2o ? "N2O" : ""][n2o && plasma ? " i " : ""][plasma ? "plazmę" : ""][(n2o || plasma) && constricted_plasma ? " i " : ""][constricted_plasma ? "skondensowaną plazmę" : ""] w [ADMIN_VERBOSEJMP(src)]") //NSV13 - constricted plasma
 					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [AREACOORD(src)]")
 			else if(on && direction == PUMP_OUT)
 				investigate_log("[key_name(usr)] started a transfer into [holding].", INVESTIGATE_ATMOS)

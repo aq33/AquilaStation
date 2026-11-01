@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/emergency_supplies
-	name = "Deliver emergency supplies"
-	desc = "Deliver emergency supplies"
-	crate_name = "Surplus EVA suits crate"
+	name = "Dostarcz zaopatrzenie awaryjne"
+	desc = "Dostarcz zaopatrzenie awaryjne"
+	crate_name = "Skrzynia z nadwyżką skafandrów EVA"
 
 /datum/overmap_objective/cargo/transfer/emergency_supplies/New()
 	var/datum/freight_type/single/object/oxygen = new /datum/freight_type/single/object( /obj/item/tank/internals/oxygen, 5 )

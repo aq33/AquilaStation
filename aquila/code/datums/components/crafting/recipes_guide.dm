@@ -15,14 +15,14 @@
 	result = /obj/item/stack/sheet/runed_metal
 	category = CAT_CULT
 	non_craftable = TRUE
-	steps = list("Use Twisted Construction on plasteel")
+	steps = list("Użyj Wypaczonej budowy na plastali")
 
 /datum/crafting_recipe/constructshell
 	reqs = list(/obj/item/stack/sheet/iron = 50)
 	result = /obj/structure/constructshell
 	category = CAT_CULT
 	non_craftable = TRUE
-	steps = list("Use Twisted Construction on iron")
+	steps = list("Użyj Wypaczonej budowy na żelazie")
 
 // Food reactions
 
@@ -51,11 +51,11 @@
 	result = /obj/item/food/tofu
 
 /datum/crafting_recipe/food/reaction/chocolatebar/chocomilk
-	name = "Chocolate bar (choco milk)"
+	name = "Tabliczka czekolady (mleko czekoladowe)"
 	reaction = /datum/chemical_reaction/food/chocolate_bar2
 
 /datum/crafting_recipe/food/reaction/chocolatebar/vegan
-	name = "Chocolate bar (vegan)"
+	name = "Tabliczka czekolady (wegańska)"
 	reaction = /datum/chemical_reaction/food/chocolate_bar
 
 /datum/crafting_recipe/food/reaction/soysauce
@@ -84,13 +84,13 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/reaction/cakebatter
-	name = "Cake batter"
+	name = "Masa na ciasto"
 	reaction = /datum/chemical_reaction/food/cakebatter
 	result = /obj/item/food/cakebatter
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/reaction/cakebatter/vegan
-	name = "Cake batter (vegan)"
+	name = "Masa na ciasto (wegańska)"
 	reaction = /datum/chemical_reaction/food/cakebatter/vegan
 
 /datum/crafting_recipe/food/reaction/uncooked_rice
@@ -104,7 +104,7 @@
 
 /datum/crafting_recipe/food/rollingpin
 	tool_behaviors =  list(TOOL_ROLLINGPIN)
-	steps = list("Flatten with a rolling pin")
+	steps = list("Rozwałkuj wałkiem do ciasta")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -127,7 +127,7 @@
 
 /datum/crafting_recipe/food/knife
 	tool_behaviors =  list(TOOL_KNIFE)
-	steps = list("Slice with a knife")
+	steps = list("Pokrój nożem")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -196,7 +196,7 @@
 
 /datum/crafting_recipe/food/grill
 	machinery = list(/obj/machinery/griddle)
-	steps = list("Grill until ready")
+	steps = list("Grilluj do gotowości")
 	category = CAT_MEAT
 	non_craftable = TRUE
 
@@ -252,13 +252,13 @@
 	result = /obj/item/food/friedegg
 	category = CAT_EGG
 	steps = list(
-		"Break the egg onto a griddle",
-		"Fry until ready"
+		"Rozbij jajko na płycie grillowej",
+		"Smaż do gotowości"
 	)
 
 /datum/crafting_recipe/food/grinder
 	machinery = list(/obj/machinery/reagentgrinder)
-	steps = list("Put into grinder and grind")
+	steps = list("Włóż do młynka i zmiel")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -285,12 +285,12 @@
 /datum/crafting_recipe/food/grinder/butter
 	reqs = list(/datum/reagent/consumable/milk = 15)
 	result = /obj/item/food/butter
-	steps = list("Put into grinder and mix")
+	steps = list("Włóż do młynka i zmiksuj")
 
 /datum/crafting_recipe/food/grinder/mayonnaise
 	reqs = list(/datum/reagent/consumable/eggyolk = 1)
 	result = /datum/reagent/consumable/mayonnaise
-	steps = list("Put into grinder and mix")
+	steps = list("Włóż do młynka i zmiksuj")
 
 /datum/crafting_recipe/food/grinder/sugar
 	reqs = list(/obj/item/food/grown/sugarcane = 1)
@@ -303,7 +303,7 @@
 /datum/crafting_recipe/food/grinder/cornstarch
 	reqs = list(/obj/item/food/grown/corn = 1)
 	result = /datum/reagent/consumable/corn_starch
-	steps = list("Put into grinder and juice")
+	steps = list("Włóż do młynka i wyciśnij sok")
 
 /datum/crafting_recipe/food/grinder/sprinkles
 	reqs = list(/obj/item/food/donut/plain = 1)
@@ -320,7 +320,7 @@
 // Machinery: Processor
 /datum/crafting_recipe/food/processor
 	machinery = list(/obj/machinery/processor)
-	steps = list("Put into processor and activate")
+	steps = list("Włóż do malaksera i go włącz")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -371,7 +371,7 @@
 // Machinery: Microwave
 /datum/crafting_recipe/food/microwave
 	machinery = list(/obj/machinery/microwave)
-	steps = list("Microwave until ready")
+	steps = list("Podgrzewaj w mikrofalówce do gotowości")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -401,7 +401,7 @@
 
 /datum/crafting_recipe/food/oven
 	machinery = list(/obj/machinery/oven)
-	steps = list("Bake in the oven until ready")
+	steps = list("Piecz w piekarniku do gotowości")
 	category = CAT_BREAD
 	non_craftable = TRUE
 
@@ -446,7 +446,7 @@
 // Machinery: Drying rack
 /datum/crafting_recipe/food/drying
 	machinery = list(/obj/machinery/smartfridge/drying_rack)
-	steps = list("Put into the rack and dry")
+	steps = list("Włóż do suszarki i wysusz")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 

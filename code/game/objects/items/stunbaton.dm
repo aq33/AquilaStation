@@ -1,6 +1,6 @@
 /obj/item/melee/baton
-	name = "stun baton"
-	desc = "A stun baton which uses localised electrical shocks to cause muscular fatigue."
+	name = "pałka ogłuszająca"
+	desc = "Pałka ogłuszająca, która miejscowymi wstrząsami elektrycznymi wywołuje zmęczenie mięśni."
 	icon_state = "stunbaton"
 	item_state = "baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -117,7 +117,7 @@
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.charge > hitcost && !(obj_flags & OBJ_EMPED))
 		turned_on = !turned_on
-		balloon_alert(user, "[src] [turned_on ? "on" : "off"]")
+		balloon_alert(user, "[src]: [turned_on ? "wł." : "wył."]")
 		playsound(src, "sparks", 75, TRUE, -1)
 	else
 		turned_on = FALSE
@@ -216,8 +216,8 @@
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
-	name = "stunprod"
-	desc = "An improvised stun baton."
+	name = "poganiacz elektryczny"
+	desc = "Improwizowana pałka ogłuszająca."
 	icon_state = "stunprod"
 	item_state = "prod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

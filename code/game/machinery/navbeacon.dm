@@ -5,8 +5,8 @@
 
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0" //NSV13 - Navbeacon Refactor
-	name = "navigation beacon"
-	desc = "A radio beacon used for bot navigation."
+	name = "radiolatarnia nawigacyjna"
+	desc = "Radiolatarnia, według której nawigują boty."
 	level = 1		// underfloor
 	layer = UNDER_CATWALK
 	max_integrity = 500
@@ -136,7 +136,7 @@
 		if(!panel_open)
 			if (allowed(user))
 				controls_locked = !controls_locked
-				balloon_alert(user, "controls [controls_locked ? "locked" : "unlocked"]")
+				balloon_alert(user, "sterowanie [controls_locked ? "zablokowane" : "odblokowane"]")
 				SStgui.update_uis(src)
 			else
 				balloon_alert(user, "odmowa dostępu")
@@ -229,7 +229,7 @@
 			toggle_code(NAVBEACON_DELIVERY_MODE)
 			return TRUE
 		if("set_location")
-			var/input_text = tgui_input_text(usr, "Enter the beacon's location tag", "Beacon Location", location, 20)
+			var/input_text = tgui_input_text(usr, "Wpisz znacznik lokalizacji radiolatarni", "Lokalizacja radiolatarni", location, 20)
 			if (!input_text || location == input_text)
 				return
 			glob_lists_deregister()
@@ -238,7 +238,7 @@
 			return TRUE
 		if("set_patrol_next")
 			var/next_patrol = codes[NAVBEACON_PATROL_NEXT]
-			var/input_text = tgui_input_text(usr, "Enter the tag of the next patrol location", "Beacon Location", next_patrol, 20)
+			var/input_text = tgui_input_text(usr, "Wpisz znacznik następnego punktu patrolu", "Lokalizacja radiolatarni", next_patrol, 20)
 			if (!input_text || location == input_text)
 				return
 			codes[NAVBEACON_PATROL_NEXT] = input_text

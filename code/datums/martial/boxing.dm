@@ -1,5 +1,5 @@
 /datum/martial_art/boxing
-	name = "Boxing"
+	name = "Boks"
 	id = MARTIALART_BOXING
 	pacifist_style = TRUE
 

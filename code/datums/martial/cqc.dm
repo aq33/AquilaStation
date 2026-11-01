@@ -24,7 +24,7 @@
 	var/mob/restraining_mob
 
 /datum/martial_art/cqc/under_siege
-	name = "Close Quarters Cooking"
+	name = "Gotowanie w zwarciu"
 	just_a_cook = TRUE
 
 /datum/martial_art/cqc/reset_streak(mob/living/new_target, update_icon = TRUE)
@@ -97,7 +97,7 @@
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "pressured (CQC)")
-	D.visible_message("<span class='danger'>[A] punches [D]'s neck!</span>", \
+	D.visible_message("<span class='danger'>[A] uderza [D] w szyję!</span>", \
 					"<span class='userdanger'>[A] uderza cię w szyję!</span>", null, COMBAT_MESSAGE_RANGE)
 	D.adjustStaminaLoss(60)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)

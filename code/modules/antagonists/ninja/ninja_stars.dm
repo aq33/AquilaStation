@@ -14,5 +14,5 @@
  * you go through the proper channels, lest you get permabanned.  Do I make myself clear?
  */
 /obj/item/throwing_star/stamina/ninja
-	name = "ninja throwing star"
+	name = "gwiazdka do rzucania ninja"
 	throwforce = 10

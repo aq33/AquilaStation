@@ -138,7 +138,7 @@
 				if(G.unlocktype == GEAR_DONATOR) //Strip out donation items if the patreon has expired or they somehow have someone else's gear datum.
 					if(M.client.ckey != G.ckey)
 						to_chat(M, "<span class='warning'>Jakimś cudem masz cudzy przedmiot donatora! Wezwij programistę. Przedmiot: [gear]</span>")
-						message_admins("[ADMIN_LOOKUPFLW(M)] Somehow equipped the donator gear of [G.ckey]. It has been removed.")
+						message_admins("[ADMIN_LOOKUPFLW(M)] jakimś cudem założył sprzęt donatora [G.ckey]. Został usunięty.")
 						M.client.prefs.active_character.equipped_gear -= gear
 						M.client.prefs.purchased_gear -= gear
 						permitted = FALSE

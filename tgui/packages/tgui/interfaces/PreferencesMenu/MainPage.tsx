@@ -57,7 +57,7 @@ const CharacterControls = (props: {
           onClick={() => props.handleRotate(true)}
           fontSize="22px"
           icon="undo"
-          tooltip="Rotate -90°"
+          tooltip="Obróć o -90°"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -66,7 +66,7 @@ const CharacterControls = (props: {
           onClick={() => props.handleRotate(false)}
           fontSize="22px"
           icon="redo"
-          tooltip="Rotate 90°"
+          tooltip="Obróć o 90°"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -78,7 +78,7 @@ const CharacterControls = (props: {
           onClick={props.handleOpenSpecies}
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="Rasa"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -117,7 +117,7 @@ const ChoicedSelection = (props: {
   } = props;
 
   if (!catalog.icons) {
-    return <Box color="red">Provided catalog had no icons!</Box>;
+    return <Box color="red">Przekazany katalog nie ma ikon!</Box>;
   }
 
   let search = createSearch(searchText, (name: string) => {
@@ -197,7 +197,7 @@ const ChoicedSelection = (props: {
                 <Input
                   autoFocus
                   width={`${calculatedWidth - 55}px`}
-                  placeholder="Search options"
+                  placeholder="Szukaj opcji"
                   value={searchText}
                   onChange={(value) => setSearchText(value)}
                 />
@@ -332,7 +332,7 @@ const GenderButton = (props: {
         }}
         fontSize="22px"
         icon={GENDERS[props.gender].icon}
-        tooltip="Gender"
+        tooltip="Płeć"
         tooltipPosition="top"
       />
     </Popper>
@@ -506,7 +506,7 @@ const PreferenceList = (props: {
             if (feature === undefined) {
               return (
                 <Stack.Item key={featureId}>
-                  <b>Feature {featureId} is not recognized.</b>
+                  <b>Nieznana cecha: {featureId}.</b>
                 </Stack.Item>
               );
             }

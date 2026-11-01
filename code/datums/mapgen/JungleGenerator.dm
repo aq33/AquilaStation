@@ -80,8 +80,8 @@
 		CHECK_TICK
 
 /turf/open/genturf
-	name = "ungenerated turf"
-	desc = "If you see this, and you're not a ghost, yell at coders"
+	name = "niewygenerowany turf"
+	desc = "Jeśli to widzisz i nie jesteś duchem, nakrzycz na koderów"
 	icon = 'icons/turf/debug.dmi'
 	icon_state = "genturf"
 	///Can be: null, GENTURF_HINT_OPEN or GENTURF_HINT_CLOSED
@@ -90,6 +90,6 @@
 	var/force_generation
 
 /area/mine/planetgeneration
-	name = "planet generation area"
+	name = "Obszar Generowania Planety"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	map_generator = /datum/map_generator/jungle_generator

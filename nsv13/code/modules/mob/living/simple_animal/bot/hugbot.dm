@@ -11,8 +11,8 @@
 #define HUGBOT_PANIC_END	100
 
 /mob/living/simple_animal/bot/hugbot
-	name = "\improper Hugbot"
-	desc = "A little cudly robot. He looks excited."
+	name = "\improper przytulobot"
+	desc = "Mały, milutki robot. Wygląda na podekscytowanego."
 	icon = 'nsv13/icons/mob/aibots.dmi'
 	icon_state = "hugbot1"
 	density = FALSE
@@ -258,8 +258,8 @@
 						"Spadaj."
 					)
 				else
-					peptalk = list("Thank you!",
-						"You are a good person.",
+					peptalk = list("Dziękuję!",
+						"Jesteś dobrym człowiekiem.",
 						"Kocham cię.",
 						"Rób dalej to, w czym jesteś dobry.",
 						"Jesteś wspaniałą osobą.",
@@ -269,7 +269,7 @@
 						"Jesteś dla nas wszystkich ważny.",
 						"Tak trzymaj.",
 						"Co się stało? Jestem przy tobie.",
-						"Don't cry.",
+						"Nie płacz.",
 						"Uważaj na siebie!"
 					)
 
@@ -343,7 +343,7 @@
 	// Hey, didyah know that you Han't hug people as non-carbon? Well you can't hug people as non-carbon. Hence this mess
 	if(zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		visible_message( \
-			"<span class='notice'>[src] boops [H]'s nose.</span>", \
+			"<span class='notice'>[src] pstryka [H] w nos.</span>", \
 			"<span class='notice'>Pstrykasz [H] w nos.</span>")
 		playsound(H, 'sound/weapons/tap.ogg', 50, 0)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "headpat", /datum/mood_event/headpat)
@@ -390,11 +390,11 @@
 	req_one_access = list(ACCESS_ROBOTICS)
 
 /obj/item/bot_assembly/hugbot
-	desc = "It's a box of hugs with an arm attached."
-	name = "incomplete hugbot assembly"
+	desc = "To pudełko przytulasów z doczepionym ramieniem."
+	name = "niekompletny zespół przytulobota"
 	icon = 'nsv13/icons/mob/aibots.dmi'
 	icon_state = "hugbot_arm"
-	created_name = "Hugbot"
+	created_name = "przytulobot"
 
 /obj/item/bot_assembly/hugbot/attackby(obj/item/W, mob/user, params)
 	..()

@@ -2,8 +2,8 @@
 // oraz wariant Corrupted Mending Touch z Monkestation (code/datums/mutations/touch.dm)
 
 /datum/mutation/lay_on_hands
-	name = "Mending Touch"
-	desc = "The subject gains the ability to lay their hands on others to transfer a small amount of their injuries to themselves."
+	name = "Dotyk uzdrowiciela"
+	desc = "Pacjent potrafi położyć dłonie na innych i przejąć na siebie niewielką część ich obrażeń."
 	quality = POSITIVE
 	locked = FALSE
 	difficulty = 16
@@ -37,7 +37,7 @@
 	to_modify.synchronizer_coefficient = GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/action/cooldown/spell/touch/lay_on_hands
-	name = "Mending Touch"
+	name = "Dotyk uzdrowiciela"
 	desc = "Możesz położyć dłonie na innych i przejąć na siebie część ich obrażeń. \
 		Z jakiegoś powodu ta moc nie działa dobrze na nieumarłych."
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
@@ -292,7 +292,7 @@
 	return TRUE
 
 /obj/item/melee/spell_hand/lay_on_hands
-	name = "mending touch"
+	name = "dotyk uzdrowiciela"
 	desc = "Inaczej niż w ulubionych grach planszowych, nie możesz rzucić tego na siebie."
 	icon = 'aquila/icons/mutations/tg/items.dmi'
 	icon_state = "greyscale"
@@ -305,8 +305,8 @@
 // --- Monkestation: Corrupted Mending Touch ---
 
 /datum/mutation/lay_on_hands/syndicate
-	name = "Corrupted Mending Touch"
-	desc = "A genetic sequence thats highly corrupted sharing some nucleotides with mending touch, use is not advised."
+	name = "Wypaczony dotyk uzdrowiciela"
+	desc = "Mocno uszkodzona sekwencja genetyczna, która dzieli część nukleotydów z dotykiem uzdrowiciela. Odradza się jej używania."
 	quality = POSITIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Twoja dłoń wydaje się dziwna.</span>"
@@ -315,7 +315,7 @@
 	instability = 50
 
 /datum/action/cooldown/spell/touch/lay_on_hands/syndicate
-	name = "Corrupted Mending Touch"
+	name = "Wypaczony dotyk uzdrowiciela"
 	desc = "Możesz położyć dłonie na innych i przejąć na siebie część ich obrażeń. \
 		Ta wersja mutacji pozwala ukarać każdego, komu chcesz zrobić KRZYWDĘ (tryb walki)."
 	button_icon_state = "corrupted_mending_touch"

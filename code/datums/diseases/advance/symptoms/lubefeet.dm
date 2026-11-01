@@ -1,5 +1,5 @@
 /datum/symptom/lubefeet
-	name = "Ducatopod"
+	name = "Dukatonóg"
 	desc = "Nosiciel poci się teraz ze stóp przemysłowym smarem, smarując pola, po których chodzi. Połącz z Gardłem Pierrota, by uzyskać przedostatnią formę tortur."
 	stealth = 0
 	resistance = 2

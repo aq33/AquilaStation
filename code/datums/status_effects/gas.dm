@@ -7,8 +7,8 @@
 	var/can_melt = TRUE
 
 /atom/movable/screen/alert/status_effect/freon
-	name = "Frozen Solid"
-	desc = "You're frozen inside an ice cube, and cannot move! You can still do stuff, like shooting. Resist out of the cube!"
+	name = "Zamrożenie"
+	desc = "Tkwisz zamrożony w kostce lodu i nie możesz się ruszać! Wciąż możesz coś robić, na przykład strzelać. Wyrwij się z kostki (Resist)!"
 	icon_state = "frozen"
 
 /datum/status_effect/freon/on_apply()

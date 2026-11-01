@@ -24,13 +24,13 @@
 	for(var/client/T)
 		if(T.mob)
 			if(isnewplayer(T.mob))
-				targets["(New Player) - [T]"] = T
+				targets["(Nowy gracz) - [T]"] = T
 			else if(isobserver(T.mob))
-				targets["[T.mob.name](Ghost) - [T]"] = T
+				targets["[T.mob.name](Duch) - [T]"] = T
 			else
-				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
+				targets["[T.mob.real_name](jako [T.mob.name]) - [T]"] = T
 		else
-			targets["(No Mob) - [T]"] = T
+			targets["(Brak moba) - [T]"] = T
 	var/target = input(src,"Do kogo wysłać wiadomość?","Admin PM",null) as null|anything in sortList(targets)
 	cmd_admin_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin PM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -54,10 +54,10 @@
 	var/datum/admin_help/AH = C.current_ticket
 
 	if(AH)
-		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
-	var/msg = stripped_multiline_input(src,"Message:", "Private message to [C.holder?.fakekey ? "an Administrator" : key_name(C, 0, 0)].")
+		message_admins("[key_name_admin(src)] zaczyna odpowiadać na adminhelp od [key_name_admin(C, 0, 0)].")
+	var/msg = stripped_multiline_input(src,"Wiadomość:", "Prywatna wiadomość do: [C.holder?.fakekey ? "administrator" : key_name(C, 0, 0)].")
 	if (!msg)
-		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
+		message_admins("[key_name_admin(src)] rezygnuje z odpowiedzi na adminhelp od [key_name_admin(C, 0, 0)].")
 		return
 	cmd_admin_pm(whom, msg)
 	AH.Claim()
@@ -91,7 +91,7 @@
 
 	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src, "<span class='danger'>Nie możesz już odpowiadać na to zgłoszenie; w razie potrzeby otwórz nowe czasownikiem Adminhelp.</span>", type = MESSAGE_TYPE_ADMINPM)
-		to_chat(src, "<span class='notice'>Message: [msg]</span>", type = MESSAGE_TYPE_ADMINPM)
+		to_chat(src, "<span class='notice'>Wiadomość: [msg]</span>", type = MESSAGE_TYPE_ADMINPM)
 		return
 
 	var/client/recipient
@@ -111,12 +111,12 @@
 		if(!externalreplyamount)	//to prevent people from spamming irc/discord
 			return
 		if(!msg)
-			msg = stripped_multiline_input(src,"Message:", "Prywatna wiadomość do administratora")
+			msg = stripped_multiline_input(src,"Wiadomość:", "Prywatna wiadomość do administratora")
 
 		if(!msg)
 			return
 		if(holder)
-			to_chat(src, "<span class='danger'>Error: Use the admin IRC/Discord channel, nerd.</span>", type = MESSAGE_TYPE_ADMINPM)
+			to_chat(src, "<span class='danger'>Błąd: użyj kanału adminów na IRC/Discordzie, kujonie.</span>", type = MESSAGE_TYPE_ADMINPM)
 			return
 
 
@@ -133,7 +133,7 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = stripped_multiline_input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].")
+			msg = stripped_multiline_input(src,"Wiadomość:", "Prywatna wiadomość do: [recipient.holder?.fakekey ? "administrator" : key_name(recipient, 0, 0)].")
 			msg = trim(msg)
 			if(!msg)
 				return
@@ -167,14 +167,14 @@
 
 	if(external)
 		to_chat(src, "<span class='notice'>PW do <b>adminów</b>: <span class='linkify'>[rawmsg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Odpowiedź PW od-<b>[key_name(src, TRUE, TRUE)] do <i>zewnętrznego</i>: [keywordparsedmsg]</font>")
 		externalreplyamount--
 		send2tgs("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
 		if(recipient.holder)
 			if(holder)	//both are admins
-				to_chat(recipient, "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
-				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
+				to_chat(recipient, "<span class='danger'>PW od admina-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
+				to_chat(src, "<span class='notice'>PW admina do-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
 
 				//omg this is dumb, just fill in both their tickets
 				admin_ticket_log(src, keywordparsedmsg, key_name(src, recipient, 1), key_name(recipient, src, 1), color="teal", isSenderAdmin = TRUE, safeSenderLogged = TRUE)
@@ -182,7 +182,7 @@
 					admin_ticket_log(recipient, keywordparsedmsg, key_name(src, recipient, 1), key_name(recipient, src, 1), color="teal", isSenderAdmin = TRUE, safeSenderLogged = TRUE)
 
 			else		//recipient is an admin but sender is not
-				var/replymsg = "Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
+				var/replymsg = "Odpowiedź PW od-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
 				admin_ticket_log(src, keywordparsedmsg, key_name(src, recipient, 1), null, "white", isSenderAdmin = TRUE, safeSenderLogged = TRUE)
 				to_chat(recipient, "<span class='danger'>[replymsg]</span>", type = MESSAGE_TYPE_ADMINPM)
 				to_chat(src, "<span class='notice'>PW do <b>adminów</b>: <span class='linkify'>[msg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
@@ -196,10 +196,10 @@
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE)
 
-				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", type = MESSAGE_TYPE_ADMINPM)
-				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
+				to_chat(recipient, "<font color='red' size='4'><b>-- Prywatna wiadomość od administratora --</b></font>", type = MESSAGE_TYPE_ADMINPM)
+				to_chat(recipient, "<span class='adminsay'>PW od admina-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
 				to_chat(recipient, "<span class='adminsay'><i>Kliknij imię administratora, by odpowiedzieć.</i></span>", type = MESSAGE_TYPE_ADMINPM)
-				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
+				to_chat(src, "<span class='notice'>PW admina do-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>", type = MESSAGE_TYPE_ADMINPM)
 
 				admin_ticket_log(recipient, keywordparsedmsg, key_name_admin(src), null, "purple", safeSenderLogged = TRUE)
 
@@ -230,7 +230,7 @@
 	if(external)
 		log_admin_private("PM: [key_name(src)]->External: [rawmsg]")
 		for(var/client/X in GLOB.admins)
-			to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]</span>")
+			to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;zewnętrzny:</B> [keywordparsedmsg]</span>")
 	else
 		window_flash(recipient, ignorepref = TRUE)
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
@@ -315,11 +315,11 @@
 	if(!msg)
 		return "Error: No message"
 
-	message_admins("External message from [sender] to [key_name_admin(C)] : [msg]")
+	message_admins("Zewnętrzna wiadomość od [sender] do [key_name_admin(C)]: [msg]")
 	log_admin_private("External PM: [sender] -> [key_name(C)] : [msg]")
 	msg = emoji_parse(msg)
 
-	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", type = MESSAGE_TYPE_ADMINPM)
+	to_chat(C, "<font color='red' size='4'><b>-- Prywatna wiadomość od administratora --</b></font>", type = MESSAGE_TYPE_ADMINPM)
 	to_chat(C, "<span class='adminsay'>PW od admina <b><a href='byond://?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>", allow_linkify = TRUE, type = MESSAGE_TYPE_ADMINPM)
 	to_chat(C, "<span class='adminsay'><i>Kliknij imię administratora, by odpowiedzieć.</i></span>", type = MESSAGE_TYPE_ADMINPM)
 

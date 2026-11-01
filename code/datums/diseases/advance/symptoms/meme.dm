@@ -1,5 +1,5 @@
 /datum/symptom/meme
-	name = "Hysteria"
+	name = "Histeria"
 	desc = "Wirus wywołuje masową histerię wokół losowej idei."
 	stealth = 1
 	resistance = 1

@@ -2,7 +2,7 @@
 //Clusterbang
 ////////////////////
 /obj/item/grenade/clusterbuster
-	desc = "Use of this weapon may constitute a war crime in your area, consult your local captain."
+	desc = "Użycie tej broni może być w twojej okolicy zbrodnią wojenną, skonsultuj się z lokalnym kapitanem."
 	name = "clusterbang"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
@@ -38,8 +38,8 @@
 //Clusterbang segment
 //////////////////////
 /obj/item/grenade/clusterbuster/segment
-	desc = "A smaller segment of a clusterbang. Better run."
-	name = "clusterbang segment"
+	desc = "Mniejszy segment clusterbanga. Lepiej uciekaj."
+	name = "segment clusterbanga"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang_segment"
 	base_state = "clusterbang_segment"
@@ -47,7 +47,7 @@
 /obj/item/grenade/clusterbuster/segment/Initialize(mapload, obj/item/grenade/clusterbuster/base)
 	. = ..()
 	if(base)
-		name = "[base.name] segment"
+		name = "segment: [base.name]"
 		base_state = "[base.base_state]_segment"
 		icon_state = base_state
 		payload_spawner = base.payload_spawner
@@ -125,15 +125,15 @@
 	icon_state = "flashbang_active"
 
 /obj/item/grenade/clusterbuster/emp
-	name = "Electromagnetic Storm"
+	name = "Burza elektromagnetyczna"
 	payload = /obj/item/grenade/empgrenade
 
 /obj/item/grenade/clusterbuster/smoke
-	name = "Ninja Vanish"
+	name = "Znikający ninja"
 	payload = /obj/item/grenade/smokebomb
 
 /obj/item/grenade/clusterbuster/metalfoam
-	name = "Instant Concrete"
+	name = "Błyskawiczny beton"
 	payload = /obj/item/grenade/chem_grenade/metalfoam
 
 /obj/item/grenade/clusterbuster/inferno
@@ -149,11 +149,11 @@
 	payload = /obj/item/grenade/chem_grenade/cleaner
 
 /obj/item/grenade/clusterbuster/teargas
-	name = "Oignon Grenade"
+	name = "Granat cebulowy"
 	payload = /obj/item/grenade/chem_grenade/teargas
 
 /obj/item/grenade/clusterbuster/facid
-	name = "Aciding Rain"
+	name = "Kwaśny deszcz"
 	payload = /obj/item/grenade/chem_grenade/facid
 
 /obj/item/grenade/clusterbuster/syndieminibomb
@@ -165,15 +165,15 @@
 	payload = /obj/item/grenade/spawnergrenade/manhacks
 
 /obj/item/grenade/clusterbuster/spawner_spesscarp
-	name = "Invasion of the Space Carps"
+	name = "Inwazja kosmicznych karpi"
 	payload = /obj/item/grenade/spawnergrenade/spesscarp
 
 /obj/item/grenade/clusterbuster/soap
-	name = "Slipocalypse"
+	name = "Poślizgokalipsa"
 	payload = /obj/item/grenade/spawnergrenade/syndiesoap
 
 /obj/item/grenade/clusterbuster/clf3
-	name = "WELCOME TO HELL"
+	name = "WITAJ W PIEKLE"
 	payload = /obj/item/grenade/chem_grenade/clf3
 
 //random clusterbuster spawner

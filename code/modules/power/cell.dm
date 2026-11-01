@@ -4,8 +4,8 @@
 #define CELL_POWER_DRAIN 300
 
 /obj/item/stock_parts/cell
-	name = "power cell"
-	desc = "A rechargeable electrochemical power cell."
+	name = "ogniwo zasilające"
+	desc = "Wielokrotnego ładowania ogniwo elektrochemiczne."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
@@ -224,8 +224,8 @@
 	charge = 0
 
 /obj/item/stock_parts/cell/crap
-	name = "\improper Nanotrasen brand rechargeable AA battery"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "\improper akumulatorek AA marki Nanotrasen"
+	desc = "Plazmowego szczytu nie przeskoczysz." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
 	materials = list(/datum/material/glass=40)
 
@@ -235,19 +235,19 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/upgraded
-	name = "upgraded power cell"
-	desc = "A power cell with a slightly higher capacity than normal!"
+	name = "ulepszone ogniwo zasilające"
+	desc = "Ogniwo zasilające o nieco większej pojemności niż zwykle!"
 	maxcharge = 2500
 	materials = list(/datum/material/glass=50)
 	chargerate = 1000
 
 /obj/item/stock_parts/cell/upgraded/plus
-	name = "upgraded power cell+"
-	desc = "A power cell with an even higher capacity than the base model!"
+	name = "ulepszone ogniwo zasilające+"
+	desc = "Ogniwo zasilające o jeszcze większej pojemności niż model podstawowy!"
 	maxcharge = 5000
 
 /obj/item/stock_parts/cell/secborg
-	name = "security borg rechargeable D battery"
+	name = "akumulator D cyborga ochrony"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	materials = list(/datum/material/glass=40)
 
@@ -257,27 +257,27 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/pulse //200 pulse shots
-	name = "pulse rifle power cell"
+	name = "ogniwo karabinu pulsacyjnego"
 	maxcharge = 40000
 	chargerate = 1500
 
 /obj/item/stock_parts/cell/pulse/carbine //25 pulse shots
-	name = "pulse carbine power cell"
+	name = "ogniwo karabinka pulsacyjnego"
 	maxcharge = 5000
 
 /obj/item/stock_parts/cell/pulse/pistol //10 pulse shots
-	name = "pulse pistol power cell"
+	name = "ogniwo pistoletu pulsacyjnego"
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/ninja
-	name = "black power cell"
+	name = "czarne ogniwo zasilające"
 	icon_state = "bscell"
 	maxcharge = 10000
 	materials = list(/datum/material/glass=60)
 	chargerate = 2000
 
 /obj/item/stock_parts/cell/high
-	name = "high-capacity power cell"
+	name = "ogniwo dużej pojemności"
 	icon_state = "hcell"
 	maxcharge = 10000
 	materials = list(/datum/material/glass=60)
@@ -285,8 +285,8 @@
 	rating = 1
 
 /obj/item/stock_parts/cell/high/plus
-	name = "high-capacity power cell+"
-	desc = "Where did these come from?"
+	name = "ogniwo dużej pojemności+"
+	desc = "Skąd one się w ogóle wzięły?"
 	icon_state = "h+cell"
 	maxcharge = 15000
 	chargerate = 2250
@@ -297,7 +297,7 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/super
-	name = "super-capacity power cell"
+	name = "ogniwo bardzo dużej pojemności"
 	icon_state = "scell"
 	maxcharge = 20000
 	materials = list(/datum/material/glass=300)
@@ -310,7 +310,7 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/hyper
-	name = "hyper-capacity power cell"
+	name = "ogniwo hiperpojemne"
 	icon_state = "hpcell"
 	maxcharge = 30000
 	materials = list(/datum/material/glass=400)
@@ -323,8 +323,8 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/bluespace
-	name = "bluespace power cell"
-	desc = "A rechargeable transdimensional power cell."
+	name = "ogniwo bluespace"
+	desc = "Wielokrotnego ładowania ogniwo transwymiarowe."
 	icon_state = "bscell"
 	maxcharge = 40000
 	materials = list(/datum/material/glass=600)
@@ -337,7 +337,7 @@
 	update_icon()
 
 /obj/item/stock_parts/cell/infinite
-	name = "infinite-capacity power cell!"
+	name = "ogniwo o nieskończonej pojemności!"
 	icon_state = "icell"
 	maxcharge = 30000
 	materials = list(/datum/material/glass=1000)
@@ -348,8 +348,8 @@
 	return 1
 
 /obj/item/stock_parts/cell/infinite/abductor
-	name = "void core"
-	desc = "An alien power cell that produces energy seemingly out of nowhere."
+	name = "rdzeń pustki"
+	desc = "Obce ogniwo zasilające, które wytwarza energię pozornie z niczego."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cell"
 	maxcharge = 50000
@@ -360,8 +360,8 @@
 
 
 /obj/item/stock_parts/cell/potato
-	name = "potato battery"
-	desc = "A rechargeable starch based power cell."
+	name = "bateria ziemniaczana"
+	desc = "Wielokrotnego ładowania ogniwo zasilające na bazie skrobi."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "potato"
 	charge = 100
@@ -370,8 +370,8 @@
 	grown_battery = TRUE //it has the overlays for wires
 
 /obj/item/stock_parts/cell/high/slime
-	name = "charged slime core"
-	desc = "A yellow slime core infused with plasma, it crackles with power."
+	name = "naładowany rdzeń szlamu"
+	desc = "Żółty rdzeń szlamu nasycony plazmą. Trzeszczy od energii."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
 	materials = list()
@@ -381,8 +381,8 @@
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/emproof
-	name = "\improper EMP-proof cell"
-	desc = "An EMP-proof cell."
+	name = "\improper ogniwo odporne na EMP"
+	desc = "Ogniwo odporne na EMP."
 	maxcharge = 500
 	rating = 3
 
@@ -399,8 +399,8 @@
 	return
 
 /obj/item/stock_parts/cell/beam_rifle
-	name = "beam rifle capacitor"
-	desc = "A high powered capacitor that can provide huge amounts of energy in an instant."
+	name = "kondensator karabinu wiązkowego"
+	desc = "Kondensator dużej mocy, który w jednej chwili oddaje ogromne ilości energii."
 	maxcharge = 50000
 	chargerate = 5000	//Extremely energy intensive
 
@@ -414,8 +414,8 @@
 	charge = CLAMP((charge-(10000/severity)),0,maxcharge)
 
 /obj/item/stock_parts/cell/emergency_light
-	name = "miniature power cell"
-	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
+	name = "miniaturowe ogniwo zasilające"
+	desc = "Malutkie ogniwo zasilające o bardzo małej pojemności. Montuje się je w oprawach oświetleniowych, by zasilały je podczas awarii."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	materials = list(/datum/material/glass = 20)
 	w_class = WEIGHT_CLASS_TINY

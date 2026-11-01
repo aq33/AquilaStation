@@ -54,7 +54,7 @@
 		var/sharp = I.is_sharp()
 		var/msg
 		if(damage)
-			msg += "[user] [sharp? "impales" : "slams into"] [target] [sharp? "on" : "with"] their [parent]"
+			msg += "[user] [sharp? "nadziewa [target] na" : "wbija się w [target], używając:"] [parent]"
 			target.apply_damage(damage, BRUTE, user.zone_selected, 0)
 		if(prob(knockdown_chance))
 			msg += " i [target_buckled? "strąca [target] z [target.buckled]" : "przewraca [target]"]"

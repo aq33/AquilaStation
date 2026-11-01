@@ -1,5 +1,5 @@
 /datum/surgery/blood_filter
-	name = "Filter blood"
+	name = "Filtracja krwi"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/incise,
@@ -13,7 +13,7 @@
 	var/antispam = FALSE
 
 /datum/surgery_step/filter_blood
-	name = "Filter blood"
+	name = "przefiltruj krew"
 	implements = list(/obj/item/blood_filter = 95)
 	repeatable = TRUE
 	time = 2.5 SECONDS

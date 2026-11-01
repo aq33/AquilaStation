@@ -30,8 +30,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/medical/sleeper
-	name = "mounted sleeper"
-	desc = "Equipment for medical exosuits. A mounted sleeper that stabilizes patients and can inject reagents in the exosuit's reserves."
+	name = "montowany sleeper"
+	desc = "Wyposażenie medycznych egzoszkieletów. Montowany sleeper, który stabilizuje pacjentów i potrafi wstrzykiwać odczynniki z zapasów egzoszkieletu."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	energy_drain = 20
@@ -235,8 +235,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
-	name = "exosuit syringe gun"
-	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
+	name = "wyrzutnia strzykawek egzoszkieletu"
+	desc = "Wyposażenie medycznych egzoszkieletów. Syntezator chemikaliów z wyrzutnią strzykawek. Odczynniki w środku są utrzymywane w stazie, więc nie zachodzą żadne reakcje."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "syringegun"
 	var/list/syringes
@@ -254,7 +254,7 @@
 	. = ..()
 	create_reagents(max_volume, NO_REACT)
 	syringes = new
-	known_reagents = list(/datum/reagent/medicine/epinephrine="Epinephrine",/datum/reagent/medicine/charcoal="Charcoal")
+	known_reagents = list(/datum/reagent/medicine/epinephrine="Epinefryna",/datum/reagent/medicine/charcoal="Węgiel aktywowany")
 	processed_reagents = new
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/detach()
@@ -499,8 +499,8 @@
 ///////////////////////////////// Medical Beam ///////////////////////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam
-	name = "exosuit medical beamgun"
-	desc = "Equipment for medical exosuits. Generates a focused beam of medical nanites."
+	name = "medyczny miotacz wiązki egzoszkieletu"
+	desc = "Wyposażenie medycznych egzoszkieletów. Wytwarza skupioną wiązkę medycznych nanitów."
 	icon_state = "mecha_medigun"
 	energy_drain = 10
 	range = MECHA_MELEE|MECHA_RANGED

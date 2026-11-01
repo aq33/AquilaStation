@@ -33,7 +33,7 @@
 		..()
 
 /obj/structure/closet/secure_closet/freezer/kitchen
-	name = "kitchen cabinet"
+	name = "szafka kuchenna"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
@@ -45,8 +45,8 @@
 	new /obj/item/storage/box/cheese(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
-	name = "maintenance refrigerator"
-	desc = "This refrigerator looks quite dusty, is there anything edible still inside?"
+	name = "lodówka z tuneli technicznych"
+	desc = "Ta lodówka jest dość zakurzona. Czy w środku zostało jeszcze coś jadalnego?"
 	req_access = list()
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance/PopulateContents()
@@ -62,7 +62,7 @@
 	req_access = list()
 
 /obj/structure/closet/secure_closet/freezer/meat
-	name = "meat fridge"
+	name = "lodówka na mięso"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
@@ -77,7 +77,7 @@
 
 
 /obj/structure/closet/secure_closet/freezer/fridge
-	name = "refrigerator"
+	name = "lodówka"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/fridge/PopulateContents()
@@ -94,8 +94,8 @@
 	locked = FALSE
 
 /obj/structure/closet/secure_closet/freezer/money
-	name = "freezer"
-	desc = "This contains cold hard cash."
+	name = "zamrażarka"
+	desc = "Tu trzymają zimną gotówkę."
 	req_access = list(ACCESS_VAULT)
 
 /obj/structure/closet/secure_closet/freezer/money/PopulateContents()
@@ -108,8 +108,8 @@
 		new /obj/item/stack/spacecash/c200(src)
 
 /obj/structure/closet/secure_closet/freezer/cream_pie
-	name = "cream pie closet"
-	desc = "Contains pies filled with cream and/or custard, you sickos."
+	name = "szafa z ciastami z kremem"
+	desc = "Zawiera ciasta z kremem i/lub budyniem, wy zboczeńcy."
 	req_access = list(ACCESS_THEATRE)
 
 /obj/structure/closet/secure_closet/freezer/cream_pie/PopulateContents()

@@ -8,7 +8,7 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/compare/logic
-	display_name = "Logic"
+	display_name = "Logika"
 	desc = "Komponent z operacjami 'and' i 'or'."
 	category = "Math"
 

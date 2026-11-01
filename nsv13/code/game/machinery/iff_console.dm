@@ -7,8 +7,8 @@ GUARD THIS WITH YOUR LIFE, CIC.
 If someone hacks it, you can always rebuild it.
 */
 /obj/machinery/computer/iff_console
-	name = "\improper IFF Console"
-	desc = "A console which holds information about a ship's IFF (Identify Friend/Foe) signature. <i>It can be bypassed using a <b>multitool</b> to change the allegiance of a ship...</i>"
+	name = "konsola IFF"
+	desc = "Konsola, która przechowuje dane o sygnaturze IFF (identyfikacja swój/obcy) statku. <i>Można ją obejść <b>multitoolem</b>, żeby zmienić przynależność statku...</i>"
 	icon_screen = "iff"
 	icon_keyboard = "teleport_key"
 	circuit = /obj/item/circuitboard/computer/iff
@@ -116,7 +116,7 @@ If someone hacks it, you can always rebuild it.
 /obj/machinery/computer/iff_console/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "IFF")
+		ui = new(user, src, "IFF", "Konsola IFF")
 		ui.open()
 		ui.set_autoupdate(TRUE) // hackerman
 
@@ -170,7 +170,7 @@ If someone hacks it, you can always rebuild it.
 		for(var/obj/structure/overmap/ship in starting_point.system_contents)
 			if(length(ship.mobs_in_ship) && ship.reserved_z)
 				F.encounter(ship)
-		message_admins("Solgov interdictor fleet created at [starting_point].")
+		message_admins("Utworzono flotę przechwytującą SolGov w: [starting_point].")
 		priority_announce("Utracono kontakt z [GLOB.station_name]. Kod Charlie Foxtrot Jeden Dziewięć Osiem Cztery.", "Dowództwo Floty White Rapids")
 	for(var/obj/machinery/porta_turret/T as anything in turrets_in_ship) //Update the turrets too, those will be a pain otherwise
 		if(QDELETED(T))

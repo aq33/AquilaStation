@@ -7,7 +7,7 @@
  * Any changes made to those files should be copied over with discretion
  */
 /obj/item/circuit_component/list_literal/ntnet_send
-	display_name = "NTNet Transmitter List Literal"
+	display_name = "Nadajnik NTNet (literał listy)"
 	desc = "Tworzy pakiet danych z listy wejść i wysyła go przez NTNet. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "NTNet"
 

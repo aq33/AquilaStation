@@ -166,7 +166,7 @@
  * Nie żyją więc i nie giną razem z obudową jak zwykłe nieusuwalne komponenty.
  */
 /obj/item/circuit_component/mod_program
-	display_name = "Abstract Modular Program"
+	display_name = "Program modułowy (abstrakcyjny)"
 	desc = "Abstrakcyjny komponent programu komputera modułowego. Jeśli to widzisz, zgłoś błąd."
 	/**
 	 * Program, z którym komponent współpracuje. Póki komponent nie jest w obudowie, to ścieżka typu.

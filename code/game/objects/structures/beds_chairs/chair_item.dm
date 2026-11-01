@@ -1,8 +1,8 @@
 //Chairs, but as an item
 
 /obj/item/chair
-	name = "chair"
-	desc = "Basic brawl essential."
+	name = "krzesło"
+	desc = "Podstawa każdej bójki."
 	icon = 'icons/obj/beds_chairs/chairs.dmi'
 	icon_state = "chair_toppled"
 	item_state = "chair"
@@ -73,8 +73,8 @@
 		smash(user)
 
 /obj/item/chair/fancy
-	name = "fancy chair"
-	desc = "Meeting brawl essential."
+	name = "eleganckie krzesło"
+	desc = "Podstawa każdej bójki na zebraniu."
 	icon_state = "chair_fancy_toppled"
 	item_state = "chair_fancy"
 	hitsound = 'sound/items/trayhit2.ogg'
@@ -82,23 +82,23 @@
 	origin_type = /obj/structure/chair/fancy
 
 /obj/item/chair/stool
-	name = "stool"
-	desc = "The last line of defense."
+	name = "stołek"
+	desc = "Ostatnia linia obrony."
 	icon_state = "stool_toppled"
 	item_state = "stool"
 	origin_type = /obj/structure/chair/stool
 	break_chance = 0 //It's too sturdy.
 
 /obj/item/chair/stool/bar
-	name = "bar stool"
-	desc = "Bar brawl essential."
+	name = "stołek barowy"
+	desc = "Podstawa każdej bójki w barze."
 	icon_state = "bar_toppled"
 	item_state = "stool_bar"
 	origin_type = /obj/structure/chair/stool/bar
 
 /obj/item/chair/stool/bamboo
-	name = "bamboo stool"
-	desc = "The apex of the bar brawl experience."
+	name = "bambusowy stołek"
+	desc = "Szczyt doznań z bójek w barze."
 	icon_state = "bamboo_stool_toppled"
 	item_state = "stool_bamboo"
 	hitsound = 'sound/weapons/genhit1.ogg'
@@ -110,8 +110,8 @@
 	return //sturdy enough to ignore a god
 
 /obj/item/chair/wood
-	name = "wooden chair"
-	desc = "Fancy brawl essential."
+	name = "drewniane krzesło"
+	desc = "Podstawa każdej eleganckiej bójki."
 	icon_state = "wooden_chair_toppled"
 	item_state = "woodenchair"
 	resistance_flags = FLAMMABLE
@@ -125,14 +125,14 @@
 	return
 
 /obj/item/chair/wood/wings
-	name = "winged wooden chair"
-	desc = "First class brawl essential."
+	name = "drewniane krzesło z uszakami"
+	desc = "Podstawa każdej bójki w pierwszej klasie."
 	icon_state = "wooden_chair_wings_toppled"
 	origin_type = /obj/structure/chair/wood/wings
 
 /obj/item/chair/plastic
-	name = "plastic chair"
-	desc = "Be the reclaimer of your name." //bury the light deep withiiiiiiiiiiiiiiiiin
+	name = "plastikowe krzesło"
+	desc = "Odzyskaj swoje imię." //bury the light deep withiiiiiiiiiiiiiiiiin
 	icon_state = "plastic_chair_toppled"
 	item_state = "plastic_chair"
 	force = 3//have you ever been hit by a plastic chair? those aren't as bad as a metal or a wood one!
@@ -149,8 +149,8 @@
 	return
 
 /obj/item/chair/foldable
-	name = "folding chair"
-	desc = "Somehow, you can always find one under the wrestling ring."
+	name = "krzesło składane"
+	desc = "Jakimś cudem zawsze znajdziesz takie pod ringiem zapaśniczym."
 	icon_state = "chair_foldable_toppled" //for convenience sake
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'

@@ -11,7 +11,7 @@
 	icon_state = "warden" //placeholder
 
 /obj/machinery/computer/cargo/express/syndicate
-	name = "\improper Syndicate Requisitions Console"
+	name = "ekspresowa konsola zaopatrzenia Syndykatu"
 	req_one_access = list(ACCESS_SYNDICATE_LEADER, ACCESS_SYNDICATE_REQUISITIONS)
 	req_access = null
 	req_one_access_txt = ""
@@ -24,7 +24,7 @@
 	return FALSE
 
 /obj/item/circuitboard/computer/cargo/express/syndicate
-	name = "\improper Syndicate Requisitions Console (Computer Board)"
+	name = "ekspresowa konsola zaopatrzenia Syndykatu (płytka komputera)"
 	icon_state = "security"
 	build_path = /obj/machinery/computer/cargo/express/syndicate
 
@@ -37,8 +37,8 @@
 	gloves = /obj/item/clothing/gloves/color/black
 
 /obj/item/pvp_nuke_spawner
-	name = "nuclear summon device"
-	desc = "A small device that will summon the Nebuchadnezzar's nuclear warhead to your location. Click it in your hand to use it."
+	name = "przywoływacz bomby atomowej"
+	desc = "Małe urządzenie, które przywołuje do ciebie głowicę atomową z SSV Nebuchadnezzar. Kliknij je w ręce, żeby go użyć."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-green"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -53,7 +53,7 @@
 	if(!is_station_level(user.z))
 		to_chat(user, "<span class='notice'>W słuchawce trzeszczy wiadomość: Operatorze. Nie dotarłeś jeszcze na [station_name()] - upewnij się, że jesteś na wrogim statku, zanim przywołasz bombę.</span>")
 		return
-	if(alert("Na pewno chcesz przywołać bombę atomową do siebie?",name,"Yes","No") == "Yes")
+	if(alert("Na pewno chcesz przywołać bombę atomową do siebie?",name,"Tak","Nie") == "Tak")
 		to_chat(user, "<span class='notice'>Naciskasz przycisk na [src] i pojawia się bomba atomowa.</span>")
 		var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in GLOB.nuke_list
 		nuke.visible_message("<span class='warning'>[src] znika z sykiem!</span>")
@@ -84,8 +84,8 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/machinery/conquest_beacon
-	name = "lighthouse beacon"
-	desc = "An advanced navigational beacon capable of forming jump-bridges, allowing entire fleets to jump to a system it designates without needing to use a hyperlane. These devices take an incredible amount of power to operate, and are extremely obvious when activated."
+	name = "nadajnik latarni"
+	desc = "Zaawansowany nadajnik nawigacyjny zdolny tworzyć mosty skokowe, dzięki którym całe floty mogą skoczyć do wskazanego systemu bez korzystania z hiperlinii. Te urządzenia pobierają ogromne ilości energii, a po włączeniu trudno ich nie zauważyć."
 	icon = 'nsv13/icons/obj/munitions_large.dmi'
 	icon_state = "lighthouse"
 	req_one_access = list(ACCESS_SYNDICATE_LEADER)
@@ -126,7 +126,7 @@
 	set_active(FALSE, TRUE)
 	var/datum/faction/ours = SSstar_system.faction_by_id(faction_type)
 	if(!ours)
-		message_admins("WARNING: Invalid Lighthouse beacon faction set! (no faction with ID: [faction_type])")
+		message_admins("OSTRZEŻENIE: nadajnik latarni ma ustawioną nieprawidłową frakcję! (brak frakcji o ID: [faction_type])")
 		return
 	get_overmap().relay_to_nearby('nsv13/sound/effects/ship/FTL.ogg')
 	//Annnd send the reinforcements!
@@ -159,7 +159,7 @@
 			return
 		if(!powered())
 			return
-		if(alert(user, "Zacząć wzywać posiłki przez [src]? To głośny proces, który zdradzi twoją pozycję wrogom!","Confirm","Yes","No")=="No")
+		if(alert(user, "Zacząć wzywać posiłki przez [src]? To głośny proces, który zdradzi twoją pozycję wrogom!","Potwierdź","Tak","Nie")=="Nie")
 			return
 		var/datum/star_system/SS = get_overmap().current_system
 		if(SS.alignment == alignment) //Todo: add federation check here.
@@ -189,8 +189,8 @@
 
 //NT beacon
 /obj/machinery/conquest_beacon/nanotrasen //Pretty much just a glorified space phone.
-	name = "\proper F.L.A.R.E. device"
-	desc = "A simple beacon designed to communicate the capturing of territory across large distances at extreme speeds."
+	name = "\proper urządzenie F.L.A.R.E."
+	desc = "Prosty nadajnik, który błyskawicznie przekazuje na ogromne odległości wieść o przejęciu terytorium."
 	icon_state = "lighthouse_nt"
 	idle_power_usage = 10
 	req_one_access = list(ACCESS_CAPTAIN)
@@ -217,7 +217,7 @@
 			return
 		if(!powered())
 			return
-		if(alert(user, "Aktywować [src]? Wysłanie transmisji zajmie dwie minuty i na stałe oznaczy system jako przejęty!","Confirm","Yes","No")=="No")
+		if(alert(user, "Aktywować [src]? Wysłanie transmisji zajmie dwie minuty i na stałe oznaczy system jako przejęty!","Potwierdź","Tak","Nie")=="Nie")
 			return
 		capturing = get_overmap().current_system
 		if(capturing.alignment == alignment || capturing.alignment == "solgov") //Todo: add federation check here.
@@ -234,8 +234,8 @@
 * Lets the captain customize the feel and role of their ship.
 */
 /datum/ship_loadout
-	var/name = "Evenly distribute power amongst core systems"
-	var/desc = "Reroutes power to core systems, sacrificing any and all special modules. This will net a sizeable improvement to all the general stats of a ship (health, maneuverability)"
+	var/name = "Równy podział mocy między systemy główne"
+	var/desc = "Przekierowuje moc do systemów głównych kosztem wszystkich modułów specjalnych. Daje to spory wzrost wszystkich ogólnych parametrów statku (wytrzymałość, zwrotność)."
 
 /datum/ship_loadout/proc/apply(obj/structure/overmap/OM)
 	if(!OM)
@@ -249,8 +249,8 @@
 	return TRUE
 
 /datum/ship_loadout/stealth
-	name = "Stealth Drive"
-	desc = "Scans have detected an inactive sensor disrupting device aboard this vessel. Activate it to mask the ship's signature from DRADIS (except at close range) and use any excess unallocated power to make the ship more maneuverable in combat and slightly more robust. This module will turn your ship into an extremely effective alpha strike platform, and allow you to slip out of combat when damaged. WARNING: Firing while cloaked will disrupt the cloak temporarily."
+	name = "Napęd maskujący"
+	desc = "Skany wykryły na pokładzie nieaktywne urządzenie zakłócające sensory. Włącz je, żeby ukryć sygnaturę statku przed DRADIS-em (z wyjątkiem bliskiego zasięgu), a nadwyżkę nieprzydzielonej mocy przeznaczyć na większą zwrotność w walce i nieco większą wytrzymałość. Ten moduł zmienia statek w wyjątkowo skuteczną platformę do pierwszego uderzenia i pozwala wymknąć się z walki po odniesieniu uszkodzeń. OSTRZEŻENIE: strzelanie podczas maskowania chwilowo zakłóca maskowanie."
 
 /datum/ship_loadout/stealth/apply(obj/structure/overmap/OM)
 	if(!OM)
@@ -266,8 +266,8 @@
 	return TRUE
 
 /datum/ship_loadout/interceptor
-	name = "Experimental Engine Modifications"
-	desc = "Scans have identified an experimental speed-enhancing manifold as well as a prototype Thirring Drive modification in the powergrid. Activate it to vastly increase ship maneuverability and transit speed whilst also allowing the FTL computer to automatically spool itself between jumps. This module will allow you to reach targets much more quickly, and increase your maneuverability and speed substantially, though no excess power will be left for structural reinforcement."
+	name = "Eksperymentalne modyfikacje silników"
+	desc = "Skany wykryły w sieci zasilania eksperymentalny kolektor zwiększający prędkość oraz prototypową modyfikację napędu Thirringa. Włącz je, żeby znacznie zwiększyć zwrotność i prędkość przelotową statku, a komputer FTL będzie sam rozgrzewać napęd między skokami. Ten moduł pozwala dużo szybciej docierać do celów i wyraźnie zwiększa zwrotność i prędkość, ale nie zostaje żadna nadwyżka mocy na wzmocnienie konstrukcji."
 
 /datum/ship_loadout/interceptor/apply(obj/structure/overmap/OM)
 	if(!OM)
@@ -281,8 +281,8 @@
 	return TRUE
 
 /obj/item/ship_loadout_selector
-	name = "Ship loadout selector"
-	desc = "A device which can reroute power to certain ship systems and even power up previously unactivated ones!. Click it in your hand to choose a loadout for your ship."
+	name = "selektor konfiguracji statku"
+	desc = "Urządzenie, które może przekierować moc do wybranych systemów statku, a nawet uruchomić te, które dotąd były nieaktywne! Kliknij je w ręce, żeby wybrać konfigurację statku."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-red"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -308,7 +308,7 @@
 /obj/item/ship_loadout_selector/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ShipLoadout")
+		ui = new(user, src, "ShipLoadout", "Konfiguracja statku")
 		ui.open()
 
 /obj/item/ship_loadout_selector/ui_data(mob/user)
@@ -331,7 +331,7 @@
 	var/datum/ship_loadout/target = locate(params["target_id"])
 	if(!target)
 		return FALSE
-	if(alert("Na pewno chcesz wybrać [target]?",name,"Yes","No") == "Yes")
+	if(alert("Na pewno chcesz wybrać [target]?",name,"Tak","Nie") == "Tak")
 		if(target.apply(loc.get_overmap()))
 			qdel(src)
 
@@ -351,84 +351,84 @@
 	LAZYADD(get_overmap()?.trader_beacons, src)
 
 /area/bridge/pvp
-	name = "Syndicate Bridge"
+	name = "Mostek Syndykatu"
 
 /area/bridge/pvp/secondary
-	name = "Syndicate Battle Bridge"
+	name = "Mostek Bojowy Syndykatu"
 
 /area/bridge/meeting_room/pvp
-	name = "Syndicate Meeting Room"
+	name = "Sala Konferencyjna Syndykatu"
 
 /area/hallway/pvp
-	name = "Syndicate Primary Hallway"
+	name = "Główny Korytarz Syndykatu"
 
 /area/crew_quarters/bar/pvp
-	name = "Syndicate Bar"
+	name = "Bar Syndykatu"
 
 /area/crew_quarters/cafeteria/pvp
-	name = "Syndicate Cafeteria"
+	name = "Kafeteria Syndykatu"
 
 /area/hydroponics/pvp
-	name = "Syndicate Hydroponics"
+	name = "Hydroponika Syndykatu"
 
 /area/ai_monitored/nuke_storage/pvp
-	name = "Syndicate vault"
+	name = "Skarbiec Syndykatu"
 
 /area/medical/medbay/pvp
-	name = "Syndicate Medbay"
+	name = "Placówka Medyczna Syndykatu"
 
 /area/nsv/weapons/pvp
-	name = "Syndicate Munitions"
+	name = "Amunicja Syndykatu"
 
 /area/nsv/hanger/pvp
-	name = "Syndicate Hangar"
+	name = "Hangar Syndykatu"
 
 /area/nsv/hanger/pvp/marine
-	name = "Syndicate Marine Hangar"
+	name = "Hangar Piechoty Morskiej Syndykatu"
 
 /area/security/brig/pvp
-	name = "Syndicate Brig"
+	name = "Areszt Syndykatu"
 
 /area/engine/engineering/pvp
-	name = "Syndicate Engineering"
+	name = "Inżynieria Syndykatu"
 
 /area/engine/engine_room/pvp
-	name = "Syndicate Reactor Core"
+	name = "Rdzeń Reaktora Syndykatu"
 
 /area/quartermaster/pvp
-	name = "Syndicate Requisitions Bay"
+	name = "Ładownia Zaopatrzenia Syndykatu"
 
 /area/science/pvp
-	name = "Syndicate Science Wing"
+	name = "Skrzydło Naukowe Syndykatu"
 
 /area/science/robotics/pvp
-	name = "Syndicate Robotics"
+	name = "Robotyka Syndykatu"
 
 /area/crew_quarters/pvp
-	name = "Syndicate Quarters"
+	name = "Kwatery Syndykatu"
 
 /area/crew_quarters/toilet/pvp
-	name = "Syndicate Toilets"
+	name = "Toalety Syndykatu"
 /area/crew_quarters/heads/hor/pvp
-	name = "Syndicate Research Office"
+	name = "Biuro Badawcze Syndykatu"
 
 /area/crew_quarters/heads/hos/pvp
-	name = "Syndicate HOS Office"
+	name = "Gabinet Komendanta Syndykatu"
 
 /area/crew_quarters/heads/chief/pvp
-	name = "Syndicate CE Office"
+	name = "Biuro Głównego Inżyniera Syndykatu"
 
 /area/crew_quarters/heads/captain/pvp
-	name = "Syndicate Captain's Office"
+	name = "Biuro Kapitana Syndykatu"
 
 /area/crew_quarters/heads/captain/pvp/admiral
-	name = "Syndicate Admiral's Office"
+	name = "Biuro Admirała Syndykatu"
 
 /area/maintenance/pvp
-	name = "Syndicate Maintenance"
+	name = "Tunel Konserwacyjny Syndykatu"
 
 /obj/machinery/camera/syndicate
-	name = "syndicate tactical camera"
+	name = "kamera taktyczna Syndykatu"
 	network = list("syndicate")
 
 /obj/machinery/camera/syndicate/autoname
@@ -452,7 +452,7 @@
 		c_tag = "[A.name] #[number]"
 
 /obj/item/radio/intercom/syndicate //An intercom for syndicate AIs.
-	name = "syndicate intercom"
+	name = "interkom Syndykatu"
 	syndie = 1
 	freqlock = 1
 

@@ -1,11 +1,11 @@
 /datum/surgery/plastic_surgery
-	name = "plastic surgery"
+	name = "operacja plastyczna"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/reshape_face, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_HEAD)
 
 //reshape_face
 /datum/surgery_step/reshape_face
-	name = "reshape face"
+	name = "zmień rysy twarzy"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
 	time = 64
 
@@ -28,7 +28,7 @@
 				names += target.dna.species.random_name(target.gender, TRUE)
 		else
 			for(var/_i in 1 to 9)
-				names += "Subject [target.gender == MALE ? "i" : "o"]-[pick("a", "b", "c", "d", "e")]-[rand(10000, 99999)]"
+				names += "Obiekt [target.gender == MALE ? "i" : "o"]-[pick("a", "b", "c", "d", "e")]-[rand(10000, 99999)]"
 			names += target.dna.species.random_name(target.gender, TRUE) //give one normal name in case they want to do regular plastic surgery
 		var/chosen_name = input(user, "Wybierz nowe imię.", "Chirurgia plastyczna") as null|anything in names
 		if(!chosen_name)

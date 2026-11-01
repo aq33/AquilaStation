@@ -1,6 +1,6 @@
 /obj/item/implant/freedom
-	name = "freedom implant"
-	desc = "Use this to escape from those evil Red Shirts."
+	name = "implant wolności"
+	desc = "Służy do ucieczki przed tymi złymi Czerwonymi Koszulami."
 	icon_state = "freedom"
 	implant_color = "r"
 	uses = 4
@@ -24,10 +24,10 @@
 
 
 /obj/item/implanter/freedom
-	name = "implanter (freedom)"
+	name = "implanter (wolność)"
 	imp_type = /obj/item/implant/freedom
 
 /obj/item/implantcase/freedom
-	name = "implant case - 'Freedom'"
-	desc = "A glass case containing a freedom implant."
+	name = "etui na implant – „Wolność”"
+	desc = "Szklane etui z implantem wolności."
 	imp_type = /obj/item/implant/freedom

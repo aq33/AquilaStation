@@ -1,5 +1,5 @@
 /obj/structure/alien_artifact
-	name = "alien artifact structure"
+	name = "obca struktura artefaktu"
 	icon = 'icons/obj/artifact.dmi'
 	max_integrity = 100
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -11,8 +11,8 @@
 //Watcher
 //Triggers nearby defenses when motion is detected
 /obj/structure/alien_artifact/watcher
-	name = "watcher"
-	desc = "It sends a shiver down your spine."
+	name = "obserwator"
+	desc = "Na jego widok przechodzi cię dreszcz."
 	icon_state = "watcher"
 	var/cooldown = 0
 	var/range //Trigger range
@@ -44,8 +44,8 @@
 
 //Protectors
 /obj/structure/alien_artifact/protector
-	name = "protector"
-	desc = "A strange artifact developed centuries ago by beings that are now beyond us."
+	name = "obrońca"
+	desc = "Dziwny artefakt stworzony przed wiekami przez istoty, które dziś są poza naszym zasięgiem."
 	icon_state = "protector"
 	max_integrity = 200
 	var/active = FALSE

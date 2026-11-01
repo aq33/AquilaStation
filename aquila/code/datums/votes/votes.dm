@@ -37,7 +37,7 @@
 		return
 	if(admins_present())
 		to_chat(world, "<span class='boldannounce'>Uwaga: głosowanie nie zrestartuje serwera automatycznie, bo są aktywni admini.</span>")
-		message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")
+		message_admins("Głosowanie o restart przeszło, ale są aktywni admini z +server, więc restart anulowano. Jeśli chcesz, możesz zrestartować serwer.")
 		return
 	SSticker.Reboot("Restart vote successful.", "restart vote")
 

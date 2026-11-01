@@ -11,20 +11,20 @@
  * Filing Cabinets
  */
 /obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
+	name = "szafka na dokumenty"
+	desc = "Duża szafka z szufladami."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
-	name = "chest drawer"
+	name = "komoda"
 	icon_state = "chestdrawer"
 
 /obj/structure/filingcabinet/chestdrawer/wheeled
-	name = "rolling chest drawer"
-	desc = "A small cabinet with drawers. This one has wheels!"
+	name = "komoda na kółkach"
+	desc = "Mała szafka z szufladami. Ta ma kółka!"
 	anchored = FALSE
 
 /obj/structure/filingcabinet/filingcabinet	//not changing the path to avoid unnecessary map issues, but please don't name stuff like this in the future -Pete
@@ -140,7 +140,7 @@
 				sec_record_text += "[S.fields["com_[counter]"]]<BR>"
 				counter++
 			sec_record_text += "</TT>"
-			sec_record_paper.name = "paper - '[G.fields["name"]]'"
+			sec_record_paper.name = "kartka – „[G.fields["name"]]”"
 			sec_record_paper.add_raw_text(sec_record_text)
 			sec_record_paper.update_appearance()
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
@@ -176,7 +176,7 @@
 				counter++
 			med_record_text += "</TT>"
 			med_record_paper.add_raw_text(med_record_text)
-			med_record_paper.name = "paper - '[G.fields["name"]]'"
+			med_record_paper.name = "kartka – „[G.fields["name"]]”"
 			med_record_paper.update_appearance()
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(employmentCabinets)
 
 //NSV13
 /obj/structure/filingcabinet/documents
-    name = "classified filing cabinet"
+    name = "tajna szafka na dokumenty"
 
 /obj/structure/filingcabinet/documents/Initialize(mapload)
     . = ..()

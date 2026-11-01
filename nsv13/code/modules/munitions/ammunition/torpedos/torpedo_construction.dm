@@ -1,9 +1,9 @@
 //Torpedo construction//
 
 /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
-	name = "\improper NTB-M4A1-IB prebuilt torpedo-casing"
+	name = "\improper gotowa obudowa torpedy NTB-M4A1-IB"
 	icon_state = "case"
-	desc = "The outer casing of a 30mm torpedo."
+	desc = "Zewnętrzna obudowa torpedy 30 mm."
 	claimable_gulag_points = 0
 	volatility = 0
 	var/state = 0

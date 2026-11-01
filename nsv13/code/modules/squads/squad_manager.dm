@@ -1,5 +1,29 @@
 GLOBAL_DATUM_INIT(squad_manager, /datum/squad_manager, new)
 
+/// AQUILA: polskie nazwy ról drużyn do wyświetlania. Same role (DC_SQUAD itd.) są kluczami list, więc zostają po angielsku.
+GLOBAL_LIST_INIT(squad_role_names_pl, list(
+	DC_SQUAD = "Zespół kontroli uszkodzeń",
+	MEDICAL_SQUAD = "Zespół medyczny",
+	SECURITY_SQUAD = "Wsparcie ochrony",
+	COMBAT_AIR_PATROL = "Bojowy patrol powietrzny",
+	MUNITIONS_SUPPORT = "Wsparcie działu amunicji",
+	CIC_OPS = "Obsada CIB",
+))
+
+/// AQUILA: polska nazwa roli drużyny (do tekstu dla gracza)
+/proc/squad_role_pl(role)
+	return GLOB.squad_role_names_pl[role] || role
+
+/// AQUILA: wybór roli drużyny z polskimi nazwami; zwraca klucz roli albo null
+/proc/input_squad_role(mob/user)
+	var/list/choices = list()
+	for(var/squad_role in SQUAD_TYPES)
+		choices[squad_role_pl(squad_role)] = squad_role
+	var/choice = input(user, "Wybierz rolę w drużynie:", "Ustawienia drużyny") as null|anything in choices
+	if(!choice)
+		return null
+	return choices[choice]
+
 /datum/squad_manager
 	var/name = "Squad Manager"
 	var/static/list/squads = list()
@@ -65,31 +89,31 @@ GLOBAL_DATUM_INIT(squad_manager, /datum/squad_manager, new)
 	stuckee.retask(role)
 	stuckee.lowpop_retasked = TRUE
 	stuckee.access_enabled = TRUE // They won't be much help without this
-	minor_announce("[stuckee] zostaje przeniesiony do roli: [role] z powodu braków kadrowych", "WhiteRapids Bureaucratic Corps")
+	minor_announce("Drużyna [stuckee] zostaje przeniesiona do roli: [squad_role_pl(role)] z powodu braków kadrowych.", "Korpus Biurokratyczny WhiteRapids")
 
 // Method which runs just slightly after roundstart, and ensures that the ship has at least its BASIC roles filled
 /datum/squad_manager/proc/check_squad_assignments()
 	var/datum/job/job = SSjob.GetJob(JOB_NAME_BRIDGESTAFF)
 	if(!istype(job))
-		message_admins("Could not get [JOB_NAME_BRIDGESTAFF] job datum")
+		message_admins("Nie udało się pobrać datumu zawodu [JOB_NAME_BRIDGESTAFF]")
 	else if(!job.current_positions)
 		assign_squad(CIC_OPS)
 
 	job = SSjob.GetJob(JOB_NAME_MUNITIONSTECHNICIAN)
 	if(!istype(job))
-		message_admins("Could not get [JOB_NAME_MUNITIONSTECHNICIAN] job datum")
+		message_admins("Nie udało się pobrać datumu zawodu [JOB_NAME_MUNITIONSTECHNICIAN]")
 	else if(!job.current_positions)
 		assign_squad(MUNITIONS_SUPPORT)
 
 	var/tally = 0
 	job = SSjob.GetJob(JOB_NAME_STATIONENGINEER)
 	if(!istype(job))
-		message_admins("Could not get [JOB_NAME_STATIONENGINEER] job datum")
+		message_admins("Nie udało się pobrać datumu zawodu [JOB_NAME_STATIONENGINEER]")
 	else
 		tally += job.current_positions
 	job = SSjob.GetJob(JOB_NAME_ATMOSPHERICTECHNICIAN)
 	if(!istype(job))
-		message_admins("Could not get [JOB_NAME_ATMOSPHERICTECHNICIAN] job datum")
+		message_admins("Nie udało się pobrać datumu zawodu [JOB_NAME_ATMOSPHERICTECHNICIAN]")
 	else
 		tally += job.current_positions
 	if(!tally)

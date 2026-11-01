@@ -1,6 +1,6 @@
 /datum/instrument/fun
-	name = "Generic Fun Instrument"
-	category = "Fun"
+	name = "Ogólny instrument dla zabawy"
+	category = "Zabawa"
 	abstract_type = /datum/instrument/fun
 
 /datum/instrument/fun/honk
@@ -14,12 +14,12 @@
 	real_samples = list("79"='sound/machines/ping.ogg')
 
 /datum/instrument/fun/chime
-	name = "Chime"
+	name = "Dzwonek"
 	id = "chime"
 	real_samples = list("79"='sound/machines/chime.ogg')
 
 /datum/instrument/fun/mothscream
-	name = "Moth Scream"
+	name = "Krzyk ćmy"
 	id = "mothscream"
 	real_samples = list("60"='sound/voice/moth/scream_moth.ogg')
 	admin_only = TRUE

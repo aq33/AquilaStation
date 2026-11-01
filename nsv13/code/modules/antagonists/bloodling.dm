@@ -6,8 +6,8 @@
 #define BLOODLING_ASCENSION_MODIFIER "bloodling_ascension_penalty"
 
 /mob/living/simple_animal/bloodling
-	name = "fleshy entity"
-	desc = "Just looking at this thing makes you want to puke."
+	name = "mięsista istota"
+	desc = "Od samego patrzenia na to coś chce ci się wymiotować."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_living = "evo1"
 	icon_dead = "deadling"
@@ -84,8 +84,8 @@
 	return LINGHIVE_LING //We are the king of the lings.
 
 /obj/effect/decal/cleanable/blood/bloodling
-	name = "Otherwordly Goop"
-	desc = "Just looking at it makes you feel sick."
+	name = "nieziemska maź"
+	desc = "Od samego patrzenia na nią robi ci się niedobrze."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_state = "tracks"
 
@@ -488,8 +488,8 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 	return TRUE
 
 /datum/action/bloodling/hide
-	name = "Hide"
-	desc = "We can become harder to spot by shifting our chromatic resonance."
+	name = "Ukrycie"
+	desc = "Możemy stać się trudniejsi do zauważenia, zmieniając nasz rezonans chromatyczny."
 	button_icon_state = "hide"
 
 /datum/action/bloodling/hide/Grant(mob/living/M)
@@ -524,8 +524,8 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 	. = ..()
 
 /datum/action/bloodling/thermalvision
-	name = "Enhanced Vision"
-	desc = "We can alter our vision to see heat signatures."
+	name = "Wzmocniony wzrok"
+	desc = "Możemy zmienić nasz wzrok, by widzieć sygnatury cieplne."
 	button_icon_state = "augmented_eyesight"
 
 /datum/action/bloodling/thermalvision/action(mob/living/user)
@@ -555,7 +555,7 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 //Remnant
 
 /obj/effect/temp_visual/bloodling_remnant
-	name = "fleshy remnants"
+	name = "mięsiste szczątki"
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_state = "remnant"
 	duration = 2 MINUTES //Remnants persist for a while, but boi needs to hoover them.
@@ -567,8 +567,8 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 		src.biomass_amount = biomass_amount
 
 /datum/action/bloodling/call_remnant
-	name = "Call Forth Remnant"
-	desc = "We call forth nearby remnant, causing it to fly to us."
+	name = "Przywołanie szczątków"
+	desc = "Przywołujemy pobliskie szczątki, które przylatują do nas."
 	button_icon_state = "remnant"
 	biomass_cost = 5 //Best be sure you found one...
 	var/base_range = 5
@@ -605,8 +605,8 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 	volume = 100
 
 /datum/action/bloodling/absorb
-	name = "Absorb Creature"
-	desc = "We absorb a creature using our tendrils, claiming its biomass for ourselves."
+	name = "Wchłonięcie istoty"
+	desc = "Wchłaniamy istotę mackami, przejmując jej biomasę."
 	button_icon_state = "absorb"
 	biomass_cost = 0
 	var/absorb_time = 10 SECONDS //You have to pin them down for a while to get them...
@@ -665,8 +665,8 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 		soundloop.stop(user)
 
 /datum/action/bloodling/infest
-	name = "Infest Creature"
-	desc = "We infest a creature with our consciousness, forcing its servitude and upgrading its physical form with some of our biomass."
+	name = "Opanowanie istoty"
+	desc = "Opanowujemy istotę naszą świadomością, zmuszając ją do służby i ulepszając jej fizyczną formę częścią naszej biomasy."
 	button_icon_state = "infest"
 	biomass_cost = 75
 	var/absorb_time = 10 SECONDS//30 SECONDS //This is a lengthy process, and will require assistance to complete.
@@ -735,7 +735,7 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 	if(absorb_mob && physical_target)
 		to_chat(user, "<span class='userdanger'>WYKRYLIŚMY TU OBECNOŚĆ POTĘŻNEJ ISTOTY...</span>")
 		can_absorb_normally = FALSE
-		if(alert(user, "Wchłonąć potężną istotę (GŁOŚNO)?",name,"Yes","No") == "Yes")
+		if(alert(user, "Wchłonąć potężną istotę (GŁOŚNO)?",name,"Tak","Nie") == "Tak")
 			to_chat(absorb_mob, "<span class='userdanger'>Dziwna świadomość zaczyna splatać się z twoją...</span>")
 			var/absorb_cooldown = 1 MINUTES - B.last_evolution SECONDS //It'll take everything you have to pull this off...
 			soundloop.start(user)
@@ -796,8 +796,8 @@ Allows the bloodling to give intelligence to lower lifeforms, and enthrall them 
 Depending on what creature the entity gives life to, this can be EXTREMELY strong, or practically useless. If it somehow manages to enthrall a blob..god fucking help you.
 */
 /datum/action/bloodling/give_life
-	name = "Give Life"
-	desc = "We use some of our essence to bestow the greatest gift of all, lesser creatures will become our slaves. When used on mindless humans, it will also enthrall them."
+	name = "Dar życia"
+	desc = "Zużywamy część naszej esencji, by obdarzyć istotę największym darem ze wszystkich. Pomniejsze istoty staną się naszymi niewolnikami. Użyte na bezmyślnych ludziach, także ich zniewala."
 	button_icon_state = "give_life"
 	biomass_cost = 75
 
@@ -836,8 +836,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		return FALSE
 
 /datum/action/bloodling/transfer_biomass
-	name = "Transfer Biomass"
-	desc = "We can transfer some of our biomass to a minion."
+	name = "Przekazanie biomasy"
+	desc = "Możemy przekazać część naszej biomasy słudze."
 	button_icon_state = "transfer"
 	biomass_cost = 0
 
@@ -870,8 +870,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 
 //Ability: ground pound. Simple AOE stun, low biomass, long cooldown.
 /datum/action/bloodling/ground_pound
-	name = "Ground Slam"
-	desc = "We jump into the air and slam into the ground at high velocity, stunning nearby victims."
+	name = "Uderzenie o ziemię"
+	desc = "Wyskakujemy w powietrze i z dużą prędkością uderzamy o ziemię, ogłuszając pobliskie ofiary."
 	button_icon_state = "ground_pound"
 	biomass_cost = 0
 	var/base_stun_time = 3.5 SECONDS
@@ -911,8 +911,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 
 //The COOLER stun
 /datum/action/bloodling/whiplash
-	name = "Tentacle Whip"
-	desc = "We lash out our tentacles to stun nearby enemies."
+	name = "Bicz z macek"
+	desc = "Smagamy mackami, by ogłuszyć pobliskich wrogów."
 	button_icon_state = "tailsweep"
 	biomass_cost = 25
 	var/base_stun_time = 1.5 SECONDS
@@ -950,8 +950,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		M.safe_throw_at(throwtarget, ((CLAMP((5 - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, 5))), 1,user, force = MOVE_FORCE_EXTREMELY_STRONG)//So stuff gets tossed around at the same time.
 
 /mob/living/simple_animal/bloodling_minion
-	name = "necrotic harvester"
-	desc = "A fleshy creature with jagged arms."
+	name = "nekrotyczny żniwiarz"
+	desc = "Mięsista istota o poszarpanych ramionach."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_living = "harvester"
 	icon_dead = "harvester_dead"
@@ -991,8 +991,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 	return ..()
 
 /mob/living/simple_animal/bloodling_minion/tank
-	name = "wall of flesh"
-	desc = "A massive hulk of flesh."
+	name = "ściana mięsa"
+	desc = "Ogromne cielsko z mięsa."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_living = "tank"
 	icon_dead = "tank_dead"
@@ -1016,8 +1016,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		death()
 
 /obj/structure/ratwarren
-	name = "Rat Warren"
-	desc = "A festering rat's nest, crawling with life."
+	name = "szczurza nora"
+	desc = "Ropiejące szczurze gniazdo, roi się w nim od życia."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	icon_state = "ratwarren"
 	obj_integrity = 100
@@ -1043,8 +1043,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		new /mob/living/simple_animal/mouse(get_turf(src))
 
 /datum/action/bloodling/build
-	name = "Build"
-	desc = "We use some of our essence to construct other entities."
+	name = "Budowa"
+	desc = "Zużywamy część naszej esencji, by stworzyć inne istoty."
 	button_icon_state = "build"
 	biomass_cost = 0
 
@@ -1072,7 +1072,7 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 	var/datum/component/bloodling/B = user.GetComponent(/datum/component/bloodling)
 	if(!B || !buildPath)
 		return
-	if(alert(user, "Zbudować [choice]? Koszt: [cost] biomasy.",name,"Yes","No") == "Yes")
+	if(alert(user, "Zbudować [choice]? Koszt: [cost] biomasy.",name,"Tak","Nie") == "Tak")
 		if(B.biomass <= cost)
 			to_chat(user, "<span class='warning'>Potrzebujemy jeszcze [cost - B.biomass] biomasy, by zbudować [choice]!</span>")
 			return
@@ -1083,8 +1083,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		new buildPath(get_turf(user))
 
 /datum/action/bloodling/dissonant_shriek
-	name = "Dissonant Shriek"
-	desc = "We cry out, disabling nearby electronics."
+	name = "Dysonansowy wrzask"
+	desc = "Wrzeszczymy, unieruchamiając pobliską elektronikę."
 	button_icon_state = "dissonant_shriek"
 	biomass_cost = 30
 
@@ -1099,8 +1099,8 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 	add_cooldown(1 MINUTES)
 
 /datum/action/bloodling/heal
-	name = "Heal"
-	desc = "We use some of our biomass to restore a changeling thrall, restoring their limbs and purging toxins. To heal lesser slaves, transfer them some biomass."
+	name = "Leczenie"
+	desc = "Zużywamy część naszej biomasy, by odnowić niewolnika, przywracając mu kończyny i usuwając toksyny. By uleczyć pomniejszych niewolników, przekaż im trochę biomasy."
 	button_icon_state = "heal"
 	biomass_cost = 50
 
@@ -1143,14 +1143,14 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		return TRUE
 
 /datum/action/bloodling/ascend
-	name = "Ascend"
-	desc = "We shed our mortal coil and ascend into a greater being. This will consume 500 biomass..."
+	name = "Wniebowstąpienie"
+	desc = "Zrzucamy śmiertelną powłokę i wznosimy się do postaci wyższej istoty. To zużyje 500 biomasy..."
 	button_icon_state = "ascend"
 	biomass_cost = 500
 
 /obj/structure/fluff/bloodling_tendril
-	name = "bloody tendril"
-	desc = "A vile tendril of corruption, channeling power from the mighty spaceship below."
+	name = "krwawa macka"
+	desc = "Plugawa macka zepsucia, czerpiąca moc z potężnego okrętu kosmicznego pod spodem."
 	icon = 'icons/mob/nest.dmi'
 	icon_state = "tendril"
 
@@ -1168,7 +1168,7 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		refund_biomass(user, biomass_cost)
 		return
 
-	if(alert(user, "Na pewno chcesz spróbować się wznieść? Będziesz bezbronny, a niższe istoty dowiedzą się, gdzie jesteś...",name,"Yes","No") == "Yes")
+	if(alert(user, "Na pewno chcesz spróbować się wznieść? Będziesz bezbronny, a niższe istoty dowiedzą się, gdzie jesteś...",name,"Tak","Nie") == "Tak")
 		user.get_overmap().relay_to_nearby('nsv13/sound/effects/bloodling_awaken.ogg', "<span class='userdanger'>Do twojego umysłu wkradają się ohydne obrazy!</span>", FALSE)
 		add_cooldown(15 MINUTES)
 		//Wall the master in
@@ -1237,9 +1237,9 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 	Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 
 /mob/living/simple_animal/hostile/eldritch/armsy/prime/bloodling_ascended
-	name = "Fleshy Entity"
+	name = "Mięsista Istota"
 	real_name = "Pan"
-	desc = "Your mind screams as it tries to comprehend what stands before you..."
+	desc = "Twój umysł krzyczy, próbując pojąć to, co przed tobą stoi..."
 	icon = 'nsv13/icons/mob/bloodling.dmi'
 	health = 3000
 	maxHealth = 3000

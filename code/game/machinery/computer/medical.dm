@@ -1,8 +1,8 @@
 
 
 /obj/machinery/computer/med_data//TODO:SANITY
-	name = "medical records console"
-	desc = "This can be used to check medical records."
+	name = "konsola akt medycznych"
+	desc = "Służy do przeglądania akt medycznych."
 	icon_screen = "medcomp"
 	icon_keyboard = "med_key"
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS)
@@ -35,31 +35,31 @@
 			switch(screen)
 				if(1)
 					dat += {"
-<A href='byond://?src=[REF(src)];search=1'>Search Records</A>
-<BR><A href='byond://?src=[REF(src)];screen=2'>List Records</A>
+<A href='byond://?src=[REF(src)];search=1'>Szukaj rekordów</A>
+<BR><A href='byond://?src=[REF(src)];screen=2'>Lista rekordów</A>
 <BR>
-<BR><A href='byond://?src=[REF(src)];screen=5'>Virus Database</A>
-<BR><A href='byond://?src=[REF(src)];screen=6'>Medbot Tracking</A>
+<BR><A href='byond://?src=[REF(src)];screen=5'>Baza danych wirusów</A>
+<BR><A href='byond://?src=[REF(src)];screen=6'>Śledzenie robotów medycznych</A>
 <BR>
-<BR><A href='byond://?src=[REF(src)];screen=3'>Record Maintenance</A>
-<BR><A href='byond://?src=[REF(src)];logout=1'>{Log Out}</A><BR>
+<BR><A href='byond://?src=[REF(src)];screen=3'>Konserwacja rekordów</A>
+<BR><A href='byond://?src=[REF(src)];logout=1'>{Wyloguj}</A><BR>
 "}
 				if(2)
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>
-<th>Records:</th>
+<th>Rekordy:</th>
 </tr>
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=name'>Name</A></th>
+<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=name'>Imię</A></th>
 <th><A href='byond://?src=[REF(src)];choice=Sorting;sort=id'>ID</A></th>
-<th>Fingerprints (F) | DNA (D)</th>
-<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=bloodtype'>Blood Type</A></th>
-<th>Physical Status</th>
-<th>Mental Status</th>
+<th>Odciski palców (F) | DNA (D)</th>
+<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=bloodtype'>Grupa krwi</A></th>
+<th>Stan fizyczny</th>
+<th>Stan psychiczny</th>
 </tr>"}
 
 
@@ -89,7 +89,7 @@
 							dat += text("<td>[]</td>", R.fields["p_stat"])
 							dat += text("<td>[]</td></tr>", R.fields["m_stat"])
 					dat += "</table><hr width='75%' />"
-					dat += "<HR><A href='byond://?src=[REF(src)];screen=1'>Back</A>"
+					dat += "<HR><A href='byond://?src=[REF(src)];screen=1'>Wstecz</A>"
 				if(3)
 					dat += "<B>Konserwacja rekordów</B><HR>\n<A href='byond://?src=[REF(src)];back=1'>Kopia zapasowa na dysk</A><BR>\n<A href='byond://?src=[REF(src)];u_load=1'>Wgraj z dysku</A><BR>\n<A href='byond://?src=[REF(src)];del_all=1'>Usuń wszystkie rekordy</A><BR>\n<BR>\n<A href='byond://?src=[REF(src)];screen=1'>Wstecz</A>"
 				if(4)
@@ -102,7 +102,7 @@
 						if(istype(active1.fields["photo_side"], /obj/item/photo))
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							user << browse_rsc(P2.picture.picture_image, "photo_side")
-						dat += "<tr><td>Name:</td><td>[active1.fields["name"]]</td>"
+						dat += "<tr><td>Imię:</td><td>[active1.fields["name"]]</td>"
 						dat += "<td><a href='byond://?src=[REF(src)];field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a></td>"
 						dat += "<td><a href='byond://?src=[REF(src)];field=show_photo_side'><img src=photo_side height=80 width=80 border=4></a></td></tr>"
 						dat += "<tr><td>ID:</td><td>[active1.fields["id"]]</td></tr>"
@@ -146,7 +146,7 @@
 						dat += "<tr><td>Utracono akta medyczne!</tr>"
 						dat += "<tr><td><br><A href='byond://?src=[REF(src)];new=1'>Nowy rekord</A></td></tr>"
 					dat += "<tr><td><A href='byond://?src=[REF(src)];print_p=1'>Drukuj rekord</A></td></tr>"
-					dat += "<tr><td><A href='byond://?src=[REF(src)];screen=2'>Back</A></td></tr>"
+					dat += "<tr><td><A href='byond://?src=[REF(src)];screen=2'>Wstecz</A></td></tr>"
 					dat += "</table>"
 				if(5)
 					dat += "<CENTER><B>Baza danych wirusów</B></CENTER>"
@@ -157,10 +157,10 @@
 						if(!Dis.desc)
 							continue
 						dat += "<br><a href='byond://?src=[REF(src)];vir=[Dt]'>[Dis.name]</a>"
-					dat += "<br><a href='byond://?src=[REF(src)];screen=1'>Back</a>"
+					dat += "<br><a href='byond://?src=[REF(src)];screen=1'>Wstecz</a>"
 				if(6)
 					dat += "<center><b>Monitor robotów medycznych</b></center>"
-					dat += "<a href='byond://?src=[REF(src)];screen=1'>Back</a>"
+					dat += "<a href='byond://?src=[REF(src)];screen=1'>Wstecz</a>"
 					dat += "<br><b>Roboty medyczne:</b>"
 					var/bdat = null
 					for(var/mob/living/simple_animal/bot/medbot/M in GLOB.alive_mob_list)
@@ -168,7 +168,7 @@
 							continue	//only find medibots on the same z-level as the computer
 						var/turf/bl = get_turf(M)
 						if(bl)	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
-							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
+							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "włączony" : "wyłączony"]<br>"
 					if(!bdat)
 						dat += "<br><center>Nie wykryto</center>"
 					else
@@ -265,14 +265,14 @@
 				var/href_type = text2path(href_list["vir"])
 				if(ispath(href_type, /datum/disease))
 					var/datum/disease/type = href_type
-					src.temp = {"<b>Name:</b> [initial(type.name)]
-<BR><b>Number of stages:</b> [initial(type.max_stages)]
-<BR><b>Spread:</b> [initial(type.spread_text)] Transmission
-<BR><b>Possible Cure:</b> [(initial(type.cure_text)||"none")]
+					src.temp = {"<b>Nazwa:</b> [initial(type.name)]
+<BR><b>Liczba stadiów:</b> [initial(type.max_stages)]
+<BR><b>Rozprzestrzenianie:</b> [initial(type.spread_text)]
+<BR><b>Możliwe leczenie:</b> [(initial(type.cure_text)||"brak")]
 <BR>
-<BR><b>Notes:</b> [initial(type.desc)]
+<BR><b>Uwagi:</b> [initial(type.desc)]
 <BR>
-<BR><b>Danger:</b> [initial(type.danger)]"}
+<BR><b>Zagrożenie:</b> [initial(type.danger)]"}
 
 			else if(href_list["del_all"])
 				src.temp = "Na pewno chcesz usunąć wszystkie rekordy?<br>\n\t<A href='byond://?src=[REF(src)];temp=1;del_all2=1'>Tak</A><br>\n\t<A href='byond://?src=[REF(src)];temp=1'>Nie</A><br>"
@@ -477,18 +477,18 @@
 					var/datum/data/record/R = new /datum/data/record(  )
 					R.fields["name"] = src.active1.fields["name"]
 					R.fields["id"] = src.active1.fields["id"]
-					R.name = text("Medical Record #[]", R.fields["id"])
+					R.name = text("Akta medyczne nr []", R.fields["id"])
 					R.fields["blood_type"] = "Unknown"
 					R.fields["b_dna"] = "Unknown"
 					R.fields["mi_dis"] = "None"
-					R.fields["mi_dis_d"] = "No minor disabilities have been diagnosed."
+					R.fields["mi_dis_d"] = "Nie zdiagnozowano żadnych drobnych niepełnosprawności."
 					R.fields["ma_dis"] = "None"
-					R.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
+					R.fields["ma_dis_d"] = "Nie zdiagnozowano żadnych poważnych niepełnosprawności."
 					R.fields["alg"] = "None"
-					R.fields["alg_d"] = "No allergies have been detected in this patient."
+					R.fields["alg_d"] = "U tego pacjenta nie wykryto żadnych alergii."
 					R.fields["cdi"] = "None"
-					R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-					R.fields["notes"] = "No notes."
+					R.fields["cdi_d"] = "Obecnie nie zdiagnozowano żadnych chorób."
+					R.fields["notes"] = "Brak notatek."
 					GLOB.data_core.medical += R
 					src.active2 = R
 					src.screen = 4
@@ -507,7 +507,7 @@
 
 			else if(href_list["del_c"])
 				if((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
-					src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+					src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Usunięto</B>"
 
 			else if(href_list["search"])
 				var/t1 = stripped_input(usr, "Szukana fraza: (imię, DNA lub ID)", "Akta med.")
@@ -541,7 +541,7 @@
 					var/final_paper_text = "<CENTER><B>Akta medyczne - (MR-[GLOB.data_core.medicalPrintCount])</B></CENTER><BR>"
 					if(active1 in GLOB.data_core.general)
 						final_paper_text += text("Imię: [] ID: []<BR>\nPłeć: []<BR>\nPłeć biologiczna: []<BR>\nWiek: []<BR>", src.active1.fields["name"], src.active1.fields["id"], src.active1.fields["gender"], src.active1.fields["sex"], src.active1.fields["age"]) //NSV13
-						final_paper_text += "\nSpecies: [active1.fields["species"]]<BR>"
+						final_paper_text += "\nGatunek: [active1.fields["species"]]<BR>"
 						final_paper_text += text("\nOdcisk palca: []<BR>\nStan fizyczny: []<BR>\nStan psychiczny: []<BR>", src.active1.fields["fingerprint"], src.active1.fields["p_stat"], src.active1.fields["m_stat"])
 						if(src.active1.fields["cause_of_death"]) // AQ EDIT - cause of death (tgstation#95655)
 							final_paper_text += "Przyczyna zgonu: [src.active1.fields["cause_of_death"]]<BR>"
@@ -558,16 +558,16 @@
 						final_paper_text += "<BR>\nDNA: [active2.fields["b_dna"]]"
 						final_paper_text += "<BR>\n"
 						final_paper_text += "<BR>\nDrobne niepełnosprawności: [active2.fields["mi_dis"]]"
-						final_paper_text += "<BR>\nDetails: [active2.fields["mi_dis_d"]]"
+						final_paper_text += "<BR>\nSzczegóły: [active2.fields["mi_dis_d"]]"
 						final_paper_text += "<BR>\n"
 						final_paper_text += "<BR>\nPoważne niepełnosprawności: [active2.fields["ma_dis"]]"
-						final_paper_text += "<BR>\nDetails: [active2.fields["ma_dis_d"]]"
+						final_paper_text += "<BR>\nSzczegóły: [active2.fields["ma_dis_d"]]"
 						final_paper_text += "<BR>\n"
-						final_paper_text += "<BR>\nAllergies: [active2.fields["alg"]]"
-						final_paper_text += "<BR>\nDetails: [active2.fields["alg_d"]]"
+						final_paper_text += "<BR>\nAlergie: [active2.fields["alg"]]"
+						final_paper_text += "<BR>\nSzczegóły: [active2.fields["alg_d"]]"
 						final_paper_text += "<BR>\n"
 						final_paper_text += "<BR>\nObecne choroby: [active2.fields["cdi"]] (informacje o poszczególnych chorobach w logu/komentarzach)"
-						final_paper_text += "<BR>\nDetails: [active2.fields["cdi_d"]]"
+						final_paper_text += "<BR>\nSzczegóły: [active2.fields["cdi_d"]]"
 						final_paper_text += "<BR>\n"
 						final_paper_text += "<BR>\nWażne uwagi:"
 						final_paper_text += "<BR>\n\t[active2.fields["notes"]]"
@@ -580,7 +580,7 @@
 						printed_paper.name = text("MR-[] '[]'", GLOB.data_core.medicalPrintCount, src.active1.fields["name"])
 					else
 						final_paper_text += "<B>Utracono akta medyczne!</B><BR>"
-						printed_paper.name = text("MR-[] '[]'", GLOB.data_core.medicalPrintCount, "Record Lost")
+						printed_paper.name = text("MR-[] „[]”", GLOB.data_core.medicalPrintCount, "Utracone akta")
 					final_paper_text += "</TT>"
 					printed_paper.add_raw_text(final_paper_text)
 					printed_paper.update_appearance()
@@ -625,8 +625,8 @@
 	return 0
 
 /obj/machinery/computer/med_data/laptop
-	name = "medical laptop"
-	desc = "A cheap Nanotrasen medical laptop, it functions as a medical records computer. It's bolted to the table."
+	name = "laptop medyczny"
+	desc = "Tani laptop medyczny Nanotrasen, który działa jako komputer akt medycznych. Jest przykręcony do stołu."
 	icon_state = "laptop"
 	icon_screen = "medlaptop"
 	icon_keyboard = "laptop_key"

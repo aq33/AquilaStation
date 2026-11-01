@@ -1,9 +1,9 @@
 //Specific objectives and changes for hardmode
 
 /datum/overmap_gamemode/hardmode
-	name = "Dolos Assault"
+	name = "Szturm na Dolos"
 	config_tag = "hardmode"
-	desc = "Harder gamemode - Defeat the Syndicate in Rubicon and Dolos (intended to be used with the hardmode setting)"
+	desc = "Trudniejszy tryb – pokonaj Syndykat w Rubikonie i Dolos (przeznaczony do użycia z ustawieniem trybu trudnego)"
 	brief = "Syndykat przygotował silne siły morskie - lećcie do Dolos przez Rubicon i pokażcie im, gdzie ich miejsce! Potem wykończcie resztę albo wróćcie do domu jako zwycięzcy."
 	starting_system = "Medea" //Start closer to the frontline for immediate action
 	starting_faction = "nanotrasen"
@@ -16,7 +16,7 @@
 
 /datum/controller/subsystem/overmap_mode/proc/toggle_hardmode()
 	if(!initialized) //Not yet
-		message_admins("Hardmode failed to activate! Turn it on when the overmap gamemode subsystem is done loading in the control panel!")
+		message_admins("Nie udało się włączyć trybu trudnego! Włącz go w panelu kontrolnym, gdy podsystem trybu gry overmapy skończy się wczytywać!")
 		return FALSE
 	hard_mode_enabled = !hard_mode_enabled
 	log_game("Hard mode has been [hard_mode_enabled ? "enabled" : "disabled"]!")

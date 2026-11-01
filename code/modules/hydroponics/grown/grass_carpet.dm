@@ -1,7 +1,7 @@
 /obj/item/food/grown/grass
 	seed = /obj/item/plant_seeds/preset/grass
-	name = "grass"
-	desc = "Green and lush."
+	name = "trawa"
+	desc = "Zielona i bujna."
 	icon_state = "grassclump"
 	bite_consumption_mod = 0.5 // Grazing on grass
 	var/stacktype = /obj/item/stack/tile/grass
@@ -22,8 +22,8 @@
 
 //Fairygrass
 /obj/item/food/grown/grass/fairy
-	name = "fairygrass"
-	desc = "Glowing, and smells fainly of mushrooms."
+	name = "trawa wróżek"
+	desc = "Świeci i lekko pachnie grzybami."
 	icon_state = "fairygrassclump"
 	bite_consumption_mod = 1
 	stacktype = /obj/item/stack/tile/fairygrass
@@ -61,8 +61,8 @@
 
 // Carpet
 /obj/item/food/grown/grass/carpet
-	name = "carpet"
-	desc = "The textile industry's dark secret."
+	name = "dywan"
+	desc = "Mroczny sekret przemysłu tekstylnego."
 	icon_state = "carpetclump"
 	stacktype = /obj/item/stack/tile/carpet
 	can_distill = FALSE
@@ -70,6 +70,6 @@
 /obj/item/food/grown/grass/shamrock/Initialize(mapload)
 	. = ..()
 	if(prob(0.001)) // 0.001% chance to be a clover
-		name = "four leafed clover"
-		desc = "A rare sought after trinket said to grant luck to it's holder."
+		name = "czterolistna koniczyna"
+		desc = "Rzadki, poszukiwany drobiazg, który podobno przynosi szczęście właścicielowi."
 		icon_state = "clover"

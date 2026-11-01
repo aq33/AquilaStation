@@ -4,8 +4,8 @@
 #define CIRCULATOR_COLD 1
 
 /obj/machinery/atmospherics/components/binary/circulator
-	name = "circulator/heat exchanger"
-	desc = "A gas circulator pump and heat exchanger."
+	name = "cyrkulator/wymiennik ciepła"
+	desc = "Pompa cyrkulacyjna gazu połączona z wymiennikiem ciepła."
 	icon_state = "circ-off-0"
 
 	var/active = FALSE
@@ -89,7 +89,7 @@
 	I.play_tool_sound(src)
 	if(generator)
 		disconnectFromGenerator()
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	to_chat(user, "<span class='notice'>[anchored?"Mocujesz":"Odczepiasz"] [src].</span>")
 
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]

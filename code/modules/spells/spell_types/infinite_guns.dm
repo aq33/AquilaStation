@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/infinite_guns
-	name = "Lesser Summon Guns"
-	desc = "Why reload when you have infinite guns? Summons an unending stream of bolt action rifles that deal little damage, but will knock targets down. Requires both hands free to use. Learning this spell makes you unable to learn Arcane Barrage."
+	name = "Pomniejsze przywołanie broni palnej"
+	desc = "Po co przeładowywać, skoro masz nieskończenie wiele broni? Przywołuje niekończący się strumień karabinów powtarzalnych, które zadają małe obrażenia, ale powalają cele. Wymaga obu wolnych rąk. Po nauczeniu się tego zaklęcia nie możesz nauczyć się Tajemnej nawały."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1
@@ -21,7 +21,7 @@
 /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
 /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
-	name = "Arcane Barrage"
-	desc = "Fire a torrent of arcane energy at your foes with this (powerful) spell. Deals much more damage than Lesser Summon Guns, but won't knock targets down. Requires both hands free to use. Learning this spell makes you unable to learn Lesser Summon Gun."
+	name = "Tajemna nawała"
+	desc = "Tym (potężnym) zaklęciem zalewasz wrogów potokiem tajemnej energii. Zadaje znacznie więcej obrażeń niż Pomniejsze przywołanie broni palnej, ale nie powala celów. Wymaga obu wolnych rąk. Po nauczeniu się tego zaklęcia nie możesz nauczyć się Pomniejszego przywołania broni palnej."
 	action_icon_state = "arcane_barrage"
 	summon_path = /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage

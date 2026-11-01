@@ -4,7 +4,7 @@
  * A component that performs an sdql operation
  */
 /obj/item/circuit_component/sdql_operation
-	display_name = "SDQL Operation"
+	display_name = "Operacja SDQL"
 	desc = "Komponent, który po wywołaniu wykonuje operację SDQL."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

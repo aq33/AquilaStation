@@ -1,9 +1,6 @@
 /obj/effect/countdown
-	name = "countdown"
-	desc = "We're leaving together\n\
-		But still it's farewell\n\
-		And maybe we'll come back\n\
-		To Earth, who can tell?"
+	name = "odliczanie"
+	desc = "Tik-tak. Czas ucieka, a liczby maleją."
 
 	invisibility = INVISIBILITY_OBSERVER
 	anchored = TRUE
@@ -72,7 +69,7 @@
 	return
 
 /obj/effect/countdown/syndicatebomb
-	name = "syndicate bomb countdown"
+	name = "odliczanie bomby Syndykatu"
 
 /obj/effect/countdown/syndicatebomb/get_value()
 	var/obj/machinery/syndicatebomb/S = attached_to
@@ -82,7 +79,7 @@
 		return S.seconds_remaining()
 
 /obj/effect/countdown/nuclearbomb
-	name = "nuclear bomb countdown"
+	name = "odliczanie bomby atomowej"
 	color = "#81FF14"
 
 /obj/effect/countdown/nuclearbomb/get_value()
@@ -93,7 +90,7 @@
 		return round(N.get_time_left(), 1)
 
 /obj/effect/countdown/clonepod
-	name = "cloning pod countdown"
+	name = "odliczanie kapsuły klonującej"
 	color = "#18d100"
 	text_size = 1
 
@@ -106,7 +103,7 @@
 		return completion
 
 /obj/effect/countdown/supermatter
-	name = "supermatter damage"
+	name = "uszkodzenie supermaterii"
 	text_size = 1
 	color = "#00ff80"
 
@@ -117,7 +114,7 @@
 	return "<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[round(S.get_integrity_percent(), 1)]%</div>"
 
 /obj/effect/countdown/transformer
-	name = "transformer countdown"
+	name = "odliczanie fabryki robotów"
 	color = "#4C5866"
 
 /obj/effect/countdown/transformer/get_value()
@@ -129,7 +126,7 @@
 		return "[round(seconds_left)]"
 
 /obj/effect/countdown/doomsday
-	name = "doomsday countdown"
+	name = "odliczanie do zagłady"
 
 /obj/effect/countdown/doomsday/get_value()
 	var/obj/machinery/doomsday_device/DD = attached_to
@@ -139,7 +136,7 @@
 		return "<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[DD.seconds_remaining()]</div>"
 
 /obj/effect/countdown/anomaly
-	name = "anomaly countdown"
+	name = "odliczanie anomalii"
 
 /obj/effect/countdown/anomaly/get_value()
 	var/obj/effect/anomaly/A = attached_to
@@ -150,7 +147,7 @@
 		return round(time_left)
 
 /obj/effect/countdown/hourglass
-	name = "hourglass countdown"
+	name = "odliczanie klepsydry"
 
 /obj/effect/countdown/hourglass/get_value()
 	var/obj/item/hourglass/H = attached_to
@@ -162,7 +159,7 @@
 
 /obj/effect/countdown/arena
 	invisibility = 0
-	name = "arena countdown"
+	name = "odliczanie areny"
 
 /obj/effect/countdown/arena/get_value()
 	var/obj/machinery/arena_spawn/A = attached_to

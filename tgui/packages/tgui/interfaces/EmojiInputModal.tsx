@@ -102,10 +102,10 @@ export const EmojiInputModal = (_) => {
           }
         }}
       >
-        <Section title="Entry">
+        <Section title="Wpis">
           <Button icon="arrow-left" onClick={left} />
           <Button icon="arrow-right" onClick={right} />
-          <Button color="red" content="Backspace" onClick={backspace} />
+          <Button color="red" content="Cofnij" onClick={backspace} />
           <div id="emoji-input">
             {insert(
               emojis.map((emoji) => (
@@ -115,10 +115,10 @@ export const EmojiInputModal = (_) => {
               <div id="cursor" />,
             )}
           </div>
-          <Button color="green" content="Submit" onClick={submit} />
-          <Button color="red" content="Cancel" onClick={() => act('cancel')} />
+          <Button color="green" content="Zatwierdź" onClick={submit} />
+          <Button color="red" content="Anuluj" onClick={() => act('cancel')} />
         </Section>
-        <Section fitted title="Emojis">
+        <Section fitted title="Emotikony">
           <div className="emoji-contents">
             {Object.keys(all_emojis)
               .slice(1)

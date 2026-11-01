@@ -40,8 +40,8 @@
 	else
 		B.force = 0
 		B.throwforce = 0
-		B.desc = "A carton with the bottom half burst open. Might give you a papercut."
-	B.name = "broken [name]"
+		B.desc = "Karton z rozerwanym dnem. Można się o niego skaleczyć jak o papier."
+	B.name = "[name] (uszkodzenie)"
 	transfer_fingerprints_to(B)
 
 	qdel(src)
@@ -121,8 +121,8 @@
 
 //Keeping this here for now, I'll ask if I should keep it here.
 /obj/item/broken_bottle
-	name = "broken bottle"
-	desc = "A bottle with a sharp broken bottom."
+	name = "rozbita butelka"
+	desc = "Butelka z ostrym, rozbitym dnem."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "broken_bottle"
 	force = 9
@@ -142,100 +142,100 @@
 	AddComponent(/datum/component/butchering, 200, 55)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
-	name = "Griffeater gin"
-	desc = "A bottle of high quality gin, produced in the New London Space Station."
+	name = "gin Griffeater"
+	desc = "Butelka wysokiej jakości ginu, produkowanego na stacji kosmicznej Nowy Londyn."
 	icon_state = "ginbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/gin = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/whiskey
-	name = "Uncle Git's special reserve"
-	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
+	name = "specjalna rezerwa Wujka Gita"
+	desc = "Najwyższej klasy whisky single malt, powoli dojrzewająca w tunelach schronu atomowego. WHISKY Z TUNELU RZĄDZI."
 	icon_state = "whiskeybottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka
-	name = "Tunguska triple distilled"
-	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
+	name = "potrójnie destylowana Tunguska"
+	desc = "Ach, wódka. Ulubiony napój ORAZ paliwo Rosjan na całym świecie."
 	icon_state = "vodkabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka
-	name = "Badminka vodka"
-	desc = "The label's written in Cyrillic. All you can make out is the name and a word that looks vaguely like 'Vodka'."
+	name = "wódka Badminka"
+	desc = "Etykieta jest napisana cyrylicą. Odczytujesz tylko nazwę i słowo, które przypomina „Wódka”."
 	icon_state = "badminka"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tequila
-	name = "Caccavo guaranteed quality tequila"
-	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
+	name = "tequila Caccavo o gwarantowanej jakości"
+	desc = "Zrobiona z najlepszych destylatów ropy naftowej, czystej talidomidu i innych wyśmienitych składników!"
 	icon_state = "tequilabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/tequila = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
-	name = "bottle of nothing"
-	desc = "A bottle filled with nothing."
+	name = "butelka niczego"
+	desc = "Butelka wypełniona niczym."
 	icon_state = "bottleofnothing"
 	list_reagents = list(/datum/reagent/consumable/nothing = 100)
 	foodtype = NONE
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
-	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequila, served in space night clubs across the galaxy."
+	name = "Patron Wrapp Artiste"
+	desc = "Tequila ze srebrem, serwowana w kosmicznych klubach nocnych w całej galaktyce."
 	icon_state = "patronbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/patron = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/rum
-	name = "Captain Pete's Cuban spiced rum"
-	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
+	name = "kubański rum korzenny Kapitana Pete'a"
+	desc = "To nie jest zwykły rum, o nie. To praktycznie GRIEF w butelce."
 	icon_state = "rumbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rum = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater
-	name = "flask of holy water"
-	desc = "A flask of the chaplain's holy water."
+	name = "flaszka wody święconej"
+	desc = "Flaszka wody święconej kapłana."
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/water/holywater = 100)
 	foodtype = NONE
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater/hell
-	desc = "A flask of holy water...it's been sitting in the Necropolis a while though."
+	desc = "Flaszka wody święconej... choć trochę już przeleżała w Nekropolii."
 	list_reagents = list(/datum/reagent/hellwater = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
-	name = "Goldeneye vermouth"
-	desc = "Sweet, sweet dryness~"
+	name = "wermut Goldeneye"
+	desc = "Słodka, słodka wytrawność~"
 	icon_state = "vermouthbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vermouth = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/kahlua
-	name = "Robert Robust's coffee liqueur"
-	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK."
+	name = "likier kawowy Roberta Robusta"
+	desc = "Powszechnie znany meksykański likier o smaku kawy. Produkowany od 1936 roku, HONK."
 	icon_state = "kahluabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager
-	name = "College Girl goldschlager"
-	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
+	name = "goldschläger College Girl"
+	desc = "Bo tylko one wypiją cynamonowy sznaps o mocy 50%."
 	icon_state = "goldschlagerbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac
-	name = "Chateau de Baton premium cognac"
-	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
+	name = "koniak premium Chateau de Baton"
+	desc = "Słodki i bardzo mocny trunek, powstały po wielu destylacjach i latach dojrzewania. Tym razem możesz sobie darować krzyk „GÓWNOCHRONA”."
 	icon_state = "cognacbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/wine
-	name = "Doublebeard's bearded special wine"
-	desc = "A faint aura of unease and asspainery surrounds the bottle."
+	name = "brodate wino specjalne Podwójnej Brody"
+	desc = "Butelkę otacza delikatna aura niepokoju i bólu tyłka."
 	icon_state = "winebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 100)
 	foodtype = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
-	name = "extra-strong absinthe"
-	desc = "An strong alcoholic drink brewed and distributed by"
+	name = "bardzo mocny absynt"
+	desc = "Mocny trunek warzony i rozprowadzany przez firmę"
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
@@ -279,79 +279,79 @@
 
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium
-	name = "Gwyn's premium absinthe"
-	desc = "A potent alcoholic beverage, almost makes you forget the ash in your lungs."
+	name = "absynt premium Gwyna"
+	desc = "Mocny trunek, przy którym prawie zapominasz o popiele w płucach."
 	icon_state = "absinthepremium"
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium/redact()
 	return
 
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine
-	name = "bottle of lizard wine"
-	desc = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol. Inexplicably popular among command staff."
+	name = "butelka wina jaszczurczego"
+	desc = "Trunek z Kosmicznych Chin, robiony przez moczenie jaszczurczych ogonów w etanolu. Z niewyjaśnionych powodów popularny wśród dowództwa."
 	icon_state = "lizardwine"
 	list_reagents = list(/datum/reagent/consumable/ethanol/lizardwine = 100)
 	foodtype = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/bottle/hcider
-	name = "Jian Hard Cider"
-	desc = "Apple juice for adults."
+	name = "mocny cydr Jian"
+	desc = "Sok jabłkowy dla dorosłych."
 	icon_state = "hcider"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/hcider = 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/grappa
-	name = "Phillipes well-aged Grappa"
-	desc = "Bottle of Grappa."
+	name = "dobrze leżakowana grappa Phillipesa"
+	desc = "Butelka grappy."
 	icon_state = "grappabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/grappa = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/sake
-	name = "Ryo's traditional sake"
-	desc = "Sweet as can be, and burns like fire going down."
+	name = "tradycyjne sake Ryo"
+	desc = "Słodkie jak tylko się da, a w gardle pali jak ogień."
 	icon_state = "sakebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/sake/Initialize(mapload)
 	. = ..()
 	if(prob(10))
-		name = "Fluffy Tail Sake"
+		name = "sake Puszysty Ogon"
 		desc += " Na butelce jest obrazek kitsune z dziewięcioma ogonami do pogłaskania."
 		icon_state = "sakebottle_k"
 	else if(prob(10))
-		name = "Inubashiri's Home Brew"
+		name = "domowy wyrób Inubashiri"
 		desc += " Auuu."
 		icon_state = "sakebottle_i"
 
 /obj/item/reagent_containers/food/drinks/bottle/fernet
 	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	desc = "Butelka czystego Fernet Bronca, produkowanego na stacji kosmicznej Kordoba"
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/beer
-	name = "Space Beer"
-	desc = "Beer. In space. In a bigger bottle."
+	name = "kosmiczne piwo"
+	desc = "Piwo. W kosmosie. W większej butelce."
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/ale
 	name = "Magm-Ale"
-	desc = "A true dorf's drink of choice, now in a MANLY bottle."
+	desc = "Ulubiony trunek prawdziwego krasnoluda, teraz w MĘSKIEJ butelce."
 	icon_state = "alebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/ale = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/homemaderum
-	name = "Cookie's Homemade Rum"
-	desc = "Brewed all the way back on Space Station 3. Might tell you where those basket-hats of fruit keep coming from."
+	name = "domowy rum Cookie"
+	desc = "Pędzony jeszcze na Stacji Kosmicznej 3. Może wyjaśnić, skąd ciągle biorą się te kapelusze-kosze z owocami."
 	icon_state = "moonshinebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rum = 95, /datum/reagent/drug/mushroomhallucinogen = 5)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice
-	name = "orange juice"
-	desc = "Full of vitamins and deliciousness!"
+	name = "sok pomarańczowy"
+	desc = "Pełen witamin i pyszności!"
 	custom_price = 10
 	icon_state = "orangejuice"
 	item_state = "carton"
@@ -362,8 +362,8 @@
 	foodtype = FRUIT | BREAKFAST
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
-	name = "milk cream"
-	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
+	name = "śmietanka"
+	desc = "To śmietanka. Z mleka. A czego się tam spodziewałeś?"
 	custom_price = 10
 	icon_state = "cream"
 	item_state = "carton"
@@ -374,8 +374,8 @@
 	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
-	name = "tomato juice"
-	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
+	name = "sok pomidorowy"
+	desc = "No, przynajmniej WYGLĄDA jak sok pomidorowy. Przy tej czerwieni trudno to stwierdzić."
 	custom_price = 10
 	icon_state = "tomatojuice"
 	item_state = "carton"
@@ -386,8 +386,8 @@
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
-	name = "lime juice"
-	desc = "Sweet-sour goodness."
+	name = "sok z limonki"
+	desc = "Słodko-kwaśna pyszność."
 	custom_price = 10
 	icon_state = "limejuice"
 	item_state = "carton"
@@ -398,8 +398,8 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/pineapplejuice
-	name = "pineapple juice"
-	desc = "Extremely tart, yellow juice."
+	name = "sok ananasowy"
+	desc = "Bardzo cierpki, żółty sok."
 	custom_price = 10
 	icon_state = "pineapplejuice"
 	item_state = "carton"
@@ -410,8 +410,8 @@
 	foodtype = FRUIT | PINEAPPLE
 
 /obj/item/reagent_containers/food/drinks/bottle/menthol
-	name = "menthol"
-	desc = "Tastes naturally minty, and imparts a very mild numbing sensation."
+	name = "mentol"
+	desc = "Ma naturalnie miętowy smak i lekko znieczula."
 	custom_price = 10
 	icon_state = "mentholbox"
 	item_state = "carton"
@@ -421,8 +421,8 @@
 	list_reagents = list(/datum/reagent/consumable/menthol = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
-	name = "Jester Grenadine"
-	desc = "Contains 0% real cherries!"
+	name = "grenadyna Jester"
+	desc = "Zawiera 0% prawdziwych wiśni!"
 	custom_price = 10
 	icon_state = "grenadine"
 	isGlass = TRUE
@@ -430,8 +430,8 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/synthflesh
-	name = "carton of synthflesh"
-	desc = "A No-Name carton of synthflesh. It seems moldy. And it seems that YOUR INCOMPETENT ASS IS THE ONLY FUCKING REASON THIS THING EVEN EXISTS!!!!"
+	name = "karton syntetycznego ciała"
+	desc = "Karton syntetycznego ciała bez marki. Wygląda na spleśniały. I wygląda na to, że TWOJA NIEKOMPETENTNA DUPA TO JEDYNY KURWA POWÓD, DLA KTÓREGO TO W OGÓLE ISTNIEJE!!!!"
 	custom_price = 10
 	icon_state = "synthflesh"
 	item_state = "carton"
@@ -441,8 +441,8 @@
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/virusfood
-	name = "carton of virus food"
-	desc = "A carton of ready-mixed virus food. Do not drink."
+	name = "karton pożywki dla wirusów"
+	desc = "Karton gotowej pożywki dla wirusów. Nie pić."
 	custom_price = 10
 	icon_state = "virusfood"
 	item_state = "carton"
@@ -452,8 +452,8 @@
 	list_reagents = list(/datum/reagent/consumable/virus_food = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/applejack
-	name = "Buckin' Bronco's Applejack"
-	desc = "Kicks like a horse, tastes like an apple!"
+	name = "applejack Buckin' Bronco"
+	desc = "Kopie jak koń, smakuje jak jabłko!"
 	custom_price = 10
 	icon_state = "applejack_bottle"
 	isGlass = TRUE
@@ -461,42 +461,42 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/champagne
-	name = "Eau d' Dandy Brut Champagne"
-	desc = "Finely sourced from only the most pretentious French vineyards."
+	name = "szampan Eau d' Dandy Brut"
+	desc = "Pochodzi wyłącznie z najbardziej pretensjonalnych francuskich winnic."
 	custom_premium_price = 200
 	icon_state = "champagne_bottle"
 	isGlass = TRUE
 	list_reagents = list(/datum/reagent/consumable/ethanol/champagne = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/blazaam
-	name = "Ginbad's Blazaam"
-	desc = "You feel like you should give the bottle a good rub before opening."
+	name = "Blazaam Ginbada"
+	desc = "Masz wrażenie, że przed otwarciem warto porządnie potrzeć butelkę."
 	icon_state = "blazaambottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/blazaam = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/trappist
 	name = "Mont de Requin Trappistes Bleu"
-	desc = "Brewed in space-Belgium. Fancy!"
+	desc = "Warzone w kosmicznej Belgii. Wytworne!"
 	custom_premium_price = 50
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/hooch
-	name = "hooch bottle"
-	desc = "A bottle of rotgut. Its owner has applied some street wisdom to cleverly disguise it as a brown paper bag."
+	name = "butelka bimbru"
+	desc = "Butelka sikacza. Właściciel, wykazując się uliczną mądrością, sprytnie ukrył ją w brązowej papierowej torbie."
 	icon_state = "hoochbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/hooch = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/moonshine
-	name = "moonshine jug"
-	desc = "It is said that the ancient Applalacians used these stoneware jugs to capture lightning in a bottle."
+	name = "dzbanek samogonu"
+	desc = "Mówi się, że dawni mieszkańcy Appalachów łapali w takie kamionkowe dzbany błyskawice."
 	icon_state = "moonshinebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/moonshine = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/blank //Don't let players print these from a lathe, bottles should be obtained in mass from the bar only.
-	name = "glass bottle"
-	desc = "This blank bottle is unyieldingly anonymous, offering no clues to it's contents."
+	name = "szklana butelka"
+	desc = "Ta pusta butelka jest nieubłaganie anonimowa i nie zdradza niczego o swojej zawartości."
 	icon_state = "glassbottle"
 	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 
@@ -505,15 +505,15 @@
 	add_overlay("[initial(icon_state)]shine")
 
 /obj/item/reagent_containers/food/drinks/bottle/blank/small
-	name = "small glass bottle"
-	desc = "This small bottle is unyieldingly anonymous, offering no clues to it's contents."
+	name = "mała szklana butelka"
+	desc = "Ta mała butelka jest nieubłaganie anonimowa i nie zdradza niczego o swojej zawartości."
 	icon_state = "glassbottlesmall"
 	volume = 50
 
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/food/drinks/bottle/molotov
-	name = "molotov cocktail"
-	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
+	name = "koktajl Mołotowa"
+	desc = "Broń miotana do podpalania, zwykle wypełniona substancją łatwopalną. Gorąco polecana przez zadymiarzy i rewolucjonistów. Podpal i rzuć."
 	icon_state = "vodkabottle"
 	list_reagents = list()
 	var/active = 0

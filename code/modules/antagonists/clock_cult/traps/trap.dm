@@ -1,7 +1,7 @@
 //Thing that you stick on the floor
 /obj/item/clockwork/trap_placer
-	name = "trap"
-	desc = "don't trust it"
+	name = "pułapka"
+	desc = "Nie ufaj jej."
 	icon = 'icons/obj/clockwork_objects.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	var/result_path = /obj/structure/destructible/clockwork/trap
@@ -21,8 +21,8 @@
 
 //Thing you stick on the wall
 /obj/item/wallframe/clocktrap
-	name = "Clockwork trap item"
-	desc = "It's a... wait what?"
+	name = "przedmiot mechanicznej pułapki"
+	desc = "To... chwila, co?"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	pixel_shift = -24
 	w_class = WEIGHT_CLASS_HUGE
@@ -35,8 +35,8 @@
 
 //Wall item (either spawned by a wallframe or directly)
 /obj/structure/destructible/clockwork/trap
-	name = "Clockwork trap item"
-	desc = "monkey noises"
+	name = "przedmiot mechanicznej pułapki"
+	desc = "małpie odgłosy"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	density = FALSE
 	layer = LOW_OBJ_LAYER

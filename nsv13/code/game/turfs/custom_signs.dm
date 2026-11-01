@@ -1,12 +1,12 @@
 /obj/structure/sign/solgov_seal //Credit to baystation for these sprites!
-	name = "Seal of the solarian government"
-	desc = "A seal emblazened with a gold trim depicting the star, sol."
+	name = "Pieczęć Rządu Słonecznego"
+	desc = "Pieczęć ze złotym obramowaniem, przedstawiająca gwiazdę Sol."
 	icon = 'nsv13/icons/obj/solgov_logos.dmi'
 	icon_state = "solgovseal"
 
 /obj/structure/sign/solgov_flag
-	name = "solgov banner"
-	desc = "A large flag displaying the logo of solgov, the local government of the sol system."
+	name = "sztandar SolGov"
+	desc = "Duża flaga z logo SolGov, lokalnego rządu układu Sol."
 	icon = 'nsv13/icons/obj/solgov_logos.dmi'
 	icon_state = "solgovflag-left"
 
@@ -19,72 +19,72 @@
 	icon = 'nsv13/icons/obj/decals.dmi'
 
 /obj/structure/sign/ship/space
-	name = "WARNING: HARD VACUUM AHEAD"
+	name = "OSTRZEŻENIE: DALEJ PRÓŻNIA"
 	icon_state = "space"
 
 /obj/structure/sign/ship/fire
-	name = "Fire hazard"
+	name = "Zagrożenie pożarowe"
 	icon_state = "fire"
 
 /obj/structure/sign/ship/nosmoking
-	name = "No smoking"
+	name = "Zakaz palenia"
 	icon_state = "nosmoking"
 
 /obj/structure/sign/ship/smoking
-	name = "Smoking area"
+	name = "Palarnia"
 	icon_state = "smoking"
 
 /obj/structure/sign/ship/securearea
-	name = "CAUTION: SECURE AREA"
+	name = "UWAGA: STREFA CHRONIONA"
 	icon_state = "securearea"
 
 /obj/structure/sign/ship/securearea/alt
-	name = "CAUTION: SECURE AREA"
+	name = "UWAGA: STREFA CHRONIONA"
 	icon_state = "securearea2"
 
 /obj/structure/sign/ship/armoury
-	name = "Weapons locker"
+	name = "Szafa z bronią"
 	icon_state = "armory"
 
 /obj/structure/sign/ship/server
-	name = "Server room"
+	name = "Serwerownia"
 	icon_state = "server"
 
 /obj/structure/sign/ship/shock
-	name = "CAUTION: HIGH VOLTAGE"
+	name = "UWAGA: WYSOKIE NAPIĘCIE"
 	icon_state = "shock"
 
 /obj/structure/sign/ship/hikpa
-	name = "CAUTION: HIGH PRESSURE"
+	name = "UWAGA: WYSOKIE CIŚNIENIE"
 	icon_state = "hikpa"
 
 /obj/structure/sign/ship/mail
-	name = "Mail"
+	name = "Poczta"
 	icon_state = "mail"
 
 /obj/structure/sign/ship/radiation
-	name = "CAUTION: RADIATION"
+	name = "UWAGA: PROMIENIOWANIE"
 	icon_state = "radiation"
 
 /obj/structure/sign/ship/examroom
-	name = "Examination room"
+	name = "Gabinet badań"
 	icon_state = "examroom"
 
 /obj/structure/sign/ship/science
-	name = "Research and development"
+	name = "Badania i rozwój"
 	icon_state = "science"
 
 /obj/structure/sign/ship/chemistry
-	name = "Chemistry"
+	name = "Chemia"
 	icon_state = "chemistry"
 
 /obj/structure/sign/ship/medical
-	name = "Medbay"
+	name = "Ambulatorium"
 	icon_state = "bluecross2"
 
 /obj/structure/sign/ship/plaque
-	name = "Dedication plaque"
-	desc = "A plaque with several things written on it."
+	name = "Tablica pamiątkowa"
+	desc = "Tablica z kilkoma napisami."
 	icon_state = "lightplaque"
 
 /obj/structure/sign/ship/plaque/dark
@@ -99,7 +99,7 @@
 	to_chat(user, "<span class='notice'>Ta tablica upamiętnia uczestników ceremonii wodowania okrętu, na którym jesteś. <br> Tablica podaje nazwę okrętu: <b>[scream?.name]</b> </span>")
 
 /obj/structure/sign/ship/pods
-	name = "Escape pods"
+	name = "Kapsuły ratunkowe"
 	icon_state = "podsnorth"
 
 /obj/structure/sign/ship/pods/north
@@ -112,21 +112,21 @@
 	icon_state = "podswest"
 
 /obj/structure/sign/ship/deck
-	name = "Deck 1"
+	name = "Pokład 1"
 	icon_state = "deck-1"
 
 /obj/structure/sign/ship/deck/two
-	name = "Deck 2"
+	name = "Pokład 2"
 	icon_state = "deck-2"
 
 /obj/structure/sign/ship/deck/three
-	name = "Deck 3"
+	name = "Pokład 3"
 	icon_state = "deck-3"
 
 /obj/structure/sign/ship/deck/four
-	name = "Deck 4"
+	name = "Pokład 4"
 	icon_state = "deck-4"
 
 /obj/structure/sign/ship/deck/five
-	name = "Deck 5"
+	name = "Pokład 5"
 	icon_state = "deck-5"

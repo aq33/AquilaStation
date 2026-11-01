@@ -11,8 +11,8 @@
 
 //First Aid kit
 /obj/item/storage/firstaid
-	name = "first-aid kit"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	name = "apteczka"
+	desc = "Apteczka pierwszej pomocy na te poważne kuku."
 	icon = 'aquila/icons/obj/medical/medkit.dmi' // AQ EDIT - tgstation medkit sprites
 	icon_state = "medkit"
 	item_state = "medkit"
@@ -26,7 +26,7 @@
 
 /obj/item/storage/firstaid/regular
 	icon_state = "medkit" // AQ EDIT
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "Apteczka, za pomocą której wyleczysz typowe obrażenia."
 
 /obj/item/storage/firstaid/regular/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] zaczyna dawać sobie aidsa [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
@@ -46,10 +46,10 @@
 
 //First MD kit
 /obj/item/storage/firstaid/medical
-	name = "medical aid kit"
+	name = "zestaw medyczny"
 	icon_state = "medkit_surgery" // AQ EDIT
 	item_state = "medkit-surgical" // AQ EDIT
-	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment"
+	desc = "Pojemny zestaw dla lekarzy, pełen zapasów medycznych i podstawowego sprzętu chirurgicznego"
 	skin_type = MEDBOT_SKIN_SURGERY
 
 /obj/item/storage/firstaid/medical/ComponentInitialize()
@@ -124,16 +124,16 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/medical/doctorbag
-	name = "doctor's bag"
+	name = "torba lekarska"
 	icon_state = "medbriefcase" // AQ EDIT
 	item_state = "medkit-surgical" // AQ EDIT
-	desc = "A fancy high capacity aid kit for doctors, full of medical supplies and basic surgical equipment"
+	desc = "Elegancki, pojemny zestaw dla lekarzy, pełen zapasów medycznych i podstawowego sprzętu chirurgicznego"
 	skin_type = null
 
 //First Aid kit (ancient)
 /obj/item/storage/firstaid/ancient
 	icon_state = "oldfirstaid" // AQ EDIT
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "Apteczka, za pomocą której wyleczysz typowe obrażenia."
 	skin_type = null
 
 /obj/item/storage/firstaid/ancient/PopulateContents()
@@ -148,8 +148,8 @@
 
 //First burn kit
 /obj/item/storage/firstaid/fire
-	name = "burn treatment kit"
-	desc = "A specialized medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	name = "apteczka na oparzenia"
+	desc = "Specjalistyczna apteczka na wypadek, gdyby laboratorium toksyn <i>-spontanicznie-</i> spłonęło."
 	icon_state = "medkit_burn" // AQ EDIT
 	item_state = "medkit-ointment" // AQ EDIT
 	damagetype_healed = BURN
@@ -176,8 +176,8 @@
 
 //First toxin kit
 /obj/item/storage/firstaid/toxin
-	name = "toxin treatment kit"
-	desc = "Used to treat toxic blood content and radiation poisoning."
+	name = "apteczka na zatrucia"
+	desc = "Służy do leczenia toksyn we krwi i choroby popromiennej."
 	icon_state = "medkit_toxin" // AQ EDIT
 	item_state = "medkit-toxin" // AQ EDIT
 	damagetype_healed = TOX
@@ -205,8 +205,8 @@
 
 //First radiation kit
 /obj/item/storage/firstaid/radbgone
-	name = "radiation treatment kit"
-	desc = "Used to treat minor toxic blood content and major radiation poisoning."
+	name = "apteczka na promieniowanie"
+	desc = "Służy do leczenia niewielkiej ilości toksyn we krwi i ciężkiej choroby popromiennej."
 	icon = 'aquila/icons/obj/storage.dmi' // AQ EDIT - no tgstation sprite, keeps the old one
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi' // AQ EDIT
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi' // AQ EDIT
@@ -238,8 +238,8 @@
 
 //First airloss kit
 /obj/item/storage/firstaid/o2
-	name = "oxygen deprivation treatment kit"
-	desc = "A box full of oxygen goodies."
+	name = "apteczka na niedotlenienie"
+	desc = "Pudełko pełne tlenowych dobroci."
 	icon_state = "medkit_o2" // AQ EDIT
 	item_state = "medkit-o2" // AQ EDIT
 	damagetype_healed = OXY
@@ -266,8 +266,8 @@
 
 //First brute kit
 /obj/item/storage/firstaid/brute
-	name = "brute trauma treatment kit"
-	desc = "A first aid kit for when you get toolboxed."
+	name = "apteczka na urazy fizyczne"
+	desc = "Apteczka na wypadek, gdyby ktoś cię zdzielił skrzynką narzędziową."
 	icon_state = "medkit_brute" // AQ EDIT
 	item_state = "medkit-brute" // AQ EDIT
 	damagetype_healed = BRUTE
@@ -294,8 +294,8 @@
 
 //First Advanced kit
 /obj/item/storage/firstaid/advanced
-	name = "advanced first aid kit"
-	desc = "An advanced kit to help deal with advanced wounds."
+	name = "zaawansowana apteczka"
+	desc = "Zaawansowany zestaw do radzenia sobie z poważnymi ranami."
 	icon_state = "medkit_advanced" // AQ EDIT
 	item_state = "medkit-advanced" // AQ EDIT
 	custom_premium_price = 600
@@ -317,8 +317,8 @@
 
 //First Random kit
 /obj/item/storage/firstaid/random
-	name = "mystery medical kit"
-	desc = "Are you feeling lucky today?"
+	name = "tajemnicza apteczka"
+	desc = "Czujesz dziś, że masz szczęście?"
 	icon = 'aquila/icons/obj/storage.dmi' // AQ EDIT - no tgstation sprite, keeps the old one
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi' // AQ EDIT
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi' // AQ EDIT
@@ -365,8 +365,8 @@
 
 //First Tactical kit
 /obj/item/storage/firstaid/tactical
-	name = "combat medical kit"
-	desc = "I hope you've got insurance."
+	name = "bojowa apteczka"
+	desc = "Mam nadzieję, że masz ubezpieczenie."
 	icon_state = "medkit_tactical" // AQ EDIT
 	item_state = "medkit-tactical" // AQ EDIT
 	skin_type = MEDBOT_SKIN_SYNDI
@@ -420,8 +420,8 @@
  */
 
 /obj/item/storage/pill_bottle
-	name = "pill bottle"
-	desc = "It's an airtight container for storing medication."
+	name = "pojemnik na pigułki"
+	desc = "Hermetyczny pojemnik na leki."
 	icon_state = "pill_canister_0"
 	icon = 'icons/obj/medicine_containers.dmi'
 	item_state = "contsolid"
@@ -448,79 +448,79 @@
 	return (TOXLOSS)
 
 /obj/item/storage/pill_bottle/charcoal
-	name = "bottle of charcoal pills"
-	desc = "Contains pills used to counter toxins."
+	name = "pojemnik z pigułkami: Węgiel aktywowany"
+	desc = "Zawiera pigułki przeciw toksynom."
 
 /obj/item/storage/pill_bottle/charcoal/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/charcoal(src)
 
 /obj/item/storage/pill_bottle/bicaridine
-	name = "bottle of bicaridine pills"
-	desc = "Contains pills used to treat moderate to small brute injuries."
+	name = "pojemnik z pigułkami: Bikarydyna"
+	desc = "Zawiera pigułki do leczenia drobnych i średnich obrażeń fizycznych."
 
 /obj/item/storage/pill_bottle/bicaridine/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/bicaridine(src)
 
 /obj/item/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
-	desc = "Contains pills used to treat moderate to small burns."
+	name = "pojemnik z pigułkami: Kelotan"
+	desc = "Zawiera pigułki do leczenia drobnych i średnich oparzeń."
 
 /obj/item/storage/pill_bottle/kelotane/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/kelotane(src)
 
 /obj/item/storage/pill_bottle/antirad
-	name = "bottle of anti-radiation pills"
-	desc = "Contains pills used to treat the effects of minor radiation."
+	name = "pojemnik z pigułkami przeciw promieniowaniu"
+	desc = "Zawiera pigułki do leczenia skutków słabego napromieniowania."
 
 /obj/item/storage/pill_bottle/antirad/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/antirad(src)
 
 /obj/item/storage/pill_bottle/epinephrine
-	name = "bottle of epinephrine pills"
-	desc = "Contains pills used to stabilize patients."
+	name = "pojemnik z pigułkami: Epinefryna"
+	desc = "Zawiera pigułki do stabilizowania pacjentów."
 
 /obj/item/storage/pill_bottle/epinephrine/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/epinephrine(src)
 
 /obj/item/storage/pill_bottle/mutadone
-	name = "bottle of mutadone pills"
-	desc = "Contains pills used to treat genetic abnormalities."
+	name = "pojemnik z pigułkami: Mutadon"
+	desc = "Zawiera pigułki do leczenia nieprawidłowości genetycznych."
 
 /obj/item/storage/pill_bottle/mutadone/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/mutadone(src)
 
 /obj/item/storage/pill_bottle/mannitol
-	name = "bottle of mannitol pills"
-	desc = "Contains pills used to treat brain damage."
+	name = "pojemnik z pigułkami: Mannitol"
+	desc = "Zawiera pigułki do leczenia uszkodzeń mózgu."
 
 /obj/item/storage/pill_bottle/mannitol/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/mannitol(src)
 
 /obj/item/storage/pill_bottle/mannitol/braintumor //For the brain tumor quirk
-	desc = "Generously supplied by your Nanotrasen health insurance to treat that pesky tumor in your brain."
+	desc = "Hojnie zapewnione przez twoje ubezpieczenie zdrowotne Nanotrasen na ten uciążliwy guz w twoim mózgu."
 
 /obj/item/storage/pill_bottle/mannitol/braintumor/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/mannitol/braintumor(src)
 
 /obj/item/storage/pill_bottle/stimulant
-	name = "bottle of stimulant pills"
-	desc = "Guaranteed to give you that extra burst of energy during a long shift!"
+	name = "pojemnik z pigułkami pobudzającymi"
+	desc = "Gwarantowany dodatkowy zastrzyk energii podczas długiej zmiany!"
 
 /obj/item/storage/pill_bottle/stimulant/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/stimulant(src)
 
 /obj/item/storage/pill_bottle/mining
-	name = "bottle of patches"
-	desc = "Contains patches used to treat brute and burn damage."
+	name = "pojemnik z plastrami"
+	desc = "Zawiera plastry do leczenia obrażeń fizycznych i oparzeń."
 
 /obj/item/storage/pill_bottle/mining/PopulateContents()
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
@@ -528,56 +528,56 @@
 		new /obj/item/reagent_containers/pill/patch/styptic(src)
 
 /obj/item/storage/pill_bottle/zoom
-	name = "suspicious pill bottle"
-	desc = "The label is pretty old and almost unreadable, you recognize some chemical compounds."
+	name = "podejrzany pojemnik na pigułki"
+	desc = "Etykieta jest dość stara i prawie nieczytelna, rozpoznajesz kilka związków chemicznych."
 
 /obj/item/storage/pill_bottle/zoom/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/zoom(src)
 
 /obj/item/storage/pill_bottle/happy
-	name = "suspicious pill bottle"
-	desc = "There is a smiley on the top."
+	name = "podejrzany pojemnik na pigułki"
+	desc = "Na wieczku jest buźka."
 
 /obj/item/storage/pill_bottle/happy/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/happy(src)
 
 /obj/item/storage/pill_bottle/lsd
-	name = "suspicious pill bottle"
-	desc = "There is a crude drawing which could be either a mushroom, or a deformed moon."
+	name = "podejrzany pojemnik na pigułki"
+	desc = "Jest na nim prymitywny rysunek, który może przedstawiać grzyba albo zdeformowany księżyc."
 
 /obj/item/storage/pill_bottle/lsd/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/lsd(src)
 
 /obj/item/storage/pill_bottle/aranesp
-	name = "suspicious pill bottle"
-	desc = "The label has 'fuck disablers' hastily scrawled in black marker."
+	name = "podejrzany pojemnik na pigułki"
+	desc = "Na etykiecie ktoś w pośpiechu nabazgrał czarnym markerem „pierdolić disablery”."
 
 /obj/item/storage/pill_bottle/aranesp/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/aranesp(src)
 
 /obj/item/storage/pill_bottle/psicodine
-	name = "bottle of psicodine pills"
-	desc = "Contains pills used to treat mental distress and traumas."
+	name = "pojemnik z pigułkami: Psykodyna"
+	desc = "Zawiera pigułki do leczenia stresu psychicznego i traum."
 
 /obj/item/storage/pill_bottle/psicodine/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/psicodine(src)
 
 /obj/item/storage/pill_bottle/happiness
-	name = "happiness pill bottle"
-	desc = "The label is long gone, in its place an 'H' written with a marker."
+	name = "pojemnik z pigułkami szczęścia"
+	desc = "Etykiety dawno nie ma, w jej miejscu ktoś napisał markerem „H”."
 
 /obj/item/storage/pill_bottle/happiness/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/happiness(src)
 
 /obj/item/storage/pill_bottle/penacid
-	name = "bottle of pentetic acid pills"
-	desc = "Contains pills to expunge radiation and toxins."
+	name = "pojemnik z pigułkami: Kwas pentetowy"
+	desc = "Zawiera pigułki usuwające promieniowanie i toksyny."
 
 /obj/item/storage/pill_bottle/penacid/PopulateContents()
 	for(var/i in 1 to 3)
@@ -585,21 +585,21 @@
 
 
 /obj/item/storage/pill_bottle/neurine
-	name = "bottle of neurine pills"
-	desc = "Contains pills to treat non-severe mental traumas."
+	name = "pojemnik z pigułkami: Neuryna"
+	desc = "Zawiera pigułki do leczenia lekkich traum psychicznych."
 
 /obj/item/storage/pill_bottle/neurine/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/neurine(src)
 
 /obj/item/storage/pill_bottle/floorpill
-	name = "bottle of floorpills"
-	desc = "An old pill bottle. It smells musty."
+	name = "pojemnik z pigułkami z podłogi"
+	desc = "Stary pojemnik na pigułki. Pachnie stęchlizną."
 
 /obj/item/storage/pill_bottle/floorpill/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/pill/P = locate() in src
-	name = "bottle of [P.name]s"
+	name = "pojemnik z pigułkami: [P.name]"
 
 /obj/item/storage/pill_bottle/floorpill/PopulateContents()
 	for(var/i in 1 to rand(1,7))

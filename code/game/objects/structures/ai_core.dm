@@ -1,10 +1,10 @@
 /obj/structure/AIcore
 	density = TRUE
 	anchored = FALSE
-	name = "\improper AI core"
+	name = "\improper rdzeń SI"
 	icon = 'icons/mob/ai.dmi'
 	icon_state = "0"
-	desc = "The framework for an artificial intelligence core."
+	desc = "Szkielet rdzenia sztucznej inteligencji."
 	max_integrity = 500
 	var/state = EMPTY_CORE
 	var/datum/ai_laws/laws
@@ -38,8 +38,8 @@
 	return ..()
 
 /obj/structure/AIcore/latejoin_inactive
-	name = "networked AI core"
-	desc = "This AI core is connected by bluespace transmitters to NTNet, allowing for an AI personality to be downloaded to it on the fly mid-shift."
+	name = "sieciowy rdzeń SI"
+	desc = "Ten rdzeń SI łączy się z NTNetem przez nadajniki bluespace, dzięki czemu w trakcie zmiany można na bieżąco wgrać do niego osobowość SI."
 	can_deconstruct = FALSE
 	icon_state = "ai-empty"
 	anchored = TRUE
@@ -303,7 +303,7 @@
 	qdel(src)
 
 /obj/structure/AIcore/deactivated
-	name = "inactive AI"
+	name = "nieaktywna SI"
 	icon_state = "ai-empty"
 	anchored = TRUE
 	state = AI_READY_CORE
@@ -345,5 +345,5 @@ That prevents a few funky behaviors.
 		to_chat(user, "Na tym terminalu nie ma wczytanej SI!")
 
 /obj/item/circuitboard/aicore
-	name = "AI core (AI Core Board)" //Well, duh, but best to be consistent
+	name = "rdzeń SI (płytka rdzenia SI)" //Well, duh, but best to be consistent
 	var/battery = 200 //backup battery for when the AI loses power. Copied to/from AI mobs when carding, and placed here to avoid recharge via deconning the core

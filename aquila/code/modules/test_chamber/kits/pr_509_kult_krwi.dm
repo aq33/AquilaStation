@@ -5,7 +5,7 @@
 		Panel kultu: przycisk w lewym górnym rogu (członkowie, rola, rytuały, Zaćmienie, pomoc). Tom: pisanie słów run krwią, talizmany. \
 		Runy: Konwersja na drugim człowieku (odmowa albo więzienie), Komunikacja, Akcesoria, Wzniesienie Budowli (ołtarz, iglica, kuźnia), Ujawnienie/Ukrycie, Ścieżki. \
 		Rytuały: małpa i mysz na ołtarzu, zakrwawiona podłoga. Kamień dusz i klejnot: konstrukty (też hex i doskonałe). Kapelan: Biblia + woda święcona na kultyście = dekonwersja, sól na runie. \
-		Zaćmienie przyspiesz z panelu admina (VV drużyny: eclipse_progress = eclipse_target), potem runa Tear Reality, taniec i Krwawy Kamień."
+		Zaćmienie przyspiesz z panelu admina (VV drużyny: eclipse_progress = eclipse_target), potem runa Rozdarcia Rzeczywistości, taniec i Krwawy Kamień."
 	items = list(
 		/mob/living/carbon/human = 3,
 		/mob/living/carbon/monkey = 1,

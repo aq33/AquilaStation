@@ -7,9 +7,9 @@
 
 
 /obj/structure/transit_tube/station
-	name = "station tube station"
+	name = "stacja rury transportowej"
 	icon_state = "closed_station0"
-	desc = "The lynchpin of the transit system."
+	desc = "Kluczowy element systemu transportowego."
 	exit_delay = 1
 	enter_delay = 2
 	tube_construction = /obj/structure/c_transit_tube/station
@@ -55,7 +55,7 @@
 	R.transfer_fingerprints_to(TP)
 	TP.add_fingerprint(user)
 	TP.setDir(turn(src.dir, -90))
-	user.visible_message("[user] inserts [R].", "<span class='notice'>Wkładasz [R].</span>")
+	user.visible_message("[user] wkłada [R].", "<span class='notice'>Wkładasz [R].</span>")
 	qdel(R)
 
 

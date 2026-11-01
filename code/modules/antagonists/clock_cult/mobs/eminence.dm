@@ -1,6 +1,6 @@
 /mob/living/simple_animal/eminence
-	name = "the Eminence"
-	desc = "A glowing ball of light."
+	name = "Eminencja"
+	desc = "Świecąca kula światła."
 	icon = 'icons/effects/clockwork_effects.dmi'
 	icon_state = "eminence"
 	mob_biotypes = list(MOB_SPIRIT)
@@ -172,8 +172,8 @@
 
 //=====Warp to Reebe=====
 /obj/effect/proc_holder/spell/targeted/eminence/reebe
-	name = "Jump to Reebe"
-	desc = "Teleport yourself to Reebe."
+	name = "Skok do Reebe"
+	desc = "Teleportuje cię do Reebe."
 	action_icon_state = "Abscond"
 
 /obj/effect/proc_holder/spell/targeted/eminence/reebe/cast(mob/living/user)
@@ -187,8 +187,8 @@
 
 //=====Warp to station=====
 /obj/effect/proc_holder/spell/targeted/eminence/station
-	name = "Jump to Station"
-	desc = "Teleport yourself to the station."
+	name = "Skok na statek"
+	desc = "Teleportuje cię na statek."
 	action_icon_state = "warp_down"
 
 /obj/effect/proc_holder/spell/targeted/eminence/station/cast(mob/living/user)
@@ -201,8 +201,8 @@
 
 //=====Teleport to servant=====
 /obj/effect/proc_holder/spell/targeted/eminence/servant_warp
-	name = "Jump to Servant"
-	desc = "Teleport yourself to a specific servant."
+	name = "Skok do sługi"
+	desc = "Teleportuje cię do wybranego sługi."
 	action_icon_state = "Spatial Warp"
 
 /obj/effect/proc_holder/spell/targeted/eminence/servant_warp/cast(list/targets, mob/user)
@@ -228,8 +228,8 @@
 
 //=====Mass Recall=====
 /obj/effect/proc_holder/spell/targeted/eminence/mass_recall
-	name = "Initiate Mass Recall"
-	desc = "Initiates a mass recall, warping everyone to the Ark. Can only be used 1 time."
+	name = "Masowe przywołanie"
+	desc = "Rozpoczyna masowe przywołanie, przenosząc wszystkich do Arki. Można użyć tylko raz."
 	action_icon_state = "Spatial Gateway"
 
 /obj/effect/proc_holder/spell/targeted/eminence/mass_recall/cast(list/targets, mob/living/user)
@@ -241,8 +241,8 @@
 
 //=====Linked Abscond=====
 /obj/effect/proc_holder/spell/targeted/eminence/linked_abscond
-	name = "Linked Abscond"
-	desc = "Warps a target to Reebe if they are still for 7 seconds. Costs 1 cog."
+	name = "Połączona ucieczka"
+	desc = "Przenosi cel do Reebe, jeśli przez 7 sekund się nie ruszy. Koszt: 1 zębatka."
 	action_icon_state = "Linked Abscond"
 	charge_max = 1800
 	cog_cost = 1
@@ -289,8 +289,8 @@
 
 //Trigger event
 /obj/effect/proc_holder/spell/targeted/eminence/trigger_event
-	name = "Manipulate Reality"
-	desc = "Manipulate reality causing global events to occur. Costs 5 cogs"
+	name = "Manipulacja rzeczywistością"
+	desc = "Manipulujesz rzeczywistością, wywołując wydarzenia na całym statku. Koszt: 5 zębatek."
 	action_icon_state = "Geis"
 	charge_max = 3000
 	cog_cost = 5
@@ -325,8 +325,8 @@
 
 //Internal Radio
 /obj/item/radio/borg/eminence
-	name = "eminence internal listener"
-	desc = "if you can see this, call a coder"
+	name = "wewnętrzny odbiornik Eminencji"
+	desc = "Jeśli to widzisz, zgłoś to koderom."
 	canhear_range = 0
 	radio_silent = TRUE
 	prison_radio = TRUE

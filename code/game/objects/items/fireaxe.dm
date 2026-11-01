@@ -5,8 +5,8 @@
 	icon_state = "fireaxe0"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
-	name = "fire axe"
-	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	name = "topór strażacki"
+	desc = "Doprawdy, broń szaleńca. Kto by pomyślał, żeby walczyć z ogniem toporem?"
 	attack_weight = 3
 	force = 5
 	bleed_force = BLEED_CUT
@@ -53,8 +53,8 @@
  * Bone Axe
  */
 /obj/item/fireaxe/boneaxe  // Blatant imitation of the fireaxe, but made out of bone.
-	name = "bone axe"
-	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
+	name = "kościany topór"
+	desc = "Duży, groźny topór z kilku naostrzonych kościanych płyt, prymitywnie związanych razem. Zrobiony z potworów, zabijając potwory, do zabijania potworów."
 	icon_prefix = "bone_axe"
 	icon_state = "bone_axe0"
 

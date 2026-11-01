@@ -1,5 +1,5 @@
 /datum/team/nation
-	name = "Nation"
+	name = "Naród"
 
 /datum/antagonist/separatist
 	name = "Separatyści"

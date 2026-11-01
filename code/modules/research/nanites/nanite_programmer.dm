@@ -1,6 +1,6 @@
 /obj/machinery/nanite_programmer
-	name = "nanite programmer"
-	desc = "A device that can edit nanite program disks to adjust their functionality."
+	name = "programator nanitów"
+	desc = "Urządzenie do edycji dysków z programami nanitów i dostosowywania ich działania."
 	var/obj/item/disk/nanite_program/disk
 	var/datum/nanite_program/program
 	icon = 'icons/obj/machines/research.dmi'

@@ -61,7 +61,7 @@
 	switch(action)
 		if("toggle_exempt")
 			if(!check_rights(R_ADMIN))
-				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] próbuje przełączyć zwolnienie z wymogu czasu gry bez uprawnień admina.")
 				log_admin("[key_name(usr)] attempted to toggle job playtime exempt status without admin rights.")
 				return TRUE
 

@@ -1,6 +1,6 @@
 /obj/machinery/vending/cigarette
 	name = "\improper ShadyCigs Deluxe"
-	desc = "If you want to get cancer, might as well do it in style."
+	desc = "Skoro już masz dostać raka, to przynajmniej w dobrym stylu."
 	product_slogans = "Kosmiczne cygarety smakują tak dobrze jak powinny smakować.;Prędzej kogoś jebnę, niż rzucę.;Pal!;Nie wierz badaniom - pal już dziś!"
 	product_ads = "Prawdopodobnie nieszkodliwe dla ciebie!;Nie wierz naukowcom!;To dla ciebie dobre!;Nie odchodź, kup więcej!;Pal!;Nikotynowy raj.;Najlepsze papierosy od 2137.;Papierosy zgarniające nagrody."
 	icon_state = "cigs"
@@ -36,7 +36,7 @@
 
 /obj/machinery/vending/cigarette/beach //Used in the lavaland_biodome_beach.dmm ruin
 	name = "\improper ShadyCigs Ultra"
-	desc = "Now with extra premium products!"
+	desc = "Teraz z dodatkowymi produktami premium!"
 	product_ads = "Chyba nie szkodzi!;Zioło przeprowadzi cię przez czasy bez pieniędzy lepiej, niż pieniądze przez czasy bez zioła!;To dla twojego dobra!"
 	product_slogans = "Włącz się, dostrój, odpłyń!;Lepsze życie dzięki chemii!;Bucha!;Nie zapominaj o uśmiechu na ustach i piosence w sercu!"
 	products = list(/obj/item/storage/fancy/cigarettes = 5,

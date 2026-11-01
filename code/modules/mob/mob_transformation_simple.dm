@@ -9,13 +9,13 @@
 		return
 
 	if(!new_type)
-		new_type = capped_input(usr, "Mob type path:", "Mob type")
+		new_type = capped_input(usr, "Ścieżka typu moba:", "Typ moba")
 
 	if(istext(new_type))
 		new_type = text2path(new_type)
 
 	if( !ispath(new_type) )
-		to_chat(usr, "Invalid type path (new_type = [new_type]) in change_mob_type(). Contact a coder.")
+		to_chat(usr, "Nieprawidłowa ścieżka typu (new_type = [new_type]) w change_mob_type(). Skontaktuj się z koderem.")
 		return
 
 	if(ispath(new_type, /mob/dead/new_player))
@@ -29,7 +29,7 @@
 		M = new new_type( src.loc )
 
 	if(!M || !ismob(M))
-		to_chat(usr, "Type path is not a mob (new_type = [new_type]) in change_mob_type(). Contact a coder.")
+		to_chat(usr, "Ścieżka typu nie jest mobem (new_type = [new_type]) w change_mob_type(). Skontaktuj się z koderem.")
 		qdel(M)
 		return
 

@@ -1,12 +1,12 @@
 /datum/surgery/embedded_removal
-	name = "removal of embedded objects"
+	name = "usuwanie ciał obcych"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/remove_object)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 	self_operable = TRUE
 
 
 /datum/surgery_step/remove_object
-	name = "remove embedded objects"
+	name = "usuń ciała obce"
 	time = 32
 	accept_hand = 1
 	var/obj/item/bodypart/L = null

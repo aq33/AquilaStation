@@ -61,7 +61,7 @@
 	return offset
 
 /atom/movable/screen/ghost/respawn
-	name = "Respawn"
+	name = "Odrodzenie"
 	icon_state = "respawn"
 
 /atom/movable/screen/ghost/respawn/Click()

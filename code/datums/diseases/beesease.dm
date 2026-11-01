@@ -1,12 +1,12 @@
 /datum/disease/beesease
-	name = "Beesease"
-	form = "Infection"
+	name = "Pszczołoza"
+	form = "Infekcja"
 	max_stages = 4
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Sugar"
+	cure_text = "Cukier"
 	cures = list(/datum/reagent/consumable/sugar)
-	agent = "Apidae Infection"
+	agent = "Infekcja Apidae"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	desc = "Nieleczony chory zacznie zwracać pszczoły."
 	danger = DISEASE_MEDIUM
@@ -28,7 +28,7 @@
 					affected_mob.updatehealth()
 		if(4)
 			if(prob(10))
-				affected_mob.visible_message("<span class='danger'>[affected_mob] buzzes.</span>", \
+				affected_mob.visible_message("<span class='danger'>[affected_mob] brzęczy.</span>", \
 												"<span class='userdanger'>Twój żołądek gwałtownie brzęczy!</span>")
 			if(prob(5))
 				to_chat(affected_mob, "<span class='danger'>Czujesz, jak coś porusza się w twoim gardle.</span>")

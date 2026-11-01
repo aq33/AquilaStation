@@ -1,8 +1,8 @@
 // It is a gizmo that flashes a small area
 
 /obj/machinery/flasher
-	name = "mounted flash"
-	desc = "A wall-mounted flashbulb device."
+	name = "ścienny flasher"
+	desc = "Montowane na ścianie urządzenie z żarówką błyskową."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
 	max_integrity = 250
@@ -18,8 +18,8 @@
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
-	name = "portable flasher"
-	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
+	name = "przenośny flasher"
+	desc = "Przenośne urządzenie błyskowe. Przykręć kluczem, by je włączyć albo wyłączyć. Nie wykrywa powolnych ruchów."
 	icon_state = "pflash1-p"
 	strength = 80
 	anchored = FALSE
@@ -196,8 +196,8 @@
 		return ..()
 
 /obj/item/wallframe/flasher
-	name = "mounted flash frame"
-	desc = "Used for building wall-mounted flashers."
+	name = "rama ściennego flashera"
+	desc = "Służy do budowy ściennych flasherów."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash_frame"
 	result_path = /obj/machinery/flasher

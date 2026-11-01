@@ -402,7 +402,7 @@
 	if(istype(SSticker.mode, /datum/game_mode/dynamic))
 		hack_options += HACK_THREAT
 	var/picked_option = pick(hack_options)
-	message_admins("[ADMIN_LOOKUPFLW(hacker)] hacked a [name] located at [ADMIN_VERBOSEJMP(src)], resulting in: [picked_option]!")
+	message_admins("[ADMIN_LOOKUPFLW(hacker)] hakuje [name] w [ADMIN_VERBOSEJMP(src)]. Skutek: [picked_option]!")
 	log_game("[key_name(hacker)] hacked a communications console, resulting in: [picked_option].")
 	switch(picked_option)
 		if(HACK_FLEET)

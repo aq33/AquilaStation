@@ -1,6 +1,6 @@
 /datum/action/changeling/sting//parent path, not meant for users afaik
-	name = "Tiny Prick"
-	desc = "Stabby stabby"
+	name = "Małe ukłucie"
+	desc = "Dźgu, dźgu."
 	var/stealthy = FALSE
 
 /datum/action/changeling/sting/Trigger()
@@ -66,8 +66,8 @@
 
 
 /datum/action/changeling/sting/transformation
-	name = "Transformation Sting"
-	desc = "We silently sting a human, injecting a retrovirus that forces them to transform. Costs 50 chemicals."
+	name = "Żądło przemiany"
+	desc = "Po cichu żądlimy człowieka i wstrzykujemy retrowirusa, który zmusza go do przemiany. Kosztuje 50 chemikaliów."
 	helptext = "Ofiara przemienia się podobnie jak zmiennokształtny. Nie ostrzega innych. Mutacje nie są przenoszone, a małpy stają się ludźmi."
 	button_icon_state = "sting_transform"
 	chemical_cost = 50
@@ -113,15 +113,15 @@
 
 
 /datum/action/changeling/sting/false_armblade
-	name = "False Armblade Sting"
-	desc = "We silently sting a human, injecting a retrovirus that mutates their arm to temporarily appear as an armblade. Costs 20 chemicals."
+	name = "Żądło fałszywego ostrza"
+	desc = "Po cichu żądlimy człowieka i wstrzykujemy retrowirusa, który mutuje jego rękę tak, że na chwilę wygląda jak ostrze. Kosztuje 20 chemikaliów."
 	helptext = "Ofierze wyrasta ostrze z ręki jak u zmiennokształtnego, tyle że tępe i bezużyteczne."
 	button_icon_state = "sting_armblade"
 	chemical_cost = 20
 	dna_cost = 1
 
 /obj/item/melee/arm_blade/false
-	desc = "A grotesque mass of flesh that used to be your arm. Although it looks dangerous at first, you can tell it's actually quite dull and useless."
+	desc = "Groteskowa masa mięsa, która kiedyś była twoją ręką. Na pierwszy rzut oka wygląda groźnie, ale widać, że jest tępa i bezużyteczna."
 	force = 5 //Basically as strong as a punch
 	fake = TRUE
 
@@ -169,8 +169,8 @@
 	target.update_inv_hands()
 
 /datum/action/changeling/sting/extract_dna
-	name = "Extract DNA Sting"
-	desc = "We stealthily sting a target and extract their DNA. Costs 25 chemicals."
+	name = "Żądło pobrania DNA"
+	desc = "Ukradkiem żądlimy cel i pobieramy jego DNA. Kosztuje 25 chemikaliów."
 	helptext = "Daje ci DNA celu, dzięki czemu możesz się w niego przemienić."
 	button_icon_state = "sting_extract"
 	chemical_cost = 25
@@ -190,8 +190,8 @@
 	return TRUE
 
 /datum/action/changeling/sting/mute
-	name = "Mute Sting"
-	desc = "We silently sting a human, completely silencing them for a short time. Costs 20 chemicals."
+	name = "Żądło niemoty"
+	desc = "Po cichu żądlimy człowieka i na krótko całkowicie odbieramy mu głos. Kosztuje 20 chemikaliów."
 	helptext = "Ofiara nie zauważa użądlenia, dopóki nie spróbuje się odezwać i nie zdoła."
 	button_icon_state = "sting_mute"
 	chemical_cost = 20
@@ -203,8 +203,8 @@
 	return TRUE
 
 /datum/action/changeling/sting/blind
-	name = "Blind Sting"
-	desc = "We temporarily blind our victim. Costs 25 chemicals."
+	name = "Żądło ślepoty"
+	desc = "Tymczasowo oślepiamy ofiarę. Kosztuje 25 chemikaliów."
 	helptext = "To żądło na krótko całkowicie oślepia cel i na długo zostawia mu rozmazany obraz."
 	button_icon_state = "sting_blind"
 	chemical_cost = 25
@@ -219,8 +219,8 @@
 	return TRUE
 
 /datum/action/changeling/sting/LSD
-	name = "Hallucination Sting"
-	desc = "We cause mass terror to our victim."
+	name = "Żądło halucynacji"
+	desc = "Wywołujemy u ofiary potężne przerażenie."
 	helptext = "Rozwijamy zdolność żądlenia celu silnym halucynogenem. Cel nie zauważa użądlenia, a efekt pojawia się po 30-60 sekundach."
 	button_icon_state = "sting_lsd"
 	chemical_cost = 10
@@ -237,8 +237,8 @@
 		target.hallucination = max(90, target.hallucination)
 
 /datum/action/changeling/sting/cryo
-	name = "Cryogenic Sting"
-	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 10 chemicals."
+	name = "Żądło kriogeniczne"
+	desc = "Po cichu żądlimy ofiarę koktajlem chemikaliów, który zamraża ją od środka. Kosztuje 10 chemikaliów."
 	helptext = "Ofiara nie dostaje ostrzeżenia, choć pewnie zorientuje się, że nagle zamarza."
 	button_icon_state = "sting_cryo"
 	chemical_cost = 10

@@ -29,7 +29,7 @@
 	if(!registered_account)
 		return FALSE
 	if(world.time < registered_account.withdrawDelay)
-		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
+		registered_account.bank_card_talk("<span class='warning'>BŁĄD: LOGOWANIE NIEMOŻLIWE Z POWODU PLANOWANEJ KONSERWACJI. KONSERWACJA POTRWA JESZCZE [(registered_account.withdrawDelay - world.time)/10] S.</span>", TRUE)
 		return FALSE
 	return TRUE
 

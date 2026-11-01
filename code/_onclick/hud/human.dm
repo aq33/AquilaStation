@@ -38,7 +38,7 @@
 
 /atom/movable/screen/devil/soul_counter
 	icon = 'icons/mob/screen_gen.dmi'
-	name = "souls owned"
+	name = "posiadane dusze"
 	icon_state = "Devil-6"
 	screen_loc = ui_devilsouldisplay
 
@@ -66,7 +66,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 
 /atom/movable/screen/ling/sting
-	name = "current sting"
+	name = "obecne żądło"
 	screen_loc = ui_lingstingdisplay
 
 /atom/movable/screen/ling/sting/Click()
@@ -76,7 +76,7 @@
 	U.unset_sting()
 
 /atom/movable/screen/ling/chems
-	name = "chemical storage"
+	name = "zapas chemikaliów"
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 
@@ -460,7 +460,7 @@
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
 	set name = "Toggle hotkey buttons"
-	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
+	set desc = "Włącza albo wyłącza przyciski interfejsu, których można używać ze skrótami klawiszowymi."
 
 	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons

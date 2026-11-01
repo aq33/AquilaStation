@@ -2,8 +2,8 @@
 #define STRANGER 1
 
 /datum/brain_trauma/severe/split_personality
-	name = "Split Personality"
-	desc = "Patient's brain is split into two personalities, which randomly switch control of the body."
+	name = "Rozdwojenie jaźni"
+	desc = "Mózg pacjenta jest podzielony na dwie osobowości, które losowo przejmują kontrolę nad ciałem."
 	scan_desc = "całkowite rozdzielenie płatów"
 	gain_text = "<span class='warning'>Czujesz, jakby twój umysł podzielono na dwoje.</span>"
 	lose_text = "<span class='notice'>Znów czujesz się samotny.</span>"
@@ -36,7 +36,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		stranger_backseat.key = C.key
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
-		message_admins("[ADMIN_LOOKUPFLW(stranger_backseat)] became [ADMIN_LOOKUPFLW(owner)]'s split personality.")
+		message_admins("[ADMIN_LOOKUPFLW(stranger_backseat)] staje się drugą osobowością [ADMIN_LOOKUPFLW(owner)].")
 	else
 		qdel(src)
 
@@ -120,7 +120,7 @@
 
 
 /mob/living/split_personality
-	name = "split personality"
+	name = "druga osobowość"
 	real_name = "nieznane sumienie"
 	var/mob/living/carbon/body
 	var/datum/brain_trauma/severe/split_personality/trauma
@@ -163,8 +163,8 @@
 ///////////////BRAINWASHING////////////////////
 
 /datum/brain_trauma/severe/split_personality/brainwashing
-	name = "Split Personality"
-	desc = "Patient's brain is split into two personalities, which randomly switch control of the body."
+	name = "Rozdwojenie jaźni"
+	desc = "Mózg pacjenta jest podzielony na dwie osobowości, które losowo przejmują kontrolę nad ciałem."
 	scan_desc = "całkowite rozdzielenie płatów"
 	gain_text = ""
 	lose_text = "<span class='notice'>Jesteś wolny od prania mózgu.</span>"
@@ -219,7 +219,7 @@
 		speech_args[SPEECH_MESSAGE] = "" //oh hey did you want to tell people about the secret word to bring you back?
 
 /mob/living/split_personality/traitor
-	name = "split personality"
+	name = "druga osobowość"
 	real_name = "nieznane sumienie"
 	var/objective
 	var/codeword

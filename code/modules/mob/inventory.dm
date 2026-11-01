@@ -141,14 +141,14 @@
 /mob/proc/get_held_index_name(i)
 	var/list/hand = list()
 	if(i > 2)
-		hand += "upper "
+		hand += "górna "
 	var/num = 0
 	if(!(i % 2))
 		num = i-2
-		hand += "right hand"
+		hand += "prawa ręka"
 	else
 		num = i-1
-		hand += "left hand"
+		hand += "lewa ręka"
 	num -= (num*0.5)
 	if(num > 1) //"upper left hand #1" seems weird, but "upper left hand #2" is A-ok
 		hand += " #[num]"

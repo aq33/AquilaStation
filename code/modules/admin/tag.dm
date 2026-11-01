@@ -6,19 +6,19 @@
  */
 /datum/admins/proc/add_tagged_datum(datum/target_datum)
 	if(LAZYFIND(tagged_datums, target_datum))
-		to_chat(owner, "<span class='warning'>[target_datum] is already tagged!</span>")
+		to_chat(owner, "<span class='warning'>[target_datum] już jest otagowany!</span>")
 		return
 
 	LAZYADD(tagged_datums, target_datum)
 	RegisterSignal(target_datum, COMSIG_PARENT_QDELETING, PROC_REF(handle_tagged_del), override = TRUE)
-	to_chat(owner, "<span class='notice'>[target_datum] has been tagged.</span>")
+	to_chat(owner, "<span class='notice'>Otagowano: [target_datum].</span>")
 
 /// Get ahead of the curve with deleting
 /datum/admins/proc/handle_tagged_del(datum/source)
 	SIGNAL_HANDLER
 
 	if(owner)
-		to_chat(owner, "<span class='notice bold'>Tagged datum [source] ([source.type]) has been deleted.</span>")
+		to_chat(owner, "<span class='notice bold'>Otagowany datum [source] ([source.type]) został usunięty.</span>")
 	remove_tagged_datum(source, silent = TRUE)
 
 /**
@@ -35,15 +35,15 @@
 	if(LAZYFIND(tagged_datums, target_datum))
 		LAZYREMOVE(tagged_datums, target_datum)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>[target_datum] has been untagged.</span>")
+			to_chat(owner, "<span class='notice'>Zdjęto tag: [target_datum].</span>")
 	else if(!silent)
-		to_chat(owner, "<span class='warning'>[target_datum] was not already tagged.</span>")
+		to_chat(owner, "<span class='warning'>[target_datum] nie był otagowany.</span>")
 
 /// Quick define for readability
-#define TAG_DEL(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(TRUE)];del_tag=[REF(X)]'>UNTAG</a>)</b>"
-#define TAG_MARK(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(TRUE)];mark_datum=[REF(X)]'>MARK</a>)</b>"
-#define TAG_SIMPLE_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font>"
-#define TAG_CARBON_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font> (\
+#define TAG_DEL(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(TRUE)];del_tag=[REF(X)]'>ZDEJMIJ TAG</a>)</b>"
+#define TAG_MARK(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(TRUE)];mark_datum=[REF(X)]'>OZNACZ</a>)</b>"
+#define TAG_SIMPLE_HEALTH(X) "<font color='#ff0000'><b>Zdrowie: [X.health]</b></font>"
+#define TAG_CARBON_HEALTH(X) "<font color='#ff0000'><b>Zdrowie: [X.health]</b></font> (\
 					<font color='#ff3333'>[X.getBruteLoss()]</font> \
 					<font color='#ff9933'>[X.getFireLoss()]</font> \
 					<font color='#00cc66'>[X.getToxLoss()]</font> \
@@ -64,14 +64,14 @@
 	var/index = 0
 	var/list/dat = list()
 
-	dat += "<br><A href='byond://?src=[REF(src)];[HrefToken(TRUE)];show_tags=1'>Refresh</a><br>"
+	dat += "<br><A href='byond://?src=[REF(src)];[HrefToken(TRUE)];show_tags=1'>Odśwież</a><br>"
 	if(LAZYLEN(tagged_datums))
 		for(var/datum/iter_datum as anything in tagged_datums)
 			index++
 			var/specific_info
 
 			if(isnull(iter_datum))
-				dat += "\t[index]: Null reference - Check runtime logs!"
+				dat += "\t[index]: Pusta referencja – sprawdź logi runtime'ów!"
 				stack_trace("Null datum found in tagged datum menu! User: [usr]")
 				continue
 			else if(iscarbon(iter_datum))
@@ -94,12 +94,12 @@
 				specific_info = "[resolved_subsystem.stat_entry()]"
 			// else, it's just a /datum
 
-			dat += "\t[index]: [iter_datum] | [specific_info] | [ADMIN_VV(iter_datum)]| [TAG_DEL(iter_datum)] | [iter_datum == marked_datum ? "<b>Marked</b>" : TAG_MARK(iter_datum)] "
+			dat += "\t[index]: [iter_datum] | [specific_info] | [ADMIN_VV(iter_datum)]| [TAG_DEL(iter_datum)] | [iter_datum == marked_datum ? "<b>Oznaczony</b>" : TAG_MARK(iter_datum)] "
 			dat += "\t(<b><font size='2'>[iter_datum.type])</font></b>"
 	else
-		dat += "No datums tagged :("
+		dat += "Brak otagowanych datumów :("
 
-	var/datum/browser/browser = new(usr, "tag", "Tag Menu", 800, 480)
+	var/datum/browser/browser = new(usr, "tag", "Menu tagów", 800, 480)
 	browser.set_content(dat.Join("<br>"))
 	browser.open()
 

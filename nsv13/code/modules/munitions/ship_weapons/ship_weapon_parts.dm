@@ -1,6 +1,6 @@
 /obj/item/ship_weapon/parts //Base item
-	name = "weapon electronics"
-	desc = "This piece of equipment is a figment of your imagination, let the coders know how you got it!"
+	name = "elektronika broni"
+	desc = "Ten sprzęt to wytwór twojej wyobraźni. Daj znać koderom, jak go zdobyłeś!"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mcontroller"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -9,8 +9,8 @@
  * Firing electronics - used in construction of <s>new</s> old munitions machinery
  */
 /obj/item/ship_weapon/parts/firing_electronics
-	name = "firing electronics"
-	desc = "The firing circuitry for a large weapon."
+	name = "elektronika spustowa"
+	desc = "Układ spustowy dużej broni."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mcontroller"
 
@@ -30,8 +30,8 @@
  * Railgun loading tray
  */
 /obj/item/ship_weapon/parts/loading_tray
-	name = "loading tray"
-	desc = "A loading tray for a large weapon."
+	name = "podajnik"
+	desc = "Podajnik do dużej broni."
 	icon = 'nsv13/icons/obj/items_and_weapons.dmi'
 	icon_state = "railgun_tray"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
@@ -45,8 +45,8 @@
  * Railgun rail
  */
 /obj/item/ship_weapon/parts/railgun_rail
-	name = "rail"
-	desc = "A magnetic rail for a railgun."
+	name = "szyna działa szynowego"
+	desc = "Magnetyczna szyna do działa szynowego."
 	icon = 'nsv13/icons/obj/items_and_weapons.dmi'
 	icon_state = "railgun_rail"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
@@ -60,8 +60,8 @@
  * MAC Barrel
  */
 /obj/item/ship_weapon/parts/mac_barrel
-	name = "barrel"
-	desc = "The barrel for a MAC."
+	name = "lufa MAC"
+	desc = "Lufa do działa MAC."
 	icon = 'nsv13/icons/obj/items_and_weapons.dmi'
 	icon_state = "mac_barrel"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
@@ -72,19 +72,19 @@
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
 /obj/item/ship_weapon/parts/broadside_casing
-	name = "broadside shell casing"
-	desc = "An empty casing for the Broadside Cannon. Load it into the Shell Packer!"
+	name = "łuska pocisku burtowego"
+	desc = "Pusta łuska do działa burtowego. Załaduj ją do pakowarki pocisków!"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "broadside_casing"
 
 /obj/item/ship_weapon/parts/broadside_load
-	name = "broadside shell load"
-	desc = "A loose load meant for a Broadside shell. Load it into the Shell Packer!"
+	name = "ładunek pocisku burtowego"
+	desc = "Luźny ładunek do pocisku burtowego. Załaduj go do pakowarki pocisków!"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "broadside_load"
 
 /obj/item/ship_weapon/parts/broadside_load/uranium
-	name = "depleted uranium broadside shell load"
-	desc = "A loose load meant for a Broadside shell. Load it into the Shell Packer! This one's <i>extra</i> heavy."
+	name = "ładunek pocisku burtowego ze zubożonego uranu"
+	desc = "Luźny ładunek do pocisku burtowego. Załaduj go do pakowarki pocisków! Ten jest <i>wyjątkowo</i> ciężki."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "broadside_load_uranium"

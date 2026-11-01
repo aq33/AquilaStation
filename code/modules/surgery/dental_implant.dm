@@ -1,11 +1,11 @@
 /datum/surgery/dental_implant
-	name = "dental implant"
+	name = "implant dentystyczny"
 	steps = list(/datum/surgery_step/drill, /datum/surgery_step/insert_pill)
 	possible_locs = list(BODY_ZONE_PRECISE_MOUTH)
 	self_operable = TRUE
 
 /datum/surgery_step/insert_pill
-	name = "insert pill"
+	name = "włóż pigułkę"
 	implements = list(/obj/item/reagent_containers/pill = 100)
 	time = 16
 
@@ -22,7 +22,7 @@
 	user.transferItemToLoc(tool, target, TRUE)
 
 	var/datum/action/item_action/hands_free/activate_pill/P = new(tool)
-	P.button.name = "Activate [tool.name]"
+	P.button.name = "Aktywuj: [tool.name]"
 	P.target = tool
 	P.Grant(target)	//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
 
@@ -32,7 +32,7 @@
 	return 1
 
 /datum/action/item_action/hands_free/activate_pill
-	name = "Activate Pill"
+	name = "Aktywuj pigułkę"
 
 /datum/action/item_action/hands_free/activate_pill/Trigger()
 	if(!..())

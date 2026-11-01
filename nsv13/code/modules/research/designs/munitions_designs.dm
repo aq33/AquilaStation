@@ -1,7 +1,7 @@
 //Missile factory
 /datum/design/missilebuilder
-	name = "Missile autowrencher"
-	desc = "A machine that can perform part of the missile construction process."
+	name = "Automatyczny klucz do rakiet"
+	desc = "Maszyna, która wykonuje część procesu budowy rakiet."
 	id = "missilebuilder"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2500, /datum/material/copper = 2500, /datum/material/plasma = 10000)
@@ -10,8 +10,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/missilewelder
-	name = "Missile autowelder"
-	desc = "A machine that can perform part of the missile construction process."
+	name = "Automatyczna spawarka do rakiet"
+	desc = "Maszyna, która wykonuje część procesu budowy rakiet."
 	id = "missilewelder"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2500, /datum/material/copper = 2500, /datum/material/plasma = 10000)
@@ -20,8 +20,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/missilescrewer
-	name = "Missile autoscrewer"
-	desc = "A machine that can perform part of the missile construction process."
+	name = "Automatyczna wkrętarka do rakiet"
+	desc = "Maszyna, która wykonuje część procesu budowy rakiet."
 	id = "missilescrewer"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2500, /datum/material/copper = 2500, /datum/material/plasma = 10000)
@@ -30,8 +30,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/missilewirer
-	name = "Missile autowirer"
-	desc = "A machine that can perform part of the missile construction process."
+	name = "Automatyczny okablowywacz do rakiet"
+	desc = "Maszyna, która wykonuje część procesu budowy rakiet."
 	id = "missilewirer"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2500, /datum/material/copper = 2500, /datum/material/plasma = 10000)
@@ -40,8 +40,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/missileassembler
-	name = "Missile assembler"
-	desc = "A specialist robotic arm that can fit missile casings with components held in storage."
+	name = "Montażownica rakiet"
+	desc = "Specjalistyczne ramię robotyczne, które montuje w obudowach rakiet podzespoły z magazynu."
 	id = "missileassembler"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2500, /datum/material/copper = 2500, /datum/material/plasma = 10000)
@@ -50,8 +50,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/slowconveyor
-	name = "Low Speed Conveyor"
-	desc = "A specialist 'fire and forget' conveyor tuned to run at the exact speed that missile construction machines operate at."
+	name = "Wolny taśmociąg"
+	desc = "Specjalistyczny taśmociąg typu „odpal i zapomnij”, dostrojony dokładnie do tempa pracy maszyn budujących rakiety."
 	id = "slowconveyor"
 	build_type = PROTOLATHE|AUTOLATHE
 	materials = list(/datum/material/iron = 1000)
@@ -62,8 +62,8 @@
 //Parts that fit Torps and Missiles
 
 /datum/design/guidance_system
-	name = "Guided Munition Guidance System"
-	desc = "The stock standard guidance system design for guided munitions"
+	name = "Układ naprowadzania pocisku kierowanego"
+	desc = "Standardowy projekt układu naprowadzania pocisków kierowanych."
 	id = "guidance_system"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 250, /datum/material/gold = 300, /datum/material/copper = 250)
@@ -72,8 +72,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/propulsion_system
-	name = "Guided Munition Propulsion System"
-	desc = "The stock standard propulsion system design for guided munitions"
+	name = "Układ napędowy pocisku kierowanego"
+	desc = "Standardowy projekt układu napędowego pocisków kierowanych."
 	id = "propulsion_system"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/titanium = 250, /datum/material/plasma = 250)
@@ -82,8 +82,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/iff_card
-	name = "Guided Munition IFF Card"
-	desc = "The stock standard IFF card design for guided munitions"
+	name = "Karta IFF pocisku kierowanego"
+	desc = "Standardowy projekt karty IFF pocisków kierowanych."
 	id = "iff_card"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 1000, /datum/material/copper = 500, /datum/material/gold = 500)
@@ -94,8 +94,8 @@
 //Missile Parts
 
 /datum/design/missile_warhead
-	name = "Standard Missile Warhead"
-	desc = "The stock standard warhead design for missiles"
+	name = "Standardowa głowica rakiety"
+	desc = "Standardowy projekt głowicy rakiety."
 	id = "missile_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 500, /datum/material/copper = 500)
@@ -107,8 +107,8 @@
 //Torp Parts
 
 /datum/design/warhead
-	name = "Torpedo Warhead"
-	desc = "The stock standard warhead design for torpedos"
+	name = "Głowica torpedy"
+	desc = "Standardowy projekt głowicy torpedy."
 	id = "warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 500, /datum/material/copper = 500, /datum/material/plasma = 4000)
@@ -117,8 +117,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/bb_warhead
-	name = "Bunker Buster Torpedo Warhead"
-	desc = "A bunker buster warhead design for torpedos"
+	name = "Głowica torpedy przeciwbunkrowej"
+	desc = "Projekt głowicy przeciwbunkrowej do torped."
 	id = "bb_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 500, /datum/material/copper = 500, /datum/material/plasma = 5000, /datum/material/gold = 2000)
@@ -127,8 +127,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/decoy_warhead
-	name = "Decoy Torpedo Warhead"
-	desc = "A decoy warhead design for torpedos"
+	name = "Głowica torpedy-wabika"
+	desc = "Projekt głowicy-wabika do torped."
 	id = "decoy_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 500, /datum/material/copper = 1000)
@@ -137,8 +137,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/freight_warhead
-	name = "Freight Torpedo Warhead"
-	desc = "A hollowed out nosecone that allows torpedoes to carry freight."
+	name = "Głowica torpedy transportowej"
+	desc = "Wydrążony stożek dziobowy, dzięki któremu torpeda może przewozić ładunek."
 	id = "freight_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/copper = 500)
@@ -147,8 +147,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/hellfire_warhead
-	name = "Hellfire Torpedo Warhead"
-	desc = "An incendiary warhead design for torpedos"
+	name = "Głowica torpedy Hellfire"
+	desc = "Projekt zapalającej głowicy do torped."
 	id = "hellfire_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/copper = 1000, /datum/material/plasma = 7500, /datum/material/gold = 1500, /datum/material/uranium = 5000)
@@ -157,8 +157,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/probe_warhead
-	name = "Astrometrics probe warhead"
-	desc = "A sensor suite that can turn a torpedo casing into an advanced probe for use in astrometrics research."
+	name = "Głowica sondy astrometrycznej"
+	desc = "Zestaw czujników, który zamienia obudowę torpedy w zaawansowaną sondę do badań astrometrycznych."
 	id = "probe_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, /datum/material/copper = 1500, /datum/material/titanium= 1000, /datum/material/gold=1000)
@@ -167,8 +167,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/proto_disruption_warhead
-	name = "Disruption Torpedo Warhead - Prototype"
-	desc = "A prototype EMP warhead for torpedoes"
+	name = "Głowica torpedy zakłócającej (prototyp)"
+	desc = "Prototypowa głowica EMP do torped."
 	id = "proto_disruption_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 1000, /datum/material/copper = 1500, /datum/material/plasma = 3000, /datum/material/gold = 1500, /datum/material/uranium = 10000, /datum/material/titanium = 2000, /datum/material/diamond = 200)
@@ -178,8 +178,8 @@
 
 //Naval Cannons
 /datum/design/naval_shell
-	name = "Naval Artillery Round"
-	desc = "A high caliber round that can be fired out of a deck gun. (WARNING: Requires a trolley to move!)"
+	name = "Pocisk artylerii okrętowej"
+	desc = "Pocisk dużego kalibru do działa pokładowego. (UWAGA: do przenoszenia potrzebny jest wózek!)"
 	id = "naval_shell"
 	materials = list(/datum/material/iron = 10000, /datum/material/titanium=5000, /datum/material/copper=500)
 	build_path = /obj/item/ship_weapon/ammunition/naval_artillery
@@ -188,8 +188,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/naval_shell_ap
-	name = "Naval Artillery Round (Armour Piercing)"
-	desc = "A diamond tipped AP round that can be fired out of a deck gun. (WARNING: Requires a trolley to move!)"
+	name = "Pocisk artylerii okrętowej (przeciwpancerny)"
+	desc = "Przeciwpancerny pocisk z diamentowym czubkiem do działa pokładowego. (UWAGA: do przenoszenia potrzebny jest wózek!)"
 	id = "naval_shell_ap"
 	materials = list(/datum/material/iron = 10000, /datum/material/titanium=1000, /datum/material/diamond=2000)
 	build_path = /obj/item/ship_weapon/ammunition/naval_artillery/ap
@@ -198,8 +198,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/powder_bag
-	name = "Powder Bag"
-	desc = "A bag of explosives for use with deck guns."
+	name = "Worek prochu"
+	desc = "Worek materiału wybuchowego do dział pokładowych."
 	id = "powder_bag"
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/powder_bag
@@ -208,8 +208,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/plasma_accelerant
-	name = "Plasma-Based Kinetic Accelerant"
-	desc = "A powerful powder charge for use in deck guns, which can propel a round to insane speeds."
+	name = "Plazmowy przyspieszacz pocisków"
+	desc = "Potężny ładunek prochowy do dział pokładowych, który rozpędza pocisk do szalonych prędkości."
 	id = "plasma_accelerant"
 	materials = list(/datum/material/iron = 500, /datum/material/plasma = 1500)
 	build_path = /obj/item/powder_bag/plasma
@@ -219,8 +219,8 @@
 
 //Railgun Because you can still get the funny from missions
 /datum/design/railgun_round
-	name = "M4 NTRS 400mm teflon coated tungsten railgun slug"
-	desc = "Allows you to construct railgun ammunition"
+	name = "Wolframowy pocisk M4 NTRS 400 mm z powłoką teflonową"
+	desc = "Pozwala wytwarzać amunicję do działa szynowego."
 	id = "railgun_round"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=5000, /datum/material/titanium=5000, /datum/material/silver=1000,)
@@ -230,8 +230,8 @@
 
 //Broadside ammo parts!
 /datum/design/broadside_casing
-	name = "Space Naval titanium reinforced Broadside Shell Casing"
-	desc = "Allows you to construct Broadside Shell Casings"
+	name = "Wzmacniana tytanem łuska pocisku burtowego"
+	desc = "Pozwala wytwarzać łuski pocisków burtowych."
 	id = "broadside_casing"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=500, /datum/material/titanium=1500)
@@ -240,8 +240,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/broadside_load
-	name = "Space Naval 250mm uranium coated Broadside Shell Load"
-	desc = "Allows you to construct Broadside Shell Loads"
+	name = "Ładunek pocisku burtowego 250 mm w powłoce uranowej"
+	desc = "Pozwala wytwarzać ładunki pocisków burtowych."
 	id = "broadside_load"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=1500, /datum/material/titanium=500)
@@ -250,8 +250,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/broadside_load/broadside_load_uranium
-	name = "Space Naval 250mm depleted uranium Broadside Shell Load"
-	desc = "Allows you to construct nuclear capable Broadside Shell Loads"
+	name = "Ładunek pocisku burtowego 250 mm ze zubożonego uranu"
+	desc = "Pozwala wytwarzać jądrowe ładunki pocisków burtowych."
 	id = "broadside_load_uranium"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/uranium=1500, /datum/material/titanium=500)
@@ -260,8 +260,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/swabber
-	name = "Space Naval Broadside Barrel Swab & Scrubber"
-	desc = "Allows you to construct the cleaning Swabber"
+	name = "Wycior do luf dział burtowych"
+	desc = "Pozwala wytwarzać wycior do czyszczenia."
 	id = "swabber"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=1000)
@@ -271,8 +271,8 @@
 
 //Plasma ball for plasma caster
 /datum/design/plasma_core
-	name = "Condensed Phoron Core"
-	desc = "Allows you to synthesize condensed phoron cores for the MPAC"
+	name = "Skondensowany rdzeń foronu"
+	desc = "Pozwala syntetyzować skondensowane rdzenie foronu do MPAC."
 	id = "plasma_core"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plasma=40000, /datum/material/iron=10000)

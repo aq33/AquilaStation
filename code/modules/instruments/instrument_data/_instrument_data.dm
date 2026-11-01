@@ -18,7 +18,7 @@
   */
 /datum/instrument
 	/// Name of the instrument
-	var/name = "Generic instrument"
+	var/name = "Zwykły instrument"
 	/// Uniquely identifies this instrument so runtime changes are possible as opposed to paths. If this is unset, things will use path instead.
 	var/id
 	/// Category

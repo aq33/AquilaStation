@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots
-	name = "Summon Slotmachine"
-	desc = "Summon forth a temporary slot machine of greed, allowing you to offer patrons a deadly game where the price is their life (and some money if you'd like) and the possible prize is a one use die of fate."
+	name = "Przywołaj jednorękiego bandytę"
+	desc = "Przywołuje na chwilę automat chciwości. Możesz zaproponować graczom śmiertelną grę: stawką jest ich życie (i trochę pieniędzy, jeśli chcesz), a nagrodą jednorazowa kość przeznaczenia."
 	invocation = "Tylko jedna gra?"
 	invocation_type = "whisper"
 	clothes_req = FALSE
@@ -15,8 +15,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/cursed_item //conjure a random unique cursed item, which can impart various benefits, but always at a cost...
-	name = "Summon Cursed Item"
-	desc = "Manifest a random cursed object from hell beneath you. They have powerful applications, though often times with unintended consequences. Perfect for selling, or even using yourself if in a bind. Be aware, many of their effects can harm you too if used."
+	name = "Przywołaj przeklęty przedmiot"
+	desc = "Sprowadza z piekła pod twoje stopy losowy przeklęty przedmiot. Ma potężne zastosowania, ale często z niezamierzonymi skutkami. Idealny na sprzedaż, a w potrzebie nawet do własnego użytku. Uważaj: wiele z tych efektów może zaszkodzić także tobie."
 	invocation = "Potęga ponad miarę"
 	invocation_type = "whisper"
 	clothes_req = FALSE
@@ -36,8 +36,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/item/katana/greedcursed //quite a bit weaker katana, still deals good damage, but also siphons part of your health every hit.
-	name = "peculiar katana"
-	desc = "The handle seems to dig into your flesh as you swing it..."
+	name = "osobliwa katana"
+	desc = "Kiedy nią machasz, rękojeść jakby wgryza ci się w ciało..."
 	force = 20
 	block_power = 10
 	armour_penetration = 15
@@ -48,13 +48,13 @@
 	return ..()
 
 /obj/item/reagent_containers/pill/greedcursed //has a good amount of healing chems, you just have to deal with being set on fire first
-	name = "strange pill"
-	desc = "It smells of brimstone. Just looking it, you instinctively feel like this might heal you in exchange for something else..."
+	name = "dziwna pigułka"
+	desc = "Pachnie siarką. Samo patrzenie na nią podpowiada ci, że mogłaby cię uleczyć w zamian za coś innego..."
 	volume = 25
 	list_reagents = list(/datum/reagent/medicine/omnizine = 20, /datum/reagent/hellwater = 3, /datum/reagent/medicine/lavaland_extract = 2)
 
 /obj/item/book_of_babel/greedcursed
-	desc = "An ancient tome written in countless tongues. It emits an overwhelming odor of sulphur. Reading this may bring you knowledge, if you can handle the price."
+	desc = "Pradawna księga spisana w niezliczonych językach. Bije od niej przytłaczający smród siarki. Lektura może dać ci wiedzę, jeśli udźwigniesz jej cenę."
 
 /obj/item/book_of_babel/greedcursed/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -69,8 +69,8 @@
 	qdel(src)
 
 /obj/item/greedcursed_bottle //recovers a portion of your max health, at the cost of being cursed into a shadowperson
-	name = "bottle of dark blood"
-	desc = "The contents seem to swirl constantly, and shrivel away when faced with bright light. If you drink this, you may just recover a part of yourself, though perhaps at a terrible cost..."
+	name = "butelka ciemnej krwi"
+	desc = "Zawartość bez przerwy wiruje i kurczy się w jasnym świetle. Jeśli to wypijesz, może odzyskasz część siebie, choć być może za straszliwą cenę..."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
 

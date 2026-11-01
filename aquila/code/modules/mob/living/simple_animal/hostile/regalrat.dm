@@ -13,7 +13,7 @@
 GLOBAL_LIST_EMPTY(hostile_rats)
 
 /mob/living/simple_animal/hostile/regalrat
-	name = "feral regal rat"
+	name = "dziki szczurzy król"
 	desc = "Wyewoluowany szczur, dzieło jakiejś dziwnej nauki. Prowadzi okoliczne szczury ze śmiertelną skutecznością, by bronić swojego królestwa. Technicznie rzecz biorąc, nie jest królem."
 	icon = 'aquila/icons/mob/regalrat.dmi'
 	icon_state = "regalrat"
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(hostile_rats)
 
 /// Wersja dla duchów: losowy tytuł i od razu dostępna do przejęcia
 /mob/living/simple_animal/hostile/regalrat/controlled
-	name = "regal rat"
+	name = "szczurzy król"
 	unique_name = FALSE
 
 /// make_playable = FALSE, gdy od razu wejdzie w niego czyjś umysł (np. opętana mysz po królewskim serze)
@@ -295,7 +295,7 @@ GLOBAL_LIST_EMPTY(hostile_rats)
 	return TRUE
 
 /mob/living/simple_animal/hostile/rat
-	name = "rat"
+	name = "szczur"
 	desc = "Paskudny, brzydki, zły, roznoszący choroby gryzoń z problemami z gniewem."
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(hostile_rats)
  * Szczurza ślina: nieszkodliwa, obrzydza, a po przedawkowaniu jednoczy ze szczurami
  */
 /datum/reagent/rat_spit
-	name = "Rat Spit"
+	name = "Szczurza ślina"
 	description = "Coś od szczura. Boże! Kto wie, gdzie to było!"
 	reagent_state = LIQUID
 	color = "#C8C8C8"

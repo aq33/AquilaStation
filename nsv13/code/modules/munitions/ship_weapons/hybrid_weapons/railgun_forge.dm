@@ -1,6 +1,6 @@
 /obj/machinery/railgun_forge
-	name = "Railgun Forge"
-	desc = "Device for forging railgun munitions"
+	name = "kuźnia pocisków szynowych"
+	desc = "Urządzenie do kucia pocisków szynowych."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "railgun_forge_core"
 	density = TRUE
@@ -245,7 +245,7 @@
 			T2.tank_volume -= (20 * component_multiplier)
 			var/turf/T = loc
 			var/obj/item/ship_weapon/ammunition/railgun_ammo/forged/F = new(T)
-			F.name = "\improper Forged 400mm [T1.material_selection] coated [T2.material_selection] slug"
+			F.name = "\improper kuty pocisk 400 mm ([T2.material_selection], powłoka: [T1.material_selection])"
 			F.material_conductivity = getConductivity("slug")
 			F.material_density = getDensity("slug")
 			F.material_hardness = getHardness("slug")
@@ -284,7 +284,7 @@
 			T2.tank_volume -= (30 * component_multiplier)
 			var/turf/T = loc
 			var/obj/item/ship_weapon/ammunition/railgun_ammo_canister/F = new(T)
-			F.name = "\improper Forged 800mm [T1.material_selection] coated [T2.material_selection] canister"
+			F.name = "\improper kuty kanister 800 mm ([T2.material_selection], powłoka: [T1.material_selection])"
 			F.material_conductivity = getConductivity("canister")
 			F.material_density = getDensity("canister")
 			F.material_hardness = getHardness("canister")
@@ -421,7 +421,7 @@
 					forge_canister()
 
 			if("purge_t1")
-				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika powłoki",name,"Continue","Abort") != "Abort" && Adjacent(usr))
+				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika powłoki",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr))
 					to_chat(usr, "<span class='warning'>Opróżnianie zbiornika powłoki</span>")
 					T1.material_selection = 0
 					T1.tank_alloy_lock = FALSE
@@ -430,7 +430,7 @@
 					return
 
 			if("purge_t2")
-				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika rdzenia",name,"Continue","Abort") != "Abort" && Adjacent(usr))
+				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika rdzenia",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr))
 					to_chat(usr, "<span class='warning'>Opróżnianie zbiornika rdzenia</span>")
 					T2.material_selection = 0
 					T2.tank_alloy_lock = FALSE
@@ -515,8 +515,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/railgun_forge_coating_tank
-	name = "Railgun Forge Coating Tank"
-	desc = "Device for forging railgun munitions"
+	name = "zbiornik powłoki kuźni pocisków szynowych"
+	desc = "Urządzenie do kucia pocisków szynowych."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "railgun_forge_tank"
 	density = TRUE
@@ -561,8 +561,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/railgun_forge_core_tank
-	name = "Railgun Forge Core Tank"
-	desc = "Device for forging railgun munitions"
+	name = "zbiornik rdzenia kuźni pocisków szynowych"
+	desc = "Urządzenie do kucia pocisków szynowych."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "railgun_forge_tank"
 	density = TRUE
@@ -608,8 +608,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/atmospherics/components/binary/railgun_filler
-	name = "Railgun Canister Filler"
-	desc = "Device for filling and sealing railgun canister munitions"
+	name = "napełniarka kanistrów działa szynowego"
+	desc = "Urządzenie do napełniania i plombowania kanistrów działa szynowego."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "railgun_filler"
 	density = TRUE
@@ -791,8 +791,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/railgun_charger
-	name = "Railgun Canister Charger"
-	desc = "Device for charging and discharging railgun canister munitions"
+	name = "ładowarka kanistrów działa szynowego"
+	desc = "Urządzenie do ładowania i rozładowywania kanistrów działa szynowego."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "railgun_charger"
 	density = TRUE
@@ -976,7 +976,7 @@
 ///////////////CIRCUIT BOARDS//////////////////
 
 /obj/item/circuitboard/machine/railgun_forge //update my components
-	name = "Railgun Forge (Machine Board)"
+	name = "kuźnia pocisków szynowych (płytka maszyny)"
 	build_path = /obj/machinery/railgun_forge
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 12,
@@ -985,7 +985,7 @@
 		/obj/item/stock_parts/micro_laser = 10)
 
 /obj/item/circuitboard/machine/railgun_charger //update my components
-	name = "Railgun Charger (Machine Board)"
+	name = "ładowarka kanistrów działa szynowego (płytka maszyny)"
 	build_path = /obj/machinery/railgun_charger
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 10,
@@ -993,7 +993,7 @@
 		/obj/item/stock_parts/micro_laser = 5)
 
 /obj/item/circuitboard/machine/railgun_filler //update my components
-	name = "Railgun Filler (Machine Board)"
+	name = "napełniarka kanistrów działa szynowego (płytka maszyny)"
 	build_path = /obj/machinery/atmospherics/components/binary/railgun_filler
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 10,
@@ -1003,7 +1003,7 @@
 		/obj/item/stock_parts/micro_laser = 2)
 
 /obj/item/circuitboard/machine/railgun_forge_coating_tank
-	name = "Railgun Forge Coating Tank (Machine Board)"
+	name = "zbiornik powłoki kuźni pocisków szynowych (płytka maszyny)"
 	build_path = /obj/machinery/railgun_forge_coating_tank
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 20,
@@ -1011,7 +1011,7 @@
 		/obj/item/stock_parts/scanning_module = 2)
 
 /obj/item/circuitboard/machine/railgun_forge_core_tank
-	name = "Railgun Forge Core Tank (Machine Board)"
+	name = "zbiornik rdzenia kuźni pocisków szynowych (płytka maszyny)"
 	build_path = /obj/machinery/railgun_forge_core_tank
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 20,

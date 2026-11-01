@@ -14,8 +14,8 @@
 #define COIN 2
 
 /obj/machinery/computer/slot_machine
-	name = "slot machine"
-	desc = "Gambling for the antisocial."
+	name = "jednoręki bandyta"
+	desc = "Hazard dla aspołecznych."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "slots1"
 	density = TRUE

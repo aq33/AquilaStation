@@ -41,6 +41,22 @@ type Data = {
   wireModule: any;
 };
 
+// Stany przychodzą z DM jako klucze (porównywane niżej przy kolorach),
+// więc tłumaczymy je tylko przy wyświetlaniu.
+const STATUS_PL: Record<string, string> = {
+  ACTIVE: 'WŁĄCZONO',
+  DISABLED: 'WYŁĄCZONO',
+  ENABLED: 'WŁĄCZONO',
+  LOCKED: 'ZABLOKOWANO',
+  UNLOCKED: 'ODBLOKOWANO',
+  FAULT: 'USTERKA',
+  NOMINAL: 'W NORMIE',
+  CONNECTED: 'POŁĄCZONO',
+  READY: 'GOTOWOŚĆ',
+};
+
+const statusText = (value: string) => STATUS_PL[value] ?? value;
+
 export const NtosCyborgSelfMonitor = (props) => {
   const { act, data } = useBackend<Data>();
   const { PC_device_theme } = data;
@@ -92,7 +108,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
             selected={tab_main === 1}
             onClick={() => setTab_main(1)}
           >
-            Status
+            Stan
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -100,7 +116,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}
           >
-            Logs
+            Logi
           </Tabs.Tab>
         </Tabs>
       </Flex.Item>
@@ -108,23 +124,23 @@ export const NtosCyborgSelfMonitorContent = (props) => {
         <>
           <Flex direction={'row'}>
             <Flex.Item width="30%">
-              <Section title="Configuration" fill>
+              <Section title="Konfiguracja" fill>
                 <LabeledList>
-                  <LabeledList.Item label="Unit">
+                  <LabeledList.Item label="Jednostka">
                     {borgName.slice(0, 17)}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Type">{borgType}</LabeledList.Item>
-                  <LabeledList.Item label="AI">
+                  <LabeledList.Item label="Typ">{borgType}</LabeledList.Item>
+                  <LabeledList.Item label="SI">
                     {masterAI.slice(0, 17)}
                   </LabeledList.Item>
                 </LabeledList>
               </Section>
             </Flex.Item>
             <Flex.Item grow={1} ml={1}>
-              <Section title="Status">
-                Charge:
+              <Section title="Stan">
+                Ładunek:
                 <Button
-                  content="Power Alert"
+                  content="Alarm zasilania"
                   disabled={charge}
                   onClick={() => act('alertPower')}
                 />
@@ -138,7 +154,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                 >
                   <AnimatedNumber value={charge} />
                 </ProgressBar>
-                Chassis Integrity:
+                Integralność obudowy:
                 <ProgressBar
                   value={integrity}
                   minValue={0}
@@ -150,7 +166,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                   }}
                 />
               </Section>
-              <Section title="Lamp Power">
+              <Section title="Moc lampy">
                 <Slider
                   value={lampIntensity}
                   step={1}
@@ -163,7 +179,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                     })
                   }
                 />
-                Lamp power usage: {lampIntensity / 2} watts
+                Pobór mocy lampy: {lampIntensity / 2} W
               </Section>
             </Flex.Item>
             <Flex.Item width="50%" ml={1}>
@@ -175,7 +191,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                     selected={tab_sub === 1}
                     onClick={() => setTab_sub(1)}
                   >
-                    Actions
+                    Akcje
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -183,7 +199,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                     selected={tab_sub === 2}
                     onClick={() => setTab_sub(2)}
                   >
-                    Upgrades
+                    Ulepszenia
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -191,63 +207,65 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                     selected={tab_sub === 3}
                     onClick={() => setTab_sub(3)}
                   >
-                    Diagnostics
+                    Diagnostyka
                   </Tabs.Tab>
                 </Tabs>
               </Section>
               {tab_sub === 1 && (
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Maintenance Cover">
+                    <LabeledList.Item label="Pokrywa serwisowa">
                       <Button.Confirm
-                        content="Unlock"
+                        confirmContent="Na pewno?"
+                        content="Odblokuj"
                         disabled={cover === 'UNLOCKED'}
                         onClick={() => act('coverunlock')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Sensor Overlay">
+                    <LabeledList.Item label="Nakładka czujników">
                       <Button
-                        content={sensors}
+                        content={statusText(sensors)}
                         onClick={() => act('toggleSensors')}
                       />
                     </LabeledList.Item>
                     {/* NSV added manfiest to borg computer start */}
-                    <LabeledList.Item label={'Crew Manifest'}>
+                    <LabeledList.Item label={'Lista załogi'}>
                       <Button
-                        content="Open"
+                        content="Otwórz"
                         onClick={() => act('crewmanifest')}
                       />
                     </LabeledList.Item>
                     {/* NSV added manfiest to borg computer end */}
                     <LabeledList.Item
-                      label={'Stored Photos (' + printerPictures + ')'}
+                      label={'Zapisane zdjęcia (' + printerPictures + ')'}
                     >
                       <Button
-                        content="View"
+                        content="Pokaż"
                         disabled={!printerPictures}
                         onClick={() => act('viewImage')}
                       />
                       <Button
-                        content="Print"
+                        content="Drukuj"
                         disabled={!printerPictures}
                         onClick={() => act('printImage')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Printer Toner">
+                    <LabeledList.Item label="Toner drukarki">
                       <ProgressBar value={printerToner / printerTonerMax} />
                     </LabeledList.Item>
                     {!!thrustersInstalled && (
-                      <LabeledList.Item label="Toggle Thrusters">
+                      <LabeledList.Item label="Silniki manewrowe">
                         <Button
-                          content={thrustersStatus}
+                          content={statusText(thrustersStatus)}
                           onClick={() => act('toggleThrusters')}
                         />
                       </LabeledList.Item>
                     )}
                     {!!selfDestructAble && (
-                      <LabeledList.Item label="Self Destruct">
+                      <LabeledList.Item label="Autodestrukcja">
                         <Button.Confirm
-                          content="ACTIVATE"
+                          confirmContent="Na pewno?"
+                          content="AKTYWUJ"
                           color="red"
                           onClick={() => act('selfDestruct')}
                         />
@@ -269,7 +287,7 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                 <Section>
                   <LabeledList>
                     <LabeledList.Item
-                      label="AI Connection"
+                      label="Połączenie z SI"
                       color={
                         wireAI === 'FAULT'
                           ? 'red'
@@ -278,16 +296,16 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                             : 'green'
                       }
                     >
-                      {wireAI}
+                      {statusText(wireAI)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="LawSync"
+                      label="Synchronizacja praw"
                       color={wireLaw === 'FAULT' ? 'red' : 'green'}
                     >
-                      {wireLaw}
+                      {statusText(wireLaw)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Camera"
+                      label="Kamera"
                       color={
                         wireCamera === 'FAULT'
                           ? 'red'
@@ -296,16 +314,16 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                             : 'green'
                       }
                     >
-                      {wireCamera}
+                      {statusText(wireCamera)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Module Controller"
+                      label="Kontroler modułów"
                       color={wireModule === 'FAULT' ? 'red' : 'green'}
                     >
-                      {wireModule}
+                      {statusText(wireModule)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Motor Controller"
+                      label="Kontroler napędu"
                       color={
                         locomotion === 'FAULT'
                           ? 'red'
@@ -314,13 +332,13 @@ export const NtosCyborgSelfMonitorContent = (props) => {
                             : 'green'
                       }
                     >
-                      {locomotion}
+                      {statusText(locomotion)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Maintenance Cover"
+                      label="Pokrywa serwisowa"
                       color={cover === 'UNLOCKED' ? 'red' : 'green'}
                     >
-                      {cover}
+                      {statusText(cover)}
                     </LabeledList.Item>
                   </LabeledList>
                 </Section>
@@ -329,13 +347,13 @@ export const NtosCyborgSelfMonitorContent = (props) => {
           </Flex>
           <Flex.Item height={21} mt={1}>
             <Section
-              title="Laws"
+              title="Prawa"
               fill
               scrollable
               buttons={
                 <>
                   <Button
-                    content="State Laws"
+                    content="Ogłoś prawa"
                     onClick={() => act('lawstate')}
                   />
                   <Button icon="volume-off" onClick={() => act('lawchannel')} />

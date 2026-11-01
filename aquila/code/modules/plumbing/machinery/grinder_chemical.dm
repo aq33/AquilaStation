@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/grinder_chemical
-	name = "chemical grinder"
-	desc = "Chemical grinder. Can either grind or juice stuff you put in."
+	name = "młynek chemiczny"
+	desc = "Młynek chemiczny. Mieli albo wyciska sok z tego, co do niego włożysz."
 	icon_state = "grinder_chemical"
 	layer = ABOVE_ALL_MOB_LAYER
 	reagent_flags = TRANSPARENT | DRAINABLE

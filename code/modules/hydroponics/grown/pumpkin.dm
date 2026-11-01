@@ -1,8 +1,8 @@
 // Pumpkin
 /obj/item/food/grown/pumpkin
 	seed = /obj/item/plant_seeds/preset/pumpkin
-	name = "pumpkin"
-	desc = "It's large and scary."
+	name = "dynia"
+	desc = "Duża i straszna."
 	icon_state = "pumpkin"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -20,8 +20,8 @@
 
 // Blumpkin
 /obj/item/food/grown/blumpkin
-	name = "blumpkin"
-	desc = "The pumpkin's toxic sibling."
+	name = "niebieska dynia"
+	desc = "Toksyczna siostra dyni."
 	icon_state = "blumpkin"
 	bite_consumption_mod = 3
 	foodtypes = FRUIT

@@ -1,6 +1,6 @@
 /datum/language/beachbum
-	name = "Beachtongue"
-	desc = "An ancient language from the distant Beach Planet. People magically learn to speak it under the influence of space drugs."
+	name = "Plażowy"
+	desc = "Starożytny język z odległej Planety Plaż. Ludzie w magiczny sposób uczą się go pod wpływem kosmicznych narkotyków."
 	speech_verb = "mamrocze"
 	ask_verb = "wypytuje"
 	exclaim_verb = "wydziera się"

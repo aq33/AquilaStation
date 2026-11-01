@@ -3,8 +3,8 @@
 
 /obj/item/paint
 	gender= PLURAL
-	name = "paint"
-	desc = "Used to recolor floors and walls. Can be removed by the janitor."
+	name = "farba"
+	desc = "Służy do przemalowywania podłóg i ścian. Woźny może ją usunąć."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "paint_neutral"
 	var/paint_color = "FFFFFF"
@@ -15,66 +15,72 @@
 	var/paintleft = 10
 
 /obj/item/paint/red
-	name = "red paint"
+	name = "czerwona farba"
 	paint_color = "C73232" //"FF0000"
 	icon_state = "paint_red"
 
 /obj/item/paint/green
-	name = "green paint"
+	name = "zielona farba"
 	paint_color = "2A9C3B" //"00FF00"
 	icon_state = "paint_green"
 
 /obj/item/paint/blue
-	name = "blue paint"
+	name = "niebieska farba"
 	paint_color = "5998FF" //"0000FF"
 	icon_state = "paint_blue"
 
 /obj/item/paint/yellow
-	name = "yellow paint"
+	name = "żółta farba"
 	paint_color = "CFB52B" //"FFFF00"
 	icon_state = "paint_yellow"
 
 /obj/item/paint/violet
-	name = "violet paint"
+	name = "fioletowa farba"
 	paint_color = "AE4CCD" //"FF00FF"
 	icon_state = "paint_violet"
 
 /obj/item/paint/black
-	name = "black paint"
+	name = "czarna farba"
 	paint_color = "333333"
 	icon_state = "paint_black"
 
 /obj/item/paint/white
-	name = "white paint"
+	name = "biała farba"
 	paint_color = "FFFFFF"
 	icon_state = "paint_white"
 
 
 /obj/item/paint/anycolor
 	gender = PLURAL
-	name = "adaptive paint"
+	name = "farba adaptacyjna"
 	icon_state = "paint_neutral"
 
 /obj/item/paint/anycolor/attack_self(mob/user)
-	var/t1 = input(user, "Wybierz kolor:", "[src]", null) in sortList(list( "red", "blue", "green", "yellow", "violet", "black", "white"))
+	var/t1 = input(user, "Wybierz kolor:", "[src]", null) in sortList(list( "czerwony", "niebieski", "zielony", "żółty", "fioletowy", "czarny", "biały"))
 	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
 	switch(t1)
-		if("red")
+		if("czerwony")
 			paint_color = "C73232"
-		if("blue")
+			icon_state = "paint_red"
+		if("niebieski")
 			paint_color = "5998FF"
-		if("green")
+			icon_state = "paint_blue"
+		if("zielony")
 			paint_color = "2A9C3B"
-		if("yellow")
+			icon_state = "paint_green"
+		if("żółty")
 			paint_color = "CFB52B"
-		if("violet")
+			icon_state = "paint_yellow"
+		if("fioletowy")
 			paint_color = "AE4CCD"
-		if("white")
+			icon_state = "paint_violet"
+		if("biały")
 			paint_color = "FFFFFF"
-		if("black")
+			icon_state = "paint_white"
+		if("czarny")
 			paint_color = "333333"
-	icon_state = "paint_[t1]"
+			icon_state = "paint_black"
 	add_fingerprint(user)
 
 
@@ -92,8 +98,8 @@
 
 /obj/item/paint/paint_remover
 	gender =  PLURAL
-	name = "paint remover"
-	desc = "Used to remove color from anything."
+	name = "zmywacz farby"
+	desc = "Służy do usuwania koloru z czegokolwiek."
 	icon_state = "paint_neutral"
 
 /obj/item/paint/paint_remover/afterattack(atom/target, mob/user, proximity)

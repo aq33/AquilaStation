@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/nerve_grounding
-	name = "Nerve Grounding"
-	desc = "A surgical procedure which makes the patient's nerves act as grounding rods, protecting them from electrical shocks."
+	name = "Uziemienie nerwów"
+	desc = "Zabieg chirurgiczny, po którym nerwy pacjenta działają jak uziemienie, chroniąc go przed porażeniem prądem."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -12,7 +12,7 @@
 	bioware_target = BIOWARE_NERVES
 
 /datum/surgery_step/ground_nerves
-	name = "ground nerves"
+	name = "uziem nerwy"
 	accept_hand = TRUE
 	time = 155
 
@@ -29,8 +29,8 @@
 	return TRUE
 
 /datum/bioware/grounded_nerves
-	name = "Grounded Nerves"
-	desc = "Nerves form a safe path for electricity to traverse, protecting the body from electric shocks."
+	name = "Uziemione nerwy"
+	desc = "Nerwy tworzą bezpieczną ścieżkę dla prądu, chroniąc ciało przed porażeniem."
 	mod_type = BIOWARE_NERVES
 
 /datum/bioware/grounded_nerves/on_gain()

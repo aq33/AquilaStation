@@ -1,8 +1,8 @@
 /obj/structure/displaycase
-	name = "display case"
+	name = "gablota"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox"
-	desc = "A display case for prized possessions."
+	desc = "Gablota na cenne zbiory."
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = ACID_PROOF
@@ -64,7 +64,7 @@
 	if(alert)
 		. += "<span class='notice'>Podłączona do systemu antykradzieżowego.</span>"
 	if(showpiece)
-		. += "<span class='notice'>There's \a [showpiece] inside.</span>"
+		. += "<span class='notice'>W środku jest: [showpiece].</span>"
 	if(trophy_message)
 		. += "Tabliczka głosi:\n [trophy_message]"
 
@@ -162,7 +162,7 @@
 		else
 			to_chat(user, "<span class='notice'>Zaczynasz [open ? "zamykać":"otwierać"] [src]...</span>")
 			if(W.use_tool(src, user, 20))
-				to_chat(user,  "<span class='notice'>You [open ? "close":"open"] [src].</span>")
+				to_chat(user,  "<span class='notice'>[open ? "Zamykasz":"Otwierasz"] [src].</span>")
 				toggle_lock(user)
 	else if(open && !showpiece)
 		if(showpiece_type && !istype(W, showpiece_type))
@@ -219,8 +219,8 @@
 /obj/structure/displaycase_chassis
 	anchored = TRUE
 	density = FALSE
-	name = "display case chassis"
-	desc = "The wooden base of a display case."
+	name = "podstawa gabloty"
+	desc = "Drewniana podstawa gabloty."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox_chassis"
 	var/obj/item/electronics/airlock/electronics
@@ -291,14 +291,14 @@
 	security_level_locked = SEC_LEVEL_BLUE  // Cap's case is locked even to him unless the station is facing a threat
 
 /obj/structure/displaycase/labcage
-	name = "lab cage"
-	desc = "A glass lab container for storing interesting creatures."
+	name = "klatka laboratoryjna"
+	desc = "Szklany pojemnik laboratoryjny na ciekawe stworzenia."
 	start_showpiece_type = /obj/item/clothing/mask/facehugger/lamarr
 	req_access = list(ACCESS_RD)
 
 /obj/structure/displaycase/trophy
-	name = "trophy display case"
-	desc = "Store your trophies of accomplishment in here, and they will stay forever."
+	name = "gablota na trofea"
+	desc = "Umieść tu swoje trofea, a zostaną na zawsze."
 	var/placer_key = ""
 	var/added_roundstart = TRUE
 	var/is_locked = TRUE
@@ -455,11 +455,11 @@
 			return TRUE
 
 /obj/item/key/displaycase
-	name = "display case key"
-	desc = "The key to the curator's display cases."
+	name = "klucz do gablot"
+	desc = "Klucz do gablot bibliotekarza."
 
 /obj/item/showpiece_dummy
-	name = "Cheap replica"
+	name = "tania replika"
 
 /obj/item/showpiece_dummy/Initialize(mapload, path)
 	. = ..()
@@ -469,10 +469,10 @@
 	icon_state = initial(I.icon_state)
 
 /obj/structure/displaycase/forsale
-	name = "vend-a-tray"
+	name = "taca sprzedażowa"
 	icon_state = "laserbox"
 	custom_glass_overlay = TRUE
-	desc = "A display case with an ID-card swiper. Use your ID to purchase the contents."
+	desc = "Gablota z czytnikiem kart ID. Użyj swojej karty, by kupić zawartość."
 	density = FALSE
 	max_integrity = 100
 	req_access = null
@@ -555,7 +555,7 @@
 				if(payments_acc)
 					payments_acc.adjust_money(sale_price)
 				usr.put_in_hands(showpiece)
-				to_chat(usr, "<span class='notice'>Kupujesz [showpiece] za [sale_price] kredytów.</span>")
+				to_chat(usr, "<span class='notice'>Kupujesz [showpiece] za [sale_price] kr.</span>")
 				playsound(src, 'sound/effects/cashregister.ogg', 40, TRUE)
 				flick("[initial(icon_state)]_vend", src)
 				showpiece = null
@@ -658,7 +658,7 @@
 /obj/structure/displaycase/forsale/examine(mob/user)
 	. = ..()
 	if(showpiece && !open)
-		. += "<span class='notice'>[showpiece] jest na sprzedaż za [sale_price] kredytów.</span>"
+		. += "<span class='notice'>[showpiece] jest na sprzedaż za [sale_price] kr.</span>"
 	if(broken)
 		. += "<span class='notice'>[src] iskrzy, a generator pola lewitacyjnego wydaje się przeciążony. Napraw go multitoolem.</span>"
 
@@ -672,5 +672,5 @@
 		ui_update()
 
 /obj/structure/displaycase/forsale/kitchen
-	desc = "A display case with an ID-card swiper. Use your ID to purchase the contents. Meant for the bartender and chef."
+	desc = "Gablota z czytnikiem kart ID. Użyj swojej karty, by kupić zawartość. Przeznaczona dla barmana i kucharza."
 	req_one_access = list(ACCESS_KITCHEN, ACCESS_BAR)

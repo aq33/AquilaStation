@@ -1,8 +1,8 @@
 /datum/clockcult/scripture/slab/sentinelscompromise
-	name = "Sentinel's Compromise"
+	name = "Kompromis strażnika"
 	use_time = 80
 	slab_overlay = "compromise"
-	desc = "Heal any servant within view, but half of their damage healed will be given to you in the form of toxin damage."
+	desc = "Leczy każdego sługę w polu widzenia, ale połowa uleczonych obrażeń przechodzi na ciebie jako obrażenia od toksyn."
 	tip = "Użyj na słudze w tarapatach, by uleczyć jego rany."
 	invokation_time = 10
 	button_icon_state = "Sentinel's Compromise"

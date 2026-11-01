@@ -1,6 +1,6 @@
 /obj/item/papercutter
-	name = "paper cutter"
-	desc = "Standard office equipment. Precisely cuts paper using a large blade."
+	name = "gilotyna do papieru"
+	desc = "Standardowe wyposażenie biura. Precyzyjnie tnie papier dużym ostrzem."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "papercutter"
 	force = 5
@@ -105,8 +105,8 @@
 	add_fingerprint(M)
 
 /obj/item/paperslip
-	name = "paper slip"
-	desc = "A little slip of paper left over after a larger piece was cut. Whoa."
+	name = "pasek papieru"
+	desc = "Mały pasek papieru, który został po przycięciu większej kartki. Ojej."
 	icon_state = "paperslip"
 	icon = 'icons/obj/bureaucracy.dmi'
 	resistance_flags = FLAMMABLE
@@ -125,8 +125,8 @@
 
 
 /obj/item/hatchet/cutterblade
-	name = "paper cutter"
-	desc = "The blade of a paper cutter. Most likely removed for polishing or sharpening."
+	name = "ostrze gilotyny do papieru"
+	desc = "Ostrze gilotyny do papieru. Pewnie wyjęte do polerowania albo ostrzenia."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "cutterblade"
 	item_state = "knife"

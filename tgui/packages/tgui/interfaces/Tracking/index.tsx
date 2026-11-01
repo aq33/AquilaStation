@@ -19,7 +19,7 @@ import type { Trackable, TrackingData } from './types';
 
 export const Tracking = (props) => {
   return (
-    <Window title="Tracking" width={400} height={550}>
+    <Window title="Śledzenie" width={400} height={550}>
       <Window.Content scrollable>
         <Stack fill vertical>
           <Stack.Item>
@@ -69,7 +69,7 @@ const TrackableSearch = (props) => {
             fluid
             onEnter={(value) => trackMostRelevant(value)}
             onChange={(value) => setSearchQuery(value)}
-            placeholder="Search..."
+            placeholder="Szukaj..."
             value={searchQuery}
           />
         </Stack.Item>
@@ -79,7 +79,7 @@ const TrackableSearch = (props) => {
             color="transparent"
             icon="sync-alt"
             onClick={() => act('refresh')}
-            tooltip="Refresh"
+            tooltip="Odśwież"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -101,9 +101,9 @@ const TrackableContent = (props) => {
       <TrackableSection
         color="blue"
         section={carbon}
-        title="Humanoid Organics"
+        title="Humanoidalne organizmy"
       />
-      <TrackableSection section={simple_mob} title="Non-sapient Organics" />
+      <TrackableSection section={simple_mob} title="Nierozumne organizmy" />
     </Stack>
   );
 };
@@ -180,19 +180,19 @@ const TrackableTooltip = (props: { item: Trackable }) => {
   const { item } = props;
   const { name, job, health } = item;
 
-  const displayHealth = !!health && health >= 0 ? `${health}%` : 'Critical';
+  const displayHealth = !!health && health >= 0 ? `${health}%` : 'Krytyczny';
 
   return (
     <>
       <NoticeBox textAlign="center" nowrap>
-        Last Known Data
+        Ostatnie znane dane
       </NoticeBox>
       <LabeledList>
         <>
-          {!!name && <LabeledList.Item label="Name">{name}</LabeledList.Item>}
-          {!!job && <LabeledList.Item label="Job">{job}</LabeledList.Item>}
+          {!!name && <LabeledList.Item label="Imię">{name}</LabeledList.Item>}
+          {!!job && <LabeledList.Item label="Zawód">{job}</LabeledList.Item>}
           {!!health && (
-            <LabeledList.Item label="Health">{displayHealth}</LabeledList.Item>
+            <LabeledList.Item label="Zdrowie">{displayHealth}</LabeledList.Item>
           )}
         </>
       </LabeledList>

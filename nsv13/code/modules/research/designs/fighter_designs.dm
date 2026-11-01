@@ -1,7 +1,7 @@
 //Countermeasure charges
 /datum/design/countermeasure_charge
-	name = "Countermeasure Tri-Charge"
-	desc = "A tri-charge of countermeasure chaff for a fighter"
+	name = "Potrójny ładunek środków przeciwdziałania"
+	desc = "Potrójny ładunek plew przeciwradarowych dla myśliwca."
 	id = "countermeasure_charge"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/copper = 500, /datum/material/titanium = 500)
@@ -11,8 +11,8 @@
 
 //Frames
 /datum/design/light_frame
-	name = "Light Fighter Chassis"
-	desc = "A light fighter's airframe, devoid of parts. It'll require additional work to get it flying."
+	name = "Rama lekkiego myśliwca"
+	desc = "Płatowiec lekkiego myśliwca bez podzespołów. Trzeba nad nim jeszcze popracować, żeby wzbił się w powietrze."
 	id = "light_frame"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/titanium = 10000, /datum/material/copper = 7500)
@@ -21,8 +21,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/heavy_frame
-	name = "Heavy Fighter Chassis"
-	desc = "A heavy fighter's airframe, devoid of parts. These fighters are extremely suited to having heavier components mounted on them."
+	name = "Rama ciężkiego myśliwca"
+	desc = "Płatowiec ciężkiego myśliwca bez podzespołów. Te myśliwce świetnie nadają się do montażu cięższych podzespołów."
 	id = "heavy_frame"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 35000, /datum/material/titanium = 20000, /datum/material/copper = 7500)
@@ -31,8 +31,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/utility_frame
-	name = "Utility Fighter Chassis"
-	desc = "A utility fighter's airframe, devoid of parts. These fighters excel at forming supply lines and are able to resupply and repair other ships!."
+	name = "Rama jednostki pomocniczej"
+	desc = "Płatowiec jednostki pomocniczej bez podzespołów. Te jednostki świetnie sprawdzają się w liniach zaopatrzenia i potrafią zaopatrywać oraz naprawiać inne statki!"
 	id = "utility_frame"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/titanium = 10000, /datum/material/copper = 5000)
@@ -43,8 +43,8 @@
 //Upgradeable components
 //Tier 1
 /datum/design/fuel_tank
-	name = "Fighter Fuel Tank"
-	desc = "A tank of fuel which can keep fighters in the air."
+	name = "Zbiornik paliwa myśliwca"
+	desc = "Zbiornik paliwa, który utrzymuje myśliwce w powietrzu."
 	id = "fuel_tank"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000)
@@ -53,8 +53,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/avionics
-	name = "Fighter Avionics"
-	desc = "A component used in fighter construction."
+	name = "Awionika myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "avionics"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/copper = 5000)
@@ -63,8 +63,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/apu
-	name = "Fighter APU"
-	desc = "A component used in fighter construction."
+	name = "APU myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "apu"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/copper = 5000)
@@ -73,8 +73,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/armour_plating
-	name = "Fighter Armour"
-	desc = "A component used in fighter construction."
+	name = "Pancerz myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "armour_plating"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000)
@@ -83,8 +83,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/targeting_sensor
-	name = "Fighter Targeting Sensor"
-	desc = "A component used in fighter construction."
+	name = "Czujniki celownicze myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "targeting_sensor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/copper = 10000)
@@ -93,8 +93,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_engine
-	name = "Fighter Engine"
-	desc = "A component used in fighter construction."
+	name = "Silnik myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_engine"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/copper = 2000)
@@ -103,8 +103,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/countermeasure_dispenser
-	name = "Fighter Countermeasure Dispenser"
-	desc = "A component used in fighter construction."
+	name = "Wyrzutnik flar myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "countermeasure_dispenser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/copper = 2000)
@@ -113,8 +113,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/ordnance_launcher
-	name = "Fighter Torpedo Rack"
-	desc = "A component used in fighter construction."
+	name = "Wyrzutnia torped myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "ordnance_launcher"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 2000)
@@ -123,8 +123,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/fighter_missile_launcher
-	name = "Fighter Missile Rack"
-	desc = "A component used in fighter construction."
+	name = "Wyrzutnia rakiet myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_missile_launcher"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 2000)
@@ -134,8 +134,8 @@
 
 
 /datum/design/oxygenator
-	name = "Fighter Atmospheric Regulator"
-	desc = "An atmospheric regulation system for fighters which removes the need for a space suit at the cost of some power usage."
+	name = "Regulator atmosfery myśliwca"
+	desc = "System regulacji atmosfery dla myśliwców, który kosztem pewnego zużycia energii eliminuje potrzebę noszenia skafandra."
 	id = "oxygenator"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/copper = 5000)
@@ -144,8 +144,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/docking_computer
-	name = "Fighter Docking Computer"
-	desc = "An all in one docking solution for fighters. Absolutely essential for shipside ops."
+	name = "Komputer dokowania myśliwca"
+	desc = "Kompletne rozwiązanie do dokowania myśliwców. Absolutnie niezbędne przy operacjach na pokładzie okrętu."
 	id = "docking_computer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/copper = 5000)
@@ -154,8 +154,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_battery
-	name = "Fighter Battery"
-	desc = "A specialist lead-acid battery which is required to power fighter modules like APUs, oxygenators, and more!."
+	name = "Akumulator myśliwca"
+	desc = "Specjalistyczny akumulator kwasowo-ołowiowy, niezbędny do zasilania modułów myśliwca, takich jak APU, oksygenatory i inne!"
 	id = "fighter_battery"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 7000, /datum/material/copper = 5000, /datum/material/glass = 2000)
@@ -164,8 +164,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/primary_cannon
-	name = "Fighter Primary Cannon (Light)"
-	desc = "A standard light cannon usable by most fighters, light, cheap, effective. Light cannon."
+	name = "Główne działko myśliwca (lekkie)"
+	desc = "Standardowe lekkie działko pasujące do większości myśliwców. Lekkie, tanie, skuteczne. Lekkie działko."
 	id = "primary_cannon"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 7000, /datum/material/glass = 6000)
@@ -174,8 +174,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/heavy_cannon
-	name = "Fighter Primary Cannon (Heavy)"
-	desc = "A standard fighter heavy cannon, capable of using higher caliber rounds. It weighs rather a lot more than its light counterpart but is extremely destructive."
+	name = "Główne działko myśliwca (ciężkie)"
+	desc = "Standardowe ciężkie działko myśliwca, które strzela pociskami większego kalibru. Waży sporo więcej od lekkiej wersji, ale jest niezwykle niszczycielskie."
 	id = "heavy_cannon"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 7000, /datum/material/glass = 6000)
@@ -184,8 +184,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/refuel_kit
-	name = "Air to air refuel kit"
-	desc = "A kit that allows utility fighters to transfer fuel and power to another fighter."
+	name = "Zestaw do tankowania w locie"
+	desc = "Zestaw, który pozwala jednostkom pomocniczym przekazywać paliwo i energię innym myśliwcom."
 	id = "refuel_kit"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/copper = 5000, /datum/material/glass = 5000)
@@ -194,8 +194,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cargo_hold
-	name = "Fighter Cargo Hold"
-	desc = "A cargo hold for utility craft."
+	name = "Ładownia myśliwca"
+	desc = "Ładownia dla jednostek pomocniczych."
 	id = "cargo_hold"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000)
@@ -204,8 +204,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/repair
-	name = "Air to Air repair kit"
-	desc = "A module that allows utility craft to remotely repair fighter craft, when loaded with hull repair juice."
+	name = "Zestaw do napraw w locie"
+	desc = "Moduł, który pozwala jednostkom pomocniczym zdalnie naprawiać myśliwce, gdy jest napełniony płynem do naprawy kadłuba."
 	id = "resupply"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000)
@@ -214,8 +214,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/air_plasmacutter
-	name = "Mounted Plasma Cutter"
-	desc = "A 217-A heavy plasma cutter with a gimballed mount. This is designed for use on Sabre-class utility vessels."
+	name = "Montowany przecinak plazmowy"
+	desc = "Ciężki przecinak plazmowy 217-A na przegubowym mocowaniu. Przeznaczony dla jednostek pomocniczych klasy Sabre."
 	id = "r_cutter"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000, /datum/material/plasma = 5000)
@@ -225,8 +225,8 @@
 
 //Tier 2
 /datum/design/fuel_tank_tier2
-	name = "Upgraded Fighter Fuel Tank"
-	desc = "A huge tank of fuel which can keep fighters in the air."
+	name = "Ulepszony zbiornik paliwa myśliwca"
+	desc = "Ogromny zbiornik paliwa, który utrzymuje myśliwce w powietrzu."
 	id = "fuel_tank_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000)
@@ -235,8 +235,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/apu_tier2
-	name = "Upgraded Fighter APU"
-	desc = "A component used in fighter construction."
+	name = "Ulepszone APU myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "apu_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/copper = 15000)
@@ -245,8 +245,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/armour_plating_tier2
-	name = "Upgraded Fighter Armour"
-	desc = "A component used in fighter construction."
+	name = "Ulepszony pancerz myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "armour_plating_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 20000)
@@ -255,8 +255,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_engine_tier2
-	name = "Upgraded Fighter Engine"
-	desc = "A component used in fighter construction."
+	name = "Ulepszony silnik myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_engine_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/diamond = 5000, /datum/material/titanium = 20000)
@@ -265,8 +265,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/ordnance_launcher_tier2
-	name = "Upgraded Fighter Torpedo Rack"
-	desc = "A component used in fighter construction."
+	name = "Ulepszona wyrzutnia torped myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "ordnance_launcher_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/copper = 20000, /datum/material/titanium = 20000)
@@ -275,8 +275,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/fighter_missile_launcher_tier2
-	name = "Upgraded Fighter Missile Rack"
-	desc = "A component used in fighter construction."
+	name = "Ulepszona wyrzutnia rakiet myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_missile_launcher_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 12000, /datum/material/titanium = 10000)
@@ -285,8 +285,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/oxygenator_tier2
-	name = "Upgraded Fighter Atmospheric Regulator"
-	desc = "An atmospheric regulation system for fighters which removes the need for a space suit at the cost of some power usage."
+	name = "Ulepszony regulator atmosfery myśliwca"
+	desc = "System regulacji atmosfery dla myśliwców, który kosztem pewnego zużycia energii eliminuje potrzebę noszenia skafandra."
 	id = "oxygenator_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/copper = 15000)
@@ -295,8 +295,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_battery_tier2
-	name = "Upgraded Fighter Battery"
-	desc = "A specialist lead-acid battery which is required to power fighter modules like APUs, oxygenators, and more!."
+	name = "Ulepszony akumulator myśliwca"
+	desc = "Specjalistyczny akumulator kwasowo-ołowiowy, niezbędny do zasilania modułów myśliwca, takich jak APU, oksygenatory i inne!"
 	id = "fighter_battery_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 17000, /datum/material/copper = 15000, /datum/material/glass = 12000)
@@ -305,8 +305,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/refuel_kit_tier2
-	name = "Upgraded Air to air refuel kit"
-	desc = "A kit that allows utility fighters to transfer fuel and power to another fighter."
+	name = "Ulepszony zestaw do tankowania w locie"
+	desc = "Zestaw, który pozwala jednostkom pomocniczym przekazywać paliwo i energię innym myśliwcom."
 	id = "refuel_kit_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/copper = 5000, /datum/material/glass = 5000)
@@ -315,8 +315,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cargo_hold_tier2
-	name = "Upgraded Fighter Cargo Hold"
-	desc = "A cargo hold for utility craft."
+	name = "Ulepszona ładownia myśliwca"
+	desc = "Ładownia dla jednostek pomocniczych."
 	id = "cargo_hold_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/glass = 15000)
@@ -325,8 +325,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/repair_tier2
-	name = "Upgraded Air to Air repair kit"
-	desc = "A module that allows utility craft to remotely repair fighter craft, when loaded with hull repair juice."
+	name = "Ulepszony zestaw do napraw w locie"
+	desc = "Moduł, który pozwala jednostkom pomocniczym zdalnie naprawiać myśliwce, gdy jest napełniony płynem do naprawy kadłuba."
 	id = "resupply_tier2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 15000)
@@ -335,8 +335,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 //Tier 3
 /datum/design/fuel_tank_tier3
-	name = "Experimental Fighter Fuel Tank"
-	desc = "An unreasonably large tank of fuel which can keep fighters in the air."
+	name = "Eksperymentalny zbiornik paliwa myśliwca"
+	desc = "Absurdalnie duży zbiornik paliwa, który utrzymuje myśliwce w powietrzu."
 	id = "fuel_tank_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 25000, /datum/material/glass = 25000)
@@ -345,8 +345,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/apu_tier3
-	name = "Experimental Fighter APU"
-	desc = "A component used in fighter construction."
+	name = "Eksperymentalne APU myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "apu_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/copper = 15000, /datum/material/titanium = 25000)
@@ -355,8 +355,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/armour_plating_tier3
-	name = "Experimental Fighter Armour"
-	desc = "A component used in fighter construction."
+	name = "Eksperymentalny pancerz myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "armour_plating_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 20000, /datum/material/diamond = 25000)
@@ -365,8 +365,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_engine_tier3
-	name = "Experimental Fighter Engine"
-	desc = "A component used in fighter construction."
+	name = "Eksperymentalny silnik myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_engine_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 35000, /datum/material/uranium = 15000, /datum/material/diamond = 10000, /datum/material/titanium = 20000)
@@ -375,8 +375,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/ordnance_launcher_tier3
-	name = "Experimental Fighter Torpedo Rack"
-	desc = "A component used in fighter construction."
+	name = "Eksperymentalna wyrzutnia torped myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "ordnance_launcher_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plasma = 25000, /datum/material/copper = 20000, /datum/material/titanium = 20000)
@@ -385,8 +385,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/fighter_missile_launcher_tier3
-	name = "Experimental Fighter Missile Rack"
-	desc = "A component used in fighter construction."
+	name = "Eksperymentalna wyrzutnia rakiet myśliwca"
+	desc = "Podzespół do budowy myśliwców."
 	id = "fighter_missile_launcher_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plasma = 15000, /datum/material/copper = 12000, /datum/material/titanium = 10000)
@@ -395,8 +395,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/oxygenator_tier3
-	name = "Experimental Fighter Atmospheric Regulator"
-	desc = "An atmospheric regulation system for fighters which removes the need for a space suit at the cost of some power usage."
+	name = "Eksperymentalny regulator atmosfery myśliwca"
+	desc = "System regulacji atmosfery dla myśliwców, który kosztem pewnego zużycia energii eliminuje potrzebę noszenia skafandra."
 	id = "oxygenator_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/titanium = 15000)
@@ -405,8 +405,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/fighter_battery_tier3
-	name = "Experimental Fighter Battery"
-	desc = "A specialist lead-acid battery which is required to power fighter modules like APUs, oxygenators, and more!."
+	name = "Eksperymentalny akumulator myśliwca"
+	desc = "Specjalistyczny akumulator kwasowo-ołowiowy, niezbędny do zasilania modułów myśliwca, takich jak APU, oksygenatory i inne!"
 	id = "fighter_battery_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 15000, /datum/material/diamond = 5000)
@@ -415,8 +415,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/refuel_kit_tier3
-	name = "Experimental Air to air refuel kit"
-	desc = "A kit that allows utility fighters to transfer fuel and power to another fighter."
+	name = "Eksperymentalny zestaw do tankowania w locie"
+	desc = "Zestaw, który pozwala jednostkom pomocniczym przekazywać paliwo i energię innym myśliwcom."
 	id = "refuel_kit_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/copper = 7000, /datum/material/glass = 10000)
@@ -425,8 +425,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cargo_hold_tier3
-	name = "Experimental Fighter Cargo Hold"
-	desc = "A cargo hold for utility craft."
+	name = "Eksperymentalna ładownia myśliwca"
+	desc = "Ładownia dla jednostek pomocniczych."
 	id = "cargo_hold_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 35000, /datum/material/titanium = 15000)
@@ -435,8 +435,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO|DEPARTMENTAL_FLAG_MUNITIONS|DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/repair_tier3
-	name = "Experimental Air to Air repair kit"
-	desc = "A module that allows utility craft to remotely repair fighter craft, when loaded with hull repair juice."
+	name = "Eksperymentalny zestaw do napraw w locie"
+	desc = "Moduł, który pozwala jednostkom pomocniczym zdalnie naprawiać myśliwce, gdy jest napełniony płynem do naprawy kadłuba."
 	id = "resupply_tier3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/glass = 15000, /datum/material/titanium = 5000 )

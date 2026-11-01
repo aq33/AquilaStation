@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MIME
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Fool"
+	rpg_title = "Głupiec"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/mime
@@ -57,8 +57,8 @@
 		H.mind.miming = 1
 
 /obj/item/book/mimery
-	name = "Guide to Dank Mimery"
-	desc = "A primer on basic pantomime."
+	name = "Przewodnik po zacnym mimowaniu"
+	desc = "Elementarz podstaw pantomimy."
 	icon_state ="bookmime"
 
 // AQ EDIT - jak w tg: wybór układu z menu radialnego zamiast okna HTML

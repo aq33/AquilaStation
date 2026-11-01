@@ -1,6 +1,6 @@
 /obj/item/stack/medical
-	name = "medical pack"
-	singular_name = "medical pack"
+	name = "pakiet medyczny"
+	singular_name = "pakiet medyczny"
 	icon = 'icons/obj/stack_objects.dmi'
 	amount = 6
 	max_amount = 6
@@ -76,7 +76,7 @@
 		return
 
 	if(!(affecting.brute_dam || affecting.burn_dam))
-		to_chat(user, "<span class='warning'>[M]'s [parse_zone(user.zone_selected)] isn't hurt!</span>")
+		to_chat(user, "<span class='warning'>[M] nie ma obrażeń w tej części ciała: [strefa_pl(user.zone_selected)]!</span>")
 		return
 
 	if((affecting.brute_dam && !affecting.burn_dam && !heal_brute) || (affecting.burn_dam && !affecting.brute_dam && !heal_burn)) //suffer
@@ -96,9 +96,9 @@
 		use(1)
 
 /obj/item/stack/medical/bruise_pack
-	name = "bruise pack"
-	singular_name = "bruise pack"
-	desc = "A therapeutic gel pack and bandages designed to treat blunt-force trauma."
+	name = "opatrunek na stłuczenia"
+	singular_name = "opatrunek na stłuczenia"
+	desc = "Leczniczy okład żelowy i bandaże do opatrywania urazów od tępych uderzeń."
 	icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -113,8 +113,8 @@
 	return (BRUTELOSS)
 
 /obj/item/stack/medical/ointment
-	name = "ointment"
-	desc = "Used to treat those nasty burn wounds."
+	name = "maść"
+	desc = "Służy do leczenia paskudnych oparzeń."
 	icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -129,8 +129,8 @@
 	return TOXLOSS
 
 /obj/item/stack/medical/gauze
-	name = "medical gauze"
-	desc = "A roll of elastic cloth that is extremely effective at stopping bleeding, heals minor bruising."
+	name = "gaza medyczna"
+	desc = "Rolka elastycznego materiału, która świetnie tamuje krwawienie i leczy drobne stłuczenia."
 	icon_state = "gauze"
 	stop_bleeding = BLEED_CRITICAL
 	heal_brute = 5 //Reminder that you can not stack healing thus you wait out the 1800 timer.
@@ -154,16 +154,16 @@
 	return OXYLOSS
 
 /obj/item/stack/medical/gauze/improvised
-	name = "improvised gauze"
-	singular_name = "improvised gauze"
-	desc = "A roll of cloth roughly cut from something that can stop bleeding, but does not heal wounds."
+	name = "prowizoryczna gaza"
+	singular_name = "prowizoryczna gaza"
+	desc = "Rolka materiału z grubsza z czegoś wycięta. Tamuje krwawienie, ale nie leczy ran."
 	stop_bleeding = BLEED_SURFACE
 	heal_brute = 0
 
 /obj/item/stack/medical/gauze/adv
-	name = "sterilized medical gauze"
-	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
-	singular_name = "sterilized medical gauze"
+	name = "sterylna gaza medyczna"
+	desc = "Rolka elastycznego, sterylnego materiału, która świetnie tamuje krwawienie, leczy drobne rany i je oczyszcza."
+	singular_name = "sterylna gaza medyczna"
 	self_delay = 0.5 SECONDS
 
 /obj/item/stack/medical/gauze/adv/one

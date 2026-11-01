@@ -1,4 +1,4 @@
 /obj/item/reagent_containers/glass/bottle/concentrated_bz
-	name = "concentrated BZ bottle"
-	desc = "A small bottle of concentrated BZ"
+	name = "butelka skoncentrowanego BZ"
+	desc = "Mała butelka skoncentrowanego BZ."
 	list_reagents = list(/datum/reagent/concentrated_bz = 30)

@@ -36,7 +36,7 @@
 	return cost
 
 /datum/gang_item/proc/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	return "([get_cost(user, gang, gangtool)] Influence)"
+	return "([get_cost(user, gang, gangtool)] wpływów)"
 
 /datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return name
@@ -49,16 +49,16 @@
 ///////////////////
 
 /datum/gang_item/essentials
-	category = "Purchase Essential Items:"
+	category = "Kup niezbędne przedmioty:"
 
 /datum/gang_item/essentials/spraycan
-	name = "Territory Spraycan"
+	name = "Farba do oznaczania terytorium"
 	id = "spraycan"
 	cost = 10
 	item_path = /obj/item/toy/crayon/spraycan/gang
 
 /datum/gang_item/essentials/implant_breaker
-	name = "Reprogramming Implant"
+	name = "Implant przeprogramowujący"
 	id = "implant_breaker"
 	cost = 25
 	item_path = /obj/item/implanter/gang
@@ -85,15 +85,15 @@
 
 /datum/gang_item/essentials/gangtool/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang && (gang.leaders.len < gang.max_leaders))
-		return "Promote a Gangster"
-	return "Spare Gangtool"
+		return "Awansuj gangstera"
+	return "Zapasowy gangtool"
 
 /datum/gang_item/essentials/spraycan/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/obj/item/O = new item_path(user.loc, gang)
 	user.put_in_hands(O)
 
 /datum/gang_item/essentials/pen
-	name = "Recruitment Pen"
+	name = "Długopis werbunkowy"
 	id = "pen"
 	cost = 50
 	item_path = /obj/item/pen/gang
@@ -112,11 +112,11 @@
 
 /datum/gang_item/essentials/pen/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gangtool?.free_pen)
-		return "(GET ONE FREE)"
+		return "(JEDEN GRATIS)"
 	return ..()
 	
 /datum/gang_item/essentials/reinforce
-	name = "Call Reinforcments"
+	name = "Wezwij posiłki"
 	id = "reinforce"
 	cost = 250
 	item_path = /obj/item/antag_spawner/gangster
@@ -126,10 +126,10 @@
 ///////////////////
 
 /datum/gang_item/clothing
-	category = "Purchase Gang Clothes (Only the jumpsuit, hat and suit give you added influence):"
+	category = "Kup ubrania gangu (dodatkowe wpływy dają tylko kombinezon, kapelusz i strój):"
 
 /datum/gang_item/clothing/basic
-	name = "Gang Uniform"
+	name = "Mundur gangu"
 	id = "under"
 	cost = 5
 
@@ -145,7 +145,7 @@
 	return TRUE
 
 /datum/gang_item/clothing/armor
-	name = "Gang Armored Outerwear"
+	name = "Opancerzone okrycie gangu"
 	id = "armor"
 	cost = 200
 
@@ -165,7 +165,7 @@
 	return TRUE
 
 /datum/gang_item/clothing/ssuit
-	name = "Gang Spaceproof Outerwear"
+	name = "Kosmoszczelne okrycie gangu"
 	id = "ssuit"
 	cost = 200
 
@@ -193,121 +193,121 @@
 	return TRUE
 
 /datum/gang_item/clothing/mask
-	name = "Golden Death Mask"
+	name = "Złota maska śmierci"
 	id = "mask"
 	cost = 50
 	item_path = /obj/item/clothing/mask/gskull
 
 /obj/item/clothing/mask/gskull
-	name = "golden death mask"
+	name = "złota maska śmierci"
 	icon_state = "gskull"
-	desc = "Strike terror, and envy, into the hearts of your enemies."
+	desc = "Zasiej w sercach wrogów strach i zazdrość."
 
 /datum/gang_item/clothing/shoes
-	name = "Bling Boots"
+	name = "Błyszczące buty"
 	id = "boots"
 	cost = 50
 	item_path = /obj/item/clothing/shoes/gang
 
 /obj/item/clothing/shoes/gang
-	name = "blinged-out boots"
-	desc = "Stand aside peasants."
+	name = "wypasione błyszczące buty"
+	desc = "Z drogi, chłopi."
 	icon_state = "bling"
 
 /datum/gang_item/clothing/neck
-	name = "Gold Necklace"
+	name = "Złoty łańcuch"
 	id = "necklace"
 	cost = 25
 	item_path = /obj/item/clothing/neck/necklace/dope
 
 /datum/gang_item/clothing/hands
-	name = "Decorative Brass Knuckles"
+	name = "Ozdobny kastet"
 	id = "hand"
 	cost = 50
 	item_path = /obj/item/clothing/gloves/gang
 
 /obj/item/clothing/gloves/gang
-	name = "braggadocio's brass knuckles"
-	desc = "Purely decorative, don't find out the hard way."
+	name = "kastet chwalipięty"
+	desc = "Czysto ozdobny, nie sprawdzaj tego na własnej skórze."
 	icon_state = "knuckles"
 	w_class = 3
 
 /datum/gang_item/clothing/belt
-	name = "Badass Belt"
+	name = "Twardzielski pas"
 	id = "belt"
 	cost = 25
 	item_path = /obj/item/storage/belt/military/gang
 
 /obj/item/storage/belt/military/gang
-	name = "badass belt"
+	name = "twardzielski pas"
 	icon_state = "gangbelt"
 	item_state = "gang"
-	desc = "The belt buckle simply reads 'BAMF'."
+	desc = "Na sprzączce widnieje po prostu napis „BAMF”."
 
 ///////////////////
 //WEAPONS
 ///////////////////
 
 /datum/gang_item/weapon
-	category = "Purchase Weapons:"
+	category = "Kup broń:"
 
 /datum/gang_item/weapon/emp
-	name = "EMP Grenade"
+	name = "Granat EMP"
 	id = "EMP"
 	cost = 50
 	item_path = /obj/item/grenade/empgrenade
 
 /datum/gang_item/weapon/c4
-	name = "C4 Explosive"
+	name = "Ładunek C4"
 	id = "c4"
 	cost = 100
 	item_path = /obj/item/grenade/plastic/c4
 
 /datum/gang_item/weapon/switchblade
-	name = "Switchblade"
+	name = "Nóż sprężynowy"
 	id = "switchblade"
 	cost = 100
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/shuriken
-	name = "Shuriken box"
+	name = "Pudełko shurikenów"
 	id = "shuriken"
 	cost = 150
 	item_path = /obj/item/storage/box/shuriken_box
 
 /obj/item/storage/box/shuriken_box
-	name = "shuriken Box"
+	name = "pudełko shurikenów"
 
 /obj/item/storage/box/shuriken_box/PopulateContents()
 	for (var/i in 1 to 4)
 		new /obj/item/throwing_star(src)
 
 /datum/gang_item/weapon/pistol
-	name = "10mm Pistol"
+	name = "Pistolet 10 mm"
 	id = "pistol"
 	cost = 500
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 
 /datum/gang_item/weapon/pistol_ammo
-	name = "10mm Ammo"
+	name = "Amunicja 10 mm"
 	id = "pistol_ammo"
 	cost = 50
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
 /datum/gang_item/weapon/uzi
-	name = "Uzi SMG"
+	name = "PM Uzi"
 	id = "uzi"
 	cost = 500
 	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
 
 /datum/gang_item/weapon/uzi_ammo
-	name = "Uzi Ammo"
+	name = "Amunicja do Uzi"
 	id = "uzi_ammo"
 	cost = 50
 	item_path = /obj/item/ammo_box/magazine/uzim9mm
 
 /datum/gang_item/weapon/laser
-	name = "Laser Gun"
+	name = "Karabin laserowy"
 	id = "laser"
 	cost = 500
 	item_path = /obj/item/gun/energy/laser/retro
@@ -317,22 +317,22 @@
 ///////////////////
 
 /datum/gang_item/equipment
-	category = "Purchase Support Equipment:"
+	category = "Kup sprzęt wsparcia:"
 
 /datum/gang_item/equipment/healcigs
-	name = "Healing Cigs"
+	name = "Lecznicze papierosy"
 	id = "healcigs"
 	cost = 20
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 
 /datum/gang_item/equipment/mulah
-	name = "Space Cash (1000cr)"
+	name = "Kosmiczna gotówka (1000 kr.)"
 	id = "mulah"
 	cost = 25
 	item_path = /obj/item/stack/spacecash/c1000
 
 /datum/gang_item/equipment/drugs
-	name = "Drug Supply"
+	name = "Zapas narkotyków"
 	id = "drugs"
 	cost = 50
 	item_path = /obj/item/storage/box
@@ -365,20 +365,20 @@
 		user.put_in_hands(O)
 
 /datum/gang_item/equipment/aids
-	name = "Battlefield Aid Kit"
+	name = "Polowa apteczka"
 	id = "aids"
 	cost = 75
 	item_path = /obj/item/storage/firstaid/shifty/battle
 
 /datum/gang_item/equipment/hangover
-	name = "Bad Trip Kit"
+	name = "Zestaw na zły odlot"
 	id = "hangover"
 	cost = 75
 	item_path = /obj/item/storage/firstaid/shifty/hangover
 
 /obj/item/storage/firstaid/shifty
-	name = "shifty medkit"
-	desc = "A shady medkit, assembled out of scraps and leftovers."
+	name = "podejrzana apteczka"
+	desc = "Podejrzana apteczka złożona ze ścinków i resztek."
 	icon_state = "oldbezerk" // AQ EDIT - tgstation medkit sprite
 
 /obj/item/storage/firstaid/shifty/battle/PopulateContents()

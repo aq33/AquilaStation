@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/wooden
-	name = "wooden crate"
-	desc = "Works just as well as a metal one."
+	name = "drewniana skrzynia"
+	desc = "Działa równie dobrze jak metalowa."
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
 	icon_state = "wooden"
@@ -10,8 +10,8 @@
 	close_sound_volume = 50
 
 /obj/structure/closet/crate/wooden/toy
-	name = "toy box"
-	desc = "It has the words \"Clown + Mime\" written underneath of it with marker."
+	name = "skrzynia z zabawkami"
+	desc = "Pod spodem ktoś napisał markerem „Klaun + Mim”."
 
 /obj/structure/closet/crate/wooden/toy/PopulateContents()
 	. = ..()

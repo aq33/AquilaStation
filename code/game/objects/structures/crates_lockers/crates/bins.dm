@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/bin
-	desc = "A trash bin, place your trash here for the janitor to collect."
-	name = "trash bin"
+	desc = "Kosz na śmieci. Wrzucaj tu śmieci, żeby woźny mógł je zebrać."
+	name = "kosz na śmieci"
 	icon_state = "trashbin" //AQUILA EDIT - Bee#10136 trash bin
 	open_sound = 'sound/effects/bin_open.ogg'
 	close_sound = 'sound/effects/bin_close.ogg'

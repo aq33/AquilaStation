@@ -1,7 +1,7 @@
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
-	name = "pill press"
-	desc = "A press that presses pills."
+	name = "prasa do pigułek"
+	desc = "Prasa, która prasuje pigułki."
 	icon_state = "pill_press"
 	active_power_usage = 100
 	///the minimum size a pill can be
@@ -11,7 +11,7 @@
 	///the size of the pill
 	var/pill_size = 10
 	///pill name
-	var/pill_name = "factory pill"
+	var/pill_name = "pigułka fabryczna"
 	///the icon_state number for the pill.
 	var/chosen_pill_style = "pill_shape_capsule_purple_pink"
 	///list of id's and icons for the pill selection of the ui
@@ -54,7 +54,7 @@
 		else
 			P.icon_state = chosen_pill_style
 		if(P.icon_state == "pill_shape_capsule_bloodred") //mirrored from chem masters
-			P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
+			P.desc = "Tabletka albo kapsułka, ale nie byle jaka, tylko czerwona. Biorą ją ci, którzy nie boją się wiedzy, wolności, niepewności i brutalnej prawdy o rzeczywistości."
 	if(stored_pills.len)
 		var/pill_amount = 0
 		for(var/obj/item/reagent_containers/pill/P in loc)
@@ -101,8 +101,8 @@
 			. = TRUE
 		if("change_pill_name")
 			var/new_name = stripped_input(usr, "Podaj nazwę pigułki.", name, pill_name)
-			if(findtext(new_name, "pill")) //names like pillatron and Pilliam are thus valid
+			if(findtext(new_name, "pigułk")) //names like pillatron and Pilliam are thus valid
 				pill_name = new_name
 			else
-				pill_name = new_name + " pill"
+				pill_name = "pigułka: " + new_name
 			. = TRUE

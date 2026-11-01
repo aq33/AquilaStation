@@ -27,10 +27,10 @@ export const NtosAtmos = (props) => {
       <NtosWindow.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Temperature">
+            <LabeledList.Item label="Temperatura">
               {AirTempC}°C | {AirTempK}K
             </LabeledList.Item>
-            <LabeledList.Item label="Pressure">
+            <LabeledList.Item label="Ciśnienie">
               {AirPressure} kPa
             </LabeledList.Item>
           </LabeledList>
@@ -38,9 +38,12 @@ export const NtosAtmos = (props) => {
         <Section>
           <LabeledList>
             {gases.map((gas) => (
-              <LabeledList.Item key={gas.name} label={getGasLabel(gas.name)}>
+              <LabeledList.Item
+                key={gas.name}
+                label={getGasLabel(gas.id, gas.name)}
+              >
                 <ProgressBar
-                  color={getGasColor(gas.name)}
+                  color={getGasColor(gas.id)}
                   value={gas.percentage}
                   minValue={0}
                   maxValue={gasMaxPercentage}

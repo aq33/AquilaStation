@@ -114,7 +114,7 @@
 	H.open_language_menu(usr)
 
 /atom/movable/screen/ghost/pai
-	name = "pAI Candidate"
+	name = "Kandydat na pAI"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "pai_setup"
 	screen_loc = ui_ghost_pai
@@ -265,7 +265,7 @@
 	return TRUE
 
 /atom/movable/screen/close
-	name = "close"
+	name = "zamknij"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
@@ -471,7 +471,7 @@
 	return ..()
 
 /atom/movable/screen/storage
-	name = "storage"
+	name = "schowek"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 	layer = HUD_LAYER
@@ -670,23 +670,23 @@
 	screen_loc = ui_health
 
 /atom/movable/screen/healths/blob
-	name = "blob health"
+	name = "zdrowie grzyba"
 	icon_state = "block"
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/blob/naut
-	name = "health"
+	name = "zdrowie"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "nauthealth"
 
 /atom/movable/screen/healths/blob/naut/core
-	name = "overmind health"
+	name = "zdrowie grzyboga"
 	icon_state = "corehealth"
 	screen_loc = ui_health
 
 /atom/movable/screen/healths/guardian
-	name = "summoner health"
+	name = "zdrowie przywoływacza"
 	icon = 'icons/mob/guardian.dmi'
 	icon_state = "base"
 	screen_loc = ui_health
@@ -704,7 +704,7 @@
 	screen_loc = ui_internal
 
 /atom/movable/screen/healths/revenant
-	name = "essence"
+	name = "esencja"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_revenant"
 	screen_loc = ui_health
@@ -743,7 +743,7 @@
 	screen_loc = ui_mood
 
 /atom/movable/screen/sanity
-	name = "sanity"
+	name = "poczytalność"
 	icon_state = "sanity3"
 	screen_loc = ui_mood
 

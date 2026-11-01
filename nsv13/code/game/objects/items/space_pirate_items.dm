@@ -1,15 +1,15 @@
 //Radio Stuff
 
 /obj/item/radio/headset/pirate
-	name = "space pirate radio headset"
+	name = "słuchawki radiowe kosmicznego pirata"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
-	desc = "Use :z to access the Space Pirate frequency"
+	desc = "Użyj :z, by mówić na częstotliwości kosmicznych piratów."
 	icon_state = "pirate_headset"
 	keyslot = new /obj/item/encryptionkey/pirate
 	//freqlock = TRUE
 
 /obj/item/encryptionkey/pirate
-	name = "space pirate radio encryption key"
+	name = "klucz szyfrujący radia kosmicznych piratów"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "pirate_cypherkey"
 	channels = list(RADIO_CHANNEL_PIRATE = 1)
@@ -17,8 +17,8 @@
 
 //Portable lootening
 /obj/item/loot_locator
-	name = "Mobile Loot Locator"
-	desc = "This sophisticated machine scans the nearby space for items of value."
+	name = "przenośny lokalizator łupów"
+	desc = "To wyrafinowane urządzenie przeszukuje pobliską przestrzeń w poszukiwaniu kosztowności."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "export_scanner"
 	item_state = "radio"
@@ -56,8 +56,8 @@
 
 //Clothes
 /obj/item/clothing/suit/space/pirate/boarder
-	name = "space pirate vested spacesuit"
-	desc = "Yarr."
+	name = "skafander kosmicznego pirata z kamizelką"
+	desc = "Arrr."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "spacepirate_vest"
@@ -66,14 +66,14 @@
 	slowdown = 1
 
 /obj/item/clothing/suit/space/pirate/boarder/lead
-	name = "space pirate coated spacesuit"
-	desc = "Yarr."
+	name = "skafander kosmicznego pirata z płaszczem"
+	desc = "Arrr."
 	icon_state = "spacepirate_jacket"
 	item_state = "spacepirate_jacket"
 
 /obj/item/clothing/head/helmet/space/pirate/boarder
-	name = "space pirate hatted space helmet"
-	desc = "Yarr."
+	name = "hełm kosmiczny pirata z kapeluszem"
+	desc = "Arrr."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "spacepirate_hat"
@@ -82,8 +82,8 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/head/helmet/space/pirate/bandana/boarder
-	name = "space pirate bandanaed space helmet"
-	desc = "Yarr."
+	name = "hełm kosmiczny pirata z bandaną"
+	desc = "Arrr."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "spacepirate_bandana"

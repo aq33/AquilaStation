@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////SALADS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/herbsalad
-	name = "Herb salad"
+	name = "sałatka ziołowa"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/ambrosia/vulgaris = 3,
@@ -14,7 +14,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/aesirsalad
-	name = "Aesir salad"
+	name = "sałatka Asów"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/ambrosia/deus = 3,
@@ -24,7 +24,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/validsalad
-	name = "Valid salad"
+	name = "sałatka validowa"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/ambrosia/vulgaris = 3,
@@ -35,7 +35,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/monkeysdelight
-	name = "Monkeys delight"
+	name = "małpia rozkosz"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/datum/reagent/consumable/sodiumchloride = 1,
@@ -48,7 +48,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/melonfruitbowl
-	name ="Melon fruit bowl"
+	name ="arbuzowa misa owoców"
 	reqs = list(
 		/obj/item/food/grown/watermelon = 1,
 		/obj/item/food/grown/apple = 1,
@@ -61,7 +61,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/fruitsalad
-	name = "Fruit salad"
+	name = "sałatka owocowa"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/apple = 1,
@@ -74,7 +74,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/junglesalad
-	name = "Jungle salad"
+	name = "sałatka z dżungli"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/apple = 1,
@@ -87,7 +87,7 @@
 	subcategory = CAT_SALAD
 
 /datum/crafting_recipe/food/citrusdelight
-	name = "Citrus delight"
+	name = "cytrusowa rozkosz"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/grown/citrus/lime = 1,

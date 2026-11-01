@@ -1,6 +1,6 @@
 // The spooky "void" / "abyssal" / "madness" mask for heretics.
 /obj/item/clothing/mask/madness_mask
-	name = "abyssal mask"
+	name = "maska otchłani"
 	desc = "Maska stworzona z cierpienia. Gdy patrzysz w jej oczy, one patrzą na ciebie."
 	icon_state = "mad_mask"
 	item_state = "mad_mask"

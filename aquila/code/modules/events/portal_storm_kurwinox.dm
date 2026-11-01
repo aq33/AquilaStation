@@ -66,7 +66,7 @@
 	startWhen = 0
 	announceWhen = 0
 	endWhen = 0
-	message_admins("Kurwinox portal storm found no safe station turf, nothing was spawned.")
+	message_admins("Burza portali Kurwinoxów nie znalazła bezpiecznego pola na statku, nic się nie pojawiło.")
 	log_game("Kurwinox portal storm found no safe station turf, nothing was spawned.")
 
 /// Up to amount distinct safe turfs for portals

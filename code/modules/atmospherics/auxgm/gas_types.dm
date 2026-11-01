@@ -1,7 +1,7 @@
 /datum/gas/oxygen
 	id = GAS_O2
 	specific_heat = 20
-	name = "Oxygen"
+	name = "Tlen"
 	oxidation_temperature = T0C - 100 // it checks max of this and fire temperature, so rarely will things spontaneously combust
 	powermix = 1
 	heat_penalty = 1
@@ -13,7 +13,7 @@
 /datum/gas/nitrogen
 	id = GAS_N2
 	specific_heat = 20
-	name = "Nitrogen"
+	name = "Azot"
 	powermix = -1
 	heat_penalty = -1.5
 	fire_burn_rate = 1
@@ -32,7 +32,7 @@
 /datum/gas/carbon_dioxide //what the fuck is this?
 	id = GAS_CO2
 	specific_heat = 30
-	name = "Carbon Dioxide"
+	name = "Dwutlenek węgla"
 	powermix = 1
 	heat_penalty = 0.1
 	powerloss_inhibition = 1
@@ -56,7 +56,7 @@
 /datum/gas/plasma
 	id = GAS_PLASMA
 	specific_heat = 200
-	name = "Plasma"
+	name = "Plazma"
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -80,7 +80,7 @@
 /datum/gas/nitrous_oxide
 	id = GAS_NITROUS
 	specific_heat = 40
-	name = "Nitrous Oxide"
+	name = "Podtlenek azotu"
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	flags = GAS_FLAG_DANGEROUS
@@ -93,7 +93,7 @@
 /datum/gas/water_vapor
 	id = GAS_H2O
 	specific_heat = 40
-	name = "Water Vapor"
+	name = "Para wodna"
 	gas_overlay = "water_vapor"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -107,7 +107,7 @@
 /datum/gas/pluoxium
 	id = GAS_PLUOXIUM
 	specific_heat = 80
-	name = "Pluoxium"
+	name = "Pluoksium"
 	fusion_power = 10
 	oxidation_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 25 // it is VERY stable
 	oxidation_rate = 8 // when it can oxidize, it can oxidize a LOT
@@ -124,7 +124,7 @@
 /datum/gas/tritium
 	id = GAS_TRITIUM
 	specific_heat = 10
-	name = "Tritium"
+	name = "Tryt"
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -142,7 +142,7 @@
 /datum/gas/nitryl
 	id = GAS_NITRYL
 	specific_heat = 20
-	name = "Nitrogen dioxide"
+	name = "Dwutlenek azotu"
 	gas_overlay = "nitryl"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -155,7 +155,7 @@
 /datum/gas/hypernoblium
 	id = GAS_HYPERNOB
 	specific_heat = 2000
-	name = "Hyper-noblium"
+	name = "Hipernoblium"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
 	price = 50
@@ -178,14 +178,14 @@
 	specific_heat = 5
 	odor = "kolor niebieski" // fast
 	odor_strength = 10
-	name = "Stimulum"
+	name = "Stymulum"
 	fusion_power = 7
 	price = 25
 
 /datum/gas/constricted_plasma //NSV13 - words C++ monstermos expects 14 gas types to exist, we only had 13
 	id = "constricted_plasma"
 	specific_heat = 250
-	name = "Constricted plasma"
+	name = "Skondensowana plazma"
 	gas_overlay = "constricted_plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -193,7 +193,7 @@
 /datum/gas/nucleium //NSV13
 	id = "nucleium"
 	specific_heat = 450 //jesus god why
-	name = "Nucleium"
+	name = "Nukleium"
 	gas_overlay = "nucleium"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS

@@ -1,8 +1,8 @@
 // AQUILA - port z Yogstation (code/datums/mutations/radiantburst.dm)
 
 /datum/mutation/radiantburst
-	name = "Radiant Burst"
-	desc = "A mutation hidden deep within ethereal genetic code that allows you to blind people nearby."
+	name = "Promienny błysk"
+	desc = "Mutacja ukryta głęboko w kodzie genetycznym eteryków, dzięki której oślepiasz ludzi w pobliżu."
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
@@ -29,8 +29,8 @@
 		burst.aoe_radius += 1
 
 /datum/action/cooldown/spell/aoe/radiantburst
-	name = "Radiant Burst"
-	desc = "You release all the light that is within you."
+	name = "Promienny błysk"
+	desc = "Uwalniasz całe światło, które masz w sobie."
 	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
 	aoe_radius = 5

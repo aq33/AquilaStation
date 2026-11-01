@@ -1,6 +1,6 @@
 /obj/machinery/computer/camera_advanced
-	name = "advanced camera console"
-	desc = "Used to access the various cameras on the station."
+	name = "zaawansowana konsola kamer"
+	desc = "Daje dostęp do różnych kamer na stacji."
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
 	var/list/z_lock = list() // Lock use to these z levels
@@ -153,7 +153,7 @@
 	GrantActions(user)
 	current_user = user
 	eyeobj.eye_user = user
-	eyeobj.name = "Camera Eye ([user.name])"
+	eyeobj.name = "oko kamery ([user.name])"
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
@@ -161,7 +161,7 @@
 		user.client.view_size.supress()
 
 /mob/camera/ai_eye/remote
-	name = "Inactive Camera Eye"
+	name = "nieaktywne oko kamery"
 	ai_detector_visible = FALSE
 	var/sprint = 10
 	var/cooldown = 0
@@ -227,7 +227,7 @@
 		sprint = initial
 
 /datum/action/innate/camera_off
-	name = "End Camera View"
+	name = "Zakończ podgląd kamery"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 
@@ -240,7 +240,7 @@
 	console.remove_eye_control(target)
 
 /datum/action/innate/camera_jump
-	name = "Jump To Camera"
+	name = "Skocz do kamery"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
@@ -265,10 +265,10 @@
 	for (var/obj/machinery/camera/netcam in L)
 		var/list/tempnetwork = netcam.network & origin.networks
 		if (tempnetwork.len)
-			T["[netcam.c_tag][netcam.can_use() ? null : " (Deactivated)"]"] = netcam
+			T["[netcam.c_tag][netcam.can_use() ? null : " (wyłączona)"]"] = netcam
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Wybierz kamerę, którą chcesz oglądać", "Cameras") as null|anything in T
+	var/camera = input("Wybierz kamerę, którą chcesz oglądać", "Kamery") as null|anything in T
 	var/obj/machinery/camera/final = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 	if(final)

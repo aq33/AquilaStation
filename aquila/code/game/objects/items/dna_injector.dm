@@ -1,71 +1,71 @@
 /obj/item/dnainjector/tentacle
-	name = "\improper DNA injector (Tentacle Arm)"
+	name = "\improper iniektor DNA (Ręka-macka)"
 	add_mutations = list(TENTACLE)
 
 /obj/item/dnainjector/antitentacle
-	name = "\improper DNA injector (Anti-Tentacle Arm)"
+	name = "\improper iniektor DNA (anty-Ręka-macka)"
 	remove_mutations = list(TENTACLE)
 
 /obj/item/dnainjector/jellybones
-	name = "\improper DNA injector (Jellybones)"
+	name = "\improper iniektor DNA (Galaretowate kości)"
 	add_mutations = list(JELLYBONES)
 
 /obj/item/dnainjector/antijellybones
-	name = "\improper DNA injector (Anti-Jellybones)"
+	name = "\improper iniektor DNA (anty-Galaretowate kości)"
 	remove_mutations = list(JELLYBONES)
 
 /obj/item/dnainjector/breathless
-	name = "\improper DNA injector (Breathless)"
+	name = "\improper iniektor DNA (Bezdech)"
 	add_mutations = list(BREATHLESS)
 
 /obj/item/dnainjector/antibreathless
-	name = "\improper DNA injector (Anti-Breathless)"
+	name = "\improper iniektor DNA (anty-Bezdech)"
 	remove_mutations = list(BREATHLESS)
 
 /obj/item/dnainjector/toxicfart
-	name = "\improper DNA injector (Toxic Fart)"
+	name = "\improper iniektor DNA (Toksyczne bąki)"
 	add_mutations = list(TOXICFART)
 
 /obj/item/dnainjector/antitoxicfart
-	name = "\improper DNA injector (Anti-Toxic Fart)"
+	name = "\improper iniektor DNA (anty-Toksyczne bąki)"
 	remove_mutations = list(TOXICFART)
 
 /obj/item/dnainjector/megafart
-	name = "\improper DNA injector (Mega Fart)"
+	name = "\improper iniektor DNA (Megabąk)"
 	add_mutations = list(MEGAFART)
 
 /obj/item/dnainjector/antimegafart
-	name = "\improper DNA injector (Anti-Mega Fart)"
+	name = "\improper iniektor DNA (anty-Megabąk)"
 	remove_mutations = list(MEGAFART)
 
 /obj/item/dnainjector/armblade
-	name = "\improper DNA injector (Arm Blade)"
+	name = "\improper iniektor DNA (Ręka-ostrze)"
 	add_mutations = list(ARMBLADE)
 
 /obj/item/dnainjector/antiarmblade
-	name = "\improper DNA injector (Anti-Arm Blade)"
+	name = "\improper iniektor DNA (anty-Ręka-ostrze)"
 	remove_mutations = list(ARMBLADE)
 
 /obj/item/dnainjector/vore
-	name = "\improper DNA injector (Matter Eater)"
+	name = "\improper iniektor DNA (Pożeracz materii)"
 	add_mutations = list(VORE)
 
 /obj/item/dnainjector/antivore
-	name = "\improper DNA injector (Anti-Matter Eater)"
+	name = "\improper iniektor DNA (anty-Pożeracz materii)"
 	remove_mutations = list(VORE)
 
 /obj/item/dnainjector/firebreath
-	name = "\improper DNA injector (Fire Breath)"
+	name = "\improper iniektor DNA (Ognisty oddech)"
 	add_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/antifirebreath
-	name = "\improper DNA injector (Anti-Fire Breath)"
+	name = "\improper iniektor DNA (anty-Ognisty oddech)"
 	remove_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/mindread
-	name = "\improper DNA injector (Mindread)"
+	name = "\improper iniektor DNA (Czytanie w myślach)"
 	add_mutations = list(MINDREAD)
 
 /obj/item/dnainjector/antimindread
-	name = "\improper DNA injector (Anti-Mindread)"
+	name = "\improper iniektor DNA (anty-Czytanie w myślach)"
 	remove_mutations = list(MINDREAD)

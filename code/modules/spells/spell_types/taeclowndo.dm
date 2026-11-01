@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pie
-	name = "Summon Creampie"
-	desc = "A clown's weapon of choice.  Use this to summon a fresh pie, just waiting to acquaintain itself with someone's face."
+	name = "Przywołanie tortu z kremem"
+	desc = "Ulubiona broń klauna. Użyj, by przywołać świeży tort, który tylko czeka, by zapoznać się z czyjąś twarzą."
 	invocation_type = "none"
 	include_user = 1
 	range = -1
@@ -15,8 +15,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/aimed/banana_peel
-	name = "Conjure Banana Peel"
-	desc = "Make a banana peel appear out of thin air right under someone's feet!"
+	name = "Wyczarowanie skórki od banana"
+	desc = "Sprawiasz, że skórka od banana pojawia się znikąd prosto pod czyimiś stopami!"
 	charge_type = "recharge"
 	charge_max	= 100
 	cooldown_min = 100
@@ -57,7 +57,7 @@
 
 /obj/effect/proc_holder/spell/targeted/touch/megahonk
 	name = "Mega HoNk"
-	desc = "This spell channels your inner clown powers, concentrating them into one massive HONK."
+	desc = "To zaklęcie skupia twoje wewnętrzne klaunie moce w jeden potężny HONK."
 	hand_path = /obj/item/melee/touch_attack/megahonk
 
 	charge_max = 100
@@ -70,8 +70,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/targeted/touch/bspie
-	name = "Bluespace Banana Pie"
-	desc = "An entire body would fit in there!"
+	name = "Bananowy placek bluespace"
+	desc = "Zmieściłoby się tu całe ciało!"
 	hand_path = /obj/item/melee/touch_attack/bspie
 
 	charge_max = 450

@@ -1,6 +1,6 @@
 // CARGO
 /obj/item/robot_module/cargo
-	name = "Cargo"
+	name = "Zaopatrzeniowy"
 	basic_modules = list(
 		/obj/item/stamp,
 		/obj/item/stamp/denied,

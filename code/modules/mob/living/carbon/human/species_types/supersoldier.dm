@@ -1,5 +1,5 @@
 /datum/species/human/supersoldier
-	name = "Super Soldier" //inherited from the real species, for health scanners and things
+	name = "Superżołnierz" //inherited from the real species, for health scanners and things
 	id = "supersoldier"
 	examine_limb_id = SPECIES_HUMAN
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,NOTRANSSTING) //all of these + whatever we inherit from the real species

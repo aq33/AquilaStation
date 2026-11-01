@@ -4,8 +4,8 @@
 // Regenerate - powolne leczenie obrażeń fizycznych i oparzeń
 
 /datum/mutation/regenerate
-	name = "Regenerate"
-	desc = "Speeds up the subject's cellular repair, slowly closing wounds and burns."
+	name = "Regeneracja"
+	desc = "Przyspiesza naprawę komórek pacjenta, przez co rany i oparzenia powoli się zamykają."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoje rany zaczynają się goić.</span>"
 	text_lose_indication = "<span class='notice'>Czujesz, że twoja regeneracja zniknęła.</span>"
@@ -23,8 +23,8 @@
 // Psy-Resist - zamknięty umysł
 
 /datum/mutation/psy_resist
-	name = "Psy-Resist"
-	desc = "Boosts efficiency in sectors of the brain commonly associated with meta-mental energies, shielding the mind from telepathy."
+	name = "Odporność psioniczna"
+	desc = "Usprawnia obszary mózgu kojarzone z energią metamentalną i osłania umysł przed telepatią."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twój umysł wydaje się zamknięty.</span>"
 	text_lose_indication = "<span class='notice'>Czujesz się dziwnie odsłonięty.</span>"
@@ -35,8 +35,8 @@
 // Hallucinate - co jakiś czas fala halucynacji
 
 /datum/mutation/hallucinate
-	name = "Hallucinate"
-	desc = "Causes the subject's brain to periodically misfire, producing vivid hallucinations."
+	name = "Halucynacje"
+	desc = "Mózg pacjenta co jakiś czas szwankuje i wywołuje żywe halucynacje."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Twój umysł mówi „Cześć”.</span>"
 	text_lose_indication = "<span class='notice'>Wraca ci rozsądek. A może nie?</span>"
@@ -51,8 +51,8 @@
 // Paraplegic - nogi nie działają, nawet protezy
 
 /datum/mutation/paraplegic
-	name = "Paraplegic"
-	desc = "Severs the signals from the brain to the legs. Even prosthetics won't help."
+	name = "Paraplegia"
+	desc = "Przerywa sygnały z mózgu do nóg. Nawet protezy nie pomogą."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>MOJA NOGA!</span>"
 	text_lose_indication = "<span class='notice'>Znów czujesz swoje nogi.</span>"
@@ -71,8 +71,8 @@
 // Alien Voice - bełkot pismem wingdings
 
 /datum/mutation/alien_voice
-	name = "Alien Voice"
-	desc = "Garbles the subject's voice into an incomprehensible speech."
+	name = "Obcy głos"
+	desc = "Zniekształca głos pacjenta w niezrozumiały bełkot."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='wingdings'>Twoje struny głosowe wydają się obce.</span>"
 	text_lose_indication = "<span class='notice'>Twoje struny głosowe nie wydają się już obce.</span>"
@@ -111,8 +111,8 @@
 // Horns - rogi z keratyny
 
 /datum/mutation/horns
-	name = "Horns"
-	desc = "Enables the growth of a compacted keratin formation on the subject's head."
+	name = "Rogi"
+	desc = "Na głowie pacjenta wyrastają twarde narośla z keratyny."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Z twojej głowy wyrasta para rogów.</span>"
 	text_lose_indication = "<span class='notice'>Twoje rogi kruszą się w nicość.</span>"
@@ -130,8 +130,8 @@
 // Cloak of Darkness - znikanie w ciemności, wyklucza się z Chameleon
 
 /datum/mutation/darkcloak
-	name = "Cloak of Darkness"
-	desc = "Enables the subject to bend low levels of light around themselves, creating a cloaking effect."
+	name = "Płaszcz ciemności"
+	desc = "Pacjent zakrzywia wokół siebie słabe światło i staje się trudny do zauważenia."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Zaczynasz rozpływać się w cieniu.</span>"
 	text_lose_indication = "<span class='notice'>Stajesz się w pełni widoczny.</span>"

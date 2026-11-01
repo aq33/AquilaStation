@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/cluwnecurse
-	name = "Curse of the Cluwne"
-	desc = "This spell dooms the fate of any unlucky soul to the live of a pitiful cluwne, a terrible creature that is hunted for fun."
+	name = "Klątwa cluwne'a"
+	desc = "To zaklęcie skazuje każdą nieszczęsną duszę na życie żałosnego cluwne'a, straszliwej istoty, na którą poluje się dla zabawy."
 	school = "transmutation"
 	charge_type = "recharge"
 	charge_max	= 600
@@ -30,7 +30,7 @@
 	H.cluwneify()
 
 /datum/spellbook_entry/cluwnecurse
-	name = "Cluwne Curse"
+	name = "Klątwa cluwne'a"
 	spell_type = /obj/effect/proc_holder/spell/targeted/cluwnecurse
 
 /datum/action/spell_action/New(Target)

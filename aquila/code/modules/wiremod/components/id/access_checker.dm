@@ -1,5 +1,5 @@
 /obj/item/circuit_component/compare/access
-	display_name = "Access Checker"
+	display_name = "Sprawdzanie dostępu"
 	desc = "Wykonuje proste porównanie dwóch list tekstów, z dodatkowymi funkcjami ułatwiającymi sprawdzanie dostępów na kartach ID."
 	category = "ID"
 

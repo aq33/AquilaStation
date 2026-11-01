@@ -4,12 +4,12 @@ import { RandomSetting } from './data';
 
 const options = [
   {
-    displayText: 'Do not randomize',
+    displayText: 'Nie losuj',
     value: RandomSetting.Disabled,
   },
 
   {
-    displayText: 'Always randomize',
+    displayText: 'Zawsze losuj',
     value: RandomSetting.Enabled,
   },
 

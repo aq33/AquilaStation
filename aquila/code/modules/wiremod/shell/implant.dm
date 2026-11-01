@@ -1,5 +1,5 @@
 /obj/item/implant/circuit
-	name = "circuit implant"
+	name = "implant z układem"
 	actions_types = null
 	custom_materials = list(/datum/material/iron = (MINERAL_MATERIAL_AMOUNT / 2))
 
@@ -46,7 +46,7 @@
 	return ..()
 
 /obj/item/circuit_component/implant_core
-	display_name = "Implant Core"
+	display_name = "Rdzeń implantu"
 	desc = "Steruje podstawowymi funkcjami implantu."
 
 	/// A reference to the action button to look at charge/get info
@@ -187,7 +187,7 @@
 		parent.attack_ghost(usr)
 
 /datum/action/innate/implant_charge_action
-	name = "Check Implant Charge"
+	name = "Sprawdź ładunek implantu"
 	check_flags = NONE
 	icon_icon = 'icons/obj/power.dmi'
 	button_icon_state = "cell"
@@ -229,7 +229,7 @@
 	button.maptext = cell ? MAPTEXT("[cell.percent()]%") : ""
 
 /obj/item/implantcase/circuit
-	name = "implant case - 'Circuit'"
+	name = "etui na implant – „Układ”"
 	desc = "Szklany pojemnik z obudową implantu układu."
 	imp_type = /obj/item/implant/circuit
 

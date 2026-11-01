@@ -6,8 +6,8 @@
 // Credit to polaris for the code which this current map was originally based off of, and credit to VG for making it in the first place.
 
 /obj/machinery/station_map
-	name = "\improper ship holomap"
-	desc = "A virtual map of the surrounding ship."
+	name = "\improper holomapa okrętu"
+	desc = "Wirtualna mapa otaczającego okrętu."
 	icon = 'nsv13/icons/holomap/stationmap.dmi'
 	icon_state = "station_map"
 	layer = ABOVE_WINDOW_LAYER
@@ -79,7 +79,7 @@
 
 	if(!holomap_datum)
 		// Something is very wrong if we have to un-fuck ourselves here.
-		message_admins("\[HOLOMAP] WARNING: Holomap at [x], [y], [z] [ADMIN_FLW(src)] had to set itself up on interact! Something during Initialize went very wrong!")
+		message_admins("\[HOLOMAP] OSTRZEŻENIE: holomapa na [x], [y], [z] [ADMIN_FLW(src)] musiała skonfigurować się dopiero przy interakcji! Coś poszło bardzo źle podczas Initialize!")
 		setup_holomap()
 
 	holomap_datum.update_map(handle_overlays())
@@ -272,7 +272,7 @@
 	return legend
 
 /obj/machinery/station_map/engineering
-	name = "\improper engineering station map"
+	name = "\improper inżynieryjna mapa okrętu"
 	icon_state = "station_map_engi"
 	circuit = /obj/item/circuitboard/machine/station_map/engineering
 
@@ -296,7 +296,7 @@
 			fire_alarms += alarm_icon
 
 	if(length(fire_alarms))
-		extra_overlays["Fire Alarms"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "fire_marker"), "markers" = fire_alarms)
+		extra_overlays["Alarmy pożarowe"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "fire_marker"), "markers" = fire_alarms)
 
 	var/list/air_alarms = list()
 	for(var/obj/machinery/airalarm/air_alarm in GLOB.machines)
@@ -308,18 +308,18 @@
 			air_alarms += alarm_icon
 
 	if(length(air_alarms))
-		extra_overlays["Air Alarms"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "atmos_marker"), "markers" = air_alarms)
+		extra_overlays["Alarmy powietrza"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "atmos_marker"), "markers" = air_alarms)
 
 	return extra_overlays
 
 /obj/item/circuitboard/machine/station_map
-	name = "Station Map"
+	name = "holomapa okrętu (płytka maszyny)"
 	build_path = /obj/machinery/station_map/directional/north
 	req_components = list(/obj/item/stock_parts/scanning_module/triphasic = 3, /obj/item/stock_parts/micro_laser/ultra = 4)
 
 /obj/item/circuitboard/machine/station_map/engineering
-	name = "Engineering Station Map"
-	desc = "A virtual map of the surrounding station. Also shows any active fire and atmos alarms."
+	name = "inżynieryjna mapa okrętu (płytka maszyny)"
+	desc = "Wirtualna mapa otaczającej stacji. Pokazuje też aktywne alarmy pożarowe i atmosferyczne."
 	build_path = /obj/machinery/station_map/engineering/directional/north
 	req_components = list(/obj/item/stock_parts/scanning_module/triphasic = 3, /obj/item/stock_parts/micro_laser/ultra = 4, /obj/item/stock_parts/subspace/analyzer = 1)
 

@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/voice_change
 
-	name = "Voice Change"
+	name = "Zmiana głosu"
 	desc = "Wirus zmienia wysokość i barwę strun głosowych nosiciela, zmieniając brzmienie jego głosu."
 	stealth = -1
 	resistance = -2
@@ -58,7 +58,7 @@ Bonus
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("Your throat hurts.", "You clear your throat.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Boli cię gardło.", "Odchrząkujesz.")]</span>")
 		else
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M

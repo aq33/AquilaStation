@@ -24,7 +24,7 @@
 			if(!QDELETED(vent) && !vent.welded && is_station_level(vent.z))
 				spawn_locs |= get_turf(vent)
 	if(!length(spawn_locs))
-		message_admins("Gremlin event found no spawn locations, nothing was spawned.")
+		message_admins("Event gremlinów nie znajduje miejsc do pojawienia się, nic się nie pojawia.")
 		return MAP_ERROR
 
 	var/gremlins_to_spawn = rand(3, 6)
@@ -35,6 +35,6 @@
 		var/mob/living/simple_animal/hostile/gremlin/G = new(spawnat)
 		announce_to_ghosts(G)
 	var/grems = gremlin_areas.Join(", ")
-	message_admins("Gremlins have been spawned at the areas: [grems]")
+	message_admins("Gremliny pojawiają się w obszarach: [grems]")
 	log_game("Gremlins have been spawned at the areas: [grems]")
 	return SUCCESSFUL_SPAWN

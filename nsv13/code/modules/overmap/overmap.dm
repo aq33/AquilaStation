@@ -8,8 +8,8 @@
 	var/obj/structure/overmap/overmap_ship //Used for relaying movement, hotkeys etc.
 
 /obj/structure/overmap
-	name = "overmap ship"
-	desc = "A space faring vessel."
+	name = "okręt na overmapie"
+	desc = "Jednostka zdolna do lotów kosmicznych."
 	icon = 'nsv13/icons/overmap/default.dmi'
 	icon_state = "default"
 	density = TRUE
@@ -290,7 +290,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		var/list/errorList = list()
 		var/list/loaded = SSmapping.LoadGroup(errorList, "[OM.name] interior Z level", "[folder]", interior_map_files, traits, default_traits, silent = TRUE, orbital_body_type = null)
 		if(errorList.len)	// failed to load :(
-			message_admins("[_path]'s interior failed to load! Check you used instance_overmap correctly...")
+			message_admins("Nie udało się wczytać wnętrza [_path]! Sprawdź, czy instance_overmap jest użyte poprawnie...")
 			log_game("[_path]'s interior failed to load! Check you used instance_overmap correctly...")
 			return OM
 		for(var/datum/parsed_map/PM in loaded)
@@ -313,7 +313,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 	return OM
 
 /obj/weapon_overlay
-	name = "Weapon overlay"
+	name = "nakładka broni"
 	layer = 4
 	mouse_opacity = FALSE
 	layer = WALL_OBJ_LAYER
@@ -323,14 +323,14 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 	return
 
 /obj/weapon_overlay/railgun //Railgun sits on top of the ship and swivels to face its target
-	name = "Railgun"
+	name = "działo szynowe"
 	icon_state = "railgun"
 
 /obj/weapon_overlay/railgun_overlay/do_animation()
 	flick("railgun_charge",src)
 
 /obj/weapon_overlay/laser
-	name = "Laser cannon"
+	name = "działo laserowe"
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "conduit-red"
 
@@ -356,11 +356,11 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		ams_modes.Add(new atype)
 
 	if(obj_integrity != max_integrity)
-		message_admins("Failsafe triggered: [src] Initialized with integrity of [obj_integrity], but max integrity of [max_integrity]. Setting integrity to max integrity to prevent issues.")
+		message_admins("Zadziałało zabezpieczenie: [src] zainicjalizował się z integralnością [obj_integrity] przy maksymalnej integralności [max_integrity]. Ustawiam integralność na maksymalną, żeby uniknąć problemów.")
 		obj_integrity = max_integrity	//Failsafe
 
 	if(!combat_dice_type)
-		message_admins("[src] didn't get any combat dice! This may lead to problems in npc fleet combat and shouldn't happen.")
+		message_admins("[src] nie dostał żadnych kości bojowych! To może powodować problemy w walce flot NPC i nie powinno się zdarzyć.")
 	else
 		npc_combat_dice = new combat_dice_type()
 
@@ -503,7 +503,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 
 /obj/structure/overmap/Destroy()
 	if(block_deletion || (CHECK_BITFIELD(overmap_deletion_traits, NEVER_DELETE_OCCUPIED) && has_occupants()))
-		message_admins("[src] has occupants and will not be deleted")
+		message_admins("W [src] są ludzie, więc nie zostanie usunięty")
 		return QDEL_HINT_LETMELIVE
 
 	//Handles all osw var releases.
@@ -553,7 +553,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 	if(length(linked_areas))
 		overmap_explode(linked_areas)
 	if(role == MAIN_OVERMAP)
-		priority_announce("WARNING: ([rand(10,100)]) Attempts to establish DRADIS uplink with [station_name()] have failed. Unable to ascertain operational status. Presumed status: TERMINATED","Central Intelligence Unit", 'nsv13/sound/effects/ship/reactor/explode.ogg')
+		priority_announce("OSTRZEŻENIE: nieudane próby nawiązania łącza DRADIS z [station_name()] ([rand(10,100)]). Nie można ustalić stanu operacyjnego. Domniemany stan: ZNISZCZONY","Centralna Jednostka Wywiadu", 'nsv13/sound/effects/ship/reactor/explode.ogg')
 		Cinematic(CINEMATIC_NSV_SHIP_KABOOM,world)
 		SSticker.mode.check_finished(TRUE)
 		SSticker.news_report = SHIP_DESTROYED
@@ -614,13 +614,13 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 			return TRUE
 		else
 			log_runtime("BUG: User [user] is in [src]'s gauss_gunners list but has no overmap_gunning component!")
-			message_admins("BUG: User [ADMIN_LOOKUPFLW(user)]  is in [src]'s gauss_gunners list but has no overmap_gunning component! Attempting to eject them and remove them from the list...")
+			message_admins("BŁĄD: użytkownik [ADMIN_LOOKUPFLW(user)] jest na liście gauss_gunners [src], ale nie ma komponentu overmap_gunning! Próbuję go wyrzucić i usunąć z listy...")
 			var/obj/machinery/ship_weapon/gauss_gun/G = user.loc
 			if(istype(G))
 				G.remove_gunner()
 			if(LAZYFIND(gauss_gunners, user))
 				log_runtime("BUG: User [user] was still in gauss_gunners list after trying to kick them out, modifying the list directly")
-				message_admins("BUG: [user] was still in gauss_gunners list after trying to kick them out, modifying the list directly")
+				message_admins("BŁĄD: [user] nadal jest na liście gauss_gunners po próbie wyrzucenia, modyfikuję listę bezpośrednio")
 				gauss_gunners -= user
 	if(user != gunner)
 		if(user == pilot)
@@ -935,7 +935,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 
 /obj/structure/overmap/proc/railgun_bluespace_recoil(target)
 	next_maneuvre = world.time + 5 SECONDS //Set booster on cooldown
-	relay('nsv13/sound/effects/ship/afterburner.ogg', message="<span class='warning'>You feel as the ship gets suddenly pulled away!</span>", loop=FALSE)
+	relay('nsv13/sound/effects/ship/afterburner.ogg', message="<span class='warning'>Czujesz, jak coś nagle odciąga statek!</span>", loop=FALSE)
 	addtimer(CALLBACK(src, PROC_REF(reset_boost), forward_maxthrust, backward_maxthrust, side_maxthrust, max_angular_acceleration, speed_limit), 2 SECONDS)
 	var/direction = get_angle(src, target)
 	speed_limit += 10

@@ -89,8 +89,8 @@
 			owner.emote("snore")
 
 /atom/movable/screen/alert/status_effect/asleep
-	name = "Asleep"
-	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
+	name = "Sen"
+	desc = "Śpisz. Poczekaj chwilę, a powinieneś się obudzić. Chyba że nie, biorąc pod uwagę, jak bezbronny teraz jesteś."
 	icon_state = "asleep"
 
 //STASIS
@@ -128,8 +128,8 @@
         return ..()
 
 /atom/movable/screen/alert/status_effect/stasis
-        name = "Stasis"
-        desc = "Your biological functions have halted. You could live forever this way, but it's pretty boring."
+        name = "Staza"
+        desc = "Twoje funkcje biologiczne są wstrzymane. Mógłbyś tak żyć wiecznie, ale to dość nudne."
         icon_state = "stasis"
 
 //GOLEM GANG
@@ -149,8 +149,8 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/strandling
-	name = "Choking strand"
-	desc = "A magical strand of Durathread is wrapped around your neck, preventing you from breathing! Click this icon to remove the strand."
+	name = "Dusząca nić"
+	desc = "Magiczna nić z duranici oplata ci szyję i nie pozwala oddychać! Kliknij tę ikonę, by zdjąć nić."
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
@@ -192,8 +192,8 @@
 
 
 /atom/movable/screen/alert/syringe
-	name = "Embedded Syringe"
-	desc = "A syringe has embedded itself into your body, injecting its reagents! click this icon to carefully remove the syringe."
+	name = "Wbita strzykawka"
+	desc = "W twoim ciele tkwi strzykawka, która wstrzykuje ci swoje odczynniki! Kliknij tę ikonę, by ostrożnie ją wyjąć."
 	icon_state = "drugged"
 	alerttooltipstyle = "hisgrace"
 
@@ -270,8 +270,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/his_wrath
 
 /atom/movable/screen/alert/status_effect/his_wrath
-	name = "His Wrath"
-	desc = "You fled from His Grace instead of feeding Him, and now you suffer."
+	name = "Gniew His Grace"
+	desc = "Uciekłeś od His Grace, zamiast Go nakarmić, i teraz cierpisz."
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
@@ -531,8 +531,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/trance
 
 /atom/movable/screen/alert/status_effect/trance
-	name = "Trance"
-	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head."
+	name = "Trans"
+	desc = "Wszystko wydaje się takie odległe, a twoje myśli zapętlają się w głowie."
 	icon_state = "high"
 
 /datum/status_effect/trance/tick()
@@ -548,7 +548,7 @@
 	if(!owner.has_quirk(/datum/quirk/monochromatic))
 		owner.add_client_colour(/datum/client_colour/monochrome)
 	owner.visible_message("[stun ? "<span class='warning'>[owner] stoi nieruchomo, a jego wzrok zdaje się skupiać na odległym punkcie.</span>" : ""]", \
-	"<span class='warning'>[pick("You feel your thoughts slow down.", "You suddenly feel extremely dizzy.", "You feel like you're in the middle of a dream.","You feel incredibly relaxed.")]</span>")
+	"<span class='warning'>[pick("Twoje myśli zwalniają.", "Nagle kręci ci się w głowie.", "Czujesz się jak we śnie.","Czujesz niesamowite odprężenie.")]</span>")
 	return TRUE
 
 /datum/status_effect/trance/on_creation(mob/living/new_owner, _duration, _stun = TRUE)
@@ -649,8 +649,8 @@
 			H.jitteriness += 5
 
 /atom/movable/screen/alert/status_effect/convulsing
-	name = "Shaky Hands"
-	desc = "You've been zapped with something and your hands can't stop shaking! You can't seem to hold on to anything."
+	name = "Drżące dłonie"
+	desc = "Coś cię poraziło i ręce nie przestają ci drżeć! Nie możesz niczego utrzymać."
 	icon_state = "convulsing"
 
 /datum/status_effect/dna_melt
@@ -672,8 +672,8 @@
 	C.something_horrible(kill_either_way)
 
 /atom/movable/screen/alert/status_effect/dna_melt
-	name = "Genetic Breakdown"
-	desc = "I don't feel so good. Your body can't handle the mutations! You have one minute to remove your mutations, or you will be met with a horrible fate."
+	name = "Rozpad genetyczny"
+	desc = "Nie czuję się najlepiej. Twoje ciało nie radzi sobie z mutacjami! Masz minutę, by je usunąć, inaczej spotka cię straszny los."
 	icon_state = "dna_melt"
 
 /datum/status_effect/go_away
@@ -695,8 +695,8 @@
 	owner.forceMove(T)
 
 /atom/movable/screen/alert/status_effect/go_away
-	name = "TO THE STARS AND BEYOND!"
-	desc = "I must go, my people need me!"
+	name = "DO GWIAZD I DALEJ!"
+	desc = "Muszę iść, mój lud mnie potrzebuje!"
 	icon_state = "high"
 
 //Clock cult
@@ -723,8 +723,8 @@
 		owner.toggle_move_intent(owner)
 
 /atom/movable/screen/alert/status_effect/interdiction
-	name = "Interdicted"
-	desc = "I don't think I am meant to go this way."
+	name = "Zablokowanie"
+	desc = "Chyba nie powinienem iść w tę stronę."
 	icon_state = "inathneqs_endowment"
 
 /datum/status_effect/fake_virus
@@ -741,25 +741,25 @@
 	switch(msg_stage)
 		if(0 to 300)
 			if(prob(1))
-				fake_msg = pick("<span class='warning'>[pick("Your head hurts.", "Your head pounds.")]</span>",
-				"<span class='warning'>[pick("You're having difficulty breathing.", "Your breathing becomes heavy.")]</span>",
-				"<span class='warning'>[pick("You feel dizzy.", "Your head spins.")]</span>",
-				"<span notice='warning'>[pick("You swallow excess mucus.", "You lightly cough.")]</span>",
-				"<span class='warning'>[pick("Your head hurts.", "Your mind blanks for a moment.")]</span>",
-				"<span class='warning'>[pick("Your throat hurts.", "You clear your throat.")]</span>")
+				fake_msg = pick("<span class='warning'>[pick("Boli cię głowa.", "Łupie cię w głowie.")]</span>",
+				"<span class='warning'>[pick("Masz trudności z oddychaniem.", "Twój oddech staje się ciężki.")]</span>",
+				"<span class='warning'>[pick("Kręci ci się w głowie.", "Wszystko wiruje ci w głowie.")]</span>",
+				"<span notice='warning'>[pick("Przełykasz nadmiar śluzu.", "Lekko pokasłujesz.")]</span>",
+				"<span class='warning'>[pick("Boli cię głowa.", "Na chwilę masz pustkę w głowie.")]</span>",
+				"<span class='warning'>[pick("Boli cię gardło.", "Odchrząkujesz.")]</span>")
 		if(301 to 600)
 			if(prob(2))
-				fake_msg = pick("<span class='warning'>[pick("Your head hurts a lot.", "Your head pounds incessantly.")]</span>",
-				"<span class='warning'>[pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")]</span>",
+				fake_msg = pick("<span class='warning'>[pick("Bardzo boli cię głowa.", "Głowa łupie cię bez przerwy.")]</span>",
+				"<span class='warning'>[pick("Twoja tchawica jest wąska jak słomka.", "Oddychanie staje się niezwykle trudne.")]</span>",
 				"<span class='warning'>Czujesz [pick("zawroty głowy","oszołomienie","słabość")].</span>",
-				"<span class='warning'>[pick("You hear a ringing in your ear.", "Your ears pop.")]</span>",
+				"<span class='warning'>[pick("Dzwoni ci w uchu.", "Strzyka ci w uszach.")]</span>",
 				"<span class='warning'>Na chwilę przysypiasz.</span>")
 		else
 			if(prob(3))
 				if(prob(50))// coin flip to throw a message or an emote
-					fake_msg = pick("<span class='userdanger'>[pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")]</span>",
-					"<span class='userdanger'>[pick("Your lungs hurt!", "It hurts to breathe!")]</span>",
-					"<span class='warning'>[pick("You feel nauseated.", "You feel like you're going to throw up!")]</span>")
+					fake_msg = pick("<span class='userdanger'>[pick("Boli cię głowa!", "Czujesz w mózgu rozżarzony nóż!", "Fala bólu zalewa ci głowę!")]</span>",
+					"<span class='userdanger'>[pick("Bolą cię płuca!", "Oddychanie boli!")]</span>",
+					"<span class='warning'>[pick("Masz mdłości.", "Zaraz zwymiotujesz!")]</span>")
 				else
 					fake_emote = pick("cough", "sniff", "sneeze")
 
@@ -800,8 +800,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/emp
 	status_type = STATUS_EFFECT_REFRESH
 /atom/movable/screen/alert/status_effect/emp
-	name = "Electro-Magnetic Pulse"
-	desc = "You've been hit with an EMP! You're malfunctioning!"
+	name = "Impuls elektromagnetyczny"
+	desc = "Trafia cię EMP! Twoje systemy szwankują!"
 	icon_state = "hypnosis"
 
 /datum/status_effect/slimegrub
@@ -849,8 +849,8 @@
 		qdel(src)//no effect on nonslimes
 
 /atom/movable/screen/alert/status_effect/grub
-	name = "Infected"
-	desc = "You have a redgrub infection, and can't reproduce or grow! If you don't find a source of heat, you will die!"
+	name = "Zarażenie"
+	desc = "Masz w sobie czerwone larwy i nie możesz się rozmnażać ani rosnąć! Jeśli nie znajdziesz źródła ciepła, zginiesz!"
 	icon_state = "grub"
 
 //Deals with ants covering someone.
@@ -935,8 +935,8 @@
 		victim.remove_status_effect(STATUS_EFFECT_ANTS) //If this person has no more ants on them or are dead, they are no longer affected.
 
 /atom/movable/screen/alert/status_effect/ants
-	name = "Ants!"
-	desc = "<span class='warning'>JESUS FUCKING CHRIST! CLICK TO GET THOSE THINGS OFF!</span>"
+	name = "Mrówki!"
+	desc = "<span class='warning'>JEZUS KURWA MARIA! KLIKNIJ, ŻEBY STRZĄSNĄĆ TO Z SIEBIE!</span>"
 	icon_state = "antalert"
 
 /atom/movable/screen/alert/status_effect/ants/Click()

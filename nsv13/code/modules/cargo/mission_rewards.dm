@@ -1,7 +1,7 @@
 
 /obj/structure/closet/crate/nsv_mission_rewards
-  name = "combat supply crate"
-  desc = "a crate containing a small cache of ammo"
+  name = "skrzynia zaopatrzenia bojowego"
+  desc = "Skrzynia z niewielkim zapasem amunicji."
 
 /obj/structure/closet/crate/nsv_mission_rewards/PopulateContents()
   for(var/i in 1 to 2)

@@ -1,6 +1,6 @@
 /obj/structure/space_mine
-	name = "space mine"
-	desc = "Like a naval mine, but in space!"
+	name = "mina kosmiczna"
+	desc = "Jak mina morska, tylko w kosmosie!"
 	icon = 'nsv13/icons/overmap/effects.dmi'
 	icon_state = "mine_syndicate"
 	anchored = TRUE

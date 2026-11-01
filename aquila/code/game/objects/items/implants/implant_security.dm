@@ -1,5 +1,5 @@
 /obj/item/implant/security_down
-	name = "security officer down implant"
+	name = "implant „funkcjonariusz ranny”"
 	activated = 0
 
 /obj/item/implant/security_down/get_data()
@@ -23,10 +23,10 @@
 	playsound(source, 'aquila/sound/misc/security_down.ogg', 50, 0)
 
 /obj/item/implanter/security_down
-	name = "implanter (security officer down)"
+	name = "implanter (funkcjonariusz ranny)"
 	imp_type = /obj/item/implant/security_down
 
 /obj/item/implantcase/security_down
-	name = "implant case - 'security officer down'"
-	desc = "A glass case containing a security officer down implant. Emits a loud burst of static if the implanted person dies."
+	name = "etui na implant – „funkcjonariusz ranny”"
+	desc = "Szklane etui z implantem „funkcjonariusz ranny”. Gdy nosiciel umiera, implant wydaje głośny trzask zakłóceń."
 	imp_type = /obj/item/implant/security_down

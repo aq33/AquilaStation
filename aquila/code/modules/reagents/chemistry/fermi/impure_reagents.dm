@@ -6,7 +6,7 @@
 /////////////////////////////// MEDICINE ///////////////////////////////
 
 /datum/reagent/inverse/neurine
-	name = "Neruwhine"
+	name = "Neurojęczyna"
 	description = "Wywołuje u pacjenta chwilową traumę mózgu, przekierowując aktywność neuronów."
 	color = "#DCDCAA"
 	ph = 13.4
@@ -53,10 +53,10 @@
 	return ..()
 
 /datum/reagent/inverse/oculine
-	name = "Oculater"
+	name = "Okulater"
 	description = "Tymczasowo oślepia pacjenta."
 	color = "#DDDDDD"
-	taste_description = "dziwną toksynę"
+	taste_description = "dziwna toksyna"
 	ph = 13
 	tox_damage = 0
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -79,7 +79,7 @@
 		to_chat(M, "<span class='notice'>Ból głowy mija!</span>")
 
 /datum/reagent/impurity/inacusiate
-	name = "Tinacusiate"
+	name = "Tinakuzjat"
 	description = "Sprawia, że pacjent przez chwilę dziwnie słyszy."
 	color = "#DDDDFF"
 	taste_description = "ciepło parujące z ust"
@@ -110,7 +110,7 @@
 	hearing_args[6] = copied_spans
 
 /datum/reagent/inverse/oxandrolone
-	name = "Oxymetholone"
+	name = "Oksymetolon"
 	description = "Steryd anaboliczny, który pobudza wzrost mięśni w trakcie i po wysiłku."
 	color = "#520c23"
 	taste_description = "pot"
@@ -134,7 +134,7 @@
 		M.Paralyze(3 SECONDS)
 
 /datum/reagent/inverse/pen_acid
-	name = "Pendetide"
+	name = "Pendetyd"
 	description = "Usuwa podstawowe leki na toksyny i nasila chorobę popromienną."
 	color = "#09ff00"
 	ph = 3.7
@@ -155,7 +155,7 @@
 	return ..()
 
 /datum/reagent/inverse/atropine
-	name = "Hyoscyamine"
+	name = "Hioscyjamina"
 	description = "Powoli regeneruje uszkodzone narządy, ale nie przywróci tych, które przestały działać."
 	color = "#273333"
 	ph = 13.6
@@ -188,7 +188,7 @@
 	holder.remove_reagent(type, 2, TRUE)
 
 /datum/reagent/inverse/rezadone
-	name = "Inreziniver"
+	name = "Inrezyniwer"
 	description = "Wywołuje u pacjenta okropny strach przed pająkami."
 	color = "#c92eb4"
 	ph = 13.9
@@ -206,7 +206,7 @@
 		M.cure_trauma_type(/datum/brain_trauma/mild/phobia/spiders, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/reagent/inverse/sal_acid
-	name = "Benzoic Acid"
+	name = "Kwas benzoesowy"
 	description = "Silny nawóz, który daje roślinom sporo korzyści."
 	taste_description = "kwiaty"
 	color = "#e6c843"
@@ -214,7 +214,7 @@
 	tox_damage = 0
 
 /datum/reagent/inverse/aranesp
-	name = "Epoetin Alfa"
+	name = "Epoetyna alfa"
 	description = "Syntetyczny lek, który pobudza odnowę krwi. Przy nadużyciu powoduje uszkodzenie serca i migreny."
 	color = "#dee4ff"
 	metabolization_rate = 0.625 * REAGENTS_METABOLISM
@@ -263,7 +263,7 @@
 		M.losebreath += 3
 
 /datum/reagent/inverse/happiness
-	name = "Sadness"
+	name = "Smutek"
 	description = "Wywołuje silne stany depresyjne i usuwa z organizmu inne antydepresanty."
 	color = "#0004ff"
 	ph = 12
@@ -304,7 +304,7 @@
 	mood_change = -20
 
 /datum/reagent/inverse/colorful_reagent
-	name = "Dulling Reagent"
+	name = "Odczynnik matowiący"
 	description = "Wyjątkowo szary barwnik, ulubiony przez korporacje, które chcą zmaksymalizować cierpienie."
 	color = "#808080"
 	ph = 10
@@ -330,7 +330,7 @@
 /////////////////////////////// TOXINS ///////////////////////////////
 
 /datum/reagent/impurity/ipecacide
-	name = "Ipecacide"
+	name = "Ipekacyd"
 	description = "Wyjątkowo obrzydliwa substancja, która wywołuje wymioty. Powstaje w nieczystych reakcjach lipolicydu."
 	ph = 7
 	liver_damage = 0
@@ -343,7 +343,7 @@
 			C.adjust_disgust(50)
 
 /datum/reagent/impurity/methanol
-	name = "Methanol"
+	name = "Metanol"
 	description = "Lekka, bezbarwna ciecz o wyraźnym zapachu. Spożycie może prowadzić do ślepoty. Powstaje przy rozkładzie nieczystego formaldehydu."
 	color = "#aae7e4"
 	ph = 7
@@ -354,7 +354,7 @@
 	return ..()
 
 /datum/reagent/impurity/chloralax
-	name = "Chloralax"
+	name = "Chloralaks"
 	description = "Oleista, bezbarwna i lekko toksyczna ciecz. Powstaje, gdy organizm rozkłada nieczysty wodzian chloralu."
 	color = "#387774"
 	ph = 7
@@ -366,7 +366,7 @@
 	return TRUE
 
 /datum/reagent/impurity/rosenol
-	name = "Rosenol"
+	name = "Rozenol"
 	description = "Dziwna niebieska ciecz powstająca w nieczystych reakcjach mindbreakera. Kiedyś nadużywana do pisania poezji."
 	color = "#0963ad"
 	ph = 7

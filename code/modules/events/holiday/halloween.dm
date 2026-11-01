@@ -24,15 +24,15 @@
 
 //spooky foods (you can't actually make these when it's not halloween)
 /obj/item/food/cookie/sugar/spookyskull
-	name = "skull cookie"
-	desc = "Spooky! It's got delicious calcium flavouring!"
+	name = "ciasteczko-czaszka"
+	desc = "Upiorne! Ma pyszny smak wapnia!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "skeletoncookie"
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cookie/sugar/spookycoffin
-	name = "coffin cookie"
-	desc = "Spooky! It's got delicious coffee flavouring!"
+	name = "ciasteczko-trumna"
+	desc = "Upiorne! Ma pyszny smak kawy!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "coffincookie"
 	crafting_complexity = FOOD_COMPLEXITY_2
@@ -40,8 +40,8 @@
 //spooky items
 
 /obj/item/storage/spooky
-	name = "trick-o-treat bag"
-	desc = "A pumpkin-shaped bag that holds all sorts of goodies!"
+	name = "torba na cukierek albo psikus"
+	desc = "Torba w kształcie dyni, w której mieszczą się wszelkie smakołyki!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "treatbag"
 
@@ -58,6 +58,6 @@
 		new type(src)
 
 /obj/item/card/emag/halloween
-	name = "hack-o'-lantern"
-	desc = "It's a pumpkin with a cryptographic sequencer sticking out."
+	name = "hakerska dynia"
+	desc = "Dynia, z której wystaje sekwencer kryptograficzny."
 	icon_state = "hack_o_lantern"

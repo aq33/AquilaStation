@@ -119,24 +119,24 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 
 /datum/antagonist/devil/get_admin_commands()
 	. = ..()
-	.["Toggle ascendable"] = CALLBACK(src,PROC_REF(admin_toggle_ascendable))
+	.["Przełącz możliwość wzniesienia"] = CALLBACK(src,PROC_REF(admin_toggle_ascendable))
 
 
 /datum/antagonist/devil/proc/admin_toggle_ascendable(mob/admin)
 	ascendable = !ascendable
-	message_admins("[key_name_admin(admin)] set [key_name_admin(owner)] devil ascendable to [ascendable]")
+	message_admins("[key_name_admin(admin)] ustawia możliwość wzniesienia diabła [key_name_admin(owner)] na [ascendable]")
 	log_admin("[key_name_admin(admin)] set [key_name(owner)] devil ascendable to [ascendable])")
 
 /datum/antagonist/devil/admin_add(datum/mind/new_owner,mob/admin)
-	switch(alert(admin,"Czy diabeł powinien móc wstąpić na wyższy poziom",,"Yes","No","Cancel"))
-		if("Yes")
+	switch(alert(admin,"Czy diabeł powinien móc wstąpić na wyższy poziom",,"Tak","Nie","Anuluj"))
+		if("Tak")
 			ascendable = TRUE
-		if("No")
+		if("Nie")
 			ascendable = FALSE
 		else
 			return
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has devil'ed [key_name_admin(new_owner)]. [ascendable ? "(Ascendable)":""]")
+	message_admins("[key_name_admin(admin)] zmienia [key_name_admin(new_owner)] w diabła. [ascendable ? "(może się wznieść)":""]")
 	log_admin("[key_name(admin)] has devil'ed [key_name(new_owner)]. [ascendable ? "(Ascendable)":""]")
 
 /datum/antagonist/devil/antag_listing_name()
@@ -289,15 +289,15 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	sleep(40)
 	if(!D)
 		return
-	to_chat(D, "<i><b>Yes!</b></i>")
+	to_chat(D, "<i><b>Tak!</b></i>")
 	sleep(10)
 	if(!D)
 		return
-	to_chat(D, "<i><b><span class='big'>YES!!</span></b></i>")
+	to_chat(D, "<i><b><span class='big'>TAK!!</span></b></i>")
 	sleep(10)
 	if(!D)
 		return
-	to_chat(D, "<i><b><span class='reallybig'>YE--</span></b></i>")
+	to_chat(D, "<i><b><span class='reallybig'>TA--</span></b></i>")
 	sleep(1)
 	if(!D)
 		return
@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 					to_chat(owner.current, "<span class='userdanger'>Niestety śmiertelnicy dokończyli rytuał, który uniemożliwia ci zmartwychwstanie.</span>")
 					return -1
 				else
-					to_chat(owner.current, "<span class='userdanger'>WE LIVE AGAIN!</span>")
+					to_chat(owner.current, "<span class='userdanger'>ŻYJEMY ZNOWU!</span>")
 					return hellish_resurrection(body)
 			else
 				to_chat(owner.current, "<span class='userdanger'>Niestety moc płynąca z twoich kontraktów wygasła. Nie masz już dość mocy, by zmartwychwstać.</span>")
@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		if(BANISH_RUNES)
 			if(body)
 				for(var/obj/effect/decal/cleanable/crayon/R in range(0,body))
-					if (R.name == "rune")
+					if (R.name == "runa") // AQUILA: nazwa runy kredką po polsku
 						return 1
 			return 0
 		if(BANISH_CANDLES)
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 				return 0
 
 /datum/antagonist/devil/proc/hellish_resurrection(mob/living/body)
-	message_admins("[key_name_admin(owner)] (true name is: [truename]) is resurrecting using hellish energy.</a>")
+	message_admins("[key_name_admin(owner)] (prawdziwe imię: [truename]) zmartwychwstaje dzięki piekielnej energii.</a>")
 	if(SOULVALUE < ARCH_THRESHOLD || !ascendable) // once ascended, arch devils do not go down in power by any means.
 		reviveNumber += LOSS_PER_DEATH
 		update_hud()
@@ -450,10 +450,10 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		if(!currentMob)
 			currentMob = owner.get_ghost()
 			if(!currentMob)
-				message_admins("[key_name_admin(owner)]'s devil resurrection failed due to client logoff.  Aborting.")
+				message_admins("Zmartwychwstanie diabła [key_name_admin(owner)] nie udaje się, bo klient się rozłączył. Przerywam.")
 				return -1
 		if(currentMob.mind != owner)
-			message_admins("[key_name_admin(owner)]'s devil resurrection failed due to becoming a new mob.  Aborting.")
+			message_admins("Zmartwychwstanie diabła [key_name_admin(owner)] nie udaje się, bo trafił do nowego moba. Przerywam.")
 			return -1
 		currentMob.change_mob_type( /mob/living/carbon/human, targetturf, null, 1)
 		var/mob/living/carbon/human/H = owner.current

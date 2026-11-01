@@ -1,7 +1,7 @@
 //Improwizowany karabin laserowy z aq33/tgstation, potrzebny do przepisu na laser locker mecha (aq33/tgstation#480)
 /obj/item/gun/energy/laser/makeshiftlasrifle
-	name = "makeshift laser rifle"
-	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, so the damage may be inconsistent."
+	name = "prowizoryczny karabin laserowy"
+	desc = "Prowizoryczny karabin strzelający laserami. Brakuje mu fabrycznej precyzji, więc obrażenia bywają nierówne."
 	icon = 'aquila/icons/obj/items/makeshift_laser.dmi'
 	icon_state = "makeshiftlas"
 	item_state = "makeshiftlas"
@@ -27,7 +27,7 @@
 		damage += 10
 
 /datum/crafting_recipe/makeshiftlasrifle
-	name = "Improvised Laser Rifle"
+	name = "Prowizoryczny karabin laserowy"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
 	reqs = list(/obj/item/stack/cable_coil = 15,
 				/obj/item/weaponcrafting/stock = 1,

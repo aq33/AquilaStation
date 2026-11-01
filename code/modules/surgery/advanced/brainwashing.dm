@@ -1,11 +1,11 @@
 /obj/item/disk/surgery/brainwashing
-	name = "Brainwashing Surgery Disk"
-	desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
+	name = "dysk chirurgiczny: pranie mózgu"
+	desc = "Dysk zawiera instrukcje, jak wdrukować w mózg rozkaz, który staje się głównym celem pacjenta."
 	surgeries = list(/datum/surgery/advanced/brainwashing)
 
 /datum/surgery/advanced/brainwashing
-	name = "Brainwashing"
-	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+	name = "Pranie mózgu"
+	desc = "Zabieg chirurgiczny, który wszczepia dyrektywę bezpośrednio w mózg pacjenta, czyniąc ją jego absolutnym priorytetem. Można ją usunąć implantem ochrony umysłu."
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,
@@ -26,7 +26,7 @@
 	return TRUE
 
 /datum/surgery_step/brainwash
-	name = "brainwash"
+	name = "wypierz mózg"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_WIRECUTTER = 50, /obj/item/stack/package_wrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 200
 	preop_sound = 'sound/surgery/hemostat1.ogg'
@@ -35,7 +35,7 @@
 	var/objective
 
 /datum/surgery_step/brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	objective = stripped_input(user, "Wybierz cel, który chcesz wdrukować w mózg ofiary.", "Brainwashing", null, MAX_MESSAGE_LEN)
+	objective = stripped_input(user, "Wybierz cel, który chcesz wdrukować w mózg ofiary.", "Pranie mózgu", null, MAX_MESSAGE_LEN)
 	if(!objective)
 		return -1
 	display_results(user, target, "<span class='notice'>Zaczynasz prać mózg [target]...</span>",
@@ -54,7 +54,7 @@
 		"[user] kończy operację mózgu [target].")
 	to_chat(target, "<span class='userdanger'>Twój umysł wypełnia nowy przymus... czujesz, że musisz go słuchać!</span>")
 	brainwash(target, objective)
-	message_admins("[ADMIN_LOOKUPFLW(user)] surgically brainwashed [ADMIN_LOOKUPFLW(target)] with the objective '[objective]'.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] chirurgicznie pierze mózg [ADMIN_LOOKUPFLW(target)], cel: „[objective]”.")
 	log_game("[key_name(user)] surgically brainwashed [key_name(target)] with the objective '[objective]'.")
 	return TRUE
 

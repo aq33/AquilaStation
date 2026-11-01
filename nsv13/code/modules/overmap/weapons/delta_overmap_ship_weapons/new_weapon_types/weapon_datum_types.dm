@@ -2,7 +2,7 @@
 
 //The big MAC. Fired by the gunner.
 /datum/overmap_ship_weapon/mac
-	name = "Naval Artillery"
+	name = "Artyleria okrętowa"
 	standard_projectile_type = /obj/item/projectile/bullet/mac_round
 	burst_size = 1
 	fire_delay = 3.5 SECONDS
@@ -23,14 +23,14 @@
 //A different MAC.. This one's a warcrime.
 
 /datum/overmap_ship_weapon/mac/dirty
-	name = "Dirty Naval Artillery"
+	name = "Brudna artyleria okrętowa"
 	standard_projectile_type = /obj/item/projectile/bullet/mac_round/dirty
 
 
 //Coaxial railguns
 
 /datum/overmap_ship_weapon/railgun
-	name = "Coaxial railguns"
+	name = "Współosiowe działa szynowe"
 	standard_projectile_type = /obj/item/projectile/bullet/railgun_slug
 	burst_size = 1
 	fire_delay = 1.5 SECONDS
@@ -52,7 +52,7 @@
 	return TRUE
 
 /datum/overmap_ship_weapon/hybrid_railgun //Railgun+
-	name = "Hybrid Railguns"
+	name = "Hybrydowe działa szynowe"
 	standard_projectile_type = /obj/item/projectile/bullet //This is ultra dodgy
 	burst_size = 1
 	fire_delay = 1 SECONDS
@@ -65,7 +65,7 @@
 
 //Deprecated by AMS. Still kept around for AI ships
 /datum/overmap_ship_weapon/torpedo_launcher
-	name = "Torpedo tubes"
+	name = "Wyrzutnie torped"
 	standard_projectile_type = /obj/item/projectile/guided_munition/torpedo
 	burst_size = 1
 	fire_delay = 0.5 SECONDS
@@ -100,14 +100,14 @@
 	return TRUE
 
 /datum/overmap_ship_weapon/torpedo_launcher/burst_disruptor
-	name = "Burst Disruption Torpedo tubes"
+	name = "Wyrzutnie torped zakłócających (seria)"
 	standard_projectile_type = /obj/item/projectile/guided_munition/torpedo/disruptor
 	burst_size = 3
 	fire_delay = 4 SECONDS
 
 
 /datum/overmap_ship_weapon/aa_guns
-	name = "Anti air guns"
+	name = "Działa przeciwlotnicze"
 	standard_projectile_type = /obj/item/projectile/bullet/aa_round
 	burst_size = 4
 	fire_delay = 0.6 SECONDS
@@ -121,7 +121,7 @@
 	used_nonphysical_ammo = OSW_AMMO_LIGHT
 
 /datum/overmap_ship_weapon/aa_guns/heavy
-	name = "Point defense batteries"
+	name = "Baterie obrony punktowej"
 	standard_projectile_type = /obj/item/projectile/bullet/aa_round/heavy
 	burst_size = 2
 	fire_delay = 0.25 SECONDS
@@ -131,7 +131,7 @@
 //Energy Weapons
 
 /datum/overmap_ship_weapon/burst_phaser // Little red laser
-	name = "Burst Phasers"
+	name = "Fazery seryjne"
 	standard_projectile_type = /obj/item/projectile/beam/laser/phaser
 	burst_size = 1
 	fire_delay = 0.5 SECONDS
@@ -148,7 +148,7 @@
 	sort_priority = 8
 
 /datum/overmap_ship_weapon/phaser // Big blue laser
-	name = "Phaser Banks"
+	name = "Baterie fazerów"
 	standard_projectile_type = /obj/item/projectile/beam/laser/heavylaser/phaser
 	burst_size = 1
 	fire_delay = 1.5 SECONDS
@@ -167,7 +167,7 @@
 	return TRUE
 
 /datum/overmap_ship_weapon/phaser_pd // Gauss laser
-	name = "Point-Defense Phasers"
+	name = "Fazery obrony punktowej"
 	standard_projectile_type = /obj/item/projectile/beam/laser/phaser/pd
 	burst_size = 4
 	burst_fire_delay = 0.25 SECONDS
@@ -183,7 +183,7 @@
 	sort_priority = 6
 
 /datum/overmap_ship_weapon/bsa
-	name = "Bluespace Artillery"
+	name = "Artyleria bluespace"
 	standard_projectile_type = /obj/item/projectile/beam/laser/heavylaser/bsa
 	burst_size = 1
 	fire_delay = 20 SECONDS
@@ -206,7 +206,7 @@
 //End Energy Weapons
 
 /datum/overmap_ship_weapon/missile_launcher
-	name = "Missile Launchers"
+	name = "Wyrzutnie rakiet"
 	standard_projectile_type = /obj/item/projectile/guided_munition/missile
 	burst_size = 1
 	fire_delay = 0.5 SECONDS
@@ -245,7 +245,7 @@
 	return TRUE
 
 /datum/overmap_ship_weapon/light_cannon
-	name = "light autocannon"
+	name = "lekkie działko automatyczne"
 	standard_projectile_type = /obj/item/projectile/bullet/light_cannon_round
 	burst_size = 2
 	fire_delay = 0.25 SECONDS
@@ -259,11 +259,11 @@
 	sort_priority = 4
 
 /datum/overmap_ship_weapon/light_cannon/integrated	//Weapon for ships big enough that autocannon ammo concerns shouldn't matter this much anymore. Changes their class from HEAVY to LIGHT
-	name = "integrated light autocannon"
+	name = "zintegrowane lekkie działko automatyczne"
 	used_nonphysical_ammo = OSW_AMMO_LIGHT
 
 /datum/overmap_ship_weapon/heavy_cannon
-	name = ".30 cal heavy cannon"
+	name = "ciężkie działko kal. .30"
 	standard_projectile_type = /obj/item/projectile/bullet/heavy_cannon_round
 	burst_size = 2
 	fire_delay = 0.5 SECONDS
@@ -279,7 +279,7 @@
 //Fighters
 
 /datum/overmap_ship_weapon/fighter
-	name = "Uh oh, this is a basetype, you shouldn't be seeing this!"
+	name = "Ojej, to typ bazowy, nie powinieneś tego widzieć!"
 	requires_physical_guns = FALSE
 	///Which weapon datum this uses. Fighters should only ever have two (Primary first, Secondary second)
 	var/weapon_slot = 0
@@ -303,7 +303,7 @@
 	return TRUE
 
 /datum/overmap_ship_weapon/fighter/primary
-	name = "Primary Equipment Mount"
+	name = "Główne stanowisko wyposażenia"
 	standard_projectile_type = /obj/item/projectile/bullet/light_cannon_round //This is overridden anyway
 	burst_size = 1
 	fire_delay = 0.25 SECONDS
@@ -318,7 +318,7 @@
 	can_modify_priority = FALSE
 
 /datum/overmap_ship_weapon/fighter/secondary
-	name = "Secondary Equipment Mount"
+	name = "Dodatkowe stanowisko wyposażenia"
 	standard_projectile_type = /obj/item/projectile/guided_munition/missile //This is overridden anyway
 	burst_size = 1
 	fire_delay = 0.5 SECONDS
@@ -341,7 +341,7 @@
 
 //You don't ever actually select this. Crew act as gunners.
 /datum/overmap_ship_weapon/gauss
-	name = "Gauss guns"
+	name = "Działa Gaussa"
 	standard_projectile_type = /obj/item/projectile/bullet/gauss_slug
 	burst_size = 2
 	fire_delay = 3 SECONDS
@@ -383,7 +383,7 @@
 	linked_overmap.relay(lastsound)
 
 /datum/overmap_ship_weapon/flak
-	name = "Flak cannon"
+	name = "Działo flak"
 	standard_projectile_type = /obj/item/projectile/bullet/flak
 	burst_size = 1
 	fire_delay = 0.5 SECONDS
@@ -435,7 +435,7 @@
 	nonphysical_fire_single_ammo_use = TRUE //Easier to balance with other AI weapons.
 
 /datum/overmap_ship_weapon/vls
-	name = "STS Missile System"
+	name = "System rakiet STS"
 	standard_projectile_type = /obj/item/projectile/guided_munition/missile
 	burst_size = 1
 	fire_delay = 0.35 SECONDS
@@ -465,7 +465,7 @@
 	cycle_ammo_filter(user)
 
 /datum/overmap_ship_weapon/laser_ams
-	name = "Laser Anti Missile System"
+	name = "Laserowy system antyrakietowy"
 	standard_projectile_type = /obj/item/projectile/beam/laser/point_defense
 	burst_size = 1
 	fire_delay = 0.35 SECONDS
@@ -473,7 +473,7 @@
 	select_alert = "<span class='notice'>Systemy namierzania laserowego: aktywne.</span>"
 	overmap_firing_sounds = list('nsv13/sound/effects/ship/burst_phaser.ogg', 'nsv13/sound/effects/ship/burst_phaser2.ogg')
 	overmap_select_sound = 'nsv13/sound/effects/ship/reload.ogg'
-	permitted_ams_modes = list( "Anti-missile countermeasures" = 1 )
+	permitted_ams_modes = list( "Środki przeciwrakietowe" = 1 )
 	weapon_control_flags = OSW_CONTROL_AUTONOMOUS
 	used_nonphysical_ammo = OSW_AMMO_LIGHT
 	sort_priority = 2
@@ -499,7 +499,7 @@
 */
 
 /datum/overmap_ship_weapon/twinmac
-	name = "Twin MAC" //Currently only used by the Fist of Sol
+	name = "Podwójne działo MAC" //Currently only used by the Fist of Sol
 	standard_projectile_type = /obj/item/projectile/bullet/mac_round
 	burst_size = 2
 	fire_delay = 3 SECONDS
@@ -510,7 +510,7 @@
 	sort_priority = 12
 
 /datum/overmap_ship_weapon/quadgauss
-	name = "Quad Gauss"
+	name = "Poczwórne działo Gaussa"
 	standard_projectile_type = /obj/item/projectile/bullet/gauss_slug
 	burst_size = 4
 	fire_delay = 0.5 SECONDS
@@ -523,7 +523,7 @@
 	sort_priority = 6
 
 /datum/overmap_ship_weapon/hailstorm
-	name = "Hailstorm System"
+	name = "System Hailstorm"
 	standard_projectile_type = /obj/item/projectile/bullet/hailstorm_bullet
 	burst_size = 80
 	fire_delay = 20 SECONDS
@@ -535,7 +535,7 @@
 	sort_priority = 4
 
 /datum/overmap_ship_weapon/prototype_bsa
-	name = "Prototype Bluespace Artillery"
+	name = "Prototypowa artyleria bluespace"
 	standard_projectile_type = /obj/item/projectile/bullet/prototype_bsa
 	burst_size = 1
 	fire_delay = 22 SECONDS

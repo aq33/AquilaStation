@@ -1,6 +1,6 @@
 /obj/machinery/computer/apc_control
-	name = "power flow control console"
-	desc = "Used to remotely control the flow of power to different parts of the station."
+	name = "konsola sterowania przepływem energii"
+	desc = "Służy do zdalnego sterowania przepływem energii do różnych części stacji."
 	icon_screen = "solar"
 	icon_keyboard = "power_key"
 	req_access = list(ACCESS_ENGINE)
@@ -142,7 +142,7 @@
 			APC.remote_control = src
 			APC.ui_interact(user)
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-			message_admins("[ADMIN_LOOKUPFLW(user)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
+			message_admins("[ADMIN_LOOKUPFLW(user)] zdalnie łączy się z [APC] za pomocą [src] w [AREACOORD(src)].")
 			log_game("[key_name(user)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
 			if(APC.locked)
 				APC.say("Wykryto zdalny dostęp. Interfejs odblokowany.")

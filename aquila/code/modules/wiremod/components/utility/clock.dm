@@ -4,7 +4,7 @@
  * Fires every tick of the circuit timer SS
  */
 /obj/item/circuit_component/clock
-	display_name = "Clock"
+	display_name = "Zegar"
 	desc = "Komponent, który wyzwala się cyklicznie."
 	category = "Utility"
 

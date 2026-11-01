@@ -2,7 +2,7 @@
 	set_module = /obj/item/robot_module/borgi
 
 /obj/item/robot_module
-	name = "Default"
+	name = "Domyślny"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	w_class = WEIGHT_CLASS_GIGANTIC
@@ -311,7 +311,7 @@
 	return TRUE
 
 /obj/item/robot_module/standard
-	name = "Standard"
+	name = "Standardowy"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/borghypo/epi,
@@ -342,7 +342,7 @@
 	hat_offset = -3
 
 /obj/item/robot_module/medical
-	name = "Medical"
+	name = "Medyczny"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
@@ -377,7 +377,7 @@
 	hat_offset = 3
 
 /obj/item/robot_module/engineering
-	name = "Engineering"
+	name = "Inżynieryjny"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,
@@ -419,7 +419,7 @@
 	hat_offset = -4
 
 /obj/item/robot_module/deathsquad
-	name = "CentCom"
+	name = "Centrala"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -439,7 +439,7 @@
 
 
 /obj/item/robot_module/security
-	name = "Security"
+	name = "Ochrona"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -476,7 +476,7 @@
 			T.charge_timer = 0
 
 /obj/item/robot_module/peacekeeper
-	name = "Peacekeeper"
+	name = "Rozjemca"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/cookiesynth,
@@ -576,7 +576,7 @@
 	hat_offset = -2
 
 /obj/item/robot_module/butler
-	name = "Service"
+	name = "Usługowy"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -607,8 +607,8 @@
 	hat_offset = 0
 	//NSV13 - Borg Skin Framework - Start
 	borg_skins = list(
-		"Waitress" = list(SKIN_ICON_STATE = "service_f"),
-		"Butler" = list(SKIN_ICON_STATE = "service_m"),
+		"Kelnerka" = list(SKIN_ICON_STATE = "service_f"),
+		"Kamerdyner" = list(SKIN_ICON_STATE = "service_m"),
 		"Bro" = list(SKIN_ICON_STATE = "brobot"),
 		"Kent" = list(SKIN_ICON_STATE = "kent", SKIN_LIGHT_KEY = "medical", SKIN_HAT_OFFSET = 3),
 		"Tophat" = list(SKIN_ICON_STATE = "tophat", SKIN_LIGHT_KEY = NONE, SKIN_HAT_OFFSET = INFINITY),
@@ -644,7 +644,7 @@
 	moduleselect_icon = "standard"
 
 /obj/item/robot_module/miner
-	name = "Miner"
+	name = "Górniczy"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,
@@ -671,12 +671,12 @@
 	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
 	//NSV13 - Borg Skin Framework - Start
 	borg_skins = list(
-		"Lavaland Miner" = list(SKIN_ICON_STATE = "miner"),
-		"Asteroid Miner" = list(SKIN_ICON_STATE = "minerOLD", SKIN_LIGHT_KEY = "miner"),
-		"Spider Miner" = list(SKIN_ICON_STATE = "spidermin"),
+		"Górnik z Lavalandu" = list(SKIN_ICON_STATE = "miner"),
+		"Górnik z asteroid" = list(SKIN_ICON_STATE = "minerOLD", SKIN_LIGHT_KEY = "miner"),
+		"Górnik-pająk" = list(SKIN_ICON_STATE = "spidermin"),
 		// AQ EDIT START
-		"Ancient Miner" = list(SKIN_ICON_STATE = "minerbot"),
-		"Droid Miner" = list(SKIN_ICON_STATE = "droid-miner"),
+		"Pradawny górnik" = list(SKIN_ICON_STATE = "minerbot"),
+		"Droid górniczy" = list(SKIN_ICON_STATE = "droid-miner"),
 		"MarinaMN" = list(SKIN_ICON_STATE = "marinaMN"),
 		"Sleekminer" = list(SKIN_ICON_STATE = "sleekminer"),
 		"Servbot" = list(SKIN_ICON_STATE = "servbot-miner"),
@@ -702,7 +702,7 @@
 	return ..()
 
 /obj/item/robot_module/syndicate
-	name = "Syndicate Assault"
+	name = "Szturmowy Syndykatu"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/melee/transforming/energy/sword/cyborg,
@@ -729,7 +729,7 @@
 	Syndi.faction += "silicon" //ai is your bff now!
 
 /obj/item/robot_module/syndicate_medical
-	name = "Syndicate Medical"
+	name = "Medyczny Syndykatu"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/borghypo/syndicate,
@@ -757,7 +757,7 @@
 	hat_offset = 3
 
 /obj/item/robot_module/saboteur
-	name = "Syndicate Saboteur"
+	name = "Sabotażowy Syndykatu"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/thermal,
@@ -791,7 +791,7 @@
 	canDispose = TRUE
 
 /datum/robot_energy_storage
-	var/name = "Generic energy storage"
+	var/name = "Zwykły magazyn energii"
 	var/max_energy = 30000
 	var/recharge_rate = 1000
 	var/energy
@@ -815,25 +815,25 @@
 	energy = min(energy + amount, max_energy)
 
 /datum/robot_energy_storage/metal
-	name = "Metal Synthesizer"
+	name = "Syntezator metalu"
 
 /datum/robot_energy_storage/glass
-	name = "Glass Synthesizer"
+	name = "Syntezator szkła"
 
 /datum/robot_energy_storage/brass
-	name = "Brass Synthesizer"
+	name = "Syntezator mosiądzu"
 
 /datum/robot_energy_storage/wire
 	max_energy = 50
 	recharge_rate = 2
-	name = "Wire Synthesizer"
+	name = "Syntezator kabli"
 
 /datum/robot_energy_storage/medical
 	max_energy = 2500
 	recharge_rate = 250
-	name = "Medical Synthesizer"
+	name = "Syntezator medyczny"
 
 /datum/robot_energy_storage/beacon
 	max_energy = 30
 	recharge_rate = 1
-	name = "Marker Beacon Storage"
+	name = "Magazyn boi znacznikowych"

@@ -372,7 +372,7 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_aler.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 	owner.announce_objectives()
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Changeling",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Zmiennokształtny",
 		"Przybrano postać [owner.current] i przeniknięto na statek. Użyj mocy zmiennokształtnego, żeby wykonać cele.")
 
 /datum/antagonist/changeling/farewell()
@@ -479,11 +479,11 @@
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
 	if(stored_profiles.len && (owner.current.real_name != first_prof.name))
-		.["Transform to initial appearance."] = CALLBACK(src,PROC_REF(admin_restore_appearance))
+		.["Przywróć pierwotny wygląd."] = CALLBACK(src,PROC_REF(admin_restore_appearance))
 
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))
-		to_chat(admin, "<span class='danger'>Resetting DNA failed!</span>")
+		to_chat(admin, "<span class='danger'>Nie udało się przywrócić DNA!</span>")
 	else
 		var/mob/living/carbon/C = owner.current
 		first_prof.dna.transfer_identity(C, transfer_SE=1)
@@ -581,4 +581,4 @@
 	return ..() + "([changelingID])"
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
-	return ..() + "(Xenobio)"
+	return ..() + "(Ksenobio)"

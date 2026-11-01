@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/bat
-	name = "Space Bat"
-	desc = "A rare breed of bat which roosts in spaceships, probably not vampiric."
+	name = "kosmiczny nietoperz"
+	desc = "Rzadka odmiana nietoperza, która gnieździ się na statkach kosmicznych. Raczej nie jest wampirem."
 	icon_state = "bat"
 	icon_living = "bat"
 	icon_dead = "bat_dead"
@@ -38,14 +38,14 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/bat/vampire
-	desc = "A rare breed of bat which roosts in spaceships.\nLooks a little... bloody."
+	desc = "Rzadka odmiana nietoperza, która gnieździ się na statkach kosmicznych.\nWygląda na trochę... zakrwawiony."
 	speed = -1.5
 
 
 /mob/living/simple_animal/hostile/retaliate/bat/sgt_araneus //Despite being a bat for... reasons, this is now a spider, and is one of the HoS' pets.
-	name = "Sergeant Araneus"
-	real_name = "Sergeant Araneus"
-	desc = "A fierce companion of the Head of Security, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine."
+	name = "Sierżant Araneus"
+	real_name = "Sierżant Araneus"
+	desc = "Groźny towarzysz Komendanta. Ten pająk został starannie wyszkolony przez specjalistów Nanotrasen. Jego paciorkowate, wpatrzone oczka przyprawiają cię o dreszcze."
 	speak_emote = list("terkocze")
 	emote_hear = list("terkocze")
 	faction = list("spiders")

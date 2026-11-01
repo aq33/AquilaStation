@@ -2,8 +2,8 @@
 //Syndicate ships go here
 
 /obj/structure/overmap/syndicate
-	name = "syndicate ship"
-	desc = "A syndicate owned space faring vessel, it's painted with an ominous black and red motif."
+	name = "okręt Syndykatu"
+	desc = "Jednostka kosmiczna należąca do Syndykatu, pomalowana w złowieszcze czarno-czerwone barwy."
 	icon = 'nsv13/icons/overmap/default.dmi'
 	icon_state = "default"
 	faction = "syndicate"
@@ -22,7 +22,7 @@
 	name = "SSV Nebuchadnezzar"
 	icon = 'nsv13/icons/overmap/syndicate/tuningfork.dmi'
 	icon_state = "tuningfork"
-	desc = "A highly modular cruiser setup which, despite its size, is capable of delivering devastating firepower."
+	desc = "Wysoce modułowy krążownik, który mimo swoich rozmiarów dysponuje niszczycielską siłą ognia."
 	mass = MASS_MEDIUM
 	sprite_size = 96
 	damage_states = FALSE
@@ -69,7 +69,7 @@
 //AI Versions
 
 /obj/structure/overmap/syndicate/ai //Generic bad guy #10000. GRR.
-	name = "Mako class patrol frigate"
+	name = "fregata patrolowa klasy Mako"
 	icon = 'nsv13/icons/overmap/new/syndicate/frigate.dmi'
 	icon_state = "mako"
 	ai_controlled = TRUE
@@ -103,19 +103,19 @@
 	. = ..()
 
 /datum/map_template/boarding
-    name = "Mako class patrol frigate (interior)"
+    name = "fregata patrolowa klasy Mako (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/mako.dmm"
 
 /datum/map_template/boarding/mako
-    name = "Mako class patrol frigate (interior)"
+    name = "fregata patrolowa klasy Mako (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/mako.dmm"
 
 /datum/map_template/boarding/mako_carrier
-    name = "Sturgeon class escort carrier (interior)"
+    name = "lotniskowiec eskortowy klasy Sturgeon (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/mako_carrier.dmm"
 
 /obj/structure/overmap/syndicate/ai/mako_carrier
-	name = "Sturgeon class escort carrier"
+	name = "lotniskowiec eskortowy klasy Sturgeon"
 	icon_state = "mako_carrier"
 	ai_can_launch_fighters = TRUE //AI variable. Allows your ai ships to spawn fighter craft
 	ai_fighter_type = list(/obj/structure/overmap/syndicate/ai/fighter)
@@ -126,7 +126,7 @@
 	possible_interior_maps = list(/datum/map_template/boarding/mako_carrier)
 
 /obj/structure/overmap/syndicate/ai/mako_flak
-	name = "Mauler class flak frigate"
+	name = "fregata przeciwlotnicza klasy Mauler"
 	icon_state = "mako_flak"
 	mines_left = 10
 	mass = MASS_MEDIUM
@@ -137,11 +137,11 @@
 	new /datum/overmap_ship_weapon/flak(src)
 
 /datum/map_template/boarding/nuclear
-    name = "Hellfire destroyer (interior)"
+    name = "niszczyciel Hellfire (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/nukefrigate.dmm"
 
 /obj/structure/overmap/syndicate/ai/conflagration
-	name = "Hellfire destroyer"
+	name = "niszczyciel Hellfire"
 	icon = 'nsv13/icons/overmap/new/syndicate/nuke_frigate.dmi'
 	icon_state = "megamouth"
 	bound_height = 160
@@ -163,7 +163,7 @@
 	new /datum/overmap_ship_weapon/pdc_mount(src)
 
 /obj/structure/overmap/syndicate/ai/conflagration/elite
-	name = "Nightmare class hellfire deterrent"
+	name = "odstraszacz Hellfire klasy Nightmare"
 	icon_state = "megamouth_elite"
 	shots_left = 15
 	torpedoes = 10
@@ -176,11 +176,11 @@
 	combat_dice_type = /datum/combat_dice/destroyer/conflagration
 
 /datum/map_template/boarding/destroyer
-    name = "Hammerhead class missile destroyer (interior)"
+    name = "niszczyciel rakietowy klasy Hammerhead (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/destroyer.dmm"
 
 /obj/structure/overmap/syndicate/ai/destroyer
-	name = "Hammerhead class missile destroyer"
+	name = "niszczyciel rakietowy klasy Hammerhead"
 	icon = 'nsv13/icons/overmap/new/syndicate/destroyer.dmi'
 	icon_state = "hammerhead_flak"
 	bound_height = 96
@@ -208,7 +208,7 @@
 	impact_powers[2] *= 2.5 // x 2.5 other damage
 
 /obj/structure/overmap/syndicate/ai/destroyer/elite
-	name = "Special Ops Torpedo Destroyer"
+	name = "niszczyciel torpedowy sił specjalnych"
 	icon_state = "hammerhead_elite"
 	obj_integrity = 900
 	max_integrity = 900
@@ -224,7 +224,7 @@
 	new /datum/overmap_ship_weapon/torpedo_launcher(src)
 
 /obj/structure/overmap/syndicate/ai/destroyer/flak
-	name = "Hammerhead class flak destroyer"
+	name = "niszczyciel przeciwlotniczy klasy Hammerhead"
 	icon_state = "hammerhead"
 	mass = MASS_LARGE
 	missiles = 0
@@ -241,7 +241,7 @@
 	new /datum/overmap_ship_weapon/pdc_mount(src)
 
 /obj/structure/overmap/syndicate/ai/cruiser
-	name = "Barracuda class tactical cruiser"
+	name = "krążownik taktyczny klasy Barracuda"
 	icon = 'nsv13/icons/overmap/new/syndicate/cruiser.dmi'
 	icon_state = "barracuda_flak"
 	bound_height = 128
@@ -260,7 +260,7 @@
 	new /datum/overmap_ship_weapon/mac(src)
 
 /obj/structure/overmap/syndicate/ai/cruiser/elite
-	name = "Special ops tactical cruiser"
+	name = "krążownik taktyczny sił specjalnych"
 	icon_state = "barracuda_elite"
 	armor = list("overmap_light" = 90, "overmap_medium" = 70, "overmap_heavy" = 30)
 	obj_integrity = 1000
@@ -274,11 +274,11 @@
 	new /datum/overmap_ship_weapon/missile_launcher(src)
 
 /datum/map_template/boarding/carrier
-	name = "carrier (interior)"
+	name = "lotniskowiec (wnętrze)"
 	mappath = "_maps/templates/boarding/syndicate/carrier.dmm"
 
 /obj/structure/overmap/syndicate/ai/carrier
-	name = "Syndicate combat carrier"
+	name = "lotniskowiec bojowy Syndykatu"
 	icon = 'nsv13/icons/overmap/new/syndicate/carrier.dmi'
 	icon_state = "redtip"
 	mass = MASS_LARGE
@@ -300,7 +300,7 @@
 	possible_interior_maps = list(/datum/map_template/boarding/carrier)
 
 /obj/structure/overmap/syndicate/ai/carrier/elite
-	name = "Special ops escort carrier"
+	name = "lotniskowiec eskortowy sił specjalnych"
 	icon_state = "redtip_elite"
 	bounty = 5000
 	obj_integrity = 1400
@@ -320,7 +320,7 @@
 
 /obj/structure/overmap/syndicate/ai/battleship //Larger ship which is much harder to kill
 	name = "SSV Sol's Revenge"
-	desc = "Death incarnate."
+	desc = "Wcielona śmierć."
 	icon = 'nsv13/icons/overmap/syndicate/battleship.dmi'
 	icon_state = "battleship"
 	mass = MASS_TITAN
@@ -347,8 +347,8 @@
 	new /datum/overmap_ship_weapon/mac(src)
 
 /obj/structure/overmap/syndicate/ai/assault_cruiser //A big box of tank which is hard to take down, and lethal up close.
-	name = "Inquisitior class assault cruiser"
-	desc = "A heavily armoured cruiser designed for close quarters engagement."
+	name = "krążownik szturmowy klasy Inquisitor"
+	desc = "Ciężko opancerzony krążownik zaprojektowany do walki na bliski dystans."
 	icon_state = "assault"
 	mass = MASS_MEDIUM_LARGE
 	sprite_size = 48
@@ -369,11 +369,11 @@
 	new /datum/overmap_ship_weapon/gauss(src) //AI ships want to be able to use gauss too. I say let them...
 
 /datum/map_template/boarding/boarding_frigate
-    name = "Astartes class marine frigate (interior)"
+    name = "fregata desantowa klasy Astartes (wnętrze)"
     mappath = "_maps/templates/boarding/syndicate/marine_frigate.dmm"
 
 /obj/structure/overmap/syndicate/ai/assault_cruiser/boarding_frigate //A big box of tank which is hard to take down, and lethal up close.
-	name = "Astartes class marine frigate"
+	name = "fregata desantowa klasy Astartes"
 	desc = "Deus Vult"
 	icon = 'nsv13/icons/overmap/new/syndicate/frigate.dmi'
 	icon_state = "boarding"
@@ -396,8 +396,8 @@
 	new /datum/overmap_ship_weapon/missile_launcher(src)
 
 /obj/structure/overmap/syndicate/ai/gunboat
-	name = "Syndicate anti-air frigate"
-	desc = "A nimble, but lightly armoured frigate which specialises in taking down enemy fighters."
+	name = "fregata przeciwlotnicza Syndykatu"
+	desc = "Zwinna, ale lekko opancerzona fregata, wyspecjalizowana w zestrzeliwaniu wrogich myśliwców."
 	icon = 'nsv13/icons/overmap/syndicate/gunboat.dmi'
 	icon_state = "gunboat"
 	mass = MASS_MEDIUM
@@ -423,8 +423,8 @@
 	new /datum/overmap_ship_weapon/missile_launcher(src)
 
 /obj/structure/overmap/syndicate/ai/submarine
-	name = "Aspala class sub-spacemarine"
-	desc = "A highly advanced Syndicate cruiser which can mask its sensor signature drastically."
+	name = "okręt podprzestrzenny klasy Aspala"
+	desc = "Wysoce zaawansowany krążownik Syndykatu, który potrafi drastycznie maskować swoją sygnaturę dla czujników."
 	icon = 'nsv13/icons/overmap/new/syndicate/cruiser.dmi'
 	icon_state = "aspala"
 	mass = MASS_MEDIUM
@@ -456,7 +456,7 @@
 	new /datum/overmap_ship_weapon/missile_launcher(src)
 
 /obj/structure/overmap/syndicate/ai/submarine/elite
-	name = "Stalker class sub-spacemarine"
+	name = "okręt podprzestrzenny klasy Stalker"
 	icon_state = "aspala_elite"
 	obj_integrity = 1000
 	max_integrity = 1000 //Max health
@@ -483,8 +483,8 @@
 	max_torpedoes = 3
 
 /obj/structure/overmap/syndicate/ai/kadesh	//I sure wonder what this one does....
-	name = "Kadesh class advanced cruiser"
-	desc = "An experimental Syndicate cruiser capable of projecting energy bursts powerful enough to disrupt drive systems."
+	name = "zaawansowany krążownik klasy Kadesh"
+	desc = "Eksperymentalny krążownik Syndykatu, który emituje impulsy energii zdolne zakłócić systemy napędowe."
 	obj_integrity = 1200	//Pretty thick hull due to it being a priority target
 	max_integrity = 1200
 	icon = 'nsv13/icons/overmap/syndicate/syn_light_cruiser.dmi'
@@ -522,7 +522,7 @@
 	name = "SSV Fist of Sol"
 	icon = 'nsv13/icons/overmap/syndicate/tuningfork.dmi'
 	icon_state = "tuningfork"
-	desc = "A terrifying vessel packing every inch of the Syndicate's abhorrent arsenal."
+	desc = "Przerażająca jednostka, w której każdy cal wypełnia odrażający arsenał Syndykatu."
 	mass = MASS_LARGE
 	sprite_size = 128
 	bound_width = 128
@@ -567,7 +567,7 @@
 
 /obj/structure/overmap/hostile/ai/alicorn
 	name = "SGV Alicorn"
-	desc = "One Billion Lives!"
+	desc = "Miliard istnień!"
 	icon = 'nsv13/icons/overmap/alicorn.dmi'
 	icon_state = "alicorn"
 	faction = "hostile"
@@ -606,7 +606,7 @@
 	name = "[name] ([rand(0,999)])"
 
 /obj/structure/overmap/hostile/ai/fighter
-	name = "Rattlesnake Strike fighter"
+	name = "myśliwiec uderzeniowy Rattlesnake"
 	icon = 'nsv13/icons/overmap/alicorn.dmi'
 	icon_state = "alifighter"
 	damage_states = FALSE
@@ -633,7 +633,7 @@
 
 
 /obj/structure/overmap/syndicate/ai/fighter //need custom AI behaviour to escort bombers if applicable
-	name = "Syndicate interceptor"
+	name = "myśliwiec przechwytujący Syndykatu"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/fighter_overmap.dmi'
 	icon_state = "fighter_syndicate"
 	damage_states = FALSE
@@ -659,7 +659,7 @@
 
 
 /obj/structure/overmap/syndicate/ai/bomber //need custom AI behaviour to target capitals only
-	name = "Syndicate Bomber"
+	name = "bombowiec Syndykatu"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/fighter_overmap.dmi'
 	icon_state = "bomber_syndicate"
 	damage_states = FALSE

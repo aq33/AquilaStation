@@ -1,8 +1,8 @@
 // A vendor machine for modular computer portable devices - Laptops and Tablets
 
 /obj/machinery/lapvend
-	name = "computer vendor"
-	desc = "A vending machine with microfabricator capable of dispensing various NT-branded computers."
+	name = "automat z komputerami"
+	desc = "Automat z mikrofabrykatorem, który wydaje różne komputery marki NT."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
 	layer = 2.9

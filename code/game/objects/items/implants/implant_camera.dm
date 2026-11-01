@@ -1,6 +1,6 @@
 /obj/item/implant/camera
-	name = "camera implant"
-	desc = "Watchful eye inside you."
+	name = "implant kamery"
+	desc = "Czujne oko w twoim wnętrzu."
 	activated = FALSE
 	var/obj/machinery/camera/camera
 
@@ -22,10 +22,10 @@
 	return FALSE
 
 /obj/item/implanter/camera
-	name = "implanter (camera)"
+	name = "implanter (kamera)"
 	imp_type = /obj/item/implant/camera
 
 /obj/item/implantcase/camera
-	name = "implant case - 'Camera'"
-	desc = "A glass case containing a camera implant."
+	name = "etui na implant – „Kamera”"
+	desc = "Szklane etui z implantem kamery."
 	imp_type = /obj/item/implant/camera

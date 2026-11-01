@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate
-	name = "tactical turtleneck"
-	desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
+	name = "taktyczny golf"
+	desc = "Nijaki i nieco podejrzanie wyglądający golf ze spodniami bojówkami w cyfrowym kamuflażu."
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	has_sensor = NO_SENSORS
@@ -8,43 +8,43 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/syndicate/tacticool
-	name = "tacticool turtleneck"
-	desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+	name = "taktycool golf"
+	desc = "Na sam widok masz ochotę kupić SKS-a, pójść do lasu i -operować-."
 	icon_state = "tactifool"
 	item_state = "bl_suit"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/under/syndicate/sniper
-	name = "Tactical turtleneck suit"
-	desc = "A double seamed tactical turtleneck disguised as a civilian grade silk suit. Intended for the most formal operator. The collar is really sharp."
+	name = "taktyczny garnitur z golfem"
+	desc = "Podwójnie szyty taktyczny golf udający cywilny jedwabny garnitur. Dla najbardziej eleganckiego operatora. Kołnierz jest naprawdę ostry."
 	icon_state = "really_black_suit"
 	item_state = "bl_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/syndicate/camo
-	name = "camouflage fatigues"
-	desc = "A green military camouflage uniform."
+	name = "mundur polowy moro"
+	desc = "Zielony wojskowy mundur maskujący."
 	icon_state = "camogreen"
 	item_state = "g_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/syndicate/soviet
-	name = "Ratnik 5 tracksuit"
-	desc = "Badly translated labels tell you to clean this in Vodka. Great for squatting in."
+	name = "dres Ratnik 5"
+	desc = "Źle przetłumaczone metki każą prać go w wódce. Świetny do kucania."
 	icon_state = "trackpants"
 	can_adjust = FALSE
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 20, "bleed" = 15)
 	resistance_flags = NONE
 
 /obj/item/clothing/under/syndicate/combat
-	name = "combat uniform"
-	desc = "With a suit lined with this many pockets, you are ready to operate."
+	name = "mundur bojowy"
+	desc = "Z tyloma kieszeniami jesteś gotów do działania."
 	icon_state = "syndicate_combat"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/syndicate/rus_army
-	name = "advanced military tracksuit"
-	desc = "Military grade tracksuits for frontline squatting."
+	name = "zaawansowany wojskowy dres"
+	desc = "Wojskowy dres do kucania na pierwszej linii frontu."
 	icon_state = "rus_under"
 	can_adjust = FALSE
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 20, "bleed" = 15)

@@ -1,6 +1,6 @@
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "\improper Lizardperson"
+	name = "\improper Jaszczur"
 	id = SPECIES_LIZARD
 	bodyflag = FLAG_LIZARD
 	default_color = "00FF00"
@@ -57,7 +57,7 @@
  Lizard subspecies: ASHWALKERS
 */
 /datum/species/lizard/ashwalker
-	name = "Ash Walker"
+	name = "Popielny wędrowiec"
 	id = "ashlizard"
 	examine_limb_id = SPECIES_LIZARD
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS, NO_UNDERWEAR)

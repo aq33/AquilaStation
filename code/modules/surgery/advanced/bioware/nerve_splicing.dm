@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/nerve_splicing
-	name = "Nerve Splicing"
-	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
+	name = "Łączenie nerwów"
+	desc = "Zabieg chirurgiczny, który łączy nerwy pacjenta, czyniąc go odporniejszym na ogłuszenie."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -12,7 +12,7 @@
 	bioware_target = BIOWARE_NERVES
 
 /datum/surgery_step/splice_nerves
-	name = "splice nerves"
+	name = "połącz nerwy"
 	accept_hand = TRUE
 	time = 155
 
@@ -29,8 +29,8 @@
 	return TRUE
 
 /datum/bioware/spliced_nerves
-	name = "Spliced Nerves"
-	desc = "Nerves are connected to each other multiple times, greatly reducing the impact of stunning effects."
+	name = "Połączone nerwy"
+	desc = "Nerwy są wielokrotnie połączone ze sobą, co znacznie ogranicza działanie efektów ogłuszających."
 	mod_type = BIOWARE_NERVES
 
 /datum/bioware/spliced_nerves/on_gain()

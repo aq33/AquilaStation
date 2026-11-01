@@ -1,3 +1,3 @@
 /obj/effect/projectile/impact/emitter
-	name = "emitter impact"
+	name = "trafienie emitera"
 	icon_state = "impact_emitter"

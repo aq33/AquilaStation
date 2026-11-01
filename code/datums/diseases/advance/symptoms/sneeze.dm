@@ -16,7 +16,7 @@ Bonus
 //////////////////////////////////////
 */
 /datum/symptom/sneeze
-	name = "Sneezing"
+	name = "Kichanie"
 	desc = "Wirus podrażnia jamę nosową, przez co nosiciel czasem kicha."
 	stealth = -2
 	resistance = 3

@@ -3,8 +3,8 @@
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
 /obj/item/food/muffin
-	name = "muffin"
-	desc = "A delicious and spongy little cake."
+	name = "muffinka"
+	desc = "Pyszne, puszyste małe ciastko."
 	icon_state = "muffin"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -17,26 +17,26 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/muffin/berry
-	name = "berry muffin"
+	name = "muffinka jagodowa"
 	icon_state = "berrymuffin"
-	desc = "A delicious and spongy little cake, with berries."
+	desc = "Pyszne, puszyste małe ciastko z jagodami."
 	tastes = list("muffinka" = 3, "jagoda" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR | BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/muffin/booberry
-	name = "booberry muffin"
+	name = "upiorna muffinka"
 	icon_state = "berrymuffin"
 	alpha = 125
-	desc = "My stomach is a graveyard! No living being can quench my bloodthirst!"
+	desc = "Mój żołądek to cmentarz! Żadna żywa istota nie ugasi mojej żądzy krwi!"
 	tastes = list("muffinka" = 3, "upiorność" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR | BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/muffin/moffin
-	name = "moffin"
+	name = "ćmuffinka"
 	icon_state = "moffin_1"
-	desc = "A delicious and spongy little cake."
+	desc = "Pyszne, puszyste małe ciastko."
 	tastes = list("muffinka" = 3, "kurz" = 1, "kłaczki" = 1)
 	foodtypes = CLOTH | GRAIN | SUGAR | BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_2
@@ -64,8 +64,8 @@
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
 /obj/item/food/waffles
-	name = "waffles"
-	desc = "Mmm, waffles."
+	name = "gofry"
+	desc = "Mmm, gofry."
 	icon_state = "waffles"
 	trash_type = /obj/item/trash/waffles
 	food_reagents = list(
@@ -79,7 +79,7 @@
 
 /obj/item/food/soylentgreen
 	name = "\improper Soylent Green"
-	desc = "Not made of people. Honest*." //Totally people.
+	desc = "Nie są zrobione z ludzi. Słowo*." //Totally people.
 	icon_state = "soylent_green"
 	trash_type = /obj/item/trash/waffles
 	food_reagents = list(
@@ -95,7 +95,7 @@
 
 /obj/item/food/soylenviridians
 	name = "\improper Soylent Virdians"
-	desc = "Not made of people. Honest." //Actually honest for once.
+	desc = "Nie są zrobione z ludzi. Słowo." //Actually honest for once.
 	icon_state = "soylent_yellow"
 	trash_type = /obj/item/trash/waffles
 	food_reagents = list(
@@ -109,8 +109,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/rofflewaffles
-	name = "roffle waffles"
-	desc = "Waffles from Roffle. Co."
+	name = "gofry Roffle"
+	desc = "Gofry od Roffle Co."
 	icon_state = "rofflewaffles"
 	trash_type = /obj/item/trash/waffles
 	bite_consumption = 4
@@ -127,8 +127,8 @@
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
 /obj/item/food/cookie
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "ciasteczko"
+	desc = "CIASTECZKO!!!"
 	icon_state = "COOKIE!!!"
 	bite_consumption = 1
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -143,8 +143,8 @@
 	AddElement(/datum/element/dunkable, 10)
 
 /obj/item/food/fortunecookie
-	name = "fortune cookie"
-	desc = "A true prophecy in each cookie!"
+	name = "ciasteczko z wróżbą"
+	desc = "W każdym ciasteczku prawdziwa przepowiednia!"
 	icon_state = "fortune_cookie"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("ciasteczko" = 1)
@@ -175,8 +175,8 @@
 			user.put_in_hands(fortune)
 
 /obj/item/food/cookie/sugar
-	name = "sugar cookie"
-	desc = "Just like your little sister used to make."
+	name = "ciasteczko cukrowe"
+	desc = "Zupełnie jak te, które piekła twoja młodsza siostra."
 	icon_state = "sugarcookie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -187,8 +187,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cookie/oatmeal
-	name = "oatmeal cookie"
-	desc = "The best of both cookie and oat."
+	name = "ciasteczko owsiane"
+	desc = "To, co najlepsze w ciasteczkach i owsie."
 	icon_state = "oatmealcookie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -199,8 +199,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cookie/raisin
-	name = "raisin cookie"
-	desc = "Why wouldn't you put raisins on a cookie?"
+	name = "ciasteczko z rodzynkami"
+	desc = "Czemu nie dodać rodzynek do ciasteczka?"
 	icon_state = "raisincookie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -211,8 +211,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/chococornet
-	name = "chocolate cornet"
-	desc = "Which side's the head, the fat end or the thin end?"
+	name = "rożek czekoladowy"
+	desc = "Która strona to głowa, gruby koniec czy cienki?"
 	icon_state = "chococornet"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -224,8 +224,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/poppypretzel
-	name = "poppy pretzel"
-	desc = "It's all twisted up!"
+	name = "precel z makiem"
+	desc = "Jest cały poskręcany!"
 	icon_state = "poppypretzel"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -237,8 +237,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/plumphelmetbiscuit
-	name = "plump helmet biscuit"
-	desc = "This is a finely-prepared plump helmet biscuit. The ingredients are exceptionally minced plump helmet, and well-minced dwarven wheat flour."
+	name = "herbatnik z pulchnego hełmu"
+	desc = "Starannie przygotowany herbatnik z pulchnego hełmu. Składniki to wyjątkowo drobno posiekany pulchny hełm i dobrze zmielona krasnoludzka mąka pszenna."
 	icon_state = "phelmbiscuit"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -253,8 +253,8 @@
 /obj/item/food/plumphelmetbiscuit/Initialize(mapload)
 	var/fey = prob(10)
 	if(fey)
-		name = "exceptional plump helmet biscuit"
-		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
+		name = "wyjątkowy herbatnik z pulchnego hełmu"
+		desc = "Mikrofalówkę ogarnia natchnienie! Upiekła wyjątkowy herbatnik z pulchnego hełmu!"
 		food_reagents = list(
 			/datum/reagent/medicine/omnizine = 5,
 			/datum/reagent/consumable/nutriment = 1,
@@ -265,8 +265,8 @@
 		reagents.add_reagent(/datum/reagent/medicine/omnizine, 5)
 
 /obj/item/food/cracker
-	name = "cracker"
-	desc = "It's a salted cracker."
+	name = "krakers"
+	desc = "Solony krakers."
 	icon_state = "cracker"
 	bite_consumption = 1
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -277,8 +277,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/khachapuri
-	name = "khachapuri"
-	desc = "Bread with egg and cheese?"
+	name = "chaczapuri"
+	desc = "Chleb z jajkiem i serem?"
 	icon_state = "khachapuri"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -291,8 +291,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cherrycupcake
-	name = "cherry cupcake"
-	desc = "A sweet cupcake with cherry bits."
+	name = "babeczka wiśniowa"
+	desc = "Słodka babeczka z kawałkami wiśni."
 	icon_state = "cherrycupcake"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -305,15 +305,15 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cherrycupcake/blue
-	name = "blue cherry cupcake"
-	desc = "Blue cherries inside a delicious cupcake."
+	name = "babeczka z niebieską wiśnią"
+	desc = "Niebieskie wiśnie w pysznej babeczce."
 	icon_state = "bluecherrycupcake"
 	tastes = list("ciasto" = 3, "niebieska wiśnia" = 1)
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/jupitercupcake
-	name = "jupiter-cup-cake"
-	desc = "A static dessert."
+	name = "babeczka jowiszowa"
+	desc = "Deser naładowany elektrostatycznie."
 	icon_state = "jupitercupcake"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -326,8 +326,8 @@
 	crafted_food_buff = /datum/status_effect/food/trait/shockimmune
 
 /obj/item/food/honeybun
-	name = "honey bun"
-	desc = "A sticky pastry bun glazed with honey."
+	name = "bułeczka miodowa"
+	desc = "Lepka słodka bułeczka polana miodem."
 	icon_state = "honeybun"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -340,7 +340,7 @@
 
 /obj/item/food/ravtart
 	name = "Rav'tart"
-	desc = "A brass colored tart with a red filling. Originally baked by TRNE Corp, it is supposedly blessed by a certain eldritch god."
+	desc = "Tarta w kolorze mosiądzu z czerwonym nadzieniem. Pierwotnie wypiekana przez TRNE Corp, podobno pobłogosławiona przez pewnego pradawnego boga."
 	icon_state = "ravtart"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 7,

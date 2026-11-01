@@ -1,7 +1,7 @@
 /datum/surgery/advanced/bioware/ligament_reinforcement
-	name = "Ligament Reinforcement"
-	desc = "A surgical procedure which adds a protective tissue and bone cage around the connections between the torso and limbs, preventing dismemberment. \
-	However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
+	name = "Wzmocnienie więzadeł"
+	desc = "Zabieg chirurgiczny, który dodaje ochronną klatkę z tkanki i kości wokół połączeń między tułowiem a kończynami, zapobiegając ich odcięciu. \
+	Przez to jednak połączenia nerwowe łatwiej przerwać, więc obrażenia łatwiej unieruchamiają kończyny."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -13,7 +13,7 @@
 	bioware_target = BIOWARE_LIGAMENTS
 
 /datum/surgery_step/reinforce_ligaments
-	name = "reinforce ligaments"
+	name = "wzmocnij więzadła"
 	accept_hand = TRUE
 	time = 125
 
@@ -24,14 +24,14 @@
 
 /datum/surgery_step/reinforce_ligaments/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>Wzmacniasz więzadła [target]!</span>",
-		"[user] reinforces [target]'s ligaments!",
+		"[user] wzmacnia więzadła [target]!",
 		"[user] kończy manipulować więzadłami [target].")
 	new /datum/bioware/reinforced_ligaments(target)
 	return TRUE
 
 /datum/bioware/reinforced_ligaments
-	name = "Reinforced Ligaments"
-	desc = "The ligaments and nerve endings that connect the torso to the limbs are protected by a mix of bone and tissues, and are much harder to separate from the body, but are also easier to disable."
+	name = "Wzmocnione więzadła"
+	desc = "Więzadła i zakończenia nerwowe łączące tułów z kończynami chroni mieszanka kości i tkanek, przez co znacznie trudniej oddzielić je od ciała, ale łatwiej je unieruchomić."
 	mod_type = BIOWARE_LIGAMENTS
 
 /datum/bioware/reinforced_ligaments/on_gain()

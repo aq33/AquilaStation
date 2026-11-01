@@ -2,9 +2,9 @@
 
 ///Storage - Adds a storage component to the suit.
 /obj/item/mod/module/storage
-	name = "MOD storage module"
-	desc = "What amounts to a series of integrated storage compartments and specialized pockets installed across \
-		the surface of the suit, useful for storing various bits, and or bobs."
+	name = "moduł schowka MOD"
+	desc = "W praktyce zestaw zintegrowanych schowków i specjalnych kieszeni rozmieszczonych na \
+		powierzchni skafandra, przydatny do przechowywania różnych drobiazgów."
 	icon_state = "storage"
 	complexity = 3
 	incompatible_modules = list(/obj/item/mod/module/storage, /obj/item/mod/module/plate_compression)
@@ -56,35 +56,35 @@
 	if(QDELETED(source) || !mod.wearer || newloc == mod.wearer || !mod.wearer.s_store)
 		return
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, mod.wearer.s_store, mod.wearer, TRUE, TRUE))
-		balloon_alert(mod.wearer, "storage failed!")
-		to_chat(mod.wearer, span_warning("[src] fails to store [mod.wearer.s_store] inside itself!"))
+		balloon_alert(mod.wearer, "nie udało się schować!")
+		to_chat(mod.wearer, span_warning("[src] nie zdołał schować w sobie: [mod.wearer.s_store]!"))
 		return
-	to_chat(mod.wearer, span_notice("[src] stores [mod.wearer.s_store] inside itself."))
+	to_chat(mod.wearer, span_notice("[src] chowa w sobie: [mod.wearer.s_store]."))
 	mod.wearer.temporarilyRemoveItemFromInventory(mod.wearer.s_store)
 
 /obj/item/mod/module/storage/large_capacity
-	name = "MOD expanded storage module"
-	desc = "Reverse engineered by Nakamura Engineering from Donk Corporation designs, this system of hidden compartments \
-		is entirely within the suit, distributing items and weight evenly to ensure a comfortable experience for the user; \
-		whether smuggling, or simply hauling."
+	name = "rozszerzony moduł schowka MOD"
+	desc = "Odtworzony przez Nakamura Engineering metodą inżynierii wstecznej z projektów Donk Corporation; ten system ukrytych schowków \
+		mieści się w całości w skafandrze i równomiernie rozkłada przedmioty i ciężar, zapewniając użytkownikowi wygodę, \
+		czy to przy przemycie, czy przy zwykłym noszeniu."
 	icon_state = "storage_large"
 	max_combined_w_class = 21
 	max_items = 14
 
 /obj/item/mod/module/storage/syndicate
-	name = "MOD syndicate storage module"
-	desc = "A storage system using nanotechnology developed by Cybersun Industries, these compartments use \
-		esoteric technology to compress the physical matter of items put inside of them, \
-		essentially shrinking items for much easier and more portable storage."
+	name = "moduł schowka Syndykatu MOD"
+	desc = "System schowków korzystający z nanotechnologii Cybersun Industries; te przegródki używają \
+		ezoterycznej technologii, by ściskać fizyczną materię włożonych przedmiotów, \
+		w zasadzie je zmniejszając, co ułatwia przechowywanie i noszenie."
 	icon_state = "storage_syndi"
 	max_combined_w_class = 30
 	max_items = 21
 
 /obj/item/mod/module/storage/belt
-	name = "MOD case storage module"
-	desc = "Some concessions had to be made when creating a compressed modular suit core. \
-	As a result, Roseus Galactic equipped their suit with a slimline storage case.  \
-	If you find this equipped to a standard modular suit, then someone has almost certainly shortchanged you on a proper storage module."
+	name = "moduł schowka-walizki MOD"
+	desc = "Przy tworzeniu skompresowanego rdzenia skafandra modułowego trzeba było pójść na pewne ustępstwa. \
+	W efekcie Roseus Galactic wyposażyło swój skafander w smukły schowek. \
+	Jeśli widzisz go w zwykłym skafandrze modułowym, ktoś niemal na pewno oszukał cię na porządnym module schowka."
 	icon_state = "storage_case"
 	complexity = 0
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -94,9 +94,9 @@
 	required_slots = list(ITEM_SLOT_BELT)
 
 /obj/item/mod/module/storage/bluespace
-	name = "MOD bluespace storage module"
-	desc = "A storage system developed by Nanotrasen, these compartments employ \
-		miniaturized bluespace pockets for the ultimate in storage technology; regardless of the weight of objects put inside."
+	name = "moduł schowka bluespace MOD"
+	desc = "System schowków opracowany przez Nanotrasen; te przegródki korzystają z \
+		zminiaturyzowanych kieszeni bluespace, czyli szczytu technologii przechowywania, niezależnie od wagi włożonych przedmiotów."
 	icon_state = "storage_large"
 	max_w_class = WEIGHT_CLASS_GIGANTIC
 	max_combined_w_class = 60
@@ -105,10 +105,10 @@
 
 ///Ion Jetpack - Lets the user fly freely through space using battery charge.
 /obj/item/mod/module/jetpack
-	name = "MOD ion jetpack module"
-	desc = "A series of electric thrusters installed across the suit, this is a module highly anticipated by trainee Engineers. \
-		Rather than using gasses for combustion thrust, these jets are capable of accelerating ions using \
-		charge from the suit's charge. Some say this isn't Nakamura Engineering's first foray into jet-enabled suits."
+	name = "moduł jonowego plecaka odrzutowego MOD"
+	desc = "Zestaw elektrycznych silniczków rozmieszczonych na skafandrze; ten moduł to marzenie inżynierów-praktykantów. \
+		Zamiast spalać gazy dla ciągu, te dysze przyspieszają jony, \
+		korzystając z ładunku skafandra. Niektórzy mówią, że to nie pierwsza przygoda Nakamura Engineering ze skafandrami odrzutowymi."
 	icon_state = "jetpack"
 	module_type = MODULE_TOGGLE
 	complexity = 3
@@ -153,7 +153,7 @@
 
 /obj/item/mod/module/jetpack/get_configuration()
 	. = ..()
-	.["stabilizers"] = add_ui_configuration("Stabilizers", "bool", stabilizers)
+	.["stabilizers"] = add_ui_configuration("Stabilizatory", "bool", stabilizers)
 
 /obj/item/mod/module/jetpack/configure_edit(key, value)
 	switch(key)
@@ -194,9 +194,9 @@
 	return TRUE
 
 /obj/item/mod/module/jetpack/advanced
-	name = "MOD advanced ion jetpack module"
-	desc = "An improvement on the previous model of electric thrusters. This one achieves higher speeds through \
-		mounting of more jets and a red paint applied on it."
+	name = "zaawansowany moduł jonowego plecaka odrzutowego MOD"
+	desc = "Ulepszenie poprzedniego modelu elektrycznych silniczków. Ten osiąga większe prędkości dzięki \
+		większej liczbie dysz i czerwonej farbie."
 	icon_state = "jetpack_advanced"
 	overlay_state_inactive = "module_jetpackadv"
 	overlay_state_active = "module_jetpackadv_on"
@@ -204,12 +204,12 @@
 
 ///Status Readout - Puts a lot of information including health, nutrition, fingerprints, temperature to the suit TGUI.
 /obj/item/mod/module/status_readout
-	name = "MOD status readout module"
-	desc = "A once-common module, this technology unfortunately went out of fashion in the safer regions of space; \
-		and found new life in the research networks of the Periphery. This particular unit hooks into the suit's spine, \
-		capable of capturing and displaying all possible biometric data of the wearer; sleep, nutrition, fitness, fingerprints, \
-		and even useful information such as their overall health and wellness. The vitals monitor also comes with a speaker, loud enough \
-		to alert anyone nearby that someone has, in fact, died."
+	name = "moduł odczytu stanu MOD"
+	desc = "Niegdyś popularny moduł; ta technologia niestety wyszła z mody w bezpieczniejszych rejonach kosmosu \
+		i odżyła w sieciach badawczych Peryferii. Ta jednostka podłącza się do kręgosłupa skafandra \
+		i potrafi zbierać i wyświetlać wszystkie możliwe dane biometryczne noszącego: sen, odżywienie, kondycję, odciski palców, \
+		a nawet przydatne informacje, jak ogólny stan zdrowia i samopoczucie. Monitor funkcji życiowych ma też głośnik na tyle głośny, \
+		by zaalarmować wszystkich w pobliżu, że ktoś faktycznie umarł."
 	icon_state = "status"
 	complexity = 1
 	use_power_cost = DEFAULT_CHARGE_DRAIN * 0.1
@@ -262,8 +262,8 @@
 
 /obj/item/mod/module/status_readout/get_configuration()
 	. = ..()
-	.["display_detailed_vitals"] = add_ui_configuration("Detailed Vitals", "bool", display_detailed_vitals)
-	.["display_dna"] = add_ui_configuration("DNA Information", "bool", display_dna)
+	.["display_detailed_vitals"] = add_ui_configuration("Szczegółowe funkcje życiowe", "bool", display_detailed_vitals)
+	.["display_dna"] = add_ui_configuration("Informacje o DNA", "bool", display_dna)
 
 /obj/item/mod/module/status_readout/configure_edit(key, value)
 	switch(key)
@@ -285,10 +285,10 @@
 
 ///Eating Apparatus - Lets the user eat/drink with the suit on.
 /obj/item/mod/module/mouthhole
-	name = "MOD eating apparatus module"
-	desc = "A favorite by Miners, this modification to the helmet utilizes a nanotechnology barrier infront of the mouth \
-		to allow eating and drinking while retaining protection and atmosphere. However, it won't free you from masks, \
-		lets pepper spray pass through and it will do nothing to improve the taste of a goliath steak."
+	name = "moduł aparatu do jedzenia MOD"
+	desc = "Ulubieniec górników: ta modyfikacja hełmu wytwarza przed ustami barierę z nanotechnologii, \
+		która pozwala jeść i pić bez utraty ochrony i atmosfery. Nie uwolni cię jednak od masek, \
+		przepuszcza gaz pieprzowy i nijak nie poprawi smaku steku z goliata."
 	icon_state = "apparatus"
 	complexity = 1
 	incompatible_modules = list(/obj/item/mod/module/mouthhole)
@@ -330,10 +330,10 @@
 
 ///EMP Shield - Protects the suit from EMPs.
 /obj/item/mod/module/emp_shield
-	name = "MOD EMP shield module"
-	desc = "A field inhibitor installed into the suit, protecting it against feedback such as \
-		electromagnetic pulses that would otherwise damage the electronic systems of the suit or it's modules. \
-		However, it will take from the suit's power to do so."
+	name = "moduł osłony EMP MOD"
+	desc = "Inhibitor pola zamontowany w skafandrze, chroniący go przed zakłóceniami, takimi jak \
+		impulsy elektromagnetyczne, które inaczej uszkodziłyby elektronikę skafandra albo jego modułów. \
+		Pobiera do tego jednak energię skafandra."
 	icon_state = "empshield"
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -352,10 +352,10 @@
 	return EMP_PROTECT_SELF|EMP_PROTECT_WIRES|EMP_PROTECT_CONTENTS
 
 /obj/item/mod/module/emp_shield/advanced
-	name = "MOD advanced EMP shield module"
-	desc = "An advanced field inhibitor installed into the suit, protecting it against feedback such as \
-		electromagnetic pulses that would otherwise damage the electronic systems of the suit or electronic devices on the wearer, \
-		including augmentations. However, it will take from the suit's power to do so."
+	name = "zaawansowany moduł osłony EMP MOD"
+	desc = "Zaawansowany inhibitor pola zamontowany w skafandrze, chroniący go przed zakłóceniami, takimi jak \
+		impulsy elektromagnetyczne, które inaczej uszkodziłyby elektronikę skafandra albo urządzenia elektroniczne noszącego, \
+		w tym augmentacje. Pobiera do tego jednak energię skafandra."
 	complexity = 2
 
 /obj/item/mod/module/emp_shield/advanced/on_part_activation()
@@ -371,10 +371,10 @@
 
 ///Flashlight - Gives the suit a customizable flashlight.
 /obj/item/mod/module/flashlight
-	name = "MOD flashlight module"
-	desc = "A simple pair of configurable flashlights installed on the left and right sides of the helmet, \
-		useful for providing light in a variety of ranges and colors. \
-		Some survivalists prefer the color green for their illumination, for reasons unknown."
+	name = "moduł latarki MOD"
+	desc = "Prosta para konfigurowalnych latarek po lewej i prawej stronie hełmu, \
+		przydatna do oświetlania w różnych zasięgach i kolorach. \
+		Niektórzy surwiwaliści z nieznanych powodów wolą zielone światło."
 	icon_state = "flashlight"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -418,17 +418,17 @@
 
 /obj/item/mod/module/flashlight/get_configuration()
 	. = ..()
-	.["light_color"] = add_ui_configuration("Light Color", "color", light_color)
-	.["light_range"] = add_ui_configuration("Light Range", "number", light_range)
+	.["light_color"] = add_ui_configuration("Kolor światła", "color", light_color)
+	.["light_range"] = add_ui_configuration("Zasięg światła", "number", light_range)
 
 /obj/item/mod/module/flashlight/configure_edit(key, value)
 	switch(key)
 		if("light_color")
-			value = input(usr, "Pick new light color", "Flashlight Color") as color|null
+			value = input(usr, "Wybierz nowy kolor światła", "Kolor latarki") as color|null
 			if(!value)
 				return
 			if(is_color_dark_with_saturation(value, 50))
-				balloon_alert(mod.wearer, "too dark!")
+				balloon_alert(mod.wearer, "za ciemno!")
 				return
 			set_light_color(value)
 			mod.wearer.update_clothing(mod.slot_flags)
@@ -437,11 +437,11 @@
 
 ///Dispenser - Dispenses an item after a time passes.
 /obj/item/mod/module/dispenser
-	name = "MOD burger dispenser module"
-	desc = "A rare piece of technology reverse-engineered from a prototype found in a Donk Corporation vessel. \
-		This can draw incredible amounts of power from the suit's cell to create edible organic matter in the \
-		palm of the wearer's glove; however, research seemed to have entirely stopped at burgers. \
-		Notably, all attempts to get it to dispense Earl Grey tea have failed."
+	name = "moduł dozownika burgerów MOD"
+	desc = "Rzadka technologia odtworzona metodą inżynierii wstecznej z prototypu znalezionego na statku Donk Corporation. \
+		Potrafi pobrać z ogniwa skafandra ogromne ilości energii, by wytworzyć jadalną materię organiczną na \
+		dłoni rękawicy noszącego; badania najwyraźniej jednak całkowicie zatrzymały się na burgerach. \
+		Co ciekawe, wszystkie próby, by wydawała herbatę Earl Grey, zawiodły."
 	icon_state = "dispenser"
 	module_type = MODULE_USABLE
 	complexity = 3
@@ -456,22 +456,22 @@
 
 /obj/item/mod/module/dispenser/on_use()
 	if(dispense_time && !do_after(mod.wearer, dispense_time, target = mod))
-		balloon_alert(mod.wearer, "interrupted!")
+		balloon_alert(mod.wearer, "przerwano!")
 		return FALSE
 	var/obj/item/dispensed = new dispense_type(mod.wearer.loc)
 	mod.wearer.put_in_hands(dispensed)
-	balloon_alert(mod.wearer, "[dispensed] dispensed")
+	balloon_alert(mod.wearer, "wydano: [dispensed]")
 	playsound(src, 'sound/machines/click.ogg', 100, TRUE)
 	drain_power(use_power_cost)
 	return dispensed
 
 ///Longfall - Nullifies fall damage, removing charge instead.
 /obj/item/mod/module/longfall
-	name = "MOD longfall module"
-	desc = "Useful for protecting both the suit and the wearer, \
-		utilizing commonplace systems to convert the possible damage from a fall into kinetic charge, \
-		as well as internal gyroscopes to ensure the user's safe falling. \
-		Useful for mining, monorail tracks, or even skydiving!"
+	name = "moduł bezpiecznego upadku MOD"
+	desc = "Przydatne do ochrony zarówno skafandra, jak i noszącego; \
+		zwykłe układy zamieniają potencjalne obrażenia od upadku w ładunek kinetyczny, \
+		a wewnętrzne żyroskopy zapewniają bezpieczne spadanie. \
+		Przydatne w górnictwie, na torach jednoszynowych, a nawet przy skokach spadochronowych!"
 	icon_state = "longfall"
 	complexity = 1
 	use_power_cost = DEFAULT_CHARGE_DRAIN * 5
@@ -490,17 +490,17 @@
 	new /obj/effect/temp_visual/mook_dust(fell_on)
 	mod.wearer.Stun(levels * 1 SECONDS)
 	mod.wearer.visible_message(
-		span_notice("[mod.wearer] lands on [fell_on] safely, and quite stylishly on [p_their()] feet"),
-		span_notice("[src] protects you from the damage!"),
+		span_notice("[mod.wearer] ląduje bezpiecznie na: [fell_on], całkiem stylowo, na nogi"),
+		span_notice("[src] chroni cię przed obrażeniami!"),
 	)
 	return NO_Z_IMPACT_DAMAGE
 
 ///Thermal Regulator - Regulates the wearer's core temperature.
 /obj/item/mod/module/thermal_regulator
-	name = "MOD thermal regulator module"
-	desc = "Advanced climate control, using an inner body glove interwoven with thousands of tiny, \
-		flexible cooling lines. This circulates coolant at various user-controlled temperatures, \
-		ensuring they're comfortable; even if they're some that like it hot."
+	name = "moduł regulatora temperatury MOD"
+	desc = "Zaawansowana kontrola klimatu z wewnętrznym kombinezonem przetkanym tysiącami drobnych, \
+		elastycznych przewodów chłodzących. Krąży w nich chłodziwo o temperaturze ustawianej przez użytkownika, \
+		dzięki czemu jest mu wygodnie, nawet jeśli lubi na gorąco."
 	icon_state = "regulator"
 	module_type = MODULE_TOGGLE
 	complexity = 2
@@ -516,7 +516,7 @@
 
 /obj/item/mod/module/thermal_regulator/get_configuration()
 	. = ..()
-	.["temperature_setting"] = add_ui_configuration("Temperature", "number", temperature_setting - T0C)
+	.["temperature_setting"] = add_ui_configuration("Temperatura", "number", temperature_setting - T0C)
 
 /obj/item/mod/module/thermal_regulator/configure_edit(key, value)
 	switch(key)
@@ -528,10 +528,10 @@
 
 ///DNA Lock - Prevents people without the set DNA from activating the suit.
 /obj/item/mod/module/dna_lock
-	name = "MOD DNA lock module"
-	desc = "A module which engages with the various locks and seals tied to the suit's systems, \
-		enabling it to only be worn by someone corresponding with the user's exact DNA profile; \
-		however, this incredibly sensitive module is shorted out by EMPs. Luckily, cloning has been outlawed."
+	name = "moduł blokady DNA MOD"
+	desc = "Moduł, który współpracuje z różnymi blokadami i uszczelnieniami powiązanymi z systemami skafandra \
+		i sprawia, że może go nosić tylko ktoś o dokładnie takim samym profilu DNA jak użytkownik; \
+		ten niezwykle czuły moduł zwierają jednak impulsy EMP. Na szczęście klonowanie zostało zakazane."
 	icon_state = "dnalock"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -555,7 +555,7 @@
 
 /obj/item/mod/module/dna_lock/on_use()
 	dna = mod.wearer.dna.unique_enzymes
-	balloon_alert(mod.wearer, "dna updated")
+	balloon_alert(mod.wearer, "DNA zaktualizowane")
 	drain_power(use_power_cost)
 
 /obj/item/mod/module/dna_lock/emp_act(severity)
@@ -570,7 +570,7 @@
 	var/mob/living/carbon/carbon_user = user
 	if(!dna  || (carbon_user.has_dna() && carbon_user.dna.unique_enzymes == dna))
 		return TRUE
-	balloon_alert(user, "dna locked!")
+	balloon_alert(user, "zablokowane DNA!")
 	return FALSE
 
 /obj/item/mod/module/dna_lock/proc/on_emp(datum/source, severity)
@@ -595,12 +595,12 @@
 
 ///Plasma Stabilizer - Prevents plasmamen from igniting in the suit
 /obj/item/mod/module/plasma_stabilizer
-	name = "MOD plasma stabilizer module"
-	desc = "This system essentially forms an atmosphere of its' own inside the suit, \
-		safely ejecting oxygen from the inside and allowing the wearer, a plasmaman, \
-		to have their internal plasma circulate around them somewhat like a sauna. \
-		This prevents them from self-igniting, and leads to greater comfort overall. \
-		The purple glass of the visor seems to be constructed for nostalgic purposes."
+	name = "moduł stabilizatora plazmy MOD"
+	desc = "Ten system w zasadzie tworzy wewnątrz skafandra własną atmosferę, \
+		bezpiecznie usuwając tlen ze środka i pozwalając noszącemu, plazmamanowi, \
+		otoczyć się własną krążącą plazmą, trochę jak w saunie. \
+		Zapobiega to samozapłonowi i ogólnie zwiększa wygodę. \
+		Fioletowe szkło wizjera najwyraźniej zrobiono z nostalgii."
 	icon_state = "plasma_stabilizer"
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -624,11 +624,11 @@
 //Finally, https://pipe.miroware.io/5b52ba1d94357d5d623f74aa/mspfa/Nuke%20Ops/Panels/0648.gif can be real:
 ///Hat Stabilizer - Allows displaying a hat over the MOD-helmet, à la plasmamen helmets.
 /obj/item/mod/module/hat_stabilizer
-	name = "MOD hat stabilizer module"
-	desc = "A simple set of deployable stands, directly atop one's head; \
-		these will deploy under a hat to keep it from falling off, allowing them to be worn atop the sealed helmet. \
-		You still need to take the hat off your head while the helmet deploys, though. \
-		This is a must-have for Nanotrasen Captains, enabling them to show off their authoritative hat even while in their MODsuit."
+	name = "moduł stabilizatora czapki MOD"
+	desc = "Prosty zestaw rozkładanych podpórek na czubku głowy; \
+		rozkładają się pod czapką, żeby nie spadła, i pozwalają nosić ją na szczelnym hełmie. \
+		Na czas rozkładania hełmu i tak musisz zdjąć czapkę z głowy. \
+		To obowiązkowy dodatek dla kapitanów Nanotrasenu, którzy mogą pokazywać swoją władczą czapkę nawet w MODsuicie."
 	icon_state = "hat_holder"
 	incompatible_modules = list(/obj/item/mod/module/hat_stabilizer)
 	required_slots = list(ITEM_SLOT_HEAD)
@@ -663,9 +663,9 @@
 /obj/item/mod/module/hat_stabilizer/proc/add_examine(datum/source, mob/user, list/base_examine)
 	SIGNAL_HANDLER
 	if(attached_hat)
-		base_examine += span_notice("There's \a [attached_hat] placed on the helmet. Alt-click to remove it.")
+		base_examine += span_notice("Na hełmie jest: [attached_hat]. Alt-klik, by zdjąć.")
 	else
-		base_examine += span_notice("There's nothing placed on the helmet. Yet.")
+		base_examine += span_notice("Na hełmie nic nie ma. Jeszcze.")
 
 /obj/item/mod/module/hat_stabilizer/proc/place_hat(datum/source, obj/item/hitting_item, mob/user)
 	SIGNAL_HANDLER
@@ -673,10 +673,10 @@
 		return
 	var/obj/item/clothing/hat = hitting_item
 	if(!mod.active)
-		balloon_alert(user, "suit must be active!")
+		balloon_alert(user, "skafander musi być aktywny!")
 		return
 	if(attached_hat)
-		balloon_alert(user, "hat already attached!")
+		balloon_alert(user, "czapka już założona!")
 		return
 	if(mod.wearer.transferItemToLoc(hitting_item, src, force = FALSE, silent = TRUE))
 		attached_hat = hat
@@ -686,7 +686,7 @@
 			former_visor_flags = helmet.visor_flags_cover
 			helmet.flags_cover |= attached_hat.flags_cover
 			helmet.visor_flags_cover |= attached_hat.visor_flags_cover
-		balloon_alert(user, "hat attached, alt-click to remove")
+		balloon_alert(user, "czapka założona, Alt-klik, by zdjąć")
 		mod.wearer.update_clothing(mod.slot_flags)
 
 /obj/item/mod/module/hat_stabilizer/generate_worn_overlay()
@@ -701,9 +701,9 @@
 	. = COMPONENT_INTERCEPT_ALT
 	attached_hat.forceMove(drop_location())
 	if(user.put_in_active_hand(attached_hat))
-		balloon_alert(user, "hat removed")
+		balloon_alert(user, "czapka zdjęta")
 	else
-		balloon_alert_to_viewers("the hat falls to the floor!")
+		balloon_alert_to_viewers("czapka spada na podłogę!")
 	var/obj/item/clothing/helmet = mod.get_part_from_slot(ITEM_SLOT_HEAD)
 	if(istype(helmet))
 		helmet.flags_cover = former_flags
@@ -712,10 +712,10 @@
 	mod.wearer.update_clothing(mod.slot_flags)
 
 /obj/item/mod/module/hat_stabilizer/syndicate
-	name = "MOD elite hat stabilizer module"
-	desc = "A simple set of deployable stands, directly atop one's head; \
-		these will deploy under a hat to keep it from falling off, allowing them to be worn atop the sealed helmet. \
-		You still need to take the hat off your head while the helmet deploys, though. This is a must-have for \
-		Syndicate Operatives and Agents alike, enabling them to continue to style on the opposition even while in their MODsuit."
+	name = "elitarny moduł stabilizatora czapki MOD"
+	desc = "Prosty zestaw rozkładanych podpórek na czubku głowy; \
+		rozkładają się pod czapką, żeby nie spadła, i pozwalają nosić ją na szczelnym hełmie. \
+		Na czas rozkładania hełmu i tak musisz zdjąć czapkę z głowy. To obowiązkowy dodatek dla \
+		agentów i operatorów Syndykatu, którzy mogą szpanować przed przeciwnikiem nawet w MODsuicie."
 	complexity = 0
 	removable = FALSE

@@ -223,7 +223,7 @@
 /datum/keybinding/overmap/special_weapon_action
 	key = "F"
 	name = "special_weapon_action"
-	full name = "Special Weapon Action"
+	full_name = "Akcja specjalna broni"
 	description = "Wykonuje akcję specjalną wybranej broni, jeśli istnieje."
 	keybind_signal = COMSIG_KB_OVERMAP_SPECIAL_WEAPON_ACTION_DOWN
 

@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/vein_threading
-	name = "Vein Threading"
-	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
+	name = "Przeplatanie żył"
+	desc = "Zabieg chirurgiczny, który znacznie ogranicza utratę krwi w razie zranienia."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -13,7 +13,7 @@
 	self_operable = TRUE
 
 /datum/surgery_step/thread_veins
-	name = "thread veins"
+	name = "przepleć żyły"
 	accept_hand = TRUE
 	time = 125
 
@@ -30,8 +30,8 @@
 	return TRUE
 
 /datum/bioware/threaded_veins
-	name = "Threaded Veins"
-	desc = "The circulatory system is woven into a mesh, severely reducing the amount of blood lost from wounds."
+	name = "Przeplecione żyły"
+	desc = "Układ krwionośny jest spleciony w siatkę, co znacznie ogranicza utratę krwi z ran."
 	mod_type = BIOWARE_CIRCULATION
 
 /datum/bioware/threaded_veins/on_gain()

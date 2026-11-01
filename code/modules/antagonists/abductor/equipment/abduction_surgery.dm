@@ -1,5 +1,5 @@
 /datum/surgery/organ_extraction
-	name = "experimental organ replacement"
+	name = "eksperymentalna wymiana organów"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/extract_organ, /datum/surgery_step/gland_insert)
 	possible_locs = list(BODY_ZONE_CHEST)
 	ignore_clothes = 1
@@ -16,7 +16,7 @@
 
 
 /datum/surgery_step/extract_organ
-	name = "remove heart"
+	name = "usuń serce"
 	accept_hand = 1
 	time = 32
 	var/obj/item/organ/IC = null
@@ -40,7 +40,7 @@
 		return 1
 
 /datum/surgery_step/gland_insert
-	name = "insert gland"
+	name = "wszczep gruczoł"
 	implements = list(/obj/item/organ/heart/gland = 100)
 	time = 32
 

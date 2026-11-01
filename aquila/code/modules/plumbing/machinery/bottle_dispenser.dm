@@ -1,9 +1,9 @@
 ///We take a constant input of reagents, and produce a bottle once a set volume is reached
 /obj/machinery/plumbing/bottle_dispenser
-	name = "bottle dispenser"
-	desc = "A dispenser that dispenses bottles."
+	name = "dozownik butelek"
+	desc = "Dozownik, który dozuje butelki."
 	icon_state = "pill_press" //TODO SPRITE IT !!!!!!
-	var/bottle_name = "factory bottle"
+	var/bottle_name = "butelka fabryczna"
 	var/bottle_size = 30
 	///the icon_state number for the bottle.
 	var/list/stored_bottles = list()
@@ -66,5 +66,5 @@
 			. = TRUE
 		if("change_bottle_name")
 			var/new_name = stripped_input(usr, "Podaj nazwę butelki.", name, bottle_name)
-			bottle_name = new_name + " bottle"
+			bottle_name = "butelka: " + new_name
 			. = TRUE

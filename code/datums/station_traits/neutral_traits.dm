@@ -1,12 +1,12 @@
 /datum/station_trait/bananium_shipment
-	name = "Bananium Shipment"
+	name = "Dostawa bananium"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	report_message = "Plotka głosi, że planeta klaunów wysyła paczki pomocowe klaunom w tym układzie"
 	trait_to_give = STATION_TRAIT_BANANIUM_SHIPMENTS
 
 /datum/station_trait/ian_adventure
-	name = "Ian's Adventure"
+	name = "Przygoda Iana"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = FALSE
@@ -29,7 +29,7 @@
 
 
 /datum/station_trait/glitched_pdas
-	name = "PDA glitch"
+	name = "Usterka PDA"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 8
 	show_in_report = TRUE
@@ -37,7 +37,7 @@
 	trait_to_give = STATION_TRAIT_PDA_GLITCHED
 
 /datum/station_trait/announcement_medbot
-	name = "Announcement \"System\""
+	name = "Ogłoszenia „Systemu”"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = TRUE
@@ -52,7 +52,7 @@
 	SSstation.announcer = /datum/centcom_announcer/medbot
 
 /datum/station_trait/announcement_baystation
-	name = "Announcer: Archival Tape"
+	name = "Spiker: taśma archiwalna"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = TRUE

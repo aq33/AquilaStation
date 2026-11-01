@@ -229,14 +229,14 @@
 		/obj/item/dice/d20)
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	var/list/slots = list(
-		"in your left pocket" = ITEM_SLOT_LPOCKET,
-		"in your right pocket" = ITEM_SLOT_RPOCKET,
-		"in your backpack" = ITEM_SLOT_BACKPACK
+		"w twojej lewej kieszeni" = ITEM_SLOT_LPOCKET,
+		"w twojej prawej kieszeni" = ITEM_SLOT_RPOCKET,
+		"w twoim plecaku" = ITEM_SLOT_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "pod twoimi stopami"
 
 /datum/quirk/family_heirloom/post_add()
-	if(where == "in your backpack")
+	if(where == "w twoim plecaku")
 		var/mob/living/carbon/human/H = quirk_holder
 		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
@@ -655,7 +655,7 @@
 /datum/quirk/alcoholic/on_spawn()
 	drink_instance = pick(drink_types)
 	drink_instance = new drink_instance()
-	var/list/slots = list("in your backpack" = ITEM_SLOT_BACKPACK)
+	var/list/slots = list("w twoim plecaku" = ITEM_SLOT_BACKPACK)
 	var/mob/living/carbon/human/H = quirk_holder
 	where_drink = H.equip_in_one_of_slots(drink_instance, slots, FALSE) || "pod twoimi stopami"
 

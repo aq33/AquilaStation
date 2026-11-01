@@ -1,6 +1,6 @@
 ///MOD module - A special device installed in a MODsuit allowing the suit to do new stuff.
 /obj/item/mod/module
-	name = "MOD module"
+	name = "moduł MOD"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module"
 	/// If it can be removed
@@ -77,10 +77,10 @@
 		var/list/slot_strings = list()
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
-			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-		. += span_notice("Requires the MOD unit to have the following slots: [english_list(slot_strings)]")
+			slot_strings += (length(slot_list) == 1 ? "" : "jeden z: ") + english_list(slot_list, and_text = " lub ")
+		. += span_notice("Wymaga, by jednostka MOD miała te sloty: [english_list(slot_strings)]")
 	if(HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
-		. += span_notice("Complexity level: [complexity]")
+		. += span_notice("Poziom złożoności: [complexity]")
 
 /// Looks through the MODsuit's parts to see if it has the parts required to support this module
 /obj/item/mod/module/proc/has_required_parts(list/parts, need_active = FALSE)
@@ -104,20 +104,20 @@
 /obj/item/mod/module/proc/on_select()
 	if(!mod.wearer)
 		if(ismob(mod.loc))
-			balloon_alert(mod.loc, "not equipped!")
+			balloon_alert(mod.loc, "nie jest założony!")
 		return
 	if(((!mod.active || mod.activating) && !(allow_flags & MODULE_ALLOW_INACTIVE)) || module_type == MODULE_PASSIVE)
 		if(mod.wearer)
-			balloon_alert(mod.wearer, "not active!")
+			balloon_alert(mod.wearer, "nieaktywne!")
 		return
 	if(!has_required_parts(mod.mod_parts, need_active = TRUE))
 		if(mod.wearer)
-			balloon_alert(mod.wearer, "required parts inactive!")
+			balloon_alert(mod.wearer, "wymagane części są nieaktywne!")
 			var/list/slot_strings = list()
 			for(var/slot in required_slots)
 				var/list/slot_list = parse_slot_flags(slot)
-				slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-			to_chat(mod.wearer, span_warning("[src] requires these slots to be deployed: [english_list(slot_strings)]"))
+				slot_strings += (length(slot_list) == 1 ? "" : "jeden z: ") + english_list(slot_list, and_text = " lub ")
+			to_chat(mod.wearer, span_warning("[src] wymaga rozłożenia tych slotów: [english_list(slot_strings)]"))
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(module_type != MODULE_USABLE)
@@ -140,14 +140,14 @@
 /// Called when the module is activated
 /obj/item/mod/module/proc/activate()
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
-		balloon_alert(mod.wearer, "on cooldown!")
+		balloon_alert(mod.wearer, "odnawia się!")
 		return FALSE
 	if(!mod.active || mod.activating || !mod.get_charge())
-		balloon_alert(mod.wearer, "unpowered!")
+		balloon_alert(mod.wearer, "brak zasilania!")
 		return FALSE
 	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		//specifically a to_chat because the user is phased out.
-		to_chat(mod.wearer, span_warning("You cannot activate this right now."))
+		to_chat(mod.wearer, span_warning("Nie możesz teraz tego aktywować."))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED) & MOD_ABORT_USE)
 		return FALSE
@@ -157,17 +157,17 @@
 		mod.selected_module = src
 		if(device)
 			if(mod.wearer.put_in_hands(device))
-				balloon_alert(mod.wearer, "[device] extended")
+				balloon_alert(mod.wearer, "wysunięto: [device]")
 				RegisterSignal(mod.wearer, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
 				RegisterSignal(mod.wearer, COMSIG_KB_MOB_DROPITEM_DOWN, PROC_REF(dropkey))
 			else
-				balloon_alert(mod.wearer, "can't extend [device]!")
+				balloon_alert(mod.wearer, "nie da się wysunąć: [device]!")
 				mod.wearer.transferItemToLoc(device, src, force = TRUE)
 				return FALSE
 		else
 			var/used_button = mod.wearer.client?.prefs.mod_select || MIDDLE_CLICK
 			update_signal(used_button)
-			balloon_alert(mod.wearer, "[src] activated, [used_button]-click to use")
+			balloon_alert(mod.wearer, "[src] aktywne, użyj: [used_button]-klik")
 	active = TRUE
 	mod.wearer.update_clothing(mod.slot_flags)
 	SEND_SIGNAL(src, COMSIG_MODULE_ACTIVATED)
@@ -180,7 +180,7 @@
 	if(module_type == MODULE_ACTIVE)
 		mod.selected_module = null
 		if(display_message)
-			balloon_alert(mod.wearer, device ? "[device] retracted" : "[src] deactivated")
+			balloon_alert(mod.wearer, device ? "schowano: [device]" : "wyłączono: [src]")
 		if(device)
 			mod.wearer.transferItemToLoc(device, src, force = TRUE)
 			UnregisterSignal(mod.wearer, COMSIG_ATOM_EXITED)
@@ -198,11 +198,11 @@
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
 		return FALSE
 	if(!check_power(use_power_cost))
-		balloon_alert(mod.wearer, "not enough charge!")
+		balloon_alert(mod.wearer, "za mało energii!")
 		return FALSE
 	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		//specifically a to_chat because the user is phased out.
-		to_chat(mod.wearer, span_warning("You cannot activate this right now."))
+		to_chat(mod.wearer, span_warning("Nie możesz teraz tego aktywować."))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED) & MOD_ABORT_USE)
 		return FALSE
@@ -407,8 +407,8 @@
 
 ///Anomaly Locked - Causes the module to not function without an anomaly.
 /obj/item/mod/module/anomaly_locked
-	name = "MOD anomaly locked module"
-	desc = "A form of a module, locked behind an anomalous core to function."
+	name = "moduł MOD z blokadą anomalii"
+	desc = "Rodzaj modułu, który do działania wymaga rdzenia anomalii."
 	incompatible_modules = list(/obj/item/mod/module/anomaly_locked)
 	/// The core item the module runs off.
 	var/obj/item/assembly/signaler/anomaly/core
@@ -434,17 +434,17 @@
 	if(!length(accepted_anomalies))
 		return
 	if(core)
-		. += span_notice("There is a [core.name] installed in it. You could remove it with a <b>screwdriver</b>...")
+		. += span_notice("Zainstalowano w nim: [core.name]. Możesz to wyjąć <b>śrubokrętem</b>...")
 	else
 		var/list/core_list = list()
 		for(var/path in accepted_anomalies)
 			var/atom/core_path = path
 			core_list += initial(core_path.name)
-		. += span_notice("You need to insert \a [english_list(core_list, and_text = " or ")] for this module to function.")
+		. += span_notice("Żeby ten moduł działał, musisz włożyć: [english_list(core_list, and_text = " lub ")].")
 
 /obj/item/mod/module/anomaly_locked/on_select()
 	if(!core)
-		balloon_alert(mod.wearer, "no core!")
+		balloon_alert(mod.wearer, "brak rdzenia!")
 		return
 	return ..()
 
@@ -461,12 +461,12 @@
 /obj/item/mod/module/anomaly_locked/attackby(obj/item/item, mob/living/user, params)
 	if(item.type in accepted_anomalies)
 		if(core)
-			balloon_alert(user, "core already in!")
+			balloon_alert(user, "rdzeń już jest w środku!")
 			return
 		if(!user.transferItemToLoc(item, src))
 			return
 		core = item
-		balloon_alert(user, "core installed")
+		balloon_alert(user, "rdzeń zainstalowany")
 		playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 		update_icon_state()
 	else
@@ -475,13 +475,13 @@
 /obj/item/mod/module/anomaly_locked/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!core)
-		balloon_alert(user, "no core!")
+		balloon_alert(user, "brak rdzenia!")
 		return
-	balloon_alert(user, "removing core...")
+	balloon_alert(user, "wyjmowanie rdzenia...")
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "przerwano!")
 		return
-	balloon_alert(user, "core removed")
+	balloon_alert(user, "rdzeń wyjęty")
 	core.forceMove(drop_location())
 	if(Adjacent(user) && !issilicon(user))
 		user.put_in_hands(core)

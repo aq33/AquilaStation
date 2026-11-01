@@ -1,9 +1,9 @@
 //Go to a place, board a ship, change the IFF
 
 /datum/overmap_gamemode/boarding
-	name = "Boarding"
+	name = "Abordaż"
 	config_tag = "boarding"
-	desc = "Boarding gamemode - board a specific ship and hack the IFF"
+	desc = "Tryb abordażu – wejdź na pokład wskazanego okrętu i zhakuj IFF"
 	brief = "Waszym zadaniem jest przejęcie jednostki Syndykatu. Zlokalizujcie cel, bezwzględnie wyeliminujcie siły Syndykatu, a następnie zmieńcie kody transpondera i sprowadźcie ją do domu."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"
@@ -16,9 +16,9 @@
 //Go to a place, capture a station, hold it against the counterattack
 
 /datum/overmap_gamemode/station_boarding
-	name = "Station Boarding"
+	name = "Abordaż stacji"
 	config_tag = "station_boarding"
-	desc = "Station boarding gamemode - capture a Syndicate outpost, then defend it from a boarding fleet"
+	desc = "Tryb abordażu stacji – zdobądź placówkę Syndykatu, a potem broń jej przed flotą abordażową"
 	brief = "Waszym zadaniem jest przejęcie placówki Syndykatu. Zlokalizujcie ją, rozbijcie flotę obronną, wejdźcie na pokład i zmieńcie kody IFF, a potem utrzymajcie placówkę do odparcia kontrataku."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"

@@ -5,7 +5,7 @@
 #define ELBOW_DROP_COMBO "HDHDH"
 
 /datum/martial_art/the_sleeping_carp
-	name = "The Sleeping Carp"
+	name = "Śpiący Karp"
 	id = MARTIALART_SLEEPINGCARP
 	deflection_chance = 100
 	reroute_deflection = TRUE
@@ -83,7 +83,7 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message("<span class='warning'>[A] wbija [D] kolano w brzuch!</span>", \
 						  "<span class='userdanger'>[A] pozbawia cię tchu kolanem w brzuch!</span>")
-		D.audible_message("<b>[D]</b> gags!")
+		D.audible_message("<b>[D]</b> krztusi się!")
 		D.losebreath += 3
 		D.Stun(40)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
@@ -157,8 +157,8 @@
 	return ..()
 
 /obj/item/staff/bostaff
-	name = "bo staff"
-	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
+	name = "kij bo"
+	desc = "Długi kij z polerowanego drewna. Tradycyjnie używany w starożytnych sztukach walki ze Starej Ziemi. Można nim zarówno zabić, jak i obezwładnić."
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
@@ -218,7 +218,7 @@
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
 		H.adjustStaminaLoss(rand(13,20))
 		if(prob(10))
-			H.visible_message("<span class='warning'>[H] collapses!</span>", \
+			H.visible_message("<span class='warning'>[H] pada!</span>", \
 								   "<span class='userdanger'>Nogi odmawiają ci posłuszeństwa!</span>")
 			H.Paralyze(80)
 		if(H.getStaminaLoss() && !H.IsSleeping())
@@ -231,7 +231,7 @@
 	else
 		return ..()
 
-/obj/item/staff/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/staff/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!ISWIELDED(src))
 		return ..()
 	return 0

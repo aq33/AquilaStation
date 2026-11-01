@@ -1,5 +1,5 @@
 /datum/surgery/hepatectomy
-	name = "Hepatectomy"
+	name = "Hepatektomia"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_real_bodypart = TRUE
@@ -20,7 +20,7 @@
 ////hepatectomy, removes damaged parts of the liver so that the liver may regenerate properly
 //95% chance of success, not 100 because organs are delicate
 /datum/surgery_step/hepatectomy
-	name = "remove damaged liver section"
+	name = "usuń uszkodzony fragment wątroby"
 	implements = list(TOOL_SCALPEL = 95, /obj/item/melee/transforming/energy/sword = 65, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 35)
 	time = 52

@@ -1,5 +1,5 @@
 /datum/surgery/core_removal
-	name = "core removal"
+	name = "usunięcie rdzenia"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/extract_core)
 	target_mobtypes = list(/mob/living/simple_animal/slime)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
@@ -13,7 +13,7 @@
 
 //extract brain
 /datum/surgery_step/extract_core
-	name = "extract core"
+	name = "wyjmij rdzeń"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100)
 	time = 16
 

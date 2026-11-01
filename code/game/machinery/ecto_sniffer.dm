@@ -1,6 +1,6 @@
 /obj/machinery/ecto_sniffer
-	name = "ectoscopic sniffer"
-	desc = "A highly sensitive parascientific instrument calibrated to detect the slightest whiff of ectoplasm."
+	name = "ektoskopowy wykrywacz"
+	desc = "Niezwykle czuły paranaukowy przyrząd skalibrowany do wykrywania najsłabszej woni ektoplazmy."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "ecto_sniffer"
 	density = FALSE

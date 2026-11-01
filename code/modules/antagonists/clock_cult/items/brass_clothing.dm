@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/clockwork
-	name = "brass armor"
-	desc = "A strong, brass suit worn by the soldiers of the Ratvarian armies."
+	name = "mosiężna zbroja"
+	desc = "Wytrzymała mosiężna zbroja noszona przez żołnierzy armii Ratvara."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 60, "bleed" = 60)
@@ -27,8 +27,8 @@
 			C.jitteriness = max(C.jitteriness - 990, 10)
 
 /obj/item/clothing/suit/clockwork/speed
-	name = "robes of divinity"
-	desc = "A shiny suit, glowing with a vibrant energy. The wearer will be able to move quickly across battlefields, but will be able to withstand less damage before falling."
+	name = "szaty boskości"
+	desc = "Lśniący strój, który jarzy się żywą energią. Pozwala szybko przemieszczać się po polu bitwy, ale noszący wytrzyma mniej obrażeń, zanim padnie."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass_speed"
 	slowdown = -0.3
@@ -36,8 +36,8 @@
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 10, "energy" = -20, "bomb" = 60, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 30, "bleed" = 40)
 
 /obj/item/clothing/suit/clockwork/cloak
-	name = "shrouding cloak"
-	desc = "A faltering cloak that bends light around it, distorting the user's appearance, making it hard to see them with the naked eye. However, it provides very little protection."
+	name = "płaszcz spowijający"
+	desc = "Migotliwy płaszcz, który zagina wokół siebie światło i zniekształca wygląd noszącego, przez co trudno go dostrzec gołym okiem. Daje jednak bardzo słabą ochronę."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cloak"
 	armor = list("melee" = 10, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 20, "bleed" = 20)
@@ -66,7 +66,7 @@
 		animate(user, alpha=previous_alpha, time=30)
 
 /obj/item/clothing/glasses/clockwork
-	name = "base clock glasses"
+	name = "bazowe mechaniczne okulary"
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
 
@@ -87,8 +87,8 @@
 			C.jitteriness = max(C.jitteriness - 990, 10)
 
 /obj/item/clothing/glasses/clockwork/wraith_spectacles
-	name = "wraith spectacles"
-	desc = "Mystical glasses that glow with a bright energy. Some say they can see things that shouldn't be seen."
+	name = "okulary upiora"
+	desc = "Mistyczne okulary jarzące się jasną energią. Podobno pozwalają zobaczyć rzeczy, których nie powinno się widzieć."
 	icon_state = "wraith_specs"
 	invis_view = SEE_INVISIBLE_OBSERVER
 	invis_override = null
@@ -132,8 +132,8 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/head/helmet/clockcult
-	name = "brass helmet"
-	desc = "A strong, brass helmet worn by the soldiers of the Ratvarian armies. Includes an integrated light-dimmer for flash protection, as well as occult-grade muffling for factory based environments."
+	name = "mosiężny hełm"
+	desc = "Wytrzymały mosiężny hełm noszony przez żołnierzy armii Ratvara. Ma wbudowany przyciemniacz chroniący przed błyskami oraz okultystyczne wygłuszenie na hałas hal fabrycznych."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_helmet"
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 60, "bleed" = 60)
@@ -143,14 +143,14 @@
 	bang_protect = 3
 
 /obj/item/clothing/shoes/clockcult
-	name = "brass treads"
-	desc = "A strong pair of brass boots worn by the soldiers of the Ratvarian armies."
+	name = "mosiężne buty"
+	desc = "Para wytrzymałych mosiężnych butów noszonych przez żołnierzy armii Ratvara."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_treads"
 
 /obj/item/clothing/gloves/clockcult
-	name = "brass gauntlets"
-	desc = "A strong pair of brass gloves worn by the soldiers of the Ratvarian armies."
+	name = "mosiężne rękawice"
+	desc = "Para wytrzymałych mosiężnych rękawic noszonych przez żołnierzy armii Ratvara."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_gauntlets"
 	siemens_coefficient = 0

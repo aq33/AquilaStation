@@ -1,8 +1,8 @@
 //Fluff structures serve no purpose and exist only for enriching the environment. They can be destroyed with a wrench.
 
 /obj/structure/fluff
-	name = "fluff structure"
-	desc = "Fluffier than a sheep. This shouldn't exist."
+	name = "struktura dekoracyjna"
+	desc = "Puszystsza od owcy. To nie powinno istnieć."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "minibar"
 	anchored = TRUE
@@ -15,7 +15,7 @@
 		user.visible_message("<span class='notice'>[user] zaczyna rozbierać [src]...</span>", "<span class='notice'>Zaczynasz rozbierać [src]...</span>")
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 50))
-			user.visible_message("<span class='notice'>[user] disassembles [src]!</span>", "<span class='notice'>Rozbierasz [src] na złom.</span>")
+			user.visible_message("<span class='notice'>[user] rozbiera [src]!</span>", "<span class='notice'>Rozbierasz [src] na złom.</span>")
 			playsound(user, 'sound/items/deconstruct.ogg', 50, 1)
 			new/obj/item/stack/sheet/iron(drop_location())
 			qdel(src)
@@ -23,42 +23,42 @@
 	..()
 
 /obj/structure/fluff/empty_terrarium //Empty terrariums are created when a preserved terrarium in a lavaland seed vault is activated.
-	name = "empty terrarium"
-	desc = "An ancient machine that seems to be used for storing plant matter. Its hatch is ajar."
+	name = "puste terrarium"
+	desc = "Prastara maszyna, która chyba służyła do przechowywania materii roślinnej. Jej klapa jest uchylona."
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "terrarium_open"
 	density = TRUE
 
 /obj/structure/fluff/empty_sleeper //Empty sleepers are created by a good few ghost roles in lavaland.
-	name = "empty sleeper"
-	desc = "An open sleeper. It looks as though it would be awaiting another patient, were it not broken."
+	name = "pusty sleeper"
+	desc = "Otwarty sleeper. Wygląda, jakby czekał na kolejnego pacjenta, gdyby nie był zepsuty."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper-open"
 
 /obj/structure/fluff/empty_sleeper/nanotrasen
-	name = "broken hypersleep chamber"
-	desc = "A Nanotrasen hypersleep chamber - this one appears broken. \
-		There are exposed bolts for easy disassembly using a wrench."
+	name = "zepsuta komora hipersnu"
+	desc = "Komora hipersnu Nanotrasen – ta wygląda na zepsutą. \
+		Ma odsłonięte śruby, więc łatwo ją rozebrać kluczem."
 	icon_state = "sleeper-o"
 
 /obj/structure/fluff/empty_sleeper/syndicate
 	icon_state = "sleeper_s-open"
 
 /obj/structure/fluff/empty_cryostasis_sleeper //Empty cryostasis sleepers are created when a malfunctioning cryostasis sleeper in a lavaland shelter is activated
-	name = "empty cryostasis sleeper"
-	desc = "Although comfortable, this sleeper won't function as anything but a bed ever again."
+	name = "pusty sleeper kriostazy"
+	desc = "Choć jest wygodny, ten sleeper już nigdy nie posłuży za nic innego niż łóżko."
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "cryostasis_sleeper_open"
 
 /obj/structure/fluff/broken_flooring
-	name = "broken tiling"
-	desc = "A segment of broken flooring."
+	name = "rozbite płytki"
+	desc = "Fragment zniszczonej podłogi."
 	icon = 'icons/obj/brokentiling.dmi'
 	icon_state = "corner"
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
-	name = "drake statue"
-	desc = "A towering basalt sculpture of a proud and regal drake. Its eyes are six glowing gemstones."
+	name = "posąg smoka"
+	desc = "Górująca bazaltowa rzeźba dumnego i dostojnego smoka. Jego oczy to sześć lśniących klejnotów."
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
 	pixel_x = -16
@@ -67,40 +67,40 @@
 	layer = EDGED_TURF_LAYER
 
 /obj/structure/fluff/drake_statue/falling //A variety of statue in disrepair; parts are broken off and a gemstone is missing
-	desc = "A towering basalt sculpture of a drake. Cracks run down its surface and parts of it have fallen off."
+	desc = "Górująca bazaltowa rzeźba smoka. Jej powierzchnię przecinają pęknięcia, a niektóre części odpadły."
 	icon_state = "drake_statue_falling"
 
 
 /obj/structure/fluff/bus
-	name = "bus"
-	desc = "GO TO SCHOOL. READ A BOOK."
+	name = "autobus"
+	desc = "IDŹ DO SZKOŁY. PRZECZYTAJ KSIĄŻKĘ."
 	icon = 'icons/obj/bus.dmi'
 	density = TRUE
 	anchored = TRUE
 	deconstructible = FALSE
 
 /obj/structure/fluff/bus/dense
-	name = "bus"
+	name = "autobus"
 	icon_state = "backwall"
 
 /obj/structure/fluff/bus/passable
-	name = "bus"
+	name = "autobus"
 	icon_state = "frontwalltop"
 	density = FALSE
 	layer = ABOVE_ALL_MOB_LAYER //except for the stairs tile, which should be set to OBJ_LAYER aka 3.
 
 
 /obj/structure/fluff/bus/passable/seat
-	name = "seat"
-	desc = "Buckle up! ...What do you mean, there's no seatbelts?!"
+	name = "siedzenie"
+	desc = "Zapnij pasy! ...Jak to nie ma pasów?!"
 	icon_state = "backseat"
 	pixel_y = 17
 	layer = OBJ_LAYER
 
 
 /obj/structure/fluff/bus/passable/seat/driver
-	name = "driver's seat"
-	desc = "Space Jesus is my copilot."
+	name = "fotel kierowcy"
+	desc = "Kosmiczny Jezus jest moim drugim pilotem."
 	icon_state = "driverseat"
 
 /obj/structure/fluff/bus/passable/seat/driver/attack_hand(mob/user)
@@ -108,8 +108,8 @@
 	. = ..()
 
 /obj/structure/fluff/paper
-	name = "dense lining of papers"
-	desc = "A lining of paper scattered across the bottom of a wall."
+	name = "gęsta warstwa papierów"
+	desc = "Warstwa papierów rozrzuconych u podstawy ściany."
 	icon = 'icons/obj/fluff.dmi'
 	icon_state = "paper"
 	deconstructible = FALSE
@@ -118,52 +118,52 @@
 	icon_state = "papercorner"
 
 /obj/structure/fluff/paper/stack
-	name = "dense stack of papers"
-	desc = "A stack of various papers, childish scribbles scattered across each page."
+	name = "gruby stos papierów"
+	desc = "Stos różnych papierów, na każdej kartce dziecięce bazgroły."
 	icon_state = "paperstack"
 
 
 /obj/structure/fluff/divine
-	name = "Miracle"
+	name = "Cud"
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/fluff/divine/nexus
 	name = "nexus"
-	desc = "It anchors a deity to this world. It radiates an unusual aura. It looks well protected from explosive shock."
+	desc = "Zakotwicza bóstwo w tym świecie. Promieniuje niezwykłą aurą. Wygląda na dobrze chroniony przed falą uderzeniową."
 	icon_state = "nexus"
 
 /obj/structure/fluff/divine/conduit
-	name = "conduit"
-	desc = "It allows a deity to extend their reach.  Their powers are just as potent near a conduit as a nexus."
+	name = "przekaźnik"
+	desc = "Pozwala bóstwu poszerzyć zasięg. W pobliżu przekaźnika jego moce są równie silne jak przy nexusie."
 	icon_state = "conduit"
 
 /obj/structure/fluff/divine/convertaltar
-	name = "conversion altar"
-	desc = "An altar dedicated to a deity."
+	name = "ołtarz nawrócenia"
+	desc = "Ołtarz poświęcony bóstwu."
 	icon_state = "convertaltar"
 	density = FALSE
 	can_buckle = 1
 
 /obj/structure/fluff/divine/powerpylon
-	name = "power pylon"
-	desc = "A pylon which increases the deity's rate it can influence the world."
+	name = "pylon mocy"
+	desc = "Pylon, który przyspiesza wpływ bóstwa na świat."
 	icon_state = "powerpylon"
 	can_buckle = 1
 
 /obj/structure/fluff/divine/defensepylon
-	name = "defense pylon"
-	desc = "A pylon which is blessed to withstand many blows, and fire strong bolts at nonbelievers. A god can toggle it."
+	name = "pylon obronny"
+	desc = "Pobłogosławiony pylon, który wytrzymuje wiele ciosów i strzela silnymi pociskami w niewiernych. Bóg może go przełączać."
 	icon_state = "defensepylon"
 
 /obj/structure/fluff/divine/shrine
-	name = "shrine"
-	desc = "A shrine dedicated to a deity."
+	name = "kapliczka"
+	desc = "Kapliczka poświęcona bóstwu."
 	icon_state = "shrine"
 
 /obj/structure/fluff/fokoff_sign
-	name = "crude sign"
-	desc = "A crudely-made sign with the words 'fok of' written in some sort of red paint."
+	name = "prowizoryczna tablica"
+	desc = "Topornie zrobiona tablica z napisem „spadaj” wymalowanym jakąś czerwoną farbą."
 	icon = 'icons/obj/fluff.dmi'
 	icon_state = "fokof"

@@ -1,7 +1,7 @@
 /datum/surgery/advanced/bioware/ligament_hook
-	name = "Ligament Hook"
-	desc = "A surgical procedure which reshapes the connections between torso and limbs, making it so limbs can be attached manually if severed. \
-	However this weakens the connection, making them easier to detach as well."
+	name = "Hak więzadłowy"
+	desc = "Zabieg chirurgiczny, który przekształca połączenia między tułowiem a kończynami, dzięki czemu odcięte kończyny można przyczepić ręcznie. \
+	Osłabia to jednak połączenie, przez co łatwiej je też odczepić."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -13,7 +13,7 @@
 	bioware_target = BIOWARE_LIGAMENTS
 
 /datum/surgery_step/reshape_ligaments
-	name = "reshape ligaments"
+	name = "przekształć więzadła"
 	accept_hand = TRUE
 	time = 125
 
@@ -30,8 +30,8 @@
 	return TRUE
 
 /datum/bioware/hooked_ligaments
-	name = "Hooked Ligaments"
-	desc = "The ligaments and nerve endings that connect the torso to the limbs are formed into a hook-like shape, so limbs can be attached without requiring surgery, but are easier to sever."
+	name = "Hakowate więzadła"
+	desc = "Więzadła i zakończenia nerwowe łączące tułów z kończynami mają kształt haka, więc kończyny można przyczepić bez operacji, ale łatwiej je odciąć."
 	mod_type = BIOWARE_LIGAMENTS
 
 /datum/bioware/hooked_ligaments/on_gain()

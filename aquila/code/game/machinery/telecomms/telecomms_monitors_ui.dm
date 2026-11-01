@@ -60,7 +60,7 @@
 			log["job"] = entry.parameters["job"]
 			log["race"] = race
 			log["message"] = message
-		if("Execution Error")
+		if("Błąd wykonania")
 			log["message"] = entry.parameters["message"]
 	return log
 

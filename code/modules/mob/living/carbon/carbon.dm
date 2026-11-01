@@ -80,7 +80,7 @@
 		var/mob/living/carbon/victim = hit_atom
 		if(!(victim.movement_type & FLYING))
 			if(victim.can_catch_item())
-				visible_message("<span class='danger'>[victim] catches [src]!</span>",\
+				visible_message("<span class='danger'>[victim] łapie [src]!</span>",\
 					"<span class='userdanger'>[victim] cię łapie!</span>")
 				grabbedby(victim, TRUE)
 				victim.throw_mode_off(THROW_MODE_TOGGLE)
@@ -174,7 +174,7 @@
 			return TRUE
 
 	if(thrown_thing)
-		visible_message("<span class='danger'>[src] throws [thrown_thing].</span>", \
+		visible_message("<span class='danger'>[src] rzuca [thrown_thing].</span>", \
 						"<span class='danger'>Rzucasz [thrown_thing].</span>")
 		log_message("has thrown [I]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
@@ -904,20 +904,20 @@
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_MAKE_AI, "Make AI")
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
-	VV_DROPDOWN_OPTION(VV_HK_HALLUCINATION, "Hallucinate")
-	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Give Martial Arts")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Give Brain Trauma")
-	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Cure Brain Traumas")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_AI, "Zrób SI")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modyfikuj część ciała")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modyfikuj organy")
+	VV_DROPDOWN_OPTION(VV_HK_HALLUCINATION, "Wywołaj halucynację")
+	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Daj sztukę walki")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Daj uraz mózgu")
+	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Wylecz urazy mózgu")
 
 /mob/living/carbon/vv_do_topic(list/href_list)
 	. = ..()
 	if(href_list[VV_HK_MODIFY_BODYPART])
 		if(!check_rights(R_SPAWN))
 			return
-		var/edit_action = input(usr, "Co chcesz zrobić?","Modify Body Part") as null|anything in list("add","remove", "augment")
+		var/edit_action = input(usr, "Co chcesz zrobić?","Modyfikacja części ciała") as null|anything in list("add","remove", "augment")
 		if(!edit_action)
 			return
 		var/list/limb_list = list()
@@ -930,7 +930,7 @@
 			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			for(var/obj/item/bodypart/B in bodyparts)
 				limb_list -= B.body_zone
-		var/result = input(usr, "Wybierz część ciała do operacji: [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in limb_list
+		var/result = input(usr, "Wybierz część ciała do operacji: [edit_action]","Część ciała: [edit_action]") as null|anything in limb_list
 		if(result)
 			var/obj/item/bodypart/BP = get_bodypart(result)
 			switch(edit_action)
@@ -953,12 +953,12 @@
 							to_chat(usr, "[src] nie ma takiej części ciała.")
 					else
 						to_chat(usr, "Tylko ludzi można augmentować.")
-		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
+		admin_ticket_log("[key_name_admin(usr)] modyfikuje części ciała: [src]")
 
 	if(href_list[VV_HK_MAKE_AI])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makeai"=href_list[VV_HK_TARGET]))
 
@@ -975,42 +975,42 @@
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(usr, "Mob już nie istnieje")
 			return
 		if(result)
 			var/chosenart = artnames[result]
 			var/datum/martial_art/MA = new chosenart
 			MA.teach(src)
 			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)].</span>")
+			message_admins("<span class='notice'>[key_name_admin(usr)] uczy [key_name_admin(src)] sztuki walki: [MA].</span>")
 
 	if(href_list[VV_HK_GIVE_TRAUMA] && check_rights(R_FUN|R_DEBUG))
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = input(usr, "Wybierz uraz mózgu do nałożenia","Traumatize") as null|anything in traumas
+		var/result = input(usr, "Wybierz uraz mózgu do nałożenia","Uraz mózgu") as null|anything in traumas
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(usr, "Mob już nie istnieje")
 			return
 		if(!result)
 			return
 		var/datum/brain_trauma/BT = gain_trauma(result)
 		if(BT)
 			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name].</span>")
+			message_admins("<span class='notice'>[key_name_admin(usr)] zadaje [key_name_admin(src)] uraz: [BT.name].</span>")
 
 	if(href_list[VV_HK_CURE_TRAUMA] && check_rights(R_FUN|R_DEBUG))
 		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
-		message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)].</span>")
+		message_admins("<span class='notice'>[key_name_admin(usr)] leczy wszystkie urazy: [key_name_admin(src)].</span>")
 
 	if(href_list[VV_HK_HALLUCINATION] && check_rights(R_FUN))
 		var/list/hallucinations = subtypesof(/datum/hallucination)
-		var/result = input(usr, "Wybierz halucynację do nałożenia","Send Hallucination") as null|anything in hallucinations
+		var/result = input(usr, "Wybierz halucynację do nałożenia","Wyślij halucynację") as null|anything in hallucinations
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(usr, "Mob już nie istnieje")
 			return
 		if(result)
 			new result(src, TRUE)

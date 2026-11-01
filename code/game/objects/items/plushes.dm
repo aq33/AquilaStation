@@ -1,6 +1,6 @@
 /obj/item/toy/plush
-	name = "plush"
-	desc = "This is the special coder plush, do not steal."
+	name = "pluszak"
+	desc = "To specjalny pluszak koderów, nie kradnij."
 	icon = 'icons/obj/plushes.dmi'
 	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/plushes_righthand.dmi'
@@ -293,7 +293,7 @@
 	maternal_parent = Mama
 	paternal_parent = Dada
 	young = TRUE
-	name = "[Mama] Jr"	//Icelandic naming convention pending
+	name = "[Mama] junior"	//Icelandic naming convention pending
 	normal_desc = "[src] to maleństwo [maternal_parent] i [paternal_parent]!"	//original desc won't be used so the child can have moods
 	update_desc()
 
@@ -367,22 +367,22 @@
 	return ..()
 
 /obj/item/toy/plush/carpplushie
-	name = "space carp plushie"
-	desc = "An adorable stuffed toy that resembles a space carp."
+	name = "pluszowy kosmiczny karp"
+	desc = "Uroczy pluszak przypominający kosmicznego karpia."
 	icon_state = "carpplush"
 	attack_verb = list("gryzie", "zjada", "smaga płetwą")
 	squeak_override = list('sound/weapons/bite.ogg'=1)
 
 /obj/item/toy/plush/bubbleplush
-	name = "\improper Bubblegum plushie"
-	desc = "The friendly red demon that gives good miners gifts."
+	name = "\improper pluszowy Bubblegum"
+	desc = "Przyjazny czerwony demon, który daje grzecznym górnikom prezenty."
 	icon_state = "bubbleplush"
 	attack_verb = list("rozdziera")
 	squeak_override = list('sound/magic/demon_attack1.ogg'=1)
 
 /obj/item/toy/plush/plushvar
-	name = "\improper Ratvar plushie"
-	desc = "An adorable plushie of the clockwork justiciar himself with new and improved spring arm action."
+	name = "\improper pluszowy Ratvar"
+	desc = "Uroczy pluszak samego mechanicznego sędziego z nowym, ulepszonym sprężynowym ramieniem."
 	icon_state = "plushvar"
 	divine = TRUE
 	var/obj/item/toy/plush/narplush/clash_target
@@ -399,7 +399,7 @@
 /obj/item/toy/plush/plushvar/proc/clash_of_the_plushies(obj/item/toy/plush/narplush/P)
 	clash_target = P
 	P.clashing = TRUE
-	say("YOU.")
+	say("TY.")
 	P.say("Ratvar?!")
 	var/obj/item/toy/plush/a_winnar_is
 	var/victory_chance = 10
@@ -451,7 +451,7 @@
 	if(!a_winnar_is)
 		a_winnar_is = pick(src, P)
 	if(a_winnar_is == src)
-		say(pick("DIE.", "ROT."))
+		say(pick("GIŃ.", "GNIJ."))
 		P.say(pick("Nieeee...", "Nie umierać. Za-", "Umieraj. Ratv-", "Sas tyen re-"))
 		playsound(src, 'sound/magic/clockwork/anima_fragment_attack.ogg', 50, TRUE, frequency = 2)
 		playsound(P, 'sound/magic/demon_dies.ogg', 50, TRUE, frequency = 2)
@@ -468,8 +468,8 @@
 		P.clashing = FALSE
 
 /obj/item/toy/plush/narplush
-	name = "\improper Nar'Sie plushie"
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy?"
+	name = "\improper pluszowa Nar'Sie"
+	desc = "Mała pluszowa laleczka pradawnej bogini Nar'Sie. Kto uznał, że to dobra zabawka dla dzieci?"
 	icon_state = "narplush"
 	divine = TRUE
 	var/clashing
@@ -483,33 +483,33 @@
 		P.clash_of_the_plushies(src)
 
 /obj/item/toy/plush/narplush/hugbox
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy? <b>It looks sad.</b>"
+	desc = "Mała pluszowa laleczka pradawnej bogini Nar'Sie. Kto uznał, że to dobra zabawka dla dzieci? <b>Wygląda na smutną.</b>"
 	is_invoker = FALSE
 
 /obj/item/toy/plush/lizardplushie
-	name = "lizard plushie"
-	desc = "An adorable stuffed toy that resembles a lizardperson."
+	name = "pluszowy jaszczur"
+	desc = "Uroczy pluszak przypominający jaszczura."
 	icon_state = "lizardplush"
 	attack_verb = list("drapie", "syczy na", "smaga ogonem")
 	squeak_override = list('sound/weapons/slash.ogg' = 1)
 
 /obj/item/toy/plush/snakeplushie
-	name = "snake plushie"
-	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
+	name = "pluszowy wąż"
+	desc = "Uroczy pluszak przypominający węża. Nie myl go z prawdziwym."
 	icon_state = "snakeplush"
 	attack_verb = list("gryzie", "syczy na", "smaga ogonem")
 	squeak_override = list('sound/weapons/bite.ogg' = 1)
 
 /obj/item/toy/plush/nukeplushie
-	name = "operative plushie"
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
+	name = "pluszowy agent"
+	desc = "Pluszak przypominający agenta nuklearnego Syndykatu. Metka twierdzi, że agenci są czysto fikcyjni."
 	icon_state = "nukeplush"
 	attack_verb = list("strzela w", "nuke'uje", "detonuje")
 	squeak_override = list('sound/effects/hit_punch.ogg' = 1)
 
 /obj/item/toy/plush/slimeplushie
-	name = "slime plushie"
-	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
+	name = "pluszowy szlam"
+	desc = "Uroczy pluszak przypominający szlama. W zasadzie to zwykła zośka."
 	icon_state = "slimeplush"
 	attack_verb = list("blorbluje", "oślizguje", "pochłania")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
@@ -517,8 +517,8 @@
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
 
 /obj/item/toy/plush/awakenedplushie
-	name = "awakened plushie"
-	desc = "An ancient plushie that has grown enlightened to the true nature of reality."
+	name = "przebudzony pluszak"
+	desc = "Pradawny pluszak, który doznał oświecenia co do prawdziwej natury rzeczywistości."
 	icon_state = "awakeplush"
 
 /obj/item/toy/plush/awakenedplushie/ComponentInitialize()
@@ -526,23 +526,23 @@
 	AddComponent(/datum/component/edit_complainer)
 
 /obj/item/toy/plush/beeplushie
-	name = "bee plushie"
-	desc = "A cute toy that resembles an even cuter bee."
+	name = "pluszowa pszczoła"
+	desc = "Słodka zabawka przypominająca jeszcze słodszą pszczołę."
 	icon_state = "beeplush"
 	attack_verb = list("żądli")
 	gender = FEMALE
 	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
 
 /obj/item/toy/plush/rouny
-	name = "runner plushie"
-	desc = "A plushie depicting a xenomorph runner, made to commemorate the centenary of the Battle of LV-426. Much cuddlier than the real thing."
+	name = "pluszowy biegacz"
+	desc = "Pluszak przedstawiający ksenomorfa biegacza, zrobiony z okazji stulecia bitwy o LV-426. O wiele milszy do przytulania niż oryginał."
 	icon_state = "rounyplush"
 	attack_verb = list("ciacha", "gryzie", "szarżuje na")
 	squeak_override = list('sound/weapons/bite.ogg' = 1)
 
 /obj/item/toy/plush/moth
-	name = "moth plushie"
-	desc = "An adorable mothperson plushy. It's a huggable bug!"
+	name = "pluszowa ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To robaczek do przytulania!"
 	icon_state = "moffplush"
 	attack_verb = list("trzepocze na", "klapie")
 	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
@@ -553,9 +553,9 @@
 	user.visible_message("<span class='suicide'>[user] patrzy głęboko w oczy [src]. Pluszak zaczyna pożerać jego duszę! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
 	suicide_count++
 	if(suicide_count < 3)
-		desc = "An unsettling mothperson plushy. After killing [suicide_count] [suicide_count == 1 ? "person" : "people"] it's not looking so huggable now..."
+		desc = "Niepokojący pluszak w kształcie ćmy. Zabitych: [suicide_count]. Teraz już nie wygląda na takiego do przytulania..."
 	else
-		desc = "A creepy mothperson plushy. It has killed [suicide_count] people! I don't think I want to hug it any more!"
+		desc = "Przerażający pluszak w kształcie ćmy. Zabitych: [suicide_count]! Chyba nie chcę go już przytulać!"
 		divine = TRUE
 		resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	playsound(src, 'sound/hallucinations/wail.ogg', 50, TRUE, -1)
@@ -567,9 +567,9 @@
 	return MANUAL_SUICIDE
 
 /obj/item/toy/plush/moth/random
-	name = "\improper Random Mothplush"
+	name = "\improper losowa pluszowa ćma"
 	icon_state = "moffplush_random"
-	desc = "An undefined mothperson plushy. It's a debuggable bug! (if you see this, contact an upper beign as soon as possible)."
+	desc = "Nieokreślony pluszak w kształcie ćmy. To robaczek do debugowania! (jeśli to widzisz, jak najszybciej skontaktuj się z istotą wyższą)."
 
 /obj/item/toy/plush/moth/random/Initialize()
 	var moff_type = pick(subtypesof(/obj/item/toy/plush/moth) - /obj/item/toy/plush/moth/random/)
@@ -577,116 +577,116 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/toy/plush/moth/monarch
-	name = "monarch moth plushie"
-	desc = "An adorable mothperson plushy. It's an important bug!"
+	name = "pluszowa ćma monarcha"
+	desc = "Uroczy pluszak w kształcie ćmy. To ważny robaczek!"
 	icon_state = "moffplush_monarch"
 
 /obj/item/toy/plush/moth/luna
-	name = "luna moth plushie"
-	desc = "An adorable mothperson plushy. It's a lunar bug!"
+	name = "pluszowa ćma księżycowa"
+	desc = "Uroczy pluszak w kształcie ćmy. To księżycowy robaczek!"
 	icon_state = "moffplush_luna"
 
 /obj/item/toy/plush/moth/atlas
-	name = "atlas moth plushie"
-	desc = "An adorable mothperson plushy. It's a wide bug!"
+	name = "pluszowa ćma atlas"
+	desc = "Uroczy pluszak w kształcie ćmy. To szeroki robaczek!"
 	icon_state = "moffplush_atlas"
 
 /obj/item/toy/plush/moth/redish
-	name = "redish moth plushie"
-	desc = "An adorable mothperson plushy. It's a red bug!"
+	name = "pluszowa czerwonawa ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To czerwony robaczek!"
 	icon_state = "moffplush_redish"
 
 /obj/item/toy/plush/moth/royal
-	name = "royal moth plushie"
-	desc = "An adorable mothperson plushy. It's a royal bug!"
+	name = "pluszowa ćma królewska"
+	desc = "Uroczy pluszak w kształcie ćmy. To królewski robaczek!"
 	icon_state = "moffplush_royal"
 
 /obj/item/toy/plush/moth/gothic
-	name = "gothic moth plushie"
-	desc = "An adorable mothperson plushy. It's a dark bug!"
+	name = "pluszowa ćma gotycka"
+	desc = "Uroczy pluszak w kształcie ćmy. To mroczny robaczek!"
 	icon_state = "moffplush_gothic"
 
 /obj/item/toy/plush/moth/lovers
-	name = "lovers moth plushie"
-	desc = "An adorable mothperson plushy. It's a loveley bug!"
+	name = "pluszowa ćma kochanków"
+	desc = "Uroczy pluszak w kształcie ćmy. To kochany robaczek!"
 	icon_state = "moffplush_lovers"
 
 /obj/item/toy/plush/moth/whitefly
-	name = "whitefly moth plushie"
-	desc = "An adorable mothperson plushy. It's a shy bug!"
+	name = "pluszowa ćma mączlik"
+	desc = "Uroczy pluszak w kształcie ćmy. To nieśmiały robaczek!"
 	icon_state = "moffplush_whitefly"
 
 /obj/item/toy/plush/moth/punished
-	name = "punished moth plushie"
-	desc = "An adorable mothperson plushy. It's a sad bug... that's quite sad actualy."
+	name = "pluszowa ukarana ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To smutny robaczek... to właściwie całkiem smutne."
 	icon_state = "moffplush_punished"
 
 /obj/item/toy/plush/moth/firewatch
-	name = "firewatch moth plushie"
-	desc = "An adorable mothperson plushy. It's a firey bug!"
+	name = "pluszowa ćma strażnik ognia"
+	desc = "Uroczy pluszak w kształcie ćmy. To ognisty robaczek!"
 	icon_state = "moffplush_firewatch"
 
 /obj/item/toy/plush/moth/deadhead
-	name = "deadhead moth plushie"
-	desc = "An adorable mothperson plushy. It's a silent bug!"
+	name = "pluszowa ćma trupia główka"
+	desc = "Uroczy pluszak w kształcie ćmy. To cichy robaczek!"
 	icon_state = "moffplush_deadhead"
 
 /obj/item/toy/plush/moth/poison
-	name = "poison moth plushie"
-	desc = "An adorable mothperson plushy. It's a toxic bug!"
+	name = "pluszowa ćma trująca"
+	desc = "Uroczy pluszak w kształcie ćmy. To toksyczny robaczek!"
 	icon_state = "moffplush_poison"
 
 /obj/item/toy/plush/moth/ragged
-	name = "ragged moth plushie"
-	desc = "An adorable mothperson plushy. It's a robust bug!"
+	name = "pluszowa obszarpana ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To krzepki robaczek!"
 	icon_state = "moffplush_ragged"
 
 /obj/item/toy/plush/moth/snow
-	name = "snow moth plushie"
-	desc = "An adorable mothperson plushy. It's a cool bug!"
+	name = "pluszowa ćma śnieżna"
+	desc = "Uroczy pluszak w kształcie ćmy. To chłodny robaczek!"
 	icon_state = "moffplush_snow"
 
 /obj/item/toy/plush/moth/clockwork
-	name = "clockwork moth plushie"
-	desc = "An adorable mothperson plushy. It's a precise bug!"
+	name = "pluszowa mechaniczna ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To precyzyjny robaczek!"
 	icon_state = "moffplush_clockwork"
 
 /obj/item/toy/plush/moth/moonfly
-	name = "moonfly moth plushie"
-	desc = "An adorable mothperson plushy. It's a nightly bug!"
+	name = "pluszowa ćma lunarna"
+	desc = "Uroczy pluszak w kształcie ćmy. To nocny robaczek!"
 	icon_state = "moffplush_moonfly"
 
 /obj/item/toy/plush/moth/error
-	name = "error moth plushie"
-	desc = "An adorable mothperson plushy. It's a debuggable bug!"
+	name = "pluszowa ćma błędu"
+	desc = "Uroczy pluszak w kształcie ćmy. To robaczek do debugowania!"
 	icon_state = "moffplush_random"
 
 /obj/item/toy/plush/moth/rainbow
-	name = "rainbow moth plushie"
-	desc = "An adorable mothperson plushy. It's a colorfull bug!"
+	name = "pluszowa tęczowa ćma"
+	desc = "Uroczy pluszak w kształcie ćmy. To kolorowy robaczek!"
 	icon_state = "moffplush_rainbow"
 
 /obj/item/toy/plush/crossed
-	name = "ghost plushie"
-	desc = "It reminds you of someone important, you just can't make out who."
+	name = "pluszowy duch"
+	desc = "Przypomina ci kogoś ważnego, tylko nie wiesz kogo."
 	icon_state = "crossedplush"
 	squeak_override = list('sound/items/haunted/ghostitemattack.ogg'=1)
 
 /obj/item/toy/plush/runtime
-	name = "Runtime plushie"
+	name = "pluszowy Runtime"
 	desc = "GPLUSH."
 	icon_state = "runtimeplush"
 	squeak_override = list('sound/effects/meow1.ogg'=1)
 
 /obj/item/toy/plush/gondola
-	name = "gondola plushie"
-	desc = "The silent walker, in plush form."
+	name = "pluszowa gondola"
+	desc = "Milczący wędrowiec w pluszowej postaci."
 	icon_state = "gondolaplush"
 	squeak_override = list('sound/misc/null.ogg'=1)
 
 /obj/item/toy/plush/flushed
-	name = "flushed plushie"
-	desc = "Hgrgrhrhg cute."
+	name = "zarumieniony pluszak"
+	desc = "Hgrgrhrhg, słodkie."
 	icon_state = "flushplush"
 
 /////////////////
@@ -694,17 +694,17 @@
 /////////////////
 
 /obj/item/toy/plush/ian
-	name = "ian plushie"
+	name = "pluszowy Ian"
 	desc = "Trzymaj go przy sobie."
 	icon_state = "ianplush"
 
 /obj/item/toy/plush/lisa
-	name = "lisa plushie"
+	name = "pluszowa Lisa"
 	desc = "Trzymaj ją przy sobie."
 	icon_state = "lisaplush"
 
 /obj/item/toy/plush/renault
-	name = "renault plushie"
+	name = "pluszowy Renault"
 	desc = "AUUUUU!"
 	icon_state = "renaultplush"
 

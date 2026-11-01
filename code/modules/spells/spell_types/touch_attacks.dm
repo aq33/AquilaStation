@@ -61,8 +61,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/touch/disintegrate
-	name = "Disintegrate"
-	desc = "This spell charges your hand with vile energy that can be used to violently explode victims."
+	name = "Dezintegracja"
+	desc = "To zaklęcie ładuje twoją dłoń plugawą energią, którą możesz gwałtownie rozsadzać ofiary."
 	hand_path = /obj/item/melee/touch_attack/disintegrate
 
 	school = "evocation"
@@ -73,8 +73,8 @@
 	action_icon_state = "gib"
 
 /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
-	name = "Flesh to Stone"
-	desc = "This spell charges your hand with the power to turn victims into inert statues for a long period of time."
+	name = "Ciało w kamień"
+	desc = "To zaklęcie ładuje twoją dłoń mocą zamieniania ofiar na długi czas w nieruchome posągi."
 	hand_path = /obj/item/melee/touch_attack/fleshtostone
 
 	school = "transmutation"

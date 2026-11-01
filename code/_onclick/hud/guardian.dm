@@ -40,7 +40,7 @@
 		var/atom/movable/screen/inventory/inv_box
 
 		inv_box = new /atom/movable/screen/inventory()
-		inv_box.name = "internal storage"
+		inv_box.name = "schowek wewnętrzny"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "suit_storage"
 		inv_box.screen_loc = ui_id
@@ -106,8 +106,8 @@
 
 /atom/movable/screen/guardian/Manifest
 	icon_state = "manifest"
-	name = "Manifest"
-	desc = "Spring forth into battle!"
+	name = "Zmaterializuj się"
+	desc = "Rzuć się do walki!"
 
 /atom/movable/screen/guardian/Manifest/Click()
 	if(isguardian(usr))
@@ -117,8 +117,8 @@
 
 /atom/movable/screen/guardian/Recall
 	icon_state = "recall"
-	name = "Recall"
-	desc = "Return to your user."
+	name = "Wróć"
+	desc = "Wróć do swojego użytkownika."
 
 /atom/movable/screen/guardian/Recall/Click()
 	if(isguardian(usr))
@@ -127,8 +127,8 @@
 
 /atom/movable/screen/guardian/ToggleMode
 	icon_state = "toggle"
-	name = "Toggle Mode"
-	desc = "Switch between ability modes."
+	name = "Przełącz tryb"
+	desc = "Przełącza tryby zdolności."
 
 /atom/movable/screen/guardian/ToggleMode/Click()
 	if(isguardian(usr))
@@ -140,13 +140,13 @@
 
 /atom/movable/screen/guardian/ToggleMode/Assassin
 	icon_state = "stealth"
-	name = "Toggle Stealth"
-	desc = "Enter or exit stealth."
+	name = "Przełącz ukrycie"
+	desc = "Wejdź w ukrycie albo z niego wyjdź."
 
 /atom/movable/screen/guardian/Communicate
 	icon_state = "communicate"
-	name = "Communicate"
-	desc = "Communicate telepathically with your user."
+	name = "Porozumiewaj się"
+	desc = "Porozumiewaj się telepatycznie ze swoim użytkownikiem."
 
 /atom/movable/screen/guardian/Communicate/Click()
 	if(isguardian(usr))
@@ -156,8 +156,8 @@
 
 /atom/movable/screen/guardian/ToggleLight
 	icon_state = "light"
-	name = "Toggle Light"
-	desc = "Glow like star dust."
+	name = "Przełącz światło"
+	desc = "Świeć jak gwiezdny pył."
 
 /atom/movable/screen/guardian/ToggleLight/Click()
 	if(isguardian(usr))

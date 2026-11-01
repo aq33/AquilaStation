@@ -6,7 +6,7 @@
 // from everything anyway
 
 /area/centcom
-	name = "CentCom"
+	name = "Centrala"
 	icon_state = "centcom"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	requires_power = FALSE
@@ -16,38 +16,38 @@
 	flags_1 = NONE
 
 /area/centcom/control
-	name = "CentCom Docks"
+	name = "Doki Centrali"
 
 /area/centcom/evac
-	name = "CentCom Recovery Ship"
+	name = "Statek Ratunkowy Centrali"
 
 /area/centcom/supply
-	name = "CentCom Supply Shuttle Dock"
+	name = "Dok Promu Zaopatrzeniowego Centrali"
 
 /area/centcom/ferry
-	name = "CentCom Transport Shuttle Dock"
+	name = "Dok Promu Transportowego Centrali"
 
 /area/centcom/prison
-	name = "Admin Prison"
+	name = "Więzienie Adminów"
 
 /area/centcom/holding
-	name = "Holding Facility"
+	name = "Ośrodek Zatrzymań"
 
 /area/centcom/supplypod/supplypod_temp_holding
-	name = "Supplypod Shipping lane"
+	name = "Szlak Kapsuł Zaopatrzeniowych"
 	icon_state = "supplypod_flight"
 
 /area/centcom/supplypod
-	name = "Supplypod Facility"
+	name = "Ośrodek Kapsuł Zaopatrzeniowych"
 	icon_state = "supplypod"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/centcom/supplypod/podStorage
-	name = "Supplypod Storage"
+	name = "Magazyn Kapsuł Zaopatrzeniowych"
 	icon_state = "supplypod_holding"
 
 /area/centcom/supplypod/loading
-	name = "Supplypod Loading Facility"
+	name = "Załadownia Kapsuł Zaopatrzeniowych"
 	icon_state = "supplypod_loading"
 	var/loading_id = ""
 
@@ -60,23 +60,23 @@
 	GLOB.supplypod_loading_bays[loading_id] = src
 
 /area/centcom/supplypod/loading/one
-	name = "Bay #1"
+	name = "Stanowisko nr 1"
 	loading_id = "1"
 
 /area/centcom/supplypod/loading/two
-	name = "Bay #2"
+	name = "Stanowisko nr 2"
 	loading_id = "2"
 
 /area/centcom/supplypod/loading/three
-	name = "Bay #3"
+	name = "Stanowisko nr 3"
 	loading_id = "3"
 
 /area/centcom/supplypod/loading/four
-	name = "Bay #4"
+	name = "Stanowisko nr 4"
 	loading_id = "4"
 
 /area/centcom/supplypod/loading/ert
-	name = "ERT Bay"
+	name = "Stanowisko ERT"
 	loading_id = "5"
 //THUNDERDOME
 
@@ -89,21 +89,21 @@
 	flags_1 = NONE
 
 /area/tdome/arena
-	name = "Thunderdome Arena"
+	name = "Arena Thunderdome"
 	icon_state = "thunder"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/tdome/arena_source
-	name = "Thunderdome Arena Template"
+	name = "Szablon Areny Thunderdome"
 	icon_state = "thunder"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/tdome/tdome1
-	name = "Thunderdome (Team 1)"
+	name = "Thunderdome (Drużyna 1)"
 	icon_state = "green"
 
 /area/tdome/tdome2
-	name = "Thunderdome (Team 2)"
+	name = "Thunderdome (Drużyna 2)"
 	icon_state = "green"
 
 /area/tdome/tdomeadmin
@@ -111,7 +111,7 @@
 	icon_state = "thunder_admin"
 
 /area/tdome/tdomeobserve
-	name = "Thunderdome (Observer.)"
+	name = "Thunderdome (Obserw.)"
 	icon_state = "thunder_observe"
 
 
@@ -119,7 +119,7 @@
 
 //Wizard
 /area/wizard_station
-	name = "Wizard's Den"
+	name = "Kryjówka Czarodzieja"
 	icon_state = "yellow"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	requires_power = FALSE
@@ -131,7 +131,7 @@
 
 //Abductors
 /area/abductor_ship
-	name = "Abductor Ship"
+	name = "Statek Porywaczy"
 	icon_state = "yellow"
 	requires_power = FALSE
 	teleport_restriction = TELEPORT_ALLOW_ABDUCTORS
@@ -142,7 +142,7 @@
 
 //Syndicates
 /area/syndicate_mothership
-	name = "Syndicate Mothership"
+	name = "Statek-Matka Syndykatu"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
@@ -153,50 +153,50 @@
 	network_root_id = SYNDICATE_NETWORK_ROOT
 
 /area/syndicate_mothership/control
-	name = "Syndicate Control Room"
+	name = "Sterownia Syndykatu"
 	icon_state = "syndie-control"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	network_root_id = SYNDICATE_NETWORK_ROOT
 
 /area/syndicate_mothership/elite_squad
-	name = "Syndicate Elite Squad"
+	name = "Elitarny Oddział Syndykatu"
 	icon_state = "syndie-elite"
 	network_root_id = SYNDICATE_NETWORK_ROOT
 
 //CAPTURE THE FLAG
 
 /area/ctf
-	name = "Capture the Flag"
+	name = "Zdobądź Flagę"
 	icon_state = "yellow"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 
 /area/ctf/control_room
-	name = "Control Room A"
+	name = "Sterownia A"
 
 /area/ctf/control_room2
-	name = "Control Room B"
+	name = "Sterownia B"
 
 /area/ctf/central
-	name = "Central"
+	name = "Środek"
 
 /area/ctf/main_hall
-	name = "Main Hall A"
+	name = "Główna Hala A"
 
 /area/ctf/main_hall2
-	name = "Main Hall B"
+	name = "Główna Hala B"
 
 /area/ctf/corridor
-	name = "Corridor A"
+	name = "Korytarz A"
 
 /area/ctf/corridor2
-	name = "Corridor B"
+	name = "Korytarz B"
 
 /area/ctf/flag_room
-	name = "Flag Room A"
+	name = "Pokój Flagi A"
 
 /area/ctf/flag_room2
-	name = "Flag Room B"
+	name = "Pokój Flagi B"
 
 // REEBE
 
@@ -210,7 +210,7 @@
 	ambience_index = AMBIENCE_REEBE
 
 /area/reebe/city_of_cogs
-	name = "Reebe - City of Cogs"
+	name = "Reebe – Miasto Trybów"
 	icon_state = "purple"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | HIDDEN_AREA
 	var/playing_ambience = FALSE

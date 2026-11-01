@@ -4,8 +4,8 @@
 ///////////////////////////////////
 
 /datum/design/intellicard
-	name = "Intellicard AI Transportation System"
-	desc = "Allows for the construction of an intellicard."
+	name = "System transportu SI intelliCard"
+	desc = "Pozwala zbudować intelliCard."
 	id = "intellicard"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 200, /datum/material/copper = 300)
@@ -14,8 +14,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/paicard
-	name = "Personal Artificial Intelligence Card"
-	desc = "Allows for the construction of a pAI Card."
+	name = "Karta osobistej sztucznej inteligencji"
+	desc = "Pozwala zbudować kartę pAI."
 	id = "paicard"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/iron = 500, /datum/material/copper = 300)
@@ -24,8 +24,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/ai_cam_upgrade
-	name = "AI Surveillance Software Update"
-	desc = "A software package that will allow an artificial intelligence to 'hear' from its cameras via lip reading."
+	name = "Aktualizacja oprogramowania do inwigilacji SI"
+	desc = "Pakiet oprogramowania, dzięki któremu sztuczna inteligencja „słyszy” przez kamery, czytając z ruchu warg."
 	id = "ai_cam_upgrade"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/gold = 15000, /datum/material/silver = 15000, /datum/material/diamond = 20000, /datum/material/plasma = 10000, /datum/material/copper = 3000)
@@ -37,8 +37,8 @@
 //////////Nanite Devices///////////
 ///////////////////////////////////
 /datum/design/nanite_remote
-	name = "Nanite Remote"
-	desc = "Allows for the construction of a nanite remote."
+	name = "Pilot nanitów"
+	desc = "Pozwala zbudować pilota nanitów."
 	id = "nanite_remote"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/iron = 500, /datum/material/copper = 200)
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/nanite_scanner
-	name = "Nanite Scanner"
-	desc = "Allows for the construction of a nanite scanner."
+	name = "Skaner nanitów"
+	desc = "Pozwala zbudować skaner nanitów."
 	id = "nanite_scanner"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/iron = 500, /datum/material/copper = 300)
@@ -60,8 +60,8 @@
 //////////Disk Construction Disks///////
 ////////////////////////////////////////
 /datum/design/design_disk
-	name = "Design Storage Disk"
-	desc = "Produce additional disks for storing device designs."
+	name = "Dysk z projektami komponentów"
+	desc = "Wytwarza dodatkowe dyski do przechowywania projektów urządzeń."
 	id = "design_disk"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/copper = 100)
@@ -70,8 +70,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/design_disk_adv
-	name = "Advanced Design Storage Disk"
-	desc = "Produce additional disks for storing device designs."
+	name = "Zaawansowany dysk z projektami komponentów"
+	desc = "Wytwarza dodatkowe dyski do przechowywania projektów urządzeń."
 	id = "design_disk_adv"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/silver=50, /datum/material/copper = 200)
@@ -80,8 +80,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/tech_disk
-	name = "Technology Data Storage Disk"
-	desc = "Produce additional disks for storing technology data."
+	name = "Dysk z technologiami"
+	desc = "Wytwarza dodatkowe dyski do przechowywania danych technologicznych."
 	id = "tech_disk"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/copper = 100)
@@ -90,8 +90,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/nanite_disk
-	name = "Nanite Program Disk"
-	desc = "Stores nanite programs."
+	name = "Dysk z programem nanitów"
+	desc = "Przechowuje programy nanitów."
 	id = "nanite_disk"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/copper = 100)

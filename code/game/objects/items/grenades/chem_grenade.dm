@@ -1,6 +1,6 @@
 /obj/item/grenade/chem_grenade
-	name = "chemical grenade"
-	desc = "A custom made grenade."
+	name = "granat chemiczny"
+	desc = "Granat robiony na zamówienie."
 	icon_state = "chemg"
 	item_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
@@ -138,12 +138,12 @@
 	if(N)
 		stage = N
 	if(stage == GRENADE_EMPTY)
-		name = "[initial(name)] casing"
-		desc = "A do it yourself [initial(name)]! [initial(casedesc)]"
+		name = "obudowa: [initial(name)]"
+		desc = "Zrób to sam: [initial(name)]! [initial(casedesc)]"
 		icon_state = initial(icon_state)
 	else if(stage == GRENADE_WIRED)
-		name = "unsecured [initial(name)]"
-		desc = "An unsecured [initial(name)] assembly."
+		name = "niezablokowany zespół: [initial(name)]"
+		desc = "Niezablokowany zespół: [initial(name)]."
 		icon_state = "[initial(icon_state)]_ass"
 	else if(stage == GRENADE_READY)
 		name = initial(name)
@@ -217,8 +217,8 @@
 
 //Large chem grenades accept slime cores and use the appropriately.
 /obj/item/grenade/chem_grenade/large
-	name = "large grenade"
-	desc = "A custom made large grenade. Larger splash range and increased ignition temperature compared to basic grenades. Fits exotic and bluespace based containers."
+	name = "duży granat"
+	desc = "Duży granat robiony na zamówienie. Ma większy zasięg rozprysku i wyższą temperaturę zapłonu niż podstawowe granaty. Mieści egzotyczne pojemniki i pojemniki bluespace."
 	casedesc = "Ta obudowa działa na większym obszarze niż model podstawowy i mieści egzotyczne pojemniki, w tym rdzenie szlamów i zlewki bluespace. Przy zapłonie podgrzewa zawartość o 25°K."
 	icon_state = "large_grenade"
 	allowed_containers = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/condiment, /obj/item/reagent_containers/food/drinks)
@@ -264,23 +264,23 @@
 		return ..()
 
 /obj/item/grenade/chem_grenade/cryo // Intended for rare cryogenic mixes. Cools the area moderately upon detonation.
-	name = "cryo grenade"
-	desc = "A custom made cryogenic grenade. Rapidly cools contents upon ignition."
+	name = "granat kriogeniczny"
+	desc = "Kriogeniczny granat robiony na zamówienie. Przy zapłonie gwałtownie schładza zawartość."
 	casedesc = "Przy zapłonie gwałtownie schładza zawartość o 100°K. Mniejszy zasięg rozprysku niż zwykłe obudowy."
 	icon_state = "cryog"
 	affected_area = 2
 	ignition_temp = -100
 
 /obj/item/grenade/chem_grenade/pyro // Intended for pyrotechnical mixes. Produces a small fire upon detonation, igniting potentially flammable mixtures.
-	name = "pyro grenade"
-	desc = "A custom made pyrotechnical grenade. Heats up contents upon ignition."
+	name = "granat pirotechniczny"
+	desc = "Pirotechniczny granat robiony na zamówienie. Przy zapłonie podgrzewa zawartość."
 	casedesc = "Przy zapłonie gwałtownie podgrzewa zawartość o 500°K."
 	icon_state = "pyrog"
 	ignition_temp = 500 // This is enough to expose a hotspot.
 
 /obj/item/grenade/chem_grenade/adv_release // Intended for weaker, but longer lasting effects. Could have some interesting uses.
-	name = "advanced release grenade"
-	desc = "A custom made advanced release grenade. It is able to be detonated more than once. Can be configured using a multitool."
+	name = "granat z zaawansowanym uwalnianiem"
+	desc = "Granat z zaawansowanym uwalnianiem robiony na zamówienie. Może wybuchać więcej niż raz. Można go skonfigurować multitoolem."
 	casedesc = "Ta obudowa może wybuchać więcej niż raz. Można ją skonfigurować multitoolem."
 	icon_state = "timeg"
 	var/unit_spread = 10 // Amount of units per repeat. Can be altered with a multitool.
@@ -329,8 +329,8 @@
 //////////////////////////////
 
 /obj/item/grenade/chem_grenade/metalfoam
-	name = "metal foam grenade"
-	desc = "Used for emergency sealing of hull breaches."
+	name = "granat z pianą metalową"
+	desc = "Służy do awaryjnego uszczelniania wyrw w kadłubie."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/metalfoam/Initialize(mapload)
@@ -347,8 +347,8 @@
 
 
 /obj/item/grenade/chem_grenade/smart_metal_foam
-	name = "smart metal foam grenade"
-	desc = "Used for emergency sealing of hull breaches, while keeping areas accessible."
+	name = "granat z inteligentną pianą metalową"
+	desc = "Służy do awaryjnego uszczelniania wyrw w kadłubie, zostawiając przejścia."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/smart_metal_foam/Initialize(mapload)
@@ -365,8 +365,8 @@
 
 
 /obj/item/grenade/chem_grenade/incendiary
-	name = "incendiary grenade"
-	desc = "Used for clearing rooms of living things."
+	name = "granat zapalający"
+	desc = "Służy do oczyszczania pomieszczeń z żywych istot."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/incendiary/Initialize(mapload)
@@ -383,8 +383,8 @@
 
 
 /obj/item/grenade/chem_grenade/antiweed
-	name = "weedkiller grenade"
-	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
+	name = "granat chwastobójczy"
+	desc = "Służy do oczyszczania dużych obszarów z inwazyjnych gatunków roślin. Zawartość pod ciśnieniem. Nie wdychać bezpośrednio."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/antiweed/Initialize(mapload)
@@ -402,8 +402,8 @@
 
 
 /obj/item/grenade/chem_grenade/cleaner
-	name = "cleaner grenade"
-	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	name = "granat czyszczący"
+	desc = "Pieniący się kosmiczny środek czyszczący marki BLAM!. W specjalnym aplikatorze do szybkiego czyszczenia dużych obszarów."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/cleaner/Initialize(mapload)
@@ -420,8 +420,8 @@
 
 
 /obj/item/grenade/chem_grenade/ez_clean
-	name = "cleaner grenade"
-	desc = "Waffle Co.-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	name = "granat czyszczący"
+	desc = "Pieniący się kosmiczny środek czyszczący marki Waffle Co. W specjalnym aplikatorze do szybkiego czyszczenia dużych obszarów."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/ez_clean/Initialize(mapload)
@@ -439,8 +439,8 @@
 
 
 /obj/item/grenade/chem_grenade/teargas
-	name = "teargas grenade"
-	desc = "Used for nonlethal riot control. Contents under pressure. Do not directly inhale contents."
+	name = "granat z gazem łzawiącym"
+	desc = "Służy do nieśmiercionośnego tłumienia zamieszek. Zawartość pod ciśnieniem. Nie wdychać bezpośrednio."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/teargas/Initialize(mapload)
@@ -458,8 +458,8 @@
 
 
 /obj/item/grenade/chem_grenade/facid
-	name = "acid grenade"
-	desc = "Used for melting armoured opponents."
+	name = "granat kwasowy"
+	desc = "Służy do roztapiania opancerzonych przeciwników."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/facid/Initialize(mapload)
@@ -478,8 +478,8 @@
 
 
 /obj/item/grenade/chem_grenade/colorful
-	name = "colorful grenade"
-	desc = "Used for wide scale painting projects."
+	name = "kolorowy granat"
+	desc = "Służy do malowania na wielką skalę."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/colorful/Initialize(mapload)
@@ -496,8 +496,8 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/glitter
-	name = "generic glitter grenade"
-	desc = "You shouldn't see this description."
+	name = "zwykły granat z brokatem"
+	desc = "Nie powinieneś widzieć tego opisu."
 	stage = GRENADE_READY
 	var/glitter_type = /datum/reagent/glitter
 
@@ -515,23 +515,23 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/glitter/pink
-	name = "pink glitter bomb"
-	desc = "For that HOT glittery look."
+	name = "różowa bomba brokatowa"
+	desc = "Dla GORĄCEGO brokatowego wyglądu."
 	glitter_type = /datum/reagent/glitter/pink
 
 /obj/item/grenade/chem_grenade/glitter/blue
-	name = "blue glitter bomb"
-	desc = "For that COOL glittery look."
+	name = "niebieska bomba brokatowa"
+	desc = "Dla CHŁODNEGO brokatowego wyglądu."
 	glitter_type = /datum/reagent/glitter/blue
 
 /obj/item/grenade/chem_grenade/glitter/white
-	name = "white glitter bomb"
-	desc = "For that somnolent glittery look."
+	name = "biała bomba brokatowa"
+	desc = "Dla sennego brokatowego wyglądu."
 	glitter_type = /datum/reagent/glitter/white
 
 /obj/item/grenade/chem_grenade/clf3
-	name = "clf3 grenade"
-	desc = "BURN!-brand foaming clf3. In a special applicator for rapid purging of wide areas."
+	name = "granat z clf3"
+	desc = "Pieniący się clf3 marki BURN!. W specjalnym aplikatorze do szybkiego oczyszczania dużych obszarów."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/clf3/Initialize(mapload)
@@ -548,8 +548,8 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/bioterrorfoam
-	name = "Bio terror foam grenade"
-	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irration, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
+	name = "granat z pianą bioterroru"
+	desc = "Granat z pianą chemiczną Tiger Cooperative. U węglowych form życia wywołuje chwilowe podrażnienie, ślepotę, dezorientację, niemotę i mutacje. Zawiera dodatkowo toksynę z zarodników."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/bioterrorfoam/Initialize(mapload)
@@ -568,8 +568,8 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/tuberculosis
-	name = "Fungal tuberculosis grenade"
-	desc = "WARNING: GRENADE WILL RELEASE DEADLY SPORES CONTAINING ACTIVE AGENTS. SEAL SUIT AND AIRFLOW BEFORE USE."
+	name = "granat z grzybiczą gruźlicą"
+	desc = "OSTRZEŻENIE: GRANAT UWOLNI ŚMIERTELNE ZARODNIKI Z AKTYWNYMI CZYNNIKAMI. PRZED UŻYCIEM USZCZELNIJ KOMBINEZON I DOPŁYW POWIETRZA."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/tuberculosis/Initialize(mapload)
@@ -587,8 +587,8 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/holy
-	name = "holy hand grenade"
-	desc = "A vessel of concentrated religious might."
+	name = "święty granat ręczny"
+	desc = "Naczynie skoncentrowanej mocy religijnej."
 	icon_state = "holy_grenade"
 	stage = GRENADE_READY
 
@@ -604,8 +604,8 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/ghostbuster
-	name = "counterparanormal foam grenade"
-	desc = "The note on the side guarantees to ward off most malicious spirits from covered area.\ The grenade itself seems to be old and covered with dust."
+	name = "granat z pianą antyparanormalną"
+	desc = "Notka na boku gwarantuje, że odpędzi z pokrytego obszaru większość złośliwych duchów.\ Sam granat wygląda na stary i pokryty kurzem."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/ghostbuster/Initialize(mapload)

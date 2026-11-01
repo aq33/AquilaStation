@@ -1,5 +1,5 @@
 /datum/design/strange_seeds
-	name = "Strange Seeds"
+	name = "Dziwne nasiona"
 	id = "strange_seeds"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 2000)

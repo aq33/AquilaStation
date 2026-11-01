@@ -1,5 +1,5 @@
 /datum/symptom/nano_boost
-	name = "Nano-symbiosis"
+	name = "Nanosymbioza"
 	desc = "Wirus reaguje na nanity w krwiobiegu nosiciela, wzmacniając ich cykl replikacji. Może powodować nieprzewidywalne zachowanie nanitów. Leczy mechaniczne kończyny nosiciela"
 	stealth = 0
 	resistance = 2
@@ -39,7 +39,7 @@
 		M.heal_overall_damage((0.5 * power), (0.5 * power), required_status = BODYTYPE_ROBOTIC)
 
 /datum/symptom/nano_destroy
-	name = "Silicolysis"
+	name = "Krzemoliza"
 	desc = "Wirus reaguje na nanity w krwiobiegu nosiciela, atakując je i pochłaniając. Może też wywołać szaleństwo nanitów. Uszkadza mechaniczne kończyny nosiciela"
 	stealth = 0
 	resistance = 4

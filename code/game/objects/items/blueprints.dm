@@ -7,7 +7,7 @@
 #define LEGEND_OFF "off"
 
 /obj/item/areaeditor
-	name = "area modification item"
+	name = "przedmiot do modyfikacji obszarów"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "blueprints"
 	attack_verb = list("atakuje", "pacnięciem trąca", "uderza")
@@ -67,8 +67,8 @@
 
 //Station blueprints!!!
 /obj/item/areaeditor/blueprints
-	name = "station blueprints"
-	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
+	name = "plany stacji"
+	desc = "Plany stacji. Widnieje na nich pieczątka „Ściśle tajne” i kilka plam po kawie."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "blueprints"
 	fluffnotice = "Własność Nanotrasen. Tylko dla szefów działów. Przechowywać w ściśle strzeżonym miejscu."
@@ -223,8 +223,8 @@
 //Blueprint Subtypes
 
 /obj/item/areaeditor/blueprints/cyborg
-	name = "station schematics"
-	desc = "A digital copy of the station blueprints stored in your memory."
+	name = "schematy stacji"
+	desc = "Cyfrowa kopia planów stacji zapisana w twojej pamięci."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "blueprints"
 	fluffnotice = "Własność intelektualna Nanotrasen. Tylko do użytku przez cyborgi inżynieryjne. Wymazać z pamięci po opuszczeniu stacji."

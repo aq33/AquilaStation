@@ -1,6 +1,6 @@
 /obj/item/stamp
-	name = "\improper GRANTED rubber stamp"
-	desc = "A rubber stamp for stamping important documents."
+	name = "\improper pieczątka ZATWIERDZONO"
+	desc = "Gumowa pieczątka do stemplowania ważnych dokumentów."
 	icon = 'icons/obj/bureaucracy.dmi' //NSV13 use nsv copy of bureaucracy.dmi
 	icon_state = "stamp-ok"
 	item_state = "stamp"
@@ -25,56 +25,56 @@
 	)
 
 /obj/item/stamp/quartermaster
-	name = "quartermaster's rubber stamp"
+	name = "pieczątka kwatermistrza"
 	icon_state = "stamp-qm"
 	dye_color = DYE_QM
 
 /obj/item/stamp/law
-	name = "law office's rubber stamp"
+	name = "pieczątka kancelarii prawnej"
 	icon_state = "stamp-law"
 	dye_color = DYE_LAW
 
 /obj/item/stamp/captain
-	name = "captain's rubber stamp"
+	name = "pieczątka kapitana"
 	icon_state = "stamp-cap"
 	dye_color = DYE_CAPTAIN
 
 /obj/item/stamp/head_of_personnel
-	name = "head of personnel's rubber stamp"
+	name = "pieczątka starszego oficera"
 	icon_state = "stamp-hop"
 	dye_color = DYE_HOP
 
 /obj/item/stamp/hos
-	name = "head of security's rubber stamp"
+	name = "pieczątka komendanta"
 	icon_state = "stamp-hos"
 	dye_color = DYE_HOS
 
 /obj/item/stamp/chief_engineer
-	name = "chief engineer's rubber stamp"
+	name = "pieczątka głównego inżyniera"
 	icon_state = "stamp-ce"
 	dye_color = DYE_CE
 
 /obj/item/stamp/research_director
-	name = "research director's rubber stamp"
+	name = "pieczątka dyrektora naukowego"
 	icon_state = "stamp-rd"
 	dye_color = DYE_RD
 
 /obj/item/stamp/cmo
-	name = "chief medical officer's rubber stamp"
+	name = "pieczątka ordynatora"
 	icon_state = "stamp-cmo"
 	dye_color = DYE_CMO
 
 /obj/item/stamp/denied
-	name = "\improper DENIED rubber stamp"
+	name = "\improper pieczątka ODRZUCONO"
 	icon_state = "stamp-deny"
 	dye_color = DYE_REDCOAT
 
 /obj/item/stamp/void
-	name = "VOID rubber stamp"
+	name = "pieczątka UNIEWAŻNIONO"
 	icon_state = "stamp-void"
 
 /obj/item/stamp/clown
-	name = "clown's rubber stamp"
+	name = "pieczątka klauna"
 	icon_state = "stamp-clown"
 	dye_color = DYE_CLOWN
 

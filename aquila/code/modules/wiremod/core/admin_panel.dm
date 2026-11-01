@@ -2,7 +2,7 @@
 // AQ EDIT START - brak makra ADMIN_VERB, zwykly verb dodany w aquila/code/modules/wiremod/admin_verbs.dm
 /client/proc/view_all_circuits()
 	set name = "View All Circuits"
-	set desc = "List all circuits in the game."
+	set desc = "Wyświetla wszystkie układy w grze."
 	set category = "Admin"
 	if(!check_rights(R_ADMIN))
 		return
@@ -22,7 +22,7 @@
 
 		data["circuits"] += list(list(
 			"ref" = REF(circuit),
-			"name" = "[circuit.name] in [loc_name(circuit)]",
+			"name" = "[circuit.name] – [loc_name(circuit)]",
 			"creator" = circuit.get_creator(),
 			"has_inserter" = !isnull(inserter),
 		))
@@ -37,7 +37,7 @@
 	switch(action)
 		if ("disable_circuit_sound")
 			CONFIG_SET(flag/disallow_circuit_sounds, !CONFIG_GET(flag/disallow_circuit_sounds))
-			message_admins("[key_name_admin(usr)] has toggled all circuit sounds [CONFIG_GET(flag/disallow_circuit_sounds)? "off" : "on"].")
+			message_admins("[key_name_admin(usr)] [CONFIG_GET(flag/disallow_circuit_sounds)? "wyłącza" : "włącza"] dźwięki wszystkich układów.")
 			log_admin("[key_name(usr)] has toggled all circuit sounds [CONFIG_GET(flag/disallow_circuit_sounds)? "off" : "on"].")
 			return TRUE
 
@@ -51,7 +51,7 @@
 
 	switch (action)
 		if ("duplicate_circuit")
-			if (alert(usr, "This will spawn the new circuit at where you are, are you sure?", "Confirm", "Yes", "No") != "Yes")
+			if (alert(usr, "Nowy układ pojawi się tam, gdzie stoisz. Na pewno?", "Potwierdź", "Tak", "Nie") != "Tak")
 				return FALSE
 
 			var/list/errors = list()

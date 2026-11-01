@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(mobs)
 				for(var/obj/effect/landmark/error/E in GLOB.landmarks_list)
 					M.forceMove(E.loc)
 					break
-				var/msg = "[ADMIN_LOOKUPFLW(M)] was found to have no .loc with an attached client, if the cause is unknown it would be wise to ask how this was accomplished."
+				var/msg = "[ADMIN_LOOKUPFLW(M)] nie miał .loc mimo podłączonego klienta. Jeśli przyczyna jest nieznana, warto zapytać, jak do tego doszło."
 				message_admins(msg)
 				send2tgs_adminless_only("Mob", msg, R_ADMIN)
 				log_game("[key_name(M)] was found to have no .loc with an attached client.")
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(mobs)
 			// This is a temporary error tracker to make sure we've caught everything
 			else if (M.registered_z != T.z)
 #ifdef TESTING
-				message_admins("[ADMIN_LOOKUPFLW(M)] has somehow ended up in Z-level [T.z] despite being registered in Z-level [M.registered_z]. If you could ask them how that happened and notify coderbus, it would be appreciated.")
+				message_admins("[ADMIN_LOOKUPFLW(M)] jakimś cudem trafia na Z-level [T.z], choć jest zarejestrowany na Z-levelu [M.registered_z]. Jeśli możesz, zapytaj, jak do tego doszło, i daj znać koderom.")
 #endif
 				log_game("Z-TRACKING: [M] has somehow ended up in Z-level [T.z] despite being registered in Z-level [M.registered_z].")
 				M.update_z(T.z)

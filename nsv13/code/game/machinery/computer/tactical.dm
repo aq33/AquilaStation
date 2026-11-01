@@ -1,7 +1,7 @@
 //Ship console for using the big guns
 /obj/machinery/computer/ship/tactical
-	name = "Seegson model TAC tactical systems control console"
-	desc = "In ship-to-ship combat, most ship systems are digitalized. This console is networked with every weapon system that its ship has to offer, allowing for easy control. There's a section on the screen showing an exterior gun camera view with a rangefinder."
+	name = "konsola sterowania systemami taktycznymi Seegson model TAC"
+	desc = "W walce między statkami większość systemów okrętowych jest cyfrowa. Ta konsola jest połączona z każdym systemem uzbrojenia statku, co ułatwia sterowanie. Część ekranu pokazuje zewnętrzny obraz z kamery działa z dalmierzem."
 	icon_screen = "tactical"
 	position = OVERMAP_USER_ROLE_GUNNER
 	circuit = /obj/item/circuitboard/computer/ship/tactical_computer
@@ -38,7 +38,7 @@
 		RegisterSignal(user, COMSIG_STOPPED_PILOTING, PROC_REF(on_user_stopped_piloting))
 
 		to_chat(user, "<span class='notice'> STEROWANIE TAKTYCZNE: Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
-		to_chat(user, "<span class='warning'>=Hotkeys=</span>")
+		to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 		to_chat(user, "<span class='notice'> Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
 		to_chat(user, "<span class='notice'> Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>F</b>, by wykonać akcję specjalną obecnej broni (jeśli jest dostępna).</span>")
 		return ..()
@@ -48,7 +48,7 @@
 /obj/machinery/computer/ship/tactical/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "TacticalConsole")
+		ui = new(user, src, "TacticalConsole", "Konsola taktyczna")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -176,7 +176,7 @@
 
 //For use in ghost ships
 /obj/machinery/computer/ship/tactical/internal
-	name = "integrated tactical console"
+	name = "zintegrowana konsola taktyczna"
 	use_power = 0
 
 /obj/machinery/computer/ship/tactical/internal/attack_hand(mob/user)

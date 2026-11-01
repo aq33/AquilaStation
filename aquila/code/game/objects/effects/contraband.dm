@@ -15,7 +15,7 @@
 	icon_state = "poster2"
 
 /obj/structure/sign/poster/contraband/fun_police
-	name = "Fun Police"
+	name = "Policja Zabawy"
 	desc = "Plakat wymierzony przeciwko siłom ochrony na stacji."
 	icon_state = "poster3"
 
@@ -125,7 +125,7 @@
 	icon_state = "poster26"
 
 /obj/structure/sign/poster/contraband/d_day_promo
-	name = "D-Day Promo"
+	name = "Promocja D-Day"
 	desc = "Plakat promocyjny jakiegoś rapera."
 	icon_state = "poster27"
 
@@ -145,7 +145,7 @@
 	icon_state = "poster30"
 
 /obj/structure/sign/poster/contraband/cc64k_ad
-	name = "CC 64K Ad"
+	name = "Reklama CC 64K"
 	desc = "Najnowszy komputer przenośny od Comrade Computing, z aż 64kB ramu!"
 	icon_state = "poster31"
 
@@ -314,7 +314,7 @@
 
 /obj/structure/sign/poster/official/soft_cap_pop_art
 	name = "Chick Good Inc."
-	desc = "Don't stop, get it, get it; Be proud your captains in it; Steady, watch me navigate; Ha HA ha HA"
+	desc = "Nie przestawaj, chrup, chrup; nawet kapitan to zajada; spokojnie, patrz, jak nawiguję; Ha HA ha HA"
 	icon_state = "poster18_legit"
 
 /obj/structure/sign/poster/official/safety_internals

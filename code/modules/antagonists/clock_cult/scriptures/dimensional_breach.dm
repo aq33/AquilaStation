@@ -2,13 +2,13 @@
 // !      Dimensional Breach      ! //
 //==================================//
 /datum/clockcult/scripture/ark_activation
-	name = "Ark Invigoration"
-	desc = "Prepares the Ark for activation, alerting the crew of your existence. Requires 6 invokers."
+	name = "Ożywienie Arki"
+	desc = "Przygotowuje Arkę do aktywacji, ostrzegając załogę o twoim istnieniu. Wymaga 6 przywołujących."
 	tip = "Przygotowuje Arkę do aktywacji, ostrzegając załogę o twoim istnieniu."
 	button_icon_state = "Spatial Gateway"
 	power_cost = 5000
 	invokation_time = 140
-	invokation_text = list("Oh great Engine, take my soul...", "nadszedł czas, byś powstał...", "przez szczeliny przybędziesz...", "by znów powstać wśród gwiazd!")
+	invokation_text = list("O wielka Maszyno, weź moją duszę...", "nadszedł czas, byś powstał...", "przez szczeliny przybędziesz...", "by znów powstać wśród gwiazd!")
 	invokers_required = 6
 	category = SPELLTYPE_SERVITUDE
 	recital_sound = 'sound/magic/clockwork/narsie_attack.ogg'

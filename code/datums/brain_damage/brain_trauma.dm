@@ -4,8 +4,8 @@
 // of the trauma.
 
 /datum/brain_trauma
-	var/name = "Brain Trauma"
-	var/desc = "A trauma caused by brain damage, which causes issues to the patient."
+	var/name = "Uraz mózgu"
+	var/desc = "Uraz wywołany uszkodzeniem mózgu, sprawiający pacjentowi problemy."
 	var/scan_desc = "ogólny uraz mózgu" //description when detected by a health scanner
 	var/mob/living/carbon/owner //the poor bastard
 	var/obj/item/organ/brain/brain //the poor bastard's brain

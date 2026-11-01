@@ -1,7 +1,7 @@
 //Pinpointers are used to track atoms from a distance as long as they're on the same z-level. The captain and nuke ops have ones that track the nuclear authentication disk.
 /obj/item/pinpointer
 	name = "pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals."
+	desc = "Ręczne urządzenie śledzące, które namierza określone sygnały."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinpointer"
 	flags_1 = CONDUCT_1
@@ -87,8 +87,8 @@
 				add_overlay("pinon[alert ? "alert" : "far"][icon_suffix]")
 
 /obj/item/pinpointer/crew // A replacement for the old crew monitoring consoles
-	name = "crew pinpointer"
-	desc = "A handheld tracking device that points to crew suit sensors."
+	name = "pinpointer załogi"
+	desc = "Ręczne urządzenie śledzące, które wskazuje czujniki kombinezonów załogi."
 	icon_state = "pinpointer_crew"
 	custom_price = 150
 	var/has_owner = FALSE
@@ -154,7 +154,7 @@
 		user.visible_message("<span class='notice'>Pinpointer [user] nie wykrywa sygnału.</span>", "<span class='notice'>Twój pinpointer nie wykrywa sygnału.</span>")
 		return
 
-	var/A = input(user, "Osoba do śledzenia", "Pinpoint") in sortList(names)
+	var/A = input(user, "Osoba do śledzenia", "Namierzanie") in sortList(names)
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 
@@ -173,8 +173,8 @@
 
 
 /obj/item/pinpointer/pair
-	name = "pair pinpointer"
-	desc = "A handheld tracking device that locks onto its other half of the matching pair."
+	name = "pinpointer parowy"
+	desc = "Ręczne urządzenie śledzące, które namierza swoją drugą połówkę z pary."
 	var/other_pair
 
 /obj/item/pinpointer/pair/Destroy()
@@ -194,7 +194,7 @@
 		return
 
 /obj/item/storage/box/pinpointer_pairs
-	name = "pinpointer pair box"
+	name = "pudełko z parą pinpointerów"
 
 /obj/item/storage/box/pinpointer_pairs/PopulateContents()
 	var/obj/item/pinpointer/pair/A = new(src)
@@ -204,8 +204,8 @@
 	B.other_pair = A
 
 /obj/item/pinpointer/shuttle
-	name = "fugitive pinpointer"
-	desc = "A handheld tracking device that locates the bounty hunter shuttle for quick escapes."
+	name = "pinpointer zbiega"
+	desc = "Ręczne urządzenie śledzące, które namierza prom łowców nagród do szybkiej ucieczki."
 	icon_state = "pinpointer_hunter"
 	icon_suffix = "_hunter"
 	var/obj/shuttleport

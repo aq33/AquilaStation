@@ -3,7 +3,7 @@
 	copy_type = /datum/disease/advance
 
 /datum/disease/advance/cold/New()
-	name = "Cold"
+	name = "Przeziębienie"
 	symptoms = list(new/datum/symptom/sneeze)
 	..()
 
@@ -12,18 +12,18 @@
 	copy_type = /datum/disease/advance
 
 /datum/disease/advance/flu/New()
-	name = "Flu"
+	name = "Grypa"
 	symptoms = list(new/datum/symptom/cough)
 	..()
 
 /datum/disease/advance/feline_hysteria
-	name = "Feline Hysteria"
+	name = "Kocia histeria"
 	desc = "Bardzo niebezpieczna choroba, podobno stworzona przez Koalicję Praw Zwierząt. Wywołuje masową kocią histerię."
 	copy_type = /datum/disease/advance
 	mutable = FALSE
 
 /datum/disease/advance/feline_hysteria/New()
-	name = "Feline Hysteria"
+	name = "Kocia histeria"
 	desc = "Bardzo niebezpieczna choroba, podobno stworzona przez Koalicję Praw Zwierząt. Wywołuje masową kocią histerię."
 	mutable = FALSE
 	symptoms = list(new/datum/symptom/toxoplasmosis, new/datum/symptom/viralincubate, new/datum/symptom/sneeze, new/datum/symptom/revitiligo, new/datum/symptom/inorganic_adaptation, new/datum/symptom/organ_restoration)
@@ -37,7 +37,7 @@
 
 //Randomly generated Disease, for virus crates and events
 /datum/disease/advance/random
-	name = "Experimental Disease"
+	name = "Choroba eksperymentalna"
 	copy_type = /datum/disease/advance
 	var/randomname = TRUE
 	var/datum/symptom/setsymptom = null
@@ -46,7 +46,7 @@
 
 //Randomly generated Disease, for mail!
 /datum/disease/advance/random/minor
-	name = "Minor Experimental Disease"
+	name = "Słaba choroba eksperymentalna"
 	max_symptoms_override = 4
 
 /datum/disease/advance/random/New(max_symptoms, max_level = 9, min_level = 1, var/datum/symptom/specialsymptom = setsymptom, var/atom/infected)
@@ -83,16 +83,16 @@
 
 
 /datum/disease/advance/random/macrophage
-	name = "Unknown Disease"
+	name = "Nieznana choroba"
 	setsymptom = /datum/symptom/macrophage
 
 
 /datum/disease/advance/random/necropolis
-	name = "Necropolis Seed"
+	name = "Nasienie Nekropolii"
 	setsymptom = /datum/symptom/necroseed
 	randomname = FALSE
 
 /datum/disease/advance/random/blob // had to do it this way due to an odd glitch
-	name = "Blob Spores"
+	name = "Zarodniki bloba"
 	setsymptom = /datum/symptom/blobspores
 	randomname = FALSE

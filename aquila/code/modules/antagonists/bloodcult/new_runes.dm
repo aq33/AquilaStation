@@ -493,7 +493,7 @@ GLOBAL_LIST_EMPTY(rune_appearances_cache)
 	if (caster)
 		if (newrune)
 			log_admin("BLOODCULT: [key_name(caster)] has created a new rune at [T.loc] (@[T.x], [T.y], [T.z]).")
-			message_admins("BLOODCULT: [key_name(caster)] has created a new rune at [ADMIN_JMP(T)].")
+			message_admins("BLOODCULT: [key_name(caster)] tworzy nową runę w [ADMIN_JMP(T)].")
 		rune.add_hiddenprint(caster)
 
 	rune.write_word(word.english, source)
@@ -550,7 +550,7 @@ GLOBAL_LIST_EMPTY(rune_appearances_cache)
 		rune.blood1 = null
 		qdel(rune)
 	else
-		message_admins("Error! Trying to erase a word from a rune with no words!")
+		message_admins("Błąd! Próba wymazania słowa z runy, która nie ma słów!")
 		qdel(rune)
 		return null
 	rune.activated = 0

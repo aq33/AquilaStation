@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/assassin
-	name = "Assassin"
-	desc = "The guardian can sneak up on people and do a powerful attack."
+	name = "Zabójca"
+	desc = "Strażnik może zakraść się do ludzi i wyprowadzić potężny atak."
 	ui_icon = "eye-slash"
 	cost = 4
 	has_mode = TRUE

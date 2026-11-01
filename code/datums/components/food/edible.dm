@@ -202,19 +202,19 @@ Behavior that's still missing from this component that original food items had t
 
 	switch(grill_time) //no 0-20 to prevent spam
 		if(20 to 30)
-			this_food.name = "lightly-grilled [this_food.name]"
-			this_food.desc = "[this_food.desc] It's been lightly grilled."
+			this_food.name = "[this_food.name] po lekkim grillowaniu"
+			this_food.desc = "[this_food.desc] Jest lekko zgrillowane."
 		if(30 to 80)
-			this_food.name = "grilled [this_food.name]"
-			this_food.desc = "[this_food.desc] It's been grilled."
+			this_food.name = "[this_food.name] po grillowaniu"
+			this_food.desc = "[this_food.desc] Jest zgrillowane."
 			foodtypes |= FRIED
 		if(80 to 100)
-			this_food.name = "heavily grilled [this_food.name]"
-			this_food.desc = "[this_food.desc] It's been heavily grilled."
+			this_food.name = "[this_food.name] po mocnym grillowaniu"
+			this_food.desc = "[this_food.desc] Jest mocno zgrillowane."
 			foodtypes |= FRIED
 		if(100 to INFINITY) //grill marks reach max alpha
-			this_food.name = "Powerfully Grilled [this_food.name]"
-			this_food.desc = "A [this_food.name]. Reminds you of your wife, wait, no, it's prettier!"
+			this_food.name = "[this_food.name] po POTĘŻNYM grillowaniu"
+			this_food.desc = "Oto [this_food.name]. Przypomina ci twoją żonę... nie, czekaj, jest ładniejsze!"
 			foodtypes |= FRIED
 
 ///Called when food is created through processing (Usually this means it was sliced). We use this to pass the OG items reagents.
@@ -233,7 +233,7 @@ Behavior that's still missing from this component that original food items had t
 	original_atom.reagents.copy_to(this_food, original_atom.reagents.total_volume, 1 / chosen_processing_option[TOOL_PROCESSING_AMOUNT])
 
 	if(original_atom.name != initial(original_atom.name))
-		this_food.name = "slice of [original_atom.name]"
+		this_food.name = "plaster: [original_atom.name]"
 	if(original_atom.desc != initial(original_atom.desc))
 		this_food.desc = "[original_atom.desc]"
 
@@ -427,12 +427,12 @@ Behavior that's still missing from this component that original food items had t
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
-		covered = "headgear"
+		covered = "nakrycie głowy"
 	else if(C.is_mouth_covered(mask_only = 1))
-		covered = "mask"
+		covered = "maska"
 	if(covered)
-		var/who = (isnull(feeder) || eater == feeder) ? "twój" : "[eater.p_their()]"
-		to_chat(feeder, "<span class='warning'>Najpierw musisz zdjąć: [who] [covered]!</span>")
+		var/who = (isnull(feeder) || eater == feeder) ? "" : " ([eater])"
+		to_chat(feeder, "<span class='warning'>Najpierw musisz zdjąć: [covered][who]!</span>")
 		return FALSE
 	return TRUE
 

@@ -1,6 +1,6 @@
 /datum/action/changeling/organic_mindshield
-	name = "Organic Mindshield"
-	desc = "We emit a constant frequency matching that of a mindshield, fooling security HUDs into thinking we are mindshielded."
+	name = "Organiczna ochrona umysłu"
+	desc = "Emitujemy stałą częstotliwość taką jak implant ochrony umysłu, przez co HUD-y ochrony biorą nas za chronionych."
 	button_icon_state = "mindshield"
 	helptext = "Sprawia, że na HUD-ach ochrony widać u ciebie implant ochrony umysłu. Utrzymanie zużywa 1 jedn. chemikaliów co 3 sekundy. Nie działa, gdy płoniesz."
 	chemical_cost = 0

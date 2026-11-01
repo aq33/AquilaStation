@@ -56,7 +56,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_VAMPIRE)
 
-/obj/item/shield/vampire/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/vampire/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/vampire/vampire = IS_VAMPIRE(owner)
 	vampire?.adjust_vitae(-15)
 	return ..()

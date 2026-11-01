@@ -184,7 +184,7 @@
 
 
 /obj/structure/hololadder
-	name = "hololadder"
+	name = "holodrabina"
 	desc = "Abstrakcyjne wyobrażenie sposobu na odłączenie się od domeny wirtualnej."
 	anchored = TRUE
 	icon = 'icons/obj/structures.dmi'
@@ -304,7 +304,7 @@
 
 
 /obj/item/bitrunning_debug
-	name = "bitrunning debug item"
+	name = "przedmiot debugowania bitrunningu"
 	desc = "Dodaje punkty i skraca stygnięcie, do debugowania."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "datadisk0"

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/cone
-	name = "Cone of Nothing"
-	desc = "Does nothing in a cone! Wow!"
+	name = "Stożek niczego"
+	desc = "Nie robi niczego, ale w stożku! Wow!"
 	school = "evocation"
 	charge_max = 100
 	clothes_req = FALSE

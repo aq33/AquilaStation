@@ -1,5 +1,5 @@
 /obj/item/doorCharge
-	name = "airlock charge"
+	name = "ładunek do śluzy"
 	desc = null //Different examine for traitors
 	icon = 'icons/obj/device.dmi'
 	item_state = "electronic"
@@ -17,7 +17,7 @@
 /obj/item/doorCharge/ex_act(severity, target)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='warning'>[src] detonates!</span>")
+			visible_message("<span class='warning'>[src] wybucha!</span>")
 			explosion(src.loc,0,2,1,flame_range = 4)
 			qdel(src)
 		if(EXPLODE_HEAVY)

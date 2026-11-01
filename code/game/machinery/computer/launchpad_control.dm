@@ -1,6 +1,6 @@
 /obj/machinery/computer/launchpad
-	name = "launchpad control console"
-	desc = "Used to teleport objects to and from a launchpad."
+	name = "konsola sterowania wyrzutnią"
+	desc = "Służy do teleportowania obiektów na wyrzutnię i z niej."
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	circuit = /obj/item/circuitboard/computer/launchpad_console
@@ -134,7 +134,7 @@
 			current_pad.display_name = new_name
 			. = TRUE
 		if("remove")
-			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "I'm Sure", "Abort") == "I'm Sure")
+			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "Na pewno", "Przerwij") == "Na pewno")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE

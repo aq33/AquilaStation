@@ -51,7 +51,7 @@
 		S.forceMove(T)
 
 /obj/machinery/mineral/processing_unit_console
-	name = "production machine console"
+	name = "konsola pieca hutniczego"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -192,7 +192,7 @@
 
 
 /obj/machinery/mineral/processing_unit
-	name = "furnace"
+	name = "piec hutniczy"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace"
 	density = TRUE

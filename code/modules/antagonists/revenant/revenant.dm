@@ -428,7 +428,7 @@
 	if(QDELETED(src) || QDELETED(revenant) || inert)
 		return
 	var/key_of_revenant
-	message_admins("Revenant ectoplasm was left undestroyed for 1 minute and is reforming into a new revenant.")
+	message_admins("Ektoplazma upiora przez minutę nie zostaje zniszczona i odradza się w nowego upiora.")
 	forceMove(drop_location()) //In case it's in a backpack or someone's hand
 	revenant.forceMove(loc)
 	if(old_key)
@@ -437,11 +437,11 @@
 				key_of_revenant = old_key
 				break
 	if(!key_of_revenant)
-		message_admins("The new revenant's old client either could not be found or is in a new, living mob - grabbing a random candidate instead...")
+		message_admins("Nie znaleziono dawnego klienta nowego upiora albo jest on w nowym, żywym mobie – zamiast tego losuję kandydata...")
 		var/list/candidates = pollCandidatesForMob("Chcesz zostać [revenant.name] (odradzanie)?", ROLE_REVENANT, /datum/role_preference/midround_ghost/revenant, 7.5 SECONDS, revenant)
 		if(!LAZYLEN(candidates))
 			qdel(revenant)
-			message_admins("No candidates were found for the new revenant. Oh well!")
+			message_admins("Nie znaleziono kandydatów na nowego upiora. No cóż!")
 			inert = TRUE
 			visible_message("<span class='revenwarning'>[src] uspokaja się i wydaje się martwy.</span>")
 			return
@@ -449,12 +449,12 @@
 		key_of_revenant = C.key
 		if(!key_of_revenant)
 			qdel(revenant)
-			message_admins("No ckey was found for the new revenant. Oh well!")
+			message_admins("Nie znaleziono ckeya dla nowego upiora. No cóż!")
 			inert = TRUE
 			visible_message("<span class='revenwarning'>[src] uspokaja się i wydaje się martwy.</span>")
 			return
 
-	message_admins("[key_of_revenant] has been [old_key == key_of_revenant ? "re":""]made into a revenant by reforming ectoplasm.")
+	message_admins("[key_of_revenant] [old_key == key_of_revenant ? "ponownie ":""]zostaje upiorem dzięki odradzającej się ektoplazmie.")
 	log_game("[key_of_revenant] was [old_key == key_of_revenant ? "re":""]made as a revenant by reforming ectoplasm.")
 	visible_message("<span class='revenboldnotice'>[src] nagle unosi się w powietrze, po czym znika.</span>")
 

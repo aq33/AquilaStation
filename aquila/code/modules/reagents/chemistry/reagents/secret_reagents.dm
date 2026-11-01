@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 
 /datum/reagent/consumable/secretsauce
-	name = "Secret Sauce"
+	name = "Sekretny sos"
 	description = "Co to w ogóle jest?"
 	color = "#792300"
 	nutriment_factor = 2 * REAGENTS_METABOLISM
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 
 /// Zmienia w losowe stworzenie, jak polimorfia czarodzieja
 /datum/reagent/polyjuice
-	name = "Polyjuice"
+	name = "Eliksir wielosokowy"
 	description = "Jaskrawa ciecz wywołująca nagłe i nieodwracalne zmiany w budowie ciała żywych istot."
 	color = "#ff00ea"
 	taste_description = "magia"
@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 	return ..()
 
 /datum/reagent/toxin/spider_serum
-	name = "Spider Serum"
+	name = "Pajęcze serum"
 	description = "Okropny mutagen przemieniający ciało w pająki."
 	color = "#000000"
 	taste_description = "niekończące się koszmary"

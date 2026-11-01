@@ -17,11 +17,11 @@ export const Mint = (props) => {
     <Window width={300} height={250}>
       <Window.Content>
         <Section
-          title="Materials"
+          title="Materiały"
           buttons={
             <Button
               icon={data.processing ? 'times' : 'power-off'}
-              content={data.processing ? 'Stop' : 'Start'}
+              content={data.processing ? 'Zatrzymaj' : 'Uruchom'}
               selected={data.processing}
               onClick={() => act(data.processing ? 'stoppress' : 'startpress')}
             />
@@ -48,7 +48,7 @@ export const Mint = (props) => {
             ))}
           </LabeledList>
         </Section>
-        <Section>Pressed {data.produced_coins} coins this cycle.</Section>
+        <Section>Monety wybite w tym cyklu: {data.produced_coins}.</Section>
       </Window.Content>
     </Window>
   );

@@ -1,6 +1,6 @@
 /obj/item/teleportation_scroll
-	name = "scroll of teleportation"
-	desc = "A scroll for moving around."
+	name = "zwój teleportacji"
+	desc = "Zwój do przemieszczania się."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
 	var/uses = 4
@@ -11,7 +11,7 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/teleportation_scroll/apprentice
-	name = "lesser scroll of teleportation"
+	name = "pomniejszy zwój teleportacji"
 	uses = 1
 
 

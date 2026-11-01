@@ -1,5 +1,5 @@
 /datum/design/integrated_circuit
-	name = "Integrated Circuit"
+	name = "Układ scalony"
 	id = "integrated_circuit"
 	desc = "Podstawa wszystkich układów. Na niej montuje się całą elektronikę."
 	build_path = /obj/item/integrated_circuit
@@ -9,7 +9,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/circuit_multitool
-	name = "Circuit Multitool"
+	name = "Multitool do układów"
 	id = "circuit_multitool"
 	desc = "Multitool do układów, służący do oznaczania obiektów i wczytywania ich do układu."
 	build_path = /obj/item/multitool/circuit
@@ -19,7 +19,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/usb_cable
-	name = "USB Cable"
+	name = "Kabel USB"
 	id = "usb_cable"
 	desc = "Kabel, który pozwala niektórym obudowom łączyć się z pobliskimi komputerami i maszynami."
 	build_path = /obj/item/usb_cable
@@ -43,7 +43,7 @@
 		desc = initial(component_path.desc)
 
 /datum/design/component/module
-	name = "Module Component"
+	name = "Komponent: moduł"
 	id = "comp_module"
 	build_path = /obj/item/circuit_component/module
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_CORE)

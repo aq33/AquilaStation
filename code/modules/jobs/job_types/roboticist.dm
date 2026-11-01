@@ -22,7 +22,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 	departments = DEPARTMENT_BITFLAG_SCIENCE
-	rpg_title = "Golemancer"
+	rpg_title = "Golemanta"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/robotics

@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(voidwalker_names, list("Ere", "Vee", "Gea", "Vai", "Nei", "Dae"
 	return ..() + "<br>Oświeconych na koniec rundy: <b>[voided]</b>"
 
 /datum/objective/voidwalker
-	name = "voidwalker"
+	name = "wędrowiec pustki"
 
 /datum/objective/voidwalker/New()
 	var/static/list/explanation_texts = list(

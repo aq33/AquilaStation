@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/clown
 	name = JOB_NAME_CLOWN
-	desc = "A denizen of clown planet."
+	desc = "Mieszkaniec planety klaunów."
 	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "clown"
 	icon_living = "clown"
@@ -68,8 +68,8 @@
 			L.reagents.add_reagent(attack_reagent, 5)
 
 /mob/living/simple_animal/hostile/retaliate/clown/lube
-	name = "Living Lube"
-	desc = "A puddle of lube brought to life by the honkmother."
+	name = "żywy smar"
+	desc = "Kałuża smaru ożywiona przez Honkmatkę."
 	icon_state = "lube"
 	icon_living = "lube"
 	turns_per_move = 1
@@ -85,8 +85,8 @@
 		OT.MakeSlippery(TURF_WET_LUBE, 100)
 
 /mob/living/simple_animal/hostile/retaliate/clown/banana
-	name = "Clownana"
-	desc = "A fusion of clown and banana DNA birthed from a botany experiment gone wrong."
+	name = "klaunan"
+	desc = "Połączenie DNA klauna i banana, zrodzone z nieudanego eksperymentu botanicznego."
 	icon_state = "banana tree"
 	icon_living = "banana tree"
 	response_help = "szturcha"
@@ -102,8 +102,8 @@
 	banana_time = 20
 
 /mob/living/simple_animal/hostile/retaliate/clown/honkling
-	name = "Honkling"
-	desc = "A divine being sent by the Honkmother to spread joy. It's not dangerous, but it's a bit of a nuisance."
+	name = "honkuś"
+	desc = "Boska istota zesłana przez Honkmatkę, by szerzyć radość. Nie jest groźna, ale bywa uciążliwa."
 	icon_state = "honkling"
 	icon_living = "honkling"
 	turns_per_move = 1
@@ -115,8 +115,8 @@
 	attack_reagent = /datum/reagent/consumable/laughter
 
 /mob/living/simple_animal/hostile/retaliate/clown/fleshclown
-	name = "Fleshclown"
-	desc = "A being forged out of the pure essence of pranking, cursed into existence by a cruel maker."
+	name = "mięsoklaun"
+	desc = "Istota wykuta z czystej esencji psikusów, powołana do istnienia klątwą okrutnego stwórcy."
 	icon_state = "fleshclown"
 	icon_living = "fleshclown"
 	response_help = "niechętnie szturcha"
@@ -136,8 +136,8 @@
 	loot = list(/obj/item/clothing/suit/hooded/bloated_human, /obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/longface
-	name = "Longface"
-	desc = "Often found walking into the bar."
+	name = "Ponurak"
+	desc = "Często spotykany, gdy wchodzi do baru."
 	icon_state = "long face"
 	icon_living = "long face"
 	move_resist = INFINITY
@@ -159,7 +159,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk
 	name = "Honk Hulk"
-	desc = "A cruel and fearsome clown. Don't make him angry."
+	desc = "Okrutny i przerażający klaun. Nie denerwuj go."
 	icon_state = "honkhulk"
 	icon_living = "honkhulk"
 	move_resist = INFINITY
@@ -181,8 +181,8 @@
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown
-	name = "Chlown"
-	desc = "A real lunkhead who somehow gets all the girls."
+	name = "Chlaun"
+	desc = "Prawdziwy tępak, który jakimś cudem ma powodzenie u wszystkich dziewczyn."
 	icon_state = "chlown"
 	icon_living = "chlown"
 	response_help = "poddaje się"
@@ -199,8 +199,8 @@
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus
-	name = "Honkmunculus"
-	desc = "A slender wiry figure of alchemical origin."
+	name = "Honkmunkulus"
+	desc = "Smukła, żylasta postać alchemicznego pochodzenia."
 	icon_state = "honkmunculus"
 	icon_living = "honkmunculus"
 	response_help = "sceptycznie szturcha"
@@ -218,13 +218,13 @@
 	attack_reagent = /datum/reagent/peaceborg/confuse
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer
-	name = "The Destroyer"
-	desc = "An ancient being born of arcane honking."
+	name = "Niszczyciel"
+	desc = "Pradawna istota zrodzona z tajemnego trąbienia."
 	icon_state = "destroyer"
 	icon_living = "destroyer"
 	response_disarm = "odbija się od"
 	response_harm = "odbija się od"
-	speak = list("HONK!!!", "Honkmatka jest miłosierna, więc to ja muszę wymierzyć jej gniew.", "parce mihi ad beatus honkmother placet mihi ut peccata committere,", "DIE!!!")
+	speak = list("HONK!!!", "Honkmatka jest miłosierna, więc to ja muszę wymierzyć jej gniew.", "parce mihi ad beatus honkmother placet mihi ut peccata committere,", "GIŃ!!!")
 	maxHealth = 400
 	health = 400
 	speed = 5
@@ -238,7 +238,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant
 	name = "Unknown"
-	desc = "Kill it for its own sake."
+	desc = "Zabij to dla jego własnego dobra."
 	icon_state = "mutant"
 	icon_living = "mutant"
 	move_resist = INFINITY
@@ -259,8 +259,8 @@
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob
-	name = "Something that was once a clown"
-	desc = "A grotesque bulging figure far mutated from it's original state."
+	name = "coś, co kiedyś było klaunem"
+	desc = "Groteskowa, napęczniała postać, daleko zmutowana od swojego pierwotnego stanu."
 	icon_state = "blob"
 	icon_living = "blob"
 	speak = list("hej, kolego", "HONK!!!", "H-h-h-H-HOOOOONK!!!!", "HONKHONKHONK!!!", "HEJ, KOLEŻKO, WRACAJ TU!!!", "HOOOOOOOONK!!!")

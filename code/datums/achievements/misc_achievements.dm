@@ -2,149 +2,149 @@
 	category = "Misc"
 
 /datum/award/achievement/misc/meteor_examine
-	name = "Your Life Before Your Eyes"
-	desc = "Take a close look at hurtling space debris"
+	name = "Całe życie przed oczami"
+	desc = "Przyjrzyj się z bliska pędzącym kosmicznym śmieciom"
 	database_id = MEDAL_METEOR
 	reward = 1000
 
 /datum/award/achievement/misc/pulse
 	name = "Jackpot"
-	desc = "Win a pulse rifle from an arcade machine"
+	desc = "Wygraj karabin pulsacyjny w automacie do gier"
 	database_id = MEDAL_PULSE
 	reward = 5000
 
 /datum/award/achievement/misc/time_waste
-	name = "Overextended The Joke"
-	desc = "Speak no evil, hear no evil, see just errors"
+	name = "Przeciągnięty żart"
+	desc = "Nie mów nic złego, nie słysz nic złego, widzisz same błędy"
 	database_id = MEDAL_TIMEWASTE
 	reward = 5000
 
 /datum/award/achievement/misc/feat_of_strength
-	name = "Feat of Strength"
-	desc = "If the rod is immovable, is it passing you or are you passing it?"
+	name = "Pokaz siły"
+	desc = "Jeśli pręt jest nieruchomy, to on mija ciebie, czy ty jego?"
 	database_id = MEDAL_RODSUPLEX
 	reward = 2500
 
 /datum/award/achievement/misc/round_and_full
-	name = "Round and Full"
-	desc = "Well at least you aren't down the river, I hear they eat people there."
+	name = "Okrągły i pełny"
+	desc = "Przynajmniej nie wylądowałeś w dole rzeki. Podobno tam jedzą ludzi."
 	database_id = MEDAL_CLOWNCARKING
 	reward = 1000
 
 /datum/award/achievement/misc/singularity_death
-	name = "Crossing the Horizon"
-	desc = "Someone submit an OSHA complaint about that CE!"
+	name = "Za horyzontem"
+	desc = "Niech ktoś zgłosi tego naczelnego inżyniera do inspekcji BHP!"
 	database_id = MEDAL_SINGULARITY_DEATH
 
 /datum/award/achievement/misc/cluwne
 	name = "KILLMEKILLMEKILLME"
-	desc = "Green, Mean, Honking Machine"
+	desc = "Zielona, wredna, trąbiąca maszyna"
 	database_id = MEDAL_GET_CLUWNED
 
 /datum/award/achievement/misc/weights
-	name = "Survival of the Fittest"
-	desc = "Sun's out, guns out!"
+	name = "Przetrwanie najsilniejszych"
+	desc = "Słońce na niebie, bicepsy na wierzchu!"
 	database_id = MEDAL_USE_WEIGHT_MACHINE
 
 /datum/award/achievement/misc/pressure
 	name = "WHOOSH!"
-	desc = "Pushing down on me, pressing down on you."
+	desc = "Ciśnie na mnie, ciśnie na ciebie."
 	database_id = MEDAL_UNWRENCH_HIGH_PRESSURE
 
 /datum/award/achievement/misc/greentext
-	name = "Greentext"
-	desc = "A winner is you!"
+	name = "Zielony tekst"
+	desc = "Zwycięzca to ty!"
 	database_id = MEDAL_COMPLETE_ALL_OBJECTIVES
 
 /datum/award/achievement/misc/meth
 	name = "NYOOOOM"
-	desc = "You're Walter, and not the Warden's dog."
+	desc = "Jesteś Walterem, a nie psem naczelnika."
 	database_id = MEDAL_APPLY_REAGENT_METH
 
 /datum/award/achievement/misc/soy
-	name = "Soyboy"
-	desc = "Drank soymilk."
+	name = "Sojowy chłopiec"
+	desc = "Wypiłeś mleko sojowe."
 	database_id = MEDAL_APPLY_REAGENT_SOYMILK
 
 /datum/award/achievement/misc/laws
-	name = "Dave, my mind is going"
-	desc = "Open the pod bay doors, H.O.N.K.E.R.S."
+	name = "Dave, tracę rozum"
+	desc = "Otwórz drzwi hangaru, H.O.N.K.E.R.S."
 	database_id = MEDAL_15_AI_LAW_CHANGES
 	reward = 250
 
 /datum/award/achievement/misc/welderbomb
-	name = "That was stupid of you."
-	desc = "(distant explosion noises)"
+	name = "To było głupie."
+	desc = "(odgłosy odległej eksplozji)"
 	database_id = MEDAL_DETONATE_WELDERBOMB
 
 /datum/award/achievement/misc/succumb
-	name = "Please just end the pain"
-	desc = "Shuffling off this mortal coil while the getting's good."
+	name = "Niech ten ból się skończy"
+	desc = "Zejście z tego padołu, póki jeszcze można."
 	database_id = MEDAL_SUCCUMB
 
 /datum/award/achievement/misc/ghosts
-	name = "G-G-Ghosts?"
-	desc = "Some people say that being a ghost is better than being alive. You don't have much of a choice now."
+	name = "D-d-duchy?"
+	desc = "Niektórzy mówią, że bycie duchem jest lepsze od życia. Teraz i tak nie masz wielkiego wyboru."
 	database_id = MEDAL_GHOSTS
 
 /datum/award/achievement/misc/the_best_driver
-	name = "The Best Driver"
-	desc = "100 honks later"
+	name = "Najlepszy kierowca"
+	desc = "100 trąbnięć później"
 	database_id = MEDAL_THANKSALOT
 	reward = 2500
 
 /datum/award/achievement/misc/onekhours
-	name = "Veteran"
-	desc = "You've spent a lot of time on this game, have a reward!"
+	name = "Weteran"
+	desc = "Spędziłeś w tej grze mnóstwo czasu, masz nagrodę!"
 	database_id = MEDAL_ONEKHRS
 	reward = 1000
 
 /datum/award/achievement/misc/twokhours
-	name = "Seasoned Veteran"
-	desc = "You could have gotten a bachelor's degree with this time."
+	name = "Zaprawiony weteran"
+	desc = "W tym czasie mogłeś zrobić licencjat."
 	database_id = MEDAL_TWOKHRS
 	reward = 2500
 
 /datum/award/achievement/misc/threekhours
-	name = "Grilled Seasoned Veteran"
-	desc = "Easy come, easy go."
+	name = "Grillowany zaprawiony weteran"
+	desc = "Łatwo przyszło, łatwo poszło."
 	database_id = MEDAL_THREEKHRS
 	reward = 5000
 
 /datum/award/achievement/misc/fourkhours
-	name = "Sous Vide Grilled Seasoned Veteran"
-	desc = "Good lord, you've spent half a year playing this game."
+	name = "Grillowany zaprawiony weteran sous vide"
+	desc = "Dobry Boże, spędziłeś pół roku na graniu w tę grę."
 	database_id = MEDAL_FOURKHRS
 	reward = 10000
 
 /datum/award/achievement/misc/mintgib
-	name = "Best Meal of My Life"
-	desc = "Also Ate Zarathustra"
+	name = "Najlepszy posiłek w moim życiu"
+	desc = "Tako rzecze... i zjadł Zaratustra"
 	database_id = MEDAL_MINTGIB
 
 /datum/award/achievement/misc/chasmjaunt
-	name = "Mind the Gap"
-	desc = "Pays to be prepared"
+	name = "Uwaga na szczelinę"
+	desc = "Opłaca się być przygotowanym"
 	database_id = MEDAL_CHASMJAUNT
 
 /datum/award/achievement/misc/bike
-	name = "This Lousy Achievement"
-	desc = "Not worth the effort"
+	name = "To nędzne osiągnięcie"
+	desc = "Nie było warte zachodu"
 	database_id = MEDAL_BIKE
 
 /datum/award/achievement/misc/warops
-	name = "Let's Play GLOBAL THERMONUCLEAR WAR"
-	desc = "Wouldn't you rather play chess?"
+	name = "Zagrajmy w GLOBALNĄ WOJNĘ TERMOJĄDROWĄ"
+	desc = "Może wolisz zagrać w szachy?"
 	database_id = MEDAL_WAROPS
 
 /datum/award/achievement/misc/drunk
-	name = "Little Chickadee"
-	desc = "No, well, ten beers"
+	name = "Mała sikoreczka"
+	desc = "Nie, no, dziesięć piw"
 	database_id = MEDAL_DRUNK
 
 /datum/award/achievement/misc/cayenne_disk
-	name = "Very Important Piscis"
-	desc = "You can rest well now."
+	name = "Bardzo Ważna Ryba"
+	desc = "Teraz możesz spokojnie odpocząć."
 	database_id = MEDAL_CAYENNE_DISK
 	icon = "cayenne_disk"
 	reward = 2500

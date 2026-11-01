@@ -3,112 +3,112 @@
 ///////////////////////////////////
 
 /datum/design/board/ripley_main
-	name = "APLU \"Ripley\" Central Control module"
-	desc = "Allows for the construction of a \"Ripley\" Central Control module."
+	name = "Centralny moduł sterowania APLU \"Ripley\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"Ripley\"."
 	id = "ripley_main"
 	build_path = /obj/item/circuitboard/mecha/ripley/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/ripley_peri
-	name = "APLU \"Ripley\" Peripherals Control module"
-	desc = "Allows for the construction of a  \"Ripley\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami APLU \"Ripley\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"Ripley\"."
 	id = "ripley_peri"
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/odysseus_main
-	name = "\"Odysseus\" Central Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Central Control module."
+	name = "Centralny moduł sterowania \"Odysseus\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"Odysseus\"."
 	id = "odysseus_main"
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/odysseus_peri
-	name = "\"Odysseus\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami \"Odysseus\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"Odysseus\"."
 	id = "odysseus_peri"
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/gygax_main
-	name = "\"Gygax\" Central Control module"
-	desc = "Allows for the construction of a \"Gygax\" Central Control module."
+	name = "Centralny moduł sterowania \"Gygax\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"Gygax\"."
 	id = "gygax_main"
 	build_path = /obj/item/circuitboard/mecha/gygax/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/gygax_peri
-	name = "\"Gygax\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Gygax\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami \"Gygax\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"Gygax\"."
 	id = "gygax_peri"
 	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/gygax_targ
-	name = "\"Gygax\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Gygax\" Weapons & Targeting Control module."
+	name = "Moduł sterowania uzbrojeniem i celowaniem \"Gygax\""
+	desc = "Pozwala zbudować moduł sterowania uzbrojeniem i celowaniem \"Gygax\"."
 	id = "gygax_targ"
 	build_path = /obj/item/circuitboard/mecha/gygax/targeting
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/durand_main
-	name = "\"Durand\" Central Control module"
-	desc = "Allows for the construction of a \"Durand\" Central Control module."
+	name = "Centralny moduł sterowania \"Durand\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"Durand\"."
 	id = "durand_main"
 	build_path = /obj/item/circuitboard/mecha/durand/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/durand_peri
-	name = "\"Durand\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Durand\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami \"Durand\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"Durand\"."
 	id = "durand_peri"
 	build_path = /obj/item/circuitboard/mecha/durand/peripherals
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/durand_targ
-	name = "\"Durand\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Durand\" Weapons & Targeting Control module."
+	name = "Moduł sterowania uzbrojeniem i celowaniem \"Durand\""
+	desc = "Pozwala zbudować moduł sterowania uzbrojeniem i celowaniem \"Durand\"."
 	id = "durand_targ"
 	build_path = /obj/item/circuitboard/mecha/durand/targeting
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/honker_main
-	name = "\"H.O.N.K\" Central Control module"
-	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
+	name = "Centralny moduł sterowania \"H.O.N.K\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"H.O.N.K\"."
 	id = "honker_main"
 	build_path = /obj/item/circuitboard/mecha/honker/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/honker_peri
-	name = "\"H.O.N.K\" Peripherals Control module"
-	desc = "Allows for the construction of a \"H.O.N.K\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami \"H.O.N.K\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"H.O.N.K\"."
 	id = "honker_peri"
 	build_path = /obj/item/circuitboard/mecha/honker/peripherals
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/honker_targ
-	name = "\"H.O.N.K\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"H.O.N.K\" Weapons & Targeting Control module."
+	name = "Moduł sterowania uzbrojeniem i celowaniem \"H.O.N.K\""
+	desc = "Pozwala zbudować moduł sterowania uzbrojeniem i celowaniem \"H.O.N.K\"."
 	id = "honker_targ"
 	build_path = /obj/item/circuitboard/mecha/honker/targeting
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/phazon_main
-	name = "\"Phazon\" Central Control module"
-	desc = "Allows for the construction of a \"Phazon\" Central Control module."
+	name = "Centralny moduł sterowania \"Phazon\""
+	desc = "Pozwala zbudować centralny moduł sterowania \"Phazon\"."
 	id = "phazon_main"
 	materials = list(/datum/material/glass = 1000, /datum/material/bluespace = 100)
 	build_path = /obj/item/circuitboard/mecha/phazon/main
@@ -116,8 +116,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/phazon_peri
-	name = "\"Phazon\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Phazon\" Peripheral Control module."
+	name = "Moduł sterowania peryferiami \"Phazon\""
+	desc = "Pozwala zbudować moduł sterowania peryferiami \"Phazon\"."
 	id = "phazon_peri"
 	materials = list(/datum/material/glass = 1000, /datum/material/bluespace = 100)
 	build_path = /obj/item/circuitboard/mecha/phazon/peripherals
@@ -125,8 +125,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/phazon_targ
-	name = "\"Phazon\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Phazon\" Weapons & Targeting Control module."
+	name = "Moduł sterowania uzbrojeniem i celowaniem \"Phazon\""
+	desc = "Pozwala zbudować moduł sterowania uzbrojeniem i celowaniem \"Phazon\"."
 	id = "phazon_targ"
 	materials = list(/datum/material/glass = 1000, /datum/material/bluespace = 100)
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
@@ -138,8 +138,8 @@
 ////////////////////////////////////////
 
 /datum/design/mech_scattershot
-	name = "Exosuit Weapon (LBX AC 10 \"Scattershot\")"
-	desc = "Allows for the construction of LBX AC 10."
+	name = "Broń egzoszkieletu (LBX AC 10 \"Scattershot\")"
+	desc = "Pozwala zbudować LBX AC 10."
 	id = "mech_scattershot"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
@@ -150,8 +150,8 @@
 
 
 /datum/design/mech_carbine
-	name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
-	desc = "Allows for the construction of FNX-99 \"Hades\" Carbine."
+	name = "Broń egzoszkieletu (karabinek FNX-99 \"Hades\")"
+	desc = "Pozwala zbudować karabinek FNX-99 \"Hades\"."
 	id = "mech_carbine"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
@@ -161,8 +161,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_ion
-	name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
-	desc = "Allows for the construction of MKIV Ion Heavy Cannon."
+	name = "Broń egzoszkieletu (ciężkie działo jonowe MKIV)"
+	desc = "Pozwala zbudować ciężkie działo jonowe MKIV."
 	id = "mech_ion"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -172,8 +172,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_tesla
-	name = "Exosuit Weapon (MKI Tesla Cannon)"
-	desc = "Allows for the construction of MKI Tesla Cannon."
+	name = "Broń egzoszkieletu (działo Tesli MKI)"
+	desc = "Pozwala zbudować działo Tesli MKI."
 	id = "mech_tesla"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
@@ -183,8 +183,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_laser
-	name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
-	desc = "Allows for the construction of CH-PS Laser."
+	name = "Broń egzoszkieletu (laser CH-PS \"Immolator\")"
+	desc = "Pozwala zbudować laser CH-PS."
 	id = "mech_laser"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
@@ -194,8 +194,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_laser_heavy
-	name = "Exosuit Weapon (CH-LC \"Solaris\" Laser Cannon)"
-	desc = "Allows for the construction of CH-LC Laser Cannon."
+	name = "Broń egzoszkieletu (działo laserowe CH-LC \"Solaris\")"
+	desc = "Pozwala zbudować działo laserowe CH-LC."
 	id = "mech_laser_heavy"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -205,8 +205,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_disabler
-	name = "Exosuit Weapon (CH-DS \"Peacemaker\" Disabler)"
-	desc = "Allows for the construction of CH-DS Disabler."
+	name = "Broń egzoszkieletu (paralizator CH-DS \"Peacemaker\")"
+	desc = "Pozwala zbudować paralizator CH-DS."
 	id = "mech_disabler"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
@@ -215,8 +215,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_grenade_launcher
-	name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
-	desc = "Allows for the construction of SGL-6 Grenade Launcher."
+	name = "Broń egzoszkieletu (granatnik SGL-6)"
+	desc = "Pozwala zbudować granatnik SGL-6."
 	id = "mech_grenade_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
@@ -225,8 +225,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/clusterbang_launcher
-	name = "Exosuit Weapon (SOB-3 Clusterbang Launcher)"
-	desc = "A weapon that violates the Geneva Convention at 3 rounds per minute"
+	name = "Broń egzoszkieletu (wyrzutnia clusterbangów SOB-3)"
+	desc = "Broń, która łamie konwencję genewską w tempie 3 pocisków na minutę."
 	id = "clusterbang_launcher"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang
@@ -236,8 +236,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_wormhole_gen
-	name = "Exosuit Module (Localized Wormhole Generator)"
-	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
+	name = "Moduł egzoszkieletu (lokalny generator tuneli)"
+	desc = "Moduł egzoszkieletu, który generuje małe, quasi-stabilne tunele czasoprzestrzenne."
 	id = "mech_wormhole_gen"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/wormhole_generator
@@ -246,8 +246,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_teleporter
-	name = "Exosuit Module (Teleporter Module)"
-	desc = "An exosuit module that allows exosuits to teleport to any position in view."
+	name = "Moduł egzoszkieletu (moduł teleportera)"
+	desc = "Moduł egzoszkieletu, który teleportuje egzoszkielet w dowolne widoczne miejsce."
 	id = "mech_teleporter"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/teleporter
@@ -256,8 +256,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_rcd
-	name = "Exosuit Module (RCD Module)"
-	desc = "An exosuit-mounted Rapid Construction Device."
+	name = "Moduł egzoszkieletu (moduł RCD)"
+	desc = "Urządzenie do szybkiej budowy (RCD) montowane na egzoszkielecie."
 	id = "mech_rcd"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/rcd
@@ -266,8 +266,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_thrusters
-	name = "Exosuit Module (RCS Thruster Package)"
-	desc = "A thruster package for exosuits. Expells gas from the internal life-support air tank to generate thrust."
+	name = "Moduł egzoszkieletu (zestaw silników manewrowych RCS)"
+	desc = "Zestaw silników manewrowych dla egzoszkieletów. Wyrzuca gaz z wewnętrznej butli podtrzymywania życia, by wytworzyć ciąg."
 	id = "mech_thrusters"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/thrusters/gas
@@ -276,8 +276,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_gravcatapult
-	name = "Exosuit Module (Gravitational Catapult Module)"
-	desc = "An exosuit mounted Gravitational Catapult."
+	name = "Moduł egzoszkieletu (katapulta grawitacyjna)"
+	desc = "Katapulta grawitacyjna montowana na egzoszkielecie."
 	id = "mech_gravcatapult"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/gravcatapult
@@ -286,8 +286,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_repair_droid
-	name = "Exosuit Module (Repair Droid Module)"
-	desc = "Automated Repair Droid. BEEP BOOP"
+	name = "Moduł egzoszkieletu (droid naprawczy)"
+	desc = "Zautomatyzowany droid naprawczy. BIP BUP"
 	id = "mech_repair_droid"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
@@ -296,8 +296,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_energy_relay
-	name = "Exosuit Module (Tesla Energy Relay)"
-	desc = "Tesla Energy Relay"
+	name = "Moduł egzoszkieletu (przekaźnik energii Tesli)"
+	desc = "Przekaźnik energii Tesli."
 	id = "mech_energy_relay"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
@@ -306,8 +306,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_ccw_armor
-	name = "Exosuit Module (Reactive Armor Booster Module)"
-	desc = "Exosuit-mounted armor booster."
+	name = "Moduł egzoszkieletu (reaktywne wzmocnienie pancerza)"
+	desc = "Wzmocnienie pancerza montowane na egzoszkielecie."
 	id = "mech_ccw_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster
@@ -316,8 +316,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_proj_armor
-	name = "Exosuit Module (Reflective Armor Booster Module)"
-	desc = "Exosuit-mounted armor booster."
+	name = "Moduł egzoszkieletu (refleksyjne wzmocnienie pancerza)"
+	desc = "Wzmocnienie pancerza montowane na egzoszkielecie."
 	id = "mech_proj_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
@@ -326,8 +326,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_diamond_drill
-	name = "Exosuit Mining (Diamond Mining Drill)"
-	desc = "An upgraded version of the standard drill."
+	name = "Górnictwo egzoszkieletu (diamentowe wiertło)"
+	desc = "Ulepszona wersja zwykłego wiertła."
 	id = "mech_diamond_drill"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
@@ -336,8 +336,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_generator_nuclear
-	name = "Exosuit Module (ExoNuclear Reactor)"
-	desc = "Compact nuclear reactor module."
+	name = "Moduł egzoszkieletu (reaktor egzojądrowy)"
+	desc = "Kompaktowy moduł reaktora jądrowego."
 	id = "mech_generator_nuclear"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
@@ -346,8 +346,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_plasma_cutter
-	name = "Exosuit Mining (217-D Heavy Plasma Cutter)"
-	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
+	name = "Górnictwo egzoszkieletu (ciężki przecinak plazmowy 217-D)"
+	desc = "Urządzenie, które z ogromną prędkością wystrzeliwuje rezonansowe impulsy plazmy. Kruszą one skały i burzą solidne przeszkody."
 	id = "mech_plasma_cutter"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
@@ -356,8 +356,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_lmg
-	name = "Exosuit Weapon (\"Ultra AC 2\" LMG)"
-	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
+	name = "Broń egzoszkieletu (lekki karabin maszynowy \"Ultra AC 2\")"
+	desc = "Broń dla bojowych egzoszkieletów. Strzela szybkimi seriami po trzy pociski."
 	id = "mech_lmg"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
@@ -368,8 +368,8 @@
 
 //NSV13 - readded the mech taser
 /datum/design/mech_taser
-	name = "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
-	desc = "A weapon for combat exosuits. Shoots non-lethal stunning electrodes."
+	name = "Broń egzoszkieletu (montowany paralizator PBT \"Pacifier\")"
+	desc = "Broń dla bojowych egzoszkieletów. Wystrzeliwuje nieśmiercionośne, ogłuszające elektrody."
 	id = "mech_taser"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
@@ -378,8 +378,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_sleeper
-	name = "Exosuit Medical (Mounted Sleeper)"
-	desc = "Equipment for medical exosuits. A mounted sleeper that stabilizes patients and can inject reagents in the exosuit's reserves."
+	name = "Medycyna egzoszkieletu (montowany sleeper)"
+	desc = "Wyposażenie medycznych egzoszkieletów. Montowany sleeper, który stabilizuje pacjentów i może wstrzykiwać odczynniki z zapasów egzoszkieletu."
 	id = "mech_sleeper"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/sleeper
@@ -388,8 +388,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_syringe_gun
-	name = "Exosuit Medical (Syringe Gun)"
-	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
+	name = "Medycyna egzoszkieletu (wyrzutnia strzykawek)"
+	desc = "Wyposażenie medycznych egzoszkieletów. Syntezator chemikaliów z wyrzutnią strzykawek. Odczynniki w środku są trzymane w stazie, więc nie zachodzą żadne reakcje."
 	id = "mech_syringe_gun"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
@@ -398,8 +398,8 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_medical_beamgun
-	name = "Exosuit Medical (Medical Beamgun)"
-	desc = "Equipment for medical exosuits. A mounted medical nanite projector which will treat patients with a focused beam."
+	name = "Medycyna egzoszkieletu (medyczny miotacz wiązki)"
+	desc = "Wyposażenie medycznych egzoszkieletów. Montowany projektor nanitów medycznych, który leczy pacjentów skupioną wiązką."
 	id = "mech_medi_beam"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 8000, /datum/material/plasma = 3000, /datum/material/gold = 8000, /datum/material/diamond = 2000)

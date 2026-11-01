@@ -1,5 +1,5 @@
 /datum/surgery/cavity_implant
-	name = "cavity implant"
+	name = "implant w jamie ciała"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -8,7 +8,7 @@
 
 //handle cavity
 /datum/surgery_step/handle_cavity
-	name = "implant item"
+	name = "wszczep przedmiot"
 	accept_hand = 1
 	implements = list(/obj/item = 100)
 	repeatable = TRUE

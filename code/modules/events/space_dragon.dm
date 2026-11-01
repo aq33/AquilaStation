@@ -9,7 +9,7 @@
 
 /datum/round_event/ghost_role/space_dragon
 	minimum_required = 1
-	role_name = "Space Dragon"
+	role_name = "Kosmiczny smok"
 	announceWhen = 10
 
 /datum/round_event/ghost_role/space_dragon/announce(fake)
@@ -23,7 +23,7 @@
 			continue
 		spawn_locs += carp_spawn.loc
 	if(!spawn_locs.len)
-		message_admins("No valid spawn locations found, aborting...")
+		message_admins("Brak prawidłowych miejsc pojawienia się, przerywam...")
 		return MAP_ERROR
 
 	var/list/candidates = get_candidates(ROLE_SPACE_DRAGON, null, ROLE_SPACE_DRAGON)
@@ -39,7 +39,7 @@
 	dragon.mind.special_role = "Space Dragon"
 	dragon.mind.add_antag_datum(/datum/antagonist/space_dragon)
 	playsound(dragon, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
-	message_admins("[ADMIN_LOOKUPFLW(dragon)] has been made into a Space Dragon by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(dragon)] zostaje kosmicznym smokiem w wyniku eventu.")
 	log_game("[key_name(dragon)] was spawned as a Space Dragon by an event.")
 	spawned_mobs += dragon
 	return SUCCESSFUL_SPAWN

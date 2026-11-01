@@ -1,6 +1,6 @@
 /datum/mutation/mindreader
-	name = "Mind Reader"
-	desc = "The affected person can look into the recent memories of others."
+	name = "Czytanie w myślach"
+	desc = "Pacjent może zajrzeć do świeżych wspomnień innych osób."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Słyszysz odległe głosy na skraju swojego umysłu.</span>"
 	text_lose_indication = "<span class='notice'>Odległe głosy cichną.</span>"
@@ -10,8 +10,8 @@
 	locked = TRUE
 
 /obj/effect/proc_holder/spell/targeted/mindread
-	name = "Mindread"
-	desc = "Read the target's mind."
+	name = "Czytaj w myślach"
+	desc = "Przeczytaj myśli celu."
 	charge_max = 50
 	range = 7
 	clothes_req = FALSE

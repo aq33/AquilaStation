@@ -1,6 +1,6 @@
 /obj/structure/toilet
-	name = "toilet"
-	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
+	name = "toaleta"
+	desc = "HT-451, urządzenie do usuwania drobnych odpadów oparte na ruchu obrotowym. Ta wygląda na wyjątkowo czystą."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
 	density = FALSE
@@ -140,7 +140,7 @@
 					GM.visible_message("<span class='danger'>[user] zaczyna robić [GM] kibelkowy prysznic!</span>", "<span class='userdanger'>[user] zaczyna robić ci kibelkowy prysznic...</span>")
 					swirlie = GM
 					if(do_after(user, 30, 0, target = src))
-						GM.visible_message("<span class='danger'>[user] gives [GM] a swirlie!</span>", "<span class='userdanger'>[user] robi ci kibelkowy prysznic!</span>", "<span class='italics'>Słyszysz spuszczanie wody w toalecie.</span>")
+						GM.visible_message("<span class='danger'>[user] robi [GM] kibelkowy prysznic!</span>", "<span class='userdanger'>[user] robi ci kibelkowy prysznic!</span>", "<span class='italics'>Słyszysz spuszczanie wody w toalecie.</span>")
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
 							if(!C.internal)
@@ -180,7 +180,7 @@
 		to_chat(user, "<span class='notice'>Zaczynasz [cistern ? "zakładać pokrywę spłuczki" : "zdejmować pokrywę spłuczki"]...</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(I.use_tool(src, user, 30))
-			user.visible_message("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "<span class='italics'>Słyszysz zgrzyt porcelany.</span>")
+			user.visible_message("[user] [cistern ? "zakłada pokrywę spłuczki" : "zdejmuje pokrywę spłuczki"]!", "<span class='notice'>[cistern ? "Zakładasz pokrywę spłuczki" : "Zdejmujesz pokrywę spłuczki"]!</span>", "<span class='italics'>Słyszysz zgrzyt porcelany.</span>")
 			cistern = !cistern
 			update_icon()
 
@@ -235,8 +235,8 @@
 		new secret_type(src)
 
 /obj/structure/urinal
-	name = "urinal"
-	desc = "The HU-452, an experimental urinal. Comes complete with experimental urinal cake."
+	name = "pisuar"
+	desc = "HU-452, eksperymentalny pisuar. W zestawie eksperymentalna kostka do pisuaru."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
 	density = FALSE
@@ -299,16 +299,16 @@
 	to_chat(user, "<span class='notice'>Zaczynasz [exposed ? "przykręcać z powrotem zatyczkę" : "odkręcać zatyczkę osłony odpływu"]...</span>")
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 	if(I.use_tool(src, user, 20))
-		user.visible_message("[user] [exposed ? "screws the cap back into place" : "unscrew the cap to the drain protector"]!",
-			"<span class='notice'>You [exposed ? "screw the cap back into place" : "unscrew the cap on the drain"]!</span>",
+		user.visible_message("[user] [exposed ? "przykręca zatyczkę z powrotem" : "odkręca zatyczkę osłony odpływu"]!",
+			"<span class='notice'>[exposed ? "Przykręcasz zatyczkę z powrotem" : "Odkręcasz zatyczkę odpływu"]!</span>",
 			"<span class='italics'>Słyszysz metal i mlaskanie.</span>")
 		exposed = !exposed
 	return TRUE
 
 
 /obj/item/food/urinalcake
-	name = "urinal cake"
-	desc = "The noble urinal cake, protecting the station's pipes from the station's pee. Do not eat."
+	name = "kostka do pisuaru"
+	desc = "Szlachetna kostka do pisuaru, chroniąca rury stacji przed siuśkami stacji. Nie jeść."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
@@ -316,23 +316,23 @@
 	foodtypes = TOXIC | GROSS
 
 /obj/item/food/urinalcake/attack_self(mob/living/user)
-	user.visible_message("<span class='notice'>[user] squishes [src]!</span>", "<span class='notice'>Rozgniatasz [src].</span>", "<i>Słyszysz mlaśnięcie.</i>")
+	user.visible_message("<span class='notice'>[user] rozgniata [src]!</span>", "<span class='notice'>Rozgniatasz [src].</span>", "<i>Słyszysz mlaśnięcie.</i>")
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 8)
 
 /obj/item/bikehorn/rubberducky
-	name = "rubber ducky"
-	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
+	name = "gumowa kaczuszka"
+	desc = "Gumowa kaczuszka, najwierniejsza towarzyszka każdej kąpieli. Z nią kąpiel to sama frajda~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
 
 
 /obj/structure/sink
-	name = "sink"
+	name = "umywalka"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
-	desc = "A sink used for washing one's hands and face. Passively reclaims water over time."
+	desc = "Umywalka do mycia rąk i twarzy. Z czasem sama odzyskuje wodę."
 	anchored = TRUE
 	var/busy = FALSE 	//Something's being washed at the moment
 	var/dispensedreagent = /datum/reagent/water // for whenever plumbing happens
@@ -400,10 +400,10 @@
 
 
 /obj/structure/sinkframe
-	name = "sink frame"
+	name = "rama umywalki"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink_frame"
-	desc = "A sink frame, that needs 2 plastic sheets to finish construction."
+	desc = "Rama umywalki. Do ukończenia budowy potrzebuje 2 arkuszy plastiku."
 	anchored = FALSE
 
 /obj/structure/sinkframe/Initialize(mapload)
@@ -593,13 +593,13 @@
 
 
 /obj/structure/sink/kitchen
-	name = "kitchen sink"
+	name = "zlew kuchenny"
 	icon_state = "sink_alt"
 
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
-	name = "puddle"
-	desc = "A puddle used for washing one's hands and face."
+	name = "kałuża"
+	desc = "Kałuża do mycia rąk i twarzy."
 	icon_state = "puddle"
 	resistance_flags = UNACIDABLE
 	reclaim_rate = 5 // AQ EDIT - plumbing port from tg, natural water refills fast
@@ -629,8 +629,8 @@
 
 
 /obj/structure/curtain
-	name = "curtain"
-	desc = "Contains less than 1% mercury."
+	name = "zasłona"
+	desc = "Zawiera mniej niż 1% rtęci."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "bathroom-open"
 	var/icon_type = "bathroom"//used in making the icon state

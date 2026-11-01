@@ -2,8 +2,8 @@
 //You can activate the mount with an empty hand to grab the paddles
 //Not being adjacent will cause the paddles to snap back
 /obj/machinery/defibrillator_mount
-	name = "defibrillator mount"
-	desc = "Holds and recharges defibrillators. You can grab the paddles if one is mounted."
+	name = "uchwyt defibrylatora"
+	desc = "Trzyma i ładuje defibrylatory. Jeśli jakiś jest zamontowany, możesz chwycić elektrody."
 	icon = 'icons/obj/machines/defib_mount.dmi'
 	icon_state = "defibrillator_mount"
 	density = FALSE
@@ -64,7 +64,7 @@
 		to_chat(user, "<span class='warning'>Nie ma załadowanego defibrylatora!</span>")
 		return
 	if(defib.paddles.loc != defib)
-		to_chat(user, "<span class='warning'>[defib.paddles.loc == user ? "You are already" : "Someone else is"] holding [defib]'s paddles!</span>")
+		to_chat(user, "<span class='warning'>[defib.paddles.loc == user ? "Już trzymasz" : "Ktoś inny już trzyma"] elektrody [defib]!</span>")
 		return
 	user.put_in_hands(defib.paddles)
 
@@ -141,8 +141,8 @@
 
 //wallframe, for attaching the mounts easily
 /obj/item/wallframe/defib_mount
-	name = "unhooked defibrillator mount"
-	desc = "A frame for a defibrillator mount. It can't be removed once it's placed."
+	name = "niepodłączony uchwyt defibrylatora"
+	desc = "Rama uchwytu defibrylatora. Po zamontowaniu nie da się jej zdjąć."
 	icon = 'icons/obj/machines/defib_mount.dmi'
 	icon_state = "defibrillator_mount"
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)

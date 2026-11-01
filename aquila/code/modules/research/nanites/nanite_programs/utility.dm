@@ -20,8 +20,8 @@
 		infectee.investigate_log("was infected by spreading nanites by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
 
 /datum/nanite_program/nanite_sting
-	name = "Nanite Sting"
-	desc = "When triggered, projects a nearly invisible spike of nanites that attempts to infect a nearby non-host with a copy of the host's nanites cluster."
+	name = "Żądło nanitów"
+	desc = "Po aktywacji wystrzeliwuje prawie niewidoczny kolec z nanitów, który próbuje zarazić kogoś w pobliżu, kto nie ma nanitów, kopią skupiska nosiciela."
 	can_trigger = TRUE
 	trigger_cost = 50
 	trigger_cooldown = 100
@@ -52,8 +52,8 @@
 		to_chat(infectee, "<span class='warning'>Czujesz maleńkie ukłucie!</span>")
 
 /datum/nanite_program/nutrition_synthesis
-	name = "Nutrition Synthesis"
-	desc = "The nanites use themself to synthesise nutriments into host's bloodstream, gradually decaying to feed the host."
+	name = "Synteza pożywienia"
+	desc = "Nanity syntetyzują z siebie składniki odżywcze we krwi nosiciela i stopniowo się rozpadają, by go wykarmić."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -69,8 +69,8 @@
 	host_mob.adjust_nutrition(0.5)
 
 /datum/nanite_program/cloud_change
-	name = "Cloud Change"
-	desc = "When triggered, changes the nanites' cloud of reference."
+	name = "Zmiana chmury"
+	desc = "Po aktywacji zmienia chmurę, z której nanity pobierają program."
 	unique = FALSE
 	can_trigger = TRUE
 	trigger_cost = 150
@@ -85,15 +85,15 @@
 	SEND_SIGNAL(host_mob, COMSIG_NANITE_SET_CLOUD, cloud.get_value())
 
 /datum/nanite_program/nanolink
-	name = "Nanolink"
-	desc = "The nanites gain the ability to transfer messages between other nano clusters connected to the Nanolink, using the \".z\" key."
+	name = "Nanołącze"
+	desc = "Nanity zyskują zdolność przesyłania wiadomości między skupiskami nanitów połączonymi z nanołączem, pod klawiszem \".z\"."
 	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
 /datum/nanite_program/nanolink/register_extra_settings()
 	. = ..()
-	extra_settings[NES_NANO_RECEIVE] = new /datum/nanite_extra_setting/boolean(TRUE, "True", "False")
-	extra_settings[NES_NANO_SEND] = new /datum/nanite_extra_setting/boolean(TRUE, "True", "False")
+	extra_settings[NES_NANO_RECEIVE] = new /datum/nanite_extra_setting/boolean(TRUE, "Tak", "Nie")
+	extra_settings[NES_NANO_SEND] = new /datum/nanite_extra_setting/boolean(TRUE, "Tak", "Nie")
 
 /datum/nanite_program/nanolink/enable_passive_effect()
 	. = ..()

@@ -1,8 +1,4 @@
-import {
-  Button,
-  LabeledList,
-  Section,
-} from 'tgui-core/components';
+import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -20,11 +16,11 @@ export const PsychicPlane = (props) => {
         {hives.map((hive) => (
           <Section
             key={hive.hive}
-            title={'Hive ' + hive.hive}
+            title={'Rój ' + hive.hive}
             buttons={
               <Button
                 icon="brain"
-                content="Track"
+                content="Śledź"
                 color="good"
                 onClick={() =>
                   act('track', {
@@ -36,13 +32,13 @@ export const PsychicPlane = (props) => {
           >
             <LabeledList key={hive.hive}>
               <LabeledList.Item>{hive.type}</LabeledList.Item>
-              <LabeledList.Item>Vessel Amount: {hive.size}</LabeledList.Item>
-              <LabeledList.Item>Charges: {hive.charges}</LabeledList.Item>
+              <LabeledList.Item>Liczba naczyń: {hive.size}</LabeledList.Item>
+              <LabeledList.Item>Ładunki: {hive.charges}</LabeledList.Item>
               <LabeledList.Item>
-                Integrations: {hive.Integrations}
+                Integracje: {hive.Integrations}
               </LabeledList.Item>
               <LabeledList.Item>
-                Awakened Vessels: {hive.avessel_number}
+                Przebudzone naczynia: {hive.avessel_number}
               </LabeledList.Item>
             </LabeledList>
           </Section>

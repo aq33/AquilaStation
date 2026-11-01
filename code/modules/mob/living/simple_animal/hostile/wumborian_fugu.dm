@@ -1,7 +1,7 @@
 //A fragile mob that becomes temporarily invincible and large to attack
 /mob/living/simple_animal/hostile/asteroid/fugu
-	name = "wumborian fugu"
-	desc = "The wumborian fugu rapidly increases its body mass in order to ward off its prey. Great care should be taken to avoid it while it's in this state as it is nearly invincible, but it cannot maintain its form forever."
+	name = "wumboriańska fugu"
+	desc = "Wumboriańska fugu gwałtownie zwiększa masę ciała, by odstraszyć ofiarę. W tym stanie trzeba jej starannie unikać, bo jest prawie niezniszczalna, ale nie może utrzymać tej postaci w nieskończoność."
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "Fugu0"
 	icon_living = "Fugu0"
@@ -23,7 +23,7 @@
 	melee_damage = 0
 	attacktext = "chrupie"
 	attack_sound = 'sound/weapons/punch1.ogg'
-	throw_message = "is avoided by the"
+	throw_message = "zostaje ominięty przez"
 	vision_range = 5
 	aggro_vision_range = 9
 	mob_size = MOB_SIZE_SMALL
@@ -64,8 +64,8 @@
 	icon_icon = 'icons/mob/actions/actions_animal.dmi'
 
 /datum/action/innate/fugu/expand
-	name = "Inflate"
-	desc = "Temporarily increases your size, and makes you significantly more dangerous and tough! Do not bully the fugu!"
+	name = "Nadmij się"
+	desc = "Tymczasowo zwiększa twój rozmiar i czyni cię znacznie groźniejszą i wytrzymalszą! Nie dokuczaj fugu!"
 	button_icon_state = "expand"
 
 /datum/action/innate/fugu/expand/Activate()
@@ -83,7 +83,7 @@
 	F.icon_state = "Fugu1"
 	F.obj_damage = 60
 	F.melee_damage = 20
-	F.throw_message = "is absorbed by the girth of the"
+	F.throw_message = "grzęźnie w cielsku:"
 	F.retreat_distance = null
 	F.minimum_distance = 1
 	F.move_to_delay = 6
@@ -99,7 +99,7 @@
 		icon_state = "Fugu0"
 		obj_damage = 0
 		melee_damage = 0
-		throw_message = "is avoided by the"
+		throw_message = "zostaje ominięty przez"
 		retreat_distance = 9
 		minimum_distance = 9
 		move_to_delay = 2
@@ -113,8 +113,8 @@
 	..(gibbed)
 
 /obj/item/fugu_gland
-	name = "wumborian fugu gland"
-	desc = "The key to the wumborian fugu's ability to increase its mass arbitrarily, this disgusting remnant can apply the same effect to other creatures, giving them great strength."
+	name = "gruczoł wumboriańskiej fugu"
+	desc = "Klucz do zdolności wumboriańskiej fugu do dowolnego zwiększania masy. Ta obrzydliwa pozostałość może wywołać ten sam efekt u innych istot, dając im wielką siłę."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "fugu_gland"
 	item_flags = NOBLUDGEON

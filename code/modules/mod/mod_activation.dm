@@ -19,7 +19,7 @@
 	if(!istype(part) || user.incapacitated())
 		return
 	if(activating)
-		balloon_alert(user, "currently [active ? "unsealing" : "sealing"]!")
+		balloon_alert(user, "trwa [active ? "rozszczelnianie" : "uszczelnianie"]!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	var/parts_to_check = parts - part
@@ -45,7 +45,7 @@
 /// Quickly deploys all parts (or retracts if all are on the wearer)
 /obj/item/mod/control/proc/quick_deploy(mob/user)
 	if(activating)
-		balloon_alert(user, "currently [active ? "unsealing" : "sealing"]!")
+		balloon_alert(user, "trwa [active ? "rozszczelnianie" : "uszczelnianie"]!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	var/deploy = FALSE
@@ -54,9 +54,9 @@
 			continue
 		deploy = TRUE
 		break
-	wearer.visible_message(span_notice("[wearer]'s [src] [deploy ? "deploys" : "retracts"] its parts with a mechanical hiss."),
-		span_notice("[src] [deploy ? "deploys" : "retracts"] its parts with a mechanical hiss."),
-		span_hear("You hear a mechanical hiss."))
+	wearer.visible_message(span_notice("[src] ([wearer]) [deploy ? "rozkłada" : "chowa"] swoje części z mechanicznym sykiem."),
+		span_notice("[src] [deploy ? "rozkłada" : "chowa"] swoje części z mechanicznym sykiem."),
+		span_hear("Słyszysz mechaniczny syk."))
 	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	for(var/obj/item/part as anything in get_parts())
 		if(deploy && part.loc == src)
@@ -79,7 +79,7 @@
 	if(part.loc != src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "already deployed!")
+		balloon_alert(user, "już rozłożone!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
@@ -92,9 +92,9 @@
 		wearer.update_clothing(slot_flags)
 		//SEND_SIGNAL(src, COMSIG_MOD_PART_DEPLOYED, user, part_datum)
 		if(user)
-			wearer.visible_message(span_notice("[wearer]'s [part.name] deploy[part.p_s()] with a mechanical hiss."),
-				span_notice("[part] deploy[part.p_s()] with a mechanical hiss."),
-				span_hear("You hear a mechanical hiss."))
+			wearer.visible_message(span_notice("Część skafandra [wearer] ([part.name]) rozkłada się z mechanicznym sykiem."),
+				span_notice("[part] rozkłada się z mechanicznym sykiem."),
+				span_hear("Słyszysz mechaniczny syk."))
 			playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(!active || part_datum.sealed)
 			return TRUE
@@ -103,7 +103,7 @@
 			return TRUE
 		else if(delayed_seal_part(part))
 			return TRUE
-		balloon_alert(user, "can't seal, retracting!")
+		balloon_alert(user, "nie da się uszczelnić, chowanie!")
 		retract(user, part, instant = TRUE)
 	else
 		if(part_datum.overslotting)
@@ -112,7 +112,7 @@
 				wearer.dropItemToGround(overslot, force = TRUE, silent = TRUE)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "bodypart clothed!")
+		balloon_alert(user, "ta część ciała jest zakryta!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return FALSE
 
@@ -122,14 +122,14 @@
 	if(part.loc == src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "already retracted!")
+		balloon_alert(user, "już schowane!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(active && part_datum.sealed)
 		if(instant)
 			seal_part(part, is_sealed = FALSE)
 		else if(!delayed_seal_part(part))
-			balloon_alert(user, "can't unseal!")
+			balloon_alert(user, "nie da się rozszczelnić!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 	REMOVE_TRAIT(part, TRAIT_NODROP, MOD_TRAIT)
@@ -142,9 +142,9 @@
 	//SEND_SIGNAL(src, COMSIG_MOD_PART_RETRACTED, user, part_datum)
 	if(!user)
 		return TRUE
-	wearer.visible_message(span_notice("[wearer]'s [part.name] retract[part.p_s()] back into [src] with a mechanical hiss."),
-		span_notice("[part] retract[part.p_s()] back into [src] with a mechanical hiss."),
-		span_hear("You hear a mechanical hiss."))
+	wearer.visible_message(span_notice("Część skafandra [wearer] ([part.name]) chowa się z mechanicznym sykiem z powrotem do: [src]."),
+		span_notice("[part] chowa się z mechanicznym sykiem z powrotem do: [src]."),
+		span_hear("Słyszysz mechaniczny syk."))
 	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -152,27 +152,27 @@
 /obj/item/mod/control/proc/toggle_activate(mob/user, force_deactivate = FALSE)
 	if(!wearer)
 		if(!force_deactivate)
-			balloon_alert(user, "not equipped!")
+			balloon_alert(user, "nie jest założony!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!force_deactivate && (SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, user) & MOD_CANCEL_ACTIVATE))
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(locked && !active && !allowed(user) && !force_deactivate)
-		balloon_alert(user, "access insufficient!")
+		balloon_alert(user, "brak dostępu!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!get_charge() && !force_deactivate)
-		balloon_alert(user, "no power source!")
+		balloon_alert(user, "brak źródła zasilania!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(open && !force_deactivate)
-		balloon_alert(user, "panel open!")
+		balloon_alert(user, "panel otwarty!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(activating)
 		if(!force_deactivate)
-			balloon_alert(user, "already [active ? "shutting down" : "starting up"]!")
+			balloon_alert(user, "już trwa [active ? "wyłączanie" : "uruchamianie"]!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	for(var/obj/item/mod/module/module as anything in modules)
@@ -182,12 +182,12 @@
 	activating = TRUE
 	//mod_link.end_call()
 	var/original_active_status = active
-	to_chat(wearer, span_notice("MODsuit [active ? "shutting down" : "starting up"]."))
+	to_chat(wearer, span_notice("MODsuit: [active ? "wyłączanie" : "uruchamianie"]."))
 	//deploy the control unit
 	if(original_active_status)
 		if(delayed_activation())
 			playsound(src, 'sound/machines/synth_no.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, frequency = 6000)
-			to_chat(wearer, span_notice("Control unit offline. Module capability removed."))
+			to_chat(wearer, span_notice("Jednostka sterująca wyłączona. Moduły niedostępne."))
 		else
 			activating = FALSE
 			return
@@ -203,7 +203,7 @@
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
 			if(original_active_status)
 				control_activation(is_on = TRUE)
-			to_chat(wearer, span_notice("Critical error in sealing systems. Reverting process."))
+			to_chat(wearer, span_notice("Krytyczny błąd systemów uszczelniania. Cofanie procesu."))
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 		sealed_parts += part
@@ -217,13 +217,13 @@
 			activating = FALSE
 			for(var/obj/item/sealed_part as anything in sealed_parts)
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
-			to_chat(wearer, span_notice("Critical error in sealing systems. Reverting process."))
+			to_chat(wearer, span_notice("Krytyczny błąd systemów uszczelniania. Cofanie procesu."))
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 
-	to_chat(wearer, span_notice("Systems [active ? "started up. Parts sealed. Welcome" : "shut down. Parts unsealed. Goodbye"], [wearer]."))
+	to_chat(wearer, span_notice("Systemy [active ? "uruchomione. Części uszczelnione. Witaj" : "wyłączone. Części rozszczelnione. Do widzenia"], [wearer]."))
 	if(ai_assistant)
-		to_chat(ai_assistant, span_notice("<b>SYSTEMS [active ? "ACTIVATED. WELCOME" : "DEACTIVATED. GOODBYE"]: \"[ai_assistant]\"</b>"))
+		to_chat(ai_assistant, span_notice("<b>SYSTEMY [active ? "AKTYWNE. WITAJ" : "WYŁĄCZONE. DO WIDZENIA"]: „[ai_assistant]”</b>"))
 	activating = FALSE
 	SEND_SIGNAL(src, COMSIG_MOD_TOGGLED, user)
 	return TRUE

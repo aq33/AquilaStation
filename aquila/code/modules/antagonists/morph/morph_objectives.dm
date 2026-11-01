@@ -85,7 +85,7 @@
 
 // Consume x objects
 /datum/objective/morph_eat_things
-	name = "morph eat objective"
+	name = "morf: zjedz rzeczy"
 	explanation_text = "Jedz rzeczy."
 	var/target_things
 
@@ -105,7 +105,7 @@
 
 // Consume x corpses
 /datum/objective/morph_eat_corpses
-	name = "morph eat corpses objective"
+	name = "morf: zjedz zwłoki"
 	explanation_text = "Jedz zwłoki."
 	var/target_corpses
 

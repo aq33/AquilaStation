@@ -6,9 +6,9 @@
 
 
 /obj/machinery/computer/telecomms/monitor
-	name = "telecommunications monitoring console"
+	name = "konsola monitorowania telekomunikacji"
 	icon_screen = "comm_monitor"
-	desc = "Monitors the details of the telecommunications network it's synced with."
+	desc = "Monitoruje szczegóły zsynchronizowanej z nią sieci telekomunikacyjnej."
 
 	var/list/machinelist = list()	// the machines located by the computer
 	var/obj/machinery/telecomms/SelectedMachine

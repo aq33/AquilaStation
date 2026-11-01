@@ -18,28 +18,28 @@
 		allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/armor/vest
-	name = "armor vest"
-	desc = "A slim Type I-A armored vest that provides decent protection against most types of damage."
+	name = "kamizelka kuloodporna"
+	desc = "Smukła kamizelka kuloodporna typu I-A, która dobrze chroni przed większością obrażeń."
 	icon_state = "armoralt"
 	item_state = "armoralt"
 	blood_overlay_type = "armor"
 	dog_fashion = /datum/dog_fashion/back
 
 /obj/item/clothing/suit/armor/vest/alt
-	desc = "An alternate style Type I-B armored vest that provides decent protection against most types of damage. They perform identically in the field."
+	desc = "Kamizelka kuloodporna typu I-B w alternatywnym kroju, która dobrze chroni przed większością obrażeń. W praktyce działa tak samo jak I-A."
 	icon_state = "armor"
 	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/old
-	name = "degrading armor vest"
-	desc = "Older generation Type 1 armored vest. Due to degradation over time the vest is far less maneuverable to move in."
+	name = "zużyta kamizelka kuloodporna"
+	desc = "Kamizelka kuloodporna typu 1 starszej generacji. Z czasem się zużyła, więc ruszać się w niej jest znacznie trudniej."
 	icon_state = "armor"
 	item_state = "armor"
 	slowdown = 1
 
 /obj/item/clothing/suit/armor/vest/blueshirt
-	name = "large armor vest"
-	desc = "A large, yet comfortable piece of armor, stitched together by a rioting quartermaster, a gift. Type H-L" //NSV13
+	name = "duża kamizelka kuloodporna"
+	desc = "Duży, ale wygodny pancerz zszyty przez zbuntowanego kwatermistrza – prezent. Typ H-L" //NSV13
 	icon_state = "blueshift"
 	item_state = "blueshift"
 	custom_premium_price = 600
@@ -47,16 +47,16 @@
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/suit/armor/vest/corporate
-	name = "corporate Jacket"
-	desc = "A Stylish Corporate Jacket which also provides Protection."
+	name = "kurtka korporacyjna"
+	desc = "Stylowa kurtka korporacyjna, która przy okazji chroni."
 	icon_state = "secjacket"
 	item_state = "secjacket"
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list("melee" = 35, "bullet" = 45, "laser" = 10, "energy" = 30, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 45, "acid" = 45, "stamina" = 30, "bleed" = 20) //NSV13
 
 /obj/item/clothing/suit/armor/hos
-	name = "armored greatcoat"
-	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	name = "opancerzony płaszcz"
+	desc = "Płaszcz wzmocniony specjalnym stopem – dodatkowa ochrona i styl dla tych, którzy mają w sobie coś z dowódcy."
 	icon_state = "hos"
 	item_state = "greatcoat"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -66,16 +66,16 @@
 	strip_delay = 80
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
-	name = "armored trenchcoat"
-	desc = "A trenchcoat enhanced with a special lightweight kevlar. The epitome of tactical plainclothes."
+	name = "opancerzony trencz"
+	desc = "Trencz wzmocniony specjalnym lekkim kevlarem. Szczyt taktycznego ubioru cywilnego."
 	icon_state = "hostrench"
 	item_state = "hostrench"
 	flags_inv = 0
 	strip_delay = 80
 
 /obj/item/clothing/suit/armor/vest/warden
-	name = "warden's jacket"
-	desc = "A navy-blue armored jacket with blue shoulder designations and '/Warden/' stitched into one of the chest pockets."
+	name = "kurtka Naczelnika"
+	desc = "Granatowa opancerzona kurtka z niebieskimi oznaczeniami na ramionach i napisem „/Naczelnik/” wyszytym na jednej z kieszeni na piersi."
 	icon_state = "warden_alt"
 	item_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -87,13 +87,13 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/warden/alt
-	name = "warden's armored jacket"
-	desc = "A red jacket with silver rank pips and body armor strapped on top."
+	name = "opancerzona kurtka Naczelnika"
+	desc = "Czerwona kurtka ze srebrnymi gwiazdkami stopnia i przypiętym na wierzchu pancerzem."
 	icon_state = "warden_jacket"
 
 /obj/item/clothing/suit/armor/vest/leather
-	name = "security overcoat"
-	desc = "Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security."
+	name = "płaszcz policyjny"
+	desc = "Lekko opancerzony skórzany płaszcz do codziennego noszenia przez wysokich rangą oficerów. Ma herb ochrony Nanotrasen."
 	icon_state = "leathercoat-sec"
 	item_state = "hostrench"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -102,8 +102,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/capcarapace
-	name = "captain's carapace"
-	desc = "A fireproof armored chestpiece reinforced with ceramic plates and plasteel pauldrons to provide additional protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest, although it does chafe your nipples."
+	name = "napierśnik kapitana"
+	desc = "Ognioodporny opancerzony napierśnik wzmocniony ceramicznymi płytami i naramiennikami z plastali. Zapewnia dodatkową ochronę, nie ograniczając ruchów. Wydawany tylko najlepszym na statku, choć obciera sutki."
 	icon_state = "capcarapace"
 	item_state = "armor"
 	body_parts_covered = CHEST|GROIN
@@ -112,27 +112,27 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
-	name = "syndicate captain's vest"
-	desc = "A sinister looking vest of advanced armor worn over a black and red fireproof jacket. The gold collar and shoulders denote that this belongs to a high ranking syndicate officer."
+	name = "kamizelka kapitana Syndykatu"
+	desc = "Złowrogo wyglądająca kamizelka z zaawansowanym pancerzem, noszona na czarno-czerwonej ognioodpornej kurtce. Złoty kołnierz i ramiona oznaczają, że należy do wysokiego rangą oficera Syndykatu."
 	icon_state = "syndievest"
 
 /obj/item/clothing/suit/armor/vest/capcarapace/alt
-	name = "captain's parade jacket"
-	desc = "For when an armoured vest isn't fashionable enough."
+	name = "paradna kurtka kapitana"
+	desc = "Na wypadek, gdy kamizelka kuloodporna nie jest dość modna."
 	icon_state = "capformal"
 	item_state = "capspacesuit"
 
 /obj/item/clothing/suit/armor/vest/capcarapace/jacket
-	name = "captain's jacket"
-	desc = "An armored Jacket in the Captains colors"
+	name = "kurtka kapitana"
+	desc = "Opancerzona kurtka w barwach kapitana"
 	icon_state = "capjacket"
 	item_state = "capspacesuit"
 	body_parts_covered = CHEST|ARMS
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 20, "energy" = 50, "bomb" = 55, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 80, "stamina" = 40, "bleed" = 30) //NSV13
 
 /obj/item/clothing/suit/armor/riot
-	name = "riot suit"
-	desc = "A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Helps the wearer resist shoving in close quarters."
+	name = "strój prewencyjny"
+	desc = "Półelastyczny poliwęglanowy pancerz z grubą wyściółką, który chroni przed atakami wręcz. Pomaga nie dać się popchnąć w ciasnych pomieszczeniach."
 	icon_state = "riot"
 	item_state = "swat_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -146,8 +146,8 @@
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
 
 /obj/item/clothing/suit/armor/bone
-	name = "bone armor"
-	desc = "A tribal armor plate, crafted from animal bone."
+	name = "pancerz z kości"
+	desc = "Plemienny napierśnik wykonany ze zwierzęcych kości."
 	icon_state = "bonearmor"
 	item_state = "bonearmor"
 	blood_overlay_type = "armor"
@@ -155,8 +155,8 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "bulletproof armor"
-	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "pancerz kuloodporny"
+	desc = "Ciężka kamizelka kuloodporna typu III, która świetnie chroni przed tradycyjną bronią palną, a w mniejszym stopniu także przed wybuchami."
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -165,8 +165,8 @@
 	equip_delay_other = 50
 
 /obj/item/clothing/suit/armor/laserproof
-	name = "reflector vest"
-	desc = "A vest that excels in protecting the wearer against energy projectiles, as well as occasionally reflecting them."
+	name = "kamizelka refleksyjna"
+	desc = "Kamizelka, która świetnie chroni przed pociskami energetycznymi, a czasem nawet je odbija."
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
@@ -181,8 +181,8 @@
 		return 1
 
 /obj/item/clothing/suit/armor/vest/det_suit
-	name = "detective's armor vest"
-	desc = "An armored vest with a detective's badge on it."
+	name = "kamizelka kuloodporna detektywa"
+	desc = "Kamizelka kuloodporna z odznaką detektywa."
 	icon_state = "detective-armor"
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
@@ -194,8 +194,8 @@
 //All of the armor below is mostly unused
 
 /obj/item/clothing/suit/armor/centcom
-	name = "\improper CentCom armor"
-	desc = "A suit that protects against some damage."
+	name = "\improper pancerz Centrali"
+	desc = "Strój, który chroni przed częścią obrażeń."
 	icon_state = "centcom"
 	item_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY
@@ -209,8 +209,8 @@
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90, "stamina" = 70)
 
 /obj/item/clothing/suit/armor/heavy
-	name = "heavy armor"
-	desc = "A heavily armored suit that protects against moderate damage."
+	name = "ciężki pancerz"
+	desc = "Mocno opancerzony strój, który chroni przed umiarkowanymi obrażeniami."
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -230,36 +230,36 @@
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
 
 /obj/item/clothing/suit/armor/tdome/red
-	name = "thunderdome suit"
-	desc = "Reddish armor."
+	name = "strój Thunderdome"
+	desc = "Czerwonawy pancerz."
 	icon_state = "tdred"
 	item_state = "tdred"
 
 /obj/item/clothing/suit/armor/tdome/green
-	name = "thunderdome suit"
-	desc = "Pukish armor."	//classy.
+	name = "strój Thunderdome"
+	desc = "Pancerz w kolorze wymiocin."	//classy.
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 
 /obj/item/clothing/suit/armor/tdome/holosuit
-	name = "thunderdome suit"
+	name = "strój Thunderdome"
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
 	cold_protection = null
 	heat_protection = null
 
 /obj/item/clothing/suit/armor/tdome/holosuit/red
-	desc = "Reddish armor."
+	desc = "Czerwonawy pancerz."
 	icon_state = "tdred"
 	item_state = "tdred"
 
 /obj/item/clothing/suit/armor/tdome/holosuit/green
-	desc = "Pukish armor."
+	desc = "Pancerz w kolorze wymiocin."
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 
 /obj/item/clothing/suit/armor/riot/knight
-	name = "plate armour"
-	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
+	name = "zbroja płytowa"
+	desc = "Klasyczna zbroja płytowa, bardzo skuteczna przeciw atakom wręcz."
 	icon_state = "knight_green"
 	item_state = "knight_green"
 	move_sound = null
@@ -277,8 +277,8 @@
 	item_state = "knight_red"
 
 /obj/item/clothing/suit/armor/vest/durathread
-	name = "durathread vest"
-	desc = "A vest made of durathread with strips of leather acting as trauma plates."
+	name = "kamizelka z duranici"
+	desc = "Kamizelka z duranici z pasami skóry pełniącymi funkcję płyt ochronnych."
 	icon_state = "durathread"
 	item_state = "durathread"
 	strip_delay = 60
@@ -288,15 +288,15 @@
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 10, "energy" = 30, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50, "stamina" = 30, "bleed" = 60) //NSV13
 
 /obj/item/clothing/suit/armor/vest/russian
-	name = "russian vest"
-	desc = "A bulletproof vest with forest camo. Good thing there's plenty of forests to hide in around here, right?"
+	name = "rosyjska kamizelka"
+	desc = "Kamizelka kuloodporna w leśnym kamuflażu. Dobrze, że jest tu tyle lasów, w których można się ukryć, prawda?"
 	icon_state = "rus_armor"
 	item_state = "rus_armor"
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50, "stamina" = 25, "bleed" = 20)
 
 /obj/item/clothing/suit/armor/vest/russian_coat
-	name = "russian battle coat"
-	desc = "Used in extremly cold fronts, made out of real bears."
+	name = "rosyjski płaszcz bojowy"
+	desc = "Noszony na wyjątkowo mroźnych frontach. Uszyty z prawdziwych niedźwiedzi."
 	icon_state = "rus_coat"
 	item_state = "rus_coat"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

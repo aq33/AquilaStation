@@ -1,10 +1,10 @@
 /obj/item/circuitboard/computer/squad_manager
-	name = "circuit board (squad management computer)"
+	name = "komputer zarządzania drużynami (płytka komputera)"
 	build_path = /obj/machinery/computer/squad_manager
 
 /obj/machinery/computer/squad_manager
-	name = "Squad Management Computer"
-	desc = "A console which allows you to manage the ship's squads and assign people to different squads."
+	name = "komputer zarządzania drużynami"
+	desc = "Konsola, która pozwala zarządzać drużynami okrętu i przydzielać ludzi do różnych drużyn."
 	icon_screen = "squadconsole"
 	req_one_access = ACCESS_HEADS
 	circuit = /obj/item/circuitboard/computer/squad_manager
@@ -13,7 +13,7 @@
 /obj/machinery/computer/squad_manager/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SquadManager")
+		ui = new(user, src, "SquadManager", "Zarządzanie drużynami")
 		ui.open()
 
 /obj/machinery/computer/squad_manager/ui_data(mob/user)
@@ -21,13 +21,14 @@
 	var/list/squads_info = list()
 	for(var/datum/squad/S in GLOB.squad_manager.squads)
 		var/list/squad_info = list()
-		squad_info["squad_leader_name"] = "[(S.leader) ? "[compose_rank(S.leader)] [S.leader.name]" : "Unassigned"]"
+		squad_info["squad_leader_name"] = "[(S.leader) ? "[compose_rank(S.leader)] [S.leader.name]" : "Nieprzydzielony"]"
 		squad_info["squad_leader_id"] = S.leader ? "\ref[S.leader]" : null
 		squad_info["hidden"] = S.hidden
 		squad_info["weapons_clearance"] = S.weapons_clearance
 		squad_info["desc"] = S.desc
 		squad_info["name"] = S.name
 		squad_info["role"] = S.role
+		squad_info["role_name"] = squad_role_pl(S.role)
 		squad_info["primary_objective"] = S.primary_objective
 		squad_info["secondary_objective"] = S.secondary_objective
 		squad_info["access_enabled"] = S.access_enabled
@@ -61,7 +62,7 @@
 		if("primary_objective")
 			if(!S)
 				return FALSE
-			var/orders = input(usr, "Wybierz rolę w drużynie:", "Ustawienia drużyny") as null|anything in SQUAD_TYPES
+			var/orders = input_squad_role(usr)
 			if(!orders || length(orders) <= 0)
 				return
 			log_say("[S]: [usr] set primary objective: [orders]")
@@ -85,7 +86,7 @@
 				return FALSE
 			S.access_enabled = !S.access_enabled
 			log_game("[S]: [usr] set squad's elevated access to [S.access_enabled]")
-			S.broadcast(S,"[S.access_enabled ? "Elevated squad access granted." : "Elevated squad access rescinded"]", list('nsv13/sound/effects/notice2.ogg'))
+			S.broadcast(S,"[S.access_enabled ? "Przyznano drużynie rozszerzony dostęp." : "Odebrano drużynie rozszerzony dostęp."]", list('nsv13/sound/effects/notice2.ogg'))
 			ui_update()
 		if("set_leader")
 			if(!M)
@@ -100,7 +101,7 @@
 		if("transfer")
 			if(!M)
 				return FALSE
-			var/datum/squad/newSquad = input(usr, "Transfer [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
+			var/datum/squad/newSquad = input(usr, "Przenieś [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
 			if(newSquad)
 				log_game("[newSquad]: [usr] reassigned [M] to [newSquad]")
 				if(M.squad)
@@ -149,13 +150,14 @@
 	var/list/squads_info = list()
 	for(var/datum/squad/S in GLOB.squad_manager.squads)
 		var/list/squad_info = list()
-		squad_info["squad_leader_name"] = "[(S.leader) ? "[S.leader.compose_rank()] [S.leader.name]" : "Unassigned"]"
+		squad_info["squad_leader_name"] = "[(S.leader) ? "[S.leader.compose_rank()] [S.leader.name]" : "Nieprzydzielony"]"
 		squad_info["squad_leader_id"] = S.leader ? "\ref[S.leader]" : null
 		squad_info["hidden"] = S.hidden
 		squad_info["weapons_clearance"] = S.weapons_clearance
 		squad_info["desc"] = S.desc
 		squad_info["name"] = S.name
 		squad_info["role"] = S.role
+		squad_info["role_name"] = squad_role_pl(S.role)
 		squad_info["primary_objective"] = S.primary_objective
 		squad_info["secondary_objective"] = S.secondary_objective
 		squad_info["access_enabled"] = S.access_enabled
@@ -190,7 +192,7 @@
 		if("primary_objective")
 			if(!S)
 				return FALSE
-			var/orders = input(usr, "Wybierz rolę w drużynie:", "Ustawienia drużyny") as null|anything in SQUAD_TYPES
+			var/orders = input_squad_role(usr)
 			if(!orders || length(orders) <= 0)
 				return
 			log_say("[S]: [usr] set primary objective: [orders]")
@@ -214,7 +216,7 @@
 				return FALSE
 			S.access_enabled = !S.access_enabled
 			log_game("[S]: [usr] set squad's elevated access to [S.access_enabled]")
-			S.broadcast(S,"[S.access_enabled ? "Elevated squad access granted." : "Elevated squad access rescinded."]", list('nsv13/sound/effects/notice2.ogg'))
+			S.broadcast(S,"[S.access_enabled ? "Przyznano drużynie rozszerzony dostęp." : "Odebrano drużynie rozszerzony dostęp."]", list('nsv13/sound/effects/notice2.ogg'))
 			ui_update()
 		if("set_leader")
 			if(!M)
@@ -229,7 +231,7 @@
 		if("transfer")
 			if(!M)
 				return FALSE
-			var/datum/squad/newSquad = input(usr, "Transfer [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
+			var/datum/squad/newSquad = input(usr, "Przenieś [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
 			if(newSquad)
 				log_game("[newSquad]: [usr] reassigned [M] to [newSquad]")
 				if(M.squad)

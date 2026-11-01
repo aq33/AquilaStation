@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // more... RPG-like.
 
 /obj/item
-	name = "item"
+	name = "przedmiot"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	/// The icon state for the icons that appear in the players hand while holding it. Gotten from /client/var/lefthand_file and /client/var/righthand_file
@@ -295,10 +295,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!LAZYLEN(embedding))
 		if(GLOB.embedpocalypse)
 			embedding = EMBED_POINTY
-			name = "pointy [name]"
+			name = "[name] (wbija się)"
 		else if(GLOB.stickpocalypse)
 			embedding = EMBED_HARMLESS
-			name = "sticky [name]"
+			name = "[name] (przykleja się)"
 	updateEmbedding()
 
 	if(sharpness) //give sharp objects butchering functionality, for consistency
@@ -355,7 +355,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/examine(mob/user) //This might be spammy. Remove?
 	. = ..()
 
-	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
+	. += "Rozmiar: [weight_class_to_text(w_class)]."
 
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] wydaje się niezwykle wytrzymały! Pewnie wytrzyma wszystko, co mogłoby go spotkać!"
@@ -397,7 +397,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(force)
 		if(!force_string)
 			set_force_string()
-		. += "Force: [force_string]"
+		. += "Siła: [force_string]"
 
 
 	if(!user.research_scanner)
@@ -405,7 +405,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	// Research prospects, including boostable nodes and point values.
 	// Deliver to a console to know whether the boosts have already been used.
-	var/list/research_msg = list("<font color='purple'>Research prospects:</font> ")
+	var/list/research_msg = list("<font color='purple'>Perspektywy badawcze:</font> ")
 	var/sep = ""
 	var/list/boostable_nodes = techweb_item_boost_check(src)
 	if (boostable_nodes)
@@ -422,10 +422,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		research_msg += techweb_point_display_generic(points)
 
 	if (!sep) // nothing was shown
-		research_msg += "None"
+		research_msg += "brak"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>Extractable materials:</font> "
+	research_msg += ".<br><font color='purple'>Materiały do odzyskania:</font> "
 	if (materials.len)
 		sep = ""
 		for(var/mat in materials)
@@ -433,7 +433,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			research_msg += CallMaterialName(mat)
 			sep = ", "
 	else
-		research_msg += "None"
+		research_msg += "brak"
 	research_msg += "."
 	. += research_msg.Join()
 
@@ -559,7 +559,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
-/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, owner, hitby, attack_text, damage, attack_type) & COMPONENT_HIT_REACTION_BLOCK)
 		return TRUE
 	var/relative_dir = (dir2angle(get_dir(hitby, owner)) - dir2angle(owner.dir)) //shamelessly stolen from mech code
@@ -623,7 +623,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				return 1
 	return 0
 
-/obj/item/proc/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/proc/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	var/blockhand = 0
 	var/attackforce = 0
 	if(owner.get_active_held_item() == src) //this feels so hacky...
@@ -1005,7 +1005,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/obj/effect/decal/cleanable/molten_object/MO = new(T)
 		MO.pixel_x = rand(-16,16)
 		MO.pixel_y = rand(-16,16)
-		MO.desc = "Looks like this was \an [src] some time ago."
+		MO.desc = "Wygląda na to, że jakiś czas temu było to: [src]."
 		..()
 
 /obj/item/proc/microwave_act(obj/machinery/microwave/M)
@@ -1053,28 +1053,28 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/set_force_string()
 	switch(force)
 		if(0 to 4)
-			force_string = "very low"
+			force_string = "bardzo niska"
 		if(4 to 7)
-			force_string = "low"
+			force_string = "niska"
 		if(7 to 10)
-			force_string = "medium"
+			force_string = "średnia"
 		if(10 to 11)
-			force_string = "high"
+			force_string = "wysoka"
 		if(11 to 20) //12 is the force of a toolbox
-			force_string = "robust"
+			force_string = "solidna"
 		if(20 to 25)
-			force_string = "very robust"
+			force_string = "bardzo solidna"
 		else
-			force_string = "exceptionally robust"
+			force_string = "wyjątkowo solidna"
 	last_force_string_check = force
 
 /obj/item/proc/openTip(location, control, params, user)
 	if(last_force_string_check != force && !(item_flags & FORCE_STRING_OVERRIDE))
 		set_force_string()
 	if(!(item_flags & FORCE_STRING_OVERRIDE))
-		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>Siła:</b> [force_string]" : ""]",theme = "")
 	else
-		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Siła:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
 	..() // AQ EDIT - screentips potrzebują /atom/MouseEntered() (port BeeStation #11938)
@@ -1345,8 +1345,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(prob(66)) //66% chance to break it
 				/// The glass shard that is spawned into the source item
 				var/obj/item/shard/broken_glass = new /obj/item/shard(loc)
-				broken_glass.name = "broken [name]"
-				broken_glass.desc = "This used to be \a [name], but it sure isn't anymore."
+				broken_glass.name = "odłamki: [name]"
+				broken_glass.desc = "Kiedyś było to: [name], ale teraz już na pewno nie."
 				playsound(victim, "shatter", 25, TRUE)
 				qdel(src)
 				if(QDELETED(source_item))
@@ -1375,7 +1375,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		discover_after = FALSE
 
 	else
-		to_chat(victim, "<span class='warning'>[source_item? "Something strange was in the \the [source_item]..." : "I just bit something strange..."] </span>")
+		to_chat(victim, "<span class='warning'>[source_item? "W [source_item] było coś dziwnego..." : "Właśnie ugryzłem coś dziwnego..."] </span>")
 
 	return discover_after
 

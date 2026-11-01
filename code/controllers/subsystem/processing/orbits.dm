@@ -129,7 +129,7 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 	//Check objective
 	if(current_objective)
 		if(current_objective.check_failed())
-			priority_announce("Central Command priority objective failed.", "Central Command Report", SSstation.announcer.get_rand_report_sound())
+			priority_announce("Nie wykonano priorytetowego celu Centrali.", "Raport Centrali", SSstation.announcer.get_rand_report_sound())
 			QDEL_NULL(current_objective)
 	//Process events
 	for(var/datum/ruin_event/ruin_event as() in ruin_events)
@@ -158,7 +158,7 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 		/datum/orbital_objective/vip_recovery = 1
 	)
 	if(!length(possible_objectives))
-		priority_announce("Otrzymano priorytetowy cel stacji – szczegóły przesłano do wszystkich dostępnych konsol celów. Po wykonaniu celu [GLOB.station_name] otrzyma środki.", "Central Command Report", SSstation.announcer.get_rand_report_sound())
+		priority_announce("Otrzymano priorytetowy cel stacji – szczegóły przesłano do wszystkich dostępnych konsol celów. Po wykonaniu celu [GLOB.station_name] otrzyma środki.", "Raport Centrali", SSstation.announcer.get_rand_report_sound())
 	var/chosen = pickweight(valid_objectives)
 	if(!chosen)
 		return

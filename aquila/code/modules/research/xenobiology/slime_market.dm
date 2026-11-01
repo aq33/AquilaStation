@@ -72,8 +72,8 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 	return earned
 
 /obj/machinery/slime_market_pad
-	name = "intergalactic market pad"
-	desc = "Wysoki pad z otworem na ekstrakty szlamu. Sprzedaje je na rynku międzygalaktycznym za xenobio points i przesyła dane do sieci badań."
+	name = "międzygalaktyczny pad rynkowy"
+	desc = "Wysoki pad z otworem na ekstrakty szlamu. Sprzedaje je na rynku międzygalaktycznym za punkty xenobio i przesyła dane do sieci badań."
 	icon = 'aquila/icons/obj/xenobiology/slime_market.dmi'
 	icon_state = "market_pad"
 	base_icon_state = "market_pad"
@@ -132,7 +132,7 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 			return
 		flick("[base_icon_state]_vend", src)
 		var/earned = sell_extract(W)
-		to_chat(user, "<span class='notice'>Sprzedajesz [W] za [earned] xenobio points.</span>")
+		to_chat(user, "<span class='notice'>Sprzedajesz [W] za [earned] pkt xenobio.</span>")
 		qdel(W)
 		return
 
@@ -147,7 +147,7 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 			sold++
 		if(sold)
 			flick("[base_icon_state]_vend", src)
-			to_chat(user, "<span class='notice'>Wysypujesz rdzenie szlamu ([sold]) z [W] do [src] i zarabiasz [earned] xenobio points.</span>")
+			to_chat(user, "<span class='notice'>Wysypujesz rdzenie szlamu ([sold]) z [W] do [src] i zarabiasz [earned] pkt xenobio.</span>")
 		else
 			to_chat(user, "<span class='warning'>W [W] nie ma żadnych rdzeni szlamu!</span>")
 		return
@@ -192,8 +192,8 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
 /obj/machinery/computer/slime_market
-	name = "slime market console"
-	desc = "Konsola rynku ekstraktów szlamu: aktualne ceny, zamówienia załogi i sklep za xenobio points."
+	name = "konsola rynku szlamów"
+	desc = "Konsola rynku ekstraktów szlamu: aktualne ceny, zamówienia załogi i sklep za punkty xenobio."
 	icon = 'aquila/icons/obj/xenobiology/slime_market.dmi'
 	icon_state = "market"
 	icon_screen = "market_screen"
@@ -371,7 +371,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
 /// Strzykawka mutacji szlamów (Monke ma też strzykawki cech, tu na razie tylko losowy kolor)
 /obj/item/slime_mutation_syringe
-	name = "slime mutation syringe"
+	name = "strzykawka mutacji szlama"
 	desc = "Wstrzykuje szlamowi mutację."
 	icon = 'aquila/icons/obj/xenobiology/mutation_syringe.dmi'
 	icon_state = "mutation_syringe"
@@ -410,7 +410,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	return FALSE
 
 /obj/item/slime_mutation_syringe/random_color
-	name = "random color slime mutation syringe"
+	name = "strzykawka losowej mutacji koloru szlama"
 	desc = "Wstrzykuje szlamowi zmutowany materiał. Szlam od razu zmienia kolor na jedną ze swoich możliwych mutacji."
 
 /obj/item/slime_mutation_syringe/random_color/on_inject(mob/living/simple_animal/slime/slime, mob/living/user)
@@ -427,7 +427,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	return TRUE
 
 /obj/item/circuitboard/machine/slime_market_pad
-	name = "Intergalactic Market Pad (Machine Board)"
+	name = "międzygalaktyczny pad rynkowy (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/slime_market_pad
 	req_components = list(
@@ -435,21 +435,21 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/computer/slime_market
-	name = "Slime Market Console (Computer Board)"
+	name = "konsola rynku szlamów (płytka komputera)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/slime_market
 
 /datum/design/board/slime_market_pad
-	name = "Machine Design (Intergalactic Market Pad)"
-	desc = "The circuit board for a slime market pad."
+	name = "Projekt maszyny (międzygalaktyczny pad rynkowy)"
+	desc = "Płytka drukowana padu rynku szlamów."
 	id = "slime_market_pad"
 	build_path = /obj/item/circuitboard/machine/slime_market_pad
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/slime_market
-	name = "Computer Design (Slime Market Console)"
-	desc = "The circuit board for a slime market console."
+	name = "Projekt komputera (konsola rynku szlamów)"
+	desc = "Płytka drukowana konsoli rynku szlamów."
 	id = "slime_market"
 	build_path = /obj/item/circuitboard/computer/slime_market
 	category = list("Computer Boards")

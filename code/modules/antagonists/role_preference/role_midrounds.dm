@@ -1,5 +1,5 @@
 /datum/role_preference/midround_ghost/blob
-	name = "Blob"
+	name = "Grzyb"
 	antag_datum = /datum/antagonist/blob
 
 /datum/role_preference/midround_ghost/xenomorph

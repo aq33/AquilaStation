@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector
 	icon_state = "inje_map-3"
 
-	name = "air injector"
-	desc = "Has a valve and pump attached to it."
+	name = "wtryskiwacz powietrza"
+	desc = "Ma zamontowany zawór i pompę."
 
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
@@ -217,35 +217,35 @@
 	volume_rate = MAX_TRANSFER_RATE
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste
-	name = "atmos waste outlet injector"
+	name = "wtryskiwacz odpadów atmosferyki"
 	id =  ATMOS_GAS_MONITOR_WASTE_ATMOS
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste
-	name = "engine outlet injector"
+	name = "wtryskiwacz silnika"
 	id = ATMOS_GAS_MONITOR_WASTE_ENGINE
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxin_input
-	name = "plasma tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika plazmy"
 	id = ATMOS_GAS_MONITOR_INPUT_TOX
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/oxygen_input
-	name = "oxygen tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika tlenu"
 	id = ATMOS_GAS_MONITOR_INPUT_O2
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrogen_input
-	name = "nitrogen tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika azotu"
 	id = ATMOS_GAS_MONITOR_INPUT_N2
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/mix_input
-	name = "mix tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika mieszanki"
 	id = ATMOS_GAS_MONITOR_INPUT_MIX
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrous_input
-	name = "nitrous oxide tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika podtlenku azotu"
 	id = ATMOS_GAS_MONITOR_INPUT_N2O
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/air_input
-	name = "air mix tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika powietrza"
 	id = ATMOS_GAS_MONITOR_INPUT_AIR
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/carbon_input
-	name = "carbon dioxide tank input injector"
+	name = "wtryskiwacz wlotowy zbiornika dwutlenku węgla"
 	id = ATMOS_GAS_MONITOR_INPUT_CO2
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/incinerator_input
-	name = "incinerator chamber input injector"
+	name = "wtryskiwacz wlotowy komory spalarni"
 	id = ATMOS_GAS_MONITOR_INPUT_INCINERATOR
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input
-	name = "toxins mixing input injector"
+	name = "wtryskiwacz wlotowy mieszania toksyn"
 	id = ATMOS_GAS_MONITOR_INPUT_TOXINS_LAB

@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
 	icon_state = "connector_map-3"
 
-	name = "connector port"
-	desc = "For connecting portables devices related to atmospherics control."
+	name = "port przyłączeniowy"
+	desc = "Do podłączania przenośnych urządzeń atmosferycznych."
 
 	can_unwrench = TRUE
 

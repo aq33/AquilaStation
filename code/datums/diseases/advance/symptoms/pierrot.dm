@@ -1,5 +1,5 @@
 /datum/symptom/pierrot
-	name = "Pierrot's Throat"
+	name = "Gardło Pierrota"
 	desc = "Sprawia, że nosiciel losowo trąbi"
 	stealth = -1
 	resistance = 3

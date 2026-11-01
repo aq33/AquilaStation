@@ -3,7 +3,7 @@
 	generic artifact
 */
 /obj/item/xenoartifact
-	name = "artifact"
+	name = "artefakt"
 	icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
 	icon_state = "map_editor"
 	w_class = WEIGHT_CLASS_SMALL //This stops certain traits being broken by our shitty movement code when thrown

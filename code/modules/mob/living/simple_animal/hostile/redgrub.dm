@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/redgrub
-	name = "redgrub"
-	desc = "A parasite that feeds off of slime cytoplasm and other toxic substances. Its meat is a delicacy when cooked."
+	name = "czerwony pędrak"
+	desc = "Pasożyt żywiący się cytoplazmą szlamów i innymi toksycznymi substancjami. Po ugotowaniu jego mięso jest przysmakiem."
 	icon_state = "grub_1"
 	icon_living = "grub_1"
 	icon_dead = "grub_1_dead"

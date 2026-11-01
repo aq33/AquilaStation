@@ -54,12 +54,12 @@ MAP_REMOVE_JOB(air_traffic_controller)
 			if(istype(P, /obj/item/circuitboard/machine))
 				var/obj/item/circuitboard/machine/B = P
 				if(B.build_path == null)
-					to_chat(user, "<span class='warning'>This ship cannot support this type of machine!</span>")
+					to_chat(user, "<span class='warning'>Ten statek nie obsługuje tego typu maszyny!</span>")
 					return
 
 			if(P.tool_behaviour == TOOL_SCREWDRIVER)
 				if(circuit.build_path == null)
-					to_chat(user, "<span class='warning'>This ship cannot support this type of machine!</span>")
+					to_chat(user, "<span class='warning'>Ten statek nie obsługuje tego typu maszyny!</span>")
 					return
 	. = ..()
 

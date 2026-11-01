@@ -17,7 +17,7 @@
 	if(!C.getorgan(/obj/item/organ/brain)) // If only I had a brain
 		to_chat(admin, "[roundend_category] biorą się z urazu mózgu, więc muszą MIEĆ MÓZG.")
 		return
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
+	message_admins("[key_name_admin(admin)] zmienia [key_name_admin(new_owner)] w antagonistę: [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	//PRESTO FUCKIN MAJESTO
 	C.gain_trauma(/datum/brain_trauma/special/obsessed)//ZAP
@@ -151,7 +151,7 @@
 	if(target && target.current)
 		explanation_text = "Zamorduj [target.name] ([!target_role_type ? target.assigned_role : target.special_role])."
 	else
-		message_admins("WARNING! [ADMIN_LOOKUPFLW(owner)] obsessed objectives forged without an obsession!")
+		message_admins("UWAGA! [ADMIN_LOOKUPFLW(owner)] dostaje cele obsesji bez obiektu obsesji!")
 		explanation_text = "Cel dowolny"
 
 /datum/objective/assassinate/obsessed/on_target_cryo()
@@ -165,7 +165,7 @@
 	if(obsession && target?.current)
 		explanation_text = "Zamorduj [target.name], współpracownika [obsession]."
 	else if(target?.current)
-		explanation_text = "Murder [target.name]."
+		explanation_text = "Zamorduj [target.name]."
 	else
 		explanation_text = "Cel dowolny"
 

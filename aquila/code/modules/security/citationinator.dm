@@ -111,8 +111,8 @@
 		if(tablet.saved_identification != target_name)
 			continue
 		var/datum/signal/subspace/messaging/tablet_msg/signal = new(src, list(
-			"name" = "Security Citation",
-			"job" = "Citation Server",
+			"name" = "Mandat ochrony",
+			"job" = "Serwer mandatów",
 			"message" = message,
 			"targets" = list(tablet),
 			"automated" = TRUE

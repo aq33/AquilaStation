@@ -10,7 +10,7 @@
  * * default - If an option is already preselected on the UI. Current values, etc.
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0)
+/proc/tgui_input_list(mob/user, message, title = "Wybierz", list/items, default, timeout = 0)
 	if (!user)
 		user = usr
 	if(!length(items))
@@ -44,7 +44,7 @@
  * * callback - The callback to be invoked when a choice is made.
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list_async(mob/user, message, title = "Select", list/items, default, datum/callback/callback, timeout = 60 SECONDS)
+/proc/tgui_input_list_async(mob/user, message, title = "Wybierz", list/items, default, datum/callback/callback, timeout = 60 SECONDS)
 	if (!user)
 		user = usr
 	if(!length(items))

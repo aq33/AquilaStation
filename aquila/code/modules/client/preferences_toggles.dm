@@ -1,7 +1,7 @@
 /client/verb/toggle_radio_sound()
 	set name = "Hear/Silence Radio Sound"
 	set category = "Preferences"
-	set desc = "Hear/Silence Radio Sound"
+	set desc = "Włącz lub wycisz dźwięk radia"
 	prefs.toggles2 ^= PREFTOGGLE_2_RADIO_SOUND
 	to_chat(usr, "[(prefs.toggles2 & PREFTOGGLE_2_RADIO_SOUND) ? "Będziesz teraz słyszeć dźwięki radia" : "Nie będziesz już słyszeć szumu radia"].")
 	prefs.save_preferences()

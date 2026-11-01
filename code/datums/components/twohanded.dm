@@ -207,7 +207,7 @@
 		parent_item.block_power = block_power_wielded
 	if(sharpened_increase)
 		parent_item.force += sharpened_increase
-	parent_item.name = "[parent_item.name] (Wielded)"
+	parent_item.name = "[parent_item.name] (oburącz)"
 	parent_item.update_icon()
 
 	if(iscyborg(user))
@@ -221,8 +221,8 @@
 
 	// Let's reserve the other hand
 	offhand_item = new()
-	offhand_item.name = "[parent_item.name] - offhand"
-	offhand_item.desc = "Your second grip on [parent_item]."
+	offhand_item.name = "[parent_item.name] – druga ręka"
+	offhand_item.desc = "Trzymasz [parent_item] drugą ręką."
 	offhand_item.wielded = TRUE
 	if(swap_hands)
 		user.put_in_active_hand(offhand_item)
@@ -263,9 +263,9 @@
 		parent_item.block_power = block_power_unwielded
 
 	// update the items name to remove the wielded status
-	var/sf = findtext(parent_item.name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	var/sf = findtext_char(parent_item.name, " (oburącz)", -10) // 10 == length_char(" (oburącz)")
 	if(sf)
-		parent_item.name = copytext(parent_item.name, 1, sf)
+		parent_item.name = copytext_char(parent_item.name, 1, sf)
 	else
 		parent_item.name = "[initial(parent_item.name)]"
 

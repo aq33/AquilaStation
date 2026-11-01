@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/knock
-	name = "Knock"
-	desc = "This spell opens nearby doors and closets."
+	name = "Otwarcie"
+	desc = "To zaklęcie otwiera pobliskie drzwi i szafy."
 
 	school = "transmutation"
 	charge_max = 100

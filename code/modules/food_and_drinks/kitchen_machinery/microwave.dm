@@ -1,8 +1,8 @@
 //Microwaving doesn't use recipes, instead it calls the microwave_act of the objects. For food, this creates something based on the food's cooked_type
 
 /obj/machinery/microwave
-	name = "microwave oven"
-	desc = "Cooks and boils stuff."
+	name = "mikrofalówka"
+	desc = "Gotuje i podgrzewa różne rzeczy."
 	icon = 'icons/obj/machines/microwave.dmi'
 	icon_state = "map_icon"
 	appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PIXEL_SCALE
@@ -209,7 +209,7 @@
 				update_icon()
 				return FALSE //to use some fuel
 		else
-			to_chat(user, "<span class='warning'>It's broken!</span>")
+			to_chat(user, "<span class='warning'>Jest zepsuta!</span>")
 			return TRUE
 		return
 

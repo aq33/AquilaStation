@@ -88,14 +88,14 @@
 	return . && (ishuman(new_owner.current) || iscyborg(new_owner.current))
 
 /datum/antagonist/sinfuldemon/admin_add(datum/mind/new_owner,mob/admin)
-	var/choices = demonsins + "Random"
-	var/chosen_sin = input(admin,"What kind ?","Sin kind") as null|anything in choices
+	var/choices = demonsins + "Losowy"
+	var/chosen_sin = input(admin,"Jaki grzech?","Rodzaj grzechu") as null|anything in choices
 	if(!chosen_sin)
 		return
 	if(chosen_sin in demonsins)
 		demonsin = chosen_sin
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has demonized [key_name_admin(new_owner)].")
+	message_admins("[key_name_admin(admin)] zmienia [key_name_admin(new_owner)] w demona grzechu.")
 	log_admin("[key_name(admin)] has demonized [key_name(new_owner)].")
 
 /datum/antagonist/sinfuldemon/antag_listing_name()
@@ -107,7 +107,7 @@
 	to_chat(owner.current, span_warning("<b>Twoja piekielna postać ma jednak słabości.</b>"))
 	to_chat(owner.current, "Jesteś niezwykle podatny na święte artefakty i wpływy.")
 	to_chat(owner.current, "Masz nieświętą zdolność przemiany w prawdziwą postać, ale jest ona bardzo rzucająca się w oczy i podatna na świętą broń.")
-	to_chat(owner.current, "[span_warning("Do your best to complete your objectives without unnessecary death, unless you are a wrathful demon.")]<br>")
+	to_chat(owner.current, "[span_warning("Staraj się wykonać cele bez niepotrzebnych ofiar, chyba że jesteś demonem gniewu.")]<br>")
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
 	. = ..()

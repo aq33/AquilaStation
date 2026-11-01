@@ -1,5 +1,5 @@
 /obj/item/implant/sad_trombone
-	name = "sad trombone implant"
+	name = "implant smutnego puzonu"
 	activated = 0
 
 /obj/item/implant/sad_trombone/get_data()
@@ -12,10 +12,10 @@
 		playsound(loc, 'sound/misc/sadtrombone.ogg', 50, 0)
 
 /obj/item/implanter/sad_trombone
-	name = "implanter (sad trombone)"
+	name = "implanter (smutny puzon)"
 	imp_type = /obj/item/implant/sad_trombone
 
 /obj/item/implantcase/sad_trombone
-	name = "implant case - 'Sad Trombone'"
-	desc = "A glass case containing a sad trombone implant."
+	name = "etui na implant – „Smutny puzon”"
+	desc = "Szklane etui z implantem smutnego puzonu."
 	imp_type = /obj/item/implant/sad_trombone

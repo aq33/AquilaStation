@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon //emergency get out of jail card.
-	name = "Lesser Demon Form"
-	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
-	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
-	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them!"
+	name = "Postać pomniejszego demona"
+	desc = "Przybierasz swoją prawdziwą demoniczną postać. Jest silna, ale bardzo rzuca się w oczy. Pełnia demonicznej natury w tym świecie bardzo cię wyczerpuje \
+	i w tej postaci powoli tracisz życie, a do tego jesteś szczególnie wrażliwy na święte wpływy. \
+	Pamiętaj, że niskie zdrowie przechodzi między postaciami. Jeśli jesteś ciężko ranny, atakuj żywych śmiertelników, by wysysać z nich energię życiową!"
 	invocation = "DRŻYJCIE, ŚMIERTELNICY!!"
 	shapeshift_type = /mob/living/simple_animal/lesserdemon
 	action_icon = 'aquila/icons/mob/actions/actions_minor_antag.dmi'
@@ -12,7 +12,7 @@
 /mob/living/simple_animal/lesserdemon
 	name = "demon"
 	real_name = "demon"
-	desc = "A large, menacing creature covered in armored red scales."
+	desc = "Duże, groźne stworzenie pokryte twardymi czerwonymi łuskami."
 	speak_emote = list("rechocze")
 	emote_hear = list("rechocze","skrzeczy")
 	response_help  = "rozmyśla się i nie dotyka"
@@ -69,8 +69,8 @@
 
 //not really a general power, but more than 1 sin has it
 /obj/effect/proc_holder/spell/targeted/touch/torment
-	name = "Torment"
-	desc = "Engulfs your arm in a vindictive might. Striking someone with it will severely debilitate them, though will cause no visible damage."
+	name = "Udręka"
+	desc = "Spowija twoją rękę mściwą mocą. Uderzenie nią mocno osłabia ofiarę, choć nie zostawia widocznych obrażeń."
 	hand_path = /obj/item/melee/touch_attack/torment
 	school = "evocation"
 	charge_max = 20 SECONDS
@@ -80,8 +80,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/item/melee/touch_attack/torment
-	name = "Vindictive Hand"
-	desc = "An utterly scornful mass of hateful energy, ready to strike."
+	name = "Mściwa dłoń"
+	desc = "Pełna pogardy masa nienawistnej energii, gotowa do ciosu."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	color = "#9c1d1d"
@@ -110,8 +110,8 @@
 	return ..()
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/sin
-	name = "Demonic Jaunt"
-	desc = "Briefly turn to cinder and ash, allowing you to freely pass through objects."
+	name = "Demoniczne przejście"
+	desc = "Na chwilę obracasz się w żar i popiół, więc swobodnie przenikasz przez obiekty."
 	clothes_req = FALSE
 	charge_max = 50 SECONDS
 	cooldown_min = 50 SECONDS

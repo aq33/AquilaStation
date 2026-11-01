@@ -160,7 +160,7 @@ function GasHandbook(props: GasHandbookProps) {
       fill
       title={
         <GasSearchBar
-          title="Gas Lookup"
+          title="Wyszukiwarka gazów"
           inputText={query}
           onChange={(keyword) => setQuery(keyword)}
           onEnter={(keyword) => {
@@ -198,18 +198,18 @@ function GasHandbook(props: GasHandbookProps) {
                         content={
                           <Stack vertical>
                             <Stack.Item>
-                              The amount of energy required to raise the
-                              temperature of one mole of gas by one Kelvin.
+                              Ilość energii potrzebna, by podnieść temperaturę
+                              jednego mola gazu o jeden kelwin.
                             </Stack.Item>
                             <Stack.Item>
-                              In simpler terms: The lower the specific heat of
-                              the gas, the harder it will be to heat it up.
+                              Prościej: im niższe ciepło właściwe gazu, tym
+                              trudniej go nagrzać.
                             </Stack.Item>
                           </Stack>
                         }
                         position="top"
                       >
-                        Specific Heat:
+                        Ciepło właściwe:
                       </Tooltip>
                     </Stack.Item>
                     <Stack.Item
@@ -229,10 +229,10 @@ function GasHandbook(props: GasHandbookProps) {
                         shrink
                       >
                         <Tooltip
-                          content={`The amount of ${moneyName} gained per mol of gas exported.`}
+                          content={`Ile zyskujesz (${moneyName}) za każdy wyeksportowany mol gazu.`}
                           position="top"
                         >
-                          Export Value:
+                          Wartość eksportowa:
                         </Tooltip>
                       </Stack.Item>
                       <Stack.Item
@@ -246,7 +246,7 @@ function GasHandbook(props: GasHandbookProps) {
                 )}
                 {Object.entries(relevantGas.reactions).length > 0 && (
                   <Stack.Item mb="0.5em" grow>
-                    <Section scrollable fill title="Relevant Reactions">
+                    <Section scrollable fill title="Powiązane reakcje">
                       <Stack vertical>
                         {Object.entries(relevantGas.reactions)
                           .sort((a, b) => (a[1] > b[1] ? 1 : -1))
@@ -278,7 +278,7 @@ function GasHandbook(props: GasHandbookProps) {
                 italic
                 color="label"
               >
-                No Gas Selected
+                Nie wybrano gazu
               </Stack.Item>
             )}
           </Stack>
@@ -329,7 +329,7 @@ function ReactionHandbook(props: ReactionHandbookProps) {
       fill
       title={
         <GasSearchBar
-          title="Reaction Lookup"
+          title="Wyszukiwarka reakcji"
           onChange={(keyword) => setQuery(keyword)}
           onEnter={(keyword) => {
             const foundReaction = reactionInfo.find((reaction) =>
@@ -405,7 +405,7 @@ function ReactionHandbook(props: ReactionHandbookProps) {
                 italic
                 color="label"
               >
-                No reaction selected
+                Nie wybrano reakcji
               </Stack.Item>
             )}
           </Stack>
@@ -445,13 +445,13 @@ export function AtmosHandbookContent() {
             selected={tab === HandbookTab.Gases}
             onClick={() => setTab(HandbookTab.Gases)}
           >
-            Gases
+            Gazy
           </Tabs.Tab>
           <Tabs.Tab
             selected={tab === HandbookTab.Reactions}
             onClick={() => setTab(HandbookTab.Reactions)}
           >
-            Reactions
+            Reakcje
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>

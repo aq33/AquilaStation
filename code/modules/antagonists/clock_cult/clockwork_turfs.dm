@@ -35,8 +35,8 @@
 )
 
 /turf/closed/wall/clockwork
-	name = "clockwork wall"
-	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
+	name = "mechaniczna ściana"
+	desc = "Ogromny blok ciepłego metalu. Ze środka dobiega szczęk maszynerii."
 	explosion_block = 2
 	hardness = 10
 	slicing_duration = 80
@@ -164,8 +164,8 @@
 //Clockwork floor: Slowly heals toxin damage on nearby servants.
 //=================================================
 /turf/open/floor/clockwork
-	name = "clockwork floor"
-	desc = "Tightly-pressed brass tiles. They emit minute vibration."
+	name = "mechaniczna podłoga"
+	desc = "Ciasno ułożone mosiężne płytki. Lekko wibrują."
 	icon_state = "plating"
 	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
@@ -241,8 +241,8 @@
 	return
 
 /turf/open/floor/clockwork/reebe
-	name = "cogplate"
-	desc = "Warm brass plating. You can feel it gently vibrating, as if machinery is on the other side."
+	name = "płyta zębata"
+	desc = "Ciepłe mosiężne poszycie. Czujesz, jak delikatnie wibruje, jakby po drugiej stronie pracowały maszyny."
 	icon_state = "reebe"
 	baseturfs = /turf/open/floor/clockwork/reebe
 	uses_overlay = FALSE
@@ -278,8 +278,8 @@
 //=================================================
 
 /obj/structure/lattice/clockwork
-	name = "cog lattice"
-	desc = "A lightweight support lattice. These hold the Justicar's station together."
+	name = "zębata kratownica"
+	desc = "Lekka kratownica nośna. Takie kratownice spajają stację Sędziego."
 	icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi'
 
 /obj/structure/lattice/clockwork/Initialize(mapload)
@@ -304,7 +304,7 @@
 //=================================================
 
 /obj/structure/lattice/catwalk/clockwork
-	name = "clockwork catwalk"
+	name = "mechaniczny pomost"
 	icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'
 	canSmoothWith = list(/obj/structure/lattice,
 	/turf/open/floor,
@@ -336,8 +336,8 @@
 //Pinion airlocks: Clockwork doors that only let servants of Ratvar through.
 //=================================================
 /obj/machinery/door/airlock/clockwork
-	name = "pinion airlock"
-	desc = "A massive cogwheel set into two heavy slabs of brass. Contains tiny vents for allowing the flow of pressure."
+	name = "śluza zębata"
+	desc = "Masywne koło zębate osadzone w dwóch ciężkich płytach mosiądzu. Ma drobne otwory, przez które wyrównuje się ciśnienie."
 	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
 	anim_parts = "left=-13,0;right=13,0"
@@ -458,8 +458,8 @@
 //Servant Blocker: Doesn't allow servants to pass
 //=================================================
 /obj/effect/clockwork/servant_blocker
-	name = "Servant Blocker"
-	desc = "You shall not pass."
+	name = "blokada sług"
+	desc = "Nie przejdziesz!"
 	icon = 'icons/effects/clockwork_effects.dmi'
 	icon_state = "servant_blocker"
 	anchored = TRUE
@@ -480,8 +480,8 @@
 
 /obj/structure/grille/ratvar
 	icon_state = "ratvargrille"
-	name = "cog grille"
-	desc = "A strangely-shaped grille."
+	name = "zębata krata"
+	desc = "Krata o dziwnym kształcie."
 	broken_type = /obj/structure/grille/ratvar/broken
 
 /obj/structure/grille/ratvar/Initialize(mapload)
@@ -519,8 +519,8 @@
 //=================================================
 
 /obj/structure/window/reinforced/clockwork
-	name = "brass window"
-	desc = "A paper-thin pane of translucent yet reinforced brass."
+	name = "okno mosiężne"
+	desc = "Cienka jak papier tafla półprzezroczystego, a mimo to wzmocnionego mosiądzu."
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF

@@ -6,7 +6,7 @@
 		to_chat(usr, "<span class='warning'>Twoja wiadomość zawiera zakazane słowa.</span>")
 		return
 	log_talk(message, LOG_SAY, tag="binary")
-	var/desig = "Default Cyborg" //ezmode for taters
+	var/desig = "Domyślny cyborg" //ezmode for taters
 	if(issilicon(src))
 		var/mob/living/silicon/S = src
 		desig = trim_left(S.designation + " " + S.job)

@@ -1,7 +1,7 @@
 // 'basic' language; spoken by default.
 /datum/language/common
-	name = "Galactic Common"
-	desc = "The common galactic tongue."
+	name = "Galaktyczny Wspólny"
+	desc = "Wspólny język galaktyki."
 	speech_verb = "mówi"
 	whisper_verb = "szepcze"
 	sing_verb = "śpiewa"

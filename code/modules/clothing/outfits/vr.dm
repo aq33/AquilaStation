@@ -37,5 +37,5 @@
 	H.update_icons()
 
 /obj/item/paper/fluff/vr/fluke_ops
-	name = "Where is my uplink?"
+	name = "Gdzie jest mój uplink?"
 	default_raw_text = "Użyj radia w plecaku."

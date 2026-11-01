@@ -30,7 +30,7 @@
 		new /obj/item/food/tofu(location)
 
 /datum/chemical_reaction/food/chocolate_bar
-	name = "Chocolate Bar"
+	name = "Tabliczka czekolady"
 	id = "chocolate_bar"
 	required_reagents = list(/datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/cocoa = 2, /datum/reagent/consumable/sugar = 2)
 
@@ -40,7 +40,7 @@
 		new /obj/item/food/chocolatebar(location)
 
 /datum/chemical_reaction/food/chocolate_bar2
-	name = "Chocolate Bar"
+	name = "Tabliczka czekolady"
 	id = "chocolate_bar"
 	required_reagents = list(/datum/reagent/consumable/milk/chocolate_milk = 4, /datum/reagent/consumable/sugar = 2)
 	mob_react = FALSE
@@ -51,25 +51,25 @@
 		new /obj/item/food/chocolatebar(location)
 
 /datum/chemical_reaction/food/hot_cocoa
-	name = "Hot Cocoa"
+	name = "Gorąca czekolada"
 	id = /datum/reagent/consumable/cocoa/hot_cocoa
 	results = list(/datum/reagent/consumable/cocoa/hot_cocoa = 5)
 	required_reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/cocoa = 1)
 
 /datum/chemical_reaction/food/coffee
-	name = "Coffee"
+	name = "Kawa"
 	id = /datum/reagent/consumable/coffee
 	results = list(/datum/reagent/consumable/coffee = 5)
 	required_reagents = list(/datum/reagent/toxin/coffeepowder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/food/tea
-	name = "Tea"
+	name = "Herbata"
 	id = /datum/reagent/consumable/tea
 	results = list(/datum/reagent/consumable/tea = 5)
 	required_reagents = list(/datum/reagent/toxin/teapowder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/food/soysauce
-	name = "Soy Sauce"
+	name = "Sos sojowy"
 	id = /datum/reagent/consumable/soysauce
 	results = list(/datum/reagent/consumable/soysauce = 5)
 	required_reagents = list(/datum/reagent/consumable/soymilk = 4, /datum/reagent/toxin/acid = 1)
@@ -82,7 +82,7 @@
 	required_temp = 374
 
 /datum/chemical_reaction/food/caramel
-	name = "Caramel"
+	name = "Karmel"
 	id = /datum/reagent/consumable/caramel
 	results = list(/datum/reagent/consumable/caramel = 1)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1)
@@ -90,7 +90,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/food/caramel_burned
-	name = "Caramel burned"
+	name = "Przypalony karmel"
 	id = "caramel_burned"
 	results = list(/datum/reagent/carbon = 1)
 	required_reagents = list(/datum/reagent/consumable/caramel = 1)
@@ -98,7 +98,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/food/synthmeat
-	name = "synthmeat"
+	name = "Syntetyczne mięso"
 	id = "synthmeat"
 	required_reagents = list(/datum/reagent/blood = 5, /datum/reagent/medicine/cryoxadone = 1)
 	mob_react = FALSE
@@ -109,19 +109,19 @@
 		new /obj/item/food/meat/slab/synthmeat(location)
 
 /datum/chemical_reaction/food/hot_ramen
-	name = "Hot Ramen"
+	name = "Gorący ramen"
 	id = /datum/reagent/consumable/hot_ramen
 	results = list(/datum/reagent/consumable/hot_ramen = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/dry_ramen = 3)
 
 /datum/chemical_reaction/food/hell_ramen
-	name = "Hell Ramen"
+	name = "Piekielny ramen"
 	id = /datum/reagent/consumable/hell_ramen
 	results = list(/datum/reagent/consumable/hell_ramen = 6)
 	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/hot_ramen = 6)
 
 /datum/chemical_reaction/food/imitationcarpmeat
-	name = "Imitation Carpmeat"
+	name = "Imitacja filetu z karpia"
 	id = "imitationcarpmeat"
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5)
 	required_container = /obj/item/food/tofu
@@ -134,7 +134,7 @@
 		qdel(holder.my_atom)
 
 /datum/chemical_reaction/food/dough
-	name = "Dough"
+	name = "Kula ciasta"
 	id = "dough"
 	required_reagents = list(/datum/reagent/water = 10, /datum/reagent/consumable/flour = 15)
 	mix_message = "Składniki tworzą ciasto."
@@ -145,7 +145,7 @@
 		new /obj/item/food/dough(location)
 
 /datum/chemical_reaction/food/cakebatter
-	name = "Cake Batter"
+	name = "Masa na ciasto"
 	id = "cakebatter"
 	required_reagents = list(/datum/reagent/consumable/eggyolk = 15, /datum/reagent/consumable/flour = 15, /datum/reagent/consumable/sugar = 5)
 	mix_message = "Składniki tworzą ciasto na tort."
@@ -165,7 +165,7 @@
 */
 
 /datum/chemical_reaction/food/uncooked_rice
-	name = "Uncooked Rice"
+	name = "Surowy ryż"
 	id = "uncookedrice"
 	required_reagents = list(/datum/reagent/consumable/rice = 10, /datum/reagent/water = 10)
 	mix_message = "Ryż wchłania wodę."
@@ -176,75 +176,75 @@
 		new /obj/item/food/uncooked_rice(location)
 
 /datum/chemical_reaction/food/bbqsauce
-	name = "BBQ Sauce"
+	name = "Sos barbecue"
 	id = /datum/reagent/consumable/bbqsauce
 	results = list(/datum/reagent/consumable/bbqsauce = 5)
 	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/medicine/salglu_solution = 3, /datum/reagent/consumable/blackpepper = 1)
 
 ////////////////////////////////////////////CHEESEMILK////////////////////////////////////////////
 /datum/chemical_reaction/food/bluemilk
-	name = "Blue Cheese Milk"
+	name = "Mleko na ser pleśniowy"
 	id = "bluemilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/penicilliumroqueforti = 1)
 	results = list(/datum/reagent/consumable/milk/blue = 30)
 
 /datum/chemical_reaction/food/briemilk
-	name = "Brie Cheese Milk"
+	name = "Mleko na brie"
 	id = "briemilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/penicilliumcandidum = 1)
 	results = list(/datum/reagent/consumable/milk/brie = 30)
 
 /datum/chemical_reaction/food/cheddarmilk
-	name = "Cheddar Cheese Milk"
+	name = "Mleko na cheddar"
 	id = "cheddarmilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/cheddar = 30)
 
 /datum/chemical_reaction/food/fetamilk
-	name = "Feta Cheese Milk"
+	name = "Mleko na fetę"
 	id = "fetamilk"
 	required_reagents = list(/datum/reagent/consumable/milk/sheep = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/feta = 30)
 
 /datum/chemical_reaction/food/goatmilk
-	name = "Goat Cheese Milk"
+	name = "Mleko na kozi ser"
 	id = "goatmilk"
 	required_reagents = list(/datum/reagent/consumable/milk/goat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/goatcheese = 30)
 
 /datum/chemical_reaction/food/shoatmilk
-	name = "Shoat Milk"
+	name = "Mleko owczo-kozie"
 	id = "shoatmilk"
 	required_reagents = list(/datum/reagent/consumable/milk/goat = 15, /datum/reagent/consumable/milk/sheep = 15)
 	results = list(/datum/reagent/consumable/milk/shoat = 30)
 
 /datum/chemical_reaction/food/halloumimilk
-	name = "Halloumi Cheese Milk"
+	name = "Mleko na halloumi"
 	id = "halloumimilk"
 	required_reagents = list(/datum/reagent/consumable/milk/shoat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/halloumi = 30)
 
 /datum/chemical_reaction/food/mozzarellamilk
-	name = "Mozzarella Cheese Milk"
+	name = "Mleko na mozzarellę"
 	id = "mozzarellamilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/lemonjuice = 5)
 	results = list(/datum/reagent/consumable/milk/mozzarella = 30)
 
 /datum/chemical_reaction/food/parmesanmilk
-	name = "Parmesan Cheese Milk"
+	name = "Mleko na parmezan"
 	id = "parmesanmilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/sodiumchloride = 10)
 	results = list(/datum/reagent/consumable/milk/parmesan = 30)
 
 /datum/chemical_reaction/food/swissmilk
-	name = "Swiss Cheese Milk"
+	name = "Mleko na ser szwajcarski"
 	id = "swissmix"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/thermophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/swiss = 30)
 
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
 /datum/chemical_reaction/food/american
-	name = "American Cheese Block"
+	name = "Blok sera amerykańskiego"
 	id = "americancheeseblock"
 	required_reagents = list(/datum/reagent/consumable/milk = 40)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -255,7 +255,7 @@
 		new /obj/item/food/cheese/wheel/american(location)
 
 /datum/chemical_reaction/food/bluemix
-	name = "Blue Cheese Mix"
+	name = "Masa na ser pleśniowy"
 	id = "bluemix"
 	required_reagents = list(/datum/reagent/consumable/milk/blue = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -266,7 +266,7 @@
 		new /obj/item/food/cheesemix/blue(location)
 
 /datum/chemical_reaction/food/briemix
-	name = "Brie Cheese Mix"
+	name = "Masa na brie"
 	id = "briemix"
 	required_reagents = list(/datum/reagent/consumable/milk/brie = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -277,7 +277,7 @@
 		new /obj/item/food/cheesemix/brie(location)
 
 /datum/chemical_reaction/food/cheddarmix
-	name = "Cheddar Cheese Mix"
+	name = "Masa na cheddar"
 	id = "cheddarmix"
 	required_reagents = list(/datum/reagent/consumable/milk/cheddar = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -288,7 +288,7 @@
 		new /obj/item/food/cheesemix/cheddar(location)
 
 /datum/chemical_reaction/food/fetamix
-	name = "Feta Cheese Mix"
+	name = "Masa na fetę"
 	id = "fetamix"
 	required_reagents = list(/datum/reagent/consumable/milk/feta = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -299,7 +299,7 @@
 		new /obj/item/food/cheesemix/feta(location)
 
 /datum/chemical_reaction/food/goatmix
-	name = "Goat Cheese Mix"
+	name = "Masa na kozi ser"
 	id = "goatmix"
 	required_reagents = list(/datum/reagent/consumable/milk/goatcheese = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -310,7 +310,7 @@
 		new /obj/item/food/cheesemix/goat(location)
 
 /datum/chemical_reaction/food/halloumimix
-	name = "Halloumi Cheese Mix"
+	name = "Masa na halloumi"
 	id = "halloumimix"
 	required_reagents = list(/datum/reagent/consumable/milk/halloumi = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -321,7 +321,7 @@
 		new /obj/item/food/cheesemix/halloumi(location)
 
 /datum/chemical_reaction/food/mozzarellamix
-	name = "Mozzarella Cheese Mix"
+	name = "Masa na mozzarellę"
 	id = "mozzarellamix"
 	required_reagents = list(/datum/reagent/consumable/milk/mozzarella = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -332,7 +332,7 @@
 		new /obj/item/food/cheesemix/mozzarella(location)
 
 /datum/chemical_reaction/food/parmesanmix
-	name = "Parmesan Cheese Mix"
+	name = "Masa na parmezan"
 	id = "parmesanmix"
 	required_reagents = list(/datum/reagent/consumable/milk/parmesan = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
@@ -343,7 +343,7 @@
 		new /obj/item/food/cheesemix/parmesan(location)
 
 /datum/chemical_reaction/food/swissmix
-	name = "Swiss Cheese Mix"
+	name = "Masa na ser szwajcarski"
 	id = "swissmix"
 	required_reagents = list(/datum/reagent/consumable/milk/swiss = 30)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)

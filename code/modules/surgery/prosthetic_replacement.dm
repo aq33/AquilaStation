@@ -1,5 +1,5 @@
 /datum/surgery/prosthetic_replacement
-	name = "prosthetic replacement"
+	name = "wymiana na protezę"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD)
@@ -17,7 +17,7 @@
 
 
 /datum/surgery_step/add_prosthetic
-	name = "add prosthetic"
+	name = "przyłącz protezę"
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100, /obj/item = 100) // AQUILA EDIT - any item (tgstation#91573)
 	time = 32
 	var/organ_rejection_dam = 0
@@ -154,7 +154,7 @@
 
 /// Optional last step after an item was attached as an arm: without it the item falls off on attacks
 /datum/surgery_step/secure_arbitrary_prosthetic
-	name = "secure prosthetic (suture/tape)"
+	name = "umocuj protezę (nici/taśma)"
 	implements = list(
 		/obj/item/stack/medical/suture = 100,
 		/obj/item/stack/sticky_tape/super = 80,

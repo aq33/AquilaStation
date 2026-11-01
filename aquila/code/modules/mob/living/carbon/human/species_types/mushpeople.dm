@@ -1,5 +1,5 @@
 /datum/species/mush //mush mush codecuck
-	name = "\improper Mushroomperson"
+	name = "\improper Grzyboczłowiek"
 	id = "mush"
 	mutant_bodyparts = list("caps")
 	default_features = list("caps" = "Round", "body_size" = "Normal")

@@ -1,8 +1,8 @@
 /datum/religion_rites
 	/// name of the religious rite
-	var/name = "religious rite"
+	var/name = "obrzęd religijny"
 	/// Description of the religious rite
-	var/desc = "immm gonna rooon"
+	var/desc = "zaraaaz uciekaaam"
 	/// length it takes to complete the ritual
 	var/ritual_length = (10 SECONDS) //total length it'll take
 	/// list of invocations said (strings) throughout the rite
@@ -68,8 +68,8 @@
 /**** Technophile Sect ****/
 
 /datum/religion_rites/synthconversion
-	name = "Synthetic Conversion"
-	desc = "Convert a human-esque individual into a (superior) Android. Buckle a human to convert them, otherwise it will convert you."
+	name = "Syntetyczne nawrócenie"
+	desc = "Przemienia istotę człekopodobną w (lepszego) androida. Przypnij człowieka, by go nawrócić, w przeciwnym razie nawrócisz siebie."
 	ritual_length = 30 SECONDS
 	ritual_invocations = list("Na wewnętrzne mechanizmy naszego boga...",
 						"...wzywamy cię w obliczu przeciwności...",
@@ -117,8 +117,8 @@
 
 
 /datum/religion_rites/machine_blessing
-	name = "Receive Blessing"
-	desc = "Receive a random blessing from the machine god to further your ascension."
+	name = "Przyjmij błogosławieństwo"
+	desc = "Otrzymujesz losowe błogosławieństwo od boga maszyn, które przybliża cię do wniebowstąpienia."
 	ritual_length = 5 SECONDS
 	ritual_invocations =list( "Niech twoja wola zasila nasze kuźnie.",
 							"...Pomóż nam w naszym wielkim podboju!")
@@ -143,8 +143,8 @@
 
 
 /datum/religion_rites/machine_implantation
-	name = "Machine Implantation"
-	desc = "Apply a provided upgrade to your body. Place a cybernetic item on the altar, then buckle someone to implant them, otherwise it will implant you."
+	name = "Wszczepienie maszyny"
+	desc = "Wszczepia dostarczone ulepszenie w ciało. Połóż cybernetykę na ołtarzu, a potem przypnij kogoś, by mu ją wszczepić, w przeciwnym razie wszczepisz ją sobie."
 	ritual_length = 30 SECONDS
 	ritual_invocations = list("Użycz nam swej mocy...",
 						"...wzywamy cię, daj nam to ulepszenie...",
@@ -196,14 +196,14 @@
 
 ///apply a bunch of fire immunity effect to clothing
 /datum/religion_rites/fireproof/proc/apply_fireproof(obj/item/clothing/fireproofed)
-	fireproofed.name = "unmelting [fireproofed.name]"
+	fireproofed.name = "[fireproofed.name] (nietopliwe)"
 	fireproofed.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	fireproofed.heat_protection = chosen_clothing.body_parts_covered
 	fireproofed.resistance_flags |= FIRE_PROOF
 
 /datum/religion_rites/fireproof
-	name = "Unmelting Protection"
-	desc = "Grants fire immunity to any piece of clothing."
+	name = "Nietopliwa ochrona"
+	desc = "Daje dowolnemu ubraniu odporność na ogień."
 	ritual_length = 15 SECONDS
 	ritual_invocations = list("I tak, by wspierać dzierżącego Wiecznie Płonącą świecę...",
 	"...pozwól tej niegodnej szacie ci służyć...",
@@ -236,8 +236,8 @@
 	return FALSE
 
 /datum/religion_rites/burning_sacrifice
-	name = "Burning Offering"
-	desc = "Sacrifice a buckled burning corpse for favor, the more burn damage the corpse has the more favor you will receive."
+	name = "Płonąca ofiara"
+	desc = "Złóż w ofierze przypięte, płonące zwłoki, by zyskać łaskę. Im więcej oparzeń mają zwłoki, tym więcej łaski otrzymasz."
 	ritual_length = 20 SECONDS
 	ritual_invocations = list("Płonące ciało...",
 	"...oczyszczone przez płomień...",
@@ -293,8 +293,8 @@
 	return TRUE
 
 /datum/religion_rites/infinite_candle
-	name = "Immortal Candles"
-	desc = "Creates 5 candles that never run out of wax."
+	name = "Nieśmiertelne świece"
+	desc = "Tworzy 5 świec, którym nigdy nie kończy się wosk."
 	ritual_length = 10 SECONDS
 	invoke_msg = "Płońcie jasno, małe świece, bo zgaśniecie dopiero razem ze wszechświatem."
 	favor_cost = 200
@@ -310,8 +310,8 @@
 /// Necro Rites
 
 /datum/religion_rites/create_lesser_lich
-	name = "Create Lesser Lich"
-	desc = "Gives the bound creature a spell granting them the ability to create a lesser phylactery, causing them to become a skeleton and revive on death twice if the phylactery still exists on-station. Be warned, becoming a lesser lich will prevent revivial by any other means."
+	name = "Stwórz pomniejszego licza"
+	desc = "Daje przypiętej istocie zaklęcie, którym może stworzyć pomniejszą filakterię. Istota staje się wtedy szkieletem i po śmierci dwukrotnie wraca do życia, jeśli filakteria wciąż jest na stacji. Uwaga: pomniejszego licza nie da się wskrzesić żadnym innym sposobem."
 	ritual_length = 70 SECONDS
 	ritual_invocations = list("Z głębin sadzawki dusz...",
 	"...wstąp w tę istotę...",
@@ -380,15 +380,15 @@
 	return ..()
 
 /datum/religion_rites/raise_undead
-	name = "Raise Undead"
-	desc = "Creates an undead creature if a soul is willing to take it."
+	name = "Wskrześ nieumarłego"
+	desc = "Tworzy nieumarłą istotę, jeśli znajdzie się dusza chętna, by ją przejąć."
 	ritual_length = 50 SECONDS
 	ritual_invocations = list("Wyjdź z sadzawki dusz...",
 	"...wejdź do naszego świata...",
 	"...stań się jednym z naszym światem...",
-	"... rise ...",
-	"... RISE! ...")
-	invoke_msg = "... RISE!!!"
+	"... powstań ...",
+	"... POWSTAŃ! ...")
+	invoke_msg = "... POWSTAŃ!!!"
 	favor_cost = 1250
 
 /datum/religion_rites/raise_undead/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -430,8 +430,8 @@
 	return ..()
 
 /datum/religion_rites/raise_dead
-	name = "Raise Dead"
-	desc = "Revives a buckled dead creature or person."
+	name = "Wskrześ zmarłego"
+	desc = "Wskrzesza przypiętą martwą istotę lub osobę."
 	ritual_length = 70 SECONDS
 	ritual_invocations = list("Wróć do naszego świata...",
 	"...wyjdź z zaświatów...",
@@ -488,8 +488,8 @@
 	return ..()
 
 /datum/religion_rites/living_sacrifice
-	name = "Living Sacrifice"
-	desc = "Sacrifice a non-sentient living buckled creature for favor."
+	name = "Żywa ofiara"
+	desc = "Złóż w ofierze przypiętą, żywą, nieświadomą istotę, by zyskać łaskę."
 	ritual_length = 40 SECONDS
 	ritual_invocations = list("By ofiarować tę istotę bogom...",
 	"...by nakarmić ich jej duszą...",
@@ -542,8 +542,8 @@
 /**** Carp rites ****/
 
 /datum/religion_rites/summon_carp
-	name = "Summon Carp"
-	desc = "Creates a Sentient Space Carp, if a soul is willing to take it. If not, the favor is refunded."
+	name = "Przyzwij karpia"
+	desc = "Tworzy świadomego kosmicznego karpia, jeśli znajdzie się dusza chętna, by go przejąć. Jeśli nie, łaska zostaje zwrócona."
 	ritual_length = 90 SECONDS
 	ritual_invocations = list("Daj nam nowego wyznawcę...",
 	"...niech wejdzie do naszego świata...",
@@ -567,7 +567,7 @@
 	var/datum/mind/M = new /datum/mind(selected.key)
 	var/carp_species = pick(/mob/living/simple_animal/hostile/carp/megacarp, /mob/living/simple_animal/hostile/carp)
 	var/mob/living/simple_animal/hostile/carp = new carp_species(altar_turf)
-	carp.name = "Holy Space-Carp ([rand(1,999)])"
+	carp.name = "Święty kosmiczny karp ([rand(1,999)])"
 	carp.key = selected.key
 	carp.sentience_act()
 	carp.maxHealth += 100
@@ -581,8 +581,8 @@
 	return ..()
 
 /datum/religion_rites/summon_carpsuit
-	name = "Summon Carp-Suit"
-	desc = "Summons a Space-Carp Suit"
+	name = "Przyzwij karpiowy strój"
+	desc = "Przyzywa strój kosmicznego karpia."
 	ritual_length = 60 SECONDS
 	ritual_invocations = list("Staniemy się jednym...",
 	"...wtopimy się w tłum...",
@@ -616,8 +616,8 @@
 	return FALSE
 
 /datum/religion_rites/flood_area
-	name = "Flood Area"
-	desc = "Flood the area with water vapor, great for learning to swim!"
+	name = "Zalej obszar"
+	desc = "Zalewa obszar parą wodną. Świetne do nauki pływania!"
 	ritual_length = 40 SECONDS
 	ritual_invocations = list("Musimy pływać...",
 	"...ale do tego potrzebujemy wody...",

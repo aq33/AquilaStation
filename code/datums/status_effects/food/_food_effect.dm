@@ -16,6 +16,6 @@
 		linked_alert.icon_state = "food_buff_[strength]"
 
 /atom/movable/screen/alert/status_effect/food
-	name = "Hand-crafted meal"
-	desc = "Eating it made me feel better."
+	name = "Domowy posiłek"
+	desc = "Po zjedzeniu tego czuję się lepiej."
 	icon_state = "food_buff_1"

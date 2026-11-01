@@ -3,7 +3,7 @@
 
 /obj/machinery/computer/pandemic
 	name = "PanD.E.M.I.C 2200"
-	desc = "Used to work with viruses."
+	desc = "Służy do pracy z wirusami."
 	density = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pand0"
@@ -101,9 +101,9 @@
 
 		this["index"] = index++
 		this["agent"] = D.agent
-		this["description"] = D.desc || "none"
-		this["spread"] = D.spread_text || "none"
-		this["cure"] = D.cure_text || "none"
+		this["description"] = D.desc || "brak"
+		this["spread"] = D.spread_text || "brak"
+		this["cure"] = D.cure_text || "brak"
 		this["danger"] = D.danger || "none"
 
 		. += list(this)
@@ -238,8 +238,8 @@
 			A = A.Copy()
 			var/list/data = list("viruses" = list(A))
 			var/obj/item/reagent_containers/glass/bottle/B = new(drop_location())
-			B.name = "[A.name] culture bottle"
-			B.desc = "A small bottle. Contains [A.agent] culture in synthblood medium."
+			B.name = "butelka z kulturą: [A.name]"
+			B.desc = "Mała butelka. Zawiera kulturę ([A.agent]) w pożywce z syntetycznej krwi."
 			B.reagents.add_reagent(/datum/reagent/blood, 20, data)
 			wait = TRUE
 			update_icon()
@@ -253,7 +253,7 @@
 			var/id = params["index"]
 			var/datum/disease/D = SSdisease.archive_diseases[id]
 			var/obj/item/reagent_containers/glass/bottle/B = new(drop_location())
-			B.name = "[D.name] vaccine bottle"
+			B.name = "butelka ze szczepionką: [D.name]"
 			B.reagents.add_reagent(/datum/reagent/vaccine, 15, list(id))
 			wait = TRUE
 			update_icon()

@@ -1,6 +1,6 @@
 /datum/nanite_program/sensor/impact
-	name = "Impact Sensor"
-	desc = "Sends a signal when the nanites detect fluctuations in host's health."
+	name = "Czujnik uderzeń"
+	desc = "Wysyła sygnał, gdy nanity wykryją wahania zdrowia nosiciela."
 
 /datum/nanite_program/sensor/impact/register_extra_settings()
 	. = ..()

@@ -7,7 +7,7 @@
 //Seed Vault
 
 /obj/effect/spawner/lootdrop/seed_vault
-	name = "seed vault seeds"
+	name = "nasiona ze skarbca nasion"
 	lootcount = 1
 
 	loot = list(/obj/item/plant_seeds/preset/gat = 10,
@@ -19,8 +19,8 @@
 //Free Golems
 
 /obj/item/disk/design_disk/golem_shell
-	name = "Golem Creation Disk"
-	desc = "A gift from the Liberator."
+	name = "dysk tworzenia golemów"
+	desc = "Dar od Wyzwoliciela."
 	icon_state = "datadisk1"
 	max_blueprints = 1
 
@@ -30,8 +30,8 @@
 	blueprints[1] = G
 
 /datum/design/golem_shell
-	name = "Golem Shell Construction"
-	desc = "Allows for the construction of a Golem Shell."
+	name = "Budowa skorupy golema"
+	desc = "Pozwala zbudować skorupę golema."
 	id = "golem"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 40000)
@@ -39,10 +39,10 @@
 	category = list("Imported")
 
 /obj/item/golem_shell
-	name = "incomplete free golem shell"
+	name = "niedokończona skorupa wolnego golema"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "construct"
-	desc = "The incomplete body of a golem. Add ten sheets of any mineral to finish."
+	desc = "Niedokończone ciało golema. Dodaj dziesięć arkuszy dowolnego minerału, by je ukończyć."
 	var/shell_type = /obj/effect/mob_spawn/human/golem
 	var/has_owner = FALSE //if the resulting golem obeys someone
 	w_class = WEIGHT_CLASS_BULKY
@@ -98,13 +98,13 @@
 
 //made with xenobiology, the golem obeys its creator
 /obj/item/golem_shell/servant
-	name = "incomplete servant golem shell"
+	name = "niedokończona skorupa golema-sługi"
 	shell_type = /obj/effect/mob_spawn/human/golem/servant
 
 ///Syndicate Listening Post
 
 /obj/effect/mob_spawn/human/lavaland_syndicate
-	name = "Syndicate Bioweapon Scientist"
+	name = "Naukowiec broni biologicznej Syndykatu"
 	roundstart = FALSE
 	death = FALSE
 	random = TRUE
@@ -122,7 +122,7 @@
 	new_spawn.grant_language(/datum/language/codespeak)
 
 /datum/outfit/lavaland_syndicate
-	name = "Lavaland Syndicate Agent"
+	name = "Agent Syndykatu z Lavalandu"
 	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
@@ -138,7 +138,7 @@
 	H.faction |= FACTION_SYNDICATE
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms
-	name = "Syndicate Comms Agent"
+	name = "Agent łączności Syndykatu"
 	short_desc = "Jesteś agentem łączności Syndykatu, zatrudnionym w ściśle tajnej placówce badawczej rozwijającej broń biologiczną."
 	flavour_text = "Niestety twój znienawidzony wróg, Nanotrasen, rozpoczął wydobycie w tym sektorze. Monitoruj działania wroga najlepiej, jak potrafisz, i staraj się nie rzucać w oczy. Używaj sprzętu łączności, by wspierać agentów w terenie, i siej dezinformację, by zmylić trop Nanotrasen. Nie pozwól, by baza wpadła w ręce wroga!"
 	important_info = "NIE porzucaj bazy."
@@ -156,7 +156,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /datum/outfit/lavaland_syndicate/comms
-	name = "Lavaland Syndicate Comms Agent"
+	name = "Agent łączności Syndykatu z Lavalandu"
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest

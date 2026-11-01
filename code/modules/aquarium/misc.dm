@@ -2,8 +2,8 @@
 
 // Fish feed can
 /obj/item/fish_feed
-	name = "fish feed can"
-	desc = "Autogenerates nutritious fish feed based on sample inside."
+	name = "puszka karmy dla ryb"
+	desc = "Sama wytwarza pożywną karmę dla ryb na podstawie próbki w środku."
 	icon = 'icons/obj/aquarium.dmi'
 	icon_state = "fish_feed"
 	w_class = WEIGHT_CLASS_TINY
@@ -15,8 +15,8 @@
 
 // Stasis fish case container for moving fish between aquariums safely.
 /obj/item/storage/fish_case
-	name = "stasis fish case"
-	desc = "A small case keeping the fish inside in stasis."
+	name = "pojemnik stazy na ryby"
+	desc = "Mały pojemnik, który utrzymuje rybę w środku w stazie."
 	icon_state = "fishbox"
 
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -41,10 +41,10 @@
 
 /// Book detailing where to get the fish and their properties.
 /obj/item/book/fish_catalog
-	name = "Fish Encyclopedia"
-	desc = "Indexes all fish known to mankind (and related species)"
+	name = "Encyklopedia ryb"
+	desc = "Spis wszystkich ryb znanych ludzkości (i pokrewnym gatunkom)."
 	icon_state = "fishbook"
-	dat = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary
+	dat = "Mnóstwo rybich spraw" //book wrappers could use cleaning so this is not necessary
 
 /obj/item/book/fish_catalog/on_read(mob/user)
 	ui_interact(user)
@@ -73,12 +73,12 @@
 			fish_data["temp_max"] = initial(fish_behaviour.required_temperature_max)
 			fish_data["icon"] = sanitize_css_class_name("[initial(fish_behaviour.icon)][initial(fish_behaviour.icon_state)]")
 			fish_data["color"] = initial(fish_behaviour.color)
-			fish_data["source"] = initial(fish_behaviour.availible_in_random_cases) ? "[AQUARIUM_COMPANY] Fish Packs" : "Unknown"
+			fish_data["source"] = initial(fish_behaviour.availible_in_random_cases) ? "Paczki ryb [AQUARIUM_COMPANY]" : "Nieznane"
 			var/datum/reagent/food_type = initial(fish_behaviour.food)
 			if(food_type != /datum/reagent/consumable/nutriment)
 				fish_data["feed"] = initial(food_type.name)
 			else
-				fish_data["feed"] = "[AQUARIUM_COMPANY] Fish Feed"
+				fish_data["feed"] = "Karma dla ryb [AQUARIUM_COMPANY]"
 			fish_info += list(fish_data)
 
 	.["fish_info"] = fish_info
@@ -90,8 +90,8 @@
 	)
 
 /obj/item/aquarium_kit
-	name = "DIY Aquarium Construction Kit"
-	desc = "Everything you need to build your own aquarium.(Raw materials sold separately)"
+	name = "zestaw do samodzielnej budowy akwarium"
+	desc = "Wszystko, czego potrzebujesz do zbudowania własnego akwarium. (Surowce sprzedawane osobno)"
 	icon = 'icons/obj/aquarium.dmi'
 	icon_state = "construction_kit"
 	w_class = WEIGHT_CLASS_TINY
@@ -102,20 +102,20 @@
 
 
 /obj/item/aquarium_prop
-	name = "generic aquarium prop"
-	desc = "very boring"
+	name = "zwykła dekoracja akwarium"
+	desc = "bardzo nudna"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/storage/box/aquarium_props
-	name = "aquarium props box"
-	desc = "All you need to make your aquarium look good"
+	name = "pudełko dekoracji akwarium"
+	desc = "Wszystko, czego potrzeba, żeby akwarium ładnie wyglądało."
 
 /obj/item/storage/box/aquarium_props/PopulateContents()
 	for(var/prop_type in subtypesof(/datum/aquarium_behaviour/prop))
 		generate_fish(src, prop_type, /obj/item/aquarium_prop)
 
 /obj/item/storage/box/fish_debug
-	name = "box full of fish"
+	name = "pudełko pełne ryb"
 
 /obj/item/storage/box/fish_debug/PopulateContents()
 	for(var/fish_type in subtypesof(/datum/aquarium_behaviour/fish))

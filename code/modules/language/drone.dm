@@ -1,6 +1,6 @@
 /datum/language/drone
-	name = "Drone"
-	desc = "A heavily encoded damage control coordination stream, with special flags for hats."
+	name = "Dronowy"
+	desc = "Mocno zakodowany strumień koordynacji napraw, ze specjalnymi flagami dla czapek."
 	speech_verb = "terkocze"
 	ask_verb = "terkocze pytająco"
 	exclaim_verb = "terkocze głośno"

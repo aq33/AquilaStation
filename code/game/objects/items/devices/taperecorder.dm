@@ -1,6 +1,6 @@
 /obj/item/taperecorder
-	name = "universal recorder"
-	desc = "A device that can record to cassette tapes, and play them. It automatically translates the content in playback."
+	name = "uniwersalny dyktafon"
+	desc = "Urządzenie, które nagrywa na kasety i je odtwarza. Podczas odtwarzania automatycznie tłumaczy treść."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_empty"
 	item_state = "analyzer"
@@ -223,11 +223,11 @@
 
 	to_chat(usr, "<span class='notice'>Wydrukowano transkrypcję.</span>")
 	var/obj/item/paper/transcript_paper = new /obj/item/paper(get_turf(src))
-	var/t1 = "<B>Transcript:</B><BR><BR>"
+	var/t1 = "<B>Transkrypcja:</B><BR><BR>"
 	for(var/i = 1, mytape.storedinfo.len >= i, i++)
 		t1 += "[mytape.storedinfo[i]]<BR>"
 	transcript_paper.add_raw_text(t1)
-	transcript_paper.name = "paper- 'Transcript'"
+	transcript_paper.name = "kartka – „Transkrypcja”"
 	transcript_paper.update_appearance()
 	usr.put_in_hands(transcript_paper)
 	canprint = FALSE
@@ -240,8 +240,8 @@
 
 
 /obj/item/tape
-	name = "tape"
-	desc = "A magnetic tape that can hold up to ten minutes of content."
+	name = "kaseta"
+	desc = "Taśma magnetyczna, która mieści do dziesięciu minut nagrania."
 	icon_state = "tape_white"
 	icon = 'icons/obj/device.dmi'
 	item_state = "analyzer"

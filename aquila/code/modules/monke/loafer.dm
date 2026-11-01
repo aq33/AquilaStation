@@ -383,18 +383,18 @@
 // =====================================================
 
 /datum/reagent/consumable/nutraslop
-	name = "Nutraslop"
+	name = "Odżywcze pomyje"
 	description = "Mieszanka różnych odpadków spożywczych i resztek."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#3E4A00"
-	taste_description = "porażki"
+	taste_description = "porażka"
 	chem_flags = CHEMICAL_NOT_SYNTH
 
 /datum/reagent/gravitum
-	name = "Gravitum"
+	name = "Grawitum"
 	description = "Rzadki rodzaj zerowego płynu, który na chwilę odbiera ciężar wszystkiemu, czego dotknie."
 	color = "#050096"
-	taste_description = "powietrza"
+	taste_description = "powietrze"
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	chem_flags = CHEMICAL_NOT_SYNTH
 

@@ -1,7 +1,7 @@
 
 //make incision
 /datum/surgery_step/incise
-	name = "make incision"
+	name = "wykonaj nacięcie"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
 		/obj/item/shard = 45, /obj/item = 30) // 30% success with any sharp item.
 	time = 16
@@ -41,7 +41,7 @@
 
 //clamp bleeders
 /datum/surgery_step/clamp_bleeders
-	name = "clamp bleeders"
+	name = "zaciśnij krwawiące naczynia"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/package_wrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 24
 	preop_sound = 'sound/surgery/hemostat1.ogg'
@@ -59,7 +59,7 @@
 
 //retract skin
 /datum/surgery_step/retract_skin
-	name = "retract skin"
+	name = "rozchyl skórę"
 	implements = list(TOOL_RETRACTOR = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
 	time = 24
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -74,7 +74,7 @@
 
 //close incision
 /datum/surgery_step/close
-	name = "mend incision"
+	name = "zamknij nacięcie"
 	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
 		/obj/item = 30) // 30% success with any hot item.
 	time = 24
@@ -102,7 +102,7 @@
 
 //saw bone
 /datum/surgery_step/saw
-	name = "saw bone"
+	name = "przepiłuj kość"
 	implements = list(TOOL_SAW = 100,/obj/item/melee/arm_blade = 75,
 	/obj/item/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 54
@@ -124,13 +124,13 @@
 /datum/surgery_step/saw/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	target.apply_damage(50, BRUTE, "[target_zone]")
 	display_results(user, target, "<span class='notice'>Otwierasz piłą [strefa_pl(target_zone, TRUE)] [target].</span>",
-		"[user] saws [target]'s [parse_zone(target_zone)] open!",
-		"[user] saws [target]'s [parse_zone(target_zone)] open!")
+		"[user] otwiera piłą [strefa_pl(target_zone, TRUE)] [target]!",
+		"[user] otwiera piłą [strefa_pl(target_zone, TRUE)] [target]!")
 	return 1
 
 //drill bone
 /datum/surgery_step/drill
-	name = "drill bone"
+	name = "nawierć kość"
 	implements = list(TOOL_DRILL = 100, /obj/item/powertool/hand_drill = 80, /obj/item/pickaxe/drill = 60, TOOL_SCREWDRIVER = 20)
 	time = 30
 

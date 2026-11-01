@@ -52,7 +52,7 @@
 #define AIRLOCK_DAMAGE_DEFLECTION_R  30  // Reinforced airlock damage deflection
 
 /obj/machinery/door/airlock
-	name = "airlock"
+	name = "śluza"
 	icon = 'icons/obj/doors/airlocks/station/public.dmi'
 	icon_state = "closed"
 	appearance_flags = TILE_BOUND | LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
@@ -960,11 +960,11 @@
 
 	switch(security_level)
 		if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-			layer_flavor = "outer layer of shielding"
+			layer_flavor = "zewnętrzna warstwa"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_I
 
 		if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-			layer_flavor = "inner layer of shielding"
+			layer_flavor = "wewnętrzna warstwa"
 			next_level = AIRLOCK_SECURITY_NONE
 		else
 			return TOOL_ACT_TOOLTYPE_SUCCESS
@@ -975,7 +975,7 @@
 	if(!panel_open || security_level != starting_level)
 		// if the plating's already been broken, don't break it again
 		return TOOL_ACT_TOOLTYPE_SUCCESS
-	user.visible_message(span_notice("[user] removes [src]'s shielding."),
+	user.visible_message(span_notice("[user] zdejmuje osłonę z [src]."),
 							span_notice("Usuwasz osłonę [src] ([layer_flavor])."))
 	security_level = next_level
 	spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
@@ -999,15 +999,15 @@
 
 	switch(security_level)
 		if(AIRLOCK_SECURITY_IRON)
-			layer_flavor = "panel's shielding"
+			layer_flavor = "osłona panelu"
 			next_level = AIRLOCK_SECURITY_NONE
 			material_to_spawn = /obj/item/stack/sheet/iron
 			amount_to_spawn = 2
 		if(AIRLOCK_SECURITY_PLASTEEL_O)
-			layer_flavor = "outer layer of shielding"
+			layer_flavor = "zewnętrzna warstwa"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_O_S
 		if(AIRLOCK_SECURITY_PLASTEEL_I)
-			layer_flavor = "inner layer of shielding"
+			layer_flavor = "wewnętrzna warstwa"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_I_S
 		else
 			return TOOL_ACT_TOOLTYPE_SUCCESS
@@ -1049,7 +1049,7 @@
 		return FALSE
 	if(!panel_open || !material.use(amt_required))
 		return FALSE
-	user.visible_message(span_notice("[user] reinforces [src] with [material]."),
+	user.visible_message(span_notice("[user] wzmacnia [src] ([material])."),
 						span_notice("Wzmacniasz [src] ([material])."))
 	security_level = new_security_level
 	update_icon()
@@ -1185,7 +1185,7 @@
 			charge.ex_act(EXPLODE_DEVASTATE)
 			user.Paralyze(60)
 			return
-		user.visible_message(span_notice("[user] removes [charge] from [src]."), \
+		user.visible_message(span_notice("[user] wyjmuje [charge] z [src]."), \
 							span_notice("Delikatnie wyjmujesz [charge] z [src] i odłączasz przewody."))
 		charge.forceMove(get_turf(user))
 		charge = null
@@ -1201,7 +1201,7 @@
 		to_chat(user, span_warning("Rygle śluzy uniemożliwiają jej sforsowanie!"))
 		return
 	if(welded)
-		to_chat(user, span_warning("It's welded, it won't budge!"))
+		to_chat(user, span_warning("Jest zaspawana, ani drgnie!"))
 		return
 	if(hasPower())
 		if(forced)
@@ -1488,7 +1488,7 @@
 			if(MACHINE_ELECTRIFIED_PERMANENT)
 				message = "trwale pod napięciem"
 			if(MACHINE_NOT_ELECTRIFIED)
-				message = "unshocked"
+				message = "bez napięcia"
 			else
 				message = "pod napięciem przez [secondsElectrified] s"
 		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))

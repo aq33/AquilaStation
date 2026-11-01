@@ -3,7 +3,7 @@
 /// Klasa darkspawna. Komponent na umyśle, trzyma kupione zdolności.
 /datum/component/darkspawn_class
 	dupe_type = /datum/component/darkspawn_class // jedna klasa naraz
-	var/name = "Debug class"
+	var/name = "Klasa debugowa"
 	/// Krótki opis
 	var/description = "Klasa testowa."
 	/// Dłuższy opis w oknie wyboru klasy

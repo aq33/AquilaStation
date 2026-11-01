@@ -21,7 +21,7 @@
 		QDEL_IN(PB, qdel_in)
 
 /obj/effect/projectile/tracer
-	name = "beam"
+	name = "promień"
 	icon = 'icons/obj/projectiles_tracer.dmi'
 
 /obj/effect/projectile/tracer/laser
@@ -36,23 +36,23 @@
 	icon_state = "beam_omni"
 
 /obj/effect/projectile/tracer/xray
-	name = "\improper X-ray laser"
+	name = "\improper laser rentgenowski"
 	icon_state = "xray"
 
 /obj/effect/projectile/tracer/pulse
-	name = "pulse laser"
+	name = "laser pulsacyjny"
 	icon_state = "u_laser"
 
 /obj/effect/projectile/tracer/plasma_cutter
-	name = "plasma blast"
+	name = "wybuch plazmy"
 	icon_state = "plasmacutter"
 
 /obj/effect/projectile/tracer/stun
-	name = "stun beam"
+	name = "promień ogłuszający"
 	icon_state = "stun"
 
 /obj/effect/projectile/tracer/heavy_laser
-	name = "heavy laser"
+	name = "ciężki laser"
 	icon_state = "beam_heavy"
 
 //BEAM RIFLE

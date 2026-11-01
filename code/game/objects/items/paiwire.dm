@@ -1,6 +1,6 @@
 /obj/item/pai_cable
-	desc = "A flexible coated cable with a universal jack on one end."
-	name = "data cable"
+	desc = "Giętki kabel w osłonie z uniwersalną wtyczką na jednym końcu."
+	name = "kabel danych"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "wire1"
 	item_flags = NOBLUDGEON

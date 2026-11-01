@@ -251,7 +251,7 @@
 
 	//var/turf/T = get_turf(src)
 	/*if (level==1 && isturf(T) && T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
-		to_chat(user, span_warning("You must remove the plating first!"))
+		to_chat(user, span_warning("Najpierw musisz zdjąć poszycie!"))
 		return TRUE*/
 
 	var/datum/gas_mixture/int_air = return_air()

@@ -59,11 +59,11 @@ we use a hook instead
 /datum/gas_mixture/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---")
-	VV_DROPDOWN_OPTION(VV_HK_PARSE_GASSTRING, "Parse Gas String")
-	VV_DROPDOWN_OPTION(VV_HK_EMPTY, "Empty")
-	VV_DROPDOWN_OPTION(VV_HK_SET_MOLES, "Set Moles")
-	VV_DROPDOWN_OPTION(VV_HK_SET_TEMPERATURE, "Set Temperature")
-	VV_DROPDOWN_OPTION(VV_HK_SET_VOLUME, "Set Volume")
+	VV_DROPDOWN_OPTION(VV_HK_PARSE_GASSTRING, "Parsuj ciąg gazów")
+	VV_DROPDOWN_OPTION(VV_HK_EMPTY, "Opróżnij")
+	VV_DROPDOWN_OPTION(VV_HK_SET_MOLES, "Ustaw mole")
+	VV_DROPDOWN_OPTION(VV_HK_SET_TEMPERATURE, "Ustaw temperaturę")
+	VV_DROPDOWN_OPTION(VV_HK_SET_VOLUME, "Ustaw objętość")
 
 /datum/gas_mixture/vv_do_topic(list/href_list)
 	. = ..()
@@ -74,11 +74,11 @@ we use a hook instead
 		if(!istext(gasstring))
 			return
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Set to gas string [gasstring].")
-		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Set to gas string [gasstring].")
+		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: ustawia ciąg gazów [gasstring].")
 		parse_gas_string(gasstring)
 	if(href_list[VV_HK_EMPTY])
 		log_admin("[key_name(usr)] emptied gas mixture [REF(src)].")
-		message_admins("[key_name(usr)] emptied gas mixture [REF(src)].")
+		message_admins("[key_name(usr)] opróżnia mieszaninę gazów [REF(src)].")
 		clear()
 	if(href_list[VV_HK_SET_MOLES])
 		var/list/gases = get_gases()
@@ -92,7 +92,7 @@ we use a hook instead
 			return
 		amount = max(0, amount)
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Set gas [gasid] to [amount] moles.")
-		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Set gas [gasid] to [amount] moles.")
+		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: ustawia gaz [gasid] na [amount] moli.")
 		set_moles(gasid, amount)
 	if(href_list[VV_HK_SET_TEMPERATURE])
 		var/temp = input(usr, "Na jaką temperaturę ustawić tę mieszaninę?", "Ustaw temperaturę", return_temperature()) as num|null
@@ -100,7 +100,7 @@ we use a hook instead
 			return
 		temp = max(2.7, temp)
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Changed temperature to [temp].")
-		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Changed temperature to [temp].")
+		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: zmienia temperaturę na [temp].")
 		set_temperature(temp)
 	if(href_list[VV_HK_SET_VOLUME])
 		var/volume = input(usr, "Na jaką objętość ustawić tę mieszaninę?", "Ustaw objętość", return_volume()) as num|null
@@ -108,7 +108,7 @@ we use a hook instead
 			return
 		volume = max(0, volume)
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
-		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
+		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: zmienia objętość na [volume].")
 		set_volume(volume)
 
 /proc/gas_types()

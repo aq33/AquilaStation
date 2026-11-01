@@ -40,8 +40,8 @@
 /obj/machinery/doorButtons/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_button_standby"
-	name = "access button"
-	desc = "A button used for the explicit purpose of opening an airlock."
+	name = "przycisk dostępu"
+	desc = "Przycisk służący wyłącznie do otwierania śluzy."
 	var/idDoor
 	var/obj/machinery/door/airlock/door
 	var/obj/machinery/doorButtons/airlock_controller/controller
@@ -104,8 +104,8 @@
 /obj/machinery/doorButtons/airlock_controller
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_control_standby"
-	name = "access console"
-	desc = "A small console that can cycle opening between two airlocks."
+	name = "konsola dostępu"
+	desc = "Mała konsola, która przełącza otwieranie między dwiema śluzami."
 	var/obj/machinery/door/airlock/interiorAirlock
 	var/obj/machinery/door/airlock/exteriorAirlock
 	var/idInterior

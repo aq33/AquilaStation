@@ -1,8 +1,8 @@
 #define CANDLE_LUMINOSITY	2
 /obj/item/candle
-	name = "red candle"
-	desc = "In Greek myth, Prometheus stole fire from the Gods and gave it to \
-		humankind. The jewelry he kept for himself."
+	name = "czerwona świeca"
+	desc = "W greckim micie Prometeusz wykradł bogom ogień i dał go \
+		ludzkości. Biżuterię zatrzymał dla siebie."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	item_state = "candle1"
@@ -72,7 +72,7 @@
 
 /obj/item/candle/attack_self(mob/user)
 	if(put_out_candle())
-		user.visible_message("<span class='notice'>[user] snuffs [src].</span>")
+		user.visible_message("<span class='notice'>[user] gasi [src].</span>")
 
 /obj/item/candle/infinite
 	infinite = TRUE

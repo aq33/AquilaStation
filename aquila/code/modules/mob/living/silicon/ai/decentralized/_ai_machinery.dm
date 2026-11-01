@@ -5,8 +5,8 @@
 #define AI_MACHINE_NO_NETWORK "Brak połączenia z siecią (kabel sieciowy pod maszyną)"
 
 /obj/machinery/ai
-	name = "You shouldn't see this!"
-	desc = "You shouldn't see this!"
+	name = "Nie powinieneś tego widzieć!"
+	desc = "Nie powinieneś tego widzieć!"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE

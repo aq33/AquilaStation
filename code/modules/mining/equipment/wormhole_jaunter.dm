@@ -1,7 +1,7 @@
 /**********************Jaunter**********************/
 /obj/item/wormhole_jaunter
-	name = "wormhole jaunter"
-	desc = "A single use device harnessing outdated wormhole technology, Nanotrasen has since turned its eyes to bluespace for more accurate teleportation. The wormholes it creates are unpleasant to travel through, to say the least.\nThanks to modifications provided by the Free Golems, this jaunter can be worn on the belt to provide protection from chasms."
+	name = "skoczek tunelowy"
+	desc = "Jednorazowe urządzenie korzystające z przestarzałej technologii tuneli czasoprzestrzennych. Nanotrasen przerzucił się od tego czasu na bluespace, dający dokładniejszą teleportację. Podróż przez tworzone przez nie tunele jest, delikatnie mówiąc, nieprzyjemna.\nDzięki modyfikacjom Wolnych golemów skoczek można nosić na pasku, gdzie chroni przed przepaściami."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Jaunter"
 	item_state = "electronic"
@@ -80,10 +80,10 @@
 
 //jaunter tunnel
 /obj/effect/portal/jaunt_tunnel
-	name = "jaunt tunnel"
+	name = "tunel skoku"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bhole3"
-	desc = "A stable hole in the universe made by a wormhole jaunter. Turbulent doesn't even begin to describe how rough passage through one of these is, but at least it will always get you somewhere near a beacon."
+	desc = "Stabilna dziura we wszechświecie stworzona przez skoczka tunelowego. „Burzliwa” to za mało, żeby opisać przeprawę, ale przynajmniej zawsze wyrzuci cię gdzieś w pobliżu nadajnika."
 	mech_sized = TRUE //save your ripley
 	innate_accuracy_penalty = 6
 

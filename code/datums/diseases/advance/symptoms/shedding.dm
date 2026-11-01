@@ -15,7 +15,7 @@ BONUS
 */
 
 /datum/symptom/shedding
-	name = "Alopecia"
+	name = "Łysienie"
 	desc = "Wirus powoduje szybką utratę włosów na głowie i ciele."
 	stealth = 0
 	resistance = 3
@@ -34,7 +34,7 @@ BONUS
 
 	var/mob/living/M = A.affected_mob
 	if(prob(base_message_chance))
-		to_chat(M, "<span class='warning'>[pick("Your scalp itches.", "Your skin feels flaky.")]</span>")
+		to_chat(M, "<span class='warning'>[pick("Swędzi cię skóra głowy.", "Skóra ci się łuszczy.")]</span>")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		switch(A.stage)

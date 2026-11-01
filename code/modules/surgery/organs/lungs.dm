@@ -1,7 +1,7 @@
 /obj/item/organ/lungs
 	var/failed = FALSE
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
-	name = "lungs"
+	name = "płuca"
 	icon_state = "lungs"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
@@ -363,8 +363,8 @@
 
 
 /obj/item/organ/lungs/plasmaman
-	name = "plasma filter"
-	desc = "A spongy rib-shaped mass for filtering plasma from the air."
+	name = "filtr plazmy"
+	desc = "Gąbczasta masa w kształcie żeber, która filtruje plazmę z powietrza."
 	icon_state = "lungs-plasma"
 
 	breathing_class = BREATH_PLASMA
@@ -374,12 +374,12 @@
 	gas_max -= GAS_PLASMA
 
 /obj/item/organ/lungs/oozeling
-	name = "oozeling vacuole"
-	desc = "A large organelle designed to store oxygen and filter toxins."
+	name = "wakuola oozelinga"
+	desc = "Duża organella, która magazynuje tlen i filtruje toksyny."
 
 /obj/item/organ/lungs/slime
-	name = "vacuole"
-	desc = "A large organelle designed to store oxygen and other important gasses."
+	name = "wakuola"
+	desc = "Duża organella, która magazynuje tlen i inne ważne gazy."
 
 /obj/item/organ/lungs/slime/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	. = ..()
@@ -390,8 +390,8 @@
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
 
 /obj/item/organ/lungs/cybernetic
-	name = "cybernetic lungs"
-	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
+	name = "cybernetyczne płuca"
+	desc = "Cybernetyczna wersja płuc tradycyjnych istot humanoidalnych. Pobiera więcej tlenu niż płuca organiczne i potrzebuje nieco mniejszego ciśnienia."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
@@ -407,8 +407,8 @@
 
 
 /obj/item/organ/lungs/cybernetic/upgraded
-	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features the ability to filter out lower levels of toxins and carbon dioxide."
+	name = "ulepszone cybernetyczne płuca"
+	desc = "Bardziej zaawansowana wersja standardowych cybernetycznych płuc. Odfiltrowuje niewielkie ilości toksyn i dwutlenku węgla."
 	icon_state = "lungs-c-u"
 	safe_breath_min = 4
 	safe_breath_max = 250
@@ -424,8 +424,8 @@
 	cold_level_3_threshold = 100
 
 /obj/item/organ/lungs/apid
-	name = "apid lungs"
-	desc = "Lungs from an apid, or beeperson. Thanks to the many spiracles an apid has, these lungs are capable of gathering more oxygen from low-pressure environments."
+	name = "płuca apida"
+	desc = "Płuca apida, czyli pszczoloczłowieka. Dzięki licznym przetchlinkom apida te płuca pobierają więcej tlenu w środowisku o niskim ciśnieniu."
 	icon_state = "lungs"
 	safe_breath_min = 8
 

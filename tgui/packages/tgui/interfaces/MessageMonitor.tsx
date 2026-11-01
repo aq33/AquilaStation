@@ -30,6 +30,15 @@ type Data = {
   server_on: any;
 };
 
+// Priorytet przychodzi z DM jako klucz ("Normal" jest porównywany niżej),
+// więc tłumaczymy go tylko przy wyświetlaniu.
+const PRIORITY_PL: Record<string, string> = {
+  Normal: 'Normalny',
+  High: 'Wysoki',
+  Extreme: 'Najwyższy',
+  Undetermined: 'Nieokreślony',
+};
+
 const processedText = (value) => {
   return {
     __html: sanitizeText(value),
@@ -278,7 +287,8 @@ Proszę czekać...`}
                     bold={request.priority !== 'Normal'}
                     color={request.priority !== 'Normal' ? 'bad' : null}
                   >
-                    Priorytet: {request.priority}
+                    Priorytet:{' '}
+                    {PRIORITY_PL[request.priority] ?? request.priority}
                   </Box>
                   <br />
                   {request.stamp && request.stamp !== 'Unstamped' ? (
@@ -290,7 +300,7 @@ Proszę czekać...`}
                       <br />
                     </>
                   ) : null}
-                  {request.id_auth && request.id_auth !== 'Unauthenticated' ? (
+                  {request.id_auth && request.id_auth !== 'Niezweryfikowana' ? (
                     <>
                       <Box
                         inline

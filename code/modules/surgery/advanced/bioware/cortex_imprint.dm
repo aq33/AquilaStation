@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/cortex_imprint
-	name = "Cortex Imprint"
-	desc = "A surgical procedure which modifies the cerebral cortex into a redundant neural pattern, making the brain able to bypass impediments caused by minor brain traumas."
+	name = "Odcisk kory mózgowej"
+	desc = "Zabieg chirurgiczny, który przekształca korę mózgową w nadmiarowy wzorzec neuronowy, dzięki czemu mózg może omijać upośledzenia wywołane drobnymi urazami mózgu."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -21,7 +21,7 @@
 	return ..()
 
 /datum/surgery_step/imprint_cortex
-	name = "imprint cortex (hand)"
+	name = "odciśnij korę (ręcznie)"
 	accept_hand = TRUE
 	time = 125
 
@@ -61,8 +61,8 @@
 	return FALSE
 
 /datum/bioware/cortex_imprint
-	name = "Cortex Imprint"
-	desc = "The cerebral cortex has been reshaped into a redundant neural pattern, making the brain able to bypass impediments caused by minor brain traumas."
+	name = "Odciśnięta kora"
+	desc = "Korę mózgową przekształcono w nadmiarowy wzorzec neuronowy, dzięki czemu mózg może omijać upośledzenia wywołane drobnymi urazami mózgu."
 	mod_type = BIOWARE_CORTEX
 	can_process = TRUE
 

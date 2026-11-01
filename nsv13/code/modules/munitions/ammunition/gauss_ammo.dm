@@ -1,6 +1,6 @@
 /obj/item/ship_weapon/ammunition/gauss //Medium sized slugs to be loaded into a gauss gun.
-	name = "\improper M4 NTRS 300mm teflon coated tungsten round"
-	desc = "A large slug designed to be magnetically accelerated via a gauss gun. These rounds are lighter than those fired out of railguns, but are still extremely heavy duty."
+	name = "\improper wolframowy pocisk M4 NTRS 300 mm z powłoką teflonową"
+	desc = "Duży pocisk przeznaczony do magnetycznego przyspieszania w dziale Gaussa. Jest lżejszy od pocisków szynowych, ale wciąż wyjątkowo masywny."
 	icon_state = "gauss"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -9,7 +9,7 @@
 	projectile_type = /obj/item/projectile/bullet/gauss_slug
 
 /obj/item/circuitboard/machine/gauss_dispenser
-	name = "\improper Gauss ammunition dispenser (Machine Board)"
+	name = "\improper dozownik amunicji do działa Gaussa (płytka maszyny)"
 	build_path = /obj/machinery/gauss_dispenser
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 1,
@@ -27,8 +27,8 @@
 	return ..()
 
 /obj/machinery/gauss_dispenser
-	name = "\improper Gauss ammunition dispenser"
-	desc = "A machine which can delve deep into the ship's ammunition stores and dispense whatever it finds."
+	name = "\improper dozownik amunicji do działa Gaussa"
+	desc = "Maszyna, która sięga głęboko do magazynów amunicji okrętu i wydaje wszystko, co znajdzie."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "gauss_dispenser"
 	req_one_access = ACCESS_MUNITIONS

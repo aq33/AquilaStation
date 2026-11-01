@@ -1,5 +1,5 @@
 /datum/station_trait/announcement_intern
-	name = "Announcement Intern"
+	name = "Stażysta od ogłoszeń"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
@@ -13,7 +13,7 @@
 	SSstation.announcer = /datum/centcom_announcer/intern
 
 /datum/station_trait/carp_infestation
-	name = "Carp infestation"
+	name = "Plaga karpi"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -21,7 +21,7 @@
 	trait_to_give = STATION_TRAIT_CARP_INFESTATION
 
 /datum/station_trait/distant_supply_lines
-	name = "Distant supply lines"
+	name = "Odległe linie zaopatrzenia"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
@@ -30,7 +30,7 @@
 	trait_to_give = STATION_TRAIT_DISTANT_SUPPLY_LINES
 
 /datum/station_trait/late_arrivals
-	name = "Late Arrivals"
+	name = "Spóźnieni przybysze"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -41,7 +41,7 @@
 								"Nasze obliczenia trochę się nie zgadzały. Prom będzie za kilka sekund.")
 
 /datum/station_trait/random_spawns
-	name = "Drive-by landing"
+	name = "Lądowanie w przelocie"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -52,7 +52,7 @@
 								"Minęliśmy waszą stację, przepraszamy. Wkrótce zostaniecie na nią wystrzeleni.")
 
 /datum/station_trait/hangover
-	name = "Hangover"
+	name = "Kac"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
@@ -98,7 +98,7 @@
 		spawned_mob.equip_to_slot(hat, ITEM_SLOT_HEAD)
 
 /datum/station_trait/blackout
-	name = "Blackout"
+	name = "Zaciemnienie"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -112,7 +112,7 @@
 			current_apc.overload_lighting()
 
 /datum/station_trait/empty_maint
-	name = "Cleaned out maintenance"
+	name = "Wymiecione tunele techniczne"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -122,7 +122,7 @@
 
 
 /datum/station_trait/overflow_job_bureacracy
-	name = "Overflow bureacracy mistake"
+	name = "Biurokratyczny błąd przepełnienia"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -143,7 +143,7 @@
 	SSjob.set_overflow_role(chosen_job)
 
 /datum/station_trait/slow_shuttle
-	name = "Slow Shuttle"
+	name = "Powolny prom"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -155,7 +155,7 @@
 	SSshuttle.supply.callTime *= 1.5
 
 /datum/station_trait/bot_languages
-	name = "Bot Language Matrix Malfunction"
+	name = "Awaria matrycy językowej botów"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE

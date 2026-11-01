@@ -158,7 +158,7 @@
 // Ekstrakcja: wysysa życie wroga albo oddaje je sojusznikowi
 
 /obj/effect/ebeam/darkspawn
-	name = "void beam"
+	name = "promień pustki"
 
 /datum/action/cooldown/spell/pointed/extract
 	name = "Ekstrakcja"
@@ -573,7 +573,7 @@
 // Pustka: efekt promienia i wybuchu
 
 /obj/effect/temp_visual/darkspawn
-	name = "echoing void"
+	name = "echo pustki"
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_effects.dmi'
 	icon_state = "blank_dspawn"
 	anchored = TRUE

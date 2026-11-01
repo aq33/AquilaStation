@@ -1,6 +1,6 @@
 /obj/machinery/cell_charger_multi
-	name = "multi-cell charging rack"
-	desc = "A cell charging rack for multiple batteries."
+	name = "stojak do ładowania wielu ogniw"
+	desc = "Stojak do ładowania kilku ogniw naraz."
 	icon = 'nsv13/icons/obj/machinery/cellcharger.dmi'
 	icon_state = "cchargermulti"
 	use_power = IDLE_POWER_USE
@@ -140,7 +140,7 @@
 		var/list/buttons = list()
 		for(var/obj/item/stock_parts/cell/battery in charging_batteries)
 			buttons["[battery] [battery.percent()]%"] = battery
-		var/cell_name = tgui_input_list(user, "Please choose what cell you'd like to remove.", "Remove a cell", buttons)
+		var/cell_name = tgui_input_list(user, "Wybierz ogniwo, które chcesz wyjąć.", "Wyjmij ogniwo", buttons)
 		charging = buttons[cell_name]
 	else
 		charging = charging_batteries[1]
@@ -159,15 +159,15 @@
 	return ..()
 
 /obj/item/circuitboard/machine/cell_charger_multi
-	name = "Multi-Cell Charger (Machine Board)"
+	name = "ładowarka wielu ogniw (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/cell_charger_multi
 	req_components = list(/obj/item/stock_parts/capacitor = 4)
 	needs_anchored = FALSE
 
 /datum/design/board/cell_charger_multi
-	name = "Machine Design (Multi-Cell Charger Board)"
-	desc = "The circuit board for a multi-cell charger."
+	name = "Projekt maszyny (ładowarka wielu ogniw)"
+	desc = "Płytka drukowana ładowarki wielu ogniw."
 	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi
 	category = list ("Misc. Machinery")

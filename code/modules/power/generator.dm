@@ -1,6 +1,6 @@
 /obj/machinery/power/generator
-	name = "thermoelectric generator"
-	desc = "It's a high efficiency thermoelectric generator."
+	name = "generator termoelektryczny"
+	desc = "Wysokosprawny generator termoelektryczny."
 	icon_state = "teg"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -187,7 +187,7 @@
 	if(!anchored)
 		kill_circs()
 	connect_to_network()
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	to_chat(user, "<span class='notice'>[anchored?"Mocujesz":"Odmocowujesz"] [src].</span>")
 	return TRUE
 
 /obj/machinery/power/generator/multitool_act(mob/living/user, obj/item/I)

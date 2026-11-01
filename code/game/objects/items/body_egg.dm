@@ -1,6 +1,6 @@
 /obj/item/organ/body_egg
-	name = "body egg"
-	desc = "All slimy and yuck."
+	name = "jajo w ciele"
+	desc = "Całe oślizgłe i obrzydliwe."
 	icon_state = "innards"
 	zone = BODY_ZONE_CHEST
 	slot = "parasite_egg"

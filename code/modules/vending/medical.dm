@@ -1,6 +1,6 @@
 /obj/machinery/vending/medical
 	name = "\improper NanoMed Plus"
-	desc = "Medical drug dispenser."
+	desc = "Automat z lekami."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	light_color = LIGHT_COLOR_WHITE

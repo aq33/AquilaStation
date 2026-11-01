@@ -1,7 +1,7 @@
 /client/proc/cmd_mass_modify_object_variables(atom/A, var_name)
 	set category = "Debug"
 	set name = "Mass Edit Variables"
-	set desc="(target) Edit all instances of a target item's variables"
+	set desc="(cel) Edytuj zmienne wszystkich instancji przedmiotu docelowego"
 
 	var/method = 0	//0 means strict type detection while 1 means this type and all subtypes (IE: /obj/item with this set to 1 will set it to ALL items)
 
@@ -28,7 +28,7 @@
 
 		names = sortList(names)
 
-		variable = input("Which var?", "Var") as null|anything in names
+		variable = input("Która zmienna?", "Zmienna") as null|anything in names
 	else
 		variable = var_name
 
@@ -38,7 +38,7 @@
 	var/var_value = O.vars[variable]
 
 	if(variable in GLOB.VVckey_edit)
-		to_chat(src, "It's forbidden to mass-modify ckeys. It'll crash everyone's client you dummy.")
+		to_chat(src, "Masowa zmiana ckeyów jest zabroniona. Wywali to klienta każdemu, głuptasie.")
 		return
 	if(variable in GLOB.VVlocked)
 		if(!check_rights(R_DEBUG))
@@ -49,18 +49,18 @@
 	if(variable in GLOB.VVpixelmovement)
 		if(!check_rights(R_DEBUG))
 			return
-		var/prompt = alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
-		if (prompt != "Continue")
+		var/prompt = alert(src, "Edycja tej zmiennej może nieodwracalnie zepsuć płynny ruch po polach do końca rundy. TEGO NIE DA SIĘ COFNĄĆ", "NIEBEZPIECZEŃSTWO", "PRZERWIJ ", "Kontynuuj", " PRZERWIJ")
+		if (prompt != "Kontynuuj")
 			return
 
 	default = vv_get_class(variable, var_value)
 
 	if(isnull(default))
-		to_chat(src, "Unable to determine variable type.")
+		to_chat(src, "Nie udało się ustalić typu zmiennej.")
 	else
-		to_chat(src, "Variable appears to be <b>[uppertext(default)]</b>.")
+		to_chat(src, "Zmienna wygląda na typ <b>[uppertext(default)]</b>.")
 
-	to_chat(src, "Variable contains: [var_value]")
+	to_chat(src, "Zawartość zmiennej: [var_value]")
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -75,7 +75,7 @@
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(src, "If a direction, direction is: [dir_text]")
+			to_chat(src, "Jeśli to kierunek, to: [dir_text]")
 
 	var/value = vv_get_value(default_class = default)
 	var/new_value = value["value"]
@@ -97,9 +97,9 @@
 
 	switch(class)
 		if(VV_RESTORE_DEFAULT)
-			to_chat(src, "Finding items...")
+			to_chat(src, "Szukam przedmiotów...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Zmieniam przedmioty ([items.len])...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -115,17 +115,17 @@
 			var/pre_processing = new_value
 			var/unique
 			if (varsvars && varsvars.len)
-				unique = alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", "Unique", "Same")
-				if(unique == "Unique")
+				unique = alert(usr, "Przetworzyć zmienne osobno dla każdej instancji czy tak samo dla wszystkich?", "Powiązanie zmiennych", "Osobno", "Tak samo")
+				if(unique == "Osobno")
 					unique = TRUE
 				else
 					unique = FALSE
 					for(var/V in varsvars)
 						new_value = replacetext(new_value,"\[[V]]","[O.vars[V]]")
 
-			to_chat(src, "Finding items...")
+			to_chat(src, "Szukam przedmiotów...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Zmieniam przedmioty ([items.len])...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -142,18 +142,18 @@
 				CHECK_TICK
 
 		if (VV_NEW_TYPE)
-			var/many = alert(src, "Create only one [value["type"]] and assign each or a new one for each thing", "How Many", "One", "Many", "Cancel")
-			if (many == "Cancel" || !many)
+			var/many = alert(src, "Stworzyć tylko jeden [value["type"]] i przypisać go wszystkim, czy nowy dla każdej rzeczy?", "Ile", "Jeden", "Wiele", "Anuluj")
+			if (many == "Anuluj" || !many)
 				return
-			if (many == "Many")
+			if (many == "Wiele")
 				many = TRUE
 			else
 				many = FALSE
 
 			var/type = value["type"]
-			to_chat(src, "Finding items...")
+			to_chat(src, "Szukam przedmiotów...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Zmieniam przedmioty ([items.len])...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -169,9 +169,9 @@
 				CHECK_TICK
 
 		else
-			to_chat(src, "Finding items...")
+			to_chat(src, "Szukam przedmiotów...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Zmieniam przedmioty ([items.len])...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -185,17 +185,17 @@
 
 	var/count = rejected+accepted
 	if (!count)
-		to_chat(src, "No objects found")
+		to_chat(src, "Nie znaleziono obiektów")
 		return
 	if (!accepted)
-		to_chat(src, "Every object rejected your edit")
+		to_chat(src, "Każdy obiekt odrzucił twoją zmianę")
 		return
 	if (rejected)
-		to_chat(src, "[rejected] out of [count] objects rejected your edit")
+		to_chat(src, "Twoją zmianę odrzuciło [rejected] z [count] obiektów")
 
 	log_world("### MassVarEdit by [src]: [O.type] (A/R [accepted]/[rejected]) [variable]=[html_encode("[O.vars[variable]]")]([list2params(value)])")
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
-	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
+	message_admins("[key_name_admin(src)] masowo zmienia [variable] w [original_name] na [O.vars[variable]] (zmienione obiekty: [accepted])")
 
 //not using global lists as vv is a debug function and debug functions should rely on as less things as possible.
 /proc/get_all_of_type(var/T, subtypes = TRUE)

@@ -3,7 +3,7 @@
 
 /client/proc/one_click_antag()
 	set name = "Create Antagonist"
-	set desc = "Auto-create an antagonist of your choice"
+	set desc = "Automatycznie tworzy wybranego antagonistę"
 	set category = "Round"
 
 	if(holder)
@@ -14,20 +14,20 @@
 /datum/admins/proc/one_click_antag()
 
 	var/dat = {"
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Stwórz zdrajców</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Stwórz zmiennokształtnych</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revs'>Stwórz rewolucjonistów</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=cult'>Stwórz kult</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=blob'>Stwórz grzyba</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Stwórz czarodzieja (wymaga duchów)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Stwórz drużynę nuklearną (wymaga duchów)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Stwórz zespół reagowania Centrali (wymaga duchów)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Stwórz drużynę porywaczy (wymaga duchów)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Stwórz upiora (wymaga ducha)</a><br>
 		"}
 	dat += aquila_one_click_antag_links() // AQ EDIT - Aquila antagonist buttons, see aquila/code/modules/admin/verbs/one_click_antag.dm
 
-	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
+	var/datum/browser/popup = new(usr, "oneclickantag", "Szybkie tworzenie antagonisty", 400, 400)
 	popup.set_content(dat)
 	popup.open()
 
@@ -143,7 +143,7 @@
 
 /datum/admins/proc/makeWizard()
 
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for the position of a Wizard Federation 'diplomat'?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, ignore_category = POLL_IGNORE_WIZARD_HELPER)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę na stanowisko „dyplomaty” Federacji Czarodziejów?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, ignore_category = POLL_IGNORE_WIZARD_HELPER)
 
 	var/mob/dead/observer/selected = pick_n_take(candidates)
 
@@ -186,7 +186,7 @@
 
 
 /datum/admins/proc/makeNukeTeam(maxCount = 5)
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for a nuke team being sent in?", ROLE_OPERATIVE, /datum/role_preference/midround_ghost/nuclear_operative)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę do wysyłanej drużyny nuklearnej?", ROLE_OPERATIVE, /datum/role_preference/midround_ghost/nuclear_operative)
 	var/list/mob/dead/observer/chosen = list()
 	var/mob/dead/observer/theghost = null
 
@@ -323,21 +323,21 @@
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
-		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
-		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
-		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
-		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
-		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"template" = list("desc" = "Szablon", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"teamsize" = list("desc" = "Liczebność drużyny", "type" = "number", "value" = ertemplate.teamsize),
+		"mission" = list("desc" = "Misja", "type" = "string", "value" = ertemplate.mission),
+		"polldesc" = list("desc" = "Opis ankiety dla duchów", "type" = "string", "value" = ertemplate.polldesc),
+		"enforce_human" = list("desc" = "Wymuś ludzkie dowództwo", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
+		"open_armory" = list("desc" = "Otwórz drzwi zbrojowni", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		//AQUILA EDIT START - port BeeStation/BeeStation-Hornet#11415
-		"leader_experience" = list("desc" = "Pick an experienced leader", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
-		"random_names" = list("desc" = "Randomize names", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
-		"spawn_admin" = list("desc" = "Spawn yourself as briefing officer", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
+		"leader_experience" = list("desc" = "Wybierz doświadczonego dowódcę", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
+		"random_names" = list("desc" = "Losowe imiona", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
+		"spawn_admin" = list("desc" = "Pojaw się jako oficer odprawy", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
 		//AQUILA EDIT END
 		)
 	)
 
-	var/list/prefreturn = presentpreflikepicker(usr,"Customize ERT", "Customize ERT", Button1="Ok", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
+	var/list/prefreturn = presentpreflikepicker(usr,"Dostosuj ERT", "Dostosuj ERT", Button1="OK", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
 
 	if (isnull(prefreturn))
 		return FALSE
@@ -445,7 +445,7 @@
 			teamSpawned++
 
 		if (teamSpawned)
-			message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
+			message_admins("Pojawia się: [ertemplate.polldesc], z misją: [ertemplate.mission]")
 
 		//Open the Armory doors
 		if(ertemplate.opendoors)

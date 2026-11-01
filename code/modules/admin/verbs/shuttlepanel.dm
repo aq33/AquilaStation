@@ -1,7 +1,7 @@
 /datum/admins/proc/open_shuttlepanel()
 	set category = "Round"
 	set name = "Shuttle Manipulator"
-	set desc = "Opens the shuttle manipulator UI."
+	set desc = "Otwiera interfejs manipulatora promów."
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -20,27 +20,27 @@
 			options[S.name || S.id] = S
 
 	options += "--------"
-	options += "Infinite Transit"
-	options += "Delete Shuttle"
-	options += "Into The Sunset (delete & greentext 'escape')"
+	options += "Nieskończony tranzyt"
+	options += "Usuń prom"
+	options += "W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')"
 
-	var/selection = input(user, "Select where to fly [name || id]:", "Fly Shuttle") as null|anything in options
+	var/selection = input(user, "Wybierz, dokąd ma lecieć [name || id]:", "Lot promu") as null|anything in options
 	if(!selection)
 		return
 
 	switch(selection)
-		if("Infinite Transit")
+		if("Nieskończony tranzyt")
 			destination = null
 			mode = SHUTTLE_IGNITING
 			setTimer(ignitionTime)
 
-		if("Delete Shuttle")
-			if(alert(user, "Really delete [name || id]?", "Delete Shuttle", "Cancel", "Really!") != "Really!")
+		if("Usuń prom")
+			if(alert(user, "Na pewno usunąć [name || id]?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
 				return
 			jumpToNullSpace()
 
-		if("Into The Sunset (delete & greentext 'escape')")
-			if(alert(user, "Really delete [name || id] and greentext escape objectives?", "Delete Shuttle", "Cancel", "Really!") != "Really!")
+		if("W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')")
+			if(alert(user, "Na pewno usunąć [name || id] i zaliczyć cele ucieczki?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
 				return
 			intoTheSunset()
 
@@ -57,10 +57,10 @@
 	return  // use the existing verbs for this
 
 /obj/docking_port/mobile/arrivals/admin_fly_shuttle(mob/user)
-	switch(alert(user, "Would you like to fly the arrivals shuttle once or change its destination?", "Fly Shuttle", "Fly", "Retarget", "Cancel"))
-		if("Cancel")
+	switch(alert(user, "Chcesz raz polecieć promem przylotów czy zmienić jego cel?", "Lot promu", "Leć", "Zmień cel", "Anuluj"))
+		if("Anuluj")
 			return
-		if("Fly")
+		if("Leć")
 			return ..()
 
 	var/list/options = list()
@@ -72,7 +72,7 @@
 		if (canDock(S) == SHUTTLE_CAN_DOCK)
 			options[S.name || S.id] = S
 
-	var/selection = input(user, "Select the new arrivals destination:", "Fly Shuttle") as null|anything in options
+	var/selection = input(user, "Wybierz nowy cel promu przylotów:", "Lot promu") as null|anything in options
 	if(!selection)
 		return
 	target_dock = options[selection]

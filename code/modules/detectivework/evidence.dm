@@ -1,8 +1,8 @@
 //CONTAINS: Evidence bags
 
 /obj/item/evidencebag
-	name = "evidence bag"
-	desc = "An empty evidence bag."
+	name = "torebka na dowody"
+	desc = "Pusta torebka na dowody."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
@@ -59,7 +59,7 @@
 	add_overlay(in_evidence)
 	add_overlay("evidence")	//should look nicer for transparent stuff. not really that important, but hey.
 
-	desc = "An evidence bag containing [I]. [I.desc]"
+	desc = "Torebka na dowody, w środku: [I]. [I.desc]"
 	I.forceMove(src)
 	w_class = I.w_class
 	return 1
@@ -73,7 +73,7 @@
 		user.put_in_hands(I)
 		w_class = WEIGHT_CLASS_TINY
 		icon_state = "evidenceobj"
-		desc = "An empty evidence bag."
+		desc = "Pusta torebka na dowody."
 
 	else
 		to_chat(user, "[src] jest pusta.")
@@ -81,8 +81,8 @@
 	return
 
 /obj/item/storage/box/evidence
-	name = "evidence bag box"
-	desc = "A box claiming to contain evidence bags."
+	name = "pudełko z torebkami na dowody"
+	desc = "Pudełko, które podobno zawiera torebki na dowody."
 
 /obj/item/storage/box/evidence/PopulateContents()
 	for(var/i in 1 to 6)

@@ -84,7 +84,7 @@
 /obj/item/circuit_component/Initialize(mapload)
 	. = ..()
 	if(name == COMPONENT_DEFAULT_NAME)
-		name = "[lowertext(display_name)] [COMPONENT_DEFAULT_NAME]"
+		name = "komponent: [lowertext(display_name)]"
 	populate_options()
 	populate_ports()
 	if((circuit_flags & CIRCUIT_FLAG_INPUT_SIGNAL) && !trigger_input)
@@ -284,7 +284,7 @@
 
 	if(!parent.admin_only)
 		if(circuit_flags & CIRCUIT_FLAG_ADMIN)
-			message_admins("[display_name] tried to execute on [parent.get_creator_admin()] that has admin_only set to 0")
+			message_admins("[display_name] próbuje się wykonać w układzie [parent.get_creator_admin()], który ma admin_only ustawione na 0")
 			return FALSE
 
 		var/flags = SEND_SIGNAL(parent, COMSIG_CIRCUIT_PRE_POWER_USAGE, energy_usage_per_input)

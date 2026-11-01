@@ -1,7 +1,7 @@
 
 /datum/design/implant_security_down
-	name = "Security Officer Down Implant Case"
-	desc = "A glass case containing an implant."
+	name = "Etui na implant „funkcjonariusz ranny”"
+	desc = "Szklane etui z implantem."
 	id = "implant_security_down"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -10,7 +10,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY  // available only in the seclathe to stop medbay jokers from implanting non-secs
 
 /datum/design/bluebutt
-	name = "Butt of Holding"
+	name = "Tyłek przechowywania"
 	desc = "Syntetyczny pośladek z kieszenią bluespace. Pozwala też wypróżnić się na zawołanie prosto w bluespace."
 	id = "bluebutt"
 	build_type = PROTOLATHE

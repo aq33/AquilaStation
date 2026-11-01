@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/summonitem
-	name = "Instant Summons"
-	desc = "This spell can be used to recall a previously marked item to your hand from anywhere in the universe."
+	name = "Natychmiastowe przywołanie"
+	desc = "To zaklęcie przywołuje do twojej ręki wcześniej oznaczony przedmiot z dowolnego miejsca we wszechświecie."
 	school = "transmutation"
 	charge_max = 100
 	clothes_req = FALSE
@@ -32,7 +32,7 @@
 					message += "Choć wydaje się to zbędne, "
 				marked_item = 		item
 				message += "oznaczasz [item] do przywołania.</span>"
-				name = "Recall [item]"
+				name = "Przywołaj: [item]"
 				break
 
 			if(!marked_item)
@@ -43,12 +43,12 @@
 
 		else if(marked_item && (marked_item in hand_items) && allow_change) //unlinking item to the spell
 			message = "<span class='notice'>Usuwasz znak z [marked_item], by użyć go gdzie indziej.</span>"
-			name = "Instant Summons"
+			name = "Natychmiastowe przywołanie"
 			marked_item = 		null
 
 		else if(marked_item && QDELETED(marked_item)) //the item was destroyed at some point
 			message = "<span class='warning'>Wyczuwasz, że twój oznaczony przedmiot został zniszczony!</span>"
-			name = "Instant Summons"
+			name = "Natychmiastowe przywołanie"
 			marked_item = 		null
 			if(!allow_change)
 				qdel(src)

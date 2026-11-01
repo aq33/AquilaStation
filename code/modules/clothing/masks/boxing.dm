@@ -1,5 +1,5 @@
 /obj/item/clothing/mask/balaclava
-	name = "balaclava"
+	name = "kominiarka"
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
 	item_state = "balaclava"
@@ -12,8 +12,8 @@
 	adjustmask(user)
 
 /obj/item/clothing/mask/luchador
-	name = "Luchador Mask"
-	desc = "Worn by robust fighters, flying high to defeat their foes!"
+	name = "maska luchadora"
+	desc = "Noszą ją twardzi zawodnicy, którzy wzbijają się wysoko, by pokonać przeciwników!"
 	icon_state = "luchag"
 	item_state = "luchag"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -45,20 +45,20 @@
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/clothing/mask/luchador/tecnicos
-	name = "Tecnicos Mask"
-	desc = "Worn by robust fighters who uphold justice and fight honorably."
+	name = "maska técnico"
+	desc = "Noszą ją twardzi zawodnicy, którzy stoją na straży sprawiedliwości i walczą honorowo."
 	icon_state = "luchador"
 	item_state = "luchador"
 
 /obj/item/clothing/mask/luchador/rudos
-	name = "Rudos Mask"
-	desc = "Worn by robust fighters who are willing to do anything to win."
+	name = "maska rudo"
+	desc = "Noszą ją twardzi zawodnicy, którzy zrobią wszystko, żeby wygrać."
 	icon_state = "luchar"
 	item_state = "luchar"
 
 /obj/item/clothing/mask/russian_balaclava
-	name = "russian balaclava"
-	desc = "Protects your face from snow."
+	name = "rosyjska kominiarka"
+	desc = "Chroni twarz przed śniegiem."
 	icon_state = "rus_balaclava"
 	item_state = "rus_balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

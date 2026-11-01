@@ -1,5 +1,5 @@
 /mob/living/simple_animal
-	name = "animal"
+	name = "zwierzę"
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
@@ -663,13 +663,13 @@
 			COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 			return
 		if(!(prey.stat))
-			manual_emote("chomps [prey]!")
+			manual_emote("pożera [prey]!")
 			prey.death()
 			prey = null
 			COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 			return
 	else // We're hunting an object, and should delete it instead of killing it. Mostly useful for decal bugs like ants or spider webs.
-		manual_emote("chomps [hunted]!")
+		manual_emote("pożera [hunted]!")
 		qdel(hunted)
 		hunted = null
 		COOLDOWN_START(src, emote_cooldown, 1 MINUTES)

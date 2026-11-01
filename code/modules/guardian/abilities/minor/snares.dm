@@ -1,6 +1,6 @@
 /datum/guardian_ability/minor/snare
-	name = "Surveillance Snares"
-	desc = "The guardian can lay a surveillance snare, which alerts the guardian and the user to anyone who crosses it."
+	name = "Sidła obserwacyjne"
+	desc = "Strażnik może rozstawić sidła obserwacyjne, które ostrzegają jego i użytkownika przed każdym, kto je przekroczy."
 	ui_icon = "exclamation-triangle"
 	cost = 1
 
@@ -15,7 +15,7 @@
 /mob/living/simple_animal/hostile/guardian/proc/Snare()
 	set name = "Set Surveillance Snare"
 	set category = "Guardian"
-	set desc = "Set an invisible snare that will alert you when living creatures walk over it. Max of 5"
+	set desc = "Rozstaw niewidzialne sidła, które ostrzegą cię, gdy przejdzie przez nie żywa istota. Maksymalnie 5."
 	if(!can_use_abilities)
 		to_chat(src, "<span class='danger'><B>Nie możesz tego teraz zrobić!</span></B>")
 		return
@@ -23,7 +23,7 @@
 		var/turf/snare_loc = get_turf(src.loc)
 		var/obj/effect/snare/S = new /obj/effect/snare(snare_loc)
 		S.spawner = src
-		S.name = "[get_area(snare_loc)] snare ([rand(1, 1000)])"
+		S.name = "sidła: [get_area(snare_loc)] ([rand(1, 1000)])"
 		snares |= S
 		to_chat(src, "<span class='danger'><B>Rozstawiono sidła obserwacyjne!</span></B>")
 	else
@@ -32,7 +32,7 @@
 /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare()
 	set name = "Remove Surveillance Snare"
 	set category = "Guardian"
-	set desc = "Disarm unwanted surveillance snares."
+	set desc = "Rozbrój niepotrzebne sidła obserwacyjne."
 	var/picked_snare = input(src, "Wybierz sidła do usunięcia", "Usuń sidła") as null|anything in src.snares
 	if(picked_snare)
 		snares -= picked_snare
@@ -42,8 +42,8 @@
 // the snare
 
 /obj/effect/snare
-	name = "snare"
-	desc = "You shouldn't be seeing this!"
+	name = "sidła"
+	desc = "Nie powinieneś tego widzieć!"
 	var/mob/living/simple_animal/hostile/guardian/spawner
 	invisibility = INVISIBILITY_ABSTRACT
 

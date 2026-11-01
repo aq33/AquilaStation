@@ -1,5 +1,5 @@
 /obj/item/banhammer
-	desc = "A banhammer."
+	desc = "Banhammer."
 	name = "banhammer"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "toyhammer"
@@ -33,7 +33,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/sord
 	name = "\improper SORD"
-	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
+	desc = "Ta rzecz jest tak niewypowiedzianie gówniana, że ledwo dajesz radę ją trzymać."
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -51,7 +51,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	"<span class='suicide'>Próbujesz nadziać się na [src], ale to BEZUŻYTECZNE...</span>")
 	return SHAME
 
-/obj/item/sord/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/sord/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	if(isitem(hitby))
 		var/obj/item/I = hitby
 		owner.attackby(src)
@@ -61,7 +61,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/claymore
 	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
+	desc = "Co tak stoisz i się gapisz? Bierz się do zabijania!"
 	icon_state = "claymore"
 	item_state = "claymore"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -93,7 +93,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return(BRUTELOSS)
 
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
-	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
+	desc = "<b><i>MOŻE BYĆ TYLKO JEDEN I BĘDZIESZ NIM TY!!!</i></b>\nUżyj go w ręce, żeby wskazał najbliższą ofiarę."
 	flags_1 = CONDUCT_1
 	item_flags = DROPDEL
 	slot_flags = null
@@ -173,44 +173,44 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		if(1)
 			to_chat(user, "<span class='notice'>Twoje pierwsze zabójstwo - oby jedno z wielu. Wycinasz nacięcie na ostrzu [src].</span>")
 			to_chat(user, "<span class='warning'>Czujesz, jak dusza pokonanego wroga wnika w twoje ostrze, lecząc twoje rany!</span>")
-			new_name = "notched claymore"
+			new_name = "claymore z nacięciem"
 		if(2)
 			to_chat(user, "<span class='notice'>Kolejny pada przed tobą. Kolejna dusza łączy się z twoją. Kolejne nacięcie na ostrzu.</span>")
-			new_name = "double-notched claymore"
+			new_name = "claymore z dwoma nacięciami"
 			add_atom_colour(rgb(255, 235, 235), ADMIN_COLOUR_PRIORITY)
 		if(3)
 			to_chat(user, "<span class='notice'>Zaczynasz</span> <span class='danger'><b>rozkoszować się</b> <b>dreszczem</b> <b>bitwy.</b></span>")
-			new_name = "triple-notched claymore"
+			new_name = "claymore z trzema nacięciami"
 			add_atom_colour(rgb(255, 215, 215), ADMIN_COLOUR_PRIORITY)
 		if(4)
 			to_chat(user, "<span class='notice'>Straciłeś rachubę</span> <span class='boldannounce'>tego, ilu zabiłeś.</span>")
-			new_name = "many-notched claymore"
+			new_name = "claymore z wieloma nacięciami"
 			add_atom_colour(rgb(255, 195, 195), ADMIN_COLOUR_PRIORITY)
 		if(5)
 			to_chat(user, "<span class='boldannounce'>W twoim umyśle rozbrzmiewa już pięć głosów, wiwatujących na cześć rzezi.</span>")
-			new_name = "battle-tested claymore"
+			new_name = "sprawdzony w boju claymore"
 			add_atom_colour(rgb(255, 175, 175), ADMIN_COLOUR_PRIORITY)
 		if(6)
 			to_chat(user, "<span class='boldannounce'>Czy tak czuli się wikingowie? Gdy zabijasz szóstego wroga, twoją głowę wypełniają wizje chwały.</span>")
-			new_name = "battle-scarred claymore"
+			new_name = "poznaczony bliznami bitew claymore"
 			add_atom_colour(rgb(255, 155, 155), ADMIN_COLOUR_PRIORITY)
 		if(7)
 			to_chat(user, "<span class='boldannounce'>Zabijaj. Rzeź. <i>Podbijaj.</i></span>")
-			new_name = "vicious claymore"
+			new_name = "okrutny claymore"
 			add_atom_colour(rgb(255, 135, 135), ADMIN_COLOUR_PRIORITY)
 		if(8)
 			to_chat(user, "<span class='userdanger'>TO SIĘ NIGDY NIE NUDZI. <i>WRZASKI</i>. <i>KREW</i>, KTÓRA <i>TRYSKA</i> CI NA <i>TWARZ.</i></span>")
-			new_name = "bloodthirsty claymore"
+			new_name = "krwiożerczy claymore"
 			add_atom_colour(rgb(255, 115, 115), ADMIN_COLOUR_PRIORITY)
 		if(9)
 			to_chat(user, "<span class='userdanger'>KOLEJNY PADA OD TWOICH CIOSÓW. KOLEJNY SŁABEUSZ NIEGODNY ŻYCIA.</span>")
-			new_name = "gore-stained claymore"
+			new_name = "zbryzgany juchą claymore"
 			add_atom_colour(rgb(255, 95, 95), ADMIN_COLOUR_PRIORITY)
 		if(10)
 			user.visible_message("<span class='warning'>Oczy [user] rozpalają się mściwym ogniem!</span>", \
 			"<span class='userdanger'>CZUJESZ, JAK PRZEPŁYWA PRZEZ CIEBIE MOC WALHALLI! <i>MOŻE BYĆ TYLKO JEDEN!!!</i></span>")
 			user.update_icons()
-			new_name = "GORE-DRENCHED CLAYMORE OF [pick("THE WHIMSICAL SLAUGHTER", "A THOUSAND SLAUGHTERED CATTLE", "GLORY AND VALHALLA", "ANNIHILATION", "OBLITERATION")]"
+			new_name = "SKĄPANY WE KRWI CLAYMORE [pick("KAPRYŚNEJ RZEZI", "TYSIĄCA ZARŻNIĘTYCH SZTUK BYDŁA", "CHWAŁY I WALHALLI", "ZAGŁADY", "UNICESTWIENIA")]"
 			icon_state = "claymore_valhalla"
 			item_state = "cultblade"
 			remove_atom_colour(ADMIN_COLOUR_PRIORITY)
@@ -219,8 +219,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	playsound(user, 'sound/items/screwdriver2.ogg', 50, 1)
 
 /obj/item/claymore/bone
-	name = "Bone Sword"
-	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	name = "kościany miecz"
+	desc = "Postrzępione kawałki kości przywiązane do czegoś, co wygląda na kość udową goliata."
 	icon_state = "bone_sword"
 	item_state = "bone_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -238,7 +238,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/katana
 	name = "katana"
-	desc = "Woefully underpowered in D20."
+	desc = "Żałośnie słaba w D20."
 	icon_state = "katana"
 	item_state = "katana"
 	worn_icon_state = "katana"
@@ -269,8 +269,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return(BRUTELOSS)
 
 /obj/item/wirerod
-	name = "wired rod"
-	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
+	name = "pręt z drutem"
+	desc = "Pręt z drutem owiniętym wokół czubka. Łatwo byłoby coś do niego przymocować."
 	icon_state = "wiredrod"
 	item_state = "rods"
 	flags_1 = CONDUCT_1
@@ -309,8 +309,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 
 /obj/item/throwing_star
-	name = "throwing star"
-	desc = "An ancient weapon still used to this day, due to its ease of lodging itself into its victim's body parts."
+	name = "gwiazdka do rzucania"
+	desc = "Starożytna broń używana do dziś, bo łatwo wbija się w ciało ofiary."
 	icon_state = "throwingstar"
 	item_state = "eshield0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
@@ -328,22 +328,22 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	resistance_flags = FIRE_PROOF
 
 /obj/item/throwing_star/stamina
-	name = "shock throwing star"
-	desc = "An aerodynamic disc designed to cause excruciating pain when stuck inside fleeing targets, hopefully without causing fatal harm."
+	name = "paraliżująca gwiazdka do rzucania"
+	desc = "Aerodynamiczny dysk, który wbity w uciekający cel zadaje straszliwy ból, miejmy nadzieję, że nie śmiertelny."
 	throwforce = 5
 	embedding = list("pain_chance" = 5, "embed_chance" = 300, "fall_chance" = 0, "jostle_chance" = 10, "pain_stam_pct" = 0.8, "jostle_pain_mult" = 3, "armour_block" = 70)
 
 /obj/item/throwing_star/toy
-	name = "toy throwing star"
-	desc = "An aerodynamic disc strapped with adhesive for sticking to people, good for playing pranks and getting yourself killed by security."
+	name = "zabawkowa gwiazdka do rzucania"
+	desc = "Aerodynamiczny dysk z klejem, który przykleja się do ludzi. W sam raz do psikusów i do tego, żeby zginąć z rąk ochrony."
 	sharpness = IS_BLUNT
 	force = 0
 	throwforce = 0
 	embedding = list("pain_mult" = 0, "jostle_pain_mult" = 0, "embed_chance" = 300, "fall_chance" = 0, "armour_block" = 70)
 
 /obj/item/throwing_star/magspear
-	name = "magnetic spear"
-	desc = "A reusable spear that is typically loaded into kinetic spearguns."
+	name = "magnetyczna włócznia"
+	desc = "Włócznia wielokrotnego użytku, zwykle ładowana do kinetycznych kusz na włócznie."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "magspear"
 	throwforce = 40
@@ -355,11 +355,11 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	embedding = list("pain_mult" = 8, "embed_chance" = 1000, "fall_chance" = 0, "armour_block" = 100)
 
 /obj/item/switchblade
-	name = "long switchblade"
+	name = "długi nóż sprężynowy"
 	icon_state = "switchblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "A sharp, concealable, spring-loaded knife with a long blade."
+	desc = "Ostry, łatwy do ukrycia nóż sprężynowy z długim ostrzem."
 	flags_1 = CONDUCT_1
 	force = 3
 	w_class = WEIGHT_CLASS_SMALL
@@ -402,9 +402,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return (BRUTELOSS)
 
 /obj/item/switchblade/kitchen
-	name = "iron switchblade"
+	name = "żelazny nóż sprężynowy"
 	icon_state = "switchblade_ms"
-	desc = "A concealable spring-loaded knife with an iron blade."
+	desc = "Łatwy do ukrycia nóż sprężynowy z żelaznym ostrzem."
 	force = 2
 	throwforce = 3
 	extended_force = 12
@@ -412,9 +412,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	extended_icon_state = "switchblade_ext_ms"
 
 /obj/item/switchblade/plastitanium
-	name = "plastitanium switchblade"
+	name = "plastytanowy nóż sprężynowy"
 	icon_state = "switchblade_msf"
-	desc = "A concealable spring-loaded knife with a plastitanium blade."
+	desc = "Łatwy do ukrycia nóż sprężynowy z plastytanowym ostrzem."
 	force = 3
 	throwforce = 4
 	extended_force = 15
@@ -422,8 +422,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	extended_icon_state = "switchblade_ext_msf"
 
 /obj/item/phone
-	name = "red phone"
-	desc = "Should anything ever go wrong..."
+	name = "czerwony telefon"
+	desc = "Gdyby kiedykolwiek coś poszło nie tak..."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "red_phone"
 	force = 3
@@ -442,8 +442,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return(OXYLOSS)
 
 /obj/item/cane
-	name = "cane"
-	desc = "A cane used by a true gentleman. Or a clown."
+	name = "laska"
+	desc = "Laska prawdziwego dżentelmena. Albo klauna."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
@@ -457,8 +457,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("tłucze", "wali", "dyscyplinuje", "młóci")
 
 /obj/item/staff
-	name = "wizard staff"
-	desc = "Apparently a staff used by the wizard."
+	name = "kostur czarodzieja"
+	desc = "Najwyraźniej kostur, którego używa czarodziej."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
@@ -474,15 +474,15 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	resistance_flags = FLAMMABLE
 
 /obj/item/staff/broom
-	name = "broom"
-	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
+	name = "miotła"
+	desc = "Do zamiatania i odlatywania w noc z rechotem. Czarny kot w zestawie nie występuje."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "broom"
 	resistance_flags = FLAMMABLE
 
 /obj/item/staff/stick
-	name = "stick"
-	desc = "A great tool to drag someone else's drinks across the bar."
+	name = "patyk"
+	desc = "Świetne narzędzie do przyciągania cudzych drinków przez bar."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
@@ -495,8 +495,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ectoplasm
-	name = "ectoplasm"
-	desc = "Spooky."
+	name = "ektoplazma"
+	desc = "Upiorne."
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
@@ -510,8 +510,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "angelplasm"
 
 /obj/item/mounted_chainsaw
-	name = "mounted chainsaw template"
-	desc = "A chainsaw that has replaced your arm."
+	name = "szablon wbudowanej piły łańcuchowej"
+	desc = "Piła łańcuchowa, która zastąpiła ci rękę."
 	icon_state = "chainsaw_on"
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -538,7 +538,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/mounted_chainsaw/normal
-	name = "mounted chainsaw"
+	name = "wbudowana piła łańcuchowa"
 
 /obj/item/mounted_chainsaw/normal/Destroy()
 	var/obj/item/bodypart/part
@@ -553,8 +553,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		part.drop_limb()
 
 /obj/item/mounted_chainsaw/energy
-	name = "mounted energy chainsaw"
-	desc = "An energy chainsaw that has replaced your arm."
+	name = "wbudowana energetyczna piła łańcuchowa"
+	desc = "Energetyczna piła łańcuchowa, która zastąpiła ci rękę."
 	force = 40
 	armour_penetration = 50
 	hitsound = 'sound/weapons/echainsawhit1.ogg'
@@ -572,8 +572,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		part.drop_limb()
 
 /obj/item/mounted_chainsaw/super
-	name = "mounted super energy chainsaw"
-	desc = "A super energy chainsaw that has replaced your arm."
+	name = "wbudowana superenergetyczna piła łańcuchowa"
+	desc = "Superenergetyczna piła łańcuchowa, która zastąpiła ci rękę."
 	force = 60
 	armour_penetration = 75
 	hitsound = 'sound/weapons/echainsawhit1.ogg'
@@ -595,8 +595,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	target.Knockdown(4)
 
 /obj/item/statuebust
-	name = "bust"
-	desc = "A priceless ancient marble bust, the kind that belongs in a museum." //or you can hit people with it
+	name = "popiersie"
+	desc = "Bezcenne starożytne marmurowe popiersie, takie, którego miejsce jest w muzeum." //or you can hit people with it
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "bust"
 	force = 15
@@ -607,24 +607,24 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("rozwala")
 
 /obj/item/statuebust/hippocratic
-	name = "hippocrates bust"
-	desc = "A bust of the famous Greek physician Hippocrates of Kos, often referred to as the father of western medicine."
+	name = "popiersie Hipokratesa"
+	desc = "Popiersie słynnego greckiego lekarza Hipokratesa z Kos, często nazywanego ojcem medycyny zachodniej."
 	icon_state = "hippocratic"
 
 /obj/item/melee/chainofcommand/tailwhip
-	name = "liz o' nine tails"
-	desc = "A whip fashioned from the severed tails of lizards."
+	name = "jaszczurza dziewięciorzemienna"
+	desc = "Bicz zrobiony z odciętych ogonów jaszczurów."
 	icon_state = "tailwhip"
 	item_flags = NONE
 
 /obj/item/melee/chainofcommand/tailwhip/kitty
-	name = "cat o' nine tails"
-	desc = "A whip fashioned from the severed tails of cats."
+	name = "kot o dziewięciu ogonach"
+	desc = "Bicz zrobiony z odciętych ogonów kotów."
 	icon_state = "catwhip"
 
 /obj/item/melee/skateboard
-	name = "improvised skateboard"
-	desc = "A skateboard. It can be placed on its wheels and ridden, or used as a strong weapon."
+	name = "improwizowana deskorolka"
+	desc = "Deskorolka. Możesz postawić ją na kółkach i jeździć albo użyć jej jako mocnej broni."
 	icon_state = "skateboard"
 	item_state = "skateboard"
 	block_upgrade_walk = 1
@@ -641,8 +641,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	qdel(src)
 
 /obj/item/melee/skateboard/pro
-	name = "skateboard"
-	desc = "A RaDSTORMz brand professional skateboard. It looks sturdy and well made."
+	name = "deskorolka"
+	desc = "Profesjonalna deskorolka marki RaDSTORMz. Wygląda na solidną i dobrze wykonaną."
 	icon_state = "skateboard2"
 	item_state = "skateboard2"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/pro
@@ -650,22 +650,22 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/melee/skateboard/hoverboard
 	name = "hoverboard"
-	desc = "A blast from the past, so retro!"
+	desc = "Powiew przeszłości, ale retro!"
 	icon_state = "hoverboard_red"
 	item_state = "hoverboard_red"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard
 	custom_premium_price = 2015
 
 /obj/item/melee/skateboard/hoverboard/admin
-	name = "\improper Board Of Directors"
-	desc = "The engineering complexity of a spaceship concentrated inside of a board. Just as expensive, too."
+	name = "\improper Zarząd"
+	desc = "Inżynieryjna złożoność statku kosmicznego zamknięta w desce. I tak samo droga."
 	icon_state = "hoverboard_nt"
 	item_state = "hoverboard_nt"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard/admin
 
 /obj/item/melee/baseball_bat
-	name = "baseball bat"
-	desc = "There ain't a skull in the league that can withstand a swatter."
+	name = "kij bejsbolowy"
+	desc = "Nie ma w lidze czaszki, która by to wytrzymała."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "baseball_bat"
 	item_state = "baseball_bat"
@@ -682,8 +682,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	var/click_delay = 2
 
 /obj/item/melee/baseball_bat/homerun
-	name = "home run bat"
-	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
+	name = "kij do home runów"
+	desc = "Wygląda groźnie... Groźnie dobrze nadaje się do bejsbolu."
 	homerun_able = 1
 
 /obj/item/melee/baseball_bat/attack_self(mob/user)
@@ -718,8 +718,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 
 /obj/item/melee/baseball_bat/ablative
-	name = "metal baseball bat"
-	desc = "This bat is made of highly reflective, highly armored material."
+	name = "metalowy kij bejsbolowy"
+	desc = "Ten kij jest zrobiony z materiału silnie odbijającego i mocno opancerzonego."
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
 	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
@@ -737,8 +737,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return 1
 
 /obj/item/melee/flyswatter
-	name = "flyswatter"
-	desc = "Useful for killing insects of all sizes."
+	name = "packa na muchy"
+	desc = "Przydaje się do zabijania owadów wszelkich rozmiarów."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "flyswatter"
 	item_state = "flyswatter"
@@ -775,8 +775,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 				qdel(target)
 
 /obj/item/circlegame
-	name = "circled hand"
-	desc = "If somebody looks at this while it's below your waist, you get to bop them."
+	name = "ręka w kółeczko"
+	desc = "Jeśli ktoś na to spojrzy, gdy jest poniżej twojego pasa, możesz go walnąć."
 	icon_state = "madeyoulook"
 	force = 0
 	throwforce = 0
@@ -784,8 +784,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("pstryka")
 
 /obj/item/slapper
-	name = "slapper"
-	desc = "This is how real men fight."
+	name = "dłoń do klapsów"
+	desc = "Tak walczą prawdziwi mężczyźni."
 	icon_state = "latexballon"
 	item_state = "nothing"
 	force = 0
@@ -809,7 +809,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			"<span class='notice'>Dajesz [M] w twarz!</span>",
 			"<span class='hear'>Słyszysz plaśnięcie.</span>")
 	else
-		user.visible_message("<span class='danger'>[user] slaps [M]!</span>",
+		user.visible_message("<span class='danger'>[user] daje [M] klapsa!</span>",
 			"<span class='notice'>Dajesz [M] klapsa!</span>",
 			"<span class='hear'>Słyszysz plaśnięcie.</span>")
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
@@ -872,8 +872,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return TRUE
 
 /obj/item/extendohand
-	name = "extendo-hand"
-	desc = "Futuristic tech has allowed these classic spring-boxing toys to essentially act as a fully functional hand-operated hand prosthetic."
+	name = "wysuwana ręka"
+	desc = "Dzięki futurystycznej technice te klasyczne sprężynowe rękawice bokserskie działają w praktyce jak w pełni sprawna ręczna proteza dłoni."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "extendohand"
 	item_state = "extendohand"
@@ -884,8 +884,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	reach = 2
 
 /obj/item/extendohand/acme
-	name = "\improper ACME Extendo-Hand"
-	desc = "A novelty extendo-hand produced by the ACME corporation. Originally designed to knock out roadrunners."
+	name = "\improper wysuwana ręka ACME"
+	desc = "Zabawkowa wysuwana ręka produkcji korporacji ACME. Pierwotnie zaprojektowana do nokautowania strusi pędziwiatrów."
 
 /obj/item/extendohand/attack(atom/M, mob/living/carbon/human/user, params)
 	var/dist = get_dist(M, user)
@@ -897,8 +897,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 
 /obj/item/highfive
-	name = "raised hand"
-	desc = "Slap my hand."
+	name = "uniesiona ręka"
+	desc = "Przybij piątkę."
 	icon_state = "latexballon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'
@@ -923,8 +923,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 0)
 
 /obj/item/club
-	name = "Billy club"
-	desc = "Used to bash heads and break down defenses."
+	name = "pałka policyjna"
+	desc = "Do rozbijania głów i łamania obrony."
 	icon_state = "billyclub"
 	item_state = "classic_baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -946,23 +946,23 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return ..()
 
 /obj/item/club/tailclub
-	name = "tail club"
-	desc = "For the beating to death of lizards with their own tails."
+	name = "pałka z ogona"
+	desc = "Do zatłukiwania jaszczurów ich własnymi ogonami."
 	icon_state = "tailclub"
 	force = 14
 	breakforce = 40
 
 /obj/item/club/ghettoclub
-	name = "improvised maul"
-	desc = "A bundle of heavy stuff on a stick."
+	name = "improwizowany młot"
+	desc = "Wiązka ciężkich rzeczy na kiju."
 	icon_state = "ghettoclub"
 	force = 14
 	breakforce = 25
 	stamforce = 5
 
 /obj/item/melee/hydraulic_blade
-	name = "hydraulic blade"
-	desc = "Extremely sharp and dangerous weapon."
+	name = "hydrauliczne ostrze"
+	desc = "Niesamowicie ostra i niebezpieczna broń."
 	icon_state = "hydraulic_blade"
 	item_state = "hydraulic_blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -980,8 +980,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "hfrequency0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "vibro sword"
-	desc = "A potent weapon capable of cutting through nearly anything. Wielding it in two hands will allow you to deflect gunfire."
+	name = "wibromiecz"
+	desc = "Potężna broń, która przetnie niemal wszystko. Trzymana oburącz pozwala odbijać pociski."
 	armour_penetration = 100
 	block_level = 1
 	block_upgrade_walk = 2

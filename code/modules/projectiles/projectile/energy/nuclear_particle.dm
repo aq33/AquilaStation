@@ -1,6 +1,6 @@
 //Nuclear particle projectile - a deadly side effect of fusion
 /obj/item/projectile/energy/nuclear_particle
-	name = "nuclear particle"
+	name = "cząstka jądrowa"
 	icon_state = "nuclear_particle"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 10
@@ -31,25 +31,25 @@
 	set_light(4, 3, custom_color)
 	switch (irradiate)
 		if(10 to 100)
-			name = "pathetically weak nuclear particle"
+			name = "żałośnie słaba cząstka jądrowa"
 			damage = 1
 		if(100 to 200)
-			name = "very weak nuclear particle"
+			name = "bardzo słaba cząstka jądrowa"
 			damage = 2
 		if(200 to 500)
-			name = "fairly weak nuclear particle"
+			name = "dość słaba cząstka jądrowa"
 			damage = 4
 		if(500 to 1500)
-			name = "slightly weak nuclear particle"
+			name = "nieco osłabiona cząstka jądrowa"
 			damage = 7
 		if(4000 to 8000)
-			name = "powerful nuclear particle"
+			name = "potężna cząstka jądrowa"
 			damage = 15
 		if(8000 to 30000)
-			name = "extremely strong nuclear particle"
+			name = "niezwykle silna cząstka jądrowa"
 			damage = 20
 		if(30000 to INFINITY)
-			name = "impossibly strong nuclear particle"
+			name = "niewiarygodnie silna cząstka jądrowa"
 			damage = 30
 
 /atom/proc/fire_nuclear_particle(angle = rand(0,360), customize = FALSE, custompower = 1e12) //used by fusion to fire random nuclear particles. Fires one particle in a random direction.

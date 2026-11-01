@@ -6,8 +6,8 @@
 #define ASSEMBLY_BEEP_VOLUME 5
 
 /obj/item/assembly
-	name = "assembly"
-	desc = "A small electronic device that should never exist."
+	name = "zespół"
+	desc = "Małe urządzenie elektroniczne, które nigdy nie powinno istnieć."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
 	flags_1 = CONDUCT_1
@@ -128,7 +128,7 @@
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]</span>"
+	. += "<span class='notice'>[secured? "Zabezpieczenie włączone, można tego używać!" : "Można to podłączyć do innych rzeczy."]</span>"
 
 
 /obj/item/assembly/attack_self(mob/user)

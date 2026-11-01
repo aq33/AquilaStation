@@ -3,8 +3,8 @@
 #define PCANNON_FILO 2
 #define PCANNON_FIFO 3
 /obj/item/pneumatic_cannon
-	name = "pneumatic cannon"
-	desc = "A gas-powered cannon that can fire any object loaded into it."
+	name = "działko pneumatyczne"
+	desc = "Działko zasilane gazem, które może wystrzelić każdy załadowany do niego przedmiot."
 	w_class = WEIGHT_CLASS_BULKY
 	force = 8 //Very heavy
 	attack_verb = list("tłucze", "rozbija", "bije")
@@ -220,8 +220,8 @@
 		update_icon()
 
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity, but smaller
-	name = "improvised pneumatic cannon"
-	desc = "A gas-powered, object-firing cannon made out of common parts."
+	name = "improwizowane działko pneumatyczne"
+	desc = "Zasilane gazem działko na przedmioty, zrobione z pospolitych części."
 	force = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	maxWeightClass = 7
@@ -265,8 +265,8 @@
 		CHECK_TICK
 
 /obj/item/pneumatic_cannon/pie
-	name = "pie cannon"
-	desc = "Load cream pie for optimal results."
+	name = "działko tortowe"
+	desc = "Załaduj tort z kremem, by uzyskać optymalne wyniki."
 	force = 10
 	icon_state = "piecannon"
 	gasPerThrow = 0
@@ -289,20 +289,20 @@
 	maxWeightClass = 80	//20 pies.
 
 /obj/item/pneumatic_cannon/pie/selfcharge/compact
-	name = "honkinator-4 compact pie cannon"
-	desc = "A compact, self loading pie cannon for tactical pranking action."
+	name = "kompaktowe działko tortowe Honkinator-4"
+	desc = "Kompaktowe, samoładujące się działko tortowe do taktycznych akcji psotniczych."
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/pneumatic_cannon/pie/selfcharge/cyborg
-	name = "low velocity pie cannon"
+	name = "wolnostrzelne działko tortowe"
 	automatic = FALSE
 	charge_type = /obj/item/food/pie/cream/nostun
 	maxWeightClass = 8		//2 pies
 	charge_ticks = 2		//4 second/pie
 
 /obj/item/pneumatic_cannon/speargun
-	name = "magnetic speargun"
-	desc = "A weapon favored by carp hunters. Fires specialized spears using magnetic energy. A savvy- or desperate- hunter may be able to find more esoteric payloads"
+	name = "magnetyczna kusza na włócznie"
+	desc = "Broń ceniona przez łowców karpi. Wystrzeliwuje specjalne włócznie za pomocą energii magnetycznej. Sprytny – albo zdesperowany – łowca może znaleźć bardziej egzotyczną amunicję"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "speargun"
 	item_state = "speargun"
@@ -323,8 +323,8 @@
 	allowed_typecache = magspear_typecache
 
 /obj/item/storage/backpack/magspear_quiver
-	name = "quiver"
-	desc = "A quiver for holding magspears."
+	name = "kołczan"
+	desc = "Kołczan na magnetyczne włócznie."
 	icon_state = "quiver"
 	item_state = "quiver"
 

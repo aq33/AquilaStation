@@ -1,91 +1,91 @@
 /obj/item/clothing/under/plasmaman/cargo
-	name = "cargo plasma envirosuit"
-	desc = "A joint envirosuit used by plasmamen quartermasters and cargo techs alike, due to the logistical problems of differenciating the two with the length of their pant legs."
+	name = "kombinezon środowiskowy zaopatrzenia"
+	desc = "Wspólny kombinezon środowiskowy plazmaludzi-kwatermistrzów i magazynierów, bo rozróżnianie ich po długości nogawek sprawiało problemy logistyczne."
 	icon_state = "cargo_envirosuit"
 	item_state = "cargo_envirosuit"
 
 /obj/item/clothing/under/plasmaman/mailman
-	name = "mailman plasma envirosuit"
-	desc = "<i>'Special hazardous delivery!'</i>"
+	name = "kombinezon środowiskowy listonosza"
+	desc = "<i>„Specjalna niebezpieczna przesyłka!”</i>"
 	icon_state = "mailman_envirosuit"
 	item_state = "mailman_envirosuit"
 
 /obj/item/clothing/under/plasmaman/mining
-	name = "mining plasma envirosuit"
-	desc = "An air-tight khaki suit designed for operations on lavaland by plasmamen."
+	name = "górniczy kombinezon środowiskowy"
+	desc = "Hermetyczny kombinezon w kolorze khaki, zaprojektowany dla plazmaludzi pracujących na Lavalandzie."
 	icon_state = "explorer_envirosuit"
 	item_state = "explorer_envirosuit"
 
 /obj/item/clothing/under/plasmaman/chef
-	name = "chef's plasma envirosuit"
-	desc = "A white plasmaman envirosuit designed for cullinary practices. One might question why a member of a species that doesn't need to eat would become a chef."
+	name = "kombinezon środowiskowy kucharza"
+	desc = "Biały kombinezon środowiskowy plazmamana przeznaczony do pracy w kuchni. Można się zastanawiać, po co przedstawiciel gatunku, który nie musi jeść, zostaje kucharzem."
 	icon_state = "chef_envirosuit"
 	item_state = "chef_envirosuit"
 
 /obj/item/clothing/under/plasmaman/enviroslacks
-	name = "enviroslacks"
-	desc = "The pet project of a particularly posh plasmaman, this custom suit was quickly appropriated by Nano-Trasen for it's detectives, lawyers, and bar-tenders alike."
+	name = "spodnie środowiskowe"
+	desc = "Oczko w głowie wyjątkowo eleganckiego plazmamana. Ten szyty na miarę strój szybko przejęło Nanotrasen dla swoich detektywów, prawników i barmanów."
 	icon_state = "enviroslacks"
 	item_state = "enviroslacks"
 
 /obj/item/clothing/under/plasmaman/tux
-	name = "envirotux"
-	desc = "A flashy suit blended into an envirosuit."
+	name = "smoking środowiskowy"
+	desc = "Efektowny garnitur połączony z kombinezonem środowiskowym."
 	icon_state = "envirotux"
 	item_state = "envirotux"
 
 /obj/item/clothing/under/plasmaman/gold //yes, you can sell this for ludicrous mony
-	name = "designer envirosuit"
-	desc = "A flashy gold-trimmed envirosuit, complete with a suit jacket outerwear. This is a designer model, worth a few thousand credits."
+	name = "designerski kombinezon środowiskowy"
+	desc = "Efektowny kombinezon środowiskowy ze złotymi wykończeniami, z marynarką na wierzch. To model od projektanta, wart kilka tysięcy kredytów."
 	icon_state = "gold_envirosuit"
 	item_state = "gold_envirosuit"
 
 /obj/item/clothing/under/plasmaman/chaplain
-	name = "chaplain's plasma envirosuit"
-	desc = "An envirosuit specially designed for only the most pious of plasmamen."
+	name = "kombinezon środowiskowy kapłana"
+	desc = "Kombinezon środowiskowy zaprojektowany specjalnie dla najpobożniejszych plazmaludzi."
 	icon_state = "chap_envirosuit"
 	item_state = "chap_envirosuit"
 
 /obj/item/clothing/under/plasmaman/curator
-	name = "curator's plasma envirosuit"
-	desc = "Made out of a modified voidsuit, this suit was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Due to the modifications, the suit is no longer space-worthy. Despite their limitations, these suits are still in used by historian and old-styled plasmamen alike."
+	name = "kombinezon środowiskowy bibliotekarza"
+	desc = "Wykonany z przerobionego skafandra próżniowego, był pierwszym rozwiązaniem Nanotrasen *problemów logistycznych* związanych z zatrudnianiem plazmaludzi. Po przeróbkach nie nadaje się już do kosmosu. Mimo ograniczeń wciąż noszą go historycy i plazmaludzie starej daty."
 	icon_state = "prototype_envirosuit"
 	item_state = "prototype_envirosuit"
 
 /obj/item/clothing/under/plasmaman/janitor
-	name = "janitor's plasma envirosuit"
-	desc = "A grey and purple envirosuit designated for plasmamen janitors."
+	name = "kombinezon środowiskowy woźnego"
+	desc = "Szaro-fioletowy kombinezon środowiskowy przeznaczony dla plazmaludzi-woźnych."
 	icon_state = "janitor_envirosuit"
 	item_state = "janitor_envirosuit"
 
 /obj/item/clothing/under/plasmaman/botany
-	name = "botany plasma envirosuit"
-	desc = "A green and blue envirosuit designed to protect plasmamen from minor plant-related injuries."
+	name = "kombinezon środowiskowy botaniki"
+	desc = "Zielono-niebieski kombinezon środowiskowy, który chroni plazmaludzi przed drobnymi urazami od roślin."
 	icon_state = "botany_envirosuit"
 	item_state = "botany_envirosuit"
 
 /obj/item/clothing/under/plasmaman/command //fun fact, captains uniforms don't get the sec uniform defense buff, pretty stupid
-	name = "captains plasma envirosuit"
-	desc = "A blue envirosuit with gold trimmings. A suit made for those who demand respect from their subordinates."
+	name = "kombinezon środowiskowy kapitana"
+	desc = "Niebieski kombinezon środowiskowy ze złotymi wykończeniami. Strój dla tych, którzy wymagają szacunku od podwładnych."
 	icon_state = "command_envirosuit"
 	item_state = "command_envirosuit"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
 /obj/item/clothing/under/plasmaman/hop
-	name = "head of personnel plasma envirosuit"
-	desc = "The head of personnels blue envirosuit, complete with red trimmings and adorned with various medals."
+	name = "kombinezon środowiskowy starszego oficera"
+	desc = "Niebieski kombinezon środowiskowy starszego oficera z czerwonymi wykończeniami, ozdobiony różnymi medalami."
 	icon_state = "hop_envirosuit"
 	item_state = "hop_envirosuit"
 
 /obj/item/clothing/under/plasmaman/mime
-	name = "mime envirosuit"
-	desc = "A black and white envirosuit, your bones may rattle but that won't stop your silent shinanigains!."
+	name = "kombinezon środowiskowy mima"
+	desc = "Czarno-biały kombinezon środowiskowy. Twoje kości mogą grzechotać, ale to nie powstrzyma twoich cichych wygłupów!"
 	icon_state = "mime_envirosuit"
 	item_state = "mime_envirosuit"
 
 /obj/item/clothing/under/plasmaman/honk
-	name = "Clowns plasma envirosuit"
-	desc = "A rainbow colored envirosuit, it reaks of bananas and cheap rubber horns."
+	name = "kombinezon środowiskowy klauna"
+	desc = "Tęczowy kombinezon środowiskowy. Cuchnie bananami i tanimi gumowymi trąbkami."
 	icon_state = "honk_envirosuit"
 	item_state = "honk_envirosuit"

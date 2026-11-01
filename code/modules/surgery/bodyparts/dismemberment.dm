@@ -253,7 +253,7 @@
 		if(pill)
 			pill.forceMove(src)
 
-	name = owner ? "[owner.real_name]'s head" : "unknown [limb_id] head"
+	name = owner ? "głowa: [owner.real_name]" : "nieznana głowa ([limb_id])"
 	..()
 
 //Attach a limb to a human and drop any existing limb of that type.

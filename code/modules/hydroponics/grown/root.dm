@@ -1,8 +1,8 @@
 // Carrot
 /obj/item/food/grown/carrot
 	seed = /obj/item/plant_seeds/preset/carrot
-	name = "carrot"
-	desc = "It's good for the eyes!"
+	name = "marchew"
+	desc = "Dobra na oczy!"
 	icon_state = "carrot"
 	filling_color = "#FFA500"
 	bite_consumption_mod = 2
@@ -22,8 +22,8 @@
 
 // Parsnip
 /obj/item/food/grown/parsnip
-	name = "parsnip"
-	desc = "Closely related to carrots."
+	name = "pasternak"
+	desc = "Bliski krewny marchwi."
 	icon_state = "parsnip"
 	foodtypes = VEGETABLES
 	juice_typepath = /datum/reagent/consumable/parsnipjuice
@@ -34,8 +34,8 @@
 // White-Beet
 /obj/item/food/grown/whitebeet
 	seed = /obj/item/plant_seeds/preset/whitebeet
-	name = "white-beet"
-	desc = "You can't beat white-beet."
+	name = "biały burak"
+	desc = "Białego buraka nie pobijesz."
 	icon_state = "whitebeet"
 	filling_color = "#F4A460"
 	bite_consumption_mod = 3
@@ -44,8 +44,8 @@
 
 // Red Beet
 /obj/item/food/grown/redbeet
-	name = "red beet"
-	desc = "You can't beat red beet."
+	name = "czerwony burak"
+	desc = "Czerwonego buraka nie pobijesz."
 	icon_state = "redbeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES

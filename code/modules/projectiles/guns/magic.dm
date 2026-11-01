@@ -1,6 +1,6 @@
 /obj/item/gun/magic
-	name = "staff of nothing"
-	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
+	name = "laska niczego"
+	desc = "Ta laska jest nudna, bo choć powstała pierwsza, wszystko, co potrafi, od lat widzisz w innych laskach."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "staffofnothing"
 	item_state = "staff"

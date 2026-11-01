@@ -3,7 +3,7 @@
 	var/atom/movable/screen/inventory/inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
-	inv_box.name = "internal storage"
+	inv_box.name = "schowek wewnętrzny"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
 //	inv_box.icon_full = "template"

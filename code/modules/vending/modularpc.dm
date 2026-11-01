@@ -1,6 +1,6 @@
 /obj/machinery/vending/modularpc
 	name = "\improper Deluxe Silicate Selections"
-	desc = "All the parts you need to build your own custom pc."
+	desc = "Wszystkie części potrzebne do zbudowania własnego komputera."
 	icon_state = "modularpc"
 	icon_deny = "modularpc-deny"
 	product_ads = "Spraw sobie sprzęt prawdziwego gracza!;Najlepsze karty graficzne na wszystkie twoje krypto-kosmiczne potrzeby!;Robustne chłodzenie!;Najznakomitsze RGB w kosmosie!"

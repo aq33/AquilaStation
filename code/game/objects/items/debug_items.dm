@@ -1,8 +1,8 @@
 /* This file contains standalone items for debug purposes. */
 
 /obj/item/debug/human_spawner
-	name = "human spawner"
-	desc = "Spawn a human by aiming at a turf and clicking. Use in hand to change type."
+	name = "spawner ludzi"
+	desc = "Wyceluj w pole i kliknij, by stworzyć człowieka. Użyj w ręce, by zmienić gatunek."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "nothingwand"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -19,13 +19,13 @@
 
 /obj/item/debug/human_spawner/attack_self(mob/user)
 	..()
-	var/choice = input("Select a species", "Human Spawner", null) in GLOB.species_list
+	var/choice = input("Wybierz gatunek", "Spawner ludzi", null) in GLOB.species_list
 	selected_species = GLOB.species_list[choice]
 
 
 /obj/item/debug/omnitool
 	name = "omnitool"
-	desc = "The original hypertool, born before them all. Use it in hand to unleash its true power."
+	desc = "Oryginalne hipernarzędzie, zrodzone przed wszystkimi innymi. Użyj w ręce, by uwolnić jego prawdziwą moc."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hypertool"
 	toolspeed = 0.1
@@ -33,7 +33,7 @@
 
 /obj/item/debug/omnitool/examine()
 	. = ..()
-	. += " The mode is: [tool_behaviour]"
+	. += " Tryb: [tool_behaviour]"
 
 /obj/item/debug/omnitool/proc/check_menu(mob/user)
 	if(!istype(user))
@@ -47,61 +47,61 @@
 	if(!user)
 		return
 	var/list/tool_list = list(
-		"Crowbar" = image(icon = 'icons/obj/tools.dmi', icon_state = "crowbar"),
+		"Łom" = image(icon = 'icons/obj/tools.dmi', icon_state = "crowbar"),
 		"Multitool" = image(icon = 'icons/obj/device.dmi', icon_state = "multitool"),
-		"Screwdriver" = image(icon = 'icons/obj/tools.dmi', icon_state = "screwdriver_map"),
-		"Wirecutters" = image(icon = 'icons/obj/tools.dmi', icon_state = "cutters_map"),
-		"Wrench" = image(icon = 'icons/obj/tools.dmi', icon_state = "wrench"),
-		"Welding Tool" = image(icon = 'icons/obj/tools.dmi', icon_state = "welder"),
-		"Analyzer" = image(icon = 'icons/obj/device.dmi', icon_state = "analyzer"),
-		"Retractor" = image(icon = 'icons/obj/surgery.dmi', icon_state = "retractor"),
-		"Hemostat" = image(icon = 'icons/obj/surgery.dmi', icon_state = "hemostat"),
-		"Cautery" = image(icon = 'icons/obj/surgery.dmi', icon_state = "cautery"),
-		"Drill" = image(icon = 'icons/obj/surgery.dmi', icon_state = "drill"),
-		"Scalpel" = image(icon = 'icons/obj/surgery.dmi', icon_state = "scalpel"),
-		"Saw" = image(icon = 'icons/obj/surgery.dmi', icon_state = "saw"),
-		"Pickaxe" = image(icon = 'icons/obj/mining.dmi', icon_state = "minipick"),
-		"Shovel" = image(icon = 'icons/obj/mining.dmi', icon_state = "spade"),
-		"Blood Filter" = image(icon = 'icons/obj/surgery.dmi', icon_state = "bloodfilter"),
-		"Wire Brush" = image(icon = 'icons/obj/tools.dmi', icon_state = "wirebrush")
+		"Śrubokręt" = image(icon = 'icons/obj/tools.dmi', icon_state = "screwdriver_map"),
+		"Przecinak" = image(icon = 'icons/obj/tools.dmi', icon_state = "cutters_map"),
+		"Klucz" = image(icon = 'icons/obj/tools.dmi', icon_state = "wrench"),
+		"Spawarka" = image(icon = 'icons/obj/tools.dmi', icon_state = "welder"),
+		"Analizator" = image(icon = 'icons/obj/device.dmi', icon_state = "analyzer"),
+		"Rozwieracz" = image(icon = 'icons/obj/surgery.dmi', icon_state = "retractor"),
+		"Szczypce chirurgiczne" = image(icon = 'icons/obj/surgery.dmi', icon_state = "hemostat"),
+		"Kauter" = image(icon = 'icons/obj/surgery.dmi', icon_state = "cautery"),
+		"Wiertło chirurgiczne" = image(icon = 'icons/obj/surgery.dmi', icon_state = "drill"),
+		"Skalpel" = image(icon = 'icons/obj/surgery.dmi', icon_state = "scalpel"),
+		"Piła chirurgiczna" = image(icon = 'icons/obj/surgery.dmi', icon_state = "saw"),
+		"Kilof" = image(icon = 'icons/obj/mining.dmi', icon_state = "minipick"),
+		"Łopatka" = image(icon = 'icons/obj/mining.dmi', icon_state = "spade"),
+		"Filtr krwi" = image(icon = 'icons/obj/surgery.dmi', icon_state = "bloodfilter"),
+		"Szczotka druciana" = image(icon = 'icons/obj/tools.dmi', icon_state = "wirebrush")
 	) //NSV13 - Removed surgical drapes
 
 	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(tool_result)
-		if("Crowbar")
+		if("Łom")
 			tool_behaviour = TOOL_CROWBAR
 		if("Multitool")
 			tool_behaviour = TOOL_MULTITOOL
-		if("Screwdriver")
+		if("Śrubokręt")
 			tool_behaviour = TOOL_SCREWDRIVER
-		if("Wirecutters")
+		if("Przecinak")
 			tool_behaviour = TOOL_WIRECUTTER
-		if("Wrench")
+		if("Klucz")
 			tool_behaviour = TOOL_WRENCH
-		if("Welding Tool")
+		if("Spawarka")
 			tool_behaviour = TOOL_WELDER
-		if("Analyzer")
+		if("Analizator")
 			tool_behaviour = TOOL_ANALYZER
 		//NSV13 - Removed Surgical Drapes from Omnitool
-		if("Retractor")
+		if("Rozwieracz")
 			tool_behaviour = TOOL_RETRACTOR
-		if("Hemostat")
+		if("Szczypce chirurgiczne")
 			tool_behaviour = TOOL_HEMOSTAT
-		if("Cautery")
+		if("Kauter")
 			tool_behaviour = TOOL_CAUTERY
-		if("Blood Filter")
+		if("Filtr krwi")
 			tool_behaviour = TOOL_BLOODFILTER
-		if("Drill")
+		if("Wiertło chirurgiczne")
 			tool_behaviour = TOOL_DRILL
-		if("Scalpel")
+		if("Skalpel")
 			tool_behaviour = TOOL_SCALPEL
-		if("Saw")
+		if("Piła chirurgiczna")
 			tool_behaviour = TOOL_SAW
-		if("Pickaxe")
+		if("Kilof")
 			tool_behaviour = TOOL_MINING
-		if("Shovel")
+		if("Łopatka")
 			tool_behaviour = TOOL_SHOVEL
-		if("Wire Brush")
+		if("Szczotka druciana")
 			tool_behaviour = TOOL_RUSTSCRAPER

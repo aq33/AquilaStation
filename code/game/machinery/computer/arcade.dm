@@ -67,8 +67,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/allaccess = 1))
 
 /obj/machinery/computer/arcade
-	name = "random arcade"
-	desc = "random arcade machine"
+	name = "losowy automat do gier"
+	desc = "Losowy automat do gier."
 	icon_state = "arcade"
 	icon_keyboard = "no_keyboard"
 	icon_screen = "invaders"
@@ -104,13 +104,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	else
 		the_prize = new prizeselect(drop_location())
 
-	visible_message("<span class='notice'>[src] dispenses [the_prize]!</span>", "<span class='notice'>Słyszysz dzwonek i łupnięcie.</span>")
+	visible_message("<span class='notice'>[src] wydaje nagrodę: [the_prize]!</span>", "<span class='notice'>Słyszysz dzwonek i łupnięcie.</span>")
 
 /obj/machinery/computer/arcade/proc/redeem(mob/user)
 	var/redeemselect = pickweight(length(prize_override) ? prize_override : GLOB.arcade_prize_pool)
 
 	var/atom/movable/the_prize = new redeemselect(drop_location())
-	visible_message("<span class='notice'>[src] dispenses [the_prize]!</span>", "<span class='notice'>Słyszysz dzwonek i łupnięcie.</span>")
+	visible_message("<span class='notice'>[src] wydaje nagrodę: [the_prize]!</span>", "<span class='notice'>Słyszysz dzwonek i łupnięcie.</span>")
 
 /obj/machinery/computer/arcade/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/coin/arcade_token) || istype(W, /obj/item/coin/bananium))
@@ -148,11 +148,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 
 /obj/machinery/computer/arcade/battle
-	name = "arcade machine"
-	desc = "Does not support Pinball."
+	name = "automat do gier"
+	desc = "Nie obsługuje pinballa."
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/battle
-	var/enemy_name = "Space Villain"
+	var/enemy_name = "Kosmiczny Złoczyńca"
 	var/temp = "Zwycięzcy nie biorą kosmicznych narkotyków" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
@@ -167,10 +167,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	var/name_part1
 	var/name_part2
 
-	name_action = pick("Defeat ", "Annihilate ", "Save ", "Strike ", "Stop ", "Destroy ", "Robust ", "Romance ", "Pwn ", "Own ", "Ban ")
+	name_action = pick("Pokonaj: ", "Unicestw: ", "Uratuj: ", "Uderz: ", "Powstrzymaj: ", "Zniszcz: ", "Zrobustuj: ", "Uwiedź: ", "Zaoraj: ", "Zmiażdż: ", "Zbanuj: ")
 
-	name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
-	name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "slime", "Griefer", "ERPer", "Lizard Man", "Unicorn", "Bloopers")
+	name_part1 = pick("Automatyczny ", "Farmer ", "Lord ", "Profesor ", "Kubański ", "Zły ", "Straszliwy Król ", "Kosmiczny ", "Lord ", "Wielki ", "Książę ", "Generał ")
+	name_part2 = pick("Melonoid", "Mordertron", "Czarnoksiężnik", "Rujnator", "Jeff", "Ektoplazm", "Miażdżulon", "Uhangoid", "Vhakoid", "Peteoid", "Szlam", "Griefer", "ERPowiec", "Jaszczurzy Człowiek", "Jednorożec", "Blooper")
 
 	enemy_name = replacetext((name_part1 + name_part2), "the ", "")
 	name = (name_action + name_part1 + name_part2)
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(obj_flags & EMAGGED)
 				new /obj/effect/spawner/newbomb/timer/syndicate(loc)
 				new /obj/item/clothing/head/collectable/petehat(loc)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] przebombardowuje Cuban Pete'a i dostaje w nagrodę bombę.")
 				log_game("[key_name(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				Reset()
 				obj_flags &= ~EMAGGED
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	obj_flags |= EMAGGED
 
 	enemy_name = "Cuban Pete"
-	name = "Outbomb Cuban Pete"
+	name = "Przebombarduj: Cuban Pete"
 
 
 	SStgui.update_uis(src)
@@ -349,8 +349,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 // *** THE ORION TRAIL ** //
 
 /obj/item/gamer_pamphlet
-	name = "pamphlet - \'Violent Video Games and You\'"
-	desc = "A pamphlet encouraging the reader to maintain a balanced lifestyle and take care of their mental health, while still enjoying video games in a healthy way. You probably don't need this..."
+	name = "broszura – „Brutalne gry wideo a ty”"
+	desc = "Broszura zachęcająca do zrównoważonego trybu życia i dbania o zdrowie psychiczne przy jednoczesnym zdrowym korzystaniu z gier wideo. Pewnie tego nie potrzebujesz..."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pamphlet"
 	item_state = "paper"
@@ -380,7 +380,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 /obj/machinery/computer/arcade/orion_trail
 	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	desc = "Dowiedz się, jak nasi przodkowie dotarli do Oriona, i baw się przy tym dobrze!"
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/orion_trail
 	var/busy = FALSE //prevent clickspam that allowed people to ~speedrun~ the game.
@@ -424,8 +424,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	Radio.listening = 0
 
 /obj/machinery/computer/arcade/orion_trail/kobayashi
-	name = "Kobayashi Maru control computer"
-	desc = "A test for cadets"
+	name = "komputer kontrolny Kobayashi Maru"
+	desc = "Test dla kadetów."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_boxp"
 	events = list("Raiders" = 3, "Interstellar Flux" = 1, "Illness" = 3, "Breakdown" = 2, "Malfunction" = 2, "Collision" = 1, "Spaceport" = 2)
@@ -434,7 +434,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 /obj/machinery/computer/arcade/orion_trail/Reset()
 	// Sets up the main trail
-	stops = list("Pluto","Asteroid Belt","Proxima Centauri","Dead Space","Rigel Prime","Tau Ceti Beta","Black Hole","Space Outpost Beta-9","Orion Prime")
+	stops = list("Pluton","Pas asteroid","Proxima Centauri","Martwa przestrzeń","Rigel Prime","Tau Ceti Beta","Czarna dziura","Kosmiczny posterunek Beta-9","Orion Prime")
 	stopblurbs = list(
 		"Pluton, od dawna zajęty przez czujniki i skanery dalekiego zasięgu, stoi gotów, by badać - i wciąż bada - najdalsze zakątki galaktyki.",
 		"Na skraju Układu Słonecznego leży zdradliwy pas asteroid. Wielu zostało zmiażdżonych przez zabłąkane asteroidy i błędne decyzje.",
@@ -816,15 +816,15 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				eventdat += "<br>[deadname] próbował się bronić, ale zginął."
 			else
 				eventdat += "<br>Na szczęście bez trudu ich odparliście."
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Dalej</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_FLUX)
 			eventdat += "Ten obszar kosmosu jest bardzo turbulentny. <br>Jeśli zwolnimy, możemy uniknąć dalszych uszkodzeń, ale jeśli utrzymamy prędkość, nie zmarnujemy zapasów."
 			eventdat += "<br>Co robisz?"
 			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];slow=1'>Zwolnij</a> <a href='byond://?src=[REF(src)];keepspeed=1'>Leć dalej</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 
 		if(ORION_TRAIL_OLDSHIP)
 			eventdat += "<br>Twoja załoga zauważa stary statek dryfujący w kosmosie. Mogą tam być zapasy, ale wygląda na dość niebezpieczny."
@@ -854,16 +854,16 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					eventdat += "<br>Znajdujesz we wraku [oldfood] <b>jedzenia</b> i trochę części."
 				else
 					eventdat += "<br>Przeszukując wrak, nie znajdujesz niczego przydatnego."
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Dalej</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_ILLNESS)
 			eventdat += "Ktoś zaraził się śmiertelną chorobą!"
 			var/deadname = remove_crewmember()
 			eventdat += "<br>[deadname] umiera na chorobę."
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Dalej</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_BREAKDOWN)
@@ -872,8 +872,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(engine >= 1)
 				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];useengine=1'>Użyj części</a><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
 			else
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Wait</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 
 		if(ORION_TRAIL_MALFUNCTION)
 			eventdat += "Systemy statku działają wadliwie!"
@@ -881,8 +881,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(electronics >= 1)
 				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];useelec=1'>Użyj części</a><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
 			else
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Wait</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 
 		if(ORION_TRAIL_COLLISION)
 			eventdat += "Coś nas uderzyło! Wygląda na to, że kadłub jest uszkodzony."
@@ -899,21 +899,21 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(hull >= 1)
 				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];usehull=1'>Użyj części</a><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
 			else
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Wait</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];wait=1'>Czekaj</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 
 		if(ORION_TRAIL_BLACKHOLE)
 			eventdat += "Zostajesz wciągnięty w czarną dziurę."
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];holedeath=1'>Oh...</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];holedeath=1'>No cóż...</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			settlers = list()
 
 		if(ORION_TRAIL_LING)
 			eventdat += "Dziwne doniesienia ostrzegają przed zmiennokształtnymi infiltrującymi załogi w drodze na Oriona..."
 			if(settlers.len <= 2)
 				eventdat += "<br>Szanse twojej załogi na dotarcie na Oriona są tak marne, że zmiennokształtni pewnie omijają twój statek..."
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Dalej</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 				if(prob(10)) // "likely", I didn't say it was guaranteed!
 					lings_aboard = min(++lings_aboard,2)
 			else
@@ -923,9 +923,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				else if(prob(70))
 					lings_aboard = min(++lings_aboard,2)
 
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];killcrew=1'>Kill a Crewmember</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];killcrew=1'>Zabij członka załogi</a></P>"
 				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Zaryzykuj</a></P>"
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_LING_ATTACK)
@@ -969,8 +969,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					else
 						lings_aboard = max(0,--lings_aboard)
 
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Dalej</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			canContinueEvent = 1
 
 
@@ -981,14 +981,14 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				if(last_spaceport_action)
 					eventdat += "<br><b>Ostatnia akcja w porcie:</b> [last_spaceport_action]"
 				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];leave_spaceport=1'>Opuść port kosmiczny</a></P>"
-				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
+				eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Zamknij</a></P>"
 			else
 				eventdat += "Twój skok do sektora trafia na port kosmiczny - co za szczęście!"
 				eventdat += "<br>Ten port kosmiczny to dom podróżników, którzy nie dotarli na Oriona, ale znaleźli inny dom..."
 				eventdat += "<br>Warunki handlu: FU = paliwo, FO = jedzenie"
 				if(last_spaceport_action)
 					eventdat += "<br><b>Ostatnia akcja:</b> [last_spaceport_action]"
-				eventdat += "<h3><b>Crew:</b></h3>"
+				eventdat += "<h3><b>Załoga:</b></h3>"
 				eventdat += english_list(settlers)
 				eventdat += "<br><b>Jedzenie: </b>[food] | <b>Paliwo: </b>[fuel]"
 				eventdat += "<br><b>Części silnika: </b>[engine] | <b>Płyty kadłuba: </b>[hull] | <b>Elektronika: </b>[electronics]"
@@ -1110,20 +1110,20 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		prizeselect = /obj/item/orion_ship
 		prizevend(user)
 		prizeselect = /obj/item/coin/arcade_token
-		message_admins("[ADMIN_LOOKUPFLW(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] dociera do Oriona na zemagowanym automacie i dostaje wybuchowy statek-zabawkę.")
 		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
 		prizevend(user)
 	obj_flags &= ~EMAGGED
 	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	desc = "Dowiedz się, jak nasi przodkowie dotarli do Oriona, i baw się przy tym dobrze!"
 
 /obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='notice'>Nadpisujesz menu kodów i przechodzisz do kodu #[rand(1, 50)]: tryb realizmu.</span>")
-	name = "The Orion Trail: Realism Edition"
-	desc = "Learn how our ancestors got to Orion, and try not to die in the process!"
+	name = "The Orion Trail: Edycja realistyczna"
+	desc = "Dowiedz się, jak nasi przodkowie dotarli do Oriona, i postaraj się przy tym nie zginąć!"
 	newgame()
 	obj_flags |= EMAGGED
 
@@ -1132,15 +1132,15 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	. = ..()
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/orion
-	name = "spaceport security"
-	desc = "Premier corporate security forces for all spaceports found along the Orion Trail."
+	name = "ochrona portu kosmicznego"
+	desc = "Elitarne korporacyjne siły ochrony wszystkich portów kosmicznych na Szlaku Oriona."
 	faction = list("orion")
 	loot = list()
 	del_on_death = TRUE
 
 /obj/item/orion_ship
-	name = "model settler ship"
-	desc = "A model spaceship, it looks like those used back in the day when travelling to Orion! It even has a miniature FX-293 reactor, which was renowned for its instability and tendency to explode..."
+	name = "model statku osadników"
+	desc = "Model statku kosmicznego, jak te, którymi dawniej latano do Oriona! Ma nawet miniaturowy reaktor FX-293, słynący z niestabilności i skłonności do wybuchania..."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ship"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1173,15 +1173,15 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	say("O Boże! Kod Osiem! KOD OSIEM! ZARAZ WYB-")
 	playsound(loc, 'sound/machines/buzz-sigh.ogg', 25, 1)
 	sleep(3.6)
-	visible_message("<span class='userdanger'>[src] explodes!</span>")
+	visible_message("<span class='userdanger'>[src] wybucha!</span>")
 	explosion(loc, 2,4,8, flame_range = 16)
 	qdel(src)
 
 // ** AMPUTATION ** //
 
 /obj/machinery/computer/arcade/amputation
-	name = "Mediborg's Amputation Adventure"
-	desc = "A picture of a blood-soaked medical cyborg flashes on the screen. The mediborg has a speech bubble that says, \"Put your hand in the machine if you aren't a <b>coward!</b>\""
+	name = "Amputacyjna przygoda Mediborga"
+	desc = "Na ekranie miga obraz zakrwawionego cyborga medycznego. Mediborg ma dymek z napisem: „Włóż rękę do maszyny, jeśli nie jesteś <b>tchórzem!</b>”"
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/amputation
 
@@ -1231,8 +1231,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='notice'>Nadpisujesz systemy bezpieczeństwa automatu.</span>")
-	name = "Mediborg's Amputation Adventure: Deluxe Edition"
-	desc = "A picture of a blood-soaked medical cyborg flashes on the screen. The mediborg has glowing red eyes, and a speech bubble that says, \"Put your hand in the machine if you aren't a <b>coward!</b>\""
+	name = "Amputacyjna przygoda Mediborga: Edycja deluxe"
+	desc = "Na ekranie miga obraz zakrwawionego cyborga medycznego. Mediborg ma świecące czerwone oczy i dymek z napisem: „Włóż rękę do maszyny, jeśli nie jesteś <b>tchórzem!</b>”"
 	obj_flags |= EMAGGED
 
 #undef ORION_TRAIL_WINTURN

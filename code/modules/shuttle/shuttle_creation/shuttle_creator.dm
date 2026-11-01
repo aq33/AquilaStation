@@ -9,12 +9,12 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 //============ Shuttle Creator Object ============
 /obj/item/shuttle_creator
-	name = "Rapid Shuttle Designator"
+	name = "szybki wyznacznik promów"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rsd"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	desc = "A device used to define the area required for custom ships. Uses bluespace crystals to create bluespace-capable ships."
+	desc = "Urządzenie do wyznaczania obszaru potrzebnego do budowy własnych statków. Używa kryształów bluespace, by tworzyć statki zdolne do lotu przez bluespace."
 	density = FALSE
 	anchored = FALSE
 	flags_1 = CONDUCT_1
@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 				return
 			if(!linkedShuttleId && GLOB.custom_shuttle_count > CUSTOM_SHUTTLE_LIMIT && !override_max_shuttles)
 				to_chat(usr, "<span class='warning'>Utworzono zbyt wiele promów.</span>")
-				message_admins("[ADMIN_FLW(usr)] attempted to create a shuttle, however [CUSTOM_SHUTTLE_LIMIT] have already been created.")
+				message_admins("[ADMIN_FLW(usr)] próbuje utworzyć prom, ale utworzono już [CUSTOM_SHUTTLE_LIMIT].")
 				return
 			if(update_origin()) //Has the shuttle moved? If so, reset the buffer
 				reset_saved_area(FALSE)
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 	var/obj/docking_port/stationary/stationary_port = new /obj/docking_port/stationary(get_turf(target))
 	stationary_port.delete_after = TRUE
-	stationary_port.name = "[recorded_shuttle_area.name] Custom Shuttle construction site"
+	stationary_port.name = "plac budowy własnego promu: [recorded_shuttle_area.name]"
 	var/obj/docking_port/mobile/port = new /obj/docking_port/mobile(get_turf(target))
 	port.shuttle_object_type = /datum/orbital_object/shuttle/custom_shuttle
 	port.callTime = 50
@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	port.ignitionTime = 25
 	port.port_direction = 2
 	port.preferred_direction = EAST
-	port.name = "[recorded_shuttle_area.name] Custom Shuttle"
+	port.name = "własny prom: [recorded_shuttle_area.name]"
 	port.area_type = recorded_shuttle_area.type
 
 	var/portDirection = getNonShuttleDirection(get_turf(port))
@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	//Redraw highlights
 	reset_saved_area(FALSE)
 	GLOB.custom_shuttle_count ++
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)] with a name [recorded_shuttle_area.name] ([GLOB.custom_shuttle_count] custom shuttles, limit is [CUSTOM_SHUTTLE_LIMIT])")
+	message_admins("[ADMIN_LOOKUPFLW(user)] tworzy nowy prom za pomocą [src] w [ADMIN_VERBOSEJMP(user)], nazwa: [recorded_shuttle_area.name] (własne promy: [GLOB.custom_shuttle_count], limit: [CUSTOM_SHUTTLE_LIMIT])")
 	log_game("[key_name(user)] created a new shuttle with a [src] at [AREACOORD(user)] with a name [recorded_shuttle_area.name] ([GLOB.custom_shuttle_count] custom shuttles, limit is [CUSTOM_SHUTTLE_LIMIT])")
 	return TRUE
 

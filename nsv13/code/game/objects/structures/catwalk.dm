@@ -1,6 +1,6 @@
 /obj/structure/lattice/catwalk/over/ship
-	name = "plated catwalk"
-	desc = "A catwalk used decoratively to expose floor sections in hallways. It has a <b>maintenance hatch</b> which can be opened with a crowbar to access anything below it."
+	name = "pokryty pomost"
+	desc = "Ozdobny pomost odsłaniający fragmenty podłogi w korytarzach. Ma <b>właz serwisowy</b>, który otworzysz łomem, by dostać się do tego, co pod spodem."
 	icon = 'nsv13/icons/obj/smooth_structures/catwalk_plated.dmi'
 	color = "#545c68" //Curse you baystation
 	icon_state = "catwalk"

@@ -1,6 +1,6 @@
 /obj/item/clock_module
-	name = "ratvarian borg module"
-	desc = "cool."
+	name = "ratvariański moduł borga"
+	desc = "Fajne."
 	icon = 'icons/mob/actions/actions_clockcult.dmi'
 	icon_state = "Replicant"
 	w_class = WEIGHT_CLASS_NORMAL

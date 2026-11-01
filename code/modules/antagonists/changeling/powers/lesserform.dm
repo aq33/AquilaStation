@@ -1,6 +1,6 @@
 /datum/action/changeling/lesserform
-	name = "Lesser Form"
-	desc = "We debase ourselves and become lesser. We become a monkey. Costs 20 chemicals."
+	name = "Mniejsza forma"
+	desc = "Poniżamy się i stajemy się czymś mniejszym. Zmieniamy się w małpę. Kosztuje 20 chemikaliów."
 	helptext = "Przemiana mocno zmniejsza nasz rozmiar, dzięki czemu możemy wyślizgnąć się z kajdanek i wchodzić do wywietrzników."
 	button_icon_state = "lesser_form"
 	chemical_cost = 20

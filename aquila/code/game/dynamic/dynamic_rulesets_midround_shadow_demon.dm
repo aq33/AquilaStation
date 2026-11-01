@@ -30,6 +30,6 @@
 /// Antagonistę dodaje finish_setup()
 /datum/dynamic_ruleset/midround/from_ghosts/shadow_demon/generate_ruleset_body(mob/applicant)
 	var/mob/living/simple_animal/shadow_demon/demon = create_shadow_demon(applicant.key, pick(spawn_locs), give_antag = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(demon)] has been made into a shadow demon by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(demon)] zostaje demonem cieni z reguły midroundowej.")
 	log_game("DYNAMIC: [key_name(demon)] was spawned as a shadow demon by the midround ruleset.")
 	return demon

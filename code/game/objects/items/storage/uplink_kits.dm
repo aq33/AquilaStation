@@ -1,6 +1,6 @@
 /obj/item/storage/box/syndie_kit
-	name = "box"
-	desc = "A sleek, sturdy box."
+	name = "pudełko"
+	desc = "Eleganckie, solidne pudełko."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
@@ -207,15 +207,15 @@
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
 
 /obj/item/storage/box/syndie_kit/contract_kit
-	name = "Contract Kit"
-	desc = "Supplied to Syndicate contractors."
+	name = "zestaw kontraktora"
+	desc = "Wydawany kontraktorom Syndykatu."
 
 /obj/item/storage/box/syndie_kit/contractor_loadout
-	name = "Standard Loadout"
-	desc = "Supplied to Syndicate contractors, providing their specialised space suit and chameleon uniform."
+	name = "standardowe wyposażenie"
+	desc = "Wydawane kontraktorom Syndykatu. Zawiera ich specjalistyczny skafander kosmiczny i kameleonowy kombinezon."
 
 /obj/item/paper/contractor_guide
-	name = "Contractor Guide"
+	name = "poradnik kontraktora"
 
 /obj/item/paper/contractor_guide/Initialize(mapload)
 	default_raw_text = {"<p>Witaj, agencie, gratulujemy nowej funkcji kontraktora. Oprócz przydzielonych ci już celów ten zestaw zapewni ci kontrakty do realizacji za wypłaty w TC.</p><p>W środku znajdziesz specjalistyczny skafander kosmiczny kontraktora. Jest jeszcze bardziej kompaktowy - mieści się w kieszeni - i szybszy niż skafander Syndykatu dostępny w uplinku. Dołączamy też kameleonowy kombinezon i maskę, które można w każdej chwili zmienić w dowolną potrzebną formę. Papierosy to specjalna mieszanka - z czasem powoli leczą twoje rany.</p><p>Twoja standardowa pałka kontraktora uderza mocniej niż te, do których możesz być przyzwyczajony, i zapewne będzie twoją główną bronią do porywania celów. Trzy dodatkowe przedmioty zostały wylosowane spośród tego, co mieliśmy na stanie. Mamy nadzieję, że przydadzą ci się w misji.</p><p>Centrum kontraktora, dostępne w prawym górnym rogu uplinku, zapewni ci unikalne przedmioty i zdolności. Kupuje się je za Reputację Kontraktora - za każdy wykonany kontrakt otrzymujesz dwa punkty.</p><h3>Korzystanie z tabletu</h3><ol><li>Otwórz program Syndicate Contract Uplink.</li><li>Tu możesz przyjąć kontrakt i odebrać wypłaty w TC za wykonane kontrakty.</li><li>Kwota w nawiasie to premia, którą otrzymasz, dostarczając cel <b>żywy</b>. Drugą kwotę otrzymujesz niezależnie od tego, czy cel żyje.</li><li>Kontrakt wykonujesz, dostarczając cel do wyznaczonego punktu zrzutu, wzywając ewakuację i umieszczając go w kapsule.</li></ol><p>Uważaj przy przyjmowaniu kontraktu. Zobaczysz lokalizację punktu zrzutu, ale anulowanie sprawi, że nie będzie można go przyjąć ponownie.</p><p>Tablet można też ładować w dowolnej ładowarce ogniw.</p><h3>Ewakuacja</h3><ol><li>Upewnij się, że ty i twój cel jesteście w punkcie zrzutu.</li><li>Wezwij ewakuację i odsuń się od punktu zrzutu.</li><li>Jeśli się nie uda, upewnij się, że cel jest w środku i że jest wolne miejsce na lądowanie kapsuły.</li><li>Chwyć cel i wciągnij go do kapsuły.</li></ol><h3>Okupy</h3><p>Potrzebujemy twojego celu do własnych celów, ale gdy przestanie być przydatny, odsyłamy go za okupem w rejon twojej misji. Wróci po kilku minutach w miejsce, z którego go wysłałeś. Nie martw się, dostaniesz działkę z tego, co nam zapłacą. Wpłacimy ją na kartę ID, którą masz przy sobie, oprócz wypłaty w TC.</p><p>Powodzenia, agencie. Ten dokument możesz spalić dołączoną zapalniczką.</p>"}
@@ -269,8 +269,8 @@
 	new /obj/item/paper/contractor_guide(src)
 
 /obj/item/storage/box/syndie_kit/origami_bundle
-	name = "origami kit"
-	desc = "A box full of a number of rather masterfully engineered paper planes and a manual on \"The Art of Origami\"."
+	name = "zestaw do origami"
+	desc = "Pudełko pełne mistrzowsko zaprojektowanych papierowych samolotów i podręcznik „Sztuka origami”."
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
 	new /obj/item/book/granter/action/origami(src)
@@ -280,63 +280,63 @@
 	redpaper.color = "#FF0000" //Red paper, for an extra special calling card flair
 
 /obj/item/storage/box/syndie_kit/imp_freedom
-	name = "freedom implant box"
+	name = "pudełko z implantem wolności"
 
 /obj/item/storage/box/syndie_kit/imp_freedom/PopulateContents()
 	new /obj/item/implanter/freedom(src)
 
 /obj/item/storage/box/syndie_kit/imp_microbomb
-	name = "microbomb implant box"
+	name = "pudełko z implantem mikrobomby"
 
 /obj/item/storage/box/syndie_kit/imp_microbomb/PopulateContents()
 	new /obj/item/implanter/explosive(src)
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb
-	name = "macrobomb implant box"
+	name = "pudełko z implantem makrobomby"
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb/PopulateContents()
 	new /obj/item/implanter/explosive_macro(src)
 
 /obj/item/storage/box/syndie_kit/imp_uplink
-	name = "uplink implant box"
+	name = "pudełko z implantem uplinku"
 
 /obj/item/storage/box/syndie_kit/imp_uplink/PopulateContents()
 	new /obj/item/implanter/uplink(src)
 
 /obj/item/storage/box/syndie_kit/bioterror
-	name = "bioterror syringe box"
+	name = "pudełko strzykawek bioterrorystycznych"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/imp_adrenal
-	name = "adrenal implant box"
+	name = "pudełko z implantem adrenalinowym"
 
 /obj/item/storage/box/syndie_kit/imp_adrenal/PopulateContents()
 	new /obj/item/implanter/adrenalin(src)
 
 /obj/item/storage/box/syndie_kit/imp_storage
-	name = "storage implant box"
+	name = "pudełko z implantem schowka"
 
 /obj/item/storage/box/syndie_kit/imp_storage/PopulateContents()
 	new /obj/item/implanter/storage(src)
 
 /obj/item/storage/box/syndie_kit/imp_stealth
-	name = "stealth implant box"
+	name = "pudełko z implantem kamuflażu"
 
 /obj/item/storage/box/syndie_kit/imp_stealth/PopulateContents()
 	new /obj/item/implanter/stealth(src)
 	new /obj/item/clothing/head/aquila/headband/black/solid(src) //AQUILA EDIT
 	new /obj/item/clothing/under/aquila/metalgear(src) //AQUILA EDIT
 /obj/item/storage/box/syndie_kit/imp_radio
-	name = "syndicate radio implant box"
+	name = "pudełko z implantem radiowym Syndykatu"
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/space
-	name = "boxed space suit and helmet"
+	name = "skafander kosmiczny z hełmem w pudełku"
 
 /obj/item/storage/box/syndie_kit/space/ComponentInitialize()
 	. = ..()
@@ -354,7 +354,7 @@
 		new /obj/item/clothing/suit/space/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/emp
-	name = "EMP kit"
+	name = "zestaw EMP"
 
 /obj/item/storage/box/syndie_kit/emp/PopulateContents()
 	for(var/i in 1 to 5)
@@ -362,7 +362,7 @@
 	new /obj/item/implanter/emp(src)
 
 /obj/item/storage/box/syndie_kit/chemical
-	name = "chemical kit"
+	name = "zestaw chemiczny"
 
 /obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
 	. = ..()
@@ -386,7 +386,7 @@
 	new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syndie_kit/nuke
-	name = "box"
+	name = "pudełko"
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -394,7 +394,7 @@
 	new /obj/item/paper/guides/antag/nuke_instructions(src)
 
 /obj/item/storage/box/syndie_kit/supermatter
-	name = "box"
+	name = "pudełko"
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -403,7 +403,7 @@
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
-	name = "virus grenade kit"
+	name = "zestaw granatu wirusowego"
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
@@ -413,7 +413,7 @@
 	new /obj/item/reagent_containers/glass/bottle/tuberculosiscure(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
-	name = "chameleon kit"
+	name = "zestaw kameleona"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon(src)
@@ -433,7 +433,7 @@
 	new /obj/item/clothing/head/wig(src)
 
 /obj/item/storage/box/syndie_kit/plasmachameleon
-	name = "plasmaman chameleon kit"
+	name = "zestaw kameleona dla plazmaludzi"
 
 /obj/item/storage/box/syndie_kit/plasmachameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon/envirosuit(src)
@@ -506,16 +506,16 @@
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades
-	name = "buzzkill grenade box"
-	desc = "A sleek, sturdy box with a buzzing noise coming from the inside. Uh oh."
+	name = "pudełko granatów Buzzkill"
+	desc = "Eleganckie, solidne pudełko, z którego dochodzi bzyczenie. Ojej."
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
 
 /obj/item/storage/box/syndie_kit/cultconstructkit
-	name = "cult construct kit"
-	desc = "A sleek, sturdy box with an ominous, dark energy inside. Yikes."
+	name = "zestaw konstruktu kultu"
+	desc = "Eleganckie, solidne pudełko, w którym kryje się złowroga, mroczna energia. Brr."
 
 /obj/item/storage/box/syndie_kit/cultconstructkit/PopulateContents()
 	new /obj/item/storage/belt/soulstone/full/purified(src)
@@ -523,15 +523,15 @@
 	new /obj/item/sbeacondrop/constructshell(src)
 
 /obj/item/storage/box/syndie_kit/mimesabrekit
-	name = "Baguette blade bundle"
-	desc = "Provides you with a hardly noticable blade hidden inside a baguette disguise."
+	name = "zestaw ostrza w bagietce"
+	desc = "Daje ci ledwo zauważalne ostrze ukryte w przebraniu bagietki."
 
 /obj/item/storage/box/syndie_kit/mimesabrekit/PopulateContents()
 	new /obj/item/storage/belt/sabre/mime(src)
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle
-	name = "deathrattle implant box"
-	desc = "Contains eight linked deathrattle implants."
+	name = "pudełko z implantami agonii"
+	desc = "Zawiera osiem połączonych implantów agonii."
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
@@ -549,8 +549,8 @@
 
 
 /obj/item/storage/box/syndie_kit/toy_box
-	name = "Box of DonkCo. toys"
-	desc = "filled with safe toys that have passed Nanotrasen saftey assurance, but contained in a suspicious red box \"for no reason.\""
+	name = "pudełko zabawek DonkCo."
+	desc = "Pełne bezpiecznych zabawek, które przeszły kontrolę bezpieczeństwa Nanotrasen, ale zapakowanych w podejrzane czerwone pudełko „bez powodu”."
 
 /obj/item/storage/box/syndie_kit/toy_box/PopulateContents()
 	new /obj/item/toy/spinningtoy(src)

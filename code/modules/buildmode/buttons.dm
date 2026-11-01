@@ -13,7 +13,7 @@
 	return ..()
 
 /atom/movable/screen/buildmode/mode
-	name = "Toggle Mode"
+	name = "Przełącz tryb"
 	icon_state = "buildmode_basic"
 	screen_loc = "NORTH,WEST"
 
@@ -33,7 +33,7 @@
 /atom/movable/screen/buildmode/help
 	icon_state = "buildhelp"
 	screen_loc = "NORTH,WEST+1"
-	name = "Buildmode Help"
+	name = "Pomoc trybu budowania"
 
 /atom/movable/screen/buildmode/help/Click(location, control, params)
 	bd.mode.show_help(usr.client)
@@ -42,7 +42,7 @@
 /atom/movable/screen/buildmode/bdir
 	icon_state = "build"
 	screen_loc = "NORTH,WEST+2"
-	name = "Change Dir"
+	name = "Zmień kierunek"
 
 /atom/movable/screen/buildmode/bdir/update_icon()
 	dir = bd.build_dir
@@ -83,7 +83,7 @@
 /atom/movable/screen/buildmode/quit
 	icon_state = "buildquit"
 	screen_loc = "NORTH,WEST+3"
-	name = "Quit Buildmode"
+	name = "Wyjdź z trybu budowania"
 
 /atom/movable/screen/buildmode/quit/Click()
 	bd.quit()

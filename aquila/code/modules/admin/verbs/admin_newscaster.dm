@@ -1,7 +1,7 @@
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Round"
 	set name = "Access Newscaster Network"
-	set desc = "Allows you to view, add and edit news feeds."
+	set desc = "Pozwala przeglądać, dodawać i edytować kanały wiadomości."
 
 	if (!istype(src, /datum/admins))
 		src = usr.client.holder
@@ -63,9 +63,9 @@
 	data["user"] = list()
 	data["user"]["authenticated"] = TRUE
 	data["user"]["admin"] = TRUE
-	data["user"]["name"] = "Centcom Official"
+	data["user"]["name"] = "Urzędnik Centrali"
 	data["user"]["job"] = "Official"
-	data["user"]["department"] = "Department of News"
+	data["user"]["department"] = "Dział Wiadomości"
 
 	data["security_mode"] = TRUE
 	data["photo_data"] = !isnull(current_image)
@@ -136,7 +136,7 @@
 
 	if(!current_channel)
 		data["channelAuthor"] = "Nanotrasen Inc"
-		data["channelDesc"] = "Welcome to Newscaster Net. Interface & News networks Operational."
+		data["channelDesc"] = "Witaj w sieci Newscaster. Interfejs i sieci wiadomości działają."
 		data["channelLocked"] = TRUE
 	else
 		data["channelDesc"] = current_channel.channel_desc
@@ -170,7 +170,7 @@
 
 		if("createStory")
 			if(!current_channel)
-				to_chat(usr, "select a channel first!")
+				to_chat(usr, "najpierw wybierz kanał!")
 				return TRUE
 			var/prototype_channel = params["current"]
 			create_story(channel_name = prototype_channel)
@@ -278,14 +278,14 @@
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = stripped_input(usr, "Write the Criminal's Name", "Warrent Alert Handler", "John Doe", MAX_NAME_LEN)
+			var/temp_name = stripped_input(usr, "Wpisz imię i nazwisko przestępcy", "Obsługa listów gończych", "John Doe", MAX_NAME_LEN)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = stripped_multiline_input(usr, "Write the Criminal's Crimes", "Warrent Alert Handler", "Unknown", MAX_BROADCAST_LEN)
+			var/temp_desc = stripped_multiline_input(usr, "Wpisz przestępstwa przestępcy", "Obsługa listów gończych", "Unknown", MAX_BROADCAST_LEN)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -294,7 +294,7 @@
 		if("submitWantedIssue")
 			if(!crime_description || !criminal_name)
 				return TRUE
-			GLOB.news_network.submit_wanted(criminal_name, crime_description, "Centcom Official", current_image, adminMsg = TRUE, newMessage = TRUE, has_image = wanted_image)
+			GLOB.news_network.submit_wanted(criminal_name, crime_description, "Urzędnik Centrali", current_image, adminMsg = TRUE, newMessage = TRUE, has_image = wanted_image)
 			current_image = null
 			viewing_wanted = FALSE
 			editing_wanted = FALSE
@@ -334,7 +334,7 @@
  * *user: The mob who is being checked for a held photo object.
  */
 /datum/newspanel/proc/attach_photo(mob/user)
-	to_chat(user, "I didn't add this!")
+	to_chat(user, "Tego nie dodałem!")
 	return
 
 /**
@@ -346,13 +346,13 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel.channel_name == channel_name)
-			alert(usr, "ERROR: Feed channel with that name already exists on the Network.", "Okay")
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
 		return TRUE
-	var/choice = alert(usr, "Please confirm feed channel creation","Network Channel Handler", "Confirm", "Cancel")
-	if(choice == "Confirm")
-		GLOB.news_network.create_feed_channel(channel_name, "Centcom Official", channel_desc, locked = channel_locked)
+	var/choice = alert(usr, "Potwierdź utworzenie kanału","Obsługa kanałów sieci", "Potwierdź", "Anuluj")
+	if(choice == "Potwierdź")
+		GLOB.news_network.create_feed_channel(channel_name, "Urzędnik Centrali", channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
 	stop_creating_channel()
 	update_static_data(usr)
@@ -362,7 +362,7 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel != current_channel && iterated_feed_channel.channel_name == channel_name)
-			alert(usr, "ERROR: Feed channel with that name already exists on the Network.", "Okay")
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
 		return TRUE
@@ -380,7 +380,7 @@
 		creating_comment = FALSE
 		return TRUE
 	var/datum/feed_comment/new_feed_comment = new /datum/feed_comment
-	new_feed_comment.author = "Centcom Offical"
+	new_feed_comment.author = "Urzędnik Centrali"
 	new_feed_comment.body = comment_text
 	new_feed_comment.time_stamp = station_time_timestamp()
 	current_message.comments += new_feed_comment
@@ -414,12 +414,12 @@
 		if(channel_name == potential_channel.channel_ID)
 			current_channel = potential_channel
 			break
-	var/temp_message = stripped_multiline_input(usr, "Write your Feed story", "Network Channel Handler", feed_channel_message)
+	var/temp_message = stripped_multiline_input(usr, "Napisz swój artykuł", "Obsługa kanałów sieci", feed_channel_message)
 	if(length(temp_message) <= 1)
 		return TRUE
 	if(temp_message)
 		feed_channel_message = temp_message
-	GLOB.news_network.submit_article("<font face=\"[PEN_FONT]\">[parsemarkdown(feed_channel_message, usr)]</font>", "Centcom Official", current_channel.channel_name, send_photo_data(), adminMessage = TRUE, allow_comments = TRUE, author_job = "Official")
+	GLOB.news_network.submit_article("<font face=\"[PEN_FONT]\">[parsemarkdown(feed_channel_message, usr)]</font>", "Urzędnik Centrali", current_channel.channel_name, send_photo_data(), adminMessage = TRUE, allow_comments = TRUE, author_job = "Urzędnik")
 	SSblackbox.record_feedback("amount", "newscaster_stories", 1)
 	feed_channel_message = ""
 	current_image = null

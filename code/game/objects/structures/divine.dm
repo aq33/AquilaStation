@@ -1,6 +1,6 @@
 /obj/structure/sacrificealtar
-	name = "sacrificial altar"
-	desc = "An altar designed to perform blood sacrifice for a deity."
+	name = "ołtarz ofiarny"
+	desc = "Ołtarz do składania krwawych ofiar bóstwu."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "sacrificealtar"
 	anchored = TRUE
@@ -18,11 +18,11 @@
 		return
 	to_chat(user, "<span class='notice'>Próbujesz złożyć [L] w ofierze, odprawiając rytuał ofiarny.</span>")
 	L.gib()
-	message_admins("[ADMIN_LOOKUPFLW(user)] has sacrificed [key_name_admin(L)] on the sacrificial altar at [AREACOORD(src)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] składa [key_name_admin(L)] w ofierze na ołtarzu ofiarnym w [AREACOORD(src)].")
 
 /obj/structure/healingfountain
-	name = "healing fountain"
-	desc = "A fountain containing the waters of life."
+	name = "uzdrawiająca fontanna"
+	desc = "Fontanna z wodą życia."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "fountain"
 	anchored = TRUE

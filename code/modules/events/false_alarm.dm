@@ -18,7 +18,7 @@
 			continue
 		possible_types += E
 
-	forced_type = input(usr, "Wybierz straszaka.","False event") as null|anything in sortNames(possible_types)
+	forced_type = input(usr, "Wybierz straszaka.","Fałszywy event") as null|anything in sortNames(possible_types)
 
 /datum/round_event_control/falsealarm/canSpawnEvent(players_amt, gamemode)
 	return ..() && length(gather_false_events())
@@ -44,7 +44,7 @@
 		event_control = pick(events_list)
 	if(event_control)
 		var/datum/round_event/Event = new event_control.typepath()
-		message_admins("False Alarm: [Event]")
+		message_admins("Fałszywy alarm: [Event]")
 		Event.kill() 		//do not process this event - no starts, no ticks, no ends
 		Event.announce(TRUE) 	//just announce it like it's happening
 

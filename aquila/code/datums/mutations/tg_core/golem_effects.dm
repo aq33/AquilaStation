@@ -15,7 +15,7 @@
 	/// Icon state to display to represent the alert
 	var/alert_icon_state = "sheet-monkey"
 	/// Tooltip to display when hovering over the alert
-	var/alert_desc = "Something went wrong and this tooltip is not displaying correctly."
+	var/alert_desc = "Coś poszło nie tak i ta podpowiedź nie wyświetla się poprawnie."
 	/// What color does the filter glow?
 	var/filter_color = LIGHT_COLOR_DEFAULT
 	/// If TRUE, then this status effect is exclusive to other golem status effects and cannot be stacked with them.
@@ -26,8 +26,8 @@
 	var/minimum_duration_mult = 0.1
 
 /atom/movable/screen/alert/status_effect/golem_status
-	name = "Metamorphic %SOMETHING%"
-	desc = "You've enjoyed a tasty meal and are now experiencing a bug."
+	name = "Metamorfoza: %SOMETHING%"
+	desc = "Zjadłeś coś smacznego i właśnie trafiłeś na błąd."
 	icon_state = "template"
 	/// Overlay we show on top of the template icon
 	var/mutable_appearance/mineral_overlay
@@ -116,7 +116,7 @@
 
 /datum/status_effect/golem/get_examine_text()
 	if(mineral_name)
-		return "<span class='notice'>[owner.p_their(TRUE)] ciało przecinają żyły minerału ([mineral_name]).</span>"
+		return "<span class='notice'>Ciało [owner] przecinają żyły minerału ([mineral_name]).</span>"
 
 /// Freezes hunger for the duration
 /datum/status_effect/golem/uranium
@@ -432,7 +432,7 @@
 
 /// Lets you hold a gibtonite ore in one hand and shoot it like a gun
 /obj/item/gibtonite_hand
-	name = "stabilised gibtonite fist"
+	name = "ustabilizowana gibtonitowa pięść"
 	desc = "Lepiej czymś tym rzuć, zanim wyjdzie drugą stroną twojego ciała."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Gibtonite ore"
@@ -487,7 +487,7 @@
 
 /// Point at a target and teleport somewhere vaguely close to it
 /obj/item/bluespace_finger
-	name = "bluespace knot"
+	name = "węzeł bluespace"
 	desc = "Chwyć mocno rzeczywistość i przyciągnij się w pobliskie miejsce."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
@@ -544,7 +544,7 @@
 	qdel(src)
 
 /obj/effect/temp_visual/teleport_golem
-	name = "bluespace silhouette"
+	name = "sylwetka bluespace"
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "teleport"
 	duration = 6 SECONDS

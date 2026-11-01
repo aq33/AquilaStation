@@ -1,6 +1,6 @@
 /obj/item/organ/brain
-	name = "brain"
-	desc = "A piece of juicy meat found in a person's head."
+	name = "mózg"
+	desc = "Kawałek soczystego mięsa znajdowany w głowie człowieka."
 	icon_state = "brain"
 	throw_speed = 3
 	throw_range = 5
@@ -32,7 +32,7 @@
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
 
-	name = "brain"
+	name = "mózg"
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
 		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
@@ -81,7 +81,7 @@
 		brainmob.revive(TRUE) // We fixed the brain, fix the brainmob too.
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
-	name = "[L.name]'s brain"
+	name = "mózg [L.name]"
 	if(brainmob || decoy_override)
 		return
 	if(!L.mind)
@@ -222,16 +222,16 @@
 				return brain_message
 
 /obj/item/organ/brain/alien
-	name = "alien brain"
-	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
+	name = "mózg obcego"
+	desc = "Ledwo rozumiemy mózgi ziemskich zwierząt. Kto wie, co znajdziemy w mózgu tak zaawansowanego gatunku?"
 	icon_state = "brain-x"
 
 /obj/item/organ/brain/positron
-	name = "positronic brain"
+	name = "mózg pozytroniczny"
 	slot = ORGAN_SLOT_BRAIN
 	zone = BODY_ZONE_CHEST
 	status = ORGAN_ROBOTIC
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this Posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
+	desc = "Sześcian lśniącego metalu o boku dziesięciu centymetrów, pokryty płytkimi rowkami. Na wierzchu wygrawerowano numer seryjny IPC. Aby użyć tego mózgu pozytronicznego jako nowo zbudowanego, trzeba go połączyć z MMI."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC

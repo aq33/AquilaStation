@@ -1,7 +1,7 @@
 /obj/vehicle/sealed/car/realistic/fighter_tug
-	name = "\improper M575 Aircraft Tug"
-	desc = "A variant of an armoured personnel carrier which is able to tow fighters around.\n\
-		<span class='notice'>You can <b>click-drag</b> a fighter onto the tug to load it.</span>"
+	name = "\improper holownik M575"
+	desc = "Odmiana opancerzonego transportera osobowego, która potrafi holować myśliwce.\n\
+		<span class='notice'><b>Przeciągnij</b> myśliwiec na holownik, by go załadować.</span>"
 	icon = 'nsv13/icons/obj/vehicles.dmi'
 	icon_state = "tug"
 	max_integrity = 150
@@ -56,7 +56,7 @@
 	var/list/data = ..()
 	var/obj/structure/overmap/tugged = locate(/obj/structure/overmap/small_craft) in contents
 	data["loaded"] = (tugged) ? TRUE : FALSE
-	data["loaded_name"] = (tugged) ? tugged.name : "No fighter loaded"
+	data["loaded_name"] = (tugged) ? tugged.name : "Brak załadowanego myśliwca"
 	data["ready"] = ready
 	return data
 
@@ -224,8 +224,8 @@
 		START_PROCESSING(SSphysics_processing, target)
 
 /obj/item/key/fighter_tug
-	name = "fighter tug key"
-	desc = "A small grey key. An inscription on it reads: <i>Keep away from clown</i>."
+	name = "kluczyk do holownika myśliwców"
+	desc = "Mały szary kluczyk. Wygrawerowano na nim napis: <i>Trzymać z dala od klauna</i>."
 	icon = 'nsv13/icons/obj/vehicles32.dmi'
 	icon_state = "key"
 	w_class = WEIGHT_CLASS_TINY

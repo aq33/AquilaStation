@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/bloodcrawl
-	name = "Blood Crawl"
-	desc = "Use pools of blood to phase out of existence."
+	name = "Pełzanie przez krew"
+	desc = "Używasz kałuż krwi, by zniknąć z tego świata."
 	charge_max = 0
 	clothes_req = FALSE
 	//If you couldn't cast this while phased, you'd have a problem

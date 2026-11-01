@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood
-	name = "blood"
-	desc = "It's red and gooey. Perhaps it's the chef's cooking?"
+	name = "krew"
+	desc = "Jest czerwona i lepka. Może to dzieło kucharza?"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "floor1"
 	color = COLOR_BLOOD
@@ -40,25 +40,25 @@
 	is_slippery = TRUE // AQ EDIT
 
 /obj/effect/decal/cleanable/blood/tracks
-	name = "tracks"
-	desc = "They look like tracks left by wheels."
+	name = "ślady"
+	desc = "Wyglądają jak ślady kół."
 	icon_state = "tracks"
 	random_icon_states = null
 
 /obj/effect/decal/cleanable/blood/trail_holder // AQ EDIT - made a child of blood
-	name = "bloody trails"
+	name = "krwawe smugi"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = null //rendered through overlays
 	random_icon_states = null
-	desc = "Your instincts say you shouldn't be following these."
+	desc = "Instynkt podpowiada ci, że lepiej za nimi nie iść."
 	var/list/existing_dirs = list()
 
 /obj/effect/decal/cleanable/blood/trail_holder/can_bloodcrawl_in()
 	return TRUE
 
 /obj/effect/decal/cleanable/blood/gibs
-	name = "gibs"
-	desc = "They look bloody and gruesome."
+	name = "flaki"
+	desc = "Wyglądają krwawo i makabrycznie."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gib1"
 	layer = LOW_OBJ_LAYER
@@ -78,7 +78,7 @@
 	. = ..()
 	var/mutable_appearance/gib_overlay = mutable_appearance(icon, "[icon_state]-overlay", appearance_flags = RESET_COLOR)
 	add_overlay(gib_overlay)
-	name = "rotten [name]"
+	name = "[name] (zgnilizna)"
 	//AddComponent(/datum/component/rot/gibs)
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, PROC_REF(on_pipe_eject))
 
@@ -175,8 +175,8 @@
 	return TRUE
 
 /obj/effect/decal/cleanable/blood/drip
-	name = "drips of blood"
-	desc = "It's red."
+	name = "krople krwi"
+	desc = "Są czerwone."
 	icon_state = "drip5" //using drip5 since the others tend to blend in with pipes & wires.
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
 	bloodiness = 0

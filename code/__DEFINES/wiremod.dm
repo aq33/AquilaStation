@@ -53,7 +53,7 @@
 /// The maximum range between a port and an atom
 #define PORT_ATOM_MAX_RANGE 7
 
-#define COMPONENT_DEFAULT_NAME "component"
+#define COMPONENT_DEFAULT_NAME "komponent"
 
 #define COMPONENT_DEFAULT_CATEGORY "Unassigned"
 

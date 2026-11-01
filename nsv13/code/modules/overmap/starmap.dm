@@ -10,8 +10,8 @@
 		"space.png" = 'nsv13/icons/assets/space.png')
 
 /obj/machinery/computer/ship/navigation
-	name = "\improper FTL Navigation console"
-	desc = "A computer which can interface with the Thirring Drive to allow the ship to travel vast distances in space."
+	name = "\improper konsola nawigacji FTL"
+	desc = "Komputer, który łączy się z napędem Thirringa i pozwala okrętowi pokonywać ogromne odległości w kosmosie."
 	icon_screen = "ftl"
 	var/datum/star_system/selected_system = null
 	var/screen = STARMAP
@@ -29,8 +29,8 @@
 	return ..()
 
 /obj/machinery/computer/ship/navigation/public
-	name = "Starmap Console"
-	desc = "A computer which shows the current position of the ship in the universe."
+	name = "konsola mapy gwiezdnej"
+	desc = "Komputer, który pokazuje obecne położenie okrętu we wszechświecie."
 	can_control_ship = FALSE
 
 /obj/machinery/computer/ship/navigation/attack_hand(mob/user)
@@ -143,7 +143,7 @@
 				system_list["name"] = system.name
 				if(current_system)
 					system_list["in_range"] = is_in_range(current_system, system) || return_jump_check(system)
-					system_list["distance"] = "[current_system.dist(system) > 0 ? "[current_system.dist(system)] LY" : "You are here."]"
+					system_list["distance"] = "[current_system.dist(system) > 0 ? "[current_system.dist(system)] l.ś." : "Jesteś tutaj."]"
 				else
 					system_list["in_range"] = 0
 				system_list["x"] = system.x
@@ -155,22 +155,22 @@
 				system_list["hidden"] = FALSE
 				var/label = ""
 				if(system.is_hypergate)
-					label += " HYPERGATE"
+					label += " HIPERBRAMA"
 				if(system.is_capital && !label)
-					label += "CAPITAL"
+					label += "STOLICA"
 				if(system.trader && system.sector != SECTOR_NEUTRAL) //Use shortnames in brazil for readability
 					label += " [system.trader.name]"
 				if(system.trader && system.sector == SECTOR_NEUTRAL) //Use shortnames in brazil for readability
 					label += " [system.trader.shortname]"
 				if(system.mission_sector)
-					label += " OCCUPIED"
+					label += " ZAJĘTY"
 				if(system.objective_sector)
-					label += " MISSION"
+					label += " MISJA"
 				system_list["label"] = label
 				for(var/thename in system.adjacency_list) //Draw the lines joining our systems
 					var/datum/star_system/sys = SSstar_system.system_by_id(thename)
 					if(!sys)
-						message_admins("[thename] exists in a system adjacency list, but does not exist. Go create a starsystem datum for it.")
+						message_admins("[thename] jest na liście sąsiedztwa układu, ale nie istnieje. Utwórz dla niego datum starsystem.")
 						continue
 					var/is_wormhole = (LAZYFIND(sys.wormhole_connections, system.name) || LAZYFIND(system.wormhole_connections, sys.name))
 					var/is_bidirectional = (LAZYFIND(sys.adjacency_list, system.name) && LAZYFIND(system.adjacency_list, sys.name))

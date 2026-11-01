@@ -1,8 +1,8 @@
 GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 
 /obj/machinery/computer/shuttle_flight
-	name = "shuttle console"
-	desc = "A shuttle control computer."
+	name = "konsola promu"
+	desc = "Komputer sterowania promem."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
 	light_color = LIGHT_COLOR_CYAN
@@ -51,7 +51,7 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 	if(my_port)
 		my_port.delete_after = TRUE
 		my_port.id = null
-		my_port.name = "Old [my_port.name]"
+		my_port.name = "dawny port: [my_port.name]"
 		my_port = null
 
 /obj/machinery/computer/shuttle_flight/examine(mob/user)
@@ -184,12 +184,12 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 		//Stealth shuttles bypass shuttle jamming.
 		if(shuttleObject.docking_target.can_dock_anywhere && (!GLOB.shuttle_docking_jammed || shuttleObject.stealth || !istype(shuttleObject.docking_target, /datum/orbital_object/z_linked/station)))
 			data["validDockingPorts"] += list(list(
-				"name" = "Custom Location",
+				"name" = "Własna lokalizacja",
 				"id" = "custom_location"
 			))
 		else if(shuttleObject.docking_target.random_docking)
 			data["validDockingPorts"] += list(list(
-				"name" = "Random Drop",
+				"name" = "Losowy zrzut",
 				"id" = "custom_location"
 			))
 		for(var/obj/docking_port/stationary/stationary_port as() in SSshuttle.stationary)
@@ -340,7 +340,7 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 			var/datum/orbital_object/z_linked/beacon/z_linked = new /datum/orbital_object/z_linked/beacon/ruin/interdiction(
 				new /datum/orbital_vector(shuttleObject.position.x, shuttleObject.position.y)
 			)
-			z_linked.name = "Interdiction Site"
+			z_linked.name = "Miejsce przechwycenia"
 			//Lets tell everyone about it
 			priority_announce("Wykryto przechwycenie supercruise, przechwycone promy zostały zarejestrowane w lokalnych jednostkach GPS. Źródło: [shuttleObject.name]")
 			//Get all shuttle objects in range
@@ -396,7 +396,7 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 					return
 				//Report exploit
 				log_admin("[usr] attempted to forge a target location through a tgui exploit on [src]")
-				message_admins("[ADMIN_FULLMONTY(usr)] attempted to forge a target location through a tgui exploit on [src]")
+				message_admins("[ADMIN_FULLMONTY(usr)] próbuje sfałszować lokalizację docelową przez exploit tgui w [src]")
 				return
 			//Find the target port
 			var/obj/docking_port/stationary/target_port = SSshuttle.getDock(params["port"])
@@ -404,7 +404,7 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 				return
 			if(!(target_port.id in valid_docks))
 				log_admin("[usr] attempted to forge a target location through a tgui exploit on [src]")
-				message_admins("[ADMIN_FULLMONTY(usr)] attempted to forge a target location through a tgui exploit on [src]")
+				message_admins("[ADMIN_FULLMONTY(usr)] próbuje sfałszować lokalizację docelową przez exploit tgui w [src]")
 				return
 			//Dont wipe z level while we are going
 			//Dont wipe z of where we are leaving for a bit, in case we come back.
@@ -465,13 +465,13 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 	var/datum/space_level/target_spacelevel = _shuttleObject.docking_target.linked_z_level[1]
 	var/target_zvalue = target_spacelevel.z_value
 	if(is_reserved_level(target_zvalue))
-		message_admins("Shuttle [_shuttleId] attempted to dock on a reserved z-level as a result of docking with [_shuttleObject.docking_target.name].")
+		message_admins("Prom [_shuttleId] próbuje zadokować na zarezerwowanym poziomie Z w wyniku dokowania z [_shuttleObject.docking_target.name].")
 		return FALSE
 	//Create temporary port
 	var/obj/docking_port/stationary/random_port = new
 	var/static/random_drops = 0
 	random_port.id = "randomdroplocation_[random_drops++]"
-	random_port.name = "Random drop location"
+	random_port.name = "Losowe miejsce zrzutu"
 	random_port.delete_after = TRUE
 	random_port.width = shuttle_dock.width
 	random_port.height = shuttle_dock.height
@@ -526,7 +526,7 @@ GLOBAL_VAR_INIT(shuttle_docking_jammed, FALSE)
 	UNTIL((!target_spacelevel.generating) || world.time > start_time + 3 MINUTES)
 	if(target_spacelevel.generating)
 		target_spacelevel.generating = FALSE
-		message_admins("CAUTION: SHUTTLE [shuttleId] REACHED THE GENERATION TIMEOUT OF 3 MINUTES. THE ASSIGNED Z-LEVEL IS STILL MARKED AS GENERATING, BUT WE ARE DOCKING ANYWAY.")
+		message_admins("UWAGA: PROM [shuttleId] PRZEKROCZYŁ 3-MINUTOWY LIMIT GENEROWANIA. PRZYDZIELONY POZIOM Z NADAL JEST OZNACZONY JAKO GENEROWANY, ALE PROM I TAK DOKUJE.")
 		log_mapping("CAUTION: SHUTTLE [shuttleId] REACHED THE GENERATION TIMEOUT OF 3 MINUTES. THE ASSIGNED Z-LEVEL IS STILL MARKED AS GENERATING, BUT WE ARE DOCKING ANYWAY.")
 	shuttle_dock.setTimer(20)
 

@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/RD
-	name = "\proper research director's locker"
+	name = "\proper szafka Dyrektora Naukowego"
 	req_access = list(ACCESS_RD)
 	icon_state = "rd"
 
@@ -38,7 +38,7 @@
 	//new /obj/item/gun/energy/e_gun/mini/heads(src) NSV13 No energy weapons
 
 /obj/item/storage/box/suitbox/rd
-	name = "compression box of research director outfits"
+	name = "kompresyjne pudełko ze strojami Dyrektora Naukowego"
 
 /obj/item/storage/box/suitbox/rd/PopulateContents()
 	new /obj/item/clothing/under/rank/rnd/research_director(src)

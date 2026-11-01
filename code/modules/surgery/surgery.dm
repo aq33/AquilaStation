@@ -134,7 +134,7 @@
 	qdel(src)
 
 /datum/surgery/advanced
-	name = "advanced surgery"
+	name = "zaawansowana chirurgia"
 	requires_tech = TRUE
 
 /datum/surgery/advanced/can_start(mob/user, mob/living/carbon/target)
@@ -168,15 +168,15 @@
 		return TRUE
 
 /obj/item/disk/surgery
-	name = "Surgery Procedure Disk"
-	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	name = "dysk z procedurą chirurgiczną"
+	desc = "Dysk z zaawansowanymi procedurami chirurgicznymi. Trzeba go wgrać do konsoli operacyjnej."
 	icon_state = "datadisk1"
 	materials = list(/datum/material/iron=300, /datum/material/glass=100)
 	var/list/surgeries
 
 /obj/item/disk/surgery/debug
-	name = "Debug Surgery Disk"
-	desc = "A disk that contains all existing surgery procedures."
+	name = "dysk debugowy z operacjami"
+	desc = "Dysk zawierający wszystkie istniejące procedury chirurgiczne."
 	icon_state = "datadisk1"
 	materials = list(/datum/material/iron=300, /datum/material/glass=100)
 

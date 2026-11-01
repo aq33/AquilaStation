@@ -29,8 +29,8 @@
 // ===== ENGINEERING CONSOLE =====
 /obj/machinery/modular_computer/console/preset/engineering
 	console_department = "Engineering"
-	name = "engineering console"
-	desc = "A stationary computer. This one comes preloaded with engineering programs."
+	name = "konsola inżynieryjna"
+	desc = "Komputer stacjonarny. Ten ma fabrycznie zainstalowane programy inżynieryjne."
 
 /obj/machinery/modular_computer/console/preset/engineering/install_programs()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
@@ -42,8 +42,8 @@
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/console/preset/research
 	console_department = "Research"
-	name = "research director's console"
-	desc = "A stationary computer. This one comes preloaded with research programs."
+	name = "konsola dyrektora naukowego"
+	desc = "Komputer stacjonarny. Ten ma fabrycznie zainstalowane programy badawcze."
 	_has_ai = TRUE
 
 /obj/machinery/modular_computer/console/preset/research/install_programs()
@@ -56,8 +56,8 @@
 // ===== COMMAND CONSOLE =====
 /obj/machinery/modular_computer/console/preset/command
 	console_department = "Command"
-	name = "command console"
-	desc = "A stationary computer. This one comes preloaded with command programs."
+	name = "konsola dowództwa"
+	desc = "Komputer stacjonarny. Ten ma fabrycznie zainstalowane programy dowództwa."
 	_has_second_id_slot = TRUE
 	_has_printer = TRUE
 
@@ -71,8 +71,8 @@
 // ===== CIVILIAN CONSOLE =====
 /obj/machinery/modular_computer/console/preset/civilian
 	console_department = "Civilian"
-	name = "civilian console"
-	desc = "A stationary computer. This one comes preloaded with generic programs."
+	name = "konsola cywilna"
+	desc = "Komputer stacjonarny. Ten ma fabrycznie zainstalowane programy ogólnego użytku."
 
 /obj/machinery/modular_computer/console/preset/civilian/install_programs()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
@@ -81,8 +81,8 @@
 // curator
 /obj/machinery/modular_computer/console/preset/curator
 	console_department = "Civilian"
-	name = "curator console"
-	desc = "A stationary computer. This one comes preloaded with art programs."
+	name = "konsola bibliotekarza"
+	desc = "Komputer stacjonarny. Ten ma fabrycznie zainstalowane programy artystyczne."
 	_has_printer = TRUE
 
 /obj/machinery/modular_computer/console/preset/curator/install_programs()

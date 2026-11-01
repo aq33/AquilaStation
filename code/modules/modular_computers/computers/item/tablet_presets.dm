@@ -22,7 +22,7 @@
 
 /obj/item/modular_computer/tablet/preset/advanced/command/Initialize(mapload)
 	. = ..()
-	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("solid state drive")
+	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("dysk SSD")
 	hard_drive.store_file(new /datum/computer_file/program/budgetorders)
 	install_component(new /obj/item/computer_hardware/sensorpackage)
 	install_component(new /obj/item/computer_hardware/card_slot/secondary)
@@ -55,7 +55,7 @@
 
 /obj/item/modular_computer/tablet/preset/advanced/custodial/Initialize(mapload)
 	. = ..()
-	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("solid state drive")
+	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("dysk SSD")
 	hard_drive.store_file(new /datum/computer_file/program/radar/custodial_locator)
 
 /// Given by the syndicate as part of the contract uplink bundle - loads in the Contractor Uplink.

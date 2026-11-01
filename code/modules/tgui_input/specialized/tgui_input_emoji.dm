@@ -9,7 +9,7 @@
  * * user - The user to show the textbox to.
  * * title - The title of the textbox modal, shown on the top of the TGUI window.
  */
-/proc/tgui_input_emoji(mob/user, title = "Emoji Input")
+/proc/tgui_input_emoji(mob/user, title = "Wybierz emoji")
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -34,7 +34,7 @@
  * * title - The title of the textbox modal, shown on the top of the TGUI window.
  * * callback - The callback to be invoked when a choice is made.
  */
-/proc/tgui_input_emoji_async(mob/user, title = "Emoji Input", datum/callback/callback)
+/proc/tgui_input_emoji_async(mob/user, title = "Wybierz emoji", datum/callback/callback)
 	if (!user)
 		user = usr
 	if (!istype(user))

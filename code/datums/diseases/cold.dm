@@ -1,5 +1,5 @@
 /datum/disease/cold
-	name = "The Cold"
+	name = "Przeziębienie"
 	max_stages = 3
 	cure_text = "Odpoczynek i spacyklina"
 	cures = list(/datum/reagent/medicine/spaceacillin)

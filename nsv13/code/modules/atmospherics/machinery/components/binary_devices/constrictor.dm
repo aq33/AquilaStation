@@ -2,8 +2,8 @@
 ////// Magnetic Constrictors//////
 
 /obj/machinery/atmospherics/components/binary/magnetic_constrictor //This heats the plasma up to acceptable levels for use in the reactor.
-	name = "magnetic constrictor"
-	desc = "A large magnet which is capable of pressurizing plasma into a more energetic state. It is able to self-regulate its plasma input valve, as long as plasma is supplied to it."
+	name = "zwężacz magnetyczny"
+	desc = "Duży magnes, który potrafi sprężać plazmę do stanu o wyższej energii. Sam reguluje zawór wlotowy plazmy, dopóki plazma jest dostarczana."
 	icon = 'nsv13/icons/obj/machinery/reactor_parts.dmi'
 	icon_state = "constrictor"
 	density = TRUE
@@ -141,7 +141,7 @@
 	log_combat(user, src, "emagged")
 
 /obj/item/circuitboard/machine/magnetic_constrictor
-	name = "Magnetic Constrictor (Machine Board)"
+	name = "zwężacz magnetyczny (płytka maszyny)"
 	build_path = /obj/machinery/atmospherics/components/binary/magnetic_constrictor
 	var/pipe_layer = PIPING_LAYER_DEFAULT
 	req_components = list(
@@ -155,8 +155,8 @@
 		to_chat(user, "<span class='notice'>Zmieniasz warstwę płytki na [pipe_layer].</span>")
 
 /datum/design/board/magnetic_constrictor
-	name = "Machine Design (Magnetic Constrictor Board)"
-	desc = "The circuit board for a Magnetic Constrictor."
+	name = "Projekt maszyny (zwężacz magnetyczny)"
+	desc = "Płytka drukowana zwężacza magnetycznego."
 	id = "mag_cons"
 	build_path = /obj/item/circuitboard/machine/magnetic_constrictor
 	category = list("Engineering Machinery")

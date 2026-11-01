@@ -1,7 +1,7 @@
 
 /turf/open/floor/dock
-	name = "dock floor"
-	desc = "Strong enough to hold a shuttle."
+	name = "podłoga doku"
+	desc = "Dość mocna, by utrzymać prom."
 	icon_state = "dock"
 	floor_tile = /obj/item/stack/tile/dock
 	footstep = FOOTSTEP_PLATING
@@ -15,8 +15,8 @@
 	return pry_tile(I, user)
 
 /turf/open/floor/dock/drydock
-	name = "dry dock floor"
-	desc = "Heavy duty plating designed to support shuttle construction and maintenance."
+	name = "podłoga suchego doku"
+	desc = "Wytrzymałe poszycie do budowy i konserwacji promów."
 	icon_state = "drydock"
 	floor_tile = /obj/item/stack/tile/drydock
 

@@ -51,7 +51,7 @@
 	var/z0 = epicenter.z
 
 	if(log)
-		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ([x0], [y0], [z0]) [ADMIN_JMP(epicenter)].")
+		message_admins("EMP o zasięgu ([heavy_range], [light_range]) w obszarze [epicenter.loc.name] ([x0], [y0], [z0]) [ADMIN_JMP(epicenter)].")
 		log_game("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name].")
 
 	for (var/mob/M in GLOB.player_list)

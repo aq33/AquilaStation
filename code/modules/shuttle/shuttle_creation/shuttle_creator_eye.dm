@@ -1,6 +1,6 @@
 //===============Camera Eye================
 /mob/camera/ai_eye/remote/shuttle_creation
-	name = "shuttle holo-drone"
+	name = "holodron promowy"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "construction_drone"
 	visible_icon =  FALSE

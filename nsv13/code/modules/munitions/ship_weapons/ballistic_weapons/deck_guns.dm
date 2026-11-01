@@ -1,7 +1,7 @@
 
 /obj/machinery/ship_weapon/deck_turret
-	name = "\improper M4-15 'Hood' deck turret"
-	desc = "A huge naval gun which uses chemical accelerants to propel rounds. Inspired by the classics, this gun packs a major punch and is quite easy to reload. Use a multitool on it to re-register loading aparatus."
+	name = "\improper działo pokładowe M4-15 „Hood”"
+	desc = "Ogromne działo okrętowe, które wystrzeliwuje pociski za pomocą chemicznych przyspieszaczy. Inspirowane klasyką, mocno uderza i łatwo się je przeładowuje. Użyj na nim multitoola, by ponownie zarejestrować aparaturę ładującą."
 	icon = 'nsv13/icons/obj/munitions/deck_turret.dmi'
 	icon_state = "deck_turret"
 	ammo_type = /obj/item/ship_weapon/ammunition/naval_artillery
@@ -145,8 +145,8 @@
 	return FALSE
 
 /obj/machinery/computer/deckgun
-	name = "Deck Gun Control Console"
-	desc = "A control console for a deck gun."
+	name = "konsola sterowania działem pokładowym"
+	desc = "Konsola sterowania działem pokładowym."
 	icon = 'nsv13/icons/obj/munitions/deck_gun.dmi'
 	icon_state = "gun_control"
 	icon_screen = "screen_guncontrol"
@@ -194,16 +194,16 @@
 		data["id"] = (core.payload_gate)
 		if(core.payload_gate.shell)
 			data["can_pack"] = TRUE
-			data["loaded"] = core.payload_gate.shell.name || "Nothing"
+			data["loaded"] = core.payload_gate.shell.name || "Nic"
 			data["speed"] = core.payload_gate.shell.speed + core.payload_gate.calculated_power || 0
 		else
 			data["can_pack"] = FALSE
-			data["loaded"] = "Nothing"
+			data["loaded"] = "Nic"
 			data["speed"] = 0
 	else
 		data["id"] = null
 		data["can_pack"] = FALSE
-		data["loaded"] = "Nothing"
+		data["loaded"] = "Nic"
 		data["speed"] = 0
 	if(!core.powder_gates?.len)
 		core.update_parts()
@@ -252,8 +252,8 @@
 			core.payload_gate.chamber(target)
 
 /obj/machinery/deck_turret
-	name = "deck turret machine basetype"
-	desc = "THIS SHOULD NOT EXIST, yell at your nearest coder :3"
+	name = "bazowy typ maszyny działa pokładowego"
+	desc = "TO NIE POWINNO ISTNIEĆ, nakrzycz na najbliższego kodera :3"
 	icon = 'nsv13/icons/obj/munitions/deck_gun.dmi'
 	icon_state = "core"
 	density = TRUE
@@ -287,8 +287,8 @@
 		return TRUE
 
 /obj/machinery/deck_turret/core
-	name = "deck turret core"
-	desc = "The central mounting core for naval guns. Use a multitool on it to rescan parts."
+	name = "rdzeń działa pokładowego"
+	desc = "Centralny rdzeń montażowy dział okrętowych. Użyj na nim multitoola, by ponownie zeskanować części."
 	icon = 'nsv13/icons/obj/munitions/deck_gun.dmi'
 	icon_state = "core"
 	density = TRUE
@@ -393,8 +393,8 @@
 	turret?.get_ship()
 
 /obj/machinery/deck_turret/powder_gate
-	name = "powder loading gate"
-	desc = "One of three gates which pack a shell with powder as they enter the gun core. Ensure that each one is secured before attempting to fire!"
+	name = "bramka prochu"
+	desc = "Jedna z trzech bramek, które dopychają proch do pocisku wchodzącego do rdzenia działa. Przed strzałem upewnij się, że każda jest zabezpieczona!"
 	icon_state = "powdergate"
 	circuit = /obj/item/circuitboard/machine/deck_gun/powder
 	var/obj/item/powder_bag/bag = null
@@ -493,8 +493,8 @@
 	return TRUE
 
 /obj/machinery/deck_turret/payload_gate
-	name = "payload loading gate"
-	desc = "A chamber for loading a gun shell to be packed with gunpowder, ensure the payload is securely loaded before attempting to chamber!"
+	name = "bramka ładunku"
+	desc = "Komora na pocisk, do którego zostanie dopchnięty proch. Przed wprowadzeniem do komory upewnij się, że ładunek jest dobrze załadowany!"
 	icon_state = "payloadgate"
 	circuit = /obj/item/circuitboard/machine/deck_gun/payload
 	var/loaded = FALSE
@@ -608,7 +608,7 @@
 /obj/machinery/deck_turret/payload_gate/proc/chamber(obj/machinery/deck_turret/powder_gate/source)
 	if(!shell || !source?.bag)
 		return FALSE
-	shell.name = "Packed [initial(shell.name)]"
+	shell.name = "[initial(shell.name)] (z prochem)"
 	calculated_power += source.bag.power
 	source.bag.forceMove( src ) // In case of deconstruction or destruction, gunpowder is saved until the shell is loaded
 	source.bag = null
@@ -616,19 +616,19 @@
 	return TRUE
 
 /obj/machinery/deck_turret/calibrator
-	name = "deck gun calibration module"
-	desc = "A module which allows you to calibrate deck guns. Required to ensure an accurate shot."
+	name = "moduł kalibracji działa pokładowego"
+	desc = "Moduł do kalibrowania dział pokładowych. Bez niego nie oddasz celnego strzału."
 	icon_state = "autocalibrator"
 
 /obj/machinery/deck_turret/autoelevator
-	name = "auto elevator module"
-	desc = "A module which greatly decreases load times on deck guns."
+	name = "moduł automatycznej windy"
+	desc = "Moduł, który znacznie skraca czas ładowania dział pokładowych."
 	icon_state = "autoelevator"
 	circuit = /obj/item/circuitboard/machine/deck_gun/autoelevator
 
 /obj/machinery/deck_turret/autorepair
-	name = "deck gun auto-repair module"
-	desc = "A module which periodically injects repair nanites into a linked deck turret above it, removing the need for maintenance entirely."
+	name = "moduł samonaprawy działa pokładowego"
+	desc = "Moduł, który co jakiś czas wstrzykuje nanity naprawcze do połączonego działa pokładowego nad nim, przez co konserwacja w ogóle nie jest potrzebna."
 	icon_state = "autorepair"
 	circuit = /obj/item/circuitboard/machine/deck_gun/autorepair
 
@@ -670,8 +670,8 @@
 
 //MEGADETH TURRET
 /obj/machinery/ship_weapon/deck_turret/_3
-	name = "M4-16 'Yamato' Triple Barrel Deck Gun"
-	desc = "This is perhaps a bit excessive..."
+	name = "trzylufowe działo pokładowe M4-16 „Yamato”"
+	desc = "To chyba lekka przesada..."
 	icon_state = "deck_turret_dual"
 	max_ammo = 3
 
@@ -708,7 +708,7 @@
 		return
 	core = maybe_core
 	if(!core)
-		message_admins("Deck turret has no gun core! [src.x], [src.y], [src.z])")
+		message_admins("Działo pokładowe nie ma rdzenia! [src.x], [src.y], [src.z])")
 		return
 	core.turret = src
 	core.update_parts()
@@ -729,7 +729,7 @@
 		else if(max_ammo != 1) //this should really never happen unless some major tomfoolery goes on (or someone forgets to add a new upgrade to the switch)
 			var/obj/item/circuitboard/multibarrel_upgrade/M = new()
 			M.barrels = max_ammo
-			M.desc = "An upgrade that allows you to add [max_ammo] barrels to a Naval Artillery Cannon. You must partially deconstruct the cannon to install this."
+			M.desc = "Ulepszenie, które pozwala dodać do działa artylerii okrętowej tyle luf: [max_ammo]. Żeby je zainstalować, musisz częściowo rozebrać działo."
 			component_parts += M
 		for(var/i in 1 to max_ammo)
 			component_parts += new /obj/item/ship_weapon/parts/mac_barrel

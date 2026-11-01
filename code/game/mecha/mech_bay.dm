@@ -1,6 +1,6 @@
 /turf/open/floor/mech_bay_recharge_floor               //        Whos idea it was
-	name = "mech bay recharge station"                      //        Recharging turfs
-	desc = "Parking a mech on this station will recharge its internal power cell."
+	name = "stacja ładowania mechów"                      //        Recharging turfs
+	desc = "Zaparkowanie mecha na tej stacji ładuje jego wewnętrzne ogniwo."
 	icon = 'icons/turf/floors.dmi'                          //		  That are set in stone to check the west turf for recharge port
 	icon_state = "recharge_floor"                           //        Some people just want to watch the world burn i guess
 
@@ -12,8 +12,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /obj/machinery/mech_bay_recharge_port
-	name = "mech bay power port"
-	desc = "This port recharges a mech's internal power cell."
+	name = "port zasilania warsztatu mechów"
+	desc = "Ten port ładuje wewnętrzne ogniwo mecha."
 	density = TRUE
 	dir = EAST
 	icon = 'icons/mecha/mech_bay.dmi'
@@ -83,8 +83,8 @@
 	return ..()
 
 /obj/machinery/computer/mech_bay_power_console
-	name = "mech bay power control console"
-	desc = "Displays the status of mechs connected to the recharge station."
+	name = "konsola sterowania zasilaniem warsztatu mechów"
+	desc = "Pokazuje stan mechów podłączonych do stacji ładowania."
 	icon_screen = "recharge_comp"
 	icon_keyboard = "rd_key"
 	circuit = /obj/item/circuitboard/computer/mech_bay_power_console

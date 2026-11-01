@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/time
-	name = "Time Distoration"
-	desc = "Distorts time and space, causing fragments from other timelines to appear as distractions."
+	name = "Zakrzywienie czasu"
+	desc = "Zakrzywia czas i przestrzeń, przywołując fragmenty innych linii czasowych, które odwracają uwagę."
 	ui_icon = "theater-masks"
 	cost = 4
 	arrow_weight = 0.2

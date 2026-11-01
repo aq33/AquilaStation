@@ -13,7 +13,7 @@
 	return TRUE
 
 /obj/item/bounty_cube
-	name = "bounty cube"
+	name = "kostka zlecenia"
 	desc = "Pakiet skompresowanych danych w twardym świetle, zawierający ukończone zlecenie. Sprzedaj go promem zaopatrzenia, by je rozliczyć!"
 	icon = 'aquila/icons/obj/economy/bounty_market.dmi'
 	icon_state = "bounty_cube"
@@ -82,7 +82,7 @@
 	if(!length(bounty_holder_accounts) && holder_id.registered_account)
 		bounty_holder_accounts[holder_id.registered_account] = 1
 
-	name = "\improper [bounty_value] kr [name]"
+	name = "\improper [name] ([bounty_value] kr.)"
 	desc += " Metka mówi, że to nagroda dla <i>[bounty_holder] ([bounty_holder_job])</i> za zlecenie <i>[bounty_name]</i>."
 	AddComponent(/datum/component/gps, "[src]")
 
@@ -124,7 +124,7 @@
 
 /// Kostka do testów - użyj w ręce, by ustawić ją z losowym zleceniem
 /obj/item/bounty_cube/debug_cube
-	name = "debug bounty cube"
+	name = "testowa kostka zlecenia"
 	desc = "Użyj w ręce, by ustawić losowe zlecenie. Wymaga karty z kontem bankowym."
 	var/is_set_up = FALSE
 

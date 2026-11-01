@@ -1,15 +1,15 @@
 GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 
-#define KEYCARD_RED_ALERT "Red Alert"
-#define KEYCARD_EMERGENCY_MAINTENANCE_ACCESS "Emergency Maintenance Access"
-#define KEYCARD_BSA_UNLOCK "Bluespace Artillery Unlock"
+#define KEYCARD_RED_ALERT "Czerwony alarm"
+#define KEYCARD_EMERGENCY_MAINTENANCE_ACCESS "Awaryjny dostęp do tuneli technicznych"
+#define KEYCARD_BSA_UNLOCK "Odblokowanie artylerii bluespace"
 //NSV13
-#define KEYCARD_FTL_SAFETY_OVERRIDE "FTL Safety Override"
+#define KEYCARD_FTL_SAFETY_OVERRIDE "Obejście zabezpieczeń FTL"
 //NSV13 end.
 
 /obj/machinery/keycard_auth
-	name = "Keycard Authentication Device"
-	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
+	name = "urządzenie uwierzytelniania kartą"
+	desc = "Służy do uruchamiania funkcji stacji, które wymagają uwierzytelnienia więcej niż jedną kartą ID."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	use_power = IDLE_POWER_USE
@@ -149,7 +149,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 		return
 	//NSV13 end.
 	log_game("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
-	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")
+	message_admins("[ADMIN_LOOKUPFLW(triggerer)] uruchamia, a [ADMIN_LOOKUPFLW(confirmer)] potwierdza zdarzenie: [event]")
 
 	var/area/A1 = get_area(triggerer)
 	deadchat_broadcast("<span class='deadsay'><span class='name'>[triggerer]</span> uruchamia [event] w <span class='name'>[A1.name]</span>.</span>", triggerer)

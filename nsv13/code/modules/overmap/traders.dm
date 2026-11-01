@@ -1,6 +1,6 @@
 /datum/trader
 	var/name = "Drug Mcdonalds"
-	var/desc = "Son, we forgot the crack."
+	var/desc = "Synu, zapomnieliśmy cracku."
 	var/shortname = "DM" //Used in Brazil.
 	var/list/stonks = list() //The trader's inventory.
 	var/list/sold_items = list()
@@ -54,21 +54,21 @@
 		TI.stock = round(rand(TI.stock/2, TI.stock*2)) //How much we got in stock boys
 		stonks += TI
 		TI.owner = src
-		yellow_pages_dat += "[TI.stock]x [TI.name] ([TI.price] ea.) - <i>[TI.desc]</i><br /><br />"
+		yellow_pages_dat += "[TI.stock]× [TI.name] ([TI.price] za szt.) - <i>[TI.desc]</i><br /><br />"
 	for(var/itemPath in special_offers)
 		var/datum/trader_item/TI = new itemPath()
 		if(system_type == SSstar_system.find_main_overmap().faction && F.tickets >= TI.special_requirement) //Right now we use faction tickets to unlock better items
-			TI.name = "SPECIAL OFFER! " + TI.name //Advertising is very important
+			TI.name = "SPECJALNA OFERTA! " + TI.name //Advertising is very important
 			TI.price = round(rand((2*TI.price)/3, TI.price*2)) //These will be more expensive by default already and have less chaotic prices
 			TI.stock = round(rand(TI.stock/2, TI.stock*2))
 			stonks += TI
 			TI.owner = src
-			yellow_pages_dat += "SPECJALNA OFERTA! [TI.stock]× [TI.name] ([TI.price] za szt.) - <i>[TI.desc]</i><br /><br />"
+			yellow_pages_dat += "[TI.stock]× [TI.name] ([TI.price] za szt.) - <i>[TI.desc]</i><br /><br />"
 	yellow_pages_dat += "</font>"
 
 /datum/trader_item
-	var/name = "Stonks"
-	var/desc = "Invest in crypto."
+	var/name = "Akcje"
+	var/desc = "Inwestuj w krypto."
 	var/price = 1000 //What's the going rate for this item? The prices are slightly randomized.
 	var/unlock_path = null
 	var/stock = 1 //How many of these items are usually stocked, this is randomized
@@ -153,8 +153,8 @@
 
 //Arms dealers.
 /datum/trader/armsdealer
-	name = "WhiteRapids Munitions (And Resort)"
-	desc = "Corporate approved arms dealer specialising in ballistic weapon deployment."
+	name = "WhiteRapids Munitions (i Kurort)"
+	desc = "Zatwierdzony przez korporację handlarz bronią, który specjalizuje się w broni balistycznej."
 	shortname = "WR(R)"
 	faction_type = FACTION_ID_NT
 	system_type = "nanotrasen"
@@ -170,8 +170,8 @@
 	/datum/trader_item/vls_circuit)
 
 /datum/trader/armsdealer/syndicate
-	name = "DonkCo Warcrime Emporium"
-	desc = "Only the finest weapons guaranteed to violate the geneva convention! (We'll sell to anyone.. but don't get too close!)"
+	name = "Emporium Zbrodni Wojennych DonkCo"
+	desc = "Tylko najlepsza broń z gwarancją naruszenia konwencji genewskiej! (Sprzedamy każdemu... tylko nie podlatuj za blisko!)"
 	shortname = "DWE"
 	faction_type = FACTION_ID_SYNDICATE
 	system_type = "syndicate"
@@ -209,12 +209,12 @@
 
 /datum/trader/armsdealer/syndicate/New()
 	. = ..()
-	name = pick(name, "Gorlex Marauders Weapons Co.", "Syndi-dyne Gun Fiesta", "Dolos Dealers")
+	name = pick(name, "Zbrojownia Maruderów Gorlex", "Fiesta Spluw Syndi-dyne", "Handlarze z Dolos")
 
 //Repairs
 /datum/trader/czanekcorp
-	name = "CzanekCorp shipyards"
-	desc = "Ship construction deeds done cheap (for a price)"
+	name = "Stocznie CzanekCorp"
+	desc = "Tania budowa statków (za odpowiednią cenę)"
 	shortname = "CZC"
 	faction_type = FACTION_ID_NT
 	greetings = list("Witamy w CzanekCorp, przyjmujemy gotówkę, kredyt i obciążenie. Czego potrzebujecie?",\
@@ -232,8 +232,8 @@
 	image = "https://cdn.discordapp.com/attachments/701841640897380434/764540586732421120/unknown.png"
 
 /datum/trader/shallowstone
-	name = "Shallow Stone Station"
-	desc = "Rock and ore coming right to your door!"
+	name = "Płytki Kamień"
+	desc = "Skały i ruda prosto pod twoje drzwi!"
 	shortname = "SSS"
 	faction_type = FACTION_ID_NT
 	greetings = list("Potrzebujecie czegoś, wodopijcy?",\
@@ -252,8 +252,8 @@
 	image = "https://cdn.discordapp.com/attachments/612668662977134592/859132739147792444/unknown.png"   //I don't wanna do this but I'm also not going to break the mold as to make it hopefully easier in future to fix.
 
 /datum/trader/shallowstone/independent
-	name = "Marvin's Mineral Emporium"
-	desc = "Ready to supply everyone with the finest stones and gems!"
+	name = "Emporium Minerałów Marvina"
+	desc = "Gotowi zaopatrzyć każdego w najlepsze kamienie i klejnoty!"
 	shortname = "MME"
 	faction_type = FACTION_ID_UNALIGNED
 	greetings = list("Rozejrzyjcie się, nasze sklepy są otwarte dla każdego!",\
@@ -261,7 +261,7 @@
 
 /datum/trader/minsky
 	name = "Minsky Heavy Engineering"
-	desc = "Corporate approved aftermarket shipyard."
+	desc = "Zatwierdzona przez korporację stocznia z częściami i modyfikacjami."
 	shortname = "MHE"
 	faction_type = FACTION_ID_NT
 	sold_items = list(/datum/trader_item/ship_repair/tier2, \
@@ -278,8 +278,8 @@
 
 // HIM
 /datum/trader/randy
-	name = "Randy Random Corporate Enterprise"
-	desc = "Chaos Incorporeal."
+	name = "Korporacyjne Przedsiębiorstwo Losowego Randy'ego"
+	desc = "Chaos sp. z o.o."
 	shortname = "RDY"
 	faction_type = FACTION_ID_PIRATES
 	sold_items = null //Special offer, this time only. (Not used, Stock is randomized every cycle.)

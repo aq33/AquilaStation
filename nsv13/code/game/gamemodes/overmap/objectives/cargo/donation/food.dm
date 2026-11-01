@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/donation/food
-	name = "Donate food"
-	desc = "Donate food"
-	crate_name = "Buffet crate"
+	name = "Przekaż jedzenie"
+	desc = "Przekaż jedzenie"
+	crate_name = "Skrzynia bufetowa"
 
 /datum/overmap_objective/cargo/donation/food/New()
 	// Must create a specific list of foods. Using parent types may turn up "snack" on communications console which is misleading, and using subtypes loops may turn up uncraftable foods

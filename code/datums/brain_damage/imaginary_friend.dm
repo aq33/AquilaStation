@@ -1,6 +1,6 @@
 /datum/brain_trauma/special/imaginary_friend
-	name = "Imaginary Friend"
-	desc = "Patient can see and hear an imaginary person."
+	name = "Wyimaginowany przyjaciel"
+	desc = "Pacjent widzi i słyszy wyimaginowaną osobę."
 	scan_desc = "częściowa schizofrenia"
 	gain_text = "<span class='notice'>Z jakiegoś powodu czujesz się w dobrym towarzystwie.</span>"
 	lose_text = "<span class='warning'>Znów czujesz się samotny.</span>"
@@ -55,10 +55,10 @@
 		qdel(src)
 
 /mob/camera/imaginary_friend
-	name = "imaginary friend"
-	real_name = "imaginary friend"
+	name = "wyimaginowany przyjaciel"
+	real_name = "wyimaginowany przyjaciel"
 	move_on_shuttle = TRUE
-	desc = "A wonderful yet fake friend."
+	desc = "Wspaniały, choć nieprawdziwy przyjaciel."
 	see_in_dark = 0
 	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	sight = NONE
@@ -244,8 +244,8 @@
 	qdel(arrow)
 
 /datum/action/innate/imaginary_join
-	name = "Join"
-	desc = "Join your owner, following them from inside their mind."
+	name = "Dołącz"
+	desc = "Dołącz do swojego właściciela i podążaj za nim z wnętrza jego umysłu."
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	background_icon_state = "bg_revenant"
 	button_icon_state = "join"
@@ -255,8 +255,8 @@
 	I.recall()
 
 /datum/action/innate/imaginary_hide
-	name = "Hide"
-	desc = "Hide yourself from your owner's sight."
+	name = "Ukryj się"
+	desc = "Ukryj się przed wzrokiem swojego właściciela."
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	background_icon_state = "bg_revenant"
 	button_icon_state = "hide"
@@ -264,12 +264,12 @@
 /datum/action/innate/imaginary_hide/proc/update_status()
 	var/mob/camera/imaginary_friend/I = owner
 	if(I.hidden)
-		name = "Show"
-		desc = "Become visible to your owner."
+		name = "Pokaż się"
+		desc = "Stań się widoczny dla swojego właściciela."
 		button_icon_state = "unhide"
 	else
-		name = "Hide"
-		desc = "Hide yourself from your owner's sight."
+		name = "Ukryj się"
+		desc = "Ukryj się przed wzrokiem swojego właściciela."
 		button_icon_state = "hide"
 	UpdateButtonIcon()
 
@@ -283,8 +283,8 @@
 //like imaginary friend but a lot less imagination and more like mind prison//
 
 /datum/brain_trauma/special/imaginary_friend/trapped_owner
-	name = "Trapped Victim"
-	desc = "Patient appears to be targeted by an invisible entity."
+	name = "Uwięziona ofiara"
+	desc = "Pacjent wydaje się celem niewidzialnej istoty."
 	gain_text = ""
 	lose_text = ""
 	random_gain = FALSE
@@ -303,9 +303,9 @@
 	return
 
 /mob/camera/imaginary_friend/trapped
-	name = "figment of imagination?"
+	name = "wytwór wyobraźni?"
 	real_name = "wytwór wyobraźni?"
-	desc = "The previous host of this body."
+	desc = "Poprzedni gospodarz tego ciała."
 
 /mob/camera/imaginary_friend/trapped/greet()
 	to_chat(src, "<span class='notice'><b>Udało ci się utrzymać jako wytwór wyobraźni nowego nosiciela!</b></span>")

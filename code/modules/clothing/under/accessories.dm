@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory //Ties moved to neck slot items, but as there are still things like medals and armbands, this accessory system is being kept as-is
-	name = "Accessory"
-	desc = "Something has gone wrong!"
+	name = "Dodatek"
+	desc = "Coś poszło nie tak!"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
 	item_state = ""	//no inhands
@@ -100,16 +100,16 @@
 		. += "<span class='notice'>[src] można nosić na lub pod okryciem wierzchnim. Alt-klik, by przełączyć.</span>"
 
 /obj/item/clothing/accessory/waistcoat
-	name = "waistcoat"
-	desc = "For some classy, murderous fun."
+	name = "kamizelka garniturowa"
+	desc = "Do eleganckiej, morderczej zabawy."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
 /obj/item/clothing/accessory/maidapron
-	name = "maid apron"
-	desc = "The best part of a maid costume."
+	name = "fartuszek pokojówki"
+	desc = "Najlepsza część stroju pokojówki."
 	icon_state = "maidapron"
 	item_state = "maidapron"
 	minimize_when_attached = FALSE
@@ -120,8 +120,8 @@
 //////////
 
 /obj/item/clothing/accessory/medal
-	name = "bronze medal"
-	desc = "A bronze medal."
+	name = "brązowy medal"
+	desc = "Brązowy medal."
 	icon_state = "bronze"
 	materials = list(/datum/material/iron=1000)
 	resistance_flags = FIRE_PROOF
@@ -161,7 +161,7 @@
 							commended = TRUE
 							desc += "<br>Napis głosi: [input] - [user.real_name]"
 							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
-							message_admins("<b>[key_name_admin(M)]</b> was given the following commendation by <b>[key_name_admin(user)]</b>: [input]")
+							message_admins("<b>[key_name_admin(M)]</b> otrzymuje od <b>[key_name_admin(user)]</b> następujące odznaczenie: [input]")
 
 		else
 			to_chat(user, "<span class='warning'>Medale można przypinać tylko do kombinezonów!</span>")
@@ -169,62 +169,62 @@
 		..()
 
 /obj/item/clothing/accessory/medal/conduct
-	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by Nanotrasen. It is often awarded by a captain to a member of his crew."
+	name = "medal za wzorową służbę"
+	desc = "Brązowy medal przyznawany za wzorową służbę. Choć to wielki zaszczyt, jest to najbardziej podstawowe odznaczenie przyznawane przez Nanotrasen. Często wręcza go kapitan członkowi swojej załogi."
 
 /obj/item/clothing/accessory/medal/bronze_heart
-	name = "bronze heart medal"
-	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
+	name = "medal Brązowego Serca"
+	desc = "Brązowy medal w kształcie serca przyznawany za poświęcenie. Często wręcza się go pośmiertnie albo za ciężkie rany odniesione na służbie."
 	icon_state = "bronze_heart"
 
 /obj/item/clothing/accessory/medal/ribbon
-	name = "ribbon"
-	desc = "A ribbon"
+	name = "wstęga"
+	desc = "Wstęga."
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/medal/ribbon/cargo
-	name = "\"cargo tech of the shift\" award"
-	desc = "An award bestowed only upon those cargotechs who have exhibited devotion to their duty in keeping with the highest traditions of Cargonia."
+	name = "wyróżnienie „technik zaopatrzenia zmiany”"
+	desc = "Wyróżnienie przyznawane tylko tym technikom zaopatrzenia, którzy wykazali się oddaniem obowiązkom zgodnym z najwyższymi tradycjami Cargonii."
 
 /obj/item/clothing/accessory/medal/silver
-	name = "silver medal"
-	desc = "A silver medal."
+	name = "srebrny medal"
+	desc = "Srebrny medal."
 	icon_state = "silver"
 	medaltype = "medal-silver"
 	materials = list(/datum/material/silver=1000)
 
 /obj/item/clothing/accessory/medal/silver/valor
-	name = "medal of valor"
-	desc = "A silver medal awarded for acts of exceptional valor."
+	name = "medal za męstwo"
+	desc = "Srebrny medal przyznawany za czyny wyjątkowego męstwa."
 
 /obj/item/clothing/accessory/medal/silver/security
-	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+	name = "wyróżnienie za krzepką ochronę"
+	desc = "Wyróżnienie za wybitną walkę i poświęcenie w obronie interesów handlowych Nanotrasen. Często przyznawane funkcjonariuszom ochrony."
 
 /obj/item/clothing/accessory/medal/silver/excellence
-	name = "the head of personnel award for outstanding achievement in the field of excellence"
-	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
+	name = "nagroda starszego oficera za wybitne osiągnięcia w dziedzinie doskonałości"
+	desc = "Słownik Nanotrasen definiuje doskonałość jako „cechę lub stan bycia doskonałym”. Nagrodę otrzymują ci nieliczni członkowie załogi, którzy pasują do tej definicji."
 
 /obj/item/clothing/accessory/medal/gold
-	name = "gold medal"
-	desc = "A prestigious golden medal."
+	name = "złoty medal"
+	desc = "Prestiżowy złoty medal."
 	icon_state = "gold"
 	medaltype = "medal-gold"
 	materials = list(/datum/material/gold=1000)
 
 /obj/item/clothing/accessory/medal/gold/captain
-	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
+	name = "medal kapitański"
+	desc = "Złoty medal przyznawany wyłącznie awansowanym do stopnia kapitana. Symbolizuje skodyfikowane obowiązki kapitana wobec Nanotrasen i jego niepodważalną władzę nad załogą."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/clothing/accessory/medal/gold/heroism
-	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	name = "medal za wyjątkowe bohaterstwo"
+	desc = "Niezwykle rzadki złoty medal przyznawany wyłącznie przez Centralę. Otrzymanie go to najwyższy zaszczyt, dlatego istnieje ich bardzo niewiele. Prawie nigdy nie dostaje go nikt poza dowódcami."
 
 /obj/item/clothing/accessory/medal/plasma
-	name = "plasma medal"
-	desc = "An eccentric medal made of plasma."
+	name = "plazmowy medal"
+	desc = "Ekscentryczny medal wykonany z plazmy."
 	icon_state = "plasma"
 	medaltype = "medal-plasma"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = -10, "acid" = 0, "stamina" = 0, "bleed" = 0) //It's made of plasma. Of course it's flammable.
@@ -237,18 +237,18 @@
 		qdel(src)
 
 /obj/item/clothing/accessory/medal/plasma/nobel_science
-	name = "nobel sciences award"
-	desc = "A plasma medal which represents significant contributions to the field of science or engineering."
+	name = "nagroda Nobla w dziedzinie nauki"
+	desc = "Plazmowy medal symbolizujący znaczący wkład w dziedzinę nauki lub inżynierii."
 
 /obj/item/clothing/accessory/medal/med_medal
-	name = "exemplary performance medal"
-	desc = "A medal awarded to those who have shown distinguished conduct, performance, and initiative within the medical department."
+	name = "medal za wzorową pracę"
+	desc = "Medal przyznawany tym, którzy wykazali się wzorową postawą, wynikami i inicjatywą w dziale medycznym."
 	icon_state = "med_medal"
 	above_suit = TRUE
 
 /obj/item/clothing/accessory/medal/med_medal2
-	name = "excellence in medicine medal"
-	desc = "A medal awarded to those who have shown legendary performance, competence, and initiative beyond all expectations within the medical department."
+	name = "medal za doskonałość w medycynie"
+	desc = "Medal przyznawany tym, którzy w dziale medycznym wykazali się legendarnymi wynikami, kompetencją i inicjatywą przekraczającą wszelkie oczekiwania."
 	icon_state = "med_medal2"
 	above_suit = TRUE
 
@@ -257,53 +257,53 @@
 ////////////
 
 /obj/item/clothing/accessory/armband
-	name = "red armband"
+	name = "czerwona opaska"
 	desc = "Elegancka czerwona opaska na ramię!"
 	icon_state = "redband"
 	attachment_slot = null
 
 /obj/item/clothing/accessory/armband/blue
-	name = "blue armband"
+	name = "niebieska opaska"
 	desc = "Elegancka niebieska opaska na ramię!"
 	color = list(0,0,1, 0,1,0, 1,0,0)
 
 /obj/item/clothing/accessory/armband/green
-	name = "green armband"
+	name = "zielona opaska"
 	desc = "Elegancka zielona opaska na ramię!"
 	color = list(0,1,0, 1,0,0, 0,0,1)
 
 /obj/item/clothing/accessory/armband/deputy
-	name = "security deputy armband"
-	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
+	name = "opaska zastępcy ochrony"
+	desc = "Opaska noszona przez personel upoważniony do działania jako zastępca ochrony stacji."
 
 /obj/item/clothing/accessory/armband/cargo
-	name = "cargo bay guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is brown."
+	name = "opaska strażnika zaopatrzenia"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest brązowa."
 	icon_state = "cargoband"
 
 /obj/item/clothing/accessory/armband/engine
-	name = "engineering guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is orange with a reflective strip!"
+	name = "opaska strażnika inżynierii"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest pomarańczowa z odblaskowym paskiem!"
 	icon_state = "engieband"
 
 /obj/item/clothing/accessory/armband/science
-	name = "science guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is purple."
+	name = "opaska strażnika nauki"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest fioletowa."
 	icon_state = "rndband"
 
 /obj/item/clothing/accessory/armband/hydro
-	name = "hydroponics guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green and blue."
+	name = "opaska strażnika hydroponiki"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest zielono-niebieska."
 	icon_state = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white."
+	name = "opaska strażnika medycyny"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest biała."
 	icon_state = "medband"
 
 /obj/item/clothing/accessory/armband/medblue
-	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white and blue."
+	name = "opaska strażnika medycyny"
+	desc = "Opaska noszona przez siły ochrony stacji, by pokazać, do którego działu są przydzielone. Ta jest biało-niebieska."
 	icon_state = "medblueband"
 
 //////////////
@@ -311,8 +311,8 @@
 //////////////
 
 /obj/item/clothing/accessory/lawyers_badge
-	name = "attorney's badge"
-	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
+	name = "odznaka adwokata"
+	desc = "Napełnia cię przekonaniem o SPRAWIEDLIWOŚCI. Prawnicy lubią pokazywać ją każdemu, kogo spotkają."
 	icon_state = "lawyerbadge"
 
 /obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
@@ -334,8 +334,8 @@
 //HA HA! NERD!//
 ////////////////
 /obj/item/clothing/accessory/pocketprotector
-	name = "pocket protector"
-	desc = "Can protect your clothing from ink stains, but you'll look like a nerd if you're using one."
+	name = "osłonka kieszeni"
+	desc = "Chroni ubranie przed plamami z atramentu, ale wyglądasz w niej jak kujon."
 	icon_state = "pocketprotector"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/pocketprotector
 
@@ -355,29 +355,29 @@
 ////////////////
 
 /obj/item/clothing/accessory/talisman
-	name = "bone talisman"
-	desc = "A hunter's talisman, some say the old gods smile on those who wear it."
+	name = "kościany talizman"
+	desc = "Talizman łowcy. Niektórzy mówią, że starzy bogowie uśmiechają się do tych, którzy go noszą."
 	icon_state = "talisman"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25, "stamina" = 10, "bleed" = 10)
 	attachment_slot = null
 
 /obj/item/clothing/accessory/skullcodpiece
-	name = "skull codpiece"
-	desc = "A skull shaped ornament, intended to protect the important things in life."
+	name = "czaszkowy ochraniacz krocza"
+	desc = "Ozdoba w kształcie czaszki, która ma chronić najważniejsze rzeczy w życiu."
 	icon_state = "skull"
 	above_suit = TRUE
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25, "stamina" = 10, "bleed" = 10)
 	attachment_slot = GROIN
 
 /obj/item/clothing/accessory/holster
-	name = "shoulder holster"
-	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
+	name = "kabura naramienna"
+	desc = "Kabura do noszenia pistoletu i amunicji. OSTRZEŻENIE: tylko dla twardzieli."
 	icon_state = "holster"
 	item_state = "holster"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/holster
 
 /obj/item/clothing/accessory/holster/detective
-	name = "detective's shoulder holster"
+	name = "kabura naramienna detektywa"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/holster/detective
 
 /obj/item/clothing/accessory/holster/detective/Initialize(mapload)
@@ -388,8 +388,8 @@
 
 //Poppy Pin
 /obj/item/clothing/accessory/poppy_pin
-	name = "poppy pin"
-	desc = "A pin made from a poppy, worn to remember those who have fallen in war."
+	name = "przypinka z makiem"
+	desc = "Przypinka z maku, noszona dla upamiętnienia poległych na wojnie."
 	icon_state = "poppy_pin"
 
 /obj/item/clothing/accessory/poppy_pin/on_uniform_equip(obj/item/clothing/under/U, user)

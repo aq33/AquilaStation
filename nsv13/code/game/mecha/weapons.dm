@@ -1,7 +1,7 @@
 //NSV-related mech equipment
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam
-	name = "\improper smart metal foam launcher"
-	desc = "Launches grenades containing smart metal foam."
+	name = "\improper wyrzutnia inteligentnej piany metalowej"
+	desc = "Wystrzeliwuje granaty z inteligentną pianą metalową."
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/chem_grenade/smart_metal_foam
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'

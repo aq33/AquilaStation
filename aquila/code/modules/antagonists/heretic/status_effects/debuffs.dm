@@ -137,7 +137,7 @@
 	var/datum/weakref/spell_caster
 
 /atom/movable/screen/alert/status_effect/star_mark
-	name = "Star Mark"
+	name = "Gwiezdny znak"
 	desc = "Pierścień nad twoją głową nie pozwala ci wchodzić w kosmiczne pola ani teleportować się przez kosmiczne runy..."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "star_mark"
@@ -275,7 +275,7 @@
 	owner.balloon_alert(owner, "kłamią... chwila, w czym kłamią?")
 
 /atom/movable/screen/alert/status_effect/moon_converted
-	name = "Moon Converted"
+	name = "Nawrócenie przez Księżyc"
 	desc = "ONI KŁAMIĄ, ZABIJ ICH WSZYSTKICH!!! KŁAMCY SŁOŃCA MUSZĄ UPAŚĆ!!!"
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "moon_insanity"
@@ -331,7 +331,7 @@
 	owner.add_mood_event("eldritch_weeping", /datum/mood_event/eldritch_painting/weeping)
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/weeping
-	name = "The Sister and He Who Wept"
+	name = "Siostra i Ten, Który Płakał"
 	desc = "Płacz rozbrzmiewa w twoim umyśle jak echo i rozbija twoją psychikę! Może jeśli znów spojrzysz na obraz, nie będzie aż tak bolało..."
 	icon_state = "eldritch_painting_weeping"
 
@@ -368,7 +368,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/desire
-	name = "The First Desire"
+	name = "Pierwsze pożądanie"
 	desc = "Dopada cię wilczy głód! ZASPOKÓJ GO ZA WSZELKĄ CENĘ! Albo po prostu idź popatrzeć na obraz i zatęsknij za wspaniałym posiłkiem, który obiecuje..."
 	icon_state = "eldritch_painting_desire"
 
@@ -407,7 +407,7 @@
 	to_chat(owner, span_notice("Zaciekle drapiesz się po zakrytym miejscu: [strefa_pl(bodypart.body_zone)]!"))
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/beauty
-	name = "Lady Out of Gates"
+	name = "Pani spoza Bram"
 	desc = "Ubranie zasłania piękno pod spodem. Zdejmij je i osiągnij doskonałość. Albo popatrz przez chwilę na obraz, w którym ujrzałeś swój ideał, i odzyskaj jasność umysłu."
 	icon_state = "eldritch_painting_beauty"
 
@@ -426,12 +426,12 @@
 	tile.rust_heretic_act()
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/rusting
-	name = "Climb Over the Rusted Mountain"
+	name = "Wspinaczka na Zardzewiałą Górę"
 	desc = "Każdy twój krok kruszy ziemię pod stopami! Wszystko się rozpada! Może gdybyś przyjrzał się bliżej górze na tamtym obrazie, ścieżka byłaby jaśniejsza..."
 	icon_state = "eldritch_painting_rust"
 
 /atom/movable/screen/alert/status_effect/eldritch_parade
-	name = "Lunar Parade"
+	name = "Księżycowa parada"
 	desc = "MUSISZ DOŁĄCZYĆ DO KSIĘŻYCOWEJ PARADY! PODĄŻAJ ZA ŚWIATŁAMI! NIECH CIĘ PROWADZĄ!"
 	icon = 'aquila/icons/effects/heretic_lockmoon.dmi'
 	icon_state = "lunar_parade"

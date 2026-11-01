@@ -1,6 +1,6 @@
 /obj/item/food/pancakes
-	name = "pancake"
-	desc = "A fluffy pancake. The softer, superior relative of the waffle."
+	name = "naleśnik"
+	desc = "Puszysty naleśnik. Miększy i lepszy krewny gofra."
 	icon_state = "pancakes_1"
 	item_state = "pancakes"
 	food_reagents = list(
@@ -15,8 +15,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pancakes/blueberry
-	name = "blueberry pancake"
-	desc = "A fluffy and delicious blueberry pancake."
+	name = "naleśnik z borówkami"
+	desc = "Puszysty i pyszny naleśnik z borówkami."
 	icon_state = "bbpancakes_1"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -27,8 +27,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pancakes/chocolatechip
-	name = "chocolate chip pancake"
-	desc = "A fluffy and delicious chocolate chip pancake."
+	name = "naleśnik z kawałkami czekolady"
+	desc = "Puszysty i pyszny naleśnik z kawałkami czekolady."
 	icon_state = "ccpancakes_1"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -43,7 +43,7 @@
 	update_appearance()
 
 /obj/item/food/pancakes/update_name()
-	name = contents.len ? "stack of pancakes" : initial(name)
+	name = contents.len ? "stos naleśników" : initial(name)
 	return ..()
 
 /obj/item/food/pancakes/update_icon(updates = ALL)
@@ -64,13 +64,13 @@
 		if(0)
 			desc = initial(desc)
 		if(1 to 2)
-			desc = "A stack of fluffy pancakes."
+			desc = "Stos puszystych naleśników."
 		if(3 to 6)
-			desc = "A fat stack of fluffy pancakes!"
+			desc = "Gruby stos puszystych naleśników!"
 		if(7 to 9)
-			desc = "A grand tower of fluffy, delicious pancakes!"
+			desc = "Wielka wieża puszystych, pysznych naleśników!"
 		if(10 to INFINITY)
-			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
+			desc = "Ogromna, strzelista iglica puszystych, pysznych naleśników. Wygląda, jakby mogła się przewrócić!"
 	. = ..()
 	if (pancakeCount)
 		for(var/obj/item/food/pancakes/ING in contents)

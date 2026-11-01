@@ -2,7 +2,7 @@
 
 /datum/market
 	/// Name for the market.
-	var/name = "huh?"
+	var/name = "hę?"
 
 	/// Available shipping methods and prices, just leave the shipping method out that you don't want to have.
 	var/list/shipping

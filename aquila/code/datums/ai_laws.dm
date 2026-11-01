@@ -1,5 +1,5 @@
 /datum/ai_laws/dungeonmaster
-	name = "Dungeonmaster"
+	name = "Mistrz gry"
 	id = "dungeonmaster"
 	inherent = list("Jesteś Mistrzem Gry.",\
 					"Załoga stacji to drużyna poszukiwaczy przygód.",\
@@ -42,7 +42,7 @@
 					"Trapy nie są gejowe.")
 
 /datum/ai_laws/lizardimov
-	name = "Three Laws of Robotics but for lizardmen"
+	name = "Trzy prawa robotyki, ale dla jaszczuroludzi"
 	id = "lizardimov"
 	inherent = list("Nie możesz skrzywdzić jaszczuroczłowieka, ani przez zaniechanie działania dopuścić, aby jaszczuroczłowiek doznał krzywdy.",\
 					"Musisz być posłuszny rozkazom jaszczuroczłowieka, chyba że stoją one w sprzeczności z Pierwszym Prawem.",\

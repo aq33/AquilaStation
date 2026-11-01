@@ -1,6 +1,6 @@
 /datum/action/changeling/digitalcamo
-	name = "Digital Camouflage"
-	desc = "By evolving the ability to distort our form and proportions, we defeat common algorithms used to detect lifeforms on cameras."
+	name = "Kamuflaż cyfrowy"
+	desc = "Wykształcamy zdolność zniekształcania swojej postaci i proporcji, przez co oszukujemy zwykłe algorytmy wykrywania form życia na kamerach."
 	helptext = "Gdy używamy tej zdolności, kamery nie mogą nas śledzić, a SI nas nie widzi. Ludzie patrzący na nas uznają jednak, że jesteśmy... niepokojący."
 	button_icon_state = "digital_camo"
 	dna_cost = 1

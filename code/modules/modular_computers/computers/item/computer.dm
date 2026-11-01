@@ -4,8 +4,8 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 // Other types expand it - tablets use a direct subtypes, and
 // consoles and laptops use "procssor" item that is held inside machinery piece
 /obj/item/modular_computer
-	name = "modular microcomputer"
-	desc = "A small portable microcomputer."
+	name = "mikrokomputer modułowy"
+	desc = "Mały, przenośny mikrokomputer."
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 3
 	light_power = 0.6
@@ -243,8 +243,8 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 	if(enabled)
 		ui_interact(user)
 	else if(IsAdminGhost(user))
-		var/response = alert(user, "Ten komputer jest wyłączony. Czy chcesz go włączyć?", "Obejście admina", "Yes", "No")
-		if(response == "Yes")
+		var/response = alert(user, "Ten komputer jest wyłączony. Czy chcesz go włączyć?", "Obejście admina", "Tak", "Nie")
+		if(response == "Tak")
 			turn_on(user)
 
 /obj/item/modular_computer/emag_act(mob/user)
@@ -658,7 +658,7 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 			return
 		attacking_item.play_tool_sound(src, user, 20, volume=20)
 		new /obj/item/stack/sheet/iron( get_turf(src.loc), steel_sheet_cost )
-		user.balloon_alert(user, "disassembled")
+		user.balloon_alert(user, "rozmontowano")
 		relay_qdel()
 		qdel(src)
 		return

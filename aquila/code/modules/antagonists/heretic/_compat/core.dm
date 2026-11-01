@@ -145,7 +145,7 @@
 	SEND_SOUND(owner, 'sound/hallucinations/i_see_you1.ogg')
 
 /atom/movable/screen/alert/status_effect/temporary_xray
-	name = "Eldritch Sight"
+	name = "Pradawny wzrok"
 	desc = "Dostrzegasz coś nowego..."
 	icon = 'aquila/icons/hud/screen_alert_heretic_core.dmi'
 	icon_state = "influence"

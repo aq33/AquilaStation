@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/target_intercept
-	display_name = "Target Intercept"
+	display_name = "Przechwytywacz celu"
 	desc = "Wymaga obudowy BCI. Po aktywacji pozwala użytkownikowi wskazać obiekt umysłem i zwraca odwołanie do tego obiektu."
 	category = "BCI"
 

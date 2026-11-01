@@ -5,8 +5,8 @@
 #define UNKNOWN_JOB_ID	81
 
 /obj/machinery/computer/crew
-	name = "crew monitoring console"
-	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
+	name = "konsola monitorowania załogi"
+	desc = "Służy do monitorowania aktywnych czujników zdrowia wbudowanych w większość uniformów załogi."
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	use_power = IDLE_POWER_USE

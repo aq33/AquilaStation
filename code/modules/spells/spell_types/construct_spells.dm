@@ -12,8 +12,8 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/area_conversion
-	name = "Area Conversion"
-	desc = "This spell instantly converts a small area around you."
+	name = "Przemiana obszaru"
+	desc = "To zaklęcie natychmiast przemienia niewielki obszar wokół ciebie."
 
 	school = "transmutation"
 	charge_max = 50
@@ -32,8 +32,8 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/floor
-	name = "Summon Cult Floor"
-	desc = "This spell constructs a cult floor."
+	name = "Przywołanie podłogi kultu"
+	desc = "To zaklęcie tworzy podłogę kultu."
 
 	school = "conjuration"
 	charge_max = 20
@@ -48,8 +48,8 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall
-	name = "Summon Cult Wall"
-	desc = "This spell constructs a cult wall."
+	name = "Przywołanie ściany kultu"
+	desc = "To zaklęcie tworzy ścianę kultu."
 
 	school = "conjuration"
 	charge_max = 100
@@ -64,8 +64,8 @@
 	summon_type = list(/turf/closed/wall/mineral/cult/artificer) //we don't want artificer-based runed metal farms
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/door
-	name = "Summon Cult Door"
-	desc = "This spell constructs a cult Airlock."
+	name = "Przywołanie drzwi kultu"
+	desc = "To zaklęcie tworzy śluzę kultu."
 
 	school = "conjuration"
 	charge_max = 300
@@ -81,8 +81,8 @@
 	summon_type = list(/obj/machinery/door/airlock/cult)
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall/reinforced
-	name = "Greater Construction"
-	desc = "This spell constructs a reinforced metal wall."
+	name = "Większa budowa"
+	desc = "To zaklęcie tworzy wzmocnioną metalową ścianę."
 
 	school = "conjuration"
 	charge_max = 300
@@ -94,8 +94,8 @@
 	summon_type = list(/turf/closed/wall/r_wall)
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone
-	name = "Summon Soulstone"
-	desc = "This spell reaches into Nar'Sie's realm, summoning one of the legendary fragments across time and space."
+	name = "Przywołanie kamienia duszy"
+	desc = "To zaklęcie sięga do królestwa Nar'Sie i przywołuje przez czas i przestrzeń jeden z legendarnych odłamków."
 
 	school = "conjuration"
 	charge_max = 2400
@@ -120,8 +120,8 @@
 	summon_type = list(/obj/item/soulstone/anybody/purified)
 
 /obj/effect/proc_holder/spell/targeted/forcewall/cult
-	name = "Shield"
-	desc = "This spell creates a temporary forcefield to shield yourself and allies from incoming fire."
+	name = "Tarcza"
+	desc = "To zaklęcie tworzy tymczasowe pole siłowe, które osłania ciebie i sojuszników przed ostrzałem."
 	school = "transmutation"
 	charge_max = 400
 	clothes_req = FALSE
@@ -135,8 +135,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift
-	name = "Phase Shift"
-	desc = "This spell allows you to pass through walls."
+	name = "Przesunięcie fazowe"
+	desc = "To zaklęcie pozwala ci przechodzić przez ściany."
 
 	school = "transmutation"
 	charge_max = 250
@@ -157,8 +157,8 @@
 	return
 
 /obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser
-	name = "Lesser Magic Missile"
-	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
+	name = "Pomniejszy magiczny pocisk"
+	desc = "To zaklęcie wystrzeliwuje w pobliskie cele kilka powolnych magicznych pocisków."
 
 	school = "evocation"
 	charge_max = 400
@@ -180,8 +180,8 @@
 	return ..()
 
 /obj/effect/proc_holder/spell/targeted/smoke/disable
-	name = "Paralysing Smoke"
-	desc = "This spell spawns a cloud of paralysing smoke."
+	name = "Paraliżujący dym"
+	desc = "To zaklęcie tworzy chmurę paraliżującego dymu."
 
 	school = "conjuration"
 	charge_max = 200
@@ -199,8 +199,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/abyssal_gaze
-	name = "Abyssal Gaze"
-	desc = "This spell instills a deep terror in your target, temporarily chilling and blinding it."
+	name = "Spojrzenie otchłani"
+	desc = "To zaklęcie zasiewa w celu głęboką grozę, tymczasowo go wychładzając i oślepiając."
 
 	charge_max = 750
 	range = 5
@@ -244,8 +244,8 @@
 		L.cure_blind(MAGIC_BLIND)
 
 /obj/effect/proc_holder/spell/targeted/dominate
-	name = "Dominate"
-	desc = "This spell dominates the mind of a lesser creature to the will of Nar'Sie, allying it only to her direct followers."
+	name = "Dominacja"
+	desc = "To zaklęcie podporządkowuje umysł pomniejszej istoty woli Nar'Sie, czyniąc ją sojusznikiem wyłącznie jej bezpośrednich wyznawców."
 
 	charge_max = 600
 	range = 7
@@ -308,8 +308,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut
-	name = "Gauntlet Echo"
-	desc = "Channels energy into your gauntlet - firing its essence forward in a slow moving, yet devastating, attack."
+	name = "Echo rękawicy"
+	desc = "Kierujesz energię do swojej rękawicy i wystrzeliwujesz jej esencję w powolnym, lecz niszczycielskim ataku."
 	proj_type = /obj/item/projectile/magic/spell/juggernaut
 	charge_max = 350
 	clothes_req = FALSE
@@ -319,7 +319,7 @@
 	sound = 'sound/weapons/resonator_blast.ogg'
 
 /obj/item/projectile/magic/spell/juggernaut
-	name = "Gauntlet Echo"
+	name = "Echo rękawicy"
 	icon_state = "cultfist"
 	alpha = 180
 	damage = 30

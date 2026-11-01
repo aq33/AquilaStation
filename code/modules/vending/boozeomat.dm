@@ -1,6 +1,6 @@
 /obj/machinery/vending/boozeomat
 	name = "\improper Booze-O-Mat"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	desc = "Cud techniki, który podobno potrafi przygotować dokładnie taką mieszankę, na jaką masz ochotę, gdy tylko o nią poprosisz."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	light_color = LIGHT_COLOR_BLUEGREEN
@@ -51,7 +51,7 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/machinery/vending/boozeomat/all_access
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one. This model appears to have no access restrictions."
+	desc = "Cud techniki, który podobno potrafi przygotować dokładnie taką mieszankę, na jaką masz ochotę, gdy tylko o nią poprosisz. Ten model chyba nie ma żadnych ograniczeń dostępu."
 	req_access = null
 
 /obj/machinery/vending/boozeomat/pubby_maint //abandoned bar on Pubbystation

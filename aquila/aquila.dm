@@ -1650,6 +1650,8 @@
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_heart_blood.dm"
 #include "code\modules\unit_tests\aquila_plumbing.dm"
+#include "code\modules\unit_tests\aquila_reagent_name_keys.dm"
+#include "code\modules\unit_tests\aquila_auto_articles.dm"
 #include "code\modules\unit_tests\aquila_pollution.dm"
 #include "code\modules\unit_tests\hotspot_throttle.dm"
 #include "code\modules\unit_tests\hub_status.dm"

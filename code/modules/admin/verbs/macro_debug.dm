@@ -22,7 +22,7 @@
 /// A slightly more pleasant way to execute free wingets.
 /client/verb/arbitrary_winget(cmd as text)
 	set name = "awing"
-	set desc = "Run an arbitrary Winset call, Space-separated arguments."
+	set desc = "Wykonuje dowolne wywołanie Winset, argumenty oddzielone spacją."
 	set category = "_MACRO_TEST"
 	var/list/parts = splittext(cmd, " ")
 	to_chat(usr, (winget(src, parts[1], parts[2]) || "NULL (Bad Call?)"))
@@ -30,7 +30,7 @@
 /// A slightly more pleasant way to execute free winsets.
 /client/verb/arbitrary_winset(cmd as text)
 	set name = "aswin"
-	set desc = "Run an arbitrary Winset call, Space-separated arguments."
+	set desc = "Wykonuje dowolne wywołanie Winset, argumenty oddzielone spacją."
 	set category = "_MACRO_TEST"
 	var/list/parts = splittext(cmd, " ")
 	winset(src, parts[1], parts[2])
@@ -52,7 +52,7 @@
 
 /client/verb/winmon(cmd as text|null)
 	set name = "winmon"
-	set desc = "Repeatedly run a winget to monitor it's value"
+	set desc = "Wielokrotnie wykonuje winget, by śledzić jego wartość"
 	set category = "_MACRO_TEST"
 	if(x_mt_winmon_enabled || isnull(cmd))
 		x_mt_winmon_enabled = FALSE

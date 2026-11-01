@@ -1,6 +1,6 @@
 /obj/item/reverse_bear_trap
-	name = "reverse bear trap"
-	desc = "A horrifying set of shut metal jaws, rigged to a kitchen timer and secured by padlock to a head-mounted clamp. To apply, hit someone with it."
+	name = "odwrócone sidła na niedźwiedzie"
+	desc = "Przerażające zatrzaśnięte metalowe szczęki podpięte do minutnika kuchennego i przymocowane kłódką do obejmy zakładanej na głowę. By założyć, uderz tym kogoś."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "reverse_bear_trap"
 	slot_flags = ITEM_SLOT_HEAD
@@ -96,7 +96,7 @@
 	user.dropItemToGround(src)
 	target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
 	arm()
-	notify_ghosts("[user] put a reverse bear trap on [target]!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/beep.ogg', notify_volume = 75, header = "Reverse bear trap armed")
+	notify_ghosts("[user] zakłada [target] odwrócone sidła na niedźwiedzie!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/beep.ogg', notify_volume = 75, header = "Uzbrojono odwrócone sidła")
 
 /obj/item/reverse_bear_trap/proc/snap()
 	reset()

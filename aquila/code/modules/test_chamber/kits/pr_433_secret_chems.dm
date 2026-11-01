@@ -1,5 +1,5 @@
 /datum/test_chamber_kit/pr_433
-	name = "Secret chems"
+	name = "Sekretne chemikalia"
 	pr = "aq33/AquilaStation#433"
 	description = "Kartki: przeczytaj skamieniałą (gorgium), uranową (metalgen) i zwykłą starą recepturę. \
 	Gotowe składniki aktualnych receptur są w zlewce gorgium, zlewce metalgenu i wiadrze sosu, schłodzone/podgrzane tuż obok progu: włóż je do podgrzewacza i ustaw temperaturę z kartki. \
@@ -43,7 +43,7 @@
 			var/obj/item/reagent_containers/pill/pill = new(drop)
 			pill.name = "pigułka: [initial(reagent.name)]"
 			pill.reagents.add_reagent(reagent_type, 20)
-	reagent_bottle(drop, /datum/reagent/medicine/synaptizine, 30, "synaptizine (lek na GBS)")
+	reagent_bottle(drop, /datum/reagent/medicine/synaptizine, 30, "synaptizyna (lek na GBS)")
 	reagent_bottle(drop, /datum/reagent/sulfur, 30, "siarka (lek na GBS)")
 
 /datum/test_chamber_kit/pr_433/proc/reagent_bottle(turf/drop, reagent_type, amount, label)

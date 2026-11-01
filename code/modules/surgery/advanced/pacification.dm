@@ -1,6 +1,6 @@
 /datum/surgery/advanced/pacify
-	name = "Pacification"
-	desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
+	name = "Pacyfikacja"
+	desc = "Zabieg chirurgiczny, który trwale hamuje ośrodek agresji w mózgu, przez co pacjent nie chce nikogo bezpośrednio krzywdzić."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/saw,
@@ -19,7 +19,7 @@
 		return FALSE
 
 /datum/surgery_step/pacify
-	name = "rewire brain"
+	name = "przeprogramuj mózg"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	time = 40
 	preop_sound = 'sound/surgery/hemostat1.ogg'

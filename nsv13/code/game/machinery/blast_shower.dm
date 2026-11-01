@@ -30,8 +30,8 @@
 	return ..()
 
 /obj/machinery/shower/blast_shower
-	name = "blast shower"
-	desc = "The RS-455. High pressure shower system guaranteed to remove radiation at unprecedented rates."
+	name = "prysznic odkażający"
+	desc = "RS-455. Wysokociśnieniowy system prysznicowy, który gwarantuje usuwanie promieniowania w niespotykanym tempie."
 	icon = 'nsv13/icons/obj/blast_shower.dmi'
 	icon_state = "blast_shower"
 	density = FALSE

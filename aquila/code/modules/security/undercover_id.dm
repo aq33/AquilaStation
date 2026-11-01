@@ -2,7 +2,7 @@
 // Karta agenta, którą może fałszować każdy, ale bez kopiowania dostępów z innych kart.
 
 /obj/item/card/id/syndicate/undercover
-	name = "Undercover I.D."
+	name = "karta pod przykrywką"
 	desc = "Najskrytsze marzenie detektywa Nanotrasenu: karta pod przykrywką. Zmienia nazwisko i wygląd, ale nie kopiuje cudzych dostępów. Multitoolem można zablokować przebranie."
 	icon_state = "id"
 	hud_state = JOB_HUD_UNKNOWN

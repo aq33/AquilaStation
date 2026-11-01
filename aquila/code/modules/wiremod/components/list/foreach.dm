@@ -4,7 +4,7 @@
  * Sends a signal for each item in a list
  */
 /obj/item/circuit_component/foreach
-	display_name = "For Each"
+	display_name = "Dla każdego"
 	desc = "Komponent, który przechodzi przez każdy element listy."
 	category = "List"
 

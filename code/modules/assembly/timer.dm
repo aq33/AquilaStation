@@ -1,6 +1,6 @@
 /obj/item/assembly/timer
-	name = "timer"
-	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	name = "zegar"
+	desc = "Służy do odmierzania czasu. Dobrze współpracuje z urządzeniami, które muszą odliczać. Tik-tak."
 	icon_state = "timer"
 	custom_materials = list(/datum/material/iron=500, /datum/material/glass=50)
 	attachable = TRUE

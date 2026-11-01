@@ -2,7 +2,7 @@
 
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits.dmi'
-	name = "suit"
+	name = "strój"
 	var/fire_resist = T0C+100
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'

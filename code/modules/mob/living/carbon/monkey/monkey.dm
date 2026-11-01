@@ -1,5 +1,5 @@
 /mob/living/carbon/monkey
-	name = "monkey"
+	name = "małpa"
 	verb_say = "pokrzykuje"
 	initial_language_holder = /datum/language_holder/monkey
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 	return ..()
 
 /mob/living/carbon/monkey/tumor
-	name = "living teratoma"
+	name = "żywa teratoma"
 	verb_say = "paple"
 	initial_language_holder = /datum/language_holder/monkey
 	icon = 'icons/mob/monkey.dmi'
@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 	species_r_leg = /obj/item/bodypart/r_leg/monkey/teratoma
 
 /obj/item/organ/brain/tumor
-	name = "teratoma brain"
+	name = "mózg teratomy"
 
 /obj/item/organ/brain/tumor/Remove(mob/living/carbon/C, special, no_id_transfer)
 	. = ..()

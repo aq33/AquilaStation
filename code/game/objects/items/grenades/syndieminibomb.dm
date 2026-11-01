@@ -1,6 +1,6 @@
 /obj/item/grenade/syndieminibomb
-	desc = "A syndicate manufactured explosive used to sow destruction and chaos."
-	name = "syndicate minibomb"
+	desc = "Ładunek wybuchowy produkcji Syndykatu, który sieje zniszczenie i chaos."
+	name = "minibomba Syndykatu"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "syndicate"
 	item_state = "flashbang"
@@ -18,16 +18,16 @@
 	qdel(src)
 
 /obj/item/grenade/syndieminibomb/concussion
-	name = "HE Grenade"
-	desc = "A compact shrapnel grenade meant to devastate nearby organisms and cause some damage in the process. Pull pin and throw opposite direction."
+	name = "granat burzący"
+	desc = "Kompaktowy granat odłamkowy, który ma spustoszyć pobliskie organizmy i przy okazji narobić szkód. Wyciągnij zawleczkę i rzuć w przeciwną stronę."
 	icon_state = "concussion"
 	ex_heavy = 2
 	ex_light = 3
 	ex_flame = 3
 
 /obj/item/grenade/frag
-	name = "frag grenade"
-	desc = "An anti-personnel fragmentation grenade, this weapon excels at killing soft targets by shredding them with metal shrapnel."
+	name = "granat odłamkowy"
+	desc = "Przeciwpiechotny granat odłamkowy. Świetnie zabija miękkie cele, szatkując je metalowymi odłamkami."
 	icon_state = "frag"
 	shrapnel_type = /obj/item/projectile/bullet/shrapnel
 	shrapnel_radius = 4
@@ -36,8 +36,8 @@
 	ex_flame = 4
 
 /obj/item/grenade/frag/mega
-	name = "\improper FRAG grenade"
-	desc = "An anti-everything fragmentation grenade, this weapon excels at killing anything any everything by shredding them with metal shrapnel."
+	name = "\improper granat ODŁAMKOWY"
+	desc = "Granat odłamkowy przeciwko wszystkiemu. Świetnie zabija cokolwiek i wszystko, szatkując to metalowymi odłamkami."
 	shrapnel_type = /obj/item/projectile/bullet/shrapnel/mega
 	shrapnel_radius = 12
 
@@ -49,8 +49,8 @@
 	qdel(src)
 
 /obj/item/grenade/gluon
-	desc = "An advanced grenade that releases a harmful stream of gluons inducing radiation in those nearby. These gluon streams will also make victims feel exhausted, and induce shivering. This extreme coldness will also likely wet any nearby floors."
-	name = "gluon frag grenade"
+	desc = "Zaawansowany granat, który uwalnia szkodliwy strumień gluonów napromieniowujący wszystkich w pobliżu. Strumienie gluonów wyczerpują też ofiary i wywołują dreszcze. Ten skrajny chłód najpewniej zamoczy też pobliską podłogę."
+	name = "gluonowy granat odłamkowy"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "bluefrag"
 	item_state = "flashbang"

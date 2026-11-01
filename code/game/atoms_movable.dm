@@ -217,7 +217,7 @@
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message)
-			M.visible_message("<span class='warning'>[src] grabs [M] passively.</span>", \
+			M.visible_message("<span class='warning'>[src] biernie chwyta [M].</span>", \
 				"<span class='danger'>[src] chwyta cię biernie.</span>")
 	return TRUE
 
@@ -796,12 +796,12 @@
 /atom/movable/proc/force_push(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.force_pushed(src, force, direction)
 	if(!silent && .)
-		visible_message("<span class='warning'>[src] forcefully pushes against [AM]!</span>", "<span class='warning'>Z całej siły napierasz na [AM]!</span>")
+		visible_message("<span class='warning'>[src] z całej siły napiera na [AM]!</span>", "<span class='warning'>Z całej siły napierasz na [AM]!</span>")
 
 /atom/movable/proc/move_crush(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.move_crushed(src, force, direction)
 	if(!silent && .)
-		visible_message("<span class='danger'>[src] crushes past [AM]!</span>", "<span class='danger'>Miażdżysz [AM]!</span>")
+		visible_message("<span class='danger'>[src] przebija się przez [AM]!</span>", "<span class='danger'>Miażdżysz [AM]!</span>")
 
 /atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
@@ -919,7 +919,7 @@
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
+	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Śledź</option>"
 	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 /atom/movable/proc/ex_check(ex_id)

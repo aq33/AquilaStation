@@ -1,6 +1,6 @@
 /obj/item/organ/zombie_infection
-	name = "festering ooze"
-	desc = "A black web of pus and viscera."
+	name = "ropiejąca maź"
+	desc = "Czarna sieć ropy i wnętrzności."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ZOMBIE
 	icon_state = "blacktumor"
@@ -36,9 +36,9 @@
 		deltimer(timer_id)
 
 /obj/item/organ/zombie_infection/on_find(mob/living/finder)
-	to_chat(finder, "<span class='warning'>Inside the head is a disgusting black \
-		web of pus and viscera, bound tightly around the brain like some \
-		biological harness.</span>")
+	to_chat(finder, "<span class='warning'>W głowie jest obrzydliwa czarna \
+		sieć ropy i wnętrzności, ciasno oplatająca mózg jak jakaś \
+		biologiczna uprząż.</span>")
 
 /obj/item/organ/zombie_infection/process(delta_time)
 	if(!owner)
@@ -50,7 +50,7 @@
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
 		owner.adjustToxLoss(0.5 * delta_time, forced = TRUE)
 		if(DT_PROB(5, delta_time))
-			to_chat(owner, "<span class='danger'>You feel sick...</span>")
+			to_chat(owner, "<span class='danger'>Robi ci się niedobrze...</span>")
 	if(timer_id)
 		return
 	if(owner.suiciding)
@@ -60,9 +60,9 @@
 	if(!owner.getorgan(/obj/item/organ/brain))
 		return
 	if(!iszombie(owner))
-		to_chat(owner, "<span class='cultlarge'>You can feel your heart stopping, but something isn't right... \
-		life has not abandoned your broken form. You can only feel a deep and immutable hunger that \
-		not even death can stop, you will rise again!</span>")
+		to_chat(owner, "<span class='cultlarge'>Czujesz, jak serce ci staje, ale coś jest nie tak... \
+		życie nie opuściło twojego zniszczonego ciała. Czujesz tylko głęboki i niezmienny głód, którego \
+		nawet śmierć nie powstrzyma. Powstaniesz znowu!</span>")
 	var/revive_time = rand(revive_time_min, revive_time_max)
 	var/flags = TIMER_STOPPABLE
 	timer_id = addtimer(CALLBACK(src, PROC_REF(zombify), owner), revive_time, flags)
@@ -91,11 +91,11 @@
 	owner?.revive()
 
 	C.grab_ghost()
-	C.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()][stand_up ? " stagger to [owner.p_their()] feet and" : ""] gain a ravenous hunger in [owner.p_their()] eyes!</span>", "<span class='alien'>You HUNGER!</span>")
+	C.visible_message("<span class='danger'>[owner] nagle dostaje drgawek[stand_up ? ", chwiejnie staje na nogi" : ""], a w oczach pojawia się wilczy głód!</span>", "<span class='alien'>JESTEŚ GŁODNY!</span>")
 	playsound(C.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	C.do_jitter_animation(living_transformation_time)
 	C.Stun(living_transformation_time)
-	to_chat(C, "<span class='alertalien'>You are now a zombie! Do not seek to be cured, do not help any non-zombies in any way, do not harm your zombie brethren and spread the disease by killing others. You are a creature of hunger and violence.</span>")
+	to_chat(C, "<span class='alertalien'>Jesteś teraz zombie! Nie szukaj lekarstwa, w żaden sposób nie pomagaj nikomu, kto nie jest zombie, nie krzywdź swoich zombiaczych braci i szerz chorobę, zabijając innych. Jesteś istotą głodu i przemocy.</span>")
 
 	owner.faction = list("zombie") //NSV13 - used to prevent KNPC zombies remurdering them
 

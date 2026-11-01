@@ -495,7 +495,7 @@
 		var/datum/reagent/spider_poison = initial(spider.poison_type)
 		var/spider_description = initial(spider.menu_description)
 		if(initial(spider.poison_per_bite))
-			spider_description += " Wstrzykuje [initial(spider.poison_per_bite)]u [initial(spider_poison.name)] na ugryzienie."
+			spider_description += " Wstrzykuje [initial(spider.poison_per_bite)] j. [initial(spider_poison.name)] na ugryzienie."
 		option.info = span_boldnotice(spider_description)
 		display_spiders[initial(spider.name)] = option
 	sortList(display_spiders)

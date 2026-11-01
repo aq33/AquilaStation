@@ -95,8 +95,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	update_icon()
 
 /obj/effect/proc_holder/spell
-	name = "Spell"
-	desc = "A wizard spell."
+	name = "Zaklęcie"
+	desc = "Zaklęcie czarodzieja."
 	panel = "Spells"
 	var/sound = null //The sound the spell makes when it is cast
 	anchored = TRUE // Crap like fireball projectiles are proc_holders, this is needed so fireballs don't get blown back into your face via atmos etc.
@@ -670,8 +670,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	perform(null,user=user)
 
 /obj/effect/proc_holder/spell/self/basic_heal //This spell exists mainly for debugging purposes, and also to show how casting works
-	name = "Lesser Heal"
-	desc = "Heals a small amount of brute and burn damage."
+	name = "Pomniejsze leczenie"
+	desc = "Leczy niewielką ilość obrażeń fizycznych i oparzeń."
 	human_req = TRUE
 	clothes_req = FALSE
 	charge_max = 100

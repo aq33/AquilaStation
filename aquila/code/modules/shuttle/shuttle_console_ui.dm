@@ -5,7 +5,7 @@
 /obj/machinery/computer/shuttle_flight/ui_interact(mob/user, datum/tgui/ui)
 	//Ash walkers cannot use the console because they are unga bungas
 	if(user.mind?.has_antag_datum(/datum/antagonist/ashwalker))
-		to_chat(user, "<span class='warning'>This computer has been designed to keep the natives like you from meddling with it, you have no hope of using it.</span>")
+		to_chat(user, "<span class='warning'>Ten komputer zaprojektowano tak, żeby tubylcy tacy jak ty nie mogli przy nim grzebać. Nie masz szans go użyć.</span>")
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

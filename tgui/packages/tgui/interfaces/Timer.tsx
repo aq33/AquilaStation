@@ -30,7 +30,7 @@ export const Timer = (props) => {
                 selected={timing}
                 onClick={() => act('time')}
               >
-                {timing ? 'Stop' : 'Start'}
+                {timing ? 'Zatrzymaj' : 'Uruchom'}
               </Button>
             </>
           }

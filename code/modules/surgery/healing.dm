@@ -22,7 +22,7 @@
 					/datum/surgery_step/close)
 
 /datum/surgery_step/heal
-	name = "repair body"
+	name = "napraw ciało"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	repeatable = TRUE
 	time = 25
@@ -36,11 +36,11 @@
 /datum/surgery_step/heal/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/woundtype
 	if(brutehealing && burnhealing)
-		woundtype = "wounds"
+		woundtype = "rany"
 	else if(brutehealing)
-		woundtype = "bruises"
+		woundtype = "stłuczenia"
 	else //why are you trying to 0,0...?
-		woundtype = "burns"
+		woundtype = "oparzenia"
 	if(istype(surgery,/datum/surgery/healing))
 		var/datum/surgery/healing/the_surgery = surgery
 		if(!the_surgery.antispam)
@@ -98,27 +98,27 @@
 
 /***************************BRUTE***************************/
 /datum/surgery/healing/brute
-	name = "Tend Wounds (Bruises)"
+	name = "Opatrywanie ran (stłuczenia)"
 
 /datum/surgery/healing/brute/basic
-	name = "Tend Wounds (Bruises, Basic)"
+	name = "Opatrywanie ran (stłuczenia, podst.)"
 	replaced_by = /datum/surgery/healing/brute/upgraded
 	healing_step_type = /datum/surgery_step/heal/brute/basic
-	desc = "A surgical procedure that provides basic treatment for a patient's brute traumas. Heals slightly more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający podstawowe leczenie urazów fizycznych pacjenta. Leczy nieco więcej, gdy pacjent jest ciężko ranny."
 
 /datum/surgery/healing/brute/upgraded
-	name = "Tend Wounds (Bruises, Adv.)"
+	name = "Opatrywanie ran (stłuczenia, zaaw.)"
 	replaced_by = /datum/surgery/healing/brute/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/brute/upgraded
-	desc = "A surgical procedure that provides advanced treatment for a patient's brute traumas. Heals more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający zaawansowane leczenie urazów fizycznych pacjenta. Leczy więcej, gdy pacjent jest ciężko ranny."
 
 /datum/surgery/healing/brute/upgraded/femto
-	name = "Tend Wounds (Bruises, Exp.)"
+	name = "Opatrywanie ran (stłuczenia, eksp.)"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/brute/upgraded/femto
-	desc = "A surgical procedure that provides experimental treatment for a patient's brute traumas. Heals considerably more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający eksperymentalne leczenie urazów fizycznych pacjenta. Leczy znacznie więcej, gdy pacjent jest ciężko ranny."
 
 /********************BRUTE STEPS********************/
 /datum/surgery_step/heal/brute/get_progress(mob/user, mob/living/carbon/target, brute_healed, burn_healed)
@@ -149,7 +149,7 @@
 	return progress_text
 
 /datum/surgery_step/heal/brute/basic
-	name = "tend bruises"
+	name = "opatrz stłuczenia"
 	brutehealing = 5
 	missinghpbonus = 15
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -172,27 +172,27 @@
 
 /***************************BURN***************************/
 /datum/surgery/healing/burn
-	name = "Tend Wounds (Burn)"
+	name = "Opatrywanie ran (oparzenia)"
 
 /datum/surgery/healing/burn/basic
-	name = "Tend Wounds (Burn, Basic)"
+	name = "Opatrywanie ran (oparzenia, podst.)"
 	replaced_by = /datum/surgery/healing/burn/upgraded
 	healing_step_type = /datum/surgery_step/heal/burn/basic
-	desc = "A surgical procedure that provides basic treatment for a patient's burns. Heals slightly more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający podstawowe leczenie oparzeń pacjenta. Leczy nieco więcej, gdy pacjent jest ciężko ranny."
 
 /datum/surgery/healing/burn/upgraded
-	name = "Tend Wounds (Burn, Adv.)"
+	name = "Opatrywanie ran (oparzenia, zaaw.)"
 	replaced_by = /datum/surgery/healing/burn/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/burn/upgraded
-	desc = "A surgical procedure that provides advanced treatment for a patient's burns. Heals more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający zaawansowane leczenie oparzeń pacjenta. Leczy więcej, gdy pacjent jest ciężko ranny."
 
 /datum/surgery/healing/burn/upgraded/femto
-	name = "Tend Wounds (Burn, Exp.)"
+	name = "Opatrywanie ran (oparzenia, eksp.)"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/burn/upgraded/femto
-	desc = "A surgical procedure that provides experimental treatment for a patient's burns. Heals considerably more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający eksperymentalne leczenie oparzeń pacjenta. Leczy znacznie więcej, gdy pacjent jest ciężko ranny."
 
 /********************BURN STEPS********************/
 /datum/surgery_step/heal/burn/get_progress(mob/user, mob/living/carbon/target, brute_healed, burn_healed)
@@ -223,7 +223,7 @@
 	return progress_text
 
 /datum/surgery_step/heal/burn/basic
-	name = "tend burn wounds"
+	name = "opatrz oparzenia"
 	burnhealing = 5
 	missinghpbonus = 15
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -246,24 +246,24 @@
 
 /***************************COMBO***************************/
 /datum/surgery/healing/combo
-	name = "Tend Wounds (Mixture, Basic)"
+	name = "Opatrywanie ran (mieszane, podst.)"
 	replaced_by = /datum/surgery/healing/combo/upgraded
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/combo
-	desc = "A surgical procedure that provides basic treatment for a patient's burns and brute traumas. Heals slightly more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający podstawowe leczenie oparzeń i urazów fizycznych pacjenta. Leczy nieco więcej, gdy pacjent jest ciężko ranny."
 
 /datum/surgery/healing/combo/upgraded
-	name = "Tend Wounds (Mixture, Adv.)"
+	name = "Opatrywanie ran (mieszane, zaaw.)"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded
-	desc = "A surgical procedure that provides advanced treatment for a patient's burns and brute traumas. Heals more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający zaawansowane leczenie oparzeń i urazów fizycznych pacjenta. Leczy więcej, gdy pacjent jest ciężko ranny."
 
 
 /datum/surgery/healing/combo/upgraded/femto //no real reason to type it like this except consistency, don't worry you're not missing anything
-	name = "Tend Wounds (Mixture, Exp.)"
+	name = "Opatrywanie ran (mieszane, eksp.)"
 	replaced_by = null
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded/femto
-	desc = "A surgical procedure that provides experimental treatment for a patient's burns and brute traumas. Heals considerably more when the patient is severely injured."
+	desc = "Zabieg chirurgiczny zapewniający eksperymentalne leczenie oparzeń i urazów fizycznych pacjenta. Leczy znacznie więcej, gdy pacjent jest ciężko ranny."
 
 /********************COMBO STEPS********************/
 /datum/surgery_step/heal/combo/get_progress(mob/user, mob/living/carbon/target, brute_healed, burn_healed)
@@ -300,7 +300,7 @@
 	return progress_text
 
 /datum/surgery_step/heal/combo
-	name = "tend physical wounds"
+	name = "opatrz rany fizyczne"
 	brutehealing = 3
 	burnhealing = 3
 	missinghpbonus = 15

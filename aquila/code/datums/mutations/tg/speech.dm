@@ -1,9 +1,9 @@
 // AQUILA - port z tgstation (code/datums/mutations/speech.dm)
 
 /datum/mutation/piglatin
-	name = "Pig Latin"
-	desc = "Historians say five centuries ago, humanity spoke entirely in this mystical language. \
-		The subject becomes forced to speak in said language, which is often difficult to understand."
+	name = "Świńska łacina"
+	desc = "Historycy mówią, że pięć wieków temu cała ludzkość posługiwała się tym mistycznym językiem. \
+		Pacjent musi w nim mówić, a często trudno go zrozumieć."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Ośćcay ziwnieday ięsay zujeczay.</span>"
 	text_lose_indication = "<span class='notice'>Dziwne uczucie mija.</span>"
@@ -26,8 +26,8 @@
 	speech_args[SPEECH_MESSAGE] = piglatin_sentence(message)
 
 /datum/mutation/heckacious
-	name = "Heckacious Larincks"
-	desc = "duge what is WISH your words man..........."
+	name = "Krtań do kwadratu"
+	desc = "ziom co ŻE twoje słowa stary..........."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='sans'>o KURDE stary. twoje gardło jest jakieś TAKIE.</span>"
 	text_lose_indication = "<span class='notice'>Demoniczna istota, która opętała twoją krtań, w końcu cię puszcza.</span>"
