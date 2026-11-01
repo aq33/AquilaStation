@@ -1,7 +1,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - tg bleeding overlays on the body, joined blood trails and drops in vis_contents
+/// AQUILA - tg bleeding overlays on the body, joined blood trails, drops in vis_contents, tg human sprites and damage overlays
 /datum/unit_test/aquila_blood_trails
 
 /datum/unit_test/aquila_blood_trails/Run()
@@ -58,6 +58,23 @@
 	TEST_ASSERT(LAZYLEN(drop.drip_parts) == 1 && (drop.drip_parts[1] in drop.vis_contents), "The second drop is not in vis_contents")
 	var/obj/effect/decal/cleanable/blood/drip/part/second = drop.drip_parts[1]
 	TEST_ASSERT(second.icon_state != drop.icon_state, "The second drop has the same sprite as the first")
+
+	// tg human body sprites, other species keep the shared icon
+	var/obj/item/bodypart/chest/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	var/found_tg_sprite = FALSE
+	for(var/image/part in chest.get_limb_icon())
+		if(part.icon == 'aquila/icons/mob/human/human_bodyparts_greyscale.dmi')
+			found_tg_sprite = TRUE
+	TEST_ASSERT(found_tg_sprite, "The human chest does not use the tg body sprite")
+
+	// tg damage overlays: blood-tinted brute and the untinted bruises over it
+	chest.receive_damage(brute = chest.max_damage * 0.25) // brute state 1, tg has bruises for it
+	patient.update_body_parts(TRUE) // limbs take the species damage overlay type here
+	patient.update_damage_overlays()
+	var/mutable_appearance/damage_overlay = patient.overlays_standing[DAMAGE_LAYER]
+	TEST_ASSERT(damage_overlay?.icon == AQ_DAMAGE_OVERLAY_ICON, "The damage overlay does not use the tg icon")
+	TEST_ASSERT(length(damage_overlay.overlays) >= 2, "Brute damage shows [length(damage_overlay?.overlays)] overlays instead of the blood and bruise layers")
+	TEST_ASSERT(icon_exists(AQ_DAMAGE_OVERLAY_ICON, "human_chest_[chest.brutestate]0_overlay"), "No bruise state for brute state [chest.brutestate]")
 
 	for(var/turf/used as anything in list(start, middle, ahead, drop_turf))
 		for(var/obj/effect/decal/cleanable/blood/stain in used)

@@ -3,7 +3,8 @@
 // A trail is a holder decal with one blood decal per direction in its vis_contents: half pieces where a trail starts,
 // straight pieces, corners and diagonals, so the trail joins up across tiles. Every piece and every drop is its own
 // blood decal, so it dries and takes its colour (species blood colour, greyscale sprites) on its own.
-// Trail sprites: tgstation icons/effects/blood.dmi (CC-BY-SA 3.0), in aquila/icons/effects/blood_trails.dmi.
+// Trail sprites: our own trails from icons/effects/blood.dmi, in aquila/icons/effects/blood_trails.dmi with the half pieces
+// (*_start, 8 dirs: the half on the side opposite to the dir) cut out of them. tg has 4-dir halves only.
 
 /// Bleeding (our scale) above which walking leaves a trail. tg: get_bleed_rate() > 3
 #define BLOOD_TRAIL_WALK_BLEED BLEED_CUT
@@ -236,7 +237,8 @@
 	else
 		var/real_dir = abs(new_dir)
 		new_trail.setDir(real_dir & (EAST|WEST))
-		var/matrix/turned = matrix()
+		// Stretched by sqrt(2) so the piece reaches the corners and joins the next diagonal piece (tg only turns it)
+		var/matrix/turned = matrix(1.414, 0, 0, 0, 1, 0)
 		switch(real_dir)
 			if(NORTHEAST)
 				turned.Turn(-45)

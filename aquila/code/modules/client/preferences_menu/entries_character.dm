@@ -38,7 +38,7 @@
 	return I
 
 /proc/aq_pref_greyscale_part(state, color)
-	var/icon/I = icon('icons/mob/human_parts_greyscale.dmi', state)
+	var/icon/I = icon(aq_body_preview_icon('icons/mob/human_parts_greyscale.dmi', state), state)
 	if(color)
 		I.Blend(color, ICON_MULTIPLY)
 	return I
@@ -443,7 +443,7 @@
 /datum/preference/choiced/species_feature/icon_for(value)
 	var/list/source = GLOB.vars[accessory_list]
 	var/datum/sprite_accessory/accessory = source[value]
-	var/icon/base = icon(icon_base_file, icon_base_state, icon_dir)
+	var/icon/base = icon(aq_body_preview_icon(icon_base_file, icon_base_state), icon_base_state, icon_dir)
 	if(icon_color)
 		base.Blend(icon_color, ICON_MULTIPLY)
 	var/icon/final_icon = aq_pref_mutant_icon(base, accessory, icon_key, icon_dir, icon_color)

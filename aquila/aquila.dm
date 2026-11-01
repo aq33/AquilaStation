@@ -1075,6 +1075,7 @@
 #include "code\modules\spells\spell_types\inflict_handler.dm"
 #include "code\modules\surgery\autopsy.dm"
 #include "code\modules\surgery\bodyparts\bodyparts.dm"
+#include "code\modules\surgery\bodyparts\human_sprites.dm"
 #include "code\modules\surgery\exposed_organs.dm"
 #include "code\modules\surgery\organs\heart_blood.dm"
 #include "code\modules\surgery\organs\liver_cirrhosis.dm"

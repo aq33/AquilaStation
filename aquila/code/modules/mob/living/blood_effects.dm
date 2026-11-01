@@ -1,54 +1,5 @@
-// AQUILA - blood feedback from shiptest-ss13/Shiptest#3239: drops of blood falling from a bleeding mob,
-// splatters that stick to windows (the trails left by a flying splatter were dropped for tg blood trails). Our bleeding is one status
-// effect per mob (Bee), not per limb like Shiptest, so the drops follow the status effect.
-
-/particles/droplets
-	icon = 'aquila/icons/effects/particles/blood_drops.dmi'
-	icon_state = list("dot" = 2, "drop" = 1)
-	width = 32
-	height = 36
-	count = 5
-	spawning = 0.2
-	lifespan = 1 SECONDS
-	fade = 0.5 SECONDS
-	color = "#549EFF"
-	position = generator("box", list(-9, -9, 0), list(9, 18, 0), NORMAL_RAND)
-	scale = generator("vector", list(0.9, 0.9), list(1.1, 1.1), NORMAL_RAND)
-	gravity = list(0, -0.9)
-
-/particles/droplets/blood
-	color = COLOR_BLOOD
-
-/datum/status_effect/bleeding
-	/// Drops of blood falling from the owner
-	var/obj/effect/abstract/particle_holder/blood_drops
-
-/datum/status_effect/bleeding/tick()
-	. = ..()
-	if(!QDELETED(src))
-		update_blood_drops()
-
-/datum/status_effect/bleeding/on_remove()
-	QDEL_NULL(blood_drops)
-	return ..()
-
-/datum/status_effect/bleeding/Destroy()
-	QDEL_NULL(blood_drops)
-	return ..()
-
-/datum/status_effect/bleeding/proc/update_blood_drops()
-	var/mob/living/carbon/carbon_owner = owner
-	var/rate = min(bleed_rate, MAX_BLEED_RATE)
-	if(!istype(carbon_owner) || !carbon_owner.is_bleeding() || !isturf(owner.loc) || HAS_TRAIT(owner, TRAIT_FAKEDEATH) || HAS_TRAIT(owner, TRAIT_NO_BLEEDING) || IS_IN_STASIS(owner))
-		rate = 0
-	if(rate <= 0)
-		QDEL_NULL(blood_drops)
-		return
-	if(!blood_drops)
-		blood_drops = new(owner, /particles/droplets/blood)
-	blood_drops.particles.color = owner.get_blood_color()
-	blood_drops.particles.spawning = rate / 2
-	blood_drops.particles.count = max(1, round(rate * 2))
+// AQUILA - blood feedback from shiptest-ss13/Shiptest#3239: splatters that stick to windows and walls, bone breaking sound.
+// The falling drop particles were dropped for the tg bleed overlays on the body, the trails left by a flying splatter for tg blood trails.
 
 /// Blood that hit a full tile window from the side, shown in the window's vis_contents
 /obj/effect/decal/cleanable/blood/splatter/over_window
