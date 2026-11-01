@@ -13,3 +13,15 @@
       jednego ze składników.
   - tweak: Panel „Receptury” w dozowniku chemicznym pokazuje zakres pH, optymalną
       temperaturę, przegrzanie, ciepło reakcji i minimalną czystość.
+  - bugfix: Wszystkie pady zamówień ekstraktów działają z konsolą rynku szlamów.
+  - rscdel: Usunięto zbędny pad zamówień w nauce i zsyp w kaplicy na Atlasie.
+  - bugfix: Mielarka przy pracy nie wraca do starego wyglądu i trzęsie się jak w Paradise.
+  - tweak: Za piecem łukowym kuźni da się przejść; galwanizer stoi obok stołu montażowego.
+  - balance: 'Alkohol wolniej niszczy wątrobę: zgon dopiero po około trzech butelkach
+      wódki.'
+  - bugfix: Alt blokuje i odblokowuje zamek szafki.
+  - bugfix: Kliknięcie w kafel z katwalkiem przesuwa ciągnięty obiekt.
+  - bugfix: Esc w lobby nie zamyka okna gotowości.
+  - bugfix: Pomoc pod Esc nie wypisuje klawiszy dwa razy.
+  - bugfix: Działo Gaussa ma jeden przycisk wyjścia.
+  - tweak: Przyciski akcji są domyślnie wszystkie na ekranie, paleta je chowa.
