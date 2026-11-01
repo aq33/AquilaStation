@@ -422,6 +422,9 @@
 	if(!iscarbon(M) || !M.is_bleeding())
 		return
 	M.restore_blood()
+	// /mob/living/carbon/human/restore_blood() tamuje rany samo, ale bazowa wersja dla innych ciał węglowych
+	// ustawia tylko objętość krwi, więc bez tego krwawienie trwa dalej, a komunikat leciałby w kółko
+	M.cauterise_wounds()
 	to_chat(M, "<span class='notice'>Czujesz, jak krew się odnawia, a krwawienie ustaje!</span>")
 
 /datum/symptom/heal/water

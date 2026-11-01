@@ -101,6 +101,8 @@
 	to_chat(host, "<span class='notice'>Skóra znów jest wytrzymała!</span>")
 
 /datum/symptom/touch_reactive/butterfly_skin/on_touch(mob/living/host, mob/living/other, we_touched)
+	if(!can_touch(other))
+		return
 	host.apply_damage(5 * power, BRUTE, ran_zone())
 	if(we_touched)
 		to_chat(host, "<span class='warning'>Wpadasz na [other] i schodzi ci płat skóry!</span>")

@@ -423,23 +423,26 @@
 		addtimer(CALLBACK(src, PROC_REF(show_rune), M, T), rand(0, 5 SECONDS))
 
 /datum/symptom/cult_hallucination/proc/show_rune(mob/living/victim, turf/T)
-	if(QDELETED(victim) || !victim.client)
+	// obrazy należą do klienta, nie do mobka: trzymamy go, bo gracz może opuścić ciało,
+	// zanim runa zniknie, i wtedy zostałaby na ekranie już jako duch
+	var/client/viewer = victim?.client
+	if(!viewer)
 		return
 	var/image/rune = image('icons/obj/rune.dmi', T, "[rand(1, 7)]")
 	rune.color = RUNE_COLOR_RED
 	rune.alpha = 0
-	victim.client.images += rune
+	viewer.images += rune
 	animate(rune, alpha = 255, time = 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(hide_rune), victim, rune), rand(20 SECONDS, 40 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(hide_rune), viewer, rune), rand(20 SECONDS, 40 SECONDS))
 
-/datum/symptom/cult_hallucination/proc/hide_rune(mob/living/victim, image/rune)
-	if(QDELETED(victim) || !victim.client)
+/datum/symptom/cult_hallucination/proc/hide_rune(client/viewer, image/rune)
+	if(!viewer)
 		return
 	animate(rune, alpha = 0, time = 1.2 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(remove_rune), victim, rune), 1.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_rune), viewer, rune), 1.2 SECONDS)
 
-/datum/symptom/cult_hallucination/proc/remove_rune(mob/living/victim, image/rune)
-	victim?.client?.images -= rune
+/datum/symptom/cult_hallucination/proc/remove_rune(client/viewer, image/rune)
+	viewer?.images -= rune
 
 /datum/symptom/vitreous
 	name = "Rezonans szklisty"

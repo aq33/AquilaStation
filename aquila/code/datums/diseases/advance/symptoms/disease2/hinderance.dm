@@ -342,6 +342,10 @@
 	var/required_stage = 3
 	/// Czy sygnały są podpięte
 	var/hooked = FALSE
+	/// Ile czeka ten sam cel, zanim znów zadziała na niego dotyk
+	var/touch_cooldown = 2 SECONDS
+	/// mob => kiedy znów można go dotknąć
+	var/list/touch_cooldowns = list()
 
 /datum/symptom/touch_reactive/Activate(datum/disease/advance/A)
 	if(!..())
@@ -383,6 +387,17 @@
 /datum/symptom/touch_reactive/proc/on_touch(mob/living/host, mob/living/other, we_touched)
 	return
 
+/// Czy ten cel nie jest jeszcze na cooldownie. Liczymy osobno dla każdego moba, żeby przytrzymanie
+/// ruchu na jednej ofierze nie sypało obrażeniami, ale wpadnięcie na kogoś nowego działało od razu.
+/datum/symptom/touch_reactive/proc/can_touch(mob/living/other)
+	for(var/mob/living/known in touch_cooldowns)
+		if(QDELETED(known) || touch_cooldowns[known] <= world.time)
+			touch_cooldowns -= known
+	if(touch_cooldowns[other] > world.time)
+		return FALSE
+	touch_cooldowns[other] = world.time + touch_cooldown
+	return TRUE
+
 /datum/symptom/touch_reactive/proc/on_hooked(mob/living/host)
 	return
 
@@ -418,7 +433,7 @@
 	to_chat(host, "<span class='notice'>Skóra znów jest gładka!</span>")
 
 /datum/symptom/touch_reactive/spiky_skin/on_touch(mob/living/host, mob/living/other, we_touched)
-	if(issilicon(other))
+	if(issilicon(other) || !can_touch(other))
 		return
 	other.apply_damage(spike_damage, BRUTE, ran_zone())
 	if(we_touched)

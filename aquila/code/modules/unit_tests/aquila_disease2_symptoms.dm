@@ -142,6 +142,17 @@
 	SEND_SIGNAL(host, COMSIG_MOVABLE_BUMP, other)
 	TEST_ASSERT(other.getBruteLoss() > damage_before, "Wpadnięcie na kogoś nie zraniło go kolcami")
 
+	// Ten sam cel jest na cooldownie, więc przytrzymanie ruchu nie sypie obrażeniami
+	var/damage_after_first = other.getBruteLoss()
+	SEND_SIGNAL(host, COMSIG_MOVABLE_BUMP, other)
+	TEST_ASSERT_EQUAL(other.getBruteLoss(), damage_after_first, "Kolce raniły ten sam cel drugi raz pod rząd")
+
+	// ...ale nowy cel dostaje od razu, bez czekania na cooldown poprzedniego
+	var/mob/living/carbon/human/bystander = allocate(/mob/living/carbon/human)
+	var/bystander_before = bystander.getBruteLoss()
+	SEND_SIGNAL(host, COMSIG_MOVABLE_BUMP, bystander)
+	TEST_ASSERT(bystander.getBruteLoss() > bystander_before, "Kolce nie zraniły nowego celu przez cooldown poprzedniego")
+
 	virus.cure(FALSE)
 	TEST_ASSERT(!spikes.hooked, "Kolce nie odpięły sygnałów po wyleczeniu")
 	var/damage_after_cure = other.getBruteLoss()
@@ -193,4 +204,5 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
+
 
