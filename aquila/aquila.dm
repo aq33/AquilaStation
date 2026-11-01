@@ -648,6 +648,7 @@
 #include "code\modules\medical\bone_repair.dm"
 #include "code\modules\medical\medical_tg_supplies.dm"
 #include "code\modules\medical\medipen_refiller.dm"
+#include "code\modules\medical\mesh_package.dm"
 #include "code\modules\medical\patch_film.dm"
 #include "code\modules\medical\stasis_bodybag.dm"
 #include "code\modules\metacoin\metacoin.dm"
