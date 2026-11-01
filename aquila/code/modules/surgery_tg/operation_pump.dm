@@ -62,5 +62,6 @@
 /datum/surgery_operation/organ/stomach_pump/mechanic
 	name = "płukanie przetwornika składników"
 	rnd_name = "Płukanie przetwornika składników (płukanie żołądka)"
+	desc = "Wypłukuje szkodliwe substancje z robotycznego żołądka (przetwornika składników) pacjenta."
 	required_organ_flag = ORGAN_ROBOTIC
 	operation_flags = OPERATION_NOTABLE | OPERATION_MECHANIC

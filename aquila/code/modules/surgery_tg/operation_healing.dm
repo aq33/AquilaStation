@@ -14,7 +14,7 @@
 /datum/surgery_operation/basic/tend_wounds
 	name = "opatrzenie ran"
 	rnd_name = "Opatrywanie ran"
-	desc = "Opatruje powierzchowne urazy i oparzenia pacjenta."
+	desc = "Leczy obrażenia fizyczne albo oparzenia całego ciała pacjenta (wybór w menu). Im więcej obrażeń, tym więcej leczy każdy krok."
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCREWDRIVER = 1.5,
@@ -230,6 +230,7 @@
 
 /datum/surgery_operation/basic/tend_wounds/upgraded
 	rnd_name = "Opatrywanie ran (zaawansowane)"
+	desc = "Jak opatrywanie ran, ale każdy krok leczy więcej."
 	operation_flags = OPERATION_LOOPING | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/upgraded/master
 	healing_multiplier = 0.1
@@ -239,6 +240,7 @@
 
 /datum/surgery_operation/basic/tend_wounds/upgraded/master
 	rnd_name = "Opatrywanie ran (eksperymentalne)"
+	desc = "Jak opatrywanie ran, ale każdy krok leczy jeszcze więcej."
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	healing_multiplier = 0.2
 
@@ -247,6 +249,7 @@
 
 /datum/surgery_operation/basic/tend_wounds/combo
 	rnd_name = "Opatrywanie ran mieszanych"
+	desc = "Leczy naraz obrażenia fizyczne i oparzenia całego ciała pacjenta. Przydaje się, gdy pacjent ma obydwa rodzaje obrażeń."
 	operation_flags = OPERATION_LOOPING | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/upgraded
 	can_heal = COMBO_SURGERY
@@ -255,6 +258,7 @@
 
 /datum/surgery_operation/basic/tend_wounds/combo/upgraded
 	rnd_name = "Opatrywanie ran mieszanych (zaawansowane)"
+	desc = "Jak opatrywanie ran mieszanych, ale każdy krok leczy więcej."
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	healing_multiplier = 0.1
 
@@ -263,6 +267,7 @@
 
 /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	rnd_name = "Opatrywanie ran mieszanych (eksperymentalne)"
+	desc = "Jak opatrywanie ran mieszanych, ale każdy krok leczy jeszcze więcej."
 	replaced_by = null
 	healing_amount = 1
 	healing_multiplier = 0.4

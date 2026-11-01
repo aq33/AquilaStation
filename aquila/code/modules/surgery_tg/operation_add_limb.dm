@@ -9,6 +9,7 @@
 
 /datum/surgery_operation/limb/prosthetic_replacement
 	name = "przyszycie kończyny"
+	catalog_sections = list(SURGERY_SECTION_LIMBS, SURGERY_SECTION_HEAD)
 	desc = "Zastępuje brakującą kończynę protezą albo (w przypadku ręki) dowolnym pasującym przedmiotem."
 	implements = list(
 		/obj/item/bodypart = 1,
@@ -221,6 +222,7 @@
 /// Przedmiot w miejscu ręki trzyma się luźno, dopóki go nie przymocować
 /datum/surgery_operation/limb/secure_arbitrary_prosthetic
 	name = "przymocowanie protezy"
+	catalog_sections = list(SURGERY_SECTION_LIMBS)
 	desc = "Mocuje przedmiot zastępujący rękę, żeby nie odpadał przy zamachu."
 	implements = list(
 		/obj/item/stack/medical/suture = 1,

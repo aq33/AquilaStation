@@ -133,6 +133,7 @@
 /datum/surgery_operation/organ/repair/lobectomy/mechanic
 	name = "konserwacja filtrów powietrza"
 	rnd_name = "Diagnostyka filtrów powietrza (operacja płuc)"
+	desc = "Naprawia uszkodzone robotyczne płuca (filtry powietrza)."
 	implements = list(
 		TOOL_WRENCH = 1.05,
 		TOOL_SCALPEL = 1.05,
@@ -203,6 +204,7 @@
 /datum/surgery_operation/organ/repair/hepatectomy/mechanic
 	name = "konserwacja układu oczyszczania"
 	rnd_name = "Diagnostyka układu oczyszczania (operacja wątroby)"
+	desc = "Naprawia uszkodzoną robotyczną wątrobę (układ oczyszczania)."
 	implements = list(
 		TOOL_WRENCH = 1.05,
 		TOOL_SCALPEL = 1.05,
@@ -270,6 +272,7 @@
 /datum/surgery_operation/organ/repair/coronary_bypass/mechanic
 	name = "dostęp do wnętrza silnika"
 	rnd_name = "Diagnostyka silnika (operacja serca)"
+	desc = "Naprawia uszkodzone robotyczne serce (silnik)."
 	implements = list(
 		TOOL_CROWBAR = 1.05,
 		TOOL_SCALPEL = 1.05,
@@ -348,6 +351,7 @@
 /datum/surgery_operation/organ/repair/gastrectomy/mechanic
 	name = "konserwacja przetwornika składników"
 	rnd_name = "Diagnostyka przetwornika składników (operacja żołądka)"
+	desc = "Naprawia uszkodzony robotyczny żołądek (przetwornik składników)."
 	implements = list(
 		TOOL_WRENCH = 1.05,
 		TOOL_SCALPEL = 1.05,
@@ -504,7 +508,7 @@
 /datum/surgery_operation/organ/repair/brain
 	name = "operacja mózgu"
 	rnd_name = "Neurochirurgia (operacja mózgu)"
-	desc = "Naprawia uszkodzoną tkankę mózgu, przywracając sprawność umysłu."
+	desc = "Naprawia część uszkodzeń mózgu, leczy urazy mózgu, które da się usunąć chirurgicznie, i zdejmuje pranie mózgu."
 	implements = list(
 		TOOL_HEMOSTAT = 1.05,
 		TOOL_SCREWDRIVER = 2.85,
@@ -573,6 +577,7 @@
 /datum/surgery_operation/organ/repair/brain/mechanic
 	name = "debugowanie sieci neuronowej"
 	rnd_name = "Diagnostyka systemu (operacja mózgu)"
+	desc = "Naprawia część uszkodzeń pozytronowego mózgu, leczy jego urazy, które da się usunąć chirurgicznie, i zdejmuje pranie mózgu."
 	implements = list(
 		TOOL_MULTITOOL = 1.15,
 		TOOL_HEMOSTAT = 1.05,

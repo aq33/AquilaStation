@@ -149,6 +149,26 @@ DEFINE_BITFIELD(operation_flags, list(
 	"MECHANIC" = OPERATION_MECHANIC,
 ))
 
+// --- Sekcje katalogu „Operacje” (catalog_sections, nazwy w GLOB.surgery_catalog_sections) ---
+/// Otwarcie i zamknięcie dowolnej części ciała
+#define SURGERY_SECTION_GENERAL "general"
+/// Rany, złamania i zwichnięcia na dowolnej części ciała
+#define SURGERY_SECTION_WOUNDS "wounds"
+/// Mózg i czaszka
+#define SURGERY_SECTION_HEAD "head"
+/// Oczy, uszy, usta i twarz
+#define SURGERY_SECTION_FACE "face"
+/// Klatka piersiowa z organami brzucha (u nas wątroba i żołądek są w strefie klatki)
+#define SURGERY_SECTION_CHEST "chest"
+/// Pachwina
+#define SURGERY_SECTION_GROIN "groin"
+/// Ręce i nogi
+#define SURGERY_SECTION_LIMBS "limbs"
+/// Robotyczne części ciała i IPC (dopisywana sama przy OPERATION_MECHANIC)
+#define SURGERY_SECTION_MECHANIC "mechanic"
+/// Zwierzęta, szlamy i inne stworzenia
+#define SURGERY_SECTION_OTHER "other"
+
 // --- Nastrój ---
 #define SURGERY_STATE_STARTED "surgery_started"
 #define SURGERY_STATE_FAILURE "surgery_failed"

@@ -4,6 +4,7 @@
 
 /datum/surgery_operation/limb/identity_recalibration
 	name = "rekalibracja tożsamości"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	rnd_name = "Rekalibracja tożsamości (zmiana imienia)"
 	desc = "Wgrywa do pamięci robotycznego pacjenta nazwisko z przeciągniętej karty ID."
 	implements = list(

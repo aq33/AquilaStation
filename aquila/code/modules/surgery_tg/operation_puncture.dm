@@ -11,6 +11,7 @@
 /// Krok 1: zestawienie rozerwanych naczyń
 /datum/surgery_operation/limb/repair_puncture
 	name = "zestawienie naczyń"
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	desc = "Zestawia rozerwane naczynia krwionośne przy ranie kłutej, przygotowując je do zamknięcia."
 	implements = list(
 		TOOL_HEMOSTAT = 1,
@@ -70,7 +71,8 @@
 /// Krok 2: zamknięcie zestawionych naczyń
 /datum/surgery_operation/limb/seal_veins
 	name = "zamknięcie naczyń"
-	desc = "Zamyka zestawione naczynia krwionośne pacjenta."
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
+	desc = "Przypala naczynia zestawione przy ranie kłutej: krwawienie słabnie, a rana schodzi o stopień. Powtarzaj, aż rana zniknie."
 	implements = list(
 		TOOL_CAUTERY = 1,
 		/obj/item/gun/energy/laser = 1.12,

@@ -4,6 +4,7 @@
 /// Pierwszy krok prawie każdej operacji: nacięcie skóry
 /datum/surgery_operation/limb/incise_skin
 	name = "nacięcie skóry"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Nacina skórę pacjenta, żeby dostać się do środka. \
 		Stan: \"skóra nacięta\"."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -76,6 +77,7 @@
 /// Grubsza skóra (obcy)
 /datum/surgery_operation/limb/incise_skin/thick
 	name = "nacięcie grubej skóry"
+	desc = "Nacina grubą, chitynową skórę obcych czymś ciężkim i ostrym, żeby dostać się do środka. Stan: \"skóra nacięta\"."
 	implements = list(
 		TOOL_SAW = 1,
 		/obj/item/melee/transforming/energy/sword = 1.25,
@@ -102,6 +104,7 @@
 /// Odciąga skórę, żeby dostać się do środka
 /datum/surgery_operation/limb/retract_skin
 	name = "odciągnięcie skóry"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Odciąga skórę pacjenta, żeby dostać się do organów. \
 		Stan: \"skóra odciągnięta\"."
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
@@ -147,6 +150,7 @@
 /// Zamyka nacięcie
 /datum/surgery_operation/limb/close_skin
 	name = "zamknięcie nacięcia"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Zamyka nacięcie skóry pacjenta. \
 		Czyści większość stanów chirurgicznych."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -227,6 +231,7 @@
 /// Zaciska krwawiące naczynia
 /datum/surgery_operation/limb/clamp_bleeders
 	name = "zaciśnięcie naczyń"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Zaciska krwawiące naczynia pacjenta, żeby nie tracił krwi. \
 		Stan: \"naczynia zaciśnięte\"."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -274,6 +279,7 @@
 /// Zdejmuje zaciski z naczyń
 /datum/surgery_operation/limb/unclamp_bleeders
 	name = "zdjęcie zacisków"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Zdejmuje zaciski z naczyń, krew znowu płynie. \
 		Czyści stan \"naczynia zaciśnięte\"."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -321,6 +327,7 @@
 /// Przepiłowuje kość, żeby dostać się do organów
 /datum/surgery_operation/limb/saw_bones
 	name = "przepiłowanie kości"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Przepiłowuje kość pacjenta, żeby dostać się do organów. \
 		Stan: \"kość przepiłowana\"."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -379,6 +386,7 @@
 /// Skleja przepiłowaną albo nawierconą kość
 /datum/surgery_operation/limb/fix_bones
 	name = "zespolenie kości"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Skleja przecięte albo złamane kości pacjenta. \
 		Czyści stany \"kość przepiłowana\" i \"kość nawiercona\"."
 	required_bodytype = BODYTYPE_ORGANIC
@@ -425,7 +433,8 @@
 /// Nawierca kość
 /datum/surgery_operation/limb/drill_bones
 	name = "nawiercenie kości"
-	desc = "Nawierca kość pacjenta. \
+	catalog_sections = list(SURGERY_SECTION_GENERAL, SURGERY_SECTION_FACE)
+	desc = "Nawierca kość pacjenta, żeby dostać się do zęba przy implancie zęba (celuj w usta). \
 		Stan: \"kość nawiercona\"."
 	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
@@ -479,6 +488,7 @@
 /// Nacina organy w kończynie
 /datum/surgery_operation/limb/incise_organs
 	name = "nacięcie organów"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Nacina tkankę organów pacjenta, żeby można je było przesunąć albo naprawić. \
 		Stan: \"organy nacięte\"."
 	required_bodytype = BODYTYPE_ORGANIC

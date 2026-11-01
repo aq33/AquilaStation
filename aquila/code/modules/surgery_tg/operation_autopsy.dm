@@ -9,6 +9,7 @@
 
 /datum/surgery_operation/limb/autopsy
 	name = "autopsja"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	rnd_name = "Androtomia (sekcja i autopsja)"
 	desc = "Dokładnie bada zwłoki pacjenta skanerem autopsyjnym i drukuje raport."
 	implements = list(/obj/item/autopsy_scanner = 1)

@@ -18,6 +18,15 @@ export type CatalogOperation = {
   mechanic: boolean;
   priority: boolean;
   looping: boolean;
+  /** Sekcje katalogu „Operacje” (SURGERY_SECTION_*) */
+  sections: string[];
+};
+
+/** Sekcja katalogu „Operacje” (GLOB.surgery_catalog_sections) */
+export type CatalogSection = {
+  id: string;
+  name: string;
+  hint: string;
 };
 
 export type PatientData = {

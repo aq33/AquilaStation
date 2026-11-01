@@ -5,6 +5,7 @@
 
 /datum/surgery_operation/limb/debride
 	name = "usunięcie martwej tkanki"
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	rnd_name = "Debridement"
 	desc = "Wycina martwą i zakażoną tkankę z oparzenia, żeby rana mogła się zagoić."
 	implements = list(

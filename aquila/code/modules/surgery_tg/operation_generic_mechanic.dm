@@ -5,6 +5,7 @@
 /// Odkręcenie obudowy (odpowiednik nacięcia skóry)
 /datum/surgery_operation/limb/mechanical_incision
 	name = "odkręcenie obudowy"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Odkręca obudowę mechanicznej kończyny, żeby dostać się do środka. \
 		Stan: \"skóra nacięta\"."
 	implements = list(
@@ -48,6 +49,7 @@
 /// Otwarcie klapy (odpowiednik odciągnięcia skóry i zaciśnięcia naczyń)
 /datum/surgery_operation/limb/mechanical_open
 	name = "otwarcie klapy"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Otwiera klapę mechanicznej kończyny, żeby dostać się do środka. \
 		Stany: \"skóra odciągnięta\" i \"naczynia zaciśnięte\"."
 	required_bodytype = BODYTYPE_ROBOTIC
@@ -84,6 +86,7 @@
 /// Przykręcenie obudowy (odpowiednik zamknięcia nacięcia)
 /datum/surgery_operation/limb/mechanical_close
 	name = "przykręcenie obudowy"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Przykręca obudowę mechanicznej kończyny z powrotem. \
 		Czyści większość stanów chirurgicznych."
 	required_bodytype = BODYTYPE_ROBOTIC
@@ -132,6 +135,7 @@
 /// Przygotowanie elektroniki (odpowiednik nacięcia organów)
 /datum/surgery_operation/limb/prepare_electronics
 	name = "przygotowanie elektroniki"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Przygotowuje elektronikę mechanicznej kończyny do operacji. \
 		Stan: \"organy nacięte\"."
 	required_bodytype = BODYTYPE_ROBOTIC
@@ -167,6 +171,7 @@
 /// Odkręcenie szkieletu (odpowiednik piłowania kości)
 /datum/surgery_operation/limb/mechanic_unwrench
 	name = "odkręcenie szkieletu"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Odkręca szkielet mechanicznej kończyny, żeby dostać się do środka. \
 		Stan: \"kość przepiłowana\"."
 	required_bodytype = BODYTYPE_ROBOTIC
@@ -201,6 +206,7 @@
 /// Przykręcenie szkieletu (odpowiednik zespolenia kości)
 /datum/surgery_operation/limb/mechanic_wrench
 	name = "przykręcenie szkieletu"
+	catalog_sections = list(SURGERY_SECTION_GENERAL)
 	desc = "Przykręca szkielet mechanicznej kończyny z powrotem. \
 		Czyści stan \"kość przepiłowana\"."
 	required_bodytype = BODYTYPE_ROBOTIC

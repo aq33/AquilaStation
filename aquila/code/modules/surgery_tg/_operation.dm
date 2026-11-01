@@ -454,6 +454,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	/// Typ operacji, która zastępuje tę, gdy obie są dostępne
 	var/datum/surgery_operation/replaced_by
 
+	/// AQUILA - sekcje katalogu „Operacje” (SURGERY_SECTION_*). Null = wywnioskowane z typu (get_catalog_sections() w surgery_catalog.dm).
+	var/list/catalog_sections
+
 	/// Dźwięk przed do_after. Ścieżka albo lista typ przedmiotu/TOOL_X -> ścieżka.
 	var/preop_sound
 	/// Dźwięk po sukcesie

@@ -5,6 +5,7 @@
 
 /datum/surgery_operation/limb/gender_reassignment
 	name = "zmiana płci"
+	catalog_sections = list(SURGERY_SECTION_GROIN)
 	rnd_name = "Chirurgia rekonstrukcyjna narządów płciowych (zmiana płci)"
 	desc = "Przekształca genitalia pacjenta, zmieniając jego płeć."
 	implements = list(

@@ -28,6 +28,19 @@ GLOBAL_LIST_INIT(surgery_tool_names, list(
 	IMPLEMENT_HAND = "pusta ręka",
 ))
 
+/// Sekcje katalogu w kolejności zakładek: id (SURGERY_SECTION_*), nazwa i podpowiedź, w co celować
+GLOBAL_LIST_INIT(surgery_catalog_sections, list(
+	list("id" = SURGERY_SECTION_GENERAL, "name" = "Otwarcie i zamknięcie", "hint" = "Podstawowe kroki na dowolnej części ciała: nacięcie, dostęp do kości i organów, zamknięcie. Celuj w część ciała, którą operujesz."),
+	list("id" = SURGERY_SECTION_WOUNDS, "name" = "Rany i kości", "hint" = "Leczenie ran, oparzeń, złamań i zwichnięć na dowolnej części ciała. Celuj w zranioną część."),
+	list("id" = SURGERY_SECTION_HEAD, "name" = "Głowa", "hint" = "Mózg i czaszka. Celuj w głowę."),
+	list("id" = SURGERY_SECTION_FACE, "name" = "Oczy, uszy i usta", "hint" = "Oczy, uszy, zęby, język i twarz. Celuj w oczy, głowę albo usta, zależnie od operacji."),
+	list("id" = SURGERY_SECTION_CHEST, "name" = "Klatka piersiowa i brzuch", "hint" = "Serce, płuca, wątroba, żołądek i jama ciała. Organy brzucha też leżą w strefie klatki piersiowej, więc celuj w klatkę."),
+	list("id" = SURGERY_SECTION_GROIN, "name" = "Pachwina", "hint" = "Wyrostek, ogon i narządy płciowe. Celuj w pachwinę."),
+	list("id" = SURGERY_SECTION_LIMBS, "name" = "Ręce i nogi", "hint" = "Amputacje, protezy i implanty w kończynach. Celuj w daną rękę albo nogę."),
+	list("id" = SURGERY_SECTION_MECHANIC, "name" = "Mechaniczne (IPC i protezy)", "hint" = "Operacje na robotycznych częściach ciała i pacjentach IPC. Zamiast skalpela i piły używasz głównie śrubokręta, klucza i łomu."),
+	list("id" = SURGERY_SECTION_OTHER, "name" = "Inne stworzenia", "hint" = "Operacje na szlamach i innych stworzeniach bez zwykłego ciała."),
+))
+
 /// Wszystkie operacje w formacie dla TGUI (NtosSurgeryLookup, OperatingComputer). Bez wersji ukrytych (OPERATION_NO_WIKI, np. abduktorów).
 /proc/get_surgery_catalog()
 	if(GLOB.surgery_catalog)
@@ -50,12 +63,58 @@ GLOBAL_LIST_INIT(surgery_tool_names, list(
 		"desc" = rnd_desc || desc,
 		"tools" = get_catalog_tools(),
 		"requirements" = get_requirements(),
+		"sections" = get_catalog_sections(),
 		"time" = time / (1 SECONDS),
 		"locked" = !!(operation_flags & OPERATION_LOCKED),
 		"mechanic" = !!(operation_flags & OPERATION_MECHANIC),
 		"priority" = !!(operation_flags & OPERATION_PRIORITY_NEXT_STEP),
 		"looping" = !!(operation_flags & OPERATION_LOOPING),
 	)
+
+/// Sekcje katalogu (SURGERY_SECTION_*): catalog_sections albo wywnioskowane z typu, plus „mechaniczne” przy OPERATION_MECHANIC
+/datum/surgery_operation/proc/get_catalog_sections()
+	var/list/sections = length(catalog_sections) ? catalog_sections.Copy() : get_default_catalog_sections()
+	if(operation_flags & OPERATION_MECHANIC)
+		sections |= SURGERY_SECTION_MECHANIC
+	return sections
+
+/// Sekcje, gdy operacja nie ma catalog_sections. Operacje na kończynach (/limb) muszą je mieć ustawione jawnie.
+/datum/surgery_operation/proc/get_default_catalog_sections()
+	return list()
+
+/// Operacje na całym mobie: według strefy, którą sprawdzają (brak strefy = dowolna część ciała)
+/datum/surgery_operation/basic/get_default_catalog_sections()
+	if(isnull(target_zone))
+		return list(SURGERY_SECTION_GENERAL)
+	return list(surgery_zone_to_catalog_section(target_zone))
+
+/// Operacje na organach: według organu
+/datum/surgery_operation/organ/get_default_catalog_sections()
+	switch(initial(target_type.slot))
+		if(ORGAN_SLOT_BRAIN)
+			return list(SURGERY_SECTION_HEAD)
+		if(ORGAN_SLOT_EYES, ORGAN_SLOT_EARS, ORGAN_SLOT_TONGUE)
+			return list(SURGERY_SECTION_FACE)
+	return list(surgery_zone_to_catalog_section(initial(target_type.zone)))
+
+/// Bioware: według strefy, w której się ją robi
+/datum/surgery_operation/limb/bioware/get_default_catalog_sections()
+	return list(surgery_zone_to_catalog_section(required_zone))
+
+/// Sekcja katalogu dla strefy ciała
+/proc/surgery_zone_to_catalog_section(zone)
+	switch(zone)
+		if(BODY_ZONE_HEAD)
+			return SURGERY_SECTION_HEAD
+		if(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)
+			return SURGERY_SECTION_FACE
+		if(BODY_ZONE_CHEST)
+			return SURGERY_SECTION_CHEST
+		if(BODY_ZONE_PRECISE_GROIN)
+			return SURGERY_SECTION_GROIN
+		if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+			return SURGERY_SECTION_LIMBS
+	return SURGERY_SECTION_GENERAL
 
 /// Narzędzia operacji: nazwa i sprawność w procentach (100% = czas bazowy), w kolejności z implements
 /datum/surgery_operation/proc/get_catalog_tools()

@@ -4,8 +4,9 @@
 
 /datum/surgery_operation/limb/filter_blood
 	name = "filtrowanie krwi"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	rnd_name = "Hemodializa (filtrowanie krwi)"
-	desc = "Usuwa niepożądane substancje z krwi pacjenta."
+	desc = "Filtrem krwi usuwa z krwi pacjenta wszystkie substancje, także trucizny i narkotyki. Przydaje się przy zatruciu i przedawkowaniu."
 	implements = list(TOOL_BLOODFILTER = 1)
 	time = 2.5 SECONDS
 	operation_flags = OPERATION_LOOPING
@@ -86,5 +87,6 @@
 /datum/surgery_operation/limb/filter_blood/mechanic
 	name = "płukanie hydrauliki"
 	rnd_name = "Płukanie hydrauliki (filtrowanie krwi)"
+	desc = "Filtrem krwi wypłukuje z hydrauliki robotycznego pacjenta (IPC) wszystkie substancje, także trucizny."
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = OPERATION_LOOPING | OPERATION_MECHANIC

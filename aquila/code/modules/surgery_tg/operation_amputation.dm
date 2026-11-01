@@ -5,8 +5,9 @@
 
 /datum/surgery_operation/limb/amputate
 	name = "amputacja kończyny"
+	catalog_sections = list(SURGERY_SECTION_LIMBS, SURGERY_SECTION_HEAD)
 	rnd_name = "Dezartykulacja (amputacja)"
-	desc = "Odcina kończynę od ciała pacjenta."
+	desc = "Odcina kończynę albo głowę od ciała pacjenta. Przydaje się przy kończynie zniszczonej albo martwej i przed przyszyciem protezy."
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_SELF_OPERABLE
 	required_bodytype = BODYTYPE_ORGANIC
 	implements = list(
@@ -66,6 +67,7 @@
 /datum/surgery_operation/limb/amputate/mechanic
 	name = "demontaż kończyny"
 	rnd_name = "Demontaż (amputacja)"
+	desc = "Odkręca robotyczną kończynę od ciała pacjenta, np. żeby wymienić ją na inną. Głowę da się zdjąć dopiero po odkręceniu szkieletu."
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_SELF_OPERABLE | OPERATION_MECHANIC
 	implements = list(

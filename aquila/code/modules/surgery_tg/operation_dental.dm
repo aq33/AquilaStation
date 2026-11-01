@@ -9,6 +9,7 @@
 
 /datum/surgery_operation/limb/add_dental_implant
 	name = "implant zęba"
+	catalog_sections = list(SURGERY_SECTION_FACE)
 	desc = "Wciska pigułkę w ząb pacjenta. Pacjent może ją potem rozgryźć."
 	operation_flags = OPERATION_SELF_OPERABLE
 	implements = list(
@@ -61,6 +62,7 @@
 
 /datum/surgery_operation/limb/remove_dental_implant
 	name = "wyjęcie implantu zęba"
+	catalog_sections = list(SURGERY_SECTION_FACE)
 	desc = "Wyjmuje pigułkę z zęba pacjenta."
 	implements = list(
 		TOOL_HEMOSTAT = 1,

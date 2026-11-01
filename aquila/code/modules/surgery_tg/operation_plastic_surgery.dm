@@ -10,7 +10,8 @@
 
 /datum/surgery_operation/limb/plastic_surgery
 	name = "chirurgia plastyczna"
-	desc = "Przekształca albo odtwarza twarz pacjenta."
+	catalog_sections = list(SURGERY_SECTION_FACE)
+	desc = "Odtwarza twarz zniekształconą obrażeniami albo nadaje pacjentowi zupełnie nową twarz i imię, pod którym go widać."
 	implements = list(
 		TOOL_SCALPEL = 1,
 		/obj/item/kitchen/knife = 2,

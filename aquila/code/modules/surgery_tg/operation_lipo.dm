@@ -6,8 +6,9 @@
 
 /datum/surgery_operation/limb/lipoplasty
 	name = "wycięcie nadmiaru tłuszczu"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	rnd_name = "Liposukcja (wycięcie tłuszczu)"
-	desc = "Usuwa nadmiar tłuszczu z ciała pacjenta."
+	desc = "Wycina nadmiar tłuszczu z otyłego pacjenta, który przestaje być otyły. Wycięty tłuszcz wypada jako kawał mięsa."
 	operation_flags = OPERATION_NOTABLE | OPERATION_AFFECTS_MOOD
 	implements = list(
 		TOOL_SAW = 1,

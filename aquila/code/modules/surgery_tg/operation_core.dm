@@ -3,8 +3,9 @@
 
 /datum/surgery_operation/basic/core_removal
 	name = "wyjęcie rdzenia"
+	catalog_sections = list(SURGERY_SECTION_OTHER)
 	rnd_name = "Korektomia (wyjęcie rdzenia)"
-	desc = "Wyjmuje rdzeń ze szlamu."
+	desc = "Wyjmuje rdzeń (ekstrakt) z martwego szlamu. Ekstrakty są potrzebne w ksenobiologii."
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_CROWBAR = 1,

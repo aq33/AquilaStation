@@ -121,6 +121,7 @@
 /datum/surgery_operation/basic/revival/mechanic
 	name = "pełny restart systemu"
 	rnd_name = "Restart systemu (ożywienie)"
+	desc = "Restartuje porażeniem prądu pozytronowy mózg wyłączonego robotycznego pacjenta, żeby przywrócić go do działania."
 	required_bodytype = BODYTYPE_ROBOTIC
 
 /datum/surgery_operation/basic/revival/mechanic/brain_check(obj/item/organ/brain/brain)

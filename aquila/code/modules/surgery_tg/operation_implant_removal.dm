@@ -101,6 +101,7 @@
 /// AQUILA - u nas stara wersja miała też odmianę dla protez (IPC)
 /datum/surgery_operation/basic/implant_removal/mechanic
 	name = "usunięcie implantu z obudowy"
+	desc = "Szuka implantu w robotycznym ciele pacjenta i go usuwa. Implant przepada, chyba że chirurg trzyma w ręce albo ma pod pacjentem pustą kasetkę na implant."
 	operation_flags = OPERATION_NOTABLE | OPERATION_MECHANIC
 	required_bodytype = BODYTYPE_ROBOTIC
 	blocked_biotype = null
@@ -110,6 +111,7 @@
 /// Wyjęcie wbitych przedmiotów i kul z kończyny (stare "removal of embedded objects")
 /datum/surgery_operation/limb/remove_embedded_objects
 	name = "usunięcie ciał obcych"
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	desc = "Wyjmuje z kończyny wbite przedmioty i kule, które zostały w ciele, i tamuje krwawienie."
 	implements = list(
 		IMPLEMENT_HAND = 1,

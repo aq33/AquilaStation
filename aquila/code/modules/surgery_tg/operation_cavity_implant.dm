@@ -5,6 +5,7 @@
 /// Rozwarcie jamy klatki piersiowej
 /datum/surgery_operation/limb/prepare_cavity
 	name = "rozwarcie jamy ciała"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	desc = "Rozwiera jamę klatki piersiowej pacjenta, żeby zmieścić w niej przedmiot."
 	implements = list(
 		TOOL_RETRACTOR = 1,
@@ -43,6 +44,7 @@
 /// Zamknięcie jamy bez wkładania niczego
 /datum/surgery_operation/limb/undo_prepare_cavity
 	name = "zamknięcie jamy ciała"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	desc = "Przywraca jamę klatki piersiowej pacjenta do normalnego stanu."
 	implements = list(
 		TOOL_RETRACTOR = 1,
@@ -80,6 +82,7 @@
 /// Włożenie przedmiotu do jamy
 /datum/surgery_operation/limb/cavity_implant
 	name = "implant w jamie ciała"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	desc = "Wkłada przedmiot do jamy ciała pacjenta."
 	operation_flags = OPERATION_NOTABLE | OPERATION_SELF_OPERABLE
 	implements = list(
@@ -169,6 +172,7 @@
 /// Wyjęcie przedmiotu z jamy
 /datum/surgery_operation/limb/undo_cavity_implant
 	name = "wyjęcie z jamy ciała"
+	catalog_sections = list(SURGERY_SECTION_CHEST)
 	desc = "Wyjmuje przedmiot z jamy ciała pacjenta."
 	operation_flags = OPERATION_SELF_OPERABLE
 	implements = list(

@@ -11,6 +11,7 @@
 /// Wkładanie i wyjmowanie organów
 /datum/surgery_operation/limb/organ_manipulation
 	name = "operacja na organach"
+	catalog_sections = list(SURGERY_SECTION_HEAD, SURGERY_SECTION_FACE, SURGERY_SECTION_CHEST, SURGERY_SECTION_GROIN, SURGERY_SECTION_LIMBS)
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	required_bodytype = BODYTYPE_ORGANIC
@@ -297,7 +298,7 @@
 /// Organy wewnętrzne
 /datum/surgery_operation/limb/organ_manipulation/internal
 	name = "operacja na organach wewnętrznych"
-	desc = "Wkłada albo wyjmuje organy wewnętrzne pacjenta."
+	desc = "Wkłada albo wyjmuje organy wewnętrzne i implanty pacjenta. Tak przeszczepia się organy i wszczepia cybernetykę."
 	replaced_by = /datum/surgery_operation/limb/organ_manipulation/internal/abductor
 	// AQUILA - u nas operację na organach poza klatką i głową można zrobić na sobie
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED | OPERATION_SELF_OPERABLE
@@ -326,6 +327,7 @@
 /// Organy w protezach i IPC
 /datum/surgery_operation/limb/organ_manipulation/internal/mechanic
 	name = "operacja na podzespołach protezy"
+	desc = "Wkłada albo wyjmuje podzespoły (organy i implanty) z robotycznej części ciała albo pacjenta IPC."
 	required_bodytype = BODYTYPE_ROBOTIC
 	remove_implements = list(
 		TOOL_CROWBAR = 1,

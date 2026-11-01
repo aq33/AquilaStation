@@ -5,6 +5,7 @@
 
 /datum/surgery_operation/limb/replace_limb
 	name = "augmentacja kończyny"
+	catalog_sections = list(SURGERY_SECTION_LIMBS, SURGERY_SECTION_HEAD, SURGERY_SECTION_CHEST)
 	rnd_name = "Augmentacja"
 	desc = "Zastępuje kończynę pacjenta robotyczną protezą."
 	operation_flags = OPERATION_NOTABLE

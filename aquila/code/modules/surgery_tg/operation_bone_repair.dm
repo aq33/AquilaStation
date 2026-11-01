@@ -16,6 +16,7 @@
 /// Nastawienie zwichnięcia na stole
 /datum/surgery_operation/limb/repair_dislocation
 	name = "nastawienie zwichnięcia"
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	desc = "Nastawia zwichnięty staw. Jak nastawianie ręką, ale szybciej i pewniej, bo na stole."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED | OPERATION_AFFECTS_MOOD | OPERATION_STANDING_ALLOWED | OPERATION_IGNORE_CLOTHES
 	implements = list(
@@ -71,7 +72,8 @@
 /// Pęknięcie kości (tg: hairline fracture): jeden krok, bonesetter albo żel/taśma
 /datum/surgery_operation/limb/repair_hairline
 	name = "zespolenie pękniętej kości"
-	desc = "Naprawia pękniętą kość pacjenta."
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
+	desc = "Zespala pękniętą kość od razu, zamiast czekać, aż zrośnie się sama albo pomoże jej opatrunek."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_BONESET = 1,
@@ -119,6 +121,7 @@
 /// Złamanie otwarte, krok 1: nastawienie kości
 /datum/surgery_operation/limb/reset_compound
 	name = "nastawienie złamania otwartego"
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	desc = "Nastawia kość przy złamaniu otwartym, przygotowując ją do sklejenia."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
@@ -174,7 +177,8 @@
 /// Złamanie otwarte, krok 2: sklejenie nastawionej kości
 /datum/surgery_operation/limb/repair_compound
 	name = "sklejenie złamania otwartego"
-	desc = "Skleja nastawioną kość przy złamaniu otwartym."
+	catalog_sections = list(SURGERY_SECTION_WOUNDS)
+	desc = "Skleja kość nastawioną przy złamaniu otwartym i kończy jego leczenie. Robi się ją po nastawieniu złamania."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		/obj/item/stack/medical/bone_gel = 1,
@@ -221,6 +225,7 @@
 /// Pęknięcie czaszki, krok 1: usunięcie odłamków
 /datum/surgery_operation/limb/prepare_cranium_repair
 	name = "usunięcie odłamków czaszki"
+	catalog_sections = list(SURGERY_SECTION_HEAD, SURGERY_SECTION_WOUNDS)
 	desc = "Usuwa odłamki kości z pękniętej czaszki, przygotowując ją do złożenia."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
@@ -261,6 +266,7 @@
 /// Pęknięcie czaszki, krok 2: złożenie czaszki
 /datum/surgery_operation/limb/repair_cranium
 	name = "rekonstrukcja czaszki"
+	catalog_sections = list(SURGERY_SECTION_HEAD, SURGERY_SECTION_WOUNDS)
 	desc = "Składa pękniętą czaszkę pacjenta."
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(

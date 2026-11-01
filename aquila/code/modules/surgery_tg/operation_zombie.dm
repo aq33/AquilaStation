@@ -6,6 +6,7 @@
 
 /datum/surgery_operation/limb/bionecrosis
 	name = "wywołanie bionekrozy"
+	catalog_sections = list(SURGERY_SECTION_HEAD)
 	rnd_name = "Bionekroplastyka (nekrotyczne ożywienie)"
 	desc = "Wstrzykuje odczynniki, które pobudzają wzrost guza romerolowego w mózgu pacjenta."
 	rnd_desc = "Eksperymentalna operacja, która wywołuje wzrost guza romerolowego w mózgu pacjenta. Wymaga proszku zombie albo rezadonu."
