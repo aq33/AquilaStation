@@ -25,3 +25,6 @@
   - bugfix: Pomoc pod Esc nie wypisuje klawiszy dwa razy.
   - bugfix: Działo Gaussa ma jeden przycisk wyjścia.
   - tweak: Przyciski akcji są domyślnie wszystkie na ekranie, paleta je chowa.
+  - balance: 'Ksenoarcheologia daje dużo więcej punktów badań i odkryć: kalibrator,
+      konsola, znacznik i skan cech artefaktów.'
+  - balance: Skan nowego gatunku rośliny daje 300 punktów odkryć zamiast 35.
