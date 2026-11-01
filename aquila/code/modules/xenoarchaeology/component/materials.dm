@@ -30,9 +30,9 @@
 	var/list/mask_icon_states = list("map_editor")
 
 	///What rate do we convert custom price to discovery points to?
-	var/dp_rate = 0.01
+	var/dp_rate = 0.5 //aquila: ×50 względem Bee, pod naszą skalę punktów (węzeł ~2500)
 	///What rate do we convert custom price to research points to?
-	var/rnd_rate = 0.05
+	var/rnd_rate = 1 //aquila: ×20 względem Bee
 
 	///What traits flags are we associated with
 	var/trait_flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT

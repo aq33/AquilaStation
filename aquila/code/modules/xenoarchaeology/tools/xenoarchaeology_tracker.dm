@@ -10,7 +10,8 @@
 	sticker_icon_state = "tracker_small"
 	do_outline = FALSE
 	///Reward stuff
-	var/list/rewards = list(TECHWEB_POINT_TYPE_DISCOVERY = TECHWEB_TIER_1_POINTS * 0.5, TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS * 0.5)
+	//aquila: RP podbite (Bee: 20), DP zostaje, bo aktywacja co 5 s i tak daje dużo odkryć
+	var/list/rewards = list(TECHWEB_POINT_TYPE_DISCOVERY = TECHWEB_TIER_1_POINTS * 0.5, TECHWEB_POINT_TYPE_GENERIC = 100)
 	///radio used to send messages on science channel
 	var/obj/item/radio/headset/radio
 	var/use_radio = TRUE
