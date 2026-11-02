@@ -59,3 +59,8 @@
       skórze, przemiana w jaszczura i ćmę, rytm rumby i wiele innych.'
   - rscadd: Objawy reagujące na dotyk - rogowacenie kolczaste rani tych, którzy wpadną
       na nosiciela, a pęcherzowe oddzielanie naskórka rani samego nosiciela.
+  Joker66613:
+  - bugfix: Fabrykator bez podłączenia do silosu nie rzuca błędu przy rozbiórce, gdy
+      ma w sobie materiały.
+  - admin: Komora testowa ma na stałe kącik chirurgiczny i stojaki z bronią, a zestawy
+      PR-ów mają kroki z oczekiwanym wynikiem i komplet potrzebnych przedmiotów.
