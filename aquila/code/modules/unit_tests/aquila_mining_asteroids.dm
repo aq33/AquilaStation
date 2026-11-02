@@ -3,7 +3,7 @@
 #define ASTEROID_FOLDER "_maps/map_files/Mining/nsv13/asteroids/"
 #define RUIN_FOLDER "_maps/map_files/Mining/nsv13/ruins/"
 
-/// AQUILA - KaĹĽda mapa z puli magnesu gĂłrniczego ma 40x40, Ĺ‚aduje siÄ™ bez runtime'Ăłw, a czysta asteroida dostaje rdzeĹ„ rudy
+/// AQUILA - Każda mapa z puli magnesu górniczego ma 40x40, ładuje się bez runtime'ów, a czysta asteroida dostaje rdzeń rudy
 /datum/unit_test/mining_asteroids
 
 /datum/unit_test/mining_asteroids/Run()
