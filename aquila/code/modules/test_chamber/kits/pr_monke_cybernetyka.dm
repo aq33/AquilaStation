@@ -1,16 +1,15 @@
 /datum/test_chamber_kit/pr_monke_cybernetyka
 	name = "Cybernetyka z Monkestation"
 	pr = "aq33/AquilaStation#488"
-	description = "Autochirurgi z parami wszczepiają oba implanty naraz (nogi, Strong-Arm, ostrza). Pusty autochirurg przyjmuje luźne implanty: \
-		włóż implant, użyj w ręce. Śrubokręt na implancie zmienia stronę (ręka/noga). \
-		Nogi: ślizg (wchodzenie na stół ~3x szybciej), BU-TAM (popchnięcie tylko męczy), wiązadła (freerunning), \
-		P.R.Y.Z.H.O.K. (tryb rzutu + klik pustą ręką = szarża), chemplanty odpalają się poniżej 40 zdrowia. \
-		Ręce: zestawy kuchenny, detektywa, ratownika, atmos, fryzjera, naprawczy, oficerski, wiertła (Alt+klik kręci); \
-		ostrza C.H.R.O.M.A.T.A. tną oboma naraz i w trybie podważania otwierają zasilone drzwi, S.A.Y.A. ma postawę obronną (użyj w ręce), \
-		A.R.A.S.A.K.A. doskakuje do celu 3 kratki dalej; Strong-Arm w combat mode odrzuca cel pięścią, para podważa drzwi pustą ręką. \
-		Klatka: knockout (przycisk akcji), R.A.G.E. (maska i zbiornik przyrastają), C.C.M.S. (dwie bronie w combat mode). \
-		S.M.A.R.T.: licznik strzałów nad ręką z implantem, gdy trzymasz w niej broń (pistolet, laser). Oczy: HUD naukowy. Organy w nogach wkłada też operacja „organ manipulation” na nodze. \
-		Czarny rynek: kategoria „Implanty z drugiej ręki”. R&D: węzły „Zatwierdzone zestawy implantów zawodowych” i „Zatwierdzone implanty ochrony”."
+	description = "Zestaw: autochirurgi z parami implantów (nogi, Strong-Arm, ostrza), luźne implanty, zasilona śluza, stół, dwóch ludzi (jeden na implanty, drugi jako cel). Operację na nodze wykonaj w kąciku chirurgicznym komory. Wszczep implant: pusty autochirurg przyjmuje luźny implant (włóż implant, użyj w ręce); śrubokręt na implancie zmienia stronę (ręka/noga). \
+	1) Nogi, ślizg po stołach: wszczep parę, wejdź na stół → oczekiwane: wejście zajmuje ok. 3x krócej niż bez implantu (porównaj bez implantu); BU-TAM: popchnięcie cię tylko męczy, nie przewraca (negatyw: nie leżysz po popchnięciu); wiązadła: freerunning; P.R.Y.Z.H.O.K.: tryb rzutu, klik pustą ręką = szarża. \
+	2) Chemplanty (emergency/drugs): zbij zdrowie poniżej 40 → oczekiwane: implant sam odpala wtrysk; przy zdrowiu powyżej 40 nic się nie dzieje (negatyw). \
+	3) Ręce, zestawy: kuchenny, detektywa, ratownika, atmos, fryzjera, naprawczy, oficerski, wiertła (Alt+klik kręci) → oczekiwane: narzędzie pojawia się w ręce po użyciu implantu i chowa po ponownym użyciu. \
+	4) Ostrza C.H.R.O.M.A.T.A. (para): tną oboma naraz i w trybie podważania otwierają zasilone drzwi (zestaw ma śluzę) → oczekiwane: drzwi się otwierają. S.A.Y.A.: użyj w ręce → postawa obronna. A.R.A.S.A.K.A. (teczka): doskakuje do celu 3 kratki dalej. \
+	5) Strong-Arm: w combat mode uderz drugiego człowieka → oczekiwane: cel zostaje odrzucony; para Strong-Arm podważa drzwi pustą ręką. Negatyw: Strong-Arm poza combat mode zwykły cios bez odrzutu. \
+	6) Klatka: knockout (przycisk akcji) usypia noszącego, R.A.G.E. (maska i zbiornik przyrastają), C.C.M.S. pozwala trzymać dwie bronie w combat mode. S.M.A.R.T.: weź pistolet lub laser w rękę z implantem → oczekiwane: nad ręką licznik strzałów broni. Oczy: HUD naukowy pokazuje skany. \
+	7) Organy w nogach: operacja „organ manipulation” na nodze (kącik chirurgiczny) wkłada implant tak samo jak autochirurg → oczekiwane: implant w nodze działa jak po autochirurgu. \
+	8) Poza komorą (opcjonalnie, na stacji): czarny rynek (kategoria „Implanty z drugiej ręki”) i węzły R&D „Zatwierdzone zestawy implantów zawodowych” oraz „Zatwierdzone implanty ochrony” nie da się sprawdzić w komorze."
 	items = list(
 		/obj/item/autosurgeon = 1,
 		/obj/item/screwdriver = 1,
@@ -46,7 +45,8 @@
 		/obj/item/organ/cyberimp/eyes/hud/science = 1,
 		/obj/item/storage/briefcase/syndie_mantis = 1,
 		/obj/structure/table = 1,
-		/mob/living/carbon/human = 1,
+		/mob/living/carbon/human = 2,
+		/obj/machinery/door/airlock = 1,
 	)
 
 /// Autochirurg wielokrotny z parą implantów do komory testowej

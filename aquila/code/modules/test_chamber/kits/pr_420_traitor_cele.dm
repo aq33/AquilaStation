@@ -3,9 +3,17 @@
 /datum/test_chamber_kit/pr_420
 	name = "PR 420: cele traitora - przedmioty"
 	pr = "aq33/AquilaStation#420"
-	description = "Luźne przedmioty z nowych celów: papier z trucizną (zatruj laser i podnieś go bez rękawic, potem w rękawicach), wizytówka, implant szantażu, \
-	dysk z serwera B+R, narzędzia do serwera, aparat do zdjęcia zwłok, moduł prawa SI. Urządzenia do podkładania działają z celami - weź zestaw \"zrób mnie zdrajcą\"."
+	description = "Najpierw weź zestaw „zrób mnie zdrajcą”, dopiero potem ten (urządzenia do podkładania działają z celami). Zwłoki do testów leżą w zestawie. \
+	1) Kliknij papierem z trucizną laser leżący na ziemi (3 s) i podnieś laser bez rękawic → oczekiwane: dostajesz dawkę trucizny do organizmu (UWAGA: initropidril jest groźny, miej antidotum). Podniesiony ponownie laser już nie truje (dawka zużyta). \
+	2) Kliknij drugim papierem teleporter ręczny, załóż czarne rękawice i podnieś go → oczekiwane: brak dawki. Negatyw: papier po użyciu (pusty) → komunikat „Na papierze nie ma już trucizny!”. \
+	3) Zrób aparatem zdjęcie leżących zwłok i połóż przy nich wizytówkę → oczekiwane: zdjęcie ze zwłokami w kadrze, wizytówka leży przy ciele (zaliczenie samych celów „zdjęcie zwłok” i „wizytówka” wymaga przydzielonej ofiary, której ten zestaw nie ustawia - sprawdzasz tylko mechanikę przedmiotów). \
+	4) Implantem szantażu (tylko admin) oznacz zwłoki lub siebie → oczekiwane: implant wchodzi bez błędów. \
+	5) Moduł prawa SI wgrywa się przez konsolę wgrywania praw SI (jest w zestawie), ale wymaga ducha: aktywnej SI (admin zrobi SI z gracza) → bez SI konsola odpowie „Nie wykryto aktywnych SI!”. \
+	6) Dysk z serwera B+R i narzędzia do serwera (śrubokręt, łom, przecinak) → do użycia w zestawie z maszynami. \
+	Nie do sprawdzenia w komorze: zdrajca na zdrajcę (wymaga drugiego zdrajcy z ostrzeżeniem dla ofiary) i kradzież przedmiotów działowych."
 	items = list(
+		/mob/living/carbon/human = 1,
+		/obj/machinery/computer/upload/ai = 1,
 		/obj/item/poison_paper = 2,
 		/obj/item/gun/energy/laser/captain = 1,
 		/obj/item/hand_tele = 1,
@@ -21,11 +29,23 @@
 		/obj/item/aiModule/syndicate = 1,
 	)
 
+/// Zwłoki do testów celów z zestawu przedmiotów
+/datum/test_chamber_kit/pr_420/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	for(var/mob/living/carbon/human/corpse in spawned)
+		corpse.real_name = "zwłoki do celów"
+		corpse.name = corpse.real_name
+		corpse.death()
+
 /datum/test_chamber_kit/pr_420_machines
 	name = "PR 420: cele traitora - maszyny"
 	pr = "aq33/AquilaStation#420"
-	description = "Główny serwer B+R (śrubokręt -> łom -> przecinak, tylko antagonista; zwykły gracz nie znajdzie klapy), hub telekomunikacji (dysk z danymi), \
-	konsola łączności (UWAGA: przechwytywacz naprawdę ściąga zagrożenie na statek), kloner i SMES do celu zniszczenia maszyn, drzwi do wirusa T1de."
+	description = "Najpierw weź zestaw „zrób mnie zdrajcą”, potem ten (narzędzia: śrubokręt, łom i przecinak są w pasach z narzędziami). \
+	1) Główny serwer B+R: śrubokręt → łom → przecinak jako zdrajca → oczekiwane: wyjmujesz dysk, generacja punktów badań spada o połowę. Negatyw: ta sama sekwencja jako zwykły gracz (bez statusu antagonisty) → oczekiwane: żadnej klapy, serwer się nie otwiera. \
+	2) Hub telekomunikacji: włóż dysk z danymi → oczekiwane: cel „dane z tcomms” się zalicza. \
+	3) Konsola łączności: użyj przechwytywacza (UWAGA: naprawdę ściąga zagrożenie na statek) → oczekiwane: cel włamania do łączności się zalicza. \
+	4) Kloner i SMES: zniszcz je → oczekiwane: cel zniszczenia maszyn się zalicza. \
+	5) Drzwi: podłóż wirusa T1de → oczekiwane: cel T1de się zalicza."
 	items = list(
 		/obj/machinery/rnd/server/master = 1,
 		/obj/machinery/telecomms/hub = 1,
@@ -39,9 +59,12 @@
 /datum/test_chamber_kit/pr_420_traitor
 	name = "PR 420: zrób mnie zdrajcą z celami testowymi"
 	pr = "aq33/AquilaStation#420"
-	description = "Robi z ciebie zdrajcę (trzeba być człowiekiem w komorze). Otworzy się okno historii - wybierz frakcję i sprawdź, czy dopiero wtedy pojawia się uplink. \
-	Cele celują w komorę: podsłuch, wirus T1de, bomba (wybuchnie w komorze!), zatrucie lasera i teleportera, dane z tcomms, włamanie do łączności, dysk B+R, beacon braci. \
-	Do łączności, huba i serwera weź zestaw z maszynami. Stan celów sprawdzisz w oknie zdrajcy albo przez Traitor Panel."
+	description = "Kolejność: najpierw ten zestaw, potem „przedmioty” i „maszyny”. \
+	1) Weź zestaw (trzeba być człowiekiem w komorze) → oczekiwane: jesteś zdrajcą, w czacie lista celów, otwiera się okno historii. \
+	2) Wybierz frakcję i historię → oczekiwane: dopiero teraz pojawia się uplink (Syndykat z hasłami, czarny rynek i niezależny bez haseł). Negatyw: nie wybieraj nic - bez wyboru nie ma uplinka (po 5 minutach Syndykat automatycznie). \
+	3) Cele celują w komorę: podsłuch, wirus T1de, bomba (wybuchnie w komorze!), zatrucie lasera i teleportera, dane z tcomms, włamanie do łączności, dysk B+R, beacon braci → oczekiwane: urządzenia do podkładania masz w ekwipunku. \
+	4) Stan celów sprawdzisz w oknie zdrajcy albo przez Traitor Panel → oczekiwane: cele zmieniają się na zaliczone po wykonaniu. \
+	Do łączności, huba i serwera weź zestaw z maszynami."
 	items = list(
 		/obj/item/gun/energy/laser/captain = 1,
 		/obj/item/hand_tele = 1,
