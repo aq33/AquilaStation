@@ -143,6 +143,11 @@ if grep -n -P '^\s*var/([\w/]*/)?caller\b' code/**/*.dm nsv13/**/*.dm aquila/**/
     echo -e "${RED}ERROR: 'caller' is a BYOND 516 built-in: a var with that name reads as the calling proc inside procs. Rename it.${NC}"
     st=1
 fi;
+if grep -n -P '^\s*TEST_FOCUS\(' code/**/*.dm nsv13/**/*.dm aquila/**/*.dm; then
+    echo
+    echo -e "${RED}ERROR: TEST_FOCUS left in code: CI would run only the focused unit tests. Remove it before pushing.${NC}"
+    st=1
+fi;
 if grep -Pzo '"\w+" = \(\n[^)]*?/turf/[/\w]*?,\n[^)]*?/turf/[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm; then
 	echo
     echo -e "${RED}ERROR: Multiple turfs detected on the same tile! Please choose only one turf!${NC}"
