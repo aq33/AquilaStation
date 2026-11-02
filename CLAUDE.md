@@ -1,15 +1,29 @@
 # Projekt: Aquila NSV13 (fork BeeStation/NSV13)
-Język: DM (BYOND). Kod ma polskie elementy, które są ważne.
+Repozytorium: `aq33/AquilaStation` (stare `aq33/NSV13` przekierowuje). Język: DM (BYOND). Kod ma polskie elementy, które są ważne.
 ## Środowisko
-- BYOND 515.1633 (źródło prawdy: `dependencies.sh`).
+- BYOND 516.1688 (źródło prawdy: `dependencies.sh`). Kompilator 515 nie zbuduje mastera, a `.dmb` z 515 wywala się pod Dream Daemonem 516.
 - Plik projektu: `nsv13.dme`.
-- Budowanie na Windows: `BUILD.bat` (woła `tools/build`, buduje też TGUI). Sama kompilacja DM: `dm.exe nsv13.dme` z folderu `BYOND\bin`.
+- Pełny build na Windows: `BUILD.bat` (woła `tools/build`). Sama kompilacja DM: `dm.exe -DCBT nsv13.dme` (bez `-DCBT` dm.exe odmawia: „Building with Dream Maker is no longer supported”).
+- TGUI: `tools\build\build.bat tgui` (sam ściąga Node). Bundle w `tgui/public/` są w `.gitignore`, więc w świeżym worktree bez tego kroku w grze nie ma czatu ani paneli.
+- `tgui/public/tgui.html` jest wkompilowany w `.rsc`: jego zmiana wymaga przebudowy DM, nie tylko restartu serwera.
 - Przed oddaniem zmian zawsze kompiluj. Nowe ostrzeżenia i błędy dreamcheckera napraw.
+- Działający Dream Daemon blokuje `nsv13.rsc`, a dm.exe zgłasza wtedy mylący błąd „'<ikona>.dmi': cannot find file”. Nie zabijaj serwera: sprawdź kod kompilacją kopii `.dme` pod inną nazwą (potem usuń jej `.dme/.dmb/.rsc`) i poproś o zatrzymanie serwera.
+- `.dmb` zbudowany z `-DUNIT_TESTS` po starcie puszcza testy i restartuje świat („runda kończy się od razu”). Po testach zawsze przebuduj zwykłym `dm.exe -DCBT nsv13.dme`.
 ## Język i teksty
 - Nazwy typów, procedur i zmiennych zostają po angielsku.
-- Teksty widoczne dla gracza są po polsku.
+- Wszystko, co widzi gracz, jest po polsku: nazwy i opisy przedmiotów, komunikaty w czacie, okna TGUI, podpowiedzi, ogłoszenia, nazwy reagentów i receptur, wpisy w `strings/`. Dotyczy to także kodu portowanego z innych serwerów: tłumacz przy porcie, nie zostawiaj angielskiego „na później”.
+- Terminy bierz z `aquila/SLOWNIK_TLUMACZEN.md` i dopisuj tam nowe. Nazwy własne spolszczaj brzmieniowo (Bikarydyna, Kosmiczna Cola); Nanotrasen i nazwy frakcji bez zmian.
+- Nie tłumacz tekstów porównywanych w kodzie (klucze list, `name` sprawdzane w `if`, identyfikatory w TSX, ckey nazw reagentów), chyba że zmieniasz też wszystkie porównania.
 - Tytuły PR-ów, opisy PR-ów i wpisy changelogu też są po polsku.
 - Nie ruszaj istniejących polskich tekstów ani naszych zmian bez pytania.
+## Combat mode i intencje (dwa tryby sterowania)
+Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjach stare cztery intencje. Każda akcja musi działać w obu trybach (opis: nagłówek `aquila/code/_onclick/legacy_intents.dm`).
+- Akcja na prawym przycisku idąca przez `ClickOn` albo przechwycenie kliku (spell, akcja z celowaniem) działa sama: intencja disarm jest tłumaczona na prawy klik.
+- Kliknięcie omijające `ClickOn` (przycisk HUD, `COMSIG_CLICK`) sprawdza akcję dodatkową przez `mob.is_secondary_click(modifiers)`, nie przez `RIGHT_CLICK`.
+- Tekst instrukcji o prawym przycisku pisz przez `[mob.secondary_click_text()]` („prawym przyciskiem” / „na intencji rozbrajania”).
+- Zachowanie zależne od walki sprawdzaj przez `combat_mode`, nie przez `a_intent` (harm = combat mode włączony).
+- Każdy żywy mob gracza (także simple animale i antagi-zwierzęta) ma w HUD wskaźnik trybu (`combat_mode_indicator`, domyślnie TRUE) i w starym trybie cztery intencje. FALSE tylko dla mobów, które nie dotykają świata (silikony, revenant itp.).
+- Port z serwera, który ma tylko intencje albo tylko combat mode: dopisz brakujący wariant i sprawdź oba tryby w teście w grze.
 ## Kod Aquili (modularność)
 - Nowy kod, ikony i dźwięki idą tylko do `aquila/` (`aquila/code/`, `aquila/icons/`, `aquila/sound/`, `aquila/_maps/`).
 - Nowy plik `.dm` dopisz do `aquila/aquila.dm` (ścieżka względna od `aquila/`, backslashe), nie do `nsv13.dme`.
@@ -20,6 +34,7 @@ Język: DM (BYOND). Kod ma polskie elementy, które są ważne.
 - Same polskie tłumaczenia tekstów w core nie wymagają markera.
 - Pełne ścieżki typów i procek (`/obj/item/foo/proc/bar()`). Dreamchecker zabrania definicji względnych (`SpacemanDMM.toml`).
 - Zmienne globalne tylko przez `GLOBAL_VAR*` / `GLOBAL_LIST*`.
+- Nie każdy plik z `code/` jest w buildzie (np. `code/modules/jobs/job_types/security_officer.dm`, `code/modules/power/multiz.dm`). Zanim coś w nim zmienisz, sprawdź, czy jest w `nsv13.dme`.
 ## Zasady ogólne
 - Zanim napiszesz nową funkcję, makro, typ lub system, przeszukaj kod (grep) i sprawdź, czy coś podobnego już istnieje. Jeśli tak, użyj tego albo rozbuduj, zamiast duplikować.
 - Rób najmniejszą zmianę, która załatwia zadanie. Nie dodawaj systemów, abstrakcji ani opcji, o które nie proszono.
@@ -27,24 +42,29 @@ Język: DM (BYOND). Kod ma polskie elementy, które są ważne.
 - Nie refaktoryzuj ani nie formatuj kodu, którego zadanie nie dotyczy.
 - Przed zmianą pliku przeczytaj go oraz miejsca, które z niego korzystają (grep po nazwie).
 - Jeśli zadanie jest niejasne albo wymaga dużego systemu, napisz krótki plan i listę plików, po czym poczekaj na zgodę.
-- Na początku każdego zadania zasugeruj poziom wysiłku modelu (od `low` do `max`) z jednym zdaniem uzasadnienia: `low` dla drobnych, mechanicznych zmian, wyższy dla portów, debugowania i większych systemów. Przy przeglądzie dużego PR-a zaproponuj też `/code-review ultra`.
 ## Testy
 - Nowa logika (nie same sprite'y) dostaje unit test w `aquila/code/modules/unit_tests/`, dołączony w bloku `#ifdef UNIT_TESTS` na końcu `aquila/aquila.dm`.
 - Makra `TEST_ASSERT*` są `#undef` na końcu `code/modules/unit_tests/_unit_tests.dm`, więc test modularny ma własne kopie (wzór: `polish_content.dm`).
+- Pojedynczy test lokalnie: `TEST_FOCUS(/datum/unit_test/...)`. Usuń go przed commitem.
+- Komora testowa: każdy PR z nową treścią lub mechaniką dostaje zestaw `aquila/code/modules/test_chamber/kits/pr_<nr>_<nazwa>.dm` (`/datum/test_chamber_kit/pr_<nr>`: `name`, `pr` jako pełne `aq33/AquilaStation#N`, `description` z tym, co sprawdzić, `items`, ewentualnie `setup()`), dołączony pod komentarzem „Komora testowa” w `aquila/aquila.dm`. Bugfixy nie dostają zestawu. Zestawu `test_subjects` nie usuwaj.
 ## CI (`.github/workflows/continuous_integration.yml`)
 - Lintery: `tools/ci/check_grep.sh` (m.in. pisownia `CentCom`, mapy w TGM, brak `pixel_x = 0`, zdublowanych obiektów na kafelku), `check_filedirs.sh` (nie zaznaczaj folderów w drzewie DreamMakera), `check_changelogs.sh` (nie ruszaj `html/changelogs/example.yml`), dreamchecker.
 - Kompilacja wszystkich map i `run_all_tests`: każdy runtime w trakcie testów to porażka.
+- Lokalne sprawdzenie map jak w CI: `python tools/ci/template_dm_generator.py`, potem `dm.exe -DCBT -DALL_MAPS -DCIBUILDING nsv13.dme`, na koniec przywróć `_maps/templates.dm`. Bez `-DCIBUILDING` szablony nie są dołączane i błędy map przechodzą po cichu. Nie sprawdzaj map przez `.dme` z `#include` wszystkich `.dmm`: dm przestaje ładować mapy po pierwszej z błędem.
+- TGUI: `eslint`, `prettier --check` i `tsc --noEmit` z folderu `tgui/` przez Node z `tools/bootstrap/.cache/`.
 - Jeśli CI jest czerwone, najpierw sprawdź, czy master też jest czerwony, zanim zaczniesz szukać błędu w swoim PR.
 ## Git
-- Każde zadanie na osobnej gałęzi. Przed zadaniem sprawdź `git status`.
+- Każde zadanie na osobnej gałęzi od `aq33/master` (lokalny `master` bywa nieaktualny), najlepiej w osobnym worktree. Przed zadaniem sprawdź `git status`.
 - Commit po udanej kompilacji. Nie rób commitów z kodem, który się nie buduje.
-- Nie pushuj na GitHuba bez wyraźnej prośby.
+- Push i PR dopiero po zakończonym zadaniu na własnej gałęzi, nigdy na `master`.
+- Kilka próśb w jednej wiadomości: domyślnie jeden PR z osobnymi commitami, chyba że ktoś poprosi o podział.
 ## Pull request
 - Tytuł po polsku: `Obszar: krótki opis (port Repo #NNNN)`.
 - Opis według `.github/PULL_REQUEST_TEMPLATE.md`. Przy porcie: link do oryginału i lista różnic względem niego z powodem.
+- Każdy numer PR/issue jako pełne `owner/repo#N` (np. `tgstation/tgstation#88252`). Gołe `#N` GitHub linkuje do BeeStation/NSV13, bo to fork.
 - Changelog między `:cl:` a `/:cl:`, wpisy po polsku, tylko prefiksy z szablonu. Przy porcie autor oryginału po pierwszym `:cl:`.
 - Napisz, czy zmiana była testowana w grze i czy TGUI wymaga przebudowy.
-## Porty z innych kodów (tgstation, Bee, Yogstation i inne)
+## Porty z innych kodów (tgstation, Bee, Yogstation, Monkestation, Paradise i inne)
 - Trzymaj się oryginalnego PR-a. Nie dodawaj funkcji ani refaktorów, których w nim nie ma.
 - Przy większych PR-ach najpierw wypisz zależności (czego brakuje w naszym kodzie) i poczekaj na „dalej”.
 - Jeśli PR zależy od czegoś, czego nie mamy, zapytaj: portować zależność, uprościć czy pominąć.
@@ -52,12 +72,15 @@ Język: DM (BYOND). Kod ma polskie elementy, które są ważne.
 - Sprawdź, czy PR miał poprawki po wcieleniu w oryginalnym repo, i je uwzględnij.
 - Pomijaj mapy, testy screenshotowe i inne elementy, których nasz kod nie obsługuje, chyba że napisano inaczej.
 - Licencje: zwróć uwagę, skąd pochodzą ikony i dźwięki.
+- Dopisując coś do listy w core (`products` automatu, `backpack_contents` stroju itp.), najpierw sprawdź grepem, czy `aquila/` albo `nsv13/` nie przypisuje tej listy od nowa. Wygrywa ostatnia definicja w kolejności `#include`, więc dopisz tam. Przykład: strój oficera ochrony to `/datum/outfit/job/security` z `nsv13/`.
+- Okno TGUI z tg, które pokazuje zmieniające się dane (licznik, postęp), potrzebuje `ui.set_autoupdate(TRUE)` w `ui_interact`. U nas `autoupdate` jest domyślnie FALSE.
 ## Synchronizacja z upstreamem (BeeStation/NSV13)
 - Historia jest squashowana, `git merge-base` nic nie znajduje: porównuj drzewa, nie historię.
 - Przejdź `aquila/LEGACY_OVERRIDES.md` i każdy `AQ EDIT` w zmienionych plikach.
 ## Mapy (.dmm)
 - Zmiany tylko precyzyjne i drobne (na podstawie współrzędnych lub jednoznacznego opisu).
-- Nie ruszaj instalacji (rury, kable, zasilanie, wentylacja) bez pytania.
+- Nie ruszaj instalacji (rury, kable, zasilanie, wentylacja) bez pytania. Jeśli trzeba, zaproponuj układ i poczekaj na zgodę.
+- Zmiana ma wyglądać jak od mappera, nie tylko działać: przed edycją obejrzyj pomieszczenie i sąsiedztwo, dopasuj podłogi, dekale, oświetlenie i symetrię, ustawiaj meble i maszyny logicznie (pod ścianami, z przejściami). Po zmianie wyrenderuj fragment (webmapa lub render BYOND) i oceń go wzrokiem.
 - Zapisuj w formacie TGM (hooki mapmerge: `tools/hooks/Install.bat`), inaczej CI odrzuci mapę.
 - Po zmianie napisz, co dokładnie zmieniłeś, żeby dało się to obejrzeć w StrongDMM.
 ## Koniec każdego zadania
@@ -65,12 +88,18 @@ Napisz:
 1. Co zmieniłeś (pliki).
 2. Co odbiega od oryginału lub od planu i dlaczego.
 3. Co mogło się zmienić w innych miejscach.
-4. Jak to przetestować w grze.
+4. Jak to przetestować w grze (w obu trybach sterowania, jeśli dotyczy kliknięć).
+5. Czy `.dmb` i bundle TGUI są przebudowane.
+6. Jaki zestaw komory testowej dodałeś (albo dlaczego żadnego).
 ## Recenzje i analizy
 - Przy przeglądzie kodu nie zmieniaj plików, tylko pisz raport (numery linii, ocena ryzyka).
-- Raporty zapisuj partiami poza repo (nie commituj ich).
+- Raporty i analizy zapisuj w `raport/` jako `<temat>_<NN>_<opis>.md`, partiami. Nie mieszaj ich z commitami kodu.
 ## Błędy, których nie powtarzamy
 (Dopisuj tu wnioski, np. „Nie używaj X, bo u nas psuje Y”.)
 - Linki w HTML (`href`, `action`) zaczynaj od `byond://` (np. `byond://?_src_=holder;...`). Kod portowany ze starszego tg ma `?_src_=` i CI (`check_grep.sh`) go odrzuca.
 - `/datum/http_response` czytaj przez `response.body`, nie `response["body"]` (runtime).
 - W nadpisaniu procki nie powtarzaj `SIGNAL_HANDLER` ani `SHOULD_NOT_SLEEP` (dreamchecker: tylko w pierwszej definicji). `to_chat()` nie ma u nas argumentu `confidential`.
+- `/obj/item/proc/pre_attack` u nas zwraca TRUE = idź dalej do `attackby`, FALSE = przerwij. W Bee i nowym tg jest odwrotnie, więc przy porcie odwracaj zwracane wartości (domyślnie `return ..()`). Objaw pomyłki: trzymając przedmiot, nie da się niczego kliknąć.
+- `caller` to w 516 wbudowana zmienna: zmienna datumu o tej nazwie czytana bez `src.` zwraca wywołującą prockę (bez ostrzeżenia). Nie nazywaj tak zmiennych.
+- W 516 liczba z jednostką czasu (`5s`, `500ms`) w stringu `/client/script` i liczbowe klucze w literale `list()` to błędy kompilacji (użyj list pozycyjnych albo `alist()`).
+- `sort_list` sortuje listę asocjacyjną po kluczach. Sortowanie po wartościach: `sortTim(lista, cmp, associative = TRUE)`.
