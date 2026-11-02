@@ -87,7 +87,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 - Każda nowa zawartość od nas (antag, rasa, maszyna, przedmiot, mechanika, reagent, event, mapa) dostaje wpis na wiki. Zmiana działania istniejącej rzeczy też.
 - Najpierw szukaj istniejącej strony i ją uzupełniaj: nowa sekcja, wiersz tabeli, poprawiony opis. Nową stronę zakładaj dopiero, gdy temat nie pasuje do żadnej (np. każdy nowy antag ma własną stronę, tak jak Blood Cult czy Changeling). Nową stronę podlinkuj z powiązanych stron i z odpowiedniej kategorii lub nawigacji.
 - Opisuj stan z kodu (liczby, czasy, koszty, receptury), nie z oryginału portu. Jeśli działa inaczej niż na innych serwerach NSV13, napisz to wprost.
-- Treść po polsku, nazwy według `SLOWNIK_TLUMACZEN.md` i tak jak w grze. Tytuły stron i kotwice zostają po angielsku: `=={{anchor|Objectives}}Cele==`, żeby stare linki działały.
+- Treść po polsku, nazwy według `aquila/SLOWNIK_TLUMACZEN.md` i tak jak w grze. Tytuły stron i kotwice zostają po angielsku: `=={{anchor|Objectives}}Cele==`, żeby stare linki działały.
 - Trzymaj styl istniejących stron:
   - antagi i profesje: `{{Infobox_jobs}}` (kolory, obrazek, przełożeni, trudność, obowiązki), pod nim cytat kursywą i wstęp fabularny;
   - sekcje `==`/`===` z ikoną `[[File:X.png]]` przy nagłówku zdolności lub przedmiotu;
