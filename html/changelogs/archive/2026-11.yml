@@ -51,3 +51,11 @@
       zamiast pokazywać błąd SQL.
   - server: Gra sama tworzy w bazie tabelę SS13_ticket (wersja schematu 6.7), jeśli
       jej brakuje.
+'2026-11-02':
+  Dwasint, joker:
+  - rscadd: '48 nowych objawów wirusów z wirusologii Monkestation, dostosowanych do
+      naszego systemu chorób: leczenie z plazmy, wody i światła gwiazd, ochrona przed
+      próżnią, świecenie skóry, nieśmiertelność z nawrotem po wyleczeniu, kolce na
+      skórze, przemiana w jaszczura i ćmę, rytm rumby i wiele innych.'
+  - rscadd: Objawy reagujące na dotyk - rogowacenie kolczaste rani tych, którzy wpadną
+      na nosiciela, a pęcherzowe oddzielanie naskórka rani samego nosiciela.
