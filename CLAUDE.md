@@ -83,6 +83,18 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 - Zmiana ma wyglądać jak od mappera, nie tylko działać: przed edycją obejrzyj pomieszczenie i sąsiedztwo, dopasuj podłogi, dekale, oświetlenie i symetrię, ustawiaj meble i maszyny logicznie (pod ścianami, z przejściami). Po zmianie wyrenderuj fragment (webmapa lub render BYOND) i oceń go wzrokiem.
 - Zapisuj w formacie TGM (hooki mapmerge: `tools/hooks/Install.bat`), inaczej CI odrzuci mapę.
 - Po zmianie napisz, co dokładnie zmieniłeś, żeby dało się to obejrzeć w StrongDMM.
+## Wiki (https://aqnsv13.miraheze.org)
+- Każda nowa zawartość od nas (antag, rasa, maszyna, przedmiot, mechanika, reagent, event, mapa) dostaje wpis na wiki. Zmiana działania istniejącej rzeczy też.
+- Najpierw szukaj istniejącej strony i ją uzupełniaj: nowa sekcja, wiersz tabeli, poprawiony opis. Nową stronę zakładaj dopiero, gdy temat nie pasuje do żadnej (np. każdy nowy antag ma własną stronę, tak jak Blood Cult czy Changeling). Nową stronę podlinkuj z powiązanych stron i z odpowiedniej kategorii lub nawigacji.
+- Opisuj stan z kodu (liczby, czasy, koszty, receptury), nie z oryginału portu. Jeśli działa inaczej niż na innych serwerach NSV13, napisz to wprost.
+- Treść po polsku, nazwy według `SLOWNIK_TLUMACZEN.md` i tak jak w grze. Tytuły stron i kotwice zostają po angielsku: `=={{anchor|Objectives}}Cele==`, żeby stare linki działały.
+- Trzymaj styl istniejących stron:
+  - antagi i profesje: `{{Infobox_jobs}}` (kolory, obrazek, przełożeni, trudność, obowiązki), pod nim cytat kursywą i wstęp fabularny;
+  - sekcje `==`/`===` z ikoną `[[File:X.png]]` przy nagłówku zdolności lub przedmiotu;
+  - dane w `{| class="wikitable"`, długie listy w ramkach `toccolours mw-collapsible`;
+  - obrazki ze sprite'ów z gry (wycięte z `.dmi`), z podpisem w `[[File:X.png|Nazwa]]`; brakujące wgrywaj.
+- Sterowanie opisuj dla obu trybów (combat mode i intencje), jeśli się różni.
+- Edytuję z panelu przeglądarki w aplikacji, na koncie użytkownika (sam się loguje). Przed zapisem dużej zmiany albo nowej strony pokaż w czacie plan: które strony, jakie sekcje.
 ## Koniec każdego zadania
 Napisz:
 1. Co zmieniłeś (pliki).
@@ -91,6 +103,7 @@ Napisz:
 4. Jak to przetestować w grze (w obu trybach sterowania, jeśli dotyczy kliknięć).
 5. Czy `.dmb` i bundle TGUI są przebudowane.
 6. Jaki zestaw komory testowej dodałeś (albo dlaczego żadnego).
+7. Które strony wiki uzupełniłeś lub założyłeś (albo co jeszcze trzeba na wiki dopisać, gdy zmiana nie jest scalona).
 ## Recenzje i analizy
 - Przy przeglądzie kodu nie zmieniaj plików, tylko pisz raport (numery linii, ocena ryzyka).
 - Raporty i analizy zapisuj w `raport/` jako `<temat>_<NN>_<opis>.md`, partiami. Nie mieszaj ich z commitami kodu.
