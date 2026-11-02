@@ -1,6 +1,6 @@
 /atom/movable/screen/alert/status_effect/rainbow_protection
-	name = "Rainbow Protection"
-	desc = "You are defended from harm, but so are those you might seek to injure!"
+	name = "Tęczowa ochrona"
+	desc = "Nic nie może cię skrzywdzić, ale tym, których chcesz zranić, też nie!"
 	icon_state = "slime_rainbowshield"
 
 /datum/status_effect/rainbow_protection
@@ -29,8 +29,8 @@
 		"<span class='warning'>Nie czujesz się już chroniony...</span>")
 
 /atom/movable/screen/alert/status_effect/slimeskin
-	name = "Adamantine Slimeskin"
-	desc = "You are covered in a thick, non-neutonian gel."
+	name = "Adamantytowa szlamoskóra"
+	desc = "Pokrywa cię gęsty, nienewtonowski żel."
 	icon_state = "slime_stoneskin"
 
 /datum/status_effect/slimeskin
@@ -91,7 +91,7 @@
 	owner.forceMove(target.loc)
 
 /atom/movable/screen/alert/status_effect/freon/stasis
-	desc = "You're frozen inside of a protective ice cube! While inside, you can't do anything, but are immune to harm! Resist to get out."
+	desc = "Jesteś zamrożony w ochronnej kostce lodu! W środku nic nie możesz zrobić, ale nic cię nie zrani! Stawiaj opór, by się wydostać."
 
 /datum/status_effect/frozenstasis
 	id = "slime_frozen"
@@ -162,8 +162,8 @@
 		qdel(clone)
 
 /atom/movable/screen/alert/status_effect/clone_decay
-	name = "Clone Decay"
-	desc = "You are simply a construct, and cannot maintain this form forever. You will be returned to your original body if you should fall."
+	name = "Rozpad klona"
+	desc = "Jesteś tylko konstruktem i nie utrzymasz tej postaci wiecznie. Jeśli padniesz, wrócisz do swojego pierwotnego ciała."
 	icon_state = "slime_clonedecay"
 
 /datum/status_effect/slime_clone_decay
@@ -180,8 +180,8 @@
 	owner.color = "#007BA7"
 
 /atom/movable/screen/alert/status_effect/bloodchill
-	name = "Bloodchilled"
-	desc = "You feel a shiver down your spine after getting hit with a glob of cold blood. You'll move slower and get frostbite for a while!"
+	name = "Zmrożona krew"
+	desc = "Po trafieniu grudą zimnej krwi przechodzą cię dreszcze. Przez chwilę będziesz się poruszać wolniej i nabawisz się odmrożeń!"
 	icon_state = "bloodchill"
 
 /datum/status_effect/bloodchill
@@ -201,8 +201,8 @@
 	owner.remove_movespeed_modifier("bloodchilled")
 
 /atom/movable/screen/alert/status_effect/bloodchill
-	name = "Bloodchilled"
-	desc = "You feel a shiver down your spine after getting hit with a glob of cold blood. You'll move slower and get frostbite for a while!"
+	name = "Zmrożona krew"
+	desc = "Po trafieniu grudą zimnej krwi przechodzą cię dreszcze. Przez chwilę będziesz się poruszać wolniej i nabawisz się odmrożeń!"
 	icon_state = "bloodchill"
 
 /datum/status_effect/bonechill
@@ -224,8 +224,8 @@
 	owner.remove_movespeed_modifier("bonechilled")
 
 /atom/movable/screen/alert/status_effect/bonechill
-	name = "Bonechilled"
-	desc = "You feel a shiver down your spine after hearing the haunting noise of bone rattling. You'll move slower and get frostbite for a while!"
+	name = "Zmrożone kości"
+	desc = "Po usłyszeniu upiornego grzechotu kości przechodzą cię dreszcze. Przez chwilę będziesz się poruszać wolniej i nabawisz się odmrożeń!"
 	icon_state = "bloodchill"
 
 /datum/status_effect/rebreathing
@@ -352,7 +352,7 @@
 		huggables += L
 	if(length(huggables))
 		var/mob/living/carbon/hugged = pick(huggables)
-		owner.visible_message("<span class='notice'>[owner] hugs [hugged]!</span>", "<span class='notice'>Przytulasz [hugged]!</span>")
+		owner.visible_message("<span class='notice'>[owner] przytula [hugged]!</span>", "<span class='notice'>Przytulasz [hugged]!</span>")
 
 /datum/status_effect/tarcookie
 	id = "tarcookie"
@@ -559,8 +559,8 @@
 	return ..()
 
 /obj/item/hothands
-	name = "burning fingertips"
-	desc = "You shouldn't see this."
+	name = "płonące opuszki palców"
+	desc = "Nie powinieneś tego widzieć."
 
 /obj/item/hothands/is_hot()
 	return 290 //Below what's required to ignite plasma.
@@ -638,8 +638,8 @@
 
 //Bluespace has an icon because it's kinda active.
 /atom/movable/screen/alert/status_effect/bluespaceslime
-	name = "Stabilized Bluespace Extract"
-	desc = "You shouldn't see this, since we set it to change automatically!"
+	name = "Ustabilizowany ekstrakt bluespace"
+	desc = "Nie powinieneś tego widzieć, bo ten tekst zmienia się automatycznie!"
 	icon_state = "slime_bluespace_on"
 
 /datum/status_effect/bluespacestabilization
@@ -655,11 +655,11 @@
 
 /datum/status_effect/stabilized/bluespace/tick()
 	if(owner.has_status_effect(/datum/status_effect/bluespacestabilization))
-		linked_alert.desc = "The stabilized bluespace extract is still aligning you with the bluespace axis."
+		linked_alert.desc = "Ustabilizowany ekstrakt bluespace wciąż dopasowuje cię do osi bluespace."
 		linked_alert.icon_state = "slime_bluespace_off"
 		return ..()
 	else
-		linked_alert.desc = "The stabilized bluespace extract will try to redirect you from harm!"
+		linked_alert.desc = "Ustabilizowany ekstrakt bluespace spróbuje przenieść cię z dala od zagrożenia!"
 		linked_alert.icon_state = "slime_bluespace_on"
 
 	if(healthcheck && (healthcheck - owner.health) > 5)

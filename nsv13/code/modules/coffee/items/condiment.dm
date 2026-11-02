@@ -1,19 +1,19 @@
 /obj/item/reagent_containers/food/condiment/pack/creamer
-	name = "creamer pack"
-	originalname = "creamer"
+	name = "saszetka śmietanki"
+	originalname = "śmietanka"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/cream = 5)
 
 /obj/item/reagent_containers/food/condiment/pack/sugar
-	name = "sugar pack"
-	originalname = "sugar"
+	name = "saszetka cukru"
+	originalname = "cukier"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/sugar = 5)
 
 ///Technically condiment packs but they are non transparent
 /obj/item/reagent_containers/food/condiment/creamer
-	name = "coffee creamer pack"
-	desc = "Better not to think about what they are making this from."
+	name = "saszetka zabielacza do kawy"
+	desc = "Lepiej nie myśleć, z czego to robią."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "condi_creamer"
 	volume = 5
@@ -24,8 +24,8 @@
 	icon_state = initial(icon_state)
 
 /obj/item/reagent_containers/food/condiment/chocolate
-	name = "chocolate sprinkle pack"
-	desc= "The amount of sugar that's already there wasn't enough for you?"
+	name = "saszetka posypki czekoladowej"
+	desc= "Mało ci cukru, który już tam jest?"
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "condi_chocolate"
 	list_reagents = list(/datum/reagent/consumable/chocolatepudding = 10)
@@ -39,8 +39,8 @@
  */
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle
-	name = "syrup bottle"
-	desc = "A bottle with a syrup pump to dispense the delicious substance directly into your coffee cup."
+	name = "butelka syropu"
+	desc = "Butelka z pompką, która dozuje pyszny syrop prosto do twojego kubka z kawą."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "syrup"
 	fill_icon_state = "syrup"
@@ -76,7 +76,7 @@
 			to_chat(user, "<span class='warning'>[attacking_item] jest pełny.</span>")
 
 		var/trans = reagents.trans_to(attacking_item, amount_per_transfer_from_this, transfered_by = user)
-		to_chat(user, "<span class='notice>Przelewasz [trans] j. roztworu do [attacking_item].</span>")
+		to_chat(user, "<span class='notice'>Przelewasz [trans] j. roztworu do [attacking_item].</span>")
 		flick("syrup_anim", src)
 	attacking_item.update_icon()
 	return TRUE
@@ -99,36 +99,36 @@
 //types of syrups
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/caramel
-	name = "bottle of caramel syrup"
-	desc = "A pump bottle containing caramelized sugar, also known as caramel. Do not lick."
+	name = "butelka syropu karmelowego"
+	desc = "Butelka z pompką ze skarmelizowanym cukrem, czyli karmelem. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/caramel = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/liqueur
-	name = "bottle of coffee liqueur syrup"
-	desc = "A pump bottle containing mexican coffee-flavoured liqueur syrup. In production since 1936, HONK."
+	name = "butelka syropu z likierem kawowym"
+	desc = "Butelka z pompką z syropem z meksykańskiego likieru kawowego. Produkowany od 1936 roku, HONK."
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/honey
-	name = "bottle of honey syrup"
-	desc = "A pump bottle containing honey, very sticky. Do not lick."
+	name = "butelka syropu miodowego"
+	desc = "Butelka z pompką z miodem, bardzo lepkim. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/honey = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/vanilla
-	name = "bottle of vanilla syrup"
-	desc = "A pump bottle containing vanilla syrup. Do not lick."
+	name = "butelka syropu waniliowego"
+	desc = "Butelka z pompką z syropem waniliowym. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/vanilla = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/tea
-	name = "bottle of tea-flavored syrup"
-	desc = "A pump bottle containing tea-flavored syrup. Don't you dare."
+	name = "butelka syropu herbacianego"
+	desc = "Butelka z pompką z syropem o smaku herbaty. Nawet nie próbuj."
 	list_reagents = list(/datum/reagent/consumable/tea = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/creme_de_cacao
-	name = "bottle of Creme de Cacao syrup"
-	desc = "A pump bottle containing Creme de Cacao. Do not lick."
+	name = "butelka syropu z likieru kakaowego"
+	desc = "Butelka z pompką z likierem kakaowym. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/ethanol/creme_de_cacao = 50)
 
 /obj/item/reagent_containers/glass/bottle/syrup_bottle/creme_de_menthe
-	name = "bottle of Creme de Menthe syrup"
-	desc = "A pump bottle containing Creme de Menthe. Do not lick."
+	name = "butelka syropu z likieru miętowego"
+	desc = "Butelka z pompką z likierem miętowym. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/ethanol/creme_de_menthe = 50)

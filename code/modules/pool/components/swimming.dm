@@ -16,7 +16,7 @@
 /datum/component/swimming/Initialize()
 	. = ..()
 	if(!isliving(parent))
-		message_admins("Swimming component erroneously added to a non-living mob ([parent]).")
+		message_admins("Komponent pływania dodano omyłkowo do moba, który nie jest żywy ([parent]).")
 		return INITIALIZE_HINT_QDEL //Only mobs can swim, like Ian...
 	var/mob/M = parent
 	M.visible_message("<span class='notice'>[parent] zaczyna chlapać się w wodzie!</span>")

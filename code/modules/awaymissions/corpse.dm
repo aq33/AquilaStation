@@ -56,8 +56,8 @@
 	if(use_cooldown && user.client.next_ghost_role_tick > world.time)
 		to_chat(user, "<span class='warning'>Niedawno zginąłeś; musisz poczekać [(user.client.next_ghost_role_tick - world.time)/10] s, zanim użyjesz spawnera duchów.</span>")
 		return
-	var/ghost_role = alert("Zostać: [mob_name]? (Uwaga: nie będzie można cię już sklonować!)",,"Yes","No")
-	if(ghost_role != "Yes" || !loc)
+	var/ghost_role = alert("Zostać: [mob_name]? (Uwaga: nie będzie można cię już sklonować!)",,"Tak","Nie")
+	if(ghost_role != "Tak" || !loc)
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
@@ -151,7 +151,7 @@
 	var/id_job = null			//Such as JOB_NAME_CLOWN or "Chef." This just determines what the ID reads as, not their access
 	var/id_access = null		//This is for access. See access.dm for which jobs give what access. Use JOB_NAME_CAPTAIN if you want it to be all access.
 	var/id_access_list = null	//Allows you to manually add access to an ID card.
-	assignedrole = "Rola ducha"
+	assignedrole = "Ghost Role"
 
 	var/husk = null
 	//these vars are for lazy mappers to override parts of the outfit
@@ -292,7 +292,7 @@
 	qdel(src)
 
 /obj/effect/mob_spawn/mouse
-	name = "sleeper"
+	name = "kapsuła snu"
 	mob_type = 	/mob/living/simple_animal/mouse
 	death = FALSE
 	roundstart = FALSE
@@ -300,7 +300,7 @@
 	icon_state = "sleeper"
 
 /obj/effect/mob_spawn/cow
-	name = "sleeper"
+	name = "kapsuła snu"
 	mob_type = 	/mob/living/simple_animal/cow
 	death = FALSE
 	roundstart = FALSE
@@ -326,7 +326,7 @@
 	disease = /datum/disease/fluspanish
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech
-	name = "Cargo Tech"
+	name = JOB_NAME_CARGOTECHNICIAN
 	outfit = /datum/outfit/job/cargo_technician
 
 /obj/effect/mob_spawn/human/cook
@@ -335,7 +335,7 @@
 
 
 /obj/effect/mob_spawn/human/doctor
-	name = "Doctor"
+	name = JOB_NAME_MEDICALDOCTOR
 	outfit = /datum/outfit/job/medical_doctor
 
 
@@ -343,7 +343,7 @@
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
-	name = "sleeper"
+	name = "kapsuła snu"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	short_desc = "Jesteś kosmicznym lekarzem!"
@@ -359,7 +359,7 @@
 		qdel(I)
 
 /obj/effect/mob_spawn/human/engineer
-	name = "Engineer"
+	name = JOB_NAME_STATIONENGINEER
 	outfit = /datum/outfit/job/engineer/gloved
 
 /obj/effect/mob_spawn/human/engineer/rig
@@ -390,7 +390,7 @@
 
 
 /obj/effect/mob_spawn/human/bartender
-	name = "Space Bartender"
+	name = "Kosmiczny barman"
 	id_job = JOB_NAME_BARTENDER
 	id_access_list = list(ACCESS_BAR)
 	outfit = /datum/outfit/spacebartender
@@ -399,7 +399,7 @@
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
-	name = "bartender sleeper"
+	name = "kapsuła snu barmana"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	short_desc = "Jesteś kosmicznym barmanem!"
@@ -420,7 +420,7 @@
 	H.dna.add_mutation(STONER)
 
 /datum/outfit/spacebartender
-	name = "Space Bartender"
+	name = "Kosmiczny barman"
 	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -443,8 +443,8 @@
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
-	mob_name = "Beach Bum"
-	name = "beach bum sleeper"
+	mob_name = "Plażowicz"
+	name = "kapsuła snu plażowicza"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	short_desc = "Jesteś, no, totalnie ziomkiem, ziom."
@@ -457,12 +457,12 @@
 	short_desc = "Jesteś zadziornym ratownikiem!"
 	flavour_text = "To od ciebie zależy, czy nikt się nie utopi ani nie zostanie zjedzony przez rekiny i takie tam."
 	mob_gender = "female"
-	name = "lifeguard sleeper"
-	id_job = "Lifeguard"
+	name = "kapsuła snu ratownika"
+	id_job = "Ratownik"
 	uniform = /obj/item/clothing/under/shorts/red
 
 /datum/outfit/beachbum
-	name = "Beach Bum"
+	name = "Plażowicz"
 	glasses = /obj/item/clothing/glasses/sunglasses
 	r_pocket = /obj/item/storage/wallet/random
 	l_pocket = /obj/item/food/pizzaslice/dank
@@ -478,13 +478,13 @@
 /////////////////Officers+Nanotrasen Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
-	name = "Bridge Officer"
-	id_job = "Bridge Officer"
+	name = "Oficer mostka"
+	id_job = "Oficer mostka"
 	id_access_list = list(ACCESS_CENT_CAPTAIN)
 	outfit = /datum/outfit/nanotrasenbridgeofficercorpse
 
 /datum/outfit/nanotrasenbridgeofficercorpse
-	name = "Bridge Officer Corpse"
+	name = "Zwłoki oficera mostka"
 	ears = /obj/item/radio/headset/heads/xo
 	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
@@ -494,13 +494,13 @@
 
 
 /obj/effect/mob_spawn/human/commander
-	name = "Commander"
-	id_job = "Commander"
+	name = "Dowódca"
+	id_job = "Dowódca"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE)
 	outfit = /datum/outfit/nanotrasencommandercorpse
 
 /datum/outfit/nanotrasencommandercorpse
-	name = "\improper Nanotrasen Private Security Commander"
+	name = "\improper Dowódca prywatnej ochrony Nanotrasen"
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	ears = /obj/item/radio/headset/heads/captain
@@ -514,13 +514,13 @@
 
 
 /obj/effect/mob_spawn/human/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
-	id_job = "Private Security Force"
+	name = "\improper Funkcjonariusz prywatnej ochrony Nanotrasen"
+	id_job = "Prywatna ochrona"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE, ACCESS_SECURITY, ACCESS_MECH_SECURITY)
 	outfit = /datum/outfit/nanotrasensoldiercorpse
 
 /datum/outfit/nanotrasensoldiercorpse
-	name = "NT Private Security Officer Corpse"
+	name = "Zwłoki funkcjonariusza prywatnej ochrony NT"
 	uniform = /obj/item/clothing/under/rank/security/officer
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
@@ -533,8 +533,8 @@
 /////////////////Spooky Undead//////////////////////
 
 /obj/effect/mob_spawn/human/skeleton
-	name = "skeletal remains"
-	mob_name = "skeleton"
+	name = "szkieletowe szczątki"
+	mob_name = "szkielet"
 	mob_species = /datum/species/skeleton
 	mob_gender = NEUTER
 
@@ -555,18 +555,18 @@
 	H.set_species(/datum/species/skeleton)
 
 /obj/effect/mob_spawn/human/abductor
-	name = "abductor"
-	mob_name = "alien"
+	name = "porywacz"
+	mob_name = "obcy"
 	mob_species = /datum/species/abductor
 	outfit = /datum/outfit/abductorcorpse
 
 /datum/outfit/abductorcorpse
-	name = "Abductor Corpse"
+	name = "Zwłoki porywacza"
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/combat
 
 /datum/outfit/cryobartender
-	name = "Cryogenic Bartender"
+	name = "Kriogeniczny barman"
 	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black

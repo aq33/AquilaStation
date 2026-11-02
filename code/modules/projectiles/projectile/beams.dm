@@ -24,7 +24,7 @@
 	impact_type = /obj/effect/projectile/impact/laser
 
 /obj/item/projectile/beam/laser/heavylaser
-	name = "heavy laser"
+	name = "ciężki laser"
 	icon_state = "heavylaser"
 	damage = 40
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
@@ -47,18 +47,18 @@
 	armour_penetration = 50
 
 /obj/item/projectile/beam/practice
-	name = "practice laser"
+	name = "laser treningowy"
 	damage = 0
 	nodamage = TRUE
 	martial_arts_no_deflect = TRUE
 
 /obj/item/projectile/beam/scatter
-	name = "laser pellet"
+	name = "śrucina laserowa"
 	icon_state = "scatterlaser"
 	damage = 5
 
 /obj/item/projectile/beam/xray
-	name = "\improper X-ray beam"
+	name = "\improper wiązka rentgenowska"
 	icon_state = "xray"
 	damage = 15
 	irradiate = 300
@@ -73,7 +73,7 @@
 	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/item/projectile/beam/disabler
-	name = "disabler beam"
+	name = "wiązka disablera"
 	icon_state = "omnilaser"
 	damage = 0 // AQ EDIT - port Bee#14750: zamiast 28 staminy dezorientacja (aquila/code/modules/projectiles/disorient.dm)
 	damage_type = STAMINA
@@ -87,7 +87,7 @@
 	impact_type = /obj/effect/projectile/impact/disabler
 
 /obj/item/projectile/beam/pulse
-	name = "pulse"
+	name = "impuls"
 	icon_state = "u_laser"
 	damage = 50
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -108,7 +108,7 @@
 	damage = 40
 
 /obj/item/projectile/beam/pulse/heavy
-	name = "heavy pulse laser"
+	name = "ciężki laser pulsacyjny"
 	icon_state = "pulse1_bl"
 	var/life = 20
 
@@ -119,7 +119,7 @@
 	..()
 
 /obj/item/projectile/beam/emitter
-	name = "emitter beam"
+	name = "wiązka emitera"
 	icon_state = "emitter"
 	damage = 30
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
@@ -129,7 +129,7 @@
 	return //don't want the emitters to miss
 
 /obj/item/projectile/beam/lasertag
-	name = "laser tag beam"
+	name = "wiązka do laser taga"
 	icon_state = "omnilaser"
 	hitsound = null
 	damage = 0
@@ -171,7 +171,7 @@
 	hitscan = TRUE
 
 /obj/item/projectile/beam/instakill
-	name = "instagib laser"
+	name = "laser instagib"
 	icon_state = "purple_laser"
 	damage = 200
 	damage_type = BURN

@@ -20,8 +20,8 @@
 	trait = TRAIT_SHOCKIMMUNE
 
 /atom/movable/screen/alert/status_effect/food/trait_shockimmune
-	name = "Grounded"
-	desc = "That meal made me feel like a superconductor..."
+	name = "Uziemienie"
+	desc = "Po tym posiłku czuję się jak nadprzewodnik..."
 
 /datum/status_effect/food/trait/mute
 	alert_type = /atom/movable/screen/alert/status_effect/mute

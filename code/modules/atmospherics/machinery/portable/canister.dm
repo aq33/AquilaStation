@@ -1,8 +1,8 @@
 #define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
 
 /obj/machinery/portable_atmospherics/canister
-	name = "canister"
-	desc = "A canister for the storage of gas."
+	name = "kanister"
+	desc = "Kanister do przechowywania gazu."
 	icon = 'icons/obj/atmospherics/canisters.dmi'
 	icon_state = "#mapme"
 	greyscale_config = /datum/greyscale_config/canister/hazard
@@ -43,20 +43,20 @@
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-		"plasma" = /obj/machinery/portable_atmospherics/canister/toxins,
+		"plazma" = /obj/machinery/portable_atmospherics/canister/toxins,
 		"n2o" = /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 		"no2" = /obj/machinery/portable_atmospherics/canister/nitryl,
 		"bz" = /obj/machinery/portable_atmospherics/canister/bz,
-		"air" = /obj/machinery/portable_atmospherics/canister/air,
-		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
-		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
-		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
-		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
-		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
-		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"nucleium" = /obj/machinery/portable_atmospherics/canister/nucleium,	//NSV13
-		"constricted plasma" = /obj/machinery/portable_atmospherics/canister/constricted_plasma, //NSV13
-		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma, // AQ EDIT - Miasma
+		"powietrze" = /obj/machinery/portable_atmospherics/canister/air,
+		"para wodna" = /obj/machinery/portable_atmospherics/canister/water_vapor,
+		"tryt" = /obj/machinery/portable_atmospherics/canister/tritium,
+		"hipernoblium" = /obj/machinery/portable_atmospherics/canister/nob,
+		"stymulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
+		"pluoksium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
+		"ostrzeżenie" = /obj/machinery/portable_atmospherics/canister,
+		"nukleium" = /obj/machinery/portable_atmospherics/canister/nucleium,	//NSV13
+		"skondensowana plazma" = /obj/machinery/portable_atmospherics/canister/constricted_plasma, //NSV13
+		"miazma" = /obj/machinery/portable_atmospherics/canister/miasma, // AQ EDIT - Miasma
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -67,91 +67,91 @@
 	..()
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "air canister"
-	desc = "Pre-mixed air."
+	name = "kanister powietrza"
+	desc = "Gotowa mieszanka powietrza."
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#c6c0b5"
 
 /obj/machinery/portable_atmospherics/canister/bz
-	name = "\improper BZ canister"
-	desc = "BZ, a powerful hallucinogenic nerve agent."
+	name = "\improper kanister BZ"
+	desc = "BZ, silny halucynogenny środek paralityczno-drgawkowy."
 	gas_type = GAS_BZ
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#9b5d7f#d0d2a0"
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "co2 canister"
-	desc = "Carbon dioxide. What the fuck is carbon dioxide?"
+	name = "kanister CO2"
+	desc = "Dwutlenek węgla. Co to, kurwa, jest dwutlenek węgla?"
 	gas_type = GAS_CO2
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#4e4c48"
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "n2 canister"
-	desc = "Nitrogen gas. Reportedly useful for something."
+	name = "kanister N2"
+	desc = "Azot. Podobno do czegoś się przydaje."
 	gas_type = GAS_N2
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#d41010"
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
-	name = "n2o canister"
-	desc = "Nitrous oxide gas. Known to cause drowsiness."
+	name = "kanister N2O"
+	desc = "Podtlenek azotu. Znany z tego, że usypia."
 	gas_type = GAS_NITROUS
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#c63e3b#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitryl
-	name = "nitryl canister"
-	desc = "Nitryl gas. Feels great 'til the acid eats your lungs."
+	name = "kanister nitrylu"
+	desc = "Nitryl. Czujesz się świetnie, dopóki kwas nie zeżre ci płuc."
 	gas_type = GAS_NITRYL
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#7b4732"
 
 /obj/machinery/portable_atmospherics/canister/nob
-	name = "hyper-noblium canister"
-	desc = "Hyper-Noblium. More noble than all other gases."
+	name = "kanister hipernoblium"
+	desc = "Hipernoblium. Szlachetniejsze od wszystkich innych gazów."
 	gas_type = GAS_HYPERNOB
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#6399fc#b2b2b2"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "o2 canister"
-	desc = "Oxygen. Necessary for human life."
+	name = "kanister O2"
+	desc = "Tlen. Niezbędny do życia człowieka."
 	gas_type = GAS_O2
 	greyscale_config = /datum/greyscale_config/canister/stripe
 	greyscale_colors = "#2786e5#e8fefe"
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
-	name = "pluoxium canister"
-	desc = "Pluoxium. Like oxygen, but more bang for your buck."
+	name = "kanister pluoksium"
+	desc = "Pluoksium. Jak tlen, tylko wydajniejsze."
 	gas_type = GAS_PLUOXIUM
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#2786e5"
 
 /obj/machinery/portable_atmospherics/canister/stimulum
-	name = "stimulum canister"
-	desc = "Stimulum. High energy gas, high energy people."
+	name = "kanister stymulum"
+	desc = "Stymulum. Energetyczny gaz, energetyczni ludzie."
 	gas_type = GAS_STIMULUM
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#9b5d7f"
 
 /obj/machinery/portable_atmospherics/canister/toxins
-	name = "plasma canister"
-	desc = "Plasma gas. The reason YOU are here. Highly toxic."
+	name = "kanister plazmy"
+	desc = "Plazma. Powód, dla którego TY tu jesteś. Bardzo toksyczna."
 	gas_type = GAS_PLASMA
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#f62800#000000"
 
 /obj/machinery/portable_atmospherics/canister/tritium
-	name = "tritium canister"
-	desc = "Tritium. Inhalation might cause irradiation."
+	name = "kanister trytu"
+	desc = "Tryt. Wdychanie może napromieniować."
 	gas_type = GAS_TRITIUM
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#3fcd40#000000"
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
-	name = "water vapor canister"
-	desc = "Water Vapor. We get it, you vape."
+	name = "kanister pary wodnej"
+	desc = "Para wodna. Dobra, łapiemy, wapujesz."
 	gas_type = GAS_H2O
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
@@ -170,13 +170,13 @@
 	update_icon()
 
 /obj/machinery/portable_atmospherics/canister/proto
-	name = "prototype canister"
+	name = "prototypowy kanister"
 	greyscale_config = /datum/greyscale_config/prototype_canister
 	greyscale_colors = "#ffffff#a50021#ffffff"
 
 /obj/machinery/portable_atmospherics/canister/proto/default
-	name = "prototype canister"
-	desc = "The best way to fix an atmospheric emergency... or the best way to introduce one."
+	name = "prototypowy kanister"
+	desc = "Najlepszy sposób na opanowanie awarii atmosfery... albo na jej wywołanie."
 	volume = 5000
 	max_integrity = 300
 	temperature_resistance = 2000 + T0C
@@ -185,15 +185,15 @@
 	prototype = TRUE
 
 /obj/machinery/portable_atmospherics/canister/proto/default/oxygen
-	name = "prototype canister"
-	desc = "A prototype canister for a prototype bike, what could go wrong?"
+	name = "prototypowy kanister"
+	desc = "Prototypowy kanister do prototypowego roweru. Co mogłoby pójść nie tak?"
 	gas_type = GAS_O2
 	filled = 1
 	release_pressure = ONE_ATMOSPHERE*2
 
 /obj/machinery/portable_atmospherics/canister/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_CANISTER_GAS, "Modify Canister Gas")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_CANISTER_GAS, "Zmień gaz w kanistrze")
 
 /obj/machinery/portable_atmospherics/canister/vv_do_topic(href_list)
 	. = ..()
@@ -285,7 +285,7 @@
 	var/pressure = air_contents.return_pressure()
 	if(pressure > 300)
 		to_chat(user, "<span class='alert'>Manometr [src] wskazuje wysokie ciśnienie w środku... może lepiej się zastanów?</span>")
-		message_admins("[src] deconstructed by [ADMIN_LOOKUPFLW(user)]")
+		message_admins("[src] rozcina: [ADMIN_LOOKUPFLW(user)]")
 		log_game("[src] deconstructed by [key_name(user)]")
 	to_chat(user, "<span class='notice'>Zaczynasz rozcinać [src]...</span>")
 	if(I.use_tool(src, user, 3 SECONDS, volume=50))
@@ -466,7 +466,7 @@
 							danger[GLOB.gas_data.names[id]] = air_contents.get_moles(id) //ex. "plasma" = 20
 
 					if(danger.len)
-						message_admins("[ADMIN_LOOKUPFLW(usr)] opened a canister that contains the following at [ADMIN_VERBOSEJMP(src)]:")
+						message_admins("[ADMIN_LOOKUPFLW(usr)] otwiera kanister z następującą zawartością w [ADMIN_VERBOSEJMP(src)]:")
 						log_admin("[key_name(usr)] opened a canister that contains the following at [AREACOORD(src)]:")
 						for(var/name in danger)
 							var/msg = "[name]: [danger[name]] moles."
@@ -509,7 +509,7 @@
 		if("eject")
 			if(holding)
 				if(valve_open)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] removed [holding] from [src] with valve still open at [ADMIN_VERBOSEJMP(src)] releasing contents into the <span class='boldannounce'>air</span>.")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] wyjmuje [holding] z [src] przy otwartym zaworze w [ADMIN_VERBOSEJMP(src)] i wypuszcza zawartość <span class='boldannounce'>do powietrza</span>.")
 					investigate_log("[key_name(usr)] removed the [holding], leaving the valve open and transferring into the <span class='boldannounce'>air</span>.", INVESTIGATE_ATMOS)
 				replace_tank(usr, FALSE)
 				. = TRUE
@@ -521,8 +521,8 @@
 
 /// Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.
 /obj/machinery/portable_atmospherics/canister/fusion_test
-	name = "Fusion Test Canister"
-	desc = "This should never be spawned in game."
+	name = "testowy kanister fuzji"
+	desc = "To nie powinno nigdy pojawić się w grze."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#0099ff#ff3300"
 
@@ -535,8 +535,8 @@
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
  /obj/machinery/portable_atmospherics/canister/fusion_test_2
-	name = "Fusion Test Canister"
-	desc = "This should never be spawned in game."
+	name = "testowy kanister fuzji"
+	desc = "To nie powinno nigdy pojawić się w grze."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#0099ff#ff3300"
 
@@ -549,8 +549,8 @@
 
 /// Canister at the perfect conditions to start and continue fusion for a long time.
 /obj/machinery/portable_atmospherics/canister/fusion_test_3
-	name = "Fusion Test Canister"
-	desc = "This should never be spawned in game."
+	name = "testowy kanister fuzji"
+	desc = "To nie powinno nigdy pojawić się w grze."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#0099ff#ff3300"
 

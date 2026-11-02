@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/torpedo_launcher/cargo //heavily modified CM sprite
-	name = "\improper M4-C Cargo freight launcher"
-	desc = "A transport system that's employed by nigh on all modern ships. It's capable of delivering a self-propelling payload with pinpoint accuracy to deliver freight."
+	name = "\improper wyrzutnia ładunków M4-C"
+	desc = "System transportowy używany na niemal wszystkich nowoczesnych okrętach. Z dokładnością co do metra dostarcza samobieżny ładunek z towarem."
 	color = "#f5d1b0" // I have better things to do than to modify 100+ sprite frames just to add funny orange stripes
 	var/obj/machinery/computer/ship/dradis/minor/cargo/linked_dradis = null
 	ammo_type = /obj/item/ship_weapon/ammunition/torpedo/freight

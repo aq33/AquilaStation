@@ -26,14 +26,14 @@ const IntroSection = (_props) => {
       </Stack.Item>
       <Stack.Item grow>
         <h1 style={{ position: 'relative', top: '25%', left: '-2%' }}>
-          You are the{' '}
-          <Box inline textColor="purple">
-            Abductor
-          </Box>{' '}
+          Jesteś{' '}
           <Box inline textColor="red">
-            Agent
+            agentem
           </Box>{' '}
-          of{' '}
+          <Box inline textColor="purple">
+            porywaczy
+          </Box>{' '}
+          ze statku{' '}
           <Box inline textColor="purple">
             {mothership}
           </Box>
@@ -48,21 +48,20 @@ const BasicLoreSection = (_props) => {
   return (
     <Section>
       <BlockQuote>
-        You are the{' '}
+        Jesteś{' '}
         <Box inline textColor="red">
-          agent
+          agentem
         </Box>{' '}
-        of this abductor team!
+        w tej drużynie porywaczy!
         <br />
-        You&apos;re the <b>brawn</b> of the abductors, it is your job to work
-        with your{' '}
+        Jesteś <b>siłą</b> porywaczy: razem ze swoim{' '}
         <Box inline textColor="blue">
-          scientist
+          naukowcem
         </Box>{' '}
-        to capture test subjects and bring them back to your ship!
+        łapiesz obiekty badań i przywozisz je na statek!
         <br />
-        As an abductor, you have a telepathic link with your partner, and have
-        no method of verbal communication.
+        Jako porywacz masz telepatyczną więź z partnerem i nie możesz
+        porozumiewać się słowami.
       </BlockQuote>
     </Section>
   );
@@ -70,7 +69,7 @@ const BasicLoreSection = (_props) => {
 
 const EquipmentSection = (_props) => {
   return (
-    <Section title="Equipment">
+    <Section title="Wyposażenie">
       <Stack vertical>
         <Stack.Item>
           <Stack>
@@ -82,40 +81,38 @@ const EquipmentSection = (_props) => {
                   imageRendering: 'pixelated',
                 }}
               />
-              Your{' '}
+              Twoja{' '}
               <Box inline textColor="purple">
-                advanced baton
+                zaawansowana pałka
               </Box>{' '}
-              is a multi-purpose baton that does just about everything you need
-              to subdue someone. It has four modes:
+              to wielofunkcyjna pałka, która robi niemal wszystko, czego
+              potrzebujesz do obezwładnienia kogoś. Ma cztery tryby:
               <br />
               <Box inline textColor="yellow">
-                Stun
+                Ogłuszenie
               </Box>
-              : Stuns whoever you hit it with.
+              : ogłusza każdego, kogo uderzysz.
               <br />
               <Box inline textColor="blue">
-                Sleep
+                Uśpienie
               </Box>
-              : Knocks someone out, as long as they&apos;re stunned. Only one
-              person can be asleep at a time, however!
+              : usypia ogłuszoną osobę. Naraz może spać tylko jedna osoba!
               <br />
               <Box inline textColor="red">
-                Cuff
+                Skucie
               </Box>
-              : Cuffs someone with hard-light energy cuffs.
+              : skuwa kogoś kajdankami z twardego światła.
               <br />
               <Box inline textColor="purple">
-                Probe
+                Badanie
               </Box>
-              : Probes whether an organism is suitable for experimentation or
-              not.
+              : sprawdza, czy organizm nadaje się do eksperymentów.
               <br />
-              People wearing{' '}
+              Osoby w{' '}
               <Box inline textColor="label">
-                tinfoil hats
+                czapeczkach z folii aluminiowej
               </Box>{' '}
-              are immune to the baton&apos;s effects, however.
+              są jednak odporne na działanie pałki.
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
@@ -126,22 +123,22 @@ const EquipmentSection = (_props) => {
                   imageRendering: 'pixelated',
                 }}
               />
-              You have{' '}
+              Masz{' '}
               <Box inline textColor="purple">
-                alien tools
-              </Box>{' '}
-              , which are capable of working extremely fast, faster than any
-              tool available to lesser lifeforms.
-              <br />
-              You can use these to{' '}
-              <Box inline textColor="yellow">
-                hack machinery
-              </Box>{' '}
-              or{' '}
-              <Box inline textColor="orange">
-                weld doors shut
+                obce narzędzia
               </Box>
-              , for example.
+              , które działają niezwykle szybko, szybciej niż jakiekolwiek
+              narzędzia niższych form życia.
+              <br />
+              Możesz nimi na przykład{' '}
+              <Box inline textColor="yellow">
+                hakować maszyny
+              </Box>{' '}
+              albo{' '}
+              <Box inline textColor="orange">
+                zaspawać drzwi
+              </Box>
+              .
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -155,27 +152,26 @@ const EquipmentSection = (_props) => {
                 imageRendering: 'pixelated',
               }}
             />
-            Your{' '}
+            Twój{' '}
             <Box inline textColor="purple">
-              alien pistol
+              obcy pistolet
             </Box>{' '}
-            is an effective self-defense weapon, with three different fire
-            modes:
+            to skuteczna broń do samoobrony z trzema trybami ognia:
             <br />
             <Box inline textColor="green">
-              Declone
+              Rozklonowanie
             </Box>
-            : Deals 20 cellular damage to whatever it hits.
+            : zadaje 20 obrażeń komórkowych trafionemu celowi.
             <br />
             <Box inline textColor="blue">
-              Ion
+              Jony
             </Box>
-            : EMPs whatever it hits.
+            : trafia cel impulsem EMP.
             <br />
             <Box inline textColor="teal">
-              Freeze
+              Zamrożenie
             </Box>
-            : Lowers the temperature of whatever it hits.
+            : obniża temperaturę trafionego celu.
           </Stack.Item>
         </Stack.Item>
       </Stack>

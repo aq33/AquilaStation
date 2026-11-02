@@ -33,7 +33,7 @@
 			log_game("[key_name(new_sit)] has been selected as a syndicate infiltrator")
 		return TRUE
 	setup_error = "Not enough infiltrator candidates"
-	message_admins("Not enough infiltrator candidates! Was making [n_agents], but we need [required_enemies]!")
+	message_admins("Za mało kandydatów na infiltratorów! Wychodzi ich [n_agents], a potrzeba co najmniej [required_enemies]!")
 	return FALSE
 
 /datum/game_mode/infiltration/post_setup()

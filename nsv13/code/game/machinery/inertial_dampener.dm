@@ -6,10 +6,10 @@
 GLOBAL_LIST_EMPTY(inertia_dampeners)
 
 /obj/machinery/inertial_dampener
-	name = "inertial dampener"
+	name = "tłumik bezwładności"
 	icon = 'nsv13/icons/obj/machinery/inertial_dampener.dmi'
 	icon_state = "machine_inactive"
-	desc = "This machine generates waves with equal amplitude and inverted phase to reduce hull vibrations"
+	desc = "Ta maszyna generuje fale o tej samej amplitudzie i odwróconej fazie, żeby tłumić drgania kadłuba."
 	circuit = /obj/item/circuitboard/machine/inertial_dampener
 	density = 1
 	dir = 4
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(inertia_dampeners)
 /obj/machinery/inertial_dampener/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "InertialDampener")
+		ui = new(user, src, "InertialDampener", "Tłumik bezwładności")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -222,8 +222,8 @@ GLOBAL_LIST_EMPTY(inertia_dampeners)
 // Techwebs
 
 /datum/design/board/inertial_dampener
-	name = "Machine Design (Inertial Dampener Board)"
-	desc = "The circuit board for an inertial dampener."
+	name = "Projekt maszyny (tłumik bezwładności)"
+	desc = "Płytka drukowana tłumika bezwładności."
 	id = "area_inerts"
 	build_path = /obj/item/circuitboard/machine/inertial_dampener
 	category = list("Engineering Machinery")
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(inertia_dampeners)
 
 /datum/techweb_node/inertial_dampener
 	id = "area_inerts"
-	display_name = "Inertial Dampeners"
+	display_name = "Tłumiki bezwładności"
 	description = "Technologia antywstrząsowa przeciw drganiom kadłuba."
 	prereq_ids = list("practical_bluespace","high_efficiency", "adv_power")
 	design_ids = list("area_inerts")

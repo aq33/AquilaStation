@@ -4,7 +4,7 @@
 #define MAX_MINOR_OBJECTIVES 4
 
 /datum/team/infiltrator
-	name = "Syndicate Infiltration Unit"
+	name = "Jednostka Infiltracyjna Syndykatu"
 	member_name = "infiltrator Syndykatu"
 
 /datum/team/infiltrator/roundend_report()

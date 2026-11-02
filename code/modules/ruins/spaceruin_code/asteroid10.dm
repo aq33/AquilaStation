@@ -1,11 +1,11 @@
 ///////////	asteroid4 items
 
 /obj/item/paper/fluff/ruins/asteroid10/welcome
-	name = "Welcome to Dog Heaven!"
+	name = "Witaj w Psim Niebie!"
 	default_raw_text = "Ambasador Psiego Nieba wita cię w naszym skromnym zaciszu!"
 
 /obj/item/food/nugget/dog
-	name = "dog treat"
+	name = "psi przysmak"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/corgium = 10

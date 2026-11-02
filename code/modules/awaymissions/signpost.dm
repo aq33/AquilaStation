@@ -16,7 +16,7 @@
 	. = ..()
 	if(.)
 		return
-	if(alert(question,name,"Yes","No") == "Yes" && Adjacent(user))
+	if(alert(question,name,"Tak","Nie") == "Tak" && Adjacent(user))
 		var/turf/T = find_safe_turf(zlevels=zlevels)
 
 		if(T)
@@ -53,14 +53,14 @@
 	return interact(user)
 
 /obj/structure/signpost/salvation
-	name = "\proper salvation"
-	desc = "In the darkest times, we will find our way home."
+	name = "\proper zbawienie"
+	desc = "W najciemniejszych czasach znajdziemy drogę do domu."
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/signpost/exit
-	name = "exit"
-	desc = "Make sure to bring all your belongings with you when you \
-		exit the area."
+	name = "wyjście"
+	desc = "Wychodząc z obszaru, nie zapomnij zabrać \
+		wszystkich swoich rzeczy."
 	question = "Odejść? Możesz już nigdy nie wrócić."
 
 /obj/structure/signpost/exit/Initialize(mapload)

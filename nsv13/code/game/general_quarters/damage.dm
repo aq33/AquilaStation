@@ -1,6 +1,6 @@
 /obj/structure/overmap/proc/nuclear_impact()
 	set waitfor = FALSE
-	relay('nsv13/sound/effects/ship/nukehit.ogg', message="<span class='warning'>You hear a huge rumble as a blinding flash of light envelops you!</span>")
+	relay('nsv13/sound/effects/ship/nukehit.ogg', message="<span class='warning'>Słyszysz potężny huk, a otacza cię oślepiający błysk światła!</span>")
 	for(var/mob/living/karmics_victim in mobs_in_ship)
 		if(karmics_victim.stat == DEAD)	//They're dead!
 			continue
@@ -24,7 +24,7 @@
 //For training purposes.
 /obj/structure/overmap/proc/simulate_nuke()
 	set waitfor = FALSE
-	relay('nsv13/sound/effects/ship/incoming_missile.ogg', message="<h1>Missile Impact Imminent</h1><br/><span class='danger'>Thermonuclear launch detected. All hands brace for impact.</span>")
+	relay('nsv13/sound/effects/ship/incoming_missile.ogg', message="<h1>Nieuchronne trafienie pociskiem</h1><br/><span class='danger'>Wykryto odpalenie głowicy termojądrowej. Cała załoga, przygotować się na uderzenie.</span>")
 	sleep(5 SECONDS) //This is a sin, but it won't be used much.
 	var/turf/open/pickedstart = get_turf(pick(orange(10, src)))
 	var/turf/open/pickedgoal = get_turf(src)

@@ -120,8 +120,8 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 //////////////////////
 
 /obj/effect/meteor
-	name = "\proper the concept of meteor"
-	desc = "You should probably run instead of gawking at this."
+	name = "\proper idea meteoru"
+	desc = "Lepiej uciekaj, zamiast się na to gapić."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
 	density = TRUE
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Dust
 /obj/effect/meteor/dust
-	name = "space dust"
+	name = "kosmiczny pył"
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "big meteor"
+	name = "duży meteor"
 	icon_state = "large"
 	hits = 6
 	heavy = 1
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Flaming meteor
 /obj/effect/meteor/flaming
-	name = "flaming meteor"
+	name = "płonący meteor"
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Radiation meteor
 /obj/effect/meteor/irradiated
-	name = "glowing meteor"
+	name = "świecący meteor"
 	icon_state = "glowing"
 	heavy = 1
 	meteordrop = list(/obj/item/stack/ore/uranium)
@@ -324,9 +324,9 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Meaty Ore
 /obj/effect/meteor/meaty
-	name = "meaty ore"
+	name = "mięsna ruda"
 	icon_state = "meateor"
-	desc = "Just... don't think too hard about where this thing came from."
+	desc = "Po prostu... nie zastanawiaj się za bardzo, skąd to się wzięło."
 	hits = 2
 	heavy = 1
 	meteorsound = 'sound/effects/blobattack.ogg'
@@ -375,9 +375,9 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "meteor tunguski"
 	icon_state = "flaming"
-	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
+	desc = "W chwili, gdy spoglądasz na to monstrum, całe życie przelatuje ci przed oczami."
 	hits = 30
 	hitpwr = 1
 	heavy = 1
@@ -406,8 +406,8 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 GLOBAL_LIST_INIT(meteorsSPOOKY, list(/obj/effect/meteor/pumpkin))
 
 /obj/effect/meteor/pumpkin
-	name = "PUMPKING"
-	desc = "THE PUMPKING'S COMING!"
+	name = "KRÓL DYŃ"
+	desc = "NADCIĄGA KRÓL DYŃ!"
 	icon = 'icons/obj/meteor_spooky.dmi'
 	icon_state = "pumpkin"
 	hits = 10
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(meteorsSPOOKY, list(/obj/effect/meteor/pumpkin))
 /////////////////////////
 
 /obj/effect/falling_meteor
-	name = "falling meteor"
+	name = "spadający meteor"
 	desc = "..."
 	alpha = 0
 	var/obj/effect/meteor/contained_meteor
@@ -474,8 +474,8 @@ GLOBAL_LIST_INIT(meteorsSPOOKY, list(/obj/effect/meteor/pumpkin))
 	qdel(src)
 
 /obj/effect/meteor_shadow
-	name = "shadow"
-	desc = "What the hell? Is something falling out the sky???"
+	name = "cień"
+	desc = "Co jest, do diabła? Coś spada z nieba???"
 	alpha = 0
 	layer = METEOR_SHADOW_LAYER
 

@@ -9,7 +9,7 @@
  */
 
 /obj/item/circuit_component/object_overlay/bar
-	display_name = "Bar Overlay"
+	display_name = "Nakładka paska"
 	desc = "Wymaga obudowy BCI. Komponent, który wyświetla nad obiektem pasek w zakresie od 0 do 100."
 	category = "BCI"
 

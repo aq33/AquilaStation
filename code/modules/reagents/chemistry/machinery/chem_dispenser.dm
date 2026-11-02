@@ -12,8 +12,8 @@
 			return ckey(id)
 
 /obj/machinery/chem_dispenser
-	name = "chem dispenser"
-	desc = "Creates and dispenses chemicals."
+	name = "dozownik chemikaliów"
+	desc = "Wytwarza i wydaje chemikalia."
 	density = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
@@ -317,24 +317,24 @@
 					recording_recipe[key] += dispense_amount
 			. = TRUE
 		if("clear_recipes")
-			var/yesno = alert("Usunąć wszystkie receptury?",, "Yes","No")
-			if(yesno == "Yes")
+			var/yesno = alert("Usunąć wszystkie receptury?",, "Tak","Nie")
+			if(yesno == "Tak")
 				saved_recipes = list()
 			. = TRUE
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE
 		if("save_recording")
-			var/name = stripped_input(usr,"Name","What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
+			var/name = stripped_input(usr,"Nazwa","Jak chcesz nazwać tę recepturę?", "Receptura", MAX_NAME_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Yes", "No") != "Yes")
+			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") != "Tak")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent)]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>Słyszysz ciche brzęczenie.</span>")
+						visible_message("<span class='warning'>[src] brzęczy.</span>", "<span class='italics'>Słyszysz ciche brzęczenie.</span>")
 						to_chat(usr, "<span class ='danger'>[src] nie może znaleźć <b>[reagent]</b>!</span>")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 						return
@@ -457,8 +457,8 @@
 	return b_o
 
 /obj/machinery/chem_dispenser/drinks
-	name = "soda dispenser"
-	desc = "Contains a large reservoir of soft drinks."
+	name = "dozownik napojów"
+	desc = "Ma duży zbiornik napojów bezalkoholowych."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "soda_dispenser"
 	has_panel_overlay = FALSE
@@ -503,7 +503,7 @@
 	)
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Contains a large reservoir of soft drinks. This model has had its safeties shorted out."
+	desc = "Ma duży zbiornik napojów bezalkoholowych. Ten model ma zwarte zabezpieczenia."
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/fullupgrade
@@ -513,8 +513,8 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/drinks/beer
-	name = "booze dispenser"
-	desc = "Contains a large reservoir of the good stuff."
+	name = "dozownik alkoholi"
+	desc = "Ma duży zbiornik dobrego trunku."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
@@ -549,7 +549,7 @@
 	)
 
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Contains a large reservoir of the good stuff. This model has had its safeties shorted out."
+	desc = "Ma duży zbiornik dobrego trunku. Ten model ma zwarte zabezpieczenia."
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer/fullupgrade
@@ -559,16 +559,16 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/mutagen
-	name = "mutagen dispenser"
-	desc = "Creates and dispenses mutagen."
+	name = "dozownik mutagenu"
+	desc = "Wytwarza i wydaje mutagen."
 	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	upgrade_reagents = null
 	emagged_reagents = list(/datum/reagent/toxin/plasma)
 
 
 /obj/machinery/chem_dispenser/mutagensaltpeter
-	name = "botanical chemical dispenser"
-	desc = "Creates and dispenses chemicals useful for botany."
+	name = "botaniczny dozownik chemikaliów"
+	desc = "Wytwarza i wydaje chemikalia przydatne w botanice."
 	flags_1 = NODECONSTRUCT_1
 
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
@@ -590,8 +590,8 @@
 	upgrade_reagents = null
 
 /obj/machinery/chem_dispenser/mutagensaltpetersmall
-	name = "minor botanical chemical dispenser"
-	desc = "A botanical chemical dispenser on a budget."
+	name = "mały botaniczny dozownik chemikaliów"
+	desc = "Botaniczny dozownik chemikaliów w wersji budżetowej."
 	icon_state = "minidispenser"
 	working_state = "minidispenser_working"
 	nopower_state = "minidispenser_nopower"
@@ -613,7 +613,7 @@
 	return b_o
 
 /obj/machinery/chem_dispenser/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Creates and dispenses chemicals. This model has had its safeties shorted out."
+	desc = "Wytwarza i wydaje chemikalia. Ten model ma zwarte zabezpieczenia."
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/fullupgrade
@@ -623,8 +623,8 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/abductor
-	name = "reagent synthesizer"
-	desc = "Synthesizes a variety of reagents using proto-matter."
+	name = "syntezator odczynników"
+	desc = "Syntetyzuje różne odczynniki z protomaterii."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "chem_dispenser"
 	has_panel_overlay = FALSE

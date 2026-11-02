@@ -2,8 +2,8 @@
 
 	icon_state = "he1"
 
-	name = "heat exchanger"
-	desc = "Exchanges heat between two input gases. Set up for fast heat transfer."
+	name = "wymiennik ciepła"
+	desc = "Wymienia ciepło między dwoma gazami na wejściu. Ustawiony na szybki transfer ciepła."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE // not really used

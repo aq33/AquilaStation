@@ -495,7 +495,7 @@ const ModParts = (props) => {
         return (
           <LabeledList.Item
             key={part.slot}
-            label={`Slot: ${part.slot}`}
+            label={`Miejsce: ${part.slot}`}
             buttons={
               <Button
                 selected={part.deployed}

@@ -242,8 +242,8 @@
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/action/innate/wavespeak
-	name = "Carp Wavespeak"
-	desc = "Communicate through wavespeak."
+	name = "Mowa fal karpi"
+	desc = "Porozumiewaj się mową fal."
 	background_icon_state = "bg_default"
 	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
 	button_icon_state = "wavespeak"

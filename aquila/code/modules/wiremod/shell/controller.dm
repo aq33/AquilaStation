@@ -5,7 +5,7 @@
  * In game, this translates to having different signals for normal usage, alt-clicking, and ctrl-clicking when in your hand.
  */
 /obj/item/controller
-	name = "controller"
+	name = "kontroler"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_small_calc"
 	item_state = "electronic"
@@ -24,7 +24,7 @@
 	), SHELL_CAPACITY_MEDIUM)
 
 /obj/item/circuit_component/controller
-	display_name = "Controller"
+	display_name = "Kontroler"
 	desc = "Odbiera sygnały z obudowy kontrolera. Użyj obudowy w ręce, aby wyzwolić sygnał wyjściowy. Alt+klik daje sygnał alternatywny, prawy klik sygnał dodatkowy."
 	/// The three separate buttons that are called in attack_hand on the shell.
 	var/datum/port/output/signal

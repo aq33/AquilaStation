@@ -1,7 +1,7 @@
 ///////SMELTABLE ALLOYS///////
 
 /datum/design/plasteel_alloy
-	name = "Plasteel (Plasma + Iron alloy)"
+	name = "Plastal (stop plazmy i żelaza)"
 	id = "plasteel"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT, /datum/material/plasma = MINERAL_MATERIAL_AMOUNT)
@@ -12,7 +12,7 @@
 
 
 /datum/design/plastitanium_alloy
-	name = "Plastitanium (Plasma + Titanium alloy)"
+	name = "Plastytan (stop plazmy i tytanu)"
 	id = "plastitanium"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/titanium = MINERAL_MATERIAL_AMOUNT, /datum/material/plasma = MINERAL_MATERIAL_AMOUNT)
@@ -22,7 +22,7 @@
 	maxstack = 50
 
 /datum/design/plaglass_alloy
-	name = "Plasma Glass (Plasma + Glass alloy)"
+	name = "Szkło plazmowe (stop plazmy i szkła)"
 	id = "plasmaglass"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
@@ -32,7 +32,7 @@
 	maxstack = 50
 
 /datum/design/plasmarglass_alloy
-	name = "Plasma Reinforced Glass (Plasma + Iron + Glass alloy)"
+	name = "Zbrojone szkło plazmowe (stop plazmy, żelaza i szkła)"
 	id = "plasmareinforcedglass"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5,  /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
@@ -42,7 +42,7 @@
 	maxstack = 50
 
 /datum/design/titaniumglass_alloy
-	name = "Titanium Glass (Titanium + Glass alloy)"
+	name = "Szkło tytanowe (stop tytanu i szkła)"
 	id = "titaniumglass"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
@@ -52,7 +52,7 @@
 	maxstack = 50
 
 /datum/design/plastitaniumglass_alloy
-	name = "Plastitanium glass (Plasma + Titanium + Glass alloy)"
+	name = "Szkło plastytanowe (stop plazmy, tytanu i szkła)"
 	id = "plastitaniumglass"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
@@ -62,8 +62,8 @@
 	maxstack = 50
 
 /datum/design/alienalloy
-	name = "Alien Alloy"
-	desc = "A sheet of reverse-engineered alien alloy."
+	name = "Obcy stop"
+	desc = "Arkusz obcego stopu odtworzonego metodą inżynierii wstecznej."
 	id = "alienalloy"
 	build_type = PROTOLATHE | SMELTER
 	materials = list(/datum/material/iron = 4000, /datum/material/plasma = 4000)

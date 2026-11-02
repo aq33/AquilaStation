@@ -84,14 +84,14 @@
 	zone = "abstract"
 
 /obj/item/organ/eyes/dullahan
-	name = "head vision"
-	desc = "An abstraction."
+	name = "wzrok głowy"
+	desc = "Abstrakcja."
 	actions_types = list(/datum/action/item_action/organ_action/dullahan)
 	zone = "abstract"
 
 /datum/action/item_action/organ_action/dullahan
-	name = "Toggle Perspective"
-	desc = "Switch between seeing normally from your head, or blindly from your body."
+	name = "Przełącz perspektywę"
+	desc = "Przełączaj między normalnym patrzeniem z głowy a ślepym patrzeniem z ciała."
 
 /datum/action/item_action/organ_action/dullahan/Trigger()
 	. = ..()

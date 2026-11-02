@@ -284,14 +284,14 @@
 		M.fields["blood_type"]	= H.dna.blood_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["mi_dis"]		= "None"
-		M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
+		M.fields["mi_dis_d"]	= "Nie zgłoszono żadnych drobnych niepełnosprawności."
 		M.fields["ma_dis"]		= "None"
-		M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
+		M.fields["ma_dis_d"]	= "Nie zdiagnozowano żadnych poważnych niepełnosprawności."
 		M.fields["alg"]			= "None"
-		M.fields["alg_d"]		= "No allergies have been detected in this patient."
+		M.fields["alg_d"]		= "U tego pacjenta nie wykryto alergii."
 		M.fields["cdi"]			= "None"
-		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
-		M.fields["notes"]		= "No notes."
+		M.fields["cdi_d"]		= "Obecnie nie zdiagnozowano żadnych chorób."
+		M.fields["notes"]		= "Brak notatek."
 		//NSV13 - Roleplaying Records Medical Records - Start
 		if(C?.prefs?.active_character?.medical_record)
 			M.fields["past_records"] = C.prefs.active_character.medical_record
@@ -307,7 +307,7 @@
 		S.fields["criminal"]	= "None"
 		S.fields["citation"]	= list()
 		S.fields["crim"]		= list()
-		S.fields["notes"]		= "No notes."
+		S.fields["notes"]		= "Brak notatek."
 		//NSV13 - Roleplaying Records Security Records - Start
 		if(C?.prefs?.active_character?.security_record)
 			S.fields["past_records"] = C.prefs.active_character.security_record

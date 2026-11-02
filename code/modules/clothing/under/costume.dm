@@ -1,6 +1,6 @@
 /obj/item/clothing/under/costume/roman
-	name = "\improper Roman armor"
-	desc = "Ancient Roman armor. Made of metallic and leather straps."
+	name = "\improper rzymski pancerz"
+	desc = "Starożytny rzymski pancerz z metalowych i skórzanych pasów."
 	icon_state = "roman"
 	item_state = "armor"
 	can_adjust = FALSE
@@ -8,33 +8,33 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/jabroni
-	name = "jabroni outfit"
+	name = "strój jabroni"
 	desc = "Klub skórzany jest dwa sektory dalej."
 	icon_state = "darkholme"
 	item_state = "darkholme"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/owl
-	name = "owl uniform"
-	desc = "A soft brown jumpsuit made of synthetic feathers and strong conviction."
+	name = "strój sowy"
+	desc = "Miękki brązowy kombinezon z syntetycznych piór i silnego przekonania."
 	icon_state = "owl"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/griffin
-	name = "griffon uniform"
-	desc = "A soft brown jumpsuit with a white feather collar made of synthetic feathers and a lust for mayhem."
+	name = "strój gryfa"
+	desc = "Miękki brązowy kombinezon z białym kołnierzem z syntetycznych piór i żądzy chaosu."
 	icon_state = "griffin"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/cloud
-	name = "cloud costume"
-	desc = "A costume made to resemble a fluffy cloud. Hopefully concealing any naughty bits the children might see."
+	name = "przebranie chmurki"
+	desc = "Przebranie przypominające puszystą chmurkę. Miejmy nadzieję, że zakrywa wszystko, czego dzieci nie powinny zobaczyć."
 	icon_state = "cloud"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/schoolgirl
-	name = "blue schoolgirl uniform"
-	desc = "It's just like one of my Japanese animes!"
+	name = "niebieski mundurek uczennicy"
+	desc = "Zupełnie jak w moich japońskich anime!"
 	icon_state = "schoolgirl"
 	item_state = "schoolgirl"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -42,22 +42,22 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/schoolgirl/red
-	name = "red schoolgirl uniform"
+	name = "czerwony mundurek uczennicy"
 	icon_state = "schoolgirlred"
 	item_state = "schoolgirlred"
 
 /obj/item/clothing/under/costume/schoolgirl/green
-	name = "green schoolgirl uniform"
+	name = "zielony mundurek uczennicy"
 	icon_state = "schoolgirlgreen"
 	item_state = "schoolgirlgreen"
 
 /obj/item/clothing/under/costume/schoolgirl/orange
-	name = "orange schoolgirl uniform"
+	name = "pomarańczowy mundurek uczennicy"
 	icon_state = "schoolgirlorange"
 	item_state = "schoolgirlorange"
 
 /obj/item/clothing/under/costume/pirate
-	name = "pirate outfit"
+	name = "strój pirata"
 	desc = "Arr."
 	icon_state = "pirate"
 	item_state = "pirate"
@@ -65,22 +65,22 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/soviet
-	name = "soviet uniform"
+	name = "radziecki mundur"
 	desc = "Za Ojczyznę!"
 	icon_state = "soviet"
 	item_state = "soviet"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/redcoat
-	name = "redcoat uniform"
-	desc = "Looks old."
+	name = "mundur czerwonego kubraka"
+	desc = "Wygląda staro."
 	icon_state = "redcoat"
 	item_state = "redcoat"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/kilt
 	name = "kilt"
-	desc = "Includes shoes and plaid."
+	desc = "Buty i pled w zestawie."
 	icon_state = "kilt"
 	item_state = "kilt"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
@@ -88,15 +88,15 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/kilt/highlander
-	desc = "You're the only one worthy of this kilt."
+	desc = "Tylko ty jesteś godny tego kiltu."
 
 /obj/item/clothing/under/costume/kilt/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
 /obj/item/clothing/under/costume/gladiator
-	name = "gladiator uniform"
-	desc = "Are you not entertained? Is that not why you are here?"
+	name = "strój gladiatora"
+	desc = "Czy nie jesteście zabawieni? Czy nie po to tu przyszliście?"
 	icon_state = "gladiator"
 	item_state = "gladiator"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -105,11 +105,11 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/gladiator/ash_walker
-	desc = "This gladiator uniform appears to be covered in ash and fairly dated."
+	desc = "Ten strój gladiatora jest pokryty popiołem i dość przestarzały."
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/costume/maid
-	name = "maid costume"
+	name = "strój pokojówki"
 	desc = "Maid in China."
 	icon_state = "maid"
 	item_state = "maid"
@@ -123,7 +123,7 @@
 	attach_accessory(A)
 
 /obj/item/clothing/under/costume/geisha
-	name = "geisha suit"
+	name = "strój gejszy"
 	desc = "Słodki kosmiczny ninja senpai nie wchodzi w zestaw."
 	icon_state = "geisha"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -131,45 +131,45 @@
 
 /obj/item/clothing/under/costume/kamishimo
 	name = "kamishimo"
-	desc = "A traditional ancient Earth Japanese Kamishimo."
+	desc = "Tradycyjne, starożytne japońskie kamishimo z Ziemi."
 	icon_state = "kamishimo"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/villain
-	name = "villain suit"
-	desc = "A change of wardrobe is necessary if you ever want to catch a real superhero."
+	name = "strój złoczyńcy"
+	desc = "Zmiana garderoby to konieczność, jeśli chcesz kiedykolwiek złapać prawdziwego superbohatera."
 	icon_state = "villain"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/sailor
-	name = "sailor suit"
+	name = "strój marynarski"
 	desc = "Szyper siedzi w mesie i pije dżin."
 	icon_state = "sailor"
 	item_state = "b_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer
-	desc = "Just looking at this makes you want to sing."
+	desc = "Na sam widok masz ochotę śpiewać."
 	body_parts_covered = CHEST|GROIN|ARMS
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer/yellow
-	name = "yellow performer's outfit"
+	name = "żółty strój artysty"
 	icon_state = "ysing"
 	item_state = "ysing"
 	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/costume/singer/blue
-	name = "blue performer's outfit"
+	name = "niebieski strój artysty"
 	icon_state = "bsing"
 	item_state = "bsing"
 	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/costume/mummy
-	name = "mummy wrapping"
-	desc = "Return the slab or suffer my stale references."
+	name = "bandaże mumii"
+	desc = "Oddaj tablicę albo cierp przez moje zwietrzałe nawiązania."
 	icon_state = "mummy"
 	item_state = "mummy"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -178,8 +178,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/scarecrow
-	name = "scarecrow clothes"
-	desc = "Perfect camouflage for hiding in botany."
+	name = "ubranie stracha na wróble"
+	desc = "Idealny kamuflaż do ukrywania się w botanice."
 	icon_state = "scarecrow"
 	item_state = "scarecrow"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -188,8 +188,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/draculass
-	name = "draculass coat"
-	desc = "A dress inspired by the ancient \"Victorian\" era."
+	name = "płaszcz drakulessy"
+	desc = "Suknia inspirowana starożytną epoką „wiktoriańską”."
 	icon_state = "draculass"
 	item_state = "draculass"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -197,30 +197,30 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/drfreeze
-	name = "doctor freeze's jumpsuit"
-	desc = "A modified scientist jumpsuit to look extra cool."
+	name = "kombinezon doktora Freeze'a"
+	desc = "Przerobiony kombinezon naukowca, żeby wyglądać wyjątkowo chłodno."
 	icon_state = "drfreeze"
 	item_state = "drfreeze"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/lobster
-	name = "foam lobster suit"
-	desc = "Who beheaded the college mascot?"
+	name = "piankowy strój homara"
+	desc = "Kto ściął głowę maskotce uczelni?"
 	icon_state = "lobster"
 	item_state = "lobster"
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/gondola
-	name = "gondola hide suit"
-	desc = "Now you're cooking."
+	name = "strój ze skóry gondoli"
+	desc = "No, to rozumiem."
 	icon_state = "gondola"
 	item_state = "lb_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/skeleton
-	name = "skeleton jumpsuit"
-	desc = "A black jumpsuit with a white bone pattern printed on it. Spooky!"
+	name = "kombinezon szkieletu"
+	desc = "Czarny kombinezon z nadrukowanym białym wzorem kości. Upiorne!"
 	icon_state = "skeleton"
 	item_state = "skeleton"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -229,8 +229,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/mech_suit
-	name = "red mech pilot's suit"
-	desc = "A red mech pilot's suit. Might make your butt look big."
+	name = "czerwony strój pilota mecha"
+	desc = "Czerwony strój pilota mecha. Może sprawić, że twój tyłek wygląda na duży."
 	icon_state = "red_mech_suit"
 	item_state = "red_mech_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -240,20 +240,20 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/mech_suit/white
-	name = "white mech pilot's suit"
-	desc = "A white mech pilot's suit. Very fetching."
+	name = "biały strój pilota mecha"
+	desc = "Biały strój pilota mecha. Bardzo twarzowy."
 	icon_state = "white_mech_suit"
 	item_state = "white_mech_suit"
 
 /obj/item/clothing/under/costume/mech_suit/blue
-	name = "blue mech pilot's suit"
-	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
+	name = "niebieski strój pilota mecha"
+	desc = "Niebieski strój pilota mecha. Dla bardziej niechętnych pilotów mechów."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
 
 /obj/item/clothing/under/costume/russian_officer
-	name = "\improper Russian officer's uniform"
-	desc = "The latest in fashionable russian outfits."
+	name = "\improper mundur rosyjskiego oficera"
+	desc = "Ostatni krzyk mody wśród rosyjskich strojów."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	alt_covers_chest = TRUE
@@ -264,7 +264,7 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/costume/swagoutfit
-	name = "swag outfit"
+	name = "szpanerski strój"
 	desc = "Może pójdziesz zgarnąć jakieś laski?"
 	icon_state = "SwagOutfit"
 	item_state = "SwagOutfit"

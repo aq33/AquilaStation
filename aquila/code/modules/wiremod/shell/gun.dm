@@ -4,7 +4,7 @@
  * A gun that lets you fire projectiles to enact circuitry.
  */
 /obj/item/gun/energy/wiremod_gun
-	name = "circuit gun"
+	name = "broń z układem"
 	desc = "Broń strzelająca pociskami, które sterują obwodami. Może się ładować energią z podłączonego układu."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_gun"
@@ -24,7 +24,7 @@
 	fire_sound = 'sound/weapons/blaster.ogg'
 
 /obj/item/projectile/energy/wiremod_gun
-	name = "scanning beam"
+	name = "wiązka skanująca"
 	icon_state = "energy"
 	damage = 0
 	range = 7
@@ -41,7 +41,7 @@
 	RegisterSignal(shell, COMSIG_SHELL_CIRCUIT_ATTACHED, PROC_REF(on_circuit_attached))
 
 /obj/item/circuit_component/wiremod_gun
-	display_name = "Gun"
+	display_name = "Broń"
 	desc = "Odbiera obiekty trafione pociskami z broni."
 	/// Called when a projectile hits
 	var/datum/port/output/signal

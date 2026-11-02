@@ -1,5 +1,5 @@
 /datum/symptom/blobspores
-	name = "Blob Spores"
+	name = "Zarodniki bloba"
 	desc = "Ten objaw sprawia, że nosiciel wytwarza zarodniki bloba, które w późniejszych stadiach opuszczają nosiciela, a jeśli nosiciel umrze, wszystkie zarodniki wydostaną się z niego naraz, tworząc też pole bloba."
 	stealth = 1
 	resistance = 6

@@ -45,7 +45,7 @@
 	LAZYREMOVEASSOC(GLOB.squad_manager.role_squad_map, role, src)
 	role = task
 	LAZYADDASSOCLIST(GLOB.squad_manager.role_squad_map, role, src)
-	broadcast(src, "NEW ASSIGNMENT: [role]", list('nsv13/sound/effects/notice2.ogg'))
+	broadcast(src, "NOWE ZADANIE: [squad_role_pl(role)]", list('nsv13/sound/effects/notice2.ogg'))
 	primary_objective = GLOB.squad_manager.role_objective_map[role]
 	access = GLOB.squad_manager.role_access_map[role]
 
@@ -101,7 +101,7 @@
 	to_chat(H, "<span class='sciradio'>[primary_objective]</span>")
 	if(secondary_objective)
 		to_chat(H, "<span class='sciradio'>[secondary_objective]</span>")
-	broadcast(src,"[H.name] assigned to squad.", list('nsv13/sound/effects/notice2.ogg'))
+	broadcast(src,"[H.name] dołącza do drużyny.", list('nsv13/sound/effects/notice2.ogg'))
 
 
 /datum/squad/proc/remove_member(mob/living/carbon/human/H)
@@ -113,7 +113,7 @@
 	if(leader == H)
 		unset_leader()
 		assign_leader()
-	broadcast(src,"[H.name] removed from squad.", list('nsv13/sound/effects/notice2.ogg')) //Change order of this when done testing.
+	broadcast(src,"[H.name] opuszcza drużynę.", list('nsv13/sound/effects/notice2.ogg')) //Change order of this when done testing.
 
 /datum/squad/proc/assign_leader()
 	//Whoever ranks highest is in charge
@@ -144,8 +144,8 @@
 	leader = H
 	if(!(LAZYFIND(members, H)))
 		add_member(H)
-	to_chat(H, "<span class='sciradio'>Jesteś dowódcą drużyny [name]! Masz władzę nad członkami tej drużyny i możesz nimi kierować według uznania. Zasadniczo podczas alarmu bojowego powinieneś wykorzystywać członków drużyny do pomocy w naprawie uszkodzonych obszarów</span>")
-	broadcast(src,"[leader.name] assigned as squad leader.", list('nsv13/sound/effects/notice2.ogg'))
+	to_chat(H, "<span class='sciradio'>Jesteś dowódcą drużyny [name]! Masz władzę nad członkami tej drużyny i możesz nimi kierować według uznania. Zasadniczo podczas alarmu bojowego powinieneś wykorzystywać członków drużyny do pomocy w naprawie uszkodzonych obszarów.</span>")
+	broadcast(src,"[leader.name] zostaje dowódcą drużyny.", list('nsv13/sound/effects/notice2.ogg'))
 
 /datum/squad/proc/unset_leader(mob/living/carbon/human/H)
 	if(!leader || (H && H != leader))
@@ -153,18 +153,18 @@
 	if(!H && leader) //No leader passed in but we need to demote the current one
 		H = leader
 	to_chat(H, "<span class='warning'>Zostajesz zdegradowany ze stanowiska dowódcy drużyny [name].</span>")
-	broadcast(src,"[H] demoted from squad lead.", list('nsv13/sound/effects/notice2.ogg'))
+	broadcast(src,"[H] traci stanowisko dowódcy drużyny.", list('nsv13/sound/effects/notice2.ogg'))
 	leader = null
 
 /datum/squad/able
 	name = "Able"
-	desc = "Able squad is the ship's high-alert squad. Able Squad can be activated to commandeer enemy vessels or deal with threats, though by default they are expected to help with combat repairs."
+	desc = "Drużyna Able to drużyna okrętu w stanie podwyższonej gotowości. Można ją wysłać do przejmowania wrogich jednostek albo do walki z zagrożeniami, choć domyślnie ma pomagać w naprawach podczas walki."
 	role = DC_SQUAD
 	colour = "#e61919"
 
 /datum/squad/baker
 	name = "Baker"
-	desc = "Baker squad is the ship's reservist squad. They specialise in search-and-rescue and emergency medical care."
+	desc = "Drużyna Baker to drużyna rezerwistów okrętu. Specjalizuje się w poszukiwaniu i ratownictwie oraz w ratownictwie medycznym."
 	role = MEDICAL_SQUAD
 	colour = "#4148c8"
 
@@ -172,12 +172,12 @@
 
 /datum/squad/charlie
 	name = "Charlie"
-	desc = "Charlie squad is the ship's secondary engineering squad. They are usually activated during complex boarding operations when Able becomes overcrowded."
+	desc = "Drużyna Charlie to zapasowa drużyna techniczna okrętu. Zwykle wysyła się ją podczas skomplikowanych abordaży, gdy w drużynie Able robi się za tłoczno."
 	role = DC_SQUAD
 	colour = "#ffc32d"
 
 /datum/squad/duff
 	name = "Duff"
-	desc = "Duff squad is comprised of conscripts and deserters. While they're a band of rogues, they can be useful when munitions is understaffed. Give them access to weapons at your own risk."
+	desc = "Drużyna Duff składa się z poborowych i dezerterów. To banda łotrów, ale bywa przydatna, gdy w dziale amunicji brakuje rąk do pracy. Dostęp do broni dajesz im na własne ryzyko."
 	role = MUNITIONS_SUPPORT
 	colour = "#c864c8"

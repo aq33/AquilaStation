@@ -15,8 +15,8 @@
 
 /// Karta łowców nagród wynajętych przez CentCom
 /obj/item/card/id/silver/spacepol/bounty/ert
-	registered_name = "Bounty Hunter"
-	assignment = "Bounty Hunter"
+	registered_name = "Łowca nagród"
+	assignment = "Łowca nagród"
 	icon_state = "ert"
 
 /obj/item/card/id/silver/spacepol/bounty/ert/Initialize(mapload)

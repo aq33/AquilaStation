@@ -1,5 +1,5 @@
 /datum/symptom/necroseed
-	name = "Necropolis Seed"
+	name = "Nasienie Nekropolii"
 	desc = "Niedojrzała forma korzenia macek Lavalandu. Tworzy z nosicielem więź symbiotyczną, czyniąc go silniejszym i wytrzymalszym kosztem szybkości. Jeśli choroba zostanie wyleczona, nosiciel bardzo osłabnie"
 	stealth = 0
 	resistance = 3
@@ -48,7 +48,7 @@
 				to_chat(M, "<span class='notice'>Twoja skóra wydaje się łuskowata.</span>")
 		if(3, 4)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your skin is hard.", "You feel stronger.", "You feel powerful.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Twoja skóra jest twarda.", "Czujesz się silniejszy.", "Czujesz moc.")]</span>")
 		if(5)
 			if(tendrils)
 				tendril(A)
@@ -67,7 +67,7 @@
 				REMOVE_TRAIT(M, TRAIT_NECROPOLIS_INFECTED, "legion_core_trait")
 				to_chat(M, "<span class='notice'>Macki rozluźniają uścisk, chroniąc nekropolię w tobie.</span>")
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Twoja skóra stała się twardym pancerzem", "Twoja siła jest nadludzka.", "Czujesz się niezwyciężony.")]</span>")
 	return
 
 /datum/symptom/necroseed/proc/tendril(datum/disease/advance/A)
@@ -118,7 +118,7 @@
 		new /obj/structure/closet/crate/necropolis/tendril(M.loc)
 
 /obj/effect/temp_visual/goliath_tentacle/necro
-	name = "fledgling necropolis tendril"
+	name = "młoda macka Nekropolii"
 
 /obj/effect/temp_visual/goliath_tentacle/necro/trip()
 	var/latched = FALSE

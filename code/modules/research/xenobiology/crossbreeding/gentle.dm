@@ -1,6 +1,6 @@
 /obj/item/slimecross/gentle
-	name = "gentle extract"
-	desc = "It pulses slowly, as if breathing."
+	name = "łagodny ekstrakt"
+	desc = "Pulsuje powoli, jakby oddychał."
 	effect = "gentle"
 	effect_desc = "Użyj, by aktywować słabszy efekt; Alt-klik, by aktywować silniejszy efekt."
 	icon_state = "gentle"

@@ -1,11 +1,11 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const auto_fit_viewport: FeatureToggle = {
-  name: 'Auto fit viewport',
+  name: 'Automatyczne dopasowanie widoku',
   category: 'GRAPHICS',
   subcategory: 'Scaling',
   description:
-    'Automatically resize the map panel to chat panel ratio to fit the map size, removing black bars from the edges of the view.',
+    'Automatycznie dopasowuje proporcje panelu mapy i panelu czatu do rozmiaru mapy, usuwając czarne pasy z krawędzi widoku.',
   component: CheckboxInput,
   important: true,
 };

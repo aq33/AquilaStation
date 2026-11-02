@@ -1,5 +1,5 @@
 /obj/item/circuit_component/list_literal/wirenet_send
-	display_name = "Wirenet Transmitter List Literal"
+	display_name = "Nadajnik Wirenet (literał listy)"
 	desc = "Tworzy pakiet danych z listy wejść i wysyła go przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "Utility"
 

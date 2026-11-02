@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/bow
-	name = "wooden bow"
-	desc = "some sort of primitive projectile weapon. used to fire arrows."
+	name = "drewniany łuk"
+	desc = "Jakaś prymitywna broń miotająca. Strzela się z niej strzałami."
 	icon_state = "bow"
 	item_state = "bow"
 	w_class = WEIGHT_CLASS_BULKY
@@ -53,15 +53,15 @@
 	return chambered
 
 /obj/item/gun/ballistic/bow/ashen
-	name = "Bone Bow"
-	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
+	name = "kościany łuk"
+	desc = "Jakaś prymitywna broń miotająca z kości owiniętej ścięgnami."
 	icon_state = "ashenbow"
 	item_state = "ashenbow"
 	force = 8
 
 /obj/item/gun/ballistic/bow/pipe
-	name = "Pipe Bow"
-	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
+	name = "łuk z rury"
+	desc = "Toporna broń miotająca z jedwabnej cięciwy, rury i mnóstwa wyginania."
 	icon_state = "pipebow"
 	item_state = "pipebow"
 	force = 7

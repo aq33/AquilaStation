@@ -6,7 +6,7 @@ import {
 } from '../base';
 
 export const sound_adminhelp: FeatureToggle = {
-  name: 'Enable adminhelp sounds',
+  name: 'Dźwięki adminhelpów',
   category: 'ADMIN',
   subcategory: 'Sound',
   component: CheckboxInput,
@@ -14,28 +14,29 @@ export const sound_adminhelp: FeatureToggle = {
 };
 
 export const sound_ambience_volume: Feature<number> = {
-  name: 'Ambience volume',
+  name: 'Głośność otoczenia',
   category: 'SOUND',
   subcategory: 'Ambience',
-  description: `Volume of the various sounds that play depending on what area of the station you are in.`,
+  description: `Głośność różnych dźwięków zależnych od obszaru stacji, w którym jesteś.`,
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_announcements: FeatureToggle = {
-  name: 'Enable announcement sounds',
+  name: 'Dźwięki ogłoszeń',
   category: 'SOUND',
   subcategory: 'IC',
-  description: 'When enabled, hear sounds for command reports, notices, etc.',
+  description:
+    'Po włączeniu słyszysz dźwięki raportów dowództwa, komunikatów itp.',
   component: CheckboxInput,
   important: true,
 };
 
 export const sound_ghostpoll: FeatureToggle = {
-  name: 'Enable ghost polling sound',
+  name: 'Dźwięk naboru duchów',
   category: 'SOUND',
   description:
-    'When enabled, hear an alert when being polled for a ghost role.',
+    'Po włączeniu słyszysz sygnał, gdy trwa nabór na rolę dla ducha.',
   component: CheckboxInput,
 };
 
@@ -47,34 +48,34 @@ export const sound_combatmode: FeatureToggle = {
 };
 
 export const sound_instruments_volume: Feature<number> = {
-  name: 'Instruments volume',
+  name: 'Głośność instrumentów',
   category: 'SOUND',
   subcategory: 'IC',
-  description: 'Volume of instruments.',
+  description: 'Głośność instrumentów muzycznych.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_lobby_volume: Feature<number> = {
-  name: 'Lobby music volume',
+  name: 'Głośność muzyki w lobby',
   category: 'SOUND',
   subcategory: 'Music',
-  description: 'Volume of the title screen music.',
+  description: 'Głośność muzyki na ekranie tytułowym.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_midi_volume: Feature<number> = {
-  name: 'Admin music volume',
+  name: 'Głośność muzyki od adminów',
   category: 'SOUND',
   subcategory: 'Music',
-  description: 'Volume of admin music.',
+  description: 'Głośność muzyki puszczanej przez adminów.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_prayers: FeatureToggle = {
-  name: 'Enable prayer sounds',
+  name: 'Dźwięki modlitw',
   category: 'ADMIN',
   subcategory: 'Sound',
   component: CheckboxInput,
@@ -82,57 +83,57 @@ export const sound_prayers: FeatureToggle = {
 };
 
 export const sound_adminalert: FeatureToggle = {
-  name: 'Enable admin alert sounds',
+  name: 'Dźwięki alertów admina',
   category: 'ADMIN',
   subcategory: 'Sound',
   description:
-    'Enables sound on various admin notifications such as midround and event triggers.',
+    'Włącza dźwięk przy różnych powiadomieniach dla adminów, na przykład o midroundach i eventach.',
   component: CheckboxInput,
   important: true,
 };
 
 export const sound_ambient_buzz_volume: Feature<number> = {
-  name: 'Ambient buzz volume',
+  name: 'Głośność szumu otoczenia',
   category: 'SOUND',
   subcategory: 'Ambience',
   description:
-    'Volume of the low droning sound playing depending on your area.',
+    'Głośność niskiego buczenia zależnego od obszaru, w którym jesteś.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_weather_volume: Feature<number> = {
-  name: 'Weather volume',
+  name: 'Głośność pogody',
   category: 'SOUND',
   subcategory: 'Ambience',
-  description: 'Volume of weather.',
+  description: 'Głośność dźwięków pogody.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_soundtrack_volume: Feature<number> = {
-  name: 'Soundtrack volume',
+  name: 'Głośność ścieżki dźwiękowej',
   category: 'SOUND',
   subcategory: 'Music',
   description:
-    'Volume of soundtracks, like nuclear countdowns or xenomorph invasions.',
+    'Głośność ścieżek dźwiękowych, na przykład odliczania do wybuchu atomówki albo inwazji ksenomorfów.',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_ai_vox_volume: Feature<number> = {
-  name: 'AI VOX announcements volume',
+  name: 'Głośność ogłoszeń VOX SI',
   category: 'SOUND',
   subcategory: 'IC',
-  description: 'Volume of vocal AI announcements (also known as "VOX").',
+  description: 'Głośność mówionych ogłoszeń SI (tzw. „VOX”).',
   component: FeatureSliderInput,
   important: true,
 };
 
 export const sound_radio_noise: FeatureToggle = {
-  name: 'Enable radio noise',
+  name: 'Szumy radia',
   category: 'SOUND',
   description:
-    'When enabled, hear sounds of talking and hearing radio chatter.',
+    'Po włączeniu słyszysz dźwięki mówienia i odbierania rozmów przez radio.',
   component: CheckboxInput,
 };

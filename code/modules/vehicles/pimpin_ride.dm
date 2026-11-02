@@ -1,7 +1,7 @@
 //PIMP-CART
 /obj/vehicle/ridden/janicart
-	name = "janicart (pimpin' ride)"
-	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
+	name = "wózek woźnego (bryka alfonsa)"
+	desc = "Dzielny cyborg sprzątający oddał życie, żeby powstało to niesamowite połączenie szybkości i użyteczności."
 	icon_state = "pussywagon"
 	key_type = /obj/item/key/janitor
 	var/obj/item/storage/bag/trash/mybag = null
@@ -24,8 +24,8 @@
 	. = ..()
 
 /obj/item/janiupgrade
-	name = "floor buffer upgrade"
-	desc = "An upgrade for mobile janicarts."
+	name = "ulepszenie: polerka do podłóg"
+	desc = "Ulepszenie do ruchomych wózków woźnego."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "upgrade"
 

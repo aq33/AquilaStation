@@ -97,7 +97,7 @@
 
 /datum/round_event/ghost_role/bitrunning_glitch
 	minimum_required = 1
-	role_name = "Bitrunning Glitch"
+	role_name = "Glitch bitrunningu"
 	fakeable = FALSE
 	/// Admin customization: What to spawn
 	var/forced_role

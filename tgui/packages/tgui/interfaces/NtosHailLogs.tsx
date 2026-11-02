@@ -10,12 +10,12 @@ type Data = {
 
 const missionStatusToText = (s) => {
   if (s === 2) {
-    return 'Mission complete!';
+    return 'Misja wykonana!';
   }
   if (s === -1) {
-    return 'Mission failed!';
+    return 'Misja nieudana!';
   }
-  return 'Mission active';
+  return 'Misja w toku';
 };
 
 export const NtosHailLogs = (props) => {
@@ -23,9 +23,9 @@ export const NtosHailLogs = (props) => {
   return (
     <NtosWindow resizable width={440} height={650}>
       <NtosWindow.Content scrollable>
-        <Section title="Ship status">
+        <Section title="Stan statku">
           <LabeledList>
-            <LabeledList.Item label="Name">{data.ship_name}</LabeledList.Item>
+            <LabeledList.Item label="Nazwa">{data.ship_name}</LabeledList.Item>
           </LabeledList>
         </Section>
         <MissionTable />
@@ -38,11 +38,11 @@ const MissionTable = (props) => {
   const { act, data } = useBackend<Data>();
   const missions = data.missions || [];
   return (
-    <Section title="Missions">
+    <Section title="Misje">
       {missions.map((mission) => (
         <Section
           title={
-            'Request from ' +
+            'Zlecenie od: ' +
             mission.client +
             ' - ' +
             missionStatusToText(mission.status)
@@ -51,7 +51,7 @@ const MissionTable = (props) => {
         >
           {mission.desc}
           <br />
-          {'Payment: ' + mission.reward}
+          {'Zapłata: ' + mission.reward}
         </Section>
       ))}
     </Section>

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork
-	name = "Summon Pitchfork"
-	desc = "A devil's weapon of choice.  Use this to summon/unsummon your pitchfork."
+	name = "Przywołanie wideł"
+	desc = "Ulubiona broń diabła. Użyj, by przywołać lub odesłać swoje widły."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1
@@ -22,17 +22,17 @@
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/violin
 	item_type = /obj/item/instrument/violin/golden
-	desc = "A devil's instrument of choice.  Use this to summon/unsummon your golden violin."
+	desc = "Ulubiony instrument diabła. Użyj, by przywołać lub odesłać swoje złote skrzypce."
 	invocation_type = "whisper"
 	invocation = "Nie bawiłem się tak dobrze od czasów Georgii."
 	action_icon_state = "golden_violin"
-	name = "Summon golden violin"
+	name = "Przywołanie złotych skrzypiec"
 	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/targeted/summon_contract
-	name = "Summon infernal contract"
-	desc = "Skip making a contract by hand, just do it by magic."
+	name = "Przywołanie piekielnego kontraktu"
+	desc = "Nie musisz spisywać kontraktu ręcznie, zrób to magią."
 	invocation_type = "whisper"
 	invocation = "Wystarczy podpisać w wykropkowanym miejscu."
 	include_user = FALSE
@@ -54,21 +54,21 @@
 					user.put_in_hands(contract)
 			else
 				var/obj/item/paper/contract/infernal/contract  // = new(user.loc, C.mind, contractType, user.mind)
-				var/contractTypeName = input(user, "Jaki rodzaj kontraktu?") in sortList(list("Power", "Wealth", "Prestige", "Magic", "Knowledge", "Friendship", "Pleasure")) // AQ EDIT: added Pleasure
+				var/contractTypeName = input(user, "Jaki rodzaj kontraktu?") in sortList(list("Władza", "Bogactwo", "Prestiż", "Magia", "Wiedza", "Przyjaźń", "Rozkosz")) // AQ EDIT: added Pleasure
 				switch(contractTypeName)
-					if("Power")
+					if("Władza")
 						contract = new /obj/item/paper/contract/infernal/power(C.loc, C.mind, user.mind)
-					if("Wealth")
+					if("Bogactwo")
 						contract = new /obj/item/paper/contract/infernal/wealth(C.loc, C.mind, user.mind)
-					if("Prestige")
+					if("Prestiż")
 						contract = new /obj/item/paper/contract/infernal/prestige(C.loc, C.mind, user.mind)
-					if("Magic")
+					if("Magia")
 						contract = new /obj/item/paper/contract/infernal/magic(C.loc, C.mind, user.mind)
-					if("Knowledge")
+					if("Wiedza")
 						contract = new /obj/item/paper/contract/infernal/knowledge(C.loc, C.mind, user.mind)
-					if("Friendship")
+					if("Przyjaźń")
 						contract = new /obj/item/paper/contract/infernal/friend(C.loc, C.mind, user.mind)
-					if("Pleasure") // AQ EDIT
+					if("Rozkosz") // AQ EDIT
 						contract = new /obj/item/paper/contract/infernal/pleasure(C.loc, C.mind, user.mind)
 				C.put_in_hands(contract)
 		else
@@ -76,8 +76,8 @@
 
 
 /obj/effect/proc_holder/spell/aimed/fireball/hellish
-	name = "Hellfire"
-	desc = "This spell launches hellfire at the target."
+	name = "Piekielny ogień"
+	desc = "To zaklęcie ciska w cel piekielnym ogniem."
 
 	school = "evocation"
 	charge_max = 80
@@ -91,8 +91,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/targeted/infernal_jaunt
-	name = "Infernal Jaunt"
-	desc = "Use hellfire to phase out of existence."
+	name = "Piekielna wędrówka"
+	desc = "Używasz piekielnego ognia, by zniknąć z tego świata."
 	charge_max = 200
 	clothes_req = FALSE
 	selection_type = "range"
@@ -166,8 +166,8 @@
 	addtimer(CALLBACK(src, PROC_REF(fakefireextinguish)), 15, TIMER_UNIQUE)
 
 /obj/effect/proc_holder/spell/targeted/sintouch
-	name = "Sin Touch"
-	desc = "Subtly encourage someone to sin."
+	name = "Dotyk grzechu"
+	desc = "Subtelnie zachęcasz kogoś do grzechu."
 	charge_max = 1800
 	clothes_req = FALSE
 	selection_type = "range"
@@ -186,7 +186,7 @@
 	invocation_type = "shout"
 
 /obj/effect/proc_holder/spell/targeted/sintouch/ascended
-	name = "Greater sin touch"
+	name = "Większy dotyk grzechu"
 	charge_max = 100
 	range = 7
 	max_targets = 10
@@ -204,8 +204,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/summon_dancefloor
-	name = "Summon Dancefloor"
-	desc = "When what a Devil really needs is funk."
+	name = "Przywołanie parkietu"
+	desc = "Gdy diabeł naprawdę potrzebuje funku."
 	include_user = TRUE
 	range = -1
 	clothes_req = FALSE

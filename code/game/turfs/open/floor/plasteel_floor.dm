@@ -138,7 +138,7 @@
 
 
 /turf/open/floor/plasteel/cult
-	name = "engraved floor"
+	name = "grawerowana podłoga"
 	icon_state = "cult"
 	base_icon_state = "cult"
 
@@ -147,8 +147,8 @@
 	base_icon_state = "pinkblack"
 
 /turf/open/floor/plasteel/goonplaque
-	name = "commemorative plaque"
-	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
+	name = "tablica pamiątkowa"
+	desc = "„Tablica ku czci naszych towarzyszy ze Stacji G4407. Oby model TG4407 dorównał waszej sławie i fortunie”. Pod spodem ktoś wydrapał prymitywny rysunek meteoru i kosmonauty. Kosmonauta się śmieje. Meteor wybucha."
 	icon_state = "plaque"
 	base_icon_state = "plaque"
 	tiled_dirt = FALSE

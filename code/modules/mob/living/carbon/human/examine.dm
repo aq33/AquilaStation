@@ -17,7 +17,7 @@
 		display_name += "[compose_rank(src)]"
 	display_name += name
 	if(dna?.species && !skipface)
-		apparent_species = ", <span class='[species_examine_font()]'>\an [dna.species.name]</span>" //NSV13 - species name is colored depending on special conditions.
+		apparent_species = ", <span class='[species_examine_font()]'>[dna.species.name]</span>" //NSV13 - species name is colored depending on special conditions.
 	. = list("<span class='info'>To jest <EM>[!obscure_name ? display_name : "Nieznajomy"][apparent_species]</EM>!")
 
 	//uniform
@@ -338,7 +338,7 @@
 	if(perpname && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)))
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.general)
 		if(R)
-			. += "<span class='deptradio'>Rank:</span> [R.fields["rank"]]\n<a href='byond://?src=[REF(src)];hud=1;photo_front=1'>\[Front photo\]</a><a href='byond://?src=[REF(src)];hud=1;photo_side=1'>\[Side photo\]</a>"
+			. += "<span class='deptradio'>Stopień:</span> [R.fields["rank"]]\n<a href='byond://?src=[REF(src)];hud=1;photo_front=1'>\[Zdjęcie z przodu\]</a><a href='byond://?src=[REF(src)];hud=1;photo_side=1'>\[Zdjęcie z boku\]</a>"
 		if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD))
 			var/list/cyberimp_detect = list()
 			for(var/obj/item/organ/cyberimp/CI in internal_organs)
@@ -353,12 +353,12 @@
 				. += "<a href='byond://?src=[REF(src)];hud=m;m_stat=1'>\[[health_r]\]</a>"
 			R = find_record("name", perpname, GLOB.data_core.medical)
 			if(R)
-				. += "<a href='byond://?src=[REF(src)];hud=m;evaluation=1'>\[Medical evaluation\]</a><br>"
+				. += "<a href='byond://?src=[REF(src)];hud=m;evaluation=1'>\[Ocena medyczna\]</a><br>"
 			if(traitstring)
 				. += "<span class='info'>Wykryte cechy fizjologiczne:\n[traitstring]"
 			//NSV13 - Roleplaying Records - Start
-			. += "<a href='byond://?src=[REF(src)];hud=m;medrecords=1'>\[View medical records\]</a>"
-			. += "<a href='byond://?src=[REF(src)];hud=m;genrecords=1'>\[View general records\]</a>"
+			. += "<a href='byond://?src=[REF(src)];hud=m;medrecords=1'>\[Pokaż akta medyczne\]</a>"
+			. += "<a href='byond://?src=[REF(src)];hud=m;genrecords=1'>\[Pokaż akta ogólne\]</a>"
 			//NSV13 - Roleplaying Records - End
 
 		if(HAS_TRAIT(user, TRAIT_SECURITY_HUD))
@@ -372,14 +372,14 @@
 
 				. += "<span class='deptradio'>Status karny:</span> <a href='byond://?src=[REF(src)];hud=s;status=1'>\[[criminal]\]</a>"
 				. += jointext(list("<span class='deptradio'>Akta ochrony:</span> <a href='byond://?src=[REF(src)];hud=s;viewsec=1'>\[Pokaż akta ochrony\]</a>", //NSV13 - Roleplaying Records
-					"<a href='byond://?src=[REF(src)];hud=s;add_citation=1'>\[Add citation\]</a>",
-					"<a href='byond://?src=[REF(src)];hud=s;add_crime=1'>\[Add crime\]</a>",
-					"<a href='byond://?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
-					"<a href='byond://?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
+					"<a href='byond://?src=[REF(src)];hud=s;add_citation=1'>\[Dodaj mandat\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;add_crime=1'>\[Dodaj przestępstwo\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;view_comment=1'>\[Pokaż komentarze\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;add_comment=1'>\[Dodaj komentarz\]</a>"), "")
 
 				. += jointext(list("<span class='deptradio'>Akta ogólne:</span> <a href='byond://?src=[REF(src)];hud=s;genrecords=1'>\[Pokaż akta ogólne\]</a>"), "") //NSV13 - Roleplaying Records
 	else if(isobserver(user) && traitstring)
-		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
+		. += "<span class='info'><b>Cechy:</b> [traitstring]</span>"
 
 	//NSV13 - Roleplaying Records - Start
 	if(!skipface)
@@ -402,12 +402,11 @@
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
-		pronoun_replacement = p_they(TRUE)
+		pronoun_replacement = plec(src, "On", "Ona", "Ono", "Oni")
 	for(var/V in status_effects)
 		var/datum/status_effect/E = V
 		if(E.examine_text)
 			var/new_text = replacetext(E.examine_text, "SUBJECTPRONOUN", pronoun_replacement)
-			new_text = replacetext(new_text, "[pronoun_replacement] is", "[pronoun_replacement] [p_are()]") //To make sure something become "They are" or "She is", not "They are" and "She are"
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 		var/effect_text = E.get_examine_text() // AQ EDIT - tekst statusu w stylu Bee (wampir)
 		if(effect_text)

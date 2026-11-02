@@ -54,9 +54,9 @@
 	)
 
 	log_game("DYNAMIC: [rule] ruleset executing...")
-	message_admins("DYNAMIC: Executing midround ruleset [rule] in [DisplayTimeText(ADMIN_CANCEL_MIDROUND_TIME)]. \
-		<a href='byond://?src=[REF(src)];cancelmidround=[midround_injection_timer_id]'>CANCEL</a> | \
-		<a href='byond://?src=[REF(src)];differentmidround=[midround_injection_timer_id]'>SOMETHING ELSE</a>")
+	message_admins("DYNAMIC: zestaw zasad w trakcie rundy [rule] wykona się za [DisplayTimeText(ADMIN_CANCEL_MIDROUND_TIME)]. \
+		<a href='byond://?src=[REF(src)];cancelmidround=[midround_injection_timer_id]'>ANULUJ</a> | \
+		<a href='byond://?src=[REF(src)];differentmidround=[midround_injection_timer_id]'>COŚ INNEGO</a>")
 
 	return rule
 
@@ -105,7 +105,7 @@
 /// Fired when an admin cancels the current midround injection.
 /datum/game_mode/dynamic/proc/admin_cancel_midround(mob/user, timer_id)
 	if (midround_injection_timer_id != timer_id || !deltimer(midround_injection_timer_id))
-		to_chat(user, "<span class='notice'>Too late!</span>")
+		to_chat(user, "<span class='notice'>Za późno!</span>")
 		return
 
 	dynamic_log("[key_name(user)] cancelled the next midround injection.")
@@ -115,7 +115,7 @@
 /// Fired when an admin requests a different midround injection.
 /datum/game_mode/dynamic/proc/admin_different_midround(mob/user, timer_id)
 	if (midround_injection_timer_id != timer_id || !deltimer(midround_injection_timer_id))
-		to_chat(user, "<span class='notice'>Too late!</span>")
+		to_chat(user, "<span class='notice'>Za późno!</span>")
 		return
 
 	midround_injection_timer_id = null
@@ -125,7 +125,7 @@
 		return
 
 	dynamic_log("[key_name(user)] asked for a different midround injection.")
-	message_admins("[key_name(user)] asked for a different midround injection.")
+	message_admins("[key_name(user)] prosi o inne wstrzyknięcie w trakcie rundy.")
 	pick_midround_rule(current_midround_rulesets, "different midround rulesets")
 
 #undef ADMIN_CANCEL_MIDROUND_TIME

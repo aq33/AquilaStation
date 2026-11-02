@@ -17,7 +17,7 @@
 /datum/antagonist/traitor/contractor_support/forge_traitor_objectives()
 	var/datum/objective/generic_objective = new
 
-	generic_objective.name = "Follow Contractor's Orders"
+	generic_objective.name = "Wykonuj rozkazy kontraktora"
 	generic_objective.explanation_text = "Wykonuj rozkazy. Wspieraj agentów w obszarze misji."
 
 	generic_objective.completed = TRUE
@@ -106,8 +106,8 @@
 	var/cost // Cost of the item in contract rep.
 
 /datum/contractor_item/contract_reroll
-	name = "Contract Reroll"
-	desc = "Request a reroll of your current contract list. Will generate a new target, payment, and dropoff for the contracts you currently have available."
+	name = "Nowe losowanie kontraktów"
+	desc = "Prosisz o ponowne wylosowanie listy kontraktów. Dostępne teraz kontrakty dostaną nowy cel, zapłatę i punkt odbioru."
 	item_icon = "dice"
 	limited = 2
 	cost = 0
@@ -136,24 +136,24 @@
 		hub.assigned_targets = new_target_list
 
 /datum/contractor_item/contractor_pinpointer
-	name = "Contractor Pinpointer"
-	desc = "A pinpointer that finds targets even without active suit sensors. Due to taking advantage of an exploit within the system, it can't pinpoint to the same accuracy as the traditional models. Becomes permanently locked to the user that first activates it."
+	name = "Lokalizator kontraktora"
+	desc = "Lokalizator, który znajduje cele nawet bez aktywnych czujników kombinezonu. Korzysta z luki w systemie, więc nie jest tak dokładny jak tradycyjne modele. Na stałe przypisuje się do pierwszej osoby, która go włączy."
 	item = /obj/item/pinpointer/crew/contractor
 	item_icon = "search-location"
 	limited = 2
 	cost = 1
 
 /datum/contractor_item/fulton_extraction_kit
-	name = "Fulton Extraction Kit"
-	desc = "For getting your target across the station to those difficult dropoffs. Place the beacon somewhere secure, and link the pack. Activating the pack on your target in space will send them over to the beacon - make sure they're not just going to run away though!"
+	name = "Zestaw ewakuacyjny Fultona"
+	desc = "Do przerzucania celu przez statek do trudno dostępnych punktów odbioru. Umieść gdzieś bezpiecznie nadajnik i połącz z nim pakiet. Aktywowanie pakietu na celu w kosmosie wyśle go do nadajnika – tylko upewnij się, że ci nie ucieknie!"
 	item = /obj/item/storage/box/contractor/fulton_extraction
 	item_icon = "parachute-box"
 	limited = 1
 	cost = 1
 
 /datum/contractor_item/contractor_partner
-	name = "Reinforcements"
-	desc = "Upon purchase we'll contact available units in the area. Should there be an agent free, we'll send them down to assist you immediately. If no units are free, we give a full refund."
+	name = "Posiłki"
+	desc = "Po zakupie skontaktujemy się z dostępnymi jednostkami w okolicy. Jeśli jakiś agent będzie wolny, natychmiast przyślemy go do pomocy. Jeśli nikt nie będzie wolny, zwrócimy całą kwotę."
 	item_icon = "user-friends"
 	limited = 1
 	cost = 2
@@ -179,7 +179,7 @@
 			hub.purchased_items -= src
 
 /datum/outfit/contractor_partner
-	name = "Contractor Support Unit"
+	name = "Jednostka wsparcia kontraktora"
 
 	uniform = /obj/item/clothing/under/chameleon
 	suit = /obj/item/clothing/suit/chameleon
@@ -232,8 +232,8 @@
 	new /obj/effect/pod_landingzone(free_location, arrival_pod)
 
 /datum/contractor_item/blackout
-	name = "Blackout"
-	desc = "Request Syndicate Command to distrupt the station's powernet. Disables power across the station for a short duration."
+	name = "Zaciemnienie"
+	desc = "Prosisz Dowództwo Syndykatu o zakłócenie sieci energetycznej statku. Na krótko odcina zasilanie na całym statku."
 	item_icon = "bolt"
 	limited = 2
 	cost = 3
@@ -274,15 +274,15 @@
 	return TRUE
 
 /obj/item/pinpointer/crew/contractor
-	name = "contractor pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. Ignores suit sensors, but is much less accurate."
+	name = "lokalizator kontraktora"
+	desc = "Ręczne urządzenie namierzające, które łapie określone sygnały. Nie potrzebuje czujników kombinezonu, ale jest dużo mniej dokładne."
 	icon_state = "pinpointer_syndicate"
 	minimum_range = 25
 	has_owner = TRUE
 	ignore_suit_sensor_level = TRUE
 
 /obj/item/storage/box/contractor/fulton_extraction
-	name = "Fulton Extraction Kit"
+	name = "zestaw ewakuacyjny Fultona"
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 

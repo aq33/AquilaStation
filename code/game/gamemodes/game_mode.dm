@@ -82,7 +82,7 @@
 			return FALSE
 		return TRUE
 	else
-		message_admins("<span class='notice'>DEBUG: GAME STARTING WITHOUT PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT.</span>")
+		message_admins("<span class='notice'>DEBUG: GRA STARTUJE BEZ SPRAWDZANIA LICZBY GRACZY, TO PEWNIE COŚ ZEPSUJE.</span>")
 		return TRUE
 
 /datum/game_mode/proc/setup_maps()
@@ -225,7 +225,7 @@
 
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
 	if(living_crew.len / GLOB.joined_player_list.len <= malc) //If a lot of the player base died, we start fresh
-		message_admins("Convert_roundtype failed due to too many dead people. Limit is [malc * 100]% living crew")
+		message_admins("Convert_roundtype nie powiodło się: za dużo martwych. Limit to [malc * 100]% żywej załogi")
 		return null
 
 	var/list/datum/game_mode/runnable_modes = config.get_runnable_midround_modes(living_crew.len)
@@ -237,7 +237,7 @@
 			qdel(G)
 
 	if(!usable_modes.len)
-		message_admins("Convert_roundtype failed due to no valid modes to convert to. Please report this error to the Coders.")
+		message_admins("Convert_roundtype nie powiodło się: brak trybów, na które można przejść. Zgłoś ten błąd koderom.")
 		return null
 
 	replacementmode = pickweight(usable_modes)
@@ -251,7 +251,7 @@
 
 	var/matc = CONFIG_GET(number/midround_antag_time_check)
 	if(world.time >= (matc * 600))
-		message_admins("Convert_roundtype failed due to round length. Limit is [matc] minutes.")
+		message_admins("Convert_roundtype nie powiodło się: runda trwa za długo. Limit to [matc] min.")
 		return null
 
 	var/list/antag_candidates = list()
@@ -261,7 +261,7 @@
 			antag_candidates += H
 
 	if(!antag_candidates)
-		message_admins("Convert_roundtype failed due to no antag candidates.")
+		message_admins("Convert_roundtype nie powiodło się: brak kandydatów na antagonistów.")
 		return null
 
 	antag_candidates = shuffle(antag_candidates)
@@ -273,7 +273,7 @@
 	if(CONFIG_GET(flag/protect_heads_from_antagonist))
 		replacementmode.restricted_jobs += GLOB.command_positions
 
-	message_admins("The roundtype will be converted. If you have other plans for the station or feel the station is too messed up to inhabit <A HREF='byond://?_src_=holder;[HrefToken()];toggle_midround_antag=[REF(usr)]'>stop the creation of antags</A> or <A HREF='byond://?_src_=holder;[HrefToken()];end_round=[REF(usr)]'>end the round now</A>.")
+	message_admins("Tryb rundy zostanie zmieniony. Jeśli masz inne plany wobec stacji albo uważasz, że jest zbyt zniszczona, by na niej żyć, <A HREF='byond://?_src_=holder;[HrefToken()];toggle_midround_antag=[REF(usr)]'>zatrzymaj tworzenie antagonistów</A> albo <A HREF='byond://?_src_=holder;[HrefToken()];end_round=[REF(usr)]'>zakończ rundę teraz</A>.")
 	log_game("Roundtype converted to [replacementmode.name]")
 
 	. = 1
@@ -281,7 +281,7 @@
 	sleep(rand(600,1800))
 	//somewhere between 1 and 3 minutes from now
 	if(!SSticker.IsRoundInProgress())
-		message_admins("Roundtype conversion cancelled, the game appears to have finished!")
+		message_admins("Zmiana trybu rundy anulowana, gra chyba się skończyła!")
 		round_converted = 0
 		return
 	if(!CONFIG_GET(keyed_list/midround_antag)[SSticker.mode.config_tag])
@@ -292,7 +292,7 @@
 			replacementmode.make_antag_chance(H)
 	replacementmode.gamemode_ready = TRUE //Awful but we're not doing standard setup here.
 	round_converted = 2
-	message_admins("-- IMPORTANT: The roundtype has been converted to [replacementmode.name], antagonists may have been created! --")
+	message_admins("-- WAŻNE: tryb rundy zmieniono na [replacementmode.name], mogli powstać antagoniści! --")
 
 /**
  *  ATTENTION:
@@ -333,7 +333,7 @@
 						continuous_sanity_checked = TRUE
 						return FALSE
 			if(!continuous_sanity_checked)
-				message_admins("The roundtype ([config_tag]) has no antagonists, continuous round has been defaulted to on and midround_antag has been defaulted to off.")
+				message_admins("Tryb rundy ([config_tag]) nie ma antagonistów, więc domyślnie włączono kontynuowanie rundy i wyłączono midround_antag.")
 				continuous[config_tag] = TRUE
 				midround_antag[config_tag] = FALSE
 				SSshuttle.clearHostileEnvironment(src)
@@ -635,7 +635,7 @@
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
-	var/list/msg = list("<span class='boldnotice'>Roundstart logout report\n\n</span>")
+	var/list/msg = list("<span class='boldnotice'>Raport wylogowań na starcie rundy\n\n</span>")
 	var/list/mapvoters = SSpersistence.LoadMapVoters()
 	var/list/bad_mapvoters = list() // NSV13 - check for people who voted and ran
 	for(var/i in GLOB.mob_living_list)
@@ -694,7 +694,7 @@
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), [L.job] (<span class='boldannounce'>wyszedł jako duch</span>)\n"
 						continue //Ghosted while alive
 
-	msg += "\n<b>Absent mapvoters:</b> [english_list(bad_mapvoters)]\n"
+	msg += "\n<b>Nieobecni głosujący na mapę:</b> [english_list(bad_mapvoters)]\n"
 	log_vote("These voters were absent during the roundstart logout check: [english_list(bad_mapvoters)]")
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())

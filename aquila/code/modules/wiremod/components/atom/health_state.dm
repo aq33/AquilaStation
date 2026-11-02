@@ -5,7 +5,7 @@
  */
 
 /obj/item/circuit_component/compare/health_state
-	display_name = "Compare Health State"
+	display_name = "Porównaj stan zdrowia"
 	desc = "Komponent, który porównuje stan zdrowia organizmu i zwraca prawdę lub fałsz."
 	category = "Entity"
 

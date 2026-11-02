@@ -106,6 +106,12 @@ export const TicketFullMonty = (props) => {
       <Button color="blue" content="FLW" onClick={() => act('flw')} />
       <Button color="blue" content="TP" onClick={() => act('traitorpanel')} />
       <Button color="green" content="LOG" onClick={() => act('viewlogs')} />
+      <Button
+        color="green"
+        content="HIST"
+        tooltip="Historia ticketów gracza"
+        onClick={() => act('tickethistory')}
+      />
       <Button color="red" content="SMITE" onClick={() => act('smite')} />
     </Box>
   );

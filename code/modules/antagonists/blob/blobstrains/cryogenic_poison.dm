@@ -11,7 +11,7 @@
 	reagent = /datum/reagent/blob/cryogenic_poison
 
 /datum/reagent/blob/cryogenic_poison
-	name = "Cryogenic Poison"
+	name = "Trucizna kriogeniczna"
 	description = "wstrzykuje zamrażającą truciznę, która zadaje duże obrażenia w czasie."
 	color = "#8BA6E9"
 	taste_description = "lodowaty ból głowy"

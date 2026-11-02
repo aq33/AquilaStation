@@ -1,6 +1,6 @@
 /obj/item/projectile/bullet/reusable
-	name = "reusable bullet"
-	desc = "How do you even reuse a bullet?"
+	name = "pocisk wielokrotnego użytku"
+	desc = "Jak w ogóle można ponownie użyć pocisku?"
 	var/ammo_type = /obj/item/ammo_casing/caseless
 	var/dropped = FALSE
 	impact_effect_type = null

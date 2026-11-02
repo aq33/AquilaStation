@@ -141,7 +141,7 @@
 		throwpower = I.throwforce
 		if(I.thrownby == WEAKREF(src)) //No throwing stuff at yourself to trigger hit reactions
 			return ..()
-	if(check_shields(AM, throwpower, "\the [AM.name]", THROWN_PROJECTILE_ATTACK))
+	if(check_shields(AM, throwpower, "[AM.name]", THROWN_PROJECTILE_ATTACK))
 		hitpush = FALSE
 		skipcatch = TRUE
 		blocked = TRUE
@@ -205,7 +205,7 @@
 		H.dna.species.spec_attack_hand(H, src, null, modifiers)
 
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M, list/modifiers)
-	if(check_shields(M, 0, "the [M.name]", UNARMED_ATTACK))
+	if(check_shields(M, 0, "[M.name]", UNARMED_ATTACK))
 		visible_message("<span class='danger'>[M] próbuje dotknąć [src]!</span>", \
 			"<span class='danger'>[M] próbuje cię dotknąć!</span>")
 		return 0
@@ -237,7 +237,7 @@
 		return 1
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M, list/modifiers)
-	if(check_shields(M, 20, "the [M.name]", UNARMED_ATTACK))
+	if(check_shields(M, 20, "[M.name]", UNARMED_ATTACK))
 		visible_message("<span class='danger'>[M] próbuje dotknąć [src]!</span>", \
 			"<span class='danger'>[M] próbuje cię dotknąć!</span>")
 		return 0
@@ -276,7 +276,7 @@
 /mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)
 	if(..()) //successful larva bite.
 		var/damage = rand(1, 3)
-		if(check_shields(L, damage, "the [L.name]"))
+		if(check_shields(L, damage, "[L.name]"))
 			return 0
 		if(stat != DEAD)
 			L.amount_grown = min(L.amount_grown + damage, L.max_grown)
@@ -291,7 +291,7 @@
 	. = ..()
 	if(.)
 		var/damage = M.melee_damage
-		if(check_shields(M, damage, "the [M.name]", MELEE_ATTACK, M.armour_penetration))
+		if(check_shields(M, damage, "[M.name]", MELEE_ATTACK, M.armour_penetration))
 			return FALSE
 		var/dam_zone = dismembering_strike(M, pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 		if(!dam_zone) //Dismemberment successful
@@ -317,7 +317,7 @@
 		if(M.transformeffects & SLIME_EFFECT_RED)
 			damage *= 1.1
 
-		if(check_shields(M, damage, "the [M.name]"))
+		if(check_shields(M, damage, "[M.name]"))
 			return 0
 
 		var/dam_zone = dismembering_strike(M, pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
@@ -359,7 +359,7 @@
 				update_damage_overlays()
 			updatehealth()
 
-		visible_message("<span class='danger'>[M.name] hits [src]!</span>", \
+		visible_message("<span class='danger'>[M.name] uderza [src]!</span>", \
 								"<span class='userdanger'>[M.name] cię uderza!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(M.occupant, src, "atakuje", M, "(COMBAT MODE: [M.occupant.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(M.damtype)])")
 
@@ -725,7 +725,7 @@
 		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 			status = "[brutedamage] obrażeń fizycznych i [burndamage] oparzeń"
 			if(!brutedamage && !burndamage)
-				status = "no damage"
+				status = "brak obrażeń"
 
 		else
 			if(brutedamage > 0)
@@ -735,7 +735,7 @@
 			if(brutedamage > (limb_max_damage*0.8))
 				status = LB.heavy_brute_msg
 			if(brutedamage > 0 && burndamage > 0)
-				status += " and "
+				status += " i "
 
 			if(burndamage > (limb_max_damage*0.8))
 				status += LB.heavy_burn_msg
@@ -747,9 +747,9 @@
 			if(status == "")
 				status = "OK"
 		var/no_damage
-		if(status == "OK" || status == "no damage")
+		if(status == "OK" || status == "brak obrażeń")
 			no_damage = TRUE
-		msg += "<span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status]. \n</span>"
+		msg += "<span class='[no_damage ? "notice" : "warning"]'>Część ciała ([LB.name]): [status]. \n</span>"
 
 		for(var/obj/item/I in LB.embedded_objects)
 			if(I.isEmbedHarmless())
@@ -821,7 +821,7 @@
 	//Checks to enforce proper grammar, inserts words as necessary into the list
 	if(broken.len)
 		if(broken.len > 1)
-			broken.Insert(broken.len, "and ")
+			broken.Insert(broken.len, "i ")
 			broken_plural = TRUE
 		else
 			var/holder = broken[1]	//our one and only element
@@ -833,7 +833,7 @@
 		msg += "\n<span class='warning'>[broken_message]: [broken_plural ? "nie działają" : "nie działa"]!</span>"
 	if(damaged.len)
 		if(damaged.len > 1)
-			damaged.Insert(damaged.len, "and ")
+			damaged.Insert(damaged.len, "i ")
 			damaged_plural = TRUE
 		else
 			var/holder = damaged[1]

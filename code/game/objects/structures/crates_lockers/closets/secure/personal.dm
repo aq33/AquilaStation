@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/personal
-	desc = "It's a secure locker for personnel. The first card swiped gains control."
-	name = "personal closet"
+	desc = "Zabezpieczona szafka dla personelu. Kontrolę nad nią przejmuje pierwsza przeciągnięta karta."
+	name = "szafka osobista"
 	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS)
 	var/registered_name = null
 
@@ -15,7 +15,7 @@
 	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
-	name = "patient's closet"
+	name = "szafka pacjenta"
 
 /obj/structure/closet/secure_closet/personal/patient/PopulateContents()
 	new /obj/item/clothing/under/color/white( src )
@@ -51,7 +51,7 @@
 
 			if(!registered_name)
 				registered_name = I.registered_name
-				desc = "Owned by [I.registered_name]."
+				desc = "Właściciel: [I.registered_name]."
 		else
 			to_chat(user, "<span class='danger'>Odmowa dostępu.</span>")
 	else

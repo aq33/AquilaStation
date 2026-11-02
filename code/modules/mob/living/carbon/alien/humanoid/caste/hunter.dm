@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/hunter
-	name = "alien hunter"
+	name = "łowca obcych"
 	caste = "h"
 	maxHealth = 200
 	health = 200
@@ -64,7 +64,7 @@
 			var/blocked = FALSE
 			if(ishuman(hit_atom))
 				var/mob/living/carbon/human/H = hit_atom
-				if(H.check_shields(src, 0, "the [name]", attack_type = LEAP_ATTACK))
+				if(H.check_shields(src, 0, "[name]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			if(!blocked)
 				L.visible_message("<span class ='danger'>[src] rzuca się na [L]!</span>", "<span class ='userdanger'>[src] rzuca się na ciebie!</span>")

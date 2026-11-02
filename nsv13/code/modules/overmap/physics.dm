@@ -4,8 +4,8 @@
 /////////////////////////////////////////////////////////////////////////
 
 /obj/vector_overlay
-	name = "Vector overlay for overmap ships"
-	desc = "Report this to a coder"
+	name = "nakładka wektora dla okrętów na overmapie"
+	desc = "Zgłoś to koderowi."
 	icon = 'nsv13/icons/overmap/thrust_vector.dmi'
 	icon_state = "thrust_low"
 	mouse_opacity = FALSE
@@ -44,7 +44,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 
 /mob/living/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_UNFUCK_OVERMAP, "Unfuck Overmap")
+	VV_DROPDOWN_OPTION(VV_HK_UNFUCK_OVERMAP, "Odkop overmapę")
 
 /mob/living/vv_do_topic(list/href_list)
 	. = ..()
@@ -94,7 +94,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 		T.SpinAnimation()
 
 /obj/effect/overmap_hitbox_marker
-	name = "Hitbox display"
+	name = "podgląd hitboxa"
 	icon = 'nsv13/icons/overmap/default.dmi'
 	icon_state = "hitbox_marker"
 
@@ -631,7 +631,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 		strength = strength * strength
 		strength = min(strength, 5) // don't want the explosions *too* big
 		// wew lad, might wanna slow down there
-		message_admins("[key_name_admin(pilot)] has impacted an overmap ship into [A] with velocity [bump_velocity]")
+		message_admins("[key_name_admin(pilot)] uderza okrętem z overmapy w [A] z prędkością [bump_velocity]")
 		take_damage(strength*10, BRUTE, "melee", TRUE)
 		O.take_damage(strength*5, BRUTE, "melee", TRUE)
 		log_game("[key_name(pilot)] has impacted an overmap ship into [A] with velocity [bump_velocity]")

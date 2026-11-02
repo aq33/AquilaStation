@@ -29,8 +29,8 @@
 	return perks
 
 /datum/species/ipc/get_species_description()
-	return "The newest in artificial life, IPCs are entirely robotic, synthetic life, made of motors, circuits, and wires \
-	- based on newly developed Postronic brain technology."
+	return "IPC to najnowsze osiągnięcie sztucznego życia: w pełni zrobotyzowane, syntetyczne istoty z silników, obwodów i przewodów \
+	- oparte na niedawno opracowanej technologii mózgu pozytronowego."
 
 /datum/species/ipc/get_species_lore()
 	return null
@@ -42,97 +42,97 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Shockingly Tasty",
-			SPECIES_PERK_DESC = "IPCs can feed on electricity from APCs and powercells to restore their charge; and do not otherwise need to eat.",
+			SPECIES_PERK_NAME = "Porażająco smaczne",
+			SPECIES_PERK_DESC = "IPC odnawiają ładunek, żywiąc się prądem z APC i ogniw zasilających, i poza tym nie muszą jeść.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "robot",
-			SPECIES_PERK_NAME = "Robotic",
-			SPECIES_PERK_DESC = "IPCs have an entirely robotic body, meaning medical care is typically done through Robotics or Engineering. \
-			Whether this is helpful or not is heavily dependent on your coworkers. It does, however, mean you are usually able to perform self-repairs easily.",
+			SPECIES_PERK_NAME = "Robotyczne",
+			SPECIES_PERK_DESC = "IPC mają całkowicie robotyczne ciało, więc zwykle leczy je robotyka albo inżynieria. \
+			Czy to pomaga, zależy w dużej mierze od współpracowników. Za to zwykle łatwo naprawisz się sam.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "magnet",
-			SPECIES_PERK_NAME = "EMP Vulnerable",
-			SPECIES_PERK_DESC = "IPC organs are cybernetic, and thus susceptible to electromagnetic interference. Getting hit by an EMP may stop your heart.",
+			SPECIES_PERK_NAME = "Podatne na EMP",
+			SPECIES_PERK_DESC = "Organy IPC są cybernetyczne, więc podatne na zakłócenia elektromagnetyczne. Trafienie impulsem EMP może zatrzymać ci serce.",
 		),
 	)
 
 	return to_add
 
 /datum/species/apid/get_species_description()
-	return "Beepeople, god damn it. It's hip, and alive! Buzz buzz!"
+	return "Pszczeloludzie, do cholery. Modne i żywe! Bzz bzz!"
 
 /datum/species/apid/get_species_lore()
 	return null
 
 /datum/species/ethereal/get_species_description()
-	return "Ethereals are a unique species with liquid electricity for blood and a glowing body. They thrive on electricity, and are naturally agender."
+	return "Eterycy to wyjątkowy gatunek: zamiast krwi mają płynną elektryczność, a ich ciała świecą. Żywią się elektrycznością i z natury nie mają płci."
 
 /datum/species/ethereal/get_species_lore()
 	return null
 
 /datum/species/human/felinid/get_species_description()
-	return "Felinids are one of the many types of bespoke genetic \
-		modifications to come of humanity's mastery of genetic science, and are \
-		also one of the most common. Meow?"
+	return "Felinidzi to jedna z wielu odmian ludzi zmodyfikowanych genetycznie na zamówienie \
+		dzięki mistrzostwu ludzkości w genetyce, a przy tym \
+		jedna z najpowszechniejszych. Miau?"
 
 /datum/species/human/felinid/get_species_lore()
 	return list(
-		"Bio-engineering at its felinest, Felinids are the peak example of humanity's mastery of genetic code. \
-			One of many \"Animalid\" variants, Felinids are the most popular and common, as well as one of the \
-			biggest points of contention in genetic-modification.",
+		"Felinidzi to bioinżynieria w najbardziej kociej postaci i szczytowy przykład tego, jak ludzkość opanowała kod genetyczny. \
+			Spośród wielu odmian „zwierzoludzi” felinidzi są najpopularniejsi i najliczniejsi, a zarazem budzą jedne z \
+			największych sporów wokół modyfikacji genetycznych.",
 
-		"Body modders were eager to splice human and feline DNA in search of the holy trifecta: ears, eyes, and tail. \
-			These traits were in high demand, with the corresponding side effects of vocal and neurochemical changes being seen as a minor inconvenience.",
+		"Modyfikatorzy ciała chętnie łączyli ludzkie i kocie DNA w poszukiwaniu świętej trójcy: uszu, oczu i ogona. \
+			Te cechy cieszyły się ogromnym popytem, a skutki uboczne w postaci zmian głosu i neurochemii uznawano za drobną niedogodność.",
 
-		"Sadly for the Felinids, they were not minor inconveniences. Shunned as subhuman and monstrous by many, Felinids (and other Animalids) \
-			sought their greener pastures out in the colonies, cloistering in communities of their own kind. \
-			As a result, outer Human space has a high Animalid population.",
+		"Niestety dla felinidów nie były to drobne niedogodności. Wielu uważało ich za podludzi i potwory, więc felinidzi (i inni zwierzoludzie) \
+			szukali szczęścia w koloniach, zamykając się we własnych społecznościach. \
+			Dlatego na obrzeżach ludzkiej przestrzeni żyje wielu zwierzoludzi.",
 	)
 
 /datum/species/fly/get_species_description()
-	return "With no official documentation or knowledge of the origin of \
-		this species, they remain a mystery to most. Any and all rumours among \
-		Nanotrasen staff regarding flypeople are often quickly silenced by high \
-		ranking staff or officials."
+	return "O pochodzeniu tego gatunku nie ma żadnych oficjalnych dokumentów \
+		ani wiedzy, więc dla większości pozostaje on zagadką. Wszelkie plotki \
+		o mucholudziach wśród personelu Nanotrasen szybko uciszają wysocy \
+		rangą pracownicy albo urzędnicy."
 
 /datum/species/fly/get_species_lore()
 	return list(
-		"Flypeople are a curious species with a striking resemblance to the insect order of Diptera, \
-		commonly known as flies. With no publically known origin, flypeople are rumored to be a side effect of bluespace travel, \
-		despite statements from Nanotrasen officials.",
+		"Mucholudzie to ciekawy gatunek, uderzająco podobny do owadów z rzędu muchówek, \
+		czyli po prostu much. Ich pochodzenie nie jest publicznie znane, a plotki głoszą, że są skutkiem ubocznym podróży przez bluespace, \
+		mimo oświadczeń urzędników Nanotrasen.",
 
-		"Little is known about the origins of this race, \
-		however they posess the ability to communicate with giant spiders, originally discovered in the Australicus sector \
-		and now a common occurence in black markets as a result of a breakthrough in syndicate bioweapon research.",
+		"O pochodzeniu tej rasy wiadomo niewiele, \
+		ale potrafią porozumiewać się z gigantycznymi pająkami, odkrytymi pierwotnie w sektorze Australicus, \
+		a dziś pospolitymi na czarnym rynku dzięki przełomowi w badaniach Syndykatu nad bronią biologiczną.",
 
-		"Flypeople are often feared or avoided among other species, their appearance often described as unclean or frightening in some cases, \
-		and their eating habits even more so with an insufferable accent to top it off.",
+		"Inne gatunki często boją się mucholudzi albo ich unikają. Ich wygląd bywa opisywany jako niechlujny, a czasem przerażający, \
+		nawyki żywieniowe jeszcze bardziej, a na dokładkę mają nieznośny akcent.",
 	)
 
 /datum/species/human/get_species_description()
-	return "Humans are the dominant species in the known galaxy. \
-		Their kind extend from old Earth to the edges of known space."
+	return "Ludzie to dominujący gatunek w znanej galaktyce. \
+		Zamieszkują wszystko od starej Ziemi po krańce znanego kosmosu."
 
 /datum/species/human/get_species_lore()
 	return list(
-		"These primate-descended creatures, originating from the mostly harmless Earth, \
-		have long-since outgrown their home and semi-benign designation. \
-		The space age has taken humans out of their solar system and into the galaxy-at-large."
+		"Te istoty pochodzące od naczelnych, wywodzące się z w większości niegroźnej Ziemi, \
+		dawno wyrosły ze swojego domu i z opinii w miarę nieszkodliwych. \
+		Era kosmiczna wyprowadziła ludzi poza Układ Słoneczny, w szeroką galaktykę."
 	)
 
 /datum/species/lizard/get_species_description()
-	return "Lizardpeople, unlike many 'Animalid' species, are not derived from humans, and are simply bipedal reptile-like people. \
-	Lizards often find great pride in their species."
+	return "Jaszczury, w przeciwieństwie do wielu gatunków „zwierzoludzi”, nie pochodzą od ludzi. To po prostu dwunożne istoty podobne do gadów. \
+	Jaszczury często są bardzo dumne ze swojego gatunku."
 
 /datum/species/lizard/get_species_lore()
 	return null
 
 /datum/species/moth/get_species_description()
-	return "Mothpeople are an intelligent species, known for their affinity to all things moth - lights, cloth, wings, and friendship."
+	return "Ćmy to inteligentny gatunek, znany z zamiłowania do wszystkiego, co ćmie: światła, tkanin, skrzydeł i przyjaźni."
 
 /datum/species/moth/get_species_lore()
 	return null
@@ -144,27 +144,27 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "feather-alt",
-			SPECIES_PERK_NAME = "Precious Wings",
-			SPECIES_PERK_DESC = "Moths can fly in pressurized, zero-g environments and safely land short falls using their wings.",
+			SPECIES_PERK_NAME = "Cenne skrzydła",
+			SPECIES_PERK_DESC = "Ćmy mogą latać w miejscach z ciśnieniem i bez grawitacji, a skrzydła pozwalają im bezpiecznie wylądować po krótkim upadku.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tshirt",
-			SPECIES_PERK_NAME = "Meal Plan",
-			SPECIES_PERK_DESC = "Moths can eat clothes for nourishment.",
+			SPECIES_PERK_NAME = "Jadłospis",
+			SPECIES_PERK_DESC = "Ćmy mogą żywić się ubraniami.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Ablazed Wings",
-			SPECIES_PERK_DESC = "Moth wings are fragile, and can be easily burnt off. However, moths can spin a cooccon to restore their wings if necessary.",
+			SPECIES_PERK_NAME = "Płonące skrzydła",
+			SPECIES_PERK_DESC = "Skrzydła ćmy są delikatne i łatwo je spalić. W razie potrzeby ćma może jednak uprząść kokon, by je odzyskać.",
 		),
 	)
 
 	return to_add
 
 /datum/species/oozeling/get_species_description()
-	return "Literally made of jelly, Oozelings are squishy friends aboard Space Station 13."
+	return "Oozelingi są dosłownie zrobione z galaretki. To mięciutcy przyjaciele na pokładzie Stacji Kosmicznej 13."
 
 /datum/species/oozeling/get_species_lore()
 	return null
@@ -176,47 +176,47 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "angle-double-down",
-			SPECIES_PERK_NAME = "Splat!",
-			SPECIES_PERK_DESC = "Oozelings have special resistance to falling, because their body and organs can flatten on impact. \
-			It might hurt a bit, but generally Oozelings can fall a lot further before their vitals organs start being pulverized.",
+			SPECIES_PERK_NAME = "Plask!",
+			SPECIES_PERK_DESC = "Oozelingi są wyjątkowo odporne na upadki, bo ich ciało i organy spłaszczają się przy uderzeniu. \
+			Może trochę boleć, ale zwykle oozeling spadnie z dużo większej wysokości, zanim jego ważne organy zaczną się rozpłaszczać na miazgę.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "street-view",
-			SPECIES_PERK_NAME = "Regenerative Limbs",
-			SPECIES_PERK_DESC = "Oozelings can regrow their limbs at will, provided they have enough Jelly.",
+			SPECIES_PERK_NAME = "Odrastające kończyny",
+			SPECIES_PERK_DESC = "Oozelingi mogą do woli odtwarzać kończyny, o ile mają dość galaretki.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "tint-slash",
-			SPECIES_PERK_NAME = "Hydrophobic",
-			SPECIES_PERK_DESC = "Oozelings are decomposed by water - contact with water, water vapor, or ingesting water can lead to rapid loss of body mass.",
+			SPECIES_PERK_NAME = "Wodowstręt",
+			SPECIES_PERK_DESC = "Woda rozkłada oozelingi: kontakt z wodą, parą wodną albo jej wypicie może szybko odebrać im masę ciała.",
 		)
 	)
 
 	return to_add
 
 /datum/species/plasmaman/get_species_description()
-	return "Found on the Icemoon of Freyja, plasmamen consist of colonial \
-		fungal organisms which together form a sentient being. In human space, \
-		they're usually attached to skeletons to afford a human touch."
+	return "Plazmaludzie, odkryci na lodowym księżycu Freyja, składają się z kolonii \
+		organizmów grzybowych, które razem tworzą świadomą istotę. W ludzkiej przestrzeni \
+		zwykle osadza się je na szkieletach, by nadać im ludzki wygląd."
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
-		"A confusing species, plasmamen are truly \"a fungus among us\". \
-		What appears to be a singular being is actually a colony of millions of organisms \
-		surrounding a found (or provided) skeletal structure.",
+		"Plazmaludzie to zagadkowy gatunek, prawdziwy „grzyb wśród nas”. \
+		To, co wygląda na pojedynczą istotę, jest w rzeczywistości kolonią milionów organizmów \
+		oplatającą znaleziony (albo dostarczony) szkielet.",
 
-		"Originally discovered by NT when a researcher \
-		fell into an open tank of liquid plasma, the previously unnoticed fungal colony overtook the body creating \
-		the first \"true\" plasmaman. The process has since been streamlined via generous donations of convict corpses and plasmamen \
-		have been deployed en masse throughout NT to bolster the workforce.",
+		"NT odkryło ich, gdy pewien badacz \
+		wpadł do otwartego zbiornika z ciekłą plazmą, a niezauważona wcześniej kolonia grzybów przejęła jego ciało i stworzyła \
+		pierwszego „prawdziwego” plazmamana. Od tamtej pory proces usprawniono dzięki hojnym darowiznom zwłok skazańców, a plazmaludzi \
+		masowo rozmieszczono w całym NT, by wzmocnić siłę roboczą.",
 
-		"New to the galactic stage, plasmamen are a blank slate. \
-		Their appearance, generally regarded as \"ghoulish\", inspires a lot of apprehension in their crewmates. \
-		It might be the whole \"flammable purple skeleton\" thing.",
+		"Plazmaludzie są na galaktycznej scenie nowi i stanowią czystą kartę. \
+		Ich wygląd, powszechnie uznawany za „upiorny”, budzi spory niepokój wśród reszty załogi. \
+		Może chodzi o cały ten „łatwopalny fioletowy szkielet”.",
 
-		"The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. \
-		Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.",
+		"Kolonie tworzące plazmaludzi potrzebują bogatej w plazmę atmosfery, w której wyewoluowały. \
+		Ich pseudoukład nerwowy działa na zewnętrznych impulsach elektrycznych, które w obecności tlenu natychmiast podpalają ich plazmowe ciała.",
 	)
 

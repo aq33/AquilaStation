@@ -2,7 +2,7 @@
 /datum/overmap_gamemode/armada
 	name = "Armada"
 	config_tag = "armada"
-	desc = "Complete objectives to gain reinforcements, defend allocated system when the Syndicate Armada arrives."
+	desc = "Wykonuj cele, żeby zdobyć posiłki, i broń przydzielonego układu, gdy przybędzie Armada Syndykatu."
 	brief = "Wywiad Floty White Rapids donosi, że Syndykat szykuje flotę inwazyjną, by zdobyć selected_system. Zbierzcie siły obronne, by odeprzeć Armadę, zwalniając jednostki floty, i przygotujcie się do obrony systemu."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"

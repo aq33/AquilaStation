@@ -138,12 +138,12 @@
 /obj/machinery/computer/secure_data/proc/can_hack(mob/living/hacker, feedback = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(feedback && hacker)
-			balloon_alert(hacker, "can't hack!")
+			balloon_alert(hacker, "nie da się zhakować!")
 		return FALSE
 	var/area/console_area = get_area(src)
 	if(!console_area || !(console_area.area_flags & VALID_TERRITORY))
 		if(feedback && hacker)
-			balloon_alert(hacker, "signal too weak!")
+			balloon_alert(hacker, "za słaby sygnał!")
 		return FALSE
 	return TRUE
 
@@ -208,7 +208,7 @@
 	if(!ninja || !hacking_module)
 		return NONE
 	if(occupant)
-		to_chat(occupant, "[icon2html(src, occupant)][span_danger("Warning: Unauthorized access through sub-route 4, block H, detected.")]")
+		to_chat(occupant, "[icon2html(src, occupant)][span_danger("Uwaga: wykryto nieautoryzowany dostęp przez podtrasę 4, blok H.")]")
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -239,7 +239,7 @@
 	if(!ninja || !hacking_module || (ROLE_NINJA in faction))
 		return NONE
 
-	to_chat(src, span_danger("Warni-***BZZZZZZZZZRT*** UPLOADING SPYDERPATCHER VERSION 9.5.2..."))
+	to_chat(src, span_danger("Uwa-***BZZZZZZZZZRT*** WGRYWANIE SPYDERPATCHER WERSJA 9.5.2..."))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -248,7 +248,7 @@
 		return
 	spark_system.start()
 	playsound(loc, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
+	to_chat(src, span_danger("WGRYWANIE ZAKOŃCZONE. WYKRYTO NOWY MODEL CYBORGA. INSTALOWANIE..."))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"
 	UnlinkSelf()
@@ -266,7 +266,7 @@
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, loc)
 		spark_system.start()
-		visible_message(span_danger("[ninja] electrocutes [src] with [ninja.p_their()] touch!"), span_userdanger("[ninja] electrocutes you with [ninja.p_their()] touch!"))
+		visible_message(span_danger("[ninja] poraża [src] prądem samym dotykiem!"), span_userdanger("[ninja] poraża cię prądem samym dotykiem!"))
 		addtimer(CALLBACK(src, PROC_REF(ninja_knockdown)), 0.3 SECONDS)
 	return NONE
 
@@ -277,7 +277,7 @@
 //CAMERAS//
 /obj/machinery/camera/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(isEmpProof(TRUE))
-		balloon_alert(ninja, "camera is shielded!")
+		balloon_alert(ninja, "kamera jest ekranowana!")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN * 5))
@@ -288,7 +288,7 @@
 
 //BOTS//
 /mob/living/simple_animal/bot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	to_chat(src, span_boldwarning("Your circutry suddenly begins heating up!"))
+	to_chat(src, span_boldwarning("Twoje obwody nagle zaczynają się nagrzewać!"))
 	if(!do_after(ninja, 1.5 SECONDS, target = src, progress = FALSE))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -297,14 +297,14 @@
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
 	playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 35, TRUE)
-	balloon_alert(ninja, "stand back!")
+	balloon_alert(ninja, "odsuń się!")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 0, 1, 2, 3), 2.5 SECONDS)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //ENERGY WEAPONS//
 /obj/item/gun/energy/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(cell.charge == 0)
-		balloon_alert(ninja, "no energy!")
+		balloon_alert(ninja, "brak energii!")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 1.5 SECONDS, target = src, progress = FALSE))
@@ -314,14 +314,14 @@
 	hacking_module.charge_message(src, cell.charge)
 	cell.charge = 0
 	update_appearance()
-	visible_message(span_warning("[ninja] drains the energy from the [src]!"))
+	visible_message(span_warning("[ninja] wysysa energię z [src]!"))
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //VENDING MACHINES//
 /obj/machinery/vending/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(shoot_inventory)
-		balloon_alert(ninja, "already hacked!")
+		balloon_alert(ninja, "już zhakowane!")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 2 SECONDS, target = src, progress = FALSE))
@@ -331,14 +331,14 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
-	balloon_alert(ninja, "system overloaded!")
+	balloon_alert(ninja, "system przeciążony!")
 	wires.on_pulse(WIRE_THROW)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //RECYCLER//
 /obj/machinery/recycler/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(obj_flags & EMAGGED)
-		balloon_alert(ninja, "already hacked!")
+		balloon_alert(ninja, "już zhakowane!")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	AI_notify_hack()
@@ -369,6 +369,6 @@
 /// Lets the AIs know someone is hacking this machine
 /obj/machinery/proc/AI_notify_hack()
 	var/turf/location = get_turf(src)
-	var/alertstr = span_userdanger("Network Alert: Hacking attempt detected[location ? " in [location]" : ". Unable to pinpoint location"].")
+	var/alertstr = span_userdanger("Alarm sieci: wykryto próbę włamania[location ? " w miejscu: [location]" : ". Nie można ustalić lokalizacji"].")
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		to_chat(AI, alertstr)

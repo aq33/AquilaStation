@@ -1,0 +1,66 @@
+'2026-11-01':
+  Joker66613:
+  - spellcheck: 'Reszta gry przetłumaczona na polski: opisy, komunikaty, okna, nazwy
+      reagentów, dań i napojów, panele admina.'
+  - spellcheck: Ujednolicone nazwy tych samych rzeczy w opisach, recepturach, projektach
+      i oknach.
+  - bugfix: Opis postaci nie wstawia już angielskich słów przed nazwą przedmiotu,
+      a czas wyświetla się po polsku.
+  - bugfix: Eksport cargo nie dopisuje angielskiego „s” do polskich nazw.
+  - code_imp: Słownik tłumaczeń w aquila/SLOWNIK_TLUMACZEN.md i test unikalności kluczy
+      reagentów.
+  - bugfix: Reakcje chemiczne w czasie (np. amoniak) nie zostawiają już 0,01–0,02u
+      jednego ze składników.
+  - tweak: Panel „Receptury” w dozowniku chemicznym pokazuje zakres pH, optymalną
+      temperaturę, przegrzanie, ciepło reakcji i minimalną czystość.
+  - bugfix: Wszystkie pady zamówień ekstraktów działają z konsolą rynku szlamów.
+  - rscdel: Usunięto zbędny pad zamówień w nauce i zsyp w kaplicy na Atlasie.
+  - bugfix: Mielarka przy pracy nie wraca do starego wyglądu i trzęsie się jak w Paradise.
+  - tweak: Za piecem łukowym kuźni da się przejść; galwanizer stoi obok stołu montażowego.
+  - balance: 'Alkohol wolniej niszczy wątrobę: zgon dopiero po około trzech butelkach
+      wódki.'
+  - bugfix: Alt blokuje i odblokowuje zamek szafki.
+  - bugfix: Kliknięcie w kafel z katwalkiem przesuwa ciągnięty obiekt.
+  - bugfix: Esc w lobby nie zamyka okna gotowości.
+  - bugfix: Pomoc pod Esc nie wypisuje klawiszy dwa razy.
+  - bugfix: Działo Gaussa ma jeden przycisk wyjścia.
+  - tweak: Przyciski akcji są domyślnie wszystkie na ekranie, paleta je chowa.
+  - balance: 'Ksenoarcheologia daje dużo więcej punktów badań i odkryć: kalibrator,
+      konsola, znacznik i skan cech artefaktów.'
+  - balance: Skan nowego gatunku rośliny daje 300 punktów odkryć zamiast 35.
+  - rscadd: 'Nowa chirurgia z tg: narzędzie pokazuje w menu operacje pasujące do stanu
+      kończyny, serwety przygotowują strefę, każda operacja to jeden krok.'
+  - rscadd: Komputer operacyjny z tg z wyborem strefy i listą możliwych operacji.
+  - rscadd: Rany kłute od kul i broni kłującej, pęknięcie czaszki, przebite oko, blizny
+      po ranach.
+  - rscadd: Kule mogą zostać w ciele; wyciąga się je ręką, hemostatem albo operacją.
+  - rscadd: Żel kostny, taśma chirurgiczna, bonesetter, automat do medipenów, worek
+      stazy, bandaż w skrzynce survivalowej.
+  - rscadd: Plastry mają folię ochronną, którą najpierw trzeba oderwać (Z).
+  - rscadd: Przycisk trybu tekstowego w oknie analizatora zdrowia.
+  - rscadd: Łączące się ślady krwi, krwawe nakładki na ranach, nakładki obrażeń i
+      sprite'y ciała człowieka z tg, plamy krwi na ścianach i oknach, dźwięk łamania
+      kości.
+  - balance: 'Rany losują się jak w tg: z bonusem broni, a nie tylko z obrażeń.'
+  - soundadd: Dźwięki łamania kości (TGMC, przez Shiptest).
+  - imageadd: Ikony sprzętu medycznego z tg.
+  - rscdel: Stary system operacji z listami kroków.
+  - rscdel: Gaza, opatrunek na stłuczenia i maść; bandaż przejął funkcje gazy.
+  sh4dow321:
+  - bugfix: Tickety (ahelpy) zapisują się do bazy, więc historia ticketów gracza działa
+      zamiast pokazywać błąd SQL.
+  - server: Gra sama tworzy w bazie tabelę SS13_ticket (wersja schematu 6.7), jeśli
+      jej brakuje.
+'2026-11-02':
+  Dwasint, joker:
+  - rscadd: '48 nowych objawów wirusów z wirusologii Monkestation, dostosowanych do
+      naszego systemu chorób: leczenie z plazmy, wody i światła gwiazd, ochrona przed
+      próżnią, świecenie skóry, nieśmiertelność z nawrotem po wyleczeniu, kolce na
+      skórze, przemiana w jaszczura i ćmę, rytm rumby i wiele innych.'
+  - rscadd: Objawy reagujące na dotyk - rogowacenie kolczaste rani tych, którzy wpadną
+      na nosiciela, a pęcherzowe oddzielanie naskórka rani samego nosiciela.
+  Joker66613:
+  - bugfix: Fabrykator bez podłączenia do silosu nie rzuca błędu przy rozbiórce, gdy
+      ma w sobie materiały.
+  - admin: Komora testowa ma na stałe kącik chirurgiczny i stojaki z bronią, a zestawy
+      PR-ów mają kroki z oczekiwanym wynikiem i komplet potrzebnych przedmiotów.

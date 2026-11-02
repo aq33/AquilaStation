@@ -9,9 +9,9 @@
 */
 
 /obj/machinery/telecomms/bus
-	name = "bus mainframe"
+	name = "magistrala telekomunikacyjna"
 	icon_state = "bus"
-	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	desc = "Potężny sprzęt do szybkiego przesyłania ogromnych ilości danych."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
@@ -77,7 +77,7 @@
 		freq_listening |= i
 
 /obj/machinery/telecomms/bus/preset_one/birdstation
-	name = "Bus"
+	name = "magistrala"
 	autolinkers = list("processor1", "common", "messaging")
 	freq_listening = list()
 

@@ -35,7 +35,7 @@
 /datum/ai_controller/dog/UnpossessPawn(destroy)
 	var/obj/item/carried_item = blackboard[BB_SIMPLE_CARRY_ITEM]
 	if(carried_item)
-		pawn.visible_message("<span='danger'>[pawn] drops [carried_item].</span>")
+		pawn.visible_message("<span='danger'>[pawn] upuszcza [carried_item].</span>")
 		carried_item.forceMove(pawn.drop_location())
 		blackboard[BB_SIMPLE_CARRY_ITEM] = null
 	UnregisterSignal(pawn, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_EXAMINE, COMSIG_CLICK_ALT, COMSIG_MOB_DEATH, COMSIG_GLOB_CARBON_THROW_THING, COMSIG_PARENT_QDELETING))

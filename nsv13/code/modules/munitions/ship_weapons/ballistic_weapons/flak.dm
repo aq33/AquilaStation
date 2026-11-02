@@ -1,8 +1,8 @@
 /obj/machinery/ship_weapon/pdc_mount/flak
-	name = "Flak loading rack"
+	name = "stojak ładowania flaku"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "pdc"
-	desc = "Seegson's all-in-one flak targeting computer and ammunition loader for defensive flak screens. These weapons, while crude, are still extremely effective, though rarely seen on smaller patrol craft due to their high running costs."
+	desc = "Zintegrowany komputer celowniczy i podajnik amunicji Seegson do obronnych zasłon flakowych. Choć prymitywna, ta broń jest wyjątkowo skuteczna, ale przez wysokie koszty eksploatacji rzadko trafia na mniejsze jednostki patrolowe."
 	anchored = TRUE
 	density = FALSE
 	pixel_y = 26
@@ -92,7 +92,7 @@
 
 /obj/item/projectile/bullet/flak
 	icon_state = "bolter"
-	name = "flak round"
+	name = "pocisk flak"
 	damage = 2
 	flag = "overmap_light"
 	alpha = 100

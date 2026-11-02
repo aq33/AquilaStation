@@ -1,6 +1,6 @@
 /datum/weather/void_storm
-	name = "void storm"
-	desc = "A rare and highly anomalous event often accompanied by unknown entities shredding spacetime continouum. We'd advise you to start running."
+	name = "burza pustki"
+	desc = "Rzadkie i wysoce anomalne zjawisko, któremu często towarzyszą nieznane byty rozdzierające kontinuum czasoprzestrzeni. Radzimy zacząć uciekać."
 
 	telegraph_duration = 2 SECONDS
 	telegraph_overlay = "light_snow"

@@ -1,5 +1,5 @@
 /datum/antagonist/blob
-	name = "Blob"
+	name = "Grzyb"
 	roundend_category = "bloby"
 	antagpanel_category = "Blob"
 	show_to_ghosts = TRUE
@@ -23,7 +23,7 @@
 	if(!isovermind(owner.current))
 		to_chat(owner,"<span class='userdanger'>Czujesz się wzdęty.</span>")
 	else
-		owner.current.client?.tgui_panel?.give_antagonist_popup("Blob",
+		owner.current.client?.tgui_panel?.give_antagonist_popup("Grzyb",
 			"Umieść rdzeń przyciskiem umieszczania rdzenia.\n\
 			Rozrastaj się i ostrożnie gospodaruj zasobami - załoga wkrótce dowie się o twoim istnieniu \
 			i wspólnie spróbuje cię zniszczyć.")
@@ -51,8 +51,8 @@
 
 //Non-overminds get this on blob antag assignment
 /datum/action/innate/blobpop
-	name = "Pop"
-	desc = "Unleash the blob"
+	name = "Wybuchnij"
+	desc = "Uwolnij grzyba."
 	icon_icon = 'icons/mob/blob.dmi'
 	button_icon_state = "blob"
 
@@ -72,4 +72,4 @@
 	if(owner?.current)
 		var/mob/camera/blob/B = owner.current
 		if(istype(B))
-			. += "(Progress: [B.blobs_legit.len]/[B.blobwincount])"
+			. += "(Postęp: [B.blobs_legit.len]/[B.blobwincount])"

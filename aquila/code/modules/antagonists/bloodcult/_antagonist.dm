@@ -137,7 +137,7 @@
 			to_chat(mob, span_danger("W plecaku masz: [item.name]."))
 			return TRUE
 		item.forceMove(get_turf(mob))
-		message_admins("[ADMIN_FULLMONTY(mob)] the cultist couldn't be equipped.")
+		message_admins("[ADMIN_FULLMONTY(mob)] – nie udało się wyposażyć kultysty.")
 		to_chat(mob, span_userdanger("Nie udało się dać ci: [item.name]. Przedmiot leży pod twoimi stopami."))
 		return FALSE
 	to_chat(mob, span_danger("Masz [item.name] w [where]."))
@@ -176,29 +176,29 @@
 /datum/antagonist/cult/admin_add(datum/mind/new_owner, mob/admin)
 	give_equipment = FALSE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has cult-ed [key_name_admin(new_owner)].")
+	message_admins("[key_name_admin(admin)] czyni [key_name_admin(new_owner)] kultystą.")
 	log_admin("[key_name(admin)] has cult-ed [key_name(new_owner)].")
 
 /datum/antagonist/cult/admin_remove(mob/user)
-	message_admins("[key_name_admin(user)] has decult-ed [key_name_admin(owner)].")
+	message_admins("[key_name_admin(user)] odbiera [key_name_admin(owner)] status kultysty.")
 	log_admin("[key_name(user)] has decult-ed [key_name(owner)].")
 	silent = TRUE
 	return ..()
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()
-	.["Dagger"] = CALLBACK(src, PROC_REF(admin_give_dagger))
-	.["Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_give_metal))
-	.["Remove Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_take_all))
-	.["Give Devotion"] = CALLBACK(src, PROC_REF(admin_give_devotion))
+	.["Sztylet"] = CALLBACK(src, PROC_REF(admin_give_dagger))
+	.["Sztylet i metal"] = CALLBACK(src, PROC_REF(admin_give_metal))
+	.["Zabierz sztylet i metal"] = CALLBACK(src, PROC_REF(admin_take_all))
+	.["Daj oddanie"] = CALLBACK(src, PROC_REF(admin_give_devotion))
 
 /datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
 	if(!equip_cultist(metal = FALSE))
-		to_chat(admin, span_danger("Spawning dagger failed!"))
+		to_chat(admin, span_danger("Nie udało się zespawnować sztyletu!"))
 
 /datum/antagonist/cult/proc/admin_give_metal(mob/admin)
 	if (!equip_cultist(metal = TRUE))
-		to_chat(admin, span_danger("Spawning runed metal failed!"))
+		to_chat(admin, span_danger("Nie udało się zespawnować runicznego metalu!"))
 
 /datum/antagonist/cult/proc/admin_take_all(mob/admin)
 	var/mob/living/current = owner.current
@@ -209,11 +209,11 @@
 			qdel(o)
 
 /datum/antagonist/cult/proc/admin_give_devotion(mob/admin)
-	var/amount = input(admin, "How much devotion would you like to give?", "Giving devotion") as null|num
+	var/amount = input(admin, "Ile oddania chcesz dać?", "Dawanie oddania") as null|num
 	if (!amount)
 		return
 	gain_devotion(amount, DEVOTION_TIER_4)
-	message_admins("[key_name_admin(admin)] gave [amount] devotion to [key_name_admin(owner)].")
+	message_admins("[key_name_admin(admin)] daje [key_name_admin(owner)] oddanie: [amount].")
 
 /datum/antagonist/cult/proc/erase_rune()
 	var/mob/living/user = owner.current
@@ -337,7 +337,7 @@
 		potential_mentor.acolytes |= src
 		to_chat(owner.current, span_cult("Jesteś teraz pod opieką mentora: <span class = 'danger'>[mentor.owner.name] ([mentor.owner.assigned_role == "MODE" ? (mentor.owner.special_role) : (mentor.owner.assigned_role)])</span>. Poproś go o pomoc w poznawaniu ścieżek naszego kultu."))
 		to_chat(mentor.owner.current, span_cult("Jesteś teraz mentorem: <span class = 'danger'>[owner.name] ([owner.assigned_role == "MODE" ? (owner.special_role) : (owner.assigned_role)])</span>."))
-		message_admins("[mentor.owner.key]/([mentor.owner.name]) is now mentoring [owner.name]")
+		message_admins("[mentor.owner.key]/([mentor.owner.name]) zostaje mentorem: [owner.name]")
 		log_admin("[mentor.owner.key]/([mentor.owner.name]) is now mentoring [owner.name]")
 
 /datum/antagonist/cult/proc/GiveTattoo(type)
@@ -407,19 +407,19 @@
 
 	switch(cultist_role)
 		if (CULTIST_ROLE_ACOLYTE)
-			message_admins("BLOODCULT: [owner.key]/([owner.name]) has become a cultist acolyte.")
+			message_admins("BLOODCULT: [owner.key]/([owner.name]) zostaje akolitą kultu.")
 			log_admin("BLOODCULT: [owner.key]/([owner.name]) has become a cultist acolyte.")
 			logo_state = "cult-apprentice-logo"
 			FindMentor()
 			if (!mentor)
-				message_admins("BLOODCULT: [owner.key]/([owner.name]) couldn't find a mentor.")
+				message_admins("BLOODCULT: [owner.key]/([owner.name]) nie znajduje mentora.")
 				log_admin("BLOODCULT: [owner.key]/([owner.name]) couldn't find a mentor.")
 		if (CULTIST_ROLE_HERALD)
-			message_admins("BLOODCULT: [owner.key]/([owner.name]) has become a cultist herald.")
+			message_admins("BLOODCULT: [owner.key]/([owner.name]) zostaje heroldem kultu.")
 			log_admin("BLOODCULT: [owner.key]/([owner.name]) has become a cultist herald.")
 			logo_state = "cult-logo"
 		if (CULTIST_ROLE_MENTOR)
-			message_admins("BLOODCULT: [owner.key]/([owner.name]) has become a cultist mentor.")
+			message_admins("BLOODCULT: [owner.key]/([owner.name]) zostaje mentorem kultu.")
 			log_admin("BLOODCULT: [owner.key]/([owner.name]) has become a cultist mentor.")
 			logo_state = "cult-master-logo"
 			if (cult)
@@ -436,7 +436,7 @@
 	if (mentor)
 		to_chat(owner.current, span_warning("Kończysz naukę pod okiem: [mentor.owner?.name]."))
 		to_chat(mentor.owner?.current, span_warning("[owner.name] kończy u ciebie naukę."))
-		message_admins("[owner.key]/([owner.name]) has ended their mentorship under [mentor.owner?.name]")
+		message_admins("[owner.key]/([owner.name]) kończy naukę u mentora: [mentor.owner?.name]")
 		log_admin("[owner.key]/([owner.name]) has ended their mentorship under [mentor.owner?.name]")
 		mentor.acolytes -= src
 		mentor = null
@@ -444,7 +444,7 @@
 		for (var/datum/antagonist/cult/acolyte in acolytes)
 			to_chat(owner.current, span_warning("Kończysz opiekę nad: [acolyte.owner?.name]."))
 			to_chat(acolyte.owner?.current, span_warning("[owner.name] kończy opiekę nad tobą."))
-			message_admins("[owner.key]/([owner.name]) has ended their mentorship of [acolyte.owner?.name]")
+			message_admins("[owner.key]/([owner.name]) kończy opiekę nad akolitą: [acolyte.owner?.name]")
 			log_admin("[owner.key]/([owner.name]) has ended their mentorship of [acolyte.owner?.name]")
 			acolyte.mentor = null
 		acolytes = list()

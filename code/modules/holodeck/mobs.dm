@@ -3,8 +3,8 @@
 */
 
 /mob/living/simple_animal/holodeck_monkey
-	name = "monkey"
-	desc = "A holographic creature fond of bananas."
+	name = "małpa"
+	desc = "Holograficzne stworzenie, które uwielbia banany."
 	icon = 'icons/mob/monkey.dmi'
 	icon_state = "monkey1"
 	icon_living = "monkey1"

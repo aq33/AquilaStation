@@ -19,10 +19,10 @@ export const Objective = (props) => {
         )}
         {possible_objectives.map((objective) => (
           <Section title={objective.name} key={objective.id}>
-            <Box mb={1}>Payout: {objective.payout}</Box>
+            <Box mb={1}>Wypłata: {objective.payout}</Box>
             <Box mb={1}>{objective.description}</Box>
             <Button
-              content="Accept"
+              content="Przyjmij"
               icon="check"
               onClick={(e) =>
                 act('assign', {
@@ -43,7 +43,7 @@ export const SelectedObjective = (props) => {
   return (
     <>
       <Section title={objective.name}>
-        <Box>Payout: {objective.payout}</Box>
+        <Box>Wypłata: {objective.payout}</Box>
         <Box>{objective.description}</Box>
       </Section>
       <Divider />

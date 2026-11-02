@@ -4,7 +4,7 @@
  * Stores the current input when triggered into a variable.
  */
 /obj/item/circuit_component/variable/setter
-	display_name = "Variable Setter"
+	display_name = "Ustawianie zmiennej"
 	desc = "Komponent, który ustawia zmienną globalną układu."
 
 	/// The input to store
@@ -13,7 +13,7 @@
 	circuit_size = 0
 
 /obj/item/circuit_component/variable/setter/trigger
-	display_name = "Trigger Variable Setter"
+	display_name = "Ustawianie zmiennej z wyzwalaczem"
 	desc = "Komponent, który ustawia zmienną globalną układu. Ta wersja wymaga sygnału wejściowego i wysyła sygnał wyjściowy."
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

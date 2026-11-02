@@ -1,6 +1,6 @@
 /datum/language/ratvar
-	name = "Ratvarian"
-	desc = "A timeless language full of power and incomprehensible to the unenlightened."
+	name = "Ratvariański"
+	desc = "Ponadczasowy język pełen mocy, niezrozumiały dla nieoświeconych."
 	var/static/random_speech_verbs = list("szczęka", "dzwoni", "stuka", "brzęczy")
 	ask_verb = "prosi"
 	exclaim_verb = "obwieszcza"

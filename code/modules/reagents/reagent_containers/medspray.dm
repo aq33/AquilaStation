@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/medspray
-	name = "medical spray"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap."
+	name = "spray medyczny"
+	desc = "Medyczna butelka z rozpylaczem do precyzyjnego nakładania, z odkręcaną nakrętką."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "medspray"
 	item_state = "spraycan"
@@ -80,32 +80,32 @@
 	return
 
 /obj/item/reagent_containers/medspray/styptic
-	name = "medical spray (styptic powder)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains styptic powder, for treating cuts and bruises."
+	name = "spray medyczny (proszek hemostatyczny)"
+	desc = "Medyczna butelka z rozpylaczem do precyzyjnego nakładania, z odkręcaną nakrętką. Ta zawiera proszek hemostatyczny do leczenia skaleczeń i stłuczeń."
 	icon_state = "brutespray"
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 60)
 
 /obj/item/reagent_containers/medspray/silver_sulf
-	name = "medical spray (silver sulfadiazine)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains silver sulfadiazine, useful for treating burns."
+	name = "spray medyczny (sulfadiazyna srebra)"
+	desc = "Medyczna butelka z rozpylaczem do precyzyjnego nakładania, z odkręcaną nakrętką. Ta zawiera sulfadiazynę srebra, przydatną przy oparzeniach."
 	icon_state = "burnspray"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 60)
 
 /obj/item/reagent_containers/medspray/synthflesh
-	name = "medical spray (synthflesh)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains synthflesh, an apex brute and burn healing agent."
+	name = "spray medyczny (syntetyczne ciało)"
+	desc = "Medyczna butelka z rozpylaczem do precyzyjnego nakładania, z odkręcaną nakrętką. Ta zawiera syntetyczne ciało, najlepszy środek na urazy i oparzenia."
 	icon_state = "synthspray"
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 60)
 	custom_price = 80
 
 /obj/item/reagent_containers/medspray/sterilizine
-	name = "sterilizer spray"
-	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
+	name = "spray sterylizujący"
+	desc = "Spryskiwacz z nietoksycznym środkiem sterylizującym. Przydaje się przy przygotowaniu do operacji."
 	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 60)
 
 /obj/item/reagent_containers/medspray/barber
-	name = "hair spray"
-	desc = "Spray bottle loaded with an unknown hair growth agent."
+	name = "spray do włosów"
+	desc = "Spryskiwacz z nieznanym środkiem na porost włosów."
 	icon_state = "hairgrowth"
 	apply_type = TOUCH
 	list_reagents = list(/datum/reagent/barbers_aid = 60)
@@ -113,8 +113,8 @@
 	squirt_mode = 1
 
 /obj/item/reagent_containers/medspray/dye
-	name = "hair dye"
-	desc = "Spray bottle loaded with an all-purpose hair dye."
+	name = "farba do włosów"
+	desc = "Spryskiwacz z uniwersalną farbą do włosów."
 	icon_state = "hairdye"
 	apply_type = TOUCH
 	list_reagents = list(/datum/reagent/hair_dye = 60)
@@ -122,8 +122,8 @@
 	squirt_mode = 1
 
 /obj/item/reagent_containers/medspray/spraytan
-	name = "spray tan"
-	desc = "A spray tan bottle, jury rigged to deliver just too much spray tan per spray."
+	name = "samoopalacz w sprayu"
+	desc = "Butelka samoopalacza w sprayu, prowizorycznie przerobiona tak, by każde psiknięcie dawało trochę za dużo."
 	icon_state = "spraytan"
 	apply_type = TOUCH
 	list_reagents = list(/datum/reagent/spraytan = 55)

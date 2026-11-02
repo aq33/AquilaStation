@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(critical_muni_items)
 
 /obj/item/pinpointer/munitions
-	name = "munitions pinpointer"
-	desc = "A device designed to track critical munitions objects."
+	name = "lokalizator amunicji"
+	desc = "Urządzenie do śledzenia kluczowych obiektów amunicyjnych."
 	icon_state = "pinpointer_muni"
 	icon = 'nsv13/icons/obj/device.dmi'
 	resistance_flags = NONE
@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(critical_muni_items)
 		user.visible_message("<span class='notice'>Pinpointer [user] nie wykrywa sygnału.</span>", "<span class='notice'>Twój pinpointer nie wykrywa sygnału.</span>")
 		return
 
-	var/A = input(user, "Nadajnik do śledzenia", "Pinpoint") in sortList(found_items)
+	var/A = input(user, "Nadajnik do śledzenia", "Namierzanie") in sortList(found_items)
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 
@@ -69,5 +69,5 @@ GLOBAL_LIST_EMPTY(critical_muni_items)
 		active = FALSE
 
 /obj/item/pinpointer/munitions/not_puce
-	desc = "A device designed to track critical munitions objects. Wait.. Is this..?"
+	desc = "Urządzenie do śledzenia kluczowych obiektów amunicyjnych. Chwila... Czy to...?"
 	icon_state = "pinpointer_not_puce"

@@ -49,7 +49,7 @@
 		meteor.target = station_target
 
 /datum/round_event/meteor_wave/on_admin_trigger()
-	if(alert(usr, "Wywołać meteory natychmiast? (Nie zmieni to alarmu, tylko przyśpieszy ich wysłanie. Nikt nigdy nie zauważy!)", "Meteor Trigger", "Yes", "No") == "Yes")
+	if(alert(usr, "Wywołać meteory natychmiast? (Nie zmieni to alarmu, tylko przyśpieszy ich wysłanie. Nikt nigdy nie zauważy!)", "Wyzwalacz meteorów", "Tak", "Nie") == "Tak")
 		announceWhen = 1
 		meteor_time = 1 MINUTES
 

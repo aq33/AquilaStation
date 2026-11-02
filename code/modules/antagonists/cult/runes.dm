@@ -29,8 +29,8 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 */
 
 /obj/effect/rune
-	name = "rune"
-	desc = "An odd collection of symbols drawn in what seems to be blood."
+	name = "runa"
+	desc = "Dziwny zbiór symboli wymalowanych czymś, co wygląda na krew."
 	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
@@ -82,11 +82,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 /obj/effect/rune/examine(mob/user)
 	. = ..()
 	if(iscultist(user) || user.stat == DEAD) //If they're a cultist or a ghost, tell them the effects
-		. += "<b>Name:</b> [cultist_name]\n"+\
-		"<b>Effects:</b> [capitalize(cultist_desc)]\n"+\
+		. += "<b>Nazwa:</b> runa [cultist_name]\n"+\
+		"<b>Działanie:</b> [capitalize(cultist_desc)]\n"+\
 		"<b>Wymagani akolici:</b> [req_cultists_text ? "[req_cultists_text]":"[req_cultists]"]"
 		if(req_keyword && keyword)
-			. += "<b>Keyword:</b> [keyword]"
+			. += "<b>Słowo kluczowe:</b> [keyword]"
 
 /obj/effect/rune/attack_hand(mob/living/user)
 	. = ..()
@@ -295,9 +295,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 				movesuccess = TRUE
 		if(movesuccess)
 			visible_message("<span class='warning'>Rozlega się ostry trzask wpadającego powietrza i wszystko na runie znika!</span>", null, "<i>Słyszysz ostry trzask.</i>")
-			to_chat(user, "<span class='cult'>You[moveuserlater ? "r vision blurs, and you suddenly appear somewhere else":" send everything above the rune away"].</span>")
+			to_chat(user, "<span class='cult'>[moveuserlater ? "Wzrok ci się rozmywa i nagle jesteś gdzie indziej":"Wysyłasz gdzie indziej wszystko, co leży na runie"].</span>")
 		else
-			to_chat(user, "<span class='cult'>You[moveuserlater ? "r vision blurs briefly, but nothing happens":"  try send everything above the rune away, but the teleportation fails"].</span>")
+			to_chat(user, "<span class='cult'>[moveuserlater ? "Wzrok na chwilę ci się rozmywa, ale nic się nie dzieje":"Próbujesz wysłać gdzie indziej wszystko, co leży na runie, ale teleportacja zawodzi"].</span>")
 		if(is_mining_level(z) && !is_mining_level(target.z)) //No effect if you stay on lavaland
 			actual_selected_rune.handle_portal("lava")
 		else
@@ -391,7 +391,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(LAZYLEN(candidates))
 			var/mob/dead/observer/C = pick(candidates)
 			to_chat(mob_to_revive.mind, "Przez twoją nieaktywność twoje ciało przejęła inna dusza! Napisz ahelp, jeśli chcesz je odzyskać.")
-			message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(mob_to_revive)]) to replace an AFK player.")
+			message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([key_name_admin(mob_to_revive)]) w miejsce gracza AFK.")
 			mob_to_revive.ghostize(FALSE)
 			mob_to_revive.key = C.key
 		else
@@ -657,8 +657,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	var/mob/living/user = invokers[1]
 	var/turf/T = get_turf(src)
-	var/choice = alert(user,"Otwierasz połączenie ze światem duchów...",,"Summon a Cult Ghost","Ascend as a Dark Spirit","Cancel")
-	if(choice == "Summon a Cult Ghost")
+	var/choice = alert(user,"Otwierasz połączenie ze światem duchów...",,"Przywołaj ducha kultu","Wznieś się jako mroczny duch","Anuluj")
+	if(choice == "Przywołaj ducha kultu")
 		var/area/A = get_area(T)
 		if(initial(A.name) == "Space" || is_mining_level(T.z))
 			to_chat(user, "<span class='cultitalic'><b>Zasłona nie jest tu dość słaba, by materializować duchy - musisz być na statku!</b></span>")
@@ -708,13 +708,13 @@ structure_check() searches for nearby cultist structures required for the invoca
 			for(var/obj/I in new_human)
 				new_human.dropItemToGround(I, TRUE)
 			new_human.dust()
-	else if(choice == "Ascend as a Dark Spirit")
+	else if(choice == "Wznieś się jako mroczny duch")
 		affecting = user
 		affecting.add_atom_colour(RUNE_COLOR_DARKRED, ADMIN_COLOUR_PRIORITY)
 		affecting.visible_message("<span class='warning'>[affecting] zamiera jak posąg, jarząc się nieziemską czerwienią.</span>", \
 						 "<span class='cult'>Widzisz, co leży poza. Wszystko zostaje odsłonięte. W tej postaci twój głos grzmi donośniej i możesz oznaczać cele dla całego kultu</span>")
 		var/mob/dead/observer/G = affecting.ghostize(1)
-		G.name = "Dark Spirit of [G.name]"
+		G.name = "mroczny duch ([G.name])"
 		G.color = "red"
 		while(!QDELETED(affecting))
 			if(!(affecting in T))

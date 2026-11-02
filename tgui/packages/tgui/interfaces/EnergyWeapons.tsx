@@ -29,17 +29,17 @@ export const EnergyWeapons = (props) => {
     <Window theme="ntos" width={600} height={350}>
       <Window.Content scrollable>
         <Section
-          title="Charge Status:"
+          title="Stan ładowania:"
           buttons={
             <Button
-              content={data.active ? 'Disable Charging' : 'Enable Charging'}
+              content={data.active ? 'Wyłącz ładowanie' : 'Włącz ładowanie'}
               icon="charging-station"
               color={data.active && 'good'}
               onClick={() => act('activeToggle')}
             />
           }
         >
-          Power Draw:
+          Pobór mocy:
           <br />
           <ProgressBar
             value={(chargeRate / maxChargeRate) * 100 * 0.01}
@@ -52,7 +52,7 @@ export const EnergyWeapons = (props) => {
             {chargeRate / 1e6 + ' mW'}
           </ProgressBar>
           <br />
-          Charge:
+          Ładunek:
           <br />
           <ProgressBar
             value={(progress / goal) * 100 * 0.01}
@@ -63,8 +63,8 @@ export const EnergyWeapons = (props) => {
             }}
           />
         </Section>
-        <Section title="Settings:">
-          Power Input Level:
+        <Section title="Ustawienia:">
+          Poziom poboru mocy:
           <Slider
             tickWhileDragging
             value={powerAlloc}

@@ -1,12 +1,12 @@
 
 
 /obj/item/stack/sticky_tape
-	name = "sticky tape"
-	singular_name = "sticky tape"
-	desc = "Used for sticking to things for sticking said things to people."
+	name = "taśma klejąca"
+	singular_name = "taśma klejąca"
+	desc = "Służy do przyklejania rzeczy, żeby te rzeczy przyklejały się do ludzi."
 	icon = 'icons/obj/tapes.dmi'
 	icon_state = "tape_w"
-	var/prefix = "sticky"
+	var/prefix = "z taśmą"
 	item_flags = NOBLUDGEON
 	amount = 5
 	max_amount = 5
@@ -29,32 +29,32 @@
 		I.updateEmbedding()
 		to_chat(user, "<span class='notice'>Kończysz owijać [I] za pomocą [src].</span>")
 		use(1)
-		I.name = "[prefix] [I.name]"
+		I.name = "[I.name] [prefix]"
 
 		if(istype(I, /obj/item/grenade))
 			var/obj/item/grenade/sticky_bomb = I
 			sticky_bomb.sticky = TRUE
 
 /obj/item/stack/sticky_tape/super
-	name = "super sticky tape"
-	singular_name = "super sticky tape"
-	desc = "Quite possibly the most mischevious substance in the galaxy. Use with extreme lack of caution."
+	name = "superklejąca taśma"
+	singular_name = "superklejąca taśma"
+	desc = "Być może najbardziej psotna substancja w galaktyce. Używaj z wyjątkowym brakiem ostrożności."
 	icon_state = "tape_y"
-	prefix = "super sticky"
+	prefix = "z supertaśmą"
 	conferred_embed = EMBED_HARMLESS_SUPERIOR
 
 /obj/item/stack/sticky_tape/pointy
-	name = "pointy tape"
-	singular_name = "pointy tape"
-	desc = "Used for sticking to things for sticking said things inside people."
+	name = "kolczasta taśma"
+	singular_name = "kolczasta taśma"
+	desc = "Służy do przyklejania rzeczy, żeby te rzeczy wbijały się w ludzi."
 	icon_state = "tape_evil"
-	prefix = "pointy"
+	prefix = "z kolczastą taśmą"
 	conferred_embed = EMBED_POINTY
 
 /obj/item/stack/sticky_tape/pointy/super
-	name = "super pointy tape"
-	singular_name = "super pointy tape"
-	desc = "You didn't know tape could look so sinister. Welcome to Space Station 13."
+	name = "superkolczasta taśma"
+	singular_name = "superkolczasta taśma"
+	desc = "Nie wiedziałeś, że taśma może wyglądać tak złowrogo. Witaj na Stacji Kosmicznej 13."
 	icon_state = "tape_spikes"
-	prefix = "super pointy"
+	prefix = "z superkolczastą taśmą"
 	conferred_embed = EMBED_POINTY_SUPERIOR

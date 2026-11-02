@@ -1,8 +1,8 @@
 /obj/machinery/modular_fabricator/exosuit_fab
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
-	name = "exosuit fabricator"
-	desc = "An advanced machine containing many internal robotic arms which fabricate components for robots and exosuits."
+	name = "fabrykator egzoszkieletów"
+	desc = "Zaawansowana maszyna z wieloma wewnętrznymi ramionami robotycznymi, które wytwarzają części do robotów i egzoszkieletów."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20

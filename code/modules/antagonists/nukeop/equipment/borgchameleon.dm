@@ -1,5 +1,5 @@
 /obj/item/borg_chameleon
-	name = "cyborg chameleon projector"
+	name = "projektor kameleona dla cyborga"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	flags_1 = CONDUCT_1

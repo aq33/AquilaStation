@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/toy
-	name = "foam force SMG"
-	desc = "A prototype three-round burst toy submachine gun. Ages 8 and up."
+	name = "zabawkowy pistolet maszynowy Foam Force"
+	desc = "Prototypowy zabawkowy pistolet maszynowy strzelający seriami po trzy. Od 8 lat."
 	icon_state = "saber"
 	item_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/toy/smg
@@ -25,8 +25,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/toy/pistol
-	name = "foam force pistol"
-	desc = "A small, easily concealable toy handgun. Ages 8 and up."
+	name = "pistolet zabawkowy Foam Force"
+	desc = "Mały, łatwy do ukrycia pistolet zabawkowy. Od 8 lat."
 	icon_state = "pistol"
 	bolt_type = BOLT_TYPE_LOCKING
 	w_class = WEIGHT_CLASS_SMALL
@@ -51,8 +51,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/shotgun/toy
-	name = "foam force shotgun"
-	desc = "A toy shotgun with wood furniture and a four-shell capacity underneath. Ages 8 and up."
+	name = "strzelba zabawkowa Foam Force"
+	desc = "Zabawkowa strzelba z drewnianymi okładzinami i podlufowym magazynkiem na cztery naboje. Od 8 lat."
 	force = 0
 	throwforce = 0
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy
@@ -76,8 +76,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/shotgun/toy/crossbow
-	name = "foam force crossbow"
-	desc = "A weapon favored by many overactive children. Ages 8 and up."
+	name = "kusza zabawkowa Foam Force"
+	desc = "Broń ulubiona przez wiele nadpobudliwych dzieci. Od 8 lat."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamcrossbow"
 	item_state = "crossbow"
@@ -87,8 +87,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gun/ballistic/automatic/c20r/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft SMG"
-	desc = "A bullpup two-round burst toy SMG, designated 'C-20r'. Ages 8 and up."
+	name = "zabawkowy pistolet maszynowy Donksoft"
+	desc = "Zabawkowy pistolet maszynowy w układzie bullpup, strzelający seriami po dwa, oznaczenie „C-20r”. Od 8 lat."
 	can_suppress = TRUE
 	item_flags = NONE
 	mag_type = /obj/item/ammo_box/magazine/toy/smgm45/riot
@@ -107,8 +107,8 @@
 	add_overlay("[icon_state]_toy")
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft LMG"
-	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up."
+	name = "zabawkowy lekki karabin maszynowy Donksoft"
+	desc = "Mocno zmodyfikowany zabawkowy lekki karabin maszynowy, oznaczenie „L6 SAW”. Od 8 lat."
 	can_suppress = FALSE
 	item_flags = NONE
 	mag_type = /obj/item/ammo_box/magazine/toy/m762/riot

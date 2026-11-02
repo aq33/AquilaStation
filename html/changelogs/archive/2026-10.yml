@@ -835,5 +835,7 @@
       nad danymi medycznymi nie nachodzą na ramkę.
 '2026-10-30':
   sh4dow321:
-  - bugfix: Przycisk „Baza banów CentCom” w panelu gracza działa dla graczy z banami
-      na innych serwerach i dla graczy rozłączonych.
+  - admin: 'Dodano przeglądarkę graczy (verb Player Browser): wyszukiwarka ckey wśród
+      wszystkich, którzy grali na serwerze, ich bany u nas i w bazie CentCom oraz
+      historia ticketów.'
+  - admin: Przycisk CentCom w panelu gracza działa też dla rozłączonych graczy.

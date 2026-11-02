@@ -1,6 +1,6 @@
 /obj/item/powertool
-	name = "Power tool"
-	desc = "A basic powertool that does nothing."
+	name = "elektronarzędzie"
+	desc = "Podstawowe elektronarzędzie, które nic nie robi."
 	icon = 'icons/obj/tools.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -20,8 +20,8 @@
 //Hand Drill
 
 /obj/item/powertool/hand_drill
-	name = "hand drill"
-	desc = "A simple powered hand drill. It's fitted with a screw bit."
+	name = "wiertarka ręczna"
+	desc = "Prosta elektryczna wiertarka ręczna. Ma założony bit do wkręcania."
 	icon_state = "drill_screw"
 	item_state = "drill"
 
@@ -84,8 +84,8 @@
 //Jaws of life
 
 /obj/item/powertool/jaws_of_life
-	name = "jaws of life"
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
+	name = "szczęki życia"
+	desc = "Szczęki życia, skompresowane dzięki magii nauki. Mają założoną głowicę do podważania."
 	usesound = 'sound/items/jaws_pry.ogg'
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"

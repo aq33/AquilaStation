@@ -238,7 +238,7 @@
 	config_entry_value = "Zniszczenie stacji zostało zażegnane. Stacji wciąż jednak grozi bezpośrednie, poważne zagrożenie. Ochrona może cały czas mieć broń wyjętą z kabury, wyrywkowe przeszukania są dozwolone i zalecane."
 
 /datum/config_entry/string/alert_delta
-	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	config_entry_value = "Zniszczenie stacji jest nieuchronne. Cała załoga ma wykonywać wszystkie polecenia szefów działów. Każde naruszenie tych rozkazów może być karane śmiercią. To nie są ćwiczenia."
 
 /datum/config_entry/flag/revival_pod_plants
 

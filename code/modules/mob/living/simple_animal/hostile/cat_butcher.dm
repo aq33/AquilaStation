@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/cat_butcherer
-	name = "Cat Surgeon"
-	desc = "A man with the quest of chasing endless feline tail."
+	name = "Koci Chirurg"
+	desc = "Człowiek, którego misją jest gonienie niekończącego się kociego ogona."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "cat_butcher"
 	icon_living = "cat_butcher"
@@ -10,7 +10,7 @@
 	projectilesound = 'sound/items/syringeproj.ogg'
 	retreat_distance = 3
 	ranged = TRUE
-	ranged_message = "strzela z pistoletu na strzykawki w"
+	ranged_message = "strzela z wyrzutni strzykawek"
 	ranged_cooldown_time = 30
 	speak_chance = 0
 	turns_per_move = 5
@@ -97,7 +97,7 @@
 		return FALSE
 	if(L.mind)
 		victims += L
-		say(pick("I'm a genius!!", "KITTY!!", "Kolejny udany eksperyment!!", "Produkt poniżej standardu.", "Lepiej mi teraz nie uciekaj!", "Nigdy nie przestajesz mnie zadziwiać, ja."))
+		say(pick("Jestem geniuszem!!", "KICIA!!", "Kolejny udany eksperyment!!", "Produkt poniżej standardu.", "Lepiej mi teraz nie uciekaj!", "Nigdy nie przestajesz mnie zadziwiać, ja."))
 		if(LAZYLEN(victims) <= 10)
 			maxHealth = (100 + (20 * LAZYLEN(victims)))
 		else

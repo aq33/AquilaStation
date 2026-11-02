@@ -55,14 +55,14 @@
 	if(telemetry_status == TGUI_TELEMETRY_STAT_OVERSEND)
 		return //Already noted for oversend, just fuck off.
 	if(world.time > telemetry_requested_at + TGUI_TELEMETRY_RESPONSE_WINDOW)
-		message_admins("[key_name(client)] sent telemetry outside of the allocated time window.")
+		message_admins("[key_name(client)] wysyła telemetrię poza przydzielonym oknem czasowym.")
 		if(telemetry_status == TGUI_TELEMETRY_STAT_ANALYZED) //Hey we already have a packet from you!
-			LAZYSET(telemetry_notices, "TELEM_OVERSEND", "<span class='highlight'>OVER_SEND|Telemetry was sent multiple times.</span>")
+			LAZYSET(telemetry_notices, "TELEM_OVERSEND", "<span class='highlight'>OVER_SEND|Telemetria została wysłana wiele razy.</span>")
 			telemetry_status = TGUI_TELEMETRY_STAT_OVERSEND
 		return
 	if(telemetry_analyzed_at)
-		message_admins("[key_name(client)] sent telemetry more than once.")
-		LAZYSET(telemetry_notices, "TELEM_OVERSEND", "<span class='highlight'>OVER_SEND|Telemetry was sent multiple times.</span>")
+		message_admins("[key_name(client)] wysyła telemetrię więcej niż raz.")
+		LAZYSET(telemetry_notices, "TELEM_OVERSEND", "<span class='highlight'>OVER_SEND|Telemetria została wysłana wiele razy.</span>")
 		telemetry_status = TGUI_TELEMETRY_STAT_OVERSEND
 		return
 	telemetry_analyzed_at = world.time
@@ -74,14 +74,14 @@
 	if(len == 0)
 		return
 	if(len > TGUI_TELEMETRY_MAX_CONNECTIONS)
-		message_admins("[key_name(client)] was kicked for sending a huge telemetry payload")
+		message_admins("[key_name(client)] zostaje wyrzucony za wysłanie ogromnego pakietu telemetrii")
 		qdel(client)
 		return
 	if(len < TGUI_TELEMETRY_MAX_CONNECTIONS)
 		if(len < (TGUI_TELEMETRY_MAX_CONNECTIONS * 0.5))
-			LAZYSET(telemetry_notices, "TELEMETRY_NONMAXCON", "<span class='highlight'>TOO_SHORT|User only has ([len]) records. Data may be extremely unreliable.</span>")
+			LAZYSET(telemetry_notices, "TELEMETRY_NONMAXCON", "<span class='highlight'>TOO_SHORT|Użytkownik ma tylko ([len]) wpisów. Dane mogą być bardzo niewiarygodne.</span>")
 		else
-			LAZYSET(telemetry_notices, "TELEMETRY_NONMAXCON", "<span class='highlight'>UNDER_MAX|User has less than [TGUI_TELEMETRY_MAX_CONNECTIONS] entries in history ([len]).</span>")
+			LAZYSET(telemetry_notices, "TELEMETRY_NONMAXCON", "<span class='highlight'>UNDER_MAX|Użytkownik ma w historii mniej niż [TGUI_TELEMETRY_MAX_CONNECTIONS] wpisów ([len]).</span>")
 
 	//Process the data.
 	var/list/first_found_ban
@@ -97,30 +97,30 @@
 		var/list/row = telemetry_connections[i]
 		// Check for guest keys, these objects are probably either banned by default or are "corrupt" (Missing an address).
 		if("guest[row["computer_id"]]" == row["ckey"])
-			LAZYSET(telemetry_notices, "TELEM_GUEST_[i]", "<span class='highlight'>CONN_ID:[i]|Entry is a guest user. This entry has been skipped.</span>")
+			LAZYSET(telemetry_notices, "TELEM_GUEST_[i]", "<span class='highlight'>CONN_ID:[i]|Wpis to użytkownik-gość. Pominięto go.</span>")
 			skipped_entries++
 			LAZYADD(all_cids, row["computer_id"])
 			continue
 		// Check for a malformed history object
 		if(!row || row.len < 3 || (!row["ckey"] || !row["address"] || !row["computer_id"]))
 			if(row && row["ckey"] && row["computer_id"]) //Is the address the only invalid field?
-				LAZYSET(telemetry_notices, "TELEM_NOADDR_[i]", "<span class='highlight'>CONN_ID:[i]|Entry has no address. User may be a developer.</span>")
+				LAZYSET(telemetry_notices, "TELEM_NOADDR_[i]", "<span class='highlight'>CONN_ID:[i]|Wpis nie ma adresu. Użytkownik może być deweloperem.</span>")
 				LAZYADD(all_ckeys, row["ckey"])
 				LAZYADD(all_ips, "127.0.0.1")
 				LAZYADD(all_cids, row["computer_id"])
 				has_dev_ip = 1
 				continue
-			LAZYSET(telemetry_notices, "TELEM_CORRUPT_[i]", "<span class='highlight'>CONN_ID:[i]|Entry corrupt. Data may be damaged or tampered with.</span>")
+			LAZYSET(telemetry_notices, "TELEM_CORRUPT_[i]", "<span class='highlight'>CONN_ID:[i]|Uszkodzony wpis. Dane mogą być uszkodzone albo zmanipulowane.</span>")
 			skipped_entries++
 			continue
 		//Check for bans.
 		if(world.IsBanned(row["ckey"], row["address"], row["computer_id"], "tgui_telemetry", real_bans_only = TRUE))
 			if(!first_found_ban)
 				first_found_ban = row
-			LAZYSET(telemetry_notices,"TELEM_BANNED_[i]", "<span class='bad'>CONN_ID:[i]|BANNED ACCOUNT IN HISTORY! Matched: [row["ckey"]], [row["address"]], [row["computer_id"]]</span>")
+			LAZYSET(telemetry_notices,"TELEM_BANNED_[i]", "<span class='bad'>CONN_ID:[i]|ZBANOWANE KONTO W HISTORII! Dopasowanie: [row["ckey"]], [row["address"]], [row["computer_id"]]</span>")
 		//Check for protected CIDs
 		if(config.protected_cids?.Find(row["computer_id"])) //NSV13 - don't runtime if we have no protected CIDs
-			LAZYSET(telemetry_notices, "TELEM_PROTECTED_[i]", "<span class='bad'>CONN_ID:[i]|[row["computer_id"]] is protected, Reason: [config.protected_cids[row["computer_id"]]]</span>")
+			LAZYSET(telemetry_notices, "TELEM_PROTECTED_[i]", "<span class='bad'>CONN_ID:[i]|[row["computer_id"]] jest chroniony, powód: [config.protected_cids[row["computer_id"]]]</span>")
 		//Track changes.
 		LAZYADD(all_ckeys, row["ckey"])
 		LAZYADD(all_ips, row["address"])
@@ -138,12 +138,12 @@
 	all_cids = uniqueList(all_cids)
 	switch(length(all_ckeys))
 		if(2)
-			LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='average'>KEY_COUNT|User has more than one CKEY in history.</span>")
+			LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='average'>KEY_COUNT|Użytkownik ma w historii więcej niż jeden CKEY.</span>")
 		if(3 to INFINITY)
 			if(length(all_ckeys) == len)
-				LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='bad'>KEY_COUNT|<b>EVERY ENTRY IN HISTORY HAS A DIFFERENT CKEY!</b></span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='bad'>KEY_COUNT|<b>KAŻDY WPIS W HISTORII MA INNY CKEY!</b></span>")
 			else
-				LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='bad'>KEY_COUNT|User has multiple CKEYs in history!</span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_CKEY_WARNING, "<span class='bad'>KEY_COUNT|Użytkownik ma w historii wiele CKEY-ów!</span>")
 	if(telemetry_notices?[TGUI_TELEM_CKEY_WARNING]) //Has a CKEY warning
 		var/text_list_ckeys = ""
 		var/first = 1
@@ -154,41 +154,41 @@
 	switch(length(all_ips))
 		if(2)
 			if(!has_dev_ip) //If it's a dev IP we don't care.
-				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|User has changed IPs at least once.</span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|Użytkownik co najmniej raz zmienił IP.</span>")
 		if(3 to INFINITY)
 			if(length(all_ips) == len)
-				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|All IPs different. VPN Likely.</span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|Wszystkie IP są różne. Prawdopodobnie VPN.</span>")
 			else
-				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|User has changed IPs at least once.</span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_IP_WARNING, "<span class='average'>IPA_COUNT|Użytkownik co najmniej raz zmienił IP.</span>")
 	switch(length(all_cids))
 		if(2)
-			LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='average'>CID_COUNT|User has changed CIDs once.")
+			LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='average'>CID_COUNT|Użytkownik raz zmienił CID.")
 		if(3 to INFINITY)
 			if(length(all_cids) == len)
-				LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='bad'>CID_COUNT|<b>EVERY ENTRY IN HISTORY HAS A DIFFERENT CID!</b></span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='bad'>CID_COUNT|<b>KAŻDY WPIS W HISTORII MA INNY CID!</b></span>")
 			else
-				LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='bad'>CID_COUNT|User has more than two CIDs in history.</span>")
+				LAZYSET(telemetry_notices, TGUI_TELEM_CID_WARNING, "<span class='bad'>CID_COUNT|Użytkownik ma w historii więcej niż dwa CID-y.</span>")
 
 /// Render the stats to PP
 /datum/tgui_panel/proc/show_notices()
 	//Yes this code was in fact just dragged out and thrown in a different file.
-	. += "<br><b>Telemetry Status:</b>"
+	. += "<br><b>Stan telemetrii:</b>"
 	switch(telemetry_status)
 		if(TGUI_TELEMETRY_STAT_NOT_REQUESTED)
-			. += "<span class='bad'>Telemetry Request Not Sent. Call a coder.</span>"
+			. += "<span class='bad'>Nie wysłano żądania telemetrii. Wezwij programistę.</span>"
 		if(TGUI_TELEMETRY_STAT_AWAITING)
-			. += "<span class='highlight'>Telemetry Awaiting.</span>"
+			. += "<span class='highlight'>Oczekiwanie na telemetrię.</span>"
 		if(TGUI_TELEMETRY_STAT_ANALYZED, TGUI_TELEMETRY_STAT_OVERSEND)
-			. += "Analyzed Successfully."
-			. += "<br><b>Telemetry Alerts:</b>"
+			. += "Analiza zakończona."
+			. += "<br><b>Alerty telemetrii:</b>"
 			if(!length(telemetry_notices))
-				. += "<span class='good'>No Alerts.</span>"
+				. += "<span class='good'>Brak alertów.</span>"
 				return
 			. += "<br><pre><ul>"
 			for(var/notice in telemetry_notices)
 				. += "<li>[telemetry_notices[notice]]</li>"
 			. += "</pre></ul>"
 		if(TGUI_TELEMETRY_STAT_MISSING)
-			. += "<span class='bad'>Telemetry Data Missing!</span>"
+			. += "<span class='bad'>Brak danych telemetrii!</span>"
 		else
-			. += "<span class='bad'>Telemetry datum in invalid state ID [isnum(telemetry_status) ? telemetry_status : "!!NAN!!, CALL A CODER"]. Call a coder.</span>"
+			. += "<span class='bad'>Datum telemetrii w nieprawidłowym stanie o ID [isnum(telemetry_status) ? telemetry_status : "!!NAN!!, WEZWIJ PROGRAMISTĘ"]. Wezwij programistę.</span>"

@@ -1,7 +1,7 @@
 /*				ENGINEERING OBJECTIVES				*/
 
 /datum/objective/crew/integrity //ported from old Hippie
-	explanation_text = "Ensure the station's integrity rating is at least (Something broke, yell on GitHub)% when the shift ends."
+	explanation_text = "Zapewnij ocenę integralności stacji na poziomie co najmniej (coś się zepsuło, zgłoś to na GitHubie)% pod koniec zmiany."
 	jobs = "chiefengineer,stationengineer"
 
 /datum/objective/crew/integrity/New()

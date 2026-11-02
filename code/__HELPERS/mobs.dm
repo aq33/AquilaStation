@@ -706,7 +706,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in sortList(borgs)
+			. = input(user,"Wykryto sygnały cyborgów bez praw:", "Wybór cyborga", borgs[1]) in sortList(borgs)
 		else
 			. = pick(borgs)
 	return .
@@ -716,7 +716,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)
-			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in sortList(ais)
+			. = input(user,"Wykryto sygnały SI:", "Wybór SI", ais[1]) in sortList(ais)
 		else
 			. = pick(ais)
 	return .
@@ -800,43 +800,43 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/parse_slot_flags(slot_flags)
 	var/list/slot_strings = list()
 	if(slot_flags & ITEM_SLOT_BACK)
-		slot_strings += "back"
+		slot_strings += "plecy"
 	if(slot_flags & ITEM_SLOT_MASK)
-		slot_strings += "mask"
+		slot_strings += "maska"
 	if(slot_flags & ITEM_SLOT_NECK)
-		slot_strings += "neck"
+		slot_strings += "szyja"
 	if(slot_flags & ITEM_SLOT_HANDCUFFED)
-		slot_strings += "handcuff"
+		slot_strings += "kajdanki"
 	if(slot_flags & ITEM_SLOT_LEGCUFFED)
-		slot_strings += "legcuff"
+		slot_strings += "kajdany na nogi"
 	if(slot_flags & ITEM_SLOT_BELT)
-		slot_strings += "belt"
+		slot_strings += "pas"
 	if(slot_flags & ITEM_SLOT_ID)
-		slot_strings += "id"
+		slot_strings += "identyfikator"
 	if(slot_flags & ITEM_SLOT_EARS)
-		slot_strings += "ear"
+		slot_strings += "uszy"
 	if(slot_flags & ITEM_SLOT_EYES)
-		slot_strings += "glasses"
+		slot_strings += "oczy"
 	if(slot_flags & ITEM_SLOT_GLOVES)
-		slot_strings += "glove"
+		slot_strings += "rękawice"
 	if(slot_flags & ITEM_SLOT_HEAD)
-		slot_strings += "head"
+		slot_strings += "głowa"
 	if(slot_flags & ITEM_SLOT_FEET)
-		slot_strings += "shoe"
+		slot_strings += "buty"
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
-		slot_strings += "oversuit"
+		slot_strings += "odzież wierzchnia"
 	if(slot_flags & ITEM_SLOT_ICLOTHING)
-		slot_strings += "undersuit"
+		slot_strings += "kombinezon"
 	if(slot_flags & ITEM_SLOT_SUITSTORE)
-		slot_strings += "suit storage"
+		slot_strings += "schowek na pancerzu"
 	if(slot_flags & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET))
-		slot_strings += "pocket"
+		slot_strings += "kieszeń"
 	if(slot_flags & ITEM_SLOT_HANDS)
-		slot_strings += "hand"
+		slot_strings += "ręka"
 	if(slot_flags & ITEM_SLOT_DEX_STORAGE)
-		slot_strings += "dextrous storage"
+		slot_strings += "schowek chwytny"
 	if(slot_flags & ITEM_SLOT_BACKPACK)
-		slot_strings += "backpack"
+		slot_strings += "plecak"
 	return slot_strings
 
 /**

@@ -2,7 +2,7 @@
 
 /// Daje stabilne oświecenie, a oświeconym ramię pożerające szkło
 /obj/item/clothing/head/helmet/skull/cosmic
-	name = "cosmic skull"
+	name = "kosmiczna czaszka"
 	desc = "Widać i czuć, jak pulsuje przez nią kosmos..."
 	icon = 'aquila/icons/obj/voidwalker_items.dmi'
 	icon_state = "cosmic_skull_charged"
@@ -44,7 +44,7 @@
 
 /// Ramię, które rozbija każde szkło i każde ciało
 /obj/item/void_eater
-	name = "void eater"
+	name = "pożeracz pustki"
 	desc = "Zdeformowana kończyna, która roztrzaska każde szkło i każde ciało."
 	icon = 'aquila/icons/obj/voidwalker_items.dmi'
 	icon_state = "tentacle"

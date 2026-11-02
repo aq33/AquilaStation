@@ -82,7 +82,7 @@
 			else
 				to_chat(user, span_warning("Choć klejnot zdaje się więzić cień, ten najwyraźniej nie ma umysłu zdolnego władać ostrzem.") )
 				to_chat(user, span_danger("(to błąd, zgłoś go i opisz dokładnie, skąd masz ten cień).") )
-				message_admins("[key_name(usr)] somehow placed a soul gem containing a shade with no mind inside a soul blade.")
+				message_admins("[key_name(usr)] jakimś cudem wkłada do ostrza dusz klejnot dusz z cieniem bez umysłu.")
 		SB.update_icon()
 		qdel(sgem)
 		qdel(src)

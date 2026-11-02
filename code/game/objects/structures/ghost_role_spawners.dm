@@ -2,9 +2,9 @@
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/human/seed_vault
-	name = "preserved terrarium"
-	desc = "An ancient machine that seems to be used for storing plant matter. The glass is obstructed by a mat of vines."
-	mob_name = "a lifebringer"
+	name = "zakonserwowane terrarium"
+	desc = "Prastara maszyna, która chyba służyła do przechowywania materii roślinnej. Szybę zasłania gąszcz pnączy."
+	mob_name = "niosący życie"
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "terrarium"
 	density = TRUE
@@ -18,8 +18,8 @@
 	banType = ROLE_LIFEBRINGER
 
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
-	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
-	"Venus", "Sprout","Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper")
+	var/plant_name = pick("Pomidor", "Ziemniak", "Brokuł", "Marchew", "Ambrozja", "Dynia", "Bluszcz", "Kudzu", "Banan", "Mech", "Kwiat", "Rozkwit", "Korzeń", "Kora", "Świecący Grzyb", "Płatek", "Liść", \
+	"Wenus", "Kiełek","Kakao", "Truskawka", "Cytrus", "Dąb", "Kaktus", "Papryka", "Jałowiec")
 	new_spawn.fully_replace_character_name(null,plant_name)
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
@@ -33,9 +33,9 @@
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
 
 /obj/effect/mob_spawn/human/ash_walker
-	name = "ash walker egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
-	mob_name = "an ash walker"
+	name = "jajo popielnego wędrowcy"
+	desc = "Żółte jajo wielkości człowieka, złożone przez jakieś niepojęte stworzenie. W środku czai się humanoidalna sylwetka."
+	mob_name = "popielny wędrowiec"
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	mob_species = /datum/species/lizard/ashwalker
@@ -77,9 +77,9 @@
 
 //Golem shells: Spawns in Free Golem ships in lavaland. Ghosts become mineral golems and are advised to spread personal freedom.
 /obj/effect/mob_spawn/human/golem
-	name = "inert free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
-	mob_name = "a free golem"
+	name = "bezwładna powłoka wolnego golema"
+	desc = "Humanoidalny kształt, pusty, martwy i pełen potencjału."
+	mob_name = "wolny golem"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "construct"
 	mob_species = /datum/species/golem
@@ -142,8 +142,8 @@
 	if(.)
 		return
 	if(isgolem(user) && can_transfer)
-		var/transfer_choice = alert("Przenieść swoją duszę do [src]? (Uwaga: twoje stare ciało umrze!)",,"Yes","No")
-		if(transfer_choice != "Yes")
+		var/transfer_choice = alert("Przenieść swoją duszę do [src]? (Uwaga: twoje stare ciało umrze!)",,"Tak","Nie")
+		if(transfer_choice != "Tak")
 			return
 		if(QDELETED(src) || uses <= 0)
 			return
@@ -156,15 +156,15 @@
 
 /obj/effect/mob_spawn/human/golem/servant
 	has_owner = TRUE
-	name = "inert servant golem shell"
-	mob_name = "a servant golem"
+	name = "bezwładna powłoka golema-sługi"
+	mob_name = "golem-sługa"
 	use_cooldown = FALSE
 
 
 /obj/effect/mob_spawn/human/golem/adamantine
-	name = "dust-caked free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
-	mob_name = "a free golem"
+	name = "zakurzona powłoka wolnego golema"
+	desc = "Humanoidalny kształt, pusty, martwy i pełen potencjału."
+	mob_name = "wolny golem"
 	can_transfer = FALSE
 	mob_species = /datum/species/golem/adamantine
 	use_cooldown = TRUE	//Only the roundstart free golems are
@@ -172,9 +172,9 @@
 
 //Malfunctioning cryostasis sleepers: Spawns in makeshift shelters in lavaland. Ghosts become hermits with knowledge of how they got to where they are now.
 /obj/effect/mob_spawn/human/hermit
-	name = "malfunctioning cryostasis sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
-	mob_name = "a stranded hermit"
+	name = "wadliwy sleeper kriostazy"
+	desc = "Buczący sleeper z czyjąś sylwetką w środku. Funkcja stazy jest zepsuta, więc pewnie służy za łóżko."
+	mob_name = "zagubiony pustelnik"
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	roundstart = FALSE
@@ -214,9 +214,9 @@
 
 //Broken rejuvenation pod: Spawns in animal hospitals in lavaland. Ghosts become disoriented interns and are advised to search for help.
 /obj/effect/mob_spawn/human/doctor/alive/lavaland
-	name = "broken rejuvenation pod"
-	desc = "A small sleeper typically used to instantly restore minor wounds. This one seems broken, and its occupant is comatose."
-	mob_name = "a translocated vet"
+	name = "zepsuta kapsuła regeneracyjna"
+	desc = "Mały sleeper, zwykle używany do natychmiastowego leczenia drobnych ran. Ten wygląda na zepsuty, a osoba w środku jest w śpiączce."
+	mob_name = "przeniesiony weterynarz"
 	flavour_text = "Co...? Gdzie jesteś? Czemu służy to miejsce? To wciąż szpital dla zwierząt - powinieneś wiedzieć, jesteś tu stażystą od tygodni - ale ty tylko przykładałeś opatrunki na stłuczenia. Czemu to miejsce jest pełne zaawansowanego sprzętu medycznego? I co to za krzyki? Świat na zewnątrz jest wyludniony - dręczony ogniem i siarką. Ale złożyłeś przysięgę. Musisz ratować tych ludzi! Może nie masz fikuśnej maszyny do klonowania jak prawdziwy szpital, ale na pewno da się jakoś uratować tych ludzi narzędziami, które masz. Prawda?"
 	assignedrole = "Translocated Vet"
 	banType = ROLE_TRANSLOCATED_VET
@@ -228,9 +228,9 @@
 
 //Prisoner containment sleeper: Spawns in crashed prison ships in lavaland. Ghosts become escaped prisoners and are advised to find a way out of the mess they've gotten themselves into.
 /obj/effect/mob_spawn/human/prisoner_transport
-	name = "prisoner containment sleeper"
-	desc = "A sleeper designed to put its occupant into a deep coma, unbreakable until the sleeper turns off. This one's glass is cracked and you can see a pale, sleeping face staring out."
-	mob_name = "an escaped prisoner"
+	name = "więzienny sleeper"
+	desc = "Sleeper, który wprowadza osobę w środku w głęboką śpiączkę, trwającą aż do wyłączenia urządzenia. Szyba tego jest pęknięta i widać przez nią bladą, śpiącą twarz."
+	mob_name = "zbiegły więzień"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/lavalandprisoner
@@ -247,8 +247,8 @@
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()
-	var/list/crimes = list("murder", "larceny", "embezzlement", "unionization", "zaniedbanie obowiązków", "kidnapping", "rażącą niekompetencję", "wielką kradzież", "współpracę z Syndykatem", \
-	"kult zakazanego bóstwa", "relacje międzygatunkowe", "mutiny")
+	var/list/crimes = list("morderstwo", "kradzież", "defraudację", "zakładanie związków zawodowych", "zaniedbanie obowiązków", "porwanie", "rażącą niekompetencję", "wielką kradzież", "współpracę z Syndykatem", \
+	"kult zakazanego bóstwa", "relacje międzygatunkowe", "bunt")
 	flavour_text += "[pick(crimes)]. Ale niezależnie od tego, wygląda na to, że twoja zbrodnia nie ma teraz znaczenia. Nie wiesz, gdzie jesteś, ale wiesz, że to miejsce chce cię zabić, a ty nie zamierzasz zmarnować tej okazji. Znajdź sposób, by wydostać się z tego bałaganu i wrócić tam, gdzie twoje miejsce - do [pick("domu", "mieszkania", "statku", "stacji")]."
 
 /datum/outfit/lavalandprisoner
@@ -265,9 +265,9 @@
 
 //Space Hotel Staff
 /obj/effect/mob_spawn/human/hotel_staff //not free antag u little shits
-	name = "staff sleeper"
-	desc = "A sleeper designed for long-term stasis between guest visits."
-	mob_name = "hotel staff member"
+	name = "sleeper personelu"
+	desc = "Sleeper do długotrwałej stazy między wizytami gości."
+	mob_name = "pracownik hotelu"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	objectives = "Obsługuj odwiedzających gości razem z resztą personelu. Nie opuszczaj przydzielonego hotelu i zawsze pamiętaj: klient ma zawsze rację!"
@@ -291,8 +291,8 @@
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/exile/hotel)
 
 /obj/effect/mob_spawn/human/hotel_staff/security
-	name = "hotel security sleeper"
-	mob_name = "hotel security member"
+	name = "sleeper ochrony hotelu"
+	mob_name = "ochroniarz hotelu"
 	outfit = /datum/outfit/hotelstaff/security
 	short_desc = "Jesteś strażnikiem pokoju."
 	flavour_text = "Przydzielono cię do tego hotelu, byś chronił interesy firmy i utrzymywał spokój między gośćmi a personelem."
@@ -313,9 +313,9 @@
 	..()
 
 /obj/effect/mob_spawn/human/demonic_friend
-	name = "Essence of friendship"
-	desc = "Oh boy! Oh boy! A friend!"
-	mob_name = "Demonic friend"
+	name = "esencja przyjaźni"
+	desc = "O rany! O rany! Przyjaciel!"
+	mob_name = "demoniczny przyjaciel"
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	outfit = /datum/outfit/demonic_friend
@@ -345,7 +345,7 @@
 
 /obj/effect/mob_spawn/human/demonic_friend/special(mob/living/L)
 	if(!QDELETED(owner.current) && owner.current.stat != DEAD)
-		L.fully_replace_character_name(null,"[owner.name]'s best friend")
+		L.fully_replace_character_name(null,"najlepszy przyjaciel [owner.name]")
 		soullink(/datum/soullink/oneway, owner.current, L)
 		spell.friend = L
 		spell.charge_counter = spell.charge_max
@@ -371,9 +371,9 @@
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec
-	name = "old cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
-	mob_name = "a security officer"
+	name = "stara kapsuła kriogeniczna"
+	desc = "Buczący kriopojemnik. Pod warstwą lodu ledwo rozpoznajesz mundur ochrony. Maszyna próbuje obudzić osobę w środku."
+	mob_name = "funkcjonariusz ochrony"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
@@ -396,9 +396,9 @@
 	return ..()
 
 /obj/effect/mob_spawn/human/oldeng
-	name = "old cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise an engineering uniform underneath the built up ice. The machine is attempting to wake up its occupant."
-	mob_name = "an engineer"
+	name = "stara kapsuła kriogeniczna"
+	desc = "Buczący kriopojemnik. Pod warstwą lodu ledwo rozpoznajesz uniform inżyniera. Maszyna próbuje obudzić osobę w środku."
+	mob_name = "inżynier"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
@@ -421,9 +421,9 @@
 	return ..()
 
 /obj/effect/mob_spawn/human/oldsci
-	name = "old cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise a science uniform underneath the built up ice. The machine is attempting to wake up its occupant."
-	mob_name = "a scientist"
+	name = "stara kapsuła kriogeniczna"
+	desc = "Buczący kriopojemnik. Pod warstwą lodu ledwo rozpoznajesz uniform naukowca. Maszyna próbuje obudzić osobę w środku."
+	mob_name = "naukowiec"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
@@ -445,12 +445,12 @@
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate
-	name = "space pirate sleeper"
-	desc = "A cryo sleeper smelling faintly of rum."
+	name = "sleeper kosmicznego pirata"
+	desc = "Kriosleeper, który lekko pachnie rumem."
 	random = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	mob_name = "a space pirate"
+	mob_name = "kosmiczny pirat"
 	mob_species = /datum/species/skeleton
 	outfit = /datum/outfit/pirate/space
 	roundstart = FALSE
@@ -462,7 +462,7 @@
 	flavour_text = "Stacja odmówiła zapłaty za waszą ochronę. Chroń statek, wysysaj kredyty ze stacji i napadnij na nią po jeszcze więcej łupów."
 	assignedrole = "Space Pirate"
 	is_antagonist = TRUE
-	var/rank = "Mate"
+	var/rank = "Mat"
 
 /obj/effect/mob_spawn/human/pirate/special(mob/living/new_spawn)
 	new_spawn.fully_replace_character_name(new_spawn.real_name,generate_pirate_name())
@@ -478,17 +478,17 @@
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate/captain
-	rank = "Captain"
+	rank = "Kapitan"
 	outfit = /datum/outfit/pirate/space/captain
 
 /obj/effect/mob_spawn/human/pirate/gunner
-	rank = "Gunner"
+	rank = "Kanonier"
 
 
 /obj/effect/mob_spawn/human/gamer
-	name = "gamer sleeper"
-	desc = "A humming cryo pod."
-	mob_name = "a gamer"
+	name = "sleeper gracza"
+	desc = "Buczący kriopojemnik."
+	mob_name = "gracz"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE

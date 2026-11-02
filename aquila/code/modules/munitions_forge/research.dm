@@ -1,7 +1,7 @@
 // AQUILA - kuźnia amunicji: płytki maszyn, projekty i wpisy w techwebie.
 
 /obj/item/circuitboard/machine/munitions_arc_forge
-	name = "Arc Forge (Machine Board)"
+	name = "piec łukowy (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/munitions_forge/arc_forge
 	req_components = list(
@@ -11,14 +11,14 @@
 		/obj/item/assembly/igniter = 1)
 
 /obj/item/circuitboard/machine/munitions_anvil
-	name = "Munitions Anvil (Machine Board)"
+	name = "kowadło (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/munitions_forge/anvil
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
 /obj/item/circuitboard/machine/munitions_assembly_bench
-	name = "Munitions Assembly Bench (Machine Board)"
+	name = "stół montażowy amunicji (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/munitions_forge/assembly_bench
 	req_components = list(
@@ -26,7 +26,7 @@
 		/obj/item/stack/sheet/iron = 5)
 
 /obj/item/circuitboard/machine/munitions_electroplater
-	name = "Munitions Electroplater (Machine Board)"
+	name = "galwanizer amunicji (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/munitions_forge/electroplater
 	req_components = list(
@@ -42,25 +42,25 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/board/munitions_forge/arc_forge
-	name = "Machine Design (Arc Forge)"
+	name = "Projekt maszyny (piec łukowy)"
 	desc = "Piec łukowy kuźni amunicji, odlewa części z materiału z silosu."
 	id = "munitions_arc_forge"
 	build_path = /obj/item/circuitboard/machine/munitions_arc_forge
 
 /datum/design/board/munitions_forge/anvil
-	name = "Machine Design (Munitions Anvil)"
+	name = "Projekt maszyny (kowadło)"
 	desc = "Kowadło do kucia odlewów amunicji."
 	id = "munitions_anvil"
 	build_path = /obj/item/circuitboard/machine/munitions_anvil
 
 /datum/design/board/munitions_forge/assembly_bench
-	name = "Machine Design (Munitions Assembly Bench)"
+	name = "Projekt maszyny (stół montażowy amunicji)"
 	desc = "Stół do składania amunicji z części."
 	id = "munitions_assembly_bench"
 	build_path = /obj/item/circuitboard/machine/munitions_assembly_bench
 
 /datum/design/board/munitions_forge/electroplater
-	name = "Machine Design (Munitions Electroplater)"
+	name = "Projekt maszyny (galwanizer amunicji)"
 	desc = "Galwanizer, który pokrywa zwykłą amunicję materiałem z silosu."
 	id = "munitions_electroplater"
 	build_path = /obj/item/circuitboard/machine/munitions_electroplater

@@ -1,6 +1,6 @@
 /obj/machinery/modular_fabricator/autolathe
-	name = "autolathe"
-	desc = "It produces items using iron, copper, and glass."
+	name = "autolat"
+	desc = "Wytwarza przedmioty z żelaza, miedzi i szkła."
 	icon_state = "autolathe"
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -89,7 +89,7 @@
 		return TRUE
 
 	if (busy)
-		to_chat(user, "<span class=\"alert\">Autolatarka jest zajęta. Zaczekaj na zakończenie poprzedniej operacji.</span>")
+		to_chat(user, "<span class=\"alert\">Autolat jest zajęty. Zaczekaj na zakończenie poprzedniej operacji.</span>")
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))

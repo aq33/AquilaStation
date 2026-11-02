@@ -52,31 +52,31 @@ export const StarsystemManager = (props) => {
     return (
       <Section title={`${system.name}`}>
         <Button
-          content={'Send fleet'}
+          content={'Wyślij flotę'}
           icon={'hammer'}
           onClick={() => act('createFleet', { sys_id: system.sys_id })}
         />
         <Button
-          content={'Create object'}
+          content={'Utwórz obiekt'}
           icon={'sun'}
           onClick={() => act('createObject', { sys_id: system.sys_id })}
         />
         <Button
-          content={'Hide/Unhide system'}
+          content={'Ukryj/odkryj układ'}
           icon={'eye-slash'}
           onClick={() => act('hideSystem', { sys_id: system.sys_id })}
         />
         <Button
-          content={'Variables'}
+          content={'Zmienne'}
           icon={'eye'}
           onClick={() => act('systemVV', { sys_id: system.sys_id })}
         />
         <br />
         {/* The string manipulations are to capitalize the first letter */}
-        Alignment:{' '}
+        Przynależność:{' '}
         {system.alignment.charAt(0).toUpperCase() + system.alignment.slice(1)}
         <br />
-        System Type: {system.system_type}
+        Typ układu: {system.system_type}
         <br />
         <br />
         {Fleets}
@@ -90,10 +90,10 @@ export const StarsystemManager = (props) => {
       title={
         <Table>
           <Table.Row>
-            <Table.Cell>{'Starsystem Management'}</Table.Cell>
+            <Table.Cell>{'Zarządzanie układami gwiezdnymi'}</Table.Cell>
             <Table.Cell textAlign="right">
               <Input
-                placeholder="Search"
+                placeholder="Szukaj"
                 value={searchText}
                 onChange={(value) => setSearchText(value)}
                 mx={1}

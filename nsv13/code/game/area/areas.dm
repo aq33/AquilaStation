@@ -133,7 +133,7 @@
 	name = "Pierwszy Pokład Sterburta Dziób Tunel Techniczny"
 
 /area/maintenance/nsv/deck1/aft
-	name = "Pierwszy Pokład Aft Tunel Techniczny"
+	name = "Pierwszy Pokład Rufa Tunel Techniczny"
 	icon_state = "amaint"
 
 /area/maintenance/nsv/deck1/port/aft
@@ -551,7 +551,7 @@
 	icon_state = "weapons_bay"
 
 /area/nsv/weapons/fore
-	name = "Fore Komora Uzbrojenia"
+	name = "Dziobowa Komora Uzbrojenia"
 	icon_state = "weapons_bay"
 
 /area/nsv/weapons/artillery
@@ -760,25 +760,25 @@
 	light_color = "#e69602"
 
 /area/nsv/weapons/munitions_lounge
-    name = "Munitions Lounge"
+    name = "Świetlica Amunicji"
     icon_state = "hallF"
 
 /area/nsv/weapons/weapons_secure_storage
-    name = "Munitions Secure Storage"
+    name = "Zabezpieczony Magazyn Amunicji"
     icon_state = "hallF"
 
 /area/nsv/weapons/equipment_room
-    name = "Munitions Equipment Room"
+    name = "Pokój Wyposażenia Amunicji"
     icon_state = "hallF"
 
 /area/nsv/weapons/observation_deck
-    name = "Munitions Observation Deck"
+    name = "Pokład Obserwacyjny Amunicji"
     icon_state = "hallF"
 
 /area/nsv/weapons/main_passageway
-    name = "Munitions Access Corridor"
+    name = "Korytarz Dostępowy Amunicji"
     icon_state = "hallF"
 
 /area/nsv/engine/dcc
-	name = "Damage Control Central"
+	name = "Centrum Kontroli Uszkodzeń"
 	icon_state = "dc_central"

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/shadowwalk
-	name = "Shadow Walk"
-	desc = "Grants unlimited movement in darkness."
+	name = "Wędrówka w cieniu"
+	desc = "Daje nieograniczoną swobodę ruchu w ciemności."
 	charge_max = 0
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
@@ -35,7 +35,7 @@
 			to_chat(user, "<span class='warning'>Nie jest tu wystarczająco ciemno!</span>")
 
 /obj/effect/dummy/phased_mob/shadow
-	name = "darkness"
+	name = "ciemność"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = TRUE

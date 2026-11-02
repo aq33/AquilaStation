@@ -1,6 +1,6 @@
 /datum/action/changeling/transform
-	name = "Transform"
-	desc = "We take on the appearance and voice of one we have absorbed. Costs 5 chemicals."
+	name = "Przemiana"
+	desc = "Przybieramy wygląd i głos kogoś, kogo wchłonęliśmy. Kosztuje 5 chemikaliów."
 	button_icon_state = "transform"
 	chemical_cost = 5
 	dna_cost = 0
@@ -8,7 +8,7 @@
 	req_human = 1
 
 /obj/item/clothing/glasses/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/glasses/changeling/attack_hand(mob/user, list/modifiers)
@@ -19,7 +19,7 @@
 	. = ..()
 
 /obj/item/clothing/under/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/under/changeling/attack_hand(mob/user, list/modifiers)
@@ -30,7 +30,7 @@
 	. = ..()
 
 /obj/item/clothing/suit/changeling
-	name = "flesh"
+	name = "tkanka"
 	allowed = list(/obj/item/changeling)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -42,7 +42,7 @@
 	. = ..()
 
 /obj/item/clothing/head/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/head/changeling/attack_hand(mob/user, list/modifiers)
@@ -53,7 +53,7 @@
 	. = ..()
 
 /obj/item/clothing/shoes/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/changeling/attack_hand(mob/user, list/modifiers)
@@ -64,7 +64,7 @@
 	. = ..()
 
 /obj/item/clothing/gloves/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/gloves/changeling/attack_hand(mob/user, list/modifiers)
@@ -75,7 +75,7 @@
 	. = ..()
 
 /obj/item/clothing/mask/changeling
-	name = "flesh"
+	name = "tkanka"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/changeling/attack_hand(mob/user, list/modifiers)
@@ -86,7 +86,7 @@
 	. = ..()
 
 /obj/item/changeling
-	name = "flesh"
+	name = "tkanka"
 	slot_flags = ALL
 	allowed = list(/obj/item/changeling)
 	item_flags = DROPDEL
@@ -108,7 +108,7 @@
 //=============
 
 /obj/item/card/id/changeling
-	name = "flesh"
+	name = "tkanka"
 	item_flags = DROPDEL
 
 /obj/item/card/id/changeling/attack_hand(mob/user, list/modifiers)

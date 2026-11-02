@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/healing
-	name = "Healing"
-	desc = "Allows the guardian to heal anything, living or inanimate, by touch."
+	name = "Leczenie"
+	desc = "Pozwala strażnikowi leczyć dotykiem wszystko, żywe czy nieożywione."
 	ui_icon = "briefcase-medical"
 	cost = 4
 	has_mode = TRUE

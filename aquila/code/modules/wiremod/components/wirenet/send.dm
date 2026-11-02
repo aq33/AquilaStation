@@ -1,5 +1,5 @@
 /obj/item/circuit_component/wirenet_send
-	display_name = "Wirenet Transmitter"
+	display_name = "Nadajnik Wirenet"
 	desc = "Wysyła pakiet danych przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "Utility"
 

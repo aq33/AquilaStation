@@ -1,5 +1,5 @@
 /obj/item/clothing/head/helmet/space/hardsuit/infiltration
-	name = "engineering hardsuit helmet"
+	name = "inżynieryjny hełm hardsuitu"
 	icon_state = "hardsuit0-engineering"
 	item_state = "eng_helm"
 	//item_color = "engineering"
@@ -16,7 +16,7 @@
 	return
 
 /obj/item/clothing/suit/space/hardsuit/infiltration
-	name = "engineering hardsuit"
+	name = "inżynieryjny hardsuit"
 	icon_state = "hardsuit-engineering"
 	item_state = "eng_hardsuit"
 	w_class = WEIGHT_CLASS_NORMAL

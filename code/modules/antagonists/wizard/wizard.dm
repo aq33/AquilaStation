@@ -44,12 +44,12 @@
 	return wiz_team
 
 /datum/team/wizard
-	name = "wizard team"
+	name = "drużyna czarodziejów"
 	var/datum/antagonist/wizard/master_wizard
 
 /datum/antagonist/wizard/proc/create_wiz_team()
 	wiz_team = new(owner)
-	wiz_team.name = "[owner.current.real_name] team"
+	wiz_team.name = "drużyna: [owner.current.real_name]"
 	wiz_team.master_wizard = src
 	update_wiz_icons_added(owner.current)
 
@@ -193,7 +193,7 @@
 
 /datum/antagonist/wizard/get_admin_commands()
 	. = ..()
-	.["Send to Lair"] = CALLBACK(src,PROC_REF(admin_send_to_lair))
+	.["Wyślij do kryjówki"] = CALLBACK(src,PROC_REF(admin_send_to_lair))
 
 /datum/antagonist/wizard/proc/admin_send_to_lair(mob/admin)
 	owner.current.forceMove(pick(GLOB.wizardstart))

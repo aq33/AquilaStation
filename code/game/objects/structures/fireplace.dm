@@ -3,8 +3,8 @@
 #define MAXIMUM_BURN_TIMER 3000
 
 /obj/structure/fireplace
-	name = "fireplace"
-	desc = "A large stone brick fireplace."
+	name = "kominek"
+	desc = "Duży kominek z kamiennej cegły."
 	icon = 'icons/obj/fireplace.dmi'
 	icon_state = "fireplace"
 	density = FALSE
@@ -135,7 +135,7 @@
 
 /obj/structure/fireplace/proc/ignite()
 	lit = TRUE
-	desc = "A large stone brick fireplace, warm and cozy."
+	desc = "Duży kominek z kamiennej cegły, ciepły i przytulny."
 	flame_expiry_timer = world.time + fuel_added
 	fuel_added = 0
 	update_icon()

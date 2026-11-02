@@ -1,6 +1,6 @@
 /obj/item/stand_arrow
-	name = "mysterious arrow"
-	desc = "An ancient arrow. You feel poking yourself, or someone else with it would have... <span class='holoparasite'>unpredictable</span> results."
+	name = "tajemnicza strzała"
+	desc = "Starożytna strzała. Czujesz, że dźgnięcie nią siebie albo kogoś innego miałoby... <span class='holoparasite'>nieprzewidywalne</span> skutki."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "standarrow"
 	item_state = "standarrow"
@@ -102,7 +102,7 @@
 	else
 		var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
 		if(S)
-			S.name = "Requiem Guardian"
+			S.name = "Strażnik Requiem"
 	G.transforming = FALSE
 	G.Recall(TRUE)
 	G.visible_message("<span class='holoparasite'>[G] wchłania [src]!</span>")

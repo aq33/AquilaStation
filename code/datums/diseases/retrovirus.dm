@@ -1,7 +1,7 @@
 /datum/disease/dna_retrovirus
-	name = "Retrovirus"
+	name = "Retrowirus"
 	max_stages = 4
-	spread_text = "Contact"
+	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = "Odpoczynek albo zastrzyk mutadonu"
 	cure_chance = 6

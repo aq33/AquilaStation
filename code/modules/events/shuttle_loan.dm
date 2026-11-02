@@ -244,7 +244,7 @@
 	new /obj/item/grenade/chem_grenade/facid(src)
 
 /obj/item/paper/fluff/bee_objectives
-	name = "Objectives of a Bee Liberation Front Operative"
+	name = "cele agenta Frontu Wyzwolenia Pszczół"
 	default_raw_text = "<b>Cel nr 1</b>. Uwolnić wszystkie pszczoły z transportowca NT 2416/B. <b>Sukces!</b>  <br><b>Cel nr 2</b>. Uciec żywym. <b>Porażka.</b>"
 
 /obj/machinery/syndicatebomb/shuttle_loan/Initialize(mapload)
@@ -255,7 +255,7 @@
 	update_icon()
 
 /obj/item/paper/fluff/cargo/bomb
-	name = "hastly scribbled note"
+	name = "pospiesznie nabazgrana notatka"
 	default_raw_text = "POWODZENIA!"
 
 /obj/item/paper/fluff/cargo/bomb/allyourbase

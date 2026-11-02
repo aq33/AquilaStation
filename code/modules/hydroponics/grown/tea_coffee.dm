@@ -1,8 +1,8 @@
 // Tea
 /obj/item/food/grown/tea
 	seed = /obj/item/plant_seeds/preset/tea
-	name = "Tea Aspera tips"
-	desc = "These aromatic tips of the tea plant can be dried to make tea."
+	name = "liść herbaty"
+	desc = "Te aromatyczne listki herbaty można wysuszyć i zaparzyć."
 	icon_state = "tea_aspera_leaves"
 	filling_color = "#008000"
 	dry_grind = TRUE
@@ -11,8 +11,8 @@
 
 // Tea Astra
 /obj/item/food/grown/tea/astra
-	name = "Tea Astra tips"
-	desc = "A special blend of tea to sooth the mind."
+	name = "liść herbaty astra"
+	desc = "Specjalna mieszanka herbaty, która koi umysł."
 	icon_state = "tea_astra_leaves"
 	bite_consumption_mod = 2
 	grind_results = list(/datum/reagent/toxin/teapowder = 0, /datum/reagent/medicine/salglu_solution = 0)
@@ -22,8 +22,8 @@
 // Coffee
 /obj/item/food/grown/coffee
 	seed = /obj/item/plant_seeds/preset/coffee
-	name = "coffee arabica beans"
-	desc = "Dry them out to make coffee."
+	name = "ziarna kawy arabika"
+	desc = "Wysusz je, żeby zrobić kawę."
 	icon_state = "coffee_arabica"
 	dry_grind = TRUE
 	grind_results = list(/datum/reagent/toxin/coffeepowder = 0)
@@ -31,8 +31,8 @@
 
 // Coffee Robusta
 /obj/item/food/grown/coffee/robusta
-	name = "coffee robusta beans"
-	desc = "Increases robustness by 37 percent!"
+	name = "ziarna kawy robusta"
+	desc = "Zwiększa krzepkość o 37 procent!"
 	icon_state = "coffee_robusta"
 	grind_results = list(/datum/reagent/toxin/coffeepowder = 0, /datum/reagent/medicine/morphine = 0)
 	discovery_points = 300

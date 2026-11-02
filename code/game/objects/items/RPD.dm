@@ -16,74 +16,74 @@ RPD
 
 GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 	"Pipes" = list(
-		new /datum/pipe_info/pipe("Pipe",				/obj/machinery/atmospherics/pipe/simple, TRUE),
-		new /datum/pipe_info/pipe("Manifold",			/obj/machinery/atmospherics/pipe/manifold, TRUE),
-		new /datum/pipe_info/pipe("Manual Valve",		/obj/machinery/atmospherics/components/binary/valve, TRUE),
-		new /datum/pipe_info/pipe("Digital Valve",		/obj/machinery/atmospherics/components/binary/valve/digital, TRUE),
-		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/manifold4w, TRUE),
-		new /datum/pipe_info/pipe("Layer Adapter",		/obj/machinery/atmospherics/pipe/layer_manifold, TRUE),
-		new /datum/pipe_info/pipe("Multi-Deck Adapter", /obj/machinery/atmospherics/pipe/multiz, TRUE),
+		new /datum/pipe_info/pipe("Rura",				/obj/machinery/atmospherics/pipe/simple, TRUE),
+		new /datum/pipe_info/pipe("Rozgałęźnik",			/obj/machinery/atmospherics/pipe/manifold, TRUE),
+		new /datum/pipe_info/pipe("Zawór",		/obj/machinery/atmospherics/components/binary/valve, TRUE),
+		new /datum/pipe_info/pipe("Zawór cyfrowy",		/obj/machinery/atmospherics/components/binary/valve/digital, TRUE),
+		new /datum/pipe_info/pipe("Rozgałęźnik czterodrożny",		/obj/machinery/atmospherics/pipe/manifold4w, TRUE),
+		new /datum/pipe_info/pipe("Adapter warstw",		/obj/machinery/atmospherics/pipe/layer_manifold, TRUE),
+		new /datum/pipe_info/pipe("Adapter międzypokładowy", /obj/machinery/atmospherics/pipe/multiz, TRUE),
 	),
 	"Devices" = list(
-		new /datum/pipe_info/pipe("Connector",			/obj/machinery/atmospherics/components/unary/portables_connector, TRUE),
-		new /datum/pipe_info/pipe("Unary Vent",			/obj/machinery/atmospherics/components/unary/vent_pump, TRUE),
-		new /datum/pipe_info/pipe("Gas Pump",			/obj/machinery/atmospherics/components/binary/pump, TRUE),
-		new /datum/pipe_info/pipe("Passive Gate",		/obj/machinery/atmospherics/components/binary/passive_gate, TRUE),
-		new /datum/pipe_info/pipe("Volume Pump",		/obj/machinery/atmospherics/components/binary/volume_pump, TRUE),
-		new /datum/pipe_info/pipe("Scrubber",			/obj/machinery/atmospherics/components/unary/vent_scrubber, TRUE),
-		new /datum/pipe_info/pipe("Injector",			/obj/machinery/atmospherics/components/unary/outlet_injector, TRUE),
-		new /datum/pipe_info/pipe("Passive Vent",		/obj/machinery/atmospherics/components/unary/passive_vent, TRUE),
-		new /datum/pipe_info/pipe("Gas Filter",			/obj/machinery/atmospherics/components/trinary/filter, TRUE),
-		new /datum/pipe_info/pipe("Gas Mixer",			/obj/machinery/atmospherics/components/trinary/mixer, TRUE),
-		new /datum/pipe_info/pipe("Pressure Valve",		/obj/machinery/atmospherics/components/binary/pressure_valve, TRUE),
-		new /datum/pipe_info/pipe("Temperature Gate",	/obj/machinery/atmospherics/components/binary/temperature_gate, TRUE),
-		new /datum/pipe_info/pipe("Temperature Pump",	/obj/machinery/atmospherics/components/binary/temperature_pump, TRUE),
-		new /datum/pipe_info/meter("Meter"),
+		new /datum/pipe_info/pipe("Port przyłączeniowy",			/obj/machinery/atmospherics/components/unary/portables_connector, TRUE),
+		new /datum/pipe_info/pipe("Nawiewnik",			/obj/machinery/atmospherics/components/unary/vent_pump, TRUE),
+		new /datum/pipe_info/pipe("Pompa gazu",			/obj/machinery/atmospherics/components/binary/pump, TRUE),
+		new /datum/pipe_info/pipe("Regulator ciśnienia",		/obj/machinery/atmospherics/components/binary/passive_gate, TRUE),
+		new /datum/pipe_info/pipe("Pompa objętościowa",		/obj/machinery/atmospherics/components/binary/volume_pump, TRUE),
+		new /datum/pipe_info/pipe("Oczyszczacz powietrza",			/obj/machinery/atmospherics/components/unary/vent_scrubber, TRUE),
+		new /datum/pipe_info/pipe("Wtryskiwacz",			/obj/machinery/atmospherics/components/unary/outlet_injector, TRUE),
+		new /datum/pipe_info/pipe("Pasywny nawiewnik",		/obj/machinery/atmospherics/components/unary/passive_vent, TRUE),
+		new /datum/pipe_info/pipe("Filtr gazów",			/obj/machinery/atmospherics/components/trinary/filter, TRUE),
+		new /datum/pipe_info/pipe("Mieszacz gazów",			/obj/machinery/atmospherics/components/trinary/mixer, TRUE),
+		new /datum/pipe_info/pipe("Zawór ciśnieniowy",		/obj/machinery/atmospherics/components/binary/pressure_valve, TRUE),
+		new /datum/pipe_info/pipe("Regulator temperatury",	/obj/machinery/atmospherics/components/binary/temperature_gate, TRUE),
+		new /datum/pipe_info/pipe("Pompa temperaturowa",	/obj/machinery/atmospherics/components/binary/temperature_pump, TRUE),
+		new /datum/pipe_info/meter("Miernik"),
 	),
 	"Heat Exchange" = list(
-		new /datum/pipe_info/pipe("Pipe",				/obj/machinery/atmospherics/pipe/heat_exchanging/simple, FALSE),
-		new /datum/pipe_info/pipe("Manifold",			/obj/machinery/atmospherics/pipe/heat_exchanging/manifold, FALSE),
-		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w, FALSE),
-		new /datum/pipe_info/pipe("Junction",			/obj/machinery/atmospherics/pipe/heat_exchanging/junction, FALSE),
-		new /datum/pipe_info/pipe("Heat Exchanger",		/obj/machinery/atmospherics/components/unary/heat_exchanger, FALSE),
+		new /datum/pipe_info/pipe("Rura",				/obj/machinery/atmospherics/pipe/heat_exchanging/simple, FALSE),
+		new /datum/pipe_info/pipe("Rozgałęźnik",			/obj/machinery/atmospherics/pipe/heat_exchanging/manifold, FALSE),
+		new /datum/pipe_info/pipe("Rozgałęźnik czterodrożny",		/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w, FALSE),
+		new /datum/pipe_info/pipe("Złączka",			/obj/machinery/atmospherics/pipe/heat_exchanging/junction, FALSE),
+		new /datum/pipe_info/pipe("Wymiennik ciepła",		/obj/machinery/atmospherics/components/unary/heat_exchanger, FALSE),
 	)
 ))
 
 GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	"Disposal Pipes" = list(
-		new /datum/pipe_info/disposal("Pipe",			/obj/structure/disposalpipe/segment, PIPE_BENDABLE),
-		new /datum/pipe_info/disposal("Junction",		/obj/structure/disposalpipe/junction, PIPE_TRIN_M),
-		new /datum/pipe_info/disposal("Y-Junction",		/obj/structure/disposalpipe/junction/yjunction),
-		new /datum/pipe_info/disposal("Sort Junction",	/obj/structure/disposalpipe/sorting/mail, PIPE_TRIN_M),
-		new /datum/pipe_info/disposal("Trunk",			/obj/structure/disposalpipe/trunk),
-		new /datum/pipe_info/disposal("Bin",			/obj/machinery/disposal/bin, PIPE_ONEDIR),
-		new /datum/pipe_info/disposal("Outlet",			/obj/structure/disposaloutlet),
-		new /datum/pipe_info/disposal("Chute",			/obj/machinery/disposal/deliveryChute),
-		new /datum/pipe_info/disposal("Trunk (Up)",		/obj/structure/disposalpipe/trunk/multiz, PIPE_UNARY),
-		new /datum/pipe_info/disposal("Trunk (Down)",	/obj/structure/disposalpipe/trunk/multiz/down, PIPE_UNARY),
+		new /datum/pipe_info/disposal("Rura",			/obj/structure/disposalpipe/segment, PIPE_BENDABLE),
+		new /datum/pipe_info/disposal("Złączka",		/obj/structure/disposalpipe/junction, PIPE_TRIN_M),
+		new /datum/pipe_info/disposal("Złączka Y",		/obj/structure/disposalpipe/junction/yjunction),
+		new /datum/pipe_info/disposal("Złączka sortująca",	/obj/structure/disposalpipe/sorting/mail, PIPE_TRIN_M),
+		new /datum/pipe_info/disposal("Przyłącze",			/obj/structure/disposalpipe/trunk),
+		new /datum/pipe_info/disposal("Kosz zsypowy",			/obj/machinery/disposal/bin, PIPE_ONEDIR),
+		new /datum/pipe_info/disposal("Wylot",			/obj/structure/disposaloutlet),
+		new /datum/pipe_info/disposal("Zsyp",			/obj/machinery/disposal/deliveryChute),
+		new /datum/pipe_info/disposal("Przyłącze (w górę)",		/obj/structure/disposalpipe/trunk/multiz, PIPE_UNARY),
+		new /datum/pipe_info/disposal("Przyłącze (w dół)",	/obj/structure/disposalpipe/trunk/multiz/down, PIPE_UNARY),
 		new /datum/pipe_info/disposal("Loafer (prasa bochenkowa)", /obj/structure/disposalpipe/loafer, PIPE_STRAIGHT), // AQ EDIT - prasa bochenkowa z Monkestation
 	)
 ))
 
 GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	"Transit Tubes" = list(
-		new /datum/pipe_info/transit("Straight Tube",				/obj/structure/c_transit_tube, PIPE_STRAIGHT),
-		new /datum/pipe_info/transit("Straight Tube with Crossing",	/obj/structure/c_transit_tube/crossing, PIPE_STRAIGHT),
-		new /datum/pipe_info/transit("Curved Tube",					/obj/structure/c_transit_tube/curved, PIPE_UNARY_FLIPPABLE),
-		new /datum/pipe_info/transit("Diagonal Tube",				/obj/structure/c_transit_tube/diagonal, PIPE_STRAIGHT),
-		new /datum/pipe_info/transit("Diagonal Tube with Crossing",	/obj/structure/c_transit_tube/diagonal/crossing, PIPE_STRAIGHT),
-		new /datum/pipe_info/transit("Junction",					/obj/structure/c_transit_tube/junction, PIPE_UNARY_FLIPPABLE),
+		new /datum/pipe_info/transit("Rura prosta",				/obj/structure/c_transit_tube, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Rura prosta ze skrzyżowaniem",	/obj/structure/c_transit_tube/crossing, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Rura zakrzywiona",					/obj/structure/c_transit_tube/curved, PIPE_UNARY_FLIPPABLE),
+		new /datum/pipe_info/transit("Rura ukośna",				/obj/structure/c_transit_tube/diagonal, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Rura ukośna ze skrzyżowaniem",	/obj/structure/c_transit_tube/diagonal/crossing, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Złączka",					/obj/structure/c_transit_tube/junction, PIPE_UNARY_FLIPPABLE),
 	),
 	"Station Equipment" = list(
-		new /datum/pipe_info/transit("Through Tube Station",		/obj/structure/c_transit_tube/station, PIPE_STRAIGHT),
-		new /datum/pipe_info/transit("Terminus Tube Station",		/obj/structure/c_transit_tube/station/reverse, PIPE_UNARY),
-		new /datum/pipe_info/transit("Transit Tube Pod",			/obj/structure/c_transit_tube_pod, PIPE_ONEDIR),
+		new /datum/pipe_info/transit("Stacja przelotowa",		/obj/structure/c_transit_tube/station, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Stacja końcowa",		/obj/structure/c_transit_tube/station/reverse, PIPE_UNARY),
+		new /datum/pipe_info/transit("Kapsuła transportowa",			/obj/structure/c_transit_tube_pod, PIPE_ONEDIR),
 	)
 ))
 
 GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	"Fluid Ducts" = list(
-		new /datum/pipe_info/plumbing("Duct",				/obj/machinery/duct, PIPE_ONEDIR),
+		new /datum/pipe_info/plumbing("Przewód",				/obj/machinery/duct, PIPE_ONEDIR),
 	)
 ))
 
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	// This makes it impossble to spawn bent versions of bendable pipes.
 	// We add a "Bent" pipe type with a preset diagonal direction to work around it.
 	if(istype(dispenser, /obj/machinery/pipedispenser) && (dirtype == PIPE_BENDABLE || dirtype == /obj/item/pipe/binary/bendable))
-		dat += "<li><a href='byond://?src=[REF(dispenser)]&[Params()]&dir=[NORTHEAST]'>Bent [name]</a></li>"
+		dat += "<li><a href='byond://?src=[REF(dispenser)]&[Params()]&dir=[NORTHEAST]'>[name] (zagięta)</a></li>"
 
 	return dat
 
@@ -112,25 +112,25 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/list/dirs
 	switch(dirtype)
 		if(PIPE_STRAIGHT, PIPE_BENDABLE)
-			dirs = list("[NORTH]" = "Vertical", "[EAST]" = "Horizontal")
+			dirs = list("[NORTH]" = "Pionowo", "[EAST]" = "Poziomo")
 			if(dirtype == PIPE_BENDABLE)
-				dirs += list("[NORTHWEST]" = "West to North", "[NORTHEAST]" = "North to East",
-							 "[SOUTHWEST]" = "South to West", "[SOUTHEAST]" = "East to South")
+				dirs += list("[NORTHWEST]" = "Zachód – północ", "[NORTHEAST]" = "Północ – wschód",
+							 "[SOUTHWEST]" = "Południe – zachód", "[SOUTHEAST]" = "Wschód – południe")
 		if(PIPE_TRINARY)
-			dirs = list("[NORTH]" = "West South East", "[EAST]" = "North West South",
-						"[SOUTH]" = "East North West", "[WEST]" = "South East North")
+			dirs = list("[NORTH]" = "Zachód, południe, wschód", "[EAST]" = "Północ, zachód, południe",
+						"[SOUTH]" = "Wschód, północ, zachód", "[WEST]" = "Południe, wschód, północ")
 		if(PIPE_TRIN_M)
-			dirs = list("[NORTH]" = "North East South", "[EAST]" = "East South West",
-						"[SOUTH]" = "South West North", "[WEST]" = "West North East",
-						"[SOUTHEAST]" = "West South East", "[NORTHEAST]" = "South East North",
-						"[NORTHWEST]" = "East North West", "[SOUTHWEST]" = "North West South")
+			dirs = list("[NORTH]" = "Północ, wschód, południe", "[EAST]" = "Wschód, południe, zachód",
+						"[SOUTH]" = "Południe, zachód, północ", "[WEST]" = "Zachód, północ, wschód",
+						"[SOUTHEAST]" = "Zachód, południe, wschód", "[NORTHEAST]" = "Południe, wschód, północ",
+						"[NORTHWEST]" = "Wschód, północ, zachód", "[SOUTHWEST]" = "Północ, zachód, południe")
 		if(PIPE_UNARY)
-			dirs = list("[NORTH]" = "North", "[EAST]" = "East", "[SOUTH]" = "South", "[WEST]" = "West")
+			dirs = list("[NORTH]" = "Północ", "[EAST]" = "Wschód", "[SOUTH]" = "Południe", "[WEST]" = "Zachód")
 		if(PIPE_ONEDIR)
 			dirs = list("[SOUTH]" = name)
 		if(PIPE_UNARY_FLIPPABLE)
-			dirs = list("[NORTH]" = "North", "[NORTHEAST]" = "North Flipped", "[EAST]" = "East", "[SOUTHEAST]" = "East Flipped",
-						"[SOUTH]" = "South", "[SOUTHWEST]" = "South Flipped", "[WEST]" = "West", "[NORTHWEST]" = "West Flipped")
+			dirs = list("[NORTH]" = "Północ", "[NORTHEAST]" = "Północ (odwrócone)", "[EAST]" = "Wschód", "[SOUTHEAST]" = "Wschód (odwrócone)",
+						"[SOUTH]" = "Południe", "[SOUTHWEST]" = "Południe (odwrócone)", "[WEST]" = "Zachód", "[NORTHWEST]" = "Zachód (odwrócone)")
 
 
 	var/list/rows = list()
@@ -199,8 +199,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 
 /obj/item/pipe_dispenser
-	name = "Rapid Pipe Dispenser (RPD)"
-	desc = "A device used to rapidly pipe things."
+	name = "szybki dozownik rur (RPD)"
+	desc = "Urządzenie do szybkiego układania rur."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rpd"
 	flags_1 = CONDUCT_1
@@ -532,8 +532,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
 
 /obj/item/pipe_dispenser/plumbing
-	name = "Plumberinator"
-	desc = "A crude device to rapidly plumb things."
+	name = "Hydraulikator"
+	desc = "Prymitywne urządzenie do szybkiego układania instalacji wodnych."
 	icon_state = "plumberer"
 	category = PLUMBING_CATEGORY
 	locked = TRUE

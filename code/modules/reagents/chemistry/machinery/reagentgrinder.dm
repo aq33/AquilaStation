@@ -1,8 +1,8 @@
 #define MILK_TO_BUTTER_COEFF 15
 
 /obj/machinery/reagentgrinder
-	name = "\improper All-In-One Grinder"
-	desc = "From BlenderTech. Will It Blend? Let's test it out!"
+	name = "\improper młynek Wszystko-w-Jednym"
+	desc = "Od BlenderTech. Czy to się zmiksuje? Sprawdźmy!"
 	icon = 'nsv13/icons/obj/kitchen.dmi' //NSV13
 	icon_state = "juicer1"
 	layer = BELOW_OBJ_LAYER
@@ -77,10 +77,10 @@
 	if(beaker || length(holdingitems))
 		. += "<span class='notice'>[src] zawiera:</span>"
 		if(beaker)
-			. += "<span class='notice'>- \A [beaker].</span>"
+			. += "<span class='notice'>- [beaker].</span>"
 		for(var/i in holdingitems)
 			var/obj/item/O = i
-			. += "<span class='notice'>- \A [O.name].</span>"
+			. += "<span class='notice'>- [O.name].</span>"
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>Wyświetlacz stanu pokazuje:</span>\n"+\

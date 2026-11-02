@@ -1,8 +1,8 @@
 GLOBAL_DATUM_INIT(lore_terminal_controller, /datum/lore_controller, new)
 
 /obj/machinery/computer/lore_terminal
-	name = "Seegson info-link terminal"
-	desc = "A small CRT display with an inbuilt microcomputer which is loaded with an extensive database. These terminals contain eveyrthing from information about historical events to instruction manuals for common ship appliances."
+	name = "terminal informacyjny Seegson"
+	desc = "Mały monitor CRT z wbudowanym mikrokomputerem i obszerną bazą danych. Takie terminale zawierają wszystko, od informacji o wydarzeniach historycznych po instrukcje obsługi typowych urządzeń okrętowych."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "terminal"
 	pixel_y = 26 //So they snap to walls correctly
@@ -116,7 +116,7 @@ GLOBAL_DATUM_INIT(lore_terminal_controller, /datum/lore_controller, new)
 	in_use = FALSE
 
 /datum/lore_controller
-	var/name = "Lore archive controller"
+	var/name = "kontroler archiwum fabularnego"
 	var/list/entries = list() //All the lore entries we have.
 
 /datum/lore_controller/New()
@@ -131,7 +131,7 @@ GLOBAL_DATUM_INIT(lore_terminal_controller, /datum/lore_controller, new)
 /datum/lore_entry
 	var/name = "Loredoc.txt" //"File display name" that the term shows (C://blah/yourfile.bmp)
 	var/title = null //What it's all about
-	var/classified = "Declassified" //Fluff, is this a restricted file or not?
+	var/classified = "Odtajnione" //Fluff, is this a restricted file or not?
 	var/content = null //You may choose to set this here, or via a .txt. file if it's long. Newlines / Enters will break it!
 	var/filename = null //The name of the actual file in the repo. Files are stored in LORE_DIR
 	var/access_tag = "placeholder" //Set this to match the terminals that you want to be able to access it. EG "ntcommon" for declassified shit.
@@ -154,97 +154,97 @@ SPECIAL KEYS RESPOND AS FOLLOWS:
 
 /datum/lore_entry/nt
 	name = "new_employees_memo.ntmail"
-	title = "Intercepted message"
+	title = "Przechwycona wiadomość"
 	filename = "welcome.txt"
 	access_tag = "ntcommon"
 
 /datum/lore_entry/nt/ragnarok
 	name = "ragnarok_class.ntdoc"
-	title = "Ragnarok Class Specifications"
+	title = "Specyfikacja klasy Ragnarok"
 	filename = "ragnarok.txt"
 
 /datum/lore_entry/nt/firing_proceedure
 	name = "firing_proceedure.ntdoc"
-	title = "Ship-to-ship munitions"
+	title = "Amunicja do walki między statkami"
 	filename = "firing_proceedure.txt"
 
 /datum/lore_entry/nt/stormdrive_operation
 	name = "stormdrive_operation.ntdoc"
-	title = "Setting up power"
+	title = "Uruchamianie zasilania"
 	filename = null
-	content = "-Activate constrictors with an open hand ` -Open 'plasma input' valves to constrictors and set their pressure to 'MAX' ` -Assemble particle accelerator with a wrench, coil of wire and screwdriver. ` -Open reactor inlet valves and set their pressure to 'MAX'` `-Use the particle accelerator control console, set the setting to '2' and toggle its power `-When you have successfully started the reactor, it will begin emitting cherenkov radiation, giving off a 'blue glow' around the core. When the reactor is activated, turn off the particle accelerator to prevent power waste. `-It is recommended that engineers use control rod setting '2' for optimal power generation, however the control rods are not rated to withstand temperatures of over 200 degrees for long, and will thus require reinforcement with sheets of plasteel. ` If fuel fails to fill into the reactor, a backpressure surge has occurred. Turn off all inputs to the reactor and open the waste release valve with the reactor console to flush any air out of the system. When this is done, close the valve again and re-enable fuel supplies."
+	content = "-Włącz zwężacze gołą ręką ` -Otwórz zawory 'plasma input' do zwężaczy i ustaw ich ciśnienie na 'MAX' ` -Zmontuj akcelerator cząstek kluczem, zwojem kabla i śrubokrętem. ` -Otwórz zawory wlotowe reaktora i ustaw ich ciśnienie na 'MAX'` `-Na konsoli sterowania akceleratorem cząstek ustaw poziom '2' i włącz zasilanie `-Gdy reaktor się uruchomi, zacznie emitować promieniowanie Czerenkowa, które daje 'niebieską poświatę' wokół rdzenia. Po włączeniu reaktora wyłącz akcelerator cząstek, żeby nie marnować energii. `-Do optymalnej produkcji energii inżynierom zaleca się ustawienie prętów sterujących na '2', ale pręty nie są przystosowane do długotrwałej pracy w temperaturze powyżej 200 stopni, więc trzeba je wzmocnić arkuszami plastali. ` Jeśli paliwo nie napływa do reaktora, doszło do skoku ciśnienia zwrotnego. Wyłącz wszystkie wloty reaktora i na konsoli reaktora otwórz zawór zrzutu odpadów, żeby wypłukać gaz z systemu. Potem zamknij zawór i ponownie włącz dopływ paliwa."
 
 /datum/lore_entry/nt/meltdown_proceedures
 	name = "meltdown_proceedures.ntmail"
-	title = "Emergency proceedures regarding nuclear meltdowns:"
+	title = "Procedury awaryjne na wypadek stopienia rdzenia:"
 	filename = null
-	content = "SYSADMIN -> Allcrew@seegnet.nt. RE: Emergency Meltdown proceedures. ` The nuclear storm drive is an inherently safe engine, however this does not mean it is foolproof. Dilligence will mean the difference between having a safe, reliable power output which can last for decades, and a nuclear hellfire which can destroy the entire ship. `What to do during a meltdown: `-A reactor will melt down when the fission inside it produces an uncontrollable amount of heat (in excess of 300 degrees celsius). If this ever happens, a shipwide alarm will sound. If you hear this alarm, you must act quickly and calmly, as you will have approximately 1 - 2 minutes before the reactor explodes. `-To avert meltdown, simply locate the control console, and choose the 'SCRAM' setting (the button labelled AZ-5). This will immediately lower all control rods and attempt to cool the reactor. `-In the event of damaged control rods, IMMEDIATELY shut off all plasma constrictors, supply pumps and filters and evacuate the engineering section IMMEDIATELY to prevent unecessary loss of life. `-As a meltdown occurs, nuclear fuel is deposited all over the ship, and must be cleaned up with a shovel. This spent fuel is HIGHLY radioactive, and must be handled with extreme care. If the unthinkable comes to pass, instruct crew to seek shelter in maintenance and proceed to immediately evacuate the ship. To avoid complications, it is recommended that engineers equip radiation proof suits and gas masks, and proceed to clear a path to the evacuation arm with shovels. Remember: Stay safe through vigilance!"
+	content = "SYSADMIN -> Allcrew@seegnet.nt. RE: Awaryjne procedury na wypadek stopienia rdzenia. ` Jądrowy napęd burzowy jest z natury bezpiecznym silnikiem, ale to nie znaczy, że jest odporny na głupotę. Od staranności zależy, czy dostaniesz bezpieczne, niezawodne źródło energii na dziesięciolecia, czy jądrowe piekło, które zniszczy cały statek. `Co robić w razie stopienia rdzenia: `-Reaktor ulega stopieniu, gdy rozszczepienie w jego wnętrzu wytwarza niekontrolowane ilości ciepła (ponad 300 stopni Celsjusza). Jeśli do tego dojdzie, na całym statku włączy się alarm. Gdy go usłyszysz, musisz działać szybko i spokojnie, bo do wybuchu reaktora zostaje ok. 1–2 minut. `-Żeby zapobiec stopieniu, znajdź konsolę sterowania i wybierz ustawienie 'SCRAM' (przycisk z napisem AZ-5). Natychmiast opuści to wszystkie pręty sterujące i spróbuje schłodzić reaktor. `-Jeśli pręty sterujące są uszkodzone, NATYCHMIAST wyłącz wszystkie zwężacze plazmy, pompy zasilające i filtry i NATYCHMIAST ewakuuj sekcję inżynieryjną, żeby uniknąć niepotrzebnych ofiar. `-Podczas stopienia rdzenia paliwo jądrowe rozsypuje się po całym statku i trzeba je sprzątnąć łopatą. To zużyte paliwo jest SILNIE radioaktywne i trzeba obchodzić się z nim niezwykle ostrożnie. Jeśli stanie się najgorsze, każ załodze schronić się w tunelach technicznych i natychmiast przystąp do ewakuacji statku. Żeby uniknąć komplikacji, inżynierom zaleca się założenie kombinezonów przeciwradiacyjnych i masek gazowych, a potem przekopanie łopatami drogi do ramienia ewakuacyjnego. Pamiętaj: czujność to bezpieczeństwo!"
 
 /datum/lore_entry/nt/ship_weapon_maintenance
 	name = "weapon_maintenance_proceedure.ntmail"
-	title = "Ship-to-ship weapons maintenance and YOU"
+	title = "Konserwacja uzbrojenia okrętowego a TY"
 	filename = null
-	content = "SYSADMIN -> Munitions@seegnet.nt. RE: Weapons Maintenance ` ATTENTIVE SHIP SYSTEM MAINTENANCE STARTS WITH YOU ` All primary ship-to-ship offensive weapons, including torpedo tubes and railguns require regular maintenance from skilled workers to remain in an optimal state. ` Reminder: Before commencing any maintenance on ship weaponry, ensure all relevant safety systems are engaged and the weapon is not loaded. ` -Unscrew the maintenance hatch on the primary external casing ` -Unbolt the internal maintenance panel ` -Use a crowbar to carefully lever out the internal panel ` -Apply 10 units of Oil to the exposed internal machinery ` -Replace and bolt the panel, fix the hatch back in place ` IF MAINTENANCE IS NOT PERFORMED REGULARLY, FAILURE COULD OCCUR DURING COMBAT, LEADING TO THE INJURY AND/OR DEATH OF YOURSELF AND OTHER CREW"
+	content = "SYSADMIN -> Munitions@seegnet.nt. RE: Konserwacja uzbrojenia ` STARANNA KONSERWACJA SYSTEMÓW OKRĘTOWYCH ZACZYNA SIĘ OD CIEBIE ` Całe główne uzbrojenie ofensywne do walki między statkami, w tym wyrzutnie torped i działa szynowe, wymaga regularnej konserwacji przez wykwalifikowanych pracowników, żeby pozostało w optymalnym stanie. ` Przypomnienie: przed rozpoczęciem jakiejkolwiek konserwacji uzbrojenia okrętowego upewnij się, że wszystkie odpowiednie zabezpieczenia są włączone, a broń nie jest załadowana. ` -Odkręć właz serwisowy na głównej obudowie zewnętrznej ` -Odkręć śruby wewnętrznego panelu serwisowego ` -Łomem ostrożnie podważ i wyjmij panel wewnętrzny ` -Nałóż 10 j. oleju na odsłonięte mechanizmy wewnętrzne ` -Załóż panel z powrotem, przykręć go i zamocuj właz ` JEŚLI KONSERWACJA NIE BĘDZIE PRZEPROWADZANA REGULARNIE, PODCZAS WALKI MOŻE DOJŚĆ DO AWARII, KTÓRA SKOŃCZY SIĘ OBRAŻENIAMI LUB ŚMIERCIĄ TWOJĄ I INNYCH CZŁONKÓW ZAŁOGI"
 
 
 /datum/lore_entry/nt/fighter_maintenance
 	name = "fighter_maintenance.ntmail"
-	title = "FW: RE: How the frack do you put these hunks of junk into maintenance mode?"
+	title = "PD: RE: Jak, do cholery, wrzucić te kupy złomu w tryb konserwacji?"
 	filename = null
-	content = "MAAMASTER -> Munitions@seegnet.nt FW: RE: How the FRACK? `Attention MAAs Fleetwide, it has come to our attention your underlings may have trouble remembering simple maintenance cycle proceedures, please foward them this message as a reminder.` `--------------------------------` `FORWARDED MESSAGE` `--------------------------------` `REDACTED@seegnet.nt -> REDACTED@seegnet.net How the FRACK?` `Hey, can you help me out big time?` `I know these fancy new fighters are supposed to have some sort of special maintenance mode that lets you access all of its components and stuff, but I can't work out how the FRACK you are supposed to make it do its thing.` `PLEASE HELP ME!` `Boss will literally lynch me if I don't get this done by the time he's back.` `--------------------------------` `REDACTED@seegnet.nt -> REDACTED@seegnet.net RE:How the FRACK?` `Let me break this down for you:` `First locate the maintenance panel on the belly of the fighter, yes you have to crawl under it, take a wrench and a crowbar with you.` `Second unbolt the panel, just don't lose the nuts otherwise you are toast.` `Third slide back the maintenance panel, this should kick the fighter to go into maintenance mode, use a crowbar for leverage if it gets stuck.` `Reverse the process to reset it into flight mode at the end, simple, yes?`"
+	content = "MAAMASTER -> Munitions@seegnet.nt PD: RE: Jak, do CHOLERY? `Uwaga, Mistrzowie Broni w całej flocie: dotarło do nas, że wasi podwładni mogą mieć kłopot z zapamiętaniem prostych procedur cyklu konserwacji. Przekażcie im tę wiadomość jako przypomnienie.` `--------------------------------` `PRZEKAZANA WIADOMOŚĆ` `--------------------------------` `REDACTED@seegnet.nt -> REDACTED@seegnet.net Jak, do CHOLERY?` `Hej, możesz mi bardzo pomóc?` `Wiem, że te nowe, wypasione myśliwce mają mieć jakiś specjalny tryb konserwacji, który daje dostęp do wszystkich podzespołów i tak dalej, ale nie mogę rozgryźć, jak, do CHOLERY, mam go włączyć.` `POMOCY!` `Szef dosłownie mnie zlinczuje, jeśli nie skończę tego przed jego powrotem.` `--------------------------------` `REDACTED@seegnet.nt -> REDACTED@seegnet.net RE: Jak, do CHOLERY?` `Wytłumaczę ci to krok po kroku:` `Najpierw znajdź panel serwisowy na brzuchu myśliwca. Tak, musisz się pod niego wczołgać. Weź ze sobą klucz i łom.` `Potem odkręć śruby panelu, tylko nie zgub nakrętek, bo będzie po tobie.` `Na koniec odsuń panel serwisowy. To powinno przełączyć myśliwiec w tryb konserwacji. Jeśli się zatnie, podważ go łomem.` `Żeby na koniec przywrócić tryb lotu, zrób to samo w odwrotnej kolejności. Proste, prawda?`"
 
 /datum/lore_entry/nt/fighter_production
 	name = "fighter_production.ntdoc"
-	title = "Production and Assembly of Fighter Craft 101"
+	title = "Produkcja i montaż myśliwców – podstawy"
 	filename = null
-	content = "Welcome to the NT Guide for Production and Assembly of Fighter Craft 101 `This step by step guide will familiarise you with the process of producing fighter craft components and assembling them into a serviceable fighter for the NT fleet.` `WORD OF CAUTION: This proceedure requires cooperation from several departments.` `EXTRA WORD OF CAUTION: Spreading of rumours regarding this proceedure will lead to personal redaction of REDACTED` `@#g#!&40((%%%% -=FILE CORRUPTION DETECTED=- Let me make this simpler for you to read. ~PMV` `Start by ensuring the research division of your assigned vessel has the latest and most up to date blueprints available.` `Generate a requision request for required components (APPENDIX A) and deliver it to cargo for fabrication.` `Await requision delivery at arranged location.` `` `Step by step assembly proccedure follows:` `-Open and assemble Fighter Fuselage.` `-Wrench bolts on Fighter Fuselage.` `-Weld joints together on Fighter Fuselage.` `-Locate and attach Fighter Empennage.` `-Wrench bolts on Fighter Empennage.` `-Weld joints together on Fighter Empennage.` `-Locate and attach first Fighter Wing.` `-Wrench bolts on Fighter Wing.` `-Weld joints together on Fighter Wing.` `-Locate and attach second Fighter Wing.` `-Wrench bolts on Fighter Wing.` `-Weld joints together on Fighter Wing.` `-Locate and install Fighter Landing Gear.` `-Wrench bolts on Fighter Landing Gear.` `-Locate and install Fighter Armour Plating.` `-Screw Fighter Armour Plating in place.` `-Weld joints on Fighter Armour Plating.` `-Install wiring into the Fighter.` `-Calibrate wiring with Multitool.` `-Locate and install Fighter Fuel Tank.` `-Wrench bolts on Fighter Fuel Tank.` `-Locate and install Fighter Fuel Lines.` `-Wrench bolts on Fighter Fuel Lines.` `-Locate and install first Fighter Engine.` `-Weld joints on Fighter Engine.` `-Locate and install second Fighter Engine.` `-Calibrate both Fighter Engines with a multitool.` `-Locate and install Fighter Cockpit.` `-Screw Fighter Cockpit in place.` `-Wrench bolts on Fighter Cockpit.` `-Install additional wiring into the Fighter.` `-Locate and install Fighter Avionics.` `-Screw the Fighter Avionics in place.` `-Calibrate the Fighter Avionics with a multitool.` `-Locate and install Fighter Targeting Sensors.` `-Screw the Fighter Targeting Sensors in place.` `-Calibrate the Fighter Targeting Sensors with a multitool.` `-Apply paint scheme of choice for the Fighter.` `-Choose a name for the Fighter.` `` `Your new fighter should now be complete.` `Enter maintenance mode to install ship ordinance, make repairs and refuel the vessel.` `____________` `APPENDIX A` `____________` `Fighter Components:` `-Fighter Fuselage Components Crate x1` `-Fighter Cockpit Components Box x1` `-Fighter Wing Components Box x2` `-Fighter Empennage Components Box x1` `-Fighter Landing Gear Components Box x1` `-Fighter Armour Plating x1` `-Fighter Fuel Tank x1` `-Fighter Avionics x1` `-Fighter Targeting Sensors x1` `-Fighter Fuel Line Kit x1` `-Fighter Engine x2`"
+	content = "Witaj w poradniku NT: Produkcja i montaż myśliwców – podstawy `Ten poradnik krok po kroku zapozna cię z produkcją podzespołów myśliwców i składaniem ich w sprawny myśliwiec dla floty NT.` `UWAGA: ta procedura wymaga współpracy kilku działów.` `DODATKOWA UWAGA: rozpowszechnianie plotek o tej procedurze skończy się osobistym usunięciem REDACTED` `@#g#!&40((%%%% -=WYKRYTO USZKODZENIE PLIKU=- Uproszczę ci to do czytania. ~PMV` `Zacznij od upewnienia się, że wydział badawczy twojego statku ma najnowsze plany.` `Przygotuj zamówienie na potrzebne podzespoły (ZAŁĄCZNIK A) i dostarcz je do zaopatrzenia do wyprodukowania.` `Poczekaj na dostawę zamówienia w ustalonym miejscu.` `` `Procedura montażu krok po kroku:` `-Otwórz i złóż kadłub myśliwca.` `-Przykręć śruby kadłuba myśliwca kluczem.` `-Zespawaj połączenia kadłuba myśliwca.` `-Znajdź i przymocuj usterzenie myśliwca.` `-Przykręć śruby usterzenia myśliwca kluczem.` `-Zespawaj połączenia usterzenia myśliwca.` `-Znajdź i przymocuj pierwsze skrzydło myśliwca.` `-Przykręć śruby skrzydła myśliwca kluczem.` `-Zespawaj połączenia skrzydła myśliwca.` `-Znajdź i przymocuj drugie skrzydło myśliwca.` `-Przykręć śruby skrzydła myśliwca kluczem.` `-Zespawaj połączenia skrzydła myśliwca.` `-Znajdź i zamontuj podwozie myśliwca.` `-Przykręć śruby podwozia myśliwca kluczem.` `-Znajdź i zamontuj płyty pancerza myśliwca.` `-Przykręć płyty pancerza myśliwca wkrętami.` `-Zespawaj połączenia płyt pancerza myśliwca.` `-Poprowadź okablowanie w myśliwcu.` `-Skalibruj okablowanie multitoolem.` `-Znajdź i zamontuj zbiornik paliwa myśliwca.` `-Przykręć śruby zbiornika paliwa myśliwca kluczem.` `-Znajdź i zamontuj przewody paliwowe myśliwca.` `-Przykręć śruby przewodów paliwowych myśliwca kluczem.` `-Znajdź i zamontuj pierwszy silnik myśliwca.` `-Zespawaj połączenia silnika myśliwca.` `-Znajdź i zamontuj drugi silnik myśliwca.` `-Skalibruj oba silniki myśliwca multitoolem.` `-Znajdź i zamontuj kokpit myśliwca.` `-Przykręć kokpit myśliwca wkrętami.` `-Przykręć śruby kokpitu myśliwca kluczem.` `-Poprowadź dodatkowe okablowanie w myśliwcu.` `-Znajdź i zamontuj awionikę myśliwca.` `-Przykręć awionikę myśliwca wkrętami.` `-Skalibruj awionikę myśliwca multitoolem.` `-Znajdź i zamontuj czujniki celownicze myśliwca.` `-Przykręć czujniki celownicze myśliwca wkrętami.` `-Skalibruj czujniki celownicze myśliwca multitoolem.` `-Pomaluj myśliwiec w wybrany schemat barw.` `-Nadaj myśliwcowi nazwę.` `` `Twój nowy myśliwiec powinien być gotowy.` `Włącz tryb konserwacji, żeby zamontować uzbrojenie, przeprowadzić naprawy i zatankować jednostkę.` `____________` `ZAŁĄCZNIK A` `____________` `Podzespoły myśliwca:` `-Skrzynia z podzespołami kadłuba myśliwca x1` `-Pudełko z podzespołami kokpitu myśliwca x1` `-Pudełko z podzespołami skrzydła myśliwca x2` `-Pudełko z podzespołami usterzenia myśliwca x1` `-Pudełko z podzespołami podwozia myśliwca x1` `-Płyty pancerza myśliwca x1` `-Zbiornik paliwa myśliwca x1` `-Awionika myśliwca x1` `-Czujniki celownicze myśliwca x1` `-Zestaw przewodów paliwowych myśliwca x1` `-Silnik myśliwca x2`"
 
 /datum/lore_entry/nt/fighters
 	name = "fighter_operations.ntdoc"
-	title = "Fighter operational proceedures"
+	title = "Procedury obsługi myśliwca"
 	filename = null
-	content = "Pre flight checklist:`\
-	Hit ignition switch`\
-	Fuel pump switch`\
-	Engage battery`\
-	Engage APU`\
-	Disengage throttle lock`\
-	Throttle up VERY gently with brakes on so that engine takes over but you're still not moving.`\
-	Lock canopy to avoid hazardous space exposure`\
-	APU will automatically suspend, you are now flight ready.```\
+	content = "Lista kontrolna przed lotem:`\
+	Włącz przełącznik zapłonu`\
+	Przełącznik pompy paliwa`\
+	Podłącz akumulator`\
+	Włącz APU`\
+	Zwolnij blokadę przepustnicy`\
+	BARDZO delikatnie dodaj gazu przy zaciągniętych hamulcach, tak żeby silnik przejął pracę, a myśliwiec nie ruszył z miejsca.`\
+	Zablokuj osłonę kokpitu, żeby nie narazić się na niebezpieczną próżnię`\
+	APU wyłączy się samo, jesteś gotowy do lotu.```\
 	-------------------`\
-	Shutdown sequence:`\
-	Throttle off + brakes on`\
-	Throttle lock on`\
-	Disengage battery`\
-	Disengage fuel pump (or engine gets flooded)`\
-	Turn off ignition```\
-	Vipers, Raptors and other small fighter craft run off of Tyrosene. This is standard fuel that's been enriched with extra hydrocarbons.`\
-	If you run out of fuel:`\
-	Activate the brakes and begin a shutdown of your fighter. Once you have received more fuel, begin startup sequence as expected. If you run out of fuel, you will be stuck adrift. It is highly recommended that you RTB when you hit 100 fuel as you'll have 30 seconds or so more burn time before you fizzle out.`\
-	Tyrosene production:`\
-	1 part hydrogen : 1 part carbon to make hydrocarbon heated to 333K. Mix hydrocarbon and welding fuel to produce tyrosene fuel and apply to tyrosene fuel tanks to allow for fighter refuel ops."
+	Procedura wyłączania:`\
+	Przepustnica na zero + hamulce zaciągnięte`\
+	Blokada przepustnicy włączona`\
+	Odłącz akumulator`\
+	Wyłącz pompę paliwa (inaczej zalejesz silnik)`\
+	Wyłącz zapłon```\
+	Vipery, Raptory i inne małe myśliwce latają na tyrozenie. To standardowe paliwo wzbogacone dodatkowymi węglowodorami.`\
+	Jeśli skończy ci się paliwo:`\
+	Zaciągnij hamulce i zacznij wyłączać myśliwiec. Gdy dostaniesz więcej paliwa, uruchom go zgodnie z procedurą. Bez paliwa zostaniesz zdany na dryf. Zdecydowanie zaleca się powrót do bazy, gdy paliwa zostanie 100, bo zostaje wtedy ok. 30 sekund pracy silnika, zanim zgaśnie.`\
+	Produkcja tyrozenu:`\
+	1 część wodoru : 1 część węgla daje węglowodór, który podgrzewasz do 333 K. Zmieszaj węglowodór z paliwem spawalniczym, żeby uzyskać tyrozen, i wlej go do zbiorników tyrozenu, żeby móc tankować myśliwce."
 
 /datum/lore_entry/nt/targeting
 	name = "targeting_systems.ntdoc"
-	title = "Guided Weapons Systems Employment"
+	title = "Użycie systemów broni kierowanej"
 	filename = null
-	content = "Targeting enemy craft:`- Set DRADIS array to targeting mode`- Ensure weapons safety interlocks are disabled`- Move DRADIS cursor over hostile target and depress the designation switch to paint your target`Note: Most large ships only support up to 3 active paints at any given time. Most small craft support one paint.```-------------------```After a target has been painted, you may lock the target by using the tactical console and selecting the target you wish to lock.`If available and in range, your gunner camera will be slaved to the targeting radar and provide you with a view of the target.`Small craft (such as the Rapier or Scimitar) will automatically lock onto the first painted target.`If ordnance is employed without a lock, it will guide onto the first painted target.```-------------------```Always ensure proper emissions control procedures are followed when employing radar-guided ordnance.`Semi-active and active missiles and torpedos will give away the position of the launching craft, which may lead to detection and engagement at inopportune times.`Although some weapons (such as the FTL-1301 Magneton shell) may not require active guidance from the launching craft, a lock is still required for an accurate firing solution.```-------------------```"
+	content = "Namierzanie wrogich jednostek:`- Przełącz układ DRADIS w tryb namierzania`- Upewnij się, że blokady bezpieczeństwa uzbrojenia są wyłączone`- Najedź kursorem DRADIS na wrogi cel i naciśnij przełącznik oznaczania, żeby oznaczyć cel`Uwaga: większość dużych statków obsługuje naraz najwyżej 3 aktywne oznaczenia. Większość małych jednostek obsługuje jedno oznaczenie.```-------------------```Po oznaczeniu celu możesz go namierzyć na konsoli taktycznej, wybierając cel, który chcesz namierzyć.`Jeśli jest dostępna i cel jest w zasięgu, kamera strzelca zostanie sprzężona z radarem celowniczym i pokaże ci cel.`Małe jednostki (takie jak Rapier czy Scimitar) automatycznie namierzają pierwszy oznaczony cel.`Jeśli użyjesz uzbrojenia bez namiaru, pocisk naprowadzi się na pierwszy oznaczony cel.```-------------------```Przy użyciu uzbrojenia naprowadzanego radarowo zawsze przestrzegaj procedur kontroli emisji.`Pociski i torpedy półaktywne i aktywne zdradzają pozycję jednostki, która je odpaliła, co może skończyć się wykryciem i walką w niedogodnym momencie.`Choć niektóre bronie (takie jak pocisk Magneton FTL-1301) nie wymagają aktywnego naprowadzania przez jednostkę, która je odpaliła, do celnego rozwiązania ogniowego i tak potrzebny jest namiar.```-------------------```"
 
 /datum/lore_entry/nt/datalink
 	name = "datalink.ntdoc"
-	title = "DRADIS Tactical Data Link Employment"
+	title = "Użycie taktycznego łącza danych DRADIS"
 	filename = null
-	content = "Transmitting targets via Data Link:`- Set DRADIS array to targeting mode`- Paint and lock onto a target`- Move DRADIS cursor over the friendly you wish to transmit the target to and depress the designation switch```-------------------```When a target is transmitted via datalink, it will automatically be considered painted by the receiving craft's targeting computer.`The transmitting craft will then continuously transmit data via DRADIS uplink to the receiving craft.`In order for the transmission to be successful, the transmitting craft must maintain a track on the target, and the receiving craft must be able to support the additional paint.`If datalink track is lost, the receiving craft will attempt to track the target using its own sensors, and dump the target track if that is unsuccessful.```-------------------```Proper employment of datalink systems is important in establishing an effective kill chain between early-warning craft and strike craft.`This allows for long-range or off-axis strikes by small craft, as well as long-range detection and tracking of stealth-capable craft that would otherwise escape a capital ship's notice.`Note that all information received via datalink should be considered C6 operational intelligence. Do not share opcodes with unauthorized personnel.```-------------------```"
+	content = "Przesyłanie celów przez łącze danych:`- Przełącz układ DRADIS w tryb namierzania`- Oznacz i namierz cel`- Najedź kursorem DRADIS na sojuszniczą jednostkę, której chcesz przesłać cel, i naciśnij przełącznik oznaczania```-------------------```Cel przesłany przez łącze danych jest automatycznie traktowany jako oznaczony przez komputer celowniczy jednostki odbierającej.`Jednostka nadająca będzie wtedy nieprzerwanie przesyłać dane do jednostki odbierającej przez łącze DRADIS.`Żeby transmisja się powiodła, jednostka nadająca musi utrzymywać śledzenie celu, a jednostka odbierająca musi mieć wolne miejsce na dodatkowe oznaczenie.`Jeśli śledzenie przez łącze danych zostanie utracone, jednostka odbierająca spróbuje śledzić cel własnymi czujnikami, a jeśli to się nie uda, porzuci śledzenie.```-------------------```Właściwe użycie łączy danych jest ważne dla skutecznego łańcucha rażenia między jednostkami wczesnego ostrzegania a jednostkami uderzeniowymi.`Pozwala to małym jednostkom na uderzenia z dużej odległości lub spoza osi, a także na wykrywanie i śledzenie z daleka jednostek z systemami maskowania, które inaczej umknęłyby uwadze okrętu liniowego.`Pamiętaj, że wszystkie informacje otrzymane przez łącze danych należy traktować jako operacyjne dane wywiadowcze kategorii C6. Nie udostępniaj kodów operacyjnych nieupoważnionemu personelowi.```-------------------```"
 
 /datum/lore_entry/away_example
-	title = "Intercepted log file"
+	title = "Przechwycony plik dziennika"
 	access_tag = "awayexample"
 
 /datum/lore_entry/away_example/pilot_log
 	name = "pilot_log.txt"
-	content = "They're coming in hot! Prepare for flip and bur']###�$55%%% -=File Access Terminated=-"
+	content = "Nadlatują z impetem! Przygotować się do obrotu i odpal']###�$55%%% -=Dostęp do pliku przerwany=-"
 
 /datum/lore_entry/away_example/weapons_log
 	name = "weapon_systems_dump2259/11/25.txt"
-	content = "Life support systems terminated. Railgun system status: A6E3. Torpedo system status: ~@##6#6#^^6 -=File Access Terminated=-"
+	content = "Systemy podtrzymywania życia wyłączone. Stan systemu działa szynowego: A6E3. Stan systemu torped: ~@##6#6#^^6 -=Dostęp do pliku przerwany=-"

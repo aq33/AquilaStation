@@ -13,7 +13,7 @@
 /mob/living/simple_animal/hostile/guardian/toy/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
-	set desc = "Choose what you shout as you limply slap people."
+	set desc = "Wybierz, co krzyczysz, gdy wiotko kogoś klepiesz."
 	var/input = stripped_input(src,"Jaki ma być twój okrzyk bojowy? Maksymalnie 6 znaków.", ,"", 7)
 	if(input)
 		if(CHAT_FILTER_CHECK(input))

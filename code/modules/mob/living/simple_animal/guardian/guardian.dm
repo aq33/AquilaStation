@@ -5,9 +5,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 #define GUARDIAN_TOTAL_LAYERS 1
 
 /mob/living/simple_animal/hostile/guardian
-	name = "Guardian Spirit"
-	real_name = "Guardian Spirit"
-	desc = "A mysterious being that stands by its charge, ever vigilant."
+	name = "Duch strażnik"
+	real_name = "Duch strażnik"
+	desc = "Tajemnicza istota, która czuwa przy swoim podopiecznym, zawsze w gotowości."
 	speak_emote = list("syczy")
 	gender = NEUTER
 	mob_biotypes = list(MOB_INORGANIC)
@@ -90,39 +90,39 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		theme = pick("magic", "tech", "carp", "hive")
 	switch(theme)//should make it easier to create new stand designs in the future if anyone likes that
 		if("magic")
-			name = "Guardian Spirit"
-			real_name = "Guardian Spirit"
+			name = "Duch strażnik"
+			real_name = "Duch strażnik"
 			bubble_icon = "guardian"
 			icon_state = "magicbase"
 			icon_living = "magicbase"
 			icon_dead = "magicbase"
 		if("tech")
-			name = "Holoparasite"
-			real_name = "Holoparasite"
+			name = "Holoparazyt"
+			real_name = "Holoparazyt"
 			bubble_icon = "holo"
 			icon_state = "techbase"
 			icon_living = "techbase"
 			icon_dead = "techbase"
 		if("carp")
-			name = "Holocarp"
-			real_name = "Holocarp"
+			name = "Holokarp"
+			real_name = "Holokarp"
 			bubble_icon = "holo"
 			icon_state = "holocarp"
 			icon_living = "holocarp"
 			icon_dead = "holocarp"
 			speak_emote = list("zgrzyta zębami")
-			desc = "A mysterious fish that stands by its charge, ever vigilant."
+			desc = "Tajemnicza ryba, która czuwa przy swoim podopiecznym, zawsze w gotowości."
 			attack_sound = 'sound/weapons/bite.ogg'
 			recolorentiresprite = TRUE
 		if("hive")
-			name = "Hivelord"
-			real_name = "Hivelord"
+			name = "Władca roju"
+			real_name = "Władca roju"
 			bubble_icon = "guardian"
 			icon_state = "hivebase"
 			icon_living = "hivebase"
 			icon_dead = "hivebase"
 			speak_emote = list("woła telepatycznie")
-			desc = "A truly alien creature, it is a mass of unknown organic material, standing by its' owner's side."
+			desc = "Prawdziwie obca istota: masa nieznanej materii organicznej, która trwa u boku swojego właściciela."
 			attack_sound = 'sound/weapons/pierce.ogg'
 	if(!recolorentiresprite) //we want this to proc before stand logs in, so the overlay isn't gone for some reason
 		cooloverlay = mutable_appearance(icon, theme)
@@ -385,14 +385,14 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/verb/ShowType()
 	set name = "Check Guardian Type"
 	set category = "Guardian"
-	set desc = "Check what type you are."
+	set desc = "Sprawdź, jakiego typu jesteś."
 	to_chat(src, playstyle_string)
 
 //COMMUNICATION
 
 /mob/living/simple_animal/hostile/guardian/proc/Communicate()
 	if(summoner)
-		var/input = stripped_input(src, "Wpisz wiadomość do swojego przywoływacza.", "Guardian", "")
+		var/input = stripped_input(src, "Wpisz wiadomość do swojego przywoływacza.", "Strażnik", "")
 		if(!input)
 			return
 		if(CHAT_FILTER_CHECK(input))
@@ -415,8 +415,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_comm()
 	set name = "Communicate"
 	set category = "Guardian"
-	set desc = "Communicate telepathically with your guardian."
-	var/input = stripped_input(src, "Wpisz wiadomość do swojego strażnika.", "Message", "")
+	set desc = "Porozumiewaj się telepatycznie ze swoim strażnikiem."
+	var/input = stripped_input(src, "Wpisz wiadomość do swojego strażnika.", "Wiadomość", "")
 	if(!input)
 		return
 	if(CHAT_FILTER_CHECK(input))
@@ -442,7 +442,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
-	set desc = "Forcibly recall your guardian."
+	set desc = "Siłą przywołaj swojego strażnika."
 	var/list/guardians = hasparasites()
 	for(var/para in guardians)
 		var/mob/living/simple_animal/hostile/guardian/G = para
@@ -451,7 +451,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_reset()
 	set name = "Reset Guardian Player (One Use)"
 	set category = "Guardian"
-	set desc = "Re-rolls which ghost will control your Guardian. One use per Guardian."
+	set desc = "Losuje od nowa ducha, który steruje twoim strażnikiem. Jedno użycie na strażnika."
 
 	var/list/guardians = hasparasites()
 	for(var/para in guardians)
@@ -467,7 +467,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				var/mob/dead/observer/C = pick(candidates)
 				to_chat(G, "<span class='holoparasite'>Twój użytkownik cię zresetował, a twoje ciało przejął duch. Chyba nie był zadowolony z twojej pracy.</span>")
 				to_chat(src, "<span class='holoparasite bold'>Twój <font color=\"[G.guardiancolor]\">[G.real_name]</font> został pomyślnie zresetowany.</span>")
-				message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(G)])")
+				message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([ADMIN_LOOKUPFLW(G)])")
 				G.ghostize(0)
 				G.guardiancustomize() //give it a new color, to show it's a new person
 				G.key = C.key
@@ -507,13 +507,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 ////////Creation
 
 /obj/item/guardiancreator
-	name = "deck of tarot cards"
-	desc = "An enchanted deck of tarot cards, rumored to be a source of unimaginable power."
+	name = "talia kart tarota"
+	desc = "Zaczarowana talia kart tarota. Podobno jest źródłem niewyobrażalnej mocy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_syndicate_full"
 	var/used = FALSE
 	var/theme = "magic"
-	var/mob_name = "Guardian Spirit"
+	var/mob_name = "Duch strażnik"
 	var/use_message = "<span class='holoparasite'>Tasujesz talię...</span>"
 	var/used_message = "<span class='holoparasite'>Wszystkie karty wydają się teraz puste.</span>"
 	var/failure_message = "<span class='holoparasite bold'>...I wyciągasz kartę! To... pusta karta? Może spróbuj później.</span>"
@@ -555,7 +555,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(random)
 		guardiantype = pick(possible_guardians)
 	else
-		guardiantype = input(user, "Wybierz rodzaj: [mob_name]", "[mob_name] Creation") as null|anything in sortList(possible_guardians)
+		guardiantype = input(user, "Wybierz rodzaj: [mob_name]", "Tworzenie: [mob_name]") as null|anything in sortList(possible_guardians)
 		if(!guardiantype)
 			to_chat(user, "[failure_message]" )
 			used = FALSE
@@ -631,8 +631,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	random = FALSE
 
 /obj/item/guardiancreator/toy
-	name = "funny tarot card"
-	desc = "An enchanted deck tarot card. This one looks like it was printed as a joke."
+	name = "zabawna karta tarota"
+	desc = "Zaczarowana karta tarota. Ta wygląda, jakby wydrukowano ją dla żartu."
 	icon_state = "deck_clown_empty"
 	possible_guardians = list("Toy")
 	custom_premium_price = 10000
@@ -645,12 +645,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	allowmultiple = TRUE
 
 /obj/item/guardiancreator/tech
-	name = "holoparasite injector"
-	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
+	name = "iniektor holoparazytów"
+	desc = "Zawiera obcy nanorój nieznanego pochodzenia. Choć dzięki hologramom z twardego światła i nanomaszynom potrafi dokonywać niemal czarnoksięskich sztuczek, potrzebuje organicznego żywiciela jako bazy i źródła paliwa."
 	icon = 'icons/obj/syringe.dmi'
 	icon_state = "combat_hypo"
 	theme = "tech"
-	mob_name = "Holoparasite"
+	mob_name = "Holoparazyt"
 	use_message = "<span class='holoparasite'>Zaczynasz uruchamiać iniektor...</span>"
 	used_message = "<span class='holoparasite'>Iniektor został już użyty.</span>"
 	failure_message = "<span class='holoparasite bold'>...BŁĄD. PRZERWANO SEKWENCJĘ STARTOWĄ. NIE UDAŁO SIĘ ZAINICJALIZOWAĆ SI. SKONTAKTUJ SIĘ Z POMOCĄ TECHNICZNĄ LUB SPRÓBUJ PÓŹNIEJ.</span>"
@@ -667,13 +667,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
 
 /obj/item/guardiancreator/tech/toy
-	name = "plastic holoparasite injector"
-	desc = "a cheap replica of a real holoparasite injector."
+	name = "plastikowy iniektor holoparazytów"
+	desc = "Tania replika prawdziwego iniektora holoparazytów."
 	icon_state = "clown_hypo"
 	possible_guardians = list("Toy")
 
 /obj/item/paper/guides/antag/guardian
-	name = "Holoparasite Guide"
+	name = "Poradnik holoparazytów"
 	default_raw_text = {"<b>Lista typów holoparazytów</b><br><br><b>Assassin (zabójca)</b>: zadaje średnie obrażenia i otrzymuje pełne, ale potrafi się ukryć, przez co jego następny atak zadaje ogromne obrażenia i ignoruje pancerz. Po ataku z ukrycia przez chwilę nie może wrócić do użytkownika.<br><br><b>Chaos</b>: podpala wrogów dotykiem i sprawia, że widzą wszystkich wokół jako parazyta. Automatycznie gasi użytkownika, jeśli ten zacznie się palić.<br><br><b>Charger (szarżownik)</b>: porusza się niezwykle szybko, zadaje średnie obrażenia i potrafi szarżować na cele, raniąc pierwszy trafiony i zmuszając go do upuszczenia trzymanych przedmiotów.<br><br><b>Explosive (wybuchowy)</b>: wysoka odporność na obrażenia i średnio silny atak, który może wybuchowo teleportować cele. Potrafi zamienić dowolny obiekt, nawet zbyt duży do podniesienia, w bombę raniącą następną osobę, która go dotknie. Obiekt wraca do normy po zadziałaniu pułapki lub po pewnym czasie.<br><br><b>Lightning (błyskawica)</b>: ataki zakładają na cele łańcuchy błyskawic. Ma łańcuch błyskawic połączony z użytkownikiem. Łańcuchy razią prądem wszystko w pobliżu, zadając ciągłe obrażenia.<br><br><b>Protector (obrońca)</b>: w przeciwieństwie do innych parazytów to ty teleportujesz się do niego, gdy jesteś poza zasięgiem. Ma dwa tryby: bojowy, w którym zadaje i otrzymuje średnie obrażenia, oraz ochronny, w którym prawie nie zadaje ani nie otrzymuje obrażeń, ale porusza się nieco wolniej.<br><br><b>Ranged (dystansowy)</b>: ma dwa tryby. Dystansowy – wystrzeliwuje ciągły strumień słabych pocisków ignorujących pancerz. Zwiadowczy – nie może atakować, ale przenika przez ściany i jest trudny do zauważenia. W obu trybach może zastawiać sidła obserwacyjne, które ostrzegają go, gdy ktoś przez nie przejdzie.<br><br><b>Standard (standardowy)</b>: niszczycielskie ataki w zwarciu i wysoka odporność na obrażenia. Potrafi przebijać się przez słabe ściany.<br><br><b>Gravitokinetic (grawitokinetyczny)</b>: ataki nakładają na cel miażdżącą grawitację. Może też celować w podłoże, by spowolnić nadchodzących wrogów, ale wpływa to także na użytkownika.<br>
  <br>
 "}
@@ -682,22 +682,22 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return
 
 /obj/item/paper/guides/antag/guardian/wizard
-	name = "Guardian Guide"
+	name = "Poradnik strażników"
 	default_raw_text = {"<b>Lista typów strażników</b><br><br><b>Assassin (zabójca)</b>: zadaje średnie obrażenia i otrzymuje pełne, ale potrafi się ukryć, przez co jego następny atak zadaje ogromne obrażenia i ignoruje pancerz. Po ataku z ukrycia przez chwilę nie może wrócić do użytkownika.<br><br><b>Chaos</b>: podpala wrogów dotykiem i sprawia, że widzą wszystkich wokół jako strażnika. Automatycznie gasi użytkownika, jeśli ten zacznie się palić.<br><br><b>Charger (szarżownik)</b>: porusza się niezwykle szybko, zadaje średnie obrażenia i potrafi szarżować na cele, raniąc pierwszy trafiony i zmuszając go do upuszczenia trzymanych przedmiotów.<br><br><b>Dexterous (zręczny)</b>: zadaje niewielkie obrażenia, ale potrafi trzymać przedmioty i przechowywać w sobie jeden z nich. Po powrocie do użytkownika upuszcza przedmioty trzymane w rękach, ale zachowuje ten schowany.<br><br><b>Explosive (wybuchowy)</b>: wysoka odporność na obrażenia i średnio silny atak, który może wybuchowo teleportować cele. Potrafi zamienić dowolny obiekt, nawet zbyt duży do podniesienia, w bombę raniącą następną osobę, która go dotknie. Obiekt wraca do normy po zadziałaniu pułapki lub po pewnym czasie.<br><br><b>Lightning (błyskawica)</b>: ataki zakładają na cele łańcuchy błyskawic. Ma łańcuch błyskawic połączony z użytkownikiem. Łańcuchy razią prądem wszystko w pobliżu, zadając ciągłe obrażenia.<br><br><b>Protector (obrońca)</b>: w przeciwieństwie do innych parazytów to ty teleportujesz się do niego, gdy jesteś poza zasięgiem. Ma dwa tryby: bojowy, w którym zadaje i otrzymuje średnie obrażenia, oraz ochronny, w którym prawie nie zadaje ani nie otrzymuje obrażeń, ale porusza się nieco wolniej.<br><br><b>Ranged (dystansowy)</b>: ma dwa tryby. Dystansowy – wystrzeliwuje ciągły strumień słabych pocisków ignorujących pancerz. Zwiadowczy – nie może atakować, ale przenika przez ściany i jest trudny do zauważenia. W obu trybach może zastawiać sidła obserwacyjne, które ostrzegają go, gdy ktoś przez nie przejdzie.<br><br><b>Standard (standardowy)</b>: niszczycielskie ataki w zwarciu i wysoka odporność na obrażenia. Potrafi przebijać się przez słabe ściany.<br><br><b>Gravitokinetic (grawitokinetyczny)</b>: ataki nakładają na cel miażdżącą grawitację. Może też celować w podłoże, by spowolnić nadchodzących wrogów, ale wpływa to także na użytkownika.<br>
  <br>
 "}
 
 
 /obj/item/storage/box/syndie_kit/guardian
-	name = "holoparasite injector kit"
+	name = "zestaw z iniektorem holoparazytów"
 
 /obj/item/storage/box/syndie_kit/guardian/PopulateContents()
 	new /obj/item/guardiancreator/tech/choose/traitor(src)
 	new /obj/item/paper/guides/antag/guardian(src)
 
 /obj/item/guardiancreator/carp
-	name = "holocarp fishsticks"
-	desc = "Using the power of Carp'sie, you can catch a carp from byond the veil of Carpthulu, and bind it to your fleshy flesh form."
+	name = "paluszki rybne z holokarpia"
+	desc = "Mocą Karp'sie możesz złowić karpia zza zasłony Karpthulu i związać go ze swoją mięsistą, cielesną postacią."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "fishfingers"
 	theme = "carp"
@@ -715,7 +715,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	possible_guardians = list("Toy")
 
 /obj/item/storage/box/syndie_kit/carpian
-	name = "Holocarp fishstick kit"
+	name = "zestaw paluszków rybnych z holokarpia"
 
 /obj/item/storage/box/syndie_kit/carpian/PopulateContents()
 	new /obj/item/guardiancreator/carp/choose(src)
@@ -723,12 +723,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 
 /obj/item/guardiancreator/hive
-	name = "mysterious core"
-	desc = "All that remains of a hivelord. It has a mysterious aura around it..."
+	name = "tajemniczy rdzeń"
+	desc = "Wszystko, co zostało z władcy roju. Otacza go tajemnicza aura..."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "roro core 2"
 	theme = "hive"
-	mob_name = "Hivelord"
+	mob_name = "Władca roju"
 	use_message = "<span class='holoparasite'>Przykładasz rdzeń do serca...</span>"
 	used_message = "<span class='holoparasite'>Ten rdzeń chyba się rozłożył i już nie działa...</span>"
 	failure_message = "<span class='holoparasite bold'>Nie udało ci się zebrać rdzeniem żadnej masy, spróbuj później.</span>"

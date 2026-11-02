@@ -8,7 +8,7 @@
 //   Zerwanie połączenia po ruchu sprawdzamy przy każdym ruchu i kliknięciu SI.
 
 /datum/action/innate/mmi_comp_disconnect
-	name = "Disconnect from remote circuit"
+	name = "Rozłącz ze zdalnym układem"
 	desc = "Przestań sterować układem scalonym."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
@@ -25,7 +25,7 @@
  * Allows an MMI to be inserted into a shell, allowing it to be linked up. Requires a shell.
  */
 /obj/item/circuit_component/mmi
-	display_name = "Man-Machine Interface"
+	display_name = "MMI"
 	desc = "Komponent, do którego można włożyć MMI albo moduł B.O.R.I.S., by mózg lub sztuczna inteligencja mogły wysyłać sygnały."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_REFUSE_MODULE

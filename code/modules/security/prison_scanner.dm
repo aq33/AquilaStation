@@ -1,8 +1,8 @@
 //Scanner item for the prisoners to redeem sentence time for their work in the workshop
 
 /obj/item/prison_scanner
-	name = "prison export scanner"
-	desc = "A device used to check objects made in the workshop, to have them cashed out for sentence reductions."
+	name = "więzienny skaner eksportu"
+	desc = "Urządzenie do sprawdzania przedmiotów zrobionych w warsztacie, które można wymienić na skrócenie wyroku."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "export_scanner"
 	item_state = "radio"
@@ -33,7 +33,7 @@
 			C.served_time += (15 * redeemable.len)
 			redeemable.Cut()
 			if(C.served_time >= C.sentence)
-				to_chat(user, "<span class='notice>Już odbyłeś karę, nie można odjąć czasu z nieistniejącego wyroku!</span>")
+				to_chat(user, "<span class='notice'>Już odbyłeś karę, nie można odjąć czasu z nieistniejącego wyroku!</span>")
 			else
 				to_chat(user, "<span class='notice'>Przedmioty wymienione! Pozostało ci do odbycia: [DisplayTimeText((C.sentence - C.served_time)*10, 1)]!</span>")
 			linked_id = null

@@ -20,19 +20,19 @@ import {
 } from '../base';
 
 export const asaycolor: Feature<string> = {
-  name: 'Admin chat color',
+  name: 'Kolor czatu adminów',
   category: 'ADMIN',
   subcategory: 'Chat',
-  description: 'The color of your messages in Adminsay.',
+  description: 'Kolor twoich wiadomości w Adminsay.',
   component: FeatureColorInput,
   important: true,
 };
 
 export const brief_outfit: Feature<string> = {
-  name: 'Brief outfit',
+  name: 'Strój odprawy',
   category: 'ADMIN',
   subcategory: 'Misc',
-  description: 'The outfit to gain when spawning as the briefing officer.',
+  description: 'Strój, który dostajesz, pojawiając się jako oficer odprawy.',
   important: true,
   component: (
     props: FeatureValueProps<
@@ -99,7 +99,7 @@ export const brief_outfit: Feature<string> = {
                   <Input
                     autoFocus
                     width="350px"
-                    placeholder="Search outfits"
+                    placeholder="Szukaj strojów"
                     value={searchText}
                     onChange={(value) => setSearchText(value)}
                   />
@@ -135,7 +135,7 @@ export const brief_outfit: Feature<string> = {
                                   handleCloseInternal();
                                 }}
                               >
-                                Select
+                                Wybierz
                               </Button>
                             </Flex.Item>
                           </Flex>
@@ -158,7 +158,7 @@ export const brief_outfit: Feature<string> = {
                 </Box>{' '}
               </>
             ) : (
-              <Box>No outfit selected</Box>
+              <Box>Nie wybrano stroju</Box>
             )}
           </Flex.Item>
           <Flex.Item>
@@ -174,7 +174,7 @@ export const brief_outfit: Feature<string> = {
                 }
               }}
             >
-              Change
+              Zmień
             </Button>
           </Flex.Item>
         </Flex>
@@ -184,10 +184,11 @@ export const brief_outfit: Feature<string> = {
 };
 
 export const combohud_lighting: FeatureToggle = {
-  name: 'Combo HUD Lighting',
+  name: 'Oświetlenie zbiorczego HUD-u',
   category: 'ADMIN',
   subcategory: 'Misc',
-  description: 'Whether you see combo HUD lighting as fullbright or not.',
+  description:
+    'Czy przy zbiorczym HUD-zie widzisz wszystko w pełnym oświetleniu.',
   component: CheckboxInput,
   important: true,
 };

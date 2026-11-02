@@ -1,19 +1,19 @@
 //Fluff components that are only used in building.
 /obj/item/fighter_component/avionics
-	name = "\improper Fighter Avionics"
-	desc = "Avionics for a fighter"
+	name = "\improper awionika myśliwca"
+	desc = "Awionika do myśliwca"
 	icon = 'nsv13/icons/obj/fighter_components.dmi'
 	icon_state = "avionics"
 	tier = null //Cannot be upgraded.
 
 /obj/item/fighter_component/apu
-	name = "\improper Fighter Auxiliary Power Unit"
-	desc = "An Auxiliary Power Unit for a fighter"
+	name = "\improper pomocniczy zespół zasilania myśliwca"
+	desc = "Pomocniczy zespół zasilania (APU) do myśliwca"
 	icon = 'nsv13/icons/obj/fighter_components.dmi'
 	icon_state = "apu"
 
 /obj/item/fighter_component/targeting_sensor
-	name = "\improper Fighter Targeting Sensors"
+	name = "\improper czujniki celownicze myśliwca"
 	icon_state = "targeting_sensor"
 	tier = null //Cannot be upgraded.
 
@@ -47,8 +47,8 @@
 #define LBS_PAINT_DETAILING					25
 
 /obj/structure/fighter_frame
-	name = "\improper Light Fighter Frame"
-	desc = "An Incomplete Su-818 Rapier Light Fighter. Just add elbow grease and a bunch of parts!"
+	name = "\improper rama lekkiego myśliwca"
+	desc = "Niekompletny lekki myśliwiec Su-818 Rapier. Wystarczy dołożyć trochę potu i garść części!"
 	icon = 'nsv13/icons/overmap/nanotrasen/fighter_construction.dmi'
 	icon_state = "fighter"
 	pixel_x = -12
@@ -60,8 +60,8 @@
 	var/output_path = /obj/structure/overmap/small_craft
 
 /obj/structure/fighter_frame/heavy
-	name = "\improper Heavy Fighter Frame"
-	desc = "An Incomplete Su-410 Scimitar Heavy Fighter"
+	name = "\improper rama ciężkiego myśliwca"
+	desc = "Niekompletny ciężki myśliwiec Su-410 Scimitar"
 	icon = 'nsv13/icons/overmap/nanotrasen/heavyfighter_construction.dmi'
 	icon_state = "heavy_fighter"
 	pixel_x = -32
@@ -69,8 +69,8 @@
 	output_path = /obj/structure/overmap/small_craft/combat/heavy
 
 /obj/structure/fighter_frame/utility
-	name = "\improper Utility Vessel Frame"
-	desc = "An Incomplete Su-437 Sabre Utility Vessel"
+	name = "\improper rama jednostki pomocniczej"
+	desc = "Niekompletna jednostka pomocnicza Su-437 Sabre"
 	icon = 'nsv13/icons/overmap/nanotrasen/raptorconstruction.dmi'
 	icon_state = "carrier"
 	pixel_x = -32
@@ -508,10 +508,10 @@
 /obj/structure/fighter_frame/attack_hand(mob/user)
 	.=..()
 	if(build_state == LBS_PAINT_DETAILING)
-		if(alert(user, "Finalize [src]?",name,"Yes","No") == "Yes" && Adjacent(user))
+		if(alert(user, "Ukończyć [src]?",name,"Tak","Nie") == "Tak" && Adjacent(user))
 			var/obj/structure/overmap/overmap_check = get_overmap(src)
 			if(overmap_check && istype(overmap_check, /obj/structure/overmap/small_craft))	//NO.
-				to_chat(user, "<span class='boldwarning'>No Sabreception.</span>")
+				to_chat(user, "<span class='boldwarning'>Żadnej Sabrecepcji.</span>")
 				return
 			var/list/components = list()
 			for(var/obj/item/fighter_component/FC in contents)

@@ -1,7 +1,7 @@
 /mob/living/simple_animal/cluwne
-    name = "The Cluwne"
-    real_name = "The Cluwne"
-    desc = "A cluwne. A barely-human monstrosity that pissed off the gods."
+    name = "Cluwne"
+    real_name = "Cluwne"
+    desc = "Cluwne. Ledwie ludzka potworność, która rozwścieczyła bogów."
     friendly = "pstryka"
     turns_per_move = 10
     icon_state = "cluwne"

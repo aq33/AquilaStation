@@ -52,7 +52,7 @@
 				H.equip_to_slot_or_del(I, i)
 				ADD_TRAIT(I, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 				I.item_flags |= DROPDEL
-				I.name = "cursed " + I.name
+				I.name = I.name + " (klątwa)"
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		var/datum/effect_system/smoke_spread/smoke = new

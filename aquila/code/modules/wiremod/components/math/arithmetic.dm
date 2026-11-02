@@ -14,7 +14,7 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/arithmetic
-	display_name = "Arithmetic"
+	display_name = "Arytmetyka"
 	desc = "Ogólny komponent do działań arytmetycznych."
 	category = "Math"
 

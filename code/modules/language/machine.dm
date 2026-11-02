@@ -1,6 +1,6 @@
 /datum/language/machine
-	name = "Encoded Audio Language"
-	desc = "An efficient language of encoded tones developed by synthetics and cyborgs."
+	name = "Zakodowany język dźwiękowy"
+	desc = "Wydajny język zakodowanych tonów opracowany przez syntetyki i cyborgi."
 	speech_verb = "gwiżdże"
 	ask_verb = "ćwierka"
 	exclaim_verb = "gwiżdże głośno"

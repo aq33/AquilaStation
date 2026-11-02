@@ -36,7 +36,7 @@
 	to_chat(owner, "<b><i>Jako inteligentna małpa umiesz korzystać z technologii i chodzić wywietrznikami w ubraniu.</i></b>")
 	to_chat(owner, "<b>Użyj :k, żeby rozmawiać z innymi małpami!</b>")
 	SEND_SOUND(owner.current, sound('sound/ambience/antag/monkey.ogg'))
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Monkey",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Małpa",
 		"Gryź ludzi, żeby ich zarazić, i ucieknij promem ewakuacyjnym, żeby wygrać.")
 
 /datum/antagonist/monkey/on_removal()
@@ -71,7 +71,7 @@
 
 /datum/antagonist/monkey/admin_remove(mob/admin)
 	var/mob/living/carbon/monkey/M = owner.current
-	if(alert(admin, "Humanize?", "Humanize", "Yes", "No") == "Yes")
+	if(alert(admin, "Przywrócić ludzką postać?", "Uczłowieczenie", "Tak", "Nie") == "Tak")
 		M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  |  TR_DEFAULTMSG)
 	. = ..()
 
@@ -81,11 +81,11 @@
 
 /datum/antagonist/monkey/leader/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/human/H = new_owner.current
-	if(alert(admin, "Monkeyize?", "Monkeyize", "Yes", "No") == "Yes")
+	if(alert(admin, "Zmienić w małpę?", "Umałpienie", "Tak", "Nie") == "Tak")
 		H.monkeyize()
 	new_owner.add_antag_datum(src)
 	log_admin("[key_name(admin)] made [key_name(new_owner)] a monkey leader!")
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] a monkey leader!")
+	message_admins("[key_name_admin(admin)] czyni [key_name_admin(new_owner)] przywódcą małp!")
 
 /datum/antagonist/monkey/leader/on_gain()
 	. = ..()
@@ -129,7 +129,7 @@
 	return ..()
 
 /datum/team/monkey
-	name = "Monkeys"
+	name = "Małpy"
 
 /datum/team/monkey/proc/update_objectives()
 	objectives = list()

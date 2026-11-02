@@ -24,7 +24,7 @@ export const PictureSelectModal = (_) => {
             key={picture.ref}
             buttons={
               <Button
-                content="Select"
+                content="Wybierz"
                 color="green"
                 onClick={() => act('submit', { entry: picture.ref })}
               />

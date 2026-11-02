@@ -2,9 +2,9 @@
 // Staples people, staples paper to walls and staples butts back on.
 
 /obj/item/stack/staples
-	name = "staples"
-	singular_name = "staple"
-	desc = "Staples for use with a staplegun."
+	name = "zszywki"
+	singular_name = "zszywka"
+	desc = "Zszywki do zszywacza."
 	icon = 'aquila/icons/obj/staples.dmi'
 	icon_state = "staples"
 	item_state = "staples"
@@ -24,22 +24,22 @@
 	. = ..()
 	if(get_amount() <= 1)
 		icon_state = "staple"
-		name = "staple"
+		name = "zszywka"
 	else
 		icon_state = "staples"
-		name = "staples"
+		name = "zszywki"
 
 GLOBAL_VAR_INIT(staple_recipe_added, FALSE)
 
 /obj/item/stack/rods/Initialize(mapload, new_amount, merge = TRUE, mob/user = null)
 	if(!GLOB.staple_recipe_added)
-		GLOB.rod_recipes += new /datum/stack_recipe("staple", /obj/item/stack/staples, 1, 5, 10)
+		GLOB.rod_recipes += new /datum/stack_recipe("zszywka", /obj/item/stack/staples, 1, 5, 10)
 		GLOB.staple_recipe_added = TRUE
 	return ..()
 
 /obj/item/staplegun
-	name = "staple gun"
-	desc = "Insert paper you want to staple and then use the gun on a wall/floor. CAUTION: Don't use on people."
+	name = "zszywacz"
+	desc = "Włóż kartkę, którą chcesz przypiąć, i użyj zszywacza na ścianie albo podłodze. UWAGA: nie używać na ludziach."
 	icon = 'aquila/icons/obj/staples.dmi'
 	icon_state = "staplegun"
 	force = 0

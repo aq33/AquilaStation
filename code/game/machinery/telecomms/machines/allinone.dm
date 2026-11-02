@@ -4,9 +4,9 @@
 */
 
 /obj/machinery/telecomms/allinone
-	name = "telecommunications mainframe"
+	name = "centrala telekomunikacyjna"
 	icon_state = "comm_server"
-	desc = "A compact machine used for portable subspace telecommunications processing."
+	desc = "Kompaktowa maszyna do przenośnego przetwarzania telekomunikacji podprzestrzennej."
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
@@ -44,7 +44,7 @@
 		return attack_hand(user)
 
 /obj/machinery/telecomms/allinone/exploration
-	name = "exploration mainframe"
+	name = "centrala eksploracyjna"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	freq_listening = list(FREQ_EXPLORATION)

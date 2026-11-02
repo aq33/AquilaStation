@@ -1,6 +1,6 @@
 /datum/design/mech_missile_rack
-	name = "Exosuit Weapon (SRM-8 Missile Rack)"
-	desc = "Allows for the construction of an SRM-8 Missile Rack."
+	name = "Broń egzoszkieletu (wyrzutnia rakiet SRM-8)"
+	desc = "Pozwala zbudować wyrzutnię rakiet SRM-8."
 	id = "mech_missile_rack"
 	build_type = PROTOLATHE
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack

@@ -19,8 +19,8 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 //
 
 /obj/machinery/gravity_generator
-	name = "gravitational generator"
-	desc = "A device which produces a graviton field when set up."
+	name = "generator grawitacji"
+	desc = "Urządzenie, które po złożeniu wytwarza pole grawitonowe."
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	density = TRUE
 	move_resist = INFINITY
@@ -302,12 +302,12 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 			if(gravity_in_level() == 0)
 				alert = 1
 				investigate_log("was brought online and is now producing gravity for this level.", INVESTIGATE_GRAVITY)
-				message_admins("The gravity generator was brought online [ADMIN_VERBOSEJMP(src)]")
+				message_admins("Generator grawitacji został włączony [ADMIN_VERBOSEJMP(src)]")
 		else
 			if(gravity_in_level() == 1)
 				alert = 1
 				investigate_log("was brought offline and there is now no gravity for this level.", INVESTIGATE_GRAVITY)
-				message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_VERBOSEJMP(src)]")
+				message_admins("Generator grawitacji został wyłączony, a nie ma generatora zapasowego. [ADMIN_VERBOSEJMP(src)]")
 
 	update_icon()
 	update_list()
@@ -408,5 +408,5 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 // Misc
 
 /obj/item/paper/guides/jobs/engi/gravity_gen
-	name = "paper- 'Generate your own gravity!'"
+	name = "kartka - „Wytwórz własną grawitację!”"
 	default_raw_text = {"<h1>Instrukcja obsługi generatora grawitacji dla opornych</h1><p>Co zaskakujące, stworzenie grawitacji nie jest takie trudne! Wystarczy wstrzyknąć zabójczo radioaktywne minerały do kuli energii i masz grawitację! Maszynę możesz w razie potrzeby włączać i wyłączać, ale pamiętaj, że generator EMITUJE PROMIENIOWANIE podczas ładowania i rozładowywania – poznasz to po wydawanym dźwięku – więc NOŚ ODZIEŻ OCHRONNĄ.</p><br><h3>Wybuchł!</h3><p>Nie panikuj! Generator grawitacji zaprojektowano tak, by łatwo go naprawić. Jeśli jakimś cudem solidna rama nie przetrwała, wtedy możesz panikować; w przeciwnym razie wykonaj te kroki.</p><ol><li>Przykręć śruby ramy śrubokrętem.</li><li>Napraw uszkodzoną ramę spawarką.</li><li>Dodaj dodatkowe poszycie z plastali.</li><li>Przykręć dodatkowe poszycie kluczem.</li></ol>"}

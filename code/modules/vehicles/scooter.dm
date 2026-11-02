@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/scooter
-	name = "scooter"
-	desc = "A fun way to get around."
+	name = "hulajnoga"
+	desc = "Zabawny sposób na przemieszczanie się."
 	icon_state = "scooter"
 	are_legs_exposed = TRUE
 	fall_off_if_missing_arms = TRUE
@@ -42,8 +42,8 @@
 	return ..()
 
 /obj/vehicle/ridden/scooter/skateboard
-	name = "improvised skateboard"
-	desc = "An unfinished scooter which can only barely be called a skateboard. It's still rideable, but probably unsafe. Looks like you'll need to add a few rods to make handlebars."
+	name = "prowizoryczna deskorolka"
+	desc = "Niedokończona hulajnoga, którą ledwo można nazwać deskorolką. Da się na niej jeździć, ale raczej nie jest to bezpieczne. Wygląda na to, że do zrobienia kierownicy potrzebujesz kilku prętów."
 	icon_state = "skateboard"
 	density = FALSE
 	arms_required = 0
@@ -165,8 +165,8 @@
 	skater.put_in_hands(new board_item_type(get_turf(skater)))
 	qdel(src)
 /obj/vehicle/ridden/scooter/skateboard/pro
-	name = "skateboard"
-	desc = "A RaDSTORMz brand professional skateboard. Looks a lot more stable than the average board."
+	name = "deskorolka"
+	desc = "Profesjonalna deskorolka marki RaDSTORMz. Wygląda na dużo stabilniejszą od przeciętnej deski."
 	icon_state = "skateboard2"
 	board_icon = "skateboard2"
 	board_item_type = /obj/item/melee/skateboard/pro
@@ -174,7 +174,7 @@
 
 /obj/vehicle/ridden/scooter/skateboard/hoverboard/
 	name = "hoverboard"
-	desc = "A blast from the past, so retro!"
+	desc = "Powiew przeszłości, ale retro!"
 	board_item_type = /obj/item/melee/skateboard/hoverboard
 	instability = 3
 	icon_state = "hoverboard_red"
@@ -190,8 +190,8 @@
 		return ..()
 
 /obj/vehicle/ridden/scooter/skateboard/hoverboard/admin
-	name = "\improper Board Of Directors"
-	desc = "The engineering complexity of a spaceship concentrated inside of a board. Just as expensive, too."
+	name = "\improper Deska Dyrektorów"
+	desc = "Inżynieryjna złożoność statku kosmicznego zamknięta w desce. I równie droga."
 	board_item_type = /obj/item/melee/skateboard/hoverboard/admin
 	instability = 0
 	icon_state = "hoverboard_nt"
@@ -199,8 +199,8 @@
 
 //CONSTRUCTION
 /obj/item/scooter_frame
-	name = "scooter frame"
-	desc = "A metal frame for building a scooter. Looks like you'll need to add some iron to make wheels."
+	name = "rama hulajnogi"
+	desc = "Metalowa rama do budowy hulajnogi. Wygląda na to, że do zrobienia kół potrzebujesz trochę żelaza."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "scooter_frame"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -259,8 +259,8 @@
 
 //Wheelys
 /obj/vehicle/ridden/scooter/wheelys
-	name = "Wheely-Heels"
-	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
+	name = "Szpilki na kółkach"
+	desc = "Korzystają z opatentowanej technologii wysuwanych kółek. Nigdy nie poświęcaj szybkości dla stylu – choć te nie dają za wiele ani jednego, ani drugiego."
 	icon = null
 	density = FALSE
 

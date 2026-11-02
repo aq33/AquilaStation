@@ -15,7 +15,7 @@
 
 	if(!(instance.key in GLOB.keybinding_list_by_key))
 		GLOB.keybinding_list_by_key[instance.key] = list()
-	GLOB.keybinding_list_by_key[instance.key] += instance.name
+	GLOB.keybinding_list_by_key[instance.key] |= instance.name
 
 /proc/init_emote_keybinds()
 	for(var/i in subtypesof(/datum/emote))

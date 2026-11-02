@@ -4,7 +4,7 @@
  * Tells the shell to start pulling on a designated atom. Only works on movable shells.
  */
 /obj/item/circuit_component/pull
-	display_name = "Start Pulling"
+	display_name = "Zacznij ciągnąć"
 	desc = "Komponent, który zmusza obudowę do ciągnięcia obiektów. Działa tylko z obudowami dronów."
 	category = "Action"
 

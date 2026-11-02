@@ -71,7 +71,7 @@
 	timeout = 5 MINUTES
 
 /datum/supply_pack/security/blood_worm_testers
-	name = "Hemoparasite Testing Crate"
+	name = "Skrzynia z testerami hemopasożytów"
 	desc = "Cztery jednorazowe testery hemopasożytów. Dokładnie wykrywają, czy w pacjencie siedzi hemopasożyt, np. osławiony kosmiczny krwawy robak. \
 		DeForest Medical Corporation nie odpowiada za urazy psychiczne ani fizyczne pacjentów spowodowane niewłaściwym użyciem. Wymaga dostępu ochrony."
 	cost = 5000
@@ -81,4 +81,4 @@
 		/obj/item/blood_worm_tester,
 		/obj/item/blood_worm_tester,
 	)
-	crate_name = "hemoparasite testing crate"
+	crate_name = "skrzynia z testerami hemopasożytów"

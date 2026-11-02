@@ -24,27 +24,27 @@
 // 7.12x82mm (SAW)
 
 /obj/item/projectile/bullet/mm712x82
-	name = "7.12x82mm bullet"
+	name = "pocisk 7.12x82mm"
 	damage = 45
 	armour_penetration = 5
 
 /obj/item/projectile/bullet/mm712x82_ap
-	name = "7.12x82mm armor-piercing bullet"
+	name = "pocisk 7.12x82mm przeciwpancerny"
 	damage = 40
 	armour_penetration = 75
 
 /obj/item/projectile/bullet/mm712x82_hp
-	name = "7.12x82mm hollow-point bullet"
+	name = "pocisk 7.12x82mm wydrążony"
 	damage = 60
 	armour_penetration = -60
 
 /obj/item/projectile/bullet/incendiary/mm712x82
-	name = "7.12x82mm incendiary bullet"
+	name = "pocisk 7.12x82mm zapalający"
 	damage = 20
 	fire_stacks = 3
 
 /obj/item/projectile/bullet/mm712x82_match
-	name = "7.12x82mm match bullet"
+	name = "pocisk 7.12x82mm wyczynowy"
 	damage = 40
 	ricochets_max = 2
 	ricochet_chance = 60

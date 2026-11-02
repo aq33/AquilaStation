@@ -1,7 +1,7 @@
 // Pineapple!
 /obj/item/food/grown/pineapple
 	seed = /obj/item/plant_seeds/preset/pineapple
-	name = "pineapples"
+	name = "ananas"
 	desc = "Blorble."
 	icon_state = "pineapple"
 	bite_consumption_mod = 2

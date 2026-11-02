@@ -1,5 +1,5 @@
 /obj/item/borg/upgrade/transform/borgi
-	name = "borg module picker (Borgi)"
-	desc = "Allows you to to turn a cyborg into a borgi, woof."
+	name = "wybierak modułu borga (Borgi)"
+	desc = "Pozwala zmienić cyborga w borgiego. Hau."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/borgi

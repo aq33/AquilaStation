@@ -1,12 +1,12 @@
-#define RANDOM_GRAFFITI "Random Graffiti"
-#define RANDOM_LETTER "Random Letter"
-#define RANDOM_PUNCTUATION "Random Punctuation"
-#define RANDOM_NUMBER "Random Number"
-#define RANDOM_SYMBOL "Random Symbol"
-#define RANDOM_DRAWING "Random Drawing"
-#define RANDOM_ORIENTED "Random Oriented"
-#define RANDOM_RUNE "Random Rune"
-#define RANDOM_ANY "Random Anything"
+#define RANDOM_GRAFFITI "Losowe graffiti"
+#define RANDOM_LETTER "Losowa litera"
+#define RANDOM_PUNCTUATION "Losowa interpunkcja"
+#define RANDOM_NUMBER "Losowa cyfra"
+#define RANDOM_SYMBOL "Losowy symbol"
+#define RANDOM_DRAWING "Losowy rysunek"
+#define RANDOM_ORIENTED "Losowy kierunkowy"
+#define RANDOM_RUNE "Losowa runa"
+#define RANDOM_ANY "Losowe cokolwiek"
 
 #define PAINT_NORMAL	1
 #define PAINT_LARGE_HORIZONTAL	2
@@ -17,8 +17,8 @@
  */
 
 /obj/item/toy/crayon
-	name = "crayon"
-	desc = "A colourful crayon. Looks tasty. Mmmm..."
+	name = "kredka"
+	desc = "Kolorowa kredka. Wygląda smakowicie. Mmmm..."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonred"
 
@@ -81,8 +81,9 @@
 /obj/item/toy/crayon/Initialize(mapload)
 	. = ..()
 	// Makes crayons identifiable in things like grinders
-	if(name == "crayon")
-		name = "[crayon_color] crayon"
+	if(name == "kredka")
+		var/static/list/crayon_color_pl = list("red" = "czerwona", "orange" = "pomarańczowa", "yellow" = "żółta", "green" = "zielona", "blue" = "niebieska", "purple" = "fioletowa", "black" = "czarna", "white" = "biała", "mime" = "mimowa", "rainbow" = "tęczowa")
+		name = "kredka ([crayon_color_pl[crayon_color]])"
 
 	dye_color = crayon_color
 
@@ -169,32 +170,32 @@
 		g_items += list(list("item" = g))
 
 	var/list/glh_items = list()
-	. += list(list("name" = "Graffiti Large Horizontal", "items" = glh_items))
+	. += list(list("name" = "Duże poziome graffiti", "items" = glh_items))
 	for(var/glh in graffiti_large_h)
 		glh_items += list(list("item" = glh))
 
 	var/list/S_items = list()
-	. += list(list("name" = "Symbols", "items" = S_items))
+	. += list(list("name" = "Symbole", "items" = S_items))
 	for(var/S in symbols)
 		S_items += list(list("item" = S))
 
 	var/list/D_items = list()
-	. += list(list("name" = "Drawings", "items" = D_items))
+	. += list(list("name" = "Rysunki", "items" = D_items))
 	for(var/D in drawings)
 		D_items += list(list("item" = D))
 
 	var/list/O_items = list()
-	. += list(list(name = "Oriented", "items" = O_items))
+	. += list(list(name = "Kierunkowe", "items" = O_items))
 	for(var/O in oriented)
 		O_items += list(list("item" = O))
 
 	var/list/R_items = list()
-	. += list(list(name = "Runes", "items" = R_items))
+	. += list(list(name = "Runy", "items" = R_items))
 	for(var/R in runes)
 		R_items += list(list("item" = R))
 
 	var/list/rand_items = list()
-	. += list(list(name = "Random", "items" = rand_items))
+	. += list(list(name = "Losowe", "items" = rand_items))
 	for(var/i in randoms)
 		rand_items += list(list("item" = i))
 
@@ -246,7 +247,7 @@
 					. = FALSE
 		if("enter_text")
 			var/txt = stripped_input(usr,"Wybierz, co napisać.",
-				"Scribbles",default = text_buffer)
+				"Bazgroły",default = text_buffer)
 			text_buffer = crayon_text_strip(txt)
 			. = TRUE
 			paint_mode = PAINT_NORMAL
@@ -304,17 +305,17 @@
 			drawing = pick(all_drawables)
 
 
-	var/temp = "rune"
+	var/temp = "runa"
 	if(is_alpha(drawing))
-		temp = "letter"
+		temp = "litera"
 	else if(is_digit(drawing))
-		temp = "number"
+		temp = "cyfra"
 	else if(drawing in punctuation)
-		temp = "punctuation mark"
+		temp = "znak interpunkcyjny"
 	else if(drawing in symbols)
 		temp = "symbol"
 	else if(drawing in drawings)
-		temp = "drawing"
+		temp = "rysunek"
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
 	var/gang_check = hippie_gang_check(user,target) // hippie start -- gang check and temp setting
@@ -352,7 +353,7 @@
 		if (territory_claimed(get_area(target), user))
 			wait_time = 20 SECONDS
 	if(!instant || paint_mode == PAINT_LARGE_HORIZONTAL)
-		to_chat(user, "<span class='notice'>Zaczynasz rysować [temp] na [target.name]...</span>") // hippie -- removed a weird tab that had no reason to be here
+		to_chat(user, "<span class='notice'>Zaczynasz rysować na [target.name]: [temp]...</span>") // hippie -- removed a weird tab that had no reason to be here
 		if(!do_after(user, wait_time, target = target))
 			return
 
@@ -389,9 +390,9 @@
 					return
 
 	if(!instant)
-		to_chat(user, "<span class='notice'>Kończysz rysować [temp].</span>")
+		to_chat(user, "<span class='notice'>Kończysz rysować: [temp].</span>")
 	else
-		to_chat(user, "<span class='notice'>Malujesz sprayem [temp] na [target.name]</span>")
+		to_chat(user, "<span class='notice'>Malujesz sprayem na [target.name]: [temp]</span>")
 
 	if(length(text_buffer) > 1)
 		text_buffer = copytext(text_buffer, length(text_buffer[1]) + 1)
@@ -499,7 +500,7 @@
 
 /obj/item/toy/crayon/mime
 	icon_state = "crayonmime"
-	desc = "A very sad-looking crayon."
+	desc = "Bardzo smutno wyglądająca kredka."
 	paint_color = "#FFFFFF"
 	crayon_color = "mime"
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5, /datum/reagent/colorful_reagent/powder/invisible = 1.5)
@@ -524,8 +525,8 @@
  */
 
 /obj/item/storage/crayons
-	name = "box of crayons"
-	desc = "A box of crayons for all your rune drawing needs."
+	name = "pudełko kredek"
+	desc = "Pudełko kredek na wszystkie twoje potrzeby rysowania run."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = WEIGHT_CLASS_SMALL
@@ -582,7 +583,7 @@
 //Spraycan stuff
 
 /obj/item/toy/crayon/spraycan
-	name = "spray can"
+	name = "puszka ze sprayem"
 	icon_state = "spraycan"
 
 	icon_capped = "spraycan_cap"
@@ -593,7 +594,7 @@
 	item_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	desc = "A metallic container containing tasty paint."
+	desc = "Metalowy pojemnik ze smaczną farbą."
 	w_class = WEIGHT_CLASS_SMALL
 
 	instant = TRUE
@@ -616,7 +617,7 @@
 	var/mob/living/carbon/human/H = user
 	if(is_capped || !actually_paints)
 		user.visible_message("<span class='suicide'>[user] potrząsa grzechoczącym [src] i podnosi go do ust, ale nic się nie dzieje!</span>")
-		user.say("MEDIOCRE!!", forced="spraycan suicide")
+		user.say("PRZECIĘTNIAK!!", forced="spraycan suicide")
 		return SHAME
 	else
 		user.visible_message("<span class='suicide'>[user] potrząsa grzechoczącym [src] i podnosi go do ust, pryskając farbą na zęby!</span>")
@@ -745,8 +746,8 @@
 		add_overlay(spray_overlay)
 
 /obj/item/toy/crayon/spraycan/borg
-	name = "cyborg spraycan"
-	desc = "A metallic container containing shiny synthesised paint."
+	name = "puszka ze sprayem cyborga"
+	desc = "Metalowy pojemnik z błyszczącą syntetyczną farbą."
 	charges = -1
 
 /obj/item/toy/crayon/spraycan/borg/afterattack(atom/target,mob/user,proximity, params)
@@ -769,8 +770,8 @@
 		borgy.cell.use(cost)
 
 /obj/item/toy/crayon/spraycan/hellcan
-	name = "hellcan"
-	desc = "This spraycan doesn't seem to be filled with paint..."
+	name = "piekielna puszka"
+	desc = "Ta puszka chyba nie jest wypełniona farbą..."
 	icon_state = "deathcan2_cap"
 	icon_capped = "deathcan2_cap"
 	icon_uncapped = "deathcan2"
@@ -783,8 +784,8 @@
 	paint_color = "#000000"
 
 /obj/item/toy/crayon/spraycan/lubecan
-	name = "slippery spraycan"
-	desc = "You can barely keep hold of this thing."
+	name = "śliska puszka ze sprayem"
+	desc = "Ledwo da się to utrzymać w ręce."
 	icon_state = "clowncan2_cap"
 	icon_capped = "clowncan2_cap"
 	icon_uncapped = "clowncan2"
@@ -797,8 +798,8 @@
 	return istype(surface, /turf/open/floor)
 
 /obj/item/toy/crayon/spraycan/mimecan
-	name = "silent spraycan"
-	desc = "Art is best seen, not heard."
+	name = "cicha puszka ze sprayem"
+	desc = "Sztukę najlepiej oglądać, a nie słuchać."
 	icon_state = "mimecan_cap"
 	icon_capped = "mimecan_cap"
 	icon_uncapped = "mimecan"

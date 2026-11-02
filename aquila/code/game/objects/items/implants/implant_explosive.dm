@@ -35,8 +35,8 @@
 	ce_fucked_up.implant(H, null, silent = TRUE)
 
 /obj/item/implantcase/engineering
-	name = "implant case - 'engineers fucked up'"
-	desc = "A glass case containing a modified explosive implant."
+	name = "etui na implant (inżynierowie nawalili)"
+	desc = "Szklane etui ze zmodyfikowanym implantem wybuchowym."
 	imp_type = /obj/item/implant/explosive/engineering
 
 /obj/item/storage/box/engimp/PopulateContents()

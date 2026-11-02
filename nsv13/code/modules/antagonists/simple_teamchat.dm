@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 //Super simple teamchat, just add the component to a thing to give it access, and allow it to speak. Can be applied to an item if you want a ""radio"" without using radio shitcode.
 
 //Define your teamchat keys here. Used to index each teamchat.
-#define TEAMCHAT_KEY_DEFAULT "Default Teamchat"
-#define TEAMCHAT_KEY_BLOODLING "Alien Hivemind"
+#define TEAMCHAT_KEY_DEFAULT "Domyślny czat drużyny"
+#define TEAMCHAT_KEY_BLOODLING "Obcy umysł roju"
 #define TEAMCHAT_KEY_ABLE "Able"
 #define TEAMCHAT_KEY_BAKER "Baker"
 #define TEAMCHAT_KEY_CHARLIE "Charlie"
@@ -12,8 +12,8 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 
 //Action buttons for teamchat. Just the one type, customize it on the component itself.
 /datum/action/teamchat
-	name = "Broadcast Message"
-	desc = "Send a message to the assigned channel."
+	name = "Nadaj wiadomość"
+	desc = "Wyślij wiadomość na przypisany kanał."
 	var/atom/holder = null
 	var/datum/component/simple_teamchat/teamspeak = null
 
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 			chatAction.button_icon_state = button_icon_state
 		if(background_icon_state)
 			chatAction.background_icon_state = background_icon_state
-		chatAction.name = "[key] Chat"
+		chatAction.name = "Czat: [key]"
 		chatAction.holder = parent //This gets a bit weird, but the holder may be the item that's a "radio".
 		chatAction.teamspeak = src //The chat action holds a ref to the component, to allow you to have multiple teamchats at once (See: global squad pager.)
 
@@ -234,25 +234,25 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 		container?.balloon_alert_to_viewers("[container] bzyczy.")
 
 /datum/component/simple_teamchat/radio_dependent/squad/Able
-	name = "Able Squad"
+	name = "Drużyna Able"
 	button_icon_state = "Able"
 	key = TEAMCHAT_KEY_ABLE
 	text_span_style = "ableradio"
 
 /datum/component/simple_teamchat/radio_dependent/squad/Baker
-	name = "Baker Squad"
+	name = "Drużyna Baker"
 	button_icon_state = "Baker"
 	key = TEAMCHAT_KEY_BAKER
 	text_span_style = "bakerradio"
 
 /datum/component/simple_teamchat/radio_dependent/squad/Charlie
-	name = "Charlie Squad"
+	name = "Drużyna Charlie"
 	button_icon_state = "Charlie"
 	key = TEAMCHAT_KEY_CHARLIE
 	text_span_style = "charlieradio"
 
 /datum/component/simple_teamchat/radio_dependent/squad/Duff
-	name = "Duff Squad"
+	name = "Drużyna Duff"
 	button_icon_state = "Duff"
 	key = TEAMCHAT_KEY_DUFF
 	text_span_style = "duffradio"
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 /datum/component/simple_teamchat/radio_dependent/squad/style_message(atom/movable/sender, msg)
 	if(isatom(sender))
 		return "<span class='[text_span_style]'><b>([key]) [sender.compose_rank(sender)][sender]</b>[sender == squad?.leader ? " <b>(SL)</b>" : ""]: [msg]</span>"
-	return "<span class='[text_span_style]'><b>([key]) [sender] (Overwatch)</b>: [msg]</span>"
+	return "<span class='[text_span_style]'><b>([key]) [sender] (Nadzór)</b>: [msg]</span>"
 
 /datum/component/simple_teamchat/bloodling
 	background_icon_state = "bg_changeling"

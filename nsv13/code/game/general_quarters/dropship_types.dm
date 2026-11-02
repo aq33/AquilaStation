@@ -2,8 +2,8 @@
 Credit to TGMC for the interior sprites for all these!
 */
 /obj/structure/overmap/small_craft/transport
-	name = "\improper Su-624 'Trafalgar' Utility Dropship"
-	desc = "An all-purpose troop carrier which can carry a unit of marines into the heart of darkness."
+	name = "\improper uniwersalny statek desantowy Su-624 'Trafalgar'"
+	desc = "Wielozadaniowy transportowiec wojska, który zawiezie oddział piechoty w samo jądro ciemności."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/dropship.dmi'
 	icon_state = "dropship"
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 40, "bomb" = 40, "bio" = 100, "rad" = 90, "fire" = 90, "acid" = 80, "overmap_light" = 15, "overmap_medium" = 5, "overmap_heavy" = 90)
@@ -90,7 +90,7 @@ Credit to TGMC for the interior sprites for all these!
     mappath = "_maps/templates/boarding/dropship_main.dmm"
 
 /obj/structure/overmap/small_craft/transport/syndicate
-	name = "Syndicate Dropship"
+	name = "statek desantowy Syndykatu"
 	icon = 'nsv13/icons/overmap/new/syndicate/dropship.dmi'
 	icon_state = "dropship_syndie"
 	possible_interior_maps = list(/datum/map_template/dropship/syndicate)
@@ -106,8 +106,8 @@ Credit to TGMC for the interior sprites for all these!
     mappath = "_maps/templates/boarding/dropship_syndicate.dmm"
 
 /obj/structure/overmap/small_craft/transport/gunship
-	name = "\improper SC-130 'Halberd' gunship"
-	desc = "A horrible, cramped death trap armed to the teeth with more guns than most small nations, all of which are under investigation for their carcinogenic properties."
+	name = "\improper kanonierka SC-130 'Halberd'"
+	desc = "Okropna, ciasna pułapka śmierci uzbrojona po zęby w więcej dział niż większość małych państw. Każde z nich jest objęte dochodzeniem w sprawie właściwości rakotwórczych."
 	possible_interior_maps = list(/datum/map_template/dropship/gunship)
 	components = list(/obj/item/fighter_component/fuel_tank/tier2,
 						/obj/item/fighter_component/avionics,
@@ -134,7 +134,7 @@ Credit to TGMC for the interior sprites for all these!
 
 /obj/structure/overmap/small_craft/transport/sabre
 	name = "\improper Su-437 Sabre"
-	desc = "An Su-437 Sabre utility vessel. Designed for robustness in deep space and as a highly modular platform, able to be fitted out for any situation. While its interior may be cramped, it's definitely functional. Drag and drop crates / ore boxes to load them into its cargo hold."
+	desc = "Jednostka pomocnicza Su-437 Sabre. Zaprojektowana z myślą o wytrzymałości w głębokim kosmosie jako wysoce modułowa platforma, którą można wyposażyć na każdą okazję. Wnętrze bywa ciasne, ale na pewno jest funkcjonalne. Przeciągnij i upuść skrzynie albo skrzynie na rudę, żeby załadować je do ładowni."
 	icon = 'nsv13/icons/overmap/nanotrasen/carrier.dmi'
 	icon_state = "carrier"
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 40, "bomb" = 40, "bio" = 100, "rad" = 90, "fire" = 90, "acid" = 80, "overmap_light" = 15, "overmap_medium" = 5, "overmap_heavy" = 90)
@@ -183,8 +183,8 @@ Credit to TGMC for the interior sprites for all these!
     mappath = "_maps/templates/boarding/sabre_interior_mining.dmm"
 
 /obj/structure/overmap/small_craft/transport/sabre/syndicate
-	name = "\improper Syndicate Utility Vessel"
-	desc = "A boarding craft for rapid troop deployment. It contains a full combat medical bay for establishing FOBs."
+	name = "\improper jednostka pomocnicza Syndykatu"
+	desc = "Jednostka abordażowa do szybkiego przerzutu wojska. Ma na pokładzie pełne bojowe ambulatorium do zakładania wysuniętych baz operacyjnych."
 	icon = 'nsv13/icons/overmap/syndicate/syn_sabre.dmi'
 	req_one_access = list(ACCESS_SYNDICATE)
 	faction = "syndicate"

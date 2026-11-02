@@ -1,7 +1,7 @@
 //Miscellaneous Sweets
 /obj/item/food/candy_corn
-	name = "candy corn"
-	desc = "It's a handful of candy corn. Can be stored in a detective's hat."
+	name = "cukierkowa kukurydza"
+	desc = "Garść cukierkowej kukurydzy. Można ją trzymać w kapeluszu detektywa."
 	icon_state = "candy_corn"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -14,16 +14,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/candy_corn/prison
-	name = "desiccated candy corn"
-	desc = "If this candy corn were any harder Security would confiscate it for being a potential shiv."
+	name = "wysuszona cukierkowa kukurydza"
+	desc = "Gdyby ta cukierkowa kukurydza była choć trochę twardsza, policja skonfiskowałaby ją jako potencjalną kosę."
 	force = 1 // the description isn't lying
 	throwforce = 1 // if someone manages to bust out of jail with candy corn god bless them
 	tastes = list("gorzki wosk" = 1)
 	foodtypes = JUNKFOOD | GROSS
 
 /obj/item/food/candiedapple
-	name = "candied apple"
-	desc = "An apple coated in sugary sweetness."
+	name = "jabłko w karmelu"
+	desc = "Jabłko oblane cukrową słodyczą."
 	icon_state = "candiedapple"
 	bite_consumption = 3
 	food_reagents = list(
@@ -37,8 +37,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/mint
-	name = "mint"
-	desc = "It is only wafer thin."
+	name = "miętówka"
+	desc = "Jest cieniutka jak wafelek."
 	icon_state = "mint"
 	bite_consumption = 1
 	food_reagents = list(/datum/reagent/toxin/minttoxin = 2)
@@ -47,8 +47,8 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/food/ant_candy
-	name = "ant candy"
-	desc = "A colony of ants suspended in hardened sugar. Those things are dead, right?"
+	name = "cukierek z mrówkami"
+	desc = "Kolonia mrówek zatopiona w twardym cukrze. One nie żyją, prawda?"
 	icon_state = "ant_pop"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
@@ -63,8 +63,8 @@
 
 //Chocolates
 /obj/item/food/chocolatebar
-	name = "chocolate bar"
-	desc = "Such, sweet, fattening food."
+	name = "tabliczka czekolady"
+	desc = "Jakie słodkie, tuczące jedzenie."
 	icon_state = "chocolatebar"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -78,8 +78,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/chococoin
-	name = "chocolate coin"
-	desc = "A completely edible but non-flippable festive coin."
+	name = "czekoladowa moneta"
+	desc = "Całkowicie jadalna, ale nienadająca się do rzucania świąteczna moneta."
 	icon_state = "chococoin"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -93,8 +93,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/fudgedice
-	name = "fudge dice"
-	desc = "A little cube of chocolate that tends to have a less intense taste if you eat too many at once."
+	name = "kostka do gry z krówki"
+	desc = "Mała czekoladowa kostka, która smakuje słabiej, jeśli zjesz ich za dużo naraz."
 	icon_state = "chocodice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -109,8 +109,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/chocoorange
-	name = "chocolate orange"
-	desc = "A festive chocolate orange."
+	name = "czekoladowa pomarańcza"
+	desc = "Świąteczna czekoladowa pomarańcza."
 	icon_state = "chocoorange"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -123,8 +123,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/bonbon
-	name = "bon bon"
-	desc = "A tiny and sweet chocolate."
+	name = "czekoladka"
+	desc = "Malutka, słodka czekoladka."
 	icon_state = "tiny_chocolate"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
@@ -141,8 +141,8 @@
 ///obj/item/food/bubblegum Need to port this some time
 
 /obj/item/food/gumball
-	name = "gumball"
-	desc = "A colorful, sugary gumball."
+	name = "kulka gumy do żucia"
+	desc = "Kolorowa, słodka kulka gumy do żucia."
 	icon = 'icons/obj/food/lollipop.dmi'
 	icon_state = "gumball"
 	worn_icon_state = "bubblegum"
@@ -178,8 +178,8 @@
 
 // Lollipop
 /obj/item/food/lollipop
-	name = "lollipop"
-	desc = "A delicious lollipop. Makes for a great Valentine's present."
+	name = "lizak"
+	desc = "Pyszny lizak. Świetny prezent na walentynki."
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "lollipop_stick"
 	item_state = null
@@ -249,8 +249,8 @@
 		timer_id = addtimer(CALLBACK(src, PROC_REF(chew)), bite_frequency, TIMER_STOPPABLE)
 
 /obj/item/food/lollipop/long
-	name = "longpop"
-	desc = "Twice the size, half the flavour!"
+	name = "długi lizak"
+	desc = "Dwa razy większy, o połowę mniej smaku!"
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "lollipop_stick_long"
 
@@ -282,8 +282,8 @@
 		qdel(src)
 
 /obj/item/food/spiderlollipop
-	name = "spider lollipop"
-	desc = "Still gross, but at least it has a mountain of sugar on it."
+	name = "pajęczy lizak"
+	desc = "Wciąż obrzydliwy, ale przynajmniej ma na sobie górę cukru."
 	icon_state = "spiderlollipop"
 	worn_icon_state = "lollipop_stick"
 	food_reagents = list(
@@ -300,8 +300,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/rock_candy
-	name = "Rock candy"
-	desc = "A bunch of sweet crystals on a stick. Good for your blood!\n Warning for California residents: This product may contain lead, which is known to the State of California to cause cancer, birth defects, or other reproductive harm."
+	name = "cukier kandyzowany"
+	desc = "Garść słodkich kryształków na patyku. Dobre dla krwi!\n Ostrzeżenie dla mieszkańców Kalifornii: ten produkt może zawierać ołów, o którym Stan Kalifornia wie, że powoduje raka, wady wrodzone i inne szkody dla zdrowia rozrodczego."
 	icon_state = "rock_candy"
 	food_reagents = list(
 		/datum/reagent/iron = 10,

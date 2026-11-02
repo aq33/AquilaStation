@@ -7,7 +7,7 @@
 	hud_type = /datum/hud/pai
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
+	desc = "Typowy mobilny emiter holograficzny twardego światła pAI. Wygląda na wyłączony."
 	weather_immunities = list("ash")
 	health = 500
 	maxHealth = 500
@@ -198,7 +198,7 @@
 		qdel(src)
 
 /datum/action/innate/pai
-	name = "PAI Action"
+	name = "Akcja pAI"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/P
 
@@ -208,7 +208,7 @@
 	P = owner
 
 /datum/action/innate/pai/software
-	name = "Software Interface"
+	name = "Interfejs oprogramowania"
 	button_icon_state = "pai"
 	background_icon_state = "bg_tech"
 
@@ -217,7 +217,7 @@
 	P.paiInterface()
 
 /datum/action/innate/pai/shell
-	name = "Toggle Holoform"
+	name = "Przełącz holoformę"
 	button_icon_state = "pai_holoform"
 	background_icon_state = "bg_tech"
 
@@ -229,7 +229,7 @@
 		P.fold_out()
 
 /datum/action/innate/pai/chassis
-	name = "Holochassis Appearance Composite"
+	name = "Wygląd holopodwozia"
 	button_icon_state = "pai_chassis"
 	background_icon_state = "bg_tech"
 
@@ -238,7 +238,7 @@
 	P.choose_chassis()
 
 /datum/action/innate/pai/rest
-	name = "Rest"
+	name = "Odpocznij"
 	button_icon_state = "pai_rest"
 	background_icon_state = "bg_tech"
 
@@ -247,7 +247,7 @@
 	P.lay_down()
 
 /datum/action/innate/pai/light
-	name = "Toggle Integrated Lights"
+	name = "Przełącz wbudowane światła"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
@@ -314,4 +314,4 @@
 	log_game("[key_name(user)] emagged [key_name(pai)], wiping their master DNA and supplemental directive.")
 	pai.master = null
 	pai.master_dna = null
-	pai.laws.supplied[1] = "None." // Sets supplemental directive to this
+	pai.laws.supplied[1] = "Brak." // Sets supplemental directive to this

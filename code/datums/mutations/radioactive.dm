@@ -1,6 +1,6 @@
 /datum/mutation/radioactive
-	name = "Radioactivity"
-	desc = "A volatile mutation that causes the host to sent out deadly beta radiation. This affects both the hosts and their surroundings."
+	name = "Radioaktywność"
+	desc = "Niestabilna mutacja, przez którą nosiciel emituje śmiercionośne promieniowanie beta. Działa ono zarówno na nosiciela, jak i na otoczenie."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Czujesz to w kościach!</span>"
 	instability = 5

@@ -23,10 +23,10 @@ SUBSYSTEM_DEF(communications)
 		minor_announce(input,"[user.name] ogłasza:", html_encode = FALSE)
 		silicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN_AI
 	else
-		priority_announce(html_decode(user.treat_message(input)), null, 'aquila/sound/misc/announce.ogg', "Captain", has_important_message = TRUE, auth_id = auth_id)//aquila edit changed sound path, orginal is sound/misc/announce.ogg
+		priority_announce(html_decode(user.treat_message(input)), null, 'aquila/sound/misc/announce.ogg', JOB_NAME_CAPTAIN, has_important_message = TRUE, auth_id = auth_id)//aquila edit changed sound path, orginal is sound/misc/announce.ogg
 		nonsilicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] wygłasza ogłoszenie priorytetowe.")
 
 /datum/controller/subsystem/communications/proc/send_message(datum/comm_message/sending,print = TRUE,unique = FALSE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)

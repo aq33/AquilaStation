@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(save_area_executing, FALSE)
 
 /datum/mapGenerator/save_area
-	buildmode_name = "Save Area"
+	buildmode_name = "Zapisz obszar"
 	modules = list(/datum/mapGeneratorModule/save_area)
 	var/min_x = 0
 	var/min_y = 0
@@ -25,25 +25,25 @@ GLOBAL_VAR_INIT(save_area_executing, FALSE)
 		return
 	//If someone somehow gets build mode, stop them from using this.
 	if(!check_rights(R_ADMIN))
-		message_admins("[ckey(usr)] tried to run the map save generator but was rejected due to insufficient perms.")
-		to_chat(usr, "<span class='warning'>You must have R_ADMIN privellages to use this.</span>")
+		message_admins("[ckey(usr)] próbuje uruchomić generator zapisu mapy, ale nie ma wystarczających uprawnień.")
+		to_chat(usr, "<span class='warning'>Musisz mieć uprawnienia R_ADMIN, żeby tego użyć.</span>")
 		return
 	//Emergency check
 	if(L.map.len > 1600)
-		var/confirm = alert("Uhm, are you sure, the area is quiet large?", "Run generator", "Yes", "No")
-		if(confirm != "Yes")
+		var/confirm = alert("Ehm, na pewno? Obszar jest dość duży.", "Uruchom generator", "Tak", "Nie")
+		if(confirm != "Tak")
 			return
 
 	if(GLOB.save_area_executing)
-		to_chat(usr, "<span class='warning'>Someone is already running the generator! Try again in a bit.</span>")
+		to_chat(usr, "<span class='warning'>Ktoś już używa generatora! Spróbuj za chwilę.</span>")
 		return
 
-	to_chat(usr, "<span class='warning'>Saving, please wait...</span>")
+	to_chat(usr, "<span class='warning'>Zapisywanie, proszę czekać...</span>")
 	GLOB.save_area_executing = TRUE
 
 	//Log just in case something happens
 	log_game("[key_name(usr)] ran the save level map generator on [L.map.len] turfs.")
-	message_admins("[key_name(usr)] ran the save level map generator on [L.map.len] turfs.")
+	message_admins("[key_name(usr)] uruchamia generator zapisu mapy na [L.map.len] turfach.")
 
 	//Step 1: Get the data (This can take a while)
 	var/dat = "//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE\n"
@@ -61,5 +61,5 @@ GLOBAL_VAR_INIT(save_area_executing, FALSE)
 	//Step 4: Remove the file from the server (hopefully we can find a way to avoid step)
 	fdel(filedir)
 	log_game("[L.map.len] turfs have been saved by [ckey(usr)]")
-	alert("Area saved successfully.", "Action Successful!", "Ok")
+	alert("Obszar zapisany pomyślnie.", "Sukces!", "OK")
 	GLOB.save_area_executing = FALSE

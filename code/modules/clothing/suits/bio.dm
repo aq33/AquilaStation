@@ -1,8 +1,8 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
-	name = "bio hood"
+	name = "kaptur biologiczny"
 	icon_state = "bio"
-	desc = "A hood that protects the head and face from biological contaminants."
+	desc = "Kaptur chroniący głowę i twarz przed skażeniem biologicznym."
 	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | SHOWEROKAY | SNUG_FIT //NSV13 - kept SHOWEROKAY
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 80, "fire" = 30, "acid" = 100, "stamina" = 0, "bleed" = 5)
@@ -11,8 +11,8 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/suit/bio_suit
-	name = "bio suit"
-	desc = "A suit that protects against biological contamination."
+	name = "kombinezon biologiczny"
+	desc = "Kombinezon chroniący przed skażeniem biologicznym."
 	icon_state = "bio"
 	item_state = "bio_suit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -84,8 +84,8 @@
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
-	name = "plague doctor suit"
-	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
+	name = "strój doktora plagi"
+	desc = "Kiedyś chronił lekarzy przed czarną śmiercią. Możesz być cholernie pewien, że ochroni cię też przed wirusami."
 	icon_state = "plaguedoctor"
 	item_state = "bio_suit"
 	strip_delay = 40

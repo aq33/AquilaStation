@@ -1,8 +1,8 @@
 // Soybeans
 /obj/item/food/grown/soybeans
 	seed = /obj/item/plant_seeds/preset/soybean
-	name = "soybeans"
-	desc = "It's pretty bland, but oh the possibilities..."
+	name = "soja"
+	desc = "Dość mdła, ale ile możliwości..."
 	gender = PLURAL
 	icon_state = "soybeans"
 	foodtypes = VEGETABLES
@@ -12,8 +12,8 @@
 
 // Koibean
 /obj/item/food/grown/koibeans
-	name = "koibean"
-	desc = "Something about these seems fishy."
+	name = "fasola koi"
+	desc = "Coś tu śmierdzi rybą."
 	icon_state = "koibeans"
 	foodtypes = VEGETABLES
 	tastes = list("koi" = 1)

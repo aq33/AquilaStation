@@ -7,8 +7,8 @@
 // is_valid_target() -> Activate(): before_cast() -> spell_feedback() -> cast() -> StartCooldown() -> after_cast()
 
 /datum/action/cooldown/spell
-	name = "Spell"
-	desc = "A spell."
+	name = "Zaklęcie"
+	desc = "Zaklęcie."
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "spell_default"
 	background_icon_state = "bg_spell"

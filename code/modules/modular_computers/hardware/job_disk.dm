@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/hard_drive/role
-	name = "job data disk"
-	desc = "A disk meant to give a worker the needed programs to work."
+	name = "dysk z danymi zawodowymi"
+	desc = "Dysk, który daje pracownikowi programy potrzebne do pracy."
 	power_usage = 0
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "cart"
@@ -99,133 +99,133 @@
 // Disk Definitions
 
 /obj/item/computer_hardware/hard_drive/role/engineering
-	name = "\improper Power-ON disk"
-	desc = "Engineers ignoring station power-draw since 2400."
+	name = "\improper dysk Power-ON"
+	desc = "Inżynierowie ignorują pobór mocy stacji od 2400 roku."
 	icon_state = "cart-engie"
 	disk_flags = DISK_POWER
 
 /obj/item/computer_hardware/hard_drive/role/atmos
-	name = "\improper BreatheDeep disk"
+	name = "\improper dysk BreatheDeep"
 	icon_state = "cart-atmos"
 	disk_flags = DISK_ATMOS | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/medical
-	name = "\improper Med-U disk"
+	name = "\improper dysk Med-U"
 	icon_state = "cart-med"
 	disk_flags = DISK_MED | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/chemistry
-	name = "\improper ChemWhiz disk"
+	name = "\improper dysk ChemWhiz"
 	icon_state = "cart-chem"
 	disk_flags = DISK_CHEM
 
 /obj/item/computer_hardware/hard_drive/role/brig_physician
-	name = "\improper R.O.B.U.S.T. MED-U disk"
+	name = "\improper dysk R.O.B.U.S.T. MED-U"
 	icon_state = "cart-brigphys"
 	disk_flags = DISK_MANIFEST | DISK_MED | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/security
-	name = "\improper R.O.B.U.S.T. disk"
+	name = "\improper dysk R.O.B.U.S.T."
 	icon_state = "cart-sec"
 	disk_flags = DISK_SEC | DISK_MANIFEST | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/detective
-	name = "\improper D.E.T.E.C.T. disk"
+	name = "\improper dysk D.E.T.E.C.T."
 	icon_state = "cart-det"
 	disk_flags = DISK_MED | DISK_SEC | DISK_MANIFEST | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/janitor
-	name = "\improper CustodiPRO disk"
+	name = "\improper dysk CustodiPRO"
 	icon_state = "cart-jan"
-	desc = "The ultimate in clean-room design."
+	desc = "Szczytowe osiągnięcie projektowania pomieszczeń czystych."
 	disk_flags = DISK_JANI | DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/lawyer
-	name = "\improper P.R.O.V.E. disk"
+	name = "\improper dysk P.R.O.V.E."
 	icon_state = "cart-prove"
 	disk_flags = DISK_SEC
 	spam_delay = 2.5
 
 /obj/item/computer_hardware/hard_drive/role/curator
-	name = "\improper Lib-Tweet disk"
+	name = "\improper dysk Lib-Tweet"
 	icon_state = "cart-cur"
 	disk_flags = DISK_NEWSCASTER
 	spam_delay = 3.5
 
 /obj/item/computer_hardware/hard_drive/role/roboticist
-	name = "\improper B.O.O.P. Remote Control disk"
+	name = "\improper dysk zdalnego sterowania B.O.O.P."
 	icon_state = "cart-robo"
-	desc = "Packed with heavy duty quad-bot interlink!"
+	desc = "Wyposażony w wytrzymałe łącze do czterech robotów naraz!"
 	disk_flags = DISK_ROBOS
 
 /obj/item/computer_hardware/hard_drive/role/signal
-	name = "generic signaler disk"
+	name = "zwykły dysk z sygnalizatorem"
 	icon_state = "cart-signal"
-	desc = "A data disk with an integrated radio signaler module."
+	desc = "Dysk z danymi ze zintegrowanym modułem sygnalizatora radiowego."
 	disk_flags = DISK_SIGNAL
 
 /obj/item/computer_hardware/hard_drive/role/signal/toxins
-	name = "\improper Signal Ace 2 disk"
+	name = "\improper dysk Signal Ace 2"
 	icon_state = "cart-tox"
-	desc = "Complete with integrated radio signaler!"
+	desc = "W komplecie zintegrowany sygnalizator radiowy!"
 	disk_flags = DISK_ATMOS | DISK_SIGNAL | DISK_CHEM
 
 /obj/item/computer_hardware/hard_drive/role/quartermaster
-	name = "space parts DELUXE disk"
+	name = "dysk kosmicznych części DELUXE"
 	icon_state = "cart-qm"
-	desc = "Perfect for the Quartermaster on the go!"
+	desc = "Idealny dla kwatermistrza w biegu!"
 	disk_flags = DISK_CARGO | DISK_SILO_LOG | DISK_ROBOS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/cargo_technician
-	name = "space parts disk"
+	name = "dysk kosmicznych części"
 	icon_state = "cart-cargo"
-	desc = "Perfect for the Cargo Tech on the go!"
+	desc = "Idealny dla magazyniera w biegu!"
 	disk_flags = DISK_CARGO | DISK_ROBOS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/head
-	name = "\improper Easy-Record DELUXE disk"
+	name = "\improper dysk Easy-Record DELUXE"
 	icon_state = "cart-val"
 	disk_flags = DISK_MANIFEST | DISK_STATUS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/hop
-	name = "\improper HumanResources9001 disk"
+	name = "\improper dysk HumanResources9001"
 	icon_state = "cart-hop"
 	disk_flags = DISK_MANIFEST | DISK_STATUS | DISK_JANI | DISK_SEC | DISK_NEWSCASTER | DISK_CARGO | DISK_SILO_LOG | DISK_ROBOS | DISK_BUDGET | DISK_HOP
 
 /obj/item/computer_hardware/hard_drive/role/hos
-	name = "\improper R.O.B.U.S.T. DELUXE disk"
+	name = "\improper dysk R.O.B.U.S.T. DELUXE"
 	icon_state = "cart-hos"
 	disk_flags = DISK_MANIFEST | DISK_STATUS | DISK_SEC | DISK_ROBOS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/ce
-	name = "\improper Power-On DELUXE disk"
+	name = "\improper dysk Power-On DELUXE"
 	icon_state = "cart-ce"
 	disk_flags = DISK_POWER | DISK_ATMOS | DISK_MANIFEST | DISK_STATUS | DISK_ROBOS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/cmo
-	name = "\improper Med-U DELUXE disk"
+	name = "\improper dysk Med-U DELUXE"
 	icon_state = "cart-cmo"
 	disk_flags = DISK_MANIFEST | DISK_STATUS | DISK_MED | DISK_CHEM | DISK_ROBOS | DISK_BUDGET
 
 /obj/item/computer_hardware/hard_drive/role/rd
-	name = "\improper Signal Ace DELUXE disk"
+	name = "\improper dysk Signal Ace DELUXE"
 	icon_state = "cart-rd"
 	disk_flags = DISK_ATMOS | DISK_MANIFEST | DISK_STATUS | DISK_CHEM | DISK_ROBOS | DISK_BUDGET | DISK_SIGNAL
 
 /obj/item/computer_hardware/hard_drive/role/captain
-	name = "\improper Value-PAK disk"
+	name = "\improper dysk Value-PAK"
 	icon_state = "cart-cap"
-	desc = "Now with 350% more value!"
+	desc = "Teraz o 350% więcej wartości!"
 	//Give the Captain...EVERYTHING! (except the remote airlock control)
 	disk_flags = ~(DISK_REMOTE_AIRLOCK)
 	spam_delay = 2
 
 /obj/item/computer_hardware/hard_drive/role/vip //the only purpose of this disk is to allow the VIP to be annoying
-	name = "\improper TWIT disk"
+	name = "\improper dysk TWIT"
 	icon_state = "cart-twit"
 	spam_delay = 1.5
 
 /obj/item/computer_hardware/hard_drive/role/unlicensed //HoP can give you this
-	name = "\improper FACEBUCKS disk"
+	name = "\improper dysk FACEBUCKS"
 	icon_state = "cart-signal" // might need a new sprite
 	spam_delay = 5

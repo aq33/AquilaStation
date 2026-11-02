@@ -1,8 +1,8 @@
 /obj/item/ship_weapon/ammunition/missile //CREDIT TO CM FOR THIS SPRITE
-	name = "\improper NTM 44-A 230mm missile"
+	name = "\improper pocisk rakietowy NTM 44-A 230 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "highvelocity"
-	desc = "A standard pattern Nanotrasen anti-fighter missile."
+	desc = "Standardowy pocisk przeciwmyśliwski Nanotrasen."
 	density = TRUE
 	climbable = TRUE //No shenanigans
 	climb_time = 20

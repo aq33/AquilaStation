@@ -1,6 +1,6 @@
 /obj/item/gun/magic/wand
-	name = "wand of nothing"
-	desc = "It's not just a stick, it's a MAGIC stick!"
+	name = "różdżka niczego"
+	desc = "To nie zwykły patyk, to MAGICZNY patyk!"
 	ammo_type = /obj/item/ammo_casing/magic
 	icon_state = "nothingwand"
 	item_state = "wand"
@@ -59,8 +59,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/death
-	name = "wand of death"
-	desc = "This deadly wand overwhelms the victim's body with pure energy, slaying them without fail."
+	name = "różdżka śmierci"
+	desc = "Ta zabójcza różdżka zalewa ciało ofiary czystą energią i niezawodnie ją zabija."
 	fire_sound = 'sound/magic/wandodeath.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/death
 	icon_state = "deathwand"
@@ -74,7 +74,7 @@
 	charges--
 
 /obj/item/gun/magic/wand/death/debug
-	desc = "In some obscure circles, this is known as the 'cloning tester's friend'."
+	desc = "W pewnych niszowych kręgach znana jako „przyjaciel testera klonowania”."
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -86,8 +86,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/resurrection
-	name = "wand of healing"
-	desc = "This wand uses healing magics to heal and revive. They are rarely utilized within the Wizard Federation for some reason."
+	name = "różdżka uzdrowienia"
+	desc = "Ta różdżka używa magii uzdrawiającej, by leczyć i wskrzeszać. Z jakiegoś powodu Federacja Czarodziejów rzadko z niej korzysta."
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/magic/staff_healing.ogg'
 	icon_state = "revivewand"
@@ -104,7 +104,7 @@
 	..()
 
 /obj/item/gun/magic/wand/resurrection/debug //for testing
-	desc = "Is it possible for something to be even more powerful than regular magic? This wand is."
+	desc = "Czy coś może być potężniejsze od zwykłej magii? Ta różdżka jest."
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -115,8 +115,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/polymorph
-	name = "wand of polymorph"
-	desc = "This wand is attuned to chaos and will radically alter the victim's form."
+	name = "różdżka polimorfii"
+	desc = "Ta różdżka jest dostrojona do chaosu i radykalnie zmienia postać ofiary."
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "polywand"
 	fire_sound = 'sound/magic/staff_change.ogg'
@@ -132,8 +132,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/teleport
-	name = "wand of teleportation"
-	desc = "This wand will wrench targets through space and time to move them somewhere else."
+	name = "różdżka teleportacji"
+	desc = "Ta różdżka przeciąga cele przez czas i przestrzeń, przenosząc je gdzie indziej."
 	ammo_type = /obj/item/ammo_casing/magic/teleport
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	icon_state = "telewand"
@@ -149,8 +149,8 @@
 	..()
 
 /obj/item/gun/magic/wand/safety
-	name = "wand of safety"
-	desc = "This wand will use the lightest of bluespace currents to gently place the target somewhere safe."
+	name = "różdżka bezpieczeństwa"
+	desc = "Ta różdżka wykorzystuje najlżejsze prądy bluespace, by delikatnie umieścić cel w bezpiecznym miejscu."
 	ammo_type = /obj/item/ammo_casing/magic/safety
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	icon_state = "telewand"
@@ -169,7 +169,7 @@
 	..()
 
 /obj/item/gun/magic/wand/safety/debug
-	desc = "This wand has 'find_safe_turf()' engraved into its blue wood. Perhaps it's a secret message?"
+	desc = "Na niebieskim drewnie tej różdżki wyryto „find_safe_turf()”. Może to sekretna wiadomość?"
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -181,8 +181,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/door
-	name = "wand of door creation"
-	desc = "This particular wand can create doors in any wall for the unscrupulous wizard who shuns teleportation magics."
+	name = "różdżka tworzenia drzwi"
+	desc = "Ta różdżka tworzy drzwi w dowolnej ścianie dla pozbawionego skrupułów czarodzieja, który stroni od magii teleportacji."
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "doorwand"
 	fire_sound = 'sound/magic/staff_door.ogg'
@@ -199,8 +199,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/fireball
-	name = "wand of fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames."
+	name = "różdżka ognistej kuli"
+	desc = "Ta różdżka strzela rozżarzonymi kulami ognia, które wybuchają niszczycielskimi płomieniami."
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/fireball
 	icon_state = "firewand"

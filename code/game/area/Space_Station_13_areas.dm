@@ -41,7 +41,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 
 /area/start
-	name = "start area"
+	name = "Obszar Startowy"
 	icon_state = "start"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
@@ -51,7 +51,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/testroom
 	requires_power = FALSE
-	name = "Test Room"
+	name = "Pokój Testowy"
 	icon_state = "storage"
 
 //EXTRA

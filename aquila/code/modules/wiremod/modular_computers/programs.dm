@@ -510,7 +510,7 @@
 	var/datum/signal/status_signal = new(list("command" = "message"))
 	status_signal.data["msg1"] = data1
 	status_signal.data["msg2"] = data2
-	message_admins("[creator] changed the Status Message to - [data1], [data2] - From the Status Display app (circuit).")
+	message_admins("[creator] zmienia komunikat wyświetlaczy statusu na: [data1], [data2] (aplikacja wyświetlaczy statusu, układ).")
 	log_game("[creator] changed the Status Message to - [data1], [data2] - From the Status Display app (circuit).")
 	frequency.post_signal(computer, status_signal)
 

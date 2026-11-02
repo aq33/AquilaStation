@@ -2,8 +2,8 @@
 // **** Security gas mask ****
 
 /obj/item/clothing/mask/gas/sechailer
-	name = "security gas mask"
-	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."
+	name = "policyjna maska gazowa"
+	desc = "Standardowa policyjna maska gazowa ze zintegrowanym urządzeniem „Compli-o-nator 3000”. Odtwarza kilkanaście nagranych wcześniej haseł, które mają sprawić, że szumowiny stoją spokojnie, gdy razisz je paralizatorem. Nie majstruj przy urządzeniu."
 	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust, /datum/action/item_action/dispatch)
 	icon_state = "sechailer"
 	item_state = "sechailer"
@@ -21,8 +21,8 @@
 	var/safety = TRUE
 
 /obj/item/clothing/mask/gas/sechailer/swat
-	name = "\improper SWAT mask"
-	desc = "A close-fitting tactical mask with an especially aggressive Compli-o-nator 3000."
+	name = "\improper maska SWAT"
+	desc = "Dopasowana maska taktyczna ze szczególnie agresywnym Compli-o-natorem 3000."
 	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/dispatch)
 	icon_state = "swat"
 	item_state = "swat"
@@ -32,14 +32,14 @@
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 40, "stamina" = 30, "bleed" = 30)
 
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
-	name = "spacepol mask"
-	desc = "A close-fitting tactical mask created in cooperation with a certain megacorporation, comes with an especially aggressive Compli-o-nator 3000."
+	name = "maska Kosmicznej Policji"
+	desc = "Dopasowana maska taktyczna stworzona we współpracy z pewną megakorporacją, ze szczególnie agresywnym Compli-o-natorem 3000."
 	icon_state = "spacepol"
 	item_state = "spacepol"
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "security hailer"
-	desc = "A set of recognizable pre-recorded messages for cyborgs to use when apprehending criminals."
+	name = "policyjny megafon"
+	desc = "Zestaw rozpoznawalnych, nagranych wcześniej komunikatów, których cyborgi używają przy zatrzymywaniu przestępców."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_idle"
 	aggressiveness = 1 //Borgs are nicecurity!
@@ -188,7 +188,7 @@
 					phrase_text = "To ja jestem PRAWEM!"
 					phrase_sound = "dredd"
 
-		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
+		usr.audible_message("Compli-o-Nator ([usr]): <font color='red' size='4'><b>[phrase_text]</b></font>")
 		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
 		cooldown = world.time
 		cooldown_special = world.time

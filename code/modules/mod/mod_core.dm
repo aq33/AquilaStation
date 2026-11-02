@@ -1,6 +1,6 @@
 /obj/item/mod/core
-	name = "MOD core"
-	desc = "A non-functional MOD core. Inform the admins if you see this."
+	name = "rdzeń MOD"
+	desc = "Niedziałający rdzeń MOD. Jeśli to widzisz, powiadom adminów."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
 	item_state = "electronic"
@@ -51,10 +51,10 @@
 	mod.wearer.clear_alert("mod_charge")
 
 /obj/item/mod/core/infinite
-	name = "MOD infinite core"
+	name = "nieskończony rdzeń MOD"
 	icon_state = "mod-core-infinite"
-	desc = "A fusion core using the rare Fixium to sustain enough energy for the lifetime of the MOD's user. \
-		This might be because of the slowly killing poison inside, but those are just rumors."
+	desc = "Rdzeń fuzyjny, który dzięki rzadkiemu fixium daje dość energii na całe życie użytkownika MOD. \
+		Być może dlatego, że w środku jest powoli zabijająca trucizna, ale to tylko plotki."
 
 /obj/item/mod/core/infinite/charge_source()
 	return src
@@ -75,13 +75,13 @@
 	return TRUE
 
 /obj/item/mod/core/standard
-	name = "MOD standard core"
+	name = "standardowy rdzeń MOD"
 	icon_state = "mod-core-standard"
-	desc = "Growing in the most lush, fertile areas of the planet Sprout, there is a crystal known as the Heartbloom. \
-		These rare, organic piezoelectric crystals are of incredible cultural significance to the artist castes of the \
-		Ethereals, owing to their appearance; which is exactly similar to that of an Ethereal's heart.\n\
-		Which one you have in your suit is unclear, but either way, \
-		it's been repurposed to be an internal power source for a Modular Outerwear Device."
+	desc = "W najbujniejszych, najżyźniejszych rejonach planety Sprout rośnie kryształ zwany Sercokwiatem. \
+		Te rzadkie, organiczne kryształy piezoelektryczne mają ogromne znaczenie kulturowe dla kast artystów \
+		eteryków, bo wyglądają dokładnie jak serce eteryka.\n\
+		Nie wiadomo, który z nich masz w skafandrze, ale tak czy inaczej \
+		przerobiono go na wewnętrzne źródło zasilania Modularnego Urządzenia Zewnętrznego."
 	/// Installed cell.
 	var/obj/item/stock_parts/cell/cell
 
@@ -176,7 +176,7 @@
 
 	if(!mod.open)
 		return
-	examine_text += cell ? "You could remove the cell with an empty hand." : "You could use a cell on it to install one."
+	examine_text += cell ? "Możesz wyjąć ogniwo pustą ręką." : "Możesz zainstalować ogniwo, używając go na tym."
 
 /obj/item/mod/core/standard/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
@@ -190,13 +190,13 @@
 
 /obj/item/mod/core/standard/proc/mod_uninstall_cell(mob/living/user)
 	if(!cell)
-		mod.balloon_alert(user, "no cell!")
+		mod.balloon_alert(user, "brak ogniwa!")
 		return
-	mod.balloon_alert(user, "removing cell...")
+	mod.balloon_alert(user, "wyjmowanie ogniwa...")
 	if(!do_after(user, 1.5 SECONDS, target = mod))
-		mod.balloon_alert(user, "interrupted!")
+		mod.balloon_alert(user, "przerwano!")
 		return
-	mod.balloon_alert(user, "cell removed")
+	mod.balloon_alert(user, "ogniwo wyjęte")
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	var/obj/item/cell_to_move = cell
 	cell_to_move.forceMove(drop_location())
@@ -208,15 +208,15 @@
 
 	if(istype(attacking_item, /obj/item/stock_parts/cell))
 		if(!mod.open)
-			mod.balloon_alert(user, "cover closed!")
+			mod.balloon_alert(user, "pokrywa zamknięta!")
 			playsound(mod, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return NONE
 		if(cell)
-			mod.balloon_alert(user, "already has cell!")
+			mod.balloon_alert(user, "ma już ogniwo!")
 			playsound(mod, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return COMPONENT_NO_AFTERATTACK
 		install_cell(attacking_item)
-		mod.balloon_alert(user, "cell installed")
+		mod.balloon_alert(user, "ogniwo zainstalowane")
 		playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		mod.update_charge_alert()
 		return COMPONENT_NO_AFTERATTACK
@@ -241,12 +241,12 @@
 	mod.update_charge_alert()
 
 /obj/item/mod/core/ethereal
-	name = "MOD ethereal core"
+	name = "eterycki rdzeń MOD"
 	icon_state = "mod-core-ethereal"
-	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, \
-		preventing the need to use external sources to convert electric charge. As the suits are naturally charged by \
-		liquid electricity, this core makes it much more efficient, running all soft, hard, and wetware with several \
-		times less energy usage."
+	desc = "Odtworzony metodą inżynierii wstecznej rdzeń Modularnego Urządzenia Zewnętrznego. Korzysta z naturalnej ciekłej elektryczności eteryków, \
+		dzięki czemu nie trzeba przetwarzać ładunku z zewnętrznych źródeł. Skafandry są naturalnie zasilane \
+		ciekłą elektrycznością, więc ten rdzeń działa znacznie wydajniej i zasila cały soft, hard i wetware, \
+		zużywając kilka razy mniej energii."
 	/// A modifier to all charge we use, ethereals don't need to spend as much energy as normal suits.
 	var/charge_modifier = 0.1
 
@@ -291,10 +291,10 @@
 #define PLASMA_CORE_SHEET_CHARGE 2000
 
 /obj/item/mod/core/plasma
-	name = "MOD plasma core"
+	name = "plazmowy rdzeń MOD"
 	icon_state = "mod-core-plasma"
-	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled \
-		through plasma ore, allowing for easy continued use by their mining squads."
+	desc = "Próba Nanotrasenu, by zarobić na badaniach nad plazmą. Te rdzenie plazmowe uzupełnia się \
+		rudą plazmy, dzięki czemu oddziały górnicze mogą ich łatwo używać bez przerwy."
 	/// How much charge we can store.
 	var/maxcharge = 10000
 	/// How much charge we are currently storing.
@@ -373,5 +373,5 @@
 	if(!plasma.use(uses_needed))
 		return FALSE
 	add_charge(uses_needed * charge_given)
-	balloon_alert(user, "core refueled")
+	balloon_alert(user, "rdzeń uzupełniony")
 	return TRUE

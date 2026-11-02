@@ -11,8 +11,8 @@
 // Then screw it shut
 
 /obj/structure/ship_weapon/torpedo_launcher_assembly
-	name = "\improper M4-B Torpedo tube mount"
-	desc = "An incomplete assembly for an M4-B ship mounted torpedo launcher."
+	name = "\improper stanowisko wyrzutni torped M4-B"
+	desc = "Niedokończony montaż okrętowej wyrzutni torped M4-B."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "torpedo_launcher_platform"
 	bound_height = 32
@@ -289,8 +289,8 @@
 			return TRUE
 
 /obj/structure/ship_weapon/torpedo_launcher_assembly/cargo
-	name = "\improper M4-C Cargo Torpedo tube mount"
-	desc = "An incomplete assembly for an M4-C ship mounted cargo torpedo launcher."
+	name = "\improper stanowisko wyrzutni torped transportowych M4-C"
+	desc = "Niedokończony montaż okrętowej wyrzutni torped transportowych M4-C."
 	color = "#f5d1b0"
 
 	output_path = /obj/machinery/ship_weapon/torpedo_launcher/cargo

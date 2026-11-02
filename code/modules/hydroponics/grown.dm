@@ -7,7 +7,7 @@
 /obj/item/food/grown
 	var/abstract_type = /obj/item/food/grown // AQUILA - u Bee zmienna jest na /datum
 	icon = 'icons/obj/hydroponics/harvest.dmi'
-	name = "fresh produce" //fix naming bug
+	name = "świeże plony" //fix naming bug
 	max_volume = 100
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE

@@ -416,6 +416,7 @@ const FilterEntry = (props) => {
             width="90px"
           />
           <Button.Confirm
+            confirmContent="Na pewno?"
             icon="minus"
             onClick={() => act('remove_filter', { name: name })}
           />

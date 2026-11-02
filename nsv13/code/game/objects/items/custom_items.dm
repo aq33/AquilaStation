@@ -1,6 +1,6 @@
 /obj/item/melee/classic_baton/telescopic/stunsword
-	name = "MK-1 ion current sabre"
-	desc = "An exceedingly rare, nigh on priceless weapon which channels a highly unstable current of ions to produce a dazzling blade of pure energy around a durasteel blade. These weapons are highly sought after, and are only given to high ranking officers with a proven track record."
+	name = "szabla jonowa MK-1"
+	desc = "Niezwykle rzadka, niemal bezcenna broń, która przepuszcza wysoce niestabilny prąd jonów, tworząc wokół durastalowej klingi oślepiające ostrze czystej energii. Ta broń jest bardzo pożądana i trafia tylko do wysokich rangą oficerów z udokumentowanymi zasługami."
 	icon = 'nsv13/icons/obj/items_and_weapons.dmi'
 	icon_state = "stunsword"
 	item_state = "stunsword"
@@ -90,20 +90,20 @@
 		.=..()
 
 /obj/item/reagent_containers/food/drinks/solgovcup //Credit to baystation for this sprite!
-	name = "solgov branded drinks cup"
-	desc = "A cup with solgov's logo clearly stamped on it. 'to remind them of whom they serve'"
+	name = "kubek z logo SolGov"
+	desc = "Kubek z wyraźnie odbitym logo SolGov. „Aby pamiętali, komu służą”."
 	icon = 'nsv13/icons/obj/drinks.dmi'
 	icon_state = "solgov"
 	volume = 30
 	spillable = TRUE
 
 /obj/item/paper/fab_error //For disabled designs
-	name = "Fabrication Error Report"
+	name = "raport o błędzie produkcji"
 	default_raw_text = "<p>Błąd dzielenia przez ogórek. Zainstaluj ponownie wszechświat i uruchom go ponownie.</p>"
 
 /obj/item/kirbyplants/random/plush
-	name = "plush potted plant"
-	desc = "A little bit of nature contained in a pot. This one is softer than the other potted plants on this ship."
+	name = "pluszowa roślina doniczkowa"
+	desc = "Odrobina natury zamknięta w doniczce. Ta jest miększa niż pozostałe rośliny doniczkowe na tym okręcie."
 	hitsound = 'sound/items/bikehorn.ogg'
 	block_sound = 'sound/items/bikehorn.ogg'
 	force = 0
@@ -115,13 +115,13 @@
 
 //A special megaphone for fans of Admiral Rudiger
 /obj/item/megaphone/command/rudiger
-	name = "Rudigerphone"
-	desc = "A device used to project your own voice. Loudly. Just like Rudiger."
+	name = "Rudigerofon"
+	desc = "Urządzenie do wzmacniania własnego głosu. Głośno. Zupełnie jak Rudiger."
 
 /obj/item/toy/plush/random
-	name = "\improper Random Plush"
+	name = "\improper losowy pluszak"
 	icon_state = "debug"
-	desc = "Oh no! What have you done! (if you see this, contact an upper being as soon as possible)."
+	desc = "O nie! Co ty zrobiłeś! (jeśli to widzisz, jak najszybciej skontaktuj się z istotą wyższą)."
 
 /obj/item/toy/plush/random/Initialize()
 	var/plush_type = pick(subtypesof(/obj/item/toy/plush/) - /obj/item/toy/plush/random/)

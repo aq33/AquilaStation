@@ -25,7 +25,7 @@
 		empulse(B.loc, 1, 3) //less than screen range, so you can stand out of range to avoid it
 
 /datum/reagent/blob/electromagnetic_web
-	name = "Electromagnetic Web"
+	name = "Sieć elektromagnetyczna"
 	taste_description = "strzelające cukierki"
 	color = "#83ECEC"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

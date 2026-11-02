@@ -1,5 +1,5 @@
 /obj/machinery/vending/sticker
-	name = "\improper Sticker Vendor"
+	name = "\improper automat z naklejkami"
 	desc = "Mechanika niespodzianek!"
 	product_ads = "Przyklej się do mnie!;Zostań na dłużej, przylgnij!;Trzymaj się tego!"
 	icon = 'aquila/icons/obj/vending_sticker.dmi'
@@ -15,12 +15,12 @@
 	fill_sticker_globals()
 
 /obj/item/vending_refill/sticker
-	machine_name = "Sticker Vendor"
+	machine_name = "automat z naklejkami"
 	icon_state = "refill_smoke"
 
 //You can make this generic if you want to use it elsehwere
 /obj/item/sticker_gacha
-	name = "sticker gacha ball - series 1"
+	name = "kula gacha z naklejką"
 	desc = "Kula z nagrodą. Co może być w środku?!"
 	icon = 'aquila/icons/obj/sticker.dmi'
 	icon_state = "gacha_red"

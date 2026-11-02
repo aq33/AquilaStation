@@ -5,7 +5,7 @@
 #define SENSOR_CHANGE_DELAY 1.5 SECONDS
 
 /obj/item/clothing
-	name = "clothing"
+	name = "ubranie"
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 80
@@ -74,8 +74,8 @@
 			add_fingerprint(usr)
 
 /obj/item/food/clothing // fuck you
-	name = "temporary moth clothing snack item"
-	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object." // die
+	name = "tymczasowa przekąska ubraniowa dla ciem"
+	desc = "Jeśli to czytasz, coś poszło nie tak. Ma to związek z ćmami jedzącymi ubrania i nie znalazłem lepszego sposobu niż zrobienie nowego jedzenia." // die
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("kurz" = 1, "kłaczki" = 1)
 	foodtypes = CLOTH
@@ -161,40 +161,40 @@
 		if(length(armor_list))
 			armor_list.Cut()
 		if(armor.bio)
-			armor_list += list("TOXIN" = armor.bio)
+			armor_list += list("TOKSYNY" = armor.bio)
 		if(armor.bomb)
-			armor_list += list("EXPLOSIVE" = armor.bomb)
+			armor_list += list("WYBUCHY" = armor.bomb)
 		if(armor.bullet)
-			armor_list += list("BULLET" = armor.bullet)
+			armor_list += list("POCISKI" = armor.bullet)
 		if(armor.energy)
-			armor_list += list("ENERGY" = armor.energy)
+			armor_list += list("ENERGIA" = armor.energy)
 		if(armor.laser)
 			armor_list += list("LASER" = armor.laser)
 		if(armor.magic)
-			armor_list += list("MAGIC" = armor.magic)
+			armor_list += list("MAGIA" = armor.magic)
 		if(armor.melee)
-			armor_list += list("MELEE" = armor.melee)
+			armor_list += list("WRĘCZ" = armor.melee)
 		if(armor.rad)
-			armor_list += list("RADIATION" = armor.rad)
+			armor_list += list("PROMIENIOWANIE" = armor.rad)
 		if(armor.stamina)
-			armor_list += list("STAMINA" = armor.stamina)
+			armor_list += list("WYTRZYMAŁOŚĆ FIZYCZNA" = armor.stamina)
 		if(armor.bleed)
-			armor_list += list("BLEEDING" = armor.bleed)
+			armor_list += list("KRWAWIENIE" = armor.bleed)
 
 		if(length(durability_list))
 			durability_list.Cut()
 		if(armor.fire)
-			durability_list += list("FIRE" = armor.fire)
+			durability_list += list("OGIEŃ" = armor.fire)
 		if(armor.acid)
-			durability_list += list("ACID" = armor.acid)
+			durability_list += list("KWAS" = armor.acid)
 		var/list/readout = list("<span class='notice'><u><b>KLASY OCHRONY (I-X)</u></b>")
 		if(length(armor_list))
-			readout += "\n<b>ARMOR</b>"
+			readout += "\n<b>PANCERZ</b>"
 			for(var/dam_type in armor_list)
 				var/armor_amount = armor_list[dam_type]
 				readout += "\n[dam_type] [armor_to_protection_class(armor_amount)]" //e.g. BOMB IV
 		if(length(durability_list))
-			readout += "\n<b>DURABILITY</b>"
+			readout += "\n<b>ODPORNOŚĆ</b>"
 			for(var/dam_type in durability_list)
 				var/durability_amount = durability_list[dam_type]
 				readout += "\n[dam_type] [armor_to_protection_class(durability_amount)]" //e.g. FIRE II
@@ -449,7 +449,7 @@ BLIND     // can't see anything
 		var/turf/T = get_turf(src)
 		spawn(1) //so the shred survives potential turf change from the explosion.
 			var/obj/effect/decal/cleanable/shreds/Shreds = new(T)
-			Shreds.desc = "The sad remains of what used to be [name]."
+			Shreds.desc = "Smętne resztki czegoś, co było kiedyś przedmiotem: [name]."
 		deconstruct(FALSE)
 	else
 		..()

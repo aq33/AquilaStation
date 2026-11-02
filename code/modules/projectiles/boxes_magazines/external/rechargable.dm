@@ -1,13 +1,13 @@
 /obj/item/ammo_box/magazine/recharge
-	name = "power pack"
-	desc = "A rechargeable, detachable battery that serves as a magazine for laser rifles."
+	name = "zasobnik energii"
+	desc = "Odłączana bateria wielokrotnego ładowania, która służy za magazynek karabinów laserowych."
 	icon_state = "oldrifle-20"
 	ammo_type = /obj/item/ammo_casing/caseless/laser
 	caliber = "laser"
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/recharge/update_icon()
-	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
+	desc = "[initial(desc)] Pozostałe strzały: [stored_ammo.len]."
 	icon_state = "oldrifle-[round(ammo_count(),4)]"
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"

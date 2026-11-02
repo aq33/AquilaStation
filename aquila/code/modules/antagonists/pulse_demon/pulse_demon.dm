@@ -15,9 +15,9 @@
 #define ALERT_CATEGORY_NOREGEN "pulse_noregen"
 
 /mob/living/simple_animal/pulse_demon
-	name = "pulse demon"
+	name = "demon impulsu"
 	real_name = "demon impulsu"
-	desc = "A strange electrical apparition that lives in wires."
+	desc = "Dziwna elektryczna zjawa żyjąca w kablach."
 	icon = 'aquila/icons/mob/pulse_demon.dmi'
 	icon_state = "pulsedem"
 	icon_living = "pulsedem"
@@ -151,9 +151,9 @@
 	var/datum/action/cooldown/pulse_demon/selected_action
 
 /mob/living/simple_animal/pulse_demon/wizard
-	name = "Empowered Pulse Demon"
+	name = "wzmocniony demon impulsu"
 	real_name = "wzmocniony demon impulsu"
-	desc = "A strange electrical apparition that lives in wires. This one appears more charged than usual."
+	desc = "Dziwna elektryczna zjawa żyjąca w kablach. Ta wydaje się naładowana mocniej niż zwykle."
 
 /mob/living/simple_animal/pulse_demon/wizard/Initialize(mapload)
 	. = ..()
@@ -570,7 +570,7 @@
 		return ..()
 	if(current_robot)
 		log_admin("[key_name(src)] made [key_name(current_robot)] say: [message]")
-		message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(src)] made [ADMIN_LOOKUPFLW(current_robot)] say: [message]</span>")
+		message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(src)] zmusza [ADMIN_LOOKUPFLW(current_robot)] do powiedzenia: [message]</span>")
 		current_robot.say(message, language = message_language, forced = "pulse demon")
 		return
 	playsound(get_turf(src), pick(speech_sounds), 30, TRUE)

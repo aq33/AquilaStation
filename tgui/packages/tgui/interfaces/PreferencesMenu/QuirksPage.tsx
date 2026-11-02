@@ -184,7 +184,7 @@ export function QuirksPage(props) {
     <ServerPreferencesFetcher
       render={(data) => {
         if (!data) {
-          return <Box>Loading quirks...</Box>;
+          return <Box>Wczytywanie cech...</Box>;
         }
 
         const {
@@ -221,7 +221,7 @@ export function QuirksPage(props) {
         const getReasonToNotRemove = (quirkName: string) => {
           const quirk = quirkInfo[quirkName];
           if (quirk.value < 0 && balance + quirk.value < 0) {
-            return 'Remove a positive quirk first, your balance would go below zero!';
+            return 'Najpierw usuń dobrą cechę, bo bilans spadnie poniżej zera!';
           }
           return undefined;
         };
@@ -231,10 +231,10 @@ export function QuirksPage(props) {
 
           if (quirk.value > 0) {
             if (positiveQuirks >= maxPositiveQuirks) {
-              return "You can't have any more positive quirks!";
+              return 'Nie możesz mieć więcej dobrych cech!';
             }
             if (balance - quirk.value < 0) {
-              return `You need ${quirk.value - balance} more points, take a negative quirk first!`;
+              return `Brakuje ci punktów: ${quirk.value - balance}. Najpierw weź złą cechę!`;
             }
           }
 
@@ -252,7 +252,7 @@ export function QuirksPage(props) {
                 incompatibleQuirk !== quirk.name &&
                 selectedQuirkNames.indexOf(incompatibleQuirk) !== -1
               ) {
-                return `This is incompatible with ${incompatibleQuirk}!`;
+                return `Ta cecha wyklucza się z: ${incompatibleQuirk}!`;
               }
             }
           }
@@ -266,7 +266,7 @@ export function QuirksPage(props) {
               <Stack vertical fill align="center">
                 <Stack.Item>
                   <Box as="b" fontSize="1.6em">
-                    Available Quirks
+                    Dostępne cechy
                   </Box>
                 </Stack.Item>
 
@@ -300,7 +300,7 @@ export function QuirksPage(props) {
             </Stack.Item>
             <Stack vertical fill align="center">
               <Stack.Item>
-                <Box fontSize="1.3em">Positive Quirks</Box>
+                <Box fontSize="1.3em">Dobre cechy</Box>
               </Stack.Item>
 
               <Stack.Item>
@@ -310,7 +310,7 @@ export function QuirksPage(props) {
               </Stack.Item>
 
               <Stack.Item>
-                <Box fontSize="1.3em">Balance</Box>
+                <Box fontSize="1.3em">Bilans</Box>
               </Stack.Item>
 
               <Stack.Item>
@@ -324,7 +324,7 @@ export function QuirksPage(props) {
                   color="label"
                   fontSize="0.9em"
                 >
-                  Negative quirks give points, positive quirks cost them.
+                  Złe cechy dają punkty, dobre cechy je kosztują.
                 </Box>
               </Stack.Item>
 
@@ -337,7 +337,7 @@ export function QuirksPage(props) {
               <Stack vertical fill align="center">
                 <Stack.Item>
                   <Box as="b" fontSize="1.6em">
-                    Current Quirks
+                    Wybrane cechy
                   </Box>
                 </Stack.Item>
 

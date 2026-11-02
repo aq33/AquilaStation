@@ -11,7 +11,7 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 	hammerlocked = FALSE
 	if(interior_status != INTERIOR_READY) // determines whether this ship can be loaded again
 		if(interior_status != INTERIOR_NOT_LOADED)
-			message_admins("DEBUG: Deleting the interior for [src] before it was fully loaded")
+			message_admins("DEBUG: usuwam wnętrze [src], zanim zostało w pełni wczytane")
 			log_mapping("DEBUG: Deleting the interior for [src] before it was fully loaded")
 		was_fully_loaded = FALSE
 	interior_status = INTERIOR_DELETING
@@ -73,12 +73,12 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 
 /obj/structure/overmap/proc/ai_load_interior(obj/structure/overmap/boarder, map_path_override)
 	if(!boarder)
-		message_admins("Tried to load [src] for boarding, but we don't know who's boarding it! Aborting.")
+		message_admins("Próba wczytania [src] do abordażu, ale nie wiadomo, kto go abordażuje! Przerywam.")
 		return FALSE
 	//You can't harpoon a ship with no supported interior, or that already has an interior defined. Your ship must also have an interior to load this, so we can link the z-levels.
 	// -----------------------------
 	if(interior_mode == NO_INTERIOR || interior_mode == INTERIOR_DYNAMIC)
-		message_admins("[boarder] attempted to board [src], but the target has an incompatible interior_mode.")
+		message_admins("[boarder] próbuje abordażu na [src], ale cel ma niezgodny interior_mode.")
 		return FALSE
 	if(!boarder.boarding_reservation_z)
 		boarder.get_boarding_level()
@@ -86,17 +86,17 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 	if(interior_status == INTERIOR_READY) // it's loaded already, just let them on
 		return TRUE
 	else if(interior_status != INTERIOR_NOT_LOADED)
-		message_admins("[src] tried to load boarding map while it was already loading, deleting, or had been released. Aborting!")
+		message_admins("[src] próbuje wczytać mapę abordażu, choć jest w trakcie wczytywania, usuwania albo został zwolniony. Przerywam!")
 		return FALSE // If we're currently loading or deleting, stop
 	if(!boarder.boarding_reservation_z || !length(possible_interior_maps) || length(occupying_levels) || (boarder.active_boarding_target && !QDELETED(boarder.active_boarding_target)))
-		message_admins("[boarder] attempted to board [src], but the pre-mapload checks failed!")
+		message_admins("[boarder] próbuje abordażu na [src], ale wstępne sprawdzenia mapy się nie powiodły!")
 		return FALSE
 
 	interior_status = INTERIOR_LOADING
 	//Prepare the boarding interior map. Admins may also force-load this with a path if they want.
 	choose_interior(map_path_override)
 	if(!boarding_interior?.mappath)
-		message_admins("Error parsing boarding interior map for [src]")
+		message_admins("Błąd parsowania mapy wnętrza do abordażu dla [src]")
 		return FALSE
 
 	hammerlocked = TRUE
@@ -136,20 +136,20 @@ The meat of this file. This will instance the dropship's interior in reserved sp
 	if(interior_status == INTERIOR_READY) // it's loaded already, we're done
 		return TRUE
 	else if(interior_status != INTERIOR_NOT_LOADED)
-		message_admins("[src] attempted to load its interior, but it was already loading, deleting, or had been released! (Pretty normal for asteroids)")
+		message_admins("[src] próbuje wczytać swoje wnętrze, choć jest w trakcie wczytywania, usuwania albo został zwolniony! (Dość normalne przy asteroidach)")
 		return FALSE // If we're currently loading or deleting, stop
 
 	interior_status = INTERIOR_LOADING
 	//Init the template.
 	choose_interior()
 	if(!boarding_interior?.mappath)
-		message_admins("Error parsing boarding interior map for [src]")
+		message_admins("Błąd parsowania mapy wnętrza do abordażu dla [src]")
 		return FALSE
 
 	roomReservation = SSmapping.RequestBlockReservation(boarding_interior.width, boarding_interior.height)
 	roomReservation.overmap_fallback = src
 	if(!roomReservation)
-		message_admins("[src] failed to reserve space for a dropship interior!")
+		message_admins("[src] nie zdołał zarezerwować miejsca na wnętrze promu desantowego!")
 		return FALSE
 
 	var/turf/bottom_left = locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3])
@@ -178,7 +178,7 @@ The meat of this file. This will instance the dropship's interior in reserved sp
 	SSair.can_fire = FALSE
 	if(!boarding_interior.load(bottom_left, centered = FALSE))
 		SSair.enqueue()
-		message_admins("[ADMIN_LOOKUPFLW(src)] failed to load interior [boarding_interior.mappath]")
+		message_admins("[ADMIN_LOOKUPFLW(src)] nie zdołał wczytać wnętrza [boarding_interior.mappath]")
 		log_mapping("[src] failed to load interior [boarding_interior.mappath]")
 	SSair.can_fire = TRUE
 	post_load_interior()
@@ -193,10 +193,10 @@ The meat of this file. This will instance the dropship's interior in reserved sp
 		add_entrypoints(target_area)
 
 	if(!target_area)
-		message_admins("WARNING: [src]] FAILED TO FIND AREA TO LINK TO in [boarding_interior.mappath]. ENSURE THAT THE MIDDLE TILE OF THE MAP HAS AN AREA!")
+		message_admins("OSTRZEŻENIE: [src] NIE ZNALAZŁ OBSZARU DO POŁĄCZENIA w [boarding_interior.mappath]. UPEWNIJ SIĘ, ŻE ŚRODKOWE POLE MAPY MA OBSZAR!")
 		return FALSE
 	if(istype(target_area, /area/dropship/generic))
-		target_area.name = "[src.name] interior #[rand(0,999)]" //Avoid naming conflicts.
+		target_area.name = "[src.name] (wnętrze #[rand(0,999)])" //Avoid naming conflicts.
 	else if(!(target_area.area_flags & UNIQUE_AREA))
 		target_area.name = src.name
 	linked_areas += target_area

@@ -14,7 +14,7 @@
 	var/list/forbid_turf_typecache					//allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.
 	var/allow_one_away_from_valid_turf = TRUE		//allow moving one tile away from a valid turf but not more.
 	var/override_allow_spacemove = FALSE
-	var/drive_verb = "drive"
+	var/drive_verb = "prowadzić"
 	var/ride_check_rider_incapacitated = FALSE
 	var/ride_check_rider_restrained = FALSE
 	var/ride_check_ridden_incapacitated = FALSE
@@ -357,7 +357,7 @@
 	return TRUE
 
 /obj/item/riding_offhand
-	name = "offhand"
+	name = "druga ręka"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE

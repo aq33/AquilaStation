@@ -1,6 +1,6 @@
 /obj/machinery/coffeemaker
-	name = "coffeemaker"
-	desc = "A Modello 3 Coffeemaker that brews coffee and holds it at the perfect temperature of 176 fahrenheit. Made by Piccionaia Home Appliances."
+	name = "ekspres do kawy"
+	desc = "Ekspres do kawy Modello 3, który parzy kawę i utrzymuje ją w idealnej temperaturze 80°C. Produkcja Piccionaia Home Appliances."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "coffeemaker_nopot_nocart"
 	base_icon_state = "coffeemaker"
@@ -84,9 +84,9 @@
 	if(coffeepot || cartridge)
 		. += "<span class='notice'>[src] zawiera:</span>"
 		if(coffeepot)
-			. += "<span class='notice'>- \A [coffeepot].</span>"
+			. += "<span class='notice'>- [coffeepot].</span>"
 		if(cartridge)
-			. += "<span class='notice'>- \A [cartridge].</span>"
+			. += "<span class='notice'>- [cartridge].</span>"
 		return
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
@@ -94,7 +94,7 @@
 		"<span class='notice'>- Parzenie kawy z wydajnością <b>[speed*100]%</b>.</span>"
 		if(coffeepot)
 			for(var/datum/reagent/consumable/cawfee as anything in coffeepot.reagents.reagent_list)
-				. += "<span class='notice>- W dzbanku jest [cawfee.volume] j. kawy.</span>"
+				. += "<span class='notice'>- W dzbanku jest [cawfee.volume] j. kawy.</span>"
 		if(cartridge)
 			if(cartridge.charges < 1)
 				. += "<span class='notice'>- Wkład z kawą jest pusty.</span>"
@@ -299,29 +299,29 @@
 	var/list/options = list()
 
 	if(coffeepot)
-		options["Eject Pot"] = radial_eject_pot
+		options["Wyjmij dzbanek"] = radial_eject_pot
 
 	if(cartridge)
-		options["Eject Cartridge"] = radial_eject_cartridge
+		options["Wyjmij wkład"] = radial_eject_cartridge
 
-	options["Brew"] = radial_brew //brew is always available as an option, when the machine is unable to brew, the player is told by balloon alerts what exactly is wrong
+	options["Zaparz"] = radial_brew //brew is always available as an option, when the machine is unable to brew, the player is told by balloon alerts what exactly is wrong
 
 	if(coffee_cups > 0)
-		options["Take Cup"] = radial_take_cup
+		options["Weź kubek"] = radial_take_cup
 
 	if(sugar_packs > 0)
-		options["Take Sugar"] = radial_take_sugar
+		options["Weź cukier"] = radial_take_sugar
 
 	if(sweetener_packs > 0)
-		options["Take Sweetener"] = radial_take_sweetener
+		options["Weź słodzik"] = radial_take_sweetener
 
 	if(creamer_packs > 0)
-		options["Take Creamer"] = radial_take_creamer
+		options["Weź śmietankę"] = radial_take_creamer
 
 	if(isAI(user))
 		if(machine_stat & NOPOWER)
 			return
-		options["Examine"] = radial_examine
+		options["Obejrzyj"] = radial_examine
 
 	var/choice
 
@@ -337,21 +337,21 @@
 		return
 
 	switch(choice)
-		if("Brew")
+		if("Zaparz")
 			brew(user)
-		if("Eject Pot")
+		if("Wyjmij dzbanek")
 			eject_pot(user)
-		if("Eject Cartridge")
+		if("Wyjmij wkład")
 			eject_cartridge(user)
-		if("Examine")
+		if("Obejrzyj")
 			examine(user)
-		if("Take Cup")
+		if("Weź kubek")
 			take_cup(user)
-		if("Take Sugar")
+		if("Weź cukier")
 			take_sugar(user)
-		if("Take Sweetener")
+		if("Weź słodzik")
 			take_sweetener(user)
-		if("Take Creamer")
+		if("Weź śmietankę")
 			take_creamer(user)
 
 /obj/machinery/coffeemaker/proc/eject_pot(mob/user)

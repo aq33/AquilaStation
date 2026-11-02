@@ -7,7 +7,7 @@
  * Delays a signal by a specified duration.
  */
 /obj/item/circuit_component/delay
-	display_name = "Delay"
+	display_name = "Opóźnienie"
 	desc = "Komponent, który opóźnia sygnał o podany czas. Ponowne wyzwolenie resetuje licznik."
 	category = "Utility"
 

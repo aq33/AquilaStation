@@ -1,10 +1,10 @@
 /**********************Mineral stacking unit console**************************/
 
 /obj/machinery/mineral/stacking_unit_console
-	name = "stacking machine console"
+	name = "konsola maszyny stertującej"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
-	desc = "Controls a stacking machine... in theory."
+	desc = "Steruje maszyną stertującą... teoretycznie."
 	density = FALSE
 	circuit = /obj/item/circuitboard/machine/stacking_unit_console
 	var/obj/machinery/mineral/stacking_machine/machine
@@ -96,10 +96,10 @@
 
 
 /obj/machinery/mineral/stacking_machine
-	name = "stacking machine"
+	name = "maszyna stertująca"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
-	desc = "A machine that automatically stacks acquired materials. Controlled by a nearby console."
+	desc = "Maszyna, która automatycznie układa w stosy pozyskane materiały. Sterowana przez pobliską konsolę."
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/stacking_machine
 	input_dir = EAST
@@ -134,7 +134,7 @@
 		var/obj/effect/portal/P = locate() in AM.loc
 		if(P)
 			visible_message("<span class='warning'>[src] próbuje ułożyć w stos portal!</span>")
-			message_admins("Stacking machine exploded via [P.creator ? key_name(P.creator) : "UNKNOWN"]'s portal at [AREACOORD(src)]")
+			message_admins("Maszyna stertująca eksploduje przez portal gracza [P.creator ? key_name(P.creator) : "UNKNOWN"] w [AREACOORD(src)]")
 			log_game("Stacking machine exploded via [P.creator ? key_name(P.creator) : "UNKNOWN"]'s portal at [AREACOORD(src)]")
 			explosion(src.loc, 0, 1, 2, 3)
 			if(!QDELETED(src))

@@ -2,10 +2,10 @@
 #define VIABLE_MOB_CHECK(X) (isliving(X) && !issilicon(X) && !isbot(X))
 
 /obj/structure/kitchenspike_frame
-	name = "meatspike frame"
+	name = "rama haka rzeźnickiego"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "spikeframe"
-	desc = "The frame of a meat spike."
+	desc = "Rama haka rzeźnickiego."
 	density = TRUE
 	anchored = FALSE
 	max_integrity = 200
@@ -37,10 +37,10 @@
 		return ..()
 
 /obj/structure/kitchenspike
-	name = "meat spike"
+	name = "hak rzeźnicki"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "spike"
-	desc = "A spike for collecting meat from animals."
+	desc = "Hak do pozyskiwania mięsa ze zwierząt."
 	density = TRUE
 	anchored = TRUE
 	buckle_lying = 0

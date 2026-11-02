@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(job)
 	occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
-		to_chat(world, "<span class='boldannounce'>Error setting up jobs, no job datums found.</span>")
+		to_chat(world, "<span class='boldannounce'>Błąd przy konfiguracji profesji: nie znaleziono datumów profesji.</span>")
 		return 0
 
 	for(var/J in all_jobs)
@@ -791,8 +791,8 @@ SUBSYSTEM_DEF(job)
 	log_job_debug(message)
 
 /obj/item/paper/fluff/spare_id_safe_code
-	name = "Nanotrasen-Approved Spare ID Safe Code"
-	desc = "Proof that you have been approved for Captaincy, with all its glory and all its horror."
+	name = "zatwierdzony przez Nanotrasen szyfr sejfu z zapasowym ID"
+	desc = "Dowód, że zatwierdzono cię na kapitana, z całą chwałą i całą grozą tej funkcji."
 
 /obj/item/paper/fluff/spare_id_safe_code/Initialize(mapload)
 	var/id_safe_code = SSjob.spare_id_safe_code
@@ -809,10 +809,10 @@ SUBSYSTEM_DEF(job)
 
 	var/paper = new /obj/item/paper/fluff/spare_id_safe_code(H.loc)
 	var/list/slots = list(
-		"in your left pocket" = ITEM_SLOT_LPOCKET,
-		"in your right pocket" = ITEM_SLOT_RPOCKET,
-		"in your backpack" = ITEM_SLOT_BACKPACK,
-		"in your hands" = ITEM_SLOT_HANDS
+		"w lewej kieszeni" = ITEM_SLOT_LPOCKET,
+		"w prawej kieszeni" = ITEM_SLOT_RPOCKET,
+		"w plecaku" = ITEM_SLOT_BACKPACK,
+		"w rękach" = ITEM_SLOT_HANDS
 	)
 	var/where = H.equip_in_one_of_slots(paper, slots, FALSE) || "pod twoimi stopami"
 

@@ -1,6 +1,6 @@
 /obj/item/target
-	name = "shooting target"
-	desc = "A shooting target."
+	name = "tarcza strzelnicza"
+	desc = "Tarcza strzelnicza."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_h"
 	density = FALSE
@@ -40,12 +40,12 @@
 
 /obj/item/target/syndicate
 	icon_state = "target_s"
-	desc = "A shooting target that looks like syndicate scum."
+	desc = "Tarcza strzelnicza przedstawiająca szumowinę z Syndykatu."
 	hp = 2600
 
 /obj/item/target/alien
 	icon_state = "target_q"
-	desc = "A shooting target that looks like a xenomorphic alien."
+	desc = "Tarcza strzelnicza przedstawiająca ksenomorfa."
 	hp = 2350
 
 /obj/item/target/alien/anchored
@@ -53,7 +53,7 @@
 
 /obj/item/target/clown
 	icon_state = "target_c"
-	desc = "A shooting target that looks like a useless clown."
+	desc = "Tarcza strzelnicza przedstawiająca bezużytecznego klauna."
 	hp = 2000
 
 #define DECALTYPE_SCORCH 1

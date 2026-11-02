@@ -1,9 +1,9 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
-	name = "light switch"
+	name = "włącznik światła"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
-	desc = "Make dark."
+	desc = "Robi ciemno."
 	power_channel = AREA_USAGE_LIGHT
 	layer = ABOVE_WINDOW_LAYER
 	/// Set this to a string, path, or area instance to control that area
@@ -20,7 +20,7 @@
 		area = get_area(src)
 
 	if(!name)
-		name = "light switch ([area.name])"
+		name = "włącznik światła ([area.name])"
 
 	update_icon()
 

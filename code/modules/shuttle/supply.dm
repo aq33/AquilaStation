@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	)))
 
 /obj/docking_port/mobile/supply
-	name = "supply shuttle"
+	name = "prom zaopatrzeniowy"
 	id = "supply"
 	callTime = 600
 
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			if(SO.paying_account)
 				if(!miscboxes.len || !miscboxes[D.account_holder]) //if there's no miscbox for this person
 					miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs), SO.paying_account)
-					miscboxes[D.account_holder].name = "small items crate - purchased by [D.account_holder]"
+					miscboxes[D.account_holder].name = "skrzynia z drobnymi przedmiotami – kupujący: [D.account_holder]"
 					misc_contents[D.account_holder] = list()
 					miscboxes[D.account_holder].req_access = list()
 				for (var/item in SO.pack.contains)
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			else //No private payment, so we just stuff it all into a generic crate
 				if(!miscboxes.len || !miscboxes["Cargo"])
 					miscboxes["Cargo"] = new /obj/structure/closet/crate/secure(pick_n_take(empty_turfs))
-					miscboxes["Cargo"].name = "small items crate"
+					miscboxes["Cargo"].name = "skrzynia z drobnymi przedmiotami"
 					misc_contents["Cargo"] = list()
 					miscboxes["Cargo"].req_access = list()
 				for (var/item in SO.pack.contains)
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		SSblackbox.record_feedback("nested tally", "cargo_imports", 1, list("[SO.pack.get_cost()]", "[SO.pack.name]"))
 		investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 		if(SO.pack.dangerous)
-			message_admins("\A [SO.pack.name] ordered by [ADMIN_LOOKUPFLW(SO.orderer_ckey)], paid by [D.account_holder] has shipped.")
+			message_admins("Wysłano zamówienie: [SO.pack.name], zamawiający: [ADMIN_LOOKUPFLW(SO.orderer_ckey)], płacący: [D.account_holder].")
 		purchases++
 
 	for(var/I in miscboxes)

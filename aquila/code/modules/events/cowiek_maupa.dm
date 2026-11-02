@@ -14,13 +14,13 @@
 /datum/round_event/aquila_cowiek_maupa/start()
 	var/list/closets = aquila_cowiek_maupa_closet_candidates()
 	if(!length(closets))
-		message_admins("Cowiek Maupa event found no closed electrical locker on the ship, nothing was spawned.")
+		message_admins("Event Cowieka Maupy nie znajduje na statku zamkniętej szafki elektrycznej, nic się nie pojawia.")
 		log_game("Cowiek Maupa event found no closed electrical locker on the ship, nothing was spawned.")
 		return
 	var/obj/structure/closet/closet = pick(closets)
 	var/mob/living/simple_animal/hostile/cowiek_maupa/maupa = new(closet)
 	announce_to_ghosts(closet)
-	message_admins("Cowiek Maupa event hid [maupa] in [closet] at [ADMIN_VERBOSEJMP(closet)].")
+	message_admins("Event Cowieka Maupy chowa [maupa] w: [closet] ([ADMIN_VERBOSEJMP(closet)]).")
 	log_game("Cowiek Maupa event hid [maupa] in [closet] at [AREACOORD(closet)].")
 
 /// Closed electrical lockers on the ship that nobody is hiding in yet

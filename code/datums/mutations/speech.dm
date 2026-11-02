@@ -2,8 +2,8 @@
 //Individual ones aren't commented since their functions should be evident at a glance
 
 /datum/mutation/nervousness
-	name = "Nervousness"
-	desc = "Causes the holder to stutter."
+	name = "Nerwowość"
+	desc = "Sprawia, że nosiciel się jąka."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Czujesz się zdenerwowany.</span>"
 
@@ -13,8 +13,8 @@
 
 
 /datum/mutation/wacky
-	name = "Wacky"
-	desc = "Unknown."
+	name = "Zwariowany głos"
+	desc = "Nieznane."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='sans'>Czujesz dziwne uczucie w krtani.</span>"
 	text_lose_indication = "<span class='notice'>Dziwne uczucie mija.</span>"
@@ -35,8 +35,8 @@
 	speech_args[SPEECH_SPANS] |= SPAN_SANS
 
 /datum/mutation/mute
-	name = "Mute"
-	desc = "Completely inhibits the vocal section of the brain."
+	name = "Niemota"
+	desc = "Całkowicie blokuje ośrodek mowy w mózgu."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Czujesz, że w ogóle nie potrafisz się wyrazić.</span>"
 	text_lose_indication = "<span class='danger'>Czujesz, że znów możesz swobodnie mówić.</span>"
@@ -53,8 +53,8 @@
 
 
 /datum/mutation/smile
-	name = "Smile"
-	desc = "Causes the user to be in constant mania."
+	name = "Uśmiech"
+	desc = "Wprawia w ciągłą manię."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz się taki szczęśliwy. Nic nie może być źle. :)</span>"
 	text_lose_indication = "<span class='notice'>Znów wszystko jest okropne. :(</span>"
@@ -120,8 +120,8 @@
 
 
 /datum/mutation/unintelligible
-	name = "Unintelligible"
-	desc = "Partially inhibits the vocal center of the brain, severely distorting speech."
+	name = "Niezrozumiałość"
+	desc = "Częściowo blokuje ośrodek mowy w mózgu, mocno zniekształcając mowę."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Nie potrafisz ułożyć żadnej spójnej myśli!</span>"
 	text_lose_indication = "<span class='danger'>Twój umysł wydaje się jaśniejszy.</span>"
@@ -137,8 +137,8 @@
 	REMOVE_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
 
 /datum/mutation/polish//AQ EDIT
-	name = "Polish"
-	desc = "A horrible mutation originating from the distant past. Thought to be eradicated after the incident in 2137."
+	name = "Polskość"
+	desc = "Straszliwa mutacja z odległej przeszłości. Uważano ją za wytępioną po incydencie z 2137 roku."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz się Polakiem, jakkolwiek to działa.</span>"
 	text_lose_indication = "<span class='notice'>Uczucie polskości mija.</span>"
@@ -170,8 +170,8 @@
 		speech_args[SPEECH_MESSAGE] = trim(message)
 
 /datum/mutation/chav
-	name = "Chav"
-	desc = "Unknown"
+	name = "Dresiarz"
+	desc = "Nieznane"
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz się jak skończony dureń, nie?</span>"
 	text_lose_indication = "<span class='notice'>Nie masz już ochoty być niegrzeczny i pyskaty.</span>"
@@ -221,7 +221,7 @@
 
 /datum/mutation/elvis
 	name = "Elvis"
-	desc = "A terrifying mutation named after its 'patient-zero'."
+	desc = "Przerażająca mutacja nazwana na cześć swojego „pacjenta zero”."
 	quality = MINOR_NEGATIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Czujesz się całkiem nieźle, laleczko.</span>"
@@ -231,12 +231,12 @@
 	switch(pick(1,2))
 		if(1)
 			if(prob(15))
-				var/list/dancetypes = list("swinging", "fancy", "stylish", "20'th century", "jivin'", "rockandrollowiec", "cool", "salacious", "bashing", "smashing")
+				var/list/dancetypes = list("swingowe", "wymyślne", "stylowe", "z XX wieku", "jive'owe", "rockandrollowe", "odlotowe", "nieprzyzwoite", "zawadiackie", "obłędne")
 				var/dancemoves = pick(dancetypes)
 				owner.visible_message("<b>[owner]</b> wykonuje kilka ruchów: [dancemoves]!")
 		if(2)
 			if(prob(15))
-				owner.visible_message("<b>[owner]</b> [pick("jiggles their hips", "rotates their hips", "gyrates their hips", "taps their foot", "dances to an imaginary song", "jiggles their legs", "snaps their fingers")]!")
+				owner.visible_message("<b>[owner]</b> [pick("kołysze biodrami", "kręci biodrami", "wywija biodrami", "przytupuje", "tańczy do wyimaginowanej piosenki", "potrząsa nogami", "pstryka palcami")]!")
 
 /datum/mutation/elvis/on_acquiring(mob/living/carbon/owner)
 	if(..())
@@ -267,8 +267,8 @@
 
 
 /datum/mutation/stoner
-	name = "Stoner"
-	desc = "A common mutation that severely decreases intelligence."
+	name = "Zjarus"
+	desc = "Częsta mutacja, która mocno obniża inteligencję."
 	quality = NEGATIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Czujesz się... totalnie wyluzowany, stary!</span>"
@@ -285,8 +285,8 @@
 	owner.remove_blocked_language(subtypesof(/datum/language) - /datum/language/beachbum, LANGUAGE_STONER)
 
 /datum/mutation/medieval
-	name = "Medieval"
-	desc = "A horrific genetic condition suffered in ancient times."
+	name = "Średniowiecze"
+	desc = "Okropna przypadłość genetyczna, na którą cierpiano w dawnych czasach."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz, iżby mógł wyruszyć na poszukiwanie Graala.</span>"
 	text_lose_indication = "<span class='notice'>Nie masz już ochoty niczego szukać.</span>"

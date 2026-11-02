@@ -4,8 +4,8 @@
 	icon_state = "generic_camera"
 
 /datum/action/innate/clockcult/warp
-	name = "Warp"
-	desc = "Warp to a location."
+	name = "Przeniesienie"
+	desc = "Przenosi cię w wybrane miejsce."
 	button_icon_state = "warp_down"
 	var/warping = FALSE
 
@@ -52,8 +52,8 @@
 	return warping
 
 /obj/machinery/computer/camera_advanced/ratvar
-	name = "ratvarian observation console"
-	desc = "Used by the servants of Ratvar to conduct operations on Nanotrasen property."
+	name = "ratvariańska konsola obserwacyjna"
+	desc = "Służy sługom Ratvara do prowadzenia operacji na terenie Nanotrasen."
 	icon_screen = "ratvar1"
 	icon_keyboard = "ratvar_key1"
 	icon_state = "ratvarcomputer"

@@ -1,7 +1,7 @@
 /datum/test_chamber_kit/pr_457
 	name = "Medycyna"
 	pr = "aq33/AquilaStation#457"
-	description = "Ranny człowiek ma złamaną nogę, przerwaną tętnicę w ręce i oparzenie III stopnia: zbadaj go analizatorem (okno), opatrz gazą, nićmi i siatką, zrób operacje nastawienia kości i usunięcia martwej tkanki. \
+	description = "Ranny człowiek ma złamaną nogę, przerwaną tętnicę w ręce i oparzenie III stopnia: zbadaj go analizatorem (okno), opatrz bandażem, nićmi i siatką, zrób operacje nastawienia kości i usunięcia martwej tkanki. \
 Świeży trup: defibrylator i powody odmowy, autopsja skanerem. Worek ze zwłokami: przeczytaj kartę i ożyw (duch przejmuje ciało). \
 Kroplówka z wiązką, monitor funkcji życiowych (przykręć do ściany, multitool na stół), konsola akt medycznych (TGUI, przyczyna zgonu). \
 Nóż, kij i laser na króliki doświadczalne: krwawienie, kolor krwi, rany. Przytomny pacjent krzyczy przy operacji."
@@ -17,7 +17,7 @@ Nóż, kij i laser na króliki doświadczalne: krwawienie, kolor krwi, rany. Prz
 		/obj/item/storage/firstaid/brute = 1,
 		/obj/item/storage/firstaid/fire = 1,
 		/obj/item/storage/firstaid/medical = 1,
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1,
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/mesh = 1,
 		/obj/machinery/iv_drip = 1,

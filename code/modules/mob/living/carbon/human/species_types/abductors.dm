@@ -1,5 +1,5 @@
 /datum/species/abductor
-	name = "\improper Abductor"
+	name = "\improper Porywacz"
 	id = SPECIES_ABDUCTOR
 	sexes = FALSE
 	species_traits = list(NOBLOOD,NOEYESPRITES,NOMOUTH)

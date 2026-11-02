@@ -3,8 +3,8 @@
 #define PICK_STYLE_ALL 3
 
 /obj/effect/trap
-	name = "nasty trap"
-	desc = "doesn't do much, really..."
+	name = "paskudna pułapka"
+	desc = "właściwie niewiele robi..."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "gavelblock"
 	invisibility = INVISIBILITY_MAXIMUM //sorry ghosts and curators, my tricks will remain hidden
@@ -15,8 +15,8 @@
 	return TRUE
 
 /obj/effect/trap/trigger //this only triggers other traps
-	name = "pressure pad"
-	desc = "seems flimsy"
+	name = "płytka naciskowa"
+	desc = "wydaje się licha"
 	var/grounded = FALSE //does it ignore fliers
 	var/pick_style = PICK_STYLE_ORDERED
 	var/requirehuman = TRUE
@@ -95,7 +95,7 @@
 	pick_style = PICK_STYLE_RANDOM
 
 /obj/effect/trap/trigger/reusable
-	desc = "seems sturdy"
+	desc = "wydaje się solidna"
 	reusable = TRUE
 
 /obj/effect/trap/trigger/reusable/all
@@ -108,8 +108,8 @@
 	icon_state = "madeyoulook"
 
 /obj/effect/trap/nexus/doorbolt //a nasty little trap to put in a room with a simplemob
-	name = "door bolter"
-	desc = "locks an unfortunate victim in for a few seconds"
+	name = "blokada drzwi"
+	desc = "zamyka nieszczęsną ofiarę na kilka sekund"
 	var/locktime = 10 SECONDS
 
 /obj/effect/trap/nexus/doorbolt/TrapEffect(AM)
@@ -135,7 +135,7 @@
 
 /obj/effect/trap/nexus/cluwnecurse
 	name = "honk :0)"
-	desc = "oh god..."
+	desc = "o Boże..."
 
 /obj/effect/trap/nexus/cluwnecurse/TrapEffect(AM)
 	var/turf/T = get_turf(src)
@@ -145,15 +145,15 @@
 			FC.force_target(C)
 			FC.dontkill = TRUE
 			FC.delete_after_target_killed = TRUE //it only affects the one to walk on the rune. when he dies, the rune is no longer usable
-			message_admins("A hugbox floor cluwne has been spawned at [COORD(T)][ADMIN_JMP(T)] following [ADMIN_LOOKUPFLW(C)]")
+			message_admins("Łagodny podłogowy cluwne pojawia się w [COORD(T)][ADMIN_JMP(T)] i śledzi: [ADMIN_LOOKUPFLW(C)]")
 			log_game("A hugbox floor cluwne has been spawned at [COORD(T)]")
 			playsound(C,'sound/misc/honk_echo_distant.ogg', 30, 1)
 			return TRUE
 	return FALSE
 
 /obj/effect/trap/nexus/darkness
-	name = "lightbreaker"
-	desc = "for effect"
+	name = "rozbijacz świateł"
+	desc = "dla efektu"
 
 /obj/effect/trap/nexus/darkness/TrapEffect()
 	for(var/obj/machinery/light/L in view(10, src))
@@ -164,8 +164,8 @@
 	return TRUE
 
 /obj/effect/trap/nexus/trickyspawner //attempts to spawn a simplemob somewhere out of sight, aggroed to the target
-	name = "tricky little bastard"
-	desc = "I don't think it's gonna do anything"
+	name = "podstępny drań"
+	desc = "Raczej nic nie zrobi"
 	var/crossattempts = 3
 	var/crossed = 0
 	var/mobs = 1
@@ -274,9 +274,9 @@
 
 //this abomination goes in here because it doesnt really belong with normal cult runes
 /obj/effect/rune/cluwne
-	name = "odd drawing"
-	desc = "a drawing on the floor, done in crayon. Odd."
-	cultist_name = "Invocation rune"
+	name = "dziwny rysunek"
+	desc = "rysunek kredką na podłodze. Dziwne."
+	cultist_name = "Inwokacji"
 	cultist_desc = "rozdziera bariery między wymiarami, pozwalając potężnej pradawnej istocie narzucić swoją wolę światu. Wymaga co najmniej dziewięciu wzywających" //only shown to cultists, it does not actually require nine invokers if not used by cultists
 	invocation = "HONK!!"
 	req_cultists = 9//if a cultist invokes this, it acts like an invocation rune by asking them to check this.
@@ -368,7 +368,7 @@
 	for(var/mob/living/carbon/C in hearers(10, src))
 		C.Stun(350, ignore_canstun = TRUE)
 	priority_announce("W waszym sektorze wykryto przejawy pradawnego boga. Zachowajcie najwyższą ostrożność i zawsze stosujcie „system par”.","Wydział Spraw Wyżej Wymiarowych Centrali", ANNOUNCER_SPANOMALIES)
-	message_admins("A dangerous cluwne rune was invoked at [AREACOORD(src)][ADMIN_COORDJMP(src)]")
+	message_admins("Ktoś aktywuje niebezpieczną runę cluwne w [AREACOORD(src)][ADMIN_COORDJMP(src)]")
 	log_game("A dangerous cluwne rune was invoked at [AREACOORD(src)][ADMIN_COORDJMP(src)]")
 	stoplag(315)
 	for(var/mob/living/carbon/human/H in invokers)
@@ -382,7 +382,7 @@
 			if(prob(75))
 				cluwne.delete_after_target_killed = TRUE
 			to_chat(H, "<span class='clowntext'>JESTEŚ MÓJ!</span>")
-			message_admins("A floor cluwne has been spawned by rune at [AREACOORD(src)][ADMIN_COORDJMP(src)] following [ADMIN_LOOKUPFLW(H)]. It [cluwne.delete_after_target_killed ? "will" : "will not"] kill additional people")
+			message_admins("Runa przywołuje podłogowego cluwne w [AREACOORD(src)][ADMIN_COORDJMP(src)], który śledzi: [ADMIN_LOOKUPFLW(H)]. [cluwne.delete_after_target_killed ? "Będzie" : "Nie będzie"] zabijać kolejnych osób")
 			log_game("A floor cluwne has been spawned by rune at [AREACOORD(src)] following [ADMIN_LOOKUP(H)]. It [cluwne.delete_after_target_killed ? "will" : "will not"] kill additional people")
 			H.log_message("was targetted by cluwne from rune", LOG_ATTACK)
 
@@ -392,7 +392,7 @@
 			if(prob(75))
 				cluwne.delete_after_target_killed = TRUE
 			to_chat(H, "<span class='clowntext'>Zagramy w grę?</span>")
-			message_admins("A floor cluwne has been spawned by rune at [AREACOORD(src)][ADMIN_COORDJMP(src)] following [ADMIN_LOOKUPFLW(H)]. It [cluwne.delete_after_target_killed ? "will" : "will not"] kill additional people")
+			message_admins("Runa przywołuje podłogowego cluwne w [AREACOORD(src)][ADMIN_COORDJMP(src)], który śledzi: [ADMIN_LOOKUPFLW(H)]. [cluwne.delete_after_target_killed ? "Będzie" : "Nie będzie"] zabijać kolejnych osób")
 			log_game("A floor cluwne has been spawned by rune at [AREACOORD(src)] following [ADMIN_LOOKUP(H)]. It [cluwne.delete_after_target_killed ? "will" : "will not"] kill additional people")
 			H.log_message("was targetted by cluwne from rune", LOG_ATTACK)
 		else if(prob(60))

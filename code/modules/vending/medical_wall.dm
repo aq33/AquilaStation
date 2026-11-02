@@ -1,12 +1,12 @@
 /obj/machinery/vending/wallmed
 	name = "\improper NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
+	desc = "Naścienny automat ze sprzętem medycznym."
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = FALSE
 	light_color = LIGHT_COLOR_WHITE
 	products = list(/obj/item/reagent_containers/syringe = 3,
-					/obj/item/stack/medical/gauze = 4,
+					/obj/item/stack/medical/bandage = 4, // AQ EDIT - bandage replaces gauze
 					/obj/item/stack/medical/suture = 2, // AQ EDIT - tgstation sutures and mesh
 					/obj/item/stack/medical/mesh = 2, // AQ EDIT
 					/obj/item/reagent_containers/hypospray/medipen = 3,

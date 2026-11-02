@@ -5,7 +5,7 @@
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = "Synaptizyna i siarka"
 	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulfur)
-	agent = "Gravitokinetic Bipotential SADS-"
+	agent = "Grawitokinetyczny bipotencjalny SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	desc = "Nieleczona doprowadzi do śmierci."
 	danger = DISEASE_BIOHAZARD

@@ -4,7 +4,7 @@
  * Concatenates a list with a separator
  */
 /obj/item/circuit_component/concat_list
-	display_name = "Concatenate List"
+	display_name = "Konkatenacja listy"
 	desc = "Komponent, który łączy elementy listy separatorem w jeden tekst."
 	category = "List"
 

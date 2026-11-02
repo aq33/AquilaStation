@@ -1,8 +1,8 @@
 //Fluff objects that don't really fit into any other file.
 
 /obj/machinery/smartfridge/drinks/pretender_stormdrive
-	name = "Ruined stormdrive"
-	desc = "Abandoned for ages. Could probably be used to store your beer."
+	name = "zniszczony napęd burzowy"
+	desc = "Porzucony od wieków. Pewnie nadałby się do przechowywania piwa."
 	icon = 'nsv13/goonstation/icons/reactor.dmi'
 	icon_state = "broken"
 	use_power = NO_POWER_USE

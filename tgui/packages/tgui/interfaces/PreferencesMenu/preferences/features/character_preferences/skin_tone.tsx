@@ -63,7 +63,7 @@ const StandardizedPalette = (props: {
 };
 
 export const skin_tone: Feature<string, string, SkinToneServerData> = {
-  name: 'Skin Tone',
+  name: 'Odcień skóry',
   component: (props: FeatureValueProps<string, string, SkinToneServerData>) => {
     const { handleSetValue, serverData, value } = props;
 

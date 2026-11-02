@@ -7,7 +7,7 @@
 #define LTSRBT_MAX_MARKET_ITEMS 40
 
 /obj/item/circuitboard/machine/ltsrbt
-	name = "LTSRBT (Machine Board)"
+	name = "LTSRBT (płytka maszyny)"
 	icon_state = "bluespacearray"
 	build_path = /obj/machinery/ltsrbt
 	req_components = list(
@@ -18,7 +18,7 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/machinery/ltsrbt
-	name = "Long-To-Short-Range Bluespace Transceiver"
+	name = "dalekozasięgowo-krótkozasięgowy nadajnik bluespace (LTSRBT)"
 	desc = "LTSRBT to kompaktowa maszyna teleportacyjna do wysyłania i odbierania towarów na statku i poza nim.\nKorzysta z częstotliwości wykradzionych NT, więc prawie nie da się jej namierzyć.\nNiezbędna przy każdym nielegalnym handlu na statkach NT."
 	icon = 'aquila/icons/obj/ltsrbt.dmi'
 	icon_state = "ltsrbt_idle"
@@ -284,7 +284,7 @@
 	item.moveToNullspace()
 	//Something happened and the item was deleted or relocated as soon as it was moved to nullspace.
 	if(QDELETED(item) || item.loc != null)
-		say("Runtime at market_placement.dm, line 153: item gone!") //metajoke
+		say("Runtime w market_placement.dm, linia 153: przedmiot zniknął!") //metajoke
 		return
 	var/datum/market_item/local_good/new_item = new(item, account)
 	new_item.name = name_to_use

@@ -1,5 +1,5 @@
 /obj/effect/overlay
-	name = "overlay"
+	name = "nakładka"
 
 /obj/effect/overlay/singularity_act()
 	return
@@ -8,7 +8,7 @@
 	return
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
-	name="beam"
+	name="promień"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 	var/atom/BeamSource
@@ -18,7 +18,7 @@
 	QDEL_IN(src, 10)
 
 /obj/effect/overlay/palmtree_r
-	name = "palm tree"
+	name = "palma"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	density = TRUE
@@ -26,7 +26,7 @@
 	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
-	name = "palm tree"
+	name = "palma"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
 	density = TRUE
@@ -35,13 +35,13 @@
 
 /obj/effect/overlay/coconut
 	gender = PLURAL
-	name = "coconuts"
+	name = "kokosy"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "coconuts"
 
 /obj/effect/overlay/sparkles
 	gender = PLURAL
-	name = "sparkles"
+	name = "iskierki"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	anchored = TRUE
@@ -67,7 +67,7 @@
 	var/aperture_angle = 0
 
 /obj/effect/overlay/timer
-	name = "timer overlay"
+	name = "nakładka licznika"
 	icon = 'icons/effects/cooldown.dmi'
 	icon_state = "second"
 

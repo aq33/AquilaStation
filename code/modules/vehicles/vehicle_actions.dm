@@ -101,8 +101,8 @@
 	var/obj/vehicle/sealed/vehicle_entered_target
 
 /datum/action/vehicle/sealed/climb_out
-	name = "Climb Out"
-	desc = "Climb out of your vehicle!"
+	name = "Wysiądź"
+	desc = "Wysiądź z pojazdu!"
 	button_icon_state = "car_eject"
 
 /datum/action/vehicle/sealed/climb_out/Trigger()
@@ -113,8 +113,8 @@
 	var/obj/vehicle/ridden/vehicle_ridden_target
 
 /datum/action/vehicle/sealed/remove_key
-	name = "Remove key"
-	desc = "Take your key out of the vehicle's ignition"
+	name = "Wyjmij kluczyk"
+	desc = "Wyjmij kluczyk ze stacyjki pojazdu"
 	button_icon_state = "car_removekey"
 
 /datum/action/vehicle/sealed/remove_key/Trigger()
@@ -122,8 +122,8 @@
 
 //CLOWN CAR ACTION DATUMS
 /datum/action/vehicle/sealed/horn
-	name = "Honk Horn"
-	desc = "Honk your classy horn."
+	name = "Zatrąb"
+	desc = "Zatrąb swoim stylowym klaksonem."
 	button_icon_state = "car_horn"
 	var/hornsound = 'sound/items/carhorn.ogg'
 	var/last_honk_time
@@ -146,8 +146,8 @@
 			playsound(vehicle_entered_target, hornsound, 75)
 
 /datum/action/vehicle/sealed/DumpKidnappedMobs
-	name = "Dump kidnapped mobs"
-	desc = "Dump all objects and people in your car on the floor."
+	name = "Wyrzuć porwanych"
+	desc = "Wyrzuć na podłogę wszystkie przedmioty i osoby z auta."
 	button_icon_state = "car_dump"
 
 /datum/action/vehicle/sealed/DumpKidnappedMobs/Trigger()
@@ -156,8 +156,8 @@
 
 
 /datum/action/vehicle/sealed/RollTheDice
-	name = "Press a colorful button"
-	desc = "Press one of those colorful buttons on your display panel!"
+	name = "Naciśnij kolorowy przycisk"
+	desc = "Naciśnij jeden z kolorowych przycisków na panelu!"
 	button_icon_state = "car_rtd"
 
 /datum/action/vehicle/sealed/RollTheDice/Trigger()
@@ -166,8 +166,8 @@
 		C.RollTheDice(owner)
 
 /datum/action/vehicle/sealed/Cannon
-	name = "Toggle siege mode"
-	desc = "Destroy them with their own fodder"
+	name = "Przełącz tryb oblężenia"
+	desc = "Zniszcz wrogów ich własnym mięsem armatnim"
 	button_icon_state = "car_cannon"
 
 /datum/action/vehicle/sealed/Cannon/Trigger()
@@ -178,8 +178,8 @@
 		C.ToggleCannon()
 
 /datum/action/vehicle/sealed/Thank
-	name = "Thank the Clown car Driver"
-	desc = "They're just doing their job."
+	name = "Podziękuj kierowcy klaunowozu"
+	desc = "Kierowca po prostu wykonuje swoją pracę."
 	button_icon_state = "car_thanktheclown"
 	var/last_thank_time
 
@@ -194,7 +194,7 @@
 
 /datum/action/vehicle/ridden/scooter/skateboard/ollie
 	name = "Ollie"
-	desc = "Get some air! Land on a table to do a gnarly grind."
+	desc = "Wybij się w powietrze! Wyląduj na stole, żeby zrobić odjazdowy grind."
 	button_icon_state = "skateboard_ollie"
 	///Cooldown to next jump
 	var/next_ollie
@@ -230,8 +230,8 @@
 		next_ollie = world.time + 5
 
 /datum/action/vehicle/ridden/scooter/skateboard/kflip
-	name = "Kick Flip"
-	desc = "Do a sweet kickflip to dismount... in style."
+	name = "Kickflip"
+	desc = "Zrób słodkiego kickflipa i zsiądź... w dobrym stylu."
 	button_icon_state = "skateboard_ollie"
 
 /datum/action/vehicle/ridden/scooter/skateboard/kflip/Trigger()

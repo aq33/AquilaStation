@@ -1,5 +1,5 @@
 /datum/design/nanocarbon_glass
-	name = "Nanocarbon glass"
+	name = "Szkło nanowęglowe (stop żelaza i szkła)"
 	id = "nanocarbon_glass"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
@@ -9,7 +9,7 @@
 	maxstack = 50
 
 /datum/design/durasteel
-	name = "Durasteel alloy"
+	name = "Durastal (stop żelaza, srebra i tytanu)"
 	id = "durasteel"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2, /datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.15, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT*0.65)
@@ -19,7 +19,7 @@
 	maxstack = 50
 
 /datum/design/duranium
-	name = "Duranium alloy"
+	name = "Duranium (stop żelaza, plazmy, srebra i tytanu)"
 	id = "duranium"
 	build_type = SMELTER | PROTOLATHE
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.175, /datum/material/plasma = MINERAL_MATERIAL_AMOUNT*0.05, /datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.15, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT*0.625)

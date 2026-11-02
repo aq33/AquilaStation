@@ -8,73 +8,73 @@
 	volume_multiplier = 1		//not as loud as synth'd
 
 /datum/instrument/hardcoded/accordion
-	name = "Accordion"
+	name = "Akordeon"
 	id = "accordion"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "accordion"
 
 /datum/instrument/hardcoded/bikehorn
-	name = "Bike Horn"
+	name = "Trąbka"
 	id = "bikehorn"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "bikehorn"
 
 /datum/instrument/hardcoded/eguitar
-	name = "Electric Guitar"
+	name = "Gitara elektryczna"
 	id = "eguitar"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "eguitar"
 
 /datum/instrument/hardcoded/glockenspiel
-	name = "Glockenspiel"
+	name = "Dzwonki"
 	id = "glockenspiel"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "glockenspiel"
 
 /datum/instrument/hardcoded/guitar
-	name = "Guitar"
+	name = "Gitara"
 	id = "guitar"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "guitar"
 
 /datum/instrument/hardcoded/harmonica
-	name = "Harmonica"
+	name = "Harmonijka"
 	id = "harmonica"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "harmonica"
 
 /datum/instrument/hardcoded/piano
-	name = "Piano"
+	name = "Pianino"
 	id = "piano"
 	legacy_instrument_ext = "ogg"
 	legacy_instrument_path = "piano"
 
 /datum/instrument/hardcoded/recorder
-	name = "Recorder"
+	name = "Flet prosty"
 	id = "recorder"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "recorder"
 
 /datum/instrument/hardcoded/saxophone
-	name = "Saxophone"
+	name = "Saksofon"
 	id = "saxophone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "saxophone"
 
 /datum/instrument/hardcoded/trombone
-	name = "Trombone"
+	name = "Puzon"
 	id = "trombone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "trombone"
 
 /datum/instrument/hardcoded/violin
-	name = "Violin"
+	name = "Skrzypce"
 	id = "violin"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "violin"
 
 /datum/instrument/hardcoded/xylophone
-	name = "Xylophone"
+	name = "Ksylofon"
 	id = "xylophone"
 	legacy_instrument_ext = "mid"
 	legacy_instrument_path = "xylophone"

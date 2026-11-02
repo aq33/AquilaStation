@@ -1,7 +1,7 @@
 //wip wip wup
 /obj/structure/mirror
-	name = "mirror"
-	desc = "Mirror mirror on the wall, who's the most robust of them all?"
+	name = "lustro"
+	desc = "Lustereczko, powiedz przecie, kto jest najtwardszy na świecie?"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	density = FALSE
@@ -32,7 +32,7 @@
 
 		//handle facial hair (if necessary)
 		if(H.gender != FEMALE)
-			var/new_style = input(user, "Wybierz styl zarostu", "Grooming")  as null|anything in GLOB.facial_hair_styles_list
+			var/new_style = input(user, "Wybierz styl zarostu", "Pielęgnacja")  as null|anything in GLOB.facial_hair_styles_list
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return	//no tele-grooming
 			if(new_style)
@@ -41,7 +41,7 @@
 			H.facial_hair_style = "Shaved"
 
 		//handle normal hair
-		var/new_style = input(user, "Wybierz fryzurę", "Grooming")  as null|anything in GLOB.hair_styles_list
+		var/new_style = input(user, "Wybierz fryzurę", "Pielęgnacja")  as null|anything in GLOB.hair_styles_list
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return	//no tele-grooming
 		if(new_style)
@@ -60,7 +60,7 @@
 		if(!mapload)
 			playsound(src, "shatter", 70, 1)
 		if(desc == initial(desc))
-			desc = "Oh no, seven years of bad luck!"
+			desc = "O nie, siedem lat nieszczęścia!"
 		broken = TRUE
 
 /obj/structure/mirror/deconstruct(disassembled = TRUE)
@@ -96,8 +96,8 @@
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 
 /obj/structure/mirror/magic
-	name = "magic mirror"
-	desc = "Turn and face the strange... face."
+	name = "magiczne lustro"
+	desc = "Odwróć się i spójrz w tę dziwną... twarz."
 	icon_state = "magic_mirror"
 	var/list/choosable_races = list()
 	magical = TRUE
@@ -131,13 +131,13 @@
 
 	var/mob/living/carbon/human/H = user
 
-	var/choice = input(user, "Coś do zmiany?", "Magiczna pielęgnacja") as null|anything in list("name", "race", "gender", "hair", "eyes")
+	var/choice = input(user, "Coś do zmiany?", "Magiczna pielęgnacja") as null|anything in list("imię", "rasa", "płeć", "włosy", "oczy")
 
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 
 	switch(choice)
-		if("name")
+		if("imię")
 			var/newname = sanitize_name(reject_bad_text(stripped_input(H, "Kim my właściwie jesteśmy?", "Zmiana imienia", H.name, MAX_NAME_LEN)))
 
 			if(!newname)
@@ -151,7 +151,7 @@
 			if(H.mind)
 				H.mind.name = newname
 
-		if("race")
+		if("rasa")
 			var/newrace
 			var/racechoice = input(H, "Czym my właściwie jesteśmy?", "Zmiana rasy") as null|anything in choosable_races
 			newrace = GLOB.species_list[racechoice]
@@ -189,11 +189,11 @@
 			H.update_body_parts(TRUE)
 			H.update_mutations_overlay() // no hulk lizard
 
-		if("gender")
+		if("płeć")
 			if(!(H.gender in list("male", "female"))) //blame the patriarchy
 				return
 			if(H.gender == "male")
-				if(alert(H, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
+				if(alert(H, "Zostać czarownicą?", "Potwierdzenie", "Tak", "Nie") == "Tak")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "female"
@@ -202,7 +202,7 @@
 					return
 
 			else
-				if(alert(H, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
+				if(alert(H, "Zostać czarnoksiężnikiem?", "Potwierdzenie", "Tak", "Nie") == "Tak")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "male"
@@ -213,11 +213,11 @@
 			H.update_body()
 			H.update_mutations_overlay() //(hulk male/female)
 
-		if("hair")
-			var/hairchoice = alert(H, "Fryzura czy kolor włosów?", "Zmiana włosów", "Style", "Color")
+		if("włosy")
+			var/hairchoice = alert(H, "Fryzura czy kolor włosów?", "Zmiana włosów", "Fryzura", "Kolor")
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return
-			if(hairchoice == "Style") //So you just want to use a mirror then?
+			if(hairchoice == "Fryzura") //So you just want to use a mirror then?
 				..()
 			else
 				var/new_hair_color = tgui_color_picker(H, "Wybierz kolor włosów", "Kolor włosów","#"+H.hair_color)
@@ -233,7 +233,7 @@
 						H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
 				H.update_hair()
 
-		if(BODY_ZONE_PRECISE_EYES)
+		if("oczy")
 			var/new_eye_color = tgui_color_picker(H, "Wybierz kolor oczu", "Kolor oczu","#"+H.eye_color)
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return

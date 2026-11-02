@@ -1,5 +1,5 @@
 /datum/martial_art/psychotic_brawling
-	name = "Psychotic Brawling"
+	name = "Psychotyczna bijatyka"
 	id = MARTIALART_PSYCHOBRAWL
 
 /datum/martial_art/psychotic_brawling/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)

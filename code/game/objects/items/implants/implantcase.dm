@@ -1,6 +1,6 @@
 /obj/item/implantcase
-	name = "implant case"
-	desc = "A glass case containing an implant."
+	name = "etui na implant"
+	desc = "Szklane etui z implantem."
 	icon = 'icons/obj/syringe.dmi'
 	icon_state = "implantcase-0"
 	item_state = "implantcase"
@@ -34,9 +34,9 @@
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(t)
-			name = "implant case - '[t]'"
+			name = "etui na implant – „[t]”"
 		else
-			name = "implant case"
+			name = "etui na implant"
 	else if(istype(W, /obj/item/implanter))
 		var/obj/item/implanter/I = W
 		if(I.imp)
@@ -68,16 +68,16 @@
 
 
 /obj/item/implantcase/tracking
-	name = "implant case - 'Tracking'"
-	desc = "A glass case containing a tracking implant."
+	name = "etui na implant – „Namierzający”"
+	desc = "Szklane etui z implantem namierzającym."
 	imp_type = /obj/item/implant/tracking
 
 /obj/item/implantcase/weapons_auth
-	name = "implant case - 'Firearms Authentication'"
-	desc = "A glass case containing a firearms authentication implant."
+	name = "etui na implant – „Uwierzytelnianie broni palnej”"
+	desc = "Szklane etui z implantem uwierzytelniania broni palnej."
 	imp_type = /obj/item/implant/weapons_auth
 
 /obj/item/implantcase/adrenaline
-	name = "implant case - 'Adrenaline'"
-	desc = "A glass case containing an adrenaline implant."
+	name = "etui na implant – „Adrenalina”"
+	desc = "Szklane etui z implantem adrenaliny."
 	imp_type = /obj/item/implant/adrenalin

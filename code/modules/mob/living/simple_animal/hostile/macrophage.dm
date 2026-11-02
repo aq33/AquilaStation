@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/macrophage
-	name = "Germ"
-	desc = "A giant virus!"
+	name = "zarazek"
+	desc = "Olbrzymi wirus!"
 	icon_state = "macrovirus_small"
 	speak_emote = list("bulgocze")
 	emote_hear = list("bulgocze")
@@ -78,8 +78,8 @@
 	dust()
 
 /mob/living/simple_animal/hostile/macrophage/aggro
-	name = "Giant Germ"
-	desc = "An incredibly huge virus!"
+	name = "olbrzymi zarazek"
+	desc = "Niewiarygodnie wielki wirus!"
 	icon_state = "macrovirus_large"
 	melee_damage = 5
 	maxHealth = 12

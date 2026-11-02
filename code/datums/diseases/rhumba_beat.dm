@@ -1,11 +1,11 @@
 /datum/disease/rhumba_beat
-	name = "The Rhumba Beat"
+	name = "Rytm rumby"
 	max_stages = 5
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = "Chick Chicky Boom!"
 	cures = list("plasma")
-	agent = "Unknown"
+	agent = "Nieznany"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
 	danger = DISEASE_BIOHAZARD

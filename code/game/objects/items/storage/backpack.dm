@@ -38,8 +38,8 @@
 	STR.max_combined_w_class = 12
 
 /obj/item/storage/backpack/holding
-	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of bluespace."
+	name = "torba bez dna"
+	desc = "Plecak, który otwiera się na lokalną kieszeń bluespace."
 	icon_state = "holdingpack"
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
@@ -48,8 +48,8 @@
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
 
 /obj/item/storage/backpack/holding/clown
-	name = "bag of honking"
-	desc = "An advanced clowning backpack for holding large quantities of pranking gear"
+	name = "klauńska torba bez dna"
+	desc = "Zaawansowany klauński plecak mieszczący ogromne ilości sprzętu do psikusów"
 	icon_state = "clownpack"
 	item_state = "clownpack"
 
@@ -73,8 +73,8 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 
 /obj/item/storage/backpack/hammerspace // The Juggernaut gear
-	name = "hammerspace backpack"
-	desc = "A backpack that opens into a near infinite pocket of bluespace."
+	name = "plecak z kieszenią hiperprzestrzeni"
+	desc = "Plecak, który otwiera się na niemal nieskończoną kieszeń bluespace."
 	icon_state = "hammerspace"
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
@@ -94,8 +94,8 @@
 	STR.click_gather = TRUE
 
 /obj/item/storage/backpack/santabag
-	name = "Santa's Gift Bag"
-	desc = "Space Santa uses this to deliver presents to all the nice children in space in Christmas! Wow, it's pretty big!"
+	name = "worek z prezentami Mikołaja"
+	desc = "Kosmiczny Mikołaj rozwozi w nim w Boże Narodzenie prezenty dla wszystkich grzecznych dzieci w kosmosie! Rany, ale jest wielki!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
@@ -131,8 +131,8 @@
 
 
 /obj/item/storage/backpack/cultpack
-	name = "trophy rack"
-	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."
+	name = "stelaż na trofea"
+	desc = "Przydaje się zarówno do noszenia dodatkowego sprzętu, jak i do dumnego obwieszczania światu swojego szaleństwa."
 	icon_state = "cultpack"
 	item_state = "backpack"
 
@@ -173,8 +173,8 @@
 	item_state = "captainpack"
 
 /obj/item/storage/backpack/industrial
-	name = "industrial backpack"
-	desc = "It's a tough backpack for the daily grind of station life."
+	name = "plecak przemysłowy"
+	desc = "Wytrzymały plecak na codzienną harówkę na stacji."
 	icon_state = "engiepack"
 	item_state = "engiepack"
 	resistance_flags = FIRE_PROOF
@@ -210,25 +210,25 @@
 	item_state = "viropack"
 
 /obj/item/storage/backpack/ert
-	name = "emergency response team commander backpack"
-	desc = "A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team."
+	name = "plecak Dowódcy Zespołu Reagowania Kryzysowego"
+	desc = "Pojemny plecak z mnóstwem kieszeni, noszony przez Dowódcę Zespołu Reagowania Kryzysowego."
 	icon_state = "ert_commander"
 	item_state = "securitypack"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/ert/security
-	name = "emergency response team security backpack"
-	desc = "A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team."
+	name = "plecak Operatora Kryzysowego Reagowania"
+	desc = "Pojemny plecak z mnóstwem kieszeni, noszony przez Operatorów Zespołu Reagowania Kryzysowego."
 	icon_state = "ert_security"
 
 /obj/item/storage/backpack/ert/medical
-	name = "emergency response team medical backpack"
-	desc = "A spacious backpack with lots of pockets, worn by Medical Officers of an Emergency Response Team."
+	name = "plecak Sanitariusza Kryzysowego Reagowania"
+	desc = "Pojemny plecak z mnóstwem kieszeni, noszony przez Sanitariuszy Zespołu Reagowania Kryzysowego."
 	icon_state = "ert_medical"
 
 /obj/item/storage/backpack/ert/engineer
-	name = "emergency response team engineer backpack"
-	desc = "A spacious backpack with lots of pockets, worn by Engineers of an Emergency Response Team."
+	name = "plecak Inżyniera Kryzysowego Reagowania"
+	desc = "Pojemny plecak z mnóstwem kieszeni, noszony przez Inżynierów Zespołu Reagowania Kryzysowego."
 	icon_state = "ert_engineering"
 
 /////////////////
@@ -236,31 +236,31 @@
 /////////////////
 
 /obj/item/storage/backpack/cak
-	name = "cak backpack"
+	name = "plecak Cak"
 	desc = "Słodki plecak przypominający Cak."
 	icon_state = "cakpack"
 	item_state = "cakpack"
 
 /obj/item/storage/backpack/ian
-	name = "ian backpack"
+	name = "plecak Ian"
 	desc = "Słodki plecak przypominający Iana."
 	icon_state = "ianpack"
 	item_state = "ianpack"
 
 /obj/item/storage/backpack/lisa
-	name = "lisa backpack"
+	name = "plecak Lisa"
 	desc = "Słodki plecak przypominający Lisę."
 	icon_state = "lisapack"
 	item_state = "lisapack"
 
 /obj/item/storage/backpack/renault
-	name = "renault backpack"
+	name = "plecak Renault"
 	desc = "Słodki plecak przypominający Renault."
 	icon_state = "renaultpack"
 	item_state = "renaultpack"
 
 /obj/item/storage/backpack/runtime
-	name = "runtime backpack"
+	name = "plecak Runtime"
 	desc = "Słodki plecak przypominający Runtime."
 	icon_state = "runtimepack"
 	item_state = "runtimepack"
@@ -270,13 +270,13 @@
  */
 
 /obj/item/storage/backpack/satchel
-	name = "satchel"
-	desc = "A trendy looking satchel."
+	name = "torba na ramię"
+	desc = "Modnie wyglądająca torba na ramię."
 	icon_state = "satchel-norm"
 
 /obj/item/storage/backpack/satchel/leather
-	name = "leather satchel"
-	desc = "It's a very fancy satchel made with fine leather."
+	name = "skórzana torba na ramię"
+	desc = "Bardzo elegancka torba na ramię z porządnej skóry."
 	icon_state = "satchel"
 	item_state = "satchel"
 
@@ -287,69 +287,69 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/satchel/eng
-	name = "industrial satchel"
-	desc = "A tough satchel with extra pockets."
+	name = "przemysłowa torba na ramię"
+	desc = "Wytrzymała torba na ramię z dodatkowymi kieszeniami."
 	icon_state = "satchel-eng"
 	item_state = "satchel-eng"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/satchel/med
-	name = "medical satchel"
-	desc = "A sterile satchel used in medical departments."
+	name = "medyczna torba na ramię"
+	desc = "Sterylna torba na ramię używana w działach medycznych."
 	icon_state = "satchel-med"
 	item_state = "satchel-med"
 
 /obj/item/storage/backpack/satchel/vir
-	name = "virologist satchel"
-	desc = "A sterile satchel with virologist colours."
+	name = "torba na ramię wirologa"
+	desc = "Sterylna torba na ramię w barwach wirologów."
 	icon_state = "satchel-vir"
 	item_state = "satchel-vir"
 
 /obj/item/storage/backpack/satchel/chem
-	name = "chemist satchel"
-	desc = "A sterile satchel with chemist colours."
+	name = "torba na ramię chemika"
+	desc = "Sterylna torba na ramię w barwach chemików."
 	icon_state = "satchel-chem"
 	item_state = "satchel-chem"
 
 /obj/item/storage/backpack/satchel/gen
-	name = "geneticist satchel"
-	desc = "A sterile satchel with geneticist colours."
+	name = "torba na ramię genetyka"
+	desc = "Sterylna torba na ramię w barwach genetyków."
 	icon_state = "satchel-gen"
 	item_state = "satchel-gen"
 
 /obj/item/storage/backpack/satchel/tox
-	name = "scientist satchel"
-	desc = "Useful for holding research materials."
+	name = "torba na ramię naukowca"
+	desc = "Przydaje się do noszenia materiałów badawczych."
 	icon_state = "satchel-tox"
 	item_state = "satchel-tox"
 
 /obj/item/storage/backpack/satchel/hyd
-	name = "botanist satchel"
-	desc = "A satchel made of all natural fibers."
+	name = "torba na ramię botanika"
+	desc = "Torba na ramię w całości z naturalnych włókien."
 	icon_state = "satchel-hyd"
 	item_state = "satchel-hyd"
 
 /obj/item/storage/backpack/satchel/sec
-	name = "security satchel"
-	desc = "A robust satchel for security related needs."
+	name = "policyjna torba na ramię"
+	desc = "Solidna torba na ramię na potrzeby ochrony."
 	icon_state = "satchel-sec"
 	item_state = "satchel-sec"
 
 /obj/item/storage/backpack/satchel/explorer
-	name = "explorer satchel"
-	desc = "A robust satchel for stashing your loot."
+	name = "torba na ramię odkrywcy"
+	desc = "Solidna torba na ramię do chowania łupów."
 	icon_state = "satchel-explorer"
 	item_state = "satchel-explorer"
 
 /obj/item/storage/backpack/satchel/cap
-	name = "captain's satchel"
-	desc = "An exclusive satchel for Nanotrasen officers."
+	name = "torba na ramię kapitana"
+	desc = "Ekskluzywna torba na ramię dla oficerów Nanotrasen."
 	icon_state = "satchel-cap"
 	item_state = "satchel-cap"
 
 /obj/item/storage/backpack/satchel/flat
-	name = "smuggler's satchel"
-	desc = "A very slim satchel that can easily fit into tight spaces."
+	name = "torba na ramię przemytnika"
+	desc = "Bardzo płaska torba na ramię, która łatwo mieści się w ciasnych miejscach."
 	icon_state = "satchel-flat"
 	item_state = "satchel-flat"
 	w_class = WEIGHT_CLASS_NORMAL //Can fit in backpacks itself.
@@ -393,8 +393,8 @@
 	return
 
 /obj/item/storage/backpack/duffelbag
-	name = "duffel bag"
-	desc = "A large duffel bag for holding extra things."
+	name = "torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe rzeczy."
 	icon_state = "duffel"
 	item_state = "duffel"
 	slowdown = 1
@@ -405,20 +405,20 @@
 	STR.max_combined_w_class = 30
 
 /obj/item/storage/backpack/duffelbag/captain
-	name = "captain's duffel bag"
-	desc = "A large duffel bag for holding extra captainly goods."
+	name = "torba podróżna kapitana"
+	desc = "Duża torba podróżna na dodatkowe kapitańskie dobra."
 	icon_state = "duffel-captain"
 	item_state = "duffel-captain"
 
 /obj/item/storage/backpack/duffelbag/med
-	name = "medical duffel bag"
-	desc = "A large duffel bag for holding extra medical supplies."
+	name = "medyczna torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe zapasy medyczne."
 	icon_state = "duffel-med"
 	item_state = "duffel-med"
 
 /obj/item/storage/backpack/duffelbag/med/surgery
-	name = "surgical duffel bag"
-	desc = "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding surgical tools."
+	name = "chirurgiczna torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe zapasy medyczne. Ta wygląda na przeznaczoną do noszenia narzędzi chirurgicznych."
 
 /obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -434,14 +434,14 @@
 	new /obj/item/blood_filter(src)
 
 /obj/item/storage/backpack/duffelbag/sec
-	name = "security duffel bag"
-	desc = "A large duffel bag for holding extra security supplies and ammunition."
+	name = "policyjna torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe zapasy ochrony i amunicję."
 	icon_state = "duffel-sec"
 	item_state = "duffel-sec"
 
 /obj/item/storage/backpack/duffelbag/sec/surgery
-	name = "surgical duffel bag"
-	desc = "A large duffel bag for holding extra supplies - this one has a material inlay with space for various sharp-looking tools."
+	name = "chirurgiczna torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe zapasy. Ta ma materiałową wkładkę z miejscem na różne ostro wyglądające narzędzia."
 
 /obj/item/storage/backpack/duffelbag/sec/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -456,8 +456,8 @@
 	new /obj/item/blood_filter(src)
 
 /obj/item/storage/backpack/duffelbag/sec/deputy
-	name = "deputy gear duffel bag"
-	desc = "A large duffel bag for holding extra supplies - this one has compartments for various clothes and gear."
+	name = "torba podróżna ze sprzętem aspiranta"
+	desc = "Duża torba podróżna na dodatkowe zapasy. Ta ma przegródki na różne ubrania i sprzęt."
 	custom_premium_price = 500
 
 /obj/item/storage/backpack/duffelbag/sec/deputy/PopulateContents()
@@ -470,15 +470,15 @@
 	new /obj/item/clothing/accessory/armband/deputy(src)
 
 /obj/item/storage/backpack/duffelbag/engineering
-	name = "industrial duffel bag"
-	desc = "A large duffel bag for holding extra tools and supplies."
+	name = "przemysłowa torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe narzędzia i zapasy."
 	icon_state = "duffel-eng"
 	item_state = "duffel-eng"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/drone
-	name = "drone duffel bag"
-	desc = "A large duffel bag for holding tools and hats."
+	name = "torba podróżna drona"
+	desc = "Duża torba podróżna na narzędzia i czapki."
 	icon_state = "duffel-drone"
 	item_state = "duffel-drone"
 	resistance_flags = FIRE_PROOF
@@ -493,8 +493,8 @@
 	new /obj/item/multitool(src)
 
 /obj/item/storage/backpack/duffelbag/clown
-	name = "clown's duffel bag"
-	desc = "A large duffel bag for holding lots of funny gags!"
+	name = "torba podróżna klauna"
+	desc = "Duża torba podróżna na mnóstwo zabawnych gagów!"
 	icon_state = "duffel-clown"
 	item_state = "duffel-clown"
 
@@ -506,8 +506,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/syndie
-	name = "suspicious looking duffel bag"
-	desc = "A large duffel bag for holding extra tactical supplies."
+	name = "podejrzanie wyglądająca torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe zapasy taktyczne."
 	icon_state = "duffel-syndie"
 	item_state = "duffel-syndieammo"
 	slowdown = 0
@@ -519,7 +519,7 @@
 	STR.silent = TRUE
 
 /obj/item/storage/backpack/duffelbag/syndie/hitman
-	desc = "A large duffel bag for holding extra things. There is a Nanotrasen logo on the back."
+	desc = "Duża torba podróżna na dodatkowe rzeczy. Z tyłu widnieje logo Nanotrasen."
 	icon_state = "duffel-syndieammo"
 	item_state = "duffel-syndieammo"
 
@@ -533,14 +533,14 @@
 	new /obj/item/clothing/head/fedora(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med
-	name = "medical duffel bag"
-	desc = "A large duffel bag for holding extra tactical medical supplies."
+	name = "medyczna torba podróżna"
+	desc = "Duża torba podróżna na dodatkowe taktyczne zapasy medyczne."
 	icon_state = "duffel-syndiemed"
 	item_state = "duffel-syndiemed"
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery
-	name = "surgery duffel bag"
-	desc = "A suspicious looking duffel bag for holding surgery tools."
+	name = "chirurgiczna torba podróżna"
+	desc = "Podejrzanie wyglądająca torba podróżna na narzędzia chirurgiczne."
 	icon_state = "duffel-syndiemed"
 	item_state = "duffel-syndiemed"
 
@@ -557,13 +557,13 @@
 	new /obj/item/mmi/syndie(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo
-	name = "ammunition duffel bag"
-	desc = "A large duffel bag for holding extra weapons ammunition and supplies."
+	name = "torba podróżna na amunicję"
+	desc = "Duża torba podróżna na dodatkową amunicję i zapasy."
 	icon_state = "duffel-syndieammo"
 	item_state = "duffel-syndieammo"
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
-	desc = "A large duffel bag, packed to the brim with Bulldog shotgun magazines."
+	desc = "Duża torba podróżna wypchana po brzegi magazynkami do strzelby Bulldog."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
 	for(var/i in 1 to 6)
@@ -573,14 +573,14 @@
 	new /obj/item/ammo_box/magazine/m12g/dragon(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
-	desc = "A large duffel bag, packed to the brim with C-20r magazines."
+	desc = "Duża torba podróżna wypchana po brzegi magazynkami do C-20r."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
 	for(var/i in 1 to 9)
 		new /obj/item/ammo_box/magazine/smgm45(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/c20rbundle
-	desc = "A large duffel bag containing a C-20r, some magazines, and a cheap looking suppressor."
+	desc = "Duża torba podróżna z C-20r, kilkoma magazynkami i tanio wyglądającym tłumikiem."
 
 /obj/item/storage/backpack/duffelbag/syndie/c20rbundle/PopulateContents()
 	new /obj/item/ammo_box/magazine/smgm45(src)
@@ -589,7 +589,7 @@
 	new /obj/item/suppressor/specialoffer(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle
-	desc = "A large duffel bag containing a Bulldog, some drums, and a pair of thermal imaging glasses."
+	desc = "Duża torba podróżna z Bulldogiem, kilkoma magazynkami bębnowymi i parą gogli termowizyjnych."
 
 /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle/PopulateContents()
 	new /obj/item/gun/ballistic/shotgun/bulldog(src)
@@ -598,7 +598,7 @@
 	new /obj/item/clothing/glasses/thermal/syndi(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
-	desc = "A large duffel bag containing a tactical medkit, a Donksoft machine gun, a big jumbo box of riot darts, and a knock-off pair of magboots."
+	desc = "Duża torba podróżna z taktyczną apteczką, karabinem maszynowym Donksoft, wielkim pudłem strzałek przeciwzamieszkowych i podróbką butów magnetycznych."
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle/PopulateContents()
 	new /obj/item/clothing/shoes/magboots/syndie(src)
@@ -607,7 +607,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
-	desc = "A large duffel bag containing a medical equipment, a Donksoft LMG, a big jumbo box of riot darts, and a knock-off pair of magboots."
+	desc = "Duża torba podróżna ze sprzętem medycznym, lekkim karabinem maszynowym Donksoft, wielkim pudłem strzałek przeciwzamieszkowych i podróbką butów magnetycznych."
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle/PopulateContents()
 	new /obj/item/clothing/shoes/magboots/syndie(src)
@@ -616,7 +616,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
-	desc = "A large duffel bag containing deadly chemicals, a handheld chem sprayer, Bioterror foam grenade, a Donksoft assault rifle, box of riot grade darts, a dart pistol, and a box of syringes."
+	desc = "Duża torba podróżna ze śmiertelnymi chemikaliami, ręcznym rozpylaczem chemikaliów, granatem z pianą bioterrorystyczną, karabinkiem szturmowym Donksoft, pudełkiem strzałek przeciwzamieszkowych, pistoletem na strzałki i pudełkiem strzykawek."
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle/PopulateContents()
 	new /obj/item/reagent_containers/spray/chemsprayer/bioterror(src)
@@ -638,7 +638,7 @@
 		new /obj/item/grenade/plastic/x4(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter
-	desc = "A large duffel bag containing a New Russian pyro backpack sprayer, Elite hardsuit, a Stechkin APS pistol, minibomb, ammo, and other equipment."
+	desc = "Duża torba podróżna z noworosyjskim plecakowym miotaczem ognia, elitarnym hardsuitem, pistoletem Stieczkin APS, minibombą, amunicją i innym sprzętem."
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter/PopulateContents()
 	new /obj/item/clothing/under/syndicate/soviet(src)

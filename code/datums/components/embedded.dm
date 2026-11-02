@@ -90,7 +90,7 @@
 	limb.embedded_objects |= weapon // on the inside... on the inside...
 	weapon.forceMove(victim)
 	RegisterSignal(weapon, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING), PROC_REF(weaponDeleted))
-	victim.visible_message("<span class='danger'>[weapon] [harmful ? "embeds" : "sticks"] itself [harmful ? "in" : "to"] [victim]'s [limb.name]!</span>", "<span class='userdanger'>[harmful ? "[weapon] wbija ci się w kończynę" : "[weapon] przykleja ci się do kończyny"] ([strefa_pl(limb.body_zone)])!</span>")
+	victim.visible_message("<span class='danger'>[weapon] [harmful ? "wbija się w kończynę" : "przykleja się do kończyny"] [victim] ([strefa_pl(limb.body_zone)])!</span>", "<span class='userdanger'>[harmful ? "[weapon] wbija ci się w kończynę" : "[weapon] przykleja ci się do kończyny"] ([strefa_pl(limb.body_zone)])!</span>")
 
 	if(harmful)
 		victim.throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)

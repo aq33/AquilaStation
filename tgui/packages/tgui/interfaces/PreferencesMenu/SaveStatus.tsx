@@ -31,20 +31,20 @@ export const SaveStatus = (props) => {
       }}
     >
       {!is_db ? (
-        <strong>No DB</strong>
+        <strong>Brak bazy</strong>
       ) : is_guest ? (
-        <strong>Guest</strong>
+        <strong>Gość</strong>
       ) : null}
       {!is_guest && is_db ? (
         save_in_progress ? (
           <span>
-            Saving
+            Zapisywanie
             <span className="loading-one">.</span>
             <span className="loading-two">.</span>
             <span className="loading-three">.</span>
           </span>
         ) : (
-          <strong>{save_sucess ? 'Saved' : 'Error'}</strong>
+          <strong>{save_sucess ? 'Zapisano' : 'Błąd'}</strong>
         )
       ) : null}
     </Box>
@@ -52,10 +52,10 @@ export const SaveStatus = (props) => {
   if (!is_db || is_guest) {
     return (
       <Tooltip
-        content={`Cannot save your preferences due to ${
+        content={`Nie można zapisać ustawień: ${
           !is_db
-            ? 'not having a database connected.'
-            : 'being a guest user. Please register and log in with a BYOND account.'
+            ? 'brak połączenia z bazą danych.'
+            : 'jesteś gościem. Zarejestruj się i zaloguj na konto BYOND.'
         }`}
         position="bottom"
       >
@@ -66,7 +66,7 @@ export const SaveStatus = (props) => {
   if (!save_in_progress && !save_sucess) {
     return (
       <Tooltip
-        content={`Failed to save your data. Please inform the server operator or a maintainer of this error.`}
+        content={`Nie udało się zapisać danych. Zgłoś ten błąd operatorowi serwera albo maintainerowi.`}
         position="bottom"
       >
         {innerBox}
@@ -76,7 +76,7 @@ export const SaveStatus = (props) => {
   if (save_in_progress) {
     return (
       <Tooltip
-        content={`Please wait up to 5 seconds for your data to be saved. Saving may take longer during high load - please be assured your data is still queued to be saved.`}
+        content={`Poczekaj do 5 sekund na zapis danych. Przy dużym obciążeniu zapis może potrwać dłużej, ale twoje dane i tak czekają w kolejce do zapisu.`}
         position="bottom"
       >
         {innerBox}

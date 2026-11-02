@@ -350,8 +350,8 @@
 
 //UPGRADES
 /datum/horror_upgrade
-	var/name = "horror upgrade"
-	var/desc = "This is an upgrade."
+	var/name = "ulepszenie horroru"
+	var/desc = "To jest ulepszenie."
 	var/id
 	var/soul_price = 0 //How much souls an upgrade costs to buy
 	var/mob/living/simple_animal/horror/B //Horror holding the upgrades

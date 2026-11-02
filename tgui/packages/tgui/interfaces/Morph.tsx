@@ -25,7 +25,7 @@ const MorphContents = (props) => {
     .concat(Object.values(data.contents.items))
     .filter((A: any) => A.favorite);
   return (
-    <Section title="Morph Stomach">
+    <Section title="Żołądek morfa">
       <Tabs>
         <Tabs.Tab selected={tab === 'living'} onClick={() => setTab('living')}>
           Mobs ({Object.keys(data.contents.living).length})
@@ -51,7 +51,7 @@ const MorphContents = (props) => {
           ))
         ) : (
           <span>
-            <strong>Your stomach is empty!</strong>
+            <strong>Twój żołądek jest pusty!</strong>
           </span>
         )}
       </LabeledList>
@@ -101,24 +101,24 @@ const MorphItemButtons = ({ id, living, favorite, digestable, throw_ref }) => {
         onClick={() => act('favorite', { id: id })}
       />
       <Button
-        content="Disguise As"
+        content="Przebierz się"
         onClick={() => act('disguise', { id: id })}
       />
-      <Button content="Drop" onClick={() => act('drop', { id: id })} />
+      <Button content="Wyrzuć" onClick={() => act('drop', { id: id })} />
       <Button
-        content="Digest"
+        content="Przetraw"
         disabled={!digestable}
         onClick={() => act('digest', { id: id })}
       />
       <Button
-        content={throw_ref === id ? 'Unthrow' : 'Throw'}
+        content={throw_ref === id ? 'Nie rzucaj' : 'Rzuć'}
         onClick={() => act(throw_ref === id ? 'unthrow' : 'throw', { id: id })}
       />
       {living ? null : (
         <>
-          <Button content="Use" onClick={() => act('use', { id: id })} />
+          <Button content="Użyj" onClick={() => act('use', { id: id })} />
           <Button
-            content="Use and Throw"
+            content="Użyj i rzuć"
             disabled={throw_ref === id}
             onClick={() => act('usethrow', { id: id })}
           />

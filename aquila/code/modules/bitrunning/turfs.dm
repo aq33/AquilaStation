@@ -12,5 +12,5 @@
 
 /// tg baseturf_helper/virtual_domain: pod turfy domeny wstawia binarny bazowy turf
 /obj/effect/baseturf_helper/virtual_domain
-	name = "virtual domain baseturf editor"
+	name = "edytor bazowego turfu domeny wirtualnej"
 	baseturf = /turf/open/indestructible/binary

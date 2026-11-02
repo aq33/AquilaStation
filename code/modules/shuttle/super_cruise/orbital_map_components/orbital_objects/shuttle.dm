@@ -1,5 +1,5 @@
 /datum/orbital_object/shuttle
-	name = "Shuttle"
+	name = "Prom"
 	collision_type = COLLISION_SHUTTLES
 	//Collision is handled by z-linked.
 	collision_flags = NONE
@@ -108,7 +108,7 @@
 	if(!port)
 		return FALSE
 	if(!is_reserved_level(port.z) && port.mode == SHUTTLE_IDLE)
-		message_admins("Shuttle [shuttle_port_id] is not on a reserved Z-Level but is somehow registered as in flight! Automatically fixing...")
+		message_admins("Prom [shuttle_port_id] nie jest na zarezerwowanym poziomie Z, a mimo to jest zarejestrowany jako w locie! Naprawiam automatycznie...")
 		log_runtime("Shuttle [shuttle_port_id] is not on a reserved Z-Level but is somehow registered as in flight! Removing shuttle object.")
 		qdel(src)
 		return TRUE

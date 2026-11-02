@@ -1,7 +1,9 @@
 import {
   AnimatedNumber,
+  Blink,
   Box,
   Button,
+  Icon,
   LabeledList,
   NoticeBox,
   ProgressBar,
@@ -9,27 +11,27 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
+import { useBackend, useSharedState } from '../../backend';
+import { BodyZone, BodyZoneSelector } from '../common/BodyZoneSelector';
+import { recommendedTool } from './helpers';
 import {
   ComputerTabs,
   damageTypes,
-  formatTools,
   type OperatingComputerData,
   type PatientData,
-  type Procedure,
   STAT_LABELS,
-  type SurgeryTool,
 } from './types';
 
 type PatientStateViewProps = {
   setTab: (tab: number) => void;
   setSearchText: (text: string) => void;
+  pinnedOperations: string[];
+  setPinnedOperations: (text: string[]) => void;
 };
 
 export const PatientStateView = (props: PatientStateViewProps) => {
   const { data } = useBackend<OperatingComputerData>();
-  const { setTab, setSearchText } = props;
-  const { table, patient, procedures = [] } = data;
+  const { table, patient } = data;
 
   if (!table) {
     return (
@@ -50,33 +52,16 @@ export const PatientStateView = (props: PatientStateViewProps) => {
     );
   }
   return (
-    <Section fill scrollable>
-      <Stack vertical>
+    <Section fill>
+      <Stack vertical fill>
         <Stack.Item>
           <PatientStateMainStateView patient={patient} />
         </Stack.Item>
-        <Stack.Item>
-          <Section title="Trwające operacje">
-            {procedures.length === 0 ? (
-              <NoticeBox color="green" align="center">
-                Brak trwających operacji
-              </NoticeBox>
-            ) : (
-              <Stack vertical>
-                {procedures.map((procedure) => (
-                  <Stack.Item key={procedure.name}>
-                    <ProcedureView
-                      procedure={procedure}
-                      onShowInCatalog={() => {
-                        setTab(ComputerTabs.OperationCatalog);
-                        setSearchText(procedure.surgery_name || procedure.name);
-                      }}
-                    />
-                  </Stack.Item>
-                ))}
-              </Stack>
-            )}
-          </Section>
+        <Stack.Item p={1}>
+          <PatientStateSurgeryStateView patient={patient} />
+        </Stack.Item>
+        <Stack.Item grow>
+          <PatientStateNextOperationsView {...props} />
         </Stack.Item>
       </Stack>
     </Section>
@@ -148,79 +133,207 @@ const PatientStateMainStateView = (props: PatientStateMainStateViewProps) => {
   );
 };
 
-type StepLineProps = {
-  step: string;
-  tools?: SurgeryTool[];
-  chems?: string;
+type PatientStateSurgeryStateViewProps = {
+  patient: PatientData;
 };
 
-const StepLine = (props: StepLineProps) => {
-  const { step, tools, chems } = props;
+/** Sylwetka do wyboru strefy i stan chirurgiczny tej strefy */
+const PatientStateSurgeryStateView = (
+  props: PatientStateSurgeryStateViewProps,
+) => {
+  const { act, data } = useBackend<OperatingComputerData>();
+  const { patient } = props;
+  const { target_zone = BodyZone.Chest } = data;
+  const surgeryState = patient.surgery_state || [];
+
   return (
-    <>
-      <Box bold>{step}</Box>
-      {!!tools?.length && (
-        <Box italic fontSize="0.9rem" color="label">
-          Narzędzie: {formatTools(tools)}
-        </Box>
-      )}
-      {!!chems && (
-        <Box fontSize="0.9rem">
-          <b>Wymagane chemikalia:</b> {chems}
-        </Box>
-      )}
-    </>
+    <Stack>
+      <Stack.Item>
+        <BodyZoneSelector
+          onClick={(zone) =>
+            zone !== target_zone && act('change_zone', { new_zone: zone })
+          }
+          selectedZone={target_zone}
+        />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Stack vertical>
+          {surgeryState.length === 0 && (
+            <Stack.Item color="label">Bez zmian chirurgicznych</Stack.Item>
+          )}
+          {surgeryState.map((state) => (
+            <Stack.Item key={state}>- {state}</Stack.Item>
+          ))}
+          {!!patient.ongoing && (
+            <Stack.Item color="good">
+              <Icon name="spinner" spin mr={1} />
+              Trwa: {patient.ongoing}
+            </Stack.Item>
+          )}
+        </Stack>
+      </Stack.Item>
+    </Stack>
   );
 };
 
-type ProcedureViewProps = {
-  procedure: Procedure;
-  onShowInCatalog: () => void;
-};
+/** Operacje, które da się zrobić dalej w wybranej strefie (tg: „Possible Operations”) */
+const PatientStateNextOperationsView = (props: PatientStateViewProps) => {
+  const { data } = useBackend<OperatingComputerData>();
+  const { surgery_catalog = [], next_operations = [], patient } = data;
+  const { pinnedOperations, setPinnedOperations, setTab, setSearchText } =
+    props;
 
-const ProcedureView = (props: ProcedureViewProps) => {
-  const { procedure, onShowInCatalog } = props;
+  const possibleNext = surgery_catalog.filter((operation) =>
+    next_operations.includes(operation.id),
+  );
+
+  const allTools = ['wszystkie narzędzia'].concat(
+    possibleNext
+      .map((operation) => recommendedTool(operation))
+      .filter((tool, index, self) => self.indexOf(tool) === index),
+  );
+
+  const [filterByTool, setFilterByTool] = useSharedState<string>(
+    'filter_by_tool',
+    allTools[0],
+  );
+
+  const isPinned = (id: string) => pinnedOperations.includes(id);
+  possibleNext.sort((a, b) => {
+    if (a.priority !== b.priority) {
+      return a.priority ? -1 : 1;
+    }
+    if (isPinned(a.id) !== isPinned(b.id)) {
+      return isPinned(a.id) ? -1 : 1;
+    }
+    return 0;
+  });
+
+  const shown = possibleNext.filter(
+    (operation) =>
+      filterByTool === allTools[0] ||
+      recommendedTool(operation) === filterByTool,
+  );
+
   return (
-    <Box
-      p={1}
-      style={{
-        borderStyle: 'solid',
-        borderBottom: '0',
-        borderRight: '0',
-        borderWidth: '2px',
-      }}
+    <Section
+      title="Możliwe operacje"
+      scrollable
+      fill
+      buttons={
+        <Button
+          icon="filter"
+          tooltip="Filtruj po zalecanym narzędziu. Prawy klik resetuje."
+          tooltipPosition="top"
+          width="120px"
+          ellipsis
+          selected={filterByTool !== allTools[0]}
+          onClick={() =>
+            setFilterByTool(
+              allTools[(allTools.indexOf(filterByTool) + 1) % allTools.length],
+            )
+          }
+          onContextMenu={() => setFilterByTool(allTools[0])}
+        >
+          {filterByTool}
+        </Button>
+      }
     >
-      <Stack align="center" mb={1}>
-        <Stack.Item grow bold fontSize="1.1rem">
-          {procedure.name}
-        </Stack.Item>
-        <Stack.Item>
-          <Button
-            icon="book"
-            tooltip="Pokaż w katalogu operacji"
-            tooltipPosition="left"
-            onClick={onShowInCatalog}
-          />
-        </Stack.Item>
-      </Stack>
-      <LabeledList>
-        <LabeledList.Item label="Następny krok">
-          <StepLine
-            step={procedure.next_step}
-            tools={procedure.next_tools}
-            chems={procedure.chems_needed}
-          />
-        </LabeledList.Item>
-        {!!procedure.alternative_step && (
-          <LabeledList.Item label="Albo">
-            <StepLine
-              step={procedure.alternative_step}
-              tools={procedure.alt_tools}
-              chems={procedure.alt_chems_needed}
-            />
-          </LabeledList.Item>
+      <Stack vertical fill>
+        {possibleNext.length === 0 ? (
+          <Stack.Item>
+            {patient?.prepped ? (
+              <NoticeBox color="green" align="center">
+                Brak dostępnych operacji
+              </NoticeBox>
+            ) : (
+              <NoticeBox color="yellow" align="center">
+                Przygotuj pacjenta do operacji: połóż serwety albo prześcieradło
+                na wybranej strefie ciała.
+              </NoticeBox>
+            )}
+          </Stack.Item>
+        ) : (
+          shown.map((operation) => (
+            <Stack.Item key={operation.id}>
+              <Button
+                fluid
+                tooltip={
+                  <Stack vertical>
+                    {operation.priority && (
+                      <Stack.Item color="orange">
+                        <Icon name="exclamation" mr={1} />
+                        Zalecany następny krok
+                      </Stack.Item>
+                    )}
+                    {isPinned(operation.id) && (
+                      <Stack.Item color="yellow">
+                        <Icon name="thumbtack" mr={1} />
+                        Przypięta
+                      </Stack.Item>
+                    )}
+                    <Stack.Item>{operation.desc}</Stack.Item>
+                    <Stack.Item italic fontSize="0.9rem">
+                      {`Lewy klik ${isPinned(operation.id) ? 'odpina' : 'przypina'} operację na górze.`}
+                    </Stack.Item>
+                    <Stack.Item italic fontSize="0.9rem">
+                      Prawy klik otwiera opis w katalogu.
+                    </Stack.Item>
+                  </Stack>
+                }
+                tooltipPosition="bottom"
+                color={
+                  operation.priority
+                    ? 'caution'
+                    : isPinned(operation.id)
+                      ? 'danger'
+                      : undefined
+                }
+                onContextMenu={() => {
+                  setTab(ComputerTabs.OperationCatalog);
+                  setSearchText(operation.name);
+                }}
+                onClick={() =>
+                  setPinnedOperations(
+                    isPinned(operation.id)
+                      ? pinnedOperations.filter((op) => op !== operation.id)
+                      : pinnedOperations.concat(operation.id),
+                  )
+                }
+              >
+                <Stack fill>
+                  <Stack.Item
+                    style={{
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {operation.name}
+                  </Stack.Item>
+                  {operation.priority && (
+                    <Stack.Item>
+                      <Blink interval={500} time={500}>
+                        <Icon name="exclamation" />
+                      </Blink>
+                    </Stack.Item>
+                  )}
+                  {isPinned(operation.id) && (
+                    <Stack.Item>
+                      <Icon name="thumbtack" />
+                    </Stack.Item>
+                  )}
+                  <Stack.Item grow />
+                  <Stack.Item>
+                    <Box italic fontSize="0.9rem">
+                      {recommendedTool(operation)}
+                    </Box>
+                  </Stack.Item>
+                </Stack>
+              </Button>
+            </Stack.Item>
+          ))
         )}
-      </LabeledList>
-    </Box>
+      </Stack>
+    </Section>
   );
 };

@@ -103,15 +103,15 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 #define POLICJA_DECAL_COLOR "#4B5BB4"
 
 /obj/effect/turf_decal/tile/ship/police
-	name = "police corner"
+	name = "policyjny narożnik"
 	color = POLICJA_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/ship/half/police
-	name = "police half"
+	name = "policyjna połówka"
 	color = POLICJA_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/ship/full/police
-	name = "police full"
+	name = "policyjne pole"
 	color = POLICJA_DECAL_COLOR
 
 /obj/effect/turf_decal/trimline/police
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 #undef POLICJA_DECAL_COLOR
 
 /turf/open/floor/carpet/police
-	name = "police carpet"
+	name = "dywan policyjny"
 	icon = 'aquila/icons/policja/carpet_police.dmi'
 	icon_state = "carpet_police-255"
 	base_icon_state = "carpet_police"
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 	carpet_connect_type = /turf/open/floor/carpet/police
 
 /obj/item/stack/tile/carpet/police
-	name = "police carpet"
+	name = "dywan policyjny"
 	icon = 'aquila/icons/policja/przedmioty.dmi'
 	icon_state = "tile-carpet-police"
 	item_state = "tile-carpet-royalblue"
@@ -176,132 +176,132 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 \****************************/
 // Ubrania i sprzęt ochrony nazwane po policyjnemu, w tym samym języku co dotąd (ubrania tg są po angielsku)
 /obj/item/clothing/under/ship/military_police
-	name = "police uniform"
-	desc = "A durable uniform worn by police officers, who enforce ship-law."
+	name = "mundur policyjny"
+	desc = "Wytrzymały mundur noszony przez policjantów, którzy egzekwują prawo na statku."
 
 /obj/item/clothing/suit/ship/squad/military_police
-	name = "police armour"
-	desc = "A heavy-duty chestplate and shinpad combo which denotes that the user is a police officer. Protects legs unlike a normal vest."
+	name = "pancerz policyjny"
+	desc = "Solidny zestaw napierśnika i nagolenników, który oznacza, że nosi go policjant. W przeciwieństwie do zwykłej kamizelki chroni też nogi."
 
 /obj/item/clothing/under/rank/security/officer
-	name = "police uniform"
+	name = "mundur policyjny"
 
 /obj/item/clothing/under/rank/security/officer/white
-	name = "police service uniform"
+	name = "służbowy mundur policyjny"
 
 /obj/item/clothing/under/rank/security/officer/formal
-	name = "police officer's formal uniform"
+	name = "galowy mundur policjanta"
 
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
-	name = "police deputy uniform"
+	name = "mundur Aspiranta"
 
 /obj/item/clothing/under/rank/security/head_of_security
-	name = "police commander's uniform"
+	name = "mundur Komendanta"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
-	name = "police commander's turtleneck"
+	name = "golf Komendanta"
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
-	name = "police commander's formal uniform"
+	name = "galowy mundur Komendanta"
 
 /obj/item/clothing/under/rank/security/warden
-	name = "warden's uniform"
+	name = "mundur Naczelnika"
 
 /obj/item/clothing/under/rank/security/warden/white
-	name = "warden's service uniform"
+	name = "służbowy mundur Naczelnika"
 
 /obj/item/clothing/suit/security/officer
-	name = "police officer's jacket"
+	name = "kurtka policjanta"
 
 /obj/item/clothing/suit/security/hos
-	name = "police commander's jacket"
+	name = "kurtka Komendanta"
 
 /obj/item/clothing/suit/ship/peacekeeper/jacket/police
-	name = "police commander's armored jacket"
+	name = "opancerzona kurtka Komendanta"
 
 /obj/item/clothing/suit/hooded/wintercoat/security
-	name = "police winter coat"
+	name = "policyjna kurtka zimowa"
 
 /obj/item/clothing/suit/toggle/labcoat/brig_physician
-	name = "police medic's labcoat"
+	name = "fartuch Lekarza Więziennego"
 
 /obj/item/clothing/neck/cloak/hos
-	name = "police commander's cloak"
+	name = "płaszcz Komendanta"
 
 /obj/item/clothing/head/HoS
-	name = "police commander's cap"
+	name = "czapka Komendanta"
 
 /obj/item/clothing/head/HoS/beret
-	name = "police commander's beret"
+	name = "beret Komendanta"
 
 /obj/item/clothing/head/beret/sec/navyhos
-	name = "police commander's formal beret"
+	name = "galowy beret Komendanta"
 
 /obj/item/clothing/head/beret/sec
-	name = "police beret"
+	name = "beret policyjny"
 
 /obj/item/clothing/head/beret/sec/bandana
-	name = "police bandana"
+	name = "bandana policyjna"
 
 /obj/item/clothing/head/beret/sec/garrison
-	name = "police garrison cap"
+	name = "furażerka policyjna"
 
 /obj/item/clothing/head/beret/sec/officercap
-	name = "police officer's cap"
+	name = "czapka policjanta"
 
 /obj/item/clothing/head/soft/sec
-	name = "police cap"
+	name = "czapka policyjna"
 
 /obj/item/clothing/head/soft/sec/alt
-	name = "alternative police cap"
+	name = "alternatywna czapka policyjna"
 
 /obj/item/clothing/head/soft/sec/brig_physician
-	name = "police medic cap"
+	name = "czapka Lekarza Więziennego"
 
 /obj/item/clothing/mask/gas/sechailer
-	name = "police gas mask"
+	name = "policyjna maska gazowa"
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "police hailer"
+	name = "policyjna maska z megafonem"
 
 /obj/item/clothing/glasses/hud/security
-	name = "police HUD"
+	name = "HUD policyjny"
 
 /obj/item/clothing/glasses/hud/security/deputy
-	name = "deputy police HUD"
+	name = "HUD policyjny Aspiranta"
 
 /obj/item/clothing/glasses/hud/security/night
-	name = "night vision police HUD"
+	name = "HUD policyjny z noktowizją"
 
 /obj/item/clothing/glasses/hud/security/prescription
-	name = "prescription police HUD glasses"
+	name = "korekcyjne okulary z HUD-em policyjnym"
 
 /obj/item/clothing/glasses/hud/security/sunglasses
-	name = "police HUD sunglasses"
+	name = "okulary przeciwsłoneczne z HUD-em policyjnym"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/degraded
-	name = "degraded police HUD sunglasses"
+	name = "zużyte okulary przeciwsłoneczne z HUD-em policyjnym"
 
 /obj/item/clothing/accessory/armband/deputy
-	name = "police deputy armband"
+	name = "opaska Aspiranta"
 
 /obj/item/clothing/accessory/medal/silver/security
-	name = "robust police award"
+	name = "odznaczenie za solidną służbę w policji"
 
 /obj/item/storage/belt/security
-	name = "police belt"
+	name = "pas policyjny"
 
 /obj/item/storage/belt/security/deputy
-	name = "deputy police belt"
+	name = "pas policyjny Aspiranta"
 
 /obj/item/storage/belt/security/webbing
-	name = "police webbing"
+	name = "oporządzenie policyjne"
 
 /obj/item/storage/backpack/security
 	name = "plecak policyjny"
 
 /obj/item/storage/backpack/satchel/sec
-	name = "police satchel"
+	name = "policyjna torba na ramię"
 
 /obj/item/storage/backpack/duffelbag/sec
-	name = "police duffel bag"
+	name = "policyjna torba podróżna"

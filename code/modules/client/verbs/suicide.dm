@@ -33,12 +33,12 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE) //need to be called before calling suicide_act as fuck knows what suicide_act will do with your suicider
 		var/obj/item/held_item = get_active_held_item()
 		if(held_item)
@@ -110,10 +110,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>Mózg [src] staje się tępy i bez życia. Wygląda na to, że stracił wolę życia.</span>", \
 						"<span class='userdanger'>Mózg [src] staje się tępy i bez życia. Wygląda na to, że stracił wolę życia.</span>")
@@ -127,10 +127,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>[src] próbuje przegryźć sobie język. Wygląda na to, że próbuje popełnić samobójstwo.</span>", \
 				"<span class='userdanger'>[src] próbuje przegryźć sobie język. Wygląda na to, że próbuje popełnić samobójstwo.</span>")
@@ -145,10 +145,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>[src] się wyłącza. Wygląda na to, że próbuje popełnić samobójstwo.</span>", \
 				"<span class='userdanger'>[src] się wyłącza. Wygląda na to, że próbuje popełnić samobójstwo.</span>")
@@ -164,10 +164,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>[src] się wyłącza. Wygląda na to, że próbuje popełnić samobójstwo.</span>", \
 				"<span class='userdanger'>[src] się wyłącza. Wygląda na to, że próbuje popełnić samobójstwo.</span>")
@@ -181,8 +181,8 @@
 
 /mob/living/silicon/pai/verb/suicide()
 	set hidden = 1
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
-	if(confirm == "Yes")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	if(confirm == "Tak")
 		var/turf/T = get_turf(src.loc)
 		T.visible_message("<span class='notice'>Na ekranie [src] wyświetla się komunikat: \"Wymazywanie plików rdzenia. Aby dalej korzystać z funkcji urządzenia pAI, pozyskaj nową osobowość.\"</span>", null, \
 		 "<span class='notice'>[src] elektronicznie piszczy.</span>")
@@ -198,10 +198,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>[src] miota się dziko! Wygląda na to, że próbuje popełnić samobójstwo.</span>", \
 				"<span class='userdanger'>[src] miota się dziko! Wygląda na to, że próbuje popełnić samobójstwo.</span>", \
@@ -218,10 +218,10 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Yes", "No")
+	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
 	if(!canSuicide())
 		return
-	if(confirm == "Yes")
+	if(confirm == "Tak")
 		set_suicide(TRUE)
 		visible_message("<span class='danger'>[src] zaczyna się przewracać. Wygląda na to, że stracił wolę życia.</span>", \
 						"<span class='userdanger'>[src] zaczyna się przewracać. Wygląda na to, że stracił wolę życia.</span>")
@@ -234,12 +234,12 @@
 /mob/living/proc/suicide_log()
 	log_game("[key_name(src)] committed suicide at [AREACOORD(src)] as [src.type].")
 	if(CONFIG_GET(flag/restricted_suicide))
-		message_admins("[key_name(src)] committed suicide at [AREACOORD(src)] as [src.type].")
+		message_admins("[key_name(src)] popełnia samobójstwo w [AREACOORD(src)] jako [src.type].")
 
 /mob/living/carbon/human/suicide_log()
 	log_game("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
 	if(CONFIG_GET(flag/restricted_suicide))
-		message_admins("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
+		message_admins("[key_name(src)] (praca: [src.job ? "[src.job]" : "brak"]) popełnia samobójstwo w [AREACOORD(src)].")
 
 /mob/living/proc/canSuicide()
 	switch(stat)
@@ -263,13 +263,13 @@
 		to_chat(src, "Coś w twojej głowie powstrzymuje cię przed tym!")
 		return
 	if(CONFIG_GET(flag/restricted_suicide))
-		if(alert("Samobójstwo jest mocno odradzane, a w niektórych przypadkach łamie zasady. Rozważ wejście do kriokapsuły albo kontakt z adminami. Na pewno chcesz kontynuować?",,"Confirm","Cancel") != "Confirm")
+		if(alert("Samobójstwo jest mocno odradzane, a w niektórych przypadkach łamie zasady. Rozważ wejście do kriokapsuły albo kontakt z adminami. Na pewno chcesz kontynuować?",,"Potwierdź","Anuluj") != "Potwierdź")
 			return
 		if(world.time < (SSticker.round_start_time + (15 MINUTES)))
 			var/timeleft = ((SSticker.round_start_time + (15 MINUTES)) - world.time)
 			to_chat(src, "<span class='boldannounce'>Popełnianie samobójstwa na początku rundy jest zabronione. Czas do możliwości samobójstwa: [DisplayTimeText(timeleft)].</span>")
 			if(src.job)
-				message_admins("[key_name(src)] (job: [src.job]) attempted to commit suicide at [AREACOORD(src)]. Time until suicide is possible: [DisplayTimeText(timeleft)].")
+				message_admins("[key_name(src)] (praca: [src.job]) próbuje popełnić samobójstwo w [AREACOORD(src)]. Czas do możliwości samobójstwa: [DisplayTimeText(timeleft)].")
 			return
 
 	return TRUE

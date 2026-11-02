@@ -35,7 +35,7 @@
 	name = "osobisty glock Komendanta, 'Winona'."
 	targetitem = /obj/item/gun/ballistic/automatic/pistol/glock/security/hos
 	difficulty = 10
-	excludefromjob = list("Head Of Security")
+	excludefromjob = list(JOB_NAME_HEADOFSECURITY)
 
 /datum/objective_item/steal/handtele
 	name = "ręczny teleporter."

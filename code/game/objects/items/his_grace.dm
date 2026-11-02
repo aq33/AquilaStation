@@ -5,8 +5,8 @@
 //Leaving His Grace alone for some time will reset His thirst and put Him to sleep.
 //Using His Grace effectively requires extreme speed and care.
 /obj/item/his_grace
-	name = "artistic toolbox"
-	desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
+	name = "artystyczna skrzynka narzędziowa"
+	desc = "Skrzynka narzędziowa pomalowana na jaskrawą zieleń. Na jej widok robi ci się nieswojo."
 	icon_state = "his_grace"
 	item_state = "artistic_toolbox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -129,8 +129,8 @@
 		return
 	awakened = TRUE
 	user.visible_message("<span class='boldwarning'>[src] zaczyna grzechotać. On jest spragniony.</span>", "<span class='his_grace'>Podnosisz zatrzask [src]. Masz nadzieję, że to dobry pomysł.</span>")
-	name = "His Grace"
-	desc = "A bloodthirsty artifact created by a profane rite."
+	name = "Jego Łaska"
+	desc = "Krwiożerczy artefakt stworzony w bluźnierczym rytuale."
 	gender = MALE
 	adjust_bloodthirst(1)
 	force_bonus = HIS_GRACE_FORCE_BONUS * LAZYLEN(contents)
@@ -212,7 +212,7 @@
 	switch(bloodthirst)
 		if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 			if(HIS_GRACE_CONSUME_OWNER > prev_bloodthirst)
-				master.visible_message("<span class='userdanger'>[src] enters a frenzy!</span>")
+				master.visible_message("<span class='userdanger'>[src] wpada w szał!</span>")
 		if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
 			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_STARVING > prev_bloodthirst)
@@ -246,11 +246,11 @@
 		return
 	var/mob/living/carbon/human/master = loc
 	force_bonus += ascend_bonus
-	desc = "A legendary toolbox and a distant artifact from The Age of Three Powers. On its three latches engraved are the words \"The Sun\", \"The Moon\", and \"The Stars\". The entire toolbox has the words \"The World\" engraved into its sides."
+	desc = "Legendarna skrzynka narzędziowa, dawny artefakt z Ery Trzech Potęg. Na jej trzech zatrzaskach wygrawerowano słowa „Słońce”, „Księżyc” i „Gwiazdy”. Po bokach całej skrzynki wygrawerowano słowa „Świat”."
 	icon_state = "his_grace_ascended"
 	item_state = "toolbox_gold"
 	ascended = TRUE
 	playsound(src, 'sound/effects/his_grace_ascend.ogg', 100)
 	if(istype(master))
 		master.visible_message("<span class='his_grace big bold'>Bogowie będą patrzeć.</span>")
-		name = "[master]'s mythical toolbox of three powers"
+		name = "mityczna skrzynka trzech potęg ([master])"

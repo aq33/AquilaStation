@@ -8,7 +8,7 @@
 ///
 
 /obj/effect/proc_holder/spell/pointed/unsettle
-	name = "Unsettle"
+	name = "Zaniepokój"
 	desc = "Wpatruj się w ofiarę, która cię widzi. Jeśli przez kilka sekund nie straci cię z oczu, padnie oszołomiona i wyczerpana, ale dowie się, że tu jesteś."
 	action_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
 	action_icon_state = "unsettle"
@@ -94,7 +94,7 @@
 ///
 
 /obj/effect/proc_holder/spell/targeted/telepathy/voidwalker
-	name = "Cosmic Transmit"
+	name = "Kosmiczny przekaz"
 	desc = "Przekaż myśl wprost do czyjegoś umysłu."
 	action_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
 	action_icon_state = "telepathy"
@@ -109,7 +109,7 @@
 ///
 
 /obj/effect/proc_holder/spell/pointed/voidwalker_dash
-	name = "Cosmic Dash"
+	name = "Kosmiczny zryw"
 	desc = "Pomknij przez kosmos do wskazanego miejsca, taranując wszystko po drodze. Słaby atak, świetna ucieczka."
 	action_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
 	action_icon_state = "dash"
@@ -182,7 +182,7 @@
 ///
 
 /datum/action/innate/voidwalker_camo
-	name = "Toggle Space Camouflage"
+	name = "Przełącz kosmiczny kamuflaż"
 	desc = "Włącz albo wyłącz niewidzialność w kosmosie."
 	icon_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
 	button_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
@@ -201,7 +201,7 @@
 
 /// Przejście piętro wyżej albo niżej: pod pokładem i w kosmosie
 /datum/action/innate/voidwalker_floor
-	name = "Move Upwards"
+	name = "Wejdź wyżej"
 	desc = "Przejdź piętro wyżej. Pod pokładem zawsze, w kosmosie gdy nic nie blokuje."
 	icon_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
 	button_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'
@@ -211,7 +211,7 @@
 	var/direction = UP
 
 /datum/action/innate/voidwalker_floor/down
-	name = "Move Down"
+	name = "Zejdź niżej"
 	desc = "Przejdź piętro niżej. Pod pokładem zawsze, w kosmosie gdy nic nie blokuje."
 	button_icon_state = "floor_down"
 	direction = DOWN
@@ -222,7 +222,7 @@
 		walker.move_floor(direction)
 
 /datum/action/innate/voidwalker_vomit_jump
-	name = "Jump To Nebula Vomit"
+	name = "Skocz do mgławicowych wymiocin"
 	desc = "Podczas nurkowania przeskocz do kolejnych mgławicowych wymiocin zostawionych przez oświeconych."
 	icon_icon = 'aquila/icons/effects/voidwalker_vomit.dmi'
 	button_icon = 'aquila/icons/mob/actions/actions_voidwalker.dmi'

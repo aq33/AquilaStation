@@ -1,20 +1,20 @@
 #define FIREALARM_COOLDOWN 67 // Chosen fairly arbitrarily, it is the length of the audio in FireAlarm.ogg. The actual track length is 7 seconds 8ms but but the audio stops at 6s 700ms
 
 /obj/item/electronics/firealarm
-	name = "fire alarm electronics"
+	name = "elektronika alarmu pożarowego"
 	custom_price = 5
-	desc = "A fire alarm circuit. Can handle heat levels up to 40 degrees celsius."
+	desc = "Obwód alarmu pożarowego. Wytrzymuje temperatury do 40 stopni Celsjusza."
 
 /obj/item/wallframe/firealarm
-	name = "fire alarm frame"
-	desc = "Used for building fire alarms."
+	name = "rama alarmu pożarowego"
+	desc = "Służy do budowy alarmów pożarowych."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire_bitem"
 	result_path = /obj/machinery/firealarm
 
 /obj/machinery/firealarm
-	name = "fire alarm"
-	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
+	name = "alarm pożarowy"
+	desc = "<i>„Pociągnij w razie zagrożenia”</i>. Więc ciągnij bez końca."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
 	max_integrity = 250
@@ -341,8 +341,8 @@
 	var/party = FALSE
 
 /obj/machinery/firealarm/partyalarm
-	name = "\improper PARTY BUTTON"
-	desc = "Cuban Pete is in the house!"
+	name = "\improper GUZIK IMPREZY"
+	desc = "Cuban Pete wchodzi na parkiet!"
 	var/static/party_overlay
 
 /obj/machinery/firealarm/partyalarm/attack_hand(mob/user)

@@ -1,7 +1,7 @@
 //PUMP GOES HERE
 /obj/machinery/armour_plating_nanorepair_pump
-	name = "\improper Armour Plating Nano-repair Pump"
-	desc = "AP thingies that link to the Well"
+	name = "\improper nanonaprawcza pompa płyt pancerza"
+	desc = "Pancerne ustrojstwo, które łączy się ze studnią."
 	icon = 'nsv13/icons/obj/machinery/armour_pump.dmi'
 	icon_state = "pump"
 	pixel_x = -16
@@ -131,7 +131,9 @@
 		apnw = M.buffer
 		apnw.apnp += src
 		M.buffer = null
-	quadrant = input(user, "Do której ćwiartki skierować pompę nanonaprawczą?", "[name]") as null|anything in list("forward_port", "forward_starboard", "aft_port", "aft_starboard")
+	var/static/list/quadrant_names = list("Dziób, lewa burta" = "forward_port", "Dziób, prawa burta" = "forward_starboard", "Rufa, lewa burta" = "aft_port", "Rufa, prawa burta" = "aft_starboard")
+	var/quadrant_choice = input(user, "Do której ćwiartki skierować pompę nanonaprawczą?", "[name]") as null|anything in quadrant_names
+	quadrant = quadrant_choice ? quadrant_names[quadrant_choice] : null
 	playsound(src, 'sound/items/flashlight_on.ogg', 100, TRUE)
 	to_chat(user, "<span class='notice'>Przesłano bufor</span>")
 	return
@@ -254,7 +256,7 @@
 	return data
 
 /obj/item/circuitboard/machine/armour_plating_nanorepair_pump
-	name = "Armour Plating Nano-repair Pump (Machine Board)"
+	name = "nanonaprawcza pompa płyt pancerza (płytka maszyny)"
 	build_path = /obj/machinery/armour_plating_nanorepair_pump
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 10,

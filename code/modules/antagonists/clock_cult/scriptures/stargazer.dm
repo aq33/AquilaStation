@@ -2,8 +2,8 @@
 // !      Stargazer     ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/stargazer
-	name = "Stargazer"
-	desc = "Allows you to enchant your weapons and armor, however enchanting can have risky side effects."
+	name = "Obserwator gwiazd"
+	desc = "Pozwala zaklinać broń i zbroję, ale zaklinanie może mieć ryzykowne skutki uboczne."
 	tip = "Wzmacniaj swój sprzęt, zaklinając go gwiezdnymi obserwatorami."
 	button_icon_state = "Stargazer"
 	power_cost = 300
@@ -57,8 +57,8 @@
 
 //Stargazer structure
 /obj/structure/destructible/clockwork/gear_base/stargazer
-	name = "stargazer"
-	desc = "A small pedestal, glowing with a divine energy."
+	name = "obserwator gwiazd"
+	desc = "Mały piedestał jarzący się boską energią."
 	clockwork_desc = "Mały piedestał jarzący się boską energią. Nadaje przedmiotom specjalne moce i zdolności."
 	default_icon_state = "stargazer"
 	anchored = TRUE

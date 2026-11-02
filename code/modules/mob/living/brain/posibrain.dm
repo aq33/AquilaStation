@@ -1,8 +1,8 @@
 GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain
-	name = "positronic brain"
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
+	name = "mózg pozytroniczny"
+	desc = "Sześcian lśniącego metalu o boku dziesięciu centymetrów, pokryty płytkimi rowkami."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -33,7 +33,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain/proc/ping_ghosts(msg, newlymade)
 	if(newlymade || GLOB.posibrain_notify_cooldown <= world.time)
-		notify_ghosts("[name] [msg] in [get_area(src)]!", ghost_sound = !newlymade ? 'sound/effects/ghost2.ogg':null, notify_volume = 75, enter_link = "<a href=byond://?src=[REF(src)];activate=1>(Click to enter)</a>", source = src, action = NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_POSIBRAIN, notify_suiciders = FALSE)
+		notify_ghosts("[name]: [msg] ([get_area(src)])!", ghost_sound = !newlymade ? 'sound/effects/ghost2.ogg':null, notify_volume = 75, enter_link = "<a href=byond://?src=[REF(src)];activate=1>(Kliknij, by wejść)</a>", source = src, action = NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_POSIBRAIN, notify_suiciders = FALSE)
 		if(!newlymade)
 			GLOB.posibrain_notify_cooldown = world.time + askDelay
 
@@ -51,7 +51,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	//Start the process of requesting a new ghost.
 	to_chat(user, begin_activation_message)
-	ping_ghosts("requested", FALSE)
+	ping_ghosts("prośba o aktywację", FALSE)
 	next_ask = world.time + askDelay
 	searching = TRUE
 	update_icon()
@@ -96,8 +96,8 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, "<span class='warning'>[src] lekko skwierczy. Niestety nie przyjmuje samobójców!</span>")
 		return
-	var/posi_ask = alert("Zostać [name]? (Uwaga: nie będzie można cię już sklonować, a wszystkie poprzednie życia zostaną zapomniane!)","Na pewno?","Yes","No")
-	if(posi_ask != "Yes" || QDELETED(src))
+	var/posi_ask = alert("Zostać [name]? (Uwaga: nie będzie można cię już sklonować, a wszystkie poprzednie życia zostaną zapomniane!)","Na pewno?","Tak","Nie")
+	if(posi_ask != "Tak" || QDELETED(src))
 		return
 	if(brainmob.suiciding) //clear suicide status if the old occupant suicided.
 		brainmob.set_suicide(FALSE)
@@ -173,7 +173,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.forceMove(src)
 	brainmob.container = src
 	if(autoping)
-		ping_ghosts("created", TRUE)
+		ping_ghosts("nowo utworzony", TRUE)
 
 /obj/item/mmi/posibrain/attackby(obj/item/O, mob/user)
 	return

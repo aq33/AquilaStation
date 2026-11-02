@@ -12,9 +12,9 @@
 /obj/structure/windoor_assembly
 	icon = 'icons/obj/doors/windoor.dmi'
 
-	name = "windoor Assembly"
+	name = "zespół drzwi okiennych"
 	icon_state = "l_windoor_assembly01"
-	desc = "A small glass and wire assembly for windoors."
+	desc = "Mały zespół ze szkła i przewodów do budowy drzwi okiennych."
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
@@ -127,9 +127,9 @@
 					to_chat(user, "<span class='notice'>Mocujesz zespół drzwi okiennych.</span>")
 					setAnchored(TRUE)
 					if(secure)
-						name = "secure anchored windoor assembly"
+						name = "zabezpieczony zakotwiczony zespół drzwi okiennych"
 					else
-						name = "anchored windoor assembly"
+						name = "zakotwiczony zespół drzwi okiennych"
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
 			else if(W.tool_behaviour == TOOL_WRENCH && anchored)
@@ -142,9 +142,9 @@
 					to_chat(user, "<span class='notice'>Odczepiasz zespół drzwi okiennych.</span>")
 					setAnchored(FALSE)
 					if(secure)
-						name = "secure windoor assembly"
+						name = "zabezpieczony zespół drzwi okiennych"
 					else
-						name = "windoor assembly"
+						name = "zespół drzwi okiennych"
 
 			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
 			else if(istype(W, /obj/item/stack/sheet/plasteel) && !secure)
@@ -162,9 +162,9 @@
 					to_chat(user, "<span class='notice'>Wzmacniasz drzwi okienne.</span>")
 					secure = TRUE
 					if(anchored)
-						name = "secure anchored windoor assembly"
+						name = "zabezpieczony zakotwiczony zespół drzwi okiennych"
 					else
-						name = "secure windoor assembly"
+						name = "zabezpieczony zespół drzwi okiennych"
 
 			//Adding cable to the assembly. Step 5 complete.
 			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
@@ -180,9 +180,9 @@
 					to_chat(user, "<span class='notice'>Okablowujesz drzwi okienne.</span>")
 					state = "02"
 					if(secure)
-						name = "secure wired windoor assembly"
+						name = "zabezpieczony okablowany zespół drzwi okiennych"
 					else
-						name = "wired windoor assembly"
+						name = "okablowany zespół drzwi okiennych"
 			else
 				return ..()
 
@@ -200,9 +200,9 @@
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					state = "01"
 					if(secure)
-						name = "secure anchored windoor assembly"
+						name = "zabezpieczony zakotwiczony zespół drzwi okiennych"
 					else
-						name = "anchored windoor assembly"
+						name = "zakotwiczony zespół drzwi okiennych"
 
 			//Adding airlock electronics for access. Step 6 complete.
 			else if(istype(W, /obj/item/electronics/airlock))
@@ -217,7 +217,7 @@
 						W.forceMove(drop_location())
 						return
 					to_chat(user, "<span class='notice'>Instalujesz elektronikę śluzy.</span>")
-					name = "near finished windoor assembly"
+					name = "prawie gotowy zespół drzwi okiennych"
 					electronics = W
 				else
 					W.forceMove(drop_location())
@@ -242,7 +242,7 @@
 							qdel(AE)
 							return
 						to_chat(user, "<span class='notice'>Instalujesz elektroadaptacyjny pseudoobwód.</span>")
-						name = "near finished windoor assembly"
+						name = "prawie gotowy zespół drzwi okiennych"
 						electronics = AE
 					else
 						qdel(AE)
@@ -257,7 +257,7 @@
 
 				if(W.use_tool(src, user, 40, volume=100) && electronics)
 					to_chat(user, "<span class='notice'>Wyjmujesz elektronikę śluzy.</span>")
-					name = "wired windoor assembly"
+					name = "okablowany zespół drzwi okiennych"
 					var/obj/item/electronics/airlock/ae
 					ae = electronics
 					electronics = null

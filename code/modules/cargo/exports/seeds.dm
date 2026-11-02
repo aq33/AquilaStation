@@ -1,7 +1,7 @@
 /datum/export/seed
 	cost = 50 // Gets multiplied by potency
 	k_elasticity = 1	//price inelastic/quantity elastic, only need to export a few samples
-	unit_name = "new plant species sample"
+	unit_name = "próbka nowego gatunku rośliny"
 	export_types = list(
 		/obj/item/plant_seeds = TRUE,
 	)

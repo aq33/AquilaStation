@@ -347,7 +347,7 @@
 		MA.layer = atom_parent.layer
 		atom_parent.appearance = MA
 		//Rset name & desc
-		atom_parent.name = "[artifact_material.name] [old_name]"
+		atom_parent.name = "[old_name] ([artifact_material.name])"
 		atom_parent.desc = old_desc //Appearance resets this shit
 	if(do_texture)
 		//Overlay the material texture

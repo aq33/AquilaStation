@@ -2,8 +2,8 @@
 //Solgov ships go here
 //These need to not be children of nanotrasen come starmap 2
 /obj/structure/overmap/nanotrasen/solgov/vnc
-	name = "Von Neumann class patrol frigate"
-	desc = "A long-range SolGov patrol boat, usually used for clearing asteroid fields."
+	name = "fregata patrolowa klasy Von Neumann"
+	desc = "Dalekosiężny okręt patrolowy SolGov, zwykle używany do oczyszczania pól asteroid."
 	icon = 'nsv13/icons/overmap/new/solgov/frigate.dmi'
 	icon_state = "frigate"
 	mass = MASS_MEDIUM_SMALL
@@ -17,8 +17,8 @@
 
 
 /obj/structure/overmap/nanotrasen/solgov
-	name = "yangtzee-kiang class light cruiser"
-	desc = "A mid range SolGov patrol craft, usually relegated to anti-piracy operations."
+	name = "lekki krążownik klasy Yangtzee-Kiang"
+	desc = "Okręt patrolowy SolGov średniego zasięgu, zwykle przydzielany do operacji przeciwpirackich."
 	icon = 'nsv13/icons/overmap/nanotrasen/solgov_cruiser.dmi'
 	icon_state = "cruiser"
 	mass = MASS_LARGE
@@ -31,8 +31,8 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 50, "overmap_heavy" = 25)
 
 /obj/structure/overmap/nanotrasen/solgov/carrier
-	name = "rio-grande class support cruiser"
-	desc = "An armoured support cruiser capable of resupplying ships extremely quickly."
+	name = "krążownik wsparcia klasy Rio Grande"
+	desc = "Opancerzony krążownik wsparcia, który błyskawicznie uzupełnia zapasy innych okrętów."
 	icon = 'nsv13/icons/overmap/nanotrasen/prototype_cruiser.dmi'
 	icon_state = "cruiser"
 	damage_states = TRUE
@@ -44,8 +44,8 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 70, "overmap_heavy" = 20)
 
 /obj/structure/overmap/nanotrasen/solgov/aetherwhisp
-	name = "Aetherwhisp class light cruiser"
-	desc = "A mid range SolGov exploratory cruiser. These ships are geared for peaceful missions, but can defend themselves if they must."
+	name = "lekki krążownik klasy Aetherwhisp"
+	desc = "Krążownik badawczy SolGov średniego zasięgu. Te okręty są przystosowane do pokojowych misji, ale w razie potrzeby potrafią się obronić."
 	icon = 'nsv13/icons/overmap/nanotrasen/aetherbrick.dmi'
 	icon_state = "cruiser"
 	mass = MASS_MEDIUM_LARGE // A solgov ship has greater maneuverability but not much more than a LARGE NT ship
@@ -88,8 +88,8 @@
 
 // Solgov Kadesh? Solgov Kadesh.
 /obj/structure/overmap/nanotrasen/solgov/ai/interdictor
-	name = "Capiens class medium cruiser"
-	desc = "A SolGov pursuit craft, meant for tracking and cornering high value targets."
+	name = "średni krążownik klasy Capiens"
+	desc = "Okręt pościgowy SolGov, przeznaczony do tropienia i osaczania cennych celów."
 	icon = 'nsv13/icons/overmap/new/solgov/destroyer.dmi'
 	icon_state = "cruiser"
 	obj_integrity = 1200
@@ -134,8 +134,8 @@
 
 //These little bastards are feckin horrible
 /obj/structure/overmap/nanotrasen/solgov/ai/fighter //need custom AI behaviour to escort bombers if applicable
-	name = "peregrine class attack fighter"
-	desc = "A formidable light fighter with a small shield generator and 'stinger' class laser weapons."
+	name = "myśliwiec szturmowy klasy Peregrine"
+	desc = "Groźny lekki myśliwiec z małym generatorem tarczy i bronią laserową klasy „Stinger”."
 	icon = 'nsv13/icons/overmap/new/solgov/fighter.dmi'
 	icon_state = "fighter"
 	damage_states = FALSE

@@ -73,14 +73,14 @@ const AntagSelection = (props: {
       buttons={
         <>
           <Button
-            tooltip="Global Enable Category"
+            tooltip="Włącz kategorię globalnie"
             tooltipPosition="bottom"
             icon="globe"
             color="good"
             onClick={() => enableAntagsGlobal(antagonistKeys)}
           />
           <Button
-            tooltip="Global Disable Category"
+            tooltip="Wyłącz kategorię globalnie"
             tooltipPosition="bottom"
             icon="ban"
             color="bad"
@@ -89,14 +89,14 @@ const AntagSelection = (props: {
           />
 
           <Button
-            tooltip="Per-Character Enable Category"
+            tooltip="Włącz kategorię dla tej postaci"
             tooltipPosition="bottom"
             icon="user"
             color="good"
             onClick={() => enableAntagsCharacter(antagonistKeys)}
           />
           <Button
-            tooltip="Per-Character Disable Category"
+            tooltip="Wyłącz kategorię dla tej postaci"
             tooltipPosition="bottom"
             icon="user-slash"
             color="bad"
@@ -180,11 +180,11 @@ const AntagSelection = (props: {
                         <Tooltip
                           content={
                             <div>
-                              Per-Character Toggle
+                              Przełącznik dla postaci
                               <Divider />
-                              This can only be disabled per-character. You
-                              cannot force a globally disabled antagonist
-                              &apos;on&apos; for a specific character.
+                              Tu możesz tylko wyłączyć rolę dla jednej postaci.
+                              Antagonisty wyłączonego globalnie nie da się
+                              włączyć dla konkretnej postaci.
                             </div>
                           }
                         >
@@ -194,7 +194,7 @@ const AntagSelection = (props: {
                     </Box>
                   ) : null}
                   <Tooltip
-                    content={(full_description || 'No description found.')
+                    content={(full_description || 'Brak opisu.')
                       .split('\n')
                       .map((text, index, values) => (
                         <div key={antagonist.path + '_desc_' + index}>
@@ -226,7 +226,7 @@ const AntagSelection = (props: {
                         <>
                           <Box className="antagonist-overlay-text">
                             <span className="antagonist-overlay-text-hours">
-                              Banned
+                              Ban
                             </span>
                           </Box>
                           <Box className="antagonist-banned-slash" />
@@ -239,7 +239,7 @@ const AntagSelection = (props: {
                             {Math.ceil(hoursLeft)}
                           </span>
                           <br />
-                          hours left
+                          godz. do odblokowania
                         </Box>
                       )}
                     </Box>
@@ -254,6 +254,13 @@ const AntagSelection = (props: {
   );
 };
 
+// AQUILA: kategorie przychodzą z DM jako klucze (ROLE_PREFERENCE_CATEGORY_*)
+const ANTAG_CATEGORY_NAMES: Record<string, string> = {
+  Antagonists: 'Antagoniści',
+  'Midrounds (Living)': 'Midroundy (żywi)',
+  'Midrounds (Ghost Poll)': 'Midroundy (nabór duchów)',
+};
+
 export const AntagsPage = (_) => {
   let [searchText, setSearchText] = useLocalState('antag_search', '');
   let search = createSearch(searchText, (antagonist: AntagonistData) => {
@@ -263,7 +270,7 @@ export const AntagsPage = (_) => {
     <ServerPreferencesFetcher
       render={(serverData) => {
         if (!serverData) {
-          return <Box>Loading loadout data...</Box>;
+          return <Box>Wczytywanie danych...</Box>;
         }
         const { antagonists = [], categories = [] } = serverData.antags;
         return (
@@ -275,13 +282,13 @@ export const AntagsPage = (_) => {
             />
             {searchText !== '' ? (
               <AntagSelection
-                name="Search Result"
+                name="Wyniki wyszukiwania"
                 antagonists={antagonists.filter(search)}
               />
             ) : (
               categories.map((category) => (
                 <AntagSelection
-                  name={category}
+                  name={ANTAG_CATEGORY_NAMES[category] || category}
                   key={category}
                   antagonists={
                     antagonists.filter((a) => a.category === category)!
@@ -320,7 +327,7 @@ const SearchBar = ({ searchText, setSearchText, allAntags }) => {
           <Icon mr={1} name="search" />
           <Input
             width="500px"
-            placeholder="Search roles"
+            placeholder="Szukaj ról"
             value={searchText}
             onChange={(value) => setSearchText(value)}
           />
@@ -328,42 +335,42 @@ const SearchBar = ({ searchText, setSearchText, allAntags }) => {
         <Stack.Item grow />
         <Stack.Item>
           <Button
-            tooltip="Global Enable Everything"
+            tooltip="Włącz wszystko globalnie"
             tooltipPosition="bottom"
             icon="globe"
             color="good"
             onClick={() => enableAntags(false)}
           >
-            Enable
+            Włącz
           </Button>
           <Button
-            tooltip="Global Disable Everything"
+            tooltip="Wyłącz wszystko globalnie"
             tooltipPosition="bottom"
             icon="ban"
             color="bad"
             onClick={() => disableAntags(false)}
           >
-            Disable
+            Wyłącz
           </Button>
         </Stack.Item>
         <Stack.Item>
           <Button
-            tooltip="Per-Character Enable Everything"
+            tooltip="Włącz wszystko dla tej postaci"
             tooltipPosition="bottom"
             icon="user"
             color="good"
             onClick={() => enableAntags(true)}
           >
-            Enable
+            Włącz
           </Button>
           <Button
-            tooltip="Per-Character Disable Everything"
+            tooltip="Wyłącz wszystko dla tej postaci"
             tooltipPosition="bottom"
             icon="user-slash"
             color="bad"
             onClick={() => disableAntags(true)}
           >
-            Disable
+            Wyłącz
           </Button>
         </Stack.Item>
       </Stack>

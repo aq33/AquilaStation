@@ -1,25 +1,25 @@
 /obj/item/projectile/bullet/shotgun_slug
-	name = "12g shotgun slug"
+	name = "breneka 12g"
 	damage = 60
 	armour_penetration = -20
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	bleed_force = BLEED_TINY
-	name = "beanbag slug"
+	name = "woreczek z nabojem"
 	damage = 5
 	stamina = 55
 	paralyze = 10 //NSV13 - added paralyze
 
 /obj/item/projectile/bullet/incendiary/shotgun
-	name = "incendiary slug"
+	name = "breneka zapalająca"
 	damage = 20
 
 /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
-	name = "dragonsbreath pellet"
+	name = "śrucina smoczego oddechu"
 	damage = 5
 
 /obj/item/projectile/bullet/shotgun_stunslug
-	name = "stunslug"
+	name = "breneka ogłuszająca"
 	damage = 5
 	paralyze = 100
 	stutter = 5
@@ -29,7 +29,7 @@
 	color = "#FFFF00"
 
 /obj/item/projectile/bullet/shotgun_meteorslug
-	name = "meteorslug"
+	name = "breneka meteorytowa"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 20
@@ -48,7 +48,7 @@
 	SpinAnimation()
 
 /obj/item/projectile/bullet/shotgun_frag12
-	name ="frag12 slug"
+	name ="breneka FRAG-12"
 	damage = 25
 	paralyze = 10
 
@@ -66,18 +66,18 @@
 	ricochet_decay_chance = 0.9
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
-	name = "buckshot pellet"
+	name = "śrucina"
 	damage = 9
 	tile_dropoff = 0.5
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	bleed_force = BLEED_TINY
-	name = "rubbershot pellet"
+	name = "gumowa śrucina"
 	damage = 3
 	stamina = 9
 
 /obj/item/projectile/bullet/pellet/shotgun_incapacitate
-	name = "incapacitating pellet"
+	name = "obezwładniająca śrucina"
 	damage = 1
 	stamina = 5
 
@@ -112,8 +112,8 @@
 
 /obj/item/projectile/bullet/shotgun_breaching
 	bleed_force = BLEED_SURFACE
-	name = "12g breaching round"
-	desc = "A breaching round designed to destroy airlocks and windows with only a few shots, but is ineffective against other targets."
+	name = "nabój wyważający 12g"
+	desc = "Nabój wyważający, który kilkoma strzałami niszczy śluzy i okna, ale na inne cele nie działa."
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	damage = 10 //does shit damage to everything except doors and windows
 

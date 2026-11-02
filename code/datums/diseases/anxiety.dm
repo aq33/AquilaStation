@@ -1,10 +1,10 @@
 /datum/disease/anxiety
-	name = "Severe Anxiety"
-	form = "Infection"
+	name = "Silny niepokój"
+	form = "Infekcja"
 	max_stages = 4
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Ethanol"
+	cure_text = "Etanol"
 	cures = list(/datum/reagent/consumable/ethanol)
 	agent = "Nadmiar lepidoptycydów"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)

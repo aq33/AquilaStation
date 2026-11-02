@@ -1,48 +1,48 @@
 //plaques and memorials
 
 /obj/structure/sign/plaques
-	name = "plaque"
-	desc = "A plaque commemorating an event."
+	name = "tabliczka pamiątkowa"
+	desc = "Tabliczka upamiętniająca jakieś wydarzenie."
 	icon_state = "atmosplaque"
 
 /obj/structure/sign/plaques/atmos
-	name = "\improper FEA Atmospherics Division plaque"
-	desc = "This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands."
+	name = "\improper tabliczka Działu Atmosferyki FEA"
+	desc = "Ta tabliczka upamiętnia upadek działu atmosferyki FEA. Dla wszystkich zwęglonych, oszołomionych i kruchych ludzi, którzy zginęli z jego ręki."
 
 /obj/structure/sign/plaques/thunderdome
-	name = "Thunderdome Plaque"
-	desc = "This plaque commemorates those who have fallen in glorious combat.  For all the charred, dizzy, and beaten men who have died in its hands."
+	name = "tabliczka Thunderdome"
+	desc = "Ta tabliczka upamiętnia poległych w chwalebnej walce. Dla wszystkich zwęglonych, oszołomionych i pobitych ludzi, którzy zginęli z jego ręki."
 
 /obj/structure/sign/plaques/golden
-	name = "The Most Robust Men Award for Robustness"
-	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
+	name = "Nagroda dla Najtwardszych Ludzi za Twardość"
+	desc = "Być Twardym to nie czyn ani sposób na życie, lecz stan umysłu. Tylko ci, których Wola jest dość silna, by działać w czasie kryzysu i ratować przyjaciół przed wrogiem, są naprawdę Twardzi. Bądźcie Twardzi, przyjaciele."
 	icon_state = "goldenplaque"
 
 /obj/structure/sign/plaques/golden/captain
-	name = "The Most Robust Captain Award for Robustness"
+	name = "Nagroda dla Najtwardszego Kapitana za Twardość"
 
 /obj/structure/sign/plaques/kiddie
-	name = "\improper AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to have an intellectual disability. Beneath the image, someone has scratched the word \"PACKETS\"."
+	name = "\improper tabliczka twórców SI"
+	desc = "Obok niezwykle długiej listy nazwisk i stanowisk widnieje rysunek małego dziecka. Dziecko wygląda na niepełnosprawne intelektualnie. Pod obrazkiem ktoś wydrapał słowo „PAKIETY”."
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/plaques/kiddie/badger
-	name = "\improper Remembrance Plaque"
-	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep amongst the stars. Someone has drawn a picture of a crying badger at the bottom."
+	name = "\improper tabliczka pamięci"
+	desc = "Tabliczka upamiętniająca poległych. Niech spoczywają w pokoju, na zawsze uśpieni wśród gwiazd. Na dole ktoś narysował płaczącego borsuka."
 
 /obj/structure/sign/plaques/kiddie/library
-	name = "Library Rules Sign"
-	desc = "A long list of rules to be followed when in the library, extolling the virtues of being quiet at all times and threatening those who would dare eat hot food inside."
+	name = "regulamin biblioteki"
+	desc = "Długa lista zasad obowiązujących w bibliotece. Wychwala zalety ciągłego zachowania ciszy i grozi każdemu, kto ośmieli się jeść w środku ciepłe posiłki."
 
 /obj/structure/sign/plaques/kiddie/perfect_man
-	name = "\improper 'Perfect Man' sign"
-	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Nanotrasen Employee."
+	name = "\improper tablica „Człowiek Idealny”"
+	desc = "Przewodnik po eksponacie. Wyjaśnia, jak najnowsze osiągnięcia Korporacji Nanotrasen w dziedzinie implantów mindshield i klonowania doprowadziły do powstania i praktycznej nieśmiertelności „człowieka idealnego”, czyli lojalnego pracownika Nanotrasen."
 
 /obj/structure/sign/plaques/kiddie/perfect_drone
-	name = "\improper 'Perfect Drone' sign"
-	desc = "A guide to the drone shell dispenser, detailing the constructive and destructive applications of modern repair drones, as well as the development of the incorruptible cyborg servants of tomorrow, available today."
+	name = "\improper tablica „Dron Idealny”"
+	desc = "Przewodnik po dozowniku powłok dronów. Opisuje konstruktywne i destrukcyjne zastosowania nowoczesnych dronów naprawczych, a także rozwój nieprzekupnych cyborgów-sług jutra, dostępnych już dziś."
 
 /obj/structure/sign/plaques/deempisi
-	name = "Mr. Deempisi portrait"
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'"
+	name = "portret pana Deempisiego"
+	desc = "Tabliczka pod obrazem głosi: „Choć maszynka do mięsa cię nie oszczędziła, nie lękaj się. Ani kawałek ciebie się nie zmarnował... Byłeś pyszny”."
 	icon_state = "monkey_painting"

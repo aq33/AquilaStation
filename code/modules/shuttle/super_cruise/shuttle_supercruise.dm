@@ -5,7 +5,7 @@
 	//Inherit orbital velocity of the place we are leaving
 	var/datum/orbital_object/orbital_body = SSorbits.assoc_z_levels["[get_virtual_z_level()]"]
 	if(!orbital_body)
-		message_admins("Error: Shuttle is entering supercruise from a bad location. Shuttle: [name]")
+		message_admins("Błąd: prom wchodzi w supercruise z nieprawidłowego miejsca. Prom: [name]")
 		log_runtime("Error: Shuttle is entering supercruise from a bad location. Shuttle: [name]")
 		var/datum/orbital_map/default_map = SSorbits.orbital_maps[PRIMARY_ORBITAL_MAP]
 		orbital_body = default_map.center

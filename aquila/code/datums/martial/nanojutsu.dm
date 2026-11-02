@@ -116,7 +116,7 @@
 
 /mob/living/carbon/human/proc/nanojutsu_help()
 	set name = "Recall Teachings"
-	set desc = "Remember the martial techniques of Nanojutsu."
+	set desc = "Przypomnij sobie techniki walki Nanojutsu."
 	set category = "Nanojutsu"
 
 	to_chat(usr, "<span class='danger'>WCZYTYWANIE README.TXT...</span>")

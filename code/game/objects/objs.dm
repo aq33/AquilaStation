@@ -291,9 +291,9 @@
 /obj/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---")
-	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
-	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
-	VV_DROPDOWN_OPTION(VV_HK_ARMOR_MOD, "Modify armor values")
+	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Usuń wszystkie obiekty typu")
+	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Mów jako obiekt")
+	VV_DROPDOWN_OPTION(VV_HK_ARMOR_MOD, "Zmień wartości pancerza")
 
 /obj/vv_do_topic(list/href_list)
 	if(!(. = ..()))
@@ -308,7 +308,7 @@
 		for (var/i in armorlist)
 			pickerlist += list(list("value" = armorlist[i], "name" = i))
 
-		var/list/result = presentpicker(usr, "Modify armor", "Modify armor: [src]", Button1="Save", Button2 = "Cancel", Timeout=FALSE, inputtype = "text", values = pickerlist)
+		var/list/result = presentpicker(usr, "Zmień pancerz", "Zmień pancerz: [src]", Button1="Zapisz", Button2 = "Anuluj", Timeout=FALSE, inputtype = "text", values = pickerlist)
 
 		if (islist(result))
 			if (result["button"] != 2) // If the user pressed the cancel button
@@ -323,22 +323,22 @@
 			                  fire = text2num(result["values"]["fire"]),\
 			                  acid = text2num(result["values"]["acid"]))
 				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]</span>")
+				message_admins("<span class='notice'>[key_name_admin(usr)] zmienia pancerz [src] ([type]) na melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]</span>")
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
-			var/action_type = alert("Strict type ([type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
-			if(action_type == "Cancel" || !action_type)
+			var/action_type = alert("Tylko typ ([type]) czy typ ze wszystkimi podtypami?",,"Tylko typ","Typ z podtypami","Anuluj")
+			if(action_type == "Anuluj" || !action_type)
 				return
 
-			if(alert("Czy na pewno chcesz usunąć wszystkie obiekty typu [type]?",,"Yes","No") != "Yes")
+			if(alert("Czy na pewno chcesz usunąć wszystkie obiekty typu [type]?",,"Tak","Nie") != "Tak")
 				return
 
-			if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
+			if(alert("Wymagane drugie potwierdzenie. Usunąć?",,"Tak","Nie") != "Tak")
 				return
 
 			var/O_type = type
 			switch(action_type)
-				if("Strict type")
+				if("Tylko typ")
 					var/i = 0
 					for(var/obj/Obj in world)
 						if(Obj.type == O_type)
@@ -349,8 +349,8 @@
 						to_chat(usr, "Nie istnieją obiekty tego typu")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
-				if("Type and subtypes")
+					message_admins("<span class='notice'>[key_name(usr)] usuwa wszystkie obiekty typu [O_type] (usunięto: [i]) </span>")
+				if("Typ z podtypami")
 					var/i = 0
 					for(var/obj/Obj in world)
 						if(istype(Obj,O_type))
@@ -361,7 +361,7 @@
 						to_chat(usr, "Nie istnieją obiekty tego typu")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+					message_admins("<span class='notice'>[key_name(usr)] usuwa wszystkie obiekty typu lub podtypu [O_type] (usunięto: [i]) </span>")
 
 /obj/examine(mob/user)
 	. = ..()
@@ -383,7 +383,7 @@
 		var/output = icon2html(src, M, unique_reskin[V])
 		to_chat(M, "[V]: <span class='reallybig'>[output]</span>")
 
-	var/choice = input(M,"Uwaga, wygląd [src] możesz zmienić tylko raz!","Reskin Object") as null|anything in sortList(unique_reskin)
+	var/choice = input(M,"Uwaga, wygląd [src] możesz zmienić tylko raz!","Zmiana wyglądu obiektu") as null|anything in sortList(unique_reskin)
 	if(!QDELETED(src) && choice && !current_skin && !M.incapacitated() && in_range(M,src))
 		if(!unique_reskin[choice])
 			return

@@ -34,11 +34,11 @@ const RDServerStatus = (props) => {
       'average') ||
     'bad';
   const overheadedState =
-    (overheated && 'Halted') ||
+    (overheated && 'Zatrzymany') ||
     (temperature > temperature_warning &&
       temperature < temperature_max &&
-      'Warning') ||
-    'Normal';
+      'Ostrzeżenie') ||
+    'Normalny';
   return (
     <Box {...rest} width="170px" style={{ border: '1px solid #000000' }}>
       <Flex mx={0.5} my={0.5} direction="row" justify="space-around">
@@ -61,7 +61,7 @@ const RDServerStatus = (props) => {
             selected={enabled}
             onClick={() => act('enable_server', { server_id: server_id })}
           >
-            {enabled ? 'On' : 'Off'}
+            {enabled ? 'Wł.' : 'Wył.'}
           </Button>
         </Flex.Item>
       </Flex>
@@ -96,21 +96,21 @@ export const RDConsole = (props) => {
   return (
     <Window width={900} height={750}>
       <Window.Content scrollable>
-        <Section title="Servers">
+        <Section title="Serwery">
           {servers.map((server) => (
             <RDServerStatus key={server.name} value={server} />
           ))}
         </Section>
-        <Section title="Access Logs">
+        <Section title="Logi dostępu">
           <Flex direction="column">
             <RDServerLogItem
               key="logheader"
               color="label"
               value={{
-                researcher_name: 'Researcher',
-                research_name: 'Technology',
-                cost: 'Cost',
-                location: 'Location',
+                researcher_name: 'Badacz',
+                research_name: 'Technologia',
+                cost: 'Koszt',
+                location: 'Miejsce',
               }}
             />
             {logs.map((entry) => (

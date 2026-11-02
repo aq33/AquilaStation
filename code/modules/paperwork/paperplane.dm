@@ -1,6 +1,6 @@
 /obj/item/origami/paperplane
-	name = "paper plane"
-	desc = "Paper, folded in the shape of a plane."
+	name = "papierowy samolot"
+	desc = "Papier złożony w kształt samolotu."
 	icon_state = "paperplane"
 	custom_fire_overlay = "paperplane_onfire"
 	throw_range = 7
@@ -8,7 +8,7 @@
 	var/hit_probability = 2 //%
 
 /obj/item/origami/paperplane/syndicate
-	desc = "Paper, masterfully folded in the shape of a plane."
+	desc = "Papier po mistrzowsku złożony w kształt samolotu."
 	throwforce = 20 //same as throwing stars, but no chance of embedding.
 	hit_probability = 100 //guaranteed to cause eye damage when it hits a mob.
 

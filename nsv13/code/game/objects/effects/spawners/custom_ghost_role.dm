@@ -1,7 +1,7 @@
 /obj/effect/mob_spawn/human/nsv13/syndicate_crew/
-	name = "a syndicate soldier class stasis pod"
-	desc = "Although this stasis pod looks medicinal, it seems as though it's meant to preserve something for a very long time. It has a name and Syndicate insignia on it."
-	mob_name = "Syndicate Soldier"
+	name = "kapsuła stazowa żołnierza Syndykatu"
+	desc = "Choć ta kapsuła stazowa wygląda na medyczną, chyba ma przechowywać coś przez bardzo długi czas. Widnieje na niej imię i insygnia Syndykatu."
+	mob_name = "Żołnierz Syndykatu"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	roundstart = FALSE
@@ -11,9 +11,9 @@
 	outfit = /datum/outfit/syndicate/sleeper/soldier
 
 /obj/effect/mob_spawn/human/nsv13/syndicate_crew/pilot
-	name = "a syndicate pilot class stasis pod"
-	desc = "Although this stasis pod looks medicinal, it seems as though it's meant to preserve something for a very long time. It has as Officer's name and Syndicate insignia on it."
-	mob_name = "Syndicate Pilot"
+	name = "kapsuła stazowa pilota Syndykatu"
+	desc = "Choć ta kapsuła stazowa wygląda na medyczną, chyba ma przechowywać coś przez bardzo długi czas. Widnieje na niej imię oficera i insygnia Syndykatu."
+	mob_name = "Pilot Syndykatu"
 	flavour_text = "<b>Jesteś </b><span class='big bold'>pilotem Syndykatu</span><b>, członkiem załogi okrętu kosmicznego Syndykatu. Twoim celem jest latać i chronić mostek okrętu, na którym stacjonujesz. Nie pozwól, by dane nawigacyjne wpadły w ręce wroga.</b>"
 	assignedrole = "Syndicate Pilot"
 	outfit = /datum/outfit/syndicate/sleeper/pilot
@@ -32,9 +32,9 @@
 		notify_ghosts("Członek załogi Syndykatu zaraz rozmrozi się z kriokomory w [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
 
 /obj/effect/mob_spawn/human/nsv13/nt_prisoner/
-	name = "a prisoner stasis pod"
-	desc = "Although this stasis pod looks medicinal, it seems as though it's meant to preserve something for a very long time. It has a prisoner's identification number and a Nanotrasen insignia on it. It seems like it's been ashed around quite a bit."
-	mob_name = "NT Prisoner"
+	name = "kapsuła stazowa więźnia"
+	desc = "Choć ta kapsuła stazowa wygląda na medyczną, chyba ma przechowywać coś przez bardzo długi czas. Widnieje na niej numer identyfikacyjny więźnia i insygnia Nanotrasen. Wygląda na mocno poobijaną."
+	mob_name = "Więzień NT"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE

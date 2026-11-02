@@ -11,7 +11,7 @@
 
 /datum/round_event/ghost_role/voidwalker
 	minimum_required = 1
-	role_name = "voidwalker"
+	role_name = "wędrowiec pustki"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/voidwalker/spawn_role()
@@ -21,12 +21,12 @@
 
 	var/turf/spawn_loc = find_voidwalker_spawn()
 	if(!spawn_loc)
-		message_admins("No valid spawn locations found for a voidwalker, aborting...")
+		message_admins("Brak miejsc do pojawienia się dla wędrowca pustki, przerywam...")
 		return MAP_ERROR
 
 	var/mob/dead/selected = pick(candidates)
 	var/mob/living/simple_animal/hostile/voidwalker/walker = create_voidwalker(selected.key, spawn_loc)
-	message_admins("[ADMIN_LOOKUPFLW(walker)] has been made into a voidwalker by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(walker)] zostaje wędrowcem pustki przez event.")
 	log_game("[key_name(walker)] was spawned as a voidwalker by an event.")
 	spawned_mobs += walker
 	return SUCCESSFUL_SPAWN

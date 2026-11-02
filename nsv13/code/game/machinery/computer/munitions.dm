@@ -1,7 +1,7 @@
 //Standard munitions console
 /obj/machinery/computer/ship/munitions_computer
-	name = "munitions control computer"
-	desc = "This console allows you to control and monitor a linked ship weapon."
+	name = "komputer kontroli amunicji"
+	desc = "Ta konsola pozwala sterować podłączoną bronią okrętową i ją monitorować."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "munitions_console"
 	density = TRUE
@@ -61,7 +61,7 @@
 /obj/machinery/computer/ship/munitions_computer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MunitionsComputer")
+		ui = new(user, src, "MunitionsComputer", "Kontrola amunicji")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Loading delay, weapon getting fired
 
@@ -119,7 +119,7 @@
 		data["max_maint_req"] = 25
 	else
 		data["has_linked_gun"] = FALSE
-		data["linked_gun"] = "NO WEAPON LINKED"
+		data["linked_gun"] = "BRAK PODŁĄCZONEJ BRONI"
 		data["loaded"] = FALSE
 		data["chambered"] = FALSE
 		data["safety"] = FALSE
@@ -144,8 +144,8 @@
 
 //Ordenance monitoring console
 /obj/machinery/computer/ship/ordnance
-	name = "Seegson model ORD ordnance systems monitoring console"
-	desc = "This console provides a succinct overview of the ship-to-ship weapons."
+	name = "konsola monitorowania uzbrojenia Seegson model ORD"
+	desc = "Ta konsola pokazuje zwięzły przegląd uzbrojenia okrętowego."
 	icon_screen = "tactical"
 	circuit = /obj/item/circuitboard/computer/ship/ordnance_computer
 	///If additional info about our weapons is shown
@@ -155,7 +155,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "OrdnanceConsole")
+	ui = new(user, src, "OrdnanceConsole", "Monitorowanie uzbrojenia")
 	ui.open()
 	ui.set_autoupdate(TRUE) // Ammo updates
 

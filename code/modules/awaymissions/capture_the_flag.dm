@@ -10,13 +10,13 @@
 
 
 /obj/item/ctf
-	name = "banner"
+	name = "sztandar"
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
 	item_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
-	desc = "A banner with Nanotrasen's logo on it."
+	desc = "Sztandar z logo Nanotrasen."
 	slowdown = 2
 	throw_speed = 0
 	throw_range = 1
@@ -97,27 +97,27 @@
 
 
 /obj/item/ctf/red
-	name = "red flag"
+	name = "czerwona flaga"
 	icon_state = "banner-red"
 	item_state = "banner-red"
-	desc = "A red banner used to play capture the flag."
+	desc = "Czerwony sztandar do gry w przechwytywanie flagi."
 	team = RED_TEAM
 	reset_path = /obj/effect/ctf/flag_reset/red
 
 
 /obj/item/ctf/blue
-	name = "blue flag"
+	name = "niebieska flaga"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
-	desc = "A blue banner used to play capture the flag."
+	desc = "Niebieski sztandar do gry w przechwytywanie flagi."
 	team = BLUE_TEAM
 	reset_path = /obj/effect/ctf/flag_reset/blue
 
 /obj/effect/ctf/flag_reset
-	name = "banner landmark"
+	name = "znacznik sztandaru"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "banner"
-	desc = "This is where a banner with Nanotrasen's logo on it would go."
+	desc = "Tu powinien stać sztandar z logo Nanotrasen."
 	layer = LOW_ITEM_LAYER
 	var/obj/item/ctf/flag
 
@@ -128,16 +128,14 @@
 	return ..()
 
 /obj/effect/ctf/flag_reset/red
-	name = "red flag landmark"
+	name = "znacznik czerwonej flagi"
 	icon_state = "banner-red"
-	desc = "This is where a red banner used to play capture the flag \
-		would go."
+	desc = "Tu powinien stać czerwony sztandar do gry w przechwytywanie flagi."
 
 /obj/effect/ctf/flag_reset/blue
-	name = "blue flag landmark"
+	name = "znacznik niebieskiej flagi"
 	icon_state = "banner-blue"
-	desc = "This is where a blue banner used to play capture the flag \
-		would go."
+	desc = "Tu powinien stać niebieski sztandar do gry w przechwytywanie flagi."
 
 /proc/toggle_all_ctf(mob/user)
 	var/ctf_enabled = FALSE
@@ -147,8 +145,8 @@
 		A = get_area(CTF)
 	for(var/obj/machinery/power/emitter/E in A)
 		E.active = ctf_enabled
-	message_admins("[key_name_admin(user)] has [ctf_enabled? "enabled" : "disabled"] CTF!")
-	notify_ghosts("CTF has been [ctf_enabled? "enabled" : "disabled"]!",'sound/effects/ghost2.ogg')
+	message_admins("[key_name_admin(user)] [ctf_enabled? "włącza" : "wyłącza"] CTF!")
+	notify_ghosts("CTF zostało [ctf_enabled? "włączone" : "wyłączone"]!",'sound/effects/ghost2.ogg')
 
 /// Okno CTF dla duchów (CTFPanel z tg): drużyny, skok, dołączanie, głosowanie
 GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
@@ -245,8 +243,8 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 	GLOB.ctf_panel.ui_interact(src)
 
 /obj/machinery/capture_the_flag
-	name = "CTF Controller"
-	desc = "Used for running friendly games of capture the flag."
+	name = "kontroler CTF"
+	desc = "Służy do prowadzenia przyjacielskich gier w przechwytywanie flagi."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 	resistance_flags = INDESTRUCTIBLE
@@ -303,7 +301,7 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 			M.adjustFireLoss(-2.5 * delta_time)
 
 /obj/machinery/capture_the_flag/red
-	name = "Red CTF Controller"
+	name = "czerwony kontroler CTF"
 	icon_state = "syndbeacon"
 	team = RED_TEAM
 	team_span = "redteamradio"
@@ -311,7 +309,7 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 	instagib_gear = /datum/outfit/ctf/red/instagib
 
 /obj/machinery/capture_the_flag/blue
-	name = "Blue CTF Controller"
+	name = "niebieski kontroler CTF"
 	icon_state = "bluebeacon"
 	team = BLUE_TEAM
 	team_span = "blueteamradio"
@@ -493,7 +491,7 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 			CTF.respawn_cooldown = DEFAULT_RESPAWN
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf
-	desc = "This looks like it could really hurt in melee."
+	desc = "Wygląda na to, że w walce wręcz mogłoby nieźle zaboleć."
 	force = 75
 	mag_type = /obj/item/ammo_box/magazine/m50/ctf
 
@@ -522,7 +520,7 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 
 /obj/item/gun/ballistic/automatic/laser/ctf
 	mag_type = /obj/item/ammo_box/magazine/recharge/ctf
-	desc = "This looks like it could really hurt in melee."
+	desc = "Wygląda na to, że w walce wręcz mogłoby nieźle zaboleć."
 	force = 50
 	full_auto = TRUE //Rule of cool.
 
@@ -672,8 +670,8 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 
 
 /obj/structure/trap/ctf
-	name = "Spawn protection"
-	desc = "Stay outta the enemy spawn!"
+	name = "ochrona spawnu"
+	desc = "Nie wchodź do spawnu wroga!"
 	icon_state = "trap"
 	resistance_flags = INDESTRUCTIBLE
 	var/team = WHITE_TEAM
@@ -700,8 +698,8 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 	icon_state = "trap-frost"
 
 /obj/structure/barricade/security/ctf
-	name = "barrier"
-	desc = "A barrier. Provides cover in fire fights."
+	name = "bariera"
+	desc = "Bariera. Daje osłonę podczas strzelanin."
 	deploy_time = 0
 	deploy_message = 0
 
@@ -716,9 +714,9 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/effect/ctf/ammo
-	name = "ammo pickup"
-	desc = "You like revenge, right? Everybody likes revenge! Well, \
-		let's go get some!"
+	name = "zapas amunicji"
+	desc = "Lubisz zemstę, prawda? Wszyscy lubią zemstę! No to \
+		chodźmy po nią!"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield1"
 	layer = ABOVE_MOB_LAYER
@@ -760,8 +758,8 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 			break
 
 /obj/effect/ctf/dead_barricade
-	name = "dead barrier"
-	desc = "It provided cover in fire fights. And now it's gone."
+	name = "zniszczona bariera"
+	desc = "Dawała osłonę podczas strzelanin. A teraz jej nie ma."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrier0"
 
@@ -786,8 +784,8 @@ GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
 //Control Point
 
 /obj/machinery/control_point
-	name = "control point"
-	desc = "You should capture this."
+	name = "punkt kontrolny"
+	desc = "Warto to przejąć."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	resistance_flags = INDESTRUCTIBLE

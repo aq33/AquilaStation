@@ -4,7 +4,7 @@
  * Emits a light of a specific brightness and colour. Requires a shell.
  */
 /obj/item/circuit_component/light
-	display_name = "Light"
+	display_name = "Lampa"
 	desc = "Komponent, który emituje światło o określonej jasności i kolorze. Wymaga obudowy."
 	category = "Action"
 

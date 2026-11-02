@@ -1,7 +1,7 @@
 // AQUILA - płytki zleceń cywilnych i rynku materiałów
 
 /datum/design/board/bountypad_control
-	name = "Computer Design (Civilian Bounty Pad Control)"
+	name = "Projekt komputera (konsola zleceń cywilnych)"
 	desc = "Płytka konsoli zleceń cywilnych."
 	id = "bountypad_control"
 	build_path = /obj/item/circuitboard/computer/bountypad
@@ -9,7 +9,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/bountypad
-	name = "Machine Design (Civilian Bounty Pad)"
+	name = "Projekt maszyny (pad zleceń cywilnych)"
 	desc = "Płytka padu zleceń cywilnych."
 	id = "bountypad"
 	build_path = /obj/item/circuitboard/machine/bountypad
@@ -17,7 +17,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/materials_market
-	name = "Machine Design (Galactic Materials Market)"
+	name = "Projekt maszyny (galaktyczny rynek materiałów)"
 	desc = "Płytka galaktycznego rynku materiałów."
 	id = "materials_market"
 	build_path = /obj/item/circuitboard/machine/materials_market

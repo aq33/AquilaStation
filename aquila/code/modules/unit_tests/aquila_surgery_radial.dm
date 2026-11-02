@@ -1,15 +1,14 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - every surgery gets a picture in the radial surgery menu
+/// AQUILA - every operation of the new surgery skeleton gets a picture in the radial menu
 /datum/unit_test/aquila_surgery_radial
 
 /datum/unit_test/aquila_surgery_radial/Run()
-	var/obj/item/surgical_drapes/drapes = allocate(/obj/item/surgical_drapes)
-	var/datum/component/surgery_initiator/initiator = drapes.GetComponent(/datum/component/surgery_initiator)
-	TEST_ASSERT(initiator, "Surgical drapes have no surgery initiator")
-	for(var/datum/surgery/surgery as anything in GLOB.surgeries_list)
-		var/image/picture = initiator.get_surgery_radial_image(surgery)
-		TEST_ASSERT(istype(picture) && picture.icon, "[surgery.type] has no radial picture")
+	for(var/operation_type in GLOB.operations.operations_by_typepath)
+		var/datum/surgery_operation/operation = GLOB.operations.operations_by_typepath[operation_type]
+		var/image/picture = operation.get_default_radial_image()
+		TEST_ASSERT(istype(picture) && picture.icon, "[operation_type] has no radial picture")
+		TEST_ASSERT(picture.icon_state in icon_states(picture.icon), "[operation_type] has a radial picture with a missing icon state [picture.icon_state]")
 
 #undef TEST_ASSERT

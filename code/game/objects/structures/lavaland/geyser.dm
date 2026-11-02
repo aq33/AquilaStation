@@ -2,7 +2,7 @@
 //That's because the first 18~ ticks are completely skipped for some ungodly weird fucking byond reason
 
 /obj/structure/geyser
-	name = "geyser"
+	name = "gejzer"
 	icon = 'icons/obj/lavaland/terrain.dmi'
 	icon_state = "geyser"
 	anchored = TRUE
@@ -51,8 +51,8 @@
 	reagent_id = pickweight(options)
 
 /obj/item/plunger
-	name = "plunger"
-	desc = "It's a plunger for plunging."
+	name = "przepychacz"
+	desc = "To przepychacz do przepychania."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "plunger"
 
@@ -64,8 +64,8 @@
 		return ..()
 
 /obj/item/plunger/reinforced
-	name = "reinforced plunger"
-	desc = " It's an M. 7 Reinforced Plunger� for heavy duty plunging."
+	name = "wzmocniony przepychacz"
+	desc = "To wzmocniony przepychacz M. 7™ do przepychania w trudnych warunkach."
 	icon_state = "reinforced_plunger"
 
 	reinforced = TRUE

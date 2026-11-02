@@ -1,6 +1,6 @@
 /obj/item/access_kit
-	name = "access kit (unset)"
-	desc = "A one-use device that can be used to spoof and grant the access associated with a low-level job."
+	name = "zestaw dostępu (nieustawiony)"
+	desc = "Jednorazowe urządzenie, które podrabia i nadaje dostęp jednego niskiego stanowiska."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "suspiciousphone"
 	w_class = WEIGHT_CLASS_SMALL
@@ -31,7 +31,7 @@
 	if(!result || job || QDELETED(src) || !user.is_holding(src))
 		return
 	job = jobs_by_title[result]
-	name = "access kit ([job.title])"
+	name = "zestaw dostępu ([job.title])"
 	to_chat(user, span_notice("Ustawiasz [src], by podrabiał i nadawał dostęp stanowiska: [job.title]."))
 
 /obj/item/access_kit/afterattack(atom/target, mob/user, proximity_flag, click_parameters)

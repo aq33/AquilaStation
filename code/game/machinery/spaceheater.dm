@@ -8,8 +8,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater-off"
-	name = "space heater"
-	desc = "Made by Space Amish using traditional space techniques, this heater/cooler is guaranteed not to set the station on fire. Warranty void if used in engines."
+	name = "grzejnik przenośny"
+	desc = "Zrobiony przez kosmicznych amiszów tradycyjnymi kosmicznymi metodami. Ten grzejnik i chłodnica w jednym na pewno nie podpali stacji. Użycie w silnikach unieważnia gwarancję."
 	max_integrity = 250
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 10, "stamina" = 0, "bleed" = 0)
 	circuit = /obj/item/circuitboard/machine/space_heater

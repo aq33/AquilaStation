@@ -138,8 +138,8 @@
 
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.return_temperature()] \n</span>"
+	var/t =	"<span class='notice'>Współrzędne: [x],[y] \n</span>"
+	t +=	"<span class='danger'>Temperatura: [environment.return_temperature()] \n</span>"
 	for(var/id in environment.get_gases())
 		if(environment.get_moles(id))
 			t+="<span class='notice'>[GLOB.gas_data.names[id]]: [environment.get_moles(id)] \n</span>"
@@ -711,7 +711,7 @@
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
-	set desc = "View your character's notes memory."
+	set desc = "Pokazuje notatki i pamięć twojej postaci."
 	if(mind)
 		// AQ EDIT - okno TGUI MemoryPanel (port z tgstation) zamiast okna HTML
 		if(!GLOB.memory_panel)
@@ -1018,7 +1018,7 @@ GLOBAL_DATUM(memory_panel, /datum/memory_panel)
 		//NSV13 end
 
 ///Notify a ghost that it's body is being cloned
-/mob/proc/notify_ghost_cloning(var/message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", var/sound = 'sound/effects/genetics.ogg', var/atom/source = null, flashwindow)
+/mob/proc/notify_ghost_cloning(var/message = "Ktoś próbuje cię wskrzesić. Wróć do swojego ciała, jeśli chcesz zostać wskrzeszony!", var/sound = 'sound/effects/genetics.ogg', var/atom/source = null, flashwindow)
 	var/mob/dead/observer/ghost = get_ghost()
 	if(ghost)
 		ghost.notify_cloning(message, sound, source, flashwindow)
@@ -1291,17 +1291,17 @@ GLOBAL_DATUM(memory_panel, /datum/memory_panel)
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
 	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
-	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
-	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
-	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
-	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
-	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
-	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Give Direct Control")
-	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Daj zaklęcie")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Usuń zaklęcie")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Daj chorobę")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Przełącz tryb boga")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Upuść wszystko")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Odśwież ikony")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Pokaż panel gracza")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Przełącz tryb budowania")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Przejmij bezpośrednią kontrolę")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Przekaż bezpośrednią kontrolę")
+	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Zaoferuj kontrolę duchom")
 
 /mob/vv_do_topic(list/href_list)
 	. = ..()

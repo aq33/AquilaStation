@@ -1,3 +1,3 @@
 /obj/machinery/computer/security/telescreen/squadcam
-	name = "Squad Helmet Cam Monitor"
+	name = "monitor kamer hełmów drużyn"
 	network = list("squad_headcam")

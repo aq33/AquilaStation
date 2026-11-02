@@ -1,7 +1,7 @@
 
 /obj/machinery/processor
-	name = "food processor"
-	desc = "An industrial grinder used to process meat and other foods. Keep hands clear of intake area while operating."
+	name = "malakser"
+	desc = "Przemysłowy rozdrabniacz do przetwarzania mięsa i innej żywności. Podczas pracy trzymaj ręce z dala od otworu wlotowego."
 	icon = 'nsv13/icons/obj/kitchen.dmi' //NSV13
 	icon_state = "processor1"
 	layer = BELOW_OBJ_LAYER
@@ -168,8 +168,8 @@
 		M.forceMove(drop_location())
 
 /obj/machinery/processor/slime
-	name = "slime processor"
-	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
+	name = "przetwórnia szlamów"
+	desc = "Przemysłowy rozdrabniacz z naklejką „przejęty przez dział naukowy”. Podczas pracy trzymaj ręce z dala od otworu wlotowego."
 	var/sbacklogged = FALSE
 	///Proximity monitor associated with this atom, needed for proximity checks.
 	var/datum/proximity_monitor/proximity_monitor

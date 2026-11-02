@@ -4,8 +4,8 @@
 ///////////
 
 /obj/structure/easel
-	name = "easel"
-	desc = "Only for the finest of art!"
+	name = "sztaluga"
+	desc = "Tylko dla najwspanialszej sztuki!"
 	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "easel"
 	density = TRUE
@@ -36,8 +36,8 @@
 		painting = null
 
 /obj/item/canvas
-	name = "canvas"
-	desc = "Draw out your soul on this canvas!"
+	name = "płótno"
+	desc = "Przelej na to płótno swoją duszę!"
 	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "11x11"
 	resistance_flags = FLAMMABLE
@@ -47,7 +47,7 @@
 	var/list/grid
 	var/canvas_color = "#ffffff" //empty canvas color
 	var/used = FALSE
-	var/painting_name = "Untitled Artwork" //Painting name, this is set after framing.
+	var/painting_name = "Dzieło bez tytułu" //Painting name, this is set after framing.
 	var/finalized = FALSE //Blocks edits
 	var/author_ckey
 	var/icon_generated = FALSE
@@ -224,8 +224,8 @@
 	framed_offset_y = 6
 
 /obj/item/canvas/twentyfour_twentyfour
-	name = "ai universal standard canvas"
-	desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up."
+	name = "uniwersalne standardowe płótno SI"
+	desc = "Jest bardzo duże, a po zawieszeniu SI może wyświetlać na nim obraz ze swojej wewnętrznej bazy danych."
 	icon_state = "24x24"
 	width = 24
 	height = 24
@@ -235,16 +235,16 @@
 	framed_offset_y = 5
 
 /obj/item/wallframe/painting
-	name = "painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "rama na obraz"
+	desc = "Idealne miejsce na twoje ulubione wspomnienia ze śmiertelnych pułapek."
 	icon = 'icons/obj/decals.dmi'
 	flags_1 = NONE
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting
 
 /obj/structure/sign/painting
-	name = "Painting"
-	desc = "Art or \"Art\"? You decide."
+	name = "obraz"
+	desc = "Sztuka czy „sztuka”? Ty decydujesz."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "frame-empty"
 	base_icon_state = "frame" //temporal replacement before the update_appearance() port
@@ -307,7 +307,7 @@
 		current_canvas.try_rename(user)
 
 /obj/structure/sign/painting/proc/update_painting_stuff()
-	name = current_canvas ? "painting - [current_canvas.painting_name]" : initial(name)
+	name = current_canvas ? "obraz - [current_canvas.painting_name]" : initial(name)
 	desc = current_canvas ? desc_with_canvas : initial(desc)
 	update_icon()
 	update_icon_state()
@@ -353,7 +353,7 @@
 	var/author = painting["ckey"]
 	var/png = "data/paintings/[persistence_id]/[painting["md5"]].png"
 	if(!title)
-		title = "Untitled Artwork" //legacy artwork allowed null names which was bad for the json, lets fix that
+		title = "Dzieło bez tytułu" //legacy artwork allowed null names which was bad for the json, lets fix that
 		painting["title"] = title
 	var/icon/I = new(png)
 	var/obj/item/canvas/new_canvas
@@ -370,7 +370,7 @@
 	new_canvas.finalized = TRUE
 	new_canvas.painting_name = title
 	new_canvas.author_ckey = author
-	new_canvas.name = "painting - [title]"
+	new_canvas.name = "obraz - [title]"
 	current_canvas = new_canvas
 	update_painting_stuff()
 
@@ -381,7 +381,7 @@
 		stack_trace("Invalid persistence_id - [persistence_id]")
 		return
 	if(!current_canvas.painting_name)
-		current_canvas.painting_name = "Untitled Artwork"
+		current_canvas.painting_name = "Dzieło bez tytułu"
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
 	var/list/current = SSpersistence.paintings[persistence_id]
@@ -406,26 +406,26 @@
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/library
-	name = "\improper Public Painting Exhibit mounting"
-	desc = "For art pieces hung by the public."
+	name = "\improper uchwyt wystawy obrazów publicznych"
+	desc = "Na dzieła sztuki wieszane przez publiczność."
 	desc_with_canvas = "Dzieło sztuki (albo \"sztuki\"). Każdy mógł je powiesić."
 	persistence_id = "library"
 
 /obj/structure/sign/painting/library_secure
-	name = "\improper Curated Painting Exhibit mounting"
-	desc = "For masterpieces hand-picked by the curator."
+	name = "\improper uchwyt wystawy obrazów bibliotekarza"
+	desc = "Na arcydzieła wybrane osobiście przez bibliotekarza."
 	desc_with_canvas = "Arcydzieło podobno osobiście wybrane przez kuratora."
 	persistence_id = "library_secure"
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
-	name = "\improper Private Painting Exhibit mounting"
-	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
+	name = "\improper uchwyt prywatnej wystawy obrazów"
+	desc = "Na dzieła uznane za zbyt wywrotowe albo zbyt nielegalne, żeby pokazywać je komuś poza bibliotekarzami."
 	desc_with_canvas = "Obraz zawieszony z dala od pośledniejszych umysłów."
 	persistence_id = "library_private"
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_PAINTING, "Remove Persistent Painting")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_PAINTING, "Usuń trwały obraz")
 
 /obj/structure/sign/painting/vv_do_topic(list/href_list)
 	. = ..()
@@ -450,4 +450,4 @@
 				QDEL_NULL(P.current_canvas)
 				P.update_painting_stuff()
 		log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
-		message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
+		message_admins("<span class='notice'>[key_name_admin(user)] usuwa trwały obraz autorstwa [author].</span>")

@@ -1,7 +1,7 @@
 /datum/design/shield_fan
 {
-	name = "Shield cooling fan";
-	desc = "A component required for producing a shield generator.";
+	name = "Wentylator chłodzący generatora tarczy";
+	desc = "Podzespół potrzebny do zbudowania generatora tarczy.";
 	id = "shield_fan";
 	build_type = PROTOLATHE;
 	materials = list(/datum/material/iron = 4000, /datum/material/titanium = 4000, /datum/material/glass = 1000);
@@ -12,8 +12,8 @@
 
 /datum/design/shield_capacitor
 {
-	name = "Flux Capacitor";
-	desc = "A component required for producing a shield generator.";
+	name = "Kondensator strumienia";
+	desc = "Podzespół potrzebny do zbudowania generatora tarczy.";
 	id = "shield_capacitor";
 	build_type = PROTOLATHE;
 	materials = list(/datum/material/iron = 10000, /datum/material/uranium = 5000, /datum/material/diamond = 5000);
@@ -25,8 +25,8 @@
 
 /datum/design/shield_modulator
 {
-	name = "Shield Modulator";
-	desc = "A component required for producing a shield generator.";
+	name = "Modulator tarczy";
+	desc = "Podzespół potrzebny do zbudowania generatora tarczy.";
 	id = "shield_modulator";
 	build_type = PROTOLATHE;
 	materials = list(/datum/material/iron = 10000, /datum/material/uranium = 10000, /datum/material/diamond = 10000);
@@ -37,8 +37,8 @@
 
 /datum/design/shield_interface
 {
-	name = "Bluespace Crystal Interface";
-	desc = "A component required for producing a shield generator.";
+	name = "Interfejs kryształu bluespace";
+	desc = "Podzespół potrzebny do zbudowania generatora tarczy.";
 	id = "shield_interface";
 	build_type = PROTOLATHE;
 	materials = list(/datum/material/titanium = 10000, /datum/material/bluespace = MINERAL_MATERIAL_AMOUNT, /datum/material/diamond = 10000);
@@ -49,8 +49,8 @@
 
 /datum/design/shield_frame
 {
-	name = "Shield Generator Frame";
-	desc = "The basic frame of a shield generator. Assembly required, parts sold separately.";
+	name = "Rama generatora tarczy";
+	desc = "Podstawowa rama generatora tarczy. Wymaga montażu, części sprzedawane osobno.";
 	id = "shield_frame";
 	build_type = PROTOLATHE;
 	materials = list(/datum/material/titanium = 20000, /datum/material/iron = 20000);

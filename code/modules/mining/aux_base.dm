@@ -7,17 +7,17 @@
 #define BAD_TURF	4
 
 /area/shuttle/auxillary_base
-	name = "Auxillary Base"
+	name = "Baza Pomocnicza"
 	luminosity = 0 //Lighting gets lost when it lands anyway
 
 
 /obj/machinery/computer/auxillary_base
-	name = "auxillary base management console"
+	name = "konsola zarządzania bazą pomocniczą"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
 	var/shuttleId = "colony_drop"
-	desc = "Allows a deployable expedition base to be dropped from the station to a designated mining location. It can also \
-interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
+	desc = "Pozwala zrzucić ze stacji rozkładaną bazę ekspedycyjną w wyznaczone miejsce górnicze. Może też \
+łączyć się z promem górniczym w miejscu lądowania, jeśli rozstawiono też przenośny nadajnik."
 	var/launch_warning = TRUE
 	var/list/turrets = list() //List of connected turrets
 
@@ -212,7 +212,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 	var/obj/docking_port/stationary/landing_zone = new /obj/docking_port/stationary(T)
 	landing_zone.id = "colony_drop([REF(src)])"
-	landing_zone.name = "Landing Zone ([T.x], [T.y])"
+	landing_zone.name = "Strefa lądowania ([T.x], [T.y])"
 	landing_zone.dwidth = base_dock.dwidth
 	landing_zone.dheight = base_dock.dheight
 	landing_zone.width = base_dock.width
@@ -228,12 +228,12 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 
 /obj/item/assault_pod/mining
-	name = "Landing Field Designator"
+	name = "wyznacznik strefy lądowania"
 	icon_state = "gangtool-purple"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	desc = "Deploy to designate the landing zone of the auxillary base."
+	desc = "Rozłóż, by wyznaczyć strefę lądowania bazy pomocniczej."
 	w_class = WEIGHT_CLASS_SMALL
 	shuttle_id = "colony_drop"
 	var/setting = FALSE
@@ -274,13 +274,13 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 			to_chat(user, "<span class='warning'>Strefa lądowania zawiera pola nienadające się na bazę. Upewnij się, że usunięto wszystkie ściany i niebezpieczny teren ze strefy lądowania.</span>")
 
 /obj/item/assault_pod/mining/unrestricted
-	name = "omni-locational landing field designator"
-	desc = "Allows the deployment of the mining base ANYWHERE. Use with caution."
+	name = "wszędobylski wyznacznik strefy lądowania"
+	desc = "Pozwala rozstawić bazę górniczą GDZIEKOLWIEK. Używaj ostrożnie."
 	no_restrictions = TRUE
 
 
 /obj/docking_port/mobile/auxillary_base
-	name = "auxillary base"
+	name = "baza pomocnicza"
 	id = "colony_drop"
 	//Reminder to map-makers to set these values equal to the size of your base.
 	dheight = 4
@@ -302,7 +302,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	return ..()
 
 /obj/docking_port/stationary/public_mining_dock
-	name = "public mining base dock"
+	name = "publiczny dok bazy górniczej"
 	id = "disabled" //The Aux Base has to leave before this can be used as a dock.
 	//Should be checked on the map to ensure it matchs the mining shuttle dimensions.
 	dwidth = 3
@@ -310,8 +310,8 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	height = 5
 
 /obj/structure/mining_shuttle_beacon
-	name = "mining shuttle beacon"
-	desc = "A bluespace beacon calibrated to mark a landing spot for the mining shuttle when deployed near the auxillary mining base."
+	name = "nadajnik promu górniczego"
+	desc = "Nadajnik bluespace skalibrowany tak, by po rozstawieniu w pobliżu pomocniczej bazy górniczej oznaczać miejsce lądowania promu górniczego."
 	anchored = FALSE
 	density = FALSE
 	var/shuttle_ID = "landing_zone_dock"
@@ -358,7 +358,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 			Mport = new(landing_spot)
 			Mport.id = "landing_zone_dock"
-			Mport.name = "auxillary base landing site"
+			Mport.name = "lądowisko bazy pomocniczej"
 			Mport.dwidth = SM.dwidth
 			Mport.dheight = SM.dheight
 			Mport.width = SM.width

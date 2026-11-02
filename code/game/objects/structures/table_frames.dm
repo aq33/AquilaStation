@@ -10,8 +10,8 @@
  */
 
 /obj/structure/table_frame
-	name = "table frame"
-	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
+	name = "rama stołu"
+	desc = "Cztery metalowe nogi i cztery pręty ramy stołu. Bez trudu przez to przejdziesz."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table_frame"
 	density = FALSE
@@ -68,8 +68,8 @@
  */
 
 /obj/structure/table_frame/wood
-	name = "wooden table frame"
-	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
+	name = "drewniana rama stołu"
+	desc = "Cztery drewniane nogi i cztery drewniane pręty ramy drewnianego stołu. Bez trudu przez to przejdziesz."
 	icon_state = "wood_frame"
 	framestack = /obj/item/stack/sheet/mineral/wood
 	framestackamount = 2
@@ -95,8 +95,8 @@
 		return ..()
 
 /obj/structure/table_frame/brass
-	name = "brass table frame"
-	desc = "Four pieces of brass arranged in a square. It's slightly warm to the touch."
+	name = "mosiężna rama stołu"
+	desc = "Cztery kawałki mosiądzu ułożone w kwadrat. W dotyku są lekko ciepłe."
 	icon_state = "brass_frame"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	framestack = /obj/item/stack/tile/brass

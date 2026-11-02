@@ -7,8 +7,8 @@
 
 
 /obj/machinery/atmospherics/miner
-	name = "gas miner"
-	desc = "Gasses mined from the gas giant below (above?) flow out through this massive vent."
+	name = "wydobywacz gazu"
+	desc = "Gazy wydobywane z gazowego olbrzyma poniżej (powyżej?) wypływają przez ten masywny wylot."
 	icon = 'icons/obj/atmospherics/components/miners.dmi'
 	icon_state = "miner"
 	density = FALSE
@@ -26,7 +26,7 @@
 	var/power_draw_dynamic_mol_coeff = 5	//DO NOT USE DYNAMIC SETTINGS UNTIL SOMEONE MAKES A USER INTERFACE/CONTROLLER FOR THIS!
 	var/power_draw_dynamic_kpa_coeff = 0.5
 	var/broken = FALSE
-	var/broken_message = "ERROR"
+	var/broken_message = "BŁĄD"
 	idle_power_usage = 150
 	active_power_usage = 3000
 
@@ -143,37 +143,37 @@
 	..()
 
 /obj/machinery/atmospherics/miner/n2o
-	name = "\improper N2O Gas Miner"
+	name = "\improper wydobywacz gazu N2O"
 	overlay_color = "#FFCCCC"
 	spawn_id = GAS_NITROUS
 
 /obj/machinery/atmospherics/miner/nitrogen
-	name = "\improper N2 Gas Miner"
+	name = "\improper wydobywacz gazu N2"
 	overlay_color = "#CCFFCC"
 	spawn_id = GAS_N2
 
 /obj/machinery/atmospherics/miner/oxygen
-	name = "\improper O2 Gas Miner"
+	name = "\improper wydobywacz gazu O2"
 	overlay_color = "#007FFF"
 	spawn_id = GAS_O2
 
 /obj/machinery/atmospherics/miner/toxins
-	name = "\improper Plasma Gas Miner"
+	name = "\improper wydobywacz plazmy"
 	overlay_color = "#FF0000"
 	spawn_id = GAS_PLASMA
 
 /obj/machinery/atmospherics/miner/carbon_dioxide
-	name = "\improper CO2 Gas Miner"
+	name = "\improper wydobywacz gazu CO2"
 	overlay_color = "#CDCDCD"
 	spawn_id = GAS_CO2
 
 /obj/machinery/atmospherics/miner/bz
-	name = "\improper BZ Gas Miner"
+	name = "\improper wydobywacz gazu BZ"
 	overlay_color = "#FAFF00"
 	spawn_id = GAS_BZ
 
 /obj/machinery/atmospherics/miner/water_vapor
-	name = "\improper Water Vapor Gas Miner"
+	name = "\improper wydobywacz pary wodnej"
 	overlay_color = "#99928E"
 	spawn_id = GAS_H2O
 
@@ -183,37 +183,37 @@
 	max_ext_kpa = 2500
 
 /obj/machinery/atmospherics/miner/station/n2o
-	name = "\improper N2O Gas Miner"
+	name = "\improper wydobywacz gazu N2O"
 	overlay_color = "#FFCCCC"
 	spawn_id = GAS_NITROUS
 
 /obj/machinery/atmospherics/miner/station/nitrogen
-	name = "\improper N2 Gas Miner"
+	name = "\improper wydobywacz gazu N2"
 	overlay_color = "#CCFFCC"
 	spawn_id = GAS_N2
 
 /obj/machinery/atmospherics/miner/station/oxygen
-	name = "\improper O2 Gas Miner"
+	name = "\improper wydobywacz gazu O2"
 	overlay_color = "#007FFF"
 	spawn_id = GAS_O2
 
 /obj/machinery/atmospherics/miner/station/toxins
-	name = "\improper Plasma Gas Miner"
+	name = "\improper wydobywacz plazmy"
 	overlay_color = "#FF0000"
 	spawn_id = GAS_PLASMA
 
 /obj/machinery/atmospherics/miner/station/carbon_dioxide
-	name = "\improper CO2 Gas Miner"
+	name = "\improper wydobywacz gazu CO2"
 	overlay_color = "#CDCDCD"
 	spawn_id = GAS_CO2
 
 /obj/machinery/atmospherics/miner/station/bz
-	name = "\improper BZ Gas Miner"
+	name = "\improper wydobywacz gazu BZ"
 	overlay_color = "#FAFF00"
 	spawn_id = GAS_BZ
 
 /obj/machinery/atmospherics/miner/station/water_vapor
-	name = "\improper Water Vapor Gas Miner"
+	name = "\improper wydobywacz pary wodnej"
 	overlay_color = "#99928E"
 	spawn_id = GAS_H2O
 

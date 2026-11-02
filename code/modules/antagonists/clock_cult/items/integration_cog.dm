@@ -1,6 +1,6 @@
 /obj/item/clockwork/integration_cog
-	name = "integration cog"
-	desc = "A small cog that seems to spin by its own acord when left alone."
+	name = "zębatka integracyjna"
+	desc = "Mała zębatka, która zostawiona w spokoju kręci się sama z siebie."
 	icon_state = "integration_cog"
 	clockwork_desc = "Ostra zębatka, którą można przeciąć APC i włożyć do środka, by czerpać energię dla bramy."
 

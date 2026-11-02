@@ -5,8 +5,8 @@
 #define GRENADE_USED (1<<1)
 
 /obj/item/grenade
-	name = "grenade"
-	desc = "It has an adjustable timer."
+	name = "granat"
+	desc = "Ma regulowany zapalnik czasowy."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade"
@@ -158,13 +158,13 @@
 /obj/item/grenade/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
 	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(15))
 		owner.visible_message("<span class='danger'>[attack_text] trafia w [src] na [owner], odpalając go! Co za strzał!</span>")
 		var/turf/T = get_turf(src)
 		log_game("A projectile ([hitby]) detonated a grenade held by [key_name(owner)] at [COORD(T)]")
-		message_admins("A projectile ([hitby]) detonated a grenade held by [key_name_admin(owner)] at [ADMIN_COORDJMP(T)]")
+		message_admins("Pocisk ([hitby]) zdetonował granat trzymany przez [key_name_admin(owner)] w [ADMIN_COORDJMP(T)]")
 		prime()
 		return TRUE //It hit the grenade, not them
 

@@ -44,7 +44,7 @@
 	backpack_contents = list(/obj/item/citationinator = 1) // AQ EDIT - citationinator
 
 /obj/item/card/id/pass/deputy
-	name = "deputy promotion card"
-	desc = "A small card, that when used on an ID, will grant basic security access, and the job title of 'Deputy.'"
+	name = "karta awansu na aspiranta"
+	desc = "Mała karta, która po użyciu na identyfikatorze daje podstawowy dostęp ochrony i stanowisko „Aspirant”."
 	assignment = JOB_NAME_DEPUTY
 	access = list(ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS)

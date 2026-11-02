@@ -288,7 +288,7 @@ This section is for the event controller
 	SIGNAL_HANDLER
 	UnregisterSignal(dest_crystal, COMSIG_PARENT_QDELETING)
 	processing = FALSE
-	message_admins("Deleted Destabilized crystal, aborting")
+	message_admins("Usunięto zdestabilizowany kryształ, przerywam event.")
 	dest_crystal = null
 	kill()
 
@@ -447,7 +447,7 @@ This section is for the destabilized crystal
 		var/mob/living/user = movable_atom
 		if(user.status_flags & GODMODE || isnull(user.mind))
 			return
-		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
+		message_admins("[src] pochłania [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", INVESTIGATE_ENGINES)
 		user.dust(force = TRUE)
 	for(var/obj/structure/crystal_portal/portal as anything in GLOB.crystal_portals)
@@ -506,7 +506,7 @@ This section is for the crystal stabilizer and the crystals from closed portals
 	merge_type = /obj/item/stack/sheet/otherworld_crystal
 
 /datum/design/crystal_stabilizer
-	name = "Supermatter Matrix Stabilizer"
+	name = "Stabilizator supermaterii"
 	desc = "Narzędzie przywracające stabilność macierzy kryształu przez wstrzyknięcie w nią płynu z anomalii."
 	id = "crystal_stabilizer"
 	build_type = PROTOLATHE

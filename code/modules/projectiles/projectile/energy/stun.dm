@@ -1,5 +1,5 @@
 /obj/item/projectile/energy/electrode
-	name = "electrode"
+	name = "elektroda"
 	icon_state = "spark"
 	color = "#FFFF00"
 	damage = 0 // AQ EDIT - port Bee#14750: zamiast 40 staminy i przewrócenia dezorientacja (aquila/code/modules/projectiles/disorient.dm)

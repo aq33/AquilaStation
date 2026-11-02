@@ -46,6 +46,15 @@ type Design = {
   cost: number;
 };
 
+// AQUILA: temperatury idą do DM (change_temperature), tłumaczymy tylko napis
+const TEMPERATURE_NAMES: Record<string, string> = {
+  cold: 'zimne',
+  warm: 'ciepłe',
+  hot: 'gorące',
+  'extra hot': 'bardzo gorące',
+  'well done': 'dobrze wysmażone',
+};
+
 export const Replicator = (props) => {
   const { act, data } = useBackend<ReplicatorData>();
   const {
@@ -71,19 +80,19 @@ export const Replicator = (props) => {
           <Stack.Item>
             <Section fill>
               <NoticeBox info>
-                This Machine is both Voice and Touch Activated.
+                To urządzenie obsługuje się głosem i dotykiem.
                 <br />
-                Please announce your choice to the Food Replicator in one of the
-                following formats:
+                Powiedz replikatorowi, co wybierasz, w jednym z poniższych
+                formatów (słowa kluczowe po angielsku):
                 <br />
                 Computer/Alexa/Google/AI/Voice.
                 <br />
-                Choice of Food.
+                Wybrane jedzenie.
                 <br />
                 Cold/Warm/Hot/Extra Hot/Well Done.
               </NoticeBox>
               <LabeledList>
-                <LabeledList.Item label="Biomass">
+                <LabeledList.Item label="Biomasa">
                   <ProgressBar
                     value={biomass}
                     minValue={0}
@@ -96,15 +105,23 @@ export const Replicator = (props) => {
                         textShadow: '1px 1px 0 black',
                       }}
                     >
-                      {`${parseFloat(biomass.toFixed(2))} units`}
+                      {`${parseFloat(biomass.toFixed(2))} j.`}
                     </Box>
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Temperature">
+                <LabeledList.Item label="Temperatura">
                   <Dropdown
                     width="100%"
                     selected={selected_temperature}
-                    options={temperatures}
+                    displayText={
+                      TEMPERATURE_NAMES[selected_temperature] ||
+                      selected_temperature
+                    }
+                    options={temperatures.map((temperature) => ({
+                      value: temperature,
+                      displayText:
+                        TEMPERATURE_NAMES[temperature] || temperature,
+                    }))}
                     onSelected={(value) =>
                       act('change_temperature', {
                         updated_temperature: value,

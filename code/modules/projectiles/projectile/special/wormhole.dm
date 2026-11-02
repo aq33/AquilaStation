@@ -1,5 +1,5 @@
 /obj/item/projectile/beam/wormhole
-	name = "bluespace beam"
+	name = "wiązka bluespace"
 	icon_state = "spark"
 	hitsound = "sparks"
 	damage = 0
@@ -15,7 +15,7 @@
 	martial_arts_no_deflect = TRUE
 
 /obj/item/projectile/beam/wormhole/orange
-	name = "orange bluespace beam"
+	name = "pomarańczowa wiązka bluespace"
 	color = "#FF6600"
 
 /obj/item/projectile/beam/wormhole/Initialize(mapload, obj/item/ammo_casing/energy/wormhole/casing)

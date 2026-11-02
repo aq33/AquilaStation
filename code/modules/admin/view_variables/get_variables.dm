@@ -104,7 +104,7 @@
 		if(extra_classes)
 			classes += extra_classes
 
-		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
+		.["class"] = input(src, "Jaki rodzaj danych?", "Typ zmiennej", default_class) as null|anything in classes
 		if(holder && holder.marked_datum && .["class"] == markstring)
 			.["class"] = VV_MARKED_DATUM
 
@@ -116,25 +116,25 @@
 
 	switch(.["class"])
 		if(VV_TEXT)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|text
+			.["value"] = input("Podaj nowy tekst:", "Tekst", current_value) as null|text
 			if(.["value"] == null)
 				.["class"] = null
 				return
 		if(VV_MESSAGE)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|message
+			.["value"] = input("Podaj nowy tekst:", "Tekst", current_value) as null|message
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if(VV_NUM)
-			.["value"] = input("Enter new number:", "Num", current_value) as null|num
+			.["value"] = input("Podaj nową liczbę:", "Liczba", current_value) as null|num
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_BITFIELD)
-			.["value"] = input_bitfield(usr, "Editing bitfield: [var_name]", var_name, current_value)
+			.["value"] = input_bitfield(usr, "Edycja pola bitowego: [var_name]", var_name, current_value)
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -155,11 +155,11 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input("Podaj typ:[error]", "Typ", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
-				error = "\nType not found, Please try again"
+				error = "\nNie znaleziono typu, spróbuj ponownie"
 			while(!type)
 			if(!type)
 				.["class"] = null
@@ -173,7 +173,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -186,7 +186,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -199,7 +199,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -212,26 +212,26 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
 			.["value"] = WEAKREF(things[value])
 
 		if(VV_CLIENT)
-			.["value"] = input("Select reference:", "Reference", current_value) as null|anything in GLOB.clients
+			.["value"] = input("Wybierz referencję:", "Referencja", current_value) as null|anything in GLOB.clients
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_FILE)
-			.["value"] = input("Pick file:", "File") as null|file
+			.["value"] = input("Wybierz plik:", "Plik") as null|file
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_ICON)
-			.["value"] = input("Pick icon:", "Icon") as null|icon
+			.["value"] = input("Wybierz ikonę:", "Ikona") as null|icon
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -279,11 +279,11 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input("Podaj typ:[error]", "Typ", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
-				error = "\nType not found, Please try again"
+				error = "\nNie znaleziono typu, spróbuj ponownie"
 			while(!type)
 			if(!type)
 				.["class"] = null
@@ -298,8 +298,8 @@
 			.["type"] = /list
 			var/list/value = list()
 
-			var/expectation = alert("Would you like to populate the list", "Populate List?", "Yes", "No")
-			if(!expectation || expectation == "No")
+			var/expectation = alert("Czy chcesz wypełnić listę?", "Wypełnić listę?", "Tak", "Nie")
+			if(!expectation || expectation == "Nie")
 				.["value"] = value
 				return .
 
@@ -316,22 +316,22 @@
 		if(VV_TEXT_LOCATE)
 			var/datum/D
 			do
-				var/ref = input("Enter reference:", "Reference") as null|text
+				var/ref = input("Podaj referencję:", "Referencja") as null|text
 				if(!ref)
 					break
 				D = locate(ref)
 				if(!D)
-					tgui_alert(usr,"Invalid ref!")
+					tgui_alert(usr,"Nieprawidłowa referencja!")
 					continue
 				if(!D.can_vv_mark())
-					tgui_alert(usr,"Datum can not be marked!")
+					tgui_alert(usr,"Tego datum nie można oznaczyć!")
 					continue
 			while(!D)
 			.["type"] = D.type
 			.["value"] = D
 
 		if(VV_COLOR)
-			.["value"] = input("Enter new color:", "Color", current_value) as color|null
+			.["value"] = input("Podaj nowy kolor:", "Kolor", current_value) as color|null
 			if(.["value"] == null)
 				.["class"] = null
 				return

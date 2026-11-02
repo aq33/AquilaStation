@@ -60,7 +60,7 @@ export const BeakerDisplay = (props: BeakerProps) => {
         buttons={
           !!beaker && (
             <Button icon="eject" onClick={() => act('eject')}>
-              Eject
+              Wysuń
             </Button>
           )
         }
@@ -69,7 +69,7 @@ export const BeakerDisplay = (props: BeakerProps) => {
           (!!beaker && (
             <>
               <AnimatedNumber initial={0} value={beaker.currentVolume} />/
-              {beaker.maxVolume} units
+              {beaker.maxVolume} j.
             </>
           )) ||
           'Brak zlewki'}
@@ -81,7 +81,7 @@ export const BeakerDisplay = (props: BeakerProps) => {
         </Box>
         {beakerContents.map((chemical) => (
           <Box key={chemical.name} color="label">
-            <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
+            <AnimatedNumber initial={0} value={chemical.volume} /> j.{' '}
             {chemical.name}
           </Box>
         ))}
@@ -117,10 +117,10 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
         isBeakerLoaded ? (
           <>
             <Box inline color="label" mr={2}>
-              {beaker.currentVolume} / {beaker.maxVolume} units
+              {beaker.currentVolume} / {beaker.maxVolume} j.
             </Box>
             <Button icon="eject" onClick={() => act('eject')}>
-              Eject
+              Wysuń
             </Button>
           </>
         ) : (
@@ -134,7 +134,7 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
               tooltip={!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce'}
               tooltipPosition="bottom-start"
             >
-              Insert
+              Włóż
             </Button>
           )
         )
@@ -146,7 +146,7 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
       </Box>
       {beakerContents.map((chemical) => (
         <Box key={chemical.name} color="label">
-          <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
+          <AnimatedNumber initial={0} value={chemical.volume} /> j.{' '}
           {chemical.name}
         </Box>
       ))}

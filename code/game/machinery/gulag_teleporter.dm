@@ -7,8 +7,8 @@ The console is located at computer/gulag_teleporter.dm
 
 //Gulag teleporter
 /obj/machinery/gulag_teleporter
-	name = "labor camp teleporter"
-	desc = "A bluespace teleporter used for teleporting prisoners to the labor camp."
+	name = "teleporter obozu pracy"
+	desc = "Teleporter bluespace, który przenosi więźniów do obozu pracy."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	state_open = FALSE
@@ -165,7 +165,7 @@ The console is located at computer/gulag_teleporter.dm
 		R.fields["criminal"] = "Incarcerated"
 
 /obj/item/circuitboard/machine/gulag_teleporter
-	name = "labor camp teleporter (Machine Board)"
+	name = "teleporter obozu pracy (płytka maszyny)"
 	build_path = /obj/machinery/gulag_teleporter
 	req_components = list(
 							/obj/item/stack/ore/bluespace_crystal = 2,
@@ -175,8 +175,8 @@ The console is located at computer/gulag_teleporter.dm
 
 /*  beacon that receives the teleported prisoner */
 /obj/structure/gulag_beacon
-	name = "labor camp bluespace beacon"
-	desc = "A receiving beacon for bluespace teleportations."
+	name = "radiolatarnia bluespace obozu pracy"
+	desc = "Radiolatarnia odbiorcza dla teleportacji bluespace."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "Prison_beacon"
 	resistance_flags = INDESTRUCTIBLE

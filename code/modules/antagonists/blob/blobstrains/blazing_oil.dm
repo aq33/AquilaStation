@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/reagent/blob/blazing_oil
-	name = "Blazing Oil"
+	name = "Płonący olej"
 	taste_description = "płonący olej"
 	color = "#B68D00"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

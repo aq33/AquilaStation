@@ -11,7 +11,7 @@
 /// Dry heat sterilization: hot, dry air burns miasma off into oxygen
 /datum/gas_reaction/miaster
 	priority = -10 // after all the heating from fires etc. is done
-	name = "Dry Heat Sterilization"
+	name = "Sterylizacja suchym gorącem"
 	id = "sterilization"
 
 /datum/gas_reaction/miaster/init_reqs()

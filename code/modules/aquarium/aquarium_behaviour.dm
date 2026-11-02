@@ -4,8 +4,8 @@
 // Configuration objects defining prop/fish behaviour in the aquarium
 // These are used as a base for autogenerating the actual instances
 /datum/aquarium_behaviour
-	var/name = "base aquarium element"
-	var/desc = "<insert funny description here>"
+	var/name = "podstawowy element akwarium"
+	var/desc = "<tu wstaw zabawny opis>"
 
 	var/unique = FALSE
 
@@ -95,7 +95,7 @@
 	return ..()
 
 /datum/aquarium_behaviour/prop
-	name = "aquarium prop"
+	name = "dekoracja akwarium"
 	unique = TRUE
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 
@@ -106,31 +106,31 @@
 	source_height = 32
 
 /datum/aquarium_behaviour/prop/rocks
-	name = "rocks"
+	name = "kamienie"
 	icon_state = "rocks"
 
 /datum/aquarium_behaviour/prop/seaweed_top
-	name = "dense seaweeds"
+	name = "gęste wodorosty"
 	icon_state = "seaweeds_front"
 	layer_mode = AQUARIUM_LAYER_MODE_TOP
 
 /datum/aquarium_behaviour/prop/seaweed
-	name = "seaweeds"
+	name = "wodorosty"
 	icon_state = "seaweeds_back"
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 
 /datum/aquarium_behaviour/prop/rockfloor
-	name = "rock floor"
+	name = "kamieniste dno"
 	icon_state = "rockfloor"
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 
 /datum/aquarium_behaviour/prop/treasure
-	name = "tiny treasure chest"
+	name = "mała skrzynia skarbów"
 	icon_state = "treasure"
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 
 /datum/aquarium_behaviour/fish
-	name = "generic fish"
+	name = "zwykła ryba"
 	icon_state = "fish_greyscale"
 	randomize_position = TRUE //We have random starting point of our swim path
 
@@ -288,8 +288,8 @@
 
 /// This path exists mostly for admin abuse.
 /datum/aquarium_behaviour/fish/auto
-	name = "automatic fish"
-	desc = "generates fish appearance automatically from component parent appearance"
+	name = "automatyczna ryba"
+	desc = "generuje wygląd ryby automatycznie z wyglądu rodzica komponentu"
 	availible_in_random_cases = FALSE
 	sprite_width = 8
 	sprite_height = 8

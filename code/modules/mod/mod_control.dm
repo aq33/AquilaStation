@@ -1,13 +1,13 @@
 /// MODsuits, trade-off between armor and utility
 /obj/item/mod
-	name = "Base MOD"
-	desc = "You should not see this, yell at a coder!"
+	name = "bazowy MOD"
+	desc = "Nie powinieneś tego widzieć, nakrzycz na kodera!"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	worn_icon = 'icons/mob/clothing/modsuit/mod_clothing.dmi'
 
 /obj/item/mod/control
-	name = "MOD control unit"
-	desc = "The control unit of a Modular Outerwear Device, a powered suit that protects against various environments."
+	name = "jednostka sterująca MOD"
+	desc = "Jednostka sterująca Modularnego Urządzenia Zewnętrznego (MOD), zasilanego skafandra chroniącego przed różnymi środowiskami."
 	icon_state = "standard-control"
 	item_state = "mod_control"
 	base_icon_state = "control"
@@ -121,7 +121,7 @@
 	var/atom/visible_atom = wearer || src
 	if(wearer)
 		clean_up()
-	visible_atom.visible_message(span_bolddanger("[src] fall[p_s()] apart, completely destroyed!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_atom.visible_message(span_bolddanger("[src] rozpada się, całkowicie zniszczone!"), vision_distance = COMBAT_MESSAGE_RANGE)
 	for(var/obj/item/mod/module/module as anything in modules)
 		uninstall(module)
 	if(ai_assistant)
@@ -137,26 +137,26 @@
 /obj/item/mod/control/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_notice("Charge: [core ? "[get_charge_percent()]%" : "No core"].")
-		. += span_notice("Selected module: [selected_module || "None"].")
+		. += span_notice("Ładunek: [core ? "[get_charge_percent()]%" : "brak rdzenia"].")
+		. += span_notice("Wybrany moduł: [selected_module || "brak"].")
 	if(!open && !active)
 		if(!wearer)
-			. += span_notice("You could equip it to turn it on.")
-		. += span_notice("You could open the cover with a <b>screwdriver</b>.")
+			. += span_notice("Załóż to, żeby włączyć.")
+		. += span_notice("Możesz otworzyć pokrywę <b>śrubokrętem</b>.")
 	else if(open)
-		. += span_notice("You could close the cover with a <b>screwdriver</b>.")
-		. += span_notice("You could use <b>modules</b> on it to install them.")
-		. += span_notice("You could remove modules with a <b>crowbar</b>.")
-		. += span_notice("You could update the access lock with an <b>ID</b>.")
-		. += span_notice("You could access the wire panel with a <b>wire tool</b>.")
+		. += span_notice("Możesz zamknąć pokrywę <b>śrubokrętem</b>.")
+		. += span_notice("Możesz zainstalować <b>moduły</b>, używając ich na tym.")
+		. += span_notice("Możesz wyjąć moduły <b>łomem</b>.")
+		. += span_notice("Możesz zaktualizować blokadę dostępu <b>identyfikatorem</b>.")
+		. += span_notice("Możesz dostać się do panelu przewodów <b>narzędziem do kabli</b>.")
 		if(core)
-			. += span_notice("You could remove [core] with a <b>wrench</b>.")
+			. += span_notice("Możesz wyjąć [core] <b>kluczem</b>.")
 		else
-			. += span_notice("You could use a <b>MOD core</b> on it to install one.")
+			. += span_notice("Możesz zainstalować <b>rdzeń MOD</b>, używając go na tym.")
 		if(isnull(ai_assistant))
-			. += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
+			. += span_notice("Możesz zainstalować SI albo pAI za pomocą ich <b>karty pamięci</b>.")
 		else if(isAI(ai_assistant))
-			. += span_notice("You could remove [ai_assistant] with an <b>intellicard</b>.")
+			. += span_notice("Możesz wyjąć [ai_assistant] za pomocą <b>intelikarty</b>.")
 	if(extended_desc)
 		. += "<i>[extended_desc]</i>"
 
@@ -205,12 +205,12 @@
 	if(user != wearer)
 		return ..()
 	if(active)
-		balloon_alert(wearer, "unit active!")
+		balloon_alert(wearer, "jednostka aktywna!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc != src)
-			balloon_alert(user, "parts extended!")
+			balloon_alert(user, "części rozłożone!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 
@@ -218,12 +218,12 @@
 	if(usr != wearer || !istype(over_object, /atom/movable/screen/inventory/hand))
 		return ..()
 	if(active)
-		balloon_alert(wearer, "unit active!")
+		balloon_alert(wearer, "jednostka aktywna!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc != src)
-			balloon_alert(wearer, "parts extended!")
+			balloon_alert(wearer, "części rozłożone!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 			return
 	if(!wearer.incapacitated())
@@ -239,15 +239,15 @@
 		return TRUE
 	if(open)
 		if(!core)
-			balloon_alert(user, "no core!")
+			balloon_alert(user, "brak rdzenia!")
 			return TRUE
-		balloon_alert(user, "removing core...")
+		balloon_alert(user, "wyjmowanie rdzenia...")
 		wrench.play_tool_sound(src, 100)
 		if(!wrench.use_tool(src, user, 3 SECONDS) || !open)
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "przerwano!")
 			return TRUE
 		wrench.play_tool_sound(src, 100)
-		balloon_alert(user, "core removed")
+		balloon_alert(user, "rdzeń wyjęty")
 		core.forceMove(drop_location())
 		update_charge_alert()
 		return TRUE
@@ -258,37 +258,37 @@
 	if(.)
 		return TRUE
 	if(active || activating || ai_controller)
-		balloon_alert(user, "unit active!")
+		balloon_alert(user, "jednostka aktywna!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(isAI(ai_assistant) && locked && !open)
-		balloon_alert(user, "suit locked, consult onboard AI!")
+		balloon_alert(user, "skafander zablokowany, zapytaj SI pokładową!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVAL, user) & MOD_CANCEL_REMOVAL)
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
-	balloon_alert(user, "[open ? "closing" : "opening"] cover...")
+	balloon_alert(user, "[open ? "zamykanie" : "otwieranie"] pokrywy...")
 	screwdriver.play_tool_sound(src, 100)
 	if(screwdriver.use_tool(src, user, 1 SECONDS))
 		if(active || activating)
-			balloon_alert(user, "unit active!")
+			balloon_alert(user, "jednostka aktywna!")
 			return TRUE
 		screwdriver.play_tool_sound(src, 100)
-		balloon_alert(user, "cover [open ? "closed" : "opened"]")
+		balloon_alert(user, "pokrywa [open ? "zamknięta" : "otwarta"]")
 		open = !open
 	else
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "przerwano!")
 	return TRUE
 
 /obj/item/mod/control/crowbar_act(mob/living/user, obj/item/crowbar)
 	. = ..()
 	if(!open)
-		balloon_alert(user, "cover closed!")
+		balloon_alert(user, "pokrywa zamknięta!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "brak dostępu!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(length(modules))
@@ -297,7 +297,7 @@
 			if(!module.removable)
 				continue
 			removable_modules += module
-		var/obj/item/mod/module/module_to_remove = tgui_input_list(user, "Which module to remove?", "Module Removal", removable_modules)
+		var/obj/item/mod/module/module_to_remove = tgui_input_list(user, "Który moduł wyjąć?", "Wyjmowanie modułu", removable_modules)
 		if(!module_to_remove?.mod)
 			return FALSE
 		uninstall(module_to_remove)
@@ -305,20 +305,20 @@
 		crowbar.play_tool_sound(src, 100)
 		SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVED, user)
 		return TRUE
-	balloon_alert(user, "no modules!")
+	balloon_alert(user, "brak modułów!")
 	playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return FALSE
 
 /obj/item/mod/control/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(istype(attacking_item, /obj/item/paicard))
 		if(!open)
-			balloon_alert(user, "cover closed!")
+			balloon_alert(user, "pokrywa zamknięta!")
 			return FALSE
 		insert_pai(user, attacking_item)
 		return TRUE
 	if(istype(attacking_item, /obj/item/mod/module))
 		if(!open)
-			balloon_alert(user, "cover closed!")
+			balloon_alert(user, "pokrywa zamknięta!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 		install(attacking_item, user)
@@ -326,16 +326,16 @@
 		return TRUE
 	else if(istype(attacking_item, /obj/item/mod/core))
 		if(!open)
-			balloon_alert(user, "cover closed!")
+			balloon_alert(user, "pokrywa zamknięta!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 		if(core)
-			balloon_alert(user, "already has core!")
+			balloon_alert(user, "ma już rdzeń!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 		var/obj/item/mod/core/attacking_core = attacking_item
 		attacking_core.install(src)
-		balloon_alert(user, "core installed")
+		balloon_alert(user, "rdzeń zainstalowany")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		update_charge_alert()
 		return TRUE
@@ -363,18 +363,18 @@
 
 /obj/item/mod/control/emag_act(mob/user)
 	locked = !locked
-	balloon_alert(user, "access [locked ? "locked" : "unlocked"]")
+	balloon_alert(user, "dostęp [locked ? "zablokowany" : "odblokowany"]")
 
 /obj/item/mod/control/emp_act(severity)
 	. = ..()
 	if(!active || !wearer)
 		return
-	to_chat(wearer, span_notice("[severity > 1 ? "Light" : "Strong"] electromagnetic pulse detected!"))
+	to_chat(wearer, span_notice("Wykryto [severity > 1 ? "słaby" : "silny"] impuls elektromagnetyczny!"))
 	if(. & EMP_PROTECT_CONTENTS)
 		return
 	selected_module?.deactivate(display_message = TRUE)
 	wearer.apply_damage(5 / severity, BURN)
-	to_chat(wearer, span_danger("You feel [src] heat up from the EMP, burning you slightly."))
+	to_chat(wearer, span_danger("Czujesz, jak [src] nagrzewa się od EMP i lekko cię parzy."))
 	if(wearer.stat < UNCONSCIOUS && prob(10))
 		wearer.emote("scream")
 
@@ -555,19 +555,19 @@
 	for(var/obj/item/mod/module/old_module as anything in modules)
 		if(is_type_in_list(new_module, old_module.incompatible_modules) || is_type_in_list(old_module, new_module.incompatible_modules))
 			if(user)
-				balloon_alert(user, "incompatible with [old_module]!")
+				balloon_alert(user, "niezgodne z: [old_module]!")
 				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)
 		if(user)
-			balloon_alert(user, "above complexity max!")
+			balloon_alert(user, "przekroczona maksymalna złożoność!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(!new_module.has_required_parts(mod_parts))
 		if(user)
-			balloon_alert(user, "lacking required parts!")
+			balloon_alert(user, "brak wymaganych części!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	new_module.forceMove(src)
@@ -584,7 +584,7 @@
 		new_module.on_part_activation()
 		new_module.part_activated = TRUE
 	if(user)
-		balloon_alert(user, "[new_module] added")
+		balloon_alert(user, "dodano: [new_module]")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 
 /obj/item/mod/control/proc/uninstall(obj/item/mod/module/old_module, deleting = FALSE)
@@ -606,11 +606,11 @@
 
 /obj/item/mod/control/proc/update_access(mob/user, obj/item/card/id/card)
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "brak dostępu!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	req_access = card.access.Copy()
-	balloon_alert(user, "access updated")
+	balloon_alert(user, "dostęp zaktualizowany")
 
 /obj/item/mod/control/proc/get_charge_source()
 	return core?.charge_source()
@@ -660,7 +660,7 @@
 	wearer?.update_equipment_speed_mods()
 
 /obj/item/mod/control/proc/power_off()
-	balloon_alert(wearer, "no power!")
+	balloon_alert(wearer, "brak zasilania!")
 	toggle_activate(wearer, force_deactivate = TRUE)
 
 /obj/item/mod/control/proc/set_mod_color(new_color)
@@ -717,14 +717,14 @@
 	SIGNAL_HANDLER
 
 	if(HAS_TRAIT(src, TRAIT_SPEED_POTIONED))
-		to_chat(user, span_warning("[src] has already been coated with red, that's as fast as it'll go!"))
+		to_chat(user, span_warning("[src] jest już pokryte czerwienią, szybciej już nie będzie!"))
 		return SPEED_POTION_STOP
 
 	if(active)
-		to_chat(user, span_warning("It's too dangerous to smear [speed_potion] on [src] while it's active!"))
+		to_chat(user, span_warning("Smarowanie [src] substancją [speed_potion], gdy jest aktywne, jest zbyt niebezpieczne!"))
 		return SPEED_POTION_STOP
 
-	to_chat(user, span_notice("You slather the red gunk over [src], making it faster."))
+	to_chat(user, span_notice("Smarujesz [src] czerwoną mazią, przyspieszając to."))
 	set_mod_color("#FF0000")
 	ADD_TRAIT(src, TRAIT_SPEED_POTIONED, SLIME_POTION_TRAIT)
 	update_speed()

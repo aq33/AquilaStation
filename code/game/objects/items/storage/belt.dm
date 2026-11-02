@@ -1,6 +1,6 @@
 /obj/item/storage/belt
-	name = "belt"
-	desc = "Can hold various things."
+	name = "pas"
+	desc = "Mieści różne rzeczy."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
@@ -29,8 +29,8 @@
 	update_icon()
 
 /obj/item/storage/belt/utility
-	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "Holds tools."
+	name = "pas na narzędzia" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "Mieści narzędzia."
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	worn_icon_state = "utility"
@@ -74,8 +74,8 @@
 	STR.can_hold = can_hold
 
 /obj/item/storage/belt/utility/chief
-	name = "\improper Chief Engineer's toolbelt" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
-	desc = "Holds tools, looks snazzy."
+	name = "\improper pas na narzędzia Głównego Inżyniera" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
+	desc = "Mieści narzędzia i wygląda szykownie."
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 	worn_icon_state = "utility_ce"
@@ -177,8 +177,8 @@
 	new /obj/item/weldingtool/experimental/brass(src)
 
 /obj/item/storage/belt/medical
-	name = "medical belt"
-	desc = "Can hold various medical equipment."
+	name = "pas medyczny"
+	desc = "Mieści różny sprzęt medyczny."
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	worn_icon_state = "medical"
@@ -244,8 +244,8 @@
 		))
 
 /obj/item/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
+	name = "pas policyjny"
+	desc = "Mieści sprzęt ochrony, na przykład kajdanki i flashe."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	content_overlays = TRUE
@@ -287,7 +287,7 @@
 	update_icon()
 
 /obj/item/storage/belt/security/deputy
-	name = "deputy security belt"
+	name = "pas policyjny aspiranta"
 
 /obj/item/storage/belt/security/deputy/PopulateContents()
 	new /obj/item/melee/classic_baton/police/deputy(src)
@@ -298,8 +298,8 @@
 	update_icon()
 
 /obj/item/storage/belt/security/webbing
-	name = "security webbing"
-	desc = "Unique and versatile chest rig, can hold security gear."
+	name = "policyjne oporządzenie"
+	desc = "Wyjątkowa i wszechstronna kamizelka taktyczna, mieści sprzęt ochrony."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	worn_icon_state = "securitywebbing"
@@ -313,8 +313,8 @@
 	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/mining
-	name = "explorer's webbing"
-	desc = "A versatile chest rig, cherished by miners and hunters alike."
+	name = "oporządzenie odkrywcy"
+	desc = "Wszechstronna kamizelka taktyczna, ceniona zarówno przez górników, jak i myśliwych."
 	icon_state = "explorer1"
 	item_state = "explorer1"
 	worn_icon_state = "explorer1"
@@ -384,8 +384,8 @@
 	worn_icon_state = "explorer2"
 
 /obj/item/storage/belt/mining/primitive
-	name = "hunter's belt"
-	desc = "A versatile belt, woven from sinew."
+	name = "pas myśliwego"
+	desc = "Wszechstronny pas spleciony ze ścięgien."
 	icon_state = "ebelt"
 	item_state = "ebelt"
 	worn_icon_state = "ebelt"
@@ -396,8 +396,8 @@
 	STR.max_items = 5
 
 /obj/item/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away."
+	name = "pas na kamienie dusz"
+	desc = "Zaprojektowany tak, żeby w walce mieć łatwy dostęp do odłamków i nie przepuścić żadnego wrogiego ducha."
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 	worn_icon_state = "soulstonebelt"
@@ -423,8 +423,8 @@
 		new /obj/item/soulstone/anybody/purified(src)
 
 /obj/item/storage/belt/champion
-	name = "championship belt"
-	desc = "Proves to the world that you are the strongest!"
+	name = "pas mistrzowski"
+	desc = "Udowadnia światu, że jesteś najsilniejszy!"
 	icon_state = "championbelt"
 	item_state = "champion"
 	worn_icon_state = "champion"
@@ -439,8 +439,8 @@
 		)
 
 /obj/item/storage/belt/military
-	name = "chest rig"
-	desc = "A set of tactical webbing worn by Syndicate boarding parties."
+	name = "kamizelka taktyczna"
+	desc = "Taktyczne oporządzenie noszone przez oddziały abordażowe Syndykatu."
 	icon_state = "militarywebbing"
 	item_state = "militarywebbing"
 	worn_icon_state = "militarywebbing"
@@ -452,12 +452,12 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/belt/military/snack
-	name = "tactical snack rig"
+	name = "taktyczna kamizelka na przekąski"
 
 /obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/sponsor = pick("DonkCo", "Waffle Co.", "Roffle Co.", "Gorlax Marauders", "Tiger Cooperative")
-	desc = "A set of snack-tical webbing worn by athletes of the [sponsor] VR sports division."
+	desc = "Przekąsko-taktyczne oporządzenie noszone przez sportowców działu sportów VR firmy [sponsor]."
 
 /obj/item/storage/belt/military/snack/ComponentInitialize()
 	. = ..()
@@ -499,8 +499,8 @@
 		new rig_snacks(src)
 
 /obj/item/storage/belt/military/abductor
-	name = "agent belt"
-	desc = "A belt used by abductor agents."
+	name = "pas agenta"
+	desc = "Pas używany przez agentów porywaczy."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
@@ -516,15 +516,15 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/belt/military/army
-	name = "army belt"
-	desc = "A belt used by military forces."
+	name = "pas wojskowy"
+	desc = "Pas używany przez siły zbrojne."
 	icon_state = "grenadebeltold"
 	item_state = "security"
 	worn_icon_state = "security"
 
 /obj/item/storage/belt/military/assault
-	name = "assault belt"
-	desc = "A tactical assault belt."
+	name = "pas szturmowy"
+	desc = "Taktyczny pas szturmowy."
 	icon_state = "assaultbelt"
 	item_state = "security"
 	worn_icon_state = "security"
@@ -535,8 +535,8 @@
 	STR.max_items = 6
 
 /obj/item/storage/belt/grenade
-	name = "grenadier belt"
-	desc = "A belt for holding grenades."
+	name = "pas grenadiera"
+	desc = "Pas na granaty."
 	icon_state = "grenadebeltnew"
 	item_state = "security"
 	worn_icon_state = "security"
@@ -575,15 +575,15 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/belt/grenade/full/webbing
-	name = "grenadier chest rig"
-	desc = "A set of tactical webbing stocked full of grenades."
+	name = "kamizelka taktyczna grenadiera"
+	desc = "Taktyczne oporządzenie wypchane granatami."
 	icon_state = "militarywebbing"
 	item_state = "militarywebbing"
 	worn_icon_state = "militarywebbing"
 
 /obj/item/storage/belt/wands
-	name = "wand belt"
-	desc = "A belt designed to hold various rods of power. A veritable fanny pack of exotic magic."
+	name = "pas na różdżki"
+	desc = "Pas na różne laski mocy. Prawdziwa nerka egzotycznej magii."
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 	worn_icon_state = "soulstonebelt"
@@ -609,8 +609,8 @@
 		W.charges = W.max_charges
 
 /obj/item/storage/belt/janitor
-	name = "janibelt"
-	desc = "A belt used to hold most janitorial supplies."
+	name = "pas woźnego"
+	desc = "Pas mieszczący większość przyborów woźnego."
 	icon_state = "janibelt"
 	item_state = "janibelt"
 	worn_icon_state = "janibelt"
@@ -645,7 +645,7 @@
 
 /obj/item/storage/belt/bandolier
 	name = "bandolier"
-	desc = "A bandolier for holding shotgun ammunition."
+	desc = "Bandolier na amunicję do strzelby."
 	icon_state = "bandolier"
 	item_state = "bandolier"
 	worn_icon_state = "bandolier"
@@ -660,8 +660,8 @@
 		))
 
 /obj/item/storage/belt/quiver
-	name = "leather quiver"
-	desc = "A quiver made from the hide of some animal. Used to hold arrows."
+	name = "skórzany kołczan"
+	desc = "Kołczan ze skóry jakiegoś zwierzęcia. Służy do noszenia strzał."
 	icon_state = "quiver"
 	item_state = "quiver"
 	worn_icon_state = "quiver"
@@ -679,8 +679,8 @@
 		))
 
 /obj/item/storage/belt/fannypack
-	name = "fannypack"
-	desc = "A dorky fannypack for keeping small items in."
+	name = "nerka"
+	desc = "Obciachowa nerka na drobne przedmioty."
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
 	worn_icon_state = "fannypack_leather"
@@ -694,75 +694,75 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/belt/fannypack/black
-	name = "black fannypack"
+	name = "czarna nerka"
 	icon_state = "fannypack_black"
 	item_state = "fannypack_black"
 	worn_icon_state = "fannypack_black"
 
 /obj/item/storage/belt/fannypack/red
-	name = "red fannypack"
+	name = "czerwona nerka"
 	icon_state = "fannypack_red"
 	item_state = "fannypack_red"
 	worn_icon_state = "fannypack_red"
 
 /obj/item/storage/belt/fannypack/purple
-	name = "purple fannypack"
+	name = "fioletowa nerka"
 	icon_state = "fannypack_purple"
 	item_state = "fannypack_purple"
 	worn_icon_state = "fannypack_purple"
 
 /obj/item/storage/belt/fannypack/blue
-	name = "blue fannypack"
+	name = "niebieska nerka"
 	icon_state = "fannypack_blue"
 	item_state = "fannypack_blue"
 	worn_icon_state = "fannypack_blue"
 
 /obj/item/storage/belt/fannypack/orange
-	name = "orange fannypack"
+	name = "pomarańczowa nerka"
 	icon_state = "fannypack_orange"
 	item_state = "fannypack_orange"
 	worn_icon_state = "fannypack_orange"
 
 /obj/item/storage/belt/fannypack/white
-	name = "white fannypack"
+	name = "biała nerka"
 	icon_state = "fannypack_white"
 	item_state = "fannypack_white"
 	worn_icon_state = "fannypack_white"
 
 /obj/item/storage/belt/fannypack/green
-	name = "green fannypack"
+	name = "zielona nerka"
 	icon_state = "fannypack_green"
 	item_state = "fannypack_green"
 	worn_icon_state = "fannypack_green"
 
 /obj/item/storage/belt/fannypack/pink
-	name = "pink fannypack"
+	name = "różowa nerka"
 	icon_state = "fannypack_pink"
 	item_state = "fannypack_pink"
 	worn_icon_state = "fannypack_pink"
 
 /obj/item/storage/belt/fannypack/cyan
-	name = "cyan fannypack"
+	name = "błękitna nerka"
 	icon_state = "fannypack_cyan"
 	item_state = "fannypack_cyan"
 	worn_icon_state = "fannypack_cyan"
 
 /obj/item/storage/belt/fannypack/yellow
-	name = "yellow fannypack"
+	name = "żółta nerka"
 	icon_state = "fannypack_yellow"
 	item_state = "fannypack_yellow"
 	worn_icon_state = "fannypack_yellow"
 
 /obj/item/storage/belt/fannypack/bustin
-	name = "exterminator's belt"
+	name = "pas tępiciela"
 	desc = " "
 	icon_state = "bustinbelt"
 	item_state = "bustinbelt"
 	worn_icon_state = "bustinbelt"
 
 /obj/item/storage/belt/sabre
-	name = "sabre sheath"
-	desc = "An ornate sheath designed to hold an officer's blade."
+	name = "pochwa na szablę"
+	desc = "Zdobiona pochwa na oficerskie ostrze."
 	icon_state = "sheath"
 	item_state = "sheath"
 	worn_icon_state = "sheath"
@@ -812,8 +812,8 @@
 	update_icon()
 
 /obj/item/storage/belt/sabre/mime
-	name = "Baguette"
-	desc = "Bon appetit!"
+	name = "bagietka"
+	desc = "Smacznego!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "baguette"
 	item_state = "baguette"

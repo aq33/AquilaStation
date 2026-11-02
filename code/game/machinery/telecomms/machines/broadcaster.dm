@@ -9,9 +9,9 @@ GLOBAL_LIST_EMPTY(recentmessages) // global list of recent messages broadcasted 
 GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages list is kept in sync
 
 /obj/machinery/telecomms/broadcaster
-	name = "subspace broadcaster"
+	name = "nadajnik podprzestrzenny"
 	icon_state = "broadcaster"
-	desc = "A dish-shaped machine used to broadcast processed subspace signals."
+	desc = "Maszyna w kształcie czaszy, która nadaje przetworzone sygnały podprzestrzenne."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 25
@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	autolinkers = list("broadcasterB")
 
 /obj/machinery/telecomms/broadcaster/preset_left/birdstation
-	name = "Broadcaster"
+	name = "nadajnik"
 
 /obj/machinery/telecomms/broadcaster/preset_exploration
 	id = "Exploration Broadcaster"

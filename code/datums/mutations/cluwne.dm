@@ -1,6 +1,6 @@
 /datum/mutation/cluwne
 	name = "Cluwne"
-	desc = "Turns a person into a Cluwne, a poor soul cursed to a short and miserable life by the honkmother."
+	desc = "Zmienia osobę w cluwne'a, biedną duszę przeklętą przez Honkmatkę na krótkie i nędzne życie."
 	quality = NEGATIVE
 	locked = TRUE
 	text_gain_indication = "<span class='danger'>Masz wrażenie, że twój mózg sam się rozrywa.</span>"

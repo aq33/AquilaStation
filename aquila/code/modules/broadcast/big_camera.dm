@@ -1,7 +1,7 @@
 // AQUILA: duża kamera stacjonarna (port Monkestation bigcamera.dm)
 
 /obj/machinery/big_broadcast_camera
-	name = "big broadcast camera"
+	name = "duża kamera reporterska"
 	desc = "Bardzo duża kamera, która nadaje obraz i dźwięk na żywo do telewizorów rozrywkowych na statku."
 	icon = 'aquila/icons/obj/broadcast.dmi'
 	icon_state = "big_broadcast_cam"
@@ -124,7 +124,7 @@
 	GLOB.cameranet.updatePortableCamera(internal_camera)
 
 /datum/crafting_recipe/big_broadcast_camera
-	name = "Big broadcast camera"
+	name = "Duża kamera reporterska"
 	result = /obj/machinery/big_broadcast_camera
 	reqs = list(
 		/obj/item/broadcast_camera = 1,

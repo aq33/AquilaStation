@@ -1,6 +1,6 @@
 /obj/machinery/vending/donksofttoyvendor
-	name = "\improper Donksoft Toy Vendor"
-	desc = "Ages 8 and up approved vendor that dispenses toys."
+	name = "\improper automat z zabawkami Donksoft"
+	desc = "Automat z zabawkami dopuszczony dla dzieci od 8 lat."
 	icon_state = "nt-donk"
 	product_slogans = "Zdobądź swoje super zabawki dziś!;Rozpocznij validhunt już dzisiaj!;Zabawkowe bronie najlepszej jakości w niskiej cenie!;Daj je HoPowi za AA!;Daj je Szefowi Ochrony za bilet do permy!"
 	product_ads = "Poczuj się robustny ze swoimi zabawkami!;Wyraź swoje wewnętrzne dziecko już dziś!;Zabawkowe bronie nie zabijają ludzi. Ale validhunterzy już tak!;Kto potrzebuje odpowiedzialności jeśli masz zabawkowe bronie?;Uczyń swoje następne morderstwo ZABAWNE!"
@@ -32,5 +32,5 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/donksoft
-	machine_name = "Donksoft Toy Vendor"
+	machine_name = "automat z zabawkami Donksoft"
 	icon_state = "refill_donksoft"

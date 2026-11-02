@@ -1,5 +1,5 @@
 /datum/chemical_reaction/reagent_explosion
-	name = "Generic explosive"
+	name = "Zwykły wybuch"
 	id = "reagent_explosion"
 	var/strengthdiv = 10
 	var/modifier = 0
@@ -14,14 +14,14 @@
 		var/inside_msg
 		if(ismob(holder.my_atom))
 			var/mob/M = holder.my_atom
-			inside_msg = " inside [ADMIN_LOOKUPFLW(M)]"
+			inside_msg = " (wewnątrz: [ADMIN_LOOKUPFLW(M)])"
 		var/lastkey = holder.my_atom?.fingerprintslast
 		var/touch_msg = "N/A"
 		if(lastkey)
 			var/mob/toucher = get_mob_by_ckey(lastkey)
 			touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
 		if(!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(T)][inside_msg]. Last Fingerprint: [touch_msg].")
+			message_admins("Wybuch w reakcji odczynników w [ADMIN_VERBOSEJMP(T)][inside_msg]. Ostatni odcisk palca: [touch_msg].")
 		log_game("Reagent explosion reaction occurred at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(power , T, 0, 0)
@@ -30,7 +30,7 @@
 
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin
-	name = "Nitroglycerin"
+	name = "Nitrogliceryna"
 	id = /datum/reagent/nitroglycerin
 	results = list(/datum/reagent/nitroglycerin = 2)
 	required_reagents = list(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/fluacid = 1, /datum/reagent/toxin/acid = 1)
@@ -43,7 +43,7 @@
 	..()
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin_explosion
-	name = "Nitroglycerin explosion"
+	name = "Wybuch nitrogliceryny"
 	id = "nitroglycerin_explosion"
 	required_reagents = list(/datum/reagent/nitroglycerin = 1)
 	required_temp = 474
@@ -51,13 +51,13 @@
 
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion
-	name = "Explosion"
+	name = "Wybuch"
 	id = "potassium_explosion"
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
 	strengthdiv = 10
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom
-	name = "Holy Explosion"
+	name = "Święty wybuch"
 	id = "holyboom"
 	required_reagents = list(/datum/reagent/water/holywater = 1, /datum/reagent/potassium = 1)
 
@@ -83,13 +83,13 @@
 			C.IgniteMob()
 
 /datum/chemical_reaction/blackpowder
-	name = "Black Powder"
+	name = "Proch strzelniczy"
 	id = /datum/reagent/blackpowder
 	results = list(/datum/reagent/blackpowder = 3)
 	required_reagents = list(/datum/reagent/saltpetre = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/sulfur = 1)
 
 /datum/chemical_reaction/reagent_explosion/blackpowder_explosion
-	name = "Black Powder Kaboom"
+	name = "Wybuch prochu strzelniczego"
 	id = "blackpowder_explosion"
 	required_reagents = list(/datum/reagent/blackpowder = 1)
 	required_temp = 474
@@ -101,13 +101,13 @@
 	addtimer(CALLBACK(src, PROC_REF(explode), holder, created_volume), rand(50,100))
 
 /datum/chemical_reaction/thermite
-	name = "Thermite"
+	name = "Termit"
 	id = /datum/reagent/thermite
 	results = list(/datum/reagent/thermite = 3)
 	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/emp_pulse
-	name = "EMP Pulse"
+	name = "Impuls EMP"
 	id = "emp_pulse"
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 
@@ -120,7 +120,7 @@
 
 
 /datum/chemical_reaction/beesplosion
-	name = "Bee Explosion"
+	name = "Wybuch pszczół"
 	id = "beesplosion"
 	required_reagents = list(/datum/reagent/consumable/honey = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/uranium/radium = 1)
 
@@ -149,7 +149,7 @@
 	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/clf3
-	name = "Chlorine Trifluoride"
+	name = "Trifluorek chloru"
 	id = /datum/reagent/clf3
 	results = list(/datum/reagent/clf3 = 4)
 	required_reagents = list(/datum/reagent/chlorine = 1, /datum/reagent/fluorine = 3)
@@ -163,7 +163,7 @@
 	holder.chem_temp = 1000 // hot as shit
 
 /datum/chemical_reaction/reagent_explosion/methsplosion
-	name = "Meth explosion"
+	name = "Wybuch metamfetaminy"
 	id = "methboom1"
 	required_temp = 380 //slightly above the meth mix time.
 	required_reagents = list(/datum/reagent/drug/methamphetamine = 1)
@@ -199,7 +199,7 @@
 	goonchem_vortex(T, 1, range)
 
 /datum/chemical_reaction/sorium_vortex
-	name = "sorium_vortex"
+	name = "Wir sorium"
 	id = "sorium_vortex"
 	required_reagents = list(/datum/reagent/sorium = 1)
 	required_temp = 474
@@ -210,7 +210,7 @@
 	goonchem_vortex(T, 1, range)
 
 /datum/chemical_reaction/liquid_dark_matter
-	name = "Liquid Dark Matter"
+	name = "Płynna ciemna materia"
 	id = /datum/reagent/liquid_dark_matter
 	results = list(/datum/reagent/liquid_dark_matter = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/uranium/radium = 1, /datum/reagent/carbon = 1)
@@ -224,7 +224,7 @@
 	goonchem_vortex(T, 0, range)
 
 /datum/chemical_reaction/ldm_vortex
-	name = "LDM Vortex"
+	name = "Wir ciemnej materii"
 	id = "ldm_vortex"
 	required_reagents = list(/datum/reagent/liquid_dark_matter = 1)
 	required_temp = 474
@@ -235,7 +235,7 @@
 	goonchem_vortex(T, 0, range)
 
 /datum/chemical_reaction/flash_powder
-	name = "Flash powder"
+	name = "Proszek błyskowy"
 	id = /datum/reagent/flash_powder
 	results = list(/datum/reagent/flash_powder = 3)
 	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
@@ -258,7 +258,7 @@
 	holder.remove_reagent(/datum/reagent/flash_powder, created_volume*3)
 
 /datum/chemical_reaction/flash_powder_flash
-	name = "Flash powder activation"
+	name = "Odpalenie proszku błyskowego"
 	id = "flash_powder_flash"
 	required_reagents = list(/datum/reagent/flash_powder = 1)
 	required_temp = 374
@@ -299,7 +299,7 @@
 		holder.clear_reagents()
 
 /datum/chemical_reaction/smoke_powder_smoke
-	name = "smoke_powder_smoke"
+	name = "Dym z proszku dymnego"
 	id = "smoke_powder_smoke"
 	required_reagents = list(/datum/reagent/smoke_powder = 1)
 	required_temp = 374
@@ -333,7 +333,7 @@
 		C.soundbang_act(1, 100, rand(0, 5))
 
 /datum/chemical_reaction/sonic_powder_deafen
-	name = "sonic_powder_deafen"
+	name = "Ogłuszenie proszkiem dźwiękowym"
 	id = "sonic_powder_deafen"
 	required_reagents = list(/datum/reagent/sonic_powder = 1)
 	required_temp = 374
@@ -376,7 +376,7 @@
 	return
 
 /datum/chemical_reaction/cryostylane_oxygen
-	name = "ephemeral cryostylane reaction"
+	name = "Ulotna reakcja kriostylanu"
 	id = "cryostylane_oxygen"
 	results = list(/datum/reagent/cryostylane = 1)
 	required_reagents = list(/datum/reagent/cryostylane = 1, /datum/reagent/oxygen = 1)
@@ -386,7 +386,7 @@
 	holder.chem_temp = max(holder.chem_temp - 10*created_volume,0)
 
 /datum/chemical_reaction/pyrosium_oxygen
-	name = "ephemeral pyrosium reaction"
+	name = "Ulotna reakcja pyrosium"
 	id = "pyrosium_oxygen"
 	results = list(/datum/reagent/pyrosium = 1)
 	required_reagents = list(/datum/reagent/pyrosium = 1, /datum/reagent/oxygen = 1)
@@ -414,21 +414,21 @@
 	required_temp = 400
 
 /datum/chemical_reaction/energized_jelly
-	name = "Energized Jelly"
+	name = "Naładowana galaretka"
 	id = /datum/reagent/teslium/energized_jelly
 	results = list(/datum/reagent/teslium/energized_jelly = 2)
 	required_reagents = list(/datum/reagent/toxin/slimejelly = 1, /datum/reagent/teslium = 1)
 	mix_message = "<span class='danger'>Galaretka ze szlamu zaczyna przerywanie świecić.</span>"
 
 /datum/chemical_reaction/energized_jelly/energized_ooze
-	name = "Energized Ooze"
+	name = "Naładowana maź"
 	id = /datum/reagent/teslium/energized_jelly/energized_ooze
 	results = list(/datum/reagent/teslium/energized_jelly/energized_ooze = 2)
 	required_reagents = list(/datum/reagent/toxin/slimeooze = 1, /datum/reagent/teslium = 1)
 	mix_message = "<span class='danger'>Maź ze szlamu zaczyna przerywanie świecić.</span>"
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning
-	name = "Teslium Destabilization"
+	name = "Destabilizacja teslium"
 	id = "teslium_lightning"
 	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/water = 1)
 	strengthdiv = 100
@@ -464,7 +464,7 @@
 	required_reagents = list(/datum/reagent/teslium = 1)
 
 /datum/chemical_reaction/reagent_explosion/nitrous_oxide
-	name = "N2O explosion"
+	name = "Wybuch N2O"
 	id = "n2o_explosion"
 	required_reagents = list(/datum/reagent/nitrous_oxide = 1)
 	strengthdiv = 7
@@ -472,7 +472,7 @@
 	modifier = 1
 
 /datum/chemical_reaction/firefighting_foam
-	name = "Firefighting Foam"
+	name = "Piana gaśnicza"
 	id = /datum/reagent/firefighting_foam
 	results = list(/datum/reagent/firefighting_foam = 3)
 	required_reagents = list(/datum/reagent/stabilizing_agent = 1,/datum/reagent/fluorosurfactant = 1,/datum/reagent/carbon = 1)
@@ -480,7 +480,7 @@
 	is_cold_recipe = 1
 
 /datum/chemical_reaction/reagent_explosion/cults_explosion
-	name = "Cults Explosion"
+	name = "Wybuch kultu"
 	id = "cults_explosion"
 	required_reagents = list(/datum/reagent/consumable/ethanol/ratvander = 1, /datum/reagent/consumable/ethanol/narsour = 1)
 	strengthdiv = 10

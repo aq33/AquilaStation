@@ -1,15 +1,15 @@
 
 /obj/item/clothing/head/beekeeper_head
-	name = "beekeeper hat"
-	desc = "Keeps the lil buzzing buggers out of your eyes."
+	name = "kapelusz pszczelarza"
+	desc = "Trzyma małe bzyczące paskudy z dala od twoich oczu."
 	icon_state = "beekeeper"
 	item_state = "beekeeper"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 
 
 /obj/item/clothing/suit/beekeeper_suit
-	name = "beekeeper suit"
-	desc = "Keeps the lil buzzing buggers away from your squishy bits."
+	name = "strój pszczelarza"
+	desc = "Trzyma małe bzyczące paskudy z dala od twoich miękkich części."
 	icon_state = "beekeeper"
 	item_state = "beekeeper"
 	clothing_flags = THICKMATERIAL

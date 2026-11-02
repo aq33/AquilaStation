@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/personality_commune
-	name = "Personality Commune"
-	desc = "Sends thoughts to your alternate consciousness."
+	name = "Komunia osobowości"
+	desc = "Wysyłasz myśli do swojej drugiej świadomości."
 	charge_max = 0
 	clothes_req = FALSE
 	range = -1
@@ -33,4 +33,4 @@
 	for(var/ded in GLOB.dead_mob_list)
 		if(!isobserver(ded))
 			continue
-		to_chat(ded, "[FOLLOW_LINK(ded, user)] <span class='boldnotice'>[user] [name]:</span> <span class='notice'>\"[msg]\" to</span><span class='name'>[trauma]</span>")
+		to_chat(ded, "[FOLLOW_LINK(ded, user)] <span class='boldnotice'>[user] [name]:</span> <span class='notice'>\"[msg]\" do</span> <span class='name'>[trauma]</span>")

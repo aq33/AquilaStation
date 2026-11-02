@@ -1,8 +1,8 @@
 //Galaxy Thistle
 /obj/item/food/grown/galaxythistle
 	seed = /obj/item/plant_seeds/preset/galaxythistle
-	name = "galaxythistle flower head"
-	desc = "This spiny cluster of florets reminds you of the highlands."
+	name = "koszyczek galaktycznego ostu"
+	desc = "Ten kolczasty koszyczek kwiatów przypomina ci wyżyny."
 	icon_state = "galaxythistle"
 	filling_color = "#1E7549"
 	bite_consumption_mod = 2
@@ -13,8 +13,8 @@
 // Cabbage
 /obj/item/food/grown/cabbage
 	seed = /obj/item/plant_seeds/preset/cabbage
-	name = "cabbage"
-	desc = "Ewwwwwwwwww. Cabbage."
+	name = "kapusta"
+	desc = "Fuuuuuuj. Kapusta."
 	icon_state = "cabbage"
 	filling_color = "#90EE90"
 	foodtypes = VEGETABLES
@@ -23,8 +23,8 @@
 // Sugarcane
 /obj/item/food/grown/sugarcane
 	seed = /obj/item/plant_seeds/preset/sugarcane
-	name = "sugarcane"
-	desc = "Sickly sweet."
+	name = "trzcina cukrowa"
+	desc = "Mdląco słodka."
 	icon_state = "sugarcane"
 	filling_color = "#FFD700"
 	bite_consumption_mod = 2
@@ -34,8 +34,8 @@
 // Gatfruit
 /obj/item/food/grown/shell/gatfruit
 	seed = /obj/item/plant_seeds/preset/gat
-	name = "gatfruit"
-	desc = "It smells like burning."
+	name = "giwerowoc"
+	desc = "Pachnie spalenizną."
 	icon_state = "gatfruit"
 	trash_type = /obj/item/gun/ballistic/revolver
 	bite_consumption_mod = 2
@@ -45,8 +45,8 @@
 
 //Cherry Bombs
 /obj/item/food/grown/cherry_bomb
-	name = "cherry bombs"
-	desc = "You think you can hear the hissing of a tiny fuse."
+	name = "wiśniowe bomby"
+	desc = "Wydaje ci się, że słyszysz syk malutkiego lontu."
 	icon_state = "cherry_bomb"
 	filling_color = rgb(20, 20, 20)
 	seed = /obj/item/plant_seeds/preset/cherry_bomb

@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(sechailers)
 
 /datum/action/item_action/dispatch
-	name = "Signal dispatch"
-	desc = "Opens up a quick select wheel for reporting crimes, including your current location, to your fellow security officers."
+	name = "Wezwij dyspozytora"
+	desc = "Otwiera koło szybkiego wyboru do zgłaszania przestępstw kolegom z ochrony, razem z twoim obecnym położeniem."
 	button_icon_state = "dispatch"
 	icon_icon = 'nsv13/icons/mob/actions/actions.dmi'
 

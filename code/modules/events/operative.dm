@@ -10,7 +10,7 @@
 
 /datum/round_event/ghost_role/operative
 	minimum_required = 1
-	role_name = "lone operative"
+	role_name = "samotny operator"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/operative/spawn_role()
@@ -37,7 +37,7 @@
 	Mind.transfer_to(operative)
 	Mind.add_antag_datum(/datum/antagonist/nukeop/lone)
 
-	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into lone operative by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(operative)] zostaje samotnym operatorem w wyniku eventu.")
 	log_game("[key_name(operative)] was spawned as a lone operative by an event.")
 	spawned_mobs += operative
 	return SUCCESSFUL_SPAWN

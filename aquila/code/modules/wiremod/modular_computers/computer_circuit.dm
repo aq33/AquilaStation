@@ -78,7 +78,7 @@
 
 /// Prosty komponent dla konsol, laptopów i PDA, niezależny od programów
 /obj/item/circuit_component/modpc
-	display_name = "Modular Computer"
+	display_name = "Mikrokomputer modułowy"
 	desc = "Układ do podstawowych funkcji komputera modułowego."
 	var/obj/item/modular_computer/computer
 	/// Włącza/wyłącza komputer

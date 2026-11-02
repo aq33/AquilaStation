@@ -17,7 +17,7 @@ BONUS
 
 /datum/symptom/cough
 
-	name = "Cough"
+	name = "Kaszel"
 	desc = "Wirus podrażnia gardło nosiciela, powodując okazjonalny kaszel."
 	stealth = -1
 	resistance = 3
@@ -60,7 +60,7 @@ BONUS
 	switch(A.stage)
 		if(1, 2, 3)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span notice='warning'>[pick("You swallow excess mucus.", "You lightly cough.")]</span>")
+				to_chat(M, "<span notice='warning'>[pick("Przełykasz nadmiar śluzu.", "Lekko pokasłujesz.")]</span>")
 		else
 			M.emote("cough")
 			if(power >= 1.5)
@@ -68,7 +68,7 @@ BONUS
 				if(I?.w_class == WEIGHT_CLASS_TINY)
 					M.dropItemToGround(I)
 			if(power >= 2 && prob(10))
-				to_chat(M, "<span notice='userdanger'>[pick("You have a coughing fit!", "You can't stop coughing!")]</span>")
+				to_chat(M, "<span notice='userdanger'>[pick("Dostajesz ataku kaszlu!", "Nie możesz przestać kaszleć!")]</span>")
 				M.Immobilize(20)
 				M.emote("cough")
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 6)

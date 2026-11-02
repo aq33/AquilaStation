@@ -1,8 +1,8 @@
 // Tomato
 /obj/item/food/grown/tomato
 	seed = /obj/item/plant_seeds/preset/tomato
-	name = "tomato"
-	desc = "I say to-mah-to, you say tom-mae-to."
+	name = "pomidor"
+	desc = "Ja mówię pomidor, ty mówisz pomidor."
 	icon_state = "tomato"
 	splat_type = /obj/effect/decal/cleanable/food/tomato_smudge
 	foodtypes = FRUIT
@@ -12,8 +12,8 @@
 
 // Blood Tomato
 /obj/item/food/grown/tomato/blood
-	name = "blood-tomato"
-	desc = "So bloody...so...very...bloody....AHHHH!!!!"
+	name = "krwisty pomidor"
+	desc = "Tak krwawy... tak... bardzo... krwawy... AAAA!!!!"
 	icon_state = "bloodtomato"
 	bite_consumption_mod = 3
 	splat_type = /obj/effect/gibspawner/generic/bloodtomato
@@ -34,8 +34,8 @@
 
 // Blue Tomato
 /obj/item/food/grown/tomato/blue
-	name = "blue-tomato"
-	desc = "I say blue-mah-to, you say blue-mae-to."
+	name = "niebieski pomidor"
+	desc = "Ja mówię niebieski pomidor, ty mówisz niebieski pomidor."
 	icon_state = "bluetomato"
 	bite_consumption_mod = 2
 	splat_type = /obj/effect/decal/cleanable/oil
@@ -44,8 +44,8 @@
 
 // Bluespace Tomato
 /obj/item/food/grown/tomato/blue/bluespace
-	name = "bluespace tomato"
-	desc = "So lubricated, you might slip through space-time."
+	name = "bluespace'owy pomidor"
+	desc = "Tak śliski, że można się poślizgnąć w czasoprzestrzeni."
 	icon_state = "bluespacetomato"
 	bite_consumption_mod = 3
 	distill_reagent = null
@@ -54,8 +54,8 @@
 
 // Killer Tomato
 /obj/item/food/grown/tomato/killer
-	name = "killer-tomato"
-	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
+	name = "pomidor zabójca"
+	desc = "Ja mówię pomidor, ty mówisz pomidor... O BOŻE, ON MI JE NOGI!!"
 	icon_state = "killertomato"
 	var/awakening = FALSE
 	filling_color = "#FF0000"

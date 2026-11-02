@@ -52,21 +52,21 @@ Marine & all their unique stuff!
 
 //Sprite courtesy of TGMC!
 /obj/item/clothing/under/ship/marine
-	name = "combat jumpsuit"
-	desc = "A cheaply made uniform worn by general combat officers."
+	name = "kombinezon bojowy"
+	desc = "Tanio wykonany mundur noszony przez zwykłych żołnierzy liniowych."
 	icon_state = "marine"
 	item_state = "bl_suit"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "bleed" = 10)
 	can_adjust = TRUE
 
 /obj/item/clothing/under/ship/marine/engineer
-	name = "squad engineer uniform"
-	desc = "A cheaply made and uncomfortable uniform worn by squad engineers."
+	name = "mundur inżyniera drużyny"
+	desc = "Tanio wykonany, niewygodny mundur noszony przez inżynierów drużyny."
 	icon_state = "marine_engineer"
 
 /obj/item/clothing/under/ship/marine/medic
-	name = "squad medic uniform"
-	desc = "A cheaply made and uncomfortable uniform worn by squad medics. It has a conspicuous blue cross on the back. Shooting its bearer may constitute a war crime."
+	name = "mundur medyka drużyny"
+	desc = "Tanio wykonany, niewygodny mundur noszony przez medyków drużyny. Na plecach ma rzucający się w oczy niebieski krzyż. Strzelanie do noszącego może być zbrodnią wojenną."
 	icon_state = "marine_medic"
 
 /datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M)

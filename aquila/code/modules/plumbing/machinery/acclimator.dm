@@ -4,8 +4,8 @@
 #define TEMP_DIFF 0.5
 
 /obj/machinery/plumbing/acclimator
-	name = "chemical acclimator"
-	desc = "An efficient cooler and heater for the perfect showering temperature or illicit chemical factory."
+	name = "aklimatyzator chemiczny"
+	desc = "Wydajna chłodnica i grzałka zarazem, idealna do ustawienia temperatury prysznica albo w nielegalnej fabryce chemikaliów."
 	icon_state = "acclimator"
 	buffer = 200
 	active_power_usage = 100

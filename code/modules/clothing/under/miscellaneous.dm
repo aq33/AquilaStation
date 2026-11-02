@@ -1,6 +1,6 @@
 /obj/item/clothing/under/misc/pj
-	name = "\improper PJs"
-	desc = "A comfy set of sleepwear, for taking naps or being lazy instead of working."
+	name = "\improper piżama"
+	desc = "Wygodny strój do spania, na drzemki albo leniuchowanie zamiast pracy."
 
 /obj/item/clothing/under/misc/pj/red
 	icon_state = "red_pyjamas"
@@ -13,24 +13,24 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/patriotsuit
-	name = "Patriotic Suit"
-	desc = "Motorcycle not included."
+	name = "patriotyczny strój"
+	desc = "Motocykl nie wchodzi w zestaw."
 	icon_state = "ek"
 	item_state = "ek"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/vice_officer
-	name = "vice officer's jumpsuit"
+	name = "kombinezon oficera obyczajówki"
 	desc = "Standardowy strój przystojniaka, taki jak w Holo-Wizji."
 	icon_state = "vice"
 	item_state = "gy_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/adminsuit
-	name = "administrative cybernetic jumpsuit"
+	name = "cybernetyczny kombinezon administracyjny"
 	icon_state = "syndicate"
 	item_state = "bl_suit"
-	desc = "A cybernetically enhanced jumpsuit used for administrative duties."
+	desc = "Cybernetycznie ulepszony kombinezon do zadań administracyjnych."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -44,15 +44,15 @@
 	blocks_shove_knockdown = TRUE
 
 /obj/item/clothing/under/misc/burial
-	name = "burial garments"
-	desc = "Traditional burial garments from the early 22nd century."
+	name = "szaty pogrzebowe"
+	desc = "Tradycyjne szaty pogrzebowe z początku XXII wieku."
 	icon_state = "burial"
 	item_state = "burial"
 	can_adjust = FALSE
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/misc/overalls
-	name = "laborer's overalls"
+	name = "ogrodniczki robotnika"
 	desc = "Wytrzymałe ogrodniczki do roboty."
 	icon_state = "overalls"
 	item_state = "lb_suit"
@@ -60,15 +60,15 @@
 	custom_price = 20
 
 /obj/item/clothing/under/misc/assistantformal
-	name = "assistant's formal uniform"
+	name = "galowy mundur majtka"
 	desc = "Strój wyjściowy majtka. Po co majtkowi strój wyjściowy, wciąż nie wiadomo."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/plasmaman
-	name = "plasma envirosuit"
-	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
+	name = "kombinezon środowiskowy"
+	desc = "Specjalny kombinezon ochronny, dzięki któremu formy życia oparte na plazmie mogą bezpiecznie przebywać w atmosferze z tlenem, a w razie kryzysu automatycznie je gasi. Choć jest hermetyczny, nie nadaje się do kosmosu."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 95, "acid" = 95, "stamina" = 0)
@@ -114,8 +114,8 @@
 			return
 
 /obj/item/extinguisher_refill
-	name = "envirosuit extinguisher cartridge"
-	desc = "A cartridge loaded with a compressed extinguisher mix, used to refill the automatic extinguisher on plasma envirosuits."
+	name = "wkład gaśniczy do kombinezonu środowiskowego"
+	desc = "Wkład wypełniony sprężoną mieszanką gaśniczą, służący do uzupełniania automatycznej gaśnicy w kombinezonach środowiskowych."
 	icon_state = "plasmarefill"
 	icon = 'icons/obj/device.dmi'
 
@@ -124,7 +124,7 @@
 /////////////////
 
 /obj/item/clothing/under/gangster
-	name = "gangstar suit"
+	name = "garnitur gangstera"
 	desc = "Ci, którzy niosą wolę tych, którzy odeszli, muszą iść naprzód."
 	icon_state = "gangster"
 	can_adjust = FALSE

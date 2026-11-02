@@ -1,7 +1,7 @@
 //Paper Wizard Boss
 /mob/living/simple_animal/hostile/boss/paper_wizard
-	name = "Mjor the Creative"
-	desc = "A wizard with a taste for the arts."
+	name = "Mjor Twórczy"
+	desc = "Czarodziej z zamiłowaniem do sztuki."
 	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	boss_abilities = list(/datum/action/boss/wizard_summon_minions, /datum/action/boss/wizard_mimic)
 	faction = list("hostile","stickman")
@@ -28,7 +28,7 @@
 //Summon Ability
 //Lets the wizard summon his art to fight for him
 /datum/action/boss/wizard_summon_minions
-	name = "Summon Minions"
+	name = "Przywołaj sługi"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 	usage_probability = 40
@@ -56,7 +56,7 @@
 //Hitting a decoy hurts nearby people excluding the wizard himself
 //Hitting the wizard himself destroys all decoys
 /datum/action/boss/wizard_mimic
-	name = "Craft Mimicry"
+	name = "Rękodzielnicza mimikra"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "mimic_summon"
 	usage_probability = 30
@@ -89,7 +89,7 @@
 			boss.atb.refund(boss_cost)
 
 /mob/living/simple_animal/hostile/boss/paper_wizard/copy
-	desc = "'Tis a ruse!"
+	desc = "To podstęp!"
 	health = 1
 	maxHealth = 1
 	alpha = 200
@@ -133,8 +133,8 @@
 
 //fancy effects
 /obj/effect/temp_visual/paper_scatter
-	name = "scattering paper"
-	desc = "Pieces of paper scattering to the wind."
+	name = "rozsypujący się papier"
+	desc = "Kawałki papieru rozwiewane przez wiatr."
 	layer = ABOVE_OPEN_TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "paper_scatter"
@@ -143,8 +143,8 @@
 	randomdir = FALSE
 
 /obj/effect/temp_visual/paperwiz_dying
-	name = "craft portal"
-	desc = "A wormhole sucking the wizard into the void. Neat."
+	name = "papierowy portal"
+	desc = "Tunel czasoprzestrzenny, który wciąga czarodzieja w pustkę. Zgrabne."
 	layer = ABOVE_OPEN_TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "paperwiz_poof"

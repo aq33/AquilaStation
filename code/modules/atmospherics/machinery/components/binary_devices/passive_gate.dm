@@ -10,8 +10,8 @@ Passive gate is similar to the regular pump except:
 /obj/machinery/atmospherics/components/binary/passive_gate
 	icon_state = "passgate_map-3"
 
-	name = "passive gate"
-	desc = "A one-way air valve that does not require power. Passes gas when the output pressure is lower than the target pressure."
+	name = "regulator ciśnienia"
+	desc = "Jednokierunkowy zawór powietrza, który nie potrzebuje zasilania. Przepuszcza gaz, gdy ciśnienie na wyjściu jest niższe od docelowego."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE

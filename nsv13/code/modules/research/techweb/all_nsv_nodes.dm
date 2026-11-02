@@ -1,7 +1,7 @@
 //Ship tech
 /datum/techweb_node/ship_shield_tech
 	id = "ship_shield_tech"
-	display_name = "Experimental Shield Technology"
+	display_name = "Eksperymentalna technologia tarcz"
 	description = "Wysoce eksperymentalna technologia tarcz, która znacznie zwiększa przeżywalność okrętów. Choć naukowcy Nanotrasen od dawna mają do niej dostęp, ogromna ilość energii potrzebna do utrzymania tarcz okazała się największym wyzwaniem przy ich wdrażaniu."
 	design_ids = list("shield_fan", "shield_capacitor", "shield_modulator", "shield_interface", "shield_frame")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
@@ -11,7 +11,7 @@
 
 /datum/techweb_node/ship_circuits
 	id = "ship_circuitry"
-	display_name = "Ship computer circuitry"
+	display_name = "Obwody komputerów okrętowych"
 	description = "Pozwala odbudować CIC, gdy nieuchronnie zostanie zbombardowane."
 	prereq_ids = list("comptech")
 	design_ids = list("helm_circuit", "navigation_console_circuit", "tactical_comp_circuit", "astrometrics_console", "dradis_console", "cargo_dradis_console")
@@ -22,7 +22,7 @@
 //Munitions tech
 /datum/techweb_node/maa_circuits
 	id = "maa_circuitry"
-	display_name = "Munitions computer circuitry"
+	display_name = "Obwody komputerów uzbrojenia"
 	description = "Pozwala odbudować komputery uzbrojenia po tym, jak przedawkują proch."
 	prereq_ids = list("comptech")
 	design_ids = list("fighter_computer_circuit", "ordnance_comp_circuit", "fighter_launcher_circuit", "ammo_sorter_computer", "ammo_sorter", "munitions_computer_circuit", "ams_console")
@@ -32,7 +32,7 @@
 
 /datum/techweb_node/basic_torpedo_components
 	id = "basic_torpedo_components"
-	display_name = "Guided Munitions I"
+	display_name = "Amunicja kierowana I"
 	description = "Części do budowy podstawowej, wybuchowej amunicji kierowanej."
 	prereq_ids = list("explosive_weapons")
 	design_ids = list("warhead", "missile_warhead", "decoy_warhead", "freight_warhead", "guidance_system", "propulsion_system", "iff_card")
@@ -42,7 +42,7 @@
 
 /datum/techweb_node/advanced_torpedo_components
 	id = "advanced_torpedo_components"
-	display_name = "Guided Munitions II"
+	display_name = "Amunicja kierowana II"
 	description = "Bardziej zaawansowane komponenty torped"
 	prereq_ids = list("basic_torpedo_components", "exotic_ammo")
 	design_ids = list("bb_warhead", "hellfire_warhead", "probe_warhead")
@@ -52,7 +52,7 @@
 
 /datum/techweb_node/prototype_disruption_warheads
 	id = "prototype_disruption_warheads"
-	display_name = "Disruption Warhead Prototype"
+	display_name = "Prototyp głowicy zakłócającej"
 	description = "Eksperymentalne głowice torped zakłócających, prosto z działu inżynierii wstecznej B+R."
 	prereq_ids = list("advanced_torpedo_components", "emp_adv")
 	design_ids = list("proto_disruption_warhead")
@@ -62,7 +62,7 @@
 
 /datum/techweb_node/advanced_ballistics
 	id = "adv_ballistics"
-	display_name = "Advanced Ballistics"
+	display_name = "Zaawansowana balistyka"
 	description = "Więcej broni to lepsza broń... Prawda?"
 	prereq_ids = list("ballistic_weapons")
 	design_ids = list("naval_shell", "powder_bag", "naval_artillery_comp", "artillery_loader", "powder_loader", "payload_gate", "broadside_casing", "broadside_load", "broadside_packer", "plasma_core", "swabber")
@@ -72,7 +72,7 @@
 
 /datum/techweb_node/macro_ballistics
 	id = "macro_ballistics"
-	display_name = "Macro-Ballistics"
+	display_name = "Makrobalistyka"
 	description = "Zadajemy ważne pytania, na przykład: a gdyby zrobić jeszcze większe działa?"
 	prereq_ids = list("adv_ballistics", "adv_plasma")
 	design_ids = list("naval_shell_ap", "plasma_accelerant", "deck_gun_autorepair", "deck_gun_autoelevator", "gauss_rack_upgrade", "broadside_load_uranium")
@@ -82,7 +82,7 @@
 
 /datum/techweb_node/missile_automation
 	id = "missile_automation"
-	display_name = "Automated Missile Construction"
+	display_name = "Zautomatyzowana budowa rakiet"
 	description = "Maszyny i narzędzia do automatyzacji budowy rakiet."
 	prereq_ids = list("basic_torpedo_components", "high_efficiency")
 	design_ids = list("missilebuilder", "slowconveyor", "missilewelder", "missilescrewer", "missilewirer", "missileassembler")
@@ -93,7 +93,7 @@
 //Fighter tech
 /datum/techweb_node/countermeasure_charge
 	id = "countermeasure_charge"
-	display_name = "Countermeasure Charge Fabrication"
+	display_name = "Produkcja ładunków przeciwdziałania"
 	description = "Instrukcje, jak prawidłowo pakować środki przeciwdziałania."
 	prereq_ids = list("fighter_tier1")
 	design_ids = list("countermeasure_charge")
@@ -103,7 +103,7 @@
 
 /datum/techweb_node/fighter_fabrication
 	id = "fighter_fabrication"
-	display_name = "Fighter Construction"
+	display_name = "Budowa myśliwców"
 	description = "Badania nad płatowcami i tym, jak zamienić je w statki powietrzne."
 	design_ids = list("light_frame", "heavy_frame", "utility_frame")
 	prereq_ids = list("base")
@@ -113,7 +113,7 @@
 
 /datum/techweb_node/fighter_tier1
 	id = "fighter_tier1"
-	display_name = "Standard Fighter Parts"
+	display_name = "Standardowe części myśliwców"
 	description = "Badania nad komponentami statku powietrznego i tym, co sprawia, że działa. Wymagane do budowy podstawowych myśliwców."
 	design_ids = list("fuel_tank", "avionics", "apu", "armour_plating", "targeting_sensor", "fighter_engine", "countermeasure_dispenser", "oxygenator","docking_computer", "fighter_battery", "refuel_kit", "cargo_hold", "resupply")
 	prereq_ids = list("fighter_fabrication")
@@ -123,7 +123,7 @@
 
 /datum/techweb_node/fighter_tier2
 	id = "fighter_tier2"
-	display_name = "Advanced Fighter Parts"
+	display_name = "Zaawansowane części myśliwców"
 	description = "Produkcja niestandardowych, ulepszonych części myśliwców, by ulepszyć eskadrę okrętu."
 	design_ids = list("fuel_tank_tier2", "apu_tier2", "armour_plating_tier2", "fighter_engine_tier2", "oxygenator_tier2", "fighter_battery_tier2", "refuel_kit_tier2", "cargo_hold_tier2", "resupply_tier2")
 	prereq_ids = list("fighter_tier1", "adv_engi")
@@ -133,7 +133,7 @@
 
 /datum/techweb_node/fighter_tier3
 	id = "fighter_tier3"
-	display_name = "Experimental Fighter Parts"
+	display_name = "Eksperymentalne części myśliwców"
 	description = "Badania nad wysoce teoretycznymi częściami myśliwców, które, jeśli zostaną zbudowane, mogłyby zagwarantować przewagę w powietrzu."
 	design_ids = list("fuel_tank_tier3", "apu_tier3", "armour_plating_tier3", "fighter_engine_tier3", "oxygenator_tier3", "fighter_battery_tier3", "refuel_kit_tier3", "cargo_hold_tier3", "resupply_tier3")
 	prereq_ids = list("fighter_tier2", "bluespace_travel", "bluespace_power")
@@ -143,7 +143,7 @@
 
 /datum/techweb_node/fighter_guns_tier1
 	id = "fightergun1"
-	display_name = "Standard Fighter Weapons"
+	display_name = "Standardowe uzbrojenie myśliwców"
 	description = "Produkcja standardowego uzbrojenia myśliwców."
 	design_ids = list("ordnance_launcher", "fighter_missile_launcher", "primary_cannon")
 	prereq_ids = list("fighter_tier1", "weaponry")
@@ -153,7 +153,7 @@
 
 /datum/techweb_node/fighter_guns_tier2
 	id = "fightergun2"
-	display_name = "Advanced Fighter Weapons"
+	display_name = "Zaawansowane uzbrojenie myśliwców"
 	description = "Badania nad zaawansowaną bronią balistyczną myśliwców."
 	design_ids = list("ordnance_launcher_tier2","fighter_missile_launcher_tier2", "heavy_cannon")
 	prereq_ids = list("fightergun1", "ballistic_weapons")
@@ -163,7 +163,7 @@
 
 /datum/techweb_node/fighter_guns_tier3
 	id = "fightergun3"
-	display_name = "Experimental Fighter Weapons"
+	display_name = "Eksperymentalne uzbrojenie myśliwców"
 	description = "Badania nad najnowocześniejszym sprzętem do wystrzeliwania rakiet"
 	design_ids = list("ordnance_launcher_tier3","fighter_missile_launcher_tier3")
 	prereq_ids = list("fightergun2", "adv_weaponry")
@@ -173,7 +173,7 @@
 
 /datum/techweb_node/fighter_mining
 	id = "fightermining"
-	display_name = "Aircraft Mining Equipment"
+	display_name = "Sprzęt górniczy dla jednostek latających"
 	description = "Badania nad montowaniem sprzętu górniczego klasy egzoszkieletów na jednostkach użytkowych."
 	design_ids = list("r_cutter")
 	prereq_ids = list("fighter_tier1", "adv_mining", "adv_plasma")
@@ -183,7 +183,7 @@
 
 /datum/techweb_node/autoinjector
 	id = "autoinjector"
-	display_name = "Autoinjector Medipens"
+	display_name = "Medipeny z autostrzykawką"
 	description = "Badania nad natychmiastowym podawaniem odczynników do krwiobiegu pacjenta"
 	design_ids = list("autoinjector")
 	prereq_ids = list("adv_biotech","adv_surgery")
@@ -193,7 +193,7 @@
 
 /datum/techweb_node/xenoorgan_biotech
 	id = "xenoorgan_bio"
-	display_name = "Xeno-organ Biology"
+	display_name = "Biologia organów obcych"
 	description = "Plazmoludzie, Eterycy, Jaszczuroludzie... Co sprawia, że nasi nieludzcy członkowie załogi działają?"
 	prereq_ids = list("adv_biotech")
 	design_ids = list("limbdesign_felinid", "limbdesign_lizard", "limbdesign_plasmaman", "limbdesign_ethereal", "limbdesign_moth", "limbdesign_apid")
@@ -204,7 +204,7 @@
 //Vehicle Hardpoint tech
 /datum/techweb_node/vehicle_start
 	id = "vehicle_start"
-	display_name = "Mechanical Research"
+	display_name = "Badania mechaniczne"
 	description = "Badanie możliwości rozszerzenia zastosowań tych bezużytecznych holowników"
 	design_ids = list("vehicle_engine_pathetic")
 	prereq_ids = list("engineering")
@@ -214,7 +214,7 @@
 
 /datum/techweb_node/vehicle_utility
 	id = "vehicle_utility"
-	display_name = "Vehicle Utilities"
+	display_name = "Wyposażenie pojazdów"
 	description = "Badanie wartości figurek z kiwającą głową i odświeżaczy powietrza do holowników."
 	design_ids = list("vehicle_crate_loader", "vehicle_cryo_stasis")
 	prereq_ids = list("vehicle_start")
@@ -224,7 +224,7 @@
 
 /datum/techweb_node/vehicle_tier1
 	id = "vehicle_tier1"
-	display_name = "Standard Vehicle Parts"
+	display_name = "Standardowe części pojazdów"
 	description = "Badanie dziwnych kręcących się rzeczy przymocowanych z boku holownika i tego, co robi głośno dudniące pudło w jego środku."
 	design_ids = list("vehicle_engine", "vehicle_tyres")
 	prereq_ids = list("vehicle_start")
@@ -234,7 +234,7 @@
 
 /datum/techweb_node/vehicle_tier2
 	id = "vehicle_tier2"
-	display_name = "Advanced Vehicle Parts"
+	display_name = "Zaawansowane części pojazdów"
 	description = "Badanie dziwnego związku między driftowaniem a serią morderstw popełnionych przez woźnych."
 	design_ids = list("vehicle_engine_upgraded", "vehicle_tyres_upgraded")
 	prereq_ids = list("vehicle_tier1")
@@ -244,7 +244,7 @@
 
 /datum/techweb_node/vehicle_tier3
 	id = "vehicle_tier3"
-	display_name = "Glorious Trukk Parts"
+	display_name = "Wspaniałe części trukka"
 	description = "CZERWONE JEŹDZOM SZYBCIEJ!!!"
 	design_ids = list("vehicle_engine_maxupgrade", "vehicle_tyres_maxupgrade")
 	prereq_ids = list("vehicle_tier2")
@@ -256,7 +256,7 @@
 /datum/techweb_node/cyborg_upg_muni
 	id = "cyborg_upg_muni"
 	tech_tier = 3
-	display_name = "Cyborg Upgrades: Munitions"
+	display_name = "Ulepszenia cyborgów: amunicja"
 	description = "Ulepszenia cyborgów związane z amunicją."
 	prereq_ids = list("adv_robotics", "adv_engi" , "adv_ballistics")
 	design_ids = list("borg_upgrade_muniapp")

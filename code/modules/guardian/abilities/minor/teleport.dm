@@ -1,6 +1,6 @@
 /datum/guardian_ability/minor/teleport
-	name = "Teleportation Pad"
-	desc = "The guardian can prepare a teleportation pad, and teleport things to it afterwards."
+	name = "Platforma teleportacyjna"
+	desc = "Strażnik może przygotować platformę teleportacyjną, a potem przenosić na nią rzeczy."
 	ui_icon = "shipping-fast"
 	cost = 3
 	spell_type = /obj/effect/proc_holder/spell/targeted/guardian/teleport
@@ -14,8 +14,8 @@
 	guardian.remove_verb(/mob/living/simple_animal/hostile/guardian/proc/Beacon)
 
 /obj/effect/proc_holder/spell/targeted/guardian/teleport
-	name = "Teleport"
-	desc = "Teleport someone to your receiving pad."
+	name = "Teleportacja"
+	desc = "Przenieś kogoś na swoją platformę odbiorczą."
 
 /obj/effect/proc_holder/spell/targeted/guardian/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/A)
 	if(!istype(A))
@@ -67,7 +67,7 @@
 /mob/living/simple_animal/hostile/guardian/proc/Beacon()
 	set name = "Place Bluespace Beacon"
 	set category = "Guardian"
-	set desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
+	set desc = "Oznacz podłogę jako punkt nadajnika, do którego możesz przenosić cele. Nadajnik nie działa na bardzo dużą odległość."
 	if(beacon_cooldown >= world.time)
 		to_chat(src, "<span class='danger'><B>Twoja moc się odnawia. Między stawianiem nadajników musisz odczekać pięć minut.</span></B>")
 		return
@@ -84,9 +84,9 @@
 
 // the pad
 /obj/structure/receiving_pad
-	name = "bluespace receiving pad"
+	name = "bluespace'owa platforma odbiorcza"
 	icon = 'icons/turf/floors.dmi'
-	desc = "A receiving zone for bluespace teleportations."
+	desc = "Strefa odbiorcza teleportacji bluespace."
 	icon_state = "light_on-w"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	density = FALSE
@@ -100,5 +100,5 @@
 	add_atom_colour(G.guardiancolor, FIXED_COLOUR_PRIORITY)
 
 /obj/structure/receiving_pad/proc/disappear()
-	visible_message("[src] vanishes!")
+	visible_message("[src] znika!")
 	qdel(src)

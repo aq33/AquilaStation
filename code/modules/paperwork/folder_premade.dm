@@ -1,26 +1,26 @@
 /obj/item/folder/blue
-	desc = "A blue folder."
+	desc = "Niebieska teczka."
 	icon_state = "folder_blue"
 	bg_color = "#355e9f"
 
 /obj/item/folder/red
-	desc = "A red folder."
+	desc = "Czerwona teczka."
 	icon_state = "folder_red"
 	bg_color = "#b5002e"
 
 /obj/item/folder/yellow
-	desc = "A yellow folder."
+	desc = "Żółta teczka."
 	icon_state = "folder_yellow"
 	bg_color = "#b88f3d"
 
 /obj/item/folder/white
-	desc = "A white folder."
+	desc = "Biała teczka."
 	icon_state = "folder_white"
 	bg_color = "#d9d9d9"
 
 /obj/item/folder/documents
-	name = "folder- 'TOP SECRET'"
-	desc = "A folder stamped \"Top Secret - Property of Nanotrasen Corporation. Unauthorized distribution is punishable by death.\""
+	name = "teczka – „ŚCIŚLE TAJNE”"
+	desc = "Teczka z pieczęcią „Ściśle tajne – własność korporacji Nanotrasen. Nieuprawnione rozpowszechnianie karane jest śmiercią”."
 
 /obj/item/folder/documents/Initialize(mapload)
 	. = ..()
@@ -30,8 +30,8 @@
 /obj/item/folder/syndicate
 	icon_state = "folder_syndie"
 	bg_color = "#3f3f3f"
-	name = "folder- 'TOP SECRET'"
-	desc = "A folder stamped \"Top Secret - Property of The Syndicate.\""
+	name = "teczka – „ŚCIŚLE TAJNE”"
+	desc = "Teczka z pieczęcią „Ściśle tajne – własność Syndykatu”."
 
 /obj/item/folder/syndicate/red
 	icon_state = "folder_sred"

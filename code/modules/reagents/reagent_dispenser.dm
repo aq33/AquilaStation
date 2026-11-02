@@ -1,5 +1,5 @@
 /obj/structure/reagent_dispensers
-	name = "Dispenser"
+	name = "dozownik"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "water"
@@ -42,26 +42,26 @@
 		qdel(src)
 
 /obj/structure/reagent_dispensers/watertank
-	name = "water tank"
-	desc = "A water tank."
+	name = "zbiornik wody"
+	desc = "Zbiornik wody."
 	icon_state = "water"
 
 /obj/structure/reagent_dispensers/watertank/high
-	name = "high-capacity water tank"
-	desc = "A highly pressurized water tank made to hold gargantuan amounts of water."
+	name = "zbiornik wody dużej pojemności"
+	desc = "Zbiornik wody pod wysokim ciśnieniem, zdolny pomieścić gigantyczne ilości wody."
 	icon_state = "water_high" //I was gonna clean my room...
 	tank_volume = 100000
 
 /obj/structure/reagent_dispensers/foamtank
-	name = "firefighting foam tank"
-	desc = "A tank full of firefighting foam."
+	name = "zbiornik piany gaśniczej"
+	desc = "Zbiornik pełen piany gaśniczej."
 	icon_state = "foam"
 	reagent_id = /datum/reagent/firefighting_foam
 	tank_volume = 500
 
 /obj/structure/reagent_dispensers/fueltank
-	name = "fuel tank"
-	desc = "A tank full of industrial welding fuel. Do not consume."
+	name = "zbiornik paliwa"
+	desc = "Zbiornik pełen przemysłowego paliwa spawalniczego. Nie spożywać."
 	icon_state = "fuel"
 	reagent_id = /datum/reagent/fuel
 
@@ -119,8 +119,8 @@
 
 
 /obj/structure/reagent_dispensers/peppertank
-	name = "pepper spray refiller"
-	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
+	name = "uzupełniacz gazu pieprzowego"
+	desc = "Zawiera skondensowaną kapsaicynę do „egzekwowania” prawa."
 	icon_state = "pepper"
 	anchored = TRUE
 	density = FALSE
@@ -130,12 +130,12 @@
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		desc = "IT'S PEPPER TIME, BITCH!"
+		desc = "CZAS NA PIEPRZ, SUKO!"
 
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "liquid cooler"
-	desc = "A machine that dispenses liquid to drink."
+	name = "dystrybutor napojów"
+	desc = "Maszyna wydająca płyny do picia."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
 	anchored = TRUE
@@ -164,8 +164,8 @@
 	paper_cups--
 
 /obj/structure/reagent_dispensers/beerkeg
-	name = "beer keg"
-	desc = "Beer is liquid bread, it's good for you..."
+	name = "beczka piwa"
+	desc = "Piwo to płynny chleb, jest dla ciebie dobre..."
 	icon_state = "beer"
 	reagent_id = /datum/reagent/consumable/ethanol/beer
 
@@ -176,8 +176,8 @@
 
 
 /obj/structure/reagent_dispensers/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of low-potency virus mutagenic."
+	name = "dozownik pożywki dla wirusów"
+	desc = "Dozownik słabego mutagenu dla wirusów."
 	icon_state = "virus_food"
 	anchored = TRUE
 	density = FALSE
@@ -186,17 +186,17 @@
 
 
 /obj/structure/reagent_dispensers/nutriment/fat/oil
-	name = "vat of cooking oil"
-	desc = "A huge metal vat with a tap on the front. Filled with cooking oil for use in frying food."
+	name = "kadź oleju spożywczego"
+	desc = "Ogromna metalowa kadź z kranikiem z przodu. Pełna oleju spożywczego do smażenia jedzenia."
 	icon_state = "vat"
 	anchored = TRUE
 	reagent_id = /datum/reagent/consumable/nutriment/fat/oil
 
 /obj/structure/reagent_dispensers/plumbed
-	name = "stationairy water tank"
+	name = "stacjonarny zbiornik wody"
 	anchored = TRUE
 	icon_state = "water_stationairy"
-	desc = "A stationairy, plumbed, water tank."
+	desc = "Stacjonarny zbiornik wody podłączony do instalacji."
 
 /obj/structure/reagent_dispensers/plumbed/Initialize(mapload)
 	. = ..()
@@ -210,7 +210,7 @@
 	return ..() // This hotkey is BLACKLISTED since it's used by /datum/component/simple_rotation
 
 /obj/structure/reagent_dispensers/plumbed/storage
-	name = "stationairy storage tank"
+	name = "stacjonarny zbiornik magazynowy"
 	icon_state = "tank_stationairy"
 	reagent_id = null //start empty
 

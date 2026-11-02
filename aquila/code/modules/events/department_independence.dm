@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(aquila_independence_common_reasons, list(
 		if(!M.add_antag_datum(striker, nation) || !M.current)
 			continue
 		M.current.log_message("joined the strike of [nation_name] ([department["name"]]).", LOG_ATTACK, color = "red")
-	message_admins("Department Independence: [length(citizens)] crew of the [department["name"]] department formed [nation_name] over \"[reason]\".")
+	message_admins("Niepodległość działu: załoga (dział: [department["name"]], liczba osób: [length(citizens)]) zakłada państwo [nation_name] z powodu: „[reason]”.")
 	log_game("Department Independence: [length(citizens)] crew of the [department["name"]] department formed [nation_name].")
 
 /datum/antagonist/separatist/aquila_striker

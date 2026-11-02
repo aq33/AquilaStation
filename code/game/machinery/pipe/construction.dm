@@ -8,8 +8,8 @@ Buildable meters
 //...otherwise construction will stop working
 
 /obj/item/pipe
-	name = "pipe"
-	desc = "A pipe."
+	name = "rura"
+	desc = "Rura."
 	var/pipe_type
 	var/pipename
 	force = 7
@@ -83,7 +83,7 @@ Buildable meters
 
 /obj/item/pipe/proc/update()
 	var/obj/machinery/atmospherics/fakeA = pipe_type
-	name = "[initial(fakeA.name)] fitting"
+	name = "kształtka: [initial(fakeA.name)]"
 	icon_state = initial(fakeA.pipe_state)
 	if(ispath(pipe_type,/obj/machinery/atmospherics/pipe/heat_exchanging))
 		resistance_flags |= FIRE_PROOF | LAVA_PROOF
@@ -215,8 +215,8 @@ Buildable meters
 	balloon_alert(user, "odwrócono rurę")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 /obj/item/pipe_meter
-	name = "meter"
-	desc = "A meter that can be laid on pipes."
+	name = "miernik"
+	desc = "Miernik, który można założyć na rury."
 	icon = 'icons/obj/atmospherics/pipes/pipe_item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"

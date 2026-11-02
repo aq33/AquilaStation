@@ -1,8 +1,8 @@
 #define MAX_SENT 10
 
 /obj/machinery/rnd/production
-	name = "technology fabricator"
-	desc = "Makes researched and prototype items with materials and energy."
+	name = "fabrykator technologii"
+	desc = "Wytwarza zbadane i prototypowe przedmioty z materiałów i energii."
 	layer = BELOW_OBJ_LAYER
 	var/consoleless_interface = FALSE			//Whether it can be used without a console.
 	var/efficiency_coeff = 1				//Materials needed / coeff = actual.
@@ -302,7 +302,7 @@
 /obj/machinery/rnd/production/proc/do_print(path, amount, list/matlist, notify_admins)
 	if(notify_admins)
 		investigate_log("[key_name(usr)] built [amount] of [path] at [src]([type]).", INVESTIGATE_RESEARCH)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has built [amount] of [path] at \a [src]([type]).")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] buduje [path] ×[amount] w: [src] ([type]).")
 	for(var/i in 1 to amount)
 		var/obj/item/I = new path(get_turf(src))
 		if(efficient_with(I.type))

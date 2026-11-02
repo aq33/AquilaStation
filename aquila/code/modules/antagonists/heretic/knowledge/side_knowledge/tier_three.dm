@@ -126,7 +126,7 @@
 /datum/heretic_knowledge/limited_amount/risen_corpse/proc/make_risen(mob/living/user, mob/living/carbon/human/victim)
 	user.log_message("created a shattered risen out of [key_name(victim)].", LOG_GAME)
 	victim.log_message("became a shattered risen of [key_name(user)]'s.", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a shattered risen, [ADMIN_LOOKUPFLW(victim)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] tworzy strzaskanego powstałego: [ADMIN_LOOKUPFLW(victim)].")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -150,7 +150,7 @@
 
 /// The "hand" "weapon" used by shattered risen
 /obj/item/mutant_hand/shattered_risen
-	name = "bone-shards"
+	name = "odłamki kości"
 	desc = "To, co kiedyś wyglądało na zwykłą ludzką pięść, teraz kryje zmasakrowane gniazdo ostrych odłamków kości."
 	color = "#001aff"
 	hitsound = "shatter"

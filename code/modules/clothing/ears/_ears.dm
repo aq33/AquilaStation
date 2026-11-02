@@ -1,15 +1,15 @@
 
 //Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears
-	name = "ears"
+	name = "uszy"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	slot_flags = ITEM_SLOT_EARS
 	resistance_flags = NONE
 
 /obj/item/clothing/ears/earmuffs
-	name = "earmuffs"
-	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	name = "nauszniki"
+	desc = "Chronią słuch przed głośnymi dźwiękami, a cichymi zresztą też."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	strip_delay = 15
@@ -23,7 +23,7 @@
 	AddElement(/datum/element/earhealing)
 
 /obj/item/clothing/ears/headphones
-	name = "headphones"
+	name = "słuchawki"
 	desc = "Unce unce unce unce. Bup!"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "headphones"

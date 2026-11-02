@@ -1,5 +1,5 @@
 /datum/martial_art/mushpunch
-	name = "Mushroom Punch"
+	name = "Grzybowy cios"
 	id = MARTIALART_MUSHPUNCH
 
 /datum/martial_art/mushpunch/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -22,8 +22,8 @@
 	return TRUE
 
 /obj/item/mushpunch
-	name = "odd mushroom"
-	desc = "<I>Sapienza Ophioglossoides</I>:An odd mushroom from the flesh of a mushroom person. It has apparently retained some innate power of its owner, as it quivers with barely-contained POWER!"
+	name = "dziwny grzyb"
+	desc = "<I>Sapienza Ophioglossoides</I>: dziwny grzyb z ciała grzybowej osoby. Najwyraźniej zachował część wrodzonej mocy właściciela, bo drży od ledwo powstrzymywanej MOCY!"
 	icon = 'icons/obj/hydroponics/seeds.dmi'
 	icon_state = "mycelium-angel"
 
@@ -35,5 +35,5 @@
 	var/datum/martial_art/mushpunch/mush = new(null)
 	mush.teach(user)
 	qdel(src)
-	visible_message("<span class='warning'>[user] devours [src].</span>", \
+	visible_message("<span class='warning'>[user] pożera [src].</span>", \
 					"<span class='notice'>Pożerasz [src].</span>")

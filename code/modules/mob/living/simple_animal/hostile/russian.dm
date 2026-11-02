@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/russian
-	name = "Russian"
-	desc = "For the Motherland!"
+	name = "Rosjanin"
+	desc = "Za Ojczyznę!"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "russianmelee"
 	icon_living = "russianmelee"
@@ -57,7 +57,7 @@
 				/obj/item/gun/ballistic/shotgun/lethal)
 
 /mob/living/simple_animal/hostile/russian/ranged/officer
-	name = "Russian Officer"
+	name = "rosyjski oficer"
 	icon_state = "russianofficer"
 	icon_living = "russianofficer"
 	maxHealth = 65

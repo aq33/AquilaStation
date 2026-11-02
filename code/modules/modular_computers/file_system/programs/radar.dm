@@ -291,7 +291,7 @@
 
 		if(istype(custodial_tools, /obj/item/mop))
 			var/obj/item/mop/wet_mop = custodial_tools
-			tool_name = "[wet_mop.reagents.total_volume ? "Wet" : "Dry"] [wet_mop.name]"
+			tool_name = "[wet_mop.name] ([wet_mop.reagents.total_volume ? "mokry" : "suchy"])"
 
 		if(istype(custodial_tools, /obj/structure/janitorialcart))
 			var/obj/structure/janitorialcart/janicart = custodial_tools
@@ -299,7 +299,7 @@
 
 		if(istype(custodial_tools, /mob/living/simple_animal/bot/cleanbot))
 			var/mob/living/simple_animal/bot/cleanbot/cleanbots = custodial_tools
-			tool_name = "[cleanbots.name] - [cleanbots.on ? "Online" : "Offline"]"
+			tool_name = "[cleanbots.name] - [cleanbots.on ? "włączony" : "wyłączony"]"
 
 		var/list/tool_information = list(
 			ref = REF(custodial_tools),
@@ -345,6 +345,6 @@
 	var/obj/item/disk/nuclear/disk = locate() in GLOB.poi_list
 	var/list/nukeinfo = list(
 		ref = REF(disk),
-		name = "Nuke Auth. Disk",
+		name = "Dysk nuklearny",
 		)
 	objects += list(nukeinfo)

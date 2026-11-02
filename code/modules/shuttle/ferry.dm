@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle_flight/ferry
-	name = "transport ferry console"
-	desc = "A console that controls the transport ferry."
+	name = "konsola promu transportowego"
+	desc = "Konsola sterująca promem transportowym."
 	circuit = /obj/item/circuitboard/computer/ferry
 	shuttleId = "ferry"
 	possible_destinations = "ferry_home;ferry_away"
@@ -22,7 +22,7 @@
 	return allow_silicons ? ..() : FALSE
 
 /obj/machinery/computer/shuttle_flight/ferry/request
-	name = "ferry console"
+	name = "konsola promu"
 	circuit = /obj/item/circuitboard/computer/ferry/request
 	var/last_request //prevents spamming admins
 	var/cooldown = 600
@@ -37,4 +37,4 @@
 			return
 		last_request = world.time
 		to_chat(usr, "<span class='notice'>Twoja prośba została odebrana przez Centralę.</span>")
-		to_chat(GLOB.admins, "<b>FERRY: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='byond://?_src_=holder;[HrefToken()];secrets=moveferry'>Move Ferry</a>)</b> is requesting to move the transport ferry to CentCom.</font>")
+		to_chat(GLOB.admins, "<b>PROM: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='byond://?_src_=holder;[HrefToken()];secrets=moveferry'>Przenieś prom</a>)</b> prosi o przeniesienie promu transportowego do Centrali.</font>")

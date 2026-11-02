@@ -31,8 +31,8 @@
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 /atom/movable/screen/alert/status_effect/italian_speech
-	name = "Linguini Embrace"
-	desc = "You feel a sudden urge to gesticulate wildly."
+	name = "Objęcia linguine"
+	desc = "Masz nagłą ochotę dziko gestykulować."
 	icon_state = "food_italian"
 
 
@@ -69,5 +69,5 @@
 
 /atom/movable/screen/alert/status_effect/french_speech
 	name = "Café Chic"
-	desc = "Suddenly, everything seems worthy of a passionate debate."
+	desc = "Nagle wszystko wydaje się warte namiętnej debaty."
 	icon_state = "food_french"

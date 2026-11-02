@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/pirate
-	name = "Pirate"
-	desc = "Does what he wants cause a pirate is free."
+	name = "pirat"
+	desc = "Robi, co chce, bo pirat jest wolny."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
@@ -29,7 +29,7 @@
 
 
 /mob/living/simple_animal/hostile/pirate/melee
-	name = "Pirate Swashbuckler"
+	name = "pirat zabijaka"
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
 	icon_dead = "piratemelee_dead"
@@ -43,7 +43,7 @@
 	hardattacks = TRUE
 
 /mob/living/simple_animal/hostile/pirate/melee/space
-	name = "Space Pirate Swashbuckler"
+	name = "kosmiczny pirat zabijaka"
 	icon_state = "piratespace"
 	icon_living = "piratespace"
 	icon_dead = "piratespace_dead"
@@ -66,7 +66,7 @@
 	set_light(2)
 
 /mob/living/simple_animal/hostile/pirate/ranged
-	name = "Pirate Gunner"
+	name = "pirat strzelec"
 	icon_state = "pirateranged"
 	icon_living = "pirateranged"
 	icon_dead = "pirateranged_dead"
@@ -81,7 +81,7 @@
 			/obj/item/gun/energy/laser)
 
 /mob/living/simple_animal/hostile/pirate/ranged/space
-	name = "Space Pirate Gunner"
+	name = "kosmiczny pirat strzelec"
 	icon_state = "piratespaceranged"
 	icon_living = "piratespaceranged"
 	icon_dead = "piratespaceranged_dead"

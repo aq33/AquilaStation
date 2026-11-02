@@ -113,6 +113,8 @@ export type LoadoutGear = {
   multi_purchase: BooleanLike;
   // AQUILA
   donator_ckey?: string | null;
+  /** Polska nazwa do wyświetlenia (display_name zostaje kluczem) */
+  display_name_pl?: string | null;
   can_preview?: BooleanLike;
 };
 

@@ -1,7 +1,7 @@
 
 
 /obj/item/projectile/magic/spell
-	name = "custom spell projectile"
+	name = "niestandardowy pocisk zaklęcia"
 	var/list/ignored_factions //Do not hit these
 	var/check_holy = FALSE
 	var/check_antimagic = FALSE
@@ -55,8 +55,8 @@
 //NEEDS MAJOR CODE CLEANUP.
 
 /obj/effect/proc_holder/spell/targeted/projectile
-	name = "Projectile"
-	desc = "This spell summons projectiles which try to hit the targets."
+	name = "Pocisk"
+	desc = "To zaklęcie przywołuje pociski, które próbują trafić w cele."
 
 
 
@@ -67,7 +67,7 @@
 	//Below only apply if update_projectile is true
 	var/proj_icon = 'icons/obj/projectiles.dmi'
 	var/proj_icon_state = "spell"
-	var/proj_name = "a spell projectile"
+	var/proj_name = "pocisk zaklęcia"
 	var/proj_trail = FALSE //if it leaves a trail
 	var/proj_trail_lifespan = 0 //deciseconds
 	var/proj_trail_icon = 'icons/obj/wizard.dmi'
@@ -118,7 +118,7 @@
 
 //This one just pops one projectile in direction user is facing, irrelevant of max_targets etc
 /obj/effect/proc_holder/spell/targeted/projectile/dumbfire
-	name = "Dumbfire projectile"
+	name = "Pocisk niekierowany"
 
 /obj/effect/proc_holder/spell/targeted/projectile/dumbfire/choose_targets(mob/user = usr)
 	var/turf/T = get_turf(user)

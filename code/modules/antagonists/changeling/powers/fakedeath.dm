@@ -1,6 +1,6 @@
 /datum/action/changeling/fakedeath
-	name = "Reviving Stasis"
-	desc = "We fall into a stasis, allowing us to regenerate and trick our enemies. Costs 15 chemicals."
+	name = "Ożywcza staza"
+	desc = "Zapadamy w stazę, dzięki której się regenerujemy i oszukujemy wrogów. Kosztuje 15 chemikaliów."
 	button_icon_state = "fake_death"
 	chemical_cost = 15
 	dna_cost = 0
@@ -15,8 +15,8 @@
 	if(revive_ready)
 		INVOKE_ASYNC(src, PROC_REF(revive), user)
 		revive_ready = FALSE
-		name = "Reviving Stasis"
-		desc = "We fall into a stasis, allowing us to regenerate and trick our enemies."
+		name = "Ożywcza staza"
+		desc = "Zapadamy w stazę, dzięki której się regenerujemy i oszukujemy wrogów."
 		button_icon_state = "fake_death"
 		UpdateButtonIcon()
 		chemical_cost = 15
@@ -42,8 +42,8 @@
 	var/datum/antagonist/changeling/C = mind.has_antag_datum(/datum/antagonist/changeling)
 	if(C?.purchasedpowers)
 		to_chat(mind.current, "<span class='notice'>Jesteśmy gotowi, by się ożywić.</span>")
-		name = "Revive"
-		desc = "We arise once more."
+		name = "Powstań"
+		desc = "Powstajemy raz jeszcze."
 		button_icon_state = "revive"
 		UpdateButtonIcon()
 		chemical_cost = 0
@@ -57,7 +57,7 @@
 		to_chat(user, "<span class='warning'>Już się ożywiamy.</span>")
 		return
 	if(!user.stat && !revive_ready) //Confirmation for living changelings if they want to fake their death
-		switch(alert("Czy na pewno chcemy upozorować własną śmierć?",,"Yes", "No"))
-			if("No")
+		switch(alert("Czy na pewno chcemy upozorować własną śmierć?",,"Tak", "Nie"))
+			if("Nie")
 				return
 	return ..()

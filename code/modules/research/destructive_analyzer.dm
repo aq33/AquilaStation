@@ -8,8 +8,8 @@ It is used to destroy hand-held objects and advance technological research. Cont
 Note: Must be placed within 3 tiles of the R&D Console
 */
 /obj/machinery/rnd/destructive_analyzer
-	name = "destructive analyzer"
-	desc = "Learn science by destroying things!"
+	name = "analizator destrukcyjny"
+	desc = "Poznawaj naukę, niszcząc rzeczy!"
 	icon_state = "d_analyzer"
 	circuit = /obj/item/circuitboard/machine/destructive_analyzer
 	var/decon_mod = 0
@@ -121,8 +121,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 		if(length(worths) && !length(differences))
 			return FALSE
 		if(!confirmed)
-			var/choice = input("Are you sure you want to destroy [loaded_item] to [!length(worths) ? "reveal [TN.display_name]" : "boost [TN.display_name] by [json_encode(differences)] point\s"]?") in list("Proceed", "Cancel")
-			if(choice == "Cancel" || !choice)
+			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item], by [!length(worths) ? "odkryć: [TN.display_name]" : "wzmocnić: [TN.display_name] o [json_encode(differences)] pkt"]?") in list("Kontynuuj", "Anuluj")
+			if(choice == "Anuluj" || !choice)
 				return FALSE
 			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
 				return FALSE
@@ -140,8 +140,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 		else if(loaded_item.materials.len)
 			user_mode_string = " w celu odzysku materiałów"
 		if(!confirmed)
-			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Proceed", "Cancel")
-			if(choice != "Proceed")
+			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Kontynuuj", "Anuluj")
+			if(choice != "Kontynuuj")
 				return FALSE
 			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
 				return FALSE

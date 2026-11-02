@@ -3,17 +3,17 @@
 	set category = "Object"
 
 	if((O.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
-		to_chat(usr, "[O] is too powerful for you to possess.")
+		to_chat(usr, "[O] jest zbyt potężne, by to opętać.")
 		return
 
 	var/turf/T = get_turf(O)
 
 	if(T)
 		log_admin("[key_name(usr)] has possessed [O] ([O.type]) at [AREACOORD(T)]")
-		message_admins("[key_name(usr)] has possessed [O] ([O.type]) at [AREACOORD(T)]")
+		message_admins("[key_name(usr)] opętuje [O] ([O.type]) w [AREACOORD(T)]")
 	else
 		log_admin("[key_name(usr)] has possessed [O] ([O.type]) at an unknown location")
-		message_admins("[key_name(usr)] has possessed [O] ([O.type]) at an unknown location")
+		message_admins("[key_name(usr)] opętuje [O] ([O.type]) w nieznanym miejscu")
 
 	if(!usr.control_object) //If you're not already possessing something...
 		usr.name_archive = usr.real_name
@@ -32,7 +32,7 @@
 	//usr.loc = get_turf(usr)
 
 	if(isnull(usr.control_object))
-		to_chat(usr, "<span class='warning'>You do not seem to be possessing an object!</span>")
+		to_chat(usr, "<span class='warning'>Wygląda na to, że nie opętujesz żadnego obiektu!</span>")
 		return
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
@@ -50,7 +50,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Release Object") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/givetestverbs(mob/M in GLOB.mob_list)
-	set desc = "Give this guy possess/release verbs"
+	set desc = "Daje temu gościowi verby opętania/uwolnienia"
 	set category = "Debug"
 	set name = "Give Possessing Verbs"
 	M.add_verb(/proc/possess)

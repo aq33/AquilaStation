@@ -126,12 +126,12 @@
 			if(reboot_mode != REBOOT_MODE_HARD)
 				reboot_mode = REBOOT_MODE_HARD
 				TGS_INFO_LOG("Hard reboot requested by service")
-				TGS_NOTIFY_ADMINS("The world will hard reboot at the end of the game. Requested by TGS.")
+				TGS_NOTIFY_ADMINS("Pod koniec gry świat zostanie twardo zrestartowany. Na żądanie TGS.")
 		if(SERVICE_CMD_GRACEFUL_SHUTDOWN)
 			if(reboot_mode != REBOOT_MODE_SHUTDOWN)
 				reboot_mode = REBOOT_MODE_SHUTDOWN
 				TGS_INFO_LOG("Shutdown requested by service")
-				TGS_NOTIFY_ADMINS("The world will shutdown at the end of the game. Requested by TGS.")
+				TGS_NOTIFY_ADMINS("Pod koniec gry świat zostanie wyłączony. Na żądanie TGS.")
 		if(SERVICE_CMD_WORLD_ANNOUNCE)
 			var/msg = params["message"]
 			if(!istext(msg) || !msg)

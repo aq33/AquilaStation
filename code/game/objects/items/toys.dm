@@ -38,8 +38,8 @@
  * Empty plushies before stuffing
  */
 /obj/item/toy/empty_plush //not a plushie subtype because of all the code regarding breeding and weird jokes, this is just a transitory state
-	name = "plush fabric"
-	desc = "An empty plush fabric. Ready to be stuffed with cotton."
+	name = "materiał na pluszaka"
+	desc = "Pusty materiał na pluszaka. Gotowy do wypchania bawełną."
 	icon = 'icons/obj/plushes.dmi'
 	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/plushes_righthand.dmi'
@@ -65,8 +65,8 @@
  * Balloons
  */
 /obj/item/toy/balloon
-	name = "water balloon"
-	desc = "A translucent balloon. There's nothing in it."
+	name = "balon na wodę"
+	desc = "Przezroczysty balon. W środku nic nie ma."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
@@ -92,7 +92,7 @@
 		else
 			A.reagents.trans_to(src, 10, transfered_by = user)
 			to_chat(user, "<span class='notice'>Napełniasz balon zawartością [A].</span>")
-			desc = "A translucent balloon with some form of liquid sloshing around in it."
+			desc = "Przezroczysty balon, w którym chlupocze jakiś płyn."
 			update_icon()
 
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
@@ -103,7 +103,7 @@
 			else if(reagents.total_volume >= 10)
 				to_chat(user, "<span class='warning'>[src] jest pełny.</span>")
 			else
-				desc = "A translucent balloon with some form of liquid sloshing around in it."
+				desc = "Przezroczysty balon, w którym chlupocze jakiś płyn."
 				to_chat(user, "<span class='notice'>Napełniasz balon zawartością [I].</span>")
 				I.reagents.trans_to(src, 10, transfered_by = user)
 				update_icon()
@@ -123,7 +123,7 @@
 			T = get_turf(AT)
 		else
 			T = get_turf(src)
-		T.visible_message("<span class='danger'>[src] bursts!</span>","<span class='italics'>Słyszysz pyknięcie i chlupnięcie.</span>")
+		T.visible_message("<span class='danger'>[src] pęka!</span>","<span class='italics'>Słyszysz pyknięcie i chlupnięcie.</span>")
 		reagents.reaction(T)
 		for(var/atom/A in T)
 			reagents.reaction(A)
@@ -139,8 +139,8 @@
 		item_state = "balloon-empty"
 
 /obj/item/toy/syndicateballoon
-	name = "syndicate balloon"
-	desc = "There is a tag on the back that reads \"FUK NT!11!\"."
+	name = "balon Syndykatu"
+	desc = "Z tyłu ma metkę z napisem „JEBAĆ NT!11!”."
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -174,8 +174,8 @@
  * Fake singularity
  */
 /obj/item/toy/spinningtoy
-	name = "gravitational singularity"
-	desc = "\"Singulo\" brand spinning toy."
+	name = "osobliwość grawitacyjna"
+	desc = "Kręcąca się zabawka marki „Singulo”."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	item_flags = NO_PIXEL_RANDOM_DROP
@@ -184,8 +184,8 @@
  * Toy gun: Why isn't this an /obj/item/gun?
  */
 /obj/item/toy/gun
-	name = "cap gun"
-	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps."
+	name = "pistolet na kapiszony"
+	desc = "Wygląda prawie jak prawdziwy! Od 8 lat. Gdy skończą się kapiszony, oddaj go do recyklingu w autolacie."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
@@ -233,7 +233,7 @@
 		return
 	add_fingerprint(user)
 	if (src.bullets < 1)
-		user.show_message("<span class='warning'>*click*</span>", MSG_AUDIBLE)
+		user.show_message("<span class='warning'>*klik*</span>", MSG_AUDIBLE)
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 30, TRUE)
 		return
 	playsound(user, 'sound/weapons/gunshot.ogg', 100, 1)
@@ -243,8 +243,8 @@
 						 "<span class='italics'>Słyszysz strzał!</span>")
 
 /obj/item/toy/ammo/gun
-	name = "capgun ammo"
-	desc = "Make sure to recyle the box in an autolathe when it gets empty."
+	name = "kapiszony"
+	desc = "Gdy pudełko się opróżni, oddaj je do recyklingu w autolacie."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "357OLD-7"
 	w_class = WEIGHT_CLASS_TINY
@@ -262,8 +262,8 @@
  * Toy swords
  */
 /obj/item/toy/sword
-	name = "toy sword"
-	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
+	name = "zabawkowy miecz"
+	desc = "Tania plastikowa replika miecza energetycznego. Realistyczne dźwięki! Od 8 lat."
 	icon = 'icons/obj/transforming_energy.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
@@ -327,8 +327,8 @@
  * Foam armblade
  */
 /obj/item/toy/foamblade
-	name = "foam armblade"
-	desc = "It says \"Sternside Changs #1 fan\" on it."
+	name = "piankowe ostrze ramienne"
+	desc = "Widnieje na nim napis „Fan nr 1 Sternside Changs”."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamblade"
 	item_state = "arm_blade"
@@ -342,8 +342,8 @@
  * Batong
  */
 /obj/item/toy/batong
-	name = "batong"
-	desc = "Despite being a cheap plastic imitation of a stunbaton, it can still be charged."
+	name = "pałong"
+	desc = "Choć to tania plastikowa imitacja pałki ogłuszającej, wciąż można ją naładować."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "stunbaton"
 	item_state = "baton"
@@ -353,8 +353,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/toy/windupToolbox
-	name = "windup toolbox"
-	desc = "A replica toolbox that rumbles when you turn the key."
+	name = "nakręcana skrzynka narzędziowa"
+	desc = "Replika skrzynki narzędziowej, która dudni, gdy przekręcisz kluczyk."
 	icon_state = "his_grace"
 	item_state = "artistic_toolbox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -403,8 +403,8 @@
  * Subtype of Double-Bladed Energy Swords
  */
 /obj/item/dualsaber/toy
-	name = "double-bladed toy sword"
-	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
+	name = "dwuostrzowy zabawkowy miecz"
+	desc = "Tania plastikowa replika DWÓCH mieczy energetycznych. Podwójna zabawa!"
 	force = 0
 	throwforce = 0
 	throw_speed = 3
@@ -419,7 +419,7 @@
 	sharpness = IS_BLUNT
 	bleed_force = 0
 
-/obj/item/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
 /obj/item/dualsaber/toy/IsReflect() //Stops Toy Dualsabers from reflecting energy projectiles
@@ -430,8 +430,8 @@
 	user.adjustStaminaLoss(25)
 
 /obj/item/toy/katana
-	name = "replica katana"
-	desc = "Woefully underpowered in D20."
+	name = "replika katany"
+	desc = "Żałośnie słaba w D20."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
@@ -453,8 +453,8 @@
  */
 
 /obj/item/toy/snappop
-	name = "snap pop"
-	desc = "Wow!"
+	name = "strzelający kapiszon"
+	desc = "Łał!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
@@ -465,7 +465,7 @@
 	s.set_up(n, c, src)
 	s.start()
 	new ash_type(loc)
-	visible_message("<span class='warning'>[src] explodes!</span>",
+	visible_message("<span class='warning'>[src] wybucha!</span>",
 		"<span class='italics'>Słyszysz trzask!</span>")
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 	qdel(src)
@@ -493,8 +493,8 @@
 			pop_burst(2, 0)
 
 /obj/item/toy/snappop/phoenix
-	name = "phoenix snap pop"
-	desc = "Wow! And wow! And wow!"
+	name = "feniksowy strzelający kapiszon"
+	desc = "Łał! I łał! I łał!"
 	ash_type = /obj/effect/decal/cleanable/ash/snappop_phoenix
 
 /obj/effect/decal/cleanable/ash/snappop_phoenix
@@ -537,69 +537,69 @@
 		attack_self(user)
 
 /obj/item/toy/prize/ripley
-	name = "toy Ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 1/12."
+	name = "zabawkowy Ripley"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 1/12."
 
 /obj/item/toy/prize/fireripley
-	name = "toy firefighting Ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 2/12."
+	name = "zabawkowy strażacki Ripley"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 2/12."
 	icon_state = "fireripleytoy"
 
 /obj/item/toy/prize/deathripley
-	name = "toy deathsquad Ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 3/12."
+	name = "zabawkowy Ripley szwadronu śmierci"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 3/12."
 	icon_state = "deathripleytoy"
 
 /obj/item/toy/prize/gygax
-	name = "toy Gygax"
-	desc = "Mini-Mecha action figure! Collect them all! 4/12."
+	name = "zabawkowy Gygax"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 4/12."
 	icon_state = "gygaxtoy"
 
 /obj/item/toy/prize/durand
-	name = "toy Durand"
-	desc = "Mini-Mecha action figure! Collect them all! 5/12."
+	name = "zabawkowy Durand"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 5/12."
 	icon_state = "durandprize"
 
 /obj/item/toy/prize/honk
-	name = "toy H.O.N.K."
-	desc = "Mini-Mecha action figure! Collect them all! 6/12."
+	name = "zabawkowy H.O.N.K."
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 6/12."
 	icon_state = "honkprize"
 
 /obj/item/toy/prize/marauder
-	name = "toy Marauder"
-	desc = "Mini-Mecha action figure! Collect them all! 7/12."
+	name = "zabawkowy Marauder"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 7/12."
 	icon_state = "marauderprize"
 
 /obj/item/toy/prize/seraph
-	name = "toy Seraph"
-	desc = "Mini-Mecha action figure! Collect them all! 8/12."
+	name = "zabawkowy Seraph"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 8/12."
 	icon_state = "seraphprize"
 
 /obj/item/toy/prize/mauler
-	name = "toy Mauler"
-	desc = "Mini-Mecha action figure! Collect them all! 9/12."
+	name = "zabawkowy Mauler"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 9/12."
 	icon_state = "maulerprize"
 
 /obj/item/toy/prize/odysseus
-	name = "toy Odysseus"
-	desc = "Mini-Mecha action figure! Collect them all! 10/12."
+	name = "zabawkowy Odysseus"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 10/12."
 	icon_state = "odysseusprize"
 
 /obj/item/toy/prize/phazon
-	name = "toy Phazon"
-	desc = "Mini-Mecha action figure! Collect them all! 11/12."
+	name = "zabawkowy Phazon"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 11/12."
 	icon_state = "phazonprize"
 
 /obj/item/toy/prize/reticence
-	name = "toy Reticence"
-	desc = "Mini-Mecha action figure! Collect them all! 12/12."
+	name = "zabawkowy Reticence"
+	desc = "Figurka z serii Mini-Mecha! Zbierz je wszystkie! 12/12."
 	icon_state = "reticenceprize"
 	quiet = 1
 
 
 /obj/item/toy/talking
-	name = "talking action figure"
-	desc = "A generic action figure modeled after nothing in particular."
+	name = "mówiąca figurka"
+	desc = "Zwykła figurka, która nie przedstawia nikogo konkretnego."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "owlprize"
 	w_class = WEIGHT_CLASS_SMALL
@@ -649,16 +649,16 @@
  * AI core prizes
  */
 /obj/item/toy/talking/AI
-	name = "toy AI"
-	desc = "A little toy model AI core with real law announcing action!"
+	name = "zabawkowa SI"
+	desc = "Mały zabawkowy model rdzenia SI, który naprawdę ogłasza prawa!"
 	icon_state = "AI"
 
 /obj/item/toy/talking/AI/generate_messages()
 	return list(generate_ion_law())
 
 /obj/item/toy/talking/codex_gigas
-	name = "Toy Codex Gigas"
-	desc = "A tool to help you write fictional devils!"
+	name = "zabawkowy Codex Gigas"
+	desc = "Narzędzie, które pomaga wymyślać fikcyjne diabły!"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "demonomicon"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
@@ -683,16 +683,16 @@
 	return messages
 
 /obj/item/toy/talking/owl
-	name = "owl action figure"
-	desc = "An action figure modeled after 'The Owl', defender of justice."
+	name = "figurka Sowy"
+	desc = "Figurka przedstawiająca Sowę, obrończynię sprawiedliwości."
 	icon_state = "owlprize"
 	messages = list("Tym razem mi nie uciekniesz, Gryfie!", "Stój, przestępco!", "Hu! Hu!", "Jestem nocą!")
 	chattering = TRUE
 	phomeme = "owl"
 
 /obj/item/toy/talking/griffin
-	name = "griffin action figure"
-	desc = "An action figure modeled after 'The Griffin', criminal mastermind."
+	name = "figurka Gryfa"
+	desc = "Figurka przedstawiająca Gryfa, przestępczego geniusza."
 	icon_state = "griffinprize"
 	messages = list("Nie powstrzymasz mnie, Sowo!", "Mój plan jest doskonały! Skarbiec jest mój!", "Kraaaaa!", "Nigdy mnie nie złapiesz!")
 	chattering = TRUE
@@ -725,8 +725,8 @@
 		return
 
 /obj/item/toy/cards/deck
-	name = "deck of cards"
-	desc = "A deck of space-grade playing cards."
+	name = "talia kart"
+	desc = "Talia kart do gry klasy kosmicznej."
 	icon = 'icons/obj/toy.dmi'
 	deckstyle = "nanotrasen"
 	icon_state = "deck_nanotrasen_full"
@@ -857,8 +857,8 @@
 
 
 /obj/item/toy/cards/cardhand
-	name = "hand of cards"
-	desc = "A number of cards not in a deck, customarily held in ones hand."
+	name = "karty w ręce"
+	desc = "Kilka kart spoza talii, zwykle trzymanych w ręce."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "none"
 	w_class = WEIGHT_CLASS_TINY
@@ -944,8 +944,8 @@
 		add_overlay(card_overlay)
 
 /obj/item/toy/cards/singlecard
-	name = "card"
-	desc = "a card"
+	name = "karta"
+	desc = "Karta."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "singlecard_down_nanotrasen"
 	w_class = WEIGHT_CLASS_SMALL
@@ -983,12 +983,12 @@
 			src.name = src.cardname
 		else
 			src.icon_state = "sc_Ace of Spades_[deckstyle]"
-			src.name = "What Card"
+			src.name = "Jaka karta"
 		src.pixel_x = 5
 	else if(flipped)
 		src.flipped = 0
 		src.icon_state = "singlecard_down_[deckstyle]"
-		src.name = "card"
+		src.name = "karta"
 		src.pixel_x = -5
 
 /obj/item/toy/cards/singlecard/attackby(obj/item/I, mob/living/user, params)
@@ -1047,8 +1047,8 @@
 */
 
 /obj/item/toy/cards/deck/syndicate
-	name = "suspicious looking deck of cards"
-	desc = "A deck of space-grade playing cards. They seem unusually rigid."
+	name = "podejrzanie wyglądająca talia kart"
+	desc = "Talia kart do gry klasy kosmicznej. Wydają się nietypowo sztywne."
 	icon_state = "deck_syndicate_full"
 	deckstyle = "syndicate"
 	card_hitsound = 'sound/weapons/bladeslice.ogg'
@@ -1059,7 +1059,7 @@
 	card_sharpness = IS_SHARP
 	bleed_force = BLEED_SURFACE
 	card_throw_range = 7
-	card_attack_verb = list("attacked", "sliced", "diced", "slashed", "cut")
+	card_attack_verb = list("atakuje", "tnie", "kroi", "ciacha", "rozcina")
 	resistance_flags = NONE
 
 /*
@@ -1067,8 +1067,8 @@
  */
 
 /obj/item/toy/nuke
-	name = "\improper Nuclear Fission Explosive toy"
-	desc = "A plastic model of a Nuclear Fission Explosive."
+	name = "\improper zabawkowy ładunek nuklearny"
+	desc = "Plastikowy model ładunku nuklearnego."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nuketoyidle"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1095,7 +1095,7 @@
 
 /obj/item/toy/minimeteor
 	name = "\improper Mini-Meteor"
-	desc = "Relive the excitement of a meteor shower! SweetMeat-eor. Co is not responsible for any injuries, headaches or hearing loss caused by Mini-Meteor."
+	desc = "Przeżyj na nowo emocje deszczu meteorów! SweetMeat-eor. Co nie odpowiada za urazy, bóle głowy ani utratę słuchu spowodowane przez Mini-Meteor."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "minimeteor"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1112,8 +1112,8 @@
  * Toy big red button
  */
 /obj/item/toy/redbutton
-	name = "big red button"
-	desc = "A big, plastic red button. Reads 'From HonkCo Pranks?' on the back."
+	name = "wielki czerwony przycisk"
+	desc = "Wielki, plastikowy czerwony przycisk. Z tyłu ma napis „Od HonkCo Pranks?”."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bigred"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1137,8 +1137,8 @@
  */
 
 /obj/item/toy/snowball
-	name = "snowball"
-	desc = "A compact ball of snow. Good for throwing at people."
+	name = "śnieżka"
+	desc = "Zbita kula śniegu. W sam raz do rzucania w ludzi."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snowball"
 	throwforce = 12 //pelt your enemies to death with lumps of snow
@@ -1159,7 +1159,7 @@
 /obj/item/toy/beach_ball
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "ball"
-	name = "beach ball"
+	name = "piłka plażowa"
 	item_state = "beachball"
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 	item_flags = NO_PIXEL_RANDOM_DROP
@@ -1169,8 +1169,8 @@
  */
 
 /obj/item/toy/clockwork_watch
-	name = "steampunk watch"
-	desc = "A stylish steampunk watch made out of thousands of tiny cogwheels."
+	name = "steampunkowy zegarek"
+	desc = "Stylowy steampunkowy zegarek z tysięcy maleńkich kółek zębatych."
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "dread_ipad"
 	worn_icon_state = "dread_ipad"
@@ -1195,8 +1195,8 @@
  */
 
 /obj/item/toy/toy_dagger
-	name = "toy dagger"
-	desc = "A cheap plastic replica of a dagger. Produced by THE ARM Toys, Inc."
+	name = "zabawkowy sztylet"
+	desc = "Tania plastikowa replika sztyletu. Produkcja THE ARM Toys, Inc."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	item_state = "cultdagger"
@@ -1209,8 +1209,8 @@
  */
 
 /obj/item/toy/cog
-	name = "integration cog"
-	desc = "A small cog that seems to spin by its own acord when left alone."
+	name = "zębatka integracyjna"
+	desc = "Mała zębatka, która zostawiona w spokoju zdaje się kręcić sama z siebie."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "integration_cog"
@@ -1226,8 +1226,8 @@
  */
 
 /obj/item/toy/replica_fabricator
-	name = "replica fabricator"
-	desc = "A strange, brass device with many twisting cogs and vents."
+	name = "fabrykator replik"
+	desc = "Dziwne mosiężne urządzenie z mnóstwem kręcących się zębatek i otworów wentylacyjnych."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "replica_fabricator"
@@ -1245,8 +1245,8 @@
 /obj/item/toy/toy_xeno
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "toy_xeno"
-	name = "xenomorph action figure"
-	desc = "MEGA presents the new Xenos Isolated action figure! Comes complete with realistic sounds! Pull back string to use."
+	name = "figurka ksenomorfa"
+	desc = "MEGA przedstawia nową figurkę Xenos Isolated! W komplecie realistyczne dźwięki! Pociągnij za sznurek, żeby jej użyć."
 	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown = 0
 
@@ -1256,7 +1256,7 @@
 		user.visible_message("<span class='notice'>[user] naciąga sznurek [src].</span>")
 		icon_state = "[initial(icon_state)]_used"
 		sleep(5)
-		audible_message("<span class='danger'>[icon2html(src, viewers(src))] Hiss!</span>")
+		audible_message("<span class='danger'>[icon2html(src, viewers(src))] Sss!</span>")
 		var/list/possible_sounds = list('sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg')
 		var/chosen_sound = pick(possible_sounds)
 		playsound(get_turf(src), chosen_sound, 50, 1)
@@ -1268,8 +1268,8 @@
 // TOY MOUSEYS :3 :3 :3
 
 /obj/item/toy/cattoy
-	name = "toy mouse"
-	desc = "A colorful toy mouse!"
+	name = "zabawkowa mysz"
+	desc = "Kolorowa zabawkowa mysz!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "toy_mouse"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1282,7 +1282,7 @@
  */
 
 /obj/item/toy/figure
-	name = "Non-Specific Action Figure action figure"
+	name = "figurka: Niesprecyzowana Figurka"
 	desc = null
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nuketoy"
@@ -1292,214 +1292,214 @@
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
-	desc = "A \"Space Life\" brand [src]."
+	desc = "Produkt marki „Space Life”."
 
 /obj/item/toy/figure/attack_self(mob/user as mob)
 	if(cooldown <= world.time)
 		cooldown = world.time + 50
-		to_chat(user, "<span class='notice'>[src] says \"[toysay]\"</span>")
+		to_chat(user, "<span class='notice'>[src] mówi: „[toysay]”</span>")
 		playsound(user, toysound, 20, 1)
 
 /obj/item/toy/figure/cmo
-	name = "Chief Medical Officer action figure"
+	name = "figurka: Ordynator"
 	icon_state = "cmo"
 	toysay = "Czujniki w kombinezonach!"
 
 /obj/item/toy/figure/assistant
-	name = "Assistant action figure"
+	name = "figurka: Majtek"
 	icon_state = "assistant"
 	toysay = "Szara fala na cały świat!"
 
 /obj/item/toy/figure/atmos
-	name = "Atmospheric Technician action figure"
+	name = "figurka: Technik Atmosferyki"
 	icon_state = "atmos"
 	toysay = "Chwała Atmosii!"
 
 /obj/item/toy/figure/bartender
-	name = "Bartender action figure"
+	name = "figurka: Barman"
 	icon_state = "bartender"
 	toysay = "Gdzie jest Pun Pun?"
 
 /obj/item/toy/figure/borg
-	name = "Cyborg action figure"
+	name = "figurka: Cyborg"
 	icon_state = "borg"
 	toysay = "ŻY. JĘ. ZNOWU."
 	toysound = 'sound/voice/liveagain.ogg'
 
 /obj/item/toy/figure/botanist
-	name = "Botanist action figure"
+	name = "figurka: Botanik"
 	icon_state = "botanist"
 	toysay = "Zapalaj!"
 
 /obj/item/toy/figure/captain
-	name = "Captain action figure"
+	name = "figurka: Kapitan"
 	icon_state = "captain"
 	toysay = "Są jacyś szefowie?"
 
 /obj/item/toy/figure/cargotech
-	name = "Cargo Technician action figure"
+	name = "figurka: Magazynier"
 	icon_state = "cargotech"
 	toysay = "Za Cargonię!"
 
 /obj/item/toy/figure/ce
-	name = "Chief Engineer action figure"
+	name = "figurka: Główny Inżynier"
 	icon_state = "ce"
 	toysay = "Podłączcie panele słoneczne!"
 
 /obj/item/toy/figure/chaplain
-	name = "Chaplain action figure"
+	name = "figurka: Kapłan"
 	icon_state = "chaplain"
 	toysay = "Chwała Kosmicznemu Jezusowi!"
 
 /obj/item/toy/figure/chef
-	name = "Chef action figure"
+	name = "figurka: Kucharz"
 	icon_state = "chef"
 	toysay = " Zrobię z ciebie burgera!"
 
 /obj/item/toy/figure/chemist
-	name = "Chemist action figure"
+	name = "figurka: Chemik"
 	icon_state = "chemist"
 	toysay = "Bierzcie pigułki!"
 
 /obj/item/toy/figure/clown
-	name = "Clown action figure"
+	name = "figurka: Klaun"
 	icon_state = "clown"
 	toysay = "Honk!"
 	toysound = 'sound/items/bikehorn.ogg'
 
 /obj/item/toy/figure/ian
-	name = "Ian action figure"
+	name = "figurka: Ian"
 	icon_state = "ian"
 	toysay = "Hau!"
 
 /obj/item/toy/figure/detective
-	name = "Detective action figure"
+	name = "figurka: Detektyw"
 	icon_state = "detective"
 	toysay = "Na tej śluzie są włókna szarego kombinezonu i izolowanych rękawic."
 
 /obj/item/toy/figure/dsquad
-	name = "Death Squad Officer action figure"
+	name = "figurka: Oficer szwadronu śmierci"
 	icon_state = "dsquad"
 	toysay = "Zabić ich wszystkich!"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
+	name = "figurka: Inżynier"
 	icon_state = "engineer"
 	toysay = "O Boże, osobliwość się uwolniła!"
 
 /obj/item/toy/figure/geneticist
-	name = "Geneticist action figure"
+	name = "figurka: Genetyk"
 	icon_state = "geneticist"
 	toysay = "Miażdżyć!"
 
 /obj/item/toy/figure/hop
-	name = "Head of Personnel action figure"
+	name = "figurka: Starszy Oficer"
 	icon_state = "hop"
 	toysay = "Rozdaję wszystkim pełny dostęp!"
 
 /obj/item/toy/figure/hos
-	name = "Head of Security action figure"
+	name = "figurka: Komendant"
 	icon_state = "hos"
 	toysay = "No dalej, zrób mi przyjemność."
 
 /obj/item/toy/figure/qm
-	name = "Quartermaster action figure"
+	name = "figurka: Kwatermistrz"
 	icon_state = "qm"
 	toysay = "Proszę podpisać ten formularz w trzech egzemplarzach, a w ciągu 3 dni roboczych zobaczymy, czy da się załatwić maskę spawalniczą."
 
 /obj/item/toy/figure/janitor
-	name = "Janitor action figure"
+	name = "figurka: Woźny"
 	icon_state = "janitor"
 	toysay = "Patrz na znaki, idioto."
 
 /obj/item/toy/figure/lawyer
-	name = "Lawyer action figure"
+	name = "figurka: Prawnik"
 	icon_state = "lawyer"
 	toysay = "Mój klient to parszywy zdrajca!"
 
 /obj/item/toy/figure/curator
-	name = "Curator action figure"
+	name = "figurka: Bibliotekarz"
 	icon_state = "curator"
 	toysay = "Pewnego dnia, kiedy..."
 
 /obj/item/toy/figure/md
-	name = "Medical Doctor action figure"
+	name = "figurka: Lekarz"
 	icon_state = "md"
 	toysay = "Pacjent już nie żyje!"
 
 /obj/item/toy/figure/mime
-	name = "Mime action figure"
+	name = "figurka: Mim"
 	icon_state = "mime"
 	toysay = "..."
 	toysound = null
 
 /obj/item/toy/figure/miner
-	name = "Shaft Miner action figure"
+	name = "figurka: Górnik"
 	icon_state = "miner"
 	toysay = "KOLOS TUŻ PRZED BAZĄ!"
 
 /obj/item/toy/figure/ninja
-	name = "Ninja action figure"
+	name = "figurka: Ninja"
 	icon_state = "ninja"
 	toysay = "O Boże! Przestańcie strzelać, jestem przyjazny!"
 
 /obj/item/toy/figure/wizard
-	name = "Wizard action figure"
+	name = "figurka: Czarodziej"
 	icon_state = "wizard"
 	toysay = "Ei Nath!"
 	toysound = 'sound/magic/disintegrate.ogg'
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
+	name = "figurka: Dyrektor Naukowy"
 	icon_state = "rd"
 	toysay = "Wysadzam wszystkie borgi!"
 
 /obj/item/toy/figure/roboticist
-	name = "Roboticist action figure"
+	name = "figurka: Robotyk"
 	icon_state = "roboticist"
 	toysay = "Wielkie tupiące mechy!"
 	toysound = 'sound/mecha/mechstep.ogg'
 
 /obj/item/toy/figure/scientist
-	name = "Scientist action figure"
+	name = "figurka: Naukowiec"
 	icon_state = "scientist"
 	toysay = "Biorę toksyny."
 	toysound = 'sound/effects/explosionfar.ogg'
 
 /obj/item/toy/figure/syndie
-	name = "Nuclear Operative action figure"
+	name = "figurka: Operator nuklearny"
 	icon_state = "syndie"
 	toysay = "Zdobądźcie ten pierdolony dysk!"
 
 /obj/item/toy/figure/secofficer
-	name = "Security Officer action figure"
+	name = "figurka: Policjant"
 	icon_state = "secofficer"
 	toysay = "JA JESTEM PRAWEM!"
 	toysound = 'sound/voice/complionator/dredd.ogg'
 
 /obj/item/toy/figure/virologist
-	name = "Virologist action figure"
+	name = "figurka: Wirolog"
 	icon_state = "virologist"
 	toysay = "To jest korzystne! W większości."
 	toysound = 'sound/ambience/antag/ling_aler.ogg'
 
 /obj/item/toy/figure/warden
-	name = "Warden action figure"
+	name = "figurka: Naczelnik"
 	icon_state = "warden"
 	toysay = "Siedemnaście minut za kaszlnięcie na funkcjonariusza!"
 
 
 /obj/item/toy/dummy
-	name = "ventriloquist dummy"
-	desc = "It's a dummy, dummy."
+	name = "kukła brzuchomówcy"
+	desc = "To kukła, kukło."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "assistant"
 	item_state = "doll"
-	var/doll_name = "Dummy"
+	var/doll_name = "Kukiełka"
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
 /obj/item/toy/dummy/attack_self(mob/user)
-	var/new_name = stripped_input(usr,"Jak chcesz nazwać kukłę?","Input a name",doll_name,MAX_NAME_LEN)
+	var/new_name = stripped_input(usr,"Jak chcesz nazwać kukłę?","Podaj imię",doll_name,MAX_NAME_LEN)
 	if(!new_name)
 		return
 	doll_name = new_name
@@ -1523,7 +1523,7 @@
 
 /obj/item/toy/eldrich_book
 	name = "Codex Cicatrix"
-	desc = "A toy book that closely resembles the Codex Cicatrix. Covered in fake polyester human flesh and has a huge goggly eye attached to the cover. The runes are gibberish and cannot be used to summon demons... Hopefully?"
+	desc = "Zabawkowa księga łudząco podobna do Codex Cicatrix. Obita sztuczną poliestrową ludzką skórą, z wielkim wyłupiastym okiem przyczepionym do okładki. Runy to bełkot i nie da się nimi przyzwać demonów... Mamy nadzieję?"
 	icon = 'icons/obj/heretic.dmi'
 	icon_state = "book"
 	w_class = WEIGHT_CLASS_SMALL
@@ -1542,15 +1542,15 @@
  */
 
 /obj/item/toy/reality_pierce
-	name = "Pierced reality"
-	desc = "Hah. You thought it was the real deal!"
+	name = "przebita rzeczywistość"
+	desc = "Ha. Myślałeś, że to prawdziwa!"
 	icon = 'icons/effects/heretic.dmi'
 	icon_state = "pierced_illusion"
 	item_flags = NO_PIXEL_RANDOM_DROP
 
 /obj/item/storage/box/heretic_asshole
-	name = "box of pierced realities"
-	desc = "A box containing toys resembling pierced realities."
+	name = "pudełko przebitych rzeczywistości"
+	desc = "Pudełko z zabawkami przypominającymi przebite rzeczywistości."
 
 /obj/item/storage/box/heretic_asshole/PopulateContents()
 	for(var/i in 1 to rand(1,4))
@@ -1561,8 +1561,8 @@
  */
 
 /obj/item/toy/allaccess
-	name = "captain's spare ID"
-	desc = "A replica of the glorious captain's card. Issued to annoying greytiders as a joke."
+	name = "zapasowy identyfikator kapitana"
+	desc = "Replika wspaniałej karty kapitana. Wydawana dla żartu irytującym szarakom."
 	icon = 'nsv13/icons/obj/card.dmi' //NSV13 - old ID style
 	icon_state = "gold"
 
@@ -1583,8 +1583,8 @@
 */
 
 /obj/item/toy/cards/deck/cyborg
-	name = "dealer module"
-	desc = "A module for handling, fabricating cards and tricking suckers into gambling awaya their money. Ctrl Click to fabricate a new set of cards."
+	name = "moduł krupiera"
+	desc = "Moduł do rozdawania i wytwarzania kart oraz naciągania frajerów na przegrywanie pieniędzy. Ctrl+kliknij, żeby wytworzyć nowy zestaw kart."
 
 /obj/item/toy/cards/deck/cyborg/update_icon()
 	icon_state = "deck_[deckstyle]_full"
@@ -1643,8 +1643,8 @@
 ////////////////////
 
 /obj/item/gobbler
-	name = "Coin Gobbler"
-	desc = "Feed it credits, and activate it, with a chance to spit out DOUBLE the amount!"
+	name = "Pożeracz Monet"
+	desc = "Nakarm go kredytami i włącz. Jest szansa, że wypluje PODWÓJNĄ kwotę!"
 	icon = 'icons/obj/plushes.dmi'
 	icon_state = "debug"
 	var/money = 0
@@ -1712,8 +1712,8 @@
 	qdel(A)
 
 /obj/item/dance_trance
-	name = "Dance Fever"
-	desc = "Makes everyone dance!"
+	name = "Gorączka Tańca"
+	desc = "Każdy zaczyna tańczyć!"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "disco_active"
 	var/flip_cooldown = 0
@@ -1746,7 +1746,7 @@
 
 
 /obj/item/storage/pill_bottle/dice_cup/cyborg
-	desc = "The house always wins..."
+	desc = "Kasyno zawsze wygrywa..."
 /obj/item/storage/pill_bottle/dice_cup/cyborg/Initialize(mapload)
 	. = ..()
 	new /obj/item/dice/d6(src)
@@ -1754,8 +1754,8 @@
 
 
 /obj/item/storage/box/yatzy
-	name = "Game of Yatzy"
-	desc = "Contains all the pieces required to play a game of Yatzy with up to 4 friends!"
+	name = "gra w Yatzy"
+	desc = "Zawiera wszystkie elementy potrzebne do gry w Yatzy z maksymalnie 4 przyjaciółmi!"
 
 /obj/item/storage/box/yatzy/PopulateContents()
 	new /obj/item/storage/pill_bottle/dice_cup/yatzy(src)
@@ -1770,5 +1770,5 @@
 		new /obj/item/dice/d6(src)
 
 /obj/item/paper/yatzy
-	name = "paper - Yatzy Table"
+	name = "kartka - tabela do Yatzy"
 	default_raw_text = "<table><tr><th>Górna część</th><th>Gra 1</th><th>Gra 2</th><th>Gra 3</th></tr><tr><th>Jedynki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Dwójki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Trójki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Czwórki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Piątki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Szóstki</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Suma</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Suma górnej części</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th><b>Premia</b></th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Para</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Dwie pary</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th><th>Trójka</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th><th>Kareta</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Full</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Mały strit</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Duży strit</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Generał</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Szansa</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th>Suma dolnej części</th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr><th><b>Suma końcowa</b></th><th>\[___\]</th><th>\[___\]</th><th>\[___\]</th></tr></table>"

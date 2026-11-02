@@ -4,7 +4,7 @@
  * A component that sets a variable on an object
  */
 /obj/item/circuit_component/set_variable
-	display_name = "Set Variable"
+	display_name = "Ustaw zmienną"
 	desc = "Komponent, który ustawia zmienną obiektu."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

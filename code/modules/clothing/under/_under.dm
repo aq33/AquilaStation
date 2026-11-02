@@ -1,6 +1,6 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
-	name = "under"
+	name = "kombinezon"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
 	slot_flags = ITEM_SLOT_ICLOTHING

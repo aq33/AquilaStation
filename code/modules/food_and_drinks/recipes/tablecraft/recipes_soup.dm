@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////SOUP////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/oatmeal
-	name = "Oatmeal"
+	name = "owsianka"
 	reqs = list(
 		/datum/reagent/consumable/milk = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -14,7 +14,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/meatballsoup
-	name = "Meatball soup"
+	name = "zupa z klopsikami"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -26,7 +26,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/vegetablesoup
-	name = "Vegetable soup"
+	name = "zupa jarzynowa"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -39,7 +39,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/nettlesoup
-	name = "Nettle soup"
+	name = "zupa pokrzywowa"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -51,7 +51,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/wingfangchu
-	name = "Wingfangchu"
+	name = "wing fang chu"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/datum/reagent/consumable/soysauce = 5,
@@ -61,7 +61,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/wishsoup
-	name = "Wish soup"
+	name = "zupa życzeń"
 	reqs = list(
 		/datum/reagent/water = 20,
 		/obj/item/reagent_containers/glass/bowl = 1
@@ -70,7 +70,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/hotchili
-	name = "Hot chili"
+	name = "ostre chili"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -81,7 +81,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/coldchili
-	name = "Cold chili"
+	name = "zimne chili"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -92,7 +92,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/tomatosoup
-	name = "Tomato soup"
+	name = "zupa pomidorowa"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -102,7 +102,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/eyeballsoup
-	name = "Eyeball soup"
+	name = "zupa z oczu"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -114,7 +114,7 @@
 
 
 /datum/crafting_recipe/food/misosoup
-	name = "Miso soup"
+	name = "zupa miso"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -125,7 +125,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/bloodsoup
-	name = "Blood soup"
+	name = "zupa z krwi"
 	reqs = list(
 		/datum/reagent/blood = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -135,7 +135,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/slimesoup
-	name = "Slime soup"
+	name = "zupa ze szlamu"
 	reqs = list(
 			/datum/reagent/water = 10,
 			/datum/reagent/toxin/slimejelly = 5,
@@ -145,7 +145,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/clownstears
-	name = "Clowns tears"
+	name = "łzy klauna"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -156,7 +156,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/mysterysoup
-	name = "Mystery soup"
+	name = "zupa-zagadka"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -169,7 +169,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/mushroomsoup
-	name = "Mushroom soup"
+	name = "zupa kurkowa"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/water = 5,
@@ -180,7 +180,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/beetsoup
-	name = "Beet soup"
+	name = "barszcz"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -191,7 +191,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/stew
-	name = "Stew"
+	name = "gulasz"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -206,7 +206,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/spacylibertyduff
-	name = "Spacy liberty duff"
+	name = "kosmiczny deser wolności"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 5,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -216,7 +216,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/amanitajelly
-	name = "Amanita jelly"
+	name = "galaretka z muchomorów"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 5,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -226,7 +226,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/sweetpotatosoup
-	name = "Sweet potato soup"
+	name = "zupa z batatów"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/datum/reagent/consumable/sugar = 5,
@@ -237,7 +237,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/redbeetsoup
-	name = "Red beet soup"
+	name = "zupa z czerwonych buraków"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
@@ -248,7 +248,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/bisque
-	name = "Bisque"
+	name = "bisque"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/datum/reagent/water = 10,
@@ -260,7 +260,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/bungocurry
-	name = "Bungo Curry"
+	name = "curry z bungo"
 	reqs = list(
 		/datum/reagent/water = 5,
 		/datum/reagent/consumable/cream = 5,
@@ -272,7 +272,7 @@
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/electron
-	name = "Electron Soup"
+	name = "zupa elektronowa"
 	reqs = list(
 		/datum/reagent/water = 10,
 		/datum/reagent/consumable/sodiumchloride = 5,

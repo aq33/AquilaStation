@@ -11,8 +11,8 @@
 //Failure to follow this pattern will cause the hand's icons to be missing due to the way get_limb_icon() works to generate the mob's icons using the aux_zone var.
 
 /obj/item/bodypart/l_arm/robot
-	name = "cyborg left arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
+	name = "lewa ręka cyborga"
+	desc = "Szkieletowa kończyna owinięta pseudomięśniami, w obudowie o niskim przewodnictwie."
 	limb_id = "robotic"
 	attack_verb = list("policzkuje", "uderza pięścią")
 	item_state = "buildpipe"
@@ -37,8 +37,8 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
 /obj/item/bodypart/r_arm/robot
-	name = "cyborg right arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
+	name = "prawa ręka cyborga"
+	desc = "Szkieletowa kończyna owinięta pseudomięśniami, w obudowie o niskim przewodnictwie."
 	attack_verb = list("policzkuje", "uderza pięścią")
 	item_state = "buildpipe"
 	static_icon =  'icons/mob/augmentation/augments.dmi'
@@ -63,8 +63,8 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
 /obj/item/bodypart/l_leg/robot
-	name = "cyborg left leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
+	name = "lewa noga cyborga"
+	desc = "Szkieletowa kończyna owinięta pseudomięśniami, w obudowie o niskim przewodnictwie."
 	attack_verb = list("kopie", "depcze")
 	item_state = "buildpipe"
 	static_icon =  'icons/mob/augmentation/augments.dmi'
@@ -89,8 +89,8 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
 /obj/item/bodypart/r_leg/robot
-	name = "cyborg right leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
+	name = "prawa noga cyborga"
+	desc = "Szkieletowa kończyna owinięta pseudomięśniami, w obudowie o niskim przewodnictwie."
 	attack_verb = list("kopie", "depcze")
 	item_state = "buildpipe"
 	static_icon =  'icons/mob/augmentation/augments.dmi'
@@ -115,8 +115,8 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
 /obj/item/bodypart/chest/robot
-	name = "cyborg torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
+	name = "tułów cyborga"
+	desc = "Mocno wzmocniona obudowa z płytami logicznymi cyborga i miejscem na standardowe ogniwo zasilające."
 	item_state = "buildpipe"
 	static_icon =  'icons/mob/augmentation/augments.dmi'
 	icon = null
@@ -222,8 +222,8 @@
 
 
 /obj/item/bodypart/head/robot
-	name = "cyborg head"
-	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
+	name = "głowa cyborga"
+	desc = "Standardowa wzmocniona puszka mózgowa z gniazdem neuronowym podłączanym do kręgosłupa i przegubami czujników."
 	item_state = "buildpipe"
 	static_icon = 'icons/mob/augmentation/augments.dmi'
 	limb_id = "robotic"
@@ -324,32 +324,32 @@
 
 
 /obj/item/bodypart/l_arm/robot/surplus
-	name = "surplus prosthetic left arm"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "tania proteza lewej ręki"
+	desc = "Szkieletowa, robotyczna kończyna. Przestarzała i krucha, ale wciąż lepsza niż nic."
 	static_icon =  'icons/mob/augmentation/surplus_augments.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
 
 /obj/item/bodypart/r_arm/robot/surplus
-	name = "surplus prosthetic right arm"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "tania proteza prawej ręki"
+	desc = "Szkieletowa, robotyczna kończyna. Przestarzała i krucha, ale wciąż lepsza niż nic."
 	static_icon =  'icons/mob/augmentation/surplus_augments.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
 
 /obj/item/bodypart/l_leg/robot/surplus
-	name = "surplus prosthetic left leg"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "tania proteza lewej nogi"
+	desc = "Szkieletowa, robotyczna kończyna. Przestarzała i krucha, ale wciąż lepsza niż nic."
 	static_icon =  'icons/mob/augmentation/surplus_augments.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
 
 /obj/item/bodypart/r_leg/robot/surplus
-	name = "surplus prosthetic right leg"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "tania proteza prawej nogi"
+	desc = "Szkieletowa, robotyczna kończyna. Przestarzała i krucha, ale wciąż lepsza niż nic."
 	static_icon =  'icons/mob/augmentation/surplus_augments.dmi'
 	brute_reduction = 0
 	burn_reduction = 0

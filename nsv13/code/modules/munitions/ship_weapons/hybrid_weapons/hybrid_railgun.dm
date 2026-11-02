@@ -3,8 +3,8 @@
 //Fires both Railgun Slugs and Railgun Canisters
 
 /obj/machinery/ship_weapon/hybrid_rail
-	name = "NT-ST049 'Sturm' coaxial railgun"
-	desc = "Due to insufficient firepower, attempts were made at upgrading the NT-STC4 model railgun, providing an increased muzzle velocity, wider coverage arc and the ability to fire larger munitions. However the design proved ineffective long term due to extensive maintance costs and reliability issues compared with new advances in kinetically propelled munitions."
+	name = "współosiowe działo szynowe NT-ST049 „Sturm”"
+	desc = "Z powodu niewystarczającej siły ognia próbowano ulepszyć działo szynowe NT-STC4: zwiększono prędkość wylotową, poszerzono łuk ostrzału i dodano możliwość strzelania większą amunicją. Na dłuższą metę konstrukcja okazała się jednak nieopłacalna przez wysokie koszty konserwacji i zawodność w porównaniu z nowymi osiągnięciami w amunicji kinetycznej."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "OBC"
 	max_integrity = 400 //Want these to last as you can't replace them
@@ -477,24 +477,24 @@
 		canister_stats["hardness"] = C.material_hardness
 		switch(C.material_charge)
 			if(0)
-				canister_stats["charge"] = "Null"
+				canister_stats["charge"] = "Brak"
 			if(1 to 33)
-				canister_stats["charge"] = "Low"
+				canister_stats["charge"] = "Niski"
 			if(33 to 66)
-				canister_stats["charge"] = "Moderate"
+				canister_stats["charge"] = "Umiarkowany"
 			if(66 to 100)
-				canister_stats["charge"] = "High"
+				canister_stats["charge"] = "Wysoki"
 			if(100 to 150)
-				canister_stats["charge"] = "Overcharged"
+				canister_stats["charge"] = "Przeładowany"
 			if(150 to INFINITY)
-				canister_stats["charge"] = "DANGER"
+				canister_stats["charge"] = "NIEBEZPIECZEŃSTWO"
 		switch(C.canister_integrity)
 			if(0 to 20)
-				canister_stats["integrity"] = "DANGER"
+				canister_stats["integrity"] = "NIEBEZPIECZEŃSTWO"
 			if(20 to 50)
-				canister_stats["integrity"] = "Degraded"
+				canister_stats["integrity"] = "Osłabiona"
 			if(50 to INFINITY)
-				canister_stats["integrity"] = "Stable"
+				canister_stats["integrity"] = "Stabilna"
 		magazine[++magazine.len] = canister_stats
 
 	for(var/obj/item/ship_weapon/ammunition/railgun_ammo/forged/F in ammo)
@@ -503,8 +503,8 @@
 		forged_stats["conductivity"] = F.material_conductivity
 		forged_stats["density"] = F.material_density
 		forged_stats["hardness"] = F.material_hardness
-		forged_stats["charge"] = "Null"
-		forged_stats["integrity"] = "Stable"
+		forged_stats["charge"] = "Brak"
+		forged_stats["integrity"] = "Stabilna"
 		magazine[++magazine.len] = forged_stats
 	data["magazine"] = magazine
 	var/turf/T = get_turf(src)
@@ -516,8 +516,8 @@
 
 //Unsecured tech Disk
 /obj/item/disk/design_disk/hybrid_rail_slugs
-	name = "Defunct Railgun Techology Munitions Technology Disk"
-	desc = "This disk is marked: Filed for relocation to nearest sigularity engine."
+	name = "dysk technologii amunicji porzuconego działa szynowego"
+	desc = "Dysk ma dopisek: „Przeznaczony do przeniesienia do najbliższego silnika osobliwości”."
 	icon_state = "datadisk2"
 	max_blueprints = 2
 

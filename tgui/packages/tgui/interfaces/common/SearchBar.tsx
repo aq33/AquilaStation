@@ -33,7 +33,7 @@ export function SearchBar(props: Props) {
     expensive,
     noIcon = false,
     onSearch,
-    placeholder = 'Search...',
+    placeholder = 'Szukaj...',
     query = '',
     style,
   } = props;

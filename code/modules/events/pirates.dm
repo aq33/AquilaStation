@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	if(D)
 		payoff = max(payoff_min, FLOOR(D.account_balance * 0.80, 1000))
 	ship_name = pick(strings(PIRATE_NAMES_FILE, "ship_names"))
-	threat.title = "Business proposition"
+	threat.title = "Propozycja biznesowa"
 	threat.content = "Tutaj[ship_name]. Zapłaćcie [payoff] albo przejdziecie się po desce."
 	threat.possible_answers = list(
 		PIRATE_RESPONSE_PAY = "Zapłacimy.",
@@ -94,8 +94,8 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 //Shuttle equipment
 
 /obj/machinery/shuttle_scrambler
-	name = "Data Siphon"
-	desc = "This heap of machinery steals credits and data from unprotected systems and locks down cargo shuttles."
+	name = "syfon danych"
+	desc = "Ta sterta maszynerii kradnie kredyty i dane z niezabezpieczonych systemów i blokuje promy zaopatrzeniowe."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
@@ -123,7 +123,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /obj/machinery/shuttle_scrambler/proc/toggle_on(mob/user)
 	SSshuttle.registerTradeBlockade(src)
-	AddComponent(/datum/component/gps, "Nautical Signal")
+	AddComponent(/datum/component/gps, "Sygnał nawigacyjny")
 	active = TRUE
 	to_chat(user,"<span class='notice'>[active ? "Włączasz":"Wyłączasz"] [src].</span>")
 	to_chat(user,"<span class='warning'>Sygnał zakłócający można teraz namierzyć przez GPS.</span>")
@@ -176,7 +176,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	return ..()
 
 /obj/machinery/computer/shuttle_flight/pirate
-	name = "pirate shuttle console"
+	name = "konsola promu pirackiego"
 	shuttleId = "pirateship"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	possible_destinations = "pirateship_away;pirateship_home;pirateship_custom"
 
 /obj/docking_port/mobile/pirate
-	name = "pirate shuttle"
+	name = "prom piracki"
 	id = "pirateship"
 	rechargeTime = 3 MINUTES
 
@@ -195,8 +195,8 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	storage_type = /obj/item/tank/internals/oxygen
 
 /obj/machinery/loot_locator
-	name = "Booty Locator"
-	desc = "This sophisticated machine scans the nearby space for items of value."
+	name = "lokalizator łupów"
+	desc = "Ta wyrafinowana maszyna skanuje okoliczną przestrzeń w poszukiwaniu kosztowności."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
@@ -229,7 +229,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 //Pad & Pad Terminal
 /obj/machinery/piratepad
-	name = "cargo hold pad"
+	name = "platforma ładowni"
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "lpad-idle-o"
 	var/idle_state = "lpad-idle-o"
@@ -245,7 +245,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 		return TRUE
 
 /obj/machinery/computer/piratepad_control
-	name = "cargo hold control terminal"
+	name = "terminal sterowania ładownią"
 
 
 	var/status_report = "Gotowe do wysyłki."
@@ -358,7 +358,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 			continue
 		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
 
-	status_report = "Sold: "
+	status_report = "Sprzedano: "
 	var/value = 0
 	for(var/datum/export/E in ex.total_amount)
 		var/export_text = E.total_printout(ex,notes = FALSE) //Don't want nanotrasen messages, makes no sense here.
@@ -380,9 +380,9 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	points += value
 
 	if(!value)
-		status_report += "Nothing"
+		status_report += "nic"
 
-	pad.visible_message("<span class='notice'>[pad] activates!</span>")
+	pad.visible_message("<span class='notice'>[pad] się aktywuje!</span>")
 	flick(pad.sending_state,pad)
 	pad.icon_state = pad.idle_state
 	sending = FALSE
@@ -392,7 +392,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	if(sending)
 		return
 	sending = TRUE
-	status_report = "Sending..."
+	status_report = "Wysyłanie..."
 	pad.visible_message("<span class='notice'>[pad] zaczyna się ładować.</span>")
 	pad.icon_state = pad.warmup_state
 	sending_timer = addtimer(CALLBACK(src,PROC_REF(send)),warmup_time, TIMER_STOPPABLE)
@@ -414,7 +414,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /datum/export/pirate/ransom
 	cost = 3000
-	unit_name = "hostage"
+	unit_name = "zakładnik"
 	export_types = list(/mob/living/carbon/human)
 
 /datum/export/pirate/ransom/find_loot()
@@ -439,7 +439,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /datum/export/pirate/parrot
 	cost = 2000
-	unit_name = "alive parrot"
+	unit_name = "żywa papuga"
 	export_types = list(/mob/living/simple_animal/parrot)
 
 /datum/export/pirate/parrot/find_loot()
@@ -450,7 +450,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /datum/export/pirate/cash
 	cost = 1
-	unit_name = "bills"
+	unit_name = "banknoty"
 	export_types = list(/obj/item/stack/spacecash)
 
 /datum/export/pirate/cash/get_amount(obj/O)
@@ -459,7 +459,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /datum/export/pirate/holochip
 	cost = 1
-	unit_name = "holochip"
+	unit_name = "holochip kredytowy"
 	export_types = list(/obj/item/holochip)
 
 /datum/export/pirate/holochip/get_cost(atom/movable/AM)

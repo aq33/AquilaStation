@@ -1,5 +1,5 @@
 /datum/outfit/syndicate/sleeper/pilot
-	name = "Syndicate Pilot - Sleeper"
+	name = "Pilot Syndykatu - uśpiony"
 	gloves = /obj/item/clothing/gloves/color/black
 	back = null
 	l_pocket = null
@@ -8,7 +8,7 @@
 	tc = 0
 
 /datum/outfit/syndicate/sleeper/soldier
-	name = "Syndicate Soldier - Sleeper"
+	name = "Żołnierz Syndykatu - uśpiony"
 	suit = /obj/item/clothing/suit/armor/vest
 	head = /obj/item/clothing/head/helmet
 	back = null
@@ -18,18 +18,18 @@
 	tc = 0
 
 /datum/outfit/sleeper
-	name = "Sleeper Outfit basetype - Do Not Use :)"
+	name = "Strój uśpionego, typ bazowy - nie używać :)"
 	can_be_admin_equipped = FALSE
 
 /datum/outfit/sleeper/prisoner
-	name = "NT Prisoner - Sleeper"
+	name = "Więzień NT - uśpiony"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	id = /obj/item/card/id/prisoner
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/syndicate/odst
-	name = "Syndicate Boarder - Base"
+	name = "Abordażysta Syndykatu - bazowy"
 	suit = /obj/item/clothing/suit/space/syndicate/odst
 	head = /obj/item/clothing/head/helmet/space/syndicate/odst/camera //You're boarding, you get cams
 	belt = /obj/item/storage/belt/utility/syndicate
@@ -44,25 +44,25 @@
 	can_be_admin_equipped = FALSE // Base should not be equippable, only derivitaves
 
 /datum/outfit/syndicate/odst/smg
-	name = "Syndicate Boarder - SMG Kit"
+	name = "Abordażysta Syndykatu - zestaw z pistoletem maszynowym"
 	back = /obj/item/storage/backpack/duffelbag/syndie/c20rbundle
 	backpack_contents = list(/obj/item/storage/box/syndie=1,/obj/item/kitchen/knife/combat/survival=1, /obj/item/ammo_box/magazine/smgm45=1)
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/syndicate/odst/shotgun
-	name = "Syndicate Boarder - Shotgun Kit"
+	name = "Abordażysta Syndykatu - zestaw ze strzelbą"
 	back = /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle
 	backpack_contents = list(/obj/item/storage/box/syndie=1,/obj/item/kitchen/knife/combat/survival=1, /obj/item/grenade/flashbang=1)
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/syndicate/odst/medic
-	name = "Syndicate Boarder - Medic Kit"
+	name = "Abordażysta Syndykatu - zestaw medyka"
 	back = /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
 	backpack_contents = list(/obj/item/storage/box/syndie=1,/obj/item/kitchen/knife/combat/survival=1, /obj/item/ammo_box/magazine/pistolm9mm=1)
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/pirate/space/boarding
-	name = "Space Pirate Boarder - Base"
+	name = "Abordażysta kosmicznych piratów - bazowy"
 	suit = /obj/item/clothing/suit/space/pirate/boarder
 	head = /obj/item/clothing/head/helmet/space/pirate/bandana/boarder
 	mask = /obj/item/clothing/mask/breath
@@ -76,7 +76,7 @@
 	can_be_admin_equipped = FALSE // Base should not be equippable, only derivitaves
 
 /datum/outfit/pirate/space/boarding/lead
-	name = "Space Pirate Boarder - Lead Kit"
+	name = "Abordażysta kosmicznych piratów - zestaw dowódcy"
 	suit = /obj/item/clothing/suit/space/pirate/boarder/lead
 	head = /obj/item/clothing/head/helmet/space/pirate/boarder
 	l_pocket = /obj/item/melee/transforming/energy/sword/pirate
@@ -84,28 +84,28 @@
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/pirate/space/boarding/sapper
-	name = "Space Pirate Boarder - Sapper Kit"
+	name = "Abordażysta kosmicznych piratów - zestaw sapera"
 	l_pocket = /obj/item/kitchen/knife
 	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/glock/makarov=1, /obj/item/ammo_box/magazine/glock=2, /obj/item/grenade/smokebomb=2, /obj/item/grenade/plastic/x4=2)
 	can_be_admin_equipped = TRUE
 
 /datum/outfit/pirate/space/boarding/gunner
-	name = "Space Pirate Boarder - Gunner Kit"
+	name = "Abordażysta kosmicznych piratów - zestaw strzelca"
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
 	l_pocket = /obj/item/kitchen/knife/combat/survival
 	backpack_contents = list(/obj/item/ammo_box/a762=4)
 	can_be_admin_equipped = TRUE
 
 /obj/item/storage/box/hug/clown_uniform
-	name = "Clown's formal attire"
-	desc = "A comically small box which contains the clown's formal uniform, used only on special occasions."
+	name = "strój galowy klauna"
+	desc = "Komicznie małe pudełko ze strojem galowym klauna, zakładanym tylko na specjalne okazje."
 
 /obj/item/storage/box/hug/clown_uniform/PopulateContents()
 	new /obj/item/clothing/under/rank/civilian/clown(src)
 	new /obj/item/clothing/shoes/clown_shoes(src)
 
 /datum/outfit/job/clown/delinquent
-	name = "Delinquent clown"
+	name = "Klaun chuligan"
 	uniform = /obj/item/clothing/under/ship/delinquent
 	suit = /obj/item/clothing/suit/ship/delinquent
 	head = /obj/item/clothing/head/delinquent
@@ -122,7 +122,7 @@
 		)
 
 /datum/outfit/assistant_ship
-	name = "Assistant (ship)"
+	name = "Majtek (okręt)"
 //	jobtype = /datum/job/assistant Deprecated by crayon eaters
 	uniform = /obj/item/clothing/under/ship/assistant
 	head = /obj/item/clothing/head/soft/assistant_soft
@@ -130,7 +130,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/centcom_admiral
-	name = "Admiral (NSV13)"
+	name = "Admirał (NSV13)"
 	uniform = /obj/item/clothing/under/ship/officer/admiral
 	suit = /obj/item/clothing/suit/ship/officer/admiral
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -145,7 +145,7 @@
 	var/rank_title = "Admiral"
 
 /datum/outfit/centcom_admiral/fleet
-	name = "Admiral (Fleet)"
+	name = "Admirał (flota)"
 	uniform = /obj/item/clothing/under/ship/officer/admiral/fleet
 	suit = /obj/item/clothing/suit/ship/officer/admiral/fleet
 	head = /obj/item/clothing/head/ship/fleet_admiral
@@ -154,7 +154,7 @@
 //These should only be brought out when the crew have REALLY fucked up.
 
 /datum/outfit/centcom_admiral/grand
-	name = "Admiral (Grand Admiral)"
+	name = "Admirał (wielki admirał)"
 	uniform = /obj/item/clothing/under/ship/officer/admiral/grand
 	suit = /obj/item/clothing/suit/ship/officer/admiral/grand
 	head = /obj/item/clothing/head/ship/fleet_admiral
@@ -176,7 +176,7 @@
 //Solgov
 
 /datum/outfit/centcom_admiral/solgov_admiral
-	name = "Admiral (SolGov)"
+	name = "Admirał (SolGov)"
 	uniform = /obj/item/clothing/under/ship/solgov/admiral
 	suit = null
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -192,7 +192,7 @@
 //ERT+ Direct Spawn Only
 
 /datum/outfit/ert/engineer/plus
-	name = "ERT Engineer+"
+	name = "Inżynier ERT+"
 	id = /obj/item/card/id/ert/Engineer
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/engi
 	glasses =  /obj/item/clothing/glasses/meson/engine
@@ -220,16 +220,16 @@ For when the marines are being irritating.
 */
 
 /obj/item/clothing/under/ship/marine/general
-	name = "blue phalanx general uniform"
-	desc = "A durable uniform worn by generals in the blue phalanx PMC corp serving under WhiteRapids."
+	name = "mundur generała Niebieskiej Falangi"
+	desc = "Wytrzymały mundur noszony przez generałów prywatnej firmy wojskowej Niebieska Falanga, służącej White Rapids."
 	icon_state = "general"
 	worn_icon_state = "general"
 	item_state = "bl_suit"
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 10,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "bleed" = 50)
 
 /obj/item/clothing/suit/ship/squad/military_police/general
-	name = "blue phalanx general armour"
-	desc = "A suit of armour worn by generals in the blue phalanx PMC corps. Count yourself lucky to have seen one..."
+	name = "pancerz generała Niebieskiej Falangi"
+	desc = "Pancerz noszony przez generałów prywatnej firmy wojskowej Niebieska Falanga. Masz szczęście, że w ogóle go widzisz..."
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 25, "energy" = 10, "bomb" = 30, "bio" = 20, "rad" = 25, "fire" = 35, "acid" = 50, "bleed" = 50)
 
 /obj/item/clothing/suit/ship/squad/military_police/general/Initialize(mapload, datum/squad/squad)
@@ -237,11 +237,11 @@ For when the marines are being irritating.
 	generate_clothing_overlay(src, "[icon_state]_stripes", "#278A45")
 
 /obj/item/clothing/head/beret/ship/admiral/general
-	name = "general's beret"
-	desc = "A durable green beret signifying its owner as holding the rank of General."
+	name = "beret generała"
+	desc = "Wytrzymały zielony beret, oznaczający, że właściciel ma stopień generała."
 
 /datum/outfit/centcom_admiral/general
-	name = "General (NSV13)"
+	name = "Generał (NSV13)"
 	uniform = /obj/item/clothing/under/ship/marine/general
 	suit = /obj/item/clothing/suit/ship/squad/military_police/general
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -260,7 +260,7 @@ For when the marines are being irritating.
 ///// KNPC OUTFITS /////
 //Syndicate
 /datum/outfit/syndicate/knpc_pistol
-	name = "Syndicate Boarder - Pistol (KNPC)"
+	name = "Abordażysta Syndykatu - pistolet (KNPC)"
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	belt = /obj/item/storage/belt/utility/syndicate
@@ -275,7 +275,7 @@ For when the marines are being irritating.
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/syndicate/knpc_smg
-	name = "Syndicate Boarder - SMG (KNPC)"
+	name = "Abordażysta Syndykatu - pistolet maszynowy (KNPC)"
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	belt = /obj/item/storage/belt/utility/syndicate
@@ -290,7 +290,7 @@ For when the marines are being irritating.
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/syndicate/knpc_shotgun
-	name = "Syndicate Boarder - Shotgun (KNPC)"
+	name = "Abordażysta Syndykatu - strzelba (KNPC)"
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	belt = /obj/item/storage/belt/utility/syndicate
@@ -305,12 +305,12 @@ For when the marines are being irritating.
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/space_pirate
-	name = "Space Pirate Boarder outfit basetype - Do Not Use :)"
+	name = "Strój abordażysty kosmicznych piratów, typ bazowy - nie używać :)"
 	can_be_admin_equipped = FALSE
 
 //Space Pirate - TEMP UNTIL REWORK
 /datum/outfit/space_pirate/knpc_pistol
-	name = "Space Pirate Boarder - Pistol (KNPC)"
+	name = "Abordażysta kosmicznych piratów - pistolet (KNPC)"
 	uniform = /obj/item/clothing/under/costume/pirate
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/brown
@@ -329,7 +329,7 @@ For when the marines are being irritating.
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/space_pirate/knpc_auto_pistol
-	name = "Space Pirate Boarder - Auto Pistol (KNPC)"
+	name = "Abordażysta kosmicznych piratów - pistolet automatyczny (KNPC)"
 	uniform = /obj/item/clothing/under/costume/pirate
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/brown
@@ -348,7 +348,7 @@ For when the marines are being irritating.
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/boarding_droid
-	name = "Boarding Droid Loadout"
+	name = "Wyposażenie droida abordażowego"
 	l_hand = /obj/item/gun/energy/temperature/security
 
 /datum/outfit/boarding_droid/post_equip(mob/living/carbon/human/H)
@@ -356,13 +356,13 @@ For when the marines are being irritating.
 	E.implant(H)
 
 /datum/outfit/syndie_maid/leader
-	name = "Syndicate Maid (Captain)"
+	name = "Pokojówka Syndykatu (kapitan)"
 	id = /obj/item/card/id/syndi_crew/captain
 	r_hand = /obj/item/ship_loadout_selector
 	ears = /obj/item/radio/headset/syndicate/alt
 
 /datum/outfit/syndie_maid
-	name = "Syndicate Maid"
+	name = "Pokojówka Syndykatu"
 	uniform = /obj/item/clothing/under/syndicate/maid
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat/maid

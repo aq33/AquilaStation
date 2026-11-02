@@ -1,6 +1,6 @@
 /obj/machinery/autoinject_printer
-	name = "autoinjector printer"
-	desc = "A machine that takes in reagents and prints them into instant injectors."
+	name = "drukarka autoinjektorów"
+	desc = "Maszyna, która przyjmuje odczynniki i drukuje z nich błyskawiczne autoinjektory."
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	icon = 'nsv13/icons/obj/hypospray.dmi'
@@ -194,9 +194,9 @@
 			if(!name)
 				var/name_default = reagents.get_master_reagent_name()
 				if (name_has_units)
-					name_default += " ([vol_each]u)"
+					name_default += " ([vol_each] j.)"
 				name = stripped_input(usr,
-					"Name:",
+					"Nazwa:",
 					"Nadaj nazwę!",
 					name_default,
 					MAX_NAME_LEN)
@@ -213,7 +213,7 @@
 							P = new/obj/item/reagent_containers/hypospray/autoinjector(target_loc)
 						else
 							P = new/obj/item/reagent_containers/hypospray/autoinjector(drop_location())
-						P.name = trim("[name] autoinjector")
+						P.name = trim("autoinjektor: [name]")
 						adjust_item_drop_location(P)
 						reagents.trans_to(P, vol_each, transfered_by = usr)
 					. = TRUE

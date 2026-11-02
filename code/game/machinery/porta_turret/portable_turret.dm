@@ -5,13 +5,13 @@
 #define POPDOWN_ANIM_TIME 5 //Be sure to change the icon animation at the same time or it'll look bad
 
 /obj/machinery/porta_turret
-	name = "turret"
+	name = "wieżyczka"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE
-	desc = "A covered turret that shoots at its enemies."
+	desc = "Osłonięta wieżyczka, która strzela do wrogów."
 	use_power = IDLE_POWER_USE				//this turret uses and requires power
 	idle_power_usage = 100		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 600	//when active, this turret takes up constant 300 Equipment power
@@ -623,7 +623,7 @@
 
 
 /datum/action/turret_toggle
-	name = "Toggle Mode"
+	name = "Przełącz tryb"
 	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_cycle_equip_off"
 
@@ -634,7 +634,7 @@
 	P.setState(P.on, !P.mode, P.target_cyborgs)
 
 /datum/action/turret_quit
-	name = "Release Control"
+	name = "Oddaj sterowanie"
 	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_eject"
 
@@ -703,7 +703,7 @@
 	icon_state = "syndie_off"
 	base_icon_state = "syndie"
 	faction = list(FACTION_SYNDICATE)
-	desc = "A ballistic machine gun auto-turret."
+	desc = "Automatyczna wieżyczka z balistycznym karabinem maszynowym."
 
 /obj/machinery/porta_turret/syndicate/ComponentInitialize()
 	. = ..()
@@ -722,18 +722,18 @@
 	stun_projectile_sound = 'sound/weapons/taser.ogg'
 	lethal_projectile = /obj/item/projectile/beam/laser
 	lethal_projectile_sound = 'sound/weapons/laser.ogg'
-	desc = "An energy blaster auto-turret."
+	desc = "Automatyczna wieżyczka z blasterem energetycznym."
 
 /obj/machinery/porta_turret/syndicate/energy/heavy
-	name = "syndicate heavy laser turret"
-	desc = "A heavy laser auto-turret."
+	name = "ciężka wieżyczka laserowa Syndykatu"
+	desc = "Ciężka automatyczna wieżyczka laserowa."
 	icon_state = "standard_lethal"
 	base_icon_state = "standard"
 	stun_projectile = /obj/item/projectile/energy/electrode
 	stun_projectile_sound = 'sound/weapons/taser.ogg'
 	lethal_projectile = /obj/item/projectile/beam/laser/heavylaser
 	lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
-	desc = "An energy blaster auto-turret."
+	desc = "Automatyczna wieżyczka z blasterem energetycznym."
 
 /obj/machinery/porta_turret/syndicate/energy/raven
 	stun_projectile =  /obj/item/projectile/beam/laser
@@ -742,16 +742,16 @@
 
 
 /obj/machinery/porta_turret/syndicate/pod
-	name = "syndicate semi-auto turret"
-	desc = "A ballistic semi-automatic auto-turret."
+	name = "półautomatyczna wieżyczka Syndykatu"
+	desc = "Balistyczna, półautomatyczna wieżyczka automatyczna."
 	integrity_failure = 20
 	max_integrity = 40
 	stun_projectile = /obj/item/projectile/bullet/syndicate_turret
 	lethal_projectile = /obj/item/projectile/bullet/syndicate_turret
 
 /obj/machinery/porta_turret/syndicate/shuttle
-	name = "syndicate penetrator turret"
-	desc = "A ballistic penetrator auto-turret."
+	name = "przebijająca wieżyczka Syndykatu"
+	desc = "Automatyczna wieżyczka balistyczna z pociskami przebijającymi."
 	scan_range = 9
 	shot_delay = 3
 	stun_projectile = /obj/item/projectile/bullet/p50/penetrator/shuttle
@@ -776,8 +776,8 @@
 	return 10 //AI turrets shoot at everything not in their faction
 
 /obj/machinery/porta_turret/aux_base
-	name = "perimeter defense turret"
-	desc = "A plasma beam turret calibrated to defend outposts against non-humanoid fauna. It is more effective when exposed to the environment."
+	name = "wieżyczka obrony obwodowej"
+	desc = "Wieżyczka z wiązką plazmy skalibrowana do obrony placówek przed niehumanoidalną fauną. Jest skuteczniejsza, gdy styka się z otoczeniem."
 	installation = null
 	uses_stored = FALSE
 	stun_projectile = /obj/item/projectile/plasma/turret
@@ -829,8 +829,8 @@
 /obj/machinery/porta_turret/centcom_shuttle/weak
 	max_integrity = 120
 	integrity_failure = 60
-	name = "Old Laser Turret"
-	desc = "A turret built with substandard parts and run down further with age. Still capable of delivering lethal lasers to the odd space carp, but not much else."
+	name = "stara wieżyczka laserowa"
+	desc = "Wieżyczka zbudowana z kiepskich części i jeszcze bardziej zniszczona przez czas. Wciąż potrafi poczęstować zabójczym laserem zabłąkanego kosmicznego karpia, ale niewiele więcej."
 	stun_projectile = /obj/item/projectile/beam/weak/penetrator
 	lethal_projectile = /obj/item/projectile/beam/weak/penetrator
 	faction = list("neutral","silicon","turret")
@@ -840,8 +840,8 @@
 ////////////////////////
 
 /obj/machinery/turretid
-	name = "turret control panel"
-	desc = "Used to control a room's automated defenses."
+	name = "panel sterowania wieżyczkami"
+	desc = "Służy do sterowania automatyczną obroną pomieszczenia."
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
 	density = FALSE
@@ -1035,8 +1035,8 @@
 		icon_state = "control_standby"
 
 /obj/item/wallframe/turret_control
-	name = "turret control frame"
-	desc = "Used for building turret control panels."
+	name = "rama panelu sterowania wieżyczkami"
+	desc = "Służy do budowy paneli sterowania wieżyczkami."
 	icon_state = "apc"
 	result_path = /obj/machinery/turretid
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)

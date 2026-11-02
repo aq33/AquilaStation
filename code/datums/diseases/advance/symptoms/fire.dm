@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/fire
 
-	name = "Spontaneous Combustion"
+	name = "Samozapłon"
 	desc = "Wirus zamienia tłuszcz w niezwykle łatwopalny związek i podnosi temperaturę ciała, przez co nosiciel samoistnie staje w płomieniach."
 	stealth = 1
 	resistance = -1
@@ -53,7 +53,7 @@ Bonus
 	switch(A.stage)
 		if(3)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("You feel hot.", "You hear a crackling noise.", "You smell smoke.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Jest ci gorąco.", "Słyszysz trzaskanie.", "Czujesz zapach dymu.")]</span>")
 		if(4)
 			Firestacks_stage_4(M, A)
 			M.IgniteMob()
@@ -105,7 +105,7 @@ Bonus
 
 /datum/symptom/alkali
 
-	name = "Alkali Perspiration"
+	name = "Zasadowe pocenie"
 	desc = "Wirus przyczepia się do gruczołów potowych, syntetyzując substancję, która zapala się w reakcji z wodą, prowadząc do samospalenia."
 	stealth = 2
 	resistance = -2
@@ -121,9 +121,9 @@ Bonus
 	suffixes = list(" potępieńców")
 	var/chems = FALSE
 	var/explosion_power = 1
-	threshold_desc = "<b>Stealth 3:</b> Doubles the intensity of the effect, but reduces its frequency.<br>\
-					  <b>Stage Speed 8:</b> Increases explosion radius when the host is wet.<br>\
-					  <b>Resistance 8:</b> Additionally synthesizes chlorine trifluoride and napalm inside the host."
+	threshold_desc = "<b>Ukrycie 3:</b> podwaja intensywność efektu, ale zmniejsza jego częstotliwość.<br>\
+					  <b>Szybkość stadiów 8:</b> zwiększa zasięg eksplozji, gdy nosiciel jest mokry.<br>\
+					  <b>Odporność 8:</b> dodatkowo syntetyzuje w nosicielu trifluorek chloru i napalm."
 
 /datum/symptom/alkali/severityset(datum/disease/advance/A)
 	. = ..()
@@ -151,7 +151,7 @@ Bonus
 	switch(A.stage)
 		if(3)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='warning'>[pick("Your veins boil.", "You feel hot.", "You smell meat cooking.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Wrze ci w żyłach.", "Jest ci gorąco.", "Czujesz zapach pieczonego mięsa.")]</span>")
 		if(4)
 			if(M.fire_stacks < 0)
 				M.visible_message("<span class='warning'>Pot [M] skwierczy i strzela w kontakcie z wodą!</span>")

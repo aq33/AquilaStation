@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////SANDWICHES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/sandwich
-	name = "Sandwich"
+	name = "kanapka"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 2,
 		/obj/item/food/meat/steak = 1,
@@ -17,7 +17,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/cheese_sandwich
-	name = "Cheese sandwich"
+	name = "kanapka z serem"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 2,
 		/obj/item/food/cheese/wedge = 2
@@ -26,7 +26,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/slimesandwich
-	name = "Jelly sandwich"
+	name = "kanapka z dżemem ze szlamu"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/breadslice/plain = 2,
@@ -35,7 +35,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/cherrysandwich
-	name = "Jelly sandwich"
+	name = "kanapka z dżemem"
 	reqs = list(
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/food/breadslice/plain = 2,
@@ -44,7 +44,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/notasandwich
-	name = "Not a sandwich"
+	name = "nie-kanapka"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 2,
 		/obj/item/clothing/mask/fakemoustache = 1
@@ -53,7 +53,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/hotdog
-	name = "Hot dog"
+	name = "hot dog"
 	reqs = list(
 		/datum/reagent/consumable/ketchup = 5,
 		/obj/item/food/bun = 1,

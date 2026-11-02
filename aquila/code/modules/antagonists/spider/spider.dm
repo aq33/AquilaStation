@@ -42,7 +42,7 @@
 
 /// Toksyna zwykłych pająków. Osłabia, ale sama nie dobija (tg: health_required = 40)
 /datum/reagent/toxin/hunterspider
-	name = "Spider Toxin"
+	name = "Toksyna pajęcza"
 	description = "Toksyna wytwarzana przez pająki, by osłabić ofiarę."
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
 	toxpwr = 1.5
@@ -60,7 +60,7 @@
 
 /// Jad pająka żmii: doprowadza ofiarę na skraj śmierci i wywołuje halucynacje
 /datum/reagent/toxin/hunterspider/viper
-	name = "Viper Spider Toxin"
+	name = "Toksyna pająka żmii"
 	description = "Niezwykle toksyczna substancja rzadkiego pająka żmii. Doprowadza ofiarę na skraj śmierci i wywołuje halucynacje."
 	toxpwr = 5
 	health_required = 10

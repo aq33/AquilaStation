@@ -5,8 +5,8 @@
 
 //the nuke core - objective item
 /obj/item/nuke_core
-	name = "plutonium core"
-	desc = "Extremely radioactive. Wear goggles."
+	name = "rdzeń plutonowy"
+	desc = "Skrajnie radioaktywny. Załóż gogle."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "plutonium_core"
 	item_state = "plutoniumcore"
@@ -42,8 +42,8 @@
 
 //nuke core box, for carrying the core
 /obj/item/nuke_core_container
-	name = "nuke core container"
-	desc = "Solid container for radioactive objects."
+	name = "pojemnik na rdzeń bomby atomowej"
+	desc = "Solidny pojemnik na obiekty radioaktywne."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "core_container_empty"
 	item_state = "tile"
@@ -85,8 +85,8 @@
 
 //snowflake screwdriver, works as a key to start nuke theft, traitor only
 /obj/item/screwdriver/nuke
-	name = "screwdriver"
-	desc = "A screwdriver with an ultra thin tip that's carefully designed to boost screwing speed."
+	name = "śrubokręt"
+	desc = "Śrubokręt z ultracienką końcówką, starannie zaprojektowaną, żeby przyspieszyć wkręcanie."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "screwdriver_nuke"
 	item_state = "screwdriver_nuke"
@@ -106,8 +106,8 @@
 	</ul>"
 
 /obj/item/nuke_core/supermatter_sliver
-	name = "supermatter sliver"
-	desc = "A tiny, highly volatile sliver of a supermatter crystal. Do not handle without protection!"
+	name = "odłamek supermaterii"
+	desc = "Malutki, bardzo niestabilny odłamek kryształu supermaterii. Nie dotykać bez zabezpieczenia!"
 	icon_state = "supermatter_sliver"
 	item_state = "supermattersliver"
 	pulseicon = "supermatter_sliver_pulse"
@@ -150,8 +150,8 @@
 	ded.dust()
 
 /obj/item/nuke_core_container/supermatter
-	name = "supermatter bin"
-	desc = "A tiny receptacle that releases an inert hyper-noblium mix upon sealing, allowing a sliver of a supermatter crystal to be safely stored."
+	name = "pojemnik na supermaterię"
+	desc = "Malutki pojemnik, który po zamknięciu uwalnia obojętną mieszankę hipernoblium, dzięki czemu można bezpiecznie przechowywać odłamek kryształu supermaterii."
 	var/obj/item/nuke_core/supermatter_sliver/sliver
 
 /obj/item/nuke_core_container/supermatter/Destroy()
@@ -186,8 +186,8 @@
 		return ..()
 
 /obj/item/scalpel/supermatter
-	name = "supermatter scalpel"
-	desc = "A scalpel with a fragile tip of condensed hyper-noblium gas, searingly cold to the touch, that can safely shave a sliver off a supermatter crystal."
+	name = "skalpel do supermaterii"
+	desc = "Skalpel z delikatnym ostrzem ze skondensowanego hipernoblium, palącym zimnem w dotyku, który bezpiecznie odcina odłamek od kryształu supermaterii."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "supermatter_scalpel"
 	toolspeed = 0.5
@@ -200,8 +200,8 @@
 	usesLeft = rand(2, 4)
 
 /obj/item/hemostat/supermatter
-	name = "supermatter extraction tongs"
-	desc = "A pair of tongs made from condensed hyper-noblium gas, searingly cold to the touch, that can safely grip a supermatter sliver."
+	name = "szczypce do pobierania supermaterii"
+	desc = "Szczypce ze skondensowanego hipernoblium, palące zimnem w dotyku, którymi bezpiecznie chwycisz odłamek supermaterii."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "supermatter_tongs"
 	toolspeed = 0.75
@@ -237,7 +237,7 @@
 	if(ismob(AM))
 		var/mob/victim = AM
 		victim.dust()
-		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
+		message_admins("[src] pochłania: [key_name_admin(victim)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
 	else
 		investigate_log("has consumed [AM].", "supermatter")

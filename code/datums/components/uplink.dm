@@ -9,7 +9,7 @@
 **/
 /datum/component/uplink
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	var/name = "syndicate uplink"
+	var/name = "uplink Syndykatu"
 	var/active = FALSE
 	var/lockable = TRUE
 	var/locked = TRUE
@@ -124,7 +124,7 @@
 					purchase_log.purchase_log.Remove(hash)
 				telecrystals += cost
 				purchase_log.total_spent -= cost
-				to_chat(user, "<span class='notice'>[I] refunded.</span>")
+				to_chat(user, "<span class='notice'>Zwrócono: [I].</span>")
 				qdel(I)
 				return
 

@@ -2,8 +2,8 @@
 #define GORILLA_TOTAL_LAYERS 1
 
 /mob/living/simple_animal/hostile/gorilla
-	name = "Gorilla"
-	desc = "A ground-dwelling, predominantly herbivorous ape that inhabits the forests of central Africa."
+	name = "goryl"
+	desc = "Naziemna, głównie roślinożerna małpa człekokształtna zamieszkująca lasy Afryki Środkowej."
 	icon = 'icons/mob/gorilla.dmi'
 	icon_state = "crawling"
 	icon_state = "crawling"
@@ -109,8 +109,8 @@
 		oogas = 0
 
 /mob/living/simple_animal/hostile/gorilla/rabid
-	name = "Rabid Gorilla"
-	desc = "A mangy looking gorilla."
+	name = "wściekły goryl"
+	desc = "Parszywie wyglądający goryl."
 	icon_state = "crawling"
 	icon_state = "crawling"
 	icon_living = "crawling"

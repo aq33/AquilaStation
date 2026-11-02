@@ -12,7 +12,7 @@
 	return ..()
 
 /datum/reagent/concentrated_bz
-	name = "Concentrated BZ"
+	name = "Skoncentrowane BZ"
 	description = "Hiperskoncentrowana ciekła postać gazu BZ, znana z wywoływania wyjątkowo silnej reakcji u zmiennokształtnych. Powoduje też lekkie uszkodzenia mózgu."
 	color = "#FAFF00"
 	taste_description = "cierpki cynamon"
@@ -33,7 +33,7 @@
 	return ..()
 
 /datum/reagent/fake_cbz
-	name = "Concentrated BZ"
+	name = "Skoncentrowane BZ"
 	description = "Hiperskoncentrowana ciekła postać gazu BZ, znana z wywoływania wyjątkowo silnej reakcji u zmiennokształtnych. Powoduje też lekkie uszkodzenia mózgu."
 	color = "#FAFF00"
 	taste_description = "cierpki cynamon"

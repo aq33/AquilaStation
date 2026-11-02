@@ -27,7 +27,7 @@ export const ReconnectButtons = (props) => {
         <Button
           color="white"
           icon="power-off"
-          tooltip="Relaunch game"
+          tooltip="Uruchom grę ponownie"
           tooltipPosition="bottom-end"
           onClick={() => {
             location.href = `byond://${url}`;

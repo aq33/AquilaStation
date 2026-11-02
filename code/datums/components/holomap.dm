@@ -2,8 +2,8 @@
  * An attempt at figuring out how to make holomaps into a component.
  */
 /datum/action/toggle_holomap
-	name = "Toggle Holomap"
-	desc = "Toggles the holomap on or off."
+	name = "Przełącz holomapę"
+	desc = "Włącza albo wyłącza holomapę."
 	icon_icon = 'icons/obj/decals.dmi'
 	button_icon_state = "map-pubby"
 	var/atom/holder = null

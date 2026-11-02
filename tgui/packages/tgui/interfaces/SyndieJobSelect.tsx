@@ -1,7 +1,4 @@
-import {
-  Button,
-  Section,
-} from 'tgui-core/components';
+import { Button, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -16,10 +13,10 @@ export const SyndieJobSelect = (props) => {
   return (
     <Window theme="syndicate" width={500} height={500}>
       <Window.Content scrollable>
-        <Section title="Selected role:">
+        <Section title="Wybrana rola:">
           <p>{data.selected_role}</p>
         </Section>
-        <Section title="Available Roles:">
+        <Section title="Dostępne role:">
           {Object.keys(data.roles).map((key) => {
             let value = data.roles[key];
             return (
@@ -28,7 +25,7 @@ export const SyndieJobSelect = (props) => {
                 title={value.name}
                 buttons={
                   <Button
-                    content="Select"
+                    content="Wybierz"
                     icon="check-circle"
                     onClick={() => act('select', { role_id: value.id })}
                   />

@@ -5,14 +5,14 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 
 // Away Missions
 /area/awaymission
-	name = "Strange Location"
+	name = "Dziwna Lokalizacja"
 	icon_state = "away"
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_AWAY
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/awaymission/beach
-	name = "Beach"
+	name = "Plaża"
 	icon_state = "away"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = FALSE
@@ -20,12 +20,12 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	ambientsounds = list('sound/ambience/shore.ogg', 'sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag2.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambinice.ogg')
 
 /area/awaymission/errorroom
-	name = "Super Secret Room"
+	name = "Ściśle Tajny Pokój"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = STANDARD_GRAVITY
 
 /area/awaymission/vr
-	name = "Virtual Reality"
+	name = "Rzeczywistość Wirtualna"
 	icon_state = "awaycontent1"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED

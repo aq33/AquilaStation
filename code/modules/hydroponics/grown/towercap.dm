@@ -1,7 +1,7 @@
 /obj/item/grown/log
 	seed = /obj/item/plant_seeds/preset/tower
-	name = "tower-cap log"
-	desc = "It's better than bad, it's good!"
+	name = "kłoda z grzyba wieżowego"
+	desc = "Jest lepsza niż zła, jest dobra!"
 	icon_state = "logs"
 	force = 5
 	throwforce = 5
@@ -10,7 +10,7 @@
 	throw_range = 3
 	attack_verb = list("grzmoci", "okłada", "tłucze", "wali")
 	var/plank_type = /obj/item/stack/sheet/mineral/wood
-	var/plank_name = "wooden planks"
+	var/plank_name = "drewniane deski"
 	var/static/list/accepted = typecacheof(list(/obj/item/food/grown/tobacco,
 	/obj/item/food/grown/tea,
 	/obj/item/food/grown/ambrosia,
@@ -49,13 +49,13 @@
 
 /obj/item/grown/log/tree
 	seed = null
-	name = "wood log"
-	desc = "TIMMMMM-BERRRRRRRRRRR!"
+	name = "kłoda drewna"
+	desc = "UWAAAAGA, DRZEEEEEEWO!"
 
 /obj/item/grown/log/steel
 	seed = /obj/item/plant_seeds/preset/steel
-	name = "steel-cap log"
-	desc = "It's made of metal."
+	name = "kłoda z grzyba stalowego"
+	desc = "Jest z metalu."
 	icon_state = "steellogs"
 	plank_type = /obj/item/stack/rods
 	plank_name = "rods"
@@ -66,19 +66,19 @@
 //bamboo
 /obj/item/grown/log/bamboo
 	seed = /obj/item/plant_seeds/preset/bamboo
-	name = "bamboo log"
-	desc = "A long and resistant bamboo log."
+	name = "pień bambusa"
+	desc = "Długi i wytrzymały pień bambusa."
 	icon_state = "bamboo"
 	plank_type = /obj/item/stack/sheet/mineral/bamboo
-	plank_name = "bamboo sticks"
+	plank_name = "bambusowe kije"
 	discovery_points = 300
 
 /obj/item/grown/log/bamboo/CheckAccepted(obj/item/I)
 	return FALSE
 
 /obj/structure/punji_sticks
-	name = "punji sticks"
-	desc = "Don't step on this."
+	name = "pułapka punji"
+	desc = "Nie nadepnij na to."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "punji"
 	resistance_flags = FLAMMABLE
@@ -93,8 +93,8 @@
 /////////BONFIRES//////////
 
 /obj/structure/bonfire
-	name = "bonfire"
-	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
+	name = "ognisko"
+	desc = "Do grillowania, pieczenia, opalania, wędzenia, podgrzewania, prażenia, przypiekania, duszenia, obsmażania, topienia, a czasem do palenia różnych rzeczy."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "bonfire"
 	light_color = LIGHT_COLOR_FIRE
@@ -138,9 +138,9 @@
 /obj/structure/bonfire/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/R = W
-		var/choice = input(user, "Co chcesz zbudować?", "Bonfire") as null|anything in list("Stake","Grill")
+		var/choice = input(user, "Co chcesz zbudować?", "Ognisko") as null|anything in list("Pal","Ruszt")
 		switch(choice)
-			if("Stake")
+			if("Pal")
 				R.use(1)
 				can_buckle = TRUE
 				buckle_requires_restraints = TRUE
@@ -148,7 +148,7 @@
 				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/hydroponics/equipment.dmi', "bonfire_rod")
 				rod_underlay.pixel_y = 16
 				underlays += rod_underlay
-			if("Grill")
+			if("Ruszt")
 				R.use(1)
 				grill = TRUE
 				to_chat(user, "<span class='italics'>Dodajesz ruszt do [src].")

@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/ed209
-	name = "\improper ED-209 Security Robot"
-	desc = "A security robot.  He looks less than thrilled."
+	name = "\improper Robot ochrony ED-209"
+	desc = "Robot ochrony. Nie wygląda na zachwyconego."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "ed2090"
 	density = TRUE
@@ -63,9 +63,9 @@
 		arrest_type = 1//Don't even try to cuff
 		bot_core.req_access = list(ACCESS_MAINT_TUNNELS, ACCESS_THEATRE)
 		arrest_type = 1
-		if((lasercolor == "b") && (name == "\improper ED-209 Security Robot"))//Picks a name if there isn't already a custome one
+		if((lasercolor == "b") && (name == "\improper Robot ochrony ED-209"))//Picks a name if there isn't already a custome one
 			name = pick("BLUE BALLER","SANIC","BLUE KILLDEATH MURDERBOT")
-		if((lasercolor == "r") && (name == "\improper ED-209 Security Robot"))
+		if((lasercolor == "r") && (name == "\improper Robot ochrony ED-209"))
 			name = pick("RED RAMPAGE","RED ROVER","RED KILLDEATH MURDERBOT")
 
 	//SECHUD

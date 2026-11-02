@@ -128,6 +128,52 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/dark,
 /area/test_chamber/arena)
+"az" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"ba" = (
+/obj/structure/table/optable,
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"bb" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/surgical_drapes,
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"bc" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/disabler,
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"bd" = (
+/obj/structure/rack,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/gun/ballistic/automatic/pistol/m1911,
+/obj/item/ammo_box/magazine/m45,
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"be" = (
+/obj/structure/rack,
+/obj/item/gun/ballistic/shotgun/lethal,
+/obj/item/storage/box/lethalshot,
+/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/ammo_box/magazine/wt550m9,
+/turf/open/floor/plasteel,
+/area/test_chamber)
+"bf" = (
+/obj/structure/rack,
+/obj/item/melee/baton/loaded,
+/obj/item/kitchen/knife/combat,
+/obj/item/clothing/suit/armor/vest,
+/turf/open/floor/plasteel,
+/area/test_chamber)
 
 (1,1,1) = {"
 aa
@@ -162,10 +208,10 @@ ab
 ab
 ac
 ab
+az
 ab
 ab
-ab
-ab
+bc
 ab
 ab
 ab
@@ -183,10 +229,10 @@ ab
 ab
 ab
 ab
+ba
 ab
 ab
-ab
-ab
+bd
 ab
 ag
 ab
@@ -204,10 +250,10 @@ ab
 ab
 ai
 ab
+bb
 ab
 ab
-ab
-ab
+be
 ab
 ab
 ah
@@ -228,7 +274,7 @@ ab
 ab
 ab
 ab
-ab
+bf
 ab
 ab
 ab

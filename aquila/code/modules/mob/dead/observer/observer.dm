@@ -2,7 +2,7 @@
 /mob/dead/observer/proc/possess_mouse_verb()
 	set category = "Ghost"
 	set name = "Possess a mouse"
-	set desc = "Possess a mouse to haunt the station.... and their food!"
+	set desc = "Opętaj mysz, by nawiedzać statek... i jego jedzenie!"
 
 	var/list/possessible = list()
 
@@ -36,7 +36,7 @@
 		to_chat(src, "<span class='warning'>Masz bana na to stanowisko!</span>")
 		return FALSE
 
-	if(alert("Na pewno chcesz zostać myszą? (Uwaga: nie będzie można cię sklonować!)",,"Yes","No") != "Yes")
+	if(alert("Na pewno chcesz zostać myszą? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") != "Tak")
 		return FALSE
 
 	if(M.key || (M.stat != CONSCIOUS) || (M in GLOB.player_list) || M.mind || QDELETED(src) || QDELETED(M))

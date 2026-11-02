@@ -45,15 +45,15 @@ export const LayerManager = (props: LayerManagerProps) => {
     <Box {...rest}>
       <Section
         fill
-        title="Layers"
+        title="Warstwy"
         buttons={
           <Button
             icon="plus"
-            tooltip="Add Layer"
+            tooltip="Dodaj warstwę"
             onClick={() =>
               act('spriteEditorCommand', {
                 command: 'transaction',
-                transaction: { type: 'addLayer', name: 'Add Layer' },
+                transaction: { type: 'addLayer', name: 'Dodanie warstwy' },
               })
             }
           />
@@ -104,7 +104,7 @@ export const LayerManager = (props: LayerManagerProps) => {
                         command: 'transaction',
                         transaction: {
                           type: 'renameLayer',
-                          name: `Rename ${name} to ${value}`,
+                          name: `Zmiana nazwy: ${name} → ${value}`,
                           layer: i + 1,
                           newName: value,
                           oldName: name,
@@ -150,14 +150,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-up"
-                        tooltip="Move Up"
+                        tooltip="Przesuń w górę"
                         disabled={i === layerCount - 1}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'moveLayerUp',
-                              name: `Move ${name} Up`,
+                              name: `Przesunięcie w górę: ${name}`,
                               layer: i + 1,
                             },
                           })
@@ -167,14 +167,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-down"
-                        tooltip="Move Down"
+                        tooltip="Przesuń w dół"
                         disabled={i === 0}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'moveLayerDown',
-                              name: `Move ${name} Down`,
+                              name: `Przesunięcie w dół: ${name}`,
                               layer: i + 1,
                             },
                           })
@@ -184,14 +184,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="layer-group"
-                        tooltip="Flatten"
+                        tooltip="Scal w dół"
                         disabled={i === 0}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'flattenLayer',
-                              name: `Flatten ${name} onto ${layers[i - 1].name}`,
+                              name: `Scalenie: ${name} → ${layers[i - 1].name}`,
                               layer: i + 1,
                             },
                           })
@@ -200,8 +200,9 @@ export const LayerManager = (props: LayerManagerProps) => {
                     </Stack.Item>
                     <Stack.Item>
                       <Button.Confirm
+                        confirmContent="Na pewno?"
                         icon="xmark"
-                        tooltip="Delete"
+                        tooltip="Usuń"
                         confirmIcon="xmark"
                         disabled={layerCount === 1}
                         onClick={() =>
@@ -209,7 +210,7 @@ export const LayerManager = (props: LayerManagerProps) => {
                             command: 'transaction',
                             transaction: {
                               type: 'deleteLayer',
-                              name: `Delete ${name}`,
+                              name: `Usunięcie: ${name}`,
                               layer: i + 1,
                             },
                           })

@@ -391,13 +391,13 @@
 
 	var/mob/living/carbon/C = creator
 	if(creator.mind?.special_role || (istype(C) && C.last_mind?.special_role))
-		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
+		message_admins("[ADMIN_LOOKUPFLW(current)] zostaje stworzony przez antagonistę [ADMIN_LOOKUPFLW(creator)].")
 		to_chat(current, "<span class='userdanger'>Bez względu na obecną lojalność twojego stwórcy, twoim prawdziwym panem pozostaje [creator.real_name]. Jeśli jego lojalność się zmieni, zmieni się i twoja. Nie zmieni się to, dopóki ciało twojego stwórcy nie zostanie zniszczone.</span>")
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<B>[current.real_name]'s Memories:</B><br>"
+	var/output = "<B>Wspomnienia: [current.real_name]</B><br>"
 	output += memory
 
 
@@ -442,7 +442,7 @@
 	if(href_list["remove_antag"])
 		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
 		if(!istype(A))
-			to_chat(usr,"<span class='warning'>Invalid antagonist ref to be removed.</span>")
+			to_chat(usr,"<span class='warning'>Nieprawidłowe odwołanie do antagonisty do usunięcia.</span>")
 			return
 		A.admin_remove(usr)
 
@@ -453,7 +453,7 @@
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = stripped_multiline_input(usr, "Zapisz nowe wspomnienie", "Memory", memory, MAX_MESSAGE_LEN)
+		var/new_memo = stripped_multiline_input(usr, "Zapisz nowe wspomnienie", "Wspomnienie", memory, MAX_MESSAGE_LEN)
 		if (isnull(new_memo))
 			return
 		memory = new_memo
@@ -487,10 +487,10 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Który antagonista otrzymuje cel:", "Antagonist", "(new custom antag)") as null|anything in sortList(antag_datums) + "(new custom antag)"
+						var/datum/antagonist/target = input("Który antagonista otrzymuje cel:", "Antagonista", "(nowy własny antagonista)") as null|anything in sortList(antag_datums) + "(nowy własny antagonista)"
 						if (QDELETED(target))
 							return
-						else if(target == "(new custom antag)")
+						else if(target == "(nowy własny antagonista)")
 							target_antag = add_antag_datum(/datum/antagonist/custom)
 						else
 							target_antag = target
@@ -502,7 +502,7 @@
 			if(old_objective.name in GLOB.admin_objective_list)
 				def_value = old_objective.name
 
-		var/selected_type = input("Select objective type:", "Objective type", def_value) as null|anything in GLOB.admin_objective_list
+		var/selected_type = input("Wybierz typ celu:", "Typ celu", def_value) as null|anything in GLOB.admin_objective_list
 		selected_type = GLOB.admin_objective_list[selected_type]
 		if (!selected_type)
 			return
@@ -513,7 +513,7 @@
 			new_objective.owner = src
 			new_objective.admin_edit(usr)
 			target_antag.objectives += new_objective
-			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
+			message_admins("[key_name_admin(usr)] dodaje nowy cel dla [current]: [new_objective.explanation_text]")
 			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
 			log_objective(new_objective.owner, new_objective.explanation_text, usr)
 		else
@@ -528,7 +528,7 @@
 				new_objective.admin_edit(usr)
 				target_antag.objectives -= old_objective
 				target_antag.objectives.Insert(objective_pos, new_objective)
-			message_admins("[key_name_admin(usr)] edited [current]'s objective to [new_objective.explanation_text]")
+			message_admins("[key_name_admin(usr)] zmienia cel [current] na: [new_objective.explanation_text]")
 			log_admin("[key_name(usr)] edited [current]'s objective to [new_objective.explanation_text]")
 
 	else if (href_list["obj_delete"])
@@ -542,7 +542,7 @@
 			to_chat(usr,"Nieprawidłowy cel.")
 			return
 		//qdel(objective) Needs cleaning objective destroys
-		message_admins("[key_name_admin(usr)] removed an objective for [current]: [objective.explanation_text]")
+		message_admins("[key_name_admin(usr)] usuwa cel [current]: [objective.explanation_text]")
 		log_admin("[key_name(usr)] removed an objective for [current]: [objective.explanation_text]")
 
 	else if(href_list["obj_completed"])
@@ -564,7 +564,7 @@
 				var/mob/living/silicon/robot/R = current
 				if (istype(R))
 					R.SetEmagged(0)
-					message_admins("[key_name_admin(usr)] has unemag'ed [R].")
+					message_admins("[key_name_admin(usr)] cofa zemagowanie: [R].")
 					log_admin("[key_name(usr)] has unemag'ed [R].")
 
 			if("unemagcyborgs")
@@ -572,7 +572,7 @@
 					var/mob/living/silicon/ai/ai = current
 					for (var/mob/living/silicon/robot/R in ai.connected_robots)
 						R.SetEmagged(0)
-					message_admins("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
+					message_admins("[key_name_admin(usr)] cofa zemagowanie cyborgów SI [ai].")
 					log_admin("[key_name(usr)] has unemag'ed [ai]'s Cyborgs.")
 
 	else if (href_list["common"])
@@ -591,7 +591,7 @@
 						var/crystals = input("Liczba telekryształów dla [key]","Uplink Syndykatu", U.telecrystals) as null | num
 						if(!isnull(crystals))
 							U.telecrystals = crystals
-							message_admins("[key_name_admin(usr)] changed [current]'s telecrystal count to [crystals].")
+							message_admins("[key_name_admin(usr)] zmienia liczbę telekryształów [current] na [crystals].")
 							log_admin("[key_name(usr)] changed [current]'s telecrystal count to [crystals].")
 			if("uplink")
 				if(!equip_traitor())

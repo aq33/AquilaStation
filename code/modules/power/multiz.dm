@@ -3,8 +3,8 @@
 #define RELAY_ADD_METAL 3
 
 /obj/machinery/power/deck_relay //This bridges powernets
-	name = "Multi-deck power adapter"
-	desc = "A huge bundle of double insulated cabling which seems to run up into the ceiling."
+	name = "międzypokładowy adapter zasilania"
+	desc = "Ogromna wiązka podwójnie izolowanych kabli, która zdaje się biec aż do sufitu."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cablerelay-off"
 	max_integrity = 350
@@ -138,7 +138,7 @@
 	var/turf/merge_from = get_turf(DR)
 	var/turf/merge_to = get_turf(src)
 	if(failures > 5)
-		message_admins("Failed to merge powernet at [ADMIN_COORDJMP(merge_to)] after 5 attempts.")
+		message_admins("Nie udało się scalić sieci energetycznej w [ADMIN_COORDJMP(merge_to)] po 5 próbach.")
 		return
 	var/obj/structure/cable/C = merge_from.get_cable_node()
 	var/obj/structure/cable/XR = merge_to.get_cable_node()

@@ -1,9 +1,9 @@
 /datum/disease/appendicitis
-	form = "Condition"
-	name = "Appendicitis"
+	form = "Schorzenie"
+	name = "Zapalenie wyrostka robaczkowego"
 	max_stages = 3
-	cure_text = "Surgery"
-	agent = "Shitty Appendix"
+	cure_text = "Operacja"
+	agent = "Gówniany wyrostek"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
 	desc = "Nieleczony chory bardzo osłabnie i może często wymiotować."

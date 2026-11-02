@@ -26,7 +26,7 @@
 	. = ..()
 
 /obj/effect/clockwork/overlay/wall
-	name = "clockwork wall"
+	name = "mechaniczna ściana"
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall"
 	canSmoothWith = list(/obj/effect/clockwork/overlay/wall, /obj/structure/falsewall/brass)

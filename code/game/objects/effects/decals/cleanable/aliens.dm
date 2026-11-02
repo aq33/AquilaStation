@@ -1,8 +1,8 @@
 // Note: BYOND is object oriented. There is no reason for this to be copy/pasted blood code.
 
 /obj/effect/decal/cleanable/xenoblood
-	name = "xeno blood"
-	desc = "It's green and acidic. It looks like... <i>blood?</i>"
+	name = "krew ksenomorfa"
+	desc = "Jest zielona i żrąca. Wygląda jak... <i>krew?</i>"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
@@ -17,8 +17,8 @@
 	random_icon_states = list("xgibbl1", "xgibbl2", "xgibbl3", "xgibbl4", "xgibbl5")
 
 /obj/effect/decal/cleanable/xenoblood/xgibs
-	name = "xeno gibs"
-	desc = "Gnarly..."
+	name = "flaki ksenomorfa"
+	desc = "Obrzydliwe..."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xgib1"
 	layer = LOW_OBJ_LAYER

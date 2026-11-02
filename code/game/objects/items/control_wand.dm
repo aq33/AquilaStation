@@ -8,8 +8,8 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	icon = 'icons/obj/device.dmi'
-	name = "control wand"
-	desc = "Remotely controls airlocks."
+	name = "pilot do drzwi"
+	desc = "Zdalnie steruje śluzami."
 	w_class = WEIGHT_CLASS_TINY
 	var/mode = WAND_OPEN
 	var/region_access = 1 //See access.dm
@@ -28,7 +28,7 @@
 	if(error_code == NETWORK_ERROR_UNAUTHORIZED)
 		to_chat(data.user, "<span class='notice'>Ten pilot nie ma uprawnień do zmiany tych drzwi.</span>")
 	else
-		to_chat(data.user, "<span class='notice'>Error: [error_code]</span>")
+		to_chat(data.user, "<span class='notice'>Błąd: [error_code]</span>")
 
 
 /obj/item/door_remote/proc/good_signal(datum/source, datum/netdata/data, error_code)
@@ -38,7 +38,7 @@
 	to_chat(data.user, "<span class='notice'>Drzwi: przełączono [toggled]</span>")
 
 /obj/item/door_remote/attack_self(mob/user)
-	var/static/list/desc = list(WAND_OPEN = "Open Door", WAND_BOLT = "Toggle Bolts", WAND_EMERGENCY = "Toggle Emergency Access")
+	var/static/list/desc = list(WAND_OPEN = "otwieranie drzwi", WAND_BOLT = "przełączanie rygli", WAND_EMERGENCY = "przełączanie dostępu awaryjnego")
 	switch(mode)
 		if(WAND_OPEN)
 			mode = WAND_BOLT
@@ -69,44 +69,44 @@
 
 
 /obj/item/door_remote/omni
-	name = "omni door remote"
-	desc = "This control wand can access any door on the station."
+	name = "uniwersalny pilot do drzwi"
+	desc = "Ten pilot ma dostęp do wszystkich drzwi na stacji."
 	icon_state = "gangtool-yellow"
 	region_access = 0
 
 /obj/item/door_remote/captain
-	name = "command door remote"
+	name = "pilot do drzwi dowództwa"
 	icon_state = "gangtool-yellow"
 	region_access = 7
 
 /obj/item/door_remote/chief_engineer
-	name = "engineering door remote"
+	name = "pilot do drzwi inżynierii"
 	icon_state = "gangtool-orange"
 	region_access = 5
 
 /obj/item/door_remote/research_director
-	name = "research door remote"
+	name = "pilot do drzwi działu naukowego"
 	icon_state = "gangtool-purple"
 	region_access = 4
 
 /obj/item/door_remote/head_of_security
-	name = "security door remote"
+	name = "pilot do drzwi ochrony"
 	icon_state = "gangtool-red"
 	region_access = 2
 
 /obj/item/door_remote/quartermaster
-	name = "supply door remote"
-	desc = "Remotely controls airlocks. This remote has additional Vault access."
+	name = "pilot do drzwi zaopatrzenia"
+	desc = "Zdalnie steruje śluzami. Ten pilot ma też dostęp do Skarbca."
 	icon_state = "gangtool-green"
 	region_access = 6
 
 /obj/item/door_remote/chief_medical_officer
-	name = "medical door remote"
+	name = "pilot do drzwi medycznych"
 	icon_state = "gangtool-blue"
 	region_access = 3
 
 /obj/item/door_remote/civillian
-	name = "civilian door remote"
+	name = "pilot do drzwi cywilnych"
 	icon_state = "gangtool-white"
 	region_access = 1
 

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/durathread_vest
-	name = "Durathread Vest"
+	name = "kamizelka z duranici"
 	result = /obj/item/clothing/suit/armor/vest/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 5,
 				/obj/item/stack/sheet/leather = 4)
@@ -7,7 +7,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_helmet
-	name = "Durathread Helmet"
+	name = "hełm z duranici"
 	result = /obj/item/clothing/head/helmet/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 4,
 				/obj/item/stack/sheet/leather = 5)
@@ -15,35 +15,35 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_jumpsuit
-	name = "Durathread Jumpsuit"
+	name = "kombinezon z duranici"
 	result = /obj/item/clothing/under/color/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 4)
 	time = 40
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_beret
-	name = "Durathread Beret"
+	name = "beret z duranici"
 	result = /obj/item/clothing/head/beret/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 2)
 	time = 40
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_beanie
-	name = "Durathread Beanie"
+	name = "czapka zimowa z duranici"
 	result = /obj/item/clothing/head/beanie/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 2)
 	time = 40
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_bandana
-	name = "Durathread Bandana"
+	name = "bandana z duranici"
 	result = /obj/item/clothing/mask/bandana/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 1)
 	time = 25
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/fannypack
-	name = "Fannypack"
+	name = "nerka"
 	result = /obj/item/storage/belt/fannypack
 	reqs = list(/obj/item/stack/sheet/cotton/cloth = 2,
 				/obj/item/stack/sheet/leather = 1)
@@ -51,7 +51,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/hudsunsec
-	name = "Security HUDsunglasses"
+	name = "okulary przeciwsłoneczne z HUD-em ochrony"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -61,7 +61,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudsunsecremoval
-	name = "Security HUD removal"
+	name = "zdjęcie HUD-u ochrony"
 	result = /obj/item/clothing/glasses/sunglasses/advanced
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -70,7 +70,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudsunmed
-	name = "Medical HUDsunglasses"
+	name = "okulary przeciwsłoneczne z HUD-em medycznym"
 	result = /obj/item/clothing/glasses/hud/health/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -80,7 +80,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudsunmedremoval
-	name = "Medical HUD removal"
+	name = "zdjęcie HUD-u medycznego"
 	result = /obj/item/clothing/glasses/sunglasses/advanced
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -89,7 +89,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudsundiag
-	name = "Diagnostic HUDsunglasses"
+	name = "okulary przeciwsłoneczne z HUD-em diagnostycznym"
 	result = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -99,7 +99,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudsundiagremoval
-	name = "Diagnostic HUD removal"
+	name = "zdjęcie HUD-u diagnostycznego"
 	result = /obj/item/clothing/glasses/sunglasses/advanced
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -108,7 +108,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/beergoggles
-	name = "Beer Goggles"
+	name = "piwne gogle"
 	result = /obj/item/clothing/glasses/sunglasses/advanced/reagent
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -118,7 +118,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/beergogglesremoval
-	name = "Beer Goggles removal"
+	name = "zdjęcie piwnych gogli"
 	result = /obj/item/clothing/glasses/sunglasses/advanced
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -126,7 +126,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/sunhudscience
-	name = "Science Sunglasses"
+	name = "naukowe okulary przeciwsłoneczne"
 	result = /obj/item/clothing/glasses/science/sciencesun
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -136,7 +136,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/sunhudscienceremoval
-	name = "Science Sunglasses removal"
+	name = "zdjęcie naukowych okularów przeciwsłonecznych"
 	result = /obj/item/clothing/glasses/sunglasses/advanced
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -145,7 +145,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsunsec
-	name = "Degraded Security HUDsunglasses"
+	name = "zużyte okulary przeciwsłoneczne z HUD-em ochrony"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/degraded
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -155,7 +155,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsunsecremoval
-	name = "Degraded Security HUD removal"
+	name = "zdjęcie zużytego HUD-u ochrony"
 	result = /obj/item/clothing/glasses/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -163,7 +163,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsunmed
-	name = "Degraded Medical HUDsunglasses"
+	name = "zużyte okulary przeciwsłoneczne z HUD-em medycznym"
 	result = /obj/item/clothing/glasses/hud/health/sunglasses/degraded
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -173,7 +173,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsunmedremoval
-	name = "Degraded Medical HUD removal"
+	name = "zdjęcie zużytego HUD-u medycznego"
 	result = /obj/item/clothing/glasses/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -181,7 +181,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsundiag
-	name = "Degraded Diagnostic HUDsunglasses"
+	name = "zużyte okulary przeciwsłoneczne z HUD-em diagnostycznym"
 	result = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/degraded
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -191,7 +191,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/deghudsundiagremoval
-	name = "Degraded Diagnostic HUD removal"
+	name = "zdjęcie zużytego HUD-u diagnostycznego"
 	result = /obj/item/clothing/glasses/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -199,7 +199,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/degsunhudscience
-	name = "Degraded Science Sunglasses"
+	name = "zużyte naukowe okulary przeciwsłoneczne"
 	result = /obj/item/clothing/glasses/science/sciencesun/degraded
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -209,7 +209,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/degsunhudscienceremoval
-	name = "Degraded Science Sunglasses removal"
+	name = "zdjęcie zużytych naukowych okularów przeciwsłonecznych"
 	result = /obj/item/clothing/glasses/sunglasses
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -217,7 +217,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudpresmed
-	name = "Prescription Medical HUDglasses"
+	name = "okulary korekcyjne z HUD-em medycznym"
 	result = /obj/item/clothing/glasses/hud/health/prescription
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -227,7 +227,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudpressec
-	name = "Prescription Security HUDglasses"
+	name = "okulary korekcyjne z HUD-em ochrony"
 	result = /obj/item/clothing/glasses/hud/security/prescription
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -237,7 +237,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudpressci
-	name = "Prescription Science Goggles"
+	name = "korekcyjne gogle naukowe"
 	result = /obj/item/clothing/glasses/science/prescription
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -247,7 +247,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudpresmeson
-	name = "Prescription Meson Scanner"
+	name = "korekcyjne gogle mezonowe"
 	result = /obj/item/clothing/glasses/meson/prescription
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -257,7 +257,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/hudpresdiag
-	name = "Prescription Diagnostic HUDsunglasses"
+	name = "okulary korekcyjne z HUD-em diagnostycznym"
 	result = /obj/item/clothing/glasses/hud/diagnostic/prescription
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -267,7 +267,7 @@
 	category = CAT_EYEWEAR
 
 /datum/crafting_recipe/ghostsheet
-	name = "Ghost Sheet"
+	name = "prześcieradło ducha"
 	result = /obj/item/clothing/suit/ghost_sheet
 	time = 5
 	tools = list(TOOL_WIRECUTTER)
@@ -275,7 +275,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/foilhat
-	name = "Tinfoil Hat"
+	name = "czapka z folii aluminiowej"
 	result = /obj/item/clothing/head/foilhat
 	time = 5
 	tools = list(TOOL_CROWBAR)
@@ -283,7 +283,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/foilenvirohelm
-	name = "Ghetto Envirosuit Helmet"
+	name = "hełm środowiskowy z folii aluminiowej"
 	result = /obj/item/clothing/head/foilhat/plasmaman
 	time = 40
 	tools = list(TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_SCREWDRIVER)
@@ -297,7 +297,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/rainbowbunchcrown
-	name = "Rainbow Flower Crown"
+	name = "tęczowy wianek"
 	result = /obj/item/clothing/head/rainbowbunchcrown/
 	time = 20
 	reqs = list(/obj/item/food/grown/rainbow_flower = 5,
@@ -305,7 +305,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/sunflowercrown
-	name = "Sunflower Crown"
+	name = "wianek ze słoneczników"
 	result = /obj/item/clothing/head/sunflowercrown/
 	time = 20
 	reqs = list(/obj/item/grown/sunflower = 5,
@@ -313,7 +313,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/poppycrown
-	name = "Poppy Crown"
+	name = "wianek z maków"
 	result = /obj/item/clothing/head/poppycrown/
 	time = 20
 	reqs = list(/obj/item/food/grown/poppy = 5,
@@ -321,7 +321,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/lilycrown
-	name = "Lily Crown"
+	name = "wianek z lilii"
 	result = /obj/item/clothing/head/lilycrown/
 	time = 20
 	reqs = list(/obj/item/food/grown/poppy/lily = 3,

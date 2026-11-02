@@ -5,7 +5,7 @@ Add this component to an atom to mark it as volatile, if it takes fire damage, i
 */
 
 /datum/component/volatile
-	var/desc = "<span class='warning'>It's highly volatile and liable to explode if subjected to heat!</span>"
+	var/desc = "<span class='warning'>Jest bardzo niestabilny i może wybuchnąć pod wpływem ciepła!</span>"
 	var/volatility = 1
 	var/volatile_when_hit = FALSE //Does this volatile thing blow up when it's destroyed?
 	var/explosion_scale = 1
@@ -15,7 +15,7 @@ Add this component to an atom to mark it as volatile, if it takes fire damage, i
 
 /datum/component/volatile/proc/explode()
 	if(!parent)
-		message_admins("Volatility component tried to explode with no attached parent. Contact a coder")
+		message_admins("Komponent niestabilności próbował wybuchnąć bez rodzica. Skontaktuj się z koderem.")
 		return FALSE
 	//Explosion! This can lead to a chain reaction if you're not careful... WATCH THOSE SHELLS MAA!
 	log_game("Volatile substance caused an explosion at [get_area(parent)].")
@@ -46,7 +46,7 @@ Add this component to an atom to mark it as volatile, if it takes fire damage, i
 
 /datum/component/volatile/Initialize(volatility = 1, volatile_when_hit = FALSE, explosion_scale = 1)
 	if(volatility <= 0)
-		message_admins("Volatility component with volatility \"[volatility]\" added to [parent], deleting the volatility component...")
+		message_admins("Komponent niestabilności o niestabilności \"[volatility]\" dodany do [parent], usuwam komponent...")
 		RemoveComponent()
 		return
 	src.volatility = volatility
@@ -63,12 +63,12 @@ Add this component to an atom to mark it as volatile, if it takes fire damage, i
 	return ..()
 
 /datum/component/volatile/emptorp
-	desc = "<span class='warning'>It's highly volatile and risks misfires if subjected to heat!</span>"
+	desc = "<span class='warning'>Jest bardzo niestabilny i pod wpływem ciepła może samoistnie wystrzelić!</span>"
 
 ///Overrides parent proc.
 /datum/component/volatile/emptorp/explode()
 	if(!parent)
-		message_admins("Volatility component tried to explode with no attached parent. Contact a coder")
+		message_admins("Komponent niestabilności próbował wybuchnąć bez rodzica. Skontaktuj się z koderem.")
 		return FALSE
 	log_game("Volatile substance caused an electromagnetic reaction at [get_area(parent)]")
 	var/base_ex_power = explosion_scale * volatility
@@ -78,12 +78,12 @@ Add this component to an atom to mark it as volatile, if it takes fire damage, i
 		qdel(parent)
 
 /datum/component/volatile/helltorp //Hoo boy
-	desc = "<span class='warning'>It's extremely volatile and prone to runaway reactions if subjected to heat!</span>"
+	desc = "<span class='warning'>Jest skrajnie niestabilny i pod wpływem ciepła łatwo o niekontrolowaną reakcję!</span>"
 
 ///Overrides parent proc
 /datum/component/volatile/helltorp/explode()
 	if(!parent)
-		message_admins("Volatility component tried to explode with no attached parent. Contact a coder")
+		message_admins("Komponent niestabilności próbował wybuchnąć bez rodzica. Skontaktuj się z koderem.")
 		return FALSE
 	log_game("Volatile substance caused a runaway hellfire reaction at [get_area(parent)]")
 	var/base_ex_power = explosion_scale * volatility

@@ -1,5 +1,5 @@
 /obj/item/paicard
-	name = "personal AI device"
+	name = "urządzenie osobistej SI"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
 	item_state = "electronic"
@@ -104,7 +104,7 @@
 			to_chat(pai, "<span class='warning'>Czujesz, jak wymykasz się rzeczywistości.</span>")
 			to_chat(pai, "<span class='danger'>Bajt po bajcie tracisz poczucie własnego ja.</span>")
 			to_chat(pai, "<span class='userdanger'>Opuszczają cię zdolności umysłowe.</span>")
-			to_chat(pai, "<span class='rose'>oblivion... </span>")
+			to_chat(pai, "<span class='rose'>niebyt... </span>")
 			qdel(pai)
 			return TRUE
 		if("clear_zero")

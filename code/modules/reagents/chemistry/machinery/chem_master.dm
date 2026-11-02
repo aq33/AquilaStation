@@ -6,7 +6,7 @@
   */
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
-	desc = "Used to separate chemicals and distribute them in a variety of forms."
+	desc = "Służy do rozdzielania chemikaliów i porcjowania ich w różnych postaciach."
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/chemical.dmi'
@@ -413,9 +413,9 @@
 				else
 					name_default = reagents.get_master_reagent_name()
 				if (name_has_units)
-					name_default += " ([vol_each]u)"
+					name_default += " ([vol_each] j.)"
 				name = stripped_input(usr,
-					"Name:",
+					"Nazwa:",
 					"Nadaj nazwę!",
 					name_default,
 					MAX_NAME_LEN)
@@ -438,14 +438,14 @@
 							P = new/obj/item/reagent_containers/pill(target_loc)
 						else
 							P = new/obj/item/reagent_containers/pill(drop_location())
-						P.name = trim("[name] pill")
+						P.name = trim("pigułka: [name]")
 						P.label_name = trim(name)
 						if(chosen_pill_style == "pill_random_dummy")
 							P.icon_state = pick(PILL_SHAPE_LIST)
 						else
 							P.icon_state = chosen_pill_style
 						if(P.icon_state == "pill_shape_capsule_bloodred")
-							P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
+							P.desc = "Tabletka albo kapsułka, ale nie byle jaka, tylko czerwona. Biorą ją ci, którzy nie boją się wiedzy, wolności, niepewności i brutalnej prawdy o rzeczywistości."
 						adjust_item_drop_location(P)
 						reagents.trans_to(P, vol_each, transfered_by = usr)
 					. = TRUE
@@ -453,7 +453,7 @@
 					var/obj/item/reagent_containers/pill/patch/P
 					for(var/i = 0; i < amount; i++)
 						P = new/obj/item/reagent_containers/pill/patch(drop_location())
-						P.name = trim("[name] patch")
+						P.name = trim("plaster: [name]")
 						P.label_name = trim(name)
 						P.icon_state = chosen_patch_style
 						adjust_item_drop_location(P)
@@ -463,7 +463,7 @@
 					var/obj/item/reagent_containers/glass/bottle/P
 					for(var/i = 0; i < amount; i++)
 						P = new/obj/item/reagent_containers/glass/bottle(drop_location())
-						P.name = trim("[name] bottle")
+						P.name = trim("butelka: [name]")
 						P.label_name = trim(name)
 						adjust_item_drop_location(P)
 						reagents.trans_to(P, vol_each, transfered_by = usr)
@@ -472,7 +472,7 @@
 					var/obj/item/reagent_containers/chem_bag/P
 					for(var/i = 0; i < amount; i++)
 						P = new/obj/item/reagent_containers/chem_bag(drop_location())
-						P.name = trim("[name] chemical bag")
+						P.name = trim("worek chemiczny: [name]")
 						P.label_name = trim(name)
 						adjust_item_drop_location(P)
 						reagents.trans_to(P, vol_each, transfered_by = usr)
@@ -482,9 +482,9 @@
 					for(var/i = 0; i < amount; i++)
 						P = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
 						P.originalname = name
-						P.name = trim("[name] pack")
+						P.name = trim("saszetka: [name]")
 						P.label_name = trim(name)
-						P.desc = "A small condiment pack. The label says it contains [name]."
+						P.desc = "Mała saszetka. Według etykiety zawiera: [name]."
 						reagents.trans_to(P, vol_each, transfered_by = usr)
 					. = TRUE
 				if("condimentBottle")
@@ -584,27 +584,27 @@
 	if (!styles.len)
 		//Possible_states has the reagent type as key and a list of, in order, the icon_state, the name and the desc as values. Was used in the condiment/on_reagent_change(changetype) to change names, descs and sprites.
 		styles += list(
-			CONDIMASTER_STYLE_FALLBACK = list("icon_state" = "bottle", "icon_empty" = "", "name" = "bottle", "desc" = "Just your average condiment bottle.", "fill_icon_thresholds" = list(1, 20, 40, 60, 80, 100), "generate_name" = TRUE),
+			CONDIMASTER_STYLE_FALLBACK = list("icon_state" = "bottle", "icon_empty" = "", "name" = "butelka", "desc" = "Zwykła butelka na przyprawy.", "fill_icon_thresholds" = list(1, 20, 40, 60, 80, 100), "generate_name" = TRUE),
 
-			"flour" = list("icon_state" = "flour", "icon_empty" = "", "name" = "flour sack", "desc" = "A big bag of flour. Good for baking!"),
-			"rice" = list("icon_state" = "rice", "icon_empty" = "", "name" = "rice sack", "desc" = "A big bag of rice. Good for cooking!"),
-			"sugar" = list("icon_state" = "sugar", "icon_empty" = "", "name" = "sugar sack", "desc" = "Tasty spacey sugar!"),
-			"enzyme" = list("icon_state" = "enzyme", "icon_empty" = "", "name" = "universal enzyme bottle", "desc" = "Used in cooking various dishes."),
-			"capsaicin" = list("icon_state" = "hotsauce", "icon_empty" = "", "name" = "hotsauce bottle", "desc" = "You can almost TASTE the stomach ulcers!"),
-			"frostoil" = list("icon_state" = "coldsauce", "icon_empty" = "", "name" = "coldsauce bottle", "desc" = "Leaves the tongue numb from its passage."),
-			"mayonnaise" = list("icon_state" = "mayonnaise", "icon_empty" = "", "name" = "mayonnaise bottle", "desc" = "An oily condiment made from egg yolks."),
-			"ketchup" = list("icon_state" = "ketchup", "icon_empty" = "", "name" = "ketchup bottle", "desc" = "A tomato slurry in a tall plastic bottle. Somehow still vaguely American."),
-			"blackpepper" = list("icon_state" = "peppermillsmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "pepper mill", "desc" = "Often used to flavor food or make people sneeze."),
-			"sodiumchloride" = list("icon_state" = "saltshakersmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "salt shaker", "desc" = "Salt. From dead crew, presumably."),
-			"milk" = list("icon_state" = "milk", "icon_empty" = "", "name" = "space milk", "desc" = "It's milk. White and nutritious goodness!"),
-			"soymilk" = list("icon_state" = "soymilk", "icon_empty" = "", "name" = "soy milk", "desc" = "It's soy milk. White and nutritious goodness!"),
-			"soysauce" = list("icon_state" = "soysauce", "inhand_icon_state" = "", "icon_empty" = "", "name" = "soy sauce bottle", "desc" = "A salty soy-based flavoring."),
-			"bbqsauce" = list("icon_state" = "bbqsauce", "icon_empty" = "", "name" = "bbq sauce bottle", "desc" = "Hand wipes not included."),
-			"oliveoil" = list("icon_state" = "oliveoil", "icon_empty" = "", "name" = "olive oil bottle", "desc" = "A delicious oil made from olives."),
-			"cooking_oil" = list("icon_state" = "cooking_oil", "icon_empty" = "", "name" = "cooking oil bottle", "desc" = "A cooking oil for deep frying."),
-			"peanut_butter" = list("icon_state" = "peanutbutter", "icon_empty" = "", "name" = "peanut butter jar", "desc" = "A creamy paste made from ground peanuts."),
-			"cherryjelly" = list("icon_state" = "cherryjelly", "icon_empty" = "", "name" = "cherry jelly jar", "desc" = "A jar of super-sweet cherry jelly."),
-			"honey" = list("icon_state" = "honey", "icon_empty" = "", "name" = "honey bottle", "desc" = "A cheerful bear-shaped bottle of tasty honey."),
+			"flour" = list("icon_state" = "flour", "icon_empty" = "", "name" = "worek mąki", "desc" = "Duży worek mąki. Dobry do pieczenia!"),
+			"rice" = list("icon_state" = "rice", "icon_empty" = "", "name" = "worek ryżu", "desc" = "Duży worek ryżu. Dobry do gotowania!"),
+			"sugar" = list("icon_state" = "sugar", "icon_empty" = "", "name" = "worek cukru", "desc" = "Smaczny kosmiczny cukier!"),
+			"enzyme" = list("icon_state" = "enzyme", "icon_empty" = "", "name" = "butelka enzymu uniwersalnego", "desc" = "Używany do przyrządzania różnych potraw."),
+			"capsaicin" = list("icon_state" = "hotsauce", "icon_empty" = "", "name" = "butelka ostrego sosu", "desc" = "Niemal CZUJESZ smak wrzodów żołądka!"),
+			"frostoil" = list("icon_state" = "coldsauce", "icon_empty" = "", "name" = "butelka lodowego sosu", "desc" = "Zostawia po sobie zdrętwiały język."),
+			"mayonnaise" = list("icon_state" = "mayonnaise", "icon_empty" = "", "name" = "butelka majonezu", "desc" = "Tłusta przyprawa z żółtek."),
+			"ketchup" = list("icon_state" = "ketchup", "icon_empty" = "", "name" = "butelka ketchupu", "desc" = "Pomidorowa breja w wysokiej plastikowej butelce. Jakimś cudem wciąż trochę amerykańska."),
+			"blackpepper" = list("icon_state" = "peppermillsmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "młynek do pieprzu", "desc" = "Często używany do przyprawiania jedzenia albo do wywoływania kichania."),
+			"sodiumchloride" = list("icon_state" = "saltshakersmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "solniczka", "desc" = "Sól. Pewnie z martwej załogi."),
+			"milk" = list("icon_state" = "milk", "icon_empty" = "", "name" = "kosmiczne mleko", "desc" = "To mleko. Biała i pożywna pyszność!"),
+			"soymilk" = list("icon_state" = "soymilk", "icon_empty" = "", "name" = "mleko sojowe", "desc" = "To mleko sojowe. Biała i pożywna pyszność!"),
+			"soysauce" = list("icon_state" = "soysauce", "inhand_icon_state" = "", "icon_empty" = "", "name" = "butelka sosu sojowego", "desc" = "Słony dodatek smakowy na bazie soi."),
+			"bbqsauce" = list("icon_state" = "bbqsauce", "icon_empty" = "", "name" = "butelka sosu barbecue", "desc" = "Chusteczki nawilżane nie są w zestawie."),
+			"oliveoil" = list("icon_state" = "oliveoil", "icon_empty" = "", "name" = "butelka oliwy z oliwek", "desc" = "Pyszny olej z oliwek."),
+			"cooking_oil" = list("icon_state" = "cooking_oil", "icon_empty" = "", "name" = "butelka oleju spożywczego", "desc" = "Olej do smażenia w głębokim tłuszczu."),
+			"peanut_butter" = list("icon_state" = "peanutbutter", "icon_empty" = "", "name" = "słoik masła orzechowego", "desc" = "Kremowa pasta z mielonych orzeszków ziemnych."),
+			"cherryjelly" = list("icon_state" = "cherryjelly", "icon_empty" = "", "name" = "słoik galaretki wiśniowej", "desc" = "Słoik bardzo słodkiej galaretki wiśniowej."),
+			"honey" = list("icon_state" = "honey", "icon_empty" = "", "name" = "butelka miodu", "desc" = "Wesoła butelka w kształcie misia, pełna smacznego miodu."),
 		)
 		var/list/carton_in_hand = list(
 			"item_state" = "carton",
@@ -668,7 +668,7 @@
   */
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
-	desc = "Used to create condiments and other cooking supplies."
+	desc = "Służy do wytwarzania przypraw i innych produktów kuchennych."
 	condi = TRUE
 
 /// Port Bee #11899: right click ejects the beaker (Alt-click still works)

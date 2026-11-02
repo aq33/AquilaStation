@@ -1,5 +1,5 @@
 /obj/structure/frame/computer
-	name = "computer frame"
+	name = "rama komputera"
 	icon_state = "0"
 	state = 0
 

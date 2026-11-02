@@ -2,8 +2,8 @@
 // !           Replicant          ! //
 //==================================//
 /datum/clockcult/scripture/replicant
-	name = "Replicant"
-	desc = "Causes the slab to summon a copy of itself, allowing you to replace slabs if they get lost."
+	name = "Replika"
+	desc = "Płyta przywołuje swoją kopię, dzięki czemu możesz zastąpić zgubione płyty."
 	tip = "Tworzy zapasową płytę."
 	button_icon_state = "Replicant"
 	power_cost = 50

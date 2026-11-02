@@ -1,14 +1,14 @@
 /obj/item/food/grown/kudzupod
 	seed = /obj/item/plant_seeds/preset/kudzu
 	seed_base = /obj/item/plant_seeds/preset/kudzu
-	name = "kudzu pod"
-	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
+	name = "strąk kudzu"
+	desc = "<I>Pueraria Virallis</I>: gatunek inwazyjny, którego pnącza szybko się rozrastają i oplatają wszystko, czego dotkną."
 	icon_state = "kudzupod"
 	foodtypes = VEGETABLES | GROSS
 	tastes = list("kudzu" = 1)
 	wine_power = 20
 /obj/item/plant_seeds/preset/kudzu
-	name = "kudzu seeds"
+	name = "nasiona kudzu"
 	name_override = "kudzu"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/kudzu, /datum/plant_feature/fruit/kudzu)
 	//list of space vine mutations
@@ -22,7 +22,7 @@
 	return new_seed
 
 /obj/item/plant_seeds/preset/kudzu/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows the pack of kudzu seeds! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] połyka paczkę nasion kudzu! Wygląda na to, że próbuje popełnić samobójstwo!"))
 	start_kudzu(user)
 	return BRUTELOSS
 
@@ -33,24 +33,24 @@
 		return
 	//lockers & bags is not ground
 	if(!isturf(user.loc))
-		to_chat(user, span_warning("You need more space to plant [src]."))
+		to_chat(user, span_warning("Potrzebujesz więcej miejsca, żeby zasadzić [src]."))
 		return
 	//Town aint big enough
 	if(locate(/obj/structure/spacevine) in user.loc)
-		to_chat(user, span_warning("There is too much kudzu here to plant [src]."))
+		to_chat(user, span_warning("Jest tu za dużo kudzu, żeby zasadzić [src]."))
 		return
 //Start the show
-	to_chat(user, span_notice("You plant [src]."))
-	message_admins("Kudzu planted by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(user)]")
+	to_chat(user, span_notice("Sadzisz [src]."))
+	message_admins("[ADMIN_LOOKUPFLW(user)] sadzi kudzu w [ADMIN_VERBOSEJMP(user)]")
 	investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
 	new /datum/spacevine_controller(get_turf(user), mutations, 50, 7) //potency max 100, production max 10 - 50 & 7 should simulate an above average plant
 	qdel(src)
 
 /obj/item/plant_seeds/preset/kudzu/attack_self(mob/user)
-	user.visible_message(span_danger("[user] begins throwing seeds on the ground..."))
+	user.visible_message(span_danger("[user] zaczyna rzucać nasiona na ziemię..."))
 	if(do_after(user, 50, target = user.drop_location(), progress = TRUE))
 		start_kudzu(user)
-		to_chat(user, span_warning("You plant the kudzu. You monster!"))
+		to_chat(user, span_warning("Sadzisz kudzu. Ty potworze!"))
 
 /obj/item/plant_seeds/preset/kudzu/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -61,7 +61,7 @@
 	var/text_string = ""
 	for(var/datum/spacevine_mutation/SM in mutations)
 		text_string += "<span class='plant_sub'>[(text_string == "") ? "" : ", "][SM.name]</span>"
-	to_chat(user, "<span class='plant_scan'><b>Vine Mutations</b></span><span class='plant_scan'>[text_string]</span>")
+	to_chat(user, "<span class='plant_scan'><b>Mutacje pnączy</b></span><span class='plant_scan'>[text_string]</span>")
 
 
 /obj/item/plant_seeds/preset/kudzu/on_reagent_change(changetype)

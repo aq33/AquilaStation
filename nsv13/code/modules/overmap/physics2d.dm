@@ -142,7 +142,7 @@ PROCESSING_SUBSYSTEM_DEF(physics_processing)
 	if(holder.z != last_registered_z) //Z changed? Update this unit's processing chunk.
 		if(!holder.z) // Something terrible has happened. Kill ourselves to prevent runtime spam
 			qdel(src)
-			message_admins("WARNING: [holder] has been moved out of bounds at [ADMIN_VERBOSEJMP(holder.loc)]. Deleting physics component.")
+			message_admins("OSTRZEŻENIE: [holder] wypadł poza granice w [ADMIN_VERBOSEJMP(holder.loc)]. Usuwam komponent fizyki.")
 			CRASH("Physics component holder located in nullspace.")
 		SSphysics_processing.RemoveFromLevel(src, last_registered_z)
 		last_registered_z = holder.z

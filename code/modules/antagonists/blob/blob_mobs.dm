@@ -222,7 +222,7 @@
 	SSmove_manager.hostile_jps_move(src, target,delay, minimum_distance = minimum_distance)
 
 /mob/living/simple_animal/hostile/blob/blobspore/weak
-	name = "fragile blob spore"
+	name = "kruchy zarodnik"
 	health = 15
 	maxHealth = 15
 	melee_damage = 2

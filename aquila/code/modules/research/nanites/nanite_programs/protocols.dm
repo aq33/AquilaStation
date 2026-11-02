@@ -1,7 +1,7 @@
 //Replication Protocols
 /datum/nanite_program/protocol/kickstart
-	name = "Kickstart Protocol"
-	desc = "Replication Protocol: the nanites focus on early growth, heavily boosting replication rate for one minute after the initial implantation."
+	name = "Protokół szybkiego startu"
+	desc = "Protokół replikacji: nanity skupiają się na wczesnym wzroście, mocno przyspieszając replikację przez minutę po wszczepieniu."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -16,9 +16,9 @@
 	nanites.adjust_nanites(null, 4.5)
 
 /datum/nanite_program/protocol/factory
-	name = "Factory Protocol"
-	desc = "Replication Protocol: the nanites build a factory matrix within the host, gradually increasing replication speed over time. \
-	The factory decays if the protocol is not active, or if the nanites are disrupted by shocks or EMPs."
+	name = "Protokół fabryczny"
+	desc = "Protokół replikacji: nanity budują w nosicielu matrycę fabryczną, która z czasem stopniowo przyspiesza replikację. \
+	Fabryka niszczeje, gdy protokół nie jest aktywny albo gdy nanity zakłóci porażenie prądem lub EMP."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -47,8 +47,8 @@
 	nanites.adjust_nanites(null, round(0.004 * factory_efficiency, 0.1))
 
 /datum/nanite_program/protocol/tinker
-	name = "Tinker Protocol"
-	desc = "Replication Protocol: the nanites learn to use metallic material in the host's bloodstream to speed up the replication process."
+	name = "Protokół majsterkowicza"
+	desc = "Protokół replikacji: nanity uczą się wykorzystywać metale we krwi nosiciela, by przyspieszyć replikację."
 	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -82,8 +82,8 @@
 	nanites.adjust_nanites(null, boost)
 
 /datum/nanite_program/protocol/offline
-	name = "Offline Production Protocol"
-	desc = "Replication Protocol: while the host is asleep or otherwise unconcious, the nanites exploit the reduced interference to replicate more quickly."
+	name = "Protokół produkcji offline"
+	desc = "Protokół replikacji: gdy nosiciel śpi albo jest nieprzytomny, nanity wykorzystują mniejsze zakłócenia, by szybciej się replikować."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -105,8 +105,8 @@
 	nanites.adjust_nanites(null, boost)
 
 /datum/nanite_program/protocol/free_range
-	name = "Free-range Protocol"
-	desc = "Replication Protocol: the nanites discard their default storage protocols in favour of a cheaper and more organic approach. Reduces maximum volume, but increases the replication rate."
+	name = "Protokół wolnego wybiegu"
+	desc = "Protokół replikacji: nanity porzucają domyślne protokoły przechowywania na rzecz tańszego i bardziej organicznego podejścia. Zmniejsza maksymalną objętość, ale przyspiesza replikację."
 	use_rate = -0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -121,8 +121,8 @@
 	nanites.set_max_volume(null, nanites.max_nanites - extra_volume)
 
 /datum/nanite_program/protocol/zip
-	name = "Zip Protocol"
-	desc = "Replication Protocol: the nanites are disassembled and compacted when unused, greatly increasing the maximum volume while in a host. However, the process slows down the replication rate slightly."
+	name = "Protokół kompresji"
+	desc = "Protokół replikacji: nieużywane nanity są rozkładane i kompresowane, co mocno zwiększa ich maksymalną objętość w nosicielu. Proces ten nieco spowalnia jednak replikację."
 	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION

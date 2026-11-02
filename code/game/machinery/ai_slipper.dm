@@ -1,6 +1,6 @@
 /obj/machinery/ai_slipper
-	name = "foam dispenser"
-	desc = "A remotely-activatable dispenser for crowd-controlling foam."
+	name = "dozownik piany"
+	desc = "Zdalnie uruchamiany dozownik piany do tłumienia zamieszek."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ai-slipper0"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER

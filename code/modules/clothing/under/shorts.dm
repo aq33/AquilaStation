@@ -1,6 +1,6 @@
 /obj/item/clothing/under/shorts
-	name = "athletic shorts"
-	desc = "95% Polyester, 5% Spandex!"
+	name = "spodenki sportowe"
+	desc = "95% poliestru, 5% spandeksu!"
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
@@ -8,25 +8,25 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/shorts/red
-	name = "red athletic shorts"
+	name = "czerwone spodenki sportowe"
 	icon_state = "redshorts"
 
 /obj/item/clothing/under/shorts/green
-	name = "green athletic shorts"
+	name = "zielone spodenki sportowe"
 	icon_state = "greenshorts"
 
 /obj/item/clothing/under/shorts/blue
-	name = "blue athletic shorts"
+	name = "niebieskie spodenki sportowe"
 	icon_state = "blueshorts"
 
 /obj/item/clothing/under/shorts/black
-	name = "black athletic shorts"
+	name = "czarne spodenki sportowe"
 	icon_state = "blackshorts"
 
 /obj/item/clothing/under/shorts/grey
-	name = "grey athletic shorts"
+	name = "szare spodenki sportowe"
 	icon_state = "greyshorts"
 
 /obj/item/clothing/under/shorts/purple
-	name = "purple athletic shorts"
+	name = "fioletowe spodenki sportowe"
 	icon_state = "purpleshorts"

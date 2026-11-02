@@ -7,8 +7,8 @@ Stabilized extracts:
 //Status effect will automatically be applied while held, and lost on drop.
 
 /obj/item/slimecross/stabilized
-	name = "stabilized extract"
-	desc = "It seems inert, but anything it touches glows softly..."
+	name = "ustabilizowany ekstrakt"
+	desc = "Wydaje się martwy, ale wszystko, czego dotknie, delikatnie świeci..."
 	effect = "stabilized"
 	icon_state = "stabilized"
 	var/datum/status_effect/linked_effect
@@ -117,7 +117,7 @@ Stabilized extracts:
 	effect_desc = "Gdy jest trzymany, tworzy zwierzaka."
 	var/mob_type
 	var/datum/mind/saved_mind
-	var/mob_name = "Familiar"
+	var/mob_name = "Chowaniec"
 
 /obj/item/slimecross/stabilized/gold/proc/generate_mobtype()
 	var/static/list/mob_spawn_pets = list()
@@ -134,25 +134,25 @@ Stabilized extracts:
 	generate_mobtype()
 
 /obj/item/slimecross/stabilized/gold/attack_self(mob/user)
-	var/choice = input(user, "Co chcesz zresetować?", "Dostosowanie chowańca") as null|anything in sortList(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name"))
+	var/choice = input(user, "Co chcesz zresetować?", "Dostosowanie chowańca") as null|anything in sortList(list("Położenie chowańca", "Gatunek chowańca", "Świadomość chowańca", "Imię chowańca"))
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(L.has_status_effect(/datum/status_effect/stabilized/gold))
 			L.remove_status_effect(/datum/status_effect/stabilized/gold)
-	if(choice == "Familiar Location")
+	if(choice == "Położenie chowańca")
 		to_chat(user, "<span class='notice'>Szturchasz [src], a on lekko drży.</span>")
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Species")
+	if(choice == "Gatunek chowańca")
 		to_chat(user, "<span class='notice'>Ściskasz [src], a w środku zdaje się przesuwać jakiś kształt.</span>")
 		generate_mobtype()
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Sentience")
+	if(choice == "Świadomość chowańca")
 		to_chat(user, "<span class='notice'>Dźgasz [src], a on wysyła świecący impuls.</span>")
 		saved_mind = null
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Name")
+	if(choice == "Imię chowańca")
 		var/newname = sanitize_name(stripped_input(user, "Czy chcesz zmienić imię [mob_name]", "Zmiana imienia", mob_name, MAX_NAME_LEN))
 		if(newname)
 			mob_name = newname

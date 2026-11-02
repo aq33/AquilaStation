@@ -101,10 +101,10 @@ export function AccessConfig(props: ConfigProps) {
       buttons={
         <>
           <Button icon="check-double" color="good" onClick={grantAll}>
-            Grant All
+            Nadaj wszystkie
           </Button>
           <Button icon="undo" color="bad" onClick={denyAll}>
-            Deny All
+            Odbierz wszystkie
           </Button>
         </>
       }
@@ -167,7 +167,7 @@ function AccessButtons(props: AccessButtonProps) {
               color="good"
               onClick={() => grantDep(selectedAccess.name)}
             >
-              Grant Region
+              Nadaj region
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -177,7 +177,7 @@ function AccessButtons(props: AccessButtonProps) {
               color="bad"
               onClick={() => denyDep(selectedAccess.name)}
             >
-              Deny Region
+              Odbierz region
             </Button>
           </Stack.Item>
         </Stack>

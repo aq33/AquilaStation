@@ -4,8 +4,8 @@
 //It has no melee attack, and its damage comes from the toxin in its bubbles and its crushing leap.
 //Its eyes will turn red to signal an imminent attack!
 /mob/living/simple_animal/hostile/jungle/leaper
-	name = "leaper"
-	desc = "Commonly referred to as 'leapers', the Geron Toad is a massive beast that spits out highly pressurized bubbles containing a unique toxin, knocking down its prey and then crushing it with its girth."
+	name = "skoczek"
+	desc = "Ropucha geroniańska, potocznie zwana „skoczkiem”, to ogromna bestia, która pluje bańkami pod wysokim ciśnieniem, zawierającymi unikalną toksynę. Powala nimi ofiarę, a potem miażdży ją swoim cielskiem."
 	icon = 'icons/mob/jungle/leaper.dmi'
 	icon_state = "leaper"
 	icon_living = "leaper"
@@ -30,7 +30,7 @@
 	do_footstep = TRUE
 
 /obj/item/projectile/leaper
-	name = "leaper bubble"
+	name = "bańka skoczka"
 	icon_state = "leaper"
 	paralyze = 50
 	damage = 0
@@ -55,7 +55,7 @@
 	new /obj/structure/leaper_bubble(T)
 
 /obj/effect/temp_visual/leaper_projectile_impact
-	name = "leaper bubble"
+	name = "bańka skoczka"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "leaper_bubble_pop"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -66,14 +66,14 @@
 	new /obj/effect/decal/cleanable/leaper_sludge(get_turf(src))
 
 /obj/effect/decal/cleanable/leaper_sludge
-	name = "leaper sludge"
-	desc = "A small pool of sludge, containing trace amounts of leaper venom."
+	name = "maź skoczka"
+	desc = "Niewielka kałuża mazi ze śladowymi ilościami jadu skoczka."
 	icon = 'icons/effects/tomatodecal.dmi'
 	icon_state = "tomato_floor1"
 
 /obj/structure/leaper_bubble
-	name = "leaper bubble"
-	desc = "A floating bubble containing leaper venom. The contents are under a surprising amount of pressure."
+	name = "bańka skoczka"
+	desc = "Unosząca się bańka z jadem skoczka. Zawartość jest pod zaskakująco wysokim ciśnieniem."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "leaper"
 	max_integrity = 10
@@ -110,7 +110,7 @@
 			qdel(src)
 
 /datum/reagent/toxin/leaper_venom
-	name = "Leaper venom"
+	name = "Jad skoczka"
 	description = "Toksyna plwana przez skoczki, która w małych dawkach jest nieszkodliwa, ale przy zbyt dużej ilości w organizmie szybko wywołuje reakcję toksyczną."
 	color = "#801E28" // rgb: 128, 30, 40
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -124,8 +124,8 @@
 	..()
 
 /obj/effect/temp_visual/leaper_crush
-	name = "grim tidings"
-	desc = "Incoming leaper!"
+	name = "złe wieści"
+	desc = "Nadlatuje skoczek!"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "lily_pad"
 	layer = BELOW_MOB_LAYER

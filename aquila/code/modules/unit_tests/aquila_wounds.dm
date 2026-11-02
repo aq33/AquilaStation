@@ -16,8 +16,22 @@
 	TEST_ASSERT(LAZYACCESS(patient.movespeed_modification, "aq_wounds"), "A broken leg does not slow down")
 	TEST_ASSERT(length(patient.get_wound_scan_lines()) == 1, "The analyzer does not see the fracture")
 
-	var/obj/item/stack/medical/gauze/gauze = allocate(/obj/item/stack/medical/gauze)
-	TEST_ASSERT(patient.get_treatable_wound(leg, gauze) == fracture, "Gauze cannot splint a fracture")
+	var/obj/item/stack/medical/bandage/bandage = allocate(/obj/item/stack/medical/bandage)
+	TEST_ASSERT(patient.get_treatable_wound(leg, bandage) == fracture, "A bandage cannot splint a fracture")
+	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
+	var/bandages_before = bandage.get_amount()
+	TEST_ASSERT(fracture.treat(bandage, doctor), "The bandage splint was interrupted")
+	TEST_ASSERT(fracture.treated, "The bandage did not splint the fracture")
+	TEST_ASSERT(bandage.get_amount() == bandages_before - 1, "Splinting did not use one bandage")
+	TEST_ASSERT(!patient.get_treatable_wound(leg, bandage), "A splinted fracture can be splinted again")
+
+	// The bandage took over gauze: it stops bleeding and leaves it bandaged
+	var/mob/living/carbon/human/bleeder = allocate(/mob/living/carbon/human)
+	bleeder.add_bleeding(BLEED_DEEP_WOUND)
+	doctor.zone_selected = BODY_ZONE_CHEST
+	bandage.attack(bleeder, doctor)
+	TEST_ASSERT(!bleeder.is_bleeding(), "A bandage did not stop the bleeding")
+	TEST_ASSERT(bleeder.is_bandaged(), "A bandage did not leave the bleeding bandaged")
 
 	var/datum/wound/compound = patient.check_wounding(leg, 200, WOUND_BLUNT)
 	if(compound)
@@ -78,23 +92,38 @@
 			found_bleeding = TRUE
 	TEST_ASSERT(found_bleeding, "Bleeding is missing")
 
-/// AQUILA - the advanced analyzer tells the next surgery step and its tools
+/// AQUILA - the advanced analyzer and vitals monitor show the surgical state of operated zones and what can be done next
 /datum/unit_test/aquila_surgery_progress
 
 /datum/unit_test/aquila_surgery_progress/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/datum/surgery/surgery = new /datum/surgery/organ_manipulation(patient, BODY_ZONE_CHEST, patient.get_bodypart(BODY_ZONE_CHEST))
+	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
+	patient.set_resting(TRUE)
+	TEST_ASSERT(!length(patient.get_surgery_progress()), "A patient without surgery shows an operated zone")
+
+	patient.toggle_surgery_prep(doctor, BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	chest.add_surgical_state(SURGERY_SKIN_CUT)
 	var/list/progress = patient.get_surgery_progress()
-	TEST_ASSERT(length(progress) == 1, "The ongoing surgery is missing")
+	TEST_ASSERT(length(progress) == 1, "The operated chest is missing: [length(progress)] zones")
 	var/list/entry = progress[1]
-	TEST_ASSERT(entry["step"] == "nacięcie" && findtext(entry["tools"], "skalpel"), "Wrong first step: [entry["step"]] / [entry["tools"]]")
-	surgery.status = 3
+	TEST_ASSERT(entry["zone"] == strefa_pl(BODY_ZONE_CHEST), "Wrong zone: [entry["zone"]]")
+	TEST_ASSERT("Skóra nacięta" in entry["state"], "The cut skin is missing from the state: [jointext(entry["state"], ", ")]")
+	var/retract_name = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/retract_skin].name
+	TEST_ASSERT(retract_name in entry["next"], "Retracting the skin is not offered next: [jointext(entry["next"], ", ")]")
+
+	// the ongoing operation is shown while it lasts
+	var/datum/surgery_operation/retract = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/retract_skin]
+	LAZYSET(patient.ongoing_operations, BODY_ZONE_CHEST, retract)
 	entry = patient.get_surgery_progress()[1]
-	TEST_ASSERT(entry["step"] == "piłowanie kości", "Wrong third step: [entry["step"]]")
+	TEST_ASSERT(entry["operation"] == capitalize(retract.name), "The ongoing operation is missing: [entry["operation"]]")
+	LAZYREMOVE(patient.ongoing_operations, BODY_ZONE_CHEST)
+
 	var/list/data = get_health_analyzer_data(patient, patient, TRUE)
-	TEST_ASSERT(length(data["surgeries"]) == 1, "The advanced analyzer window does not show the surgery")
+	TEST_ASSERT(length(data["surgeries"]) == 1, "The advanced analyzer window does not show the operated zone")
 	TEST_ASSERT(isnull(get_health_analyzer_data(patient, patient, FALSE)["surgeries"]), "The basic analyzer shows the surgery")
-	qdel(surgery)
+	TEST_ASSERT(findtext(healthscan(doctor, patient, advanced = TRUE, tochat = FALSE), "Operacja ("), "The advanced scan (vitals monitor) does not show the surgery")
+	TEST_ASSERT(!findtext(healthscan(doctor, patient, advanced = FALSE, tochat = FALSE), "Operacja ("), "The basic scan shows the surgery")
 
 /// AQUILA - vitals monitors mapped over stasis beds are connected to their own bed
 /datum/unit_test/aquila_mapped_vitals_monitors

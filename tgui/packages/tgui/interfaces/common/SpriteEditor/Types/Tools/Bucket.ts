@@ -25,7 +25,7 @@ export class Bucket extends Tool {
       command: 'transaction',
       transaction: {
         type: 'bucket',
-        name: 'Flood Fill',
+        name: 'Wypełnienie',
         layer: selectedLayer + 1,
         dir: `${selectedDir}`,
         color: colorToHexString(currentColor),

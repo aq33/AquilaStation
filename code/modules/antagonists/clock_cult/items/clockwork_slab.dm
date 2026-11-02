@@ -1,8 +1,8 @@
 GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 /obj/item/clockwork/clockwork_slab
-	name = "Clockwork Slab"
-	desc = "A mechanical-looking device filled with intricate cogs that swirl to their own accord."
+	name = "mechaniczna płyta"
+	desc = "Mechanicznie wyglądające urządzenie pełne misternych zębatek, które obracają się same z siebie."
 	clockwork_desc = "Piękne dzieło sztuki, wykorzystujące energię mechaniczną do różnych przydatnych mocy."
 	item_flags = NOBLUDGEON
 	icon_state = "dread_ipad"

@@ -33,7 +33,8 @@
 #define HALO_LAYER				3		//! blood cult ascended halo, because there's currently no better solution for adding/removing
 #define TYPING_LAYER			2
 #define FIRE_LAYER				1		//! If you're on fire
-#define TOTAL_LAYERS			30		//! KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
+#define WOUND_LAYER				31		//! AQ EDIT - bleeding overlays (tg); index only, drawn at AQ_WOUND_DRAW_LAYER above hands like tg's WOUND_LAYER
+#define TOTAL_LAYERS			31		//! KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_; // AQ EDIT - 30 -> 31 for WOUND_LAYER
 
 //Human Overlay Index Shortcuts for alternate_worn_layer, layers
 //Because I *KNOW* somebody will think layer+1 means "above"
@@ -385,7 +386,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 /// Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
-#define EGG_LAYING_MESSAGES list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
+#define EGG_LAYING_MESSAGES list("znosi jajko.","przykuca i grucha.","zaczyna robić straszny raban.","zaczyna głośno gdakać.")
 
 //Filters
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")

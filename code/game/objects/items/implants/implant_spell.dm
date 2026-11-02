@@ -1,6 +1,6 @@
 /obj/item/implant/spell
-	name = "spell implant"
-	desc = "Allows you to cast a spell as if you were a wizard."
+	name = "implant zaklęcia"
+	desc = "Pozwala ci rzucać zaklęcie, jakbyś był czarodziejem."
 	activated = FALSE
 
 	var/autorobeless = TRUE // Whether to automagically make the spell robeless on implant
@@ -29,10 +29,10 @@
 			to_chat(target, "<span class='boldnotice'>Wiedza o tym, jak rzucać [spell], wymyka ci się z umysłu.</span>")
 
 /obj/item/implanter/spell
-	name = "implanter (spell)"
+	name = "implanter (zaklęcie)"
 	imp_type = /obj/item/implant/spell
 
 /obj/item/implantcase/spell
-	name = "implant case - 'Wizardry'"
-	desc = "A glass case containing an implant that can teach the user the arts of Wizardry."
+	name = "etui na implant – „Czarodziejstwo”"
+	desc = "Szklane etui z implantem, który może nauczyć użytkownika sztuki czarodziejstwa."
 	imp_type = /obj/item/implant/spell
