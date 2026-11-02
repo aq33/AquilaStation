@@ -1,12 +1,15 @@
 /datum/test_chamber_kit/pr_433
 	name = "Sekretne chemikalia"
 	pr = "aq33/AquilaStation#433"
-	description = "Kartki: przeczytaj skamieniałą (gorgium), uranową (metalgen) i zwykłą starą recepturę. \
-	Gotowe składniki aktualnych receptur są w zlewce gorgium, zlewce metalgenu i wiadrze sosu, schłodzone/podgrzane tuż obok progu: włóż je do podgrzewacza i ustaw temperaturę z kartki. \
-	Metalgen: wlej do zlewki z 40u złota i ciemną materią, potem polej nim przedmiot lub podłogę (zmiana koloru i nazwy). \
-	Gorgium ze spryskiwacza na królika (3u+ = posąg 5 s/u). Pigułki gibbium (GBS, leczy synaptizine + siarka), polyjuice (przemiana po 10 cyklach), spider serum (pajączki, pająk po 30 cyklach) daj królikom lub zjedz. \
-	Butelka maint pilli losuje z nowej puli."
+	description = "1) Przeczytaj kartki: skamieniałą (gorgium), uranową (metalgen) i zwykłą starą recepturę → oczekiwane: dwie pierwsze podają temperaturę i składniki z nowej puli, stara wygląda jak dawniej. \
+	2) Gotowe składniki aktualnych receptur są w zlewce gorgium, zlewce metalgenu i wiadrze sosu, schłodzone/podgrzane tuż obok progu: włóż je do podgrzewacza i ustaw temperaturę z kartki → oczekiwane: reakcja zachodzi dopiero po osiągnięciu temperatury z kartki. Negatyw: stara receptura ze zwykłej kartki nie reaguje z tymi składnikami. \
+	3) Metalgen: wlej do zlewki z 40u złota i ciemną materią, potem polej nim przedmiot lub podłogę → oczekiwane: zmiana koloru i nazwy. \
+	4) Gorgium ze spryskiwacza na królika (3u+ = posąg 5 s/u) → oczekiwane: królik zamienia się w posąg i po czasie wraca. Negatyw: wylej na drugiego królika mniej niż 3u gorgium (np. 2u nabrane strzykawką do pustej butelki) → oczekiwane: nic się nie dzieje. \
+	5) Pigułki daj małpom do zjedzenia: gibbium (GBS, leczy synaptizine + siarka), polyjuice (przemiana po 10 cyklach), spider serum (pajączki, pająk po 30 cyklach) → oczekiwane: każda robi swoje po podanym czasie. \
+	6) Butelka maint pilli → oczekiwane: losuje z nowej puli."
 	items = list(
+		/mob/living/simple_animal/chicken/rabbit = 2,
+		/mob/living/carbon/monkey = 2,
 		/obj/item/paper/secretrecipe/gorgium = 1,
 		/obj/item/paper/secretrecipe/metalgen = 1,
 		/obj/machinery/chem_heater = 1,
