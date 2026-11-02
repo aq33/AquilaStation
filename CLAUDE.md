@@ -45,7 +45,9 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 ## Testy
 - Nowa logika (nie same sprite'y) dostaje unit test w `aquila/code/modules/unit_tests/`, dołączony w bloku `#ifdef UNIT_TESTS` na końcu `aquila/aquila.dm`.
 - Makra `TEST_ASSERT*` są `#undef` na końcu `code/modules/unit_tests/_unit_tests.dm`, więc test modularny ma własne kopie (wzór: `polish_content.dm`).
-- Pojedynczy test lokalnie: `TEST_FOCUS(/datum/unit_test/...)`. Usuń go przed commitem.
+- Pojedynczy test lokalnie: `TEST_FOCUS(/datum/unit_test/...)`. Usuń go przed commitem (CI odrzuca go w `check_grep.sh`).
+- Poprawka błędu dostaje test regresji, jeśli da się go odtworzyć bez klienta: test ma wywołać zgłoszony przypadek i sprawdzić wynik działania, nie tylko to, że coś istnieje (wzór: `aquila_gun_fire_without_params.dm`).
+- Gdy `run_all_tests` padnie, pełne logi serwera i `unit_tests.json` są w artefakcie `run_all_tests-logs` przebiegu.
 - Komora testowa: każdy PR z nową treścią lub mechaniką dostaje zestaw `aquila/code/modules/test_chamber/kits/pr_<nr>_<nazwa>.dm` (`/datum/test_chamber_kit/pr_<nr>`: `name`, `pr` jako pełne `aq33/AquilaStation#N`, `description` z tym, co sprawdzić, `items`, ewentualnie `setup()`), dołączony pod komentarzem „Komora testowa” w `aquila/aquila.dm`. Bugfixy nie dostają zestawu. Zestawu `test_subjects` nie usuwaj.
 ## CI (`.github/workflows/continuous_integration.yml`)
 - Lintery: `tools/ci/check_grep.sh` (m.in. pisownia `CentCom`, mapy w TGM, brak `pixel_x = 0`, zdublowanych obiektów na kafelku), `check_filedirs.sh` (nie zaznaczaj folderów w drzewie DreamMakera), `check_changelogs.sh` (nie ruszaj `html/changelogs/example.yml`), dreamchecker.
