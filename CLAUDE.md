@@ -50,8 +50,8 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 ## CI (`.github/workflows/continuous_integration.yml`)
 - Lintery: `tools/ci/check_grep.sh` (m.in. pisownia `CentCom`, mapy w TGM, brak `pixel_x = 0`, zdublowanych obiektów na kafelku), `check_filedirs.sh` (nie zaznaczaj folderów w drzewie DreamMakera), `check_changelogs.sh` (nie ruszaj `html/changelogs/example.yml`), dreamchecker.
 - Kompilacja wszystkich map i `run_all_tests`: każdy runtime w trakcie testów to porażka.
-- Lokalne sprawdzenie map jak w CI: `python tools/ci/template_dm_generator.py`, potem `dm.exe -DCBT -DALL_MAPS -DCIBUILDING -DCITESTING nsv13.dme` (te same flagi co CI), na koniec przywróć `_maps/templates.dm`. Bez `-DCIBUILDING` szablony nie są dołączane i błędy map przechodzą po cichu. Nie sprawdzaj map przez `.dme` z `#include` wszystkich `.dmm`: dm przestaje ładować mapy po pierwszej z błędem.
-- TGUI: z folderu `tgui/` skrypty projektu `tgui:lint`, `tgui:prettier` i `tgui:tsc` (Node z `tools/bootstrap/.cache/`, np. `node .yarn/releases/yarn-4.9.1.cjs tgui:lint`).
+- Lokalne sprawdzenie map jak w CI: `python tools/ci/template_dm_generator.py`, potem `dm.exe -DCBT -DALL_MAPS -DCIBUILDING -DCITESTING nsv13.dme` (te same flagi co CI), na koniec usuń wygenerowany `_maps/templates.dm` (jest w `.gitignore`). Bez `-DCIBUILDING` szablony nie są dołączane i błędy map przechodzą po cichu. Nie sprawdzaj map przez `.dme` z `#include` wszystkich `.dmm`: dm przestaje ładować mapy po pierwszej z błędem.
+- TGUI: z folderu `tgui/` skrypty projektu `tgui:lint`, `tgui:prettier` i `tgui:tsc` przez wrapper Node z repo, np. `..\tools\bootstrap\node.bat .yarn/releases/yarn-4.9.1.cjs tgui:lint` (analogicznie pozostałe).
 - Jeśli CI jest czerwone, najpierw sprawdź, czy master też jest czerwony, zanim zaczniesz szukać błędu w swoim PR.
 ## Git
 - Każde zadanie na osobnej gałęzi od `aq33/master` (lokalny `master` bywa nieaktualny), najlepiej w osobnym worktree. Przed zadaniem sprawdź `git status`.
