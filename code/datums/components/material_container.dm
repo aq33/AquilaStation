@@ -191,7 +191,8 @@
 		if(amount >= amt)
 			materials[mat] -= amt
 			total_amount -= amt
-			SEND_SIGNAL(parent, COMSIG_MATERIAL_CONTAINER_CHANGED)
+			if(parent) // AQ EDIT - kontener odpięty przed remote_materials/Destroy() (lokalne materiały fabrykatora)
+				SEND_SIGNAL(parent, COMSIG_MATERIAL_CONTAINER_CHANGED)
 			return amt
 	return FALSE
 
