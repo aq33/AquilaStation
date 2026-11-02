@@ -50,8 +50,8 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 ## CI (`.github/workflows/continuous_integration.yml`)
 - Lintery: `tools/ci/check_grep.sh` (m.in. pisownia `CentCom`, mapy w TGM, brak `pixel_x = 0`, zdublowanych obiektów na kafelku), `check_filedirs.sh` (nie zaznaczaj folderów w drzewie DreamMakera), `check_changelogs.sh` (nie ruszaj `html/changelogs/example.yml`), dreamchecker.
 - Kompilacja wszystkich map i `run_all_tests`: każdy runtime w trakcie testów to porażka.
-- Lokalne sprawdzenie map jak w CI: `python tools/ci/template_dm_generator.py`, potem `dm.exe -DCBT -DALL_MAPS -DCIBUILDING nsv13.dme`, na koniec przywróć `_maps/templates.dm`. Bez `-DCIBUILDING` szablony nie są dołączane i błędy map przechodzą po cichu. Nie sprawdzaj map przez `.dme` z `#include` wszystkich `.dmm`: dm przestaje ładować mapy po pierwszej z błędem.
-- TGUI: `eslint`, `prettier --check` i `tsc --noEmit` z folderu `tgui/` przez Node z `tools/bootstrap/.cache/`.
+- Lokalne sprawdzenie map jak w CI: `python tools/ci/template_dm_generator.py`, potem `dm.exe -DCBT -DALL_MAPS -DCIBUILDING -DCITESTING nsv13.dme` (te same flagi co CI), na koniec przywróć `_maps/templates.dm`. Bez `-DCIBUILDING` szablony nie są dołączane i błędy map przechodzą po cichu. Nie sprawdzaj map przez `.dme` z `#include` wszystkich `.dmm`: dm przestaje ładować mapy po pierwszej z błędem.
+- TGUI: z folderu `tgui/` skrypty projektu `tgui:lint`, `tgui:prettier` i `tgui:tsc` (Node z `tools/bootstrap/.cache/`, np. `node .yarn/releases/yarn-4.9.1.cjs tgui:lint`).
 - Jeśli CI jest czerwone, najpierw sprawdź, czy master też jest czerwony, zanim zaczniesz szukać błędu w swoim PR.
 ## Git
 - Każde zadanie na osobnej gałęzi od `aq33/master` (lokalny `master` bywa nieaktualny), najlepiej w osobnym worktree. Przed zadaniem sprawdź `git status`.
@@ -61,7 +61,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 ## Pull request
 - Tytuł po polsku: `Obszar: krótki opis (port Repo #NNNN)`.
 - Opis według `.github/PULL_REQUEST_TEMPLATE.md`. Przy porcie: link do oryginału i lista różnic względem niego z powodem.
-- Każdy numer PR/issue jako pełne `owner/repo#N` (np. `tgstation/tgstation#88252`). Gołe `#N` GitHub linkuje do BeeStation/NSV13, bo to fork.
+- Każdy numer PR/issue jako pełne `owner/repo#N` (np. `tgstation/tgstation#88252`), także do naszego repo (`aq33/AquilaStation#N`). Gołe `#N` wskazuje bieżące repo, więc numer PR-a z innego serwera (np. „Skyrat #1115”) zamienia się w link do niezwiązanego PR-a u nas albo w upstreamie.
 - Changelog między `:cl:` a `/:cl:`, wpisy po polsku, tylko prefiksy z szablonu. Przy porcie autor oryginału po pierwszym `:cl:`.
 - Napisz, czy zmiana była testowana w grze i czy TGUI wymaga przebudowy.
 ## Porty z innych kodów (tgstation, Bee, Yogstation, Monkestation, Paradise i inne)
