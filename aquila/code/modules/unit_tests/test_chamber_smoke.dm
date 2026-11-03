@@ -7,9 +7,13 @@
 
 /// Ile czekamy po interakcjach, żeby procesy, timery i rzucone przedmioty zdążyły zadziałać
 #define SMOKE_SETTLE_TIME (3 SECONDS)
+/// Ile najwyżej czekamy dodatkowo na interakcje, które same śpią (do_after, sleep w attack_self)
+#define SMOKE_PENDING_TIMEOUT (15 SECONDS)
 
 /datum/unit_test/test_chamber_smoke
 	priority = TEST_DEFAULT
+	/// Interakcje zestawu, które jeszcze nie wróciły
+	var/pending = 0
 
 /datum/unit_test/test_chamber_smoke/Run()
 	var/datum/test_chamber/chamber = get_test_chamber()
@@ -17,20 +21,26 @@
 		return Fail("Test chamber failed to load")
 
 	var/csv = "[GLOB.log_directory]/test_chamber_smoke.csv"
-	text2file("kit;pr;runtimes;hard_dels;spawn_ms;cpu_avg;cpu_max;objects", csv)
+	fdel(csv)
+	text2file("kit;pr;runtimes;hard_dels;spawn_ms;cpu_avg;cpu_max;objects;unfinished", csv)
 	var/list/failed_kits = list()
+
+	// Sprzątanie poprzedniej rundy testów nie liczy się do pierwszego zestawu
+	if(!chamber.reset())
+		return Fail("Chamber failed to reset before the first kit")
 
 	for(var/name in test_chamber_kits())
 		var/datum/test_chamber_kit/kit = test_chamber_kits()[name]
-		if(!chamber.reset())
-			Fail("Chamber failed to reset before [name]")
-			break
 		var/runtimes_before = GLOB.total_runtimes
 		var/hard_dels_before = SSgarbage.totaldels
 		var/start = REALTIMEOFDAY
+		pending = 0
 
+		// Część zestawów (zdrajca, darkspawn) robi setup() tylko dla człowieka z umysłem
+		var/mob/living/carbon/human/kit_user = new(chamber.arrival)
+		kit_user.mind_initialize()
 		var/list/before = chamber_movables(chamber)
-		chamber.spawn_kit(kit, null)
+		chamber.spawn_kit(kit, kit_user)
 		var/list/spawned = chamber_movables(chamber) - before
 
 		// Jedna małpa na cios; każdy przedmiot dostaje własnego człowieka, bo interakcje biegną równolegle
@@ -44,9 +54,9 @@
 			else if(isliving(AM))
 				var/mob/living/L = AM
 				if(!L.key)
-					INVOKE_ASYNC(L, TYPE_PROC_REF(/atom, attack_hand), actor)
+					INVOKE_ASYNC(src, PROC_REF(exercise_hand), actor, L)
 			else if(isobj(AM))
-				INVOKE_ASYNC(AM, TYPE_PROC_REF(/atom, attack_hand), actor)
+				INVOKE_ASYNC(src, PROC_REF(exercise_hand), actor, AM)
 			CHECK_TICK
 		var/spawn_ms = (REALTIMEOFDAY - start) * 100
 
@@ -60,15 +70,35 @@
 			cpu_sum += world.cpu
 			cpu_max = max(cpu_max, world.cpu)
 			samples++
+		// Interakcje, które śpią dłużej, kończą się tutaj, a nie w trakcie następnego zestawu
+		var/pending_until = world.time + SMOKE_PENDING_TIMEOUT
+		while(pending > 0 && world.time < pending_until)
+			sleep(world.tick_lag)
+		var/unfinished = pending
+
+		// Reset po zestawie liczy się do niego: runtime'y z Destroy() i usunięcia zostają przy właściwym zestawie
+		if(!chamber.reset())
+			Fail("Chamber failed to reset after [name]")
+			break
 
 		var/runtimes = GLOB.total_runtimes - runtimes_before
 		if(runtimes)
 			failed_kits += "[name] ([runtimes])"
-		text2file("[name];[kit.pr];[runtimes];[SSgarbage.totaldels - hard_dels_before];[round(spawn_ms)];[round(cpu_sum / max(samples, 1), 0.1)];[round(cpu_max, 0.1)];[length(spawned)]", csv)
+		text2file("[name];[kit.pr];[runtimes];[SSgarbage.totaldels - hard_dels_before];[round(spawn_ms)];[round(cpu_sum / max(samples, 1), 0.1)];[round(cpu_max, 0.1)];[length(spawned)];[unfinished]", csv)
 
-	chamber.reset()
 	if(length(failed_kits))
 		Fail("Kits with runtimes: [english_list(failed_kits)]")
+
+/// Klik ręką w maszynę lub moba; licznik pending wraca też po runtime'ie
+/datum/unit_test/test_chamber_smoke/proc/exercise_hand(mob/living/carbon/human/actor, atom/A)
+	pending++
+	try
+		if(!QDELETED(A) && !QDELETED(actor))
+			A.attack_hand(actor)
+	catch(var/exception/e)
+		pending--
+		throw e
+	pending--
 
 /// Wszystkie obiekty w komorze (obiekt wielokratkowy liczy się raz)
 /datum/unit_test/test_chamber_smoke/proc/chamber_movables(datum/test_chamber/chamber)
@@ -77,8 +107,17 @@
 		for(var/atom/movable/AM as anything in T)
 			.[AM] = TRUE
 
-/// Przedmiot w rękę, użycie, cios w małpę, rzut
+/// Przedmiot w rękę, użycie, cios w małpę, rzut; licznik pending wraca też po runtime'ie
 /datum/unit_test/test_chamber_smoke/proc/exercise_item(mob/living/carbon/human/actor, mob/living/target, obj/item/I)
+	pending++
+	try
+		use_item(actor, target, I)
+	catch(var/exception/e)
+		pending--
+		throw e
+	pending--
+
+/datum/unit_test/test_chamber_smoke/proc/use_item(mob/living/carbon/human/actor, mob/living/target, obj/item/I)
 	if(QDELETED(I) || QDELETED(actor) || I.anchored || !isturf(I.loc))
 		return
 	if(!actor.put_in_active_hand(I))
@@ -93,5 +132,6 @@
 			I.throw_at(throw_target, 3, 1, actor)
 
 #undef SMOKE_SETTLE_TIME
+#undef SMOKE_PENDING_TIMEOUT
 
 #endif
