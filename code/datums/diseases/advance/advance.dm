@@ -299,16 +299,17 @@
 		spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 		spread_text = "Brak"
 	else
-		switch(transmission)
-			if(-INFINITY to 5)
-				spread_flags = DISEASE_SPREAD_BLOOD
-				spread_text = "Przez krew"
-			if(6 to 10)
-				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS
-				spread_text = "Przez płyny ustrojowe"
-			if(11 to INFINITY)
-				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN
-				spread_text = "Przez kontakt"
+		// AQ EDIT START - lower thresholds (were 6 and 11): the disease2 symptoms have almost no transmission, so their viruses never spread by touch
+		if(transmission >= DISEASE_CONTACT_SKIN_TRANSMISSION)
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN
+			spread_text = "Przez kontakt"
+		else if(transmission >= DISEASE_CONTACT_FLUIDS_TRANSMISSION)
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS
+			spread_text = "Przez płyny ustrojowe"
+		else
+			spread_flags = DISEASE_SPREAD_BLOOD
+			spread_text = "Przez krew"
+		// AQ EDIT END
 
 /datum/disease/advance/proc/SetDanger(level_sev)
 	switch(level_sev)
