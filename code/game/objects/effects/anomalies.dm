@@ -7,10 +7,12 @@
 #define ANOMALY_DELIMBER_ZONES list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 #define ANOMALY_DELIMBER_ZONE_CHEST typesof(/obj/item/bodypart/chest)
 #define ANOMALY_DELIMBER_ZONE_HEAD typesof(/obj/item/bodypart/head)
-#define ANOMALY_DELIMBER_ZONE_L_LEG typesof(/obj/item/bodypart/l_arm)
-#define ANOMALY_DELIMBER_ZONE_R_LEG typesof(/obj/item/bodypart/r_arm)
-#define ANOMALY_DELIMBER_ZONE_L_ARM typesof(/obj/item/bodypart/l_leg)
-#define ANOMALY_DELIMBER_ZONE_R_ARM typesof(/obj/item/bodypart/r_leg)
+// AQ EDIT START - ręce i nogi były zamienione
+#define ANOMALY_DELIMBER_ZONE_L_LEG typesof(/obj/item/bodypart/l_leg)
+#define ANOMALY_DELIMBER_ZONE_R_LEG typesof(/obj/item/bodypart/r_leg)
+#define ANOMALY_DELIMBER_ZONE_L_ARM typesof(/obj/item/bodypart/l_arm)
+#define ANOMALY_DELIMBER_ZONE_R_ARM typesof(/obj/item/bodypart/r_arm)
+// AQ EDIT END
 
 /////////////////////
 
@@ -483,7 +485,7 @@
 		var/picked_zone = pick(ANOMALY_DELIMBER_ZONES)
 		var/obj/item/bodypart/picked_user_part = target.get_bodypart(picked_zone)
 		if(!picked_user_part)
-			return
+			continue // AQ EDIT - return kończył cały impuls na pierwszym celu bez kończyny
 		var/obj/item/bodypart/picked_part
 		switch(picked_zone)
 			if(BODY_ZONE_HEAD)
