@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(bloodcult_personal_rituals, list(
 	/datum/bloodcult_ritual/altar/excentric,
 	/datum/bloodcult_ritual/altar/unholy,
 	/datum/bloodcult_ritual/suicide_tome,
-	/datum/bloodcult_ritual/suicide_soulblade,
+	//datum/bloodcult_ritual/suicide_soulblade, // nic nie wysyła klucza suicide_soulblade (soulblade bez suicide_act), rytuału nie da się wykonać
 	))
 
 /datum/bloodcult_ritual

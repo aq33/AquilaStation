@@ -15,7 +15,7 @@
 /datum/bloodcult_ritual/suicide_soulblade/pre_conditions(datum/antagonist/cult/potential)
 	if (potential)
 		owner = potential
-	if (potential?.devotion > DEVOTION_TIER_3)
+	if (potential?.get_devotion_rank() >= DEVOTION_TIER_3)
 		return TRUE
 	return FALSE
 
