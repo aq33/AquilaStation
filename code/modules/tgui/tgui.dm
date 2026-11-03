@@ -129,7 +129,7 @@
 		/datum/asset/json/icon_ref_map)) // AQ EDIT - icons for DmIcon, aquila/code/modules/asset_cache/json.dm
 	for(var/datum/asset/asset in src_object.ui_assets(user))
 		flush_queue |= window.send_asset(asset)
-	if (flush_queue)
+	if (flush_queue && user?.client) // AQ EDIT - send_asset() sleeps, the client may be gone
 		user.client.browse_queue_flush()
 
 /**
