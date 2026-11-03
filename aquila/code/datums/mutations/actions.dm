@@ -67,6 +67,7 @@
 /datum/mutation/armblade
 	name = "Ręka-ostrze"
 	desc = "Przerażająca mutacja, dzięki której nosiciel zmienia rękę w groteskowe ostrze z kości i mięsa."
+	quality = POSITIVE
 	locked = TRUE
 	text_gain_indication = "<span class='warning'>Czujesz, jak kości w twoim ramieniu boleśnie się przekształcają!</span>"
 	text_lose_indication = "<span class='warning'>Twoje ramiona boleśnie wracają do normy.</span>"
