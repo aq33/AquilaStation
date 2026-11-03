@@ -12,8 +12,8 @@
 
 /datum/unit_test/test_chamber_smoke
 	priority = TEST_DEFAULT
-	/// Interakcje zestawu, które jeszcze nie wróciły
-	var/pending = 0
+	/// Nazwa zestawu -> ile jego interakcji jeszcze nie wróciło; osobno, bo spóźniona interakcja zestawu nie może zdjąć licznika następnego
+	var/list/pending = list()
 
 /datum/unit_test/test_chamber_smoke/Run()
 	var/datum/test_chamber/chamber = get_test_chamber()
@@ -34,7 +34,7 @@
 		var/runtimes_before = GLOB.total_runtimes
 		var/hard_dels_before = SSgarbage.totaldels
 		var/start = REALTIMEOFDAY
-		pending = 0
+		pending[name] = 0
 
 		// Część zestawów (zdrajca, darkspawn) robi setup() tylko dla człowieka z umysłem
 		var/mob/living/carbon/human/kit_user = new(chamber.arrival)
@@ -50,13 +50,13 @@
 			if(QDELETED(AM))
 				continue
 			if(isitem(AM))
-				INVOKE_ASYNC(src, PROC_REF(exercise_item), new /mob/living/carbon/human(chamber.arrival), target, AM)
+				INVOKE_ASYNC(src, PROC_REF(exercise_item), name, new /mob/living/carbon/human(chamber.arrival), target, AM)
 			else if(isliving(AM))
 				var/mob/living/L = AM
 				if(!L.key)
-					INVOKE_ASYNC(src, PROC_REF(exercise_hand), actor, L)
+					INVOKE_ASYNC(src, PROC_REF(exercise_hand), name, actor, L)
 			else if(isobj(AM))
-				INVOKE_ASYNC(src, PROC_REF(exercise_hand), actor, AM)
+				INVOKE_ASYNC(src, PROC_REF(exercise_hand), name, actor, AM)
 			CHECK_TICK
 		var/spawn_ms = (REALTIMEOFDAY - start) * 100
 
@@ -72,9 +72,10 @@
 			samples++
 		// Interakcje, które śpią dłużej, kończą się tutaj, a nie w trakcie następnego zestawu
 		var/pending_until = world.time + SMOKE_PENDING_TIMEOUT
-		while(pending > 0 && world.time < pending_until)
+		while(pending[name] > 0 && world.time < pending_until)
 			sleep(world.tick_lag)
-		var/unfinished = pending
+		// Nie Fail: interakcja może po prostu długo czekać (do_after bez klienta), a jej runtime i tak trafi do tests.log
+		var/unfinished = pending[name]
 
 		// Reset po zestawie liczy się do niego: runtime'y z Destroy() i usunięcia zostają przy właściwym zestawie
 		if(!chamber.reset())
@@ -90,15 +91,15 @@
 		Fail("Kits with runtimes: [english_list(failed_kits)]")
 
 /// Klik ręką w maszynę lub moba; licznik pending wraca też po runtime'ie
-/datum/unit_test/test_chamber_smoke/proc/exercise_hand(mob/living/carbon/human/actor, atom/A)
-	pending++
+/datum/unit_test/test_chamber_smoke/proc/exercise_hand(kit_name, mob/living/carbon/human/actor, atom/A)
+	pending[kit_name]++
 	try
 		if(!QDELETED(A) && !QDELETED(actor))
 			A.attack_hand(actor)
 	catch(var/exception/e)
-		pending--
+		pending[kit_name]--
 		throw e
-	pending--
+	pending[kit_name]--
 
 /// Wszystkie obiekty w komorze (obiekt wielokratkowy liczy się raz)
 /datum/unit_test/test_chamber_smoke/proc/chamber_movables(datum/test_chamber/chamber)
@@ -108,14 +109,14 @@
 			.[AM] = TRUE
 
 /// Przedmiot w rękę, użycie, cios w małpę, rzut; licznik pending wraca też po runtime'ie
-/datum/unit_test/test_chamber_smoke/proc/exercise_item(mob/living/carbon/human/actor, mob/living/target, obj/item/I)
-	pending++
+/datum/unit_test/test_chamber_smoke/proc/exercise_item(kit_name, mob/living/carbon/human/actor, mob/living/target, obj/item/I)
+	pending[kit_name]++
 	try
 		use_item(actor, target, I)
 	catch(var/exception/e)
-		pending--
+		pending[kit_name]--
 		throw e
-	pending--
+	pending[kit_name]--
 
 /datum/unit_test/test_chamber_smoke/proc/use_item(mob/living/carbon/human/actor, mob/living/target, obj/item/I)
 	if(QDELETED(I) || QDELETED(actor) || I.anchored || !isturf(I.loc))
