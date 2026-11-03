@@ -214,7 +214,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			request.handled = TRUE
 			request.autoaccept = FALSE
 			message_admins("[key_name_admin(usr)] przejmuje prośbę o drużynę reagowania od [ADMIN_FULLMONTY(request.owner)].")
-			INVOKE_ASYNC(usr.client.holder, TYPE_PROC_REF(/datum/admins, makeEmergencyresponseteam))
+			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, manual_response_team), usr.client.holder)
 			return TRUE
 		// AQ EDIT END
 		if ("setcode")

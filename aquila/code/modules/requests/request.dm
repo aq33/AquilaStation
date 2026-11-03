@@ -108,7 +108,8 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę do: [ertemplate.polldesc]?", ROLE_ERT, req_hours = 0)
 		var/teamSpawned = FALSE
 		if(candidates.len <= 0)
-			message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"].")
+			message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Można ją wysłać ręcznie przyciskiem ERT.")
+			handled = FALSE // Nothing was sent, an admin may still answer the request
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 			return FALSE
 		else
@@ -168,7 +169,8 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 			if (teamSpawned)
 				message_admins("Pojawia się [ertemplate.polldesc] z misją: [ertemplate.mission]")
 			else
-				message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: brak wolnych punktów odrodzenia ERT albo zgłoszeni gracze wyszli.")
+				message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: brak wolnych punktów odrodzenia ERT albo zgłoszeni gracze wyszli. Można ją wysłać ręcznie przyciskiem ERT.")
+				handled = FALSE
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 
 			//Open the Armory doors
@@ -232,13 +234,23 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		woken++
 
 	if(!woken)
-		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"].")
+		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Można spróbować ponownie przyciskiem WYBUDŹ.")
+		handled = FALSE // Nobody woke up, an admin may try again
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 
 	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 	return woken
+
+/// An admin answers the response team request with the ERT maker. Cancelling it or finding nobody frees the request again
+/datum/request/proc/manual_response_team(datum/admins/admin)
+	if(admin?.makeEmergencyresponseteam())
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana.", "Centrala"), 2 SECONDS)
+		return TRUE
+	handled = FALSE
+	message_admins("Prośba o drużynę reagowania od [ADMIN_FULLMONTY(owner)] nadal czeka: drużyna nie została wysłana.")
+	return FALSE
 
 #undef REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME
 #undef ERT_REQUEST_REJECTED
