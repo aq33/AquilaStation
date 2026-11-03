@@ -297,6 +297,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				QDEL_NULL(I)
 
 	for(var/path in mutant_organs)
+		// AQ EDIT START - every heal or revive dropped another copy (an IPC's power cord implant piled up on the floor)
+		var/obj/item/organ/existing = C.getorgan(path)
+		if(existing)
+			if(!replace_current)
+				continue
+			existing.Remove(C, TRUE)
+			qdel(existing)
+		// AQ EDIT END
 		var/obj/item/organ/I = new path()
 		I.Insert(C)
 
