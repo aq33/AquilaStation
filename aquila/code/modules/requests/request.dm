@@ -91,6 +91,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	message_admins("Za [REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME] s drużyna reagowania, o którą prosi [ADMIN_FULLMONTY(owner)], zostanie wysłana automatycznie. (<a href='byond://?src=[REF(src)];cancel_ert=1'>ANULUJ</a>)")
 	sleep(REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME SECONDS)
 	if(autoaccept) // pod tym jest kopiuj wklej z one_click_antag.dm
+		autoaccept = FALSE // Too late to cancel from now on
 		var/message = "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana, jednakże wszystkie drużyny są obecnie zajęte. Za niedogodności przepraszamy."
 		var/datum/ert/ertemplate
 		var/ert_type = pick_ert_team_type()
@@ -102,6 +103,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę do: [ertemplate.polldesc]?", ROLE_ERT, req_hours = 0)
 		var/teamSpawned = FALSE
 		if(candidates.len <= 0)
+			message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"].")
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 			return FALSE
 		else
@@ -129,7 +131,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 				var/spawnloc = spawnpoints[numagents]
 				var/mob/dead/observer/chosen_candidate = pick(candidates)
 				candidates -= chosen_candidate
-				if(!chosen_candidate.key)
+				if(!chosen_candidate.key || !chosen_candidate.client)
 					continue
 
 				//Spawn the body
@@ -160,6 +162,9 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 
 			if (teamSpawned)
 				message_admins("Pojawia się [ertemplate.polldesc] z misją: [ertemplate.mission]")
+			else
+				message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: brak wolnych punktów odrodzenia ERT albo zgłoszeni gracze wyszli.")
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 
 			//Open the Armory doors
 			if(ertemplate.opendoors)
@@ -180,7 +185,10 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi z kriostazy została odrzucona.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 	autoaccept = FALSE // Too late to cancel from now on
+	return wake_crew_now()
 
+/// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.
+/datum/request/proc/wake_crew_now()
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz wrócić do gry jako [JOB_NAME_ASSISTANT] wybudzony z kriostazy?", JOB_NAME_ASSISTANT, ignore_category = FALSE)
 	var/list/cryopods = list()
 	for(var/obj/machinery/cryopod/pod in GLOB.machines)
@@ -216,6 +224,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		woken++
 
 	if(!woken)
+		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"].")
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 

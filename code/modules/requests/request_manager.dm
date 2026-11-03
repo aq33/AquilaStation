@@ -192,6 +192,22 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			var/mob/M = request.owner?.mob
 			usr.client.admin_headset_message(M, request.req_type == REQUEST_SYNDICATE ? RADIO_CHANNEL_SYNDICATE : RADIO_CHANNEL_CENTCOM)
 			return TRUE
+		// AQ EDIT START - admins can answer crew wake and response team requests by hand
+		if ("wake")
+			if (request.req_type != REQUEST_CREW_WAKE)
+				return TRUE
+			request.autoaccept = FALSE
+			message_admins("[key_name_admin(usr)] zatwierdza wybudzenie załogi na prośbę [ADMIN_FULLMONTY(request.owner)].")
+			log_admin("[key_name(usr)] approved the crew wake request of [key_name(request.owner)].")
+			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, wake_crew_now))
+			return TRUE
+		if ("ert")
+			if (request.req_type != REQUEST_ERT)
+				return TRUE
+			request.autoaccept = FALSE
+			INVOKE_ASYNC(usr.client.holder, TYPE_PROC_REF(/datum/admins, makeEmergencyresponseteam))
+			return TRUE
+		// AQ EDIT END
 		if ("setcode")
 			if (request.req_type != REQUEST_NUKE)
 				to_chat(usr, "Nie możesz ustawić kodu atomówki dla prośby, która nie dotyczy kodu atomówki!")
