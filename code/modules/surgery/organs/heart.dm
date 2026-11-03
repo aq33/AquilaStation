@@ -6,7 +6,7 @@
 	slot = ORGAN_SLOT_HEART
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = 5 * STANDARD_ORGAN_DECAY		//designed to fail about 5 minutes after death
+	decay_factor = 5 * STANDARD_ORGAN_DECAY		//fails about 9 minutes after death // AQ EDIT - komentarz: ok. 9 min (SSmobs co 2 s), a nie 5
 
 	low_threshold_passed = "<span class='info'>W klatce piersiowej pojawia się kłujący ból, który zaraz znika...</span>"
 	high_threshold_passed = "<span class='warning'>Coś boli cię w klatce piersiowej i ból nie ustępuje. Zauważasz, że oddychasz o wiele szybciej niż wcześniej.</span>"
