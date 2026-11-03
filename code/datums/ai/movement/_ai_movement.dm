@@ -16,7 +16,8 @@
 	controller.pathing_attempts = 0
 	moving_controllers -= controller
 
-	SSmove_manager.stop_looping(controller.pawn, SSai_movement)
+	if(controller.pawn) // AQ EDIT - zachowanie kończy się po usunięciu moba
+		SSmove_manager.stop_looping(controller.pawn, SSai_movement)
 
 /datum/ai_movement/proc/increment_pathing_failures(datum/ai_controller/controller)
 	controller.pathing_attempts++
