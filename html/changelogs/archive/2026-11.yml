@@ -64,3 +64,9 @@
       ma w sobie materiały.
   - admin: Komora testowa ma na stałe kącik chirurgiczny i stojaki z bronią, a zestawy
       PR-ów mają kroki z oczekiwanym wynikiem i komplet potrzebnych przedmiotów.
+'2026-11-03':
+  Joker66613:
+  - bugfix: Małpa podnosząca pałkę kontraktora, usunięcie infiltratora lub osoby naznaczonej
+      przez voidwalkera, artefakt zniszczony przed cofnięciem przemiany w zwierzę
+      i AI kończące ruch po śmierci moba nie rzucają już błędów.
+  - code_imp: Lokalny smoke test wszystkich zestawów komory testowej.
