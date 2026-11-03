@@ -240,6 +240,7 @@
 		get_asset_datum(/datum/asset/spritesheet/antagonists),
 		get_asset_datum(/datum/asset/spritesheet/antagonists/second),
 		get_asset_datum(/datum/asset/spritesheet/antagonists/third),
+		get_asset_datum(/datum/asset/spritesheet/antagonists/fourth),
 	)
 
 /datum/preference_middleware/antags/proc/set_antags(list/params, mob/user)
@@ -385,9 +386,9 @@
 		cache[type] = get_preview_icon(32)
 	return cache[type]
 
-/// Jedna ikona BYOND ma ograniczony rozmiar: po około 40 ikonach 96x96 kolejne nie wchodzą (bad icon operation),
-/// więc ikony ról dzielimy na kilka arkuszy po ANTAG_ICONS_PER_SHEET
-#define ANTAG_ICONS_PER_SHEET 30
+/// Jedna ikona BYOND ma ograniczony rozmiar: przy postaciach w strojach już po około 22 ikonach 96x96 kolejne nie wchodzą
+/// (bad icon operation), więc ikony ról dzielimy na kilka arkuszy po ANTAG_ICONS_PER_SHEET
+#define ANTAG_ICONS_PER_SHEET 20
 
 /// Nazwa arkusza z ikoną danej roli
 /proc/antag_icon_sheet(pref_type)
@@ -413,6 +414,9 @@
 
 /datum/asset/spritesheet/antagonists/third
 	name = "antagonists3"
+
+/datum/asset/spritesheet/antagonists/fourth
+	name = "antagonists4"
 
 #undef ANTAG_ICONS_PER_SHEET
 
