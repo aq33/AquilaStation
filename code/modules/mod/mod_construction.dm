@@ -243,10 +243,10 @@
 				qdel(src)
 				user.put_in_hands(mod)
 				mod.balloon_alert(user, "jednostka gotowa")
-			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
+			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Deconstruct // AQ EDIT - to demontaż, nie budowa
 				if(part.use_tool(src, user, 0, volume=30))
 					balloon_alert(user, "konstrukcja rozkręcona")
-					step = SCREWED_ASSEMBLY_STEP
+					step = WRENCHED_ASSEMBLY_STEP // AQ EDIT - cofnięcie do kroku z kluczem, wcześniej krok się nie zmieniał
 	update_icon_state()
 
 /obj/item/mod/construction/shell/update_icon_state()
