@@ -14,10 +14,10 @@
 
 /datum/unit_test/aquila_ethanol_hydration/Run()
 	var/datum/reagent/consumable/ethanol/booze = new /datum/reagent/consumable/ethanol/beer
-	TEST_ASSERT_EQUAL(booze.get_hydration_factor(), LERP(15, 0, booze.boozepwr / 100), "Beer hydration does not follow its booze power")
+	TEST_ASSERT_EQUAL(booze.get_hydration_factor(), LERP(15, 0, booze.boozepwr / 100) * REAGENTS_METABOLISM, "Beer hydration does not follow its booze power")
 	qdel(booze)
 	booze = new /datum/reagent/consumable/ethanol
-	TEST_ASSERT_EQUAL(booze.get_hydration_factor(), LERP(15, 0, 0.65), "Ethanol hydration does not follow its booze power")
+	TEST_ASSERT_EQUAL(booze.get_hydration_factor(), LERP(15, 0, 0.65) * REAGENTS_METABOLISM, "Ethanol hydration does not follow its booze power")
 	qdel(booze)
 
 #undef TEST_ASSERT
