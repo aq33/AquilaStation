@@ -104,12 +104,14 @@
 			))
 		// initialize sleeps, so client can become null
 		if(!user?.client)
+			close(can_be_suspended = FALSE) // AQ EDIT - the window was already shown, do not leave it blank and locked
 			return FALSE
 	else
 		window.send_message("ping")
 	send_assets()
 	// send_assets sleeps, so client can become null.
 	if(!user?.client)
+		close(can_be_suspended = FALSE) // AQ EDIT - the window was already shown, do not leave it blank and locked
 		return FALSE
 	window.send_message("update", get_payload(
 		with_data = TRUE,
