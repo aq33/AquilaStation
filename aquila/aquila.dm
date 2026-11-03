@@ -1671,6 +1671,7 @@
 #include "code\modules\unit_tests\aquila_lag_switch.dm"
 #include "code\modules\unit_tests\aquila_ticket_db_log.dm"
 #include "code\modules\unit_tests\aquila_player_browser.dm"
+#include "code\modules\unit_tests\test_chamber_smoke.dm"
 #include "code\modules\unit_tests\bingle.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\byondui_cleanup.dm"

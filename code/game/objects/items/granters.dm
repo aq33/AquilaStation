@@ -324,7 +324,7 @@
 	if(!martial)
 		return TRUE
 	var/datum/martial_art/MA = martial
-	if(user.mind.has_martialart(initial(MA.id)))
+	if(user.mind?.has_martialart(initial(MA.id))) // AQ EDIT - mob bez umysłu
 		to_chat(user,"<span class='warning'>Już znasz tę sztukę walki: [martialname]!</span>")
 		return TRUE
 	return FALSE

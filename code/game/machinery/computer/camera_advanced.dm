@@ -158,7 +158,7 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 	if(should_supress_view_changes )
-		user.client.view_size.supress()
+		user.client?.view_size.supress() // AQ EDIT - użytkownik bez klienta
 
 /mob/camera/ai_eye/remote
 	name = "nieaktywne oko kamery"

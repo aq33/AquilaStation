@@ -115,6 +115,10 @@
 	for(var/turf/T as anything in magnet.get_cage_turfs())
 		if(!is_shipbreak_area(T))
 			return "Cage turf [T.x],[T.y] is not in the shipbreaking area while a wreck is loaded"
+	// Wybuchy z damage_wreck() SSexplosions kończy w kolejnych tickach; bez czekania potrafiły zabić tnącego (losowo padający test)
+	var/explosions_deadline = world.time + 30 SECONDS
+	while(SSexplosions.is_exploding() && world.time < explosions_deadline)
+		sleep(world.tick_lag)
 	var/error = check_rayne_cutting(magnet.wreck_turfs, magnet.current_wreck.mappath, TRUE)
 	magnet.push_away_asteroid()
 	if(error)
