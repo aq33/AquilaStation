@@ -19,15 +19,12 @@
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "Jesteś rojowcem, bronią dawno wymarłej cywilizacji."
-	flavour_text = {"
-	<b>Jesteś rojowcem, bronią dawno wymarłej cywilizacji. Dopóki nie otrzymasz dalszych rozkazów od swoich pierwotnych panów, musisz pochłaniać i się powielać.</b>
-	<b>Kliknięcie dowolnego obiektu spróbuje go pochłonąć - rozłożyć na części, zniszczyć albo, jeśli się uda, wchłonąć jego materiały.</b>
-	<b>Kliknięcie istoty z Ctrl spróbuje usunąć ją z okolicy i umieścić w bezpiecznym miejscu do przechowania.</b>
-	<b>Cele:</b>
-	1. Pochłaniaj zasoby i powielaj się, dopóki zasoby się nie skończą.
-	2. Dopilnuj, by to miejsce nadawało się do późniejszej inwazji; nie rób niczego, co uczyniłoby je niebezpiecznym lub nieprzyjaznym.
-	3. Zasoby biologiczne zostaną zebrane później; nie krzywdź ich.
-	"}
+	flavour_text = {"Dopóki nie otrzymasz dalszych rozkazów od swoich pierwotnych panów, musisz pochłaniać zasoby i się powielać.
+Kliknięcie dowolnego obiektu spróbuje go pochłonąć: rozłożyć na części, zniszczyć albo wchłonąć jego materiały.
+Ctrl+klik na istocie przeniesie ją z okolicy w bezpieczne miejsce do przechowania."}
+	important_info = {"1. Pochłaniaj zasoby i powielaj się, dopóki zasoby się nie skończą.
+2. Dopilnuj, by to miejsce nadawało się do późniejszej inwazji: nie rób niczego, co uczyniłoby je niebezpiecznym lub nieprzyjaznym.
+3. Zasoby biologiczne zostaną zebrane później: nie krzywdź ich."}
 
 /obj/effect/mob_spawn/swarmer/Initialize(mapload)
 	. = ..()
