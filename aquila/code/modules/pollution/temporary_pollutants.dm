@@ -28,7 +28,7 @@
 	if(QDELETED(my_turf) || COOLDOWN_FINISHED(src, expiry_time))
 		qdel(src)
 		return
-	my_turf.pollute_turf(pollutant_type, pollutant_amount * delta_time, POLLUTION_PASSIVE_EMITTER_CAP) // AQUILA - capped like the other passive sources
+	my_turf.pollute_turf(pollutant_type, pollutant_amount, POLLUTION_PASSIVE_EMITTER_CAP) // AQUILA - capped and per cycle, like the other passive sources
 
 /datum/component/temporary_pollution_emission/proc/wash_off()
 	SIGNAL_HANDLER
