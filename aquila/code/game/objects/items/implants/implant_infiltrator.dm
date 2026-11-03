@@ -31,7 +31,8 @@
 		target.remove_status_effect(/datum/status_effect/infiltrator_pinpointer)
 		T.visible_message(span_notice("[src] wybucha deszczem iskier!"))
 		do_sparks(8, FALSE, T)
-		qdel(src)
+		if(!QDELETED(src)) // Destroy() implantu sam woła removed()
+			qdel(src)
 
 /obj/item/implant/infiltrator/activate()
 	var/obj/item/stack/telecrystal/TC = imp_in.is_holding_item_of_type(/obj/item/stack/telecrystal)

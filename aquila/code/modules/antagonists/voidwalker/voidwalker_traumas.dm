@@ -51,7 +51,8 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human = owner
-		human.physiology.brute_mod /= brute_mod
+		if(human.physiology) // przy usuwaniu człowieka physiology znika przed traumami
+			human.physiology.brute_mod /= brute_mod
 	texture_limbs(null)
 	return ..()
 
