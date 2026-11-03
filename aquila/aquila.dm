@@ -207,6 +207,7 @@
 #include "code\datums\fonts\tiny_unicode.dm"
 #include "code\game\machinery\status_display.dm"
 #include "code\game\machinery\digital_clock.dm"
+#include "code\game\machinery\drone_dispenser.dm"
 #include "code\game\machinery\suit_storage_unit.dm"
 #include "code\game\machinery\telecomms\computers\telecomms_consoles.dm"
 #include "code\game\machinery\telecomms\machines\hub.dm"
