@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(surgery_catalog_sections, list(
 		else
 			tool_name = GLOB.surgery_tool_names[implement] || "[implement]"
 		var/multiplier = implements[implement] || 1
-		tools += list(list("name" = tool_name, "speed" = round(100 / multiplier)))
+		tools += list(list("name" = tool_name, "speed" = round(100 / multiplier, 1)))
 	return tools
 
 /// Nazwa zalecanego (pierwszego) narzędzia po polsku
