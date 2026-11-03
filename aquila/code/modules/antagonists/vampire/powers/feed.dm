@@ -39,6 +39,8 @@
 	var/masquerade_breached = FALSE
 	/// Are we at a stage of the process where we can be noticed?
 	var/currently_feeding = FALSE
+	/// Czy ofiara żyła, gdy zaczęliśmy żerować (zabicie żerowaniem kosztuje Człowieczeństwo)
+	var/target_was_alive = FALSE
 
 /datum/action/vampire/targeted/feed/can_use()
 	. = ..()
@@ -180,6 +182,7 @@
 
 	currently_feeding = FALSE
 	masquerade_breached = FALSE
+	target_was_alive = feed_target.stat != DEAD
 
 	if(!living_owner.combat_mode)
 
@@ -423,6 +426,7 @@
 	vampiredatum_power.rank_up(levels_absorbed, TRUE)
 
 	vampiredatum_power.adjust_humanity(-victim.humanity / 3)
+	target_was_alive = FALSE // diablerie ma własną karę do Człowieczeństwa
 
 	victim.final_death()
 
@@ -459,6 +463,10 @@
 		if(feed_target.stat == DEAD)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
 			humanity_deducted = TRUE
+			// Picie ze zwłok nic nie kosztuje, ale zabicie żerowaniem tak
+			if(target_was_alive)
+				to_chat(owner, span_userdanger("Zabijasz ofiarę..."))
+				vampiredatum_power.adjust_humanity(-1)
 
 		if(feed_fatal && !humanity_deducted)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
@@ -482,6 +490,7 @@
 
 	feed_fatal = FALSE
 	humanity_deducted = FALSE
+	target_was_alive = FALSE
 
 	target_ref = null
 
