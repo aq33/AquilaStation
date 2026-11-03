@@ -196,6 +196,10 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 		if ("wake")
 			if (request.req_type != REQUEST_CREW_WAKE)
 				return TRUE
+			if (request.handled)
+				to_chat(usr, "Ta prośba jest już obsługiwana.")
+				return TRUE
+			request.handled = TRUE
 			request.autoaccept = FALSE
 			message_admins("[key_name_admin(usr)] zatwierdza wybudzenie załogi na prośbę [ADMIN_FULLMONTY(request.owner)].")
 			log_admin("[key_name(usr)] approved the crew wake request of [key_name(request.owner)].")
@@ -204,7 +208,12 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 		if ("ert")
 			if (request.req_type != REQUEST_ERT)
 				return TRUE
+			if (request.handled)
+				to_chat(usr, "Ta prośba jest już obsługiwana.")
+				return TRUE
+			request.handled = TRUE
 			request.autoaccept = FALSE
+			message_admins("[key_name_admin(usr)] przejmuje prośbę o drużynę reagowania od [ADMIN_FULLMONTY(request.owner)].")
 			INVOKE_ASYNC(usr.client.holder, TYPE_PROC_REF(/datum/admins, makeEmergencyresponseteam))
 			return TRUE
 		// AQ EDIT END

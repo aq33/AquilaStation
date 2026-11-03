@@ -3,6 +3,8 @@
 /datum/request
 	/// For nuke code requests; auto-fulfillment
 	var/autoaccept
+	/// Someone already started fulfilling this request (the automatic poll or an admin), nobody may start it again
+	var/handled = FALSE
 
 /datum/request/Topic(href, href_list)
 	. = ..()
@@ -90,8 +92,11 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	autoaccept = TRUE
 	message_admins("Za [REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME] s drużyna reagowania, o którą prosi [ADMIN_FULLMONTY(owner)], zostanie wysłana automatycznie. (<a href='byond://?src=[REF(src)];cancel_ert=1'>ANULUJ</a>)")
 	sleep(REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME SECONDS)
+	if(handled) // An admin took the request over during the wait
+		return FALSE
 	if(autoaccept) // pod tym jest kopiuj wklej z one_click_antag.dm
 		autoaccept = FALSE // Too late to cancel from now on
+		handled = TRUE
 		var/message = "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana, jednakże wszystkie drużyny są obecnie zajęte. Za niedogodności przepraszamy."
 		var/datum/ert/ertemplate
 		var/ert_type = pick_ert_team_type()
@@ -181,10 +186,13 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	autoaccept = TRUE
 	message_admins("Za [REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME] s załoga zostanie automatycznie wybudzona z kriostazy na prośbę [ADMIN_FULLMONTY(owner)]. (<a href='byond://?src=[REF(src)];cancel_wake=1'>ANULUJ</a>)")
 	sleep(REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME SECONDS)
+	if(handled) // An admin took the request over during the wait
+		return FALSE
 	if(!autoaccept)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi z kriostazy została odrzucona.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 	autoaccept = FALSE // Too late to cancel from now on
+	handled = TRUE
 	return wake_crew_now()
 
 /// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.
