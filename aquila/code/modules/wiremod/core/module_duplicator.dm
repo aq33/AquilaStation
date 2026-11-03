@@ -202,7 +202,7 @@
 		if(library.add_design(data))
 			to_chat(user, span_notice("Wzór „[data["name"]]” trafił też do twojej biblioteki układów: w każdym duplikatorze, także w kolejnych rundach, znajdziesz go w kategorii „Moje układy”."))
 		else
-			to_chat(user, span_warning("Twoja biblioteka układów jest pełna. Usuń z niej coś w oknie duplikatora, żeby zapisać nowy wzór na kolejne rundy."))
+			to_chat(user, span_warning("Nie udało się zapisać wzoru w twojej bibliotece układów: jest pełna albo serwer nie mógł zapisać pliku. Usuń z niej coś w oknie duplikatora i spróbuj ponownie."))
 
 	balloon_alert(user, "zapisano moduł")
 	playsound(src, 'sound/machines/ping.ogg', 50)

@@ -43,13 +43,18 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	if(length(designs) > CIRCUIT_LIBRARY_MAX_DESIGNS)
 		designs.Cut(CIRCUIT_LIBRARY_MAX_DESIGNS + 1)
 
+/// Zapisuje przez plik tymczasowy, żeby nieudany zapis nie skasował starej biblioteki. FALSE, gdy się nie udało.
 /datum/circuit_library/proc/save()
 	var/path = save_path()
-	fdel(path)
-	text2file(json_encode(designs), path)
+	var/temp_path = "[path].tmp"
+	fdel(temp_path)
+	if(!text2file(json_encode(designs), temp_path))
+		return FALSE
+	. = fcopy(temp_path, path) // fcopy overwrites the old file only once the copy works
+	fdel(temp_path)
 
 /// Dodaje wzór z duplikatora (materiały jako datumy). Wzór o tej samej nazwie jest nadpisywany.
-/// Zwraca FALSE, gdy biblioteka jest pełna.
+/// Zwraca FALSE, gdy biblioteka jest pełna albo nie udało się jej zapisać.
 /datum/circuit_library/proc/add_design(list/scanned)
 	var/list/materials = list()
 	for(var/datum/material/material as anything in scanned["materials"])
@@ -64,14 +69,19 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	for(var/i in 1 to length(designs))
 		var/list/existing = designs[i]
 		if(existing["name"] == design["name"])
+			var/list/old_design = designs[i]
 			designs[i] = design
-			save()
-			return TRUE
+			if(save())
+				return TRUE
+			designs[i] = old_design
+			return FALSE
 	if(length(designs) >= CIRCUIT_LIBRARY_MAX_DESIGNS)
 		return FALSE
 	designs += list(design)
-	save()
-	return TRUE
+	if(save())
+		return TRUE
+	designs -= list(design)
+	return FALSE
 
 /datum/circuit_library/proc/remove_design(index)
 	if(index < 1 || index > length(designs))
