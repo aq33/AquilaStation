@@ -1603,6 +1603,7 @@
 #include "code\modules\wiremod\core\duplicator.dm"
 #include "code\modules\wiremod\core\integrated_circuit.dm"
 #include "code\modules\wiremod\core\marker.dm"
+#include "code\modules\wiremod\core\circuit_library.dm"
 #include "code\modules\wiremod\core\module_duplicator.dm"
 #include "code\modules\wiremod\core\port.dm"
 #include "code\modules\wiremod\core\usb_cable.dm"
@@ -1668,6 +1669,7 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
+#include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
 #include "code\modules\unit_tests\aquila_lag_switch.dm"
