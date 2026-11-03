@@ -260,7 +260,7 @@ const PatientStateNextOperationsView = (props: PatientStateViewProps) => {
                 fluid
                 tooltip={
                   <Stack vertical>
-                    {operation.priority && (
+                    {!!operation.priority && (
                       <Stack.Item color="orange">
                         <Icon name="exclamation" mr={1} />
                         Zalecany następny krok
@@ -310,7 +310,7 @@ const PatientStateNextOperationsView = (props: PatientStateViewProps) => {
                   >
                     {operation.name}
                   </Stack.Item>
-                  {operation.priority && (
+                  {!!operation.priority && (
                     <Stack.Item>
                       <Blink interval={500} time={500}>
                         <Icon name="exclamation" />
