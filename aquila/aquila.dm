@@ -1666,6 +1666,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
+#include "code\modules\unit_tests\aquila_audyt_regresje.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
