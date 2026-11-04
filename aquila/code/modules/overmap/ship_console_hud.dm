@@ -15,57 +15,57 @@
 /// Warstwy paneli: rodzaj => nazwa warstwy => plik. Ścieżki muszą być literałami, żeby trafiły do .rsc.
 GLOBAL_LIST_INIT(aquila_ship_console_layers, list(
 	AQUILA_CONSOLE_FLIGHT = list(
-		"monitor" = 'nsv13/icons/overmap/gui/flight_console/monitor.png',
-		"brake_on" = 'nsv13/icons/overmap/gui/flight_console/brake_on.png',
-		"brake_off" = 'nsv13/icons/overmap/gui/flight_console/brake_off.png',
-		"hull0" = 'nsv13/icons/overmap/gui/flight_console/hull0.png',
-		"hull25" = 'nsv13/icons/overmap/gui/flight_console/hull25.png',
-		"hull50" = 'nsv13/icons/overmap/gui/flight_console/hull50.png',
-		"hull75" = 'nsv13/icons/overmap/gui/flight_console/hull75.png',
-		"hull100" = 'nsv13/icons/overmap/gui/flight_console/hull100.png',
-		"rotation_mouse" = 'nsv13/icons/overmap/gui/flight_console/rotation_mouse.png',
-		"rotation_keyboard" = 'nsv13/icons/overmap/gui/flight_console/rotation_keyboard.png',
-		"flighttoggle" = 'nsv13/icons/overmap/gui/flight_console/flighttoggle.png',
-		"flighttoggle_pressed" = 'nsv13/icons/overmap/gui/flight_console/flighttoggle_pressed.png',
-		"rotationtoggle" = 'nsv13/icons/overmap/gui/flight_console/rotationtoggle.png',
-		"rotationtoggle_pressed" = 'nsv13/icons/overmap/gui/flight_console/rotationtoggle_pressed.png',
+		"monitor" = 'aquila/icons/overmap/gui/flight_console/monitor.png',
+		"brake_on" = 'aquila/icons/overmap/gui/flight_console/brake_on.png',
+		"brake_off" = 'aquila/icons/overmap/gui/flight_console/brake_off.png',
+		"hull0" = 'aquila/icons/overmap/gui/flight_console/hull0.png',
+		"hull25" = 'aquila/icons/overmap/gui/flight_console/hull25.png',
+		"hull50" = 'aquila/icons/overmap/gui/flight_console/hull50.png',
+		"hull75" = 'aquila/icons/overmap/gui/flight_console/hull75.png',
+		"hull100" = 'aquila/icons/overmap/gui/flight_console/hull100.png',
+		"rotation_mouse" = 'aquila/icons/overmap/gui/flight_console/rotation_mouse.png',
+		"rotation_keyboard" = 'aquila/icons/overmap/gui/flight_console/rotation_keyboard.png',
+		"flighttoggle" = 'aquila/icons/overmap/gui/flight_console/flighttoggle.png',
+		"flighttoggle_pressed" = 'aquila/icons/overmap/gui/flight_console/flighttoggle_pressed.png',
+		"rotationtoggle" = 'aquila/icons/overmap/gui/flight_console/rotationtoggle.png',
+		"rotationtoggle_pressed" = 'aquila/icons/overmap/gui/flight_console/rotationtoggle_pressed.png',
 	),
 	AQUILA_CONSOLE_FIGHTER = list(
-		"monitor" = 'nsv13/icons/overmap/gui/fighter_console/monitor.png',
-		"brake_on" = 'nsv13/icons/overmap/gui/fighter_console/brake_on.png',
-		"brake_off" = 'nsv13/icons/overmap/gui/fighter_console/brake_off.png',
-		"hull0" = 'nsv13/icons/overmap/gui/fighter_console/hull0.png',
-		"hull25" = 'nsv13/icons/overmap/gui/fighter_console/hull25.png',
-		"hull50" = 'nsv13/icons/overmap/gui/fighter_console/hull50.png',
-		"hull75" = 'nsv13/icons/overmap/gui/fighter_console/hull75.png',
-		"hull100" = 'nsv13/icons/overmap/gui/fighter_console/hull100.png',
-		"rotation_mouse" = 'nsv13/icons/overmap/gui/fighter_console/rotation_mouse.png',
-		"rotation_keyboard" = 'nsv13/icons/overmap/gui/fighter_console/rotation_keyboard.png',
-		"pdc" = 'nsv13/icons/overmap/gui/fighter_console/pdc_on.png',
-		"torpedo" = 'nsv13/icons/overmap/gui/fighter_console/torpedo_on.png',
-		"weptoggle" = 'nsv13/icons/overmap/gui/fighter_console/weptoggle.png',
-		"weptoggle_pressed" = 'nsv13/icons/overmap/gui/fighter_console/weptoggle_pressed.png',
-		"flighttoggle" = 'nsv13/icons/overmap/gui/fighter_console/flighttoggle.png',
-		"flighttoggle_pressed" = 'nsv13/icons/overmap/gui/fighter_console/flighttoggle_pressed.png',
-		"rotationtoggle" = 'nsv13/icons/overmap/gui/fighter_console/rotationtoggle.png',
-		"rotationtoggle_pressed" = 'nsv13/icons/overmap/gui/fighter_console/rotationtoggle_pressed.png',
+		"monitor" = 'aquila/icons/overmap/gui/fighter_console/monitor.png',
+		"brake_on" = 'aquila/icons/overmap/gui/fighter_console/brake_on.png',
+		"brake_off" = 'aquila/icons/overmap/gui/fighter_console/brake_off.png',
+		"hull0" = 'aquila/icons/overmap/gui/fighter_console/hull0.png',
+		"hull25" = 'aquila/icons/overmap/gui/fighter_console/hull25.png',
+		"hull50" = 'aquila/icons/overmap/gui/fighter_console/hull50.png',
+		"hull75" = 'aquila/icons/overmap/gui/fighter_console/hull75.png',
+		"hull100" = 'aquila/icons/overmap/gui/fighter_console/hull100.png',
+		"rotation_mouse" = 'aquila/icons/overmap/gui/fighter_console/rotation_mouse.png',
+		"rotation_keyboard" = 'aquila/icons/overmap/gui/fighter_console/rotation_keyboard.png',
+		"pdc" = 'aquila/icons/overmap/gui/fighter_console/pdc_on.png',
+		"torpedo" = 'aquila/icons/overmap/gui/fighter_console/torpedo_on.png',
+		"weptoggle" = 'aquila/icons/overmap/gui/fighter_console/weptoggle.png',
+		"weptoggle_pressed" = 'aquila/icons/overmap/gui/fighter_console/weptoggle_pressed.png',
+		"flighttoggle" = 'aquila/icons/overmap/gui/fighter_console/flighttoggle.png',
+		"flighttoggle_pressed" = 'aquila/icons/overmap/gui/fighter_console/flighttoggle_pressed.png',
+		"rotationtoggle" = 'aquila/icons/overmap/gui/fighter_console/rotationtoggle.png',
+		"rotationtoggle_pressed" = 'aquila/icons/overmap/gui/fighter_console/rotationtoggle_pressed.png',
 		"switch_left" = 'nsv13/icons/overmap/gui/fighter_console/switch_left.png',
 		"switch_left_armed" = 'nsv13/icons/overmap/gui/fighter_console/switch_left_armed.png',
-		"switch_right" = 'nsv13/icons/overmap/gui/fighter_console/switch_right.png',
+		"switch_right" = 'aquila/icons/overmap/gui/fighter_console/switch_right.png',
 		"switch_right_armed" = 'nsv13/icons/overmap/gui/fighter_console/switch_right_armed.png',
 	),
 	AQUILA_CONSOLE_WEAPONS = list(
-		"monitor" = 'nsv13/icons/overmap/gui/weapons_console/monitor.png',
-		"hull0" = 'nsv13/icons/overmap/gui/weapons_console/hull0.png',
-		"hull25" = 'nsv13/icons/overmap/gui/weapons_console/hull25.png',
-		"hull50" = 'nsv13/icons/overmap/gui/weapons_console/hull50.png',
-		"hull75" = 'nsv13/icons/overmap/gui/weapons_console/hull75.png',
-		"hull100" = 'nsv13/icons/overmap/gui/weapons_console/hull100.png',
-		"pdc" = 'nsv13/icons/overmap/gui/weapons_console/pdc_on.png',
-		"torpedo" = 'nsv13/icons/overmap/gui/weapons_console/torpedo_on.png',
-		"railgun" = 'nsv13/icons/overmap/gui/weapons_console/railgun_on.png',
-		"weptoggle" = 'nsv13/icons/overmap/gui/weapons_console/weptoggle.png',
-		"weptoggle_pressed" = 'nsv13/icons/overmap/gui/weapons_console/weptoggle_pressed.png',
+		"monitor" = 'aquila/icons/overmap/gui/weapons_console/monitor.png',
+		"hull0" = 'aquila/icons/overmap/gui/weapons_console/hull0.png',
+		"hull25" = 'aquila/icons/overmap/gui/weapons_console/hull25.png',
+		"hull50" = 'aquila/icons/overmap/gui/weapons_console/hull50.png',
+		"hull75" = 'aquila/icons/overmap/gui/weapons_console/hull75.png',
+		"hull100" = 'aquila/icons/overmap/gui/weapons_console/hull100.png',
+		"pdc" = 'aquila/icons/overmap/gui/weapons_console/pdc_on.png',
+		"torpedo" = 'aquila/icons/overmap/gui/weapons_console/torpedo_on.png',
+		"railgun" = 'aquila/icons/overmap/gui/weapons_console/railgun_on.png',
+		"weptoggle" = 'aquila/icons/overmap/gui/weapons_console/weptoggle.png',
+		"weptoggle_pressed" = 'aquila/icons/overmap/gui/weapons_console/weptoggle_pressed.png',
 	),
 ))
 
@@ -133,7 +133,6 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	var/mob/living/user
 	/// Kolejność panelu u tej osoby (sternik i strzelec naraz dostają dwa panele obok siebie).
 	var/slot = 0
-	var/slot_count = 1
 	/// Ostatnio narysowany stan, żeby nie przebudowywać nakładek bez zmiany.
 	var/last_state
 	var/last_scale
@@ -142,8 +141,6 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	/// world.time, do którego przełącznik katapulty jest przestawiony
 	var/left_armed_until = 0
 	var/right_armed_until = 0
-	/// Trwa odliczanie katapultowania (nie odpalamy drugi raz).
-	var/ejecting = FALSE
 
 /atom/movable/screen/movable/aquila_ship_console/Initialize(mapload, obj/structure/overmap/ship, mob/living/user, kind)
 	. = ..()
@@ -158,8 +155,9 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 
 /atom/movable/screen/movable/aquila_ship_console/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
-	if(user?.client)
-		user.client.screen -= src
+	if(user)
+		LAZYREMOVE(user.aquila_consoles, src) // panel bywa usuwany sam (refresh, process, statek usunięty)
+		user.client?.screen -= src
 	if(ship)
 		UnregisterSignal(ship, COMSIG_PARENT_QDELETING)
 	ship = null
@@ -250,6 +248,13 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 			total += panel_size[1] * scale
 		screen_loc = "CENTER:[round(before - total / 2)],SOUTH+1"
 
+/// Bazowy MouseDrop zmienia tylko screen_loc; bez `moved` update_scale() wracałby panel na środek.
+/atom/movable/screen/movable/aquila_ship_console/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
+	var/old_loc = screen_loc
+	. = ..()
+	if(screen_loc != old_loc)
+		moved = TRUE
+
 /atom/movable/screen/movable/aquila_ship_console/proc/press(button)
 	pressed_until[button] = world.time + AQUILA_CONSOLE_PRESS_TIME
 	refresh()
@@ -301,14 +306,13 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	ship.relay('nsv13/sound/effects/fighters/switch.ogg')
 	refresh()
 	addtimer(CALLBACK(src, PROC_REF(refresh)), AQUILA_CONSOLE_ARM_TIME + 1)
-	if(ejecting || left_armed_until <= world.time || right_armed_until <= world.time)
+	if(left_armed_until <= world.time || right_armed_until <= world.time)
 		return
 	var/obj/structure/overmap/small_craft/craft = ship
 	if(!istype(craft))
 		return
 	if(!craft.aquila_can_manual_eject(user))
 		return
-	ejecting = TRUE
 	craft.aquila_manual_eject(user)
 
 // --- Osoba za sterami ---------------------------------------------------------------------
@@ -342,7 +346,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		var/atom/movable/screen/movable/aquila_ship_console/panel = new(null, src, user, kind)
 		panel.slot = index++
 		LAZYADD(user.aquila_consoles, panel)
-	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in user.aquila_consoles)
+	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))
 		panel.last_scale = null // przelicz położenie, gdy znamy już wszystkie panele
 		panel.refresh()
 	RegisterSignal(user, COMSIG_STOPPED_PILOTING, PROC_REF(aquila_on_stopped_piloting), override = TRUE)
@@ -354,10 +358,9 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		to_chat(user, "<span class='notice'>Na dole ekranu jest panel konsoli. Przyciski na nim działają jak skróty klawiszowe; Shift+klik pokazuje opis.</span>")
 
 /obj/structure/overmap/proc/aquila_remove_consoles(mob/living/user)
-	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in user.aquila_consoles)
+	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))
 		if(panel.ship == src)
-			LAZYREMOVE(user.aquila_consoles, panel)
-			qdel(panel)
+			qdel(panel) // Destroy() zdejmuje panel z listy
 
 /obj/structure/overmap/proc/aquila_on_stopped_piloting(mob/living/source)
 	SIGNAL_HANDLER
@@ -392,7 +395,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		to_chat(src, "<span class='warning'>Nie siedzisz za sterami ani przy działach statku.</span>")
 		return
 	aquila_console_hidden = !aquila_console_hidden
-	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in aquila_consoles)
+	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(aquila_consoles))
 		if(aquila_console_hidden)
 			client?.screen -= panel
 		else

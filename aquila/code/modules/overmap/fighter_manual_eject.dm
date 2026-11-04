@@ -7,7 +7,8 @@
 	if(istype(src, /obj/structure/overmap/small_craft/escapepod))
 		to_chat(user, "<span class='warning'>Siedzisz już w kapsule ratunkowej.</span>")
 		return FALSE
-	if(!ispath(escape_pod_type))
+	// create_escape_pod przyjmuje tylko kapsułę; inaczej zdjęlibyśmy pilota ze sterów bez kapsuły
+	if(!ispath(escape_pod_type, /obj/structure/overmap/small_craft/escapepod))
 		to_chat(user, "<span class='warning'>[src] nie ma kapsuły ratunkowej. Katapulta nie zadziała.</span>")
 		return FALSE
 	if(SSmapping.level_trait(z, ZTRAIT_BOARDABLE) || SSmapping.level_trait(z, ZTRAIT_RESERVED))

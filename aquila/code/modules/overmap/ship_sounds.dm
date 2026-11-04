@@ -17,6 +17,8 @@
 /obj/structure/overmap
 	/// Pętla skrzypienia kadłuba gra, dopóki superstruktura jest w stanie krytycznym.
 	var/aquila_hull_creaking = FALSE
+	/// Komu wysłaliśmy pętlę: zatrzymujemy ją też tym, którzy w międzyczasie opuścili statek albo zostali duchem.
+	var/list/aquila_hull_creak_listeners
 
 /obj/structure/overmap/handle_crit(damage_amount)
 	. = ..()
@@ -27,17 +29,25 @@
 
 /// Pętla gra ciszej niż alarmy (relay gra na 100), tylko dla osób z włączonymi dźwiękami otoczenia.
 /obj/structure/overmap/proc/aquila_hull_creak_play(start)
+	if(!start)
+		// klient, nie mob: pętla zostaje u gracza także po wyjściu ze statku, śmierci czy duchu
+		for(var/client/C as anything in aquila_hull_creak_listeners)
+			if(C)
+				SEND_SOUND(C, sound(null, channel = AQUILA_CHANNEL_HULL_CREAK))
+		aquila_hull_creak_listeners = null
+		return
 	for(var/mob/M as anything in mobs_in_ship)
-		if(!M.client)
-			continue
-		if(!start)
-			M.stop_sound_channel(AQUILA_CHANNEL_HULL_CREAK)
-			continue
-		if(!(M.client.prefs.toggles & PREFTOGGLE_SOUND_AMBIENCE) || !M.can_hear())
+		if(!M.client || !(M.client.prefs.toggles & PREFTOGGLE_SOUND_AMBIENCE) || !M.can_hear())
 			continue
 		SEND_SOUND(M, sound('nsv13/sound/ambience/creaking_ambience.ogg', repeat = TRUE, wait = 0, volume = 35, channel = AQUILA_CHANNEL_HULL_CREAK))
+		LAZYOR(aquila_hull_creak_listeners, M.client)
 
 /// Stan krytyczny kończy się w kilku miejscach (naprawa pancerza, pompa nanitów), więc zamiast haków w każdym z nich sprawdzamy go co jakiś czas.
+/obj/structure/overmap/Destroy()
+	if(aquila_hull_creaking)
+		aquila_hull_creak_play(FALSE)
+	return ..()
+
 /obj/structure/overmap/proc/aquila_hull_creak_check()
 	if(QDELETED(src))
 		return

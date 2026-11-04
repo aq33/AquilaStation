@@ -50,6 +50,12 @@
 	TEST_ASSERT(panel.left_armed_until > world.time, "Left eject switch did not arm")
 	TEST_ASSERT_EQUAL(dummy.loc, fighter, "One eject switch alone must not eject the pilot")
 
+	// panel usunięty sam (np. statek zniknął) nie zostaje na liście
+	var/atom/movable/screen/movable/aquila_ship_console/extra = new(null, fighter, dummy, "fighter")
+	LAZYADD(dummy.aquila_consoles, extra)
+	qdel(extra)
+	TEST_ASSERT(!(extra in dummy.aquila_consoles), "Deleted panel stayed in aquila_consoles")
+
 	// zejście ze sterów usuwa panel
 	fighter.stop_piloting(dummy, eject_mob = FALSE)
 	TEST_ASSERT(!LAZYLEN(dummy.aquila_consoles), "Panel stayed after the pilot left the controls")
@@ -106,4 +112,5 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
+
 

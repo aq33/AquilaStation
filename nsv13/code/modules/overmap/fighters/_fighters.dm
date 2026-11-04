@@ -289,7 +289,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			battery.toggle()
 			relay('nsv13/sound/effects/fighters/powerswitch.ogg') // AQ EDIT - nieużywany dźwięk przełącznika zasilania
 			to_chat(usr, "Przestawiasz przełącznik baterii.</span>")
-			. = TRUE
+			return TRUE // AQ EDIT - bez ogólnego switch.ogg z końca ui_act, żeby dźwięki się nie nakładały
 		if("apu")
 			var/obj/item/fighter_component/apu/APU = loadout.get_slot(HARDPOINT_SLOT_APU)
 			if(!APU)
