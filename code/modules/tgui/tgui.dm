@@ -104,12 +104,14 @@
 			))
 		// initialize sleeps, so client can become null
 		if(!user?.client)
+			close(can_be_suspended = FALSE) // AQ EDIT - the window was already shown, do not leave it blank and locked
 			return FALSE
 	else
 		window.send_message("ping")
 	send_assets()
 	// send_assets sleeps, so client can become null.
 	if(!user?.client)
+		close(can_be_suspended = FALSE) // AQ EDIT - the window was already shown, do not leave it blank and locked
 		return FALSE
 	window.send_message("update", get_payload(
 		with_data = TRUE,
@@ -127,7 +129,7 @@
 		/datum/asset/json/icon_ref_map)) // AQ EDIT - icons for DmIcon, aquila/code/modules/asset_cache/json.dm
 	for(var/datum/asset/asset in src_object.ui_assets(user))
 		flush_queue |= window.send_asset(asset)
-	if (flush_queue)
+	if (flush_queue && user?.client) // AQ EDIT - send_asset() sleeps, the client may be gone
 		user.client.browse_queue_flush()
 
 /**
