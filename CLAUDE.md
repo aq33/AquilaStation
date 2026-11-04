@@ -13,6 +13,7 @@ Repozytorium: `aq33/AquilaStation` (stare `aq33/NSV13` przekierowuje). Język: D
 - Nazwy typów, procedur i zmiennych zostają po angielsku.
 - Wszystko, co widzi gracz, jest po polsku: nazwy i opisy przedmiotów, komunikaty w czacie, okna TGUI, podpowiedzi, ogłoszenia, nazwy reagentów i receptur, wpisy w `strings/`. Dotyczy to także kodu portowanego z innych serwerów: tłumacz przy porcie, nie zostawiaj angielskiego „na później”.
 - Terminy bierz z `aquila/SLOWNIK_TLUMACZEN.md` i dopisuj tam nowe. Nazwy własne spolszczaj brzmieniowo (Bikarydyna, Kosmiczna Cola); Nanotrasen i nazwy frakcji bez zmian.
+- Gra ma opcję angielską (`aquila/code/modules/i18n/`, `tools/i18n/`). Angielski odpowiednik nowego tekstu dopisz do `strings/i18n/en_translated.json` (klucz to dokładny polski literał) i uruchom `python tools/i18n/build_chat_dict.py`. CI pokazuje brakujące jako ostrzeżenia.
 - Nie tłumacz tekstów porównywanych w kodzie (klucze list, `name` sprawdzane w `if`, identyfikatory w TSX, ckey nazw reagentów), chyba że zmieniasz też wszystkie porównania.
 - Tytuły PR-ów, opisy PR-ów i wpisy changelogu też są po polsku.
 - Nie ruszaj istniejących polskich tekstów ani naszych zmian bez pytania.

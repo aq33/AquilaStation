@@ -48,6 +48,12 @@ jobs:
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker
+      # AQUILA - wersja angielska: nowe polskie teksty bez wpisu w słowniku EN (tylko ostrzeżenia)
+      - name: Teksty bez angielskiego
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
+          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:
