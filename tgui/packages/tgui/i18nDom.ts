@@ -17,7 +17,7 @@ import {
   isTranslating,
   loadDictionary,
   setLanguage,
-  translateHtml,
+  translateUiText,
 } from './i18n';
 
 const ATTRIBUTES = ['placeholder', 'title'];
@@ -51,7 +51,7 @@ const translateTextNode = (node: Text) => {
   if (isSkipped(node)) {
     return;
   }
-  const translated = translateHtml(value);
+  const translated = translateUiText(value);
   originals.set(node, value);
   written.set(node, translated);
   if (translated !== value) {
@@ -65,7 +65,7 @@ const translateAttributes = (el: Element) => {
     if (!value || el.getAttribute(`data-i18n-${name}`) === value) {
       continue;
     }
-    const translated = translateHtml(value);
+    const translated = translateUiText(value);
     if (translated !== value) {
       el.setAttribute(`data-i18n-pl-${name}`, value);
       el.setAttribute(`data-i18n-${name}`, translated);

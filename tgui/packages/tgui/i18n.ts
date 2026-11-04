@@ -29,6 +29,8 @@ type Template =
 type Dictionary = {
   version: number;
   exact: Record<string, string>;
+  /** Stałe z kodu okien: w oknach mają pierwszeństwo przed exact */
+  ui?: Record<string, string>;
   templates: Template[];
 };
 
@@ -79,6 +81,9 @@ export const setDictionary = (data: Dictionary | null) => {
   // Bez prototypu: tekst "constructor" czy "toString" nie może trafić na funkcję Object
   if (data) {
     Object.setPrototypeOf(data.exact, null);
+    if (data.ui) {
+      Object.setPrototypeOf(data.ui, null);
+    }
   }
   dictionary = data;
   byAnchor = new Map();
@@ -481,4 +486,17 @@ export const translateHtml = (html: string, depth = 0): string => {
     /\u0001(\d+)\u0002/g,
     (_match, n: string) => done[Number(n)],
   );
+};
+
+/**
+ * Tekst z okna tgui: najpierw tablica tekstów z kodu okien (ten sam polski
+ * tekst bywa w DM z innym oryginałem), potem jak w czacie.
+ */
+export const translateUiText = (text: string): string => {
+  const trimmed = text.trim();
+  const found = dictionary?.ui?.[trimmed];
+  if (found !== undefined) {
+    return text.replace(trimmed, found);
+  }
+  return translateHtml(text);
 };

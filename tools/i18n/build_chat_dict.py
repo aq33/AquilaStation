@@ -296,6 +296,21 @@ def load_sources(args):
     return merged
 
 
+def load_ui_pairs():
+    """Pary z samego kodu okien (extract_pairs.py --ui), zapisywane do en_ui.json w repo.
+
+    Ten sam polski tekst bywa w oknie i w DM z innym oryginałem ("Wróć": "Return" w menu Esc,
+    "Recall" gdzie indziej), więc okna mają własną tablicę z pierwszeństwem."""
+    generated, saved = "strings/i18n/en_pairs_ui.json", "strings/i18n/en_ui.json"
+    if not os.path.exists(generated):
+        return load_json(saved)
+    pairs = load_json(generated)
+    with open(saved, "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(pairs.items())), f, ensure_ascii=False, indent=0)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
+    return pairs
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pairs", default="strings/i18n/en_pairs.json")
@@ -311,6 +326,7 @@ def main():
     args = ap.parse_args()
 
     pairs = load_sources(args)
+    ui_pairs = load_ui_pairs()
     # strings/ (porady rundy, listy tekstów) daje tylko stałe: wiadomość składa je w DM
     # tgui: teksty z okien (stałe i literały `${...}`) dla tłumaczenia okien (tgui/i18nDom.ts)
     files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json",
@@ -341,8 +357,11 @@ def main():
     manual = load_json(args.manual)
 
     exact, templates, stats = {}, [], collections.Counter()
+    # stałe z kodu okien (TSX) mają w oknach pierwszeństwo przed ogólnym słownikiem:
+    # "Wróć" w menu Esc to "Back", a nie "Recall" z jakiegoś DM
+    ui = {}
     for pl in sorted(wanted | names | set(manual)):
-        en = pairs[pl]
+        en = ui_pairs.get(pl, pairs[pl]) if pl in js_literals else pairs[pl]
         parse = parse_js_literal if pl in js_literals else parse_dm_literal
         pl_parts = parse(pl)
         built = build_pl(pl_parts)
@@ -359,7 +378,10 @@ def main():
             value = "".join(x for x in en_parts if isinstance(x, str)).strip()
             # pusta wartość jest poprawna: polskie końcówki rodzaju ("aś") po angielsku znikają
             if key and key != value:
-                exact[key] = value
+                if pl in js_literals:
+                    ui[key] = value
+                if pl not in js_literals or key not in exact:
+                    exact[key] = value
                 stats["stałe"] += 1
             continue
         alts = alternatives(exprs) if pl not in js_literals else {}
@@ -404,6 +426,7 @@ def main():
     data = {
         "version": 2,
         "exact": exact,
+        "ui": ui,
         # [kotwica albo lista kotwic, teksty PL, części EN, {nr wstawki: [alternatywy PL]}?]
         "templates": [[t["k"], t["pl"], t["en"]] + ([t["alts"]] if t["alts"] else []) for t in templates],
     }

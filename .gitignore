@@ -202,3 +202,6 @@ strings/i18n/en_pairs_upstream.json
 # Crowdin (tools/i18n/crowdin.py)
 crowdin_out/
 crowdin_existing/
+
+# Pary z kodu okien (tools/i18n/extract_pairs.py --ui), scalane do en_ui.json
+strings/i18n/en_pairs_ui.json

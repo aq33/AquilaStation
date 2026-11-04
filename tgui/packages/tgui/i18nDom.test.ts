@@ -6,7 +6,10 @@ const DICTIONARY = {
   exact: {
     'skrzynka narzędziowa': 'toolbox',
     Szukaj: 'Search',
+    Wróć: 'Recall',
   },
+  // teksty z kodu okien mają w oknach pierwszeństwo
+  ui: { Wróć: 'Back' },
   templates: [],
 };
 
@@ -38,12 +41,13 @@ describe('setupDomTranslation', () => {
 
   it('tłumaczy teksty i placeholder, pomija pola i wraca na polski', async () => {
     document.body.innerHTML =
-      '<div id="a">skrzynka narzędziowa</div><input id="b" placeholder="Szukaj"><textarea id="c">skrzynka narzędziowa</textarea>';
+      '<div id="a">skrzynka narzędziowa</div><button id="d">Wróć</button><input id="b" placeholder="Szukaj"><textarea id="c">skrzynka narzędziowa</textarea>';
     const store = createStore();
     setupDomTranslation(store as any);
     store.setLanguage('en');
     await flush();
     expect(document.getElementById('a')!.textContent).toBe('toolbox');
+    expect(document.getElementById('d')!.textContent).toBe('Back');
     expect(document.getElementById('b')!.getAttribute('placeholder')).toBe(
       'Search',
     );
