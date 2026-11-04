@@ -17,7 +17,7 @@
 	TEST_ASSERT(!get_strip_search_storage(uniform), "A plain uniform has something to search")
 	var/obj/item/clothing/accessory/holster/holster = allocate(/obj/item/clothing/accessory/holster)
 	uniform.attach_accessory(holster, null, FALSE)
-	TEST_ASSERT(get_strip_search_storage(uniform) == holster.GetComponent(/datum/component/storage), "A uniform with a holster does not search the holster")
+	TEST_ASSERT(holster.detached_pockets && get_strip_search_storage(uniform) == holster.detached_pockets, "A uniform with a holster does not search the holster")
 
 	// Z własnego plecaka wyjmuje się od razu
 	var/obj/item/pen/own_pen = allocate(/obj/item/pen)

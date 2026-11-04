@@ -6,17 +6,11 @@
 /// Przeszukanie i wyjęcie przedmiotu trwa połowę czasu zdejmowania, ale nie mniej niż sekundę
 #define STRIP_SEARCH_MIN_DELAY (1 SECONDS)
 
-/// Schowek, który da się przeszukać na kimś: własny przedmiotu albo dodatku przypiętego do munduru
+/// Schowek, który da się przeszukać na kimś. Dodatek z kieszeniami (kabura) przy przypięciu oddaje swój schowek mundurowi.
 /proc/get_strip_search_storage(obj/item/item)
 	if(!istype(item))
 		return null
-	var/datum/component/storage/storage = item.GetComponent(/datum/component/storage)
-	if(storage)
-		return storage
-	var/obj/item/clothing/under/uniform = item
-	if(istype(uniform) && uniform.attached_accessory)
-		return uniform.attached_accessory.GetComponent(/datum/component/storage)
-	return null
+	return item.GetComponent(/datum/component/storage)
 
 /// Ile trwa przeszukanie albo wyjęcie przedmiotu
 /proc/strip_search_delay(obj/item/item)
