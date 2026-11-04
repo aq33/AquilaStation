@@ -6,9 +6,10 @@
 /****************************\
 |********* paczkomat *********|
 \****************************/
-// Każdy wylot z rury wygląda jak paczkomat. Stany "outlet" i "outlet-open" mają te same nazwy co w disposal.dmi,
-// więc flick() przy wyrzucie odgrywa animację paczki bez zmian w kodzie wylotu.
-/obj/structure/disposaloutlet
+// Wyloty poczty rurowej w działach wyglądają jak paczkomat. Stany "outlet" i "outlet-open" mają te same nazwy co w disposal.dmi,
+// więc flick() przy wyrzucie odgrywa animację paczki bez zmian w kodzie wylotu. Strzałka w marginesie pokazuje kierunek wyrzutu.
+// Wyloty śmieci i amunicji zostają zwykłe; na mapach podmienione są tylko wyloty poza utylizacją, tunelami i stanowiskami broni.
+/obj/structure/disposaloutlet/paczkomat
 	name = "paczkomat"
 	desc = "Paczkomat InPost podłączony do rury. Wyrzuca wszystko, co do niego przyjdzie."
 	icon = 'aquila/icons/inpost/paczkomat.dmi'
@@ -31,19 +32,11 @@
 	name = "połówka InPostu"
 	color = INPOST_DECAL_COLOR
 
+/obj/effect/turf_decal/guideline/guideline_in/brown/inpost
+	name = "linia InPostu"
+	color = INPOST_DECAL_COLOR
+
 #undef INPOST_DECAL_COLOR
-
-/****************************\
-|********* automaty **********|
-\****************************/
-/obj/machinery/vending/wardrobe/cargo_wardrobe
-	name = "\improper Mundurownia InPost"
-	desc = "Automat z odzieżą roboczą InPostu dla zaopatrzenia."
-	vend_reply = "Dziękujemy, paczka już w drodze!"
-	light_color = LIGHT_COLOR_YELLOW
-
-/obj/item/vending_refill/wardrobe/cargo_wardrobe
-	machine_name = "Mundurownia InPost"
 
 /****************************\
 |******* nowe przedmioty *****|

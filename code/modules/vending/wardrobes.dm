@@ -88,12 +88,12 @@
 	machine_name = "MediDrobe"
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
-	name = "EngiDrobe"
-	desc = "Automat słynący z ubrań klasy przemysłowej."
+	name = "\improper Mundurownia Orlenu" //AQUILA EDIT - EngiDrobe
+	desc = "Automat z odzieżą roboczą Orlenu dla inżynierów." //AQUILA EDIT
 	icon_state = "engidrobe"
-	product_ads = "Gwarantuje twoim stopom ochronę przed wypadkami w pracy!;Przerażony radiacją? W takim razie wskakuj w żółte!"
-	vend_reply = "Dziękujemy za użycie EngiDrobe!"
-	light_color = LIGHT_COLOR_YELLOW
+	product_ads = "Gwarantuje twoim stopom ochronę przed wypadkami w pracy!;Przerażony radiacją? W takim razie wskakuj w czerwone!" //AQUILA EDIT - barwy Orlenu
+	vend_reply = "Dziękujemy za zakupy w Orlenie!" //AQUILA EDIT
+	light_color = LIGHT_COLOR_RED //AQUILA EDIT
 	products = list(/obj/item/clothing/accessory/pocketprotector = 3,
 					/obj/item/storage/backpack/duffelbag/engineering = 3,
 					/obj/item/storage/backpack/industrial = 3,
@@ -115,15 +115,15 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/engi_wardrobe
-	machine_name = "EngiDrobe"
+	machine_name = "Mundurownia Orlenu" //AQUILA EDIT - EngiDrobe
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
-	name = "AtmosDrobe"
-	desc = "Ten mało znany automat wydaje ubrania dla Techników Atmosferyki, czyli równie mało znanego zawodu."
+	name = "\improper Mundurownia Orlenu (atmosferyka)" //AQUILA EDIT - AtmosDrobe
+	desc = "Automat z odzieżą roboczą Orlenu dla techników atmosferyki." //AQUILA EDIT
 	icon_state = "atmosdrobe"
 	product_ads = "Zdobądź swoje niepalnie ubranie tutaj!!!"
-	vend_reply = "Dziękujemy za użycie AtmosDrobe!"
-	light_color = LIGHT_COLOR_YELLOW
+	vend_reply = "Dziękujemy za zakupy w Orlenie!" //AQUILA EDIT
+	light_color = LIGHT_COLOR_RED //AQUILA EDIT
 	products = list(/obj/item/clothing/accessory/pocketprotector = 2,
 					/obj/item/storage/backpack/duffelbag/engineering = 2,
 					/obj/item/storage/backpack/satchel/eng = 2,
@@ -141,7 +141,7 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
-	machine_name = "AtmosDrobe"
+	machine_name = "Mundurownia Orlenu (atmosferyka)" //AQUILA EDIT - AtmosDrobe
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
@@ -173,7 +173,7 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	payment_department = ACCOUNT_CAR
 /obj/item/vending_refill/wardrobe/cargo_wardrobe
-	machine_name = "CargoDrobe"
+	machine_name = "Mundurownia InPost" //AQUILA EDIT - CargoDrobe
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	name = "RoboDrobe"

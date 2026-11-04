@@ -746,7 +746,6 @@
 "cr" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
-	color = "#D2D53D";
 	dir = 1
 	},
 /obj/effect/turf_decal/ship/techfloor,
@@ -849,7 +848,6 @@
 "cI" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
-	color = "#D2D53D";
 	dir = 10
 	},
 /obj/effect/turf_decal/ship/techfloor{
@@ -2090,7 +2088,6 @@
 "gJ" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
-	color = "#D2D53D";
 	dir = 9
 	},
 /obj/effect/turf_decal/ship/techfloor{
@@ -6302,7 +6299,6 @@
 "vZ" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
-	color = "#D2D53D";
 	dir = 5
 	},
 /obj/effect/turf_decal/ship/techfloor{
@@ -7564,7 +7560,7 @@
 	},
 /obj/machinery/door/firedoor/border_only/directional/east,
 /obj/machinery/door/firedoor/border_only/directional/west,
-/obj/effect/turf_decal/guideline/guideline_in/brown{
+/obj/effect/turf_decal/guideline/guideline_in/brown/inpost{
 	color = "#FF7F00";
 	dir = 1
 	},
@@ -10761,7 +10757,6 @@
 "Kc" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
-	color = "#D2D53D";
 	dir = 6
 	},
 /obj/effect/turf_decal/ship/techfloor{
@@ -14546,8 +14541,7 @@
 	})
 "Vj" = (
 /obj/effect/turf_decal/trimline/yellow/line/orlen{
-	alpha = 220;
-	color = "#D2D53D"
+	alpha = 220
 	},
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1

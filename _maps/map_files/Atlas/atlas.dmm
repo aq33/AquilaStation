@@ -833,7 +833,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
@@ -8317,7 +8317,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "uy" = (
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4
 	},
 /obj/machinery/door/window/eastleft{

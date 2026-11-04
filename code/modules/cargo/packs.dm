@@ -2980,7 +2980,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/cargo
 	name = "Skrzynia uzupełnień garderoby zaopatrzenia"
-	desc = "Ta skrzynia zawiera wkład uzupełniający do CargoDrobe."
+	desc = "Ta skrzynia zawiera wkład uzupełniający do Mundurowni InPost."
 	cost = 800
 	access_budget = ACCESS_CARGO
 	contains = list(/obj/item/vending_refill/wardrobe/cargo_wardrobe)
@@ -2995,7 +2995,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Skrzynia uzupełnień garderoby inżynierii"
-	desc = "Ta skrzynia zawiera wkłady uzupełniające do EngiDrobe i AtmosDrobe."
+	desc = "Ta skrzynia zawiera wkłady uzupełniające do obu Mundurowni Orlenu."
 	cost = 800
 	access_budget = ACCESS_ENGINE
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,

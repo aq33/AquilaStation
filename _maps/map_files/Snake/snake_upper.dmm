@@ -5458,7 +5458,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet,
+/obj/structure/disposaloutlet/paczkomat,
 /turf/open/floor/plating/airless,
 /area/medical/virology)
 "vh" = (

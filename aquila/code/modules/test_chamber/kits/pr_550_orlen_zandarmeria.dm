@@ -9,7 +9,7 @@
 	5) Śluza inżynierii → oczekiwane: zostaje żółta. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
 	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
 	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
-	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat: załaduj zestaw poczty z aq33/AquilaStation#447 (zsyp z wylotami), wrzuć coś do zsypu i spłucz → oczekiwane: paczkomat odgrywa animację paczki i wyrzuca przedmiot."
+	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat z zestawu: obróć go (VV dir) → oczekiwane: ciemna strzałka po stronie wyrzutu w każdym kierunku. Zwykły wylot zsypu z zestawu poczty aq33/AquilaStation#447 → oczekiwane: zostaje zwykłym wylotem (paczkomaty są tylko na wylotach poczty w działach na mapach)."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -54,6 +54,7 @@
 		/obj/item/clothing/head/soft/cargo = 1,
 		/obj/item/clothing/suit/hooded/wintercoat/cargo = 1,
 		/obj/item/storage/backpack/inpost = 1,
+		/obj/structure/disposaloutlet/paczkomat = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/screwdriver = 1,
 	)

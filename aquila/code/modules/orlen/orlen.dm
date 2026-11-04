@@ -40,27 +40,6 @@
 #undef ORLEN_DECAL_COLOR
 
 /****************************\
-|********* automaty **********|
-\****************************/
-/obj/machinery/vending/wardrobe/engi_wardrobe
-	name = "\improper Mundurownia Orlenu"
-	desc = "Automat z odzieżą roboczą Orlenu dla inżynierów."
-	vend_reply = "Dziękujemy za zakupy w Orlenie!"
-	light_color = LIGHT_COLOR_RED
-
-/obj/item/vending_refill/wardrobe/engi_wardrobe
-	machine_name = "Mundurownia Orlenu"
-
-/obj/machinery/vending/wardrobe/atmos_wardrobe
-	name = "\improper Mundurownia Orlenu (atmosferyka)"
-	desc = "Automat z odzieżą roboczą Orlenu dla techników atmosferyki."
-	vend_reply = "Dziękujemy za zakupy w Orlenie!"
-	light_color = LIGHT_COLOR_RED
-
-/obj/item/vending_refill/wardrobe/atmos_wardrobe
-	machine_name = "Mundurownia Orlenu (atmosferyka)"
-
-/****************************\
 |******* czapki z daszkiem ***|
 \****************************/
 // Nowe z arkusza. Stany "[soft_color]soft" i "[soft_color]soft_flipped" w aquila/icons/obj/clothing/hats.dmi i aquila/icons/mob/head.dmi.
@@ -121,6 +100,11 @@
 
 /obj/item/clothing/head/hardhat/dblue
 	name = "kask"
+
+// Arkusz daje technikowi atmosferyki czerwony kask zamiast hełmu strażackiego; statystyki ognioodporności zostają
+/obj/item/clothing/head/hardhat/atmos
+	name = "ognioodporny kask atmosferyki Orlenu"
+	desc = "Czerwony kask technika atmosferyki z osłoną karku. Pozwala zachować chłodną głowę nawet przy pożarze."
 
 /obj/item/clothing/head/hardhat/white
 	name = "biały kask Orlenu"

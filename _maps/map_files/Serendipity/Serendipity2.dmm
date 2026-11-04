@@ -247,7 +247,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 2
 	},
 /turf/open/floor/monotile/light,
@@ -5070,7 +5070,7 @@
 /area/engine/armour_pump)
 "zA" = (
 /obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 1;
 	name = "Engineering Delivery Chute"
 	},

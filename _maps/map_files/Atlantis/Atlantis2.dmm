@@ -9897,7 +9897,7 @@
 /area/maintenance/nsv/deck1/port)
 "jPz" = (
 /obj/effect/landmark/start/shaft_miner,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "jPD" = (
 /obj/machinery/cryopod{
@@ -10520,7 +10520,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -11391,7 +11391,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/shaft_miner,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "lhz" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -11875,7 +11875,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "lIS" = (
 /obj/structure/cable,
@@ -12160,7 +12160,7 @@
 "lVk" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/firealarm/directional/north,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "lWD" = (
 /obj/machinery/door/airlock/ship/command{
@@ -16669,7 +16669,7 @@
 /turf/open/floor/monotile/light,
 /area/medical/medbay/central)
 "qYp" = (
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "qYU" = (
 /obj/machinery/porta_turret/ai{
@@ -17877,7 +17877,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4
 	},
 /turf/open/floor/plasteel/grid/steel,
@@ -18142,7 +18142,7 @@
 /area/bridge/cic)
 "syr" = (
 /obj/structure/table/wood/bar,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship,
 /area/quartermaster/miningdock)
 "syx" = (
 /obj/structure/chair/office{

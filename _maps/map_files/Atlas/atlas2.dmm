@@ -12368,7 +12368,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
 "On" = (
-/obj/structure/disposaloutlet,
+/obj/structure/disposaloutlet/paczkomat,
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},

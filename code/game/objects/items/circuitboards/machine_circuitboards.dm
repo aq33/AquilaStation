@@ -552,9 +552,9 @@
 		/obj/machinery/vending/wardrobe/sec_wardrobe = "Mundurownia Żandarmska", //AQUILA EDIT
 		/obj/machinery/vending/wardrobe/det_wardrobe = "DetDrobe",
 		/obj/machinery/vending/wardrobe/medi_wardrobe = "MediDrobe",
-		/obj/machinery/vending/wardrobe/engi_wardrobe = "EngiDrobe",
-		/obj/machinery/vending/wardrobe/atmos_wardrobe = "AtmosDrobe",
-		/obj/machinery/vending/wardrobe/cargo_wardrobe = "CargoDrobe",
+		/obj/machinery/vending/wardrobe/engi_wardrobe = "Mundurownia Orlenu", //AQUILA EDIT
+		/obj/machinery/vending/wardrobe/atmos_wardrobe = "Mundurownia Orlenu (atmosferyka)", //AQUILA EDIT
+		/obj/machinery/vending/wardrobe/cargo_wardrobe = "Mundurownia InPost", //AQUILA EDIT
 		/obj/machinery/vending/wardrobe/robo_wardrobe = "RoboDrobe",
 		/obj/machinery/vending/wardrobe/science_wardrobe = "SciDrobe",
 		/obj/machinery/vending/wardrobe/hydro_wardrobe = "HyDrobe",

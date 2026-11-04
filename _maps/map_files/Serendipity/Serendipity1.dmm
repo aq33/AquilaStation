@@ -3456,7 +3456,7 @@
 /obj/structure/window/plasma/reinforced/spawner/north,
 /obj/structure/window/plasma/reinforced/spawner/east,
 /obj/machinery/door/window/westright,
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 8
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3987,7 +3987,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 1;
 	name = "Security Delivery Chute"
 	},
@@ -6087,7 +6087,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/ai_monitored/turret_protected/ai_upload)
 "up" = (
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4;
 	name = "Corpse Disposal Outlet"
 	},
@@ -6635,7 +6635,7 @@
 /obj/machinery/door/window/westright{
 	req_one_access_txt = "5;33;59"
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 8;
 	name = "Medical Delivery Chute"
 	},
@@ -11877,7 +11877,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4;
 	name = "R&D Delivery Chute"
 	},
@@ -12288,7 +12288,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
+/obj/structure/disposaloutlet/paczkomat{
 	dir = 4;
 	eject_range = 6
 	},
