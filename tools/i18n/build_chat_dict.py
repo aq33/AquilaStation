@@ -139,9 +139,20 @@ def parse_js_literal(lit):
 
 def norm_expr(expr):
     e = re.sub(r"\s+", "", expr)
+    # strefa ciała: nasze strefa_pl(...) odpowiada oryginałom parse_zone(...) i limb.name
+    e = re.sub(r"^strefa_pl\((\w+)\.body_zone(?:,\w+)?\)$", r"\1.name", e)
+    e = re.sub(r"^(?:strefa_pl|parse_zone)\(([^(),]+)(?:,\w+)?\)$", r"zone:\1", e)
     e = re.sub(r"^src\.", "", e)
     e = re.sub(r"\.name$", "", e)
     return e
+
+
+def ternary_condition(expr):
+    """Warunek wstawki [x ? "A" : "B"] (znormalizowany) albo None."""
+    m = TERNARY.match(expr.strip())
+    if not m:
+        return None
+    return re.sub(r"\s+", "", expr.strip().split("?", 1)[0])
 
 
 AUTO_ARTICLE = re.compile(r"(^|[\s>(„\"'])[Tt]he (?=\S)")
@@ -167,11 +178,42 @@ def build_pl(parts):
     return texts, exprs
 
 
+TERNARY = re.compile(r'^[^"]+\?\s*"((?:\\.|[^"\\])*)"\s*:\s*"((?:\\.|[^"\\])*)"$')
+
+
+def unescape_dm(text):
+    return re.sub(r"\\(.)", lambda m: {"n": "\n", "t": "\t"}.get(m.group(1), m.group(1)), text)
+
+
+def alternatives(exprs):
+    """Wstawki-warunki z dwoma napisami ([harmful ? "wbija się" : "przykleja się"]): numer -> [A, B].
+
+    W szablonie zamiast dowolnego tekstu dopasowujemy jedną z alternatyw. Daje to kotwicę
+    i pewniejsze dopasowanie, a wartość i tak tłumaczy słownik stałych (napisy ze wstawek)."""
+    found = {}
+    for index, expr in enumerate(exprs):
+        options = literal_ternary(expr)
+        if options:
+            found[str(index)] = options
+    return found
+
+
+def literal_ternary(expr):
+    """[A, B] dla wstawki [x ? "A" : "B"] bez zagnieżdżonych wstawek, inaczej None."""
+    m = TERNARY.match(expr.strip())
+    if m and "[" not in m.group(1) and "[" not in m.group(2):
+        return [unescape_dm(m.group(1)), unescape_dm(m.group(2))]
+    return None
+
+
 def build_en(parts, pl_exprs):
     """Angielska strona: lista elementów: tekst albo [nr osadzenia PL, przedimek]."""
-    pl_index = {}
+    pl_index, pl_conditions = {}, {}
     for k, e in enumerate(pl_exprs):
         pl_index.setdefault(norm_expr(e), k)
+        condition = ternary_condition(e)
+        if condition and literal_ternary(e):
+            pl_conditions.setdefault(condition, k)
     plural = any(PRONOUN_CALL.search(norm_expr(v)) and PRONOUN_CALL.search(norm_expr(v)).group(1) in ("they", "theyre", "theyve")
                  for kind, v in parts if kind == "e")
     pronouns = PRONOUNS_PLURAL if plural else PRONOUNS_SINGULAR
@@ -197,8 +239,14 @@ def build_en(parts, pl_exprs):
             # pozostałe makra bez tekstu pomijamy
         else:
             key = norm_expr(val)
+            condition = ternary_condition(val)
             if key in pl_index:
                 out.append([pl_index[key], article] if article else [pl_index[key]])
+            elif condition in pl_conditions and "[" not in val:
+                # angielski warunek z tym samym warunkiem co polska alternatywa: gałąź według tego,
+                # która polska alternatywa wystąpiła (["?", nr wstawki PL, [EN dla A, EN dla B]])
+                m = TERNARY.match(val.strip())
+                out.append(["?", pl_conditions[condition], [unescape_dm(m.group(1)), unescape_dm(m.group(2))]])
             else:
                 m = PRONOUN_CALL.search(key)
                 if m and m.group(1) in pronouns:
@@ -216,7 +264,7 @@ def build_en(parts, pl_exprs):
     return out, missing
 
 
-WORD = re.compile(r"[a-ząćęłńóśźż]{3,}", re.I)
+WORD = re.compile(r"[a-ząćęłńóśźż]{2,}", re.I)  # dwie litery: "ma", "na" bywają jedynym słowem szablonu
 TAG = re.compile(r"<[^>]*>")
 
 
@@ -314,35 +362,65 @@ def main():
                 exact[key] = value
                 stats["stałe"] += 1
             continue
-        fixed = TAG.sub(" ", "".join(texts))
+        alts = alternatives(exprs) if pl not in js_literals else {}
+        fixed = TAG.sub(" ", "".join(texts) + " " + " ".join(" ".join(a) for a in alts.values()))
         if pl not in manual and (len(WORD.findall(fixed)) == 0 or len(re.sub(r"\s", "", fixed)) < 4):
             stats["pomijane: za mało stałego tekstu"] += 1
             continue
-        templates.append({"pl": texts, "en": en_parts})
+        templates.append({"pl": texts, "en": en_parts, "alts": alts})
         stats["szablony"] += 1
+        stats["z alternatywami"] += bool(alts)
 
-    # słowo-kotwica: najrzadsze słowo stałego tekstu szablonu
+    # słowo-kotwica: najrzadsze słowo stałego tekstu szablonu. Gdy stały tekst nie ma słów,
+    # kotwicą jest po jednym słowie z każdej alternatywy (w wiadomości jest tylko jedna z nich).
+    def plain_words(text):
+        return {w.lower() for w in WORD.findall(TAG.sub(" ", text))}
+
     freq = collections.Counter()
     for t in templates:
-        freq.update({w.lower() for w in WORD.findall(TAG.sub(" ", "".join(t["pl"])))})
+        freq.update(plain_words("".join(t["pl"])))
+        for options in t["alts"].values():
+            for option in options:
+                freq.update(plain_words(option))
+
+    def rarest(words):
+        return min(words, key=lambda w: (freq[w], -len(w), w))
+
+    kept = []
     for t in templates:
-        words = {w.lower() for w in WORD.findall(TAG.sub(" ", "".join(t["pl"])))}
-        t["k"] = min(words, key=lambda w: (freq[w], -len(w), w))
+        words = plain_words("".join(t["pl"]))
+        if words:
+            t["k"] = rarest(words)
+        else:
+            option_words = [plain_words(o) for options in t["alts"].values() for o in options]
+            if not option_words or not all(option_words):
+                stats["pomijane: alternatywa bez słowa-kotwicy"] += 1
+                continue
+            t["k"] = sorted({rarest(w) for w in option_words})
+        kept.append(t)
+    templates = kept
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     data = {
-        "version": 1,
+        "version": 2,
         "exact": exact,
-        "templates": [[t["k"], t["pl"], t["en"]] for t in templates],
+        # [kotwica albo lista kotwic, teksty PL, części EN, {nr wstawki: [alternatywy PL]}?]
+        "templates": [[t["k"], t["pl"], t["en"]] + ([t["alts"]] if t["alts"] else []) for t in templates],
     }
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
-    # Serwer (dymki, runechat, screentipy) potrzebuje tylko krótkich stałych
+    # Serwer (dymki, runechat, screentipy) potrzebuje tylko krótkich tekstów: stałe i szablony
+    # bez HTML (runechat zdejmuje znaczniki, dymki ich nie mają)
     short = {k: v for k, v in sorted(exact.items()) if len(k) <= DM_MAX_LENGTH}
+    short_templates = [
+        entry for t, entry in zip(templates, data["templates"])
+        if not TAG.search("".join(t["pl"])) and len("".join(t["pl"])) <= DM_MAX_LENGTH
+    ]
     with open(args.dm_out, "w", encoding="utf-8") as f:
-        json.dump(short, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"exact": short, "templates": short_templates}, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
+    stats["szablony dla serwera"] = len(short_templates)
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"wycinek: {len(wanted)} tekstów, stałe spoza wycinka: {len(names)}, ręczne: {len(manual)}")
     for k, v in stats.most_common():

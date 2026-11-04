@@ -26,6 +26,25 @@ const DICTIONARY = {
       ["<span class='emote'>Widzisz, jak <b>", '</b>', '', '</span>'],
       ["<span class='emote'><b>", [0], '</b>', [1], [2], '</span>'],
     ],
+    // [weapon] [harmful ? "wbija się w kończynę" : "przykleja się do kończyny"] [victim] ([strefa])!
+    [
+      ['kończynę', 'przykleja'],
+      ["<span class='danger'>", ' ', ' ', ' (', ')!</span>'],
+      [
+        "<span class='danger'>",
+        [0],
+        ' ',
+        ['?', 1, ['embeds', 'sticks']],
+        ' itself ',
+        ['?', 1, ['in', 'to']],
+        ' ',
+        [2],
+        "'s ",
+        [3],
+        '!</span>',
+      ],
+      { '1': ['wbija się w kończynę', 'przykleja się do kończyny'] },
+    ],
   ],
 };
 
@@ -68,6 +87,16 @@ describe('translateHtml', () => {
   it('nie rusza nieznanego tekstu', () => {
     const html = "<span class='notice'>Coś zupełnie nowego.</span>";
     expect(translateHtml(html)).toBe(html);
+  });
+
+  it('wybiera gałąź warunku według polskiej alternatywy', () => {
+    expect(
+      translateHtml(
+        "<span class='danger'>skrzynka narzędziowa przykleja się do kończyny Jan Kowalski (klatka piersiowa)!</span>",
+      ),
+    ).toBe(
+      "<span class='danger'>toolbox sticks itself to Jan Kowalski's klatka piersiowa!</span>",
+    );
   });
 
   it('nie bierze kluczy z prototypu Object', () => {

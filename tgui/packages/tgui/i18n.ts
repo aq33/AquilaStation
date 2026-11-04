@@ -10,10 +10,21 @@
 
 import { resolveAsset } from './assets';
 
-/** Element angielskiej strony: tekst albo [nr osadzenia PL, przedimek?] */
-type EnPart = string | [number] | [number, string];
-/** [słowo-kotwica, stałe fragmenty PL, części EN] */
-type Template = [string, string[], EnPart[]];
+/**
+ * Element angielskiej strony: tekst, [nr osadzenia PL, przedimek?] albo
+ * ["?", nr osadzenia PL, [EN dla alternatywy A, EN dla B]] (gałąź warunku).
+ */
+type EnPart =
+  | string
+  | [number]
+  | [number, string]
+  | ['?', number, [string, string]];
+/** Alternatywy osadzeń: nr osadzenia -> [A, B] z [warunek ? "A" : "B"] */
+type Alternatives = Record<string, [string, string]>;
+/** [kotwica albo kotwice, stałe fragmenty PL, części EN, alternatywy?] */
+type Template =
+  | [string | string[], string[], EnPart[]]
+  | [string | string[], string[], EnPart[], Alternatives];
 
 type Dictionary = {
   version: number;
@@ -22,7 +33,8 @@ type Dictionary = {
 };
 
 const DICTIONARY_ASSET = 'i18n_en_chat.json';
-const WORD = /[a-ząćęłńóśźż]{3,}/g;
+// od dwóch liter: "ma", "na" bywają jedynym słowem szablonu (jak w build_chat_dict.py)
+const WORD = /[a-ząćęłńóśźż]{2,}/g;
 const TEXT_NODE = />([^<>]+)</g;
 
 let language = 'pl';
@@ -71,12 +83,14 @@ export const setDictionary = (data: Dictionary | null) => {
   dictionary = data;
   byAnchor = new Map();
   regexCache.clear();
-  data?.templates.forEach(([anchor], index) => {
-    const list = byAnchor.get(anchor);
-    if (list) {
-      list.push(index);
-    } else {
-      byAnchor.set(anchor, [index]);
+  data?.templates.forEach(([anchors], index) => {
+    for (const anchor of Array.isArray(anchors) ? anchors : [anchors]) {
+      const list = byAnchor.get(anchor);
+      if (list) {
+        list.push(index);
+      } else {
+        byAnchor.set(anchor, [index]);
+      }
     }
   });
 };
@@ -99,6 +113,12 @@ export const loadDictionary = (): Promise<boolean> => {
   return loading;
 };
 
+const NO_ALTERNATIVES: Alternatives = {};
+
+const alternativesOf = (index: number): Alternatives =>
+  (dictionary!.templates[index][3] as Alternatives | undefined) ??
+  NO_ALTERNATIVES;
+
 const escapeRegex = (text: string) =>
   text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
 
@@ -111,12 +131,23 @@ const templateRegex = (index: number): RegExp | null => {
     return regexCache.get(index)!;
   }
   const texts = dictionary!.templates[index][1];
+  const alts = alternativesOf(index);
   let source = '';
   texts.forEach((text, i) => {
     if (i > 0) {
       const edgeStart = i === 1 && texts[0] === '';
       const edgeEnd = i === texts.length - 1 && text === '';
-      if (edgeStart) {
+      const options = alts[i - 1];
+      if (options) {
+        // [warunek ? "A" : "B"]: jedna z dwóch wartości, dłuższa najpierw
+        source +=
+          '(' +
+          [...options]
+            .sort((a, b) => b.length - a.length)
+            .map(escapeRegex)
+            .join('|') +
+          ')';
+      } else if (edgeStart) {
         source += '([^<>\\n]*?)';
       } else if (edgeEnd) {
         source += '([^<>\\n]*)';
@@ -204,12 +235,22 @@ const MAX_SPLIT_POINTS = 14;
  * rozdzielonych samymi spacjami (albo niczym) wybieramy podział, przy którym
  * najwięcej wartości ma tłumaczenie.
  */
-const realignCaptures = (texts: string[], captures: string[]): string[] => {
+const realignCaptures = (
+  texts: string[],
+  captures: string[],
+  alts: Alternatives = NO_ALTERNATIVES,
+): string[] => {
   const result = captures.slice();
   let start = 0;
   while (start < captures.length) {
     let end = start;
-    while (end + 1 < captures.length && /^\s*$/.test(texts[end + 1])) {
+    // alternatywa ma stałą wartość, więc przerywa ciąg wstawek do podziału
+    while (
+      end + 1 < captures.length &&
+      /^\s*$/.test(texts[end + 1]) &&
+      !alts[end] &&
+      !alts[end + 1]
+    ) {
       end++;
     }
     if (end > start) {
@@ -296,15 +337,28 @@ const withArticle = (value: string, article: string): string => {
   return `${word} ${value}`;
 };
 
+const sameText = (a: string, b: string) =>
+  a.replace(/\s+/g, ' ').trim() === b.replace(/\s+/g, ' ').trim();
+
 const renderTemplate = (
   parts: EnPart[],
   captures: string[],
   depth: number,
+  alts: Alternatives = NO_ALTERNATIVES,
 ): string => {
   let out = '';
   for (const part of parts) {
     if (typeof part === 'string') {
       out += part;
+      continue;
+    }
+    if (part[0] === '?') {
+      // gałąź warunku: ta, której polska alternatywa wystąpiła w wiadomości
+      const [, index, options] = part;
+      const branch = (alts[index] || []).findIndex((option) =>
+        sameText(option, captures[index] ?? ''),
+      );
+      out += options[branch === 1 ? 1 : 0];
       continue;
     }
     const value = translateValue(captures[part[0]] ?? '', depth);
@@ -363,6 +417,7 @@ export const translateHtml = (html: string, depth = 0): string => {
       const captures = realignCaptures(
         texts,
         match.slice(1, texts.length) as string[],
+        alternativesOf(index),
       );
       let known = 0;
       let unknownLower = 0;
@@ -402,7 +457,14 @@ export const translateHtml = (html: string, depth = 0): string => {
   const done: string[] = [];
   let result = html;
   for (const match of chosen) {
-    done.push(renderTemplate(templates[match.index][2], match.captures, depth));
+    done.push(
+      renderTemplate(
+        templates[match.index][2],
+        match.captures,
+        depth,
+        alternativesOf(match.index),
+      ),
+    );
     result =
       result.slice(0, match.start) +
       `\u0001${done.length - 1}\u0002` +

@@ -26,4 +26,12 @@
 	var/html = i18n_en_html("<b>skrzynka narzędziowa</b> i coś nieznanego")
 	TEST_ASSERT(html == "<b>toolbox</b> i coś nieznanego", "HTML text nodes are not translated one by one: [html]")
 
+	// Szablony serwera (dymki, runechat): wstawka tłumaczona słownikiem, gałąź warunku według alternatywy
+	var/full = i18n_en_html("skrzynka narzędziowa jest pełny!")
+	TEST_ASSERT(full == "toolbox is full!", "Server template with an embed failed: [full]")
+	var/mode = i18n_en_html("Jest ustawiony w tryb: piła.")
+	TEST_ASSERT(mode == "It's set to saw mode.", "Server template alternative picked the wrong branch: [mode]")
+	var/mixed = i18n_en_html("zupełnie nieznane polskie zdanie jest pełny!")
+	TEST_ASSERT(mixed == "zupełnie nieznane polskie zdanie jest pełny!", "Template made a mixed-language text: [mixed]")
+
 #undef TEST_ASSERT

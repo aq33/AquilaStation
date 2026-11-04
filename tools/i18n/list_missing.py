@@ -51,7 +51,7 @@ def load_known(sources):
     return known
 
 
-WORD = re.compile(r"[a-ząćęłńóśźż]{3,}")
+WORD = re.compile(r"[a-ząćęłńóśźż]{2,}")  # od dwóch liter: "ma", "na" (jak build_chat_dict.py)
 STRING_IN_EMBED = re.compile(r'"((?:\\.|[^"\\])*)"')
 PATH_LIKE = re.compile(r"\.(dm|dmi|ogg|wav|png|json|txt|dmm|tsx|ts|js)$")
 
