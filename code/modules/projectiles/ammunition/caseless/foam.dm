@@ -30,6 +30,7 @@
 		FD.modified = TRUE
 		FD.damage_type = BRUTE
 		// AQ EDIT START - zdjęta nasadka rani od pierwszego strzału, tak jak w handle_drop()
+		harmful = TRUE
 		FD.damage = 5
 		FD.nodamage = FALSE
 		// AQ EDIT END

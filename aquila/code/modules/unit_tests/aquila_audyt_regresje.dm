@@ -247,5 +247,18 @@
 		wires.cut(WIRE_AI)
 		TEST_ASSERT(!machine.vars["aidisabled"], "Mending WIRE_AI did not restore AI control of [machine_type]")
 
+/// NTSL: min() i max() z tekstem jako pierwszym argumentem porównują tylko liczby
+/datum/unit_test/aquila_ntsl_min_max_text
+
+/datum/unit_test/aquila_ntsl_min_max_text/Run()
+	var/datum/n_function/default/max/max_func = new
+	var/datum/n_function/default/min/min_func = new
+	allocated += max_func
+	allocated += min_func
+	TEST_ASSERT_EQUAL(max_func.execute(null, list("tekst", 3, 7)), 7, "max() z tekstem na początku")
+	TEST_ASSERT_EQUAL(min_func.execute(null, list("tekst", 3, 7)), 3, "min() z tekstem na początku")
+	TEST_ASSERT_EQUAL(max_func.execute(null, list("a", "b")), "a", "max() bez liczb zwraca pierwszy argument")
+	TEST_ASSERT_EQUAL(min_func.execute(null, list(5)), 5, "min() z jedną liczbą")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

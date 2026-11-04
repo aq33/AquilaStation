@@ -355,8 +355,8 @@ const Guide = (props) => {
       <Box bold>Jak to działa</Box>
       Każdy serwer z włączonym kodem wywołuje dla każdej wiadomości funkcję{' '}
       <b>process_signal(sig)</b>. Zwróć sig, żeby wiadomość poszła dalej.
-      Zwrócenie czegoś innego niż sig albo sig.pass = false blokuje wiadomość.
-      Pusta treść zamienia się w „*beep*”.
+      Zwrócenie wartości, która nie jest sygnałem, albo sig.pass = false blokuje
+      wiadomość. Pusta treść zamienia się w „*beep*”.
       <Box as="pre" mt={1} fontSize="0.9em" style={{ whiteSpace: 'pre-wrap' }}>
         {EXAMPLE}
       </Box>

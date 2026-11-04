@@ -478,14 +478,14 @@
 		if(target.run_armor_check(attack_flag = "bio", absorb_text = "Twój pancerz chroni cię przed [owner]!") >= 100)
 			continue //We are protected
 
-		// Add target
-		affected += target
-
 		// Replace a random limb
 		var/picked_zone = pick(ANOMALY_DELIMBER_ZONES)
 		var/obj/item/bodypart/picked_user_part = target.get_bodypart(picked_zone)
 		if(!picked_user_part)
 			continue // AQ EDIT - return kończył cały impuls na pierwszym celu bez kończyny
+
+		// Add target
+		affected += target // AQ EDIT - tylko cele, którym wymieniono kończynę
 		var/obj/item/bodypart/picked_part
 		switch(picked_zone)
 			if(BODY_ZONE_HEAD)
