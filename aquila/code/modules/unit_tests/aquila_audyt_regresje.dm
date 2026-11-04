@@ -260,5 +260,19 @@
 	TEST_ASSERT_EQUAL(max_func.execute(null, list("a", "b")), "a", "max() bez liczb zwraca pierwszy argument")
 	TEST_ASSERT_EQUAL(min_func.execute(null, list(5)), 5, "min() z jedną liczbą")
 
+/// Maszyna plumbingu zbudowana na przykręconej ramie od razu się przetwarza, a nieprzykręcona nie
+/datum/unit_test/aquila_plumbing_construction_processing
+
+/datum/unit_test/aquila_plumbing_construction_processing/Run()
+	var/obj/machinery/plumbing/input/anchored_one = allocate(/obj/machinery/plumbing/input)
+	TEST_ASSERT(!(anchored_one.datum_flags & DF_ISPROCESSING), "maszyna spoza mapy nie powinna przetwarzać się przed budową")
+	anchored_one.setAnchored(TRUE)
+	anchored_one.on_construction()
+	TEST_ASSERT(anchored_one.datum_flags & DF_ISPROCESSING, "przykręcona maszyna po on_construction() nie przetwarza się")
+
+	var/obj/machinery/plumbing/input/loose_one = allocate(/obj/machinery/plumbing/input)
+	loose_one.on_construction()
+	TEST_ASSERT(!(loose_one.datum_flags & DF_ISPROCESSING), "nieprzykręcona maszyna nie powinna przetwarzać się po on_construction()")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
