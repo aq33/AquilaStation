@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aquila – czat głosowy</title>
+<style>
+	:root { color-scheme: dark; }
+	body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: #14171c; color: #d8dde6; }
+	main { max-width: 560px; margin: 40px auto; padding: 0 16px; }
+	h1 { font-size: 22px; margin: 0 0 4px; }
+	.sub { color: #8b94a3; margin: 0 0 24px; }
+	.card { background: #1d222a; border: 1px solid #2c333e; border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+	#status { font-size: 17px; font-weight: 600; }
+	#status.ok { color: #6fd08c; }
+	#status.rec { color: #ff6b6b; }
+	#status.bad { color: #f0b35a; }
+	#hint { color: #8b94a3; margin-top: 6px; }
+	button { font: inherit; font-size: 16px; padding: 10px 18px; border-radius: 8px; border: 0; background: #3b82f6; color: white; cursor: pointer; }
+	button[hidden] { display: none; }
+	.meter { height: 8px; background: #2c333e; border-radius: 4px; overflow: hidden; margin-top: 12px; }
+	.meter > div { height: 100%; width: 0; background: #6fd08c; transition: width 60ms linear; }
+	#log { list-style: none; margin: 0; padding: 0; }
+	#log li { padding: 6px 0; border-bottom: 1px solid #2c333e; }
+	#log li:last-child { border-bottom: 0; }
+	#log .err { color: #8b94a3; font-style: italic; }
+</style>
+</head>
+<body>
+<main>
+	<h1>Czat głosowy Aquili</h1>
+	<p class="sub">Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.</p>
+	<div class="card">
+		<div id="status" class="bad">Łączenie…</div>
+		<div id="hint"></div>
+		<p><button id="enable" hidden>Włącz mikrofon</button></p>
+		<div class="meter"><div id="level"></div></div>
+	</div>
+	<div class="card">
+		<strong>Ostatnio rozpoznane</strong>
+		<ul id="log"><li class="err">Jeszcze nic.</li></ul>
+	</div>
+</main>
+<script>
+"use strict";
+const token = new URLSearchParams(location.search).get("t") || "";
+const TARGET_RATE = 16000;
+const PRE_ROLL = 0.4;  // sekundy sprzed wciśnięcia klawisza (opóźnienie sieci)
+const POST_ROLL = 0.25;  // sekundy po puszczeniu klawisza (ludzie puszczają za wcześnie)
+const SILENCE_RMS = 0.006;
+
+const el = (id) => document.getElementById(id);
+let ctx = null;
+let rate = 48000;
+let preRoll = [];
+let preRollLen = 0;
+let recording = null;  // {seq, chunks, timer}
+let micReady = false;
+let linked = false;
+
+function setStatus(text, cls, hint) {
+	el("status").textContent = text;
+	el("status").className = cls;
+	el("hint").textContent = hint || "";
+	document.title = (cls === "rec" ? "🔴 " : "") + "Aquila – czat głosowy";
+}
+
+function refreshStatus() {
+	if (!micReady) return;
+	if (recording) setStatus("Nagrywam…", "rec", "Puść klawisz w grze, kiedy skończysz mówić.");
+	else if (linked) setStatus("Gotowe. Możesz wrócić do gry.", "ok", "Trzymaj klawisz mówienia (domyślnie N, radio: U).");
+	else setStatus("Brak połączenia z grą", "bad", "Kliknij „Czat głosowy” w grze, jeśli to nie wróci samo.");
+}
+
+function addLog(text, isErr) {
+	const log = el("log");
+	if (log.firstChild && log.firstChild.dataset.empty !== "0") log.innerHTML = "";
+	const li = document.createElement("li");
+	li.dataset.empty = "0";
+	li.textContent = text;
+	if (isErr) li.className = "err";
+	log.prepend(li);
+	while (log.children.length > 8) log.lastChild.remove();
+}
+
+const WORKLET = `
+class Tap extends AudioWorkletProcessor {
+	constructor() { super(); this.buf = new Float32Array(2048); this.n = 0; }
+	process(inputs) {
+		const ch = inputs[0] && inputs[0][0];
+		if (ch) {
+			for (let i = 0; i < ch.length; i++) {
+				this.buf[this.n++] = ch[i];
+				if (this.n === this.buf.length) { this.port.postMessage(this.buf.slice()); this.n = 0; }
+			}
+		}
+		return true;
+	}
+}
+registerProcessor("tap", Tap);`;
+
+async function enableMic() {
+	el("enable").hidden = true;
+	try {
+		const stream = await navigator.mediaDevices.getUserMedia({
+			audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+		});
+		ctx = new AudioContext();
+		rate = ctx.sampleRate;
+		await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([WORKLET], { type: "application/javascript" })));
+		const source = ctx.createMediaStreamSource(stream);
+		const tap = new AudioWorkletNode(ctx, "tap");
+		const mute = ctx.createGain();
+		mute.gain.value = 0;
+		source.connect(tap).connect(mute).connect(ctx.destination);
+		tap.port.onmessage = (e) => onSamples(e.data);
+		if (ctx.state !== "running") await ctx.resume();
+		if (ctx.state !== "running") {
+			el("enable").hidden = false;
+			setStatus("Kliknij, żeby włączyć mikrofon", "bad");
+			return;
+		}
+		micReady = true;
+		refreshStatus();
+	} catch (err) {
+		el("enable").hidden = false;
+		setStatus("Brak dostępu do mikrofonu", "bad", "Zezwól przeglądarce na mikrofon (ikona w pasku adresu) i kliknij przycisk. (" + err.name + ")");
+	}
+}
+
+function onSamples(block) {
+	let sum = 0;
+	for (let i = 0; i < block.length; i++) sum += block[i] * block[i];
+	el("level").style.width = Math.min(100, Math.sqrt(sum / block.length) * 400) + "%";
+	if (recording) {
+		recording.chunks.push(block);
+		return;
+	}
+	preRoll.push(block);
+	preRollLen += block.length;
+	while (preRollLen - preRoll[0].length > PRE_ROLL * rate) preRollLen -= preRoll.shift().length;
+}
+
+function startRec(data) {
+	if (!micReady) return;
+	if (ctx.state !== "running") ctx.resume();
+	if (recording) finishRec(recording);
+	recording = { seq: data.seq, chunks: preRoll.slice(), timer: setTimeout(() => stopRec({ seq: data.seq }), (data.max || 15) * 1000) };
+	preRoll = [];
+	preRollLen = 0;
+	refreshStatus();
+}
+
+function stopRec(data) {
+	const rec = recording;
+	if (!rec || rec.seq !== data.seq) return;
+	clearTimeout(rec.timer);
+	setTimeout(() => {
+		if (recording === rec) recording = null;
+		finishRec(rec);
+		refreshStatus();
+	}, POST_ROLL * 1000);
+}
+
+function cancelRec(data) {
+	if (recording && recording.seq === data.seq) {
+		clearTimeout(recording.timer);
+		recording = null;
+		refreshStatus();
+	}
+}
+
+function finishRec(rec) {
+	let total = 0;
+	for (const c of rec.chunks) total += c.length;
+	const pcm = new Float32Array(total);
+	let off = 0;
+	for (const c of rec.chunks) { pcm.set(c, off); off += c.length; }
+	const samples = resample(pcm, rate, TARGET_RATE);
+	let sum = 0;
+	for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+	const rms = Math.sqrt(sum / Math.max(1, samples.length));
+	const silent = rms < SILENCE_RMS;
+	fetch(`/audio?t=${token}&seq=${rec.seq}${silent ? "&silent=1" : ""}`, {
+		method: "POST",
+		headers: { "Content-Type": "audio/wav" },
+		body: silent ? new Blob([]) : encodeWav(samples, TARGET_RATE),
+	}).catch(() => addLog("Nie udało się wysłać nagrania.", true));
+}
+
+function resample(input, from, to) {
+	if (from === to) return input;
+	const ratio = from / to;
+	const out = new Float32Array(Math.floor(input.length / ratio));
+	for (let i = 0; i < out.length; i++) {
+		// średnia z okna zamiast pojedynczej próbki, żeby nie było aliasingu
+		const start = Math.floor(i * ratio), end = Math.min(input.length, Math.floor((i + 1) * ratio));
+		let s = 0;
+		for (let j = start; j < end; j++) s += input[j];
+		out[i] = s / Math.max(1, end - start);
+	}
+	return out;
+}
+
+function encodeWav(samples, sampleRate) {
+	const buf = new ArrayBuffer(44 + samples.length * 2);
+	const v = new DataView(buf);
+	const str = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+	str(0, "RIFF"); v.setUint32(4, 36 + samples.length * 2, true); str(8, "WAVE");
+	str(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+	v.setUint32(24, sampleRate, true); v.setUint32(28, sampleRate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+	str(36, "data"); v.setUint32(40, samples.length * 2, true);
+	for (let i = 0; i < samples.length; i++) {
+		const s = Math.max(-1, Math.min(1, samples[i]));
+		v.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+	}
+	return new Blob([buf], { type: "audio/wav" });
+}
+
+function connect() {
+	const es = new EventSource(`/events?t=${token}`);
+	es.addEventListener("hello", (e) => {
+		linked = true;
+		const data = JSON.parse(e.data);
+		el("hint").dataset.ckey = data.ckey;
+		refreshStatus();
+	});
+	es.addEventListener("start", (e) => startRec(JSON.parse(e.data)));
+	es.addEventListener("stop", (e) => stopRec(JSON.parse(e.data)));
+	es.addEventListener("cancel", (e) => cancelRec(JSON.parse(e.data)));
+	es.addEventListener("result", (e) => {
+		const data = JSON.parse(e.data);
+		if (data.text) addLog(data.text);
+		else addLog(data.error || "Nie rozpoznano mowy.", true);
+	});
+	es.addEventListener("ended", () => {
+		es.close();
+		linked = false;
+		refreshStatus();
+		setTimeout(connect, 5000);
+	});
+	es.onerror = () => {
+		// Sesja nieznana (np. nowa runda jeszcze nie wysłała listy) albo serwis wstaje. Próbujemy dalej.
+		es.close();
+		linked = false;
+		refreshStatus();
+		setTimeout(connect, 3000);
+	};
+}
+
+el("enable").addEventListener("click", enableMic);
+if (!/^[0-9a-f]{32}$/.test(token)) {
+	setStatus("Zły link", "bad", "Otwórz tę stronę z gry: komenda „Czat głosowy” w zakładce OOC.");
+} else {
+	setStatus("Włączanie mikrofonu…", "bad");
+	enableMic();
+	connect();
+}
+</script>
+</body>
+</html>

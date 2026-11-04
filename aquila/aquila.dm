@@ -613,6 +613,7 @@
 #include "code\modules\ui_porzadki\hud_buttons.dm"
 #include "code\modules\ui_porzadki\stat_tabs.dm"
 #include "code\modules\ui_porzadki\viewport.dm"
+#include "code\modules\voice_chat\voice_chat.dm"
 #include "code\modules\events\monkey_uprising.dm"
 #include "code\modules\events\chrono_legionnaire.dm"
 #include "code\modules\events\portal_storm_kurwinox.dm"
