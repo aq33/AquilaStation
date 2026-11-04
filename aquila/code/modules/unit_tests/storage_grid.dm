@@ -140,6 +140,11 @@
 	shown = big.transform
 	TEST_ASSERT(look_grid.same_matrix(shown, own), "Item's own transform was overwritten on removal")
 
+	// Napełnianie typem nie wychodzi poza siatkę: 7x4 mieści 6 pudełek 2x2, choć wolnych kratek jest 28
+	var/obj/item/storage/backpack/fill_bag = allocate(/obj/item/storage/backpack)
+	SEND_SIGNAL(fill_bag, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/storage/box, 20)
+	TEST_ASSERT_EQUAL(length(fill_bag.contents), 6, "Fill type put more boxes into the bag than its grid holds")
+
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")

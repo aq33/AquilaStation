@@ -6,7 +6,10 @@
 		upuszczenie latarki na niej samej kładzie ją poziomo, kliknięcie pustej kratki przedmiotem z ręki kładzie go w tym miejscu, \
 		złapanie pudełka za dowolną z jego 4 kratek działa. Siódme pudełko nie wejdzie do plecaka (brak miejsca), latarki wejdą \
 		do ostatniej kolumny. Plecak „przepełniony” ma 8 apteczek włożonych siłą: nadmiar wisi na czerwono nad siatką \
-		i wskakuje na siatkę, gdy coś wyjmiesz. Skrzynka z narzędziami, apteczka i aktówka mają siatkę z dawnym limitem sztuk: 		nagłówek pokazuje „szt.”, a po dojściu do limitu nic więcej nie wejdzie mimo wolnych kratek. Użyj skrzynki na czymś 		(radial z narzędziami): ikony w radialu mają zwykły rozmiar, także po wcześniejszym otwarciu skrzynki. 		Sprawdź w combat mode i na intencjach."
+		i wskakuje na siatkę, gdy coś wyjmiesz. Skrzynka z narzędziami, apteczka i aktówka mają siatkę z dawnym limitem sztuk: \
+		nagłówek pokazuje „szt.”, a po dojściu do limitu nic więcej nie wejdzie mimo wolnych kratek. Użyj skrzynki na czymś \
+		(radial z narzędziami): ikony w radialu mają zwykły rozmiar, także po wcześniejszym otwarciu skrzynki. \
+		Sprawdź w trybie walki i na intencjach."
 	items = list(
 		/obj/item/storage/backpack = 1,
 		/obj/item/storage/backpack/satchel = 1,

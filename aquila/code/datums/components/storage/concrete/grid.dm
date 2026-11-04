@@ -464,6 +464,26 @@
 	. = ..()
 	pending_cell = null
 
+/// Napełnianie typem (COMSIG_TRY_STORAGE_FILL_TYPE): bazowa wersja tworzy tyle sztuk, ile zwróci remaining_space_items(),
+/// a wolne kratki to nie liczba przedmiotów 2x2. Bez force kończymy, gdy kolejna sztuka nie dostanie miejsca na siatce
+/datum/component/storage/concrete/grid/signal_fill_type(datum/source, type, amount = 20, force = FALSE)
+	if(!grid_width || force)
+		return ..()
+	var/atom/real_location = real_location()
+	for(var/i in 1 to amount)
+		if(grid_keep_item_limit && length(real_location.contents) >= max_items)
+			break
+		var/obj/item/filler = new type(real_location)
+		if(QDELETED(src))
+			return TRUE
+		if(!istype(filler))
+			break
+		handle_item_insertion(filler, TRUE)
+		if(!LAZYACCESS(grid_positions, filler))
+			qdel(filler)
+			break
+	return TRUE
+
 /// Siatka z zachowanym dawnym limitem sztuk: skrzynki z narzędziami, apteczki, aktówki
 /datum/component/storage/concrete/grid/limited
 	grid_keep_item_limit = TRUE
