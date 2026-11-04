@@ -152,7 +152,8 @@
 	if(override)
 		unregister_target(override)
 	//Parent targets, we shouldn't need this casually, only for niche cases
-	if(length(component_parent.targets) && handle_parent)
+	// Timer un_trigger (np. animalize) potrafi przyjść po zniszczeniu artefaktu
+	if(handle_parent && length(component_parent?.targets))
 		for(var/atom/target in component_parent.targets)
 			unregister_target(target)
 	//Our targets
