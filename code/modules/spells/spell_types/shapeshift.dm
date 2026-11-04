@@ -36,7 +36,7 @@
 			for(var/path in possible_shapes)
 				var/mob/living/simple_animal/A = path
 				animal_list[initial(A.name)] = path
-			var/new_shapeshift_type = input(M, "Wybierz swoją zwierzęcą postać!", "Czas na przemianę!", null) as null|anything in sortList(animal_list)
+			var/new_shapeshift_type = input(M, i18n_dialog_text(M, "Wybierz swoją zwierzęcą postać!"), i18n_dialog_text(M, "Czas na przemianę!"), null) as null|anything in sortList(animal_list) // AQ EDIT - i18n okienka
 			if(shapeshift_type)
 				return
 			shapeshift_type = new_shapeshift_type

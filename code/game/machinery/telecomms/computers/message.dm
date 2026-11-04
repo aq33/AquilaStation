@@ -180,7 +180,7 @@
 				last = M
 
 			if(length(message_servers) > 1)
-				var/choice = input(usr, "Wybierz serwer.", "Wybór serwera", null) as null|anything in message_servers
+				var/choice = input(usr, i18n_dialog_text(usr, "Wybierz serwer."), i18n_dialog_text(usr, "Wybór serwera"), null) as null|anything in message_servers // AQ EDIT - i18n okienka
 				if(choice in message_servers)
 					set_linked_server(message_servers[choice])
 				else

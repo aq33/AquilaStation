@@ -50,7 +50,7 @@
 	if(!SSticker.mode)
 		to_chat(user, "Nie możesz zostać dronem przed rozpoczęciem gry.")
 		return
-	var/be_drone = alert("Zostać dronem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+	var/be_drone = i18n_alert(usr, "Zostać dronem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") // AQ EDIT - i18n okienka
 	if(be_drone != "Tak" || QDELETED(src) || !isobserver(user))
 		return
 	var/mob/living/simple_animal/drone/D = new mob_type(get_turf(loc))

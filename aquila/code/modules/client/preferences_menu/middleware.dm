@@ -559,7 +559,7 @@
 	switch(gear.unlocktype)
 		if(GEAR_METACOIN)
 			if(gear.sort_category == "Donator")
-				if(CONFIG_GET(flag/donator_items) && alert(C, "Ten przedmiot jest dostępny tylko dla naszych patronów. Chcesz zostać patronem?", "Tylko dla patronów", "Tak", "Nie") == "Tak")
+				if(CONFIG_GET(flag/donator_items) && i18n_alert(usr, C, "Ten przedmiot jest dostępny tylko dla naszych patronów. Chcesz zostać patronem?", "Tylko dla patronów", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 					C.donate()
 				return FALSE
 			refresh_balance()

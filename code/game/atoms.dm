@@ -1145,17 +1145,17 @@
 	. = ..()
 	if(href_list[VV_HK_ADD_REAGENT] && check_rights(R_VAREDIT))
 		if(!reagents)
-			var/amount = input(usr, "Podaj pojemność odczynników [src]", "Pojemność odczynników", 50) as num
+			var/amount = input(usr, i18n_dialog_text(usr, "Podaj pojemność odczynników [src]"), i18n_dialog_text(usr, "Pojemność odczynników"), 50) as num // AQ EDIT - i18n okienka
 			if(amount)
 				create_reagents(amount)
 
 		if(reagents)
 			var/chosen_id
-			switch(alert(usr, "Wybierz metodę.", "Dodaj odczynniki", "Szukaj", "Wybierz z listy", "Szczęśliwy traf"))
+			switch(i18n_alert(usr, usr, "Wybierz metodę.", "Dodaj odczynniki", "Szukaj", "Wybierz z listy", "Szczęśliwy traf")) // AQ EDIT - i18n okienka
 				if("Szukaj")
 					var/valid_id
 					while(!valid_id)
-						chosen_id = input(usr, "Podaj ID odczynnika, który chcesz dodać.", "Szukaj odczynników") as null|text
+						chosen_id = input(usr, i18n_dialog_text(usr, "Podaj ID odczynnika, który chcesz dodać."), i18n_dialog_text(usr, "Szukaj odczynników")) as null|text // AQ EDIT - i18n okienka
 						if(isnull(chosen_id)) //Get me out of here!
 							break
 						if (!ispath(text2path(chosen_id)))
@@ -1168,13 +1168,13 @@
 							to_chat(usr, "<span class='warning'>Odczynnik o takim ID nie istnieje!</span>")
 
 				if("Wybierz z listy")
-					chosen_id = input(usr, "Wybierz odczynnik do dodania.", "Wybierz odczynnik.") as null|anything in subtypesof(/datum/reagent)
+					chosen_id = input(usr, i18n_dialog_text(usr, "Wybierz odczynnik do dodania."), i18n_dialog_text(usr, "Wybierz odczynnik.")) as null|anything in subtypesof(/datum/reagent) // AQ EDIT - i18n okienka
 
 				if("Szczęśliwy traf")
 					chosen_id = pick(subtypesof(/datum/reagent))
 
 			if(chosen_id)
-				var/amount = input(usr, "Wybierz ilość do dodania.", "Wybierz ilość.", reagents.maximum_volume) as num
+				var/amount = input(usr, i18n_dialog_text(usr, "Wybierz ilość do dodania."), i18n_dialog_text(usr, "Wybierz ilość."), reagents.maximum_volume) as num // AQ EDIT - i18n okienka
 
 				if(amount)
 					reagents.add_reagent(chosen_id, amount)
@@ -1188,32 +1188,32 @@
 		usr.client.cmd_admin_emp(src)
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM] && check_rights(R_VAREDIT))
-		var/result = input(usr, "Wybierz przekształcenie do zastosowania","Przekształcenie") as null|anything in list("Scale","Translate","Rotate")
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz przekształcenie do zastosowania"),i18n_dialog_text(usr, "Przekształcenie")) as null|anything in list("Scale","Translate","Rotate") // AQ EDIT - i18n okienka
 		var/matrix/M = transform
 		switch(result)
 			if("Scale")
-				var/x = input(usr, "Podaj wartość x","Przekształcenie") as null|num
-				var/y = input(usr, "Podaj wartość y","Przekształcenie") as null|num
+				var/x = input(usr, i18n_dialog_text(usr, "Podaj wartość x"),i18n_dialog_text(usr, "Przekształcenie")) as null|num // AQ EDIT - i18n okienka
+				var/y = input(usr, i18n_dialog_text(usr, "Podaj wartość y"),i18n_dialog_text(usr, "Przekształcenie")) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(x) && !isnull(y))
 					transform = M.Scale(x,y)
 			if("Translate")
-				var/x = input(usr, "Podaj wartość x","Przekształcenie") as null|num
-				var/y = input(usr, "Podaj wartość y","Przekształcenie") as null|num
+				var/x = input(usr, i18n_dialog_text(usr, "Podaj wartość x"),i18n_dialog_text(usr, "Przekształcenie")) as null|num // AQ EDIT - i18n okienka
+				var/y = input(usr, i18n_dialog_text(usr, "Podaj wartość y"),i18n_dialog_text(usr, "Przekształcenie")) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(x) && !isnull(y))
 					transform = M.Translate(x,y)
 			if("Rotate")
-				var/angle = input(usr, "Wybierz kąt obrotu","Przekształcenie") as null|num
+				var/angle = input(usr, i18n_dialog_text(usr, "Wybierz kąt obrotu"),i18n_dialog_text(usr, "Przekształcenie")) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(angle))
 					transform = M.Turn(angle)
 
 	if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_ADMIN))
-		var/newname = input(usr, "Na co chcesz zmienić nazwę?", "Automatyczna zmiana nazwy") as null|text
+		var/newname = input(usr, i18n_dialog_text(usr, "Na co chcesz zmienić nazwę?"), i18n_dialog_text(usr, "Automatyczna zmiana nazwy")) as null|text // AQ EDIT - i18n okienka
 		if(newname)
 			vv_auto_rename(newname)
 	if(href_list[VV_HK_ADD_AI])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/result = input(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie.", "Kontroler SI") as null|anything in subtypesof(/datum/ai_controller)
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in subtypesof(/datum/ai_controller) // AQ EDIT - i18n okienka
 		if(!result)
 			return
 		ai_controller = new result(src)
@@ -1222,7 +1222,7 @@
 		usr.client.holder.modify_traits(src)
 
 	if(href_list[VV_HK_ADD_AI] && check_rights(R_VAREDIT))
-		var/result = input(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie.", "Kontroler SI") as null|anything in subtypesof(/datum/ai_controller)
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in subtypesof(/datum/ai_controller) // AQ EDIT - i18n okienka
 		if(!result)
 			return
 		ai_controller = new result(src)

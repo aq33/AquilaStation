@@ -312,11 +312,11 @@
 				var/list/expNames = list("Całkowite zniszczenie", "Ciężkie obrażenia", "Lekkie obrażenia", "Płomienie") //Explosions have a range of different types of damage
 				var/list/boomInput = list()
 				for (var/i=1 to expNames.len) //Gather input from the user for the value of each type of damage
-					boomInput.Add(input("Podaj zasięg eksplozji (rodzaj: [expNames[i]]). UWAGA: to ignoruje limit bomb!", "Zasięg: [expNames[i]]",  0) as null|num)
+					boomInput.Add(input(i18n_dialog_text(usr, "Podaj zasięg eksplozji (rodzaj: [expNames[i]]). UWAGA: to ignoruje limit bomb!"), i18n_dialog_text(usr, "Zasięg: [expNames[i]]"),  0) as null|num) // AQ EDIT - i18n okienka
 					if (isnull(boomInput[i]))
 						return
 					if (!isnum_safe(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
-						alert(usr, "To nie była liczba! Ustawiono wartość domyślną (zero).")
+						i18n_alert(usr, usr, "To nie była liczba! Ustawiono wartość domyślną (zero).") // AQ EDIT - i18n okienka
 						boomInput = 0
 				explosionChoice = 1
 				temp_pod.explosionSize = boomInput
@@ -334,11 +334,11 @@
 				damageChoice = 0
 				temp_pod.damage = 0
 			else
-				var/damageInput = input("Podaj ilość obrażeń fizycznych zadawanych przy trafieniu","Ile obrażeń zadać",  0) as null|num
+				var/damageInput = input(i18n_dialog_text(usr, "Podaj ilość obrażeń fizycznych zadawanych przy trafieniu"),i18n_dialog_text(usr, "Ile obrażeń zadać"),  0) as null|num // AQ EDIT - i18n okienka
 				if (isnull(damageInput))
 					return
 				if (!isnum_safe(damageInput)) //Sanitize the input for damage to deal.s
-					alert(usr, "To nie była liczba! Ustawiono wartość domyślną (zero).")
+					i18n_alert(usr, usr, "To nie była liczba! Ustawiono wartość domyślną (zero).") // AQ EDIT - i18n okienka
 					damageInput = 0
 				damageChoice = 1
 				temp_pod.damage = damageInput
@@ -358,10 +358,10 @@
 				temp_pod.adminNamed = FALSE
 				temp_pod.setStyle(temp_pod.style) //This resets the name of the pod based on it's current style (see supplypod/setStyle() proc)
 			else
-				var/nameInput= input("Własna nazwa", "Podaj własną nazwę", GLOB.podstyles[temp_pod.style][POD_NAME]) as null|text //Gather input for name and desc
+				var/nameInput= input(i18n_dialog_text(usr, "Własna nazwa"), i18n_dialog_text(usr, "Podaj własną nazwę"), GLOB.podstyles[temp_pod.style][POD_NAME]) as null|text //Gather input for name and desc // AQ EDIT - i18n okienka
 				if (isnull(nameInput))
 					return
-				var/descInput = input("Własny opis", "Podaj własny opis", GLOB.podstyles[temp_pod.style][POD_DESC]) as null|text //The GLOB.podstyles is used to get the name, desc, or icon state based on the pod's style
+				var/descInput = input(i18n_dialog_text(usr, "Własny opis"), i18n_dialog_text(usr, "Podaj własny opis"), GLOB.podstyles[temp_pod.style][POD_DESC]) as null|text //The GLOB.podstyles is used to get the name, desc, or icon state based on the pod's style // AQ EDIT - i18n okienka
 				if (isnull(descInput))
 					return
 				temp_pod.name = nameInput
@@ -372,14 +372,14 @@
 			if (temp_pod.effectShrapnel == TRUE) //If already doing custom damage, set back to default (no shrapnel)
 				temp_pod.effectShrapnel = FALSE
 			else
-				var/shrapnelInput = input("Wybierz typ chmury odłamków tworzonej przy lądowaniu (może to być dowolny pocisk!)", "Ścieżka typu pocisku",  0) in sortList(subtypesof(/obj/item/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc))
+				var/shrapnelInput = input(i18n_dialog_text(usr, "Wybierz typ chmury odłamków tworzonej przy lądowaniu (może to być dowolny pocisk!)"), i18n_dialog_text(usr, "Ścieżka typu pocisku"),  0) in sortList(subtypesof(/obj/item/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
 				if (isnull(shrapnelInput))
 					return
-				var/shrapnelMagnitude = input("Podaj siłę chmury odłamków. Zwykle jest to wartość około 1-5. Ryll-Ryll prosi, by ci przekazać, że jeśli przesadzisz z pociskami, możesz wywalić serwer. Więc, ee, delikatnie!", "Siła odłamków", 0) as null|num
+				var/shrapnelMagnitude = input(i18n_dialog_text(usr, "Podaj siłę chmury odłamków. Zwykle jest to wartość około 1-5. Ryll-Ryll prosi, by ci przekazać, że jeśli przesadzisz z pociskami, możesz wywalić serwer. Więc, ee, delikatnie!"), i18n_dialog_text(usr, "Siła odłamków"), 0) as null|num // AQ EDIT - i18n okienka
 				if (isnull(shrapnelMagnitude))
 					return
 				if (!isnum(shrapnelMagnitude))
-					alert(usr, "To nie była liczba! Ustawiono wartość 3.")
+					i18n_alert(usr, usr, "To nie była liczba! Ustawiono wartość 3.") // AQ EDIT - i18n okienka
 					shrapnelMagnitude = 3
 				temp_pod.shrapnel_type = shrapnelInput
 				temp_pod.shrapnel_magnitude = shrapnelMagnitude
@@ -431,7 +431,7 @@
 				specificTarget = null
 			else
 				var/list/mobs = getpois()//code stolen from observer.dm
-				var/inputTarget = input("Wybierz moba! (Smiting robi to automatycznie)", "Cel", null, null) as null|anything in mobs
+				var/inputTarget = input(i18n_dialog_text(usr, "Wybierz moba! (Smiting robi to automatycznie)"), i18n_dialog_text(usr, "Cel"), null, null) as null|anything in mobs // AQ EDIT - i18n okienka
 				if (isnull(inputTarget))
 					return
 				var/mob/target = mobs[inputTarget]
@@ -461,7 +461,7 @@
 				temp_pod.fallingSound = initial(temp_pod.fallingSound)
 				temp_pod.fallingSoundLength = initial(temp_pod.fallingSoundLength)
 			else
-				var/soundInput = input(holder, "Wybierz plik dźwiękowy odtwarzany przy lądowaniu kapsuły! Dźwięk zacznie grać i spróbuje skończyć się w momencie lądowania", "Wybierz plik dźwiękowy") as null|sound
+				var/soundInput = input(holder, i18n_dialog_text(holder, "Wybierz plik dźwiękowy odtwarzany przy lądowaniu kapsuły! Dźwięk zacznie grać i spróbuje skończyć się w momencie lądowania"), i18n_dialog_text(holder, "Wybierz plik dźwiękowy")) as null|sound // AQ EDIT - i18n okienka
 				if (isnull(soundInput))
 					return
 				var/sound/tempSound = sound(soundInput)
@@ -476,11 +476,11 @@
 					if (found.file == tempSound.file)
 						soundLen = found.len
 				if (!soundLen)
-					soundLen =  input(holder, "Nie udało się automatycznie ustalić długości pliku dźwiękowego. Jaka jest dokładna długość pliku w sekundach? Ta liczba posłuży do zsynchronizowania dźwięku, by skończył się dokładnie w momencie lądowania kapsuły!", "Wybierz plik dźwiękowy", 0.3) as null|num
+					soundLen =  input(holder, i18n_dialog_text(holder, "Nie udało się automatycznie ustalić długości pliku dźwiękowego. Jaka jest dokładna długość pliku w sekundach? Ta liczba posłuży do zsynchronizowania dźwięku, by skończył się dokładnie w momencie lądowania kapsuły!"), i18n_dialog_text(holder, "Wybierz plik dźwiękowy"), 0.3) as null|num // AQ EDIT - i18n okienka
 					if (isnull(soundLen))
 						return
 					if (!isnum(soundLen))
-						alert(usr, "To nie była liczba! Ustawiono wartość domyślną ([initial(temp_pod.fallingSoundLength)*0.1]).")
+						i18n_alert(usr, usr, "To nie była liczba! Ustawiono wartość domyślną ([initial(temp_pod.fallingSoundLength)*0.1]).") // AQ EDIT - i18n okienka
 				temp_pod.fallingSound = soundInput
 				temp_pod.fallingSoundLength = 10 * soundLen
 			. = TRUE
@@ -488,7 +488,7 @@
 			if (!isnull(temp_pod.landingSound))
 				temp_pod.landingSound = null
 			else
-				var/soundInput = input(holder, "Wybierz plik dźwiękowy odtwarzany przy lądowaniu kapsuły! Polecam miłe „o cholera, przepraszam”, na wypadek gdybyś kogoś trafił kapsułą.", "Wybierz plik dźwiękowy") as null|sound
+				var/soundInput = input(holder, i18n_dialog_text(holder, "Wybierz plik dźwiękowy odtwarzany przy lądowaniu kapsuły! Polecam miłe „o cholera, przepraszam”, na wypadek gdybyś kogoś trafił kapsułą."), i18n_dialog_text(holder, "Wybierz plik dźwiękowy")) as null|sound // AQ EDIT - i18n okienka
 				if (isnull(soundInput))
 					return
 				temp_pod.landingSound = soundInput
@@ -497,7 +497,7 @@
 			if (!isnull(temp_pod.openingSound))
 				temp_pod.openingSound = null
 			else
-				var/soundInput = input(holder, "Wybierz plik dźwiękowy odtwarzany przy otwarciu kapsuły! Polecam efekt dźwiękowy wiwatujących dzieci na imprezie, na wypadek gdyby kapsuła była pełna fajnych rzeczy!", "Wybierz plik dźwiękowy") as null|sound
+				var/soundInput = input(holder, i18n_dialog_text(holder, "Wybierz plik dźwiękowy odtwarzany przy otwarciu kapsuły! Polecam efekt dźwiękowy wiwatujących dzieci na imprezie, na wypadek gdyby kapsuła była pełna fajnych rzeczy!"), i18n_dialog_text(holder, "Wybierz plik dźwiękowy")) as null|sound // AQ EDIT - i18n okienka
 				if (isnull(soundInput))
 					return
 				temp_pod.openingSound = soundInput
@@ -506,7 +506,7 @@
 			if (!isnull(temp_pod.leavingSound))
 				temp_pod.leavingSound = null
 			else
-				var/soundInput = input(holder, "Wybierz plik dźwiękowy odtwarzany przy odlocie kapsuły! Polecam przyjemny dźwięk gwizdka suwakowego, zwłaszcza jeśli używasz efektu odwróconej kapsuły.", "Wybierz plik dźwiękowy") as null|sound
+				var/soundInput = input(holder, i18n_dialog_text(holder, "Wybierz plik dźwiękowy odtwarzany przy odlocie kapsuły! Polecam przyjemny dźwięk gwizdka suwakowego, zwłaszcza jeśli używasz efektu odwróconej kapsuły."), i18n_dialog_text(holder, "Wybierz plik dźwiękowy")) as null|sound // AQ EDIT - i18n okienka
 				if (isnull(soundInput))
 					return
 				temp_pod.leavingSound = soundInput
@@ -515,7 +515,7 @@
 			if (temp_pod.soundVolume != initial(temp_pod.soundVolume))
 				temp_pod.soundVolume = initial(temp_pod.soundVolume)
 			else
-				var/soundInput = input(holder, "Wybierz głośność. Domyślnie od 1 do 100, gdzie 50 to średnia, ale wybierz, co chcesz. Jestem powiadomieniem, nie policjantem. Jeśli nadal nie słyszysz dźwięku, rozważ włączenie efektu Quiet. Wycisza on wszystkie dźwięki kapsuły z wyjątkiem własnych dźwięków admina ustawionych trzema poprzednimi przyciskami.", "Wybierz głośność dźwięku admina") as null|num
+				var/soundInput = input(holder, i18n_dialog_text(holder, "Wybierz głośność. Domyślnie od 1 do 100, gdzie 50 to średnia, ale wybierz, co chcesz. Jestem powiadomieniem, nie policjantem. Jeśli nadal nie słyszysz dźwięku, rozważ włączenie efektu Quiet. Wycisza on wszystkie dźwięki kapsuły z wyjątkiem własnych dźwięków admina ustawionych trzema poprzednimi przyciskami."), i18n_dialog_text(holder, "Wybierz głośność dźwięku admina")) as null|num // AQ EDIT - i18n okienka
 				if (isnull(soundInput))
 					return
 				temp_pod.soundVolume = soundInput
@@ -551,7 +551,7 @@
 			updateSelector()
 			. = TRUE
 		if("clearBay") //Delete all mobs and objs in the selected bay
-			if(alert(usr, "To usunie wszystkie obiekty i moby w [bay]. Na pewno?", "Potwierdzenie", "Usuń to cholerstwo", "Nie") == "Usuń to cholerstwo")
+			if(i18n_alert(usr, usr, "To usunie wszystkie obiekty i moby w [bay]. Na pewno?", "Potwierdzenie", "Usuń to cholerstwo", "Nie") == "Usuń to cholerstwo") // AQ EDIT - i18n okienka
 				clearBay()
 				refreshBay()
 			. = TRUE

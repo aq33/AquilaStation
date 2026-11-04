@@ -624,7 +624,7 @@ What a mess.*/
 								default_description += "[c.crimeDetails]\n"
 
 						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj list gończy", "ŚCIGANY", 8)
-						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Liczba:",1) as num|null), 1, 5)
+						var/posternum = CLAMP((input(i18n_dialog_text(usr, "Liczba plakatów do wydrukowania (maks. 5):"),i18n_dialog_text(usr, "Liczba:"),1) as num|null), 1, 5) // AQ EDIT - i18n okienka
 						var/info = stripped_multiline_input(usr, "Podaj opis plakatu:", "Drukuj list gończy", default_description, null)
 						if(info)
 							printing = 1
@@ -643,7 +643,7 @@ What a mess.*/
 						var/default_description = "Plakat ogłaszający, że [missing_name] jest osobą zaginioną, za którą tęskni Nanotrasen. Każde spotkanie natychmiast zgłaszaj ochronie."
 
 						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj plakat o zaginięciu", "SZUKAMY", 8)
-						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Liczba:",1) as num|null), 1, 5)
+						var/posternum = CLAMP((input(i18n_dialog_text(usr, "Liczba plakatów do wydrukowania (maks. 5):"),i18n_dialog_text(usr, "Liczba:"),1) as num|null), 1, 5) // AQ EDIT - i18n okienka
 						var/info = stripped_multiline_input(usr, "Podaj opis plakatu:", "Drukuj plakat o zaginięciu", default_description, null)
 						if(info)
 							printing = 1
@@ -797,13 +797,13 @@ What a mess.*/
 								active1.fields["gender"] = "Male"
 					if("age")
 						if(istype(active1, /datum/data/record))
-							var/t1 = input("Podaj wiek:", "Akta ochr.", active1.fields["age"], null) as num
+							var/t1 = input(i18n_dialog_text(usr, "Podaj wiek:"), i18n_dialog_text(usr, "Akta ochr."), active1.fields["age"], null) as num // AQ EDIT - i18n okienka
 							if(!isnum_safe(t1) || !canUseSecurityRecordsConsole(usr, "age", a1))
 								return
 							active1.fields["age"] = t1
 					if("species")
 						if(istype(active1, /datum/data/record))
-							var/t1 = input("Wybierz gatunek", "Wybór gatunku") as null|anything in GLOB.roundstart_races
+							var/t1 = input(i18n_dialog_text(usr, "Wybierz gatunek"), i18n_dialog_text(usr, "Wybór gatunku")) as null|anything in GLOB.roundstart_races // AQ EDIT - i18n okienka
 							if(!canUseSecurityRecordsConsole(usr, t1, a1))
 								return
 							active1.fields["species"] = t1
@@ -879,7 +879,7 @@ What a mess.*/
 							var/maxFine = CONFIG_GET(number/maxfine)
 
 							var/t1 = stripped_input(usr, "Podaj przestępstwo do mandatu:", "Akta ochr.", "", null)
-							var/fine = FLOOR(input(usr, "Podaj kwotę mandatu, maksymalnie [maxFine]:", "Akta ochr.", 50) as num|null, 1)
+							var/fine = FLOOR(input(usr, i18n_dialog_text(usr, "Podaj kwotę mandatu, maksymalnie [maxFine]:"), i18n_dialog_text(usr, "Akta ochr."), 50) as num|null, 1) // AQ EDIT - i18n okienka
 
 							if (isnull(fine))
 								return
@@ -941,7 +941,7 @@ What a mess.*/
 								temp += "<li><a href='byond://?src=[REF(src)];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
-							alert(usr, "Nie masz wymaganego stopnia, by to zrobić!")
+							i18n_alert(usr, usr, "Nie masz wymaganego stopnia, by to zrobić!") // AQ EDIT - i18n okienka
 //TEMPORARY MENU FUNCTIONS
 			else//To properly clear as per clear screen.
 				temp=null

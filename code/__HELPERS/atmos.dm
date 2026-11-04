@@ -260,7 +260,7 @@ B --><-- A
 ///Returns a chosen path that is the closest to a list of matches
 /proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
-		value = input("Podaj typ do wyszukania (puste – wszystko, anuluj – anuluj)", "Wyszukaj typ") as null|text
+		value = input(i18n_dialog_text(usr, "Podaj typ do wyszukania (puste – wszystko, anuluj – anuluj)"), i18n_dialog_text(usr, "Wyszukaj typ")) as null|text // AQ EDIT - i18n okienka
 		if (isnull(value))
 			return
 	value = trim(value)
@@ -282,7 +282,7 @@ B --><-- A
 	else if(random)
 		chosen = pick(matches) || null
 	else
-		chosen = input("Wybierz typ", "Wybór typu", matches[1]) as null|anything in sort_list(matches)
+		chosen = input(i18n_dialog_text(usr, "Wybierz typ"), i18n_dialog_text(usr, "Wybór typu"), matches[1]) as null|anything in sort_list(matches) // AQ EDIT - i18n okienka
 	if(!chosen)
 		return
 	chosen = matches[chosen]

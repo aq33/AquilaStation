@@ -325,7 +325,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!HAS_TRAIT(src, TRAIT_CORPSELOCKED)) //corpse-locked have to confirm with the alert below
 			ghostize(TRUE)
 			return TRUE
-	var/response = alert(src, "Na -pewno- chcesz zostać duchem?\n(Żyjesz. Jeśli zostaniesz duchem za życia, możesz już nie zagrać w tej rundzie! Nie da się tego cofnąć, więc wybieraj mądrze!!)","Na pewno chcesz zostać duchem?","Zostań duchem","Zostań w ciele")
+	var/response = i18n_alert(usr, src, "Na -pewno- chcesz zostać duchem?\n(Żyjesz. Jeśli zostaniesz duchem za życia, możesz już nie zagrać w tej rundzie! Nie da się tego cofnąć, więc wybieraj mądrze!!)","Na pewno chcesz zostać duchem?","Zostań duchem","Zostań w ciele") // AQ EDIT - i18n okienka
 	if(response != "Zostań duchem")
 		return	//didn't want to ghost after-all
 	ghostize(FALSE,SENTIENCE_RETAIN)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
@@ -336,7 +336,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Ghost"
 	set desc = "Porzuć życie i wkrocz do krainy umarłych."
 
-	var/response = alert(src, "Na -pewno- chcesz zostać duchem?\n(Żyjesz. Jeśli zostaniesz duchem za życia, możesz już nie zagrać w tej rundzie! Nie da się tego cofnąć, więc wybieraj mądrze!!)","Na pewno chcesz zostać duchem?","Zostań duchem","Zostań w ciele")
+	var/response = i18n_alert(usr, src, "Na -pewno- chcesz zostać duchem?\n(Żyjesz. Jeśli zostaniesz duchem za życia, możesz już nie zagrać w tej rundzie! Nie da się tego cofnąć, więc wybieraj mądrze!!)","Na pewno chcesz zostać duchem?","Zostań duchem","Zostań w ciele") // AQ EDIT - i18n okienka
 	if(response != "Zostań duchem")
 		return
 	ghostize(FALSE,SENTIENCE_RETAIN)
@@ -399,7 +399,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "<span class='warning'>Już jesteś odcięty od swojego ciała!</span>")
 		return FALSE
 
-	var/response = alert(src, "Na pewno chcesz uniemożliwić (prawie) wszystkie sposoby reanimacji? Nie da się tego cofnąć. ","Na pewno chcesz pozostać martwy?","DNR","Ratuj mnie")
+	var/response = i18n_alert(usr, src, "Na pewno chcesz uniemożliwić (prawie) wszystkie sposoby reanimacji? Nie da się tego cofnąć. ","Na pewno chcesz pozostać martwy?","DNR","Ratuj mnie") // AQ EDIT - i18n okienka
 	if(response != "DNR")
 		return
 
@@ -519,7 +519,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/target = null	   //Chosen target.
 
 		dest += getpois(mobs_only=1) //Fill list, prompt user with list
-		target = input("Wybierz gracza!", "Skocz do istoty", null, null) as null|anything in dest
+		target = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skocz do istoty"), null, null) as null|anything in dest // AQ EDIT - i18n okienka
 
 		if (!target)//Make sure we actually have a target
 			return
@@ -544,7 +544,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/list/views = list()
 		for(var/i in 7 to max_view)
 			views |= i
-		var/new_view = input("Wybierz nowy widok", "Zmień zasięg widzenia", 0) as null|anything in views
+		var/new_view = input(i18n_dialog_text(usr, "Wybierz nowy widok"), i18n_dialog_text(usr, "Zmień zasięg widzenia"), 0) as null|anything in views // AQ EDIT - i18n okienka
 		if(new_view)
 			client.view_size.setTo(clamp(new_view, 7, max_view) - 7)
 	else
@@ -656,7 +656,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
-	var/mob/living/target = input("Dziś zaczyna się twoje nowe życie!", "Opętaj istotę", null, null) as null|anything in sortNames(possessible)
+	var/mob/living/target = input(i18n_dialog_text(usr, "Dziś zaczyna się twoje nowe życie!"), i18n_dialog_text(usr, "Opętaj istotę"), null, null) as null|anything in sortNames(possessible) // AQ EDIT - i18n okienka
 
 	if(!target)
 		return 0
@@ -666,7 +666,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 
 	if(can_reenter_corpse && mind && mind.current)
-		if(alert(src, "Twoja dusza wciąż jest związana z dawnym życiem jako [mind.current.name] - jeśli pójdziesz dalej, nie będzie powrotu. Na pewno chcesz kontynuować?", "Idź dalej", "Tak", "Nie") != "Tak")
+		if(i18n_alert(usr, src, "Twoja dusza wciąż jest związana z dawnym życiem jako [mind.current.name] - jeśli pójdziesz dalej, nie będzie powrotu. Na pewno chcesz kontynuować?", "Idź dalej", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 			return 0
 	if(target.key)
 		to_chat(src, "<span class='warning'>Ktoś zajął to ciało, gdy wybierałeś!</span>")
@@ -879,7 +879,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/eye_name = null
 
-	eye_name = input("Wybierz gracza!", "Obserwuj", null, null) as null|anything in creatures
+	eye_name = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Obserwuj"), null, null) as null|anything in creatures // AQ EDIT - i18n okienka
 
 	if (!eye_name)
 		return

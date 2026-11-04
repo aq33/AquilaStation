@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(save_area_executing, FALSE)
 		return
 	//Emergency check
 	if(L.map.len > 1600)
-		var/confirm = alert("Ehm, na pewno? Obszar jest dość duży.", "Uruchom generator", "Tak", "Nie")
+		var/confirm = i18n_alert(usr, "Ehm, na pewno? Obszar jest dość duży.", "Uruchom generator", "Tak", "Nie") // AQ EDIT - i18n okienka
 		if(confirm != "Tak")
 			return
 
@@ -61,5 +61,5 @@ GLOBAL_VAR_INIT(save_area_executing, FALSE)
 	//Step 4: Remove the file from the server (hopefully we can find a way to avoid step)
 	fdel(filedir)
 	log_game("[L.map.len] turfs have been saved by [ckey(usr)]")
-	alert("Obszar zapisany pomyślnie.", "Sukces!", "OK")
+	i18n_alert(usr, "Obszar zapisany pomyślnie.", "Sukces!", "OK") // AQ EDIT - i18n okienka
 	GLOB.save_area_executing = FALSE

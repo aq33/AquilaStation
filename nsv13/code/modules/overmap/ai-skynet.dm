@@ -404,7 +404,7 @@ Adding tasks is easy! Just define a datum for it.
 				to_chat(user, "<span class='warning'>Detektor form życia marki Cargo Shuttle w [launcher] wyświetla błąd: ze względów bezpieczeństwa nie może przewozić niebezpiecznych organizmów, ludzkich szczątków, tajnej broni jądrowej, nadajników naprowadzających ani maszyn zawierających jakąkolwiek formę sztucznej inteligencji.")
 				return FALSE
 
-	var/choice = input("Przekazać ładunek do [src]?", "Potwierdź dostawę", "Nie") in list("Tak", "Nie")
+	var/choice = input(i18n_dialog_text(usr, "Przekazać ładunek do [src]?"), i18n_dialog_text(usr, "Potwierdź dostawę"), "Nie") in list("Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!choice || choice == "Nie")
 		if ( console.linked )
 			try_hail( user, console.linked )
@@ -1760,7 +1760,7 @@ Seek a ship thich we'll station ourselves around
 		return FALSE
 
 	var/list/choices = flist("_maps/map_files/Instanced/")
-	var/choice = input(usr, "Który okręt chcesz wczytać?","Wczytywanie okrętu", null) as null|anything in choices
+	var/choice = input(usr, i18n_dialog_text(usr, "Który okręt chcesz wczytać?"),i18n_dialog_text(usr, "Wczytywanie okrętu"), null) as null|anything in choices // AQ EDIT - i18n okienka
 	if(!choice)
 		return
 	var/ship_file = file("_maps/map_files/Instanced/[choice]")

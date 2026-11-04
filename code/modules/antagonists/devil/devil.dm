@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	log_admin("[key_name_admin(admin)] set [key_name(owner)] devil ascendable to [ascendable])")
 
 /datum/antagonist/devil/admin_add(datum/mind/new_owner,mob/admin)
-	switch(alert(admin,"Czy diabeł powinien móc wstąpić na wyższy poziom",,"Tak","Nie","Anuluj"))
+	switch(i18n_alert(usr, admin,"Czy diabeł powinien móc wstąpić na wyższy poziom",,"Tak","Nie","Anuluj")) // AQ EDIT - i18n okienka
 		if("Tak")
 			ascendable = TRUE
 		if("Nie")

@@ -103,7 +103,7 @@
 	if(nadeassembly)
 		nadeassembly.attack_self(user)
 		return
-	var/newtime = input(usr, "Ustaw zapalnik.", "Zapalnik", 10) as num
+	var/newtime = input(usr, i18n_dialog_text(usr, "Ustaw zapalnik."), i18n_dialog_text(usr, "Zapalnik"), 10) as num // AQ EDIT - i18n okienka
 	if(user.get_active_held_item() == src)
 		newtime = CLAMP(newtime, 10, 60000)
 		det_time = newtime

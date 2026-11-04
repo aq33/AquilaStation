@@ -129,7 +129,7 @@
 		create_random_books(books_to_load, src, FALSE, random_category)
 		load_random_books = FALSE
 	if(contents.len)
-		var/obj/item/book/choice = input(user, "Którą książkę chcesz zdjąć z półki?") as null|obj in sortNames(contents)
+		var/obj/item/book/choice = input(user, i18n_dialog_text(user, "Którą książkę chcesz zdjąć z półki?")) as null|obj in sortNames(contents) // AQ EDIT - i18n okienka
 		if(choice)
 			if(!(user.mobility_flags & MOBILITY_USE) || user.stat || user.restrained() || !in_range(loc, user))
 				return
@@ -257,7 +257,7 @@
 		if(!literate)
 			to_chat(user, "<span class='notice'>Gryzmolisz nieczytelnie na okładce [src]!</span>")
 			return
-		var/choice = input("Co chcesz zmienić?") in list("Tytuł", "Treść", "Autor", "Anuluj")
+		var/choice = input(i18n_dialog_text(usr, "Co chcesz zmienić?")) in list("Tytuł", "Treść", "Autor", "Anuluj") // AQ EDIT - i18n okienka
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)

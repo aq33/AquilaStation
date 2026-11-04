@@ -12,16 +12,16 @@
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
 
 /datum/buildmode_mode/fill/change_settings(client/c)
-	var/target_path = input(c, "Podaj ścieżkę typu:" ,"Ścieżka typu","/obj/structure/closet")
+	var/target_path = input(c, i18n_dialog_text(c, "Podaj ścieżkę typu:"),i18n_dialog_text(c, "Ścieżka typu"),"/obj/structure/closet") // AQ EDIT - i18n okienka
 	objholder = text2path(target_path)
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			alert("Nie wybrano ścieżki.")
+			i18n_alert(usr, "Nie wybrano ścieżki.") // AQ EDIT - i18n okienka
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			alert("Ten tryb nie obsługuje ścieżek obszarów, użyj trybu edycji obszarów.")
+			i18n_alert(usr, "Ten tryb nie obsługuje ścieżek obszarów, użyj trybu edycji obszarów.") // AQ EDIT - i18n okienka
 			return
 	deselect_region()
 

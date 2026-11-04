@@ -254,7 +254,7 @@
 				to_chat(usr, "<span class='danger'>Nie można połączyć się z bazą danych, zmiany będą tylko tymczasowe.</span>")
 				use_db = FALSE
 			else
-				use_db = alert("Trwałe zmiany są zapisywane w bazie danych na kolejne rundy, a tymczasowe dotyczą tylko obecnej rundy", "Trwale czy tymczasowo?", "Trwale", "Tymczasowo", "Anuluj")
+				use_db = i18n_alert(usr, "Trwałe zmiany są zapisywane w bazie danych na kolejne rundy, a tymczasowe dotyczą tylko obecnej rundy", "Trwale czy tymczasowo?", "Trwale", "Tymczasowo", "Anuluj") // AQ EDIT - i18n okienka
 				if(use_db == "Anuluj" || !use_db)
 					return
 				if(use_db == "Trwale")
@@ -344,7 +344,7 @@
 		message_admins("[key_name_admin(usr)] próbuje usunąć admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to remove an admin without sufficient rights.")
 		return
-	if(alert("Na pewno chcesz usunąć [admin_ckey]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to")
+	if(i18n_alert(usr, "Na pewno chcesz usunąć [admin_ckey]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to") // AQ EDIT - i18n okienka
 		GLOB.admin_datums -= admin_ckey
 		GLOB.deadmins -= admin_ckey
 		if(D)
@@ -406,7 +406,7 @@
 	for(R in GLOB.admin_ranks)
 		if((R.rights & usr.client.holder.rank.can_edit_rights) == R.rights)
 			rank_names[R.name] = R
-	var/new_rank = input("Wybierz rangę", "Nowa ranga") as null|anything in rank_names
+	var/new_rank = input(i18n_dialog_text(usr, "Wybierz rangę"), i18n_dialog_text(usr, "Nowa ranga")) as null|anything in rank_names // AQ EDIT - i18n okienka
 	if(new_rank == "*Nowa ranga*")
 		new_rank = capped_input(usr, "Wpisz nową rangę", "Nowa własna ranga")
 	if(!new_rank)
@@ -601,7 +601,7 @@
 		to_chat(usr, "<span class='danger'>Błąd: próba usunięcia rangi, która jest wciąż używana. Zgłoś to koderom, to nie powinno się zdarzyć.</span>")
 		return
 	qdel(query_admins_with_rank)
-	if(alert("Na pewno chcesz usunąć [admin_rank]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to")
+	if(i18n_alert(usr, "Na pewno chcesz usunąć [admin_rank]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to") // AQ EDIT - i18n okienka
 		var/m1 = "[key_name_admin(usr)] trwale usuwa rangę [admin_rank]"
 		var/m2 = "[key_name(usr)] removed rank [admin_rank] permanently"
 		var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery(

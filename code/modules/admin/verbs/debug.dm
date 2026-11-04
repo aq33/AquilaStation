@@ -42,7 +42,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Make Robot"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
@@ -51,21 +51,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			H.Robotize()
 
 	else
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 
 /client/proc/cmd_admin_blobize(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Blob"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has blobized [M.key].")
 		var/mob/living/carbon/human/H = M
 		H.become_overmind()
 	else
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 
 
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
@@ -73,15 +73,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 
 	if(!M)
-		alert("Wygląda na to, że ten mob nie istnieje. Zamknij panel i spróbuj ponownie.")
+		i18n_alert(usr, "Wygląda na to, że ten mob nie istnieje. Zamknij panel i spróbuj ponownie.") // AQ EDIT - i18n okienka
 		return
 
 	if(isnewplayer(M))
-		alert("Mob nie może być typu new_player.")
+		i18n_alert(usr, "Mob nie może być typu new_player.") // AQ EDIT - i18n okienka
 		return
 
 	log_admin("[key_name(src)] has animalized [M.key].")
@@ -98,11 +98,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/mob/C in GLOB.mob_list)
 		if(C.key)
 			available.Add(C)
-	var/mob/choice = input("Wybierz gracza, który pokieruje pAI", "Stwórz pAI") in sortNames(available)
+	var/mob/choice = input(i18n_dialog_text(usr, "Wybierz gracza, który pokieruje pAI"), i18n_dialog_text(usr, "Stwórz pAI")) in sortNames(available) // AQ EDIT - i18n okienka
 	if(!choice)
 		return 0
 	if(!isobserver(choice))
-		var/confirm = input("[choice.key] nie jest teraz duchem. Na pewno chcesz wyrwać tego gracza z ciała i umieścić w tym pAI?", "Potwierdzenie pAI", "Nie") in list("Tak", "Nie")
+		var/confirm = input(i18n_dialog_text(usr, "[choice.key] nie jest teraz duchem. Na pewno chcesz wyrwać tego gracza z ciała i umieścić w tym pAI?"), i18n_dialog_text(usr, "Potwierdzenie pAI"), "Nie") in list("Tak", "Nie") // AQ EDIT - i18n okienka
 		if(confirm != "Tak")
 			return 0
 	var/obj/item/paicard/card = new(T)
@@ -121,7 +121,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Make Alien"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 	if(ishuman(M))
 		INVOKE_ASYNC(M, /mob/living/carbon/human/proc/Alienize)
@@ -129,14 +129,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien at [AREACOORD(M)].")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] zmienia [ADMIN_LOOKUPFLW(M)] w obcego.</span>")
 	else
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 
 /client/proc/cmd_admin_slimeize(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make slime"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 	if(ishuman(M))
 		INVOKE_ASYNC(M, /mob/living/carbon/human/proc/slimeize)
@@ -144,7 +144,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		log_admin("[key_name(usr)] made [key_name(M)] into a slime at [AREACOORD(M)].")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] zmienia [ADMIN_LOOKUPFLW(M)] w szlama.</span>")
 	else
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
@@ -158,7 +158,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(matches.len==0)
 		return
-	var/hsbitem = input(usr, "Wybierz obiekt do usunięcia.", "Usuń:") as null|anything in sortList(matches)
+	var/hsbitem = input(usr, i18n_dialog_text(usr, "Wybierz obiekt do usunięcia."), i18n_dialog_text(usr, "Usuń:")) as null|anything in sortList(matches) // AQ EDIT - i18n okienka
 	if(hsbitem)
 		hsbitem = matches[hsbitem]
 		var/counter = 0
@@ -185,7 +185,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Grant Full Access"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Poczekaj, aż gra się zacznie")
+		i18n_alert(usr, "Poczekaj, aż gra się zacznie") // AQ EDIT - i18n okienka
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -219,7 +219,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				H.equip_to_slot(id,ITEM_SLOT_ID)
 
 	else
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Grant Full Access") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] daje [M.key] pełny dostęp.</span>")
@@ -230,7 +230,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set desc = "Bezpośrednia interwencja"
 
 	if(M.ckey)
-		if(alert("Tym mobem steruje [M.key]. Na pewno chcesz przejąć nad nim kontrolę? [M.key] zostanie duchem.",,"Tak","Nie") != "Tak")
+		if(i18n_alert(usr, "Tym mobem steruje [M.key]. Na pewno chcesz przejąć nad nim kontrolę? [M.key] zostanie duchem.",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 		else
 			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
@@ -255,12 +255,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!M)
 		return
 	if(M.ckey)
-		if(alert("Tym mobem steruje [M.key]. Na pewno chcesz oddać kontrolę nad nim komuś innemu? [M.key] zostanie duchem.",,"Tak","Nie") != "Tak")
+		if(i18n_alert(usr, "Tym mobem steruje [M.key]. Na pewno chcesz oddać kontrolę nad nim komuś innemu? [M.key] zostanie duchem.",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
-	var/client/newkey = input(src, "Wybierz gracza, który przejmie kontrolę.", "Nowy gracz") as null|anything in sortList(GLOB.clients)
+	var/client/newkey = input(src, i18n_dialog_text(src, "Wybierz gracza, który przejmie kontrolę."), i18n_dialog_text(src, "Nowy gracz")) as null|anything in sortList(GLOB.clients) // AQ EDIT - i18n okienka
 	var/mob/oldmob = newkey.mob
 	var/delmob = FALSE
-	if((isobserver(oldmob) || alert("Usunąć starego moba gracza [newkey]?","Usunąć?","Tak","Nie") != "Nie"))
+	if((isobserver(oldmob) || i18n_alert(usr, "Usunąć starego moba gracza [newkey]?","Usunąć?","Tak","Nie") != "Nie")) // AQ EDIT - i18n okienka
 		delmob = TRUE
 	if(!M || QDELETED(M))
 		to_chat(usr, "<span class='warning'>Docelowy mob już nie istnieje, przerywam.</span>")
@@ -495,7 +495,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!check_rights(R_ADMIN))
 		return
 	if(!(ishuman(M) || isobserver(M)))
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 		return
 
 	// AQUILA: wybór stroju w oknie TGUI (port z tg: SelectEquipment)
@@ -505,7 +505,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /// Ubiera moba w podany strój (typ, obiekt własnego stroju albo "Naked"). Wywoływane z okna SelectEquipment i z holopadu admina.
 /client/proc/admin_apply_outfit(mob/M, dresscode)
 	if(!(ishuman(M) || isobserver(M)))
-		alert("Nieprawidłowy mob")
+		i18n_alert(usr, "Nieprawidłowy mob") // AQ EDIT - i18n okienka
 		return
 
 	if(!dresscode)
@@ -518,7 +518,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		H = M
 		if(H.l_store || H.r_store || H.s_store) //saves a lot of time for admins and coders alike
-			if(alert("Upuścić przedmioty z kieszeni? „Nie” je usunie.", "Wybór stroju", "Tak", "Nie") != "Tak")
+			if(i18n_alert(usr, "Upuścić przedmioty z kieszeni? „Nie” je usunie.", "Wybór stroju", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 				delete_pocket = TRUE
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Select Equipment") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -540,7 +540,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(initial(O.can_be_admin_equipped))
 			outfits[initial(O.name)] = path
 
-	var/dresscode = input("Wybierz strój", "Szybka przebieralnia") as null|anything in outfits
+	var/dresscode = input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in outfits // AQ EDIT - i18n okienka
 	if(isnull(dresscode))
 		return
 
@@ -557,7 +557,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(initial(O.can_be_admin_equipped))
 				job_outfits[initial(O.name)] = path
 
-		dresscode = input("Wybierz wyposażenie profesji", "Szybka przebieralnia") as null|anything in sortList(job_outfits)
+		dresscode = input(i18n_dialog_text(usr, "Wybierz wyposażenie profesji"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(job_outfits) // AQ EDIT - i18n okienka
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -570,7 +570,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(initial(O.can_be_admin_equipped))
 				job_outfits[initial(O.name)] = path
 
-		dresscode = input("Wybierz wyposażenie plazmamana", "Szybka przebieralnia") as null|anything in sortList(job_outfits)
+		dresscode = input(i18n_dialog_text(usr, "Wybierz wyposażenie plazmamana"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(job_outfits) // AQ EDIT - i18n okienka
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -584,7 +584,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = input("Wybierz strój", "Szybka przebieralnia") as null|anything in sortList(custom_names)
+		var/selected_name = input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(custom_names) // AQ EDIT - i18n okienka
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
@@ -735,7 +735,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Start Singularity"
 	set desc = "Uruchamia osobliwość i wszystkie maszyny, by na stację popłynął prąd"
 
-	if(alert("Na pewno? To uruchomi silnik. Używaj tylko podczas debugowania!",,"Tak","Nie") != "Tak")
+	if(i18n_alert(usr, "Na pewno? To uruchomi silnik. Używaj tylko podczas debugowania!",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
@@ -791,7 +791,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Debug Mob Lists"
 	set desc = "Na wypadek, gdy po prostu musisz wiedzieć"
 
-	switch(input("Która lista?") in list("Gracze","Admini","Moby","Żywe moby","Martwe moby","Klienci","Dołączeni klienci"))
+	switch(input(i18n_dialog_text(usr, "Która lista?")) in list("Gracze","Admini","Moby","Żywe moby","Martwe moby","Klienci","Dołączeni klienci")) // AQ EDIT - i18n okienka
 		if("Gracze")
 			to_chat(usr, jointext(GLOB.player_list,","))
 		if("Admini")
@@ -887,7 +887,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		names[name] = ruin_landmark
 
-	var/ruinname = input("Wybierz ruinę", "Skok do ruiny") as null|anything in sortList(names)
+	var/ruinname = input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Skok do ruiny")) as null|anything in sortList(names) // AQ EDIT - i18n okienka
 
 
 	var/obj/effect/landmark/ruin/landmark = names[ruinname]
@@ -918,13 +918,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/name in SSmapping.lava_ruins_templates)
 		names[name] = list(SSmapping.lava_ruins_templates[name], ZTRAIT_LAVA_RUINS, /area/lavaland/surface/outdoors/unexplored)
 
-	var/ruinname = input("Wybierz ruinę", "Postaw ruinę") as null|anything in sortList(names)
+	var/ruinname = input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Postaw ruinę")) as null|anything in sortList(names) // AQ EDIT - i18n okienka
 	var/data = names[ruinname]
 	if (!data)
 		return
 	var/datum/map_template/ruin/template = data[1]
 	if (exists[template])
-		var/response = alert("Ruina [template] już istnieje.", "Postaw ruinę", "Skocz", "Postaw kolejną", "Anuluj")
+		var/response = i18n_alert(usr, "Ruina [template] już istnieje.", "Postaw ruinę", "Skocz", "Postaw kolejną", "Anuluj") // AQ EDIT - i18n okienka
 		if (response == "Skocz")
 			usr.forceMove(get_turf(exists[template]))
 			return
@@ -948,10 +948,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set desc = "Losowo generuje kosmiczną ruinę."
 	if (!holder)
 		return
-	var/ruin_size = input(src, "Rozmiar ruiny (NxN) (od 10 do 200)", "Rozmiar ruiny", 0) as num
+	var/ruin_size = input(src, i18n_dialog_text(src, "Rozmiar ruiny (NxN) (od 10 do 200)"), i18n_dialog_text(src, "Rozmiar ruiny"), 0) as num // AQ EDIT - i18n okienka
 	if(ruin_size < 10 || ruin_size >= 200)
 		return
-	var/response = alert(src, "Ruina zostanie postawiona w twoim obecnym miejscu.", "Postaw ruinę", "Postaw ruinę", "Anuluj")
+	var/response = i18n_alert(usr, src, "Ruina zostanie postawiona w twoim obecnym miejscu.", "Postaw ruinę", "Postaw ruinę", "Anuluj") // AQ EDIT - i18n okienka
 	if (response != "Postaw ruinę")
 		return
 	var/border_size = (world.maxx - ruin_size) / 2
@@ -964,7 +964,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set desc = "Zwalnia całą zarezerwowaną przestrzeń, przywracając stan z początku rundy."
 	if(!holder)
 		return
-	var/answer = alert("UWAGA: TO WYCZYŚCI CAŁĄ ZAREZERWOWANĄ PRZESTRZEŃ DO ZERA! WSZYSTKIE LECĄCE PROMY, WINDY I ROBIONE WŁAŚNIE ZDJĘCIA ZOSTANĄ USUNIĘTE!", "Na pewno wyczyścić dynamiczne turfy?", "TAK", "NIE")
+	var/answer = i18n_alert(usr, "UWAGA: TO WYCZYŚCI CAŁĄ ZAREZERWOWANĄ PRZESTRZEŃ DO ZERA! WSZYSTKIE LECĄCE PROMY, WINDY I ROBIONE WŁAŚNIE ZDJĘCIA ZOSTANĄ USUNIĘTE!", "Na pewno wyczyścić dynamiczne turfy?", "TAK", "NIE") // AQ EDIT - i18n okienka
 	if(answer != "TAK")
 		return
 	message_admins("<span class='adminnotice'>[key_name_admin(src)] czyści dynamiczną przestrzeń tranzytową.</span>")
@@ -1062,7 +1062,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Czas łączny"	=	/proc/cmp_profile_time_dsc,
 		"Liczba wywołań"	=	/proc/cmp_profile_count_dsc
 	)
-	var/sort = input(src, "Sortowanie?", "Rodzaj sortowania", "Średni czas") as null|anything in sortlist
+	var/sort = input(src, i18n_dialog_text(src, "Sortowanie?"), i18n_dialog_text(src, "Rodzaj sortowania"), "Średni czas") as null|anything in sortlist // AQ EDIT - i18n okienka
 	if (!sort)
 		return
 	sort = sortlist[sort]
@@ -1074,7 +1074,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set desc = "Wymusza ponowne wczytanie domyślnej konfiguracji"
 	if(!check_rights(R_DEBUG))
 		return
-	if(alert(usr, "Na pewno chcesz wczytać konfigurację z domyślnej ścieżki na dysku, kasując wszystkie zmiany z tej rundy?", "Na pewno zresetować?", "Nie", "Tak") == "Tak")
+	if(i18n_alert(usr, usr, "Na pewno chcesz wczytać konfigurację z domyślnej ścieżki na dysku, kasując wszystkie zmiany z tej rundy?", "Na pewno zresetować?", "Nie", "Tak") == "Tak") // AQ EDIT - i18n okienka
 		//Reload the config
 		config.admin_reload()
 		//Reload badges
@@ -1084,9 +1084,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!check_rights(R_DEBUG) || !C)
 		return
 
-	var/gas_to_add = input(usr, "Wybierz gaz do zmiany.", "Wybierz gaz.") as null|anything in GLOB.gas_data.ids
-	var/amount = input(usr, "Podaj liczbę moli.", "Podaj ilość.", 0) as num
-	var/temp = input(usr, "Podaj temperaturę (w kelwinach).", "Podaj temperaturę (K).", 0) as num
+	var/gas_to_add = input(usr, i18n_dialog_text(usr, "Wybierz gaz do zmiany."), i18n_dialog_text(usr, "Wybierz gaz.")) as null|anything in GLOB.gas_data.ids // AQ EDIT - i18n okienka
+	var/amount = input(usr, i18n_dialog_text(usr, "Podaj liczbę moli."), i18n_dialog_text(usr, "Podaj ilość."), 0) as num // AQ EDIT - i18n okienka
+	var/temp = input(usr, i18n_dialog_text(usr, "Podaj temperaturę (w kelwinach)."), i18n_dialog_text(usr, "Podaj temperaturę (K)."), 0) as num // AQ EDIT - i18n okienka
 
 
 	C.air_contents.set_moles(gas_to_add, amount)

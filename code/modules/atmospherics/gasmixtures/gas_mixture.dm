@@ -70,7 +70,7 @@ we use a hook instead
 	if(!.)
 		return
 	if(href_list[VV_HK_PARSE_GASSTRING])
-		var/gasstring = input(usr, "Podaj ciąg gazów (UWAGA: zaawansowane. Nie używaj, jeśli nie wiesz, jak to działa.", "Parsowanie ciągu gazów") as text|null
+		var/gasstring = input(usr, i18n_dialog_text(usr, "Podaj ciąg gazów (UWAGA: zaawansowane. Nie używaj, jeśli nie wiesz, jak to działa."), i18n_dialog_text(usr, "Parsowanie ciągu gazów")) as text|null // AQ EDIT - i18n okienka
 		if(!istext(gasstring))
 			return
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Set to gas string [gasstring].")
@@ -84,10 +84,10 @@ we use a hook instead
 		var/list/gases = get_gases()
 		for(var/gas in gases)
 			gases[gas] = get_moles(gas)
-		var/gasid = input(usr, "Jaki gaz?", "Ustaw gaz") as null|anything in GLOB.gas_data.ids
+		var/gasid = input(usr, i18n_dialog_text(usr, "Jaki gaz?"), i18n_dialog_text(usr, "Ustaw gaz")) as null|anything in GLOB.gas_data.ids // AQ EDIT - i18n okienka
 		if(!gasid)
 			return
-		var/amount = input(usr, "Podaj ilość", "Ustaw gaz", gases[gasid] || 0) as num|null
+		var/amount = input(usr, i18n_dialog_text(usr, "Podaj ilość"), i18n_dialog_text(usr, "Ustaw gaz"), gases[gasid] || 0) as num|null // AQ EDIT - i18n okienka
 		if(!isnum(amount))
 			return
 		amount = max(0, amount)
@@ -95,7 +95,7 @@ we use a hook instead
 		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: ustawia gaz [gasid] na [amount] moli.")
 		set_moles(gasid, amount)
 	if(href_list[VV_HK_SET_TEMPERATURE])
-		var/temp = input(usr, "Na jaką temperaturę ustawić tę mieszaninę?", "Ustaw temperaturę", return_temperature()) as num|null
+		var/temp = input(usr, i18n_dialog_text(usr, "Na jaką temperaturę ustawić tę mieszaninę?"), i18n_dialog_text(usr, "Ustaw temperaturę"), return_temperature()) as num|null // AQ EDIT - i18n okienka
 		if(!isnum(temp))
 			return
 		temp = max(2.7, temp)
@@ -103,7 +103,7 @@ we use a hook instead
 		message_admins("[key_name(usr)] zmienia mieszaninę gazów [REF(src)]: zmienia temperaturę na [temp].")
 		set_temperature(temp)
 	if(href_list[VV_HK_SET_VOLUME])
-		var/volume = input(usr, "Na jaką objętość ustawić tę mieszaninę?", "Ustaw objętość", return_volume()) as num|null
+		var/volume = input(usr, i18n_dialog_text(usr, "Na jaką objętość ustawić tę mieszaninę?"), i18n_dialog_text(usr, "Ustaw objętość"), return_volume()) as num|null // AQ EDIT - i18n okienka
 		if(!isnum(volume))
 			return
 		volume = max(0, volume)

@@ -236,7 +236,7 @@
 
 	if(!choices.len)
 		return
-	var/mob/living/carbon/C = choices.len > 1 ? input(owner,"Kogo chcesz zarazić?") in null|choices : choices[1]
+	var/mob/living/carbon/C = choices.len > 1 ? input(owner,i18n_dialog_text(owner, "Kogo chcesz zarazić?")) in null|choices : choices[1] // AQ EDIT - i18n okienka
 	if(!C || !B)
 		return
 	if(!C.Adjacent(B.victim))

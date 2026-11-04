@@ -22,7 +22,7 @@
 	valueholder = null
 
 /datum/buildmode_mode/varedit/change_settings(client/c)
-	varholder = input(c, "Podaj nazwę zmiennej:" ,"Nazwa", "name")
+	varholder = input(c, i18n_dialog_text(c, "Podaj nazwę zmiennej:"),i18n_dialog_text(c, "Nazwa"), "name") // AQ EDIT - i18n okienka
 	
 	if(!vv_varname_lockcheck(varholder))
 		return

@@ -200,7 +200,7 @@
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
 			if(target == "input")
-				target = input("Ustaw nową wartość docelową ([min_temperature]-[max_temperature] K):", name, target_temperature) as num|null
+				target = input(i18n_dialog_text(usr, "Ustaw nową wartość docelową ([min_temperature]-[max_temperature] K):"), i18n_dialog_text(usr, name), target_temperature) as num|null // AQ EDIT - i18n okienka
 				if(!isnull(target))
 					. = TRUE
 			else if(adjust)

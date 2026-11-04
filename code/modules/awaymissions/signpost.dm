@@ -16,7 +16,7 @@
 	. = ..()
 	if(.)
 		return
-	if(alert(question,name,"Tak","Nie") == "Tak" && Adjacent(user))
+	if(i18n_alert(usr, question,name,"Tak","Nie") == "Tak" && Adjacent(user)) // AQ EDIT - i18n okienka
 		var/turf/T = find_safe_turf(zlevels=zlevels)
 
 		if(T)

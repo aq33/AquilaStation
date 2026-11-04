@@ -9,7 +9,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 /client/proc/vv_parse_text(O, new_var)
 	if(O && findtext(new_var,"\["))
-		var/process_vars = alert(usr,"W tekście wykryto \[]. Przetworzyć jako zmienne?","Przetworzyć zmienne?","Tak","Nie")
+		var/process_vars = i18n_alert(usr, usr,"W tekście wykryto \[]. Przetworzyć jako zmienne?","Przetworzyć zmienne?","Tak","Nie") // AQ EDIT - i18n okienka
 		if(process_vars == "Tak")
 			. = string2listofvars(new_var, O)
 
@@ -24,7 +24,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (!subtypes || !subtypes.len)
 		return FALSE
 	if (subtypes && subtypes.len)
-		switch(alert("Ścisłe wykrywanie typu obiektu?", "Wykrywanie typu", "Tylko ten typ","Ten typ i podtypy", "Anuluj"))
+		switch(i18n_alert(usr, "Ścisłe wykrywanie typu obiektu?", "Wykrywanie typu", "Tylko ten typ","Ten typ i podtypy", "Anuluj")) // AQ EDIT - i18n okienka
 			if("Tylko ten typ")
 				return FALSE
 			if("Ten typ i podtypy")
@@ -97,7 +97,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	L += var_value
 
-	switch(alert("Czy chcesz przypisać wartość do wpisu listy?",,"Tak","Nie"))
+	switch(i18n_alert(usr, "Czy chcesz przypisać wartość do wpisu listy?",,"Tak","Nie")) // AQ EDIT - i18n okienka
 		if("Tak")
 			L[var_value] = mod_list_add_ass(O) //hehe
 	if (O)
@@ -116,7 +116,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		return
 
 	if(L.len > 1000)
-		var/confirm = alert(src, "Lista, którą próbujesz edytować, jest bardzo długa. Kontynuacja może wywalić serwer.", "Uwaga", "Kontynuuj", "Przerwij")
+		var/confirm = i18n_alert(usr, src, "Lista, którą próbujesz edytować, jest bardzo długa. Kontynuacja może wywalić serwer.", "Uwaga", "Kontynuuj", "Przerwij") // AQ EDIT - i18n okienka
 		if(confirm != "Kontynuuj")
 			return
 
@@ -131,7 +131,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			value = "null"
 		names["#[i] [key] = [value]"] = i
 	if (!index)
-		var/variable = input("Która zmienna?","Zmienna") as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
+		var/variable = input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)" // AQ EDIT - i18n okienka
 
 		if(variable == null)
 			return
@@ -178,7 +178,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (index == null)
 		return
 	var/assoc = 0
-	var/prompt = alert(src, "Chcesz edytować klucz czy przypisaną mu wartość?", "Lista asocjacyjna", "Klucz", "Przypisana wartość", "Anuluj")
+	var/prompt = i18n_alert(usr, src, "Chcesz edytować klucz czy przypisaną mu wartość?", "Lista asocjacyjna", "Klucz", "Przypisana wartość", "Anuluj") // AQ EDIT - i18n okienka
 	if (prompt == "Anuluj" || !prompt)
 		return
 	if (prompt == "Przypisana wartość")
@@ -308,7 +308,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		names = sortList(names)
 
-		variable = input("Która zmienna?","Zmienna") as null|anything in names
+		variable = input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in names // AQ EDIT - i18n okienka
 		if(!variable)
 			return
 

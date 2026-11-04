@@ -438,7 +438,7 @@
 /datum/spacevine_controller/vv_do_topic(href_list)
 	. = ..()
 	if(href_list[VV_HK_SPACEVINE_PURGE])
-		if(alert(usr, "Czy na pewno chcesz usunąć to skupisko kosmicznych pnączy?", "Usuń pnącza", "Tak", "Nie") == "Tak")
+		if(i18n_alert(usr, usr, "Czy na pewno chcesz usunąć to skupisko kosmicznych pnączy?", "Usuń pnącza", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines()	//this is kill

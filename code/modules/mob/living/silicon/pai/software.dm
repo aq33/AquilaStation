@@ -175,7 +175,7 @@
 
 /// Wybór obrazu wyświetlacza karty pAI
 /mob/living/silicon/pai/proc/change_card_image()
-	var/newImage = input(src, "Wybierz nowy obraz wyświetlacza.", "Obraz wyświetlacza", "Happy") as null|anything in sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses"))
+	var/newImage = input(src, i18n_dialog_text(src, "Wybierz nowy obraz wyświetlacza."), i18n_dialog_text(src, "Obraz wyświetlacza"), "Happy") as null|anything in sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses")) // AQ EDIT - i18n okienka
 	if(!newImage || !card)
 		return
 	var/pID = 1
@@ -304,7 +304,7 @@
 /mob/living/silicon/pai/proc/CheckDNA(mob/living/carbon/M, mob/living/silicon/pai/P)
 	if(!istype(M))
 		return
-	var/answer = input(M, "[P] prosi cię o próbkę DNA. Czy pozwolisz mu potwierdzić twoją tożsamość?", "[P] – sprawdzenie DNA", "No") in list("Yes", "No")
+	var/answer = input(M, i18n_dialog_text(M, "[P] prosi cię o próbkę DNA. Czy pozwolisz mu potwierdzić twoją tożsamość?"), i18n_dialog_text(M, "[P] – sprawdzenie DNA"), "No") in list("Yes", "No") // AQ EDIT - i18n okienka
 	if(answer == "Yes")
 		M.visible_message("<span class='notice'>[M] przyciska kciuk do [P].</span>",\
 						"<span class='notice'>Przyciskasz kciuk do [P].</span>",\

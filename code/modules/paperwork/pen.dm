@@ -121,7 +121,7 @@
 		desc = "Drogie pióro wieczne (wykończenie: [current_skin]). Stalówka jest dość ostra."
 
 /obj/item/pen/attack_self(mob/living/carbon/user)
-	var/deg = input(user, "O jaki kąt chcesz obrócić główkę pióra? (1-360)", "Obróć główkę pióra") as null|num
+	var/deg = input(user, i18n_dialog_text(user, "O jaki kąt chcesz obrócić główkę pióra? (1-360)"), i18n_dialog_text(user, "Obróć główkę pióra")) as null|num // AQ EDIT - i18n okienka
 	if(deg && (deg > 0 && deg <= 360))
 		degrees = deg
 		to_chat(user, "<span class='notice'>Obracasz górę pióra o [degrees] stopni.</span>")
@@ -147,7 +147,7 @@
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
 	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, "Co chcesz edytować?", "Zmienić nazwę czy opis?") as null|anything in list("Zmień nazwę","Zmień opis")
+		var/penchoice = input(user, i18n_dialog_text(user, "Co chcesz edytować?"), i18n_dialog_text(user, "Zmienić nazwę czy opis?")) as null|anything in list("Zmień nazwę","Zmień opis") // AQ EDIT - i18n okienka
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 		if(penchoice == "Zmień nazwę")

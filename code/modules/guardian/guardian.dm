@@ -666,7 +666,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	var/list/guardians = hasparasites()
 	if(LAZYLEN(guardians))
-		var/mob/living/simple_animal/hostile/guardian/G = input(src, "Wybierz strażnika, którego chcesz zresetować", "Reset strażnika") as null|anything in guardians
+		var/mob/living/simple_animal/hostile/guardian/G = input(src, i18n_dialog_text(src, "Wybierz strażnika, którego chcesz zresetować"), i18n_dialog_text(src, "Reset strażnika")) as null|anything in guardians // AQ EDIT - i18n okienka
 		if(G)
 			if(!!G.client?.is_afk())
 				if(G.next_reset > world.time)

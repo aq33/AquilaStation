@@ -426,7 +426,7 @@
 			var/datum/tlv/tlv = TLV[env]
 			if(isnull(tlv))
 				return
-			var/value = input("Nowa wartość [name] dla [env]:", name, tlv.vars[name]) as num|null
+			var/value = input(i18n_dialog_text(usr, "Nowa wartość [name] dla [env]:"), i18n_dialog_text(usr, name), tlv.vars[name]) as num|null // AQ EDIT - i18n okienka
 			if(!isnull(value) && !..())
 				if(value < 0)
 					tlv.vars[name] = -1

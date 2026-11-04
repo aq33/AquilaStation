@@ -154,7 +154,7 @@
 		user.visible_message("<span class='notice'>Pinpointer [user] nie wykrywa sygnału.</span>", "<span class='notice'>Twój pinpointer nie wykrywa sygnału.</span>")
 		return
 
-	var/A = input(user, "Osoba do śledzenia", "Namierzanie") in sortList(names)
+	var/A = input(user, i18n_dialog_text(user, "Osoba do śledzenia"), i18n_dialog_text(user, "Namierzanie")) in sortList(names) // AQ EDIT - i18n okienka
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 

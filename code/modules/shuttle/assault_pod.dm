@@ -35,7 +35,7 @@
 
 /obj/item/assault_pod/attack_self(mob/living/user)
 	var/target_area
-	target_area = input("Obszar lądowania", "Wybierz strefę lądowania", target_area) as null|anything in GLOB.teleportlocs
+	target_area = input(i18n_dialog_text(usr, "Obszar lądowania"), i18n_dialog_text(usr, "Wybierz strefę lądowania"), target_area) as null|anything in GLOB.teleportlocs // AQ EDIT - i18n okienka
 	if(!target_area)
 		return
 	var/area/picked_area = GLOB.teleportlocs[target_area]

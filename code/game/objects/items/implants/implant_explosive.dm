@@ -25,7 +25,7 @@
 		return FALSE
 	if(cause == "action_button" && !popup)
 		popup = TRUE
-		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Wybuchniesz!", "Potwierdzenie: [name]", "Tak", "Nie")
+		var/response = i18n_alert(usr, imp_in, "Na pewno chcesz aktywować [name]? Wybuchniesz!", "Potwierdzenie: [name]", "Tak", "Nie") // AQ EDIT - i18n okienka
 		popup = FALSE
 		if(response != "Tak")
 			return FALSE

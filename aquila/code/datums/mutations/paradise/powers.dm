@@ -239,54 +239,54 @@
 			options += "Odcień skóry"
 		if(MUTCOLORS in H.dna.species.species_traits)
 			options += "Kolor ciała"
-		var/choice = input(H, "Co chcesz zmienić?", "Przemiana") as null|anything in options
+		var/choice = input(H, i18n_dialog_text(H, "Co chcesz zmienić?"), i18n_dialog_text(H, "Przemiana")) as null|anything in options // AQ EDIT - i18n okienka
 		if(!choice || QDELETED(H) || H.stat != CONSCIOUS || owner != H)
 			break
 		switch(choice)
 			if("Płeć")
-				var/new_gender = alert(H, "Wybierz płeć.", "Przemiana", "Mężczyzna", "Kobieta")
+				var/new_gender = i18n_alert(usr, H, "Wybierz płeć.", "Przemiana", "Mężczyzna", "Kobieta") // AQ EDIT - i18n okienka
 				if(!new_gender)
 					continue
 				H.gender = (new_gender == "Mężczyzna") ? MALE : FEMALE
 				H.dna.update_ui_block(DNA_GENDER_BLOCK)
 			if("Kolor oczu")
-				var/new_eyes = input(H, "Wybierz kolor oczu.", "Przemiana", "#" + H.eye_color) as color|null
+				var/new_eyes = input(H, i18n_dialog_text(H, "Wybierz kolor oczu."), i18n_dialog_text(H, "Przemiana"), "#" + H.eye_color) as color|null // AQ EDIT - i18n okienka
 				if(!new_eyes)
 					continue
 				H.eye_color = sanitize_hexcolor(new_eyes)
 				H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			if("Fryzura")
-				var/new_style = input(H, "Wybierz fryzurę.", "Przemiana", H.hair_style) as null|anything in GLOB.hair_styles_list
+				var/new_style = input(H, i18n_dialog_text(H, "Wybierz fryzurę."), i18n_dialog_text(H, "Przemiana"), H.hair_style) as null|anything in GLOB.hair_styles_list // AQ EDIT - i18n okienka
 				if(!new_style)
 					continue
 				H.hair_style = new_style
 				H.dna.update_ui_block(DNA_HAIR_STYLE_BLOCK)
 			if("Kolor włosów")
-				var/new_hair = input(H, "Wybierz kolor włosów.", "Przemiana", "#" + H.hair_color) as color|null
+				var/new_hair = input(H, i18n_dialog_text(H, "Wybierz kolor włosów."), i18n_dialog_text(H, "Przemiana"), "#" + H.hair_color) as color|null // AQ EDIT - i18n okienka
 				if(!new_hair)
 					continue
 				H.hair_color = sanitize_hexcolor(new_hair)
 				H.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
 			if("Zarost")
-				var/new_style = input(H, "Wybierz zarost.", "Przemiana", H.facial_hair_style) as null|anything in GLOB.facial_hair_styles_list
+				var/new_style = input(H, i18n_dialog_text(H, "Wybierz zarost."), i18n_dialog_text(H, "Przemiana"), H.facial_hair_style) as null|anything in GLOB.facial_hair_styles_list // AQ EDIT - i18n okienka
 				if(!new_style)
 					continue
 				H.facial_hair_style = new_style
 				H.dna.update_ui_block(DNA_FACIAL_HAIR_STYLE_BLOCK)
 			if("Kolor zarostu")
-				var/new_facial = input(H, "Wybierz kolor zarostu.", "Przemiana", "#" + H.facial_hair_color) as color|null
+				var/new_facial = input(H, i18n_dialog_text(H, "Wybierz kolor zarostu."), i18n_dialog_text(H, "Przemiana"), "#" + H.facial_hair_color) as color|null // AQ EDIT - i18n okienka
 				if(!new_facial)
 					continue
 				H.facial_hair_color = sanitize_hexcolor(new_facial)
 				H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
 			if("Odcień skóry")
-				var/new_tone = input(H, "Wybierz odcień skóry.", "Przemiana", H.skin_tone) as null|anything in GLOB.skin_tones
+				var/new_tone = input(H, i18n_dialog_text(H, "Wybierz odcień skóry."), i18n_dialog_text(H, "Przemiana"), H.skin_tone) as null|anything in GLOB.skin_tones // AQ EDIT - i18n okienka
 				if(!new_tone)
 					continue
 				H.skin_tone = new_tone
 				H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
 			if("Kolor ciała")
-				var/new_color = input(H, "Wybierz kolor ciała.", "Przemiana", "#" + H.dna.features["mcolor"]) as color|null
+				var/new_color = input(H, i18n_dialog_text(H, "Wybierz kolor ciała."), i18n_dialog_text(H, "Przemiana"), "#" + H.dna.features["mcolor"]) as color|null // AQ EDIT - i18n okienka
 				if(!new_color)
 					continue
 				// jak w magicznym lustrze: kolor musi być dość jasny
@@ -376,7 +376,7 @@
 	if(!length(viewers))
 		to_chat(owner, "<span class='warning'>Nie wyczuwasz żadnego umysłu, w który dałoby się zajrzeć.</span>")
 		return
-	var/mob/living/target = input(owner, "Kogo chcesz podglądać?", "Zdalne widzenie") as null|anything in viewers
+	var/mob/living/target = input(owner, i18n_dialog_text(owner, "Kogo chcesz podglądać?"), i18n_dialog_text(owner, "Zdalne widzenie")) as null|anything in viewers // AQ EDIT - i18n okienka
 	if(QDELETED(target) || QDELETED(owner) || owner.stat != CONSCIOUS || paradise_psy_resistant(target))
 		return
 	start_view(target)

@@ -22,9 +22,9 @@
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
 		if(length(buttons) == 2)
-			return alert(user, message, title, buttons[1], buttons[2])
+			return i18n_alert(usr, user, message, title, buttons[1], buttons[2]) // AQ EDIT - i18n okienka
 		if(length(buttons) == 3)
-			return alert(user, message, title, buttons[1], buttons[2], buttons[3])
+			return i18n_alert(usr, user, message, title, buttons[1], buttons[2], buttons[3]) // AQ EDIT - i18n okienka
 	var/datum/tgui_modal/alert = new(user, message, title, buttons, timeout, autofocus)
 	alert.ui_interact(user)
 	alert.wait()
@@ -57,9 +57,9 @@
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
 		if(length(buttons) == 2)
-			return alert(user, message, title, buttons[1], buttons[2])
+			return i18n_alert(usr, user, message, title, buttons[1], buttons[2]) // AQ EDIT - i18n okienka
 		if(length(buttons) == 3)
-			return alert(user, message, title, buttons[1], buttons[2], buttons[3])
+			return i18n_alert(usr, user, message, title, buttons[1], buttons[2], buttons[3]) // AQ EDIT - i18n okienka
 	var/datum/tgui_modal/async/alert = new(user, message, title, buttons, callback, timeout, autofocus)
 	alert.ui_interact(user)
 

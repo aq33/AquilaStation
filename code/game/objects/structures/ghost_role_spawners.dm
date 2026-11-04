@@ -142,7 +142,7 @@
 	if(.)
 		return
 	if(isgolem(user) && can_transfer)
-		var/transfer_choice = alert("Przenieść swoją duszę do [src]? (Uwaga: twoje stare ciało umrze!)",,"Tak","Nie")
+		var/transfer_choice = i18n_alert(usr, "Przenieść swoją duszę do [src]? (Uwaga: twoje stare ciało umrze!)",,"Tak","Nie") // AQ EDIT - i18n okienka
 		if(transfer_choice != "Tak")
 			return
 		if(QDELETED(src) || uses <= 0)

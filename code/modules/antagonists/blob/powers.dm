@@ -75,7 +75,7 @@
 		for(var/i in 1 to GLOB.blob_nodes.len)
 			var/obj/structure/blob/node/B = GLOB.blob_nodes[i]
 			nodes["Węzeł nr [i] ([B.overmind ? "[B.overmind.blobstrain.name]":"brak odmiany"])"] = B
-		var/node_name = input(src, "Wybierz węzeł, do którego chcesz skoczyć.", "Skok do węzła") in nodes
+		var/node_name = input(src, i18n_dialog_text(src, "Wybierz węzeł, do którego chcesz skoczyć."), i18n_dialog_text(src, "Skok do węzła")) in nodes // AQ EDIT - i18n okienka
 		var/obj/structure/blob/node/chosen_node = nodes[node_name]
 		if(chosen_node)
 			forceMove(chosen_node.loc)

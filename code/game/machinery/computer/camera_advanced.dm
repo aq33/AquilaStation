@@ -268,7 +268,7 @@
 			T["[netcam.c_tag][netcam.can_use() ? null : " (wyłączona)"]"] = netcam
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Wybierz kamerę, którą chcesz oglądać", "Kamery") as null|anything in T
+	var/camera = input(i18n_dialog_text(usr, "Wybierz kamerę, którą chcesz oglądać"), i18n_dialog_text(usr, "Kamery")) as null|anything in T // AQ EDIT - i18n okienka
 	var/obj/machinery/camera/final = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 	if(final)

@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	else
 		var/A
 
-		A = input("Wybierz nadajnik do połączenia", "Balonowy pakiet ewakuacyjny", A) as null|anything in sortNames(possible_beacons)
+		A = input(i18n_dialog_text(usr, "Wybierz nadajnik do połączenia"), i18n_dialog_text(usr, "Balonowy pakiet ewakuacyjny"), A) as null|anything in sortNames(possible_beacons) // AQ EDIT - i18n okienka
 
 		if(!A)
 			return

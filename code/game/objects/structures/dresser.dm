@@ -32,13 +32,13 @@
 			to_chat(user, "<span class='warning'>Nie możesz nosić bielizny.</span>")
 			return
 
-		var/choice = input(user, "Bielizna, podkoszulek czy skarpetki?", "Przebieranie") as null|anything in list("Bielizna","Kolor bielizny","Podkoszulek","Skarpetki")
+		var/choice = input(user, i18n_dialog_text(user, "Bielizna, podkoszulek czy skarpetki?"), i18n_dialog_text(user, "Przebieranie")) as null|anything in list("Bielizna","Kolor bielizny","Podkoszulek","Skarpetki") // AQ EDIT - i18n okienka
 
 		if(!Adjacent(user))
 			return
 		switch(choice)
 			if("Bielizna")
-				var/new_undies = input(user, "Wybierz bieliznę", "Przebieranie")  as null|anything in unlocked_accessories(GLOB.underwear_list, user.client) // AQ EDIT
+				var/new_undies = input(user, i18n_dialog_text(user, "Wybierz bieliznę"), i18n_dialog_text(user, "Przebieranie"))  as null|anything in unlocked_accessories(GLOB.underwear_list, user.client) // AQ EDIT // AQ EDIT - i18n okienka
 				if(new_undies)
 					H.underwear = new_undies
 			if("Kolor bielizny")
@@ -46,11 +46,11 @@
 				if(new_underwear_color)
 					H.underwear_color = sanitize_hexcolor(new_underwear_color)
 			if("Podkoszulek")
-				var/new_undershirt = input(user, "Wybierz podkoszulek", "Przebieranie") as null|anything in unlocked_accessories(GLOB.undershirt_list, user.client) // AQ EDIT
+				var/new_undershirt = input(user, i18n_dialog_text(user, "Wybierz podkoszulek"), i18n_dialog_text(user, "Przebieranie")) as null|anything in unlocked_accessories(GLOB.undershirt_list, user.client) // AQ EDIT // AQ EDIT - i18n okienka
 				if(new_undershirt)
 					H.undershirt = new_undershirt
 			if("Skarpetki")
-				var/new_socks = input(user, "Wybierz skarpetki", "Przebieranie") as null|anything in unlocked_accessories(GLOB.socks_list, user.client) // AQ EDIT
+				var/new_socks = input(user, i18n_dialog_text(user, "Wybierz skarpetki"), i18n_dialog_text(user, "Przebieranie")) as null|anything in unlocked_accessories(GLOB.socks_list, user.client) // AQ EDIT // AQ EDIT - i18n okienka
 				if(new_socks)
 					H.socks= new_socks
 

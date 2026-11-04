@@ -132,7 +132,7 @@
 	var/list/allowed = GLOB.roundstart_races
 	if(!dangerous)
 		allowed -= "plasmaman"
-	var/choice = input("Wybierz docelową rasę") as null|anything in allowed
+	var/choice = input(i18n_dialog_text(usr, "Wybierz docelową rasę")) as null|anything in allowed // AQ EDIT - i18n okienka
 	if(choice)
 		desired_race = GLOB.species_list[choice]
 		changed = TRUE

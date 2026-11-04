@@ -168,7 +168,7 @@
 		turfs += T
 	if(turfs.len)
 		L["Brak (niebezpieczne)"] = pick(turfs)
-	var/t1 = input(user, "Wybierz teleporter, na którym chcesz się namierzyć.", "Teleporter ręczny") as null|anything in L
+	var/t1 = input(user, i18n_dialog_text(user, "Wybierz teleporter, na którym chcesz się namierzyć."), i18n_dialog_text(user, "Teleporter ręczny")) as null|anything in L // AQ EDIT - i18n okienka
 	if (!t1 || user.get_active_held_item() != src || user.incapacitated())
 		return
 	if(active_portal_pairs.len >= max_portal_pairs)

@@ -509,7 +509,7 @@
 		return
 	if((can_flashlight && gun_light) && (can_bayonet && bayonet)) //give them a choice instead of removing both
 		var/list/possible_items = list(gun_light, bayonet)
-		var/obj/item/item_to_remove = input(user, "Wybierz dodatek do zdjęcia", "Zdejmowanie dodatku") as null|obj in sortNames(possible_items)
+		var/obj/item/item_to_remove = input(user, i18n_dialog_text(user, "Wybierz dodatek do zdjęcia"), i18n_dialog_text(user, "Zdejmowanie dodatku")) as null|obj in sortNames(possible_items) // AQ EDIT - i18n okienka
 		if(!item_to_remove || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return
 		return remove_gun_attachment(user, I, item_to_remove)

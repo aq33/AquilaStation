@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(simple_teamchats)
 /datum/component/simple_teamchat/proc/enter_message(datum/user)
 	if(!can_message(user))
 		return FALSE
-	var/str = input(user, "Wpisz wiadomość:", "[key]", null) as text|null
+	var/str = input(user, i18n_dialog_text(user, "Wpisz wiadomość:"), i18n_dialog_text(user, "[key]"), null) as text|null // AQ EDIT - i18n okienka
 	if(!str)
 		return FALSE
 	if(length(str) > max_message_length)

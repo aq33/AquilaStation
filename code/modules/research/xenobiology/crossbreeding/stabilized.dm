@@ -134,7 +134,7 @@ Stabilized extracts:
 	generate_mobtype()
 
 /obj/item/slimecross/stabilized/gold/attack_self(mob/user)
-	var/choice = input(user, "Co chcesz zresetować?", "Dostosowanie chowańca") as null|anything in sortList(list("Położenie chowańca", "Gatunek chowańca", "Świadomość chowańca", "Imię chowańca"))
+	var/choice = input(user, i18n_dialog_text(user, "Co chcesz zresetować?"), i18n_dialog_text(user, "Dostosowanie chowańca")) as null|anything in sortList(list("Położenie chowańca", "Gatunek chowańca", "Świadomość chowańca", "Imię chowańca")) // AQ EDIT - i18n okienka
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(isliving(user))

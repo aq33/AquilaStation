@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 					positions += "([i])"
 				else
 					positions += "([i]) - [QB.name]"
-			var/position = input("Gdzie przypisać szybki dostęp?", "Miejsce szybkiego dostępu", null) as null|anything in positions
+			var/position = input(i18n_dialog_text(usr, "Gdzie przypisać szybki dostęp?"), i18n_dialog_text(usr, "Miejsce szybkiego dostępu"), null) as null|anything in positions // AQ EDIT - i18n okienka
 			if(!position)
 				return FALSE
 			//Create and assign the quickbind

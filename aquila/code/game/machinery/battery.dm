@@ -114,7 +114,7 @@
 			H = user
 			C = H.get_idcard(FALSE)
 			if(C?.registered_account && C.registered_account == owner)
-				taxes = input(user, "Podaj procent podatku", "tax", 100) as num|null
+				taxes = input(user, i18n_dialog_text(user, "Podaj procent podatku"), i18n_dialog_text(user, "tax"), 100) as num|null // AQ EDIT - i18n okienka
 				to_chat(user, "<span class='notice'>Ustawiasz podatek na [taxes]%.</span>")
 				return
 			else

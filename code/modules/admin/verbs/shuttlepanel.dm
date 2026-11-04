@@ -24,7 +24,7 @@
 	options += "Usuń prom"
 	options += "W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')"
 
-	var/selection = input(user, "Wybierz, dokąd ma lecieć [name || id]:", "Lot promu") as null|anything in options
+	var/selection = input(user, i18n_dialog_text(user, "Wybierz, dokąd ma lecieć [name || id]:"), i18n_dialog_text(user, "Lot promu")) as null|anything in options // AQ EDIT - i18n okienka
 	if(!selection)
 		return
 
@@ -35,12 +35,12 @@
 			setTimer(ignitionTime)
 
 		if("Usuń prom")
-			if(alert(user, "Na pewno usunąć [name || id]?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
+			if(i18n_alert(usr, user, "Na pewno usunąć [name || id]?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!") // AQ EDIT - i18n okienka
 				return
 			jumpToNullSpace()
 
 		if("W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')")
-			if(alert(user, "Na pewno usunąć [name || id] i zaliczyć cele ucieczki?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
+			if(i18n_alert(usr, user, "Na pewno usunąć [name || id] i zaliczyć cele ucieczki?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!") // AQ EDIT - i18n okienka
 				return
 			intoTheSunset()
 
@@ -57,7 +57,7 @@
 	return  // use the existing verbs for this
 
 /obj/docking_port/mobile/arrivals/admin_fly_shuttle(mob/user)
-	switch(alert(user, "Chcesz raz polecieć promem przylotów czy zmienić jego cel?", "Lot promu", "Leć", "Zmień cel", "Anuluj"))
+	switch(i18n_alert(usr, user, "Chcesz raz polecieć promem przylotów czy zmienić jego cel?", "Lot promu", "Leć", "Zmień cel", "Anuluj")) // AQ EDIT - i18n okienka
 		if("Anuluj")
 			return
 		if("Leć")
@@ -72,7 +72,7 @@
 		if (canDock(S) == SHUTTLE_CAN_DOCK)
 			options[S.name || S.id] = S
 
-	var/selection = input(user, "Wybierz nowy cel promu przylotów:", "Lot promu") as null|anything in options
+	var/selection = input(user, i18n_dialog_text(user, "Wybierz nowy cel promu przylotów:"), i18n_dialog_text(user, "Lot promu")) as null|anything in options // AQ EDIT - i18n okienka
 	if(!selection)
 		return
 	target_dock = options[selection]

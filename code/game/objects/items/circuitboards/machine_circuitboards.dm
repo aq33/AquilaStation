@@ -592,7 +592,7 @@
 			display_vending_names_paths = list()
 			for(var/path in vending_names_paths)
 				display_vending_names_paths[vending_names_paths[path]] = path
-		var/choice =  input(user,"Wybierz nową markę","Wybierz przedmiot") as null|anything in display_vending_names_paths
+		var/choice =  input(user,i18n_dialog_text(user, "Wybierz nową markę"),i18n_dialog_text(user, "Wybierz przedmiot")) as null|anything in display_vending_names_paths // AQ EDIT - i18n okienka
 		set_type(display_vending_names_paths[choice])
 	else
 		return ..()
@@ -950,7 +950,7 @@
 		/obj/item/stock_parts/manipulator = 1)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/multitool_act(mob/living/user)
-	var/new_cloud = input("Ustaw ID chmury publicznej komory nanitów (1-100).", "ID chmury", cloud_id) as num|null
+	var/new_cloud = input(i18n_dialog_text(usr, "Ustaw ID chmury publicznej komory nanitów (1-100)."), i18n_dialog_text(usr, "ID chmury"), cloud_id) as num|null // AQ EDIT - i18n okienka
 	if(new_cloud == null)
 		return
 	cloud_id = CLAMP(round(new_cloud, 1), 1, 100)

@@ -458,7 +458,7 @@
 		return
 	//get amount from user
 	var/max = get_amount()
-	var/stackmaterial = round(input(user,"Ile arkuszy chcesz wziąć z tego stosu? (Maksymalnie [max])") as null|num)
+	var/stackmaterial = round(input(user,i18n_dialog_text(user, "Ile arkuszy chcesz wziąć z tego stosu? (Maksymalnie [max])")) as null|num) // AQ EDIT - i18n okienka
 	max = get_amount()
 	stackmaterial = min(max, stackmaterial)
 	if(!stackmaterial || stackmaterial < 0 || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))

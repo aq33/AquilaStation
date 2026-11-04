@@ -27,13 +27,13 @@
 
 /datum/antagonist/teratoma/admin_remove(mob/admin)
 	var/mob/living/carbon/monkey/tumor/M = owner.current
-	if(alert(admin, "Uczłowieczyć?", "Uczłowiecz", "Tak", "Nie") == "Tak")
+	if(i18n_alert(usr, admin, "Uczłowieczyć?", "Uczłowiecz", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 		M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  |  TR_DEFAULTMSG)
 	. = ..()
 
 /datum/antagonist/teratoma/admin_add(datum/mind/new_owner, mob/admin)
 	var/mob/living/carbon/human/H = new_owner.current
-	if(alert(admin, "Zamienić w teratomę?", "Zamień w teratomę", "Tak", "Nie") == "Tak")
+	if(i18n_alert(usr, admin, "Zamienić w teratomę?", "Zamień w teratomę", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 		H.teratomize()
 	new_owner.add_antag_datum(src)
 	log_admin("[key_name(admin)] made [key_name(new_owner)] a living teratoma!")

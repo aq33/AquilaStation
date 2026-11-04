@@ -121,7 +121,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		if(length(worths) && !length(differences))
 			return FALSE
 		if(!confirmed)
-			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item], by [!length(worths) ? "odkryć: [TN.display_name]" : "wzmocnić: [TN.display_name] o [json_encode(differences)] pkt"]?") in list("Kontynuuj", "Anuluj")
+			var/choice = input(i18n_dialog_text(usr, "Czy na pewno chcesz zniszczyć [loaded_item], by [!length(worths) ? "odkryć: [TN.display_name]" : "wzmocnić: [TN.display_name] o [json_encode(differences)] pkt"]?")) in list("Kontynuuj", "Anuluj") // AQ EDIT - i18n okienka
 			if(choice == "Anuluj" || !choice)
 				return FALSE
 			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
@@ -140,7 +140,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		else if(loaded_item.materials.len)
 			user_mode_string = " w celu odzysku materiałów"
 		if(!confirmed)
-			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Kontynuuj", "Anuluj")
+			var/choice = input(i18n_dialog_text(usr, "Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?")) in list("Kontynuuj", "Anuluj") // AQ EDIT - i18n okienka
 			if(choice != "Kontynuuj")
 				return FALSE
 			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))

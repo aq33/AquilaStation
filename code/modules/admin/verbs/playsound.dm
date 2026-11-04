@@ -5,7 +5,7 @@
 		return
 
 	var/freq = 1
-	var/vol = input(usr, "Z jaką głośnością ma grać dźwięk?",, 100) as null|num
+	var/vol = input(usr, i18n_dialog_text(usr, "Z jaką głośnością ma grać dźwięk?"),, 100) as null|num // AQ EDIT - i18n okienka
 	if(!vol)
 		return
 	vol = CLAMP(vol, 1, 100)
@@ -20,7 +20,7 @@
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	var/res = alert(usr, "Pokazać graczom tytuł tego utworu?",, "Tak","Nie", "Anuluj")
+	var/res = i18n_alert(usr, usr, "Pokazać graczom tytuł tego utworu?",, "Tak","Nie", "Anuluj") // AQ EDIT - i18n okienka
 	switch(res)
 		if("Tak")
 			to_chat(world, "<span class='boldannounce'>Admin odtworzył: [S]</span>")
@@ -104,7 +104,7 @@
 					music_extra_data["album"] = data["album"]
 					// AQ EDIT END
 
-					var/res = alert(usr, "Pokazać graczom tytuł i link do tego utworu?\n[title]",, "Nie", "Tak", "Anuluj")
+					var/res = i18n_alert(usr, usr, "Pokazać graczom tytuł i link do tego utworu?\n[title]",, "Nie", "Tak", "Anuluj") // AQ EDIT - i18n okienka
 					switch(res)
 						if("Tak")
 							music_extra_data["title"] = data["title"]

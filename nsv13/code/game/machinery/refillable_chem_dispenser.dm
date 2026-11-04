@@ -241,7 +241,7 @@
 					total_space_needed += amount
 			var/free = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 			if(!enough_stored || (free < total_space_needed))
-				var/reply = alert(usr, "[enough_stored ? "Za mało miejsca na tę recepturę." : "Za mało zmagazynowanych reagentów na tę recepturę."] Kontynuować?", "Receptura", "OK", "Anuluj")
+				var/reply = i18n_alert(usr, usr, "[enough_stored ? "Za mało miejsca na tę recepturę." : "Za mało zmagazynowanych reagentów na tę recepturę."] Kontynuować?", "Receptura", "OK", "Anuluj") // AQ EDIT - i18n okienka
 				if(reply == "Anuluj")
 					return
 			// Transfer them for real
@@ -262,7 +262,7 @@
 					recording_recipe[key] += dispense_amount
 			. = TRUE
 		if("clear_recipes")
-			var/yesno = alert("Usunąć wszystkie receptury?",, "Tak","Nie")
+			var/yesno = i18n_alert(usr, "Usunąć wszystkie receptury?",, "Tak","Nie") // AQ EDIT - i18n okienka
 			if(yesno == "Tak")
 				saved_recipes = list()
 			. = TRUE
@@ -273,7 +273,7 @@
 			var/name = stripped_input(usr,"Nazwa","Jak chcesz nazwać ten przepis?", "Przepis", MAX_NAME_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") == "Nie")
+			if(saved_recipes[name] && i18n_alert(usr, "\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") == "Nie") // AQ EDIT - i18n okienka
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)

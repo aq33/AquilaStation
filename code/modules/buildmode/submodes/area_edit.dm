@@ -28,10 +28,10 @@
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
 
 /datum/buildmode_mode/area_edit/change_settings(client/c)
-	var/target_path = input(c, "Podaj ścieżkę typu:", "Ścieżka typu", "/area")
+	var/target_path = input(c, i18n_dialog_text(c, "Podaj ścieżkę typu:"), i18n_dialog_text(c, "Ścieżka typu"), "/area") // AQ EDIT - i18n okienka
 	var/areatype = text2path(target_path)
 	if(ispath(areatype,/area))
-		var/areaname = input(c, "Podaj nazwę obszaru:", "Nazwa obszaru", "Obszar")
+		var/areaname = input(c, i18n_dialog_text(c, "Podaj nazwę obszaru:"), i18n_dialog_text(c, "Nazwa obszaru"), "Obszar") // AQ EDIT - i18n okienka
 		if(!areaname || !length(areaname))
 			return
 		storedarea = new areatype

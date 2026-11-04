@@ -445,7 +445,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					if(!(ACCESS_CE in inserted_scan_id.access))
 						updateUsrDialog()
 						return
-			var/new_pay = FLOOR(input(usr, "Podaj nową kwotę pensji.", "Ustaw nową kwotę pensji.", account.paycheck_amount) as num|null, 1)
+			var/new_pay = FLOOR(input(usr, i18n_dialog_text(usr, "Podaj nową kwotę pensji."), i18n_dialog_text(usr, "Ustaw nową kwotę pensji."), account.paycheck_amount) as num|null, 1) // AQ EDIT - i18n okienka
 			if(isnull(new_pay))
 				updateUsrDialog()
 				return
@@ -490,7 +490,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					if(!(ACCESS_CE in inserted_scan_id.access))
 						updateUsrDialog()
 						return
-			var/new_bonus = FLOOR(input(usr, "Podaj kwotę premii. Wartości ujemne obniżą pensje.", "Ustaw premię", account.paycheck_bonus) as num|null, 1)
+			var/new_bonus = FLOOR(input(usr, i18n_dialog_text(usr, "Podaj kwotę premii. Wartości ujemne obniżą pensje."), i18n_dialog_text(usr, "Ustaw premię"), account.paycheck_bonus) as num|null, 1) // AQ EDIT - i18n okienka
 			if(isnull(new_bonus))
 				updateUsrDialog()
 				return

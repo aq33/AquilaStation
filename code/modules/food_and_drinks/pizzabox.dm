@@ -134,7 +134,7 @@
 				update_icon()
 				return
 			else
-				bomb_timer = input(user, "Ustaw zapalnik [bomb] na czas od [bomb_timer_min] do [bomb_timer_max].", bomb, bomb_timer) as num|null
+				bomb_timer = input(user, i18n_dialog_text(user, "Ustaw zapalnik [bomb] na czas od [bomb_timer_min] do [bomb_timer_max]."), i18n_dialog_text(user, bomb), bomb_timer) as num|null // AQ EDIT - i18n okienka
 
 				if (isnull(bomb_timer))
 					return

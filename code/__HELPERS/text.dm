@@ -43,10 +43,10 @@
 ///returns nothing with an alert instead of the message if it contains something in the ic filter, and sanitizes normally if the name is fine. It returns nothing so it backs out of the input the same way as if you had entered nothing.
 /proc/sanitize_name(t,list/repl_chars = null)
 	if(CHAT_FILTER_CHECK(t))
-		alert("Nie możesz ustawić imienia zawierającego słowo zakazane na czacie IC!")
+		i18n_alert(usr, "Nie możesz ustawić imienia zawierającego słowo zakazane na czacie IC!") // AQ EDIT - i18n okienka
 		return ""
 	if(t == "space" || t == "floor" || t == "wall" || t == "r-wall" || t == "monkey" || t == "unknown" || t == "inactive ai")	//prevents these common metagamey names
-		alert("Niedozwolone imię.")
+		i18n_alert(usr, "Niedozwolone imię.") // AQ EDIT - i18n okienka
 		return ""
 	return sanitize(t)
 
@@ -130,7 +130,7 @@
 
 /// Used to get a properly maximum length capped input.
 /proc/capped_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
-	var/name = input(user, message, title, default) as text|null
+	var/name = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as text|null // AQ EDIT - i18n okienka
 	if(no_trim)
 		return copytext(name, 1, max_length)
 	else
@@ -138,7 +138,7 @@
 
 /// Used to get a properly maximum length capped input, but this time multiline.
 /proc/capped_multiline_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
-	var/name = input(user, message, title, default) as message|null
+	var/name = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as message|null // AQ EDIT - i18n okienka
 	if(no_trim)
 		return copytext(name, 1, max_length)
 	else
@@ -146,7 +146,7 @@
 
 /// Used to get a properly sanitized (html encoded) input, of max_length. no_trim is self explanatory but it prevents the input from being trimed if you intend to parse newlines or whitespace.
 /proc/stripped_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
-	var/name = input(user, message, title, default) as text|null
+	var/name = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as text|null // AQ EDIT - i18n okienka
 
 	if(no_trim)
 		return copytext(html_encode(name), 1, max_length)
@@ -155,7 +155,7 @@
 
 /// Used to get a properly sanitized (html encoded) multiline input, of max_length
 /proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
-	var/name = input(user, message, title, default) as message|null
+	var/name = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as message|null // AQ EDIT - i18n okienka
 	if(no_trim)
 		return copytext(html_encode(name), 1, max_length)
 	else

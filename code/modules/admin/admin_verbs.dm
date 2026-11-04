@@ -547,7 +547,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Wywołaj w swoim miejscu eksplozję o wybranej sile."
 
 	var/list/choices = list("Mała bomba (1, 2, 3, 3)", "Średnia bomba (2, 3, 4, 4)", "Duża bomba (3, 5, 7, 5)", "Maxcap", "Własna bomba")
-	var/choice = input("Jaki rozmiar eksplozji chcesz wywołać? UWAGA: możesz to wszystko robić szybko i w sposób IC (pociskami manewrującymi!) czasownikiem Config/Launch Supplypod. OSTRZEŻENIE: to pomija maxcap") as null|anything in choices
+	var/choice = input(i18n_dialog_text(usr, "Jaki rozmiar eksplozji chcesz wywołać? UWAGA: możesz to wszystko robić szybko i w sposób IC (pociskami manewrującymi!) czasownikiem Config/Launch Supplypod. OSTRZEŻENIE: to pomija maxcap")) as null|anything in choices // AQ EDIT - i18n okienka
 	var/turf/epicenter = mob.loc
 
 	switch(choice)
@@ -562,20 +562,20 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		if("Maxcap")
 			explosion(epicenter, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 		if("Własna bomba")
-			var/devastation_range = input("Zasięg całkowitego zniszczenia (w polach):") as null|num
+			var/devastation_range = input(i18n_dialog_text(usr, "Zasięg całkowitego zniszczenia (w polach):")) as null|num // AQ EDIT - i18n okienka
 			if(devastation_range == null)
 				return
-			var/heavy_impact_range = input("Zasięg ciężkich uderzeń (w polach):") as null|num
+			var/heavy_impact_range = input(i18n_dialog_text(usr, "Zasięg ciężkich uderzeń (w polach):")) as null|num // AQ EDIT - i18n okienka
 			if(heavy_impact_range == null)
 				return
-			var/light_impact_range = input("Zasięg lekkich uderzeń (w polach):") as null|num
+			var/light_impact_range = input(i18n_dialog_text(usr, "Zasięg lekkich uderzeń (w polach):")) as null|num // AQ EDIT - i18n okienka
 			if(light_impact_range == null)
 				return
-			var/flash_range = input("Zasięg błysku (w polach):") as null|num
+			var/flash_range = input(i18n_dialog_text(usr, "Zasięg błysku (w polach):")) as null|num // AQ EDIT - i18n okienka
 			if(flash_range == null)
 				return
 			if(devastation_range > GLOB.MAX_EX_DEVESTATION_RANGE || heavy_impact_range > GLOB.MAX_EX_HEAVY_RANGE || light_impact_range > GLOB.MAX_EX_LIGHT_RANGE || flash_range > GLOB.MAX_EX_FLASH_RANGE)
-				if(alert("Bomba jest większa niż maxcap. Kontynuować?",,"Tak","Nie") != "Tak")
+				if(i18n_alert(usr, "Bomba jest większa niż maxcap. Kontynuować?",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 					return
 			epicenter = mob.loc //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
@@ -588,7 +588,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Drop DynEx Bomb"
 	set desc = "Wywołaj w swoim miejscu eksplozję o wybranej sile."
 
-	var/ex_power = input("Siła wybuchu:") as null|num
+	var/ex_power = input(i18n_dialog_text(usr, "Siła wybuchu:")) as null|num // AQ EDIT - i18n okienka
 	var/turf/epicenter = mob.loc
 	if(ex_power && epicenter)
 		dyn_explosion(epicenter, ex_power)
@@ -601,7 +601,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Get DynEx Range"
 	set desc = "Oblicz szacowany zasięg bomby na podstawie siły wybuchu."
 
-	var/ex_power = input("Siła wybuchu:") as null|num
+	var/ex_power = input(i18n_dialog_text(usr, "Siła wybuchu:")) as null|num // AQ EDIT - i18n okienka
 	if (isnull(ex_power))
 		return
 	var/range = round((2 * ex_power)**GLOB.DYN_EX_SCALE)
@@ -612,7 +612,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Get DynEx Power"
 	set desc = "Oblicz szacowaną siłę bomby potrzebną do osiągnięcia danego zasięgu."
 
-	var/ex_range = input("Zasięg lekkiego wybuchu:") as null|num
+	var/ex_range = input(i18n_dialog_text(usr, "Zasięg lekkiego wybuchu:")) as null|num // AQ EDIT - i18n okienka
 	if (isnull(ex_range))
 		return
 	var/power = (0.5 * ex_range)**(1/GLOB.DYN_EX_SCALE)
@@ -623,7 +623,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Set DynEx Scale"
 	set desc = "Ustaw mnożnik skali eksplozji dynex. Domyślnie 0.5."
 
-	var/ex_scale = input("Nowa skala DynEx:") as null|num
+	var/ex_scale = input(i18n_dialog_text(usr, "Nowa skala DynEx:")) as null|num // AQ EDIT - i18n okienka
 	if(!ex_scale)
 		return
 	GLOB.DYN_EX_SCALE = ex_scale
@@ -639,7 +639,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	var/type_length = length_char("/obj/effect/proc_holder/spell") + 2
 	for(var/A in GLOB.spells)
 		spell_list[copytext_char("[A]", type_length)] = A
-	var/obj/effect/proc_holder/spell/S = input("Wybierz zaklęcie, które chcesz mu dać", "ABRAKADABRA") as null|anything in sortList(spell_list)
+	var/obj/effect/proc_holder/spell/S = input(i18n_dialog_text(usr, "Wybierz zaklęcie, które chcesz mu dać"), i18n_dialog_text(usr, "ABRAKADABRA")) as null|anything in sortList(spell_list) // AQ EDIT - i18n okienka
 	if(!S)
 		return
 
@@ -660,7 +660,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Usuń zaklęcie wybranemu mobowi."
 
 	if(T?.mind)
-		var/obj/effect/proc_holder/spell/S = input("Wybierz zaklęcie do usunięcia", "NO ABRAKADABRA") as null|anything in sortList(T.mind.spell_list)
+		var/obj/effect/proc_holder/spell/S = input(i18n_dialog_text(usr, "Wybierz zaklęcie do usunięcia"), i18n_dialog_text(usr, "NO ABRAKADABRA")) as null|anything in sortList(T.mind.spell_list) // AQ EDIT - i18n okienka
 		if(S)
 			T.mind.RemoveSpell(S)
 			log_admin("[key_name(usr)] removed the spell [S] from [key_name(T)].")
@@ -675,7 +675,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!istype(T))
 		to_chat(src, "<span class='notice'>Chorobę możesz dać tylko mobowi typu /mob/living.</span>")
 		return
-	var/datum/disease/D = input("Wybierz chorobę, którą chcesz mu dać", "ACHOO") as null|anything in sortList(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/datum/disease/D = input(i18n_dialog_text(usr, "Wybierz chorobę, którą chcesz mu dać"), i18n_dialog_text(usr, "ACHOO")) as null|anything in sortList(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
 	if(!D)
 		return
 	T.ForceContractDisease(new D, FALSE, TRUE)

@@ -32,7 +32,7 @@ Self-sustaining extracts:
 	return ..()
 
 /obj/item/autoslime/attack_self(mob/user)
-	var/reagentselect = input(user, "Wybierz odczynnik, który ekstrakt będzie wytwarzał.", "Reakcja samopodtrzymująca") as null|anything in sortList(extract.activate_reagents, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/reagentselect = input(user, i18n_dialog_text(user, "Wybierz odczynnik, który ekstrakt będzie wytwarzał."), i18n_dialog_text(user, "Reakcja samopodtrzymująca")) as null|anything in sortList(extract.activate_reagents, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
 	var/amount = 5
 	var/secondary
 

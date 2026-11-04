@@ -532,28 +532,28 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		.["Sakrament (KOŃCZY RUNDĘ)"] = CALLBACK(src, PROC_REF(sacrament))
 
 /datum/antagonist/darkspawn/proc/admin_set_lucidity(mob/admin)
-	var/lucid = input(admin, "Ile jasności ma mieć drużyna darkspawnów?", "Jasność", team?.lucidity) as null|num
+	var/lucid = input(admin, i18n_dialog_text(admin, "Ile jasności ma mieć drużyna darkspawnów?"), i18n_dialog_text(admin, "Jasność"), team?.lucidity) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(lucid) && team)
 		team.lucidity = max(0, lucid)
 
 /datum/antagonist/darkspawn/proc/admin_set_willpower(mob/admin)
-	var/will = input(admin, "Ile woli ma mieć [owner]?", "Wola", willpower) as null|num
+	var/will = input(admin, i18n_dialog_text(admin, "Ile woli ma mieć [owner]?"), i18n_dialog_text(admin, "Wola"), willpower) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(will))
 		willpower = max(0, will)
 
 /datum/antagonist/darkspawn/proc/admin_set_psi(mob/admin)
-	var/max = input(admin, "Jaki ma być limit psi?", "Psi", psi_cap) as null|num
+	var/max = input(admin, i18n_dialog_text(admin, "Jaki ma być limit psi?"), i18n_dialog_text(admin, "Psi"), psi_cap) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(max))
 		psi_cap = max(0, max)
-	var/regen = input(admin, "Ile psi ma się odnawiać na sekundę?", "Psi", psi_per_second) as null|num
+	var/regen = input(admin, i18n_dialog_text(admin, "Ile psi ma się odnawiać na sekundę?"), i18n_dialog_text(admin, "Psi"), psi_per_second) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(regen))
 		psi_per_second = max(1, regen)
-	var/delay = input(admin, "Jakie ma być opóźnienie odnowy psi (w decysekundach)?", "Psi", psi_regen_delay) as null|num
+	var/delay = input(admin, i18n_dialog_text(admin, "Jakie ma być opóźnienie odnowy psi (w decysekundach)?"), i18n_dialog_text(admin, "Psi"), psi_regen_delay) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(delay))
 		psi_regen_delay = max(0, delay)
 
 /datum/antagonist/darkspawn/proc/admin_set_max_thralls(mob/admin)
-	var/thrall = input(admin, "Ilu thralli może mieć drużyna darkspawnów?", "Thralle", team?.max_thralls) as null|num
+	var/thrall = input(admin, i18n_dialog_text(admin, "Ilu thralli może mieć drużyna darkspawnów?"), i18n_dialog_text(admin, "Thralle"), team?.max_thralls) as null|num // AQ EDIT - i18n okienka
 	if(!isnull(thrall) && team)
 		team.max_thralls = max(0, thrall)
 

@@ -1,7 +1,7 @@
 /client/proc/forcerandomrotate()
 	set category = "Server"
 	set name = "Trigger Random Map Rotation"
-	var/rotate = alert("Wymusić losową rotację mapy?", "Zmienić mapę?", "Tak", "Anuluj")
+	var/rotate = i18n_alert(usr, "Wymusić losową rotację mapy?", "Zmienić mapę?", "Tak", "Anuluj") // AQ EDIT - i18n okienka
 	if (rotate != "Tak")
 		return
 	message_admins("[key_name_admin(usr)] wymusza losową rotację mapy.")
@@ -34,7 +34,7 @@
 			mapname += "\]"
 
 		maprotatechoices[mapname] = VM
-	var/chosenmap = input("Wybierz mapę, na którą zmienić", "Zmiana mapy")  as null|anything in sortList(maprotatechoices)
+	var/chosenmap = input(i18n_dialog_text(usr, "Wybierz mapę, na którą zmienić"), i18n_dialog_text(usr, "Zmiana mapy"))  as null|anything in sortList(maprotatechoices) // AQ EDIT - i18n okienka
 	if (!chosenmap)
 		return
 	SSticker.maprotatechecked = 1
@@ -53,7 +53,7 @@
 		to_chat(src, "<span class='warning'>Niewystarczające uprawnienia (wymaga debug, server i permissions).</span>")
 		return
 
-	var/json_settings = input(usr, "Podaj nazwę pliku json mapy:", "Nazwa json mapy", "") as text|null
+	var/json_settings = input(usr, i18n_dialog_text(usr, "Podaj nazwę pliku json mapy:"), i18n_dialog_text(usr, "Nazwa json mapy"), "") as text|null // AQ EDIT - i18n okienka
 
 	if(!json_settings)
 		return

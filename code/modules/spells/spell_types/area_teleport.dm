@@ -25,7 +25,7 @@
 	var/A = null
 
 	if(!randomise_selection)
-		A = input("Obszar, do którego chcesz się teleportować", "Teleport", A) as null|anything in GLOB.teleportlocs
+		A = input(i18n_dialog_text(usr, "Obszar, do którego chcesz się teleportować"), i18n_dialog_text(usr, "Teleport"), A) as null|anything in GLOB.teleportlocs // AQ EDIT - i18n okienka
 	else
 		A = pick(GLOB.teleportlocs)
 	if(!A)

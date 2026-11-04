@@ -193,7 +193,7 @@
 		if("yt_load")
 			if(yt_busy)
 				return
-			var/url = input(user, "Podaj link do playlisty lub utworu z YouTube albo SoundCloud", "Playlista", yt_playlist_url) as text|null
+			var/url = input(user, i18n_dialog_text(user, "Podaj link do playlisty lub utworu z YouTube albo SoundCloud"), i18n_dialog_text(user, "Playlista"), yt_playlist_url) as text|null // AQ EDIT - i18n okienka
 			if(!url || QDELETED(src))
 				return
 			url = trim(url)

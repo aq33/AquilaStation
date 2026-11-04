@@ -16,7 +16,7 @@
 	set category = "Drone"
 	set name = "Drone ping"
 
-	var/alert_s = input(src,"Poziom alarmu","Ping drona",null) as null|anything in list("Low","Medium","High","Critical")
+	var/alert_s = input(src,i18n_dialog_text(src, "Poziom alarmu"),i18n_dialog_text(src, "Ping drona"),null) as null|anything in list("Low","Medium","High","Critical") // AQ EDIT - i18n okienka
 
 	var/area/A = get_area(loc)
 

@@ -1,7 +1,7 @@
 /client/proc/manipulate_organs(mob/living/carbon/C in world)
 	set name = "Manipulate Organs"
 	set category = "Debug"
-	var/operation = input("Wybierz operację na organach.", "Manipulacja organami", "anuluj") as null|anything in list("dodaj organ", "dodaj implant", "upuść organ/implant", "usuń organ/implant", "anuluj")
+	var/operation = input(i18n_dialog_text(usr, "Wybierz operację na organach."), i18n_dialog_text(usr, "Manipulacja organami"), "anuluj") as null|anything in list("dodaj organ", "dodaj implant", "upuść organ/implant", "usuń organ/implant", "anuluj") // AQ EDIT - i18n okienka
 	if (!operation)
 		return
 
@@ -12,7 +12,7 @@
 				var/dat = replacetext("[path]", "/obj/item/organ/", ":")
 				organs[dat] = path
 
-			var/obj/item/organ/organ = input("Wybierz typ organu:", "Manipulacja organami", null) as null|anything in organs
+			var/obj/item/organ/organ = input(i18n_dialog_text(usr, "Wybierz typ organu:"), i18n_dialog_text(usr, "Manipulacja organami"), null) as null|anything in organs // AQ EDIT - i18n okienka
 			if(!organ)
 				return
 			organ = organs[organ]
@@ -26,7 +26,7 @@
 				var/dat = replacetext("[path]", "/obj/item/implant/", ":")
 				organs[dat] = path
 
-			var/obj/item/implant/organ = input("Wybierz typ implantu:", "Manipulacja organami", null) as null|anything in organs
+			var/obj/item/implant/organ = input(i18n_dialog_text(usr, "Wybierz typ implantu:"), i18n_dialog_text(usr, "Manipulacja organami"), null) as null|anything in organs // AQ EDIT - i18n okienka
 			if(!organ)
 				return
 			organ = organs[organ]
@@ -44,7 +44,7 @@
 				var/obj/item/implant/I = X
 				organs["[I.name] ([I.type])"] = I
 
-			var/obj/item/organ = input("Wybierz organ/implant:", "Manipulacja organami", null) as null|anything in organs
+			var/obj/item/organ = input(i18n_dialog_text(usr, "Wybierz organ/implant:"), i18n_dialog_text(usr, "Manipulacja organami"), null) as null|anything in organs // AQ EDIT - i18n okienka
 			if(!organ)
 				return
 			organ = organs[organ]

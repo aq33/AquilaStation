@@ -263,7 +263,7 @@ Slimecrossing Items
 
 /obj/item/capturedevice/proc/offer_entry(mob/living/M, mob/user)
 	to_chat(user, "<span class='notice'>Oferujesz urządzenie [M].</span>")
-	if(alert(M, "Czy chcesz wejść do urządzenia do chwytania należącego do [user]?", "Złote urządzenie do chwytania", "Tak", "Nie") != "Tak")
+	if(i18n_alert(usr, M, "Czy chcesz wejść do urządzenia do chwytania należącego do [user]?", "Złote urządzenie do chwytania", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 		to_chat(user, "<span class='warning'>[M] odmawia wejścia do urządzenia.</span>")
 		return
 	if(!user.canUseTopic(src, BE_CLOSE) || !user.canUseTopic(M, BE_CLOSE))

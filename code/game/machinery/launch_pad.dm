@@ -389,7 +389,7 @@
 			. = TRUE
 		if("remove")
 			. = TRUE
-			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "Tak, na pewno", "Przerwij") == "Tak, na pewno")
+			if(usr && i18n_alert(usr, usr, "Na pewno?", "Odłącz wyrzutnię", "Tak, na pewno", "Przerwij") == "Tak, na pewno") // AQ EDIT - i18n okienka
 				pad = null
 		if("launch")
 			sending = TRUE

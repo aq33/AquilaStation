@@ -132,7 +132,7 @@
 		apnw.apnp += src
 		M.buffer = null
 	var/static/list/quadrant_names = list("Dziób, lewa burta" = "forward_port", "Dziób, prawa burta" = "forward_starboard", "Rufa, lewa burta" = "aft_port", "Rufa, prawa burta" = "aft_starboard")
-	var/quadrant_choice = input(user, "Do której ćwiartki skierować pompę nanonaprawczą?", "[name]") as null|anything in quadrant_names
+	var/quadrant_choice = input(user, i18n_dialog_text(user, "Do której ćwiartki skierować pompę nanonaprawczą?"), i18n_dialog_text(user, "[name]")) as null|anything in quadrant_names // AQ EDIT - i18n okienka
 	quadrant = quadrant_choice ? quadrant_names[quadrant_choice] : null
 	playsound(src, 'sound/items/flashlight_on.ogg', 100, TRUE)
 	to_chat(user, "<span class='notice'>Przesłano bufor</span>")

@@ -17,7 +17,7 @@
 	nuke_chat()
 
 	// Failed to fix
-	action = alert(src, "Czy to pomogło?", "", "Tak", "Nie, przełącz na stary interfejs")
+	action = i18n_alert(usr, src, "Czy to pomogło?", "", "Tak", "Nie, przełącz na stary interfejs") // AQ EDIT - i18n okienka
 	if (action == "Nie, przełącz na stary interfejs")
 		winset(src, "legacy_output_selector", "left=output_legacy")
 		log_tgui(src, "Failed to fix.")

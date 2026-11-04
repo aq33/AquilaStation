@@ -35,7 +35,7 @@
 /obj/effect/fun_balloon/attack_ghost(mob/user)
 	if(!user.client || !user.client.holder || popped)
 		return
-	var/confirmation = alert("Przebić [src]?","Balon zabawy","Tak","Nie")
+	var/confirmation = i18n_alert(usr, "Przebić [src]?","Balon zabawy","Tak","Nie") // AQ EDIT - i18n okienka
 	if(confirmation == "Tak" && !popped)
 		popped = TRUE
 		effect()

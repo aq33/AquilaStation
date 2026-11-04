@@ -77,7 +77,7 @@
 	options["Błazen"] ="chaos" //Nepeta33Leijon is holding me captive and forced me to help with this please send help
 	options["Wariat"] = "trickymask"
 
-	var/choice = input(user,"W jaką formę chcesz przemienić tę maskę?","Przemiana maski") in sortList(options)
+	var/choice = input(user,i18n_dialog_text(user, "W jaką formę chcesz przemienić tę maskę?"),i18n_dialog_text(user, "Przemiana maski")) in sortList(options) // AQ EDIT - i18n okienka
 
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
@@ -118,7 +118,7 @@
 	options["Effrayé"] = "scaredmime"
 	options["Excité"] ="sexymime"
 
-	var/choice = input(user,"W jaką formę chcesz przemienić tę maskę?","Przemiana maski") in sortList(options)
+	var/choice = input(user,i18n_dialog_text(user, "W jaką formę chcesz przemienić tę maskę?"),i18n_dialog_text(user, "Przemiana maski")) in sortList(options) // AQ EDIT - i18n okienka
 
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
@@ -190,7 +190,7 @@
 	options["Zdezorientowana tiki"] = "tiki_confused"
 	options["Wściekła tiki"] ="tiki_angry"
 
-	var/choice = input(M,"W jaką formę chcesz zmienić tę maskę?","Przemiana maski") in sortList(options)
+	var/choice = input(M,i18n_dialog_text(M, "W jaką formę chcesz zmienić tę maskę?"),i18n_dialog_text(M, "Przemiana maski")) in sortList(options) // AQ EDIT - i18n okienka
 
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]

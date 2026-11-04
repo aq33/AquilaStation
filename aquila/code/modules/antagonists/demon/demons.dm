@@ -89,7 +89,7 @@
 
 /datum/antagonist/sinfuldemon/admin_add(datum/mind/new_owner,mob/admin)
 	var/choices = demonsins + "Losowy"
-	var/chosen_sin = input(admin,"Jaki grzech?","Rodzaj grzechu") as null|anything in choices
+	var/chosen_sin = input(admin,i18n_dialog_text(admin, "Jaki grzech?"),i18n_dialog_text(admin, "Rodzaj grzechu")) as null|anything in choices // AQ EDIT - i18n okienka
 	if(!chosen_sin)
 		return
 	if(chosen_sin in demonsins)

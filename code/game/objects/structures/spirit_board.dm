@@ -34,7 +34,7 @@
 		virgin = FALSE
 		notify_ghosts("Ktoś zaczął bawić się [src.name] w [get_area(src)]!", source = src, header = "Tablica spirytystyczna")
 
-	planchette = input("Wybierz literę.", "Seans!") as null|anything in list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+	planchette = input(i18n_dialog_text(usr, "Wybierz literę."), i18n_dialog_text(usr, "Seans!")) as null|anything in list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z") // AQ EDIT - i18n okienka
 	if(!planchette || !Adjacent(M) || next_use > world.time)
 		return
 	M.log_message("picked a letter on [src], which was \"[planchette]\".", LOG_GAME)

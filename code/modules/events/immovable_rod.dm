@@ -21,7 +21,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	if(!check_rights(R_FUN))
 		return
 
-	var/aimed = alert("Wycelować w obecną lokalizację?","Snajperski pręt", "Tak", "Nie")
+	var/aimed = i18n_alert(usr, "Wycelować w obecną lokalizację?","Snajperski pręt", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(aimed == "Tak")
 		special_target = get_turf(usr)
 

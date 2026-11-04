@@ -661,7 +661,7 @@
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))
-		color = input(user,"","Wybierz kolor",color) as color
+		color = input(user,i18n_dialog_text(user, ""),i18n_dialog_text(user, "Wybierz kolor"),color) as color // AQ EDIT - i18n okienka
 	else
 		return ..()
 

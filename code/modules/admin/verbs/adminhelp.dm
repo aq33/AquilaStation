@@ -130,7 +130,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	switch(action)
 		if("claim")
 			if(ticket.claimed_admin)
-				var/confirm = alert("To zgłoszenie jest już przejęte, nadpisać przejęcie?",,"Tak", "Nie")
+				var/confirm = i18n_alert(usr, "To zgłoszenie jest już przejęte, nadpisać przejęcie?",,"Tak", "Nie") // AQ EDIT - i18n okienka
 				if(confirm == "Nie")
 					return
 			claim_ticket = CLAIM_OVERRIDE
@@ -783,7 +783,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
-		if(alert(usr, "Masz już otwarte zgłoszenie. Czy chodzi o tę samą sprawę?",,"Tak","Nie") != "Nie")
+		if(i18n_alert(usr, usr, "Masz już otwarte zgłoszenie. Czy chodzi o tę samą sprawę?",,"Tak","Nie") != "Nie") // AQ EDIT - i18n okienka
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				current_ticket.TimeoutVerb()

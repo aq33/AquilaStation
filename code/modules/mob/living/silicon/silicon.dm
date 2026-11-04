@@ -470,7 +470,7 @@
 		return
 
 	//Ask the user to pick a channel from what it has available.
-	var/Autochan = input("Wybierz kanał:") as null|anything in list("Domyślny","Brak") + radio.channels
+	var/Autochan = input(i18n_dialog_text(usr, "Wybierz kanał:")) as null|anything in list("Domyślny","Brak") + radio.channels // AQ EDIT - i18n okienka
 
 	if(!Autochan)
 		return

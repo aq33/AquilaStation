@@ -84,13 +84,13 @@
 		maptext = MAPTEXT(new_label)
 		to_chat(user, "<span class='notice'>Ustawiono etykietę na [maptext].</span>")
 	if(href_list["edit_sound_file"])
-		var/new_file = input(user, "Wybierz plik dźwiękowy.", "Emiter dźwięku") as null|sound
+		var/new_file = input(user, i18n_dialog_text(user, "Wybierz plik dźwiękowy."), i18n_dialog_text(user, "Emiter dźwięku")) as null|sound // AQ EDIT - i18n okienka
 		if(!new_file)
 			return
 		sound_file = new_file
 		to_chat(user, "<span class='notice'>Ustawiono nowy plik dźwiękowy [sound_file].</span>")
 	if(href_list["edit_volume"])
-		var/new_volume = input(user, "Wybierz głośność.", "Emiter dźwięku", sound_volume) as null|num
+		var/new_volume = input(user, i18n_dialog_text(user, "Wybierz głośność."), i18n_dialog_text(user, "Emiter dźwięku"), sound_volume) as null|num // AQ EDIT - i18n okienka
 		if(isnull(new_volume))
 			return
 		new_volume = CLAMP(new_volume, 0, 100)
@@ -99,7 +99,7 @@
 	if(href_list["edit_mode"])
 		var/new_mode
 		var/mode_list = list("Lokalny (zwykły dźwięk)" = SOUND_EMITTER_LOCAL, "Bezpośredni (bez wpływu otoczenia/położenia)" = SOUND_EMITTER_DIRECT)
-		new_mode = input(user, "Wybierz nowy tryb.", "Emiter dźwięku") as null|anything in mode_list
+		new_mode = input(user, i18n_dialog_text(user, "Wybierz nowy tryb."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in mode_list // AQ EDIT - i18n okienka
 		if(!new_mode)
 			return
 		motus_operandi = mode_list[new_mode]
@@ -107,13 +107,13 @@
 	if(href_list["edit_range"])
 		var/new_range
 		var/range_list = list("Promień (wszystkie moby w promieniu)" = SOUND_EMITTER_RADIUS, "Poziom Z (wszystkie moby na tym samym z)" = SOUND_EMITTER_ZLEVEL, "Globalny (wszyscy gracze)" = SOUND_EMITTER_GLOBAL)
-		new_range = input(user, "Wybierz nowy zasięg.", "Emiter dźwięku") as null|anything in range_list
+		new_range = input(user, i18n_dialog_text(user, "Wybierz nowy zasięg."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in range_list // AQ EDIT - i18n okienka
 		if(!new_range)
 			return
 		emitter_range = range_list[new_range]
 		to_chat(user, "<span class='notice'>Ustawiono zasięg na [emitter_range].</span>")
 	if(href_list["edit_radius"])
-		var/new_radius = input(user, "Wybierz promień.", "Emiter dźwięku", sound_volume) as null|num
+		var/new_radius = input(user, i18n_dialog_text(user, "Wybierz promień."), i18n_dialog_text(user, "Emiter dźwięku"), sound_volume) as null|num // AQ EDIT - i18n okienka
 		if(isnull(new_radius))
 			return
 		new_radius = CLAMP(new_radius, 0, 127)

@@ -303,7 +303,7 @@ Called by add_sensor_profile_penalty if remove_in is used.
 		if("sensor_mode")
 			sensor_mode = (sensor_mode == SENSOR_MODE_PASSIVE) ? SENSOR_MODE_RADAR : SENSOR_MODE_PASSIVE
 		if("radar_delay")
-			var/newDelay = input(usr, "Ustaw nowe opóźnienie radaru (sekundy)", "Opóźnienie radaru", null) as num|null
+			var/newDelay = input(usr, i18n_dialog_text(usr, "Ustaw nowe opóźnienie radaru (sekundy)"), i18n_dialog_text(usr, "Opóźnienie radaru"), null) as num|null // AQ EDIT - i18n okienka
 			if(!newDelay)
 				return
 			newDelay = CLAMP(newDelay SECONDS, MIN_RADAR_DELAY, MAX_RADAR_DELAY)

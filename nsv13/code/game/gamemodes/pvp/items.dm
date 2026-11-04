@@ -53,7 +53,7 @@
 	if(!is_station_level(user.z))
 		to_chat(user, "<span class='notice'>W słuchawce trzeszczy wiadomość: Operatorze. Nie dotarłeś jeszcze na [station_name()] - upewnij się, że jesteś na wrogim statku, zanim przywołasz bombę.</span>")
 		return
-	if(alert("Na pewno chcesz przywołać bombę atomową do siebie?",name,"Tak","Nie") == "Tak")
+	if(i18n_alert(usr, "Na pewno chcesz przywołać bombę atomową do siebie?",name,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
 		to_chat(user, "<span class='notice'>Naciskasz przycisk na [src] i pojawia się bomba atomowa.</span>")
 		var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in GLOB.nuke_list
 		nuke.visible_message("<span class='warning'>[src] znika z sykiem!</span>")
@@ -159,7 +159,7 @@
 			return
 		if(!powered())
 			return
-		if(alert(user, "Zacząć wzywać posiłki przez [src]? To głośny proces, który zdradzi twoją pozycję wrogom!","Potwierdź","Tak","Nie")=="Nie")
+		if(i18n_alert(usr, user, "Zacząć wzywać posiłki przez [src]? To głośny proces, który zdradzi twoją pozycję wrogom!","Potwierdź","Tak","Nie")=="Nie") // AQ EDIT - i18n okienka
 			return
 		var/datum/star_system/SS = get_overmap().current_system
 		if(SS.alignment == alignment) //Todo: add federation check here.
@@ -217,7 +217,7 @@
 			return
 		if(!powered())
 			return
-		if(alert(user, "Aktywować [src]? Wysłanie transmisji zajmie dwie minuty i na stałe oznaczy system jako przejęty!","Potwierdź","Tak","Nie")=="Nie")
+		if(i18n_alert(usr, user, "Aktywować [src]? Wysłanie transmisji zajmie dwie minuty i na stałe oznaczy system jako przejęty!","Potwierdź","Tak","Nie")=="Nie") // AQ EDIT - i18n okienka
 			return
 		capturing = get_overmap().current_system
 		if(capturing.alignment == alignment || capturing.alignment == "solgov") //Todo: add federation check here.
@@ -331,7 +331,7 @@
 	var/datum/ship_loadout/target = locate(params["target_id"])
 	if(!target)
 		return FALSE
-	if(alert("Na pewno chcesz wybrać [target]?",name,"Tak","Nie") == "Tak")
+	if(i18n_alert(usr, "Na pewno chcesz wybrać [target]?",name,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
 		if(target.apply(loc.get_overmap()))
 			qdel(src)
 

@@ -19,7 +19,7 @@
 		if(operation == "set")
 			prompt = "Podaj nową liczbę metamonet:"
 
-		msg = input("Message:", prompt) as num|null
+		msg = input(i18n_dialog_text(usr, "Message:"), i18n_dialog_text(usr, prompt)) as num|null // AQ EDIT - i18n okienka
 
 		if (!msg)
 			return

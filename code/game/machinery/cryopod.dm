@@ -318,7 +318,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			to_chat(user, "<span class='danger'>Nie możesz umieścić [target] w [src]. Jest przytomny.</span>")
 		return
 	else if(target.client)
-		if(alert(target,"Czy chcesz wejść w sen kriogeniczny?",,"Yes","No") != "Yes")
+		if(i18n_alert(usr, target,"Czy chcesz wejść w sen kriogeniczny?",,"Yes","No") != "Yes") // AQ EDIT - i18n okienka
 			return
 
 	var/generic_plsnoleave_message = " Przed opuszczeniem rundy napisz ahelp, nawet jeśli żaden administrator nie jest online!"
@@ -327,10 +327,10 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		var/caught = FALSE
 		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist)
 		if(target.mind.assigned_role in GLOB.command_positions)
-			alert("Jesteś szefem działu![generic_plsnoleave_message]")
+			i18n_alert(usr, "Jesteś szefem działu![generic_plsnoleave_message]") // AQ EDIT - i18n okienka
 			caught = TRUE
 		if(A)
-			alert("Jesteś: [A.name]![generic_plsnoleave_message]")
+			i18n_alert(usr, "Jesteś: [A.name]![generic_plsnoleave_message]") // AQ EDIT - i18n okienka
 			caught = TRUE
 		if(caught)
 			target.client.cryo_warned = world.time

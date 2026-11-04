@@ -330,7 +330,7 @@
 		for(var/datum/mind/M in SSticker.mode.cult)
 			if(M.current && M.current.stat != DEAD)
 				cultists |= M.current
-		var/mob/living/cultist_to_receive = input(user, "Kogo chcesz wezwać do [src]?", "Wyznawcy Geometry") as null|anything in (cultists - user)
+		var/mob/living/cultist_to_receive = input(user, i18n_dialog_text(user, "Kogo chcesz wezwać do [src]?"), i18n_dialog_text(user, "Wyznawcy Geometry")) as null|anything in (cultists - user) // AQ EDIT - i18n okienka
 		if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
 			return
 		if(!cultist_to_receive)

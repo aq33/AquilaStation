@@ -900,7 +900,7 @@ GENE SCANNER
 	for(var/A in buffer)
 		options += get_display_name(A)
 
-	var/answer = input(user, "Analizuj potencjał", "Analizator sekwencji")  as null|anything in sortList(options)
+	var/answer = input(user, i18n_dialog_text(user, "Analizuj potencjał"), i18n_dialog_text(user, "Analizator sekwencji"))  as null|anything in sortList(options) // AQ EDIT - i18n okienka
 	if(answer && ready && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		var/sequence
 		for(var/A in buffer) //this physically hurts but i dont know what anything else short of an assoc list
@@ -1042,14 +1042,14 @@ GENE SCANNER
 	if(cooldown > world.time - (10))
 		to_chat(user, "<span class='warning'>Ekstrapolator wciąż się ładuje!</span>")
 		return
-	var/datum/disease/advance/A = input(user,"Którą chorobę chcesz wyekstrahować?") in null|advancediseases
+	var/datum/disease/advance/A = input(user,i18n_dialog_text(user, "Którą chorobę chcesz wyekstrahować?")) in null|advancediseases // AQ EDIT - i18n okienka
 	if(isolate)
 		using = TRUE
 		for(var/datum/symptom/S in A.symptoms)
 			if(S.level <= 6 + scanner.rating)
 				symptoms += S
 			continue
-		var/datum/symptom/chosen = input(user,"Który objaw chcesz wyizolować?") in null|symptoms
+		var/datum/symptom/chosen = input(user,i18n_dialog_text(user, "Który objaw chcesz wyizolować?")) in null|symptoms // AQ EDIT - i18n okienka
 		var/datum/disease/advance/symptomholder = new
 		if(!symptoms.len || !chosen)
 			using = FALSE

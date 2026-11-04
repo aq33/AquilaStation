@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     promptAndCheckIn(user)
 
 /obj/item/hilbertshotel/proc/promptAndCheckIn(mob/user)
-    var/chosenRoomNumber = input(user, "W którym pokoju chcesz się zameldować?", "Numer pokoju") as null|num
+    var/chosenRoomNumber = input(user, i18n_dialog_text(user, "W którym pokoju chcesz się zameldować?"), i18n_dialog_text(user, "Numer pokoju")) as null|num // AQ EDIT - i18n okienka
     if(!chosenRoomNumber)
         return
     if(chosenRoomNumber > SHORT_REAL_LIMIT)
@@ -241,7 +241,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(!parentSphere)
         to_chat(user, "<span class='warning'>Drzwi chyba się zepsuły i nie chcą działać!</span>")
         return
-    if(alert(user, "Hotel Hilberta przypomina, że choć zrobimy wszystko, by chronić pozostawione przez ciebie rzeczy, nie gwarantujemy ich bezpieczeństwa podczas twojej nieobecności, zwłaszcza zdrowia żywych stworzeń. Mając to na uwadze, czy jesteś gotów wyjść?", "Wyjście", "Wyjdź", "Zostań") == "Wyjdź")
+    if(i18n_alert(usr, user, "Hotel Hilberta przypomina, że choć zrobimy wszystko, by chronić pozostawione przez ciebie rzeczy, nie gwarantujemy ich bezpieczeństwa podczas twojej nieobecności, zwłaszcza zdrowia żywych stworzeń. Mając to na uwadze, czy jesteś gotów wyjść?", "Wyjście", "Wyjdź", "Zostań") == "Wyjdź") // AQ EDIT - i18n okienka
         if(!(user.mobility_flags & MOBILITY_MOVE) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
             return
         user.forceMove(get_turf(parentSphere))

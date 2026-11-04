@@ -1371,7 +1371,7 @@
 		return
 
 	// reads from the airlock painter's `available paintjob` list. lets the player choose a paint option, or cancel painting
-	var/current_paintjob = input(user, "Wybierz malowanie dla tej śluzy.") as null|anything in sortList(painter.available_paint_jobs)
+	var/current_paintjob = input(user, i18n_dialog_text(user, "Wybierz malowanie dla tej śluzy.")) as null|anything in sortList(painter.available_paint_jobs) // AQ EDIT - i18n okienka
 	if(!current_paintjob) // if the user clicked cancel on the popup, return
 		return
 

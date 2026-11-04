@@ -143,7 +143,7 @@
 				rate = MAX_TRANSFER_RATE
 				. = TRUE
 			else if(rate == "input")
-				rate = input("Nowy przepływ (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
+				rate = input(i18n_dialog_text(usr, "Nowy przepływ (0-[MAX_TRANSFER_RATE] L/s):"), i18n_dialog_text(usr, name), transfer_rate) as num|null // AQ EDIT - i18n okienka
 				if(!isnull(rate) && !..())
 					. = TRUE
 			else if(text2num(rate) != null)

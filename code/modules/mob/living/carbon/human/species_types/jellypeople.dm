@@ -720,7 +720,7 @@
 	var/list/options = list()
 	for(var/mob/living/Ms in oview(H))
 		options += Ms
-	var/mob/living/M = input("Wybierz, do kogo wysłać wiadomość:","Przesłać myśl do?",null) as null|mob in sortNames(options)
+	var/mob/living/M = input(i18n_dialog_text(usr, "Wybierz, do kogo wysłać wiadomość:"),i18n_dialog_text(usr, "Przesłać myśl do?"),null) as null|mob in sortNames(options) // AQ EDIT - i18n okienka
 	if(!M)
 		return
 

@@ -1,5 +1,5 @@
 /client/proc/get_mentor_say()
-	var/msg = input(src, null, "msay \"text\"") as text|null
+	var/msg = input(src, null, i18n_dialog_text(src, "msay \"text\"")) as text|null // AQ EDIT - i18n okienka
 	cmd_mentor_say(msg)
 
 /client/proc/cmd_mentor_say(msg as text)

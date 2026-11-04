@@ -12,7 +12,7 @@
 		targets["[T]"] = T
 
 	var/list/sorted = sortList(targets)
-	var/target = input(src,"Do kogo wysłać wiadomość?","Mentor PM",null) in sorted|null
+	var/target = input(src,i18n_dialog_text(src, "Do kogo wysłać wiadomość?"),i18n_dialog_text(src, "Mentor PM"),null) in sorted|null // AQ EDIT - i18n okienka
 	cmd_mentor_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "Mentor_verb", 1, "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -37,7 +37,7 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message") as text|null
+		msg = input(src,i18n_dialog_text(src, "Message:"), i18n_dialog_text(src, "Private message")) as text|null // AQ EDIT - i18n okienka
 
 		if(!msg)
 			return

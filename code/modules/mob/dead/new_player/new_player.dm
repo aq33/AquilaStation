@@ -143,7 +143,7 @@
 
 	var/this_is_like_playing_right = "Tak"
 	if(!force_observe)
-		this_is_like_playing_right = alert(src,"Na pewno chcesz obserwować? Nie będziesz mógł grać podczas tej rundy!","Ustawienia gracza","Tak","Nie")
+		this_is_like_playing_right = i18n_alert(usr, src,"Na pewno chcesz obserwować? Nie będziesz mógł grać podczas tej rundy!","Ustawienia gracza","Tak","Nie") // AQ EDIT - i18n okienka
 
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Tak")
 		ready = PLAYER_NOT_READY
@@ -218,18 +218,18 @@
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
 	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
-		alert(src, get_job_unavailable_error_message(error, rank))
+		i18n_alert(usr, src, get_job_unavailable_error_message(error, rank)) // AQ EDIT - i18n okienka
 		return FALSE
 
 	if(SSticker.late_join_disabled)
-		alert(src, "Administrator wyłączył dołączanie w trakcie rundy.")
+		i18n_alert(usr, src, "Administrator wyłączył dołączanie w trakcie rundy.") // AQ EDIT - i18n okienka
 		return FALSE
 
 	var/arrivals_docked = TRUE
 	if(SSshuttle.arrivals)
 		close_spawn_windows()	//In case we get held up
 		if(SSshuttle.arrivals.damaged && CONFIG_GET(flag/arrivals_shuttle_require_safe_latejoin))
-			src << alert("Prom przylotów ma awarię! Nie możesz dołączyć.")
+			src << i18n_alert(usr, "Prom przylotów ma awarię! Nie możesz dołączyć.") // AQ EDIT - i18n okienka
 			return FALSE
 
 		if(CONFIG_GET(flag/arrivals_shuttle_require_undocked))

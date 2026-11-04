@@ -24,7 +24,7 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(isnull(S))
-		S = input(usr, "Wgraj plik dźwiękowy:", "Starożytny syntezator") as null|sound
+		S = input(usr, i18n_dialog_text(usr, "Wgraj plik dźwiękowy:"), i18n_dialog_text(usr, "Starożytny syntezator")) as null|sound // AQ EDIT - i18n okienka
 	if(!S || !user.canUseTopic(src, BE_CLOSE))
 		return
 	selected_sound = S
@@ -35,7 +35,7 @@
 /obj/item/soundsynth/ancient/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return ..()
-	var/new_volume = input(user, "Jaka głośność (1-100)?", "Starożytny syntezator", volume) as null|num
+	var/new_volume = input(user, i18n_dialog_text(user, "Jaka głośność (1-100)?"), i18n_dialog_text(user, "Starożytny syntezator"), volume) as null|num // AQ EDIT - i18n okienka
 	if(isnull(new_volume) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	volume = clamp(round(new_volume), 1, 100)

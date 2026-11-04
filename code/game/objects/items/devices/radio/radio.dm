@@ -189,7 +189,7 @@
 			if(tune == "input")
 				var/min = format_frequency(freerange ? MIN_FREE_FREQ : MIN_FREQ)
 				var/max = format_frequency(freerange ? MAX_FREE_FREQ : MAX_FREQ)
-				tune = input("Ustaw częstotliwość ([min]-[max]):", name, format_frequency(frequency)) as null|num
+				tune = input(i18n_dialog_text(usr, "Ustaw częstotliwość ([min]-[max]):"), i18n_dialog_text(usr, name), format_frequency(frequency)) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(tune) && !..())
 					if (tune < MIN_FREE_FREQ && tune <= MAX_FREE_FREQ / 10)
 						// allow typing 144.7 to get 1447

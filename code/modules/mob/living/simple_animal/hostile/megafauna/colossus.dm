@@ -687,7 +687,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Zostać Światłoduchem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+		var/be_helper = i18n_alert(usr, "Zostać Światłoduchem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") // AQ EDIT - i18n okienka
 		if(be_helper == "Tak" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/W = new /mob/living/simple_animal/hostile/lightgeist(get_turf(loc))
 			W.key = user.key

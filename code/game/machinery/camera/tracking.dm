@@ -16,7 +16,7 @@
 
 /mob/living/silicon/ai/proc/show_camera_list()
 	var/list/cameras = get_camera_list()
-	var/camera = input(src, "Wybierz kamerę, którą chcesz oglądać", "Cameras") as null|anything in cameras
+	var/camera = input(src, i18n_dialog_text(src, "Wybierz kamerę, którą chcesz oglądać"), i18n_dialog_text(src, "Cameras")) as null|anything in cameras // AQ EDIT - i18n okienka
 	switchCamera(cameras[camera])
 
 /datum/trackable

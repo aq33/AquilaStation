@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			message_admins("<span class='danger'><B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] ma ten sam CID i IP co inny gracz, więc najwyraźniej gra na kilku kontach. Dostał ostrzeżenie, że ma opuścić serwer, bo inaczej ryzykuje bana.</span>")
 			log_admin_private("MULTIKEYING: [key_name(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.")
 		spawn(0.5 SECONDS) //needs to run during world init, do not convert to add timer
-			alert(mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please.
+			i18n_alert(usr, mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please. // AQ EDIT - i18n okienka
 			to_chat_immediate(mob, "<span class='danger'>[dupe_login_message]</span>")
 
 
@@ -1116,12 +1116,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	remove_verb(/client/proc/show_account_identifier)
 	addtimer(CALLBACK(src, PROC_REF(restore_account_identifier)), 20) //Don't DoS DB queries, asshole
 
-	var/confirm = alert("NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Tak", "Anuluj")
+	var/confirm = i18n_alert(usr, "NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Tak", "Anuluj") // AQ EDIT - i18n okienka
 	if(confirm != "Tak")
 		return
 	var/uuid = fetch_uuid()
 	if(!uuid)
-		alert("Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "OK")
+		i18n_alert(usr, "Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "OK") // AQ EDIT - i18n okienka
 		log_sql("Failed to fetch UUID for [key_name(src)]")
 	else
 		var/dat

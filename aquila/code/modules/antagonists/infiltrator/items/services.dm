@@ -21,10 +21,10 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 			return
 		var/record_name = ID.registered_name || H.name
 		var/assignment = ID.assignment || "Unassigned"
-		if(alert(user, "Na pewno chcesz, żeby twój wpis w manifeście załogi brzmiał: [record_name], [assignment]?", "", "Tak", "Nie") != "Tak")
+		if(i18n_alert(usr, user, "Na pewno chcesz, żeby twój wpis w manifeście załogi brzmiał: [record_name], [assignment]?", "", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 		var/list/all_jobs = (GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions)
-		if(!(assignment in all_jobs) && (alert(user, "Na pewno chcesz mieć stanowisko '[assignment]'? To nie jest standardowe stanowisko i może dziwnie wyglądać w manifeście!", "", "Tak", "Nie") != "Tak"))
+		if(!(assignment in all_jobs) && (i18n_alert(usr, user, "Na pewno chcesz mieć stanowisko '[assignment]'? To nie jest standardowe stanowisko i może dziwnie wyglądać w manifeście!", "", "Tak", "Nie") != "Tak")) // AQ EDIT - i18n okienka
 			return
 		if(QDELETED(src) || !user.is_holding(src))
 			return

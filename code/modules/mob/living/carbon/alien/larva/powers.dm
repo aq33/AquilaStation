@@ -45,7 +45,7 @@
 		to_chat(L, "<span class='name'>Łowcy</span> <span class='info'>to najzwinniejsza kasta, która poluje na nosicieli. Są szybsi od człowieka i potrafią rzucać się na ofiary, ale nie są dużo wytrzymalsi od trutni.</span>")
 		to_chat(L, "<span class='name'>Strażnicy</span> <span class='info'>chronią ul. Dzięki pluciu na odległość, niewidzialności i dużej wytrzymałości są groźnymi obrońcami i niezłymi łowcami pomocniczymi.</span>")
 		to_chat(L, "<span class='name'>Trutnie</span> <span class='info'>to najsłabsza i najwolniejsza kasta, ale mogą wyrosnąć na pretorianina, a potem królową, jeśli królowej nie ma, i są niezbędne do utrzymania ula dzięki wydzielaniu żywicy.</span>")
-		var/alien_caste = alert(L, "Wybierz, do której kasty obcych chcesz należeć.",,"Łowca","Strażnik","Dron")
+		var/alien_caste = i18n_alert(usr, L, "Wybierz, do której kasty obcych chcesz należeć.",,"Łowca","Strażnik","Dron") // AQ EDIT - i18n okienka
 
 		if(user.incapacitated()) //something happened to us while we were choosing.
 			return

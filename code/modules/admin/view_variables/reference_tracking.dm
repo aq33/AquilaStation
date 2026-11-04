@@ -12,7 +12,7 @@
 			SSgarbage.next_fire = world.time + world.tick_lag
 			return
 
-		if(!skip_alert && alert("To zablokuje wszystko na około 5 minut. Czy chcesz rozpocząć wyszukiwanie?", "Znajdź referencje", "Tak", "Nie") != "Tak")
+		if(!skip_alert && i18n_alert(usr, "To zablokuje wszystko na około 5 minut. Czy chcesz rozpocząć wyszukiwanie?", "Znajdź referencje", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 			running_find_references = null
 			return
 

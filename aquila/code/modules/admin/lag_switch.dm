@@ -93,13 +93,13 @@
 				log_admin("[key_name(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
 				message_admins("[key_name_admin(usr)] [SSlag_switch.auto_switch ? "włączył" : "wyłączył"] automatyczne środki przeciw lagom.")
 			if("NUM")
-				var/new_num = input(usr, "Nowy próg graczy:", "Lag Switch") as null|num
+				var/new_num = input(usr, i18n_dialog_text(usr, "Nowy próg graczy:"), i18n_dialog_text(usr, "Lag Switch")) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(new_num))
 					SSlag_switch.trigger_pop = new_num
 					log_admin("[key_name(usr)] set the Lag Switch automatic trigger pop to [new_num].")
 					message_admins("[key_name_admin(usr)] ustawił próg automatycznych środków przeciw lagom na [new_num].")
 			if("SLOWCOOL")
-				var/new_num = input(usr, "Nowy odstęp w sekundach:", "Lag Switch") as null|num
+				var/new_num = input(usr, i18n_dialog_text(usr, "Nowy odstęp w sekundach:"), i18n_dialog_text(usr, "Lag Switch")) as null|num // AQ EDIT - i18n okienka
 				if(!isnull(new_num))
 					SSlag_switch.change_slowmode_cooldown(new_num)
 					log_admin("[key_name(usr)] set the Lag Switch slowmode cooldown to [new_num] seconds.")

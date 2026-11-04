@@ -122,7 +122,7 @@
 
 
 /obj/structure/sign/barsign/proc/pick_sign(mob/user)
-	var/picked_name = input(user, "Dostępne szyldy", "Szyld baru", name) as null|anything in sortList(get_bar_names())
+	var/picked_name = input(user, i18n_dialog_text(user, "Dostępne szyldy"), i18n_dialog_text(user, "Szyld baru"), name) as null|anything in sortList(get_bar_names()) // AQ EDIT - i18n okienka
 	if(!picked_name)
 		return
 	chosen_sign = set_sign_by_name(picked_name)

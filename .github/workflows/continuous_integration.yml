@@ -54,6 +54,7 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
+          python tools/i18n/wrap_dialogs.py --check
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:

@@ -278,7 +278,7 @@
 		var/obj/item/itemtype = V //AQUILA EDIT
 		display_names[initial(itemtype.name)] = itemtype //AQUILA EDIT
 
-	var/choice = input(M,"Jaki motyw ma mieć twoja święta broń?","Motyw świętej broni") as null|anything in sortList(display_names, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/choice = input(M,i18n_dialog_text(M, "Jaki motyw ma mieć twoja święta broń?"),i18n_dialog_text(M, "Motyw świętej broni")) as null|anything in sortList(display_names, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
 	if(QDELETED(src) || !choice || M.stat || !in_range(M, src) || M.incapacitated() || reskinned)
 		return
 

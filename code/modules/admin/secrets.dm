@@ -137,7 +137,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("tdomereset")
 			if(!check_rights(R_ADMIN))
 				return
-			var/delete_mobs = alert("Usunąć wszystkie moby?","Potwierdź","Tak","Nie","Anuluj")
+			var/delete_mobs = i18n_alert(usr, "Usunąć wszystkie moby?","Potwierdź","Tak","Nie","Anuluj") // AQ EDIT - i18n okienka
 			if(delete_mobs == "Anuluj" || !delete_mobs)
 				return
 
@@ -157,14 +157,14 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 
 		if("clear_virus")
 
-			var/choice = input("Czy na pewno chcesz usunąć wszystkie choroby?") in list("Tak", "Anuluj")
+			var/choice = input(i18n_dialog_text(usr, "Czy na pewno chcesz usunąć wszystkie choroby?")) in list("Tak", "Anuluj") // AQ EDIT - i18n okienka
 			if(choice == "Tak")
 				message_admins("[key_name_admin(usr)] leczy wszystkie choroby.")
 				for(var/thing in SSdisease.active_diseases)
 					var/datum/disease/D = thing
 					D.cure(0)
 		if("delete_virus")
-			var/choice = input("Czy na pewno chcesz zaszczepić wszystkie choroby?") in list("Tak", "Anuluj")
+			var/choice = input(i18n_dialog_text(usr, "Czy na pewno chcesz zaszczepić wszystkie choroby?")) in list("Tak", "Anuluj") // AQ EDIT - i18n okienka
 			if(choice == "Tak")
 				message_admins("[key_name_admin(usr)] szczepi na wszystkie choroby.")
 				for(var/thing in SSdisease.active_diseases)
@@ -183,7 +183,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("night_shift_set")
 			if(!check_rights(R_ADMIN))
 				return
-			var/val = alert(usr, "Na co chcesz ustawić zmianę nocną? To nadpisze system automatyczny, dopóki nie ustawisz z powrotem trybu automatycznego.", "Zmiana nocna", "Wł.", "Wył.", "Automatycznie")
+			var/val = i18n_alert(usr, usr, "Na co chcesz ustawić zmianę nocną? To nadpisze system automatyczny, dopóki nie ustawisz z powrotem trybu automatycznego.", "Zmiana nocna", "Wł.", "Wył.", "Automatycznie") // AQ EDIT - i18n okienka
 			switch(val)
 				if("Automatycznie")
 					if(CONFIG_GET(flag/enable_night_shifts))
@@ -275,10 +275,10 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			if(!check_rights(R_ADMIN))
 				return
 			if(!SSticker.HasRoundStarted())
-				alert("Gra jeszcze się nie zaczęła!")
+				i18n_alert(usr, "Gra jeszcze się nie zaczęła!") // AQ EDIT - i18n okienka
 			else if (SSticker.mode)
-				alert("Tryb gry to [SSticker.mode.name]")
-			else alert("Z jakiegoś powodu jest SSticker, ale nie ma trybu gry")
+				i18n_alert(usr, "Tryb gry to [SSticker.mode.name]") // AQ EDIT - i18n okienka
+			else i18n_alert(usr, "Z jakiegoś powodu jest SSticker, ale nie ma trybu gry") // AQ EDIT - i18n okienka
 		if("manifest")
 			if(!check_rights(R_ADMIN))
 				return
@@ -321,7 +321,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("allspecies")
 			if(!check_rights(R_FUN))
 				return
-			var/result = input(usr, "Wybierz nowy gatunek","Gatunek") as null|anything in GLOB.species_list
+			var/result = input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in GLOB.species_list // AQ EDIT - i18n okienka
 			if(result)
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Species Change", "[result]"))
 				log_admin("[key_name(usr)] turned all humans into [result]", 1)
@@ -364,7 +364,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			if(!check_rights(R_FUN))
 				return
 			if(!SSticker.HasRoundStarted())
-				alert("Gra jeszcze się nie zaczęła!")
+				i18n_alert(usr, "Gra jeszcze się nie zaczęła!") // AQ EDIT - i18n okienka
 				return
 			if(!GLOB.admin_objective_list)
 				generate_admin_objective_list()
@@ -372,13 +372,13 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				generate_admin_antag_list()
 			//Get Antag Type
 			var/default_antag
-			var/selected_antag = input("Wybierz typ antagonisty:", "Typ antagonisty", default_antag) as null|anything in GLOB.admin_antag_list
+			var/selected_antag = input(i18n_dialog_text(usr, "Wybierz typ antagonisty:"), i18n_dialog_text(usr, "Typ antagonisty"), default_antag) as null|anything in GLOB.admin_antag_list // AQ EDIT - i18n okienka
 			selected_antag = GLOB.admin_antag_list[selected_antag]
 			if(!selected_antag)
 				return
 			//Get Objective
 			var/def_value
-			var/selected_type = input("Wybierz typ celu:", "Typ celu", def_value) as null|anything in GLOB.admin_objective_list
+			var/selected_type = input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu"), def_value) as null|anything in GLOB.admin_objective_list // AQ EDIT - i18n okienka
 			selected_type = GLOB.admin_objective_list[selected_type]
 			if(!selected_type)
 				return
@@ -387,7 +387,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			new_objective.admin_edit(usr)
 			//Get Percentage
 			var/def_percentage
-			var/selected_percentage = input("Procent załogi do nawrócenia (0-100):", "Procent antagonistów", def_percentage) as num|null
+			var/selected_percentage = input(i18n_dialog_text(usr, "Procent załogi do nawrócenia (0-100):"), i18n_dialog_text(usr, "Procent antagonistów"), def_percentage) as num|null // AQ EDIT - i18n okienka
 			if(!selected_percentage)
 				return
 			selected_percentage = selected_percentage > 100 ? 100 : selected_percentage
@@ -434,7 +434,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Bomb Cap"))
 
-			var/newBombCap = input(usr,"Jaki ma być nowy limit bomb? (podaj zasięg lekkich obrażeń, czyli trzecią liczbę w zapisie (1,2,3)). Musi być większy niż 4.", "Nowy limit bomb", GLOB.MAX_EX_LIGHT_RANGE) as num|null
+			var/newBombCap = input(usr,i18n_dialog_text(usr, "Jaki ma być nowy limit bomb? (podaj zasięg lekkich obrażeń, czyli trzecią liczbę w zapisie (1,2,3)). Musi być większy niż 4."), i18n_dialog_text(usr, "Nowy limit bomb"), GLOB.MAX_EX_LIGHT_RANGE) as num|null // AQ EDIT - i18n okienka
 			if (!CONFIG_SET(number/bombcap, newBombCap))
 				return
 
@@ -452,11 +452,11 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("anime")
 			if(!check_rights(R_FUN))
 				return
-			var/animetype = alert("Czy chcesz, by zmieniono ubrania?",,"Tak","Nie","Anuluj")
+			var/animetype = i18n_alert(usr, "Czy chcesz, by zmieniono ubrania?",,"Tak","Nie","Anuluj") // AQ EDIT - i18n okienka
 
 			var/droptype
 			if(animetype =="Tak")
-				droptype = alert("Uczynić mundury niemożliwymi do zdjęcia?",,"Tak","Nie","Anuluj")
+				droptype = i18n_alert(usr, "Uczynić mundury niemożliwymi do zdjęcia?",,"Tak","Nie","Anuluj") // AQ EDIT - i18n okienka
 
 			if(animetype == "Anuluj" || droptype == "Anuluj" || !animetype || (!droptype && animetype == "Tak"))
 				return
@@ -504,13 +504,13 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			if(!check_rights(R_FUN))
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Virus Outbreak"))
-			switch(alert("Chcesz losową chorobę czy masz coś na myśli?",,"Stwórz własną","Losowa","Wybierz"))
+			switch(i18n_alert(usr, "Chcesz losową chorobę czy masz coś na myśli?",,"Stwórz własną","Losowa","Wybierz")) // AQ EDIT - i18n okienka
 				if("Stwórz własną")
 					AdminCreateVirus(usr.client)
 				if("Losowa")
 					E = new /datum/round_event/disease_outbreak()
 				if("Wybierz")
-					var/virus = input("Wybierz wirusa do rozprzestrzenienia", "ZAGROŻENIE BIOLOGICZNE") as null|anything in sortList(typesof(/datum/disease, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+					var/virus = input(i18n_dialog_text(usr, "Wybierz wirusa do rozprzestrzenienia"), i18n_dialog_text(usr, "ZAGROŻENIE BIOLOGICZNE")) as null|anything in sortList(typesof(/datum/disease, GLOBAL_PROC_REF(cmp_typepaths_asc))) // AQ EDIT - i18n okienka
 					E = new /datum/round_event/disease_outbreak{}()
 					var/datum/round_event/disease_outbreak/DO = E
 					DO.virus_type = virus
@@ -565,7 +565,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Guns"))
 			var/survivor_probability = 0
-			switch(alert("Czy ma to stworzyć antagonistów ocalałych?",,"Bez antagów","Część antagów","Wszyscy antagami!"))
+			switch(i18n_alert(usr, "Czy ma to stworzyć antagonistów ocalałych?",,"Bez antagów","Część antagów","Wszyscy antagami!")) // AQ EDIT - i18n okienka
 				if("Część antagów")
 					survivor_probability = 25
 				if("Wszyscy antagami!")
@@ -578,7 +578,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Magic"))
 			var/survivor_probability = 0
-			switch(alert("Czy ma to stworzyć antagonistów ocalałych?",,"Bez antagów","Część antagów","Wszyscy antagami!"))
+			switch(i18n_alert(usr, "Czy ma to stworzyć antagonistów ocalałych?",,"Bez antagów","Część antagów","Wszyscy antagami!")) // AQ EDIT - i18n okienka
 				if("Część antagów")
 					survivor_probability = 25
 				if("Wszyscy antagami!")
@@ -590,12 +590,12 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			if(!check_rights(R_FUN))
 				return
 			if(!SSevents.wizardmode)
-				if(alert("Czy chcesz włączyć przyzywanie zdarzeń?",,"Tak","Nie") == "Tak")
+				if(i18n_alert(usr, "Czy chcesz włączyć przyzywanie zdarzeń?",,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
 					summonevents()
 					SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Activate"))
 
 			else
-				switch(alert("Co chcesz zrobić?",,"Nasil przyzywanie zdarzeń","Wyłącz przyzywanie zdarzeń","Nic"))
+				switch(i18n_alert(usr, "Co chcesz zrobić?",,"Nasil przyzywanie zdarzeń","Wyłącz przyzywanie zdarzeń","Nic")) // AQ EDIT - i18n okienka
 					if("Nasil przyzywanie zdarzeń")
 						summonevents()
 						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Intensify"))
@@ -699,7 +699,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("flipmovement")
 			if(!check_rights(R_FUN))
 				return
-			if(alert("Odwrócić wszystkie sterowanie ruchem?","Potwierdź","Tak","Anuluj") != "Tak")
+			if(i18n_alert(usr, "Odwrócić wszystkie sterowanie ruchem?","Potwierdź","Tak","Anuluj") != "Tak") // AQ EDIT - i18n okienka
 				return
 			var/list/movement_keys = SSinput.movement_keys
 			for(var/i in 1 to movement_keys.len)
@@ -711,7 +711,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("randommovement")
 			if(!check_rights(R_FUN))
 				return
-			if(alert("Wylosować całe sterowanie ruchem?","Potwierdź","Tak","Anuluj") != "Tak")
+			if(i18n_alert(usr, "Wylosować całe sterowanie ruchem?","Potwierdź","Tak","Anuluj") != "Tak") // AQ EDIT - i18n okienka
 				return
 			var/list/movement_keys = SSinput.movement_keys
 			for(var/i in 1 to movement_keys.len)
@@ -723,7 +723,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("custommovement")
 			if(!check_rights(R_FUN))
 				return
-			if(alert("Czy na pewno chcesz zmienić każdy klawisz ruchu?","Potwierdź","Tak","Anuluj") != "Tak")
+			if(i18n_alert(usr, "Czy na pewno chcesz zmienić każdy klawisz ruchu?","Potwierdź","Tak","Anuluj") != "Tak") // AQ EDIT - i18n okienka
 				return
 			var/list/movement_keys = SSinput.movement_keys
 			var/list/new_movement = list()
@@ -744,7 +744,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("resetmovement")
 			if(!check_rights(R_FUN))
 				return
-			if(alert("Czy na pewno chcesz przywrócić domyślne klawisze ruchu?","Potwierdź","Tak","Anuluj") != "Tak")
+			if(i18n_alert(usr, "Czy na pewno chcesz przywrócić domyślne klawisze ruchu?","Potwierdź","Tak","Anuluj") != "Tak") // AQ EDIT - i18n okienka
 				return
 			SSinput.setup_default_movement_keys()
 			message_admins("[key_name_admin(usr)] przywraca domyślne klawisze ruchu.")
@@ -824,7 +824,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 	if(E)
 		E.processing = FALSE
 		if(E.announceWhen>0)
-			if(alert(usr, "Czy chcesz powiadomić załogę?", "Uwaga", "Tak", "Nie") != "Tak")
+			if(i18n_alert(usr, usr, "Czy chcesz powiadomić załogę?", "Uwaga", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 				E.announceChance = 0
 		E.processing = TRUE
 	if (usr)

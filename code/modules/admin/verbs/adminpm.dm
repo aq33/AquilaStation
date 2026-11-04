@@ -31,7 +31,7 @@
 				targets["[T.mob.real_name](jako [T.mob.name]) - [T]"] = T
 		else
 			targets["(Brak moba) - [T]"] = T
-	var/target = input(src,"Do kogo wysłać wiadomość?","Admin PM",null) as null|anything in sortList(targets)
+	var/target = input(src,i18n_dialog_text(src, "Do kogo wysłać wiadomość?"),i18n_dialog_text(src, "Admin PM"),null) as null|anything in sortList(targets) // AQ EDIT - i18n okienka
 	cmd_admin_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin PM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

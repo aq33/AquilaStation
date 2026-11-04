@@ -422,7 +422,7 @@
 		to_chat(usr, "<span class='alert'>[can_evac_or_fail_reason]</span>")
 		return
 
-	var/reason = input(src, "Jaki jest charakter sytuacji awaryjnej? (wymagane znaki: [CALL_SHUTTLE_REASON_LENGTH])", "Potwierdź wezwanie promu") as null|text
+	var/reason = input(src, i18n_dialog_text(src, "Jaki jest charakter sytuacji awaryjnej? (wymagane znaki: [CALL_SHUTTLE_REASON_LENGTH])"), i18n_dialog_text(src, "Potwierdź wezwanie promu")) as null|text // AQ EDIT - i18n okienka
 
 	if(incapacitated())
 		return
@@ -478,7 +478,7 @@
 		return
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
-	if(alert("OSTRZEŻENIE: to natychmiast wyczyści twój rdzeń i zamieni cię w ducha, trwale usuwając twoją postać z rundy (podobnie jak kriokomora, więc najpierw napisz ahelp). Czy na pewno chcesz to zrobić?",
+	if(i18n_alert(usr, "OSTRZEŻENIE: to natychmiast wyczyści twój rdzeń i zamieni cię w ducha, trwale usuwając twoją postać z rundy (podobnie jak kriokomora, więc najpierw napisz ahelp). Czy na pewno chcesz to zrobić?", // AQ EDIT - i18n okienka
 					"Wyczyść rdzeń", "Nie", "Nie", "Tak") != "Tak")
 		return
 
@@ -821,7 +821,7 @@
 			for(var/i in C.network)
 				cameralist[i] = i
 	var/old_network = network
-	network = input(U, "Którą sieć chcesz oglądać?") as null|anything in sortList(cameralist)
+	network = input(U, i18n_dialog_text(U, "Którą sieć chcesz oglądać?")) as null|anything in sortList(cameralist) // AQ EDIT - i18n okienka
 	if(ai_tracking_target)
 		ai_stop_tracking()
 	if(!U.eyeobj)
@@ -944,7 +944,7 @@
 	if(incapacitated())
 		return
 	var/input
-	switch(alert("Chcesz wybrać hologram oparty na członku załogi, zwierzęciu, czy unikalny awatar?",,"Członek załogi","Unikalny","Zwierzę"))
+	switch(i18n_alert(usr, "Chcesz wybrać hologram oparty na członku załogi, zwierzęciu, czy unikalny awatar?",,"Członek załogi","Unikalny","Zwierzę")) // AQ EDIT - i18n okienka
 		if("Członek załogi")
 			var/list/personnel_list = list()
 
@@ -952,13 +952,13 @@
 				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
 
 			if(personnel_list.len)
-				input = input("Wybierz członka załogi:") as null|anything in sortList(personnel_list)
+				input = input(i18n_dialog_text(usr, "Wybierz członka załogi:")) as null|anything in sortList(personnel_list) // AQ EDIT - i18n okienka
 				var/icon/character_icon = personnel_list[input]
 				if(character_icon)
 					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 					holo_icon = getHologramIcon(icon(character_icon))
 			else
-				alert("Nie znaleziono odpowiednich akt. Przerwano.")
+				i18n_alert(usr, "Nie znaleziono odpowiednich akt. Przerwano.") // AQ EDIT - i18n okienka
 
 		if("Zwierzę")
 			var/list/icon_list = list(
@@ -977,7 +977,7 @@
 			"spider" = 'icons/mob/animal.dmi'
 			)
 
-			input = input("Wybierz hologram:") as null|anything in sortList(icon_list)
+			input = input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in sortList(icon_list) // AQ EDIT - i18n okienka
 			if(input)
 				qdel(holo_icon)
 				switch(input)
@@ -999,7 +999,7 @@
 				"custom"
 				) //NSV13 - Added Clockwork Hologram and Custom Hologram
 
-			input = input("Wybierz hologram:") as null|anything in sortList(icon_list)
+			input = input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in sortList(icon_list) // AQ EDIT - i18n okienka
 			if(input)
 				qdel(holo_icon)
 				switch(input)
@@ -1255,7 +1255,7 @@
 		to_chat(src, "Nie wykryto żadnych użytecznych nadajników powłok SI.")
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, "Którym ciałem sterować?") as null|anything in sortNames(possible)
+		target = input(src, i18n_dialog_text(src, "Którym ciałem sterować?")) as null|anything in sortNames(possible) // AQ EDIT - i18n okienka
 
 	if (!target || target.stat || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)) || (target.ratvar && !is_servant_of_ratvar(src)))
 		return

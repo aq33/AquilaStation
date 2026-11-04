@@ -86,9 +86,9 @@
 		if(objective)
 			objectives += objective
 			log_objective(C, objective, admin)
-	while(alert(admin,"Dodać kolejny cel?","Więcej prania mózgu","Tak","Nie") == "Tak")
+	while(i18n_alert(usr, admin,"Dodać kolejny cel?","Więcej prania mózgu","Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
 
-	if(alert(admin,"Potwierdzić pranie mózgu?","Na pewno?","Tak","Nie") != "Tak")
+	if(i18n_alert(usr, admin,"Potwierdzić pranie mózgu?","Na pewno?","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 
 	if(!LAZYLEN(objectives))

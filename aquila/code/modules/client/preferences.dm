@@ -37,7 +37,7 @@
 	. += "<a href='byond://?_src_=prefs;preference=voice_pitch;task=random'>Losuj</a><BR>"
 
 /datum/preferences/proc/ask_voice_pitch(mob/user)
-	var/new_pitch = input(user, "Wysokość głosu postaci w półtonach, od [VOICE_PITCH_MIN] (niski) do [VOICE_PITCH_MAX] (wysoki). Działa na mowę i emotki głosowe.", "Wysokość głosu", active_character.features["voice_pitch"]) as num|null
+	var/new_pitch = input(user, i18n_dialog_text(user, "Wysokość głosu postaci w półtonach, od [VOICE_PITCH_MIN] (niski) do [VOICE_PITCH_MAX] (wysoki). Działa na mowę i emotki głosowe."), i18n_dialog_text(user, "Wysokość głosu"), active_character.features["voice_pitch"]) as num|null // AQ EDIT - i18n okienka
 	if(isnull(new_pitch))
 		return
 	active_character.features["voice_pitch"] = clamp(round(new_pitch), VOICE_PITCH_MIN, VOICE_PITCH_MAX)

@@ -33,7 +33,7 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
@@ -110,7 +110,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -127,7 +127,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -145,7 +145,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -164,7 +164,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -181,7 +181,7 @@
 
 /mob/living/silicon/pai/verb/suicide()
 	set hidden = 1
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(confirm == "Tak")
 		var/turf/T = get_turf(src.loc)
 		T.visible_message("<span class='notice'>Na ekranie [src] wyświetla się komunikat: \"Wymazywanie plików rdzenia. Aby dalej korzystać z funkcji urządzenia pAI, pozyskaj nową osobowość.\"</span>", null, \
@@ -198,7 +198,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -218,7 +218,7 @@
 	set hidden = 1
 	if(!canSuicide())
 		return
-	var/confirm = alert("Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Na pewno chcesz popełnić samobójstwo?", "Potwierdź samobójstwo", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(!canSuicide())
 		return
 	if(confirm == "Tak")
@@ -263,7 +263,7 @@
 		to_chat(src, "Coś w twojej głowie powstrzymuje cię przed tym!")
 		return
 	if(CONFIG_GET(flag/restricted_suicide))
-		if(alert("Samobójstwo jest mocno odradzane, a w niektórych przypadkach łamie zasady. Rozważ wejście do kriokapsuły albo kontakt z adminami. Na pewno chcesz kontynuować?",,"Potwierdź","Anuluj") != "Potwierdź")
+		if(i18n_alert(usr, "Samobójstwo jest mocno odradzane, a w niektórych przypadkach łamie zasady. Rozważ wejście do kriokapsuły albo kontakt z adminami. Na pewno chcesz kontynuować?",,"Potwierdź","Anuluj") != "Potwierdź") // AQ EDIT - i18n okienka
 			return
 		if(world.time < (SSticker.round_start_time + (15 MINUTES)))
 			var/timeleft = ((SSticker.round_start_time + (15 MINUTES)) - world.time)

@@ -39,7 +39,7 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='brass'>[src] wciąż się rozgrzewa, będzie gotowy za [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"Zaczynasz składać komponenty w kuźni.",,"Szaty boskości","Płaszcz cienia","Okulary widma")
+	var/choice = i18n_alert(usr, user,"Zaczynasz składać komponenty w kuźni.",,"Szaty boskości","Płaszcz cienia","Okulary widma") // AQ EDIT - i18n okienka
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Szaty boskości")

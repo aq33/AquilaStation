@@ -54,7 +54,7 @@
 					user.put_in_hands(contract)
 			else
 				var/obj/item/paper/contract/infernal/contract  // = new(user.loc, C.mind, contractType, user.mind)
-				var/contractTypeName = input(user, "Jaki rodzaj kontraktu?") in sortList(list("Władza", "Bogactwo", "Prestiż", "Magia", "Wiedza", "Przyjaźń", "Rozkosz")) // AQ EDIT: added Pleasure
+				var/contractTypeName = input(user, i18n_dialog_text(user, "Jaki rodzaj kontraktu?")) in sortList(list("Władza", "Bogactwo", "Prestiż", "Magia", "Wiedza", "Przyjaźń", "Rozkosz")) // AQ EDIT: added Pleasure // AQ EDIT - i18n okienka
 				switch(contractTypeName)
 					if("Władza")
 						contract = new /obj/item/paper/contract/infernal/power(C.loc, C.mind, user.mind)

@@ -19,7 +19,7 @@
 			if(other_ling?.isabsorbing)
 				to_chat(user, "<span class='warning'>Inny zmiennokształtny zakłóca naszą ostatnią deskę ratunku!</span>")
 				return
-	if(alert("Czy na pewno chcemy się zabić i stworzyć ślimaka-pasożyta?",,"Tak", "Nie") != "Tak")
+	if(i18n_alert(usr, "Czy na pewno chcemy się zabić i stworzyć ślimaka-pasożyta?",,"Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 	if(isliving(user))
 		var/mob/living/L = user

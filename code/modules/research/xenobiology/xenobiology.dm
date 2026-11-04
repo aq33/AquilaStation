@@ -833,7 +833,7 @@
 		return
 
 	prompted = 1
-	if(alert("To trwale przeniesie twoją świadomość do [SM]. Czy na pewno chcesz to zrobić?",,"Yes","No")=="No")
+	if(i18n_alert(usr, "To trwale przeniesie twoją świadomość do [SM]. Czy na pewno chcesz to zrobić?",,"Yes","No")=="No") // AQ EDIT - i18n okienka
 		prompted = 0
 		return
 

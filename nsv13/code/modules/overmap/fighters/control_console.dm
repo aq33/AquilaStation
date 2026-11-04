@@ -65,7 +65,7 @@
 				LAZYADD(current_filters, filter_name)
 			return
 		if(action == "global_eject") //Messy. But oh boy do we fucking NEED IT
-			if(alert(ui.user, "Na pewno chcesz wyrzucić WSZYSTKICH PILOTÓW, KTÓRZY SĄ OBECNIE NA POKŁADZIE?",name,"Tak","Nie") == "Nie" || !Adjacent(ui.user))
+			if(i18n_alert(usr, ui.user, "Na pewno chcesz wyrzucić WSZYSTKICH PILOTÓW, KTÓRZY SĄ OBECNIE NA POKŁADZIE?",name,"Tak","Nie") == "Nie" || !Adjacent(ui.user)) // AQ EDIT - i18n okienka
 				return
 			message_admins("[key_name(ui.user)] ([(ui.user.mind && ui.user.mind.antag_datums) ? "<b>Antagonista</b>" : "nie antagonista"]) wymusza katapultowanie wszystkich pilotów z myśliwców.")
 		var/desired_trait = is_station_level(src.z) ? ZTRAIT_STATION : ZTRAIT_BOARDABLE

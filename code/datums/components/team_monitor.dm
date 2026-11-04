@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 
 /datum/component/team_monitor/proc/change_frequency(mob/user)
 	//Get new frequency
-	var/new_freq = input(user, "Enter a new frequency (1 - 999):", "Frequency Change", 1) as num|null
+	var/new_freq = input(user, i18n_dialog_text(user, "Enter a new frequency (1 - 999):"), i18n_dialog_text(user, "Frequency Change"), 1) as num|null // AQ EDIT - i18n okienka
 	if(!new_freq)
 		to_chat(user, "<span class='warning'>Invalid frequency. Encrypted tracking HUD disabled.</span>")
 		return
@@ -526,7 +526,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 
 /datum/component/tracking_beacon/proc/change_frequency(mob/user)
 	//Get new frequency
-	var/new_freq = input(user, "Enter a new frequency (1 - 999):", "Frequency Change", 1) as num|null
+	var/new_freq = input(user, i18n_dialog_text(user, "Enter a new frequency (1 - 999):"), i18n_dialog_text(user, "Frequency Change"), 1) as num|null // AQ EDIT - i18n okienka
 	if(!new_freq)
 		to_chat(user, "<span class='warning'>Invalid frequency. Encrypted tracking beacon disabled.</span>")
 		return

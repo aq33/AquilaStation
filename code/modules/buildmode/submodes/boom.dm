@@ -14,19 +14,19 @@
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
 
 /datum/buildmode_mode/boom/change_settings(client/c)
-	devastation = input(c, "Zasięg całkowitego zniszczenia. -1 = brak", text("Wartość")) as num|null
+	devastation = input(c, i18n_dialog_text(c, "Zasięg całkowitego zniszczenia. -1 = brak"), i18n_dialog_text(c, text("Wartość"))) as num|null // AQ EDIT - i18n okienka
 	if(devastation == null) 
 		devastation = -1
-	heavy = input(c, "Zasięg ciężkich zniszczeń. -1 = brak", text("Wartość")) as num|null
+	heavy = input(c, i18n_dialog_text(c, "Zasięg ciężkich zniszczeń. -1 = brak"), i18n_dialog_text(c, text("Wartość"))) as num|null // AQ EDIT - i18n okienka
 	if(heavy == null) 
 		heavy = -1
-	light = input(c, "Zasięg lekkich zniszczeń. -1 = brak", text("Wartość")) as num|null
+	light = input(c, i18n_dialog_text(c, "Zasięg lekkich zniszczeń. -1 = brak"), i18n_dialog_text(c, text("Wartość"))) as num|null // AQ EDIT - i18n okienka
 	if(light == null) 
 		light = -1
-	flash = input(c, "Zasięg błysku. -1 = brak", text("Wartość")) as num|null
+	flash = input(c, i18n_dialog_text(c, "Zasięg błysku. -1 = brak"), i18n_dialog_text(c, text("Wartość"))) as num|null // AQ EDIT - i18n okienka
 	if(flash == null) 
 		flash = -1
-	flames = input(c, "Zasięg płomieni. -1 = brak", text("Wartość")) as num|null
+	flames = input(c, i18n_dialog_text(c, "Zasięg płomieni. -1 = brak"), i18n_dialog_text(c, text("Wartość"))) as num|null // AQ EDIT - i18n okienka
 	if(flames == null) 
 		flames = -1
 

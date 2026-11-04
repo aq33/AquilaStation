@@ -8,7 +8,7 @@
 
 /mob/living/simple_animal/drone/attack_drone(mob/living/simple_animal/drone/D)
 	if(D != src && stat == DEAD)
-		var/d_input = alert(D,"Jaką akcję wykonać?","Interakcja z dronem","Reaktywuj","Rozbierz na części","Nic")
+		var/d_input = i18n_alert(usr, D,"Jaką akcję wykonać?","Interakcja z dronem","Reaktywuj","Rozbierz na części","Nic") // AQ EDIT - i18n okienka
 		if(d_input)
 			switch(d_input)
 				if("Reaktywuj")

@@ -28,7 +28,7 @@
 
 		names = sortList(names)
 
-		variable = input("Która zmienna?", "Zmienna") as null|anything in names
+		variable = input(i18n_dialog_text(usr, "Która zmienna?"), i18n_dialog_text(usr, "Zmienna")) as null|anything in names // AQ EDIT - i18n okienka
 	else
 		variable = var_name
 
@@ -49,7 +49,7 @@
 	if(variable in GLOB.VVpixelmovement)
 		if(!check_rights(R_DEBUG))
 			return
-		var/prompt = alert(src, "Edycja tej zmiennej może nieodwracalnie zepsuć płynny ruch po polach do końca rundy. TEGO NIE DA SIĘ COFNĄĆ", "NIEBEZPIECZEŃSTWO", "PRZERWIJ ", "Kontynuuj", " PRZERWIJ")
+		var/prompt = i18n_alert(usr, src, "Edycja tej zmiennej może nieodwracalnie zepsuć płynny ruch po polach do końca rundy. TEGO NIE DA SIĘ COFNĄĆ", "NIEBEZPIECZEŃSTWO", "PRZERWIJ ", "Kontynuuj", " PRZERWIJ") // AQ EDIT - i18n okienka
 		if (prompt != "Kontynuuj")
 			return
 
@@ -115,7 +115,7 @@
 			var/pre_processing = new_value
 			var/unique
 			if (varsvars && varsvars.len)
-				unique = alert(usr, "Przetworzyć zmienne osobno dla każdej instancji czy tak samo dla wszystkich?", "Powiązanie zmiennych", "Osobno", "Tak samo")
+				unique = i18n_alert(usr, usr, "Przetworzyć zmienne osobno dla każdej instancji czy tak samo dla wszystkich?", "Powiązanie zmiennych", "Osobno", "Tak samo") // AQ EDIT - i18n okienka
 				if(unique == "Osobno")
 					unique = TRUE
 				else
@@ -142,7 +142,7 @@
 				CHECK_TICK
 
 		if (VV_NEW_TYPE)
-			var/many = alert(src, "Stworzyć tylko jeden [value["type"]] i przypisać go wszystkim, czy nowy dla każdej rzeczy?", "Ile", "Jeden", "Wiele", "Anuluj")
+			var/many = i18n_alert(usr, src, "Stworzyć tylko jeden [value["type"]] i przypisać go wszystkim, czy nowy dla każdej rzeczy?", "Ile", "Jeden", "Wiele", "Anuluj") // AQ EDIT - i18n okienka
 			if (many == "Anuluj" || !many)
 				return
 			if (many == "Wiele")

@@ -1108,7 +1108,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/price = 1
 
 /obj/item/price_tagger/attack_self(mob/user)
-	price = max(1, round(input(user,"Ustaw cenę","Cena") as num|null, 1))
+	price = max(1, round(input(user,i18n_dialog_text(user, "Ustaw cenę"),i18n_dialog_text(user, "Cena")) as num|null, 1)) // AQ EDIT - i18n okienka
 	to_chat(user, "<span class='notice'> [src] będzie teraz nadawać przedmiotom cenę [price] kr.</span>")
 
 /obj/item/price_tagger/afterattack(atom/target, mob/user, proximity)

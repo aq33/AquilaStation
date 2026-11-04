@@ -42,7 +42,7 @@
 
 	var/list/combined = sortList(logs_present) + sortList(logs_missing)
 
-	var/selected = input("Investigate what?", "Investigate") as null|anything in combined
+	var/selected = input(i18n_dialog_text(usr, "Investigate what?"), i18n_dialog_text(usr, "Investigate")) as null|anything in combined // AQ EDIT - i18n okienka
 
 	if(!(selected in combined) || selected == "---")
 		return

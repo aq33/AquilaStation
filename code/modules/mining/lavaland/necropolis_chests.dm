@@ -1127,7 +1127,7 @@
 		var/mob/living/L = I
 		da_list[L.real_name] = L
 
-	var/choice = input(user,"Kogo chcesz uśmiercić?","Wybierz swoją ofiarę") as null|anything in sortNames(da_list)
+	var/choice = input(user,i18n_dialog_text(user, "Kogo chcesz uśmiercić?"),i18n_dialog_text(user, "Wybierz swoją ofiarę")) as null|anything in sortNames(da_list) // AQ EDIT - i18n okienka
 
 	choice = da_list[choice]
 

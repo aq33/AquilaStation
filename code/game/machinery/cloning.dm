@@ -97,7 +97,7 @@
 	user.examinate(src)
 
 /obj/machinery/clonepod/AltClick(mob/user)
-	if (alert(user, "Na pewno chcesz opróżnić kapsułę klonującą?", "Opróżnij magazyn odczynników:", "Yes", "No") != "Yes")
+	if (i18n_alert(usr, user, "Na pewno chcesz opróżnić kapsułę klonującą?", "Opróżnij magazyn odczynników:", "Yes", "No") != "Yes") // AQ EDIT - i18n okienka
 		return
 	to_chat(user, "<span class='notice'>Opróżniasz [src] przez zawór spustowy na podłogę.</span>")
 	reagents.reaction(user.loc)

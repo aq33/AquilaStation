@@ -47,7 +47,7 @@
 		for(var/i in 1 to 10)
 			names += patient.dna.species.random_name(patient.gender, TRUE)
 
-	operation_args[OPERATION_NEW_NAME] = input(surgeon, "Wybierz nowe imię.", "Chirurgia plastyczna") as null|anything in names
+	operation_args[OPERATION_NEW_NAME] = input(surgeon, i18n_dialog_text(surgeon, "Wybierz nowe imię."), i18n_dialog_text(surgeon, "Chirurgia plastyczna")) as null|anything in names // AQ EDIT - i18n okienka
 	return !!operation_args[OPERATION_NEW_NAME]
 
 /datum/surgery_operation/limb/plastic_surgery/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)

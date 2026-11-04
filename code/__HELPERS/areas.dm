@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(
 		if(!TURF_SHARES(turfs[i])) // No expanding areas of walls/something blocking this turf because that defeats the whole point of them used to separate areas
 			continue
 		areas[place.name] = place
-	var/area_choice = input(creator, "Wybierz obszar do rozszerzenia albo utwórz nowy.", "Area Expansion") as null|anything in areas
+	var/area_choice = input(creator, i18n_dialog_text(creator, "Wybierz obszar do rozszerzenia albo utwórz nowy."), i18n_dialog_text(creator, "Area Expansion")) as null|anything in areas // AQ EDIT - i18n okienka
 	area_choice = areas[area_choice]
 
 	if(!area_choice)

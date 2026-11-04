@@ -260,7 +260,7 @@
 		. += M
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
-	var/new_style = input(user, "Wybierz fryzurę", "Stylizacja peruki")  as null|anything in (GLOB.hair_styles_list - "Bald")
+	var/new_style = input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Stylizacja peruki"))  as null|anything in (GLOB.hair_styles_list - "Bald") // AQ EDIT - i18n okienka
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(new_style && new_style != hair_style)

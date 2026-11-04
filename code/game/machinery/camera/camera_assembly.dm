@@ -161,7 +161,7 @@
 		droppable_parts += proxy_module
 	if(!droppable_parts.len)
 		return
-	var/obj/item/choice = input(user, "Wybierz część do wyjęcia:", src) as null|obj in sortNames(droppable_parts)
+	var/obj/item/choice = input(user, i18n_dialog_text(user, "Wybierz część do wyjęcia:"), i18n_dialog_text(user, src)) as null|obj in sortNames(droppable_parts) // AQ EDIT - i18n okienka
 	if(!choice || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 	to_chat(user, "<span class='notice'>Wyjmujesz [choice] z [src].</span>")

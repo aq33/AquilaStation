@@ -17,7 +17,7 @@
 		if(popup) // confirmation window already open
 			return FALSE
 		popup = TRUE
-		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Rozpadniesz się w proch!", "Potwierdzenie: [name]", "Tak", "Nie")
+		var/response = i18n_alert(usr, imp_in, "Na pewno chcesz aktywować [name]? Rozpadniesz się w proch!", "Potwierdzenie: [name]", "Tak", "Nie") // AQ EDIT - i18n okienka
 		popup = FALSE
 		if(response != "Tak" || !imp_in || active)
 			return FALSE

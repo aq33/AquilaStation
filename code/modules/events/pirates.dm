@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(!active)
-		if(alert(user, "Włączenie zakłócacza sprawi, że prom będzie można namierzyć przez GPS. Na pewno chcesz to zrobić?", "Scrambler", "Yes", "Cancel") != "Yes")
+		if(i18n_alert(usr, user, "Włączenie zakłócacza sprawi, że prom będzie można namierzyć przez GPS. Na pewno chcesz to zrobić?", "Scrambler", "Yes", "Cancel") != "Yes") // AQ EDIT - i18n okienka
 			return
 		if(active || !user.canUseTopic(src, BE_CLOSE))
 			return

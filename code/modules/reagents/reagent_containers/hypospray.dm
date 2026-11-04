@@ -62,7 +62,7 @@
 	set src in usr
 	if(usr.incapacitated())
 		return
-	if (alert(usr, "Na pewno chcesz to opróżnić?", "Opróżnij butelkę:", "Tak", "Nie") != "Tak")
+	if (i18n_alert(usr, usr, "Na pewno chcesz to opróżnić?", "Opróżnij butelkę:", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 	if(isturf(usr.loc) && src.loc == usr)
 		to_chat(usr, "<span class='notice'>Opróżniasz [src] na podłogę.</span>")

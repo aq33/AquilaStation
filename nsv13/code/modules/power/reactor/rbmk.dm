@@ -685,7 +685,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(!reactor.fuel_rods.len)
 		to_chat(user, "<span class='warning'>W [reactor] nie załadowano żadnych prętów paliwowych.</span>")
 		return FALSE
-	var/atom/movable/fuel_rod = input(usr, "Wybierz pręt paliwowy do wyjęcia", "[src]", null) as null|anything in reactor.fuel_rods
+	var/atom/movable/fuel_rod = input(usr, i18n_dialog_text(usr, "Wybierz pręt paliwowy do wyjęcia"), i18n_dialog_text(usr, "[src]"), null) as null|anything in reactor.fuel_rods // AQ EDIT - i18n okienka
 	if(!fuel_rod)
 		return
 	playsound(src, pick('nsv13/sound/effects/rbmk/switch.ogg','nsv13/sound/effects/rbmk/switch2.ogg','nsv13/sound/effects/rbmk/switch3.ogg'), 100, FALSE)
@@ -716,7 +716,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /obj/machinery/computer/reactor/pump/interact(mob/living/user)
 	. = ..()
-	var/newPressure = input(user, "Ustaw nowe ciśnienie wyjściowe (kPa)", "Zdalne sterowanie pompą", null) as null|num
+	var/newPressure = input(user, i18n_dialog_text(user, "Ustaw nowe ciśnienie wyjściowe (kPa)"), i18n_dialog_text(user, "Zdalne sterowanie pompą"), null) as null|num // AQ EDIT - i18n okienka
 	if(!newPressure)
 		return
 	newPressure = clamp(newPressure, 0, MAX_OUTPUT_PRESSURE) //Number sanitization is not handled in the pumps themselves, only during their ui_act which this doesn't use.
@@ -880,7 +880,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(!shares_overmap(usr, R))
 					continue
 				choices += R
-			reactor = input(usr, "Który reaktor chcesz monitorować?", "[src]", null) as null|anything in choices
+			reactor = input(usr, i18n_dialog_text(usr, "Który reaktor chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in choices // AQ EDIT - i18n okienka
 			powerData = list()
 			psiData = list()
 			tempInputData = list()

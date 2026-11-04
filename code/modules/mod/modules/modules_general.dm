@@ -424,7 +424,7 @@
 /obj/item/mod/module/flashlight/configure_edit(key, value)
 	switch(key)
 		if("light_color")
-			value = input(usr, "Wybierz nowy kolor światła", "Kolor latarki") as color|null
+			value = input(usr, i18n_dialog_text(usr, "Wybierz nowy kolor światła"), i18n_dialog_text(usr, "Kolor latarki")) as color|null // AQ EDIT - i18n okienka
 			if(!value)
 				return
 			if(is_color_dark_with_saturation(value, 50))

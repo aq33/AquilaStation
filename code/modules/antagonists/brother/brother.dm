@@ -81,7 +81,7 @@
 			continue
 		candidates += L.mind
 
-	var/choice = input(admin,"Wybierz brata krwi.", "Brat krwi") as null|anything in sortNames(candidates)
+	var/choice = input(admin,i18n_dialog_text(admin, "Wybierz brata krwi."), i18n_dialog_text(admin, "Brat krwi")) as null|anything in sortNames(candidates) // AQ EDIT - i18n okienka
 	if(!choice)
 		return
 	var/datum/mind/bro = choice

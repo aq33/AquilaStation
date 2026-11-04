@@ -75,7 +75,7 @@
 	if(!src.holder)
 		return
 
-	var/confirm = alert(src, "Na pewno chcesz przeładować wszystkich adminów?", "Potwierdzenie", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, src, "Na pewno chcesz przeładować wszystkich adminów?", "Potwierdzenie", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(confirm !="Tak")
 		return
 
@@ -87,7 +87,7 @@
 	set name = "Toggle CDN"
 	set category = "Server"
 	var/static/admin_disabled_cdn_transport = null
-	if (alert(usr, "Na pewno chcesz przełączyć transport zasobów przez CDN?", "Potwierdzenie", "Tak", "Nie") != "Tak")
+	if (i18n_alert(usr, usr, "Na pewno chcesz przełączyć transport zasobów przez CDN?", "Potwierdzenie", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 	var/current_transport = CONFIG_GET(string/asset_transport)
 	if (!current_transport || current_transport == "simple")
@@ -99,7 +99,7 @@
 			log_admin("[key_name(usr)] re-enabled the CDN asset transport")
 		else
 			to_chat(usr, "<span class='adminnotice'>CDN nie jest włączony!</span>")
-			if (alert(usr, "Transport zasobów przez CDN nie jest włączony! Jeśli masz problemy z zasobami, możesz też spróbować wyłączyć zmiany nazw plików.", "Transport zasobów przez CDN nie jest włączony!", "Wyłącz zmiany nazw plików", "Nieważne") == "Wyłącz zmiany nazw plików")
+			if (i18n_alert(usr, usr, "Transport zasobów przez CDN nie jest włączony! Jeśli masz problemy z zasobami, możesz też spróbować wyłączyć zmiany nazw plików.", "Transport zasobów przez CDN nie jest włączony!", "Wyłącz zmiany nazw plików", "Nieważne") == "Wyłącz zmiany nazw plików") // AQ EDIT - i18n okienka
 				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
 				message_admins("[key_name_admin(usr)] [(SSassets.transport.dont_mutate_filenames ? "wyłącza" : "ponownie włącza")] zmiany nazw plików zasobów")
 				log_admin("[key_name(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")

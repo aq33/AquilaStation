@@ -272,7 +272,7 @@
 
 /obj/machinery/ship_weapon/plasma_caster/default_deconstruction_crowbar(obj/item/I, ignore_panel)
 	var/mob/living/fool = usr
-	var/confirm = alert("Gdy przysuwasz łom, czujesz elektryczne mrowienie, a im bliżej, tym dziwniej gorąco. Na pewno to dobry pomysł?", "Rozbierz miotacz foronu", "Tak", "Nie")
+	var/confirm = i18n_alert(usr, "Gdy przysuwasz łom, czujesz elektryczne mrowienie, a im bliżej, tym dziwniej gorąco. Na pewno to dobry pomysł?", "Rozbierz miotacz foronu", "Tak", "Nie") // AQ EDIT - i18n okienka
 	if(confirm == "Tak")
 		visible_message("<span class='danger'>Z działa zaczyna buchać płonąca energia i foron, który przypieka [usr]!</span>")
 		field_integrity -= rand(30,50)

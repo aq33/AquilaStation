@@ -23,7 +23,7 @@
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		return input(user, message, title, default) as color|null
+		return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as color|null // AQ EDIT - i18n okienka
 	// The picker needs a full hex color to start from
 	default = sanitize_hexcolor(default, desired_format = 6, include_crunch = TRUE, default = "#000000")
 	var/datum/tgui_color_picker/picker = new(user, message, title, default, timeout, autofocus)

@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Camera Report"
 
 	if(!Master)
-		alert(usr,"Nie znaleziono master_controller.","Raport kamer ochrony")
+		i18n_alert(usr, usr,"Nie znaleziono master_controller.","Raport kamer ochrony") // AQ EDIT - i18n okienka
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()

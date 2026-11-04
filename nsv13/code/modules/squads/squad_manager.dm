@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(squad_role_names_pl, list(
 	var/list/choices = list()
 	for(var/squad_role in SQUAD_TYPES)
 		choices[squad_role_pl(squad_role)] = squad_role
-	var/choice = input(user, "Wybierz rolę w drużynie:", "Ustawienia drużyny") as null|anything in choices
+	var/choice = input(user, i18n_dialog_text(user, "Wybierz rolę w drużynie:"), i18n_dialog_text(user, "Ustawienia drużyny")) as null|anything in choices // AQ EDIT - i18n okienka
 	if(!choice)
 		return null
 	return choices[choice]

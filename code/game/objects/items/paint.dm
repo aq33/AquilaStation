@@ -56,7 +56,7 @@
 	icon_state = "paint_neutral"
 
 /obj/item/paint/anycolor/attack_self(mob/user)
-	var/t1 = input(user, "Wybierz kolor:", "[src]", null) in sortList(list( "czerwony", "niebieski", "zielony", "żółty", "fioletowy", "czarny", "biały"))
+	var/t1 = input(user, i18n_dialog_text(user, "Wybierz kolor:"), i18n_dialog_text(user, "[src]"), null) in sortList(list( "czerwony", "niebieski", "zielony", "żółty", "fioletowy", "czarny", "biały")) // AQ EDIT - i18n okienka
 	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
 	switch(t1)

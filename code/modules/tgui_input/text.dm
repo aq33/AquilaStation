@@ -33,9 +33,9 @@
 				return stripped_input(user, message, title, default, max_length)
 		else
 			if(multiline)
-				return input(user, message, title, default) as message|null
+				return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as message|null // AQ EDIT - i18n okienka
 			else
-				return input(user, message, title, default) as text|null
+				return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as text|null // AQ EDIT - i18n okienka
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout)
 	text_input.ui_interact(user)
 	text_input.wait()
@@ -75,9 +75,9 @@
 				return stripped_input(user, message, title, default, max_length)
 		else
 			if(multiline)
-				return input(user, message, title, default) as message|null
+				return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as message|null // AQ EDIT - i18n okienka
 			else
-				return input(user, message, title, default) as text|null
+				return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title), default) as text|null // AQ EDIT - i18n okienka
 	var/datum/tgui_input_text/async/text_input = new(user, message, title, default, max_length, multiline, encode, callback, timeout)
 	text_input.ui_interact(user)
 

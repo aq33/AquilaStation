@@ -23,7 +23,7 @@
 /obj/effect/proc_holder/spell/voice_of_god/choose_targets(mob/user = usr)
 	perform(user=user)
 /obj/effect/proc_holder/spell/voice_of_god/perform(list/targets, recharge = 1, mob/user = usr)
-	command = input(user, "Przemów Głosem Boga", "Rozkaz")
+	command = input(user, i18n_dialog_text(user, "Przemów Głosem Boga"), i18n_dialog_text(user, "Rozkaz")) // AQ EDIT - i18n okienka
 	if(QDELETED(src) || QDELETED(user))
 		return
 	if(!command)

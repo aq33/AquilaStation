@@ -130,9 +130,9 @@
 
 /datum/computer_file/program/proc/check_filename(name)
 	if(CHAT_FILTER_CHECK(name))
-		alert(usr, "Nazwa pliku zawiera zakazane słowa.")
+		i18n_alert(usr, usr, "Nazwa pliku zawiera zakazane słowa.") // AQ EDIT - i18n okienka
 		return
 	if(!reject_bad_text(name, 32, ascii_only = TRUE, alphanumeric_only = TRUE, underscore_allowed = TRUE) || lowertext(name) != name)
-		alert(usr, "Wszystkie nazwy plików muszą mieć najwyżej 32 znaki, być pisane małymi literami i nie mogą zawierać: < > / i \\")
+		i18n_alert(usr, usr, "Wszystkie nazwy plików muszą mieć najwyżej 32 znaki, być pisane małymi literami i nie mogą zawierać: < > / i \\") // AQ EDIT - i18n okienka
 		return
 	return name

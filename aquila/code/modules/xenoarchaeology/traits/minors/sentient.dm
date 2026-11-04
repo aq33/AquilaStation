@@ -37,7 +37,7 @@
 	return ..()
 
 /datum/xenoartifact_trait/minor/sentient/proc/handle_ghost(datum/source, mob/M, list/examine_text)
-	if(isobserver(M) && !sentience?.key && (alert(M, "Czy na pewno chcesz przejąć kontrolę nad: [sentience]?", "Przejmij kontrolę: [sentience]", "Tak", "Nie") == "Tak"))
+	if(isobserver(M) && !sentience?.key && (i18n_alert(usr, M, "Czy na pewno chcesz przejąć kontrolę nad: [sentience]?", "Przejmij kontrolę: [sentience]", "Tak", "Nie") == "Tak")) // AQ EDIT - i18n okienka
 		sentience.key = M.ckey
 
 /datum/xenoartifact_trait/minor/sentient/proc/get_canidate()

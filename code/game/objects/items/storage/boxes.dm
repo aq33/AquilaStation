@@ -989,7 +989,7 @@
 			to_chat(user, "<span class='warning'>Nie możesz modyfikować [src], gdy są w nim przedmioty!</span>")
 			return
 		var/list/designs = list(NODESIGN, NANOTRASEN, SYNDI, HEART, SMILEY, "Anuluj")
-		var/switchDesign = input("Wybierz wzór:", "Wzór papierowej torby", designs[1]) in sortList(designs)
+		var/switchDesign = input(i18n_dialog_text(usr, "Wybierz wzór:"), i18n_dialog_text(usr, "Wzór papierowej torby"), designs[1]) in sortList(designs) // AQ EDIT - i18n okienka
 		if(get_dist(usr, src) > 1)
 			to_chat(usr, "<span class='warning'>Oddalasz się za bardzo!</span>")
 			return

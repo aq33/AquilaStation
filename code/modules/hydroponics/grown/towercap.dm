@@ -138,7 +138,7 @@
 /obj/structure/bonfire/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/R = W
-		var/choice = input(user, "Co chcesz zbudować?", "Ognisko") as null|anything in list("Pal","Ruszt")
+		var/choice = input(user, i18n_dialog_text(user, "Co chcesz zbudować?"), i18n_dialog_text(user, "Ognisko")) as null|anything in list("Pal","Ruszt") // AQ EDIT - i18n okienka
 		switch(choice)
 			if("Pal")
 				R.use(1)

@@ -565,7 +565,7 @@
 		spawn()
 			var/list/shade_names = list("Orenmir", "Felthorn", "Sparda", "Vengeance", "Klinge")
 			shadeMob.real_name = pick(shade_names)
-			shadeMob.real_name = copytext(sanitize(input(shadeMob, "Nie pamiętasz swojego poprzedniego życia, o ile w ogóle jakieś miałeś. Jak się nazwiesz?", "Nadaj sobie nowe imię", "[shadeMob.real_name]") as null|text), 1, MAX_NAME_LEN)
+			shadeMob.real_name = copytext(sanitize(input(shadeMob, i18n_dialog_text(shadeMob, "Nie pamiętasz swojego poprzedniego życia, o ile w ogóle jakieś miałeś. Jak się nazwiesz?"), i18n_dialog_text(shadeMob, "Nadaj sobie nowe imię"), "[shadeMob.real_name]") as null|text), 1, MAX_NAME_LEN) // AQ EDIT - i18n okienka
 			shadeMob.name = "Cień [shadeMob.real_name]"
 			if (shadeMob.mind)
 				shadeMob.mind.name = shadeMob.real_name

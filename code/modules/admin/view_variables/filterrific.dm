@@ -67,12 +67,12 @@
 			target.add_filter(params["name"], old_filter_data["priority"], new_filter_data)
 			. = TRUE
 		if("modify_color_value")
-			var/new_color = input(usr, "Wybierz nowy kolor filtra", "Kolory Filteriffic!") as color|null
+			var/new_color = input(usr, i18n_dialog_text(usr, "Wybierz nowy kolor filtra"), i18n_dialog_text(usr, "Kolory Filteriffic!")) as color|null // AQ EDIT - i18n okienka
 			if(new_color)
 				target.transition_filter(params["name"], 4, list("color" = new_color))
 				. = TRUE
 		if("modify_icon_value")
-			var/icon/new_icon = input("Wybierz ikonę:", "Ikona") as null|icon
+			var/icon/new_icon = input(i18n_dialog_text(usr, "Wybierz ikonę:"), i18n_dialog_text(usr, "Ikona")) as null|icon // AQ EDIT - i18n okienka
 			if(new_icon)
 				target.filter_data[params["name"]]["icon"] = new_icon
 				target.update_filters()

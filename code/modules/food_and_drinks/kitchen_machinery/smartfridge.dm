@@ -278,7 +278,7 @@
 			if (params["amount"])
 				desired = text2num(params["amount"])
 			else
-				desired = input("Ile przedmiotów?", "Ile przedmiotów chcesz wyjąć?", 1) as null|num
+				desired = input(i18n_dialog_text(usr, "Ile przedmiotów?"), i18n_dialog_text(usr, "Ile przedmiotów chcesz wyjąć?"), 1) as null|num // AQ EDIT - i18n okienka
 
 			if(!isnum_safe(desired) || desired <= 0)
 				return

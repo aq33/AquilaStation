@@ -32,7 +32,7 @@
 
 		//handle facial hair (if necessary)
 		if(H.gender != FEMALE)
-			var/new_style = input(user, "Wybierz styl zarostu", "Pielęgnacja")  as null|anything in GLOB.facial_hair_styles_list
+			var/new_style = input(user, i18n_dialog_text(user, "Wybierz styl zarostu"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in GLOB.facial_hair_styles_list // AQ EDIT - i18n okienka
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return	//no tele-grooming
 			if(new_style)
@@ -41,7 +41,7 @@
 			H.facial_hair_style = "Shaved"
 
 		//handle normal hair
-		var/new_style = input(user, "Wybierz fryzurę", "Pielęgnacja")  as null|anything in GLOB.hair_styles_list
+		var/new_style = input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in GLOB.hair_styles_list // AQ EDIT - i18n okienka
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return	//no tele-grooming
 		if(new_style)
@@ -131,7 +131,7 @@
 
 	var/mob/living/carbon/human/H = user
 
-	var/choice = input(user, "Coś do zmiany?", "Magiczna pielęgnacja") as null|anything in list("imię", "rasa", "płeć", "włosy", "oczy")
+	var/choice = input(user, i18n_dialog_text(user, "Coś do zmiany?"), i18n_dialog_text(user, "Magiczna pielęgnacja")) as null|anything in list("imię", "rasa", "płeć", "włosy", "oczy") // AQ EDIT - i18n okienka
 
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
@@ -153,7 +153,7 @@
 
 		if("rasa")
 			var/newrace
-			var/racechoice = input(H, "Czym my właściwie jesteśmy?", "Zmiana rasy") as null|anything in choosable_races
+			var/racechoice = input(H, i18n_dialog_text(H, "Czym my właściwie jesteśmy?"), i18n_dialog_text(H, "Zmiana rasy")) as null|anything in choosable_races // AQ EDIT - i18n okienka
 			newrace = GLOB.species_list[racechoice]
 
 			if(!newrace)
@@ -163,7 +163,7 @@
 			H.set_species(newrace, icon_update=0)
 
 			if(H.dna.species.use_skintones)
-				var/new_s_tone = input(user, "Wybierz odcień skóry:", "Zmiana rasy")  as null|anything in GLOB.skin_tones
+				var/new_s_tone = input(user, i18n_dialog_text(user, "Wybierz odcień skóry:"), i18n_dialog_text(user, "Zmiana rasy"))  as null|anything in GLOB.skin_tones // AQ EDIT - i18n okienka
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 					return
 
@@ -193,7 +193,7 @@
 			if(!(H.gender in list("male", "female"))) //blame the patriarchy
 				return
 			if(H.gender == "male")
-				if(alert(H, "Zostać czarownicą?", "Potwierdzenie", "Tak", "Nie") == "Tak")
+				if(i18n_alert(usr, H, "Zostać czarownicą?", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "female"
@@ -202,7 +202,7 @@
 					return
 
 			else
-				if(alert(H, "Zostać czarnoksiężnikiem?", "Potwierdzenie", "Tak", "Nie") == "Tak")
+				if(i18n_alert(usr, H, "Zostać czarnoksiężnikiem?", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "male"
@@ -214,7 +214,7 @@
 			H.update_mutations_overlay() //(hulk male/female)
 
 		if("włosy")
-			var/hairchoice = alert(H, "Fryzura czy kolor włosów?", "Zmiana włosów", "Fryzura", "Kolor")
+			var/hairchoice = i18n_alert(usr, H, "Fryzura czy kolor włosów?", "Zmiana włosów", "Fryzura", "Kolor") // AQ EDIT - i18n okienka
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return
 			if(hairchoice == "Fryzura") //So you just want to use a mirror then?

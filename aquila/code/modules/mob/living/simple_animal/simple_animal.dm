@@ -18,7 +18,7 @@
 	if(!SSticker.mode)
 		to_chat(user, "Nie możesz zostać [src] przed rozpoczęciem gry.")
 		return
-	var/be_mob = alert("Zostać [src]? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+	var/be_mob = i18n_alert(usr, "Zostać [src]? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") // AQ EDIT - i18n okienka
 	if(be_mob == "Nie" || QDELETED(src) || !isobserver(user) || src.mind)
 		return
 

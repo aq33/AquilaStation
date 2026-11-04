@@ -107,7 +107,7 @@
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in get_all_teams(/datum/team/abductor_team))
 		current_teams[T.name] = T
-	var/choice = input(admin,"Do której drużyny dodać?") as null|anything in (current_teams + "nowa drużyna")
+	var/choice = input(admin,i18n_dialog_text(admin, "Do której drużyny dodać?")) as null|anything in (current_teams + "nowa drużyna") // AQ EDIT - i18n okienka
 	if (choice == "nowa drużyna")
 		team = new
 	else if(choice in current_teams)
@@ -127,7 +127,7 @@
 		to_chat(admin, "<span class='warning'>To działa tylko na ludzi!</span>")
 		return
 	var/mob/living/carbon/human/H = owner.current
-	var/gear = alert(admin,"Sprzęt agenta czy naukowca?","Sprzęt","Agent","Naukowiec")
+	var/gear = i18n_alert(usr, admin,"Sprzęt agenta czy naukowca?","Sprzęt","Agent","Naukowiec") // AQ EDIT - i18n okienka
 	if(gear)
 		if(gear=="Agent")
 			H.equipOutfit(/datum/outfit/abductor/agent)

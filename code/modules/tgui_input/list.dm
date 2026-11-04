@@ -23,7 +23,7 @@
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		return input(user, message, title) as null|anything in items
+		return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title)) as null|anything in items // AQ EDIT - i18n okienka
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.ui_interact(user)
 	input.wait()
@@ -57,7 +57,7 @@
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		return input(user, message, title) as null|anything in items
+		return input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title)) as null|anything in items // AQ EDIT - i18n okienka
 	var/datum/tgui_list_input/async/input = new(user, message, title, items, default, callback, timeout)
 	input.ui_interact(user)
 

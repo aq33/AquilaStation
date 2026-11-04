@@ -86,7 +86,7 @@
 				to_chat(usr, "Można to zrobić tylko z instancjami typu /mob/living/carbon/monkey")
 				return
 
-			if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
+			if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
 				return
 			if(!Mo)
 				to_chat(usr, "Mob już nie istnieje")
@@ -103,7 +103,7 @@
 
 			var/Text = href_list["adjustDamage"]
 
-			var/amount =  input("Ile obrażeń zadać mobowi? (Wartości ujemne leczą)","Zmiana obrażeń: [Text]",0) as num
+			var/amount =  input(i18n_dialog_text(usr, "Ile obrażeń zadać mobowi? (Wartości ujemne leczą)"),i18n_dialog_text(usr, "Zmiana obrażeń: [Text]"),0) as num // AQ EDIT - i18n okienka
 
 			if(!L)
 				to_chat(usr, "Mob już nie istnieje")

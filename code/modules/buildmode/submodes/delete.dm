@@ -25,14 +25,14 @@
 		if(isturf(object))
 			return
 		var/atom/deleting = object
-		var/action_type = alert(usr,"Tylko ten typ ([deleting.type]) czy typ ze wszystkimi podtypami?","Tylko ten typ","Typ i podtypy","Anuluj")
+		var/action_type = i18n_alert(usr, usr,"Tylko ten typ ([deleting.type]) czy typ ze wszystkimi podtypami?","Tylko ten typ","Typ i podtypy","Anuluj") // AQ EDIT - i18n okienka
 		if(action_type == "Anuluj" || !action_type)
 			return
 
-		if(alert(usr,"Na pewno chcesz usunąć wszystkie instancje typu [deleting.type]?","Tak","Nie") != "Tak")
+		if(i18n_alert(usr, usr,"Na pewno chcesz usunąć wszystkie instancje typu [deleting.type]?","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 
-		if(alert(usr,"Wymagane drugie potwierdzenie. Usunąć?","Tak","Nie") != "Tak")
+		if(i18n_alert(usr, usr,"Wymagane drugie potwierdzenie. Usunąć?","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 
 		var/O_type = deleting.type

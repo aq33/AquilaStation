@@ -910,7 +910,7 @@
 	if(href_list[VV_HK_MODIFY_BODYPART])
 		if(!check_rights(R_SPAWN))
 			return
-		var/edit_action = input(usr, "Co chcesz zrobić?","Modyfikacja części ciała") as null|anything in list("add","remove", "augment")
+		var/edit_action = input(usr, i18n_dialog_text(usr, "Co chcesz zrobić?"),i18n_dialog_text(usr, "Modyfikacja części ciała")) as null|anything in list("add","remove", "augment") // AQ EDIT - i18n okienka
 		if(!edit_action)
 			return
 		var/list/limb_list = list()
@@ -923,7 +923,7 @@
 			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			for(var/obj/item/bodypart/B in bodyparts)
 				limb_list -= B.body_zone
-		var/result = input(usr, "Wybierz część ciała do operacji: [edit_action]","Część ciała: [edit_action]") as null|anything in limb_list
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz część ciała do operacji: [edit_action]"),i18n_dialog_text(usr, "Część ciała: [edit_action]")) as null|anything in limb_list // AQ EDIT - i18n okienka
 		if(result)
 			var/obj/item/bodypart/BP = get_bodypart(result)
 			switch(edit_action)
@@ -951,7 +951,7 @@
 	if(href_list[VV_HK_MAKE_AI])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
+		if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
 			return
 		usr.client.holder.Topic("vv_override", list("makeai"=href_list[VV_HK_TARGET]))
 
@@ -964,7 +964,7 @@
 		for(var/i in artpaths)
 			var/datum/martial_art/M = i
 			artnames[initial(M.name)] = M
-		var/result = input(usr, "Wybierz sztukę walki do nauczenia","JUDO CHOP") as null|anything in artnames
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz sztukę walki do nauczenia"),i18n_dialog_text(usr, "JUDO CHOP")) as null|anything in artnames // AQ EDIT - i18n okienka
 		if(!usr)
 			return
 		if(QDELETED(src))
@@ -979,7 +979,7 @@
 
 	if(href_list[VV_HK_GIVE_TRAUMA] && check_rights(R_FUN|R_DEBUG))
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = input(usr, "Wybierz uraz mózgu do nałożenia","Uraz mózgu") as null|anything in traumas
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz uraz mózgu do nałożenia"),i18n_dialog_text(usr, "Uraz mózgu")) as null|anything in traumas // AQ EDIT - i18n okienka
 		if(!usr)
 			return
 		if(QDELETED(src))
@@ -999,7 +999,7 @@
 
 	if(href_list[VV_HK_HALLUCINATION] && check_rights(R_FUN))
 		var/list/hallucinations = subtypesof(/datum/hallucination)
-		var/result = input(usr, "Wybierz halucynację do nałożenia","Wyślij halucynację") as null|anything in hallucinations
+		var/result = input(usr, i18n_dialog_text(usr, "Wybierz halucynację do nałożenia"),i18n_dialog_text(usr, "Wyślij halucynację")) as null|anything in hallucinations // AQ EDIT - i18n okienka
 		if(!usr)
 			return
 		if(QDELETED(src))

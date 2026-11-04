@@ -177,7 +177,7 @@
 		if(world.time - used_target < 3 MINUTES)
 			to_chat(src, "<span class='warning'>Nie możesz jeszcze ponownie użyć tej zdolności.</span>")
 			return
-		if(alert("Masz już cel ([target.name]). Czy chcesz go zmienić?","Zmienić cel?","Tak","Nie") != "Tak")
+		if(i18n_alert(usr, "Masz już cel ([target.name]). Czy chcesz go zmienić?","Zmienić cel?","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 
 	var/list/possible_targets = list()

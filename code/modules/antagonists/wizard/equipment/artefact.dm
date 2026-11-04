@@ -353,7 +353,7 @@
 
 /obj/item/voodoo/attack_self(mob/user)
 	if(!target && possible.len)
-		target = input(user, "Wybierz swoją ofiarę!", "Voodoo") as null|anything in sortNames(possible)
+		target = input(user, i18n_dialog_text(user, "Wybierz swoją ofiarę!"), i18n_dialog_text(user, "Voodoo")) as null|anything in sortNames(possible) // AQ EDIT - i18n okienka
 		return
 
 	if(user.zone_selected == BODY_ZONE_CHEST)

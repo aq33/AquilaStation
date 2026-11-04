@@ -51,7 +51,7 @@
 	if (isnull(version) || version != 1)
 		fdel(path)
 		if (!silent)
-			alert(user, "Twój plik zapisu był niezgodny z tą wersją i został usunięty.")
+			i18n_alert(usr, user, "Twój plik zapisu był niezgodny z tą wersją i został usunięty.") // AQ EDIT - i18n okienka
 		return 0
 
 	F["name"] >> src.name

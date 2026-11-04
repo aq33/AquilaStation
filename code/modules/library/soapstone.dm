@@ -265,7 +265,7 @@
 		if("delete")
 			if(!is_admin)
 				return
-			var/confirm = alert(user, "Potwierdzić usunięcie wyrytej wiadomości?", "Potwierdź usunięcie", "Yes", "No")
+			var/confirm = i18n_alert(usr, user, "Potwierdzić usunięcie wyrytej wiadomości?", "Potwierdź usunięcie", "Yes", "No") // AQ EDIT - i18n okienka
 			if(confirm == "Yes")
 				persists = FALSE
 				qdel(src)

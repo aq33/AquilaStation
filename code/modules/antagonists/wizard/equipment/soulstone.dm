@@ -228,7 +228,7 @@
 			var/obj/structure/constructshell/T = target
 			var/mob/living/simple_animal/shade/A = locate() in src
 			if(A)
-				var/construct_class = alert(user, "Wybierz rodzaj konstruktu, który chcesz stworzyć.",,"Juggernaut","Widmo","Rzemieślnik")
+				var/construct_class = i18n_alert(usr, user, "Wybierz rodzaj konstruktu, który chcesz stworzyć.",,"Juggernaut","Widmo","Rzemieślnik") // AQ EDIT - i18n okienka
 				if(!T || !T.loc)
 					return
 				// AQ EDIT START - kult „Cult 4”: klejnot dusz (perfect) daje doskonałe konstrukty kultystom

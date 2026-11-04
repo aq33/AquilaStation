@@ -71,7 +71,7 @@
 
 /datum/antagonist/monkey/admin_remove(mob/admin)
 	var/mob/living/carbon/monkey/M = owner.current
-	if(alert(admin, "Przywrócić ludzką postać?", "Uczłowieczenie", "Tak", "Nie") == "Tak")
+	if(i18n_alert(usr, admin, "Przywrócić ludzką postać?", "Uczłowieczenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 		M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  |  TR_DEFAULTMSG)
 	. = ..()
 
@@ -81,7 +81,7 @@
 
 /datum/antagonist/monkey/leader/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/human/H = new_owner.current
-	if(alert(admin, "Zmienić w małpę?", "Umałpienie", "Tak", "Nie") == "Tak")
+	if(i18n_alert(usr, admin, "Zmienić w małpę?", "Umałpienie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
 		H.monkeyize()
 	new_owner.add_antag_datum(src)
 	log_admin("[key_name(admin)] made [key_name(new_owner)] a monkey leader!")

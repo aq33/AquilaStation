@@ -71,14 +71,14 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		if(1)
 			pick = csa[1]
 		else
-			pick = input(src, "Wybierz serwer, na który chcesz przejść", "Zmiana serwera") as null|anything in csa
+			pick = input(src, i18n_dialog_text(src, "Wybierz serwer, na który chcesz przejść"), i18n_dialog_text(src, "Zmiana serwera")) as null|anything in csa // AQ EDIT - i18n okienka
 
 	if(!pick)
 		return
 
 	var/addr = csa[pick]
 
-	if(alert(src, "Przejść na serwer [pick] ([addr])?", "Zmiana serwera", "Tak", "Nie") != "Tak")
+	if(i18n_alert(usr, src, "Przejść na serwer [pick] ([addr])?", "Zmiana serwera", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 		return
 
 	var/client/C = client

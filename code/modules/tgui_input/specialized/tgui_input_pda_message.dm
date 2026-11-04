@@ -109,10 +109,10 @@
 	switch(action)
 		if("submit")
 			if(!send_all && !istype(target))
-				alert(usr, "Wybierz odbiorcę!", "Błąd wysyłania", "OK")
+				i18n_alert(usr, usr, "Wybierz odbiorcę!", "Błąd wysyłania", "OK") // AQ EDIT - i18n okienka
 				return
 			if(!length(name) || !length(job) || !length(text))
-				alert(usr, "Wypełnij wszystkie pola!", "Błąd wysyłania", "OK")
+				i18n_alert(usr, usr, "Wypełnij wszystkie pola!", "Błąd wysyłania", "OK") // AQ EDIT - i18n okienka
 				return
 			submit = TRUE
 			closed = TRUE
@@ -139,7 +139,7 @@
 				devices[key] = messenger
 			if(can_send_all)
 				devices["Wszyscy"] = "Wszyscy"
-			var/choice = input(usr, "Wybierz PDA, do którego wysłać wiadomość.", "Wybierz PDA", null) as null|anything in devices
+			var/choice = input(usr, i18n_dialog_text(usr, "Wybierz PDA, do którego wysłać wiadomość."), i18n_dialog_text(usr, "Wybierz PDA"), null) as null|anything in devices // AQ EDIT - i18n okienka
 			if(istype(target))
 				UnregisterSignal(target, COMSIG_PARENT_QDELETING)
 				target = null

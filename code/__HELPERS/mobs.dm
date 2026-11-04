@@ -706,7 +706,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,"Wykryto sygnały cyborgów bez praw:", "Wybór cyborga", borgs[1]) in sortList(borgs)
+			. = input(user,i18n_dialog_text(user, "Wykryto sygnały cyborgów bez praw:"), i18n_dialog_text(user, "Wybór cyborga"), borgs[1]) in sortList(borgs) // AQ EDIT - i18n okienka
 		else
 			. = pick(borgs)
 	return .
@@ -716,7 +716,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)
-			. = input(user,"Wykryto sygnały SI:", "Wybór SI", ais[1]) in sortList(ais)
+			. = input(user,i18n_dialog_text(user, "Wykryto sygnały SI:"), i18n_dialog_text(user, "Wybór SI"), ais[1]) in sortList(ais) // AQ EDIT - i18n okienka
 		else
 			. = pick(ais)
 	return .

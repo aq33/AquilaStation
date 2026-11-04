@@ -28,7 +28,7 @@
 
 	// Client does NOT have tgui_input on: Returns regular input (single choice, wrapped in a list)
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		var/choice = input(user, message, title) as null|anything in items
+		var/choice = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title)) as null|anything in items // AQ EDIT - i18n okienka
 		return isnull(choice) ? null : list(choice)
 	var/datum/tgui_checkbox_input/input = new(user, message, title, items, min_checked, max_checked, timeout, ui_state)
 	input.ui_interact(user)

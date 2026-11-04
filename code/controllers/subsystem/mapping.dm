@@ -528,17 +528,17 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 
 	if(!GLOB.the_gateway)
-		if(alert("Na stacji nie ma bramy macierzystej. Na pewno chcesz kontynuować?", "Ojej", "Tak", "Nie") != "Tak")
+		if(i18n_alert(usr, "Na stacji nie ma bramy macierzystej. Na pewno chcesz kontynuować?", "Ojej", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
 
 	var/list/possible_options = GLOB.potentialRandomZlevels + "Własna"
 	var/away_name
 	var/datum/space_level/away_level
 
-	var/answer = input("Jaka misja?","Misja wyjazdowa") as null|anything in possible_options
+	var/answer = input(i18n_dialog_text(usr, "Jaka misja?"),i18n_dialog_text(usr, "Misja wyjazdowa")) as null|anything in possible_options // AQ EDIT - i18n okienka
 	switch(answer)
 		if("Własna")
-			var/mapfile = input("Wybierz plik:", "Plik") as null|file
+			var/mapfile = input(i18n_dialog_text(usr, "Wybierz plik:"), i18n_dialog_text(usr, "Plik")) as null|file // AQ EDIT - i18n okienka
 			if(!mapfile)
 				return
 			away_name = "[mapfile] (własna)"
