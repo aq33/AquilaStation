@@ -224,6 +224,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `close(can_be_suspended = FALSE)` before `return FALSE`, `user?.client` before `browse_queue_flush()` | `code/modules/tgui/tgui.dm` (`open()`, `send_assets()`) | A window opened for a mob that lost its client while the window initialised (death info of a swarmer deleted on death) stayed blank and locked on the screen. |
 | Skip mutant organs the mob already has | `code/modules/mob/living/carbon/human/species.dm` (`regenerate_organs()`) | Every heal or revive inserted a new copy and dropped the old one, so an IPC left power cord implants on the floor. |
 | `DISEASE_CONTACT_FLUIDS_TRANSMISSION` / `DISEASE_CONTACT_SKIN_TRANSMISSION` (3 and 6, were 6 and 11) | `code/__DEFINES/diseases.dm`, `code/datums/diseases/advance/advance.dm` (`SetSpread()`) | The disease2 symptoms have almost no transmission, so viruses made of them never spread by touch. Test: `disease2_contact_spread` |
+| `/datum/species/oozeling` in the green extract and unstable mutation toxins | `code/modules/reagents/chemistry/reagents/other_reagents.dm` (`mutationtoxin/jelly/on_mob_life()`, `mutationtoxin/unstable`) | The playable slime race could not come out of xenobiology toxins, only the jelly subtypes. Test: `aquila_oozeling_mutation_toxin` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

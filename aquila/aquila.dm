@@ -1674,6 +1674,7 @@
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
+#include "code\modules\unit_tests\aquila_mutation_toxins.dm"
 #include "code\modules\unit_tests\aquila_lag_switch.dm"
 #include "code\modules\unit_tests\aquila_ticket_db_log.dm"
 #include "code\modules\unit_tests\aquila_player_browser.dm"
