@@ -90,6 +90,7 @@
 	READPREF_JSONDEC(role_preferences, PREFERENCE_TAG_ROLE_PREFERENCES)
 	READPREF_JSONDEC(completed_tutorials, PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	READPREF_JSONDEC(quick_emotes, PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
+	READPREF_RAW(game_language, PREFERENCE_TAG_GAME_LANGUAGE) // AQ EDIT - język gry
 
 	//Sanitize
 	asaycolor		= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, TRUE, initial(asaycolor)))
@@ -118,6 +119,7 @@
 	ghost_orbit 	= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_accs		= sanitize_inlist(ghost_accs, GLOB.ghost_accs_options, GHOST_ACCS_DEFAULT_OPTION)
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, GHOST_OTHERS_DEFAULT_OPTION)
+	game_language	= sanitize_inlist(game_language, GLOB.game_languages, initial(game_language)) // AQ EDIT - język gry
 	role_preferences		= SANITIZE_LIST(role_preferences)
 	// Remove any invalid entries
 	for(var/preference in role_preferences)
@@ -193,6 +195,7 @@
 	PREP_WRITEPREF_JSONENC(role_preferences, PREFERENCE_TAG_ROLE_PREFERENCES)
 	PREP_WRITEPREF_JSONENC(get_completed_tutorials(), PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	PREP_WRITEPREF_JSONENC(get_quick_emotes(), PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
+	PREP_WRITEPREF_RAW(game_language, PREFERENCE_TAG_GAME_LANGUAGE) // AQ EDIT - język gry
 
 	// QuerySelect can execute many queries at once. That name is dumb but w/e
 	SSdbcore.QuerySelect(write_queries, TRUE, TRUE)

@@ -41,6 +41,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `PREFERENCE_TAG_GAME_LANGUAGE`, `READPREF_RAW` / `sanitize_inlist` / `PREP_WRITEPREF_RAW` of `game_language` | `code/__DEFINES/preferences.dm`, `code/modules/client/preferences2/preferences2.dm` | Player's game language (Polish/English) saved in the key-value preferences table. Entry: `aquila/code/modules/i18n/game_language.dm` |
 | `get_path_to(...) || list()` | `code/modules/mob/living/simple_animal/bot/medbot.dm` (`handle_automated_action()`) | A medibot without a turf (world shutdown after tests) got a null path and runtimed on `path.len`. |
 | `strip_auto_articles()` on `html` and `text` | `code/modules/tgchat/to_chat.dm` (`to_chat()`, `to_chat_immediate()`) | BYOND inserts an English "the"/"The" before every embedded object with a lowercase name, which broke every Polish message ("To the teczka"). Test: `aquila_auto_articles` |
 | `INVOKE_ASYNC(...)` without `return` in the `COMSIG_PARENT_ATTACKBY` handler | `code/datums/components/construction.dm` (`action()`), `code/game/mecha/mecha_construction_paths.dm` (gygax `action()`) | `INVOKE_ASYNC` returns a `/datum/task` since the 515 compatibility change; `_SendSignal` ORed it into the flags and runtimed on every mech construction click. Test: `aquila_logi_rund_26_10` |
