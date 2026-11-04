@@ -36,6 +36,7 @@ import {
   MAX_PERSISTED_MESSAGES,
   MESSAGE_SAVE_INTERVAL,
 } from './constants';
+import { getLanguage, loadDictionary, setLanguage } from './i18n';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
@@ -182,6 +183,17 @@ export const chatMiddleware = (store: Store) => {
     }
     if (type === rebuildChat.type) {
       chatRenderer.rebuildChat();
+      return next(action);
+    }
+    // AQUILA: język gry z preferencji (aquila/code/modules/i18n)
+    if (type === 'i18n/setLanguage') {
+      const previous = getLanguage();
+      setLanguage(payload.language);
+      if (getLanguage() === 'en') {
+        loadDictionary().then((ready) => ready && chatRenderer.rebuildChat());
+      } else if (previous === 'en') {
+        chatRenderer.rebuildChat();
+      }
       return next(action);
     }
 

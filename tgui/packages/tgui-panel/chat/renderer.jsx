@@ -23,6 +23,7 @@ import {
   MESSAGE_TYPE_UNKNOWN,
   MESSAGE_TYPES,
 } from './constants';
+import { isTranslating, translateHtml } from './i18n';
 import { canPageAcceptType, createMessage, isSameMessage } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
 
@@ -448,14 +449,18 @@ class ChatRenderer {
       else {
         node = createMessageNode();
         // Payload is plain text
+        // AQUILA: gracz z językiem EN widzi tłumaczenie (chat/i18n.ts)
         if (message.text) {
-          node.textContent = message.text;
+          node.textContent = isTranslating()
+            ? translateHtml(message.text)
+            : message.text;
         }
         // Payload is HTML
         else if (message.html) {
-          node.innerHTML = this.highContrast
-            ? formatHighContrast(message.html)
+          const html = isTranslating()
+            ? translateHtml(message.html)
             : message.html;
+          node.innerHTML = this.highContrast ? formatHighContrast(html) : html;
         } else {
           logger.error('Error: message is missing text payload', message);
         }

@@ -6,6 +6,8 @@
  * przy wyświetlaniu. Brak wpisu = oryginalna nazwa.
  */
 
+import { getLanguage } from '../chat/i18n';
+
 const TAB_NAMES = {
   Status: 'Status',
   Faction: 'Oddział i frakcja',
@@ -556,6 +558,9 @@ const VERB_NAMES = {
   Map: 'Mapa',
 };
 
-export const translateTab = (name) => TAB_NAMES[name] || name;
+// AQUILA: przy języku EN zostają oryginalne angielskie nazwy z DM
+export const translateTab = (name) =>
+  getLanguage() === 'en' ? name : TAB_NAMES[name] || name;
 
-export const translateVerb = (name) => VERB_NAMES[name] || name;
+export const translateVerb = (name) =>
+  getLanguage() === 'en' ? name : VERB_NAMES[name] || name;
