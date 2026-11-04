@@ -19,6 +19,14 @@
 	var/obj/item/reagent_containers/glass/beaker/other = allocate(/obj/item/reagent_containers/glass/beaker)
 	beaker.reagents.trans_to(other, 20)
 	TEST_ASSERT(abs(other.reagents.ph - ph_after_buffer) < 0.01, "Przelany roztwór zmienił pH z [ph_after_buffer] na [other.reagents.ph]")
+	// The plumbing reaction chamber doses buffer by itself: no spent buffer there, it would drain out with the products
+	var/obj/machinery/plumbing/reaction_chamber/chem/chamber = allocate(/obj/machinery/plumbing/reaction_chamber/chem)
+	chamber.reagents.flags &= ~NO_REACT
+	chamber.reagents.add_reagent(/datum/reagent/water, 50)
+	var/obj/item/reagent_containers/glass/bottle/acidic_buffer/chamber_buffer = allocate(/obj/item/reagent_containers/glass/bottle/acidic_buffer)
+	chamber_buffer.reagents.trans_to(chamber, 5)
+	TEST_ASSERT(chamber.reagents.ph < 6, "Bufor nie obniżył pH w komorze reakcyjnej ([chamber.reagents.ph])")
+	TEST_ASSERT(!chamber.reagents.has_reagent(/datum/reagent/spent_buffer), "W komorze reakcyjnej został zużyty bufor")
 
 	// ChemMaster purification: 100u at 30% purity become 30u at 100%
 	var/obj/machinery/chem_master/chem_master = allocate(/obj/machinery/chem_master)
@@ -38,14 +46,26 @@
 	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Węgiel aktywny (pigułka)", "Lodówka pokazuje [fridge.smartfridge_display_name(pill)]")
 	pill.name = "pigułka: węgiel aktywny (10 j.)"
 	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Węgiel aktywny (pigułka, 10 j.)","Lodówka pokazuje [fridge.smartfridge_display_name(pill)]")
+	pill.name = "pigułka: Bikarydyna (mocna)"
+	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Bikarydyna (mocna) (pigułka)", "Lodówka pokazuje [fridge.smartfridge_display_name(pill)]")
 	var/obj/item/reagent_containers/glass/beaker/plain = allocate(/obj/item/reagent_containers/glass/beaker)
 	TEST_ASSERT(fridge.smartfridge_display_name(plain) == capitalize(plain.name), "Lodówka zmieniła nazwę bez dwukropka: [fridge.smartfridge_display_name(plain)]")
 
 	// The chem heater heats plain water, without any reaction going on
 	var/obj/machinery/chem_heater/heater = allocate(/obj/machinery/chem_heater)
 	heater.machine_stat &= ~NOPOWER
-	var/obj/item/reagent_containers/glass/beaker/water_beaker = allocate(/obj/item/reagent_containers/glass/beaker)
+	var/obj/item/reagent_containers/glass/beaker/large/water_beaker = allocate(/obj/item/reagent_containers/glass/beaker/large)
+	// The beaker had a timed reaction before, the water poured in afterwards still has to heat up
+	water_beaker.reagents.add_reagent(/datum/reagent/hydrogen, 30, reagtemp = 400, no_react = TRUE)
+	water_beaker.reagents.add_reagent(/datum/reagent/nitrogen, 10, reagtemp = 400)
+	for(var/step in 1 to 60)
+		if(!water_beaker.reagents.is_reacting)
+			break
+		water_beaker.reagents.process(1)
+	TEST_ASSERT(!water_beaker.reagents.is_reacting, "Reakcja amoniaku w zlewce nie skończyła się")
+	water_beaker.reagents.clear_reagents()
 	water_beaker.reagents.add_reagent(/datum/reagent/water, 30, reagtemp = 300)
+	water_beaker.reagents.set_temperature(300)
 	water_beaker.forceMove(heater)
 	heater.replace_beaker(null, water_beaker)
 	heater.target_temperature = 400

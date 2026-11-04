@@ -11,7 +11,6 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
@@ -23,6 +22,8 @@ type Chemical = {
   id: string;
   volume: number;
   purity?: number;
+  // Only for impure reagents in the buffer: how much is left after purifying
+  pureVolume?: number | null;
 };
 
 type PillStyle = {
@@ -310,8 +311,7 @@ type ReagentProps = {
 const ReagentEntry = (props: ReagentProps) => {
   const { act } = useBackend<Data>();
   const { chemical, transferTo, canPurify } = props;
-  const impure =
-    canPurify && chemical.purity !== undefined && chemical.purity < 1;
+  const pureVolume = canPurify ? chemical.pureVolume : null;
   const transfer = (amount: number) =>
     act('transfer', {
       id: chemical.id,
@@ -336,14 +336,11 @@ const ReagentEntry = (props: ReagentProps) => {
           tooltip="Własna ilość"
           onClick={() => transfer(-1)}
         />
-        {impure && (
+        {pureVolume !== null && pureVolume !== undefined && (
           <Button
             icon="filter"
             color="average"
-            tooltip={`Oczyść: zostanie ${toFixed(
-              chemical.volume * (chemical.purity || 0),
-              2,
-            )}u czystego odczynnika, reszta idzie do utylizacji`}
+            tooltip={`Oczyść: zostanie ${pureVolume}u czystego odczynnika, reszta idzie do utylizacji`}
             onClick={() => act('purify', { id: chemical.id })}
           />
         )}
