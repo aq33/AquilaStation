@@ -26,7 +26,7 @@ CODE_EXT = (".dm", ".tsx", ".jsx", ".ts", ".js")
 TEXT_EXT = (".txt", ".json")
 PATHSPECS = ["*.dm", "*.tsx", "*.jsx", "*.ts", "*.js", "strings/*.txt", "strings/*.json"]
 # tools/ tylko w katalogu głównym: code/game/objects/items/tools/ to zwykły kod gry
-SKIP_PATH = re.compile(r"^(tools|_maps|SQL|html/changelogs)/|(^|/)(node_modules|\.yarn)/|\.bundle\.|i18n/")
+SKIP_PATH = re.compile(r"^(tools|_maps|SQL|html/changelogs)/|(^|/)(node_modules|\.yarn)/|\.bundle\.|^strings/i18n/")
 
 PL_DIACRITICS = re.compile(r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]")
 PL_WORDS = re.compile(

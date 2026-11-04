@@ -5,6 +5,10 @@ fragmenty do dopasowania w HTML wiadomości i numery osadzeń. Angielska strona
 wskazuje, które przechwycone wartości wstawić i gdzie. Panel (tgui-panel/chat/i18n.ts)
 dopasowuje szablony do przychodzących wiadomości.
 
+Źródła (po kolei, późniejsze wygrywają): en_pairs_upstream.json i en_pairs.json
+(generowane, poza repo) albo en_all.json, potem en_translated.json i en_manual.json.
+Zapisuje scalony en_all.json, który jest w repo.
+
 Użycie (z katalogu repo, po extract_pairs.py):
     python tools/i18n/build_chat_dict.py [--slice code/_onclick code/modules/mob ...]
 
@@ -24,6 +28,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
+import list_missing as lm  # noqa: E402
 
 # Domyślnie cały kod DM. --slice zawęża szablony do wybranych ścieżek (stałe teksty
 # i tak idą ze wszystkich plików, bo są potrzebne jako wartości wstawek).
@@ -176,24 +181,59 @@ WORD = re.compile(r"[a-ząćęłńóśźż]{3,}", re.I)
 TAG = re.compile(r"<[^>]*>")
 
 
+def load_json(path):
+    if not path or not os.path.exists(path):
+        return {}
+    data = json.load(open(path, encoding="utf-8"))
+    data.pop("_komentarz", None)
+    return data
+
+
+def load_sources(args):
+    """Scala źródła i zapisuje en_all.json.
+
+    Świeże en_pairs.json (+ oryginały portów) zastępują bazę; bez nich (brak historii
+    albo klonów innych serwerów) bazą jest en_all.json z repo. Na wierzch idą
+    tłumaczenia agentów/ręczne (en_translated.json), a na sam koniec en_manual.json.
+    """
+    if os.path.exists(args.pairs):
+        merged = dict(load_json(args.upstream))
+        merged.update(load_json(args.pairs))
+    else:
+        merged = load_json(args.all)
+    merged.update(load_json(args.translated))
+    merged.update(load_json(args.manual))
+    with open(args.all, "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
+    return merged
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pairs", default="strings/i18n/en_pairs.json")
+    ap.add_argument("--upstream", default="strings/i18n/en_pairs_upstream.json")
+    ap.add_argument("--translated", default="strings/i18n/en_translated.json")
+    ap.add_argument("--all", default="strings/i18n/en_all.json",
+                    help="scalony słownik (w repo); baza, gdy nie ma en_pairs.json")
     ap.add_argument("--out", default="strings/i18n/en_chat.json")
     ap.add_argument("--slice", nargs="*", default=DEFAULT_SLICE)
     ap.add_argument("--manual", default="strings/i18n/en_manual.json")
     args = ap.parse_args()
 
-    pairs = json.load(open(args.pairs, encoding="utf-8"))
-    files = subprocess.run(["git", "ls-files", "-z", "*.dm"], capture_output=True, text=True,
-                           encoding="utf-8").stdout.split("\0")[:-1]
+    pairs = load_sources(args)
+    # strings/ (porady rundy, listy tekstów) daje tylko stałe: wiadomość składa je w DM
+    files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json"],
+                           capture_output=True, text=True, encoding="utf-8").stdout.split("\0")[:-1]
 
     wanted, names = set(), set()
     for path in files:
-        in_slice = any(path.startswith(p) for p in args.slice)
+        if ep.SKIP_PATH.search(path):
+            continue
+        in_slice = path.endswith(".dm") and any(path.startswith(p) for p in args.slice)
         with open(path, encoding="utf-8", errors="replace") as f:
             for line in f:
-                for lit in ep.dm_strings(line):
+                # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
+                for lit in lm.line_literals(path, line):
                     if lit not in pairs:
                         continue
                     if in_slice:
@@ -201,9 +241,7 @@ def main():
                     elif "[" not in lit:
                         names.add(lit)  # stałe spoza wycinka: nazwy, czasowniki ataku itp.
 
-    manual = json.load(open(args.manual, encoding="utf-8"))
-    manual.pop("_komentarz", None)
-    pairs = dict(pairs, **manual)
+    manual = load_json(args.manual)
 
     exact, templates, stats = {}, [], collections.Counter()
     for pl in sorted(wanted | names | set(manual)):
@@ -221,7 +259,8 @@ def main():
         if not exprs:
             key = texts[0].strip()
             value = "".join(x for x in en_parts if isinstance(x, str)).strip()
-            if key and value and key != value:
+            # pusta wartość jest poprawna: polskie końcówki rodzaju ("aś") po angielsku znikają
+            if key and key != value:
                 exact[key] = value
                 stats["stałe"] += 1
             continue

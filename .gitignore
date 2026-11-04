@@ -195,3 +195,6 @@ Temporary Items
 
 # Słownik pośredni z tools/i18n/extract_pairs.py (odtwarzany z historii gita)
 strings/i18n/en_pairs.json
+
+# Pary z oryginałów portów (tools/i18n/match_upstream.py, wymaga klonów innych serwerów)
+strings/i18n/en_pairs_upstream.json
