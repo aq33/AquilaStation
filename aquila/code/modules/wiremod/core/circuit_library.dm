@@ -91,8 +91,18 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	designs -= list(design)
 	return FALSE
 
-/datum/circuit_library/proc/remove_design(index)
-	if(index < 1 || index > length(designs))
+/// Position of the design with this name, 0 when there is none. Names are unique, add_design() replaces a design of the same name
+/datum/circuit_library/proc/design_index(name)
+	for(var/i in 1 to length(designs))
+		var/list/design = designs[i]
+		if(design["name"] == name)
+			return i
+	return 0
+
+/// Removes a design by name (not by position, a window opened earlier may show an old order)
+/datum/circuit_library/proc/remove_design(name)
+	var/index = design_index(name)
+	if(!index)
 		return FALSE
 	var/list/removed = designs[index]
 	designs.Cut(index, index + 1)
@@ -101,9 +111,10 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	designs.Insert(index, list(removed))
 	return FALSE
 
-/// Wzór w postaci, jakiej używa duplikator (materiały jako datumy), null przy złym indeksie
-/datum/circuit_library/proc/design_for_printing(index)
-	if(index < 1 || index > length(designs))
+/// Wzór o tej nazwie w postaci, jakiej używa duplikator (materiały jako datumy), null gdy go nie ma
+/datum/circuit_library/proc/design_for_printing(name)
+	var/index = design_index(name)
+	if(!index)
 		return null
 	var/list/saved = designs[index]
 	var/list/materials = list()

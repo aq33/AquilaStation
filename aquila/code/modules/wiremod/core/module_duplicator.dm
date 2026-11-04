@@ -78,7 +78,7 @@
 			if(findtext(raw_id, "lib_") == 1)
 				// Projekt z biblioteki gracza (circuit_library.dm)
 				var/datum/circuit_library/library = get_circuit_library(usr.ckey)
-				design = library?.design_for_printing(text2num(copytext(raw_id, 5)))
+				design = library?.design_for_printing(copytext(raw_id, 5))
 			else
 				var/design_id = text2num(raw_id)
 				if(design_id && design_id >= 1 && design_id <= length(scanned_designs))
@@ -107,7 +107,7 @@
 		if("delete_saved")
 			var/raw_id = "[params["design_id"]]"
 			var/datum/circuit_library/library = get_circuit_library(usr.ckey)
-			if(findtext(raw_id, "lib_") == 1 && library?.remove_design(text2num(copytext(raw_id, 5))))
+			if(findtext(raw_id, "lib_") == 1 && library?.remove_design(copytext(raw_id, 5)))
 				update_static_data(usr)
 			return TRUE
 		if("remove_mat")
@@ -242,25 +242,24 @@
 		index++
 
 	var/datum/circuit_library/library = get_circuit_library(user?.ckey)
-	var/library_index = 1
 	for(var/list/saved as anything in library?.designs)
 		var/list/cost = list()
 		for(var/material_path in saved["materials"])
 			var/datum/material/mat = getmaterialref(text2path(material_path))
 			if(mat)
 				cost[mat.name] = round(saved["materials"][material_path] * efficiency_coeff)
-		designs["lib_[library_index]"] = list(
+		// Keyed by name, which is unique in the library: positions shift when a design is removed
+		designs["lib_[saved["name"]]"] = list(
 			"name" = saved["name"],
 			"desc" = saved["desc"],
 			"cost" = cost,
 			"reagentCost" = list(),
-			"id" = "lib_[library_index]",
+			"id" = "lib_[saved["name"]]",
 			"icon" = icon_class,
 			"categories" = list("/Moje układy"),
 			"constructionTime" = 0,
 			"saved" = TRUE,
 		)
-		library_index++
 
 	data["designs"] = designs
 

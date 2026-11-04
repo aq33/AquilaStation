@@ -33,13 +33,14 @@
 	// A new round reads the library back from the file
 	var/datum/circuit_library/reloaded = new(test_ckey)
 	TEST_ASSERT_EQUAL(length(reloaded.designs), 1, "The library was not read back from the file")
-	var/list/printable = reloaded.design_for_printing(1)
+	var/list/printable = reloaded.design_for_printing("Testowy układ")
 	TEST_ASSERT(printable, "No printable design")
 	TEST_ASSERT_EQUAL(printable["name"], "Testowy układ", "Wrong name after reload")
 	TEST_ASSERT_EQUAL(printable["materials"][glass], 500, "Material cost changed after reload")
 	TEST_ASSERT(printable["integrated_circuit"], "The circuit flag was lost")
 
-	TEST_ASSERT(reloaded.remove_design(1), "The design was not removed")
+	TEST_ASSERT(!reloaded.remove_design("Inny układ"), "Removed a design that is not in the library")
+	TEST_ASSERT(reloaded.remove_design("Testowy układ"), "The design was not removed")
 	TEST_ASSERT_EQUAL(length(reloaded.designs), 0, "The library is not empty after removal")
 	// A broken file gives an empty library instead of a runtime, and is kept as .bak
 	fdel(reloaded.save_path())
