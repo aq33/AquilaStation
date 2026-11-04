@@ -246,6 +246,7 @@
 	if(amount > 0 && plant_needs[REF(source)])
 		var/datum/plant_need/need = overdraw_needs[REF(source)]
 		plant_needs -= need
+		unmet_needs -= need // AQUILA - bez referencji do usuwanej potrzeby
 		overdraw_needs[REF(source)] = null
 		overdraw_needs -= REF(source)
 		qdel(need)

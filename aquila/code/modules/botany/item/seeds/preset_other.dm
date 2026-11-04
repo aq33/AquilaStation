@@ -4,19 +4,19 @@
 
 //Harebell
 /obj/item/plant_seeds/preset/harebell
-	name = "nasiona: dzwonek"
+	name = "nasiona: dzwonek (dowolne podłoże)"
 	name_override = "dzwonek"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower/harebell)
 
 //Oats
 /obj/item/plant_seeds/preset/oats
-	name = "nasiona: owies"
+	name = "nasiona: owies (dowolne podłoże)"
 	name_override = "owies"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/wheat, /datum/plant_feature/fruit/wheat/oat)
 
 //Meat
 /obj/item/plant_seeds/preset/meat
-	name = "nasiona: mięsopszenica"
+	name = "nasiona: mięsopszenica (dowolne podłoże)"
 	name_override = "mięsopszenica"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/wheat, /datum/plant_feature/fruit/wheat/meat)
 
@@ -28,19 +28,19 @@
 
 //Glow Berry
 /obj/item/plant_seeds/preset/glow_berry
-	name = "nasiona: krzew świecących jagód"
+	name = "nasiona: krzew świecących jagód (dowolne podłoże)"
 	name_override = "krzew świecących jagód"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/berry, /datum/plant_feature/fruit/berry/glow)
 
 //Moonflower
 /obj/item/plant_seeds/preset/moonflower
-	name = "nasiona: kwiat księżycowy"
+	name = "nasiona: kwiat księżycowy (dowolne podłoże)"
 	name_override = "kwiat księżycowy"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/sunflower, /datum/plant_feature/fruit/flower/moon)
 
 //Novaflower
 /obj/item/plant_seeds/preset/novaflower
-	name = "nasiona: kwiat supernowej"
+	name = "nasiona: kwiat supernowej (dowolne podłoże)"
 	name_override = "kwiat supernowej"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/sunflower, /datum/plant_feature/fruit/flower/nova)
 
@@ -64,7 +64,7 @@
 
 //Bamboo
 /obj/item/plant_seeds/preset/bamboo
-	name = "nasiona: bambus"
+	name = "nasiona: bambus (dowolne podłoże)"
 	name_override = "bambus"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber, /datum/plant_feature/fruit/bamboo)
 
@@ -76,7 +76,7 @@
 
 //Rainbow
 /obj/item/plant_seeds/preset/rainbow
-	name = "nasiona: tęczowy kwiat"
+	name = "nasiona: tęczowy kwiat (dowolne podłoże)"
 	name_override = "tęczowy kwiat"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower/rainbow)
 
@@ -100,31 +100,31 @@
 
 //Gatfruit
 /obj/item/plant_seeds/preset/gat
-	name = "nasiona: giwerowoc"
+	name = "nasiona: giwerowoc (dowolne podłoże)"
 	name_override = "giwerowoc"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/ground, /datum/plant_feature/fruit/gat)
 
 //Cherry-Bomb
 /obj/item/plant_seeds/preset/cherry_bomb
-	name = "nasiona: drzewko wiśniowych bomb"
+	name = "nasiona: drzewko wiśniowych bomb (dowolne podłoże)"
 	name_override = "drzewko wiśniowych bomb"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tree/mini/cherry, /datum/plant_feature/fruit/cherry/bomb)
 
 //lily
 /obj/item/plant_seeds/preset/lily
-	name = "nasiona: lilia"
+	name = "nasiona: lilia (dowolne podłoże)"
 	name_override = "lilia"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/lily)
 
 //Geranium
 /obj/item/plant_seeds/preset/geranium
-	name = "nasiona: pelargonia"
+	name = "nasiona: pelargonia (dowolne podłoże)"
 	name_override = "pelargonia"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/geranium)
 
 //Geranium
 /obj/item/plant_seeds/preset/forget
-	name = "nasiona: niezapominajka"
+	name = "nasiona: niezapominajka (dowolne podłoże)"
 	name_override = "niezapominajka"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower)
 
@@ -136,7 +136,7 @@
 
 //Cactus
 /obj/item/plant_seeds/preset/cactus
-	name = "nasiona: kaktus popielny"
+	name = "nasiona: kaktus popielny (dowolne podłoże)"
 	name_override = "kaktus popielny"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/cactus)
 
@@ -160,7 +160,7 @@
 
 //Galaxythistle
 /obj/item/plant_seeds/preset/galaxythistle
-	name = "nasiona: galaktyczny oset"
+	name = "nasiona: galaktyczny oset (dowolne podłoże)"
 	name_override = "galaktyczny oset"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle/thistle, /datum/plant_feature/fruit/starthistle/galaxy)
 
@@ -172,7 +172,7 @@
 
 //Trumpet
 /obj/item/plant_seeds/preset/trumpet
-	name = "nasiona: trąbka kosmonauty"
+	name = "nasiona: trąbka kosmonauty (dowolne podłoże)"
 	name_override = "trąbka kosmonauty"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/trumpet)
 
@@ -184,19 +184,19 @@
 
 //Death Nettle
 /obj/item/plant_seeds/preset/death_nettle
-	name = "nasiona: pokrzywa śmierci"
+	name = "nasiona: pokrzywa śmierci (dowolne podłoże)"
 	name_override = "pokrzywa śmierci"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle/death, /datum/plant_feature/fruit/nettle/death)
 
 //Rainbow Cannabis
 /obj/item/plant_seeds/preset/rainbow_cannabis
-	name = "nasiona: tęczowe konopie"
+	name = "nasiona: tęczowe konopie (dowolne podłoże)"
 	name_override = "tęczowe konopie"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/cannabis, /datum/plant_feature/fruit/cannabis/rainbow)
 
 //Omega Cannabis
 /obj/item/plant_seeds/preset/omega_cannabis
-	name = "nasiona: konopie omega"
+	name = "nasiona: konopie omega (dowolne podłoże)"
 	name_override = "konopie omega"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/cannabis, /datum/plant_feature/fruit/cannabis/omega)
 

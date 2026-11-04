@@ -32,6 +32,7 @@
 	buff_appearance = new(src)
 
 /datum/plant_need/Destroy(force, ...)
+	parent?.unmet_needs -= src // AQUILA - lista do skanera nie trzyma usuniętej potrzeby
 	. = ..()
 	QDEL_NULL(buff_appearance)
 

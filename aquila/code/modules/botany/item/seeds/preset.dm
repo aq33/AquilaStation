@@ -257,7 +257,7 @@
 
 //Nettle
 /obj/item/plant_seeds/preset/nettle
-	name = "nasiona: pokrzywa"
+	name = "nasiona: pokrzywa (dowolne podłoże)"
 	name_override = "pokrzywa"
 	icon_state = "seed-nettle"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle, /datum/plant_feature/fruit/nettle)
@@ -271,7 +271,7 @@
 
 //Cannabis
 /obj/item/plant_seeds/preset/cannabis
-	name = "nasiona: konopie"
+	name = "nasiona: konopie (dowolne podłoże)"
 	name_override = "konopie"
 	icon_state = "seed-cannabis"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/cannabis, /datum/plant_feature/fruit/cannabis)
@@ -313,7 +313,7 @@
 
 //Diona pod - AQUILA: replica pod
 /obj/item/plant_seeds/preset/diona_pod
-	name = "nasiona: strąk replikujący"
+	name = "nasiona: strąk replikujący (dowolne podłoże)"
 	name_override = "strąk replikujący"
 	icon_state = "seed-dionapod"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/diona_pod, /datum/plant_feature/fruit/cabbage/diona)

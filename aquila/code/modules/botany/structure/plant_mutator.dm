@@ -155,14 +155,24 @@
 	if(plant)
 		to_chat(user, span_warning("W środku ([src]) już coś jest!"))
 		return FALSE
-	if(user && !user.transferItemToLoc(seeds, src))
+	// Z większej paczki bierzemy jedno nasiono, tak jak łopatką jedną roślinę
+	if(seeds.seeds > 1)
+		var/obj/item/plant_seeds/single = seeds.copy()
+		single.seeds = 1
+		seeds.seeds--
+		seeds = single
+		seeds.forceMove(src)
+	else if(user && !user.transferItemToLoc(seeds, src))
 		return FALSE
-	if(!user)
+	else if(!user)
 		seeds.forceMove(src)
 	inserted_seeds = seeds
 	var/obj/item/plant/new_plant = new(src, seeds.plant_features, seeds.species_id, (seeds.name_override || get_species_name(seeds.plant_features)))
 	plant = new_plant
 	plant_component = new_plant.GetComponent(/datum/component/plant)
+	// Własna nazwa i opis paczki przechodzą przez piec
+	plant_component.name_override = seeds.name_override
+	plant_component.desc_override = seeds.desc_override
 	icon_state = "mutator"
 	playsound(src, 'sound/machines/click.ogg', 30)
 	ui_update()
@@ -179,6 +189,7 @@
 		seeds.plant_features += new_feature
 		new_feature.associate_seeds(seeds)
 	seeds.name_override = plant_component.name_override
+	seeds.desc_override = plant_component.desc_override
 	seeds.update_species_id()
 	seeds.update_plant_name()
 	inserted_seeds = null

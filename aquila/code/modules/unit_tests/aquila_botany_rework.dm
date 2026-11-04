@@ -47,21 +47,48 @@
 	scanner.afterattack(plant.plant_item, user, TRUE)
 	TEST_ASSERT(length(scanner.status), "Skan rośliny nie wypełnił sekcji Stan")
 
+// Pestycyd nie truje łodygi (był jednocześnie lekiem na szkodniki i toksyną)
+	tray.reagents.add_reagent(/datum/reagent/toxin/pestkiller, 20)
+	var/health_before = body.health
+	body.check_needs(2)
+	TEST_ASSERT(body.health >= health_before, "Pestycyd zabrał roślinie zdrowie ([health_before] -> [body.health])")
+
+// Opis tacy bez chwastów nie mówi o chwastach
+	planter.weed_level = 0
+	var/list/examine_text = list()
+	planter.catch_examine(tray, user, examine_text)
+	TEST_ASSERT(!findtext(jointext(examine_text, " "), "chwast"), "Opis tacy przy zerze chwastów pisze o chwastach")
+
+// Piec: z większej paczki bierze jedno nasiono i zachowuje własną nazwę
+	var/obj/machinery/plant_machine/plant_mutator/name_kiln = allocate(/obj/machinery/plant_machine/plant_mutator, get_step(get_step(get_step(origin, EAST), EAST), NORTH))
+	var/obj/item/plant_seeds/named_seeds = allocate(/obj/item/plant_seeds/preset/tomato, origin)
+	named_seeds.seeds = 3
+	named_seeds.name_override = "pomidor testowy"
+	named_seeds.update_plant_name()
+	TEST_ASSERT(name_kiln.insert_seeds(named_seeds, null), "Piec nie przyjął paczki z trzema nasionami")
+	TEST_ASSERT(named_seeds.seeds == 2 && name_kiln.inserted_seeds != named_seeds, "Piec nie wziął jednego nasiona z paczki (zostało [named_seeds.seeds])")
+	var/obj/item/plant_seeds/single_seed = name_kiln.inserted_seeds
+	name_kiln.eject_seeds(null)
+	TEST_ASSERT(single_seed.name_override == "pomidor testowy", "Nasiono z pieca zgubiło własną nazwę ([single_seed.name_override])")
+	qdel(single_seed)
+
 // Piec radiacyjny: nasiona wchodzą bez łopatki i wracają zmutowane
 	var/obj/machinery/plant_machine/plant_mutator/mutator = allocate(/obj/machinery/plant_machine/plant_mutator, get_step(origin, NORTHEAST))
 	var/obj/item/plant_seeds/kiln_seeds = allocate(/obj/item/plant_seeds/preset/tomato, origin)
 	TEST_ASSERT(mutator.insert_seeds(kiln_seeds, null), "Piec nie przyjął nasion")
-	TEST_ASSERT(mutator.plant && mutator.inserted_seeds == kiln_seeds, "Piec nie zrobił rośliny z nasion")
+	TEST_ASSERT(mutator.plant && mutator.inserted_seeds, "Piec nie zrobił rośliny z nasion")
+	var/obj/item/plant_seeds/kiln_single = mutator.inserted_seeds
 	var/datum/plant_feature/fruit/kiln_fruit = locate() in mutator.plant_component.plant_features
 	var/old_type = kiln_fruit.type
 	mutator.ui_act("mutate", list("key" = REF(kiln_fruit)))
 	mutator.ui_act("mutate", list("key" = REF(kiln_fruit)))
 	mutator.reset_working()
 	mutator.eject_seeds(null)
-	TEST_ASSERT(kiln_seeds.loc == get_turf(mutator), "Nasiona nie wyszły z pieca")
+	TEST_ASSERT(kiln_single.loc == get_turf(mutator), "Nasiona nie wyszły z pieca")
 	TEST_ASSERT(!mutator.plant && !mutator.inserted_seeds, "Piec nie wyczyścił środka po wyjęciu nasion")
-	var/datum/plant_feature/fruit/new_fruit = locate() in kiln_seeds.plant_features
+	var/datum/plant_feature/fruit/new_fruit = locate() in kiln_single.plant_features
 	TEST_ASSERT(new_fruit && new_fruit.type != old_type, "Nasiona z pieca mają stary owoc ([new_fruit?.type])")
+	qdel(kiln_single)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL

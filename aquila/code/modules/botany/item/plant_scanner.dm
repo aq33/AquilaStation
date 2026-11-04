@@ -137,6 +137,8 @@
 		for(var/datum/plant_need/reagent/buff/pests/pests in feature.plant_needs)
 			pest_level = max(pest_level, pests.pest_level)
 		for(var/datum/plant_need/need as anything in feature.unmet_needs)
+			if(QDELETED(need) || !(need in feature.plant_needs))
+				continue
 			missing |= need.get_short_description()
 	if(pest_level >= 1)
 		lines += "Szkodniki: [round(pest_level)]%"
