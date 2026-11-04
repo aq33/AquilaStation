@@ -32,6 +32,14 @@
 	TEST_ASSERT(!length(walker.overlays_standing[HANDS_LAYER]), "Held item stayed on the mob while walking")
 	var/list/leg_filter = animation.limbs["leg_a"].filter_data?["walk_mask"]
 	TEST_ASSERT(leg_filter?["render_source"] == "*walk_mask_leg_a_[walk_mask_dir(walker.dir)]", "Leg fragment does not use the shared mask for its direction")
+	var/list/mask_screens = get_walk_mask_screens()
+	TEST_ASSERT(length(mask_screens) == 20, "There are [length(mask_screens)] shared walk masks instead of 20 (5 masks x 4 directions)")
+	var/mask_found = FALSE
+	for(var/atom/movable/screen/walk_mask/mask as anything in mask_screens)
+		if(mask.render_target == leg_filter["render_source"])
+			mask_found = TRUE
+			break
+	TEST_ASSERT(mask_found, "No shared mask renders to [leg_filter["render_source"]], so the leg fragment would stay empty")
 
 	animation.idle_after = 0
 	animation.check_idle()
