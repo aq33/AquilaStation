@@ -70,5 +70,71 @@
 	TEST_ASSERT(!auto_wake.should_wake(3, 3), "A round of 3 players should never wake the crew")
 	qdel(auto_wake)
 
+/// AQUILA - the automatic crew wake counts each crew player once: cryo leavers and ghost roles do not change the counts
+/datum/unit_test/aquila_auto_crew_wake_count
+
+/datum/unit_test/aquila_auto_crew_wake_count/Run()
+	var/datum/auto_crew_wake/auto_wake = new
+	var/list/added_minds = list()
+	var/list/added_ckeys = list("aqtestalive", "aqtestdead", "aqtestcryo")
+
+	var/datum/mind/alive = new("aqtestalive")
+	alive.assigned_role = JOB_NAME_ASSISTANT
+	alive.current = allocate(/mob/living/carbon/human)
+	added_minds += alive
+
+	var/datum/mind/dead = new("aqtestdead")
+	dead.assigned_role = JOB_NAME_ASSISTANT
+	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human)
+	corpse.death()
+	dead.current = corpse
+	added_minds += dead
+	auto_wake.died_ckeys["aqtestdead"] = TRUE
+
+	// Left the round through a cryopod: the body is gone, but the player never died
+	var/datum/mind/cryo = new("aqtestcryo")
+	cryo.assigned_role = JOB_NAME_ASSISTANT
+	added_minds += cryo
+
+	// The dead player came back as a ghost role: a second, living mind with the same key and no station job
+	var/datum/mind/ghost_role = new("aqtestdead")
+	ghost_role.assigned_role = "Swarmer"
+	ghost_role.current = allocate(/mob/living/carbon/human)
+	added_minds += ghost_role
+
+	SSticker.minds += added_minds
+	GLOB.joined_player_list += added_ckeys
+	var/list/counts = auto_wake.count_crew()
+	SSticker.minds -= added_minds
+	GLOB.joined_player_list -= added_ckeys
+	for(var/datum/mind/mind as anything in added_minds)
+		mind.current = null
+
+	TEST_ASSERT_EQUAL(counts[1], 2, "Crew players counted (the cryo leaver and the ghost role must not count)")
+	TEST_ASSERT_EQUAL(counts[2], 1, "Dead crew players counted")
+	qdel(auto_wake)
+
+/// AQUILA - the pirate shuttle console flies to a docking port that exists on every ship map in rotation
+/datum/unit_test/aquila_pirate_shuttle_destinations
+
+/datum/unit_test/aquila_pirate_shuttle_destinations/Run()
+	var/list/destinations = splittext(initial(/obj/machinery/computer/shuttle_flight/pirate::possible_destinations), ";")
+	destinations -= "pirateship_home"
+	TEST_ASSERT(length(destinations), "The pirate shuttle has no destination besides its home port")
+	// Unit tests run on runtimestation, so the ship maps are read from disk
+	for(var/map_json in list("aquila_atlas", "aquila_snake", "aquila_serendipity"))
+		var/list/config = json_decode(file2text("_maps/[map_json].json"))
+		var/list/map_files = islist(config["map_file"]) ? config["map_file"] : list(config["map_file"])
+		var/found = FALSE
+		for(var/map_file in map_files)
+			var/map_text = file2text("_maps/[config["map_path"]]/[map_file]")
+			for(var/port_id in destinations)
+				if(findtext(map_text, "id = \"[port_id]\""))
+					found = TRUE
+					break
+			if(found)
+				break
+		TEST_ASSERT(found, "No pirate shuttle destination ([destinations.Join(", ")]) is a docking port on [map_json]")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
