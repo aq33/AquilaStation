@@ -48,8 +48,9 @@
 	if(grid_width > GRID_STORAGE_MAX_WIDTH)
 		grid_width = GRID_STORAGE_MAX_WIDTH
 		grid_height = CEILING(cells / grid_width, 1)
-	// Stare limity przestają obowiązywać, miejsce sprawdza siatka. max_items zostaje równe liczbie kratek, bo czyta go kilka miejsc w storage.dm
-	max_items = grid_width * grid_height
+	// Stare limity przestają obowiązywać, miejsce sprawdza siatka. Przedmioty z przepełnienia też są w contents,
+	// więc limit liczby przedmiotów nie może odrzucać wkładania na wolną kratkę
+	max_items = INFINITY
 	max_combined_w_class = INFINITY
 	refresh_mob_views()
 
@@ -105,17 +106,28 @@
 		mark_cells(occupancy, I, pos[1], pos[2], shape[1], shape[2])
 	return occupancy
 
-/// Pierwsze wolne miejsce od lewego górnego rogu, najpierw bez obrotu
+/// Pierwsze wolne miejsce od lewego górnego rogu. Obrót dopiero wtedy, gdy bez obrotu przedmiot nie mieści się nigdzie
 /datum/component/storage/concrete/grid/proc/find_first_spot(obj/item/I, list/occupancy)
 	var/list/shape = grid_shape(I)
-	var/square = shape[1] == shape[2]
-	for(var/row in 0 to grid_height - 1)
-		for(var/column in 0 to grid_width - 1)
-			if(cells_free(occupancy, column, row, shape[1], shape[2]))
-				return list(column, row, FALSE)
-			if(!square && cells_free(occupancy, column, row, shape[2], shape[1]))
-				return list(column, row, TRUE)
+	var/list/rotations = shape[1] == shape[2] ? list(FALSE) : list(FALSE, TRUE)
+	for(var/rotated in rotations)
+		var/width = rotated ? shape[2] : shape[1]
+		var/height = rotated ? shape[1] : shape[2]
+		for(var/row in 0 to grid_height - 1)
+			for(var/column in 0 to grid_width - 1)
+				if(cells_free(occupancy, column, row, width, height))
+					return list(column, row, rotated)
 	return null
+
+/// Liczba wolnych kratek (dla COMSIG_TRY_STORAGE_FILL_TYPE, które bez tego czytałoby nieskończony max_items)
+/datum/component/storage/concrete/grid/remaining_space_items()
+	if(!grid_width)
+		return ..()
+	settle_contents()
+	. = 0
+	for(var/cell in build_occupancy())
+		if(!cell)
+			.++
 
 /// Miejsce, w którym przedmiot zakrywa wskazaną kratkę. rotations to kolejność prób obrotu
 /datum/component/storage/concrete/grid/proc/find_spot_at(obj/item/I, list/occupancy, list/cell, list/rotations)

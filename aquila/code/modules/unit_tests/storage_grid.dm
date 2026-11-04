@@ -78,6 +78,30 @@
 	TEST_ASSERT(pos[3], "Small item was not rotated when dropped on itself")
 	TEST_ASSERT(!grid.move_item(small_a, null, "screen-loc=1:1,1:1"), "A drop outside the grid was treated as a move")
 
+	// Przedmioty z przepełnienia nie blokują wkładania na wolną kratkę (dawny limit max_items liczył całe contents)
+	var/obj/item/storage/backpack/tiny_bag = allocate(/obj/item/storage/backpack)
+	var/datum/component/storage/concrete/grid/tiny_grid = tiny_bag.GetComponent(/datum/component/storage/concrete/grid)
+	var/obj/item/last_tiny
+	for(var/i in 1 to tiny_grid.grid_width * tiny_grid.grid_height)
+		last_tiny = make_item(WEIGHT_CLASS_TINY)
+		TEST_ASSERT(SEND_SIGNAL(tiny_bag, COMSIG_TRY_STORAGE_INSERT, last_tiny, null, TRUE), "Tiny item [i] did not fit")
+	var/obj/item/forced_normal = make_item(WEIGHT_CLASS_NORMAL)
+	TEST_ASSERT(SEND_SIGNAL(tiny_bag, COMSIG_TRY_STORAGE_INSERT, forced_normal, null, TRUE, TRUE), "Forced normal item was not inserted")
+	TEST_ASSERT(SEND_SIGNAL(tiny_bag, COMSIG_TRY_STORAGE_TAKE, last_tiny, run_loc_floor_bottom_left), "Could not take a tiny item out")
+	TEST_ASSERT_EQUAL(tiny_grid.remaining_space_items(), 1, "Free cells next to an overflowing item")
+	TEST_ASSERT(SEND_SIGNAL(tiny_bag, COMSIG_TRY_STORAGE_INSERT, last_tiny, null, TRUE), "Overflowing item blocked a free cell")
+
+	// Bez obrotu, jeśli przedmiot mieści się prosto dalej na siatce: small w kolumnie 1, gdy kolumna 0 ma wolną tylko górną kratkę
+	var/obj/item/storage/backpack/rotation_bag = allocate(/obj/item/storage/backpack)
+	var/datum/component/storage/concrete/grid/rotation_grid = rotation_bag.GetComponent(/datum/component/storage/concrete/grid)
+	var/obj/item/blocker = make_item(WEIGHT_CLASS_TINY)
+	rotation_grid.pending_cell = list(0, 1)
+	TEST_ASSERT(SEND_SIGNAL(rotation_bag, COMSIG_TRY_STORAGE_INSERT, blocker, null, TRUE), "Blocker did not fit")
+	var/obj/item/upright = make_item(WEIGHT_CLASS_SMALL)
+	TEST_ASSERT(SEND_SIGNAL(rotation_bag, COMSIG_TRY_STORAGE_INSERT, upright, null, TRUE), "Small item did not fit next to the blocker")
+	pos = rotation_grid.grid_positions[upright]
+	TEST_ASSERT(!pos[3], "Small item was rotated although it fits upright further in the grid")
+
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")
