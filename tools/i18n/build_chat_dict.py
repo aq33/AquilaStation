@@ -15,7 +15,7 @@ Użycie (z katalogu repo, po extract_pairs.py):
 Ręczne pary dla pomocniczych procedur Aquili (strefa_pl, "Widzisz, jak ...") są
 w strings/i18n/en_manual.json.
 
-Wynik: strings/i18n/en_chat.json
+Wynik: strings/i18n/en_chat.json (klient) i strings/i18n/en_dm.json (krótkie stałe dla serwera)
 """
 
 import argparse
@@ -90,6 +90,45 @@ def parse_dm_literal(lit):
                 j += 1
             flush()
             parts.append(("e", lit[i + 1:j - 1].strip()))
+            i = j
+            continue
+        buf.append(c)
+        i += 1
+    flush()
+    return parts
+
+
+# najdłuższy tekst w słowniku dla serwera: dymki i runechat są krótkie
+DM_MAX_LENGTH = 100
+JS_EXT = (".tsx", ".jsx", ".ts", ".js")
+JS_ESCAPES = {"n": "\n", "t": "\t", "r": "\r"}
+
+
+def parse_js_literal(lit):
+    """Literał JS: części ("t", tekst) i ("e", wyrażenie z ${...}), jak parse_dm_literal."""
+    parts, buf, i, n = [], [], 0, len(lit)
+
+    def flush():
+        if buf:
+            parts.append(("t", "".join(buf)))
+            buf.clear()
+
+    while i < n:
+        c = lit[i]
+        if c == "\\" and i + 1 < n:
+            buf.append(JS_ESCAPES.get(lit[i + 1], lit[i + 1]))
+            i += 2
+            continue
+        if c == "$" and lit.startswith("${", i):
+            depth, j = 1, i + 2
+            while j < n and depth:
+                if lit[j] == "{":
+                    depth += 1
+                elif lit[j] == "}":
+                    depth -= 1
+                j += 1
+            flush()
+            parts.append(("e", lit[i + 2:j - 1].strip()))
             i = j
             continue
         buf.append(c)
@@ -216,19 +255,25 @@ def main():
     ap.add_argument("--all", default="strings/i18n/en_all.json",
                     help="scalony słownik (w repo); baza, gdy nie ma en_pairs.json")
     ap.add_argument("--out", default="strings/i18n/en_chat.json")
+    ap.add_argument("--dm-out", default="strings/i18n/en_dm.json",
+                    help="krótkie stałe dla DM (aquila/code/modules/i18n/translate.dm)")
     ap.add_argument("--slice", nargs="*", default=DEFAULT_SLICE)
     ap.add_argument("--manual", default="strings/i18n/en_manual.json")
     args = ap.parse_args()
 
     pairs = load_sources(args)
     # strings/ (porady rundy, listy tekstów) daje tylko stałe: wiadomość składa je w DM
-    files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json"],
+    # tgui: teksty z okien (stałe i literały `${...}`) dla tłumaczenia okien (tgui/i18nDom.ts)
+    files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json",
+                            "tgui/packages/*.tsx", "tgui/packages/*.jsx", "tgui/packages/*.ts",
+                            "tgui/packages/*.js"],
                            capture_output=True, text=True, encoding="utf-8").stdout.split("\0")[:-1]
 
-    wanted, names = set(), set()
+    wanted, names, js_literals = set(), set(), set()
     for path in files:
-        if ep.SKIP_PATH.search(path):
+        if ep.SKIP_PATH.search(path) or lm.NOT_PLAYER_TEXT.search(path):
             continue
+        is_js = path.endswith(JS_EXT)
         in_slice = path.endswith(".dm") and any(path.startswith(p) for p in args.slice)
         with open(path, encoding="utf-8", errors="replace") as f:
             for line in f:
@@ -236,7 +281,10 @@ def main():
                 for lit in lm.line_literals(path, line):
                     if lit not in pairs:
                         continue
-                    if in_slice:
+                    if is_js:
+                        js_literals.add(lit)
+                        (wanted if "${" in lit else names).add(lit)
+                    elif in_slice:
                         wanted.add(lit)
                     elif "[" not in lit:
                         names.add(lit)  # stałe spoza wycinka: nazwy, czasowniki ataku itp.
@@ -246,13 +294,14 @@ def main():
     exact, templates, stats = {}, [], collections.Counter()
     for pl in sorted(wanted | names | set(manual)):
         en = pairs[pl]
-        pl_parts = parse_dm_literal(pl)
+        parse = parse_js_literal if pl in js_literals else parse_dm_literal
+        pl_parts = parse(pl)
         built = build_pl(pl_parts)
         if not built:
             stats["pomijane: przedimek/zaimek w PL"] += 1
             continue
         texts, exprs = built
-        en_parts, missing = build_en(parse_dm_literal(en), exprs)
+        en_parts, missing = build_en(parse(en), exprs)
         if missing:
             stats["pomijane: wstawka EN bez odpowiednika PL"] += 1
             continue
@@ -287,6 +336,10 @@ def main():
     }
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    # Serwer (dymki, runechat, screentipy) potrzebuje tylko krótkich stałych
+    short = {k: v for k, v in sorted(exact.items()) if len(k) <= DM_MAX_LENGTH}
+    with open(args.dm_out, "w", encoding="utf-8") as f:
+        json.dump(short, f, ensure_ascii=False, separators=(",", ":"))
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"wycinek: {len(wanted)} tekstów, stałe spoza wycinka: {len(names)}, ręczne: {len(manual)}")
     for k, v in stats.most_common():
