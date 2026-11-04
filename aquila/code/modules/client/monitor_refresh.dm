@@ -11,7 +11,7 @@
 	hz = text2num("[hz]")
 	if(!isnum(hz) || hz < 30 || hz > 500)
 		return null
-	return clamp(round(hz), 30, 240)
+	return clamp(round(hz, 1), 30, 240) // round() z jednym argumentem zaokrągla w dół
 
 /client/proc/set_monitor_refresh_rate(hz)
 	var/new_fps = monitor_refresh_to_fps(hz)
