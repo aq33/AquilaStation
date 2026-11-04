@@ -167,6 +167,8 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 	var/fuze_type = /obj/item/munition_part/fuze/impact
 	/// Co powstaje na stole montażowym
 	var/product_path
+	/// Ile sztuk wyrobu daje jeden korpus; material_amount to koszt całej partii
+	var/product_count = 1
 
 /obj/item/munition_part/body/proc/set_material(datum/munition_material/new_material)
 	material = new_material
@@ -184,9 +186,11 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 
 /// Tworzy wyrób. Zwraca listę rzeczy, które powstały.
 /obj/item/munition_part/body/proc/create_product(atom/location, datum/munition_quality/final_quality, datum/munition_filler/filler)
-	var/atom/movable/product = new product_path(location)
-	apply_forged_munition(product, material, final_quality, filler)
-	return list(product)
+	. = list()
+	for(var/i in 1 to product_count)
+		var/atom/movable/product = new product_path(location)
+		apply_forged_munition(product, material, final_quality, filler)
+		. += product
 
 // Łuski — wyrobem jest całe pudełko lub magazynek, a komponent dostaje każdy nabój.
 /obj/item/munition_part/body/casings
@@ -251,7 +255,9 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 /obj/item/munition_part/body/shell/gauss
 	name = "korpus pocisku Gaussa"
 	product_path = /obj/item/ship_weapon/ammunition/gauss
-	material_amount = MINERAL_MATERIAL_AMOUNT * 2
+	// Pół stojaka działa Gaussa (max_ammo 12) z jednego wykucia, po arkuszu na pocisk
+	product_count = 6
+	material_amount = MINERAL_MATERIAL_AMOUNT * 6
 	hammer_time = 2
 
 // Obudowy głowic

@@ -204,5 +204,29 @@
 	TEST_ASSERT_EQUAL(P.armour_penetration, base_pen + 25, "Złe przebicie torpedy")
 	TEST_ASSERT_EQUAL(P.max_integrity, round(base_integrity * 1.2 * 1.2), "Zła wytrzymałość torpedy")
 
+/// AQUILA - kuźnia amunicji: korpus Gaussa daje pół stojaka pocisków, a eksport i galwanizer liczą koszt na sztukę
+/datum/unit_test/munitions_forge_gauss_batch
+
+/datum/unit_test/munitions_forge_gauss_batch/Run()
+	var/obj/item/munition_part/body/shell/gauss/body = allocate(/obj/item/munition_part/body/shell/gauss)
+	body.set_material(get_munition_material(/datum/material/iron))
+	var/datum/munition_quality/quality = get_munition_quality(/datum/munition_quality/masterwork)
+	var/list/products = body.create_product(run_loc_floor_bottom_left, quality, null)
+	TEST_ASSERT_EQUAL(length(products), 6, "Z korpusu Gaussa nie powstało 6 pocisków")
+	var/batch_value = 0
+	for(var/obj/item/ship_weapon/ammunition/gauss/shell as anything in products)
+		allocated += shell
+		TEST_ASSERT(istype(shell), "Wyrób korpusu Gaussa to nie pocisk Gaussa")
+		TEST_ASSERT(shell.GetComponent(/datum/component/forged_munition), "Pocisk z partii nie ma właściwości z kuźni")
+		batch_value += forged_munition_value(shell)
+	TEST_ASSERT(forged_munition_value(products[1]) > 0, "Pocisk z partii nic nie jest wart w eksporcie")
+	// cała partia jest warta tyle, co dawniej jeden wyrób z tego samego korpusu, a nie sześć razy więcej
+	var/datum/munition_material/iron = get_munition_material(/datum/material/iron)
+	var/list/cost = iron.get_cost(initial(body.material_amount) * quality.material_mult)
+	var/raw_value = 0
+	for(var/mat in cost)
+		raw_value += munition_sheet_value(mat) * cost[mat] / MINERAL_MATERIAL_AMOUNT
+	TEST_ASSERT(batch_value <= round(raw_value * (0.5 + 0.1 * quality.level) + 10 * (quality.level + 1)) + 6, "Partia Gaussa jest warta więcej niż jej surowce")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
