@@ -707,7 +707,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	if(. && !length(mobs_in_ship) && !(QDELETED(src) || QDESTROYING(src))) // Last one out means we don't need this anymore
 		qdel(src)
 
-/obj/structure/overmap/small_craft/proc/create_escape_pod(path, mob/last_pilot)
+/obj/structure/overmap/small_craft/proc/create_escape_pod(path, mob/last_pilot, manual = FALSE) // AQ EDIT - manual: katapulta z panelu konsoli
 	// Create pod
 	var/obj/structure/overmap/small_craft/escapepod/escape_pod = new path(get_turf(src))
 	if(!istype(escape_pod))
@@ -728,7 +728,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	// Transfer occupants
 	if(length(mobs_in_ship))
 		relay('nsv13/sound/effects/computer/alarm_3.ogg', "<span class=userdanger>KATAPULTUJ! KATAPULTUJ! KATAPULTUJ!</span>")
-		visible_message("<span class=userdanger>Włączono sekwencję automatycznego katapultowania! Wystrzelono kapsułę ratunkową!</span>")
+		visible_message("<span class=userdanger>[manual ? "Pilot pociąga za uchwyty katapulty!" : "Włączono sekwencję automatycznego katapultowania!"] Wystrzelono kapsułę ratunkową!</span>") // AQ EDIT - ręczna katapulta
 
 		if(last_pilot && !last_pilot.incapacitated())
 			last_pilot.doMove(escape_pod)
@@ -748,6 +748,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			escape_pod.mobs_in_ship |= M
 			M.overmap_ship = escape_pod
 	mobs_in_ship.Cut()
+	escape_pod.relay('nsv13/sound/effects/fighters/ejecting.ogg') // AQ EDIT - nieużywany dźwięk katapultowania
 
 	return escape_pod
 
