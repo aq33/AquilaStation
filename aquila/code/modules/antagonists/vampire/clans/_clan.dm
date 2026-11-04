@@ -56,7 +56,7 @@
 		default_humanity = VAMPIRE_DEFAULT_HUMANITY
 	vampiredatum.adjust_humanity(default_humanity - VAMPIRE_DEFAULT_HUMANITY, TRUE)
 	// adjust_humanity(0) nic nie robi, więc klany startujące na progu (Tremere, caitiff) nie dostawały Maskarady
-	if(vampiredatum.humanity >= VAMPIRE_HUMANITY_MASQUERADE_POWER)
+	if(vampiredatum.humanity >= VAMPIRE_HUMANITY_MASQUERADE_POWER && !(locate(/datum/action/vampire/masquerade) in vampiredatum.powers))
 		vampiredatum.grant_power(new /datum/action/vampire/masquerade)
 
 	// Masquerade breakers

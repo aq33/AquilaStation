@@ -27,7 +27,7 @@
 
 /datum/techweb_node/base/New() // plumbing designs, appended so upstream changes to this node's designs still apply
 	. = ..()
-	design_ids |= list("water_recycler", "plumbing_rcd_service", "plumbing_receiver", "liquid_pump")
+	design_ids |= list("water_recycler", "plumbing_rcd_service", "plumbing_receiver", "liquid_pump", "protolathe") // protolathe: płytka protolatu nie miała węzła
 
 /// Chemical recipient board from tg: the only way to get the receiver, since the RPD only builds the sender
 /obj/item/circuitboard/machine/plumbing_receiver

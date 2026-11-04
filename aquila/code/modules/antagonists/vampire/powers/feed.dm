@@ -463,8 +463,8 @@
 		if(feed_target.stat == DEAD)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
 			humanity_deducted = TRUE
-			// Picie ze zwłok nic nie kosztuje, ale zabicie żerowaniem tak
-			if(target_was_alive)
+			// Picie ze zwłok nic nie kosztuje, ale zabicie żerowaniem (ofiara straciła śmiertelnie dużo krwi) tak
+			if(target_was_alive && feed_fatal)
 				to_chat(owner, span_userdanger("Zabijasz ofiarę..."))
 				vampiredatum_power.adjust_humanity(-1)
 

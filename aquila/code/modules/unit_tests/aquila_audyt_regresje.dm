@@ -27,6 +27,8 @@
 		qdel(part)
 	var/obj/item/source = allocate(/obj/item/pen, start)
 
+	// Stałe ziarno: impuls losuje strefy i typy kończyn, więc bez niego wynik zależałby od losowania
+	rand_seed(1337)
 	var/arm_replaced = FALSE
 	for(var/i in 1 to 30)
 		var/list/whole_parts = whole.bodyparts.Copy()
@@ -40,6 +42,7 @@
 		TEST_ASSERT(!stump.get_bodypart(BODY_ZONE_R_ARM) && !stump.get_bodypart(BODY_ZONE_HEAD), "Pulse [i] grew a missing limb back")
 		if(arm != old_arm)
 			arm_replaced = TRUE
+	rand_seed(world.realtime) // dalsze testy znów losowo
 	TEST_ASSERT(arm_replaced, "30 pulses never replaced the left arm")
 
 /// Dynamic: rulesets with required_enemies do not index the list with 0 when threat is below 10

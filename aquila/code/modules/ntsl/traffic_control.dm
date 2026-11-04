@@ -16,7 +16,7 @@
 
 /datum/techweb_node/telecomms/New()
 	. = ..()
-	design_ids += "s-traffic"
+	design_ids += list("s-traffic", "message_monitor") // message_monitor: konsola monitorowania wiadomości nie miała węzła
 
 /obj/machinery/computer/telecomms/traffic
 	name = "konsola kontroli ruchu telekomunikacji"

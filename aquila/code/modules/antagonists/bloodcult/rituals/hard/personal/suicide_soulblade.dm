@@ -1,4 +1,6 @@
 
+// AQUILA - rytuał jest wyjęty z puli w _base_ritual.dm: nic nie wysyła klucza suicide_soulblade (soulblade bez suicide_act).
+// Przed przywróceniem do puli trzeba dodać ten klucz i poprawić keys poniżej.
 /datum/bloodcult_ritual/suicide_soulblade
 	name = "Ostrze duszy"
 	desc = "Stań się kośćmi własnego miecza..."
