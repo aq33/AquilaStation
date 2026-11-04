@@ -35,10 +35,12 @@ export const SmartVend = (props) => {
   const [searchText, setSearchText] = useState('');
   const [displayMode, setDisplayMode] = useState(getLayoutState());
   const search = createSearch(searchText, (item: Item) => item.name);
-  const contents =
+  // Sorted by the displayed name, so the same substance in a bottle and a pill stand side by side
+  const contents = (
     searchText.length > 0
       ? Object.values(data.contents).filter(search)
-      : Object.values(data.contents);
+      : Object.values(data.contents)
+  ).sort((a, b) => a.name.localeCompare(b.name, 'pl'));
   return (
     <Window width={431} height={575}>
       <Window.Content>

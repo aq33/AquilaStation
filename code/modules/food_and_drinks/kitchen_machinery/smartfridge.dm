@@ -256,21 +256,7 @@
 
 /// Groups the same items in the window: type and name, without the \proper and \improper markers
 /obj/machinery/smartfridge/proc/smartfridge_item_key(atom/movable/stored)
-	return "[stored.type]-[replacetext(replacetext(stored.name, "\proper", ""), "\improper", "")]"
-
-/// Name in the window with the contents first: "butelka: węgiel aktywny" becomes "Węgiel aktywny (butelka)"
-/obj/machinery/smartfridge/proc/smartfridge_display_name(atom/movable/stored)
-	var/item_name = replacetext(replacetext(stored.name, "\proper", ""), "\improper", "")
-	var/split = findtext(item_name, ": ")
-	if(!split)
-		return capitalize(item_name)
-	var/container = copytext(item_name, 1, split)
-	var/contents = capitalize(trim(copytext(item_name, split + 2)))
-	// "pigułka: węgiel aktywny (10 j.)" becomes "Węgiel aktywny (pigułka, 10 j.)"
-	var/bracket = findlasttext(contents, " (")
-	if(bracket && copytext(contents, -1) == ")")
-		return "[copytext(contents, 1, bracket)] ([container], [copytext(contents, bracket + 2)]"
-	return "[contents] ([container])"
+	return "[stored.type]-[smartfridge_plain_name(stored)]" // display name: aquila/code/modules/food_and_drinks/kitchen_machinery/smartfridge.dm
 // AQ EDIT END
 
 
