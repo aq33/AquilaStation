@@ -136,7 +136,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "ar" = (
@@ -668,7 +668,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -1093,7 +1093,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
@@ -1279,7 +1279,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -2116,7 +2116,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2463,7 +2463,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -3056,7 +3056,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/vending/wardrobe/atmos_wardrobe,
@@ -3595,7 +3595,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "hp" = (
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -3868,7 +3868,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -4038,7 +4038,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,
@@ -4059,7 +4059,7 @@
 	pixel_y = 32
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -4351,7 +4351,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -4681,7 +4681,7 @@
 /area/nsv/weapons/gauss/battery/deck2/port)
 "jB" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -5707,7 +5707,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,
@@ -5731,7 +5731,7 @@
 /turf/open/floor/durasteel/alt,
 /area/hallway/secondary/exit/departure_lounge)
 "mU" = (
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
@@ -5776,7 +5776,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -6727,7 +6727,7 @@
 /obj/machinery/airalarm/directional/north,
 /obj/effect/landmark/start/station_engineer,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -7683,7 +7683,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -7942,7 +7942,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -8164,7 +8164,7 @@
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
 /obj/machinery/space_heater,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -8794,7 +8794,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -9989,7 +9989,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/structure/cable,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
@@ -10318,7 +10318,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -10378,7 +10378,7 @@
 	target_pressure = 2000
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -10586,7 +10586,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -11367,7 +11367,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
 "EC" = (
@@ -11967,7 +11967,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -12122,7 +12122,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
@@ -12308,7 +12308,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
 "Hw" = (
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -12333,7 +12333,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,
@@ -12594,7 +12594,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "In" = (
@@ -13320,7 +13320,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -13379,7 +13379,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "KD" = (
@@ -13548,7 +13548,7 @@
 /turf/open/floor/plasteel/techmaint,
 /area/science/explab)
 "Ld" = (
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -13787,7 +13787,7 @@
 /obj/structure/sign/warning/fire{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -14393,7 +14393,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/binary/pump/layer4{
@@ -14601,7 +14601,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -15900,7 +15900,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,
@@ -16361,7 +16361,7 @@
 /turf/open/floor/monotile/steel,
 /area/ai_monitored/security/armory)
 "TA" = (
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
@@ -16503,7 +16503,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,
@@ -17174,7 +17174,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/item/pipe_dispenser,
@@ -17663,7 +17663,7 @@
 	name = "O2 to mix"
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -17798,7 +17798,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -17834,7 +17834,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
 "Ys" = (
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -18062,7 +18062,7 @@
 /turf/open/floor/monotile/steel,
 /area/security/brig)
 "Zh" = (
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -18205,7 +18205,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/blue/orlen,
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
@@ -18279,7 +18279,7 @@
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/blue{
+/obj/effect/turf_decal/tile/ship/blue/orlen{
 	dir = 1
 	},
 /turf/open/floor/durasteel/techfloor_grid,

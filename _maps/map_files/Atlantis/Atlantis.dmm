@@ -368,7 +368,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "ape" = (
 /obj/effect/turf_decal/stripes/line{
@@ -646,7 +646,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "aBh" = (
 /turf/closed/wall/steel,
@@ -1215,7 +1215,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "aVn" = (
 /obj/effect/turf_decal/tile/purple{
@@ -3233,7 +3233,7 @@
 "cDm" = (
 /obj/machinery/computer/ship/viewscreen,
 /obj/machinery/camera/autoname,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "cDx" = (
 /obj/structure/closet/emcloset,
@@ -3619,7 +3619,7 @@
 /obj/structure/chair/fancy/corp{
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "cRE" = (
 /obj/effect/turf_decal/tile/ship/neutral,
@@ -3792,7 +3792,7 @@
 /turf/open/floor/monotile/dark,
 /area/engine/engineering)
 "cXu" = (
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "cXB" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -4365,7 +4365,7 @@
 	dir = 1
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "dwX" = (
 /obj/item/restraints/handcuffs/cable/pink,
@@ -5352,7 +5352,7 @@
 	armor = list("melee" = 20, "bullet" = 15, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 50, "rad" = 60, "fire" = 60, "acid" =55, "stamina" = 20);
 	desc = "For those who REALLY love their toasters. This one have additional armour plating and delivered special for engi team."
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "euO" = (
 /turf/open/floor/plating{
@@ -6181,7 +6181,7 @@
 /area/security/brig)
 "fdI" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "fec" = (
 /obj/effect/turf_decal/tile/ship/half/blue{
@@ -6422,7 +6422,7 @@
 "fnf" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/break_room)
 "fnl" = (
 /obj/machinery/air_sensor/atmos/oxygen_tank{
@@ -7041,7 +7041,7 @@
 /turf/open/floor/monotile/dark,
 /area/science)
 "fPe" = (
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "fPE" = (
 /obj/structure/rack,
@@ -7069,7 +7069,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "fQV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7270,7 +7270,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "fYU" = (
 /obj/effect/turf_decal/tile/ship/green,
@@ -7534,7 +7534,7 @@
 /area/maintenance/nsv/deck2/starboard)
 "ghG" = (
 /obj/machinery/vending/wardrobe/engi_wardrobe,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "gic" = (
 /obj/effect/turf_decal/ship/techfloor{
@@ -8380,7 +8380,7 @@
 "gZq" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/antirad,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "gZx" = (
 /obj/machinery/door/airlock/ship/maintenance,
@@ -8481,7 +8481,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "hcM" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer2{
@@ -9464,7 +9464,7 @@
 	})
 "hUw" = (
 /obj/structure/chair/office/light,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "hUW" = (
 /obj/structure/chair/office/light,
@@ -10562,7 +10562,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "iQj" = (
 /obj/structure/railing/corner{
@@ -11382,7 +11382,7 @@
 /turf/open/floor/monotile/dark,
 /area/storage/tech)
 "jCY" = (
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "jDr" = (
 /obj/structure/chair/fancy/gauss/east,
@@ -12104,7 +12104,7 @@
 /area/security/brig)
 "kcv" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/break_room)
 "kcE" = (
 /obj/structure/closet/secure_closet/atmospherics,
@@ -12345,7 +12345,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "klg" = (
 /obj/item/gun/ballistic/automatic/pistol/m1911/no_mag,
@@ -13054,14 +13054,14 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "kQo" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "kQr" = (
 /obj/structure/table/wood,
@@ -13379,7 +13379,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "lbr" = (
 /turf/closed/wall/r_wall{
@@ -13644,7 +13644,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "lqH" = (
 /obj/machinery/conveyor/slow{
@@ -14873,7 +14873,7 @@
 	dir = 1
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "mlh" = (
 /obj/machinery/computer/deckgun,
@@ -15323,7 +15323,7 @@
 /turf/open/floor/plasteel/grid/techfloor,
 /area/storage/tech)
 "mGv" = (
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/break_room)
 "mGR" = (
 /obj/structure/cable,
@@ -16455,7 +16455,7 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "nAR" = (
 /obj/structure/cable,
@@ -17193,7 +17193,7 @@
 "ogY" = (
 /obj/structure/table/reinforced,
 /obj/item/crowbar,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "oho" = (
 /obj/machinery/door/airlock/ship/engineering/glass{
@@ -18543,7 +18543,7 @@
 "psz" = (
 /obj/structure/cable/yellow,
 /obj/machinery/airalarm/directional/east,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "psV" = (
 /obj/machinery/door/poddoor/shutters/ship{
@@ -19712,7 +19712,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "qoE" = (
 /obj/structure/cable,
@@ -21361,7 +21361,7 @@
 /area/engine/engineering)
 "rIY" = (
 /obj/machinery/light/small,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/break_room)
 "rJf" = (
 /obj/effect/turf_decal/tile/ship/half/purple,
@@ -22361,7 +22361,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/station_engineer,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "sDi" = (
 /obj/effect/turf_decal/tile/ship/half/green{
@@ -24918,7 +24918,7 @@
 "uDg" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "uDr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25124,7 +25124,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm/directional/south,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "uMP" = (
 /obj/structure/table/reinforced,
@@ -25494,7 +25494,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/stormdrive/monitor)
 "vdR" = (
 /turf/open/floor/durasteel/techfloor_grid,
@@ -27413,7 +27413,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "wQp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -27530,7 +27530,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/station_engineer,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "wUa" = (
 /turf/open/floor/engine,
@@ -29100,7 +29100,7 @@
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/red,
 /area/engine/engineering)
 "yhx" = (
 /obj/structure/frame/computer{
@@ -29171,7 +29171,7 @@
 	armor = list("melee" = 20, "bullet" = 15, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 50, "rad" = 60, "fire" = 60, "acid" =55, "stamina" = 20);
 	desc = "For those who REALLY love their toasters. This one have additional armour plating and delivered special for engi team."
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/engine/break_room)
 "yjT" = (
 /obj/effect/turf_decal/tile/ship/half/green{

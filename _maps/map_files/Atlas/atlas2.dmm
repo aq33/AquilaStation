@@ -78,7 +78,7 @@
 	pixel_y = 6
 	},
 /obj/machinery/airalarm/directional/north,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "ai" = (
 /obj/structure/cable,
@@ -4491,7 +4491,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "mi" = (
 /obj/effect/turf_decal/tile/ship/green,
@@ -6136,7 +6136,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "sq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -8726,7 +8726,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "Ct" = (
 /obj/structure/bookcase/random/reference,
@@ -9739,7 +9739,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "Gj" = (
 /obj/effect/turf_decal/stripes/line{
@@ -15204,7 +15204,7 @@
 	},
 /mob/living/simple_animal/parrot/Poly,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/red,
 /area/crew_quarters/heads/chief)
 "Zw" = (
 /obj/effect/turf_decal/tile/ship/blue{

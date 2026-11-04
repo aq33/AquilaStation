@@ -32,6 +32,11 @@
 /obj/effect/turf_decal/trimline/yellow/line/orlen
 	color = ORLEN_DECAL_COLOR
 
+// Niebieskie pasy w atmosferyce: biel do czerwieni, żeby strefa była czerwono-biała
+/obj/effect/turf_decal/tile/ship/blue/orlen
+	name = "biały narożnik Orlenu"
+	color = "#E6E6E6"
+
 #undef ORLEN_DECAL_COLOR
 
 /****************************\

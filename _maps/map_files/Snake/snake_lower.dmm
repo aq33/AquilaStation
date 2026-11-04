@@ -4524,7 +4524,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "lD" = (
 /obj/machinery/door/window/northright{
@@ -5954,7 +5954,7 @@
 /obj/effect/landmark/start/station_engineer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "pK" = (
 /obj/effect/landmark/start/chaplain,
@@ -6130,7 +6130,7 @@
 /area/hallway/primary/fore)
 "qr" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "qs" = (
 /obj/machinery/power/apc/auto_name/east,
@@ -6342,7 +6342,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "rn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/carbon_output{
@@ -8135,7 +8135,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "ys" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -9748,10 +9748,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "Fd" = (
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "Fe" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -10911,7 +10911,7 @@
 /mob/living/simple_animal/bot/floorbot,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "JB" = (
 /obj/machinery/computer/station_alert{
@@ -11006,7 +11006,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "JS" = (
 /obj/machinery/door/poddoor{
@@ -12979,7 +12979,7 @@
 /obj/effect/landmark/start/station_engineer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/red,
 /area/engine/engineering/reactor_control)
 "Rw" = (
 /obj/machinery/firealarm/directional/west,

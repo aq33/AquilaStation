@@ -575,7 +575,7 @@
 	pixel_y = 24
 	},
 /obj/item/stamp/chief_engineer,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4{
@@ -909,7 +909,7 @@
 	name = "Chief Engineer";
 	req_one_access_txt = "56"
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "cM" = (
 /obj/machinery/announcement_system,
@@ -1236,7 +1236,7 @@
 	name = "Chief Engineer RC";
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "eD" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4{
@@ -1734,7 +1734,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "gV" = (
 /turf/open/floor/engine,
@@ -2398,7 +2398,7 @@
 /area/engine/engine_room)
 "kA" = (
 /obj/structure/cable,
-/turf/open/floor/circuit/orange,
+/turf/open/floor/circuit/red,
 /area/engine/break_room)
 "kE" = (
 /obj/structure/cable,
@@ -2464,7 +2464,7 @@
 	pixel_y = -9;
 	req_one_access_txt = "56"
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "kX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2486,7 +2486,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "li" = (
 /obj/structure/window/plasma/reinforced{
@@ -3377,7 +3377,7 @@
 	anchored = 1
 	},
 /obj/item/rcd_upgrade/silo_link,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "pX" = (
 /obj/machinery/computer/ship/munitions_computer/west,
@@ -3462,7 +3462,7 @@
 /obj/item/book/manual/wiki/atmospherics,
 /obj/item/book/manual/wiki/engineering_guide,
 /obj/item/radio/intercom/directional/west,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "qE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -3556,7 +3556,7 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "ra" = (
 /obj/structure/cable,
@@ -3975,7 +3975,7 @@
 /obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
 /obj/item/banner/engineering,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "td" = (
 /obj/structure/lattice/catwalk/over/ship,
@@ -4175,7 +4175,7 @@
 /obj/machinery/computer/card/minor/ce{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "ul" = (
 /obj/structure/cable,
@@ -4392,7 +4392,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "vw" = (
 /obj/structure/railing/corner{
@@ -4774,7 +4774,7 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "xI" = (
 /obj/structure/cable,
@@ -5708,7 +5708,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "DL" = (
 /turf/closed/wall/r_wall/ship,
@@ -5755,7 +5755,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "DZ" = (
 /obj/structure/cable,
@@ -5791,7 +5791,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Eh" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -5936,7 +5936,7 @@
 "EX" = (
 /obj/machinery/shield_generator,
 /obj/structure/cable,
-/turf/open/floor/circuit/orange,
+/turf/open/floor/circuit/red,
 /area/engine/break_room)
 "EY" = (
 /obj/item/radio/intercom/directional/north,
@@ -6249,7 +6249,7 @@
 "GD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "GG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -6302,7 +6302,7 @@
 "GO" = (
 /obj/structure/cable,
 /obj/machinery/holopad/secure,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "GT" = (
 /obj/structure/cable,
@@ -6419,10 +6419,10 @@
 	pixel_x = 32
 	},
 /obj/structure/extinguisher_cabinet/south,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "HB" = (
-/turf/open/floor/circuit/orange,
+/turf/open/floor/circuit/red,
 /area/engine/break_room)
 "HC" = (
 /obj/machinery/disposal/bin,
@@ -6520,7 +6520,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Ib" = (
 /obj/machinery/airalarm/directional/east,
@@ -6852,7 +6852,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/turf/open/floor/circuit/orange,
+/turf/open/floor/circuit/red,
 /area/engine/break_room)
 "Kn" = (
 /turf/closed/wall/r_wall/ship,
@@ -7097,7 +7097,7 @@
 	name = "Chief Engineer";
 	req_one_access_txt = "56"
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Lz" = (
 /turf/closed/wall/ship,
@@ -7175,7 +7175,7 @@
 /obj/item/circuitboard/machine/tesla_coil/power,
 /obj/item/holosign_creator/engineering,
 /obj/item/extinguisher/advanced,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "LV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -7247,7 +7247,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Mk" = (
 /obj/structure/cable,
@@ -7300,7 +7300,7 @@
 /obj/structure/chair/fancy/corp{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "My" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -7839,7 +7839,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Pg" = (
 /obj/structure/cable,
@@ -8358,7 +8358,7 @@
 /area/maintenance/department/electrical)
 "RJ" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "RL" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -8668,7 +8668,7 @@
 /area/nsv/hanger)
 "Tp" = (
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/circuit/orange,
+/turf/open/floor/circuit/red,
 /area/engine/break_room)
 "Tq" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
@@ -9319,7 +9319,7 @@
 /area/quartermaster/warehouse)
 "Xa" = (
 /obj/machinery/suit_storage_unit/ce,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Xd" = (
 /obj/machinery/newscaster/directional/south,
@@ -9342,7 +9342,7 @@
 	req_one_access_txt = "56"
 	},
 /obj/item/construction/rcd/loaded,
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Xi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -9615,7 +9615,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/orange_carpet,
+/turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
 "Ze" = (
 /obj/machinery/power/apc/auto_name/west,
