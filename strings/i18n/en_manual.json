@@ -54,5 +54,10 @@
  "prawe": "right",
  "lewe": "left",
  "prawe oko": "right eye",
- "lewe oko": "left eye"
+ "lewe oko": "left eye",
+ "Rozbrój+LPM:": "Disarm+LMB:",
+ "ctrl-shift-PPM (tylko combat mode):": "ctrl-shift-RMB (combat mode only):",
+ "alt-PPM (tylko combat mode):": "alt-RMB (combat mode only):",
+ "ctrl-PPM (tylko combat mode):": "ctrl-RMB (combat mode only):",
+ "shift-PPM (tylko combat mode):": "shift-RMB (combat mode only):"
 }
