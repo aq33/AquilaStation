@@ -744,7 +744,7 @@
 /turf/open/floor/monofloor,
 /area/engine/stormdrive)
 "cr" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D";
 	dir = 1
@@ -847,7 +847,7 @@
 /turf/open/floor/plating/rusty_techgrid,
 /area/quartermaster/storage)
 "cI" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D";
 	dir = 10
@@ -2088,7 +2088,7 @@
 /turf/open/floor/plating/rusty_techgrid,
 /area/crew_quarters/bar/mess_hall)
 "gJ" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D";
 	dir = 9
@@ -6300,7 +6300,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
 "vZ" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D";
 	dir = 5
@@ -10759,7 +10759,7 @@
 /turf/open/floor/durasteel,
 /area/engine/atmos/starboard_atmos)
 "Kc" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D";
 	dir = 6
@@ -14545,7 +14545,7 @@
 	lighting_colour_tube = "#FF3232"
 	})
 "Vj" = (
-/obj/effect/turf_decal/trimline/yellow/line{
+/obj/effect/turf_decal/trimline/yellow/line/orlen{
 	alpha = 220;
 	color = "#D2D53D"
 	},

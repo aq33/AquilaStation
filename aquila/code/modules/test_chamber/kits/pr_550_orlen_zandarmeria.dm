@@ -1,0 +1,65 @@
+/datum/test_chamber_kit/pr_550
+	name = "Inżynieria w barwach Orlenu, ochrona jako Żandarmeria"
+	pr = "aq33/AquilaStation#550"
+	description = "Zestaw: szafki i automaty obu działów (w komorze wszystko za darmo), śluzy, mundury, kaski, czapki Orlenu, tablety, karty i dekale podłogi. Leżą też zapasowa karta kapitana i śrubokręt. \
+	1) Mundurownia Orlenu (EngiDrobe) i ta od atmosferyki → oczekiwane: czerwona obudowa z napisem ORLEN, czerwone światło; w ofercie trzy czapki Orlenu (biała, odblaskowa, a w atmosferyce czerwona). \
+	2) Szafki inżyniera, technika atmosferyki i Głównego Inżyniera: otwórz kartą → oczekiwane: biało-czerwone (atmosferyka czerwona), bez żółci, także po otwarciu. \
+	3) Załóż kolejno mundur inżyniera (zwiń go w menu PPM → wersja zwinięta też biało-czerwona), atmosferyki, Głównego Inżyniera, kask (włącz latarkę), biały kask, beret, kurtkę zimową z kapturem, kamizelkę odblaskową, buty robocze, pas na narzędzia i pelerynę → oczekiwane: wszystko w barwach Orlenu na postaci i w ekwipunku, nic nie znika. \
+	4) Czapki Orlenu: obróć daszek (Alt+klik) → oczekiwane: widać daszek z tyłu, na postaci i w ręce. \
+	5) Śluza inżynierii → oczekiwane: zostaje żółta. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
+	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
+	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
+	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone."
+	items = list(
+		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
+		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
+		/obj/machinery/vending/wardrobe/sec_wardrobe = 1,
+		/obj/structure/closet/secure_closet/engineering_personal = 1,
+		/obj/structure/closet/secure_closet/atmospherics = 1,
+		/obj/structure/closet/secure_closet/engineering_chief = 1,
+		/obj/structure/closet/secure_closet/security = 1,
+		/obj/structure/closet/secure_closet/hos = 1,
+		/obj/machinery/door/airlock/engineering = 1,
+		/obj/machinery/door/airlock/security = 1,
+		/obj/item/clothing/under/ship/engineer = 1,
+		/obj/item/clothing/under/rank/engineering/atmospheric_technician = 1,
+		/obj/item/clothing/under/rank/engineering/chief_engineer = 1,
+		/obj/item/clothing/head/hardhat = 1,
+		/obj/item/clothing/head/hardhat/white = 1,
+		/obj/item/clothing/head/beret/ship/engineer = 1,
+		/obj/item/clothing/head/soft/orlen = 1,
+		/obj/item/clothing/head/soft/orlen/atmos = 1,
+		/obj/item/clothing/head/soft/orlen/highvis = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/engineering = 1,
+		/obj/item/clothing/suit/hazardvest = 1,
+		/obj/item/clothing/shoes/workboots = 1,
+		/obj/item/storage/belt/utility = 1,
+		/obj/item/clothing/neck/cloak/ce = 1,
+		/obj/item/clothing/under/ship/military_police = 1,
+		/obj/item/clothing/suit/ship/squad/military_police = 1,
+		/obj/item/clothing/head/beret/sec = 1,
+		/obj/item/clothing/head/helmet/sec = 1,
+		/obj/item/clothing/head/HoS = 1,
+		/obj/item/modular_computer/tablet/pda/station_engineer = 1,
+		/obj/item/modular_computer/tablet/pda/security = 1,
+		/obj/item/card/id/job/station_engineer = 1,
+		/obj/item/card/id/job/security_officer = 1,
+		/obj/item/card/id/captains_spare = 1,
+		/obj/item/screwdriver = 1,
+	)
+
+/// Naklejki rozkładają się na podłogę i same znikają, więc nie idą przez items (test liczy obiekty)
+/datum/test_chamber_kit/pr_550/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	var/list/decals = list(
+		/obj/effect/turf_decal/tile/ship/yellow/orlen,
+		/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
+		/obj/effect/turf_decal/tile/ship/police,
+		/obj/effect/turf_decal/tile/ship/half/police,
+	)
+	for(var/i in 1 to min(length(decals), length(turfs)))
+		var/decal_type = decals[i]
+		new decal_type(turfs[i])
+	// automaty w komorze nie mają sprzedawać za kredyty
+	for(var/obj/machinery/vending/wardrobe/drobe in spawned)
+		drobe.onstation = FALSE

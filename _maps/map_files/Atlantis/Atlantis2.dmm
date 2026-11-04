@@ -9170,7 +9170,7 @@
 	dir = 4
 	},
 /obj/item/tank/internals/oxygen,
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/heads/chief)
 "jcF" = (
@@ -14126,7 +14126,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/item/construction/rcd/loaded{
 	desc = "A device used to rapidly build and deconstruct. Reload with iron, plasteel, glass or compressed matter cartridges. This model has an increased volume of matter.";
 	max_matter = 320;
@@ -14653,7 +14653,7 @@
 "oXq" = (
 /obj/machinery/computer/apc_control,
 /mob/living/simple_animal/parrot/Poly,
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/heads/chief)
 "oXr" = (

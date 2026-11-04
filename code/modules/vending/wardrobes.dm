@@ -108,6 +108,8 @@
 					/obj/item/clothing/head/hardhat = 3,
 					/obj/item/clothing/head/hardhat/weldhat = 3,
 					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
+					/obj/item/clothing/head/soft/orlen = 3, //AQUILA EDIT - czapki Orlenu
+					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/eng = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/engineering/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
@@ -132,6 +134,8 @@
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
+					/obj/item/clothing/head/soft/orlen/atmos = 3, //AQUILA EDIT - czapki Orlenu
+					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/atmos = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe

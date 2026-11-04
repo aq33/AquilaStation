@@ -343,10 +343,10 @@
 #define JOB_CHATCOLOR_BITRUNNER       "#9ECF6B" // AQ EDIT - bitrunning
 
 // Engineering
-#define JOB_CHATCOLOR_RAWENGINEERING        "#E9D1A8" // custom engineering color
-#define JOB_CHATCOLOR_CHIEFENGINEER         "#CFBB72"
-#define JOB_CHATCOLOR_STATIONENGINEER       "#D9BC89"
-#define JOB_CHATCOLOR_ATMOSPHERICTECHNICIAN "#D4A07D"
+#define JOB_CHATCOLOR_RAWENGINEERING        "#F2C4C4" // custom engineering color //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_CHIEFENGINEER         "#E0484E" //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_STATIONENGINEER       "#E87F83" //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_ATMOSPHERICTECHNICIAN "#D9666B" //AQUILA EDIT - czerwień Orlenu
 
 // Medical
 #define JOB_CHATCOLOR_RAWMEDICAL           "#B1E5EC" // custom medical color

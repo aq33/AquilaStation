@@ -26,7 +26,7 @@ export const COLORS = {
     security: '#3f9b5a',
     medbay: '#3498db',
     science: '#9b59b6',
-    engineering: '#f1c40f',
+    engineering: '#e03a3e',
     cargo: '#f39c12',
     service: '#7cc46a',
     centcom: '#00c100',
@@ -123,7 +123,7 @@ export const RADIO_CHANNELS = [
   {
     name: 'Inżynieria',
     freq: 1357,
-    color: '#f37746',
+    color: '#e8484d',
   },
   {
     name: 'Żandarmeria',

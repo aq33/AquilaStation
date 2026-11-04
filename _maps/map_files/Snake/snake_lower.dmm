@@ -4573,7 +4573,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "lJ" = (
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4698,7 +4698,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "mb" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -5897,7 +5897,7 @@
 	},
 /area/engine/engineering)
 "pu" = (
-/obj/effect/turf_decal/tile/yellow/tile_side,
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
@@ -6012,7 +6012,7 @@
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "pV" = (
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -6203,7 +6203,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "qD" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
@@ -6351,7 +6351,7 @@
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
 "rq" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
@@ -6445,7 +6445,7 @@
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "rP" = (
-/obj/effect/turf_decal/tile/yellow/tile_side,
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
@@ -6676,7 +6676,7 @@
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/fore)
 "sK" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 1
 	},
 /obj/structure/cable/yellow,
@@ -7290,7 +7290,7 @@
 /turf/open/space/basic,
 /area/space)
 "vm" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -7943,7 +7943,7 @@
 	name = "Executive officer's Office"
 	})
 "xI" = (
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -8012,7 +8012,7 @@
 	},
 /area/security/warden)
 "xR" = (
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -12507,7 +12507,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "PF" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -12668,7 +12668,7 @@
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
 "Qt" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -12724,7 +12724,7 @@
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "QC" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
@@ -14494,7 +14494,7 @@
 	name = "Executive officer's Office"
 	})
 "Xn" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -14833,7 +14833,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "YQ" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
