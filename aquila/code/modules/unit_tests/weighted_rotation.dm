@@ -24,13 +24,14 @@
 
 	rotation.bias = 1
 	odds = rotation.pool_odds(all_pools)
-	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_LOW], 17, "Chaos-hungry low pool")
-	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_HIGH], 50, "Chaos-hungry high pool")
+	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_LOW], 4, "Chaos-hungry low pool")
+	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_HIGH], 76, "Chaos-hungry high pool")
+	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_MEDIUM], 20, "Chaos-hungry medium pool")
 
 	rotation.bias = -1
 	odds = rotation.pool_odds(all_pools)
-	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_LOW], 50, "Calm-seeking low pool")
-	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_HIGH], 17, "Calm-seeking high pool")
+	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_LOW], 76, "Calm-seeking low pool")
+	TEST_ASSERT_EQUAL(odds[WEIGHTED_POOL_HIGH], 4, "Calm-seeking high pool")
 
 	rotation.bias = 0
 	odds = rotation.pool_odds(list(WEIGHTED_POOL_LOW, WEIGHTED_POOL_HIGH))

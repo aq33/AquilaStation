@@ -7,9 +7,13 @@
 /// Where the tilt and the votes of the round that has not been counted yet are kept
 #define WEIGHTED_PACE_FILE "data/weighted_pace.json"
 /// How much the tilt moves the pools: the high pool weighs 1 + this * bias, the low one 1 - this * bias
-#define WEIGHTED_SURVEY_STRENGTH 0.5
+#define WEIGHTED_SURVEY_STRENGTH 0.9
+/// How much a strong tilt either way takes from the medium pool: it weighs 1 - this * |bias|
+#define WEIGHTED_MEDIUM_SHRINK 0.5
 /// Share of the new tilt that comes from the last round's vote, the rest is the old tilt
-#define WEIGHTED_ROUND_INFLUENCE 0.4
+#define WEIGHTED_ROUND_INFLUENCE 0.7
+/// Share of the tilt lost after a round with too few votes
+#define WEIGHTED_TILT_FADE 0.4
 /// A round with 1 to this - 1 "Dynamika rundy" votes does not count, the old tilt only fades. No votes at all leave the tilt
 /// as it is, because a server restart without a played round has no votes either
 #define WEIGHTED_MIN_VOTES 3
@@ -97,7 +101,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 		bias = clamp(bias * (1 - WEIGHTED_ROUND_INFLUENCE) + (sum / count) * WEIGHTED_ROUND_INFLUENCE, -1, 1)
 		load_report = "[count] głosów (mniej zagrożeń [tally["-1"]], jest dobrze [tally["0"]], więcej zagrożeń [tally["1"]])"
 	else
-		bias *= (1 - WEIGHTED_ROUND_INFLUENCE)
+		bias *= (1 - WEIGHTED_TILT_FADE)
 		load_report = "tylko [count] głosów (min. [WEIGHTED_MIN_VOTES]), nastawienie słabnie"
 	load_report += ", nastawienie [round(old_bias, 0.01)] -> [round(bias, 0.01)]"
 	pending_votes.Cut()
@@ -127,7 +131,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 		return admin_weights.Copy()
 	return list(
 		WEIGHTED_POOL_LOW = 1 - WEIGHTED_SURVEY_STRENGTH * bias,
-		WEIGHTED_POOL_MEDIUM = 1,
+		WEIGHTED_POOL_MEDIUM = 1 - WEIGHTED_MEDIUM_SHRINK * abs(bias),
 		WEIGHTED_POOL_HIGH = 1 + WEIGHTED_SURVEY_STRENGTH * bias,
 	)
 
@@ -295,4 +299,6 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 #undef WEIGHTED_PACE_FILE
 #undef WEIGHTED_SURVEY_STRENGTH
 #undef WEIGHTED_ROUND_INFLUENCE
+#undef WEIGHTED_MEDIUM_SHRINK
+#undef WEIGHTED_TILT_FADE
 #undef WEIGHTED_MIN_VOTES

@@ -348,7 +348,7 @@ BLIND     // can't see anything
 	set_sensors(usr)
 
 /obj/item/clothing/under/attack_hand(mob/user)
-	if(attached_accessory && ispath(attached_accessory.pocket_storage_component_path) && loc == user)
+	if(attached_accessory && ispath(attached_accessory.pocket_storage_component_path) && loc == user && attached_accessory.detached_pockets?.parent != src) // AQ EDIT - the pockets moved onto the uniform, so its own storage opens them
 		attached_accessory.attack_hand(user)
 		return
 	..()

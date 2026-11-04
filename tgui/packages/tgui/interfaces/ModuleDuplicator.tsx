@@ -1,6 +1,13 @@
 // AQUILA: okno duplikatora modułów, ComponentPrinter z tg na naszej przeglądarce projektów.
-import { Box, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import {
+  Box,
+  Button,
+  Icon,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
+import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -9,8 +16,11 @@ import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type { Design, Material, MaterialMap } from './Fabrication/Types';
 
+/** A design from the player's circuit library (circuit_library.dm) has saved set */
+type DuplicatorDesign = Design & { saved?: BooleanLike };
+
 type Data = {
-  designs: Record<string, Design>;
+  designs: Record<string, DuplicatorDesign>;
   materials: Material[];
 };
 
@@ -56,7 +66,7 @@ export const ModuleDuplicator = (props) => {
 
 type RecipeProps = {
   available: MaterialMap;
-  design: Design;
+  design: DuplicatorDesign;
 };
 
 const Recipe = (props: RecipeProps) => {
@@ -108,6 +118,16 @@ const Recipe = (props: RecipeProps) => {
           <div className="FabricatorRecipe__Label">{design.name}</div>
         </div>
       </Tooltip>
+      {!!design.saved && (
+        <Button.Confirm
+          icon="trash"
+          color="transparent"
+          tooltip="Usuń z biblioteki"
+          confirmContent=""
+          confirmIcon="check"
+          onClick={() => act('delete_saved', { design_id: design.id })}
+        />
+      )}
     </div>
   );
 };

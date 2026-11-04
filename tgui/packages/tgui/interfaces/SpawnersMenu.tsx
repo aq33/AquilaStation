@@ -1,4 +1,4 @@
-import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeAll } from 'tgui-core/string';
 
@@ -71,13 +71,19 @@ export const SpawnersMenu = (props) => {
                   ) : (
                     <>
                       <LabeledList.Item label="Pochodzenie">
-                        {spawner.short_desc || 'Nieznane'}
+                        <Box preserveWhitespace>
+                          {spawner.short_desc || 'Nieznane'}
+                        </Box>
                       </LabeledList.Item>
                       <LabeledList.Item label="Wytyczne">
-                        {spawner.flavor_text || 'Brak'}
+                        <Box preserveWhitespace>
+                          {spawner.flavor_text || 'Brak'}
+                        </Box>
                       </LabeledList.Item>
                       <LabeledList.Item color="bad" label="Warunki">
-                        {spawner.important_info || 'Brak'}
+                        <Box preserveWhitespace>
+                          {spawner.important_info || 'Brak'}
+                        </Box>
                       </LabeledList.Item>
                     </>
                   )}

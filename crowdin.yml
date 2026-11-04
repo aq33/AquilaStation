@@ -1,0 +1,17 @@
+# Projekt https://crowdin.com/project/aquila: gracze poprawiają tam polskie tłumaczenie.
+# Pliki w crowdin_out/ generuje tools/i18n/crowdin.py (nie są w repo).
+# Sekrety repozytorium: CROWDIN_PROJECT_ID i CROWDIN_PERSONAL_TOKEN.
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_PERSONAL_TOKEN
+base_path: "."
+preserve_hierarchy: true
+
+files:
+  - source: /crowdin_out/en/*.json
+    dest: /%original_file_name%
+    translation: /crowdin_out/%two_letters_code%/%original_file_name%
+    type: chrome
+    # zmiana angielskiego oryginału nie kasuje polskiego tekstu ani poprawek graczy
+    update_option: update_without_changes
+    export_only_approved: true
+    skip_untranslated_strings: true
