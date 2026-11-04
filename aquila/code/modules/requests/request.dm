@@ -5,6 +5,8 @@
 	var/autoaccept
 	/// Someone already started fulfilling this request (the automatic poll or an admin), nobody may start it again
 	var/handled = FALSE
+	/// When handled was set, an admin may take over a request that has been stuck in handling for too long
+	var/handled_time = 0
 
 /datum/request/Topic(href, href_list)
 	. = ..()
@@ -97,6 +99,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	if(autoaccept) // pod tym jest kopiuj wklej z one_click_antag.dm
 		autoaccept = FALSE // Too late to cancel from now on
 		handled = TRUE
+		handled_time = world.time
 		var/message = "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana, jednakże wszystkie drużyny są obecnie zajęte. Za niedogodności przepraszamy."
 		var/datum/ert/ertemplate
 		var/ert_type = pick_ert_team_type()
@@ -174,7 +177,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 
 			//Open the Armory doors
-			if(ertemplate.opendoors)
+			if(teamSpawned && ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
 					door.open()
 					CHECK_TICK
@@ -195,6 +198,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		return FALSE
 	autoaccept = FALSE // Too late to cancel from now on
 	handled = TRUE
+	handled_time = world.time
 	return wake_crew_now()
 
 /// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.

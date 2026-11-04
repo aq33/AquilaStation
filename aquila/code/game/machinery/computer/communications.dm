@@ -3,6 +3,16 @@
 	COOLDOWN_DECLARE(static/reinforcement_action_cooldown)
 	/// Cooldown before you can wake up another wave of assistants from cryostasis
 	COOLDOWN_DECLARE(static/crew_wake_cooldown)
+	/// Logged in by an admin ghost with every access, logged out again when the admin closes the console
+	var/admin_ghost_login = FALSE
+
+/obj/machinery/computer/communications/ui_close(mob/user)
+	. = ..()
+	if(admin_ghost_login && authorize_name == "Centrala" && IsAdminGhost(user))
+		admin_ghost_login = FALSE
+		authenticated = FALSE
+		authorize_access = null
+		authorize_name = null
 
 /obj/machinery/computer/communications/proc/authenticated_as_cap_sec_or_silicon(mob/user)
 	if (issilicon(user))
