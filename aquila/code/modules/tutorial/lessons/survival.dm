@@ -8,10 +8,10 @@
 	back = /obj/item/storage/backpack
 	backpack_contents = list(/obj/item/storage/box/survival = 1)
 
-/// Lekcja 2: rozszczelnienie, ranny w stanie krytycznym, noszenie na plecach
+/// Lekcja 2: rozszczelnienie, ranny w stanie krytycznym i krwawiący, noszenie na plecach
 /datum/tutorial/aquila/survival
 	name = "Przetrwanie"
-	desc = "Co robić, gdy z pomieszczenia ucieka powietrze, jak ratować rannego w stanie krytycznym i jak zanieść go na łóżko."
+	desc = "Co robić, gdy z pomieszczenia ucieka powietrze, jak ratować rannego w stanie krytycznym, jak zatamować krwawienie i jak zanieść rannego na łóżko."
 	tutorial_id = "aquila_survival_1"
 	icon = "heartbeat"
 	order = 2
@@ -23,6 +23,8 @@
 	var/drain_timer
 	/// Gracz już dostał podpowiedź, że internale działają, ale brakuje skafandra
 	var/suit_hint_given = FALSE
+	/// Timer sprawdzania, czy ranny jeszcze krwawi
+	var/bleed_timer
 
 // Układ pokoju (przesunięcia od lewego dolnego rogu podłogi): po lewej korytarz,
 // po prawej pokój z rannym, stołem i łóżkiem.
@@ -52,7 +54,7 @@
 	current_step = "decompression"
 	SEND_SOUND(tutorial_mob, sound('sound/machines/warning-buzzer.ogg', volume = 50))
 	SEND_SOUND(tutorial_mob, sound('sound/effects/space_wind.ogg', volume = 40))
-	message_to_player("<b>Rozszczelnienie!</b> Powietrze ucieka. W plecaku masz <b>pudełko przetrwania</b> (otwierasz je <b>Alt+klik</b>). Załóż <b>maskę</b>, potem <b>hełm</b>. <b>Skafander</b> jest zwinięty: weź go do ręki i rozwiń klawiszem <b>[retrieve_bind("activate_inhand")]</b>, potem załóż ([retrieve_bind("quick_equip")]). Butlę schowaj do kieszeni i włącz internale.")
+	message_to_player("<b>Rozszczelnienie!</b> Powietrze ucieka. W plecaku masz <b>pudełko przetrwania</b> (otwierasz je <b>Alt+klik</b>). Załóż <b>maskę</b>, potem <b>hełm</b>. <b>Skafander</b> jest zwinięty: weź go do ręki i rozwiń klawiszem <b>[retrieve_bind("activate_inhand")]</b>, potem załóż ([retrieve_bind("quick_equip")]). Butlę schowaj do kieszeni i włącz internale. Leżą tam też <b>bandaże</b>: przydadzą się za chwilę.")
 	update_objective("Z pudełka przetrwania: maska, hełm, skafander (rozwiń go [retrieve_bind("activate_inhand")]), butla i internale.")
 	highlight_hud(/atom/movable/screen/internals)
 	RegisterSignal(tutorial_mob, list(COMSIG_CARBON_INTERNALS_CHANGED, COMSIG_MOB_EQUIPPED_ITEM), PROC_REF(check_protection))
@@ -169,7 +171,7 @@
 		return
 	UnregisterSignal(medipen, COMSIG_TUTORIAL_ITEM_USED)
 	remove_highlight(medipen)
-	require_carry()
+	require_bandage()
 
 /// Nowy autoinjektor obok rannego, gdy gracz zmarnował poprzedni
 /datum/tutorial/aquila/survival/proc/replace_medipen()
@@ -183,13 +185,50 @@
 	add_highlight(medipen)
 	RegisterSignal(medipen, COMSIG_TUTORIAL_ITEM_USED, PROC_REF(on_medipen_used))
 
-// 4. Noszenie na plecach
+// 4. Krwawienie: bandaż z pudełka przetrwania
+
+/datum/tutorial/aquila/survival/proc/require_bandage()
+	current_step = "bandage"
+	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, patient)
+	if(!patient.is_bleeding())
+		require_carry()
+		return
+	var/mob/living/carbon/student = tutorial_mob
+	var/obj/item/storage/box/survival/box = locate() in student.back
+	if(!(locate(/obj/item/stack/medical/bandage) in box) && !(locate(/obj/item/stack/medical/bandage) in student.held_items))
+		// Pudełko bywa pełne (wersja z radiem), wtedy bandaż leży przy rannym
+		var/obj/item/stack/medical/bandage/spare = new(get_turf(patient))
+		add_highlight(spare)
+	message_to_player("Epinefryna go ustabilizowała, ale ranny <b>krwawi</b>: spod niego kapie krew. W pudełku przetrwania masz <b>bandaże</b>. Wybierz na lalce celu (prawy dolny róg HUD-u) <b>klatkę piersiową</b>, bo tam jest rana, weź bandaż do ręki i kliknij nim rannego. Gdy krwawisz ty, kliknij alert <b>Krwawienie</b> w prawym górnym rogu: uciśniesz ranę ręką, zanim znajdziesz bandaż.")
+	update_objective("Opatrz rannego bandażem z pudełka przetrwania.")
+	highlight_hud(/atom/movable/screen/zone_sel)
+	bleed_timer = addtimer(CALLBACK(src, PROC_REF(check_bleeding)), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+
+/datum/tutorial/aquila/survival/proc/check_bleeding()
+	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, patient)
+	if(!patient || patient.is_bleeding())
+		return
+	stop_bleed_check()
+	unhighlight_hud(/atom/movable/screen/zone_sel)
+	message_to_player("Krwawienie zatamowane. Bandaż nie zastąpi lekarza: rannego trzeba jeszcze położyć i oddać w ręce medyków.")
+	require_carry()
+
+/datum/tutorial/aquila/survival/proc/stop_bleed_check()
+	if(bleed_timer)
+		deltimer(bleed_timer)
+		bleed_timer = null
+
+// 5. Noszenie na plecach
 
 /datum/tutorial/aquila/survival/proc/require_carry()
 	current_step = "carry"
-	message_to_player("Epinefryna go ustabilizowała, ale trzeba go zanieść na łóżko. Przełącz intencję na <b>chwyt</b> ([retrieve_bind("select_grab_intent")]) i kliknij rannego <b>dwa razy</b> (mocny chwyt). Potem, wciąż na chwycie, przeciągnij go myszą na swoją postać, żeby wziąć go na plecy.")
-	update_objective("Chwyć rannego mocno (intencja chwytu, dwa kliknięcia) i przeciągnij go na siebie.")
-	highlight_hud(/atom/movable/screen/act_intent)
+	if(tutorial_mob.uses_legacy_intents())
+		message_to_player("Trzeba go zanieść na łóżko. Przełącz intencję na <b>chwyt</b> ([retrieve_bind("select_grab_intent")]) i kliknij rannego <b>dwa razy</b> (mocny chwyt). Potem, wciąż na chwycie, przeciągnij go myszą na swoją postać, żeby wziąć go na plecy.")
+		update_objective("Chwyć rannego mocno (intencja chwytu, dwa kliknięcia) i przeciągnij go na siebie.")
+		highlight_hud(/atom/movable/screen/act_intent)
+	else
+		message_to_player("Trzeba go zanieść na łóżko. Chwyć go <b>Ctrl+klikiem</b>, a drugi <b>Ctrl+klik</b> zamieni to w mocny chwyt. Potem przeciągnij go myszą na swoją postać, żeby wziąć go na plecy.")
+		update_objective("Chwyć rannego mocno (dwa razy Ctrl+klik) i przeciągnij go na siebie.")
 	RegisterSignal(tutorial_mob, COMSIG_MOVABLE_BUCKLE, PROC_REF(on_carry))
 
 /datum/tutorial/aquila/survival/proc/on_carry(datum/source, mob/living/carried)
@@ -222,7 +261,7 @@
 	if(get_turf(patient) != get_turf(bed))
 		UnregisterSignal(tutorial_mob, COMSIG_MOVABLE_UNBUCKLE)
 		current_step = "carry"
-		message_to_player("Położyłeś go obok łóżka. Weź go znów na plecy (chwyt dwa razy i przeciągnięcie na siebie) i połóż na łóżku.")
+		message_to_player("Położyłeś go obok łóżka. Weź go znów na plecy ([tutorial_mob.uses_legacy_intents() ? "chwyt dwa razy" : "dwa razy Ctrl+klik"] i przeciągnięcie na siebie) i połóż na łóżku.")
 		RegisterSignal(tutorial_mob, COMSIG_MOVABLE_BUCKLE, PROC_REF(on_carry))
 		return
 	UnregisterSignal(tutorial_mob, COMSIG_MOVABLE_UNBUCKLE)
@@ -242,6 +281,7 @@
 
 /datum/tutorial/aquila/survival/Destroy(force, ...)
 	draining = FALSE
+	stop_bleed_check()
 	return ..()
 
 /datum/tutorial/aquila/survival/init_map()
@@ -261,6 +301,8 @@
 	// Nie umrze w trakcie lekcji, nawet gdy gracz długo zwleka
 	ADD_TRAIT(patient, TRAIT_NODEATH, TRAIT_SOURCE_TUTORIAL)
 	patient.apply_damage(130, BRUTE, BODY_ZONE_CHEST)
+	// Głęboka rana nie zasklepia się sama, więc poczeka na bandaż
+	patient.add_bleeding(BLEED_DEEP_WOUND)
 	add_to_tracking_atoms(patient)
 
 /datum/tutorial/aquila/survival/init_mob()

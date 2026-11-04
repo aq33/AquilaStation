@@ -156,17 +156,19 @@
 	STEP_ASSERT("help")
 	var/mob/living/carbon/human/dummy = lesson.tracking_atoms[/mob/living/carbon/human]
 	TEST_ASSERT(dummy?.status_flags & GODMODE, "The training dummy can be hurt")
-	student.a_intent = INTENT_HARM
+	// Bez klienta postać ma domyślne sterowanie, czyli combat mode
+	student.set_combat_mode(TRUE)
 	SEND_SIGNAL(student, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, dummy)
 	STEP_ASSERT("help")
-	student.a_intent = INTENT_HELP
+	student.set_combat_mode(FALSE)
 	SEND_SIGNAL(student, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, dummy)
 	STEP_ASSERT("harm")
 	SEND_SIGNAL(student, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, dummy)
 	STEP_ASSERT("harm")
-	student.a_intent = INTENT_HARM
+	student.set_combat_mode(TRUE)
 	SEND_SIGNAL(student, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, dummy)
 	STEP_ASSERT("harm_done")
+	student.set_combat_mode(FALSE)
 
 	lesson.require_say()
 	STEP_ASSERT("say")
@@ -198,6 +200,7 @@
 	TEST_ASSERT(patient && patient.stat != CONSCIOUS && patient.stat != DEAD, "The patient is not in critical condition")
 	var/obj/item/reagent_containers/hypospray/medipen/tutorial/medipen = lesson.tracking_atoms[/obj/item/reagent_containers/hypospray/medipen/tutorial]
 	TEST_ASSERT(medipen?.loc == patient && patient.l_store == medipen, "The medipen is not in the patient's pocket")
+	TEST_ASSERT(patient.is_bleeding(), "The patient is not bleeding")
 
 	// Skafander, hełm, maska i butla z pudełka przetrwania
 	var/obj/item/storage/box/survival/box = locate() in student.back
@@ -207,6 +210,8 @@
 	var/obj/item/clothing/mask/breath/mask = locate() in box
 	var/obj/item/tank/internals/tank = locate() in box
 	TEST_ASSERT(suit && helmet && mask && tank, "The survival box is missing the skinsuit, helmet, mask or tank")
+	var/obj/item/stack/medical/bandage/bandage = locate() in box
+	TEST_ASSERT(bandage, "The survival box has no bandages")
 
 	lesson.start_decompression()
 	STEP_ASSERT("decompression")
@@ -241,8 +246,15 @@
 	var/obj/item/reagent_containers/hypospray/medipen/tutorial/new_medipen = lesson.tracking_atoms[/obj/item/reagent_containers/hypospray/medipen/tutorial]
 	TEST_ASSERT(new_medipen && new_medipen != medipen, "No new medipen after the wasted one")
 	new_medipen.inject(patient, student)
-	STEP_ASSERT("carry")
+	STEP_ASSERT("bandage")
 	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "The patient got no epinephrine")
+	// Krwawienie sprawdza timer co sekundę
+	lesson.check_bleeding()
+	STEP_ASSERT("bandage")
+	patient.suppress_bloodloss(bandage.stop_bleeding)
+	TEST_ASSERT(!patient.is_bleeding(), "A bandage did not stop the bleeding")
+	lesson.check_bleeding()
+	STEP_ASSERT("carry")
 
 	student.forceMove(patient.loc)
 	student.buckle_mob(patient, TRUE, FALSE, 90, 1, 0)

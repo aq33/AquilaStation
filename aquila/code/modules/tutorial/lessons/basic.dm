@@ -283,7 +283,7 @@
 	UnregisterSignal(tutorial_mob, list(COMSIG_MOVABLE_MOVED, COMSIG_ADD_MOOD_EVENT))
 	remove_highlight(target)
 	current_step = "run"
-	message_to_player("Udało się. Na suchej podłodze możesz znów biegać: przełącz się z powrotem na <b>bieg</b> ([retrieve_bind("toggle_move_intent")]). Bieg męczy szybciej, co widać na wskaźniku staminy.")
+	message_to_player("Udało się. Na suchej podłodze możesz znów biegać: przełącz się z powrotem na <b>bieg</b> ([retrieve_bind("toggle_move_intent")]). Gdy musisz uciekać, przytrzymaj <b>[retrieve_bind("sprint")]</b>: sprint jest jeszcze szybszy, ale zużywa staminę (wskaźnik z błyskawicą na HUD-zie). Bez staminy zwalniasz i możesz się przewrócić.")
 	update_objective("Przełącz się z powrotem na bieg ([retrieve_bind("toggle_move_intent")]).")
 	highlight_hud(/atom/movable/screen/mov_intent)
 	if(tutorial_mob.m_intent == MOVE_INTENT_RUN)
@@ -390,17 +390,25 @@
 	message_to_player("Oddychasz z butli. Przy rozszczelnieniu kadłuba to ratuje życie, a butla starcza na kilka minut. Wyłączysz ją tym samym przyciskiem.")
 	addtimer(CALLBACK(src, PROC_REF(require_combat)), 7 SECONDS)
 
-// 11. Intencje: pomoc i cios na manekinie
+// 11. Tryb walki (albo stare intencje): pomoc i cios na manekinie
+
+/// Element HUD-u, którym gracz przełącza walkę: przycisk trybu walki albo stary wybór intencji
+/datum/tutorial/aquila/proc/combat_hud_type()
+	return tutorial_mob.uses_legacy_intents() ? /atom/movable/screen/act_intent : /atom/movable/screen/combattoggle
 
 /datum/tutorial/aquila/basic/proc/require_combat()
 	if(!tutorial_mob)
 		return
 	current_step = "help"
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, dummy)
-	message_to_player("Interakcje z ludźmi zależą od <b>intencji</b> (przycisk w prawym dolnym rogu HUD-u). Ustaw intencję <b>pomocy</b> (help, <b>[retrieve_bind("select_help_intent")]</b>) i kliknij manekina. Na help klik na kogoś to przyjazny gest: poklepanie, przytulenie, ratowanie z ognia.")
-	update_objective("Na intencji help ([retrieve_bind("select_help_intent")]) kliknij manekina.")
+	if(tutorial_mob.uses_legacy_intents())
+		message_to_player("Interakcje z ludźmi zależą od <b>intencji</b> (przycisk w prawym dolnym rogu HUD-u). Ustaw intencję <b>pomocy</b> (help, <b>[retrieve_bind("select_help_intent")]</b>) i kliknij manekina. Na help klik na kogoś to przyjazny gest: poklepanie, przytulenie, ratowanie z ognia.")
+		update_objective("Na intencji help ([retrieve_bind("select_help_intent")]) kliknij manekina.")
+	else
+		message_to_player("Interakcje z ludźmi zależą od <b>trybu walki</b> (przycisk w prawym dolnym rogu HUD-u, klawisz <b>[retrieve_bind("toggle_combat_mode")]</b>). Gdy jest wyłączony, klik na kogoś to przyjazny gest: poklepanie, przytulenie, ratowanie z ognia. Z wyłączonym trybem walki kliknij manekina.")
+		update_objective("Z wyłączonym trybem walki kliknij manekina.")
 	add_highlight(dummy)
-	highlight_hud(/atom/movable/screen/act_intent)
+	highlight_hud(combat_hud_type())
 	RegisterSignal(tutorial_mob, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_dummy_touched))
 
 /datum/tutorial/aquila/basic/proc/on_dummy_touched(datum/source, atom/target)
@@ -409,24 +417,40 @@
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, dummy)
 	if(target != dummy)
 		return
+	var/legacy = tutorial_mob.uses_legacy_intents()
 	switch(current_step)
 		if("help")
-			if(tutorial_mob.a_intent != INTENT_HELP)
-				message_to_player("To nie była intencja pomocy. Przełącz na <b>help</b> ([retrieve_bind("select_help_intent")]) i kliknij manekina jeszcze raz.")
+			// W starym trybie disarm i grab też mają wyłączony tryb walki, a tu chodzi o help
+			if(legacy ? tutorial_mob.a_intent != INTENT_HELP : tutorial_mob.combat_mode)
+				if(legacy)
+					message_to_player("To nie była intencja pomocy. Przełącz na <b>help</b> ([retrieve_bind("select_help_intent")]) i kliknij manekina jeszcze raz.")
+				else
+					message_to_player("Masz włączony tryb walki, więc to był cios. Wyłącz go (<b>[retrieve_bind("toggle_combat_mode")]</b>) i kliknij manekina jeszcze raz.")
 				return
 			current_step = "harm"
-			message_to_player("Tak wygląda przyjazny gest. Teraz przełącz na intencję <b>krzywdy</b> (harm, <b>[retrieve_bind("select_harm_intent")]</b>) i uderz manekina. Na harm każdy klik na kogoś to atak: pięścią albo przedmiotem z ręki.")
-			update_objective("Na intencji harm ([retrieve_bind("select_harm_intent")]) uderz manekina.")
+			if(legacy)
+				message_to_player("Tak wygląda przyjazny gest. Teraz przełącz na intencję <b>krzywdy</b> (harm, <b>[retrieve_bind("select_harm_intent")]</b>) i uderz manekina. Na harm każdy klik na kogoś to atak: pięścią albo przedmiotem z ręki.")
+				update_objective("Na intencji harm ([retrieve_bind("select_harm_intent")]) uderz manekina.")
+			else
+				message_to_player("Tak wygląda przyjazny gest. Teraz włącz <b>tryb walki</b> (<b>[retrieve_bind("toggle_combat_mode")]</b>) i uderz manekina. W trybie walki każdy klik na kogoś to atak: pięścią albo przedmiotem z ręki.")
+				update_objective("Włącz tryb walki ([retrieve_bind("toggle_combat_mode")]) i uderz manekina.")
 		if("harm")
-			if(tutorial_mob.a_intent != INTENT_HARM)
-				message_to_player("To nie był cios. Przełącz na <b>harm</b> ([retrieve_bind("select_harm_intent")]) i kliknij manekina.")
+			if(!tutorial_mob.combat_mode)
+				if(legacy)
+					message_to_player("To nie był cios. Przełącz na <b>harm</b> ([retrieve_bind("select_harm_intent")]) i kliknij manekina.")
+				else
+					message_to_player("To nie był cios. Włącz tryb walki (<b>[retrieve_bind("toggle_combat_mode")]</b>) i kliknij manekina.")
 				return
 			UnregisterSignal(tutorial_mob, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 			remove_highlight(dummy)
-			unhighlight_hud(/atom/movable/screen/act_intent)
+			unhighlight_hud(combat_hud_type())
 			current_step = "harm_done"
-			message_to_player("Cios! Zapamiętaj różnicę: <b>help</b> to pomoc, <b>harm</b> to atak. Są jeszcze <b>disarm</b> (popchnięcie, wytrącenie broni) i <b>grab</b> (chwyt). Gdy nie walczysz, zawsze wracaj na <b>help</b>, żeby nikogo przypadkiem nie uderzyć.")
-			update_objective("Wróć na intencję help ([retrieve_bind("select_help_intent")]).")
+			if(legacy)
+				message_to_player("Cios! Zapamiętaj różnicę: <b>help</b> to pomoc, <b>harm</b> to atak. Są jeszcze <b>disarm</b> (popchnięcie, wytrącenie broni) i <b>grab</b> (chwyt). Gdy nie walczysz, zawsze wracaj na <b>help</b>, żeby nikogo przypadkiem nie uderzyć.")
+				update_objective("Wróć na intencję help ([retrieve_bind("select_help_intent")]).")
+			else
+				message_to_player("Cios! Zapamiętaj: <b>prawy przycisk</b> na kimś to popchnięcie albo wytrącenie broni, a <b>Ctrl+klik</b> to chwyt. Gdy nie walczysz, zawsze wyłączaj tryb walki, żeby nikogo przypadkiem nie uderzyć. Wolisz stare cztery intencje? Włączysz je w preferencjach.")
+				update_objective("Wyłącz tryb walki ([retrieve_bind("toggle_combat_mode")]).")
 			addtimer(CALLBACK(src, PROC_REF(require_say)), 10 SECONDS)
 
 // 12. Radio i kanały
@@ -523,7 +547,7 @@
 	add_to_tracking_atoms(new /obj/structure/closet/crate/bin(loc_from_corner(BASIC_BIN)))
 	add_to_tracking_atoms(new /obj/structure/closet/crate(loc_from_corner(BASIC_CRATE)))
 
-	// Manekin do ćwiczenia intencji: nie da się go zranić ani zabić
+	// Manekin do ćwiczenia ciosów: nie da się go zranić ani zabić
 	var/mob/living/carbon/human/dummy = new(loc_from_corner(BASIC_DUMMY))
 	dummy.real_name = "Manekin treningowy"
 	dummy.name = dummy.real_name
