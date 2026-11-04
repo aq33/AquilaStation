@@ -321,6 +321,13 @@
 				authorize_name = "Unknown"
 				to_chat(usr, "<span class='warning'>[src] cicho alarmuje, gdy ktoś nadpisuje logowanie.</span>")
 				playsound(src, 'sound/machines/terminal_alert.ogg', 25, FALSE)
+			// AQ EDIT START - an admin ghost has no ID card, so it could not log in and test the console
+			else if (IsAdminGhost(usr))
+				authenticated = TRUE
+				authorize_access = get_all_accesses()
+				authorize_name = "Centrala"
+				admin_ghost_ckey = usr.ckey
+			// AQ EDIT END
 			else
 				var/obj/item/card/id/id_card = usr.get_idcard(hand_first = TRUE)
 				if (check_access(id_card))

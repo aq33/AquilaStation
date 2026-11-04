@@ -202,5 +202,22 @@
 	virus.affected_mob = null
 	qdel(virus)
 
+/// Wirus z umiarkowaną transmisją (objawy disease2 mają ją niską) zaraża dotykiem
+/datum/unit_test/disease2_contact_spread
+
+/datum/unit_test/disease2_contact_spread/Run()
+	var/datum/disease/advance/virus = new
+	virus.transmission = DISEASE_CONTACT_SKIN_TRANSMISSION
+	virus.SetSpread()
+	TEST_ASSERT(virus.spread_flags & DISEASE_SPREAD_CONTACT_SKIN, "Transmisja [virus.transmission] nie daje zarażania dotykiem")
+	virus.transmission = DISEASE_CONTACT_FLUIDS_TRANSMISSION
+	virus.SetSpread()
+	TEST_ASSERT(virus.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS, "Transmisja [virus.transmission] nie daje zarażania płynami")
+	TEST_ASSERT(!(virus.spread_flags & DISEASE_SPREAD_CONTACT_SKIN), "Transmisja [virus.transmission] już zaraża dotykiem")
+	virus.transmission = 0
+	virus.SetSpread()
+	TEST_ASSERT_EQUAL(virus.spread_flags, DISEASE_SPREAD_BLOOD, "Transmisja 0 powinna zarażać tylko krwią")
+	qdel(virus)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

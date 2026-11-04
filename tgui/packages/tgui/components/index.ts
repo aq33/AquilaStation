@@ -13,6 +13,7 @@ export { BufferedTextArea } from './BufferedTextArea';
 export { DraggableClickableControl } from './DraggableClickableControl';
 export { Grid } from './Grid';
 export { Interactive } from './Interactive';
+export { KeyListener } from './KeyListener';
 export { Map } from './Map';
 export { OrbitalMapComponent } from './OrbitalMapComponent';
 export { OrbitalMapSvg } from './OrbitalMapSvg';

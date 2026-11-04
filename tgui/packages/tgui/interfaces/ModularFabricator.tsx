@@ -34,6 +34,7 @@ type CurrentBuild = {
 type Data = {
   fabName: string;
   accepts_disk: BooleanLike;
+  can_sync: BooleanLike;
   show_unlock_bar: BooleanLike;
   allow_add_category: BooleanLike;
   uses_queue: BooleanLike;
@@ -365,6 +366,18 @@ const SidePanel = (props: { availableMaterials: MaterialMap }) => {
           <Section>
             <DiskControls />
           </Section>
+        </Stack.Item>
+      )}
+      {!!data.can_sync && (
+        <Stack.Item>
+          <Button
+            fluid
+            icon="sync"
+            tooltip="Pobierz projekty odkryte przez dział B+R"
+            onClick={() => act('resync_rd')}
+          >
+            Synchronizuj z B+R
+          </Button>
         </Stack.Item>
       )}
     </Stack>
