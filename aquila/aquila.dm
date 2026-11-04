@@ -644,6 +644,7 @@
 #include "code\modules\food_and_drinks\food\slicing.dm"
 #include "code\modules\food_and_drinks\food\snacks_pie.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\monkeyrecycler.dm"
+#include "code\modules\food_and_drinks\kitchen_machinery\processor.dm"
 #include "code\modules\food_and_drinks\recipes\drinks_recipes.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_polskie.dm"
 #include "code\modules\hydroponics\grown\onion.dm"
