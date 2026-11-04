@@ -192,3 +192,7 @@ Temporary Items
 !/tools/build
 
 
+
+# Crowdin (tools/i18n/crowdin.py)
+crowdin_out/
+crowdin_existing/
