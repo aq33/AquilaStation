@@ -16,12 +16,17 @@
 
 /obj/item/storage/Initialize(mapload)
 	. = ..()
+	// Większość schowków nie ma siatki: sprawdzamy typ komponentu, zanim szukamy go na przedmiocie
+	if(!ispath(component_type, /datum/component/storage/concrete/grid))
+		return
 	// Po ..() wszystkie ComponentInitialize podtypów już ustawiły pojemność, więc siatkę można z niej policzyć
 	var/datum/component/storage/concrete/grid/grid = GetComponent(/datum/component/storage/concrete/grid)
 	grid?.setup_grid()
 
 /obj/item/storage/examine(mob/user)
 	. = ..()
+	if(!ispath(component_type, /datum/component/storage/concrete/grid))
+		return
 	var/datum/component/storage/concrete/grid/grid = GetComponent(/datum/component/storage/concrete/grid)
 	if(grid?.grid_width)
 		. += "<span class='notice'>Ma siatkę [grid.grid_width]×[grid.grid_height] kratek[grid.grid_keep_item_limit ? " i mieści najwyżej [grid.max_items] przedmiotów" : ""]. Przeciągnij przedmiot na inną kratkę, żeby go przesunąć, albo upuść go na nim samym, żeby go obrócić.</span>"

@@ -38,7 +38,9 @@
 	var/list/grid_highlights
 	/// list(kolumna, wiersz) wskazana kliknięciem w siatkę, używana przy najbliższym włożeniu
 	var/list/pending_cell
-	/// przedmiot -> list(transform, appearance_flags) sprzed powiększenia ikony na siatce, przywracane przy wyjęciu
+	/// przedmiot -> list(transform, appearance_flags, ustawiony transform) sprzed powiększenia ikony na siatce.
+	/// Przywracane przy wyjęciu i po zamknięciu okna przez ostatniego oglądającego, żeby powiększenie nie wyciekało
+	/// do radiali i innych miejsc, które biorą wygląd przedmiotu ze schowka
 	var/list/grid_saved_appearance
 	/// Nagłówek nad siatką: nazwa schowka i zajęte kratki
 	var/atom/movable/screen/storage_grid_header/grid_header
@@ -47,8 +49,7 @@
 	. = ..()
 	QDEL_LIST_ASSOC_VAL(grid_highlights)
 	QDEL_NULL(grid_header)
-	for(var/atom/movable/thing as anything in grid_saved_appearance?.Copy())
-		restore_appearance(thing)
+	restore_all_appearances()
 	grid_positions = null
 	pending_cell = null
 
@@ -139,11 +140,13 @@
 /datum/component/storage/concrete/grid/remaining_space_items()
 	if(!grid_width)
 		return ..()
-	settle_contents()
 	. = 0
-	for(var/cell in build_occupancy())
+	for(var/cell in settle_contents())
 		if(!cell)
 			.++
+	if(grid_keep_item_limit)
+		var/atom/real_location = real_location()
+		. = max(0, min(., max_items - length(real_location.contents)))
 
 /// Miejsce, w którym przedmiot zakrywa wskazaną kratkę. rotations to kolejność prób obrotu
 /datum/component/storage/concrete/grid/proc/find_spot_at(obj/item/I, list/occupancy, list/cell, list/rotations)
@@ -156,8 +159,9 @@
 	return null
 
 /// Miejsce dla nowego przedmiotu: przy wskazanej kratce, a jeśli tam się nie mieści, pierwsze wolne
-/datum/component/storage/concrete/grid/proc/find_spot_for(obj/item/I, list/cell)
-	var/list/occupancy = build_occupancy()
+/datum/component/storage/concrete/grid/proc/find_spot_for(obj/item/I, list/cell, list/occupancy)
+	if(!occupancy)
+		occupancy = build_occupancy()
 	. = null
 	if(cell)
 		. = find_spot_at(I, occupancy, cell, list(FALSE, TRUE))
@@ -165,7 +169,8 @@
 		. = find_first_spot(I, occupancy)
 
 /// Porządkuje pozycje: usuwa przedmioty, których już nie ma, zdejmuje te, które zaczęły na coś zachodzić
-/// (zmiana w_class w środku), i rozmieszcza przedmioty włożone bez pozycji. Co się nie zmieści, zostaje w przepełnieniu
+/// (zmiana w_class w środku), i rozmieszcza przedmioty włożone bez pozycji. Co się nie zmieści, zostaje w przepełnieniu.
+/// Zwraca mapę zajętości po uporządkowaniu, żeby wołający nie budował jej drugi raz
 /datum/component/storage/concrete/grid/proc/settle_contents()
 	var/atom/real_location = real_location()
 	var/list/occupancy = new /list(grid_width * grid_height)
@@ -188,6 +193,7 @@
 		LAZYSET(grid_positions, I, spot)
 		var/list/shape = grid_shape(I, spot[3])
 		mark_cells(occupancy, I, spot[1], spot[2], shape[1], shape[2])
+	return occupancy
 
 /// Zamienia parametry kliknięcia (screen-loc) na kratkę siatki: list(kolumna, wiersz) albo null poza siatką
 /datum/component/storage/concrete/grid/proc/params_to_cell(params)
@@ -310,22 +316,38 @@
 /// Ikony nie obracamy razem z kształtem: sprite'y są rysowane w różnych kierunkach (latarka poziomo, długopis ukośnie),
 /// więc obrót pokazuje sam kafel
 /datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale)
-	if(!LAZYACCESS(grid_saved_appearance, I))
-		LAZYSET(grid_saved_appearance, I, list(I.transform, I.appearance_flags))
-	var/list/saved = grid_saved_appearance[I]
+	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
+	if(!saved)
+		saved = list(I.transform, I.appearance_flags, null)
+		LAZYSET(grid_saved_appearance, I, saved)
+	else if(!same_matrix(I.transform, saved[3]))
+		// Przedmiot sam zmienił sobie transform od naszego ustawienia: jego wersja staje się nową bazą
+		saved[1] = I.transform
 	var/matrix/display = matrix(saved[1])
 	if(scale != 1)
 		display.Scale(scale)
 	I.transform = display
 	I.appearance_flags = saved[2] | PIXEL_SCALE
+	saved[3] = display
 
 /datum/component/storage/concrete/grid/proc/restore_appearance(atom/movable/thing)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, thing)
 	if(!saved)
 		return
-	thing.transform = saved[1]
+	// Transform cofamy tylko wtedy, gdy wciąż jest nasz; zmianę zrobioną przez sam przedmiot zostawiamy
+	if(same_matrix(thing.transform, saved[3]))
+		thing.transform = saved[1]
 	thing.appearance_flags = saved[2]
 	LAZYREMOVE(grid_saved_appearance, thing)
+
+/datum/component/storage/concrete/grid/proc/restore_all_appearances()
+	for(var/atom/movable/thing as anything in grid_saved_appearance?.Copy())
+		restore_appearance(thing)
+
+/datum/component/storage/concrete/grid/proc/same_matrix(matrix/first, matrix/second)
+	if(!first || !second)
+		return FALSE
+	return first.a == second.a && first.b == second.b && first.c == second.c && first.d == second.d && first.e == second.e && first.f == second.f
 
 /// Nagłówek nad siatką: nazwa schowka, zajęte kratki i liczba przedmiotów, które się nie mieszczą
 /datum/component/storage/concrete/grid/proc/update_header(overflow_count)
@@ -398,6 +420,9 @@
 
 /datum/component/storage/concrete/grid/hide_from(mob/M)
 	. = ..()
+	// Nikt już nie patrzy: przedmioty wracają do zwykłego wyglądu
+	if(!length(can_see_contents()))
+		restore_all_appearances()
 	if(!M.client)
 		return
 	for(var/thing in grid_highlights)
@@ -413,8 +438,7 @@
 	. = ..()
 	if(!. || !grid_width)
 		return
-	settle_contents()
-	if(!find_spot_for(I, pending_cell))
+	if(!find_spot_for(I, pending_cell, settle_contents()))
 		if(!stop_messages)
 			var/atom/host = parent
 			host.balloon_alert(M, "brak miejsca")
@@ -423,8 +447,7 @@
 /datum/component/storage/concrete/grid/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
 	if(!grid_width || !istype(I))
 		return ..()
-	settle_contents()
-	var/list/spot = find_spot_for(I, pending_cell)
+	var/list/spot = find_spot_for(I, pending_cell, settle_contents())
 	pending_cell = null
 	// Pozycję zapisujemy przed włożeniem, bo włożenie od razu odświeża ekran. Bez miejsca (włożenie siłą) przedmiot trafia do przepełnienia
 	var/had_position = LAZYACCESS(grid_positions, I)

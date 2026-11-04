@@ -121,6 +121,25 @@
 	TEST_ASSERT_EQUAL(big.appearance_flags, old_flags, "Item kept its grid appearance flags after removal")
 	TEST_ASSERT(!LAZYACCESS(look_grid.grid_highlights, big), "Tile of a removed item was not deleted")
 
+	// Po zamknięciu okna przez ostatniego oglądającego powiększenie znika (radial skrzynki bierze wygląd przedmiotu ze schowka)
+	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human)
+	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not go back into the bag")
+	look_grid.orient2hud()
+	LAZYOR(look_grid.is_using, viewer)
+	look_grid.hide_from(viewer)
+	shown = big.transform
+	TEST_ASSERT_EQUAL(shown.a, 1, "Item kept its grid scale after the storage was closed")
+	TEST_ASSERT_EQUAL(big.appearance_flags, old_flags, "Item kept its grid appearance flags after the storage was closed")
+
+	// Zmiana transform zrobiona przez sam przedmiot w schowku nie jest nadpisywana przy wyjęciu
+	look_grid.orient2hud()
+	var/matrix/own = matrix()
+	own.Turn(45)
+	big.transform = own
+	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_TAKE, big, run_loc_floor_bottom_left), "Could not take the turned item out")
+	shown = big.transform
+	TEST_ASSERT(look_grid.same_matrix(shown, own), "Item's own transform was overwritten on removal")
+
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")
@@ -134,7 +153,12 @@
 		qdel(already)
 	for(var/i in 1 to toolbox_grid.max_items)
 		TEST_ASSERT(SEND_SIGNAL(toolbox, COMSIG_TRY_STORAGE_INSERT, make_item(WEIGHT_CLASS_TINY), null, TRUE), "Tiny item [i] did not fit into the toolbox")
-	TEST_ASSERT(toolbox_grid.remaining_space_items() > 0, "Toolbox grid filled up before its item limit")
+	var/free_cells = 0
+	for(var/occupied in toolbox_grid.settle_contents())
+		if(!occupied)
+			free_cells++
+	TEST_ASSERT(free_cells > 0, "Toolbox grid filled up before its item limit")
+	TEST_ASSERT_EQUAL(toolbox_grid.remaining_space_items(), 0, "Free cells counted past the toolbox item limit")
 	TEST_ASSERT(!SEND_SIGNAL(toolbox, COMSIG_TRY_STORAGE_INSERT, make_item(WEIGHT_CLASS_TINY), null, TRUE), "Toolbox accepted more items than its old item limit")
 
 /// AQUILA - zawartość startowa (PopulateContents) każdego schowka na siatce mieści się na siatce, jeśli mieściła się w starych limitach
