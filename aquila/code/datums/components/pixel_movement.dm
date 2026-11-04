@@ -2,18 +2,23 @@
  * Prototyp ruchu po pikselach.
  *
  * Logika gry zostaje na kafelkach (loc, Adjacent, Bump, ciągnięcie działają jak zawsze).
- * Komponent trzyma przesunięcie postaci wewnątrz kafelka (offset_x/offset_y, -16..16 px)
- * i przesuwa je co tick, dopóki gracz trzyma klawisz ruchu. Przy przekroczeniu krawędzi
- * kafelka robi zwykły Move() na sąsiedni kafelek i odejmuje 32 px od przesunięcia.
- * Wygląd: pixel_w/pixel_z moba, kamera: pixel_x/pixel_y klienta, oba animowane przez jeden tick.
+ * Postać ma w kafelku przesunięcie step_x/step_y (-16..15 px) i bounding box 1x1 w środku
+ * kafelka, więc zawsze stoi w dokładnie jednym kafelku. Gdy gracz trzyma klawisz ruchu,
+ * przesunięcie rośnie co tick; przy przekroczeniu krawędzi kafelka idzie zwykły Move().
+ *
+ * Płynność: klient BYOND wygładza zmianę step_x tylko wtedy, gdy step_size i glide_size
+ * są równe przesunięciu w tym ticku. Przy domyślnym step_size (32) ruch idzie schodkami
+ * co tick, a animowanie pixel_w/client.pixel_x szarpało całym obrazem (pomiar zrzutami
+ * ekranu w mini-świecie, 2026-11-04).
  */
 /// Jak daleko (px) ciało może wejść w stronę zablokowanego kafelka
 #define PIXEL_MOVE_WALL_MARGIN 6
 #define PIXEL_MOVE_HALF_TILE 16
 
 /datum/component/pixel_movement
-	var/offset_x = 0
-	var/offset_y = 0
+	/// Ułamek piksela, który nie zmieścił się w całkowitym step_x/step_y
+	var/frac_x = 0
+	var/frac_y = 0
 	/// Czas ostatniego kroku, żeby nie liczyć dwa razy w jednym ticku
 	var/last_step = 0
 	/// Bump w ścianę/drzwi najwyżej raz na zwykły krok, nie co tick
@@ -25,29 +30,33 @@
 
 /datum/component/pixel_movement/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_pre_move))
-	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(sync_camera))
+	var/mob/living/owner = parent
+	owner.bound_x = PIXEL_MOVE_HALF_TILE
+	owner.bound_y = PIXEL_MOVE_HALF_TILE
+	owner.bound_width = 1
+	owner.bound_height = 1
 
 /datum/component/pixel_movement/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_MOB_CLIENT_PRE_MOVE, COMSIG_MOB_LOGIN))
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE)
 	var/mob/living/owner = parent
-	offset_x = 0
-	offset_y = 0
-	owner.pixel_w = 0
-	owner.pixel_z = 0
-	sync_camera()
+	owner.step_x = 0
+	owner.step_y = 0
+	owner.bound_x = initial(owner.bound_x)
+	owner.bound_y = initial(owner.bound_y)
+	owner.bound_width = initial(owner.bound_width)
+	owner.bound_height = initial(owner.bound_height)
+	restore_step_size()
 
-/datum/component/pixel_movement/proc/sync_camera()
-	SIGNAL_HANDLER
+/// Wbudowane step() (rozbijanie ruchu po skosie, taśmociągi) przesuwa o step_size, więc po zatrzymaniu wraca cały kafelek
+/datum/component/pixel_movement/proc/restore_step_size()
 	var/mob/living/owner = parent
-	if(owner.client)
-		owner.client.pixel_x = round(offset_x)
-		owner.client.pixel_y = round(offset_y)
+	owner.step_size = world.icon_size
 
 /// /client/Move woła to co tick, gdy klawisz jest wciśnięty i mob może się ruszyć. Blokujemy zwykły krok.
 /datum/component/pixel_movement/proc/on_pre_move(datum/source, turf/new_loc)
 	SIGNAL_HANDLER
 	var/mob/living/owner = parent
-	if(last_step == world.time)
+	if(last_step == world.time || !isturf(owner.loc))
 		return COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE
 	last_step = world.time
 	var/direct = get_dir(owner, new_loc)
@@ -58,25 +67,42 @@
 	if(NSCOMPONENT(direct) && EWCOMPONENT(direct))
 		dist /= sqrt(2)
 	owner.setDir(direct)
-	var/old_x = offset_x
-	var/old_y = offset_y
+
+	var/old_z = owner.z
+	var/old_abs_x = owner.x * world.icon_size + owner.step_x
+	var/old_abs_y = owner.y * world.icon_size + owner.step_y
+	var/new_x = owner.step_x + frac_x
+	var/new_y = owner.step_y + frac_y
 	if(direct & EAST)
-		offset_x = axis_step(offset_x, dist, EAST)
+		new_x = axis_step(new_x, dist, EAST)
 	else if(direct & WEST)
-		offset_x = -axis_step(-offset_x, dist, WEST)
-	if(direct & NORTH)
-		offset_y = axis_step(offset_y, dist, NORTH)
-	else if(direct & SOUTH)
-		offset_y = -axis_step(-offset_y, dist, SOUTH)
-	if(QDELETED(owner))
+		new_x = -axis_step(-new_x, dist, WEST)
+	if(QDELETED(owner) || !isturf(owner.loc))
 		return COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE
-	// Przeskok kafelka jest kompensowany w offsecie, więc wygląd i kamera jadą liniowo
-	animate(owner, pixel_w = round(offset_x), pixel_z = round(offset_y), time = world.tick_lag, flags = ANIMATION_PARALLEL)
-	if(owner.client && (old_x != offset_x || old_y != offset_y))
-		animate(owner.client, pixel_x = round(offset_x), pixel_y = round(offset_y), time = world.tick_lag)
+	if(direct & NORTH)
+		new_y = axis_step(new_y, dist, NORTH)
+	else if(direct & SOUTH)
+		new_y = -axis_step(-new_y, dist, SOUTH)
+	if(QDELETED(owner) || !isturf(owner.loc))
+		return COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE
+
+	var/int_x = clamp(round(new_x), -PIXEL_MOVE_HALF_TILE, PIXEL_MOVE_HALF_TILE - 1)
+	var/int_y = clamp(round(new_y), -PIXEL_MOVE_HALF_TILE, PIXEL_MOVE_HALF_TILE - 1)
+	frac_x = clamp(new_x - int_x, 0, 0.999)
+	frac_y = clamp(new_y - int_y, 0, 0.999)
+	owner.step_x = int_x
+	owner.step_y = int_y
+
+	// Wygładzanie: step_size i glide_size muszą równać się przesunięciu w tym ticku
+	if(owner.z == old_z)
+		var/delta = max(abs(owner.x * world.icon_size + int_x - old_abs_x), abs(owner.y * world.icon_size + int_y - old_abs_y))
+		if(delta > 0 && delta <= world.icon_size)
+			owner.step_size = delta
+			owner.set_glide_size(delta)
+	addtimer(CALLBACK(src, PROC_REF(restore_step_size)), world.tick_lag * 3, TIMER_UNIQUE | TIMER_OVERRIDE)
 	return COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE
 
-/// Krok wzdłuż jednej osi w stronę dodatnią (wartość już odwrócona dla W/S). Zwraca nowy offset.
+/// Krok wzdłuż jednej osi w stronę dodatnią (wartość już odwrócona dla W/S). Zwraca nowe przesunięcie.
 /datum/component/pixel_movement/proc/axis_step(offset, dist, dir)
 	var/mob/living/owner = parent
 	var/target = offset + dist
@@ -97,10 +123,9 @@
 /datum/component/pixel_movement/proc/try_tile_move(turf/next, dir)
 	var/mob/living/owner = parent
 	var/turf/old_turf = owner.loc
-	// Zwykły glide na czas Move (z niego liczy się animacja chodu), potem cały kafelek w jeden tick
+	// Zwykły glide na czas Move (z niego liczy się animacja chodu); docelowy ustawia on_pre_move
 	owner.set_glide_size(DELAY_TO_GLIDE_SIZE(owner.movement_delay()))
 	owner.Move(next, dir)
-	owner.set_glide_size(world.icon_size)
 	return owner.loc != old_turf && owner.loc == next
 
 /client/proc/toggle_pixel_movement()

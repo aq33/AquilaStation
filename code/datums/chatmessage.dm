@@ -256,8 +256,8 @@
 	var/bound_width = world.icon_size
 	if(ismovableatom(message_loc))
 		var/atom/movable/AM = message_loc
-		bound_height = AM.bound_height
-		bound_width = AM.bound_width
+		bound_height = max(AM.bound_height, world.icon_size) // AQ EDIT - ruch po pikselach daje mobom bounding box 1x1
+		bound_width = max(AM.bound_width, world.icon_size) // AQ EDIT - ruch po pikselach daje mobom bounding box 1x1
 	// Build message image
 	var/datum/chatmessage_group/group = new()
 	group.message = image(loc = message_loc, layer = CHAT_LAYER + CHAT_LAYER_Z_STEP * current_z_idx++)
@@ -635,7 +635,7 @@
 	var/bound_width = world.icon_size
 	if (ismovable(target))
 		var/atom/movable/movable_source = target
-		bound_width = movable_source.bound_width
+		bound_width = max(movable_source.bound_width, world.icon_size) // AQ EDIT - ruch po pikselach daje mobom bounding box 1x1
 
 	if(isturf(target))
 		message_loc = target
