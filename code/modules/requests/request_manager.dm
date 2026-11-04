@@ -193,36 +193,10 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			usr.client.admin_headset_message(M, request.req_type == REQUEST_SYNDICATE ? RADIO_CHANNEL_SYNDICATE : RADIO_CHANNEL_CENTCOM)
 			return TRUE
 		// AQ EDIT START - admins can answer crew wake and response team requests by hand
-		if ("wake")
-			if (request.req_type != REQUEST_CREW_WAKE)
+		if ("wake", "ert")
+			if (request.req_type != (action == "wake" ? REQUEST_CREW_WAKE : REQUEST_ERT))
 				return TRUE
-			if (request.fulfilled)
-				to_chat(usr, "Ta prośba została już spełniona.")
-				return TRUE
-			if (request.handled && world.time < request.handled_time + 5 MINUTES)
-				to_chat(usr, "Ta prośba jest już obsługiwana.")
-				return TRUE
-			request.handled = TRUE
-			request.handled_time = world.time
-			request.autoaccept = FALSE
-			message_admins("[key_name_admin(usr)] zatwierdza wybudzenie załogi na prośbę [ADMIN_FULLMONTY(request.owner)].")
-			log_admin("[key_name(usr)] approved the crew wake request of [key_name(request.owner)].")
-			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, wake_crew_now))
-			return TRUE
-		if ("ert")
-			if (request.req_type != REQUEST_ERT)
-				return TRUE
-			if (request.fulfilled)
-				to_chat(usr, "Ta prośba została już spełniona.")
-				return TRUE
-			if (request.handled && world.time < request.handled_time + 5 MINUTES) // the ERT maker waits for its admin without a time limit
-				to_chat(usr, "Ta prośba jest już obsługiwana.")
-				return TRUE
-			request.handled = TRUE
-			request.handled_time = world.time
-			request.autoaccept = FALSE
-			message_admins("[key_name_admin(usr)] przejmuje prośbę o drużynę reagowania od [ADMIN_FULLMONTY(request.owner)].")
-			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, manual_response_team), usr.client.holder)
+			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, admin_take_over), usr, action)
 			return TRUE
 		// AQ EDIT END
 		if ("setcode")

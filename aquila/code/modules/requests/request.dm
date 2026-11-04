@@ -5,8 +5,8 @@
 	var/autoaccept
 	/// Someone already started fulfilling this request (the automatic poll or an admin), nobody may start it again
 	var/handled = FALSE
-	/// When handled was set, an admin may take over a request that has been stuck in handling for too long
-	var/handled_time = 0
+	/// Who is handling the request (an admin key or the automatic poll), shown to an admin who wants to take it over
+	var/handled_by
 	/// The request was fulfilled (crew woken up, team sent): it can never be started again
 	var/fulfilled = FALSE
 
@@ -101,7 +101,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	if(autoaccept) // pod tym jest kopiuj wklej z one_click_antag.dm
 		autoaccept = FALSE // Too late to cancel from now on
 		handled = TRUE
-		handled_time = world.time
+		handled_by = "automatyczna ankieta"
 		var/message = "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana, jednakże wszystkie drużyny są obecnie zajęte. Za niedogodności przepraszamy."
 		var/datum/ert/ertemplate
 		var/ert_type = pick_ert_team_type()
@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		return FALSE
 	autoaccept = FALSE // Too late to cancel from now on
 	handled = TRUE
-	handled_time = world.time
+	handled_by = "automatyczna ankieta"
 	return wake_crew_now()
 
 /// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.
@@ -257,9 +257,35 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 
 	return woken
 
+/// Request manager buttons WYBUDŹ and ERT. A request someone else is handling is taken over only after the admin confirms it,
+/// because two open ERT makers could each send a team. A fulfilled request is never started again.
+/datum/request/proc/admin_take_over(mob/admin, action)
+	if(fulfilled)
+		to_chat(admin, "Ta prośba została już spełniona.")
+		return
+	if(handled)
+		if(tgui_alert(admin, "Tę prośbę obsługuje już: [handled_by]. Przejęcie może wysłać drugą drużynę albo obudzić kolejną grupę. Przejąć mimo to?", "Prośba w obsłudze", list("Przejmij", "Anuluj")) != "Przejmij")
+			return
+		if(fulfilled) // fulfilled while the admin was deciding
+			to_chat(admin, "Ta prośba została już spełniona.")
+			return
+	handled = TRUE
+	handled_by = key_name(admin)
+	autoaccept = FALSE
+	if(action == "wake")
+		message_admins("[key_name_admin(admin)] zatwierdza wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)].")
+		log_admin("[key_name(admin)] approved the crew wake request of [key_name(owner)].")
+		wake_crew_now()
+		return
+	message_admins("[key_name_admin(admin)] przejmuje prośbę o drużynę reagowania od [ADMIN_FULLMONTY(owner)].")
+	log_admin("[key_name(admin)] took over the response team request of [key_name(owner)].")
+	manual_response_team(admin.client?.holder)
+
 /// An admin answers the response team request with the ERT maker. Cancelling it or finding nobody frees the request again
 /datum/request/proc/manual_response_team(datum/admins/admin)
 	if(admin?.makeEmergencyresponseteam())
+		if(fulfilled)
+			message_admins("Uwaga: na prośbę [ADMIN_FULLMONTY(owner)] wysłano już wcześniej drużynę reagowania, to jest kolejna.")
 		fulfilled = TRUE
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana.", "Centrala"), 2 SECONDS)
 		return TRUE
