@@ -102,6 +102,7 @@
 #include "code\datums\components\crafting\recipes_guide.dm"
 #include "code\datums\components\crafting\vampire_structures.dm"
 #include "code\datums\components\carbon_sprint.dm"
+#include "code\datums\components\pixel_movement.dm"
 #include "code\datums\components\echolocation.dm"
 #include "code\datums\components\nanites.dm"
 #include "code\datums\components\overlay_lighting_scatter.dm"

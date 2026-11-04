@@ -191,6 +191,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
 	/client/proc/test_chamber, // aquila edit
+	/client/proc/toggle_pixel_movement, // AQ EDIT - prototyp ruchu po pikselach
 	/client/proc/adventure_manager, // AQ EDIT - drony eksploracyjne, przeglądarka przygód
 	/client/proc/jump_to_ruin,
 	/client/proc/generate_ruin,
