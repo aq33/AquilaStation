@@ -12,13 +12,8 @@ const CHAPTER_NAMES = {
 
 export const PlantDictionary = (props) => {
   const { act, data } = useBackend();
-  const {
-    chapters,
-    selected_chapter,
-    selected_entry,
-    selected_type_shortcut,
-    last_command,
-  } = data;
+  const { chapters, selected_chapter, selected_entry, selected_type_shortcut } =
+    data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
     <Window width={750} height={750} theme="plant_menu">
@@ -26,9 +21,7 @@ export const PlantDictionary = (props) => {
         <Box m={'-3px'} height={'100%'}>
           <Flex direction={'column'} height={'100%'}>
             <Flex.Item>
-              <Section textAlign={'center'}>
-                Indeks Botaniczny [Wersja 1.12.8.0]
-              </Section>
+              <Section textAlign={'center'}>Indeks Botaniczny</Section>
             </Flex.Item>
             <Flex.Item>
               <Flex direction={'row'}>
@@ -308,18 +301,6 @@ export const PlantDictionary = (props) => {
             {/* World building fluff top banner */}
             <Flex.Item height={'100%'}>
               <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>

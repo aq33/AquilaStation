@@ -1,4 +1,4 @@
-import { Box, Divider, Section } from 'tgui/components';
+import { Box, Collapsible, Divider, Section } from 'tgui/components';
 import { sanitizeText } from 'tgui/sanitize';
 
 import { useBackend } from '../backend';
@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 
 export const PlantScanner = (props) => {
   const { act, data } = useBackend();
-  const { buffer, last_target, render_rule, last_time } = data;
+  const { buffer, last_target, render_rule } = data;
   return (
     <Window width={750} height={870} theme="plant_menu">
       <Window.Content>
@@ -18,22 +18,6 @@ export const PlantScanner = (props) => {
           {render_rule === 'RENDER_RULE_FRUIT' ? <FruitRule /> : null}
           {render_rule === 'RENDER_RULE_TRAY' ? <TrayRule /> : null}
           {render_rule ? null : 'bufor wyczyszczony 0x0000'}
-        </Section>
-        {/* World building fluff top banner */}
-        <Box height={'8px'} />
-        <Section textAlign={'start'} mb={'-5px'}>
-          <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-          <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-          <br />
-          <Box>
-            {'C:\\Users\\admin> pit buffer attach -m target -f'}
-            <br />
-            {`> Podpięto bufor o ${last_time}`}
-            <br />
-            <br />
-            {'C:\\Users\\admin>'}
-            <span className={'terminal'}>|</span>
-          </Box>
         </Section>
       </Window.Content>
     </Window>
@@ -72,18 +56,33 @@ const FeatureBlock = (props) => {
   );
 };
 
+// AQUILA - najpierw krótki stan rośliny, szczegóły genetyczne i katalog potrzeb dopiero po rozwinięciu
 const SeedRule = (props) => {
   const { data } = useBackend();
-  const { buffer } = data;
+  const { buffer, status = [] } = data;
+  const details = Object.entries(buffer).map(([buffer_key, buffer_data]) => (
+    <FeatureBlock
+      key={buffer_key}
+      feature={buffer_data['feature']}
+      needs={buffer_data['needs']}
+    />
+  ));
   return (
     <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
-      {Object.entries(buffer).map(([buffer_key, buffer_data]) => (
-        <FeatureBlock
-          key={buffer_key}
-          feature={buffer_data['feature']}
-          needs={buffer_data['needs']}
-        />
-      ))}
+      {status.length > 0 && (
+        <Section title="Stan">
+          {status.map((line, index) => (
+            <Box key={index} mb={'4px'}>
+              {line}
+            </Box>
+          ))}
+        </Section>
+      )}
+      {status.length > 0 ? (
+        <Collapsible title="Części, cechy i potrzeby">{details}</Collapsible>
+      ) : (
+        details
+      )}
     </Box>
   );
 };

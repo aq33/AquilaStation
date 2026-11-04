@@ -15,7 +15,7 @@ export const PlantMutator = (props) => {
   const { act, data } = useBackend();
   const {
     inserted_plant,
-    last_command,
+    inserted_seeds,
     plant_feature_data,
     catalyst,
     catalyst_desc,
@@ -42,9 +42,7 @@ export const PlantMutator = (props) => {
           <Flex direction={'column'} height={'100%'}>
             {/* World building fluff top banner */}
             <Flex.Item>
-              <Section textAlign={'center'}>
-                Piec Radiacyjny [Wersja 1.0.0.3]
-              </Section>
+              <Section textAlign={'center'}>Piec Radiacyjny</Section>
             </Flex.Item>
             {/* Plant stuff column */}
             <Flex.Item>
@@ -56,6 +54,15 @@ export const PlantMutator = (props) => {
                     <Flex.Item width={'100%'}>
                       <Section textAlign="center">
                         <h1>{inserted_plant || 'Nie włożono rośliny'}</h1>
+                        {!!inserted_seeds && (
+                          <Button
+                            icon="eject"
+                            disabled={working}
+                            onClick={() => act('eject_seeds')}
+                          >
+                            Wyjmij nasiona
+                          </Button>
+                        )}
                       </Section>
                     </Flex.Item>
                     {/* Feature panel  */}
@@ -126,18 +133,6 @@ export const PlantMutator = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Box height={'20px'} />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>

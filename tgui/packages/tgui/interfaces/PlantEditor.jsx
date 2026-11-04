@@ -12,7 +12,6 @@ export const PlantEditor = (props) => {
     disk_trait_data,
     disk_inserted,
     saving_feature,
-    last_command,
   } = data;
   return (
     <Window width={750} height={750} theme="plant_menu">
@@ -22,9 +21,7 @@ export const PlantEditor = (props) => {
           <Flex direction={'column'} height={'100%'}>
             {/* World building fluff top banner */}
             <Flex.Item>
-              <Section textAlign={'center'}>
-                Analizator Roślin [Wersja 7.20.4.5]
-              </Section>
+              <Section textAlign={'center'}>Analizator Roślin</Section>
             </Flex.Item>
             <Flex direction={'row'}>
               {/* Feature tab*/}
@@ -89,18 +86,6 @@ export const PlantEditor = (props) => {
             </Flex.Item>
             <Flex.Item height={'100%'}>
               <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>

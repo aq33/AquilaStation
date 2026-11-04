@@ -18,7 +18,6 @@ export const SeedEditor = (props) => {
     disk_feature_data,
     disk_trait_data,
     disk_inserted,
-    last_command,
     current_feature_genetic_budget,
     current_feature_remaining_genetic_budget,
   } = data;
@@ -29,9 +28,7 @@ export const SeedEditor = (props) => {
           <Flex direction={'column'} height={'100%'}>
             {/* World building fluff top banner */}
             <Flex.Item>
-              <Section textAlign={'center'}>
-                Sekwencer Nasion [Wersja 4.1.1.9]
-              </Section>
+              <Section textAlign={'center'}>Sekwencer Nasion</Section>
             </Flex.Item>
             {/* Top banner, contains plant name & genetic stability */}
             <Flex.Item>
@@ -125,18 +122,6 @@ export const SeedEditor = (props) => {
             </Flex.Item>
             <Flex.Item height={'100%'}>
               <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-3px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>

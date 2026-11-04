@@ -37,6 +37,8 @@
 	var/working_time = 5 SECONDS
 	///Our reduction on mutation prices
 	var/reduction_coef = 1
+	///AQUILA - paczka nasion, z której zrobiliśmy roślinę do naświetlania; przy wyjęciu wraca z nowymi częściami
+	var/obj/item/plant_seeds/inserted_seeds
 
 /obj/machinery/plant_machine/plant_mutator/Initialize(mapload)
 	. = ..()
@@ -46,6 +48,10 @@
 	soundloop = new(src,  FALSE)
 
 /obj/machinery/plant_machine/plant_mutator/Destroy()
+	if(inserted_seeds) // AQUILA - paczka nasion nie przepada razem z piecem
+		inserted_seeds.forceMove(drop_location())
+		inserted_seeds = null
+		QDEL_NULL(plant)
 	. = ..()
 	QDEL_NULL(soundloop)
 
@@ -68,7 +74,8 @@
 
 /obj/machinery/plant_machine/plant_mutator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
+	if(!plant)
+		to_chat(user, span_notice("Do maszyny ([src]) włóż nasiona albo roślinę na łopatce."))
 
 /obj/machinery/plant_machine/plant_mutator/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
@@ -91,9 +98,9 @@
 		return
 	if(default_deconstruction_crowbar(C))
 		return
-//Seeds
+//Seeds - AQUILA: naświetlanie nasion bez sadzenia i wykopywania
 	if(istype(C, /obj/item/plant_seeds))
-		to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
+		insert_seeds(C, user)
 		return
 //Catalyst
 	if(!catalyst && istype(C, /obj/item/tank))
@@ -105,6 +112,9 @@
 	if(!istype(C, /obj/item/shovel))
 		return ..()
 	//Return plant to spade, to remove it
+	if(plant && inserted_seeds)
+		eject_seeds(user)
+		return
 	if(plant && plant_component.async_catch_attackby(C, user))
 		plant = null
 		plant_component = null
@@ -120,11 +130,14 @@
 	for(var/obj/item/potential_plant in C.contents)
 		comp = potential_plant.GetComponent(/datum/component/plant)
 		plant_item = potential_plant
-		if(!C)
+		if(!comp)
 			continue
 		break
 	if(!comp)
 		return ..()
+	if(plant)
+		to_chat(user, span_warning("W środku ([src]) jest już roślina!"))
+		return
 	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	if(!(locate(plant_item) in C.contents))
@@ -134,6 +147,49 @@
 	plant = plant_item
 	plant_component = comp
 	icon_state = "mutator"
+	playsound(src, 'sound/machines/click.ogg', 30)
+	ui_update()
+
+/// AQUILA - robi z paczki nasion roślinę w piecu; paczka czeka w środku i dostaje nowe części przy wyjęciu
+/obj/machinery/plant_machine/plant_mutator/proc/insert_seeds(obj/item/plant_seeds/seeds, mob/user)
+	if(plant)
+		to_chat(user, span_warning("W środku ([src]) już coś jest!"))
+		return FALSE
+	if(user && !user.transferItemToLoc(seeds, src))
+		return FALSE
+	if(!user)
+		seeds.forceMove(src)
+	inserted_seeds = seeds
+	var/obj/item/plant/new_plant = new(src, seeds.plant_features, seeds.species_id, (seeds.name_override || get_species_name(seeds.plant_features)))
+	plant = new_plant
+	plant_component = new_plant.GetComponent(/datum/component/plant)
+	icon_state = "mutator"
+	playsound(src, 'sound/machines/click.ogg', 30)
+	ui_update()
+	return TRUE
+
+/// AQUILA - oddaje paczkę nasion z częściami naświetlonej rośliny
+/obj/machinery/plant_machine/plant_mutator/proc/eject_seeds(mob/user)
+	if(!inserted_seeds || working)
+		return
+	var/obj/item/plant_seeds/seeds = inserted_seeds
+	QDEL_LIST(seeds.plant_features)
+	for(var/datum/plant_feature/feature as anything in plant_component.plant_features)
+		var/datum/plant_feature/new_feature = feature.copy()
+		seeds.plant_features += new_feature
+		new_feature.associate_seeds(seeds)
+	seeds.name_override = plant_component.name_override
+	seeds.update_species_id()
+	seeds.update_plant_name()
+	inserted_seeds = null
+	QDEL_NULL(plant)
+	plant_component = null
+	current_feature = null
+	current_feature_ref = null
+	confirm_radiation = FALSE
+	icon_state = "mutator_open"
+	seeds.forceMove(drop_location())
+	user?.put_in_hands(seeds)
 	playsound(src, 'sound/machines/click.ogg', 30)
 	ui_update()
 
@@ -169,6 +225,7 @@
 	data["current_feature_traits"] = current_feature?.get_ui_traits()
 	//Current inserted plant's name
 	data["inserted_plant"] = capitalize(plant?.name)
+	data["inserted_seeds"] = !!inserted_seeds
 	//Catalyst info
 	data["catalyst"] = capitalize(catalyst?.name)
 	data["catalyst_desc"] = catalyst?.desc
@@ -184,7 +241,7 @@
 		return
 	if(working)
 		return
-	playsound(controller, get_sfx("keyboard"), 30, TRUE)
+	playsound(controller || src, get_sfx("keyboard"), 30, TRUE)
 	switch(action)
 		if("select_feature")
 			current_feature_ref = current_feature_ref == params["key"] ? null : params["key"]
@@ -193,6 +250,9 @@
 			return TRUE
 		if("cancel")
 			confirm_radiation = FALSE
+			return TRUE
+		if("eject_seeds")
+			eject_seeds(usr)
 			return TRUE
 		if("toggle_port")
 			port_traits = params["port_state"] //You could make this port_traits = !port_traits, but I suspect that might lead to UI desync
@@ -210,12 +270,12 @@
 			last_command = "per kiln heat -f -k -m [encrypt_ref(params["key"])]"
 			confirm_radiation = FALSE
 			if(!(catalyst?.air_contents?.get_moles(GAS_PLASMA) >= 1))
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Za mało moli w butli!")
 				return TRUE
 			var/datum/plant_feature/feature = locate(current_feature_ref)
 			if(!length(feature.mutations))
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Brak możliwych ścieżek genetycznych dla tej części!")
 				return TRUE
 			//Check compatibility
@@ -223,7 +283,7 @@
 			//Tax plasma
 			var/tax = (feature.mutations[new_feature] || 1)*reduction_coef
 			if(!(catalyst?.air_contents?.get_moles(GAS_PLASMA) >= tax))
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Za mało moli w butli, operacja wymaga [tax] moli!")
 				return TRUE
 			catalyst?.air_contents.adjust_moles(GAS_PLASMA, -tax)
@@ -232,13 +292,13 @@
 			for(var/datum/plant_feature/current_feature as anything in plant_component.plant_features-feature)
 				//Is this feature blacklisted from another feature
 				if(is_type_in_typecache(new_feature, current_feature.blacklist_features) || is_type_in_typecache(current_feature, new_feature.blacklist_features))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Skład nasion niezgodny z wybraną częścią!")
 					qdel(new_feature)
 					return TRUE
 				//If a feature has a whitelist, are we in it?
 				if(length(current_feature.whitelist_features) && !is_type_in_typecache(new_feature, current_feature.whitelist_features) || length(new_feature.whitelist_features) && !is_type_in_typecache(current_feature, new_feature.whitelist_features))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Skład nasion niezgodny z wybraną częścią!")
 					qdel(new_feature)
 					return TRUE

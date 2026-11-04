@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 
 export const SeedStorage = (props) => {
   const { act, data } = useBackend();
-  const { seeds, focused_seeds, last_command } = data;
+  const { seeds, focused_seeds } = data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
     <Window width={600} height={735} theme="plant_menu">
@@ -79,18 +79,6 @@ export const SeedStorage = (props) => {
             </Flex.Item>
             <Flex.Item height={'100%'}>
               <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato-lite OS [Wersja 7.3.1.1]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>

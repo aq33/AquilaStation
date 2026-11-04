@@ -26,6 +26,8 @@
 
 	///What are our desires, what we need to grow
 	var/list/plant_needs = list()
+	///AQUILA - potrzeby niespełnione przy ostatnim sprawdzeniu, do sekcji „Stan” w skanerze
+	var/list/unmet_needs = list()
 
 	/*
 		Although this is a list, it might be better, in terms of design, to only
@@ -84,6 +86,7 @@
 		plant_traits -= trait
 		qdel(trait)
 	overdraw_needs.Cut()
+	unmet_needs.Cut()
 	for(var/datum/plant_need/need as anything in plant_needs)
 		plant_needs -= need
 		qdel(need)
@@ -191,11 +194,13 @@
 	. = TRUE
 	if(SEND_SIGNAL(parent.plant_item.loc, COMSIG_PLANT_NEEDS_PAUSE, parent))
 		return FALSE
+	unmet_needs.Cut()
 	for(var/datum/plant_need/need as anything in plant_needs)
 		if(ispath(need))
 			continue
 		if(!need?.check_need(_delta_time) && !need?.buff)
 			. = FALSE
+			unmet_needs += need
 	if(!.)
 		SEND_SIGNAL(parent, COMSIG_PLANT_NEEDS_FAILS, src)
 		return

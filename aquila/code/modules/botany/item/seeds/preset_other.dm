@@ -22,7 +22,7 @@
 
 //Bluespace Banana
 /obj/item/plant_seeds/preset/bs_banana
-	name = "nasiona: bluespace'owy bananowiec"
+	name = "nasiona: bluespace'owy bananowiec (piasek)"
 	name_override = "bluespace'owy bananowiec"
 	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/tree/palm/banana, /datum/plant_feature/fruit/banana/bluespace)
 
@@ -46,19 +46,19 @@
 
 //Fire-Lemon
 /obj/item/plant_seeds/preset/firelemon
-	name = "nasiona: drzewko wybuchowych cytryn"
+	name = "nasiona: drzewko wybuchowych cytryn (glina)"
 	name_override = "drzewko wybuchowych cytryn"
 	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/tree/mini/lemon, /datum/plant_feature/fruit/lemon/combustible)
 
 //Shadowshroom
 /obj/item/plant_seeds/preset/shadowshroom
-	name = "zarodniki: cienisty grzyb"
+	name = "zarodniki: cienisty grzyb (dowolne podłoże)"
 	name_override = "cienisty grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/shadow)
 
 //Glowcap
 /obj/item/plant_seeds/preset/glowcap
-	name = "zarodniki: świecący kapelusz"
+	name = "zarodniki: świecący kapelusz (dowolne podłoże)"
 	name_override = "świecący kapelusz"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/glowcap)
 
@@ -70,7 +70,7 @@
 
 //Egg
 /obj/item/plant_seeds/preset/eggy_plant
-	name = "nasiona: bakłażan jajeczny"
+	name = "nasiona: bakłażan jajeczny (glina)"
 	name_override = "bakłażan jajeczny"
 	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine/eggplant, /datum/plant_feature/fruit/eggplant/egg)
 
@@ -82,19 +82,19 @@
 
 //Walking
 /obj/item/plant_seeds/preset/walking
-	name = "zarodniki: chodzący grzyb"
+	name = "zarodniki: chodzący grzyb (dowolne podłoże)"
 	name_override = "chodzący grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/plump/walking)
 
 //Amanita
 /obj/item/plant_seeds/preset/angel
-	name = "zarodniki: muchomor jadowity"
+	name = "zarodniki: muchomor jadowity (dowolne podłoże)"
 	name_override = "muchomor jadowity"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/destroying_angel)
 
 //Steel
 /obj/item/plant_seeds/preset/steel
-	name = "zarodniki: grzyb stalowy"
+	name = "zarodniki: grzyb stalowy (dowolne podłoże)"
 	name_override = "grzyb stalowy"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/tower/steel)
 
@@ -130,7 +130,7 @@
 
 //Embershroom
 /obj/item/plant_seeds/preset/embershroom
-	name = "zarodniki: żarogrzyb"
+	name = "zarodniki: żarogrzyb (dowolne podłoże)"
 	name_override = "żarogrzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom)
 
@@ -142,19 +142,19 @@
 
 //Inocybe
 /obj/item/plant_seeds/preset/inocybe
-	name = "zarodniki: strzępiak"
+	name = "zarodniki: strzępiak (dowolne podłoże)"
 	name_override = "strzępiak"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/inocybe)
 
 //Porcini
 /obj/item/plant_seeds/preset/porcini
-	name = "zarodniki: borowik"
+	name = "zarodniki: borowik (dowolne podłoże)"
 	name_override = "borowik"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/porcini)
 
 //Polypore
 /obj/item/plant_seeds/preset/polypore
-	name = "zarodniki: huba"
+	name = "zarodniki: huba (dowolne podłoże)"
 	name_override = "huba"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/polypore)
 
@@ -166,7 +166,7 @@
 
 //Jupitercup
 /obj/item/plant_seeds/preset/jupitercup
-	name = "zarodniki: czasza Jowisza"
+	name = "zarodniki: czasza Jowisza (dowolne podłoże)"
 	name_override = "czasza Jowisza"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/chanterelle/jupiter)
 
@@ -178,7 +178,7 @@
 
 //Mail
 /obj/item/plant_seeds/preset/mail
-	name = "nasiona: drzewo kopertowe"
+	name = "nasiona: drzewo kopertowe (piasek)"
 	name_override = "drzewo kopertowe"
 	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/tree/gum, /datum/plant_feature/fruit/mail)
 
@@ -202,7 +202,7 @@
 
 //Charr
 /obj/item/plant_seeds/preset/charr
-	name = "zarodniki: zwęglony grzyb"
+	name = "zarodniki: zwęglony grzyb (dowolne podłoże)"
 	name_override = "zwęglony grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/mess)
 	random_flags = SEED_RANDOM_MAINT

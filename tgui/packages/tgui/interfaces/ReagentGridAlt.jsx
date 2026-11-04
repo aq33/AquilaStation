@@ -1353,7 +1353,6 @@ export const ReagentGridAlt = (props) => {
     accuracy,
     sampled_reagents,
     all_reagent_data,
-    last_command,
     list_accuracy,
   } = data;
   return (
@@ -1371,22 +1370,6 @@ export const ReagentGridAlt = (props) => {
               all_reagent_data={all_reagent_data}
               list_accuracy={list_accuracy}
             />
-          </Flex.Item>
-          {/* Fluff command section */}
-          <Flex.Item height="100%">
-            <Box height="100%" />
-          </Flex.Item>
-          <Flex.Item>
-            <Section textAlign={'start'} width="100%">
-              <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-              <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-              <br />
-              <Box>
-                {'C:\\Users\\admin>'}
-                {last_command}
-                <span className={'terminal'}>|</span>
-              </Box>
-            </Section>
           </Flex.Item>
         </Flex>
       </Window.Content>

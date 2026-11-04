@@ -1679,6 +1679,7 @@
 #include "code\modules\unit_tests\aquila_emotki_rewolucja_misje.dm"
 #include "code\modules\unit_tests\aquila_botany.dm"
 #include "code\modules\unit_tests\aquila_botany_flow.dm"
+#include "code\modules\unit_tests\aquila_botany_rework.dm"
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
 #include "code\modules\unit_tests\aquila_bee_windows.dm"
 #include "code\modules\unit_tests\aquila_fermichem.dm"
