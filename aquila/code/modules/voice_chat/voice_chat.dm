@@ -14,22 +14,24 @@
 #define VOICE_CHAT_RESULT_TIMEOUT (15 SECONDS)
 /// Jak często pytamy serwis, gdy nikt nie mówi (stan połączenia strony).
 #define VOICE_CHAT_IDLE_SYNC (1 SECONDS)
+/// Krótsze wciśnięcie klawisza traktujemy jak przypadkowe.
+#define VOICE_CHAT_MIN_PRESS (0.3 SECONDS)
 
 /datum/config_entry/flag/voice_chat_enabled
 
 /// Adres serwisu widziany przez serwer gry.
 /datum/config_entry/string/voice_chat_service_url
-	default = "http://127.0.0.1:8179"
+	config_entry_value = "http://127.0.0.1:8179"
 
 /// Adres strony widziany przez gracza (na teście lokalnym ten sam komputer).
 /datum/config_entry/string/voice_chat_public_url
-	default = "http://localhost:8179"
+	config_entry_value = "http://localhost:8179"
 
 /datum/config_entry/string/voice_chat_secret
 	protection = CONFIG_ENTRY_HIDDEN | CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/voice_chat_max_seconds
-	default = 15
+	config_entry_value = 15
 	min_val = 3
 	max_val = 20
 
@@ -199,12 +201,16 @@ SUBSYSTEM_DEF(voice_chat)
 	session.recording_channel = channel
 	session.recording_started = world.time
 	pending_cmds += list(list("token" = session.token, "cmd" = "start", "seq" = session.recording_seq, "channel" = channel, "max" = CONFIG_GET(number/voice_chat_max_seconds)))
-	player.mob?.create_typing_indicator()
+	player.mob?.create_typing_indicator(TRUE) // TRUE: bez otwartego okna mówienia
 
 /// Puszczenie klawisza mówienia.
 /datum/controller/subsystem/voice_chat/proc/stop_recording(client/player)
 	var/datum/voice_chat_session/session = sessions[player.ckey]
 	if(!session?.recording_seq)
+		return
+	// Przypadkowe dotknięcie klawisza: strona i tak doklejałaby początek sprzed wciśnięcia.
+	if(world.time - session.recording_started < VOICE_CHAT_MIN_PRESS)
+		cancel_recording(player, session)
 		return
 	pending_cmds += list(list("token" = session.token, "cmd" = "stop", "seq" = session.recording_seq))
 	session.awaiting["[session.recording_seq]"] = world.time
@@ -314,3 +320,4 @@ SUBSYSTEM_DEF(voice_chat)
 #undef VOICE_CHAT_TOKENS_FILE
 #undef VOICE_CHAT_RESULT_TIMEOUT
 #undef VOICE_CHAT_IDLE_SYNC
+#undef VOICE_CHAT_MIN_PRESS

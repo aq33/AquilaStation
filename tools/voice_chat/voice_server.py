@@ -16,6 +16,7 @@ import os
 import queue
 import re
 import struct
+import sys
 import threading
 import time
 import urllib.error
@@ -323,7 +324,8 @@ def main():
 	p.add_argument("--secret", default=os.environ.get("VOICE_CHAT_SECRET", ""), help="musi się zgadzać z VOICE_CHAT_SECRET w configu gry")
 	p.add_argument("--verbose", action="store_true")
 	args = p.parse_args()
-	server = ThreadingHTTPServer((args.host, args.port), Handler)
+	sys.stdout.reconfigure(encoding="utf-8")  # konsola Windows domyślnie psuje polskie znaki
+	server =ThreadingHTTPServer((args.host, args.port), Handler)
 	server.daemon_threads = True
 	server.args = args
 	server.state = State()
