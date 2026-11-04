@@ -101,8 +101,8 @@ GLOBAL_DATUM_INIT(auto_crew_wake, /datum/auto_crew_wake, new)
 	COOLDOWN_START(src, retry_cooldown, AUTO_CREW_WAKE_RETRY)
 	// Nobody has to die again for the next try: check once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check)), AUTO_CREW_WAKE_RETRY + 1 SECONDS)
-	message_admins("Automatyczne wybudzenie nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Kolejna próba najwcześniej za [DisplayTimeText(AUTO_CREW_WAKE_RETRY)].")
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
+	message_admins("Automatyczne wybudzenie nikogo nie obudziło: [crew_wake_failure_reason()]. Kolejna próba najwcześniej za [DisplayTimeText(AUTO_CREW_WAKE_RETRY)].")
+	announce_crew_wake_failed()
 
 /datum/auto_crew_wake/Topic(href, href_list)
 	. = ..()
