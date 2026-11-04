@@ -326,7 +326,7 @@
 				authenticated = TRUE
 				authorize_access = get_all_accesses()
 				authorize_name = "Centrala"
-				admin_ghost_login = TRUE
+				admin_ghost_ckey = usr.ckey
 			// AQ EDIT END
 			else
 				var/obj/item/card/id/id_card = usr.get_idcard(hand_first = TRUE)
