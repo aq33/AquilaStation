@@ -99,6 +99,12 @@ describe('translateHtml', () => {
     );
   });
 
+  it('nie tłumaczy tego, co powiedział gracz', () => {
+    const html =
+      "<span class='game say'><span class='name'>Jan</span> <span class='message'>mówi, \"skrzynka narzędziowa\"</span></span>";
+    expect(translateHtml(html)).toBe(html);
+  });
+
   it('nie bierze kluczy z prototypu Object', () => {
     expect(translateHtml('constructor')).toBe('constructor');
     expect(translateHtml('<b>toString</b>')).toBe('<b>toString</b>');

@@ -361,7 +361,7 @@ def main():
     # "Wróć" w menu Esc to "Back", a nie "Recall" z jakiegoś DM
     ui = {}
     for pl in sorted(wanted | names | set(manual)):
-        en = ui_pairs.get(pl, pairs[pl]) if pl in js_literals else pairs[pl]
+        en = pairs[pl]
         parse = parse_js_literal if pl in js_literals else parse_dm_literal
         pl_parts = parse(pl)
         built = build_pl(pl_parts)
@@ -378,11 +378,17 @@ def main():
             value = "".join(x for x in en_parts if isinstance(x, str)).strip()
             # pusta wartość jest poprawna: polskie końcówki rodzaju ("aś") po angielsku znikają
             if key and key != value:
-                if pl in js_literals:
-                    ui[key] = value
-                if pl not in js_literals or key not in exact:
-                    exact[key] = value
+                exact[key] = value
                 stats["stałe"] += 1
+            if key and pl in js_literals:
+                # okna: tłumaczenie z kodu okien, jeśli jest; ogólne exact zostaje dla czatu
+                ui_en = ui_pairs.get(pl)
+                if ui_en:
+                    ui_value = "".join(text for kind, text in parse(ui_en) if kind == "t").strip()
+                else:
+                    ui_value = value
+                if ui_value and ui_value != key:
+                    ui[key] = ui_value
             continue
         alts = alternatives(exprs) if pl not in js_literals else {}
         fixed = TAG.sub(" ", "".join(texts) + " " + " ".join(" ".join(a) for a in alts.values()))

@@ -376,7 +376,33 @@ const renderTemplate = (
  * Tłumaczy HTML wiadomości. Najpierw dłuższe szablony (bardziej konkretne),
  * potem stałe teksty w węzłach tekstowych.
  */
+/** Wypowiedź: <span class='message'>mówi, "TEKST"</span> (code/game/say.dm, say_quote) */
+const SPOKEN = /(<span class=['"]message['"]>[^"<]*")([\s\S]*?)("\s*<\/span>)/g;
+
+/**
+ * Tłumaczy HTML wiadomości. Treść wypowiedzi zostaje, jak ją napisał gracz:
+ * tłumaczymy czasownik mowy i resztę wiadomości, nie to, co ktoś powiedział.
+ */
 export const translateHtml = (html: string, depth = 0): string => {
+  if (
+    depth > 0 ||
+    !html ||
+    !(html.includes("class='message'") || html.includes('class="message"'))
+  ) {
+    return translateMarkup(html, depth);
+  }
+  const spoken: string[] = [];
+  const masked = html.replace(SPOKEN, (_match, open, text, close) => {
+    spoken.push(text);
+    return `${open}\u0003${spoken.length - 1}\u0004${close}`;
+  });
+  return translateMarkup(masked, depth).replace(
+    /\u0003(\d+)\u0004/g,
+    (_match, n: string) => spoken[Number(n)],
+  );
+};
+
+const translateMarkup = (html: string, depth: number): string => {
   if (!dictionary || !html) {
     return html;
   }

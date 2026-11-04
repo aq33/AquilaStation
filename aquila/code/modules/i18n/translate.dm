@@ -108,12 +108,16 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 
 /// Litery w słowach pisanych małą literą: miara polskiego tekstu, który by został (imiona się nie liczą)
 /proc/i18n_lowercase_letters(text)
+	var/static/regex/separators = regex(@{"[\s.,!?;:()"'\-]+"})
+	// wprost, bez uppertext(): wielkość polskich liter nie musi być obsłużona
+	var/static/list/polish_lowercase = list("ą", "ć", "ę", "ł", "ń", "ó", "ś", "ź", "ż")
 	var/count = 0
-	for(var/word in splittext(text, regex(@{"[\s.,!?;:()"'\-]+"})))
+	for(var/word in splittext(text, separators))
 		if(!length(word))
 			continue
 		var/first = copytext_char(word, 1, 2)
-		if(first != uppertext(first))
+		var/code = text2ascii(first)
+		if((code >= 97 && code <= 122) || (first in polish_lowercase))
 			count += length_char(word)
 	return count
 
@@ -142,7 +146,8 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	if(!length(GLOB.i18n_en_templates) || length(text) > 300)
 		return null
 	var/list/candidates = list()
-	for(var/word in splittext(lowertext(text), regex(@{"[\s.,!?;:()\[\]"'<>/\-]+"})))
+	var/static/regex/separators = regex(@{"[\s.,!?;:()\[\]"'<>/\-]+"})
+	for(var/word in splittext(lowertext(text), separators))
 		var/list/found = GLOB.i18n_en_anchors[word]
 		if(found)
 			candidates |= found
@@ -207,18 +212,22 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 /proc/i18n_en_html(text)
 	if(!istext(text) || !length(text))
 		return text
+	if(findtext(text, "<"))
+		// HTML (screentipy) jest zmienny i tani: tylko stałe, węzeł po węźle, bez pamięci podręcznej
+		. = i18n_en_exact(text)
+		if(isnull(.))
+			var/static/regex/text_node = regex(@">([^<>]+)<", "g")
+			var/wrapped = text_node.Replace(">[text]<", /proc/i18n_en_text_node)
+			. = copytext(wrapped, 2, -1)
+		return
+	// zwykły tekst (dymki, runechat) się powtarza, a szablony kosztują: pamięć podręczna
 	var/list/cache = GLOB.i18n_en_cache
 	var/cached = cache[text]
 	if(!isnull(cached))
 		return cached
 	. = i18n_en_exact(text)
 	if(isnull(.))
-		if(findtext(text, "<"))
-			var/static/regex/text_node = regex(@">([^<>]+)<", "g")
-			var/wrapped = text_node.Replace(">[text]<", /proc/i18n_en_text_node)
-			. = copytext(wrapped, 2, -1)
-		else
-			. = i18n_en_template(text) || text
+		. = i18n_en_template(text) || text
 	if(length(cache) >= I18N_CACHE_SIZE)
 		cache.Cut()
 	cache[text] = .
@@ -236,7 +245,12 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 // Runechat: jedna wiadomość dla wielu słuchaczy. Gracze z językiem EN dostają osobną, przetłumaczoną.
 // Wartości domyślne jak w chatmessage.dm (CHAT_MESSAGE_LIFESPAN jest tam #undef, więc liczba wprost)
 /datum/chatmessage/New(text, atom/target, list/client/hearers, language_icon, list/extra_classes = list(), lifespan = 5.4 SECONDS)
-	if(type == /datum/chatmessage && istext(text) && length(hearers))
+	// To, co powiedział gracz, zostaje, jak je napisał: tłumaczymy emotki i mowę maszyn/NPC (teksty z kodu)
+	var/player_speech = FALSE
+	if(ismob(target) && !("emote" in extra_classes))
+		var/mob/speaker = target
+		player_speech = !!speaker.ckey
+	if(type == /datum/chatmessage && istext(text) && length(hearers) && !player_speech)
 		var/list/english = list()
 		for(var/client/C as anything in hearers)
 			if(C?.wants_english())

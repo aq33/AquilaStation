@@ -33,5 +33,20 @@
 	TEST_ASSERT(mode == "It's set to saw mode.", "Server template alternative picked the wrong branch: [mode]")
 	var/mixed = i18n_en_html("zupełnie nieznane polskie zdanie jest pełny!")
 	TEST_ASSERT(mixed == "zupełnie nieznane polskie zdanie jest pełny!", "Template made a mixed-language text: [mixed]")
+	TEST_ASSERT(i18n_lowercase_letters("żółw Jan") == 4, "Polish lowercase first letters are not counted")
+
+	// Okienka alert(): bez odbiorcy argumenty przesuwają się o jedno, domyślny przycisk to "Ok"
+	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human)
+	var/list/shifted = i18n_alert_args(viewer, "Tekst", "Tytuł", "Tak", "Nie")
+	TEST_ASSERT(shifted[1] == viewer && shifted[2] == "Tekst" && shifted[3] == "Tytuł" && shifted[4] == "Tak" && shifted[5] == "Nie", "alert() without a recipient is not shifted to usr")
+	var/list/direct = i18n_alert_args(null, viewer, "Tekst")
+	TEST_ASSERT(direct[1] == viewer && direct[2] == "Tekst" && direct[4] == "Ok", "alert(user, text) lost the default Ok button")
+	// Przyciski: dwa o tym samym tłumaczeniu zostają po polsku, żeby kod dostał właściwy
+	var/list/buttons = i18n_alert_buttons(list("skrzynka narzędziowa", null, null))
+	TEST_ASSERT(buttons[1] == "toolbox" && isnull(buttons[2]), "alert() buttons are not translated: [buttons[1]]")
+	var/list/same = i18n_alert_buttons(list("skrzynka narzędziowa", "skrzynka narzędziowa", null))
+	TEST_ASSERT(same[1] == "skrzynka narzędziowa", "Colliding button translations should stay Polish")
+	// Bez klienta z językiem EN tekst okienka input() zostaje
+	TEST_ASSERT(i18n_dialog_text(viewer, "skrzynka narzędziowa") == "skrzynka narzędziowa", "input() text changed for a player without English")
 
 #undef TEST_ASSERT

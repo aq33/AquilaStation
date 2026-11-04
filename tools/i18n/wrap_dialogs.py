@@ -24,7 +24,8 @@ SKIP = ("aquila/code/modules/i18n/native_dialogs.dm",)
 MARKER = "// AQ EDIT - i18n okienka"
 WRAP = "i18n_dialog_text("
 # zmienna z tekstem komunikatu na pierwszym miejscu (input(msg, "Tytuł") bez odbiorcy)
-MESSAGE_NAME = re.compile(r"(^|\.)(msg|message|text|prompt|question|query|desc|description|info|title|txt|str|q)\w*$", re.I)
+# (pełne nazwy: "stranger" czy "quartermaster" to odbiorcy, nie komunikaty)
+MESSAGE_NAME = re.compile(r"(^|\.)(msg|message|text|prompt|question|query|desc|description|info|title|txt)$", re.I)
 
 
 def string_end(text, i):
