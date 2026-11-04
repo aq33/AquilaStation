@@ -338,6 +338,8 @@
 		if("toggleMode")
 			mode = !mode
 			. = TRUE
+		if("purify") // AQ EDIT - oczyszczanie odczynnika w buforze, aquila/code/modules/reagents/chemistry/machinery/chem_master.dm
+			. = purify_buffer_reagent(GLOB.name2reagent[params["id"]], usr)
 		if("pillStyle")
 			chosen_pill_style = "[params["id"]]"
 			. = TRUE

@@ -1193,6 +1193,7 @@
 #include "code\modules\detectivework\ballistics.dm"
 #include "code\modules\detectivework\wound_log.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_heater.dm"
+#include "code\modules\reagents\chemistry\machinery\chem_master.dm"
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
@@ -1682,6 +1683,7 @@
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
 #include "code\modules\unit_tests\aquila_bee_windows.dm"
 #include "code\modules\unit_tests\aquila_fermichem.dm"
+#include "code\modules\unit_tests\aquila_chemia_ulepszenia.dm"
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"

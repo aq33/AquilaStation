@@ -11,6 +11,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
@@ -211,6 +212,7 @@ const ChemMasterContent = (props) => {
                 key={chemical.id}
                 chemical={chemical}
                 transferTo="beaker"
+                canPurify={!data.condi}
               />
             ))}
           </Table>
@@ -302,11 +304,14 @@ const ChemMasterContent = (props) => {
 type ReagentProps = {
   chemical: Chemical;
   transferTo: 'buffer' | 'beaker';
+  canPurify?: boolean;
 };
 
 const ReagentEntry = (props: ReagentProps) => {
   const { act } = useBackend<Data>();
-  const { chemical, transferTo } = props;
+  const { chemical, transferTo, canPurify } = props;
+  const impure =
+    canPurify && chemical.purity !== undefined && chemical.purity < 1;
   const transfer = (amount: number) =>
     act('transfer', {
       id: chemical.id,
@@ -331,6 +336,17 @@ const ReagentEntry = (props: ReagentProps) => {
           tooltip="Własna ilość"
           onClick={() => transfer(-1)}
         />
+        {impure && (
+          <Button
+            icon="filter"
+            color="average"
+            tooltip={`Oczyść: zostanie ${toFixed(
+              chemical.volume * (chemical.purity || 0),
+              2,
+            )}u czystego odczynnika, reszta idzie do utylizacji`}
+            onClick={() => act('purify', { id: chemical.id })}
+          />
+        )}
         <Button
           icon="question"
           tooltip="Analizuj"
