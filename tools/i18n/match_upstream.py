@@ -207,6 +207,7 @@ def main():
         result[pl] = ens.most_common(1)[0][0]
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(result.items())), f, ensure_ascii=False, indent=1)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"nowych par: {len(result)}; dopasowane pliki według źródła: {dict(used)}")
 

@@ -297,6 +297,7 @@ def main():
     os.makedirs(args.out, exist_ok=True)
     with open(os.path.join(args.out, "en_pairs.json"), "w", encoding="utf-8") as f:
         json.dump(dict(sorted(dictionary.items())), f, ensure_ascii=False, indent=1)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
 
     # pokrycie w podziale na katalogi
     total = len(current)

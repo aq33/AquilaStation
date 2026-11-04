@@ -85,6 +85,7 @@ def main():
         merged.setdefault(pl, en)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"{stats}, napisy z wstawek: {len(nested)}, razem w {OUT}: {len(merged)}")
 

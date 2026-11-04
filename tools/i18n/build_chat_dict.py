@@ -244,6 +244,7 @@ def load_sources(args):
     merged.update(load_json(args.manual))
     with open(args.all, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     return merged
 
 
@@ -336,10 +337,12 @@ def main():
     }
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     # Serwer (dymki, runechat, screentipy) potrzebuje tylko krótkich stałych
     short = {k: v for k, v in sorted(exact.items()) if len(k) <= DM_MAX_LENGTH}
     with open(args.dm_out, "w", encoding="utf-8") as f:
         json.dump(short, f, ensure_ascii=False, separators=(",", ":"))
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"wycinek: {len(wanted)} tekstów, stałe spoza wycinka: {len(names)}, ręczne: {len(manual)}")
     for k, v in stats.most_common():
