@@ -7,6 +7,7 @@
 import { Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
+import { getLanguage, loadDictionary, setLanguage } from 'tgui/i18n';
 
 import {
   addHighlightSetting,
@@ -36,7 +37,6 @@ import {
   MAX_PERSISTED_MESSAGES,
   MESSAGE_SAVE_INTERVAL,
 } from './constants';
-import { getLanguage, loadDictionary, setLanguage } from './i18n';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';

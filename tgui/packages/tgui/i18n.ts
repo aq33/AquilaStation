@@ -1,14 +1,14 @@
 /**
- * AQUILA: angielska wersja językowa czatu (prototyp).
+ * AQUILA: angielska wersja językowa (czat w panelu i okna tgui).
  *
- * Serwer wysyła wiadomości po polsku. Gracz z językiem EN dostaje słownik
- * i18n_en_chat.json (tools/i18n/build_chat_dict.py), a panel podmienia tekst
+ * Serwer wysyła teksty po polsku. Gracz z językiem EN dostaje słownik
+ * i18n_en_chat.json (tools/i18n/build_chat_dict.py), a klient podmienia tekst
  * przy wyświetlaniu: szablony z osadzeniami ("[user] uderza [target]!") i stałe
- * teksty. Zapisana historia czatu zostaje po polsku, więc zmiana języka działa
- * też wstecz (przebudowa czatu).
+ * teksty. Czat robi to w rendererze (zapisana historia zostaje po polsku, więc
+ * zmiana języka działa też wstecz), okna tgui w i18nDom.ts.
  */
 
-import { resolveAsset } from 'tgui/assets';
+import { resolveAsset } from './assets';
 
 /** Element angielskiej strony: tekst albo [nr osadzenia PL, przedimek?] */
 type EnPart = string | [number] | [number, string];

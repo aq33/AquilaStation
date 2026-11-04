@@ -14,6 +14,7 @@ import { App } from './App';
 import { setGlobalStore } from './backend';
 import { setupGlobalEvents } from './events';
 import { setupHotKeys } from './hotkeys';
+import { setupDomTranslation } from './i18nDom';
 import { captureExternalLinks } from './links';
 import { render } from './renderer';
 import { configureStore } from './store';
@@ -37,6 +38,8 @@ function setupApp() {
   captureExternalLinks();
 
   store.subscribe(() => render(<App />));
+  // AQUILA: okna po angielsku dla gracza z językiem EN (i18nDom.ts)
+  setupDomTranslation(store);
 
   // Dispatch incoming messages as store actions
   Byond.subscribe((type, payload) => store.dispatch({ type, payload }));

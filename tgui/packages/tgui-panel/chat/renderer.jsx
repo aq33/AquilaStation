@@ -8,6 +8,7 @@ import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { createRoot } from 'react-dom/client';
 import { RadarChart, Tooltip } from 'tgui/components';
+import { isTranslating, translateHtml } from 'tgui/i18n';
 import { createLogger } from 'tgui/logging';
 
 import {
@@ -23,7 +24,6 @@ import {
   MESSAGE_TYPE_UNKNOWN,
   MESSAGE_TYPES,
 } from './constants';
-import { isTranslating, translateHtml } from './i18n';
 import { canPageAcceptType, createMessage, isSameMessage } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
 

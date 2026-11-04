@@ -6,7 +6,7 @@
  * przy wyświetlaniu. Brak wpisu = oryginalna nazwa.
  */
 
-import { getLanguage } from '../chat/i18n';
+import { getLanguage } from 'tgui/i18n';
 
 const TAB_NAMES = {
   Status: 'Status',
