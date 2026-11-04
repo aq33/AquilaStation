@@ -814,6 +814,7 @@
 #include "code\modules\overmap\mission_choice.dm"
 #include "code\modules\overmap\ship_console_hud.dm"
 #include "code\modules\overmap\fighter_manual_eject.dm"
+#include "code\modules\overmap\ship_sounds.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"

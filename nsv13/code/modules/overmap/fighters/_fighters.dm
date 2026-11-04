@@ -287,6 +287,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 				to_chat(usr, "<span class='warning'>[src] nie ma zainstalowanej baterii!</span>")
 				return
 			battery.toggle()
+			relay('nsv13/sound/effects/fighters/powerswitch.ogg') // AQ EDIT - nieużywany dźwięk przełącznika zasilania
 			to_chat(usr, "Przestawiasz przełącznik baterii.</span>")
 			. = TRUE
 		if("apu")
@@ -295,7 +296,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 				to_chat(usr, "<span class='warning'>[src] nie ma zainstalowanego APU!</span>")
 				return
 			APU.toggle()
-			playsound(src, 'nsv13/sound/effects/fighters/warmup.ogg', 100, FALSE)
+			playsound(src, APU.active ? 'nsv13/sound/effects/fighters/apu_start.ogg' : 'nsv13/sound/effects/fighters/warmup.ogg', 100, FALSE) // AQ EDIT - rozruch APU ma własny dźwięk
 			. = TRUE
 		if("ignition")
 			var/obj/item/fighter_component/engine/engine = loadout.get_slot(HARDPOINT_SLOT_ENGINE)
