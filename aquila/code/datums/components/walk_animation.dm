@@ -5,7 +5,10 @@
  * pokazuje ten obraz przycięty maskami alfa: tułów, dwie ręce i dwie nogi. Ubranie i nakładki
  * są więc cięte razem z ciałem. Przedmioty w dłoniach są kopiowane na osobne fragmenty ("hand_1" lewa,
  * "hand_2" prawa) i pokazywane w całości, ruszając się razem ze swoją ręką.
- * Maski są kierunkowe (aquila/icons/mob/walk_masks.dmi) i dziedziczą kierunek moba po stronie klienta.
+ * Maski są kierunkowe (aquila/icons/mob/walk_masks.dmi) i wspólne dla wszystkich mobów: 20 obiektów ekranu
+ * (5 masek x 4 kierunki, /atom/movable/screen/walk_mask) dokładanych każdemu klientowi razem z plane masterami.
+ * Fragment ciała wskazuje filtrem maskę dla bieżącego kierunku moba (update_mask_dir).
+ * Klient bez tych obiektów na ekranie widzi całe ciało (tułów z MASK_INVERSE i pustą maską), tylko bez ruchu kończyn.
  * "arm_a"/"leg_a" to strona lewa na ekranie przy widoku z przodu i z tyłu; w widoku z boku
  * "arm_a" to ręka bliżej patrzącego, a "leg_a" i "leg_b" pokazują obie nogi w pełnej szerokości.
  * Z boku "leg_b" jest widoczna tylko w trakcie kroku, żeby w spoczynku nogi nie były rysowane podwójnie.
@@ -26,8 +29,10 @@
 	var/old_render_target
 	/// Nazwa maski -> fragment ciała, który ją pokazuje
 	var/list/limbs = list()
-	/// Obiekty masek, rysowane tylko do własnych buforów
-	var/list/masks = list()
+	/// Nazwa maski -> flagi filtra alpha_mask
+	var/list/mask_flags = list()
+	/// Kierunek, dla którego fragmenty wskazują teraz maski
+	var/mask_dir
 	/// Blokada emisji dla nowego bufora; stara czyta render_target, który tu podmieniamy
 	var/atom/movable/emissive_blocker/em_block
 	/// Która para ręka/noga rusza się przy tym kroku
@@ -49,7 +54,7 @@
 	var/mob/living/carbon/human/H = parent
 
 	body_target = "*walk_body[REF(H)]"
-	body_anchors = make_bounds_anchors()
+	body_anchors = walk_animation_bounds_anchors()
 	em_block = new(null, body_target)
 
 	// Nogi pod tułowiem (wysuwana z boku nad tylną), ręce nad nim
@@ -73,7 +78,6 @@
 		deactivate()
 	QDEL_NULL(em_block)
 	QDEL_LIST_ASSOC_VAL(limbs)
-	QDEL_LIST_ASSOC_VAL(masks)
 	return ..()
 
 /// Podpina bufor ciała, maski i fragmenty. Wołane przy pierwszym kroku po spoczynku.
@@ -86,11 +90,10 @@
 	H.render_target = body_target
 	H.add_overlay(body_anchors)
 	var/list/attached = list(em_block)
-	for(var/state in masks)
-		attached += masks[state]
 	for(var/state in limbs)
 		attached += limbs[state]
 	H.vis_contents += attached
+	update_mask_dir(H.dir)
 	update_side_leg(H.dir)
 	update_held_dir(H.dir)
 	detach_held_items()
@@ -105,8 +108,6 @@
 		H.render_target = old_render_target
 	H.cut_overlay(body_anchors)
 	var/list/attached = list(em_block)
-	for(var/state in masks)
-		attached += masks[state]
 	for(var/state in limbs)
 		var/obj/effect/overlay/limb = limbs[state]
 		animate(limb, pixel_w = 0, pixel_z = 0, time = 0) // przerwany krok nie może zostać wychylony na następny raz
@@ -130,24 +131,28 @@
 		return
 	deactivate()
 
-/datum/component/walk_animation/proc/add_limb(mob/living/carbon/human/H, state, layer, mask_flags)
-	var/obj/effect/overlay/walk_mask/mask = new
-	mask.icon_state = state
-	mask.render_target = "*walk_[state][REF(H)]"
-	mask.add_overlay(make_bounds_anchors()) // ten sam obszar co bufor ciała, niezależnie od tego, jak filtr kotwiczy maskę
-	masks[state] = mask
-
+/datum/component/walk_animation/proc/add_limb(mob/living/carbon/human/H, state, layer, flags)
 	var/obj/effect/overlay/walk_limb/limb = new
 	limb.layer = layer
 	limb.render_source = body_target
-	limb.add_filter("walk_mask", 1, alpha_mask_filter(render_source = mask.render_target, flags = mask_flags))
 	limbs[state] = limb
+	mask_flags[state] = flags
+
+/// Ustawia fragmentom ciała wspólne maski dla kierunku moba. Ukośne kierunki rysują się jak wschód/zachód.
+/datum/component/walk_animation/proc/update_mask_dir(new_dir)
+	var/key = walk_mask_dir(new_dir)
+	if(key == mask_dir)
+		return
+	mask_dir = key
+	for(var/state in mask_flags)
+		var/obj/effect/overlay/walk_limb/limb = limbs[state]
+		limb.add_filter("walk_mask", 1, alpha_mask_filter(render_source = "*walk_mask_[state]_[key]", flags = mask_flags[state]))
 
 /// BYOND 516 (1648) zmienił kotwiczenie obrazu z render_source, a bufor jest przycinany do tego, co się
 /// w nim narysowało. Bez wystających nakładek obraz ciała rozjeżdżał się z maskami (zostawał wąski pasek).
 /// Dwa prawie przezroczyste piksele w rogach obszaru 96x96 wokół kafla dają buforom ciała i masek stały
 /// rozmiar; sprawdzone w Dream Seeker 516 dla zwykłego i zmienionego wzrostu oraz leżenia, bez przesunięć.
-/datum/component/walk_animation/proc/make_bounds_anchors()
+/proc/walk_animation_bounds_anchors()
 	var/mutable_appearance/lower_left = mutable_appearance('aquila/icons/mob/walk_masks.dmi', "anchor_ll")
 	lower_left.pixel_x = -world.icon_size
 	lower_left.pixel_y = -world.icon_size
@@ -232,6 +237,7 @@
 
 	if(!active) // activate() ustawi kierunek przy następnym kroku
 		return
+	update_mask_dir(new_dir)
 	update_side_leg(new_dir)
 	update_held_dir(new_dir)
 
@@ -313,14 +319,44 @@
 	appearance_flags = KEEP_APART | PIXEL_SCALE | TILE_BOUND
 	vis_flags = VIS_INHERIT_ID
 
-/// Maska fragmentu ciała. Niewidoczna, rysuje się tylko do własnego bufora.
-/obj/effect/overlay/walk_mask
+/// Kierunek wspólnej maski dla kierunku moba (ikona masek ma 4 kierunki).
+/proc/walk_mask_dir(dir)
+	if(dir & EAST)
+		return EAST
+	if(dir & WEST)
+		return WEST
+	if(dir & NORTH)
+		return NORTH
+	return SOUTH
+
+GLOBAL_LIST_EMPTY(walk_mask_screens)
+
+/// Wspólne maski fragmentów ciała, po jednej na maskę i kierunek. Tworzone raz, przy pierwszym kliencie.
+/proc/get_walk_mask_screens()
+	if(!length(GLOB.walk_mask_screens))
+		for(var/state in list("leg_a", "leg_b", "torso_cut", "arm_a", "arm_b"))
+			for(var/mask_dir in GLOB.cardinals)
+				GLOB.walk_mask_screens += new /atom/movable/screen/walk_mask(null, state, mask_dir)
+	return GLOB.walk_mask_screens
+
+/// Maska fragmentu ciała na ekranie klienta. Niewidoczna, rysuje się tylko do własnego bufora,
+/// z którego czytają filtry fragmentów wszystkich mobów idących w tym kierunku.
+/atom/movable/screen/walk_mask
 	name = ""
 	icon = 'aquila/icons/mob/walk_masks.dmi'
-	plane = FLOAT_PLANE
-	layer = FLOAT_LAYER
+	screen_loc = "CENTER"
 	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | KEEP_APART
-	vis_flags = VIS_INHERIT_DIR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/movable/screen/walk_mask/Initialize(mapload, state, mask_dir)
+	. = ..()
+	icon_state = state
+	dir = mask_dir
+	render_target = "*walk_mask_[state]_[mask_dir]"
+	add_overlay(walk_animation_bounds_anchors()) // ten sam obszar co bufor ciała, niezależnie od tego, jak filtr kotwiczy maskę
+
+/datum/hud/plane_masters_update()
+	. = ..()
+	mymob.client.screen |= get_walk_mask_screens()
 
 #undef WALK_ANIMATION_IDLE_DELAY
