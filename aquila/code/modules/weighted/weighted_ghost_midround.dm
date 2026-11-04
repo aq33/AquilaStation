@@ -1,7 +1,7 @@
 // AQUILA - Weighted rotation: every 30-60 minutes ghosts are offered a midround antagonist,
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
-// The heavy ones (slaughter demon, space dragon, blob, bingles, wizard, nuclear assault) are only offered in rounds from the high pool.
-// Blood worms are offered in rounds from the medium and high pools.
+// The heavy ones (slaughter demon, space dragon, blob, bingles, swarmers, wizard, nuclear assault) are only offered in rounds from the high pool.
+// Blood worms, spiders, sinful demons, sentient diseases, pirates, infiltrators and xenomorphs are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
 #define WEIGHTED_MIDROUND_MIN_DELAY (30 MINUTES)
@@ -20,23 +20,17 @@
 /datum/weighted_ghost_midround/proc/common_events()
 	var/static/list/events = list(
 		/datum/round_event_control/abductor,
-		/datum/round_event_control/alien_infestation,
 		/datum/round_event_control/aquila_chrono_legionnaire,
 		/datum/round_event_control/aquila_rogue_drone,
 		/datum/round_event_control/aquila_teratoma,
 		/datum/round_event_control/devil,
 		/datum/round_event_control/fugitives,
 		/datum/round_event_control/horror,
-		/datum/round_event_control/infiltrators,
 		/datum/round_event_control/morph,
 		/datum/round_event_control/ninja,
 		/datum/round_event_control/operative,
 		/datum/round_event_control/paradox_clone,
-		/datum/round_event_control/pirates,
 		/datum/round_event_control/revenant,
-		/datum/round_event_control/sentient_disease,
-		/datum/round_event_control/sinfuldemon,
-		/datum/round_event_control/spawn_swarmer,
 		/datum/round_event_control/wizard/imposter,
 	)
 	// Antagoniści z osobnych PR-ów (i koszmar, którego event zastąpił demon cieni) po ścieżce tekstowej,
@@ -58,7 +52,13 @@
 /// Ghost antagonist events offered in rounds from the medium and high pools
 /datum/weighted_ghost_midround/proc/medium_events()
 	var/static/list/events = list(
+		/datum/round_event_control/alien_infestation,
 		/datum/round_event_control/blood_worm,
+		/datum/round_event_control/infiltrators,
+		/datum/round_event_control/pirates,
+		/datum/round_event_control/sentient_disease,
+		/datum/round_event_control/sinfuldemon,
+		/datum/round_event_control/spider_infestation,
 	)
 	return events
 
@@ -69,7 +69,7 @@
 		/datum/round_event_control/blob,
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/space_dragon,
-		/datum/round_event_control/spider_infestation,
+		/datum/round_event_control/spawn_swarmer,
 	)
 	return events
 
@@ -132,7 +132,9 @@
 	// The wizard and nuclear team poll ghosts through pollGhostCandidates(), which gives nobody with station sentience roles off
 	if(!heavy || !(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return
-	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard())
+	// Same player minimum as the roundstart wizard (MIN_POP WIZARD)
+	var/wizard_min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
+	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard() && players >= wizard_min_pop)
 		. += WEIGHTED_MIDROUND_WIZARD
 	if(!(WEIGHTED_MIDROUND_NUCLEAR in used_offers) && !istype(SSticker.mode, /datum/game_mode/nuclear))
 		. += WEIGHTED_MIDROUND_NUCLEAR

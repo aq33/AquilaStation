@@ -265,7 +265,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	if(SSticker.mode.config_tag == "wizard")
 		addtimer(CALLBACK(src, PROC_REF(warn_about_wizard)), rand(3 MINUTES, 6 MINUTES))
 
-/// Wizard is allowed from 10 players in weighted rounds, so the crew gets a heads up
+/// Wizard starts in weighted rounds without a warning of its own, so the crew gets a heads up
 /datum/weighted_rotation/proc/warn_about_wizard()
 	priority_announce("Czujniki dalekiego zasięgu wykryły zaburzenia bluespace typowe dla teleportów Federacji Czarodziejów. Na pokładzie [station_name()] może pojawić się czarodziej. Zachowajcie ostrożność.", "Anomalia magiczna", ANNOUNCER_SPANOMALIES)
 
