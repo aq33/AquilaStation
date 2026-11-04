@@ -141,15 +141,34 @@ const translateValue = (value: string, depth: number): string => {
   if (!trimmed) {
     return value;
   }
-  const found = dictionary!.exact[trimmed];
+  const found = lookupExact(trimmed);
   if (found !== undefined) {
     return value.replace(trimmed, found);
   }
   return depth < MAX_DEPTH ? translateHtml(value, depth + 1) : value;
 };
 
-const isKnown = (value: string) =>
-  dictionary!.exact[value.trim()] !== undefined;
+/**
+ * Stały tekst ze słownika. Kod często dokleja znak końca zdania sam
+ * (emotki: "krzyczy" + "."), więc szukamy też bez niego.
+ */
+const lookupExact = (text: string): string | undefined => {
+  const exact = dictionary!.exact;
+  const found = exact[text];
+  if (found !== undefined || !text) {
+    return found;
+  }
+  const last = text.charAt(text.length - 1);
+  if ('.!?'.includes(last)) {
+    const base = exact[text.slice(0, -1)];
+    if (base !== undefined) {
+      return /[.!?]$/.test(base) ? base : base + last;
+    }
+  }
+  return undefined;
+};
+
+const isKnown = (value: string) => lookupExact(value.trim()) !== undefined;
 
 /**
  * Ile nierozpoznanego tekstu (liter w słowach pisanych małą literą) może
@@ -289,8 +308,7 @@ export const translateHtml = (html: string, depth = 0): string => {
   if (!dictionary || !html) {
     return html;
   }
-  const exact = dictionary.exact;
-  const whole = exact[html.trim()];
+  const whole = lookupExact(html.trim());
   if (whole !== undefined) {
     return whole;
   }
@@ -373,7 +391,7 @@ export const translateHtml = (html: string, depth = 0): string => {
       result.slice(match.end);
   }
   result = `>${result}<`.replace(TEXT_NODE, (match, text: string) => {
-    const found = exact[text.trim()];
+    const found = lookupExact(text.trim());
     return found === undefined
       ? match
       : `>${text.replace(text.trim(), found)}<`;

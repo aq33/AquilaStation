@@ -5,6 +5,6 @@ export const game_language: FeatureChoiced = {
   name: 'Język gry / Game language',
   category: 'UI',
   description:
-    'Wersja testowa: na razie zapisuje sam wybór, tłumaczenie interfejsu przyjdzie w kolejnych wersjach. / Experimental: only the choice is saved for now.',
+    'Wersja testowa: tłumaczy czat, examine i panel statystyk; okna i nazwy obiektów zostają na razie po polsku. / Experimental: translates the chat, examine and the stat panel; windows and object names stay Polish for now.',
   component: FeatureDropdownInput,
 };
