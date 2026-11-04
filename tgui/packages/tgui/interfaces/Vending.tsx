@@ -159,9 +159,10 @@ export const Vending = (props) => {
       return;
     }
     const { product, before } = pending;
+    // Własny automat pomija w danych towar, którego już nie ma, więc brak wpisu to 0
     const now: number | undefined = data.vending_machine_input
-      ? data.vending_machine_input.find((item) => item.name === product.name)
-          ?.amount
+      ? (data.vending_machine_input.find((item) => item.name === product.name)
+          ?.amount ?? 0)
       : product.path
         ? stock[product.path]?.amount
         : undefined;
@@ -288,7 +289,7 @@ export const Vending = (props) => {
 
   const press = (key: string) => {
     setMessage(null);
-    if (key === 'C') {
+    if (key === 'CLR') {
       setCode('');
     } else if (key === 'OK') {
       buy(selected);
@@ -363,7 +364,11 @@ export const Vending = (props) => {
                     <PixelText text={key} />
                   </Key>
                 ))}
-                <Key variant="cancel" onClick={() => press('C')} tip="Wyczyść">
+                <Key
+                  variant="cancel"
+                  onClick={() => press('CLR')}
+                  tip="Wyczyść"
+                >
                   <PixelText text="X" />
                 </Key>
                 <Key
