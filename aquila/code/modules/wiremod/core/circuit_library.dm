@@ -45,7 +45,8 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	if(!islist(loaded))
 		return
 	for(var/list/design in loaded)
-		if(istext(design["name"]) && design["dupe_data"])
+		// A design without a material cost would print for free
+		if(istext(design["name"]) && design["dupe_data"] && islist(design["materials"]) && length(design["materials"]))
 			designs += list(design)
 	if(length(designs) > CIRCUIT_LIBRARY_MAX_DESIGNS)
 		designs.Cut(CIRCUIT_LIBRARY_MAX_DESIGNS + 1)
@@ -93,9 +94,12 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 /datum/circuit_library/proc/remove_design(index)
 	if(index < 1 || index > length(designs))
 		return FALSE
+	var/list/removed = designs[index]
 	designs.Cut(index, index + 1)
-	save()
-	return TRUE
+	if(save())
+		return TRUE
+	designs.Insert(index, list(removed))
+	return FALSE
 
 /// Wzór w postaci, jakiej używa duplikator (materiały jako datumy), null przy złym indeksie
 /datum/circuit_library/proc/design_for_printing(index)
