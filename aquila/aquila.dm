@@ -1451,6 +1451,7 @@
 #include "code\modules\paradise_urzadzenia\nascienne.dm"
 #include "code\modules\paradise_meble\tables.dm"
 #include "code\modules\paradise_struktury\webmap.dm"
+#include "code\modules\inpost\inpost.dm"
 #include "code\modules\orlen\orlen.dm"
 #include "code\modules\policja\policja.dm"
 

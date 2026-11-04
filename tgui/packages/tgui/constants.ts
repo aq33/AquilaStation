@@ -27,7 +27,7 @@ export const COLORS = {
     medbay: '#3498db',
     science: '#9b59b6',
     engineering: '#e03a3e',
-    cargo: '#f39c12',
+    cargo: '#ffcd00',
     service: '#7cc46a',
     centcom: '#00c100',
     other: '#c38312',
@@ -92,7 +92,7 @@ export const RADIO_CHANNELS = [
   {
     name: 'Dostawy',
     freq: 1347,
-    color: '#b88646',
+    color: '#ffcd00',
   },
   {
     name: 'Służba',

@@ -336,10 +336,10 @@
 #define JOB_CHATCOLOR_BARBER    "#BD9E86"
 
 // Cargo
-#define JOB_CHATCOLOR_RAWCARGO        "#ECCE9A" // custom cargo color
-#define JOB_CHATCOLOR_QUARTERMASTER   "#C79C52"
-#define JOB_CHATCOLOR_CARGOTECHNICIAN "#D3A372"
-#define JOB_CHATCOLOR_SHAFTMINER      "#CE957E"
+#define JOB_CHATCOLOR_RAWCARGO        "#FFE88A" // custom cargo color //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_QUARTERMASTER   "#FFCD00" //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_CARGOTECHNICIAN "#F2D35C" //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_SHAFTMINER      "#E3C46A" //AQUILA EDIT - żółć InPostu
 #define JOB_CHATCOLOR_BITRUNNER       "#9ECF6B" // AQ EDIT - bitrunning
 
 // Engineering

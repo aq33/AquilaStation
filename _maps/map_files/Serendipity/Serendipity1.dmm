@@ -1083,10 +1083,10 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cq" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -1100,10 +1100,10 @@
 /obj/machinery/computer/order_console/bitrunning{
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -1202,7 +1202,7 @@
 /turf/open/floor/circuit/green,
 /area/quartermaster/bitrunning/den)
 "cI" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /turf/open/floor/monotile/dark,
@@ -1246,7 +1246,7 @@
 /area/quartermaster/bitrunning/den)
 "cN" = (
 /obj/structure/closet/secure_closet/exile,
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -1298,10 +1298,10 @@
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/quartermaster/bitrunning/den)
 "cV" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /obj/structure/cable,

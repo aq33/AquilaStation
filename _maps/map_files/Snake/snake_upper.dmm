@@ -3229,10 +3229,10 @@
 /obj/machinery/computer/order_console/bitrunning{
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -3276,7 +3276,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "jU" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /obj/machinery/light_switch/west,
@@ -3333,7 +3333,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/bitrunning/den)
 "kd" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /turf/open/floor/monotile/dark,
@@ -3362,7 +3362,7 @@
 /turf/open/floor/circuit/green,
 /area/quartermaster/bitrunning/den)
 "kh" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -3478,7 +3478,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "kx" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 2
 	},
 /turf/open/floor/monotile/dark,

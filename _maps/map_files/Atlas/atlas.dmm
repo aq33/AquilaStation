@@ -2825,7 +2825,7 @@
 	},
 /obj/machinery/rnd/production/techfab/department/cargo,
 /obj/machinery/airalarm/directional/east,
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -3079,17 +3079,17 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "gn" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "go" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
 /turf/open/floor/monotile/dark,
@@ -3113,10 +3113,10 @@
 /area/nsv/weapons)
 "gr" = (
 /obj/item/plant_tray/pot/random,
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -3298,7 +3298,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "gK" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3457,7 +3457,7 @@
 /obj/machinery/computer/order_console/bitrunning{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /obj/item/radio/intercom/directional/south,
@@ -4553,7 +4553,7 @@
 	name = "Chonker";
 	suffix = "#3"
 	},
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -11746,7 +11746,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/half/brown,
+/obj/effect/turf_decal/tile/ship/half/brown/inpost,
 /turf/open/floor/monotile/dark,
 /area/quartermaster/storage)
 "FN" = (
@@ -12279,7 +12279,7 @@
 "Hr" = (
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /obj/structure/table,
@@ -14692,7 +14692,7 @@
 	pixel_x = 2;
 	pixel_y = -11
 	},
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /obj/structure/table,
@@ -15544,7 +15544,7 @@
 	dir = 8;
 	dradis_id = "nt_cargo_torpedo_launcher"
 	},
-/obj/effect/turf_decal/tile/ship/half/brown,
+/obj/effect/turf_decal/tile/ship/half/brown/inpost,
 /obj/machinery/light,
 /turf/open/floor/monotile/dark,
 /area/quartermaster/storage)
@@ -15702,7 +15702,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -17780,7 +17780,7 @@
 /turf/open/floor/durasteel,
 /area/hydroponics)
 "Yl" = (
-/obj/effect/turf_decal/tile/ship/half/brown{
+/obj/effect/turf_decal/tile/ship/half/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,

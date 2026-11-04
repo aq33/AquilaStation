@@ -1,5 +1,5 @@
 /datum/test_chamber_kit/pr_550
-	name = "Inżynieria w barwach Orlenu, ochrona jako Żandarmeria"
+	name = "Orlen w inżynierii, InPost w zaopatrzeniu, ochrona jako Żandarmeria"
 	pr = "aq33/AquilaStation#550"
 	description = "Zestaw: szafki i automaty obu działów (w komorze wszystko za darmo), śluzy, mundury, kaski, czapki Orlenu, tablety, karty i dekale podłogi. Leżą też zapasowa karta kapitana i śrubokręt. \
 	1) Mundurownia Orlenu (EngiDrobe) i ta od atmosferyki → oczekiwane: czerwona obudowa z napisem ORLEN, czerwone światło; w ofercie trzy czapki Orlenu (biała, odblaskowa, a w atmosferyce czerwona). \
@@ -9,7 +9,7 @@
 	5) Śluza inżynierii → oczekiwane: zostaje żółta. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
 	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
 	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
-	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone."
+	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat: załaduj zestaw poczty z aq33/AquilaStation#447 (zsyp z wylotami), wrzuć coś do zsypu i spłucz → oczekiwane: paczkomat odgrywa animację paczki i wyrzuca przedmiot."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -44,6 +44,16 @@
 		/obj/item/modular_computer/tablet/pda/security = 1,
 		/obj/item/card/id/job/station_engineer = 1,
 		/obj/item/card/id/job/security_officer = 1,
+		/obj/machinery/vending/wardrobe/cargo_wardrobe = 1,
+		/obj/structure/closet/secure_closet/quartermaster = 1,
+		/obj/structure/closet/secure_closet/miner = 1,
+		/obj/item/clothing/under/rank/cargo/tech = 1,
+		/obj/item/clothing/under/rank/cargo/quartermaster = 1,
+		/obj/item/clothing/under/rank/cargo/miner/lavaland = 1,
+		/obj/item/clothing/suit/hooded/explorer = 1,
+		/obj/item/clothing/head/soft/cargo = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/cargo = 1,
+		/obj/item/storage/backpack/inpost = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/screwdriver = 1,
 	)
