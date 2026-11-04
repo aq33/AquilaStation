@@ -192,3 +192,6 @@ Temporary Items
 !/tools/build
 
 
+
+# Słownik pośredni z tools/i18n/extract_pairs.py (odtwarzany z historii gita)
+strings/i18n/en_pairs.json

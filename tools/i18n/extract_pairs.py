@@ -25,7 +25,8 @@ import sys
 CODE_EXT = (".dm", ".tsx", ".jsx", ".ts", ".js")
 TEXT_EXT = (".txt", ".json")
 PATHSPECS = ["*.dm", "*.tsx", "*.jsx", "*.ts", "*.js", "strings/*.txt", "strings/*.json"]
-SKIP_PATH = re.compile(r"(^|/)(node_modules|\.yarn|tools|_maps|html/changelogs|SQL)/|\.bundle\.|i18n/")
+# tools/ tylko w katalogu głównym: code/game/objects/items/tools/ to zwykły kod gry
+SKIP_PATH = re.compile(r"^(tools|_maps|SQL|html/changelogs)/|(^|/)(node_modules|\.yarn)/|\.bundle\.|i18n/")
 
 PL_DIACRITICS = re.compile(r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]")
 PL_WORDS = re.compile(
@@ -139,8 +140,13 @@ def strip_embeds(text):
 
 
 def wordy(text):
-    plain = strip_embeds(text)
-    return bool(re.search(r"[A-Za-zĄ-ż]{2,}", plain)) and not IDENTIFIER.match(plain.strip())
+    plain = strip_embeds(text).strip()
+    if not re.search(r"[A-Za-zĄ-ż]{2,}", plain):
+        return False
+    # pojedyncze słowo ("toolbox", "spawarka") to tekst, "brute_damage" czy "icons/x" już nie
+    if re.fullmatch(r"[A-Za-zĄ-ż]+", plain):
+        return True
+    return not IDENTIFIER.match(plain)
 
 
 def accept(en, pl, en_line, pl_line):
@@ -148,9 +154,9 @@ def accept(en, pl, en_line, pl_line):
         return False
     if is_polish(pl) and not is_polish(en):
         return True
-    # pojedyncze słowa w name/desc (Mug -> Kubek) nie mają cech języka
-    return bool(NAME_ASSIGN.search(pl_line) and NAME_ASSIGN.search(en_line)
-                and en.isascii() and not is_english(pl))
+    # teksty bez cech języka (Mug -> Kubek, robusted -> robustuje). Szum EN -> EN
+    # z diffu upstreamu jest nieszkodliwy: "tłumaczenie" i tak jest po angielsku.
+    return en.isascii() and not is_english(pl)
 
 
 # ---------------------------------------------------------------- diffy
@@ -216,6 +222,7 @@ def pairs_from_diff(text, source, sink):
 def tree_literals(rev):
     files = git("ls-tree", "-r", "--name-only", rev).splitlines()
     found = collections.Counter()
+    present = set()
     for path in files:
         if SKIP_PATH.search(path) or not path.endswith(CODE_EXT + TEXT_EXT):
             continue
@@ -227,10 +234,11 @@ def tree_literals(rev):
             continue
         for line in content.splitlines():
             for lit in literals(path, line):
+                present.add(lit)
                 if wordy(lit) and (is_polish(lit) or (NAME_ASSIGN.search(line) and not is_english(lit))):
                     found[lit] += 1
                     found_paths.setdefault(lit, path)
-    return found
+    return found, present
 
 
 found_paths = {}
@@ -275,10 +283,12 @@ def main():
             if pl not in sink:
                 sink[pl] = ens
 
-    current = tree_literals(args.rev)
+    # current: teksty liczone do pokrycia (wyglądają na polskie),
+    # present: wszystkie literały w drzewie (słownik bierze każdy, np. "robustuje")
+    current, present = tree_literals(args.rev)
     dictionary, conflicts = {}, 0
     for pl, ens in sink.items():
-        if pl not in current:
+        if pl not in present:
             continue  # tekst już nie istnieje w kodzie
         best, _ = ens.most_common(1)[0]
         conflicts += len(ens) > 1
