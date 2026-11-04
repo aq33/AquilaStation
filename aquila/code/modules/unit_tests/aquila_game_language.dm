@@ -18,4 +18,12 @@
 	TEST_ASSERT(length(dictionary["templates"]), "en_chat.json has no templates")
 	TEST_ASSERT(dictionary["exact"]["skrzynka narzędziowa"] == "toolbox", "en_chat.json lost a basic item name")
 
+	// Tłumacz serwera (dymki, runechat, screentipy): stałe, doklejona kropka, spacje na brzegach, węzły HTML
+	TEST_ASSERT(length(i18n_en_table()), "en_dm.json did not load")
+	TEST_ASSERT(i18n_en_exact("skrzynka narzędziowa") == "toolbox", "Server table lost a basic item name")
+	TEST_ASSERT(i18n_en_exact(" skrzynka narzędziowa.") == " toolbox.", "Trailing period or spaces are not kept")
+	TEST_ASSERT(isnull(i18n_en_exact("Zdanie, którego nie ma w słowniku.")), "Unknown text should not be translated")
+	var/html = i18n_en_html("<b>skrzynka narzędziowa</b> i coś nieznanego")
+	TEST_ASSERT(html == "<b>toolbox</b> i coś nieznanego", "HTML text nodes are not translated one by one: [html]")
+
 #undef TEST_ASSERT
