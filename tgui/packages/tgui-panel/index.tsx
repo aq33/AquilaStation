@@ -25,6 +25,7 @@ import { gameMiddleware, gameReducer } from './game';
 import { Panel } from './Panel';
 import { setupPanelFocusHacks } from './panelFocus';
 import { pingMiddleware, pingReducer } from './ping';
+import { reportRefreshRate } from './refreshRate';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { statMiddleware, statReducer } from './stat';
 import { telemetryMiddleware } from './telemetry';
@@ -72,6 +73,8 @@ function setupApp() {
   // ustawia chwilę po wejściu, więc odczyt makr powtarzamy z opóźnieniem.
   setupHotKeys();
   setTimeout(() => loadMacros(), 5000);
+  // AQUILA: FPS klienta wg odświeżania monitora (refreshRate.ts)
+  setTimeout(() => reportRefreshRate(), 5000);
   captureExternalLinks();
 
   // Re-render UI on store updates
