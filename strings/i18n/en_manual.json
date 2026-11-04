@@ -1,5 +1,5 @@
 {
- "_komentarz": "Ręczne pary PL -> EN dla tekstów, których nie ma w historii (pomocnicze procedury Aquili). Klucze i wartości w zapisie literału DM. build_chat_dict.py dokłada je do słownika czatu.",
+ "_komentarz": "Ręczne pary PL -> EN dla tekstów, których nie ma w historii (pomocnicze procedury Aquili). Klucze i wartości w zapisie literału DM. build_chat_dict.py dokłada je do słownika czatu. Szablony \"<strefa> [limb.owner]\" to wynik FORMAT_LIMB_OWNER (aquila/code/__DEFINES/surgery_tg.dm).",
  "<span class='emote'>Widzisz, jak <b>[user]</b>[space][msg]</span>": "<span class='emote'><b>[user]</b>[space][msg]</span>",
  "<span class='emote'>Widzisz, jak <b>[user]</b> [msg]</span>": "<span class='emote'><b>[user]</b> [msg]</span>",
  "głowa": "head",
@@ -37,5 +37,22 @@
  "w lewą dłoń": "in the left hand",
  "w prawą dłoń": "in the right hand",
  "w lewą stopę": "in the left foot",
- "w prawą stopę": "in the right foot"
+ "w prawą stopę": "in the right foot",
+ "głowę [limb.owner]": "[limb.owner]'s head",
+ "klatkę piersiową [limb.owner]": "[limb.owner]'s chest",
+ "krocze [limb.owner]": "[limb.owner]'s groin",
+ "oczy [limb.owner]": "[limb.owner]'s eyes",
+ "usta [limb.owner]": "[limb.owner]'s mouth",
+ "lewą rękę [limb.owner]": "[limb.owner]'s left arm",
+ "prawą rękę [limb.owner]": "[limb.owner]'s right arm",
+ "lewą nogę [limb.owner]": "[limb.owner]'s left leg",
+ "prawą nogę [limb.owner]": "[limb.owner]'s right leg",
+ "lewą dłoń [limb.owner]": "[limb.owner]'s left hand",
+ "prawą dłoń [limb.owner]": "[limb.owner]'s right hand",
+ "lewą stopę [limb.owner]": "[limb.owner]'s left foot",
+ "prawą stopę [limb.owner]": "[limb.owner]'s right foot",
+ "prawe": "right",
+ "lewe": "left",
+ "prawe oko": "right eye",
+ "lewe oko": "left eye"
 }
