@@ -15,6 +15,7 @@ Repozytorium: `aq33/AquilaStation` (stare `aq33/NSV13` przekierowuje). Język: D
 - Terminy bierz z `aquila/SLOWNIK_TLUMACZEN.md` i dopisuj tam nowe. Nazwy własne spolszczaj brzmieniowo (Bikarydyna, Kosmiczna Cola); Nanotrasen i nazwy frakcji bez zmian.
 - Gra ma opcję angielską (`aquila/code/modules/i18n/`, `tools/i18n/`). Angielski odpowiednik nowego tekstu dopisz do `strings/i18n/en_translated.json` (klucz to dokładny polski literał) i uruchom `python tools/i18n/build_chat_dict.py`. CI pokazuje brakujące jako ostrzeżenia.
 - Nie tłumacz tekstów porównywanych w kodzie (klucze list, `name` sprawdzane w `if`, identyfikatory w TSX, ckey nazw reagentów), chyba że zmieniasz też wszystkie porównania.
+- Gracze poprawiają polski tekst w Crowdinie (https://crowdin.com/project/aquila, komenda „Popraw tłumaczenie” w OOC). Zatwierdzone poprawki przychodzą jako PR z gałęzi `crowdin-poprawki` (`tools/i18n/crowdin.py`, `.github/workflows/crowdin_*.yml`). Nie edytuj tej gałęzi ręcznie, bo workflow ją nadpisuje. Złą poprawkę odrzuć w Crowdinie.
 - Tytuły PR-ów, opisy PR-ów i wpisy changelogu też są po polsku.
 - Nie ruszaj istniejących polskich tekstów ani naszych zmian bez pytania.
 ## Combat mode i intencje (dwa tryby sterowania)

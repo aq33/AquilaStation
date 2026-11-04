@@ -580,6 +580,7 @@
 #include "code\modules\client\loadout\loadout_ooc.dm"
 #include "code\modules\client\verbs\input_box.dm"
 #include "code\modules\client\verbs\ooc.dm"
+#include "code\modules\client\verbs\crowdin.dm"
 #include "code\modules\client\loadout\loadout_names_pl.dm"
 #include "code\modules\client\loadout\loadout_polskie.dm"
 #include "code\modules\client\loadout\loadout_preview.dm"

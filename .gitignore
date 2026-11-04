@@ -198,3 +198,7 @@ strings/i18n/en_pairs.json
 
 # Pary z oryginałów portów (tools/i18n/match_upstream.py, wymaga klonów innych serwerów)
 strings/i18n/en_pairs_upstream.json
+
+# Crowdin (tools/i18n/crowdin.py)
+crowdin_out/
+crowdin_existing/
