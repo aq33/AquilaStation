@@ -18,6 +18,8 @@ GLOBAL_DATUM_INIT(auto_crew_wake, /datum/auto_crew_wake, new)
 	var/done = FALSE
 	/// Trwa odliczanie albo ankieta
 	var/in_progress = FALSE
+	/// Trwa odliczanie, w którym admin może anulować (ankieta już tego nie pozwala)
+	var/waiting_for_admin = FALSE
 	/// Admin anulował trwające odliczanie
 	var/cancelled = FALSE
 	/// Ckey graczy, których postać z załogi zginęła w tej rundzie
@@ -70,15 +72,23 @@ GLOBAL_DATUM_INIT(auto_crew_wake, /datum/auto_crew_wake, new)
 	if(!should_wake(total, dead))
 		return
 	in_progress = TRUE
+	waiting_for_admin = TRUE
 	cancelled = FALSE
 	message_admins("Nie żyje [dead] z [total] graczy rundy. Za [DisplayTimeText(AUTO_CREW_WAKE_ADMIN_TIME)] Centrala automatycznie wybudzi załogę z kriostazy. (<a href='byond://?src=[REF(src)];cancel_auto_wake=1'>ANULUJ</a>)")
 	log_game("Automatic crew wake started: [dead] of [total] round players are dead.")
 	addtimer(CALLBACK(src, PROC_REF(wake)), AUTO_CREW_WAKE_ADMIN_TIME)
 
 /datum/auto_crew_wake/proc/wake()
+	waiting_for_admin = FALSE // Too late to cancel from now on
 	if(cancelled)
 		in_progress = FALSE
 		done = TRUE // An admin decided against it, do not start again this round
+		return
+	// The counts may have changed during the wait (revivals)
+	var/list/counts = count_crew()
+	if(!should_wake(counts[1], counts[2]))
+		in_progress = FALSE
+		message_admins("Automatyczne wybudzenie odwołane: w czasie oczekiwania część załogi wróciła do życia.")
 		return
 	priority_announce("Czujniki biometryczne wykazały śmierć co najmniej połowy załogi. Rozpoczynamy awaryjne wybudzanie ochotników z kriostazy.", "Automatyczny System Awaryjny Centrali")
 	var/woken = wake_crew_from_cryostasis("Procedurę awaryjnego wybudzenia uruchomiła Centrala po śmierci połowy załogi.")
@@ -89,6 +99,8 @@ GLOBAL_DATUM_INIT(auto_crew_wake, /datum/auto_crew_wake, new)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return
 	COOLDOWN_START(src, retry_cooldown, AUTO_CREW_WAKE_RETRY)
+	// Nobody has to die again for the next try: check once the cooldown ends
+	addtimer(CALLBACK(src, PROC_REF(check)), AUTO_CREW_WAKE_RETRY + 1 SECONDS)
 	message_admins("Automatyczne wybudzenie nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Kolejna próba najwcześniej za [DisplayTimeText(AUTO_CREW_WAKE_RETRY)].")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 
@@ -96,7 +108,7 @@ GLOBAL_DATUM_INIT(auto_crew_wake, /datum/auto_crew_wake, new)
 	. = ..()
 	if(!href_list["cancel_auto_wake"] || !check_rights(R_ADMIN))
 		return
-	if(!in_progress || cancelled)
+	if(!waiting_for_admin || cancelled)
 		to_chat(usr, "<span class='admin'>Za późno, by to anulować!</span>")
 		return
 	cancelled = TRUE
