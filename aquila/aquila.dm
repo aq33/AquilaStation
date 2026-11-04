@@ -595,6 +595,7 @@
 #include "code\modules\client\preferences_menu\assets.dm"
 #include "code\modules\i18n\game_language.dm"
 #include "code\modules\i18n\translate.dm"
+#include "code\modules\i18n\native_dialogs.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\head\mind_monkey_helmet.dm"
