@@ -7,6 +7,8 @@
 	var/handled = FALSE
 	/// When handled was set, an admin may take over a request that has been stuck in handling for too long
 	var/handled_time = 0
+	/// The request was fulfilled (crew woken up, team sent): it can never be started again
+	var/fulfilled = FALSE
 
 /datum/request/Topic(href, href_list)
 	. = ..()
@@ -170,6 +172,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 				teamSpawned++
 
 			if (teamSpawned)
+				fulfilled = TRUE
 				message_admins("Pojawia się [ertemplate.polldesc] z misją: [ertemplate.mission]")
 			else
 				message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: brak wolnych punktów odrodzenia ERT albo zgłoszeni gracze wyszli. Można ją wysłać ręcznie przyciskiem ERT.")
@@ -210,6 +213,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 
+	fulfilled = TRUE
 	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 	return woken
@@ -256,6 +260,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 /// An admin answers the response team request with the ERT maker. Cancelling it or finding nobody frees the request again
 /datum/request/proc/manual_response_team(datum/admins/admin)
 	if(admin?.makeEmergencyresponseteam())
+		fulfilled = TRUE
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana.", "Centrala"), 2 SECONDS)
 		return TRUE
 	handled = FALSE

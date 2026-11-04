@@ -196,6 +196,9 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 		if ("wake")
 			if (request.req_type != REQUEST_CREW_WAKE)
 				return TRUE
+			if (request.fulfilled)
+				to_chat(usr, "Ta prośba została już spełniona.")
+				return TRUE
 			if (request.handled && world.time < request.handled_time + 5 MINUTES)
 				to_chat(usr, "Ta prośba jest już obsługiwana.")
 				return TRUE
@@ -208,6 +211,9 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			return TRUE
 		if ("ert")
 			if (request.req_type != REQUEST_ERT)
+				return TRUE
+			if (request.fulfilled)
+				to_chat(usr, "Ta prośba została już spełniona.")
 				return TRUE
 			if (request.handled && world.time < request.handled_time + 5 MINUTES) // the ERT maker waits for its admin without a time limit
 				to_chat(usr, "Ta prośba jest już obsługiwana.")
