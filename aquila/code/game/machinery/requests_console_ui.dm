@@ -57,7 +57,7 @@
 			var/new_screen = text2num(params["screen"])
 			if(new_screen == 0)
 				announceAuth = FALSE
-			Topic(null, list("setScreen" = new_screen))
+			Topic(null, list("setScreen" = "[new_screen]"))
 			if(screen == 8)
 				mark_messages_read()
 		if("write")
@@ -71,7 +71,7 @@
 		if("emergency")
 			Topic(null, list("emergency" = params["type"]))
 		if("silent")
-			Topic(null, list("setSilent" = silent ? 0 : 1))
+			Topic(null, list("setSilent" = silent ? "0" : "1"))
 		if("write_squad")
 			Topic(null, list("writeSquad" = TRUE))
 		if("send_squad")

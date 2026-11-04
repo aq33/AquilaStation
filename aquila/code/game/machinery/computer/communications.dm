@@ -3,6 +3,17 @@
 	COOLDOWN_DECLARE(static/reinforcement_action_cooldown)
 	/// Cooldown before you can wake up another wave of assistants from cryostasis
 	COOLDOWN_DECLARE(static/crew_wake_cooldown)
+	/// Ckey of the admin ghost who logged in with every access. Their window closing (also after moving to another mob
+	/// or disconnecting) logs the console out again; another admin closing their own window does not
+	var/admin_ghost_ckey
+
+/obj/machinery/computer/communications/ui_close(mob/user)
+	. = ..()
+	if(admin_ghost_ckey && user?.ckey == admin_ghost_ckey && authorize_name == "Centrala")
+		admin_ghost_ckey = null
+		authenticated = FALSE
+		authorize_access = null
+		authorize_name = null
 
 /obj/machinery/computer/communications/proc/authenticated_as_cap_sec_or_silicon(mob/user)
 	if (issilicon(user))
