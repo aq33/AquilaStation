@@ -126,6 +126,52 @@
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")
 	TEST_ASSERT(cell && cell[1] == 0 && cell[2] == grid.grid_height - 1, "Screen-loc with a map name was not parsed")
 
+	// Małe schowki zachowują dawny limit sztuk mimo wolnych kratek
+	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
+	var/datum/component/storage/concrete/grid/toolbox_grid = toolbox.GetComponent(/datum/component/storage/concrete/grid)
+	TEST_ASSERT(toolbox_grid?.grid_keep_item_limit, "Toolbox has no limited grid storage")
+	for(var/obj/item/already in toolbox)
+		qdel(already)
+	for(var/i in 1 to toolbox_grid.max_items)
+		TEST_ASSERT(SEND_SIGNAL(toolbox, COMSIG_TRY_STORAGE_INSERT, make_item(WEIGHT_CLASS_TINY), null, TRUE), "Tiny item [i] did not fit into the toolbox")
+	TEST_ASSERT(toolbox_grid.remaining_space_items() > 0, "Toolbox grid filled up before its item limit")
+	TEST_ASSERT(!SEND_SIGNAL(toolbox, COMSIG_TRY_STORAGE_INSERT, make_item(WEIGHT_CLASS_TINY), null, TRUE), "Toolbox accepted more items than its old item limit")
+
+/// AQUILA - zawartość startowa (PopulateContents) każdego schowka na siatce mieści się na siatce, jeśli mieściła się w starych limitach
+/datum/unit_test/storage_grid_populate
+
+/datum/unit_test/storage_grid_populate/Run()
+	var/list/failures = list()
+	var/checked = 0
+	var/list/roots = list(/obj/item/storage/backpack, /obj/item/storage/toolbox, /obj/item/storage/firstaid, /obj/item/storage/briefcase)
+	for(var/root in roots)
+		for(var/storage_type in typesof(root))
+			var/obj/item/storage/container = new storage_type(run_loc_floor_bottom_left)
+			var/datum/component/storage/concrete/grid/grid = container.GetComponent(/datum/component/storage/concrete/grid)
+			if(grid?.grid_width)
+				checked++
+				grid.settle_contents()
+				var/old_weight = 0
+				var/old_items = 0
+				var/too_big = FALSE
+				var/list/unplaced = list()
+				for(var/obj/item/stored in container)
+					old_weight += stored.w_class
+					old_items++
+					if(stored.w_class > grid.max_w_class)
+						too_big = TRUE
+					if(!LAZYACCESS(grid.grid_positions, stored))
+						unplaced += "[stored.type]"
+				// Odrzucamy przypadki, które przekraczały też stare limity (np. losowa zawartość), bo to nie wina siatki
+				if(length(unplaced) && !too_big && old_weight <= grid.grid_base_weight && old_items <= grid.grid_base_items)
+					failures += "[storage_type] ([grid.grid_width]x[grid.grid_height]): nie mieści się [jointext(unplaced, ", ")]"
+			for(var/atom/movable/thing in container)
+				qdel(thing)
+			qdel(container)
+	TEST_ASSERT(checked, "No grid storage was checked")
+	if(length(failures))
+		return Fail("Zawartość startowa nie mieści się na siatce:\n[jointext(failures, "\n")]")
+
 /// AQUILA - zestawy startowe dalej mieszczą się w plecakach na siatce (każdy wariant plecaka, torby na ramię i podróżnej)
 /datum/unit_test/storage_grid_outfits
 

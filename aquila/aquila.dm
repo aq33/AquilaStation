@@ -270,7 +270,7 @@
 #include "code\game\objects\items\robot\robot_upgrades.dm"
 #include "code\game\objects\items\stacks\medical_tg.dm"
 #include "code\game\objects\items\stacks\tape.dm"
-#include "code\game\objects\items\storage\backpack_grid.dm"
+#include "code\game\objects\items\storage\grid_storage.dm"
 #include "code\game\objects\items\storage\commercial.dm"
 #include "code\game\objects\items\storage\toolbox.dm"
 #include "code\game\objects\items\tanks\jetpack.dm"

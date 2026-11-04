@@ -30,6 +30,8 @@
 	var/grid_base_weight = 0
 	/// Dawny limit liczby przedmiotów
 	var/grid_base_items = 0
+	/// Czy zostaje dawny limit sztuk (małe schowki: skrzynki, apteczki, aktówki). Plecaki go nie mają, liczy się tylko miejsce
+	var/grid_keep_item_limit = FALSE
 	/// przedmiot -> list(kolumna, wiersz, obrócony). Kolumny i wiersze od 0, wiersz 0 to górny rząd
 	var/list/grid_positions
 	/// przedmiot -> /atom/movable/screen/storage_grid_item, podświetlenie kratek zajętych przez przedmiot
@@ -61,9 +63,10 @@
 	if(grid_width > GRID_STORAGE_MAX_WIDTH)
 		grid_width = GRID_STORAGE_MAX_WIDTH
 		grid_height = CEILING(cells / grid_width, 1)
-	// Stare limity przestają obowiązywać, miejsce sprawdza siatka. Przedmioty z przepełnienia też są w contents,
-	// więc limit liczby przedmiotów nie może odrzucać wkładania na wolną kratkę
-	max_items = INFINITY
+	// Limit wagi przestaje obowiązywać, miejsce sprawdza siatka. Limit sztuk zostaje tylko w małych schowkach:
+	// w plecakach przedmioty z przepełnienia też są w contents, więc nie mogą blokować wkładania na wolną kratkę
+	if(!grid_keep_item_limit)
+		max_items = INFINITY
 	max_combined_w_class = INFINITY
 	refresh_mob_views()
 
@@ -335,6 +338,9 @@
 	var/total = grid_width * grid_height
 	var/atom/host = parent
 	var/text = "<b>[capitalize(host.name)]</b> <font color='[used >= total ? GRID_COLOR_OVERFLOW : "#c8d0d8"]'>[used]/[total]</font>"
+	if(grid_keep_item_limit)
+		var/count = length(real_location().contents)
+		text += " <font color='[count >= max_items ? GRID_COLOR_OVERFLOW : "#c8d0d8"]'>· [count]/[max_items] szt.</font>"
 	if(overflow_count)
 		text += " <font color='[GRID_COLOR_OVERFLOW]'>· nie mieści się: [overflow_count]</font>"
 	grid_header.maptext = MAPTEXT(text)
@@ -433,6 +439,10 @@
 		pending_cell = params_to_cell(params)
 	. = ..()
 	pending_cell = null
+
+/// Siatka z zachowanym dawnym limitem sztuk: skrzynki z narzędziami, apteczki, aktówki
+/datum/component/storage/concrete/grid/limited
+	grid_keep_item_limit = TRUE
 
 /// Podświetlenie kratek zajętych przez przedmiot. Kliknięcia i przeciąganie przekazuje do przedmiotu,
 /// żeby dało się go chwycić za każdą zajmowaną kratkę, nie tylko za środek
