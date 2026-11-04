@@ -339,7 +339,8 @@
 	var/atom/host = parent
 	var/text = "<b>[capitalize(host.name)]</b> <font color='[used >= total ? GRID_COLOR_OVERFLOW : "#c8d0d8"]'>[used]/[total]</font>"
 	if(grid_keep_item_limit)
-		var/count = length(real_location().contents)
+		var/atom/real_location = real_location()
+		var/count = length(real_location.contents)
 		text += " <font color='[count >= max_items ? GRID_COLOR_OVERFLOW : "#c8d0d8"]'>· [count]/[max_items] szt.</font>"
 	if(overflow_count)
 		text += " <font color='[GRID_COLOR_OVERFLOW]'>· nie mieści się: [overflow_count]</font>"
