@@ -1737,6 +1737,7 @@
 #include "code\modules\unit_tests\aquila_one_click_antag.dm"
 #include "code\modules\unit_tests\aquila_paradox_clone.dm"
 #include "code\modules\unit_tests\aquila_preferences_menu.dm"
+#include "code\modules\unit_tests\aquila_game_language.dm"
 #include "code\modules\unit_tests\aquila_prosthetics_organs.dm"
 #include "code\modules\unit_tests\aquila_shipbreaking.dm"
 #include "code\modules\unit_tests\aquila_restaurant.dm"
