@@ -1701,6 +1701,7 @@
 #include "code\modules\unit_tests\aquila_munitions_forge.dm"
 #include "code\modules\unit_tests\aquila_spiders.dm"
 #include "code\modules\unit_tests\aquila_spy.dm"
+#include "code\modules\unit_tests\aquila_strip_search.dm"
 #include "code\modules\unit_tests\aquila_vampire.dm"
 #include "code\modules\unit_tests\combat_mode_attacks.dm"
 #include "code\modules\unit_tests\combat_mode_legacy.dm"

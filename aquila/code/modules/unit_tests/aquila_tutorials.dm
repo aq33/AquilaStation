@@ -200,7 +200,7 @@
 	TEST_ASSERT(patient && patient.stat != CONSCIOUS && patient.stat != DEAD, "The patient is not in critical condition")
 	var/obj/item/reagent_containers/hypospray/medipen/tutorial/medipen = lesson.tracking_atoms[/obj/item/reagent_containers/hypospray/medipen/tutorial]
 	TEST_ASSERT(medipen?.loc == patient && patient.l_store == medipen, "The medipen is not in the patient's pocket")
-	TEST_ASSERT(patient.is_bleeding(), "The patient is not bleeding")
+	TEST_ASSERT(!patient.is_bleeding(), "The patient bleeds before the bandage step")
 
 	// Skafander, hełm, maska i butla z pudełka przetrwania
 	var/obj/item/storage/box/survival/box = locate() in student.back
@@ -248,6 +248,9 @@
 	new_medipen.inject(patient, student)
 	STEP_ASSERT("bandage")
 	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "The patient got no epinephrine")
+	TEST_ASSERT(patient.is_bleeding(), "The wound did not open in the bandage step")
+	// Bandaże są w pudełku, więc zapasowy nie powinien się pojawić
+	TEST_ASSERT(!lesson.spare_bandage, "A spare bandage appeared although the box has bandages")
 	// Krwawienie sprawdza timer co sekundę
 	lesson.check_bleeding()
 	STEP_ASSERT("bandage")

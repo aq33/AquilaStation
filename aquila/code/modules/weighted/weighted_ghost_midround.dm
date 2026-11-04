@@ -132,12 +132,19 @@
 	// The wizard and nuclear team poll ghosts through pollGhostCandidates(), which gives nobody with station sentience roles off
 	if(!heavy || !(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return
-	// Same player minimum as the roundstart wizard (MIN_POP WIZARD)
-	var/wizard_min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
-	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard() && players >= wizard_min_pop)
+	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard() && enough_players_for_wizard(players))
 		. += WEIGHTED_MIDROUND_WIZARD
 	if(!(WEIGHTED_MIDROUND_NUCLEAR in used_offers) && !istype(SSticker.mode, /datum/game_mode/nuclear))
 		. += WEIGHTED_MIDROUND_NUCLEAR
+
+/// Same player minimum as the roundstart wizard (MIN_POP WIZARD). Midround counts living, active human players,
+/// roundstart counts the ready ones, so the midround wizard is a bit harder to get with many dead or AFK players
+/datum/weighted_ghost_midround/proc/enough_players_for_wizard(players)
+	var/min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
+	if(isnull(min_pop))
+		var/datum/game_mode/wizard/mode = /datum/game_mode/wizard
+		min_pop = initial(mode.required_players)
+	return players >= min_pop
 
 /datum/weighted_ghost_midround/proc/living_wizard()
 	for(var/datum/mind/wizard as anything in SSticker.mode.wizards)

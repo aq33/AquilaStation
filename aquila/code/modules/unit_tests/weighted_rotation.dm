@@ -86,6 +86,12 @@
 		TEST_ASSERT(!(event_type in medium) && !(event_type in heavy), "[event_type] is in more than one pool")
 	for(var/event_type in medium)
 		TEST_ASSERT(!(event_type in heavy), "[event_type] is in the medium and the heavy pool")
+
+	// Czarodziej midround ma ten sam próg co na starcie rundy (MIN_POP WIZARD)
+	var/wizard_min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
+	TEST_ASSERT(wizard_min_pop, "MIN_POP WIZARD is missing from the config, the midround wizard would fall back to the mode default")
+	TEST_ASSERT(!midround.enough_players_for_wizard(wizard_min_pop - 1), "The midround wizard is offered under MIN_POP WIZARD")
+	TEST_ASSERT(midround.enough_players_for_wizard(wizard_min_pop), "The midround wizard is not offered at MIN_POP WIZARD")
 	qdel(midround)
 
 #undef TEST_ASSERT

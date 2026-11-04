@@ -220,13 +220,21 @@
 		TEST_ASSERT(shell.GetComponent(/datum/component/forged_munition), "Pocisk z partii nie ma właściwości z kuźni")
 		batch_value += forged_munition_value(shell)
 	TEST_ASSERT(forged_munition_value(products[1]) > 0, "Pocisk z partii nic nie jest wart w eksporcie")
-	// cała partia jest warta tyle, co dawniej jeden wyrób z tego samego korpusu, a nie sześć razy więcej
-	var/datum/munition_material/iron = get_munition_material(/datum/material/iron)
-	var/list/cost = iron.get_cost(initial(body.material_amount) * quality.material_mult)
-	var/raw_value = 0
-	for(var/mat in cost)
-		raw_value += munition_sheet_value(mat) * cost[mat] / MINERAL_MATERIAL_AMOUNT
-	TEST_ASSERT(batch_value <= round(raw_value * (0.5 + 0.1 * quality.level) + 10 * (quality.level + 1)) + 6, "Partia Gaussa jest warta więcej niż jej surowce")
+	// Porównanie z pociskiem burtowym (jedna sztuka z 3 arkuszy): dwa takie zużywają tyle surowca co partia Gaussa (6 arkuszy),
+	// więc partia jest warta tyle co one, minus jedna premia za robotę, bo partia dostaje ją raz, a nie sześć razy
+	var/obj/item/munition_part/body/shell/broadside/broadside_body = allocate(/obj/item/munition_part/body/shell/broadside)
+	TEST_ASSERT_EQUAL(initial(broadside_body.material_amount) * 2, initial(body.material_amount), "Pocisk burtowy przestał być połową partii Gaussa")
+	broadside_body.set_material(get_munition_material(/datum/material/iron))
+	var/list/broadside_products = broadside_body.create_product(run_loc_floor_bottom_left, quality, null)
+	var/obj/item/broadside_shell = broadside_products[1]
+	allocated += broadside_shell
+	var/expected = forged_munition_value(broadside_shell) * 2 - 10 * (quality.level + 1)
+	// każdy z 7 wyrobów zaokrągla cenę osobno
+	TEST_ASSERT(abs(batch_value - expected) <= 4, "Partia Gaussa jest warta [batch_value] kr, a powinna około [expected] kr")
+	// galwanizer pokrywa jeden pocisk, a nie całą partię
+	var/obj/machinery/munitions_forge/electroplater/plater = allocate(/obj/machinery/munitions_forge/electroplater)
+	var/obj/machinery/munitions_forge/electroplater/broadside_plater = allocate(/obj/machinery/munitions_forge/electroplater)
+	TEST_ASSERT_EQUAL(plater.plating_amount(products[1]) * 6, broadside_plater.plating_amount(broadside_shell) * 2, "Galwanizer liczy pocisk Gaussa jak całą partię")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

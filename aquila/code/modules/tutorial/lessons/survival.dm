@@ -25,6 +25,8 @@
 	var/suit_hint_given = FALSE
 	/// Timer sprawdzania, czy ranny jeszcze krwawi
 	var/bleed_timer
+	/// Zapasowy bandaż przy rannym, gdy gracz nie ma własnego
+	var/datum/weakref/spare_bandage
 
 // Układ pokoju (przesunięcia od lewego dolnego rogu podłogi): po lewej korytarz,
 // po prawej pokój z rannym, stołem i łóżkiem.
@@ -190,16 +192,15 @@
 /datum/tutorial/aquila/survival/proc/require_bandage()
 	current_step = "bandage"
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, patient)
-	if(!patient.is_bleeding())
-		require_carry()
-		return
+	// Rana otwiera się dopiero teraz, żeby ranny nie wykrwawiał się przez całe rozszczelnienie
+	patient.add_bleeding(BLEED_DEEP_WOUND)
 	var/mob/living/carbon/student = tutorial_mob
-	var/obj/item/storage/box/survival/box = locate() in student.back
-	if(!(locate(/obj/item/stack/medical/bandage) in box) && !(locate(/obj/item/stack/medical/bandage) in student.held_items))
-		// Pudełko bywa pełne (wersja z radiem), wtedy bandaż leży przy rannym
+	if(!(locate(/obj/item/stack/medical/bandage) in student.GetAllContents()))
+		// Pudełko bywa pełne (wersja z radiem) albo gracz zgubił bandaże, wtedy jeden leży przy rannym
 		var/obj/item/stack/medical/bandage/spare = new(get_turf(patient))
 		add_highlight(spare)
-	message_to_player("Epinefryna go ustabilizowała, ale ranny <b>krwawi</b>: spod niego kapie krew. W pudełku przetrwania masz <b>bandaże</b>. Wybierz na lalce celu (prawy dolny róg HUD-u) <b>klatkę piersiową</b>, bo tam jest rana, weź bandaż do ręki i kliknij nim rannego. Gdy krwawisz ty, kliknij alert <b>Krwawienie</b> w prawym górnym rogu: uciśniesz ranę ręką, zanim znajdziesz bandaż.")
+		spare_bandage = WEAKREF(spare)
+	message_to_player("Epinefryna go ustabilizowała, ale otworzyła mu się rana i <b>krwawi</b>: spod niego kapie krew. W pudełku przetrwania masz <b>bandaże</b>. Wybierz na lalce celu (prawy dolny róg HUD-u) <b>klatkę piersiową</b>, bo tam jest rana, weź bandaż do ręki i kliknij nim rannego. Gdy krwawisz ty, kliknij alert <b>Krwawienie</b> w prawym górnym rogu: uciśniesz ranę ręką, zanim znajdziesz bandaż.")
 	update_objective("Opatrz rannego bandażem z pudełka przetrwania.")
 	highlight_hud(/atom/movable/screen/zone_sel)
 	bleed_timer = addtimer(CALLBACK(src, PROC_REF(check_bleeding)), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
@@ -210,6 +211,10 @@
 		return
 	stop_bleed_check()
 	unhighlight_hud(/atom/movable/screen/zone_sel)
+	var/obj/item/stack/medical/bandage/spare = spare_bandage?.resolve()
+	if(spare)
+		remove_highlight(spare)
+	spare_bandage = null
 	message_to_player("Krwawienie zatamowane. Bandaż nie zastąpi lekarza: rannego trzeba jeszcze położyć i oddać w ręce medyków.")
 	require_carry()
 
@@ -301,8 +306,6 @@
 	// Nie umrze w trakcie lekcji, nawet gdy gracz długo zwleka
 	ADD_TRAIT(patient, TRAIT_NODEATH, TRAIT_SOURCE_TUTORIAL)
 	patient.apply_damage(130, BRUTE, BODY_ZONE_CHEST)
-	// Głęboka rana nie zasklepia się sama, więc poczeka na bandaż
-	patient.add_bleeding(BLEED_DEEP_WOUND)
 	add_to_tracking_atoms(patient)
 
 /datum/tutorial/aquila/survival/init_mob()

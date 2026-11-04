@@ -40,6 +40,8 @@
 	order = 1
 	tutorial_template = /datum/map_template/tutorial/aquila_basic
 	outfit = /datum/outfit/aquila_tutorial/basic
+	/// Podświetlony element HUD-u kroku z manekinem, zapamiętany na wypadek zmiany sterowania w trakcie kroku
+	var/highlighted_combat_hud
 
 // Układ pokoju (przesunięcia od lewego dolnego rogu podłogi): kajuta u góry z lewej,
 // ciemny korytarz przez środek, magazyn u góry z prawej, sala na dole.
@@ -408,10 +410,11 @@
 		message_to_player("Interakcje z ludźmi zależą od <b>trybu walki</b> (przycisk w prawym dolnym rogu HUD-u, klawisz <b>[retrieve_bind("toggle_combat_mode")]</b>). Gdy jest wyłączony, klik na kogoś to przyjazny gest: poklepanie, przytulenie, ratowanie z ognia. Z wyłączonym trybem walki kliknij manekina.")
 		update_objective("Z wyłączonym trybem walki kliknij manekina.")
 	add_highlight(dummy)
-	highlight_hud(combat_hud_type())
+	highlighted_combat_hud = combat_hud_type()
+	highlight_hud(highlighted_combat_hud)
 	RegisterSignal(tutorial_mob, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_dummy_touched))
 
-/datum/tutorial/aquila/basic/proc/on_dummy_touched(datum/source, atom/target)
+/datum/tutorial/aquila/basic/proc/on_dummy_touched(datum/source, atom/target, proximity, list/modifiers)
 	SIGNAL_HANDLER
 
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, dummy)
@@ -420,6 +423,10 @@
 	var/legacy = tutorial_mob.uses_legacy_intents()
 	switch(current_step)
 		if("help")
+			// Prawy przycisk (w starym trybie intencja disarm) to popchnięcie, nie przyjazny gest
+			if(LAZYACCESS(modifiers, RIGHT_CLICK))
+				message_to_player("To było popchnięcie. Przyjazny gest to zwykły lewy klik[legacy ? " na intencji <b>help</b>" : " z wyłączonym trybem walki"]. Kliknij manekina jeszcze raz.")
+				return
 			// W starym trybie disarm i grab też mają wyłączony tryb walki, a tu chodzi o help
 			if(legacy ? tutorial_mob.a_intent != INTENT_HELP : tutorial_mob.combat_mode)
 				if(legacy)
@@ -443,7 +450,7 @@
 				return
 			UnregisterSignal(tutorial_mob, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 			remove_highlight(dummy)
-			unhighlight_hud(combat_hud_type())
+			unhighlight_hud(highlighted_combat_hud)
 			current_step = "harm_done"
 			if(legacy)
 				message_to_player("Cios! Zapamiętaj różnicę: <b>help</b> to pomoc, <b>harm</b> to atak. Są jeszcze <b>disarm</b> (popchnięcie, wytrącenie broni) i <b>grab</b> (chwyt). Gdy nie walczysz, zawsze wracaj na <b>help</b>, żeby nikogo przypadkiem nie uderzyć.")
