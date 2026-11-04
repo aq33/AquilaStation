@@ -1142,7 +1142,7 @@ update_label("John Doe", "Clowny")
 	hud_state = JOB_HUD_WARDEN
 
 /obj/item/card/id/job/security_officer
-	name = "karta stanowiska (Ochr.) – Policjant"
+	name = "karta stanowiska (Ochr.) – Żandarm"
 	icon_state = "sec"
 	assignment = JOB_NAME_SECURITYOFFICER
 	hud_state = JOB_HUD_SECURITYOFFICER

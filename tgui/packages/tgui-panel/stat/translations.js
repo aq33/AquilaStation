@@ -252,7 +252,7 @@ const VERB_NAMES = {
   'Reset Guardian Player (One Use)': 'Nowy gracz strażnika (1 raz)',
   'Converse with Horror': 'Rozmawiaj z horrorem',
   Pray: 'Módl się',
-  'Recall Police Training': 'Szkolenie policyjne',
+  'Recall Police Training': 'Szkolenie żandarmskie',
   'Recall Teachings': 'Przypomnij sobie nauki',
   'Toggle Listening': 'Przełącz słuchanie',
   'Return to Main Core': 'Wróć do głównego rdzenia',

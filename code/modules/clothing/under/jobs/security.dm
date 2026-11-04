@@ -10,8 +10,8 @@
  */
 
 /obj/item/clothing/under/rank/security/officer
-	name = "policyjny kombinezon"
-	desc = "Taktyczny policyjny kombinezon dla funkcjonariuszy, z klamrą pasa Nanotrasen."
+	name = "żandarmski kombinezon"
+	desc = "Taktyczny żandarmski kombinezon dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rsecurity"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "stamina" = 30, "bleed" = 10)
@@ -21,20 +21,20 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/security/officer/white
-	name = "biały policyjny kombinezon"
+	name = "biały żandarmski kombinezon"
 	desc = "Taktyczny relikt z dawnych lat, zanim Nanotrasen uznało, że taniej jest farbować stroje na czerwono, niż spierać krew."
 	icon_state = "security"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/officer/corporate
-	name = "korporacyjny policyjny kombinezon"
-	desc = "Taktyczny policyjny kombinezon w czerni."
+	name = "korporacyjny żandarmski kombinezon"
+	desc = "Taktyczny żandarmski kombinezon w czerni."
 	icon_state = "sec_corporate_s"
 	item_state = "bl_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/skirt
-	name = "policyjna spódnica"
+	name = "żandarmska spódnica"
 	desc = "„Taktyczny” kombinezon ochrony, w którym nogawki zastąpiono spódnicą."
 	icon_state = "secskirt"
 	item_state = "r_suit"
@@ -50,15 +50,15 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/formal
-	name = "galowy mundur policjanta"
-	desc = "Ostatni krzyk mody wśród strojów policyjnych."
+	name = "galowy mundur żandarma"
+	desc = "Ostatni krzyk mody wśród strojów żandarmskich."
 	icon_state = "officerblueclothes"
 	item_state = "officerblueclothes"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/warden
-	name = "policyjny garnitur"
-	desc = "Oficjalny policyjny garnitur dla funkcjonariuszy, z klamrą pasa Nanotrasen."
+	name = "żandarmski garnitur"
+	desc = "Oficjalny żandarmski garnitur dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rwarden"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "stamina" = 30, "bleed" = 10)
@@ -69,7 +69,7 @@
 
 /obj/item/clothing/under/rank/security/warden/skirt
 	name = "garsonka naczelnika"
-	desc = "Oficjalna policyjna garsonka dla funkcjonariuszy, z klamrą pasa Nanotrasen."
+	desc = "Oficjalna żandarmska garsonka dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rwarden_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -78,7 +78,7 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/warden/white
-	name = "biały policyjny garnitur"
+	name = "biały żandarmski garnitur"
 	desc = "Oficjalna pamiątka z dawnych lat, zanim Nanotrasen uznało, że taniej jest farbować garnitury na czerwono, niż spierać z nich krew."
 	icon_state = "warden"
 	item_state = "gy_suit"
@@ -129,7 +129,7 @@
  */
 /obj/item/clothing/under/rank/security/head_of_security
 	name = "kombinezon komendanta"
-	desc = "Zdobiony policyjny kombinezon dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
+	desc = "Zdobiony żandarmski kombinezon dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
 	icon_state = "rhos"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 10)
@@ -140,7 +140,7 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
 	name = "spódnica komendanta"
-	desc = "Zdobiona policyjna spódnica dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
+	desc = "Zdobiona żandarmska spódnica dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
 	icon_state = "rhos_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -254,4 +254,4 @@
 
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
 	name = "mundur aspiranta"
-	desc = "Lekko opancerzony oficjalny mundur dla aspirujących członków policji."
+	desc = "Lekko opancerzony oficjalny mundur dla aspirujących członków Żandarmerii."

@@ -342,7 +342,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/temperature/security
-	name = "policyjny pistolet temperaturowy"
+	name = "żandarmski pistolet temperaturowy"
 	desc = "Broń, z której pełnego potencjału skorzystają tylko naprawdę krzepcy."
 	pin = /obj/item/firing_pin
 	w_class = WEIGHT_CLASS_BULKY

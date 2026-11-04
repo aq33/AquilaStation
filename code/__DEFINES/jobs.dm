@@ -180,7 +180,7 @@
 // Security
 #define JOB_NAME_HEADOFSECURITY "Komendant"
 #define JOB_NAME_WARDEN "Naczelnik"
-#define JOB_NAME_SECURITYOFFICER "Policjant" //NSV13 - MPs
+#define JOB_NAME_SECURITYOFFICER "Żandarm" //NSV13 - MPs
 #define JOB_NAME_DETECTIVE "Detektyw"
 #define JOB_NAME_DEPUTY  "Aspirant"
 
@@ -366,13 +366,13 @@
 #define JOB_CHATCOLOR_EXPLORATIONCREW  "#85D8B8"
 
 // Security
-#define JOB_CHATCOLOR_RAWSECURITY     "#C3CAF5" // custom security color, has some color than deputy //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_HEADOFSECURITY  "#5C6FE0" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_WARDEN          "#7C8BE6" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_SECURITYOFFICER "#A3AEEB" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_DETECTIVE       "#8E95BF" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#8F86D1" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_DEPUTY          "#E8EBFF" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_RAWSECURITY     "#C5E3CC" // custom security color, has some color than deputy //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_HEADOFSECURITY  "#3FA15A" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_WARDEN          "#5BB473" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_SECURITYOFFICER "#8CCB9C" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_DETECTIVE       "#8FB89A" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#7FBF9F" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_DEPUTY          "#E6F5EA" //AQUILA EDIT - zieleń Żandarmerii
 
 //NSV13 - Munitions
 #define JOB_CHATCOLOR_RAWMUNITIONS "#FF7F00"

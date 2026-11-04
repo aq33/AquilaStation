@@ -335,9 +335,9 @@ Oznaczenia w kolumnie uwag:
 |---|---|---|
 | `name` przedmiotu | małą literą, jak w oryginale | Nazwy własne, marki i modele wielką. Prefiksy `\improper` i `\proper` zostają w ciągu bez zmian. |
 | X's Y (np. captain's jacket) | Y + dopełniacz posiadacza (kurtka kapitana) | istniejące: „plecak kapitana”, „buty kapitana”, „hełm inżyniera”, „kurtka technika”. |
-| departmental X (dział) | przymiotnik, jeśli jest naturalny: medyczny, inżynieryjny, górniczy, policyjny (przedmioty ochrony); w pozostałych przypadkach dopełniacz: chemii, genetyki, wirologii, botaniki, nauki, zaopatrzenia | istniejące: „plecak medyczny”, „plecak policyjny”, „plecak chemii”, „plecak genetyki”, „plecak wirologii”, „plecak botaniki”, „plecak nauki”. |
+| departmental X (dział) | przymiotnik, jeśli jest naturalny: medyczny, inżynieryjny, górniczy, żandarmski (przedmioty ochrony); w pozostałych przypadkach dopełniacz: chemii, genetyki, wirologii, botaniki, nauki, zaopatrzenia | istniejące: „plecak medyczny”, „plecak żandarmski”, „plecak chemii”, „plecak genetyki”, „plecak wirologii”, „plecak botaniki”, „plecak nauki”. |
 | security (dział, teksty ogólne) | ochrona; „... ochrony” | istniejące (99×): „HUD ochrony”, „akta ochrony”, „implant ochrony”. |
-| security X (ubranie, sprzęt policjanta) | X policyjny / policyjna | istniejące: „plecak policyjny”, „mundur policyjny”, „Mundurownia Policyjna”, „Zbrojownia Policyjna”, „taśma policyjna”. Zawody ochrony to Policjant, Komendant, Naczelnik, Aspirant. |
+| security X (ubranie, sprzęt żandarma) | X żandarmski / żandarmska | istniejące: „plecak żandarmski”, „mundur żandarmski”, „Mundurownia Żandarmska”, „Zbrojownia Żandarmska”; zostaje „taśma policyjna” (ogólny termin). Zawody ochrony to Żandarm, Komendant, Naczelnik, Aspirant. |
 | Syndicate X | X Syndykatu | m; istniejące (245×), np. „zestaw słuchawkowy Syndykatu”, „uśpiacz Syndykatu”. |
 | Nanotrasen X | X Nanotrasen | nazwa firmy po rzeczowniku nieodmienna; istniejące: „kapsuła zaopatrzeniowa Nanotrasen”. W zdaniu odmiana „Nanotrasenu” dopuszczalna. |
 | CentCom X | X Centrali | istniejące (111×); odrzucone: „CentComu” (11×). |
@@ -721,7 +721,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 |---|---|---|
 | machine | maszyna / urządzenie | ż / n; istniejące |
 | vending machine | automat | m; istniejące („automat z jedzeniem”) |
-| XDrobe (np. SecDrobe) | mundurownia (np. Mundurownia Policyjna) | ż; istniejące |
+| XDrobe (np. SecDrobe) | mundurownia (np. Mundurownia Żandarmska, Mundurownia Orlenu) | ż; istniejące |
 | autolathe | autolat | m; nowe. Odrzucone: „autolatarka” (3×, myli się z latarką) |
 | protolathe | protolat | m; istniejące (1×) |
 | circuit imprinter | drukarka obwodów | ż; istniejące |
@@ -890,7 +890,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | belt | pas | m; istniejące |
 | utility belt | pas na narzędzia | m; istniejące |
 | medical belt | pas medyczny | m; nowe |
-| security belt | pas policyjny | m; nowe |
+| security belt | pas żandarmski | m; istniejące |
 | webbing | oporządzenie | n; nowe |
 | pill bottle | pojemnik na pigułki | m; nowe |
 | first-aid kit / medkit | apteczka | ż; istniejące |
@@ -1255,7 +1255,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | ashtray | popielniczka | ż; nowe |
 | flashlight | latarka | ż; istniejące (25×) |
 | penlight | latarka diagnostyczna | ż; nowe |
-| seclite | latarka policyjna | ż; nowe |
+| seclite | latarka żandarmska | ż; istniejące |
 | flare | raca | ż; nowe |
 | glowstick | świetlik chemiczny | m; nowe |
 | lantern | latarenka | ż; nowe |
@@ -3112,9 +3112,9 @@ Oznaczenia w kolumnie uwag:
 | EN | PL | rodzaj/uwagi |
 |---|---|---|
 | Command | Dowództwo | n; istniejące (radio, manifest, latejoin) |
-| Security | Ochrona | ż; istniejące jako nazwa działu w menu; kanał radiowy i ludzie to **Policja** (patrz niżej) |
-| Security (radio channel) | Policja | ż; istniejące (`RADIO_CHANNEL_SECURITY`, gałąź policja) |
-| security (people, in prose) | policja / policjanci | ż / mnoga (policjanci); istniejące; odrzucone: ochroniarze (13×, tylko w starych tekstach) |
+| Security | Ochrona | ż; istniejące jako nazwa działu w menu; kanał radiowy i ludzie to **Żandarmeria** (patrz niżej) |
+| Security (radio channel) | Żandarmeria | ż; istniejące (`RADIO_CHANNEL_SECURITY`); wcześniej Policja |
+| security (people, in prose) | Żandarmeria / żandarmi | ż / mnoga (żandarmi); istniejące; odrzucone: policja, policjanci (dawna nazwa), ochroniarze |
 | Engineering | Inżynieria | ż; istniejące (radio, manifest) |
 | Medical | Medyczny (dział medyczny) | m; istniejące (radio, manifest); w zdaniu „dział medyczny”, „lekarze” |
 | Science / Research | Nauka (dział naukowy) | ż; istniejące; kanał radiowy „Naukowy”; odrzucone: dział badawczy (w nazwach obszarów zostaje „Wydział Badawczy”) |
@@ -3177,7 +3177,7 @@ Oznaczenia w kolumnie uwag:
 | Exploration Crew / Explorer | Odkrywca | m; istniejące |
 | Head of Security / HoS | Komendant | m; istniejące; odrzucone: szef ochrony (jako nazwa stanowiska) |
 | Warden | Naczelnik | m; istniejące |
-| Security Officer / Military Police / MP | Policjant | m; istniejące; odrzucone: Żandarm (stary tytuł, migrowany w policja.dm) |
+| Security Officer / Military Police / MP | Żandarm | m; istniejące; odrzucone: Policjant (dawny tytuł, migrowany w policja.dm) |
 | Detective | Detektyw | m; istniejące |
 | Deputy | Aspirant | m; istniejące |
 | Master at Arms / MAA | Mistrz Broni | m; istniejące |
@@ -3655,8 +3655,8 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Gateway | Brama | ż; istniejące |
 | EVA Storage | Magazyn EVA | m; istniejące |
 | Brig | Areszt | m; istniejące; odrzucone: Bryg |
-| Security Office / Precinct | Komisariat | m; istniejące |
-| Security Post / Checkpoint | Posterunek Policji / Punkt Kontroli Bezpieczeństwa | m; istniejące |
+| Security Office / Precinct | Placówka Żandarmerii | ż; istniejące; odrzucone: Komisariat (dawna nazwa) |
+| Security Post / Checkpoint | Posterunek Żandarmerii / Punkt Kontroli Bezpieczeństwa | m; istniejące |
 | Armory | Zbrojownia | ż; istniejące |
 | Warden's Office | Biuro Naczelnika | n; istniejące |
 | HoS Office | Gabinet Komendanta | m; istniejące |

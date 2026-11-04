@@ -23,7 +23,7 @@ export const COLORS = {
   // Department colors
   department: {
     captain: '#c06616',
-    security: '#e74c3c',
+    security: '#3f9b5a',
     medbay: '#3498db',
     science: '#9b59b6',
     engineering: '#f1c40f',
@@ -126,9 +126,9 @@ export const RADIO_CHANNELS = [
     color: '#f37746',
   },
   {
-    name: 'Policja',
+    name: 'Żandarmeria',
     freq: 1359,
-    color: '#7c8be6',
+    color: '#5fbf7a',
   },
   {
     name: 'Prywatny AI',
