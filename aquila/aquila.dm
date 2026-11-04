@@ -1289,6 +1289,7 @@
 #include "code\modules\botany\_compat.dm"
 #include "code\controllers\subsystem\botany.dm"
 #include "code\datums\elements\plant_genes.dm"
+#include "code\datums\elements\strippable_search.dm"
 #include "code\modules\botany\plant.dm"
 #include "code\modules\botany\plant_discoverable.dm"
 #include "code\modules\botany\planter.dm"
