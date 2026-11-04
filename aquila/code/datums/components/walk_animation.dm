@@ -10,7 +10,15 @@
  * "arm_a" to ręka bliżej patrzącego, a "leg_a" i "leg_b" pokazują obie nogi w pełnej szerokości.
  * Z boku "leg_b" jest widoczna tylko w trakcie kroku, żeby w spoczynku nogi nie były rysowane podwójnie.
  * Z boku "arm_b" jest pusta: dalsza dłoń, która w sprite'ach wystaje 1 px przed brzuch, jest wycięta na stałe.
+ *
+ * Bufor i filtry masek kosztują klienta w każdej klatce (pomiar: raport/perf_02_przyciecia_animacja_chodu.md),
+ * więc są podpięte tylko w ruchu. W spoczynku mob rysuje się zwykle, a fragmenty i maski są zdjęte z vis_contents.
+ * Pierwszy krok je podpina (activate), a po WALK_ANIMATION_IDLE_DELAY bez kroku są zdejmowane (deactivate).
  */
+
+/// Ile po ostatnim kroku (ponad czas jego animacji) fragmenty zostają podpięte. Krótsza przerwa w marszu ich nie zdejmuje.
+#define WALK_ANIMATION_IDLE_DELAY (1 SECONDS)
+
 /datum/component/walk_animation
 	/// Bufor, do którego rysuje się mob
 	var/body_target
@@ -26,8 +34,14 @@
 	var/phase = FALSE
 	/// Czy przedmioty w dłoniach są teraz za ciałem (widok z tyłu)
 	var/held_behind = FALSE
-	/// Kotwice bufora ciała dodane mobowi (add_bounds_anchors)
+	/// Kotwice bufora ciała (nakładki moba, podpinane razem z buforem)
 	var/list/body_anchors
+	/// Czy bufor, maski i fragmenty są teraz podpięte do moba
+	var/active = FALSE
+	/// world.time, po którym fragmenty można zdjąć
+	var/idle_after = 0
+	/// Czy czeka już timer sprawdzający bezruch
+	var/idle_check_pending = FALSE
 
 /datum/component/walk_animation/Initialize()
 	if(!ishuman(parent))
@@ -35,12 +49,8 @@
 	var/mob/living/carbon/human/H = parent
 
 	body_target = "*walk_body[REF(H)]"
-	old_render_target = H.render_target
-	H.render_target = body_target
-	body_anchors = add_bounds_anchors(H)
-
+	body_anchors = make_bounds_anchors()
 	em_block = new(null, body_target)
-	H.vis_contents += em_block
 
 	// Nogi pod tułowiem (wysuwana z boku nad tylną), ręce nad nim
 	add_limb(H, "leg_a", FLOAT_LAYER - 0.2)
@@ -52,10 +62,6 @@
 	for(var/index in 1 to 2)
 		var/obj/effect/overlay/walk_held/held = new
 		limbs["hand_[index]"] = held
-		H.vis_contents += held
-	update_side_leg(H.dir)
-	update_held_dir(H.dir)
-	detach_held_items()
 
 	RegisterSignal(H, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(H, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
@@ -64,57 +70,98 @@
 	var/mob/living/carbon/human/H = parent
 	if(H)
 		UnregisterSignal(H, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
-		if(H.render_target == body_target)
-			H.render_target = old_render_target
-		H.cut_overlay(body_anchors)
-		H.vis_contents -= em_block
-		for(var/state in limbs)
-			H.vis_contents -= limbs[state]
-		for(var/state in masks)
-			H.vis_contents -= masks[state]
-		// Wyłączenie w trakcie gry: przedmioty w dłoniach są zdjęte z moba, więc budujemy je od nowa
-		if(!QDELETED(H))
-			H.update_inv_hands()
+		deactivate()
 	QDEL_NULL(em_block)
 	QDEL_LIST_ASSOC_VAL(limbs)
 	QDEL_LIST_ASSOC_VAL(masks)
 	return ..()
 
+/// Podpina bufor ciała, maski i fragmenty. Wołane przy pierwszym kroku po spoczynku.
+/datum/component/walk_animation/proc/activate()
+	if(active)
+		return
+	var/mob/living/carbon/human/H = parent
+	active = TRUE
+	old_render_target = H.render_target
+	H.render_target = body_target
+	H.add_overlay(body_anchors)
+	var/list/attached = list(em_block)
+	for(var/state in masks)
+		attached += masks[state]
+	for(var/state in limbs)
+		attached += limbs[state]
+	H.vis_contents += attached
+	update_side_leg(H.dir)
+	update_held_dir(H.dir)
+	detach_held_items()
+
+/// Zdejmuje bufor, maski i fragmenty; mob znowu rysuje się zwykle, z przedmiotami w dłoniach jako nakładkami.
+/datum/component/walk_animation/proc/deactivate()
+	if(!active)
+		return
+	var/mob/living/carbon/human/H = parent
+	active = FALSE
+	if(H.render_target == body_target)
+		H.render_target = old_render_target
+	H.cut_overlay(body_anchors)
+	var/list/attached = list(em_block)
+	for(var/state in masks)
+		attached += masks[state]
+	for(var/state in limbs)
+		var/obj/effect/overlay/limb = limbs[state]
+		animate(limb, pixel_w = 0, pixel_z = 0, time = 0) // przerwany krok nie może zostać wychylony na następny raz
+		attached += limb
+	H.vis_contents -= attached
+	for(var/index in 1 to 2)
+		var/obj/effect/overlay/walk_held/held = limbs["hand_[index]"]
+		held.cut_overlays()
+	// Przedmioty w dłoniach były zdjęte z moba, więc budujemy je od nowa
+	if(!QDELETED(H))
+		H.update_inv_hands()
+
+/// Zdejmuje fragmenty, gdy od ostatniego kroku minęło dość czasu; inaczej sprawdza ponownie później.
+/datum/component/walk_animation/proc/check_idle()
+	idle_check_pending = FALSE
+	if(!active || QDELING(src))
+		return
+	if(world.time < idle_after)
+		idle_check_pending = TRUE
+		addtimer(CALLBACK(src, PROC_REF(check_idle)), idle_after - world.time)
+		return
+	deactivate()
+
 /datum/component/walk_animation/proc/add_limb(mob/living/carbon/human/H, state, layer, mask_flags)
 	var/obj/effect/overlay/walk_mask/mask = new
 	mask.icon_state = state
 	mask.render_target = "*walk_[state][REF(H)]"
-	add_bounds_anchors(mask) // ten sam obszar co bufor ciała, niezależnie od tego, jak filtr kotwiczy maskę
+	mask.add_overlay(make_bounds_anchors()) // ten sam obszar co bufor ciała, niezależnie od tego, jak filtr kotwiczy maskę
 	masks[state] = mask
-	H.vis_contents += mask
 
 	var/obj/effect/overlay/walk_limb/limb = new
 	limb.layer = layer
 	limb.render_source = body_target
 	limb.add_filter("walk_mask", 1, alpha_mask_filter(render_source = mask.render_target, flags = mask_flags))
 	limbs[state] = limb
-	H.vis_contents += limb
 
 /// BYOND 516 (1648) zmienił kotwiczenie obrazu z render_source, a bufor jest przycinany do tego, co się
 /// w nim narysowało. Bez wystających nakładek obraz ciała rozjeżdżał się z maskami (zostawał wąski pasek).
 /// Dwa prawie przezroczyste piksele w rogach obszaru 96x96 wokół kafla dają buforom ciała i masek stały
 /// rozmiar; sprawdzone w Dream Seeker 516 dla zwykłego i zmienionego wzrostu oraz leżenia, bez przesunięć.
-/datum/component/walk_animation/proc/add_bounds_anchors(atom/target)
+/datum/component/walk_animation/proc/make_bounds_anchors()
 	var/mutable_appearance/lower_left = mutable_appearance('aquila/icons/mob/walk_masks.dmi', "anchor_ll")
 	lower_left.pixel_x = -world.icon_size
 	lower_left.pixel_y = -world.icon_size
 	var/mutable_appearance/upper_right = mutable_appearance('aquila/icons/mob/walk_masks.dmi', "anchor_ur")
 	upper_right.pixel_x = world.icon_size
 	upper_right.pixel_y = world.icon_size
-	. = list(lower_left, upper_right)
-	target.add_overlay(.)
+	return list(lower_left, upper_right)
 
 /// Przenosi przedmioty z dłoni 1 i 2 na fragmenty "hand_1"/"hand_2", żeby maski ich nie cięły.
 /// Fragment dostaje kopię nakładki, a kierunek ustawia mu update_held_dir(), więc sprite obraca się z postacią.
 /// Oryginał jest zdejmowany z moba: nakładka z render_target "*" nie znikała z bufora ciała i rysowała się drugi raz.
 /// Wołane po każdym update_inv_hands().
 /datum/component/walk_animation/proc/detach_held_items()
-	if(QDELING(src)) // update_inv_hands() z Destroy() ma zostawić zwykłe nakładki
+	if(!active || QDELING(src)) // w spoczynku i przy usuwaniu przedmioty zostają zwykłymi nakładkami
 		return
 	var/mob/living/carbon/human/H = parent
 	for(var/index in 1 to 2)
@@ -153,6 +200,11 @@
 
 	// Czas jednego kroku w decysekundach, odtworzony z glide_size (odwrotność DELAY_TO_GLIDE_SIZE).
 	var/half_step = (world.icon_size / max(source.glide_size, 1)) * world.tick_lag / 2
+	activate()
+	idle_after = world.time + half_step * 2 + WALK_ANIMATION_IDLE_DELAY
+	if(!idle_check_pending)
+		idle_check_pending = TRUE
+		addtimer(CALLBACK(src, PROC_REF(check_idle)), idle_after - world.time)
 	phase = !phase
 	update_side_leg(source.dir)
 
@@ -178,6 +230,8 @@
 /datum/component/walk_animation/proc/on_dir_change(mob/living/carbon/human/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 
+	if(!active) // activate() ustawi kierunek przy następnym kroku
+		return
 	update_side_leg(new_dir)
 	update_held_dir(new_dir)
 
@@ -268,3 +322,5 @@
 	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | KEEP_APART
 	vis_flags = VIS_INHERIT_DIR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+#undef WALK_ANIMATION_IDLE_DELAY
