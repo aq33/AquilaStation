@@ -4,6 +4,8 @@
 	if(!was_dead_before && client && mind?.current)
 		// After death() is done: a mob deleted on death (swarmer, gib, dust) has already handed the client to its ghost
 		addtimer(CALLBACK(GLOB.death_info, TYPE_PROC_REF(/datum/death_info, show_to), client), 1)
+	if(!was_dead_before && mind)
+		GLOB.auto_crew_wake.check() // auto_crew_wake.dm: half of the round's players dead wakes crew from cryostasis
 
 GLOBAL_DATUM_INIT(death_info, /datum/death_info, new)
 

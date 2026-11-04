@@ -906,6 +906,7 @@
 #include "code\modules\reagents\reagent_containers\bottle.dm"
 #include "code\modules\reagents\carnivorous_blood.dm"
 #include "code\modules\requests\request.dm"
+#include "code\modules\requests\auto_crew_wake.dm"
 #include "code\modules\restaurant\_venue.dm"
 #include "code\modules\restaurant\custom_order.dm"
 #include "code\modules\restaurant\customers.dm"

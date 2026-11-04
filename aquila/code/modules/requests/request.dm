@@ -199,6 +199,20 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 
 /// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.
 /datum/request/proc/wake_crew_now()
+	var/woken = wake_crew_from_cryostasis("Procedurę awaryjnego wybudzenia zlecił kapitan, a takiego rozkazu nie wydaje się bez powodu.")
+	if(!woken)
+		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Można spróbować ponownie przyciskiem WYBUDŹ.")
+		handled = FALSE // Nobody woke up, an admin may try again
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
+		return FALSE
+
+	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
+	return woken
+
+/// Polls ghosts and wakes the volunteers up as assistants at the cryopods. Returns how many woke up.
+/// who_ordered is told to every woken crewman (who started the emergency wake procedure)
+/proc/wake_crew_from_cryostasis(who_ordered)
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz wrócić do gry jako [JOB_NAME_ASSISTANT] wybudzony z kriostazy?", JOB_NAME_ASSISTANT, ignore_category = FALSE)
 	var/list/cryopods = list()
 	for(var/obj/machinery/cryopod/pod in GLOB.machines)
@@ -223,7 +237,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		crewman.key = candidate.key
 		SSjob.EquipRank(crewman, JOB_NAME_ASSISTANT, TRUE)
 		to_chat(crewman, "<span class='big bold'>Awaryjne wybudzenie z kriostazy</span>")
-		to_chat(crewman, "<span class='notice'>Budzisz się w komorze snu. To nie twoja zmiana: według harmonogramu miałeś spać jeszcze długo. Procedurę awaryjnego wybudzenia zlecił kapitan, a takiego rozkazu nie wydaje się bez powodu. Na pokładzie musiało wydarzyć się coś złego.</span>")
+		to_chat(crewman, "<span class='notice'>Budzisz się w komorze snu. To nie twoja zmiana: według harmonogramu miałeś spać jeszcze długo. [who_ordered] Na pokładzie musiało wydarzyć się coś złego.</span>")
 		to_chat(crewman, "<span class='notice'>Nie wiesz, co się stało, ile trwa obecna zmiana ani kto z załogi jeszcze żyje. Twoja postać nie ma żadnej wiedzy o wydarzeniach tej rundy. Zgłoś się do dowództwa po rozkazy.</span>")
 		assistant_job?.current_positions++
 		GLOB.data_core.manifest_inject(crewman)
@@ -233,14 +247,6 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		log_game("[key_name(crewman)] has been woken up from cryostasis as [JOB_NAME_ASSISTANT].")
 		woken++
 
-	if(!woken)
-		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"]. Można spróbować ponownie przyciskiem WYBUDŹ.")
-		handled = FALSE // Nobody woke up, an admin may try again
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
-		return FALSE
-
-	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 	return woken
 
 /// An admin answers the response team request with the ERT maker. Cancelling it or finding nobody frees the request again
