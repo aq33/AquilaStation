@@ -107,6 +107,9 @@
  * It has the pH of the solution, so it only dilutes it and does not shift the pH again when poured further.
  */
 /datum/reagent/reaction_agent/proc/add_spent_buffer(datum/reagents/target, amount)
+	// The plumbing reaction chamber doses buffer by itself to hold the pH, its spent buffer would drain out with the products
+	if(istype(target.my_atom, /obj/machinery/plumbing/reaction_chamber))
+		return
 	target.add_reagent(/datum/reagent/spent_buffer, amount, reagtemp = target.chem_temp, no_react = TRUE, added_ph = target.ph)
 
 /datum/reagent/reaction_agent/acidic_buffer
