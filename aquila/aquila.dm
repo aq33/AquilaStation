@@ -992,6 +992,7 @@
 #include "code\modules\test_chamber\kits\pr_467_blood_worm.dm"
 #include "code\modules\test_chamber\kits\pr_471_logi_rund.dm"
 #include "code\modules\test_chamber\kits\pr_479_botanika.dm"
+#include "code\modules\test_chamber\kits\pr_556_botanika_rework.dm"
 #include "code\modules\test_chamber\kits\pr_477_fermichem.dm"
 #include "code\modules\test_chamber\kits\pr_474_resprite3.dm"
 #include "code\modules\test_chamber\kits\pr_478_exodrony.dm"
