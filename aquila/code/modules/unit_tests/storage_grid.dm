@@ -102,6 +102,25 @@
 	pos = rotation_grid.grid_positions[upright]
 	TEST_ASSERT(!pos[3], "Small item was rotated although it fits upright further in the grid")
 
+	// Wygląd na siatce: ikona 2x2 powiększona, kafel z 4 nakładek, nagłówek z zajętością; po wyjęciu przedmiot wraca do dawnego wyglądu
+	var/obj/item/storage/backpack/look_bag = allocate(/obj/item/storage/backpack)
+	var/datum/component/storage/concrete/grid/look_grid = look_bag.GetComponent(/datum/component/storage/concrete/grid)
+	var/obj/item/big = make_item(WEIGHT_CLASS_NORMAL)
+	var/old_flags = big.appearance_flags
+	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
+	look_grid.orient2hud()
+	var/matrix/shown = big.transform
+	TEST_ASSERT_EQUAL(shown.a, 2, "Normal item icon was not scaled up on the grid")
+	TEST_ASSERT(big.appearance_flags & PIXEL_SCALE, "Scaled icon has no PIXEL_SCALE")
+	var/atom/movable/screen/storage_grid_item/tile = look_grid.grid_highlights[big]
+	TEST_ASSERT_EQUAL(length(tile.overlays), 4, "A 2x2 item tile should have 4 cell overlays")
+	TEST_ASSERT(findtext(look_grid.grid_header.maptext, "4/28"), "Header does not show used cells: [look_grid.grid_header.maptext]")
+	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_TAKE, big, run_loc_floor_bottom_left), "Could not take the scaled item out")
+	shown = big.transform
+	TEST_ASSERT_EQUAL(shown.a, 1, "Item kept its grid scale after removal")
+	TEST_ASSERT_EQUAL(big.appearance_flags, old_flags, "Item kept its grid appearance flags after removal")
+	TEST_ASSERT(!LAZYACCESS(look_grid.grid_highlights, big), "Tile of a removed item was not deleted")
+
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")

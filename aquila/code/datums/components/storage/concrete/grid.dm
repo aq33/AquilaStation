@@ -15,6 +15,12 @@
 #define GRID_STORAGE_MAX_WIDTH 12
 /// Domyślna wysokość siatki
 #define GRID_STORAGE_HEIGHT 4
+/// Kolory kafli według wielkości przedmiotu (mnożą szare kafle z aquila/icons/hud/storage_grid.dmi)
+#define GRID_COLOR_TINY "#e8bf6a"
+#define GRID_COLOR_SMALL "#86d9a1"
+#define GRID_COLOR_NORMAL "#86b9ee"
+#define GRID_COLOR_LARGE "#b39cf0"
+#define GRID_COLOR_OVERFLOW "#ee7b7b"
 
 /datum/component/storage/concrete/grid
 	/// Wymiary siatki w kratkach. 0 = siatka jeszcze nie ustawiona (setup_grid()), komponent działa wtedy po staremu
@@ -30,10 +36,17 @@
 	var/list/grid_highlights
 	/// list(kolumna, wiersz) wskazana kliknięciem w siatkę, używana przy najbliższym włożeniu
 	var/list/pending_cell
+	/// przedmiot -> list(transform, appearance_flags) sprzed powiększenia ikony na siatce, przywracane przy wyjęciu
+	var/list/grid_saved_appearance
+	/// Nagłówek nad siatką: nazwa schowka i zajęte kratki
+	var/atom/movable/screen/storage_grid_header/grid_header
 
 /datum/component/storage/concrete/grid/Destroy()
 	. = ..()
 	QDEL_LIST_ASSOC_VAL(grid_highlights)
+	QDEL_NULL(grid_header)
+	for(var/atom/movable/thing as anything in grid_saved_appearance?.Copy())
+		restore_appearance(thing)
 	grid_positions = null
 	pending_cell = null
 
@@ -244,6 +257,7 @@
 
 /datum/component/storage/concrete/grid/proc/forget_item(atom/movable/thing)
 	LAZYREMOVE(grid_positions, thing)
+	restore_appearance(thing)
 	var/atom/movable/screen/storage_grid_item/highlight = LAZYACCESS(grid_highlights, thing)
 	if(!highlight)
 		return
@@ -252,14 +266,80 @@
 	LAZYREMOVE(grid_highlights, thing)
 	qdel(highlight)
 
+/// Kolor kafla: według wielkości, czerwony w przepełnieniu
+/datum/component/storage/concrete/grid/proc/grid_color(obj/item/I, overflow)
+	if(overflow)
+		return GRID_COLOR_OVERFLOW
+	switch(I.w_class)
+		if(WEIGHT_CLASS_TINY)
+			return GRID_COLOR_TINY
+		if(WEIGHT_CLASS_SMALL)
+			return GRID_COLOR_SMALL
+		if(WEIGHT_CLASS_NORMAL)
+			return GRID_COLOR_NORMAL
+	return GRID_COLOR_LARGE
+
+/// Kafel przedmiotu: jeden obiekt ekranu w lewym dolnym rogu kształtu, każda kratka to nakładka z ramką tylko na zewnętrznych bokach
 /datum/component/storage/concrete/grid/proc/update_highlight(obj/item/I, screen_x, screen_y, width, height, overflow)
 	var/atom/movable/screen/storage_grid_item/highlight = LAZYACCESS(grid_highlights, I)
 	if(!highlight)
 		highlight = new(null, src, I)
 		LAZYSET(grid_highlights, I, highlight)
 	highlight.name = I.name
-	highlight.color = overflow ? "#d07070" : "#8fb0d0"
-	highlight.screen_loc = "[screen_x]:[screen_pixel_x],[screen_y]:[screen_pixel_y] to [screen_x + width - 1]:[screen_pixel_x],[screen_y + height - 1]:[screen_pixel_y]"
+	highlight.color = grid_color(I, overflow)
+	highlight.screen_loc = "[screen_x]:[screen_pixel_x],[screen_y]:[screen_pixel_y]"
+	var/shape_key = "[width]x[height]"
+	if(highlight.shape_key == shape_key)
+		return
+	highlight.shape_key = shape_key
+	var/list/tiles = list()
+	for(var/dy in 0 to height - 1)
+		for(var/dx in 0 to width - 1)
+			// Maska sąsiadów w tym samym kształcie: N=1, S=2, E=4, W=8 (dy rośnie w górę ekranu)
+			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
+			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
+			tile.pixel_x = dx * world.icon_size
+			tile.pixel_y = dy * world.icon_size
+			tiles += tile
+	highlight.overlays = tiles
+
+/// Powiększa ikonę przedmiotu w dużym kształcie (2x, z PIXEL_SCALE, żeby nie rozmywać).
+/// Ikony nie obracamy razem z kształtem: sprite'y są rysowane w różnych kierunkach (latarka poziomo, długopis ukośnie),
+/// więc obrót pokazuje sam kafel
+/datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale)
+	if(!LAZYACCESS(grid_saved_appearance, I))
+		LAZYSET(grid_saved_appearance, I, list(I.transform, I.appearance_flags))
+	var/list/saved = grid_saved_appearance[I]
+	var/matrix/display = matrix(saved[1])
+	if(scale != 1)
+		display.Scale(scale)
+	I.transform = display
+	I.appearance_flags = saved[2] | PIXEL_SCALE
+
+/datum/component/storage/concrete/grid/proc/restore_appearance(atom/movable/thing)
+	var/list/saved = LAZYACCESS(grid_saved_appearance, thing)
+	if(!saved)
+		return
+	thing.transform = saved[1]
+	thing.appearance_flags = saved[2]
+	LAZYREMOVE(grid_saved_appearance, thing)
+
+/// Nagłówek nad siatką: nazwa schowka, zajęte kratki i liczba przedmiotów, które się nie mieszczą
+/datum/component/storage/concrete/grid/proc/update_header(overflow_count)
+	if(!grid_header)
+		grid_header = new(null, src)
+	var/used = 0
+	for(var/obj/item/I as anything in grid_positions)
+		var/list/shape = grid_shape(I)
+		used += shape[1] * shape[2]
+	var/total = grid_width * grid_height
+	var/atom/host = parent
+	var/text = "<b>[capitalize(host.name)]</b> <font color='[used >= total ? GRID_COLOR_OVERFLOW : "#c8d0d8"]'>[used]/[total]</font>"
+	if(overflow_count)
+		text += " <font color='[GRID_COLOR_OVERFLOW]'>· nie mieści się: [overflow_count]</font>"
+	grid_header.maptext = MAPTEXT(text)
+	grid_header.maptext_width = grid_width * world.icon_size
+	grid_header.screen_loc = "[screen_start_x]:[screen_pixel_x],[screen_start_y + grid_height]:[screen_pixel_y]"
 
 /datum/component/storage/concrete/grid/orient2hud()
 	if(!grid_width)
@@ -288,14 +368,16 @@
 			screen_x = screen_start_x + pos[1]
 			screen_y = screen_start_y + grid_height - pos[2] - height
 		else
-			// Przepełnienie: rzędy nad siatką
+			// Przepełnienie: rzędy nad nagłówkiem
 			screen_x = screen_start_x + overflow_index % grid_width
-			screen_y = screen_start_y + grid_height + round(overflow_index / grid_width)
+			screen_y = screen_start_y + grid_height + 1 + round(overflow_index / grid_width)
 			overflow_index++
 		// Ikona na środku zajmowanego prostokąta
 		O.screen_loc = "[screen_x]:[screen_pixel_x + (width - 1) * size / 2],[screen_y]:[screen_pixel_y + (height - 1) * size / 2]"
 		if(isitem(O))
+			apply_appearance(O, min(width, height) >= 2 ? 2 : 1)
 			update_highlight(O, screen_x, screen_y, width, height, !pos)
+	update_header(overflow_index)
 	closer.screen_loc = "[screen_start_x + grid_width]:[screen_pixel_x],[screen_start_y]:[screen_pixel_y]"
 
 /datum/component/storage/concrete/grid/show_to(mob/M)
@@ -304,6 +386,8 @@
 		return
 	for(var/thing in grid_highlights)
 		M.client.screen |= grid_highlights[thing]
+	if(grid_header)
+		M.client.screen |= grid_header
 
 /datum/component/storage/concrete/grid/hide_from(mob/M)
 	. = ..()
@@ -311,6 +395,8 @@
 		return
 	for(var/thing in grid_highlights)
 		M.client.screen -= grid_highlights[thing]
+	if(grid_header)
+		M.client.screen -= grid_header
 
 /datum/component/storage/concrete/grid/_removal_reset(atom/movable/thing)
 	. = ..()
@@ -352,11 +438,12 @@
 /// żeby dało się go chwycić za każdą zajmowaną kratkę, nie tylko za środek
 /atom/movable/screen/storage_grid_item
 	name = "przedmiot"
-	icon_state = "block"
-	alpha = 150
+	icon = null
 	layer = HUD_LAYER + 0.5
 	plane = HUD_PLANE
 	var/obj/item/item
+	/// "szerokośćxwysokość" kształtu, dla którego zbudowano nakładki kafli
+	var/shape_key
 
 /atom/movable/screen/storage_grid_item/Initialize(mapload, datum/component/storage/new_master, obj/item/new_item)
 	. = ..()
@@ -393,5 +480,24 @@
 				return
 	return ..()
 
+/// Nagłówek siatki z nazwą schowka i liczbą zajętych kratek
+/atom/movable/screen/storage_grid_header
+	name = ""
+	icon = null
+	maptext_height = 32
+	maptext_y = 2
+	layer = HUD_LAYER + 0.5
+	plane = HUD_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/movable/screen/storage_grid_header/Initialize(mapload, datum/component/storage/new_master)
+	. = ..()
+	master = new_master
+
+#undef GRID_COLOR_TINY
+#undef GRID_COLOR_SMALL
+#undef GRID_COLOR_NORMAL
+#undef GRID_COLOR_LARGE
+#undef GRID_COLOR_OVERFLOW
 #undef GRID_STORAGE_MAX_WIDTH
 #undef GRID_STORAGE_HEIGHT
