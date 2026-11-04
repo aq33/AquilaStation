@@ -40,9 +40,14 @@ export const setLanguage = (lang: string) => {
   language = lang === 'en' ? 'en' : 'pl';
 };
 
+/** Ile razy próbujemy pobrać słownik (łącznie około 2 minut) */
+const FETCH_ATTEMPTS = 30;
+const FETCH_MAX_DELAY = 5000;
+
 const fetchDictionary = async (): Promise<Dictionary | null> => {
-  // Zasób dochodzi do cache klienta chwilę po mapowaniu, więc kilka prób
-  for (let attempt = 0; attempt < 10; attempt++) {
+  // Plik (~9 MB) dochodzi do cache klienta po mapowaniu, przy wolnym łączu nawet
+  // kilkadziesiąt sekund, więc próbujemy długo i z rosnącą przerwą
+  for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt++) {
     try {
       const response = await fetch(resolveAsset(DICTIONARY_ASSET));
       if (response.ok) {
@@ -51,13 +56,18 @@ const fetchDictionary = async (): Promise<Dictionary | null> => {
     } catch {
       // jeszcze nie ma pliku
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const delay = Math.min(1000 * 1.5 ** attempt, FETCH_MAX_DELAY);
+    await new Promise((resolve) => setTimeout(resolve, delay));
   }
   return null;
 };
 
 /** Ustawia słownik i indeks słów-kotwic (też w testach) */
 export const setDictionary = (data: Dictionary | null) => {
+  // Bez prototypu: tekst "constructor" czy "toString" nie może trafić na funkcję Object
+  if (data) {
+    Object.setPrototypeOf(data.exact, null);
+  }
   dictionary = data;
   byAnchor = new Map();
   regexCache.clear();
@@ -176,6 +186,9 @@ const isKnown = (value: string) => lookupExact(value.trim()) !== undefined;
  * z wielkiej litery, więc się nie liczą.
  */
 const MAX_UNKNOWN_RATIO = 1.5;
+
+/** Najdłuższy tekst, do którego dopasowujemy szablony */
+const MAX_TEMPLATE_INPUT = 2000;
 
 const lowercaseLetters = (value: string) =>
   (
@@ -312,7 +325,12 @@ export const translateHtml = (html: string, depth = 0): string => {
   if (whole !== undefined) {
     return whole;
   }
-  const words = new Set(html.toLowerCase().match(WORD) || []);
+  // Długie wiadomości (examine, raporty) tylko przez stałe teksty: szablon z
+  // sąsiednimi leniwymi grupami mógłby na nich długo blokować wątek UI
+  const words =
+    html.length > MAX_TEMPLATE_INPUT
+      ? new Set<string>()
+      : new Set(html.toLowerCase().match(WORD) || []);
   const candidates: number[] = [];
   for (const word of words) {
     const list = byAnchor.get(word);

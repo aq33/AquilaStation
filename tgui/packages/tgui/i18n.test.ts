@@ -70,6 +70,11 @@ describe('translateHtml', () => {
     expect(translateHtml(html)).toBe(html);
   });
 
+  it('nie bierze kluczy z prototypu Object', () => {
+    expect(translateHtml('constructor')).toBe('constructor');
+    expect(translateHtml('<b>toString</b>')).toBe('<b>toString</b>');
+  });
+
   it('bez słownika zwraca oryginał', () => {
     setDictionary(null);
     expect(translateHtml('Za mało paliwa.')).toBe('Za mało paliwa.');

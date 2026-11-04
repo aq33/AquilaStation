@@ -27,7 +27,10 @@ const SKIPPED_TAGS = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT']);
 const originals = new WeakMap<Node, string>();
 /** Ostatnio wpisane tłumaczenie: nasza własna zmiana nie wraca do tłumacza */
 const written = new WeakMap<Node, string>();
-const translatedElements = new Set<Element>();
+/** Elementy z przetłumaczonym atrybutem (oryginał w data-i18n-pl-<nazwa>) */
+const TRANSLATED_SELECTOR = ATTRIBUTES.map(
+  (name) => `[data-i18n-pl-${name}]`,
+).join(',');
 
 let observer: MutationObserver | null = null;
 
@@ -67,7 +70,10 @@ const translateAttributes = (el: Element) => {
       el.setAttribute(`data-i18n-pl-${name}`, value);
       el.setAttribute(`data-i18n-${name}`, translated);
       el.setAttribute(name, translated);
-      translatedElements.add(el);
+    } else {
+      // React wpisał nowy tekst bez tłumaczenia: stary oryginał już nie obowiązuje
+      el.removeAttribute(`data-i18n-pl-${name}`);
+      el.removeAttribute(`data-i18n-${name}`);
     }
   }
 };
@@ -131,17 +137,20 @@ const stopObserver = () => {
     }
     written.delete(node);
   }
-  for (const el of translatedElements) {
+  document.querySelectorAll(TRANSLATED_SELECTOR).forEach((el) => {
     for (const name of ATTRIBUTES) {
       const original = el.getAttribute(`data-i18n-pl-${name}`);
-      if (original !== null) {
-        el.setAttribute(name, original);
-        el.removeAttribute(`data-i18n-pl-${name}`);
-        el.removeAttribute(`data-i18n-${name}`);
+      if (original === null) {
+        continue;
       }
+      // tylko jeśli atrybut nadal ma nasze tłumaczenie, a nie nowszą wartość
+      if (el.getAttribute(name) === el.getAttribute(`data-i18n-${name}`)) {
+        el.setAttribute(name, original);
+      }
+      el.removeAttribute(`data-i18n-pl-${name}`);
+      el.removeAttribute(`data-i18n-${name}`);
     }
-  }
-  translatedElements.clear();
+  });
 };
 
 /** Śledzi config.language z DM (aquila/code/modules/i18n/game_language.dm) */
@@ -158,7 +167,12 @@ export const setupDomTranslation = (store: Store) => {
       return;
     }
     loadDictionary().then((ready) => {
-      if (ready && isTranslating()) {
+      if (!ready) {
+        // słownik nie doszedł: następna aktualizacja okna z językiem EN spróbuje znowu
+        setLanguage('pl');
+        return;
+      }
+      if (isTranslating()) {
         startObserver();
       }
     });

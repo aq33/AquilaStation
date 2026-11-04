@@ -74,8 +74,8 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	return ..(viewer, i18n_for_client(viewer?.client, text), color, show_in_chat, offset_x, offset_y)
 
 // Runechat: jedna wiadomość dla wielu słuchaczy. Gracze z językiem EN dostają osobną, przetłumaczoną.
-// Bez wartości domyślnych: pusty argument dostaje domyślną wartość z definicji w chatmessage.dm
-/datum/chatmessage/New(text, atom/target, list/client/hearers, language_icon, list/extra_classes, lifespan)
+// Wartości domyślne jak w chatmessage.dm (CHAT_MESSAGE_LIFESPAN jest tam #undef, więc liczba wprost)
+/datum/chatmessage/New(text, atom/target, list/client/hearers, language_icon, list/extra_classes = list(), lifespan = 5.4 SECONDS)
 	if(type == /datum/chatmessage && istext(text) && length(hearers))
 		var/list/english = list()
 		for(var/client/C as anything in hearers)

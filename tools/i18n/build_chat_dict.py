@@ -268,7 +268,7 @@ def main():
     files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json",
                             "tgui/packages/*.tsx", "tgui/packages/*.jsx", "tgui/packages/*.ts",
                             "tgui/packages/*.js"],
-                           capture_output=True, text=True, encoding="utf-8").stdout.split("\0")[:-1]
+                           capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
 
     wanted, names, js_literals = set(), set(), set()
     for path in files:

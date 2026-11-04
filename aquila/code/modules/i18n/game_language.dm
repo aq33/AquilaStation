@@ -23,7 +23,18 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	return list(GAME_LANGUAGE_PL = "Polski", GAME_LANGUAGE_EN = "English")
 
 /datum/preference/choiced/game_language/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
-	C?.tgui_panel?.send_game_language()
+	if(!C)
+		return
+	// Okna otwarte przed zmianą nie dostały słownika w send_assets(), a język przyjdzie im z następną aktualizacją
+	if(C.wants_english())
+		var/datum/asset/dictionary = get_asset_datum(/datum/asset/simple/i18n_en_chat)
+		var/flush_queue = FALSE
+		for(var/datum/tgui/ui as anything in C.mob?.tgui_open_uis)
+			if(ui.window)
+				flush_queue |= ui.window.send_asset(dictionary)
+		if(flush_queue)
+			C.browse_queue_flush()
+	C.tgui_panel?.send_game_language()
 
 /// Gracz wybrał angielski
 /client/proc/wants_english()
@@ -36,12 +47,20 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		"i18n_en_chat.json" = file("strings/i18n/en_chat.json"),
 	)
 
+// Bez preloadu (ASSET_SIMPLE_PRELOAD wysyła wszystkie zasoby każdemu): słownik dostają tylko gracze z EN
+/datum/asset_transport/Initialize(list/assets)
+	..()
+	preload -= "i18n_en_chat.json"
+
 /// Wysyła panelowi język gracza (i słownik, gdy angielski)
 /datum/tgui_panel/proc/send_game_language()
 	if(!client || !is_ready())
 		return
-	if(client.wants_english())
-		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat))
+	if(client.wants_english() && window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat)))
+		// Klient i tak czeka na plik i ponawia pobieranie (tgui/i18n.ts), ale im wcześniej dojdzie, tym lepiej
+		client.browse_queue_flush()
+		if(!client)
+			return
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
 
 /datum/tgui_panel/on_message(type, payload)

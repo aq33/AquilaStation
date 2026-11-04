@@ -85,7 +85,7 @@ def line_literals(path, line):
 
 def missing_literals(known):
     files = subprocess.run(["git", "ls-files", "-z", *PATHSPECS],
-                           capture_output=True, text=True, encoding="utf-8").stdout.split("\0")[:-1]
+                           capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
     is_polish = polish_detector(known)
     found = {}
     for path in files:
@@ -108,7 +108,7 @@ def missing_literals(known):
 def changed_missing(known, base):
     """Polskie literały w liniach dodanych względem base, bez angielskiego."""
     diff = subprocess.run(["git", "diff", "-U0", "--no-renames", base, "--", *PATHSPECS],
-                          capture_output=True, text=True, encoding="utf-8").stdout
+                          capture_output=True, text=True, encoding="utf-8", check=True).stdout
     is_polish = polish_detector(known)
     path, number, found = None, 0, []
     for line in diff.splitlines():

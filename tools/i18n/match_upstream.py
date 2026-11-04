@@ -154,7 +154,7 @@ def main():
     known = set(json.load(open(args.pairs, encoding="utf-8")))
     files = subprocess.run(["git", "ls-files", "-z", "*.dm", "tgui/packages/*.tsx", "tgui/packages/*.jsx",
                             "tgui/packages/*.ts", "tgui/packages/*.js"],
-                           capture_output=True, text=True, encoding="utf-8").stdout.split("\0")[:-1]
+                           capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
 
     # nasze pliki z polskimi tekstami bez tłumaczenia
     todo = {}

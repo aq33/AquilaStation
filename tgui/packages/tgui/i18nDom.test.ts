@@ -58,6 +58,14 @@ describe('setupDomTranslation', () => {
     await flush();
     expect(added.textContent).toBe('toolbox');
 
+    // React wpisuje nowy placeholder bez tłumaczenia: powrót na PL go nie nadpisze
+    const other = document.createElement('input');
+    other.setAttribute('placeholder', 'Szukaj');
+    document.body.appendChild(other);
+    await flush();
+    other.setAttribute('placeholder', 'Coś nowego');
+    await flush();
+
     store.setLanguage('pl');
     await flush();
     expect(document.getElementById('a')!.textContent).toBe(
@@ -66,5 +74,6 @@ describe('setupDomTranslation', () => {
     expect(document.getElementById('b')!.getAttribute('placeholder')).toBe(
       'Szukaj',
     );
+    expect(other.getAttribute('placeholder')).toBe('Coś nowego');
   });
 });
