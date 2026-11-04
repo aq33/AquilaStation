@@ -1891,7 +1891,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Carthatoline (`/medicine/carthatoline`) | Kartatolina | ż; istniejące |
 | Changeling Adrenaline (`/medicine/changelingadrenaline`) | Adrenalina zmiennokształtnego | ż; nowe |
 | Changeling Haste (`/medicine/changelinghaste`) | Pośpiech zmiennokształtnego | m; nowe |
-| Charcoal (`/medicine/charcoal`) | Węgiel aktywowany | m; istniejące; health_analyzer_ui.dm; /carbon to sam „Węgiel” |
+| Charcoal (`/medicine/charcoal`) | Węgiel aktywny | m; istniejące; health_analyzer_ui.dm; /carbon to sam „Węgiel” |
 | Clonexadone (`/medicine/clonexadone`) | Klonoksadon | m; istniejące |
 | Corazone (`/medicine/corazone`) | Korazon | m; istniejące; cure_text zawału |
 | Cryoxadone (`/medicine/cryoxadone`) | Kriooksadon | m; istniejące; odrzucony wariant: kryoksadon |

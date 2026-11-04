@@ -84,9 +84,9 @@
 	list_reagents = list(/datum/reagent/medicine/mannitol = 30)
 
 /obj/item/reagent_containers/glass/bottle/charcoal
-	name = "butelka: węgiel aktywowany"
+	name = "butelka: węgiel aktywny"
 	label_name = "charcoal"
-	desc = "Mała butelka węgla aktywowanego, który usuwa z krwiobiegu toksyny i inne chemikalia."
+	desc = "Mała butelka węgla aktywnego, który usuwa z krwiobiegu toksyny i inne chemikalia."
 	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
