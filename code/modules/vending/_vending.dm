@@ -661,6 +661,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/ui_static_data(mob/user)
 	. = list()
 	.["onstation"] = onstation
+	.["machine_name"] = name // nazwa na szyldzie pikselowego okna
 	.["all_products_free"] = !onstation
 	.["department"] = payment_department
 	.["displayed_currency_icon"] = "coins"
