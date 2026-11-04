@@ -34,7 +34,14 @@ GLOBAL_LIST_EMPTY(circuit_libraries)
 	var/path = save_path()
 	if(!fexists(path))
 		return
-	var/list/loaded = json_decode(file2text(path))
+	var/list/loaded
+	try
+		loaded = json_decode(file2text(path))
+	catch(var/exception/error)
+		// A broken file (server crash mid-save, hand edit) must not break the duplicator window. Keep a copy for an admin.
+		fcopy(path, "[path].bak")
+		log_game("Circuit library of [ckey] could not be read ([error]), copied to [path].bak")
+		return
 	if(!islist(loaded))
 		return
 	for(var/list/design in loaded)

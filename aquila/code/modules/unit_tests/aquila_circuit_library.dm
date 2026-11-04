@@ -41,9 +41,17 @@
 
 	TEST_ASSERT(reloaded.remove_design(1), "The design was not removed")
 	TEST_ASSERT_EQUAL(length(reloaded.designs), 0, "The library is not empty after removal")
+	// A broken file gives an empty library instead of a runtime, and is kept as .bak
 	fdel(reloaded.save_path())
+	text2file("{not json", reloaded.save_path())
+	var/datum/circuit_library/broken = new(test_ckey)
+	TEST_ASSERT_EQUAL(length(broken.designs), 0, "A broken file should give an empty library")
+	TEST_ASSERT(fexists("[broken.save_path()].bak"), "The broken file was not kept as .bak")
+	fdel(broken.save_path())
+	fdel("[broken.save_path()].bak")
 	qdel(library)
 	qdel(reloaded)
+	qdel(broken)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
