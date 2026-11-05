@@ -42,13 +42,48 @@
 	prefs.remove_unknown_keybindings()
 	TEST_ASSERT(prefs.key_bindings["K"] ~= list(kb_name), "Key K kept [json_encode(prefs.key_bindings["K"])]")
 	TEST_ASSERT(!("L" in prefs.key_bindings), "Key with only an unknown keybind was kept")
+	// Shift z samym usuniętym skrótem: po wyczyszczeniu dostaje sprint (kolejność jak w load_from_database)
+	prefs.key_bindings = list("Shift" = list("aquila_removed_keybind"))
+	prefs.remove_unknown_keybindings()
+	prefs.add_sprint_keybind()
+	TEST_ASSERT(prefs.key_bindings["Shift"] ~= list("sprint"), "Shift got [json_encode(prefs.key_bindings["Shift"])] instead of sprint")
 	qdel(prefs)
 
-	// Wybuch, gdy ktoś z player_list nie ma kafla (lobby), nie może przerwać pętli dźwięku
+	// Wybuch, gdy ktoś z player_list nie ma kafla (lobby), nie może przerwać pętli dźwięku dla graczy dalej na liście
 	var/mob/lobby_player = allocate(/mob/living/carbon/human)
 	lobby_player.moveToNullspace()
+	var/mob/living/carbon/human/aquila_explosion_probe/listener = allocate(/mob/living/carbon/human/aquila_explosion_probe)
 	GLOB.player_list += lobby_player
+	GLOB.player_list += listener
 	explosion(run_loc_floor_bottom_left, 0, 0, 0, 0, adminlog = FALSE)
 	GLOB.player_list -= lobby_player
+	GLOB.player_list -= listener
+	TEST_ASSERT(listener.heard_explosion, "A player after the lobby player did not hear the explosion")
+
+	// Trafienie, które zburzyło ścianę (np. laser w ścianę plazmową): odłamki nie wołają procki ściany na podłodze
+	var/turf/wall_spot = run_loc_floor_top_right
+	var/wall_spot_type = wall_spot.type
+	var/old_particles_enabled = GLOB.impact_particles_enabled
+	GLOB.impact_particles_enabled = TRUE
+	var/turf/closed/wall/collapsing = wall_spot.ChangeTurf(/turf/closed/wall/aquila_collapsing_test)
+	var/obj/item/projectile/beam/beam = allocate(/obj/item/projectile/beam)
+	collapsing.bullet_act(beam)
+	GLOB.impact_particles_enabled = old_particles_enabled
+	TEST_ASSERT(!iswallturf(wall_spot), "Test wall did not collapse on hit")
+	wall_spot.ChangeTurf(wall_spot_type)
+
+/// Mob, który zapamiętuje, że usłyszał wybuch
+/mob/living/carbon/human/aquila_explosion_probe
+	var/heard_explosion = FALSE
+
+/mob/living/carbon/human/aquila_explosion_probe/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, sound/S, max_distance, falloff_distance, distance_multiplier, use_reverb, volume_pref)
+	heard_explosion = TRUE
+
+/// Ściana, która przy trafieniu zamienia się w podłogę przed resztą bullet_act(), jak ściana plazmowa po laserze (bez gazu)
+/turf/closed/wall/aquila_collapsing_test
+
+/turf/closed/wall/aquila_collapsing_test/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
+	ScrapeAway()
+	return ..()
 
 #undef TEST_ASSERT
