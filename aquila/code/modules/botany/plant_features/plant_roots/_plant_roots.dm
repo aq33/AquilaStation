@@ -27,6 +27,13 @@
 	if(compatible_substrate & PLANT_SUBSTRATE_DEBRIS)
 		substrate_dialogue += "gruz "
 
+/// AQUILA - podłoże do nazwy paczki i komunikatów: „ziemia”, „glina lub piasek” albo „dowolne podłoże”
+/datum/plant_feature/roots/proc/get_substrate_text()
+	var/all = PLANT_SUBSTRATE_DIRT | PLANT_SUBSTRATE_SAND | PLANT_SUBSTRATE_CLAY | PLANT_SUBSTRATE_DEBRIS
+	if(!compatible_substrate || (compatible_substrate & all) == all && !substrate_strict)
+		return "dowolne podłoże"
+	return jointext(splittext(trim(substrate_dialogue), " "), substrate_strict ? " i " : " lub ")
+
 /datum/plant_feature/roots/setup_parent(_parent, reset_features)
 //Reset
 	if(parent)

@@ -1266,11 +1266,14 @@ class ReagentGrid extends Component {
         </Flex>
         <Flex direction="column" width="30%">
           <Flex.Item>
-            <Section width="100%">
-              {selected_reagent
-                ? all_reagent_data[selected_reagent]['GRID_REAGENT_NAME']
-                : 'Brak danych'}
-              <Divider />
+            <Section
+              width="100%"
+              title={
+                selected_reagent
+                  ? all_reagent_data[selected_reagent]['GRID_REAGENT_NAME']
+                  : 'Brak danych'
+              }
+            >
               {`Dokładność: ${selected_reagent ? (1 / (all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'] * all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'])) * 100 + '%' : 'Brak danych'}`}
               <Button
                 className="plant__button--beacon"
@@ -1292,10 +1295,12 @@ class ReagentGrid extends Component {
             </Section>
           </Flex.Item>
           <Flex.Item height="100%">
-            <Section height="100%" width="100%">
-              Próbkowane refrakcje
-              <Divider />
-              <Box className={'scrollbox'} height={'500px'} overflowY="scroll">
+            <Section height="100%" width="100%" title="Próbkowane refrakcje">
+              <Box
+                className={'plant__scrollbox'}
+                height={'500px'}
+                overflowY="scroll"
+              >
                 {Object.entries(sampled_reagents).map(([data_list_key]) => (
                   <Button
                     className="plant__button--beacon"
@@ -1353,11 +1358,10 @@ export const ReagentGridAlt = (props) => {
     accuracy,
     sampled_reagents,
     all_reagent_data,
-    last_command,
     list_accuracy,
   } = data;
   return (
-    <Window width={900} height={840} theme="plant_menu">
+    <Window width={900} height={840}>
       <Window.Content scrollable={0}>
         {/* Column elements */}
         <Flex height="100%" width="100%" direction="column">
@@ -1371,22 +1375,6 @@ export const ReagentGridAlt = (props) => {
               all_reagent_data={all_reagent_data}
               list_accuracy={list_accuracy}
             />
-          </Flex.Item>
-          {/* Fluff command section */}
-          <Flex.Item height="100%">
-            <Box height="100%" />
-          </Flex.Item>
-          <Flex.Item>
-            <Section textAlign={'start'} width="100%">
-              <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-              <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-              <br />
-              <Box>
-                {'C:\\Users\\admin>'}
-                {last_command}
-                <span className={'terminal'}>|</span>
-              </Box>
-            </Section>
           </Flex.Item>
         </Flex>
       </Window.Content>

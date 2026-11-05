@@ -245,7 +245,7 @@
 	var/buffer_contents[0]
 	if(reagents.total_volume)
 		for(var/datum/reagent/N in reagents.reagent_list)
-			buffer_contents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume, "purity" = round(N.purity, 0.01)))) // ^ // AQ EDIT - purity
+			buffer_contents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume, "purity" = round(N.purity, 0.01), "pureVolume" = N.purity < 1 ? round(N.volume * N.purity, CHEMICAL_VOLUME_ROUNDING) : null))) // ^ // AQ EDIT - purity, pureVolume dla przycisku „Oczyść”
 	data["bufferContents"] = buffer_contents
 	// AQUILA - pojemność bufora i przycisk „Włóż” w oknie z tg
 	data["bufferCurrentVolume"] = reagents.total_volume
@@ -338,6 +338,8 @@
 		if("toggleMode")
 			mode = !mode
 			. = TRUE
+		if("purify") // AQ EDIT - oczyszczanie odczynnika w buforze, aquila/code/modules/reagents/chemistry/machinery/chem_master.dm
+			. = purify_buffer_reagent(GLOB.name2reagent[params["id"]], usr)
 		if("pillStyle")
 			chosen_pill_style = "[params["id"]]"
 			. = TRUE

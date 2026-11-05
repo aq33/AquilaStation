@@ -1,0 +1,55 @@
+/**
+ * Okna botaniki (port BeeStation/BeeStation-Hornet#14133).
+ *
+ * AQUILA - okna botaniki używają domyślnego motywu `computer`, jak reszta konsol.
+ * Tu zostają tylko klasy pomocnicze, których te okna używają do przycisków i ramek z opisem.
+ */
+
+@keyframes plant-spin {
+  100% {
+    rotate: 360deg;
+  }
+  0% {
+    rotate: 0deg;
+  }
+}
+
+.plant__button,
+.plant__button--beacon {
+  white-space: normal;
+  margin: 1px;
+}
+
+.plant__button--beacon {
+  font-weight: bold;
+}
+
+.plant__dialogue,
+.plant__dialogue--beacon {
+  pointer-events: none;
+  white-space: normal;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 4px 6px;
+  margin: 2px 0;
+}
+
+.plant__dimmer {
+  z-index: 5;
+}
+
+.plant__spinner {
+  animation-name: plant-spin;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.plant__scrollbox {
+  margin: 0;
+  padding: 2px;
+}
+
+.plant__discrete {
+  margin: 0;
+  padding: 0;
+}

@@ -167,10 +167,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	connected.Cut()
 	linked_dirs = NONE
 	omni_dirs = NONE
-	down?.set_up(null)
-	up?.set_down(null)
-	up = null
-	down = null
+	unlink_multiz() // AQ EDIT - Smartwires: shared with deconstruct()
 
 /**
  * Searches the four cardinal directions for cables and links the compatible ones to us.
@@ -259,6 +256,13 @@ GLOBAL_LIST_INIT(cable_colors, list(
 		up.down = src
 		up.update_appearance(UPDATE_ICON)
 
+/// AQ EDIT - Smartwires: drops the links to the cables on the decks above and below, on both sides
+/obj/structure/cable/proc/unlink_multiz()
+	down?.set_up(null)
+	up?.set_down(null)
+	up = null
+	down = null
+
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(flags_1 & NODECONSTRUCT_1)
 		return ..()
@@ -273,6 +277,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	if (multiz)
 		var/obj/structure/cable/up_cable = up
 		var/obj/structure/cable/down_cable = down
+		unlink_multiz() // AQ EDIT - unlink first: two stacked multi-z cables point at each other and deconstructed each other forever
 		up_cable?.deconstruct()
 		down_cable?.deconstruct()
 	return ..()

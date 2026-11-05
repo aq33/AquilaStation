@@ -115,7 +115,9 @@
 		return logic ? FALSE : "<span class='warning'>Nie możesz tu zasadzić: [src]!</span>"
 	//Check if our roots fuck with the substrate we're planting it in
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_ROOT_SUBSTRATE, tray_component.substrate))
-		return logic ? FALSE : "<span class='warning'>Nie możesz zasadzić w tym podłożu: [src]!</span>"
+		// AQUILA - mówimy, jakiego podłoża trzeba
+		var/datum/plant_feature/roots/roots = locate() in plant_features
+		return logic ? FALSE : "<span class='warning'>Nie możesz zasadzić w tym podłożu: [src]! Potrzebne podłoże: [roots?.get_substrate_text() || "nieznane"].</span>"
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_TRAY_SIZE, target))
 		return logic ? FALSE : "<span class='warning'>Brak miejsca, by tu zasadzić: [src]!</span>"
 	//Plant it
@@ -153,7 +155,9 @@
 
 /obj/item/plant_seeds/proc/update_plant_name()
 	var/mushroom = locate(/datum/plant_feature/body/mushroom) in plant_features
-	name = "[mushroom ? "zarodniki" : "nasiona"]: [name_override || get_species_name(plant_features)]"
+	// AQUILA - podłoże w nazwie paczki, żeby było widać je w ręce i w automacie
+	var/datum/plant_feature/roots/roots = locate() in plant_features
+	name = "[mushroom ? "zarodniki" : "nasiona"]: [name_override || get_species_name(plant_features)][roots ? " ([roots.get_substrate_text()])" : ""]"
 
 /obj/item/plant_seeds/proc/update_species_id()
 	species_id = build_plant_species_id(plant_features)
