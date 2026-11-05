@@ -450,7 +450,7 @@
 	. = 1
 
 /datum/reagent/medicine/charcoal
-	name = "Węgiel aktywowany"
+	name = "Węgiel aktywny"
 	description = "Leczy lekkie obrażenia od toksyn i powoli usuwa z krwiobiegu pacjenta inne substancje."
 	reagent_state = LIQUID
 	color = "#000000"

@@ -16,7 +16,7 @@
 
 /datum/techweb_node/telecomms/New()
 	. = ..()
-	design_ids += "s-traffic"
+	design_ids += list("s-traffic", "message_monitor") // message_monitor: konsola monitorowania wiadomości nie miała węzła
 
 /obj/machinery/computer/telecomms/traffic
 	name = "konsola kontroli ruchu telekomunikacji"
@@ -221,6 +221,7 @@
 			servers -= server
 	if(!length(servers))
 		return list("Nie wykryto serwerów.")
+	var/list/warnings = list()
 	for(var/obj/machinery/telecomms/server/server as anything in servers)
 		if(QDELETED(server))
 			continue
@@ -234,9 +235,11 @@
 			text_list += error.message
 		if(length(text_list))
 			return text_list
+		for(var/datum/scriptError/warning in server.compile_warnings)
+			warnings |= "Ostrzeżenie: [warning.message]"
 	if(user_name)
 		create_log("skompilował kod na wszystkich serwerach sieci [network].")
-	return list("Kompilacja zakończona.")
+	return list("Kompilacja zakończona.") + warnings
 
 /obj/machinery/computer/telecomms/traffic/emag_act(mob/user)
 	if(obj_flags & EMAGGED)

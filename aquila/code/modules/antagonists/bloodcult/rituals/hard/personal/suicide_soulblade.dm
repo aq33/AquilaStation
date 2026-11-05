@@ -1,4 +1,3 @@
-
 /datum/bloodcult_ritual/suicide_soulblade
 	name = "Ostrze duszy"
 	desc = "Stań się kośćmi własnego miecza..."
@@ -10,12 +9,12 @@
 	reward_achiever = 500
 	reward_faction = 100
 
-	keys = list("suicide_tome")
+	keys = list("suicide_soulblade") // AQUILA - w vg był tu klucz księgi, przez co rytuał zaliczał się samobójstwem księgą
 
 /datum/bloodcult_ritual/suicide_soulblade/pre_conditions(datum/antagonist/cult/potential)
 	if (potential)
 		owner = potential
-	if (potential?.devotion > DEVOTION_TIER_3)
+	if (potential?.get_devotion_rank() >= DEVOTION_TIER_3)
 		return TRUE
 	return FALSE
 

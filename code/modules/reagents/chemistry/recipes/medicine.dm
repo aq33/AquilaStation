@@ -31,7 +31,7 @@
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/charcoal
-	name = "Węgiel aktywowany"
+	name = "Węgiel aktywny"
 	id = /datum/reagent/medicine/charcoal
 	results = list(/datum/reagent/medicine/charcoal = 2)
 	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/sodiumchloride = 1)

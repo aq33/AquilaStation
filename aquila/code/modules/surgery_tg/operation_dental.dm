@@ -12,6 +12,7 @@
 	catalog_sections = list(SURGERY_SECTION_FACE)
 	desc = "Wciska pigułkę w ząb pacjenta. Pacjent może ją potem rozgryźć."
 	operation_flags = OPERATION_SELF_OPERABLE
+	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH) // usta da się otworzyć samemu, więc katalog nie wymaga drugiej osoby
 	implements = list(
 		/obj/item/reagent_containers/pill = 1,
 	)

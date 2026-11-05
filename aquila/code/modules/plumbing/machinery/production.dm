@@ -199,6 +199,7 @@
 	desc = "Odbiera chemikalia z jednego lub kilku nadajników chemikaliów. Użyj multitoola na tej maszynie, a potem na każdym kolejnym nadajniku. Reset: otwórz \
 	panel i przetnij główny przewód."
 	icon_state = "recipient"
+	circuit = /obj/item/circuitboard/machine/plumbing_receiver
 
 	buffer = 150
 

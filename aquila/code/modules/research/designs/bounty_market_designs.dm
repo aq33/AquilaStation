@@ -26,4 +26,4 @@
 
 /datum/techweb_node/comptech/New() // dopisane, żeby zmiany upstreamu w tym węźle nadal działały
 	. = ..()
-	design_ids += list("bountypad_control", "bountypad", "materials_market")
+	design_ids += list("bountypad_control", "bountypad", "materials_market", "bounty") // bounty: konsola zleceń nie miała węzła

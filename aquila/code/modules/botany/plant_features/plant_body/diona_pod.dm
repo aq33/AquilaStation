@@ -6,7 +6,7 @@
 	name = "pnącze diony"
 	icon_state = "diona_vine"
 	draw_below_water = FALSE
-	yields = PLANT_BODY_YIELD_MICRO
+	yields = 1 // AQUILA - jeden plon jak u Bee, PLANT_BODY_YIELD_MICRO podnieśliśmy do 2 (drugi zbiór dałby drugi klon)
 	yield_cooldown_time = PLANT_BODY_YIELD_TIME_SLOW
 	max_harvest = PLANT_BODY_HARVEST_MICRO
 	slot_size = PLANT_BODY_SLOT_SIZE_LARGEST
