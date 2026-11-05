@@ -818,14 +818,14 @@
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
 		set_light_on(FALSE)
 		lamp_enabled = FALSE
-		lampButton.update_icon()
+		lampButton?.update_icon() // AQ EDIT - cyborg usuwany w trakcie nie ma już przycisku lampy
 		update_icons()
 		return
 	set_light_range(lamp_intensity)
 	set_light_color(lamp_color)
 	set_light_on(TRUE)
 	lamp_enabled = TRUE
-	lampButton.update_icon()
+	lampButton?.update_icon() // AQ EDIT - cyborg usuwany w trakcie nie ma już przycisku lampy
 	update_icons()
 
 /mob/living/silicon/robot/proc/deconstruct()

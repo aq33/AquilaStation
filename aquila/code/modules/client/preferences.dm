@@ -3,6 +3,8 @@
 	clientfps = -1
 	/// Stare domyślne FPS 40 zostało już raz zamienione na zalecane (zapisywane w bazie)
 	var/clientfps_migrated = FALSE
+	/// Nazwy jednorazowych migracji keybindów, które już przeszły (zapisywane w bazie, PREFERENCE_TAG_KEYBIND_MIGRATIONS)
+	var/list/keybind_migrations
 
 /// FPS, które faktycznie dostaje klient. Zalecane = odświeżanie monitora zmierzone przez panel czatu
 /// (client.monitor_refresh_rate), a dopóki go nie ma, RECOMMENDED_CLIENT_FPS.

@@ -90,6 +90,7 @@
 	READPREF_JSONDEC(role_preferences, PREFERENCE_TAG_ROLE_PREFERENCES)
 	READPREF_JSONDEC(completed_tutorials, PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	READPREF_JSONDEC(quick_emotes, PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
+	READPREF_JSONDEC(keybind_migrations, PREFERENCE_TAG_KEYBIND_MIGRATIONS) // AQ EDIT - jednorazowe migracje keybindów
 
 	//Sanitize
 	asaycolor		= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, TRUE, initial(asaycolor)))
@@ -193,6 +194,7 @@
 	PREP_WRITEPREF_JSONENC(role_preferences, PREFERENCE_TAG_ROLE_PREFERENCES)
 	PREP_WRITEPREF_JSONENC(get_completed_tutorials(), PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	PREP_WRITEPREF_JSONENC(get_quick_emotes(), PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
+	PREP_WRITEPREF_JSONENC(keybind_migrations, PREFERENCE_TAG_KEYBIND_MIGRATIONS) // AQ EDIT - jednorazowe migracje keybindów
 
 	// QuerySelect can execute many queries at once. That name is dumb but w/e
 	SSdbcore.QuerySelect(write_queries, TRUE, TRUE)

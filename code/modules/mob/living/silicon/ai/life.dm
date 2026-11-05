@@ -167,6 +167,8 @@
 		update_sight()
 
 /mob/living/silicon/ai/proc/ai_lose_power()
+	if(QDELETED(src)) // AQ EDIT - SI usuwana w trakcie (reset komory testowej) nie zaczyna przywracania zasilania
+		return
 	disconnect_shell()
 	aiRestorePowerRoutine = POWER_RESTORATION_START
 	blind_eyes(1)
