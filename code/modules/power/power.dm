@@ -194,6 +194,15 @@ WANTS_POWER_NODE(/obj/machinery/power) // AQ EDIT - Smartwires
 		net1 = net2
 		net2 = temp
 
+	// AQ EDIT START - keep net2's power for this tick, otherwise its part of the grid had none until the next reset()
+	net1.avail += net2.avail
+	net1.newavail += net2.newavail
+	net1.load += net2.load
+	net1.delayedload += net2.delayedload
+	net1.viewavail += net2.viewavail
+	net1.viewload += net2.viewload
+	// AQ EDIT END
+
 	//merge net2 into net1
 	for(var/obj/structure/cable/Cable in net2.cables) //merge cables
 		net1.add_cable(Cable)

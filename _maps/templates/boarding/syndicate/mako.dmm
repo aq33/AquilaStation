@@ -21,6 +21,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/mob/living/simple_animal/hostile/nsv/syndicate/space/sword,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "aF" = (
@@ -54,8 +55,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "bm" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
 /obj/structure/hull_plate,
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged/shotgun,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "bq" = (
@@ -148,7 +149,6 @@
 "gw" = (
 /obj/structure/cable,
 /obj/structure/chair/stool,
-/mob/living/simple_animal/hostile/syndicate/melee,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "gH" = (
@@ -263,13 +263,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"mD" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator,
-/turf/open/floor/carpet/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "mW" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/pdc,
@@ -355,6 +348,10 @@
 	dir = 6
 	},
 /turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"qK" = (
+/mob/living/simple_animal/hostile/nsv/syndicate/space,
+/turf/open/floor/engine/airless/light,
 /area/ruin/powered/nsv13/boarding_interior)
 "qZ" = (
 /obj/structure/rack,
@@ -537,6 +534,7 @@
 /obj/structure/peacekeeper_barricade/metal{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "yM" = (
@@ -575,7 +573,9 @@
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "AI" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged{
+	name = "Syndicate frigate captain"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "AR" = (
@@ -613,7 +613,7 @@
 	name = "bridge chair"
 	},
 /obj/machinery/door/firedoor/border_only/directional/west,
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot,
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "CE" = (
@@ -647,8 +647,9 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "DL" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/hostile/syndicate/melee/sword/space{
-	name = "Syndicate Frigate HOS"
+/mob/living/simple_animal/hostile/nsv/syndicate/space/sword{
+	name = "Syndicate frigate HoS";
+	desc = "None to happy to see you."
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -694,6 +695,10 @@
 "Gv" = (
 /obj/structure/sign/poster/contraband/syndiemoth,
 /turf/closed/wall/r_wall,
+/area/ruin/powered/nsv13/boarding_interior)
+"GI" = (
+/mob/living/simple_animal/hostile/nsv/syndicate/space,
+/turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
 "Hb" = (
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -759,6 +764,13 @@
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
+"JO" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/nsv/syndicate,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/nsv13/boarding_interior)
 "JP" = (
 /obj/machinery/door/airlock/ship{
 	name = "Engineering Vault";
@@ -818,7 +830,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "Om" = (
 /obj/structure/peacekeeper_barricade/metal,
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "Oo" = (
@@ -850,10 +862,6 @@
 /obj/structure/shuttle/engine/router,
 /turf/closed/wall/r_wall,
 /area/ruin/powered/nsv13/boarding_interior)
-"Qk" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/carpet/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "Qz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -871,7 +879,7 @@
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "RU" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/shotgun,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Se" = (
@@ -909,10 +917,6 @@
 /obj/item/food/burger/fish,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"Tb" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "Tx" = (
 /obj/effect/spawner/lootdrop/ruinloot/medical,
 /obj/structure/closet/crate,
@@ -934,11 +938,11 @@
 	dir = 4;
 	name = "captain's chair"
 	},
-/mob/living/simple_animal/hostile/syndicate/civilian{
-	name = "Syndicate Frigate Captain"
-	},
 /obj/machinery/light{
 	dir = 8
+	},
+/mob/living/simple_animal/hostile/nsv/syndicate/ranged{
+	name = "Syndicate frigate captain"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -983,12 +987,6 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
 /area/ruin/powered/nsv13/boarding_interior)
-"VH" = (
-/mob/living/simple_animal/hostile/syndicate/melee/space/stormtrooper{
-	name = "Syndicate Chief Engineer"
-	},
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
 "VL" = (
 /obj/effect/landmark/iff_console_spawner{
 	dir = 1
@@ -1014,6 +1012,10 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "Wp" = (
 /obj/structure/fluff/empty_cryostasis_sleeper,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"WF" = (
+/mob/living/simple_animal/hostile/nsv/syndicate,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Xu" = (
@@ -1043,6 +1045,10 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"YH" = (
+/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged,
+/turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "YX" = (
 /obj/effect/landmark/iff_console_spawner{
@@ -30121,10 +30127,10 @@ sy
 JR
 YX
 fG
-VH
+HN
 wv
 fG
-oT
+qK
 oT
 fC
 fC
@@ -31135,7 +31141,7 @@ lf
 fG
 DS
 sE
-Qk
+WF
 hC
 Cb
 hS
@@ -35237,7 +35243,7 @@ ST
 vt
 sE
 zq
-Tb
+Ca
 hC
 kw
 vL
@@ -36251,7 +36257,7 @@ fC
 fC
 dz
 fG
-Cb
+GI
 Cb
 fG
 Mf
@@ -36512,9 +36518,9 @@ fG
 fG
 mn
 NH
+JO
 Wd
 Wd
-mD
 Wd
 sE
 Mf
@@ -36772,7 +36778,7 @@ Wd
 Wd
 Wd
 Wd
-sE
+WF
 Mf
 hC
 oT
@@ -38056,7 +38062,7 @@ fG
 fG
 oT
 oT
-oT
+qK
 fC
 fC
 fC
@@ -38810,7 +38816,7 @@ fC
 fC
 fC
 fG
-Ca
+YH
 zG
 fG
 fG

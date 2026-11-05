@@ -125,15 +125,47 @@ def logical_lines(path, lines):
     return join_text_blocks(out)
 
 
+def block_string_start(line, in_comment):
+    """Początek napisu {" w kodzie linii (nie w komentarzu /* */ ani //, nie w "..." ani w
+    surowym @'...'/@"..."): (indeks albo -1, czy linia kończy się w komentarzu blokowym)."""
+    i, n = 0, len(line)
+    while i < n:
+        if in_comment:
+            end = line.find("*/", i)
+            if end < 0:
+                return -1, True
+            in_comment, i = False, end + 2
+            continue
+        if line.startswith("/*", i):
+            in_comment, i = True, i + 2
+            continue
+        if line.startswith("//", i):
+            return -1, False
+        if line.startswith('{"', i):
+            return i, False
+        c = line[i]
+        if c == "@" and i + 1 < n and line[i + 1] in "'\"":
+            end = line.find(line[i + 1], i + 2)
+            i = n if end < 0 else end + 1
+            continue
+        if c in "'\"":
+            j = i + 1
+            while j < n and line[j] != c:
+                j += 2 if line[j] == "\\" else 1
+            i = j + 1
+            continue
+        i += 1
+    return -1, in_comment
+
+
 def join_text_blocks(lines):
     """Napis {"..."} na kilka linii (opisy, HTML okien) jako jeden literał "...\\n...": gracz widzi
     cały tekst naraz, a czytany linia po linii dawał tylko kawałek pierwszej linii."""
-    out, i = [], 0
+    out, i, in_comment = [], 0, False
     while i < len(lines):
         line = lines[i]
-        start = line.find('{"')
-        comment = line.find("//")
-        if start < 0 or line.find('"}', start + 2) >= 0 or 0 <= comment < start:
+        start, in_comment = block_string_start(line, in_comment)
+        if start < 0 or line.find('"}', start + 2) >= 0:
             out.append(line)
             i += 1
             continue

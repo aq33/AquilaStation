@@ -1,0 +1,20 @@
+# Serwis czatu głosowego jako usługa systemd.
+# Skopiuj do /etc/systemd/system/aquila-voice.service i popraw ścieżkę do repozytorium oraz użytkownika.
+# Sekret i klucz są w /etc/aquila-voice/env (patrz env.example), nie w tym pliku.
+[Unit]
+Description=Aquila - czat glosowy (serwis rozpoznawania mowy)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=aquila
+EnvironmentFile=/etc/aquila-voice/env
+WorkingDirectory=/opt/aquila/tools/voice_chat
+ExecStart=/usr/bin/python3 -u /opt/aquila/tools/voice_chat/voice_server.py \
+	--host 127.0.0.1 --port 8179 \
+	--backend elevenlabs --keyterms-file /opt/aquila/tools/voice_chat/keyterms.txt
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
