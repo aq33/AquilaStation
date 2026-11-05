@@ -131,7 +131,7 @@
 /datum/heretic_knowledge/armor/rust
 	desc = "Stwórz Salvaged Remains.<br>\
 		Na rdzy daje dodatkowy pancerz, odporność na powalenie i na strzykawki."
-	transmute_text = "Transmutuj stół (albo kombinezon), maskę i dowolny śmieć."
+	transmute_text = "Transmutuj stół (albo strój wierzchni), maskę i dowolny śmieć."
 	gain_text = "Spod pogiętego złomu Kowal wyciąga starożytną tkaninę. \
 		\"Cokolwiek kiedyś oznaczała, zostało zapomniane. Więc nadamy jej nowy cel.\""
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/rust)

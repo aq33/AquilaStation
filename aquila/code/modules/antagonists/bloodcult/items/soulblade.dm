@@ -206,6 +206,28 @@
 		user.adjust_dizzy(-120)
 	update_icon()
 
+/// vgstation: kultysta przebija się pustym ostrzem i zamyka w nim własną duszę jako cień (klucz rytuału suicide_soulblade)
+/obj/item/melee/soulblade/suicide_act(mob/living/user)
+	user.visible_message(span_danger("[user] rozpruwa sobie brzuch [src]! [shade ? "Wygląda na to, że próbuje popełnić samobójstwo." : "Klejnot nad rękojeścią zaczyna świecić..."]"))
+	if(shade || !iscarbon(user) || !user.mind)
+		return BRUTELOSS
+	playsound(get_turf(user), 'aquila/sound/bloodcult/edibles_short.ogg', 75, 0)
+	playsound(user, 'aquila/sound/bloodcult/bloodyslice.ogg', 50, 1)
+	var/datum/antagonist/cult/cult_datum = user.mind.has_antag_datum(/datum/antagonist/cult)
+	cult_datum?.gain_devotion(500, DEVOTION_TIER_4, "suicide_soulblade", user)
+	user.dropItemToGround(src, TRUE)
+	forceMove(get_turf(user))
+	var/mob/living/simple_animal/shade/new_shade = new(src)
+	new_shade.name = "Cień [user.real_name]"
+	new_shade.real_name = new_shade.name
+	user.mind.transfer_to(new_shade)
+	capture_shade(new_shade, user)
+	new_shade.master = null // ciało nie jest już niczyim panem
+	user.adjustBruteLoss(user.maxHealth * 2)
+	if(user.stat != DEAD)
+		user.death(FALSE)
+	return MANUAL_SUICIDE
+
 /obj/item/melee/soulblade/proc/areYouWorthy(mob/living/user)
 	if (IS_CULTIST(user))
 		return TRUE

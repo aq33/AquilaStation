@@ -650,6 +650,7 @@
 #include "code\modules\food_and_drinks\kitchen_machinery\monkeyrecycler.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\processor.dm"
 #include "code\modules\food_and_drinks\recipes\drinks_recipes.dm"
+#include "code\modules\food_and_drinks\recipes\tablecraft\recipes_pie.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_polskie.dm"
 #include "code\modules\hydroponics\grown\onion.dm"
 #include "code\modules\hydroponics\grown\towercap.dm"
@@ -1678,6 +1679,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
+#include "code\modules\unit_tests\aquila_audyt_regresje.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
