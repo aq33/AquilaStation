@@ -1,7 +1,7 @@
 //after a delay, creates a rune below you. for constructs creating runes.
 /datum/action/innate/cult/create_rune
-	name = "Summon Rune"
-	desc = "Summons a rune"
+	name = "Przywołaj runę"
+	desc = "Przywołuje runę."
 	background_icon_state = "bg_demon"
 	var/obj/effect/rune/rune_type
 	var/cooldown = 0
@@ -82,8 +82,8 @@
 
 //teleport rune
 /datum/action/innate/cult/create_rune/tele
-	name = "Summon Teleport Rune"
-	desc = "Summons a teleport rune to your location, as though it has been there all along..."
+	name = "Przywołaj runę teleportacji"
+	desc = "Przywołuje pod tobą runę teleportacji, jakby była tu od zawsze..."
 	button_icon_state = "telerune"
 	rune_type = /obj/effect/rune/teleport
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune2
@@ -92,8 +92,8 @@
 	rune_color = RUNE_COLOR_TELEPORT
 
 /datum/action/innate/cult/create_rune/wall
-	name = "Summon Barrier Rune"
-	desc = "Summons an active barrier rune to your location, as though it has been there all along..."
+	name = "Przywołaj runę bariery"
+	desc = "Przywołuje pod tobą aktywną runę bariery, jakby była tu od zawsze..."
 	button_icon_state = "barrier"
 	rune_type = /obj/effect/rune/wall
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune4
@@ -108,8 +108,8 @@
 		W.spread_density()
 
 /datum/action/innate/cult/create_rune/revive
-	name = "Summon Revive Rune"
-	desc = "Summons a revive rune to your location, as though it has been there all along..."
+	name = "Przywołaj runę wskrzeszenia"
+	desc = "Przywołuje pod tobą runę wskrzeszenia, jakby była tu od zawsze..."
 	button_icon_state = "revive"
 	rune_type = /obj/effect/rune/raise_dead
 	rune_word_type = /obj/effect/temp_visual/cult/rune_spawn/rune1

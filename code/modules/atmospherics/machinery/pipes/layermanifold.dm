@@ -1,14 +1,14 @@
 /obj/machinery/atmospherics/pipe/layer_manifold
-	name = "layer adaptor"
+	name = "adapter warstw"
 	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
 	icon_state = "manifoldlayer"
-	desc = "A special pipe to bridge pipe layers with."
+	desc = "Specjalna rura do łączenia warstw rur."
 	dir = SOUTH
 	initialize_directions = NORTH|SOUTH
 	pipe_flags = PIPING_ALL_LAYER | PIPING_DEFAULT_LAYER_ONLY | PIPING_CARDINAL_AUTONORMALIZE
 	piping_layer = PIPING_LAYER_DEFAULT
 	device_type = 0
-	volume = 350
+	// AQ EDIT - usunięte martwe volume = 350: objętość liczy pipe/New() jako 35 * device_type = 0, adapter nie dodaje objętości
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "manifoldlayer"
 	paintable = FALSE

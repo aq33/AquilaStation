@@ -1,6 +1,6 @@
 /datum/language/piratespeak
-	name = "Piratespeak"
-	desc = "The language of space pirates."
+	name = "Piracki"
+	desc = "Język kosmicznych piratów."
 	speech_verb = "mówi"
 	ask_verb = "pyta"
 	exclaim_verb = "woła"

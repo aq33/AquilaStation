@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/the_traps
-	name = "The Traps!"
-	desc = "Summon a number of traps around you. They will damage and enrage any enemies that step on them."
+	name = "Pułapki!"
+	desc = "Przywołujesz wokół siebie kilka pułapek. Ranią i rozwścieczają każdego wroga, który na nie wejdzie."
 
 	charge_max = 250
 	cooldown_min = 100

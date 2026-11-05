@@ -12,8 +12,8 @@
  * DATA CARDS - Used for the IC data card reader
  */
 /obj/item/card
-	name = "card"
-	desc = "Does card things."
+	name = "karta"
+	desc = "Robi kartowe rzeczy."
 	icon = 'nsv13/icons/obj/card.dmi' //NSV13 - old style
 	w_class = WEIGHT_CLASS_TINY
 
@@ -24,8 +24,8 @@
 	return BRUTELOSS
 
 /obj/item/card/data
-	name = "data card"
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has a stripe running down the middle."
+	name = "karta danych"
+	desc = "Plastikowa karta z paskiem magnetycznym do prostego i szybkiego przechowywania i przenoszenia danych. Przez środek tej biegnie pasek."
 	icon_state = "data_1"
 	obj_flags = UNIQUE_RENAME
 	var/function = "storage"
@@ -49,19 +49,19 @@
 	add_overlay(detail_overlay)
 
 /obj/item/card/data/full_color
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."
+	desc = "Plastikowa karta z paskiem magnetycznym do prostego i szybkiego przechowywania i przenoszenia danych. Ta jest cała kolorowa."
 	icon_state = "data_2"
 
 /obj/item/card/data/disk
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicibly looks like a floppy disk."
+	desc = "Plastikowa karta z paskiem magnetycznym do prostego i szybkiego przechowywania i przenoszenia danych. Ta z niewiadomego powodu wygląda jak dyskietka."
 	icon_state = "data_3"
 
 /*
  * ID CARDS
  */
 /obj/item/card/emag
-	desc = "It is an ID card, the magnetic strip is exposed and attached to some circuitry."
-	name = "cryptographic sequencer"
+	desc = "To karta ID z odsłoniętym paskiem magnetycznym podłączonym do jakichś układów."
+	name = "sekwencer kryptograficzny"
 	icon_state = "emag"
 	item_state = "card-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -70,8 +70,8 @@
 	var/prox_check = TRUE //If the emag requires you to be in range
 
 /obj/item/card/emag/bluespace
-	name = "bluespace cryptographic sequencer"
-	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
+	name = "sekwencer kryptograficzny bluespace"
+	desc = "Niebieska karta z paskiem magnetycznym podłączonym do jakichś układów. Wygląda na to, że ma doczepiony jakiś nadajnik."
 	icon_state = "emag_bs"
 	prox_check = FALSE
 
@@ -87,8 +87,8 @@
 	A.emag_act(user)
 
 /obj/item/card/emagfake
-	desc = "It is an ID card, the magnetic strip is exposed and attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
-	name = "cryptographic sequencer"
+	desc = "To karta ID z odsłoniętym paskiem magnetycznym podłączonym do jakichś układów. Po bliższych oględzinach okazuje się, że to kiepska replika z logo „DonkCo” wybitym na odwrocie."
+	name = "sekwencer kryptograficzny"
 	icon_state = "emag"
 	item_state = "card-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -152,7 +152,7 @@
 /obj/item/card/id/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_ID_PAYDAY, "Trigger Payday")
+	VV_DROPDOWN_OPTION(VV_ID_PAYDAY, "Wywołaj wypłatę")
 
 /obj/item/card/id/vv_do_topic(list/href_list)
 	. = ..()
@@ -320,14 +320,14 @@ update_label("John Doe", "Clowny")
 */
 /obj/item/card/id/proc/update_label(newname, newjob)
 	if(newname || newjob)
-		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
+		name = "[(!newname)	? "karta identyfikacyjna"	: "karta ID: [newname]"][(!newjob) ? "" : " ([newjob])"]"
 		return
 
-	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	name = "[(!registered_name)	? "karta identyfikacyjna"	: "karta ID: [registered_name]"][(!assignment) ? "" : " ([assignment])"]"
 
 /obj/item/card/id/silver
-	name = "silver identification card"
-	desc = "A silver ID card, issued to positions which require honour and dedication."
+	name = "srebrna karta identyfikacyjna"
+	desc = "Srebrna karta ID wydawana na stanowiskach wymagających honoru i oddania."
 	icon_state = "silver"
 	item_state = "silver_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -335,15 +335,15 @@ update_label("John Doe", "Clowny")
 	hud_state = JOB_HUD_RAWCENTCOM
 
 /obj/item/card/id/silver/reaper
-	name = "Thirteen's ID Card (Reaper)"
+	name = "karta ID: Thirteen (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
 	assignment = "Reaper"
 	registered_name = "Thirteen"
 	hud_state = JOB_HUD_SYNDICATE
 
 /obj/item/card/id/gold
-	name = "gold identification card"
-	desc = "A golden ID card. issued to positions which wield power and might."
+	name = "złota karta identyfikacyjna"
+	desc = "Złota karta ID wydawana na stanowiskach, które dzierżą władzę i siłę."
 	icon_state = "gold"
 	item_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -351,27 +351,27 @@ update_label("John Doe", "Clowny")
 	hud_state = JOB_HUD_RAWCOMMAND
 
 /obj/item/card/id/silver/spacepol
-	name = "space police access card"
+	name = "karta dostępu Kosmicznej Policji"
 	access = list(ACCESS_HUNTERS)
 	hud_state = JOB_HUD_NOTCENTCOM
 
 /obj/item/card/id/silver/spacepol/bounty
-	name = "bounty hunter access card"
+	name = "karta dostępu łowcy nagród"
 	access = list(ACCESS_HUNTERS)
 	hud_state = JOB_HUD_UNKNOWN
 
 /obj/item/card/id/space_russian
-	name = "space russian card"
+	name = "karta kosmicznego Rosjanina"
 	access = list(ACCESS_HUNTERS)
 	hud_state = JOB_HUD_UNKNOWN
 
 /obj/item/card/id/pirate
-	name = "pirate ship card"
+	name = "karta statku pirackiego"
 	access = list(ACCESS_PIRATES)
 	hud_state = JOB_HUD_SYNDICATE
 
 /obj/item/card/id/syndicate
-	name = "agent card"
+	name = "karta agenta"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 	icon_state = "syndicate"
 	hud_state = JOB_HUD_SYNDICATE
@@ -587,27 +587,27 @@ update_label("John Doe", "Clowny")
 	anyone = TRUE
 
 /obj/item/card/id/syndicate/nuke_leader
-	name = "lead agent card"
+	name = "karta głównego agenta"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 
 /obj/item/card/id/syndicate/ratvar
-	name = "servant ID card"
+	name = "karta ID sługi"
 	icon_state = "ratvar"
 	access = list(ACCESS_CLOCKCULT, ACCESS_MAINT_TUNNELS)
 	hud_state = JOB_HUD_UNKNOWN
 
 /obj/item/card/id/syndicate_command
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
+	name = "karta ID Syndykatu"
+	desc = "Karta ID prosto od Syndykatu."
+	registered_name = "Syndykat"
 	icon_state = "syndicate"
-	assignment = "Syndicate Officer"
+	assignment = "Oficer Syndykatu"
 	access = list(ACCESS_SYNDICATE)
 	hud_state = JOB_HUD_SYNDICATE
 
 /obj/item/card/id/syndicate/debug
-	name = "\improper Debug ID"
-	desc = "A shimmering ID card with the ability to open anything."
+	name = "\improper karta ID debugowa"
+	desc = "Mieniąca się karta ID, która otwiera wszystko."
 	icon_state = "centcom"
 	registered_name = JOB_CENTCOM_CENTRAL_COMMAND
 	assignment = JOB_CENTCOM_ADMIRAL
@@ -620,8 +620,8 @@ update_label("John Doe", "Clowny")
 	. = ..()
 
 /obj/item/card/id/captains_spare
-	name = "captain's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	name = "zapasowa karta ID kapitana"
+	desc = "Zapasowa karta ID samego Najwyższego Pana."
 	icon_state = "gold"
 	item_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -637,11 +637,11 @@ update_label("John Doe", "Clowny")
 	. = ..()
 
 /obj/item/card/id/centcom
-	name = "\improper CentCom ID"
-	desc = "A shimmering Central Command ID card. Simply seeing this is illegal for the majority of the crew."
+	name = "\improper karta ID Centrali"
+	desc = "Mieniąca się karta ID Centrali. Dla większości załogi samo jej oglądanie jest nielegalne."
 	icon_state = "centcom"
 	registered_name = JOB_CENTCOM_CENTRAL_COMMAND
-	assignment = "General"
+	assignment = "Generał"
 	hud_state = JOB_HUD_CENTCOM
 
 /obj/item/card/id/centcom/Initialize(mapload)
@@ -649,8 +649,8 @@ update_label("John Doe", "Clowny")
 	. = ..()
 
 /obj/item/card/id/ert
-	name = "\improper CentCom ID"
-	desc = "A shimmering Emergency Response Team ID card. All access with style."
+	name = "\improper karta ID Centrali"
+	desc = "Mieniąca się karta ID Zespołu Reagowania Kryzysowego. Pełny dostęp, i to ze stylem."
 	icon_state = "ert"
 	registered_name = JOB_ERT_COMMANDER
 	assignment = JOB_ERT_COMMANDER
@@ -706,8 +706,8 @@ update_label("John Doe", "Clowny")
 	. = ..()
 
 /obj/item/card/id/ert/kudzu
-	registered_name = "Weed Whacker"
-	assignment = "Weed Whacker"
+	registered_name = "Pogromca chwastów"
+	assignment = "Pogromca chwastów"
 	icon_state = "ert"
 
 /obj/item/card/id/ert/kudzu/Initialize(mapload)
@@ -715,8 +715,8 @@ update_label("John Doe", "Clowny")
 	. = ..()
 
 /obj/item/card/id/gulag
-	name = "prisoner ID card"
-	desc = "You are a number, you are not a free man."
+	name = "karta ID więźnia"
+	desc = "Jesteś numerem, a nie wolnym człowiekiem."
 	icon_state = "orange"
 	item_state = "orange-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -736,96 +736,96 @@ update_label("John Doe", "Clowny")
 		. += "<span class='notice'>Znak na karcie wskazuje, że wyrok jest dożywotni.</span>"
 
 /obj/item/card/id/gulag/one
-	name = "Prisoner #13-001"
-	registered_name = "Prisoner #13-001"
+	name = "Więzień #13-001"
+	registered_name = "Więzień #13-001"
 
 /obj/item/card/id/gulag/two
-	name = "Prisoner #13-002"
-	registered_name = "Prisoner #13-002"
+	name = "Więzień #13-002"
+	registered_name = "Więzień #13-002"
 
 /obj/item/card/id/gulag/three
-	name = "Prisoner #13-003"
-	registered_name = "Prisoner #13-003"
+	name = "Więzień #13-003"
+	registered_name = "Więzień #13-003"
 
 /obj/item/card/id/gulag/four
-	name = "Prisoner #13-004"
-	registered_name = "Prisoner #13-004"
+	name = "Więzień #13-004"
+	registered_name = "Więzień #13-004"
 
 /obj/item/card/id/gulag/five
-	name = "Prisoner #13-005"
-	registered_name = "Prisoner #13-005"
+	name = "Więzień #13-005"
+	registered_name = "Więzień #13-005"
 
 /obj/item/card/id/gulag/six
-	name = "Prisoner #13-006"
-	registered_name = "Prisoner #13-006"
+	name = "Więzień #13-006"
+	registered_name = "Więzień #13-006"
 
 /obj/item/card/id/gulag/seven
-	name = "Prisoner #13-007"
-	registered_name = "Prisoner #13-007"
+	name = "Więzień #13-007"
+	registered_name = "Więzień #13-007"
 
 /obj/item/card/id/mining
-	name = "mining ID"
+	name = "karta ID górnika"
 	hud_state = JOB_HUD_RAWCARGO
 	access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 
 /obj/item/card/id/away
-	name = "\proper a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	name = "\proper całkowicie zwyczajna karta identyfikacyjna"
+	desc = "Całkowicie zwyczajna karta identyfikacyjna. Przydałoby się jej trochę charakteru."
 	hud_state = JOB_HUD_UNKNOWN
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/hotel
-	name = "Staff ID"
-	desc = "A staff ID used to access the hotel's doors."
+	name = "karta ID personelu"
+	desc = "Karta ID personelu otwierająca drzwi hotelu."
 	hud_state = JOB_HUD_RAWSERVICE
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINT)
 
 /obj/item/card/id/away/hotel/securty
-	name = "Officer ID"
+	name = "karta ID ochroniarza"
 	hud_state = JOB_HUD_RAWSECURITY
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINT, ACCESS_AWAY_SEC)
 
 /obj/item/card/id/away/old
-	name = "\proper a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	name = "\proper całkowicie zwyczajna karta identyfikacyjna"
+	desc = "Całkowicie zwyczajna karta identyfikacyjna. Przydałoby się jej trochę charakteru."
 	icon_state = "centcom"
 	hud_state = JOB_HUD_RAWCENTCOM
 
 /obj/item/card/id/away/old/sec
-	name = "Charlie Station Security Officer's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
-	assignment = "Charlie Station Security Officer"
+	name = "karta ID ochroniarza ze Stacji Charlie"
+	desc = "Wyblakła karta ID ze Stacji Charlie. Da się odczytać stopień „Ochroniarz”."
+	assignment = "Ochroniarz Stacji Charlie"
 	hud_state = JOB_HUD_RAWSECURITY
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
 
 /obj/item/card/id/away/old/sci
-	name = "Charlie Station Scientist's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
-	assignment = "Charlie Station Scientist"
+	name = "karta ID naukowca ze Stacji Charlie"
+	desc = "Wyblakła karta ID ze Stacji Charlie. Da się odczytać stopień „Naukowiec”."
+	assignment = "Naukowiec Stacji Charlie"
 	hud_state = JOB_HUD_RAWSCIENCE
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/old/eng
-	name = "Charlie Station Engineer's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Station Engineer\"."
-	assignment = "Charlie Station Engineer"
+	name = "karta ID inżyniera ze Stacji Charlie"
+	desc = "Wyblakła karta ID ze Stacji Charlie. Da się odczytać stopień „Inżynier”."
+	assignment = "Inżynier Stacji Charlie"
 	hud_state = JOB_HUD_RAWENGINEERING
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINE)
 
 /obj/item/card/id/away/old/apc
-	name = "APC Access ID"
-	desc = "A special ID card that allows access to APC terminals."
+	name = "karta dostępu do APC"
+	desc = "Specjalna karta ID dająca dostęp do terminali APC."
 	hud_state = JOB_HUD_UNKNOWN
 	access = list(ACCESS_ENGINE_EQUIP)
 
 /obj/item/card/id/away/deep_storage //deepstorage.dmm space ruin
-	name = "bunker access ID"
+	name = "karta dostępu do bunkra"
 
 ///Department Budget Cards///
 
 /obj/item/card/id/departmental_budget
-	name = "departmental card (budget)"
-	desc = "Provides access to the departmental budget."
+	name = "karta działu (budżet)"
+	desc = "Daje dostęp do budżetu działu."
 	icon_state = "budget"
 	var/department_ID = ACCOUNT_CIV
 	var/department_name = ACCOUNT_CIV_NAME
@@ -839,8 +839,8 @@ update_label("John Doe", "Clowny")
 		registered_account = B
 		if(!B.bank_cards.Find(src))
 			B.bank_cards += src
-		name = "departmental card ([department_name])"
-		desc = "Provides access to the [department_name]."
+		name = "karta działu ([department_name])"
+		desc = "Daje dostęp do konta: [department_name]."
 	SSeconomy.dep_cards += src
 
 /obj/item/card/id/departmental_budget/Destroy()
@@ -900,341 +900,341 @@ update_label("John Doe", "Clowny")
 // These should have default job name and hud state, etc, because chameleon card needs such information
 // ---- Command ----
 /obj/item/card/id/job/captain
-	name = "Job card (Com) - Captain"
+	name = "karta stanowiska (Dow.) – Kapitan"
 	icon_state = "captain"
 	assignment = JOB_NAME_CAPTAIN
 	hud_state = JOB_HUD_CAPTAIN
 
 /obj/item/card/id/job/rawcommand
-	name = "Job card (Com) - Custom"
+	name = "karta stanowiska (Dow.) – własna"
 	icon_state = JOB_HUD_RAWCOMMAND
 	hud_state = JOB_HUD_RAWCOMMAND
 
 // ---- Service ----
 /obj/item/card/id/job/assistant
-	name = "Job card (Serv) - Assistant"
+	name = "karta stanowiska (Usł.) – Majtek"
 	icon_state = "id"
 	assignment = JOB_NAME_ASSISTANT
 	hud_state = JOB_HUD_ASSISTANT
 
 /obj/item/card/id/job/head_of_personnel
-	name = "Job card (Serv) - HoP"
+	name = "karta stanowiska (Usł.) – Starszy Oficer"
 	icon_state = "hop"
 	assignment = JOB_NAME_HEADOFPERSONNEL
 	hud_state = JOB_HUD_HEADOFPERSONNEL
 
 /obj/item/card/id/job/botanist
-	name = "Job card (Serv) - Botanist"
+	name = "karta stanowiska (Usł.) – Botanik"
 	icon_state = "serv"
 	assignment = JOB_NAME_BOTANIST
 	hud_state = JOB_HUD_BOTANIST
 
 /obj/item/card/id/job/cook
-	name = "Job card (Serv) - Cook"
+	name = "karta stanowiska (Usł.) – Kucharz"
 	icon_state = "serv"
 	assignment = JOB_NAME_COOK
 	hud_state = JOB_HUD_COOK
 
 /obj/item/card/id/job/bartender
-	name = "Job card (Serv) - Bartender"
+	name = "karta stanowiska (Usł.) – Barman"
 	icon_state = "serv"
 	assignment = JOB_NAME_BARTENDER
 	hud_state = JOB_HUD_BARTENDER
 
 /obj/item/card/id/job/barber
-	name = "Job card (Serv) - Barber"
+	name = "karta stanowiska (Usł.) – Fryzjer"
 	icon_state = "serv"
 	assignment = JOB_NAME_BARBER
 	hud_state = JOB_HUD_BARBER
 
 /obj/item/card/id/job/stage_magician
-	name = "Job card (Serv) - Magician"
+	name = "karta stanowiska (Usł.) – Magik"
 	icon_state = "serv"
 	assignment = JOB_NAME_STAGEMAGICIAN
 	hud_state = JOB_HUD_STAGEMAGICIAN
 
 /obj/item/card/id/job/curator
-	name = "Job card (Serv) - Curator"
+	name = "karta stanowiska (Usł.) – Bibliotekarz"
 	icon_state = "chap"
 	assignment = JOB_NAME_CURATOR
 	hud_state = JOB_HUD_CURATOR
 
 /obj/item/card/id/job/chaplain
-	name = "Job card (Serv) - Chaplain"
+	name = "karta stanowiska (Usł.) – Kapłan"
 	icon_state = "chap"
 	assignment = JOB_NAME_CHAPLAIN
 	hud_state = JOB_HUD_CHAPLAIN
 
 /obj/item/card/id/job/janitor
-	name = "Job card (Serv) - Janitor"
+	name = "karta stanowiska (Usł.) – Woźny"
 	icon_state = "janitor"
 	assignment = JOB_NAME_JANITOR
 	hud_state = JOB_HUD_JANITOR
 
 /obj/item/card/id/job/clown
-	name = "Job card (Serv) - Clown"
+	name = "karta stanowiska (Usł.) – Klaun"
 	icon_state = "clown"
 	assignment = JOB_NAME_CLOWN
 	hud_state = JOB_HUD_CLOWN
 
 /obj/item/card/id/job/mime
-	name = "Job card (Serv) - Mime"
+	name = "karta stanowiska (Usł.) – Mim"
 	icon_state = "mime"
 	assignment = JOB_NAME_MIME
 	hud_state = JOB_HUD_MIME
 
 /obj/item/card/id/job/lawyer
-	name = "Job card (Serv) - Lawyer"
+	name = "karta stanowiska (Usł.) – Prawnik"
 	icon_state = "lawyer"
 	assignment = JOB_NAME_LAWYER
 	hud_state = JOB_HUD_LAWYER
 
 /obj/item/card/id/job/rawservice
-	name = "Job card (Serv) - Custom"
+	name = "karta stanowiska (Usł.) – własna"
 	icon_state = JOB_HUD_RAWSERVICE
 	hud_state = JOB_HUD_RAWSERVICE
 
 // ---- Cargo ----
 /obj/item/card/id/job/quartermaster
-	name = "Job card (Cargo) - QM"
+	name = "karta stanowiska (Zaop.) – Kwatermistrz"
 	icon_state = "qm"
 	assignment = JOB_NAME_QUARTERMASTER
 	hud_state = JOB_HUD_QUARTERMASTER
 
 /obj/item/card/id/job/shaft_miner
-	name = "Job card (Cargo) - Shaft Miner"
+	name = "karta stanowiska (Zaop.) – Górnik"
 	icon_state = "miner"
 	assignment = JOB_NAME_SHAFTMINER
 	hud_state = JOB_HUD_SHAFTMINER
 
 /obj/item/card/id/job/cargo_technician
-	name = "Job card (Cargo) - Cargo Tech"
+	name = "karta stanowiska (Zaop.) – Magazynier"
 	icon_state = "cargo"
 	assignment = JOB_NAME_CARGOTECHNICIAN
 	hud_state = JOB_HUD_CARGOTECHNICIAN
 
 // AQ EDIT - bitrunning
 /obj/item/card/id/job/bitrunner
-	name = "Job card (Cargo) - Bitrunner"
+	name = "karta stanowiska (Zaop.) – Bitrunner"
 	icon_state = "cargo"
 	assignment = JOB_NAME_BITRUNNER
 	hud_state = JOB_HUD_BITRUNNER
 
 /obj/item/card/id/job/rawcargo
-	name = "Job card (Cargo) - Custom"
+	name = "karta stanowiska (Zaop.) – własna"
 	icon_state = "rawcargo"
 	hud_state = JOB_HUD_RAWCARGO
 
 // ---- Engineering -----
 /obj/item/card/id/job/chief_engineer
-	name = "Job card (Eng) - CE"
+	name = "karta stanowiska (Inż.) – Główny Inżynier"
 	icon_state = "ce"
 	assignment = JOB_NAME_CHIEFENGINEER
 	hud_state = JOB_HUD_CHIEFENGINEER
 
 /obj/item/card/id/job/station_engineer
-	name = "Job card (Eng) - Station Engi"
+	name = "karta stanowiska (Inż.) – Inżynier"
 	icon_state = "engi"
 	assignment = JOB_NAME_STATIONENGINEER
 	hud_state = JOB_HUD_STATIONENGINEER
 
 /obj/item/card/id/job/atmospheric_technician
-	name = "Job card (Eng) - Atmos"
+	name = "karta stanowiska (Inż.) – Technik Atmosferyki"
 	icon_state = "atmos"
 	assignment = JOB_NAME_ATMOSPHERICTECHNICIAN
 	hud_state = JOB_HUD_ATMOSPHERICTECHNICIAN
 
 /obj/item/card/id/job/rawengineering
-	name = "Job card (Eng) - Custom"
+	name = "karta stanowiska (Inż.) – własna"
 	icon_state = "rawengineering"
 	hud_state = JOB_HUD_RAWENGINEERING
 
 // ---- Medical ----
 /obj/item/card/id/job/chief_medical_officer
-	name = "Job card (Med) - CMO"
+	name = "karta stanowiska (Med.) – Ordynator"
 	icon_state = "cmo"
 	assignment = JOB_NAME_CHIEFMEDICALOFFICER
 	hud_state = JOB_HUD_CHEIFMEDICALOFFICIER
 
 /obj/item/card/id/job/medical_doctor
-	name = "Job card (Med) - Medical Doctor"
+	name = "karta stanowiska (Med.) – Lekarz"
 	icon_state = "med"
 	assignment = JOB_NAME_MEDICALDOCTOR
 	hud_state = JOB_HUD_MEDICALDOCTOR
 
 /obj/item/card/id/job/paramedic
-	name = "Job card (Med) - Paramedic"
+	name = "karta stanowiska (Med.) – Ratownik Medyczny"
 	icon_state = "paramed"
 	assignment = JOB_NAME_PARAMEDIC
 	hud_state = JOB_HUD_PARAMEDIC
 
 /obj/item/card/id/job/virologist
-	name = "Job card (Med) - Virologist"
+	name = "karta stanowiska (Med.) – Wirolog"
 	icon_state = "viro"
 	assignment = JOB_NAME_VIROLOGIST
 	hud_state = JOB_HUD_VIROLOGIST
 
 /obj/item/card/id/job/chemist
-	name = "Job card (Med) - Chemist"
+	name = "karta stanowiska (Med.) – Chemik"
 	icon_state = "chemist"
 	assignment = JOB_NAME_CHEMIST
 	hud_state = JOB_HUD_CHEMIST
 
 /obj/item/card/id/job/geneticist
-	name = "Job card (Med) - Geneticist"
+	name = "karta stanowiska (Med.) – Genetyk"
 	icon_state = "gene"
 	assignment = JOB_NAME_GENETICIST
 	hud_state = JOB_HUD_GENETICIST
 
 /obj/item/card/id/job/psychiatrist
-	name = "Job card (Med) - Psychiatrist"
+	name = "karta stanowiska (Med.) – Psychiatra"
 	icon_state = "med"
 	assignment = JOB_NAME_PSYCHIATRIST
 	hud_state = JOB_HUD_PSYCHIATRIST
 
 /obj/item/card/id/job/rawmedical
-	name = "Job card (Med) - Custom"
+	name = "karta stanowiska (Med.) – własna"
 	icon_state = "rawmedical"
 	hud_state = JOB_HUD_RAWMEDICAL
 
 
 // ---- Science -----
 /obj/item/card/id/job/research_director
-	name = "Job card (RND) - RD"
+	name = "karta stanowiska (B+R) – Dyrektor Naukowy"
 	icon_state = "rd"
 	assignment = JOB_NAME_RESEARCHDIRECTOR
 	hud_state = JOB_HUD_RESEARCHDIRECTOR
 
 /obj/item/card/id/job/scientist
-	name = "Job card (RND) - Scientist"
+	name = "karta stanowiska (B+R) – Naukowiec"
 	icon_state = "sci"
 	assignment = JOB_NAME_SCIENTIST
 	hud_state = JOB_HUD_SCIENTIST
 
 /obj/item/card/id/job/roboticist
-	name = "Job card (RND) - Roboticist"
+	name = "karta stanowiska (B+R) – Robotyk"
 	icon_state = "roboticist"
 	assignment = JOB_NAME_ROBOTICIST
 	hud_state = JOB_HUD_ROBOTICIST
 
 /obj/item/card/id/job/exploration_crew
-	name = "Job card (RND) - Explo Crew"
+	name = "karta stanowiska (B+R) – Odkrywca"
 	icon_state = "exploration"
 	assignment = JOB_NAME_EXPLORATIONCREW
 	hud_state = JOB_HUD_EXPLORATIONCREW
 
 /obj/item/card/id/job/rawscience
-	name = "Job card (RND) - Custom"
+	name = "karta stanowiska (B+R) – własna"
 	icon_state = "rawscience"
 	hud_state = JOB_HUD_RAWSCIENCE
 
 // ---- Security ----
 /obj/item/card/id/job/head_of_security
-	name = "Job card (Sec) - HoS"
+	name = "karta stanowiska (Ochr.) – Komendant"
 	icon_state = "hos"
 	assignment = JOB_NAME_HEADOFSECURITY
 	hud_state = JOB_HUD_HEADOFSECURITY
 
 /obj/item/card/id/job/warden
-	name = "Job card (Sec) - Warden"
+	name = "karta stanowiska (Ochr.) – Naczelnik"
 	icon_state = "warden"
 	assignment = JOB_NAME_WARDEN
 	hud_state = JOB_HUD_WARDEN
 
 /obj/item/card/id/job/security_officer
-	name = "Job card (Sec) - Security Officer"
+	name = "karta stanowiska (Ochr.) – Policjant"
 	icon_state = "sec"
 	assignment = JOB_NAME_SECURITYOFFICER
 	hud_state = JOB_HUD_SECURITYOFFICER
 
 /obj/item/card/id/job/detective
-	name = "Job card (Sec) - Detective"
+	name = "karta stanowiska (Ochr.) – Detektyw"
 	icon_state = "detective"
 	assignment = JOB_NAME_DETECTIVE
 	hud_state = JOB_HUD_DETECTIVE
 
 /obj/item/card/id/job/brig_physician
-	name = "Job card (Sec) - Brig Phys"
+	name = "karta stanowiska (Ochr.) – Lekarz Więzienny"
 	icon_state = "brigphys"
 	assignment = JOB_NAME_BRIGPHYSICIAN
 	hud_state = JOB_HUD_BRIGPHYSICIAN
 
 /obj/item/card/id/job/deputy
-	name = "Job card (Sec) - Deputy"
+	name = "karta stanowiska (Ochr.) – Aspirant"
 	icon_state = "deputy"
 	assignment = JOB_NAME_DEPUTY
 	hud_state = JOB_HUD_DEPUTY
 
 /obj/item/card/id/job/rawsecurity
-	name = "Job card (Sec) - Custom"
+	name = "karta stanowiska (Ochr.) – własna"
 	icon_state = "rawsecurity"
 	hud_state = JOB_HUD_RAWSECURITY
 
 // ---- Munitions - NSV13 ----
 /obj/item/card/id/job/master_at_arms
-	name = "Job card (Mun) - Master at Arms"
+	name = "karta stanowiska (Amun.) – Mistrz Broni"
 	icon_state = "maa"
 	assignment = JOB_NAME_MASTERATARMS
 	hud_state = JOB_HUD_MASTERATARMS
 
 /obj/item/card/id/job/munitions_technician
-	name = "Job card (Mun) - Munitions Technician"
+	name = "karta stanowiska (Amun.) – Technik Amunicyjny"
 	icon_state = "munitech"
 	assignment = JOB_NAME_MUNITIONSTECHNICIAN
 	hud_state = JOB_HUD_MUNITIONSTECHNICIAN
 
 /obj/item/card/id/job/deck_technician
-	name = "Job card (Mun) - Deck Technician"
+	name = "karta stanowiska (Amun.) – Technik Pokładowy"
 	icon_state = "munitech" // AQ EDIT: brak stanu "decktechnician" w card.dmi
 	assignment = JOB_NAME_DECKTECHNICIAN
 	hud_state = JOB_HUD_DECKTECHNICIAN
 
 /obj/item/card/id/job/air_traffic_controller
-	name = "Job card (Mun) - Air Traffic Controller"
+	name = "karta stanowiska (Amun.) – Kontroler Lotów"
 	icon_state = "atc"
 	assignment = JOB_NAME_AIRTRAFFICCONTROLLER
 	hud_state = JOB_HUD_AIRTRAFFICCONTROLLER
 
 /obj/item/card/id/job/pilot
-	name = "Job card (Mun) - Brig Phys"
+	name = "karta stanowiska (Amun.) – Pilot"
 	icon_state = "pilot"
 	assignment = JOB_NAME_PILOT
 	hud_state = JOB_HUD_PILOT
 
 /obj/item/card/id/job/bridge_staff
-	name = "Job card (Mun) - Bridge Staff"
+	name = "karta stanowiska (Amun.) – Oficer Pokładowy"
 	icon_state = "silver"
 	assignment = JOB_NAME_BRIDGESTAFF
 	hud_state = JOB_HUD_BRIDGESTAFF
 
 /obj/item/card/id/job/rawsecurity
-	name = "Job card (Sec) - Custom"
+	name = "karta stanowiska (Ochr.) – własna"
 	icon_state = "rawsecurity"
 	hud_state = JOB_HUD_RAWSECURITY
 
  // ---- ???? ----
 /obj/item/card/id/job/unknown
-	name = "Job card - unassigned"
+	name = "karta stanowiska – nieprzypisana"
 	icon_state = "id"
 	hud_state = JOB_HUD_UNKNOWN
 
 /obj/item/card/id/gold/vip
-	name = "important gold identification card"
+	name = "ważna złota karta identyfikacyjna"
 	assignment = JOB_NAME_VIP
 	hud_state = JOB_HUD_VIP
 
 /obj/item/card/id/gold/king
-	name = "their majesty's gold identification card"
+	name = "złota karta identyfikacyjna Jego Królewskiej Mości"
 	assignment = JOB_NAME_KING
 	hud_state = JOB_HUD_KING
 
 
 /obj/item/card/id/pass
-	name = "promotion pass"
-	desc = "A card that, when swiped on your ID card, will grant you all the access. Should not substitute your actual ID card."
+	name = "przepustka awansowa"
+	desc = "Karta, która po przeciągnięciu przez twoją kartę ID daje ci cały swój dostęp. Nie zastępuje prawdziwej karty ID."
 	icon_state = "data_1"
-	registered_name = "Unregistered ID"
-	assignment = "Access Pass"
+	registered_name = "Niezarejestrowana karta"
+	assignment = "Przepustka"
 	hud_state = JOB_HUD_UNKNOWN
 
 /obj/item/card/id/pass/afterattack(atom/target, mob/user, proximity)

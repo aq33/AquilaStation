@@ -14,8 +14,8 @@
 	eatverbs = list("siorbie", "popija", "wciąga", "pije")
 
 /obj/item/food/soup/wish
-	name = "wish soup"
-	desc = "I wish this was soup."
+	name = "zupa życzeń"
+	desc = "Życzę sobie, żeby to była zupa."
 	icon_state = "wishsoup"
 	food_reagents = list(
 		/datum/reagent/water = 10
@@ -26,13 +26,13 @@
 	. = ..()
 	var/wish_true = prob(25)
 	if(wish_true)
-		desc = "A wish come true!"
+		desc = "Życzenie się spełniło!"
 		reagents.add_reagent(/datum/reagent/consumable/nutriment, 9)
 		reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 1)
 
 /obj/item/food/soup/meatball
-	name = "meatball soup"
-	desc = "You've got balls kid, BALLS!"
+	name = "zupa z klopsikami"
+	desc = "Masz jaja, młody, JAJA!"
 	icon_state = "meatballsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -44,8 +44,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/soup/slime
-	name = "slime soup"
-	desc = "If no water is available, you may substitute tears."
+	name = "zupa ze szlamu"
+	desc = "Jeśli nie masz wody, możesz użyć łez."
 	icon_state = "slimesoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -57,8 +57,8 @@
 	foodtypes = TOXIC | SUGAR
 
 /obj/item/food/soup/blood
-	name = "tomato soup"
-	desc = "Smells like copper."
+	name = "zupa pomidorowa"
+	desc = "Pachnie miedzią."
 	icon_state = "tomatosoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 6,
@@ -71,7 +71,7 @@
 
 /obj/item/food/soup/wingfangchu
 	name = "wing fang chu"
-	desc = "A savory dish of alien wing wang in soy."
+	desc = "Pikantne danie z obcego wing wanga w soi."
 	icon_state = "wingfangchu"
 	trash_type = /obj/item/reagent_containers/glass/bowl
 	food_reagents = list(
@@ -83,8 +83,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/soup/clownstears
-	name = "clown's tears"
-	desc = "Not very funny."
+	name = "łzy klauna"
+	desc = "Niezbyt zabawne."
 	icon_state = "clownstears"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -97,8 +97,8 @@
 	foodtypes = FRUIT | SUGAR
 
 /obj/item/food/soup/vegetable
-	name = "vegetable soup"
-	desc = "A true vegan meal."
+	name = "zupa jarzynowa"
+	desc = "Prawdziwie wegański posiłek."
 	icon_state = "vegetablesoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -109,8 +109,8 @@
 	foodtypes = VEGETABLES
 
 /obj/item/food/soup/nettle
-	name = "nettle soup"
-	desc = "To think, the botanist would've beat you to death with one of these."
+	name = "zupa pokrzywowa"
+	desc = "Pomyśleć, że botanik mógł cię zatłuc na śmierć jedną z nich."
 	icon_state = "nettlesoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -123,8 +123,8 @@
 	foodtypes = VEGETABLES
 
 /obj/item/food/soup/mystery
-	name = "mystery soup"
-	desc = "The mystery is, why aren't you eating it?"
+	name = "zupa-zagadka"
+	desc = "Zagadka brzmi: czemu jej jeszcze nie jesz?"
 	icon_state = "mysterysoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -150,8 +150,8 @@
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 6)
 
 /obj/item/food/soup/hotchili
-	name = "hot chili"
-	desc = "A five alarm Texan Chili!"
+	name = "ostre chili"
+	desc = "Teksańskie chili na pięć alarmów pożarowych!"
 	icon_state = "hotchili"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -164,8 +164,8 @@
 	foodtypes = VEGETABLES | MEAT
 
 /obj/item/food/soup/coldchili
-	name = "cold chili"
-	desc = "This slush is barely a liquid!"
+	name = "zimne chili"
+	desc = "Ta breja ledwo jest płynna!"
 	icon_state = "coldchili"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -178,8 +178,8 @@
 	foodtypes = VEGETABLES | MEAT
 
 /obj/item/food/soup/monkeysdelight
-	name = "monkey's delight"
-	desc = "A delicious soup with dumplings and hunks of monkey meat simmered to perfection, in a broth that tastes faintly of bananas."
+	name = "małpia rozkosz"
+	desc = "Pyszna zupa z kluskami i kawałkami mięsa małpy duszonymi do perfekcji w bulionie, który lekko pachnie bananami."
 	icon_state = "monkeysdelight"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -191,8 +191,8 @@
 	foodtypes = FRUIT
 
 /obj/item/food/soup/tomato
-	name = "tomato soup"
-	desc = "Drinking this feels like being a vampire! A tomato vampire..."
+	name = "zupa pomidorowa"
+	desc = "Picie tego to jak bycie wampirem! Pomidorowym wampirem..."
 	icon_state = "tomatosoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -203,8 +203,8 @@
 	foodtypes = VEGETABLES
 
 /obj/item/food/soup/tomato/eyeball
-	name = "eyeball soup"
-	desc = "It looks back at you..."
+	name = "zupa z oczu"
+	desc = "Ona też na ciebie patrzy..."
 	icon_state = "eyeballsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -217,8 +217,8 @@
 	foodtypes = MEAT | GORE
 
 /obj/item/food/soup/miso
-	name = "miso soup"
-	desc = "The universes best soup! Yum!!!"
+	name = "zupa miso"
+	desc = "Najlepsza zupa we wszechświecie! Mniam!!!"
 	icon_state = "misosoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -230,8 +230,8 @@
 	foodtypes = VEGETABLES | BREAKFAST
 
 /obj/item/food/soup/mushroom
-	name = "chantrelle soup"
-	desc = "A delicious and hearty mushroom soup."
+	name = "zupa kurkowa"
+	desc = "Pyszna i sycąca zupa grzybowa."
 	icon_state = "mushroomsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -241,8 +241,8 @@
 	foodtypes = VEGETABLES | DAIRY
 
 /obj/item/food/soup/beet
-	name = "beet soup"
-	desc = "Wait, how do you spell it again..?"
+	name = "barszcz"
+	desc = "Zaraz, jak to się właściwie pisze..?"
 	icon_state = "beetsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -253,13 +253,13 @@
 
 /obj/item/food/soup/beet/Initialize(mapload)
 	. = ..()
-	name = pick("borsch", "bortsch", "borstch", "borsh", "borshch", "borscht")
+	name = pick("barszcz", "barszczyk", "barszc", "barsz", "borszcz", "barszczz")
 	tastes = list(name = 1)
 
 
 /obj/item/food/soup/spacylibertyduff
-	name = "spacy liberty duff"
-	desc = "Jello gelatin, from Alfred Hubbard's cookbook."
+	name = "kosmiczny deser wolności"
+	desc = "Galaretka z książki kucharskiej Alfreda Hubbarda."
 	icon_state = "spacylibertyduff"
 	bite_consumption = 3
 	food_reagents = list(
@@ -272,8 +272,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/soup/amanitajelly
-	name = "amanita jelly"
-	desc = "Looks curiously toxic."
+	name = "galaretka z muchomorów"
+	desc = "Wygląda podejrzanie toksycznie."
 	icon_state = "amanitajelly"
 	bite_consumption = 3
 	food_reagents = list(
@@ -287,8 +287,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/soup/stew
-	name = "stew"
-	desc = "A nice and warm stew. Healthy and strong."
+	name = "gulasz"
+	desc = "Przyjemny, ciepły gulasz. Zdrowy i treściwy."
 	icon_state = "stew"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -301,8 +301,8 @@
 	foodtypes = VEGETABLES | MEAT
 
 /obj/item/food/soup/sweetpotato
-	name = "sweet potato soup"
-	desc = "Delicious sweet potato in soup form."
+	name = "zupa z batatów"
+	desc = "Pyszne bataty w postaci zupy."
 	icon_state = "sweetpotatosoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -313,8 +313,8 @@
 	foodtypes = VEGETABLES | SUGAR
 
 /obj/item/food/soup/beet/red
-	name = "red beet soup"
-	desc = "Quite a delicacy."
+	name = "zupa z czerwonych buraków"
+	desc = "Niezły przysmak."
 	icon_state = "redbeetsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -325,8 +325,8 @@
 	foodtypes = VEGETABLES
 
 /obj/item/food/soup/bisque
-	name = "bisque"
-	desc = "A classic entree from Space-France."
+	name = "biskwit"
+	desc = "Klasyczne danie z Kosmo-Francji."
 	icon_state = "bisque"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -338,8 +338,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/soup/electron
-	name = "electron soup"
-	desc = "A gastronomic curiosity of ethereal origin. It is famed for the minature weather system formed over a properly prepared soup."
+	name = "zupa elektronowa"
+	desc = "Kulinarna ciekawostka pochodzenia eteryckiego. Słynie z miniaturowego układu pogodowego, który tworzy się nad dobrze przyrządzoną zupą."
 	icon_state = "electronsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -349,8 +349,8 @@
 	foodtypes = VEGETABLES | TOXIC
 
 /obj/item/food/soup/bungocurry
-	name = "bungo curry"
-	desc = "A spicy vegetable curry made with the humble bungo fruit, Exotic!"
+	name = "curry z bungo"
+	desc = "Pikantne warzywne curry ze skromnego owocu bungo. Egzotyka!"
 	icon_state = "bungocurry"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -362,8 +362,8 @@
 	foodtypes = VEGETABLES | FRUIT | DAIRY
 
 /obj/item/food/soup/mammi
-	name = "Mammi"
-	desc = "A bowl of mushy bread and milk. It reminds you, not too fondly, of a bowel movement."
+	name = "mämmi"
+	desc = "Miska rozmokłego chleba z mlekiem. Przypomina ci, niezbyt miło, wizytę w toalecie."
 	icon_state = "mammi"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -372,8 +372,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/soup/oatmeal
-	name = "oatmeal"
-	desc = "Thicker than a bowl of oatmeal."
+	name = "owsianka"
+	desc = "Gęstsza niż miska owsianki."
 	icon_state = "oatmeal"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,

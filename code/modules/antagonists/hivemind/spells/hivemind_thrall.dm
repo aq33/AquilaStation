@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/hive_thrall
-	name = "Awaken Vessel"
-	desc = "We awaken one of our vessels, permanently turning them into an extension of our will, we can only sustain two awakened vessels increasing with integrations."
+	name = "Przebudź naczynie"
+	desc = "Przebudzamy jedno z naszych naczyń, na stałe czyniąc je przedłużeniem naszej woli. Utrzymamy tylko dwa przebudzone naczynia, a z każdą integracją więcej."
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 1
@@ -16,7 +16,7 @@
 /obj/effect/proc_holder/spell/targeted/hive_thrall/cast(list/targets, mob/living/user = usr)
 	var/datum/antagonist/hivemind/hivehost = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hivehost)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	if((hivehost.avessels.len >= hivehost.avessel_limit) && !hivehost.dominant)
 		to_chat(user, "<span class='notice'>Nie utrzymamy kolejnego przebudzonego naczynia!</span>")

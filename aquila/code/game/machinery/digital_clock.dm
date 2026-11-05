@@ -41,7 +41,7 @@ PROCESSING_SUBSYSTEM_DEF(digital_clock)
 	pixel_shift = -28
 
 /datum/design/digital_clock_frame
-	name = "Digital Clock Frame"
+	name = "Rama zegara cyfrowego"
 	id = "digital_clock_frame"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 700, /datum/material/glass = 400)

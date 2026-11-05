@@ -151,7 +151,7 @@
 	var/panel_height = 620
 	if(edit_id)
 		panel_height = 240
-	var/datum/browser/panel = new(usr, "banpanel", "Banning Panel", 910, panel_height)
+	var/datum/browser/panel = new(usr, "banpanel", "Panel banów", 910, panel_height)
 	panel.add_stylesheet("admin_panelscss", 'html/admin/admin_panels.css')
 	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
 	if(usr.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI) //some browsers (IE8) have trouble with unsupported css3 elements and DOM methods that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
@@ -159,7 +159,7 @@
 		panel.add_script("banpaneljs", 'html/admin/banpanel.js')
 	var/list/output = list("<form method='get' action='byond://?src=[REF(src)]'>[HrefTokenFormField()]")
 	output += {"<input type='hidden' name='src' value='[REF(src)]'>
-	<label class='inputlabel checkbox'>Key:
+	<label class='inputlabel checkbox'>Klucz:
 	<input type='checkbox' id='keycheck' name='keycheck' value='1'[player_key ? " checked": ""]>
 	<div class='inputbox'></div></label>
 	<input type='text' name='keytext' size='26' value='[player_key]'>
@@ -172,91 +172,91 @@
 	<div class='inputbox'></div></label>
 	<input type='text' name='cidtext' size='14' value='[player_cid]'>
 	[(suppressor && !edit_id) ? "" : "<!--"]
-	<label class='inputlabel checkbox banned'>Enable Suppression
+	<label class='inputlabel checkbox banned'>Włącz ukrycie
 	<input type='checkbox' id='redactioncheck' name='redactioncheck' value='1' onClick='suppression_lock(this)'>
 	<div class='inputbox'></div></label>
 	[(suppressor && !edit_id) ? "" : "-->"]
 	<br>
-	<label class='inputlabel checkbox'>Use IP and CID from last connection of key
+	<label class='inputlabel checkbox'>Użyj IP i CID z ostatniego połączenia klucza
 	<input type='checkbox' id='lastconn' name='lastconn' value='1' [(isnull(duration) && !player_ip) || (!player_cid) ? " checked": ""]>
 	<div class='inputbox'></div></label>
-	<label class='inputlabel checkbox'>Applies to Admins
+	<label class='inputlabel checkbox'>Dotyczy adminów
 	<input class='redact_incompatible' type='checkbox' id='applyadmins' name='applyadmins' value='1'[applies_to_admins ? " checked": ""]>
 	<div class='inputbox'></div></label>
-	<input type='submit' value='Submit'>
+	<input type='submit' value='Wyślij'>
 	<br>
 	<div class='row'>
 		<div class='column left'>
-			Duration type
+			Rodzaj czasu trwania
 			<br>
-			<label class='inputlabel radio'>Permanent
+			<label class='inputlabel radio'>Permanentny
 			<input type='radio' id='permanent' name='radioduration' value='permanent'[isnull(duration) ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Temporary
+			<label class='inputlabel radio'>Tymczasowy
 			<input type='radio' id='temporary' name='radioduration' value='temporary'[duration ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 			<input type='text' name='duration' size='7' value='[duration]'>
 			<div class="select">
 				<select name='intervaltype'>
-					<option value='SECOND'>Seconds</option>
-					<option value='MINUTE' selected>Minutes</option>
-					<option value='HOUR'>Hours</option>
-					<option value='DAY'>Days</option>
-					<option value='WEEK'>Weeks</option>
-					<option value='MONTH'>Months</option>
-					<option value='YEAR'>Years</option>
+					<option value='SECOND'>sekund</option>
+					<option value='MINUTE' selected>minut</option>
+					<option value='HOUR'>godzin</option>
+					<option value='DAY'>dni</option>
+					<option value='WEEK'>tygodni</option>
+					<option value='MONTH'>miesięcy</option>
+					<option value='YEAR'>lat</option>
 				</select>
 			</div>
 		</div>
 		<div class='column middle'>
-			Ban type
+			Typ bana
 			<br>
-			<label class='inputlabel radio'>Server
+			<label class='inputlabel radio'>Serwer
 			<input class='redact_force_checked' type='radio' id='server' name='radioban' value='server'[role == "Server" ? " checked" : ""][edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Role
+			<label class='inputlabel radio'>Rola
 			<input class='redact_incompatible' type='radio' id='role' name='radioban' value='role'[role == "Server" ? "" : " checked"][edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column middle'>
-			Severity
+			Waga
 			<br>
-			<label class='inputlabel radio'>None
+			<label class='inputlabel radio'>Brak
 			<input class='redact_incompatible' type='radio' id='none' name='radioseverity' value='none'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
-			<label class='inputlabel radio'>Medium
+			<label class='inputlabel radio'>Średnia
 			<input class='redact_incompatible' type='radio' id='medium' name='radioseverity' value='medium'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Minor
+			<label class='inputlabel radio'>Niska
 			<input class='redact_incompatible' type='radio' id='minor' name='radioseverity' value='minor'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
-			<label class='inputlabel radio'>High
+			<label class='inputlabel radio'>Wysoka
 			<input class='redact_force_checked' type='radio' id='high' name='radioseverity' value='high'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column right'>
-			Location
+			Zasięg
 			<br>
-			<label class='inputlabel radio'>Local
+			<label class='inputlabel radio'>Lokalny
 			<input class='redact_incompatible' type='radio' id='servban' name='radioservban' value='local'[isnull(global_ban) ? " checked" : ""] disabled='[CONFIG_GET(flag/disable_local_bans) ? "true" : "false"]'>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Global
+			<label class='inputlabel radio'>Globalny
 			<input class='redact_force_checked' type='radio' id='servban' name='radioservban' value='global'[(global_ban) ? " checked" : "" ] disabled='[CONFIG_GET(flag/disable_local_bans) ? "true" : "false"]'>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column'>
-			Reason
+			Powód
 			<br>
 			<textarea class='reason' name='reason'>[reason]</textarea>
 		</div>
 	</div>
 	"}
 	if(edit_id)
-		output += {"<label class='inputlabel checkbox'>Mirror edits to matching bans
+		output += {"<label class='inputlabel checkbox'>Powiel zmiany na pasujące bany
 		<input type='checkbox' id='mirroredit' name='mirroredit' value='1'>
 		<div class='inputbox'></div></label>
 		<input type='hidden' name='editid' value='[edit_id]'>
@@ -271,7 +271,7 @@
 		<input type='hidden' name='page' value='[page]'>
 		<input type='hidden' name='adminkey' value='[admin_key]'>
 		<br>
-		When ticked, edits here will also affect bans created with matching ckey, IP, CID and time. Use this to edit all role bans which were made at the same time.
+		Po zaznaczeniu zmiany obejmą też bany z tym samym ckey, IP, CID i czasem. Użyj tego, by edytować wszystkie bany na role nałożone jednocześnie.
 		"}
 	else
 		output += "<input type='hidden' name='roleban_delimiter' value='1'>"
@@ -294,7 +294,7 @@
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
 		var/break_counter = 0
-		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [(usr.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI) ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
+		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [(usr.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI) ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Dowództwo</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
 		for(var/job in GLOB.command_positions)
@@ -405,14 +405,14 @@
 			if(!edit_id)
 				redact = TRUE
 			else
-				error_state += "Bans may not have their suppression flag edited. If a ban requiring suppression was accidently issued without it, contact [CONFIG_GET(string/hostedby)] immediately."
+				error_state += "Nie można edytować flagi ukrycia bana. Jeśli ban wymagający ukrycia został przez pomyłkę nałożony bez niej, natychmiast skontaktuj się z [CONFIG_GET(string/hostedby)]."
 		else
-			error_state += "You have attempted to issue a suppressed ban without permission, This incident has been logged."
+			error_state += "Próbujesz nałożyć ukryty ban bez uprawnień. Zdarzenie zostało zalogowane."
 			log_admin_private("SUPPRESS: [key_name(usr)] ATTEMPTED TO ISSUE A SUPPRESSED BAN WITHOUT THE REQUISITE RIGHT!")
 	if(href_list["keycheck"])
 		player_key = href_list["keytext"]
 		if(!player_key)
-			error_state += "Key was ticked but none was provided."
+			error_state += "Zaznaczono klucz, ale go nie podano."
 	if(href_list["ipcheck"])
 		ip_check = TRUE
 	if(href_list["cidcheck"])
@@ -424,18 +424,18 @@
 		if(ip_check)
 			player_ip = href_list["iptext"]
 			if(!player_ip && !use_last_connection)
-				error_state += "IP was ticked but none was provided."
+				error_state += "Zaznaczono IP, ale go nie podano."
 		if(cid_check)
 			player_cid = href_list["cidtext"]
 			if(!player_cid && !use_last_connection)
-				error_state += "CID was ticked but none was provided."
+				error_state += "Zaznaczono CID, ale go nie podano."
 	if(!use_last_connection && !player_ip && !player_cid && !player_key)
-		error_state += "At least a key, IP or CID must be provided."
+		error_state += "Musisz podać co najmniej klucz, IP albo CID."
 	if(use_last_connection && !ip_check && !cid_check)
-		error_state += "Use last connection was ticked, but neither IP nor CID was."
+		error_state += "Zaznaczono użycie ostatniego połączenia, ale nie zaznaczono ani IP, ani CID."
 	if(href_list["applyadmins"])
 		if(redact)
-			error_state += "Admin bans can not be suppressed."
+			error_state += "Banów dla adminów nie można ukrywać."
 		applies_to_admins = TRUE
 	switch(href_list["radioservban"])
 		if("local")
@@ -444,7 +444,7 @@
 			else
 				global_ban = FALSE
 				if(redact)
-					error_state += "Suppressed bans must be global."
+					error_state += "Ukryte bany muszą być globalne."
 		if("global")
 			global_ban = TRUE
 	switch(href_list["radioduration"])
@@ -454,12 +454,12 @@
 			duration = href_list["duration"]
 			interval = href_list["intervaltype"]
 			if(!duration)
-				error_state += "Temporary ban was selected but no duration was provided."
+				error_state += "Wybrano ban tymczasowy, ale nie podano czasu trwania."
 		else
-			error_state += "No duration was selected."
+			error_state += "Nie wybrano czasu trwania."
 	reason = href_list["reason"]
 	if(!reason)
-		error_state += "No reason was provided."
+		error_state += "Nie podano powodu."
 	if(href_list["editid"])
 		edit_id = href_list["editid"]
 		if(href_list["mirroredit"])
@@ -486,29 +486,29 @@
 		if(reason != href_list["oldreason"])
 			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
 		if(!changes.len)
-			error_state += "No changes were detected."
+			error_state += "Nie wykryto żadnych zmian."
 	else
 		severity = href_list["radioseverity"]
 		if(!severity)
-			error_state += "No severity was selected."
+			error_state += "Nie wybrano wagi."
 		switch(href_list["radioban"])
 			if("server")
 				roles_to_ban += "Server"
 			if("role")
 				href_list.Remove("Command", "Security", "Engineering", "Medical", "Science", "Supply", "Silicon", "Abstract", "Civilian", "Ghost and Other Roles", "Antagonist Positions") //remove the role banner hidden input values
 				if(href_list[href_list.len] == "roleban_delimiter")
-					error_state += "Role ban was selected but no roles to ban were selected."
+					error_state += "Wybrano ban na role, ale nie wybrano żadnej roli."
 				else
 					var/delimiter_pos = href_list.Find("roleban_delimiter")
 					href_list.Cut(1, delimiter_pos+1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
 					for(var/key in href_list) //flatten into a list of only unique keys
 						roles_to_ban |= key
 			else
-				error_state += "No ban type was selected."
+				error_state += "Nie wybrano typu bana."
 	if((href_list["radioban"] != "server") && redact)
-		error_state += "Suppression may only be applied to server bans."
+		error_state += "Ukrycie można zastosować tylko do banów na serwer."
 	if(error_state.len)
-		to_chat(usr, "<span class='danger'>Ban not [edit_id ? "edited" : "created"] because the following errors were present:\n[error_state.Join("\n")]</span>")
+		to_chat(usr, "<span class='danger'>Ban nie został [edit_id ? "zmieniony" : "utworzony"] z powodu następujących błędów:\n[error_state.Join("\n")]</span>")
 		return
 	if(edit_id)
 		edit_ban(edit_id, player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, global_ban, mirror_edit, old_key, old_ip, old_cid, old_applies, old_globalban, page, admin_key, changes)
@@ -523,14 +523,14 @@
 		return
 
 	if(cid_check && config.protected_cids.Find(player_cid))
-		if(alert(usr, "CID [player_cid] is listed as protected for the following reason: [config.protected_cids[player_cid]], Are you sure you want to restrict this CID? THIS WILL PROBABLY CATCH LEGITIMATE PLAYERS.", "Protected CID", "Yes", "No", "Cancel") != "Yes")
+		if(alert(usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 			return
 		var/kn = key_name(usr)
 		//Log the shit out of this and scream bloody murder to anyone who will listen.
 		send2tgs("CID PROTECTION BYPASS", "[kn] Has overridden CID protection for a ban on CID [player_cid]!")
-		message_admins("<span class='danger'>[kn] Has overridden CID protection for a ban on CID [player_cid]!</span>")
+		message_admins("<span class='danger'>[kn] omija ochronę CID przy banie na CID [player_cid]!</span>")
 		log_admin_private("[kn] Has overridden CID protection for a ban on CID [player_cid]!")
-	if(redact && alert(usr, "You are about to issue a Suppressed ban, This will require direct database editing to revoke, ARE YOU SURE?", "Protected CID", "Yes", "No", "Cancel") != "Yes")
+	if(redact && alert(usr, "Zaraz nałożysz ukryty ban. Cofnięcie go będzie wymagać bezpośredniej edycji bazy danych. NA PEWNO?", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 		return
 	var/player_ckey = ckey(player_key)
 	if(player_ckey)
@@ -549,11 +549,11 @@
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -577,7 +577,7 @@
 			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
-				to_chat(usr, "<span class='danger'>You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!</span>")
+				to_chat(usr, "<span class='danger'>Masz już na koncie co najmniej tyle banów dla adminów: [max_adminbans]. Nie nadużywaj tej funkcji!</span>")
 				qdel(query_check_adminban_count)
 				return
 		qdel(query_check_adminban_count)
@@ -611,15 +611,15 @@
 	//I'm going to crosscheck this one last time because this is playing with fire.
 	if(redact)
 		if(!check_rights(R_SUPPRESS))
-			to_chat(usr, "<span class='danger'>You have attempted to register a suppressed ban without the correct access, this incident has been logged, and the ban has been aborted.</span>")
+			to_chat(usr, "<span class='danger'>Próbujesz zarejestrować ukryty ban bez odpowiedniego dostępu. Zdarzenie zostało zalogowane, a ban przerwany.</span>")
 			log_admin_private("SUPPRESS: [key_name(usr)] ATTEMPTED TO ISSUE A SUPPRESSED BAN WITHOUT THE REQUISITE RIGHT!")
 			return
 		if(roles_to_ban[1] != "Server") //This should never happen. Still checking it.
-			to_chat(usr, "<span class='danger'>You have attempted to directly register a suppressed ban that is not a server ban, this incident has been logged, and the ban has been aborted.</span>")
+			to_chat(usr, "<span class='danger'>Próbujesz bezpośrednio zarejestrować ukryty ban, który nie jest banem na serwer. Zdarzenie zostało zalogowane, a ban przerwany.</span>")
 			log_admin_private("SUPPRESS: [key_name(usr)] ATTEMPTED TO MANUALLY ISSUE A SUPPRESSED NON-SERVER BAN!")
 			return
 		if(applies_to_admins)
-			to_chat(usr, "<span class='danger'>You have attempted to directly register a suppressed ban that affects admins, this incident has been logged, and the ban has been aborted.</span>")
+			to_chat(usr, "<span class='danger'>Próbujesz bezpośrednio zarejestrować ukryty ban obejmujący adminów. Zdarzenie zostało zalogowane, a ban przerwany.</span>")
 			log_admin_private("SUPPRESS: [key_name(usr)] ATTEMPTED TO MANUALLY ISSUE A SUPPRESSED ADMIN BAN!")
 			return
 	for(var/role in roles_to_ban)
@@ -691,16 +691,16 @@
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
-	var/datum/browser/unban_panel = new(usr, "unbanpanel", "Unbanning Panel", 850, 600)
+	var/datum/browser/unban_panel = new(usr, "unbanpanel", "Panel zdejmowania banów", 850, 600)
 	unban_panel.add_stylesheet("unbanpanelcss", 'html/admin/unbanpanel.css')
 	var/list/output = list("<div class='searchbar'>")
 	output += {"<form method='get' action='byond://?src=[REF(src)]'>[HrefTokenFormField()]
 	<input type='hidden' name='src' value='[REF(src)]'>
-	Key:<input type='text' name='searchunbankey' size='18' value='[player_key]'>
-	Admin Key:<input type='text' name='searchunbanadminkey' size='18' value='[admin_key]'>
+	Klucz:<input type='text' name='searchunbankey' size='18' value='[player_key]'>
+	Klucz admina:<input type='text' name='searchunbanadminkey' size='18' value='[admin_key]'>
 	IP:<input type='text' name='searchunbanip' size='12' value='[player_ip]'>
 	CID:<input type='text' name='searchunbancid' size='10' value='[player_cid]'>
-	<input type='submit' value='Search'>
+	<input type='submit' value='Szukaj'>
 	</form>
 	</div>
 	<div class='main'>
@@ -731,7 +731,7 @@
 			bancount = text2num(query_unban_count_bans.item[1])
 		qdel(query_unban_count_bans)
 		if(bancount > bansperpage)
-			output += "<b>Page: </b>"
+			output += "<b>Strona: </b>"
 			var/pagecount = 1
 			var/list/pagelist = list()
 			while(bancount > 0)
@@ -796,7 +796,7 @@
 			var/ban_round_id  = query_unban_search_bans.item[3]
 			var/role = query_unban_search_bans.item[4]
 			//make the href for unban here so only the search parameters are passed
-			var/unban_href = "<a href='byond://?_src_=holder;[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"
+			var/unban_href = "<a href='byond://?_src_=holder;[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Zdejmij bana</a>"
 			var/expiration_time = query_unban_search_bans.item[5]
 			//we don't cast duration as num because if the duration is large enough to be converted to scientific notation by byond then the + character gets lost when passed through href causing SQL to interpret '4.321e 007' as '4'
 			var/duration = query_unban_search_bans.item[6]
@@ -812,17 +812,17 @@
 			var/unban_key = query_unban_search_bans.item[16]
 			var/unban_round_id = query_unban_search_bans.item[17]
 			var/target = ban_target_string(player_key, player_ip, player_cid)
-			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>ADMIN</b>" : ""] banned by <b>[admin_key]</b> from <b>[role]</b> on <b>[ban_datetime]</b> during round <b>#[ban_round_id]</b>.<br>"
+			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>ADMIN</b>" : ""] – ban od <b>[admin_key]</b> na <b>[role]</b>, nałożony <b>[ban_datetime]</b> w rundzie <b>#[ban_round_id]</b>.<br>"
 			if(!expiration_time)
-				output += "<b>Permanent ban</b>."
+				output += "<b>Ban permanentny</b>."
 			else
-				output += "Duration of <b>[DisplayTimeText(text2num(duration) MINUTES)]</b>, <b>[expired ? "expired" : "expires"]</b> on <b>[expiration_time]</b>."
+				output += "Czas trwania: <b>[DisplayTimeText(text2num(duration) MINUTES)]</b>, <b>[expired ? "wygasł" : "wygasa"]</b> <b>[expiration_time]</b>."
 			if(unban_datetime)
-				output += "<br>Unbanned by <b>[unban_key]</b> on <b>[unban_datetime]</b> during round <b>#[unban_round_id]</b>."
+				output += "<br>Ban zdjął <b>[unban_key]</b> dnia <b>[unban_datetime]</b> w rundzie <b>#[unban_round_id]</b>."
 			output += "</div><div class='container'><div class='reason'>[reason]</div><div class='edit'>"
-			output += "<a href='byond://?_src_=holder;[HrefToken()];editbanid=[ban_id];editbankey=[player_key];editbanip=[player_ip];editbancid=[player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[rustg_url_encode(reason)];editbanpage=[page];editbanadminkey=[admin_key]'>Edit</a><br>[unban_href]"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];editbanid=[ban_id];editbankey=[player_key];editbanip=[player_ip];editbancid=[player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[rustg_url_encode(reason)];editbanpage=[page];editbanadminkey=[admin_key]'>Edytuj</a><br>[unban_href]"
 			if(edits)
-				output += "<br><a href='byond://?_src_=holder;[HrefToken()];unbanlog=[ban_id]'>Edit log</a>"
+				output += "<br><a href='byond://?_src_=holder;[HrefToken()];unbanlog=[ban_id]'>Historia zmian</a>"
 			output += "</div></div></div>"
 		qdel(query_unban_search_bans)
 		output += "</div>"
@@ -836,7 +836,7 @@
 		to_chat(usr, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	if(alert(usr, "Potwierdź zdjęcie bana [target] na: [role].", "Unban confirmation", "Yes", "No") != "Yes")
+	if(alert(usr, "Potwierdź zdjęcie bana [target] na: [role].", "Potwierdzenie zdjęcia bana", "Tak", "Nie") != "Tak")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
@@ -854,7 +854,7 @@
 		return
 	qdel(query_unban)
 	log_admin_private("[kn] has unbanned [target] from [role].")
-	message_admins("[kna] has unbanned [target] from [role].")
+	message_admins("[kna] zdejmuje bana [target] na: [role].")
 	var/client/C = GLOB.directory[player_key]
 	if(C)
 		build_ban_cache(C)
@@ -873,12 +873,12 @@
 		return
 
 	if(cid_check && config.protected_cids.Find(player_cid))
-		if(alert(usr, "CID [player_cid] is listed as protected for the following reason: [config.protected_cids[player_cid]], Are you sure you want to restrict this CID? THIS WILL PROBABLY CATCH LEGITIMATE PLAYERS.", "Protected CID", "Yes", "No", "Cancel") != "Yes")
+		if(alert(usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 			return
 		var/kn = key_name(usr)
 		//Log the shit out of this and scream bloody murder to anyone who will listen.
 		send2tgs("CID PROTECTION BYPASS", "[kn] Has overridden CID protection for a ban on CID [player_cid]!")
-		message_admins("<span class='danger'>[kn] Has overridden CID protection for a ban on CID [player_cid]!</span>")
+		message_admins("<span class='danger'>[kn] omija ochronę CID przy banie na CID [player_cid]!</span>")
 		log_admin_private("[kn] Has overridden CID protection for a ban on CID [player_cid]!")
 
 	var/player_ckey = ckey(player_key)
@@ -906,11 +906,11 @@
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)
@@ -932,7 +932,7 @@
 			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
-				to_chat(usr, "<span class='danger'>You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!</span>")
+				to_chat(usr, "<span class='danger'>Masz już na koncie co najmniej tyle banów dla adminów: [max_adminbans]. Nie nadużywaj tej funkcji!</span>")
 				qdel(query_check_adminban_count)
 				return
 		qdel(query_check_adminban_count)
@@ -996,7 +996,7 @@
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
-	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
+	message_admins("[kna] zmienia [changes_keys_text] bana dla [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
 	if(changes["Applies to admins"])
 		send2tgs("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
 	var/client/C = GLOB.directory[old_key]
@@ -1023,7 +1023,7 @@
 		return
 	if(query_get_ban_edits.NextRow())
 		var/edits = query_get_ban_edits.item[1]
-		var/datum/browser/edit_log = new(usr, "baneditlog", "Ban edit log")
+		var/datum/browser/edit_log = new(usr, "baneditlog", "Historia zmian bana")
 		edit_log.set_content(edits)
 		edit_log.open()
 	qdel(query_get_ban_edits)

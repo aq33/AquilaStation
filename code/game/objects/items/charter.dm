@@ -1,13 +1,13 @@
 #define STATION_RENAME_TIME_LIMIT 3000
 
 /obj/item/station_charter
-	name = "station charter"
+	name = "statut statku"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
-	desc = "An official document entrusting the governance of the station \
-		and surrounding space to the Captain."
+	desc = "Oficjalny dokument powierzający Kapitanowi zarząd nad statkiem \
+		i okoliczną przestrzenią."
 	var/used = FALSE
-	var/name_type = "station"
+	var/name_type = "statek"
 
 	var/unlimited_uses = FALSE
 	var/ignores_timeout = FALSE
@@ -61,7 +61,7 @@
 	to_chat(user, "Twoja nazwa została wysłana do pracodawców do zatwierdzenia.")
 	// Autoapproves after a certain time
 	response_timer_id = addtimer(CALLBACK(src, PROC_REF(rename_station), new_name, user.name, user.real_name, key_name(user)), approval_time, TIMER_STOPPABLE)
-	to_chat(GLOB.admins, "<span class='adminnotice'><b><font color=orange>CUSTOM STATION RENAME:</font></b>[ADMIN_LOOKUPFLW(user)] proposes to rename the [name_type] to [new_name] (will autoapprove in [DisplayTimeText(approval_time)]). [ADMIN_SMITE(user)] (<A HREF='byond://?_src_=holder;[HrefToken(TRUE)];reject_custom_name=[REF(src)]'>REJECT</A>) [ADMIN_CENTCOM_REPLY(user)]</span>")
+	to_chat(GLOB.admins, "<span class='adminnotice'><b><font color=orange>WŁASNA NAZWA STACJI:</font></b>[ADMIN_LOOKUPFLW(user)] proponuje zmianę nazwy ([name_type]) na [new_name] (automatyczna akceptacja za [DisplayTimeText(approval_time)]). [ADMIN_SMITE(user)] (<A HREF='byond://?_src_=holder;[HrefToken(TRUE)];reject_custom_name=[REF(src)]'>ODRZUĆ</A>) [ADMIN_CENTCOM_REPLY(user)]</span>")
 
 /obj/item/station_charter/proc/reject_proposed(user)
 	if(!user)
@@ -80,12 +80,12 @@
 
 /obj/item/station_charter/proc/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] nadaje waszemu statkowi nazwę [station_name()]", "Captain's Charter", 0) //NSV13
+	minor_announce("[ureal_name] nadaje waszemu statkowi nazwę [station_name()]", "Statut Kapitana", 0) //NSV13
 	log_game("[ukey] has renamed the station as [station_name()].")
 
-	name = "station charter for [station_name()]"
-	desc = "An official document entrusting the governance of \
-		[station_name()] and surrounding space to Captain [uname]."
+	name = "statut statku [station_name()]"
+	desc = "Oficjalny dokument powierzający zarząd nad \
+		[station_name()] i okoliczną przestrzenią Kapitanowi [uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE
@@ -96,23 +96,23 @@
 
 
 /obj/item/station_charter/flag
-	name = "\improper Nanotrasen banner"
+	name = "\improper sztandar Nanotrasen"
 	icon = 'icons/obj/banner.dmi'
-	name_type = "planet"
+	name_type = "planeta"
 	icon_state = "banner"
 	item_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
-	desc = "A cunning device used to claim ownership of planets."
+	desc = "Sprytne urządzenie do zgłaszania roszczeń do planet."
 	w_class = 5
 	force = 15
 
 /obj/item/station_charter/flag/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] nadaje planecie nazwę [station_name()]", "Captain's Banner", 0)
+	minor_announce("[ureal_name] nadaje planecie nazwę [station_name()]", "Sztandar Kapitana", 0)
 	log_game("[ukey] has renamed the planet as [station_name()].")
-	name = "banner of [station_name()]"
-	desc = "The banner bears the official coat of arms of Nanotrasen, signifying that [station_name()] has been claimed by Captain [uname] in the name of the company."
+	name = "sztandar [station_name()]"
+	desc = "Sztandar nosi oficjalny herb Nanotrasen na znak, że [station_name()] przejmuje w imieniu firmy Kapitan [uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE

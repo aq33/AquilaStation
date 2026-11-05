@@ -383,7 +383,7 @@
 // --- Stożek zimna (tg: code/modules/spells/spell_types/cone/cone_of_cold.dm), baza dla Void Blast
 
 /datum/action/cooldown/spell/cone/staggered/cone_of_cold
-	name = "Cone of Cold"
+	name = "Stożek zimna"
 	desc = "Wystrzeliwuje przed siebie mroźny stożek."
 
 	school = SCHOOL_EVOCATION
@@ -529,12 +529,12 @@
 
 // --- Osiągnięcia wzniesienia (tg: code/datums/achievements/misc_achievements.dm)
 /datum/award/achievement/misc/rust_ascension
-	name = "Hills of Rust"
+	name = "Rdzawe Wzgórza"
 	desc = "Przywołałeś kawałek Rdzawych Wzgórz, a Wzgórza cię przyjęły."
 	database_id = "Rust"
 
 /datum/award/achievement/misc/void_ascension
-	name = "All that perish"
+	name = "Wszystko, co ginie"
 	desc = "Miejsce innego bytu, innego czasu. Tam wszystko się kończy... ale może to dopiero początek?"
 	database_id = "Void"
 

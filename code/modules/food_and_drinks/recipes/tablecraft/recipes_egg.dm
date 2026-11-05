@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////EGG RECIPE's////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/friedegg
-	name = "Fried egg"
+	name = "jajko sadzone"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 1,
 		/datum/reagent/consumable/blackpepper = 1,
@@ -14,7 +14,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/omelette
-	name = "Omelette du fromage"
+	name = "omelette du fromage"
 	result = /obj/item/food/omelette
 	reqs = list(
 		/obj/item/food/egg = 2,
@@ -24,7 +24,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/chocolateegg
-	name = "Chocolate egg"
+	name = "czekoladowe jajko"
 	reqs = list(
 		/obj/item/food/boiledegg = 1,
 		/obj/item/food/chocolatebar = 1
@@ -33,7 +33,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/eggsbenedict
-	name = "Eggs benedict"
+	name = "jajka po benedyktyńsku"
 	reqs = list(
 		/obj/item/food/friedegg = 1,
 		/obj/item/food/meat/steak = 1,
@@ -43,7 +43,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/eggbowl
-	name = "Egg bowl"
+	name = "miska ryżu z jajkiem"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -55,7 +55,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/wrap
-	name = "Wrap"
+	name = "wrap z jajkiem"
 	reqs = list(/datum/reagent/consumable/soysauce = 10,
 		/obj/item/food/friedegg = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -64,7 +64,7 @@
 	category = CAT_EGG
 
 /datum/crafting_recipe/food/chawanmushi
-	name = "Chawanmushi"
+	name = "chawanmushi"
 	reqs = list(
 		/datum/reagent/water = 5,
 		/datum/reagent/consumable/soysauce = 5,

@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/energy/vortex
-	name = "vortex blast"
-	desc = "what the hell?"
+	name = "podmuch wiru"
+	desc = "co do diabła?"
 	projectile_type = /obj/item/projectile/energy/vortex
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/energy
 	heavy_metal = FALSE

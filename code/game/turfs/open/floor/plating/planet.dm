@@ -1,7 +1,7 @@
 /turf/open/floor/plating/dirt
 	gender = PLURAL
-	name = "dirt"
-	desc = "Upon closer examination, it's still dirt."
+	name = "ziemia"
+	desc = "Po bliższych oględzinach to wciąż ziemia."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
 	baseturfs = /turf/open/chasm/jungle
@@ -28,8 +28,8 @@
 	icon_state = "greenerdirt"
 
 /turf/open/floor/plating/dirt/jungle/wasteland //Like a more fun version of living in Arizona.
-	name = "cracked earth"
-	desc = "Looks a bit dry."
+	name = "spękana ziemia"
+	desc = "Wygląda na trochę suchą."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "wasteland"
 	slowdown = 1
@@ -41,10 +41,10 @@
 		icon_state = "[initial(icon_state)][rand(0,12)]"
 
 /turf/open/floor/plating/grass/jungle
-	name = "jungle grass"
+	name = "trawa dżungli"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	desc = "Greener on the other side."
+	desc = "Po drugiej stronie bardziej zielona."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "junglegrass"
 

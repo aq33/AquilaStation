@@ -19,7 +19,7 @@ Contents:
 
 /datum/round_event/ghost_role/ninja
 	var/success_spawn = 0
-	role_name = "space ninja"
+	role_name = "kosmiczny ninja"
 	minimum_required = 1
 
 	var/spawn_loc
@@ -68,7 +68,7 @@ Contents:
 		CRASH("Ninja created with incorrect mind")
 
 	spawned_mobs += Ninja
-	message_admins("[ADMIN_LOOKUPFLW(Ninja)] has been made into a ninja by an event")
+	message_admins("[ADMIN_LOOKUPFLW(Ninja)] zostaje ninja w wyniku eventu.")
 	log_game("[key_name(Ninja)] was spawned as a ninja by an event.")
 
 	return SUCCESSFUL_SPAWN

@@ -16,11 +16,11 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "e" = (
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/suture,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav)
 "f" = (
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/mesh,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav)
 "g" = (

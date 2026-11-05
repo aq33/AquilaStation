@@ -1,6 +1,6 @@
 /obj/item/melee/baton
-	name = "stun baton"
-	desc = "A stun baton which uses localised electrical shocks to cause muscular fatigue."
+	name = "pałka ogłuszająca"
+	desc = "Pałka ogłuszająca, która miejscowymi wstrząsami elektrycznymi wywołuje zmęczenie mięśni."
 	icon_state = "stunbaton"
 	item_state = "baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -13,6 +13,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "stamina" = 0, "bleed" = 0)
 
 	var/stunforce = 75
+	var/charged_stamina_damage = 70 // AQ EDIT - port Bee#14750: ogłuszenie zabiera staminę, paraliż (stunforce) dopiero przy wyczerpaniu
 	var/turned_on = FALSE
 	var/obj/item/stock_parts/cell/cell
 	var/hitcost = 1000
@@ -116,7 +117,7 @@
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.charge > hitcost && !(obj_flags & OBJ_EMPED))
 		turned_on = !turned_on
-		balloon_alert(user, "[src] [turned_on ? "on" : "off"]")
+		balloon_alert(user, "[src]: [turned_on ? "wł." : "wył."]")
 		playsound(src, "sparks", 75, TRUE, -1)
 	else
 		turned_on = FALSE
@@ -175,7 +176,11 @@
 		if(!deductcharge(hitcost))
 			return FALSE
 
-	target.Paralyze(stunforce) //NSV13 - re-added stun, removed stamina damage
+	// AQ EDIT START - port Bee#14750: dezorientacja i stamina zamiast natychmiastowego paraliżu
+	var/armor_zone = user ? user.zone_selected : BODY_ZONE_CHEST
+	target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = stunforce, stack_status = FALSE, protection = target.run_armor_check(armor_zone, "stamina", silent = TRUE))
+	target.confused = max(target.confused, 5)
+	// AQ EDIT END
 	target.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK) //Only used for nanites
 	target.stuttering = 20
@@ -211,8 +216,8 @@
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
-	name = "stunprod"
-	desc = "An improvised stun baton."
+	name = "poganiacz elektryczny"
+	desc = "Improwizowana pałka ogłuszająca."
 	icon_state = "stunprod"
 	item_state = "prod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

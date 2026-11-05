@@ -69,7 +69,7 @@ GLOBAL_DATUM(bingle_team, /datum/team/bingles)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/objective/bingle_feed
-	name = "bingle feed"
+	name = "nakarm Dół"
 	explanation_text = "Nakarm Dół! Wrzucaj do niego wszystko, co się da, i nie pozwól go zniszczyć."
 
 /datum/objective/bingle_feed/check_completion()
@@ -115,7 +115,7 @@ GLOBAL_DATUM(bingle_team, /datum/team/bingles)
 		real_lord.makehole = null
 	owner.visible_message("<span class='danger'>[owner] rozdziera podłogę, a pod nią otwiera się niebieski Dół!</span>", \
 		"<span class='notice'>Stawiasz Dół. Teraz go nakarm!</span>")
-	message_admins("[ADMIN_LOOKUPFLW(owner)] has spawned a bingle pit at [ADMIN_VERBOSEJMP(selected_turf)].")
+	message_admins("[ADMIN_LOOKUPFLW(owner)] stawia Dół bingli: [ADMIN_VERBOSEJMP(selected_turf)].")
 	log_game("[key_name(owner)] spawned a bingle pit at [AREACOORD(selected_turf)].")
 	Remove(owner)
 	qdel(src)

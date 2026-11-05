@@ -1,6 +1,6 @@
 /datum/nanite_program/sensor
-	name = "Sensor Nanites"
-	desc = "These nanites send a signal code when a certain condition is met."
+	name = "Nanity czujnikowe"
+	desc = "Te nanity wysyłają kod sygnału, gdy spełniony zostanie określony warunek."
 	unique = FALSE
 	var/can_rule = FALSE
 
@@ -13,7 +13,7 @@
 /datum/nanite_program/sensor/proc/send_code()
 	if(activated)
 		var/datum/nanite_extra_setting/ES = extra_settings[NES_SENT_CODE]
-		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, ES.value, "a [name] program")
+		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, ES.value, "program [name]")
 
 /datum/nanite_program/sensor/active_effect()
 	if(check_event())
@@ -23,8 +23,8 @@
 	return
 
 /datum/nanite_program/sensor/repeat
-	name = "Signal Repeater"
-	desc = "When triggered, sends another signal to the nanites, optionally with a delay."
+	name = "Powtarzacz sygnału"
+	desc = "Po aktywacji wysyła nanitom kolejny sygnał, opcjonalnie z opóźnieniem."
 	can_trigger = TRUE
 	trigger_cost = 0
 	trigger_cooldown = 10
@@ -39,8 +39,8 @@
 	addtimer(CALLBACK(src, PROC_REF(send_code)), ES.get_value() * 10)
 
 /datum/nanite_program/sensor/relay_repeat
-	name = "Relay Signal Repeater"
-	desc = "When triggered, sends another signal to a relay channel, optionally with a delay."
+	name = "Powtarzacz sygnału przekaźnika"
+	desc = "Po aktywacji wysyła kolejny sygnał na kanał przekaźnika, opcjonalnie z opóźnieniem."
 	can_trigger = TRUE
 	trigger_cost = 0
 	trigger_cooldown = 10
@@ -61,18 +61,18 @@
 		for(var/X in SSnanites.nanite_relays)
 			var/datum/nanite_program/relay/N = X
 			var/datum/nanite_extra_setting/code = extra_settings[NES_SENT_CODE]
-			N.relay_signal(code.get_value(), relay.get_value(), "a [name] program")
+			N.relay_signal(code.get_value(), relay.get_value(), "program [name]")
 
 /datum/nanite_program/sensor/health
-	name = "Health Sensor"
-	desc = "The nanites receive a signal when the host's health is above/below a target percentage."
+	name = "Czujnik zdrowia"
+	desc = "Nanity odbierają sygnał, gdy zdrowie nosiciela jest powyżej/poniżej docelowego progu procentowego."
 	can_rule = TRUE
 	var/spent = FALSE
 
 /datum/nanite_program/sensor/health/register_extra_settings()
 	. = ..()
 	extra_settings[NES_HEALTH_PERCENT] = new /datum/nanite_extra_setting/number(50, -99, 100, "%")
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Powyżej", "Poniżej")
 
 /datum/nanite_program/sensor/health/check_event()
 	var/health_percent = host_mob.health / host_mob.maxHealth * 100
@@ -104,8 +104,8 @@
 	return rule
 
 /datum/nanite_program/sensor/crit
-	name = "Critical Health Sensor"
-	desc = "The nanites receive a signal when the host first reaches critical health."
+	name = "Czujnik stanu krytycznego"
+	desc = "Nanity odbierają sygnał, gdy nosiciel po raz pierwszy wchodzi w stan krytyczny."
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -124,8 +124,8 @@
 	return rule
 
 /datum/nanite_program/sensor/death
-	name = "Death Sensor"
-	desc = "The nanites receive a signal when they detect the host is dead."
+	name = "Czujnik śmierci"
+	desc = "Nanity odbierają sygnał, gdy wykryją, że nosiciel nie żyje."
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -137,15 +137,15 @@
 	return rule
 
 /datum/nanite_program/sensor/nanite_volume
-	name = "Nanite Volume Sensor"
-	desc = "The nanites receive a signal when the nanite supply is above/below a certain percentage."
+	name = "Czujnik objętości nanitów"
+	desc = "Nanity odbierają sygnał, gdy zapas nanitów jest powyżej/poniżej określonego progu procentowego."
 	can_rule = TRUE
 	var/spent = FALSE
 
 /datum/nanite_program/sensor/nanite_volume/register_extra_settings()
 	. = ..()
 	extra_settings[NES_NANITE_PERCENT] = new /datum/nanite_extra_setting/number(50, -99, 100, "%")
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Powyżej", "Poniżej")
 
 /datum/nanite_program/sensor/nanite_volume/check_event()
 	var/nanite_percent = (nanites.nanite_volume - nanites.safety_threshold)/(nanites.max_nanites - nanites.safety_threshold)*100
@@ -177,8 +177,8 @@
 	return rule
 
 /datum/nanite_program/sensor/damage
-	name = "Damage Sensor"
-	desc = "The nanites receive a signal when a host's specific damage type is above/below a target value."
+	name = "Czujnik obrażeń"
+	desc = "Nanity odbierają sygnał, gdy określony rodzaj obrażeń nosiciela jest powyżej/poniżej wartości docelowej."
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -186,7 +186,7 @@
 	. = ..()
 	extra_settings[NES_DAMAGE_TYPE] = new /datum/nanite_extra_setting/type(BRUTE, list(BRUTE, BURN, TOX, OXY, CLONE))
 	extra_settings[NES_DAMAGE] = new /datum/nanite_extra_setting/number(50, 0, 500)
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Powyżej", "Poniżej")
 
 /datum/nanite_program/sensor/damage/check_event()
 	var/reached_threshold = FALSE
@@ -234,13 +234,13 @@
 	return rule
 
 /datum/nanite_program/sensor/voice
-	name = "Voice Sensor"
-	desc = "Sends a signal when the nanites hear a determined word or sentence."
+	name = "Czujnik głosu"
+	desc = "Wysyła sygnał, gdy nanity usłyszą określone słowo lub zdanie."
 
 /datum/nanite_program/sensor/voice/register_extra_settings()
 	. = ..()
 	extra_settings[NES_SENTENCE] = new /datum/nanite_extra_setting/text("")
-	extra_settings[NES_INCLUSIVE_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Inclusive", "Exclusive")
+	extra_settings[NES_INCLUSIVE_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Zawiera", "Dokładnie")
 
 /datum/nanite_program/sensor/voice/on_mob_add()
 	. = ..()
@@ -264,8 +264,8 @@
 			send_code()
 
 /datum/nanite_program/sensor/species
-	name = "Species Sensor"
-	desc = "When triggered, the nanites scan the host to determine their species and output a signal depending on the conditions set in the settings."
+	name = "Czujnik gatunku"
+	desc = "Po aktywacji nanity skanują nosiciela, by ustalić jego gatunek, i wysyłają sygnał zależnie od warunków ustawionych w opcjach."
 	can_trigger = TRUE
 	can_rule = TRUE
 	trigger_cost = 0
@@ -285,9 +285,9 @@
 	var/list/species_types = list()
 	for(var/name in allowed_species)
 		species_types += name
-	species_types += "Other"
+	species_types += "Inne"
 	extra_settings[NES_RACE] = new /datum/nanite_extra_setting/type("human", species_types)
-	extra_settings[NES_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Is", "Is Not")
+	extra_settings[NES_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Jest", "Nie jest")
 
 /datum/nanite_program/sensor/species/on_trigger(comm_message)
 	var/datum/nanite_extra_setting/species_type = extra_settings[NES_RACE]

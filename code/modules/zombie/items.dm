@@ -1,9 +1,9 @@
 /obj/item/zombie_hand
-	name = "zombie claw"
-	desc = "A zombie's claw is its primary tool, capable of infecting \
-		humans, butchering all other living things to \
-		sustain the zombie, smashing open airlock doors and opening \
-		child-safe caps on bottles."
+	name = "szpon zombie"
+	desc = "Szpon to podstawowe narzędzie zombie. Pozwala zarażać \
+		ludzi, ćwiartować wszystkie inne żywe istoty, \
+		żeby się nimi żywić, wyważać drzwi śluz i otwierać \
+		butelki z zakrętkami zabezpieczonymi przed dziećmi."
 	item_flags = ABSTRACT | DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	icon = 'icons/effects/blood.dmi'
@@ -60,7 +60,7 @@
 
 
 /obj/item/zombie_hand/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] wyrywa sobie mózg! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
 	if(isliving(user))
 		var/mob/living/L = user
 		var/obj/item/bodypart/O = L.get_bodypart(BODY_ZONE_HEAD)

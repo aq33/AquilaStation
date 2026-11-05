@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Jester"
+	rpg_title = "Błazen"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/honk

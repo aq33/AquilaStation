@@ -145,7 +145,7 @@
 	SEND_SOUND(owner, 'sound/hallucinations/i_see_you1.ogg')
 
 /atom/movable/screen/alert/status_effect/temporary_xray
-	name = "Eldritch Sight"
+	name = "Pradawny wzrok"
 	desc = "Dostrzegasz coś nowego..."
 	icon = 'aquila/icons/hud/screen_alert_heretic_core.dmi'
 	icon_state = "influence"
@@ -183,7 +183,8 @@
 /mob/living/carbon/dream()
 	set waitfor = FALSE
 	var/datum/status_effect/grouped/heretic_dreams/heretic_dreams = has_status_effect(/datum/status_effect/grouped/heretic_dreams)
-	if(heretic_dreams?.try_heretic_dream(src))
+	// has_status_effect() zwraca FALSE, nie null, więc ?. tu nie wystarcza
+	if(heretic_dreams && heretic_dreams.try_heretic_dream(src))
 		return
 	return ..()
 

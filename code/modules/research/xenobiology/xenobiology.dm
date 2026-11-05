@@ -1,8 +1,8 @@
 /// Slime Extracts ///
 
 /obj/item/slime_extract
-	name = "slime extract"
-	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
+	name = "ekstrakt szlamu"
+	desc = "Maź pozyskana ze szlamu. Legendy przypisują jej „magiczne moce”."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey slime extract"
 	force = 0
@@ -80,7 +80,7 @@
 		M.spawn_corecross()
 
 /obj/item/slime_extract/grey
-	name = "grey slime extract"
+	name = "szary ekstrakt szlamu"
 	icon_state = "grey slime extract"
 	effectmod = "reproductive"
 	color_slime = "grey"
@@ -105,7 +105,7 @@
 				return 5 SECONDS
 
 /obj/item/slime_extract/gold
-	name = "gold slime extract"
+	name = "złoty ekstrakt szlamu"
 	icon_state = "gold slime extract"
 	effectmod = "symbiont"
 	plort_value = 50
@@ -136,7 +136,7 @@
 				return 60 SECONDS
 
 /obj/item/slime_extract/silver
-	name = "silver slime extract"
+	name = "srebrny ekstrakt szlamu"
 	icon_state = "silver slime extract"
 	effectmod = "consuming"
 	plort_value = 50
@@ -161,7 +161,7 @@
 			return 20 SECONDS
 
 /obj/item/slime_extract/metal
-	name = "metal slime extract"
+	name = "metalowy ekstrakt szlamu"
 	icon_state = "metal slime extract"
 	effectmod = "industrial"
 	plort_value = 25
@@ -185,7 +185,7 @@
 			return 20 SECONDS
 
 /obj/item/slime_extract/purple
-	name = "purple slime extract"
+	name = "fioletowy ekstrakt szlamu"
 	icon_state = "purple slime extract"
 	effectmod = "regenerative"
 	plort_value = 25
@@ -206,7 +206,7 @@
 			return 60 SECONDS
 
 /obj/item/slime_extract/darkpurple
-	name = "dark purple slime extract"
+	name = "ciemnofioletowy ekstrakt szlamu"
 	icon_state = "dark purple slime extract"
 	effectmod = "self-sustaining"
 	plort_value = 50
@@ -230,7 +230,7 @@
 			return 90 SECONDS
 
 /obj/item/slime_extract/orange
-	name = "orange slime extract"
+	name = "pomarańczowy ekstrakt szlamu"
 	icon_state = "orange slime extract"
 	effectmod = "burning"
 	plort_value = 25
@@ -252,7 +252,7 @@
 			return 45 SECONDS
 
 /obj/item/slime_extract/yellow
-	name = "yellow slime extract"
+	name = "żółty ekstrakt szlamu"
 	icon_state = "yellow slime extract"
 	effectmod = "charged"
 	plort_value = 50
@@ -285,7 +285,7 @@
 				return 60 SECONDS
 
 /obj/item/slime_extract/red
-	name = "red slime extract"
+	name = "czerwony ekstrakt szlamu"
 	icon_state = "red slime extract"
 	effectmod = "sanguine"
 	plort_value = 50
@@ -307,7 +307,7 @@
 			return 60 SECONDS
 
 /obj/item/slime_extract/blue
-	name = "blue slime extract"
+	name = "niebieski ekstrakt szlamu"
 	icon_state = "blue slime extract"
 	effectmod = "stabilized"
 	plort_value = 25
@@ -333,7 +333,7 @@
 			return 60 SECONDS
 
 /obj/item/slime_extract/darkblue
-	name = "dark blue slime extract"
+	name = "ciemnoniebieski ekstrakt szlamu"
 	icon_state = "dark blue slime extract"
 	effectmod = "chilling"
 	plort_value = 50
@@ -358,7 +358,7 @@
 			return 90 SECONDS
 
 /obj/item/slime_extract/pink
-	name = "pink slime extract"
+	name = "różowy ekstrakt szlamu"
 	icon_state = "pink slime extract"
 	effectmod = "gentle"
 	plort_value = 50
@@ -382,7 +382,7 @@
 			return 600
 
 /obj/item/slime_extract/green
-	name = "green slime extract"
+	name = "zielony ekstrakt szlamu"
 	icon_state = "green slime extract"
 	effectmod = "mutative"
 	plort_value = 50
@@ -408,7 +408,7 @@
 			to_chat(user, "<span class='notice'>Przerywasz przemianę.</span>")
 
 /obj/item/slime_extract/lightpink
-	name = "light pink slime extract"
+	name = "jasnoróżowy ekstrakt szlamu"
 	icon_state = "light pink slime extract"
 	effectmod = "loyal"
 	plort_value = 100
@@ -432,7 +432,7 @@
 			return 45 SECONDS
 
 /obj/item/slime_extract/black
-	name = "black slime extract"
+	name = "czarny ekstrakt szlamu"
 	icon_state = "black slime extract"
 	effectmod = "transformative"
 	plort_value = 100
@@ -455,7 +455,7 @@
 			to_chat(user, "<span class='notice'>Przestajesz zasilać [src].</span>")
 
 /obj/item/slime_extract/oil
-	name = "oil slime extract"
+	name = "naftowy ekstrakt szlamu"
 	icon_state = "oil slime extract"
 	effectmod = "detonating"
 	plort_value = 100
@@ -480,7 +480,7 @@
 			to_chat(user, "<span class='notice'>Przestajesz zasilać [src], a uczucie mija.</span>")
 
 /obj/item/slime_extract/adamantine
-	name = "adamantine slime extract"
+	name = "adamantytowy ekstrakt szlamu"
 	icon_state = "adamantine slime extract"
 	effectmod = "crystalline"
 	plort_value = 100
@@ -511,7 +511,7 @@
 		species.armor -= 25
 
 /obj/item/slime_extract/bluespace
-	name = "bluespace slime extract"
+	name = "ekstrakt szlamu bluespace"
 	icon_state = "bluespace slime extract"
 	effectmod = "warping"
 	plort_value = 100
@@ -561,7 +561,7 @@
 
 
 /obj/item/slime_extract/pyrite
-	name = "pyrite slime extract"
+	name = "pirytowy ekstrakt szlamu"
 	icon_state = "pyrite slime extract"
 	effectmod = "prismatic"
 	plort_value = 100
@@ -603,7 +603,7 @@
 			return 25 SECONDS
 
 /obj/item/slime_extract/cerulean
-	name = "cerulean slime extract"
+	name = "lazurowy ekstrakt szlamu"
 	icon_state = "cerulean slime extract"
 	effectmod = "recurring"
 	plort_value = 100
@@ -625,7 +625,7 @@
 				return 60 SECONDS
 
 /obj/item/slime_extract/sepia
-	name = "sepia slime extract"
+	name = "sepiowy ekstrakt szlamu"
 	icon_state = "sepia slime extract"
 	effectmod = "lengthened"
 	plort_value = 100
@@ -647,7 +647,7 @@
 				return 90 SECONDS
 
 /obj/item/slime_extract/rainbow
-	name = "rainbow slime extract"
+	name = "tęczowy ekstrakt szlamu"
 	icon_state = "rainbow slime extract"
 	effectmod = "hyperchromatic"
 	plort_value = 250
@@ -698,8 +698,8 @@
 ////Slime-derived potions///
 
 /obj/item/slimepotion
-	name = "slime potion"
-	desc = "A hard yet gelatinous capsule excreted by a slime, containing mysterious substances."
+	name = "mikstura szlamu"
+	desc = "Twarda, a zarazem galaretowata kapsułka wydzielona przez szlama, zawierająca tajemnicze substancje."
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/slimepotion/afterattack(obj/item/reagent_containers/target, mob/user , proximity)
@@ -709,8 +709,8 @@
 		return
 
 /obj/item/slimepotion/slime/docility
-	name = "docility potion"
-	desc = "A potent chemical mix that nullifies a slime's hunger, causing it to become docile and tame."
+	name = "mikstura uległości"
+	desc = "Silna mieszanka chemiczna, która znosi głód szlamu, czyniąc go potulnym i oswojonym."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potsilver"
 
@@ -731,17 +731,17 @@
 	M.set_nutrition(700)
 	to_chat(M, "<span class='warning'>Wchłaniasz miksturę i czujesz, jak twoja silna chęć jedzenia znika.</span>")
 	to_chat(user, "<span class='notice'>Podajesz szlamowi miksturę, usuwając jego głód i uspokajając go.</span>")
-	var/newname = sanitize_name(stripped_input(user, "Czy chcesz nadać szlamowi imię?", "Nazwij swojego nowego zwierzaka", "pet slime", MAX_NAME_LEN))
+	var/newname = sanitize_name(stripped_input(user, "Czy chcesz nadać szlamowi imię?", "Nazwij swojego nowego zwierzaka", "oswojony szlam", MAX_NAME_LEN))
 
 	if (!newname)
-		newname = "pet slime"
+		newname = "oswojony szlam"
 	M.name = newname
 	M.real_name = newname
 	qdel(src)
 
 /obj/item/slimepotion/slime/sentience
-	name = "intelligence potion"
-	desc = "A miraculous chemical mix that grants human like intelligence to living beings."
+	name = "mikstura inteligencji"
+	desc = "Cudowna mieszanka chemiczna, która daje żywym istotom inteligencję podobną do ludzkiej."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpink"
 	var/list/not_interested = list()
@@ -793,8 +793,8 @@
 	return
 
 /obj/item/slimepotion/slime/sentience/nuclear
-	name = "syndicate intelligence potion"
-	desc = "A miraculous chemical mix that grants human like intelligence to living beings. It has been modified with Syndicate technology to also grant an internal radio implant to the target and authenticate with identification systems."
+	name = "mikstura inteligencji Syndykatu"
+	desc = "Cudowna mieszanka chemiczna, która daje żywym istotom inteligencję podobną do ludzkiej. Zmodyfikowano ją technologią Syndykatu, więc wszczepia też celowi wewnętrzny implant radiowy i uwierzytelnia go w systemach identyfikacji."
 
 /obj/item/slimepotion/slime/sentience/nuclear/after_success(mob/living/user, mob/living/simple_animal/SM)
 	var/obj/item/implant/radio/syndicate/imp = new(src)
@@ -804,8 +804,8 @@
 	ADD_TRAIT(SM.access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/slimepotion/transference
-	name = "consciousness transference potion"
-	desc = "A strange slime-based chemical that, when used, allows the user to transfer their consciousness to a lesser being."
+	name = "mikstura przeniesienia świadomości"
+	desc = "Dziwna substancja na bazie szlamu, która pozwala użytkownikowi przenieść świadomość do niższej istoty."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potorange"
 	var/prompted = 0
@@ -850,8 +850,8 @@
 	qdel(src)
 
 /obj/item/slimepotion/slime/steroid
-	name = "slime steroid"
-	desc = "A potent chemical mix that will cause a baby slime to generate more extract."
+	name = "steryd dla szlamów"
+	desc = "Silna mieszanka chemiczna, dzięki której młody szlam wytworzy więcej ekstraktu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potred"
 
@@ -874,14 +874,14 @@
 	qdel(src)
 
 /obj/item/slimepotion/enhancer
-	name = "extract enhancer"
-	desc = "A potent chemical mix that will give a slime extract an additional use."
+	name = "wzmacniacz ekstraktów"
+	desc = "Silna mieszanka chemiczna, która daje ekstraktowi szlamu dodatkowe użycie."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpurple"
 
 /obj/item/slimepotion/slime/stabilizer
-	name = "slime stabilizer"
-	desc = "A potent chemical mix that will reduce the chance of a slime mutating."
+	name = "stabilizator szlamów"
+	desc = "Silna mieszanka chemiczna, która zmniejsza szansę na mutację szlamu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potcyan"
 
@@ -901,8 +901,8 @@
 	qdel(src)
 
 /obj/item/slimepotion/slime/mutator
-	name = "slime mutator"
-	desc = "A potent chemical mix that will increase the chance of a slime mutating."
+	name = "mutator szlamów"
+	desc = "Silna mieszanka chemiczna, która zwiększa szansę na mutację szlamu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potgreen"
 
@@ -926,8 +926,8 @@
 	qdel(src)
 
 /obj/item/slimepotion/speed
-	name = "slime speed potion"
-	desc = "A potent chemical mix that will remove the slowdown from any item."
+	name = "szlamowa mikstura szybkości"
+	desc = "Silna mieszanka chemiczna, która usuwa spowolnienie z dowolnego przedmiotu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potyellow"
 
@@ -962,8 +962,8 @@
 	return FALSE
 
 /obj/item/slimepotion/fireproof
-	name = "slime chill potion"
-	desc = "A potent chemical mix that will fireproof any article of clothing. Has three uses."
+	name = "szlamowa mikstura chłodząca"
+	desc = "Silna mieszanka chemiczna, która czyni dowolne ubranie ognioodpornym. Wystarcza na trzy użycia."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potblue"
 	resistance_flags = FIRE_PROOF
@@ -981,7 +981,7 @@
 		to_chat(user, "<span class='warning'>[C] jest już ognioodporny!</span>")
 		return ..()
 	to_chat(user, "<span class='notice'>Smarujesz [C] niebieską mazią, czyniąc go ognioodpornym.</span>")
-	C.name = "fireproofed [C.name]"
+	C.name = "[C.name] (ognioodporność)"
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	C.add_atom_colour("#000080", FIXED_COLOUR_PRIORITY)
 	C.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -993,8 +993,8 @@
 	return FALSE
 
 /obj/item/slimepotion/genderchange
-	name = "gender change potion"
-	desc = "An interesting chemical mix that changes the biological gender of what its applied to. Cannot be used on things that lack gender entirely."
+	name = "mikstura zmiany płci"
+	desc = "Ciekawa mieszanka chemiczna, która zmienia płeć biologiczną tego, na kim się jej użyje. Nie działa na coś, co w ogóle nie ma płci."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potlightpink"
 
@@ -1020,8 +1020,8 @@
 	qdel(src)
 
 /obj/item/slimepotion/slime/renaming
-	name = "renaming potion"
-	desc = "A potion that allows a self-aware being to change what name it subconciously presents to the world."
+	name = "mikstura zmiany imienia"
+	desc = "Mikstura, która pozwala samoświadomej istocie zmienić imię, jakim podświadomie przedstawia się światu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potgreen"
 
@@ -1038,14 +1038,14 @@
 
 	to_chat(user, "<span class='notice'>Oferujesz [src] [M]...</span>")
 
-	var/new_name = stripped_input(M, "Jak chcesz mieć na imię?", "Input a name", M.real_name, MAX_NAME_LEN)
+	var/new_name = stripped_input(M, "Jak chcesz mieć na imię?", "Podaj imię", M.real_name, MAX_NAME_LEN)
 
 	if(!new_name || QDELETED(src) || QDELETED(M) || new_name == M.real_name || !M.Adjacent(user) || CHAT_FILTER_CHECK(new_name))
 		being_used = FALSE
 		return
 
 	M.visible_message("<span class='notice'><span class='name'>[M]</span> ma nowe imię: <span class='name'>[new_name]</span>.</span>", "<span class='notice'>Twoje stare imię, <span class='name'>[M.real_name]</span>, zanika, a nowe imię, <span class='name'>[new_name]</span>, utrwala się w twoim umyśle.</span>")
-	message_admins("[ADMIN_LOOKUPFLW(user)] used [src] on [ADMIN_LOOKUPFLW(M)], letting them rename themselves into [new_name].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] używa [src] na [ADMIN_LOOKUPFLW(M)], pozwalając zmienić imię na [new_name].")
 	log_game("[key_name(user)] used [src] on [key_name(M)], letting them rename themselves into [new_name].")
 
 	// pass null as first arg to not update records or ID/PDA
@@ -1054,8 +1054,8 @@
 	qdel(src)
 
 /obj/item/slimepotion/slime/slimeradio
-	name = "bluespace radio potion"
-	desc = "A strange chemical that grants those who ingest it the ability to broadcast and receive subscape radio waves."
+	name = "mikstura radia bluespace"
+	desc = "Dziwna substancja, która pozwala tym, którzy ją połkną, nadawać i odbierać podprzestrzenne fale radiowe."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potgrey"
 
@@ -1076,9 +1076,9 @@
 	qdel(src)
 
 /obj/item/stack/tile/bluespace
-	name = "bluespace floor tile"
-	singular_name = "floor tile"
-	desc = "Through a series of micro-teleports these tiles let people move at incredible speeds."
+	name = "płytka podłogi bluespace"
+	singular_name = "płytka podłogi"
+	desc = "Dzięki serii mikroteleportacji te płytki pozwalają poruszać się z niesamowitą prędkością."
 	icon_state = "tile-bluespace"
 	item_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -1093,9 +1093,9 @@
 
 
 /obj/item/stack/tile/sepia
-	name = "sepia floor tile"
-	singular_name = "floor tile"
-	desc = "Time seems to flow very slowly around these tiles."
+	name = "płytka podłogi sepia"
+	singular_name = "płytka podłogi"
+	desc = "Czas wokół tych płytek zdaje się płynąć bardzo wolno."
 	icon_state = "tile-sepia"
 	item_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -1110,8 +1110,8 @@
 
 
 /obj/item/areaeditor/blueprints/slime
-	name = "cerulean prints"
-	desc = "A one use yet of blueprints made of jelly like organic material. Extends the reach of the management console."
+	name = "lazurowe plany"
+	desc = "Jednorazowy zestaw planów z galaretowatego materiału organicznego. Rozszerza zasięg konsoli zarządzania."
 	color = "#2956B2"
 	investigate_flags = NONE
 

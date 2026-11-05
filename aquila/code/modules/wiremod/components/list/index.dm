@@ -4,7 +4,7 @@
  * Return the index of a list
  */
 /obj/item/circuit_component/index
-	display_name = "Index List"
+	display_name = "Indeks listy"
 	desc = "Komponent, który zwraca wartość listy pod podanym indeksem."
 	category = "List"
 
@@ -55,7 +55,7 @@
 	output.set_output(list_input[index])
 
 /obj/item/circuit_component/index/assoc_string
-	display_name = "Index Associative List"
+	display_name = "Indeks listy asocjacyjnej"
 	desc = "Komponent zwykle używany do odczytu wiersza tabeli. Pobiera dane z listy klucz-wartość."
 
 	index_type = PORT_TYPE_STRING

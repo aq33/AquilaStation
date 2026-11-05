@@ -1,11 +1,11 @@
 /obj/item/clothing/shoes/aquila/laceup_khaki
-	name = "khaki laceup shoes"
-	desc = "The height of fashion, and they're pre-polished!"
+	name = "sznurowane buty khaki"
+	desc = "Szczyt mody, w dodatku już wypastowane!"
 	icon_state = "khaki_laceups"
 
 /obj/item/clothing/shoes/aquila/laceup_brown
-	name = "brown laceup shoes"
-	desc = "The height of fashion, and they're pre-polished!"
+	name = "brązowe sznurowane buty"
+	desc = "Szczyt mody, w dodatku już wypastowane!"
 	icon_state = "brown_laceups"
 
 /obj/item/clothing/shoes/aquila/aq_sandals

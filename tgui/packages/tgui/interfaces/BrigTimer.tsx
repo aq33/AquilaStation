@@ -26,7 +26,7 @@ export const BrigTimer = (props) => {
                 selected={timing}
                 onClick={() => act(timing ? 'stop' : 'start')}
               >
-                {timing ? 'Stop' : 'Start'}
+                {timing ? 'Zatrzymaj' : 'Uruchom'}
               </Button>
               <Button
                 icon="lightbulb-o"

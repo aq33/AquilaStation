@@ -71,7 +71,7 @@
 	while(length(hallway_connections) || length(room_connections))
 		sanity --
 		if(sanity < 0)
-			message_admins("Ruin sanity limit reached.")
+			message_admins("Osiągnięto limit bezpieczeństwa generowania ruin.")
 			return
 		var/ishallway = length(hallway_connections)
 		var/list/list_to_use = ishallway ? hallway_connections : room_connections
@@ -224,13 +224,13 @@
 				//Port needs adding
 				if(ruin_part.connection_points[point] >= 16)
 					if(hallway_connections.Find("[world_x]_[world_y]"))
-						message_admins("Trying to put a room connection at a hallway connection")
+						message_admins("Próba umieszczenia połączenia pokoju w miejscu połączenia korytarza")
 					else
 						room_connections["[world_x]_[world_y]"] = ruin_part.connection_points[point] / 16
 						placed_room_entrances["[world_x]_[world_y]"] = ruin_part.connection_points[point] / 16
 				else
 					if(room_connections.Find("[world_x]_[world_y]"))
-						message_admins("Trying to put a hallway connection at a room connection")
+						message_admins("Próba umieszczenia połączenia korytarza w miejscu połączenia pokoju")
 					else
 						hallway_connections["[world_x]_[world_y]"] = ruin_part.connection_points[point]
 						placed_hallway_entrances["[world_x]_[world_y]"] = ruin_part.connection_points[point]
@@ -272,7 +272,7 @@
 				if(isopenturf(locate(text2num(splitextdoor[1]) + 1, text2num(splitextdoor[2]), center_z)) || isopenturf(locate(text2num(splitextdoor[1]) - 1, text2num(splitextdoor[2]), center_z)))
 					valid = FALSE
 			else
-				message_admins("Why the fuck is this thing [door_pos] have a direction of [placed_room_entrances[door_pos]]??? TELL ME!!!!")
+				message_admins("Czemu, do cholery, ten element [door_pos] ma kierunek [placed_room_entrances[door_pos]]??? POWIEDZ MI!!!!")
 				valid = FALSE
 		if(valid)
 			new /obj/machinery/door/airlock/hatch(T)

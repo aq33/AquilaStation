@@ -8,7 +8,7 @@
 /mob/living/simple_animal/pet/gondola
 	name = "gondola"
 	real_name = "gondola"
-	desc = "Gondola is the silent walker. Having no hands he embodies the Taoist principle of wu-wei (non-action) while his smiling facial expression shows his utter and complete acceptance of the world as it is. Its hide is extremely valuable."
+	desc = "Gondola to milczący wędrowiec. Nie mając rąk, uosabia taoistyczną zasadę wu-wei (niedziałania), a jej uśmiechnięta mina wyraża całkowitą i bezwarunkową akceptację świata takim, jakim jest. Jej skóra jest niezwykle cenna."
 	response_help = "głaszcze"
 	response_disarm = "pstryka"
 	response_harm = "kopie"

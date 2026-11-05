@@ -57,6 +57,17 @@
 /datum/emote/living/gasp/get_sound(mob/living/user)
 	if(!has_human_emote_voice(user))
 		return
+	// Port Bee#14750: sapanie umierającego (Goonstation, CC BY-NC-SA 3.0) przy zatrzymaniu serca i w stanie krytycznym
+	var/mob/living/carbon/C = user
+	if(istype(C))
+		if(C.undergoing_cardiac_arrest())
+			if(user.gender == FEMALE)
+				return pick('aquila/sound/voice/gasp/female_gasp_1.ogg', 'aquila/sound/voice/gasp/female_gasp_2.ogg', 'aquila/sound/voice/gasp/female_gasp_3.ogg')
+			return pick('aquila/sound/voice/gasp/male_gasp_1.ogg', 'aquila/sound/voice/gasp/male_gasp_2.ogg', 'aquila/sound/voice/gasp/male_gasp_3.ogg')
+		if(C.health <= C.crit_threshold)
+			if(user.gender == FEMALE)
+				return pick('aquila/sound/voice/gasp/female_gasp_4.ogg', 'aquila/sound/voice/gasp/female_gasp_5.ogg')
+			return pick('aquila/sound/voice/gasp/male_gasp_4.ogg', 'aquila/sound/voice/gasp/male_gasp_5.ogg')
 	if(user.gender == FEMALE)
 		return pick_emote_sound(user, list('aquila/sound/voice/human/femalegasp1.ogg', 'aquila/sound/voice/human/femalegasp2.ogg',
 			'aquila/sound/voice/human/gasp/gasp_female1.ogg', 'aquila/sound/voice/human/gasp/gasp_female2.ogg', 'aquila/sound/voice/human/gasp/gasp_female3.ogg',

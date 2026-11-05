@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/hive_integrate
-	name = "Integrate"
-	desc = "Allows us to syphon the psionic energy from a Host within our grasp."
+	name = "Integracja"
+	desc = "Pozwala nam wyssać energię psioniczną z Nosiciela, którego trzymamy."
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 1
@@ -16,7 +16,7 @@
 /obj/effect/proc_holder/spell/targeted/hive_integrate/cast(list/targets, mob/living/user = usr)
 	var/datum/antagonist/hivemind/hivehost = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hivehost)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	var/mob/living/carbon/human/target = user.pulling
 	if(!target)

@@ -1,9 +1,15 @@
 /datum/test_chamber_kit/pr_481
 	name = "Ochrona w barwach Policji"
 	pr = "aq33/AquilaStation#481"
-	description = "Szafki ochrony i SecDrobe (otwórz, zamknij, zemaguj, odkręć panel), śluza security, tablety, opaska Aspiranta na mundurze, \
-		ubrania brig physiciana i czapki z arkusza do założenia (czy widać je na postaci), pościel HoS-a na szyję, płytki policyjnego dywanu \
-		do położenia obok siebie i dekale podłogi."
+	description = "Zestaw: szafki ochrony, SecDrobe (w komorze wszystko za darmo), śluza security, tablety, ubrania Aspiranta i lekarza więziennego, czapki z arkusza, pościel HoS-a, płytki policyjnego dywanu i dekale podłogi. Leżą też zapasowa karta kapitana (dostęp do szafek), emag i śrubokręt. \
+	1) Otwórz kartą kolejno szafki: sec, warden, HoS, zbrojownię, tac (lethalshots), bio, a także walizkę na strzelby → oczekiwane: wszystkie mają granatowo-białe ikony (zamknięte, otwarte, zablokowane), nigdzie nie ma czerwieni. \
+	2) Szafka HoS i Wardena: przejrzyj zawartość → oczekiwane: brak skórzanej kurtki HoS, czerwonych supergarsów, białego i paradnego munduru damskiego oraz beretu korporacyjnego u Wardena (negatyw: te rzeczy nie występują w żadnej szafce). \
+	3) SecDrobe (klik, zakładka ubrań) → oczekiwane: napis POLICJA i niebieskie światło; w ofercie są policyjne mundury, czapki z arkusza (alt, bandana policyjna, furażerka), a NIE ma czerwonej bandany, czerwonej opaski, czerwonego krawata, khaki, blueshirta, mallcopa, munduru i beretu korporacyjnego, a emagowanie nie odsłania starego płaszcza zimowego (negatyw: kontrabanda pusta). \
+	4) Śluza security: dotknij śrubokrętem (otwórz panel) i emagiem → oczekiwane: drzwi granatowe, żółte pasy ostrzegawcze zostają, otwarty panel i animacja otwarcia bez czerwonych elementów. \
+	5) Załóż na siebie mundur Aspiranta z opaską (opaskę przypnij do munduru) → oczekiwane: mundur wygląda jak mundur policyjny, a nie mallcop, opaska jest granatowa (na postaci i w ekwipunku). \
+	6) Załóż każdą czapkę (alt, Naczelnika, bandana, furażerka, oficerska) oraz czapkę, fartuch, kamizelkę i mundur lekarza więziennego → oczekiwane: wszystkie widać na postaci (wcześniej znikały), lekarz ma granat zamiast czerwieni. \
+	7) Tablety ochrony/HoS: ikony i kolory granatowe. Pościel HoS-a na szyję → oczekiwane: widoczny sprite noszony. \
+	8) Płytki policyjnego dywanu połóż obok siebie → oczekiwane: łączą się w jeden wzór; dekale na podłodze (cztery pola obok) są granatowe, bez czerwonych kafli."
 	items = list(
 		/obj/structure/closet/secure_closet/security = 1,
 		/obj/structure/closet/secure_closet/warden = 1,
@@ -29,10 +35,14 @@
 		/obj/item/clothing/head/beret/sec/garrison = 1,
 		/obj/item/bedsheet/hos = 1,
 		/obj/item/stack/tile/carpet/police/fifty = 1,
+		/obj/item/card/id/captains_spare = 1,
+		/obj/item/card/emag = 1,
+		/obj/item/screwdriver = 1,
 	)
 
 /// Naklejki rozkładają się na podłogę i same znikają, więc nie idą przez items (test liczy obiekty)
 /datum/test_chamber_kit/pr_481/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
 	var/list/decals = list(
 		/obj/effect/turf_decal/tile/ship/police,
 		/obj/effect/turf_decal/tile/ship/half/police,
@@ -42,3 +52,6 @@
 	for(var/i in 1 to min(length(decals), length(turfs)))
 		var/decal_type = decals[i]
 		new decal_type(turfs[i])
+	// SecDrobe w komorze nie ma sprzedawać za kredyty
+	for(var/obj/machinery/vending/wardrobe/sec_wardrobe/drobe in spawned)
+		drobe.onstation = FALSE

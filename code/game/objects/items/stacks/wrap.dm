@@ -5,8 +5,8 @@
  */
 
 /obj/item/stack/wrapping_paper
-	name = "wrapping paper"
-	desc = "Wrap packages with this festive paper to make gifts."
+	name = "papier do pakowania prezentów"
+	desc = "Owiń paczki tym świątecznym papierem, żeby zrobić z nich prezenty."
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wrap_paper"
 	item_flags = NOBLUDGEON
@@ -26,9 +26,9 @@
  */
 
 /obj/item/stack/package_wrap
-	name = "package wrapper"
-	singular_name = "wrapping sheet"
-	desc = "You can use this to wrap items in."
+	name = "papier pakowy"
+	singular_name = "arkusz papieru pakowego"
+	desc = "Możesz w to zapakować przedmioty."
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "deliveryPaper"
 	item_flags = NOBLUDGEON
@@ -87,7 +87,7 @@
 			var/obj/item/small_delivery/P = new /obj/item/small_delivery(get_turf(I.loc))
 			I.forceMove(P)
 			var/size = round(I.w_class)
-			P.name = "[weight_class_to_text(size)] parcel"
+			P.name = "paczka ([weight_class_to_text(size)])"
 			P.w_class = size
 			if(!CHECK_BITFIELD(I.interaction_flags_item, INTERACT_ITEM_ATTACK_HAND_PICKUP))
 				DISABLE_BITFIELD(P.interaction_flags_item, INTERACT_ITEM_ATTACK_HAND_PICKUP)
@@ -124,7 +124,7 @@
 		to_chat(user, "<span class='warning'>Przedmiot, który próbujesz zapakować, nie nadaje się do maszyn sortujących!</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] wraps [target].</span>")
+	user.visible_message("<span class='notice'>[user] pakuje [target].</span>")
 	user.log_message("has used [name] on [key_name(target)]", LOG_ATTACK, color="blue")
 
 /obj/item/stack/package_wrap/use(used, transfer = FALSE, check = TRUE)
@@ -134,8 +134,8 @@
 		new /obj/item/c_tube(T)
 
 /obj/item/c_tube
-	name = "cardboard tube"
-	desc = "A tube... of cardboard."
+	name = "tekturowa tuba"
+	desc = "Tuba... z tektury."
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "c_tube"
 	throwforce = 0

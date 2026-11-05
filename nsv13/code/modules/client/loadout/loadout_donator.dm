@@ -10,7 +10,7 @@
 
 /datum/gear/donator/example
 	display_name = "Example Donator Item"
-	description = "Example Donator Description"
+	description = "Przykładowy opis przedmiotu dla darczyńców"
 	ckey = "jimthefish" //ckey should be in canonical format.
 	path = /obj/item/toy/plush/carpplushie
 
@@ -20,7 +20,7 @@ requisite_type should be the typepath of the "thing" that these reskin. If you n
 */
 
 /obj/item/donator_reskin
-	name = "Donator reskin device"
+	name = "urządzenie do zmiany wyglądu dla darczyńców"
 	desc = "Nałóż swój wygląd donatora na przedmioty!"
 	icon = 'nsv13/icons/obj/donator.dmi'
 	icon_state = "painter"

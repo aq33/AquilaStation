@@ -3,8 +3,8 @@
 // ewolucja w pancernego bingla raz przy 500 punktach Dołu (w Monke co tick nadpisywała zdrowie).
 
 /mob/living/simple_animal/hostile/bingle
-	name = "bingle"
-	real_name = "bingle"
+	name = "bingiel"
+	real_name = "bingiel"
 	desc = "Zabawny mały niebieski stworek."
 	icon = 'aquila/icons/mob/bingle/bingles.dmi'
 	icon_state = "bingle"
@@ -205,8 +205,8 @@
 	log_game("[key_name(src)] burst into chemical smoke at [AREACOORD(T)].")
 
 /mob/living/simple_animal/hostile/bingle/lord
-	name = "bingle lord"
-	real_name = "bingle lord"
+	name = "lord bingli"
+	real_name = "lord bingli"
 	desc = "Dość duży zabawny mały niebieski stworek."
 	icon = 'aquila/icons/mob/bingle/binglelord.dmi'
 	icon_state = "binglelord"

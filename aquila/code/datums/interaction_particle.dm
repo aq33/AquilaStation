@@ -1,0 +1,108 @@
+// Port BeeStation/BeeStation-Hornet#14750 (code/datums/interaction_particle.dm): mała ręka (albo ikona przedmiotu)
+// leci od dłoni postaci do celu przy interakcji. Ikona z Goonstation (goon/icons/mob/interact.dmi w Bee, CC BY-NC-SA 3.0),
+// u nas w aquila/icons/effects/interact.dmi.
+// Różnice: podpięte w mniejszej liczbie miejsc (ciągnięcie, pomoc, cios, odepchnięcie, uderzenie przedmiotem).
+
+/obj/effect/abstract/interact
+	name = ""
+	icon = 'aquila/icons/effects/interact.dmi'
+	icon_state = "interact"
+	alpha = 180
+	plane = GAME_PLANE
+	layer = ABOVE_ALL_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/mob/proc/animate_interact(atom/target, state = INTERACT_GENERIC, atom/reference)
+	set waitfor = FALSE
+
+	var/list/origin_coords = get_hand_pixels()
+	if(!origin_coords)
+		return
+	if(QDELETED(target))
+		return
+	var/turf/owner_loc = loc
+	if(!isturf(owner_loc) || (!isturf(target.loc) && !isturf(target)))
+		return
+	if(target.z != z || get_dist(src, target) > 1)
+		return
+
+	. = TRUE
+
+	var/obj/effect/abstract/interact/particle = new(null)
+	var/x_offset = target.x - x
+	var/y_offset = target.y - y
+
+	if(reference)
+		particle.icon = reference.icon
+		particle.icon_state = reference.icon_state
+		particle.color = reference.color
+	else
+		particle.icon_state = state
+	particle.loc = owner_loc
+	particle.pixel_x = origin_coords[1]
+	particle.pixel_y = origin_coords[2]
+	var/matrix/animate_transform = matrix()
+	var/destroy_after = 0.5 SECONDS
+	switch(state)
+		if(INTERACT_GENERIC, INTERACT_HELP, INTERACT_HARM, INTERACT_GRAB, INTERACT_DISARM)
+			particle.alpha = 180
+			animate_transform.Scale(0.3, 0.3)
+			particle.transform = animate_transform
+			animate(particle, transform = matrix(), time = 6, easing = BOUNCE_EASING)
+			animate(pixel_x = (x_offset * 32) + target.pixel_x, pixel_y = (y_offset * 32) + target.pixel_y, time = 2, easing = BOUNCE_EASING, flags = ANIMATION_PARALLEL)
+		if(INTERACT_PULL)
+			particle.pixel_x = target.pixel_x + (x_offset * 32)
+			particle.pixel_y = target.pixel_y + (y_offset * 32)
+			particle.alpha = 200
+			particle.transform = transform.Turn(rand(-40, 40))
+			animate(particle, pixel_x = origin_coords[1], pixel_y = origin_coords[2], time = 2, easing = LINEAR_EASING)
+		if(INTERACT_UNPULL)
+			particle.alpha = 200
+			animate(particle, pixel_x = target.pixel_x + (x_offset * 32), pixel_y = target.pixel_y + (y_offset * 32), time = 2, easing = LINEAR_EASING)
+
+	sleep(destroy_after)
+	particle.loc = null
+	qdel(particle)
+
+///Lista (x, y) przesunięcia dłoni w pikselach
+/mob/proc/get_hand_pixels()
+	RETURN_TYPE(/list)
+	return list(0, 0)
+
+/mob/living/carbon/get_hand_pixels()
+	var/obj/item/bodypart/hand = has_active_hand() ? get_bodypart((active_hand_index % 2) ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM) : null
+	if(!hand)
+		return null
+	return hand.get_offset(dir)
+
+/obj/item/bodypart/proc/get_offset(direction)
+	return null
+
+/obj/item/bodypart/r_arm/get_offset(direction)
+	switch(direction)
+		if(NORTH)
+			return list(6, -3)
+		if(SOUTH)
+			return list(-6, -3)
+		if(EAST, WEST)
+			return list(0, -3)
+
+/obj/item/bodypart/l_arm/get_offset(direction)
+	switch(direction)
+		if(NORTH)
+			return list(-6, -3)
+		if(SOUTH)
+			return list(6, -3)
+		if(EAST, WEST)
+			return list(0, -3)
+
+/mob/living/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	. = ..()
+	if(pulling == AM)
+		animate_interact(AM, INTERACT_PULL)
+
+/mob/living/stop_pulling()
+	var/atom/movable/old_pulling = pulling
+	. = ..()
+	if(old_pulling && !pulling)
+		animate_interact(old_pulling, INTERACT_UNPULL)

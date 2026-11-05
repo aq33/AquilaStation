@@ -6,9 +6,9 @@
 #define PHOBIA_STATE_FAINT 5
 
 /datum/brain_trauma/mild/phobia
-	name = "Phobia"
-	desc = "Patient is unreasonably afraid of something."
-	scan_desc = "phobia"
+	name = "Fobia"
+	desc = "Pacjent ma irracjonalny lęk przed czymś."
+	scan_desc = "fobia"
 	gain_text = "<span class='warning'>Domyślne wartości zaczynają cię bardzo niepokoić...</span>"
 	lose_text = "<span class='notice'>Nie boisz się już domyślnych wartości.</span>"
 	var/phobia_type
@@ -34,7 +34,7 @@
 
 	gain_text = "<span class='warning'>[phobia_type] zaczyna cię bardzo niepokoić...</span>"
 	lose_text = "<span class='notice'>Nie boisz się już: [phobia_type].</span>"
-	scan_desc += " of [phobia_type]"
+	scan_desc += ": [phobia_type]"
 	trigger_words = SStraumas.phobia_words[phobia_type]
 	trigger_mobs = SStraumas.phobia_mobs[phobia_type]
 	trigger_objs = SStraumas.phobia_objs[phobia_type]

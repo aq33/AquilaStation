@@ -1,6 +1,6 @@
 /obj/machinery/jukebox/shipwide
-	name = "Seegson SG-2000 shipwide speaker system"
-	desc = "A gigantic speaker system with inline amplifiers, capable of relaying messages to everyone inside a ship. This system has been extensively modified to be able to blast music throughout a ship. While accounts of how this system was created vary, the most popular one involves several bored engineers who grew tired of listening to company approved motivational messages."
+	name = "okrętowy system nagłośnienia Seegson SG-2000"
+	desc = "Gigantyczny system głośników z wbudowanymi wzmacniaczami, który przekazuje komunikaty wszystkim na statku. Mocno go przerobiono, żeby mógł puszczać muzykę na cały statek. Relacje o jego powstaniu się różnią, ale najpopularniejsza mówi o kilku znudzonych inżynierach, którzy mieli dość słuchania zatwierdzonych przez firmę komunikatów motywacyjnych."
 	icon = 'nsv13/icons/obj/large_computers.dmi'
 	pixel_y = 26
 	bound_x = 64

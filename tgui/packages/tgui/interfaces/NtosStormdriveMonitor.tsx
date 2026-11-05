@@ -1,11 +1,7 @@
 // NSV13
 
 import { toFixed } from 'common/math';
-import {
-  Button,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
@@ -31,22 +27,22 @@ export const NtosStormdriveMonitor = (props) => {
     <NtosWindow resizable width={440} height={650}>
       <NtosWindow.Content>
         <Section
-          title="Legend:"
+          title="Legenda:"
           buttons={
             <Button
               icon="search"
               onClick={() => act('swap_reactor')}
-              content="Change Reactor"
+              content="Zmień reaktor"
             />
           }
         >
-          Control Rod Insertion:
+          Wsunięcie prętów kontrolnych:
           <ProgressBar
             value={data.control_rod_percent}
             minValue={0}
             maxValue={100}
           />
-          Temperature:
+          Temperatura:
           <ProgressBar
             value={data.heat / data.reactor_meltdown}
             ranges={{
@@ -59,7 +55,7 @@ export const NtosStormdriveMonitor = (props) => {
           >
             {toFixed(data.heat) + ' °C'}
           </ProgressBar>
-          Rod Integrity:
+          Integralność prętów:
           <ProgressBar
             value={(data.rod_integrity / 100) * 100 * 0.01}
             ranges={{
@@ -67,7 +63,7 @@ export const NtosStormdriveMonitor = (props) => {
               bad: [-Infinity, 0.15],
             }}
           />
-          Power Output:
+          Moc wyjściowa:
           <ProgressBar
             value={data.last_power_produced / data.theoretical_maximum_power}
             ranges={{
@@ -77,7 +73,7 @@ export const NtosStormdriveMonitor = (props) => {
           >
             {data.last_power_produced / 1e6 + ' MW'}
           </ProgressBar>
-          Reaction Rate:
+          Tempo reakcji:
           <ProgressBar
             value={data.reaction_rate * 0.05}
             ranges={{
@@ -87,7 +83,7 @@ export const NtosStormdriveMonitor = (props) => {
           >
             {data.reaction_rate + ' mol/s'}
           </ProgressBar>
-          Fuel:
+          Paliwo:
           <ProgressBar
             value={data.total_moles / data.mole_threshold_very_high}
             ranges={{

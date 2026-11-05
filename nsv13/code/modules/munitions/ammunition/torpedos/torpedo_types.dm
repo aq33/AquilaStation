@@ -1,8 +1,8 @@
 /obj/item/ship_weapon/ammunition/torpedo //CREDIT TO CM FOR THIS SPRITE
-	name = "\improper NTP-2 530mm torpedo"
+	name = "\improper torpeda NTP-2 530 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "standard"
-	desc = "A fairly standard torpedo which is designed to cause massive structural damage to a target. It is fitted with a basic homing mechanism to ensure it always hits the mark."
+	desc = "Dość typowa torpeda, która zadaje celowi ogromne uszkodzenia strukturalne. Ma prosty mechanizm samonaprowadzania, więc zawsze trafia."
 	density = TRUE
 	climbable = TRUE //No shenanigans
 	climb_time = 40
@@ -39,33 +39,33 @@
 
 //High damage torp. Use this when youve exhausted their flak.
 /obj/item/ship_weapon/ammunition/torpedo/hull_shredder
-	name = "\improper NTP-4 'BNKR' 430mm Armour Pentetrating Torpedo"
+	name = "\improper przeciwpancerna torpeda NTP-4 „BNKR” 430 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "hull_shredder"
-	desc = "A heavy torpedo which is enriched with depleted uranium, allowing it to penetrate heavy armour plates."
+	desc = "Ciężka torpeda wzbogacona zubożonym uranem, dzięki czemu przebija grube płyty pancerza."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/shredder
 
 //A dud missile designed to exhaust flak
 /obj/item/ship_weapon/ammunition/torpedo/decoy
-	name = "\improper NTP-0x 'DCY' 530mm electronic countermeasure"
+	name = "\improper elektroniczny środek przeciwdziałania NTP-0x „DCY” 530 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "decoy"
-	desc = "A simple electronic countermeasure packed inside a standard torpedo casing. This model excels at diverting enemy PDC emplacements away from friendly ships, or even another barrage of missiles."
+	desc = "Prosty elektroniczny środek przeciwdziałania w standardowej obudowie torpedy. Ten model świetnie odciąga ogień wrogich PDC od sojuszniczych okrętów, a nawet od kolejnej salwy rakiet."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/decoy
 
 /obj/item/ship_weapon/ammunition/torpedo/hellfire
-	name = "\improper NTP-6 'HLLF' 600mm Plasma Incendiary Torpedo"
+	name = "\improper plazmowa torpeda zapalająca NTP-6 „HLLF” 600 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "incendiary"
-	desc = "A plasma enriched incendiary torpedo, designed for maximum subsystem damage."
+	desc = "Torpeda zapalająca wzbogacona plazmą, zaprojektowana tak, by maksymalnie niszczyć podsystemy."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/hellfire/player_version
 	volatile_type = /datum/component/volatile/helltorp
 	volatility = 4
 
 /obj/item/ship_weapon/ammunition/torpedo/plushtide
-	name = "\improper NTP-00 'FREN' 600mm emotional support torpedo"
+	name = "\improper torpeda wsparcia emocjonalnego NTP-00 „FREN” 600 mm"
 	icon_state = "plush"
-	desc = "A simple torpedo with a frankly concerning amount of plushies crammed into it. For when what your enemy needs really is just a hug."
+	desc = "Prosta torpeda z, szczerze mówiąc, niepokojącą liczbą wciśniętych w nią pluszaków. Na wypadek, gdyby twój wróg potrzebował tylko przytulasa."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/plushtide
 	volatility = 0
 
@@ -75,14 +75,14 @@
 	var/mob/living/living_user = user
 	if(living_user.combat_mode)
 		return
-	living_user.visible_message("<span class='notice'>[living_user] hugs [src].</span>","<span class='notice'>Przytulasz [src].</span>")
+	living_user.visible_message("<span class='notice'>[living_user] przytula [src].</span>","<span class='notice'>Przytulasz [src].</span>")
 	playsound(src, pick('sound/items/toysqueak1.ogg', 'sound/items/toysqueak2.ogg', 'sound/items/toysqueak3.ogg'), 30, 1, -1)
 	SEND_SIGNAL(living_user, COMSIG_ADD_MOOD_EVENT, "torphug", /datum/mood_event/torphug)
 
 /obj/item/ship_weapon/ammunition/torpedo/proto_disruption
-	name = "\improper NTP-I1x 'EMP' 400mm Disruption Torpedo"
+	name = "\improper torpeda zakłócająca NTP-I1x „EMP” 400 mm"
 	icon_state = "disruption"
-	desc = "A torpedo with an EMP payload designed for wreaking havoc in ship electronics."
+	desc = "Torpeda z ładunkiem EMP, która sieje chaos w elektronice okrętu."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/disruptor/prototype
 	volatility = 2
 	volatile_type = /datum/component/volatile/emptorp
@@ -113,10 +113,10 @@
 	. += "<span class='notice'> To Fabio, zły brat Antonia.</span>"
 
 /obj/item/ship_weapon/ammunition/torpedo/freight
-	name = "\improper NTP-F 530mm freight torpedo"
+	name = "\improper torpeda transportowa NTP-F 530 mm"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "post_pod"
-	desc = "A letterbox with engines strapped to it and plenty of space inside. Designed as a quick and lazy way to deliver supplies to an allied ship."
+	desc = "Skrzynka pocztowa z przypiętymi silnikami i mnóstwem miejsca w środku. Szybki i leniwy sposób na dostarczenie zaopatrzenia na sojuszniczy okręt."
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/post
 	var/max_stuff = 4 //Maximum amount of stuff that we can cram into it
 	var/breaking_out = FALSE
@@ -178,7 +178,7 @@
 		return FALSE //You can't move a torp from the inside :b1:
 
 /obj/item/projectile/guided_munition/torpedo/post
-	name = "freight torpedo"
+	name = "torpeda transportowa"
 	icon_state = "torpedo_post"
 	homing_turn_speed = 0
 	damage = 0
@@ -203,7 +203,7 @@
 		return TRUE
 
 /obj/structure/closet/supplypod/freight_pod
-	name = "Freight pod"
+	name = "kapsuła transportowa"
 	explosionSize = list(0,0,0,0)
 
 /obj/item/projectile/guided_munition/torpedo/post/proc/deliver_freight(obj/structure/overmap/OM)
@@ -242,10 +242,10 @@
 
 //A probe that science builds to scan anomalies. This is a chad move.
 /obj/item/ship_weapon/ammunition/torpedo/probe
-	name = "\improper NTX 'Voyager' astrological probe"
+	name = "\improper sonda astrologiczna NTX „Voyager”"
 	icon = 'nsv13/icons/obj/munition_types.dmi'
 	icon_state = "probe"
-	desc = "A chemically propelled probe with a highly sensitive avionics and sensor package at its nosecone. These probes are able to scan astrological phenomena and relay data back to a remote location."
+	desc = "Sonda z napędem chemicznym, z bardzo czułą awioniką i zestawem czujników w stożku dziobowym. Takie sondy skanują zjawiska astrologiczne i przesyłają dane do odległej lokalizacji."
 	projectile_type = /obj/item/projectile/bullet/torpedo/probe
 
 /obj/item/projectile/bullet/torpedo/probe

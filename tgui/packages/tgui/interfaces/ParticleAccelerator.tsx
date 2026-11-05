@@ -18,35 +18,35 @@ export const ParticleAccelerator = (props) => {
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Status"
+              label="Stan"
               buttons={
                 <Button
                   icon={'sync'}
-                  content={'Run Scan'}
+                  content={'Skanuj'}
                   onClick={() => act('scan')}
                 />
               }
             >
               <Box color={assembled ? 'good' : 'bad'}>
                 {assembled
-                  ? 'Ready - All parts in place'
-                  : 'Unable to detect all parts'}
+                  ? 'Gotowy – wszystkie części na miejscu'
+                  : 'Nie wykryto wszystkich części'}
               </Box>
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Particle Accelerator Controls">
+        <Section title="Sterowanie akceleratorem cząstek">
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="Zasilanie">
               <Button
                 icon={power ? 'power-off' : 'times'}
-                content={power ? 'On' : 'Off'}
+                content={power ? 'Wł.' : 'Wył.'}
                 selected={power}
                 disabled={!assembled}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Particle Strength">
+            <LabeledList.Item label="Siła cząstek">
               <Button
                 icon="backward"
                 disabled={!assembled}

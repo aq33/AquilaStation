@@ -13,6 +13,7 @@ import { perf } from 'common/perf';
 import { combineReducers } from 'common/redux';
 import { setGlobalStore } from 'tgui/backend';
 import { setupGlobalEvents } from 'tgui/events';
+import { loadMacros, setupHotKeys } from 'tgui/hotkeys';
 import { captureExternalLinks } from 'tgui/links';
 import { render } from 'tgui/renderer';
 import { configureStore } from 'tgui/store';
@@ -24,6 +25,7 @@ import { gameMiddleware, gameReducer } from './game';
 import { Panel } from './Panel';
 import { setupPanelFocusHacks } from './panelFocus';
 import { pingMiddleware, pingReducer } from './ping';
+import { reportRefreshRate } from './refreshRate';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { statMiddleware, statReducer } from './stat';
 import { telemetryMiddleware } from './telemetry';
@@ -66,6 +68,13 @@ function setupApp() {
     ignoreWindowFocus: true,
   });
   setupPanelFocusHacks();
+  // AQUILA: klawisze wciśnięte, gdy fokus jest w panelu (np. T po kliknięciu
+  // w czat), idą do BYOND jak w oknach TGUI. Makra (T, M, Esc...) serwer
+  // ustawia chwilę po wejściu, więc odczyt makr powtarzamy z opóźnieniem.
+  setupHotKeys();
+  setTimeout(() => loadMacros(), 5000);
+  // AQUILA: FPS klienta wg odświeżania monitora (refreshRate.ts)
+  setTimeout(() => reportRefreshRate(), 5000);
   captureExternalLinks();
 
   // Re-render UI on store updates

@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/heart
-	name = "Heart"
-	desc = "A living heart. It's angry!"
+	name = "serce"
+	desc = "Żywe serce. Jest wściekłe!"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "heart-on"
 	icon_living = "heart-on"

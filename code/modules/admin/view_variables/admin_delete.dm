@@ -2,17 +2,20 @@
 	var/atom/A = D
 	var/coords = ""
 	var/jmp_coords = ""
+	var/coords_pl = ""
 	if(istype(A))
 		var/turf/T = get_turf(A)
 		if(T)
 			coords = "at [COORD(T)]"
-			jmp_coords = "at [ADMIN_COORDJMP(T)]"
+			coords_pl = "w [COORD(T)]"
+			jmp_coords = "w [ADMIN_COORDJMP(T)]"
 		else
-			jmp_coords = coords = "in nullspace"
+			coords = "in nullspace"
+			jmp_coords = coords_pl = "w nullspace"
 
-	if (alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", "Yes", "No") == "Yes")
+	if (alert(src, "Na pewno chcesz usunąć:\n[D]\n[coords_pl]?", "Potwierdzenie", "Tak", "Nie") == "Tak")
 		log_admin("[key_name(usr)] deleted [D] [coords]")
-		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
+		message_admins("[key_name_admin(usr)] usuwa [D] [jmp_coords]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		if(isturf(D))
 			var/turf/T = D

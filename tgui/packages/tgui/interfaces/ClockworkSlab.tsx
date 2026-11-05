@@ -48,7 +48,7 @@ export const ClockworkSlab = (props) => {
           title={
             <Box inline color={'good'}>
               <Icon name={'cog'} rotation={0} spin={1} />
-              {' Clockwork Slab '}
+              {' Mechaniczna płyta '}
               <Icon name={'cog'} rotation={35} spin={1} />
             </Box>
           }
@@ -71,7 +71,7 @@ export const ClockworkSlab = (props) => {
               height="100%"
               scrollable
               overflowY="scroll"
-              title="Servants of the Cog vol.1"
+              title="Słudzy Zębatki, tom 1"
             >
               <ClockworkHelp />
             </Section>
@@ -85,153 +85,150 @@ export const ClockworkSlab = (props) => {
 export const ClockworkHelp = (props) => {
   return (
     <>
-      <Collapsible title="Where To Start" color="average" open>
+      <Collapsible title="Od czego zacząć" color="average" open>
         <Section>
-          After a long and destructive war, Rat&#39;Var has been imprisoned
-          inside a dimension of suffering.
+          Po długiej i niszczycielskiej wojnie Rat&#39;Var został uwięziony w
+          wymiarze cierpienia.
           <br />
-          You are a group of his last remaining, most loyal servants. <br />
-          You are very weak and have little power, with most of your scriptures
-          unable to function.
+          Należysz do grupy jego ostatnich, najwierniejszych sług. <br />
+          Masz bardzo mało mocy, a większość twoich pism nie działa.
           <br />
           <b>
-            Use the&nbsp;
+            Użyj&nbsp;
             <span style={{ color: '#BD78C4' }}>
-              Ratvarian Observation Consoles&nbsp;
+              ratvariańskich konsol obserwacyjnych&nbsp;
             </span>
-            to warp to the station!
+            , żeby przenieść się na stację!
           </b>
           <br />
           <b>
-            Install&nbsp;
-            <span style={{ color: '#DFC69C' }}>Integration Cogs&nbsp;</span>
-            to unlock more scriptures and siphon power!
+            Montuj&nbsp;
+            <span style={{ color: '#DFC69C' }}>zębatki integracyjne&nbsp;</span>
+            , żeby odblokować więcej pism i wysysać energię!
           </b>
           <br />
           <b>
-            Unlock&nbsp;
-            <span style={{ color: '#D8D98D' }}>Kindle&nbsp;</span>
-            ,&nbsp;
-            <span style={{ color: '#F19096' }}>Hateful Manacles&nbsp;</span>
-            and summon a&nbsp;
-            <span style={{ color: '#9EA7E5' }}>Sigil of Submission&nbsp;</span>
-            to convert any non-believers!
+            Odblokuj&nbsp;
+            <span style={{ color: '#D8D98D' }}>Rozpalenie&nbsp;</span>
+            i&nbsp;
+            <span style={{ color: '#F19096' }}>Nienawistne kajdany&nbsp;</span>
+            oraz przywołaj&nbsp;
+            <span style={{ color: '#9EA7E5' }}>pieczęć uległości&nbsp;</span>,
+            żeby nawracać niewiernych!
           </b>
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Unlocking Scriptures" color="average">
+      <Collapsible title="Odblokowywanie pism" color="average">
         <Section>
-          Most scriptures require <b>cogs</b> to unlock.
+          Większość pism do odblokowania wymaga <b>zębatek</b>.
           <br />
-          Invoke&nbsp;
+          Przywołaj pismo&nbsp;
           <span style={{ color: '#DFC69C' }}>
-            <b>Integration Cog&nbsp;</b>
+            <b>Zębatka integracyjna&nbsp;</b>
           </span>
-          to summon an Integration Cog, which can be placed into any&nbsp;
+          , żeby dostać zębatkę integracyjną, którą możesz włożyć do
+          dowolnego&nbsp;
           <b>APC&nbsp;</b>
-          on the station.
+          na stacji.
           <br />
-          Slice open the&nbsp;
+          Rozetnij&nbsp;
           <b>APC&nbsp;</b>
-          with the&nbsp;
-          <b>Integration Cog&nbsp;</b>
-          , then insert it in to begin siphoning power.
+          za pomocą&nbsp;
+          <b>zębatki integracyjnej&nbsp;</b>
+          , a potem włóż ją do środka, żeby zacząć wysysać energię.
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Conversion" color="average">
+      <Collapsible title="Nawracanie" color="average">
         <Section>
-          Invoke
+          Przywołaj
           <b>
-            <span style={{ color: '#D8D98D' }}>Kindle&nbsp;</span>
+            <span style={{ color: '#D8D98D' }}>&nbsp;Rozpalenie&nbsp;</span>
           </b>
-          (After you unlock it), to&nbsp;
-          <b>stun&nbsp;</b>
-          and&nbsp;
-          <b>mute&nbsp;</b>
-          any target long enough for you to restrain
+          (po odblokowaniu), żeby&nbsp;
+          <b>ogłuszyć&nbsp;</b>
+          i&nbsp;
+          <b>uciszyć&nbsp;</b>
+          cel na tyle długo, by go skrępować.
           <br />
-          Using&nbsp;
-          <b>zipties&nbsp;</b> obtained from the station, or by invoking&nbsp;
+          Za pomocą&nbsp;
+          <b>opasek zaciskowych&nbsp;</b> zdobytych na stacji albo pisma&nbsp;
           <b>
-            <span style={{ color: '#F19096' }}>Hateful Manacles&nbsp;</span>
+            <span style={{ color: '#F19096' }}>Nienawistne kajdany&nbsp;</span>
           </b>
-          , you can restrain targets to keep them from escaping the light.
+          możesz skrępować cel, żeby nie uciekł przed światłem.
           <br />
-          Invoke&nbsp;
+          Przywołaj&nbsp;
           <b>
-            <span style={{ color: '#D5B8DC' }}>Abscond&nbsp;</span>
+            <span style={{ color: '#D5B8DC' }}>Ucieczkę&nbsp;</span>
           </b>
-          to warp back to Reebe, where the being you are dragging will be pulled
-          with you.
+          , żeby wrócić do Reebe razem z istotą, którą ciągniesz.
           <br />
-          From there, summon a&nbsp;
+          Tam przywołaj&nbsp;
           <b>
-            <span style={{ color: '#9EA7E5' }}>Sigil of Submission&nbsp;</span>
+            <span style={{ color: '#9EA7E5' }}>pieczęć uległości&nbsp;</span>
           </b>
-          and hold them over it for 8 seconds. <br />
-          You cannot enlighten those who have&nbsp;
-          <b>mindshields.</b>
+          i przytrzymaj nad nią cel przez 8 sekund. <br />
+          Nie oświecisz osób z&nbsp;
+          <b>implantem ochrony umysłu.</b>
           <br />
-          Make sure to take their&nbsp;
-          <b>headset&nbsp;</b>
-          so they don&#39;t spread misinformation!
+          Zabierz im&nbsp;
+          <b>słuchawki&nbsp;</b>
+          , żeby nie szerzyli dezinformacji!
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Defending Reebe" color="average">
+      <Collapsible title="Obrona Reebe" color="average">
         <Section>
           <b>
-            You have a wide range of structures and powers that will be vital in
-            defending the Celestial Gateway.
+            Masz do dyspozycji wiele budowli i mocy, które są kluczowe w obronie
+            Arki.
           </b>
           <br />
           <b>
-            <span style={{ color: '#B5FD9D' }}>
-              Replicant Fabricator:&nbsp;
-            </span>
+            <span style={{ color: '#B5FD9D' }}>Fabrykator replik:&nbsp;</span>
           </b>
-          A powerful tool that can rapidly construct Brass structures, or
-          convert most materials to Brass.
+          Potężne narzędzie, które szybko buduje mosiężne konstrukcje albo
+          zamienia większość materiałów w mosiądz.
           <br />
           <b>
-            <span style={{ color: '#DED09F' }}>Cogscarab:&nbsp;</span>
+            <span style={{ color: '#DED09F' }}>Zębatkoskarabeusz:&nbsp;</span>
           </b>
-          A small drone possessed by the spirits of the fallen soldiers which
-          will protect Reebe while you go out and spread the truth!
+          Mały dron opętany przez duchy poległych żołnierzy, który chroni Reebe,
+          gdy ty szerzysz prawdę!
           <br />
           <b>
-            <span style={{ color: '#FF9D9D' }}>Clockwork Marauder:&nbsp;</span>
+            <span style={{ color: '#FF9D9D' }}>Mechaniczny maruder:&nbsp;</span>
           </b>
-          A powerful shell that can deflect ranged attacks and delivers a strong
-          blow in close quarter combat.
+          Potężna powłoka, która odbija ataki dystansowe i mocno uderza w walce
+          wręcz.
           <br />
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Celestial Gateway" color="average">
+      <Collapsible title="Arka" color="average">
         <Section>
-          To summon Rat&#39;Var the&nbsp;
+          Żeby przywołać Rat&#39;Vara, trzeba otworzyć&nbsp;
           <b>
-            <span style={{ color: '#E9E094' }}>Celestial Gateway&nbsp;</span>
-          </b>{' '}
-          must be opened.
+            <span style={{ color: '#E9E094' }}>Arkę&nbsp;</span>
+          </b>
+          .
           <br />
-          This can be done by having enough servants invoke&nbsp;
+          Wystarczy, że dość sług przywoła pismo&nbsp;
           <b>
-            <span style={{ color: '#B5FD9D' }}>Celestial Gateway.&nbsp;</span>
+            <span style={{ color: '#B5FD9D' }}>Ożywienie Arki.&nbsp;</span>
           </b>
           <br />
-          After you enlighten enough of the crew, the&nbsp;
+          Gdy oświecisz wystarczająco dużo załogi,&nbsp;
           <b>
-            <span style={{ color: '#E9E094' }}>Celestial Gateway&nbsp;</span>
+            <span style={{ color: '#E9E094' }}>Arka&nbsp;</span>
           </b>
-          will be forced open.
+          otworzy się sama.
           <br />
           <b>
-            Make sure you are prepared for when the Gateway opens, since the
-            entire crew will swarm to destroy it!
+            Przygotuj się na otwarcie Arki, bo cała załoga rzuci się, żeby ją
+            zniszczyć!
           </b>
           <br />
         </Section>
@@ -257,8 +254,8 @@ export const ClockworkSpellList = (props) => {
                   color={script.purchased ? 'default' : 'average'}
                   content={
                     script.purchased
-                      ? 'Invoke ' + convertPower(script.cost)
-                      : script.cog_cost + ' Cogs'
+                      ? 'Przywołaj (' + convertPower(script.cost) + ')'
+                      : 'Zębatki: ' + script.cog_cost
                   }
                   disabled={false}
                   onClick={() =>
@@ -274,7 +271,7 @@ export const ClockworkSpellList = (props) => {
               <Table.Cell collapsing textAlign="right">
                 <Button
                   fluid
-                  content={'Quickbind'}
+                  content={'Szybki dostęp'}
                   disabled={!script.purchased}
                   onClick={() =>
                     act('quickbind', {
@@ -302,29 +299,29 @@ export const ClockworkOverview = (props) => {
   return (
     <Box>
       <Box color="good" bold fontSize="16px">
-        {'Celestial Gateway Report'}
+        {'Raport Arki'}
       </Box>
       <Divider />
       <ClockworkOverviewStat
-        title="Cogs"
+        title="Zębatki"
         amount={cogs}
         maxAmount={cogs + 50 / cogs}
         iconName="cog"
         unit=""
       />
       <ClockworkOverviewStat
-        title="Power"
+        title="Moc"
         amount={power}
         maxAmount={power + 500000 / power}
         iconName="battery-half "
         overrideText={convertPower(power)}
       />
       <ClockworkOverviewStat
-        title="Vitality"
+        title="Witalność"
         amount={vitality}
         maxAmount={vitality + 50 / vitality}
         iconName="tint"
-        unit="u"
+        unit="j."
       />
     </Box>
   );
@@ -358,6 +355,13 @@ export const ClockworkOverviewStat = (props) => {
   );
 };
 
+// AQUILA: SPELLTYPE_* z DM to klucze, tłumaczymy tylko napis
+const SPELLTYPE_NAMES: Record<string, string> = {
+  Servitude: 'Służba',
+  Preservation: 'Ochrona',
+  Structures: 'Budowle',
+};
+
 export const ClockworkButtonSelection = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState<any>('selectedTab', {});
   const tabs = ['Servitude', 'Preservation', 'Structures'];
@@ -369,7 +373,7 @@ export const ClockworkButtonSelection = (props) => {
             <Button
               key={tab}
               fluid
-              content={tab}
+              content={SPELLTYPE_NAMES[tab] || tab}
               onClick={() => setSelectedTab(tab)}
             />
           </Table.Cell>

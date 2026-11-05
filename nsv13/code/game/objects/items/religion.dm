@@ -1,6 +1,6 @@
 /obj/item/banner/munitions
-	name = "People's Republic of Munistotska banner"
-	desc = "the banner of the People's Republic of Munistotska, masters of arms and ammunition. Glory to Munistotska!"
+	name = "sztandar Ludowej Republiki Munistocka"
+	desc = "Sztandar Ludowej Republiki Munistocka, mistrzów broni i amunicji. Chwała Munistockowi!"
 	icon = 'nsv13/icons/obj/banners.dmi'
 	icon_state = "banner_munitions"
 	item_state = "banner_munitions"
@@ -19,7 +19,7 @@
 	H.restoreEars()
 
 /datum/crafting_recipe/munitions
-    name = "People's Republic of Munistotska banner"
+    name = "sztandar Ludowej Republiki Munistocka"
     result = /obj/item/banner/munitions/mundane
     time = 40
     reqs = list(/obj/item/stack/rods = 2,
@@ -27,8 +27,8 @@
     category = CAT_MISC
 
 /obj/item/banner/solgov
-	name = "Government of Sol banner"
-	desc = "the banner of the Solar Confederate Government, the most powerful member of the Galactic Federation"
+	name = "sztandar Rządu Sol"
+	desc = "Sztandar Słonecznego Rządu Konfederacyjnego, najpotężniejszego członka Federacji Galaktycznej."
 	icon = 'nsv13/icons/obj/banners.dmi'
 	icon_state = "banner_solgov"
 	item_state = "banner_solgov"
@@ -41,7 +41,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/solgov
-	name = "Government of Sol banner"
+	name = "sztandar Rządu Sol"
 	result = /obj/item/banner/solgov/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -49,8 +49,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/draconic
-	name = "Banner of the Draconian Empire"
-	desc = "the banner of the Draconian Empire, main body and governmental force of the lizardfolk homeworld and its moons"
+	name = "sztandar Imperium Drakońskiego"
+	desc = "Sztandar Imperium Drakońskiego, głównej siły rządzącej ojczystą planetą jaszczuroludzi i jej księżycami."
 	icon = 'nsv13/icons/obj/banners.dmi'
 	icon_state = "banner_draconic"
 	item_state = "banner_draconic"
@@ -66,7 +66,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/draconic
-	name = "Banner of the Draconian Empire"
+	name = "sztandar Imperium Drakońskiego"
 	result = /obj/item/banner/draconic/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -75,8 +75,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/dominion
-	name = "Dominion of Light banner"
-	desc = "the banner of the Dominion of Light, the non-confrontationalist body that comprises a majority of the Ethereal and Mothperson population"
+	name = "sztandar Dominium Światła"
+	desc = "Sztandar Dominium Światła, pokojowo nastawionej wspólnoty, do której należy większość eteryków i ciem."
 	icon = 'nsv13/icons/obj/banners.dmi'
 	icon_state = "banner_dominion"
 	item_state = "banner_dominion"
@@ -89,7 +89,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/dominion
-	name = "Dominion of Light banner"
+	name = "sztandar Dominium Światła"
 	result = /obj/item/banner/dominion/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -104,8 +104,8 @@
 	H.reagents.add_reagent(/datum/reagent/medicine/oculine, 5)
 
 /obj/item/banner/syndicate
-	name = "Syndicate banner"
-	desc = "the banner of the Criminal Syndicate, the organized criminals responsible for detonating Luna"
+	name = "sztandar Syndykatu"
+	desc = "Sztandar Przestępczego Syndykatu, zorganizowanych przestępców odpowiedzialnych za wysadzenie Luny."
 	icon = 'nsv13/icons/obj/banners.dmi'
 	icon_state = "banner_syndicate"
 	item_state = "banner_syndicate"
@@ -115,7 +115,7 @@
 	warcry = "Śmierć Nanotrasen! Śmierć Solgovowi!"
 
 /datum/uplink_item/badass/banner //Traitor Uplink Item
-	name = "Syndicate Banner"
-	desc = "A banner signifying your devotion and loyalty to the Syndicate. The Syndicate will prevail!"
+	name = "sztandar Syndykatu"
+	desc = "Sztandar oznaczający twoje oddanie i lojalność wobec Syndykatu. Syndykat zwycięży!"
 	item = /obj/item/banner/syndicate
 	cost = 10

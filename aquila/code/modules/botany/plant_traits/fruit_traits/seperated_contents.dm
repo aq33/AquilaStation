@@ -42,8 +42,10 @@
 		if(QDELETED(reagent_index))
 			continue
 		reagents += list(reagent_index.type = reagent_index.volume)
-	fruit.create_reagents(fruit.reagents?.maximum_volume || SEPERATED_CONTENTS_DEFAULT_VOLUME)
+	// fermichem: zmieszana zawartość reaguje cała naraz, jak granat, a potem holder wraca do zwykłych reakcji
+	fruit.create_reagents(fruit.reagents?.maximum_volume || SEPERATED_CONTENTS_DEFAULT_VOLUME, REAGENT_HOLDER_INSTANT_REACT)
 	fruit.reagents.add_reagent_list(reagents)
+	DISABLE_BITFIELD(fruit.reagents.flags, REAGENT_HOLDER_INSTANT_REACT)
 
 #undef SEPERATED_CONTENTS_DEFAULT_VOLUME
 #undef SEPERATED_CONTENTS_MINIMUM_TIMER

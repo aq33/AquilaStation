@@ -1,8 +1,8 @@
 // AQUILA - port z Monkestation2.0 (code/datums/mutations/speech.dm)
 
 /datum/mutation/lisp
-	name = "Lisp"
-	desc = "Maketh the thubject thpeak with a lithp regardlethth of willingnethth."
+	name = "Seplenienie"
+	desc = "Thprawia, że pathjent thepleni, czy tego chthe, czy nie."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='warning'>Coś tu nie gra... Ssseplenisz.</span>"
 	text_lose_indication = "<span class='notice'>Znów potrafisz wymawiać spółgłoski.</span>"
@@ -25,8 +25,8 @@
 		speech_args[SPEECH_MESSAGE] = message
 
 /datum/mutation/uwuspeak
-	name = "Neko Speak"
-	desc = "Makes the subject speak in horrific combinations of words."
+	name = "Mowa neko"
+	desc = "Pacjent mówi w przerażających zbitkach słów."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Coś jest bardzo nie tak.</span>"
 	text_lose_indication = "<span class='notice'>Już nie masz ochoty zwymiotować własnego języka.</span>"
@@ -48,8 +48,8 @@
 		speech_args[SPEECH_MESSAGE] = monke_uwuify_text(message) || message
 
 /datum/mutation/loud
-	name = "Loud"
-	desc = "Forces the speaking centre of the subjects brain to yell every sentence."
+	name = "Głośność"
+	desc = "Ośrodek mowy w mózgu pacjenta każe mu wykrzykiwać każde zdanie."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>MASZ OCHOTĘ KRZYCZEĆ!</span>"
 	text_lose_indication = "<span class='notice'>Masz ochotę być cicho.</span>"

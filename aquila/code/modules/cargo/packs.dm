@@ -1,10 +1,10 @@
 /datum/supply_pack/emergency/syndicate
 	name = "NULL_ENTRY"
-	desc = "(#@&^$THIS PACKAGE CONTAINS 30TC WORTH OF SOME RANDOM SYNDICATE GEAR WE HAD LYING AROUND THE WAREHOUSE. GIVE EM HELL, OPERATIVE, BUT DON'T GET GREEDY- ORDER TOO MANY AND WE'LL BE SENDING OUR DEADLIEST ENFORCERS TO INVESTIGATE@&!*() "
+	desc = "(#@&^$TA PACZKA ZAWIERA SPRZĘT SYNDYKATU WART 30 TC, KTÓRY WALAŁ SIĘ PO MAGAZYNIE. DAJ IM POPALIĆ, AGENCIE, ALE NIE BĄDŹ CHCIWY - ZAMÓW ZA DUŻO, A WYŚLEMY NASZYCH NAJGROŹNIEJSZYCH EGZEKUTORÓW, ŻEBY TO ZBADALI@&!*() "
 	hidden = TRUE
 	cost = 20000
 	contains = list()
-	crate_name = "emergency crate"
+	crate_name = "skrzynia awaryjna"
 	crate_type = /obj/structure/closet/crate/internals
 	dangerous = TRUE
 	var/beepsky_chance = -1
@@ -32,7 +32,7 @@
 	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 	if(istype(loneop))
 		loneop.weight += 7
-		message_admins("a NULL_ENTRY crate has shipped, increasing the weight of the Lone Operative event to [loneop.weight]")
+		message_admins("Wysłano skrzynię NULL_ENTRY, waga eventu Lone Operative rośnie do [loneop.weight]")
 		log_game("a NULL_ENTRY crate has shipped, increasing the weight of the Lone Operative event to [loneop.weight]")
 
 /datum/supply_pack/organic/kremowka
@@ -47,7 +47,7 @@
 		/obj/item/food/pie/kremowka,
 		/obj/item/food/pie/kremowka
 		)
-	crate_name = "skrzynia kremowek"
+	crate_name = "skrzynia kremówek"
 
 /datum/supply_pack/service/party
 	contains = list(/obj/item/storage/box/drinkingglasses,
@@ -75,26 +75,26 @@
 				/obj/item/reagent_containers/food/drinks/soda_cans/mocnyfull)
 
 /datum/supply_pack/science/monkey_helmets
-	name = "Monkey Mind Magnification Helmet Crate"
-	desc = "Some research is best done with monkeys, yet sometimes they're just too dumb to complete more complicated tasks. These helmets should help."
+	name = "Hełmy wzmacniające umysł małpy"
+	desc = "Niektóre badania najlepiej prowadzić na małpach, ale czasem są po prostu za głupie na bardziej złożone zadania. Te hełmy powinny pomóc."
 	cost = 1500
 	contains = list(/obj/item/clothing/head/monkey_sentience_helmet,
 					/obj/item/clothing/head/monkey_sentience_helmet)
-	crate_name = "monkey mind magnification crate"
+	crate_name = "skrzynia hełmów wzmacniających umysł małpy"
 
 /datum/supply_pack/security/armory/cling_test
-	name = "Changeling Testing Kit"
-	desc = "Contains a single bottle of concentrated BZ, used for detecting and incapacitating changelings. Due to the rarity of this chemical, the cost is extortionate, and security personnel are recommended to visit their local chemistry department instead if possible. Requires Armory access to open."
+	name = "Zestaw do wykrywania zmiennokształtnych"
+	desc = "Zawiera jedną butelkę stężonego BZ, który służy do wykrywania i obezwładniania zmiennokształtnych. Ta substancja jest rzadka, więc cena jest zdzierska i ochronie zaleca się w miarę możliwości odwiedzić najbliższe laboratorium chemiczne. Otwarcie wymaga dostępu do zbrojowni."
 	cost = 10000
 	contains = list(/obj/item/reagent_containers/glass/bottle/concentrated_bz)
-	crate_name = "Changeling testing kit crate"
+	crate_name = "skrzynia zestawu do wykrywania zmiennokształtnych"
 
 /datum/supply_pack/engineering/rtg
-	name = "Radioisotope Thermoelectric Generator Crate"
-	desc = "A crate containing a simple nuclear power generator, used in small outposts to reliably provide power for decades."
+	name = "Radioizotopowy generator termoelektryczny"
+	desc = "Skrzynia z prostym jądrowym generatorem prądu, którego małe placówki używają, by przez dziesięciolecia mieć niezawodne zasilanie."
 	cost = 5000
 	contains = list(/obj/machinery/power/rtg)
-	crate_name = "RTG crate"
+	crate_name = "skrzynia RTG"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/misc/maluch
@@ -107,12 +107,12 @@
 
 // AQUILA EDIT - amp stacki do jukeboxa
 /datum/supply_pack/service/amp_stacks
-	name = "Amp Stack Crate"
+	name = "Amp stacki"
 	desc = "Dwa amp stacki - głośniki, które multitoolem podłącza się do jukeboxa albo radia. Do przykręcenia kluczem na miejscu."
 	cost = 1500
 	contains = list(/obj/machinery/jukebox_speaker/unanchored,
 					/obj/machinery/jukebox_speaker/unanchored)
-	crate_name = "amp stack crate"
+	crate_name = "skrzynia amp stacków"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/toilet

@@ -204,7 +204,7 @@
 		adjust_uses(1, TRUE)
 		return
 	var/turf/ai_location_turf = get_turf(owner_AI)
-	message_admins("[ADMIN_LOOKUPFLW(owner_AI)] used AI shock defense.")
+	message_admins("[ADMIN_LOOKUPFLW(owner_AI)] używa obrony elektrycznej SI.")
 	log_game("[key_name(owner_AI)] used AI shock defense at [AREACOORD(ai_location_turf)].")
 	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores["[ai_location_turf.z]"])
 		tesla_zap(core, 2, 8000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)

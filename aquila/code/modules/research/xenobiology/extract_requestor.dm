@@ -10,7 +10,7 @@
 #define EXTRACT_REQUEST_MAX_AMOUNT 15
 
 /obj/machinery/slime_extract_requestor
-	name = "extract requestor pad"
+	name = "pad zamówień ekstraktów"
 	desc = "Pad do zamawiania ekstraktów szlamu u xenobiologów. Płacisz z konta na karcie, odbierasz tutaj."
 	icon = 'aquila/icons/obj/xenobiology/slime_market.dmi'
 	icon_state = "civilian_pad"
@@ -39,25 +39,21 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/slime_extract_requestor/LateInitialize()
-	if(GLOB.default_slime_market && !GLOB.default_slime_market.request_pad)
+	if(GLOB.default_slime_market)
 		link_console(GLOB.default_slime_market)
 
 /obj/machinery/slime_extract_requestor/Destroy()
 	for(var/datum/extract_request_data/request as anything in current_requests)
 		request.cancel_request_early(console, drop_location())
 	current_requests.Cut()
-	if(console?.request_pad == src)
-		console.request_pad = null
+	console?.request_pads -= src
 	console = null
 	return ..()
 
 /obj/machinery/slime_extract_requestor/proc/link_console(obj/machinery/computer/slime_market/new_console)
-	if(console?.request_pad == src)
-		console.request_pad = null
+	console?.request_pads -= src
 	console = new_console
-	if(new_console.request_pad && new_console.request_pad != src)
-		new_console.request_pad.console = null
-	new_console.request_pad = src
+	new_console.request_pads |= src
 
 /obj/machinery/slime_extract_requestor/examine(mob/user)
 	. = ..()
@@ -135,7 +131,7 @@
 	var/payout = tgui_input_number(user, "Ile kredytów nagrody dla xenobiologów? Za każdy kredyt rynek doliczy [SLIME_REQUEST_POINTS_PER_CREDIT] xenobio points.", name, 0, card.registered_account.account_balance, 0)
 	if(isnull(payout) || QDELETED(src) || QDELETED(card) || !user.canUseTopic(src, BE_CLOSE) || find_request(card))
 		return
-	if(QDELETED(console) || console.request_pad != src) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
+	if(QDELETED(console) || !(src in console.request_pads)) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
 		to_chat(user, "<span class='warning'>[src] stracił połączenie z konsolą rynku szlamów!</span>")
 		return
 	if(payout && !card.registered_account.adjust_money(-payout))
@@ -230,7 +226,7 @@
 		host_card.say("Zamówienie ekstraktów jest gotowe do odbioru.")
 
 /obj/item/circuitboard/machine/slime_extract_requestor
-	name = "Extract Requestor Pad (Machine Board)"
+	name = "pad zamówień ekstraktów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/slime_extract_requestor
 	req_components = list(
@@ -238,8 +234,8 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /datum/design/board/slime_extract_requestor
-	name = "Machine Design (Extract Requestor Pad)"
-	desc = "The circuit board for an extract requestor pad."
+	name = "Projekt maszyny (pad zamówień ekstraktów)"
+	desc = "Płytka drukowana padu zamówień ekstraktów."
 	id = "slime_extract_requestor"
 	build_path = /obj/item/circuitboard/machine/slime_extract_requestor
 	category = list("Research Machinery")

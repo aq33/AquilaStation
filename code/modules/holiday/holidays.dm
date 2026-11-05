@@ -18,7 +18,68 @@
 
 // When the round starts, this proc is ran to get a text message to display to everyone to wish them a happy holiday
 /datum/holiday/proc/greet()
-	return "Have a happy [name]!"
+	return "Szczęśliwego święta: [display_name()]!"
+
+// AQ EDIT: name jest kluczem w SSevents.holidays, więc polska nazwa do wyświetlania idzie z tej mapy
+/datum/holiday/proc/display_name()
+	var/static/list/holiday_names_pl = list(
+		NEW_YEAR = "Nowy Rok",
+		VALENTINES = "Walentynki",
+		APRIL_FOOLS = "Prima Aprilis",
+		EASTER = "Wielkanoc",
+		HALLOWEEN = "Halloween",
+		CHRISTMAS = "Boże Narodzenie",
+		FESTIVE_SEASON = "Okres świąteczny",
+		GARBAGEDAY = "Dzień Śmieci",
+		"Groundhog Day" = "Dzień Świstaka",
+		"Birthday of Space Station 13" = "Urodziny Space Station 13",
+		"Random Acts of Kindness Day" = "Dzień Przypadkowej Życzliwości",
+		"Leap Day" = "Dzień Przestępny",
+		"Pi Day" = "Dzień Liczby Pi",
+		"St. Patrick's Day" = "Dzień Świętego Patryka",
+		"Cosmonautics Day" = "Dzień Kosmonautyki",
+		"Four-Twenty" = "Dzień 4/20",
+		"National Tea Day" = "Narodowy Dzień Herbaty",
+		"Earth Day" = "Dzień Ziemi",
+		"Labor Day" = "Święto Pracy",
+		"Firefighter's Day" = "Dzień Strażaka",
+		"Bee Day" = "Dzień Pszczół",
+		"Summer Solstice" = "Przesilenie Letnie",
+		"Doctor's Day" = "Dzień Lekarza",
+		"UFO Day" = "Dzień UFO",
+		"Independence Day" = "Dzień Niepodległości Stanów Zjednoczonych",
+		"Writer's Day" = "Dzień Pisarza",
+		"Bastille Day" = "Dzień Bastylii",
+		"Friendship Day" = "Dzień Przyjaźni",
+		"ANZAC Day" = "Dzień ANZAC",
+		"Beer Day" = "Dzień Piwa",
+		"Talk-Like-a-Pirate Day" = "Dzień Mówienia jak Pirat",
+		"Programmers' Day" = "Dzień Programisty",
+		"Stupid-Questions Day" = "Dzień Głupich Pytań",
+		"Animal's Day" = "Dzień Zwierząt",
+		"Smiling Day" = "Dzień Uśmiechu",
+		"Boss' Day" = "Dzień Szefa",
+		"Vegan Day" = "Dzień Weganizmu",
+		"October Revolution" = "Rocznica Rewolucji Październikowej",
+		"Kindness Day" = "Dzień Życzliwości",
+		"Flowers Day" = "Dzień Kwiatów",
+		"Saying-'Hello' Day" = "Dzień Powitań",
+		"Human-Rights Day" = "Dzień Praw Człowieka",
+		"Monkey Day" = "Dzień Małpy",
+		"Thanksgiving in the United States" = "Święto Dziękczynienia w Stanach Zjednoczonych",
+		"Thanksgiving in Canada" = "Święto Dziękczynienia w Kanadzie",
+		"Columbus Day" = "Dzień Kolumba",
+		"Mother's Day" = "Dzień Matki",
+		"Father's Day" = "Dzień Ojca",
+		"Moth Week" = "Tydzień Ciem",
+		"Start of Ramadan" = "Początek Ramadanu",
+		"End of Ramadan" = "Koniec Ramadanu",
+		"Life Day" = "Dzień Życia",
+		"Mayan Doomsday Anniversary" = "Rocznica Końca Świata Majów",
+		"Boxing Day" = "Drugi Dzień Świąt",
+		"Friday the 13th" = "Piątek Trzynastego",
+	)
+	return holiday_names_pl[name] || name
 
 // Returns special prefixes for the station name on certain days. You wind up with names like "Christmas Object Epsilon". See new_station_name()
 /datum/holiday/proc/getStationPrefix()
@@ -131,7 +192,7 @@
 		if(40)
 			Fact = " SS13 może już przechodzić kryzys wieku średniego!"
 		if(50)
-			Fact = " Happy golden anniversary!"
+			Fact = " Wszystkiego najlepszego z okazji złotej rocznicy!"
 		if(65)
 			Fact = " SS13 może już zacząć myśleć o emeryturze!"
 		if(96)
@@ -172,7 +233,7 @@
 	return pick("Blarney","Green","Leprechaun","Booze")
 
 /datum/holiday/no_this_is_patrick/greet()
-	return "Happy National Inebriation Day!"
+	return "Szczęśliwego Narodowego Dnia Upojenia!"
 
 /datum/holiday/april_fools
 	name = APRIL_FOOLS
@@ -292,7 +353,7 @@
 	begin_month = JULY
 
 /datum/holiday/friendship/greet()
-	return "Have a magical [name]!"
+	return "Magicznego święta: [display_name()]!"
 
 /datum/holiday/anz
 	name = "ANZAC Day"
@@ -347,7 +408,7 @@
 	begin_month = SEPTEMBER
 
 /datum/holiday/questions/greet()
-	return "Czy dobrze się bawisz w święto: [name]?"
+	return "Czy dobrze się bawisz w święto: [display_name()]?"
 
 /datum/holiday/animal
 	name = "Animal's Day"
@@ -416,7 +477,7 @@
 	begin_month = NOVEMBER
 
 /datum/holiday/hello/greet()
-	return "[pick(list("Aloha", "Bonjour", "Hello", "Hi", "Greetings", "Salutations", "Bienvenidos", "Hola", "Howdy", "Ni hao", "Guten Tag", "Konnichiwa", "G'day cunt"))]! " + ..()
+	return "[pick(list("Aloha", "Bonjour", "Cześć", "Hej", "Pozdrowienia", "Witajcie", "Bienvenidos", "Hola", "Siemka", "Ni hao", "Guten Tag", "Konnichiwa", "G'day cunt"))]! " + ..()
 
 /datum/holiday/human_rights
 	name = "Human-Rights Day"

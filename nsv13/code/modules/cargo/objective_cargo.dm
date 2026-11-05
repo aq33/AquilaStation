@@ -7,7 +7,7 @@
 // TODO Refactor mission_cargos.dm to handle cargo objective descriptions
 
 /obj/structure/closet/crate/large/freight_objective/
-	desc = "A hefty wooden crate. This crate is fitted with an anti-tamper seal. If you really want to open it you'll need a crowbar to get it open."
+	desc = "Pokaźna drewniana skrzynia z plombą zabezpieczającą. Jeśli naprawdę chcesz ją otworzyć, potrzebujesz łomu."
 	icon = 'nsv13/icons/obj/custom_crates.dmi'
 	icon_state = "large_cargo_crate"
 	var/datum/overmap_objective/cargo/overmap_objective = null
@@ -19,14 +19,14 @@
 
 /obj/structure/closet/crate/large/freight_objective/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_CROWBAR)
-		var/choice = input("OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni może oznaczyć cel jako nieudany i anulować transfer. Na pewno chcesz ją otworzyć?", "WARNING!", "No") in list("Yes", "No")
-		if(choice != "Yes")
+		var/choice = input("OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni może oznaczyć cel jako nieudany i anulować transfer. Na pewno chcesz ją otworzyć?", "OSTRZEŻENIE!", "Nie") in list("Tak", "Nie")
+		if(choice != "Tak")
 			return
 		if(get_dist(user, src) > 1) //Check they are still in range
 			return
 		// Detach the ghost poll from this proc so the crate gets opened
 		SEND_SIGNAL( src, COMSIG_FREIGHT_TAMPERED )
-		message_admins( "[user] opened a sealed cargo objective crate! [ADMIN_FLW(user)] [ADMIN_JMP(src)]" )
+		message_admins( "[user] otwiera zaplombowaną skrzynię celu zaopatrzenia! [ADMIN_FLW(user)] [ADMIN_JMP(src)]" )
 		..()
 
 /obj/structure/closet/crate/large/freight_objective/Destroy() // Also covers destruction from weapons fire

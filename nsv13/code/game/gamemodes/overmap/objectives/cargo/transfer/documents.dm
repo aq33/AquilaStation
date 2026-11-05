@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/documents
-	name = "Deliver secure documents"
-	desc = "Deliver secure documents"
-	crate_name = "Secure Documents Transfer"
+	name = "Dostarcz tajne dokumenty"
+	desc = "Dostarcz tajne dokumenty"
+	crate_name = "Bezpieczny transfer dokumentów"
 
 /datum/overmap_objective/cargo/transfer/documents/New()
 	var/datum/freight_type/single/object/C = new /datum/freight_type/single/object( /obj/item/documents )

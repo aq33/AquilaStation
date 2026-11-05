@@ -1,8 +1,8 @@
 // Note: tails only work in humans. They use human-specific parameters and rely on human code for displaying.
 
 /obj/item/organ/tail
-	name = "tail"
-	desc = "A severed tail. What did you cut this off of?"
+	name = "ogon"
+	desc = "Odcięty ogon. Od czego to odciąłeś?"
 	icon_state = "severedtail"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
@@ -18,8 +18,8 @@
 	return set_wagging(H, !is_wagging(H))
 
 /obj/item/organ/tail/cat
-	name = "cat tail"
-	desc = "A severed cat tail. Who's wagging now?"
+	name = "koci ogon"
+	desc = "Odcięty koci ogon. No i kto teraz merda?"
 	tail_type = "Cat"
 
 /obj/item/organ/tail/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -58,8 +58,8 @@
 	H.update_body()
 
 /obj/item/organ/tail/lizard
-	name = "lizard tail"
-	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	name = "jaszczurzy ogon"
+	desc = "Odcięty jaszczurzy ogon. Gdzieś na pewno jakiś wróg jaszczurów jest z siebie bardzo zadowolony."
 	color = "#116611"
 	tail_type = "Smooth"
 	var/spines = "None"

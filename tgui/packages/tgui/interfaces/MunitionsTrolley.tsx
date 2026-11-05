@@ -16,10 +16,10 @@ export const MunitionsTrolley = (props) => {
     <Window theme="hackerman">
       <Window.Content scrollable>
         <Section
-          title="Loaded"
+          title="Załadowano"
           buttons={
             <Button
-              content="Unload All"
+              content="Rozładuj wszystko"
               icon="eject"
               onClick={() => act('unload_all')}
             />
@@ -30,7 +30,7 @@ export const MunitionsTrolley = (props) => {
             return (
               <Fragment key={key}>
                 <Button
-                  content={`Unload ${value.name}`}
+                  content={`Rozładuj: ${value.name}`}
                   icon="arrow-right"
                   onClick={() => act('unload', { id: value.id })}
                 />

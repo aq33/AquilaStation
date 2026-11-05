@@ -1,9 +1,9 @@
 
 /obj/structure/transit_tube
-	name = "transit tube"
+	name = "rura transportowa"
 	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "A transit tube for moving things around."
+	desc = "Rura transportowa do przemieszczania rzeczy."
 	density = TRUE
 	layer = LOW_ITEM_LAYER
 	anchored = TRUE

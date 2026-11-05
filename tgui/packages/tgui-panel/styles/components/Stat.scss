@@ -208,6 +208,15 @@ $border-color: color.scale(
   overflow-wrap: anywhere;
 }
 
+// Nagłówek sekcji w połączonej zakładce (np. Administracja / Mentorzy).
+.StatVerbSection {
+  font-weight: bold;
+  opacity: 0.8;
+  margin: 8px 0 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.3);
+}
+
 // Komendy w kolumnach: alfabet czyta się z góry na dół, kolumna po kolumnie.
 .StatVerbGrid {
   column-width: 15em;

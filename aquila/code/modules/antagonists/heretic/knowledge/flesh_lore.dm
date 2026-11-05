@@ -109,7 +109,7 @@
 /// Makes [victim] into a ghoul.
 /datum/heretic_knowledge/limited_amount/starting/base_flesh/proc/make_ghoul(mob/living/user, mob/living/carbon/human/victim)
 	user.log_message("created a ghoul, controlled by [key_name(victim)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a ghoul, [ADMIN_LOOKUPFLW(victim)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] tworzy ghula: [ADMIN_LOOKUPFLW(victim)].")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -174,14 +174,14 @@
 	soon_to_be_ghoul.grab_ghost()
 
 	if(!soon_to_be_ghoul.mind || !soon_to_be_ghoul.client)
-		message_admins("[ADMIN_LOOKUPFLW(user)] is creating a voiceless dead of a body with no player.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] tworzy bezgłosego umarłego z ciała bez gracza.")
 		// AQUILA - u nas zamiast SSpolling stare pollCandidatesForMob
 		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Chcesz zagrać jako [soon_to_be_ghoul.real_name], niemy umarły (voiceless dead)?", ROLE_HERETIC, ROLE_HERETIC, 5 SECONDS, soon_to_be_ghoul)
 		if(!LAZYLEN(candidates))
 			loc.balloon_alert(user, "rytuał nieudany, brak duchów!")
 			return FALSE
 		var/mob/dead/observer/chosen_one = pick(candidates)
-		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(soon_to_be_ghoul)]) to replace an AFK player.")
+		message_admins("[key_name_admin(chosen_one)] przejmuje kontrolę nad: [key_name_admin(soon_to_be_ghoul)], zastępując gracza AFK.")
 		soon_to_be_ghoul.ghostize(FALSE)
 		soon_to_be_ghoul.key = chosen_one.key
 
@@ -195,7 +195,7 @@
 /// Makes [victim] into a ghoul.
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/make_ghoul(mob/living/user, mob/living/carbon/human/victim)
 	user.log_message("created a voiceless dead, controlled by [key_name(victim)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a voiceless dead, [ADMIN_LOOKUPFLW(victim)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] tworzy bezgłosego umarłego: [ADMIN_LOOKUPFLW(victim)].")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,

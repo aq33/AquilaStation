@@ -1,7 +1,7 @@
 //Contains: Engineering department jumpsuits
 /obj/item/clothing/under/rank/engineering/chief_engineer
-	desc = "It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of \"Chief Engineer\". It has minor radiation shielding."
-	name = "chief engineer's jumpsuit"
+	desc = "Odblaskowy kombinezon dla inżynierów na tyle szalonych, by dosłużyć się stanowiska głównego inżyniera. Ma słabą osłonę przed promieniowaniem."
+	name = "kombinezon głównego inżyniera"
 	icon = 'nsv13/icons/obj/clothing/uniforms.dmi' //NSV13
 	worn_icon = 'nsv13/icons/mob/uniform.dmi' //NSV13
 	icon_state = "legacy_chiefengineer" //NSV13
@@ -10,8 +10,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/rank/engineering/atmospheric_technician
-	desc = "It's a jumpsuit worn by atmospheric technicians."
-	name = "atmospheric technician's jumpsuit"
+	desc = "Kombinezon noszony przez techników atmosferyki."
+	name = "kombinezon technika atmosferyki"
 	icon = 'nsv13/icons/obj/clothing/uniforms.dmi' //NSV13
 	worn_icon = 'nsv13/icons/mob/uniform.dmi' //NSV13
 	icon_state = "legacy_atmos" //NSV13
@@ -19,8 +19,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/rank/engineering/engineer
-	desc = "It's an orange high visibility jumpsuit worn by engineers. It has minor radiation shielding."
-	name = "engineer's jumpsuit"
+	desc = "Pomarańczowy odblaskowy kombinezon noszony przez inżynierów. Ma słabą osłonę przed promieniowaniem."
+	name = "kombinezon inżyniera"
 	icon = 'nsv13/icons/obj/clothing/uniforms.dmi' //NSV13
 	worn_icon = 'nsv13/icons/mob/uniform.dmi' //NSV13
 	icon_state = "legacy_engine" //NSV13
@@ -29,7 +29,7 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/rank/engineering/engineer/hazard
-	name = "engineer's hazard jumpsuit"
+	name = "ostrzegawczy kombinezon inżyniera"
 	desc = "Dobrze widoczny kombinezon z materiałów odpornych na ciepło i promieniowanie."
 	icon = 'icons/obj/clothing/uniforms.dmi' //NSV13
 	worn_icon = 'icons/mob/uniform.dmi' //NSV13

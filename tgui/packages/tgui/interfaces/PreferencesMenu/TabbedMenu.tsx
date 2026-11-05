@@ -13,9 +13,19 @@ type TabbedMenuProps = {
   categoryEntries: [string, ReactNode][];
   categoryScales: Record<string, string>;
   contentProps?: ComponentProps<typeof Flex>;
+  /** AQUILA: przyciski przełączają strony zamiast przewijać do kategorii. */
+  paged?: boolean;
 };
 
-export class TabbedMenu extends Component<TabbedMenuProps & PropsWithChildren> {
+type TabbedMenuState = {
+  selectedCategory: string | null;
+};
+
+export class TabbedMenu extends Component<
+  TabbedMenuProps & PropsWithChildren,
+  TabbedMenuState
+> {
+  state: TabbedMenuState = { selectedCategory: null };
   categoryRefs: Record<string, RefObject<HTMLDivElement | null>> = {};
   sectionRef: RefObject<HTMLDivElement | null> = createRef();
 
@@ -28,6 +38,17 @@ export class TabbedMenu extends Component<TabbedMenuProps & PropsWithChildren> {
   }
 
   render() {
+    const { paged } = this.props;
+    // W trybie stron pokazujemy jedną kategorię: wybraną albo pierwszą.
+    const selectedCategory =
+      this.props.categoryEntries?.find(
+        ([category]) => category === this.state.selectedCategory,
+      )?.[0] || this.props.categoryEntries?.[0]?.[0];
+    const shownEntries = paged
+      ? this.props.categoryEntries.filter(
+          ([category]) => category === selectedCategory,
+        )
+      : this.props.categoryEntries;
     return (
       <Stack vertical fill>
         {this.props.children && (
@@ -43,7 +64,15 @@ export class TabbedMenu extends Component<TabbedMenuProps & PropsWithChildren> {
                       align="center"
                       fontSize="1.2em"
                       fluid
+                      selected={paged && category === selectedCategory}
                       onClick={() => {
+                        if (paged) {
+                          this.setState({ selectedCategory: category });
+                          if (this.sectionRef.current) {
+                            this.sectionRef.current.scrollTop = 0;
+                          }
+                          return;
+                        }
                         const offsetTop =
                           this.categoryRefs[category].current?.offsetTop;
 
@@ -82,11 +111,15 @@ export class TabbedMenu extends Component<TabbedMenuProps & PropsWithChildren> {
           }}
         >
           <Flex direction="row" px={2} wrap="wrap">
-            {this.props.categoryEntries.map(([category, children]) => {
+            {shownEntries.map(([category, children]) => {
               return (
                 <Flex.Item
                   grow
-                  basis={this.props.categoryScales[category] || '45%'}
+                  basis={
+                    paged
+                      ? '100%'
+                      : this.props.categoryScales[category] || '45%'
+                  }
                   minWidth={'500px'}
                   px={1}
                   py={2}

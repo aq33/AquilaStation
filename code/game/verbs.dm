@@ -16,7 +16,7 @@
 /datum/proc/add_verb(new_verbs)
 	//Nooooo!!!!!
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!islist(new_verbs))
@@ -44,7 +44,7 @@
 
 /datum/proc/remove_verb(old_verbs)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!sorted_verbs)
@@ -64,7 +64,7 @@
 
 /atom/add_verb(new_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!tgui_only)
@@ -73,7 +73,7 @@
 
 /atom/remove_verb(old_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!tgui_only)
@@ -82,7 +82,7 @@
 
 /obj/item/remove_verb(new_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	//If we lose an old verb while in someone's inventory, remove it frmo their panel.
@@ -94,7 +94,7 @@
 
 /obj/item/add_verb(new_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	//If we get a new verb while in someone's inventory, add it to their panel.
@@ -106,7 +106,7 @@
 
 /client/add_verb(new_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!tgui_only)
@@ -116,7 +116,7 @@
 
 /client/remove_verb(old_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(!tgui_only)
@@ -126,7 +126,7 @@
 
 /mob/remove_verb(old_verbs, tgui_only = FALSE)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(client)
@@ -135,7 +135,7 @@
 
 /mob/add_verb(new_verbs, tgui_only)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to edit their verbs.")
+		message_admins("[key_name(usr)] próbuje edytować swoje verby.")
 		log_game("[key_name(usr)] attempted to edit their verbs.")
 		return
 	if(client)

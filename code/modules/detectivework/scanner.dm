@@ -3,8 +3,8 @@
 // TODO: Split everything into easy to manage procs.
 
 /obj/item/detective_scanner
-	name = "forensic scanner"
-	desc = "Used to remotely scan objects and biomass for DNA and fingerprints. Can print a report of the findings."
+	name = "skaner kryminalistyczny"
+	desc = "Służy do zdalnego skanowania przedmiotów i biomasy w poszukiwaniu DNA i odcisków palców. Potrafi wydrukować raport z wynikami."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "forensicnew"
 	w_class = WEIGHT_CLASS_SMALL
@@ -21,7 +21,7 @@
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
 
 /datum/action/item_action/displayDetectiveScanResults
-	name = "Display Forensic Scanner Results"
+	name = "Wyświetl wyniki skanera kryminalistycznego"
 
 /datum/action/item_action/displayDetectiveScanResults/Trigger()
 	var/obj/item/detective_scanner/scanner = target
@@ -39,10 +39,10 @@
 /obj/item/detective_scanner/proc/PrintReport()
 	// Create our paper
 	var/obj/item/paper/report_paper = new(get_turf(src))
-	report_paper.name = "paper- 'Scanner Report'"
+	report_paper.name = "kartka – „Raport skanera”"
 	var/report_text = "<center><font size='6'><B>Raport skanera</B></font></center><HR><BR>"
 	report_text += jointext(log, "<BR>")
-	report_text += "<HR><B>Notes:</B><BR>"
+	report_text += "<HR><B>Notatki:</B><BR>"
 
 	report_paper.add_raw_text(report_text)
 	report_paper.update_appearance()
@@ -134,7 +134,7 @@
 		// Fingerprints
 		if(length(fingerprints))
 			sleep(30)
-			add_log("<span class='info'><B>Prints:</B></span>")
+			add_log("<span class='info'><B>Odciski:</B></span>")
 			for(var/finger in fingerprints)
 				add_log("[finger]")
 			found_something = 1
@@ -142,7 +142,7 @@
 		// Blood
 		if (length(blood))
 			sleep(30)
-			add_log("<span class='info'><B>Blood:</B></span>")
+			add_log("<span class='info'><B>Krew:</B></span>")
 			found_something = 1
 			for(var/B in blood)
 				add_log("Typ: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
@@ -150,7 +150,7 @@
 		//Fibers
 		if(length(fibers))
 			sleep(30)
-			add_log("<span class='info'><B>Fibers:</B></span>")
+			add_log("<span class='info'><B>Włókna:</B></span>")
 			for(var/fiber in fibers)
 				add_log("[fiber]")
 			found_something = 1
@@ -162,7 +162,7 @@
 		//Reagents
 		if(length(reagents))
 			sleep(30)
-			add_log("<span class='info'><B>Reagents:</B></span>")
+			add_log("<span class='info'><B>Odczynniki:</B></span>")
 			for(var/R in reagents)
 				add_log("Odczynnik: <font color='red'>[R]</font> Objętość: <font color='red'>[reagents[R]]</font>")
 			found_something = 1

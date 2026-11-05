@@ -3,7 +3,7 @@
 /////////////////////////////////////
 
 /datum/design/leftarm
-	name = "Left Arm"
+	name = "Lewa ręka"
 	id = "leftarm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -11,7 +11,7 @@
 	category = list("initial","human","lizard","moth","apid","plasmaman","ethereal")
 
 /datum/design/rightarm
-	name = "Right Arm"
+	name = "Prawa ręka"
 	id = "rightarm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -19,7 +19,7 @@
 	category = list("initial","human","lizard","moth","apid","plasmaman","ethereal")
 
 /datum/design/leftleg
-	name = "Left Leg"
+	name = "Lewa noga"
 	id = "leftleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -27,7 +27,7 @@
 	category = list("initial","human","lizard","moth","apid","plasmaman","ethereal")
 
 /datum/design/rightleg
-	name = "Right Leg"
+	name = "Prawa noga"
 	id = "rightleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -35,7 +35,7 @@
 	category = list("initial","human","lizard","moth","apid","plasmaman","ethereal")
 
 /datum/design/digi_leftleg
-	name = "Digitigrade Left Leg"
+	name = "Lewa noga palcochodna"
 	id = "digi_leftleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
@@ -43,7 +43,7 @@
 	category = list("lizard")
 
 /datum/design/digi_rightleg
-	name = "Digitigrade Right Leg"
+	name = "Prawa noga palcochodna"
 	id = "digi_rightleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
@@ -54,7 +54,7 @@
 
 //Heart
 /datum/design/heart
-	name = "Heart"
+	name = "Serce"
 	id = "heart"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
@@ -63,7 +63,7 @@
 
 //Lungs
 /datum/design/lungs
-	name = "Lungs"
+	name = "Płuca"
 	id = "lungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
@@ -71,7 +71,7 @@
 	category = list("initial","human")
 
 /datum/design/plasmaman_lungs
-	name = "Plasma Filter"
+	name = "Filtr plazmy"
 	id = "plasmamanlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -79,7 +79,7 @@
 	category = list("plasmaman")
 
 /datum/design/apid_lungs
-	name = "Apid Lungs"
+	name = "Płuca apida"
 	id = "apidlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/honey = 20)
@@ -88,7 +88,7 @@
 
 //Liver
 /datum/design/liver
-	name = "Liver"
+	name = "Wątroba"
 	id = "liver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
@@ -96,7 +96,7 @@
 	category = list("initial","human")
 
 /datum/design/plasmaman_liver
-	name = "Reagent Processing Crystal"
+	name = "Kryształ przetwarzający reagenty"
 	id = "plasmamanliver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -105,7 +105,7 @@
 
 //Stomach
 /datum/design/stomach
-	name = "Stomach"
+	name = "Żołądek"
 	id = "stomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 15)
@@ -113,7 +113,7 @@
 	category = list("initial","human")
 
 /datum/design/plasmaman_stomach
-	name = "Digestive Crystal"
+	name = "Kryształ trawienny"
 	id = "plasmamanstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -121,7 +121,7 @@
 	category = list("plasmaman")
 
 /datum/design/ethereal_stomach
-	name = "Biological Battery"
+	name = "Bateria biologiczna"
 	id = "etherealstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
@@ -130,7 +130,7 @@
 
 //Appendix
 /datum/design/appendix
-	name = "Appendix"
+	name = "Wyrostek robaczkowy"
 	id = "appendix"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 5) //why would you need this
@@ -139,7 +139,7 @@
 
 //Eyes
 /datum/design/eyes
-	name = "Eyes"
+	name = "Oczy"
 	id = "eyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
@@ -147,7 +147,7 @@
 	category = list("initial","human")
 
 /datum/design/moth_eyes
-	name = "Moth Eyes"
+	name = "Oczy ćmy"
 	id = "motheyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -155,7 +155,7 @@
 	category = list("moth")
 
 /datum/design/apid_eyes
-	name = "Apid Eyes"
+	name = "Oczy apida"
 	id = "apideyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -164,7 +164,7 @@
 
 //Ears
 /datum/design/ears
-	name = "Ears"
+	name = "Uszy"
 	id = "ears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
@@ -172,7 +172,7 @@
 	category = list("initial","human")
 
 /datum/design/cat_ears
-	name = "Cat Ears"
+	name = "Kocie uszy"
 	id = "catears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
@@ -181,7 +181,7 @@
 
 //Tongues
 /datum/design/tongue
-	name = "Tongue"
+	name = "Język"
 	id = "tongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
@@ -189,7 +189,7 @@
 	category = list("initial","other")
 
 /datum/design/lizard_tongue
-	name = "Forked Tongue"
+	name = "Rozwidlony język"
 	id = "liztongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
@@ -197,7 +197,7 @@
 	category = list("other")
 
 /datum/design/plasmaman_tongue
-	name = "Plasma Bone Tongue"
+	name = "Plazmowy kostny język"
 	id = "plasmamantongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -205,7 +205,7 @@
 	category = list("other")
 
 /datum/design/ethereal_tongue
-	name = "Electrical Discharger"
+	name = "Wyładowywacz elektryczny"
 	id = "etherealtongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
@@ -213,7 +213,7 @@
 	category = list("other")
 
 /datum/design/apid_tongue
-	name = "Proboscis"
+	name = "Trąbka"
 	id = "apidtongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/honey = 20)
@@ -222,7 +222,7 @@
 
 //Tails
 /datum/design/lizard_tail
-	name = "Lizard Tail"
+	name = "Jaszczurzy ogon"
 	id = "liztail"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
@@ -230,7 +230,7 @@
 	category = list("lizard")
 
 /datum/design/cat_tail
-	name = "Cat Tail"
+	name = "Koci ogon"
 	id = "cattail"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
@@ -239,7 +239,7 @@
 
 //Wings
 /datum/design/moth_wings
-	name = "Moth Wings"
+	name = "Skrzydła ćmy"
 	id = "mothwings"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -247,7 +247,7 @@
 	category = list("moth")
 
 /datum/design/apid_wings
-	name = "Apid Wings"
+	name = "Pszczele skrzydła"
 	id = "apidwings"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -258,7 +258,7 @@
 // Intentionally not growable by normal means - for balance conerns.
 
 /datum/design/armblade
-	name = "Arm Blade"
+	name = "Syntetyczne ostrze ręczne"
 	id = "armblade"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 75)
@@ -267,8 +267,8 @@
 
 /// Design disks and designs - for adding limbs and organs to the limbgrower.
 /obj/item/disk/design_disk/limbs
-	name = "Limb Design Disk"
-	desc = "A disk containing limb and organ designs for a limbgrower."
+	name = "dysk z projektami kończyn"
+	desc = "Dysk z projektami kończyn i organów dla hodowli kończyn."
 	icon_state = "datadisk1"
 	/// List of all limb designs this disk contains.
 	var/list/limb_designs = list()
@@ -281,8 +281,8 @@
 		blueprints += new new_design
 
 /datum/design/limb_disk
-	name = "Limb Design Disk"
-	desc = "Contains designs for various limbs."
+	name = "Dysk z projektami kończyn"
+	desc = "Zawiera projekty różnych kończyn."
 	id = "limbdesign_parent"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
@@ -291,8 +291,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /obj/item/disk/design_disk/limbs/debug
-	name = "Debug Limb Design Disk"
-	desc = "You should not have this unless you are debugging stuff or trying to adminbus."
+	name = "dysk z projektami kończyn (debug)"
+	desc = "Nie powinieneś tego mieć, chyba że coś debugujesz albo robisz adminbus."
 	limb_designs = list(/datum/design/cat_tail, /datum/design/cat_ears,
 		/datum/design/lizard_tail, /datum/design/lizard_tongue, /datum/design/digi_leftleg, /datum/design/digi_rightleg,
 		/datum/design/apid_wings, /datum/design/apid_eyes, /datum/design/apid_lungs, /datum/design/apid_tongue,
@@ -301,61 +301,61 @@
 		/datum/design/ethereal_stomach, /datum/design/ethereal_tongue)
 
 /obj/item/disk/design_disk/limbs/felinid
-	name = "Felinid Limb Design Disk"
+	name = "dysk z projektami kończyn (felinid)"
 	limb_designs = list(/datum/design/cat_tail, /datum/design/cat_ears)
 
 /datum/design/limb_disk/felinid
-	name = "Felinid Limb Design Disk"
-	desc = "Contains designs for felinid bodyparts for the limbgrower - Felinid ears and tail."
+	name = "Dysk z projektami kończyn (felinid)"
+	desc = "Zawiera projekty części ciała felinidów dla hodowli kończyn: uszy i ogon."
 	id = "limbdesign_felinid"
 	build_path = /obj/item/disk/design_disk/limbs/felinid
 
 /obj/item/disk/design_disk/limbs/lizard
-	name = "Lizard Limb Design Disk"
+	name = "dysk z projektami kończyn (jaszczur)"
 	limb_designs = list(/datum/design/lizard_tail, /datum/design/lizard_tongue, /datum/design/digi_leftleg, /datum/design/digi_rightleg)
 
 /datum/design/limb_disk/lizard
-	name = "Lizard Limb Design Disk"
-	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, tail, and digitigrade legs."
+	name = "Dysk z projektami kończyn (jaszczur)"
+	desc = "Zawiera projekty części ciała jaszczurów dla hodowli kończyn: język, ogon i nogi palcochodne."
 	id = "limbdesign_lizard"
 	build_path = /obj/item/disk/design_disk/limbs/lizard
 
 /obj/item/disk/design_disk/limbs/apid
-	name = "Apid Limb Design Disk"
+	name = "dysk z projektami kończyn (apid)"
 	limb_designs = list(/datum/design/apid_wings, /datum/design/apid_eyes, /datum/design/apid_lungs, /datum/design/apid_tongue)
 
 /datum/design/limb_disk/apid
-	name = "Apid Limb Design Disk"
-	desc = "Contains designs for apid organs for the limbgrower - Apid wings, Apid eyes, lungs and tongue."
+	name = "Dysk z projektami kończyn (apid)"
+	desc = "Zawiera projekty organów apidów dla hodowli kończyn: skrzydła, oczy, płuca i język."
 	id = "limbdesign_apid"
 	build_path = /obj/item/disk/design_disk/limbs/apid
 
 /obj/item/disk/design_disk/limbs/moth
-	name = "Moth Limb Design Disk"
+	name = "dysk z projektami kończyn (ćma)"
 	limb_designs = list(/datum/design/moth_wings, /datum/design/moth_eyes)
 
 /datum/design/limb_disk/moth
-	name = "Moth Limb Design Disk"
-	desc = "Contains designs for moth organs for the limbgrower - Moth wings and Moth eyes."
+	name = "Dysk z projektami kończyn (ćma)"
+	desc = "Zawiera projekty organów ciem dla hodowli kończyn: skrzydła i oczy."
 	id = "limbdesign_moth"
 	build_path = /obj/item/disk/design_disk/limbs/moth
 
 /obj/item/disk/design_disk/limbs/plasmaman
-	name = "Plasmaman Limb Design Disk"
+	name = "dysk z projektami kończyn (plazmaman)"
 	limb_designs = list(/datum/design/plasmaman_stomach, /datum/design/plasmaman_liver, /datum/design/plasmaman_lungs, /datum/design/plasmaman_tongue)
 
 /datum/design/limb_disk/plasmaman
-	name = "Plasmaman Limb Design Disk"
-	desc = "Contains designs for plasmaman organs for the limbgrower - Plasmaman tongue, liver, stomach, and lungs."
+	name = "Dysk z projektami kończyn (plazmaman)"
+	desc = "Zawiera projekty organów plazmaludzi dla hodowli kończyn: język, wątroba, żołądek i płuca."
 	id = "limbdesign_plasmaman"
 	build_path = /obj/item/disk/design_disk/limbs/plasmaman
 
 /obj/item/disk/design_disk/limbs/ethereal
-	name = "Ethereal Limb Design Disk"
+	name = "dysk z projektami kończyn (eteryk)"
 	limb_designs = list(/datum/design/ethereal_stomach, /datum/design/ethereal_tongue)
 
 /datum/design/limb_disk/ethereal
-	name = "Ethereal Limb Design Disk"
-	desc = "Contains designs for ethereal organs for the limbgrower - Ethereal tongue and stomach."
+	name = "Dysk z projektami kończyn (eteryk)"
+	desc = "Zawiera projekty organów eteryków dla hodowli kończyn: język i żołądek."
 	id = "limbdesign_ethereal"
 	build_path = /obj/item/disk/design_disk/limbs/ethereal

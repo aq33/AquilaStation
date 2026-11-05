@@ -1,6 +1,6 @@
 /turf/open/floor/glass
-	name = "Glass floor"
-	desc = "While it at first appears to be a dangerous glass floor over space, closer inspection reveals it to simply be a screen behind a layer of glass."
+	name = "szklana podłoga"
+	desc = "Na pierwszy rzut oka wygląda jak niebezpieczna szklana podłoga nad kosmosem, ale z bliska widać, że to po prostu ekran pod warstwą szkła."
 	icon = 'nsv13/icons/turf/floors/glass.dmi'
 	icon_state = "glass-0"
 	baseturfs = /turf/open/floor/plating
@@ -22,8 +22,8 @@
 	AddElement(/datum/element/turf_z_transparency, TRUE)
 
 /turf/open/floor/glass/reinforced
-	name = "Reinforced glass floor"
-	desc = "While it at first appears to be a dangerous glass floor over space, closer inspection reveals it to simply be a screen behind a reinforced protective layer of glass."
+	name = "podłoga ze szkła zbrojonego"
+	desc = "Na pierwszy rzut oka wygląda jak niebezpieczna szklana podłoga nad kosmosem, ale z bliska widać, że to po prostu ekran pod zbrojoną warstwą ochronną szkła."
 	icon = 'nsv13/icons/turf/floors/reinf_glass.dmi'
 	icon_state = "reinf_glass-0"
 	floor_tile = /obj/item/stack/tile/glass/reinforced

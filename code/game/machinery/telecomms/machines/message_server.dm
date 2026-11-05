@@ -9,7 +9,7 @@
 /obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
-	name = "Blackbox Recorder"
+	name = "rejestrator czarnej skrzynki"
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -58,8 +58,8 @@
 	return ..()
 
 /obj/item/blackbox
-	name = "the blackbox"
-	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	name = "czarna skrzynka"
+	desc = "Dziwny relikt, który potrafi zapisywać dane na pozawymiarowych wierzchołkach. Dla bezpieczeństwa przechowuje się go w rejestratorze czarnej skrzynki."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackcube"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -67,13 +67,13 @@
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "This is an automated message. The messaging system is functioning correctly."
+#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "To jest automatyczna wiadomość. System wiadomości działa poprawnie."
 
 // The message server itself.
 /obj/machinery/telecomms/message_server
 	icon_state = "message_server"
-	name = "Messaging Server"
-	desc = "A machine that processes and routes PDA and request console messages."
+	name = "serwer wiadomości"
+	desc = "Maszyna, która przetwarza i kieruje wiadomości z PDA i konsol zgłoszeń."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -167,13 +167,13 @@
 // Tablet message signal datum
 /datum/signal/subspace/messaging/tablet_msg/proc/format_target()
 	if (length(data["targets"]) > 1)
-		return "Everyone"
+		return "Wszyscy"
 	var/obj/item/modular_computer/target = data["targets"][1]
 	return "[target.saved_identification] ([target.saved_job])"
 
 /datum/signal/subspace/messaging/tablet_msg/proc/format_message(include_photo = FALSE)
 	if (include_photo && logged && data["photo"])
-		return "\"[data["message"]]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
+		return "\"[data["message"]]\" (<a href='byond://?src=[REF(logged)];photo=1'>Zdjęcie</a>)"
 	return "\"[data["message"]]\""
 
 /datum/signal/subspace/messaging/tablet_msg/broadcast()
@@ -195,9 +195,9 @@
 
 // Log datums stored by the message server.
 /datum/data_tablet_msg
-	var/sender = "Unspecified"
-	var/recipient = "Unspecified"
-	var/message = "Blank"  // transferred message
+	var/sender = "Nieokreślony"
+	var/recipient = "Nieokreślony"
+	var/message = "Pusta"  // transferred message
 	var/datum/picture/picture  // attached photo
 	var/automated = FALSE //automated message
 	/// If this message is allowed to render emojis
@@ -220,18 +220,18 @@
 	if(href_list["photo"])
 		var/mob/M = usr
 		M << browse_rsc(picture.picture_image, "pda_photo.png")
-		M << browse("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>PDA Photo</title></head>" \
+		M << browse("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Zdjęcie z PDA</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='pda_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
 		+ "</body></html>", "window=photo_showing;size=480x608")
 		onclose(M, "pdaphoto")
 
 /datum/data_rc_msg
-	var/rec_dpt = "Unspecified"  // receiving department
-	var/send_dpt = "Unspecified"  // sending department
-	var/message = "Blank"
+	var/rec_dpt = "Nieokreślony"  // receiving department
+	var/send_dpt = "Nieokreślony"  // sending department
+	var/message = "Pusta"
 	var/stamp = "Unstamped"
-	var/id_auth = "Unauthenticated"
+	var/id_auth = "Niezweryfikowana"
 	var/priority = "Normal"
 
 /datum/data_rc_msg/New(param_rec, param_sender, param_message, param_stamp, param_id_auth, param_priority)

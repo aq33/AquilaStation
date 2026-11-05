@@ -355,7 +355,8 @@ const Guide = (props) => {
       <Box bold>Jak to działa</Box>
       Każdy serwer z włączonym kodem wywołuje dla każdej wiadomości funkcję{' '}
       <b>process_signal(sig)</b>. Zwróć sig, żeby wiadomość poszła dalej.
-      Zwrócenie czegoś innego albo pusta treść blokuje wiadomość.
+      Zwrócenie wartości, która nie jest sygnałem, albo sig.pass = false blokuje
+      wiadomość. Pusta treść zamienia się w „*beep*”.
       <Box as="pre" mt={1} fontSize="0.9em" style={{ whiteSpace: 'pre-wrap' }}>
         {EXAMPLE}
       </Box>
@@ -377,7 +378,10 @@ const Guide = (props) => {
       <br />
       say, ask, yell, exclaim: czasowniki mowy
       <br />
-      sector, uuid: tylko do odczytu
+      uuid: tylko do odczytu
+      <br />
+      sector: lista poziomów, na których słychać wiadomość (liczby większe od 0,
+      pusta lista jest ignorowana)
       <Divider />
       <Box bold>Kanały (channels.nazwa)</Box>
       {CHANNELS.map((channel) => (

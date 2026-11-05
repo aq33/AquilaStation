@@ -1,5 +1,5 @@
 /obj/item/projectile/bullet/gyro
-	name ="explosive bolt"
+	name ="wybuchowy bełt"
 	icon_state= "bolter"
 	damage = 50
 
@@ -9,8 +9,8 @@
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a84mm
-	name ="\improper HEDP rocket"
-	desc = "USE A WEEL GUN"
+	name ="\improper rakieta HEDP"
+	desc = "UŻYJ PRAWDZIWEJ SPLUWY"
 	icon_state= "84mm-hedp"
 	damage = 80
 	var/anti_armour_damage = 200
@@ -30,8 +30,8 @@
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a84mm_he
-	name ="\improper HE rocket"
-	desc = "Boom."
+	name ="\improper rakieta HE"
+	desc = "Bum."
 	icon_state = "missile"
 	damage = 30
 	ricochets_max = 0 //it's a MISSILE

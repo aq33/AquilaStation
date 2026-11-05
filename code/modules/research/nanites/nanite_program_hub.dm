@@ -1,6 +1,6 @@
 /obj/machinery/nanite_program_hub
-	name = "nanite program hub"
-	desc = "Compiles nanite programs from the techweb servers and downloads them into disks."
+	name = "centrum programów nanitów"
+	desc = "Kompiluje programy nanitów z serwerów sieci badań i zapisuje je na dyskach."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "nanite_program_hub"
 	use_power = IDLE_POWER_USE

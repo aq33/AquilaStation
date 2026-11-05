@@ -39,19 +39,19 @@ const FOOD_ICONS = {
 };
 
 const FOOD_NAMES: Record<keyof typeof FOOD_ICONS, string> = {
-  [Food.Bugs]: 'Bugs',
-  [Food.Cloth]: 'Clothing',
-  [Food.Dairy]: 'Dairy',
-  [Food.Fried]: 'Fried food',
-  [Food.Fruit]: 'Fruit',
-  [Food.Grain]: 'Grain',
-  [Food.Gross]: 'Gross food',
-  [Food.Junkfood]: 'Junk food',
-  [Food.Meat]: 'Meat',
-  [Food.Raw]: 'Raw',
-  [Food.Sugar]: 'Sugar',
-  [Food.Toxic]: 'Toxic food',
-  [Food.Vegetables]: 'Vegetables',
+  [Food.Bugs]: 'Robaki',
+  [Food.Cloth]: 'Ubrania',
+  [Food.Dairy]: 'Nabiał',
+  [Food.Fried]: 'Smażone jedzenie',
+  [Food.Fruit]: 'Owoce',
+  [Food.Grain]: 'Zboża',
+  [Food.Gross]: 'Obrzydliwe jedzenie',
+  [Food.Junkfood]: 'Śmieciowe jedzenie',
+  [Food.Meat]: 'Mięso',
+  [Food.Raw]: 'Surowe',
+  [Food.Sugar]: 'Słodycze',
+  [Food.Toxic]: 'Toksyczne jedzenie',
+  [Food.Vegetables]: 'Warzywa',
 };
 
 const IGNORE_UNLESS_LIKED: Set<Food> = new Set([
@@ -128,7 +128,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={liked_food}
           icon="heart"
-          name="Liked food"
+          name="Lubiane jedzenie"
           className="color-pink"
         />
       </Stack.Item>
@@ -137,7 +137,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={disliked_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="thumbs-down"
-          name="Disliked food"
+          name="Nielubiane jedzenie"
           className="color-red"
         />
       </Stack.Item>
@@ -146,7 +146,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={toxic_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="biohazard"
-          name="Toxic food"
+          name="Toksyczne jedzenie"
           className="color-olive"
         />
       </Stack.Item>
@@ -255,11 +255,7 @@ const SpeciesPageInner = (props: {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <Button
-          icon="arrow-left"
-          onClick={props.handleClose}
-          content="Go Back"
-        />
+        <Button icon="arrow-left" onClick={props.handleClose} content="Wróć" />
       </Stack.Item>
 
       <Stack.Item grow>
@@ -274,6 +270,7 @@ const SpeciesPageInner = (props: {
               {selectableSpecies.map(([speciesKey, species]) => {
                 return !currentSpecies.selectable ? (
                   <Button.Confirm
+                    confirmContent="Na pewno?"
                     key={speciesKey}
                     onClick={() => setSpecies(speciesKey)}
                     selected={
@@ -284,8 +281,8 @@ const SpeciesPageInner = (props: {
                         <Box>{species.name}</Box>
                         <Box textColor="red">
                           <strong>
-                            Changing species will result in the loss of ability
-                            to select {currentSpecies.name} again. Are you sure?
+                            Po zmianie rasy nie wybierzesz już ponownie rasy
+                            {currentSpecies.name}. Na pewno?
                           </strong>
                         </Box>
                       </>
@@ -332,9 +329,9 @@ const SpeciesPageInner = (props: {
                       <Box>{currentSpecies.name}</Box>
                       <Box textColor="red">
                         <strong>
-                          Disabled for new characters, but allowed by
-                          roundstart_no_hard_check. Changing species will result
-                          in the inability to select this species again.
+                          Niedostępna dla nowych postaci, ale dozwolona przez
+                          roundstart_no_hard_check. Po zmianie rasy nie
+                          wybierzesz jej już ponownie.
                         </strong>
                       </Box>
                     </>
@@ -371,13 +368,13 @@ const SpeciesPageInner = (props: {
                       }
                     >
                       <Section
-                        title="Description"
+                        title="Opis"
                         buttons={
                           !currentSpecies.selectable && (
                             <Box textColor="red">
                               <strong>
-                                Unselectable, but allowed due to your existing
-                                character.
+                                Niedostępna, ale dozwolona dla twojej
+                                istniejącej postaci.
                               </strong>
                             </Box>
                           )
@@ -386,7 +383,7 @@ const SpeciesPageInner = (props: {
                         {currentSpecies.desc}
                       </Section>
 
-                      <Section title="Features">
+                      <Section title="Cechy">
                         <SpeciesPerks perks={currentSpecies.perks} />
                       </Section>
                     </Section>
@@ -403,7 +400,7 @@ const SpeciesPageInner = (props: {
 
               {currentSpecies.lore && (
                 <Box mt={1}>
-                  <Section title="Lore">
+                  <Section title="Historia">
                     <BlockQuote>
                       {currentSpecies.lore.map((text, index) => (
                         <Box key={index} maxWidth="100%">
@@ -440,7 +437,7 @@ export const SpeciesPage = (props: { closeSpecies: () => void }) => {
             />
           );
         } else {
-          return <Box>Loading species...</Box>;
+          return <Box>Wczytywanie ras...</Box>;
         }
       }}
     />

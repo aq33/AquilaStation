@@ -16,11 +16,30 @@ export const windowOpen = (channel: string, dpi: number) => {
   Byond.sendMessage('open', { channel });
 };
 
+/** AQUILA: ponawiane próby fokusu po otwarciu, anulowane przy zamknięciu */
+const focusTimers = new Set<ReturnType<typeof setTimeout>>();
+
+export const scheduleFocus = (callback: () => void, delay: number) => {
+  const timer = setTimeout(() => {
+    focusTimers.delete(timer);
+    callback();
+  }, delay);
+  focusTimers.add(timer);
+};
+
+export const cancelFocusTimers = () => {
+  for (const timer of focusTimers) {
+    clearTimeout(timer);
+  }
+  focusTimers.clear();
+};
+
 /**
  * Resets the state of the window and hides it from user view.
  * Sending "close" logs it server side.
  */
 export const windowClose = (dpi: number) => {
+  cancelFocusTimers();
   setClosed(dpi);
   Byond.sendMessage('close');
 };
@@ -55,9 +74,12 @@ const setOpen = (dpi: number) => {
     'is-visible': true,
     size: `${Math.round(WINDOW_SIZES.width * dpi)}x${Math.round(WINDOW_SIZES.small * dpi)}`,
   });
+  // AQUILA: fokus na kontrolkę przeglądarki, inaczej BYOND zostawia go na mapie
+  // i pierwsze znaki po T trafiają w próżnię
   Byond.winset(`${Byond.windowId}.browser`, {
     'is-visible': true,
     size: `${Math.round(WINDOW_SIZES.width * dpi)}x${Math.round(WINDOW_SIZES.small * dpi)}`,
+    focus: true,
   });
 };
 

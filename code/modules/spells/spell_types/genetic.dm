@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/genetic
-	name = "Genetic"
-	desc = "This spell inflicts a set of mutations and disabilities upon the target."
+	name = "Genetyka"
+	desc = "To zaklęcie zsyła na cel zestaw mutacji i upośledzeń."
 
 	var/list/active_on = list()
 	var/list/traits = list() //disabilities

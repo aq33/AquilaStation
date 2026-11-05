@@ -4,8 +4,8 @@
 
 
 /mob/living/carbon/true_devil
-	name = "True Devil"
-	desc = "A pile of infernal energy, taking a vaguely humanoid form."
+	name = "Prawdziwy diabeł"
+	desc = "Kłąb piekielnej energii o niejasno humanoidalnym kształcie."
 	icon = 'icons/mob/32x64.dmi'
 	icon_state = "true_devil"
 	gender = NEUTER

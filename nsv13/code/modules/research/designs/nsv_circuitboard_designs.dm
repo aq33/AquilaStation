@@ -1,7 +1,7 @@
 //Mag-cat console
 /datum/design/board/fighter_launcher
-	name = "Computer Design (Mag-cat control console)"
-	desc = "Allows for the construction of a Mag-cat control console."
+	name = "Projekt komputera (konsola sterowania katapultą elektromagnetyczną)"
+	desc = "Pozwala zbudować konsolę sterowania katapultą elektromagnetyczną."
 	id = "fighter_launcher_circuit"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/gold = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/fighter_launcher
@@ -10,8 +10,8 @@
 
 //Fighter control console
 /datum/design/board/fighter_controller
-	name = "Computer Design (Fighter Control Console)"
-	desc = "Allows for the construction of a fighter control console."
+	name = "Projekt komputera (komputer kontroli myśliwców)"
+	desc = "Pozwala zbudować komputer kontroli myśliwców."
 	id = "fighter_computer_circuit"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/gold = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/fighter_controller
@@ -20,8 +20,8 @@
 
 //Ordenance computer
 /datum/design/board/ord_circuit
-	name = "Computer Design (Ordnance Computer)"
-	desc = "Allows for the construction of a ordnance monitoring console."
+	name = "Projekt komputera (konsola monitorowania uzbrojenia)"
+	desc = "Pozwala zbudować konsolę monitorowania uzbrojenia."
 	id = "ordnance_comp_circuit"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/gold = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/ordnance_computer
@@ -30,8 +30,8 @@
 
 //Broadside Packer Table
 /datum/design/board/broadside_packer
-	name = "Machine Design (Broadside Shell Packer)"
-	desc = "Allows for the construction of a broadside shell packer."
+	name = "Projekt maszyny (pakowarka pocisków burtowych)"
+	desc = "Pozwala zbudować pakowarkę pocisków burtowych."
 	id = "broadside_packer"
 	build_path = /obj/item/circuitboard/machine/broadside_shell_packer
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200)
@@ -40,8 +40,8 @@
 
 //FTL Navigation Console
 /datum/design/board/navigation
-	name = "Computer Design (FTL Navigation console)"
-	desc = "Allows for the construction of a FTL Navigation console."
+	name = "Projekt komputera (konsola nawigacji FTL)"
+	desc = "Pozwala zbudować konsolę nawigacji FTL."
 	id = "navigation_console_circuit"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/diamond = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/navigation
@@ -50,8 +50,8 @@
 
 //DRADIS Console
 /datum/design/board/dradis_console
-	name = "Computer Design (DRADIS console)"
-	desc = "Allows for the construction of a DRADIS console."
+	name = "Projekt komputera (konsola DRADIS)"
+	desc = "Pozwala zbudować konsolę DRADIS."
 	id = "dradis_console"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/diamond = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/dradis
@@ -59,8 +59,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/cargo_dradis_console
-	name = "Computer Design (Cargo Delivery console)"
-	desc = "Allows for the construction of a cargo delivery console."
+	name = "Projekt komputera (konsola dostaw ładunku)"
+	desc = "Pozwala zbudować konsolę dostaw ładunku."
 	id = "cargo_dradis_console"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/diamond = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/dradis/cargo
@@ -69,8 +69,8 @@
 
 //Helm console
 /datum/design/board/helm_circuit
-	name = "Computer Design (Helm Computer)"
-	desc = "Allows for the construction of a helm control console."
+	name = "Projekt komputera (komputer steru)"
+	desc = "Pozwala zbudować konsolę steru."
 	id = "helm_circuit"
 	materials = list(/datum/material/glass = 5000, /datum/material/copper = 500, /datum/material/gold = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/helm
@@ -79,8 +79,8 @@
 
 //TAC console
 /datum/design/board/tac_circuit
-	name = "Computer Design (Tactical Computer)"
-	desc = "Allows for the construction of a tactical control console."
+	name = "Projekt komputera (konsola taktyczna)"
+	desc = "Pozwala zbudować konsolę taktyczną."
 	id = "tactical_comp_circuit"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/gold = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/tactical_computer
@@ -89,8 +89,8 @@
 
 //Astrometrics console
 /datum/design/board/astrometrics
-	name = "Computer Design (Astrometrics computer)"
-	desc = "Allows for the construction of circuit boards used to build a new astrometrics computer."
+	name = "Projekt komputera (komputer astrometryczny)"
+	desc = "Pozwala zbudować płytki drukowane do nowego komputera astrometrycznego."
 	id = "astrometrics_console"
 	build_path = /obj/item/circuitboard/computer/astrometrics
 	category = list("Computer Boards")
@@ -98,16 +98,16 @@
 
 //Autoinjector
 /datum/design/board/autoinjector
-	name = "Machine Design (Autoinjector Printer)"
-	desc = "Allows for the construction of circuit boards used to build a new autoinjector printer"
+	name = "Projekt maszyny (drukarka autoinjektorów)"
+	desc = "Pozwala zbudować płytki drukowane do nowej drukarki autoinjektorów."
 	id = "autoinjector"
 	build_path = /obj/item/circuitboard/machine/autoinject_printer
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/refillable_chem_dispenser
-	name = "Machine Design (Refillable Chem Dispenser Board)"
-	desc = "The circuit board for a refillable chem dispenser."
+	name = "Projekt maszyny (uzupełniany dozownik chemikaliów)"
+	desc = "Płytka drukowana uzupełnianego dozownika chemikaliów."
 	id = "refillable_chem_dispenser"
 	build_path = /obj/item/circuitboard/machine/refillable_chem_dispenser
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
@@ -115,16 +115,16 @@
 
 //GLORIOUS COFFEEMAKER
 /datum/design/board/coffeemaker
-	name = "Machine Design (Coffeemaker)"
-	desc = "The circuit board for a coffeemaker."
+	name = "Projekt maszyny (ekspres do kawy)"
+	desc = "Płytka drukowana ekspresu do kawy."
 	id = "coffeemaker"
 	build_path = /obj/item/circuitboard/machine/coffeemaker
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/navbeacon
-	name = "Machine Design (Bot Navigational Beacon)"
-	desc = "The circuit board for a beacon that aids bot navigation."
+	name = "Projekt maszyny (radiolatarnia nawigacyjna botów)"
+	desc = "Płytka drukowana radiolatarni, która pomaga botom w nawigacji."
 	id = "botnavbeacon"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/machine/navbeacon
@@ -133,8 +133,8 @@
 
 // Ammo sorter circuit designs
 /datum/design/board/ammo_sorter_computer
-	name = "Ammo sorter console (circuitboard)"
-	desc = "The central control console for ammo sorters.."
+	name = "Konsola sortownika amunicji (płytka komputera)"
+	desc = "Centralna konsola sterowania sortownikami amunicji."
 	id = "ammo_sorter_computer"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/circuitboard/computer/ammo_sorter
@@ -142,8 +142,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/board/ammo_sorter
-	name = "Ammo sorter (circuitboard)"
-	desc = "A helpful storage unit that allows for mass storage of ammunition, with the ability to retrieve it all from a central console."
+	name = "Sortownik amunicji (płytka maszyny)"
+	desc = "Przydatny magazyn do masowego przechowywania amunicji. Całą zawartość można wydać z centralnej konsoli."
 	id = "ammo_sorter"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/circuitboard/machine/ammo_sorter

@@ -279,7 +279,7 @@
 /mob/living/carbon/proc/can_breathe_internals()
 	if(getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 		return TRUE
-	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS))
+	if(isclothing(wear_mask) && (wear_mask.clothing_flags & MASKINTERNALS)) // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		return TRUE
 	var/obj/item/clothing/helmet = head
 	if(istype(helmet) && (helmet.clothing_flags & HEADINTERNALS))

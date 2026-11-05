@@ -3,7 +3,7 @@
 
 /obj/item/dakimakura
 	name = "dakimakura"
-	desc = "A large pillow depicting someone in a compromising position. Featuring as many dimensions as you."
+	desc = "Duża poduszka z kimś w kompromitującej pozie. Ma tyle samo wymiarów co ty."
 	icon = 'aquila/icons/obj/dakis.dmi'
 	icon_state = "daki_base"
 	lefthand_file = 'aquila/icons/mob/inhands/items_lefthand.dmi'
@@ -63,7 +63,7 @@
 
 /obj/item/dakimakura/attack_self(mob/living/user)
 	if(!custom_name)
-		var/body_choice = tgui_input_list(user, "Pick a body.", "Dakimakura", body_choices())
+		var/body_choice = tgui_input_list(user, "Wybierz ciało.", "Dakimakura", body_choices())
 		if(!body_choice || QDELETED(src) || !user.is_holding(src))
 			return
 		set_body(body_choice)
@@ -112,4 +112,4 @@
 	custom_name = new_name
 	renamedByPlayer = TRUE
 	name = "[custom_name] [initial(name)]"
-	desc = "A large pillow depicting [custom_name] in a compromising position. Featuring as many dimensions as you."
+	desc = "Duża poduszka z postacią ([custom_name]) w kompromitującej pozie. Ma tyle samo wymiarów co ty."

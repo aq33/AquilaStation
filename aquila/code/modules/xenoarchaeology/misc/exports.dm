@@ -3,7 +3,7 @@
 */
 
 /datum/export/artifact
-	unit_name = "xenoartifact"
+	unit_name = "ksenoartefakt"
 	export_types = list(/obj/item/xenoartifact)
 
 /datum/export/artifact/get_cost(obj/item/O, allowed_categories = NONE)

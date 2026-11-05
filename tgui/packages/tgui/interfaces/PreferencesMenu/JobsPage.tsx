@@ -99,28 +99,28 @@ const PriorityButtons = (props: {
     >
       <>
         <PriorityButton
-          name="Off"
+          name="Nie"
           modifier="off"
           enabled={!priority}
           onClick={createSetPriority(null)}
         />
 
         <PriorityButton
-          name="Low"
+          name="Niski"
           modifier="low"
           enabled={priority === JobPriority.Low}
           onClick={createSetPriority(JobPriority.Low)}
         />
 
         <PriorityButton
-          name="Med"
+          name="Średni"
           modifier="medium"
           enabled={priority === JobPriority.Medium}
           onClick={createSetPriority(JobPriority.Medium)}
         />
 
         <PriorityButton
-          name="High"
+          name="Wysoki"
           modifier="high"
           enabled={priority === JobPriority.High}
           onClick={createSetPriority(JobPriority.High)}
@@ -160,7 +160,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>{hoursNeeded}h</b> as {experience_type}
+          <b>{hoursNeeded} godz.</b> jako {experience_type}
         </Stack.Item>
       </Stack>
     );
@@ -168,7 +168,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>{daysLeft}</b> day{daysLeft === 1 ? '' : 's'} left
+          Pozostało dni: <b>{daysLeft}</b>
         </Stack.Item>
       </Stack>
     );
@@ -176,7 +176,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>Banned</b>
+          <b>Ban</b>
         </Stack.Item>
       </Stack>
     );
@@ -278,15 +278,15 @@ const JoblessRoleDropdown = (props) => {
 
   const options = [
     {
-      displayText: `Join as ${data.overflow_role} if unavailable`,
+      displayText: `Gdy niedostępne, dołącz jako: ${data.overflow_role}`,
       value: JoblessRole.BeOverflow,
     },
     {
-      displayText: `Join as a random job if unavailable`,
+      displayText: `Gdy niedostępne, dołącz w losowym zawodzie`,
       value: JoblessRole.BeRandomJob,
     },
     {
-      displayText: `Return to lobby if unavailable`,
+      displayText: `Gdy niedostępne, wróć do lobby`,
       value: JoblessRole.ReturnToLobby,
     },
   ];
@@ -310,8 +310,11 @@ const JoblessRoleDropdown = (props) => {
 const ClearJobsButton = (_) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
-    <Button.Confirm onClick={() => act('clear_job_preferences')}>
-      Clear All
+    <Button.Confirm
+      confirmContent="Na pewno?"
+      onClick={() => act('clear_job_preferences')}
+    >
+      Wyczyść wszystko
     </Button.Confirm>
   );
 };

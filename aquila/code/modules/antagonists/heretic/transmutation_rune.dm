@@ -1,6 +1,6 @@
 /// The heretic's rune, which they use to complete transmutation rituals.
 /obj/effect/heretic_rune
-	name = "transmutation rune"
+	name = "runa transmutacji"
 	desc = "Płynny krąg kształtów i run wyryty w podłodze, wypełniony gęstym, czarnym, smolistym płynem. Ten wygląda na całkiem mały."
 	icon = 'aquila/icons/obj/antags/cult/rune.dmi'
 	icon_state = "main1"

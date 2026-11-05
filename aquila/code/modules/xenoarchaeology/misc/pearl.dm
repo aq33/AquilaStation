@@ -1,5 +1,5 @@
 /obj/item/sticker/trait_pearl
-	name = "xenopearl"
+	name = "ksenoperła"
 	icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
 	icon_state = "trait_pearl"
 	w_class = WEIGHT_CLASS_TINY

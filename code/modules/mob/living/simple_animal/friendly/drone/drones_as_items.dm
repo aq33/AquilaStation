@@ -50,8 +50,8 @@
 	if(!SSticker.mode)
 		to_chat(user, "Nie możesz zostać dronem przed rozpoczęciem gry.")
 		return
-	var/be_drone = alert("Zostać dronem? (Uwaga: nie będzie można cię sklonować!)",,"Yes","No")
-	if(be_drone != "Yes" || QDELETED(src) || !isobserver(user))
+	var/be_drone = alert("Zostać dronem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+	if(be_drone != "Tak" || QDELETED(src) || !isobserver(user))
 		return
 	var/mob/living/simple_animal/drone/D = new mob_type(get_turf(loc))
 	if(!D.default_hatmask && seasonal_hats && possible_seasonal_hats.len)
@@ -60,6 +60,6 @@
 		D.equip_to_slot_or_del(new_hat, ITEM_SLOT_HEAD)
 	D.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 	D.key = user.key
-	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] przejmuje kontrolę nad: [src] w [AREACOORD(src)].")
 	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")
 	qdel(src)

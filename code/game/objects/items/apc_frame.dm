@@ -81,8 +81,8 @@
 
 // APC HULL
 /obj/item/wallframe/apc
-	name = "\improper APC frame"
-	desc = "Used for repairing or building APCs."
+	name = "\improper rama APC"
+	desc = "Służy do naprawy i budowy APC."
 	icon_state = "apc"
 	result_path = /obj/machinery/power/apc
 	inverse = 1
@@ -111,7 +111,7 @@
 
 
 /obj/item/electronics
-	desc = "Looks like a circuit. Probably is."
+	desc = "Wygląda jak układ elektroniczny. Pewnie nim jest."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "door_electronics"
 	item_state = "electronic"

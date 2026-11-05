@@ -3,8 +3,8 @@ Prismatic extracts:
 	Becomes an infinite-use paintbrush.
 */
 /obj/item/slimecross/prismatic
-	name = "prismatic extract"
-	desc = "It's constantly wet with a semi-transparent, colored goo."
+	name = "pryzmatyczny ekstrakt"
+	desc = "Jest wciąż mokry od półprzezroczystej, kolorowej mazi."
 	effect = "prismatic"
 	effect_desc = "Po użyciu maluje wszystko, w co trafi."
 	icon_state = "prismatic"
@@ -20,7 +20,7 @@ Prismatic extracts:
 
 /obj/item/slimecross/prismatic/grey/
 	colour = "grey"
-	desc = "It's constantly wet with a pungent-smelling, clear chemical."
+	desc = "Jest wciąż mokry od ostro pachnącej, przezroczystej substancji."
 
 /obj/item/slimecross/prismatic/grey/afterattack(turf/target, mob/user, proximity)
 	. = ..()

@@ -310,6 +310,8 @@
 		delta_chem_factor = min_rate
 	//Normalise to multiproducts
 	delta_chem_factor = round(delta_chem_factor / product_ratio, CHEMICAL_VOLUME_ROUNDING)
+	// AQUILA - the last step takes exactly what is left: rounding to 0.01 could take more of one reagent than the others (leftover hydrogen in ammonia) or stall at 0
+	delta_chem_factor = min(max(delta_chem_factor, CHEMICAL_VOLUME_ROUNDING), multiplier)
 	if(delta_chem_factor <= 0)
 		to_delete = TRUE
 		return

@@ -2,8 +2,8 @@
 // Contains NSV13 exclusive borg upgrades.
 
 /obj/item/borg/upgrade/exp_welder
-	name = "Experimental cyborg welder"
-	desc = "A experimental welder replacement for the engieborg's standard welder."
+	name = "eksperymentalna spawarka cyborga"
+	desc = "Eksperymentalny zamiennik standardowej spawarki inżynieryjnego cyborga."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/engineering

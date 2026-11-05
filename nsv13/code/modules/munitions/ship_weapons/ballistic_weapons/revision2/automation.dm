@@ -1,7 +1,7 @@
 //Allows you to fully automate missile construction
 /obj/machinery/missile_builder
-	name = "\improper Seegson model 'Ford' robotic autowrench"
-	desc = "An advanced robotic arm that can be arrayed with other such devices to form an assembly line for guided munition production. Swipe it with your ID to access maintenance mode options (only on some models!)"
+	name = "\improper zrobotyzowany automatyczny klucz Seegson model „Ford”"
+	desc = "Zaawansowane ramię robotyczne, które razem z innymi takimi urządzeniami tworzy linię montażową pocisków kierowanych. Przeciągnij przez nie kartę ID, by otworzyć opcje trybu serwisowego (tylko w niektórych modelach!)."
 	icon = 'nsv13/icons/obj/munitions/assembly.dmi'
 	icon_state = "assemblybase"
 	circuit = /obj/item/circuitboard/machine/missile_builder
@@ -43,30 +43,30 @@
 	update_target_turf() // AQ EDIT
 
 /obj/item/stack/conveyor/slow
-	name = "Slow conveyor assembly"
+	name = "zestaw wolnego taśmociągu"
 	conveyor_type = /obj/machinery/conveyor/slow
 	merge_type = /obj/item/stack/conveyor/slow
 	color = list(1,1,0,0, 0,0,0,0, 0,0.1,1,0, 0,0,0,1, 0,0,0,0) //Yellow Belt
 
 /obj/machinery/conveyor/slow
-	name = "Slow conveyor"
+	name = "wolny taśmociąg"
 	subsystem_type = /datum/controller/subsystem/machines
 	stack_type = /obj/item/stack/conveyor/slow //What does this conveyor drop when decon'd?
 	conveyor_speed = 2 SECONDS
 	color = list(1,1,0,0, 0,0,0,0, 0,0.1,1,0, 0,0,0,1, 0,0,0,0) //Yellow Belt
 
 /obj/machinery/missile_builder/wirer
-	name = "Seegson model 'Ford' robotic autowirer"
+	name = "zrobotyzowana automatyczna okablowywarka Seegson model „Ford”"
 	target_states = list(8)
 	circuit = /obj/item/circuitboard/machine/missile_builder/wirer
 
 /obj/machinery/missile_builder/welder
-	name = "Seegson model 'Ford' robotic autowelder"
+	name = "zrobotyzowana automatyczna spawarka Seegson model „Ford”"
 	target_states = list(10)
 	circuit = /obj/item/circuitboard/machine/missile_builder/welder
 
 /obj/machinery/missile_builder/screwdriver
-	name = "Seegson model 'Ford' robotic bolt driver"
+	name = "zrobotyzowana automatyczna wkrętarka Seegson model „Ford”"
 	target_states = list(3,5)
 	circuit = /obj/item/circuitboard/machine/missile_builder/screwdriver
 
@@ -129,7 +129,7 @@
 		if(/obj/item/ship_weapon/ammunition/missile/missile_casing)
 			var/obj/item/ship_weapon/ammunition/missile/missile_casing/missile_target = entering
 			if(!(missile_target.state in target_states))
-				visible_message("<span class='notice'>[src] sighs.</span>")
+				visible_message("<span class='notice'>[src] wzdycha.</span>")
 				if(world.time >= next_fail_sound)
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 					next_fail_sound = world.time + 0.5 SECONDS
@@ -144,7 +144,7 @@
 		if(/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing)
 			var/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing/torpedo_target = entering
 			if(!(torpedo_target.state in target_states))
-				visible_message("<span class='notice'>[src] sighs.</span>")
+				visible_message("<span class='notice'>[src] wzdycha.</span>")
 				if(world.time >= next_fail_sound)
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 					next_fail_sound = world.time + 0.5 SECONDS
@@ -192,7 +192,7 @@
 	var/is_missile = istype(entering, /obj/item/ship_weapon/ammunition/missile/missile_casing)
 	var/obj/item/ship_weapon/parts/missile/part = find_part_for(casing, is_missile ? missile_target.state : torpedo_target.state)
 	if(!part)
-		visible_message("<span class='notice'>[src] sighs.</span>")
+		visible_message("<span class='notice'>[src] wzdycha.</span>")
 		if(world.time >= next_fail_sound)
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 			next_fail_sound = world.time + 0.5 SECONDS
@@ -284,9 +284,9 @@
 	active_arm_timer_id = null
 
 /obj/machinery/missile_builder/assembler
-	name = "Robotic Missile Part Applicator"
+	name = "zrobotyzowany montażysta części rakiet"
 	arm_icon_state = "assembler2"
-	desc = "An assembly arm which can slot a multitude of missile components into casings for you! Swipe it with an ID to release its stored components."
+	desc = "Ramię montażowe, które za ciebie wkłada najróżniejsze podzespoły rakiet do obudów! Przeciągnij przez nie kartę ID, by wydało zgromadzone części."
 	req_one_access = list(ACCESS_MUNITIONS)
 	circuit = /obj/item/circuitboard/machine/missile_builder/assembler
 	///Currently loaded missile components.
@@ -359,8 +359,8 @@
 				store_part(P)
 
 /datum/design/board/ammo_sorter_computer
-	name = "Ammo sorter console (circuitboard)"
-	desc = "The central control console for ammo sorters.."
+	name = "Projekt komputera (konsola sortownika amunicji)"
+	desc = "Centralna konsola sterowania sortownikami amunicji."
 	id = "ammo_sorter_computer"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/circuitboard/computer/ammo_sorter
@@ -368,8 +368,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/board/ammo_sorter
-	name = "Ammo sorter (circuitboard)"
-	desc = "A helpful storage unit that allows for mass storage of ammunition, with the ability to retrieve it all from a central console."
+	name = "Projekt maszyny (sortownik amunicji)"
+	desc = "Pomocny magazyn, który mieści mnóstwo amunicji i pozwala wydawać ją z centralnej konsoli."
 	id = "ammo_sorter"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/circuitboard/machine/ammo_sorter
@@ -377,11 +377,11 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /obj/item/circuitboard/computer/ammo_sorter
-	name = "ammo sorter console (circuitboard)"
+	name = "konsola sortownika amunicji (płytka komputera)"
 	build_path = /obj/machinery/computer/ammo_sorter
 
 /obj/item/circuitboard/machine/ammo_sorter
-	name = "ammo sorter (circuitboard)"
+	name = "sortownik amunicji (płytka maszyny)"
 	req_components = list(/obj/item/stock_parts/matter_bin = 3)
 	build_path = /obj/machinery/ammo_sorter
 	needs_anchored = FALSE

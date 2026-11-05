@@ -3,13 +3,31 @@
 // blood and total damage. Auri's pain, consciousness and injury trees don't exist here, so the data comes from
 // plain damage, our wounds, bleeding, organs, traumas and diseases.
 // Health mode on carbons opens the window; chemical mode, simple mobs and clumsy users keep the old chat scan.
+// The button in the top right corner of the window (or alt-click) switches the analyzer to the old text mode and back.
 
 /obj/item/healthanalyzer
 	/// The mob shown in the window
 	var/datum/weakref/ui_target
+	/// Old chat scan instead of the window
+	var/text_mode = FALSE
+
+/obj/item/healthanalyzer/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Alt+klik przełącza między oknem a trybem tekstowym (teraz: [text_mode ? "tekst" : "okno"]).</span>"
+
+/obj/item/healthanalyzer/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return ..()
+	toggle_text_mode(user)
+
+/obj/item/healthanalyzer/proc/toggle_text_mode(mob/user)
+	text_mode = !text_mode
+	to_chat(user, "<span class='notice'>Przełączasz [src] na [text_mode ? "tryb tekstowy" : "okno"].</span>")
+	if(text_mode)
+		SStgui.close_uis(src)
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
-	if(scanmode != 0 || !iscarbon(M) || HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB))
+	if(text_mode || scanmode != 0 || !iscarbon(M) || HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB))
 		return ..()
 	flick("[icon_state]-scan", src)
 	playsound(src, 'sound/effects/fastbeep.ogg', 10)
@@ -42,6 +60,11 @@
 	var/mob/living/carbon/target = ui_target?.resolve()
 	if(action == "print_chat" && istype(target))
 		healthscan(usr, target, advanced = advanced)
+		return TRUE
+	if(action == "text_mode")
+		toggle_text_mode(usr)
+		if(istype(target))
+			healthscan(usr, target, advanced = advanced)
 		return TRUE
 
 /proc/aq_injury(name, heal_text, damage = null, severity = 2)
@@ -88,7 +111,7 @@
 	else if(heart && !heart.beating)
 		body += list(aq_injury("Zatrzymanie akcji serca", "Defibrylacja"))
 	if(target.is_bleeding())
-		body += list(aq_injury("Krwawienie", "Gaza, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
+		body += list(aq_injury("Krwawienie", "Bandaż, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
 	else if(target.is_bandaged())
 		body += list(aq_injury("Opatrzone krwawienie", "Goi się samo", null, 1))
 	if(target.blood_volume < BLOOD_VOLUME_SAFE && !HAS_TRAIT(target, TRAIT_NO_BLOOD))
@@ -96,13 +119,13 @@
 	if(target.getToxLoss())
 		body += list(aq_injury("Toksyny", "Węgiel aktywowany, antytoksyny", round(target.getToxLoss(), 0.1)))
 	if(target.getOxyLoss())
-		body += list(aq_injury("Niedotlenienie", "Tlen, salbutamol, dexalin", round(target.getOxyLoss(), 0.1)))
+		body += list(aq_injury("Niedotlenienie", "Tlen, salbutamol, deksalina", round(target.getOxyLoss(), 0.1)))
 	if(target.getCloneLoss())
-		body += list(aq_injury("Uszkodzenia komórkowe", "Kriokomora, synthflesh", round(target.getCloneLoss(), 0.1)))
+		body += list(aq_injury("Uszkodzenia komórkowe", "Kriokomora, syntetyczne ciało", round(target.getCloneLoss(), 0.1)))
 	if(advanced && target.radiation)
-		body += list(aq_injury("Napromieniowanie", "Pentetic acid, potas jodowy", target.radiation))
+		body += list(aq_injury("Napromieniowanie", "Kwas pentetowy, jodek potasu", target.radiation))
 	if(HAS_TRAIT(target, TRAIT_HUSK))
-		body += list(aq_injury("Wysuszone ciało (husk)", "Synthflesh, leczenie oparzeń"))
+		body += list(aq_injury("Wysuszone ciało (husk)", "Syntetyczne ciało, leczenie oparzeń"))
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT)
@@ -141,9 +164,9 @@
 			part += list(aq_injury("Brak kończyny", "Przyszycie kończyny albo proteza"))
 		else
 			if(limb.brute_dam)
-				part += list(aq_injury("Obrażenia fizyczne", "Nici, bicaridine, styptic", round(limb.brute_dam, 0.1)))
+				part += list(aq_injury("Obrażenia fizyczne", "Nici, bikarydyna, proszek hemostatyczny", round(limb.brute_dam, 0.1)))
 			if(limb.burn_dam)
-				part += list(aq_injury("Oparzenia", "Siatka, kelotane, silver sulfadiazine", round(limb.burn_dam, 0.1)))
+				part += list(aq_injury("Oparzenia", "Siatka, kelotan, sulfadiazyna srebra", round(limb.burn_dam, 0.1)))
 			for(var/datum/wound/wound as anything in limb.wounds)
 				part += list(aq_injury(wound.name, wound.treat_text, null, wound.treated ? 1 : 2))
 			for(var/obj/item/embedded as anything in limb.embedded_objects)

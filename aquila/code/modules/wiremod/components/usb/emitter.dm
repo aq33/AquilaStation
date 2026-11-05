@@ -2,7 +2,7 @@
  * USB wiremod interface for emitter machines
  */
 /obj/item/circuit_component/emitter
-	display_name = "Emitter"
+	display_name = "Emiter"
 	desc = "Pozwala ręcznie strzelać z emitera i sprawdzać jego gotowość. Emiter musi być odblokowany, by użyć sygnału strzału."
 
 	///Manually trigger the emitter

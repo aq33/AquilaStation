@@ -3,8 +3,8 @@
 // Kept in the game for the sake of compatability and smaller ships.
 
 /obj/machinery/computer/ship/ftl_computer
-	name = "\improper Seegson FTL drive computer"
-	desc = "A supercomputer which is capable of calculating incalculably complex vectors which are interpreted into a simplified 4-dimensional course through which ships are able to travel. It takes some time to spool up between uses"
+	name = "\improper komputer napędu FTL Seegson"
+	desc = "Superkomputer, który oblicza nieobliczalnie złożone wektory i przekłada je na uproszczony, czterowymiarowy kurs, którym mogą podróżować okręty. Między użyciami potrzebuje trochę czasu na rozgrzanie."
 	icon = 'nsv13/goonstation/icons/ftlcomp.dmi'
 	icon_state = "ftl_off"
 	bound_height = 96
@@ -66,8 +66,8 @@
 		if(1)
 			return
 		if(2)
-			name = "quantum slipstream drive computer"
-			desc = "A supercomputer using absolutely cutting edge wormhole research. It is able to project a streamlined field of constrained wormhole particles to cut through bluespace cleanly. This drive eliminates the lengthy FTL charge up process, and can see a ship jump almost instantaneously, after it generates a suitable wormhole."
+			name = "komputer napędu kwantowego strumienia"
+			desc = "Superkomputer oparty na najnowocześniejszych badaniach nad tunelami czasoprzestrzennymi. Rzutuje opływowe pole uwięzionych cząstek tunelu, które czysto przecina bluespace. Ten napęd eliminuje długie ładowanie FTL i pozwala okrętowi skoczyć niemal natychmiast po wytworzeniu odpowiedniego tunelu."
 			ftl_loop = 'nsv13/sound/effects/ship/slipstream.ogg'
 			ftl_start = 'nsv13/sound/effects/ship/slipstream_start.ogg'
 			ftl_startup_time = 6 SECONDS
@@ -75,8 +75,8 @@
 			jump_speed_factor = 5
 
 		if(3) //Admin only so I can test things more easily, or maybe dropped from an EXTREMELY RARE, copyright free ruin.
-			name = "warp drive computer"
-			desc = "A computer that is impossibly advanced for this time period. It uses unknown technology harvested by unknown means to accelerate a starship to unheard of speeds. Ardata operatives have as yet been unable to ascertain how it functions, but field testing shows that this eliminates the need for spooling entirely in favour of distorting space."
+			name = "komputer napędu warp"
+			desc = "Komputer niemożliwie zaawansowany jak na te czasy. Wykorzystuje nieznaną technologię pozyskaną nieznanymi sposobami, by rozpędzać okręty do niesłychanych prędkości. Agentom Ardaty nie udało się jeszcze ustalić, jak działa, ale testy w terenie pokazują, że zamiast rozgrzewania po prostu zakrzywia przestrzeń."
 			ftl_loop = 'nsv13/sound/effects/ship/warp_loop.ogg'
 			ftl_start = 'nsv13/sound/effects/ship/warp.ogg'
 			ftl_exit = 'nsv13/sound/effects/ship/warp_exit.ogg'
@@ -101,7 +101,7 @@ Preset classes of FTL drive with pre-programmed behaviours
 	tier = 3
 
 /obj/machinery/computer/ship/ftl_computer/syndicate
-	name = "\improper Syndicate FTL computer"
+	name = "\improper komputer FTL Syndykatu"
 //	jump_speed_factor = 2 //Twice as fast as NT's shit so they can hunt the ship down or get ahead of them to set up an ambush of raptors
 	radio_key = /obj/item/encryptionkey/syndicate
 	radio_channel = RADIO_CHANNEL_SYNDICATE
@@ -109,7 +109,7 @@ Preset classes of FTL drive with pre-programmed behaviours
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/ship/ftl_computer/mining
-	name = "mining FTL computer"
+	name = "górniczy komputer FTL"
 	radio_key = /obj/item/encryptionkey/headset_mining
 	radio_channel = RADIO_CHANNEL_SUPPLY
 	req_access = null

@@ -3,7 +3,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team					//An alternative to 'owner': a team. Use this when writing new code.
-	var/name = "generic objective" 		//Name for admin prompts
+	var/name = "ogólny cel" 		//Name for admin prompts
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/team_explanation_text			//For when there are multiple owners.
 	var/datum/mind/target = null		//If they are focused on a particular person.
@@ -48,13 +48,13 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(target?.current)
 		def_value = target.current
 
-	var/mob/new_target = input(admin,"Select target:", "Objective target", def_value) as null|anything in (sortNames(possible_targets) | list("Free objective","Random"))
+	var/mob/new_target = input(admin,"Wybierz cel:", "Cel zadania", def_value) as null|anything in (sortNames(possible_targets) | list("Cel dowolny","Losowy"))
 	if (!new_target)
 		return
 
-	if (new_target == "Free objective")
+	if (new_target == "Cel dowolny")
 		set_target(null)
-	else if (new_target == "Random")
+	else if (new_target == "Losowy")
 		find_target()
 	else
 		set_target(new_target.mind)
@@ -685,21 +685,21 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items
-	var/new_target = input(admin,"Select target:", "Objective target", steal_target) as null|anything in sortNames(possible_items_all)+"custom"
+	var/new_target = input(admin,"Wybierz cel:", "Cel zadania", steal_target) as null|anything in sortNames(possible_items_all)+"własny"
 	if (!new_target)
 		return
 
-	if (new_target == "custom") //Can set custom items.
-		var/custom_path = input(admin,"Wyszukaj typ przedmiotu docelowego:","Type") as null|text
+	if (new_target == "własny") //Can set custom items.
+		var/custom_path = input(admin,"Wyszukaj typ przedmiotu docelowego:","Typ") as null|text
 		if (!custom_path)
 			return
 		var/obj/item/custom_target = pick_closest_path(custom_path, make_types_fancy(subtypesof(/obj/item)))
 		var/custom_name = initial(custom_target.name)
-		custom_name = stripped_input(admin,"Enter target name:", "Objective target", custom_name)
+		custom_name = stripped_input(admin,"Podaj nazwę celu:", "Cel zadania", custom_name)
 		if (!custom_name)
 			return
 		steal_target = custom_target
-		explanation_text = "Steal [custom_name]."
+		explanation_text = "Ukradnij [custom_name]."
 
 	else
 		set_steal_target(new_target)
@@ -818,7 +818,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return (captured_amount >= target_amount) || ..()
 
 /datum/objective/capture/admin_edit(mob/admin)
-	var/count = input(admin,"Ile mobów schwytać?","capture",target_amount) as num|null
+	var/count = input(admin,"Ile mobów schwytać?","Uprowadzenie",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -868,7 +868,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Pochłoń [target_amount] kompatybilnych genów."
 
 /datum/objective/absorb/admin_edit(mob/admin)
-	var/count = input(admin,"Ile osób wchłonąć?","absorb",target_amount) as num|null
+	var/count = input(admin,"Ile osób wchłonąć?","Pochłonięcie",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -947,7 +947,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/admin_edit(mob/admin)
 	var/list/possible_targets = active_ais(1)
 	if(possible_targets.len)
-		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in sortNames(possible_targets)
+		var/mob/new_target = input(admin,"Wybierz cel:", "Cel zadania") as null|anything in sortNames(possible_targets)
 		set_target(new_target.mind)
 	else
 		to_chat(admin, "Brak aktywnych SI z umysłami")
@@ -1016,7 +1016,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	murderbone_flag = TRUE
 
 /datum/objective/custom/admin_edit(mob/admin)
-	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)
+	var/expl = stripped_input(admin, "Własny cel:", "Cel", explanation_text)
 	if(expl)
 		explanation_text = expl
 

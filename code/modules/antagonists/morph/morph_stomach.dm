@@ -1,5 +1,5 @@
 /datum/morph_stomach
-	var/name = "morph stomach"
+	var/name = "żołądek morfa"
 	var/mob/living/simple_animal/hostile/morph/morph
 	var/list/base64_cache = list()
 	var/list/favorites = list()
@@ -138,7 +138,7 @@
 					return TRUE
 
 /datum/action/innate/morph_stomach
-	name = "Stomach Contents"
+	name = "Zawartość żołądka"
 	icon_icon = 'icons/mob/animal.dmi'
 	button_icon_state = "morph"
 	var/datum/morph_stomach/morph_stomach

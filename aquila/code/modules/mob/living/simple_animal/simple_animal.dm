@@ -18,8 +18,8 @@
 	if(!SSticker.mode)
 		to_chat(user, "Nie możesz zostać [src] przed rozpoczęciem gry.")
 		return
-	var/be_mob = alert("Zostać [src]? (Uwaga: nie będzie można cię sklonować!)",,"Yes","No")
-	if(be_mob == "No" || QDELETED(src) || !isobserver(user) || src.mind)
+	var/be_mob = alert("Zostać [src]? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+	if(be_mob == "Nie" || QDELETED(src) || !isobserver(user) || src.mind)
 		return
 
 	src.should_talk = FALSE
@@ -28,5 +28,5 @@
 	sentience_act() // prevent weirdness such as AI still doing its thing
 	src.stop_automated_movement = TRUE // bo sie borowik rusza
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] przejmuje: [src] w [AREACOORD(src)].")
 	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")

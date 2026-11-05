@@ -41,5 +41,5 @@
 	list_reagents = list(/datum/reagent/consumable/castor_oil = 30)
 
 /obj/item/reagent_containers/glass/bottle/pr_373_bicaridine
-	name = "bikaridyna"
+	name = "bikarydyna"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 30)

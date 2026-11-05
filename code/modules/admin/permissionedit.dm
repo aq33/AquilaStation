@@ -1,7 +1,7 @@
 /client/proc/edit_admin_permissions()
 	set category = "Admin"
 	set name = "Permissions Panel"
-	set desc = "Edit admin permissions"
+	set desc = "Edytuj uprawnienia adminów"
 	if(!check_rights(R_PERMISSIONS))
 		return
 	usr.client.holder.edit_admin_permissions()
@@ -222,11 +222,11 @@
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje edytować uprawnienia adminów bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Zablokowano edycję adminów: wykryto Advanced ProcCall.</span>")
 		return
 	var/admin_key = href_list["key"]
 	var/admin_ckey = ckey(admin_key)
@@ -239,25 +239,25 @@
 		skip = TRUE
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
 		if(admin_ckey in GLOB.protected_admins)
-			to_chat(usr, "<span class='admin prefix'>Editing the rank of this admin is blocked by server configuration.</span>")
+			to_chat(usr, "<span class='admin prefix'>Konfiguracja serwera blokuje edycję rangi tego admina.</span>")
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
 		if(D.rank in GLOB.protected_ranks)
-			to_chat(usr, "<span class='admin prefix'>Editing the flags of this rank is blocked by server configuration.</span>")
+			to_chat(usr, "<span class='admin prefix'>Konfiguracja serwera blokuje edycję flag tej rangi.</span>")
 			return
 	if(CONFIG_GET(flag/load_legacy_ranks_only) && (task == "add" || task == "rank" || task == "permissions"))
-		to_chat(usr, "<span class='admin prefix'>Database rank loading is disabled, only temporary changes can be made to a rank's permissions and permanently creating a new rank is blocked.</span>")
+		to_chat(usr, "<span class='admin prefix'>Wczytywanie rang z bazy danych jest wyłączone. Uprawnienia rangi można zmienić tylko tymczasowo, a trwałe tworzenie nowej rangi jest zablokowane.</span>")
 		legacy_only = TRUE
 	if(check_rights(R_DBRANKS, FALSE))
 		if(!skip)
 			if(!SSdbcore.Connect())
-				to_chat(usr, "<span class='danger'>Unable to connect to database, changes are temporary only.</span>")
+				to_chat(usr, "<span class='danger'>Nie można połączyć się z bazą danych, zmiany będą tylko tymczasowe.</span>")
 				use_db = FALSE
 			else
-				use_db = alert("Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", "Permanent", "Temporary", "Cancel")
-				if(use_db == "Cancel" || !use_db)
+				use_db = alert("Trwałe zmiany są zapisywane w bazie danych na kolejne rundy, a tymczasowe dotyczą tylko obecnej rundy", "Trwale czy tymczasowo?", "Trwale", "Tymczasowo", "Anuluj")
+				if(use_db == "Anuluj" || !use_db)
 					return
-				if(use_db == "Permanent")
+				if(use_db == "Trwale")
 					use_db = TRUE
 				else
 					use_db = FALSE
@@ -270,7 +270,7 @@
 		if(!D)
 			return
 		if((task != "sync") && !check_if_greater_rights_than_holder(D))
-			message_admins("[key_name_admin(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
+			message_admins("[key_name_admin(usr)] próbuje zmienić rangę [admin_key] bez wystarczających uprawnień.")
 			log_admin("[key_name(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
 			return
 	switch(task)
@@ -295,18 +295,18 @@
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to add an admin without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje dodać admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to add an admin without sufficient rights.")
 		return
 	if(admin_ckey)
 		. = admin_ckey
 	else
-		admin_key = capped_input(usr, "New admin's key","Admin key")
+		admin_key = capped_input(usr, "Klucz nowego admina","Klucz admina")
 		. = ckey(admin_key)
 	if(!.)
 		return FALSE
 	if(!admin_ckey && (. in GLOB.admin_datums+GLOB.deadmins))
-		to_chat(usr, "<span class='danger'>[admin_key] is already an admin.</span>")
+		to_chat(usr, "<span class='danger'>[admin_key] już jest adminem.</span>")
 		return FALSE
 	if(use_db)
 		//if an admin exists without a datum they won't be caught by the above
@@ -319,7 +319,7 @@
 			return FALSE
 		if(query_admin_in_db.NextRow())
 			qdel(query_admin_in_db)
-			to_chat(usr, "<span class='danger'>[admin_key] already listed in admin database. Check the Management tab if they don't appear in the list of admins.</span>")
+			to_chat(usr, "<span class='danger'>[admin_key] już jest w bazie adminów. Jeśli nie widać go na liście adminów, sprawdź zakładkę Zarządzanie.</span>")
 			return FALSE
 		qdel(query_admin_in_db)
 		var/datum/DBQuery/query_add_admin = SSdbcore.NewQuery(
@@ -341,15 +341,15 @@
 
 /datum/admins/proc/remove_admin(admin_ckey, admin_key, use_db, datum/admins/D)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to remove an admin without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje usunąć admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to remove an admin without sufficient rights.")
 		return
-	if(alert("Are you sure you want to remove [admin_ckey]?","Confirm Removal","Do it","Cancel") == "Do it")
+	if(alert("Na pewno chcesz usunąć [admin_ckey]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to")
 		GLOB.admin_datums -= admin_ckey
 		GLOB.deadmins -= admin_ckey
 		if(D)
 			D.disassociate()
-		var/m1 = "[key_name_admin(usr)] removed [admin_key] from the admins list [use_db ? "permanently" : "temporarily"]"
+		var/m1 = "[key_name_admin(usr)] [use_db ? "trwale" : "tymczasowo"] usuwa [admin_key] z listy adminów"
 		var/m2 = "[key_name(usr)] removed [admin_key] from the admins list [use_db ? "permanently" : "temporarily"]"
 		if(use_db)
 			var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery(
@@ -376,13 +376,13 @@
 	if(!D || !D.deadmined)
 		return
 	D.activate()
-	message_admins("[key_name_admin(usr)] forcefully readmined [admin_key]")
+	message_admins("[key_name_admin(usr)] siłą przywraca uprawnienia admina: [admin_key]")
 	log_admin("[key_name(usr)] forcefully readmined [admin_key]")
 
 /datum/admins/proc/force_deadmin(admin_key, datum/admins/D)
 	if(!D || D.deadmined)
 		return
-	message_admins("[key_name_admin(usr)] forcefully deadmined [admin_key]")
+	message_admins("[key_name_admin(usr)] siłą odbiera uprawnienia admina: [admin_key]")
 	log_admin("[key_name(usr)] forcefully deadmined [admin_key]")
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
@@ -390,25 +390,25 @@
 	to_chat(owner, "<span class='interface'>Jesteś teraz zwykłym graczem.</span>")
 	var/old_owner = owner
 	deactivate()
-	message_admins("[old_owner] deadmined via auto-deadmin config.")
+	message_admins("[old_owner] traci uprawnienia admina przez konfigurację auto-deadmin.")
 	log_admin("[old_owner] deadmined via auto-deadmin config.")
 	return TRUE
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to change an admin's rank without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje zmienić rangę admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to change an admin's rank without sufficient rights.")
 		return
 	var/datum/admin_rank/R
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
-		rank_names += "*New Rank*"
+		rank_names += "*Nowa ranga*"
 	for(R in GLOB.admin_ranks)
 		if((R.rights & usr.client.holder.rank.can_edit_rights) == R.rights)
 			rank_names[R.name] = R
-	var/new_rank = input("Please select a rank", "New rank") as null|anything in rank_names
-	if(new_rank == "*New Rank*")
-		new_rank = capped_input(usr, "Please input a new rank", "New custom rank")
+	var/new_rank = input("Wybierz rangę", "Nowa ranga") as null|anything in rank_names
+	if(new_rank == "*Nowa ranga*")
+		new_rank = capped_input(usr, "Wpisz nową rangę", "Nowa własna ranga")
 	if(!new_rank)
 		return
 	R = rank_names[new_rank]
@@ -418,7 +418,7 @@
 		else
 			R = new(new_rank) //blank new admin_rank
 		GLOB.admin_ranks += R
-	var/m1 = "[key_name_admin(usr)] edited the admin rank of [admin_key] to [new_rank] [use_db ? "permanently" : "temporarily"]"
+	var/m1 = "[key_name_admin(usr)] [use_db ? "trwale" : "tymczasowo"] zmienia rangę admina [admin_key] na [new_rank]"
 	var/m2 = "[key_name(usr)] edited the admin rank of [admin_key] to [new_rank] [use_db ? "permanently" : "temporarily"]"
 	if(use_db)
 		//if a player was tempminned before having a permanent change made to their rank they won't yet be in the db
@@ -491,19 +491,19 @@
 
 /datum/admins/proc/change_admin_flags(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to edit admin flags without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje zmienić flagi admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to edit admin flags without sufficient rights.")
 		return
-	var/new_flags = input_bitfield(usr, "Include permission flags<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
+	var/new_flags = input_bitfield(usr, "Flagi uprawnień do nadania<br>[use_db ? "Dotyczy WSZYSTKICH adminów z tą rangą." : "Dotyczy tylko obecnego admina: [admin_key]"]", "admin_flags", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
 	if(isnull(new_flags))
 		return
-	var/new_exclude_flags = input_bitfield(usr, "Exclude permission flags<br>Flags enabled here will be removed from a rank.<br>Note these take precedence over included flags.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.exclude_rights, 350, 670, "red", usr.client.holder.rank.can_edit_rights)
+	var/new_exclude_flags = input_bitfield(usr, "Flagi uprawnień do odebrania<br>Flagi włączone tutaj zostaną odebrane randze.<br>Mają one pierwszeństwo przed flagami nadanymi.<br>[use_db ? "Dotyczy WSZYSTKICH adminów z tą rangą." : "Dotyczy tylko obecnego admina: [admin_key]"]", "admin_flags", D.rank.exclude_rights, 350, 670, "red", usr.client.holder.rank.can_edit_rights)
 	if(isnull(new_exclude_flags))
 		return
-	var/new_can_edit_flags = input_bitfield(usr, "Editable permission flags<br>These are the flags this rank is allowed to edit if they have access to the permissions panel.<br>They will be unable to modify admins to a rank that has a flag not included here.<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.can_edit_rights, 350, 710, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
+	var/new_can_edit_flags = input_bitfield(usr, "Edytowalne flagi uprawnień<br>To flagi, które ta ranga może edytować, jeśli ma dostęp do panelu uprawnień.<br>Nie będzie mogła nadać adminom rangi z flagą, której tu nie ma.<br>[use_db ? "Dotyczy WSZYSTKICH adminów z tą rangą." : "Dotyczy tylko obecnego admina: [admin_key]"]", "admin_flags", D.rank.can_edit_rights, 350, 710, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
 	if(isnull(new_can_edit_flags))
 		return
-	var/m1 = "[key_name_admin(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_key] temporarily"]"
+	var/m1 = "[key_name_admin(usr)] [use_db ? "trwale edytuje uprawnienia rangi [D.rank.name]" : "tymczasowo edytuje uprawnienia [admin_key]"]"
 	var/m2 = "[key_name(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_key] temporarily"]"
 	if(use_db && !legacy_only)
 		var/rank_name = D.rank.name
@@ -574,20 +574,20 @@
 
 /datum/admins/proc/remove_rank(admin_rank)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to remove an admin's rank without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje usunąć rangę admina bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to remove an admin's rank without sufficient rights.")
 		return
 	if(!admin_rank)
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		if(R.name == admin_rank && (!(R.rights & usr.client.holder.rank.can_edit_rights) == R.rights))
-			to_chat(usr, "<span class='admin prefix'>You don't have edit rights to all the rights this rank has, rank deletion not permitted.</span>")
+			to_chat(usr, "<span class='admin prefix'>Nie możesz edytować wszystkich uprawnień tej rangi, więc nie możesz jej usunąć.</span>")
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && (admin_rank in GLOB.protected_ranks))
-		to_chat(usr, "<span class='admin prefix'>Deletion of protected ranks is not permitted, it must be removed from admin_ranks.txt.</span>")
+		to_chat(usr, "<span class='admin prefix'>Nie można usuwać chronionych rang. Trzeba ją usunąć z admin_ranks.txt.</span>")
 		return
 	if(CONFIG_GET(flag/load_legacy_ranks_only))
-		to_chat(usr, "<span class='admin prefix'>Rank deletion not permitted while database rank loading is disabled.</span>")
+		to_chat(usr, "<span class='admin prefix'>Nie można usuwać rang, gdy wczytywanie rang z bazy danych jest wyłączone.</span>")
 		return
 	var/datum/DBQuery/query_admins_with_rank = SSdbcore.NewQuery(
 		"SELECT 1 FROM [format_table_name("admin")] WHERE `rank` = :admin_rank",
@@ -598,11 +598,11 @@
 		return
 	if(query_admins_with_rank.NextRow())
 		qdel(query_admins_with_rank)
-		to_chat(usr, "<span class='danger'>Error: Rank deletion attempted while rank still used; Tell a coder, this shouldn't happen.</span>")
+		to_chat(usr, "<span class='danger'>Błąd: próba usunięcia rangi, która jest wciąż używana. Zgłoś to koderom, to nie powinno się zdarzyć.</span>")
 		return
 	qdel(query_admins_with_rank)
-	if(alert("Are you sure you want to remove [admin_rank]?","Confirm Removal","Do it","Cancel") == "Do it")
-		var/m1 = "[key_name_admin(usr)] removed rank [admin_rank] permanently"
+	if(alert("Na pewno chcesz usunąć [admin_rank]?","Potwierdź usunięcie","Zrób to","Anuluj") == "Zrób to")
+		var/m1 = "[key_name_admin(usr)] trwale usuwa rangę [admin_rank]"
 		var/m2 = "[key_name(usr)] removed rank [admin_rank] permanently"
 		var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery(
 			"DELETE FROM [format_table_name("admin_ranks")] WHERE `rank` = :admin_rank",
@@ -635,4 +635,4 @@
 		qdel(query_sync_lastadminrank)
 		return
 	qdel(query_sync_lastadminrank)
-	to_chat(usr, "<span class='admin'>Sync of [admin_key] successful.</span>")
+	to_chat(usr, "<span class='admin'>Synchronizacja [admin_key] udana.</span>")

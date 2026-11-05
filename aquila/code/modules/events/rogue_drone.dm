@@ -17,7 +17,7 @@
 
 /datum/round_event/ghost_role/aquila_rogue_drone
 	minimum_required = 1
-	role_name = "Rogue Drone"
+	role_name = "Zbuntowany dron"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_rogue_drone/spawn_role()
@@ -40,7 +40,7 @@
 	if(!length(candidates))
 		// Nobody wanted it now, a ghost can still click the shell later
 		var/obj/effect/mob_spawn/drone/syndrone/shell = new(spot)
-		message_admins("Rogue Drone event found no candidates, left [shell] at [ADMIN_VERBOSEJMP(spot)].")
+		message_admins("Event zbuntowanego drona nie znalazł chętnych, zostawia [shell] w [ADMIN_VERBOSEJMP(spot)].")
 		log_game("Rogue Drone event found no candidates, left [shell] at [AREACOORD(spot)].")
 		spawned_mobs += shell
 		return SUCCESSFUL_SPAWN
@@ -48,7 +48,7 @@
 	var/mob/dead/selected = pick(candidates)
 	var/mob/living/simple_animal/drone/syndrone/drone = new(spot)
 	drone.key = selected.key
-	message_admins("[ADMIN_LOOKUPFLW(drone)] has been made into a rogue syndrone by an event at [ADMIN_VERBOSEJMP(spot)].")
+	message_admins("[ADMIN_LOOKUPFLW(drone)] zostaje zbuntowanym dronem Syndykatu w wyniku eventu w [ADMIN_VERBOSEJMP(spot)].")
 	log_game("[key_name(drone)] was spawned as a rogue syndrone by an event at [AREACOORD(spot)].")
 	spawned_mobs += drone
 	return SUCCESSFUL_SPAWN

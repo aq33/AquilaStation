@@ -9,60 +9,60 @@
  *		dresy
  */
 /obj/item/clothing/under/costume/aquila/metalgearfake
-	name = "\improper sneaking suit"
-	desc = "Cheap knockoff of the real thing, offers zero protection."
+	name = "\improper kombinezon do skradania"
+	desc = "Tania podróbka oryginału, nie daje żadnej ochrony."
 	icon_state = "solid"
 	item_state = "solid"
 
 /obj/item/clothing/under/costume/aquila/biker
-	name = "biker's outfit"
-	desc = "You're not a nice person, are you?"
+	name = "strój motocyklisty"
+	desc = "Nie jesteś miłą osobą, prawda?"
 	icon_state = "biker"
 	item_state = "biker"
 
 /obj/item/clothing/under/costume/aquila/jacket
-	name = "richard's outfit"
-	desc = "Do you know what time it is?"
+	name = "strój Richarda"
+	desc = "Wiesz, która jest godzina?"
 	icon_state = "jacket"
 	item_state = "jacket"
 
 /obj/item/clothing/under/costume/aquila/greaser
-	name = "greaser outfit"
-	desc = "The one that you want!"
+	name = "strój greasera"
+	desc = "Ten, którego pragniesz!"
 	icon_state = "greaser"
 	item_state = "greaser"
 
 /obj/item/clothing/under/costume/aquila/greaser/snake
-	name = "greaser outfit"
-	desc = "Tunnel Snakes Rule!"
+	name = "strój greasera"
+	desc = "Tunelowe Węże rządzą!"
 	icon_state = "greaser_snake"
 	item_state = "greaser_snake"
 
 /obj/item/clothing/under/costume/aquila/greaser/spider
-	name = "greaser outfit"
-	desc = "The one that you want!"
+	name = "strój greasera"
+	desc = "Ten, którego pragniesz!"
 	icon_state = "greaser_spider"
 	item_state = "greaser_spider"
 
 /obj/item/clothing/under/costume/aquila/greaser/cult
-	name = "greaser outfit"
-	desc = "The one that you want!"
+	name = "strój greasera"
+	desc = "Ten, którego pragniesz!"
 	icon_state = "greaser_cult"
 
 /obj/item/clothing/under/costume/aquila/cia
-	name = "cia outfit"
-	desc = "Just looking at this makes you feel in charge."
+	name = "strój agenta CIA"
+	desc = "Już sam widok sprawia, że czujesz się szefem."
 	icon_state = "cia"
 	item_state = "cia"
 
 /obj/item/clothing/under/costume/aquila/galo
-	name = "galo outfit"
-	desc = "tan not included."
+	name = "strój galo"
+	desc = "Opalenizna w zestawie nie jest."
 	icon_state = "galo"
 	item_state = "galo"
 
 /obj/item/clothing/under/costume/aquila/adidas
-	name = "tracksuit"
+	name = "dres"
 	desc = "Na chuj się gapisz?"
 	icon_state = "adidas"
 	item_state = "adidas"

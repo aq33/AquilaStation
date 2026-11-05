@@ -4,12 +4,12 @@ import { FeatureChoiced } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const preferred_map: FeatureChoiced = {
-  name: 'Preferred map',
+  name: 'Preferowana mapa',
   category: 'GAMEPLAY',
   description: multiline`
-    During map rotation, prefer this map be chosen.
-    This does not affect the map vote, only random rotation when a vote
-    is not held.
+    Przy rotacji map ta mapa jest wybierana chętniej.
+    Nie wpływa na głosowanie, tylko na losową rotację, gdy nie ma
+    głosowania.
   `,
   component: FeatureButtonedDropdownInput,
 };

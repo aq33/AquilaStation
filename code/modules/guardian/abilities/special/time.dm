@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/special/timestop
-	name = "Time Stop"
-	desc = "The guardian can stop time in a localized area."
+	name = "Zatrzymanie czasu"
+	desc = "Strażnik może zatrzymać czas na ograniczonym obszarze."
 	ui_icon = "clock"
 	cost = 5
 	spell_type = /obj/effect/proc_holder/spell/aoe_turf/timestop/guardian

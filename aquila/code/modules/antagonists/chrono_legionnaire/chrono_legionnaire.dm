@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(aquila_chrono_name_exceptions, list(
 	return "<span class='header'>Legion Czasu odwiedził statek!</span><br>"
 
 /datum/objective/assassinate/chrono_erase
-	name = "chrono erase"
+	name = "wymazanie z czasu"
 	/// Who the target is named after
 	var/historical_figure
 
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(aquila_chrono_name_exceptions, list(
 
 	new /obj/effect/temp_visual/desynchronizer(location)
 	playsound(location, 'sound/magic/timeparadox2.ogg', 50, TRUE)
-	message_admins("[ADMIN_LOOKUPFLW(legionnaire)] has been made into a Chrono Legionnaire hunting [ADMIN_LOOKUPFLW(target)] ([figure]).")
+	message_admins("[ADMIN_LOOKUPFLW(legionnaire)] zostaje Chronolegionistą. Cel: [ADMIN_LOOKUPFLW(target)] ([figure]).")
 	log_game("[key_name(legionnaire)] was spawned as a Chrono Legionnaire hunting [key_name(target)] ([figure]).")
 	return legionnaire
 

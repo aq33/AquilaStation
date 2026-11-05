@@ -4,7 +4,7 @@
 #define STABILITY_GAIN 5
 
 /obj/machinery/computer/xenoarchaeology_console
-	name = "research and development listing console"
+	name = "konsola ofert B+R"
 	desc = "Konsola naukowa do wyszukiwania sprzedawców i kupców różnych zakazanych obiektów badawczych."
 	icon_screen = "xenoartifact_console"
 	icon_keyboard = "rd_key"
@@ -137,7 +137,7 @@
 				rank = H.get_assignment(hand_first = TRUE)
 			else if(issilicon(usr))
 				name = usr.real_name
-				rank = "Silicon"
+				rank = "Syntetyk"
 			//Check if we can add the artifact to a pending order
 			var/datum/supply_order/current_order
 			var/datum/supply_pack/current_pack
@@ -225,7 +225,9 @@
 		//Discovery Points
 	var/dp_reward = round(max(0, (artifact.item_price*artifact_component.artifact_material.dp_rate)*success_rate) * bonus_rate, 1)
 		//Money
-	var/monetary_reward = round(floor(((artifact.item_price * success_rate * 1.5)^1.1) * (success_rate >= 0.5 ? 1 : 0) * bonus_rate), 1)
+		// AQUILA - w Bee było tu (...)^1.1, ale ^ to w DM XOR: 1.1 obcina się do 1, więc zmieniało to tylko najniższy bit (±1 kr).
+		// Potęga (**1.1) mniej więcej podwoiłaby kredyty, dlatego zostają obecne kwoty, bez mylącego XOR.
+	var/monetary_reward = round(floor(floor(artifact.item_price * success_rate * 1.5) * (success_rate >= 0.5 ? 1 : 0) * bonus_rate), 1)
 	//Alloctae
 	if(is_main_console)
 		linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_GENERIC, rnd_reward)
@@ -258,7 +260,7 @@
 
 //Circuitboard for this console
 /obj/item/circuitboard/computer/xenoarchaeology_console
-	name = "research and development listing console (Computer Board)"
+	name = "konsola ofert B+R (płytka komputera)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/xenoarchaeology_console
 

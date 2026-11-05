@@ -95,10 +95,7 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_STAMINA_DAMAGE, STAMINA, amount, forced) & COMPONENT_IGNORE_CHANGE)
-		return 0
-	return ..()
+// COMSIG_LIVING_ADJUST_STAMINA_DAMAGE wysyła teraz sama pula staminy (/datum/stamina_container/adjust)
 
 // ---------------------------------------------------------------------------
 // Cechy z tg bez odpowiednika w rdzeniu
@@ -172,18 +169,18 @@
 /datum/hallucination/delusion/preset/moon
 	delusion_icon_file = 'aquila/icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	delusion_icon_state = "moon_mass"
-	delusion_name = "moon"
+	delusion_name = "księżyc"
 	preset_duration = 15 SECONDS
 
 // Halucynacja obrazów heretyka. tg buduje wygląd człowieka w szatach; u nas najbliższy gotowy obrazek.
 /datum/hallucination/delusion/preset/heretic
 	delusion_icon_file = 'aquila/icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	delusion_icon_state = "stalker"
-	delusion_name = "Heretic"
+	delusion_name = "Heretyk"
 	preset_duration = 11 SECONDS
 
 /datum/hallucination/delusion/preset/heretic/gate
-	delusion_name = "Mind Gate"
+	delusion_name = "Brama Umysłu"
 	preset_duration = 60 SECONDS
 	preset_affects_us = TRUE
 
@@ -347,7 +344,7 @@
 		current_alerts -= remove_alert_from
 
 /atom/movable/screen/alert/aura_healing
-	name = "Aura Healing"
+	name = "Lecząca aura"
 	desc = "Coś cię leczy."
 	icon_state = "template"
 

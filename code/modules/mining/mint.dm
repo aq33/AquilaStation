@@ -2,7 +2,7 @@
 
 
 /obj/machinery/mineral/mint
-	name = "coin press"
+	name = "prasa do monet"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "coinpress0"
 	density = TRUE

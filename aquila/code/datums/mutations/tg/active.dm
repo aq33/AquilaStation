@@ -3,8 +3,8 @@
 // pumpup -> efedryna (szybkość i odporność na ogłuszenie), determination pominięte.
 
 /datum/mutation/adrenaline_rush
-	name = "Adrenaline Rush"
-	desc = "The subject gains the ability to trigger their body's adrenaline response at will."
+	name = "Przypływ adrenaliny"
+	desc = "Pacjent potrafi na zawołanie wywołać w organizmie wyrzut adrenaliny."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz się nakręcony!</span>"
 	instability = 25
@@ -30,7 +30,7 @@
 	to_modify.comedown_amount = 7 / GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/action/cooldown/spell/adrenaline
-	name = "Adrenaline!"
+	name = "Adrenalina!"
 	desc = "Pobudź się i wyciśnij z ciała wszystko, co się da!"
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
 	button_icon_state = "adrenaline"

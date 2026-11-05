@@ -28,7 +28,7 @@
 	return ..()
 
 /datum/reagent/blob/shifting_fragments
-	name = "Shifting Fragments"
+	name = "Przesuwające się odłamki"
 	color = "#C8963C"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
 

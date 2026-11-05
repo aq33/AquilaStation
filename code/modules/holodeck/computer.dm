@@ -27,8 +27,8 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 
 
 /obj/machinery/computer/holodeck
-	name = "holodeck control console"
-	desc = "A computer used to control a nearby holodeck."
+	name = "konsola sterowania holodekiem"
+	desc = "Komputer do sterowania pobliskim holodekiem."
 	icon_screen = "holocontrol"
 	idle_power_usage = 10
 	active_power_usage = 50

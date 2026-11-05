@@ -2,10 +2,10 @@
 
 /obj/item/radio
 	icon = 'icons/obj/radio.dmi'
-	name = "station bounced radio"
+	name = "radio przenośne"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
-	desc = "A basic handheld radio that communicates with local telecommunication networks."
+	desc = "Podstawowe radio ręczne łączące się z lokalnymi sieciami telekomunikacyjnymi."
 	dog_fashion = /datum/dog_fashion/back
 
 	flags_1 = CONDUCT_1
@@ -189,7 +189,7 @@
 			if(tune == "input")
 				var/min = format_frequency(freerange ? MIN_FREE_FREQ : MIN_FREQ)
 				var/max = format_frequency(freerange ? MAX_FREE_FREQ : MAX_FREQ)
-				tune = input("Tune frequency ([min]-[max]):", name, format_frequency(frequency)) as null|num
+				tune = input("Ustaw częstotliwość ([min]-[max]):", name, format_frequency(frequency)) as null|num
 				if(!isnull(tune) && !..())
 					if (tune < MIN_FREE_FREQ && tune <= MAX_FREE_FREQ / 10)
 						// allow typing 144.7 to get 1447
@@ -370,7 +370,7 @@
 /obj/item/radio/examine(mob/user)
 	. = ..()
 	if (frequency && in_range(src, user))
-		. += "<span class='notice'>It is set to broadcast over the [frequency/10] frequency.</span>"
+		. += "<span class='notice'>Nadaje na częstotliwości [frequency/10].</span>"
 	if (unscrewed)
 		. += "<span class='notice'>Można go przymocować i modyfikować.</span>"
 	else
@@ -417,7 +417,7 @@
 //Giving borgs their own radio to have some more room to work with -Sieve
 
 /obj/item/radio/borg
-	name = "cyborg radio"
+	name = "radio cyborga"
 	subspace_switchable = TRUE
 	dog_fashion = null
 

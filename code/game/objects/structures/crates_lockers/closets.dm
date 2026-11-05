@@ -1,6 +1,6 @@
 /obj/structure/closet
-	name = "closet"
-	desc = "It's a basic storage unit."
+	name = "szafa"
+	desc = "Zwykła szafa do przechowywania rzeczy."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = TRUE
@@ -500,7 +500,7 @@
 			if(iscarbon(user))
 				add_fingerprint(user)
 			locked = !locked
-			user.visible_message("<span class='notice'>[user] [locked ? null : "un"]locks [src].</span>",
+			user.visible_message("<span class='notice'>[user] [locked ? "zamyka" : "otwiera"] zamek [src].</span>",
 							"<span class='notice'>[locked ? "Zamykasz" : "Otwierasz"] zamek [src].</span>")
 			update_icon()
 		else if(!silent)

@@ -1,6 +1,6 @@
 /obj/machinery/vending/cola
 	name = "\improper Robust Softdrinks"
-	desc = "A softdrink vendor provided by Robust Industries, LLC."
+	desc = "Automat z napojami gazowanymi od Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robustne napoje bezalkoholowe: Bardziej robustne niż skrzynka narzędziowa w ryj!"
 	product_ads = "Odświeżające!;Mam nadzieję, że jesteś spragniony!;Ponad milion sprzedanych napojów!;Spragniony? A może coli?;Proszę, napij się!;Do dna!;Najlepsze napoje w kosmosie."
@@ -30,7 +30,7 @@
 /obj/machinery/vending/cola/random
 	name = "\improper Random Drinkies"
 	icon_state = "random_cola"
-	desc = "Uh oh!"
+	desc = "Ojej!"
 
 /obj/machinery/vending/cola/random/Initialize(mapload)
 	..()
@@ -47,22 +47,22 @@
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
-	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."
+	name = "\improper automat Space Cola"
+	desc = "Sprzedaje colę. W kosmosie."
 	product_slogans = "Cola w kosmosie!"
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
-	name = "\improper Space-up! Vendor"
-	desc = "Indulge in an explosion of flavor."
+	name = "\improper automat Space-up!"
+	desc = "Daj się porwać eksplozji smaku."
 	product_slogans = "Space-up! Jak rozszczelnienie kadłuba w twoich ustach."
 	light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/vending/cola/starkist
 	icon_state = "starkist"
-	name = "\improper Star-kist Vendor"
-	desc = "The taste of a star in liquid form."
+	name = "\improper automat Star-kist"
+	desc = "Smak gwiazdy w płynnej postaci."
 	product_slogans = "Pij gwiazdy! Star-kist!"
 	light_color = LIGHT_COLOR_ORANGE
 
@@ -72,14 +72,14 @@
 
 /obj/machinery/vending/cola/pwr_game
 	icon_state = "pwr_game"
-	name = "\improper Pwr Game Vendor"
-	desc = "You want it, we got it. Brought to you in partnership with Vlad's Salads."
+	name = "\improper automat Pwr Game"
+	desc = "Ty chcesz, my mamy. Dostarczane we współpracy z Vlad's Salads."
 	product_slogans = "MOC, której pragną gracze! PWR GAME!"
 	light_color = LIGHT_COLOR_PURPLE
 
 /obj/machinery/vending/cola/shamblers
-	name = "\improper Shambler's Vendor"
-	desc = "~Shake me up some of that Shambler's Juice!~"
+	name = "\improper automat Shambler's"
+	desc = "~Wstrząśnij mi trochę tego Shambler's Juice!~"
 	icon_state = "shamblers_juice"
 	light_color = LIGHT_COLOR_RED
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,

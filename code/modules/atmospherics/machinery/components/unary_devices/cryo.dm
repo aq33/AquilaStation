@@ -3,7 +3,7 @@
 #define CRYO_TX_QTY 0.4 // Tx quantity is how much volume should be removed from the cell's beaker - multiplied by delta_time
 
 /obj/machinery/atmospherics/components/unary/cryo_cell
-	name = "cryo cell"
+	name = "kriokomora"
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "pod-off"
 	density = TRUE
@@ -357,7 +357,7 @@
 		return
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		to_chat(user, "<span class='notice'>Nie masz dostępu do panelu serwisowego, gdy kapsuła jest " \
-		+ (on ? "active" : (occupant ? "full" : "open")) + ".</span>")
+		+ (on ? "włączona" : (occupant ? "zajęta" : "otwarta")) + ".</span>")
 		return
 	return ..()
 

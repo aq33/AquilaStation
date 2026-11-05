@@ -297,6 +297,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				QDEL_NULL(I)
 
 	for(var/path in mutant_organs)
+		if(!replace_current && C.getorgan(path)) // AQ EDIT - every heal or revive dropped another copy (an IPC's power cord implant piled up on the floor)
+			continue
 		var/obj/item/organ/I = new path()
 		I.Insert(C)
 
@@ -476,7 +478,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(H.wear_mask)
 		var/obj/item/clothing/mask/M = H.wear_mask
-		dynamic_fhair_suffix = M.dynamic_fhair_suffix //mask > head in terms of facial hair
+		dynamic_fhair_suffix = isclothing(M) ? M.dynamic_fhair_suffix : "" //mask > head in terms of facial hair // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
@@ -529,7 +531,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(H.wear_mask)
 		var/obj/item/clothing/mask/M = H.wear_mask
-		if(!dynamic_hair_suffix) //head > mask in terms of head hair
+		if(!dynamic_hair_suffix && isclothing(M)) //head > mask in terms of head hair // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 			dynamic_hair_suffix = M.dynamic_hair_suffix
 		if(M.flags_inv & HIDEHAIR)
 			hair_hidden = TRUE
@@ -1625,7 +1627,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		to_chat(user, "<span class='warning'>Nie chcesz skrzywdzić [target]!</span>")
 		return FALSE
 	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>", \
+		target.visible_message("<span class='warning'>[target] blokuje atak [user]!</span>", \
 							"<span class='userdanger'>Blokujesz atak [user]!</span>")
 		return FALSE
 	if(attacker_style?.harm_act(user,target) == MARTIAL_ATTACK_SUCCESS)
@@ -1672,14 +1674,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 
+		user.stamina_swing(STAMINA_SWING_COST_UNARMED) // AQ EDIT - port Bee#14750: cios kosztuje staminę
 		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
 			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
+			target.stamina?.adjust(-STAMINA_DAMAGE_UNARMED * 1.5) // AQ EDIT - port Bee#14750: kopnięcia mocno męczą
 			if((damage * 1.5) >= 9)
 				target.force_say()
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage
 			target.apply_damage(damage, attack_type, affecting, armor_block)
-			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
+			target.stamina?.adjust(-STAMINA_DAMAGE_UNARMED) // AQ EDIT - port Bee#14750: stała stamina z ciosu zamiast 1.5x obrażeń
 			if(damage >= 9)
 				target.force_say()
 			log_combat(user, target, "punched")
@@ -1708,6 +1712,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return target.resist_shove(user)
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		user.stamina_swing(STAMINA_DISARM_COST) // AQ EDIT - port Bee#14750: popchnięcie kosztuje staminę
 		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 		if(target.w_uniform)
@@ -1790,7 +1795,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					"<span class='danger'>Wpychasz [target.name] do [target_pool]!</span>", null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_pool] (swimming pool)")
 		else
-			user.visible_message("<span class='danger'>[user.name] shoves [target.name]!</span>",
+			user.visible_message("<span class='danger'>[user.name] popycha [target.name]!</span>",
 				"<span class='danger'>Popychasz [target.name]!</span>", null, COMBAT_MESSAGE_RANGE)
 			/*var/target_held_item = target.get_active_held_item()
 			var/knocked_item = FALSE
@@ -1836,6 +1841,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	SEND_SIGNAL(H, COMSIG_MOB_HAND_ATTACKED, H, M, attacker_style)
 
+	// AQ EDIT START - port Bee#14750: animacja ręki przy interakcji
+	if(M != H)
+		M.animate_interact(H, LAZYACCESS(modifiers, RIGHT_CLICK) ? INTERACT_DISARM : (M.combat_mode ? INTERACT_HARM : INTERACT_HELP))
+	// AQ EDIT END
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		disarm(M, H, attacker_style)
 		return // dont attack after
@@ -1850,7 +1859,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.check_shields(I, I.force, "[I.name]", MELEE_ATTACK, I.armour_penetration))
 			return 0
 	if(H.check_block())
-		H.visible_message("<span class='warning'>[H] blocks [I]!</span>", \
+		H.visible_message("<span class='warning'>[H] blokuje [I]!</span>", \
 						"<span class='userdanger'>Blokujesz [I]!</span>")
 		return 0
 
@@ -1867,6 +1876,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H)
+	H.apply_item_stamina_damage(I) // AQ EDIT - port Bee#14750: trafienie przedmiotem zabiera staminę
 
 	if (I.bleed_force)
 		var/armour_block = user.run_armor_check(affecting, BLEED, armour_penetration = I.armour_penetration, silent = (I.force > 0))

@@ -5,8 +5,8 @@
 #define BOH_TEAR_GRAV_PULL 25
 
 /obj/boh_tear
-	name = "tear in the fabric of reality"
-	desc = "Your own comprehension of reality starts bending as you stare this."
+	name = "rozdarcie w tkance rzeczywistości"
+	desc = "Gdy się w to wpatrujesz, twoje pojmowanie rzeczywistości zaczyna się wyginać."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "boh_tear"
 	anchored = TRUE
@@ -72,7 +72,7 @@
 
 /obj/boh_tear/proc/admin_investigate_setup()
 	var/turf/T = get_turf(src)
-	message_admins("A BoH tear has been created at [ADMIN_VERBOSEJMP(T)]. [ADMIN_RETRIEVE_BOH_ITEMS(src)]")
+	message_admins("Powstało rozdarcie BoH w [ADMIN_VERBOSEJMP(T)]. [ADMIN_RETRIEVE_BOH_ITEMS(src)]")
 	investigate_log("was created at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 
 /obj/boh_tear/attack_tk(mob/living/user)

@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/car/clowncar
-	name = "clown car"
-	desc = "How someone could even fit in there is beyond me."
+	name = "klaunowóz"
+	desc = "Nie mam pojęcia, jak ktokolwiek może się tam zmieścić."
 	icon_state = "clowncar"
 	max_integrity = 150
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "stamina" = 0, "bleed" = 0)
@@ -104,8 +104,8 @@
 				to_chat(C, "<span class = 'danger'> Ręce blokuje ci sama liczba pasażerów w samochodzie!</span>")
 
 /obj/item/restraints/handcuffs/energy/used/clown
-	name = "tangle of limbs"
-	desc = "You are restrained in a tangle of bodies!"
+	name = "plątanina kończyn"
+	desc = "Unieruchamia cię plątanina ciał!"
 
 /obj/vehicle/sealed/car/clowncar/emag_act(mob/user)
 	if(obj_flags & EMAGGED)

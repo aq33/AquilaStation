@@ -11,14 +11,14 @@
 */
 /obj/structure/overmap/proc/spawn_boarders(amount, faction_selection="syndicate", min_players = 5, min_players_for_ghosts = 20)
 	if(SSovermap_mode.override_ghost_boarders)
-		message_admins("Failed to spawn boarders for [name] due to admin boarding override.")
+		message_admins("Nie udało się stworzyć abordażystów dla [name] – abordaż zablokowany przez admina.")
 		return FALSE //Allows the admins to disable boarders for event rounds
 	var/player_check = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 	if(player_check < min_players)
-		message_admins("KNPC boarder spawning aborted due to insufficient playercounts.")
+		message_admins("Przerwano tworzenie abordażystów KNPC – za mało graczy.")
 		return FALSE //No... just no. I'm not that mean
 	if(!length(occupying_levels))
-		message_admins("Failed to spawn boarders for [name], it doesn't seem to have any occupying z-levels. (Interior)")
+		message_admins("Nie udało się stworzyć abordażystów dla [name], chyba nie zajmuje żadnych poziomów Z. (Wnętrze)")
 		throw EXCEPTION("Failed to spawn boarders for [name], it doesn't seem to have any occupying z-levels. (Interior)")
 
 	if(!amount)
@@ -28,13 +28,13 @@
 		zs += SL.z_value
 	var/turf/target = choose_boarding_location(zs)
 	if(!target)
-		message_admins("Failed to spawn boarders for [name], does it have an interior?")
+		message_admins("Nie udało się stworzyć abordażystów dla [name]. Czy ma wnętrze?")
 		return FALSE //Cut off here to avoid polling people for a spawn that will never work.
 	var/list/candidates = list()
 
 	//20 or more players? You're allowed "real" boarders.
 	if(player_check >= min_players_for_ghosts) // Remove the low pop boarder camping
-		candidates = pollCandidatesForMob("Do you want to play as a boarding team member?", ROLE_OPERATIVE, /datum/role_preference/midround_ghost/boarder, 10 SECONDS, src)
+		candidates = pollCandidatesForMob("Chcesz zagrać jako członek grupy abordażowej?", ROLE_OPERATIVE, /datum/role_preference/midround_ghost/boarder, 10 SECONDS, src)
 	//No candidates? Well! Guess you get to deal with some KNPCs :))))))
 	if(!length(candidates))
 		return spawn_knpcs(amount, faction_selection)
@@ -94,7 +94,7 @@
 		if("catgirl")
 			knpc_types = list(/mob/living/carbon/human/species/felinid/npc, /mob/living/carbon/human/ai_boarder/assistant/felinid)
 		else
-			message_admins("KNPC spawn failed. No knpcs configured for faction name \"[faction_selection]\".")
+			message_admins("Nie udało się stworzyć KNPC. Brak KNPC skonfigurowanych dla frakcji \"[faction_selection]\".")
 			throw EXCEPTION("No knpcs configured for faction name \"[faction_selection]\"")
 
 	var/list/possible_spawns = list()
@@ -104,12 +104,12 @@
 	//Can we establish a drop zone?
 	var/turf/LZ = (length(possible_spawns)) ? get_turf(pick(possible_spawns)) : null
 	if(!LZ)
-		message_admins("KNPC boarder spawn aborted. This ship does not support KNPCs (add some patrol nodes!)")
+		message_admins("Przerwano tworzenie abordażystów KNPC. Ten okręt nie obsługuje KNPC (dodaj punkty patrolowe!)")
 		throw EXCEPTION("KNPC boarder spawn aborted. This ship does not support KNPCs (add some patrol nodes!)")
 
 	switch(faction_selection)
 		if("syndicate")
-			relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='userdanger'>You can hear several tethers attaching to the ship.</span>")
+			relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='userdanger'>Słyszysz, jak do okrętu przyczepia się kilka lin.</span>")
 		else //No other special cases exist but this is a switch anyways to support them in the future (pirates have no tell)
 
 	var/obj/structure/closet/supplypod/toLaunch
@@ -150,7 +150,7 @@
 			if(team_name) //If there is an available "team name", give them a callsign instead of a placeholder name
 				var/callsign = I
 				if(callsign <= 0)
-					callsign = "Lead"
+					callsign = "Dowódca"
 					H.equipOutfit(/datum/outfit/syndicate/odst/smg)
 				else
 					callsign = num2text(callsign)
@@ -161,10 +161,10 @@
 				H.mind.add_antag_datum(/datum/antagonist/traitor/boarder)
 				H.mind.assigned_role = "Syndicate Boarder"
 			log_game("[key_name(H)] became a syndicate drop trooper.")
-			message_admins("[ADMIN_LOOKUPFLW(H)] became a syndicate drop trooper.")
+			message_admins("[ADMIN_LOOKUPFLW(H)] zostaje desantowcem Syndykatu.")
 			to_chat(H, "<span class='danger'>Jesteś żołnierzem desantu Syndykatu! Okalecz [station_name()] najlepiej, jak potrafisz, wszelkimi sposobami, jakie uznasz za stosowne. Dostajesz kilka celów, które pomogą ci w dążeniu do tego.")
 			operatives += H
-		relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='userdanger'>You can hear several tethers attaching to the ship.</span>")
+		relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='userdanger'>Słyszysz, jak do okrętu przyczepia się kilka lin.</span>")
 
 	else if(faction_selection == "pirate")
 		var/datum/map_template/spacepirate_boarding_pod/currentPod = new /datum/map_template/spacepirate_boarding_pod()
@@ -177,10 +177,10 @@
 			H.key = C.key
 			var/callsign = I
 			if(callsign <= 0)
-				callsign = "First Mate"
+				callsign = "Pierwszy oficer"
 				H.equipOutfit(/datum/outfit/pirate/space/boarding/lead)
 			else
-				callsign = "Crew"
+				callsign = "Majtek"
 				var/list/pirate_kits = list(/datum/outfit/pirate/space/boarding/sapper, /datum/outfit/pirate/space/boarding/gunner) //review these
 				var/kit = pick(pirate_kits)
 				H.equipOutfit(kit)
@@ -190,7 +190,7 @@
 			H.mind.add_antag_datum(/datum/antagonist/pirate/boarder)
 			H.mind.assigned_role = "Pirate Boarder"
 			log_game("[key_name(H)] became a space pirate boarder.")
-			message_admins("[ADMIN_LOOKUPFLW(H)] became a space pirate boarder.")
+			message_admins("[ADMIN_LOOKUPFLW(H)] zostaje kosmicznym piratem abordażystą.")
 			operatives += H
 		//Crew intentionally isn't informed of boarding pirates.
 

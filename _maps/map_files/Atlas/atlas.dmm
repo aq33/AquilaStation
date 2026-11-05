@@ -1004,7 +1004,7 @@
 /area/engine/atmospherics_engine)
 "ch" = (
 /obj/machinery/computer/ship/ftl_computer{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
@@ -1154,7 +1154,6 @@
 	},
 /obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
-/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/freezer,
 /area/chapel/office)
 "ct" = (
@@ -2920,13 +2919,6 @@
 	},
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmospherics_engine)
-"fS" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "botany"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hydroponics)
 "fT" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
@@ -10286,8 +10278,7 @@
 /obj/machinery/smartfridge{
 	name = "public botany fridge"
 	},
-/obj/effect/turf_decal/tile/green/tile_side,
-/turf/open/floor/durasteel,
+/turf/closed/wall/steel,
 /area/hydroponics)
 "Bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -10319,7 +10310,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/slime_extract_requestor,
 /turf/open/floor/monotile/dark,
 /area/science)
 "Bf" = (
@@ -52725,8 +52715,8 @@ LE
 Bo
 Bo
 Bo
+Bo
 Ba
-fS
 dS
 pw
 rZ
@@ -55032,7 +55022,7 @@ mP
 CA
 DV
 mP
-Tj
+mP
 mP
 Te
 mP
@@ -56067,7 +56057,7 @@ If
 rX
 TX
 nw
-mP
+Tj
 Jy
 ff
 eY

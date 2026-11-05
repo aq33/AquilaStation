@@ -96,6 +96,14 @@ const handlePassthrough = (key: KeyEvent) => {
   ) {
     return;
   }
+  // AQUILA: makro Esc ma kilka komend i embedded winget, których Byond.command
+  // nie wykona - wołamy verb bezpośrednio (zamyka okna, potem menu pod Esc)
+  if (key.code === 27) {
+    if (key.isDown()) {
+      Byond.command('.escape_pressed "false"');
+    }
+    return;
+  }
   const byondKeyCode = keyCodeToByond(key.code);
   if (!byondKeyCode) {
     return;
@@ -160,8 +168,11 @@ type ByondSkinMacro = {
   name: string;
 };
 
-export const setupHotKeys = () => {
-  // Read macros
+/**
+ * Reads the macros from the skin. Safe to call again (AQUILA: tgui-panel
+ * starts before the server sets its macros, so it re-reads them later).
+ */
+export const loadMacros = () =>
   Byond.winget('default.*').then((data: Record<string, string>) => {
     // Group each macro by ref
     const groupedByRef: Record<string, ByondSkinMacro> = {};
@@ -190,6 +201,9 @@ export const setupHotKeys = () => {
     }
     logger.debug('loaded macros', byondMacros);
   });
+
+export const setupHotKeys = () => {
+  loadMacros();
   updateHotkeyMode();
   globalEvents.on('window-focus', () => {
     updateHotkeyMode();

@@ -179,8 +179,8 @@ GLOBAL_LIST_INIT(golem_stack_food_directory, list(
 
 /// Abstract food item used to feed golems
 /obj/item/food/golem_food
-	name = "temporary golem material snack item"
-	desc = "You shouldn't be able to see this. This is an abstract item which exists to allow you to eat rocks."
+	name = "tymczasowa przekąska z materiału golema"
+	desc = "Nie powinieneś tego widzieć. To abstrakcyjny przedmiot, który pozwala ci jeść kamienie."
 	bite_consumption = 2
 	max_volume = 500
 	food_reagents = list(/datum/reagent/consumable/nutriment/mineral = 500)
@@ -259,9 +259,9 @@ GLOBAL_LIST_INIT(golem_stack_food_directory, list(
 // --- Odczynnik ---
 
 /datum/reagent/consumable/nutriment/mineral
-	name = "Mineral Slurry"
-	description = "Minerals pounded into a paste, nutritious only if you too are made of rocks."
-	taste_description = "minerals"
+	name = "Papka mineralna"
+	description = "Minerały utłuczone na pastę. Pożywne tylko wtedy, gdy sam jesteś z kamienia."
+	taste_description = "minerały"
 	color = COLOR_WEBSAFE_DARK_GRAY
 	chem_flags = NONE
 	brute_heal = 0

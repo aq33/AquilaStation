@@ -25,15 +25,15 @@ export const TurboLift = (props) => {
       <Window.Content scrollable>
         <NoticeBox>
           {(data.online &&
-            ((currentdeck && `Currently at deck ${currentdeck}`) ||
-              `Unable to determine current deck.`)) || (
+            ((currentdeck && `Obecny pokład: ${currentdeck}`) ||
+              `Nie można ustalić obecnego pokładu.`)) || (
             <>
-              This lift is currently offline. Please contact a Nanotrasen lift
-              repair technician.
+              Ta winda jest obecnie wyłączona. Skontaktuj się z technikiem wind
+              Nanotrasen.
             </>
           )}
         </NoticeBox>
-        <Section title="Lift panel">
+        <Section title="Panel windy">
           {Object.keys(data.decks).map((key) => {
             let value = data.decks[key];
             return (
@@ -45,7 +45,7 @@ export const TurboLift = (props) => {
                   (value.queued && 'good') ||
                   'normal'
                 }
-                content={`Deck ${value.deck}: ${value.name}`}
+                content={`Pokład ${value.deck}: ${value.name}`}
                 bold={data.current === value.z}
                 disabled={!data.online}
                 onClick={() => {

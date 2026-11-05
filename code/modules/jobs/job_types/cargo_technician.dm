@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 	departments = DEPARTMENT_BITFLAG_CARGO
-	rpg_title = "Merchantman"
+	rpg_title = "Kupiec"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/cargo_technician

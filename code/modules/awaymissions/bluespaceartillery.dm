@@ -6,7 +6,7 @@
 	var/explosiondev = 3
 	var/explosionmed = 6
 	var/explosionlight = 12
-	name = "bluespace artillery control"
+	name = "sterowanie artylerią bluespace"
 	icon_state = "control_boxp1"
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	density = TRUE
@@ -16,7 +16,7 @@
 		reload += delta_time
 
 /obj/structure/artilleryplaceholder
-	name = "artillery"
+	name = "artyleria"
 	icon = 'icons/obj/machines/artillery.dmi'
 	anchored = TRUE
 	density = TRUE
@@ -55,7 +55,7 @@
 		return
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr))
 		priority_announce("Wykryto ostrzał artylerii bluespace. Przygotować się na uderzenie.", sound = SSstation.announcer.get_rand_alert_sound())
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has launched an artillery strike.")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] przeprowadza ostrzał artyleryjski.")
 		var/list/L = list()
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/hungrypowder
-	name = "Hungry Gunpowder Bag"
+	name = "głodny worek prochu"
 	result = /obj/item/powder_bag/hungry
 	reqs = list(/obj/item/powder_bag = 1,
 				/obj/item/food/burger/plain = 1,
@@ -9,7 +9,7 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/plush_warhead
-	name = "Plush-filled warhead"
+	name = "głowica torpedy wsparcia emocjonalnego"
 	result = /obj/item/ship_weapon/parts/missile/warhead/plushtide
 	time = 50
 	reqs = list(/obj/item/stack/sheet/iron = 10,
@@ -21,7 +21,7 @@
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/medbot/catmedbot
-	name = "MediKitty"
+	name = "Kerfuś"
 	result = /mob/living/simple_animal/bot/medbot/catmedbot
 	reqs = list(
 		/obj/item/healthanalyzer = 1,
@@ -34,7 +34,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/coffee_cartridge
-	name = "Bootleg Coffee Cartridge"
+	name = "wkład z kawą – Mieszanka Botaniczna"
 	result = /obj/item/coffee_cartridge/bootleg
 	time = 2 SECONDS
 	reqs = list(

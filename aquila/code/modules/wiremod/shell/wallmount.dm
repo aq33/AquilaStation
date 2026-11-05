@@ -1,5 +1,5 @@
 /obj/structure/wallmount_circuit
-	name = "circuit box"
+	name = "skrzynka na układ"
 	desc = "Skrzynka na ścianę, w której można zainstalować układy scalone."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "wallmount"
@@ -25,7 +25,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/wallframe/circuit
-	name = "circuit box frame"
+	name = "rama skrzynki na układ"
 	desc = "Skrzynka, którą można zamontować na ścianie i zainstalować w niej układy."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "wallmount_assembly"

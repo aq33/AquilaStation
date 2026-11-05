@@ -1,8 +1,8 @@
 /obj/structure/reflector
-	name = "reflector base"
+	name = "podstawa reflektora"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "reflector_map"
-	desc = "A base for reflector assemblies."
+	desc = "Podstawa do składania reflektorów."
 	anchored = FALSE
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
@@ -85,7 +85,7 @@
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		can_rotate = !can_rotate
-		to_chat(user, "<span class='notice'>You [can_rotate ? "unlock" : "lock"] [src]'s rotation.</span>")
+		to_chat(user, "<span class='notice'>[can_rotate ? "Odblokowujesz" : "Blokujesz"] obrót [src].</span>")
 		W.play_tool_sound(src)
 		return
 
@@ -220,9 +220,9 @@
 //SINGLE
 
 /obj/structure/reflector/single
-	name = "reflector"
+	name = "reflektor"
 	deflector_icon_state = "reflector"
-	desc = "An angled mirror for reflecting laser beams."
+	desc = "Ukośne lustro do odbijania wiązek laserowych."
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/glass
@@ -246,9 +246,9 @@
 //DOUBLE
 
 /obj/structure/reflector/double
-	name = "double sided reflector"
+	name = "dwustronny reflektor"
 	deflector_icon_state = "reflector_double"
-	desc = "A double sided angled mirror for reflecting laser beams."
+	desc = "Dwustronne ukośne lustro do odbijania wiązek laserowych."
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/rglass
@@ -270,9 +270,9 @@
 //BOX
 
 /obj/structure/reflector/box
-	name = "reflector box"
+	name = "skrzynka reflektora"
 	deflector_icon_state = "reflector_box"
-	desc = "A box with an internal set of mirrors that reflects all laser beams in a single direction."
+	desc = "Skrzynka z zestawem luster w środku, które odbijają wszystkie wiązki laserowe w jednym kierunku."
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/mineral/diamond

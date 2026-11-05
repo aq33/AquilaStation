@@ -10,7 +10,7 @@
  * returns the current station time.
  */
 /obj/item/circuit_component/timepiece
-	display_name = "Timepiece"
+	display_name = "Czasomierz"
 	desc = "Komponent, który zwraca obecny czas stacji. Tekstowy port wyjściowy służy do formatów czasu, a liczbowy do jednostek czasu."
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

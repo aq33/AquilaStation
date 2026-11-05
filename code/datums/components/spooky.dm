@@ -13,7 +13,7 @@
 			U.adjustStaminaLoss(35) //Extra Damage
 			U.Jitter(35)
 			U.stuttering = 20
-			if(U.getStaminaLoss() > 95)
+			if(U.getStaminaLoss() > 145) // AQ EDIT - port Bee#14750
 				to_chat(U, "<font color ='red', size ='4'><B>Twoje uszy nie były stworzone na ten upiorny dźwięk.</B></font>")
 				INVOKE_ASYNC(src, PROC_REF(spectral_change), U)
 			return
@@ -37,7 +37,7 @@
 		C.stuttering = 20
 
 /datum/component/spooky/proc/spectral_change(mob/living/carbon/human/H, mob/user)
-	if((H.getStaminaLoss() > 95) && (!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
+	if((H.getStaminaLoss() > 145) && (!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly))) // AQ EDIT - port Bee#14750: próg na puli 250
 		H.Paralyze(20)
 		H.set_species(/datum/species/skeleton)
 		H.visible_message("<span class='warning'>[H] porzuca życie śmiertelnika.</span>")

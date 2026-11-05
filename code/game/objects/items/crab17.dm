@@ -1,6 +1,6 @@
 /obj/item/suspiciousphone
-	name = "suspicious phone"
-	desc = "This device raises pink levels to unknown highs."
+	name = "podejrzany telefon"
+	desc = "To urządzenie podnosi poziom różu do niespotykanych wysokości."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "suspiciousphone"
 	w_class = WEIGHT_CLASS_SMALL
@@ -14,7 +14,7 @@
 	if(dumped)
 		to_chat(user, "<span class='warning'>Protokół CRAB-17 jest już aktywny.</span>")
 		return FALSE
-	if(alert(user, "Na pewno chcesz zrujnować ten rynek bez ocalałych?", "Protokół CRAB-17", "Yes", "No") == "Yes")
+	if(alert(user, "Na pewno chcesz zrujnować ten rynek bez ocalałych?", "Protokół CRAB-17", "Tak", "Nie") == "Tak")
 		if(dumped || QDELETED(src)) //Prevents fuckers from cheesing alert
 			return FALSE
 		var/turf/targetturf = get_safe_random_station_turfs()
@@ -24,8 +24,8 @@
 		dumped = TRUE
 
 /obj/structure/checkoutmachine
-	name = "\improper Nanotrasen Space-Coin Market"
-	desc = "This is good for spacecoin because"
+	name = "\improper rynek spacecoinów Nanotrasen"
+	desc = "To dobrze wróży spacecoinom, bo"
 	icon = 'icons/obj/money_machine.dmi'
 	icon_state = "bogdanoff"
 	layer = TABLE_LAYER //So that the crate inside doesn't appear underneath
@@ -149,7 +149,7 @@
 /obj/structure/checkoutmachine/Destroy()
 	stop_dumping()
 	STOP_PROCESSING(SSfastprocess, src)
-	priority_announce("Wpłatomat kredytów w [get_area(src)] został zniszczony. Środki stacji przestały wyciekać!", sound = SSstation.announcer.get_rand_alert_sound(), sender_override = "CRAB-17 Protocol", )
+	priority_announce("Wpłatomat kredytów w [get_area(src)] został zniszczony. Środki stacji przestały wyciekać!", sound = SSstation.announcer.get_rand_alert_sound(), sender_override = "Protokół CRAB-17", )
 	explosion(src, 0,0,1, flame_range = 2)
 	return ..()
 
@@ -188,13 +188,13 @@
 	name = ""
 	icon = 'icons/obj/money_machine_64.dmi'
 	pixel_z = 300
-	desc = "Get out of the way!"
+	desc = "Z drogi!"
 	layer = FLY_LAYER//that wasn't flying, that was falling with style!
 	icon_state = "missile_blur"
 
 /obj/effect/dumpeetTarget
-	name = "Landing Zone Indicator"
-	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
+	name = "wskaźnik strefy lądowania"
+	desc = "Holograficzna projekcja wyznaczająca strefę lądowania czegoś. Lepiej się odsunąć."
 	icon = 'icons/mob/actions/actions_items.dmi'
 	icon_state = "sniper_zoom"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
@@ -216,7 +216,7 @@
 /obj/effect/dumpeetTarget/proc/startLaunch()
 	DF = new /obj/effect/dumpeetFall(drop_location())
 	dump = new /obj/structure/checkoutmachine(null, bogdanoff)
-	priority_announce("Bańka spacecoinów pękła! Dotrzyj do wpłatomatu w [get_area(src)] i wypłać środki, zanim stracisz wszystko!", sound = SSstation.announcer.get_rand_alert_sound(), sender_override = "CRAB-17 Protocol")
+	priority_announce("Bańka spacecoinów pękła! Dotrzyj do wpłatomatu w [get_area(src)] i wypłać środki, zanim stracisz wszystko!", sound = SSstation.announcer.get_rand_alert_sound(), sender_override = "Protokół CRAB-17")
 	animate(DF, pixel_z = -8, time = 5, , easing = LINEAR_EASING)
 	playsound(src,  'sound/weapons/mortar_whistle.ogg', 70, 1, 6)
 	addtimer(CALLBACK(src, PROC_REF(endLaunch)), 5, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation

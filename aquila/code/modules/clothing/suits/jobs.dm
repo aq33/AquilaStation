@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/hooded/aquila/ghostcostume
-	name = "spooky ghost costume"
-	desc = "Spooky ghost costume costume."
+	name = "straszliwy kostium ducha"
+	desc = "Kostium straszliwego kostiumu ducha."
 	icon_state = "ghostcostume"
 	hoodtype = /obj/item/clothing/head/hooded/aquila/huge/ghostcosstumehood
 	flags_inv = HIDEJUMPSUIT
@@ -11,8 +11,8 @@
 
 // Kosmobagiety - kurtka Komendanta, te same statystyki co kurtka peacekeepera
 /obj/item/clothing/suit/ship/peacekeeper/jacket/police
-	name = "head of security's jacket"
-	desc = "A navy police jacket with the insignia of the Head of Security. Despite its heavy armour, it's still extremely comfortable to wear."
+	name = "kurtka Komendanta"
+	desc = "Granatowa kurtka policyjna z insygniami Komendanta. Mimo ciężkiego opancerzenia nosi się ją niezwykle wygodnie."
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	icon_state = "hosbluejacket"

@@ -35,7 +35,7 @@ export const HybridWeapons = (props) => {
   return (
     <Window theme="ntos" width={600} height={460}>
       <Window.Content scrollable>
-        <Section title="Weapon system controls:">
+        <Section title="Sterowanie systemem broni:">
           <Flex spacing={1}>
             <Flex.Item width="250px">
               <Section fill position="relative" height="100%">
@@ -43,20 +43,20 @@ export const HybridWeapons = (props) => {
                   icon={data.loaded ? 'check-circle' : 'square-o'}
                   width="100"
                   selected={data.loaded}
-                  content="I1 - Payload loaded"
+                  content="I1 - Ładunek załadowany"
                   onClick={() => act('toggle_load')}
                 />
                 <Button
                   icon={data.chambered ? 'check-circle' : 'square-o'}
                   width="100"
                   selected={data.chambered}
-                  content="I2 - Payload chambered"
+                  content="I2 - Ładunek w komorze"
                   onClick={() => act('chamber')}
                 />
                 <Button
                   icon={data.safety ? 'power-off' : 'times'}
                   color={data.safety ? 'green' : 'red'}
-                  content="I3 - Weapon safeties"
+                  content="I3 - Bezpieczniki broni"
                   onClick={() => act('toggle_safety')}
                 />
                 <Button
@@ -64,22 +64,22 @@ export const HybridWeapons = (props) => {
                   color={data.slug_shell ? 'orange' : 'yellow'}
                   content={
                     data.slug_shell
-                      ? 'I4 - Configuration: Canister Type'
-                      : 'I4 - Configuration: Slug Type'
+                      ? 'I4 - Konfiguracja: kanister'
+                      : 'I4 - Konfiguracja: pocisk pełny'
                   }
                   onClick={() => act('switch_type')}
                 />
-                Structural Integrity:{' '}
+                Integralność strukturalna:{' '}
                 <b>{(data.obj_integ / data.max_obj_integ) * 100}%</b>
                 <br />
-                Barrel Condition: <b>{(data.maint_req / 25) * 100}%</b>
+                Stan lufy: <b>{(data.maint_req / 25) * 100}%</b>
                 <br />
-                Magnetic Alignement: <b>{data.alignment}%</b>
+                Wyrównanie magnetyczne: <b>{data.alignment}%</b>
               </Section>
             </Flex.Item>
             <Flex.Item width="300px">
               <Section>
-                Capacitor Charge:
+                Ładunek kondensatora:
                 <ProgressBar
                   value={data.capacitor_charge / data.capacitor_max_charge}
                   ranges={{
@@ -88,7 +88,7 @@ export const HybridWeapons = (props) => {
                     bad: [-Infinity, 0.5],
                   }}
                 />
-                Power Allocation (Watts):
+                Przydział mocy (W):
                 <Slider
                   tickWhileDragging
                   value={data.capacitor_current_charge_rate}
@@ -102,7 +102,7 @@ export const HybridWeapons = (props) => {
                     })
                   }
                 />
-                Available Power (Watts):
+                Dostępna moc (W):
                 <ProgressBar
                   value={data.available_power}
                   minValue={0}
@@ -115,22 +115,22 @@ export const HybridWeapons = (props) => {
             </Flex.Item>
           </Flex>
         </Section>
-        <Section title="Ammunition:">
+        <Section title="Amunicja:">
           <Table.Row>
             {Object.keys(data.magazine).map((key) => {
               let value = data.magazine[key];
               return (
                 <Table.Cell key={key}>
                   <Section title={`${value.name}`}>
-                    Conductivity: <b>{value.conductivity}</b>
+                    Przewodność: <b>{value.conductivity}</b>
                     <br />
-                    Density: <b>{value.density}</b>
+                    Gęstość: <b>{value.density}</b>
                     <br />
-                    Hardness: <b>{value.hardness}</b>
+                    Twardość: <b>{value.hardness}</b>
                     <br />
-                    Charge: <b>{value.charge}</b>
+                    Ładunek: <b>{value.charge}</b>
                     <br />
-                    Integrity: <b>{value.integrity}</b>
+                    Integralność: <b>{value.integrity}</b>
                   </Section>
                 </Table.Cell>
               );

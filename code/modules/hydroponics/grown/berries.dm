@@ -1,8 +1,8 @@
 // Berries
 /obj/item/food/grown/berries
 	seed = /obj/item/plant_seeds/preset/berry
-	name = "bunch of berries"
-	desc = "Nutritious!"
+	name = "jagoda"
+	desc = "Pożywne!"
 	icon_state = "berrypile"
 	gender = PLURAL
 	foodtypes = FRUIT
@@ -12,8 +12,8 @@
 
 // Poison Berries
 /obj/item/food/grown/berries/poison
-	name = "bunch of poison-berries"
-	desc = "Taste so good, you might die!"
+	name = "trująca jagoda"
+	desc = "Tak pyszne, że można umrzeć!"
 	icon_state = "poisonberrypile"
 	bite_consumption_mod = 3
 	foodtypes = FRUIT | TOXIC
@@ -25,8 +25,8 @@
 
 // Death Berries
 /obj/item/food/grown/berries/death
-	name = "bunch of death-berries"
-	desc = "Taste so good, you will die!"
+	name = "jagoda śmierci"
+	desc = "Tak pyszne, że na pewno umrzesz!"
 	icon_state = "deathberrypile"
 	bite_consumption_mod = 3
 	foodtypes = FRUIT | TOXIC
@@ -38,8 +38,8 @@
 
 // Glow Berries
 /obj/item/food/grown/berries/glow
-	name = "bunch of glow-berries"
-	desc = "Nutritious!"
+	name = "świecąca jagoda"
+	desc = "Pożywne!"
 	bite_consumption_mod = 3
 	icon_state = "glowberrypile"
 	foodtypes = FRUIT
@@ -51,8 +51,8 @@
 // Cherries
 /obj/item/food/grown/cherries
 	seed = /obj/item/plant_seeds/preset/cherry
-	name = "cherries"
-	desc = "Great for toppings!"
+	name = "wiśnie"
+	desc = "Świetne na wierzch!"
 	icon_state = "cherry"
 	gender = PLURAL
 	bite_consumption_mod = 2
@@ -63,8 +63,8 @@
 
 // Blue Cherries
 /obj/item/food/grown/bluecherries
-	name = "blue cherries"
-	desc = "They're cherries that are blue."
+	name = "niebieskie wiśnie"
+	desc = "To wiśnie, które są niebieskie."
 	icon_state = "bluecherry"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -75,8 +75,8 @@
 
 //Cherry Bulbs
 /obj/item/food/grown/cherrybulbs
-	name = "cherry bulbs"
-	desc = "They're like little Space Christmas lights!"
+	name = "wiśnie żarówkowe"
+	desc = "Są jak małe kosmiczne lampki choinkowe!"
 	icon_state = "cherry_bulb"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -87,8 +87,8 @@
 
 //Cherry Bulbs
 /obj/item/food/grown/cherrybulbs
-	name = "cherry bulbs"
-	desc = "They're like little Space Christmas lights!"
+	name = "wiśnie żarówkowe"
+	desc = "Są jak małe kosmiczne lampki choinkowe!"
 	icon_state = "cherry_bulb"
 	filling_color = "#FF0000"
 	bite_consumption_mod = 2
@@ -100,8 +100,8 @@
 // Grapes
 /obj/item/food/grown/grapes
 	seed = /obj/item/plant_seeds/preset/grape
-	name = "bunch of grapes"
-	desc = "Nutritious!"
+	name = "winogrona"
+	desc = "Pożywne!"
 	icon_state = "grapes"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -114,7 +114,7 @@
 
 // Green Grapes
 /obj/item/food/grown/grapes/green
-	name = "bunch of green grapes"
+	name = "zielone winogrona"
 	icon_state = "greengrapes"
 	bite_consumption_mod = 3
 	tastes = list("zielone winogrono" = 1)

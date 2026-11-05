@@ -6,7 +6,7 @@
 
 
 /obj/effect/particle_effect/foam
-	name = "foam"
+	name = "piana"
 	icon_state = "foam"
 	opacity = 0
 	anchored = TRUE
@@ -27,7 +27,7 @@
 	var/creation_time //NSV13
 
 /obj/effect/particle_effect/foam/firefighting
-	name = "firefighting foam"
+	name = "piana gaśnicza"
 	lifetime = 20 //doesn't last as long as normal foam
 	amount = 0 //no spread
 	slippery_foam = FALSE
@@ -71,20 +71,20 @@
 	return
 
 /obj/effect/particle_effect/foam/metal
-	name = "aluminium foam"
+	name = "piana aluminiowa"
 	metal = ALUMINUM_FOAM
 	icon_state = "mfoam"
 	slippery_foam = FALSE
 
 /obj/effect/particle_effect/foam/metal/smart
-	name = "smart foam"
+	name = "inteligentna piana"
 
 /obj/effect/particle_effect/foam/metal/iron
-	name = "iron foam"
+	name = "piana żelazna"
 	metal = IRON_FOAM
 
 /obj/effect/particle_effect/foam/metal/resin
-	name = "resin foam"
+	name = "piana żywiczna"
 	metal = RESIN_FOAM
 
 /obj/effect/particle_effect/foam/long_life
@@ -265,8 +265,8 @@
 	anchored = TRUE
 	layer = EDGED_TURF_LAYER
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	name = "foamed metal"
-	desc = "A lightweight foamed metal wall."
+	name = "spieniony metal"
+	desc = "Lekka ściana ze spienionego metalu."
 	gender = PLURAL
 	max_integrity = 20
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -301,8 +301,8 @@
 
 //Atmos Backpack Resin, transparent, prevents atmos and filters the air
 /obj/structure/foamedmetal/resin
-	name = "\improper ATMOS Resin"
-	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature."
+	name = "\improper żywica ATMOS"
+	desc = "Lekka, przezroczysta żywica, która dusi pożary, oczyszcza powietrze z toksyn i przywraca mu bezpieczną temperaturę."
 	opacity = FALSE
 	icon_state = "atmos_resin"
 	alpha = 120

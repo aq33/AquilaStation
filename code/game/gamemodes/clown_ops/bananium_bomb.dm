@@ -1,6 +1,6 @@
 /obj/machinery/nuclearbomb/syndicate/bananium
-	name = "bananium fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	name = "bananiumowy ładunek rozszczepieniowy"
+	desc = "Lepiej nie zostawać w pobliżu, żeby sprawdzić, czy jest uzbrojony."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "bananiumbomb_base"
 

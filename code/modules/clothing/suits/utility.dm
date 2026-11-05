@@ -10,8 +10,8 @@
  */
 
 /obj/item/clothing/suit/fire
-	name = "emergency firesuit"
-	desc = "A suit that helps protect against fire and heat."
+	name = "awaryjny kombinezon przeciwpożarowy"
+	desc = "Kombinezon, który pomaga chronić przed ogniem i gorącem."
 	icon_state = "fire"
 	item_state = "ro_suit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -37,15 +37,15 @@
 
 
 /obj/item/clothing/suit/fire/heavy
-	name = "heavy firesuit"
-	desc = "An old, bulky thermal protection suit."
+	name = "ciężki kombinezon przeciwpożarowy"
+	desc = "Stary, nieporęczny kombinezon ochrony termicznej."
 	icon_state = "thermal"
 	item_state = "ro_suit"
 	slowdown = 1.5
 
 /obj/item/clothing/suit/fire/atmos
-	name = "firesuit"
-	desc = "An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame."
+	name = "kombinezon przeciwpożarowy"
+	desc = "Drogi kombinezon przeciwpożarowy, który chroni nawet przed najgroźniejszymi pożarami na stacji. Zaprojektowany tak, by chronić nawet wtedy, gdy noszący stanie w płomieniach."
 	icon_state = "atmos_firesuit"
 	item_state = "firesuit_atmos"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -55,8 +55,8 @@
  * Bomb protection
  */
 /obj/item/clothing/head/bomb_hood
-	name = "bomb hood"
-	desc = "Use in case of bomb."
+	name = "kaptur saperski"
+	desc = "Użyj w razie bomby."
 	icon_state = "bombsuit"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 20,"energy" = 10, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50, "stamina" = 10, "bleed" = 25)
@@ -74,8 +74,8 @@
 
 
 /obj/item/clothing/suit/bomb_suit
-	name = "bomb suit"
-	desc = "A suit designed for safety when handling explosives."
+	name = "kombinezon saperski"
+	desc = "Kombinezon zaprojektowany z myślą o bezpieczeństwie przy obchodzeniu się z materiałami wybuchowymi."
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -117,9 +117,9 @@
 */
 
 /obj/item/clothing/head/radiation
-	name = "radiation hood"
+	name = "kaptur przeciwradiacyjny"
 	icon_state = "rad"
-	desc = "A hood with radiation protective properties. The label reads, 'Made with lead. Please do not consume insulation.'"
+	desc = "Kaptur o właściwościach ochronnych przed promieniowaniem. Etykieta głosi: „Wykonano z ołowiu. Prosimy nie spożywać izolacji”."
 	clothing_flags = THICKMATERIAL	| SHOWEROKAY | SNUG_FIT //NSV13 - kept SHOWEROKAY
 	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 30, "acid" = 30, "stamina" = 10, "bleed" = 15)
@@ -129,8 +129,8 @@
 	rad_flags = RAD_PROTECT_CONTENTS
 
 /obj/item/clothing/suit/radiation
-	name = "radiation suit"
-	desc = "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
+	name = "kombinezon przeciwradiacyjny"
+	desc = "Kombinezon chroniący przed promieniowaniem. Etykieta głosi: „Wykonano z ołowiu. Prosimy nie spożywać izolacji”."
 	icon_state = "rad"
 	item_state = "rad_suit"
 	w_class = WEIGHT_CLASS_BULKY

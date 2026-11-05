@@ -5,9 +5,9 @@
 /datum/brain_trauma/mild
 
 /datum/brain_trauma/mild/hallucinations
-	name = "Hallucinations"
-	desc = "Patient suffers constant hallucinations."
-	scan_desc = "schizophrenia"
+	name = "Halucynacje"
+	desc = "Pacjent cierpi na ciągłe halucynacje."
+	scan_desc = "schizofrenia"
 	gain_text = "<span class='warning'>Czujesz, że tracisz kontakt z rzeczywistością...</span>"
 	lose_text = "<span class='notice'>Czujesz się bardziej ugruntowany.</span>"
 
@@ -20,8 +20,8 @@
 	..()
 
 /datum/brain_trauma/mild/stuttering
-	name = "Stuttering"
-	desc = "Patient can't speak properly."
+	name = "Jąkanie"
+	desc = "Pacjent nie potrafi poprawnie mówić."
 	scan_desc = "osłabiona koordynacja ust"
 	gain_text = "<span class='warning'>Coraz trudniej ci wyraźnie mówić.</span>"
 	lose_text = "<span class='notice'>Panujesz nad swoją mową.</span>"
@@ -35,8 +35,8 @@
 	..()
 
 /datum/brain_trauma/mild/dumbness
-	name = "Dumbness"
-	desc = "Patient has reduced brain activity, making them less intelligent."
+	name = "Otępienie"
+	desc = "Pacjent ma obniżoną aktywność mózgu, przez co jest mniej inteligentny."
 	scan_desc = "obniżona aktywność mózgu"
 	gain_text = "<span class='warning'>Czujesz się głupszy.</span>"
 	lose_text = "<span class='notice'>Znów czujesz się mądry.</span>"
@@ -61,8 +61,8 @@
 	..()
 
 /datum/brain_trauma/mild/speech_impediment
-	name = "Speech Impediment"
-	desc = "Patient is unable to form coherent sentences."
+	name = "Wada wymowy"
+	desc = "Pacjent nie potrafi składać spójnych zdań."
 	scan_desc = "zaburzenie komunikacji"
 	gain_text = "<span class='danger'>Nie potrafisz ułożyć żadnej spójnej myśli!</span>"
 	lose_text = "<span class='danger'>Twój umysł wydaje się jaśniejszy.</span>"
@@ -76,9 +76,9 @@
 	..()
 
 /datum/brain_trauma/mild/concussion
-	name = "Concussion"
-	desc = "Patient's brain is concussed."
-	scan_desc = "concussion"
+	name = "Wstrząśnienie mózgu"
+	desc = "Pacjent ma wstrząśnienie mózgu."
+	scan_desc = "wstrząśnienie mózgu"
 	gain_text = "<span class='warning'>Boli cię głowa!</span>"
 	lose_text = "<span class='notice'>Ucisk w twojej głowie zaczyna słabnąć.</span>"
 
@@ -104,8 +104,8 @@
 	..()
 
 /datum/brain_trauma/mild/healthy
-	name = "Anosognosia"
-	desc = "Patient always feels healthy, regardless of their condition."
+	name = "Anozognozja"
+	desc = "Pacjent zawsze czuje się zdrowy, niezależnie od swojego stanu."
 	scan_desc = "deficyt samoświadomości"
 	gain_text = "<span class='notice'>Czujesz się świetnie!</span>"
 	lose_text = "<span class='warning'>Nie czujesz się już w pełni zdrowy.</span>"
@@ -124,8 +124,8 @@
 	..()
 
 /datum/brain_trauma/mild/muscle_weakness
-	name = "Muscle Weakness"
-	desc = "Patient experiences occasional bouts of muscle weakness."
+	name = "Osłabienie mięśni"
+	desc = "Pacjent miewa napady osłabienia mięśni."
 	scan_desc = "słaby sygnał nerwów ruchowych"
 	gain_text = "<span class='warning'>Twoje mięśnie wydają się dziwnie słabe.</span>"
 	lose_text = "<span class='notice'>Znów panujesz nad mięśniami.</span>"
@@ -151,8 +151,8 @@
 	..()
 
 /datum/brain_trauma/mild/muscle_spasms
-	name = "Muscle Spasms"
-	desc = "Patient has occasional muscle spasms, causing them to move unintentionally."
+	name = "Skurcze mięśni"
+	desc = "Pacjent miewa skurcze mięśni, przez które porusza się mimowolnie."
 	scan_desc = "ataki nerwowe"
 	gain_text = "<span class='warning'>Twoje mięśnie wydają się dziwnie słabe.</span>"
 	lose_text = "<span class='notice'>Znów panujesz nad mięśniami.</span>"
@@ -166,8 +166,8 @@
 	..()
 
 /datum/brain_trauma/mild/nervous_cough
-	name = "Nervous Cough"
-	desc = "Patient feels a constant need to cough."
+	name = "Kaszel nerwowy"
+	desc = "Pacjent stale odczuwa potrzebę kaszlu."
 	scan_desc = "kaszel nerwowy"
 	gain_text = "<span class='warning'>Gardło nieustannie cię swędzi.</span>"
 	lose_text = "<span class='notice'>Gardło przestaje cię swędzieć.</span>"
@@ -175,7 +175,7 @@
 /datum/brain_trauma/mild/nervous_cough/on_life()
 	if(prob(12) && !HAS_TRAIT(owner, TRAIT_SOOTHED_THROAT))
 		if(prob(5))
-			to_chat(owner, "<span notice='warning'>[pick("You have a coughing fit!", "You can't stop coughing!")]</span>")
+			to_chat(owner, "<span notice='warning'>[pick("Dostajesz ataku kaszlu!", "Nie możesz przestać kaszleć!")]</span>")
 			owner.Immobilize(20)
 			owner.emote("cough")
 			addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, emote), "cough"), 6)
@@ -184,8 +184,8 @@
 	..()
 
 /datum/brain_trauma/mild/expressive_aphasia
-	name = "Expressive Aphasia"
-	desc = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+	name = "Afazja ruchowa"
+	desc = "Pacjent częściowo utracił mowę, co ogranicza jego słownictwo."
 	scan_desc = "niezdolność do tworzenia złożonych zdań"
 	gain_text = "<span class='warning'>Tracisz zdolność posługiwania się złożonymi słowami.</span>"
 	lose_text = "<span class='notice'>Czujesz, że twoje słownictwo wraca do normy.</span>"

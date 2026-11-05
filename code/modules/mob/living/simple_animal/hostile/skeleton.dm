@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/skeleton
-	name = "reanimated skeleton"
-	desc = "A real bonefied skeleton, doesn't seem like it wants to socialize."
+	name = "ożywiony szkielet"
+	desc = "Szkielet z krwi i kości, choć bez krwi. Nie wygląda na towarzyskiego."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "skeleton"
 	icon_living = "skeleton"
@@ -39,8 +39,8 @@
 	discovery_points = 2000
 
 /mob/living/simple_animal/hostile/skeleton/eskimo
-	name = "undead eskimo"
-	desc = "The reanimated remains of some poor traveler."
+	name = "nieumarły Eskimos"
+	desc = "Ożywione szczątki jakiegoś biednego podróżnika."
 	icon_state = "eskimo"
 	icon_living = "eskimo"
 	icon_dead = "eskimo_dead"
@@ -57,8 +57,8 @@
 
 
 /mob/living/simple_animal/hostile/skeleton/templar
-	name = "undead templar"
-	desc = "The reanimated remains of a holy templar knight."
+	name = "nieumarły templariusz"
+	desc = "Ożywione szczątki świętego rycerza templariusza."
 	icon_state = "templar"
 	icon_living = "templar"
 	icon_dead = "templar_dead"
@@ -68,7 +68,7 @@
 	speed = 2
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 1
-	speak = list("BOGOWIE TEGO CHCĄ!","DEUS VULT!","REMOVE KABAB!")
+	speak = list("BOGOWIE TEGO CHCĄ!","DEUS VULT!","WYRZUCIĆ KEBAB!")
 	force_threshold = 10 //trying to simulate actually having armor
 	obj_damage = 50
 	melee_damage = 30
@@ -76,11 +76,11 @@
 	loot = list(/obj/effect/decal/remains/human,
 				/obj/item/clothing/suit/armor/riot/chaplain,
 				/obj/item/clothing/head/helmet/chaplain,
-				/obj/item/claymore/weak{name = "holy sword"})
+				/obj/item/claymore/weak{name = "święty miecz"})
 
 /mob/living/simple_animal/hostile/skeleton/ice
-	name = "ice skeleton"
-	desc = "A reanimated skeleton protected by a thick sheet of natural ice armor. Looks slow, though."
+	name = "lodowy szkielet"
+	desc = "Ożywiony szkielet chroniony grubym pancerzem z naturalnego lodu. Wygląda jednak na powolnego."
 	speed = 5
 	maxHealth = 75
 	health = 75
@@ -89,8 +89,8 @@
 	loot = list(/obj/effect/decal/remains/human{color = rgb(114,228,250)})
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer
-	name = "shambling miner"
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma."
+	name = "powłóczący nogami górnik"
+	desc = "Przesiąknięty plazmą górnik. Jego odsłonięte kończyny zmieniły się w obrzydliwie żarzące się kości, jakby zrobione z plazmy."
 	icon_state = "plasma_miner"
 	icon_living = "plasma_miner"
 	icon_dead = "plasma_miner"
@@ -104,7 +104,7 @@
 	loot = list(/obj/effect/decal/remains/plasma)
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma. They seem to still have their mining tool in their hand, gripping tightly."
+	desc = "Przesiąknięty plazmą górnik. Jego odsłonięte kończyny zmieniły się w obrzydliwie żarzące się kości, jakby zrobione z plazmy. Wciąż kurczowo ściska w dłoni swoje narzędzie górnicze."
 	icon_state = "plasma_miner_tool"
 	icon_living = "plasma_miner_tool"
 	icon_dead = "plasma_miner_tool"

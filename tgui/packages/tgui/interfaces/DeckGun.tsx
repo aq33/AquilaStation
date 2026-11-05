@@ -20,16 +20,16 @@ export const DeckGun = (props) => {
   return (
     <Window theme="hackerman" width={500} height={400}>
       <Window.Content scrollable>
-        <Section title="Naval Artillery Cannon">
-          <Section title="Loaded:">{data.loaded}</Section>
+        <Section title="Działo artylerii okrętowej">
+          <Section title="Załadowano:">{data.loaded}</Section>
           {!!data.parts && (
-            <Section title="Shell powder content (dT):">
+            <Section title="Zawartość prochu w pocisku (dT):">
               {Object.keys(data.parts).map((key) => {
                 let value = data.parts[key];
                 return (
                   <Button
                     key={key}
-                    content="Pack from loader"
+                    content="Załaduj z podajnika"
                     icon="box"
                     disabled={!value.loaded}
                     onClick={() => act('load_powder', { target: value.id })}
@@ -49,9 +49,9 @@ export const DeckGun = (props) => {
           <br />
           <br />
         </Section>
-        <Section title="Turret Ammunition:">
+        <Section title="Amunicja wieżyczki:">
           <Button
-            content="Feed Shell"
+            content="Podaj pocisk"
             icon="exclamation-triangle"
             disabled={!data.can_load}
             onClick={() => act('load')}

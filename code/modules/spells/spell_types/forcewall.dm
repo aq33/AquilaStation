@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/forcewall
-	name = "Forcewall"
-	desc = "Create a magical barrier that only you can pass through."
+	name = "Ściana mocy"
+	desc = "Tworzysz magiczną barierę, przez którą przejdziesz tylko ty."
 	school = "transmutation"
 	charge_max = 100
 	clothes_req = FALSE

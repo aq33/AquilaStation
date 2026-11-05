@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/honkbot
 	name = "\improper honkbot"
-	desc = "A little robot. It looks happy with its bike horn."
+	desc = "Mały robot. Wygląda na zadowolonego ze swojego klaksonu."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "honkbot"
 	density = FALSE
@@ -337,12 +337,12 @@
 			if(!istype(C) || !C || in_range(src, target))
 				return
 			C.visible_message("<span class='warning'>[pick( \
-						  	"[C] dives out of [src]'s way!", \
-						  	"[C] stumbles over [src]!", \
-						  	"[C] jumps out of [src]'s path!", \
-						  	"[C] trips over [src] and falls!", \
-						  	"[C] topples over [src]!", \
-						  	"[C] leaps out of [src]'s way!")]</span>")
+						  	"[C] uskakuje przed [src]!", \
+						  	"[C] potyka się o [src]!", \
+						  	"[C] odskakuje z drogi [src]!", \
+						  	"[C] potyka się o [src] i upada!", \
+						  	"[C] przewraca się o [src]!", \
+						  	"[C] umyka z drogi [src]!")]</span>")
 			C.Paralyze(10)
 			playsound(loc, 'sound/misc/sadtrombone.ogg', 50, 1, -1)
 			if(!client)

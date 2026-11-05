@@ -33,7 +33,7 @@
 	if(IsAdminAdvancedProcCall())
 		return
 	log_admin("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
-	message_admins("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
+	message_admins("[key_name_admin(usr)] wymusza ponowne wczytanie konfiguracji z dysku.")
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
@@ -167,7 +167,7 @@
 			var/good_update = istext(new_value)
 			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
 			if(!warned_deprecated_configs)
-				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(message_admins), "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(message_admins), "Ten serwer używa przestarzałych ustawień konfiguracji. Sprawdź logi i zaktualizuj je."), 0)
 				warned_deprecated_configs = TRUE
 			if(good_update)
 				value = new_value

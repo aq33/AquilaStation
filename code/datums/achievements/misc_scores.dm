@@ -1,4 +1,4 @@
 /datum/award/score/bomb_score
-	name = "Biggest Bomb"
-	desc = "Pigeon John is jealous"
+	name = "Największa bomba"
+	desc = "Gołąb John jest zazdrosny"
 	database_id = BIG_BOMB_SCORE

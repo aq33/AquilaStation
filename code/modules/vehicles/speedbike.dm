@@ -1,6 +1,6 @@
 
 /obj/vehicle/ridden/space
-	name = "Generic Space Vehicle!"
+	name = "Typowy pojazd kosmiczny!"
 
 /obj/vehicle/ridden/space/Initialize(mapload)
 	. = ..()
@@ -8,7 +8,7 @@
 	D.override_allow_spacemove = TRUE
 
 /obj/vehicle/ridden/space/speedbike
-	name = "Speedbike"
+	name = "ścigacz"
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "speedbike_blue"
 	layer = LYING_MOB_LAYER
@@ -40,7 +40,7 @@
 
 /obj/vehicle/ridden/space/speedwagon
 	name = "BM Speedwagon"
-	desc = "Push it to the limit, walk along the razor's edge."
+	desc = "Dociśnij do granic, stąpaj po ostrzu brzytwy."
 	icon = 'icons/obj/car.dmi'
 	icon_state = "speedwagon"
 	layer = LYING_MOB_LAYER

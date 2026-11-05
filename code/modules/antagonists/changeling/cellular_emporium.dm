@@ -2,7 +2,7 @@
 // The place where changelings go to buy their biological weaponry.
 
 /datum/cellular_emporium
-	var/name = "cellular emporium"
+	var/name = "Komórkowe Emporium"
 	var/datum/antagonist/changeling/changeling
 
 /datum/cellular_emporium/New(my_changeling)
@@ -85,7 +85,7 @@
 			. = TRUE
 
 /datum/action/innate/cellular_emporium
-	name = "Cellular Emporium"
+	name = "Komórkowe Emporium"
 	icon_icon = 'icons/obj/drinks.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"

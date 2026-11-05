@@ -386,9 +386,9 @@
 		return FALSE
 
 	var/obj/item/bodypart/head/head = sacrifice.get_bodypart(BODY_ZONE_HEAD)
-	if(!head || HAS_TRAIT(sacrifice, TRAIT_HAS_CRANIAL_FISSURE))
+	if(!head || head.get_wound(WOUND_CRANIAL))
 		return TRUE
-	// AQUILA - u nas nie ma pękniętej czaszki (rany z tg), więc wystarczy całkiem zmasakrowana głowa
+	// AQUILA - bez rany pęknięcia czaszki wystarczy całkiem zmasakrowana głowa
 	return head.brute_dam >= head.max_damage
 
 /datum/heretic_knowledge/ultimate/blade_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -458,7 +458,7 @@
 
 /datum/status_effect/blade_stun_absorption/proc/enable_absorption()
 	recharge_at = 0
-	owner.add_stun_absorption(absorption_key, INFINITY, 3, " zrzuca z siebie ogłuszenie!", "Zrzucasz z siebie ogłuszenie!", span_hypnophrase("[owner.p_they(TRUE)] stoi niewzruszenie."))
+	owner.add_stun_absorption(absorption_key, INFINITY, 3, " zrzuca z siebie ogłuszenie!", "Zrzucasz z siebie ogłuszenie!", span_hypnophrase("[owner] stoi niewzruszenie."))
 
 /datum/status_effect/blade_stun_absorption/tick(seconds_between_ticks)
 	if(recharge_at)

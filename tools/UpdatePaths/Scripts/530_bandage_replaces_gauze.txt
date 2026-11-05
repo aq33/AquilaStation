@@ -1,0 +1,9 @@
+/obj/item/stack/medical/gauze/adv/one : /obj/item/stack/medical/bandage/sterile/one{@OLD}
+/obj/item/stack/medical/gauze/adv : /obj/item/stack/medical/bandage/sterile{@OLD}
+/obj/item/stack/medical/gauze/improvised : /obj/item/stack/medical/bandage/makeshift{@OLD}
+/obj/item/stack/medical/gauze/cyborg : /obj/item/stack/medical/bandage/cyborg{@OLD}
+/obj/item/stack/medical/gauze : /obj/item/stack/medical/bandage{@OLD}
+/obj/item/stack/medical/bruise_pack/one : /obj/item/stack/medical/suture/one{@OLD}
+/obj/item/stack/medical/bruise_pack : /obj/item/stack/medical/suture{@OLD}
+/obj/item/stack/medical/ointment/one : /obj/item/stack/medical/mesh/one{@OLD}
+/obj/item/stack/medical/ointment : /obj/item/stack/medical/mesh{@OLD}

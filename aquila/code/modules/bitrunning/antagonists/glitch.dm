@@ -1,5 +1,5 @@
 /datum/antagonist/bitrunning_glitch
-	name = "Generic Bitrunning Glitch"
+	name = "Glitch bitrunningu"
 	roundend_category = "glitche bitrunningu"
 	antagpanel_category = "Bitrunning"
 	banning_key = ROLE_GLITCH
@@ -170,7 +170,7 @@
 
 
 /mob/living/simple_animal/hostile/netguardian
-	name = "netguardian prime"
+	name = "główny strażnik sieci"
 	desc = "Ostatnia linia obrony przed organicznym intruzem. Nie wygląda na zadowolonego z twojego widoku."
 	icon = 'aquila/icons/mob/netguardian.dmi'
 	icon_state = "netguardian"

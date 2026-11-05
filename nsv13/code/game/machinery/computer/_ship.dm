@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(computer_beeps, list('nsv13/sound/effects/computer/beep.ogg','n
 //Yes beeps are here because reasons
 
 /obj/machinery/computer/ship
-	name = "Ship console"
+	name = "konsola okrętowa"
 	icon_keyboard = "helm_key"
 	var/obj/structure/overmap/linked
 	var/position = null
@@ -68,13 +68,13 @@ GLOBAL_LIST_INIT(computer_beeps, list('nsv13/sound/effects/computer/beep.ogg','n
 
 	if(linked.mass < MASS_SMALL)
 		to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
-		to_chat(user, "<span class='warning'>=Hotkeys=</span>")
+		to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 		to_chat(user, "<span class='notice'> Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
 		to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny.</span>")
 
 	else
 		to_chat(user, "<span class='notice'>Dużymi jednostkami steruje się strzałkami w górę i w dół (W i S w trybie skrótów), przyspieszając lub zwalniając. Strzałkami w lewo i w prawo (A i D) obraca się jednostkę. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
-		to_chat(user, "<span class='warning'>=Hotkeys=</span>")
+		to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 		to_chat(user, "<span class='notice'> Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
 		to_chat(user, "<span class='notice'> Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>C</b>, by przełączać między sterowaniem myszą a klawiaturą. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>spację</b>, by przełączać dostępną broń. Naciśnij <b>F</b>, by wykonać akcję specjalną obecnej broni (jeśli jest dostępna).</span>")
 
@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(computer_beeps, list('nsv13/sound/effects/computer/beep.ogg','n
 
 //Viewscreens for regular crew to watch combat
 /obj/machinery/computer/ship/viewscreen
-	name = "Seegson model M viewscreen"
-	desc = "A large CRT monitor which shows an exterior view of the ship."
+	name = "ekran widokowy Seegson model M"
+	desc = "Duży monitor CRT, który pokazuje widok statku z zewnątrz."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "viewscreen"
 	idle_power_usage = 15

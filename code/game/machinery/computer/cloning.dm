@@ -1,8 +1,8 @@
 #define AUTOCLONING_MINIMAL_LEVEL 3
 
 /obj/machinery/computer/cloning
-	name = "cloning console"
-	desc = "Used to clone people and manage DNA."
+	name = "konsola klonowania"
+	desc = "Służy do klonowania ludzi i zarządzania DNA."
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/cloning
@@ -10,10 +10,10 @@
 	var/obj/machinery/dna_scannernew/scanner //Linked scanner. For scanning.
 	var/clonepod_type = /obj/machinery/clonepod
 	var/list/pods //Linked cloning pods
-	var/temp = "Inactive"
+	var/temp = "Nieaktywny"
 	var/scantemp_ckey
 	var/scantemp_name
-	var/scantemp = "Inactive"
+	var/scantemp = "Nieaktywny"
 	var/menu = 1 //Which menu screen to display
 	var/use_records = TRUE	//set this to false if you don't want the console to use records
 	var/list/records = list()
@@ -216,7 +216,7 @@
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
 	diskette.fields = GRAB.fields.Copy()
-	diskette.name = "data disk - '[src.diskette.fields["name"]]'"
+	diskette.name = "dysk danych – „[src.diskette.fields["name"]]”"
 	scantemp = "Zapisano na dysk pomyślnie."
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 	return TRUE
@@ -353,7 +353,7 @@
 /obj/machinery/computer/cloning/proc/Scan(mob/user, body_only = FALSE)
 	if(!scanner.is_operational || !scanner.occupant)
 		return
-	scantemp = "[scantemp_name] => Scanning..."
+	scantemp = "[scantemp_name] => Skanowanie..."
 	loading = TRUE
 	playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
 	say("Rozpoczynanie skanowania...")
@@ -435,7 +435,7 @@
 	data["scanTemp"] = scantemp
 	data["scannerLocked"] = scanner?.locked
 	data["hasOccupant"] = scanner?.occupant
-	data["recordsLength"] = "View Records ([length(records)])"
+	data["recordsLength"] = "Przeglądaj rekordy ([length(records)])"
 	data["experimental"] = experimental
 	return data
 
@@ -475,7 +475,7 @@
 	updatemodules(TRUE)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CloningConsole", "Cloning System Control")
+		ui = new(user, src, "CloningConsole", "Sterowanie systemem klonowania")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -660,8 +660,8 @@
 
 //Prototype cloning console, much more rudimental and lacks modern functions such as saving records, autocloning, or safety checks.
 /obj/machinery/computer/cloning/prototype
-	name = "prototype cloning console"
-	desc = "Used to operate an experimental cloner."
+	name = "prototypowa konsola klonowania"
+	desc = "Służy do obsługi eksperymentalnego klonera."
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/cloning/prototype

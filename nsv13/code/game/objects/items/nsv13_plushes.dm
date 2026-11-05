@@ -10,7 +10,7 @@
 	return INITIALIZE_HINT_QDEL
 */
 /obj/item/toy/plush/hfighter
-	name = "heavy fighter plush"
+	name = "pluszak ciężkiego myśliwca"
 	desc = "Uroczy pluszak w kształcie ciężkiego myśliwca Su-410 Scimitar."
 	icon = 'nsv13/icons/obj/custom_plushes.dmi'
 	icon_state = "heavyfighter"
@@ -18,7 +18,7 @@
 	squeak_override = list('nsv13/sound/effects/fighters/BRRTTTTTT.ogg'=1)
 
 /obj/item/toy/plush/lfighter
-	name = "light fighter plush"
+	name = "pluszak lekkiego myśliwca"
 	desc = "Uroczy pluszak w kształcie lekkiego myśliwca Su-818 Rapier."
 	icon = 'nsv13/icons/obj/custom_plushes.dmi'
 	icon_state = "lightfighter"
@@ -26,12 +26,12 @@
 	squeak_override = list('nsv13/sound/effects/fighters/autocannon.ogg'=1)
 
 /obj/item/toy/plush/lfighter/synlfighter
-	name = "Syndicate light fighter plush"
-	desc = "An adorable stuffed toy shaped like a Su-818 Rapier light fighter with Syndicate livery."
+	name = "pluszak lekkiego myśliwca Syndykatu"
+	desc = "Uroczy pluszak w kształcie lekkiego myśliwca Su-818 Rapier w barwach Syndykatu."
 	icon_state = "synlightfighter"
 
 /obj/item/toy/plush/transport
-	name = "utility craft plush"
+	name = "pluszak statku użytkowego"
 	desc = "Uroczy pluszak w kształcie statku użytkowego Su-437 Sabre."
 	icon = 'nsv13/icons/obj/custom_plushes.dmi'
 	icon_state = "transport"
@@ -39,6 +39,6 @@
 	squeak_override = list('nsv13/sound/effects/fighters/warmup.ogg'=1)
 
 /obj/item/toy/plush/transport/mining
-	name = "mining craft plush"
+	name = "pluszak statku górniczego"
 	desc = "Uroczy pluszak w kształcie statku górniczego Su-437 Sabre."
 	icon_state = "mining"

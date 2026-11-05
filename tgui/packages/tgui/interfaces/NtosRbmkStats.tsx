@@ -1,11 +1,6 @@
 // NSV13
 
-import {
-  Button,
-  Chart,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Button, Chart, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
@@ -31,12 +26,12 @@ export const NtosRbmkStats = (props) => {
     <NtosWindow resizable width={440} height={650}>
       <NtosWindow.Content>
         <Section
-          title="Legend:"
+          title="Legenda:"
           buttons={
             <Button
               icon="search"
               onClick={() => act('swap_reactor')}
-              content="Change Reactor"
+              content="Zmień reaktor"
             />
           }
         >
@@ -48,7 +43,7 @@ export const NtosRbmkStats = (props) => {
             color="yellow"
           />
           <br />
-          Reactor Pressure (PSI):
+          Ciśnienie w reaktorze (PSI):
           <ProgressBar
             value={data.psi}
             minValue={0}
@@ -57,7 +52,7 @@ export const NtosRbmkStats = (props) => {
           >
             {data.psi} PSI
           </ProgressBar>
-          Coolant temperature (°C):
+          Temperatura chłodziwa (°C):
           <ProgressBar
             value={data.coolantInput}
             minValue={-273.15}
@@ -66,7 +61,7 @@ export const NtosRbmkStats = (props) => {
           >
             {data.coolantInput} °C
           </ProgressBar>
-          Outlet temperature (°C):
+          Temperatura na wylocie (°C):
           <ProgressBar
             value={data.coolantOutput}
             minValue={-273.15}
@@ -76,7 +71,7 @@ export const NtosRbmkStats = (props) => {
             {data.coolantOutput} °C
           </ProgressBar>
         </Section>
-        <Section fill title="Reactor Statistics:" height="200px">
+        <Section fill title="Statystyki reaktora:" height="200px">
           <Chart.Line
             fillPositionedParent
             data={powerData}

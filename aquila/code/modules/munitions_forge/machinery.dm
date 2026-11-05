@@ -22,7 +22,7 @@
 	var/special_attack_cooldown = 10 SECONDS
 	COOLDOWN_DECLARE(special_attack_cd)
 
-/// Piec łukowy zajmuje 3x3 kafle, więc sąsiedztwo liczymy od każdego z nich.
+/// Piec łukowy zajmuje 3x2 kafle, więc sąsiedztwo liczymy od każdego z nich.
 /obj/machinery/munitions_forge/Adjacent(atom/neighbor)
 	if(neighbor == loc)
 		return TRUE
@@ -230,7 +230,9 @@
 	icon = 'aquila/icons/obj/munitions_forge/arc_forge.dmi'
 	icon_state = "arc_forge"
 	bound_width = 96
-	bound_height = 96
+	// Górny rząd sprite'a to tylko komin silosu: da się za nim przejść, a piec rysuje się nad przechodzącym
+	bound_height = 64
+	layer = ABOVE_MOB_LAYER
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/munitions_arc_forge
 	operation_time = 6 SECONDS
@@ -677,4 +679,4 @@
 		QDEL_NULL(filler)
 	ping()
 	if(length(products))
-		visible_message("<span class='notice'>Na [src] leży gotowy wyrób: [products[1]].</span>")
+		visible_message("<span class='notice'>Na [src] leży gotowy wyrób: [products[1]][length(products) > 1 ? " ×[length(products)]" : ""].</span>")

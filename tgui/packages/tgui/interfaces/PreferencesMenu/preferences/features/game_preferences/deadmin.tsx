@@ -25,7 +25,7 @@ const DeadminCheckboxInput = (
     <Button
       color="transparent"
       style={forced ? { backgroundColor: '#cc0000' } : undefined}
-      tooltip={forced ? 'Forced by server config' : null}
+      tooltip={forced ? 'Wymuszone przez konfigurację serwera' : null}
       tooltipPosition="right"
       icon={
         forced ? 'minus-square-o' : props.value ? 'check-square-o' : 'square-o'
@@ -41,50 +41,50 @@ const DeadminCheckboxInput = (
 };
 
 export const deadmin_always: FeatureToggleDeadmin = {
-  name: 'Always Deadmin',
+  name: 'Zawsze zrzucaj uprawnienia',
   category: 'ADMIN',
   subcategory: 'Deadmin',
-  description: 'Whether you will always deadmin when joining a round.',
+  description: 'Czy zawsze zrzucasz uprawnienia admina, dołączając do rundy.',
   component: DeadminCheckboxInput,
   important: true,
 };
 
 export const deadmin_antagonist: FeatureToggleDeadmin = {
-  name: 'Deadmin As Antagonist',
+  name: 'Zrzucaj jako antagonista',
   category: 'ADMIN',
   subcategory: 'Deadmin',
   description:
-    'Whether you will always deadmin when joining a round as an antagonist.',
+    'Czy zawsze zrzucasz uprawnienia admina, dołączając do rundy jako antagonista.',
   component: DeadminCheckboxInput,
   important: true,
 };
 
 export const deadmin_position_head: FeatureToggleDeadmin = {
-  name: 'Deadmin As Head of Staff',
+  name: 'Zrzucaj jako szef działu',
   category: 'ADMIN',
   subcategory: 'Deadmin',
   description:
-    'Whether you will always deadmin when joining a round as a head of staff.',
+    'Czy zawsze zrzucasz uprawnienia admina, dołączając do rundy jako szef działu.',
   component: DeadminCheckboxInput,
   important: true,
 };
 
 export const deadmin_position_security: FeatureToggleDeadmin = {
-  name: 'Deadmin As Security',
+  name: 'Zrzucaj jako ochrona',
   category: 'ADMIN',
   subcategory: 'Deadmin',
   description:
-    'Whether you will always deadmin when joining a round as security.',
+    'Czy zawsze zrzucasz uprawnienia admina, dołączając do rundy jako ochrona.',
   component: DeadminCheckboxInput,
   important: true,
 };
 
 export const deadmin_position_silicon: FeatureToggleDeadmin = {
-  name: 'Deadmin As Silicon',
+  name: 'Zrzucaj jako syntetyk',
   category: 'ADMIN',
   subcategory: 'Deadmin',
   description:
-    'Whether you will always deadmin when joining a round as a silicon.',
+    'Czy zawsze zrzucasz uprawnienia admina, dołączając do rundy jako syntetyk.',
   component: DeadminCheckboxInput,
   important: true,
 };

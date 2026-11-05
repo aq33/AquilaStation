@@ -2,24 +2,24 @@
 // (code/datums/mutations/fire_breath.dm, matter_eater.dm, species/oozeling.dm)
 
 /datum/mutation/firebreath/unstable
-	name = "Unstable Fire Breath"
-	desc = "An unstable mutation that gives subjects the ability to make fire in their lungs and expel it. It is more unstable than lizards native fire breath."
+	name = "Niestabilny ognisty oddech"
+	desc = "Niestabilna mutacja, dzięki której pacjent rozpala ogień w płucach i go wydmuchuje. Jest mniej stabilna niż wrodzony ognisty oddech jaszczurów."
 	locked = TRUE
 	instability = 50
 	conflicts = list(/datum/mutation/firebreath)
 
 // U nas Matter Eater to /datum/mutation/vore
 /datum/mutation/vore/syndicate
-	name = "Refined Matter Eater"
-	desc = "Allows the subject to eat just about anything without harm. This seems to be a strain that was marked as too dangerous by Nanotrasen and thus is outlawed."
+	name = "Udoskonalony pożeracz materii"
+	desc = "Pacjent może bez szkody zjeść niemal wszystko. To chyba odmiana, którą Nanotrasen uznał za zbyt niebezpieczną i zakazał."
 	locked = TRUE
 	instability = 20
 	conflicts = list(/datum/mutation/vore)
 
 // U nas Acidic Hands to /datum/mutation/acidooze (tylko oozelingi). Ta wersja jest dla każdego i działa na nowym systemie zaklęć.
 /datum/mutation/acidooze/unstable
-	name = "Unstable Acidic Hands"
-	desc = "Allows a host to metabolize some of their blood into acid, concentrated on their hands. This strain is more unstable than the one found on oozelings."
+	name = "Niestabilne kwasowe dłonie"
+	desc = "Nosiciel przerabia część swojej krwi na kwas, który zbiera się na dłoniach. Ta odmiana jest mniej stabilna niż ta u oozelingów."
 	text_gain_indication = "<span class='notice'>Czujesz, jak moc spływa do twoich dłoni.</span>"
 	text_lose_indication = "<span class='notice'>Energia w twoich dłoniach słabnie.</span>"
 	difficulty = 16
@@ -49,8 +49,8 @@
 	acid.blood_cost = initial(acid.blood_cost) * GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/action/cooldown/spell/touch/monke_acid
-	name = "Acid Touch"
-	desc = "Concentrate to move acid into your hand, using some of your blood."
+	name = "Kwasowy dotyk"
+	desc = "Skup się, żeby przenieść kwas do dłoni. Zużywa to trochę twojej krwi."
 	button_icon_state = "summons"
 	sound = 'sound/effects/bubbles.ogg'
 	cooldown_time = 10 SECONDS
@@ -123,8 +123,8 @@
 	qdel(cuffs)
 
 /obj/item/melee/spell_hand/monke_acid
-	name = "\improper acidic hand"
-	desc = "This is kind of like when you drink acid to replenish your blood, only a lot less safe for others."
+	name = "\improper kwasowa dłoń"
+	desc = "To trochę tak, jakby pić kwas, żeby uzupełnić krew, tylko o wiele groźniejsze dla innych."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "bloodhand_left"
 	color = "#7FFF00"

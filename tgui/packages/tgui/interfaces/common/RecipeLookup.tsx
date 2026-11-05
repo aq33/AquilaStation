@@ -1,6 +1,16 @@
 // AQUILA - wyszukiwarka receptur chemicznych (dispensery i program PDA „Receptury”)
+// Wygląd kafelków wzorowany na dispenserze z Bee#12349 (style w styles/interfaces/RecipeLookup.scss)
 import { useState } from 'react';
-import { Box, Button, Input, NoticeBox, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  NoticeBox,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 export type RecipeReagent = {
   name: string;
@@ -34,6 +44,8 @@ type Props = {
   dispensable?: string[];
   /** Wydaje odczynnik o danym id (tylko w dispenserze) */
   onDispense?: (id: string) => void;
+  /** Zawartość zlewki w maszynie - składniki, których już starczy, świecą na zielono */
+  beakerContents?: { name: string; volume: number }[];
 };
 
 const MAX_SHOWN = 40;
@@ -43,12 +55,16 @@ const ROOM_TEMPERATURE = 300;
 type SearchMode = 'product' | 'ingredient';
 
 export const RecipeLookup = (props: Props) => {
-  const { recipes, dispensable, onDispense } = props;
+  const { recipes, dispensable, onDispense, beakerContents = [] } = props;
   const [query, setQuery] = useState('');
   const [mode, setMode] = useState<SearchMode>('product');
   const [onlyHere, setOnlyHere] = useState(false);
 
   const canDispense = (id: string) => !!dispensable && dispensable.includes(id);
+  const inBeaker = (reagent: RecipeReagent) =>
+    beakerContents.some(
+      (r) => r.name === reagent.name && r.volume >= reagent.amount,
+    );
   const producible = new Set<string>();
   for (const recipe of recipes) {
     for (const result of recipe.results) {
@@ -89,7 +105,7 @@ export const RecipeLookup = (props: Props) => {
   };
 
   return (
-    <Box>
+    <Box className="RecipeLookup">
       <Stack mb={1}>
         <Stack.Item grow>
           <Input
@@ -129,27 +145,32 @@ export const RecipeLookup = (props: Props) => {
         </Stack.Item>
       </Stack>
       {!needle && !onlyHere && (
-        <Box color="label">
-          Wpisz nazwę, żeby znaleźć recepturę. Kliknij składnik, żeby zobaczyć,
-          jak go zrobić
-          {!!onDispense && ', albo kroplę obok, żeby go wydać'}.
-        </Box>
+        <div className="RecipeLookup__empty">
+          <div>Wpisz nazwę, żeby znaleźć recepturę.</div>
+          <div>
+            Kliknij składnik, żeby zobaczyć, jak go zrobić
+            {!!onDispense && ', albo kroplę na nim, żeby go wydać'}.
+          </div>
+        </div>
       )}
       {(!!needle || onlyHere) && filtered.length === 0 && (
         <NoticeBox>Nic nie znaleziono.</NoticeBox>
       )}
-      {filtered.slice(0, MAX_SHOWN).map((recipe) => (
-        <RecipeEntry
-          key={recipe.id}
-          recipe={recipe}
-          canDispense={canDispense}
-          producible={producible}
-          onDispense={onDispense}
-          searchFor={searchFor}
-        />
-      ))}
+      <div className="RecipeLookup__grid">
+        {filtered.slice(0, MAX_SHOWN).map((recipe) => (
+          <RecipeEntry
+            key={recipe.id}
+            recipe={recipe}
+            canDispense={canDispense}
+            inBeaker={inBeaker}
+            producible={producible}
+            onDispense={onDispense}
+            searchFor={searchFor}
+          />
+        ))}
+      </div>
       {filtered.length > MAX_SHOWN && (
-        <Box color="label" mt={1}>
+        <Box color="label" mt={1} textAlign="center">
           …i jeszcze {filtered.length - MAX_SHOWN}. Zawęź wyszukiwanie.
         </Box>
       )}
@@ -160,145 +181,181 @@ export const RecipeLookup = (props: Props) => {
 type EntryProps = {
   recipe: Recipe;
   canDispense: (id: string) => boolean;
+  inBeaker: (reagent: RecipeReagent) => boolean;
   producible: Set<string>;
   onDispense?: (id: string) => void;
   searchFor: (name: string) => void;
 };
 
+/** Ikonka z podpowiedzią w nagłówku kafelka */
+const Hint = (props: { icon: string; color: string; content: string }) => (
+  <Tooltip content={props.content}>
+    <Icon name={props.icon} color={props.color} mr={0.75} />
+  </Tooltip>
+);
+
 const RecipeEntry = (props: EntryProps) => {
-  const { recipe, canDispense, producible, onDispense, searchFor } = props;
+  const { recipe, canDispense, inBeaker, producible, onDispense, searchFor } =
+    props;
   const output = recipe.results.length
     ? recipe.results.map((r) => `${r.amount}× ${r.name}`).join(', ')
     : 'efekt bez produktu';
+  const craftable = [...recipe.reagents, ...recipe.catalysts].every(
+    (r) => canDispense(r.id) || inBeaker(r),
+  );
+  const chipProps = {
+    canDispense,
+    inBeaker,
+    producible,
+    onDispense,
+    searchFor,
+  };
   return (
-    <Box
-      mb={1}
-      p={1}
-      style={{
-        borderLeft: '3px solid rgba(255, 255, 255, 0.2)',
-        background: 'rgba(0, 0, 0, 0.15)',
-      }}
-    >
-      <Box bold>
-        {recipe.name}
-        <Box inline color="label" ml={1} style={{ fontWeight: 'normal' }}>
-          → {output}
-        </Box>
-      </Box>
-      <Box mt={0.5}>
+    <div className={classes(['RecipeLookup__box', craftable && 'craftable'])}>
+      <div className="RecipeLookup__title">
+        {(recipe.cold || recipe.temp > ROOM_TEMPERATURE) &&
+          (recipe.cold ? (
+            <Hint
+              icon="snowflake"
+              color="blue"
+              content={`Temperatura poniżej ${recipe.temp} K`}
+            />
+          ) : (
+            <Hint
+              icon="fire-flame-curved"
+              color="orange"
+              content={`Temperatura co najmniej ${recipe.temp} K`}
+            />
+          ))}
+        {!recipe.instant &&
+          (recipe.cold || recipe.optimalTemp > ROOM_TEMPERATURE) && (
+            <Hint
+              icon="gauge-high"
+              color={recipe.cold ? 'blue' : 'orange'}
+              content={`Najszybciej ${recipe.cold ? 'poniżej' : 'od'} ${recipe.optimalTemp} K`}
+            />
+          )}
+        {!recipe.instant &&
+          recipe.overheatTemp !== null &&
+          recipe.overheatTemp > 0 && (
+            <Hint
+              icon="temperature-high"
+              color="red"
+              content={`Przegrzewa się ${recipe.cold ? 'poniżej' : 'powyżej'} ${recipe.overheatTemp} K`}
+            />
+          )}
+        {!recipe.instant && (recipe.phMin > 0 || recipe.phMax < 14) && (
+          <Hint
+            icon="vial"
+            color="teal"
+            content={`Najczystsza przy pH ${recipe.phMin}–${recipe.phMax}`}
+          />
+        )}
+        {!recipe.instant && recipe.thermic !== 0 && (
+          <Hint
+            icon={recipe.thermic > 0 ? 'sun' : 'icicles'}
+            color="label"
+            content={
+              recipe.thermic > 0 ? 'Wydziela ciepło' : 'Pochłania ciepło'
+            }
+          />
+        )}
+        {!recipe.instant && recipe.purityMin > 0 && (
+          <Hint
+            icon="triangle-exclamation"
+            color="yellow"
+            content={`Psuje się poniżej ${Math.round(recipe.purityMin * 100)}% czystości`}
+          />
+        )}
+        {!!recipe.instant && (
+          <Hint icon="bolt" color="label" content="Reaguje od razu" />
+        )}
+        {!!recipe.container && (
+          <Hint
+            icon="flask"
+            color="purple"
+            content={`Tylko w: ${recipe.container}`}
+          />
+        )}
+        <span className={classes([craftable && 'create'])}>{recipe.name}</span>
+      </div>
+      <div className="RecipeLookup__output">→ {output}</div>
+      <div className="RecipeLookup__required">
         {recipe.reagents.map((reagent) => (
+          <ReagentChip key={reagent.id} reagent={reagent} {...chipProps} />
+        ))}
+        {recipe.catalysts.map((reagent) => (
           <ReagentChip
             key={reagent.id}
             reagent={reagent}
-            canDispense={canDispense}
-            producible={producible}
-            onDispense={onDispense}
-            searchFor={searchFor}
+            catalyst
+            {...chipProps}
           />
         ))}
-      </Box>
-      {recipe.catalysts.length > 0 && (
-        <Box mt={0.5} color="label">
-          Katalizator (nie zużywa się):{' '}
-          {recipe.catalysts.map((reagent) => (
-            <ReagentChip
-              key={reagent.id}
-              reagent={reagent}
-              canDispense={canDispense}
-              producible={producible}
-              onDispense={onDispense}
-              searchFor={searchFor}
-            />
-          ))}
-        </Box>
-      )}
-      {(recipe.cold || recipe.temp > ROOM_TEMPERATURE) && (
-        <Box mt={0.5} color={recipe.cold ? 'blue' : 'orange'}>
-          Temperatura {recipe.cold ? 'poniżej' : 'co najmniej'} {recipe.temp} K
-        </Box>
-      )}
-      {!recipe.instant &&
-        (recipe.cold || recipe.optimalTemp > ROOM_TEMPERATURE) && (
-          <Box mt={0.5} color={recipe.cold ? 'blue' : 'orange'}>
-            Najszybciej {recipe.cold ? 'poniżej' : 'od'} {recipe.optimalTemp} K
-          </Box>
-        )}
-      {!recipe.instant && (
-        <>
-          {recipe.overheatTemp !== null && recipe.overheatTemp > 0 && (
-            <Box mt={0.5} color="red">
-              Przegrzewa się {recipe.cold ? 'poniżej' : 'powyżej'}{' '}
-              {recipe.overheatTemp} K
-            </Box>
-          )}
-          {(recipe.phMin > 0 || recipe.phMax < 14) && (
-            <Box mt={0.5} color="teal">
-              Najczystsza przy pH {recipe.phMin}–{recipe.phMax}
-            </Box>
-          )}
-          {recipe.thermic !== 0 && (
-            <Box mt={0.5} color="label">
-              {recipe.thermic > 0 ? 'Wydziela ciepło' : 'Pochłania ciepło'}
-            </Box>
-          )}
-          {recipe.purityMin > 0 && (
-            <Box mt={0.5} color="label">
-              Psuje się poniżej {Math.round(recipe.purityMin * 100)}% czystości
-            </Box>
-          )}
-        </>
-      )}
-      {!!recipe.instant && (
-        <Box mt={0.5} color="label">
-          Reaguje od razu
-        </Box>
-      )}
-      {!!recipe.container && (
-        <Box mt={0.5} color="purple">
-          Tylko w: {recipe.container}
-        </Box>
-      )}
-    </Box>
+      </div>
+    </div>
   );
 };
 
 type ChipProps = {
   reagent: RecipeReagent;
+  catalyst?: boolean;
   canDispense: (id: string) => boolean;
+  inBeaker: (reagent: RecipeReagent) => boolean;
   producible: Set<string>;
   onDispense?: (id: string) => void;
   searchFor: (name: string) => void;
 };
 
 const ReagentChip = (props: ChipProps) => {
-  const { reagent, canDispense, producible, onDispense, searchFor } = props;
+  const {
+    reagent,
+    catalyst,
+    canDispense,
+    inBeaker,
+    producible,
+    onDispense,
+    searchFor,
+  } = props;
   const here = canDispense(reagent.id);
   const craftable = producible.has(reagent.id);
+  const satisfied = inBeaker(reagent);
+  const tooltip = [
+    catalyst && 'Katalizator: nie zużywa się.',
+    satisfied && 'Już jest w zlewce.',
+    craftable
+      ? 'Kliknij, żeby zobaczyć, jak to zrobić.'
+      : here
+        ? 'Dostępne w tej maszynie.'
+        : 'Brak receptury, trzeba to zdobyć.',
+  ]
+    .filter(Boolean)
+    .join(' ');
   return (
-    <Box inline mr={1}>
-      <Button
-        compact
-        color={here ? 'green' : craftable ? 'default' : 'transparent'}
-        tooltip={
-          craftable
-            ? 'Pokaż, jak to zrobić'
-            : here
-              ? 'Dostępne w tej maszynie'
-              : 'Brak receptury, trzeba to zdobyć'
-        }
+    <Tooltip content={tooltip}>
+      <div
+        className={classes([
+          'RecipeLookup__ingredient',
+          satisfied && 'satisfied',
+          here && 'insertable',
+          catalyst && 'catalyst',
+          craftable && 'clickable',
+        ])}
         onClick={() => craftable && searchFor(reagent.name)}
       >
-        {reagent.amount}× {reagent.name}
-      </Button>
-      {here && !!onDispense && (
-        <Button
-          compact
-          icon="tint"
-          color="green"
-          tooltip="Wydaj (ilość z przycisków powyżej)"
-          onClick={() => onDispense(reagent.id)}
-        />
-      )}
-    </Box>
+        {reagent.amount} {reagent.name}
+        {here && !!onDispense && (
+          <span
+            className="RecipeLookup__dispense"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDispense(reagent.id);
+            }}
+          >
+            <Icon name="tint" />
+          </span>
+        )}
+      </div>
+    </Tooltip>
   );
 };

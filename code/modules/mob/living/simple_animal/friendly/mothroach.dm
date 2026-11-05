@@ -1,6 +1,6 @@
 /mob/living/simple_animal/mothroach
-	name = "mothroach"
-	desc = "An ancient ancestor of the moth that surprisingly looks like the crossbreed of a moth and a cockroach."
+	name = "ćmokaraluch"
+	desc = "Pradawny przodek ćmy, który zaskakująco przypomina krzyżówkę ćmy z karaluchem."
 	icon_state = "mothroach"
 	icon_living = "mothroach"
 	icon_dead = "mothroach_dead"

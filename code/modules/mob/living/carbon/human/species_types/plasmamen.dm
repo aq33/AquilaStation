@@ -1,5 +1,5 @@
 /datum/species/plasmaman
-	name = "\improper Plasmaman"
+	name = "\improper Plazmaman"
 	id = SPECIES_PLASMAMAN
 	bodyflag = FLAG_PLASMAMAN
 	sexes = 0

@@ -13,8 +13,8 @@
 #define DENSITY_HIGH 1 //! Deflects all hits.
 
 /obj/machinery/atmospherics/components/trinary/defence_screen_reactor
-	name = "mk II Prototype Defence Screen Reactor"
-	desc = "A highly experimental, unstable and highly illegal nucleium driven reactor for the generation of defensive screens."
+	name = "prototypowy reaktor ekranu obronnego mk II"
+	desc = "Wysoce eksperymentalny, niestabilny i całkowicie nielegalny reaktor zasilany nukleium, który generuje ekrany obronne."
 	icon = 'nsv13/icons/obj/machinery/pdsr.dmi'
 	icon_state = "idle"
 	pixel_x = -32
@@ -97,7 +97,7 @@
 	OM = get_overmap()
 	OM?.shields = src
 	if(!OM)
-		message_admins("WARNING: PDSR in [get_area(src)] does not have a linked overmap!")
+		message_admins("OSTRZEŻENIE: PDSR w [get_area(src)] nie ma połączonego okrętu na overmapie!")
 		log_game("WARNING: PDSR in [get_area(src)] does not have a linked overmap!")
 
 /obj/machinery/atmospherics/components/trinary/defence_screen_reactor/examine(mob/user)
@@ -562,8 +562,8 @@
 //////MAINFRAME CONSOLE//////
 
 /obj/machinery/computer/ship/defence_screen_mainframe_reactor //For controlling the reactor
-	name = "mk II Prototype Defence Screen Mainframe"
-	desc = "The mainframe controller for the PDSR"
+	name = "prototypowa jednostka centralna ekranu obronnego mk II"
+	desc = "Jednostka centralna sterująca PDSR."
 	icon_screen = "idhos" //temp
 	req_access = list(ACCESS_ENGINE)
 	circuit = /obj/item/circuitboard/computer/defence_screen_mainframe_reactor
@@ -706,14 +706,14 @@
 	return data
 
 /obj/item/circuitboard/computer/defence_screen_mainframe_reactor
-	name = "mk II Prototype Defence Screen Mainframe (Computer Board)"
+	name = "prototypowa jednostka centralna ekranu obronnego mk II (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/defence_screen_mainframe_reactor
 
 //////SCREEN MANIPULATOR//////
 
 /obj/machinery/computer/ship/defence_screen_mainframe_shield //For controlling the !shield
-	name = "mk II Prototype Defence Screen Manipulator"
-	desc = "The screen manipulator for the PDSR"
+	name = "prototypowy manipulator ekranu obronnego mk II"
+	desc = "Manipulator ekranu dla PDSR."
 	icon_screen = "security" //temp
 	req_access = list(ACCESS_ENGINE)
 	circuit = /obj/item/circuitboard/computer/defence_screen_mainframe_shield
@@ -867,12 +867,12 @@
 	return data
 
 /obj/item/circuitboard/computer/defence_screen_mainframe_shield
-	name = "mk II Prototype Defence Screen Manipulator (Computer Board)"
+	name = "prototypowy manipulator ekranu obronnego mk II (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/defence_screen_mainframe_shield
 
 /obj/machinery/defence_screen_relay
-	name = "mk II Prototype Defence Screen Relay"
-	desc = "A relay for distributing energy to the defence screens"
+	name = "prototypowy przekaźnik ekranu obronnego mk II"
+	desc = "Przekaźnik rozprowadzający energię do ekranów obronnych."
 	icon = 'nsv13/icons/obj/shield_components.dmi'
 	icon_state = "injector"
 	active_power_usage = 1000
@@ -886,7 +886,7 @@
 	var/critical_damage = FALSE
 
 /obj/item/circuitboard/machine/defence_screen_relay
-	name = "mk II Prototype Defence Screen Relay (Machine Board)"
+	name = "prototypowy przekaźnik ekranu obronnego mk II (płytka maszyny)"
 	build_path = /obj/machinery/defence_screen_relay
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5,
@@ -1003,8 +1003,8 @@
 			break
 
 /obj/machinery/syndicatebomb/self_destruct/pdsr
-	name = "NT-7624 'scorched earth' localised self-destruct terminal"
-	desc = "A terminal which contains a powerful explosive device capable of destroying all evidence in a room around it. In times of dire need, do not forget your duty."
+	name = "lokalny terminal autodestrukcji NT-7624 „Spalona ziemia”"
+	desc = "Terminal z potężnym ładunkiem wybuchowym, który może zniszczyć wszelkie dowody w otaczającym go pomieszczeniu. W chwili największej potrzeby nie zapominaj o swoim obowiązku."
 	icon = 'nsv13/icons/obj/machines/nuke_terminal.dmi'
 	icon_state = "syndicate-bomb"
 	anchored = TRUE

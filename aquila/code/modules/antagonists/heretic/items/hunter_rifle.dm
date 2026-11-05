@@ -6,7 +6,7 @@
 // releasing a homing, very damaging projectile
 // AQUILA - zamiast komponentu lunety z tg nasze przybliżenie broni (zoomable)
 /obj/item/gun/ballistic/rifle/lionhunter
-	name = "\improper Lionhunter's Rifle"
+	name = "\improper karabin Łowcy Lwów"
 	desc = "Antycznie wyglądający karabin, nieskazitelny, choć ewidentnie bardzo stary."
 	icon = 'aquila/icons/obj/weapons/guns/lionhunter.dmi'
 	icon_state = "lionhunter"
@@ -26,13 +26,13 @@
 	base_pixel_x = -8
 
 /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
-	name = "lionhunter rifle internal magazine"
+	name = "wewnętrzny magazynek karabinu Łowcy Lwów"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
 	caliber = CALIBER_STRILKA310
 	max_ammo = 3
 
 /obj/item/ammo_casing/strilka310
-	name = ".310 Strilka bullet casing"
+	name = "łuska .310 Strilka"
 	desc = "Łuska .310 Strilka. Słowo „łuska” to lekkie naciągnięcie - to po prostu bryłka czerwonego prochu."
 	icon = 'aquila/icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "310-casing"
@@ -140,12 +140,12 @@
 	return ..()
 
 /obj/item/projectile/bullet/strilka310
-	name = ".310 Strilka bullet"
+	name = "pocisk .310 Strilka"
 	damage = 60
 	armour_penetration = 10
 
 /obj/item/projectile/bullet/strilka310/lionhunter
-	name = "hunter's .310 bullet"
+	name = "łowiecki pocisk .310"
 	// These stats are only applied if the weapon is fired fully aimed
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
@@ -194,7 +194,7 @@
 
 // Extra ammunition can be made with a heretic ritual.
 /obj/item/ammo_box/strilka310/lionhunter
-	name = "stripper clip (.310 hunter)"
+	name = "łódka (.310 łowiecki)"
 	desc = "Łódka z tajemniczą, nietypową amunicją. Nie pasuje do zwykłych karabinów."
 	icon = 'aquila/icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "lionhunter_strip"

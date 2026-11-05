@@ -1,7 +1,7 @@
 // Aircraft Plasma Cutter
 /obj/item/fighter_component/primary/plasmacutter
-	name = "217-A Heavy Plasma Cutter"
-	desc = "A modified plasma cutter for mounting on Sabre-class utility vessels."
+	name = "ciężki przecinak plazmowy 217-A"
+	desc = "Zmodyfikowany przecinak plazmowy do montażu na jednostkach pomocniczych klasy Sabre."
 	icon_state = "mecha_plasmacutter"
 	item_state = "plasmacutter"
 	accepted_ammo = null

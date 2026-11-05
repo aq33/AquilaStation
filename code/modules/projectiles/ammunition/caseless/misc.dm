@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/caseless/laser
-	name = "laser casing"
-	desc = "You shouldn't be seeing this."
+	name = "łuska lasera"
+	desc = "Nie powinieneś tego widzieć."
 	caliber = "laser"
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/beam

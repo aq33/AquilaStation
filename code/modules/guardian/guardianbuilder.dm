@@ -5,7 +5,7 @@
 	var/guardian_color = "#FFFFFF"
 	var/max_points = 20
 	var/points = 20
-	var/mob_name = "Guardian"
+	var/mob_name = "Strażnik"
 	var/theme = GUARDIAN_MAGIC
 	var/failure_message = "<span class='holoparasite bold'>...I dobierasz kartę! To... pusta karta? Może spróbuj później.</span>"
 	var/used = FALSE
@@ -45,28 +45,28 @@
 	.["points"] = calc_points()
 	.["ratedskills"] = list()
 	.["ratedskills"] += list(list(
-						name = "Damage",
-						desc = "Amount of damage the [mob_name] can deal per hit (melee or projectile).",
+						name = "Obrażenia",
+						desc = "Ile obrażeń zadaje jednym trafieniem (wręcz lub pociskiem) – [mob_name].",
 						level = saved_stats.damage,
 					))
 	.["ratedskills"] += list(list(
-						name = "Defense",
-						desc = "Amount of damage the [mob_name] can absorb instead of transferring.",
+						name = "Obrona",
+						desc = "Ile obrażeń przyjmuje na siebie zamiast przenosić je na gospodarza – [mob_name].",
 						level = saved_stats.defense
 					))
 	.["ratedskills"] += list(list(
-						name = "Speed",
-						desc = "How fast the [mob_name] can attack targets.",
+						name = "Szybkość",
+						desc = "Jak szybko atakuje cele – [mob_name].",
 						level = saved_stats.speed
 					))
 	.["ratedskills"] += list(list(
-						name = "Potential",
-						desc = "Affects the power of the [mob_name]'s primary ability. Some abilities are not affected by this!",
+						name = "Potencjał",
+						desc = "Wpływa na moc głównej zdolności ([mob_name]). Niektóre zdolności od tego nie zależą!",
 						level = saved_stats.potential
 					))
 	.["ratedskills"] += list(list(
-						name = "Range",
-						desc = "How far the the [mob_name] can travel from it's host.",
+						name = "Zasięg",
+						desc = "Jak daleko od gospodarza może się oddalić – [mob_name].",
 						level = saved_stats.range
 					))
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
@@ -109,27 +109,27 @@
 			. = TRUE
 		if("set")
 			switch(params["name"])
-				if("Damage")
+				if("Obrażenia")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.damage = lvl
 						. = TRUE
-				if("Defense")
+				if("Obrona")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.defense = lvl
 						. = TRUE
-				if("Speed")
+				if("Szybkość")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.speed = lvl
 						. = TRUE
-				if("Potential")
+				if("Potencjał")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.potential > 1 ? saved_stats.potential - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.potential = lvl
 						. = TRUE
-				if("Range")
+				if("Zasięg")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.range > 1 ? saved_stats.range - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.range = lvl
@@ -266,8 +266,8 @@
 
 // the item
 /obj/item/guardiancreator
-	name = "deck of tarot cards"
-	desc = "An enchanted deck of tarot cards, rumored to be a source of unimaginable power."
+	name = "talia kart tarota"
+	desc = "Zaczarowana talia kart tarota, która podobno jest źródłem niewyobrażalnej mocy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_syndicate_full"
 	var/datum/guardianbuilder/builder
@@ -279,7 +279,7 @@
 	var/allowmultiple = FALSE
 	var/allowling = TRUE
 	var/allowguardian = FALSE
-	var/mob_name = "Guardian Spirit"
+	var/mob_name = "Duch strażnik"
 	var/theme = GUARDIAN_MAGIC
 	var/max_points = 15
 	var/allowspecial = FALSE
@@ -308,7 +308,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/guardiancreator/debug
-	desc = "If you're seeing this and you're not debugging, yell at @Zyzarda"
+	desc = "Jeśli to widzisz, a nie debugujesz, nakrzycz na @Zyzarda."
 	debug_mode = TRUE
 	allowspecial = TRUE
 
@@ -318,12 +318,12 @@
 	allowspecial = TRUE
 
 /obj/item/guardiancreator/tech
-	name = "holoparasite injector"
-	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
+	name = "iniektor holoparazyta"
+	desc = "Zawiera obcy nanorój nieznanego pochodzenia. Choć dzięki twardym hologramom i nanomaszynom potrafi dokonać niemal czarodziejskich wyczynów, potrzebuje organicznego gospodarza jako bazy i źródła paliwa."
 	icon = 'icons/obj/syringe.dmi'
 	icon_state = "combat_hypo"
 	theme = GUARDIAN_TECH
-	mob_name = "Holoparasite"
+	mob_name = "Holoparazyt"
 	use_message = "<span class='holoparasite'>Zaczynasz uruchamiać iniektor...</span>"
 	used_message = "<span class='holoparasite'>Iniektor został już użyty.</span>"
 	failure_message = "<span class='holoparasite bold'>...BŁĄD. SEKWENCJA ROZRUCHU PRZERWANA. NIE UDAŁO SIĘ ZAINICJOWAĆ SI. SKONTAKTUJ SIĘ Z POMOCĄ TECHNICZNĄ LUB SPRÓBUJ PONOWNIE PÓŹNIEJ.</span>"
@@ -333,12 +333,12 @@
 	allowspecial = TRUE
 
 /obj/item/guardiancreator/carp
-	name = "holocarp fishsticks"
-	desc = "Using the power of Carp'sie, you can catch a carp from byond the veil of Carpthulu, and bind it to your fleshy flesh form."
+	name = "holokarpiowe paluszki rybne"
+	desc = "Mocą Carp'sie możesz złowić karpia zza zasłony Carpthulu i związać go ze swoją cielesną cielesną postacią."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "fishfingers"
 	theme = GUARDIAN_CARP
-	mob_name = "Holocarp"
+	mob_name = "Holokarp"
 	use_message = "<span class='holoparasite'>Wkładasz paluszki rybne do ust...</span>"
 	used_message = "<span class='holoparasite'>Ktoś już ugryzł te paluszki rybne! Fuj.</span>"
 	failure_message = "<span class='holoparasite bold'>Nie udało ci się złowić żadnych duchów karpi z wód Jeziora Karpiowego. Może ich nie ma, a może coś spieprzyłeś.</span>"
@@ -356,12 +356,12 @@
 	allowspecial = TRUE
 
 /obj/item/guardiancreator/hive
-	name = "mysterious core"
-	desc = "All that remains of a hivelord. It has a mysterious aura around it..."
+	name = "tajemniczy rdzeń"
+	desc = "Wszystko, co zostało z władcy roju. Otacza go tajemnicza aura..."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "roro core 2"
 	theme = GUARDIAN_HIVE
-	mob_name = "Hivelord"
+	mob_name = "Władca roju"
 	use_message = "<span class='holoparasite'>Umieszczasz rdzeń przy sercu...</span>"
 	used_message = "<span class='holoparasite'>Wygląda na to, że ten rdzeń uległ rozkładowi i już nie działa...</span>"
 	failure_message = "<span class='holoparasite bold'>Nie udało ci się zebrać rdzeniem żadnej masy, może spróbuj później.</span>"

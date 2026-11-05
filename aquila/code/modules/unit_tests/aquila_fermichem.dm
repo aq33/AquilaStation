@@ -24,6 +24,19 @@
 	TEST_ASSERT(ammonia.purity > 0.9, "Amoniak zrobiony w optymalnym pH jest nieczysty ([ammonia.purity])")
 	TEST_ASSERT(beaker.reagents.chem_temp > 400, "Egzotermiczna reakcja amoniaku nie podgrzała zlewki")
 
+	// Hydrogen added in portions while the reaction runs: the last steps must not eat extra nitrogen and leave hydrogen behind
+	beaker.reagents.clear_reagents()
+	beaker.reagents.add_reagent(/datum/reagent/nitrogen, 10, reagtemp = 400)
+	for(var/portion in 1 to 3)
+		beaker.reagents.add_reagent(/datum/reagent/hydrogen, 10, reagtemp = 400)
+		for(var/step in 1 to 60)
+			if(!beaker.reagents.is_reacting)
+				break
+			beaker.reagents.process(1)
+	var/hydrogen_left = beaker.reagents.get_reagent_amount(/datum/reagent/hydrogen)
+	var/nitrogen_left = beaker.reagents.get_reagent_amount(/datum/reagent/nitrogen)
+	TEST_ASSERT(hydrogen_left < CHEMICAL_VOLUME_ROUNDING && nitrogen_left < CHEMICAL_VOLUME_ROUNDING, "Amoniak z porcji wodoru zostawił [hydrogen_left]u wodoru i [nitrogen_left]u azotu")
+
 	// Acidic buffer is used up and lowers the pH
 	beaker.reagents.clear_reagents()
 	beaker.reagents.add_reagent(/datum/reagent/water, 50)

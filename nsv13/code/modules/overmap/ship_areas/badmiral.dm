@@ -3,22 +3,22 @@
 	teleport_restriction = TELEPORT_ALLOW_NONE //piss of hand teleporter joe
 
 /area/awaymission/badmiral/bridge
-	name = "NSV Zorn Bridge"
+	name = "Mostek NSV Zorn"
 
 /area/awaymission/badmiral/lounge
-	name = "NSV Zorn Lounge"
+	name = "Salon NSV Zorn"
 
 /area/awaymission/badmiral/dorms
-	name = "NSV Zorn Dorms"
+	name = "Kwatery Załogi NSV Zorn"
 
 /area/awaymission/badmiral/central
-	name = "NSV Zorn Central Frame"
+	name = "Rama Centralna NSV Zorn"
 
 /area/awaymission/badmiral/engineering
-	name = "NSV Zorn Engineering"
+	name = "Inżynieria NSV Zorn"
 
 /area/awaymission/badmiral/munitions
-	name = "NSV Zorn Munitions"
+	name = "Komora Uzbrojenia NSV Zorn"
 
 /area/awaymission/badmiral/cryo
-	name = "NSV Zorn Cryo"
+	name = "Pokój Kriokapsuł NSV Zorn"

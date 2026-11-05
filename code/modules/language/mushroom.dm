@@ -1,6 +1,6 @@
 /datum/language/mushroom
-	name = "Mushroom"
-	desc = "A language that consists of the sound of periodic gusts of spore-filled air being released."
+	name = "Grzybowy"
+	desc = "Język złożony z odgłosów okresowo wypuszczanych podmuchów powietrza pełnego zarodników."
 	speech_verb = "pyka"
 	ask_verb = "pyka pytająco"
 	exclaim_verb = "puka głośno"

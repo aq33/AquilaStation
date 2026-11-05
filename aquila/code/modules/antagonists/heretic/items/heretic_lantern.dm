@@ -1,5 +1,5 @@
 /obj/item/flashlight/lantern/heretic
-	name = "burning lantern"
+	name = "płonąca latarnia"
 	desc = "Dziwna latarnia, od której bolą oczy, nawet gdy jest przygaszona."
 	light_power = 3
 	light_color = "#e8ff66"
@@ -109,7 +109,7 @@
 
 	LAZYSET(effect_cds, REF(seer), world.time + 5 SECONDS)
 	LAZYSET(tick_counts, REF(seer), tick_count + 1)
-	var/seer_stam = seer.getStaminaLoss()
+	var/seer_stam = round(seer.getStaminaLoss() / 1.5) // Bee#14750: pula 250, progi niżej liczone na starej skali (stamcrit przy 100)
 	var/lantern_name = (src == center) ? "[src]" : "[src] w rękach [center]"
 	switch(seer_eye_prot)
 		if(FLASH_PROTECTION_WELDER_SENSITIVE to INFINITY)

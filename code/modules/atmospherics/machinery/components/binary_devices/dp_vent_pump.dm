@@ -11,8 +11,8 @@
 	//node2 is output port
 	//node1 is input port
 
-	name = "dual-port air vent"
-	desc = "Has a valve and pump attached to it. There are two ports."
+	name = "dwuportowy nawiewnik"
+	desc = "Ma zamontowany zawór i pompę. Ma dwa porty."
 
 	welded = FALSE
 
@@ -209,7 +209,7 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume
-	name = "large dual-port air vent"
+	name = "duży dwuportowy nawiewnik"
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/New()
 	..()

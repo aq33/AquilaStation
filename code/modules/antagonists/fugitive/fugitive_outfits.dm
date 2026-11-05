@@ -1,5 +1,5 @@
 /datum/outfit/prisoner
-	name = "Prison Escapee"
+	name = "Zbiegły więzień"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	r_pocket = /obj/item/kitchen/knife/carrotshiv
@@ -10,7 +10,7 @@
 	H.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
 
 /datum/outfit/yalp_cultist
-	name = "Cultist of Yalp Elor"
+	name = "Kultysta Yalp Elor"
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/chaplainsuit/holidaypriest
 	gloves = /obj/item/clothing/gloves/color/red
@@ -51,7 +51,7 @@
 		ADD_TRAIT(I, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /datum/outfit/synthetic
-	name = "Factory Error Synth"
+	name = "Wadliwy syntetyk z fabryki"
 	uniform = /obj/item/clothing/under/color/white
 	ears = /obj/item/radio/headset
 
@@ -62,7 +62,7 @@
 	eyes.Insert(H, drop_if_replaced = FALSE)
 
 /datum/outfit/spacepol
-	name = "Spacepol Officer"
+	name = "Funkcjonariusz Kosmopolu"
 	uniform = /obj/item/clothing/under/rank/security/officer/spacepol
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt
 	belt = /obj/item/gun/ballistic/automatic/pistol/m1911
@@ -80,7 +80,7 @@
 	if(visualsOnly)
 		return
 	var/obj/item/card/id/W = H.wear_id
-	W.assignment = "Police Officer"
+	W.assignment = "Funkcjonariusz Kosmopolu"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -94,7 +94,7 @@
 		head = /obj/item/clothing/head/ushanka
 
 /datum/outfit/bountyarmor
-	name = "Bounty Hunter - Armored"
+	name = "Łowca nagród – opancerzony"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	head = /obj/item/clothing/head/hunter
 	suit = /obj/item/clothing/suit/space/hunter
@@ -112,12 +112,12 @@
 	if(visualsOnly)
 		return
 	var/obj/item/card/id/W = H.wear_id
-	W.assignment = "Bounty Hunter"
+	W.assignment = "Łowca nagród"
 	W.registered_name = H.real_name
 	W.update_label()
 
 /datum/outfit/bountyhook
-	name = "Bounty Hunter - Hook"
+	name = "Łowca nagród – hak"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	head = /obj/item/clothing/head/scarecrow_hat
@@ -134,7 +134,7 @@
 		)
 
 /datum/outfit/bountysynth
-	name = "Bounty Hunter - Synth"
+	name = "Łowca nagród – syntetyk"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	suit = /obj/item/clothing/suit/armor/riot

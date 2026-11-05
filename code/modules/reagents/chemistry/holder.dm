@@ -667,7 +667,7 @@
 		add_reagent(product, yield, null, chem_temp, added_purity = average_purity)
 
 	//play sounds on the target atom
-	if(cached_my_atom)
+	if(cached_my_atom && !fire_mutes_reaction(cached_my_atom)) // AQ EDIT - plamy w ogniu reagują po cichu, patrz aquila/code/modules/atmospherics/environmental/hotspot_throttle.dm
 		var/iconhtml = icon2html(cached_my_atom, viewers(DEFAULT_MESSAGE_RANGE, cached_my_atom))
 		if(!ismob(cached_my_atom)) // No bubbling mobs
 			if(selected_reaction.mix_sound)
@@ -680,8 +680,8 @@
 			extract.Uses--
 			if(extract.Uses <= 0) // give the notification that the slime core is dead
 				cached_my_atom.visible_message(span_notice("[iconhtml] Moc [cached_my_atom] zostaje zużyta w reakcji."))
-				extract.name = "used slime extract"
-				extract.desc = "This extract has been used up."
+				extract.name = "zużyty ekstrakt szlamu"
+				extract.desc = "Ten ekstrakt został już zużyty."
 
 	//finish the reaction
 	selected_reaction.on_reaction(src, multiplier)

@@ -5,7 +5,7 @@
 /obj/item/book/space_yellow_pages
 	unique = 1
 	window_size = "570x680"
-	desc = "A book full of useful information about nearby space stations"
+	desc = "Książka pełna przydatnych informacji o pobliskich stacjach kosmicznych."
 	icon = 'nsv13/icons/obj/library.dmi'
 	icon_state = "space_yellow_pages"
 
@@ -23,7 +23,7 @@
 /obj/item/book/space_yellow_pages/proc/set_basic_info(datum/trader/owner)
 	my_system = owner.system
 	my_faction = SSstar_system.faction_by_id(owner.faction_type)
-	title = "[my_system.name] yellow pages"
+	title = "Kosmiczne Żółte Strony: [my_system.name]"
 	name = title
 	author = my_faction ? my_faction.name : "Unknown"
 

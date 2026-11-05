@@ -8,13 +8,13 @@
 
 /mob/living/simple_animal/drone/attack_drone(mob/living/simple_animal/drone/D)
 	if(D != src && stat == DEAD)
-		var/d_input = alert(D,"Jaką akcję wykonać?","Interakcja z dronem","Reactivate","Cannibalize","Nothing")
+		var/d_input = alert(D,"Jaką akcję wykonać?","Interakcja z dronem","Reaktywuj","Rozbierz na części","Nic")
 		if(d_input)
 			switch(d_input)
-				if("Reactivate")
+				if("Reaktywuj")
 					try_reactivate(D)
 
-				if("Cannibalize")
+				if("Rozbierz na części")
 					if(D.health < D.maxHealth)
 						D.visible_message("<span class='notice'>[D] zaczyna rozbierać [src] na części.</span>", "<span class='notice'>Zaczynasz rozbierać [src] na części...</span>")
 						if(do_after(D, 60, 0, target = src))
@@ -26,7 +26,7 @@
 							to_chat(D, "<span class='warning'>Musisz stać w miejscu, by rozebrać [src] na części!</span>")
 					else
 						to_chat(D, "<span class='warning'>Już jesteś w idealnym stanie!</span>")
-				if("Nothing")
+				if("Nic")
 					return
 
 /mob/living/simple_animal/drone/attack_drone_secondary(mob/living/simple_animal/drone/drone)
@@ -59,7 +59,7 @@
 	var/mob/dead/observer/G = get_ghost()
 	if(!client && (!G || !G.client))
 		var/list/faux_gadgets = list("inflator hipertekstu","katalog awaryjny","przełącznik DRM","inicjalizator stosu",\
-									 "kondensator przeciwzamarzaniowy","dioda strumienia danych","wąskie gardło TCP","supercharged I/O bolt",\
+									 "kondensator przeciwzamarzaniowy","dioda strumienia danych","wąskie gardło TCP","doładowany sworzeń I/O",\
 									 "stabilizator pasatów","napromieniowany kabel XML","zbiornik płynu rejestru","demaskator open source")
 
 		var/list/faux_problems = list("nie dostroi swojego projektora bootstrap","będzie ciągle remiksować swoją pulę binarną"+\
@@ -138,7 +138,7 @@
 		mind.special_role = "hacked drone"
 		ventcrawler = VENTCRAWLER_NONE //Again, balance
 		speed = 1 //gotta go slow
-		message_admins("[ADMIN_LOOKUPFLW(src)] became a hacked drone hellbent on [clockwork ? "serving Ratvar" : "destroying the station"]!")
+		message_admins("[ADMIN_LOOKUPFLW(src)] staje się zhakowanym dronem, który pragnie [clockwork ? "służyć Ratvarowi" : "zniszczyć stację"]!")
 	else
 		if(!hacked)
 			return
@@ -153,7 +153,7 @@
 		mind.special_role = null
 		ventcrawler = initial(ventcrawler)
 		speed = initial(speed)
-		message_admins("[ADMIN_LOOKUPFLW(src)], a hacked drone, was restored to factory defaults!")
+		message_admins("[ADMIN_LOOKUPFLW(src)], zhakowany dron, wraca do ustawień fabrycznych!")
 	update_drone_icon()
 
 /mob/living/simple_animal/drone/proc/liberate()

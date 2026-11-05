@@ -95,6 +95,8 @@
 			volume = affected.reaction_results["fire"]*FIRE_GROWTH_RATE
 			location.assume_air(affected)
 
+	if(!throttled_exposure(location)) // AQ EDIT - fire_act and smoke only every few ticks, see aquila/code/modules/atmospherics/environmental/hotspot_throttle.dm
+		return TRUE
 	for(var/A in location)
 		var/atom/AT = A
 		if(!QDELETED(AT) && AT != src) // It's possible that the item is deleted in temperature_expose

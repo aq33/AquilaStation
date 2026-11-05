@@ -6,8 +6,8 @@
 #define CHARGE_COMPLETED		2
 
 /datum/action/innate/summon_rift
-	name = "Summon Rift"
-	desc = "Summon a rift to bring forth a horde of space carp."
+	name = "Przywołaj szczelinę"
+	desc = "Przywołujesz szczelinę, z której wyłoni się horda kosmicznych karpi."
 	background_icon_state = "bg_default"
 	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
 	button_icon_state = "carp_rift"
@@ -58,8 +58,8 @@
   * Once it is fully charged, it becomes indestructible, and intermitently spawns non-sentient carp.  It is still destroyed if Space Dragon dies.
   */
 /obj/structure/carp_rift
-	name = "carp rift"
-	desc = "A rift akin to the ones space carp use to travel long distances."
+	name = "szczelina karpi"
+	desc = "Szczelina podobna do tych, którymi kosmiczne karpie przemierzają duże odległości."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 0, "bleed" = 0)
 	max_integrity = 300
 	icon = 'icons/obj/carp_rift.dmi'
@@ -210,8 +210,8 @@
 			to_chat(user, "<span class='warning'>Już stałeś się karpiem dzięki tej szczelinie! Zaczekaj na kolejne odrodzenia karpi albo na następną szczelinę!</span>")
 			return FALSE
 		is_listed = TRUE
-	var/carp_ask = alert("Zostać karpiem?", "Pomóc sprowadzić hordę?", "Yes", "No")
-	if(carp_ask == "No" || !src || QDELETED(src) || QDELETED(user))
+	var/carp_ask = alert("Zostać karpiem?", "Pomóc sprowadzić hordę?", "Tak", "Nie")
+	if(carp_ask == "Nie" || !src || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(carp_stored <= 0)
 		to_chat(user, "<span class='warning'>Szczelina przywołała już dość karpi!</span>")

@@ -21,10 +21,10 @@ export const PatchDispenser = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Patch Volume">
+            <LabeledList.Item label="Objętość plastra">
               <NumberInput
                 value={patch_size}
-                unit="u"
+                unit="j."
                 width="43px"
                 minValue={5}
                 maxValue={40}
@@ -37,7 +37,7 @@ export const PatchDispenser = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Patch Name">
+            <LabeledList.Item label="Nazwa plastra">
               <Button
                 icon="pencil-alt"
                 content={patch_name}

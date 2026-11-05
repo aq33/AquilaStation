@@ -1,5 +1,5 @@
 /obj/item/clothing/mask
-	name = "mask"
+	name = "maska"
 	icon = 'icons/obj/clothing/masks.dmi'
 	body_parts_covered = HEAD
 	slot_flags = ITEM_SLOT_MASK

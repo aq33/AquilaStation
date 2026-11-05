@@ -1,5 +1,5 @@
 /obj/item/clothing/under/cluwne
-    name = "clown suit"
+    name = "strój klauna"
     desc = "<i>'HONK!'</i>"
     icon_state = "greenclown"
     item_state = "greenclown"

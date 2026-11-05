@@ -1,10 +1,6 @@
 // NSV13
 
-import {
-  Button,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -21,36 +17,36 @@ export const FighterTug = (props) => {
   return (
     <Window width={400} height={400}>
       <Window.Content scrollable>
-        <Section title="Launch controls">
+        <Section title="Sterowanie startem">
           <Button
-            content={data.loaded ? 'Unload Fighter' : 'Load Fighter'}
+            content={data.loaded ? 'Rozładuj myśliwiec' : 'Załaduj myśliwiec'}
             color={data.loaded && 'green'}
             disabled={!data.ready}
             icon={!data.loaded ? 'power-off' : 'times'}
             onClick={() => act('load')}
           />
           <Button
-            content="Launch loaded fighter"
+            content="Wystrzel załadowany myśliwiec"
             disabled={!data.loaded}
             color={data.ready && 'green'}
             icon={!data.loaded ? 'power-off' : 'times'}
             onClick={() => act('launch')}
           />
         </Section>
-        <Section title="Hardpoints:">
+        <Section title="Punkty mocowania:">
           {Object.keys(data.hardpoints).map((key) => {
             let value = data.hardpoints[key];
             return (
               <Section title={value.name} key={key}>
                 <Button
-                  content="Eject"
+                  content="Wysuń"
                   icon="eject"
                   onClick={() =>
                     act('remove_hardpoint', { target: value.name })
                   }
                 />
                 <Button
-                  content="Examine"
+                  content="Obejrzyj"
                   icon="bullseye"
                   onClick={() => act('interact', { target: value.name })}
                 />
@@ -66,7 +62,7 @@ export const FighterTug = (props) => {
             );
           })}
         </Section>
-        <Section title="Loaded cargo:">
+        <Section title="Załadowany ładunek:">
           {Object.keys(data.contents).map((key) => {
             let value = data.contents[key];
             return <Button key={key} content={value.name} icon="search" />;

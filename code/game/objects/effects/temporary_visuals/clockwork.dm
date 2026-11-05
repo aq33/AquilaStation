@@ -1,6 +1,6 @@
 //temporary visual effects(/obj/effect/temp_visual) used by clockcult stuff
 /obj/effect/temp_visual/ratvar
-	name = "ratvar's light"
+	name = "światło Ratvara"
 	icon = 'icons/effects/clockwork_effects.dmi'
 	duration = 8
 	randomdir = 0
@@ -90,7 +90,7 @@
 	animate(src, transform = M, time = duration, flags = ANIMATION_PARALLEL)
 
 /obj/effect/temp_visual/ratvar/ocular_warden
-	name = "warden's gaze"
+	name = "spojrzenie strażnika"
 	layer = ABOVE_MOB_LAYER
 	icon_state = "warden_gaze"
 	duration = 3
@@ -154,8 +154,8 @@
 	icon_state = "hierophant_ansible"
 
 /obj/effect/temp_visual/steam
-	name = "steam"
-	desc = "Steam! It's hot. It also serves as a game distribution platform."
+	name = "para"
+	desc = "Para! Jest gorąca. Służy też jako platforma dystrybucji gier."
 	icon_state = "smoke"
 	duration = 15
 
@@ -178,7 +178,7 @@
 	animate(src, pixel_x = x_offset, pixel_y = y_offset, alpha = 50, time = 15)
 
 /obj/effect/temp_visual/steam_release
-	name = "all the steam"
+	name = "cała ta para"
 
 /obj/effect/temp_visual/steam_release/Initialize(mapload)
 	..()
@@ -189,6 +189,6 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/temp_visual/ratvar/warp
-	name = "spatial distortion"
+	name = "zniekształcenie przestrzeni"
 	icon_state = "teleport"
 	layer = ABOVE_MOB_LAYER

@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/railgun
-	name = "\improper NT-STC4 coaxial railgun"
-	desc = "A railgun which fires directly out of the front of the ship, its projectiles are entirely unguided, so the firing solution must be perfect."
+	name = "\improper współosiowe działo szynowe NT-STC4"
+	desc = "Działo szynowe strzelające prosto z dziobu okrętu. Jego pociski są całkowicie niekierowane, więc rozwiązanie ogniowe musi być idealne."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "OBC"
 	bound_width = 128

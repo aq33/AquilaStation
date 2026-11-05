@@ -2,8 +2,8 @@
 
 
 /obj/machinery/computer/holodeck/prison
-	name = "workshop control console"
-	desc = "a computer used to control the workshop in the prison"
+	name = "konsola sterowania warsztatem"
+	desc = "Komputer do sterowania warsztatem w więzieniu."
 
 	mapped_start_area = /area/holodeck/prison
 	linked = /area/holodeck/prison //linked area

@@ -1,8 +1,8 @@
 //works similar to the experiment machine (experiment.dm) except it just holds more and more prisoners
 
 /obj/machinery/fugitive_capture
-	name = "bluespace capture machine"
-	desc = "Much, MUCH bigger on the inside to transport prisoners safely."
+	name = "maszyna przechwytująca bluespace"
+	desc = "W środku jest dużo, DUŻO większa, żeby bezpiecznie przewozić więźniów."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "bluespace-prison"
 	density = TRUE
@@ -33,13 +33,13 @@
 	fugitive.ghostize(TRUE) //so they cannot suicide, round end stuff.
 
 /obj/machinery/computer/shuttle_flight/hunter
-	name = "shuttle console"
+	name = "konsola promu"
 	shuttleId = "huntership"
 	possible_destinations = "huntership_home;huntership_custom;whiteship_home;syndicate_nw"
 	req_access = list(ACCESS_HUNTERS)
 
 /obj/structure/closet/crate/eva
-	name = "EVA crate"
+	name = "skrzynia EVA"
 
 /obj/structure/closet/crate/eva/PopulateContents()
 	..()

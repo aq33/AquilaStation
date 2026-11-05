@@ -1,8 +1,8 @@
 /datum/disease/magnitis
 	name = "Magnitis"
 	max_stages = 4
-	spread_text = "Airborne"
-	cure_text = "Iron"
+	spread_text = "Drogą powietrzną"
+	cure_text = "Żelazo"
 	cures = list(/datum/reagent/iron)
 	agent = "Fukkos Miracos"
 	viable_mobtypes = list(/mob/living/carbon/human)

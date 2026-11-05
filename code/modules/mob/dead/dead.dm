@@ -59,7 +59,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/proc/server_hop()
 	set category = "OOC"
 	set name = "Server Hop"
-	set desc= "Jump to the other server"
+	set desc= "Przejdź na drugi serwer"
 	if(notransform)
 		return
 	var/list/csa = CONFIG_GET(keyed_list/server_hop)
@@ -78,7 +78,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/addr = csa[pick]
 
-	if(alert(src, "Przejść na serwer [pick] ([addr])?", "Zmiana serwera", "Yes", "No") != "Yes")
+	if(alert(src, "Przejść na serwer [pick] ([addr])?", "Zmiana serwera", "Tak", "Nie") != "Tak")
 		return
 
 	var/client/C = client

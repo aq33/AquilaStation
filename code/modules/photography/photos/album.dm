@@ -2,7 +2,7 @@
  * Photo album
  */
 /obj/item/storage/photo_album
-	name = "photo album"
+	name = "album na zdjęcia"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "album"
 	item_state = "briefcase"

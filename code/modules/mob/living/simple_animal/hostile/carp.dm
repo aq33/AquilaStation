@@ -1,8 +1,8 @@
 #define REGENERATION_DELAY 60  // After taking damage, how long it takes for automatic regeneration to begin for megacarps (ty robustin!)
 
 /mob/living/simple_animal/hostile/carp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	name = "kosmiczny karp"
+	desc = "Groźne, kłapiące kłami stworzenie przypominające rybę."
 	icon = 'icons/mob/carp.dmi'
 	icon_state = "base"
 	icon_living = "base"
@@ -15,7 +15,7 @@
 	response_help = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
 	response_harm = "uderza"
-	emote_taunt = list("gnashes")
+	emote_taunt = list("kłapie zębami")
 	taunt_chance = 30
 	speed = 0
 	maxHealth = 25
@@ -103,8 +103,8 @@
 
 /mob/living/simple_animal/hostile/carp/megacarp
 	icon = 'icons/mob/broadMobs.dmi'
-	name = "Mega Space Carp"
-	desc = "A ferocious, fang bearing creature that resembles a shark. This one seems especially ticked off."
+	name = "kosmiczny megakarp"
+	desc = "Groźne, kłapiące kłami stworzenie przypominające rekina. Ten wydaje się wyjątkowo wkurzony."
 	icon_state = "megacarp"
 	icon_living = "megacarp"
 	icon_dead = "megacarp_dead"
@@ -140,7 +140,7 @@
 
 /mob/living/simple_animal/hostile/carp/cayenne
 	name = "Cayenne"
-	desc = "A failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
+	desc = "Nieudany eksperyment Syndykatu z bojowymi kosmicznymi karpiami. Dziś jest uroczą maskotką."
 	gender = FEMALE
 	speak_emote = list("piszczy")
 	gold_core_spawnable = NO_SPAWN
@@ -217,7 +217,7 @@
 /mob/living/simple_animal/hostile/carp/lia
 	name = "Lia"
 	real_name = "Lia"
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as the Head of Security's pet."
+	desc = "Nieudany eksperyment Nanotrasen z bojowymi karpiami. Ten niezbyt groźny karp jest teraz zwierzakiem Komendanta."
 	gender = FEMALE
 	speak_emote = list("piszczy")
 	gold_core_spawnable = NO_SPAWN
@@ -231,8 +231,8 @@
 	random_color = FALSE
 
 /mob/living/simple_animal/hostile/carp/advanced
-	name = "advanced space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish. This one seems to be self-aware."
+	name = "zaawansowany kosmiczny karp"
+	desc = "Groźne, kłapiące kłami stworzenie przypominające rybę. Ten wydaje się mieć samoświadomość."
 	maxHealth = 40
 	health = 40
 	gold_core_spawnable = NO_SPAWN

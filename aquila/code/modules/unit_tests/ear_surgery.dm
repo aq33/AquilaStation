@@ -9,7 +9,7 @@
 	} \
 } while (FALSE)
 
-/// AQUILA - Ear surgery (#268): repairs failed ears, failure stabs the brain, needs ears to start
+/// AQUILA - Ear surgery (#268) on the new skeleton (/datum/surgery_operation/organ/repair/ears): repairs failed ears, failure stabs the brain
 /datum/unit_test/ear_surgery
 
 /datum/unit_test/ear_surgery/Run()
@@ -18,29 +18,28 @@
 	var/obj/item/hemostat/hemostat = allocate(/obj/item/hemostat)
 	var/obj/item/organ/ears/ears = patient.getorganslot(ORGAN_SLOT_EARS)
 	TEST_ASSERT(ears, "Patient has no ears")
-	TEST_ASSERT(locate(/datum/surgery/ear_surgery) in GLOB.surgeries_list, "Ear surgery is not in the surgery list")
+	var/datum/surgery_operation/organ/repair/ears/operation = GLOB.operations.operations_by_typepath[/datum/surgery_operation/organ/repair/ears]
+	TEST_ASSERT(operation, "Ear surgery is not in the operation list")
 
 	// Ears destroyed by a loud noise: failing and deaf
 	ears.applyOrganDamage(ears.maxHealth)
 	ears.deaf = 200
 	TEST_ASSERT(ears.organ_flags & ORGAN_FAILING, "Fully damaged ears are not failing")
 
-	var/datum/surgery/ear_surgery/surgery = new(patient, BODY_ZONE_HEAD, patient.get_bodypart(BODY_ZONE_HEAD))
-	TEST_ASSERT(surgery.can_start(surgeon, patient), "Ear surgery cannot start on a patient with ears")
-	var/datum/surgery_step/fix_ears/step = new
+	TEST_ASSERT(operation.state_check(ears), "Ear surgery cannot be done on a patient with ears")
 
-	// An interrupted step (only preop) changes nothing
-	step.preop(surgeon, patient, BODY_ZONE_HEAD, hemostat, surgery)
-	TEST_ASSERT(ears.organ_flags & ORGAN_FAILING, "Starting the step already fixed the ears")
+	// An interrupted operation (only preop) changes nothing
+	operation.on_preop(ears, surgeon, hemostat, list())
+	TEST_ASSERT(ears.organ_flags & ORGAN_FAILING, "Starting the operation already fixed the ears")
 
-	// A botched step stabs the brain and leaves the ears broken
+	// A botched operation stabs the brain and leaves the ears broken
 	var/brain_before = patient.getOrganLoss(ORGAN_SLOT_BRAIN)
-	TEST_ASSERT(!step.failure(surgeon, patient, BODY_ZONE_HEAD, hemostat, surgery), "Failure counted as success")
+	operation.on_failure(ears, surgeon, hemostat, list())
 	TEST_ASSERT(patient.getOrganLoss(ORGAN_SLOT_BRAIN) > brain_before, "Failure did not damage the brain")
 	TEST_ASSERT(ears.organ_flags & ORGAN_FAILING, "Failure fixed the ears")
 
 	// Success: healthy ears, a short temporary deafness, still exactly one pair of ears
-	TEST_ASSERT(step.success(surgeon, patient, BODY_ZONE_HEAD, hemostat, surgery), "Success returned FALSE")
+	operation.on_success(ears, surgeon, hemostat, list())
 	TEST_ASSERT_EQUAL(ears.damage, 0, "Ears still damaged")
 	TEST_ASSERT(!(ears.organ_flags & ORGAN_FAILING), "Ears still failing")
 	TEST_ASSERT_EQUAL(ears.deaf, 20, "Deafness not reset to the short recovery time")
@@ -53,13 +52,25 @@
 		ears.on_life()
 	TEST_ASSERT_EQUAL(ears.deaf, 0, "Recovery deafness did not wear off")
 
-	// No ears, no surgery, and a success step on an earless patient does not runtime
+	// Offered with a hemostat on an opened head, but not once the ears are gone
+	patient.set_resting(TRUE)
+	patient.toggle_surgery_prep(surgeon, BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head = patient.get_bodypart(BODY_ZONE_HEAD)
+	head.add_surgical_state(SURGERY_SKIN_OPEN|SURGERY_VESSELS_CLAMPED)
+	TEST_ASSERT(offers_operation(surgeon, patient, hemostat, operation), "Ear surgery not offered on an opened head")
 	ears.Remove(patient)
 	qdel(ears)
-	TEST_ASSERT(!surgery.can_start(surgeon, patient), "Ear surgery can start without ears")
-	TEST_ASSERT(step.success(surgeon, patient, BODY_ZONE_HEAD, hemostat, surgery), "Success step broke without ears")
-	qdel(surgery)
-	qdel(step)
+	TEST_ASSERT(!offers_operation(surgeon, patient, hemostat, operation), "Ear surgery offered without ears")
+	head.remove_surgical_state(ALL_SURGERY_STATES_UNSET_ON_CLOSE)
+
+/// Is this operation offered for the tool on the patient's head
+/datum/unit_test/ear_surgery/proc/offers_operation(mob/living/surgeon, mob/living/patient, tool, datum/surgery_operation/operation)
+	var/list/operations = surgeon.get_available_operations(patient, tool, BODY_ZONE_HEAD)
+	for(var/radial_slice in operations)
+		var/list/entry = operations[radial_slice]
+		if(entry[1] == operation)
+			return TRUE
+	return FALSE
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

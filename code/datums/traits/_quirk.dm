@@ -1,8 +1,8 @@
 //every quirk in this folder should be coded around being applied on spawn
 //these are NOT "mob quirks" like GOTTAGOFAST, but exist as a medium to apply them and other different effects
 /datum/quirk
-	var/name = "Test Quirk"
-	var/desc = "This is a test quirk."
+	var/name = "Testowa cecha"
+	var/desc = "To jest testowa cecha."
 	var/value = 0
 	var/human_only = TRUE
 	var/gain_text
@@ -83,13 +83,13 @@
 		for(var/datum/quirk/T as() in roundstart_quirks)
 			dat += T.name
 		if(!length(dat))
-			return "None"
+			return "Brak"
 		return dat.Join(", ")
 	else
 		for(var/datum/quirk/T as() in roundstart_quirks)
 			dat += T.medical_record_text
 		if(!length(dat))
-			return "None"
+			return "Brak"
 		return dat.Join("<br>")
 
 /mob/living/proc/cleanse_trait_datums() //removes all trait datums

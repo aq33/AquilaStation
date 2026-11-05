@@ -1,18 +1,18 @@
 //Cardboard cutouts! They're man-shaped and can be colored with a crayon to look like a human in a certain outfit, although it's limited, discolored, and obvious to more than a cursory glance.
 /obj/item/cardboard_cutout
-	name = "cardboard cutout"
-	desc = "A vaguely humanoid cardboard cutout. It's completely blank."
+	name = "tekturowa makieta"
+	desc = "Tekturowa makieta o niewyraźnie ludzkich kształtach. Jest zupełnie pusta."
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
 	// Possible restyles for the cutout;
 	// add an entry in change_appearance() if you add to here
-	var/list/possible_appearances = list("Midshipman", "Clown", "Mime",
-		"Traitor", "Nuke Op", "Cultist", "Clockwork Cultist",
-		"Revolutionary", "Wizard", "Shadowling", "Xenomorph", "Xenomorph Maid", "Swarmer",
-		"Ash Walker", "Deathsquad Officer", "Ian", "Slaughter Demon",
-		"Laughter Demon", "Private Security Officer")
+	var/list/possible_appearances = list("Majtek", "Klaun", "Mim",
+		"Zdrajca", "Operator nuklearny", "Kultysta", "Kultysta Ratvara",
+		"Rewolucjonista", "Czarodziej", "Shadowling", "Ksenomorf", "Pokojówka ksenomorf", "Rojowiec",
+		"Popielny wędrowiec", "Oficer szwadronu śmierci", "Ian", "Demon rzezi",
+		"Demon śmiechu", "Prywatny ochroniarz")
 	var/pushed_over = FALSE //If the cutout is pushed over and has to be righted
 	var/deceptive = FALSE //If the cutout actually appears as what it portray and not a discolored version
 
@@ -28,7 +28,7 @@
 
 /obj/item/cardboard_cutout/proc/push_over()
 	name = initial(name)
-	desc = "[initial(desc)] It's been pushed over."
+	desc = "[initial(desc)] Jest przewrócona."
 	icon = initial(icon)
 	icon_state = "cutout_pushed_over"
 	remove_atom_colour(FIXED_COLOUR_PRIORITY)
@@ -98,85 +98,85 @@
 	if(!deceptive)
 		add_atom_colour("#FFD7A7", FIXED_COLOUR_PRIORITY)
 	switch(new_appearance)
-		if("Midshipman") //Nsv13 - Crayon eaters
+		if("Majtek") //Nsv13 - Crayon eaters
 			name = "[human_full_name_random(MALE)]" // AQ edit
-			desc = "A cardboat cutout of an assistant."
+			desc = "Tekturowa makieta majtka."
 			icon_state = "cutout_greytide"
-		if("Clown")
+		if("Klaun")
 			name = pick(GLOB.clown_names)
-			desc = "A cardboard cutout of a clown. You get the feeling that it should be in a corner."
+			desc = "Tekturowa makieta klauna. Masz wrażenie, że powinna stać w kącie."
 			icon_state = "cutout_clown"
-		if("Mime")
+		if("Mim")
 			name = pick(GLOB.mime_names)
-			desc = "...(A cardboard cutout of a mime.)"
+			desc = "...(Tekturowa makieta mima.)"
 			icon_state = "cutout_mime"
-		if("Traitor")
-			name = "[pick("Unknown", "Captain")]"
-			desc = "A cardboard cutout of a traitor."
+		if("Zdrajca")
+			name = "[pick("Unknown", "Kapitan")]"
+			desc = "Tekturowa makieta zdrajcy."
 			icon_state = "cutout_traitor"
-		if("Nuke Op")
-			name = "[pick("Unknown", "COMMS", "Telecomms", "AI", "stealthy op", "STEALTH", "sneakybeaky", "MEDIC", "Medic")]"
-			desc = "A cardboard cutout of a nuclear operative."
+		if("Operator nuklearny")
+			name = "[pick("Unknown", "ŁĄCZNOŚĆ", "Telekomunikacja", "SI", "cichy operator", "SKRYTOŚĆ", "skradaczek", "MEDYK", "Medyk")]"
+			desc = "Tekturowa makieta operatora nuklearnego."
 			icon_state = "cutout_fluke"
-		if("Cultist")
+		if("Kultysta")
 			name = "Unknown"
-			desc = "A cardboard cutout of a cultist."
+			desc = "Tekturowa makieta kultysty."
 			icon_state = "cutout_cultist"
-		if("Clockwork Cultist")
+		if("Kultysta Ratvara")
 			name = "[human_full_name_random(MALE)]" // AQ EDIT
-			desc = "A cardboard cutout of a servant of Ratvar."
+			desc = "Tekturowa makieta sługi Ratvara."
 			icon_state = "cutout_servant"
-		if("Revolutionary")
+		if("Rewolucjonista")
 			name = "Unknown"
-			desc = "A cardboard cutout of a revolutionary."
+			desc = "Tekturowa makieta rewolucjonisty."
 			icon_state = "cutout_viva"
-		if("Wizard")
+		if("Czarodziej")
 			name = "[pick(GLOB.wizard_first)], [pick(GLOB.wizard_second)]"
-			desc = "A cardboard cutout of a wizard."
+			desc = "Tekturowa makieta czarodzieja."
 			icon_state = "cutout_wizard"
 		if("Shadowling")
 			name = "Unknown"
-			desc = "A cardboard cutout of a shadowling."
+			desc = "Tekturowa makieta shadowlinga."
 			icon_state = "cutout_shadowling"
-		if("Xenomorph")
-			name = "alien hunter ([rand(1, 999)])"
-			desc = "A cardboard cutout of a xenomorph."
+		if("Ksenomorf")
+			name = "łowca obcych ([rand(1, 999)])"
+			desc = "Tekturowa makieta ksenomorfa."
 			icon_state = "cutout_fukken_xeno"
 			if(prob(25))
 				alpha = 75 //Spooky sneaking!
-		if("Xenomorph Maid")
-			name = "lusty xenomorph maid ([rand(1, 999)])"
-			desc = "A cardboard cutout of a xenomorph maid."
+		if("Pokojówka ksenomorf")
+			name = "zmysłowa pokojówka ksenomorf ([rand(1, 999)])"
+			desc = "Tekturowa makieta pokojówki ksenomorfa."
 			icon_state = "cutout_lusty"
-		if("Swarmer")
-			name = "Swarmer ([rand(1, 999)])"
-			desc = "A cardboard cutout of a swarmer."
+		if("Rojowiec")
+			name = "Rojowiec ([rand(1, 999)])"
+			desc = "Tekturowa makieta rojowca."
 			icon_state = "cutout_swarmer"
-		if("Ash Walker")
+		if("Popielny wędrowiec")
 			name = random_lizard_name(pick(MALE, FEMALE))
-			desc = "A cardboard cutout of an ash walker."
+			desc = "Tekturowa makieta popielnego wędrowca."
 			icon_state = "cutout_free_antag"
-		if("Deathsquad Officer")
+		if("Oficer szwadronu śmierci")
 			name = pick(GLOB.commando_names)
-			desc = "A cardboard cutout of a death commando."
+			desc = "Tekturowa makieta komandosa śmierci."
 			icon_state = "cutout_deathsquad"
 		if("Ian")
 			name = "Ian"
-			desc = "A cardboard cutout of the HoP's beloved corgi."
+			desc = "Tekturowa makieta ukochanego corgi Starszego Oficera."
 			icon_state = "cutout_ian"
-		if("Slaughter Demon")
-			name = "slaughter demon"
-			desc = "A cardboard cutout of a slaughter demon."
+		if("Demon rzezi")
+			name = "demon rzezi"
+			desc = "Tekturowa makieta demona rzezi."
 			icon = 'icons/mob/mob.dmi'
 			icon_state = "daemon"
-		if("Laughter Demon")
-			name = "laughter demon"
-			desc = "A cardboard cutout of a laughter demon."
+		if("Demon śmiechu")
+			name = "demon śmiechu"
+			desc = "Tekturowa makieta demona śmiechu."
 			icon = 'icons/mob/mob.dmi'
 			icon_state = "bowmon"
-		if("Private Security Officer")
-			name = "Private Security Officer"
-			desc = "A cardboard cutout of a private security officer."
+		if("Prywatny ochroniarz")
+			name = "Prywatny ochroniarz"
+			desc = "Tekturowa makieta prywatnego ochroniarza."
 			icon_state = "cutout_ntsec"
 	return 1
 
@@ -191,30 +191,30 @@
 // WHITE
 
 /obj/item/cardboard_cutout/adaptive/chess
-	desc = "A large cardboard cutout resembling a chess piece."
+	desc = "Duża tekturowa makieta przypominająca figurę szachową."
 
 /obj/item/cardboard_cutout/adaptive/chess/king
-	name = "White King"
+	name = "Biały Król"
 	icon_state = "cutout_ian";
 
 /obj/item/cardboard_cutout/adaptive/chess/queen
-	name = "White Queen"
+	name = "Biały Hetman"
 	icon_state = "cutout_clown";
 
 /obj/item/cardboard_cutout/adaptive/chess/rook
-	name = "White Rook"
+	name = "Biała Wieża"
 	icon_state = "cutout_deathsquad";
 
 /obj/item/cardboard_cutout/adaptive/chess/knight
-	name = "White Knight"
+	name = "Biały Skoczek"
 	icon_state = "cutout_lusty";
 
 /obj/item/cardboard_cutout/adaptive/chess/bishop
-	name = "White Bishop"
+	name = "Biały Goniec"
 	icon_state = "cutout_ntsec";
 
 /obj/item/cardboard_cutout/adaptive/chess/pawn
-	name = "White Pawn"
+	name = "Biały Pionek"
 	icon_state = "cutout_greytide";
 
 // BLACK
@@ -223,25 +223,25 @@
 	color = "#9999BB";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/king
-	name = "Black King"
+	name = "Czarny Król"
 	icon_state = "cutout_wizard";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/queen
-	name = "Black Queen"
+	name = "Czarny Hetman"
 	icon_state = "cutout_traitor";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/rook
-	name = "Black Rook"
+	name = "Czarna Wieża"
 	icon_state = "cutout_cultist";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/knight
-	name = "Black Knight"
+	name = "Czarny Skoczek"
 	icon_state = "cutout_fukken_xeno";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/bishop
-	name = "Black Bishop"
+	name = "Czarny Goniec"
 	icon_state = "cutout_fluke";
 
 /obj/item/cardboard_cutout/adaptive/chess/black/pawn
-	name = "Black Pawn"
+	name = "Czarny Pionek"
 	icon_state = "cutout_shadowling";

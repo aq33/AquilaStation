@@ -16,7 +16,7 @@ BONUS
 
 /datum/symptom/beard
 
-	name = "Facial Hypertrichosis"
+	name = "Nadmierne owłosienie twarzy"
 	desc = "Wirus znacznie zwiększa produkcję włosów, powodując szybki wzrost brody."
 	stealth = 1
 	resistance = 3

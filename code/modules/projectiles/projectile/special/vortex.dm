@@ -1,5 +1,5 @@
 /obj/item/projectile/energy/vortex
-	name = "vortex beam"
+	name = "wiązka wirowa"
 	alpha = 0
 	damage = 0
 	damage_type = BURN

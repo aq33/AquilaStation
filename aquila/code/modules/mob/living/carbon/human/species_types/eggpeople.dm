@@ -6,7 +6,7 @@
 #define EGG_SHATTER_BRUTE 200
 
 /datum/species/egg
-	name = "\improper Eggperson"
+	name = "\improper Jajoczłowiek"
 	id = "egg"
 	fixed_mut_color = "FFE7C9"
 	default_features = list("body_size" = "Normal")
@@ -57,7 +57,7 @@
 		playsound(H, "eggcrack", 50, TRUE)
 
 /obj/item/organ/tongue/egg
-	name = "egg tongue"
+	name = "język jajoczłowieka"
 	desc = "Pomarszczony kawałek białka, który jakoś potrafi trzeszczeć słowami."
 	say_mod = "trzeszczy"
 	liked_food = MEAT // jajoludzie to mięsożercy
@@ -71,9 +71,9 @@
 	languages_possible[/datum/language/ovarian] = TRUE
 
 /obj/item/stack/sheet/animalhide/egg
-	name = "egg shell pieces"
+	name = "kawałki skorupki"
 	desc = "Roztrzaskane szczątki jajoczłowieka."
-	singular_name = "egg shell pieces"
+	singular_name = "kawałek skorupki"
 	icon_state = "sheet-gondola"
 	item_state = "sheet-gondola"
 
@@ -84,7 +84,7 @@
 							/datum/language/ovarian = list(LANGUAGE_ATOM))
 
 /datum/language/ovarian
-	name = "Ovarian"
+	name = "Jajowy"
 	desc = "Wspólny język jajoludzi, złożony z syczących trzasków i bulgotów."
 	speech_verb = "bulgocze"
 	ask_verb = "trzeszczy pytająco"

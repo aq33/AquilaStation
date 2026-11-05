@@ -1,6 +1,6 @@
 /obj/machinery/vending/medical
 	name = "\improper NanoMed Plus"
-	desc = "Medical drug dispenser."
+	desc = "Automat z lekami."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	light_color = LIGHT_COLOR_WHITE
@@ -13,7 +13,7 @@
 					/obj/item/reagent_containers/glass/bottle = 10,
 					/obj/item/healthanalyzer = 4,
 				    /obj/item/reagent_containers/spray/cleaner = 1,
-					/obj/item/stack/medical/gauze = 8,
+					/obj/item/stack/medical/bandage = 8, // AQ EDIT - bandage replaces gauze
 					/obj/item/stack/medical/suture = 4, // AQ EDIT - tgstation sutures and mesh
 					/obj/item/stack/medical/mesh = 4, // AQ EDIT
 					/obj/item/stack/medical/suture/medicated = 2, // AQ EDIT

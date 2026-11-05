@@ -49,8 +49,8 @@ export const ArmourPlatingNanorepairWell = (props) => {
   return (
     <Window theme="ntos" width={560} height={600}>
       <Window.Content scrollable>
-        <Section title="Ship Status:">
-          Hull Structural Integrity:
+        <Section title="Stan statku:">
+          Integralność strukturalna kadłuba:
           <ProgressBar
             value={
               data.structural_integrity_current / data.structural_integrity_max
@@ -61,7 +61,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [-Infinity, 0.25],
             }}
           />
-          Forward Port Armour:
+          Pancerz dziobowy, lewa burta:
           <ProgressBar
             value={
               data.quadrant_fp_armour_current / data.quadrant_fp_armour_max
@@ -72,7 +72,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [-Infinity, 0.33],
             }}
           />
-          Forward Starboard Armour:
+          Pancerz dziobowy, prawa burta:
           <ProgressBar
             value={
               data.quadrant_fs_armour_current / data.quadrant_fs_armour_max
@@ -83,7 +83,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [-Infinity, 0.33],
             }}
           />
-          Aft Port Armour:
+          Pancerz rufowy, lewa burta:
           <ProgressBar
             value={
               data.quadrant_ap_armour_current / data.quadrant_ap_armour_max
@@ -94,7 +94,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [-Infinity, 0.33],
             }}
           />
-          Aft Starboard Armour:
+          Pancerz rufowy, prawa burta:
           <ProgressBar
             value={
               data.quadrant_as_armour_current / data.quadrant_as_armour_max
@@ -106,8 +106,8 @@ export const ArmourPlatingNanorepairWell = (props) => {
             }}
           />
         </Section>
-        <Section title="APNW System Status">
-          System Load:
+        <Section title="Stan systemu APNW">
+          Obciążenie systemu:
           <ProgressBar
             value={data.system_allocation / 100}
             ranges={{
@@ -115,7 +115,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [1.5, Infinity],
             }}
           />
-          System Stress:
+          Przeciążenie systemu:
           <ProgressBar
             value={data.system_stress / 100}
             ranges={{
@@ -124,33 +124,33 @@ export const ArmourPlatingNanorepairWell = (props) => {
             }}
           />
         </Section>
-        <Section title="APNW Resourcing Status:">
-          Material Processing:
+        <Section title="Zasoby APNW:">
+          Przetwarzanie materiałów:
           <br />
           <Button
-            content="Empty Silo"
+            content="Opróżnij silos"
             icon="exclamation-triangle"
             color={'bad'}
             onClick={() => act('unload')}
           />
           <Button
-            content="Purge RR"
+            content="Usuń RR"
             icon="exclamation-triangle"
             color={'bad'}
             onClick={() => act('purge')}
           />
           <Button
-            content="RR Processing"
+            content="Przetwarzanie RR"
             icon="power-off"
             color={data.resourcing && 'good'}
             onClick={() => act('toggle')}
           />
           <br />
           <br />
-          Material Silo:
+          Silos materiałów:
           <br />
           <LabeledList>
-            <LabeledList.Item label="Iron">
+            <LabeledList.Item label="Żelazo">
               <ProgressBar
                 value={data.iron}
                 minValue={0}
@@ -160,7 +160,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
                 {toFixed(data.iron)}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Titanium">
+            <LabeledList.Item label="Tytan">
               <ProgressBar
                 value={data.titanium}
                 minValue={0}
@@ -170,7 +170,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
                 {toFixed(data.titanium)}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Silver">
+            <LabeledList.Item label="Srebro">
               <ProgressBar
                 value={data.silver}
                 minValue={0}
@@ -180,7 +180,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
                 {toFixed(data.silver)}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Plasma">
+            <LabeledList.Item label="Plazma">
               <ProgressBar
                 value={data.plasma}
                 minValue={0}
@@ -192,46 +192,46 @@ export const ArmourPlatingNanorepairWell = (props) => {
             </LabeledList.Item>
           </LabeledList>
           <br />
-          Alloy Selection:
+          Wybór stopu:
           <br />
           <Button
-            content="Iron"
+            content="Żelazo"
             icon="cog"
-            tooltip="Iron: 100%"
+            tooltip="Żelazo: 100%"
             color={!!data.alloy_t1 && 'white'}
             onClick={() => act('iron')}
           />
           <Button
-            content="Plasteel"
+            content="Plastal"
             icon="cog"
-            tooltip="Iron: 50%, Plasma: 50%"
+            tooltip="Żelazo: 50%, plazma: 50%"
             color={!!data.alloy_t2 && 'white'}
             onClick={() => act('plasteel')}
           />
           <Button
-            content="Ferrotitanium"
+            content="Ferrotytan"
             icon="cog"
-            tooltip="Iron: 25%, Titanium: 75%"
+            tooltip="Żelazo: 25%, tytan: 75%"
             color={!!data.alloy_t3 && 'white'}
             onClick={() => act('ferrotitanium')}
           />
           <Button
-            content="Durasteel"
+            content="Durastal"
             icon="cog"
-            tooltip="Iron: 20%, Titanium: 65%, Silver: 15%"
+            tooltip="Żelazo: 20%, tytan: 65%, srebro: 15%"
             color={!!data.alloy_t4 && 'white'}
             onClick={() => act('durasteel')}
           />
           <Button
             content="Duranium"
             icon="cog"
-            tooltip="Iron: 17.5%, Titanium: 62.5%, Silver: 15%, Plasma: 5%"
+            tooltip="Żelazo: 17.5%, tytan: 62.5%, srebro: 15%, plazma: 5%"
             color={!!data.alloy_t5 && 'white'}
             onClick={() => act('duranium')}
           />
           <br />
           <br />
-          Repair Resources:
+          Zasoby naprawcze:
           <br />
           <ProgressBar
             value={data.repair_resources / data.repair_resources_max}
@@ -243,7 +243,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
           >
             {data.repair_resources + ' RUs'}
           </ProgressBar>
-          Repair Efficiency:
+          Wydajność naprawy:
           <ProgressBar
             value={data.repair_efficiency}
             ranges={{
@@ -252,7 +252,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               bad: [-Infinity, 0.33],
             }}
           />
-          Power Allocation (Watts):
+          Przydział mocy (W):
           <Slider
             tickWhileDragging
             value={data.power_allocation}
@@ -266,7 +266,7 @@ export const ArmourPlatingNanorepairWell = (props) => {
               })
             }
           />
-          Available Power (Watts):
+          Dostępna moc (W):
           <ProgressBar
             value={availablePower}
             minValue={0}

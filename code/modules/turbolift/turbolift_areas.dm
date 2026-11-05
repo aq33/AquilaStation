@@ -4,25 +4,25 @@
 	ambientsounds = list('sound/effects/turbolift/elevatormusic.ogg')
 
 /area/shuttle/turbolift/shaft //What the shuttle leaves behind
-	name = "turbolift shaft"
+	name = "Szyb Turbowindy"
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MAINT
 
 /area/shuttle/turbolift/primary
-	name = "primary turbolift"
+	name = "Pierwsza Turbowinda"
 
 /area/shuttle/turbolift/secondary
-	name = "secondary turbolift"
+	name = "Druga Turbowinda"
 
 /area/shuttle/turbolift/tertiary
-	name = "tertiary turbolift"
+	name = "Trzecia Turbowinda"
 
 //NSV13 - added three more lift areas
 /area/shuttle/turbolift/quaternary
-	name = "quaternary turbolift"
+	name = "Czwarta Turbowinda"
 
 /area/shuttle/turbolift/quinary
-	name = "quinary turbolift"
+	name = "Piąta Turbowinda"
 
 /area/shuttle/turbolift/denary
-	name = "denary turbolift"
+	name = "Dziesiąta Turbowinda"

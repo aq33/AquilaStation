@@ -1,7 +1,7 @@
 /*				CARGO OBJECTIVES				*/
 
 /datum/objective/crew/petsplosion
-	explanation_text = "Upewnij się, że na stacji jest przynajmniej (If you see this, yell on GitHub) zwierząt przed końcem zmiany. Zinterpretuj to sobie jak chcesz ( ͡° ͜ʖ ͡°)."
+	explanation_text = "Upewnij się, że na stacji jest przynajmniej (jeśli to widzisz, zgłoś to na GitHubie) zwierząt przed końcem zmiany. Zinterpretuj to sobie jak chcesz ( ͡° ͜ʖ ͡°)."
 	jobs = "quartermaster,cargotechnician"
 
 /datum/objective/crew/petsplosion/New()
@@ -30,7 +30,7 @@
 		return ..()
 
 /datum/objective/crew/points //ported from old hippie
-	explanation_text = "Make sure the station has at least (Something broke, yell on GitHub) station credits at the end of the shift."
+	explanation_text = "Upewnij się, że na stacji jest przynajmniej (coś się zepsuło, zgłoś to na GitHubie) kredytów przed końcem zmiany."
 	jobs = "quartermaster,cargotechnician"
 
 /datum/objective/crew/points/New()
@@ -50,7 +50,7 @@
 
 /* NSV13 - we don't have bubblegum as a boss
 /datum/objective/crew/bubblegum
-	explanation_text = "Ensure Bubblegum is dead at the end of the shift."
+	explanation_text = "Upewnij się, że Bubblegum jest martwy pod koniec zmiany."
 	jobs = "shaftminer"
 
 /datum/objective/crew/bubblegum/check_completion()
@@ -61,7 +61,7 @@
 */
 
 /datum/objective/crew/fatstacks //ported from old hippie
-	explanation_text = "Have at least (something broke, report this on GitHub) mining points on your ID at the end of the shift."
+	explanation_text = "Miej przynajmniej (coś się zepsuło, zgłoś to na GitHubie) punktów górniczych na swoim koncie ID przed końcem zmiany."
 	jobs = "shaftminer"
 
 /datum/objective/crew/fatstacks/New()

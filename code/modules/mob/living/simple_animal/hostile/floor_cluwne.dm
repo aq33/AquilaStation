@@ -182,7 +182,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			stage = STAGE_HAUNT
 			return target = current_victim
 
-	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
+	message_admins("Podłogowy cluwne zostaje usunięty z braku prawidłowych celów. Jeśli cel był wybrany ręcznie, przemyśl swój wybór.")
 	qdel(src)
 
 
@@ -438,8 +438,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	flick("fcluwne_manifest",src)
 
 /obj/effect/dummy/floorcluwne_orbit
-	name = "floor cluwne"
-	desc = "If you have this, tell a coder or admin!"
+	name = "podłogowy cluwne"
+	desc = "Jeśli to masz, powiedz koderowi albo adminowi!"
 
 /obj/effect/dummy/floorcluwne_orbit/Initialize(mapload)
 	. = ..()

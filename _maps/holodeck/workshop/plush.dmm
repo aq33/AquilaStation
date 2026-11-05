@@ -62,10 +62,10 @@
 /obj/item/bedsheet/cmo,
 /obj/item/bedsheet/double/blue,
 /obj/item/bedsheet/double/blue,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
 /turf/open/floor/holofloor/monotile/steel,
 /area/template_noop)
 "L" = (
@@ -102,9 +102,9 @@
 /area/template_noop)
 "U" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
 /turf/open/floor/holofloor/monotile/dark,
 /area/template_noop)
 "W" = (

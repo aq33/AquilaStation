@@ -5,7 +5,7 @@
 /datum/overmap_gamemode/patrol
 	name = "Patrol"
 	config_tag = "patrol"
-	desc = "Default Gamemode - Acquire 1000 victory tickets for Nanotrasen"
+	desc = "Domyślny tryb gry – zdobądź 1000 punktów zwycięstwa dla Nanotrasen"
 	brief = "Przydzielono wam standardowy patrol poza sektorem Foothold. Patrolujcie ten obszar, bezwzględnie eliminujcie siły Syndykatu, a potem wróćcie na Posterunek 45."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"

@@ -1,8 +1,8 @@
 
 
 /mob/living/simple_animal/hostile/carp/eyeball
-	name = "eyeball"
-	desc = "An odd looking creature, it won't stop staring..."
+	name = "gałka oczna"
+	desc = "Dziwnie wyglądające stworzenie. Nie przestaje się gapić..."
 	icon_state = "eyeball"
 	icon_living = "eyeball"
 	icon_gib = ""
@@ -11,7 +11,7 @@
 	response_help = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
 	response_harm = "uderza"
-	emote_taunt = list("glares")
+	emote_taunt = list("patrzy spode łba")
 	taunt_chance = 25
 	maxHealth = 45
 	health = 45

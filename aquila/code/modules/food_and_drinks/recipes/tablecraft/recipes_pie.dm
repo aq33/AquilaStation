@@ -1,5 +1,5 @@
 
-datum/crafting_recipe/food/kremowka
+/datum/crafting_recipe/food/kremowka
 	name = "Kremówka"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 2,

@@ -1,8 +1,8 @@
 //These objects are used in the cardinal sin-themed ruins (i.e. Gluttony, Pride...)
 
 /obj/structure/cursed_slot_machine //Greed's slot machine: Used in the Greed ruin. Deals clone damage on each use, with a successful use giving a d20 of fate.
-	name = "greed's slot machine"
-	desc = "High stakes, high rewards."
+	name = "jednoręki bandyta chciwości"
+	desc = "Wysokie stawki, wysokie nagrody."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "slots1"
 	anchored = TRUE
@@ -45,8 +45,8 @@
 
 
 /obj/structure/cursed_money
-	name = "bag of money"
-	desc = "RICH! YES! YOU KNEW IT WAS WORTH IT! YOU'RE RICH! RICH! RICH!"
+	name = "worek pieniędzy"
+	desc = "BOGACTWO! TAK! WIEDZIAŁEŚ, ŻE BYŁO WARTO! JESTEŚ BOGATY! BOGATY! BOGATY!"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "moneybag"
 	anchored = FALSE
@@ -72,8 +72,8 @@
 	qdel(src)
 
 /obj/effect/gluttony //Gluttony's wall: Used in the Gluttony ruin. Only lets the overweight through.
-	name = "gluttony's wall"
-	desc = "Only those who truly indulge may pass."
+	name = "ściana obżarstwa"
+	desc = "Przejść mogą tylko ci, którzy naprawdę sobie folgują."
 	anchored = TRUE
 	density = TRUE
 	icon_state = "blob"
@@ -93,8 +93,8 @@
 		return TRUE
 
 /obj/structure/mirror/magic/pride //Pride's mirror: Used in the Pride ruin.
-	name = "pride's mirror"
-	desc = "Pride cometh before the..."
+	name = "lustro pychy"
+	desc = "Pycha kroczy przed..."
 	icon_state = "magic_mirror"
 
 /obj/structure/mirror/magic/pride/New()
@@ -122,8 +122,8 @@
 //can't be bothered to do sloth right now, will make later
 
 /obj/item/kitchen/knife/envy //Envy's knife: Found in the Envy ruin. Attackers take on the appearance of whoever they strike.
-	name = "envy's knife"
-	desc = "Their success will be yours."
+	name = "nóż zawiści"
+	desc = "Ich sukces będzie twoim."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	item_state = "knife"

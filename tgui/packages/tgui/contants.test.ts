@@ -9,7 +9,7 @@ describe('gas helper functions', () => {
   it('should get the proper gas label', () => {
     const gasId = 'antinoblium';
     const gasLabel = getGasLabel(gasId);
-    expect(gasLabel).toBe('Anti-Noblium');
+    expect(gasLabel).toBe('Antynoblium');
   });
 
   it('should get the proper gas label with a fallback', () => {
@@ -23,7 +23,7 @@ describe('gas helper functions', () => {
     const gasId = 'nonexistent';
     const gasLabel = getGasLabel(gasId);
 
-    expect(gasLabel).toBe('None');
+    expect(gasLabel).toBe('Brak');
   });
 
   it('should get the proper gas color', () => {
@@ -47,8 +47,8 @@ describe('gas helper functions', () => {
     expect(gas).toEqual({
       id: 'antinoblium',
       path: '/datum/gas/antinoblium',
-      name: 'Anti-Noblium',
-      label: 'Anti-Noblium',
+      name: 'Antynoblium',
+      label: 'Antynoblium',
       color: 'maroon',
     });
   });
@@ -67,8 +67,8 @@ describe('gas helper functions', () => {
     expect(gas).toEqual({
       id: 'antinoblium',
       path: '/datum/gas/antinoblium',
-      name: 'Anti-Noblium',
-      label: 'Anti-Noblium',
+      name: 'Antynoblium',
+      label: 'Antynoblium',
       color: 'maroon',
     });
   });

@@ -18,7 +18,7 @@ Bonus
 
 /datum/symptom/weight_loss
 
-	name = "Weight Loss"
+	name = "Utrata wagi"
 	desc = "Wirus mutuje metabolizm nosiciela, przez co prawie nie może on czerpać składników odżywczych z jedzenia."
 	stealth = 0
 	resistance = 2
@@ -54,9 +54,9 @@ Bonus
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='warning'>[pick("You feel hungry.", "You crave for food.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Jesteś głodny.", "Marzysz o jedzeniu.")]</span>")
 		else
-			to_chat(M, "<span class='warning'><i>[pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")]</i></span>")
+			to_chat(M, "<span class='warning'><i>[pick("Taki głód...", "Zabiłbyś za kęs jedzenia...", "Chwytają cię skurcze głodowe...")]</i></span>")
 			M.overeatduration = max(M.overeatduration - 100, 0)
 			if(starving)
 				M.adjust_nutrition(-100)

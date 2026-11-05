@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "\proper chief engineer's locker"
+	name = "\proper szafka Głównego Inżyniera"
 	req_access = list(ACCESS_CE)
 	icon_state = "ce"
 
@@ -36,7 +36,7 @@
 	//new /obj/item/gun/energy/e_gun/mini/heads(src) NSV13, no energy weapons
 
 /obj/item/storage/box/suitbox/ce_tools
-	name = "compression box of chief engineer tools"
+	name = "kompresyjne pudełko z narzędziami Głównego Inżyniera"
 
 /obj/item/storage/box/suitbox/ce_tools/PopulateContents()
 	new /obj/item/pipe_dispenser(src)
@@ -50,7 +50,7 @@
 	new /obj/item/holosign_creator/atmos(src)
 
 /obj/item/storage/box/suitbox/ce
-	name = "compression box of chief engineer outfits"
+	name = "kompresyjne pudełko ze strojami Głównego Inżyniera"
 
 /obj/item/storage/box/suitbox/ce/PopulateContents()
 	new /obj/item/clothing/under/rank/engineering/chief_engineer(src)
@@ -61,7 +61,7 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
-	name = "electrical supplies locker"
+	name = "szafka z zapasami elektrycznymi"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_elec"
@@ -77,7 +77,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/engineering_welding
-	name = "welding supplies locker"
+	name = "szafka z zapasami spawalniczymi"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_weld"
@@ -90,7 +90,7 @@
 		new /obj/item/weldingtool(src)
 
 /obj/structure/closet/secure_closet/engineering_personal
-	name = "engineer's locker"
+	name = "szafka inżyniera"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng_secure"
 
@@ -106,7 +106,7 @@
 	new /obj/item/storage/box/emptysandbags(src)
 
 /obj/structure/closet/secure_closet/atmospherics
-	name = "\proper atmospheric technician's locker"
+	name = "\proper szafka Technika Atmosferyki"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "atmos"
 

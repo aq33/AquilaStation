@@ -1,14 +1,14 @@
 /// Recollects water for sinks, toilets and showers
 /obj/item/stock_parts/water_recycler
-	name = "water recycler"
-	desc = "A chemical reclamation component, which serves to re-accumulate and filter water over time."
+	name = "recykler wody"
+	desc = "Element odzysku chemikaliów, który z czasem na nowo gromadzi i filtruje wodę."
 	icon = 'aquila/icons/obj/plumbing/plumbing_items.dmi'
 	icon_state = "water_recycler"
 	custom_materials = list(/datum/material/plastic = 200, /datum/material/iron = 50)
 
 /datum/design/water_recycler
-	name = "Water Recycler"
-	desc = "A device that slowly reclaims water for sinks, toilets and showers."
+	name = "Recykler wody"
+	desc = "Urządzenie, które powoli odzyskuje wodę do zlewów, toalet i pryszniców."
 	id = "water_recycler"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/plastic = 200, /datum/material/iron = 50)
@@ -17,7 +17,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/plumbing_rcd_service
-	name = "Service Plumbing Constructor"
+	name = "Konstruktor instalacji serwisowych"
 	id = "plumbing_rcd_service"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500, /datum/material/plastic = 1000)
@@ -27,12 +27,40 @@
 
 /datum/techweb_node/base/New() // plumbing designs, appended so upstream changes to this node's designs still apply
 	. = ..()
-	design_ids |= list("water_recycler", "plumbing_rcd_service")
+	design_ids |= list("water_recycler", "plumbing_rcd_service", "plumbing_receiver", "liquid_pump", "protolathe") // protolathe: płytka protolatu nie miała węzła
+
+/// Chemical recipient board from tg: the only way to get the receiver, since the RPD only builds the sender
+/obj/item/circuitboard/machine/plumbing_receiver
+	name = "odbiornik chemikaliów (płytka maszyny)"
+	icon_state = "medical"
+	build_path = /obj/machinery/plumbing/receiver
+	needs_anchored = FALSE
+	req_components = list(
+		/obj/item/stack/ore/bluespace_crystal = 1,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/sheet/glass = 1)
+	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
+
+/datum/design/board/plumbing_receiver
+	name = "Projekt maszyny (odbiornik chemikaliów)"
+	desc = "Płytka drukowana: odbiornik chemikaliów, który przez bluespace odbiera płyny z nadajników chemikaliów."
+	id = "plumbing_receiver"
+	build_path = /obj/item/circuitboard/machine/plumbing_receiver
+	category = list("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/board/liquid_pump
+	name = "Projekt maszyny (przenośna pompa cieczy)"
+	desc = "Płytka drukowana: przenośna pompa, która wypompowuje płyny z gejzerów."
+	id = "liquid_pump"
+	build_path = /obj/item/circuitboard/machine/pump
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_ENGINEERING
 
 // Plumbed tanks: the water sources for station sinks, toilets and showers
 /obj/structure/reagent_dispensers/plumbed
-	name = "stationary water tank"
-	desc = "A stationary, plumbed, water tank."
+	name = "stacjonarny zbiornik wody"
+	desc = "Stacjonarny zbiornik wody podłączony do rur."
 	icon = 'aquila/icons/obj/plumbing/plumbing_items.dmi'
 	icon_state = "water_stationary"
 
@@ -41,7 +69,7 @@
 	. += "<span class='notice'>Wydaje płyn do rur przez złącze z przodu. Można go odkręcić <b>kluczem</b>.</span>"
 
 /obj/structure/reagent_dispensers/plumbed/storage
-	name = "stationary storage tank"
+	name = "stacjonarny zbiornik magazynowy"
 	icon_state = "tank_stationary"
 
 /obj/structure/reagent_dispensers/plumbed/storage/update_overlays()
@@ -57,8 +85,8 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/reagent_dispensers/plumbed/fuel
-	name = "stationary fuel tank"
-	desc = "A stationary, plumbed, fuel tank."
+	name = "stacjonarny zbiornik paliwa"
+	desc = "Stacjonarny zbiornik paliwa podłączony do rur."
 	icon_state = "fuel_stationary"
 	reagent_id = /datum/reagent/fuel
 

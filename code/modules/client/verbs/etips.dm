@@ -1,6 +1,6 @@
 /client/verb/toggle_tips()
 	set name = "Toggle Examine Tooltips"
-	set desc = "Toggles examine hover-over tooltips"
+	set desc = "Włącza lub wyłącza podpowiedzi przy najechaniu kursorem"
 	set category = "Preferences"
 
 	prefs.toggles2 ^= PREFTOGGLE_2_ENABLE_TIPS
@@ -9,7 +9,7 @@
 
 /client/verb/change_tip_delay()
 	set name = "Set Examine Tooltip Delay"
-	set desc = "Sets the delay in milliseconds before examine tooltips appear"
+	set desc = "Ustawia opóźnienie (w milisekundach), po którym pojawiają się podpowiedzi"
 	set category = "Preferences"
 
 	var/indelay = stripped_input(usr, "Podaj opóźnienie podpowiedzi w milisekundach (domyślnie: 500)", "Opóźnienie podpowiedzi", "", 10)

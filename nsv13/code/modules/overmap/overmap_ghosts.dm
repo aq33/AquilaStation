@@ -3,7 +3,7 @@
 
 /obj/structure/overmap/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_GHOST_SHIP, "Make Ghost Ship")
+	VV_DROPDOWN_OPTION(VV_HK_GHOST_SHIP, "Zrób okręt widmo")
 
 /obj/structure/overmap/vv_do_topic(list/href_list)
 	set waitfor = FALSE
@@ -12,21 +12,21 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/target_ghost
-		switch(alert(usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Open", "Choose", "Cancel"))
-			if("Cancel")
+		switch(alert(usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Nabór otwarty", "Wskaż gracza", "Anuluj"))
+			if("Anuluj")
 				return
-			if("Open")
-				var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to pilot a [faction] [src]?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
+			if("Nabór otwarty")
+				var/list/mob/dead/observer/candidates = pollGhostCandidates("Chcesz pilotować okręt [src] (frakcja: [faction])?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
 				if(LAZYLEN(candidates))
 					var/mob/dead/observer/C = pick(candidates)
 					target_ghost = C
 				else
 					return
-			if("Choose")
+			if("Wskaż gracza")
 				target_ghost = input(usr, "Wybierz gracza, który będzie pilotował okręt widmo:", "Wybierz gracza") as null|anything in GLOB.clients
 
 		ghost_ship(target_ghost)
-		message_admins("[key_name_admin(usr)] has ghost shipped [src]!")
+		message_admins("[key_name_admin(usr)] oddaje [src] duchowi jako okręt widmo!")
 		log_admin("[key_name_admin(usr)] has ghost shipped [src]!")
 
 
@@ -37,11 +37,11 @@
 
 	//Prevent the mainship being skeleton crewed
 	if(role == MAIN_OVERMAP)
-		message_admins("[src] is the main overmap and cannot be ghost controlled! Take manual control via the Z-level")
+		message_admins("[src] to główny okręt overmapy i nie może nim sterować duch! Przejmij sterowanie ręcznie przez poziom Z")
 		return
 
 	if(istype(src, /obj/structure/overmap/small_craft))
-		message_admins("[src] is a small craft subtype and cannot be ghost controlled! Take manual control the mob!")
+		message_admins("[src] to mała jednostka i nie może nią sterować duch! Przejmij ręcznie sterowanie mobem!")
 		return
 
 	ai_controlled = FALSE //Remove the AI control

@@ -1,6 +1,6 @@
 /obj/item/assembly/health
-	name = "health sensor"
-	desc = "Used for scanning and monitoring health."
+	name = "czujnik zdrowia"
+	desc = "Służy do skanowania i monitorowania zdrowia."
 	icon_state = "health"
 	materials = list(/datum/material/iron=800, /datum/material/glass=200)
 	attachable = TRUE

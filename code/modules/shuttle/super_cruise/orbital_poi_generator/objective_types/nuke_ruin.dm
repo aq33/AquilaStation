@@ -1,5 +1,5 @@
 /datum/orbital_objective/nuclear_bomb
-	name = "Nuclear Decomission"
+	name = "Likwidacja jądrowa"
 	var/generated = FALSE
 	//The blackbox required to recover.
 	var/obj/machinery/nuclearbomb/decomission/nuclear_bomb
@@ -33,8 +33,8 @@
 //==============
 
 /obj/item/disk/nuclear/decommission
-	name = "outdated nuclear authentication disk"
-	desc = "An old, worn nuclear authentication disk used in the outdated X-7 nuclear fission explosive. Nanotrasen no longer uses this model of authentication due to its poor security."
+	name = "przestarzały dysk uwierzytelniania jądrowego"
+	desc = "Stary, zużyty dysk uwierzytelniania jądrowego do przestarzałego ładunku rozszczepienia jądrowego X-7. Nanotrasen nie używa już tego modelu uwierzytelniania z powodu słabych zabezpieczeń."
 	fake = TRUE
 
 /obj/item/disk/nuclear/decommission/ComponentInitialize()
@@ -47,7 +47,7 @@
 GLOBAL_LIST_EMPTY(decomission_bombs)
 
 /obj/machinery/nuclearbomb/decomission
-	desc = "A nuclear bomb for destroying stations. Uses an old version of the nuclear authentication disk."
+	desc = "Bomba atomowa do niszczenia stacji. Używa starej wersji dysku uwierzytelniania jądrowego."
 	proper_bomb = FALSE
 	var/datum/orbital_objective/nuclear_bomb/linked_objective
 	var/target_z

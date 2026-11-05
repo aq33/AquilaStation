@@ -1,6 +1,6 @@
 /obj/structure/statue/petrified
-	name = "statue"
-	desc = "An incredibly lifelike marble carving."
+	name = "posąg"
+	desc = "Niesamowicie realistyczna marmurowa rzeźba."
 	icon_state = "human_male"
 	density = TRUE
 	anchored = TRUE
@@ -71,7 +71,7 @@
 	if(!disassembled)
 		if(petrified_mob)
 			petrified_mob.dust()
-	visible_message("<span class='danger'>[src] shatters!.</span>")
+	visible_message("<span class='danger'>[src] rozpada się na kawałki!</span>")
 	qdel(src)
 
 
@@ -81,7 +81,7 @@
 	if(!isturf(loc))
 		return 0
 	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
-	S.name = "statue of [name]"
+	S.name = "posąg: [name]"
 	S.copy_overlays(src)
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
@@ -91,7 +91,7 @@
 	if(!isturf(loc))
 		return 0
 	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
-	S.name = "statue of a monkey"
+	S.name = "posąg małpy"
 	S.icon_state = "monkey"
 	return 1
 
@@ -99,7 +99,7 @@
 	if(!isturf(loc))
 		return 0
 	var/obj/structure/statue/petrified/S = new (loc, src, statue_timer)
-	S.name = "statue of a corgi"
+	S.name = "posąg corgiego"
 	S.icon_state = "corgi"
-	S.desc = "If it takes forever, I will wait for you..."
+	S.desc = "Choćby to trwało wieczność, będę na ciebie czekać..."
 	return 1

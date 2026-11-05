@@ -1,5 +1,5 @@
 /obj/item/paper/contract/infernal/pleasure
-	name = "paper- contract of pleasure"
+	name = "kartka - kontrakt na rozkosz"
 	contractType = CONTRACT_PLEASURE
 
 /obj/item/paper/contract/infernal/pleasure/update_text(signature = "____________", blood = 0)

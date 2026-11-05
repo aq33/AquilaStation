@@ -146,7 +146,7 @@ GLOBAL_DATUM(blood_worm_team, /datum/team/blood_worm)
 // Cele
 
 /datum/objective/blood_worm
-	name = "blood worm"
+	name = "krwawy robak"
 
 /datum/objective/blood_worm/proc/get_blood_worm_team()
 	RETURN_TYPE(/datum/team/blood_worm)

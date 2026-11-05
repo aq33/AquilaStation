@@ -156,7 +156,7 @@
 	return null
 
 /obj/effect/dummy/phased_mob/tg/mirror_walk
-	name = "reflection"
+	name = "odbicie"
 
 /obj/effect/dummy/phased_mob/tg/mirror_walk/Initialize(mapload, atom/movable/jaunter)
 	. = ..()

@@ -11,6 +11,7 @@ import {
 } from 'tgui/components';
 
 import { useSettings } from '../settings';
+import { getDisplayTabs } from './layout';
 import { selectStatPanel } from './selectors';
 import { StatStatus } from './StatStatus';
 import { findVerbs, StatText } from './StatText';
@@ -138,7 +139,7 @@ export const StatTabScroll = (props) => {
   const stat = useSelector(selectStatPanel);
   const dispatch = useDispatch();
   // Map the input data into tabs, then filter out extra_data
-  let statTabs = stat.statTabs;
+  let statTabs = getDisplayTabs(stat.statTabs, stat.verbData);
   return (
     <Section fitted overflowX="auto">
       <Flex align="center">
@@ -164,7 +165,7 @@ export const StatTabWrap = (props) => {
   const stat = useSelector(selectStatPanel);
   const dispatch = useDispatch();
   // Map the input data into tabs, then filter out extra_data
-  let statTabs = stat.statTabs;
+  let statTabs = getDisplayTabs(stat.statTabs, stat.verbData);
   return (
     <Section overflowX="auto" className="StatTabWrap">
       {statTabs.map((tab) => (

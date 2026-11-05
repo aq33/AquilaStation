@@ -1,6 +1,6 @@
 /obj/anomaly/singularity/factory
-	name = "tear in the fabric of reality"
-	desc = "Your own comprehension of reality starts bending as you stare this."
+	name = "rozdarcie w tkance rzeczywistości"
+	desc = "Gdy się w to wpatrujesz, twoje pojmowanie rzeczywistości zaczyna się wyginać."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "boh_tear"
 	pixel_x = -32
@@ -19,17 +19,17 @@
 	teleport_restriction = TELEPORT_ALLOW_NONE
 
 /area/awaymission/factory/secret
-	name = "secrets"
+	name = "Sekrety"
 	ambientsounds = list('sound/ambience/secrets.ogg','sound/ambience/ambiholy2.ogg')
 
 /area/awaymission/factory/villageafter
-	name = "The Village"
+	name = "Wioska"
 	ambientsounds = list('sound/ambience/seag1.ogg', 'sound/ambience/seag2.ogg', 'sound/ambience/seag2.ogg', 'sound/ambience/ambiodd.ogg', 'sound/ambience/ambimystery.ogg', 'sound/ambience/ambiearth.ogg', 'sound/ambience/ambiwind.ogg', 'sound/ambience/ambimine.ogg')
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = FALSE
 
 /area/awaymission/factory/villageafter/church
-	name = "The Church"
+	name = "Kościół Wioski"
 	ambience_index = AMBIENCE_HOLY
 
 /area/awaymission/factory/villageafter/house
@@ -41,12 +41,12 @@
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/villageafter/house/start
-	name = "The House"
+	name = "Dom Wioski"
 	ambientsounds = list('sound/ambience/ambidet2.ogg','sound/ambience/ambiodd.ogg')
 
 /area/awaymission/factory/villageafter/hospital
 	ambientsounds = list('sound/ambience/ambiodd.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambiruin2.ogg')
-	name = "The Hospital"
+	name = "Szpital Fabryki"
 	requires_power = TRUE
 
 /area/awaymission/factory/villageafter/spooky
@@ -55,7 +55,7 @@
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/factoryafter
-	name = "The Factory"
+	name = "Fabryka"
 	ambientsounds = list('sound/ambience/ambiodd.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambiruin6.ogg','sound/ambience/ambitech3.ogg')
 	requires_power = TRUE
 	always_unpowered = TRUE
@@ -76,65 +76,65 @@
 	ambientsounds = list('sound/ambience/ambiatm1.ogg','sound/ambience/ambimaint3.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambimaint2.ogg')
 
 /area/awaymission/factory/factoryafter/down/batsecret
-	name = "The maze"
+	name = "Labirynt"
 	ambientsounds = list('sound/ambience/ambiatm1.ogg','sound/ambience/ambimaint3.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambimaint2.ogg','sound/ambience/ambibasement.ogg')
 
 /area/awaymission/factory/factoryafter/down/leveltwo
-	name = "The Factory - middle level"
+	name = "Fabryka – Środkowy Poziom"
 	ambientsounds = list('sound/ambience/ambigen7.ogg','sound/ambience/ambifac.ogg','sound/ambience/ambireebe1.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambigen14.ogg')
 
 /area/awaymission/factory/factoryafter/down/leveltwo/morgue
-	name = "The Morgue"
+	name = "Kostnica Fabryki"
 	ambience_index = AMBIENCE_SPOOKY
 	mood_bonus = -2
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/factoryafter/down/leveltwo/ritual
-	name = "a strange place"
+	name = "Dziwne Miejsce"
 	ambientsounds = list('sound/ambience/antag/ecult_op.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambireebe2.ogg','sound/spookoween/insane_low_laugh.ogg','sound/spookoween/chain_rattling.ogg')
 	mood_bonus = -2
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/factoryafter/down/levelthree
-	name = "The Factory - lower level"
+	name = "Fabryka – Dolny Poziom"
 	ambientsounds = list('sound/ambience/ambiatm1.ogg','sound/ambience/ambitech.ogg','sound/ambience/ambitech2.ogg','sound/ambience/ambitech3.ogg','sound/ambience/ambiatmos.ogg','sound/ambience/ambiatmos2.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambimaint5.ogg','sound/ambience/ambireebe3.ogg','sound/ambience/ambilava.ogg')
 
 /area/awaymission/factory/factoryafter/down/levelthree/engine
-	name = "The reality engine"
+	name = "Silnik Rzeczywistości"
 	ambientsounds = list('sound/ambience/singulambience.ogg','sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg','sound/ambience/antag/assimilation.ogg')
 	mood_bonus = 1
 	mood_message = "<span class='nicegreen'>Yyy... Okej?... Chyba...\n</span>"
 
 /area/awaymission/factory/factoryduring
-	name = "The old Factory"
+	name = "Stara Fabryka"
 	ambientsounds = list('sound/ambience/ambidanger.ogg','sound/ambience/ambifac.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiatm1.ogg','sound/ambience/ambiatmos.ogg')
 
 /area/awaymission/factory/factoryduring/down/levelthree
-	name = "The old Factory - lower level"
+	name = "Stara Fabryka – Dolny Poziom"
 	ambientsounds = list('sound/ambience/ambiatm1.ogg','sound/ambience/ambitech.ogg','sound/ambience/ambitech2.ogg','sound/ambience/ambitech3.ogg','sound/ambience/ambiatmos.ogg','sound/ambience/ambiatmos2.ogg','sound/ambience/signal.ogg','sound/ambience/ambidanger.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiruin2.ogg')
 
 /area/awaymission/factory/factoryduring/down/levelthree/engine
-	name = "The reality engine"
+	name = "Silnik Rzeczywistości"
 	mood_bonus = 1
 	mood_message = "<span class='nicegreen'>Yyy... Okej?... Chyba...\n</span>"
 	ambientsounds = list('sound/ambience/singulambience.ogg','sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg','sound/ambience/antag/assimilation.ogg','sound/ambience/ambidanger.ogg','sound/ambience/ambidanger2.ogg')
 
 /area/awaymission/factory/factoryduring/down/leveltwo
-	name = "The old Factory - middle level"
+	name = "Stara Fabryka – Środkowy Poziom"
 	ambientsounds = list('sound/ambience/ambidanger.ogg','sound/ambience/ambifac.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiruin5.ogg','sound/ambience/ambiruin6.ogg','sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg')
 
 /area/awaymission/factory/factoryduring/down/leveltwo/ritual
-	name = "a strange place"
+	name = "Dziwne Miejsce"
 	ambientsounds = list('sound/ambience/antag/ecult_op.ogg','sound/spookoween/insane_low_laugh.ogg','sound/spookoween/spookywind.ogg')
 
 /area/awaymission/factory/factoryduring/down/leveltwo/morgue
-	name = "The old Morgue"
+	name = "Stara Kostnica Fabryki"
 	ambience_index = AMBIENCE_SPOOKY
 	mood_bonus = -2
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/factoryduring/down/leveltwo/asylum
-	name = "The sector of mentally disordered"
+	name = "Sektor Zaburzonych Psychicznie"
 	ambientsounds = list('sound/ambience/ambimo2.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambitech.ogg','sound/ambience/ambireebe1.ogg')
 
 /area/awaymission/factory/factoryduring/down
@@ -144,7 +144,7 @@
 	ambientsounds = list('sound/ambience/ambidanger.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiatm1.ogg','sound/ambience/ambimaint3.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambimaint2.ogg')
 
 /area/awaymission/factory/villageduring
-	name = "The old village"
+	name = "Stara Wioska"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = FALSE
 	ambientsounds = list('sound/ambience/ambidanger.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiearthduring.ogg','sound/ambience/ambiwind.ogg','sound/ambience/ambimine.ogg')
@@ -158,36 +158,36 @@
 	mood_message = "<span class='nicegreen'>Śmierdzi tu śmiercią!\n</span>"
 
 /area/awaymission/factory/villageduring/church
-	name = "The old Church"
+	name = "Stary Kościół"
 	ambience_index = AMBIENCE_HOLY
 
 /area/awaymission/factory/villageduring/church/leveltwo
-	name = "The old Church - 2nd floor"
+	name = "Stary Kościół – Drugie Piętro"
 	ambientsounds = list('sound/ambience/ambimystery.ogg','sound/ambience/ambiodd.ogg','sound/ambience/signal.ogg','sound/ambience/ambiwind.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambiholy3.ogg')
 
 /area/awaymission/factory/villageduring/basement
-	name = "The old basement"
+	name = "Stara Piwnica"
 	ambientsounds = list('sound/ambience/ambibasement.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambiodd.ogg')
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/awaymission/factory/villageduring/house/start
-	name = "The old House"
+	name = "Stary Dom"
 	ambientsounds = list('sound/ambience/ambidet2.ogg')
 
 /area/awaymission/factory/villageduring/hospital
 	ambientsounds = list('sound/ambience/ambidanger.ogg','sound/ambience/ambidanger2.ogg','sound/ambience/ambiatmos.ogg','sound/ambience/ambimystery.ogg','sound/ambience/ambimaint.ogg','sound/ambience/ambiruin2.ogg')
-	name = "The Hospital"
+	name = "Szpital Fabryki"
 
 /area/awaymission/factory/transition
-	name = "Beyond the time"
+	name = "Poza Czasem"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	ambientsounds = list('sound/ambience/shipambience.ogg','sound/ambience/ambiatmos.ogg','sound/ambience/antag/malf.ogg','sound/ambience/signal.ogg','sound/ambience/ambimalf.ogg')
 
 //ITEMS//
 
 /obj/item/statuebust/toy
-	name = "aesthetic bust"
-	desc = "A priceless ancient marble bust, the kind that belongs in a museum. Looks like this one has some differences."
+	name = "estetyczne popiersie"
+	desc = "Bezcenne starożytne marmurowe popiersie, z tych, które powinny stać w muzeum. Wygląda na to, że to czymś się różni."
 	var/cooldown = 0
 
 /obj/item/statuebust/toy/attack_self(mob/user)
@@ -199,8 +199,8 @@
 		to_chat(user, "<span class='alert'>Nic się nie dzieje!</span>")
 
 /obj/item/clothing/glasses/hud/terminator
-	name = "T-80 tactical sunglasses"
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Also shows information about criminals and their condition. Has enhanced shielding which blocks flashes."
+	name = "taktyczne okulary przeciwsłoneczne T-80"
+	desc = "Dziwnie archaiczna technologia dająca podstawową osłonę oczu. Pokazuje też informacje o przestępcach i ich stanie. Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "t80sunglasses"
 	darkness_view = 1
 	clothing_flags = SCAN_REAGENTS
@@ -223,8 +223,8 @@
 				M.Goto(src,M.move_to_delay,M.minimum_distance)
 
 /mob/living/simple_animal/hostile/factory
-	name = "Guard"
-	desc = "An armed officer. Looks like they prefer to shoot rather than asking questions."
+	name = "Strażnik"
+	desc = "Uzbrojony funkcjonariusz. Wygląda na to, że woli strzelać, niż zadawać pytania."
 	speak = list("Przestań się stawiać!","Potrzebuję wsparcia!","Giń, dziwolągu!","Ucieka!")
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "nanotrasen"
@@ -290,7 +290,7 @@
 				/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
 
 /mob/living/simple_animal/hostile/factory/ranged/lmg
-	desc = "This one is carrying a bigger gun. Seek for cover."
+	desc = "Ten nosi większą broń. Szukaj osłony."
 	icon_state = "nanotrasenrangedlmg"
 	icon_living = "nanotrasenrangedlmg"
 	projectilesound = 'sound/weapons/rifleshot.ogg'
@@ -339,8 +339,8 @@
 	speak = list("No chodź tu!","Nie uciekniesz!","Giń!")
 
 /mob/living/simple_animal/hostile/syndicate/factory/sniper
-	name = "The Warden"
-	desc = "One of the best snipers. Take cover or get shot"
+	name = "Naczelnik"
+	desc = "Jeden z najlepszych snajperów. Kryj się albo dostaniesz kulkę."
 	icon_state = "fsniper"
 	icon_living = "fsniper"
 	ranged = TRUE
@@ -387,8 +387,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/psycho
-	name = "Psycho"
-	desc = "They're wearing a pretty uncomfortable jacket."
+	name = "Psychol"
+	desc = "Ma na sobie dość niewygodny kaftan."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "psycho"
 	icon_living = "psycho"
@@ -499,7 +499,7 @@
 		playsound(src, chosen_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/psycho/trap
-	desc = "This one has a strange device on his head."
+	desc = "Ten ma na głowie dziwne urządzenie."
 	icon_state = "psychotrap"
 	icon_living = "psychotrap"
 	speak_chance = 0
@@ -551,8 +551,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/syndicate/factory/heavy
-	name = "Heavy gunner"
-	desc = "They didn't get that backpack for nothing."
+	name = "Ciężki strzelec"
+	desc = "Nie bez powodu dostał ten plecak."
 	icon_state = "Heavy"
 	icon_living = "Heavy"
 	sidestep_per_cycle = 0
@@ -598,7 +598,7 @@
 	if(CheckFriendlyFire(A))
 		return
 	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
-		visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+		visible_message("<span class='danger'><b>[src]</b> [ranged_message] w [A]!</span>")
 	if(rapid > 1)
 		var/datum/callback/cb = CALLBACK(src, PROC_REF(Shoot), A)
 		for(var/i in 1 to rapid)
@@ -618,8 +618,8 @@
 	safety = FALSE
 
 /mob/living/simple_animal/hostile/zombie_suicide
-	name = "agressive corpse"
-	desc = "This corpse is holding a grenade without a pin in it..."
+	name = "agresywne zwłoki"
+	desc = "Te zwłoki trzymają granat bez zawleczki..."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "suicidezombie"
 	icon_living = "suicidezombie"
@@ -678,8 +678,8 @@
 	preprime()
 
 /mob/living/simple_animal/hostile/syndicate/factory/boss
-	name = "The Director"
-	desc = "This thing looks more like a machine than human."
+	name = "Dyrektor"
+	desc = "To coś wygląda bardziej jak maszyna niż człowiek."
 	maxHealth = 500
 	health = 500
 	icon_state = "facboss"
@@ -757,7 +757,7 @@
 	if(health <= 150)
 		if(prob(5) && Aggro())//change to insult the target on low health
 			playsound(get_turf(src), 'sound/voice/beepsky/insult.ogg', 100, 0, 0)
-			visible_message("<font color='red' size='4'><b>FUCK YOUR CUNT YOU SHIT EATING COCKSTORM AND EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND POO AND SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT.</b></font>")
+			visible_message("<font color='red' size='4'><b>PIERDOL SIĘ, TY GÓWNOŻERNY KUTASIARSKI HURAGANIE, ŻRYJ CHUJA, JEBANY DUPOJEBCO, GÓWNO, KURWA, ŻRYJ KUTASY TĄ SWOJĄ JEBANĄ MORDĄ I WYSRAJ PORONIONE PIERDOLENIE, KUPĘ I GÓWNO DO SWOJEJ DUPY, TY KUTASOJEBNY GÓWNIANY MAŁPOJEBCO, DUPOWATY ZWALACZU Z OTCHŁANI GÓWNA.</b></font>")
 		icon_state = "facboss3"
 		icon_living = "facboss3"
 		ranged_cooldown_time = 10//even faster
@@ -771,7 +771,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/factory/boss/death(gibbed)
 	playsound(get_turf(src), 'sound/voice/borg_deathsound.ogg', 80, TRUE, 0)
-	visible_message("<span class='boldwarning'>\the [src] activates its self-destruct system!.</span>")
+	visible_message("<span class='boldwarning'>[src] uruchamia system autodestrukcji!</span>")
 	speed = 15
 	move_to_delay = 20
 	ranged_cooldown = 300
@@ -782,8 +782,8 @@
 //GUNS//
 
 /obj/item/gun/ballistic/shotgun/lever_action
-	name = "lever action shotgun"
-	desc = "A really old shotgun with five shell capacity. This one can fit in a backpack."
+	name = "strzelba z dźwignią"
+	desc = "Naprawdę stara strzelba na pięć naboi. Mieści się w plecaku."
 	w_class = WEIGHT_CLASS_NORMAL
 	dual_wield_spread = 0
 	fire_sound_volume = 60    //tried on 90 my eardrums said goodbye
@@ -818,7 +818,7 @@
 		user.visible_message("<span class='rose'>Jednym ruchem ręki [user] obraca [src] i ładuje nabój do komory.</span>")
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/sound
-	desc = "A robust .50 AE handgun. This one looks even more robust."
+	desc = "Solidny pistolet kalibru .50 AE. Ten wygląda na jeszcze solidniejszy."
 	rack_sound = "sound/weapons/deaglerack.ogg"
 	bolt_drop_sound = "sound/weapons/deagleslidedrop.ogg"
 	lock_back_sound = "sound/weapons/deaglelock.ogg"

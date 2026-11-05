@@ -11,7 +11,7 @@
  */
 
 /turf/open/floor/mineral
-	name = "mineral floor"
+	name = "podłoga mineralna"
 	icon_state = ""
 	var/list/icons
 	tiled_dirt = FALSE
@@ -34,7 +34,7 @@
 //PLASMA
 
 /turf/open/floor/mineral/plasma
-	name = "plasma floor"
+	name = "podłoga plazmowa"
 	icon_state = "plasma"
 	floor_tile = /obj/item/stack/tile/mineral/plasma
 	icons = list("plasma","plasma_dam")
@@ -45,7 +45,7 @@
 
 /turf/open/floor/mineral/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)//If the temperature of the object is over 300, then ignite
-		message_admins("Plasma flooring was ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+		message_admins("Podłogę plazmową podpala [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(src)]")
 		log_game("Plasma flooring was ignited by [key_name(user)] in [AREACOORD(src)]")
 		ignite(W.is_hot())
 		return
@@ -63,7 +63,7 @@
 //GOLD
 
 /turf/open/floor/mineral/gold
-	name = "gold floor"
+	name = "złota podłoga"
 	icon_state = "gold"
 	floor_tile = /obj/item/stack/tile/mineral/gold
 	icons = list("gold","gold_dam")
@@ -71,7 +71,7 @@
 //SILVER
 
 /turf/open/floor/mineral/silver
-	name = "silver floor"
+	name = "srebrna podłoga"
 	icon_state = "silver"
 	floor_tile = /obj/item/stack/tile/mineral/silver
 	icons = list("silver","silver_dam")
@@ -79,7 +79,7 @@
 //COPPER
 
 /turf/open/floor/mineral/copper
-	name = "copper floor"
+	name = "miedziana podłoga"
 	icon_state = "copper"
 	floor_tile = /obj/item/stack/tile/mineral/copper
 	icons = list("copper","copper_dam")
@@ -87,7 +87,7 @@
 //TITANIUM (shuttle)
 
 /turf/open/floor/mineral/titanium
-	name = "shuttle floor"
+	name = "podłoga promu"
 	icon_state = "titanium"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
@@ -124,7 +124,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/titanium/alt
-	name = "titanium floor"
+	name = "podłoga tytanowa"
 	icon_state = "titanium_alt"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/alt
 	broken_states = list("titanium_dam1_alt","titanium_dam2_alt","titanium_dam3_alt","titanium_dam4_alt","titanium_dam5_alt")
@@ -162,7 +162,7 @@
 
 //PLASTITANIUM (syndieshuttle)
 /turf/open/floor/mineral/plastitanium
-	name = "shuttle floor"
+	name = "podłoga promu"
 	icon_state = "plastitanium"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
 	broken_states = list("plastitanium_dam1","plastitanium_dam2","plastitanium_dam3","plastitanium_dam4","plastitanium_dam5")
@@ -177,12 +177,12 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/plastitanium/red/brig
-	name = "brig floor"
+	name = "podłoga aresztu"
 
 //BANANIUM
 
 /turf/open/floor/mineral/bananium
-	name = "bananium floor"
+	name = "podłoga z bananium"
 	icon_state = "bananium"
 	floor_tile = /obj/item/stack/tile/mineral/bananium
 	icons = list("bananium","bananium_dam")
@@ -226,7 +226,7 @@
 //DIAMOND
 
 /turf/open/floor/mineral/diamond
-	name = "diamond floor"
+	name = "diamentowa podłoga"
 	icon_state = "diamond"
 	floor_tile = /obj/item/stack/tile/mineral/diamond
 	icons = list("diamond","diamond_dam")
@@ -234,8 +234,7 @@
 //URANIUM
 
 /turf/open/floor/mineral/uranium
-	article = "a"
-	name = "uranium floor"
+	name = "podłoga uranowa"
 	icon_state = "uranium"
 	floor_tile = /obj/item/stack/tile/mineral/uranium
 	icons = list("uranium","uranium_dam")
@@ -277,7 +276,7 @@
 
 // ALIEN ALLOY
 /turf/open/floor/mineral/abductor
-	name = "alien floor"
+	name = "obca podłoga"
 	icon_state = "alienpod1"
 	floor_tile = /obj/item/stack/tile/mineral/abductor
 	icons = list("alienpod1", "alienpod2", "alienpod3", "alienpod4", "alienpod5", "alienpod6", "alienpod7", "alienpod8", "alienpod9")

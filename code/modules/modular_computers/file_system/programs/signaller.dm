@@ -3,7 +3,7 @@
 	filedesc = "Zdalny sygnalizator"
 	category = PROGRAM_CATEGORY_MISC
 	program_icon_state = "signal"
-	extended_desc = "A small built-in frequency app that sends out signaller signals with the appropriate hardware."
+	extended_desc = "Mała wbudowana aplikacja, która przy odpowiednim sprzęcie wysyła sygnały na wybranej częstotliwości."
 	size = 2
 	tgui_id = "NtosSignaller"
 	program_icon = "satellite-dish"
@@ -74,7 +74,7 @@
 	if(usr)
 		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> with frequency: [format_frequency(signal_frequency)]/[signal_code]")
 		log_telecomms("[time] <B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(signal_frequency)]/[signal_code]")
-		message_admins("<B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(signal_frequency)]/[signal_code]")
+		message_admins("<B>:</B> [usr.key] używa: [src] @ lokalizacja [AREACOORD(T)] <B>:</B> częstotliwość: [format_frequency(signal_frequency)]/[signal_code]")
 
 	var/datum/signal/signal = new(list("code" = signal_code))
 	radio_connection.post_signal(src, signal)

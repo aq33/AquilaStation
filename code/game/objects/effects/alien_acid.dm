@@ -1,7 +1,7 @@
 /obj/effect/acid
 	gender = PLURAL
-	name = "acid"
-	desc = "Burbling corrosive stuff."
+	name = "kwas"
+	desc = "Bulgocząca, żrąca maź."
 	icon_state = "acid"
 	density = FALSE
 	opacity = 0

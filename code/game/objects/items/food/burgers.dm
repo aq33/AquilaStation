@@ -15,7 +15,7 @@
 
 /obj/item/food/burger/plain
 	name = "burger"
-	desc = "The cornerstone of every nutritious breakfast."
+	desc = "Fundament każdego pożywnego śniadania."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 6,
@@ -30,16 +30,16 @@
 		new/obj/effect/particle_effect/smoke(get_turf(src))
 		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
 		visible_message("<span class='warning'>O bogowie! [src] jest zrujnowany! Ale może...?</span>")
-		name = "steamed ham"
-		desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
+		name = "hamburger na parze"
+		desc = pick("Ach, Starszy Oficerze, witam. Mam nadzieję, że jesteś gotów na niezapomniany obiad!",
 		"I nazywasz to hamburgerami na parze, mimo że ewidentnie są z mikrofalówki?",
 		"Stacja Aurora 13? O tej porze zmiany, o tej porze roku, w tym sektorze kosmosu, w całości w twojej zamrażarce?",
 		"Wiesz, te hamburgery smakują całkiem podobnie do tych z Maltańskiego Sokoła.")
 		tastes = list("hamburger z fast foodu" = 1)
 
 /obj/item/food/burger/human
-	name = "human burger"
-	desc = "A bloody burger."
+	name = "ludzki burger"
+	desc = "Krwawy burger."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 6,
@@ -58,15 +58,15 @@
 		subjectname = M.subjectname
 		subjectjob = M.subjectjob
 		if(subjectname)
-			name = "[subjectname] burger"
+			name = "burger ([subjectname])"
 		else if(subjectjob)
-			name = "[subjectjob] burger"
+			name = "burger ([subjectjob])"
 		qdel(M)
 
 
 /obj/item/food/burger/corgi
-	name = "corgi burger"
-	desc = "You monster."
+	name = "burger z corgiego"
+	desc = "Ty potworze."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 6,
@@ -76,8 +76,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/appendix
-	name = "appendix burger"
-	desc = "Tastes like appendicitis."
+	name = "burger z wyrostka"
+	desc = "Smakuje jak zapalenie wyrostka."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 11,
@@ -89,8 +89,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/fish
-	name = "fillet -o- carp sandwich"
-	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
+	name = "kanapka fillet-o-karp"
+	desc = "Jakby gdzieś krzyczał karp... Oddaj mi ten fillet-o-karp, oddaj mi tego karpia."
 	icon_state = "fishburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -102,8 +102,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/tofu
-	name = "tofu burger"
-	desc = "What.. is that meat?"
+	name = "burger z tofu"
+	desc = "Co... to za mięso?"
 	icon_state = "tofuburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -116,7 +116,7 @@
 
 /obj/item/food/burger/roburger
 	name = "roburger"
-	desc = "The lettuce is the only organic component. Beep."
+	desc = "Sałata to jedyny organiczny składnik. Bip."
 	icon_state = "roburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -129,7 +129,7 @@
 
 /obj/item/food/burger/roburgerbig
 	name = "roburger"
-	desc = "This massive patty looks like poison. Beep."
+	desc = "Ten ogromny kotlet wygląda jak trucizna. Bip."
 	icon_state = "roburger"
 	max_volume = 120
 	food_reagents = list(
@@ -141,8 +141,8 @@
 	foodtypes = GRAIN | TOXIC
 
 /obj/item/food/burger/xeno
-	name = "xenoburger"
-	desc = "Smells caustic. Tastes like heresy."
+	name = "ksenoburger"
+	desc = "Pachnie żrąco. Smakuje jak herezja."
 	icon_state = "xburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -154,8 +154,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/bearger
-	name = "bearger"
-	desc = "Best served rawr."
+	name = "niedźwiburger"
+	desc = "Najlepiej podawać na wrrrrrr."
 	icon_state = "bearger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -166,8 +166,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/clown
-	name = "clown burger"
-	desc = "This tastes funny..."
+	name = "burger klauna"
+	desc = "Smakuje zabawnie..."
 	icon_state = "clownburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -178,8 +178,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/mime
-	name = "mime burger"
-	desc = "Its taste defies language."
+	name = "burger mima"
+	desc = "Jego smak wymyka się słowom."
 	icon_state = "mimeburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -191,8 +191,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/brain
-	name = "brainburger"
-	desc = "A strange looking burger. It looks almost sentient."
+	name = "mózgoburger"
+	desc = "Dziwnie wyglądający burger. Wygląda niemal na świadomy."
 	icon_state = "brainburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -204,8 +204,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/ghost
-	name = "ghost burger"
-	desc = "Too Spooky!"
+	name = "upiorny burger"
+	desc = "Zbyt straszny!"
 	icon_state = "ghostburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 7,
@@ -257,8 +257,8 @@
 	. = ..()
 
 /obj/item/food/burger/red
-	name = "red burger"
-	desc = "Perfect for hiding the fact it's burnt to a crisp."
+	name = "czerwony burger"
+	desc = "Idealny, żeby ukryć, że jest spalony na węgiel."
 	icon_state = "cburger"
 	color = COLOR_RED
 	food_reagents = list(
@@ -271,8 +271,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/orange
-	name = "orange burger"
-	desc = "Contains 0% juice."
+	name = "pomarańczowy burger"
+	desc = "Zawiera 0% soku."
 	icon_state = "cburger"
 	color = COLOR_ORANGE
 	food_reagents = list(
@@ -285,8 +285,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/yellow
-	name = "yellow burger"
-	desc = "Bright to the last bite."
+	name = "żółty burger"
+	desc = "Jasny do ostatniego kęsa."
 	icon_state = "cburger"
 	color = COLOR_YELLOW
 	food_reagents = list(
@@ -299,8 +299,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/green
-	name = "green burger"
-	desc = "It's not tainted meat, it's painted meat!"
+	name = "zielony burger"
+	desc = "To nie zepsute mięso, to pomalowane mięso!"
 	icon_state = "cburger"
 	color = COLOR_GREEN
 	food_reagents = list(
@@ -313,8 +313,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/blue
-	name = "blue burger"
-	desc = "Is this blue rare?"
+	name = "niebieski burger"
+	desc = "Czy to jest „blue rare”?"
 	icon_state = "cburger"
 	color = COLOR_BLUE
 	food_reagents = list(
@@ -327,8 +327,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/purple
-	name = "purple burger"
-	desc = "Regal and low class at the same time."
+	name = "fioletowy burger"
+	desc = "Królewski i pospolity jednocześnie."
 	icon_state = "cburger"
 	color = COLOR_PURPLE
 	food_reagents = list(
@@ -341,8 +341,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/black
-	name = "black burger"
-	desc = "This is overcooked."
+	name = "czarny burger"
+	desc = "Jest rozgotowany."
 	icon_state = "cburger"
 	color = COLOR_ALMOST_BLACK
 	food_reagents = list(
@@ -355,8 +355,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/white
-	name = "white burger"
-	desc = "Delicous Titanium!"
+	name = "biały burger"
+	desc = "Pyszny tytan!"
 	icon_state = "cburger"
 	color = COLOR_WHITE
 	food_reagents = list(
@@ -369,8 +369,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/spell
-	name = "spell burger"
-	desc = "This is absolutely Ei Nath."
+	name = "zaklęty burger"
+	desc = "To jest absolutnie Ei Nath."
 	icon_state = "spellburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -382,8 +382,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/bigbite
-	name = "big bite burger"
-	desc = "Forget the Big Mac. THIS is the future!"
+	name = "burger Wielki Kęs"
+	desc = "Zapomnij o Big Macu. TO jest przyszłość!"
 	icon_state = "bigbiteburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -395,8 +395,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/jelly
-	name = "jelly burger"
-	desc = "Culinary delight..?"
+	name = "burger z galaretką"
+	desc = "Kulinarna rozkosz..?"
 	icon_state = "jellyburger"
 	tastes = list("bułka" = 4, "galaretka" = 2)
 	foodtypes = GRAIN | MEAT
@@ -420,8 +420,8 @@
 	foodtypes = GRAIN | FRUIT
 
 /obj/item/food/burger/superbite
-	name = "super bite burger"
-	desc = "This is a mountain of a burger. FOOD!"
+	name = "burger Super Kęs"
+	desc = "To nie burger, to góra. JEDZENIE!"
 	icon_state = "superbiteburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -436,8 +436,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/burger/fivealarm
-	name = "five alarm burger"
-	desc = "HOT! HOT!"
+	name = "burger na pięć alarmów"
+	desc = "GORĄCE! GORĄCE!"
 	icon_state = "fivealarmburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -450,8 +450,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/rat
-	name = "rat burger"
-	desc = "Pretty much what you'd expect..."
+	name = "szczurzy burger"
+	desc = "Mniej więcej to, czego się spodziewasz..."
 	icon_state = "ratburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -462,8 +462,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/baseball
-	name = "home run baseball burger"
-	desc = "It's still warm. The steam coming off of it looks like baseball."
+	name = "burger home run"
+	desc = "Wciąż ciepły. Para, która z niego bucha, wygląda jak piłka baseballowa."
 	icon_state = "baseball"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -474,8 +474,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/baconburger
-	name = "bacon burger"
-	desc = "The perfect combination of all things American."
+	name = "burger z boczkiem"
+	desc = "Idealne połączenie wszystkiego, co amerykańskie."
 	icon_state = "baconburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -487,8 +487,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/empoweredburger
-	name = "empowered burger"
-	desc = "It's shockingly good, if you live off of electricity that is."
+	name = "naładowany burger"
+	desc = "Porażająco dobry, o ile żywisz się prądem."
 	icon_state = "empoweredburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
@@ -501,8 +501,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/burger/crab
-	name = "crab burger"
-	desc = "A delicious patty of the crabby kind, slapped in between a bun."
+	name = "krabburger"
+	desc = "Pyszny kotlet z kraba, wciśnięty w bułkę."
 	icon_state = "crabburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -514,8 +514,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/soylent
-	name = "soylent burger"
-	desc = "An eco-friendly burger made using upcycled low value biomass."
+	name = "burger z soylentu"
+	desc = "Ekologiczny burger z przetworzonej biomasy niskiej wartości."
 	icon_state = "soylentburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -528,7 +528,7 @@
 
 /obj/item/food/burger/rib
 	name = "mcrib"
-	desc = "An elusive rib shaped burger with limited availablity across the galaxy. Not as good as you remember it."
+	desc = "Nieuchwytny burger w kształcie żeberek, dostępny tylko przez chwilę w całej galaktyce. Nie tak dobry, jak go pamiętasz."
 	icon_state = "mcrib"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -542,7 +542,7 @@
 
 /obj/item/food/burger/mcguffin
 	name = "mcguffin"
-	desc = "A cheap and greasy imitation of an eggs benedict."
+	desc = "Tania i tłusta imitacja jajek po benedyktyńsku."
 	icon_state = "mcguffin"
 	tastes = list("muffinka" = 2, "bekon" = 3)
 	food_reagents = list(
@@ -555,8 +555,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/chicken
-	name = "chicken sandwich" //Apparently the proud people of Americlapstan object to this thing being called a burger. Apparently McDonald's just calls it a burger in Europe as to not scare and confuse us.
-	desc = "The so-called classic poultry bread cage. Considering how processed this is, the taste holds up pretty well."
+	name = "kanapka z kurczakiem" //Apparently the proud people of Americlapstan object to this thing being called a burger. Apparently McDonald's just calls it a burger in Europe as to not scare and confuse us.
+	desc = "Tak zwana klasyczna drobiowa klatka z chleba. Jak na tak przetworzony produkt smakuje całkiem nieźle."
 	icon_state = "chickenburger"
 	tastes = list("bułka" = 2, "kurczak" = 4)
 	food_reagents = list(
@@ -570,8 +570,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/cheese
-	name = "cheese burger"
-	desc = "This noble burger stands proudly clad in golden cheese."
+	name = "cheeseburger"
+	desc = "Ten szlachetny burger stoi dumnie, odziany w złocisty ser."
 	icon_state = "cheeseburger"
 	tastes = list("bułka" = 2, "kotlet wołowy" = 4, "ser" = 3)
 	food_reagents = list(
@@ -588,8 +588,8 @@
 		icon_state = "cheeseburgeralt"
 
 /obj/item/food/burger/crazy
-	name = "crazy hamburger"
-	desc = "Crazy hamburger! It is horrible!"
+	name = "szalony hamburger"
+	desc = "Szalony hamburger! Jest okropny!"
 	icon_state = "crazyhamburger"
 	tastes = list("chleb z Turcji" = 2, "konina" = 4, "ser z São Paulo w Brazylii" = 3, "ostre papryczki chili" = 3, "ropa z Iraku" = 2, "trawa śmierci" = 3)
 	food_reagents = list(
@@ -603,7 +603,7 @@
 // empty burger you can customize
 /obj/item/food/burger/empty
 	name = "burger"
-	desc = "A crazy, custom burger made by a mad cook."
+	desc = "Szalony burger na zamówienie, zrobiony przez obłąkanego kucharza."
 	icon_state = "custburg"
 	tastes = list("bułka")
 	foodtypes = GRAIN

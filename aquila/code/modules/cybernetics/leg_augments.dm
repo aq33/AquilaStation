@@ -188,7 +188,7 @@
 		return NONE
 	if(!COOLDOWN_FINISHED(src, tackle_cooldown) || get_turf(target) == get_turf(source))
 		return NONE
-	if((organ_flags & ORGAN_FAILING) || source.getStaminaLoss() >= 80)
+	if((organ_flags & ORGAN_FAILING) || HAS_TRAIT(source, TRAIT_EXHAUSTED))
 		source.balloon_alert(source, "nogi odmawiają!")
 		return COMSIG_MOB_CANCEL_CLICKON
 
@@ -220,12 +220,3 @@
 	else if(hit_atom.density)
 		source.Knockdown(2 SECONDS)
 		source.visible_message(span_danger("[source] wbija się w [hit_atom]!"), span_userdanger("Wbijasz się w [hit_atom]!"))
-
-// Organy w nogach wkłada się tą samą operacją co w rękach
-/datum/surgery/organ_manipulation/soft/New(atom/surgery_target, surgery_location, surgery_bodypart)
-	. = ..()
-	possible_locs |= list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-
-/datum/surgery/organ_manipulation/mechanic/soft/New(atom/surgery_target, surgery_location, surgery_bodypart)
-	. = ..()
-	possible_locs |= list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)

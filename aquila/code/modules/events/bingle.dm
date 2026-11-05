@@ -22,7 +22,7 @@
 
 /datum/round_event/ghost_role/bingle
 	minimum_required = 1
-	role_name = "Bingle Lord"
+	role_name = "Władca bingli"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/bingle/spawn_role()
@@ -31,7 +31,7 @@
 		return NOT_ENOUGH_PLAYERS
 	// Ankieta trwa, a w tym czasie runda mogła się skończyć albo ktoś wezwał prom
 	if(SSticker.current_state != GAME_STATE_PLAYING || !EMERGENCY_IDLE_OR_RECALLED)
-		message_admins("Bingle Lord was not spawned, the shuttle was called or the round ended during the poll.")
+		message_admins("Władca bingli się nie pojawia: w trakcie ankiety wezwano prom albo runda się skończyła.")
 		return NOT_ENOUGH_PLAYERS
 	var/turf/spawn_loc = find_bingle_lord_spawn()
 	if(isnull(spawn_loc))
@@ -43,7 +43,7 @@
 	player_mind.transfer_to(lord)
 	player_mind.assigned_role = ROLE_BINGLE
 	player_mind.add_antag_datum(/datum/antagonist/bingle)
-	message_admins("[ADMIN_LOOKUPFLW(lord)] has been made into a Bingle Lord by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(lord)] zostaje władcą bingli przez event.")
 	log_game("[key_name(lord)] was spawned as a Bingle Lord by an event.")
 	spawned_mobs += lord
 	return SUCCESSFUL_SPAWN

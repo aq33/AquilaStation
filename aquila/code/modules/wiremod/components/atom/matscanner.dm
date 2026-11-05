@@ -4,7 +4,7 @@
  * Returns the materials of an atom
  */
 /obj/item/circuit_component/matscanner
-	display_name = "Material Scanner"
+	display_name = "Skaner materiałów"
 	desc = "Zwraca skład materiałowy podanego obiektu."
 	category = "Entity"
 

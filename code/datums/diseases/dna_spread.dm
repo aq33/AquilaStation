@@ -1,12 +1,12 @@
 /datum/disease/dnaspread
-	name = "Space Retrovirus"
+	name = "Kosmiczny retrowirus"
 	max_stages = 4
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Mutadone"
+	cure_text = "Mutadon"
 	cures = list(/datum/reagent/medicine/mutadone)
 	disease_flags = CAN_CARRY|CAN_RESIST|CURABLE
-	agent = "S4E1 retrovirus"
+	agent = "Retrowirus S4E1"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	var/datum/dna/original_dna = null
 	var/transformed = 0

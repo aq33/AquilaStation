@@ -4,8 +4,8 @@
 // The poster item
 
 /obj/item/poster
-	name = "poorly coded poster"
-	desc = "You probably shouldn't be holding this."
+	name = "źle zakodowany plakat"
+	desc = "Raczej nie powinieneś tego trzymać."
 	icon = 'icons/obj/contraband.dmi'
 	force = 0
 	resistance_flags = FLAMMABLE
@@ -33,19 +33,19 @@
 
 // These icon_states may be overridden, but are for mapper's convinence
 /obj/item/poster/random_contraband
-	name = "random contraband poster"
+	name = "losowy plakat kontrabandy"
 	poster_type = /obj/structure/sign/poster/contraband/random
 	icon_state = "rolled_poster"
 
 /obj/item/poster/random_official
-	name = "random official poster"
+	name = "losowy oficjalny plakat"
 	poster_type = /obj/structure/sign/poster/official/random
 	icon_state = "rolled_legit"
 
 // The poster sign/structure
 
 /obj/structure/sign/poster
-	name = "poster"
+	name = "plakat"
 	var/original_name
 	desc = "Duży kawałek zadrukowanego papieru. Kosmo-Odporny."
 	icon = 'icons/obj/contraband.dmi'
@@ -55,7 +55,7 @@
 	var/random_basetype
 	var/never_random = FALSE // used for the 'random' subclasses.
 
-	var/poster_item_name = "hypothetical poster"
+	var/poster_item_name = "hipotetyczny plakat"
 	var/poster_item_desc = "Ten hipotetyczny plakat nie powinien istnieć, bądźmy szczerzy."
 	var/poster_item_icon_state = "rolled_poster"
 
@@ -65,7 +65,7 @@
 		randomise(random_basetype)
 	if(!ruined)
 		original_name = name // can't use initial because of random posters
-		name = "poster - [name]"
+		name = "plakat – [name]"
 		desc = "Duży kawałek zadrukowanego papieru. Kosmo-Odporny. [desc]"
 
 /obj/structure/sign/poster/proc/randomise(base_type)
@@ -168,22 +168,22 @@
 /obj/structure/sign/poster/ripped
 	ruined = TRUE
 	icon_state = "poster_ripped"
-	name = "ripped poster"
-	desc = "You can't make out anything from the poster's original print. It's ruined."
+	name = "zerwany plakat"
+	desc = "Z pierwotnego nadruku nie da się nic odczytać. Plakat jest zniszczony."
 
 /obj/structure/sign/poster/random
-	name = "random poster" // could even be ripped
+	name = "losowy plakat" // could even be ripped
 	icon_state = "random_anything"
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster
 
 /obj/structure/sign/poster/contraband
-	poster_item_name = "contraband poster"
+	poster_item_name = "plakat kontrabandy"
 	poster_item_desc = "Ten plakat ma własny automatyczny mechanizm klejący, by łatwo przypiąć go do dowolnej pionowej powierzchni. Jego wulgarna tematyka sprawiła, że na obiektach kosmicznych Nanotrasen uznano go za kontrabandę."
 	poster_item_icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/contraband/random
-	name = "random contraband poster"
+	name = "losowy plakat kontrabandy"
 	icon_state = "random_contraband"
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster/contraband
@@ -284,13 +284,13 @@
 	icon_state = "poster19"
 */
 /obj/structure/sign/poster/contraband/borg_fancy_1
-	name = "Borg Fancy"
-	desc = "Being fancy can be for any borg, just need a suit."
+	name = "Elegancki Borg"
+	desc = "Każdy borg może być elegancki, wystarczy garnitur."
 	icon_state = "poster20"
 
 /obj/structure/sign/poster/contraband/borg_fancy_2
-	name = "Borg Fancy v2"
-	desc = "Borg Fancy, Now only taking the most fancy."
+	name = "Elegancki Borg v2"
+	desc = "Elegancki Borg – teraz tylko dla najelegantszych."
 	icon_state = "poster21"
 /*
 /obj/structure/sign/poster/contraband/kss13
@@ -422,12 +422,12 @@
 	icon_state = "poster47"
 */
 /obj/structure/sign/poster/official
-	poster_item_name = "motivational poster"
+	poster_item_name = "plakat motywacyjny"
 	poster_item_desc = "Oficjalny plakat Nanotrasen, który ma wspierać uległą i posłuszną siłę roboczą. Ma najnowocześniejszy klej na odwrocie, by łatwo przypiąć go do dowolnej pionowej powierzchni."
 	poster_item_icon_state = "rolled_legit"
 
 /obj/structure/sign/poster/official/random
-	name = "random official poster"
+	name = "losowy oficjalny plakat"
 	random_basetype = /obj/structure/sign/poster/official
 	icon_state = "random_official"
 	never_random = TRUE
@@ -483,8 +483,8 @@
 	icon_state = "poster10_legit"
 */
 /obj/structure/sign/poster/official/state_laws
-	name = "State Laws"
-	desc = "A poster instructing cyborgs to state their laws."
+	name = "Wyrecytuj prawa"
+	desc = "Plakat, który poucza cyborgi, by recytowały swoje prawa."
 	icon_state = "poster11_legit"
 /*
 /obj/structure/sign/poster/official/love_ian
@@ -608,58 +608,58 @@
 	icon_state = "poster35_legit"
 */ //aquila edit ends
 /obj/structure/sign/poster/official/moth1
-	name = "Safety Moth - Poisoning"
-	desc = "This informational poster uses Safety Moth(TM) to tell the viewer not to poison the station donuts. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Trucizny"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by przypomnieć, że nie wolno zatruwać stacyjnych pączków. Jest podpisany „AspEv”."
 	icon_state = "poster36_legit"
 
 /obj/structure/sign/poster/official/moth2
-	name = "Safety Moth - BoH"
-	desc = "This informational poster uses Safety Moth(TM) to inform the viewer of the dangers of Bags of Holding. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Torby bez dna"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by ostrzec przed niebezpieczeństwami toreb bez dna. Jest podpisany „AspEv”."
 	icon_state = "poster37_legit"
 
 /obj/structure/sign/poster/official/moth3
-	name = "Safety Moth - Hardhats"
-	desc = "This informational poster uses Safety Moth(TM) to tell the viewer to wear hardhats in cautious areas. It's like a lamp for your head! It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Kaski"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by przypomnieć o noszeniu kasków w niebezpiecznych strefach. To jak lampka na głowę! Jest podpisany „AspEv”."
 	icon_state = "poster38_legit"
 
 /obj/structure/sign/poster/official/moth4
-	name = "Safety Moth - Smokey?"
-	desc = "This informational poster uses Safety Moth(TM) to promote safe handling of plasma, or promoting crew to combat plasmafires. We can't tell. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Dymek?"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by promować bezpieczne obchodzenie się z plazmą albo zachęcać załogę do gaszenia pożarów plazmy. Trudno powiedzieć. Jest podpisany „AspEv”."
 	icon_state = "poster39_legit"
 
 /obj/structure/sign/poster/official/moth5
-	name = "Safety Moth - Piping"
-	desc = "This informational poster uses Safety Moth(TM) to tell atmospheric technicians correct types of piping to be used. Proper pipe placement prevents poor performance! It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Rury"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by pokazać technikom atmosferyki właściwe rodzaje rur. Porządnie położone rury to porządna praca! Jest podpisany „AspEv”."
 	icon_state = "poster40_legit"
 
 /obj/structure/sign/poster/official/moth6
-	name = "Safety Moth - Supermatter"
-	desc = "This informational poster uses Safety Moth(TM) to promote proper safety equipment when working near a Supermatter Crystal. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Supermateria"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by zachęcać do właściwego sprzętu ochronnego przy pracy w pobliżu kryształu supermaterii. Jest podpisany „AspEv”."
 	icon_state = "poster41_legit"
 
 /obj/structure/sign/poster/official/moth7
-	name = "Safety Moth - Methamphetamine"
-	desc = "This informational poster uses Safety Moth(TM) to tell the viewer to seek CMO approval before cooking methamphetamine. You shouldn't even be making this. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Metamfetamina"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by przypomnieć, że przed gotowaniem metamfetaminy trzeba uzyskać zgodę Ordynatora. W ogóle nie powinieneś tego robić. Jest podpisany „AspEv”."
 	icon_state = "poster42_legit"
 
 /obj/structure/sign/poster/contraband/pill1
-	name = "Safety Pill - Methamphetamine"
-	desc = "A decommisioned poster that uses Safety Pill(TM?) to promote less-than-legal chemicals. This is one of the reasons we stopped outsourcing these posters. It's signed by 'AspEv'."
+	name = "Pigułka Bezpieczeństwa – Metamfetamina"
+	desc = "Wycofany plakat, który wykorzystuje Pigułkę Bezpieczeństwa(TM?) do promowania nie do końca legalnych chemikaliów. To jeden z powodów, dla których przestaliśmy zlecać te plakaty na zewnątrz. Jest podpisany „AspEv”."
 	icon_state = "poster48"
 
 /obj/structure/sign/poster/official/moth8
-	name = "Safety Moth - Epinephrine"
-	desc = "This informational poster uses Safety Moth(TM) to inform the viewer to help injured/deceased crewmen with their epinephrine injectors. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Epinefryna"
+	desc = "Ten plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by zachęcić do pomagania rannym i zmarłym członkom załogi za pomocą autostrzykawek z epinefryną. Jest podpisany „AspEv”."
 	icon_state = "poster43_legit"
 
 /obj/structure/sign/poster/official/moth9
-	name = "Safety Moth - Delamination Safety Precautions"
-	desc = "This outdated informational poster uses Safety Moth(TM) to tell the viewer to hide in lockers when the Supermatter Crystal has delaminated. Running away might be a better strategy. It's signed by 'AspEv'."
+	name = "Ćma Bezpieczeństwa – Środki ostrożności przy delaminacji"
+	desc = "Ten nieaktualny plakat informacyjny wykorzystuje Ćmę Bezpieczeństwa(TM), by poradzić chowanie się w szafkach po delaminacji kryształu supermaterii. Ucieczka może być lepszą strategią. Jest podpisany „AspEv”."
 	icon_state = "poster44_legit"
 
 /obj/structure/sign/poster/contraband/syndiemoth
-	name = "Syndie Moth - Nuclear Operation"
-	desc = "A Syndicate-commissioned poster that uses Syndie Moth(TM?) to tell the viewer to keep the nuclear authentication disk unsecured. No, we aren't doing that. It's signed by 'AspEv'."
+	name = "Ćma Syndykatu – Operacja nuklearna"
+	desc = "Plakat zamówiony przez Syndykat, który wykorzystuje Ćmę Syndykatu(TM?), by namawiać do niepilnowania dysku nuklearnego. Nie, nie zrobimy tego. Jest podpisany „AspEv”."
 	icon_state = "poster49"
 
 #undef PLACE_SPEED

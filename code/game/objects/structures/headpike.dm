@@ -1,6 +1,6 @@
 /obj/structure/headpike
-	name = "spooky head on a spear"
-	desc = "When you really want to send a message."
+	name = "upiorna głowa na włóczni"
+	desc = "Gdy naprawdę chcesz coś przekazać."
 	icon = 'icons/obj/structures.dmi'
 	density = FALSE
 	anchored = TRUE
@@ -18,7 +18,7 @@
 
 /obj/structure/headpike/CheckParts(list/parts_list)
 	victim = locate(/obj/item/bodypart/head) in parts_list
-	name = "[victim.name] on a spear"
+	name = "włócznia z głową ([victim.name])"
 	..()
 	update_icon()
 

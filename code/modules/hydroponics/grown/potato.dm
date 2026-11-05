@@ -1,8 +1,8 @@
 // Potato
 /obj/item/food/grown/potato
 	seed = /obj/item/plant_seeds/preset/potato
-	name = "potato"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "ziemniak"
+	desc = "Ugotuj! Utłucz! Wrzuć do gulaszu!"
 	icon_state = "potato"
 	bite_consumption_mod = 100
 	foodtypes = VEGETABLES
@@ -10,8 +10,8 @@
 	distill_reagent = /datum/reagent/consumable/ethanol/vodka
 
 /obj/item/food/grown/potato/wedges
-	name = "potato wedges"
-	desc = "Slices of neatly cut potato."
+	name = "ćwiartki ziemniaka"
+	desc = "Starannie pokrojone kawałki ziemniaka."
 	icon_state = "potato_wedges"
 	bite_consumption_mod = 100
 
@@ -28,8 +28,8 @@
 
 // Sweet Potato
 /obj/item/food/grown/potato/sweet
-	name = "sweet potato"
-	desc = "It's sweet."
+	name = "batat"
+	desc = "Jest słodki."
 	icon_state = "sweetpotato"
 	distill_reagent = /datum/reagent/consumable/ethanol/sbiten
 	discovery_points = 300

@@ -1,6 +1,6 @@
 // The spooky "void" / "abyssal" / "madness" mask for heretics.
 /obj/item/clothing/mask/madness_mask
-	name = "abyssal mask"
+	name = "maska otchłani"
 	desc = "Maska stworzona z cierpienia. Gdy patrzysz w jej oczy, one patrzą na ciebie."
 	icon_state = "mad_mask"
 	item_state = "mad_mask"
@@ -69,7 +69,7 @@
 		if(DT_PROB(40, seconds_per_tick))
 			human_in_range.set_jitter_if_lower(10 SECONDS)
 
-		if(human_in_range.getStaminaLoss() <= 85 && DT_PROB(30, seconds_per_tick))
+		if(!HAS_TRAIT(human_in_range, TRAIT_EXHAUSTED) && DT_PROB(30, seconds_per_tick))
 			human_in_range.emote(pick("giggle", "laugh"))
 			human_in_range.adjustStaminaLoss(10)
 

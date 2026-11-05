@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/hive_hack
-	name = "Network Invasion"
-	desc = "We attack any foreign presences in the target mind keeping them only for ourselves. Takes longer if the target is not in our hive. Will grant us a tracking charge if successful."
+	name = "Inwazja sieci"
+	desc = "Atakujemy wszelkie obce obecności w umyśle celu, by zachować go tylko dla siebie. Trwa dłużej, jeśli cel nie należy do naszego roju. Po udanym ataku dostajemy ładunek namierzania."
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 1
@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/targeted/hive_hack/cast(list/targets, mob/living/user = usr)
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	var/mob/living/carbon/target = targets[1]
 	var/in_hive = hive.is_carbon_member(target)

@@ -8,7 +8,7 @@
  */
 
 /turf/open/floor/plating
-	name = "plating"
+	name = "poszycie"
 	icon_state = "plating"
 	intact = FALSE
 	baseturfs = /turf/open/openspace //nsv13 - Multiz explosions
@@ -133,8 +133,8 @@
 // AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/open/floor/plating/foam
-	name = "metal foam plating"
-	desc = "Thin, fragile flooring created with metal foam."
+	name = "poszycie z metalowej piany"
+	desc = "Cienka, krucha podłoga z metalowej piany."
 	icon_state = "foam_plating"
 
 /turf/open/floor/plating/foam/burn_tile()

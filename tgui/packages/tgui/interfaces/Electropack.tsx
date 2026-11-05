@@ -46,7 +46,7 @@ export const Electropack = (props) => {
                     })
                   }
                 >
-                  Reset
+                  Resetuj
                 </Button>
               }
             >
@@ -79,7 +79,7 @@ export const Electropack = (props) => {
                     })
                   }
                 >
-                  Reset
+                  Resetuj
                 </Button>
               }
             >

@@ -27,3 +27,20 @@
 	inc_metabalance(FLOOR(banking_details.account_balance * coeff, 1), reason="Saldo konta bankowego przeliczono na [CONFIG_GET(string/metacurrency_name)].")
 	if(banking_details.welfare)
 		inc_metabalance(2 * PAYCHECK_WELFARE, reason="Premia socjalna za przeliczenie salda konta bankowego.")
+
+/// Aquilosy za każdy wykonany cel antagonisty, niezależnie od greentextu
+#define METACOIN_ANTAG_OBJECTIVE_REWARD 500
+
+/client/process_endround_metacoin()
+	. = ..()
+	var/completed = 0
+	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
+		if(antag.owner?.key != key || antag.type == /datum/antagonist/custom)
+			continue
+		for(var/datum/objective/objective as anything in antag.objectives)
+			if(objective.check_completion())
+				completed++
+	if(completed)
+		inc_metabalance(completed * METACOIN_ANTAG_OBJECTIVE_REWARD, reason="Wykonane cele antagonisty: [completed].")
+
+#undef METACOIN_ANTAG_OBJECTIVE_REWARD

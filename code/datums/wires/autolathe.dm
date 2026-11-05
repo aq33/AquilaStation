@@ -45,7 +45,7 @@
 	switch(wire)
 		if(WIRE_HACK)
 			A.adjust_hacked(!mend)
-		if(WIRE_HACK)
+		if(WIRE_SHOCK) // AQ EDIT - drugie WIRE_HACK blokowało przewód porażenia
 			A.shocked = !mend
 		if(WIRE_DISABLE)
 			A.disabled = !mend

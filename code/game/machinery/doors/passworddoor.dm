@@ -1,6 +1,6 @@
 /obj/machinery/door/password
-	name = "door"
-	desc = "This door only opens when provided a password."
+	name = "drzwi"
+	desc = "Te drzwi otwierają się tylko po podaniu hasła."
 	icon = 'icons/obj/doors/blastdoor.dmi'
 	icon_state = "closed"
 	explosion_block = 3
@@ -61,7 +61,7 @@
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 
 /obj/machinery/door/password/proc/ask_for_pass(mob/user)
-	var/guess = stripped_input(user,"Podaj hasło:", "Password", "")
+	var/guess = stripped_input(user,"Podaj hasło:", "Hasło", "")
 	if(guess == password)
 		return TRUE
 	return FALSE

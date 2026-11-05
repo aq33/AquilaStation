@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/energy
-	name = "burst phaser MK2"
-	desc = "A coaxial laser system, capable of firing controlled laser bursts at a target."
+	name = "seryjny fazer MK2"
+	desc = "Współosiowy system laserowy, który strzela w cel kontrolowanymi seriami laserowymi."
 	icon ='nsv13/icons/obj/energy_weapons.dmi'
 	icon_state = "phase_cannon"
 	ammo_type = /obj/item/ship_weapon/ammunition/railgun_ammo
@@ -26,8 +26,8 @@
 	return //Energy weapons have no ammo. You should never be calling this for them.
 
 /obj/machinery/ship_weapon/energy/beam
-	name = "phase cannon"
-	desc = "An extremely powerful directed energy weapon which is capable of delivering a devastating beam attack."
+	name = "działo fazowe"
+	desc = "Niezwykle potężna broń energii skierowanej, która razi niszczycielską wiązką."
 	icon_state = "ion_cannon"
 	weapon_datum_type = /datum/overmap_ship_weapon/phaser
 	circuit = /obj/item/circuitboard/machine/phase_cannon

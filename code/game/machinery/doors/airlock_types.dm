@@ -22,23 +22,23 @@
 	assemblytype = /obj/structure/door_assembly/door_assembly_med
 
 /obj/machinery/door/airlock/maintenance
-	name = "maintenance access"
+	name = "wejście do tuneli technicznych"
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
 
 /obj/machinery/door/airlock/maintenance/external
-	name = "external airlock access"
+	name = "zewnętrzne wejście do śluzy"
 	icon = 'icons/obj/doors/airlocks/station/maintenanceexternal.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_extmai
 
 /obj/machinery/door/airlock/mining
-	name = "mining airlock"
+	name = "śluza górnicza"
 	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_min
 
 /obj/machinery/door/airlock/atmos
-	name = "atmospherics airlock"
+	name = "śluza atmosferyki"
 	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_atmo
 
@@ -47,7 +47,7 @@
 	assemblytype = /obj/structure/door_assembly/door_assembly_research
 
 /obj/machinery/door/airlock/freezer
-	name = "freezer airlock"
+	name = "śluza chłodni"
 	icon = 'icons/obj/doors/airlocks/station/freezer.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_fre
 
@@ -75,11 +75,11 @@
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior
-	name = "Turbine Interior Airlock"
+	name = "wewnętrzna śluza turbiny"
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_exterior
-	name = "Turbine Exterior Airlock"
+	name = "zewnętrzna śluza turbiny"
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_EXTERIOR
 
 /obj/machinery/door/airlock/command/glass
@@ -115,11 +115,11 @@
 	req_access = list(ACCESS_TOX)
 
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_interior
-	name = "Mixing Room Interior Airlock"
+	name = "wewnętrzna śluza mieszalni"
 	id_tag = INCINERATOR_TOXMIX_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_exterior
-	name = "Mixing Room Exterior Airlock"
+	name = "zewnętrzna śluza mieszalni"
 	id_tag = INCINERATOR_TOXMIX_AIRLOCK_EXTERIOR
 
 /obj/machinery/door/airlock/mining/glass
@@ -156,7 +156,7 @@
 */
 
 /obj/machinery/door/airlock/copper
-	name = "copper airlock"
+	name = "miedziana śluza"
 	icon = 'icons/obj/doors/airlocks/station/copper.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_copper
 
@@ -165,7 +165,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/gold
-	name = "gold airlock"
+	name = "złota śluza"
 	icon = 'icons/obj/doors/airlocks/station/gold.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_gold
 
@@ -174,7 +174,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/silver
-	name = "silver airlock"
+	name = "srebrna śluza"
 	icon = 'icons/obj/doors/airlocks/station/silver.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_silver
 
@@ -183,7 +183,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/diamond
-	name = "diamond airlock"
+	name = "diamentowa śluza"
 	icon = 'icons/obj/doors/airlocks/station/diamond.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_diamond
 	normal_integrity = 1000
@@ -195,7 +195,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/uranium
-	name = "uranium airlock"
+	name = "uranowa śluza"
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_uranium
 	var/last_event = 0
@@ -216,8 +216,8 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/plasma
-	name = "plasma airlock"
-	desc = "No way this can end badly."
+	name = "plazmowa śluza"
+	desc = "Nie ma opcji, żeby to się źle skończyło."
 	icon = 'icons/obj/doors/airlocks/station/plasma.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_plasma
 
@@ -246,7 +246,7 @@
 
 /obj/machinery/door/airlock/plasma/attackby(obj/item/C, mob/user, params)
 	if(C.is_hot() > 300)//If the temperature of the object is over 300, then ignite
-		message_admins("Plasma airlock ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+		message_admins("Plazmowa śluza podpalona przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(src)]")
 		log_game("Plasma airlock ignited by [key_name(user)] in [AREACOORD(src)]")
 		ignite(C.is_hot())
 	else
@@ -257,7 +257,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/bananium
-	name = "bananium airlock"
+	name = "śluza z bananium"
 	desc = "Honkhonkhonk"
 	icon = 'icons/obj/doors/airlocks/station/bananium.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_bananium
@@ -268,7 +268,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/sandstone
-	name = "sandstone airlock"
+	name = "śluza z piaskowca"
 	icon = 'icons/obj/doors/airlocks/station/sandstone.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_sandstone
 
@@ -277,7 +277,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/wood
-	name = "wooden airlock"
+	name = "drewniana śluza"
 	icon = 'icons/obj/doors/airlocks/station/wood.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_wood
 
@@ -286,7 +286,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/titanium
-	name = "shuttle airlock"
+	name = "śluza promu"
 	assemblytype = /obj/structure/door_assembly/door_assembly_titanium
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
@@ -299,7 +299,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/bronze
-	name = "bronze airlock"
+	name = "brązowa śluza"
 	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_bronze
@@ -333,11 +333,11 @@
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior
-	name = "Turbine Interior Airlock"
+	name = "wewnętrzna śluza turbiny"
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior
-	name = "Turbine Exterior Airlock"
+	name = "zewnętrzna śluza turbiny"
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_EXTERIOR
 
 //////////////////////////////////
@@ -346,7 +346,7 @@
 */
 
 /obj/machinery/door/airlock/external
-	name = "external airlock"
+	name = "zewnętrzna śluza"
 	icon = 'icons/obj/doors/airlocks/external/external.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
@@ -356,7 +356,7 @@
 	panel_attachment = "bottom"
 
 /obj/machinery/door/airlock/arrivals_external
-	name = "arrivals airlock"
+	name = "śluza przylotów"
 	icon = 'icons/obj/doors/airlocks/external/arrivals_external.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
@@ -393,7 +393,7 @@
 */
 
 /obj/machinery/door/airlock/vault
-	name = "vault door"
+	name = "drzwi skarbca"
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
 	anim_parts = "rightpins=15,0;leftpins=-17,0;rightu=13,0;left=-15,0;right=13,0"
@@ -408,7 +408,7 @@
 */
 
 /obj/machinery/door/airlock/hatch
-	name = "airtight hatch"
+	name = "hermetyczny właz"
 	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
@@ -420,7 +420,7 @@
 	allow_repaint = FALSE
 
 /obj/machinery/door/airlock/maintenance_hatch
-	name = "maintenance hatch"
+	name = "właz techniczny"
 	icon = 'icons/obj/doors/airlocks/hatch/maintenance.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
@@ -437,7 +437,7 @@
 */
 
 /obj/machinery/door/airlock/highsecurity
-	name = "high tech security airlock"
+	name = "zaawansowana śluza ochrony"
 	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
 	anim_parts = "rightu=14,0;left=-14,0;right=14,0"
@@ -453,7 +453,7 @@
 */
 
 /obj/machinery/door/airlock/shuttle
-	name = "shuttle airlock"
+	name = "śluza promu"
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_shuttle
@@ -464,8 +464,8 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/abductor
-	name = "alien airlock"
-	desc = "With humanity's current technological level, it could take years to hack this advanced airlock... or maybe we should give a screwdriver a try?"
+	name = "obca śluza"
+	desc = "Przy obecnym poziomie ludzkiej technologii zhakowanie tej zaawansowanej śluzy mogłoby zająć lata... a może spróbować śrubokrętem?"
 	icon = 'icons/obj/doors/airlocks/abductor/abductor_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_abductor
@@ -485,7 +485,7 @@
 */
 
 /obj/machinery/door/airlock/cult
-	name = "cult airlock"
+	name = "śluza kultu"
 	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/cult/runed/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult
@@ -536,8 +536,8 @@
 /obj/machinery/door/airlock/cult/proc/conceal()
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	name = "airlock"
-	desc = "It opens and closes."
+	name = "śluza"
+	desc = "Otwiera się i zamyka."
 	stealthy = TRUE
 	update_icon()
 
@@ -582,8 +582,8 @@
 	friendly = TRUE
 
 /obj/machinery/door/airlock/cult/weak
-	name = "brittle cult airlock"
-	desc = "An airlock hastily corrupted by blood magic, it is unusually brittle in this state."
+	name = "krucha śluza kultu"
+	desc = "Śluza pospiesznie skażona magią krwi. W tym stanie jest niezwykle krucha."
 	normal_integrity = 150
 	damage_deflection = 5
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
@@ -594,7 +594,7 @@
 */
 
 /obj/machinery/door/airlock/glass_large
-	name = "large glass airlock"
+	name = "duża przeszklona śluza"
 	icon = 'icons/obj/doors/airlocks/glass_large/glass_large.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/glass_large/overlays.dmi'
 	mask_file = 'icons/obj/doors/airlocks/mask_64x32_airlocks.dmi'

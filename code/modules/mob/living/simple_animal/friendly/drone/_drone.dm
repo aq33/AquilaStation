@@ -3,8 +3,8 @@
 #define DRONE_HEAD_LAYER 2
 #define DRONE_TOTAL_LAYERS 2
 
-#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected.</span>"
-#define DRONE_NET_DISCONNECT "<span class='danger'>DRONE NETWORK: [name] is not responding.</span>"
+#define DRONE_NET_CONNECT "<span class='notice'>SIEĆ DRONÓW: [name] łączy się z siecią.</span>"
+#define DRONE_NET_DISCONNECT "<span class='danger'>SIEĆ DRONÓW: [name] nie odpowiada.</span>"
 
 #define MAINTDRONE	"drone_maint"
 #define REPAIRDRONE	"drone_repair"

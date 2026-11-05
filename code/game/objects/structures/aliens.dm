@@ -36,8 +36,8 @@
  */
 
 /obj/structure/alien/gelpod
-	name = "gelatinous mound"
-	desc = "A mound of jelly-like substance encasing something inside."
+	name = "galaretowaty kopiec"
+	desc = "Kopiec galaretowatej substancji, w której coś jest zamknięte."
 	icon = 'icons/obj/fluff.dmi'
 	icon_state = "gelmound"
 
@@ -50,8 +50,8 @@
  * Resin
  */
 /obj/structure/alien/resin
-	name = "resin"
-	desc = "Looks like some kind of thick resin."
+	name = "żywica"
+	desc = "Wygląda na jakąś gęstą żywicę."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "smooth"
 	density = TRUE
@@ -74,8 +74,8 @@
 	move_update_air(T)
 
 /obj/structure/alien/resin/wall
-	name = "resin wall"
-	desc = "Thick resin solidified into a wall."
+	name = "ściana z żywicy"
+	desc = "Gęsta żywica zastygła w ścianę."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "smooth"	//same as resin, but consistency ho!
 	resintype = "wall"
@@ -85,8 +85,8 @@
 	return 1
 
 /obj/structure/alien/resin/membrane
-	name = "resin membrane"
-	desc = "Resin just thin enough to let light pass through."
+	name = "błona z żywicy"
+	desc = "Żywica na tyle cienka, że przepuszcza światło."
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
 	icon_state = "smooth"
 	opacity = 0
@@ -105,8 +105,8 @@
 
 /obj/structure/alien/weeds
 	gender = PLURAL
-	name = "resin floor"
-	desc = "A thick resin surface covers the floor."
+	name = "podłoga z żywicy"
+	desc = "Podłogę pokrywa gruba warstwa żywicy."
 	anchored = TRUE
 	density = FALSE
 	layer = TURF_LAYER
@@ -164,8 +164,8 @@
 
 //Weed nodes
 /obj/structure/alien/weeds/node
-	name = "glowing resin"
-	desc = "Blue bioluminescence shines from beneath the surface."
+	name = "świecąca żywica"
+	desc = "Spod powierzchni bije niebieska bioluminescencja."
 	icon_state = "weednode"
 	light_color = LIGHT_COLOR_BLUE
 	light_power = 0.5
@@ -207,8 +207,8 @@
 #define MAX_GROWTH_TIME 1500
 
 /obj/structure/alien/egg
-	name = "egg"
-	desc = "A large mottled egg."
+	name = "jajo"
+	desc = "Duże, cętkowane jajo."
 	var/base_icon = "egg"
 	icon_state = "egg_growing"
 	density = FALSE

@@ -1,9 +1,9 @@
 //Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
 //      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
-	name = "space helmet"
+	name = "hełm kosmiczny"
 	icon_state = "spaceold"
-	desc = "A special helmet with solar UV shielding to protect your eyes from harmful rays."
+	desc = "Specjalny hełm z osłoną przed promieniowaniem UV, która chroni oczy przed szkodliwymi promieniami."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SHOWEROKAY | SNUG_FIT //NSV13 - kept SHOWEROKAY
 	item_state = "spaceold"
 	permeability_coefficient = 0.01
@@ -23,8 +23,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/space
-	name = "space suit"
-	desc = "A suit that protects against low pressure environments. Has a big 13 on the back."
+	name = "skafander kosmiczny"
+	desc = "Skafander chroniący w środowisku o niskim ciśnieniu. Na plecach ma dużą trzynastkę."
 	icon_state = "spaceold"
 	item_state = "s_suit"
 	w_class = WEIGHT_CLASS_BULKY

@@ -17,6 +17,10 @@
 #define DISEASE_SPREAD_BLOOD			(1<<2)
 #define DISEASE_SPREAD_CONTACT_FLUIDS	(1<<3)
 #define DISEASE_SPREAD_CONTACT_SKIN 	(1<<4)
+// AQ EDIT START - transmission an advance disease needs to spread through body fluids / by touch (SetSpread())
+#define DISEASE_CONTACT_FLUIDS_TRANSMISSION 3
+#define DISEASE_CONTACT_SKIN_TRANSMISSION 6
+// AQ EDIT END
 #define DISEASE_SPREAD_AIRBORNE			(1<<5)
 #define DISEASE_SPREAD_FALTERED			(1<<6)
 

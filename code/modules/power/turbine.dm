@@ -23,8 +23,8 @@
 
 
 /obj/machinery/power/compressor
-	name = "compressor"
-	desc = "The compressor stage of a gas turbine generator."
+	name = "sprężarka"
+	desc = "Stopień sprężania generatora z turbiną gazową."
 	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
 	icon_state = "compressor"
 	density = TRUE
@@ -48,8 +48,8 @@
 	return ..()
 
 /obj/machinery/power/turbine
-	name = "gas turbine generator"
-	desc = "A gas turbine used for backup power generation."
+	name = "generator z turbiną gazową"
+	desc = "Turbina gazowa do wytwarzania zasilania rezerwowego."
 	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
 	icon_state = "turbine"
 	density = TRUE
@@ -297,8 +297,8 @@
 // COMPUTER NEEDS A SERIOUS REWRITE.
 
 /obj/machinery/computer/turbine_computer
-	name = "gas turbine control computer"
-	desc = "A computer to remotely control a gas turbine."
+	name = "komputer sterowania turbiną gazową"
+	desc = "Komputer do zdalnego sterowania turbiną gazową."
 	icon_screen = "turbinecomp"
 	icon_keyboard = "tech_key"
 	circuit = /obj/item/circuitboard/computer/turbine_computer

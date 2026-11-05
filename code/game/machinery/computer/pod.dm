@@ -1,6 +1,6 @@
 /obj/machinery/computer/pod
-	name = "mass driver launch control"
-	desc = "A combined blastdoor and mass driver control unit."
+	name = "sterowanie startem wyrzutni masowej"
+	desc = "Połączona jednostka sterowania grodzią przeciwwybuchową i wyrzutnią masową."
 	var/obj/machinery/mass_driver/connected = null
 	var/title = "Sterowanie katapultą masową"
 	var/id = 1
@@ -118,7 +118,7 @@
 			return TRUE
 
 /obj/machinery/computer/pod/old
-	name = "\improper DoorMex control console"
+	name = "\improper konsola sterowania DoorMex"
 	title = "Sterowanie drzwiami"
 	icon_state = "oldcomp"
 	icon_screen = "library"
@@ -126,10 +126,10 @@
 
 /obj/machinery/computer/pod/old/syndicate
 	name = "\improper ProComp Executive IIc"
-	desc = "The Syndicate operate on a tight budget. Operates external airlocks."
+	desc = "Syndykat działa przy napiętym budżecie. Steruje zewnętrznymi śluzami."
 	title = "Sterowanie zewnętrzną śluzą"
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/pod/old/swf
 	name = "\improper Magix System IV"
-	desc = "An arcane artifact that holds much magic. Running E-Knock 2.2: Sorcerer's Edition."
+	desc = "Tajemny artefakt pełen magii. Działa na nim E-Knock 2.2: Edycja Czarnoksiężnika."

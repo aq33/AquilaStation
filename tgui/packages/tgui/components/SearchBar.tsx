@@ -31,7 +31,7 @@ export const SearchBar = (props: Props) => {
     autoFocus,
     noIcon = false,
     onSearch,
-    placeholder = 'Search...',
+    placeholder = 'Szukaj...',
     query = '',
     style,
   } = props;

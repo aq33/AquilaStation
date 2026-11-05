@@ -19,23 +19,23 @@
 	switch(fry_time)
 		if(0 to 15)
 			this_food.add_atom_colour(fried_colors[1], FIXED_COLOUR_PRIORITY)
-			this_food.name = "lightly-fried [this_food.name]"
+			this_food.name = "[this_food.name] po lekkim usmażeniu"
 			this_food.desc += " Zostało lekko usmażone we frytownicy."
 
 		if(15 to 50)
 			this_food.add_atom_colour(fried_colors[2], FIXED_COLOUR_PRIORITY)
-			this_food.name = "fried [this_food.name]"
+			this_food.name = "[this_food.name] po usmażeniu"
 			this_food.desc += " Zostało usmażone, co zwiększa jego smakowitość o [rand(1, 75)]%."
 
 		if(50 to 85)
 			this_food.add_atom_colour(fried_colors[3], FIXED_COLOUR_PRIORITY)
-			this_food.name = "deep-fried [this_food.name]"
+			this_food.name = "[this_food.name] z głębokiego tłuszczu"
 			this_food.desc += " Usmażone w głębokim tłuszczu do perfekcji."
 
 		if(85 to INFINITY)
 			this_food.add_atom_colour(fried_colors[4], FIXED_COLOUR_PRIORITY)
-			this_food.name = "\proper the physical manifestation of the very concept of fried foods"
-			this_food.desc = "A heavily-fried... something. Who can tell anymore?"
+			this_food.name = "\proper fizyczne ucieleśnienie samej idei smażonego jedzenia"
+			this_food.desc = "Mocno usmażone... coś. Kto to jeszcze rozpozna?"
 
 	ADD_TRAIT(this_food, TRAIT_FOOD_FRIED, ELEMENT_TRAIT(type))
 	SEND_SIGNAL(this_food, COMSIG_ITEM_FRIED, fry_time)

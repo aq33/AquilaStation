@@ -2,7 +2,7 @@
 
 /// Klątwa: kosmiczna skóra, pacyfizm, zakaz wejścia w kosmos, wymioty mgławicą
 /datum/brain_trauma/voided
-	name = "Voided"
+	name = "Naznaczenie pustką"
 	desc = "Pacjent poznał sekrety kosmosu w zamian za klątwę, która go spętała."
 	scan_desc = "kosmiczny wzorzec neuronalny"
 	gain_text = ""
@@ -51,7 +51,8 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human = owner
-		human.physiology.brute_mod /= brute_mod
+		if(human.physiology) // przy usuwaniu człowieka physiology znika przed traumami
+			human.physiology.brute_mod /= brute_mod
 	texture_limbs(null)
 	return ..()
 
@@ -169,7 +170,7 @@
 ///
 
 /obj/effect/decal/cleanable/vomit/nebula
-	name = "nebula vomit"
+	name = "mgławicowe wymiociny"
 	desc = "O rety, jakie... piękne."
 	icon = 'aquila/icons/effects/voidwalker_vomit.dmi'
 	icon_state = "vomitnebula_1"

@@ -5,8 +5,8 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 //====Cogscarab====
 
 /mob/living/simple_animal/drone/cogscarab
-	name = "Cogscarab"
-	desc = "A mechanical device, filled with twisting cogs and mechanical parts, built to maintain Reebe."
+	name = "zębatkoskarabeusz"
+	desc = "Mechaniczne urządzenie pełne obracających się zębatek i części, zbudowane do utrzymywania Reebe."
 	icon_state = "drone_clock"
 	icon_living = "drone_clock"
 	icon_dead = "drone_clock_dead"
@@ -52,8 +52,8 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 //====Shell====
 
 /obj/effect/mob_spawn/drone/cogscarab
-	name = "cogscarab construct"
-	desc = "The shell of an ancient construction drone, loyal to Ratvar."
+	name = "konstrukt zębatkoskarabeusza"
+	desc = "Skorupa pradawnego drona budowlanego, wiernego Ratvarowi."
 	icon_state = "drone_clock_hat"
 	mob_name = "cogscarab"
 	mob_type = /mob/living/simple_animal/drone/cogscarab
@@ -68,8 +68,8 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	if(!SSticker.mode)
 		to_chat(user, "Nie możesz zostać zębatkoskarabeuszem przed rozpoczęciem gry.")
 		return
-	var/be_drone = alert("Zostać zębatkoskarabeuszem? (Uwaga: nie będzie można cię już sklonować!)",,"Yes","No")
-	if(be_drone != "Yes" || QDELETED(src) || !isobserver(user))
+	var/be_drone = alert("Zostać zębatkoskarabeuszem? (Uwaga: nie będzie można cię już sklonować!)",,"Tak","Nie")
+	if(be_drone != "Tak" || QDELETED(src) || !isobserver(user))
 		return
 	var/mob/living/simple_animal/drone/D = new mob_type(get_turf(loc))
 	if(!D.default_hatmask && seasonal_hats && possible_seasonal_hats.len)
@@ -79,6 +79,6 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	D.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 	D.key = user.key
 	add_servant_of_ratvar(D, silent=TRUE)
-	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] przejmuje kontrolę nad [src] w [AREACOORD(src)].")
 	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")
 	qdel(src)

@@ -2,7 +2,7 @@
 
 /obj/item/projectile/bullet/honker
 	bleed_force = 0
-	name = "banana"
+	name = "banan"
 	damage = 0
 	paralyze = 60
 	movement_type = FLYING

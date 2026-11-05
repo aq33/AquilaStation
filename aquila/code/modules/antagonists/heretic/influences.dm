@@ -24,7 +24,7 @@
 /datum/reality_smash_tracker/Destroy(force)
 	if(GLOB.reality_smash_track == src)
 		stack_trace("[type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
-		message_admins("The [type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
+		message_admins("Usunięto [type]. Heretycy mogą już nie mieć dostępu do wpływów. Napraw to albo wezwij koderów.")
 	QDEL_LIST(smashes)
 	tracked_heretics.Cut()
 	return ..()
@@ -77,7 +77,7 @@
 	tracked_heretics -= heretic
 
 /obj/effect/visible_heretic_influence
-	name = "pierced reality"
+	name = "przebita rzeczywistość"
 	icon = 'aquila/icons/effects/eldritch.dmi'
 	icon_state = "pierced_illusion"
 	anchored = TRUE
@@ -163,7 +163,7 @@
 	user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/heretic_influence
-	name = "reality smash"
+	name = "pęknięcie rzeczywistości"
 	icon = 'aquila/icons/effects/eldritch.dmi'
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND|INTERACT_ATOM_NO_FINGERPRINT_INTERACT

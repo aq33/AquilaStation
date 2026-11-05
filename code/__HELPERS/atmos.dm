@@ -282,7 +282,7 @@ B --><-- A
 	else if(random)
 		chosen = pick(matches) || null
 	else
-		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in sort_list(matches)
+		chosen = input("Wybierz typ", "Wybór typu", matches[1]) as null|anything in sort_list(matches)
 	if(!chosen)
 		return
 	chosen = matches[chosen]

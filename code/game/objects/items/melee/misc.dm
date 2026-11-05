@@ -10,8 +10,8 @@
 
 
 /obj/item/melee/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses."
+	name = "łańcuch dowodzenia"
+	desc = "Narzędzie, którym wielcy ludzie uspokajają wzburzone masy."
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -30,8 +30,8 @@
 	return (OXYLOSS)
 
 /obj/item/melee/synthetic_arm_blade
-	name = "synthetic arm blade"
-	desc = "A grotesque blade that on closer inspection seems made of synthetic flesh, it still feels like it would hurt very badly as a weapon."
+	name = "syntetyczne ostrze ręczne"
+	desc = "Groteskowe ostrze, które z bliska wygląda na zrobione z syntetycznego ciała. Nadal wydaje się, że jako broń bolałoby bardzo mocno."
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
@@ -51,8 +51,8 @@
 	AddComponent(/datum/component/butchering, 60, 80) //very imprecise
 
 /obj/item/melee/sabre
-	name = "officer's sabre"
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	name = "szabla oficerska"
+	desc = "Elegancka broń. Jej monomolekularne ostrze z łatwością przecina ciało i kości."
 	icon_state = "sabre"
 	item_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -78,7 +78,7 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
 
-/obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight
 	return ..()
@@ -137,8 +137,8 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
 /obj/item/melee/sabre/mime
-	name = "Bread Blade"
-	desc = "An elegant weapon, it has an inscription on it that says:  \"La Gluten Gutter\"."
+	name = "chlebowe ostrze"
+	desc = "Elegancka broń z wygrawerowanym napisem: „La Gluten Gutter”."
 	force = 18
 	icon_state = "rapier"
 	item_state = "rapier"
@@ -158,8 +158,8 @@
 		playsound(M, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/classic_baton
-	name = "classic baton"
-	desc = "A wooden truncheon for beating criminal scum."
+	name = "klasyczna pałka"
+	desc = "Drewniana pałka do okładania przestępczych szumowin."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
@@ -175,7 +175,7 @@
 	var/knockdown_time_carbon = 0 //NSV13 - added knockdown times
 	var/stun_time_carbon = 0 //NSV13 - readded stun time variable
 	var/stun_time_silicon_multiplier = 0.6 //NSV13 - Multiplier for stunning silicons; if enabled, is 60% of human stun time.
-	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/charged_stamina_damage = 55 // Do we deal stamina damage.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
@@ -197,8 +197,8 @@
 /obj/item/melee/classic_baton/proc/get_on_description()
 	. = list()
 
-	.["local_on"] = "<span class ='warning'>You extend the baton.</span>"
-	.["local_off"] = "<span class ='notice'>You collapse the baton.</span>"
+	.["local_on"] = "<span class ='warning'>Rozkładasz pałkę.</span>"
+	.["local_off"] = "<span class ='notice'>Składasz pałkę.</span>"
 
 	return .
 
@@ -227,8 +227,8 @@
 /obj/item/melee/classic_baton/proc/get_silicon_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = "<span class='danger'>[user] pulses [target]'s sensors with the baton!</span>"
-	.["local"] = "<span class='danger'>You pulse [target]'s sensors with the baton!</span>"
+	.["visible"] = "<span class='danger'>[user] razi pałką czujniki [target]!</span>"
+	.["local"] = "<span class='danger'>Razisz pałką czujniki [target]!</span>"
 
 	return .
 
@@ -242,22 +242,21 @@
 
 //Police Baton
 /obj/item/melee/classic_baton/police
-	name = "police baton"
+	name = "pałka policyjna"
 	// NSV13 - added stun and knockdown, removed stamina, added silicon effects
 	stun_time_carbon = (3 SECONDS)
 	knockdown_time_carbon = (6 SECONDS)
-	stamina_damage = 0
+	charged_stamina_damage = 70 // AQ EDIT - port Bee#14750: Disorient zamiast stref (paraliż knockdown_time_carbon przy wyczerpaniu)
 	affect_silicon = TRUE
 
 /obj/item/melee/classic_baton/police/attack(mob/living/target, mob/living/user)
 	if(!on)
 		return ..()
-	var/def_check = target.getarmor(type = "melee")
 
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>Uderzasz się w głowę.</span>")
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 		//NSV13 - added stamina and knockdown
 		user.Paralyze(stun_time_carbon * force)
 		user.Knockdown(knockdown_time_carbon * force)
@@ -301,7 +300,7 @@
 		if(cooldown_check <= world.time)
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+				if (H.check_shields(src, 0, "[name] ([user])", MELEE_ATTACK))
 					return
 				if(check_martial_counter(H, user))
 					return
@@ -313,23 +312,11 @@
 				target.do_stun_animation() // AQ EDIT - animacja ogłuszenia (port Bee)
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 			additional_effects_carbon(target, user)
-			if((user.zone_selected == BODY_ZONE_HEAD) || (user.zone_selected == BODY_ZONE_CHEST))
-				target.Paralyze(stun_time_carbon) //NSV13 - readded stuns
-				target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
-				log_combat(user, target, "stunned", src)
-				target.visible_message(desc["visiblestun"], desc["localstun"])
-			if((user.zone_selected == BODY_ZONE_R_LEG) || (user.zone_selected == BODY_ZONE_L_LEG))
-				target.Knockdown(30)
-				log_combat(user, target, "tripped", src)
-				target.visible_message(desc["visibletrip"], desc["localtrip"])
-			if(user.zone_selected == BODY_ZONE_L_ARM)
-				target.apply_damage(50, STAMINA, BODY_ZONE_L_ARM, def_check)
-				log_combat(user, target, "disarmed", src)
-				target.visible_message(desc["visibledisarm"], desc["localdisarm"])
-			if(user.zone_selected == BODY_ZONE_R_ARM)
-				target.apply_damage(50, STAMINA, BODY_ZONE_R_ARM, def_check)
-				log_combat(user, target, "disarmed", src)
-				target.visible_message(desc["visibledisarm"], desc["localdisarm"])
+			// AQ EDIT START - port Bee#14750: jedna dezorientacja zamiast stref (stamina jest pulą, nie kończynami)
+			target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = knockdown_time_carbon, stack_status = FALSE, protection = target.run_armor_check(user.zone_selected, "stamina", silent = TRUE))
+			log_combat(user, target, "stunned", src)
+			target.visible_message(desc["visiblestun"], desc["localstun"])
+			// AQ EDIT END
 
 			add_fingerprint(user)
 
@@ -344,15 +331,16 @@
 				to_chat(user, wait_desc)
 
 /obj/item/melee/classic_baton/police/deputy
-	name = "deputy baton"
+	name = "pałka zastępcy"
 	force = 12
 	cooldown = 10
-	stamina_damage = 20
+	charged_stamina_damage = 55 // AQ EDIT - port Bee#14750
+	knockdown_time_carbon = (5 SECONDS) // AQ EDIT - port Bee#14750
 
 //Telescopic Baton
 /obj/item/melee/classic_baton/police/telescopic
-	name = "telescopic baton"
-	desc = "A compact and harmless personal defense weapon. Sturdy enough to knock the feet out from under attackers and robust enough to disarm with a quick strike to the hand"
+	name = "pałka teleskopowa"
+	desc = "Kompaktowa i nieszkodliwa broń do samoobrony. Dość solidna, by podciąć napastnikowi nogi, i dość mocna, by rozbroić go szybkim uderzeniem w rękę"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -363,6 +351,8 @@
 	item_flags = NONE
 	force = 0
 	on = FALSE
+	charged_stamina_damage = 50 // AQ EDIT - port Bee#14750
+	knockdown_time_carbon = (3 SECONDS) // AQ EDIT - port Bee#14750
 	on_sound = 'sound/weapons/batonextend.ogg'
 
 	on_icon_state = "telebaton_1"
@@ -372,7 +362,7 @@
 	force_off = 0
 	weight_class_on = WEIGHT_CLASS_BULKY
 
-/obj/item/melee/classic_baton/telescopic/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/classic_baton/telescopic/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(on)
 		return ..()
 	return 0
@@ -420,8 +410,8 @@
 
 //Contractor Baton
 /obj/item/melee/classic_baton/contractor_baton
-	name = "contractor baton"
-	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electric shocks that can resonate with a specific targets brain frequency causing significant stunning effects."
+	name = "pałka kontraktora"
+	desc = "Kompaktowa, specjalistyczna pałka przydzielana kontraktorom Syndykatu. Razi lekkimi wstrząsami elektrycznymi, które mogą rezonować z częstotliwością mózgu konkretnego celu, mocno go ogłuszając."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "contractor_baton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -438,7 +428,7 @@
 	var/stamina_damage_target = 85
 	var/target_confusion = 4 SECONDS
 
-	stamina_damage = 85
+	charged_stamina_damage = 130 // AQ EDIT - port Bee#14750
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
@@ -497,7 +487,7 @@
 		to_chat(user, "<span class ='danger'>Uderzasz się w głowę.</span>")
 
 		user.Paralyze(knockdown_time_carbon * force)
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
@@ -538,7 +528,7 @@
 		if(cooldown_check <= world.time)
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+				if (H.check_shields(src, 0, "[name] ([user])", MELEE_ATTACK))
 					return
 				if(check_martial_counter(H, user))
 					return
@@ -550,15 +540,14 @@
 				target.do_stun_animation() // AQ EDIT - animacja ogłuszenia (port Bee)
 
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+			// AQ EDIT START - port Bee#14750: dezorientacja, cel kontraktu dostaje pełne 130 i upuszcza wszystko
 			if(is_target)
-				target.Knockdown(knockdown_time_carbon)
+				target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = 10 SECONDS, stack_status = FALSE)
 				target.drop_all_held_items()
-				target.adjustStaminaLoss(stamina_damage)
-				if(target.confused < 6 SECONDS)
-					target.confused = min(target.confused + target_confusion, 6 SECONDS)
 			else
-				target.Knockdown(knockdown_time_carbon)
-				target.adjustStaminaLoss(stamina_damage_non_target)
+				target.Disorient(6 SECONDS, stamina_damage_non_target, paralyze = 5 SECONDS, stack_status = FALSE)
+			target.Knockdown(knockdown_time_carbon)
+			// AQ EDIT END
 			additional_effects_carbon(target, user)
 
 			log_combat(user, target, "stunned", src)
@@ -579,15 +568,15 @@
 /obj/item/melee/classic_baton/contractor_baton/pickup(mob/user)
 	..()
 	if(!owner_data)
-		var/datum/antagonist/traitor/traitor_data = user.mind.has_antag_datum(/datum/antagonist/traitor)
+		var/datum/antagonist/traitor/traitor_data = user.mind?.has_antag_datum(/datum/antagonist/traitor) // AQ EDIT - podnosi też mob bez umysłu (małpa)
 		if(traitor_data)
 			owner_data = traitor_data
 			to_chat(user, "<span class='notice'>Gdy podnosisz [src], skanuje twoje dane genetyczne i łączy się z bazą danych Syndykatu. Atakowanie obecnego celu ogłusza go i ucisza, ale wobec innych osób pałka jest słaba.</span>")
 
 // Supermatter Sword
 /obj/item/melee/supermatter_sword
-	name = "supermatter sword"
-	desc = "In a station full of bad ideas, this might just be the worst."
+	name = "miecz z supermaterii"
+	desc = "Na stacji pełnej złych pomysłów to może być ten najgorszy."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "supermatter_sword"
 	item_state = "supermatter_sword"
@@ -602,7 +591,7 @@
 	block_level = 1
 	block_upgrade_walk = 1
 	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
-	force_string = "INFINITE"
+	force_string = "NIESKOŃCZONA"
 
 /obj/item/melee/supermatter_sword/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type)
 	qdel(hitby)
@@ -691,8 +680,8 @@
 	return FALSE
 
 /obj/item/melee/curator_whip
-	name = "curator's whip"
-	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
+	name = "bicz kustosza"
+	desc = "Nieco ekscentryczny i przestarzały, ale cios nim wciąż piecze jak diabli."
 	icon_state = "whip"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -742,11 +731,11 @@
 /obj/item/melee/curator_whip/proc/whip_lash(mob/living/user, mob/living/target)
 	if(target.getarmor(type = "melee") < 16)
 		target.emote("scream")
-		target.visible_message("<span class='danger'>[user] whips [target]!</span>", "<span class='userdanger'>[user] smaga cię biczem! Piecze!</span>")
+		target.visible_message("<span class='danger'>[user] smaga [target] biczem!</span>", "<span class='userdanger'>[user] smaga cię biczem! Piecze!</span>")
 
 /obj/item/melee/roastingstick
-	name = "advanced roasting stick"
-	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
+	name = "zaawansowany kij do pieczenia"
+	desc = "Teleskopowy kij do pieczenia z miniaturowym generatorem osłon, dzięki któremu wejdzie do różnych zaawansowanych, osłoniętych pieców i palenisk."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "roastingstick_0"
 	item_state = "null"
@@ -851,13 +840,13 @@
 	to_chat(user, "Kończysz piec [held_sausage]")
 	playsound(src,'sound/items/welder2.ogg',50,1)
 	held_sausage.add_atom_colour(rgb(103,63,24), FIXED_COLOUR_PRIORITY)
-	held_sausage.name = "[target.name]-roasted [held_sausage.name]"
-	held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."
+	held_sausage.name = "[held_sausage.name] (pieczenie: [target.name])"
+	held_sausage.desc = "[held_sausage.desc] Upieczono ją do perfekcji nad: [target]."
 	update_icon()
 
 /obj/item/melee/knockback_stick
-	name = "Knockback Stick"
-	desc = "An portable anti-gravity generator which knocks people back upon contact."
+	name = "kij odpychający"
+	desc = "Przenośny generator antygrawitacyjny, który odpycha ludzi przy kontakcie."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "telebaton_1"
 	item_state = "nullrod"

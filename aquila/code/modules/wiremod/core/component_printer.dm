@@ -2,7 +2,7 @@
 // Z tg doszło łączenie z układem: uderzenie układem w drukarkę pozwala drukować komponenty z okna układu
 // i oddawać do niej odłączone komponenty. Bez duplikatora modułów i bez okna ComponentPrinter z tg.
 /obj/machinery/modular_fabricator/component_printer
-	name = "component printer"
+	name = "drukarka komponentów"
 	desc = "Wytwarza komponenty do budowy układów scalonych. Uderz w nią układem, aby je połączyć."
 	icon = 'aquila/icons/obj/wiremod/wiremod_fab.dmi'
 	icon_state = "fab-idle"
@@ -46,6 +46,12 @@
 		return TRUE
 	return ..()
 
+/// Jak w tg: drukarka bierze projekty prosto z sieci badań statku, bez konsoli B+R w pobliżu.
+/obj/machinery/modular_fabricator/component_printer/resync_research()
+	SSresearch.science_tech.copy_research_to(stored_research)
+	update_viewer_statics()
+	say("Pomyślnie zsynchronizowano z serwerem B+R.")
+
 /// Odzysk materiałów z komponentu, także z okna połączonego układu.
 /obj/machinery/modular_fabricator/component_printer/proc/recycle_component(mob/living/user, obj/item/circuit_component/component)
 	var/datum/component/material_container/materials = get_material_container()
@@ -86,7 +92,7 @@
 	return new design.build_path(drop_location())
 
 /obj/item/circuitboard/machine/component_printer
-	name = "\improper Component Printer (Machine Board)"
+	name = "drukarka komponentów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/modular_fabricator/component_printer
 	req_components = list(

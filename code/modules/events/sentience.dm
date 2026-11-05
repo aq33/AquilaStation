@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 /datum/round_event/ghost_role/sentience
 	minimum_required = 1
-	role_name = "random animal"
+	role_name = "losowe zwierzę"
 	var/animals = 1
 	var/one = "jedno"
 	fakeable = TRUE

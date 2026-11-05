@@ -1,5 +1,5 @@
 /datum/species/fly
-	name = "\improper Flyperson"
+	name = "\improper Muchoczłowiek"
 	id = SPECIES_FLY
 	bodyflag = FLAG_FLY
 	species_traits = list(NOEYESPRITES, NO_UNDERWEAR, TRAIT_BEEFRIEND)

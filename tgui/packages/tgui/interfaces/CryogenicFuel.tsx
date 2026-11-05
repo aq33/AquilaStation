@@ -17,7 +17,7 @@ export const CryogenicFuel = (props) => {
     <Window width={400} height={400}>
       <Window.Content scrollable>
         <Section>
-          Fuel level:
+          Poziom paliwa:
           <ProgressBar
             value={(data.fuel / data.maxfuel) * 100 * 0.01}
             ranges={{
@@ -26,7 +26,7 @@ export const CryogenicFuel = (props) => {
               bad: [0.7, Infinity],
             }}
           />
-          Target fuel level:
+          Docelowy poziom paliwa:
           <ProgressBar
             value={(data.targetfuel / data.targetmaxfuel) * 100 * 0.01}
             ranges={{
@@ -38,13 +38,13 @@ export const CryogenicFuel = (props) => {
           <br />
           <br />
           <Button
-            content="Stop fuelling"
+            content="Przerwij tankowanie"
             icon="times"
             color="average"
             onClick={() => act('stopfuel')}
           />
           <Button
-            content="Fuel inlet"
+            content="Wlew paliwa"
             icon={data.transfer_mode ? 'power-off' : 'square-o'}
             selected={data.transfer_mode}
             onClick={() => act('transfer_mode')}

@@ -1,6 +1,6 @@
 /obj/item/gun/energy/kinetic_accelerator
-	name = "proto-kinetic accelerator"
-	desc = "A self recharging, ranged mining tool that does increased damage in low pressure."
+	name = "protokinetyczny akcelerator"
+	desc = "Samoładujące się narzędzie górnicze dalekiego zasięgu, które zadaje większe obrażenia przy niskim ciśnieniu."
 	icon_state = "kineticgun"
 	item_state = "kineticgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic)
@@ -208,7 +208,7 @@
 
 //Projectiles
 /obj/item/projectile/kinetic
-	name = "kinetic force"
+	name = "siła kinetyczna"
 	icon_state = null
 	damage = 40
 	damage_type = BRUTE
@@ -233,7 +233,7 @@
 		for(var/obj/item/borg/upgrade/modkit/modkit in mods)
 			modkit.projectile_prehit(src, target, kinetic_gun)
 	if(!pressure_decrease_active && !lavaland_equipment_pressure_check(get_turf(target)))
-		name = "weakened [name]"
+		name = "[name] (osłabienie)"
 		damage = damage * pressure_decrease
 		pressure_decrease_active = TRUE
 
@@ -264,8 +264,8 @@
 
 //Modkits
 /obj/item/borg/upgrade/modkit
-	name = "kinetic accelerator modification kit"
-	desc = "An upgrade for kinetic accelerators."
+	name = "zestaw modyfikacji kinetycznego akceleratora"
+	desc = "Ulepszenie do kinetycznych akceleratorów."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
@@ -349,8 +349,8 @@
 
 //Range
 /obj/item/borg/upgrade/modkit/range
-	name = "range increase"
-	desc = "Increases the range of a kinetic accelerator when installed."
+	name = "zwiększenie zasięgu"
+	desc = "Po zamontowaniu zwiększa zasięg kinetycznego akceleratora."
 	modifier = 1
 	cost = 25
 
@@ -360,8 +360,8 @@
 
 //Damage
 /obj/item/borg/upgrade/modkit/damage
-	name = "damage increase"
-	desc = "Increases the damage of kinetic accelerator when installed."
+	name = "zwiększenie obrażeń"
+	desc = "Po zamontowaniu zwiększa obrażenia kinetycznego akceleratora."
 	modifier = 10
 
 /obj/item/borg/upgrade/modkit/damage/modify_projectile(obj/item/projectile/kinetic/K)
@@ -370,8 +370,8 @@
 
 //Cooldown
 /obj/item/borg/upgrade/modkit/cooldown
-	name = "cooldown decrease"
-	desc = "Decreases the cooldown of a kinetic accelerator. Not rated for minebot use."
+	name = "skrócenie przeładowania"
+	desc = "Skraca czas przeładowania kinetycznego akceleratora. Nie nadaje się dla minebotów."
 	modifier = 3.2
 	minebot_upgrade = FALSE
 
@@ -385,8 +385,8 @@
 	..()
 
 /obj/item/borg/upgrade/modkit/cooldown/minebot
-	name = "minebot cooldown decrease"
-	desc = "Decreases the cooldown of a kinetic accelerator. Only rated for minebot use."
+	name = "skrócenie przeładowania minebota"
+	desc = "Skraca czas przeładowania kinetycznego akceleratora. Nadaje się tylko dla minebotów."
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/minebot
@@ -421,7 +421,7 @@
 	stats_stolen = FALSE
 
 /obj/item/borg/upgrade/modkit/aoe/modify_projectile(obj/item/projectile/kinetic/K)
-	K.name = "kinetic explosion"
+	K.name = "wybuch kinetyczny"
 
 /obj/item/borg/upgrade/modkit/aoe/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	if(stats_stolen)
@@ -437,32 +437,32 @@
 			to_chat(L, "<span class='userdanger'>Trafia cię [K.name]!</span>")
 
 /obj/item/borg/upgrade/modkit/aoe/turfs
-	name = "mining explosion"
-	desc = "Causes the kinetic accelerator to destroy rock in an AoE."
+	name = "wybuch górniczy"
+	desc = "Kinetyczny akcelerator kruszy skały na obszarze."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe/turfs
 	turf_aoe = TRUE
 
 /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-	name = "offensive mining explosion"
-	desc = "Causes the kinetic accelerator to destroy rock and damage mobs in an AoE."
+	name = "bojowy wybuch górniczy"
+	desc = "Kinetyczny akcelerator kruszy skały i rani istoty na obszarze."
 	maximum_of_type = 3
 	modifier = 0.25
 
 /obj/item/borg/upgrade/modkit/aoe/mobs
-	name = "offensive explosion"
-	desc = "Causes the kinetic accelerator to damage mobs in an AoE."
+	name = "wybuch bojowy"
+	desc = "Kinetyczny akcelerator rani istoty na obszarze."
 	modifier = 0.2
 
 //Minebot passthrough
 /obj/item/borg/upgrade/modkit/minebot_passthrough
-	name = "minebot passthrough"
-	desc = "Causes kinetic accelerator shots to pass through minebots."
+	name = "przenikanie przez minebota"
+	desc = "Strzały kinetycznego akceleratora przelatują przez mineboty."
 	cost = 0
 
 //Tendril-unique modules
 /obj/item/borg/upgrade/modkit/cooldown/repeater
-	name = "rapid repeater"
-	desc = "Quarters the kinetic accelerator's cooldown on striking a living target, but greatly increases the base cooldown."
+	name = "szybkie powtarzanie"
+	desc = "Po trafieniu żywego celu skraca przeładowanie kinetycznego akceleratora do jednej czwartej, ale mocno wydłuża przeładowanie podstawowe."
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/repeater
 	modifier = -14 //Makes the cooldown 3 seconds(with no cooldown mods) if you miss. Don't miss.
 	cost = 50
@@ -480,8 +480,8 @@
 		KA.attempt_reload(KA.overheat_time * 0.25) //If you hit, the cooldown drops to 0.75 seconds.
 
 /obj/item/borg/upgrade/modkit/lifesteal
-	name = "lifesteal crystal"
-	desc = "Causes kinetic accelerator shots to slightly heal the firer on striking a living target."
+	name = "kryształ wysysania życia"
+	desc = "Strzały kinetycznego akceleratora po trafieniu żywego celu lekko leczą strzelca."
 	icon_state = "modkit_crystal"
 	modifier = 2.5 //Not a very effective method of healing.
 	cost = 20
@@ -496,8 +496,8 @@
 		L.heal_ordered_damage(modifier, damage_heal_order)
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
-	name = "resonator blast"
-	desc = "Causes kinetic accelerator shots to leave and detonate resonator blasts."
+	name = "wybuch rezonatora"
+	desc = "Strzały kinetycznego akceleratora zostawiają i detonują pola rezonatora."
 	denied_type = /obj/item/borg/upgrade/modkit/resonator_blasts
 	cost = 30
 	modifier = 0.25 //A bonus 15 damage if you burst the field on a target, 60 if you lure them into it.
@@ -512,8 +512,8 @@
 		new /obj/effect/temp_visual/resonance(target_turf, K.firer, null, 30)
 
 /obj/item/borg/upgrade/modkit/bounty
-	name = "death syphon"
-	desc = "Killing or assisting in killing a creature permanently increases your damage against that type of creature."
+	name = "syfon śmierci"
+	desc = "Zabicie stworzenia albo pomoc w jego zabiciu trwale zwiększa twoje obrażenia przeciw temu rodzajowi stworzeń."
 	denied_type = /obj/item/borg/upgrade/modkit/bounty
 	modifier = 1.25
 	cost = 30
@@ -552,8 +552,8 @@
 
 //Indoors
 /obj/item/borg/upgrade/modkit/indoors
-	name = "decrease pressure penalty"
-	desc = "A syndicate modification kit that increases the damage a kinetic accelerator does in high pressure environments." //NSV13 PKAs are still strong in a vacuum
+	name = "zmniejszenie kary za ciśnienie"
+	desc = "Zestaw modyfikacji Syndykatu, który zwiększa obrażenia kinetycznego akceleratora przy wysokim ciśnieniu." //NSV13 PKAs are still strong in a vacuum
 	modifier = 2
 	denied_type = /obj/item/borg/upgrade/modkit/indoors
 	maximum_of_type = 2
@@ -565,8 +565,8 @@
 
 //Trigger Guard
 /obj/item/borg/upgrade/modkit/trigger_guard
-	name = "modified trigger guard"
-	desc = "Allows creatures normally incapable of firing guns to operate the weapon when installed."
+	name = "zmodyfikowany kabłąk spustu"
+	desc = "Po zamontowaniu pozwala strzelać stworzeniom, które normalnie nie potrafią obsługiwać broni."
 	cost = 20
 	denied_type = /obj/item/borg/upgrade/modkit/trigger_guard
 
@@ -583,12 +583,12 @@
 //Cosmetic
 
 /obj/item/borg/upgrade/modkit/chassis_mod
-	name = "super chassis"
-	desc = "Makes your KA yellow. All the fun of having a more powerful KA without actually having a more powerful KA."
+	name = "superobudowa"
+	desc = "Zmienia kolor twojego KA na żółty. Cała frajda z mocniejszego KA bez posiadania mocniejszego KA."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/chassis_mod
 	var/chassis_icon = "kineticgun_u"
-	var/chassis_name = "super-kinetic accelerator"
+	var/chassis_name = "superkinetyczny akcelerator"
 
 /obj/item/borg/upgrade/modkit/chassis_mod/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	. = ..()
@@ -602,14 +602,14 @@
 	..()
 
 /obj/item/borg/upgrade/modkit/chassis_mod/orange
-	name = "hyper chassis"
-	desc = "Makes your KA orange. All the fun of having explosive blasts without actually having explosive blasts."
+	name = "hiperobudowa"
+	desc = "Zmienia kolor twojego KA na pomarańczowy. Cała frajda z wybuchowych strzałów bez posiadania wybuchowych strzałów."
 	chassis_icon = "kineticgun_h"
-	chassis_name = "hyper-kinetic accelerator"
+	chassis_name = "hiperkinetyczny akcelerator"
 
 /obj/item/borg/upgrade/modkit/tracer
-	name = "white tracer bolts"
-	desc = "Causes kinetic accelerator bolts to have a white tracer trail and explosion."
+	name = "białe pociski smugowe"
+	desc = "Pociski kinetycznego akceleratora zostawiają białą smugę i biały wybuch."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/tracer
 	var/bolt_color = "#FFFFFF"
@@ -619,8 +619,8 @@
 	K.color = bolt_color
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable
-	name = "adjustable tracer bolts"
-	desc = "Causes kinetic accelerator bolts to have an adjustable-colored tracer trail and explosion. Use in-hand to change color."
+	name = "regulowane pociski smugowe"
+	desc = "Pociski kinetycznego akceleratora zostawiają smugę i wybuch w wybranym kolorze. Użyj w ręce, by zmienić kolor."
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable/attack_self(mob/user)
 	bolt_color = tgui_color_picker(user,"","Wybierz kolor",bolt_color)

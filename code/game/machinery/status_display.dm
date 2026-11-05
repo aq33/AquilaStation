@@ -23,7 +23,7 @@
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
-	name = "status display"
+	name = "wyświetlacz stanu"
 	desc = null
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
@@ -364,7 +364,7 @@
 
 /// Supply display which shows the status of the supply shuttle.
 /obj/machinery/status_display/supply
-	name = "supply display"
+	name = "wyświetlacz zaopatrzenia"
 	current_mode = SD_MESSAGE
 	text_color = "#F90"
 	header_text_color = "#FC2"
@@ -380,12 +380,12 @@
 	if(!SSshuttle.supply)
 		// Might be missing in our first update on initialize before shuttles
 		// have loaded. Cross our fingers that it will soon return.
-		line1 = "CARGO"
-		line2 = "shutl?"
+		line1 = "ZAOP."
+		line2 = "prom?"
 	else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
 		if(is_station_level(SSshuttle.supply.z))
-			line1 = "CARGO"
-			line2 = "Docked"
+			line1 = "ZAOP."
+			line2 = "w doku"
 		else
 			line1 = ""
 			line2 = ""
@@ -403,7 +403,7 @@
 	var/shuttleMsg = null
 	if (shuttle.mode == SHUTTLE_IDLE)
 		if (is_station_level(shuttle.z))
-			shuttleMsg = "Docked"
+			shuttleMsg = "Zadokowany"
 	else
 		shuttleMsg = "[shuttle.getModeStr()]: [shuttle.getTimerStr()]"
 	if (shuttleMsg)
@@ -414,7 +414,7 @@
 
 /// General-purpose shuttle status display.
 /obj/machinery/status_display/shuttle
-	name = "shuttle display"
+	name = "wyświetlacz promu"
 	current_mode = SD_MESSAGE
 	var/shuttle_id
 
@@ -472,8 +472,8 @@ GLOBAL_LIST_INIT(ai_status_display_emotes, list(
 
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
-	name = "\improper AI display"
-	desc = "A small screen which the AI can use to present itself."
+	name = "wyświetlacz SI"
+	desc = "Mały ekran, na którym SI może się pokazywać."
 
 	var/mode = SD_BLANK
 	var/emotion = "Neutral"

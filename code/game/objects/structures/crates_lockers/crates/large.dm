@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/large
-	name = "large crate"
-	desc = "A hefty wooden crate. You'll need a crowbar to get it open."
+	name = "duża skrzynia"
+	desc = "Masywna drewniana skrzynia. Do jej otwarcia potrzebujesz łomu."
 	icon_state = "large_crate"
 	density = TRUE
 	material_drop = /obj/item/stack/sheet/mineral/wood

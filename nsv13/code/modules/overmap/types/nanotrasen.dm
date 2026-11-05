@@ -12,8 +12,8 @@
 */
 
 /obj/structure/overmap/nanotrasen
-	name = "nanotrasen ship"
-	desc = "A NT owned space faring vessel."
+	name = "okręt Nanotrasen"
+	desc = "Jednostka kosmiczna należąca do NT."
 	icon = 'nsv13/icons/overmap/default.dmi'
 	icon_state = "default"
 	faction = "nanotrasen"
@@ -25,7 +25,7 @@
 	new /datum/overmap_ship_weapon/torpedo_launcher(src)
 
 /obj/structure/overmap/nanotrasen/light_cruiser
-	name = "raptor class light frigate"
+	name = "lekka fregata klasy Raptor"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "kestrel"
 	mass = MASS_SMALL
@@ -39,7 +39,7 @@
 
 
 /obj/structure/overmap/nanotrasen/patrol_cruiser
-	name = "lupine class patrol cruiser"
+	name = "krążownik patrolowy klasy Lupine"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
 	icon_state = "heavy_cruiser"
 	mass = MASS_LARGE
@@ -51,7 +51,7 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 60, "overmap_heavy" = 20)
 
 /obj/structure/overmap/nanotrasen/frigate //This has nothing to do with missiles
-	name = "caracal class frigate"
+	name = "fregata klasy Caracal"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "frigate"
 	mass = MASS_SMALL
@@ -65,7 +65,7 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 60, "overmap_heavy" = 20)
 
 /obj/structure/overmap/nanotrasen/heavy_cruiser
-	name = "corvid class tactical cruiser"
+	name = "krążownik taktyczny klasy Corvid"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
 	icon_state = "cruiser"
 	mass = MASS_LARGE
@@ -80,8 +80,8 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 80, "overmap_heavy" = 30)
 
 /obj/structure/overmap/nanotrasen/battleship
-	name = "jupiter class battlestar"
-	desc = "A flying fortress specialising in levelling large, stationary targets such as space stations or planetside colonies."
+	name = "gwiazda bojowa klasy Jupiter"
+	desc = "Latająca forteca wyspecjalizowana w równaniu z ziemią dużych, nieruchomych celów, takich jak stacje kosmiczne czy kolonie planetarne."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/titan.dmi'
 	icon_state = "titan"
 	mass = MASS_TITAN
@@ -94,8 +94,8 @@
 	armor = list("overmap_light" = 95, "overmap_medium" = 75, "overmap_heavy" = 50)
 
 /obj/structure/overmap/nanotrasen/carrier
-	name = "enterprise class carrier"
-	desc = "A gigantic ship which is capable of staying deployed in space for extended periods while supporting an impressive complement of fighters."
+	name = "lotniskowiec klasy Enterprise"
+	desc = "Gigantyczny okręt, który może długo przebywać w kosmosie, utrzymując imponujące skrzydło myśliwców."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
 	icon_state = "cruiser"
 	bound_width = 96
@@ -108,7 +108,7 @@
 	armor = list("overmap_light" = 90, "overmap_medium" = 60, "overmap_heavy" = 10)
 
 /obj/structure/overmap/nanotrasen/battlecruiser
-	name = "corvid class tactical cruiser"
+	name = "krążownik taktyczny klasy Corvid"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
 	icon_state = "cruiser"
 	mass = MASS_LARGE
@@ -125,8 +125,8 @@
 //Instanced Versions
 
 /obj/structure/overmap/nanotrasen/gunstar
-	name = "Acropolis class heavy cruiser"
-	desc = "A prototype gunship typically reserved for the admiralty which is capable of delivering an overwhelming amount of firepower for its size. Its design crams the firepower of a battlestar into a cruiser frame to deliver extreme punishment using cutting edge weapons research."
+	name = "ciężki krążownik klasy Acropolis"
+	desc = "Prototypowy okręt artyleryjski, zwykle zarezerwowany dla admiralicji, o miażdżącej sile ognia jak na swój rozmiar. Jego konstrukcja upycha siłę ognia gwiazdy bojowej w kadłubie krążownika, a najnowsze osiągnięcia w badaniach nad bronią pozwalają mu siać prawdziwe zniszczenie."
 	icon = 'nsv13/icons/overmap/nanotrasen/gunstar.dmi'
 	icon_state = "gunstar"
 	mass = MASS_LARGE //Big beefy lad with a lot of firepower.
@@ -151,7 +151,7 @@ Technically zero are needed, but those manually set are immune to deletion from 
 
 /obj/structure/overmap/nanotrasen/serendipity
 	name = "DLV Serendipity"
-	desc = "a serendipity class exploration and research vessel"
+	desc = "Jednostka badawczo-eksploracyjna klasy Serendipity."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/serendipity.dmi'
 	icon_state = "serendipity"
 	mass = MASS_SMALL
@@ -298,7 +298,7 @@ Technically zero are needed, but those manually set are immune to deletion from 
 //AI Versions
 
 /obj/structure/overmap/nanotrasen/ai //Generic good guy #10000.
-	name = "raptor class light frigate"
+	name = "lekka fregata klasy Raptor"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "kestrel"
 	mass = MASS_SMALL
@@ -406,7 +406,7 @@ Technically zero are needed, but those manually set are immune to deletion from 
 	new /datum/overmap_ship_weapon/gauss(src) //AI ships want to be able to use gauss too. I say let them...
 
 /obj/structure/overmap/nanotrasen/ai/fighter
-	name = "Viper class light fighter"
+	name = "lekki myśliwiec klasy Viper"
 	icon = 'nsv13/icons/overmap/new/nanotrasen/fighter_overmap.dmi'
 	icon_state = "fighter"
 	damage_states = FALSE

@@ -1,13 +1,13 @@
 /obj/item/storage/book
-	name = "hollowed book"
-	desc = "I guess someone didn't like it."
+	name = "wydrążona książka"
+	desc = "Chyba ktoś jej nie lubił."
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
-	var/title = "book"
+	var/title = "książki"
 
 /obj/item/storage/book/ComponentInitialize()
 	. = ..()
@@ -17,7 +17,7 @@
 /obj/item/storage/book/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>Strony [title] zostały wycięte!</span>")
 
-GLOBAL_LIST_INIT(biblenames, list("Bible", "Quran", "Scrapbook", "Burning Bible", "Clown Bible", "Banana Bible", "Creeper Bible", "White Bible", "Holy Light",  "The God Delusion", "Tome",        "The King in Yellow", "Ithaqua", "Scientology", "Melted Bible", "Necronomicon","Insulationism"))
+GLOBAL_LIST_INIT(biblenames, list("Biblia", "Koran", "Album z wycinkami", "Płonąca Biblia", "Biblia klauna", "Bananowa Biblia", "Biblia Creepera", "Biała Biblia", "Święte Światło",  "Bóg urojony", "Księga",        "Król w Żółci", "Ithaqua", "Scjentologia", "Stopiona Biblia", "Necronomicon","Insulacjonizm"))
 //If you get these two lists not matching in size, there will be runtimes and I will hurt you in ways you couldn't even begin to imagine
 // if your bible has no custom itemstate, use one of the existing ones
 GLOBAL_LIST_INIT(biblestates, list("bible", "koran", "scrapbook", "burning", "honk1", "honk2", "creeper", "white", "holylight", "atheist", "tome", "kingyellow", "ithaqua", "scientology", "melted", "necronomicon","insuls"))
@@ -30,15 +30,15 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	return 0
 
 /obj/item/storage/book/bible
-	name = "bible"
-	desc = "Apply to head repeatedly."
+	name = "biblia"
+	desc = "Przykładać do głowy wielokrotnie."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "bible"
 	item_state = "bible"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
 	var/mob/affecting = null
-	var/deity_name = "Christ"
+	var/deity_name = "Chrystus"
 	force_string = "holy"
 
 /obj/item/storage/book/bible/ComponentInitialize()
@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				for(var/mob/living/simple_animal/shade/EX in SS)
 					SSticker.mode.remove_cultist(EX.mind, 1, 0)
 					EX.icon_state = "ghost1"
-					EX.name = "Purified [EX.name]"
+					EX.name = "[EX.name] (po oczyszczeniu)"
 				SS.release_shades(user)
 				qdel(SS)
 			new /obj/item/nullrod/claymore(get_turf(sword))
@@ -230,25 +230,25 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 						SSticker.mode.remove_cultist(M.mind, FALSE, FALSE)
 			for(var/mob/living/simple_animal/shade/EX in SS)
 				EX.icon_state = "ghost1"
-				EX.name = "Purified [initial(EX.name)]"
+				EX.name = "[initial(EX.name)] (po oczyszczeniu)"
 			user.visible_message("<span class='notice'>[user] oczyszcza [SS]!</span>")
 
 /obj/item/storage/book/bible/booze
-	desc = "To be applied to the head repeatedly."
+	desc = "Przykładać do głowy wielokrotnie."
 
 /obj/item/storage/book/bible/booze/PopulateContents()
 	new /obj/item/reagent_containers/food/drinks/bottle/whiskey(src)
 
 /obj/item/storage/book/bible/syndicate
 	icon_state ="ebook"
-	deity_name = "The Syndicate"
+	deity_name = "Syndykat"
 	throw_speed = 2
 	throwforce = 18
 	throw_range = 7
 	force = 18
 	hitsound = 'sound/weapons/sear.ogg'
 	damtype = BURN
-	name = "Syndicate Tome"
+	name = "księga Syndykatu"
 	attack_verb = list("atakuje", "parzy", "błogosławi", "potępia", "przypieka")
 	var/uses = 1
 

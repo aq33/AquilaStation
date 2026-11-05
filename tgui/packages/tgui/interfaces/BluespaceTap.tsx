@@ -46,35 +46,37 @@ export const BluespaceTap = (props) => {
   return (
     <Window>
       <Window.Content scrollable>
-        {!!emagged && <NoticeBox danger>Safety Protocols disabled</NoticeBox>}
-        {!!(inputLevel > safeLevels) && (
-          <NoticeBox danger>High Power, Instability likely</NoticeBox>
+        {!!emagged && (
+          <NoticeBox danger>Protokoły bezpieczeństwa wyłączone</NoticeBox>
         )}
-        <Collapsible title="Input Management">
-          <Section title="Input">
+        {!!(inputLevel > safeLevels) && (
+          <NoticeBox danger>Wysoka moc, prawdopodobna niestabilność</NoticeBox>
+        )}
+        <Collapsible title="Zarządzanie poborem">
+          <Section title="Pobór">
             <LabeledList>
-              <LabeledList.Item label="Input Level">
+              <LabeledList.Item label="Poziom poboru">
                 {inputLevel}
               </LabeledList.Item>
-              <LabeledList.Item label="Desired Level">
+              <LabeledList.Item label="Docelowy poziom">
                 <Flex inline width="100%">
                   <Flex.Item>
                     <Button
                       icon="fast-backward"
                       disabled={desiredLevel === 0}
-                      tooltip="Set to 0"
+                      tooltip="Ustaw na 0"
                       onClick={() => act('set', { set_level: 0 })}
                     />
                     <Button
                       icon="step-backward"
-                      tooltip="Decrease to actual input level"
+                      tooltip="Zmniejsz do obecnego poziomu poboru"
                       disabled={desiredLevel === 0}
                       onClick={() => act('set', { set_level: inputLevel })}
                     />
                     <Button
                       icon="backward"
                       disabled={desiredLevel === 0}
-                      tooltip="Decrease one step"
+                      tooltip="Zmniejsz o jeden poziom"
                       onClick={() => act('decrease')}
                     />
                   </Flex.Item>
@@ -98,41 +100,41 @@ export const BluespaceTap = (props) => {
                     <Button
                       icon="forward"
                       disabled={desiredLevel === maxLevel}
-                      tooltip="Increase one step"
+                      tooltip="Zwiększ o jeden poziom"
                       tooltipPosition="left"
                       onClick={() => act('increase')}
                     />
                     <Button
                       icon="fast-forward"
                       disabled={desiredLevel === maxLevel}
-                      tooltip="Set to max"
+                      tooltip="Ustaw na maksimum"
                       tooltipPosition="left"
                       onClick={() => act('set', { set_level: maxLevel })}
                     />
                   </Flex.Item>
                 </Flex>
               </LabeledList.Item>
-              <LabeledList.Item label="Current Power Use">
+              <LabeledList.Item label="Obecny pobór mocy">
                 {formatPower(powerUse)}
               </LabeledList.Item>
-              <LabeledList.Item label="Power for next level">
+              <LabeledList.Item label="Moc na kolejny poziom">
                 {formatPower(nextLevelPower)}
               </LabeledList.Item>
-              <LabeledList.Item label="Surplus Power">
+              <LabeledList.Item label="Nadwyżka mocy">
                 {formatPower(availablePower)}
               </LabeledList.Item>
             </LabeledList>
           </Section>
         </Collapsible>
-        <Section title="Output">
+        <Section title="Wydajność">
           <Flex>
             <Flex.Item>
               <Box>
                 <LabeledList>
-                  <LabeledList.Item label="Available Points">
+                  <LabeledList.Item label="Dostępne punkty">
                     {points}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Total Points">
+                  <LabeledList.Item label="Punkty łącznie">
                     {totalPoints}
                   </LabeledList.Item>
                 </LabeledList>

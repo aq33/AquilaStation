@@ -2,13 +2,13 @@
 	Vending machine refills can be found at /code/modules/vending/ within each vending machine's respective file
 */
 /obj/item/vending_refill
-	name = "resupply canister"
-	var/machine_name = "Generic"
+	name = "kanister z zapasami"
+	var/machine_name = "ogólny"
 
 	icon = 'icons/obj/vending_restock.dmi'
 	icon_state = "refill_snack"
 	item_state = "restock_unit"
-	desc = "A vending machine restock cart."
+	desc = "Wkład do uzupełniania automatu."
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -27,7 +27,7 @@
 
 /obj/item/vending_refill/Initialize(mapload)
 	. = ..()
-	name = "\improper [machine_name] restocking unit"
+	name = "\improper wkład uzupełniający: [machine_name]"
 
 /obj/item/vending_refill/examine(mob/user)
 	. = ..()
@@ -35,7 +35,7 @@
 	if (num == INFINITY)
 		. += "Jest szczelnie zamknięty i pełen zapasów."
 	else if (num == 0)
-		. += "It's empty!"
+		. += "Jest pusty!"
 	else
 		. += "Może uzupełnić przedmiotów: [num]."
 

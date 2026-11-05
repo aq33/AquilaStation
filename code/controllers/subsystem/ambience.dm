@@ -22,6 +22,8 @@ SUBSYSTEM_DEF(ambience)
 			continue
 
 		var/area/current_area = get_area(client_iterator.mob)
+		if(!current_area) // AQ EDIT - a mob in nullspace has no area, play_buzz() read null.ambient_buzz
+			continue
 
 		play_buzz(client_iterator.mob, current_area)
 

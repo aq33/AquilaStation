@@ -6,21 +6,21 @@
 
 /// Arena related landmarks
 /obj/effect/landmark/arena
-	name = "arena landmark"
+	name = "znacznik areny"
 	var/landmark_tag
 	var/arena_id = ARENA_DEFAULT_ID
 
 /obj/effect/landmark/arena/start
-	name = "arena corner A"
+	name = "róg areny A"
 	landmark_tag = ARENA_CORNER_A
 
 /obj/effect/landmark/arena/end
-	name = "arena corner B"
+	name = "róg areny B"
 	landmark_tag = ARENA_CORNER_B
 
 /// Controller for admin event arenas
 /obj/machinery/computer/arena
-	name = "arena controller"
+	name = "kontroler areny"
 	/// Arena ID
 	var/arena_id = ARENA_DEFAULT_ID
 	/// Enables/disables spawning
@@ -30,7 +30,7 @@
 	/// Were the config directory arenas loaded
 	var/static/default_arenas_loaded = FALSE
 	/// Name of currently loaded template
-	var/current_arena_template = "None"
+	var/current_arena_template = "Brak"
 	// What turf arena clears to
 	var/empty_turf_type = /turf/open/indestructible
 	// List of team ids
@@ -110,14 +110,14 @@
 /obj/machinery/computer/arena/proc/clear_arena()
 	for(var/turf/T in get_arena_turfs())
 		T.empty(turf_type = /turf/open/indestructible)
-	current_arena_template = "None"
+	current_arena_template = "Brak"
 
 /obj/machinery/computer/arena/proc/load_arena(arena_template,mob/user)
 	if(loading)
 		return
 	var/datum/map_template/M = arena_templates[arena_template]
 	if(!M)
-		to_chat(user,"<span class='warning'>No such arena.</span>")
+		to_chat(user,"<span class='warning'>Nie ma takiej areny.</span>")
 		return
 	clear_arena() //Clear current arena
 	var/turf/A = get_landmark_turf(ARENA_CORNER_A)
@@ -125,7 +125,7 @@
 	var/wh = abs(A.x - B.x) + 1
 	var/hz = abs(A.y - B.y) + 1
 	if(M.width > wh || M.height > hz)
-		to_chat(user,"<span class='warning'>Arena template is too big for the current arena!</span>")
+		to_chat(user,"<span class='warning'>Szablon areny jest za duży na obecną arenę!</span>")
 		return
 	loading = TRUE
 	var/bd = M.load(get_load_point())
@@ -133,14 +133,14 @@
 		current_arena_template = arena_template
 	loading = FALSE
 
-	message_admins("[key_name_admin(user)] loaded [arena_template] event arena for [arena_id] arena.")
+	message_admins("[key_name_admin(user)] wczytuje arenę eventową [arena_template] dla areny [arena_id].")
 	log_admin("[key_name(user)] loaded [arena_template] event arena for [arena_id] arena.")
 
 
 
 /obj/machinery/computer/arena/proc/add_new_arena_template(user,fname,friendly_name)
 	if(!fname)
-		fname = input(user, "Upload dmm file to use as arena template","Upload Map Template") as null|file
+		fname = input(user, "Wgraj plik dmm jako szablon areny","Wgraj szablon mapy") as null|file
 	if(!fname)
 		return
 	if(!friendly_name)
@@ -148,18 +148,18 @@
 
 	var/datum/map_template/T = new(fname,friendly_name,TRUE)
 	if(!T.cached_map || T.cached_map.check_for_errors())
-		to_chat(user,"Map failed to parse check for errors.")
+		to_chat(user,"Nie udało się sparsować mapy, sprawdź błędy.")
 		return
 
 	arena_templates[T.name] = T
 	if(user)
-		message_admins("[key_name_admin(user)] uploaded new event arena: [friendly_name].")
+		message_admins("[key_name_admin(user)] wgrywa nową arenę eventową: [friendly_name].")
 		log_admin("[key_name(user)] uploaded new event arena: [friendly_name].")
 	else
 		log_mapping("Loaded default arena: [friendly_name].")
 
 /obj/machinery/computer/arena/proc/load_team(user,team)
-	var/rawteam = stripped_multiline_input(user,"Enter team list (ckeys separated by newline)")
+	var/rawteam = stripped_multiline_input(user,"Podaj listę drużyny (ckeye oddzielone nowymi liniami)")
 	for(var/i in splittext(rawteam,"\n"))
 		var/key = ckey(i)
 		if(!i)
@@ -171,7 +171,7 @@
 		var/list/keys = list()
 		for(var/mob/M in GLOB.player_list)
 			keys += M.client
-		var/client/selection = input("Please, select a player!", "Team member", null, null) as null|anything in sortKey(keys)
+		var/client/selection = input("Wybierz gracza!", "Członek drużyny", null, null) as null|anything in sortKey(keys)
 		//Could be freeform if you want to add disconnected i guess
 		if(!selection)
 			return
@@ -180,11 +180,11 @@
 		team_keys[team] = list(key)
 	else
 		team_keys[team] |= key
-	to_chat(user,"[key] added to [team] team.")
+	to_chat(user,"[key] dodany do drużyny [team].")
 
 /obj/machinery/computer/arena/proc/remove_member(mob/user,ckey,team)
 	team_keys[team] -= ckey
-	to_chat(user,"[ckey] removed from [team] team.")
+	to_chat(user,"[ckey] usunięty z drużyny [team].")
 
 /obj/machinery/computer/arena/proc/spawn_member(obj/machinery/arena_spawn/spawnpoint,ckey,team)
 	var/mob/oldbody = get_mob_by_ckey(ckey)
@@ -206,7 +206,7 @@
 
 /obj/machinery/computer/arena/proc/toggle_spawn(mob/user)
 	ready_to_spawn = !ready_to_spawn
-	to_chat(user,"You [ready_to_spawn ? "enable" : "disable"] the spawners.")
+	to_chat(user,"[ready_to_spawn ? "Włączasz" : "Wyłączasz"] spawnery.")
 	log_admin("[key_name(user)] toggled event arena spawning for [arena_id] arena.")
 	// Could use update_icon on spawnpoints here to show they're on
 	if(ready_to_spawn)
@@ -319,7 +319,7 @@
 
 /obj/machinery/computer/arena/proc/load_random_arena(mob/user)
 	if(!length(arena_templates))
-		to_chat(user,"<span class='warning'>No arenas present.</span>")
+		to_chat(user,"<span class='warning'>Brak aren.</span>")
 		return
 	var/picked = pick(arena_templates)
 	load_arena(picked,user)
@@ -329,56 +329,56 @@
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(L.stat != DEAD && (get_turf(L) in arena_turfs))
 			var/obj/item/reagent_containers/food/drinks/trophy/gold_cup/G = new(get_turf(L))
-			G.name = "[L.real_name]'s Trophy"
+			G.name = "trofeum ([L.real_name])"
 
 /obj/machinery/computer/arena/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
 	. = ..()
 	var/list/dat = list()
-	dat += "<div>Spawning is currently [ready_to_spawn ? "<span class='good'>enabled</span>" : "<span class='bad'>disabled</span>"] <a href='byond://?src=[REF(src)];toggle_spawn=1'>Toggle</a></div>"
-	dat += "<div><a href='byond://?src=[REF(src)];start=1'>[start_time ? "Stop countdown" : "Start!"]</a></div>"
+	dat += "<div>Pojawianie się jest obecnie [ready_to_spawn ? "<span class='good'>włączone</span>" : "<span class='bad'>wyłączone</span>"] <a href='byond://?src=[REF(src)];toggle_spawn=1'>Przełącz</a></div>"
+	dat += "<div><a href='byond://?src=[REF(src)];start=1'>[start_time ? "Zatrzymaj odliczanie" : "Start!"]</a></div>"
 	for(var/team in teams)
-		dat += "<h2>[capitalize(team)] team:</h2>"
+		dat += "<h2>Drużyna [team]:</h2>"
 		dat += "<ul>"
 		for(var/ckey in team_keys[team])
-			var/player_status = "Not Present"
+			var/player_status = "Nieobecny"
 			var/mob/M = get_mob_by_ckey(ckey)
 			if(M)
 				//Should define waiting room upper/lower corner and check if they're there instead of generic live/dead check
 				if(isobserver(M))
-					player_status = "Ghosted"
+					player_status = "Duch"
 				else
-					player_status = M.stat == DEAD ? "Dead" : "Alive"
+					player_status = M.stat == DEAD ? "Martwy" : "Żywy"
 				dat += "<li>[ckey] - [player_status] - "
 				dat += "<a href='byond://?src=[REF(src)];follow=[REF(M)]'>FLW</a>"
-				dat += "<a href='byond://?src=[REF(src)];member_action=remove;team=[team];ckey=[ckey]'>Remove</a>"
+				dat += "<a href='byond://?src=[REF(src)];member_action=remove;team=[team];ckey=[ckey]'>Usuń</a>"
 				//Add more per player features here
 				dat += "</li>"
 		dat += "</ul>"
-		dat += "<div> Team Outfit : [outfits[team] ? outfits[team] : default_outfit]</div>"
-		dat += "<a href='byond://?src=[REF(src)];team_action=loadteam;team=[team]'>Load team</a>"
-		dat += "<a href='byond://?src=[REF(src)];team_action=addmember;team=[team]'>Add member</a>"
-		dat += "<a href='byond://?src=[REF(src)];team_action=outfit;team=[team]'>Change Outfit</a>"
+		dat += "<div> Strój drużyny: [outfits[team] ? outfits[team] : default_outfit]</div>"
+		dat += "<a href='byond://?src=[REF(src)];team_action=loadteam;team=[team]'>Wczytaj drużynę</a>"
+		dat += "<a href='byond://?src=[REF(src)];team_action=addmember;team=[team]'>Dodaj członka</a>"
+		dat += "<a href='byond://?src=[REF(src)];team_action=outfit;team=[team]'>Zmień strój</a>"
 		//Add more per team features here
 
-	dat += "Current arena: [current_arena_template]"
-	dat += "<h2>Arena List:</h2>"
+	dat += "Obecna arena: [current_arena_template]"
+	dat += "<h2>Lista aren:</h2>"
 	for(var/A in arena_templates)
 		dat += "<a href='byond://?src=[REF(src)];change_arena=[rustg_url_encode(A)]'>[A]</a><br>"
 	dat += "<hr>"
-	dat += "<a href='byond://?src=[REF(src)];upload=1'>Upload new arena</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];upload=1'>Wgraj nową arenę</a><br>"
 	dat += "<hr>"
 	//Special actions
-	dat += "<a href='byond://?src=[REF(src)];special=reset'>Reset Arena.</a><br>"
-	dat += "<a href='byond://?src=[REF(src)];special=randomarena'>Load random arena.</a><br>"
-	dat += "<a href='byond://?src=[REF(src)];special=spawntrophy'>Spawn trophies for survivors.</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];special=reset'>Zresetuj arenę.</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];special=randomarena'>Wczytaj losową arenę.</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];special=spawntrophy'>Stwórz trofea dla ocalałych.</a><br>"
 
-	var/datum/browser/popup = new(user, "arena controller", "Arena Controller", 500, 600)
+	var/datum/browser/popup = new(user, "arena controller", "Kontroler areny", 500, 600)
 	popup.set_content(dat.Join())
 	popup.open()
 
 /// Arena spawnpoint
 /obj/machinery/arena_spawn
-	name = "Arena Spawnpoint"
+	name = "punkt pojawienia się na arenie"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 	resistance_flags = INDESTRUCTIBLE
@@ -390,12 +390,12 @@
 	var/obj/machinery/computer/arena/_controller
 
 /obj/machinery/arena_spawn/red
-	name = "Red Team Spawnpoint"
+	name = "punkt pojawienia się czerwonej drużyny"
 	color = "red"
 	team = ARENA_RED_TEAM
 
 /obj/machinery/arena_spawn/green
-	name = "Green Team Spawnpoint"
+	name = "punkt pojawienia się zielonej drużyny"
 	color = "green"
 	team = ARENA_GREEN_TEAM
 

@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(xenoarchaeology)
 	if(!length(xenoa_seller_names))
 		xenoa_seller_names = list("Brock Enn")
 	if(!length(xenoa_seller_dialogue))
-		xenoa_seller_dialogue = list("Something isn't right!")
+		xenoa_seller_dialogue = list("Coś tu nie gra!")
 	if(!length(xenoa_artifact_names))
 		xenoa_artifact_names = list("Brock Enn")
 

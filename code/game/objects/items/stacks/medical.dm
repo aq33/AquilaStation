@@ -1,6 +1,6 @@
 /obj/item/stack/medical
-	name = "medical pack"
-	singular_name = "medical pack"
+	name = "pakiet medyczny"
+	singular_name = "pakiet medyczny"
 	icon = 'icons/obj/stack_objects.dmi'
 	amount = 6
 	max_amount = 6
@@ -76,7 +76,7 @@
 		return
 
 	if(!(affecting.brute_dam || affecting.burn_dam))
-		to_chat(user, "<span class='warning'>[M]'s [parse_zone(user.zone_selected)] isn't hurt!</span>")
+		to_chat(user, "<span class='warning'>[M] nie ma obrażeń w tej części ciała: [strefa_pl(user.zone_selected)]!</span>")
 		return
 
 	if((affecting.brute_dam && !affecting.burn_dam && !heal_brute) || (affecting.burn_dam && !affecting.brute_dam && !heal_burn)) //suffer
@@ -95,81 +95,4 @@
 		C.update_damage_overlays()
 		use(1)
 
-/obj/item/stack/medical/bruise_pack
-	name = "bruise pack"
-	singular_name = "bruise pack"
-	desc = "A therapeutic gel pack and bandages designed to treat blunt-force trauma."
-	icon_state = "brutepack"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	heal_brute = 40
-	grind_results = list(/datum/reagent/medicine/styptic_powder = 40)
-
-/obj/item/stack/medical/bruise_pack/one
-	amount = 1
-
-/obj/item/stack/medical/bruise_pack/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] okłada się [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
-	return (BRUTELOSS)
-
-/obj/item/stack/medical/ointment
-	name = "ointment"
-	desc = "Used to treat those nasty burn wounds."
-	icon_state = "ointment"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	heal_burn = 40
-	grind_results = list(/datum/reagent/medicine/silver_sulfadiazine = 40)
-
-/obj/item/stack/medical/ointment/one
-	amount = 1
-
-/obj/item/stack/medical/ointment/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] wyciska sobie [src] do ust! Czy nie wie, że to jest toksyczne?</span>")
-	return TOXLOSS
-
-/obj/item/stack/medical/gauze
-	name = "medical gauze"
-	desc = "A roll of elastic cloth that is extremely effective at stopping bleeding, heals minor bruising."
-	icon_state = "gauze"
-	stop_bleeding = BLEED_CRITICAL
-	heal_brute = 5 //Reminder that you can not stack healing thus you wait out the 1800 timer.
-	max_amount = 12
-
-/obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
-		if(get_amount() < 2)
-			to_chat(user, "<span class='warning'>Potrzebujesz co najmniej dwóch gaz, by to zrobić!</span>")
-			return
-		new /obj/item/stack/sheet/cotton/cloth(user.drop_location())
-		user.visible_message("[user] tnie [src] na kawałki materiału za pomocą [I].", \
-					"<span class='notice'>Tniesz [src] na kawałki materiału za pomocą [I].</span>", \
-					"<span class='italics'>Słyszysz cięcie.</span>")
-		use(2)
-	else
-		return ..()
-
-/obj/item/stack/medical/gauze/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] zaczyna zaciskać [src] na swojej szyi! Wygląda na to, że zapomniał, jak używać środków medycznych!</span>")
-	return OXYLOSS
-
-/obj/item/stack/medical/gauze/improvised
-	name = "improvised gauze"
-	singular_name = "improvised gauze"
-	desc = "A roll of cloth roughly cut from something that can stop bleeding, but does not heal wounds."
-	stop_bleeding = BLEED_SURFACE
-	heal_brute = 0
-
-/obj/item/stack/medical/gauze/adv
-	name = "sterilized medical gauze"
-	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
-	singular_name = "sterilized medical gauze"
-	self_delay = 0.5 SECONDS
-
-/obj/item/stack/medical/gauze/adv/one
-	amount = 1
-
-/obj/item/stack/medical/gauze/cyborg
-	materials = list()
-	is_cyborg = TRUE
-	cost = 250
+// AQ EDIT - gauze, bruise packs and ointment removed: bandage, sutures and mesh in aquila/ replace them

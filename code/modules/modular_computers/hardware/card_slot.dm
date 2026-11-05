@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/card_slot
-	name = "primary RFID card module"	// \improper breaks the find_hardware_by_name proc
-	desc = "A module allowing this computer to read or write data on ID cards. Necessary for some programs to run properly."
+	name = "główny moduł kart RFID"	// \improper breaks the find_hardware_by_name proc
+	desc = "Moduł, który pozwala temu komputerowi odczytywać i zapisywać dane na identyfikatorach. Niektóre programy bez niego nie działają poprawnie."
 	power_usage = 10 //W
 	icon_state = "card_mini"
 	w_class = WEIGHT_CLASS_TINY
@@ -123,10 +123,10 @@
 	expansion_hw = !expansion_hw
 	if(expansion_hw)
 		device_type = MC_CARD2
-		name = "secondary RFID card module"
+		name = "dodatkowy moduł kart RFID"
 	else
 		device_type = MC_CARD
-		name = "primary RFID card module"
+		name = "główny moduł kart RFID"
 
 /obj/item/computer_hardware/card_slot/examine(mob/user)
 	. = ..()
@@ -135,6 +135,6 @@
 		. += "Wygląda na to, że w gniazdach kart coś jest."
 
 /obj/item/computer_hardware/card_slot/secondary
-	name = "secondary RFID card module"
+	name = "dodatkowy moduł kart RFID"
 	device_type = MC_CARD2
 	expansion_hw = TRUE

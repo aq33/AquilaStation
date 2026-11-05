@@ -1,6 +1,6 @@
 /obj/item/origami
 	name = "origami"
-	desc = "Paper folded to resemble... something."
+	desc = "Papier złożony tak, by przypominał... coś."
 	icon = 'nsv13/icons/obj/bureaucracy.dmi'
 	icon_state = "scrap"
 	throw_range = 1
@@ -85,23 +85,23 @@
 	add_fingerprint(user)
 
 /obj/item/origami/papercrane
-	name = "paper crane"
-	desc = "Paper folded to look like a majestic crane."
+	name = "papierowy żuraw"
+	desc = "Papier złożony w kształt majestatycznego żurawia."
 	icon_state = "papercrane"
 
 /obj/item/origami/paperboat
-	name = "paper boat"
-	desc = "Paper folded to look like a small boat."
+	name = "papierowa łódka"
+	desc = "Papier złożony w kształt małej łódki."
 	icon_state = "paperboat"
 
 /obj/item/origami/paperfrog
-	name = "paper frog"
-	desc = "Paper folded to look like a frog."
+	name = "papierowa żaba"
+	desc = "Papier złożony w kształt żaby."
 	icon_state = "paperfrog"
 
 /obj/item/origami/papersyndicate
-	name = "paper S"
-	desc = "Paper folded into the letter S. Could this be the work of a syndicate agent?"
+	name = "papierowe S"
+	desc = "Papier złożony w literę S. Czyżby to robota agenta Syndykatu?"
 	icon_state = "papersyndicate"
 
 /obj/item/paper/examine(mob/user)
@@ -113,17 +113,17 @@
 		return
 
 	var/list/radial_list = list(
-		"Paper plane" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperplane"),
-		"Paper crane" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "papercrane"),
-		"Paper frog" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperfrog"),
-		"Paper boat" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperboat")
+		"Papierowy samolot" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperplane"),
+		"Papierowy żuraw" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "papercrane"),
+		"Papierowa żaba" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperfrog"),
+		"Papierowa łódka" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperboat")
 	)
 
 	var/datum/action/innate/origami/origami_action = locate() in user.actions
 	if(origami_action)
 		//Origami Master
-		radial_list["Syndicate paper plane"] = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperplanesyndicate")
-		radial_list["Paper S"] = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "papersyndicate")
+		radial_list["Papierowy samolot Syndykatu"] = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paperplanesyndicate")
+		radial_list["Papierowe S"] = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "papersyndicate")
 
 	var/origami_selected = show_radial_menu(user, src, radial_list, require_near = TRUE, tooltips = TRUE)
 	if(!origami_selected || !user || user.stat)
@@ -140,9 +140,9 @@
 //God I wish radial menu just took types. It would clean up rcd code too.
 /proc/origami_nametotype(name)
 	switch(name)
-		if("Paper plane") return /obj/item/origami/paperplane
-		if("Paper crane") return /obj/item/origami/papercrane
-		if("Paper frog") return /obj/item/origami/paperfrog
-		if("Paper boat") return /obj/item/origami/paperboat
-		if("Syndicate paper plane") return /obj/item/origami/paperplane/syndicate
-		if("Paper S") return /obj/item/origami/papersyndicate
+		if("Papierowy samolot") return /obj/item/origami/paperplane
+		if("Papierowy żuraw") return /obj/item/origami/papercrane
+		if("Papierowa żaba") return /obj/item/origami/paperfrog
+		if("Papierowa łódka") return /obj/item/origami/paperboat
+		if("Papierowy samolot Syndykatu") return /obj/item/origami/paperplane/syndicate
+		if("Papierowe S") return /obj/item/origami/papersyndicate

@@ -1,8 +1,8 @@
 GLOBAL_LIST_INIT(clockwork_portals, list())
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway
-	name = "\improper Ark of the Clockwork Justiciar"
-	desc = "A massive, hulking amalgamation of parts. It seems to be maintaining a very unstable bluespace anomaly."
+	name = "\improper Arka Mechanicznego Sędziego"
+	desc = "Ogromne, masywne zbiorowisko części. Wygląda na to, że podtrzymuje bardzo niestabilną anomalię bluespace."
 	clockwork_desc = "Magnum opus Nezbere: potężna mechaniczna maszyna łącząca bluespace i parę, by przywołać Ratvara. Po aktywacji \
 	jej niestabilność otworzy na statku jednokierunkowe szczeliny bluespace do Miasta Zębatek, więc bądź gotów bronić jej za wszelką cenę."
 	max_integrity = 1000
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(clockwork_portals, list())
 	var/grace_time = GLOB.narsie_breaching ? 0 : 1800
 	addtimer(CALLBACK(src, PROC_REF(begin_assault)), grace_time)
 	priority_announce("Na wszystkich częstotliwościach wykryto potężną anomalię [Gibberish("bluespace", 100)]. Cała załoga ma \
-	@!$, [text2ratvar("PURGE ALL UNTRUTHS")] <&. anomalie i zniszczyć ich źródło, by zapobiec dalszym szkodom w mieniu korporacji. To \
+	@!$, [text2ratvar("WYPLEŃ WSZELKIE KŁAMSTWA")] <&. anomalie i zniszczyć ich źródło, by zapobiec dalszym szkodom w mieniu korporacji. To \
 	nie są ćwiczenia.[grace_period ? " Szacowany czas pojawienia się: [grace_time/10] s. Wykorzystajcie ten czas, by przygotować się na atak na [station_name()]." : ""]"\
 	,"Wydział Spraw Wyższych Wymiarów Centrali", 'sound/magic/clockwork/ark_activation.ogg')
 	sound_to_playing_players(volume = 10, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(clockwork_portals, list())
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/begin_assault()
 	priority_announce("W pobliżu statku wykryto anomalie czasoprzestrzenne. Ustalono, że źródłem jest czasowy \
 		impuls energii z J1523-215. Cała załoga ma wejść do [text2ratvar("prep#re %o di%")]\
-		i zniszczyć [text2ratvar("I'd like to see you try")], które ustalono jako źródło \
+		i zniszczyć [text2ratvar("Chętnie zobaczę, jak próbujecie")], które ustalono jako źródło \
 		impulsu, by zapobiec masowym szkodom w mieniu Nanotrasen.", "Alarm - anomalia", ANNOUNCER_SPANOMALIES)
 
 	for(var/i in 1 to 100)
@@ -217,8 +217,8 @@ GLOBAL_VAR(cult_ratvar)
 #define RATVAR_SINGULARITY_SIZE 11
 
 /obj/eldritch/ratvar
-	name = "ratvar, the Clockwork Justicar"
-	desc = "Oh, that's ratvar!"
+	name = "Ratvar, Mechaniczny Sędzia"
+	desc = "O, to Ratvar!"
 	icon = 'icons/effects/512x512.dmi'
 	icon_state = "ratvar"
 	density = FALSE
@@ -242,7 +242,7 @@ GLOBAL_VAR(cult_ratvar)
 	log_game("!!! RATVAR HAS RISEN. !!!")
 	GLOB.cult_ratvar = src
 	. = ..()
-	desc = "[text2ratvar("That's Ratvar, the Clockwork Justicar. The great one has risen.")]"
+	desc = "[text2ratvar("To Ratvar, Mechaniczny Sędzia. Wielki powstał.")]"
 	SEND_SOUND(world, 'sound/effects/ratvar_reveal.ogg')
 	to_chat(world, "<span class='ratvar'>Zasłona bluespace ustępuje przed Ratvarem, jego światło zaświeci nad wszystkimi śmiertelnikami!</span>")
 	UnregisterSignal(src, COMSIG_ATOM_BSA_BEAM)
@@ -257,7 +257,7 @@ GLOBAL_VAR(cult_ratvar)
 		if(get_dist(src, ratvar_target) < 5)
 			if(next_attack_tick < world.time)
 				next_attack_tick = world.time + rand(50, 100)
-				to_chat(world, "<span class='danger'>[pick("Reality shudders around you.","You hear the tearing of flesh.","The sound of bones cracking fills the air.")]</span>")
+				to_chat(world, "<span class='danger'>[pick("Rzeczywistość drży wokół ciebie.","Słyszysz rozdzieranie ciała.","Powietrze wypełnia odgłos łamanych kości.")]</span>")
 				SEND_SOUND(world, 'sound/magic/clockwork/ratvar_attack.ogg')
 				SpinAnimation(4, 0)
 				for(var/mob/living/M in GLOB.player_list)

@@ -7,8 +7,8 @@
 //////////////////////
 
 /obj/item/grenade/discogrenade
-	name = "Ethereal Disco Grenade"
-	desc = "An unethical micro-party that will make all non-Ethereal beings dance to its beat!"
+	name = "eterycki granat dyskotekowy"
+	desc = "Nieetyczna mikroimpreza, przy której wszystkie istoty niebędące Eterykami tańczą w jej rytm!"
 	icon_state = "disco"
 	item_state = "disco"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -37,8 +37,8 @@
 //////////////////////
 
 /obj/item/grenade/discogrenade/subgrenade
-	name = "Micro Disco"
-	desc = "A massive disco contained in a tiny package!"
+	name = "mikrodyskoteka"
+	desc = "Ogromna dyskoteka zamknięta w malutkim opakowaniu!"
 	icon_state = "disco"
 	item_state = "disco"
 	var/spawn_new = TRUE

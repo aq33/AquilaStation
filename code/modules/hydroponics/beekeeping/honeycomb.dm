@@ -1,7 +1,7 @@
 
 /obj/item/reagent_containers/honeycomb
-	name = "honeycomb"
-	desc = "A hexagonal mesh of honeycomb."
+	name = "plaster miodu"
+	desc = "Sześciokątna siatka plastra miodu."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	possible_transfer_amounts = list()
@@ -32,7 +32,7 @@
 /obj/item/reagent_containers/honeycomb/proc/set_reagent(reagent)
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent]
 	if(istype(R))
-		name = "honeycomb ([R.name])"
+		name = "plaster miodu ([R.name])"
 		honey_color = R.color
 		reagents.add_reagent(R.type,5)
 	else

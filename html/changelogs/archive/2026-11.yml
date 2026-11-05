@@ -1,0 +1,168 @@
+'2026-11-01':
+  Joker66613:
+  - spellcheck: 'Reszta gry przetłumaczona na polski: opisy, komunikaty, okna, nazwy
+      reagentów, dań i napojów, panele admina.'
+  - spellcheck: Ujednolicone nazwy tych samych rzeczy w opisach, recepturach, projektach
+      i oknach.
+  - bugfix: Opis postaci nie wstawia już angielskich słów przed nazwą przedmiotu,
+      a czas wyświetla się po polsku.
+  - bugfix: Eksport cargo nie dopisuje angielskiego „s” do polskich nazw.
+  - code_imp: Słownik tłumaczeń w aquila/SLOWNIK_TLUMACZEN.md i test unikalności kluczy
+      reagentów.
+  - bugfix: Reakcje chemiczne w czasie (np. amoniak) nie zostawiają już 0,01–0,02u
+      jednego ze składników.
+  - tweak: Panel „Receptury” w dozowniku chemicznym pokazuje zakres pH, optymalną
+      temperaturę, przegrzanie, ciepło reakcji i minimalną czystość.
+  - bugfix: Wszystkie pady zamówień ekstraktów działają z konsolą rynku szlamów.
+  - rscdel: Usunięto zbędny pad zamówień w nauce i zsyp w kaplicy na Atlasie.
+  - bugfix: Mielarka przy pracy nie wraca do starego wyglądu i trzęsie się jak w Paradise.
+  - tweak: Za piecem łukowym kuźni da się przejść; galwanizer stoi obok stołu montażowego.
+  - balance: 'Alkohol wolniej niszczy wątrobę: zgon dopiero po około trzech butelkach
+      wódki.'
+  - bugfix: Alt blokuje i odblokowuje zamek szafki.
+  - bugfix: Kliknięcie w kafel z katwalkiem przesuwa ciągnięty obiekt.
+  - bugfix: Esc w lobby nie zamyka okna gotowości.
+  - bugfix: Pomoc pod Esc nie wypisuje klawiszy dwa razy.
+  - bugfix: Działo Gaussa ma jeden przycisk wyjścia.
+  - tweak: Przyciski akcji są domyślnie wszystkie na ekranie, paleta je chowa.
+  - balance: 'Ksenoarcheologia daje dużo więcej punktów badań i odkryć: kalibrator,
+      konsola, znacznik i skan cech artefaktów.'
+  - balance: Skan nowego gatunku rośliny daje 300 punktów odkryć zamiast 35.
+  - rscadd: 'Nowa chirurgia z tg: narzędzie pokazuje w menu operacje pasujące do stanu
+      kończyny, serwety przygotowują strefę, każda operacja to jeden krok.'
+  - rscadd: Komputer operacyjny z tg z wyborem strefy i listą możliwych operacji.
+  - rscadd: Rany kłute od kul i broni kłującej, pęknięcie czaszki, przebite oko, blizny
+      po ranach.
+  - rscadd: Kule mogą zostać w ciele; wyciąga się je ręką, hemostatem albo operacją.
+  - rscadd: Żel kostny, taśma chirurgiczna, bonesetter, automat do medipenów, worek
+      stazy, bandaż w skrzynce survivalowej.
+  - rscadd: Plastry mają folię ochronną, którą najpierw trzeba oderwać (Z).
+  - rscadd: Przycisk trybu tekstowego w oknie analizatora zdrowia.
+  - rscadd: Łączące się ślady krwi, krwawe nakładki na ranach, nakładki obrażeń i
+      sprite'y ciała człowieka z tg, plamy krwi na ścianach i oknach, dźwięk łamania
+      kości.
+  - balance: 'Rany losują się jak w tg: z bonusem broni, a nie tylko z obrażeń.'
+  - soundadd: Dźwięki łamania kości (TGMC, przez Shiptest).
+  - imageadd: Ikony sprzętu medycznego z tg.
+  - rscdel: Stary system operacji z listami kroków.
+  - rscdel: Gaza, opatrunek na stłuczenia i maść; bandaż przejął funkcje gazy.
+  sh4dow321:
+  - bugfix: Tickety (ahelpy) zapisują się do bazy, więc historia ticketów gracza działa
+      zamiast pokazywać błąd SQL.
+  - server: Gra sama tworzy w bazie tabelę SS13_ticket (wersja schematu 6.7), jeśli
+      jej brakuje.
+'2026-11-02':
+  Dwasint, joker:
+  - rscadd: '48 nowych objawów wirusów z wirusologii Monkestation, dostosowanych do
+      naszego systemu chorób: leczenie z plazmy, wody i światła gwiazd, ochrona przed
+      próżnią, świecenie skóry, nieśmiertelność z nawrotem po wyleczeniu, kolce na
+      skórze, przemiana w jaszczura i ćmę, rytm rumby i wiele innych.'
+  - rscadd: Objawy reagujące na dotyk - rogowacenie kolczaste rani tych, którzy wpadną
+      na nosiciela, a pęcherzowe oddzielanie naskórka rani samego nosiciela.
+  Joker66613:
+  - bugfix: Fabrykator bez podłączenia do silosu nie rzuca błędu przy rozbiórce, gdy
+      ma w sobie materiały.
+  - admin: Komora testowa ma na stałe kącik chirurgiczny i stojaki z bronią, a zestawy
+      PR-ów mają kroki z oczekiwanym wynikiem i komplet potrzebnych przedmiotów.
+'2026-11-03':
+  Joker66613:
+  - bugfix: Małpa podnosząca pałkę kontraktora, usunięcie infiltratora lub osoby naznaczonej
+      przez voidwalkera, artefakt zniszczony przed cofnięciem przemiany w zwierzę
+      i AI kończące ruch po śmierci moba nie rzucają już błędów.
+  - code_imp: Lokalny smoke test wszystkich zestawów komory testowej.
+'2026-11-04':
+  Joker66613:
+  - rscadd: 'Komenda „Popraw tłumaczenie” w zakładce OOC: poprawiaj polskie teksty
+      gry w Crowdinie, zatwierdzone poprawki trafią do gry.'
+  - bugfix: Kabura przypięta do munduru znów się otwiera, detektyw ma dostęp do rewolweru.
+  - bugfix: Przycisk „Wróć” i włączanie głośnika w konsoli zgłoszeń działają.
+  - bugfix: Prom piracki może lecieć do portów przy okręcie.
+  - bugfix: Po śmierci rojowca nie zostaje puste białe okno.
+  - bugfix: Leczenie IPC nie zostawia na podłodze kolejnych przewodów zasilających.
+  - bugfix: Opis roli rojowca nie pokazuje surowych znaczników HTML.
+  - imageadd: Lepsze ikony Porywacza, Zbiega, Klona paradoksu, Diabła, Bingla i Pająka
+      w naborze duchów.
+  - rscadd: Drukarka komponentów synchronizuje się z B+R.
+  - balance: Fabrykator swarmerów trzyma na swoim kafelku najwyżej jednego swarmera.
+  - balance: Głosowanie o dynamice rundy mocniej przechyla pule trybu weighted.
+  - soundadd: Silnik wózka woźnego jest głośniejszy.
+  - bugfix: Przypisywanie klawiszy w ustawieniach znów działa.
+  - bugfix: Na liście operacji nie ma zer po nazwach.
+  - rscadd: Zeskanowane w duplikatorze układy trafiają do osobistej biblioteki gracza,
+      dostępnej w kolejnych rundach.
+  - balance: Wirusy zarażają płynami od transmisji 3 i dotykiem od 6.
+  - rscadd: Gdy zginie połowa załogi, Centrala automatycznie wybudza ochotników z
+      kriostazy.
+  - bugfix: Malakser nie zmienia sprite'a przy pracy.
+  - rscadd: Toksyny mutacyjne ze szlamu mogą zamienić w oozelinga.
+  - admin: Admin-duch może zalogować się do konsoli komunikacyjnej, a Request Manager
+      ma przyciski wybudzenia załogi i ERT.
+'2026-11-05':
+  Joker66613:
+  - soundadd: 'Emotka *hey: okrzyk „Hej!” z reklam LEGO City.'
+  - balance: Czarodziej (na starcie i z duchów) pojawia się dopiero od 30 graczy.
+  - balance: 'Tryb weighted: swarmery tylko w rundach z puli poważnej; pająki, demon
+      grzechu, świadoma choroba, piraci, infiltratorzy i ksenomorfy tylko w rundach
+      z puli umiarkowanej i poważnej.'
+  - balance: 'Kuźnia amunicji: jedno wykucie korpusu Gaussa daje 6 pocisków (pół stojaka)
+      za 6 arkuszy materiału.'
+  - rscadd: Alt+klik na ubranie z kieszeniami w oknie rozbierania przeszukuje je bez
+      zdejmowania.
+  - rscadd: Samouczek Przetrwanie uczy tamowania krwawienia bandażem z pudełka przetrwania.
+  - tweak: Samouczek uczy walki i chwytu w combat mode albo w starych intencjach,
+      zależnie od preferencji gracza, i wspomina o sprincie.
+  - tweak: Animacja chodu obciąża komputer tylko w trakcie kroku. Tłum stojących ludzi
+      nie zbija już FPS, a idący kosztuje mniej.
+  - tweak: FPS „Zalecane” dopasowuje się do odświeżania monitora (np. 144 Hz), więc
+      ruch na ekranie jest równiejszy.
+  - bugfix: 'Kult krwi: rytuały samobójcze można zaliczyć po osiągnięciu rangi oddania.
+      Rytuał „Ostrze duszy” nie jest już losowany.'
+  - bugfix: 'Heretyk: Maelstrom of Silver liczy pękniętą czaszkę, ostrza-klucze mieszczą
+      się w pasie na narzędzia.'
+  - bugfix: 'Wampir: Tremere i caitiff dostają Maskaradę na starcie.'
+  - balance: 'Wampir: Drapieżny skok na poziomie 4 działa do 6 pól, zabicie ofiary
+      żerowaniem odbiera Człowieczeństwo.'
+  - bugfix: Anomalia odczłonkowująca podmienia właściwe kończyny.
+  - bugfix: Losowanie antagonistów w trakcie rundy nie przerywa się przy niskim zagrożeniu.
+  - bugfix: 'Przewody: porażanie w autolacie działa, przewód SI w alarmie powietrza
+      i cyklu śluzy nie jest odwrócony.'
+  - bugfix: Zlecenia na papryczki chili i lodowe papryki znów się pojawiają.
+  - bugfix: Płytki maszyn botaniki, paralizatora mecha, skanera detektywa i kilku
+      konsol można wydrukować po zbadaniu węzła.
+  - rscadd: Projekty odbiornika chemikaliów i pompy cieczy.
+  - bugfix: 'MODsuit: śrubokręt cofa krok konstrukcji.'
+  - bugfix: Katalog operacji pokazuje poprawnie zaokrąglone procenty.
+  - bugfix: NTSL pokazuje ostrzeżenia kompilacji, min() i max() działają z tekstem.
+  - bugfix: 'Choroby: poprawione działanie mocy wirusa i mutowalności.'
+  - bugfix: Rośliny z Rozdzieloną zawartością reagują od razu po zgnieceniu.
+  - bugfix: Kremówkę znów można zrobić.
+  - bugfix: Alkohol nawadnia słabiej niż woda.
+  - balance: Szkodniki szkodzą roślinom zgodnie z założeniem (dwa razy mocniej niż
+      dotąd), kawa i perfumy pachną o połowę słabiej.
+  - bugfix: Butelka Chciwości nie podnosi maksymalnego zdrowia ponad 100.
+  - spellcheck: Poprawione opisy w grze, które nie zgadzały się z działaniem.
+  - rscadd: Osoba za sterami statku ma na ekranie panel konsoli (sternik, strzelec,
+      myśliwiec) z hamulcem, sterowaniem, stanem kadłuba i wybraną bronią; przyciski
+      na panelu działają jak skróty klawiszowe.
+  - rscadd: 'Myśliwiec ma ręczną katapultę: przestaw oba przełączniki na panelu w
+      ciągu 5 sekund, a kapsuła ratunkowa wystrzeli z załogą.'
+  - imageadd: Polskie napisy na grafikach konsol statku.
+  - soundadd: Nowe dźwięki myśliwca (APU, bateria, start z katapulty, katapultowanie,
+      działko), namierzania, drzwi turbowindy i skrzypienie kadłuba w stanie krytycznym.
+  - bugfix: Namierzany statek słyszy ostrzeżenie o namierzaniu, a namierzający dźwięk
+      namierzania (było odwrotnie).
+  sh4dow321:
+  - bugfix: Panel lag switchy dla adminów znowu się otwiera.
+  - bugfix: Netpod znowu leczy osobę w środku.
+  - bugfix: Wybuchy słyszą i odczuwają wszyscy gracze, nawet gdy ktoś siedzi w lobby.
+  - bugfix: Klawisze z zapisanych ustawień, które przypisano do usuniętych skrótów,
+      znowu działają.
+  - bugfix: Harmonijka w slocie maski nie powoduje błędów.
+  - bugfix: Oględziny naklejek z serii 1 i 2 pokazują serię i rzadkość.
+  - bugfix: Maska policji wygląda na założoną, gdy jest założona, i odwrotnie.
+  - bugfix: Rola „Cywilne” nazywa się znowu „Gimmick”.
+  - bugfix: Usunięci członkowie składów i ich pagery nie zostają w pamięci serwera.
+  - bugfix: Prom ewakuacyjny i pomieszczenia pod zewnętrzną próżnią na Atlasie nie
+      tracą już powietrza przez sufit.
+  - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
+      przepuszczają powietrze.'

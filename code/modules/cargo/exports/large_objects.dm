@@ -1,7 +1,7 @@
 /datum/export/large/crate
 	cost = 500
 	k_elasticity = 0
-	unit_name = "crate"
+	unit_name = "skrzynia"
 	export_types = list(/obj/structure/closet/crate)
 	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/mail)
 
@@ -12,23 +12,23 @@
 
 /datum/export/large/crate/wooden
 	cost = 100
-	unit_name = "large wooden crate"
+	unit_name = "duża skrzynia"
 	export_types = list(/obj/structure/closet/crate/large)
 	exclude_types = list()
 
 /datum/export/large/crate/wooden/ore
-	unit_name = "ore box"
+	unit_name = "skrzynia na rudę"
 	export_types = list(/obj/structure/ore_box)
 
 /datum/export/large/crate/wood
 	cost = 240
-	unit_name = "wooden crate"
+	unit_name = "drewniana skrzynia"
 	export_types = list(/obj/structure/closet/crate/wooden)
 	exclude_types = list()
 
 /datum/export/large/crate/coffin
 	cost = 140 //50 wood costs 1700, makes 10 coffins, makes 1400 back. No free money allowed, considering they can be easlily stacked with disposal loops. Additionally you still get 600 credits from the box + manifest either way, for a total of 2000 back. Total of 300 profit for wasting your time building coffins.
-	unit_name = "coffin"
+	unit_name = "trumna"
 	export_types = list(/obj/structure/closet/crate/coffin)
 
 /datum/export/large/reagent_dispenser
@@ -42,100 +42,100 @@
 	return ..() + round(contents_cost * ratio)
 
 /datum/export/large/reagent_dispenser/water
-	unit_name = "watertank"
+	unit_name = "zbiornik wody"
 	export_types = list(/obj/structure/reagent_dispensers/watertank)
 	contents_cost = 200
 
 /datum/export/large/reagent_dispenser/fuel
-	unit_name = "fueltank"
+	unit_name = "zbiornik paliwa"
 	export_types = list(/obj/structure/reagent_dispensers/fueltank)
 
 /datum/export/large/reagent_dispenser/beer
-	unit_name = "beer keg"
+	unit_name = "beczka piwa"
 	contents_cost = 700
 	export_types = list(/obj/structure/reagent_dispensers/beerkeg)
 
 
 /datum/export/large/pipedispenser
 	cost = 500
-	unit_name = "pipe dispenser"
+	unit_name = "dozownik rur"
 	export_types = list(/obj/machinery/pipedispenser)
 
 /datum/export/large/emitter
 	cost = 550
-	unit_name = "emitter"
+	unit_name = "emiter"
 	export_types = list(/obj/machinery/power/emitter)
 
 /datum/export/large/field_generator
 	cost = 550
-	unit_name = "field generator"
+	unit_name = "generator pola"
 	export_types = list(/obj/machinery/field/generator)
 
 /datum/export/large/collector
 	cost = 400
-	unit_name = "radiation collector"
+	unit_name = "kolektor promieniowania"
 	export_types = list(/obj/machinery/power/rad_collector)
 
 /datum/export/large/tesla_coil
 	cost = 450
-	unit_name = "tesla coil"
+	unit_name = "cewka Tesli"
 	export_types = list(/obj/machinery/power/tesla_coil)
 
 /datum/export/large/pa
 	cost = 350
-	unit_name = "particle accelerator part"
+	unit_name = "część akceleratora cząstek"
 	export_types = list(/obj/structure/particle_accelerator)
 
 /datum/export/large/pa/controls
 	cost = 500
-	unit_name = "particle accelerator control console"
+	unit_name = "konsola sterowania akceleratorem cząstek"
 	export_types = list(/obj/machinery/particle_accelerator/control_box)
 
 /datum/export/large/supermatter
 	cost = 8000
-	unit_name = "supermatter shard"
+	unit_name = "odłamek supermaterii"
 	export_types = list(/obj/machinery/power/supermatter_crystal/shard)
 
 /datum/export/large/grounding_rod
 	cost = 350
-	unit_name = "grounding rod"
+	unit_name = "pręt uziemiający"
 	export_types = list(/obj/machinery/power/grounding_rod)
 
 /datum/export/large/tesla_gen
 	cost = 4000
-	unit_name = "energy ball generator"
+	unit_name = "generator kuli energii"
 	export_types = list(/obj/machinery/the_singularitygen/tesla)
 
 /datum/export/large/singulo_gen
 	cost = 4000
-	unit_name = "gravitational singularity generator"
+	unit_name = "generator osobliwości grawitacyjnej"
 	export_types = list(/obj/machinery/the_singularitygen)
 	include_subtypes = FALSE
 
 /datum/export/large/am_control_unit
 	cost = 4000
-	unit_name = "antimatter control unit"
+	unit_name = "jednostka sterująca antymaterią"
 	export_types = list(/obj/machinery/power/am_control_unit)
 
 /datum/export/large/am_shielding_container
 	cost = 150
-	unit_name = "packaged antimatter reactor section"
+	unit_name = "spakowana sekcja reaktora antymaterii"
 	export_types = list(/obj/item/am_shielding_container)
 
 
 /datum/export/large/iv
 	cost = 50
-	unit_name = "iv drip"
+	unit_name = "kroplówka"
 	export_types = list(/obj/machinery/iv_drip)
 
 /datum/export/large/barrier
 	cost = 25
-	unit_name = "security barrier"
+	unit_name = "bariera ochrony"
 	export_types = list(/obj/item/grenade/barrier, /obj/structure/barricade/security)
 
 /datum/export/large/gas_canister
 	cost = 10 //Base cost of canister. You get more for nice gases inside.
-	unit_name = "Gas Canister"
+	unit_name = "kanister"
 	export_types = list(/obj/machinery/portable_atmospherics/canister)
 /datum/export/large/gas_canister/get_cost(obj/O)
 	var/obj/machinery/portable_atmospherics/canister/C = O

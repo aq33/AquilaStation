@@ -2,6 +2,7 @@ import { useEffect, useReducer, useRef } from 'react';
 
 import { playCloseSounds, playOpenSounds } from './audio';
 import { AdminPage } from './pages/AdminPage';
+import { HelpPage } from './pages/HelpPage';
 import { HomePage } from './pages/HomePage';
 import { LeaveBodyPage } from './pages/LeaveBodyPage';
 import { PlayersPage } from './pages/PlayersPage';
@@ -11,7 +12,13 @@ import { updateScaling } from './scaling';
 /** Kontrolka przeglądarki z menu (interface/skin.dmf). */
 const MENU_CONTROL = 'mapwindow.escape_menu';
 
-export type Page = 'home' | 'admin' | 'players' | 'leave_body' | 'quit';
+export type Page =
+  | 'home'
+  | 'admin'
+  | 'players'
+  | 'help'
+  | 'leave_body'
+  | 'quit';
 
 export type PlayerInfo = {
   /** REF klienta po stronie serwera, do przełączania ignorowania. */
@@ -31,6 +38,11 @@ export type ResourceLink = {
   tooltip: string;
 };
 
+export type ControlSection = {
+  title: string;
+  entries: { name: string; keys: string[] }[];
+};
+
 export type ServerState = {
   stationName: string;
   roundId: string;
@@ -48,6 +60,8 @@ export type ServerState = {
   players: PlayerInfo[];
   ignoredOffline: string[];
   suicideIcon: string | null;
+  /** Klawisze gracza do strony Pomoc, odświeżane przy otwarciu menu. */
+  controls: ControlSection[];
 };
 
 type State = {
@@ -209,6 +223,9 @@ export function EscapeMenu() {
             onNavigate={navigate}
             onAction={handleAction}
           />
+        )}
+        {state.page === 'help' && (
+          <HelpPage serverState={state.serverState} onNavigate={navigate} />
         )}
         {state.page === 'leave_body' && (
           <LeaveBodyPage

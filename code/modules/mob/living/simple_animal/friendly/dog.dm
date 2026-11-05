@@ -25,7 +25,7 @@
 /mob/living/simple_animal/pet/dog/corgi
 	name = "\improper corgi"
 	real_name = "corgi"
-	desc = "It's a corgi."
+	desc = "To corgi."
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
@@ -59,9 +59,9 @@
 
 
 /mob/living/simple_animal/pet/dog/pug
-	name = "\improper pug"
-	real_name = "pug"
-	desc = "It's a pug."
+	name = "\improper mops"
+	real_name = "mops"
+	desc = "To mops."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "pug"
 	icon_living = "pug"
@@ -74,9 +74,9 @@
 
 
 /mob/living/simple_animal/pet/dog/bullterrier
-	name = "\improper bull terrier"
-	real_name = "bull terrier"
-	desc = "It's a bull terrier."
+	name = "\improper bulterier"
+	real_name = "bulterier"
+	desc = "To bulterier."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "bullterrier"
 	icon_living = "bullterrier"
@@ -92,14 +92,14 @@
 	name = "Walter"
 	real_name = "Walter"
 	gender = MALE
-	desc = "Nar'sie and rat'var are nothing compared to the might of this monstertruck loving dog."
+	desc = "Nar'Sie i Ratvar to nic w porównaniu z potęgą tego psa, który kocha monster trucki."
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
-	speak = list("barks!", "woofs!", "Walter", "firetrucks", "monstertrucks")
+	speak = list("szczeka!", "hauka!", "Walter", "firetrucks", "monstertrucks")
 
 /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
-	name = "Exotic Corgi"
-	desc = "As cute as it is colorful!"
+	name = "egzotyczny corgi"
+	desc = "Tak samo uroczy, jak kolorowy!"
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgigrey"
 	icon_living = "corgigrey"
@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!istype(equipping, /obj/item/clothing/neck/petcollar))
-		to_chat(user, "<span class='warning'>That's not a collar.</span>")
+		to_chat(user, "<span class='warning'>To nie jest obroża.</span>")
 		return FALSE
 
 	return TRUE
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	name = "Ian"
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
-	desc = "It's the HoP's beloved corgi."
+	desc = "To ukochany corgi Starszego Oficera."
 	var/obj/movement_target
 	response_help  = "głaszcze"
 	response_disarm = "pstryka"
@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		icon_state = "old_corgi"
 		icon_living = "old_corgi"
 		icon_dead = "old_corgi_dead"
-		desc = "At a ripe old age of [record_age], Ian's not as spry as he used to be, but he'll always be the HoP's beloved corgi." //RIP
+		desc = "W sędziwym wieku [record_age] lat Ian nie jest już tak żwawy jak kiedyś, ale zawsze pozostanie ukochanym corgi Starszego Oficera." //RIP
 		turns_per_move = 20
 		held_state = "old_corgi"
 
@@ -599,9 +599,9 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 
 
 /mob/living/simple_animal/pet/dog/corgi/puppy
-	name = "\improper corgi puppy"
+	name = "\improper szczeniak corgi"
 	real_name = "corgi"
-	desc = "It's a corgi puppy!"
+	desc = "To szczeniak corgi!"
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
@@ -622,13 +622,13 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	name = "Ian"
 	real_name = "Ian"
 	gender = MALE
-	desc = "It's the HoP's beloved corgi puppy."
+	desc = "To ukochany szczeniak corgi Starszego Oficera."
 
 
 /mob/living/simple_animal/pet/dog/corgi/puppy/void		//Tribute to the corgis born in nullspace
-	name = "\improper void puppy"
+	name = "\improper szczeniak z pustki"
 	real_name = "voidy"
-	desc = "A corgi puppy that has been infused with deep space energy. It's staring back..."
+	desc = "Szczeniak corgi nasycony energią głębokiego kosmosu. Odwzajemnia twoje spojrzenie..."
 	icon_state = "void_puppy"
 	icon_living = "void_puppy"
 	icon_dead = "void_puppy_dead"
@@ -652,7 +652,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
-	desc = "She's tearing you apart."
+	desc = "Rozdziera cię na kawałki."
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	icon_state = "lisa"

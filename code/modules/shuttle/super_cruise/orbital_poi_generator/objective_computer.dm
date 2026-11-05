@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(objective_computers)
 
 /obj/machinery/computer/objective
-	name = "station objective console"
-	desc = "A networked console that downloads and displays currently assigned station objectives."
+	name = "konsola celów stacji"
+	desc = "Sieciowa konsola, która pobiera i wyświetla obecnie przydzielone cele stacji."
 	icon_screen = "bounty"
 	icon_keyboard = "tech_key"
 	light_color = LIGHT_COLOR_ORANGE

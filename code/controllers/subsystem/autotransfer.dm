@@ -18,5 +18,5 @@ SUBSYSTEM_DEF(autotransfer)
 /datum/controller/subsystem/autotransfer/fire()
 	if(REALTIMEOFDAY > targettime)
 		if(!SSvote.current_vote) // AQ EDIT - port BeeStation #13247: vote datums
-			SSvote.initiate_vote(/datum/vote/transfer, "the server", forced = TRUE)
+			SSvote.initiate_vote(/datum/vote/transfer, "serwer", forced = TRUE)
 		targettime = targettime + CONFIG_GET(number/vote_autotransfer_interval)

@@ -1,6 +1,6 @@
 /obj/structure/chair/e_chair
-	name = "electric chair"
-	desc = "Looks absolutely SHOCKING!"
+	name = "krzesło elektryczne"
+	desc = "Wygląda absolutnie PORAŻAJĄCO!"
 	icon_state = "echair0"
 	var/obj/item/assembly/shock_kit/part = null
 	var/last_time = 1

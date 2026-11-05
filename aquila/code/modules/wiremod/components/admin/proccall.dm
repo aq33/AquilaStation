@@ -8,7 +8,7 @@
  * A component that calls a proc on an object and outputs the return value
  */
 /obj/item/circuit_component/proccall
-	display_name = "Proc Call"
+	display_name = "Wywołanie procki"
 	desc = "Komponent, który wywołuje proc na obiekcie."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

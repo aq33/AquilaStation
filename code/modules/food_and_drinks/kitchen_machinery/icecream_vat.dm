@@ -6,8 +6,8 @@
 #define CONE_CHOC 6
 
 /obj/machinery/icecream_vat
-	name = "ice cream vat"
-	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
+	name = "kadź do lodów"
+	desc = "Dzyń-dzyń, dzyń-dong. Lody z atestem Nanotrasen!"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "icecream_vat"
 	density = TRUE
@@ -177,8 +177,8 @@
 		to_chat(user, "<span class='warning'>Nie masz składników, by to zrobić!</span>")
 
 /obj/item/food/icecream
-	name = "waffle cone"
-	desc = "Delicious waffle cone, but no ice cream."
+	name = "rożek waflowy"
+	desc = "Pyszny rożek waflowy, ale bez lodów."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "icecream_cone_waffle" //default for admin-spawned cones, href_list["cone"] should overwrite this all the time
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
@@ -198,32 +198,32 @@
 		if ("chocolate")
 			reagents.add_reagent(/datum/reagent/consumable/cocoa, 1) // chocolate ain't as nutritious kids
 
-	desc = "Delicious [cone_name] cone, but no ice cream."
+	desc = "Pyszny rożek ([cone_name]), ale bez lodów."
 
 
 /obj/item/food/icecream/proc/add_ice_cream(var/flavour_name)
-	name = "[flavour_name] icecream"
+	name = "lody ([flavour_name])"
 	src.add_overlay("icecream_[flavour_name]")
 	switch (flavour_name) // adding the actual reagents advertised in the ingredient list
 		if ("vanilla")
-			desc = "A delicious [cone_type] cone filled with vanilla ice cream. All the other ice creams take content from it."
+			desc = "Pyszny rożek ([cone_type]) z lodami waniliowymi. Wszystkie inne lody biorą z nich przykład."
 		if ("chocolate")
-			desc = "A delicious [cone_type] cone filled with chocolate ice cream. Surprisingly, made with real cocoa."
+			desc = "Pyszny rożek ([cone_type]) z lodami czekoladowymi. Co zaskakujące, z prawdziwego kakao."
 			reagents.add_reagent(/datum/reagent/consumable/cocoa, 2)
 		if ("strawberry")
-			desc = "A delicious [cone_type] cone filled with strawberry ice cream. Definitely not made with real strawberries."
+			desc = "Pyszny rożek ([cone_type]) z lodami truskawkowymi. Na pewno nie z prawdziwych truskawek."
 			reagents.add_reagent(/datum/reagent/consumable/berryjuice, 2)
 		if ("blue")
-			desc = "A delicious [cone_type] cone filled with blue ice cream. Made with real... blue?"
+			desc = "Pyszny rożek ([cone_type]) z niebieskimi lodami. Z prawdziwego... niebieskiego?"
 			reagents.add_reagent(/datum/reagent/consumable/ethanol/singulo, 2)
 		if ("mob")
-			desc = "A suspicious [cone_type] cone filled with bright red ice cream. That's probably not strawberry..."
+			desc = "Podejrzany rożek ([cone_type]) z jaskrawoczerwonymi lodami. To chyba nie truskawka..."
 			reagents.add_reagent(/datum/reagent/liquidgibs, 2)
 	ice_creamed = 1
 
 /obj/item/food/icecream/proc/add_mob_flavor(var/mob/M)
 	add_ice_cream("mob")
-	name = "[M.name] icecream"
+	name = "lody: [M.name]"
 
 /obj/machinery/icecream_vat/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

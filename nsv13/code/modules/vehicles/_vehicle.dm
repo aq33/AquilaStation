@@ -6,7 +6,7 @@ MASSIVE THANKS TO MONSTER860 FOR HELP WITH THIS. HE EXPLAINED PHYSICS AND MATH T
 
 /obj/vehicle/sealed/car/realistic
 	name = "Nissun Skyline GTR"
-	desc = "DO YOU LIKE MY CAR?!"
+	desc = "PODOBA CI SIĘ MOJA FURA?!"
 	icon = 'nsv13/icons/obj/vehicles.dmi'
 	icon_state = "tug"
 	bound_width = 64
@@ -82,8 +82,8 @@ MASSIVE THANKS TO MONSTER860 FOR HELP WITH THIS. HE EXPLAINED PHYSICS AND MATH T
 	to_chat(usr, "<span class='notice'>[brakes ? "Zaciągasz" : "Zwalniasz"] hamulce.")
 
 /obj/effect/decal/cleanable/tyre_marks
-	name = "Tyre tracks"
-	desc = "The remnants of a vehicle skidding"
+	name = "ślady opon"
+	desc = "Pozostałości po poślizgu pojazdu."
 	icon = 'nsv13/icons/obj/vehicles.dmi'
 	icon_state = "tyre_tracks"
 	alpha = 10

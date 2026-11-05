@@ -50,7 +50,7 @@
 		pest_holder.add_emitter(/obj/emitter/flies, "flies", 10)
 		atom_parent.vis_contents |= pest_holder
 	var/mod = pest_level/100
-	body_parent.adjust_health(mod*pest_damage*-1)
+	body_parent.adjust_health(mod*pest_damage*-1*delta_time) // pest_damage is per second
 
 /datum/plant_need/reagent/buff/pests/setup_component_parent(datum/source)
 	. = ..()

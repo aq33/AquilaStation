@@ -86,12 +86,12 @@
 
 // Osiągnięcia wzniesienia (tg: code/datums/achievements/misc_achievements.dm)
 /datum/award/achievement/misc/blade_ascension
-	name = "Silver and Steel"
+	name = "Srebro i stal"
 	desc = "Zostałeś mistrzem wszystkich pojedynkowiczów - wzorem ostrzy."
 	database_id = "Blade"
 
 /datum/award/achievement/misc/cosmic_ascension
-	name = "It arrived"
+	name = "Przybyło"
 	desc = "Udało ci się sprowadzić na stację istotę, której naprawdę nie powinno tu być."
 	database_id = "Cosmos"
 
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(active_cosmic_fields)
 
 /// The cosmic heretics forcefield
 /obj/effect/forcefield/cosmic_field
-	name = "Cosmic Field"
+	name = "Kosmiczne pole"
 	desc = "Pole, przez które nie przejdzie nikt naznaczony kosmiczną gwiazdą."
 	icon = 'aquila/icons/effects/eldritch.dmi'
 	icon_state = "cosmic_carpet"
@@ -508,7 +508,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	on_left_arena(mover)
 
 /turf/closed/indestructible/heretic_wall
-	name = "eldritch wall"
+	name = "pradawna ściana"
 	desc = "Ściana zamykająca owce wśród wilków. Lśni złowrogą energią - lepiej jej nie szturchać."
 	icon = 'aquila/icons/turf/walls/heretic_arena_wall.dmi'
 	icon_state = "eldritch_forcewall"

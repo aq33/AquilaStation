@@ -4,7 +4,7 @@
  * A component that saves and loads a shell for the integrated circuit.
  */
 /obj/item/circuit_component/save_shell
-	display_name = "Save Shell"
+	display_name = "Zapis obudowy"
 	desc = "Komponent, który zapisuje obudowę."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_ADMIN

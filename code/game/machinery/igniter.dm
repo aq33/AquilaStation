@@ -1,6 +1,6 @@
 /obj/machinery/igniter
-	name = "igniter"
-	desc = "It's useful for igniting plasma."
+	name = "zapalnik"
+	desc = "Przydaje się do zapalania plazmy."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "igniter0"
 	plane = FLOOR_PLANE
@@ -67,8 +67,8 @@
 // Wall mounted remote-control igniter.
 
 /obj/machinery/sparker
-	name = "mounted igniter"
-	desc = "A wall-mounted ignition device."
+	name = "zapalnik ścienny"
+	desc = "Montowane na ścianie urządzenie zapłonowe."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "migniter"
 	resistance_flags = FIRE_PROOF

@@ -3,8 +3,8 @@
 // !            Kindle            ! //
 //==================================//
 /datum/clockcult/scripture/slab/kindle
-	name = "Kindle"
-	desc = "Stuns and mutes a target from a short range. Significantly less effective on Reebe."
+	name = "Rozpalenie"
+	desc = "Ogłusza i ucisza cel z niewielkiej odległości. Na Reebe działa znacznie słabiej."
 	tip = "Ogłusza i ucisza cel z niewielkiej odległości."
 	button_icon_state = "Kindle"
 	power_cost = 125

@@ -32,5 +32,5 @@
 	qdel(cloud_reagents)
 // Logging
 	log_admin_private("[fruit_parent.fingerprintslast] has caused a plant to create smoke containing [fruit_parent.reagents.log_list()] at [AREACOORD(T)]")
-	message_admins("[fruit_parent.fingerprintslast] has caused a plant to create smoke containing [fruit_parent.reagents.log_list()] at [ADMIN_VERBOSEJMP(T)]")
+	message_admins("[fruit_parent.fingerprintslast] sprawia, że roślina wytwarza dym zawierający: [fruit_parent.reagents.log_list()]. Miejsce: [ADMIN_VERBOSEJMP(T)]")
 	fruit_parent.investigate_log(" has created a smoke containing [fruit_parent.reagents.log_list()] at [AREACOORD(T)]. Last fingerprint: [fruit_parent.fingerprintslast].", INVESTIGATE_BOTANY)

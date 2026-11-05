@@ -31,10 +31,10 @@
 		qdel(cancel_button)
 
 /datum/status_effect/crucible_soul/get_examine_text(mob/examiner)
-	return span_notice("[owner.p_they(TRUE)] nie wydaje się do końca obecny.")
+	return span_notice("Wygląda na to, że [owner] nie do końca tu jest.")
 
 /datum/action/cancel_crucible_soul
-	name = "Recall"
+	name = "Zakończ"
 	desc = "Kończy błogosławieństwo przed czasem."
 	icon_icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	button_icon_state = "crucible_soul"
@@ -141,7 +141,7 @@
 	carbie.updatehealth()
 
 /atom/movable/screen/alert/status_effect/crucible_soul
-	name = "Blessing of Crucible Soul"
+	name = "Błogosławieństwo duszy tygla"
 	desc = "Przenikasz przez rzeczywistość. Jesteś w połowie drogi do celu..."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "crucible"
@@ -151,13 +151,13 @@
 	icon_state = "crucible_cooldown"
 
 /atom/movable/screen/alert/status_effect/duskndawn
-	name = "Blessing of Dusk and Dawn"
+	name = "Błogosławieństwo zmierzchu i świtu"
 	desc = "Wiele rzeczy kryje się za horyzontem. Z pomocą Sowy udało mi się prześlizgnąć obok straży Słońca i warty Księżyca."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "duskndawn"
 
 /atom/movable/screen/alert/status_effect/marshal
-	name = "Blessing of Wounded Soldier"
+	name = "Błogosławieństwo rannego żołnierza"
 	desc = "Niektórzy szukają mocy w odkupieniu. Mało kto wie, że bitwa jest odkupieniem ostatecznym, \
 		a rany pozwalają pławić się w wiecznej chwale."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
@@ -344,7 +344,7 @@
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text(mob/examiner)
-	return span_warning("[owner.p_they(TRUE)] jest spowity bezbożną mgłą!")
+	return span_warning("[owner] tonie w kłębach bezbożnej mgły!")
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
@@ -390,7 +390,7 @@
 	owner.remove_traits(list(TRAIT_UNKNOWN_APPEARANCE, TRAIT_UNKNOWN_VOICE, TRAIT_SILENT_FOOTSTEPS), TRAIT_STATUS_EFFECT(id))
 
 /atom/movable/screen/alert/status_effect/moon_grasp_hide
-	name = "Blessing of The Moon"
+	name = "Błogosławieństwo Księżyca"
 	desc = "Księżyc mąci im wzrok, tak jak słońce zawsze mąciło twój."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "moon_hide"
@@ -404,7 +404,7 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /atom/movable/screen/alert/status_effect/heretic_lastresort
-	name = "Last Resort"
+	name = "Ostatnia deska ratunku"
 	desc = "Kręci ci się w głowie, a serce bije tak szybko, jak tylko może!"
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "lastresort"

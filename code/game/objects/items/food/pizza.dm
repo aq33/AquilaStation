@@ -46,7 +46,7 @@
 
 /obj/item/food/pizza/margherita
 	name = "pizza margherita"
-	desc = "The most cheezy pizza in galaxy."
+	desc = "Najbardziej serowa pizza w galaktyce."
 	icon_state = "pizzamargherita"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -61,7 +61,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/margherita/raw
-	name = "raw pizza margherita"
+	name = "surowa pizza margherita"
 	icon_state = "pizzamargherita_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
 	slice_type = null
@@ -79,8 +79,8 @@
 	)
 
 /obj/item/food/pizzaslice/margherita
-	name = "margherita slice"
-	desc = "A slice of the most cheezy pizza in galaxy."
+	name = "kawałek pizzy margherita"
+	desc = "Kawałek najbardziej serowej pizzy w galaktyce."
 	icon_state = "pizzamargheritaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
@@ -91,8 +91,8 @@
 	AddComponent(/datum/component/customizable_reagent_holder, null, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 12)
 
 /obj/item/food/pizza/meat
-	name = "meatpizza"
-	desc = "Greasy pizza with delicious meat."
+	name = "pizza mięsna"
+	desc = "Tłusta pizza z pysznym mięsem."
 	icon_state = "meatpizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -102,11 +102,11 @@
 	)
 	foodtypes = GRAIN | VEGETABLES| DAIRY | MEAT
 	slice_type = /obj/item/food/pizzaslice/meat
-	boxtag = "Meatlovers' Supreme"
+	boxtag = "Mięsny Supreme"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/meat/raw
-	name = "raw meatpizza"
+	name = "surowa pizza mięsna"
 	icon_state = "meatpizza_raw"
 	foodtypes =  GRAIN | VEGETABLES| DAIRY | MEAT | RAW
 	slice_type = null
@@ -115,16 +115,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/meat, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/meat
-	name = "meatpizza slice"
-	desc = "A nutritious slice of meatpizza."
+	name = "kawałek pizzy mięsnej"
+	desc = "Pożywny kawałek pizzy mięsnej."
 	icon_state = "meatpizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/mushroom
-	name = "mushroom pizza"
-	desc = "Very special pizza."
+	name = "pizza grzybowa"
+	desc = "Bardzo wyjątkowa pizza."
 	icon_state = "mushroompizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 28,
@@ -134,11 +134,11 @@
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "grzyb" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/mushroom
-	boxtag = "Mushroom Special"
+	boxtag = "Grzybowa Specjalna"
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pizza/mushroom/raw
-	name = "raw mushroom pizza"
+	name = "surowa pizza grzybowa"
 	icon_state = "mushroompizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
 	slice_type = null
@@ -147,16 +147,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/mushroom, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/mushroom
-	name = "mushroom pizza slice"
-	desc = "Maybe it is the last slice of pizza in your life."
+	name = "kawałek pizzy grzybowej"
+	desc = "Może to ostatni kawałek pizzy w twoim życiu."
 	icon_state = "mushroompizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "grzyb" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pizza/vegetable
-	name = "vegetable pizza"
-	desc = "Not one of the Tomatos Sapiens were harmed during the making of this pizza."
+	name = "pizza wegetariańska"
+	desc = "Podczas robienia tej pizzy nie ucierpiał ani jeden Tomatos Sapiens."
 	icon_state = "vegetablepizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -166,11 +166,11 @@
 	tastes = list("skórka" = 1, "pomidor" = 2, "ser" = 1, "marchewka" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/vegetable
-	boxtag = "Gourmet Vegetable"
+	boxtag = "Warzywna dla Smakoszy"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/vegetable/raw
-	name = "raw vegetable pizza"
+	name = "surowa pizza wegetariańska"
 	icon_state = "vegetablepizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
 	slice_type = null
@@ -179,16 +179,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/vegetable, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/vegetable
-	name = "vegetable pizza slice"
-	desc = "A slice of the most green pizza of all pizzas not containing green ingredients."
+	name = "kawałek pizzy wegetariańskiej"
+	desc = "Kawałek najbardziej zielonej ze wszystkich pizz bez zielonych składników."
 	icon_state = "vegetablepizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 2, "ser" = 1, "marchewka" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/donkpocket
-	name = "donkpocket pizza"
-	desc = "Who thought this would be a good idea?"
+	name = "pizza pierogowa"
+	desc = "Kto pomyślał, że to dobry pomysł?"
 	icon_state = "donkpocketpizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -204,7 +204,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/donkpocket/raw
-	name = "raw donkpocket pizza"
+	name = "surowa pizza pierogowa"
 	icon_state = "donkpocketpizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD | RAW
 	slice_type = null
@@ -213,16 +213,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/donkpocket, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/donkpocket
-	name = "donkpocket pizza slice"
-	desc = "Smells like donkpocket."
+	name = "kawałek pizzy pierogowej"
+	desc = "Pachnie pierogiem."
 	icon_state = "donkpocketpizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1, "lenistwo" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/dank
-	name = "dank pizza"
-	desc = "The hippie's pizza of choice."
+	name = "pizza ziołowa"
+	desc = "Ulubiona pizza hipisów."
 	icon_state = "dankpizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -233,11 +233,11 @@
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/dank
-	boxtag = "Fresh Herb"
+	boxtag = "Świeże Zioła"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/dank/raw
-	name = "raw dank pizza"
+	name = "surowa pizza ziołowa"
 	icon_state = "dankpizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
 	slice_type = null
@@ -246,16 +246,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/dank, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/dank
-	name = "dank pizza slice"
-	desc = "So good, man..."
+	name = "kawałek pizzy ziołowej"
+	desc = "Taka dobra, stary..."
 	icon_state = "dankpizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/sassysage
-	name = "sassysage pizza"
-	desc = "You can almost taste the sassiness."
+	name = "pizza z kiełbasą"
+	desc = "Niemal czujesz smak tej zadziorności."
 	icon_state = "sassysagepizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -266,11 +266,11 @@
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/sassysage
-	boxtag = "Sausage Lovers"
+	boxtag = "Dla Miłośników Kiełbasy"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/sassysage/raw
-	name = "raw sassysage pizza"
+	name = "surowa pizza z kiełbasą"
 	icon_state = "sassysagepizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | RAW
 	slice_type = null
@@ -279,16 +279,16 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/sassysage, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/sassysage
-	name = "sassysage pizza slice"
-	desc = "Deliciously sassy."
+	name = "kawałek pizzy z kiełbasą"
+	desc = "Pysznie zadziorna."
 	icon_state = "sassysagepizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "mięso" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pizza/pineapple
-	name = "\improper Hawaiian pizza"
-	desc = "The pizza equivalent of Einstein's riddle."
+	name = "\improper pizza hawajska"
+	desc = "Pizzowy odpowiednik zagadki Einsteina."
 	icon_state = "pineapplepizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -300,11 +300,11 @@
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "ananas" = 2, "szynka" = 2)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
 	slice_type = /obj/item/food/pizzaslice/pineapple
-	boxtag = "Honolulu Chew"
+	boxtag = "Smak Honolulu"
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pizza/pineapple/raw
-	name = "raw Hawaiian pizza"
+	name = "surowa pizza hawajska"
 	icon_state = "pineapplepizza_raw"
 	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE | RAW
 	slice_type = null
@@ -313,8 +313,8 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/pineapple, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pizzaslice/pineapple
-	name = "\improper Hawaiian pizza slice"
-	desc = "A slice of delicious controversy."
+	name = "\improper kawałek pizzy hawajskiej"
+	desc = "Kawałek pysznej kontrowersji."
 	icon_state = "pineapplepizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "ananas" = 2, "szynka" = 2)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
@@ -323,9 +323,9 @@
 // Moldly Pizza
 // NOT Used in cytobiology.
 /obj/item/food/pizzaslice/moldy
-	name = "moldy pizza slice"
-	desc = "This was once a perfectly good slice of pizza pie, but now it lies here, rancid and bursting with spores. \
-		What a bummer! But we should not dwell on the past, only look towards the future."
+	name = "spleśniały kawałek pizzy"
+	desc = "Kiedyś był to całkiem dobry kawałek pizzy, ale teraz leży tu zjełczały i pękający od zarodników. \
+		Co za szkoda! Ale nie rozpamiętujmy przeszłości, patrzmy w przyszłość."
 	icon_state = "moldy_slice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -337,12 +337,12 @@
 	preserved_food = TRUE
 
 /obj/item/food/pizzaslice/moldy/bacteria
-	name = "bacteria rich moldy pizza slice"
-	desc = "Not only is this once delicious pizza encrusted with a layer of spore-spewing fungus, it also seems to shift and slide when unattended, teeming with new life."
+	name = "spleśniały kawałek pizzy pełen bakterii"
+	desc = "Ta niegdyś pyszna pizza nie tylko pokryła się warstwą plującego zarodnikami grzyba, ale też zdaje się pełzać, gdy nikt nie patrzy, tętniąc nowym życiem."
 
 /obj/item/food/pizza/arnold
-	name = "\improper Arnold pizza"
-	desc = "Hello, you've reached Arnold's pizza shop. I'm not here now, I'm out killing pepperoni."
+	name = "\improper pizza Arnolda"
+	desc = "Dzień dobry, dodzwoniłeś się do pizzerii Arnolda. Nie ma mnie teraz, jestem na mieście, zabijam pepperoni."
 	icon_state = "arnoldpizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
@@ -357,7 +357,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pizza/arnold/raw
-	name = "raw Arnold pizza"
+	name = "surowa pizza Arnolda"
 	icon_state = "arnoldpizza_raw"
 	foodtypes =  GRAIN | DAIRY | VEGETABLES | RAW
 	slice_type = null
@@ -395,8 +395,8 @@
 	. = ..()
 
 /obj/item/food/pizzaslice/arnold
-	name = "\improper Arnold pizza slice"
-	desc = "I come over, maybe I give you a pizza, maybe I break off your arm."
+	name = "\improper kawałek pizzy Arnolda"
+	desc = "Przychodzę, może dam ci pizzę, a może urwę ci rękę."
 	icon_state = "arnoldpizzaslice"
 	tastes = list("skórka" = 1, "pomidor" = 1, "ser" = 1, "pepperoni" = 2, "naboje 9 mm" = 2)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT
@@ -412,8 +412,8 @@
 
 // Ant Pizza, now with more ants.
 /obj/item/food/pizzaslice/ants
-	name = "\improper Ant Party pizza slice"
-	desc = "The key to a perfect slice of pizza is not to overdo it with the ants."
+	name = "\improper kawałek pizzy Mrówcza Impreza"
+	desc = "Klucz do idealnego kawałka pizzy to nie przesadzić z mrówkami."
 	icon_state = "antpizzaslice"
 	food_reagents = list(
 		/datum/reagent/ants = 5,

@@ -5,8 +5,8 @@
 	} while (0)
 
 /datum/guardian_ability/major/explosive
-	name = "Explosive"
-	desc = "The guardian can, with a single touch, turn any inanimate object into a bomb."
+	name = "Wybuchowość"
+	desc = "Strażnik może jednym dotknięciem zmienić dowolny nieożywiony przedmiot w bombę."
 	ui_icon = "bomb"
 	cost = 4
 	var/bomb_cooldown = 0
@@ -80,7 +80,7 @@
 /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb()
 	set name = "Detonate Bomb"
 	set category = "Guardian"
-	set desc = "Detonate an armed bomb manually."
+	set desc = "Ręcznie zdetonuj uzbrojoną bombę."
 	var/picked_bomb = input(src, "Wybierz bombę do zdetonowania", "Zdetonuj bombę") as null|anything in src.bombs
 	if(picked_bomb)
 		bombs -= picked_bomb

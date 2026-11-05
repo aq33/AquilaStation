@@ -1,6 +1,6 @@
 /obj/item/food/sushi_roll
-	name = "Sushi Parent"
-	desc = "You either spawned this erroneously, or a coder did. Either way, someone messed up."
+	name = "rodzic sushi"
+	desc = "Albo ty zespawnowałeś to przez pomyłkę, albo zrobił to koder. Tak czy siak, ktoś coś zepsuł."
 	icon = 'icons/obj/food/sushi.dmi'
 	icon_state = "ERROR"
 	food_reagents = list(
@@ -17,8 +17,8 @@
 		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, 3 SECONDS, table_required = TRUE)
 
 /obj/item/food/sushi_slice
-	name = "Sushi Slice Parent"
-	desc = "You either spawned this erroneously, or a coder did. Either way, someone messed up."
+	name = "rodzic kawałka sushi"
+	desc = "Albo ty zespawnowałeś to przez pomyłkę, albo zrobił to koder. Tak czy siak, ktoś coś zepsuł."
 	icon = 'icons/obj/food/sushi.dmi'
 	icon_state = "ERROR"
 	food_reagents = list(
@@ -29,8 +29,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/seaweed_sheet
-	name = "seaweed sheet"
-	desc = "A dried sheet of seaweed used for making sushi. Use an ingredient on it to start making custom sushi!"
+	name = "arkusz wodorostów"
+	desc = "Suszony arkusz wodorostów do robienia sushi. Użyj na nim składnika, żeby zacząć robić własne sushi!"
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "seaweed_sheet"
 	food_reagents = list(
@@ -47,37 +47,37 @@
 
 /obj/item/food/sushi_roll/empty //for custom sushi creation
 	name = "sushi"
-	desc = "A roll of customized sushi."
+	desc = "Rolka sushi według własnego pomysłu."
 	icon_state = "vegetariansushiroll"
 	tastes = list()
 	foodtypes = NONE
 	slice_type = /obj/item/food/sushi_slice/empty
 
 /obj/item/food/sushi_slice/empty
-	name = "sushi slice"
-	desc = "A slice of customized sushi."
+	name = "kawałek sushi"
+	desc = "Kawałek sushi według własnego pomysłu."
 	icon_state = "vegetariansushislice"
 	tastes = list()
 	foodtypes = NONE
 
 /obj/item/food/sushi_roll/vegetarian
-	name = "vegetarian sushi roll"
-	desc = "A roll of simple vegetarian sushi with rice, carrots, and cabbage. Sliceable into pieces!"
+	name = "wegetariańska rolka sushi"
+	desc = "Rolka prostego wegetariańskiego sushi z ryżem, marchewką i kapustą. Można ją pokroić na kawałki!"
 	icon_state = "vegetariansushiroll"
 	tastes = list("gotowany ryż" = 4, "marchewki" = 2, "kapusta" = 2)
 	foodtypes = VEGETABLES
 	slice_type = /obj/item/food/sushi_slice/vegetarian
 
 /obj/item/food/sushi_slice/vegetarian
-	name = "vegetarian sushi slice"
-	desc = "A roll of simple vegetarian sushi with rice, carrots, and cabbage."
+	name = "kawałek wegetariańskiego sushi"
+	desc = "Kawałek prostego wegetariańskiego sushi z ryżem, marchewką i kapustą."
 	icon_state = "vegetariansushislice"
 	foodtypes = VEGETABLES
 	tastes = list("gotowany ryż" = 4, "marchewki" = 2, "kapusta" = 2)
 
 /obj/item/food/sushi_roll/spicyfilet
-	name = "spicy filet sushi roll"
-	desc = "A roll of tasty, spicy sushi made with fish and vegetables. Sliceable into pieces!"
+	name = "pikantna rolka sushi z filetem"
+	desc = "Rolka smacznego, pikantnego sushi z rybą i warzywami. Można ją pokroić na kawałki!"
 	icon_state = "spicyfiletroll"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -90,8 +90,8 @@
 	slice_type = /obj/item/food/sushi_slice/spicyfilet
 
 /obj/item/food/sushi_slice/spicyfilet
-	name = "spicy filet sushi slice"
-	desc = "A roll of tasty, spicy sushi made with fish and vegetables."
+	name = "kawałek pikantnego sushi z filetem"
+	desc = "Kawałek smacznego, pikantnego sushi z rybą i warzywami."
 	icon_state = "spicyfiletslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -103,8 +103,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/sushi_roll/futomaki
-	name = "futomaki sushi roll"
-	desc = "A roll of futomaki sushi, made of boiled egg, fish, and cabbage. Sliceable"
+	name = "rolka sushi futomaki"
+	desc = "Rolka sushi futomaki z jajkiem na twardo, rybą i kapustą. Można ją pokroić"
 	icon_state = "futomaki_sushi_roll"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -116,8 +116,8 @@
 	slice_type = /obj/item/food/sushi_slice/futomaki
 
 /obj/item/food/sushi_slice/futomaki
-	name = "futomaki sushi slice"
-	desc = "A slice of futomaki sushi, made of boiled egg, fish, and cabbage."
+	name = "kawałek sushi futomaki"
+	desc = "Kawałek sushi futomaki z jajkiem na twardo, rybą i kapustą."
 	icon_state = "futomaki_sushi_slice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -128,8 +128,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/sushi_roll/philadelphia
-	name = "Philadelphia sushi roll"
-	desc = "A roll of Philadelphia sushi, made of cheese, fish, and cabbage. Sliceable"
+	name = "rolka sushi Philadelphia"
+	desc = "Rolka sushi Philadelphia z serem, rybą i kapustą. Można ją pokroić"
 	icon_state = "philadelphia_sushi_roll"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -141,8 +141,8 @@
 	slice_type = /obj/item/food/sushi_slice/philadelphia
 
 /obj/item/food/sushi_slice/philadelphia
-	name = "Philadelphia sushi slice"
-	desc = "A roll of Philadelphia sushi, made of cheese, fish, and cabbage."
+	name = "kawałek sushi Philadelphia"
+	desc = "Kawałek sushi Philadelphia z serem, rybą i kapustą."
 	icon_state = "philadelphia_sushi_slice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -153,8 +153,8 @@
 	foodtypes = MEAT | DAIRY
 
 /obj/item/food/nigiri_sushi
-	name = "nigiri sushi"
-	desc = "A simple nigiri of fish atop a packed rice ball with a seaweed wrapping and a side of soy sauce."
+	name = "sushi nigiri"
+	desc = "Proste nigiri z rybą na zbitej kulce ryżu, owinięte wodorostem, z sosem sojowym."
 	icon = 'icons/obj/food/sushi.dmi'
 	icon_state = "nigiri_sushi"
 	food_reagents = list(

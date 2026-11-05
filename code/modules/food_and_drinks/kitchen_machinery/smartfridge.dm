@@ -2,8 +2,8 @@
 //  SmartFridge.  Much todo
 // -------------------------
 /obj/machinery/smartfridge
-	name = "smartfridge"
-	desc = "Keeps cold things cold and hot things cold."
+	name = "inteligentna lodówka"
+	desc = "Utrzymuje zimne rzeczy w zimnie, a gorące też w zimnie."
 	icon = 'aquila/icons/obj/smartfridge.dmi' // AQ EDIT - port BeeStation #13072: new sprites
 	icon_state = "smartfridge-icon"
 	layer = BELOW_OBJ_LAYER
@@ -158,7 +158,7 @@
 									 "<span class='notice'>Wkładasz [I] do [src].</span>")
 					O.cut_overlays()
 					O.icon_state = "evidenceobj"
-					O.desc = "A container for holding body parts."
+					O.desc = "Pojemnik na części ciała."
 					if(visible_contents)
 						update_icon()
 					return TRUE
@@ -197,7 +197,7 @@
 	if(ismob(O.loc))
 		var/mob/M = O.loc
 		if(!M.transferItemToLoc(O, src))
-			to_chat(usr, "<span class='warning'>\the [O] is stuck to your hand, you cannot put it in \the [src]!</span>")
+			to_chat(usr, "<span class='warning'>[O] przylepia się do twojej ręki, nie możesz włożyć tego do [src]!</span>")
 			return FALSE
 		else
 			. = TRUE
@@ -303,8 +303,8 @@
 //  Drying Rack 'smartfridge'
 // ----------------------------
 /obj/machinery/smartfridge/drying_rack
-	name = "drying rack"
-	desc = "A wooden contraption, used to dry plant products, food and leather."
+	name = "suszarka"
+	desc = "Drewniane ustrojstwo do suszenia roślin, jedzenia i skóry."
 	icon_state = "drying-rack" // AQ EDIT - port BeeStation #13072: new sprite
 	base_icon_state = "drying-rack"
 	use_power = NO_POWER_USE
@@ -425,9 +425,9 @@
 //  Bar drink smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/drinks
-	name = "drink showcase"
+	name = "witryna z napojami"
 	contents_overlay_icon = "drink" // AQ EDIT - port BeeStation #13072
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	desc = "Chłodzony schowek na smaczny, smaczny alkohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
 	if(!istype(O, /obj/item/reagent_containers) || (O.item_flags & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
@@ -439,7 +439,7 @@
 //  Food smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/food
-	desc = "A refrigerated storage unit for food."
+	desc = "Chłodzony schowek na jedzenie."
 	contents_overlay_icon = "food" // AQ EDIT - port BeeStation #13072
 
 /obj/machinery/smartfridge/food/accept_check(obj/item/O)
@@ -451,9 +451,9 @@
 // Xenobiology Slime-Extract Smartfridge
 // -------------------------------------
 /obj/machinery/smartfridge/extract
-	name = "smart slime extract storage"
+	name = "inteligentny schowek na ekstrakty szlamu"
 	contents_overlay_icon = "slime" // AQ EDIT - port BeeStation #13072
-	desc = "A refrigerated storage unit for slime extracts."
+	desc = "Chłodzony schowek na ekstrakty szlamu."
 
 /obj/machinery/smartfridge/extract/accept_check(obj/item/O)
 	if(istype(O, /obj/item/slime_extract))
@@ -469,9 +469,9 @@
 // Organ Surgery Smartfridge
 // -------------------------
 /obj/machinery/smartfridge/organ
-	name = "smart organ storage"
+	name = "inteligentny schowek na organy"
 	contents_overlay_icon = "organ" // AQ EDIT - port BeeStation #13072
-	desc = "A refrigerated storage unit for organ storage."
+	desc = "Chłodzony schowek do przechowywania organów."
 	max_n_of_items = 20	//vastly lower to prevent processing too long
 	var/repair_rate = 0
 
@@ -514,9 +514,9 @@
 // Chemistry Medical Smartfridge
 // -----------------------------
 /obj/machinery/smartfridge/chemistry
-	name = "smart chemical storage"
+	name = "inteligentny schowek na chemikalia"
 	contents_overlay_icon = "chem" // AQ EDIT - port BeeStation #13072
-	desc = "A refrigerated storage unit for medicine storage."
+	desc = "Chłodzony schowek do przechowywania leków."
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
 	if(istype(O, /obj/item/storage/pill_bottle))
@@ -547,9 +547,9 @@
 // Virology Medical Smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/chemistry/virology
-	name = "smart virus storage"
+	name = "inteligentny schowek na wirusy"
 	contents_overlay_icon = "viro" // AQ EDIT - port BeeStation #13072
-	desc = "A refrigerated storage unit for volatile sample storage."
+	desc = "Chłodzony schowek do przechowywania niestabilnych próbek."
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded
 	initial_contents = list(
@@ -563,8 +563,8 @@
 		/obj/item/reagent_containers/glass/bottle/cryostylane = 1)
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded/debug
-	name = "debug virus storage"
-	desc = "Oh boy, badmin at it again with the Toxoplasmosis!"
+	name = "testowy schowek na wirusy"
+	desc = "No proszę, badmin znowu bawi się toksoplazmozą!"
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded/debug/Initialize(mapload)
 	. = ..()
@@ -577,8 +577,8 @@
 		symptomholder.Refresh()
 		var/list/data = list("viruses" = list(symptomholder))
 		var/obj/item/reagent_containers/glass/bottle/B = new
-		B.name = "[symptomholder.name] culture bottle"
-		B.desc = "A small bottle. Contains [symptomholder.agent] culture in synthblood medium."
+		B.name = "butelka z kulturą: [symptomholder.name]"
+		B.desc = "Mała butelka. Zawiera kulturę ([symptomholder.agent]) w podłożu z syntetycznej krwi."
 		B.reagents.add_reagent(/datum/reagent/blood, 20, data)
 		B.forceMove(src)
 	for(var/disease in subtypesof(/datum/disease))
@@ -586,8 +586,8 @@
 			var/datum/disease/target = new disease
 			var/list/data = list("viruses" = list(target))
 			var/obj/item/reagent_containers/glass/bottle/B = new
-			B.name = "[target.name] culture bottle"
-			B.desc = "A small bottle. Contains [target.agent] culture in synthblood medium."
+			B.name = "butelka z kulturą: [target.name]"
+			B.desc = "Mała butelka. Zawiera kulturę ([target.agent]) w podłożu z syntetycznej krwi."
 			B.reagents.add_reagent(/datum/reagent/blood, 20, data)
 			B.forceMove(src)
 
@@ -597,8 +597,8 @@
 // Disk """fridge"""
 // ----------------------------
 /obj/machinery/smartfridge/disks
-	name = "disk compartmentalizer"
-	desc = "A machine capable of storing a variety of disks. Denoted by most as the DSU (disk storage unit)."
+	name = "segregator dysków"
+	desc = "Maszyna do przechowywania różnych dysków. Większość nazywa ją DSU (jednostką przechowywania dysków)."
 	icon_state = "disktoaster"
 	base_icon_state = "disktoaster" // AQ EDIT - port BeeStation #13072
 	pass_flags = PASSTABLE

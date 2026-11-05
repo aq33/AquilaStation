@@ -15,8 +15,8 @@
 // Final step - insert loading tray
 
 /obj/structure/ship_weapon/mac_assembly
-	name = "NT-STC6 Ship radial MAC mount"
-	desc = "An incomplete assembly for an NT-STC6 ship mounted MAC chamber."
+	name = "okrętowe stanowisko radialnego działa MAC NT-STC6"
+	desc = "Niedokończony montaż komory okrętowego działa MAC NT-STC6."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "railgun_platform"
 	bound_width = 128

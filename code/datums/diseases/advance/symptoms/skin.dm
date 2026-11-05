@@ -16,7 +16,7 @@ BONUS
 
 /datum/symptom/vitiligo
 
-	name = "Vitiligo"
+	name = "Bielactwo"
 	desc = "Wirus niszczy komórki barwnikowe skóry, powodując szybką utratę pigmentacji u nosiciela."
 	stealth = 2
 	resistance = 0
@@ -88,7 +88,7 @@ BONUS
 */
 
 /datum/symptom/revitiligo
-	name = "Revitiligo"
+	name = "Rebielactwo"
 	desc = "Wirus zwiększa wytwarzanie komórek barwnikowych skóry, przez co skóra nosiciela z czasem ciemnieje."
 	stealth = 1
 	resistance = 2
@@ -160,7 +160,7 @@ BONUS
 */
 
 /datum/symptom/polyvitiligo
-	name = "Polyvitiligo"
+	name = "Polibielactwo"
 	desc = "Wirus zastępuje melaninę w skórze reaktywnym barwnikiem."
 	stealth = 0
 	resistance = 1
@@ -202,7 +202,7 @@ BONUS
 
 ***********************************/
 /datum/symptom/skineggs //Thought Exolocomotive Xenomitosis was a weird symptom? Well, this is about 10x weirder.
-	name = "Dermagraphic Ovulogenesis"
+	name = "Dermagraficzna owulogeneza"
 	desc = "Wirus sprawia, że na skórze nosiciela rosną jajowate guzki, które okresowo odpadają i zawierają chorobę oraz trochę substancji leczniczych."
 	stealth = -3 //You are basically growing these weird Egg shits on your skin, this is not stealthy in the slightest
 	resistance = 1
@@ -267,7 +267,7 @@ BONUS
 
 #define EGGSPLODE_DELAY 100 SECONDS
 /obj/item/food/eggsac
-	name = "Fleshy Egg Sac"
+	name = "mięsisty worek jajowy"
 	desc = "Mały worek jajowy, który wygląda na zrobiony z czyjegoś ciała!"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "eggsac"
@@ -306,7 +306,7 @@ BONUS
 		I.throw_at(thrown_at, rand(2,4), 4)
 
 /obj/item/food/fleshegg
-	name = "Fleshy Egg"
+	name = "mięsiste jajo"
 	desc = "Jajo, które wygląda na zrobione z czyjegoś ciała!"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "fleshegg"
@@ -343,7 +343,7 @@ Thresholds
 //////////////////////////////////////
 */
 /datum/symptom/spiked
-	name = "Cornu Cutaneum"
+	name = "Róg skórny"
 	desc = "Wirus sprawia, że nosicielowi nieprzewidywalnie rosną i odpadają ostre kolce, raniąc osoby w pobliżu."
 	stealth = -3
 	resistance = 3
@@ -407,7 +407,7 @@ Thresholds
 
 
 /datum/symptom/pustule
-	name = "Bubonic Infection"
+	name = "Zakażenie dżumowe"
 	desc = "Wirus wywołuje ropiejące zakażenia węzłów chłonnych nosiciela, prowadząc do ropiejących dymienic zadających obrażenia od toksyn."
 	stealth = -1
 	resistance = -2
@@ -509,7 +509,7 @@ Thresholds
 	
 
 /obj/item/projectile/pimple
-	name = "high-velocity pustule"
+	name = "wystrzelona krosta"
 	damage = 4 //and very easily blocked with some bio armor
 	range = 5
 	speed = 5

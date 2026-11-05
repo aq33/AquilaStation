@@ -9,6 +9,28 @@ import { regQuery } from './winreg.js';
  */
 let dmPath;
 
+const isWindows = process.platform === 'win32';
+const dmExeName = isWindows ? 'dm.exe' : 'DreamMaker';
+
+/**
+ * Linux BYOND binaries load libbyond.so from their own folder,
+ * which byondsetup normally puts on LD_LIBRARY_PATH.
+ */
+const withByondLibs = (dmExe) => {
+  if (isWindows) {
+    return process.env;
+  }
+  const dir = path.dirname(path.resolve(dmExe));
+  const libs = process.env.LD_LIBRARY_PATH || '';
+  if (libs.split(':').includes(dir)) {
+    return process.env;
+  }
+  return {
+    ...process.env,
+    LD_LIBRARY_PATH: libs ? `${dir}:${libs}` : dir,
+  };
+};
+
 /**
  * Reads the required BYOND version from dependencies.sh.
  * @returns {{ major: number, minor: number } | null}
@@ -35,6 +57,7 @@ const getDmVersion = (dmExe) => {
   try {
     const { stdout, stderr } = spawnSync(dmExe, [], {
       encoding: 'utf-8',
+      env: withByondLibs(dmExe),
       timeout: 10000,
       windowsHide: true,
     });
@@ -65,18 +88,22 @@ const getCacheDir = () => (
   || path.resolve('tools/bootstrap/.cache')
 );
 
+const getCachedDmExe = (required) => path.join(
+  getCacheDir(), `byond-${required.major}.${required.minor}`, 'byond', 'bin', dmExeName);
+
 /**
  * Downloads the required BYOND version into the bootstrap cache
- * (Windows only) and returns the path to its dm.exe.
+ * and returns the path to its compiler.
  */
 const downloadByond = async (required) => {
   const version = `${required.major}.${required.minor}`;
   const targetDir = path.join(getCacheDir(), `byond-${version}`);
-  const dmExe = path.join(targetDir, 'byond', 'bin', 'dm.exe');
+  const dmExe = getCachedDmExe(required);
   if (isFile(dmExe)) {
     return dmExe;
   }
-  const url = `https://www.byond.com/download/build/${required.major}/${version}_byond.zip`;
+  const zipName = isWindows ? `${version}_byond.zip` : `${version}_byond_linux.zip`;
+  const url = `https://www.byond.com/download/build/${required.major}/${zipName}`;
   const zipFile = path.join(getCacheDir(), `byond-${version}.zip`);
   Juke.logger.info(`Downloading BYOND ${version} from ${url}`);
   fs.mkdirSync(targetDir, { recursive: true });
@@ -87,14 +114,28 @@ const downloadByond = async (required) => {
   fs.writeFileSync(zipFile, Buffer.from(await response.arrayBuffer()));
   // tar ships with Windows 10 and newer and can unpack zip files.
   // Use the system one: a GNU tar from Git Bash on PATH can't handle drive letter paths.
+  // GNU tar on Linux can't read zip files, so unzip is used there.
   const tarExe = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe');
-  const result = spawnSync(isFile(tarExe) ? tarExe : 'tar', ['-xf', zipFile, '-C', targetDir], {
-    stdio: 'inherit',
-    windowsHide: true,
-  });
+  const result = isWindows
+    ? spawnSync(isFile(tarExe) ? tarExe : 'tar', ['-xf', zipFile, '-C', targetDir], {
+      stdio: 'inherit',
+      windowsHide: true,
+    })
+    : spawnSync('unzip', ['-q', '-o', zipFile, '-d', targetDir], {
+      stdio: 'inherit',
+    });
+  if (result.error && result.error.code === 'ENOENT' && !isWindows) {
+    fs.rmSync(zipFile, { force: true });
+    throw new Error('unzip is missing, install it with: sudo apt-get install unzip');
+  }
   fs.rmSync(zipFile, { force: true });
   if (result.status !== 0 || !isFile(dmExe)) {
     throw new Error(`Could not unpack BYOND ${version} into ${targetDir}`);
+  }
+  if (!isWindows) {
+    for (const exe of ['DreamMaker', 'DreamDaemon']) {
+      fs.chmodSync(path.join(path.dirname(dmExe), exe), 0o755);
+    }
   }
   Juke.logger.info(`BYOND ${version} installed to ${targetDir}`);
   return dmExe;
@@ -118,7 +159,7 @@ const resolveDmExe = async (candidate) => {
   if (!candidate) {
     return null;
   }
-  for (const file of [candidate, candidate + '/dm.exe', candidate + '/bin/dm.exe']) {
+  for (const file of [candidate, `${candidate}/${dmExeName}`, `${candidate}/bin/${dmExeName}`]) {
     if (isFile(file)) {
       return file;
     }
@@ -141,12 +182,20 @@ const getDmPath = async () => {
       }
     }
     // Search in array of paths, skipping wrong BYOND versions
-    const paths = [
-      required && path.join(getCacheDir(), `byond-${required.major}.${required.minor}`, 'byond', 'bin', 'dm.exe'),
+    const paths = isWindows ? [
+      required && getCachedDmExe(required),
       'C:\\Program Files\\BYOND\\bin\\dm.exe',
       'C:\\Program Files (x86)\\BYOND\\bin\\dm.exe',
       ['reg', 'HKLM\\Software\\Dantom\\BYOND', 'installpath'],
       ['reg', 'HKLM\\SOFTWARE\\WOW6432Node\\Dantom\\BYOND', 'installpath'],
+    ] : [
+      required && getCachedDmExe(required),
+      // tools/ci/install_byond.sh or a manual "make here" install
+      process.env.HOME && path.join(process.env.HOME, 'BYOND', 'byond', 'bin', 'DreamMaker'),
+      // "make install"
+      '/usr/local/byond/bin/DreamMaker',
+      ...(process.env.PATH || '').split(':').filter(Boolean)
+        .map(dir => path.join(dir, 'DreamMaker')),
     ];
     for (const candidate of paths) {
       const dmExe = await resolveDmExe(candidate);
@@ -159,8 +208,8 @@ const getDmPath = async () => {
       }
       Juke.logger.warn(`Skipping ${dmExe}: BYOND ${version ? `${version.major}.${version.minor}` : '(unknown version)'}, need ${required.major}.${required.minor}`);
     }
-    // Nothing suitable installed - fetch the right version on Windows
-    if (process.platform === 'win32' && required) {
+    // Nothing suitable installed - fetch the right version
+    if (required) {
       return downloadByond(required);
     }
     // Default paths
@@ -181,6 +230,7 @@ const getDmPath = async () => {
  */
 export const DreamMaker = async (dmeFile, options = {}) => {
   const dmPath = await getDmPath();
+  Object.assign(process.env, withByondLibs(dmPath));
   // Get project basename
   const dmeBaseName = dmeFile.replace(/\.dme$/, '');
   // Make sure output files are writable
@@ -236,6 +286,7 @@ export const DreamMaker = async (dmeFile, options = {}) => {
 
 export const DreamDaemon = async (dmbFile, ...args) => {
   const dmPath = await getDmPath();
+  Object.assign(process.env, withByondLibs(dmPath));
   const baseDir = path.dirname(dmPath);
   const ddExeName = process.platform === 'win32' ? 'dreamdaemon.exe' : 'DreamDaemon';
   const ddExePath = baseDir === '.' ? ddExeName : path.join(baseDir, ddExeName);

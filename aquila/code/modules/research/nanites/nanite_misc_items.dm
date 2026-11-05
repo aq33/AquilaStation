@@ -1,6 +1,6 @@
 /obj/item/throwing_star/nanite
-	name = "brittle kunai"
-	desc = "A throwing weapon made of a slim blade and a short handle. It looks very brittle."
+	name = "kruche kunai"
+	desc = "Broń do rzucania z wąskiego ostrza i krótkiej rękojeści. Wygląda na bardzo kruchą."
 	icon = 'aquila/icons/obj/items_and_weapons.dmi'
 	icon_state = "kunai"
 	item_state = "knife"

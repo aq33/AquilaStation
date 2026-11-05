@@ -1,6 +1,6 @@
 /obj/machinery/allaccess
-	name = "All Access Dispenser"
-	desc = "Some people confuse the Head of Personnel with this. Contains fake all access cards to keep the greytide at bay!"
+	name = "dozownik pełnego dostępu"
+	desc = "Niektórzy mylą z tym Starszego Oficera. Zawiera fałszywe karty pełnego dostępu, żeby trzymać szarą hołotę na dystans!"
 	icon = 'icons/obj/card.dmi'
 	icon_state = "aa"
 	var/spawnitem = /obj/item/toy/allaccess
@@ -26,5 +26,5 @@
 			machine_stat |= NOPOWER
 
 /obj/machinery/allaccess/real
-	desc = "Some people confuse the Head of Personnel with this. Contains real All Access!"  // admin spawn for funnies
+	desc = "Niektórzy mylą z tym Starszego Oficera. Zawiera prawdziwy pełny dostęp!"  // admin spawn for funnies
 	spawnitem = /obj/item/card/id/captains_spare

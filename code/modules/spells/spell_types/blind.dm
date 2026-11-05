@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/blind
-	name = "Blind"
-	desc = "This spell temporarily blinds a single target."
+	name = "Oślepienie"
+	desc = "To zaklęcie tymczasowo oślepia pojedynczy cel."
 	school = "transmutation"
 	charge_max = 300
 	clothes_req = FALSE

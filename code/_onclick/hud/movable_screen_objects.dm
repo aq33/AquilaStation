@@ -57,12 +57,12 @@
 	set name = "Spawn Movable UI Object"
 
 	var/atom/movable/screen/movable/M = new()
-	M.name = "Movable UI Object"
+	M.name = "Ruchomy element UI"
 	M.icon_state = "block"
-	M.maptext = MAPTEXT("Movable")
+	M.maptext = MAPTEXT("Ruchomy")
 	M.maptext_width = 64
 
-	var/screen_l = capped_input(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Movable UI Object")
+	var/screen_l = capped_input(usr,"W którym miejscu ekranu? (format 'X,Y', np. '1,1' to lewy dolny róg)","Stwórz ruchomy element UI")
 	if(!screen_l)
 		return
 
@@ -76,12 +76,12 @@
 	set name = "Spawn Snap UI Object"
 
 	var/atom/movable/screen/movable/snap/S = new()
-	S.name = "Snap UI Object"
+	S.name = "Przyciągany element UI"
 	S.icon_state = "block"
-	S.maptext = MAPTEXT("Snap")
+	S.maptext = MAPTEXT("Przyciąg")
 	S.maptext_width = 64
 
-	var/screen_l = capped_input(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Snap UI Object")
+	var/screen_l = capped_input(usr,"W którym miejscu ekranu? (format 'X,Y', np. '1,1' to lewy dolny róg)","Stwórz przyciągany element UI")
 	if(!screen_l)
 		return
 

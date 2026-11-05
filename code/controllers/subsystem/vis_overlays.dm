@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(vis_overlays)
 
 /datum/controller/subsystem/vis_overlays/proc/remove_vis_overlay(atom/movable/thing, list/overlays)
 	thing.vis_contents -= overlays
-	if(!isatom(thing))
+	if(!isatom(thing) || !thing.managed_vis_overlays) // AQ EDIT - the cogbar removed its cog after the list was already gone (null -= list)
 		return
 	thing.managed_vis_overlays -= overlays
 	if(!length(thing.managed_vis_overlays))

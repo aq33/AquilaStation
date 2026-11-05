@@ -6,8 +6,8 @@ Slimecrossing Potions
 
 //Extract cloner - Charged Grey
 /obj/item/slimepotion/extract_cloner
-	name = "extract cloning potion"
-	desc = "An more powerful version of the extract enhancer potion, capable of cloning regular slime extracts."
+	name = "mikstura klonowania ekstraktów"
+	desc = "Silniejsza wersja wzmacniacza ekstraktów, która potrafi klonować zwykłe ekstrakty szlamu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpurple"
 
@@ -34,8 +34,8 @@ Slimecrossing Potions
 
 //Peace potion - Charged Light Pink
 /obj/item/slimepotion/peacepotion
-	name = "pacification potion"
-	desc = "A light pink solution of chemicals, smelling like liquid peace. And mercury salts."
+	name = "mikstura pacyfikująca"
+	desc = "Jasnoróżowy roztwór chemikaliów pachnący płynnym spokojem. I solami rtęci."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potlightpink"
 
@@ -68,8 +68,8 @@ Slimecrossing Potions
 
 //Love potion - Charged Pink
 /obj/item/slimepotion/lovepotion
-	name = "love potion"
-	desc = "A pink chemical mix thought to inspire feelings of love."
+	name = "eliksir miłości"
+	desc = "Różowa mieszanka chemiczna, która podobno budzi uczucie miłości."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpink"
 
@@ -102,8 +102,8 @@ Slimecrossing Potions
 
 //Pressure potion - Charged Dark Blue
 /obj/item/slimepotion/spaceproof
-	name = "slime pressurization potion"
-	desc = "A potent chemical sealant that will render any article of clothing airtight. Has two uses."
+	name = "szlamowa mikstura ciśnieniowa"
+	desc = "Silny chemiczny uszczelniacz, który czyni dowolne ubranie szczelnym. Wystarcza na dwa użycia."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potblue"
 	var/uses = 2
@@ -122,7 +122,7 @@ Slimecrossing Potions
 		to_chat(user, "<span class='warning'>[C] jest już odporny na ciśnienie!</span>")
 		return ..()
 	to_chat(user, "<span class='notice'>Smarujesz [C] niebieską mazią, czyniąc go szczelnym.</span>")
-	C.name = "pressure-resistant [C.name]"
+	C.name = "[C.name] (odporność na ciśnienie)"
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	C.add_atom_colour("#000080", FIXED_COLOUR_PRIORITY)
 	C.min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
@@ -135,15 +135,15 @@ Slimecrossing Potions
 
 //Enhancer potion - Charged Cerulean
 /obj/item/slimepotion/enhancer/max
-	name = "extract maximizer"
-	desc = "An extremely potent chemical mix that will maximize a slime extract's uses."
+	name = "maksymalizator ekstraktów"
+	desc = "Niezwykle silna mieszanka chemiczna, która maksymalizuje liczbę użyć ekstraktu szlamu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpurple"
 
 //Lavaproofing potion - Charged Red
 /obj/item/slimepotion/lavaproof
-	name = "slime lavaproofing potion"
-	desc = "A strange, reddish goo said to repel lava as if it were water, without reducing flammability. Has two uses."
+	name = "szlamowa mikstura lawoodporna"
+	desc = "Dziwna, czerwonawa maź, która podobno odpycha lawę jak wodę, choć nie zmniejsza palności. Wystarcza na dwa użycia."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potred"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
@@ -160,7 +160,7 @@ Slimecrossing Potions
 		to_chat(user, "<span class='warning'>Nie możesz pokryć tego płynem chroniącym przed lawą!</span>")
 		return ..()
 	to_chat(user, "<span class='notice'>Smarujesz [C] czerwoną mazią, czyniąc go odpornym na lawę.</span>")
-	C.name = "lavaproof [C.name]"
+	C.name = "[C.name] (odporność na lawę)"
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	C.add_atom_colour("#800000", FIXED_COLOUR_PRIORITY)
 	C.resistance_flags |= LAVA_PROOF
@@ -174,8 +174,8 @@ Slimecrossing Potions
 
 //Revival potion - Charged Grey
 /obj/item/slimepotion/slime_reviver
-	name = "slime revival potion"
-	desc = "Infused with plasma and compressed gel, this brings dead slimes back to life."
+	name = "szlamowa mikstura ożywiająca"
+	desc = "Nasycona plazmą i sprężonym żelem, przywraca martwe szlamy do życia."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potsilver"
 
@@ -198,8 +198,8 @@ Slimecrossing Potions
 
 //Stabilizer potion - Charged Blue
 /obj/item/slimepotion/slime/chargedstabilizer
-	name = "slime omnistabilizer"
-	desc = "An extremely potent chemical mix that will stop a slime from mutating completely."
+	name = "omnistabilizator szlamów"
+	desc = "Niezwykle silna mieszanka chemiczna, która całkowicie powstrzymuje mutacje szlamu."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potcyan"
 

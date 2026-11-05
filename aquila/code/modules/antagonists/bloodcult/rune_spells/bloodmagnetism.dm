@@ -9,10 +9,10 @@
 	word3 = /datum/rune_word/self
 	page = "Ta runa ma w sobie dwa różne rytuały:\
 		<br><br>Pierwszy, Przyzwanie Kultysty, ściąga kultystę z dowolnego miejsca w świecie, żywego albo martwego, kosztem 50u krwi, które można podzielić, jeśli inni kultyści dołączą do rytuału. \
-		Rytuał się jednak nie uda, jeśli cel jest przytwierdzony do miejsca albo ma święty implant.\
+		Rytuał się jednak nie uda, jeśli cel jest przypięty, w czymś siedzi albo ma we krwi wodę święconą.\
 		<br><br>Drugi, Dołączenie do Kultysty, przenosi ciebie obok wybranego kultysty kosztem 15u krwi. \
 		Inni kultyści mogą dołączyć, by ci towarzyszyć, ale każdy uczestnik płaci te 15u. \
-		I tu rytuał się nie uda, jeśli cel ma święty implant.\
+		I tu rytuał się nie uda, jeśli cel ma we krwi wodę święconą.\
 		<br><br>Ta runa zostaje po użyciu, można jej używać wielokrotnie."
 	remaining_cost = 10
 	cost_upkeep = 1
@@ -179,7 +179,7 @@
 		update_progbar()
 
 		sleep(10)
-	message_admins("A rune ritual has iterated for over 1000 blood payment procs. Something's wrong there.")
+	message_admins("Rytuał runy wykonał ponad 1000 iteracji płacenia krwią. Coś tu nie gra.")
 
 /datum/rune_spell/bloodmagnetism/proc/success()
 	if (QDELETED(target) || target.occult_muted())

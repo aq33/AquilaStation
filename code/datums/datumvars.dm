@@ -29,13 +29,13 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	VV_DROPDOWN_OPTION("", "---")
-	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Call Proc")
-	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
-	VV_DROPDOWN_OPTION(VV_HK_TAG, "Tag Datum")
-	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
-	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
-	VV_DROPDOWN_OPTION(VV_HK_ADDCOMPONENT, "Add Component/Element")
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRAITS, "Modify Traits")
+	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Wywołaj prockę")
+	VV_DROPDOWN_OPTION(VV_HK_MARK, "Oznacz obiekt")
+	VV_DROPDOWN_OPTION(VV_HK_TAG, "Otaguj datum")
+	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Usuń")
+	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Pokaż VV graczowi")
+	VV_DROPDOWN_OPTION(VV_HK_ADDCOMPONENT, "Dodaj komponent/element")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRAITS, "Modyfikuj cechy")
 
 /**
  * This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!

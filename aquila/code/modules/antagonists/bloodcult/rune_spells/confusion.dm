@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(confusion_victims, list())
 		start_confusion(T, hallucinated_turfs)
 		return
 	if (victim.mind)
-		message_admins("BLOODCULT: [key_name(victim)] had the effects of Confusion refreshed back to [duration/10] seconds.")
+		message_admins("BLOODCULT: [key_name(victim)] – Dezorientacja odnowiona do [duration/10] s.")
 		log_admin("BLOODCULT: [key_name(victim)] had the effects of Confusion refreshed by back to [duration/10] seconds.")
 	var/time_key = world.time
 	time_of_last_confusion = time_key
@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(confusion_victims, list())
 	var/time_key = world.time
 	time_of_last_confusion = time_key
 	if (victim.mind)
-		message_admins("BLOODCULT: [key_name(victim)] is now under the effects of Confusion for [duration/10] seconds.")
+		message_admins("BLOODCULT: [key_name(victim)] jest pod wpływem Dezorientacji przez [duration/10] s.")
 		log_admin("BLOODCULT: [key_name(victim)] is now under the effects of Confusion for [duration/10] seconds.")
 	to_chat(victim, span_danger("Ciemnieje ci przed oczami, panika i paranoja odciskają piętno na twoim umyśle.") )
 	victim.overlay_fullscreen("blindborder", /atom/movable/screen/fullscreen/confusion_border)//victims DO still get blinded for a second
@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(confusion_victims, list())
 				continue
 			victim.client.images -= image //removing images caused by every blind rune used consecutively on that mob
 	if (victim.mind)
-		message_admins("BLOODCULT: [key_name(victim)] is no longer under the effects of Confusion.")
+		message_admins("BLOODCULT: [key_name(victim)] nie jest już pod wpływem Dezorientacji.")
 		log_admin("BLOODCULT: [key_name(victim)] is no longer under the effects of Confusion.")
 	sleep(15)
 	victim?.clear_fullscreen("blindwhite", animated = FALSE)

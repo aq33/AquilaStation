@@ -1,8 +1,8 @@
 #define ARM_ACTION_COOLDOWN (5 SECONDS)
 
 /obj/machinery/nuclearbomb
-	name = "nuclear fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	name = "ładunek rozszczepienia jądrowego"
+	desc = "Lepiej nie czekać tu, żeby sprawdzić, czy jest uzbrojony."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = FALSE
@@ -67,8 +67,8 @@
 		to_chat(user, "Do detonacji pozostało [get_time_left()] s.")
 
 /obj/machinery/nuclearbomb/selfdestruct
-	name = "station self-destruct terminal"
-	desc = "For when it all gets too much to bear. Do not taunt."
+	name = "terminal autodestrukcji statku"
+	desc = "Na wypadek, gdy wszystkiego jest już za dużo. Nie drażnić."
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = TRUE //stops it being moved
@@ -540,8 +540,8 @@
 		return CINEMATIC_SELFDESTRUCT_MISS
 
 /obj/machinery/nuclearbomb/beer
-	name = "\improper Nanotrasen-brand nuclear fission explosive"
-	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	name = "\improper ładunek rozszczepienia jądrowego marki Nanotrasen"
+	desc = "Jedno z większych osiągnięć Korporacyjnego Wydziału Wojennego Nanotrasen. Ich ładunki rozszczepienia jądrowego słyną z taniej produkcji i niszczycielskiej skuteczności. Tabliczki wyjaśniają, że choć ten egzemplarz wycofano ze służby, każda stacja Nanotrasen ma na wszelki wypadek podobny. Wszyscy kapitanowie pilnie strzegą dysku potrzebnego do detonacji – przynajmniej tak twierdzi tabliczka. Z tyłu chyba jest kranik."
 	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 
@@ -647,8 +647,8 @@ This is here to make the tiles around the station mininuke change when it's arme
 	pickup_sound =  'sound/items/handling/disk_pickup.ogg'
 
 /obj/item/disk/nuclear
-	name = "nuclear authentication disk"
-	desc = "Better keep this safe."
+	name = "dysk nuklearny"
+	desc = "Lepiej go pilnuj."
 	icon_state = "nucleardisk"
 	persistence_replacement = /obj/item/disk/nuclear/fake
 	max_integrity = 250
@@ -696,7 +696,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 			if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
 				loneop.weight += 5
 				COOLDOWN_START(src, weight_increase_cooldown, (5 MINUTES))
-				message_admins("[src] is stationary in [ADMIN_VERBOSEJMP(newturf)]. The weight of Lone Operative is now [loneop.weight].")
+				message_admins("[src] nie rusza się z miejsca: [ADMIN_VERBOSEJMP(newturf)]. Waga Samotnego operatora wynosi teraz [loneop.weight].")
 				log_game("[src] is stationary for too long in [loc_name(newturf)], and has increased the weight of the Lone Operative event to [loneop.weight].")
 				if(disk_comfort_level >= 2 && (process_tick % 30) == 0)
 					visible_message("<span class='notice'>[src] śpi smacznie. Śpij dobrze, dysku.</span>")
@@ -708,7 +708,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 			loneop.weight = max(loneop.weight - 1, 0)
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
-				message_admins("[src] is on the move (currently in [ADMIN_VERBOSEJMP(newturf)]). The weight of Lone Operative is now [loneop.weight].")
+				message_admins("[src] jest w ruchu (obecnie: [ADMIN_VERBOSEJMP(newturf)]). Waga Samotnego operatora wynosi teraz [loneop.weight].")
 			log_game("[src] being on the move has reduced the weight of the Lone Operative event to [loneop.weight].")
 
 /obj/item/disk/nuclear/examine(mob/user)
@@ -757,5 +757,5 @@ This is here to make the tiles around the station mininuke change when it's arme
 	fake = TRUE
 
 /obj/item/disk/nuclear/fake/obvious
-	name = "cheap plastic imitation of the nuclear authentication disk"
-	desc = "How anyone could mistake this for the real thing is beyond you."
+	name = "tania plastikowa imitacja dysku nuklearnego"
+	desc = "Nie pojmujesz, jak ktokolwiek mógłby to wziąć za prawdziwy dysk."

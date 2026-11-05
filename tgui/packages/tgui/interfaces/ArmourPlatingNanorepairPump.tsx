@@ -30,12 +30,12 @@ export const ArmourPlatingNanorepairPump = (props) => {
     <Window theme="ntos" width={500} height={380}>
       <Window.Content scrollable>
         <Section title={data.quadrant}>
-          <Section title="Repair Rates:">
+          <Section title="Tempo naprawy:">
             <Flex spacing={1}>
               <Flex.Item width="200px">
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Armour Repair Rate">
+                    <LabeledList.Item label="Tempo naprawy pancerza">
                       <ProgressBar
                         value={data.armour_repair_amount}
                         minValue={0}
@@ -45,7 +45,7 @@ export const ArmourPlatingNanorepairPump = (props) => {
                         {data.armour_repair_amount}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Structure Repair Rate">
+                    <LabeledList.Item label="Tempo naprawy struktury">
                       <ProgressBar
                         value={data.structure_repair_amount}
                         minValue={0}
@@ -81,7 +81,7 @@ export const ArmourPlatingNanorepairPump = (props) => {
             </Flex>
           </Section>
         </Section>
-        <Section title="System Resources Allocated to Armour:">
+        <Section title="Zasoby systemu przydzielone do pancerza:">
           <Slider
             tickWhileDragging
             value={data.armour_allocation}
@@ -96,7 +96,7 @@ export const ArmourPlatingNanorepairPump = (props) => {
             }
           />
         </Section>
-        <Section title="System Resources Allocated to Internal Structure:">
+        <Section title="Zasoby systemu przydzielone do struktury wewnętrznej:">
           <Slider
             tickWhileDragging
             value={data.structure_allocation}

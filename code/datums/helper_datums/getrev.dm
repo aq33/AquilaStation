@@ -47,7 +47,7 @@
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.head_commit
-		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
+		var/details = ": '" + html_encode(tm.title) + "', autor: " + html_encode(tm.author) + ", commit " + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
@@ -55,14 +55,14 @@
 /client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
-	set desc = "Check the current server code revision"
+	set desc = "Sprawdź obecną rewizję kodu serwera"
 
 	var/list/msg = list("")
 	// Round ID
 	if(GLOB.round_id)
-		msg += "<b>Round ID:</b> [GLOB.round_id]"
+		msg += "<b>ID rundy:</b> [GLOB.round_id]"
 
-	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	msg += "<b>Wersja BYOND:</b> [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
 		msg += "<b>Skompilowano wersją BYOND:</b> [DM_VERSION].[DM_BUILD]"
 
@@ -71,26 +71,26 @@
 	msg += "<b>Data kompilacji rewizji serwera:</b> [revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "Master commit: <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += "Commit mastera: <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
 	if(revdata.testmerge.len)
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "Local commit: [revdata.commit]"
+		msg += "Lokalny commit: [revdata.commit]"
 	else if(!pc)
 		msg += "Brak informacji o commicie"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "TGS version: [version.raw_parameter]"
+		msg += "Wersja TGS: [version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += "DMAPI version: [api_version.raw_parameter]"
+		msg += "Wersja DMAPI: [api_version.raw_parameter]"
 
 	// Game mode odds
-	msg += "<br><b>Current Informational Settings:</b>"
+	msg += "<br><b>Obecne ustawienia informacyjne:</b>"
 	msg += "Chroń role władzy przed zdrajcami: [CONFIG_GET(flag/protect_roles_from_antagonist)]"
 	msg += "Chroń rolę majtka przed zdrajcami: [CONFIG_GET(flag/protect_assistant_from_antagonist)]"
 	msg += "Chroń role dowództwa przed zdrajcami: [CONFIG_GET(flag/protect_heads_from_antagonist)]"
-	msg += "Enforce Human Authority: [CONFIG_GET(flag/enforce_human_authority)]"
-	msg += "Allow Latejoin Antagonists: [CONFIG_GET(flag/allow_latejoin_antagonists)]"
+	msg += "Wymuszaj ludzką władzę: [CONFIG_GET(flag/enforce_human_authority)]"
+	msg += "Pozwól na antagonistów dołączających w trakcie rundy: [CONFIG_GET(flag/allow_latejoin_antagonists)]"
 	msg += "Wymuszaj ciągłe rundy: [length(CONFIG_GET(keyed_list/continuous))] z [config.modes.len] typów rund"
 	msg += "Pozwól na antagonistów w trakcie rundy: [length(CONFIG_GET(keyed_list/midround_antag))] z [config.modes.len] typów rund"
 	if(CONFIG_GET(flag/show_game_type_odds))

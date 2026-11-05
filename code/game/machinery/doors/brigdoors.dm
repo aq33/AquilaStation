@@ -16,10 +16,10 @@
 //  Programmer: Veryinky
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/door_timer
-	name = "door timer"
+	name = "minutnik drzwi"
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
-	desc = "A remote control for a door."
+	desc = "Zdalne sterowanie drzwiami."
 	req_access = list(ACCESS_SECURITY)
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
@@ -201,7 +201,7 @@
 		var/time_left = time_left(seconds = TRUE)
 		var/disp2 = "[add_leading(num2text((time_left / 60) % 60), 2, "0")]:[add_leading(num2text(time_left % 60), 2, "0")]"
 		if(length(disp2) > CHARS_PER_LINE)
-			disp2 = "Error"
+			disp2 = "Błąd"
 		update_display(disp1, disp2)
 	else
 		if(maptext)

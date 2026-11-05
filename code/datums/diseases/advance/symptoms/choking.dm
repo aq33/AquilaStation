@@ -18,7 +18,7 @@ Bonus
 
 /datum/symptom/asphyxiation
 
-	name = "Acute respiratory distress syndrome"
+	name = "Zespół ostrej niewydolności oddechowej"
 	desc = "Wirus powoduje kurczenie się płuc nosiciela, prowadząc do ciężkiego niedotlenienia. Może też prowadzić do zawałów serca."
 	stealth = -2
 	resistance = -0
@@ -55,11 +55,11 @@ Bonus
 		return
 	switch(A.stage)
 		if(3, 4)
-			to_chat(M, "<span class='warning'><b>[pick("Your windpipe feels thin.", "Your lungs feel small.")]</span>")
+			to_chat(M, "<span class='warning'><b>[pick("Tchawica wydaje ci się wąska.", "Płuca wydają ci się małe.")]</span>")
 			Asphyxiate_stage_3_4(M, A)
 			M.emote("gasp")
 		if(5)
-			to_chat(M, "<span class='userdanger'>[pick("Your lungs hurt!", "It hurts to breathe!")]</span>")
+			to_chat(M, "<span class='userdanger'>[pick("Bolą cię płuca!", "Oddychanie boli!")]</span>")
 			Asphyxiate(M, A)
 			M.emote("gasp")
 			if(M.getOxyLoss() >= 120)

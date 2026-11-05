@@ -31,7 +31,7 @@
 	return SHELTER_DEPLOY_ALLOWED
 
 /datum/map_template/shelter/alpha
-	name = "Shelter Alpha"
+	name = "Schronienie Alpha"
 	shelter_id = "shelter_alpha"
 	description = "Przytulne, samowystarczalne, hermetyczne schronienie z wbudowaną nawigacją, rozrywką, zapleczem medycznym i częścią sypialną! Zamów teraz, a dorzucimy MAŁY WENTYLATOR całkowicie za darmo!"
 	mappath = "_maps/templates/shelter_1.dmm"
@@ -42,7 +42,7 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/beta
-	name = "Shelter Beta"
+	name = "Schronienie Beta"
 	shelter_id = "shelter_beta"
 	description = "Niezwykle luksusowe schronienie ze wszystkimi wygodami domu, w tym wykładziną, ciepłą i zimną bieżącą wodą, trzydaniowym posiłkiem dla smakoszy, zapleczem kuchennym i luksusowym towarzyszem, byś nie czuł się samotny podczas burzy popiołu."
 	mappath = "_maps/templates/shelter_2.dmm"
@@ -53,7 +53,7 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/charlie
-	name = "Shelter Charlie"
+	name = "Schronienie Charlie"
 	shelter_id = "shelter_charlie"
 	description = "Luksusowe, elitarne schronienie mieszczące cały bar, dwa automaty sprzedające, stoły i toaletę z umywalką. To nie jest kapsuła przetrwania, więc nie uratuje cię, jeśli będziesz się wykrwawiać na śmierć."
 	mappath = "_maps/templates/shelter_3.dmm"
@@ -64,7 +64,7 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile) 
 
 /datum/map_template/shelter/delta
-	name = "Shelter Delta"
+	name = "Schronienie Delta"
 	shelter_id = "shelter_delta"
 	description = "Średniej wielkości obóz górniczy z automatem z jedzeniem, barakami z zapasowymi ubraniami i sejfem w podłodze, nadajnikiem GPS oraz małym budynkiem z automatem ze sprzętem."
 	mappath = "_maps/templates/shelter_4.dmm"
@@ -75,25 +75,25 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/echo
-	name = "Shelter Echo"
+	name = "Schronienie Echo"
 	shelter_id = "shelter_echo"
 	description = "Mała kapsuła wyposażona w kapsułę medyczną i jednostkę stazy, nanomed oraz chemmaster, zaprojektowana na stacyjne sytuacje awaryjne."
 	mappath = "_maps/templates/shelter_5.dmm"
 
 /datum/map_template/shelter/eta
-	name = "Shelter Eta"
+	name = "Schronienie Eta"
 	shelter_id = "shelter_eta"
 	description = "Małe schronienie zdolne do lotu w kosmosie, z większością udogodnień standardowego schronienia bluespace."
 	mappath = "_maps/templates/shelter_6.dmm"
 	
 /datum/map_template/shelter/golf
-	name = "Capsule Barricade"
+	name = "Barykada z kapsuły"
 	shelter_id = "capsule_barricade"
 	description = "Szklana barykada 3x3, idealna dla ochrony i laserów."
 	mappath = "_maps/templates/capsule_barricade.dmm"
 
 /datum/map_template/shelter/theta
-	name = "Shelter Theta"
+	name = "Schronienie Theta"
 	shelter_id = "shelter_theta"
 	description = "Duża przestrzeń imprezowa, odpowiednia na stacyjne imprezy."
 	mappath = "_maps/templates/shelter_7.dmm"

@@ -279,7 +279,7 @@
 /mob/living/proc/horror_comm()
 	set name = "Converse with Horror"
 	set category = "Horror"
-	set desc = "Communicate mentally with the thing in your head."
+	set desc = "Porozumiewaj się w myślach z tym czymś w twojej głowie."
 
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(B)

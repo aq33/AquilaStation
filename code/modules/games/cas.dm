@@ -4,14 +4,14 @@
 // https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode
 // Original code by Zuhayr, Polaris Station, ported with modifications
 /datum/playingcard
-	var/name = "playing card"
+	var/name = "karta do gry"
 	var/card_icon = "card_back"
 	var/suit
 	var/number
 
 /obj/item/toy/cards/deck/cas
-	name = "\improper CAS deck (white)"
-	desc = "A deck for the game Cards Against Spess, still popular after all these centuries. Warning: may include traces of broken fourth wall. This is the white deck."
+	name = "\improper talia CAS (białe)"
+	desc = "Talia do gry Cards Against Spess, wciąż popularnej po tylu stuleciach. Uwaga: może zawierać śladowe ilości przełamanej czwartej ściany. To talia białych kart."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_caswhite_full"
 	deckstyle = "caswhite"
@@ -22,8 +22,8 @@
 	var/list/allcards = list()
 
 /obj/item/toy/cards/deck/cas/black
-	name = "\improper CAS deck (black)"
-	desc = "A deck for the game Cards Against Spess, still popular after all these centuries. Warning: may include traces of broken fourth wall. This is the black deck."
+	name = "\improper talia CAS (czarne)"
+	desc = "Talia do gry Cards Against Spess, wciąż popularnej po tylu stuleciach. Uwaga: może zawierać śladowe ilości przełamanej czwartej ściany. To talia czarnych kart."
 	icon_state = "deck_casblack_full"
 	deckstyle = "casblack"
 	card_face = "cas_black"
@@ -52,7 +52,7 @@
 	for(var/x in 1 to blanks)
 		var/datum/playingcard/P
 		P = new()
-		P.name = "Blank Card"
+		P.name = "Pusta karta"
 		P.card_icon = "cas_white"
 		cards += P
 	shuffle_inplace(cards) // distribute blank cards throughout deck
@@ -67,7 +67,7 @@
 		return
 	var/obj/item/toy/cards/singlecard/cas/H = new/obj/item/toy/cards/singlecard/cas(user.loc)
 	var/datum/playingcard/choice = cards[1]
-	if (choice.name == "Blank Card")
+	if (choice.name == "Pusta karta")
 		H.blank = 1
 	H.name = choice.name
 	H.buffertext = choice.name
@@ -99,8 +99,8 @@
 		icon_state = "deck_[deckstyle]_low"
 
 /obj/item/toy/cards/singlecard/cas
-	name = "CAS card"
-	desc = "A CAS card."
+	name = "karta CAS"
+	desc = "Karta CAS."
 	icon_state = "cas_white"
 	flipped = 0
 	var/card_face = "cas_white"
@@ -124,7 +124,7 @@
 	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(!flipped)
-		name = "CAS card"
+		name = "karta CAS"
 	else if(flipped)
 		name = buffertext
 	flipped = !flipped

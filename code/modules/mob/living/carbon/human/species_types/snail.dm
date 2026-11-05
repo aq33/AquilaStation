@@ -1,5 +1,5 @@
 /datum/species/snail
-	name = "\improper Snailperson"
+	name = "\improper Ślimakoczłowiek"
 	id = "snail"
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,4), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	default_color = "336600" //vomit green
@@ -53,8 +53,8 @@
 		qdel(bag)
 
 /obj/item/storage/backpack/snail
-	name = "snail shell"
-	desc = "Worn by snails as armor and storage compartment."
+	name = "skorupa ślimaka"
+	desc = "Ślimaki noszą ją jako pancerz i schowek."
 	icon_state = "snailshell"
 	item_state = "snailshell"
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'

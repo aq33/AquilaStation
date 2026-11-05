@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/mac
-	name = "Radial MAC cannon"
-	desc = "An extremely powerful electromagnet which can accelerate a projectile to devastating speeds."
+	name = "radialne działo MAC"
+	desc = "Niezwykle silny elektromagnes, który rozpędza pocisk do niszczycielskich prędkości."
 	icon_state = "MAC"
 	ammo_type = /obj/item/ship_weapon/ammunition/railgun_ammo
 	pixel_y = -64

@@ -179,8 +179,8 @@
  */
 /datum/component/cult_ritual_item/proc/do_scrape_rune(obj/effect/rune/rune, mob/living/cultist)
 	if(rune.log_when_erased)
-		var/confirm = alert(cultist, "Starcie runy [rune.cultist_name] może zaszkodzić twoim celom.", "Zacząć ścierać runę [rune.cultist_name]?", "Proceed", "Abort")
-		if(confirm != "Proceed")
+		var/confirm = alert(cultist, "Starcie runy [rune.cultist_name] może zaszkodzić twoim celom.", "Zacząć ścierać runę [rune.cultist_name]?", "Kontynuuj", "Przerwij")
+		if(confirm != "Kontynuuj")
 			return
 
 		// Gee, good thing we made sure cultists can't input stall to grief their team and get banned anyway
@@ -196,7 +196,7 @@
 
 	if(rune.log_when_erased)
 		log_game("[rune.cultist_name] rune erased by [key_name(cultist)] with [parent].")
-		message_admins("[ADMIN_LOOKUPFLW(cultist)] erased a [rune.cultist_name] rune with [parent].")
+		message_admins("[ADMIN_LOOKUPFLW(cultist)] ściera runę [rune.cultist_name] za pomocą [parent].")
 
 	to_chat(cultist, "<span class='notice'>Ostrożnie ścierasz runę [lowertext(rune.cultist_name)].</span>")
 	qdel(rune)

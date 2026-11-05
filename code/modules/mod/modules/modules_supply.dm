@@ -2,10 +2,10 @@
 
 ///Internal GPS - Extends a GPS you can use.
 /obj/item/mod/module/gps
-	name = "MOD internal GPS module"
-	desc = "This module uses common Nanotrasen technology to calculate the user's position anywhere in space, \
-		down to the exact coordinates. This information is fed to a central database viewable from the device itself, \
-		though using it to help people is up to you."
+	name = "moduł wewnętrznego GPS MOD"
+	desc = "Ten moduł korzysta z powszechnej technologii Nanotrasenu, by obliczyć położenie użytkownika w dowolnym miejscu kosmosu \
+		co do dokładnych współrzędnych. Te informacje trafiają do centralnej bazy danych widocznej z samego urządzenia, \
+		ale czy użyjesz ich, by pomagać ludziom, zależy od ciebie."
 	icon_state = "gps"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -23,10 +23,10 @@
 
 ///Hydraulic Clamp - Lets you pick up and drop crates.
 /obj/item/mod/module/clamp
-	name = "MOD hydraulic clamp module"
-	desc = "A series of actuators installed into both arms of the suit, boasting a lifting capacity of almost a ton. \
-		However, this design has been locked by Nanotrasen to be primarily utilized for lifting various crates. \
-		A lot of people would say that loading cargo is a dull job, but you could not disagree more."
+	name = "moduł chwytaka hydraulicznego MOD"
+	desc = "Zestaw siłowników zamontowanych w obu ramionach skafandra, o udźwigu niemal tony. \
+		Nanotrasen zablokował jednak ten projekt tak, by służył głównie do podnoszenia skrzyń. \
+		Wiele osób powie, że załadunek towarów to nudna praca, ale nie możesz się z tym bardziej nie zgodzić."
 	icon_state = "clamp"
 	module_type = MODULE_ACTIVE
 	complexity = 3
@@ -55,13 +55,13 @@
 			return
 		playsound(src, 'sound/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target = target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "przerwano!")
 			return
 		if(!check_crate_pickup(picked_crate))
 			return
 		stored_crates += picked_crate
 		picked_crate.forceMove(src)
-		balloon_alert(mod.wearer, "picked up crate")
+		balloon_alert(mod.wearer, "podniesiono skrzynię")
 		drain_power(use_power_cost)
 	else if(length(stored_crates))
 		var/turf/target_turf = get_turf(target)
@@ -69,16 +69,16 @@
 			return
 		playsound(src, 'sound/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target = target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "przerwano!")
 			return
 		if(is_blocked_turf(target_turf))
 			return
 		var/atom/movable/dropped_crate = pop(stored_crates)
 		dropped_crate.forceMove(target_turf)
-		balloon_alert(mod.wearer, "dropped [dropped_crate]")
+		balloon_alert(mod.wearer, "upuszczono: [dropped_crate]")
 		drain_power(use_power_cost)
 	else
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "nieprawidłowy cel!")
 
 /obj/item/mod/module/clamp/on_part_deactivation(deleting = FALSE)
 	if(deleting)
@@ -89,17 +89,17 @@
 
 /obj/item/mod/module/clamp/proc/check_crate_pickup(atom/movable/target)
 	if(length(stored_crates) >= max_crates)
-		balloon_alert(mod.wearer, "too many crates!")
+		balloon_alert(mod.wearer, "za dużo skrzyń!")
 		return FALSE
 	for(var/mob/living/mob in target.GetAllContents())
 		if(mob.mob_size < MOB_SIZE_HUMAN)
 			continue
-		balloon_alert(mod.wearer, "crate too heavy!")
+		balloon_alert(mod.wearer, "skrzynia za ciężka!")
 		return FALSE
 	return TRUE
 
 /obj/item/mod/module/clamp/loader
-	name = "MOD loader hydraulic clamp module"
+	name = "moduł chwytaka hydraulicznego ładowacza MOD"
 	icon_state = "clamp_loader"
 	complexity = 0
 	removable = FALSE
@@ -112,9 +112,9 @@
 
 ///Drill - Lets you dig through rock and basalt.
 /obj/item/mod/module/drill
-	name = "MOD drill module"
-	desc = "An integrated drill, typically extending over the user's hand. While useful for drilling through rock, \
-		your drill is surely the one that both pierces and creates the heavens."
+	name = "moduł wiertła MOD"
+	desc = "Zintegrowane wiertło, zwykle wysuwające się nad dłoń użytkownika. Przydaje się do wiercenia w skale, \
+		ale twoje wiertło z pewnością jest tym, które przebija niebiosa i je tworzy."
 	icon_state = "drill"
 	module_type = MODULE_ACTIVE
 	complexity = 2
@@ -156,10 +156,10 @@
 
 ///Ore Bag - Lets you pick up ores and drop them from the suit.
 /obj/item/mod/module/orebag
-	name = "MOD ore bag module"
-	desc = "An integrated ore storage system installed into the suit, \
-		this utilizes precise electromagnets and storage compartments to automatically collect and deposit ore. \
-		It's recommended by Nakamura Engineering to actually deposit that ore at local refineries."
+	name = "moduł torby na rudę MOD"
+	desc = "Zintegrowany system przechowywania rudy zamontowany w skafandrze; \
+		precyzyjne elektromagnesy i schowki automatycznie zbierają i składują rudę. \
+		Nakamura Engineering zaleca, by faktycznie oddawać tę rudę w lokalnych rafineriach."
 	icon_state = "ore"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -202,8 +202,8 @@
 	drain_power(use_power_cost)
 
 /obj/item/mod/module/hydraulic
-	name = "MOD loader hydraulic arms module"
-	desc = "A pair of powerful hydraulic arms installed in a MODsuit."
+	name = "moduł hydraulicznych ramion ładowacza MOD"
+	desc = "Para potężnych ramion hydraulicznych zamontowanych w MODsuicie."
 	icon_state = "launch_loader"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -228,12 +228,12 @@
 	render_matrix.Scale(1.25, 1.25)
 	animate(game_renderer, launch_time, flags = SINE_EASING|EASE_IN, transform = render_matrix)
 	var/current_time = world.time
-	mod.wearer.visible_message(span_warning("[mod.wearer] starts whirring!"), \
-		blind_message = span_hear("You hear a whirring sound."))
+	mod.wearer.visible_message(span_warning("[mod.wearer] zaczyna furkotać!"), \
+		blind_message = span_hear("Słyszysz furkot."))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
 	lightning = mutable_appearance('icons/effects/effects.dmi', "electricity3", plane = -3)
 	mod.wearer.add_overlay(lightning)
-	balloon_alert(mod.wearer, "you start charging...")
+	balloon_alert(mod.wearer, "zaczynasz ładowanie...")
 	var/power = launch_time
 	if(!do_after(mod.wearer, launch_time, target = mod))
 		power = world.time - current_time
@@ -255,9 +255,9 @@
 	user.transform = user.transform.Turn(angle)
 
 /obj/item/mod/module/disposal_connector
-	name = "MOD disposal selector module"
-	desc = "A module that connects to the disposal pipeline, causing the user to go into their config selected disposal. \
-		Only seems to work when the suit is on."
+	name = "moduł wyboru zsypu MOD"
+	desc = "Moduł, który łączy się z rurami zsypu i wysyła użytkownika do zsypu wybranego w konfiguracji. \
+		Działa chyba tylko przy włączonym skafandrze."
 	icon_state = "disposal"
 	complexity = 2
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -276,7 +276,7 @@
 
 /obj/item/mod/module/disposal_connector/get_configuration()
 	. = ..()
-	.["disposal_tag"] = add_ui_configuration("Disposal Tag", "list", GLOB.TAGGERLOCATIONS[disposal_tag], GLOB.TAGGERLOCATIONS)
+	.["disposal_tag"] = add_ui_configuration("Cel zsypu", "list", GLOB.TAGGERLOCATIONS[disposal_tag], GLOB.TAGGERLOCATIONS)
 
 /obj/item/mod/module/disposal_connector/configure_edit(key, value)
 	switch(key)
@@ -292,8 +292,8 @@
 	disposal_holder.destinationTag = disposal_tag
 
 /obj/item/mod/module/magnet
-	name = "MOD loader hydraulic magnet module"
-	desc = "A powerful hydraulic electromagnet able to launch crates and lockers towards the user, and keep 'em attached."
+	name = "moduł hydraulicznego magnesu ładowacza MOD"
+	desc = "Potężny hydrauliczny elektromagnes, który przyciąga skrzynie i szafki do użytkownika i trzyma je przy nim."
 	icon_state = "magnet_loader"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -315,11 +315,11 @@
 		locker.throw_at(target, range = 7, speed = 4, thrower = mod.wearer)
 		return
 	if(!istype(target, /obj/structure/closet) || !(target in view(mod.wearer)))
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "nieprawidłowy cel!")
 		return
 	var/obj/structure/closet/locker = target
 	if(locker.anchored || locker.move_resist >= MOVE_FORCE_OVERPOWERING)
-		balloon_alert(mod.wearer, "target anchored!")
+		balloon_alert(mod.wearer, "cel jest przytwierdzony!")
 		return
 	new /obj/effect/temp_visual/mook_dust(get_turf(locker))
 	playsound(locker, 'sound/effects/gravhit.ogg', 75, TRUE)
@@ -338,9 +338,9 @@
 	mod.wearer.start_pulling(locker)
 
 /obj/item/mod/module/ash_accretion
-	name = "MOD ash accretion module"
-	desc = "A module that collects ash from the terrain, covering the suit in a protective layer, this layer is \
-		lost when moving across standard terrain."
+	name = "moduł narastania popiołu MOD"
+	desc = "Moduł, który zbiera popiół z terenu i pokrywa nim skafander jako warstwą ochronną; ta warstwa \
+		znika przy poruszaniu się po zwykłym terenie."
 	icon_state = "ash_accretion"
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/ash_accretion)
@@ -427,7 +427,7 @@
 		for(var/obj/item/part as anything in mod.get_parts(all = TRUE))
 			part.armor = part.armor.attachArmor(added_armor)
 		if(traveled_tiles >= max_traveled_tiles)
-			balloon_alert(mod.wearer, "fully ash covered")
+			balloon_alert(mod.wearer, "w pełni pokryty popiołem")
 			mod.wearer.color = list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,3) //make them super light
 			animate(mod.wearer, 1 SECONDS, color = null, flags = ANIMATION_PARALLEL)
 			playsound(src, 'sound/effects/sparks1.ogg', 100, TRUE)
@@ -444,12 +444,12 @@
 		for(var/obj/item/part as anything in mod.get_parts(all = TRUE))
 			part.armor = part.armor.detachArmor(removed_armor)
 		if(traveled_tiles <= 0)
-			balloon_alert(mod.wearer, "ran out of ash!")
+			balloon_alert(mod.wearer, "skończył się popiół!")
 
 /obj/item/mod/module/sphere_transform
-	name = "MOD sphere transform module"
-	desc = "A module able to move the suit's parts around, turning it and the user into a sphere. \
-		The sphere can move quickly, even through lava, and launch mining bombs to decimate terrain."
+	name = "moduł przemiany w kulę MOD"
+	desc = "Moduł, który potrafi przestawiać części skafandra, zmieniając go razem z użytkownikiem w kulę. \
+		Kula porusza się szybko, nawet po lawie, i wystrzeliwuje bomby górnicze, które dziesiątkują teren."
 	icon_state = "sphere"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -463,7 +463,7 @@
 
 /obj/item/mod/module/sphere_transform/activate()
 	if(!mod.wearer.has_gravity())
-		balloon_alert(mod.wearer, "no gravity!")
+		balloon_alert(mod.wearer, "brak grawitacji!")
 		return FALSE
 	return ..()
 
@@ -497,7 +497,7 @@
 
 /obj/item/mod/module/sphere_transform/used()
 	if(!lavaland_equipment_pressure_check(get_turf(src)))
-		balloon_alert(mod.wearer, "too much pressure!")
+		balloon_alert(mod.wearer, "za wysokie ciśnienie!")
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()
@@ -527,8 +527,8 @@
 	deactivate()
 
 /obj/item/projectile/bullet/reusable/mining_bomb
-	name = "mining bomb"
-	desc = "A bomb. Why are you examining this?"
+	name = "bomba górnicza"
+	desc = "Bomba. Czemu to oglądasz?"
 	icon_state = "mine_bomb"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	damage = 0
@@ -543,8 +543,8 @@
 	ammo_type = /obj/structure/mining_bomb
 
 /obj/structure/mining_bomb
-	name = "mining bomb"
-	desc = "A bomb. Why are you examining this?"
+	name = "bomba górnicza"
+	desc = "Bomba. Czemu to oglądasz?"
 	icon_state = "mine_bomb"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	anchored = TRUE
@@ -579,7 +579,7 @@
 	addtimer(CALLBACK(src, PROC_REF(boom)), explosion_time)
 
 /obj/structure/mining_bomb/proc/boom(atom/movable/firer)
-	visible_message(span_danger("[src] explodes!"))
+	visible_message(span_danger("[src] wybucha!"))
 	playsound(src, 'sound/magic/magic_missile.ogg', 200, vary = TRUE)
 	for(var/turf/closed/mineral/rock in circlerangeturfs(src, 2))
 		rock.gets_drilled()

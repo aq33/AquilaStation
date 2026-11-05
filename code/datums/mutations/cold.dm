@@ -1,6 +1,6 @@
 /datum/mutation/geladikinesis
-	name = "Geladikinesis"
-	desc = "Allows the user to concentrate moisture and sub-zero forces into snow."
+	name = "Geladykineza"
+	desc = "Pozwala skupić wilgoć i ujemne temperatury w śnieg."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja dłoń wydaje się zimna.</span>"
 	instability = 10
@@ -9,16 +9,16 @@
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/snow
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/snow
-	name = "Create Snow"
-	desc = "Concentrates cryokinetic forces to create snow, useful for snow-like construction."
+	name = "Stwórz śnieg"
+	desc = "Skupia siły kriokinetyczne w śnieg, przydatny do śnieżnych budowli."
 	item_type = /obj/item/stack/sheet/mineral/snow
 	charge_max = 50
 	delete_old = FALSE
 	action_icon_state = "snow"
 
 /datum/mutation/wax_saliva
-	name = "Waxy Saliva"
-	desc = "Allows the user to secrete wax."
+	name = "Woskowa ślina"
+	desc = "Pozwala wydzielać wosk."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoje usta wydają się woskowe.</span>"
 	instability = 10
@@ -28,16 +28,16 @@
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/wax
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/wax
-	name = "Secrete Wax"
-	desc = "Concentrate to spit out some wax, useful for bee-themed construction."
+	name = "Wydziel wosk"
+	desc = "Skup się, żeby wypluć trochę wosku, przydatnego do pszczelich budowli."
 	item_type = /obj/item/stack/sheet/mineral/wax
 	charge_max = 50
 	delete_old = FALSE
 	action_icon_state = "honey"
 
 /datum/mutation/cryokinesis
-	name = "Cryokinesis"
-	desc = "Draws negative energy from the sub-zero void to freeze surrounding temperatures at subject's will."
+	name = "Kriokineza"
+	desc = "Czerpie negatywną energię z lodowatej pustki, by na życzenie zamrażać otoczenie."
 	quality = POSITIVE //upsides and downsides
 	text_gain_indication = "<span class='notice'>Twoja dłoń wydaje się zimna.</span>"
 	instability = 20
@@ -46,8 +46,8 @@
 	power = /obj/effect/proc_holder/spell/aimed/cryo
 
 /obj/effect/proc_holder/spell/aimed/cryo
-	name = "Cryobeam"
-	desc = "This power fires a frozen bolt at a target."
+	name = "Krio-promień"
+	desc = "Ta moc wystrzeliwuje w cel zamrożony pocisk."
 	charge_max = 150
 	cooldown_min = 150
 	clothes_req = FALSE

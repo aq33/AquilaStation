@@ -20,8 +20,8 @@
 				wieldsound='sound/weapons/tap.ogg', unwieldsound='sound/weapons/tap.ogg', block_power_wielded=20)
 
 /obj/item/pool/rubber_ring
-	name = "inflateable ring"
-	desc = "An inflateable ring used for keeping people afloat. Throw at drowning people to save them."
+	name = "dmuchane koło"
+	desc = "Dmuchane koło, które utrzymuje ludzi na powierzchni wody. Rzuć je tonącemu, by go uratować."
 	icon_state = "rubber_ring"
 
 /obj/item/pool/rubber_ring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -42,8 +42,8 @@
 	icon_state = "pool_noodle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	name = "pool noodle"
-	desc = "A long noodle made of foam. Helping those with fears of swimming swim since the 1980s."
+	name = "makaron do pływania"
+	desc = "Długi makaron z pianki. Pomaga pływać tym, którzy boją się wody, od lat 80. XX wieku."
 	var/suiciding = FALSE
 
 /obj/item/pool/pool_noodle/attack(mob/target, mob/living/carbon/human/user)

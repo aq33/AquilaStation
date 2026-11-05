@@ -1,12 +1,12 @@
 /obj/item/clockwork/trap_placer/skewer
-	name = "brass skewer"
-	desc = "A spiked, brass skewer attached to a steam powered extension mechanism."
+	name = "mosiężny szpikulec"
+	desc = "Kolczasty mosiężny szpikulec na parowym mechanizmie wysuwającym."
 	icon_state = "brass_skewer_extended"
 	result_path = /obj/structure/destructible/clockwork/trap/skewer
 
 /obj/structure/destructible/clockwork/trap/skewer
-	name = "brass skewer"
-	desc = "A spiked, brass skewer attached to a steam powered extension mechanism."
+	name = "mosiężny szpikulec"
+	desc = "Kolczasty mosiężny szpikulec na parowym mechanizmie wysuwającym."
 	icon_state = "brass_skewer"
 	component_datum = /datum/component/clockwork_trap/skewer
 	unwrench_path = /obj/item/clockwork/trap_placer/skewer

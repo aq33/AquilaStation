@@ -16,7 +16,7 @@
 		// Set the main window's size
 		winset(src, null, "split.size=mainwindow.size")
 		// Fit the viewport
-		INVOKE_ASYNC(src, TYPE_VERB_REF(/client, fit_viewport))
+		INVOKE_ASYNC(src, PROC_REF(fit_view_to_window)) // AQ EDIT - szerszy widok w pełnym ekranie (aquila/code/modules/ui_porzadki/viewport.dm)
 	else
 		// Restore the menu
 		winset(src, "mainwindow", "menu=\"menu\"")

@@ -6,7 +6,7 @@
 	flick(icon_state + "_anim", src)
 
 /atom/movable/screen/ghost/jumptomob
-	name = "Jump to mob"
+	name = "Skocz do moba"
 	icon_state = "jumptomob"
 
 /atom/movable/screen/ghost/jumptomob/Click()
@@ -14,7 +14,7 @@
 	G.jumptomob()
 
 /atom/movable/screen/ghost/orbit
-	name = "Orbit"
+	name = "Orbituj"
 	icon_state = "orbit"
 
 /atom/movable/screen/ghost/orbit/Click()
@@ -22,7 +22,7 @@
 	G.follow()
 
 /atom/movable/screen/ghost/reenter_corpse
-	name = "Reenter corpse"
+	name = "Wróć do ciała"
 	icon_state = "reenter_corpse"
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
@@ -30,7 +30,7 @@
 	G.reenter_corpse()
 
 /atom/movable/screen/ghost/teleport
-	name = "Teleport"
+	name = "Teleportuj"
 	icon_state = "teleport"
 
 /atom/movable/screen/ghost/teleport/Click()
@@ -38,7 +38,7 @@
 	G.dead_tele()
 
 /atom/movable/screen/ghost/pai
-	name = "pAI Candidate"
+	name = "Kandydat na pAI"
 	icon_state = "pai"
 
 /atom/movable/screen/ghost/pai/Click()
@@ -46,7 +46,7 @@
 	G.register_pai()
 
 /atom/movable/screen/ghost/spawners
-	name = "Ghost role spawners"
+	name = "Spawnery ról dla duchów"
 	icon_state = "spawners"
 
 /atom/movable/screen/ghost/spawners/Click()

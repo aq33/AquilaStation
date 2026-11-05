@@ -4,7 +4,7 @@
 
 /// Module duplicator, allows you to save and recreate module components.
 /obj/machinery/module_duplicator
-	name = "module duplicator"
+	name = "duplikator modułów"
 	desc = "Pozwala powielać moduły i układy scalone, żeby nie składać ich od nowa. Przyłóż do maszyny moduł albo układ, by zapisać go jako wzór."
 	icon = 'aquila/icons/obj/wiremod/wiremod_fab.dmi'
 	icon_state = "module-fab-idle"
@@ -73,12 +73,18 @@
 		if("print")
 			if(machine_stat & (NOPOWER|BROKEN))
 				return TRUE
-			var/design_id = text2num(params["design_id"])
-
-			if(!design_id || design_id < 1 || design_id > length(scanned_designs))
+			var/list/design
+			var/raw_id = "[params["design_id"]]"
+			if(findtext(raw_id, "lib_") == 1)
+				// Projekt z biblioteki gracza (circuit_library.dm)
+				var/datum/circuit_library/library = get_circuit_library(usr.ckey)
+				design = library?.design_for_printing(copytext(raw_id, 5))
+			else
+				var/design_id = text2num(raw_id)
+				if(design_id && design_id >= 1 && design_id <= length(scanned_designs))
+					design = scanned_designs[design_id]
+			if(!design)
 				return TRUE
-
-			var/list/design = scanned_designs[design_id]
 			var/datum/component/remote_materials/remote = GetComponent(/datum/component/remote_materials)
 			var/datum/component/material_container/materials = remote?.mat_container
 			if(!materials)
@@ -97,6 +103,12 @@
 			use_power(active_power_usage)
 			print_module(design)
 			balloon_alert_to_viewers("wydrukowano [design["name"]]")
+			return TRUE
+		if("delete_saved")
+			var/raw_id = "[params["design_id"]]"
+			var/datum/circuit_library/library = get_circuit_library(usr.ckey)
+			if(findtext(raw_id, "lib_") == 1 && library?.remove_design(copytext(raw_id, 5)))
+				update_static_data(usr)
 			return TRUE
 		if("remove_mat")
 			var/datum/component/remote_materials/remote = GetComponent(/datum/component/remote_materials)
@@ -185,6 +197,13 @@
 /obj/machinery/module_duplicator/proc/finish_module_scan(mob/user, data)
 	scanned_designs += list(data)
 
+	var/datum/circuit_library/library = get_circuit_library(user?.ckey)
+	if(library)
+		if(library.add_design(data))
+			to_chat(user, span_notice("Wzór „[data["name"]]” trafił też do twojej biblioteki układów: w każdym duplikatorze, także w kolejnych rundach, znajdziesz go w kategorii „Moje układy”."))
+		else
+			to_chat(user, span_warning("Nie udało się zapisać wzoru w twojej bibliotece układów: jest pełna albo serwer nie mógł zapisać pliku. Usuń z niej coś w oknie duplikatora i spróbuj ponownie."))
+
 	balloon_alert(user, "zapisano moduł")
 	playsound(src, 'sound/machines/ping.ogg', 50)
 
@@ -222,6 +241,26 @@
 		)
 		index++
 
+	var/datum/circuit_library/library = get_circuit_library(user?.ckey)
+	for(var/list/saved as anything in library?.designs)
+		var/list/cost = list()
+		for(var/material_path in saved["materials"])
+			var/datum/material/mat = getmaterialref(text2path(material_path))
+			if(mat)
+				cost[mat.name] = round(saved["materials"][material_path] * efficiency_coeff)
+		// Keyed by name, which is unique in the library: positions shift when a design is removed
+		designs["lib_[saved["name"]]"] = list(
+			"name" = saved["name"],
+			"desc" = saved["desc"],
+			"cost" = cost,
+			"reagentCost" = list(),
+			"id" = "lib_[saved["name"]]",
+			"icon" = icon_class,
+			"categories" = list("/Moje układy"),
+			"constructionTime" = 0,
+			"saved" = TRUE,
+		)
+
 	data["designs"] = designs
 
 	return data
@@ -233,7 +272,7 @@
 	return default_deconstruction_screwdriver(user, "module-fab-o", "module-fab-idle", tool)
 
 /obj/item/circuitboard/machine/module_duplicator
-	name = "\improper Module Duplicator (Machine Board)"
+	name = "duplikator modułów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/module_duplicator
 	req_components = list(
@@ -242,7 +281,7 @@
 	)
 
 /datum/design/board/module_duplicator
-	name = "Machine Design (Module Duplicator)"
+	name = "Projekt maszyny (duplikator modułów)"
 	desc = "Płytka obwodu duplikatora modułów, który kopiuje układy scalone."
 	id = "module_duplicator"
 	build_path = /obj/item/circuitboard/machine/module_duplicator

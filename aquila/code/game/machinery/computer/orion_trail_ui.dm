@@ -29,17 +29,17 @@
 	if(length(settlers))
 		if(food <= 0)
 			gamer.set_nutrition(0)
-			to_chat(gamer, "<span class='userdanger'>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</span>")
+			to_chat(gamer, "<span class='userdanger'>Twoje ciało w jednej chwili kurczy się jak u kogoś, kto nie jadł od miesięcy. Padasz na podłogę, a ciałem wstrząsają straszliwe skurcze.</span>")
 		if(fuel <= 0)
 			gamer.adjust_fire_stacks(5)
 			gamer.IgniteMob()
-			to_chat(gamer, "<span class='userdanger'>You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames.</span>")
-	to_chat(gamer, "<span class='userdanger'>You're never going to make it to Orion...</span>")
+			to_chat(gamer, "<span class='userdanger'>Z automatu bije potężna fala gorąca. Twoja skóra staje w płomieniach.</span>")
+	to_chat(gamer, "<span class='userdanger'>Nigdy nie dotrzesz na Oriona...</span>")
 	gamer.death()
 	obj_flags &= ~EMAGGED
 	gameStatus = ORION_STATUS_START
-	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	name = "Szlak Oriona"
+	desc = "Dowiedz się, jak nasi przodkowie dotarli na Oriona, i baw się przy tym dobrze!"
 
 /obj/machinery/computer/arcade/orion_trail/ui_data(mob/user)
 	var/list/data = list()

@@ -6,10 +6,10 @@ Slimecrossing Weapons
 
 //Boneblade - Burning Green
 /obj/item/melee/arm_blade/slime
-	name = "slimy boneblade"
-	desc = "What remains of the bones in your arm. Incredibly sharp, and painful for both you and your opponents."
+	name = "szlamowe kostne ostrze"
+	desc = "To, co zostało z kości twojej ręki. Niewiarygodnie ostre i bolesne zarówno dla ciebie, jak i dla przeciwników."
 	force = 15
-	force_string = "painful"
+	force_string = "bolesna"
 
 /obj/item/melee/arm_blade/slime/attack(mob/living/L, mob/user)
 	. = ..()
@@ -24,8 +24,8 @@ Slimecrossing Weapons
 
 //Rainbow knife - Burning Rainbow
 /obj/item/kitchen/knife/rainbowknife
-	name = "rainbow knife"
-	desc = "A strange, transparent knife which constantly shifts color. It hums slightly when moved."
+	name = "tęczowy nóż"
+	desc = "Dziwny, przezroczysty nóż, który bez przerwy zmienia kolor. Lekko brzęczy, gdy się nim porusza."
 	icon = 'icons/obj/knives.dmi'
 	icon_state = "rainbowknife"
 	item_state = "rainbowknife"
@@ -56,8 +56,8 @@ Slimecrossing Weapons
 
 //Adamantine shield - Burning Adamantine
 /obj/item/shield/adamantineshield
-	name = "adamantine shield"
-	desc = "A gigantic shield made of solid adamantium."
+	name = "tarcza adamantytowa"
+	desc = "Gigantyczna tarcza z litego adamantium."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "adamshield"
 	item_state = "adamshield"
@@ -80,8 +80,8 @@ Slimecrossing Weapons
 
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill
-	name = "blood chiller"
-	desc = "A horrifying weapon made of your own bone and blood vessels. It shoots slowing globules of your own blood. Ech."
+	name = "mrożacz krwi"
+	desc = "Przerażająca broń z twoich własnych kości i naczyń krwionośnych. Strzela spowalniającymi kulkami twojej krwi. Fuj."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "bloodgun"
 	item_state = "bloodgun"
@@ -117,7 +117,7 @@ Slimecrossing Weapons
 	projectile_type = /obj/item/projectile/magic/bloodchill
 
 /obj/item/projectile/magic/bloodchill
-	name = "blood ball"
+	name = "kula krwi"
 	icon_state = "pulse0_bl"
 	damage = 0
 	damage_type = OXY

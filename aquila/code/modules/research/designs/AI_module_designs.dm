@@ -1,6 +1,6 @@
 /datum/design/board/boomer_module
-	name = "Core Module Design (Boomer)"
-	desc = "Allows for the construction of a Boomer AI Core Module."
+	name = "Projekt modułu rdzenia (Boomer)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Boomer."
 	id = "boomer_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/boomer
@@ -8,8 +8,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/zoomer_module
-	name = "Core Module Design (Zoomer)"
-	desc = "Allows for the construction of a Zoomer AI Core Module."
+	name = "Projekt modułu rdzenia (Zoomer)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Zoomer."
 	id = "zoomer_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/zoomer
@@ -17,8 +17,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/dungeonmaster_module
-	name = "Core Module Design (Dungeonmaster)"
-	desc = "Allows for the construction of a Dungeonmaster AI Core Module."
+	name = "Projekt modułu rdzenia (Mistrz gry)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Mistrz gry."
 	id = "dungeonmaster_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/dungeonmaster
@@ -26,8 +26,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/service_module
-	name = "Core Module Design (Service)"
-	desc = "Allows for the construction of a Service AI Core Module."
+	name = "Projekt modułu rdzenia (Usługowe)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Usługowe."
 	id = "service_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/service
@@ -35,8 +35,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/science_module
-	name = "Core Module Design (Science)"
-	desc = "Allows for the construction of a Science AI Core Module."
+	name = "Projekt modułu rdzenia (Naukowe)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Naukowe."
 	id = "science_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/science
@@ -44,8 +44,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/weeb_module
-	name = "Core Module Design (Weeb)"
-	desc = "Allows for the construction of a Weeb AI Core Module."
+	name = "Projekt modułu rdzenia (Weeb)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Weeb."
 	id = "weeb_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/weeb
@@ -53,8 +53,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/lizardimov_module
-	name = "Core Module Design (Lizardimov)"
-	desc = "Allows for the construction of a Lizardimov AI Core Module."
+	name = "Projekt modułu rdzenia (Lizardimov)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Lizardimov."
 	id = "lizardimov_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/lizardimov
@@ -62,8 +62,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/gamer_module
-	name = "Core Module Design (Gamer)"
-	desc = "Allows for the construction of a Gamer AI Core Module."
+	name = "Projekt modułu rdzenia (Gamer)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Gamer."
 	id = "gamer_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/gamer
@@ -71,8 +71,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/corgi_module
-	name = "Core Module Design (Corgi)"
-	desc = "Allows for the construction of a Corgi AI Core Module."
+	name = "Projekt modułu rdzenia (Corgi)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Corgi."
 	id = "corgi_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/corgi
@@ -80,8 +80,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/cowboy_module
-	name = "Core Module Design (Cowboy)"
-	desc = "Allows for the construction of a Cowboy AI Core Module."
+	name = "Projekt modułu rdzenia (Kowbojskie)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Kowbojskie."
 	id = "cowboy_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/cowboy
@@ -89,8 +89,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/dean_module
-	name = "Core Module Design (Dean)"
-	desc = "Allows for the construction of a Dean AI Core Module."
+	name = "Projekt modułu rdzenia (Dziekan)"
+	desc = "Pozwala zbudować moduł rdzenia SI: Dziekan."
 	id = "dean_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/aiModule/core/full/dean

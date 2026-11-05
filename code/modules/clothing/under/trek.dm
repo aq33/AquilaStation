@@ -7,22 +7,22 @@
 
 //TOS
 /obj/item/clothing/under/trek/command
-	name = "command uniform"
-	desc = "The uniform worn by command officers."
+	name = "mundur dowództwa"
+	desc = "Mundur noszony przez oficerów dowództwa."
 	icon_state = "trek_command"
 	item_state = "y_suit"
 
 /obj/item/clothing/under/trek/engsec
-	name = "engsec uniform"
-	desc = "The uniform worn by engineering/security officers."
+	name = "mundur inżynierii i ochrony"
+	desc = "Mundur noszony przez oficerów inżynierii i ochrony."
 	icon_state = "trek_engsec"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 10) //more sec than eng, but w/e.
 	strip_delay = 50
 
 /obj/item/clothing/under/trek/medsci
-	name = "medsci uniform"
-	desc = "The uniform worn by medical/science officers."
+	name = "mundur medycyny i nauki"
+	desc = "Mundur noszony przez oficerów medycyny i nauki."
 	icon_state = "trek_medsci"
 	item_state = "b_suit"
 
@@ -56,7 +56,7 @@
 
 //Q
 /obj/item/clothing/under/trek/Q
-	name = "french marshall's uniform"
-	desc = "Something about it feels off..."
+	name = "mundur francuskiego marszałka"
+	desc = "Coś tu jest nie tak..."
 	icon_state = "trek_Q"
 	item_state = "r_suit"

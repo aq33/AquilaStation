@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/scrubber
-	name = "portable air scrubber"
-	desc = "It's a small portable scrubber, capable of siphoning selected gasses from its surroundings. It has an internal tank, and a slot for inserting an external tank. It can be wrenched to connection ports to pump and withdraw gasses from the internal tank."
+	name = "przenośny oczyszczacz powietrza"
+	desc = "Mały przenośny oczyszczacz, który potrafi wysysać wybrane gazy z otoczenia. Ma wewnętrzny zbiornik i gniazdo na zewnętrzną butlę. Można go przykręcić kluczem do portu przyłączeniowego, żeby wtłaczać i pobierać gazy z wewnętrznego zbiornika."
 	icon_state = "pscrubber:0"
 	density = TRUE
 
@@ -119,7 +119,7 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/scrubber/huge
-	name = "huge air scrubber"
+	name = "ogromny oczyszczacz powietrza"
 	icon_state = "scrubber:0"
 	anchored = TRUE
 	active_power_usage = 500

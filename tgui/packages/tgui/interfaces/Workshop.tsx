@@ -15,11 +15,11 @@ export const Workshop = (props) => {
     <Window width={400} height={500}>
       <Window.Content scrollable>
         <Section
-          title="Default Programs"
+          title="Programy domyślne"
           buttons={
             <Button
               icon="exclamation-triangle"
-              content="Emergency Shutdown"
+              content="Awaryjne wyłączenie"
               color="bad"
               onClick={() => act('shutdown')}
             />

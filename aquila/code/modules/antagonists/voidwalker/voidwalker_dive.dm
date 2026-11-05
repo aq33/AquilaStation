@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 
 /// Uchwyt, w którym wędrowiec porusza się pod statkiem
 /obj/effect/dummy/phased_mob/voidwalker
-	name = "void"
+	name = "pustka"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	density = FALSE

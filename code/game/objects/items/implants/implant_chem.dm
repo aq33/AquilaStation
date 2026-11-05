@@ -1,11 +1,11 @@
 /obj/item/implant/chem
-	name = "chem implant"
-	desc = "Injects things."
+	name = "implant chemiczny"
+	desc = "Wstrzykuje różne rzeczy."
 	icon_state = "reagents"
 	activated = FALSE
 
 /obj/item/implant/chem/get_data()
-	var/dat = {"<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> Implant zarządzania więźniami Robust Corp MJ-420<BR><b>Żywotność:</b> dezaktywuje się po śmierci, ale pozostaje w ciele.<BR><b>Ważne uwagi: ponieważ system czerpie energię ze składników odżywczych w ciele nosiciela, nosiciel<BR>będzie miał zwiększony apetyt.</B><BR><HR><b>Szczegóły implantu:</b><BR><b>Działanie:</b> zawiera małą kapsułkę, w której można umieścić różne substancje. Po otrzymaniu specjalnie zakodowanego sygnału<BR>implant uwalnia substancje bezpośrednio do krwiobiegu.<BR><b>Cechy specjalne:</b><i>Mikrokapsułka</i> - można ją napełnić dowolną substancją za pomocą zwykłej strzykawki, mieści 50 jednostek.<BR>Można ją napełniać tylko w oryginalnym opakowaniu.<BR><b>Trwałość:</b> implant działa tak długo, jak nosiciel żyje."}
+	var/dat = {"<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> Implant zarządzania więźniami Robust Corp MJ-420<BR><b>Żywotność:</b> przy śmierci nosiciela wstrzykuje całą zawartość, a pusty implant się rozpada.<BR><HR><b>Szczegóły implantu:</b><BR><b>Działanie:</b> zawiera małą kapsułkę, w której można umieścić różne substancje. Po otrzymaniu specjalnie zakodowanego sygnału<BR>implant uwalnia substancje bezpośrednio do krwiobiegu.<BR><b>Cechy specjalne:</b><i>Mikrokapsułka</i> - można ją napełnić dowolną substancją za pomocą zwykłej strzykawki, mieści 50 jednostek.<BR>Można ją napełniać tylko w oryginalnym opakowaniu.<BR><b>Trwałość:</b> implant działa, dopóki ma w sobie substancje."} // AQ EDIT - opis zgodny z działaniem (wstrzyknięcie przy śmierci, rozpad po opróżnieniu, bez wpływu na apetyt)
 	return dat
 
 /obj/item/implant/chem/Initialize(mapload)
@@ -41,8 +41,8 @@
 
 
 /obj/item/implantcase/chem
-	name = "implant case - 'Remote Chemical'"
-	desc = "A glass case containing a remote chemical implant."
+	name = "etui na implant – „Zdalny chemiczny”"
+	desc = "Szklane etui ze zdalnie sterowanym implantem chemicznym."
 	imp_type = /obj/item/implant/chem
 
 /obj/item/implantcase/chem/attackby(obj/item/W, mob/user, params)

@@ -150,7 +150,7 @@ Helper proc to spawn the lil' blood alien creature in a vent! Adapted from alien
 
 	for(var/datum/mind/M in bloodlings)
 		if(M.key)
-			round_credits += "<center><h2>[M.key] as [M.name]</h2>"
+			round_credits += "<center><h2>[M.key] jako [M.name]</h2>"
 	round_credits += "<br>"
 	round_credits += ..()
 	return round_credits

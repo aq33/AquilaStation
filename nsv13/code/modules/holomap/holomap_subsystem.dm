@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(holomaps)
 
 			if(tile_area.holomap_color)
 				area_canvas.DrawBox(tile_area.holomap_color, offset_x, offset_y)
-				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? "Maintenance" : tile_area.name
+				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? GLOB.holomap_color_to_name[HOLOMAP_AREACOLOR_MAINTENANCE] : tile_area.name
 
 			if(IS_ROCK(tile))
 				canvas.DrawBox(HOLOMAP_ROCK, offset_x, offset_y)
@@ -111,14 +111,14 @@ SUBSYSTEM_DEF(holomaps)
 				var/image/image_to_use
 
 				if(istype(z_transition_obj, /obj/structure/stairs))
-					if(!z_transition_positions["Stairs Up"])
-						z_transition_positions["Stairs Up"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "stairs"), "markers" = list())
+					if(!z_transition_positions["Schody w górę"])
+						z_transition_positions["Schody w górę"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "stairs"), "markers" = list())
 
 					image_to_use = image('nsv13/icons/holomap/8x8.dmi', "stairs")
 					image_to_use.pixel_x = offset_x
 					image_to_use.pixel_y = offset_y
 
-					z_transition_positions["Stairs Up"]["markers"] += image_to_use
+					z_transition_positions["Schody w górę"]["markers"] += image_to_use
 
 					var/turf/checking = get_step_multiz(get_turf(z_transition_obj), UP)
 					if(istype(checking))
@@ -132,41 +132,41 @@ SUBSYSTEM_DEF(holomaps)
 						image_to_use.pixel_x = checking.x + HOLOMAP_CENTER_X
 						image_to_use.pixel_y = checking.y + HOLOMAP_CENTER_Y
 
-						if(!transitions["Stairs Down"])
-							transitions["Stairs Down"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "stairs_down"), "markers" = list())
+						if(!transitions["Schody w dół"])
+							transitions["Schody w dół"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "stairs_down"), "markers" = list())
 
-						transitions["Stairs Down"]["markers"] += image_to_use
+						transitions["Schody w dół"]["markers"] += image_to_use
 
 				else if(istype(z_transition_obj, /obj/structure/ladder))
-					if(!z_transition_positions["Ladders"])
-						z_transition_positions["Ladders"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "ladder"), "markers" = list())
+					if(!z_transition_positions["Drabiny"])
+						z_transition_positions["Drabiny"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "ladder"), "markers" = list())
 
 					image_to_use = image('nsv13/icons/holomap/8x8.dmi', "ladder")
 					image_to_use.pixel_x = offset_x
 					image_to_use.pixel_y = offset_y
 
-					z_transition_positions["Ladders"]["markers"] += image_to_use
+					z_transition_positions["Drabiny"]["markers"] += image_to_use
 
 				else if(istype(z_transition_obj, /obj/machinery/lazylift_button))
-					if(!z_transition_positions["Elevator"])
-						z_transition_positions["Elevator"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "atmos_marker"), "markers" = list())
+					if(!z_transition_positions["Winda"])
+						z_transition_positions["Winda"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "atmos_marker"), "markers" = list())
 
 					image_to_use = image('nsv13/icons/holomap/8x8.dmi', "elevator")
 					image_to_use.pixel_x = offset_x
 					image_to_use.pixel_y = offset_y
 
-					z_transition_positions["Elevator"]["markers"] += image_to_use
+					z_transition_positions["Winda"]["markers"] += image_to_use
 			var/pod_controller = HAS_ESCAPE_POD_CONTROLLER(tile)
 			if(pod_controller)
 				var/image/image_to_use
-				if(!pod_locations["Escape Pod"])
-					pod_locations["Escape Pod"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "pod_marker"), "markers" = list())
+				if(!pod_locations["Kapsuły ratunkowe"])
+					pod_locations["Kapsuły ratunkowe"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "pod_marker"), "markers" = list())
 
 				image_to_use = image('nsv13/icons/holomap/8x8.dmi', "pod_marker")
 				image_to_use.pixel_x = offset_x
 				image_to_use.pixel_y = offset_y
 
-				pod_locations["Escape Pod"]["markers"] += image_to_use
+				pod_locations["Kapsuły ratunkowe"]["markers"] += image_to_use
 
 
 		// Check sleeping after each row to avoid *completely* destroying the server

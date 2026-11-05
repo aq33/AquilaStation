@@ -4,7 +4,7 @@ Different ships have different combat dice, some have the same as eachother.
 */
 
 /datum/combat_dice
-	var/name = "Combat dice basetype"	//No actual ship should have these.
+	var/name = "kości bojowe: typ bazowy"	//No actual ship should have these.
 
 	var/evade_dice = 1		//How many evade dice?
 	var/evade_roll = 4		//How many sides? Result 1 to X.
@@ -25,7 +25,7 @@ Different ships have different combat dice, some have the same as eachother.
 	var/affinity_flags = NONE		//Affinity: All dice end values are increased by 50% (rounded down) if the target AI type contains the affinity type.
 
 /datum/combat_dice/civilian
-	name = "Civilian combat dice"
+	name = "kości bojowe: cywilne"
 
 	evade_roll = 3
 
@@ -36,7 +36,7 @@ Different ships have different combat dice, some have the same as eachother.
 	damage_roll = 2
 
 /datum/combat_dice/fighter
-	name = "Fighter combat dice"
+	name = "kości bojowe: myśliwiec"
 
 	evade_dice = 2
 	evade_roll = 5
@@ -49,7 +49,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_SWARMER	//Great at shooting other fighters.
 
 /datum/combat_dice/bomber
-	name = "Bomber combat dice"
+	name = "kości bojowe: bombowiec"
 
 	evade_roll = 3
 
@@ -68,7 +68,7 @@ Different ships have different combat dice, some have the same as eachother.
 
 
 /datum/combat_dice/carrier
-	name = "Carrier combat dice"
+	name = "kości bojowe: lotniskowiec"
 
 	evade_roll = 2
 
@@ -82,7 +82,7 @@ Different ships have different combat dice, some have the same as eachother.
 	damage_roll = 2
 
 /datum/combat_dice/frigate
-	name = "Frigate combat dice"
+	name = "kości bojowe: fregata"
 
 	evade_roll = 6
 	evade_bonus = 1
@@ -99,7 +99,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_SWARMER
 
 /datum/combat_dice/destroyer
-	name = "Destroyer combat dice"
+	name = "kości bojowe: niszczyciel"
 
 	evade_roll = 3
 
@@ -115,7 +115,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_SUPPLY
 
 /datum/combat_dice/destroyer/flycatcher
-	name = "Anti-Air Destroyer combat dice"
+	name = "kości bojowe: niszczyciel przeciwlotniczy"
 
 	target_dice = 4
 
@@ -125,7 +125,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_SWARMER
 
 /datum/combat_dice/destroyer/conflagration
-	name = "Hellfire Destroyer combat dice"
+	name = "kości bojowe: niszczyciel Hellfire"
 
 	target_bonus = 2
 
@@ -136,7 +136,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_BATTLESHIP
 
 /datum/combat_dice/cruiser
-	name = "Cruiser combat dice"
+	name = "kości bojowe: krążownik"
 
 	evade_roll = 2
 
@@ -155,7 +155,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_SUPPLY
 
 /datum/combat_dice/battleship
-	name = "Battleship combat dice"
+	name = "kości bojowe: pancernik"
 
 	evade_roll = 3
 	evade_bonus = -1
@@ -174,7 +174,7 @@ Different ships have different combat dice, some have the same as eachother.
 	affinity_flags = AI_FLAG_DESTROYER
 
 /datum/combat_dice/flagship
-	name = "Flagship combat dice"
+	name = "kości bojowe: okręt flagowy"
 
 	evade_roll = 4
 	evade_bonus = -2

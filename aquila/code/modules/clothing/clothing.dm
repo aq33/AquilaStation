@@ -4,8 +4,8 @@
 |*********** nakrycia głowy **********|
 \*************************************/
 /obj/item/clothing/head/aquila
-	name = "micro tear in fabric of reality" //głupia nazwa do debuggowania
-	desc = "if you see this, inform Central Command immediately" //ditto
+	name = "mikropęknięcie w tkance rzeczywistości" //głupia nazwa do debuggowania
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //ditto
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	dog_fashion = null //jeżeli pies może nosić tą czapke to zmień
@@ -13,8 +13,8 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'// ditto
 
 /obj/item/clothing/head/helmet/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	dog_fashion = null //ditto
@@ -22,15 +22,15 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'// ditto
 
 /obj/item/clothing/head/hooded/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	dog_fashion = null //to i tak nie powinno być separowane z właścicielem kaptura
 
 /obj/item/clothing/head/hooded/aquila/huge
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/large-worn-icons/head.dmi'
 	worn_x_dimension = 64
@@ -40,8 +40,8 @@
 |*********** maski **********|
 \****************************/
 /*/obj/item/clothing/mask/aquila
-	name = "micro tear in fabric of reality" //to jest podstawowa nazwa obiektu do debuggowania,
-	desc = "if you see this, inform Central Command immediately" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
+	name = "mikropęknięcie w tkance rzeczywistości" //to jest podstawowa nazwa obiektu do debuggowania,
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
 	icon = 'aquila/icons/obj/clothing/masks.dmi //dodaj ścieżki jak dodajesz nowe obiekty i faktyczne ikony
 	worn_icon = 'aquila/icons/mob/mask.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi'
@@ -52,8 +52,8 @@
 |*********** oczy **********|
 \***************************/
 /*/obj/item/clothing/glasses/aquila
-	name = "micro tear in fabric of reality" //to jest podstawowa nazwa obiektu do debuggowania,
-	desc = "if you see this, inform Central Command immediately" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
+	name = "mikropęknięcie w tkance rzeczywistości" //to jest podstawowa nazwa obiektu do debuggowania,
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
 	icon = 'aquila/icons/obj/clothing/glasses.dmi' //dodaj ścieżki jak dodajesz nowe obiekty i faktyczne ikony
 	worn_icon = 'aquila/icons/mob/eyes.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi'
@@ -63,8 +63,8 @@
 |*********** podubrania **********|
 \*********************************/
 /obj/item/clothing/under/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'aquila/icons/mob/uniform.dmi'
 	can_adjust = FALSE //jeżeli jest druga ikona na luzowanie ubrania to zamień na true
@@ -76,8 +76,8 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'
 
 /obj/item/clothing/under/costume/aquila //nie ma czegoś takiego jak costume co ma własne funkcje, to jest uzywane jedynie do-
-	name = "micro tear in fabric of reality"//-do oznaczenia ze to kostium i tyle, ja tego nie wymyśliłem
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"//-do oznaczenia ze to kostium i tyle, ja tego nie wymyśliłem
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'aquila/icons/mob/uniform.dmi'
 	can_adjust = FALSE //ditto
@@ -92,8 +92,8 @@
 |*********** buty **********|
 \***************************/
 /obj/item/clothing/shoes/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'aquila/icons/mob/feet.dmi'
 	equip_delay_other = 50 //tak wszystkie buty mają
@@ -106,8 +106,8 @@
 |*********** rękawice **********|
 \*******************************/
 /*/obj/item/clothing/gloves/aquila
-	name = "micro tear in fabric of reality" //to jest podstawowa nazwa obiektu do debuggowania,
-	desc = "if you see this, inform Central Command immediately" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
+	name = "mikropęknięcie w tkance rzeczywistości" //to jest podstawowa nazwa obiektu do debuggowania,
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
 	icon = 'aquila/icons/obj/clothing/gloves.dmi //dodaj ścieżki jak dodajesz nowe obiekty i faktyczne ikony
 	worn_icon = 'aquila/icons/mob/glove.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi' // ditto
@@ -117,8 +117,8 @@
 |*********** uszy **********|
 \***************************/
 /*/obj/item/clothing/ears/aquila
-	name = "micro tear in fabric of reality" //to jest podstawowa nazwa obiektu do debuggowania,
-	desc = "if you see this, inform Central Command immediately" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
+	name = "mikropęknięcie w tkance rzeczywistości" //to jest podstawowa nazwa obiektu do debuggowania,
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
 	icon = 'aquila/icons/obj/radio.dmi' !!może być inna ścieżka!! //dodaj ścieżki jak dodajesz nowe obiekty. Po dodaniu skasuj komentarz placeholder
 	worn_icon = 'aquila/icons/mob/ears.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi' // ditto
@@ -128,8 +128,8 @@
 |*********** szyja **********|
 \***************************/
 /*/obj/item/clothing/neck/aquila
-	name = "micro tear in fabric of reality" //to jest podstawowa nazwa obiektu do debuggowania,
-	desc = "if you see this, inform Central Command immediately" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
+	name = "mikropęknięcie w tkance rzeczywistości" //to jest podstawowa nazwa obiektu do debuggowania,
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę" //, normalnie nie powinieneś tego widzieć jeżeli wszystko jest dobrze napisane
 	icon = 'aquila/icons/obj/clothing/neck.dmi //dodaj ścieżki jak dodajesz nowe obiekty i faktyczne ikony
 	worn_icon = 'aquila/icons/mob/neck.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi' // ditto
@@ -139,8 +139,8 @@
 |*********** przebrania **********|
 \*********************************/
 /obj/item/clothing/suit/armor/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/suits.dmi'
 	worn_icon = 'aquila/icons/mob/suit.dmi'
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -148,8 +148,8 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'
 
 /obj/item/clothing/suit/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/suits.dmi'
 	worn_icon = 'aquila/icons/mob/suit.dmi'
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -157,8 +157,8 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'
 
 /obj/item/clothing/suit/hooded/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/suits.dmi'
 	worn_icon = 'aquila/icons/mob/suit.dmi'
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -169,8 +169,8 @@
 |********** skafandry **********|
 \*******************************/
 /obj/item/clothing/suit/space/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/suits.dmi'
 	worn_icon = 'aquila/icons/mob/suit.dmi'
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -178,8 +178,8 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'
 
 /obj/item/clothing/head/helmet/space/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	lefthand_file = 'aquila/icons/mob/inhands/clothing_lefthand.dmi'
@@ -187,8 +187,8 @@
 
 //hardsuit
 /obj/item/clothing/suit/space/hardsuit/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/suits.dmi'
 	worn_icon = 'aquila/icons/mob/suit.dmi'
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -196,7 +196,7 @@
 	righthand_file = 'aquila/icons/mob/inhands/clothing_righthand.dmi'
 
 /obj/item/clothing/head/helmet/space/hardsuit/aquila
-	name = "micro tear in fabric of reality"
-	desc = "if you see this, inform Central Command immediately"
+	name = "mikropęknięcie w tkance rzeczywistości"
+	desc = "jeśli to widzisz, natychmiast powiadom Centralę"
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'

@@ -23,7 +23,7 @@
 	return FALSE
 
 /obj/item/toy/plush/carpplushie/dehy_carp/proc/Swell()
-	desc = "It's growing!"
+	desc = "Rośnie!"
 	visible_message("<span class='notice'>[src] pęcznieje!</span>")
 
 	//Animation

@@ -6,8 +6,8 @@
 #define BASE_BEAR_DIVISOR 20 //the number of players for Fight Pit Bears to scale to, standard stats at this number
 
 /obj/machinery/power/emitter/energycannon/magical
-	name = "wabbajack statue"
-	desc = "Who am I? What is my purpose in life? What do I mean by who am I?"
+	name = "posąg wabbajacka"
+	desc = "Kim jestem? Jaki jest cel mojego życia? Co mam na myśli, pytając, kim jestem?"
 	projectile_type = /obj/item/projectile/magic/change
 	icon = 'icons/obj/machines/magic_emitter.dmi'
 	icon_state = "wabbajack_statue"
@@ -20,7 +20,7 @@
 /obj/machinery/power/emitter/energycannon/magical/Initialize(mapload)
 	. = ..()
 	if(prob(50))
-		desc = "Oh no, not again."
+		desc = "O nie, tylko nie znowu."
 	update_icon()
 
 /obj/machinery/power/emitter/energycannon/magical/update_icon()
@@ -53,8 +53,8 @@
 	return
 
 /obj/structure/table/abductor/wabbajack
-	name = "wabbajack altar"
-	desc = "Whether you're sleeping or waking, it's going to be quite chaotic."
+	name = "ołtarz wabbajacka"
+	desc = "Czy śpisz, czy czuwasz, będzie dość chaotycznie."
 	max_integrity = 1000
 	verb_say = "intonuje"
 	var/obj/machinery/power/emitter/energycannon/magical/our_statue
@@ -78,7 +78,7 @@
 			break
 
 	if(!our_statue)
-		name = "inert [initial(name)]"
+		name = "[initial(name)] (bezczynność)"
 		return
 	else
 		name = initial(name)
@@ -126,17 +126,17 @@
 		sleeper.ghostize(TRUE)
 
 /obj/structure/table/abductor/wabbajack/left
-	desc = "You sleep so it may wake."
+	desc = "Śpisz, by ono mogło się obudzić."
 
 /obj/structure/table/abductor/wabbajack/right
-	desc = "It wakes so you may sleep."
+	desc = "Ono czuwa, byś mógł spać."
 
 // Bar staff, GODMODE mobs that just want to make sure people have drinks
 // and a good time.
 
 /mob/living/simple_animal/drone/snowflake/bardrone
-	name = "Bardrone"
-	desc = "A barkeeping drone, an indestructible robot built to tend bars."
+	name = "Dron barowy"
+	desc = "Dron barman, niezniszczalny robot zbudowany do obsługi barów."
 	hacked = TRUE
 	laws = "1. Podawaj drinki.\n2. Rozmawiaj z klientami.\n3. Nie mieszaj się w ich sprawy."
 	status_flags = GODMODE // Please don't punch the barkeeper
@@ -152,8 +152,8 @@
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid
 	gold_core_spawnable = NO_SPAWN
-	name = "Barmaid"
-	desc = "A barmaid, a maiden found in a bar."
+	name = "Barmanka"
+	desc = "Barmanka, czyli panna spotykana w barze."
 	pass_flags = PASSTABLE
 	status_flags = GODMODE
 	unique_name = FALSE
@@ -217,8 +217,8 @@
 //Luxury Shuttle Blockers
 
 /obj/effect/forcefield/luxury_shuttle
-	name = "Luxury shuttle ticket booth"
-	desc = "A forceful money collector."
+	name = "kasa biletowa luksusowego promu"
+	desc = "Stanowczy poborca pieniędzy."
 	timeleft = 0
 	var/threshold = 500
 	var/static/list/approved_passengers = list()
@@ -311,8 +311,8 @@
 		return ..()
 
 /mob/living/simple_animal/hostile/bear/fightpit
-	name = "fight pit bear"
-	desc = "This bear's trained through ancient Russian secrets to fear the walls of its glass prison."
+	name = "niedźwiedź z areny"
+	desc = "Ten niedźwiedź został wyszkolony starożytnymi rosyjskimi sekretami, by bać się ścian swojego szklanego więzienia."
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	gold_core_spawnable = NO_SPAWN
 
@@ -324,8 +324,8 @@
 	melee_damage *= multiplier
 
 /obj/effect/decal/hammerandsickle
-	name = "hammer and sickle"
-	desc = "Communism powerful force."
+	name = "sierp i młot"
+	desc = "Komunizm potężna siła."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "communist"
 	layer = ABOVE_OPEN_TURF_LAYER

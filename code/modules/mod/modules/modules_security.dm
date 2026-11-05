@@ -2,8 +2,8 @@
 
 ///Magnetic Harness - Automatically puts guns in your suit storage when you drop them.
 /obj/item/mod/module/magnetic_harness
-	name = "MOD magnetic harness module"
-	desc = "Based off old TerraGov harness kits, this magnetic harness automatically attaches dropped guns back to the wearer."
+	name = "moduł magnetycznej uprzęży MOD"
+	desc = "Ta magnetyczna uprząż, oparta na starych zestawach TerraGov, automatycznie przyczepia upuszczoną broń z powrotem do noszącego."
 	icon_state = "mag_harness"
 	complexity = 2
 	use_power_cost = DEFAULT_CHARGE_DRAIN
@@ -57,13 +57,13 @@
 	if(!mod.wearer.equip_to_slot_if_possible(item, ITEM_SLOT_SUITSTORE, qdel_on_fail = FALSE, disable_warning = TRUE))
 		return
 	playsound(src, 'sound/items/modsuit/magnetic_harness.ogg', 50, TRUE)
-	balloon_alert(mod.wearer, "[item] reattached")
+	balloon_alert(mod.wearer, "przyczepiono ponownie: [item]")
 	drain_power(use_power_cost)
 
 ///Pepper Shoulders - When hit, reacts with a spray of pepper spray around the user.
 /obj/item/mod/module/pepper_shoulders
-	name = "MOD pepper shoulders module"
-	desc = "A module that attaches two pepper sprayers on shoulders of a MODsuit, reacting to touch with a spray around the user."
+	name = "moduł pieprzowych naramienników MOD"
+	desc = "Moduł, który montuje na ramionach MODsuitu dwa rozpylacze gazu pieprzowego, reagujące na dotyk opryskiem wokół użytkownika."
 	icon_state = "pepper_shoulder"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -95,17 +95,17 @@
 		return
 	if(!check_power(use_power_cost))
 		return
-	mod.wearer.visible_message(span_warning("[src] reacts to the attack with a smoke of pepper spray!"), span_notice("Your [src] releases a cloud of pepper spray!"))
+	mod.wearer.visible_message(span_warning("[src] reaguje na atak chmurą gazu pieprzowego!"), span_notice("[src] wypuszcza chmurę gazu pieprzowego!"))
 	used()
 
 
 ///Holster - Instantly holsters any not huge gun.
 /obj/item/mod/module/holster
-	name = "MOD holster module"
-	desc = "Based off typical storage compartments, this system allows the suit to holster a \
-		standard firearm across its surface and allow for extremely quick retrieval. \
-		While some users prefer the chest, others the forearm for quick deployment, \
-		some law enforcement prefer the holster to extend from the thigh."
+	name = "moduł kabury MOD"
+	desc = "Ten system, oparty na typowych schowkach, pozwala skafandrowi trzymać w kaburze \
+		standardową broń palną na powierzchni i wyciągać ją niezwykle szybko. \
+		Jedni użytkownicy wolą klatkę piersiową, inni przedramię dla szybkiego dobycia, \
+		a niektórzy stróże prawa wolą, by kabura wysuwała się z uda."
 	icon_state = "holster"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -120,20 +120,20 @@
 	if(!holstered)
 		var/obj/item/gun/holding = mod.wearer.get_active_held_item()
 		if(!holding)
-			balloon_alert(mod.wearer, "nothing to holster!")
+			balloon_alert(mod.wearer, "nie ma czego schować!")
 			return
 		if(!istype(holding) || holding.w_class > WEIGHT_CLASS_BULKY)
-			balloon_alert(mod.wearer, "doesn't fit!")
+			balloon_alert(mod.wearer, "nie pasuje!")
 			return
 		if(mod.wearer.transferItemToLoc(holding, src, force = FALSE, silent = TRUE))
 			holstered = holding
-			balloon_alert(mod.wearer, "weapon holstered")
+			balloon_alert(mod.wearer, "broń schowana")
 			playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	else if(mod.wearer.put_in_active_hand(holstered, forced = FALSE, ignore_animation = TRUE))
-		balloon_alert(mod.wearer, "weapon drawn")
+		balloon_alert(mod.wearer, "broń wyciągnięta")
 		playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	else
-		balloon_alert(mod.wearer, "holster full!")
+		balloon_alert(mod.wearer, "kabura pełna!")
 
 /obj/item/mod/module/holster/on_uninstall(deleting = FALSE)
 	if(holstered)
@@ -150,8 +150,8 @@
 
 ///Megaphone - Lets you speak loud.
 /obj/item/mod/module/megaphone
-	name = "MOD megaphone module"
-	desc = "A microchip megaphone linked to a MODsuit, for very important purposes, like: loudness."
+	name = "moduł megafonu MOD"
+	desc = "Mikroczipowy megafon połączony z MODsuitem, do bardzo ważnych celów, takich jak: głośność."
 	icon_state = "megaphone"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -177,13 +177,13 @@
 /*
 ///Criminal Capture - Lets you put people in transport bags.
 /obj/item/mod/module/criminalcapture
-	name = "MOD criminal capture module"
-	desc = "The private security that had orders to take in people dead were quite \
-		happy with their space-proofed suit, but for those who wanted to bring back \
-		whomever their targets were still breathing needed a way to \"share\" the \
-		space-proofing. And thus: criminal capture! Creates a prisoner transport bag \
-		around the apprehended that has breathable atmos and even stabilizes critical \
-		conditions."
+	name = "moduł chwytania przestępców MOD"
+	desc = "Prywatna ochrona z rozkazem przyprowadzania ludzi martwych była całkiem \
+		zadowolona ze swoich skafandrów do próżni, ale ci, którzy chcieli przyprowadzić \
+		cele wciąż oddychające, potrzebowali sposobu, by „podzielić się” \
+		ochroną przed próżnią. I tak powstało: chwytanie przestępców! Tworzy wokół zatrzymanego worek do transportu więźniów \
+		z oddychalną atmosferą, który nawet stabilizuje stany \
+		krytyczne."
 	icon_state = "criminalcapture"
 	module_type = MODULE_ACTIVE
 	complexity = 2
@@ -215,7 +215,7 @@
 		var/turf/target_turf = get_turf(living_target)
 		playsound(src, 'sound/items/zip.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, capture_time, target = living_target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "przerwano!")
 			return
 		var/obj/structure/closet/body_bag/environmental/prisoner/dropped_bag = pop(criminal_capture_bags)
 		dropped_bag.forceMove(target_turf)
@@ -224,17 +224,17 @@
 	else if(istype(target, /obj/structure/closet/body_bag/environmental/prisoner) || istype(target, /obj/item/bodybag/environmental/prisoner))
 		var/obj/item/bodybag/environmental/prisoner/bag = target
 		if(criminal_capture_bags.len >= max_capacity)
-			balloon_alert(mod.wearer, "bag limit reached!")
+			balloon_alert(mod.wearer, "osiągnięto limit worków!")
 			return
 		playsound(src, 'sound/items/zip.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, packup_time, target = bag))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, "przerwano!")
 			return
 		if(criminal_capture_bags.len >= max_capacity)
-			balloon_alert(mod.wearer, "bag limit reached!")
+			balloon_alert(mod.wearer, "osiągnięto limit worków!")
 			return
 		if(locate(/mob/living) in bag)
-			balloon_alert(mod.wearer, "living creatures inside!")
+			balloon_alert(mod.wearer, "w środku są żywe istoty!")
 			return
 		if(istype(bag, /obj/item/bodybag/environmental/prisoner))
 			bag = bag.deploy_bodybag(mod.wearer, get_turf(bag))
@@ -243,15 +243,15 @@
 			structure_bag.open(mod.wearer, force = TRUE)
 		bag.forceMove(src)
 		criminal_capture_bags += bag
-		balloon_alert(mod.wearer, "bag stored")
+		balloon_alert(mod.wearer, "worek schowany")
 	else
-		balloon_alert(mod.wearer, "invalid target!")
+		balloon_alert(mod.wearer, "nieprawidłowy cel!")
 */
 
 ///Mirage grenade dispenser - Dispenses grenades that copy the user's appearance.
 /obj/item/mod/module/dispenser/mirage
-	name = "MOD mirage grenade dispenser module"
-	desc = "This module can create mirage grenades at the user's liking. These grenades create holographic copies of the user."
+	name = "moduł dozownika granatów mirażowych MOD"
+	desc = "Ten moduł tworzy granaty mirażowe na życzenie użytkownika. Te granaty tworzą holograficzne kopie użytkownika."
 	icon_state = "mirage_grenade"
 	cooldown_time = 20 SECONDS
 	overlay_state_inactive = "module_mirage_grenade"
@@ -262,8 +262,8 @@
 	grenade.preprime(mod.wearer)
 
 /obj/item/grenade/mirage
-	name = "mirage grenade"
-	desc = "A special device that, when activated, produces a holographic copy of the user."
+	name = "granat mirażowy"
+	desc = "Specjalne urządzenie, które po aktywacji tworzy holograficzną kopię użytkownika."
 	icon_state = "mirage"
 	item_state = "flashbang"
 	det_time = 3 SECONDS
@@ -284,8 +284,8 @@
 
 ///Projectile Dampener - Weakens projectiles in range.
 /obj/item/mod/module/projectile_dampener
-	name = "MOD projectile dampener module"
-	desc = "Using technology from peaceborgs, this module weakens all projectiles in nearby range."
+	name = "moduł tłumika pocisków MOD"
+	desc = "Ten moduł, korzystając z technologii peaceborgów, osłabia wszystkie pociski w pobliżu."
 	icon_state = "projectile_dampener"
 	module_type = MODULE_TOGGLE
 	complexity = 3
@@ -336,10 +336,10 @@
 
 ///Active Sonar - Displays a hud circle on the turf of any living creatures in the given radius
 /obj/item/mod/module/active_sonar
-	name = "MOD active sonar"
-	desc = "Ancient tech from the 20th century, this module uses sonic waves to detect living creatures within the user's radius. \
-		Its basic function slowly scans around the user for any bio-signatures, however it can be overclocked to scan everywhere at once.\
-		Its loud ping is much harder to hide in an indoor station than in the outdoor operations it was designed for."
+	name = "aktywny sonar MOD"
+	desc = "Pradawna technologia z XX wieku; ten moduł wykrywa falami dźwiękowymi żywe istoty w promieniu wokół użytkownika. \
+		W podstawowym trybie powoli skanuje okolicę w poszukiwaniu biosygnatur, ale można go podkręcić, by skanował wszędzie naraz. \
+		Jego głośny ping znacznie trudniej ukryć na stacji niż w operacjach na otwartym terenie, do których go zaprojektowano."
 	icon_state = "active_sonar"
 	module_type = MODULE_USABLE
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.5
@@ -432,11 +432,11 @@
 	COOLDOWN_START(src, scan_cooldown, scan_cooldown_time)
 
 /obj/item/mod/module/active_sonar/on_use()
-	balloon_alert(mod.wearer, "readying sonar...")
+	balloon_alert(mod.wearer, "przygotowywanie sonaru...")
 	playsound(mod.wearer, 'sound/mecha/skyfall_power_up.ogg', vol = 20, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	if(!do_after(mod.wearer, 1.1 SECONDS, target = mod))
 		return
 	playsound(mod.wearer, 'sound/effects/ping_hit.ogg', vol = 75, vary = TRUE) // Should be audible for the radius of the sonar
-	to_chat(mod.wearer, span_notice("You slam your fist into the ground, sending out a sonic wave that detects [detect_living_creatures()] living beings nearby!"))
+	to_chat(mod.wearer, span_notice("Uderzasz pięścią w ziemię, wysyłając falę dźwiękową, która wykrywa w pobliżu żywe istoty. Liczba: [detect_living_creatures()]!"))
 	for(var/mob/living/creature as anything in keyed_creatures)
 		new /obj/effect/temp_visual/sonar_ping(mod.wearer.loc, mod.wearer, creature)

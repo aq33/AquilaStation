@@ -12,8 +12,8 @@ This file contains various storage items in this order:
 //Ammo Boxes
 
 /obj/item/storage/toolbox/ammo/shotgun
-	name = "ammo box (12ga buckshot)"
-	desc = "It contains a few buckshot rounds."
+	name = "pudełko z amunicją (śrut 12ga)"
+	desc = "Zawiera kilka nabojów śrutowych."
 
 /obj/item/storage/toolbox/ammo/shotgun/PopulateContents()
 	new /obj/item/ammo_casing/shotgun/buckshot(src)
@@ -25,8 +25,8 @@ This file contains various storage items in this order:
 	new /obj/item/ammo_casing/shotgun/buckshot(src)
 
 /obj/item/storage/toolbox/ammo/shotgun/beanbag
-	name = "ammo box (12ga beanbag)"
-	desc = "It contains a few beanbag slugs."
+	name = "pudełko z amunicją (beanbag 12ga)"
+	desc = "Zawiera kilka pocisków typu beanbag."
 
 /obj/item/storage/toolbox/ammo/shotgun/beanbag/PopulateContents()
 	new /obj/item/ammo_casing/shotgun/beanbag(src)
@@ -40,8 +40,8 @@ This file contains various storage items in this order:
 //Regular Boxes
 
 /obj/item/storage/box/cookie
-	name = "box of cookies"
-	desc = "It contains a few cookies for good patients."
+	name = "pudełko ciastek"
+	desc = "Zawiera kilka ciastek dla grzecznych pacjentów."
 
 /obj/item/storage/box/cookie/PopulateContents()
 	new /obj/item/food/cookie( src )
@@ -59,7 +59,7 @@ This file contains various storage items in this order:
 		new /obj/item/reagent_containers/glass/beaker( src )
 
 /obj/item/storage/box/suitbox/maid
-	name = "compression box of maid uniforms"
+	name = "pudełko kompresyjne ze strojami pokojówki"
 	desc = "Zawiera najnowocześniejszy strój pokojówki."
 
 /obj/item/storage/box/suitbox/maid/PopulateContents()
@@ -69,18 +69,18 @@ This file contains various storage items in this order:
 	new /obj/item/clothing/under/costume/maid(src)
 
 /obj/item/storage/box/radiokey/mun
-	name = "box of munitions radio keys"
-	desc = "Grants access to munitions and supply radio."
+	name = "pudełko kluczy radiowych działu amunicji"
+	desc = "Dają dostęp do radia działu amunicji i zaopatrzenia."
 	radio_key = /obj/item/encryptionkey/munitions_tech
 
 /obj/item/storage/box/radiokey/pilot
-	name = "box of pilot radio keys"
-	desc = "Grants access to air traffic control and munitions radio."
+	name = "pudełko kluczy radiowych pilotów"
+	desc = "Dają dostęp do radia Kontroli Lotów i działu amunicji."
 	radio_key = /obj/item/encryptionkey/pilot
 
 /obj/item/storage/box/squad_lanyards
-	name = "Spare squad lanyards"
-	desc = "A box filled with lanyards for assigning personnel into squads. Repaint them using the squad management console and pass them out."
+	name = "zapasowe smycze drużyn"
+	desc = "Pudełko pełne smyczy do przydzielania personelu do drużyn. Przemaluj je w konsoli zarządzania drużynami i rozdaj."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	illustration = "lanyard"
 
@@ -90,7 +90,7 @@ This file contains various storage items in this order:
 //Syndie Kit Boxes
 
 /obj/item/storage/box/syndie_kit/maid
-	name = "emergency maid kit"
+	name = "awaryjny zestaw pokojówki"
 
 /obj/item/storage/box/syndie_kit/maid/PopulateContents()
 	new /obj/item/clothing/head/maidheadband/syndicate(src)
@@ -103,7 +103,7 @@ This file contains various storage items in this order:
 	new /obj/item/mop/sharp(src)
 
 /obj/item/storage/box/syndie_kit/plushie
-	name = "\improper DIY plushbomb kit"
+	name = "\improper zestaw „zrób to sam”: pluszobomba"
 
 /obj/item/storage/box/syndie_kit/plushie/PopulateContents()
 	new /obj/item/toy/plush/lfighter/synlfighter(src)
@@ -114,8 +114,8 @@ This file contains various storage items in this order:
 //First aid kits
 
 /obj/item/storage/firstaid/robot
-	name = "robotic treatment kit"
-	desc = "Used to treat wounds and afflictions of robotic lifeforms."
+	name = "zestaw do leczenia robotów"
+	desc = "Służy do leczenia ran i dolegliwości robotycznych form życia."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "firstaid-robot"
 	item_state = "firstaid-robot"
@@ -143,29 +143,29 @@ This file contains various storage items in this order:
 //Reagent containers
 
 /obj/item/reagent_containers/glass/bottle/solder
-	name = "solder bottle"
+	name = "butelka lutu"
 	label_name = "solder"
-	desc = "A small bottle. Contains liquid solder. Useful for repairing synthethic brain damage."
+	desc = "Mała butelka. Zawiera płynny lut. Przydaje się do naprawy uszkodzeń syntetycznego mózgu."
 	list_reagents = list(/datum/reagent/medicine/liquid_solder = 30)
 
 /obj/item/reagent_containers/glass/bottle/radioactive_disinfectant
-	name = "radioactive disinfectant bottle"
-	label_name = "radioactive disinfectant"
-	desc = "A small bottle. Contains radioactive disinfectant. Useful for purging irradiation from synthethics."
+	name = "butelka środka odkażającego z promieniowania"
+	label_name = "odkażacz radiacyjny"
+	desc = "Mała butelka. Zawiera środek odkażający z promieniowania. Przydaje się do usuwania napromieniowania z syntetyków."
 	list_reagents = list(/datum/reagent/medicine/radioactive_disinfectant = 30)
 
 /obj/item/reagent_containers/glass/bottle/system_cleaner
-	name = "system cleaner bottle"
-	label_name = "system cleaner"
-	desc = "A small bottle. Contains system cleaner. Useful for purging toxic chemicals and toxins from synthetics."
+	name = "butelka czyściciela systemu"
+	label_name = "czyściciel systemu"
+	desc = "Mała butelka. Zawiera czyściciel systemu. Przydaje się do usuwania toksycznych chemikaliów i toksyn z syntetyków."
 	list_reagents = list(/datum/reagent/medicine/system_cleaner = 30)
 
 /obj/item/reagent_containers/hypospray/medipen/system_cleaner
-	name = "system cleaner medipen"
+	name = "medipen z czyścicielem systemu"
 	icon = 'nsv13/icons/obj/nsv13_syringe.dmi'
 	icon_state = "syscleanpen"
 	item_state = "syscleanpen"
 	lefthand_file = 'nsv13/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "A autoinjector containing system cleaner, used to purge toxins from synthetics quickly."
+	desc = "Autoinjektor z czyścicielem systemu, służący do szybkiego usuwania toksyn z syntetyków."
 	list_reagents = list(/datum/reagent/medicine/system_cleaner = 10)

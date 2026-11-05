@@ -9,7 +9,7 @@
 #define COMPRESSOR_BASE_COMPRESS_TIME (40 SECONDS)
 
 /obj/machinery/slime_compressor
-	name = "slime compressor"
+	name = "kompresor szlamów"
 	desc = "Maszyna, która ściska żywe dorosłe szlamy w crossbreedy. Wybierz przepis i przeciągnij na nią szlamy."
 	icon = 'aquila/icons/obj/xenobiology/slime_compressor.dmi'
 	icon_state = "compressor"
@@ -243,7 +243,7 @@
 	update_appearance()
 
 /obj/item/circuitboard/machine/slime_compressor
-	name = "Slime Compressor (Machine Board)"
+	name = "kompresor szlamów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/slime_compressor
 	req_components = list(
@@ -251,8 +251,8 @@
 		/obj/item/stock_parts/micro_laser = 1)
 
 /datum/design/board/slime_compressor
-	name = "Machine Design (Slime Compressor)"
-	desc = "The circuit board for a slime compressor."
+	name = "Projekt maszyny (kompresor szlamów)"
+	desc = "Płytka drukowana kompresora szlamów."
 	id = "slime_compressor"
 	build_path = /obj/item/circuitboard/machine/slime_compressor
 	category = list("Research Machinery")

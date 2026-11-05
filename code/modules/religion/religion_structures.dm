@@ -1,6 +1,6 @@
 /obj/structure/altar_of_gods
-	name = "\improper Altar of the Gods"
-	desc = "An altar which allows the head of the church to choose a sect of religious teachings as well as provide sacrifices to earn favor."
+	name = "\improper Ołtarz Bogów"
+	desc = "Ołtarz, przy którym głowa kościoła wybiera odłam nauk religijnych i składa ofiary, by zyskać łaskę."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "convertaltar"
 	density = TRUE
@@ -30,7 +30,7 @@
 	if(pushed_mob.buckled)
 		to_chat(user, "<span class='warning'>[pushed_mob] jest przypięty do [pushed_mob.buckled]!</span>")
 		return ..()
-	to_chat(user,"<span class='notice>Próbujesz nakłonić [pushed_mob], by wszedł na [src]...</span>")
+	to_chat(user,"<span class='notice'>Próbujesz nakłonić [pushed_mob], by wszedł na [src]...</span>")
 	if(!do_after(user,(5 SECONDS),target = pushed_mob))
 		return ..()
 	pushed_mob.forceMove(loc)

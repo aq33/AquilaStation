@@ -61,7 +61,7 @@ export const FighterControls = (props) => {
   return (
     <Window theme="hackerman" width={497} height={450}>
       <Window.Content scrollable>
-        <Section title="Alerts:">
+        <Section title="Alarmy:">
           <Button
             width="150px"
             content="Master caution"
@@ -71,19 +71,19 @@ export const FighterControls = (props) => {
           />
           <Button
             width="150px"
-            content="Radar Lock"
+            content="Namierzenie radarem"
             color={data.rwr ? 'average' : undefined}
             icon="exclamation-triangle"
           />
           <Button
             width="150px"
-            content="Fuel Warning"
+            content="Ostrzeżenie: paliwo"
             color={data.fuel_warning ? 'average' : undefined}
             icon="gas-pump"
           />
         </Section>
-        <Section title="Monitoring">
-          FUEL:
+        <Section title="Monitorowanie">
+          PALIWO:
           <Knob
             inline
             size={1.25}
@@ -93,7 +93,7 @@ export const FighterControls = (props) => {
             minValue={0}
             maxValue={data.max_fuel}
           />
-          BATT:
+          BAT.:
           <Knob
             inline
             size={1.25}
@@ -103,30 +103,30 @@ export const FighterControls = (props) => {
             minValue={0}
             maxValue={data.battery_max_charge}
           />
-          RPM:
+          OBR.:
           <Knob
             inline
             size={1.25}
             value={data.rpm}
-            unit="RPM"
+            unit="obr./min"
             minValue={0}
             maxValue={8000}
           />
-          PRIM:
+          GŁ.:
           <Knob
             inline
             size={1.25}
             value={data.primary_ammo}
-            unit="U"
+            unit="szt."
             minValue={0}
             maxValue={data.max_primary_ammo}
           />
-          SEC:
+          POM.:
           <Knob
             inline
             size={1.25}
             value={data.secondary_ammo}
-            unit="U"
+            unit="szt."
             minValue={0}
             maxValue={data.max_secondary_ammo}
           />
@@ -142,7 +142,7 @@ export const FighterControls = (props) => {
           <br />
           <br />
           <LabeledList>
-            <LabeledList.Item label="Armour">
+            <LabeledList.Item label="Pancerz">
               <ProgressBar
                 value={
                   (data.armour_integrity / data.max_armour_integrity) *
@@ -156,7 +156,7 @@ export const FighterControls = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Hull">
+            <LabeledList.Item label="Kadłub">
               <ProgressBar
                 value={(data.obj_integrity / data.max_integrity) * 100 * 0.01}
                 ranges={{
@@ -169,25 +169,27 @@ export const FighterControls = (props) => {
           </LabeledList>
         </Section>
         {!!data.ftl_capable && (
-          <Section title="FTL Drive:">
-            Tracking: {data.ftl_target ? data.ftl_target : 'None'}
+          <Section title="Napęd FTL:">
+            Cel: {data.ftl_target ? data.ftl_target : 'Brak'}
             <br />
             <br />
             <Button
-              content={data.ftl_active ? 'Stop Spooling' : 'Begin Spooling'}
+              content={
+                data.ftl_active ? 'Przerwij rozkręcanie' : 'Rozkręć napęd'
+              }
               width="150px"
               icon="server"
               onClick={() => act('toggle_ftl')}
             />
             <Button
-              content={'Deploy Tether'}
+              content={'Wypuść linkę'}
               width="150px"
               icon="anchor"
               color={data.ftl_target ? 'good' : 'orange'}
               onClick={() => act('anchor_ftl')}
             />
             <Button
-              content="Return"
+              content="Powrót"
               width="150px"
               icon="forward"
               onClick={() => act('return_jump')}
@@ -205,7 +207,7 @@ export const FighterControls = (props) => {
           </Section>
         )}
         <Section
-          title="Controls:"
+          title="Sterowanie:"
           buttons={
             <Button
               icon={settingsVisible ? 'times' : 'cog'}
@@ -222,7 +224,7 @@ export const FighterControls = (props) => {
           />
           <Button
             width="150px"
-            content="Docking mode"
+            content="Tryb dokowania"
             icon={data.docking_mode ? 'anchor' : 'times'}
             color={
               (data.docking_cooldown && 'orange') ||
@@ -232,14 +234,14 @@ export const FighterControls = (props) => {
           />
           <Button
             width="150px"
-            content="Canopy lock"
+            content="Blokada osłony kokpitu"
             icon={!data.canopy_lock ? 'lock' : 'unlock'}
             color={!data.canopy_lock ? 'good' : undefined}
             onClick={() => act('canopy_lock')}
           />
           <Button
             width="150px"
-            content="Brakes"
+            content="Hamulce"
             icon={!data.brakes ? 'unlock' : 'lock'}
             color={data.brakes ? 'good' : undefined}
             onClick={() => act('brakes')}
@@ -260,28 +262,28 @@ export const FighterControls = (props) => {
           />
           <Button
             width="150px"
-            content="SAFETIES"
+            content="BEZPIECZNIKI"
             icon={data.weapon_safety ? 'power-off' : 'times'}
             color={!data.weapon_safety ? 'bad' : 'good'}
             onClick={() => act('weapon_safety')}
           />
           <Button
             width="150px"
-            content="TARGET LOCK"
+            content="NAMIERZANIE"
             icon={data.target_lock ? 'power-off' : 'square-o'}
             color={data.target_lock ? 'good' : 'average'}
             onClick={() => act('target_lock')}
           />
           <Button
             width="150px"
-            content="BATTERY"
+            content="BATERIA"
             icon={data.battery ? 'car-battery' : 'power-off'}
             color={data.battery ? 'good' : 'bad'}
             onClick={() => act('battery')}
           />
           <Button
             width="150px"
-            content="FUEL INJECTOR"
+            content="WTRYSK PALIWA"
             icon={data.fuel_pump ? 'gas-pump' : 'power-off'}
             color={data.fuel_pump ? 'good' : 'bad'}
             onClick={() => act('fuel_pump')}
@@ -295,36 +297,36 @@ export const FighterControls = (props) => {
           />
           <Button
             width="150px"
-            content="IGNITION"
+            content="ZAPŁON"
             icon={data.ignition ? 'key' : 'square-o'}
             color={data.ignition ? 'good' : 'bad'}
             onClick={() => act('ignition')}
           />
         </Section>
         {!!settingsVisible && (
-          <Section title="Settings:">
-            <Button content={'Set Name'} onClick={() => act('set_name')} />
+          <Section title="Ustawienia:">
+            <Button content={'Ustaw nazwę'} onClick={() => act('set_name')} />
             <Button
-              content={'Maintenance'}
+              content={'Konserwacja'}
               onClick={() => act('toggle_maintenance')}
             />
             <br />
             {!!data.maintenance_mode && (
-              <Section title="Loaded Modules:">
+              <Section title="Załadowane moduły:">
                 <LabeledList>
                   {Object.keys(data.hardpoints).map((key) => {
                     let value = data.hardpoints[key];
                     return (
                       <LabeledList.Item key={key} label={`${value.name}`}>
                         <Button
-                          content={`Eject`}
+                          content={`Wysuń`}
                           icon="eject"
                           onClick={() =>
                             act('eject_hardpoint', { id: value.id })
                           }
                         />
                         <Button
-                          content={`Dump contents`}
+                          content={`Wysyp zawartość`}
                           icon="download"
                           onClick={() =>
                             act('dump_hardpoint', { id: value.id })
@@ -345,7 +347,7 @@ export const FighterControls = (props) => {
                     <LabeledList.Item label={`${value.name}`}>
                       <Button
                         fluid
-                        content={`Eject (${value.afk})`}
+                        content={`Wyrzuć (${value.afk})`}
                         icon="eject"
                         onClick={() => act('kick', { id: value.id })} />
                     </LabeledList.Item>);

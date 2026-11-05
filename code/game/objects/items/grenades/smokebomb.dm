@@ -1,6 +1,6 @@
 /obj/item/grenade/smokebomb
-	name = "smoke grenade"
-	desc = "The word 'Dank' is scribbled on it in crayon."
+	name = "granat dymny"
+	desc = "Ktoś nabazgrał na nim kredką słowo „Zielsko”."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "smokewhite"
 	det_time = 20

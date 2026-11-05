@@ -112,10 +112,10 @@
 	Whenever a listing is purchased, a supply pack with the purchased items is returned
 */
 /datum/supply_pack/science_listing
-	name = "Research Material Listing"
+	name = "Oferta materiałów badawczych"
 	desc = "Zawiera potencjalnie niebezpieczne materiały albo absurdalne krawaty."
 	hidden = TRUE
-	crate_name = "research material container"
+	crate_name = "pojemnik z materiałami badawczymi"
 	crate_type = /obj/structure/closet/crate/secure/science //aquila: zabezpieczona, żeby błąd manifestu nie kasował opłaconego artefaktu
 	max_supply = 1
 	current_supply = 1

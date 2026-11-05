@@ -1,6 +1,6 @@
 
 /mob/living/carbon/human/dummy
-	real_name = "Test Dummy"
+	real_name = "Manekin testowy"
 	status_flags = GODMODE|CANPUSH
 	mouse_drag_pointer = MOUSE_INACTIVE_POINTER
 	var/in_use = FALSE

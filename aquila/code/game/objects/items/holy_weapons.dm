@@ -41,12 +41,12 @@
 	var/obj/effect/rune/target_rune = target
 	if(target_rune.log_when_erased)
 		log_game("[target_rune.cultist_name] rune erased by [key_name(user)] using a null rod.")
-		message_admins("[ADMIN_LOOKUPFLW(user)] erased a [target_rune.cultist_name] rune with a null rod.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] ściera runę ([target_rune.cultist_name]) za pomocą null roda.")
 	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_NARNAR] = TRUE
 
 /obj/item/clothing/neck/crucifix/krucyfiks_egzorcysty
 	name = "krucyfiks"
-	desc = "Jakby nie był Ci potrzebny to już dawno byś go przepił."
+	desc = "Jakby nie był ci potrzebny to już dawno byś go przepił."
 	icon = 'aquila/icons/obj/clothing/neck.dmi'
 	worn_icon = 'aquila/icons/mob/neck.dmi'
 	icon_state = "krucyfiks"

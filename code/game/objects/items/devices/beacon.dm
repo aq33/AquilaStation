@@ -1,6 +1,6 @@
 /obj/item/beacon
-	name = "\improper tracking beacon"
-	desc = "A beacon used by a teleporter."
+	name = "\improper nadajnik lokalizacyjny"
+	desc = "Nadajnik, na który namierza się teleporter."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "beacon"
 	item_state = "beacon"
@@ -48,6 +48,6 @@
 /obj/item/beacon/nettingportal
 	//dragnet location beacon
 	name = "\improper DROPnet"
-	desc = "A beacon designated for DRAGnets; all captured targets will teleport to it. Remember to activate before you deploy."
+	desc = "Nadajnik przeznaczony dla DRAGnetów – wszystkie schwytane cele zostaną do niego teleportowane. Pamiętaj, by go aktywować przed rozstawieniem."
 	nettingportal = TRUE
 	enabled = FALSE	//can no longer teleport to Warden's office roundstart

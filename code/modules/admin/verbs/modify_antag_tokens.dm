@@ -15,12 +15,12 @@
 		log_text = "Set to 0"
 		C.set_antag_token_count(0)
 	else
-		var/prompt = "Please enter the amount of tokens to [operation]:"
+		var/prompt = "Podaj liczbę tokenów ([operation]):"
 
 		if(operation == "set")
-			prompt = "Please enter the new token amount:"
+			prompt = "Podaj nową liczbę tokenów:"
 
-		msg = input("Message:", prompt) as num|null
+		msg = input("Wiadomość:", prompt) as num|null
 
 		if (!msg)
 			return
@@ -35,10 +35,10 @@
 			log_text = "Subtracted [num2text(msg)]"
 			C.inc_antag_token_count(-msg)
 		else
-			to_chat(src, "Invalid operation for antag token modification: [operation] by user [key_name(usr)]")
+			to_chat(src, "Nieprawidłowa operacja na tokenach antagonisty: [operation], użytkownik [key_name(usr)]")
 			return
 
 
 	log_admin("[key_name(usr)]: Modified [key_name(C)]'s antagonist tokens [log_text]")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: Modified [key_name(C)]'s antagonist tokens ([log_text])</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: zmienia tokeny antagonisty gracza [key_name(C)] ([log_text])</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Modify Antagonist Tokens") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

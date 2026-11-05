@@ -1,5 +1,5 @@
 /datum/disease/cold9
-	name = "The Cold"
+	name = "Przeziębienie"
 	max_stages = 3
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS

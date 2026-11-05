@@ -10,8 +10,8 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 
 /obj/structure/sign/basic
-	name = "blank sign"
-	desc = "How can signs be real if our eyes aren't real?"
+	name = "pusty znak"
+	desc = "Jak znaki mogą być prawdziwe, skoro nasze oczy nie są prawdziwe?"
 	icon_state = "backing"
 
 /obj/structure/sign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -31,7 +31,7 @@
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 40))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
-			user.visible_message("<span class='notice'>[user] unfastens [src].</span>", \
+			user.visible_message("<span class='notice'>[user] odczepia [src].</span>", \
 								 "<span class='notice'>Odczepiasz [src].</span>")
 			var/obj/item/sign_backing/SB = new (get_turf(user))
 			SB.icon_state = icon_state
@@ -40,37 +40,37 @@
 			qdel(src)
 		return
 	else if(istype(I, /obj/item/pen) && buildable_sign)
-		var/list/sign_types = list("Secure Area", "Biohazard", "High Voltage", "Radiation", "Hard Vacuum Ahead", "Disposal: Leads To Space", "Danger: Fire", "No Smoking", "Medbay", "Science", "Chemistry", \
-		"Hydroponics", "Xenobiology")
+		var/list/sign_types = list("Obszar zabezpieczony", "Zagrożenie biologiczne", "Wysokie napięcie", "Promieniowanie", "Próżnia", "Utylizacja: do przestrzeni kosmicznej", "Niebezpieczeństwo: ogień", "Zakaz palenia", "Ambulatorium", "Nauka", "Chemia", \
+		"Hydroponika", "Ksenobiologia")
 		var/obj/structure/sign/sign_type
 		switch(input(user, "Wybierz rodzaj znaku.", "Dostosowanie znaku") as null|anything in sortList(sign_types))
 			if("Blank")
 				sign_type = /obj/structure/sign/basic
-			if("Secure Area")
+			if("Obszar zabezpieczony")
 				sign_type = /obj/structure/sign/warning/securearea
-			if("Biohazard")
+			if("Zagrożenie biologiczne")
 				sign_type = /obj/structure/sign/warning/biohazard
-			if("High Voltage")
+			if("Wysokie napięcie")
 				sign_type = /obj/structure/sign/warning/electricshock
-			if("Radiation")
+			if("Promieniowanie")
 				sign_type = /obj/structure/sign/warning/radiation
-			if("Hard Vacuum Ahead")
+			if("Próżnia")
 				sign_type = /obj/structure/sign/warning/vacuum
-			if("Disposal: Leads To Space")
+			if("Utylizacja: do przestrzeni kosmicznej")
 				sign_type = /obj/structure/sign/warning/deathsposal
-			if("Danger: Fire")
+			if("Niebezpieczeństwo: ogień")
 				sign_type = /obj/structure/sign/warning/fire
-			if("No Smoking")
+			if("Zakaz palenia")
 				sign_type = /obj/structure/sign/warning/nosmoking/circle
-			if("Medbay")
+			if("Ambulatorium")
 				sign_type = /obj/structure/sign/departments/medbay/alt
-			if("Science")
+			if("Nauka")
 				sign_type = /obj/structure/sign/departments/science
-			if("Chemistry")
+			if("Chemia")
 				sign_type = /obj/structure/sign/departments/chemistry
-			if("Hydroponics")
+			if("Hydroponika")
 				sign_type = /obj/structure/sign/departments/botany
-			if("Xenobiology")
+			if("Ksenobiologia")
 				sign_type = /obj/structure/sign/departments/xenobio
 
 		//Make sure user is adjacent still
@@ -91,8 +91,8 @@
 		return ..()
 
 /obj/item/sign_backing
-	name = "sign backing"
-	desc = "A sign with adhesive backing."
+	name = "podkład znaku"
+	desc = "Znak z klejącym podkładem."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "backing"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -121,11 +121,11 @@
 	setDir(turn(dir, 90))
 
 /obj/structure/sign/nanotrasen
-	name = "\improper Nanotrasen logo"
-	desc = "A sign with the Nanotrasen logo on it. Glory to Nanotrasen!"
+	name = "\improper logo Nanotrasen"
+	desc = "Znak z logo Nanotrasen. Chwała Nanotrasen!"
 	icon_state = "nanotrasen"
 
 /obj/structure/sign/logo
-	name = "\improper Nanotrasen logo"
-	desc = "The Nanotrasen corporate logo."
+	name = "\improper logo Nanotrasen"
+	desc = "Korporacyjne logo Nanotrasen."
 	icon_state = "nanotrasen_sign1"

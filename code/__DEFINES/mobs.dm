@@ -91,6 +91,7 @@
 
 #define DEFAULT_BODYPART_ICON_ORGANIC 'icons/mob/human_parts_greyscale.dmi'
 #define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
+#define AQ_DAMAGE_OVERLAY_ICON 'aquila/icons/mob/effects/dam_mob.dmi' // AQ EDIT - tg damage overlays (brute + untinted bruises), used in core
 
 #define MONKEY_BODYPART "monkey"
 #define TERATOMA_BODYPART "teratoma"

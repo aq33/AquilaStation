@@ -1,6 +1,6 @@
 /obj/item/singularityhammer
-	name = "singularity hammer"
-	desc = "The pinnacle of close combat technology, the hammer harnesses the power of a miniaturized singularity to deal crushing blows."
+	name = "młot osobliwości"
+	desc = "Szczyt technologii walki wręcz. Ten młot wykorzystuje moc zminiaturyzowanej osobliwości, by zadawać miażdżące ciosy."
 	icon_state = "singularity_hammer0"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
@@ -80,7 +80,7 @@
 
 /obj/item/mjollnir
 	name = "Mjolnir"
-	desc = "A weapon worthy of a god, able to strike with the force of a lightning bolt. It crackles with barely contained energy."
+	desc = "Broń godna boga, zdolna uderzyć z siłą pioruna. Trzeszczy od ledwie powstrzymywanej energii."
 	icon_state = "mjollnir0"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'

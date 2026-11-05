@@ -24,7 +24,7 @@
 
 /datum/antagonist/abductor/scientist
 	name = "Naukowiec porywaczy"
-	sub_role = "Scientist"
+	sub_role = "Naukowiec"
 	outfit = /datum/outfit/abductor/scientist
 	landmark_type = /obj/effect/landmark/abductor/scientist
 	greet_text = "Używaj eksperymentalnej konsoli i sprzętu chirurgicznego, by obserwować agenta i eksperymentować na porwanych ludziach."
@@ -72,7 +72,7 @@
 	to_chat(owner.current, "<span class='notice'>Wybierz godne przebranie i starannie zaplanuj cele! Ludzie zabiją cię, gdy tylko cię zobaczą.</span>")
 	to_chat(owner.current, "<span class='notice'>[greet_text]</span>")
 	owner.announce_objectives()
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Abductor",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Porywacz",
 		"Porywaj członków załogi i eksperymentuj na nich, nie dając się zauważyć.")
 
 /datum/antagonist/abductor/proc/finalize_abductor()
@@ -82,7 +82,7 @@
 	var/obj/item/organ/tongue/abductor/T = H.getorganslot(ORGAN_SLOT_TONGUE)
 	T.mothership = "[team.name]"
 
-	H.real_name = "[team.name] [sub_role]"
+	H.real_name = "[team.name] – [sub_role]"
 	H.equipOutfit(outfit)
 
 	//Teleport to ship
@@ -107,8 +107,8 @@
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in get_all_teams(/datum/team/abductor_team))
 		current_teams[T.name] = T
-	var/choice = input(admin,"Do której drużyny dodać?") as null|anything in (current_teams + "new team")
-	if (choice == "new team")
+	var/choice = input(admin,"Do której drużyny dodać?") as null|anything in (current_teams + "nowa drużyna")
+	if (choice == "nowa drużyna")
 		team = new
 	else if(choice in current_teams)
 		team = current_teams[choice]
@@ -116,18 +116,18 @@
 		return
 	new_owner.add_antag_datum(src)
 	log_admin("[key_name(usr)] made [key_name(new_owner)] [name] on [choice]!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(new_owner)] [name] on [choice] !")
+	message_admins("[key_name_admin(usr)] nadaje [key_name_admin(new_owner)] rolę: [name] (drużyna: [choice]).")
 
 /datum/antagonist/abductor/get_admin_commands()
 	. = ..()
-	.["Equip"] = CALLBACK(src,PROC_REF(admin_equip))
+	.["Wyposaż"] = CALLBACK(src,PROC_REF(admin_equip))
 
 /datum/antagonist/abductor/proc/admin_equip(mob/admin)
 	if(!ishuman(owner.current))
 		to_chat(admin, "<span class='warning'>To działa tylko na ludzi!</span>")
 		return
 	var/mob/living/carbon/human/H = owner.current
-	var/gear = alert(admin,"Agent or Scientist Gear","Gear","Agent","Scientist")
+	var/gear = alert(admin,"Sprzęt agenta czy naukowca?","Sprzęt","Agent","Naukowiec")
 	if(gear)
 		if(gear=="Agent")
 			H.equipOutfit(/datum/outfit/abductor/agent)
@@ -143,7 +143,7 @@
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
-	name = "Mothership [pick(GLOB.possible_changeling_IDs)]" //TODO Ensure unique and actual alieny names
+	name = "Statek-matka [pick(GLOB.possible_changeling_IDs)]" //TODO Ensure unique and actual alieny names
 	add_objective(new/datum/objective/experiment)
 
 /datum/team/abductor_team/is_solo()

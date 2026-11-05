@@ -1,11 +1,11 @@
 /obj/machinery/turbolift_button
-	name = "Lift call button"
-	desc = "A button used to call turbolifts to your floor. You feel like mashing it incessently..."
+	name = "przycisk przywołania windy"
+	desc = "Przycisk, którym przywołujesz turbowindę na swoje piętro. Masz ochotę wciskać go bez końca..."
 
 /obj/machinery/door/airlock/turbolift/ship
-	name = "turbolift blast door"
+	name = "drzwi przeciwwybuchowe turbowindy"
 	icon = 'nsv13/goonstation/icons/turbolift_blast_door.dmi'
-	desc = "A bulkhead which opens and closes."
+	desc = "Gródź, która się otwiera i zamyka."
 	door_animation_speed = 1
 	autoclose = FALSE //Door open/close is controlled by the lift box
 
@@ -14,19 +14,19 @@
 	prefix = "_maps/shuttles/turbolifts/nsv/"
 	port_id = "debug"
 	suffix = "enterprise"
-	name = "aircraft elevator (SGC Enterprise)"
+	name = "winda lotnicza (SGC Enterprise)"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/turbolift/nsv/galactica
 	prefix = "_maps/shuttles/turbolifts/nsv/"
 	port_id = "turbolift"
 	suffix = "galactica"
-	name = "aircraft elevator (NSV Galactica)"
+	name = "winda lotnicza (NSV Galactica)"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/turbolift/nsv/galactica/secondary
 	prefix = "_maps/shuttles/turbolifts/nsv/"
 	port_id = "turbolift"
 	suffix = "galactica_secondary"
-	name = "aircraft elevator (NSV Galactica, Secondary)"
+	name = "winda lotnicza (NSV Galactica, zapasowa)"
 	can_be_bought = FALSE

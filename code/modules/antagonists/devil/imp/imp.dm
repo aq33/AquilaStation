@@ -1,10 +1,10 @@
 //////////////////The Monster
 
 /mob/living/simple_animal/imp
-	name = "imp"
-	real_name = "imp"
+	name = "chochlik"
+	real_name = "chochlik"
 	unique_name = TRUE
-	desc = "A large, menacing creature covered in armored black scales."
+	desc = "Duże, groźne stworzenie pokryte opancerzonymi czarnymi łuskami."
 	speak_emote = list("rechocze")
 	emote_hear = list("rechocze","skrzeczy")
 	response_help  = "rozmyśla się i nie dotyka"

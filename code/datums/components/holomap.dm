@@ -2,8 +2,8 @@
  * An attempt at figuring out how to make holomaps into a component.
  */
 /datum/action/toggle_holomap
-	name = "Toggle Holomap"
-	desc = "Toggles the holomap on or off."
+	name = "Przełącz holomapę"
+	desc = "Włącza albo wyłącza holomapę."
 	icon_icon = 'icons/obj/decals.dmi'
 	button_icon_state = "map-pubby"
 	var/atom/holder = null
@@ -130,6 +130,7 @@
 
 	user.hud_used.holomap.used_station_map = src
 	user.hud_used.holomap.mouse_opacity = MOUSE_OPACITY_ICON
+	user.hud_used.holomap.fit_to_view(user.client) // AQ EDIT - powiększona minimapa, aquila/code/modules/ui_porzadki/holomap_scale.dm
 	user.client.screen |= user.hud_used.holomap
 	user.client.images |= holomap_datum.base_map
 

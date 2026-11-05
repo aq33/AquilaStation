@@ -3,16 +3,16 @@
 // DNA vault requires x animals ,y plants, z human dna
 // DNA vaults require high tier stock parts and cold
 // After completion each crewmember can receive single upgrade chosen out of 2 for the mob.
-#define VAULT_TOXIN "Toxin Adaptation"
-#define VAULT_NOBREATH "Lung Enhancement"
-#define VAULT_FIREPROOF "Thermal Regulation"
-#define VAULT_STUNTIME "Neural Repathing"
-#define VAULT_ARMOUR "Bone Reinforcement"
-#define VAULT_SPEED "Leg Muscle Stimulus"
-#define VAULT_QUICK "Arm Muscle Stimulus"
+#define VAULT_TOXIN "Adaptacja do toksyn"
+#define VAULT_NOBREATH "Ulepszenie płuc"
+#define VAULT_FIREPROOF "Termoregulacja"
+#define VAULT_STUNTIME "Przetrasowanie nerwów"
+#define VAULT_ARMOUR "Wzmocnienie kości"
+#define VAULT_SPEED "Stymulacja mięśni nóg"
+#define VAULT_QUICK "Stymulacja mięśni rąk"
 
 /datum/station_goal/dna_vault
-	name = "DNA Vault"
+	name = "Skarbiec DNA"
 	var/animal_count
 	var/human_count
 	var/plant_count
@@ -59,8 +59,8 @@
 
 
 /obj/item/dna_probe
-	name = "DNA Sampler"
-	desc = "Can be used to take chemical and genetic samples of pretty much anything."
+	name = "próbnik DNA"
+	desc = "Pozwala pobierać próbki chemiczne i genetyczne z niemal wszystkiego."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -113,8 +113,8 @@
 		to_chat(user, "<span class='notice'>Dane humanoida dodane do pamięci lokalnej.</span>")
 
 /obj/machinery/dna_vault
-	name = "DNA Vault"
-	desc = "Break glass in case of apocalypse."
+	name = "skarbiec DNA"
+	desc = "W razie apokalipsy zbić szybę."
 	icon = 'icons/obj/machines/dna_vault.dmi'
 	icon_state = "vault"
 	density = TRUE

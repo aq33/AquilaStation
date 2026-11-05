@@ -1,6 +1,6 @@
 //Glasses
 /obj/item/clothing/glasses
-	name = "glasses"
+	name = "okulary"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	flags_cover = GLASSESCOVERSEYES
@@ -56,8 +56,8 @@
 				eyes.applyOrganDamage(5)
 
 /obj/item/clothing/glasses/meson
-	name = "optical meson scanner"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions."
+	name = "gogle mezonowe"
+	desc = "Używane przez inżynierów i górników, by widzieć przez ściany podstawowy układ konstrukcji i terenu, niezależnie od oświetlenia."
 	icon_state = "meson"
 	item_state = "meson"
 	darkness_view = 2
@@ -84,8 +84,8 @@
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
-	name = "night vision meson scanner"
-	desc = "An optical meson scanner fitted with an amplified visible light spectrum overlay, providing greater visual clarity in darkness."
+	name = "noktowizyjne gogle mezonowe"
+	desc = "Gogle mezonowe z nakładką wzmacniającą światło widzialne, dzięki której w ciemności widać wyraźniej."
 	icon_state = "nvgmeson"
 	item_state = "nvgmeson"
 	darkness_view = 8
@@ -93,10 +93,10 @@
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/meson/gar
-	name = "gar mesons"
+	name = "mezonowe okulary gar"
 	icon_state = "garm"
 	item_state = "garm"
-	desc = "Do the impossible, see the invisible!"
+	desc = "Zrób niemożliwe, zobacz niewidzialne!"
 	force = 10
 	bleed_force = BLEED_SURFACE
 	throwforce = 10
@@ -106,15 +106,15 @@
 	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/meson/prescription
-	name = "prescription meson scanner"
-	desc = "A crude combination between a pair of prescription glasses and the electronics of a meson scanner."
+	name = "korekcyjne gogle mezonowe"
+	desc = "Topornie połączone okulary korekcyjne z elektroniką gogli mezonowych."
 	icon_state = "prescmeson"
 	item_state = "glasses"
 	vision_correction = 1
 
 /obj/item/clothing/glasses/science
-	name = "science goggles"
-	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
+	name = "gogle naukowe"
+	desc = "Szykowne gogle chroniące przed rozpryskami chemikaliów. Mają wbudowany analizator do skanowania przedmiotów i odczynników."
 	icon_state = "purple"
 	item_state = "glasses"
 	clothing_flags = SCAN_REAGENTS
@@ -128,28 +128,28 @@
 		return 1
 
 /obj/item/clothing/glasses/science/prescription
-	name = "prescription science goggles"
-	desc = "A crude combination between a pair of prescription glasses and the electronics of science goggles."
+	name = "korekcyjne gogle naukowe"
+	desc = "Topornie połączone okulary korekcyjne z elektroniką gogli naukowych."
 	icon_state = "prescscihud"
 	resistance_flags = NONE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 40, "stamina" = 0, "bleed" = 0)
 	vision_correction = 1
 
 /obj/item/clothing/glasses/science/sciencesun
-	name = "science sunglasses"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. Has enhanced shielding which blocks flashes."
+	name = "naukowe okulary przeciwsłoneczne"
+	desc = "Okulary przeciwsłoneczne z aparaturą do skanowania odczynników, dające wrodzone wyczucie lepkości cieczy w ruchu. Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "sunhudscience"
 	item_state = "sunhudscience"
 	flash_protect = 1
 
 /obj/item/clothing/glasses/science/sciencesun/degraded
-	name = "degraded science sunglasses"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion."
+	name = "zużyte naukowe okulary przeciwsłoneczne"
+	desc = "Okulary przeciwsłoneczne z aparaturą do skanowania odczynników, dające wrodzone wyczucie lepkości cieczy w ruchu."
 	flash_protect = 0
 
 /obj/item/clothing/glasses/night
-	name = "night vision goggles"
-	desc = "You can totally see in the dark now!"
+	name = "gogle noktowizyjne"
+	desc = "Teraz naprawdę widzisz w ciemności!"
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 8
@@ -161,37 +161,37 @@
 	return OXYLOSS
 
 /obj/item/clothing/glasses/eyepatch
-	name = "eyepatch"
+	name = "przepaska na oko"
 	desc = "Arr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
 /obj/item/clothing/glasses/monocle
-	name = "monocle"
+	name = "monokl"
 	desc = "Cóż za szykowne szkiełko!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
 
 /obj/item/clothing/glasses/material
-	name = "optical material scanner"
-	desc = "Very confusing glasses."
+	name = "optyczny skaner materiałów"
+	desc = "Bardzo dezorientujące okulary."
 	icon_state = "material"
 	item_state = "glasses"
 	vision_flags = SEE_OBJS
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/material/mining
-	name = "optical material scanner"
-	desc = "Used by miners to detect ores deep within the rock."
+	name = "optyczny skaner materiałów"
+	desc = "Używane przez górników do wykrywania rud głęboko w skale."
 	icon_state = "material"
 	item_state = "glasses"
 	darkness_view = 0
 
 /obj/item/clothing/glasses/material/mining/gar
-	name = "gar material scanner"
+	name = "skaner materiałów gar"
 	icon_state = "garm"
 	item_state = "garm"
-	desc = "Do the impossible, see the invisible!"
+	desc = "Zrób niemożliwe, zobacz niewidzialne!"
 	force = 10
 	bleed_force = BLEED_SURFACE
 	throwforce = 20
@@ -202,26 +202,26 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/regular
-	name = "prescription glasses"
+	name = "okulary korekcyjne"
 	desc = "Wyprodukowane przez Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
 	vision_correction = 1 //corrects nearsightedness
 
 /obj/item/clothing/glasses/regular/jamjar
-	name = "jamjar glasses"
+	name = "okulary jak denka od słoików"
 	desc = "Znane też jako obrońcy dziewictwa."
 	icon_state = "jamjar_glasses"
 	item_state = "jamjar_glasses"
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "prescription glasses"
+	name = "okulary korekcyjne"
 	desc = "Wyprodukowane przez Uncool. Co."
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
 
 /obj/item/clothing/glasses/regular/circle
-	name = "circle glasses"
+	name = "okrągłe okulary"
 	desc = "Czemu nosisz coś tak kontrowersyjnego, a zarazem tak odważnego?"
 	icon_state = "circle_glasses"
 	item_state = "circle_glasses"
@@ -229,7 +229,7 @@
 //Here lies green glasses, so ugly they died. RIP
 
 /obj/item/clothing/glasses/sunglasses
-	name = "sunglasses"
+	name = "okulary przeciwsłoneczne"
 	desc = "Dziwnie archaiczna technologia zapewniająca podstawową osłonę oczu. Nie chroni przed błyskami."
 	icon_state = "sun"
 	item_state = "sunglasses"
@@ -239,13 +239,13 @@
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/glasses/sunglasses/advanced/
-	name = "advanced sunglasses"
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Has enhanced shielding which blocks flashes."
+	name = "zaawansowane okulary przeciwsłoneczne"
+	desc = "Dziwnie archaiczna technologia zapewniająca podstawową osłonę oczu. Ma wzmocnioną osłonę, która blokuje błyski."
 	flash_protect = 1
 
 /obj/item/clothing/glasses/sunglasses/advanced/reagent
-	name = "beer goggles"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. Has enhanced shielding which blocks flashes."
+	name = "piwne gogle"
+	desc = "Okulary przeciwsłoneczne z aparaturą do skanowania odczynników, dające wrodzone wyczucie lepkości cieczy w ruchu. Ma wzmocnioną osłonę, która blokuje błyski."
 	clothing_flags = SCAN_REAGENTS | SCAN_BOOZEPOWER
 
 /obj/item/clothing/glasses/sunglasses/advanced/reagent/equipped(mob/user, slot)
@@ -263,8 +263,8 @@
 			REMOVE_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
 
 /obj/item/clothing/glasses/sunglasses/advanced/garb
-	name = "black gar glasses"
-	desc = "Go beyond impossible and kick reason to the curb!  Has enhanced shielding which blocks flashes."
+	name = "czarne okulary gar"
+	desc = "Przekrocz niemożliwe i kopnij rozsądek w kąt! Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "garb"
 	item_state = "garb"
 	force = 10
@@ -276,16 +276,16 @@
 	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/sunglasses/advanced/garb/supergarb
-	name = "black giga gar glasses"
-	desc = "Believe in us humans.  Has enhanced shielding which blocks flashes."
+	name = "czarne okulary giga gar"
+	desc = "Uwierz w nas, ludzi. Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "supergarb"
 	item_state = "garb"
 	force = 12
 	throwforce = 12
 
 /obj/item/clothing/glasses/sunglasses/advanced/gar
-	name = "gar glasses"
-	desc = "Just who the hell do you think I am?!  Has enhanced shielding which blocks flashes."
+	name = "okulary gar"
+	desc = "Za kogo ty mnie, do diabła, masz?! Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "gar"
 	item_state = "gar"
 	force = 10
@@ -298,8 +298,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/advanced/gar/supergar
-	name = "giga gar glasses"
-	desc = "We evolve past the person we were a minute before. Little by little we advance with each turn. That's how a drill works!  Has enhanced shielding which blocks flashes."
+	name = "okulary giga gar"
+	desc = "Przerastamy osobę, którą byliśmy minutę temu. Z każdym obrotem posuwamy się odrobinę dalej. Tak właśnie działa wiertło! Ma wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "supergar"
 	item_state = "gar"
 	force = 12
@@ -307,8 +307,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/welding
-	name = "welding goggles"
-	desc = "Protects the eyes from welders; approved by the mad scientist association."
+	name = "gogle spawalnicze"
+	desc = "Chronią oczy przed spawarkami. Zatwierdzone przez stowarzyszenie szalonych naukowców."
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
@@ -323,8 +323,8 @@
 	weldingvisortoggle(user)
 
 /obj/item/clothing/glasses/welding/ghostbuster
-	name = "optical ecto-scanner"
-	desc = "A bulky pair of unwieldy glasses that lets you see things best left unseen. Obscures vision, but also has enhanced shielding which blocks flashes."
+	name = "optyczny ektoskaner"
+	desc = "Masywne, nieporęczne okulary, przez które widzisz rzeczy, których lepiej nie oglądać. Ograniczają widoczność, ale mają też wzmocnioną osłonę, która blokuje błyski."
 	icon_state = "bustin-g"
 	item_state = "bustin-g"
 	flash_protect = 2
@@ -365,8 +365,8 @@
 		change_glass_color(C, null)
 
 /obj/item/clothing/glasses/blindfold
-	name = "blindfold"
-	desc = "Covers the eyes, preventing sight."
+	name = "opaska na oczy"
+	desc = "Zakrywa oczy i uniemożliwia widzenie."
 	icon_state = "blindfold"
 	item_state = "blindfold"
 	flash_protect = 2
@@ -375,8 +375,8 @@
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/glasses/blindfold/white
-	name = "blind personnel blindfold"
-	desc = "Indicates that the wearer suffers from blindness."
+	name = "opaska dla niewidomych"
+	desc = "Oznacza, że noszący jest niewidomy."
 	icon_state = "blindfoldwhite"
 	item_state = "blindfoldwhite"
 	var/colored_before = FALSE
@@ -406,8 +406,8 @@
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/thermal
-	name = "optical thermal scanner"
-	desc = "Thermals in the shape of glasses."
+	name = "gogle termowizyjne"
+	desc = "Termowizja w kształcie okularów."
 	icon_state = "thermal"
 	item_state = "glasses"
 	vision_flags = SEE_MOBS
@@ -421,14 +421,14 @@
 	thermal_overload()
 
 /obj/item/clothing/glasses/thermal/xray
-	name = "syndicate xray goggles"
-	desc = "A pair of xray goggles manufactured by the Syndicate."
+	name = "gogle rentgenowskie Syndykatu"
+	desc = "Gogle rentgenowskie wyprodukowane przez Syndykat."
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	tint = -INFINITY
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "chameleon thermals"
-	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
+	name = "gogle termowizyjne kameleona"
+	desc = "Gogle termowizyjne z wbudowanym generatorem kameleona."
 	flash_protect = -1
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -437,7 +437,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
-	chameleon_action.chameleon_name = "Glasses"
+	chameleon_action.chameleon_name = "Okulary"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -448,54 +448,54 @@
 	chameleon_action.emp_randomise()
 
 /obj/item/clothing/glasses/thermal/monocle
-	name = "thermoncle"
-	desc = "Never before has seeing through walls felt so gentlepersonly."
+	name = "termonokl"
+	desc = "Patrzenie przez ściany jeszcze nigdy nie było tak wytworne."
 	icon_state = "thermoncle"
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
 
 /obj/item/clothing/glasses/thermal/monocle/examine(mob/user) //Different examiners see a different description!
 	if(user.gender == MALE)
-		desc = replacetext(desc, "person", "man")
+		desc = replacetext(desc, "wytworne", "dżentelmeńskie")
 	else if(user.gender == FEMALE)
-		desc = replacetext(desc, "person", "woman")
+		desc = replacetext(desc, "wytworne", "damskie")
 	. = ..()
 	desc = initial(desc)
 
 /obj/item/clothing/glasses/thermal/eyepatch
-	name = "optical thermal eyepatch"
-	desc = "An eyepatch with built-in thermal optics."
+	name = "termowizyjna przepaska na oko"
+	desc = "Przepaska na oko z wbudowaną optyką termowizyjną."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
 /obj/item/clothing/glasses/cold
-	name = "cold goggles"
+	name = "gogle na mróz"
 	desc = "Gogle przeznaczone na niskie temperatury."
 	icon_state = "cold"
 	item_state = "cold"
 
 /obj/item/clothing/glasses/heat
-	name = "heat goggles"
+	name = "gogle na żar"
 	desc = "Gogle przeznaczone na wysokie temperatury."
 	icon_state = "heat"
 	item_state = "heat"
 
 /obj/item/clothing/glasses/orange
-	name = "orange glasses"
+	name = "pomarańczowe okulary"
 	desc = "Fajne pomarańczowe okulary przeciwsłoneczne."
 	icon_state = "orangeglasses"
 	item_state = "orangeglasses"
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/red
-	name = "red glasses"
+	name = "czerwone okulary"
 	desc = "Hej, świetnie wyglądasz, senpai!"
 	icon_state = "redglasses"
 	item_state = "redglasses"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/godeye
-	name = "eye of god"
-	desc = "A strange eye, said to have been torn from an omniscient creature that used to roam the wastes."
+	name = "oko boga"
+	desc = "Dziwne oko, podobno wyrwane wszechwiedzącej istocie, która niegdyś przemierzała pustkowia."
 	icon_state = "godeye"
 	item_state = "godeye"
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -513,7 +513,7 @@
 		if(W.icon_state == "godeye")
 			W.icon_state = "doublegodeye"
 			W.item_state = "doublegodeye"
-			W.desc = "A pair of strange eyes, said to have been torn from an omniscient creature that used to roam the wastes. There's no real reason to have two, but that isn't stopping you."
+			W.desc = "Para dziwnych oczu, podobno wyrwanych wszechwiedzącej istocie, która niegdyś przemierzała pustkowia. Nie ma żadnego powodu, żeby mieć dwa, ale to cię nie powstrzymuje."
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.update_inv_wear_mask()

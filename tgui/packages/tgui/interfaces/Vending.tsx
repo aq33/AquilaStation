@@ -84,7 +84,8 @@ export const Vending = (props) => {
     product_records = [],
     coin_records = [],
     hidden_records = [],
-    categories,
+    // AQ EDIT - okno z puli potrafiło dostać dane bez categories i Object.keys(null) wywalał je
+    categories = {},
   } = data;
 
   const [selectedCategory, setSelectedCategory] = useState(
@@ -117,7 +118,7 @@ export const Vending = (props) => {
   }
 
   const filteredCategories = Object.fromEntries(
-    Object.entries(data.categories).filter(([categoryName]) => {
+    Object.entries(categories).filter(([categoryName]) => {
       return inventory.find((product) => {
         if ('category' in product) {
           return product.category === categoryName;

@@ -10,17 +10,15 @@ type FpsServerData = FeatureNumericData & {
 const FpsInput = (props: FeatureValueProps<number, number, FpsServerData>) => {
   const { handleSetValue, serverData } = props;
 
-  let recommened = `Recommended`;
-  if (serverData) {
-    recommened += ` (${serverData.recommended_fps})`;
-  }
+  // AQUILA: zalecane = odświeżanie monitora mierzone przez panel czatu
+  const recommened = `Zalecane (jak monitor)`;
 
   return (
     <Stack fill>
       <Stack.Item basis="70%">
         <Dropdown
-          displayText={props.value === -1 ? recommened : 'Custom'}
-          selected={props.value === -1 ? recommened : 'Custom'}
+          displayText={props.value === -1 ? recommened : 'Własne'}
+          selected={props.value === -1 ? recommened : 'Własne'}
           onSelected={(value) => {
             if (value === recommened) {
               handleSetValue(-1);
@@ -30,7 +28,7 @@ const FpsInput = (props: FeatureValueProps<number, number, FpsServerData>) => {
           }}
           width="100%"
           buttons
-          options={[recommened, 'Custom']}
+          options={[recommened, 'Własne']}
         />
       </Stack.Item>
 

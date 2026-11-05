@@ -1,8 +1,8 @@
 #define PRINTER_TIMEOUT 10
 
 /obj/machinery/computer/bounty
-	name = "\improper Nanotrasen bounty console"
-	desc = "Used to check and claim bounties offered by Nanotrasen"
+	name = "\improper konsola zleceń Nanotrasen"
+	desc = "Służy do przeglądania i odbierania zleceń oferowanych przez Nanotrasen."
 	icon_screen = "bounty"
 	circuit = /obj/item/circuitboard/computer/bounty
 	light_color = "#E2853D"//orange
@@ -18,7 +18,7 @@
 	new /obj/item/paper/bounty_printout(loc)
 
 /obj/item/paper/bounty_printout
-	name = "paper - Bounties"
+	name = "kartka – zlecenia"
 
 /obj/item/paper/bounty_printout/Initialize(mapload)
 	. = ..()
@@ -28,8 +28,8 @@
 		if(B.claimed)
 			continue
 		final_paper_text += "<h3>[B.name]</h3>"
-		final_paper_text += "<ul><li>Reward: [B.reward_string()]</li>"
-		final_paper_text += "<li>Completed: [B.completion_string()]</li></ul>"
+		final_paper_text += "<ul><li>Nagroda: [B.reward_string()]</li>"
+		final_paper_text += "<li>Postęp: [B.completion_string()]</li></ul>"
 
 	add_raw_text(final_paper_text)
 	update_appearance()

@@ -1,6 +1,6 @@
 ///A nanite program containing a behaviour protocol. Only one protocol of each class can be active at once.
 /datum/nanite_program/protocol
-	name = "Nanite Protocol"
+	name = "Protokół nanitów"
 	var/protocol_class = NONE
 
 /datum/nanite_program/protocol/check_conditions()

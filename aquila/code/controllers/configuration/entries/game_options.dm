@@ -68,3 +68,8 @@
 
 /datum/config_entry/keyed_list/weighted_max_antags/ValidateListEntry(key_name, key_value)
 	return (key_name in config.modes) && key_value >= 1
+
+// Port BeeStation/BeeStation-Hornet#14750: prędkość sprintu (SPRINT_DELAY), zastępuje RUN_DELAY na czas sprintu
+/datum/config_entry/number/movedelay/sprint_delay
+	config_entry_value = 1.5
+	integer = FALSE

@@ -4,7 +4,7 @@
 	var/datum/reagent/wanted_reagent
 
 /datum/bounty/reagent/completion_string()
-	return {"[round(shipped_volume)]/[required_volume] Units"}
+	return {"[round(shipped_volume)]/[required_volume] j."}
 
 /datum/bounty/reagent/can_claim()
 	return ..() && shipped_volume >= required_volume
@@ -32,7 +32,7 @@
 	return wanted_reagent.type != R.wanted_reagent.type
 
 /datum/bounty/reagent/simple_drink
-	name = "Simple Drink"
+	name = "Prosty napój"
 	reward = 1500
 
 /datum/bounty/reagent/simple_drink/New()
@@ -88,7 +88,7 @@
 	reward += rand(0, 2) * 500
 
 /datum/bounty/reagent/complex_drink
-	name = "Complex Drink"
+	name = "Złożony napój"
 	reward = 4000
 
 /datum/bounty/reagent/complex_drink/New()
@@ -121,7 +121,7 @@
 	reward += rand(0, 4) * 500
 
 /datum/bounty/reagent/chemical_simple
-	name = "Simple Chemical"
+	name = "Prosta substancja chemiczna"
 	reward = 4000
 	required_volume = 30
 
@@ -159,7 +159,7 @@
 	reward += rand(0, 4) * 500 //4000 to 6000 credits
 
 /datum/bounty/reagent/chemical_complex
-	name = "Rare Chemical"
+	name = "Rzadka substancja chemiczna"
 	reward = 6000
 	required_volume = 20
 

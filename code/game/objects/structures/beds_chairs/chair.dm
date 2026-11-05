@@ -1,6 +1,6 @@
 /obj/structure/chair
-	name = "chair"
-	desc = "You sit in this. Either by will or force."
+	name = "krzesło"
+	desc = "Siadasz na nim. Z własnej woli albo pod przymusem."
 	icon = 'icons/obj/beds_chairs/chairs.dmi'
 	icon_state = "chair"
 	anchored = TRUE
@@ -122,14 +122,14 @@
 // Chair types
 
 /obj/structure/chair/old
-	name = "strange chair"
-	desc = "You sit in this. Either by will or force. Looks VERY uncomfortable."
+	name = "dziwne krzesło"
+	desc = "Siadasz na nim. Z własnej woli albo pod przymusem. Wygląda na BARDZO niewygodne."
 	icon_state = "chairold"
 	item_chair = null
 
 /obj/structure/chair/mime
-	name = "invisible chair"
-	desc = "The mime needs to sit down and shut up."
+	name = "niewidzialne krzesło"
+	desc = "Mim musi usiąść i się zamknąć."
 	anchored = FALSE
 	icon_state = null
 	buildstacktype = null
@@ -144,8 +144,8 @@
 
 /obj/structure/chair/wood
 	icon_state = "wooden_chair"
-	name = "wooden chair"
-	desc = "Old is never too old to not be in fashion."
+	name = "drewniane krzesło"
+	desc = "Stare nigdy nie jest za stare, żeby nie być modne."
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
@@ -162,8 +162,8 @@
 	item_chair = /obj/item/chair/wood/wings
 
 /obj/structure/chair/fancy //base for any chair with armrests
-	name = "fancy chair"
-	desc = "It gives you the feel of importance by just having armrests."
+	name = "eleganckie krzesło"
+	desc = "Samymi podłokietnikami daje ci poczucie ważności."
 	icon_state = "chair_fancy"
 	item_chair = /obj/item/chair/fancy
 	var/mutable_appearance/armrest
@@ -211,8 +211,8 @@
 	return ..()
 
 /obj/structure/chair/fancy/comfy
-	name = "comfy chair"
-	desc = "It looks comfy."
+	name = "fotel"
+	desc = "Wygląda wygodnie."
 	icon_state = "comfychair"
 	color = rgb(141,70,0) //gotta keep the legacy color!
 	resistance_flags = FLAMMABLE
@@ -223,22 +223,22 @@
 
 /obj/structure/chair/fancy/corp
 	color = null
-	name = "corporate chair"
-	desc = "It looks professional."
+	name = "korporacyjny fotel"
+	desc = "Wygląda profesjonalnie."
 	icon_state = "comfychair_corp"
 	buildstackamount = 1
 	item_chair = null
 
 /obj/structure/chair/fancy/shuttle
-	name = "shuttle seat"
-	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system for smoother flights."
+	name = "fotel promu"
+	desc = "Wygodny, bezpieczny fotel. Ma solidniejsze pasy dla spokojniejszych lotów."
 	icon_state = "shuttle_chair"
 	buildstackamount = 1
 	item_chair = null
 
 /obj/structure/chair/fancy/plastic
-	name = "plastic chair"
-	desc = "If you want it, then you'll have to take it."
+	name = "plastikowe krzesło"
+	desc = "Jeśli chcesz je mieć, musisz je sobie wziąć."
 	icon_state = "plastic_chair"
 	anchored = FALSE
 	resistance_flags = FLAMMABLE
@@ -266,8 +266,8 @@
 			qdel(src)
 
 /obj/structure/chair/fancy/brass
-	name = "brass chair"
-	desc = "A spinny chair made of brass. It looks uncomfortable."
+	name = "mosiężne krzesło"
+	desc = "Obrotowe krzesło z mosiądzu. Wygląda na niewygodne."
 	icon_state = "brass_chair"
 	max_integrity = 150
 	buildstacktype = /obj/item/stack/tile/brass
@@ -312,8 +312,8 @@
 		STOP_PROCESSING(SSfastprocess, src)
 
 /obj/structure/chair/fancy/brass/bronze
-	name = "bronze chair"
-	desc = "A spinny chair made of bronze. It has little cogs for wheels!"
+	name = "brązowe krzesło"
+	desc = "Obrotowe krzesło z brązu. Zamiast kółek ma małe zębatki!"
 	anchored = FALSE
 	icon_state = "brass_chair"
 	buildstacktype = /obj/item/stack/tile/bronze
@@ -326,8 +326,8 @@
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 
 /obj/structure/chair/office
-	name = "office chair"
-	desc = "The propulsion of any lazy office worker, it has wheels."
+	name = "krzesło biurowe"
+	desc = "Środek transportu każdego leniwego biurowca. Ma kółka."
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
@@ -351,8 +351,8 @@
 
 /obj/structure/chair/foldable
 	icon_state = "chair_foldable"
-	name = "folding chair"
-	desc = "No matter how much you squirm, it'll still be uncomfortable."
+	name = "krzesło składane"
+	desc = "Nieważne, jak się wiercisz, i tak będzie niewygodne."
 	max_integrity = 50
 	buildstackamount = 2
 	item_chair = /obj/item/chair/foldable
@@ -369,8 +369,8 @@
 //Stool
 
 /obj/structure/chair/stool
-	name = "stool"
-	desc = "Apply butt."
+	name = "stołek"
+	desc = "Przyłóż tyłek."
 	icon_state = "stool"
 	can_buckle = 0
 	buildstackamount = 1
@@ -393,14 +393,14 @@
 		qdel(src)
 
 /obj/structure/chair/stool/bar
-	name = "bar stool"
-	desc = "The apex of the bar experience."
+	name = "stołek barowy"
+	desc = "Szczyt barowych doznań."
 	icon_state = "bar"
 	item_chair = /obj/item/chair/stool/bar
 
 /obj/structure/chair/stool/bamboo
-	name = "bamboo stool"
-	desc = "A makeshift bamboo stool with a rustic look."
+	name = "bambusowy stołek"
+	desc = "Prowizoryczny bambusowy stołek w rustykalnym stylu."
 	icon_state = "bamboo_stool"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60

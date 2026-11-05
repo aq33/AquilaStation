@@ -1,6 +1,6 @@
 /obj/item/radio/intercom
-	name = "intra ship intercom" //NSV13 - Intercoms renamed
-	desc = "Talk through this."
+	name = "interkom pokładowy" //NSV13 - Intercoms renamed
+	desc = "Mów przez to."
 	icon_state = "intercom"
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
@@ -34,12 +34,12 @@
 		if(unscrewed)
 			user.visible_message("<span class='notice'>[user] zaczyna dokręcać śruby [src]...</span>", "<span class='notice'>Zaczynasz przykręcać [src]...</span>")
 			if(I.use_tool(src, user, 30, volume=50))
-				user.visible_message("<span class='notice'>[user] tightens [src]'s screws!</span>", "<span class='notice'>Dokręcasz śruby [src].</span>")
+				user.visible_message("<span class='notice'>[user] dokręca śruby [src]!</span>", "<span class='notice'>Dokręcasz śruby [src].</span>")
 				unscrewed = FALSE
 		else
 			user.visible_message("<span class='notice'>[user] zaczyna luzować śruby [src]...</span>", "<span class='notice'>Zaczynasz odkręcać [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=50))
-				user.visible_message("<span class='notice'>[user] loosens [src]'s screws!</span>", "<span class='notice'>Odkręcasz [src], luzując go od ściany.</span>")
+				user.visible_message("<span class='notice'>[user] luzuje śruby [src]!</span>", "<span class='notice'>Odkręcasz [src], luzując go od ściany.</span>")
 				unscrewed = TRUE
 		return
 	else if(I.tool_behaviour == TOOL_WRENCH)
@@ -155,8 +155,8 @@
 
 //Created through the autolathe or through deconstructing intercoms. Can be applied to wall to make a new intercom on it!
 /obj/item/wallframe/intercom
-	name = "intercom frame"
-	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
+	name = "rama interkomu"
+	desc = "Gotowy do użycia interkom. Wystarczy przyłożyć go do ściany i przykręcić!"
 	icon_state = "intercom"
 	result_path = /obj/item/radio/intercom/unscrewed
 	pixel_shift = 29
@@ -180,7 +180,7 @@
 	pixel_x = 27 //NSV13 End
 
 /obj/item/radio/intercom/chapel
-	name = "Confessional intercom"
+	name = "interkom konfesjonału"
 	anonymize = TRUE
 	frequency = 1481
 	broadcasting = TRUE

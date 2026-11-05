@@ -73,6 +73,8 @@ jobs:
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   run_all_tests:
     runs-on: ubuntu-22.04
+    # AQUILA - wiszacy serwer przed "Shutdown complete" czekalby do domyslnych 6 godzin
+    timeout-minutes: 90
     services:
       mysql:
         image: mysql:latest
@@ -111,6 +113,18 @@ jobs:
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci build -DCIBUILDING
           bash tools/ci/run_server.sh
+      # AQUILA - pelne logi serwera i wyniki testow do pobrania, gdy testy nie przejda
+      - name: Upload server logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run_all_tests-logs
+          path: |
+            ci_test/data/logs/ci/
+            ci_test/data/unit_tests.json
+            ci_test/dd_output.log
+          if-no-files-found: ignore
+          retention-days: 14
   test_windows:
     runs-on: windows-latest
     steps:

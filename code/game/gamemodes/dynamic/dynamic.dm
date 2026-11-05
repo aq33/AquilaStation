@@ -254,7 +254,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if(.)
 		return
 	if(!check_rights(R_ADMIN))
-		message_admins("[key_name(usr)] has attempted to override the game mode panel!")
+		message_admins("[key_name(usr)] próbuje obejść panel trybu gry!")
 		log_admin("[usr.key] tried to use the game mode panel without authorization.")
 		return
 	switch(action)
@@ -263,47 +263,47 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			return
 		if("forced_extended")
 			GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
-			message_admins("[key_name(usr)] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
+			message_admins("[key_name(usr)] przełącza ustawienie dynamica „Wymuszony Extended” na [GLOB.dynamic_forced_extended].")
 			dynamic_log("[usr.key] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
 			return TRUE
 		if("no_stacking")
 			GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
-			message_admins("[key_name(usr)] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
+			message_admins("[key_name(usr)] przełącza ustawienie dynamica „Bez kumulowania” na [GLOB.dynamic_no_stacking].")
 			dynamic_log("[usr.key] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
 			return TRUE
 		if("adjustthreat")
-			var/threatadd = input(usr, "Podaj, ile zagrożenia dodać (wartość ujemna, by odjąć). Może to zawyżyć poziom zagrożenia.", "Adjust Threat", 0) as null|num
+			var/threatadd = input(usr, "Podaj, ile zagrożenia dodać (wartość ujemna, by odjąć). Może to zawyżyć poziom zagrożenia.", "Zmień zagrożenie", 0) as null|num
 			if(!threatadd)
 				return
 			if(threatadd > 0)
 				create_threat(threatadd, threat_log, "[worldtime2text()]: increased by [key_name(usr)]")
 			else
 				spend_midround_budget(-threatadd, threat_log, "[worldtime2text()]: decreased by [key_name(usr)]")
-			message_admins("[key_name(usr)] adjusted the dynamic threat level by [threatadd] threat.")
+			message_admins("[key_name(usr)] zmienia poziom zagrożenia dynamica o [threatadd].")
 			dynamic_log("[usr.key] adjusted the dynamic threat level by [threatadd] threat.")
 			return TRUE
 		if("injectlate")
 			latejoin_injection_cooldown = 0
 			forced_injection = TRUE
-			message_admins("[key_name(usr)] forced a latejoin injection.", 1)
+			message_admins("[key_name(usr)] wymusza wstrzyknięcie przy spóźnionym dołączeniu.", 1)
 			dynamic_log("[usr.key] forced a latejoin injection.")
 			return TRUE
 		if("injectmid")
 			forced_injection = TRUE
-			message_admins("[key_name(usr)] forced a midround injection.", 1)
+			message_admins("[key_name(usr)] wymusza wstrzyknięcie w trakcie rundy.", 1)
 			dynamic_log("[usr.key] forced a midround injection.")
 			try_midround_roll()
 			return TRUE
 		if("stacking_limit")
-			var/new_limit = input(usr,"Zmień limit zagrożenia, od którego zestawy zasad kończące rundę zaczną się kumulować.", "Change stacking limit", GLOB.dynamic_stacking_limit) as null|num
+			var/new_limit = input(usr,"Zmień limit zagrożenia, od którego zestawy zasad kończące rundę zaczną się kumulować.", "Zmień limit kumulowania", GLOB.dynamic_stacking_limit) as null|num
 			if(isnull(new_limit))
 				return
 			GLOB.dynamic_stacking_limit = new_limit
-			message_admins("[key_name(usr)] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
+			message_admins("[key_name(usr)] zmienia ustawienie dynamica „Limit kumulowania” na [GLOB.dynamic_stacking_limit].")
 			dynamic_log("[usr.key] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
 			return TRUE
 		if("force_latejoin_rule")
-			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji.", "Rigging Latejoin", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin))
+			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji.", "Ustawianie spóźnionego dołączenia", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin))
 			if (!added_rule)
 				return
 			forced_latejoin_rule = added_rule
@@ -314,7 +314,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			dynamic_log("[key_name(usr)] cleared the forced latejoin ruleset.")
 			return TRUE
 		if("force_midround_rule")
-			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji.", "Execute Ruleset", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/midround))
+			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji.", "Uruchom zestaw zasad", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/midround))
 			if (!added_rule)
 				return
 			dynamic_log("[key_name(usr)] executed the [added_rule] ruleset.")
@@ -326,7 +326,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if (..()) // Sanity, maybe ?
 		return
 	if(!check_rights(R_ADMIN))
-		message_admins("[key_name(usr)] has attempted to override the game mode panel!")
+		message_admins("[key_name(usr)] próbuje obejść panel trybu gry!")
 		log_admin("[usr.key] tried to use the game mode panel without authorization.")
 		return
 	// AQ EDIT - reszta akcji panelu jest w ui_act(); tu zostały tylko odnośniki z wiadomości dla adminów
@@ -531,11 +531,11 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 /// A simple roundstart proc used when dynamic_forced_roundstart_ruleset has rules in it.
 /datum/game_mode/dynamic/proc/rigged_roundstart()
-	message_admins("[GLOB.dynamic_forced_roundstart_ruleset.len] rulesets being forced. Will now attempt to draft players for them.")
+	message_admins("Wymuszone zestawy zasad: [GLOB.dynamic_forced_roundstart_ruleset.len]. Teraz nastąpi próba wybrania do nich graczy.")
 	log_game("DYNAMIC: [GLOB.dynamic_forced_roundstart_ruleset.len] rulesets being forced. Will now attempt to draft players for them.")
 	for (var/datum/dynamic_ruleset/roundstart/rule in GLOB.dynamic_forced_roundstart_ruleset)
 		configure_ruleset(rule)
-		message_admins("Drafting players for forced ruleset [rule.name].")
+		message_admins("Wybieranie graczy do wymuszonego zestawu zasad [rule.name].")
 		log_game("DYNAMIC: Drafting players for forced ruleset [rule.name].")
 		rule.mode = src
 		rule.acceptable(roundstart_pop_ready, threat_level) // Assigns some vars in the modes, running it here for consistency

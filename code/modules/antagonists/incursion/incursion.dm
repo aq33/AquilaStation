@@ -34,7 +34,7 @@
 	return ..()
 
 /datum/antagonist/incursion/antag_panel_data()
-	return "Conspirators : [get_team_members()]]"
+	return "Spiskowcy: [get_team_members()]"
 
 /datum/antagonist/incursion/proc/get_team_members()
 	var/list/members = team.members - owner
@@ -43,7 +43,7 @@
 		var/datum/mind/M = members[i]
 		member_text += M.name
 		if(i == members.len - 1)
-			member_text += " and "
+			member_text += " i "
 		else if(i != members.len)
 			member_text += ", "
 	return member_text
@@ -86,8 +86,8 @@
 		SSticker.mode.incursion_team.add_member(new_owner)
 		SSticker.mode.incursion_team.forge_team_objectives()
 		new_owner.add_antag_datum(/datum/antagonist/incursion, SSticker.mode.incursion_team)
-		message_admins("New incursion team created by [key_name_admin(admin)]")
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(new_owner.current)] into blood brothers.")
+		message_admins("[key_name_admin(admin)] tworzy nową drużynę inwazji")
+	message_admins("[key_name_admin(admin)] wciela [key_name_admin(new_owner)] i [key_name_admin(new_owner.current)] do drużyny inwazji.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(new_owner.current)] into incursion traitor team.")
 
 /datum/antagonist/incursion/proc/equip(var/silent = FALSE)
@@ -96,7 +96,7 @@
 	syndio.implant(owner.current)
 
 /datum/team/incursion
-	name = "syndicate incursion force"
+	name = "siły inwazyjne Syndykatu"
 	member_name = "członek inwazji"
 
 /datum/team/incursion/is_solo()

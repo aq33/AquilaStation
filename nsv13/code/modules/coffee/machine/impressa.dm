@@ -5,8 +5,8 @@
  */
 
 /obj/machinery/coffeemaker/pendulum
-	name = "pendulum coffeemaker"
-	desc = "An industry-grade Pendulum Modello 5 Coffeemaker of the Piccionaia Home Appliances premium coffeemakers product line. Makes coffee from fresh dried whole beans."
+	name = "ekspres do kawy Pendulum"
+	desc = "Przemysłowy ekspres do kawy Pendulum Modello 5 z linii premium Piccionaia Home Appliances. Robi kawę ze świeżych, suszonych, całych ziaren."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "coffeemaker_pendulum"
 	circuit = /obj/item/circuitboard/machine/coffeemaker/pendulum
@@ -41,7 +41,7 @@
 /obj/machinery/coffeemaker/pendulum/examine(mob/user)
 	. = ..()
 	if(coffee)
-		. += "<span class='notice'Wewnętrzny młynek zawiera miarek ziaren kawy: [coffee.len].</span>"
+		. += "<span class='notice'>Wewnętrzny młynek zawiera miarek ziaren kawy: [coffee.len].</span>"
 	return
 
 /obj/machinery/coffeemaker/pendulum/update_overlays()

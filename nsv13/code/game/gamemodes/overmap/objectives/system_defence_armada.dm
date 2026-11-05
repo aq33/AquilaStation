@@ -1,6 +1,6 @@
 /datum/overmap_objective/system_defence_armada
-	name = "Defend"
-	desc = "Defend selected_system against a Syndicate invasion fleet"
+	name = "Obrona"
+	desc = "Obroń selected_system przed flotą inwazyjną Syndykatu"
 
 	var/armada_arrived = FALSE		//Has the armada arrived yet?
 	var/selected_system				//Which system is the target?
@@ -12,7 +12,7 @@
 		var/datum/overmap_gamemode/armada/A = M
 		selected_system = A.selected_system
 
-	desc = "Defend [selected_system] against a Syndicate invasion fleet"
+	desc = "Obroń [selected_system] przed flotą inwazyjną Syndykatu"
 	brief = "Obrońcie [selected_system] przed flotą inwazyjną Syndykatu"
 
 /datum/overmap_objective/system_defence_armada/check_completion()

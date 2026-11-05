@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/verb/clear_custom_holoform()
 	set name = "Clear Custom Holoform"
-	set desc = "Clear your current custom holoform"
+	set desc = "Usuń swoją obecną własną holoformę."
 	set category = "AI Commands"
 
 	if(!client.prefs)
@@ -12,7 +12,7 @@
 
 /mob/living/silicon/ai/verb/set_custom_holoform()
 	set name = "Set Custom Holoform"
-	set desc = "Set your custom holoform using your current preferences slot and a specified set of gear."
+	set desc = "Ustaw własną holoformę na podstawie obecnego slotu preferencji i wybranego zestawu wyposażenia."
 	set category = "AI Commands"
 
 	if(!client.prefs)

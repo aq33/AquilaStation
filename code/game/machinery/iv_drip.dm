@@ -6,8 +6,8 @@
 #define IV_TRANSFER_RATE_STEP 0.5
 
 /obj/machinery/iv_drip
-	name = "\improper IV drip"
-	desc = "An IV drip with an advanced infusion pump that can both drain blood into and inject liquids from attached containers. Blood packs are processed at an accelerated rate."
+	name = "kroplówka"
+	desc = "Kroplówka z zaawansowaną pompą infuzyjną, która potrafi zarówno pobierać krew do podłączonego pojemnika, jak i wstrzykiwać z niego płyny. Worki z krwią przetwarza szybciej."
 	icon = 'icons/obj/iv_drip.dmi'
 	icon_state = "iv_drip"
 	anchored = FALSE
@@ -159,7 +159,7 @@
 			// If the beaker is full, ping
 			if(!amount)
 				if(prob(5))
-					visible_message("[src] pings.")
+					visible_message("[src] cicho pika.")
 				return
 
 			// If the human is losing too much blood, beep.
@@ -316,8 +316,8 @@
 
 
 /obj/machinery/iv_drip/saline
-	name = "saline drip"
-	desc = "An all-you-can-drip saline canister designed to supply a hospital without running out, with a scary looking pump rigged to inject saline into containers, but filling people directly might be a bad idea."
+	name = "kroplówka z solą fizjologiczną"
+	desc = "Niewyczerpany zbiornik soli fizjologicznej, który ma zaopatrywać cały szpital, z groźnie wyglądającą pompą przerobioną tak, żeby wstrzykiwała sól do pojemników. Napełnianie nią ludzi bezpośrednio to raczej zły pomysł."
 	icon_state = "saline"
 	density = TRUE
 	can_convert = FALSE

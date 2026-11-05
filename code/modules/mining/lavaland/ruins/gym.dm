@@ -1,6 +1,6 @@
 /obj/structure/punching_bag
-	name = "punching bag"
-	desc = "A punching bag. Can you get to speed level 4???"
+	name = "worek treningowy"
+	desc = "Worek treningowy. Dasz radę dobić do 4. poziomu prędkości???"
 	icon = 'goon/icons/obj/fitness.dmi'
 	icon_state = "punchingbag"
 	anchored = TRUE
@@ -20,8 +20,8 @@
 		L.apply_status_effect(STATUS_EFFECT_EXERCISED)
 
 /obj/structure/weightmachine
-	name = "weight machine"
-	desc = "Just looking at this thing makes you feel tired."
+	name = "atlas do ćwiczeń"
+	desc = "Na sam widok tej rzeczy czujesz zmęczenie."
 	density = TRUE
 	anchored = TRUE
 	var/icon_state_inuse

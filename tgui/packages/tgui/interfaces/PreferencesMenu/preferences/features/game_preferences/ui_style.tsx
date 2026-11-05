@@ -22,7 +22,7 @@ const UIStyleInput = (
   const { icons } = serverData;
 
   if (!icons) {
-    return <Box color="red">ui_style had no icons!</Box>;
+    return <Box color="red">ui_style nie ma ikon!</Box>;
   }
 
   const choices = Object.fromEntries(
@@ -70,7 +70,7 @@ const UIStyleInput = (
 };
 
 export const ui_style: FeatureChoiced = {
-  name: 'HUD Style',
+  name: 'Styl HUD-u',
   category: 'UI',
   subcategory: 'HUD',
   component: UIStyleInput,
@@ -78,18 +78,17 @@ export const ui_style: FeatureChoiced = {
 };
 
 export const intent_style: FeatureToggle = {
-  name: 'Enable intent hotclick',
+  name: 'Bezpośredni wybór intencji',
   category: 'UI',
   subcategory: 'HUD',
   description:
-    'Clicking on intents will directly select if this is on, otherwise clicking them will rotate the selection clockwise.',
+    'Po włączeniu kliknięcie intencji wybiera ją od razu, a po wyłączeniu przełącza intencje po kolei zgodnie z ruchem wskazówek zegara.',
   component: CheckboxInput,
 };
 
 export const legacy_intents: FeatureToggle = {
   name: 'Stary tryb intencji',
-  category: 'UI',
-  subcategory: 'HUD',
+  category: 'GAMEPLAY',
   description:
     'Zamiast combat mode: cztery intencje (help, disarm, grab, harm), a prawy przycisk myszy otwiera menu kontekstowe jak dawniej. Disarm działa jak prawy klik, grab pustą ręką jak Ctrl+klik.',
   component: CheckboxInput,

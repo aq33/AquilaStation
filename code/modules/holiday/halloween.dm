@@ -116,8 +116,8 @@
 ////////////////////
 
 /mob/living/simple_animal/shade/howling_ghost
-	name = "ghost"
-	real_name = "ghost"
+	name = "duch"
+	real_name = "duch"
 	icon = 'icons/mob/mob.dmi'
 	maxHealth = 1e6
 	health = 1e6
@@ -176,8 +176,8 @@
 ///////////////////////////
 
 /mob/living/simple_animal/hostile/retaliate/clown/insane
-	name = "insane clown"
-	desc = "Some clowns do not manage to be accepted, and go insane. This is one of them."
+	name = "obłąkany klaun"
+	desc = "Niektórym klaunom nie udaje się zdobyć akceptacji i popadają w obłęd. To jeden z nich."
 	icon_state = "scary_clown"
 	icon_living = "scary_clown"
 	icon_dead = "scary_clown"
@@ -248,15 +248,15 @@
 /////////////////////////
 
 /datum/uplink_item/dangerous/crossbow/candy
-	name = "Candy Corn Crossbow"
-	desc = "A standard miniature energy crossbow that uses a hard-light projector to transform bolts into candy corn. Happy Halloween!"
+	name = "Kusza na cukierkową kukurydzę"
+	desc = "Standardowa miniaturowa kusza energetyczna z projektorem twardego światła, który zmienia bełty w cukierkową kukurydzę. Wesołego Halloween!"
 	category = "Holiday"
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow/halloween
 	surplus = 0
 
 /datum/uplink_item/device_tools/emag/hack_o_lantern
-	name = "Hack-o'-Lantern"
-	desc = "An emag fitted to support the Halloween season. Candle not included."
+	name = "Hakerska dynia"
+	desc = "Emag przystosowany do sezonu halloweenowego. Świeczka nie jest w zestawie."
 	category = "Holiday"
 	item = /obj/item/card/emag/halloween
 	surplus = 0

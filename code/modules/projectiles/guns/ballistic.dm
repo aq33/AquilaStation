@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic
-	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
-	name = "projectile gun"
+	desc = "Teraz w smakach takich jak BROŃ. Z jakiegoś powodu strzela amunicją 10mm."
+	name = "broń palna"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -67,6 +67,8 @@
 	update_icon()
 
 /obj/item/gun/ballistic/fire_sounds()
+	if(!magazine?.max_ammo) // AQ EDIT - a shot fired after the magazine was removed divided by null and played no sound
+		return ..()
 	var/frequency_to_use = sin((90/magazine?.max_ammo) * get_ammo())
 	var/click_frequency_to_use = 1 - frequency_to_use * 0.75
 	var/play_click = round(sqrt(magazine?.max_ammo * 2)) > get_ammo()
@@ -425,7 +427,7 @@
 		if(sawn_off)
 			return
 		user.visible_message("[user] skraca [src]!", "<span class='notice'>Skracasz [src].</span>")
-		name = "sawn-off [src.name]"
+		name = "[src.name] (obrzyn)"
 		desc = sawn_desc
 		w_class = WEIGHT_CLASS_NORMAL
 		item_state = "gun"
@@ -447,15 +449,15 @@
 
 
 /obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
+	name = "tłumik"
+	desc = "Tłumik Syndykatu do broni krótkiej, dla maksymalnej dyskrecji."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/suppressor/specialoffer
-	name = "cheap suppressor"
-	desc = "A foreign knock-off suppressor, it feels flimsy, cheap, and brittle. Still fits most weapons."
+	name = "tani tłumik"
+	desc = "Zagraniczna podróbka tłumika. Wydaje się wątły, tandetny i kruchy, ale pasuje do większości broni."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"

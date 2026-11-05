@@ -4,8 +4,8 @@
 	density = TRUE
 
 /obj/machinery/teleport/hub
-	name = "teleporter hub"
-	desc = "It's the hub of a teleporting machine."
+	name = "węzeł teleportera"
+	desc = "Węzeł maszyny teleportującej."
 	icon_state = "tele0"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -112,8 +112,8 @@
 
 
 /obj/machinery/teleport/station
-	name = "teleporter station"
-	desc = "The power control station for a bluespace teleporter. Used for toggling power, and can activate a test-fire to prevent malfunctions."
+	name = "stacja teleportera"
+	desc = "Stacja sterowania zasilaniem teleportera bluespace. Włącza i wyłącza zasilanie, a także uruchamia próbną aktywację, która zapobiega awariom."
 	icon_state = "controller"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10

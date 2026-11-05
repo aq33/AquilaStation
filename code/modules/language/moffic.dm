@@ -1,6 +1,6 @@
 /datum/language/moffic
-	name = "Moffic"
-	desc = "The language of the Mothpeople borders on complete unintelligibility."
+	name = "Ćmi"
+	desc = "Język ćmioludzi graniczy z całkowitą niezrozumiałością."
 	key = "m"
 	space_chance = 10
 	syllables = list(

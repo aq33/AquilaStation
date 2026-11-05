@@ -209,7 +209,7 @@
 	shoot_from = null
 
 /obj/item/projectile/magic/mindblast
-	name = "mindbolt"
+	name = "pocisk umysłu"
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_projectiles.dmi'
 	icon_state = "mind_blast"
 	damage = 35

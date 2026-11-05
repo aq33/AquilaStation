@@ -2,8 +2,8 @@
 // Build one by hitting a butt with a robotic arm.
 
 /mob/living/simple_animal/bot/buttbot
-	name = "buttbot"
-	desc = "It's a robotic butt. Are you dense or something??"
+	name = "tyłkobot"
+	desc = "To robotyczny tyłek. Tępy jesteś czy co??"
 	icon = 'aquila/icons/mob/buttbot.dmi'
 	icon_state = "buttbot"
 	density = FALSE
@@ -14,7 +14,7 @@
 	var/xeno = FALSE
 	var/cooldown = 0
 	var/list/speech_buffer = list()
-	var/list/speech_list = list("butt.", "butts.", "ass.", "fart.", "assblast usa", "łiu, czas na inspekcję tyłka", "woop") //Hilarious.
+	var/list/speech_list = list("tyłek.", "tyłki.", "dupa.", "pierd.", "dupowybuch usa", "łiu, czas na inspekcję tyłka", "woop") //Hilarious.
 
 /mob/living/simple_animal/bot/buttbot/Initialize(mapload)
 	. = ..()
@@ -26,7 +26,7 @@
 
 /mob/living/simple_animal/bot/buttbot/proc/make_xeno()
 	xeno = TRUE
-	speech_list = list("hissing butts", "syk syk, skurczybyku", "niezłe trofeum, kujonie", "butt", "łiu, czas na inspekcję obcego")
+	speech_list = list("syczące tyłki", "syk syk, skurczybyku", "niezłe trofeum, kujonie", "tyłek", "łiu, czas na inspekcję obcego")
 	update_icon()
 
 /mob/living/simple_animal/bot/buttbot/explode()
@@ -76,7 +76,7 @@
 	var/buttified = FALSE
 	for(var/word in words)
 		if(prob(20))
-			word = "butt"
+			word = "tyłek"
 			buttified = TRUE
 		out += word
 	if(!buttified)

@@ -1,6 +1,6 @@
 /turf/open/floor/carpet/ship
-	name = "nanoweave carpet"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/dark_carpet.dmi'
 	icon_state = "dark_carpet"
 	base_icon_state = "dark_carpet"
@@ -8,7 +8,7 @@
 	canSmoothWith = null
 
 /turf/open/floor/black/airless
-	name = "black floor"
+	name = "czarna podłoga"
 	icon_state = "black"
 	base_icon_state = "black"
 	initial_gas_mix = AIRLESS_ATMOS
@@ -18,47 +18,47 @@
 	canSmoothWith = typecacheof(/turf/open/floor/carpet/ship)
 
 /turf/open/floor/carpet/ship/blue
-	name = "nanoweave carpet (blue)"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna (niebieska)"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/blue_carpet.dmi'
 	icon_state = "blue_carpet"
 	base_icon_state = "blue_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/ship/blue
 
 /turf/open/floor/carpet/ship/orange_carpet
-	name = "nanoweave carpet (orange)"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna (pomarańczowa)"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/orange_carpet.dmi'
 	icon_state = "orange_carpet"
 	base_icon_state = "orange_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/ship/orange_carpet
 
 /turf/open/floor/carpet/ship/purple_carpet
-	name = "nanoweave carpet (purple)"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna (fioletowa)"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/purple_carpet.dmi'
 	icon_state = "purple_carpet"
 	base_icon_state = "purple_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/ship/purple_carpet
 
 /turf/open/floor/carpet/ship/beige_carpet
-	name = "nanoweave carpet (beige)"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna (beżowa)"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/beige_carpet.dmi'
 	icon_state = "beige_carpet"
 	base_icon_state = "beige_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/ship/beige_carpet
 
 /turf/open/floor/carpet/ship/red_carpet
-	name = "nanoweave carpet (red)"
-	desc = "A padded piece of hull plating which can make a space based installation feel more homely."
+	name = "wykładzina z nanowłókna (czerwona)"
+	desc = "Wyściełany kawałek poszycia kadłuba, dzięki któremu kosmiczna instalacja wydaje się bardziej przytulna."
 	icon = 'nsv13/icons/turf/red_carpet.dmi'
 	icon_state = "red_carpet"
 	base_icon_state = "red_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/ship/red_carpet
 
 /turf/open/floor/durasteel
-	name = "durasteel floor"
+	name = "durastalowa podłoga"
 	icon = 'nsv13/icons/turf/floors.dmi'
 	icon_state = "durasteel"
 	floor_tile = /obj/item/stack/tile/durasteel
@@ -73,28 +73,28 @@
 	burnt_states = list("steel_scorched1", "steel_schorched2", "steel_scorched3", "steel_scorched4")
 
 /turf/open/floor/durasteel/riveted
-	name = "riveted durasteel floor"
+	name = "nitowana durastalowa podłoga"
 	icon_state = "riveted"
 	floor_tile = /obj/item/stack/tile/durasteel/riveted
 	broken_states = list("riveted_dam1", "riveted_dam2", "riveted_dam3", "riveted_dam4", "riveted_dam5")
 	burnt_states = list("riveted_scorched1", "riveted_scorched2", "riveted_scorched3")
 
 /turf/open/floor/durasteel/padded
-	name = "padded durasteel floor"
+	name = "wyściełana durastalowa podłoga"
 	icon_state = "padded"
 	floor_tile = /obj/item/stack/tile/durasteel/padded
 	broken_states = list("padded_dam1", "padded_dam2", "padded_dam3", "padded_dam4", "padded_dam5")
 	burnt_states = list("padded_scorched1", "padded_scorched2", "padded_scorched3", "padded_scorched4")
 
 /turf/open/floor/durasteel/eris_techfloor //Ported from eris
-	name = "embossed durasteel floor"
+	name = "tłoczona durastalowa podłoga"
 	icon_state = "eris_techfloor"
 	floor_tile = /obj/item/stack/tile/durasteel/techfloor
 	broken_states = list("eris_techfloor_dam1", "eris_techfloor_dam2", "eris_techfloor_dam3", "eris_techfloor_dam4", "eris_techfloor_dam5")
 	burnt_states = list("eris_techfloor_scorched1", "eris_techfloor_scorched2")
 
 /turf/open/floor/durasteel/eris_techfloor_alt
-	name = "durasteel floor"
+	name = "durastalowa podłoga"
 	icon_state = "eris_techfloor_alt"
 	floor_tile = /obj/item/stack/tile/durasteel/eris_techfloor_alt
 	broken_states = list("eris_techfloor_alt_dam1", "eris_techfloor_alt_dam2", "eris_techfloor_alt_dam3", "eris_techfloor_alt_dam4", "eris_techfloor_alt_dam5")
@@ -158,7 +158,7 @@
 	base_icon_state = "steel_monofloor_corner"
 
 /turf/open/floor/plating/rusty_techgrid
-	name = "rusted grid plating"
+	name = "zardzewiała kratownica"
 	icon = 'nsv13/icons/turf/floors.dmi'
 	icon_state = "techfloor_rusted"
 	base_icon_state = "techfloor_rusted"
@@ -166,7 +166,7 @@
 	burnt_states = list("techfloor_rusted_scorched1", "techfloor_rusted_scorched2")
 
 /turf/open/floor/stairs
-	name = "stairs"
+	name = "schody"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	base_icon_state = "stairs"

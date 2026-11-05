@@ -2,71 +2,71 @@
 /******************Boomer***************/
 
 /obj/item/aiModule/core/full/boomer
-	name = "'Boomer' Core AI Module"
+	name = "moduł rdzenia SI „Boomer”"
 	law_id = "boomer"
 
 /******************Zoomer***************/
 
 /obj/item/aiModule/core/full/zoomer
-	name = "'Zoomer' Core AI Module"
+	name = "moduł rdzenia SI „Zoomer”"
 	law_id = "zoomer"
 
 /******************Service***************/
 
 /obj/item/aiModule/core/full/service
-	name = "'Service' Core AI Module"
+	name = "moduł rdzenia SI „Usługowe”"
 	law_id = "service"
 
 /******************Science***************/
 
 /obj/item/aiModule/core/full/science
-	name = "'Science' Core AI Module"
+	name = "moduł rdzenia SI „Naukowe”"
 	law_id = "science"
 
 /******************Weeb***************/
 
 /obj/item/aiModule/core/full/weeb
-	name = "'Weeb' Core AI Module"
+	name = "moduł rdzenia SI „Weeb”"
 	law_id = "weeb"
 
 /******************Lizardimov***************/
 
 /obj/item/aiModule/core/full/lizardimov
-	name = "'Lizardimov' Core AI Module"
+	name = "moduł rdzenia SI „Jaszczurzymov”"
 	law_id = "lizardimov"
 
 /******************Gamer***************/
 
 /obj/item/aiModule/core/full/gamer
-	name = "'Gamer' Core AI Module"
+	name = "moduł rdzenia SI „Gamer”"
 	law_id = "gamer"
 
 /******************Corgi***************/
 
 /obj/item/aiModule/core/full/corgi
-	name = "'Corgi' Core AI Module"
+	name = "moduł rdzenia SI „Corgi”"
 	law_id = "corgi"
 
 /******************Cowboy***************/
 
 /obj/item/aiModule/core/full/cowboy
-	name = "'Cowboy' Core AI Module"
+	name = "moduł rdzenia SI „Kowbojskie”"
 	law_id = "cowboy"
 
 /******************Dungeonmaster***************/
 
 /obj/item/aiModule/core/full/dungeonmaster
-	name = "'Dungeonmaster' Core AI Module"
+	name = "moduł rdzenia SI „Mistrz gry”"
 	law_id = "dungeonmaster"
 
 /******************Dean***************/
 
 /obj/item/aiModule/core/full/dean
-	name = "'Dean' Core AI Module"
+	name = "moduł rdzenia SI „Dziekan”"
 	law_id = "dean"
 
 /******************Netanyahu***************/
 
 /obj/item/aiModule/core/full/netanyahu
-	name = "'Netanyahu' Core AI Module"
+	name = "moduł rdzenia SI „Netanyahu”"
 	law_id = "netanyahu"

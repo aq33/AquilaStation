@@ -42,7 +42,7 @@
 	///How much extra value does this trait apply to the artifact - It's important this is applied before anyone can use stickers on the artifact
 	var/extra_value = 0
 	///How many discovery points does this trait give?
-	var/discovery_reward = TECHWEB_TIER_2_POINTS
+	var/discovery_reward = 300 //aquila: jak skan zwierzęcia (Bee: TECHWEB_TIER_2_POINTS = 80)
 
 	///Does this trait contribute to calibration
 	var/contribute_calibration = TRUE
@@ -152,7 +152,8 @@
 	if(override)
 		unregister_target(override)
 	//Parent targets, we shouldn't need this casually, only for niche cases
-	if(length(component_parent.targets) && handle_parent)
+	// Timer un_trigger (np. animalize) potrafi przyjść po zniszczeniu artefaktu
+	if(handle_parent && length(component_parent?.targets))
 		for(var/atom/target in component_parent.targets)
 			unregister_target(target)
 	//Our targets

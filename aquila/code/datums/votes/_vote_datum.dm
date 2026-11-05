@@ -17,7 +17,7 @@
 	/// Does the name of this vote contain the word "vote"?
 	var/contains_vote_in_name = FALSE
 	/// What message do we show as the tooltip of this vote if the vote can be initiated?
-	var/default_message = "Click to initiate a vote."
+	var/default_message = "Kliknij, żeby rozpocząć głosowanie."
 	/// The counting method we use for votes.
 	var/count_method = VOTE_COUNT_METHOD_SINGLE
 	/// The method for selecting a winner.
@@ -70,7 +70,7 @@
 /datum/vote/proc/can_be_initiated(forced = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!forced && !is_config_enabled())
-		return "This vote is currently disabled by the server configuration."
+		return "To głosowanie jest obecnie wyłączone w konfiguracji serwera."
 	return VOTE_AVAILABLE
 
 /// Whether this mob may vote in this vote right now
@@ -98,10 +98,10 @@
 	started_time = world.time
 	time_remaining = round(duration / 10)
 
-	var/to_display = "[contains_vote_in_name ? "[capitalize(name)]" : "[capitalize(name)] vote"] started by"
+	var/to_display = "[contains_vote_in_name ? "[capitalize(name)]" : "Głosowanie: [capitalize(name)]"]. Rozpoczyna:"
 	if(anonymous)
 		message_admins("[to_display] [initiator].")
-	return "[to_display] [anonymous ? "Anonymous" : initiator || "Central Command"]."
+	return "[to_display] [anonymous ? "anonim" : initiator || "Centrala"]."
 
 /**
  * Gets the result of the vote.
@@ -155,26 +155,26 @@
 	if(override_question)
 		returned_text += "<b>[override_question]</b>"
 	else
-		returned_text += "<b>[capitalize(name)] Vote</b>"
+		returned_text += "<b>Głosowanie: [capitalize(name)]</b>"
 
-	returned_text += "\nWinner Selection: "
+	returned_text += "\nWybór zwycięzcy: "
 	switch(winner_method)
 		if(VOTE_WINNER_METHOD_NONE)
-			returned_text += "None"
+			returned_text += "brak"
 		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
-			returned_text += "Weighted Random"
+			returned_text += "losowanie ważone"
 		else
-			returned_text += "Simple"
+			returned_text += "zwykła większość"
 
 	var/total_votes = 0 // for determining percentage of votes
 	for(var/option in choices)
 		total_votes += choices[option]
 
 	if(total_votes <= 0)
-		return "<b>[capitalize(name)] Vote Result: Inconclusive - No Votes!</b>"
+		return "<b>Wynik głosowania ([capitalize(name)]): nierozstrzygnięty – brak głosów!</b>"
 
 	if(display_statistics)
-		returned_text += "\nResults:"
+		returned_text += "\nWyniki:"
 		for(var/option in choices)
 			var/votes = choices[option]
 			var/percentage_text = votes > 0 ? "[round((votes / total_votes) * 100, 0.1)]%" : "0%"
@@ -191,10 +191,10 @@
 /datum/vote/proc/get_winner_text(list/all_winners, real_winner, list/non_voters)
 	var/returned_text = ""
 	if(length(all_winners) > 1)
-		returned_text += "\n<b>Vote Tied Between:</b>"
+		returned_text += "\n<b>Remis między:</b>"
 		for(var/a_winner in all_winners)
 			returned_text += "\n\t[a_winner]"
-	returned_text += "<b>\nVote Result: [real_winner]</b>"
+	returned_text += "<b>\nWynik głosowania: [real_winner]</b>"
 	return returned_text
 
 /// How this vote handles a tiebreaker between multiple winners.

@@ -24,8 +24,8 @@ field_generator power level display
 #define FG_WELDED 2
 
 /obj/machinery/field/generator
-	name = "field generator"
-	desc = "A large thermal battery that projects a high amount of energy when powered."
+	name = "generator pola"
+	desc = "Duża bateria termiczna, która po zasileniu emituje znaczną ilość energii."
 	icon = 'icons/obj/machines/field_generator.dmi'
 	icon_state = "Field_Gen"
 	anchored = FALSE
@@ -339,9 +339,9 @@ field_generator power level display
 		var/obj/anomaly/a = locate(/obj/anomaly) in oview(dist, src)
 		var/turf/T = get_turf(src)
 		if(a)
-			message_admins("A [a.name] exists and a containment field has failed at [ADMIN_VERBOSEJMP(T)].")
+			message_admins("Istnieje [a.name], a pole izolujące zawiodło w [ADMIN_VERBOSEJMP(T)].")
 			investigate_log("has <font color='red'>failed</font> whilst a [a.name] exists at [AREACOORD(T)].", INVESTIGATE_ENGINES)
-			notify_ghosts("IT'S LOOSE", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/warning-buzzer.ogg', header = "IT'S LOOSE", notify_volume = 75)
+			notify_ghosts("UWOLNIŁO SIĘ", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/warning-buzzer.ogg', header = "UWOLNIŁO SIĘ", notify_volume = 75)
 			SSblackbox.record_feedback("tally", "engine_stats", 1, "failed")
 			SSblackbox.record_feedback("tally", "engine_stats", 1, "singulotesla") //NSV13 - engine tracking
 

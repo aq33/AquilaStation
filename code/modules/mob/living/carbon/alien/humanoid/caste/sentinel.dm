@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/sentinel
-	name = "alien sentinel"
+	name = "strażnik obcych"
 	caste = "s"
 	maxHealth = 225
 	health = 225

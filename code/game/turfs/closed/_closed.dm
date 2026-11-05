@@ -15,7 +15,7 @@
 	return FALSE
 
 /turf/closed/indestructible
-	name = "wall"
+	name = "ściana"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 
@@ -35,13 +35,13 @@
 // AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/closed/indestructible/oldshuttle
-	name = "strange shuttle wall"
+	name = "dziwna ściana promu"
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "block"
 
 /turf/closed/indestructible/sandstone
-	name = "sandstone wall"
-	desc = "A wall with sandstone plating. Rough."
+	name = "ściana z piaskowca"
+	desc = "Ściana obłożona piaskowcem. Szorstka."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone"
 	baseturfs = /turf/closed/indestructible/sandstone
@@ -98,7 +98,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	icon_state = "wall3"
 
 /turf/closed/indestructible/fakeglass
-	name = "window"
+	name = "okno"
 	icon_state = "fake_window"
 	opacity = 0
 	smooth = SMOOTH_TRUE
@@ -111,7 +111,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating") //add the plating underlay, below the grille
 
 /turf/closed/indestructible/opsglass
-	name = "window"
+	name = "okno"
 	icon_state = "plastitanium_window"
 	opacity = 0
 	smooth = SMOOTH_TRUE
@@ -124,39 +124,39 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
 
 /turf/closed/indestructible/fakedoor
-	name = "CentCom Access"
+	name = "Dostęp do Centrali"
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
 
 /turf/closed/indestructible/rock
-	name = "dense rock"
-	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
+	name = "gęsta skała"
+	desc = "Niezwykle gęsto upakowana skała. Większość narzędzi górniczych i materiałów wybuchowych nigdy się przez nią nie przebije."
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 
 /turf/closed/indestructible/rock/snow
-	name = "mountainside"
-	desc = "An extremely densely-packed rock, sheeted over with centuries worth of ice and snow."
+	name = "zbocze góry"
+	desc = "Niezwykle gęsto upakowana skała, pokryta warstwą lodu i śniegu zbieraną przez stulecia."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "snowrock"
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 
 /turf/closed/indestructible/rock/snow/ice
-	name = "iced rock"
-	desc = "Extremely densely-packed sheets of ice and rock, forged over the years of the harsh cold."
+	name = "oblodzona skała"
+	desc = "Niezwykle gęsto upakowane warstwy lodu i skały, wykute przez lata srogiego mrozu."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
 
 /turf/closed/indestructible/paper
-	name = "thick paper wall"
-	desc = "A wall layered with impenetrable sheets of paper."
+	name = "gruba ściana z papieru"
+	desc = "Ściana z warstw nieprzebijalnego papieru."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "paperwall"
 
 /turf/closed/indestructible/necropolis
-	name = "necropolis wall"
-	desc = "A seemingly impenetrable wall."
+	name = "ściana Nekropolii"
+	desc = "Pozornie nie do przebicia ściana."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "necro"
 	explosion_block = 50
@@ -168,8 +168,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	return TRUE
 
 /turf/closed/indestructible/riveted/boss
-	name = "necropolis wall"
-	desc = "A thick, seemingly indestructible stone wall."
+	name = "ściana Nekropolii"
+	desc = "Gruba, pozornie niezniszczalna kamienna ściana."
 	icon = 'icons/turf/walls/boss_wall.dmi'
 	icon_state = "wall"
 	canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through)
@@ -185,7 +185,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	return TRUE
 
 /turf/closed/indestructible/riveted/hierophant
-	name = "wall"
-	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
+	name = "ściana"
+	desc = "Ściana z dziwnego metalu. Kwadraty na niej pulsują w przewidywalnym rytmie."
 	icon = 'icons/turf/walls/hierophant_wall.dmi'
 	icon_state = "wall"

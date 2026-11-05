@@ -1,6 +1,6 @@
 /obj/machinery/griddle
-	name = "griddle"
-	desc = "Because using pans is for pansies."
+	name = "płyta grillowa"
+	desc = "Bo patelnie są dla mięczaków."
 	icon = 'icons/obj/machines/kitchenmachines.dmi'
 	icon_state = "griddle1_off"
 	density = TRUE
@@ -57,7 +57,7 @@
 		AddToGrill(new_pancake)
 		if(griddled_objects.len >= max_items)
 			break
-	visible_message("<span class='notice'>[exposing_reagent] begins to cook on [src].</span>")
+	visible_message("<span class='notice'>[exposing_reagent] zaczyna się smażyć na [src].</span>")
 	return NONE
 */
 

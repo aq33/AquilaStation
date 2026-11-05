@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 			if (admin)
 				log_admin("The admin [key] has been allowed to bypass the whitelist")
 				if (message)
-					message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass the whitelist</span>")
+					message_admins("<span class='adminnotice'>Admin [key] może ominąć białą listę.</span>")
 					addclientmessage(ckey,"<span class='adminnotice'>Pozwolono ci ominąć białą listę</span>")
 			else
 				log_access("Failed Login: [key] - Not on whitelist")
@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 					log_access("Failed Login: [key] - Population cap reached")
 					if (message)
 						message_admins("<span class='adminnotice'>Nieudane logowanie: [key] - limit graczy osiągnięty.</span>")
-					return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+					return list("reason"="popcap", "desc"= "\nPowód: [CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 						log_admin(msg)
 						if (message)
 							message_admins(msg)
-							addclientmessage(ckey,"<span class='adminnotice'>Admin [key] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]].</span>")
+							addclientmessage(ckey,"<span class='adminnotice'>Admin [key] może ominąć pasujący ban nieadmiński na [i["key"]] [i["ip"]]-[i["computerid"]].</span>")
 						continue
 				var/expires = "To jest ban permanentny."
 				var/global_ban = "To jest ban globalny na wszystkie nasze serwery."
@@ -114,9 +114,9 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 					expires = " Ban trwa [DisplayTimeText(text2num(i["duration"]) MINUTES)] i wygasa [i["expiration_time"]] (czas serwera)."
 				if(!text2num(i["global_ban"]))
 					global_ban = "To jest ban na jeden serwer i dotyczy tylko [i["server_name"]]."
-				var/desc = {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
-				The ban reason is: [i["reason"]].
-				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
+				var/desc = {"Ty albo inny użytkownik tego komputera lub połączenia ([i["key"]]) masz tu bana.
+				Powód bana: [i["reason"]].
+				Ten ban (BanID #[i["id"]]) nałożył [i["admin_key"]] dnia [i["bantime"]] w rundzie o ID [i["round_id"]].
 				[global_ban]
 				[expires]"}
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]]) [text2num(i["global_ban"]) ? "globally" : "locally"]")
@@ -189,7 +189,7 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 
 				//we always report this
 				log_game("Stickyban on [bannedckey] detected as rogue, [action]")
-				message_admins("Stickyban on [bannedckey] detected as rogue, [action]")
+				message_admins("Stickyban na [bannedckey] uznany za błędny – [ban["fromdb"] ? "zawieszam go do końca rundy" : "przywracam go do stanu z początku rundy"]")
 				//do not convert to timer.
 				spawn (5)
 					world.SetConfig("ban", bannedckey, null)
@@ -229,14 +229,14 @@ GLOBAL_LIST_EMPTY(ckey_redirects)
 		if (admin)
 			log_admin("The admin [key] has been allowed to bypass a matching host/sticky ban on [bannedckey]")
 			if (message)
-				message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass a matching host/sticky ban on [bannedckey]</span>")
+				message_admins("<span class='adminnotice'>Admin [key] może ominąć pasujący ban host/sticky na [bannedckey].</span>")
 				addclientmessage(ckey,"<span class='adminnotice'>Pozwolono ci ominąć pasujący ban host/sticky na [bannedckey]</span>")
 			return null
 
 		if (C) //user is already connected!.
 			to_chat(C, "<span class='redtext'>Za chwilę zostaniesz rozłączony, bo po połączeniu dopasowano cię do sticky bana. Jeśli okaże się, że system wykrywania omijania banów zwariował, automatycznie to wykryjemy i cofniemy dopasowania. Jeśli uważasz, że tak jest, poczekaj DOKŁADNIE 6 sekund, a potem połącz się ponownie przez Plik -> Połącz ponownie, by sprawdzić, czy dopasowanie zostało automatycznie cofnięte.</span>")
 
-		var/desc = "\nReason:(StickyBan) You, or another user of this computer or connection ([bannedckey]) is banned from playing here. The ban reason is:\n[ban["message"]]\nThis ban was applied by [ban["admin"]]\nThis is a BanEvasion Detection System ban, if you think this ban is a mistake, please wait EXACTLY 6 seconds, then try again before filing an appeal.\n"
+		var/desc = "\nPowód: (StickyBan) Ty albo inny użytkownik tego komputera lub połączenia ([bannedckey]) masz tu bana. Powód bana:\n[ban["message"]]\nBan nałożył: [ban["admin"]]\nTo ban z systemu wykrywania omijania banów. Jeśli uważasz, że to pomyłka, poczekaj DOKŁADNIE 6 sekund i spróbuj ponownie, zanim złożysz odwołanie.\n"
 		. = list("reason" = "Stickyban", "desc" = desc)
 		log_access("Failed Login: [key] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
 		if (message)

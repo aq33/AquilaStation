@@ -1,6 +1,6 @@
 /obj/item/newspaper
-	name = "newspaper"
-	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
+	name = "gazeta"
+	desc = "Wydanie Gryfa, gazety krążącej po stacjach kosmicznych Nanotrasen."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "newspaper"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
@@ -19,13 +19,13 @@
 	var/creation_time
 
 /obj/item/newspaper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is focusing intently on [src]! It looks like [user.p_theyre()] trying to commit sudoku... until [user.p_their()] eyes light up with realization!"))
-	user.say(";JOURNALISM IS MY CALLING! EVERYBODY APPRECIATES UNBIASED REPORTI-GLORF", forced="newspaper suicide")
+	user.visible_message(span_suicide("[user] wpatruje się intensywnie w [src]! Wygląda na to, że próbuje popełnić sudoku... aż nagle w oczach pojawia się olśnienie!"))
+	user.say(";DZIENNIKARSTWO TO MOJE POWOŁANIE! WSZYSCY CENIĄ BEZSTRONNE REPORTA-GLORF", forced="newspaper suicide")
 	var/mob/living/carbon/human/H = user
 	var/obj/W = new /obj/item/reagent_containers/food/drinks/bottle/whiskey(H.loc)
 	playsound(H.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)
 	W.reagents.trans_to(H, W.reagents.total_volume, transfered_by = user)
-	user.visible_message(span_suicide("[user] downs the contents of [W.name] in one gulp! Shoulda stuck to sudoku!"))
+	user.visible_message(span_suicide("[user] wypija zawartość butelki ([W.name]) jednym haustem! Trzeba było zostać przy sudoku!"))
 	return TOXLOSS
 
 /obj/item/newspaper/attack_self(mob/user)
@@ -143,9 +143,9 @@
 		if(!user.is_literate())
 			return
 		if(scribble_page == curr_page)
-			to_chat(user, span_warning("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
+			to_chat(user, span_warning("Na tej stronie już coś nabazgrano... Chyba nie chcesz robić tu bałaganu, co?"))
 		else
-			var/s = stripped_input(user, "Write something", "Newspaper")
+			var/s = stripped_input(user, "Napisz coś", "Gazeta")
 			if (!s)
 				return
 			if(!user.canUseTopic(src, BE_CLOSE))

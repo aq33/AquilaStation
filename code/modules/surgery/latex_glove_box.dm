@@ -1,6 +1,6 @@
 /obj/item/glove_box
-	name = "box of latex gloves"
-	desc = "A box of latex gloves, useful for quick cleanup after surgery."
+	name = "pudełko rękawiczek lateksowych"
+	desc = "Pudełko rękawiczek lateksowych, przydatne do szybkiego sprzątania po operacji."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "latex_glove_box"
 	item_state = "deliverypackage"

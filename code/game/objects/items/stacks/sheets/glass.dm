@@ -10,17 +10,17 @@
  */
 //Nsv13 - Added fighter canopy build to this
 GLOBAL_LIST_INIT(glass_recipes, list ( \
-	new/datum/stack_recipe("glass shard", /obj/item/shard, time = 0, on_floor = FALSE), \
-	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("standard fighter canopy", /obj/item/fighter_component/canopy, 10, time = 10, on_floor = FALSE, window_checks = FALSE), \
-	new/datum/stack_recipe("fulltile window", /obj/structure/window/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("glass floor tile", /obj/item/stack/tile/glass, 1, 4, 20) \
+	new/datum/stack_recipe("odłamek szkła", /obj/item/shard, time = 0, on_floor = FALSE), \
+	new/datum/stack_recipe("okno kierunkowe", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("standardowa osłona kokpitu myśliwca", /obj/item/fighter_component/canopy, 10, time = 10, on_floor = FALSE, window_checks = FALSE), \
+	new/datum/stack_recipe("okno pełne", /obj/structure/window/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("szklana płytka podłogowa", /obj/item/stack/tile/glass, 1, 4, 20) \
 ))
 
 /obj/item/stack/sheet/glass
-	name = "glass"
-	desc = "HOLY SHEET! That is a lot of glass."
-	singular_name = "glass sheet"
+	name = "szkło"
+	desc = "ŚWIĘTY ARKUSZU! Ale dużo szkła."
+	singular_name = "arkusz szkła"
 	icon_state = "sheet-glass"
 	item_state = "sheet-glass"
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -76,15 +76,15 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 
 //Nsv13 - Fighter canopies
 GLOBAL_LIST_INIT(pglass_recipes, list ( \
-	new/datum/stack_recipe("directional window", /obj/structure/window/plasma/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("ultra reinforced fighter canopy", /obj/item/fighter_component/canopy/tier3, 10,  time = 10, on_floor = FALSE, window_checks = FALSE), \
-	new/datum/stack_recipe("fulltile window", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
+	new/datum/stack_recipe("okno kierunkowe", /obj/structure/window/plasma/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("ultrawzmocniona osłona kokpitu myśliwca", /obj/item/fighter_component/canopy/tier3, 10,  time = 10, on_floor = FALSE, window_checks = FALSE), \
+	new/datum/stack_recipe("okno pełne", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
 ))
 
 /obj/item/stack/sheet/plasmaglass
-	name = "plasma glass"
-	desc = "A glass sheet made out of a plasma-silicate alloy. It looks extremely tough and heavily fire resistant."
-	singular_name = "plasma glass sheet"
+	name = "szkło plazmowe"
+	desc = "Arkusz szkła ze stopu plazmy i krzemianu. Wygląda na niezwykle wytrzymały i bardzo odporny na ogień."
+	singular_name = "arkusz szkła plazmowego"
 	icon_state = "sheet-pglass"
 	item_state = "sheet-pglass"
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -125,21 +125,21 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
  * Reinforced glass sheets
  */
 GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
-	new/datum/stack_recipe("windoor frame", /obj/structure/windoor_assembly, 5, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("reinforced fighter canopy", /obj/item/fighter_component/canopy/reinforced, 10, time = 10, on_floor = FALSE, window_checks = FALSE), \
+	new/datum/stack_recipe("rama drzwi okiennych", /obj/structure/windoor_assembly, 5, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("wzmocniona osłona kokpitu myśliwca", /obj/item/fighter_component/canopy/reinforced, 10, time = 10, on_floor = FALSE, window_checks = FALSE), \
 	null, \
-	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("wzmocnione okno kierunkowe", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	//NSV13 - changed path to ship window
-	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/reinforced/fulltile/ship/interior/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("window firelock frame", /obj/structure/firelock_frame/window, 2, time = 50, one_per_turf = TRUE, on_floor = TRUE, window_checks = FALSE), \
-	new/datum/stack_recipe("reinforced glass tile", /obj/item/stack/tile/glass/reinforced, 1, 4, 20) \
+	new/datum/stack_recipe("wzmocnione okno pełne", /obj/structure/window/reinforced/fulltile/ship/interior/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("rama okiennej grodzi przeciwpożarowej", /obj/structure/firelock_frame/window, 2, time = 50, one_per_turf = TRUE, on_floor = TRUE, window_checks = FALSE), \
+	new/datum/stack_recipe("płytka ze szkła zbrojonego", /obj/item/stack/tile/glass/reinforced, 1, 4, 20) \
 ))
 
 
 /obj/item/stack/sheet/rglass
-	name = "reinforced glass"
-	desc = "Glass which seems to have rods or something stuck in them."
-	singular_name = "reinforced glass sheet"
+	name = "szkło zbrojone"
+	desc = "Szkło, w które chyba wtopiono pręty czy coś w tym rodzaju."
+	singular_name = "arkusz szkła zbrojonego"
 	icon_state = "sheet-rglass"
 	item_state = "sheet-rglass"
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -175,14 +175,14 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	return ..()
 
 GLOBAL_LIST_INIT(prglass_recipes, list ( \
-	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/plasma/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/plasma/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
+	new/datum/stack_recipe("wzmocnione okno kierunkowe", /obj/structure/window/plasma/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("wzmocnione okno pełne", /obj/structure/window/plasma/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
 ))
 
 /obj/item/stack/sheet/plasmarglass
-	name = "reinforced plasma glass"
-	desc = "A glass sheet made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough and nearly fire-proof!"
-	singular_name = "reinforced plasma glass sheet"
+	name = "zbrojone szkło plazmowe"
+	desc = "Arkusz szkła ze stopu plazmy i krzemianu z matrycą prętów. Wygląda na beznadziejnie wytrzymały i niemal ognioodporny!"
+	singular_name = "arkusz zbrojonego szkła plazmowego"
 	icon_state = "sheet-prglass"
 	item_state = "sheet-prglass"
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5,)
@@ -197,13 +197,13 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	return ..()
 
 GLOBAL_LIST_INIT(titaniumglass_recipes, list(
-	new/datum/stack_recipe("shuttle window", /obj/structure/window/shuttle/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
+	new/datum/stack_recipe("okno promu", /obj/structure/window/shuttle/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
 	))
 
 /obj/item/stack/sheet/titaniumglass
-	name = "titanium glass"
-	desc = "A glass sheet made out of a titanium-silicate alloy."
-	singular_name = "titanium glass sheet"
+	name = "szkło tytanowe"
+	desc = "Arkusz szkła ze stopu tytanu i krzemianu."
+	singular_name = "arkusz szkła tytanowego"
 	icon_state = "sheet-titaniumglass"
 	item_state = "sheet-titaniumglass"
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -216,13 +216,13 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	return ..()
 
 GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
-	new/datum/stack_recipe("plastitanium window", /obj/structure/window/plastitanium/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
+	new/datum/stack_recipe("okno plastytanowe", /obj/structure/window/plastitanium/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
 	))
 
 /obj/item/stack/sheet/plastitaniumglass
-	name = "plastitanium glass"
-	desc = "A glass sheet made out of a plasma-titanium-silicate alloy."
-	singular_name = "plastitanium glass sheet"
+	name = "szkło plastytanowe"
+	desc = "Arkusz szkła ze stopu plazmy, tytanu i krzemianu."
+	singular_name = "arkusz szkła plastytanowego"
 	icon_state = "sheet-plastitaniumglass"
 	item_state = "sheet-plastitaniumglass"
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -235,8 +235,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	return ..()
 
 /obj/item/shard
-	name = "shard"
-	desc = "A nasty looking shard of glass."
+	name = "odłamek"
+	desc = "Paskudnie wyglądający odłamek szkła."
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
@@ -335,8 +335,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
 
 /obj/item/shard/plasma
-	name = "purple shard"
-	desc = "A nasty looking shard of plasma glass."
+	name = "fioletowy odłamek"
+	desc = "Paskudnie wyglądający odłamek szkła plazmowego."
 	force = 6
 	throwforce = 11
 	icon_state = "plasmalarge"

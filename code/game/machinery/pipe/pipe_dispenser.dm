@@ -3,10 +3,10 @@
 #define TRANSIT_PIPEDISPENSER 2
 
 /obj/machinery/pipedispenser
-	name = "pipe dispenser"
+	name = "dozownik rur"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses countless types of pipes. Very useful if you need pipes."
+	desc = "Wydaje niezliczone rodzaje rur. Bardzo przydatny, jeśli potrzebujesz rur."
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_OFFLINE
 	var/wait = 0
@@ -147,10 +147,10 @@
 
 
 /obj/machinery/pipedispenser/disposal
-	name = "disposal pipe dispenser"
+	name = "dozownik rur zsypowych"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses pipes that will ultimately be used to move trash around."
+	desc = "Wydaje rury, którymi ostatecznie będą płynąć śmieci."
 	density = TRUE
 	category = DISPOSAL_PIPEDISPENSER
 
@@ -174,11 +174,11 @@
 //transit tube dispenser
 //inherit disposal for the dragging proc
 /obj/machinery/pipedispenser/disposal/transit_tube
-	name = "transit tube dispenser"
+	name = "dozownik rur transportowych"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	density = TRUE
-	desc = "Dispenses pipes that will move beings around."
+	desc = "Wydaje rury, którymi będą przemieszczać się istoty."
 	category = TRANSIT_PIPEDISPENSER
 
 #undef ATMOS_PIPEDISPENSER

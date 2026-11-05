@@ -9,7 +9,7 @@
 #define ORE_MULTIPLIER_BLUESPACE_CRYSTAL 0.2
 
 /obj/structure/closet/crate/secure/bitrunning // Base class. Do not spawn this.
-	name = "base class cache"
+	name = "bazowa skrzynia"
 	desc = "Zgłoś to koderowi."
 	icon = 'aquila/icons/obj/bitrunning_crates.dmi'
 	icon_state = "bitrunning"
@@ -116,7 +116,7 @@
 
 
 /obj/item/storage/lockbox/bitrunning
-	name = "base class curiosity"
+	name = "bazowa ciekawostka"
 	desc = "Zgłoś to koderowi."
 	req_access = list(ACCESS_CENT_CAPTAIN)
 	icon = 'aquila/icons/obj/bitrunning_items.dmi'

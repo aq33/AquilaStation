@@ -47,34 +47,28 @@
 	var/mutable_appearance/inhand = pizza.build_worn_icon(HANDS_LAYER, pizza.righthand_file, TRUE)
 	TEST_ASSERT(inhand?.icon_state == "arm" && ("arm" in icon_states(inhand.icon)), "The pizza arm has no fallback sprite")
 
-/// AQUILA - tgstation#98023: an opened chest exposes the organs until the operation ends
+/// AQUILA - tgstation#98023: an opened chest exposes the organs until the operations close it
 /datum/unit_test/aquila_exposed_organs
 
 /datum/unit_test/aquila_exposed_organs/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
-	var/datum/surgery/organ_manipulation/surgery = new(patient, BODY_ZONE_CHEST, chest)
-	var/saw_index = surgery.steps.Find(/datum/surgery_step/saw)
-	TEST_ASSERT(saw_index, "Organ manipulation has no saw step")
 
-	surgery.status = saw_index // the saw is the current step, not done yet
-	patient.update_exposed_organs()
+	chest.add_surgical_state(SURGERY_SKIN_CUT|SURGERY_SKIN_OPEN) // skin open, the bone not sawed yet
 	TEST_ASSERT(!length(patient.exposed_organ_zones), "Organs got exposed before the bone was sawed")
 
-	surgery.status = saw_index + 1
-	patient.update_exposed_organs()
+	chest.add_surgical_state(SURGERY_BONE_SAWED)
 	TEST_ASSERT(BODY_ZONE_CHEST in patient.exposed_organ_zones, "Sawed chest does not expose the organs")
 	TEST_ASSERT(patient.alerts[ALERT_EXPOSED_ORGANS], "No exposed organs alert")
 
-	qdel(surgery)
-	TEST_ASSERT(!length(patient.exposed_organ_zones), "Organs stayed exposed after the operation ended")
-	TEST_ASSERT(!patient.alerts[ALERT_EXPOSED_ORGANS], "Exposed organs alert stayed after the operation ended")
+	chest.remove_surgical_state(SURGERY_SKIN_CUT|SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
+	TEST_ASSERT(!length(patient.exposed_organ_zones), "Organs stayed exposed after the chest was closed")
+	TEST_ASSERT(!patient.alerts[ALERT_EXPOSED_ORGANS], "Exposed organs alert stayed after the chest was closed")
 
-	var/datum/surgery/dental_implant/dental = new(patient, BODY_ZONE_PRECISE_MOUTH, patient.get_bodypart(BODY_ZONE_HEAD))
-	dental.status = length(dental.steps)
-	patient.update_exposed_organs()
-	TEST_ASSERT(!length(patient.exposed_organ_zones), "Drilling a tooth exposed the organs")
-	qdel(dental)
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	arm.add_surgical_state(SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
+	TEST_ASSERT(!length(patient.exposed_organ_zones), "An opened arm exposed the organs")
+	arm.remove_surgical_state(SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
 
 /// AQUILA - tgstation#94761: every SDSM-35 entry is filled in and every phobia has a page
 /datum/unit_test/aquila_sdsm_book

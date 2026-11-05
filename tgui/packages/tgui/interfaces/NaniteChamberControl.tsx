@@ -11,6 +11,7 @@ import {
 import { useBackend } from '../backend';
 import { Grid } from '../components';
 import { Window } from '../layouts';
+import { naniteSettingName, naniteValueName } from './NaniteProgrammer';
 
 type Data = {
   cloud_id: any;
@@ -57,11 +58,11 @@ export const NaniteChamberControlContent = (props) => {
 
   return (
     <Section
-      title={'Chamber: ' + occupant_name}
+      title={'Komora: ' + occupant_name}
       buttons={
         <Button
           icon={locked ? 'lock' : 'lock-open'}
-          content={locked ? 'Locked' : 'Unlocked'}
+          content={locked ? 'Zablokowana' : 'Odblokowana'}
           color={locked ? 'bad' : 'default'}
           onClick={() => act('toggle_lock')}
         />
@@ -70,13 +71,13 @@ export const NaniteChamberControlContent = (props) => {
       {!has_nanites ? (
         <>
           <Box bold color="bad" textAlign="center" fontSize="30px" mb={1}>
-            No Nanites Detected
+            Nie wykryto nanitów
           </Box>
           <Button
             fluid
             bold
             icon="syringe"
-            content=" Implant Nanites"
+            content=" Wszczep nanity"
             color="green"
             textAlign="center"
             fontSize="30px"
@@ -87,11 +88,11 @@ export const NaniteChamberControlContent = (props) => {
       ) : (
         <>
           <Section
-            title="Status"
+            title="Stan"
             buttons={
               <Button
                 icon="exclamation-triangle"
-                content="Destroy Nanites"
+                content="Zniszcz nanity"
                 color="bad"
                 onClick={() => act('remove_nanites')}
               />
@@ -100,17 +101,17 @@ export const NaniteChamberControlContent = (props) => {
             <Grid>
               <Grid.Column>
                 <LabeledList>
-                  <LabeledList.Item label="Nanite Volume">
+                  <LabeledList.Item label="Ilość nanitów">
                     {nanite_volume}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Growth Rate">
+                  <LabeledList.Item label="Tempo wzrostu">
                     {regen_rate}
                   </LabeledList.Item>
                 </LabeledList>
               </Grid.Column>
               <Grid.Column>
                 <LabeledList>
-                  <LabeledList.Item label="Safety Threshold">
+                  <LabeledList.Item label="Próg bezpieczeństwa">
                     <NumberInput
                       step={1}
                       value={safety_threshold}
@@ -124,7 +125,7 @@ export const NaniteChamberControlContent = (props) => {
                       }
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Cloud ID">
+                  <LabeledList.Item label="ID chmury">
                     <NumberInput
                       value={cloud_id}
                       minValue={0}
@@ -143,7 +144,7 @@ export const NaniteChamberControlContent = (props) => {
               </Grid.Column>
             </Grid>
           </Section>
-          <Section title="Programs">
+          <Section title="Programy">
             {mob_programs.map((program) => {
               const extra_settings = program.extra_settings || [];
               const rules = program.rules || [];
@@ -155,12 +156,12 @@ export const NaniteChamberControlContent = (props) => {
                       {scan_level >= 2 && (
                         <Grid.Column size={0.6}>
                           <LabeledList>
-                            <LabeledList.Item label="Activation Status">
+                            <LabeledList.Item label="Stan aktywacji">
                               <Box color={program.activated ? 'good' : 'bad'}>
-                                {program.activated ? 'Active' : 'Inactive'}
+                                {program.activated ? 'Aktywny' : 'Nieaktywny'}
                               </Box>
                             </LabeledList.Item>
-                            <LabeledList.Item label="Nanites Consumed">
+                            <LabeledList.Item label="Zużycie nanitów">
                               {program.use_rate}/s
                             </LabeledList.Item>
                           </LabeledList>
@@ -171,21 +172,21 @@ export const NaniteChamberControlContent = (props) => {
                       <Grid>
                         {!!program.can_trigger && (
                           <Grid.Column>
-                            <Section title="Triggers">
+                            <Section title="Wyzwalacze">
                               <LabeledList>
-                                <LabeledList.Item label="Trigger Cost">
+                                <LabeledList.Item label="Koszt wyzwolenia">
                                   {program.trigger_cost}
                                 </LabeledList.Item>
-                                <LabeledList.Item label="Trigger Cooldown">
+                                <LabeledList.Item label="Odnowienie wyzwolenia">
                                   {program.trigger_cooldown}
                                 </LabeledList.Item>
                                 {!!program.timer_trigger_delay && (
-                                  <LabeledList.Item label="Trigger Delay">
+                                  <LabeledList.Item label="Opóźnienie wyzwolenia">
                                     {program.timer_trigger_delay} s
                                   </LabeledList.Item>
                                 )}
                                 {!!program.timer_trigger && (
-                                  <LabeledList.Item label="Trigger Repeat Timer">
+                                  <LabeledList.Item label="Powtarzanie wyzwolenia">
                                     {program.timer_trigger} s
                                   </LabeledList.Item>
                                 )}
@@ -202,12 +203,12 @@ export const NaniteChamberControlContent = (props) => {
                                 {/* I mean, bruh, this indentation level
                                     is ABSOLUTELY INSANE!!! */}
                                 {program.timer_restart && (
-                                  <LabeledList.Item label="Restart Timer">
+                                  <LabeledList.Item label="Czas do restartu">
                                     {program.timer_restart} s
                                   </LabeledList.Item>
                                 )}
                                 {program.timer_shutdown && (
-                                  <LabeledList.Item label="Shutdown Timer">
+                                  <LabeledList.Item label="Czas do wyłączenia">
                                     {program.timer_shutdown} s
                                   </LabeledList.Item>
                                 )}
@@ -218,14 +219,19 @@ export const NaniteChamberControlContent = (props) => {
                       </Grid>
                     )}
                     {scan_level >= 3 && !!program.has_extra_settings && (
-                      <Section title="Extra Settings">
+                      <Section title="Dodatkowe ustawienia">
                         <LabeledList>
                           {extra_settings.map((extra_setting) => (
                             <LabeledList.Item
                               key={extra_setting.name}
-                              label={extra_setting.name}
+                              label={naniteSettingName(extra_setting.name)}
                             >
-                              {extra_setting.value}
+                              {extra_setting.type === 'type'
+                                ? naniteValueName(
+                                    extra_setting.value,
+                                    extra_setting.name,
+                                  )
+                                : extra_setting.value}
                             </LabeledList.Item>
                           ))}
                         </LabeledList>
@@ -234,26 +240,26 @@ export const NaniteChamberControlContent = (props) => {
                     {scan_level >= 4 && (
                       <Grid>
                         <Grid.Column>
-                          <Section title="Codes">
+                          <Section title="Kody">
                             <LabeledList>
                               {!!program.activation_code && (
-                                <LabeledList.Item label="Activation">
+                                <LabeledList.Item label="Aktywacja">
                                   {program.activation_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.deactivation_code && (
-                                <LabeledList.Item label="Deactivation">
+                                <LabeledList.Item label="Dezaktywacja">
                                   {program.deactivation_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.kill_code && (
-                                <LabeledList.Item label="Kill">
+                                <LabeledList.Item label="Zniszczenie">
                                   {program.kill_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.can_trigger &&
                                 !!program.trigger_code && (
-                                  <LabeledList.Item label="Trigger">
+                                  <LabeledList.Item label="Wyzwolenie">
                                     {program.trigger_code}
                                   </LabeledList.Item>
                                 )}
@@ -262,7 +268,7 @@ export const NaniteChamberControlContent = (props) => {
                         </Grid.Column>
                         {program.has_rules && (
                           <Grid.Column>
-                            <Section title="Rules">
+                            <Section title="Reguły">
                               {rules.map((rule) => (
                                 <Box key={rule.display}>{rule.display}</Box>
                               ))}

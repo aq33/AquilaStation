@@ -248,13 +248,21 @@ export const ChemDispenser = (props) => {
                     </Button>
                   ))}
                 >
-                  <Stack wrap>
+                  {/* AQUILA - równa siatka zamiast Stack wrap (zawinięte wiersze dostawały wcięcie) */}
+                  <Box
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                      gap: '2px',
+                    }}
+                  >
                     {chemicals.map((chemical) => (
-                      <Stack.Item width="24.5%" key={chemical.id} mr={-0.5}>
-                        <ReagentDispenseButton chemical={chemical} />
-                      </Stack.Item>
+                      <ReagentDispenseButton
+                        key={chemical.id}
+                        chemical={chemical}
+                      />
                     ))}
-                  </Stack>
+                  </Box>
                 </Section>
               </Stack.Item>
               <Stack.Item>
@@ -320,6 +328,7 @@ export const ChemDispenser = (props) => {
                       recipes={recipeCatalog}
                       dispensable={chemicals.map((chemical) => chemical.id)}
                       onDispense={(id) => act('dispense', { reagent: id })}
+                      beakerContents={data.beakerContents || []}
                     />
                   )}
                 </Section>
@@ -456,7 +465,8 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
     setPinnedReactions,
     setParentForceFloating,
   } = props;
-  const temperatureMessage = getTemperatureMessage(reaction);
+  const temperatureLines = getTemperatureLines(reaction);
+  const courseLines = getCourseLines(reaction);
 
   const recipeList = (
     <BlockQuote>
@@ -497,12 +507,28 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
             ))}
           </>
         )}
-        {!!temperatureMessage && (
+        {temperatureLines.length > 0 && (
           <>
             <Stack.Item>
               <HorizontalBarWithText text="Temperatura" />
             </Stack.Item>
-            <Stack.Item fontSize="0.9em">{temperatureMessage}</Stack.Item>
+            {temperatureLines.map((line) => (
+              <Stack.Item key={line} fontSize="0.9em">
+                {line}
+              </Stack.Item>
+            ))}
+          </>
+        )}
+        {courseLines.length > 0 && (
+          <>
+            <Stack.Item>
+              <HorizontalBarWithText text="Przebieg" />
+            </Stack.Item>
+            {courseLines.map((line) => (
+              <Stack.Item key={line} fontSize="0.9em">
+                {line}
+              </Stack.Item>
+            ))}
           </>
         )}
         {!!reaction.container && (
@@ -587,15 +613,44 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
   );
 };
 
-// U nas reakcja ma jeden próg temperatury (required_temp) i flagę is_cold_recipe
-function getTemperatureMessage(reaction: Recipe): string | null {
-  if (!reaction.temp) {
-    return null;
+// Próg temperatury (required_temp, is_cold_recipe) i dane fermichemu - to samo co w RecipeLookup
+function getTemperatureLines(reaction: Recipe): string[] {
+  const lines: string[] = [];
+  if (reaction.temp) {
+    lines.push(
+      reaction.cold
+        ? `Schłodź poniżej ${reaction.temp} K`
+        : `Podgrzej do co najmniej ${reaction.temp} K`,
+    );
   }
-  if (reaction.cold) {
-    return `Schłodź poniżej ${reaction.temp} K`;
+  if (reaction.instant) {
+    return lines;
   }
-  return `Podgrzej do co najmniej ${reaction.temp} K`;
+  lines.push(
+    `Najszybciej ${reaction.cold ? 'poniżej' : 'od'} ${reaction.optimalTemp} K`,
+  );
+  if (reaction.overheatTemp !== null && reaction.overheatTemp > 0) {
+    lines.push(
+      `Przegrzewa się ${reaction.cold ? 'poniżej' : 'powyżej'} ${reaction.overheatTemp} K`,
+    );
+  }
+  return lines;
+}
+
+function getCourseLines(reaction: Recipe): string[] {
+  if (reaction.instant) {
+    return ['Reaguje od razu'];
+  }
+  const lines = [`Najczystsza przy pH ${reaction.phMin}–${reaction.phMax}`];
+  if (reaction.thermic !== 0) {
+    lines.push(reaction.thermic > 0 ? 'Wydziela ciepło' : 'Pochłania ciepło');
+  }
+  if (reaction.purityMin > 0) {
+    lines.push(
+      `Psuje się poniżej ${Math.round(reaction.purityMin * 100)}% czystości`,
+    );
+  }
+  return lines;
 }
 
 type ReactionComponentDisplayProps = {

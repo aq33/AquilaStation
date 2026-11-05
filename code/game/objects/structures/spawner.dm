@@ -1,5 +1,5 @@
 /obj/structure/spawner
-	name = "monster nest"
+	name = "gniazdo potworów"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "hole"
 	max_integrity = 100
@@ -26,7 +26,7 @@
 
 
 /obj/structure/spawner/syndicate
-	name = "warp beacon"
+	name = "radiolatarnia przesyłowa"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 	spawn_text = "przenika z"
@@ -34,8 +34,8 @@
 	faction = list(FACTION_SYNDICATE)
 
 /obj/structure/spawner/skeleton
-	name = "bone pit"
-	desc = "A pit full of bones, and some still seem to be moving..."
+	name = "dół z kośćmi"
+	desc = "Dół pełen kości, a niektóre chyba wciąż się ruszają..."
 	icon_state = "hole"
 	icon = 'icons/mob/nest.dmi'
 	max_integrity = 150
@@ -46,8 +46,8 @@
 	faction = list("skeleton")
 
 /obj/structure/spawner/clown
-	name = "Laughing Larry"
-	desc = "A laughing, jovial figure. Something seems stuck in his throat."
+	name = "Rechoczący Larry"
+	desc = "Roześmiana, jowialna postać. Coś chyba utknęło mu w gardle."
 	icon_state = "clownbeacon"
 	icon = 'icons/obj/device.dmi'
 	max_integrity = 200
@@ -58,8 +58,8 @@
 	faction = list("clown")
 
 /obj/structure/spawner/mining
-	name = "monster den"
-	desc = "A hole dug into the ground, harboring all kinds of monsters found within most caves or mining asteroids."
+	name = "legowisko potworów"
+	desc = "Dziura wykopana w ziemi, w której kryją się wszelkie potwory spotykane w większości jaskiń i asteroid górniczych."
 	icon_state = "hole"
 	max_integrity = 200
 	max_mobs = 3
@@ -69,26 +69,26 @@
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
-	name = "goldgrub den"
-	desc = "A den housing a nest of goldgrubs, annoying but arguably much better than anything else you'll find in a nest."
+	name = "legowisko złotych pędraków"
+	desc = "Legowisko z gniazdem złotych pędraków. Irytujące, ale chyba lepsze od wszystkiego innego, co znajdziesz w gnieździe."
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
 
 /obj/structure/spawner/mining/goliath
-	name = "goliath den"
-	desc = "A den housing a nest of goliaths, oh god why?"
+	name = "legowisko goliatów"
+	desc = "Legowisko z gniazdem goliatów. O Boże, czemu?"
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
 
 /obj/structure/spawner/mining/hivelord
-	name = "hivelord den"
-	desc = "A den housing a nest of hivelords."
+	name = "legowisko władców roju"
+	desc = "Legowisko z gniazdem władców roju."
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
 
 /obj/structure/spawner/mining/basilisk
-	name = "basilisk den"
-	desc = "A den housing a nest of basilisks, bring a coat."
+	name = "legowisko bazyliszków"
+	desc = "Legowisko z gniazdem bazyliszków. Weź kurtkę."
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
 
 /obj/structure/spawner/mining/wumborian
-	name = "wumborian fugu den"
-	desc = "A den housing a nest of wumborian fugus, how do they all even fit in there?"
+	name = "legowisko wumboriańskich fugu"
+	desc = "Legowisko z gniazdem wumboriańskich fugu. Jak one się tam w ogóle mieszczą?"
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)

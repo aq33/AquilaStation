@@ -10,6 +10,7 @@ import {
   STAT_DIVIDER,
   STAT_TEXT,
 } from './constants';
+import { getDisplayVerbs, getTabSections, getVerbDescription } from './layout';
 import { selectStatPanel } from './selectors';
 import { translateTab, translateVerb } from './translations';
 
@@ -41,8 +42,9 @@ export const findVerbs = (verbData, search) => {
     return [];
   }
   const results = [];
-  for (const tab of Object.keys(verbData)) {
-    const verbs = verbData[tab] || {};
+  const displayVerbs = getDisplayVerbs(verbData);
+  for (const tab of Object.keys(displayVerbs)) {
+    const verbs = displayVerbs[tab] || {};
     for (const verb of Object.keys(verbs)) {
       if (verbMatches(verb, query)) {
         results.push({ tab, verb, data: verbs[verb] });
@@ -108,10 +110,10 @@ export const StatText = (props) => {
   if (stat.verbSearch && stat.verbSearch.trim()) {
     return <StatVerbSearchResults />;
   }
-  let verbs = {};
-  if (stat.verbData !== null) {
-    verbs = stat.verbData[stat.selectedTab] || {};
-  }
+  const sections =
+    stat.verbData !== null
+      ? getTabSections(stat.selectedTab, stat.verbData)
+      : [];
   const keys = Object.keys(statPanelData)
     .filter((x) => x !== null && !!statPanelData[x])
     .sort(
@@ -119,7 +121,10 @@ export const StatText = (props) => {
         StatTagToPriority(statPanelData[b].tag) -
         StatTagToPriority(statPanelData[a].tag),
     );
-  const verbNames = sortVerbs(verbs);
+  const verbCount = sections.reduce(
+    (count, section) => count + Object.keys(section.verbs).length,
+    0,
+  );
   return (
     <div className="StatBorder">
       {keys.length > 0 && (
@@ -127,19 +132,30 @@ export const StatText = (props) => {
           {keys.map((key) => renderStatEntry(key, statPanelData[key]))}
         </Flex>
       )}
-      {verbNames.length > 0 && (
-        <div className="StatVerbGrid">
-          {verbNames.map((verb) => (
-            <StatTextVerb
-              key={verb}
-              title={verb}
-              action_id={verbs[verb].action}
-              params={verbs[verb].params}
-            />
-          ))}
-        </div>
-      )}
-      {keys.length === 0 && verbNames.length === 0 && (
+      {sections.map((section) => {
+        const verbNames = sortVerbs(section.verbs);
+        if (verbNames.length === 0) {
+          return null;
+        }
+        return (
+          <div key={section.title || 'verbs'}>
+            {!!section.title && (
+              <div className="StatVerbSection">{section.title}</div>
+            )}
+            <div className="StatVerbGrid">
+              {verbNames.map((verb) => (
+                <StatTextVerb
+                  key={verb}
+                  title={verb}
+                  action_id={section.verbs[verb].action}
+                  params={section.verbs[verb].params}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+      {keys.length === 0 && verbCount === 0 && (
         <Box className="StatEmpty">Brak danych</Box>
       )}
     </div>
@@ -160,9 +176,7 @@ export const StatVerbSearchResults = (props) => {
   }
   return (
     <div className="StatBorder">
-      <Box className="StatSearchCount">
-        Znaleziono: {results.length}
-      </Box>
+      <Box className="StatSearchCount">Znaleziono: {results.length}</Box>
       <div className="StatVerbGrid StatVerbGrid--search">
         {results.map((result) => (
           <StatTextVerb
@@ -409,7 +423,11 @@ export const StatTextDivider = (props) => {
 export const StatTextVerb = (props) => {
   const { title, tab, action_id, params = [] } = props;
   const name = translateVerb(title);
-  const hint = name === title ? name : name + ' (' + title + ')';
+  const description = getVerbDescription(title);
+  let hint = name === title ? name : name + ' (' + title + ')';
+  if (description) {
+    hint = name + ': ' + description;
+  }
   const onClick = () =>
     Byond.sendMessage('stat/pressed', {
       action_id: action_id,
