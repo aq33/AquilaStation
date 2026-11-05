@@ -34,7 +34,7 @@
 	var/war_declaration = "[user.real_name] zadeklarowa[user.gender == MALE ? "ł" : "ła"] [user.p_jego()] zamiar całkowitego zniszczenia [station_name()] przy użyciu ładunku nuklearnego, oraz rzuca wyzwanie załodze, aby spróbować [user.p_je()] powstrzymać."
 
 	declaring_war = TRUE
-	var/custom_threat = i18n_alert(usr, user, "Czy chcesz zmienić tekst deklaracji?", "Zmiana deklaracji", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/custom_threat = alert(user, "Czy chcesz zmienić tekst deklaracji?", "Zmiana deklaracji", "Tak", "Nie")
 	declaring_war = FALSE
 
 	if(!check_allowed(user))

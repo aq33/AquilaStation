@@ -86,7 +86,7 @@
 	options["Złość"] = "angry"
 	options["Błaganie"] ="pleading"
 
-	var/choice = input(user,i18n_dialog_text(user, "W jaką formę chcesz przemienić tę maskę?"),i18n_dialog_text(user, "Przemiana maski")) in sortList(options) // AQ EDIT - i18n okienka
+	var/choice = input(user,"W jaką formę chcesz przemienić tę maskę?","Przemiana maski") in sortList(options)
 
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]

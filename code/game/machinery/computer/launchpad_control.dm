@@ -134,7 +134,7 @@
 			current_pad.display_name = new_name
 			. = TRUE
 		if("remove")
-			if(usr && i18n_alert(usr, usr, "Na pewno?", "Odłącz wyrzutnię", "Na pewno", "Przerwij") == "Na pewno") // AQ EDIT - i18n okienka
+			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "Na pewno", "Przerwij") == "Na pewno")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE

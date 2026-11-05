@@ -244,7 +244,7 @@
 			pin_owner = null
 			owned = FALSE
 			return
-		var/transaction_amount = input(user, i18n_dialog_text(user, "Podaj prawidłową kwotę wpłaty za zakup broni"), i18n_dialog_text(user, "Wpłata")) as null|num // AQ EDIT - i18n okienka
+		var/transaction_amount = input(user, "Podaj prawidłową kwotę wpłaty za zakup broni", "Wpłata") as null|num
 		if(transaction_amount < 1)
 			to_chat(user, "<span class='warning'>BŁĄD: podano nieprawidłową kwotę.</span>")
 			return
@@ -273,7 +273,7 @@
 				return FALSE
 			return TRUE
 		if(credit_card_details && !active_prompt)
-			var/license_request = i18n_alert(usr, usr, "Czy chcesz zapłacić [payment_amount] kr za [( multi_payment ) ? "każdy strzał z [gun.name]" : "licencję na użytkowanie [gun.name]"]?", "Zakup broni", "Tak", "Nie") // AQ EDIT - i18n okienka
+			var/license_request = alert(usr, "Czy chcesz zapłacić [payment_amount] kr za [( multi_payment ) ? "każdy strzał z [gun.name]" : "licencję na użytkowanie [gun.name]"]?", "Zakup broni", "Tak", "Nie")
 			active_prompt = TRUE
 			if(!user.canUseTopic(src, BE_CLOSE))
 				active_prompt = FALSE

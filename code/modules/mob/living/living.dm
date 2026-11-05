@@ -511,7 +511,7 @@
 		to_chat(src, "<span class='notice'>Już śpisz.</span>")
 		return
 	else
-		if(i18n_alert(usr, src, "Na pewno chcesz się trochę przespać?", "Sen", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
+		if(alert(src, "Na pewno chcesz się trochę przespać?", "Sen", "Tak", "Nie") == "Tak")
 			SetSleeping(400) //Short nap
 	update_mobility()
 

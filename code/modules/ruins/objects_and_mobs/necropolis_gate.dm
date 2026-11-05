@@ -165,7 +165,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/legion_gate/attack_hand(mob/user, list/modifiers)
 	if(!open && !changing_openness)
-		var/safety = i18n_alert(usr, user, "Myślisz, że to może być zły pomysł...", "Zapukać do drzwi?", "Pukaj", "Odpuść") // AQ EDIT - i18n okienka
+		var/safety = alert(user, "Myślisz, że to może być zły pomysł...", "Zapukać do drzwi?", "Pukaj", "Odpuść")
 		if(safety == "Odpuść" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated())
 			return
 		user.visible_message("<span class='warning'>[user] puka do [src]...</span>", "<span class='boldannounce'>Niepewnie pukasz do [src]...</span>")

@@ -215,7 +215,7 @@
 		else
 			visible_message("<span class='danger'>[user] niepokoi [name], ale bez skutku!</span>")
 	else
-		var/option = i18n_alert(usr, user, "Co chcesz zrobić?","Pasieka","Wyjmij ramkę z miodem","Wyjmij królową", "Anuluj") // AQ EDIT - i18n okienka
+		var/option = alert(user, "Co chcesz zrobić?","Pasieka","Wyjmij ramkę z miodem","Wyjmij królową", "Anuluj")
 		if(!Adjacent(user))
 			return
 		switch(option)

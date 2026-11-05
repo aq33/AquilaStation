@@ -16,7 +16,7 @@
 	var/datum/target
 	var/targetselected = FALSE
 
-	switch(i18n_alert(usr, "Czy proc ma właściciela?",,"Tak","Nie")) // AQ EDIT - i18n okienka
+	switch(alert("Czy proc ma właściciela?",,"Tak","Nie"))
 		if("Tak")
 			targetselected = TRUE
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_MARKED_DATUM, VV_TEXT_LOCATE, VV_PROCCALL_RETVAL))
@@ -178,7 +178,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 		to_chat(usr, .)
 
 /client/proc/get_callproc_args()
-	var/argnum = input(i18n_dialog_text(usr, "Liczba argumentów"),i18n_dialog_text(usr, "Liczba:"),0) as num|null // AQ EDIT - i18n okienka
+	var/argnum = input("Liczba argumentów","Liczba:",0) as num|null
 	if(isnull(argnum))
 		return
 

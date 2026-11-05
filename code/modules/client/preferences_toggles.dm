@@ -202,9 +202,9 @@ GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","ske
 
 /client/proc/pick_form()
 	if(!is_content_unlocked())
-		i18n_alert(usr, "To ustawienie jest dostępne tylko dla kont BYOND premium.") // AQ EDIT - i18n okienka
+		alert("To ustawienie jest dostępne tylko dla kont BYOND premium.")
 		return
-	var/new_form = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz wygląd ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in i18n_input_shown(src, GLOB.ghost_forms)) // AQ EDIT - i18n okienka
+	var/new_form = input(src, "Dzięki za wspieranie BYOND - wybierz wygląd ducha:","Dzięki za wspieranie BYOND",null) as null|anything in GLOB.ghost_forms
 	if(new_form)
 		prefs.ghost_form = new_form
 		prefs.save_preferences()
@@ -216,9 +216,9 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/pick_ghost_orbit()
 	if(!is_content_unlocked())
-		i18n_alert(usr, "To ustawienie jest dostępne tylko dla kont BYOND premium.") // AQ EDIT - i18n okienka
+		alert("To ustawienie jest dostępne tylko dla kont BYOND premium.")
 		return
-	var/new_orbit = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz orbitę ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in i18n_input_shown(src, GLOB.ghost_orbits)) // AQ EDIT - i18n okienka
+	var/new_orbit = input(src, "Dzięki za wspieranie BYOND - wybierz orbitę ducha:","Dzięki za wspieranie BYOND",null) as null|anything in GLOB.ghost_orbits
 	if(new_orbit)
 		prefs.ghost_orbit = new_orbit
 		prefs.save_preferences()
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 			O.ghost_orbit = new_orbit
 
 /client/proc/pick_ghost_accs()
-	var/new_ghost_accs = i18n_alert(usr, "Czy twój duch ma pokazywać wszystkie dodatki, gdy to możliwe, ukrywać dodatki, ale nadal używać sprite'ów kierunkowych, czy ignorować kierunki i używać domyślnych sprite'ów?",,"Wszystkie dodatki", "Tylko kierunkowe", "Domyślne sprite'y") // AQ EDIT - i18n okienka
+	var/new_ghost_accs = alert("Czy twój duch ma pokazywać wszystkie dodatki, gdy to możliwe, ukrywać dodatki, ale nadal używać sprite'ów kierunkowych, czy ignorować kierunki i używać domyślnych sprite'ów?",,"Wszystkie dodatki", "Tylko kierunkowe", "Domyślne sprite'y")
 	if(new_ghost_accs)
 		switch(new_ghost_accs)
 			if("Wszystkie dodatki")
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set category = "Preferences"
 	set desc = "Dostosuj swój upiorny wygląd."
 	if(is_content_unlocked())
-		switch(i18n_alert(usr, "Które ustawienie chcesz zmienić?",,"Wygląd ducha","Orbita ducha","Dodatki ducha")) // AQ EDIT - i18n okienka
+		switch(alert("Które ustawienie chcesz zmienić?",,"Wygląd ducha","Orbita ducha","Dodatki ducha"))
 			if("Wygląd ducha")
 				pick_form()
 			if("Orbita ducha")
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set name = "Ghosts of Others"
 	set category = "Preferences"
 	set desc = "Zmień sposób wyświetlania duchów innych graczy."
-	var/new_ghost_others = i18n_alert(usr, "Czy duchy innych mają wyglądać tak, jak sobie ustawili, jako ich domyślne sprite'y, czy zawsze jako domyślny biały duch?",,"Ich ustawienie", "Domyślne sprite'y", "Biały duch") // AQ EDIT - i18n okienka
+	var/new_ghost_others = alert("Czy duchy innych mają wyglądać tak, jak sobie ustawili, jako ich domyślne sprite'y, czy zawsze jako domyślny biały duch?",,"Ich ustawienie", "Domyślne sprite'y", "Biały duch")
 	if(new_ghost_others)
 		switch(new_ghost_others)
 			if("Ich ustawienie")

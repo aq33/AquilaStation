@@ -523,14 +523,14 @@
 		return
 
 	if(cid_check && config.protected_cids.Find(player_cid))
-		if(i18n_alert(usr, usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 			return
 		var/kn = key_name(usr)
 		//Log the shit out of this and scream bloody murder to anyone who will listen.
 		send2tgs("CID PROTECTION BYPASS", "[kn] Has overridden CID protection for a ban on CID [player_cid]!")
 		message_admins("<span class='danger'>[kn] omija ochronę CID przy banie na CID [player_cid]!</span>")
 		log_admin_private("[kn] Has overridden CID protection for a ban on CID [player_cid]!")
-	if(redact && i18n_alert(usr, usr, "Zaraz nałożysz ukryty ban. Cofnięcie go będzie wymagać bezpośredniej edycji bazy danych. NA PEWNO?", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+	if(redact && alert(usr, "Zaraz nałożysz ukryty ban. Cofnięcie go będzie wymagać bezpośredniej edycji bazy danych. NA PEWNO?", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 		return
 	var/player_ckey = ckey(player_key)
 	if(player_ckey)
@@ -549,11 +549,11 @@
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(i18n_alert(usr, usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(i18n_alert(usr, usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz go zbanować?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -836,7 +836,7 @@
 		to_chat(usr, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	if(i18n_alert(usr, usr, "Potwierdź zdjęcie bana [target] na: [role].", "Potwierdzenie zdjęcia bana", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert(usr, "Potwierdź zdjęcie bana [target] na: [role].", "Potwierdzenie zdjęcia bana", "Tak", "Nie") != "Tak")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
@@ -873,7 +873,7 @@
 		return
 
 	if(cid_check && config.protected_cids.Find(player_cid))
-		if(i18n_alert(usr, usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "CID [player_cid] jest oznaczony jako chroniony z powodu: [config.protected_cids[player_cid]]. Na pewno chcesz zablokować ten CID? NAJPEWNIEJ ZŁAPIE TO UCZCIWYCH GRACZY.", "Chroniony CID", "Tak", "Nie", "Anuluj") != "Tak")
 			return
 		var/kn = key_name(usr)
 		//Log the shit out of this and scream bloody murder to anyone who will listen.
@@ -906,11 +906,11 @@
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(i18n_alert(usr, usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany, więc nie da się użyć IP i CID z ostatniego połączenia. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(i18n_alert(usr, usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+				if(alert(usr, "[player_key]/([player_ckey]) nie był wcześniej widziany. Na pewno chcesz edytować jego bana?", "Nieznany klucz", "Tak", "Nie", "Anuluj") != "Tak")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)

@@ -326,14 +326,14 @@
 				message_admins("<span class='notice'>[key_name_admin(usr)] zmienia pancerz [src] ([type]) na melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]</span>")
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
-			var/action_type = i18n_alert(usr, "Tylko typ ([type]) czy typ ze wszystkimi podtypami?",,"Tylko typ","Typ z podtypami","Anuluj") // AQ EDIT - i18n okienka
+			var/action_type = alert("Tylko typ ([type]) czy typ ze wszystkimi podtypami?",,"Tylko typ","Typ z podtypami","Anuluj")
 			if(action_type == "Anuluj" || !action_type)
 				return
 
-			if(i18n_alert(usr, "Czy na pewno chcesz usunąć wszystkie obiekty typu [type]?",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if(alert("Czy na pewno chcesz usunąć wszystkie obiekty typu [type]?",,"Tak","Nie") != "Tak")
 				return
 
-			if(i18n_alert(usr, "Wymagane drugie potwierdzenie. Usunąć?",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if(alert("Wymagane drugie potwierdzenie. Usunąć?",,"Tak","Nie") != "Tak")
 				return
 
 			var/O_type = type
@@ -383,7 +383,7 @@
 		var/output = icon2html(src, M, unique_reskin[V])
 		to_chat(M, "[V]: <span class='reallybig'>[output]</span>")
 
-	var/choice = i18n_input_choice(M, input(M,i18n_dialog_text(M, "Uwaga, wygląd [src] możesz zmienić tylko raz!"),i18n_dialog_text(M, "Zmiana wyglądu obiektu")) as null|anything in i18n_input_shown(M, sortList(unique_reskin))) // AQ EDIT - i18n okienka
+	var/choice = input(M,"Uwaga, wygląd [src] możesz zmienić tylko raz!","Zmiana wyglądu obiektu") as null|anything in sortList(unique_reskin)
 	if(!QDELETED(src) && choice && !current_skin && !M.incapacitated() && in_range(M,src))
 		if(!unique_reskin[choice])
 			return

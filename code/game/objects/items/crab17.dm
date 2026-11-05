@@ -14,7 +14,7 @@
 	if(dumped)
 		to_chat(user, "<span class='warning'>Protokół CRAB-17 jest już aktywny.</span>")
 		return FALSE
-	if(i18n_alert(usr, user, "Na pewno chcesz zrujnować ten rynek bez ocalałych?", "Protokół CRAB-17", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert(user, "Na pewno chcesz zrujnować ten rynek bez ocalałych?", "Protokół CRAB-17", "Tak", "Nie") == "Tak")
 		if(dumped || QDELETED(src)) //Prevents fuckers from cheesing alert
 			return FALSE
 		var/turf/targetturf = get_safe_random_station_turfs()

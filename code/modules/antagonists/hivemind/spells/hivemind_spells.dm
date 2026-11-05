@@ -33,7 +33,7 @@
 		if(range)
 			possible_targets &= view_or_range(range, user, selection_type)
 
-	var/mob/living/carbon/human/H = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz cel zaklęcia."), i18n_dialog_text(usr, "Celowanie")) as null|mob in i18n_input_shown(usr, possible_targets)) // AQ EDIT - i18n okienka
+	var/mob/living/carbon/human/H = input("Wybierz cel zaklęcia.", "Celowanie") as null|mob in possible_targets
 	if(!H)
 		revert_cast()
 		return

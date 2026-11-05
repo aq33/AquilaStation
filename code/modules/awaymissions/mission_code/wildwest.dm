@@ -88,7 +88,7 @@
 	else
 		chargesa--
 		insistinga = 0
-		var/wish = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Pragniesz..."),i18n_dialog_text(usr, "Życzenie")) as null|anything in i18n_input_shown(usr, sortList(list("Moc","Bogactwo","Nieśmiertelność","Pokój")))) // AQ EDIT - i18n okienka
+		var/wish = input("Pragniesz...","Życzenie") as null|anything in sortList(list("Moc","Bogactwo","Nieśmiertelność","Pokój"))
 		switch(wish)
 			if("Moc")
 				to_chat(user, "<B>Twoje życzenie zostaje spełnione, ale za straszliwą cenę...</B>")

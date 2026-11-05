@@ -1,5 +1,5 @@
 /client/proc/get_admin_say()
-	var/msg = input(src, null, i18n_dialog_text(src, "asay \"text\"")) as text|null // AQ EDIT - i18n okienka
+	var/msg = input(src, null, "asay \"text\"") as text|null
 	cmd_admin_say(msg)
 
 /client/proc/cmd_admin_say(msg as text)

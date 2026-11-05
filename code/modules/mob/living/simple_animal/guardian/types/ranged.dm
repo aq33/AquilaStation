@@ -94,7 +94,7 @@
 	set name = "Remove Surveillance Snare"
 	set category = "Guardian"
 	set desc = "Rozbrój niepotrzebne sidła obserwacyjne."
-	var/picked_snare = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz sidła do usunięcia"), i18n_dialog_text(src, "Usuń sidła")) as null|anything in i18n_input_shown(src, sortNames(src.snares))) // AQ EDIT - i18n okienka
+	var/picked_snare = input(src, "Wybierz sidła do usunięcia", "Usuń sidła") as null|anything in sortNames(src.snares)
 	if(picked_snare)
 		src.snares -= picked_snare
 		qdel(picked_snare)

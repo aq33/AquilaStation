@@ -346,11 +346,11 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel.channel_name == channel_name)
-			i18n_alert(usr, usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK") // AQ EDIT - i18n okienka
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
 		return TRUE
-	var/choice = i18n_alert(usr, usr, "Potwierdź utworzenie kanału","Obsługa kanałów sieci", "Potwierdź", "Anuluj") // AQ EDIT - i18n okienka
+	var/choice = alert(usr, "Potwierdź utworzenie kanału","Obsługa kanałów sieci", "Potwierdź", "Anuluj")
 	if(choice == "Potwierdź")
 		GLOB.news_network.create_feed_channel(channel_name, "Urzędnik Centrali", channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
@@ -362,7 +362,7 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel != current_channel && iterated_feed_channel.channel_name == channel_name)
-			i18n_alert(usr, usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK") // AQ EDIT - i18n okienka
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
 		return TRUE

@@ -219,7 +219,7 @@ Control Rods
 					handle_control_rod_efficiency()
 					handle_control_rod_integrity()
 			if(REACTOR_STATE_RUNNING)
-				if(i18n_alert(usr, "[src] nie jest w trybie serwisowym! Ręczne włożenie pręta sterującego do aktywnej reakcji jądrowej zapewne byłoby śmiertelne.",name,"Continue","Reconsider") == "Continue" && Adjacent(user)) // AQ EDIT - i18n okienka
+				if(alert("[src] nie jest w trybie serwisowym! Ręczne włożenie pręta sterującego do aktywnej reakcji jądrowej zapewne byłoby śmiertelne.",name,"Continue","Reconsider") == "Continue" && Adjacent(user))
 					if(control_rods.len >= MAX_CONTROL_RODS)
 						to_chat(user, "<span class='notice'>[src] ma już zainstalowane [MAX_CONTROL_RODS] pręty sterujące.</span>")
 						return
@@ -391,7 +391,7 @@ Control Rods
 						handle_control_rod_efficiency()
 						handle_control_rod_integrity()
 				if(REACTOR_STATE_RUNNING)
-					if(i18n_alert(usr, "[src] nie jest w trybie serwisowym! Ręczne wyjęcie pręta sterującego z aktywnej reakcji jądrowej zapewne byłoby śmiertelne.",name,"Continue","Reconsider") != "Continue" || !Adjacent(usr)) // AQ EDIT - i18n okienka
+					if(alert("[src] nie jest w trybie serwisowym! Ręczne wyjęcie pręta sterującego z aktywnej reakcji jądrowej zapewne byłoby śmiertelne.",name,"Continue","Reconsider") != "Continue" || !Adjacent(usr))
 						return
 					else
 						if(control_rods.len <= 0)
@@ -1883,7 +1883,7 @@ Control Rods
 				if(!shares_overmap(usr, R))
 					continue
 				choices += R
-			reactor = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Który reaktor napędu burzowego chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
+			reactor = input(usr, "Który reaktor napędu burzowego chcesz monitorować?", "[src]", null) as null|anything in choices
 			return TRUE
 
 #undef LOW_ROR

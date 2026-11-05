@@ -104,7 +104,7 @@
 		if(extra_classes)
 			classes += extra_classes
 
-		.["class"] = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Jaki rodzaj danych?"), i18n_dialog_text(src, "Typ zmiennej"), default_class) as null|anything in i18n_input_shown(src, classes)) // AQ EDIT - i18n okienka
+		.["class"] = input(src, "Jaki rodzaj danych?", "Typ zmiennej", default_class) as null|anything in classes
 		if(holder && holder.marked_datum && .["class"] == markstring)
 			.["class"] = VV_MARKED_DATUM
 
@@ -116,19 +116,19 @@
 
 	switch(.["class"])
 		if(VV_TEXT)
-			.["value"] = input(i18n_dialog_text(usr, "Podaj nowy tekst:"), i18n_dialog_text(usr, "Tekst"), current_value) as null|text // AQ EDIT - i18n okienka
+			.["value"] = input("Podaj nowy tekst:", "Tekst", current_value) as null|text
 			if(.["value"] == null)
 				.["class"] = null
 				return
 		if(VV_MESSAGE)
-			.["value"] = input(i18n_dialog_text(usr, "Podaj nowy tekst:"), i18n_dialog_text(usr, "Tekst"), current_value) as null|message // AQ EDIT - i18n okienka
+			.["value"] = input("Podaj nowy tekst:", "Tekst", current_value) as null|message
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if(VV_NUM)
-			.["value"] = input(i18n_dialog_text(usr, "Podaj nową liczbę:"), i18n_dialog_text(usr, "Liczba"), current_value) as null|num // AQ EDIT - i18n okienka
+			.["value"] = input("Podaj nową liczbę:", "Liczba", current_value) as null|num
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -155,7 +155,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(i18n_dialog_text(usr, "Podaj typ:[error]"), i18n_dialog_text(usr, "Typ"), type) as null|text // AQ EDIT - i18n okienka
+				type = input("Podaj typ:[error]", "Typ", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -173,7 +173,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -186,7 +186,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -199,7 +199,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -212,26 +212,26 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
+			var/value = input("Wybierz referencję:", "Referencja", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
 			.["value"] = WEAKREF(things[value])
 
 		if(VV_CLIENT)
-			.["value"] = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, GLOB.clients)) // AQ EDIT - i18n okienka
+			.["value"] = input("Wybierz referencję:", "Referencja", current_value) as null|anything in GLOB.clients
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_FILE)
-			.["value"] = input(i18n_dialog_text(usr, "Wybierz plik:"), i18n_dialog_text(usr, "Plik")) as null|file // AQ EDIT - i18n okienka
+			.["value"] = input("Wybierz plik:", "Plik") as null|file
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_ICON)
-			.["value"] = input(i18n_dialog_text(usr, "Wybierz ikonę:"), i18n_dialog_text(usr, "Ikona")) as null|icon // AQ EDIT - i18n okienka
+			.["value"] = input("Wybierz ikonę:", "Ikona") as null|icon
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -279,7 +279,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(i18n_dialog_text(usr, "Podaj typ:[error]"), i18n_dialog_text(usr, "Typ"), type) as null|text // AQ EDIT - i18n okienka
+				type = input("Podaj typ:[error]", "Typ", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -298,7 +298,7 @@
 			.["type"] = /list
 			var/list/value = list()
 
-			var/expectation = i18n_alert(usr, "Czy chcesz wypełnić listę?", "Wypełnić listę?", "Tak", "Nie") // AQ EDIT - i18n okienka
+			var/expectation = alert("Czy chcesz wypełnić listę?", "Wypełnić listę?", "Tak", "Nie")
 			if(!expectation || expectation == "Nie")
 				.["value"] = value
 				return .
@@ -316,7 +316,7 @@
 		if(VV_TEXT_LOCATE)
 			var/datum/D
 			do
-				var/ref = input(i18n_dialog_text(usr, "Podaj referencję:"), i18n_dialog_text(usr, "Referencja")) as null|text // AQ EDIT - i18n okienka
+				var/ref = input("Podaj referencję:", "Referencja") as null|text
 				if(!ref)
 					break
 				D = locate(ref)
@@ -331,7 +331,7 @@
 			.["value"] = D
 
 		if(VV_COLOR)
-			.["value"] = input(i18n_dialog_text(usr, "Podaj nowy kolor:"), i18n_dialog_text(usr, "Kolor"), current_value) as color|null // AQ EDIT - i18n okienka
+			.["value"] = input("Podaj nowy kolor:", "Kolor", current_value) as color|null
 			if(.["value"] == null)
 				.["class"] = null
 				return

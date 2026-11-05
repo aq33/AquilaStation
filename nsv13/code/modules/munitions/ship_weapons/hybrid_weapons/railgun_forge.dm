@@ -421,7 +421,7 @@
 					forge_canister()
 
 			if("purge_t1")
-				if(i18n_alert(usr, "Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika powłoki",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr)) // AQ EDIT - i18n okienka
+				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika powłoki",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr))
 					to_chat(usr, "<span class='warning'>Opróżnianie zbiornika powłoki</span>")
 					T1.material_selection = 0
 					T1.tank_alloy_lock = FALSE
@@ -430,7 +430,7 @@
 					return
 
 			if("purge_t2")
-				if(i18n_alert(usr, "Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika rdzenia",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr)) // AQ EDIT - i18n okienka
+				if(alert("Przydzielonych zasobów nie da się odzyskać po opróżnieniu zbiornika rdzenia",name,"Kontynuuj","Przerwij") != "Przerwij" && Adjacent(usr))
 					to_chat(usr, "<span class='warning'>Opróżnianie zbiornika rdzenia</span>")
 					T2.material_selection = 0
 					T2.tank_alloy_lock = FALSE

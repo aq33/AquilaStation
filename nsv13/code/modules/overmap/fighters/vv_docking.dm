@@ -13,13 +13,13 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/obj/structure/overmap/target
-		switch(i18n_alert(usr, usr, "Do którego okrętu ma zadokować?", "Wybierz okręt docelowy", "Okręt załogi", "Wybierz", "Anuluj")) // AQ EDIT - i18n okienka
+		switch(alert(usr, "Do którego okrętu ma zadokować?", "Wybierz okręt docelowy", "Okręt załogi", "Wybierz", "Anuluj"))
 			if("Anuluj")
 				return
 			if("Okręt załogi")
 				target = SSstar_system.find_main_overmap()
 			if("Wybierz")
-				target = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz okręt docelowy:"), i18n_dialog_text(usr, "Wybierz cel")) as null|anything in i18n_input_shown(usr, GLOB.overmap_objects)) //Needs to go through global list due to requiring access to any overmap. // AQ EDIT - i18n okienka
+				target = input(usr, "Wybierz okręt docelowy:", "Wybierz cel") as null|anything in GLOB.overmap_objects //Needs to go through global list due to requiring access to any overmap.
 
 		var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 		if(!DC)
@@ -29,13 +29,13 @@
 		DC.docking_mode = TRUE
 		if(!length(target.docking_points))
 			if(usr.client?.holder?.marked_datum && isturf(usr.client.holder.marked_datum))
-				switch(i18n_alert(usr, usr, "[target] nie ma punktów dokowania. Dodać oznaczone pole do punktów dokowania?", "Ostrzeżenie", "Tak", "Nie")) // AQ EDIT - i18n okienka
+				switch(alert(usr, "[target] nie ma punktów dokowania. Dodać oznaczone pole do punktów dokowania?", "Ostrzeżenie", "Tak", "Nie"))
 					if("Nie")
 						return
 					if("Tak")
 						target.docking_points |= usr.client.holder.marked_datum
 			else
-				i18n_alert(usr, usr, "[target] nie ma punktów dokowania. Nie można zadokować.", "Ostrzeżenie", "OK") // AQ EDIT - i18n okienka
+				alert(usr, "[target] nie ma punktów dokowania. Nie można zadokować.", "Ostrzeżenie", "OK")
 				return
 
 		transfer_from_overmap(target)

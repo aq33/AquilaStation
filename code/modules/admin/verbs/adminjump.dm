@@ -82,7 +82,7 @@
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in i18n_input_shown(usr, sortKey(keys))) // AQ EDIT - i18n okienka
+	var/client/selection = input("Wybierz gracza!", "Skok admina", null, null) as null|anything in sortKey(keys)
 	if(!selection)
 		to_chat(src, "Nie znaleziono kluczy.")
 		return
@@ -127,7 +127,7 @@
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in i18n_input_shown(usr, sortKey(keys))) // AQ EDIT - i18n okienka
+	var/client/selection = input("Wybierz gracza!", "Skok admina", null, null) as null|anything in sortKey(keys)
 	if(!selection)
 		return
 	var/mob/M = selection.mob
@@ -150,7 +150,7 @@
 	if(!src.holder)
 		to_chat(src, "Tylko administratorzy mogą używać tej komendy.")
 		return
-	var/area/A = input(usr, i18n_dialog_text(usr, "Wybierz obszar."), i18n_dialog_text(usr, "Wybierz obszar")) in GLOB.sortedAreas|null // AQ EDIT - i18n okienka
+	var/area/A = input(usr, "Wybierz obszar.", "Wybierz obszar") in GLOB.sortedAreas|null
 	if(A && istype(A))
 		if(M.forceMove(safepick(get_area_turfs(A))))
 

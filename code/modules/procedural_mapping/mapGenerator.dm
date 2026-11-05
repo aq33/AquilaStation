@@ -174,7 +174,7 @@
 	"Te same turfy"=CLUSTER_CHECK_SAME_TURFS, "Te same atomy"=CLUSTER_CHECK_SAME_ATOMS, "Różne turfy"=CLUSTER_CHECK_DIFFERENT_TURFS, \
 	"Różne atomy"=CLUSTER_CHECK_DIFFERENT_ATOMS, "Wszystkie turfy"=CLUSTER_CHECK_ALL_TURFS,"Wszystkie atomy"=CLUSTER_CHECK_ALL_ATOMS)
 
-	var/moduleClusters = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Flagi klastrów (Anuluj, by zostawić domyślne)"),i18n_dialog_text(usr, "Ustawienia generatora map")) as null|anything in i18n_input_shown(usr, clusters)) // AQ EDIT - i18n okienka
+	var/moduleClusters = input("Flagi klastrów (Anuluj, by zostawić domyślne)","Ustawienia generatora map") as null|anything in clusters
 	//null for default
 
 	var/theCluster = 0

@@ -32,7 +32,7 @@
 /mob/living/proc/give_mind(mob/user)
 	if(key || !playable || stat)
 		return 0
-	var/question = i18n_alert(usr, "Chcesz zostać [name]?", "[name]", "Yes", "No") // AQ EDIT - i18n okienka
+	var/question = alert("Chcesz zostać [name]?", "[name]", "Yes", "No")
 	if(question != "Yes" || !src || QDELETED(src))
 		return TRUE
 	if(key)

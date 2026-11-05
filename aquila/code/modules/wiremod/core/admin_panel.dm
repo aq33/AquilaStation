@@ -51,7 +51,7 @@
 
 	switch (action)
 		if ("duplicate_circuit")
-			if (i18n_alert(usr, usr, "Nowy układ pojawi się tam, gdzie stoisz. Na pewno?", "Potwierdź", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert(usr, "Nowy układ pojawi się tam, gdzie stoisz. Na pewno?", "Potwierdź", "Tak", "Nie") != "Tak")
 				return FALSE
 
 			var/list/errors = list()

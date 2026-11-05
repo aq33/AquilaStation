@@ -20,11 +20,14 @@ export const handleComponentMount = function (this: Modal) {
     this.fields.maxLength = data.maxLength;
     this.fields.lightMode = !!data.lightMode;
     this.fields.showRadioPrefix = !!data.showRadioPrefix;
-    setSayLanguage(data.language); // AQUILA: wersja angielska
   });
   // AQUILA: radio channels the mob can talk on, sent by the server on every open
   Byond.subscribeTo('radio', (data) => {
     this.fields.radioChannels = data.prefixes || [];
+  });
+  // AQUILA: język gracza z modułu wersji angielskiej (aquila/code/modules/i18n/game_language.dm)
+  Byond.subscribeTo('i18n/setLanguage', (data) => {
+    setSayLanguage(data.language);
   });
   Byond.subscribeTo('force', () => {
     this.events.onForce();

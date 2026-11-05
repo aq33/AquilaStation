@@ -164,7 +164,7 @@
 			var/datum/preference/color/preference = GLOB.preference_entries_by_key[params["preference"]]
 			if(!istype(preference) || !preference.is_accessible(src))
 				return FALSE
-			var/new_color = input(usr, i18n_dialog_text(usr, "Wybierz nowy kolor"), i18n_dialog_text(usr, "Kolor"), preference.serialize(preference.read_value(src))) as color|null // AQ EDIT - i18n okienka
+			var/new_color = input(usr, "Wybierz nowy kolor", "Kolor", preference.serialize(preference.read_value(src))) as color|null
 			if(!new_color || QDELETED(src))
 				return FALSE
 			if(!update_preference(preference, new_color))
@@ -176,7 +176,7 @@
 			var/datum/preference/text/preference = GLOB.preference_entries_by_key[params["preference"]]
 			if(!istype(preference) || !preference.is_accessible(src))
 				return FALSE
-			var/new_text = input(usr, i18n_dialog_text(usr, preference.edit_prompt), i18n_dialog_text(usr, "Ustawienia postaci"), preference.read_value(src)) as message|null // AQ EDIT - i18n okienka
+			var/new_text = input(usr, preference.edit_prompt, "Ustawienia postaci", preference.read_value(src)) as message|null
 			if(isnull(new_text) || QDELETED(src))
 				return FALSE
 			return update_preference(preference, new_text)

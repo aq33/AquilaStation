@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	if(!port || !istype(port, /obj/docking_port/mobile))
 		return FALSE
 	var/static/list/choice = list("NORTH" = NORTH, "SOUTH" = SOUTH, "EAST" = EAST, "WEST" = WEST)
-	var/Pdir = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Kierunek lotu promu:"), i18n_dialog_text(user, "Edycja planów"), "NORTH") as null|anything in i18n_input_shown(user, list("NORTH", "SOUTH", "EAST", "WEST"))) // AQ EDIT - i18n okienka
+	var/Pdir = input(user, "Kierunek lotu promu:", "Edycja planów", "NORTH") as null|anything in list("NORTH", "SOUTH", "EAST", "WEST")
 	if(Pdir)
 		port.preferred_direction = choice[Pdir]
 

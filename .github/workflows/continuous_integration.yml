@@ -48,16 +48,13 @@ jobs:
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker
-      # AQUILA - wersja angielska: nowy polski tekst bez wpisu w słowniku EN albo niezawinięte okienko
-      # blokuje PR. Teksty okien z drzewa składni (tgui/i18n-jsx.cjs), więc po kroku z budową tgui
+      # AQUILA - wersja angielska (moduł do odpięcia): nowe polskie teksty bez wpisu w słowniku EN jako
+      # ostrzeżenia, PR-a nie blokuje. Teksty okien z drzewa składni (tgui/i18n-jsx.cjs), więc po budowie tgui
       - name: Teksty bez angielskiego
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
-          # PR z poprawkami z Crowdina zmienia polskie teksty bez angielskich: tam tylko ostrzeżenia
-          STRICT=$([ "${{ github.head_ref }}" = "crowdin-poprawki" ] || echo --strict)
-          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} $STRICT
-          python tools/i18n/wrap_dialogs.py --check $STRICT
+          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:

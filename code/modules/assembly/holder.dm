@@ -125,7 +125,7 @@
 		to_chat(user, "<span class='danger'>Brakuje części zespołu!</span>")
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-		switch(i18n_alert(usr, "Której strony chcesz użyć?",,"Left","Right")) // AQ EDIT - i18n okienka
+		switch(alert("Której strony chcesz użyć?",,"Left","Right"))
 			if("Left")
 				a_left.attack_self(user)
 			if("Right")

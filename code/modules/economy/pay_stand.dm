@@ -30,7 +30,7 @@
 				return
 		var/obj/item/card/id/vbucks = W
 		if(vbucks.registered_account)
-			var/momsdebitcard = input(user, i18n_dialog_text(user, "Ile chcesz wpłacić?"), i18n_dialog_text(user, "Wpłata")) as null|num // AQ EDIT - i18n okienka
+			var/momsdebitcard = input(user, "Ile chcesz wpłacić?", "Wpłata") as null|num
 			if(momsdebitcard < 1)
 				to_chat(user, "<span class='warning'>BŁĄD: podano nieprawidłową kwotę.</span>")
 				return
@@ -46,7 +46,7 @@
 			return
 	if(istype(W, /obj/item/holochip))
 		var/obj/item/holochip/H = W
-		var/cashmoney = input(user, i18n_dialog_text(user, "Ile chcesz wpłacić?"), i18n_dialog_text(user, "Wpłata")) as null|num // AQ EDIT - i18n okienka
+		var/cashmoney = input(user, "Ile chcesz wpłacić?", "Wpłata") as null|num
 		if(H.spend(cashmoney, FALSE))
 			purchase(user, cashmoney)
 			to_chat(user, "Dziękujemy za zakup! Sprzedawca został powiadomiony.")
@@ -69,7 +69,7 @@
 			to_chat(user, "<span class='warning'>BŁĄD: do tego stoiska płatniczego nie przypisano jeszcze żadnej karty identyfikacyjnej!</span>")
 			return
 		if(!signaler)
-			var/cash_limit = input(user, i18n_dialog_text(user, "Podaj minimalną kwotę wpłaty, po której zostanie aktywowany sygnalizator."), i18n_dialog_text(user, "Próg aktywacji sygnalizatora")) as null|num // AQ EDIT - i18n okienka
+			var/cash_limit = input(user, "Podaj minimalną kwotę wpłaty, po której zostanie aktywowany sygnalizator.", "Próg aktywacji sygnalizatora") as null|num
 			if(cash_limit < 1)
 				to_chat(user, "<span class='warning'>BŁĄD: podano nieprawidłową kwotę.</span>")
 				return

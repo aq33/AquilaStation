@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(explosions)
 	set name = "Check Bomb Impact"
 	set category = "Debug"
 
-	var/newmode = i18n_alert(usr, "Użyć eksplozji reakcyjnych?","Sprawdź zasięg bomby", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/newmode = alert("Użyć eksplozji reakcyjnych?","Sprawdź zasięg bomby", "Tak", "Nie")
 	var/turf/epicenter = get_turf(mob)
 	if(!epicenter)
 		return
@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(explosions)
 	var/heavy = 0
 	var/light = 0
 	var/list/choices = list("Mała bomba","Średnia bomba","Duża bomba","Własna bomba")
-	var/choice = input(i18n_dialog_text(usr, "Rozmiar bomby?")) in choices // AQ EDIT - i18n okienka
+	var/choice = input("Rozmiar bomby?") in choices
 	switch(choice)
 		if(null)
 			return 0
@@ -110,9 +110,9 @@ SUBSYSTEM_DEF(explosions)
 			heavy = 5
 			light = 7
 		if("Własna bomba")
-			dev = input(i18n_dialog_text(usr, "Zasięg zniszczenia (pola):")) as num // AQ EDIT - i18n okienka
-			heavy = input(i18n_dialog_text(usr, "Zasięg ciężkich uszkodzeń (pola):")) as num // AQ EDIT - i18n okienka
-			light = input(i18n_dialog_text(usr, "Zasięg lekkich uszkodzeń (pola):")) as num // AQ EDIT - i18n okienka
+			dev = input("Zasięg zniszczenia (pola):") as num
+			heavy = input("Zasięg ciężkich uszkodzeń (pola):") as num
+			light = input("Zasięg lekkich uszkodzeń (pola):") as num
 
 	var/max_range = max(dev, heavy, light)
 	var/x0 = epicenter.x

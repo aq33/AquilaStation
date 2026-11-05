@@ -312,7 +312,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 		assoc_list[name] = BSC
 
-	var/chosen_input = i18n_input_choice(user, input(user,i18n_dialog_text(user, "Jaki cel chcesz wybrać"),null) as null|anything in i18n_input_shown(user, assoc_list)) // AQ EDIT - i18n okienka
+	var/chosen_input = input(user,"Jaki cel chcesz wybrać",null) as null|anything in assoc_list
 	in_use = FALSE
 
 	if(!chosen_input || !assoc_list[chosen_input])

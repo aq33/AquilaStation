@@ -29,7 +29,7 @@
 		return
 
 	message_admins("[key_name_admin(src)] otwiera plik: [path]")
-	switch(i18n_alert(usr, "Pokaż (w grze), Otwórz (w edytorze tekstu systemu) czy Pobierz?", path, "Pokaż", "Otwórz", "Pobierz")) // AQ EDIT - i18n okienka
+	switch(alert("Pokaż (w grze), Otwórz (w edytorze tekstu systemu) czy Pobierz?", path, "Pokaż", "Otwórz", "Pobierz"))
 		if ("Pokaż")
 			src << browse(HTML_SKELETON("<pre style='word-wrap: break-word;'>[html_encode(rustg_file_read(path))]</pre>"), list2params(list("window" = "viewfile.[path]")))
 		if ("Otwórz")

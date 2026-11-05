@@ -214,7 +214,7 @@
 				to_chat(H, "<span class='warning'>BŁĄD: brak dostępu</span>")
 				return
 			if(href_list["p_stat"])
-				var/health_status = input(usr, i18n_dialog_text(usr, "Podaj nowy stan fizyczny tej osoby."), i18n_dialog_text(usr, "HUD medyczny"), general_record.fields["p_stat"]) in list("Active", "Physically Unfit", "*Unconscious*", "*Deceased*", "Anuluj") // AQ EDIT - i18n okienka
+				var/health_status = input(usr, "Podaj nowy stan fizyczny tej osoby.", "HUD medyczny", general_record.fields["p_stat"]) in list("Active", "Physically Unfit", "*Unconscious*", "*Deceased*", "Anuluj")
 				if(!general_record)
 					return
 				if(!H.canUseHUD())
@@ -225,7 +225,7 @@
 					general_record.fields["p_stat"] = health_status
 				return
 			if(href_list["m_stat"])
-				var/health_status = input(usr, i18n_dialog_text(usr, "Podaj nowy stan psychiczny tej osoby."), i18n_dialog_text(usr, "HUD medyczny"), general_record.fields["m_stat"]) in list("Stable", "*Watch*", "*Unstable*", "*Insane*", "Anuluj") // AQ EDIT - i18n okienka
+				var/health_status = input(usr, "Podaj nowy stan psychiczny tej osoby.", "HUD medyczny", general_record.fields["m_stat"]) in list("Stable", "*Watch*", "*Unstable*", "*Insane*", "Anuluj")
 				if(!general_record)
 					return
 				if(!H.canUseHUD())
@@ -268,7 +268,7 @@
 				to_chat(usr, "<span class='warning'>BŁĄD: nie znaleziono wpisu celu w rdzeniu danych.</span>")
 				return
 			if(href_list["status"])
-				var/setcriminal = input(usr, i18n_dialog_text(usr, "Podaj nowy status karny tej osoby."), i18n_dialog_text(usr, "HUD ochrony"), sec_record.fields["criminal"]) in list("None", "Arrest", "Search", "Monitor", "Incarcerated", "Paroled", "Discharged", "Anuluj") // AQ EDIT - i18n okienka
+				var/setcriminal = input(usr, "Podaj nowy status karny tej osoby.", "HUD ochrony", sec_record.fields["criminal"]) in list("None", "Arrest", "Search", "Monitor", "Incarcerated", "Paroled", "Discharged", "Anuluj")
 				if(setcriminal != "Anuluj")
 					if(!sec_record)
 						return
@@ -309,7 +309,7 @@
 			if(href_list["add_citation"])
 				var/maxFine = CONFIG_GET(number/maxfine)
 				var/t1 = stripped_input("Podaj przewinienie do mandatu:", "HUD ochrony", "", null)
-				var/fine = FLOOR(input(i18n_dialog_text(usr, "Podaj wysokość mandatu (do [maxFine]):"), i18n_dialog_text(usr, "HUD ochrony"), 50) as num|null, 1) // AQ EDIT - i18n okienka
+				var/fine = FLOOR(input("Podaj wysokość mandatu (do [maxFine]):", "HUD ochrony", 50) as num|null, 1)
 				if(!sec_record || !t1 || !fine || !allowed_access)
 					return
 				if(!H.canUseHUD())
@@ -790,7 +790,7 @@
 			var/qname = initial(T.name)
 			options[has_quirk(T) ? "[qname] (usuń)" : "[qname] (dodaj)"] = T
 
-		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cechę do dodania/usunięcia"),i18n_dialog_text(usr, "Modyfikacja cech")) as null|anything in i18n_input_shown(usr, options)) // AQ EDIT - i18n okienka
+		var/result = input(usr, "Wybierz cechę do dodania/usunięcia","Modyfikacja cech") as null|anything in options
 		if(result)
 			if(result == "Wyczyść")
 				for(var/datum/quirk/q in roundstart_quirks)
@@ -804,31 +804,31 @@
 	if(href_list[VV_HK_MAKE_MONKEY])
 		if(!check_rights(R_SPAWN))
 			return
-		if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("monkeyone"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_CYBORG])
 		if(!check_rights(R_SPAWN))
 			return
-		if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makerobot"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_ALIEN])
 		if(!check_rights(R_SPAWN))
 			return
-		if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makealien"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_SLIME])
 		if(!check_rights(R_SPAWN))
 			return
-		if(i18n_alert(usr, "Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień") // AQ EDIT - i18n okienka
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makeslime"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in i18n_input_shown(usr, GLOB.species_list)) // AQ EDIT - i18n okienka
+		var/result = input(usr, "Wybierz nowy gatunek","Gatunek") as null|anything in GLOB.species_list
 		if(result)
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] zmienia gatunek [src] na [result]")

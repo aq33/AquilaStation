@@ -516,7 +516,7 @@
 				if("Obie")
 					emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 				else
-					i18n_alert(usr, "Emotka musi być słyszalna lub widoczna.") // AQ EDIT - i18n okienka
+					alert("Emotka musi być słyszalna lub widoczna.")
 					return
 			message = user.say_emphasis(custom_emote) //NSV13
 	else

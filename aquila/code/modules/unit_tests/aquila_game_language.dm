@@ -35,19 +35,7 @@
 	TEST_ASSERT(mixed == "zupełnie nieznane polskie zdanie jest pełny!", "Template made a mixed-language text: [mixed]")
 	TEST_ASSERT(i18n_lowercase_letters("żółw Jan") == 4, "Polish lowercase first letters are not counted")
 
-	// Okienka alert(): bez odbiorcy argumenty przesuwają się o jedno, domyślny przycisk to "Ok"
 	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human)
-	var/list/shifted = i18n_alert_args(viewer, "Tekst", "Tytuł", "Tak", "Nie")
-	TEST_ASSERT(shifted[1] == viewer && shifted[2] == "Tekst" && shifted[3] == "Tytuł" && shifted[4] == "Tak" && shifted[5] == "Nie", "alert() without a recipient is not shifted to usr")
-	var/list/direct = i18n_alert_args(null, viewer, "Tekst")
-	TEST_ASSERT(direct[1] == viewer && direct[2] == "Tekst" && direct[4] == "Ok", "alert(user, text) lost the default Ok button")
-	// Przyciski: dwa o tym samym tłumaczeniu zostają po polsku, żeby kod dostał właściwy
-	var/list/buttons = i18n_alert_buttons(list("skrzynka narzędziowa", null, null))
-	TEST_ASSERT(buttons[1] == "toolbox" && isnull(buttons[2]), "alert() buttons are not translated: [buttons[1]]")
-	var/list/same = i18n_alert_buttons(list("skrzynka narzędziowa", "skrzynka narzędziowa", null))
-	TEST_ASSERT(same[1] == "skrzynka narzędziowa", "Colliding button translations should stay Polish")
-	// Bez klienta z językiem EN tekst okienka input() zostaje
-	TEST_ASSERT(i18n_dialog_text(viewer, "skrzynka narzędziowa") == "skrzynka narzędziowa", "input() text changed for a player without English")
 
 	// Nazwa z obszarem w nawiasie (screentip "alarm powietrza (Komora Programowania SI)") i etykieta z dwukropkiem (tooltip)
 	var/with_area = i18n_en_exact("alarm powietrza (Komora Programowania SI)")
@@ -59,12 +47,6 @@
 	var/window_html = i18n_en_html("<div>\n\tLosowo: wył.\n</div><b>Ciśnienie:</b>", TRUE)
 	TEST_ASSERT(findtext(window_html, "\n\t[i18n_en_template("Losowo: wył.")]\n") && findtext(window_html, "<b>[i18n_en_exact("Ciśnienie")]:</b>"), "HTML window text is not translated: [window_html]")
 	TEST_ASSERT(i18n_browse_html(viewer, "<b>Ciśnienie:</b>") == "<b>Ciśnienie:</b>", "HTML window changed for a player without English")
-
-	// Lista wyboru input(): bez języka EN ta sama lista i ten sam wynik (polski gracz bez zmian)
-	var/list/answers = list("Tak", "Nie")
-	TEST_ASSERT(i18n_input_shown(viewer, answers) == answers, "input() choice list changed for a player without English")
-	TEST_ASSERT(i18n_input_choice(viewer, "Nie") == "Nie", "input() choice changed for a player without English")
-	TEST_ASSERT(isnull(i18n_input_choice(viewer, null)), "Cancelled input() should stay null")
 
 	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
 	for(var/polish_key in GLOB.i18n_hud_icons_en)

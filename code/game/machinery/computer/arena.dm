@@ -140,7 +140,7 @@
 
 /obj/machinery/computer/arena/proc/add_new_arena_template(user,fname,friendly_name)
 	if(!fname)
-		fname = input(user, i18n_dialog_text(user, "Wgraj plik dmm jako szablon areny"),i18n_dialog_text(user, "Wgraj szablon mapy")) as null|file // AQ EDIT - i18n okienka
+		fname = input(user, "Wgraj plik dmm jako szablon areny","Wgraj szablon mapy") as null|file
 	if(!fname)
 		return
 	if(!friendly_name)
@@ -171,7 +171,7 @@
 		var/list/keys = list()
 		for(var/mob/M in GLOB.player_list)
 			keys += M.client
-		var/client/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Członek drużyny"), null, null) as null|anything in i18n_input_shown(usr, sortKey(keys))) // AQ EDIT - i18n okienka
+		var/client/selection = input("Wybierz gracza!", "Członek drużyny", null, null) as null|anything in sortKey(keys)
 		//Could be freeform if you want to add disconnected i guess
 		if(!selection)
 			return

@@ -36,7 +36,7 @@
 		to_chat(src, "<span class='warning'>Masz bana na to stanowisko!</span>")
 		return FALSE
 
-	if(i18n_alert(usr, "Na pewno chcesz zostać myszą? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert("Na pewno chcesz zostać myszą? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie") != "Tak")
 		return FALSE
 
 	if(M.key || (M.stat != CONSCIOUS) || (M in GLOB.player_list) || M.mind || QDELETED(src) || QDELETED(M))

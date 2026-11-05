@@ -22,7 +22,7 @@ export const RESTRICTED_CHANNELS = ['Asay', 'Dsay', 'Msay'];
 
 /**
  * AQUILA: etykiety po angielsku dla gracza z językiem EN (język przychodzi w
- * "props" z DM, code/modules/tgui_input/say_modal/modal.dm). Polska etykieta ->
+ * wiadomości i18n/setLanguage z aquila/code/modules/i18n/game_language.dm). Polska etykieta ->
  * angielska; kanały (Say, Radio, Me) mają angielskie nazwy same z siebie.
  */
 const ENGLISH_LABELS: Record<string, string> = {

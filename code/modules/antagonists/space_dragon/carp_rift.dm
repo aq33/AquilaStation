@@ -210,7 +210,7 @@
 			to_chat(user, "<span class='warning'>Już stałeś się karpiem dzięki tej szczelinie! Zaczekaj na kolejne odrodzenia karpi albo na następną szczelinę!</span>")
 			return FALSE
 		is_listed = TRUE
-	var/carp_ask = i18n_alert(usr, "Zostać karpiem?", "Pomóc sprowadzić hordę?", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/carp_ask = alert("Zostać karpiem?", "Pomóc sprowadzić hordę?", "Tak", "Nie")
 	if(carp_ask == "Nie" || !src || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(carp_stored <= 0)

@@ -38,7 +38,7 @@
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger()
 	if(!IsAvailable())
 		return
-	var/message = input(owner, i18n_dialog_text(owner, "Przekaż wiadomość wszystkim pobliskim golemom."), i18n_dialog_text(owner, "Rezonans")) // AQ EDIT - i18n okienka
+	var/message = input(owner, "Przekaż wiadomość wszystkim pobliskim golemom.", "Rezonans")
 	if(QDELETED(src) || QDELETED(owner) || !message)
 		return
 	owner.say(".x[message]")
@@ -93,7 +93,7 @@
 		if(world.time < cords.next_command)
 			to_chat(owner, "<span class='notice'>Musisz odczekać [DisplayTimeText(cords.next_command - world.time)], zanim znów przemówisz.</span>")
 		return
-	var/command = input(owner, i18n_dialog_text(owner, "Przemów Głosem Boga"), i18n_dialog_text(owner, "Polecenie")) // AQ EDIT - i18n okienka
+	var/command = input(owner, "Przemów Głosem Boga", "Polecenie")
 	if(QDELETED(src) || QDELETED(owner))
 		return
 	if(!command)

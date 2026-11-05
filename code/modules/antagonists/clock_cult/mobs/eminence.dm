@@ -207,7 +207,7 @@
 
 /obj/effect/proc_holder/spell/targeted/eminence/servant_warp/cast(list/targets, mob/user)
 	//Get a list of all servants
-	var/datum/mind/choice = input(user, i18n_dialog_text(user, "Wybierz sługę"), i18n_dialog_text(user, "Przenieś do..."), null) in GLOB.all_servants_of_ratvar // AQ EDIT - i18n okienka
+	var/datum/mind/choice = input(user, "Wybierz sługę", "Przenieś do...", null) in GLOB.all_servants_of_ratvar
 	var/mob/living/M
 	if(!choice)
 		return
@@ -296,7 +296,7 @@
 	cog_cost = 5
 
 /obj/effect/proc_holder/spell/targeted/eminence/trigger_event/cast(list/targets, mob/user)
-	var/picked_event = input(user, i18n_dialog_text(user, "Wybierz wydarzenie do uruchomienia"), i18n_dialog_text(user, "Manipulacja rzeczywistością"), null) in list( // AQ EDIT - i18n okienka
+	var/picked_event = input(user, "Wybierz wydarzenie do uruchomienia", "Manipulacja rzeczywistością", null) in list(
 		"Anomaly",
 		"Brand Intelligence",
 		"Camera Failure",

@@ -368,7 +368,7 @@
 
 // Called when using admin tools to give antag status
 /datum/antagonist/vampire/admin_add(datum/mind/new_owner, mob/admin)
-	var/levels = input(i18n_dialog_text(usr, "Ile niewydanych rang ma mieć [new_owner]?"),i18n_dialog_text(usr, "Ranga wampira"), vampire_level_unspent) as null | num // AQ EDIT - i18n okienka
+	var/levels = input("Ile niewydanych rang ma mieć [new_owner]?","Ranga wampira", vampire_level_unspent) as null | num
 	var/msg = "made [key_name_admin(new_owner)] into \a [name]"
 	var/msg_pl = "zmienia [key_name_admin(new_owner)] w wampira"
 	if(levels > 0)

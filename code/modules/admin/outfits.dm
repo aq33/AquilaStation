@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	to_chat(admin,"<span class='notice'>Strój usunięty.</span>")
 
 /datum/admins/proc/load_outfit(mob/admin)
-	var/outfit_file = input(i18n_dialog_text(usr, "Wybierz plik JSON ze strojem:"), i18n_dialog_text(usr, "Plik")) as null|file // AQ EDIT - i18n okienka
+	var/outfit_file = input("Wybierz plik JSON ze strojem:", "Plik") as null|file
 	if(!outfit_file)
 		return
 	var/filedata = file2text(outfit_file)

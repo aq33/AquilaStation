@@ -413,7 +413,7 @@
 		return
 	switch(action)
 		if("relabel")
-			var/label = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Nowa etykieta kanistra:"), i18n_dialog_text(usr, name)) as null|anything in i18n_input_shown(usr, sortList(label2types))) // AQ EDIT - i18n okienka
+			var/label = input("Nowa etykieta kanistra:", name) as null|anything in sortList(label2types)
 			if(label && !..())
 				var/newtype = label2types[label]
 				if(newtype)
@@ -443,7 +443,7 @@
 				pressure = can_max_release_pressure
 				. = TRUE
 			else if(pressure == "input")
-				pressure = input(i18n_dialog_text(usr, "Nowe ciśnienie wypuszczania ([can_min_release_pressure]-[can_max_release_pressure] kPa):"), i18n_dialog_text(usr, name), release_pressure) as num|null // AQ EDIT - i18n okienka
+				pressure = input("Nowe ciśnienie wypuszczania ([can_min_release_pressure]-[can_max_release_pressure] kPa):", name, release_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
 			else if(text2num(pressure) != null)
@@ -493,7 +493,7 @@
 					timer_set = min(maximum_timer_set, timer_set + 10)
 					. = TRUE
 				if("input")
-					var/user_input = input(usr, i18n_dialog_text(usr, "Set time to valve toggle."), i18n_dialog_text(usr, name)) as null|num // AQ EDIT - i18n okienka
+					var/user_input = input(usr, "Set time to valve toggle.", name) as null|num
 					if(!user_input)
 						return
 					var/N = text2num(user_input)

@@ -48,7 +48,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(target?.current)
 		def_value = target.current
 
-	var/mob/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), def_value) as null|anything in i18n_input_shown(admin, (sortNames(possible_targets) | list("Cel dowolny","Losowy")))) // AQ EDIT - i18n okienka
+	var/mob/new_target = input(admin,"Wybierz cel:", "Cel zadania", def_value) as null|anything in (sortNames(possible_targets) | list("Cel dowolny","Losowy"))
 	if (!new_target)
 		return
 
@@ -685,12 +685,12 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items
-	var/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), steal_target) as null|anything in i18n_input_shown(admin, sortNames(possible_items_all)+"własny")) // AQ EDIT - i18n okienka
+	var/new_target = input(admin,"Wybierz cel:", "Cel zadania", steal_target) as null|anything in sortNames(possible_items_all)+"własny"
 	if (!new_target)
 		return
 
 	if (new_target == "własny") //Can set custom items.
-		var/custom_path = input(admin,i18n_dialog_text(admin, "Wyszukaj typ przedmiotu docelowego:"),i18n_dialog_text(admin, "Typ")) as null|text // AQ EDIT - i18n okienka
+		var/custom_path = input(admin,"Wyszukaj typ przedmiotu docelowego:","Typ") as null|text
 		if (!custom_path)
 			return
 		var/obj/item/custom_target = pick_closest_path(custom_path, make_types_fancy(subtypesof(/obj/item)))
@@ -818,7 +818,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return (captured_amount >= target_amount) || ..()
 
 /datum/objective/capture/admin_edit(mob/admin)
-	var/count = input(admin,i18n_dialog_text(admin, "Ile mobów schwytać?"),i18n_dialog_text(admin, "Uprowadzenie"),target_amount) as num|null // AQ EDIT - i18n okienka
+	var/count = input(admin,"Ile mobów schwytać?","Uprowadzenie",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -868,7 +868,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Pochłoń [target_amount] kompatybilnych genów."
 
 /datum/objective/absorb/admin_edit(mob/admin)
-	var/count = input(admin,i18n_dialog_text(admin, "Ile osób wchłonąć?"),i18n_dialog_text(admin, "Pochłonięcie"),target_amount) as num|null // AQ EDIT - i18n okienka
+	var/count = input(admin,"Ile osób wchłonąć?","Pochłonięcie",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -947,7 +947,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/admin_edit(mob/admin)
 	var/list/possible_targets = active_ais(1)
 	if(possible_targets.len)
-		var/mob/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania")) as null|anything in i18n_input_shown(admin, sortNames(possible_targets))) // AQ EDIT - i18n okienka
+		var/mob/new_target = input(admin,"Wybierz cel:", "Cel zadania") as null|anything in sortNames(possible_targets)
 		set_target(new_target.mind)
 	else
 		to_chat(admin, "Brak aktywnych SI z umysłami")

@@ -294,20 +294,20 @@
 							src.active1.fields["fingerprint"] = t1
 					//NSV13 - Gender Neutrality - Start
 					if("sex")
-						var/t1 = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz płeć biologiczną"), i18n_dialog_text(usr, "Akta med."), src.active1.fields["sex"]) as null|anything in i18n_input_shown(usr, list(MALE, FEMALE, PLURAL))) // AQ EDIT - i18n okienka
+						var/t1 = input(usr, "Wybierz płeć biologiczną", "Akta med.", src.active1.fields["sex"]) as null|anything in list(MALE, FEMALE, PLURAL)
 						if(!canUseMedicalRecordsConsole(usr, t1, a1))
 							return
 						src.active1.fields["sex"] = capitalize(t1)
 					//NSV13 - Gender Neutrality - Stop
 					if("gender")
 						if(active1)
-							var/t1 = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz płeć"), i18n_dialog_text(usr, "Akta med."), src.active1.fields["gender"]) as null|anything in i18n_input_shown(usr, list(MALE, FEMALE, PLURAL))) // AQ EDIT - i18n okienka
+							var/t1 = input(usr, "Wybierz płeć", "Akta med.", src.active1.fields["gender"]) as null|anything in list(MALE, FEMALE, PLURAL)
 							if(!canUseMedicalRecordsConsole(usr, t1, a1))
 								return
 							src.active1.fields["gender"] = capitalize(t1)
 					if("age")
 						if(active1)
-							var/t1 = input(i18n_dialog_text(usr, "Podaj wiek:"), i18n_dialog_text(usr, "Akta med."), src.active1.fields["age"], null)  as num // AQ EDIT - i18n okienka
+							var/t1 = input("Podaj wiek:", "Akta med.", src.active1.fields["age"], null)  as num
 							if(!canUseMedicalRecordsConsole(usr, t1, a1))
 								return
 							src.active1.fields["age"] = t1

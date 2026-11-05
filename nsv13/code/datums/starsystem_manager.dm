@@ -148,7 +148,7 @@
 			if(!command)
 				return FALSE
 			if(command == "Skok")
-				var/datum/star_system/sys = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cel skoku dla [target]..."),i18n_dialog_text(usr, "Zarządzanie flotą"), null) as null|anything in i18n_input_shown(usr, SSstar_system.systems)) // AQ EDIT - i18n okienka
+				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Zarządzanie flotą", null) as null|anything in SSstar_system.systems
 				if(!sys || !istype(sys))
 					return FALSE
 				message_admins("[key_name(usr)] wymusza skok [target] do [sys].")
@@ -166,7 +166,7 @@
 			var/datum/star_system/target = locate(params["sys_id"])
 			if(!istype(target))
 				return
-			var/fleet_type = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Jakiego szablonu floty chcesz użyć?"),i18n_dialog_text(usr, "Tworzenie floty"), null) as null|anything in i18n_input_shown(usr, typecacheof(/datum/fleet))) // AQ EDIT - i18n okienka
+			var/fleet_type = input(usr, "Jakiego szablonu floty chcesz użyć?","Tworzenie floty", null) as null|anything in typecacheof(/datum/fleet)
 			if(!fleet_type)
 				return
 			var/datum/fleet/F = new fleet_type()
@@ -181,7 +181,7 @@
 			var/datum/star_system/target = locate(params["sys_id"])
 			if(!istype(target))
 				return
-			var/object_type = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Jaki obiekt?"),i18n_dialog_text(usr, "Tworzenie obiektu overmapy"), null) as null|anything in i18n_input_shown(usr, (typecacheof(/obj/structure/overmap/asteroid) + typecacheof(/obj/effect/overmap_anomaly) + typecacheof(/obj/structure/overmap/trader)))) // AQ EDIT - i18n okienka
+			var/object_type = input(usr, "Jaki obiekt?","Tworzenie obiektu overmapy", null) as null|anything in (typecacheof(/obj/structure/overmap/asteroid) + typecacheof(/obj/effect/overmap_anomaly) + typecacheof(/obj/structure/overmap/trader))
 			if(!object_type)
 				return
 			if(ispath(object_type, /obj/structure/overmap))
@@ -197,12 +197,12 @@
 			if(!command)
 				return FALSE
 			if(command == "Skok")
-				var/datum/star_system/sys = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cel skoku dla [target]..."),i18n_dialog_text(usr, "Zarządzanie flotą"), null) as null|anything in i18n_input_shown(usr, SSstar_system.systems)) // AQ EDIT - i18n okienka
+				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Zarządzanie flotą", null) as null|anything in SSstar_system.systems
 				if(!sys || !istype(sys))
 					return FALSE
 				// Handle player ships
 				if(length(target.linked_areas))
-					var/when = i18n_alert(usr, usr, "Kiedy mają przybyć?", "Skok do [sys]", "Teraz", "Po FTL", "Anuluj") // AQ EDIT - i18n okienka
+					var/when = alert(usr, "Kiedy mają przybyć?", "Skok do [sys]", "Teraz", "Po FTL", "Anuluj")
 					if(!when || when == "Anuluj")
 						return FALSE
 					message_admins("[key_name(usr)] wymusza skok [target] do [sys].")
@@ -241,7 +241,7 @@
 				return
 			usr.client.debug_variables(target)
 		if("sector")
-			var/sector = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Na który sektor przełączyć?"),i18n_dialog_text(usr, "Wybór sektora"), null) as null|anything in i18n_input_shown(usr, list(ALL_STARMAP_SECTORS))) // AQ EDIT - i18n okienka
+			var/sector = input(usr, "Na który sektor przełączyć?","Wybór sektora", null) as null|anything in list(ALL_STARMAP_SECTORS)
 			if(!sector)
 				return
 			current_sector = sector

@@ -120,7 +120,7 @@
 			if(SEND_SIGNAL(linked.active_boarding_target, COMSIG_SHIP_RELEASE_BOARDING))
 				radio.talk_into(src, "Cel jest przeznaczony do przejęcia. Nie można anulować zakłócania EWAR na [linked.active_boarding_target].", radio_channel)
 				return FALSE // Something blocked this
-			if(i18n_alert(usr, "Na pewno? (WSZYSCY ABORDAŻOWCY ZGINĄ)",name,"Zwolnij blokadę","Anuluj") == "Anuluj") // AQ EDIT - i18n okienka
+			if(alert("Na pewno? (WSZYSCY ABORDAŻOWCY ZGINĄ)",name,"Zwolnij blokadę","Anuluj") == "Anuluj")
 				return FALSE
 			radio.talk_into(src, "Anulowano zakłócanie EWAR na [linked.active_boarding_target].", radio_channel)
 			//They REALLY NEED TO NOT SPAM THIS

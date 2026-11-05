@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	wrench_act(user, null)
 
 /obj/machinery/pool_filter/wrench_act(mob/living/user, obj/item/I)
-	var/newTemp = input(user, i18n_dialog_text(user, "Ustaw nową temperaturę [src] (w kelwinach)."), i18n_dialog_text(user, "[src]"), null) as num // AQ EDIT - i18n okienka
+	var/newTemp = input(user, "Ustaw nową temperaturę [src] (w kelwinach).", "[src]", null) as num
 	if(!newTemp)
 		return
 	newTemp = CLAMP(newTemp, T0C, 320)

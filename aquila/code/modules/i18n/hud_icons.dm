@@ -96,3 +96,38 @@ GLOBAL_LIST_INIT(i18n_hud_icons_pl, i18n_hud_icon_map(TRUE))
 			item.icon = swapped
 
 #undef I18N_HUD_ICON_PAIRS
+
+// Panel konsoli statku (aquila/code/modules/overmap/ship_console_hud.dm): gracz z EN dostaje oryginały
+// NSV13 z angielskimi napisami. Stan panelu zawiera język, więc zmiana języka przerysowuje panel.
+/atom/movable/screen/movable/aquila_ship_console
+	/// Stan panelu (last_state) narysowany angielskimi obrazkami
+	var/i18n_drawn_state
+
+/atom/movable/screen/movable/aquila_ship_console/build_state()
+	. = ..()
+	if(user?.client?.wants_english())
+		. = "en;[.]"
+
+/atom/movable/screen/movable/aquila_ship_console/refresh()
+	. = ..()
+	if(QDELETED(src) || !user?.client)
+		return
+	var/english = user.client.wants_english()
+	var/list/layers = GLOB.aquila_ship_console_layers[kind]
+	var/monitor = i18n_hud_icon(layers["monitor"], english)
+	if(icon != monitor)
+		icon = monitor
+	if(tab)
+		var/tab_icon = i18n_hud_icon(tab.icon, english)
+		if(tab.icon != tab_icon)
+			tab.icon = tab_icon
+	if(!english)
+		i18n_drawn_state = null
+		return
+	if(last_state == i18n_drawn_state)
+		return
+	i18n_drawn_state = last_state
+	cut_overlays()
+	for(var/layer_name in splittext(last_state, ";"))
+		if(layers[layer_name])
+			add_overlay(image(i18n_hud_icon(layers[layer_name], TRUE)))

@@ -128,7 +128,7 @@
 
 	switch(action)
 		if("select-new-DMI")
-			var/icon/new_icon = input(usr, i18n_dialog_text(usr, "Wybierz plik ikony:"), i18n_dialog_text(usr, "Ikona")) as null|icon // AQ EDIT - i18n okienka
+			var/icon/new_icon = input(usr, "Wybierz plik ikony:", "Ikona") as null|icon
 			if(new_icon)
 				selected_atom_icon = new_icon
 				available_icon_states = icon_states(selected_atom_icon)

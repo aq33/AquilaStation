@@ -200,7 +200,7 @@
 				pressure = TANK_MAX_RELEASE_PRESSURE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = input(i18n_dialog_text(usr, "Nowe ciśnienie wylotowe ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):"), i18n_dialog_text(usr, name), distribute_pressure) as num|null // AQ EDIT - i18n okienka
+				pressure = input("Nowe ciśnienie wylotowe ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):", name, distribute_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
 			else if(text2num(pressure) != null)

@@ -4,7 +4,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Kazać [M] upuścić wszystko?", "Wiadomość", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Kazać [M] upuścić wszystko?", "Wiadomość", "Tak", "Nie")
 	if(confirm != "Tak")
 		return
 
@@ -65,7 +65,7 @@
 		return
 
 	if (!sender)
-		sender = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Od kogo jest wiadomość?"), i18n_dialog_text(usr, "Nadawca")) as null|anything in i18n_input_shown(usr, list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE))) // AQ EDIT - i18n okienka
+		sender = input("Od kogo jest wiadomość?", "Nadawca") as null|anything in list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE)
 		if(!sender)
 			return
 
@@ -100,7 +100,7 @@
 		if(operation == "set")
 			prompt = "Podaj nową wartość reputacji:"
 
-		msg = input(i18n_dialog_text(usr, "Wiadomość:"), i18n_dialog_text(usr, prompt)) as num|null // AQ EDIT - i18n okienka
+		msg = input("Wiadomość:", prompt) as num|null
 
 		if (!msg)
 			return
@@ -151,7 +151,7 @@
 		return
 
 	if(!M)
-		M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Bezpośrednia narracja do kogo?"), i18n_dialog_text(usr, "Aktywni gracze")) as null|anything in i18n_input_shown(usr, GLOB.player_list)) // AQ EDIT - i18n okienka
+		M = input("Bezpośrednia narracja do kogo?", "Aktywni gracze") as null|anything in GLOB.player_list
 
 	if(!M)
 		return
@@ -176,7 +176,7 @@
 		return
 	if(!A)
 		return
-	var/range = input(i18n_dialog_text(usr, "Zasięg:"), i18n_dialog_text(usr, "Narracja do mobów w promieniu ilu pól:"), 7) as num|null // AQ EDIT - i18n okienka
+	var/range = input("Zasięg:", "Narracja do mobów w promieniu ilu pól:", 7) as num|null
 	if(!range)
 		return
 	var/msg = capped_input(usr, "Wiadomość:", "Podaj tekst, który ma się pokazać wszystkim w zasięgu wzroku:")
@@ -308,13 +308,13 @@
 				continue	//we have a live body we are tied to
 			candidates += M.ckey
 		if(candidates.len)
-			ckey = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza, którego chcesz odrodzić jako ksenomorfa."), i18n_dialog_text(usr, "Odpowiedni kandydaci")) as null|anything in i18n_input_shown(usr, sortKey(candidates))) // AQ EDIT - i18n okienka
+			ckey = input("Wybierz gracza, którego chcesz odrodzić jako ksenomorfa.", "Odpowiedni kandydaci") as null|anything in sortKey(candidates)
 		else
 			to_chat(usr, "<span class='danger'>Błąd: create_xeno(): brak odpowiednich kandydatów.</span>")
 	if(!istext(ckey))
 		return 0
 
-	var/alien_caste = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz kastę do stworzenia."),i18n_dialog_text(usr, "Wybór kasty"),null) as null|anything in i18n_input_shown(usr, list("Królowa","Pretorianin","Łowca","Strażnik","Dron","Larwa"))) // AQ EDIT - i18n okienka
+	var/alien_caste = input(usr, "Wybierz kastę do stworzenia.","Wybór kasty",null) as null|anything in list("Królowa","Pretorianin","Łowca","Strażnik","Dron","Larwa")
 	var/obj/effect/landmark/spawn_here = GLOB.xeno_spawn.len ? pick(GLOB.xeno_spawn) : null
 	var/mob/living/carbon/alien/new_xeno
 	switch(alien_caste)
@@ -353,7 +353,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/input = ckey(input(src, i18n_dialog_text(src, "Podaj klucz gracza do odrodzenia."), i18n_dialog_text(src, "Klucz"), "")) // AQ EDIT - i18n okienka
+	var/input = ckey(input(src, "Podaj klucz gracza do odrodzenia.", "Klucz", ""))
 	if(!input)
 		return
 
@@ -370,7 +370,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
 		//Check if they were an alien
 		if(G_found.mind.assigned_role == ROLE_ALIEN)
-			if(i18n_alert(usr, "Wygląda na to, że ta postać była obcym. Odrodzić ją jako obcego?",,"Tak","Nie")=="Tak") // AQ EDIT - i18n okienka
+			if(alert("Wygląda na to, że ta postać była obcym. Odrodzić ją jako obcego?",,"Tak","Nie")=="Tak")
 				var/turf/T
 				if(GLOB.xeno_spawn.len)
 					T = pick(GLOB.xeno_spawn)
@@ -405,7 +405,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(i18n_alert(usr, "Wygląda na to, że ta postać była małpą. Odrodzić ją jako małpę?",,"Tak","Nie")=="Tak") // AQ EDIT - i18n okienka
+			if(alert("Wygląda na to, że ta postać była małpą. Odrodzić ją jako małpę?",,"Tak","Nie")=="Tak")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -500,10 +500,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
 		if(!record_found&&new_character.mind.assigned_role!=new_character.mind.special_role)//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
 			//Power to the user!
-			if(i18n_alert(usr, new_character,"Uwaga: brak wpisu w rdzeniu danych. Czy chcesz ogłosić przybycie tej postaci, dodając ją do różnych baz danych, np. kartotek medycznych?",,"Nie","Tak")=="Tak") // AQ EDIT - i18n okienka
+			if(alert(new_character,"Uwaga: brak wpisu w rdzeniu danych. Czy chcesz ogłosić przybycie tej postaci, dodając ją do różnych baz danych, np. kartotek medycznych?",,"Nie","Tak")=="Tak")
 				GLOB.data_core.manifest_inject(new_character)
 
-			if(i18n_alert(usr, new_character,"Czy aktywna SI ma ogłosić tę postać?",,"Nie","Tak")=="Tak") // AQ EDIT - i18n okienka
+			if(alert(new_character,"Czy aktywna SI ma ogłosić tę postać?",,"Nie","Tak")=="Tak")
 				AnnounceArrival(new_character, new_character.mind.assigned_role)
 
 	var/msg = "<span class='adminnotice'>[admin] odradza [player_key] jako [new_character.real_name].</span>"
@@ -529,7 +529,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] dodaje nowe prawo SI - [input]")
 
-	var/show_log = i18n_alert(usr, src, "Pokazać komunikat o burzy jonowej?", "Wiadomość", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/show_log = alert(src, "Pokazać komunikat o burzy jonowej?", "Wiadomość", "Tak", "Nie")
 	var/announce_ion_laws = (show_log == "Tak" ? 100 : 0)
 
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
@@ -549,7 +549,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!mob)
 		return
 	if(!istype(M))
-		i18n_alert(usr, "Nie można wskrzesić ducha") // AQ EDIT - i18n okienka
+		alert("Nie można wskrzesić ducha")
 		return
 	M.revive(full_heal = 1, admin_revive = 1)
 
@@ -663,7 +663,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/picked = params["picked_sound"]
 			if(picked == REPORT_CUSTOM_SOUND)
 				played_sound = REPORT_DEFAULT_SOUND // fallback by default
-				var/sound_file = input(ui_user, i18n_dialog_text(ui_user, "Wybierz plik dźwiękowy"), i18n_dialog_text(ui_user, "Własny dźwięk")) as sound|null // AQ EDIT - i18n okienka
+				var/sound_file = input(ui_user, "Wybierz plik dźwiękowy", "Własny dźwięk") as sound|null
 				if(!sound_file)
 					return TRUE
 				played_sound = sound_file
@@ -755,25 +755,25 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/devastation = input(i18n_dialog_text(usr, "Zasięg całkowitego zniszczenia. -1, by pominąć"), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/devastation = input("Zasięg całkowitego zniszczenia. -1, by pominąć", text("Wartość"))  as num|null
 	if(devastation == null)
 		return
-	var/heavy = input(i18n_dialog_text(usr, "Zasięg ciężkich zniszczeń. -1, by pominąć"), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/heavy = input("Zasięg ciężkich zniszczeń. -1, by pominąć", text("Wartość"))  as num|null
 	if(heavy == null)
 		return
-	var/light = input(i18n_dialog_text(usr, "Zasięg lekkich zniszczeń. -1, by pominąć"), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/light = input("Zasięg lekkich zniszczeń. -1, by pominąć", text("Wartość"))  as num|null
 	if(light == null)
 		return
-	var/flash = input(i18n_dialog_text(usr, "Zasięg błysku. -1, by pominąć"), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/flash = input("Zasięg błysku. -1, by pominąć", text("Wartość"))  as num|null
 	if(flash == null)
 		return
-	var/flames = input(i18n_dialog_text(usr, "Zasięg płomieni. -1, by pominąć"), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/flames = input("Zasięg płomieni. -1, by pominąć", text("Wartość"))  as num|null
 	if(flames == null)
 		return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20) || (flames > 20))
-			if (i18n_alert(usr, src, "Na pewno chcesz to zrobić? Będzie laaagować.", "Potwierdzenie", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert(src, "Na pewno chcesz to zrobić? Będzie laaagować.", "Potwierdzenie", "Tak", "Nie") != "Tak")
 				return
 
 		explosion(O, devastation, heavy, light, flash, null, null,flames)
@@ -791,10 +791,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/heavy = input(i18n_dialog_text(usr, "Zasięg silnego impulsu."), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/heavy = input("Zasięg silnego impulsu.", text("Wartość"))  as num|null
 	if(heavy == null)
 		return
-	var/light = input(i18n_dialog_text(usr, "Zasięg słabego impulsu."), i18n_dialog_text(usr, text("Wartość")))  as num|null // AQ EDIT - i18n okienka
+	var/light = input("Zasięg słabego impulsu.", text("Wartość"))  as num|null
 	if(light == null)
 		return
 
@@ -816,7 +816,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Zostawić mózg?", "Potwierdzenie", "Tak", "Nie","Anuluj") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Zostawić mózg?", "Potwierdzenie", "Tak", "Nie","Anuluj")
 	if(confirm == "Anuluj" || !confirm)
 		return
 	//Due to the delay here its easy for something to have happened to the mob
@@ -839,7 +839,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Fun"
 
-	var/confirm = i18n_alert(usr, src, "Na pewno?", "Potwierdzenie", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Na pewno?", "Potwierdzenie", "Tak", "Nie")
 	if(confirm == "Tak")
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] używa gibself.</span>")
@@ -861,7 +861,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "przełącza między widokiem 1x a własnym"
 
 	if(view_size.getView() == view_size.default)
-		view_size.setTo(input(i18n_dialog_text(usr, "Wybierz zasięg widoku:"), i18n_dialog_text(usr, "KURDE TAK"), 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128) - 7) // AQ EDIT - i18n okienka
+		view_size.setTo(input("Wybierz zasięg widoku:", "KURDE TAK", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128) - 7)
 	else
 		view_size.resetToDefault(getScreenSize(mob))
 
@@ -881,7 +881,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Na pewno?", "Potwierdzenie", "Tak", "Tak (bez odwołania)", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Na pewno?", "Potwierdzenie", "Tak", "Tak (bez odwołania)", "Nie")
 	switch(confirm)
 		if(null, "Nie")
 			return
@@ -900,7 +900,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Cancel Shuttle"
 	if(!check_rights(0))
 		return
-	if(i18n_alert(usr, src, "Na pewno?", "Potwierdzenie", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert(src, "Na pewno?", "Potwierdzenie", "Tak", "Nie") != "Tak")
 		return
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
@@ -933,7 +933,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 
-	var/notifyplayers = i18n_alert(usr, src, "Czy chcesz powiadomić graczy?", "Opcje", "Tak", "Nie", "Anuluj") // AQ EDIT - i18n okienka
+	var/notifyplayers = alert(src, "Czy chcesz powiadomić graczy?", "Opcje", "Tak", "Nie", "Anuluj")
 	if(notifyplayers == "Anuluj" || !notifyplayers)
 		return
 
@@ -976,7 +976,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz poziom bezpieczeństwa"),i18n_dialog_text(usr, "Poziom alarmu")) as null|anything in i18n_input_shown(usr, list("green","blue","red","delta"))) // AQ EDIT - i18n okienka
+	var/level = input("Wybierz poziom bezpieczeństwa","Poziom alarmu") as null|anything in list("green","blue","red","delta")
 	if(level)
 		set_security_level(level)
 
@@ -992,7 +992,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	if(!N.timing)
-		var/newtime = input(usr, i18n_dialog_text(usr, "Ustaw licznik aktywacji."), i18n_dialog_text(usr, "Uzbrój bombę"), "[N.timer_set]") as num|null // AQ EDIT - i18n okienka
+		var/newtime = input(usr, "Ustaw licznik aktywacji.", "Uzbrój bombę", "[N.timer_set]") as num|null
 		if(!newtime)
 			return
 		N.timer_set = newtime
@@ -1053,12 +1053,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
-	var/weather_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz pogodę"), i18n_dialog_text(usr, "Pogoda"))  as null|anything in i18n_input_shown(usr, sortList(subtypesof(/datum/weather), GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
+	var/weather_type = input("Wybierz pogodę", "Pogoda")  as null|anything in sortList(subtypesof(/datum/weather), GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!weather_type)
 		return
 
 	var/turf/T = get_turf(mob)
-	var/z_level = input(i18n_dialog_text(usr, "Docelowy poziom z?"), i18n_dialog_text(usr, "Poziom z"), T?.z) as num|null // AQ EDIT - i18n okienka
+	var/z_level = input("Docelowy poziom z?", "Poziom z", T?.z) as num|null
 	if(!isnum_safe(z_level))
 		return
 
@@ -1077,7 +1077,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Potwierdź, że chcesz dodać wszystkim ludziom uśpione organy zombie.", "Potwierdź zombie", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Potwierdź, że chcesz dodać wszystkim ludziom uśpione organy zombie.", "Potwierdź zombie", "Tak", "Nie")
 	if(confirm != "Tak")
 		return
 
@@ -1095,7 +1095,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Potwierdź, że chcesz wyleczyć wszystkie zombie.", "Potwierdź leczenie zombie", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Potwierdź, że chcesz wyleczyć wszystkie zombie.", "Potwierdź leczenie zombie", "Tak", "Nie")
 	if(confirm != "Tak")
 		return
 
@@ -1114,7 +1114,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = i18n_alert(usr, src, "Potwierdź, że chcesz przemienić wszystkie moby.", "Potwierdź przemianę", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/confirm = alert(src, "Potwierdź, że chcesz przemienić wszystkie moby.", "Potwierdź przemianę", "Tak", "Nie")
 	if(confirm != "Tak")
 		return
 
@@ -1280,7 +1280,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_CRYO, ADMIN_PUNISHMENT_ENTRAPPED, ADMIN_PUNISHMENT_DOCK) //NSV13 - added entrapped + Dock
 	if(istype(target, /mob/living/carbon))
 		punishment_list += ADMIN_PUNISHMENT_NUGGET
-	var/punishment = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz karę"), i18n_dialog_text(usr, "BOSKA KARA")) as null|anything in i18n_input_shown(usr, sortList(punishment_list))) // AQ EDIT - i18n okienka
+	var/punishment = input("Wybierz karę", "BOSKA KARA") as null|anything in sortList(punishment_list)
 
 	if(QDELETED(target) || !punishment)
 		return
@@ -1306,7 +1306,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(card.registered_account.account_balance == 0)
 				to_chat(usr, "<span class='warning'>Na karcie ID nie ma środków. Nie ma czego potrącić.</span>")
 				return
-			var/new_cost = input(i18n_dialog_text(usr, "Ile potrącamy z wypłaty? Obecne saldo: [card.registered_account.account_balance] kr."),i18n_dialog_text(usr, "CIĘCIA BUDŻETOWE")) as num|null // AQ EDIT - i18n okienka
+			var/new_cost = input("Ile potrącamy z wypłaty? Obecne saldo: [card.registered_account.account_balance] kr.","CIĘCIA BUDŻETOWE") as num|null
 			if(!new_cost)
 				return
 			if(!(card.registered_account.has_money(new_cost)))
@@ -1340,7 +1340,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/turf/endT = spaceDebrisFinishLoc(startside, T.z)
 			new /obj/effect/immovablerod(startT, endT,target)
 		if(ADMIN_PUNISHMENT_SUPPLYPOD_QUICK)
-			var/target_path = input(usr,i18n_dialog_text(usr, "Podaj ścieżkę typu atomu, który ma przylecieć w kapsule (wpisz „empty”, by wysłać pustą kapsułę):"),i18n_dialog_text(usr, "Ścieżka typu"),"/obj/item/food/grown/harebell") as null|text // AQ EDIT - i18n okienka
+			var/target_path = input(usr,"Podaj ścieżkę typu atomu, który ma przylecieć w kapsule (wpisz „empty”, by wysłać pustą kapsułę):" ,"Ścieżka typu","/obj/item/food/grown/harebell") as null|text
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			pod.damage = 40
 			pod.explosionSize = list(0,0,0,2)
@@ -1352,7 +1352,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				if(!ispath(delivery))
 					delivery = pick_closest_path(target_path)
 					if(!delivery)
-						i18n_alert(usr, "BŁĄD: podano nieprawidłową ścieżkę.") // AQ EDIT - i18n okienka
+						alert("BŁĄD: podano nieprawidłową ścieżkę.")
 						return
 				new delivery(pod)
 			new /obj/effect/pod_landingzone(get_turf(target), pod)
@@ -1566,7 +1566,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!D)
 		return
 
-	var/add_or_remove = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Usunąć/dodać?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, list("Dodaj","Usuń"))) // AQ EDIT - i18n okienka
+	var/add_or_remove = input("Usunąć/dodać?", "Usuwanie/dodawanie cech") as null|anything in list("Dodaj","Usuń")
 	if(!add_or_remove)
 		return
 	var/list/available_traits = list()
@@ -1583,7 +1583,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				var/name = GLOB.trait_name_map[trait] || trait
 				available_traits[name] = trait
 
-	var/chosen_trait = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz cechę do zmiany"), i18n_dialog_text(usr, "Cecha")) as null|anything in i18n_input_shown(usr, available_traits)) // AQ EDIT - i18n okienka
+	var/chosen_trait = input("Wybierz cechę do zmiany", "Cecha") as null|anything in available_traits
 	if(!chosen_trait)
 		return
 	chosen_trait = available_traits[chosen_trait]
@@ -1593,14 +1593,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Dodaj") //Not doing source choosing here intentionally to make this bit faster to use, you can always vv it.
 			ADD_TRAIT(D,chosen_trait,source)
 		if("Usuń")
-			var/specific = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wszystkie źródła czy konkretne?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, list("Wszystkie","Konkretne"))) // AQ EDIT - i18n okienka
+			var/specific = input("Wszystkie źródła czy konkretne?", "Usuwanie/dodawanie cech") as null|anything in list("Wszystkie","Konkretne")
 			if(!specific)
 				return
 			switch(specific)
 				if("Wszystkie")
 					source = null
 				if("Konkretne")
-					source = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Źródło do usunięcia"),i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, D.status_traits[chosen_trait])) // AQ EDIT - i18n okienka
+					source = input("Źródło do usunięcia","Usuwanie/dodawanie cech") as null|anything in D.status_traits[chosen_trait]
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)

@@ -86,7 +86,7 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = i18n_alert(usr, "Na pewno chcesz wyczyścić pamięć tej karty?", name, "Tak", "Nie") // AQ EDIT - i18n okienka
+				var/confirm = alert("Na pewno chcesz wyczyścić pamięć tej karty?", name, "Tak", "Nie")
 				if(confirm == "Tak" && !..())
 					flush = TRUE
 					if(AI && AI.loc == src)

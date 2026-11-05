@@ -7,7 +7,7 @@
 		return
 
 	if (!istype(borgo, /mob/living/silicon/robot))
-		borgo = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz cyborga"), i18n_dialog_text(usr, "Wybierz cyborga"), null, null) as null|anything in i18n_input_shown(usr, sortNames(GLOB.silicon_mobs))) // AQ EDIT - i18n okienka
+		borgo = input("Wybierz cyborga", "Wybierz cyborga", null, null) as null|anything in sortNames(GLOB.silicon_mobs)
 	if (!istype(borgo, /mob/living/silicon/robot))
 		to_chat(usr, "<span class='warning'>Panel cyborga wymaga cyborga</span>")
 
@@ -87,7 +87,7 @@
 		return
 	switch (action)
 		if ("set_charge")
-			var/newcharge = input(i18n_dialog_text(usr, "Nowy ładunek (0-[borg.cell.maxcharge]):"), i18n_dialog_text(usr, borg.name), borg.cell.charge) as num|null // AQ EDIT - i18n okienka
+			var/newcharge = input("Nowy ładunek (0-[borg.cell.maxcharge]):", borg.name, borg.cell.charge) as num|null
 			if (newcharge)
 				borg.cell.charge = CLAMP(newcharge, 0, borg.cell.maxcharge)
 				message_admins("[key_name_admin(user)] ustawia ładunek ogniwa [ADMIN_LOOKUPFLW(borg)] na [borg.cell.charge].")

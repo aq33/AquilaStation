@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(abstraction_crystals, list())
 		return
 	var/list/valid_crystals = GLOB.abstraction_crystals.Copy()
 	valid_crystals.Remove(key_word)
-	var/selected = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz kryształ, przy którym chcesz się zmanifestować"), i18n_dialog_text(user, "Manifestacja")) as null|anything in i18n_input_shown(user, valid_crystals)) // AQ EDIT - i18n okienka
+	var/selected = input(user, "Wybierz kryształ, przy którym chcesz się zmanifestować", "Manifestacja") as null|anything in valid_crystals
 	if(!selected || !(selected in valid_crystals))
 		return
 	var/obj/structure/destructible/clockwork/abstraction_crystal/AC = GLOB.abstraction_crystals[selected]

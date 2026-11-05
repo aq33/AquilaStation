@@ -69,7 +69,7 @@
 		names += componentsubtypes
 		names += "---Elements---"
 		names += sortList(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
-		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz komponent/element do dodania"),i18n_dialog_text(usr, "lepiej wiedz, co do cholery robisz, kolego")) as null|anything in i18n_input_shown(usr, names)) // AQ EDIT - i18n okienka
+		var/result = input(usr, "Wybierz komponent/element do dodania","lepiej wiedz, co do cholery robisz, kolego") as null|anything in names
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return
 		if(QDELETED(target))

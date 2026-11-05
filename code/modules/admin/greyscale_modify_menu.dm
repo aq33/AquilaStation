@@ -182,7 +182,7 @@
 			if(!unlocked || !check_rights(R_DEBUG))
 				return
 			if(length(GLOB.player_list) > 1)
-				var/check = i18n_alert(usr,  // AQ EDIT - i18n okienka
+				var/check = alert(
 					user,
 {"Na serwerze są inni gracze. Na pewno chcesz odświeżyć wszystkie konfiguracje greyscale?\n
 Niemal na pewno spowoduje to kilkusekundowy skok lagów."},
@@ -210,7 +210,7 @@ Niemal na pewno spowoduje to kilkusekundowy skok lagów."},
 				config.DisableAutoRefresh(remove_all=TRUE)
 				return
 			if(length(GLOB.player_list) > 1)
-				var/check = i18n_alert(usr,  // AQ EDIT - i18n okienka
+				var/check = alert(
 					user,
 {"Na serwerze są inni gracze. Na pewno chcesz automatycznie odświeżać wszystkie konfiguracje greyscale?\n
 Niemal na pewno spowoduje to ogromne lagi, bo co kilka sekund przechodzone będą wszystkie obiekty w grze."},

@@ -109,7 +109,7 @@
 			return
 		switch(href_list["makeAntag"])
 			if("traitors")
-				var/maxCount = input(i18n_dialog_text(usr, "Ustaw liczbę zdrajców"),i18n_dialog_text(usr, "Liczba zdrajców (maks.)"),1) as num|null // AQ EDIT - i18n okienka
+				var/maxCount = input("Ustaw liczbę zdrajców","Liczba zdrajców (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeTraitors(maxCount))
@@ -119,7 +119,7 @@
 					message_admins("[key_name_admin(usr)] próbuje stworzyć zdrajców ([maxCount]). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create [maxCount] traitor(s).")
 			if("changelings")
-				var/maxCount = input(i18n_dialog_text(usr, "Ustaw liczbę zmiennokształtnych"),i18n_dialog_text(usr, "Liczba zmiennokształtnych (maks.)"),1) as num|null // AQ EDIT - i18n okienka
+				var/maxCount = input("Ustaw liczbę zmiennokształtnych","Liczba zmiennokształtnych (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeChangelings(maxCount))
@@ -129,7 +129,7 @@
 					message_admins("[key_name_admin(usr)] próbuje stworzyć zmiennokształtnych ([maxCount]). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create [maxCount] changelings.")
 			if("revs")
-				var/maxCount = input(i18n_dialog_text(usr, "Ustaw liczbę rewolucjonistów"),i18n_dialog_text(usr, "Liczba rewolucjonistów (maks.)"),1) as num|null // AQ EDIT - i18n okienka
+				var/maxCount = input("Ustaw liczbę rewolucjonistów","Liczba rewolucjonistów (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeRevs(maxCount))
@@ -139,7 +139,7 @@
 					message_admins("[key_name_admin(usr)] próbuje wszcząć rewolucję ([maxCount] bojowników o wolność). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to start a revolution with [maxCount] freedom fighters.")
 			if("cult")
-				var/maxCount = input(i18n_dialog_text(usr, "Ustaw liczbę kultystów"),i18n_dialog_text(usr, "Liczba kultystów (maks.)"),1) as num|null // AQ EDIT - i18n okienka
+				var/maxCount = input("Ustaw liczbę kultystów","Liczba kultystów (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeCult(maxCount))
@@ -158,7 +158,7 @@
 					log_admin("[key_name(usr)] failed to create a wizard.")
 			if("nukeops")
 				message_admins("[key_name(usr)] tworzy drużynę nuklearną...")
-				var/maxCount = input(i18n_dialog_text(usr, "Ustaw liczbę operatorów nuklearnych"),i18n_dialog_text(usr, "Liczba operatorów (maks.)"),5) as num|null // AQ EDIT - i18n okienka
+				var/maxCount = input("Ustaw liczbę operatorów nuklearnych","Liczba operatorów (maks.)",5) as num|null
 				if (!maxCount)
 					message_admins("[key_name_admin(usr)] anuluje tworzenie drużyny nuklearnej.")
 					return
@@ -185,7 +185,7 @@
 					message_admins("[key_name_admin(usr)] próbuje stworzyć szwadron śmierci. Niestety było za mało chętnych.")
 					log_admin("[key_name(usr)] failed to create a death squad.")
 			if("blob")
-				var/strength = input(i18n_dialog_text(usr, "Ustaw tempo zdobywania zasobów grzyba"),i18n_dialog_text(usr, "Tempo zasobów"),1) as num|null // AQ EDIT - i18n okienka
+				var/strength = input("Ustaw tempo zdobywania zasobów grzyba","Tempo zasobów",1) as num|null
 				if(!strength)
 					return
 				message_admins("[key_name(usr)] tworzy grzyba z bazowym przyrostem zasobów [strength].")
@@ -224,7 +224,7 @@
 			var/datum/round_event/event = E.runEvent()
 			if(event.announceWhen>0)
 				event.processing = FALSE
-				var/prompt = i18n_alert(usr, usr, "Czy chcesz powiadomić załogę?", "Alert", "Tak", "Nie", "Anuluj") // AQ EDIT - i18n okienka
+				var/prompt = alert(usr, "Czy chcesz powiadomić załogę?", "Alert", "Tak", "Nie", "Anuluj")
 				switch(prompt)
 					if("Tak")
 						event.announceChance = 100
@@ -266,14 +266,14 @@
 		if(!check_rights(R_ADMIN))
 			return
 		if(SSticker && SSticker.mode)
-			return i18n_alert(usr, usr, "Gra już się zaczęła.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic.", null, null, null, null)
 		var/roundstart_rules = list()
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
 			var/datum/dynamic_ruleset/roundstart/newrule = new rule()
 			roundstart_rules[newrule.name] = newrule
-		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie startu rundy"), null) as null|anything in i18n_input_shown(usr, roundstart_rules)) // AQ EDIT - i18n okienka
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Ustawianie startu rundy", null) as null|anything in roundstart_rules
 		if (added_rule)
 			GLOB.dynamic_forced_roundstart_ruleset += roundstart_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.")
@@ -301,16 +301,16 @@
 		if(!check_rights(R_ADMIN))
 			return
 		if(!SSticker || !SSticker.mode)
-			return i18n_alert(usr, usr, "Najpierw gra musi się zacząć.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Najpierw gra musi się zacząć.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 		var/latejoin_rules = list()
 		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/latejoin))
 			var/datum/dynamic_ruleset/latejoin/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			latejoin_rules[newrule.name] = newrule
-		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić na następnym spóźnialskim? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie późnego dołączenia"), null) as null|anything in i18n_input_shown(usr, latejoin_rules)) // AQ EDIT - i18n okienka
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić na następnym spóźnialskim? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Ustawianie późnego dołączenia", null) as null|anything in latejoin_rules
 		if (added_rule)
 			mode.forced_latejoin_rule = latejoin_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
@@ -331,16 +331,16 @@
 		if(!check_rights(R_ADMIN))
 			return
 		if(!SSticker || !SSticker.mode)
-			return i18n_alert(usr, usr, "Najpierw gra musi się zacząć.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Najpierw gra musi się zacząć.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 		var/midround_rules = list()
 		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/midround))
 			var/datum/dynamic_ruleset/midround/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			midround_rules[newrule.name] = rule
-		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić teraz? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Wykonaj zestaw reguł"), null) as null|anything in i18n_input_shown(usr, midround_rules)) // AQ EDIT - i18n okienka
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić teraz? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Wykonaj zestaw reguł", null) as null|anything in midround_rules
 		if (added_rule)
 			log_admin("[key_name(usr)] executed the [added_rule] ruleset.")
 			message_admins("[key_name(usr)] wykonuje zestaw reguł: [added_rule].", 1)
@@ -351,9 +351,9 @@
 			return
 
 		if(SSticker && SSticker.mode)
-			return i18n_alert(usr, usr, "Gra już się zaczęła.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		dynamic_mode_options(usr)
 
@@ -362,7 +362,7 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
 		log_admin("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
@@ -374,7 +374,7 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
 		log_admin("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
@@ -386,9 +386,9 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
-		GLOB.dynamic_stacking_limit = input(usr,i18n_dialog_text(usr, "Zmień próg zagrożenia, od którego zestawy reguł kończące rundę zaczną się kumulować."), i18n_dialog_text(usr, "Limit kumulacji"), null) as num // AQ EDIT - i18n okienka
+		GLOB.dynamic_stacking_limit = input(usr,"Zmień próg zagrożenia, od którego zestawy reguł kończące rundę zaczną się kumulować.", "Limit kumulacji", null) as num
 		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
 		message_admins("[key_name(usr)] ustawia 'stacking_limit' na [GLOB.dynamic_stacking_limit].")
 		dynamic_mode_options(usr)
@@ -398,14 +398,14 @@
 			return
 
 		if(SSticker && SSticker.mode)
-			return i18n_alert(usr, usr, "Gra już się zaczęła.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 
 		if(!SSticker.is_mode("dynamic"))
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem dynamic!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
-		var/new_value = input(usr, i18n_dialog_text(usr, "Podaj wymuszony poziom zagrożenia dla trybu dynamic."), i18n_dialog_text(usr, "Wymuszony poziom zagrożenia")) as num // AQ EDIT - i18n okienka
+		var/new_value = input(usr, "Podaj wymuszony poziom zagrożenia dla trybu dynamic.", "Wymuszony poziom zagrożenia") as num
 		if (new_value > 100)
-			return i18n_alert(usr, usr, "Wartość musi być mniejsza niż 100.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Wartość musi być mniejsza niż 100.", null, null, null, null)
 		GLOB.dynamic_forced_threat_level = new_value
 
 		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
@@ -444,7 +444,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		var/timer = input(i18n_dialog_text(usr, "Podaj nowy czas promu (w sekundach):"),i18n_dialog_text(usr, "Czas promu"), SSshuttle.emergency.timeLeft() ) as num|null // AQ EDIT - i18n okienka
+		var/timer = input("Podaj nowy czas promu (w sekundach):","Czas promu", SSshuttle.emergency.timeLeft() ) as num|null
 		if(!timer)
 			return
 		SSshuttle.emergency.setTimer(timer*10)
@@ -486,7 +486,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/timer = input(i18n_dialog_text(usr, "Podaj nowy maksymalny czas"),, CONFIG_GET(number/midround_antag_time_check)) as num|null // AQ EDIT - i18n okienka
+		var/timer = input("Podaj nowy maksymalny czas",, CONFIG_GET(number/midround_antag_time_check)) as num|null
 		if(!timer)
 			return
 		CONFIG_SET(number/midround_antag_time_check, timer)
@@ -497,7 +497,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/ratio = input(i18n_dialog_text(usr, "Podaj nowy odsetek żywych"),, CONFIG_GET(number/midround_antag_life_check) * 100) as num // AQ EDIT - i18n okienka
+		var/ratio = input("Podaj nowy odsetek żywych",, CONFIG_GET(number/midround_antag_life_check) * 100) as num
 		if(!ratio)
 			return
 		CONFIG_SET(number/midround_antag_life_check, ratio / 100)
@@ -527,8 +527,8 @@
 			return
 
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] rozważa zakończenie rundy.</span>")
-		if(i18n_alert(usr, usr, "To zakończy rundę, czy na PEWNO chcesz to zrobić?", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
-			if(i18n_alert(usr, usr, "Ostateczne potwierdzenie: zakończyć rundę TERAZ?", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "To zakończy rundę, czy na PEWNO chcesz to zrobić?", "Potwierdzenie", "Tak", "Nie") == "Tak")
+			if(alert(usr, "Ostateczne potwierdzenie: zakończyć rundę TERAZ?", "Potwierdzenie", "Tak", "Nie") == "Tak")
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] kończy rundę.</span>")
 				SSticker.force_ending = 1 //Yeah there we go APC destroyed mission accomplished
 				return
@@ -547,7 +547,7 @@
 			return
 
 		var/delmob = FALSE
-		switch(i18n_alert(usr, "Usunąć starego moba?","Wiadomość","Tak","Nie","Anuluj")) // AQ EDIT - i18n okienka
+		switch(alert("Usunąć starego moba?","Wiadomość","Tak","Nie","Anuluj"))
 			if("Anuluj")
 				return
 			if("Tak")
@@ -618,7 +618,7 @@
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, "<span class='danger'>Błąd: ma większe uprawnienia niż ty.</span>")
 				return
-			if(i18n_alert(usr, usr, "Wyrzucić [key_name(M)]?", "Potwierdź", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+			if(alert(usr, "Wyrzucić [key_name(M)]?", "Potwierdź", "Tak", "Nie") != "Tak")
 				return
 			if(!M)
 				to_chat(usr, "<span class='danger'>Błąd: [M] już nie istnieje!</span>")
@@ -672,7 +672,7 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = i18n_alert(usr, "Usunąć wiadomość/notkę?",,"Tak","Nie"); // AQ EDIT - i18n okienka
+		var/safety = alert("Usunąć wiadomość/notkę?",,"Tak","Nie");
 		if (safety == "Tak")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
@@ -680,7 +680,7 @@
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = i18n_alert(usr, "Usunąć wiadomość/notkę?",,"Tak","Nie"); // AQ EDIT - i18n okienka
+		var/safety = alert("Usunąć wiadomość/notkę?",,"Tak","Nie");
 		if (safety == "Tak")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
@@ -802,11 +802,11 @@
 			return
 
 		if (SSticker.HasRoundStarted())
-			i18n_alert(usr, "Runda już się zaczęła.") // AQ EDIT - i18n okienka
+			alert("Runda już się zaczęła.")
 			HandleCMode()
 			return
 		if(SSticker.gamemode_hotswap_disabled)
-			i18n_alert(usr, "Tryb gry już wczytał mapy i nie można go zmienić!") // AQ EDIT - i18n okienka
+			alert("Tryb gry już wczytał mapy i nie można go zmienić!")
 			HandleCMode()
 			return
 		GLOB.master_mode = href_list["c_mode2"]
@@ -823,9 +823,9 @@
 			return
 
 		if(SSticker.HasRoundStarted())
-			return i18n_alert(usr, usr, "Gra już się zaczęła.", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(GLOB.master_mode != "secret")
-			return i18n_alert(usr, usr, "Tryb gry musi być trybem secret!", null, null, null, null) // AQ EDIT - i18n okienka
+			return alert(usr, "Tryb gry musi być trybem secret!", null, null, null, null)
 		GLOB.secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia wymuszony tryb secret na [GLOB.secret_force_mode].</span>")
@@ -880,7 +880,7 @@
 		if(!ismob(M))
 			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob.")
 
-		var/speech = input(i18n_dialog_text(usr, "Co ma powiedzieć [key_name(M)]?"), i18n_dialog_text(usr, "Wymuszona mowa"), "")// Don't need to sanitize, since it does that in say(), we also trust our admins. // AQ EDIT - i18n okienka
+		var/speech = input("Co ma powiedzieć [key_name(M)]?", "Wymuszona mowa", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
 		M.say(speech, forced = "admin speech")
@@ -900,7 +900,7 @@
 			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 
-		if(i18n_alert(usr, usr, "Wysłać [key_name(M)] do więzienia?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Wysłać [key_name(M)] do więzienia?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		M.forceMove(pick(GLOB.prisonwarp))
@@ -923,7 +923,7 @@
 			to_chat(usr, "<span class='warning'>Wygląda na to, że [M] nie ma aktywnego klienta.</span>")
 			return
 
-		if(i18n_alert(usr, usr, "Odesłać [key_name(M)] do lobby?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Odesłać [key_name(M)] do lobby?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
@@ -937,7 +937,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(i18n_alert(usr, usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdome1"])
@@ -964,7 +964,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(i18n_alert(usr, usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdome2"])
@@ -991,7 +991,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(i18n_alert(usr, usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdomeadmin"])
@@ -1015,7 +1015,7 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(i18n_alert(usr, usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdomeobserve"])
@@ -1212,7 +1212,7 @@
 		for(var/datum/job/job in SSjob.occupations)
 			if(job.title == Add)
 				var/newtime = null
-				newtime = input(usr, i18n_dialog_text(usr, "Ile chcesz etatów?"), i18n_dialog_text(usr, "Dodaj ogłoszenia o pracę"), "[newtime]") as num|null // AQ EDIT - i18n okienka
+				newtime = input(usr, "Ile chcesz etatów?", "Dodaj ogłoszenia o pracę", "[newtime]") as num|null
 				if(!newtime)
 					to_chat(src.owner, "Ustawiam na liczbę zajętych stanowisk w tym zawodzie")
 					job.total_positions = job.current_positions
@@ -1334,7 +1334,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(i18n_alert(usr, usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 		var/mob/M = locate(href_list["getmob"])
 		usr.client.Getmob(M)
@@ -1386,7 +1386,7 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			i18n_alert(usr, "Gra jeszcze się nie zaczęła!") // AQ EDIT - i18n okienka
+			alert("Gra jeszcze się nie zaczęła!")
 			return
 
 		var/mob/M = locate(href_list["traitor"])
@@ -1467,10 +1467,10 @@
 			paths += path
 
 		if(!paths)
-			i18n_alert(usr, "Wysłana lista ścieżek jest pusta.") // AQ EDIT - i18n okienka
+			alert("Wysłana lista ścieżek jest pusta.")
 			return
 		if(length(paths) > 5)
-			i18n_alert(usr, "Wybierz mniej typów obiektów (maks. 5).") // AQ EDIT - i18n okienka
+			alert("Wybierz mniej typów obiektów (maks. 5).")
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
@@ -1581,7 +1581,7 @@
 			return
 		if(SSticker.IsRoundInProgress())
 			var/afkonly = text2num(href_list["afkonly"])
-			if(i18n_alert(usr, "Czy na pewno chcesz wyrzucić z lobby wszystkich [afkonly ? "AFK" : ""] klientów??","Wiadomość","Tak","Anuluj") != "Tak") // AQ EDIT - i18n okienka
+			if(alert("Czy na pewno chcesz wyrzucić z lobby wszystkich [afkonly ? "AFK" : ""] klientów??","Wiadomość","Tak","Anuluj") != "Tak")
 				to_chat(usr, "Przerwano wyrzucanie klientów z lobby")
 				return
 			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>Zostałeś wyrzucony z lobby przez [usr.client.holder.fakekey ? "Administratora" : "[usr.client.key]"].</span>", afkonly)
@@ -1607,7 +1607,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/list/type_choices = typesof(/datum/station_goal)
-		var/picked = input(i18n_dialog_text(usr, "Wybierz typ celu")) in type_choices|null // AQ EDIT - i18n okienka
+		var/picked = input("Wybierz typ celu") in type_choices|null
 		if(!picked)
 			return
 		var/datum/station_goal/G = new picked()
@@ -1722,8 +1722,8 @@
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
 			log_query_debug("[usr.key] | Reported a server hang")
-			if(i18n_alert(usr, usr, "Czy właśnie naciskałeś jakieś przyciski admina?", "Zgłoszenie zawieszenia serwera", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
-				var/response = input(usr,i18n_dialog_text(usr, "Co właśnie robiłeś?"),i18n_dialog_text(usr, "Zgłoszenie zawieszenia serwera")) as null|text // AQ EDIT - i18n okienka
+			if(alert(usr, "Czy właśnie naciskałeś jakieś przyciski admina?", "Zgłoszenie zawieszenia serwera", "Tak", "Nie") == "Tak")
+				var/response = input(usr,"Co właśnie robiłeś?","Zgłoszenie zawieszenia serwera") as null|text
 				if(response)
 					log_query_debug("[usr.key] | [response]")
 		else if(answer == "no")
@@ -1737,7 +1737,7 @@
 	else if(href_list["rebootworld"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/confirm = i18n_alert(usr, "Czy na pewno chcesz zrestartować serwer?", "Potwierdź restart", "Tak", "Nie") // AQ EDIT - i18n okienka
+		var/confirm = alert("Czy na pewno chcesz zrestartować serwer?", "Potwierdź restart", "Tak", "Nie")
 		if(confirm != "Tak")
 			return
 		restart()
@@ -1875,7 +1875,7 @@
 		if(!tear)
 			to_chat(usr, "Przedmioty zostały już odzyskane albo minęło 10 minut i zostały usunięte.")
 			return
-		var/confirm = i18n_alert(usr, "To przeniesie wszystkie przedmioty pochłonięte przez rozdarcie BoH z powrotem w pierwotne miejsce rozdarcia i usunie BoH, jeśli wciąż istnieje. Na pewno?", "Potwierdź ograniczanie szkód", "Tak", "Nie") // AQ EDIT - i18n okienka
+		var/confirm = alert("To przeniesie wszystkie przedmioty pochłonięte przez rozdarcie BoH z powrotem w pierwotne miejsce rozdarcia i usunie BoH, jeśli wciąż istnieje. Na pewno?", "Potwierdź ograniczanie szkód", "Tak", "Nie")
 		if(confirm != "Tak")
 			return
 		var/turf/T = get_turf(tear.old_loc)
@@ -1984,7 +1984,7 @@
 		return
 
 	if(SSticker.HasRoundStarted())
-		return i18n_alert(usr, usr, "Gra już się zaczęła.", null, null, null, null) // AQ EDIT - i18n okienka
+		return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 	if(GLOB.master_mode != "secret")
-		return i18n_alert(usr, usr, "Tryb gry musi być trybem secret!", null, null, null, null) // AQ EDIT - i18n okienka
+		return alert(usr, "Tryb gry musi być trybem secret!", null, null, null, null)
 	Game()

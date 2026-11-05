@@ -52,8 +52,8 @@
 	. += "<span class='notice'>Alt-klik, by zmienić ostrość i ustawić, jak duży obszar zostanie uchwycony.</span>"
 
 /obj/item/camera/proc/adjust_zoom(mob/user)
-	var/desired_x = input(user, i18n_dialog_text(user, "Na jaką wysokość ma robić zdjęcia aparat, od [picture_size_x_min] do [picture_size_x_max]?"), i18n_dialog_text(user, "Zoom"), picture_size_x) as num // AQ EDIT - i18n okienka
-	var/desired_y = input(user, i18n_dialog_text(user, "Na jaką szerokość ma robić zdjęcia aparat, od [picture_size_y_min] do [picture_size_y_max]?"), i18n_dialog_text(user, "Zoom"), picture_size_y) as num // AQ EDIT - i18n okienka
+	var/desired_x = input(user, "Na jaką wysokość ma robić zdjęcia aparat, od [picture_size_x_min] do [picture_size_x_max]?", "Zoom", picture_size_x) as num
+	var/desired_y = input(user, "Na jaką szerokość ma robić zdjęcia aparat, od [picture_size_y_min] do [picture_size_y_max]?", "Zoom", picture_size_y) as num
 	picture_size_x = min(CLAMP(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	picture_size_y = min(CLAMP(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
@@ -228,7 +228,7 @@
 		to_chat(user, "<span class='notice'>Pozostałe zdjęcia: [pictures_left].</span>")
 		var/customise = "Nie"
 		if(can_customise)
-			customise = i18n_alert(usr, user, "Czy chcesz dostosować zdjęcie?", "Dostosowanie", "Tak", "Nie") // AQ EDIT - i18n okienka
+			customise = alert(user, "Czy chcesz dostosować zdjęcie?", "Dostosowanie", "Tak", "Nie")
 		if(customise == "Tak")
 			var/name1 = stripped_input(user, "Nadaj nazwę temu zdjęciu albo zostaw puste. Maks. 32 znaki.", "Nazwa", max_length = 32)
 			var/desc1 = stripped_input(user, "Dodaj opis do zdjęcia albo zostaw puste. Maks. 128 znaków.", "Opis", max_length = 128)

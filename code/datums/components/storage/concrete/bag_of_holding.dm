@@ -11,7 +11,7 @@
 
 /datum/component/storage/concrete/bluespace/bag_of_holding/proc/recursive_insertion(obj/item/W, mob/living/user)
 	var/atom/A = parent
-	var/safety = i18n_alert(usr, user, "Zrobienie tego będzie miało wyjątkowo poważne konsekwencje dla stacji i jej załogi. Upewnij się, że wiesz, co robisz.", "Włożyć [A.name]?", "Przerwij", "Kontynuuj") // AQ EDIT - i18n okienka
+	var/safety = alert(user, "Zrobienie tego będzie miało wyjątkowo poważne konsekwencje dla stacji i jej załogi. Upewnij się, że wiesz, co robisz.", "Włożyć [A.name]?", "Przerwij", "Kontynuuj")
 	if(safety != "Kontynuuj" || QDELETED(A) || QDELETED(W) || QDELETED(user) || !user.canUseTopic(A, BE_CLOSE, iscarbon(user)) || !(W in user.contents)) // need to be holding the bag you're "inserting"
 		return
 	var/turf/loccheck = get_turf(A)

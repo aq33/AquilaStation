@@ -922,7 +922,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		if(!E.can_malf_fake_alert)
 			continue
 		events_to_chose[E.name] = E
-	var/chosen_event = input(owner,i18n_dialog_text(owner, "Wyślij fałszywy alarm"),i18n_dialog_text(owner, "Fałszywy alarm")) in events_to_chose // AQ EDIT - i18n okienka
+	var/chosen_event = input(owner,"Wyślij fałszywy alarm","Fałszywy alarm") in events_to_chose
 	if (!chosen_event)
 		return FALSE
 	var/datum/round_event_control/event_control = events_to_chose[chosen_event]

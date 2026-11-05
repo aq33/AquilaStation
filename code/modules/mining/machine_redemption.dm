@@ -312,7 +312,7 @@
 				if (params["sheets"])
 					desired = text2num(params["sheets"])
 				else
-					desired = input(i18n_dialog_text(usr, "Ile arkuszy?"), i18n_dialog_text(usr, "Ile arkuszy chcesz wytopić?"), 1) as null|num // AQ EDIT - i18n okienka
+					desired = input("Ile arkuszy?", "Ile arkuszy chcesz wytopić?", 1) as null|num
 
 				var/sheets_to_remove = round(min(desired,50,stored_amount))
 
@@ -357,7 +357,7 @@
 				if (params["sheets"])
 					desired = text2num(params["sheets"])
 				else
-					desired = input(i18n_dialog_text(usr, "Ile arkuszy?"), i18n_dialog_text(usr, "Ile arkuszy chcesz wytopić?"), 1) as null|num // AQ EDIT - i18n okienka
+					desired = input("Ile arkuszy?", "Ile arkuszy chcesz wytopić?", 1) as null|num
 				var/amount = round(min(desired,50,smelt_amount))
 				mat_container.use_materials(alloy.materials, amount)
 				materials.silo_log(src, "released", -amount, "sheets", alloy.materials)

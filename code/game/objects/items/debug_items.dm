@@ -19,7 +19,7 @@
 
 /obj/item/debug/human_spawner/attack_self(mob/user)
 	..()
-	var/choice = input(i18n_dialog_text(usr, "Wybierz gatunek"), i18n_dialog_text(usr, "Spawner ludzi"), null) in GLOB.species_list // AQ EDIT - i18n okienka
+	var/choice = input("Wybierz gatunek", "Spawner ludzi", null) in GLOB.species_list
 	selected_species = GLOB.species_list[choice]
 
 

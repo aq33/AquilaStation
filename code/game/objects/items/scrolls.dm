@@ -37,7 +37,7 @@
 
 	var/A
 
-	A = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Obszar docelowy"), i18n_dialog_text(user, "BOOYEA"), A) as null|anything in i18n_input_shown(user, GLOB.teleportlocs)) // AQ EDIT - i18n okienka
+	A = input(user, "Obszar docelowy", "BOOYEA", A) as null|anything in GLOB.teleportlocs
 	if(!src || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !A || !uses)
 		return
 	var/area/thearea = GLOB.teleportlocs[A]

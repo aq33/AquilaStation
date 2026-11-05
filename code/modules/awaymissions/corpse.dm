@@ -56,7 +56,7 @@
 	if(use_cooldown && user.client.next_ghost_role_tick > world.time)
 		to_chat(user, "<span class='warning'>Niedawno zginąłeś; musisz poczekać [(user.client.next_ghost_role_tick - world.time)/10] s, zanim użyjesz spawnera duchów.</span>")
 		return
-	var/ghost_role = i18n_alert(usr, "Zostać: [mob_name]? (Uwaga: nie będzie można cię już sklonować!)",,"Tak","Nie") // AQ EDIT - i18n okienka
+	var/ghost_role = alert("Zostać: [mob_name]? (Uwaga: nie będzie można cię już sklonować!)",,"Tak","Nie")
 	if(ghost_role != "Tak" || !loc)
 		return
 	log_game("[key_name(user)] became [mob_name]")

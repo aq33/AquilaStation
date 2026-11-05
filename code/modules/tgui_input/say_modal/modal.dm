@@ -93,7 +93,6 @@
 		lightMode = (client?.prefs?.toggles2 & PREFTOGGLE_2_SAY_LIGHT_THEME),
 		showRadioPrefix = (client?.prefs?.toggles2 & PREFTOGGLE_2_SAY_SHOW_PREFIX),
 		maxLength = max_length,
-		language = client?.prefs?.game_language, // AQ EDIT - wersja angielska (aquila/code/modules/i18n)
 	))
 	stop_thinking()
 	return TRUE

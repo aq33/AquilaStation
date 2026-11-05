@@ -20,7 +20,7 @@
 		if(operation == "set")
 			prompt = "Podaj nową liczbę tokenów:"
 
-		msg = input(i18n_dialog_text(usr, "Wiadomość:"), i18n_dialog_text(usr, prompt)) as num|null // AQ EDIT - i18n okienka
+		msg = input("Wiadomość:", prompt) as num|null
 
 		if (!msg)
 			return

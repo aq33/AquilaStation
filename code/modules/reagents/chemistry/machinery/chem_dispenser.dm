@@ -317,7 +317,7 @@
 					recording_recipe[key] += dispense_amount
 			. = TRUE
 		if("clear_recipes")
-			var/yesno = i18n_alert(usr, "Usunąć wszystkie receptury?",, "Tak","Nie") // AQ EDIT - i18n okienka
+			var/yesno = alert("Usunąć wszystkie receptury?",, "Tak","Nie")
 			if(yesno == "Tak")
 				saved_recipes = list()
 			. = TRUE
@@ -328,7 +328,7 @@
 			var/name = stripped_input(usr,"Nazwa","Jak chcesz nazwać tę recepturę?", "Receptura", MAX_NAME_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(saved_recipes[name] && i18n_alert(usr, "\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") != "Tak")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)

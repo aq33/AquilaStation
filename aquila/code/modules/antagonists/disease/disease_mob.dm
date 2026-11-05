@@ -285,7 +285,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/ClickOn(var/atom/A, params)
 	if(freemove && ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(i18n_alert(usr, src, "Wybrać [H.name] jako pierwszego nosiciela?", "Wybór nosiciela", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(src, "Wybrać [H.name] jako pierwszego nosiciela?", "Wybór nosiciela", "Tak", "Nie") != "Tak")
 			return
 		if(!freemove)
 			return

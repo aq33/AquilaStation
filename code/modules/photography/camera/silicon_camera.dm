@@ -36,7 +36,7 @@
 		var/datum/picture/p = i
 		nametemp += p.picture_name
 		temp[p.picture_name] = p
-	find = input(user, i18n_dialog_text(user, "Wybierz obraz")) in nametemp|null // AQ EDIT - i18n okienka
+	find = input(user, "Wybierz obraz") in nametemp|null
 	if(!find)
 		return
 	return temp[find]

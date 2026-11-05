@@ -6,7 +6,7 @@
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
-	var/polltype = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Choose poll type."),i18n_dialog_text(usr, "Poll Type")) as null|anything in i18n_input_shown(usr, list("Single Option","Text Reply","Rating","Multiple Choice", "Instant Runoff Voting"))) // AQ EDIT - i18n okienka
+	var/polltype = input("Choose poll type.","Poll Type") as null|anything in list("Single Option","Text Reply","Rating","Multiple Choice", "Instant Runoff Voting")
 	var/choice_amount = 0
 	switch(polltype)
 		if("Single Option")
@@ -17,7 +17,7 @@
 			polltype = POLLTYPE_RATING
 		if("Multiple Choice")
 			polltype = POLLTYPE_MULTI
-			choice_amount = input(i18n_dialog_text(usr, "Ile wyborów ma być dozwolonych?"),i18n_dialog_text(usr, "Select choice amount")) as num|null // AQ EDIT - i18n okienka
+			choice_amount = input("Ile wyborów ma być dozwolonych?","Select choice amount") as num|null
 			switch(choice_amount)
 				if(0)
 					to_chat(src, "Ankieta wielokrotnego wyboru musi pozwalać na co najmniej jeden wybór.")
@@ -47,7 +47,7 @@
 		endtime = query_validate_time.item[1]
 	qdel(query_validate_time)
 	var/adminonly
-	switch(i18n_alert(usr, "Admin only poll?",,"Yes","No","Cancel")) // AQ EDIT - i18n okienka
+	switch(alert("Admin only poll?",,"Yes","No","Cancel"))
 		if("Yes")
 			adminonly = 1
 		if("No")
@@ -55,7 +55,7 @@
 		else
 			return
 	var/dontshow
-	switch(i18n_alert(usr, "Ukryć wyniki ankiety przed śledzeniem do jej zakończenia?",,"Yes","No","Cancel")) // AQ EDIT - i18n okienka
+	switch(alert("Ukryć wyniki ankiety przed śledzeniem do jej zakończenia?",,"Yes","No","Cancel"))
 		if("Yes")
 			dontshow = 1
 		if("No")
@@ -75,7 +75,7 @@
 				return
 			var/default_percentage_calc = 0
 			if(polltype != POLLTYPE_IRV)
-				switch(i18n_alert(usr, "Czy ta opcja ma być domyślnie uwzględniana przy wyliczaniu procentów wyników ankiety?",,"Yes","No","Cancel")) // AQ EDIT - i18n okienka
+				switch(alert("Czy ta opcja ma być domyślnie uwzględniana przy wyliczaniu procentów wyników ankiety?",,"Yes","No","Cancel"))
 					if("Yes")
 						default_percentage_calc = 1
 					if("No")
@@ -88,10 +88,10 @@
 			var/descmid = ""
 			var/descmax = ""
 			if(polltype == POLLTYPE_RATING)
-				minval = input(i18n_dialog_text(usr, "Set minimum rating value."),i18n_dialog_text(usr, "Minimum rating")) as num|null // AQ EDIT - i18n okienka
+				minval = input("Set minimum rating value.","Minimum rating") as num|null
 				if(minval == null)
 					return
-				maxval = input(i18n_dialog_text(usr, "Set maximum rating value."),i18n_dialog_text(usr, "Maximum rating")) as num|null // AQ EDIT - i18n okienka
+				maxval = input("Set maximum rating value.","Maximum rating") as num|null
 				if(minval >= maxval)
 					to_chat(src, "Maksymalna wartość oceny nie może być mniejsza ani równa minimalnej")
 					continue
@@ -107,7 +107,7 @@
 				if(descmax == null)
 					return
 			sql_option_list += list(list("text" = "'[option]'", "minval" = "'[minval]'", "maxval" = "'[maxval]'", "descmin" = "'[descmin]'", "descmid" = "'[descmid]'", "descmax" = "'[descmax]'", "default_percentage_calc" = "'[default_percentage_calc]'"))
-			switch(i18n_alert(usr, " ",,"Add option","Finish", "Cancel")) // AQ EDIT - i18n okienka
+			switch(alert(" ",,"Add option","Finish", "Cancel"))
 				if("Add option")
 					add_option = 1
 				if("Finish")
@@ -115,7 +115,7 @@
 				else
 					return 0
 
-	var/minimum_player_playtime = input(i18n_dialog_text(usr, "Minimalny czas gry, by głosować (w godzinach)"),i18n_dialog_text(usr, "Minimum playtime")) as num|null // AQ EDIT - i18n okienka
+	var/minimum_player_playtime = input("Minimalny czas gry, by głosować (w godzinach)","Minimum playtime") as num|null
 	if (minimum_player_playtime == null)
 		minimum_player_playtime = 0
 	minimum_player_playtime = min(minimum_player_playtime, 100) //max 100 hours

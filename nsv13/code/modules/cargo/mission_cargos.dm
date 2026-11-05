@@ -17,7 +17,7 @@ Here we define the cargo crate, as well as the contents
 
 /obj/structure/closet/crate/large/cargo/attackby(obj/item/W, mob/user, params)  
   if(W.tool_behaviour == TOOL_CROWBAR)
-    var/choice = input(i18n_dialog_text(usr, "OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni zmniejszy wynagrodzenie za misję. Na pewno chcesz ją otworzyć?"), i18n_dialog_text(usr, "OSTRZEŻENIE!"), "Nie") in list("Tak", "Nie") // AQ EDIT - i18n okienka
+    var/choice = input("OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni zmniejszy wynagrodzenie za misję. Na pewno chcesz ją otworzyć?", "OSTRZEŻENIE!", "Nie") in list("Tak", "Nie")
     if(choice != "Tak") 
       return
     if(get_dist(user, src) > 1) //Check they are still in range

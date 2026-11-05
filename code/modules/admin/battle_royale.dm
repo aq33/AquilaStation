@@ -122,7 +122,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(GLOB.battle_royale)
 		to_chat(src, "<span class='warning'>Gra już trwa!</span>")
 		return
-	if(i18n_alert(usr, src, "CZY NA PEWNO, ALE TO NA PEWNO, CHCESZ ROZPOCZĄĆ BATTLE ROYALE?",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert(src, "CZY NA PEWNO, ALE TO NA PEWNO, CHCESZ ROZPOCZĄĆ BATTLE ROYALE?",,"Tak","Nie") != "Tak")
 		to_chat(src, "<span class='notice'>aha... no dobra... już wiem, jak jest... :(</span>")
 		return
 	log_admin("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
@@ -144,7 +144,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(!GLOB.battle_royale)
 		to_chat(src, "<span class='warning'>Żadna gra nie trwa.</span>")
 		return
-	var/new_speed = input(src, i18n_dialog_text(src, "Nowe opóźnienie ściany (w sekundach)")) as num // AQ EDIT - i18n okienka
+	var/new_speed = input(src, "Nowe opóźnienie ściany (w sekundach)") as num
 	if(new_speed > 0)
 		GLOB.battle_royale.field_delay = new_speed
 		log_admin("[key_name(usr)] has changed the field delay to [new_speed] seconds")

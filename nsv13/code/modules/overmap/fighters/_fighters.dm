@@ -577,7 +577,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			playsound(src, ersound, 100, 1)
 			to_chat(user, "<span class='warning'>Odmowa dostępu</span>")
 			return TRUE
-		if(i18n_alert(usr, "Co chcesz zrobić?",name,"Wyrzuć pasażerów","Tryb serwisowy") == "Wyrzuć pasażerów") // AQ EDIT - i18n okienka
+		if(alert("Co chcesz zrobić?",name,"Wyrzuć pasażerów","Tryb serwisowy") == "Wyrzuć pasażerów")
 			if(!Adjacent(user))
 				return TRUE
 			to_chat(user, "<span class='warning'>Wyrzucanie wszystkich obecnych osób z [src] i włączanie tłumików bezwładności...</span>")

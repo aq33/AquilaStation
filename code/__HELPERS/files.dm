@@ -11,7 +11,7 @@
 		if(path != root)
 			choices.Insert(1,"/")
 
-		var/choice = i18n_input_choice(src, input(src,i18n_dialog_text(src, "Wybierz plik:"),i18n_dialog_text(src, "Download"),null) as null|anything in i18n_input_shown(src, sortList(choices))) // AQ EDIT - i18n okienka
+		var/choice = input(src,"Wybierz plik:","Download",null) as null|anything in sortList(choices)
 		switch(choice)
 			if(null)
 				return

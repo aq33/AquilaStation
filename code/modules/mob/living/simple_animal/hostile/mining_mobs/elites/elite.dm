@@ -41,7 +41,7 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = i18n_alert(usr, "Wrócić do guza?", "Zniknąć?", "Tak", "Nie") // AQ EDIT - i18n okienka
+			var/elite_remove = alert("Wrócić do guza?", "Zniknąć?", "Tak", "Nie")
 			if(elite_remove != "Tak" || !src || QDELETED(src))
 				return
 			T.mychild = null

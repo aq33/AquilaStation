@@ -20,7 +20,7 @@
 	set hidden = 1
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
-		if(i18n_alert(usr, "To otworzy forum w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy forum w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(forumurl)
 	else
@@ -33,7 +33,7 @@
 	set hidden = 1
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
-		if(i18n_alert(usr, "To otworzy zasady w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy zasady w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(rulesurl)
 	else
@@ -46,7 +46,7 @@
 	set hidden = 1
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
-		if(i18n_alert(usr, "To otworzy repozytorium GitHub w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy repozytorium GitHub w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(githuburl)
 	else
@@ -176,7 +176,7 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 	set hidden = 1
 	var/donateurl = CONFIG_GET(string/donateurl)
 	if(donateurl)
-		if(i18n_alert(usr, "To otworzy stronę darowizn w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy stronę darowizn w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(donateurl)
 	else
@@ -189,7 +189,7 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 	set hidden = 1
 	var/discordurl = CONFIG_GET(string/discordurl)
 	if(discordurl)
-		if(i18n_alert(usr, "To otworzy zaproszenie na Discorda w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy zaproszenie na Discorda w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(discordurl)
 	else
@@ -203,7 +203,7 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 	if(SSmapping.config.map_link == "None")
 		to_chat(src,"<span class='danger'>Obecna mapa nie ma mapy w przeglądarce. </span>")
 	else if(SSmapping.config.map_link)
-		if(i18n_alert(usr, "To otworzy obecną mapę w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak") // AQ EDIT - i18n okienka
+		if(alert("To otworzy obecną mapę w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link("https://webmap.affectedarc07.co.uk/maps/aquila/[SSmapping.config.map_link]")
 	else

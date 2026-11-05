@@ -104,11 +104,11 @@
 	.["Ustaw wpływy"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
-	var/new_or_existing = i18n_input_choice(admin, input(admin, i18n_dialog_text(admin, "Którą bandę chcesz przypisać użytkownikowi?"), i18n_dialog_text(admin, "Bandy")) as null|anything in i18n_input_shown(admin, list("Nowa","Istniejąca"))) // AQ EDIT - i18n okienka
+	var/new_or_existing = input(admin, "Którą bandę chcesz przypisać użytkownikowi?", "Bandy") as null|anything in list("Nowa","Istniejąca")
 	if(isnull(new_or_existing))
 		return
 	else if(new_or_existing == "Nowa")
-		var/newgang = i18n_input_choice(admin, input(admin, i18n_dialog_text(admin, "Wybierz bandę albo wybierz losową."), i18n_dialog_text(admin, "Nowa banda")) as null|anything in i18n_input_shown(admin, GLOB.possible_gangs + "Losowa")) // AQ EDIT - i18n okienka
+		var/newgang = input(admin, "Wybierz bandę albo wybierz losową.", "Nowa banda") as null|anything in GLOB.possible_gangs + "Losowa"
 		if(isnull(newgang))
 			return
 		else if(newgang == "Losowa")
@@ -121,7 +121,7 @@
 		if(!GLOB.gangs.len) // no gangs exist
 			to_chat(admin, "<span class='danger'>Nie istnieją żadne bandy, stwórz nową.</span>")
 			return
-		var/existinggang = i18n_input_choice(admin, input(admin, i18n_dialog_text(admin, "Wybierz bandę albo wybierz losową."), i18n_dialog_text(admin, "Istniejąca banda")) as null|anything in i18n_input_shown(admin, GLOB.gangs + "Losowa")) // AQ EDIT - i18n okienka
+		var/existinggang = input(admin, "Wybierz bandę albo wybierz losową.", "Istniejąca banda") as null|anything in GLOB.gangs + "Losowa"
 		if(isnull(existinggang))
 			return
 		else if(existinggang == "Losowa")
@@ -137,7 +137,7 @@
 	promote()
 
 /datum/antagonist/gang/proc/admin_adjust_influence()
-	var/inf = input(i18n_dialog_text(usr, "Wpływy bandy [gang.name]"),i18n_dialog_text(usr, "Wpływy gangu"), gang.influence) as null | num // AQ EDIT - i18n okienka
+	var/inf = input("Wpływy bandy [gang.name]","Wpływy gangu", gang.influence) as null | num
 	if(!isnull(inf))
 		gang.influence = inf
 		message_admins("[key_name_admin(usr)] zmienia wpływy gangu [gang.name] na [inf].")

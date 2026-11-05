@@ -316,3 +316,7 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 
 #undef I18N_CACHE_SIZE
 #undef I18N_MAX_UNKNOWN_RATIO
+
+// Screentipy: ostatni krok każdego screentipa (aquila/code/_onclick/legacy_intents.dm)
+/mob/adapt_screentip_controls(text)
+	return i18n_for_client(client, ..())
