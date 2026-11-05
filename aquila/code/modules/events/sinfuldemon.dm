@@ -49,6 +49,7 @@
 		id.assignment = jobdatum.title
 		id.update_label()
 	GLOB.data_core.manifest_inject(sinfuldemon)
+	success_spawn = TRUE // bez tego kill() po zwykłym końcu eventu cofał licznik i max_occurrences nie działał
 	return SUCCESSFUL_SPAWN
 
 

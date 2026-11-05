@@ -164,6 +164,8 @@
 /obj/machinery/power/apc/attack_pulsedemon(mob/living/simple_animal/pulse_demon/user)
 	if(user.loc != src)
 		user.forceMove(src)
+		if(user.current_power && user.current_power != src) // stare APC nie może dalej przekazywać EMP demonowi
+			user.UnregisterSignal(user.current_power, COMSIG_ATOM_EMP_ACT)
 		user.current_power = src
 		user.RegisterSignal(src, COMSIG_ATOM_EMP_ACT, TYPE_PROC_REF(/mob/living/simple_animal/pulse_demon, handle_emp), TRUE)
 		user.update_controlling_area()
