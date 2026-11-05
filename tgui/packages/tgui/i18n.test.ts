@@ -99,6 +99,17 @@ describe('translateHtml', () => {
     );
   });
 
+  it('tłumaczy linie examine sklejone znakiem nowej linii', () => {
+    // run_examinate: EXAMINE_BLOCK(jointext(examine(), "\n"))
+    expect(
+      translateHtml(
+        "<div class='examine_block'>Za mało paliwa.\n<span class='notice'>skrzynka narzędziowa zamyka się sama.</span>\nNieznana linia.</div>",
+      ),
+    ).toBe(
+      "<div class='examine_block'>There is not enough fuel.\n<span class='notice'>The toolbox closes on its own.</span>\nNieznana linia.</div>",
+    );
+  });
+
   it('nie tłumaczy tego, co powiedział gracz', () => {
     const html =
       "<span class='game say'><span class='name'>Jan</span> <span class='message'>mówi, \"skrzynka narzędziowa\"</span></span>";

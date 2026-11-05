@@ -167,7 +167,11 @@ const templateRegex = (index: number): RegExp | null => {
     // Szablon musi objąć cały węzeł tekstowy (od ">" do "<"). Inaczej krótki
     // ogólny szablon ("[a] jest [b]") wchodzi w środek zdania, którego
     // szablonu nie ma, i robi mieszankę języków.
-    regex = new RegExp('(?<=(?:^|>)\\s*)' + source + '(?=\\s*(?:<|$))', 'g');
+    // Granicą jest też nowa linia: examine skleja linie (każda ze swoim <span>) znakiem \n.
+    regex = new RegExp(
+      '(?<=(?:^|>|\\n)[^\\S\\n]*)' + source + '(?=[^\\S\\n]*(?:<|$|\\n))',
+      'g',
+    );
   } catch {
     regex = null;
   }
@@ -503,9 +507,22 @@ const translateMarkup = (html: string, depth: number): string => {
   }
   result = `>${result}<`.replace(TEXT_NODE, (match, text: string) => {
     const found = lookupExact(text.trim());
-    return found === undefined
-      ? match
-      : `>${text.replace(text.trim(), found)}<`;
+    if (found !== undefined) {
+      return `>${text.replace(text.trim(), found)}<`;
+    }
+    // Examine skleja linie (nazwa, opis, zawartość) znakiem nowej linii w jeden
+    // węzeł: każda linia osobno, stałą albo szablonem
+    if (!text.includes('\n') || depth >= MAX_DEPTH) {
+      return match;
+    }
+    const lines = text
+      .split('\n')
+      .map((line) =>
+        line.trim() && line.length <= MAX_TEMPLATE_INPUT
+          ? translateMarkup(line, depth + 1)
+          : line,
+      );
+    return `>${lines.join('\n')}<`;
   });
   result = result.slice(1, -1);
   return result.replace(

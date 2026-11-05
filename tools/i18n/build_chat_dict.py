@@ -198,6 +198,23 @@ def alternatives(exprs):
     return found
 
 
+TAG_NAME = re.compile(r"<\s*(/?)\s*(\w+)")
+
+
+def tag_segments(pl, en):
+    """Pary tekstów między znacznikami, gdy PL i EN mają te same znaczniki w tej samej kolejności."""
+    pl_tags = [m.groups() for m in TAG_NAME.finditer("".join(re.findall(r"<[^>]*>", pl)))]
+    en_tags = [m.groups() for m in TAG_NAME.finditer("".join(re.findall(r"<[^>]*>", en)))]
+    if not pl_tags or pl_tags != en_tags:
+        return []
+    pairs = []
+    for segment_pl, segment_en in zip(re.split(r"<[^>]*>", pl), re.split(r"<[^>]*>", en)):
+        segment_pl, segment_en = segment_pl.strip(), segment_en.strip()
+        if segment_pl and segment_pl != segment_en and re.search(r"[A-Za-zĄ-ż]{2,}", segment_pl):
+            pairs.append((segment_pl, segment_en))
+    return pairs
+
+
 def literal_ternary(expr):
     """[A, B] dla wstawki [x ? "A" : "B"] bez zagnieżdżonych wstawek, inaczej None."""
     m = TERNARY.match(expr.strip())
@@ -254,6 +271,10 @@ def build_en(parts, pl_exprs):
                     if m.group(2) and word:
                         word = word[0].upper() + word[1:]
                     add_text(word)
+                elif literal_ternary(val):
+                    # angielski warunek bez polskiego odpowiednika ([gender == PLURAL ? "They are" :
+                    # "It is"]): gałąź domyślna, czyli druga
+                    add_text(literal_ternary(val)[1])
                 else:
                     missing.append(val)
             article = None
@@ -380,6 +401,13 @@ def main():
             if key and key != value:
                 exact[key] = value
                 stats["stałe"] += 1
+                # Tekst w znacznikach (<span class='notice'>…</span>, <a>metkę</a>) trafia do
+                # gracza jako jeden z wielu węzłów, np. linia examine: pary dla tekstów między
+                # znacznikami, gdy obie strony mają te same znaczniki
+                for segment_pl, segment_en in tag_segments(key, value):
+                    if segment_pl not in exact:
+                        exact[segment_pl] = segment_en
+                        stats["stałe z wnętrza znaczników"] += 1
             if key and pl in js_literals:
                 # okna: tłumaczenie z kodu okien, jeśli jest; ogólne exact zostaje dla czatu
                 ui_en = ui_pairs.get(pl)

@@ -59,5 +59,7 @@
  "ctrl-shift-PPM (tylko combat mode):": "ctrl-shift-RMB (combat mode only):",
  "alt-PPM (tylko combat mode):": "alt-RMB (combat mode only):",
  "ctrl-PPM (tylko combat mode):": "ctrl-RMB (combat mode only):",
- "shift-PPM (tylko combat mode):": "shift-RMB (combat mode only):"
+ "shift-PPM (tylko combat mode):": "shift-RMB (combat mode only):",
+ "To [name].": "That's [name].",
+ "To [name]": "That's [name]"
 }
