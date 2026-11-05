@@ -440,3 +440,9 @@ $crt: #071a0e;
     font-family: monospace;
   }
 }
+
+// AQUILA: okno kanistra z Unitystation, podświetlenie stref kliknięcia
+.AqCanister__hit:hover {
+  background: rgba(255, 255, 255, 0.1);
+  outline: 1px solid rgba(255, 255, 255, 0.25);
+}
