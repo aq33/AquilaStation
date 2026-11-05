@@ -11,6 +11,42 @@
 /proc/is_shipbreak_area(atom/A)
 	return istype(get_area(A), /area/space/shipbreak)
 
+// Złom dają tylko rzeczy, które przyleciały z wrakiem. Strefą jest cała klatka magnesu, więc bez tego
+// ściana, dźwigar albo maszyna zbudowane na miejscu z żelaza zamieniały się w srebro, złoto i kredyty.
+/// Cecha konstrukcji i maszyn z wraku
+#define TRAIT_SHIPBREAK_WRECK "shipbreak_wreck"
+/// Źródło cechy TRAIT_SHIPBREAK_WRECK
+#define SHIPBREAK_WRECK_TRAIT "shipbreak_wreck_load"
+/// Pola ścian wraku, które jeszcze nie dały złomu (pole => TRUE). Turfy podmieniane przez ChangeTurf gubią cechy, więc pamiętamy pola.
+GLOBAL_LIST_EMPTY(shipbreak_wreck_walls)
+/// Pola wraku, których poszycie jeszcze nie dało złomu (pole => TRUE)
+GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
+
+/// Czy konstrukcja albo maszyna przyleciała z wrakiem i stoi w strefie złomowania
+/proc/is_shipbreak_wreck(atom/movable/AM)
+	return HAS_TRAIT(AM, TRAIT_SHIPBREAK_WRECK) && is_shipbreak_area(AM)
+
+/// Oznacza wszystko na polach wraku jako złom do odzysku
+/proc/mark_shipbreak_wreck(list/turfs)
+	for(var/turf/T as anything in turfs)
+		if(iswallturf(T))
+			GLOB.shipbreak_wreck_walls[T] = TRUE
+		else if(isopenturf(T) && !isgroundlessturf(T))
+			GLOB.shipbreak_wreck_floors[T] = TRUE
+		for(var/obj/O in T)
+			ADD_TRAIT(O, TRAIT_SHIPBREAK_WRECK, SHIPBREAK_WRECK_TRAIT)
+
+/// Zapomina pola wraku (po wypchnięciu go z klatki)
+/proc/unmark_shipbreak_wreck(list/turfs)
+	for(var/turf/T as anything in turfs)
+		GLOB.shipbreak_wreck_walls -= T
+		GLOB.shipbreak_wreck_floors -= T
+
+/// Ściana wraku rozebrana: pole przestaje dawać złom ze ściany, a jego poszycie da jeszcze płytę poszycia
+/turf/closed/wall/proc/consume_shipbreak_wall()
+	GLOB.shipbreak_wreck_walls -= src
+	GLOB.shipbreak_wreck_floors[src] = TRUE
+
 /// Co dany przedmiot daje przy złomowaniu maszyny, null = zostaje jak jest
 /obj/item/proc/get_shipbreaking_reward()
 	return null

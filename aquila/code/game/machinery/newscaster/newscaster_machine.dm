@@ -548,9 +548,9 @@
 			return TRUE
 
 		if("bountyVal")
-			bounty_value = text2num(params["bountyval"])
-			if(!bounty_value)
-				bounty_value = 1
+			// całkowita kwota w zakresie z okna (1-1000); ujemna przy wypłacie odwracała przelew i tworzyła pieniądze
+			var/new_bounty_value = round(text2num(params["bountyval"]))
+			bounty_value = (new_bounty_value >= 1) ? min(new_bounty_value, 1000) : 1
 
 		if("bountyText")
 			var/pre_bounty_text = params["bountytext"]
@@ -973,6 +973,10 @@
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account))
 		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
+		return TRUE
+	// zlecenie mogło zostać w międzyczasie usunięte albo wypłacone na innym terminalu
+	if(QDELETED(active_request) || !(active_request in GLOB.request_list) || !payment_target || active_request.value <= 0)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 	var/has_money = account.has_money(active_request.value)
 	if((account.account_holder != active_request.owner) || !has_money)

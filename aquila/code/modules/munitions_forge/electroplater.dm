@@ -138,3 +138,6 @@
 	pending_material = null
 	plated_item.forceMove(drop_location())
 	ping()
+
+/obj/machinery/munitions_forge/electroplater/abort_operation()
+	pending_material = null
