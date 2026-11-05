@@ -123,6 +123,7 @@
 #include "code\datums\action.dm"
 #include "code\datums\ai_laws.dm"
 #include "code\datums\components\storage\concrete\grid.dm"
+#include "code\datums\components\storage\concrete\slot_hints.dm"
 #include "code\datums\components\storage\concrete\pockets.dm"
 #include "code\datums\ert.dm"
 #include "code\datums\cogbar.dm"

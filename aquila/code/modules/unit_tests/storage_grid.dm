@@ -316,5 +316,32 @@
 	qdel(bag)
 
 
+/// AQUILA - puste przegródki pasa pokazują sylwetki przedmiotów z jego listy, najpierw tych, których w pasie brakuje
+/datum/unit_test/storage_slot_hints
+
+/datum/unit_test/storage_slot_hints/Run()
+	var/obj/item/storage/belt/utility/belt = allocate(/obj/item/storage/belt/utility)
+	var/datum/component/storage/concrete/slot_hints/hints = belt.GetComponent(/datum/component/storage/concrete/slot_hints)
+	TEST_ASSERT(hints, "Utility belt has no slot hints storage")
+	var/list/types = hints.hint_types()
+	TEST_ASSERT(length(types), "Utility belt has no hint types")
+	TEST_ASSERT(/obj/item/wrench in types, "Wrench is not among utility belt hints")
+	TEST_ASSERT(!(/obj/item/wrench/medical in types), "Subtypes leaked into the hints")
+	hints.orient2hud()
+	TEST_ASSERT_EQUAL(visible_hints(hints), hints.max_items, "Empty belt should show a hint in every slot")
+	var/obj/item/wrench/wrench = allocate(/obj/item/wrench)
+	TEST_ASSERT(SEND_SIGNAL(belt, COMSIG_TRY_STORAGE_INSERT, wrench, null, TRUE), "Wrench did not fit into the utility belt")
+	hints.orient2hud()
+	TEST_ASSERT_EQUAL(visible_hints(hints), hints.max_items - 1, "Hints should fill only the empty slots")
+	for(var/atom/movable/screen/storage_slot_hint/hint as anything in hints.hint_screens)
+		if(!hint.invisibility)
+			TEST_ASSERT(hint.icon_state != initial(wrench.icon_state), "Hint shows a wrench although the belt already holds one")
+
+/datum/unit_test/storage_slot_hints/proc/visible_hints(datum/component/storage/concrete/slot_hints/hints)
+	. = 0
+	for(var/atom/movable/screen/storage_slot_hint/hint as anything in hints.hint_screens)
+		if(!hint.invisibility && hint.icon_state)
+			.++
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
