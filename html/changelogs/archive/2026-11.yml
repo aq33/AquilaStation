@@ -189,3 +189,8 @@
       tracą już powietrza przez sufit.
   - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
       przepuszczają powietrze.'
+  - bugfix: Przecięcie kabla nie odcina już na chwilę prądu całemu statkowi (APC przestawały
+      się ładować, a monitor mocy spadał do zera).
+  - bugfix: Odcięty kawałek sieci szybciej przestaje brać prąd ze starej sieci.
+  - bugfix: Przecięcie kabla przechodzącego między pokładami już się nie zawiesza.
+  - bugfix: Połączenie dwóch sieci kablem nie gubi na chwilę prądu jednej z nich.
