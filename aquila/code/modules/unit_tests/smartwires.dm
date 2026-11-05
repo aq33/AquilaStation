@@ -84,6 +84,30 @@
 	TEST_ASSERT_EQUAL(net.avail, 5000, "The larger part of the grid lost its available power")
 	TEST_ASSERT_EQUAL(net.viewavail, 5000, "The power monitor reading of the grid was reset")
 
+/// AQUILA - cutting one of two linked multi-z cables removes both instead of recursing forever
+/datum/unit_test/smartwires_multiz_deconstruct
+
+/datum/unit_test/smartwires_multiz_deconstruct/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/east = locate(start.x + 2, start.y, start.z)
+	var/obj/structure/cable/multiz/lower = allocate(/obj/structure/cable/multiz, start)
+	var/obj/structure/cable/multiz/upper = allocate(/obj/structure/cable/multiz, east)
+	// Stand-in for two stacked decks: the test room has one z-level
+	lower.set_up(upper)
+	TEST_ASSERT_EQUAL(upper.down, lower, "set_up() did not link the cables both ways")
+
+	lower.deconstruct()
+	TEST_ASSERT(QDELETED(lower), "The cut multi-z cable was not removed")
+	TEST_ASSERT(QDELETED(upper), "The linked multi-z cable was not removed")
+	var/dropped = 0
+	for (var/obj/item/stack/cable_coil/coil in start)
+		dropped += coil.amount
+		qdel(coil)
+	for (var/obj/item/stack/cable_coil/coil in east)
+		dropped += coil.amount
+		qdel(coil)
+	TEST_ASSERT_EQUAL(dropped, 2, "Cutting two multi-z cables did not drop exactly two pieces of cable")
+
 /// AQUILA - every powernet queued before a machines tick is recalculated in that tick
 /datum/unit_test/smartwires_dirty_queue
 

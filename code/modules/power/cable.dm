@@ -273,6 +273,12 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	if (multiz)
 		var/obj/structure/cable/up_cable = up
 		var/obj/structure/cable/down_cable = down
+		// AQ EDIT START - unlink first: two stacked multi-z cables point at each other and deconstructed each other forever
+		up_cable?.set_down(null)
+		down_cable?.set_up(null)
+		up = null
+		down = null
+		// AQ EDIT END
 		up_cable?.deconstruct()
 		down_cable?.deconstruct()
 	return ..()
