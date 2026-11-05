@@ -46,6 +46,12 @@
 		return TRUE
 	return ..()
 
+/// Jak w tg: drukarka bierze projekty prosto z sieci badań statku, bez konsoli B+R w pobliżu.
+/obj/machinery/modular_fabricator/component_printer/resync_research()
+	SSresearch.science_tech.copy_research_to(stored_research)
+	update_viewer_statics()
+	say("Pomyślnie zsynchronizowano z serwerem B+R.")
+
 /// Odzysk materiałów z komponentu, także z okna połączonego układu.
 /obj/machinery/modular_fabricator/component_printer/proc/recycle_component(mob/living/user, obj/item/circuit_component/component)
 	var/datum/component/material_container/materials = get_material_container()

@@ -158,6 +158,7 @@
 	data["show_unlock_bar"] = can_be_hacked_or_unlocked
 	data["allow_add_category"] = can_print_category
 	data["uses_queue"] = TRUE
+	data["can_sync"] = can_sync
 	data["designs"] = fabricator_ui_designs(printable_designs(), coefficient_override = CALLBACK(src, PROC_REF(design_cost_coefficient)))
 	return data
 

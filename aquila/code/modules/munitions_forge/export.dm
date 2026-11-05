@@ -17,7 +17,9 @@
 	if(!forged || !body_type)
 		return 0
 	var/obj/item/munition_part/body/body = body_type
-	var/amount = initial(body.material_amount) * forged.quality.material_mult
+	// Partia z jednego korpusu (np. 6 pocisków Gaussa) dzieli koszt surowców i premię
+	var/batch = initial(body.product_count)
+	var/amount = initial(body.material_amount) * forged.quality.material_mult / batch
 	if(forged.galvanized)
 		amount *= 0.5
 	var/raw_value = 0
@@ -26,7 +28,7 @@
 		raw_value += munition_sheet_value(mat) * cost[mat] / MINERAL_MATERIAL_AMOUNT
 	var/value = raw_value * (0.5 + 0.1 * forged.quality.level)
 	if(!forged.galvanized)
-		value += 10 * (forged.quality.level + 1)
+		value += 10 * (forged.quality.level + 1) / batch
 	return round(value)
 
 /// Cena arkusza materiału w eksporcie cargo (najniższa, bo np. plastytan też ma material_id tytanu)

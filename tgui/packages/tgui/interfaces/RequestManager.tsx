@@ -147,6 +147,12 @@ const RequestControls = (props) => {
       {request.req_type !== 'request_prayer' && (
         <Button onClick={() => act('rply', { id: request.id })}>RPLY</Button>
       )}
+      {request.req_type === 'request_crew_wake' && (
+        <Button onClick={() => act('wake', { id: request.id })}>WYBUDŹ</Button>
+      )}
+      {request.req_type === 'request_response_team' && (
+        <Button onClick={() => act('ert', { id: request.id })}>ERT</Button>
+      )}
       {request.req_type === 'request_nuke' && (
         <Button onClick={() => act('setcode', { id: request.id })}>
           SETCODE

@@ -120,17 +120,15 @@ const AntagSelection = (props: {
           let displayHours = round(hoursLeft, 2);
           let full_description = `${
             isBanned
-              ? `You are banned from ${antagonist.name}.${antagonist.description || hoursLeft > 0 ? '\n' : ''}`
+              ? `Masz bana na rolę ${antagonist.name}.${antagonist.description || hoursLeft > 0 ? '\n' : ''}`
               : ''
           }${
             hoursLeft > 0
-              ? `You require ${displayHours} more hour${
-                  displayHours !== 1 ? 's' : ''
-                } of living playtime in order to play this role.${antagonist.description ? '\n' : ''}`
+              ? `Potrzebujesz jeszcze ${displayHours} godz. gry żywą postacią, żeby zagrać w tej roli.${antagonist.description ? '\n' : ''}`
               : ''
           }${antagonist.description}`;
           if (!full_description.length) {
-            full_description = 'No description found.';
+            full_description = 'Brak opisu.';
           }
 
           return (
