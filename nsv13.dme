@@ -216,6 +216,8 @@
 #include "aquila\code\__DEFINES\prosthetics.dm"
 // AQ EDIT - lag switches z tg (#59717), indeksy i cecha używane w hookach core
 #include "aquila\code\__DEFINES\lag_switch.dm"
+// AQ EDIT - ruch po pikselach (prototyp), cecha i sygnał używane w hookach core (atoms_movable.dm, buckling.dm)
+#include "aquila\code\__DEFINES\pixel_movement.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_string_lists.dm"
