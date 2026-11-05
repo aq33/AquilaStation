@@ -819,6 +819,7 @@
 #include "code\modules\overmap\radar_emission.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
+#include "code\modules\overmap\ai_targeting.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"

@@ -1,5 +1,6 @@
-/// AQUILA - AI morale (aquila/code/modules/overmap/ai_morale.dm): heavy damage in a short time scares a ship into the retreat zone,
-/// temperament scales the fear, a scared ship keeps its distance, a fleeing one beats every other goal, and a calm one rallies
+/// AQUILA - AI morale (aquila/code/modules/overmap/ai_morale.dm, ai_targeting.dm): heavy damage in a short time scares a ship into the retreat zone,
+/// temperament scales the fear, a scared ship keeps its distance, a fleeing one beats every other goal, a calm one rallies,
+/// and a commander switches to a crippled ship or to whoever is shooting at it
 /datum/unit_test/aquila_ai_morale
 	var/obj/structure/overmap/ship
 	var/obj/structure/overmap/small_craft/enemy
@@ -21,7 +22,7 @@
 	enemy.faction = "nanotrasen"
 	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
 	enemy.forceMove(locate(30, 10, run_loc_floor_bottom_left.z))
-	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation()
+	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget()
 	GLOB.ai_morale_enabled = was_enabled
 	if(fail)
 		return Fail(fail)
@@ -128,3 +129,40 @@
 	if(ship.ai_hold_fire_until > world.time)
 		return "A reckless commander hesitated before opening fire"
 	ship.last_target = null
+
+/datum/unit_test/aquila_ai_morale/proc/check_retarget()
+	reset()
+	var/obj/structure/overmap/small_craft/second = allocate(/obj/structure/overmap/small_craft/combat/light)
+	second.faction = "nanotrasen"
+	// The gunboat does not take forceMove to the corner of the test level, so the targets are placed around it
+	ship.velocity._set(0, 0)
+	enemy.forceMove(locate(ship.x + 10, ship.y, ship.z)) // 10 tiles, intact
+	second.forceMove(locate(ship.x, ship.y + 14, ship.z)) // 14 tiles, crippled
+	enemy.obj_integrity = enemy.max_integrity
+	second.obj_integrity = second.max_integrity * 0.3
+	enemy.update_sensor_signature()
+	second.update_sensor_signature()
+	var/list/candidates = list(enemy, second)
+	LAZYNULL(ship.ai_attackers)
+	ship.last_target = enemy
+	var/obj/structure/overmap/picked = ship.choose_ai_tactical_target(candidates)
+	if(picked != second)
+		return "The commander did not switch to a crippled ship nearby (picked [picked || "nothing"])"
+	// Whoever is shooting at us comes first
+	LAZYSET(ship.ai_attackers, enemy, world.time)
+	ship.last_target = second
+	picked = ship.choose_ai_tactical_target(candidates)
+	if(picked != enemy)
+		return "The commander did not turn on the ship shooting at it (picked [picked || "nothing"])"
+	// Already on the best target: no switch
+	ship.last_target = enemy
+	picked = ship.choose_ai_tactical_target(candidates)
+	if(picked)
+		return "The commander switched away from its best target to [picked]"
+	LAZYNULL(ship.ai_attackers)
+	ship.last_target = null
+	if(ship.get_ai_retarget_chance() != 100)
+		return "A normal commander does not reconsider its target every check"
+	reset("brawurowy")
+	if(ship.get_ai_retarget_chance() >= 100)
+		return "A reckless commander has no target fixation"
