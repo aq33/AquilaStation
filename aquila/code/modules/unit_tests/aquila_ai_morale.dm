@@ -22,7 +22,7 @@
 	enemy.faction = "nanotrasen"
 	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
 	enemy.forceMove(locate(30, 10, run_loc_floor_bottom_left.z))
-	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget()
+	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget() || check_flanking()
 	GLOB.ai_morale_enabled = was_enabled
 	if(fail)
 		return Fail(fail)
@@ -166,3 +166,29 @@
 	reset("brawurowy")
 	if(ship.get_ai_retarget_chance() >= 100)
 		return "A reckless commander has no target fixation"
+
+/datum/unit_test/aquila_ai_morale/proc/check_flanking()
+	reset()
+	var/obj/structure/overmap/wing = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	wing.ai_temperament = "zwykły"
+	enemy.forceMove(locate(ship.x + 30, ship.y, ship.z))
+	enemy.angle = 90 // Heading east
+	var/list/ships = list(ship, wing)
+	ship.last_target = enemy
+	wing.last_target = enemy
+	if(ship.get_ai_flank_point(enemy, ships))
+		return "The first attacker (the anchor) was sent to a flank slot instead of attacking head on"
+	var/turf/slot = wing.get_ai_flank_point(enemy, ships)
+	if(!slot)
+		return "The second attacker did not get a flank slot"
+	// Slot 90 degrees right of the target's heading east: 18 tiles south of it
+	if(abs(slot.x - enemy.x) > 1 || abs(slot.y - (enemy.y - 18)) > 1)
+		return "The flank slot is not on the target's side ([slot.x], [slot.y], target at [enemy.x], [enemy.y] heading 90)"
+	wing.ai_temperament = "brawurowy"
+	if(wing.get_ai_flank_point(enemy, ships))
+		return "A reckless commander took a flank slot instead of charging"
+	wing.ai_temperament = "zwykły"
+	ship.last_target = null
+	if(wing.get_ai_flank_point(enemy, ships))
+		return "A lone attacker was sent to a flank slot"
+	wing.last_target = null
