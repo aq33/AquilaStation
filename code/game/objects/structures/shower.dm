@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 		. = TRUE
 	else if(H.w_uniform && !(H.w_uniform.clothing_flags & SHOWEROKAY))
 		. = TRUE
-	else if(H.wear_mask && !(H.wear_mask.clothing_flags & SHOWEROKAY))
+	else if(isclothing(H.wear_mask) && !(H.wear_mask.clothing_flags & SHOWEROKAY)) // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		. = TRUE
 	else if(H.head && !(H.head.clothing_flags & SHOWEROKAY))
 		. = TRUE

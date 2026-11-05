@@ -63,7 +63,8 @@ GLOBAL_LIST_INIT(valid_keys, list(
 	var/list/kbs = list()
 	for (var/kb_name in prefs.key_bindings[full_key])
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
-		kbs += kb
+		if(kb) // AQ EDIT - nazwa z prefów, której już nie ma
+			kbs += kb
 	// WASD-type movement keys (not the native arrow keys) are handled through the keybind system here.
 	// They have "any_modifier" set, because they need to be activated even if a modifier key is pressed,
 	// since these modifier keys toggle effects like "change facing" that require the movement keys to function.
@@ -71,7 +72,7 @@ GLOBAL_LIST_INIT(valid_keys, list(
 	if (full_key != _key)
 		for (var/kb_name in prefs.key_bindings[_key])
 			var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
-			if (kb.any_modifier)
+			if (kb?.any_modifier) // AQ EDIT - nazwa z prefów, której już nie ma
 				kbs += kb
 	kbs = sortList(kbs, GLOBAL_PROC_REF(cmp_keybinding_dsc))
 	for(var/datum/keybinding/kb in kbs)
@@ -103,7 +104,8 @@ GLOBAL_LIST_INIT(valid_keys, list(
 	var/list/kbs = list()
 	for (var/kb_name in prefs.key_bindings[_key])
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
-		kbs += kb
+		if(kb) // AQ EDIT - nazwa z prefów, której już nie ma
+			kbs += kb
 	kbs = sortList(kbs, GLOBAL_PROC_REF(cmp_keybinding_dsc))
 	for(var/datum/keybinding/kb in kbs)
 		if(kb.can_use(src) && kb.up(src))

@@ -27,6 +27,16 @@
 	TEST_ASSERT(musician.equip_to_slot_if_possible(harmonica, ITEM_SLOT_MASK), "Harmonica did not go into the mask slot")
 	TEST_ASSERT(!musician.has_smoke_protection(), "Harmonica gives smoke protection")
 	musician.dna.species.handle_hair(musician)
+	TEST_ASSERT(!musician.can_breathe_internals(), "Harmonica connects internals")
+	var/obj/item/tank/internals/oxygen/tank = allocate(/obj/item/tank/internals/oxygen)
+	tank.toggle_internals(musician)
+	TEST_ASSERT(musician.internal != tank, "Internals opened through a harmonica")
+	var/obj/machinery/shower/shower = allocate(/obj/machinery/shower)
+	shower.check_clothes(musician)
+	var/mob/living/carbon/monkey/monkey_musician = allocate(/mob/living/carbon/monkey)
+	var/obj/item/instrument/harmonica/monkey_harmonica = allocate(/obj/item/instrument/harmonica)
+	TEST_ASSERT(monkey_musician.equip_to_slot_if_possible(monkey_harmonica, ITEM_SLOT_MASK), "Harmonica did not go into the monkey mask slot")
+	TEST_ASSERT(!monkey_musician.has_smoke_protection(), "Harmonica gives a monkey smoke protection")
 
 	// Naklejka serii: get_stats() zwraca listę, examine jej nie psuje
 	var/obj/item/sticker/series_1/smile/sticker = allocate(/obj/item/sticker/series_1/smile)
