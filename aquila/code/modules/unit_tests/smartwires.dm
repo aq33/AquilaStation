@@ -84,6 +84,25 @@
 	TEST_ASSERT_EQUAL(net.avail, 5000, "The larger part of the grid lost its available power")
 	TEST_ASSERT_EQUAL(net.viewavail, 5000, "The power monitor reading of the grid was reset")
 
+/// AQUILA - joining two powernets keeps the power of the absorbed one for the current tick
+/datum/unit_test/smartwires_merge_keeps_power
+
+/datum/unit_test/smartwires_merge_keeps_power/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/structure/cable/left = allocate(/obj/structure/cable, start)
+	var/obj/structure/cable/right = allocate(/obj/structure/cable, locate(start.x + 2, start.y, start.z))
+	TEST_ASSERT(left.powernet != right.powernet, "Two cables with a gap share a powernet")
+	left.powernet.avail = 1000
+	left.powernet.newavail = 100
+	right.powernet.avail = 3000
+	right.powernet.newavail = 300
+
+	allocate(/obj/structure/cable, locate(start.x + 1, start.y, start.z))
+	var/datum/powernet/net = left.powernet
+	TEST_ASSERT_EQUAL(net, right.powernet, "The cable in the gap did not join the powernets")
+	TEST_ASSERT_EQUAL(net.avail, 4000, "The joined powernet lost available power")
+	TEST_ASSERT_EQUAL(net.newavail, 400, "The joined powernet lost power produced this tick")
+
 /// AQUILA - cutting one of two linked multi-z cables removes both instead of recursing forever
 /datum/unit_test/smartwires_multiz_deconstruct
 
