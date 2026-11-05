@@ -6,7 +6,7 @@ Gracz trzyma klawisz w grze i mówi, a jego postać wypowiada rozpoznany tekst (
 
 1. W grze: zakładka OOC → **Czat głosowy**. Gra otwiera w zwykłej przeglądarce gracza stronę z tokenem.
 2. Strona prosi o mikrofon (raz, przeglądarka to zapamiętuje). Kartę zostawia się otwartą.
-3. Klawisz **N** (mowa) albo **U** (radio): wciśnięcie mówi stronie „nagrywaj”, puszczenie „stop”.
+3. Klawisz **N** (mowa), **U** (radio, kanał ogólny jak `;`) albo **J** (kanał działu jak `:h`): wciśnięcie mówi stronie „nagrywaj”, puszczenie „stop”.
 4. Strona wysyła nagranie (WAV 16 kHz) do `voice_server.py`, ten do Whispera, a tekst wraca do gry i postać go mówi.
 
 Mikrofon nie działa w oknach samego BYOND: Dream Seeker 516 odrzuca prośbę o mikrofon bez pytania
@@ -42,6 +42,7 @@ Scribe v2 ze słowami z gry 3% / 0,9 s. Nagrania głosu idą wtedy do zewnętrzn
 ## Zachowanie
 
 - Tekst przechodzi przez zwykłe `say` (języki postaci, filtry, logi).
+- Przy wyłączonym czacie (`VOICE_CHAT_ENABLED` zakomentowane) klawisze N/U/J nic nie robią, a komendy OOC nie ma.
 - Wciśnięcie krótsze niż 0,3 s jest anulowane, nagranie najdłużej `VOICE_CHAT_MAX_SECONDS` (domyślnie 15 s).
 - Cisza nie jest wysyłana do Whispera, a typowe zmyślenia Whispera na ciszy („Napisy stworzone przez społeczność Amara.org” itp.) są odrzucane.
 - Tokeny graczy są w `data/voice_chat_tokens.json`, więc otwarta karta działa też w kolejnej rundzie.

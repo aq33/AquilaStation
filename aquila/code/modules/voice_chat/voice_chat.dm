@@ -5,9 +5,11 @@
 
 #define COMSIG_KB_CLIENT_VOICE_SAY_DOWN "keybinding_client_voice_say_down"
 #define COMSIG_KB_CLIENT_VOICE_RADIO_DOWN "keybinding_client_voice_radio_down"
+#define COMSIG_KB_CLIENT_VOICE_DEPARTMENT_DOWN "keybinding_client_voice_department_down"
 
 #define VOICE_CHANNEL_SAY "say"
 #define VOICE_CHANNEL_RADIO "radio"
+#define VOICE_CHANNEL_DEPARTMENT "department"
 /// Plik z tokenami graczy, żeby otwarta strona działała też w następnej rundzie.
 #define VOICE_CHAT_TOKENS_FILE "data/voice_chat_tokens.json"
 /// Jak długo czekamy na tekst po puszczeniu klawisza.
@@ -87,6 +89,9 @@ SUBSYSTEM_DEF(voice_chat)
 		can_fire = FALSE
 		return ..()
 	load_tokens()
+	// Klienci podłączeni przed startem podsystemu nie dostali komendy w /client/New()
+	for(var/client/player as anything in GLOB.clients)
+		player.add_verb(/client/proc/voice_chat)
 	return ..()
 
 /datum/controller/subsystem/voice_chat/fire(resumed)
@@ -156,7 +161,7 @@ SUBSYSTEM_DEF(voice_chat)
 	if(!player)
 		return
 	if(connected)
-		to_chat(player, span_notice("Czat głosowy połączony. Trzymaj [key_for(player, "voice_say")], żeby mówić, albo [key_for(player, "voice_radio")], żeby mówić przez radio."))
+		to_chat(player, span_notice("Czat głosowy połączony. Trzymaj [key_for(player, "voice_say")], żeby mówić, [key_for(player, "voice_radio")], żeby mówić przez radio, albo [key_for(player, "voice_department")], żeby mówić na kanale działu."))
 		return
 	if(session.recording_seq)
 		cancel_recording(player, session)
@@ -179,10 +184,13 @@ SUBSYSTEM_DEF(voice_chat)
 		return
 	player.mob.say_verb(speech_text(result["channel"], text))
 
-/// Tekst do say(): radio dostaje zwykły przedrostek kanału ogólnego.
+/// Tekst do say() z przedrostkiem kanału: radio jak „;”, kanał działu jak „:h”.
 /datum/controller/subsystem/voice_chat/proc/speech_text(channel, text)
-	if(channel == VOICE_CHANNEL_RADIO)
-		return ";[text]"
+	switch(channel)
+		if(VOICE_CHANNEL_RADIO)
+			return "[RADIO_KEY_COMMON][text]"
+		if(VOICE_CHANNEL_DEPARTMENT)
+			return "[GLOB.department_radio_prefixes[1]][MODE_KEY_DEPARTMENT] [text]"
 	return text
 
 /datum/controller/subsystem/voice_chat/proc/check_timeouts()
@@ -275,54 +283,67 @@ SUBSYSTEM_DEF(voice_chat)
 		saved[ckey] = session.token
 	rustg_file_write(json_encode(saved), VOICE_CHAT_TOKENS_FILE)
 
-/client/verb/voice_chat()
+/// Komenda OOC. Gracz dostaje ją tylko wtedy, gdy czat głosowy jest włączony w configu.
+/client/proc/voice_chat()
 	set name = "Czat głosowy"
 	set category = "OOC"
 	set desc = "Otwiera w przeglądarce stronę, przez którą mówisz do mikrofonu."
 	SSvoice_chat.open_page(src)
 
-/datum/keybinding/client/voice_say
+/client/New(TopicData)
+	. = ..()
+	if(!QDELETED(src) && SSvoice_chat?.enabled)
+		add_verb(/client/proc/voice_chat)
+
+/// Klawisze mówienia głosem. Przy wyłączonym czacie nie działają wcale (wciśnięcie idzie do innych bindów).
+/datum/keybinding/client/voice
+	/// Kanał przekazywany do SSvoice_chat.start_recording()
+	var/voice_channel
+
+/datum/keybinding/client/voice/can_use(client/user)
+	return SSvoice_chat.enabled
+
+/datum/keybinding/client/voice/down(client/user)
+	. = ..()
+	if(.)
+		return
+	SSvoice_chat.start_recording(user, voice_channel)
+	return TRUE
+
+/datum/keybinding/client/voice/up(client/user)
+	SSvoice_chat.stop_recording(user)
+	return TRUE
+
+/datum/keybinding/client/voice/say
 	key = "N"
 	name = "voice_say"
 	full_name = "Mów głosem"
 	description = "Trzymaj i mów do mikrofonu. Wymaga otwartej strony czatu głosowego (OOC → Czat głosowy)."
 	keybind_signal = COMSIG_KB_CLIENT_VOICE_SAY_DOWN
+	voice_channel = VOICE_CHANNEL_SAY
 
-/datum/keybinding/client/voice_say/down(client/user)
-	. = ..()
-	if(.)
-		return
-	SSvoice_chat.start_recording(user, VOICE_CHANNEL_SAY)
-	return TRUE
-
-/datum/keybinding/client/voice_say/up(client/user)
-	SSvoice_chat.stop_recording(user)
-	return TRUE
-
-/datum/keybinding/client/voice_radio
+/datum/keybinding/client/voice/radio
 	key = "U"
 	name = "voice_radio"
 	full_name = "Mów głosem przez radio"
-	description = "Trzymaj i mów do mikrofonu, postać powie to przez radio."
+	description = "Trzymaj i mów do mikrofonu, postać powie to przez słuchawki (kanał ogólny, jak ;)."
 	keybind_signal = COMSIG_KB_CLIENT_VOICE_RADIO_DOWN
+	voice_channel = VOICE_CHANNEL_RADIO
 
-/datum/keybinding/client/voice_radio/down(client/user)
-	. = ..()
-	if(.)
-		return
-	SSvoice_chat.start_recording(user, VOICE_CHANNEL_RADIO)
-	return TRUE
-
-/datum/keybinding/client/voice_radio/up(client/user)
-	SSvoice_chat.stop_recording(user)
-	return TRUE
+/datum/keybinding/client/voice/department
+	key = "J"
+	name = "voice_department"
+	full_name = "Mów głosem na kanale działu"
+	description = "Trzymaj i mów do mikrofonu, postać powie to na kanale swojego działu (jak :h)."
+	keybind_signal = COMSIG_KB_CLIENT_VOICE_DEPARTMENT_DOWN
+	voice_channel = VOICE_CHANNEL_DEPARTMENT
 
 // Zapisane keybindy nie dostają nowych skrótów same (jak sprint). Dopisujemy klawisze głosu, jeśli są wolne.
 /datum/preferences/load_from_database()
 	. = ..()
 	if(!islist(key_bindings))
 		return
-	for(var/list/default_bind in list(list("voice_say", "N"), list("voice_radio", "U")))
+	for(var/list/default_bind in list(list("voice_say", "N"), list("voice_radio", "U"), list("voice_department", "J")))
 		var/keybind_name = default_bind[1]
 		var/bound = FALSE
 		for(var/bound_key in key_bindings)
@@ -335,6 +356,7 @@ SUBSYSTEM_DEF(voice_chat)
 
 #undef VOICE_CHANNEL_SAY
 #undef VOICE_CHANNEL_RADIO
+#undef VOICE_CHANNEL_DEPARTMENT
 #undef VOICE_CHAT_TOKENS_FILE
 #undef VOICE_CHAT_RESULT_TIMEOUT
 #undef VOICE_CHAT_IDLE_SYNC

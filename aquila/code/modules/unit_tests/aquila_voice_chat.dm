@@ -65,6 +65,15 @@
 
 	TEST_ASSERT_EQUAL(SSvoice_chat.speech_text("radio", "Ochrona na mostek"), ";Ochrona na mostek", "Mowa przez radio bez przedrostka kanału")
 	TEST_ASSERT_EQUAL(SSvoice_chat.speech_text("say", "Ochrona na mostek"), "Ochrona na mostek", "Zwykła mowa z przedrostkiem")
+	TEST_ASSERT_EQUAL(SSvoice_chat.speech_text("department", "Ochrona na mostek"), ":h Ochrona na mostek", "Kanał działu bez przedrostka :h")
+
+	// Przy wyłączonym czacie klawisze głosu nie mogą przechwytywać wciśnięć (np. J/N/U zajęte przez inne bindy)
+	var/datum/keybinding/voice_bind = GLOB.keybindings_by_name["voice_department"]
+	TEST_ASSERT(voice_bind, "Brak bindu voice_department")
+	TEST_ASSERT(voice_bind.can_use(player), "Bind głosu nie działa przy włączonym czacie")
+	SSvoice_chat.enabled = FALSE
+	TEST_ASSERT(!voice_bind.can_use(player), "Bind głosu działa przy wyłączonym czacie")
+	SSvoice_chat.enabled = TRUE
 
 	// Adres z configu wklejony z ukośnikiem na końcu nie może dać „//?t=” w linku do strony
 	TEST_ASSERT_EQUAL(trim_voice_chat_url("https://aquila-glos.duckdns.org/ "), "https://aquila-glos.duckdns.org", "Ukośnik na końcu adresu nie został obcięty")

@@ -68,7 +68,7 @@ function setStatus(text, cls, hint) {
 function refreshStatus() {
 	if (!micReady) return;
 	if (recording) setStatus("Nagrywam…", "rec", "Puść klawisz w grze, kiedy skończysz mówić.");
-	else if (linked) setStatus("Gotowe. Możesz wrócić do gry.", "ok", "Trzymaj klawisz mówienia (domyślnie N, radio: U).");
+	else if (linked) setStatus("Gotowe. Możesz wrócić do gry.", "ok", "Trzymaj klawisz mówienia (domyślnie N, radio: U, kanał działu: J).");
 	else setStatus("Brak połączenia z grą", "bad", "Kliknij „Czat głosowy” w grze, jeśli to nie wróci samo.");
 }
 

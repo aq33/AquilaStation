@@ -27,7 +27,7 @@ from urllib.parse import parse_qs, urlparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOKEN_RE = re.compile(r"^[0-9a-f]{32}$")
-CHANNELS = ("say", "radio")
+CHANNELS = ("say", "radio", "department")
 MAX_AUDIO_BYTES = 2 * 1024 * 1024
 MIN_SECONDS = 0.3
 MAX_SECONDS = 20.0
