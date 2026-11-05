@@ -24,6 +24,10 @@ import list_missing as lm  # noqa: E402
 
 INPUT = "data/i18n_ui_coverage_input.json"
 OUTPUT = "data/i18n_ui_coverage.json"
+# teksty owinięte przy budowie (tgui/i18n-jsx.cjs dump) i to, co z nich zostało po polsku
+JSX_DUMP = "data/i18n_jsx_dump.json"
+JSX_INPUT = "data/i18n_jsx_coverage_input.json"
+JSX_OUTPUT = "data/i18n_jsx_coverage.json"
 EXPR = re.compile(r"\$\{((?:[^{}]|\{[^{}]*\})*)\}")
 TERNARY_JS = re.compile(r"""^[^"'?]+\?\s*(["'])((?:\\.|(?!\1).)*)\1\s*:\s*(["'])((?:\\.|(?!\3).)*)\3$""")
 
@@ -70,22 +74,48 @@ def collect():
     return texts
 
 
+def jsx_items():
+    """Zdania z loadera z przykładowymi wartościami wstawek (pierwsza gałąź warunku z napisami)."""
+    items = []
+    for item in json.load(open(JSX_DUMP, encoding="utf-8")):
+        if not ep.is_polish("".join(item["texts"])):
+            continue
+        slots = []
+        for src in item["slots"]:
+            ternary = TERNARY_JS.match(src.strip())
+            string = jsx_runs.string_value(src)
+            slots.append(ternary.group(2) if ternary else string if string is not None else "7")
+        items.append({"file": item["file"], "kind": item["kind"], "texts": item["texts"], "slots": slots})
+    return items
+
+
 def main():
+    yarn = next(f for f in os.listdir("tgui/.yarn/releases") if f.endswith(".cjs"))
+    node = os.path.abspath("tools/bootstrap/node.bat" if os.name == "nt" else "tools/bootstrap/node")
+    subprocess.run([node, f".yarn/releases/{yarn}", "node", "i18n-jsx.cjs", "dump", os.path.abspath(JSX_DUMP)],
+                   cwd="tgui", shell=os.name == "nt", check=True)
+    os.makedirs("data", exist_ok=True)
+    with open(JSX_INPUT, "w", encoding="utf-8") as f:
+        json.dump(jsx_items(), f, ensure_ascii=False)
     texts = collect()
     os.makedirs("data", exist_ok=True)
     with open(INPUT, "w", encoding="utf-8") as f:
         # key: literał w kodzie (klucz słownika, strings/i18n/en_translated.json), text: co widzi okno
         json.dump([{"text": t, "file": p, "key": k} for t, (p, k) in sorted(texts.items())], f, ensure_ascii=False)
     print(f"tekstów do sprawdzenia: {len(texts)} -> {INPUT}")
-    node = os.path.abspath("tools/bootstrap/node.bat" if os.name == "nt" else "tools/bootstrap/node")
-    yarn = next(f for f in os.listdir("tgui/.yarn/releases") if f.endswith(".cjs"))
-    env = dict(os.environ, CI="true", I18N_COVERAGE=os.path.abspath(INPUT), I18N_COVERAGE_OUT=os.path.abspath(OUTPUT))
+    env = dict(os.environ, CI="true", I18N_COVERAGE=os.path.abspath(INPUT), I18N_COVERAGE_OUT=os.path.abspath(OUTPUT),
+               I18N_JSX=os.path.abspath(JSX_INPUT), I18N_JSX_OUT=os.path.abspath(JSX_OUTPUT))
     subprocess.run([node, f".yarn/releases/{yarn}", "jest", "packages/tgui/i18n.coverage"], cwd="tgui", env=env,
                    shell=os.name == "nt")
     if os.path.exists(OUTPUT):
         left = json.load(open(OUTPUT, encoding="utf-8"))
         sys.stdout.reconfigure(encoding="utf-8")
         print(f"po polsku zostało: {len(left)} z {len(texts)}")
+    if os.path.exists(JSX_OUTPUT):
+        jsx_total = len(json.load(open(JSX_INPUT, encoding="utf-8")))
+        jsx_left = json.load(open(JSX_OUTPUT, encoding="utf-8"))
+        print(f"przy budowie (t/tt/ts) po polsku zostało: {len(jsx_left)} z {jsx_total}"
+              " (te tłumaczy w oknie zapasowe tłumaczenie DOM)")
 
 
 if __name__ == "__main__":

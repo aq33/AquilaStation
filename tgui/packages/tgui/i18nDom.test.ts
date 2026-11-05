@@ -45,6 +45,11 @@ const createStore = () => {
       listener = fn;
     },
     getState: () => ({ backend: { config: { language } } }),
+    // akcja po wczytaniu słownika: okno renderuje się wtedy z tekstami z t()/tt()
+    dispatched: [] as string[],
+    dispatch(action: { type: string }) {
+      this.dispatched.push(action.type);
+    },
     setLanguage: (value: string) => {
       language = value;
       listener();
@@ -71,6 +76,7 @@ describe('setupDomTranslation', () => {
     await flush();
     expect(document.getElementById('a')!.textContent).toBe('toolbox');
     expect(document.getElementById('d')!.textContent).toBe('Back');
+    expect(store.dispatched).toContain('i18n/ready');
     expect(document.getElementById('b')!.getAttribute('placeholder')).toBe(
       'Search',
     );

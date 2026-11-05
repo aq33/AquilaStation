@@ -29,6 +29,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
 import list_missing as lm  # noqa: E402
+import jsx_ast  # noqa: E402
 import jsx_runs  # noqa: E402
 
 # Domyślnie cały kod DM. --slice zawęża szablony do wybranych ścieżek (stałe teksty
@@ -470,6 +471,14 @@ def main():
                     wanted.add(lit)
                 elif "[" not in lit:
                     names.add(lit)  # stałe spoza wycinka: nazwy, czasowniki ataku itp.
+
+    # teksty okien z drzewa składni (te same, które loader owija w t()/tt())
+    for item in jsx_ast.dump() or []:
+        lit = item["literal"]
+        window_literals.add(lit)
+        if lit in pairs:
+            js_literals.add(lit)
+            (wanted if "${" in lit else names).add(lit)
 
     manual = load_json(args.manual)
 

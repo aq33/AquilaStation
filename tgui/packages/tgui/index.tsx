@@ -38,10 +38,11 @@ function setupApp() {
   setupHotKeys();
   captureExternalLinks();
 
-  store.subscribe(() => render(<App />));
-  // AQUILA: okna po angielsku dla gracza z językiem EN (i18nDom.ts)
+  // AQUILA: okna po angielsku dla gracza z językiem EN (i18nDom.ts, i18n-jsx.cjs). Przed
+  // renderem, żeby aktualizacja z nowym językiem renderowała się już w nim
   selectWindowDictionary();
   setupDomTranslation(store);
+  store.subscribe(() => render(<App />));
 
   // Dispatch incoming messages as store actions
   Byond.subscribe((type, payload) => store.dispatch({ type, payload }));

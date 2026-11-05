@@ -8,6 +8,8 @@
  * zmiana języka działa też wstecz), okna tgui w i18nDom.ts.
  */
 
+import { createElement, Fragment, type ReactNode } from 'react';
+
 import { resolveAsset } from './assets';
 
 /**
@@ -53,6 +55,8 @@ let language = 'pl';
 let dictionary: Dictionary | null = null;
 let loading: Promise<boolean> | null = null;
 let byAnchor = new Map<string, number[]>();
+/** Szablony po stałych tekstach (zdania okien owinięte przy budowie, tgui/i18n-jsx.cjs) */
+let byTexts = new Map<string, number>();
 const regexCache = new Map<number, RegExp | null>();
 
 export const getLanguage = () => language;
@@ -97,8 +101,14 @@ export const setDictionary = (data: Dictionary | null) => {
   }
   dictionary = data;
   byAnchor = new Map();
+  byTexts = new Map();
   regexCache.clear();
-  data?.templates.forEach(([anchors], index) => {
+  textCache.clear();
+  data?.templates.forEach(([anchors, texts], index) => {
+    const key = texts.join(TEXTS_SEPARATOR);
+    if (!byTexts.has(key)) {
+      byTexts.set(key, index);
+    }
     for (const anchor of Array.isArray(anchors) ? anchors : [anchors]) {
       const list = byAnchor.get(anchor);
       if (list) {
@@ -661,4 +671,135 @@ export const translateUiText = (text: string): string => {
     }
   }
   return translateHtml(text);
+};
+
+// ---------------------------------------------------------------------------
+// Teksty okien owinięte przy budowie (tgui/i18n-jsx.cjs). Dla gracza z PL wynik
+// jest taki sam jak bez owinięcia; z EN tłumaczenie jest gotowe przed renderem.
+
+const TEXTS_SEPARATOR = '\u0001';
+/** Ile tłumaczeń tekstów okien pamiętamy (okno renderuje się przy każdej aktualizacji) */
+const TEXT_CACHE_SIZE = 5000;
+const textCache = new Map<string, string>();
+/** Angielskie teksty wyrenderowane przez t/tt/ts: tłumaczenie DOM ich już nie rusza */
+const produced = new Set<string>();
+const PRODUCED_LIMIT = 20000;
+
+const markProduced = (text: string) => {
+  const trimmed = text.trim();
+  if (trimmed && produced.size < PRODUCED_LIMIT) {
+    produced.add(trimmed);
+  }
+};
+
+/** Czy tekst węzła wyrenderował już tłumacz przy budowie (i18nDom.ts go pomija) */
+export const isProducedText = (text: string) => produced.has(text.trim());
+
+/** Stały tekst okna ({__i18nT("...")} z loadera) */
+export const t = (text: string): string => {
+  if (!isTranslating() || typeof text !== 'string') {
+    return text;
+  }
+  let out = textCache.get(text);
+  if (out === undefined) {
+    out = translateUiText(text);
+    if (textCache.size >= TEXT_CACHE_SIZE) {
+      textCache.clear();
+    }
+    textCache.set(text, out);
+  }
+  if (out !== text) {
+    markProduced(out);
+  }
+  return out;
+};
+
+/** Wartość wstawki: napis przez słownik, reszta (liczby, elementy) bez zmian */
+const slotValue = (value: unknown): unknown =>
+  typeof value === 'string' ? t(value) : value;
+
+/**
+ * Zdanie z wstawkami po angielsku albo null, gdy słownik go nie zna. Spacje na
+ * brzegach zdania zostają z kodu (słownik ma klucze bez nich, jak jsx_runs.py).
+ */
+const slotTemplate = (texts: string[], slots: unknown[]): unknown[] | null => {
+  if (!isTranslating() || !texts.length) {
+    return null;
+  }
+  const last = texts.length - 1;
+  const lead = /^\s*/.exec(texts[0])![0];
+  const trail = last ? /\s*$/.exec(texts[last])![0] : '';
+  const keyTexts = [...texts];
+  keyTexts[0] = keyTexts[0].trimStart();
+  keyTexts[last] = keyTexts[last].trimEnd();
+  const index = byTexts.get(keyTexts.join(TEXTS_SEPARATOR));
+  if (index === undefined) {
+    return null;
+  }
+  const [, , parts] = dictionary!.templates[index];
+  const alts = alternativesOf(index);
+  const out: unknown[] = [];
+  for (const part of parts) {
+    if (typeof part === 'string') {
+      out.push(part);
+      markProduced(part);
+    } else if (part[0] === '?') {
+      const [, i, options] = part;
+      const branch = (alts[i] || []).findIndex((option) =>
+        sameText(option, String(slots[i] ?? '')),
+      );
+      const chosen = options[branch === 1 ? 1 : 0];
+      out.push(chosen);
+      markProduced(chosen);
+    } else {
+      const value = slotValue(slots[part[0]]);
+      out.push(
+        part.length > 1 && typeof value === 'string'
+          ? withArticle(value, part[1] as string)
+          : value,
+      );
+    }
+  }
+  if (lead) {
+    out.unshift(lead);
+  }
+  if (trail) {
+    out.push(trail);
+  }
+  return out;
+};
+
+/** Teksty i wstawki na przemian, jak w kodzie (puste teksty React i tak pomija) */
+const interleave = (texts: string[], slots: unknown[]): unknown[] => {
+  const out: unknown[] = [];
+  texts.forEach((text, i) => {
+    if (text) {
+      out.push(text);
+    }
+    if (i < slots.length) {
+      out.push(slots[i]);
+    }
+  });
+  return out;
+};
+
+/** Zdanie JSX z wstawkami ({__i18nTT([...], [...])} z loadera) */
+export const tt = (texts: string[], slots: unknown[]): ReactNode =>
+  createElement(
+    Fragment,
+    null,
+    ...((slotTemplate(texts, slots) ??
+      interleave(texts, slots)) as ReactNode[]),
+  );
+
+/** Literał `...${x}...` z okna jako napis ({__i18nTS([...], [...])} z loadera) */
+export const ts = (texts: string[], slots: unknown[]): string => {
+  const parts = slotTemplate(texts, slots);
+  if (parts) {
+    return parts.map((part) => String(part)).join('');
+  }
+  return texts.reduce(
+    (out, text, i) => out + text + (i < slots.length ? String(slots[i]) : ''),
+    '',
+  );
 };

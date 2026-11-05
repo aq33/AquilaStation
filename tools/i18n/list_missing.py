@@ -21,6 +21,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
+import jsx_ast  # noqa: E402
 import jsx_runs  # noqa: E402
 
 SOURCES = [
@@ -111,10 +112,15 @@ def missing_literals(known):
 
 
 def jsx_missing(path, content, known):
-    """Polskie zdania okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py) bez angielskiego:
-    (literał, numer linii początku zdania)."""
+    """Polskie teksty okien bez angielskiego: (literał, numer linii). Z drzewa składni (te same,
+    które owija loader tgui/i18n-jsx.cjs); bez Node ze skanu tools/i18n/jsx_runs.py."""
     if not path.endswith(jsx_runs.JSX_EXT):
         return []
+    ast = jsx_ast.dump()
+    if ast is not None:
+        return [(item["literal"], item["line"]) for item in ast
+                if item["file"] == path and item["literal"] not in known
+                and jsx_runs.is_polish_run(item["literal"])]
     out = []
     for lit, _ in jsx_runs.runs(content):
         if lit not in known and jsx_runs.is_polish_run(lit):
