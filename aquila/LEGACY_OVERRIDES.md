@@ -41,6 +41,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `if(!QDELETED(L))` | `code/controllers/subsystem/mobs.dm` (`fire()`) | `currentrun` survives between ticks, so a mob deleted meanwhile still got `Life()` (e.g. an unpowered AI calling `addtimer` on itself). Test: `aquila_logi_rund_26_10` |
 | `get_path_to(...) || list()` | `code/modules/mob/living/simple_animal/bot/medbot.dm` (`handle_automated_action()`) | A medibot without a turf (world shutdown after tests) got a null path and runtimed on `path.len`. |
 | `strip_auto_articles()` on `html` and `text` | `code/modules/tgchat/to_chat.dm` (`to_chat()`, `to_chat_immediate()`) | BYOND inserts an English "the"/"The" before every embedded object with a lowercase name, which broke every Polish message ("To the teczka"). Test: `aquila_auto_articles` |
 | `INVOKE_ASYNC(...)` without `return` in the `COMSIG_PARENT_ATTACKBY` handler | `code/datums/components/construction.dm` (`action()`), `code/game/mecha/mecha_construction_paths.dm` (gygax `action()`) | `INVOKE_ASYNC` returns a `/datum/task` since the 515 compatibility change; `_SendSignal` ORed it into the flags and runtimed on every mech construction click. Test: `aquila_logi_rund_26_10` |

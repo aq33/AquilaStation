@@ -71,11 +71,22 @@
 	TEST_ASSERT(!(member in squad.members), "A deleted human stayed in their squad")
 	TEST_ASSERT(squad.leader != member, "A deleted human stayed the squad leader")
 
-	// SI usunięta między tickami SSmobs dalej dostawała Life(), bez zasilania wołała addtimer na usuniętym obiekcie (runtime w komorze testowej)
-	var/mob/living/carbon/human/ai_brain_holder = allocate(/mob/living/carbon/human)
-	var/mob/living/silicon/ai/deleted_ai = new(run_loc_floor_top_right, null, ai_brain_holder)
-	qdel(deleted_ai)
-	deleted_ai.Life(SSmobs.wait * 0.1, SSmobs.times_fired)
+	// SSmobs: mob usunięty, gdy był już w currentrun (lista przeżywa między tickami), nie dostaje Life().
+	// Wcześniej SI z komory testowej bez zasilania wołała wtedy addtimer na usuniętym obiekcie.
+	var/mob/living/aquila_life_probe/life_probe = allocate(/mob/living/aquila_life_probe)
+	qdel(life_probe)
+	var/list/old_currentrun = SSmobs.currentrun
+	SSmobs.currentrun = list(life_probe)
+	SSmobs.fire(TRUE)
+	SSmobs.currentrun = old_currentrun
+	TEST_ASSERT(!life_probe.life_calls, "SSmobs ran Life() on a deleted mob")
+
+/// Mob, który liczy wywołania Life()
+/mob/living/aquila_life_probe
+	var/life_calls = 0
+
+/mob/living/aquila_life_probe/Life(seconds, times_fired)
+	life_calls++
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
