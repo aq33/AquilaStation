@@ -29,6 +29,11 @@ Mikrofon w przeglądarce działa bez HTTPS tylko pod `localhost`, więc test lok
 na tym samym komputerze. Dla innych graczy `VOICE_CHAT_PUBLIC_URL` musi być adresem HTTPS
 (np. reverse proxy Caddy/nginx przed portem 8179).
 
+## Rozpoznawanie w chmurze
+
+`voice_server.py --backend openai` (gpt-4o-transcribe, klucz w `OPENAI_API_KEY`) albo `--backend elevenlabs`
+(Scribe, klucz w `ELEVENLABS_API_KEY`). `--model` zmienia model dostawcy. Nagrania idą wtedy do zewnętrznej firmy.
+
 ## Zachowanie
 
 - Tekst przechodzi przez zwykłe `say` (języki postaci, filtry, logi).

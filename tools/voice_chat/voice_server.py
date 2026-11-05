@@ -147,27 +147,55 @@ def clean_text(text):
 	return text[:300]
 
 
-def transcribe(args, wav):
+def post_multipart(url, fields, wav, headers=None, timeout=30):
 	boundary = uuid.uuid4().hex
-	fields = {
-		"response_format": "json",
-		"language": args.language,
-		"temperature": "0.0",
-		"prompt": args.prompt,
-	}
 	body = bytearray()
 	for name, value in fields.items():
-		body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n{value}\r\n".encode("utf-8")
+		if value:
+			body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n{value}\r\n".encode("utf-8")
 	body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"mowa.wav\"\r\nContent-Type: audio/wav\r\n\r\n".encode()
 	body += wav + f"\r\n--{boundary}--\r\n".encode()
 	req = urllib.request.Request(
-		args.whisper.rstrip("/") + "/inference",
+		url,
 		data=bytes(body),
-		headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+		headers={"Content-Type": f"multipart/form-data; boundary={boundary}", **(headers or {})},
 		method="POST",
 	)
-	with urllib.request.urlopen(req, timeout=30) as resp:
-		return json.loads(resp.read().decode("utf-8")).get("text", "")
+	with urllib.request.urlopen(req, timeout=timeout) as resp:
+		return json.loads(resp.read().decode("utf-8"))
+
+
+# Dostawcy rozpoznawania mowy. Każdy dostaje nagranie WAV 16 kHz mono i zwraca surowy tekst.
+def transcribe_whisper(args, wav):
+	fields = {"response_format": "json", "language": args.language, "temperature": "0.0", "prompt": args.prompt}
+	return post_multipart(args.whisper.rstrip("/") + "/inference", fields, wav).get("text", "")
+
+
+def transcribe_openai(args, wav):
+	fields = {"model": args.model or "gpt-4o-transcribe", "language": args.language, "prompt": args.prompt, "response_format": "json"}
+	headers = {"Authorization": f"Bearer {args.api_key}"}
+	return post_multipart("https://api.openai.com/v1/audio/transcriptions", fields, wav, headers).get("text", "")
+
+
+ELEVENLABS_LANGUAGES = {"pl": "pol", "en": "eng"}
+
+
+def transcribe_elevenlabs(args, wav):
+	fields = {"model_id": args.model or "scribe_v1", "language_code": ELEVENLABS_LANGUAGES.get(args.language, args.language), "tag_audio_events": "false"}
+	headers = {"xi-api-key": args.api_key}
+	return post_multipart("https://api.elevenlabs.io/v1/speech-to-text", fields, wav, headers).get("text", "")
+
+
+BACKENDS = {
+	"whisper": transcribe_whisper,
+	"openai": transcribe_openai,
+	"elevenlabs": transcribe_elevenlabs,
+}
+API_KEY_ENV = {"openai": "OPENAI_API_KEY", "elevenlabs": "ELEVENLABS_API_KEY"}
+
+
+def transcribe(args, wav):
+	return BACKENDS[args.backend](args, wav)
 
 
 def save_recording(args, session, seq, wav):
@@ -326,9 +354,9 @@ class Handler(BaseHTTPRequestHandler):
 		try:
 			raw = transcribe(self.server.args, body)
 		except (urllib.error.URLError, OSError, ValueError) as e:
-			state.add_result(session, seq, channel, "", "Whisper nie odpowiada")
-			print(f"[glos] błąd Whispera: {e}", flush=True)
-			return self.send_body(502, {"error": "Whisper nie odpowiada"})
+			state.add_result(session, seq, channel, "", "rozpoznawanie mowy nie odpowiada")
+			print(f"[glos] błąd rozpoznawania ({self.server.args.backend}): {e}", flush=True)
+			return self.send_body(502, {"error": "rozpoznawanie mowy nie odpowiada"})
 		text = clean_text(raw)
 		took = time.monotonic() - started
 		print(f"[glos] {session.ckey} ({channel}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
@@ -344,6 +372,9 @@ def main():
 	p.add_argument("--host", default="127.0.0.1")
 	p.add_argument("--port", type=int, default=8179)
 	p.add_argument("--whisper", default="http://127.0.0.1:8178", help="adres whisper-server")
+	p.add_argument("--backend", choices=sorted(BACKENDS), default="whisper", help="whisper = lokalny whisper-server, openai / elevenlabs = chmura")
+	p.add_argument("--model", default="", help="model dostawcy w chmurze (domyślnie gpt-4o-transcribe / scribe_v1)")
+	p.add_argument("--api-key", default="", help="klucz API chmury; domyślnie ze zmiennej OPENAI_API_KEY / ELEVENLABS_API_KEY")
 	p.add_argument("--language", default="pl")
 	p.add_argument("--prompt", default="Halo, tu kapitan. Ochrona, proszę na mostek. Medyczny, mamy rannego. Inżynieria, sprawdźcie zasilanie. Uwaga, syndykat na pokładzie!", help="podpowiedź dla Whispera: naturalne zdania ze słownictwem gry działają lepiej niż lista słów")
 	p.add_argument("--secret", default=os.environ.get("VOICE_CHAT_SECRET", ""), help="musi się zgadzać z VOICE_CHAT_SECRET w configu gry")
@@ -351,10 +382,15 @@ def main():
 	p.add_argument("--verbose", action="store_true")
 	args = p.parse_args()
 	sys.stdout.reconfigure(encoding="utf-8")  # konsola Windows domyślnie psuje polskie znaki
+	if args.backend in API_KEY_ENV and not args.api_key:
+		args.api_key = os.environ.get(API_KEY_ENV[args.backend], "")
+		if not args.api_key:
+			p.error(f"brak klucza API: ustaw {API_KEY_ENV[args.backend]} albo --api-key")
 	server = Server((args.host, args.port), Handler)
 	server.args = args
 	server.state = State()
-	print(f"[glos] nasłuch na http://{args.host}:{args.port}, Whisper: {args.whisper}", flush=True)
+	backend = args.whisper if args.backend == "whisper" else f"{args.backend} {args.model or '(domyślny model)'}"
+	print(f"[glos] nasłuch na http://{args.host}:{args.port}, rozpoznawanie: {backend}", flush=True)
 	server.serve_forever()
 
 
