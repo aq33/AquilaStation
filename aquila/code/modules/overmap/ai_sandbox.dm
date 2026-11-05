@@ -2,7 +2,9 @@
 /// puts a Syndicate fleet against the main ship and two Nanotrasen AI frigates, keeps an allied Syndicate fleet one jump away
 /// for distress calls, fires the main ship's guns on a script, and records every ship (position, hull, fear, goal, target) every 2 s.
 /// The record goes to data/ai_sandbox.json, then the world shuts down. Nothing here is compiled into a normal build.
-/// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>
+/// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>,
+/// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
+/// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
 #define AI_SANDBOX_LENGTH (8 MINUTES)
@@ -33,6 +35,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/start_time
 	var/next_gun = 0
 	var/output_file = AI_SANDBOX_OUTPUT
+	/// The main ship sits out of the fight
+	var/fair = FALSE
 	/// list of snapshots: list("t" = seconds, "ships" = list(...))
 	var/list/frames = list()
 	/// list of list("t", "text")
@@ -46,6 +50,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	start_time = world.time
 	if(world.params["ai_sandbox_out"])
 		output_file = world.params["ai_sandbox_out"]
+	fair = text2num(world.params["ai_sandbox_fair"]) ? TRUE : FALSE
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
@@ -55,10 +60,19 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/nt_size = text2num(world.params["ai_sandbox_nt"]) || AI_SANDBOX_FLEET_SIZE
 	var/syn_size = text2num(world.params["ai_sandbox_syn"]) || AI_SANDBOX_FLEET_SIZE
 	var/gap = text2num(world.params["ai_sandbox_gap"]) || 58
-	event("System [system], okręt główny [main] na [main.x],[main.y]; floty NT [nt_size], Syndykat [syn_size], odstęp [gap] pól")
+	event("System [system], okręt główny [main] na [main.x],[main.y]; floty NT [nt_size], Syndykat [syn_size], odstęp [gap] pól[fair ? ", okręt główny poza walką" : ""]")
+	if(fair)
+		main.essential = TRUE // AI targeting skips essential ships
 	// Two full fleets: Nanotrasen next to the main ship, the Syndicate gap tiles further out
-	friendly_fleet = spawn_fleet(/datum/fleet/nanotrasen, system, nt_size, "Flota Nanotrasen", 12)
-	enemy_fleet = spawn_fleet(/datum/fleet, system, syn_size, "Flota Syndykatu", 12 + gap)
+	var/nt_type = text2path(world.params["ai_sandbox_nt_type"])
+	var/syn_type = text2path(world.params["ai_sandbox_syn_type"])
+	if(!ispath(nt_type, /datum/fleet))
+		nt_type = /datum/fleet/nanotrasen
+	if(!ispath(syn_type, /datum/fleet))
+		syn_type = /datum/fleet
+	event("Typy flot: [nt_type] kontra [syn_type]")
+	friendly_fleet = spawn_fleet(nt_type, system, nt_size, "Flota Nanotrasen", 12)
+	enemy_fleet = spawn_fleet(syn_type, system, syn_size, "Flota Syndykatu", 12 + gap)
 	// One help fleet for each side, in two different systems next door
 	var/list/neighbours = list()
 	for(var/system_name in system.adjacency_list)
@@ -91,7 +105,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		return
 	if(!QDELETED(main))
 		main.obj_integrity = main.max_integrity // The main ship is only a target and a gun platform here
-		if(world.time >= next_gun)
+		if(!fair && world.time >= next_gun)
 			next_gun = world.time + AI_SANDBOX_GUN_TIME
 			script_fire()
 	record()

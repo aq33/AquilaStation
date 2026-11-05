@@ -10,7 +10,9 @@
 /// How often the commander reconsiders its target
 #define AI_RETARGET_INTERVAL (4 SECONDS)
 /// A new target has to score this much more than the current one, so ships do not flip every check
-#define AI_RETARGET_MARGIN 15
+#define AI_RETARGET_MARGIN 25
+/// After a switch the commander sticks with the new target at least this long (the sandbox showed ships flipping back and forth)
+#define AI_RETARGET_COMMIT (12 SECONDS)
 /// Chance per check that a reckless commander looks around at all
 #define AI_RETARGET_RECKLESS_CHANCE 25
 /// Someone who hit us this recently counts as shooting at us
@@ -108,6 +110,7 @@
 		fleet.stop_reporting(last_target, src)
 	add_enemy(better)
 	last_target = better
+	ai_next_retarget = world.time + AI_RETARGET_COMMIT
 	if(fleet)
 		fleet.start_reporting(better, src)
 
@@ -120,6 +123,7 @@
 #undef AI_TEMPERAMENT_RECKLESS
 #undef AI_RETARGET_INTERVAL
 #undef AI_RETARGET_MARGIN
+#undef AI_RETARGET_COMMIT
 #undef AI_RETARGET_RECKLESS_CHANCE
 #undef AI_ATTACKER_MEMORY
 #undef AI_TARGET_BASE

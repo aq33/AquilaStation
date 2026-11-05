@@ -137,9 +137,9 @@
 	// The gunboat does not take forceMove to the corner of the test level, so the targets are placed around it
 	ship.velocity._set(0, 0)
 	enemy.forceMove(locate(ship.x + 10, ship.y, ship.z)) // 10 tiles, intact
-	second.forceMove(locate(ship.x, ship.y + 14, ship.z)) // 14 tiles, crippled
+	second.forceMove(locate(ship.x, ship.y + 14, ship.z)) // 14 tiles, nearly dead
 	enemy.obj_integrity = enemy.max_integrity
-	second.obj_integrity = second.max_integrity * 0.3
+	second.obj_integrity = second.max_integrity * 0.15
 	enemy.update_sensor_signature()
 	second.update_sensor_signature()
 	var/list/candidates = list(enemy, second)
@@ -148,15 +148,18 @@
 	var/obj/structure/overmap/picked = ship.choose_ai_tactical_target(candidates)
 	if(picked != second)
 		return "The commander did not switch to a crippled ship nearby (picked [picked || "nothing"])"
-	// Whoever is shooting at us comes first
+	// Whoever is shooting at us and has us locked comes first
 	LAZYSET(ship.ai_attackers, enemy, world.time)
+	LAZYSET(enemy.target_painted, ship, FALSE)
 	ship.last_target = second
 	picked = ship.choose_ai_tactical_target(candidates)
 	if(picked != enemy)
+		LAZYREMOVE(enemy.target_painted, ship)
 		return "The commander did not turn on the ship shooting at it (picked [picked || "nothing"])"
 	// Already on the best target: no switch
 	ship.last_target = enemy
 	picked = ship.choose_ai_tactical_target(candidates)
+	LAZYREMOVE(enemy.target_painted, ship)
 	if(picked)
 		return "The commander switched away from its best target to [picked]"
 	LAZYNULL(ship.ai_attackers)
