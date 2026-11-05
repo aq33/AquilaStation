@@ -8,7 +8,7 @@ export const PlantScanner = (props) => {
   const { act, data } = useBackend();
   const { buffer, last_target, render_rule } = data;
   return (
-    <Window width={750} height={870} theme="plant_menu">
+    <Window width={750} height={870}>
       <Window.Content>
         <Section textAlign={'center'}>
           {last_target || 'Brak celu w buforze'}
@@ -68,7 +68,7 @@ const SeedRule = (props) => {
     />
   ));
   return (
-    <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
+    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
       {status.length > 0 && (
         <Section title="Stan">
           {status.map((line, index) => (
@@ -91,7 +91,7 @@ const FruitRule = (props) => {
   const { data } = useBackend();
   const { buffer } = data;
   return (
-    <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
+    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
       {Object.entries(buffer['genes']).map(([buffer_key, buffer_data]) => (
         <FeatureBlock
           key={buffer_key}
@@ -122,7 +122,7 @@ const TrayRule = (props) => {
   const { act, data } = useBackend();
   const { buffer, last_target, render_rule } = data;
   return (
-    <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
+    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
       {Object.entries(buffer).map(([buffer_key, buffer_data]) => (
         <Box
           className={buffer_data === '' ? null : 'plant__dialogue'}

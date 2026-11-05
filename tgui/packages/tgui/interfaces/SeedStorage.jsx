@@ -9,7 +9,7 @@ export const SeedStorage = (props) => {
   const { seeds, focused_seeds } = data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
-    <Window width={600} height={735} theme="plant_menu">
+    <Window width={600} height={735}>
       <Window.Content scrollable={1}>
         <Box height={'100%'} width={'100%'} m={'-3px'}>
           <Flex direction={'column'} height={'100%'} width={'100%'}>
@@ -30,7 +30,7 @@ export const SeedStorage = (props) => {
                 <Flex.Item width={'40%'}>
                   <Section>
                     <Box
-                      className={'scrollbox'}
+                      className={'plant__scrollbox'}
                       height={'550px'}
                       overflowY="scroll"
                     >
@@ -49,7 +49,7 @@ export const SeedStorage = (props) => {
                 <Flex.Item width={'60%'} height={'100%'}>
                   <Section>
                     <Box
-                      className={'scrollbox'}
+                      className={'plant__scrollbox'}
                       height={'550px'}
                       overflowY="scroll"
                     >

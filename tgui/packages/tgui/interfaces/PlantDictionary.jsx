@@ -16,7 +16,7 @@ export const PlantDictionary = (props) => {
     data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content scrollable={1}>
         <Box m={'-3px'} height={'100%'}>
           <Flex direction={'column'} height={'100%'}>
@@ -55,12 +55,12 @@ export const PlantDictionary = (props) => {
                     <Flex.Item>
                       <Section>
                         <Box
-                          className={'scrollbox'}
+                          className={'plant__scrollbox'}
                           height={'427px'}
                           overflowY="scroll"
                         >
                           {selected_chapter === 'Features' ? (
-                            <Box className={'discrete'}>
+                            <Box className={'plant__discrete'}>
                               {/* Fruits */}
                               {Object.entries(
                                 chapters[selected_chapter][
@@ -194,7 +194,7 @@ export const PlantDictionary = (props) => {
                 <Flex.Item width={'70%'}>
                   <Section>
                     <Box
-                      className={'scrollbox'}
+                      className={'plant__scrollbox'}
                       height={'559px'}
                       overflowY="scroll"
                     >

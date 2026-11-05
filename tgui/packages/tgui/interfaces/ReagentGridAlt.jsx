@@ -1295,7 +1295,11 @@ class ReagentGrid extends Component {
             <Section height="100%" width="100%">
               Próbkowane refrakcje
               <Divider />
-              <Box className={'scrollbox'} height={'500px'} overflowY="scroll">
+              <Box
+                className={'plant__scrollbox'}
+                height={'500px'}
+                overflowY="scroll"
+              >
                 {Object.entries(sampled_reagents).map(([data_list_key]) => (
                   <Button
                     className="plant__button--beacon"
@@ -1356,7 +1360,7 @@ export const ReagentGridAlt = (props) => {
     list_accuracy,
   } = data;
   return (
-    <Window width={900} height={840} theme="plant_menu">
+    <Window width={900} height={840}>
       <Window.Content scrollable={0}>
         {/* Column elements */}
         <Flex height="100%" width="100%" direction="column">

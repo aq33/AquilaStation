@@ -26,12 +26,12 @@ export const PlantMutator = (props) => {
     port_traits,
   } = data;
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content>
         {working ? (
-          <Dimmer className={'Dimmer--super'}>
+          <Dimmer className={'plant__dimmer'}>
             <Section>
-              <Icon size={3} name={'radiation'} className={'spinner'} />
+              <Icon size={3} name={'radiation'} className={'plant__spinner'} />
             </Section>
           </Dimmer>
         ) : (
@@ -170,7 +170,7 @@ const InspectionPanel = (props) => {
   const { current_feature_data, current_feature_traits } = data;
   return (
     <Flex direction="column">
-      <Box className={'scrollbox'} height={'535px'} overflowY="scroll">
+      <Box className={'plant__scrollbox'} height={'535px'} overflowY="scroll">
         {/* base feature information, stats */}
         <Flex.Item>
           <Button className="plant__dialogue--beacon" width={'100%'}>

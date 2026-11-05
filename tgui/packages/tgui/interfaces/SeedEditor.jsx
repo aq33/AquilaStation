@@ -22,7 +22,7 @@ export const SeedEditor = (props) => {
     current_feature_remaining_genetic_budget,
   } = data;
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content>
         <Box m={'-3px'} height={'100%'}>
           <Flex direction={'column'} height={'100%'}>
@@ -243,7 +243,7 @@ const InspectionPanel = (props) => {
   const { current_feature_data, current_feature_traits } = data;
   return (
     <Flex direction="column">
-      <Box className={'scrollbox'} height={'520px'} overflowY="scroll">
+      <Box className={'plant__scrollbox'} height={'520px'} overflowY="scroll">
         {/* base feature information, stats */}
         <Flex.Item>
           <Button className="plant__dialogue" width={'100%'}>
