@@ -251,6 +251,41 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `powerswitch.ogg` and `return TRUE` on the battery switch (no generic `switch.ogg` on top), `apu_start.ogg` when the APU turns on | `nsv13/code/modules/overmap/fighters/_fighters.dm` (`ui_act()`, `"battery"`, `"apu"`) | Unused fighter sounds hooked up |
 | `takeoff.ogg` relayed to the fighter | `nsv13/code/modules/overmap/fighters/fighters_launcher.dm` (`finish_launch()`) | Unused fighter sound hooked up |
 | `locking.ogg` for the locker, `being_locked.ogg` for the target (no sound channel, so it does not cut the target's hull crit announcements) | `nsv13/code/modules/overmap/overmap.dm` (`start_lockon()`) | The locker used to hear the "you are being locked" warning and the target heard nothing |
+| `if(!(amount >= 0)) return FALSE` | `code/modules/economy/account.dm` (`transfer_money()`) | Ujemna kwota odwracała przelew i tworzyła pieniądze (nagroda z newscastera). Zero przechodzi, żeby pensja 0 kr nie dawała błędu. Test: `aquila_negative_transfer` |
+| blok `if(world.system_type == MS_WINDOWS)` | `code/__HELPERS/shell.dm` (`shell_url_scrub()`) | `cmd /c` rozwija `%ZMIENNA%`, a kodowanie `%XX` samo tworzy `%`; na Windowsie złe znaki są usuwane zamiast kodowane. Test: `aquila_jukebox_url_whitelist` |
+| `own_multi_selection` | `code/controllers/subsystem/vote.dm` (`ui_data()`) | Do okna głosowania idą tylko własne głosy gracza, nie `choices_by_ckey` wszystkich. |
+| limit `owed` + `chip.spend()` | `code/game/machinery/computer/warrant.dm` (`pay_fine_holochip()`) | Holożeton płacił spłacone grzywny i ponad dług; reszta zostaje na żetonie. Test: `aquila_warrant_holochip_change` |
+| `grilled_result.reagents?.clear_reagents()` | `code/datums/components/grillable.dm` (`FinishGrilling()`) | Zgrillowany wynik miał swoje `food_reagents` + reagenty surowca (płat 8u → stek 16u). Test: `aquila_food_cooking_reagents` |
+| `baked_result.reagents?.clear_reagents()` | `code/datums/components/bakeable.dm` (`FinishBaking()`) | To samo podwajanie przy pieczeniu (tylko dobry wynik; przypalony zostaje jak był). |
+| `this_food.reagents?.clear_reagents()` | `code/datums/components/food/edible.dm` (`on_microwave_cooked()`) | Podwajanie reagentów z mikrofalówki, jak w tg. Test: `aquila_food_cooking_reagents` |
+| `tongue?.toxic_food` | `code/datums/components/food/edible.dm` (`check_liked()`) | Ageuzja bez języka dawała runtime przy jedzeniu. |
+| usunięty `protected` | `code/datums/components/food/decomposition.dm` | Zmienna zapisywana, nigdy nieczytana. |
+| usunięta druga `crowbar_act()` | `code/modules/food_and_drinks/kitchen_machinery/griddle.dm` | Druga definicja przez `..()` rozbierała płytę dwa razy. |
+| `if(.) return` | `griddle.dm` / `oven.dm` (`attack_hand()`) | Przełączanie ignorowało przerwanie z rodzica (przewody, `COMSIG_TRY_USE_MACHINE`). |
+| `crowbar_act()` wyważa najpierw odzysk wody | `nsv13/code/game/machinery/blast_shower.dm`, `code/game/objects/structures/shower.dm` | Późniejsza definicja z NSV13 (rozbiórka) wygrywała i odzysk ginął razem z prysznicem; teraz z odzyskiem woła `..()` (wersję z shower.dm), a wersja z shower.dm bez odzysku woła `..()` |
+| `used_lum_power` symetrycznie, `update_used_lum_power()`, `LIGHT_NO_LUMCOUNT` | `code/datums/components/overlay_lighting.dm` | Ujemne światła (darkspawn, Anti-Glow) zostawiały -1 lumcountu na stałe; obsługa `LIGHT_NO_LUMCOUNT` zginęła w AQ#414. Test: `aquila_movable_light_lumcount` |
+| `set_light_range_power_color()` zamiast `set_light()` | `code/modules/research/xenobiology/xenobiology.dm` (yellow extract) | `set_light()` → `update_light()` daje CRASH przy `MOVABLE_LIGHT` |
+| `cable_color` przed testem nakładania; kolor zwoju przy dzieleniu/łączeniu; openspace `get_cable()` | `code/modules/power/cable.dm`, `code/modules/power/cable_coil.dm` | Smartwires. Test: `aquila_cable_coil_colour` |
+| `AQ EDIT` zablokowany chwyt kończy kliknięcie | `code/_onclick/click.dm` (`/mob/living/carbon/CtrlClick`) | Chwyt zablokowany przez `check_block`/`TRAIT_ONEWAYROAD` spadał do `..()`: drugi `grab_act` i ciągnięcie celu bez cooldownu. Test: `aquila_review_blocked_grab` |
+| `M.combat_mode \|\| RIGHT_CLICK` przy `check_shields` | `code/modules/mob/living/carbon/human/species.dm` (`spec_attack_hand()`) | Popchnięcie poza combat mode omijało tarcze. |
+| `H.run_armor_check(..., BLEED, ...)` | `code/modules/mob/living/carbon/human/species.dm` (`spec_attacked_by()`) | Pancerz przeciw krwawieniu liczony od atakującego zamiast od ofiary. |
+| prawy klik strzykawką → `afterattack_secondary` | `code/modules/reagents/chemistry/machinery/chem_heater.dm` (`attackby()`) | Strzykawką nie dało się pobrać z zlewki w podgrzewaczu. Test: `aquila_review_chem_heater_syringe` |
+| `else return ..()` | `code/game/machinery/doors/airlock.dm` (`crowbar_act()`) | Łom przy otwartym panelu i warstwie, której nie zdejmuje, nic nie robił. |
+| `. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN` | `code/game/machinery/_machinery.dm` (`attackby_secondary()`) | `if(.)` było zawsze prawdą, `update_last_used` nie działało. |
+| `connect_loc` ENTERED/EXITED, `set_patient(null)` w `Destroy` | `code/game/objects/structures/tables_racks.dm` (`/obj/structure/table/optable`) | `table_entered` nie był podpięty, `TRAIT_NO_BLEEDING` zostawał przy każdym położeniu się. Test: `aquila_review_optable_patient` |
+| `table_entered` zamiast własnego `connect_loc` | `code/modules/antagonists/abductor/equipment/abduction_gear.dm` | Drugi `connect_loc` nadpisałby handler ENTERED stołu operacyjnego. |
+| `COMSIG_ATOM_ATTACK_HAND, user, modifiers` | `code/modules/mob/living/carbon/carbon_defense.dm` (`attack_hand()`) | Handlery nie widziały RIGHT_CLICK: podwójne zgłaszanie popchnięcia, AI małp. Test: `aquila_review_relay_shove` |
+| `if(H.is_in_tutorial()) continue` | `code/modules/events/heart_attack.dm`, `brain_trauma.dm`, `spontaneous_appendicitis.dm` (`start()`) | Eventy losujące ofiarę pomijają postacie w samouczku (`is_in_tutorial()` w `aquila/code/modules/tutorial/tutorial_status.dm`) |
+| zakomentowane `SSshuttle.registerHostileEnvironment(revolution)` | `code/game/gamemodes/dynamic/dynamic_rulesets_roundstart.dm`, `dynamic_rulesets_latejoin.dm` (`execute()`) | Rewolucja w dynamic nie blokuje promu, tak jak tryb revolution od aq33/AquilaStation#444 |
+| `if(!hitting_atom) return` | `code/modules/mod/modules/module_kinesis.dm` (`process()`) | Ruch zablokowany przez moba: `melee_attack_chain` dostawał null |
+| sprawdzenie `activating` w akcji `deploy` | `code/modules/mod/mod_ui.dm` (`ui_act()`) | Rozkładanie części w trakcie uszczelniania psuło stan |
+| `return FALSE` po „już rozłożone!” | `code/modules/mod/mod_activation.dm` (`deploy()`) | Rozłożona część szła drugi raz do equip |
+| `TGUI_BROWSER_OPTIONS` | `code/__DEFINES/tgui.dm`, `code/modules/client/client_procs.dm`, `code/modules/tgui_panel/external.dm` | Devtools nadpisywały find/refresh/byondstorage |
+| walidacja `tab`/`selected` przed zabraniem papieru | `portrait_printer.dm`, `ai_portrait_picker.dm` (`ui_act()`) | Indeks od klienta bez sprawdzenia dawał runtime po zużyciu papieru |
+| `REMOVE_KEEP_TOGETHER` | `code/datums/elements/decals/blood.dm` (`Detach()`) | Para do `ADD_KEEP_TOGETHER` |
+| `unreachable_items_reset_at` | `nsv13/code/modules/overmap/knpc.dm` (`acquire_weapon/action()`) | Lista nieosiągalnych broni rosła przez całą rundę |
+| `SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ATOM_SOLD, thing, sold, allowed_categories)` | `code/modules/cargo/exports.dm` (`export_item_and_contents()`, `export_contents()`) | Sygnał niesie kategorie eksportu, żeby sprzedaż padem piratów (`EXPORT_PIRATE`) nie dawała nauce nagród za artefakty xenoarch |
+| `success_spawn = TRUE` | `code/modules/antagonists/ninja/ninja_event.dm`, `code/modules/events/devil.dm` (`spawn_role()`) | Bez tego `kill()` po udanym evencie zmniejszał `occurrences` i `max_occurrences` nie działało |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

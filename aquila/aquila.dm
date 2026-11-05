@@ -1688,6 +1688,16 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_review_economy_urls.dm"
+#include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
+#include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"
+#include "code\modules\unit_tests\aquila_review_antagi.dm"
+#include "code\modules\unit_tests\aquila_review_antag_refs.dm"
+#include "code\modules\unit_tests\aquila_review_klikanie_chirurgia.dm"
+#include "code\modules\unit_tests\aquila_review_poprawki_pazdziernik.dm"
+#include "code\modules\unit_tests\aquila_huds_indices.dm"
+#include "code\modules\unit_tests\aquila_review_refs_results.dm"
+#include "code\modules\unit_tests\aquila_review_exploits.dm"
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\aquila_audyt_regresje.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
