@@ -64,5 +64,36 @@
 		TEST_ASSERT(is_station_level(T.z), "Fallback turf [AREACOORD(T)] is not on the station")
 		TEST_ASSERT(is_turf_safe(T), "Fallback turf [AREACOORD(T)] is not safe")
 
+/// AQUILA - weighted rotation: each ghost antagonist sits in the pool the players asked for, and only in one list
+/datum/unit_test/aquila_weighted_midround_pools
+
+/datum/unit_test/aquila_weighted_midround_pools/Run()
+	var/datum/weighted_ghost_midround/midround = new
+	var/list/common = midround.common_events()
+	var/list/medium = midround.medium_events()
+	var/list/heavy = midround.heavy_events()
+	for(var/event_type in list(
+		/datum/round_event_control/alien_infestation,
+		/datum/round_event_control/blood_worm,
+		/datum/round_event_control/infiltrators,
+		/datum/round_event_control/pirates,
+		/datum/round_event_control/sentient_disease,
+		/datum/round_event_control/sinfuldemon,
+		/datum/round_event_control/spider_infestation,
+	))
+		TEST_ASSERT(event_type in medium, "[event_type] is not in the medium pool")
+	TEST_ASSERT(/datum/round_event_control/spawn_swarmer in heavy, "Swarmers are not in the heavy pool")
+	for(var/event_type in common)
+		TEST_ASSERT(!(event_type in medium) && !(event_type in heavy), "[event_type] is in more than one pool")
+	for(var/event_type in medium)
+		TEST_ASSERT(!(event_type in heavy), "[event_type] is in the medium and the heavy pool")
+
+	// Czarodziej midround ma ten sam próg co na starcie rundy (MIN_POP WIZARD)
+	var/wizard_min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
+	TEST_ASSERT(wizard_min_pop, "MIN_POP WIZARD is missing from the config, the midround wizard would fall back to the mode default")
+	TEST_ASSERT(!midround.enough_players_for_wizard(wizard_min_pop - 1), "The midround wizard is offered under MIN_POP WIZARD")
+	TEST_ASSERT(midround.enough_players_for_wizard(wizard_min_pop), "The midround wizard is not offered at MIN_POP WIZARD")
+	qdel(midround)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
