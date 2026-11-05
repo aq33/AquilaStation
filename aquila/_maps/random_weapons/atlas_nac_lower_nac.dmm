@@ -1,0 +1,225 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/mob/living/simple_animal/hostile/retaliate/wojtek,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"ab" = (
+/obj/effect/landmark/start/munitions_tech,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"ac" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/structure/munitions_trolley,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"ad" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/machinery/deck_turret/powder_gate,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ae" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"af" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ag" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/obj/machinery/deck_turret/payload_gate,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ah" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ai" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/machinery/deck_turret/payload_gate,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"aj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ak" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/machinery/deck_turret/powder_gate,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"al" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/machinery/deck_turret/powder_gate,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"am" = (
+/obj/machinery/computer/deckgun,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"an" = (
+/obj/machinery/computer/deckgun,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ao" = (
+/obj/machinery/deck_turret/autoelevator,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ap" = (
+/obj/machinery/deck_turret/autoelevator,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"aq" = (
+/obj/machinery/deck_turret/core,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ar" = (
+/obj/machinery/holopad,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"as" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/light/floor,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
+"at" = (
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
+"au" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/obj/item/munitions_analyzer,
+/obj/item/forging_hammer,
+/obj/item/forging_hammer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"av" = (
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+
+(1,1,1) = {"
+av
+av
+av
+at
+av
+ac
+au
+"}
+(2,1,1) = {"
+av
+aa
+av
+at
+ar
+ab
+av
+"}
+(3,1,1) = {"
+al
+ak
+ad
+as
+al
+ak
+ad
+"}
+(4,1,1) = {"
+an
+aq
+ao
+at
+ap
+aq
+am
+"}
+(5,1,1) = {"
+ah
+af
+ai
+at
+ag
+ae
+aj
+"}

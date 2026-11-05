@@ -1,40 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"aa" = (
+/obj/machinery/ship_weapon/deck_turret/east,
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
 /turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-"}
-(2,1,1) = {"
-a
-a
-a
-a
-a
-"}
-(3,1,1) = {"
-a
-a
-a
-a
-a
-"}
-(4,1,1) = {"
-a
-a
-a
-a
-a
-"}
-(5,1,1) = {"
-a
-a
-a
-a
-a
+aa
+ab
+ab
+ab
+aa
 "}

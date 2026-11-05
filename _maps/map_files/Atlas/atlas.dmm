@@ -89,6 +89,10 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmospherics_engine)
+"ai" = (
+/obj/effect/spawner/room/ship_weapon/atlas_nac_lower,
+/turf/template_noop,
+/area/template_noop)
 "aj" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -289,10 +293,6 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/durasteel,
 /area/crew_quarters/kitchen)
-"aK" = (
-/mob/living/simple_animal/hostile/retaliate/wojtek,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "aL" = (
 /obj/machinery/conveyor/slow{
 	dir = 1;
@@ -1836,17 +1836,6 @@
 /obj/effect/turf_decal/ship/delivery/yellow,
 /turf/open/floor/monotile/steel,
 /area/security/brig)
-"dK" = (
-/obj/machinery/computer/deckgun,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/orange,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "dL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -2723,15 +2712,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/security/brig)
-"fx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "fy" = (
 /obj/structure/table,
 /obj/item/healthanalyzer{
@@ -3774,17 +3754,6 @@
 /obj/structure/chair,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
-"hI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/orange,
-/obj/machinery/deck_turret/powder_gate,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "hJ" = (
 /obj/item/plant_tray/pot/random,
 /turf/open/floor/wood,
@@ -3966,18 +3935,6 @@
 /obj/effect/turf_decal/ship/delivery/yellow,
 /turf/open/floor/engine,
 /area/quartermaster/storage)
-"ig" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "ih" = (
 /obj/effect/landmark/start/cargo_technician,
 /obj/structure/disposalpipe/segment{
@@ -7107,17 +7064,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/shield_generator)
-"qQ" = (
-/obj/machinery/deck_turret/autoelevator,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/orange,
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "qS" = (
 /obj/machinery/door/firedoor/border_only/directional/south,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -7516,18 +7462,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons/gauss/battery/deck2/starboard)
-"rX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "rY" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/structure/disposalpipe/segment{
@@ -7927,17 +7861,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"tn" = (
-/obj/machinery/computer/deckgun,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "to" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 4
@@ -8377,16 +8300,6 @@
 /area/crew_quarters/abandoned_gambling_den{
 	name = "Abandoned Bar"
 	})
-"uG" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/obj/machinery/deck_turret/payload_gate,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "uI" = (
 /obj/effect/spawner/lootdrop/maintenance/five,
 /turf/open/floor/plating{
@@ -8474,17 +8387,6 @@
 	},
 /turf/open/floor/durasteel/lino,
 /area/janitor)
-"uY" = (
-/obj/machinery/deck_turret/autoelevator,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "va" = (
 /obj/machinery/vending/wardrobe/chap_wardrobe,
 /obj/machinery/airalarm/directional/west,
@@ -10830,10 +10732,6 @@
 	},
 /turf/open/floor/plasteel/ridged/steel,
 /area/engine/armour_pump)
-"CG" = (
-/obj/machinery/deck_turret/core,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "CH" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/disks_nanite{
@@ -11159,13 +11057,6 @@
 /obj/machinery/duct,
 /turf/open/floor/monotile/steel,
 /area/security/brig)
-"DT" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/obj/structure/munitions_trolley,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "DU" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/ship/half/orange{
@@ -11420,10 +11311,6 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/quartermaster/qm)
-"EK" = (
-/obj/effect/landmark/start/munitions_tech,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "EL" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -11603,14 +11490,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
-"Ft" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "Fv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/monotile/steel,
@@ -12475,16 +12354,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/ridged/steel,
 /area/engine/armour_pump)
-"HR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 4
-	},
-/obj/machinery/deck_turret/powder_gate,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "HU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -12541,16 +12410,6 @@
 "Ie" = (
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
-"If" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 8
-	},
-/obj/machinery/deck_turret/payload_gate,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "Ih" = (
 /obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -13094,11 +12953,6 @@
 /obj/machinery/digital_clock/directional/north,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"JR" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/light/floor,
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
 "JS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -14473,14 +14327,6 @@
 /obj/effect/landmark/start/shaft_miner,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
-"NO" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/ship/orange,
-/obj/machinery/deck_turret/powder_gate,
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "NQ" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -16049,10 +15895,6 @@
 /obj/structure/chair,
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/bar/mess_hall)
-"SE" = (
-/obj/machinery/holopad,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "SF" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/reagent_dispensers/watertank,
@@ -16452,15 +16294,6 @@
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/monotile/steel,
 /area/quartermaster/miningoffice)
-"TX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/nsv/weapons)
 "TY" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8
@@ -55021,13 +54854,13 @@ mP
 mP
 CA
 DV
-mP
-mP
-mP
-Te
-mP
-DT
-Ft
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
+ai
 fa
 WK
 wp
@@ -55278,13 +55111,13 @@ eY
 eY
 QU
 mz
-mP
-aK
-mP
-Te
-SE
-EK
-mP
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
 gc
 Wq
 Wq
@@ -55535,13 +55368,13 @@ hi
 eY
 Zn
 Dk
-NO
-hI
-HR
-JR
-NO
-hI
-HR
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
 pg
 mP
 mP
@@ -55792,13 +55625,13 @@ MK
 Gx
 ly
 mD
-dK
-CG
-uY
-Te
-qQ
-CG
-tn
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
 Dg
 aR
 oF
@@ -56049,13 +55882,13 @@ Ce
 eY
 MG
 dH
-fx
-ig
-uG
-Te
-If
-rX
-TX
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
+Lz
 nw
 Tj
 Jy

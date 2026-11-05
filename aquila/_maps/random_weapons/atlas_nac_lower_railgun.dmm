@@ -1,0 +1,236 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/mob/living/simple_animal/hostile/retaliate/wojtek,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"ab" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ac" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ad" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ae" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"af" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/obj/machinery/ammo_sorter{
+	dir = 8;
+	id = "atlas1";
+	name = "Pociski 400 mm #2"
+	},
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ag" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ah" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/machinery/ammo_sorter{
+	dir = 8;
+	id = "atlas1";
+	name = "Pociski 400 mm #1"
+	},
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ai" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"aj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ak" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"al" = (
+/obj/machinery/holopad,
+/obj/effect/landmark/start/munitions_tech,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"am" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/structure/munitions_trolley,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"an" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/machinery/ship_weapon/hybrid_rail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ao" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/machinery/ship_weapon/hybrid_rail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/nsv/weapons)
+"ap" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"aq" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/light/floor,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
+"ar" = (
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
+"as" = (
+/obj/structure/table/reinforced,
+/obj/item/disk/design_disk/hybrid_rail_slugs,
+/obj/item/paper{
+	name = "Bateria dział szynowych - obsługa";
+	default_raw_text = "<b>Bateria dział szynowych NT-ST049 „Sturm”</b><br><br><b>Ładowanie:</b> przeciągnij pocisk 400 mm na działo, stojąc obok. Działo mieści 5 pocisków albo 1 kanister 800 mm. Typ amunicji zmienisz w panelu działa (kliknij działo), gdy jest rozładowane.<br><b>Zasilanie:</b> działo ładuje kondensator prosto z sieci, do 200 kW. Tempo ładowania ustaw w panelu działa.<br><b>Zapas:</b> stojaki „Pociski 400 mm” przy działach obsługuje konsola amunicji, pocisk wypada obok działa. Nowe pociski wydrukujesz w autolacie albo protolacie z dysku leżącego obok.<br><b>Naprawa:</b> zniszczone działo naprawisz spawarką. Rozjechane cewki ustawisz multitoolem po otwarciu panelu serwisowego."
+	},
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"at" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/obj/item/munitions_analyzer,
+/obj/item/forging_hammer,
+/obj/item/forging_hammer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"au" = (
+/turf/open/floor/plating,
+/area/nsv/weapons)
+
+(1,1,1) = {"
+as
+aa
+ap
+ar
+al
+am
+at
+"}
+(2,1,1) = {"
+ak
+aj
+an
+ar
+ak
+ao
+ad
+"}
+(3,1,1) = {"
+ac
+au
+ab
+aq
+ac
+au
+ab
+"}
+(4,1,1) = {"
+ac
+au
+ab
+ar
+ac
+au
+ab
+"}
+(5,1,1) = {"
+af
+ae
+ai
+ar
+ag
+ae
+ah
+"}

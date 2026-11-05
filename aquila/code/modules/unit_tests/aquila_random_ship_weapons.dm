@@ -33,4 +33,42 @@
 		TEST_ASSERT(loaded.width == loaded.template_width && loaded.height == loaded.template_height, \
 			"[loaded.mappath] ma [loaded.width]x[loaded.height], a [template_type] deklaruje [loaded.template_width]x[loaded.template_height]")
 
+	// Stanowisko na kilku pokładach: każdy pokład (grupa) musi mieć szablon każdego wariantu, inaczej drugi spawner nie miałby czego wkleić
+	var/list/link_variants = list()
+	var/list/link_group_variants = list()
+	for(var/datum/map_template/random_room/template_type as anything in templates)
+		var/link = initial(template_type.room_link)
+		if(!link)
+			continue
+		var/variant = initial(template_type.room_variant)
+		var/group = initial(template_type.room_group)
+		TEST_ASSERT(variant, "[template_type] ma room_link bez room_variant")
+		LAZYOR(link_variants[link], variant)
+		LAZYOR(link_group_variants["[link]|[group]"], variant)
+	for(var/key in link_group_variants)
+		var/link = splittext(key, "|")[1]
+		TEST_ASSERT(length(link_group_variants[key]) == length(link_variants[link]), \
+			"[key] ma warianty [english_list(link_group_variants[key])], a całe stanowisko [english_list(link_variants[link])]")
+
+	// Na Atlasie oba pokłady stanowiska NAC dostały ten sam wariant i broń jest podłączona
+	if(SSmapping.config.map_name != "NSV Aquilas")
+		return
+	var/variant = GLOB.random_room_link_choices["atlas_nac"]
+	TEST_ASSERT(variant, "Na Atlasie nie wylosowano wariantu stanowiska NAC")
+	var/rails = 0
+	var/turrets = 0
+	for(var/obj/machinery/ship_weapon/hybrid_rail/rail in GLOB.machines)
+		if(!is_station_level(rail.z))
+			continue
+		rails++
+		var/turf/rail_turf = get_turf(rail)
+		TEST_ASSERT(rail_turf.get_cable_node(), "Railgun hybrydowy w [rail.x],[rail.y] nie stoi na kablu")
+	for(var/obj/machinery/ship_weapon/deck_turret/turret in GLOB.machines)
+		if(!is_station_level(turret.z))
+			continue
+		turrets++
+		TEST_ASSERT(turret.core, "Wieża NAC w [turret.x],[turret.y],[turret.z] nie ma rdzenia pod spodem")
+	TEST_ASSERT(rails == (variant == "railgun" ? 2 : 0) && turrets == (variant == "nac" ? 2 : 0), \
+		"Wariant [variant], a na statku jest [rails] railgunów hybrydowych i [turrets] wież NAC")
+
 #undef TEST_ASSERT

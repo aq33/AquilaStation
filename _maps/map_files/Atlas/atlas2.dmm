@@ -433,6 +433,11 @@
 "aQ" = (
 /turf/closed/wall/steel,
 /area/medical/genetics)
+"aR" = (
+/obj/structure/hull_plate,
+/obj/effect/spawner/room/ship_weapon/atlas_nac_upper,
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "aS" = (
 /obj/effect/turf_decal/ship/delivery/yellow,
 /obj/machinery/door/firedoor/border_only,
@@ -7142,11 +7147,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/turret_protected/aisat)
-"we" = (
-/obj/structure/hull_plate,
-/obj/machinery/ship_weapon/deck_turret/east,
-/turf/open/floor/engine/airless,
-/area/space/nearstation)
 "wi" = (
 /obj/machinery/door/airlock/ship/maintenance,
 /obj/structure/cable,
@@ -52776,11 +52776,11 @@ Tz
 xf
 xf
 mK
-we
 mK
 mK
 mK
-we
+mK
+aR
 mK
 Am
 Am
