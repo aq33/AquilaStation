@@ -3965,6 +3965,9 @@
 /obj/structure/displaycase/captain,
 /turf/open/floor/monotile/steel,
 /area/crew_quarters/heads/captain)
+"kj" = (
+/turf/open/openspace,
+/area/science/xenobiology)
 "kk" = (
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/door/airlock/ship/maintenance{
@@ -12432,6 +12435,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
+"Oz" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/openspace,
+/area/science/xenobiology)
 "OB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -38388,14 +38397,14 @@ Ax
 Ax
 Aj
 cL
-Zp
-Zp
-cL
-cL
-cL
-cL
-cL
-cL
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 cL
 cL
 cL
@@ -38645,14 +38654,14 @@ zC
 PG
 Aj
 cL
-cL
-Zp
-cL
-cL
-cL
-cL
-cL
-cL
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 cL
 cL
 cL
@@ -38902,14 +38911,14 @@ jw
 PG
 Aj
 yK
-zC
-Zp
-cL
-cL
-cL
-SP
-SP
-SP
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 cL
 cL
 cL
@@ -39159,14 +39168,14 @@ jw
 PG
 Aj
 yK
-cL
-Zp
-zC
-SP
-SP
-zC
-zC
-cL
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 gn
 cL
 cL
@@ -55353,8 +55362,8 @@ Tf
 kl
 ks
 JZ
-mU
-XE
+kj
+Oz
 cT
 AL
 Rf
