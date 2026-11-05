@@ -21,6 +21,8 @@
 	var/obj/effect/hydroponics_screen/screen
 
 	var/list/buffer = list()
+	///AQUILA - krótki stan zeskanowanej rośliny, pokazywany nad szczegółami
+	var/list/status = list()
 	var/last_time
 	var/last_target
 	var/render_rule = null
@@ -42,6 +44,7 @@
 /obj/item/plant_scanner/ui_data(mob/user)
 	var/list/data = list()
 	data["buffer"] = buffer
+	data["status"] = status
 	data["last_time"] = last_time
 	data["last_target"] = last_target
 	data["render_rule"] = render_rule
@@ -56,6 +59,7 @@
 	screen?.flash()
 	//prepare UI data
 	buffer.Cut()
+	status.Cut()
 	last_time = station_time_timestamp(format = "hh:mm")
 	last_target = target.name
 	//These cases are samey but it's easier to read them in this format
@@ -70,6 +74,7 @@
 	var/datum/component/plant/plant_component = target.GetComponent(/datum/component/plant)
 	if(plant_component && length(plant_component.plant_features))
 		render_rule = RENDER_RULE_PLANTSEED
+		status = get_plant_status(plant_component)
 		for(var/datum/plant_feature/feature as anything in plant_component.plant_features)
 			buffer += list(list("feature" = feature.get_scan_dialogue(), "needs" = feature.get_need_dialogue()))
 		. = FALSE
@@ -87,42 +92,12 @@
 		for(var/datum/reagent/reagent as anything in target.reagents?.reagent_list)
 			buffer["reagents"] += list("[reagent?.volume]j. [reagent?.name]")
 		. = FALSE
-//Tray - don't bother opening up the UI for this, we just dump it in chat
+//Tray - AQUILA: krótki stan tacy i każdej rośliny w czacie, zamiast pełnego katalogu potrzeb
 	var/obj/item/plant_tray/tray = target
 	if(istype(tray) && tray.can_scan)
 		render_rule = RENDER_RULE_TRAY
-		var/scan_dialogue = ""
-		var/datum/plant_feature/feature
-		//Report harvest
-		var/datum/component/plant/plant
-		for(var/ref as anything in tray.harvestable_components)
-			plant = locate(ref)
-			scan_dialogue += "<span class='plant_sub'>[plant.plant_item]([get_species_name(plant.plant_features)])\n\nGotowa do zbioru</span>"
-			buffer += "[plant.plant_item]([get_species_name(plant.plant_features)]) gotowa do zbioru"
-		//Report problems
-		for(var/ref as anything in tray.problem_features)
-			feature = locate(ref)
-			var/big_excerpt = ""
-			for(var/exceprt in feature.get_scan_dialogue())
-				big_excerpt += exceprt
-			scan_dialogue += "<span class='plant_sub'>[big_excerpt]</span>"
-			buffer += feature.get_scan_dialogue()
-		//Report needs
-		for(var/ref as anything in tray.needy_features)
-			feature = locate(ref)
-			var/big_excerpt = ""
-			for(var/exceprt in feature.get_need_dialogue(FALSE))
-				big_excerpt += "[exceprt]\n" //This needs special formatting to NOT fuck up
-			scan_dialogue += "<span class='plant_sub'>[big_excerpt]</span>"
-			buffer += feature.get_need_dialogue(FALSE)
-		//Report Weeds
-		var/datum/component/planter/tray_component = tray.GetComponent(/datum/component/planter)
-		scan_dialogue +="<span class='plant_sub'>Zachwaszczenie: [tray_component.weed_level]%</span>"
-		buffer += "Zachwaszczenie: [tray_component.weed_level]%"
-		//Report tray slots
-		scan_dialogue += "<span class='plant_sub'>Wolne miejsca na rośliny: [tray_component.plant_slots]/[initial(tray_component.plant_slots)]</span>"
-		buffer += "Wolne miejsca na rośliny: [tray_component.plant_slots]/[initial(tray_component.plant_slots)]"
-		to_chat(user, "<span class='plant_scan'><b>[capitalize(target.name)]</b></span><span class='plant_scan'>[scan_dialogue]</span>")
+		buffer = get_tray_status(tray)
+		to_chat(user, span_notice("<b>[capitalize(target.name)]</b><br>[jointext(buffer, "<br>")]"))
 		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 		ui_update()
 		return FALSE
@@ -135,6 +110,56 @@
 	last_target = null
 	render_rule = null
 	ui_update()
+
+/// AQUILA - stan rośliny w kilku liniach: zdrowie, wzrost, owoce, szkodniki i czego jej teraz brakuje
+/obj/item/plant_scanner/proc/get_plant_status(datum/component/plant/plant)
+	var/list/lines = list()
+	var/datum/plant_feature/body/body = locate() in plant.plant_features
+	var/datum/plant_feature/fruit/fruit = locate() in plant.plant_features
+	if(body)
+		var/max_health = max(1, initial(body.health))
+		var/current_health = max(0, round(body.health))
+		lines += "Zdrowie: [current_health]/[max_health] ([round(current_health / max_health * 100)]%)"
+		if(body.yields <= 0)
+			lines += "Wzrost: roślina uschła i nie da już plonów"
+		else if(body.current_stage >= body.growth_stages)
+			lines += "Wzrost: dojrzała, pozostałe plony: [body.yields == INFINITY ? "bez końca" : body.yields]"
+		else
+			lines += "Wzrost: [round(body.growth_time_elapsed / max(1, body.growth_time) * 100)]%"
+	if(fruit)
+		if(length(fruit.fruits))
+			lines += "Owoce: [length(fruit.fruits)] do zebrania"
+		else if(length(fruit.growth_timers))
+			lines += "Owoce: rosną"
+	var/pest_level = 0
+	var/list/missing = list()
+	for(var/datum/plant_feature/feature as anything in plant.plant_features)
+		for(var/datum/plant_need/reagent/buff/pests/pests in feature.plant_needs)
+			pest_level = max(pest_level, pests.pest_level)
+		for(var/datum/plant_need/need as anything in feature.unmet_needs)
+			if(QDELETED(need) || !(need in feature.plant_needs))
+				continue
+			missing |= need.get_short_description()
+	if(pest_level >= 1)
+		lines += "Szkodniki: [round(pest_level)]%"
+	lines += length(missing) ? "Brakuje: [jointext(missing, "; ")]" : "Brakuje: nic"
+	return lines
+
+/// AQUILA - stan tacy: podłoże, płyny, chwasty, miejsce i krótki stan każdej rośliny
+/obj/item/plant_scanner/proc/get_tray_status(obj/item/plant_tray/tray)
+	var/list/lines = list()
+	var/datum/component/planter/planter = tray.tray_component
+	lines += "Podłoże: [planter?.substrate?.name || "brak"]"
+	if(tray.reagents)
+		lines += "Płyny: [round(tray.reagents.total_volume)]/[tray.reagents.maximum_volume] j., w tym woda: [round(tray.reagents.get_reagent_amount(/datum/reagent/water))] j."
+	if(planter)
+		lines += "Chwasty: [round(planter.weed_level)]% (przy 100% wyrasta chwast, usuwa je kultywator)"
+		lines += "Wolne miejsce: [planter.plant_slots]/[initial(planter.plant_slots)]"
+		for(var/datum/component/plant/plant as anything in planter.plants)
+			lines += ""
+			lines += "<b>[capitalize(plant.plant_item.name)]</b>"
+			lines += get_plant_status(plant)
+	return lines
 
 #undef RENDER_RULE_PLANTSEED
 #undef RENDER_RULE_FRUIT

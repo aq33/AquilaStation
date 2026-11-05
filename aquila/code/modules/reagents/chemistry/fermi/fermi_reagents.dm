@@ -76,6 +76,9 @@
 /datum/reagent/reaction_agent/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
 	if(!target)
 		return FALSE
+	// Nothing fits (the transfer was clamped to the free space of a full beaker): no pH change, no message
+	if(amount < CHEMICAL_VOLUME_ROUNDING)
+		return FALSE
 	if(target.flags & NO_REACT)
 		return FALSE
 	if(target.has_reagent(/datum/reagent/stabilizing_agent))
@@ -102,9 +105,19 @@
 	volume -= amount
 	holder.update_total()
 
+/**
+ * pH buffers are solutions with their own volume: the used up part stays in the target as an inert spent buffer.
+ * It has the pH of the solution, so it only dilutes it and does not shift the pH again when poured further.
+ */
+/datum/reagent/reaction_agent/proc/add_spent_buffer(datum/reagents/target, amount)
+	// The plumbing reaction chamber doses buffer by itself to hold the pH, its spent buffer would drain out with the products
+	if(istype(target.my_atom, /obj/machinery/plumbing/reaction_chamber))
+		return
+	target.add_reagent(/datum/reagent/spent_buffer, amount, reagtemp = target.chem_temp, no_react = TRUE, added_ph = target.ph)
+
 /datum/reagent/reaction_agent/acidic_buffer
 	name = "Mocny bufor kwaśny"
-	description = "Ten odczynnik zużywa się przy dolaniu do innego i przesuwa pH roztworu w stronę kwaśnego."
+	description = "Roztwór buforowy: dolany do innego przesuwa jego pH w stronę kwaśnego i zostaje w nim jako zużyty bufor."
 	color = "#fbc314"
 	ph = 0
 	taste_description = "kwas"
@@ -120,11 +133,12 @@
 	else
 		target.adjust_all_reagents_ph(-(amount / target.total_volume) * BUFFER_IONIZING_STRENGTH)
 		buffer_feedback(target, "Roztwór pieni się, gdy zmienia się jego pH!")
+	add_spent_buffer(target, amount)
 	consume_self(amount, copy_only)
 
 /datum/reagent/reaction_agent/basic_buffer
 	name = "Mocny bufor zasadowy"
-	description = "Ten odczynnik zużywa się przy dolaniu do innego i przesuwa pH roztworu w stronę zasadowego."
+	description = "Roztwór buforowy: dolany do innego przesuwa jego pH w stronę zasadowego i zostaje w nim jako zużyty bufor."
 	color = "#3853a4"
 	ph = 14
 	taste_description = "mydło"
@@ -138,7 +152,16 @@
 	else
 		target.adjust_all_reagents_ph((amount / target.total_volume) * BUFFER_IONIZING_STRENGTH)
 		buffer_feedback(target, "Roztwór pieni się, gdy zmienia się jego pH!")
+	add_spent_buffer(target, amount)
 	consume_self(amount, copy_only)
+
+/// What is left of a pH buffer after it is poured into a solution: inert volume with the pH of that solution
+/datum/reagent/spent_buffer
+	name = "Zużyty bufor"
+	description = "Obojętna pozostałość po roztworze buforowym. Rozcieńcza roztwór, więc reakcje słabiej zmieniają jego pH."
+	color = "#c8c8b4"
+	taste_description = "sól"
+	chem_flags = CHEMICAL_NOT_SYNTH
 
 //purity testor/reaction agent prefactors
 

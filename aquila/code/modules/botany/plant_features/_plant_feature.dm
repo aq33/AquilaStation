@@ -26,6 +26,8 @@
 
 	///What are our desires, what we need to grow
 	var/list/plant_needs = list()
+	///AQUILA - potrzeby niespełnione przy ostatnim sprawdzeniu, do sekcji „Stan” w skanerze
+	var/list/unmet_needs = list()
 
 	/*
 		Although this is a list, it might be better, in terms of design, to only
@@ -84,6 +86,7 @@
 		plant_traits -= trait
 		qdel(trait)
 	overdraw_needs.Cut()
+	unmet_needs.Cut()
 	for(var/datum/plant_need/need as anything in plant_needs)
 		plant_needs -= need
 		qdel(need)
@@ -191,11 +194,13 @@
 	. = TRUE
 	if(SEND_SIGNAL(parent.plant_item.loc, COMSIG_PLANT_NEEDS_PAUSE, parent))
 		return FALSE
+	unmet_needs.Cut()
 	for(var/datum/plant_need/need as anything in plant_needs)
 		if(ispath(need))
 			continue
 		if(!need?.check_need(_delta_time) && !need?.buff)
 			. = FALSE
+			unmet_needs += need
 	if(!.)
 		SEND_SIGNAL(parent, COMSIG_PLANT_NEEDS_FAILS, src)
 		return
@@ -232,15 +237,17 @@
 	//If we're overdrawing, add needs
 	if(amount < 0 && remaining_genetic_budget < 0)
 		var/datum/plant_need/need = SSbotany.previous_needs["[parent.species_id]"]["[source.get_id()]"] || SSbotany.get_random_need()
-		SSbotany.previous_needs["[parent.species_id]"] |= list("[source.type]" = need.type)
+		// AQUILA - zapis pod tym samym kluczem co odczyt (get_id), żeby gatunek z tą samą cechą dostawał tę samą potrzebę
+		SSbotany.previous_needs["[parent.species_id]"]["[source.get_id()]"] = ispath(need) ? need : need.type
 		need = new need(src, TRUE)
 		overdraw_needs += list(REF(source) = need)
 		plant_needs += need
 		return
 	//If we're paying it back, remove needs
-	if(amount > 0 && plant_needs[REF(source)])
+	if(amount > 0 && overdraw_needs[REF(source)]) // AQUILA - było plant_needs[REF], zwykła lista bez kluczy, więc potrzeba nigdy nie znikała
 		var/datum/plant_need/need = overdraw_needs[REF(source)]
 		plant_needs -= need
+		unmet_needs -= need // AQUILA - bez referencji do usuwanej potrzeby
 		overdraw_needs[REF(source)] = null
 		overdraw_needs -= REF(source)
 		qdel(need)

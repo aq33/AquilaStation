@@ -6,6 +6,8 @@
 	///What % of reagents met do we need to succeed?
 	var/success_threshold = 1 //100%
 	var/auto_threshold = FALSE
+	///AQUILA - mnożnik zużycia: roślina pije 4 razy wolniej niż u Bee, żeby taca nie wysychała w półtorej minuty
+	var/consumption_mod = 0.25
 
 /datum/plant_need/reagent/New(datum/plant_feature/_parent)
 	. = ..()
@@ -13,9 +15,15 @@
 	// AQUILA - krótszy opis do skanera: "Wymaga/Opcjonalnie: opis", pod spodem odczynniki na sekundę
 	var/list/reagent_texts = list()
 	for(var/datum/reagent/reagent as anything in reagent_needs)
-		reagent_texts += "[initial(reagent.name)] [reagent_needs[reagent]]j./s"
+		reagent_texts += "[initial(reagent.name)] [reagent_needs[reagent] * consumption_mod]j./s"
 	var/reagent_line = jointext(reagent_texts, auto_threshold ? " <b>lub</b> " : ", ")
 	need_description = "<b>[buff ? "Opcjonalnie" : "Wymaga"]:</b> [need_description]\n<span>  &#8627; [reagent_line]</span>"
+
+/datum/plant_need/reagent/get_short_description()
+	var/list/names = list()
+	for(var/datum/reagent/reagent as anything in reagent_needs)
+		names += initial(reagent.name)
+	return jointext(names, auto_threshold ? " lub " : ", ")
 
 /datum/plant_need/reagent/check_need(_delta_time)
 	. = ..()
@@ -30,7 +38,7 @@
 		if(!R)
 			continue
 		for(var/reagent as anything in reagent_needs)
-			var/amount_needed = reagent_needs[reagent] * _delta_time
+			var/amount_needed = reagent_needs[reagent] * consumption_mod * _delta_time
 			amount_needed /= COOLDOWN_FINISHED(src, nectar_timer) ? 1 : 2 //Nectar buff halves the amount needed
 			if(!R.has_reagent(reagent, amount_needed))
 				continue

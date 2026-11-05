@@ -115,6 +115,78 @@
       nie zbija już FPS, a idący kosztuje mniej.
   - tweak: FPS „Zalecane” dopasowuje się do odświeżania monitora (np. 144 Hz), więc
       ruch na ekranie jest równiejszy.
+  - bugfix: 'Kult krwi: rytuały samobójcze można zaliczyć po osiągnięciu rangi oddania.
+      Rytuał „Ostrze duszy” nie jest już losowany.'
+  - bugfix: 'Heretyk: Maelstrom of Silver liczy pękniętą czaszkę, ostrza-klucze mieszczą
+      się w pasie na narzędzia.'
+  - bugfix: 'Wampir: Tremere i caitiff dostają Maskaradę na starcie.'
+  - balance: 'Wampir: Drapieżny skok na poziomie 4 działa do 6 pól, zabicie ofiary
+      żerowaniem odbiera Człowieczeństwo.'
+  - bugfix: Anomalia odczłonkowująca podmienia właściwe kończyny.
+  - bugfix: Losowanie antagonistów w trakcie rundy nie przerywa się przy niskim zagrożeniu.
+  - bugfix: 'Przewody: porażanie w autolacie działa, przewód SI w alarmie powietrza
+      i cyklu śluzy nie jest odwrócony.'
+  - bugfix: Zlecenia na papryczki chili i lodowe papryki znów się pojawiają.
+  - bugfix: Płytki maszyn botaniki, paralizatora mecha, skanera detektywa i kilku
+      konsol można wydrukować po zbadaniu węzła.
+  - rscadd: Projekty odbiornika chemikaliów i pompy cieczy.
+  - bugfix: 'MODsuit: śrubokręt cofa krok konstrukcji.'
+  - bugfix: Katalog operacji pokazuje poprawnie zaokrąglone procenty.
+  - bugfix: NTSL pokazuje ostrzeżenia kompilacji, min() i max() działają z tekstem.
+  - bugfix: 'Choroby: poprawione działanie mocy wirusa i mutowalności.'
+  - bugfix: Rośliny z Rozdzieloną zawartością reagują od razu po zgnieceniu.
+  - bugfix: Kremówkę znów można zrobić.
+  - bugfix: Alkohol nawadnia słabiej niż woda.
+  - balance: Szkodniki szkodzą roślinom zgodnie z założeniem (dwa razy mocniej niż
+      dotąd), kawa i perfumy pachną o połowę słabiej.
+  - bugfix: Butelka Chciwości nie podnosi maksymalnego zdrowia ponad 100.
+  - spellcheck: Poprawione opisy w grze, które nie zgadzały się z działaniem.
+  - rscadd: Osoba za sterami statku ma na ekranie panel konsoli (sternik, strzelec,
+      myśliwiec) z hamulcem, sterowaniem, stanem kadłuba i wybraną bronią; przyciski
+      na panelu działają jak skróty klawiszowe.
+  - rscadd: 'Myśliwiec ma ręczną katapultę: przestaw oba przełączniki na panelu w
+      ciągu 5 sekund, a kapsuła ratunkowa wystrzeli z załogą.'
+  - imageadd: Polskie napisy na grafikach konsol statku.
+  - soundadd: Nowe dźwięki myśliwca (APU, bateria, start z katapulty, katapultowanie,
+      działko), namierzania, drzwi turbowindy i skrzypienie kadłuba w stanie krytycznym.
+  - bugfix: Namierzany statek słyszy ostrzeżenie o namierzaniu, a namierzający dźwięk
+      namierzania (było odwrotnie).
+  - tweak: Maszyny botaniki (analizator, sekwencer, piec) otwierają się zwykłym kliknięciem,
+      terminal nie jest już potrzebny.
+  - tweak: Okna botaniki mają ten sam wygląd co pozostałe konsole zamiast retro-terminala.
+  - tweak: 'Skaner roślin pokazuje najpierw krótki stan: zdrowie, wzrost, wodę i czego
+      brakuje roślinie; szczegóły są po rozwinięciu.'
+  - tweak: Kliknięcie tacy albo rośliny w tacy zbiera owoce ze wszystkich roślin naraz.
+  - tweak: Piec radiacyjny przyjmuje nasiona bez sadzenia; zmutowaną paczkę wyjmuje
+      się przyciskiem w oknie pieca.
+  - tweak: Nazwa paczki nasion i komunikat o złym podłożu podają potrzebne podłoże.
+  - balance: Rośliny piją 4 razy wolniej, rosną 2 razy dłużej, chwasty pojawiają się
+      3 razy rzadziej, a rośliny jednorazowe dają 2 plony.
+  - bugfix: Pestycyd nie truje już rośliny, którą chroni przed szkodnikami.
+  - bugfix: Piec radiacyjny bierze z łopatki właściwą roślinę, a opis tacy nie pokazuje
+      chwastów, gdy ich nie ma.
+  - bugfix: Ciągnięty obiekt da się przesunąć klikiem w tacę albo w roślinę wystającą
+      nad sąsiedni kafel.
+  - spellcheck: Węgiel aktywowany nazywa się teraz poprawnie Węgiel aktywny.
+  - tweak: Lodówki pokazują najpierw zawartość, potem pojemnik, np. „Węgiel aktywny
+      (butelka)”.
+  - rscadd: 'ChemMaster ma przycisk „Oczyść”: z nieczystego odczynnika w buforze zostaje
+      tylko jego czysta część o czystości 100%.'
+  - tweak: Bufory pH zostają w zlewce jako „Zużyty bufor” i dodają objętość, zamiast
+      znikać.
+  - rscadd: 'Czat głosowy: trzymaj N (U dla radia, J dla kanału działu) i mów do mikrofonu,
+      a postać powie to, co mówisz. Włączanie w zakładce OOC → Czat głosowy (strona
+      otwiera się w przeglądarce).'
+  - config: Nowy plik config/voice_chat.txt (domyślnie wyłączony) i serwis tools/voice_chat
+      z rozpoznawaniem mowy przez Whisper, ElevenLabs albo OpenAI.
+  Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
+  - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
+      (wybierany przez admina).
+  - rscadd: 'Shrike 2.0: przebudowana mapa, na pokładzie jest detektyw, silos rudy
+      i działowe techfaby.'
+  - tweak: Na okrętach Syndykatu podczas abordażu walczą nowi przeciwnicy.
+  - tweak: Pojemnik na pigułki można wydrukować w protolathe medycznym.
+  - bugfix: Zniszczony stormdrive w ruinie górniczej nie jest już niewidzialny.
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.
@@ -130,3 +202,8 @@
       tracą już powietrza przez sufit.
   - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
       przepuszczają powietrze.'
+  - bugfix: Przecięcie kabla nie odcina już na chwilę prądu całemu statkowi (APC przestawały
+      się ładować, a monitor mocy spadał do zera).
+  - bugfix: Odcięty kawałek sieci szybciej przestaje brać prąd ze starej sieci.
+  - bugfix: Przecięcie kabla przechodzącego między pokładami już się nie zawiesza.
+  - bugfix: Połączenie dwóch sieci kablem nie gubi na chwilę prądu jednej z nich.
