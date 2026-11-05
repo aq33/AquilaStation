@@ -29,6 +29,11 @@
 		modified = TRUE
 		FD.modified = TRUE
 		FD.damage_type = BRUTE
+		// AQ EDIT START - zdjęta nasadka rani od pierwszego strzału, tak jak w handle_drop()
+		harmful = TRUE
+		FD.damage = 5
+		FD.nodamage = FALSE
+		// AQ EDIT END
 		to_chat(user, "<span class='notice'>Zdejmujesz nasadkę zabezpieczającą z [src].</span>")
 		update_icon()
 	else if (istype(A, /obj/item/pen))
@@ -51,8 +56,9 @@
 /obj/item/ammo_casing/caseless/foam_dart/attack_self(mob/living/user)
 	var/obj/item/projectile/bullet/reusable/foam_dart/FD = BB
 	if(FD.pen)
-		FD.damage = initial(FD.damage)
-		FD.nodamage = initial(FD.nodamage)
+		if(!modified) // AQ EDIT - bez nasadki kulka rani dalej, tak jak w handle_drop()
+			FD.damage = initial(FD.damage)
+			FD.nodamage = initial(FD.nodamage)
 		user.put_in_hands(FD.pen)
 		to_chat(user, "<span class='notice'>Wyjmujesz [FD.pen] z [src].</span>")
 		FD.pen = null

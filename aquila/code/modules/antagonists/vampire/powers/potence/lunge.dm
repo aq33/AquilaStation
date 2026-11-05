@@ -33,6 +33,7 @@
 	cooldown_time = 6 SECONDS
 	knockdown_bonus = 4
 	instant = TRUE
+	target_range = 6 // natychmiastowy skok tylko z odległości do 6 pól, jak w opisie
 
 /datum/action/vampire/targeted/lunge/can_use()
 	. = ..()

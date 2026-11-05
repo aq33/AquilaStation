@@ -478,7 +478,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(H.wear_mask)
 		var/obj/item/clothing/mask/M = H.wear_mask
-		dynamic_fhair_suffix = M.dynamic_fhair_suffix //mask > head in terms of facial hair
+		dynamic_fhair_suffix = isclothing(M) ? M.dynamic_fhair_suffix : "" //mask > head in terms of facial hair // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
@@ -531,7 +531,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(H.wear_mask)
 		var/obj/item/clothing/mask/M = H.wear_mask
-		if(!dynamic_hair_suffix) //head > mask in terms of head hair
+		if(!dynamic_hair_suffix && isclothing(M)) //head > mask in terms of head hair // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 			dynamic_hair_suffix = M.dynamic_hair_suffix
 		if(M.flags_inv & HIDEHAIR)
 			hair_hidden = TRUE

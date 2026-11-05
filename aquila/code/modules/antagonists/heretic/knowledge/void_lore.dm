@@ -145,7 +145,7 @@
 /datum/heretic_knowledge/armor/void
 	desc = "Stwórz Hollow Weave.<br>\
 		Ta zbroja co jakiś czas niweluje ataki i daje ci krótki kamuflaż, żebyś mógł zmienić pozycję."
-	transmute_text = "Transmutuj stół (albo kombinezon) i maskę w temperaturze poniżej zera."
+	transmute_text = "Transmutuj stół (albo strój wierzchni) i maskę w temperaturze poniżej zera."
 	gain_text = "Idąc przez zimne powietrze, doznaję nowego, wstrząsającego uczucia. \
 		Tysiące niemal niedostrzegalnych nici czepiają się mojej postaci. \
 		Z każdym krokiem dryfuję. \
