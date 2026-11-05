@@ -8,8 +8,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	/// Makes sure maploaded food only starts decomposing if a player's EVER picked it up before
 	var/handled = TRUE
-	/// Used to stop food in someone's hand & in storage slots from decomposing.
-	var/protected = FALSE
+	// AQ EDIT - usunięta zmienna protected (zapisywana, nigdy nieczytana)
 	/// Used to stop the timer & check for the examine proc
 	var/timerid
 	/// The total time that this takes to decompose
@@ -100,13 +99,11 @@
 
 /datum/component/decomposition/proc/dropped()
 	SIGNAL_HANDLER
-	protected = FALSE
 	handle_movement()
 
 /datum/component/decomposition/proc/picked_up()
 	SIGNAL_HANDLER
 	remove_timer()
-	protected = TRUE
 	if(!handled)
 		handled = TRUE
 

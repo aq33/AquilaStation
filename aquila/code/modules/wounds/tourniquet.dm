@@ -19,6 +19,9 @@
 
 /// Strefa ciała (ręka/noga) -> przybliżone krwawienie z tej kończyny
 /mob/living/carbon/var/list/aq_limb_bleed
+/// Suma krwawienia przypisanego już kończynom przez aq_add_limb_bleed. Wrappery trafień ją odejmują,
+/// żeby krwawienie z rany (apply_wound) albo oderwania kończyny w trakcie ciosu nie liczyło się drugi raz.
+/mob/living/carbon/var/aq_bleed_attributed = 0
 /// Strefa ciała -> założona opaska
 /mob/living/carbon/var/list/aq_tourniquets
 
@@ -97,13 +100,15 @@
 		amount -= blocked
 		if(amount <= 0)
 			return
+	aq_bleed_attributed += amount
 	LAZYINITLIST(aq_limb_bleed)
 	aq_limb_bleed[zone] += amount
 	update_wound_overlays()
 
 /// Rozdziela przyrost krwawienia na kończyny, które dostały obrażenia od czasu snapshotu
-/mob/living/carbon/proc/aq_attribute_bleed(list/snapshot, bleed_before)
-	var/delta = aq_bleed_rate() - bleed_before
+/mob/living/carbon/proc/aq_attribute_bleed(list/snapshot, bleed_before, attributed_before)
+	// Bez tego, co w trakcie trafienia przypisano już kończynom (rana, oderwanie)
+	var/delta = aq_bleed_rate() - bleed_before - (aq_bleed_attributed - attributed_before)
 	if(delta <= 0)
 		return
 	var/list/hit_zones = list()
@@ -126,14 +131,16 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
 	var/list/snapshot = aq_limb_damage_snapshot()
 	var/bleed_before = aq_bleed_rate()
+	var/attributed_before = aq_bleed_attributed
 	. = ..()
-	aq_attribute_bleed(snapshot, bleed_before)
+	aq_attribute_bleed(snapshot, bleed_before, attributed_before)
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
 	var/list/snapshot = aq_limb_damage_snapshot()
 	var/bleed_before = aq_bleed_rate()
+	var/attributed_before = aq_bleed_attributed
 	. = ..()
-	aq_attribute_bleed(snapshot, bleed_before)
+	aq_attribute_bleed(snapshot, bleed_before, attributed_before)
 
 /obj/item/bodypart/dismember(dam_type = BRUTE)
 	var/mob/living/carbon/old_owner = owner

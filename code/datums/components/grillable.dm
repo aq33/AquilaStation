@@ -73,6 +73,8 @@
 	grilled_result.pixel_y = original_object.pixel_y
 
 	grill_source.visible_message("<span class='[positive_result ? "notice" : "warning"]'>[parent] zamienia się w [grilled_result]!</span>")
+	if(positive_result && original_object.reagents) // AQ EDIT - wynik dostaje reagenty surowca zamiast swoich + surowca (podwajanie)
+		grilled_result.reagents?.clear_reagents()
 	original_object.reagents?.trans_to(grilled_result, original_object.reagents.total_volume)
 	SEND_SIGNAL(parent, COMSIG_GRILL_COMPLETED, grilled_result)
 	currently_grilling = FALSE
