@@ -3123,7 +3123,7 @@ Oznaczenia w kolumnie uwag:
 | Civilian | Cywile | mnoga; istniejące (latejoin) |
 | Munitions | Amunicja (dział amunicji) | ż; istniejące (manifest, latejoin) |
 | Silicon | Syntetyki | mnoga; istniejące (latejoin); pojedynczy: syntetyk (m) |
-| Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); grupa ról gimmick w defines to „Cywilne” |
+| Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); rola gimmick w defines zostaje „Gimmick” |
 | Air Traffic Control (radio) | Kontrola Lotów | ż; istniejące (`RADIO_CHANNEL_ATC`) |
 | Common (radio) | Ogólny | m; istniejące |
 | AI Private (radio) | Prywatny SI | m; istniejące jako „Prywatny AI”, w nowych tekstach „SI” |
@@ -3192,7 +3192,7 @@ Oznaczenia w kolumnie uwag:
 | King | Król | m; nowe (JOB_NAME_KING jest jeszcze po angielsku, nie zmieniać bez decyzji) |
 | Prisoner | Więzień | m; nowe (j.w.) |
 | Space Police | Kosmiczna Policja | ż; nowe |
-| Gimmick (group) | Cywilne | mnoga; istniejące |
+| Gimmick (group) | Gimmick | bez tłumaczenia (JOB_NAME_GIMMICK, klucz prefów i `config/ranks/`); „Cywilne” cofnięte w aq33/AquilaStation#532 |
 
 ### 2a. ERT i Centrala
 

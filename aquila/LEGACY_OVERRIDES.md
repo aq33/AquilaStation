@@ -41,6 +41,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `if(!QDELETED(L))` | `code/controllers/subsystem/mobs.dm` (`fire()`) | `currentrun` survives between ticks, so a mob deleted meanwhile still got `Life()` (e.g. an unpowered AI calling `addtimer` on itself). Test: `aquila_logi_rund_26_10` |
 | `if(type == "display/refresh_rate")` | `code/modules/tgui_panel/tgui_panel.dm` (`on_message()`) | Panel czatu wysyła zmierzone odświeżanie monitora; przy FPS „Zalecane” klient dostaje FPS równe odświeżaniu (`aquila/code/modules/client/monitor_refresh.dm`). |
 | `get_path_to(...) || list()` | `code/modules/mob/living/simple_animal/bot/medbot.dm` (`handle_automated_action()`) | A medibot without a turf (world shutdown after tests) got a null path and runtimed on `path.len`. |
 | `if(kb)` / `kb?.any_modifier` | `code/modules/keybindings/bindings_client.dm` (`keyDown()`, `keyUp()`) | Saved prefs can name a keybinding that no longer exists; the null went into the list and `cmp_keybinding_dsc` or `kb.any_modifier` runtimed. Load-time cleanup in `aquila/code/datums/keybinding/unknown_keybinds.dm`. |
