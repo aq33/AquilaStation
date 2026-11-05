@@ -9,11 +9,15 @@
 	} \
 } while (FALSE)
 
-/// Parametry kliknięcia w środek kratki siatki, tak jak przysłałby je klient
+/// Parametry kliknięcia 5 pikseli od lewego dolnego rogu kratki, tak jak przysłałby je klient.
+/// Kratki są mniejsze niż kafel ekranu, więc piksel rozkładamy na kafel i przesunięcie (screen-loc liczy piksele od 1)
 /proc/aquila_grid_cell_params(datum/component/storage/concrete/grid/grid, column, row)
-	var/tile_x = grid.screen_start_x + column
-	var/tile_y = grid.screen_start_y + (grid.grid_height - 1 - row)
-	return "screen-loc=[tile_x]:[grid.screen_pixel_x + 5],[tile_y]:[grid.screen_pixel_y + 5]"
+	var/tile = world.icon_size
+	var/total_x = (grid.screen_start_x - 1) * tile + grid.screen_pixel_x + column * grid.grid_cell_size + 5
+	var/total_y = (grid.screen_start_y - 1) * tile + grid.screen_pixel_y + (grid.grid_height - 1 - row) * grid.grid_cell_size + 5
+	var/tile_x = FLOOR(total_x / tile, 1)
+	var/tile_y = FLOOR(total_y / tile, 1)
+	return "screen-loc=[tile_x + 1]:[total_x - tile_x * tile + 1],[tile_y + 1]:[total_y - tile_y * tile + 1]"
 
 /datum/unit_test/storage_grid_mechanics/proc/make_item(w_class)
 	var/obj/item/I = allocate(/obj/item)
@@ -79,7 +83,8 @@
 	TEST_ASSERT_EQUAL(grid.grid_angle(pos), 90, "Clockwise rotation angle")
 	grid.orient2hud()
 	var/matrix/turned = small_a.transform
-	TEST_ASSERT(abs(turned.a) < 0.01 && abs(abs(turned.b) - 1) < 0.01, "Item icon was not turned with its shape")
+	var/small_scale = grid.grid_icon_scale(1, 2)
+	TEST_ASSERT(abs(turned.a) < 0.01 && abs(abs(turned.b) - small_scale) < 0.01, "Item icon was not turned with its shape")
 	// Upuszczenie na sobie samym niczego już nie obraca
 	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Drop on itself was not handled")
 	pos = grid.grid_positions[small_a]
@@ -90,7 +95,7 @@
 	TEST_ASSERT(!pos[3] && grid.grid_angle(pos) == 0, "Counter-clockwise rotation did not undo the turn")
 	grid.orient2hud()
 	turned = small_a.transform
-	TEST_ASSERT(abs(turned.a - 1) < 0.01 && abs(turned.b) < 0.01, "Item icon stayed turned after rotating back")
+	TEST_ASSERT(abs(turned.a - small_scale) < 0.01 && abs(turned.b) < 0.01, "Item icon stayed turned after rotating back")
 	TEST_ASSERT(!grid.move_item(small_a, null, "screen-loc=1:1,1:1"), "A drop outside the grid was treated as a move")
 
 	// Obrót bez miejsca w miejscu czeka na upuszczenie: small pionowo w (0,0), obok tiny w (1,0)
@@ -166,7 +171,8 @@
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
 	look_grid.orient2hud()
 	var/matrix/shown = big.transform
-	TEST_ASSERT_EQUAL(shown.a, 1.5, "Normal item icon was not scaled up on the grid")
+	// Kratka 24 px: ikona 2x2 zajmuje dwie kratki, czyli 48 px z 32
+	TEST_ASSERT_EQUAL(shown.a, 2 * look_grid.grid_cell_size / world.icon_size, "Normal item icon was not scaled to its cells")
 	TEST_ASSERT(big.appearance_flags & PIXEL_SCALE, "Scaled icon has no PIXEL_SCALE")
 	var/atom/movable/screen/storage_grid_item/tile = look_grid.grid_highlights[big]
 	TEST_ASSERT_EQUAL(length(tile.overlays), 4, "A 2x2 item tile should have 4 cell overlays")
@@ -200,6 +206,15 @@
 	var/obj/item/storage/backpack/fill_bag = allocate(/obj/item/storage/backpack)
 	SEND_SIGNAL(fill_bag, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/storage/box, 20)
 	TEST_ASSERT_EQUAL(length(fill_bag.contents), 6, "Fill type put more boxes into the bag than its grid holds")
+
+	// Okno w kratkach 24 px: tło ma pole na każdą kratkę, klik w daleką kolumnę trafia w nią, a nie w kafel ekranu
+	TEST_ASSERT(grid.grid_cell_size < world.icon_size, "Grid cells are not smaller than screen tiles")
+	grid.orient2hud()
+	TEST_ASSERT_EQUAL(length(grid.boxes.overlays) + 1, grid.grid_width * grid.grid_height, "Grid background should have a field for every cell")
+	var/list/far = grid.params_to_cell(aquila_grid_cell_params(grid, grid.grid_width - 1, 0))
+	TEST_ASSERT(far && far[1] == grid.grid_width - 1 && far[2] == 0, "Click in the last column landed in another cell")
+	TEST_ASSERT_EQUAL(grid.grid_loc(0, 0), "[grid.screen_start_x]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Grid origin screen_loc")
+	TEST_ASSERT_EQUAL(grid.grid_loc(grid.grid_cell_size * 4, 0), "[grid.screen_start_x + 3]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Four 24 px cells should span three screen tiles")
 
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")

@@ -25,8 +25,11 @@
 #define GRID_COLOR_OVERFLOW "#ee7b7b"
 /// Obrys podglądu lądowania, gdy przedmiot się mieści
 #define GRID_COLOR_PREVIEW "#ffffff"
-/// Powiększenie ikon przedmiotów 2x2 i większych. Ikona nie wypełnia całego kafla, zostaje margines
-#define GRID_ICON_SCALE 1.5
+/// Bok kratki siatki w pikselach. Mniejszy niż kafel świata (32), żeby okno plecaka nie zasłaniało pół ekranu.
+/// Kafle i tło w aquila/icons/hud/storage_grid.dmi są rysowane w tym rozmiarze
+#define GRID_CELL_SIZE 24
+/// Wysokość paska z nagłówkiem nad siatką
+#define GRID_HEADER_HEIGHT 18
 
 /datum/component/storage/concrete/grid
 	/// Wymiary siatki w kratkach. 0 = siatka jeszcze nie ustawiona (setup_grid()), komponent działa wtedy po staremu
@@ -53,6 +56,10 @@
 	/// przedmiot -> kąt (0/90/180/270) wybrany klawiszem E/Q w trakcie przeciągania, gdy obrócony kształt nie zmieścił się w miejscu.
 	/// Obrót wchodzi przy upuszczeniu na siatce, a bez upuszczenia znika po puszczeniu przycisku myszy
 	var/list/grid_pending_rotation
+	/// Bok kratki w pikselach ekranu
+	var/grid_cell_size = GRID_CELL_SIZE
+	/// Wymiary siatki, dla których zbudowano nakładki tła (boxes)
+	var/grid_background_key
 
 /datum/component/storage/concrete/grid/Destroy()
 	. = ..()
@@ -234,6 +241,45 @@
 		mark_cells(occupancy, I, spot[1], spot[2], shape[1], shape[2])
 	return occupancy
 
+/// screen_loc dla punktu odsuniętego o px, py pikseli od lewego dolnego rogu siatki. Kratki są mniejsze niż kafel ekranu,
+/// więc pozycje liczymy w pikselach i rozkładamy na kafel i przesunięcie
+/datum/component/storage/concrete/grid/proc/grid_loc(px, py)
+	var/tile = world.icon_size
+	var/total_x = (screen_start_x - 1) * tile + screen_pixel_x + px
+	var/total_y = (screen_start_y - 1) * tile + screen_pixel_y + py
+	var/tile_x = FLOOR(total_x / tile, 1)
+	var/tile_y = FLOOR(total_y / tile, 1)
+	return "[tile_x + 1]:[total_x - tile_x * tile],[tile_y + 1]:[total_y - tile_y * tile]"
+
+/// Skala ikony przedmiotu w kształcie width x height: ikona 32 px w jednej kratce, a od 2x2 w górę na dwie kratki
+/datum/component/storage/concrete/grid/proc/grid_icon_scale(width, height)
+	return (min(width, height) >= 2 ? 2 : 1) * grid_cell_size / world.icon_size
+
+/// Piksel na ekranie (od lewego dolnego rogu siatki), w którym trzeba postawić ikonę 32 px, żeby jej środek
+/// wypadł na środku prostokąta width x height kratek zaczynającego się w (px, py)
+/datum/component/storage/concrete/grid/proc/grid_icon_loc(px, py, width, height)
+	return grid_loc(px + width * grid_cell_size / 2 - world.icon_size / 2, py + height * grid_cell_size / 2 - world.icon_size / 2)
+
+/// Tło siatki: jeden obiekt boxes z kratką w rogu i nakładkami pozostałych kratek. Klik w puste pole trafia w boxes
+/datum/component/storage/concrete/grid/proc/update_background()
+	boxes.screen_loc = grid_loc(0, 0)
+	var/key = "[grid_width]x[grid_height]"
+	if(grid_background_key == key)
+		return
+	grid_background_key = key
+	boxes.icon = 'aquila/icons/hud/storage_grid.dmi'
+	boxes.icon_state = "cell"
+	var/list/cells = list()
+	for(var/y in 0 to grid_height - 1)
+		for(var/x in 0 to grid_width - 1)
+			if(!x && !y)
+				continue
+			var/mutable_appearance/cell = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "cell")
+			cell.pixel_x = x * grid_cell_size
+			cell.pixel_y = y * grid_cell_size
+			cells += cell
+	boxes.overlays = cells
+
 /// Zamienia parametry kliknięcia (screen-loc) na kratkę siatki: list(kolumna, wiersz) albo null poza siatką
 /datum/component/storage/concrete/grid/proc/params_to_cell(params)
 	if(!grid_width || !params)
@@ -262,8 +308,8 @@
 	var/offset_y = (tile_y - 1) * size + pixel_y - 1 - ((screen_start_y - 1) * size + screen_pixel_y)
 	if(offset_x < 0 || offset_y < 0)
 		return null
-	var/column = FLOOR(offset_x / size, 1)
-	var/screen_row = FLOOR(offset_y / size, 1)
+	var/column = FLOOR(offset_x / grid_cell_size, 1)
+	var/screen_row = FLOOR(offset_y / grid_cell_size, 1)
 	if(column >= grid_width || screen_row >= grid_height)
 		return null
 	return list(column, grid_height - 1 - screen_row)
@@ -352,8 +398,10 @@
 	var/list/shape = grid_shape(I, landing[3])
 	var/width = shape[1]
 	var/height = shape[2]
-	var/size = world.icon_size
-	preview.screen_loc = "[screen_start_x + landing[1]]:[screen_pixel_x],[screen_start_y + grid_height - landing[2] - height]:[screen_pixel_y]"
+	var/size = grid_cell_size
+	var/base_x = landing[1] * size
+	var/base_y = (grid_height - landing[2] - height) * size
+	preview.screen_loc = grid_loc(base_x, base_y)
 	var/key = "[REF(I)]-[width]x[height]-[landing[4]]-[landing[5]]"
 	if(preview.preview_key == key)
 		return
@@ -371,18 +419,20 @@
 	var/mutable_appearance/ghost = new(I)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
 	var/matrix/look = matrix(saved ? saved[1] : I.transform)
-	if(min(width, height) >= 2)
-		look.Scale(GRID_ICON_SCALE)
+	var/scale = grid_icon_scale(width, height)
+	if(scale != 1)
+		look.Scale(scale)
 	if(landing[4])
 		look.Turn(landing[4])
 	ghost.transform = look
-	ghost.appearance_flags |= PIXEL_SCALE
+	if(scale >= 1)
+		ghost.appearance_flags |= PIXEL_SCALE
 	ghost.alpha = 150
 	ghost.maptext = null
 	ghost.plane = FLOAT_PLANE
 	ghost.layer = FLOAT_LAYER
-	ghost.pixel_x = (width - 1) * size / 2
-	ghost.pixel_y = (height - 1) * size / 2
+	ghost.pixel_x = width * size / 2 - world.icon_size / 2
+	ghost.pixel_y = height * size / 2 - world.icon_size / 2
 	layers += ghost
 	preview.overlays = layers
 
@@ -452,14 +502,14 @@
 	return GRID_COLOR_LARGE
 
 /// Kafel przedmiotu: jeden obiekt ekranu w lewym dolnym rogu kształtu, każda kratka to nakładka z ramką tylko na zewnętrznych bokach
-/datum/component/storage/concrete/grid/proc/update_highlight(obj/item/I, screen_x, screen_y, width, height, overflow)
+/datum/component/storage/concrete/grid/proc/update_highlight(obj/item/I, px, py, width, height, overflow)
 	var/atom/movable/screen/storage_grid_item/highlight = LAZYACCESS(grid_highlights, I)
 	if(!highlight)
 		highlight = new(null, src, I)
 		LAZYSET(grid_highlights, I, highlight)
 	highlight.name = I.name
 	highlight.color = grid_color(I, overflow)
-	highlight.screen_loc = "[screen_x]:[screen_pixel_x],[screen_y]:[screen_pixel_y]"
+	highlight.screen_loc = grid_loc(px, py)
 	var/shape_key = "[width]x[height]"
 	if(highlight.shape_key == shape_key)
 		return
@@ -470,12 +520,12 @@
 			// Maska sąsiadów w tym samym kształcie: N=1, S=2, E=4, W=8 (dy rośnie w górę ekranu)
 			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
 			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
-			tile.pixel_x = dx * world.icon_size
-			tile.pixel_y = dy * world.icon_size
+			tile.pixel_x = dx * grid_cell_size
+			tile.pixel_y = dy * grid_cell_size
 			tiles += tile
 	highlight.overlays = tiles
 
-/// Powiększa ikonę przedmiotu w dużym kształcie (GRID_ICON_SCALE, z PIXEL_SCALE, żeby nie rozmywać) i obraca ją o kąt z siatki
+/// Skaluje ikonę przedmiotu do kratek (grid_icon_scale()) i obraca ją o kąt z siatki
 /datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale, angle = 0)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
 	if(!saved)
@@ -490,7 +540,8 @@
 	if(angle)
 		display.Turn(angle)
 	I.transform = display
-	I.appearance_flags = saved[2] | PIXEL_SCALE
+	// Powiększenie bez wygładzania (ostre piksele), zmniejszenie z wygładzaniem, żeby nie gubić cienkich linii sprite'a
+	I.appearance_flags = scale >= 1 ? (saved[2] | PIXEL_SCALE) : (saved[2] & ~PIXEL_SCALE)
 	saved[3] = display
 
 /datum/component/storage/concrete/grid/proc/restore_appearance(atom/movable/thing)
@@ -530,15 +581,15 @@
 	if(overflow_count)
 		text += " <font color='[GRID_COLOR_OVERFLOW]'>· nie mieści się: [overflow_count]</font>"
 	grid_header.maptext = MAPTEXT(text)
-	grid_header.maptext_width = grid_width * world.icon_size
-	grid_header.screen_loc = "[screen_start_x]:[screen_pixel_x],[screen_start_y + grid_height]:[screen_pixel_y]"
+	grid_header.maptext_width = max(grid_width * grid_cell_size, world.icon_size * 4)
+	grid_header.screen_loc = grid_loc(0, grid_height * grid_cell_size)
 
 /datum/component/storage/concrete/grid/orient2hud()
 	if(!grid_width)
 		return ..()
 	settle_contents()
-	var/size = world.icon_size
-	boxes.screen_loc = "[screen_start_x]:[screen_pixel_x],[screen_start_y]:[screen_pixel_y] to [screen_start_x + grid_width - 1]:[screen_pixel_x],[screen_start_y + grid_height - 1]:[screen_pixel_y]"
+	var/size = grid_cell_size
+	update_background()
 	var/atom/real_location = real_location()
 	var/overflow_index = 0
 	for(var/obj/O in real_location)
@@ -551,29 +602,30 @@
 		var/list/pos = isitem(O) ? LAZYACCESS(grid_positions, O) : null
 		var/width = 1
 		var/height = 1
-		var/screen_x
-		var/screen_y
+		// Lewy dolny róg zajmowanego prostokąta w pikselach od lewego dolnego rogu siatki
+		var/px
+		var/py
 		if(pos)
 			var/list/shape = grid_shape(O, pos[3])
 			width = shape[1]
 			height = shape[2]
-			screen_x = screen_start_x + pos[1]
-			screen_y = screen_start_y + grid_height - pos[2] - height
+			px = pos[1] * size
+			py = (grid_height - pos[2] - height) * size
 		else
 			// Przepełnienie: rzędy nad nagłówkiem
-			screen_x = screen_start_x + overflow_index % grid_width
-			screen_y = screen_start_y + grid_height + 1 + round(overflow_index / grid_width)
+			px = (overflow_index % grid_width) * size
+			py = grid_height * size + GRID_HEADER_HEIGHT + round(overflow_index / grid_width) * size
 			overflow_index++
 		// Ikona na środku zajmowanego prostokąta
-		O.screen_loc = "[screen_x]:[screen_pixel_x + (width - 1) * size / 2],[screen_y]:[screen_pixel_y + (height - 1) * size / 2]"
+		O.screen_loc = grid_icon_loc(px, py, width, height)
 		if(isitem(O))
 			var/angle = LAZYACCESS(grid_pending_rotation, O)
 			if(isnull(angle))
 				angle = grid_angle(pos)
-			apply_appearance(O, min(width, height) >= 2 ? GRID_ICON_SCALE : 1, angle)
-			update_highlight(O, screen_x, screen_y, width, height, !pos)
+			apply_appearance(O, grid_icon_scale(width, height), angle)
+			update_highlight(O, px, py, width, height, !pos)
 	update_header(overflow_index)
-	closer.screen_loc = "[screen_start_x + grid_width]:[screen_pixel_x],[screen_start_y]:[screen_pixel_y]"
+	closer.screen_loc = grid_loc(grid_width * size, 0)
 
 /datum/component/storage/concrete/grid/show_to(mob/M)
 	. = ..()
@@ -717,7 +769,7 @@
 /atom/movable/screen/storage_grid_header
 	name = ""
 	icon = null
-	maptext_height = 32
+	maptext_height = GRID_HEADER_HEIGHT
 	maptext_y = 2
 	layer = HUD_LAYER + 0.5
 	plane = HUD_PLANE
@@ -733,7 +785,8 @@
 #undef GRID_COLOR_LARGE
 #undef GRID_COLOR_OVERFLOW
 #undef GRID_COLOR_PREVIEW
-#undef GRID_ICON_SCALE
+#undef GRID_CELL_SIZE
+#undef GRID_HEADER_HEIGHT
 #undef GRID_STORAGE_MAX_WIDTH
 #undef GRID_STORAGE_HEIGHT
 #undef GRID_STORAGE_MAX_GROWN_HEIGHT
