@@ -10,44 +10,57 @@
 /// Close enough to the slot to stop and fight
 #define AI_FLANK_ARRIVE 4
 
-/// Slot offsets from the target's heading, for attacker 2, 3, 4...; the anchor (attacker 1) has no slot
-GLOBAL_LIST_INIT(ai_flank_offsets, list(90, -90, 180, 135, -135))
+/// Slot offsets from the anchor's line of attack, by how many flankers there are (not counting the anchor), lowest first.
+/// Flankers are matched to slots in the order they already stand around the target, so nobody crosses over to the far side.
+GLOBAL_LIST_INIT(ai_flank_slots, list(list(90), list(-90, 90), list(-90, 90, 180), list(-135, -90, 90, 135), list(-135, -90, 90, 135, 180)))
 
 /// Does this ship take part in a flank on target
 /obj/structure/overmap/proc/is_ai_flanker(obj/structure/overmap/target)
 	// Reckless commanders charge on their own, so they are not part of the formation
 	return ai_controlled && last_target == target && !ai_fleeing && mass > MASS_TINY && !is_ai_carrier() && ai_temperament != AI_TEMPERAMENT_RECKLESS
 
-/// list(index of this ship among the attackers of target (1 = anchor), the anchor), or null if there is nobody to flank with
-/obj/structure/overmap/proc/get_ai_flank_index(obj/structure/overmap/target, list/ships)
-	var/index = 0
-	var/count = 0
-	var/obj/structure/overmap/anchor
+/// Ships of our faction attacking target as a formation, in a stable order; the first one is the anchor
+/obj/structure/overmap/proc/get_ai_flank_attackers(obj/structure/overmap/target, list/ships)
+	. = list()
 	for(var/obj/structure/overmap/other as anything in ships)
-		if(!istype(other) || other.faction != faction || other.z != z || !other.is_ai_flanker(target))
-			continue
-		count++
-		if(count == 1)
-			anchor = other
-		if(other == src)
-			index = count
-	if(count < 2 || !index)
-		return
-	return list(index, anchor)
+		if(istype(other) && other.faction == faction && other.z == z && other.is_ai_flanker(target))
+			. += other
+
+/// Signed angle from axis to bearing, -180 to 180
+/proc/ai_flank_relative_angle(axis, bearing)
+	return ((round(bearing - axis) % 360) + 540) % 360 - 180
 
 /// Turf this ship should take to flank target, or null to attack it head on
 /obj/structure/overmap/proc/get_ai_flank_point(obj/structure/overmap/target, list/ships = current_system?.system_contents)
 	if(!GLOB.ai_morale_enabled || ai_temperament == AI_TEMPERAMENT_RECKLESS || !is_ai_hostile(target) || !is_ai_flanker(target))
 		return
-	var/list/flank = get_ai_flank_index(target, ships)
-	if(!flank || flank[1] < 2)
+	var/list/attackers = get_ai_flank_attackers(target, ships)
+	if(length(attackers) < 2 || attackers[1] == src || !(src in attackers))
 		return // Anchor or alone
-	var/index = flank[1]
-	var/obj/structure/overmap/anchor = flank[2]
+	var/obj/structure/overmap/anchor = attackers[1]
 	// Slots hang off the anchor's line of attack, not the target's heading: AI ships turn all the time,
 	// and slots measured from the heading spun round faster than our slow ships could follow
-	var/list/offsets = GLOB.ai_flank_offsets
-	var/bearing = overmap_angle(target, anchor) + offsets[((index - 2) % length(offsets)) + 1]
+	var/axis = overmap_angle(target, anchor)
+	// Flankers sorted by where they already are relative to that line
+	var/list/sorted = list()
+	var/list/side = list()
+	for(var/i in 2 to length(attackers))
+		var/obj/structure/overmap/flanker = attackers[i]
+		var/rel = ai_flank_relative_angle(axis, overmap_angle(target, flanker))
+		side[flanker] = rel
+		var/pos = length(sorted) + 1
+		for(var/j in 1 to length(sorted))
+			if(rel < side[sorted[j]])
+				pos = j
+				break
+		sorted.Insert(pos, flanker)
+	var/list/slots = GLOB.ai_flank_slots[min(length(sorted), length(GLOB.ai_flank_slots))]
+	var/offset
+	if(length(sorted) == 1)
+		offset = side[src] < 0 ? -90 : 90 // A lone flanker takes the side it is already on
+	else
+		offset = slots[min(sorted.Find(src), length(slots))]
+	var/bearing = axis + offset
 	var/radius = max(AI_FLANK_RADIUS, get_ai_standoff_range(target))
 	var/slot_x = WRAP(round(target.x + sin(bearing) * radius), 1, world.maxx + 1)
 	var/slot_y = WRAP(round(target.y + cos(bearing) * radius), 1, world.maxy + 1)
@@ -60,7 +73,7 @@ GLOBAL_LIST_INIT(ai_flank_offsets, list(90, -90, 180, 135, -135))
 	if(!slot)
 		return ..()
 	if(overmap_dist(src, slot) > AI_FLANK_ARRIVE)
-		return ..(slot) // Fly to the slot; standoff and avoidance work as usual on the way
+		return ..(slot, FALSE, ignore_all_collisions) // Fly to the slot; standoff and avoidance work as usual on the way
 	// In position: hold, nose on the target
 	brakes = TRUE
 	move_mode = null

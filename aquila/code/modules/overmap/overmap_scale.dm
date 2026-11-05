@@ -19,6 +19,8 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #define AI_TORPEDO_STANDOFF 40
 /// Dead band around the standoff distance in which the AI orbits instead of closing or opening the range
 #define AI_STANDOFF_BAND 5
+/// Damage multiplier for projectiles an AI ship fires at another AI ship
+#define AI_VS_AI_DAMAGE_MULT 0.4
 
 /// Speed multiplier for this ship right now; 1 off the overmap (fighters in a hangar, ships on station levels)
 /obj/structure/overmap/proc/get_overmap_speed_mult()
@@ -35,6 +37,19 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(get_overmap_speed_mult() == 1)
 		return
 	proj.range = round(proj.range * OVERMAP_GUN_RANGE_MULT)
+
+/// AI fleets shredded each other in under a minute, before fear, retreat or flanking could matter.
+/// Hits between two AI ships do less damage; anything a player ship fires or takes is unchanged.
+/obj/structure/overmap/bullet_act(obj/item/projectile/P)
+	var/obj/structure/overmap/shooter = P?.overmap_firer
+	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(shooter) || !shooter.ai_controlled)
+		return ..()
+	var/full_damage = P.damage
+	P.damage *= AI_VS_AI_DAMAGE_MULT
+	. = ..()
+	// A round that pierces or bounces off a shield goes on at full damage, it may hit a player ship next
+	if(!QDELETED(P))
+		P.damage = full_damage
 
 /// TRUE for weapons that fire missiles or torpedoes
 /datum/overmap_ship_weapon/proc/is_guided_weapon()
@@ -70,8 +85,10 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return AI_CARRIER_STANDOFF
 	// Torpedo launchers only fire at MASS_SMALL and up; once the torpedoes run out the ship closes in with its guns
 	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
-		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off
-		var/sensor_limit = enemy.get_detection_range(src) - AI_STANDOFF_BAND
+		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off.
+		// From the base tracking range: our own radar pulses double it for 5 s and the ship would move in and out every pulse
+		var/tracking = base_tracking_range || max_tracking_range
+		var/sensor_limit = max(tracking * enemy.sensor_signature, SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
 		return clamp(sensor_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
 	return 0
 
@@ -91,8 +108,8 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	return ..()
 
 /datum/ai_goal/retreat/action(obj/structure/overmap/OM)
-	// Carriers hold at standoff range instead of running away for good
-	if(!OM.get_ai_standoff_range(OM.last_target))
+	// Carriers hold at standoff range instead of running away for good; other supply ships still run
+	if(!OM.is_ai_carrier() || !OM.get_ai_standoff_range(OM.last_target))
 		return ..()
 	OM.current_goal = src
 	OM.move_toward(OM.last_target)
@@ -119,3 +136,4 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #undef AI_CARRIER_STANDOFF
 #undef AI_TORPEDO_STANDOFF
 #undef AI_STANDOFF_BAND
+#undef AI_VS_AI_DAMAGE_MULT
