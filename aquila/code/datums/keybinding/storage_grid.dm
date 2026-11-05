@@ -8,6 +8,10 @@
 /client
 	/// Przedmiot przeciągany właśnie po siatce schowka (słaba referencja, żeby klient nie trzymał usuniętego przedmiotu)
 	var/datum/weakref/storage_grid_drag
+	/// Ostatnie parametry myszy z MouseDrag, żeby po obrocie klawiszem odświeżyć podgląd bez ruszania myszą
+	var/storage_grid_drag_params
+	/// Podgląd lądowania przeciąganego przedmiotu, widoczny tylko dla tego klienta
+	var/atom/movable/screen/storage_grid_preview/storage_grid_preview
 
 /// Przedmiot leżący na otwartej siatce, który gracz złapał: sam przedmiot albo jego podświetlenie na siatce
 /client/proc/storage_grid_drag_target(atom/src_object)
@@ -26,11 +30,29 @@
 
 /client/MouseDrag(src_object, atom/over_object, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	if(storage_grid_drag)
-		return
-	var/obj/item/I = storage_grid_drag_target(src_object)
-	if(I)
+	if(!storage_grid_drag)
+		var/obj/item/I = storage_grid_drag_target(src_object)
+		if(!I)
+			return
 		storage_grid_drag = WEAKREF(I)
+	storage_grid_update_preview(params)
+
+/// Odświeża podgląd lądowania dla przeciąganego przedmiotu. Bez params bierze ostatnie położenie myszy
+/client/proc/storage_grid_update_preview(params)
+	if(params)
+		storage_grid_drag_params = params
+	var/obj/item/I = storage_grid_drag?.resolve()
+	if(!I || storage_grid_drag_target(I) != I)
+		storage_grid_hide_preview()
+		return
+	var/datum/component/storage/concrete/grid/grid = I.loc.GetComponent(/datum/component/storage/concrete/grid)
+	grid.update_drag_preview(src, I, storage_grid_drag_params)
+
+/client/proc/storage_grid_hide_preview()
+	if(!storage_grid_preview)
+		return
+	screen -= storage_grid_preview
+	QDEL_NULL(storage_grid_preview)
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
 	. = ..()
@@ -42,6 +64,8 @@
 
 /// Koniec przeciągania. Obrót, który nie zdążył wejść przy upuszczeniu, przepada w następnym ticku (po MouseDrop, w dowolnej kolejności zdarzeń)
 /client/proc/storage_grid_drag_end()
+	storage_grid_hide_preview()
+	storage_grid_drag_params = null
 	if(!storage_grid_drag)
 		return
 	var/obj/item/I = storage_grid_drag.resolve()
@@ -68,9 +92,12 @@
 	// Sprawdzamy jeszcze raz: przedmiot mógł w międzyczasie wypaść ze schowka, a okno mogło się zamknąć
 	if(user.storage_grid_drag_target(I) != I || user.mob.incapacitated())
 		user.storage_grid_drag = null
+		user.storage_grid_hide_preview()
 		return FALSE
 	var/datum/component/storage/concrete/grid/grid = I.loc.GetComponent(/datum/component/storage/concrete/grid)
 	grid.rotate_item(I, user.mob, clockwise)
+	// Podgląd od razu pokazuje nowe ułożenie i miejsce lądowania, bez czekania na ruch myszy
+	user.storage_grid_update_preview()
 	return TRUE
 
 /datum/keybinding/storage_grid/rotate_right

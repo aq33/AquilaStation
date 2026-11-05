@@ -8,7 +8,7 @@
  * Bezpieczeństwo: przedmiot włożony siłą (forceMove, new() w PopulateContents, włożenie z force) bez wolnego
  * miejsca nie znika, tylko ląduje w rzędzie „przepełnienia” nad siatką (czerwone podświetlenie), a do plecaka
  * nic więcej nie wejdzie, dopóki nie zrobi się miejsce. Pozostałe schowki (pasy, kabury, worki) zostają
- * na starym systemie wagi, a pasy pokazują w pustych przegródkach sylwetki narzędzi (slot_hints.dm).
+ * na starym systemie wagi, a pasy mają w pustych przegródkach znak klucza i młotka (slot_hints.dm).
  */
 
 /// Najszerszą siatkę ogranicza ekran: start w kolumnie 4, widok 17 kratek, obok jeszcze przycisk zamknięcia
@@ -23,6 +23,10 @@
 #define GRID_COLOR_NORMAL "#86b9ee"
 #define GRID_COLOR_LARGE "#b39cf0"
 #define GRID_COLOR_OVERFLOW "#ee7b7b"
+/// Obrys podglądu lądowania, gdy przedmiot się mieści
+#define GRID_COLOR_PREVIEW "#ffffff"
+/// Powiększenie ikon przedmiotów 2x2 i większych. Ikona nie wypełnia całego kafla, zostaje margines
+#define GRID_ICON_SCALE 1.5
 
 /datum/component/storage/concrete/grid
 	/// Wymiary siatki w kratkach. 0 = siatka jeszcze nie ustawiona (setup_grid()), komponent działa wtedy po staremu
@@ -264,42 +268,123 @@
 		return null
 	return list(column, grid_height - 1 - screen_row)
 
+/// Gdzie wyląduje przeciągany przedmiot, jeśli upuścić go nad kratką z params: list(kolumna, wiersz, obrócony, kąt, mieści się)
+/// albo null poza siatką. Tego samego używają upuszczenie (move_item) i podgląd w trakcie przeciągania, więc podgląd nie kłamie
+/datum/component/storage/concrete/grid/proc/drag_landing(obj/item/I, params)
+	if(!grid_width || I.loc != real_location())
+		return null
+	var/list/cell = params_to_cell(params)
+	if(!cell)
+		return null
+	var/list/pos = LAZYACCESS(grid_positions, I)
+	var/pending = LAZYACCESS(grid_pending_rotation, I)
+	var/list/rotations
+	if(isnull(pending))
+		if(pos)
+			// Nad swoim miejscem bez obrotu: zostaje, gdzie był
+			var/list/shape = grid_shape(I, pos[3])
+			if(cell[1] >= pos[1] && cell[1] < pos[1] + shape[1] && cell[2] >= pos[2] && cell[2] < pos[2] + shape[2])
+				return list(pos[1], pos[2], pos[3], grid_angle(pos), TRUE)
+		rotations = list(pos ? pos[3] : FALSE, pos ? !pos[3] : TRUE)
+	else
+		rotations = list(pending % 180 != 0)
+	var/list/spot = find_spot_at(I, build_occupancy(I), cell, rotations)
+	// Kąt ikony: wybrany klawiszem, dotychczasowy, jeśli kształt się nie zmienił, albo domyślny dla nowego ułożenia
+	var/angle
+	if(!isnull(pending))
+		angle = pending
+	else if(spot)
+		angle = (pos && spot[3] == pos[3]) ? grid_angle(pos) : (spot[3] ? 90 : 0)
+	else
+		angle = pos ? grid_angle(pos) : 0
+	if(spot)
+		return list(spot[1], spot[2], spot[3], angle, TRUE)
+	// Nie mieści się: kształt zaczepiony lewym górnym rogiem w kratce pod kursorem, dociśnięty do krawędzi siatki
+	var/rotated = rotations[1]
+	var/list/shape = grid_shape(I, rotated)
+	var/column = max(0, min(cell[1], grid_width - shape[1]))
+	var/row = max(0, min(cell[2], grid_height - shape[2]))
+	return list(column, row, rotated, angle, FALSE)
+
 /// Przesuwa przedmiot, który już jest w środku, na kratkę spod kursora. Obrót wybrany w trakcie przeciągania (E/Q) wchodzi tutaj
 /datum/component/storage/concrete/grid/proc/move_item(obj/item/I, mob/user, params)
 	if(!grid_width || I.loc != real_location())
 		return FALSE
-	var/list/cell = params_to_cell(params)
-	if(!cell)
-		return FALSE
 	settle_contents()
-	var/atom/host = parent
-	var/list/occupancy = build_occupancy(I)
-	var/list/pos = LAZYACCESS(grid_positions, I)
-	var/pending = LAZYACCESS(grid_pending_rotation, I)
+	var/list/landing = drag_landing(I, params)
+	if(!landing)
+		return FALSE
 	LAZYREMOVE(grid_pending_rotation, I)
-	var/list/rotations
-	if(isnull(pending))
-		if(pos)
-			// Upuszczony na swoim miejscu bez obrotu: zostaje, gdzie był
-			var/list/shape = grid_shape(I, pos[3])
-			if(cell[1] >= pos[1] && cell[1] < pos[1] + shape[1] && cell[2] >= pos[2] && cell[2] < pos[2] + shape[2])
-				return TRUE
-		rotations = list(pos ? pos[3] : FALSE, pos ? !pos[3] : TRUE)
-	else
-		rotations = list(pending % 180 != 0)
-	var/list/spot = find_spot_at(I, occupancy, cell, rotations)
-	if(!spot)
+	if(!landing[5])
+		var/atom/host = parent
 		host.balloon_alert(user, "nie mieści się tutaj")
 		refresh_mob_views()
 		return TRUE
-	// Kąt ikony: wybrany klawiszem, dotychczasowy, jeśli kształt się nie zmienił, albo domyślny dla nowego ułożenia
-	if(!isnull(pending))
-		spot += pending
-	else if(pos && spot[3] == pos[3])
-		spot += grid_angle(pos)
-	LAZYSET(grid_positions, I, spot)
+	LAZYSET(grid_positions, I, landing.Copy(1, 5))
 	refresh_mob_views()
 	return TRUE
+
+/// Odświeża podgląd lądowania przeciąganego przedmiotu u jednego klienta: obrys kształtu (biały, czerwony bez miejsca)
+/// i półprzezroczysta ikona w ułożeniu, w jakim przedmiot wyląduje. Poza siatką podgląd znika
+/datum/component/storage/concrete/grid/proc/update_drag_preview(client/viewer, obj/item/I, params)
+	var/atom/movable/screen/storage_grid_preview/preview = viewer.storage_grid_preview
+	// MouseDrag przychodzi przy każdym pikselu ruchu: liczymy lądowanie od nowa tylko po zmianie kratki, obrotu albo pozycji
+	var/list/cell = params_to_cell(params)
+	var/list/pos = LAZYACCESS(grid_positions, I)
+	var/input_key = cell ? "[cell[1]],[cell[2]]|[LAZYACCESS(grid_pending_rotation, I)]|[pos ? jointext(pos, ",") : ""]|[length(grid_positions)]" : null
+	if(preview && preview.input_key == input_key && input_key)
+		return
+	var/list/landing = cell ? drag_landing(I, params) : null
+	if(!landing)
+		if(preview)
+			preview.input_key = null
+			viewer.screen -= preview
+		return
+	if(!preview)
+		preview = new
+		viewer.storage_grid_preview = preview
+	preview.input_key = input_key
+	apply_drag_preview(preview, I, landing)
+	viewer.screen |= preview
+
+/// Buduje wygląd podglądu dla miejsca lądowania z drag_landing(). Przebudowuje nakładki tylko po zmianie miejsca, obrotu albo przedmiotu
+/datum/component/storage/concrete/grid/proc/apply_drag_preview(atom/movable/screen/storage_grid_preview/preview, obj/item/I, list/landing)
+	var/list/shape = grid_shape(I, landing[3])
+	var/width = shape[1]
+	var/height = shape[2]
+	var/size = world.icon_size
+	preview.screen_loc = "[screen_start_x + landing[1]]:[screen_pixel_x],[screen_start_y + grid_height - landing[2] - height]:[screen_pixel_y]"
+	var/key = "[REF(I)]-[width]x[height]-[landing[4]]-[landing[5]]"
+	if(preview.preview_key == key)
+		return
+	preview.preview_key = key
+	var/list/layers = list()
+	for(var/dy in 0 to height - 1)
+		for(var/dx in 0 to width - 1)
+			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
+			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
+			tile.color = landing[5] ? GRID_COLOR_PREVIEW : GRID_COLOR_OVERFLOW
+			tile.alpha = 170
+			tile.pixel_x = dx * size
+			tile.pixel_y = dy * size
+			layers += tile
+	var/mutable_appearance/ghost = new(I)
+	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
+	var/matrix/look = matrix(saved ? saved[1] : I.transform)
+	if(min(width, height) >= 2)
+		look.Scale(GRID_ICON_SCALE)
+	if(landing[4])
+		look.Turn(landing[4])
+	ghost.transform = look
+	ghost.appearance_flags |= PIXEL_SCALE
+	ghost.alpha = 150
+	ghost.maptext = null
+	ghost.plane = FLOAT_PLANE
+	ghost.layer = FLOAT_LAYER
+	ghost.pixel_x = (width - 1) * size / 2
+	ghost.pixel_y = (height - 1) * size / 2
+	layers += ghost
+	preview.overlays = layers
 
 /// Obraca przedmiot o 90° (E w prawo, Q w lewo) w trakcie przeciągania. Obrócony kształt zostaje w miejscu, jeśli się tam mieści
 /// (przy tej samej lewej górnej kratce albo obok niej), a jeśli nie, obrót czeka na upuszczenie
@@ -390,7 +475,7 @@
 			tiles += tile
 	highlight.overlays = tiles
 
-/// Powiększa ikonę przedmiotu w dużym kształcie (2x, z PIXEL_SCALE, żeby nie rozmywać) i obraca ją o kąt z siatki
+/// Powiększa ikonę przedmiotu w dużym kształcie (GRID_ICON_SCALE, z PIXEL_SCALE, żeby nie rozmywać) i obraca ją o kąt z siatki
 /datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale, angle = 0)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
 	if(!saved)
@@ -485,7 +570,7 @@
 			var/angle = LAZYACCESS(grid_pending_rotation, O)
 			if(isnull(angle))
 				angle = grid_angle(pos)
-			apply_appearance(O, min(width, height) >= 2 ? 2 : 1, angle)
+			apply_appearance(O, min(width, height) >= 2 ? GRID_ICON_SCALE : 1, angle)
 			update_highlight(O, screen_x, screen_y, width, height, !pos)
 	update_header(overflow_index)
 	closer.screen_loc = "[screen_start_x + grid_width]:[screen_pixel_x],[screen_start_y]:[screen_pixel_y]"
@@ -615,6 +700,19 @@
 				return
 	return ..()
 
+/// Podgląd lądowania przeciąganego przedmiotu. Należy do klienta, który przeciąga, i nie łapie myszy,
+/// żeby upuszczenie trafiło w siatkę pod spodem
+/atom/movable/screen/storage_grid_preview
+	name = ""
+	icon = null
+	layer = ABOVE_HUD_LAYER + 1
+	plane = ABOVE_HUD_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	/// Miejsce, obrót i przedmiot, dla których zbudowano nakładki
+	var/preview_key
+	/// Kratka pod kursorem, obrót i pozycja, dla których ostatnio liczono lądowanie
+	var/input_key
+
 /// Nagłówek siatki z nazwą schowka i liczbą zajętych kratek
 /atom/movable/screen/storage_grid_header
 	name = ""
@@ -634,6 +732,8 @@
 #undef GRID_COLOR_NORMAL
 #undef GRID_COLOR_LARGE
 #undef GRID_COLOR_OVERFLOW
+#undef GRID_COLOR_PREVIEW
+#undef GRID_ICON_SCALE
 #undef GRID_STORAGE_MAX_WIDTH
 #undef GRID_STORAGE_HEIGHT
 #undef GRID_STORAGE_MAX_GROWN_HEIGHT

@@ -110,6 +110,24 @@
 	pos = turn_grid.grid_positions[turning]
 	TEST_ASSERT(pos[1] == 3 && pos[2] == 3 && pos[3], "Pending rotation was not applied on drop")
 	TEST_ASSERT(isnull(LAZYACCESS(turn_grid.grid_pending_rotation, turning)), "Pending rotation stayed after the drop")
+	// Podgląd lądowania liczy to samo co upuszczenie. Teraz: turning poziomo w (3,3)-(4,3), side_blocker w (1,0)
+	var/list/landing = turn_grid.drag_landing(turning, aquila_grid_cell_params(turn_grid, 3, 3))
+	TEST_ASSERT(landing && landing[1] == 3 && landing[2] == 3 && landing[3] && landing[5], "Landing over its own place should keep the position")
+	landing = turn_grid.drag_landing(turning, aquila_grid_cell_params(turn_grid, 0, 2))
+	TEST_ASSERT(landing && landing[1] == 0 && landing[2] == 2 && landing[3] && landing[4] == 90 && landing[5], "Landing over a free cell")
+	landing = turn_grid.drag_landing(turning, aquila_grid_cell_params(turn_grid, 1, 0))
+	TEST_ASSERT(landing && !landing[5], "Landing over an occupied cell should not fit")
+	TEST_ASSERT(!turn_grid.drag_landing(turning, "screen-loc=1:1,1:1"), "Landing found outside the grid")
+	// Po obrocie klawiszem (180°, pionowo, w miejscu przy dolnej krawędzi) podgląd pokazuje nowe ułożenie
+	TEST_ASSERT(turn_grid.rotate_item(turning, null, TRUE), "Second rotation was not handled")
+	landing = turn_grid.drag_landing(turning, aquila_grid_cell_params(turn_grid, 0, 2))
+	TEST_ASSERT(landing && landing[1] == 0 && landing[2] == 2 && !landing[3] && landing[4] == 180 && landing[5], "Landing does not follow the rotation chosen while dragging")
+	var/atom/movable/screen/storage_grid_preview/preview = allocate(/atom/movable/screen/storage_grid_preview)
+	turn_grid.apply_drag_preview(preview, turning, landing)
+	TEST_ASSERT_EQUAL(length(preview.overlays), 3, "Preview of a 1x2 item should have 2 cell outlines and the ghost icon")
+	TEST_ASSERT(turn_grid.move_item(turning, null, aquila_grid_cell_params(turn_grid, 0, 2)), "Drop after the preview was not handled")
+	pos = turn_grid.grid_positions[turning]
+	TEST_ASSERT(pos[1] == landing[1] && pos[2] == landing[2] && pos[3] == landing[3] && turn_grid.grid_angle(pos) == landing[4], "Drop landed somewhere else than the preview showed")
 	// Obrót kwadratu zmienia tylko ikonę
 	var/obj/item/square = make_item(WEIGHT_CLASS_NORMAL)
 	TEST_ASSERT(SEND_SIGNAL(turn_bag, COMSIG_TRY_STORAGE_INSERT, square, null, TRUE), "Normal item did not fit")
@@ -148,7 +166,7 @@
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
 	look_grid.orient2hud()
 	var/matrix/shown = big.transform
-	TEST_ASSERT_EQUAL(shown.a, 2, "Normal item icon was not scaled up on the grid")
+	TEST_ASSERT_EQUAL(shown.a, 1.5, "Normal item icon was not scaled up on the grid")
 	TEST_ASSERT(big.appearance_flags & PIXEL_SCALE, "Scaled icon has no PIXEL_SCALE")
 	var/atom/movable/screen/storage_grid_item/tile = look_grid.grid_highlights[big]
 	TEST_ASSERT_EQUAL(length(tile.overlays), 4, "A 2x2 item tile should have 4 cell overlays")
