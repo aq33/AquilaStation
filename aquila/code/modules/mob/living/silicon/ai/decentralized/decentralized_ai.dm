@@ -41,6 +41,9 @@
 	return ..()
 
 /mob/living/silicon/ai/Life()
+	// SSmobs przetwarza kopię listy mobów, która przeżywa między tickami: SI usunięta w tym czasie dostawała Life() i ai_lose_power() wołało addtimer na usuniętym obiekcie
+	if(QDELETED(src))
+		return
 	. = ..()
 	if(stat == DEAD)
 		return
