@@ -237,13 +237,14 @@
 	//If we're overdrawing, add needs
 	if(amount < 0 && remaining_genetic_budget < 0)
 		var/datum/plant_need/need = SSbotany.previous_needs["[parent.species_id]"]["[source.get_id()]"] || SSbotany.get_random_need()
-		SSbotany.previous_needs["[parent.species_id]"] |= list("[source.type]" = need.type)
+		// AQUILA - zapis pod tym samym kluczem co odczyt (get_id), żeby gatunek z tą samą cechą dostawał tę samą potrzebę
+		SSbotany.previous_needs["[parent.species_id]"]["[source.get_id()]"] = ispath(need) ? need : need.type
 		need = new need(src, TRUE)
 		overdraw_needs += list(REF(source) = need)
 		plant_needs += need
 		return
 	//If we're paying it back, remove needs
-	if(amount > 0 && plant_needs[REF(source)])
+	if(amount > 0 && overdraw_needs[REF(source)]) // AQUILA - było plant_needs[REF], zwykła lista bez kluczy, więc potrzeba nigdy nie znikała
 		var/datum/plant_need/need = overdraw_needs[REF(source)]
 		plant_needs -= need
 		unmet_needs -= need // AQUILA - bez referencji do usuwanej potrzeby

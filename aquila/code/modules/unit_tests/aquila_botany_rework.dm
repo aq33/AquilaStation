@@ -37,6 +37,39 @@
 	TEST_ASSERT(tray.harvest_all(user), "Taca nie zebrała owoców")
 	TEST_ASSERT_NOTNULL(locate(/obj/item/food/grown/tomato) in get_turf(user), "Po zbiorze z tacy pomidor nie trafił pod gracza")
 
+// Klik w roślinę w tacy też zbiera owoce
+	var/obj/item/plant_tray/click_tray = allocate(/obj/item/plant_tray, get_step(get_step(origin, EAST), EAST))
+	var/datum/component/planter/click_planter = click_tray.GetComponent(/datum/component/planter)
+	click_planter.set_substrate(/datum/plant_subtrate/dirt)
+	click_tray.reagents.add_reagent(/datum/reagent/water, 150)
+	var/obj/item/plant_seeds/click_seeds = allocate(/obj/item/plant_seeds/preset/tomato, origin)
+	var/datum/component/plant/click_plant = click_seeds.plant(click_tray, null, TRUE, null, TRUE)
+	TEST_ASSERT_NOTNULL(click_plant, "Nie udało się posadzić drugiego pomidora")
+	click_plant.skip_growth = TRUE
+	var/datum/plant_feature/body/click_body = locate() in click_plant.plant_features
+	var/datum/plant_feature/fruit/click_fruit = locate() in click_plant.plant_features
+	for(var/i in 1 to 3)
+		click_body.process(2)
+		click_fruit.process(2)
+	TEST_ASSERT(length(click_fruit.fruits), "Drugi pomidor nie zawiązał owoców")
+	click_plant.plant_item.attack_hand(user, list())
+	TEST_ASSERT(!length(click_fruit.fruits), "Klik w roślinę w tacy nie zebrał owoców")
+
+// Dodatkowa potrzeba z przekroczonego budżetu znika po zwrocie budżetu
+	var/datum/plant_feature/budget_feature
+	for(var/datum/plant_feature/feature as anything in click_plant.plant_features)
+		if(length(feature.plant_traits))
+			budget_feature = feature
+			break
+	TEST_ASSERT_NOTNULL(budget_feature, "Pomidor nie ma żadnej cechy")
+	var/datum/plant_trait/budget_trait = budget_feature.plant_traits[1]
+	var/needs_before = length(budget_feature.plant_needs)
+	var/overdraw = budget_feature.remaining_genetic_budget + 1
+	budget_feature.adjust_genetic_budget(-overdraw, budget_trait)
+	TEST_ASSERT(length(budget_feature.plant_needs) == needs_before + 1, "Przekroczony budżet nie dodał potrzeby")
+	budget_feature.adjust_genetic_budget(overdraw, budget_trait)
+	TEST_ASSERT(length(budget_feature.plant_needs) == needs_before, "Po zwrocie budżetu dodatkowa potrzeba została ([length(budget_feature.plant_needs)] zamiast [needs_before])")
+
 // Skaner: stan tacy i rośliny zamiast katalogu potrzeb
 	var/obj/item/plant_scanner/scanner = allocate(/obj/item/plant_scanner, origin)
 	scanner.afterattack(tray, user, TRUE)
@@ -71,6 +104,12 @@
 	name_kiln.eject_seeds(null)
 	TEST_ASSERT(single_seed.name_override == "pomidor testowy", "Nasiono z pieca zgubiło własną nazwę ([single_seed.name_override])")
 	qdel(single_seed)
+
+// Piec z łopatki bierze roślinę, a nie pierwszy przedmiot na łopatce
+	var/obj/item/shovel/spade/spade = allocate(/obj/item/shovel/spade, origin)
+	allocate(/obj/item/paper, spade)
+	click_plant.plant_item.forceMove(spade)
+	TEST_ASSERT(name_kiln.find_spade_plant(spade) == click_plant.plant_item, "Piec wziął z łopatki zły przedmiot")
 
 // Piec radiacyjny: nasiona wchodzą bez łopatki i wracają zmutowane
 	var/obj/machinery/plant_machine/plant_mutator/mutator = allocate(/obj/machinery/plant_machine/plant_mutator, get_step(origin, NORTHEAST))

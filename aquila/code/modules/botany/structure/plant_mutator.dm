@@ -125,14 +125,8 @@
 		ui_update()
 		return
 	//Insert plant from spade
-	var/datum/component/plant/comp
-	var/obj/item/plant_item
-	for(var/obj/item/potential_plant in C.contents)
-		comp = potential_plant.GetComponent(/datum/component/plant)
-		plant_item = potential_plant
-		if(!comp)
-			continue
-		break
+	var/obj/item/plant_item = find_spade_plant(C)
+	var/datum/component/plant/comp = plant_item?.GetComponent(/datum/component/plant)
 	if(!comp)
 		return ..()
 	if(plant)
@@ -150,6 +144,12 @@
 	playsound(src, 'sound/machines/click.ogg', 30)
 	ui_update()
 
+/// AQUILA - roślina leżąca na łopatce (pierwszy przedmiot z komponentem rośliny, nie po prostu pierwszy przedmiot)
+/obj/machinery/plant_machine/plant_mutator/proc/find_spade_plant(obj/item/spade)
+	for(var/obj/item/potential_plant in spade.contents)
+		if(potential_plant.GetComponent(/datum/component/plant))
+			return potential_plant
+
 /// AQUILA - robi z paczki nasion roślinę w piecu; paczka czeka w środku i dostaje nowe części przy wyjęciu
 /obj/machinery/plant_machine/plant_mutator/proc/insert_seeds(obj/item/plant_seeds/seeds, mob/user)
 	if(plant)
@@ -159,6 +159,7 @@
 	if(seeds.seeds > 1)
 		var/obj/item/plant_seeds/single = seeds.copy()
 		single.seeds = 1
+		seeds.reagents?.trans_to(single, seeds.reagents.total_volume / seeds.seeds) // jego część wstrzykniętych odczynników
 		seeds.seeds--
 		seeds = single
 		seeds.forceMove(src)
