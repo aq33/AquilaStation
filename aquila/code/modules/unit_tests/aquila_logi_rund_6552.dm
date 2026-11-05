@@ -86,7 +86,7 @@
 /mob/living/carbon/human/aquila_explosion_probe
 	var/heard_explosion = FALSE
 
-/mob/living/carbon/human/aquila_explosion_probe/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, sound/S, max_distance, falloff_distance, distance_multiplier, use_reverb, volume_pref)
+/mob/living/carbon/human/aquila_explosion_probe/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, sound/S, max_distance, falloff_distance, distance_multiplier, use_reverb, volume_pref, occlusion, atom/source)
 	heard_explosion = TRUE
 
 /// Ściana, która przy trafieniu zamienia się w podłogę przed resztą bullet_act(), jak ściana plazmowa po laserze (bez gazu)

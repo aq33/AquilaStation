@@ -41,6 +41,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `occlusion = get_sound_occlusion(...)`, `source = source`; `apply_sound_occlusion()`, `apply_sound_position()`, `get_sound_environment()`, przywrócenie `S.file` po `SEND_SOUND` | `code/game/sound.dm` (`playsound()`, `playsound_local()`) | Dźwięk przestrzenny: ściany wygłuszają (ciszej, mniej ścieżki suchej, stłumiona kopia), klient śledzi źródło w pobliżu (`sound.atom`), łagodniejsza panorama, pogłos z kształtu pomieszczenia (`aquila/code/game/sound_occlusion.dm`, `aquila/code/game/area/sound_environments.dm`). Test: `aquila_sound_occlusion` |
 | `if(type == "display/refresh_rate")` | `code/modules/tgui_panel/tgui_panel.dm` (`on_message()`) | Panel czatu wysyła zmierzone odświeżanie monitora; przy FPS „Zalecane” klient dostaje FPS równe odświeżaniu (`aquila/code/modules/client/monitor_refresh.dm`). |
 | `get_path_to(...) || list()` | `code/modules/mob/living/simple_animal/bot/medbot.dm` (`handle_automated_action()`) | A medibot without a turf (world shutdown after tests) got a null path and runtimed on `path.len`. |
 | `if(kb)` / `kb?.any_modifier` | `code/modules/keybindings/bindings_client.dm` (`keyDown()`, `keyUp()`) | Saved prefs can name a keybinding that no longer exists; the null went into the list and `cmp_keybinding_dsc` or `kb.any_modifier` runtimed. Load-time cleanup in `aquila/code/datums/keybinding/unknown_keybinds.dm`. |
