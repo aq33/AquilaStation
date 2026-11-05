@@ -139,6 +139,7 @@
 #include "code\datums\keybinding\keybindings.dm"
 #include "code\datums\keybinding\mob.dm"
 #include "code\datums\keybinding\sprint.dm"
+#include "code\datums\keybinding\storage_grid.dm"
 #include "code\datums\looping_sounds\machinery_sounds.dm"
 #include "code\datums\martial\nanojutsu.dm"
 #include "code\datums\mutations\antenna.dm"

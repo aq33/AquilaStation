@@ -1,20 +1,22 @@
 /*
  * AQUILA - Ekwipunek na siatce kratek (pomysł z Space Station 14, kod napisany od nowa)
  *
- * Plecaki, torby na ramię i torby podróżne trzymają przedmioty na siatce. Każdy przedmiot zajmuje prostokąt
- * zależny od w_class (GRID_SHAPE_*), można go przeciągnąć na inną kratkę albo obrócić (upuszczając na nim samym).
+ * Plecaki, torby, skrzynki z narzędziami, apteczki, aktówki i pudełka trzymają przedmioty na siatce. Każdy przedmiot zajmuje prostokąt
+ * zależny od w_class (GRID_SHAPE_*), można go przeciągnąć na inną kratkę i obrócić klawiszem E albo Q w trakcie przeciągania.
  * Wielkość siatki liczona jest z dawnej pojemności (max_combined_w_class), żeby zestawy startowe dalej się mieściły.
  *
  * Bezpieczeństwo: przedmiot włożony siłą (forceMove, new() w PopulateContents, włożenie z force) bez wolnego
  * miejsca nie znika, tylko ląduje w rzędzie „przepełnienia” nad siatką (czerwone podświetlenie), a do plecaka
- * nic więcej nie wejdzie, dopóki nie zrobi się miejsce. Pozostałe schowki (pudełka, pasy, kabury, worki)
- * zostają na starym systemie wagi.
+ * nic więcej nie wejdzie, dopóki nie zrobi się miejsce. Pozostałe schowki (pasy, kabury, worki) zostają
+ * na starym systemie wagi, a pasy pokazują w pustych przegródkach sylwetki narzędzi (slot_hints.dm).
  */
 
 /// Najszerszą siatkę ogranicza ekran: start w kolumnie 4, widok 17 kratek, obok jeszcze przycisk zamknięcia
 #define GRID_STORAGE_MAX_WIDTH 12
 /// Domyślna wysokość siatki
 #define GRID_STORAGE_HEIGHT 4
+/// Do tej wysokości siatka rośnie, gdy zawartość startowa się nie mieści (wyższa zasłaniałaby za dużo ekranu)
+#define GRID_STORAGE_MAX_GROWN_HEIGHT 7
 /// Kolory kafli według wielkości przedmiotu (mnożą szare kafle z aquila/icons/hud/storage_grid.dmi)
 #define GRID_COLOR_TINY "#e8bf6a"
 #define GRID_COLOR_SMALL "#86d9a1"
@@ -44,6 +46,9 @@
 	var/list/grid_saved_appearance
 	/// Nagłówek nad siatką: nazwa schowka i zajęte kratki
 	var/atom/movable/screen/storage_grid_header/grid_header
+	/// przedmiot -> kąt (0/90/180/270) wybrany klawiszem E/Q w trakcie przeciągania, gdy obrócony kształt nie zmieścił się w miejscu.
+	/// Obrót wchodzi przy upuszczeniu na siatce, a bez upuszczenia znika po puszczeniu przycisku myszy
+	var/list/grid_pending_rotation
 
 /datum/component/storage/concrete/grid/Destroy()
 	. = ..()
@@ -51,6 +56,7 @@
 	QDEL_NULL(grid_header)
 	restore_all_appearances()
 	grid_positions = null
+	grid_pending_rotation = null
 	pending_cell = null
 
 /// Ustawia siatkę na podstawie dawnej pojemności. Woła ją przedmiot po pełnej inicjalizacji (gdy podtypy ustawiły już max_combined_w_class)
@@ -69,7 +75,30 @@
 	if(!grid_keep_item_limit)
 		max_items = INFINITY
 	max_combined_w_class = INFINITY
+	fit_initial_contents()
 	refresh_mob_views()
+
+/// Zawartość startowa ponad dawne limity (zestawy w pudełkach, np. kameleon, kostiumy, części) dostaje większą siatkę
+/// zamiast lądować w przepełnieniu: najpierw szerzej do GRID_STORAGE_MAX_WIDTH, potem wyżej do GRID_STORAGE_MAX_GROWN_HEIGHT
+/datum/component/storage/concrete/grid/proc/fit_initial_contents()
+	var/atom/real_location = real_location()
+	if(!length(real_location.contents))
+		return
+	while(TRUE)
+		grid_positions = null
+		settle_contents()
+		var/unplaced = 0
+		for(var/obj/item/I in real_location)
+			if(!LAZYACCESS(grid_positions, I))
+				unplaced++
+		if(!unplaced)
+			return
+		if(grid_width < GRID_STORAGE_MAX_WIDTH)
+			grid_width++
+		else if(grid_height < GRID_STORAGE_MAX_GROWN_HEIGHT)
+			grid_height++
+		else
+			return
 
 /// Kształt przedmiotu na siatce: list(szerokość, wysokość)
 /datum/component/storage/concrete/grid/proc/grid_shape(obj/item/I, rotated = FALSE)
@@ -96,6 +125,12 @@
 				width = 5
 				height = 5
 	return rotated ? list(height, width) : list(width, height)
+
+/// Kąt ikony przedmiotu na siatce. Pozycja to list(kolumna, wiersz, obrócony[, kąt]); bez kąta (automatyczne ułożenie) obrócony znaczy 90°
+/datum/component/storage/concrete/grid/proc/grid_angle(list/pos)
+	if(length(pos) >= 4)
+		return pos[4]
+	return (pos && pos[3]) ? 90 : 0
 
 /// Czy prostokąt mieści się w siatce i nie zachodzi na zajęte kratki
 /datum/component/storage/concrete/grid/proc/cells_free(list/occupancy, column, row, width, height)
@@ -229,7 +264,7 @@
 		return null
 	return list(column, grid_height - 1 - screen_row)
 
-/// Przesuwa przedmiot, który już jest w środku, na kratkę spod kursora. Upuszczenie na nim samym obraca go
+/// Przesuwa przedmiot, który już jest w środku, na kratkę spod kursora. Obrót wybrany w trakcie przeciągania (E/Q) wchodzi tutaj
 /datum/component/storage/concrete/grid/proc/move_item(obj/item/I, mob/user, params)
 	if(!grid_width || I.loc != real_location())
 		return FALSE
@@ -240,32 +275,75 @@
 	var/atom/host = parent
 	var/list/occupancy = build_occupancy(I)
 	var/list/pos = LAZYACCESS(grid_positions, I)
-	var/list/spot
-	if(pos)
-		var/list/shape = grid_shape(I, pos[3])
-		if(cell[1] >= pos[1] && cell[1] < pos[1] + shape[1] && cell[2] >= pos[2] && cell[2] < pos[2] + shape[2])
-			// Upuszczony na swoim miejscu: obrót wokół lewego górnego rogu, a jeśli tam brak miejsca, wokół kratki pod kursorem
-			var/list/rotated_shape = grid_shape(I, !pos[3])
-			if(rotated_shape[1] == shape[1])
+	var/pending = LAZYACCESS(grid_pending_rotation, I)
+	LAZYREMOVE(grid_pending_rotation, I)
+	var/list/rotations
+	if(isnull(pending))
+		if(pos)
+			// Upuszczony na swoim miejscu bez obrotu: zostaje, gdzie był
+			var/list/shape = grid_shape(I, pos[3])
+			if(cell[1] >= pos[1] && cell[1] < pos[1] + shape[1] && cell[2] >= pos[2] && cell[2] < pos[2] + shape[2])
 				return TRUE
-			if(cells_free(occupancy, pos[1], pos[2], rotated_shape[1], rotated_shape[2]))
-				spot = list(pos[1], pos[2], !pos[3])
-			else
-				spot = find_spot_at(I, occupancy, cell, list(!pos[3]))
-			if(!spot)
-				host.balloon_alert(user, "nie da się obrócić")
-				return TRUE
-	if(!spot)
-		spot = find_spot_at(I, occupancy, cell, list(pos ? pos[3] : FALSE, pos ? !pos[3] : TRUE))
+		rotations = list(pos ? pos[3] : FALSE, pos ? !pos[3] : TRUE)
+	else
+		rotations = list(pending % 180 != 0)
+	var/list/spot = find_spot_at(I, occupancy, cell, rotations)
 	if(!spot)
 		host.balloon_alert(user, "nie mieści się tutaj")
+		refresh_mob_views()
 		return TRUE
+	// Kąt ikony: wybrany klawiszem, dotychczasowy, jeśli kształt się nie zmienił, albo domyślny dla nowego ułożenia
+	if(!isnull(pending))
+		spot += pending
+	else if(pos && spot[3] == pos[3])
+		spot += grid_angle(pos)
 	LAZYSET(grid_positions, I, spot)
 	refresh_mob_views()
 	return TRUE
 
+/// Obraca przedmiot o 90° (E w prawo, Q w lewo) w trakcie przeciągania. Obrócony kształt zostaje w miejscu, jeśli się tam mieści
+/// (przy tej samej lewej górnej kratce albo obok niej), a jeśli nie, obrót czeka na upuszczenie
+/datum/component/storage/concrete/grid/proc/rotate_item(obj/item/I, mob/user, clockwise = TRUE)
+	if(!grid_width || I.loc != real_location())
+		return FALSE
+	settle_contents()
+	var/atom/host = parent
+	var/list/pos = LAZYACCESS(grid_positions, I)
+	if(!pos)
+		host.balloon_alert(user, "najpierw zrób miejsce")
+		return TRUE
+	var/current = LAZYACCESS(grid_pending_rotation, I)
+	if(isnull(current))
+		current = grid_angle(pos)
+	var/angle = (current + (clockwise ? 90 : 270)) % 360
+	var/rotated = angle % 180 != 0
+	var/list/shape = grid_shape(I, rotated)
+	var/list/occupancy = build_occupancy(I)
+	var/list/spot
+	if(cells_free(occupancy, pos[1], pos[2], shape[1], shape[2]))
+		spot = list(pos[1], pos[2], rotated)
+	else
+		spot = find_spot_at(I, occupancy, list(pos[1], pos[2]), list(rotated))
+	if(spot)
+		spot += angle
+		LAZYSET(grid_positions, I, spot)
+		LAZYREMOVE(grid_pending_rotation, I)
+	else
+		LAZYSET(grid_pending_rotation, I, angle)
+		host.balloon_alert(user, "obróci się po upuszczeniu")
+	refresh_mob_views()
+	return TRUE
+
+/// Koniec przeciągania bez upuszczenia na siatce: wybrany obrót przepada
+/datum/component/storage/concrete/grid/proc/clear_pending_rotation(obj/item/I)
+	if(isnull(LAZYACCESS(grid_pending_rotation, I)))
+		return
+	LAZYREMOVE(grid_pending_rotation, I)
+	refresh_mob_views()
+
 /datum/component/storage/concrete/grid/proc/forget_item(atom/movable/thing)
 	LAZYREMOVE(grid_positions, thing)
+	LAZYREMOVE(grid_pending_rotation, thing)
 	restore_appearance(thing)
 	var/atom/movable/screen/storage_grid_item/highlight = LAZYACCESS(grid_highlights, thing)
 	if(!highlight)
@@ -312,10 +390,8 @@
 			tiles += tile
 	highlight.overlays = tiles
 
-/// Powiększa ikonę przedmiotu w dużym kształcie (2x, z PIXEL_SCALE, żeby nie rozmywać).
-/// Ikony nie obracamy razem z kształtem: sprite'y są rysowane w różnych kierunkach (latarka poziomo, długopis ukośnie),
-/// więc obrót pokazuje sam kafel
-/datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale)
+/// Powiększa ikonę przedmiotu w dużym kształcie (2x, z PIXEL_SCALE, żeby nie rozmywać) i obraca ją o kąt z siatki
+/datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale, angle = 0)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
 	if(!saved)
 		saved = list(I.transform, I.appearance_flags, null)
@@ -326,6 +402,8 @@
 	var/matrix/display = matrix(saved[1])
 	if(scale != 1)
 		display.Scale(scale)
+	if(angle)
+		display.Turn(angle)
 	I.transform = display
 	I.appearance_flags = saved[2] | PIXEL_SCALE
 	saved[3] = display
@@ -404,7 +482,10 @@
 		// Ikona na środku zajmowanego prostokąta
 		O.screen_loc = "[screen_x]:[screen_pixel_x + (width - 1) * size / 2],[screen_y]:[screen_pixel_y + (height - 1) * size / 2]"
 		if(isitem(O))
-			apply_appearance(O, min(width, height) >= 2 ? 2 : 1)
+			var/angle = LAZYACCESS(grid_pending_rotation, O)
+			if(isnull(angle))
+				angle = grid_angle(pos)
+			apply_appearance(O, min(width, height) >= 2 ? 2 : 1, angle)
 			update_highlight(O, screen_x, screen_y, width, height, !pos)
 	update_header(overflow_index)
 	closer.screen_loc = "[screen_start_x + grid_width]:[screen_pixel_x],[screen_start_y]:[screen_pixel_y]"
@@ -484,7 +565,7 @@
 			break
 	return TRUE
 
-/// Siatka z zachowanym dawnym limitem sztuk: skrzynki z narzędziami, apteczki, aktówki
+/// Siatka z zachowanym dawnym limitem sztuk: skrzynki z narzędziami, apteczki, aktówki, pudełka
 /datum/component/storage/concrete/grid/limited
 	grid_keep_item_limit = TRUE
 
@@ -555,3 +636,4 @@
 #undef GRID_COLOR_OVERFLOW
 #undef GRID_STORAGE_MAX_WIDTH
 #undef GRID_STORAGE_HEIGHT
+#undef GRID_STORAGE_MAX_GROWN_HEIGHT

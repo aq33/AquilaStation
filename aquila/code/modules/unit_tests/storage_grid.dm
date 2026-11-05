@@ -66,17 +66,55 @@
 	TEST_ASSERT_EQUAL(pos[1], 1, "Moved item column")
 	TEST_ASSERT_EQUAL(pos[2], 1, "Moved item row")
 
-	// Obrót: small na (0,0) pionowo, upuszczony na sobie kładzie się poziomo, jeśli jest miejsce
+	// Obrót klawiszem (E/Q w trakcie przeciągania): small na (0,0) pionowo kładzie się poziomo w miejscu, a ikona obraca się razem z nim
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_TAKE, tiny, run_loc_floor_bottom_left), "Could not take the tiny item out")
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_TAKE, small_a, run_loc_floor_bottom_left), "Could not take the small item out")
 	grid.pending_cell = list(0, 0)
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_INSERT, small_a, null, TRUE), "Small item did not fit at a chosen cell")
 	pos = grid.grid_positions[small_a]
 	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && !pos[3], "Small item was not placed upright at the chosen cell")
-	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Rotation was not handled")
+	TEST_ASSERT(grid.rotate_item(small_a, null, TRUE), "Rotation was not handled")
 	pos = grid.grid_positions[small_a]
-	TEST_ASSERT(pos[3], "Small item was not rotated when dropped on itself")
+	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && pos[3], "Small item was not rotated in place")
+	TEST_ASSERT_EQUAL(grid.grid_angle(pos), 90, "Clockwise rotation angle")
+	grid.orient2hud()
+	var/matrix/turned = small_a.transform
+	TEST_ASSERT(abs(turned.a) < 0.01 && abs(abs(turned.b) - 1) < 0.01, "Item icon was not turned with its shape")
+	// Upuszczenie na sobie samym niczego już nie obraca
+	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Drop on itself was not handled")
+	pos = grid.grid_positions[small_a]
+	TEST_ASSERT(pos[3] && grid.grid_angle(pos) == 90, "Drop on itself changed the rotation")
+	// Q z powrotem: pionowo, ikona prosto
+	TEST_ASSERT(grid.rotate_item(small_a, null, FALSE), "Counter-clockwise rotation was not handled")
+	pos = grid.grid_positions[small_a]
+	TEST_ASSERT(!pos[3] && grid.grid_angle(pos) == 0, "Counter-clockwise rotation did not undo the turn")
+	grid.orient2hud()
+	turned = small_a.transform
+	TEST_ASSERT(abs(turned.a - 1) < 0.01 && abs(turned.b) < 0.01, "Item icon stayed turned after rotating back")
 	TEST_ASSERT(!grid.move_item(small_a, null, "screen-loc=1:1,1:1"), "A drop outside the grid was treated as a move")
+
+	// Obrót bez miejsca w miejscu czeka na upuszczenie: small pionowo w (0,0), obok tiny w (1,0)
+	var/obj/item/storage/backpack/turn_bag = allocate(/obj/item/storage/backpack)
+	var/datum/component/storage/concrete/grid/turn_grid = turn_bag.GetComponent(/datum/component/storage/concrete/grid)
+	var/obj/item/turning = make_item(WEIGHT_CLASS_SMALL)
+	turn_grid.pending_cell = list(0, 0)
+	TEST_ASSERT(SEND_SIGNAL(turn_bag, COMSIG_TRY_STORAGE_INSERT, turning, null, TRUE), "Small item did not fit into an empty bag")
+	var/obj/item/side_blocker = make_item(WEIGHT_CLASS_TINY)
+	turn_grid.pending_cell = list(1, 0)
+	TEST_ASSERT(SEND_SIGNAL(turn_bag, COMSIG_TRY_STORAGE_INSERT, side_blocker, null, TRUE), "Side blocker did not fit")
+	TEST_ASSERT(turn_grid.rotate_item(turning, null, TRUE), "Blocked rotation was not handled")
+	pos = turn_grid.grid_positions[turning]
+	TEST_ASSERT(!pos[3], "Item rotated into an occupied cell")
+	TEST_ASSERT_EQUAL(turn_grid.grid_pending_rotation[turning], 90, "Blocked rotation was not kept for the drop")
+	TEST_ASSERT(turn_grid.move_item(turning, null, aquila_grid_cell_params(turn_grid, 3, 3)), "Drop with a pending rotation was not handled")
+	pos = turn_grid.grid_positions[turning]
+	TEST_ASSERT(pos[1] == 3 && pos[2] == 3 && pos[3], "Pending rotation was not applied on drop")
+	TEST_ASSERT(isnull(LAZYACCESS(turn_grid.grid_pending_rotation, turning)), "Pending rotation stayed after the drop")
+	// Obrót kwadratu zmienia tylko ikonę
+	var/obj/item/square = make_item(WEIGHT_CLASS_NORMAL)
+	TEST_ASSERT(SEND_SIGNAL(turn_bag, COMSIG_TRY_STORAGE_INSERT, square, null, TRUE), "Normal item did not fit")
+	TEST_ASSERT(turn_grid.rotate_item(square, null, FALSE), "Square rotation was not handled")
+	TEST_ASSERT_EQUAL(turn_grid.grid_angle(turn_grid.grid_positions[square]), 270, "Square counter-clockwise angle")
 
 	// Przedmioty z przepełnienia nie blokują wkładania na wolną kratkę (dawny limit max_items liczył całe contents)
 	var/obj/item/storage/backpack/tiny_bag = allocate(/obj/item/storage/backpack)
@@ -172,9 +210,12 @@
 /datum/unit_test/storage_grid_populate/Run()
 	var/list/failures = list()
 	var/checked = 0
-	var/list/roots = list(/obj/item/storage/backpack, /obj/item/storage/toolbox, /obj/item/storage/firstaid, /obj/item/storage/briefcase)
+	var/list/roots = list(/obj/item/storage/backpack, /obj/item/storage/toolbox, /obj/item/storage/firstaid, /obj/item/storage/briefcase, /obj/item/storage/box)
 	for(var/root in roots)
 		for(var/storage_type in typesof(root))
+			// Losowe odczynniki tego pudełka wymagają przepisów rundy, których nie ma w teście (runtime z core, nie z siatki)
+			if(ispath(storage_type, /obj/item/storage/box/alchemist_random_chems))
+				continue
 			var/obj/item/storage/container = new storage_type(run_loc_floor_bottom_left)
 			var/datum/component/storage/concrete/grid/grid = container.GetComponent(/datum/component/storage/concrete/grid)
 			if(grid?.grid_width)
@@ -191,8 +232,11 @@
 						too_big = TRUE
 					if(!LAZYACCESS(grid.grid_positions, stored))
 						unplaced += "[stored.type]"
-				// Odrzucamy przypadki, które przekraczały też stare limity (np. losowa zawartość), bo to nie wina siatki
-				if(length(unplaced) && !too_big && old_weight <= grid.grid_base_weight && old_items <= grid.grid_base_items)
+				// Mieszczące się w starych limitach musi wejść zawsze. Ponad limity (zestawy w pudełkach) siatka rośnie,
+				// więc przepełnienie jest dopuszczalne dopiero przy siatce w największym rozmiarze (12 szerokości, 7 wysokości)
+				var/within_old_limits = !too_big && old_weight <= grid.grid_base_weight && old_items <= grid.grid_base_items
+				var/grid_maxed = grid.grid_width >= 12 && grid.grid_height >= 7
+				if(length(unplaced) && (within_old_limits || !grid_maxed))
 					failures += "[storage_type] ([grid.grid_width]x[grid.grid_height]): nie mieści się [jointext(unplaced, ", ")]"
 			for(var/atom/movable/thing in container)
 				qdel(thing)
@@ -270,6 +314,7 @@
 	for(var/atom/movable/thing in bag)
 		qdel(thing)
 	qdel(bag)
+
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

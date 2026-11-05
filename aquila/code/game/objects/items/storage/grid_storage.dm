@@ -1,5 +1,5 @@
 // AQUILA - Ekwipunek na siatce kratek (opis w aquila/code/datums/components/storage/concrete/grid.dm)
-// Siatkę mają plecaki, torby na ramię i torby podróżne oraz skrzynki z narzędziami, apteczki i aktówki (te z dawnym limitem sztuk).
+// Siatkę mają plecaki, torby na ramię i torby podróżne oraz skrzynki z narzędziami, apteczki, aktówki i pudełka (te z dawnym limitem sztuk).
 // Typy z własnym komponentem ustawionym w core (plecaki bluespace, hammerspace) zostają na nim, a wymienione niżej wracają do starego systemu.
 
 /obj/item/storage/backpack
@@ -12,6 +12,9 @@
 	component_type = /datum/component/storage/concrete/grid/limited
 
 /obj/item/storage/briefcase
+	component_type = /datum/component/storage/concrete/grid/limited
+
+/obj/item/storage/box
 	component_type = /datum/component/storage/concrete/grid/limited
 
 /obj/item/storage/Initialize(mapload)
@@ -29,7 +32,7 @@
 		return
 	var/datum/component/storage/concrete/grid/grid = GetComponent(/datum/component/storage/concrete/grid)
 	if(grid?.grid_width)
-		. += "<span class='notice'>Ma siatkę [grid.grid_width]×[grid.grid_height] kratek[grid.grid_keep_item_limit ? " i mieści najwyżej [grid.max_items] przedmiotów" : ""]. Przeciągnij przedmiot na inną kratkę, żeby go przesunąć, albo upuść go na nim samym, żeby go obrócić.</span>"
+		. += "<span class='notice'>Ma siatkę [grid.grid_width]×[grid.grid_height] kratek[grid.grid_keep_item_limit ? " i mieści najwyżej [grid.max_items] przedmiotów" : ""]. Przeciągnij przedmiot na inną kratkę, żeby go przesunąć, a w trakcie przeciągania obróć go klawiszem E albo Q.</span>"
 
 // Worek Mikołaja ma pojemność 60 i co chwilę dostaje nowe prezenty
 /obj/item/storage/backpack/santabag
