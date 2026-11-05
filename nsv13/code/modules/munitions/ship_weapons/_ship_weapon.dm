@@ -334,7 +334,7 @@
 
 		if(unload_sound)
 			playsound(src, unload_sound, 100, 1)
-		cycle_sleep(unload_delay) // AQ EDIT - pasek etapu nad bronią (aquila/code/modules/munitions/weapon_cycle_bar.dm)
+		cycle_sleep(unload_delay, "unload") // AQ EDIT - postęp etapu na przycisku w oknie broni (aquila/code/modules/munitions/weapon_cycle_stage.dm)
 
 		if(length(ammo))
 			for(var/atom/movable/AM in ammo)
@@ -373,7 +373,7 @@
 		flick("[initial(icon_state)]_loading",src)
 		if(feeding_sound)
 			playsound(src, feeding_sound, 100, 1)
-		cycle_sleep(feed_delay) // AQ EDIT - pasek etapu nad bronią
+		cycle_sleep(feed_delay, "feed") // AQ EDIT - postęp etapu na przycisku w oknie broni
 		if("[initial(icon_state)]_loaded" in icon_state_list)
 			icon_state = "[initial(icon_state)]_loaded"
 		if(fed_sound)
@@ -435,7 +435,7 @@
 		if(rapidfire)
 			sleep(chamber_delay_rapid)
 		else
-			cycle_sleep(chamber_delay) // AQ EDIT - pasek etapu nad bronią
+			cycle_sleep(chamber_delay, "chamber") // AQ EDIT - postęp etapu na przycisku w oknie broni
 		if("[initial(icon_state)]_chambered" in icon_state_list)
 			icon_state = "[initial(icon_state)]_chambered"
 		chambered = ammo[1]
@@ -453,7 +453,7 @@
 	if(state == STATE_CHAMBERED)
 		state = STATE_CHAMBERING // Technically unchambering, but it accomplishes the same purpose without needless defines
 		flick("[initial(icon_state)]_chambering",src)
-		cycle_sleep(chamber_delay) // AQ EDIT - pasek etapu nad bronią
+		cycle_sleep(chamber_delay, "chamber") // AQ EDIT - postęp etapu na przycisku w oknie broni
 		if("[initial(icon_state)]_loaded" in icon_state_list)
 			icon_state = "[initial(icon_state)]_loaded"
 		if(fed_sound)

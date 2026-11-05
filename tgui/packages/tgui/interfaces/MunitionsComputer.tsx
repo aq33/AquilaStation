@@ -5,8 +5,12 @@ import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import {
+  WeaponStageButton,
+  type WeaponStageData,
+} from './common/WeaponStageButton';
 
-type Data = {
+type Data = WeaponStageData & {
   ammo: any;
   canReload: any;
   chambered: any;
@@ -45,16 +49,20 @@ export const MunitionsComputer = (props) => {
       <Window.Content>
         {(!sudo_mode && (
           <Section title="Sterowanie bronią:">
-            <Button
+            <WeaponStageButton
               fluid
+              data={data}
+              stages={['feed', 'unload']}
               icon={loaded ? 'check-circle' : 'square-o'}
               width="100"
               selected={loaded}
               content="I1 - Pocisk podany"
               onClick={() => act('toggle_load')}
             />
-            <Button
+            <WeaponStageButton
               fluid
+              data={data}
+              stages={['chamber']}
               icon={chambered ? 'check-circle' : 'square-o'}
               width="100"
               selected={chambered}
@@ -69,8 +77,10 @@ export const MunitionsComputer = (props) => {
               onClick={() => act('toggle_safety')}
             />
             {!!isgaussgun && (
-              <Button
+              <WeaponStageButton
                 fluid
+                data={data}
+                stages={['rack']}
                 icon={data.canReload ? 'power-off' : 'square-o'}
                 color={data.canReload ? 'green' : 'red'}
                 content="I4 - Przeładuj ze stojaka"

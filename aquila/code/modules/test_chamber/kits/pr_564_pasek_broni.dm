@@ -1,11 +1,12 @@
-// aq33/AquilaStation#564 - pasek etapów ładowania nad bronią statkową i skrzydła ćmy w animacji chodu
+// aq33/AquilaStation#564 - przyciski etapów w oknie broni nabijają się paskiem i skrzydła ćmy w animacji chodu
 
 /datum/test_chamber_kit/pr_564
-	name = "PR 564: pasek ładowania broni, skrzydła ćmy"
+	name = "PR 564: pasek etapów w oknie broni, skrzydła ćmy"
 	pr = "aq33/AquilaStation#564"
-	description = "Połączenie: postaw konsolę amunicji obok broni i z multitoolem w ręce kliknij w jej oknie „Połącz z najbliższą bronią” (albo zapisz broń multitoolem i wybierz „Połącz z: …”); druga konsola dla drugiej broni. 	1) Przeciągnij torpedę na podajnik VLS (poczekaj na pasek do_after) → oczekiwane: torpeda w środku. W konsoli kliknij „I1 - Pocisk podany”, potem „I2 - Pocisk w komorze” → oczekiwane: nad VLS pasek rośnie od czerwonego do żółtego (ok. 2 s podawania, potem 1 s komorowania) i znika. \
-	2) Drugą postacią albo z boku: ten pasek widzi każdy obok, nie tylko ładujący. \
-	3) To samo z MAC-iem i jego amunicją → oczekiwane: pasek wyśrodkowany nad całym działem, nie nad lewym dolnym kafelkiem. Rozładuj broń → oczekiwane: krótki pasek rozładunku. \
+	description = "Połączenie: postaw konsolę amunicji obok broni i z multitoolem w ręce kliknij w jej oknie „Połącz z najbliższą bronią” (albo zapisz broń multitoolem i wybierz „Połącz z: …”); druga konsola dla drugiej broni. \
+	1) Przeciągnij torpedę na podajnik VLS (poczekaj na pasek do_after) → oczekiwane: torpeda w środku. W konsoli kliknij „I1 - Pocisk podany” → oczekiwane: przycisk I1 nabija się zielonym paskiem przez ok. 2 s i zostaje zaznaczony. Potem „I2 - Pocisk w komorze” → I2 nabija się przez ok. 1 s. \
+	2) Zamknij i otwórz okno w trakcie etapu → oczekiwane: pasek startuje od miejsca, w którym etap jest, nie od zera. \
+	3) To samo z MAC-iem i jego amunicją w drugiej konsoli. Kliknij I1 przy podanym pocisku (rozładunek) → oczekiwane: I1 nabija się na czas rozładunku. \
 	4) Ćma (druga postać w zestawie): przejmij ją albo chodź obok i patrz → oczekiwane: przy każdym kroku w każdą stronę skrzydła są całe, bez nacięć i kawałków ruszających się razem z rękami i nogami; po zatrzymaniu wyglądają tak jak przed ruszeniem. \
 	Negatyw: ubierz ćmie skafander, który chowa skrzydła → oczekiwane: w ruchu skrzydeł dalej nie widać."
 	items = list(
