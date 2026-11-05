@@ -12,12 +12,24 @@
 #define VOICE_CHANNEL_DEPARTMENT "department"
 /// Plik z tokenami graczy, żeby otwarta strona działała też w następnej rundzie.
 #define VOICE_CHAT_TOKENS_FILE "data/voice_chat_tokens.json"
+/// Token nieużywany tyle czasu (w dziesiątych sekundy world.realtime) wygasa.
+#define VOICE_CHAT_TOKEN_LIFETIME (30 * 24 * 60 * 60 * 10)
 /// Jak długo czekamy na tekst po puszczeniu klawisza.
 #define VOICE_CHAT_RESULT_TIMEOUT (15 SECONDS)
 /// Jak często pytamy serwis, gdy nikt nie mówi (stan połączenia strony).
 #define VOICE_CHAT_IDLE_SYNC (1 SECONDS)
 /// Krótsze wciśnięcie klawisza traktujemy jak przypadkowe.
 #define VOICE_CHAT_MIN_PRESS (0.3 SECONDS)
+/// Tyle nieudanych /api/sync z rzędu, zanim uznamy strony graczy za rozłączone (jeden błąd to zwykle restart serwisu).
+#define VOICE_CHAT_FAILS_TO_DISCONNECT 3
+/// Najwięcej poleceń trzymanych do ponownego wysłania, gdy serwis nie odpowiada.
+#define VOICE_CHAT_MAX_QUEUED_CMDS 200
+/// Klawisz mówienia bez połączenia otwiera stronę najwyżej raz na tyle czasu.
+#define VOICE_CHAT_AUTO_OPEN_COOLDOWN (60 SECONDS)
+/// Podpowiedź „otwórz stronę” najwyżej raz na tyle czasu.
+#define VOICE_CHAT_HINT_COOLDOWN (10 SECONDS)
+/// Strona otwarta tak niedawno jeszcze się łączy, więc nie zmieniamy jej tokenu.
+#define VOICE_CHAT_REOPEN_GRACE (30 SECONDS)
 
 /datum/config_entry/flag/voice_chat_enabled
 
@@ -59,10 +71,15 @@
 	var/recording_started
 	/// seq -> world.time puszczenia klawisza; czekamy na tekst.
 	var/list/awaiting = list()
+	/// world.realtime ostatniego połączenia strony (stare tokeny wygasają).
+	var/last_used
+	/// world.time ostatniego otwarcia strony w tej rundzie.
+	var/opened_at
 
-/datum/voice_chat_session/New(ckey, token)
+/datum/voice_chat_session/New(ckey, token, last_used)
 	src.ckey = ckey
 	src.token = token
+	src.last_used = isnull(last_used) ? world.realtime : last_used
 
 SUBSYSTEM_DEF(voice_chat)
 	name = "Czat głosowy"
@@ -75,13 +92,19 @@ SUBSYSTEM_DEF(voice_chat)
 	var/list/sessions = list()
 	/// Polecenia czekające na najbliższe /api/sync.
 	var/list/pending_cmds = list()
+	/// Polecenia wysłane w trwającym /api/sync (wracają do kolejki, gdy zapytanie się nie uda).
+	var/list/in_flight_cmds
 	var/datum/http_request/sync_request
 	var/next_idle_sync = 0
 	var/last_seq = 0
-	/// Czy ostatnie /api/sync się udało (żeby nie spamować logu, gdy serwis leży).
-	var/service_up = TRUE
+	/// Ile /api/sync z rzędu się nie udało.
+	var/failed_syncs = 0
 	/// VOICE_CHAT_ENABLED z configu (osobno od can_fire, żeby test mógł sprawdzić logikę bez łączenia z serwisem).
 	var/enabled = FALSE
+	/// ckey -> world.time ostatniego otwarcia strony klawiszem mówienia
+	var/list/last_auto_open = list()
+	/// ckey -> world.time ostatniej podpowiedzi o niepołączonej stronie
+	var/list/last_hint = list()
 
 /datum/controller/subsystem/voice_chat/Initialize(start_timeofday)
 	enabled = CONFIG_GET(flag/voice_chat_enabled)
@@ -101,11 +124,22 @@ SUBSYSTEM_DEF(voice_chat)
 		handle_sync_response(sync_request.into_response())
 		sync_request = null
 	check_timeouts()
-	if(!length(sessions))
+	var/list/session_map = online_session_map()
+	if(!length(session_map) && !length(pending_cmds))
 		return
 	if(!length(pending_cmds) && !anyone_awaiting() && world.time < next_idle_sync)
 		return
-	send_sync()
+	send_sync(session_map)
+
+/// token -> ckey dla graczy, którzy są teraz na serwerze. Strona gracza spoza serwera dostaje „koniec sesji” i czeka.
+/datum/controller/subsystem/voice_chat/proc/online_session_map()
+	var/list/session_map = list()
+	for(var/ckey in sessions)
+		if(!GLOB.directory[ckey])
+			continue
+		var/datum/voice_chat_session/session = sessions[ckey]
+		session_map[session.token] = ckey
+	return session_map
 
 /datum/controller/subsystem/voice_chat/proc/anyone_awaiting()
 	for(var/ckey in sessions)
@@ -114,36 +148,46 @@ SUBSYSTEM_DEF(voice_chat)
 			return TRUE
 	return FALSE
 
-/datum/controller/subsystem/voice_chat/proc/send_sync()
-	var/list/session_map = list()
-	for(var/ckey in sessions)
-		var/datum/voice_chat_session/session = sessions[ckey]
-		session_map[session.token] = ckey
-	var/list/payload = list("sessions" = session_map, "cmds" = pending_cmds)
+/datum/controller/subsystem/voice_chat/proc/send_sync(list/session_map)
+	in_flight_cmds = pending_cmds
 	pending_cmds = list()
+	var/list/payload = list("sessions" = session_map, "cmds" = in_flight_cmds)
 	next_idle_sync = world.time + VOICE_CHAT_IDLE_SYNC
 	sync_request = new
 	sync_request.prepare(RUSTG_HTTP_METHOD_POST, "[CONFIG_GET(string/voice_chat_service_url)]/api/sync", json_encode(payload), list(
 		"Content-Type" = "application/json",
-		"X-Voice-Secret" = CONFIG_GET(string/voice_chat_secret),
+		// Skrót, nie sam sekret: nagłówek HTTP przyjmuje tylko ASCII, a sekret może mieć polskie litery.
+		"X-Voice-Secret" = rustg_hash_string(RUSTG_HASH_SHA256, CONFIG_GET(string/voice_chat_secret)),
 	))
 	sync_request.begin_async()
 
 /datum/controller/subsystem/voice_chat/proc/handle_sync_response(datum/http_response/response)
 	if(response.errored || response.status_code != 200)
-		if(service_up)
+		// Polecenia mogły nie dojść: wracają na początek kolejki, a strony uznajemy za rozłączone dopiero po kilku błędach.
+		if(length(in_flight_cmds))
+			pending_cmds = in_flight_cmds + pending_cmds
+			if(length(pending_cmds) > VOICE_CHAT_MAX_QUEUED_CMDS)
+				pending_cmds.Cut(1, length(pending_cmds) - VOICE_CHAT_MAX_QUEUED_CMDS + 1)
+		in_flight_cmds = null
+		failed_syncs++
+		if(failed_syncs == 1)
 			log_world("Czat głosowy: serwis nie odpowiada ([response.errored ? response.error : response.status_code]).")
-		service_up = FALSE
-		for(var/ckey in sessions)
-			set_connected(sessions[ckey], FALSE)
+		if(failed_syncs >= VOICE_CHAT_FAILS_TO_DISCONNECT)
+			for(var/ckey in sessions)
+				set_connected(sessions[ckey], FALSE)
 		return
-	service_up = TRUE
+	in_flight_cmds = null
+	failed_syncs = 0
 	var/list/data = json_decode(response.body)
 	var/list/status = data["status"]
 	for(var/ckey in sessions)
 		var/datum/voice_chat_session/session = sessions[ckey]
 		var/list/session_status = status?[session.token]
 		set_connected(session, session_status?["connected"] ? TRUE : FALSE)
+		if(session_status?["replaced"])
+			var/client/player = GLOB.directory[ckey]
+			if(player)
+				to_chat(player, span_warning("Strona czatu głosowego została otwarta w innej karcie i przejęła mikrofon. Jeśli to nie ty, kliknij „Czat głosowy” w zakładce OOC: nowy link unieważni stary."))
 	for(var/list/result in data["results"])
 		handle_result(result)
 
@@ -158,24 +202,31 @@ SUBSYSTEM_DEF(voice_chat)
 		return
 	session.connected = connected
 	var/client/player = GLOB.directory[session.ckey]
-	if(!player)
-		return
 	if(connected)
-		to_chat(player, span_notice("Czat głosowy połączony. Trzymaj [key_for(player, "voice_say")], żeby mówić, [key_for(player, "voice_radio")], żeby mówić przez radio, albo [key_for(player, "voice_department")], żeby mówić na kanale działu."))
+		session.last_used = world.realtime
+		save_tokens()
+		if(player)
+			to_chat(player, span_notice("Czat głosowy połączony. Trzymaj [key_for(player, "voice_say")], żeby mówić, [key_for(player, "voice_radio")], żeby mówić przez radio, albo [key_for(player, "voice_department")], żeby mówić na kanale działu."))
 		return
 	if(session.recording_seq)
 		cancel_recording(player, session)
-	to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w zakładce OOC, żeby otworzyć stronę ponownie."))
+	if(player)
+		to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w zakładce OOC, żeby otworzyć stronę ponownie."))
 
 /datum/controller/subsystem/voice_chat/proc/handle_result(list/result)
 	var/datum/voice_chat_session/session = session_by_token(result["token"])
 	if(!session)
 		return
 	var/seq = result["seq"]
-	if(!("[seq]" in session.awaiting))
-		return
-	session.awaiting -= "[seq]"
 	var/client/player = GLOB.directory[session.ckey]
+	if("[seq]" in session.awaiting)
+		session.awaiting -= "[seq]"
+	else if(session.recording_seq && session.recording_seq == seq)
+		// Strona sama skończyła nagranie po VOICE_CHAT_MAX_SECONDS, zanim doszło puszczenie klawisza.
+		session.recording_seq = null
+		player?.mob?.remove_typing_indicator()
+	else
+		return
 	if(!player?.mob)
 		return
 	var/text = result["text"]
@@ -198,12 +249,13 @@ SUBSYSTEM_DEF(voice_chat)
 	for(var/ckey in sessions)
 		var/datum/voice_chat_session/session = sessions[ckey]
 		var/client/player = GLOB.directory[ckey]
-		// Puszczenie klawisza mogło nie dojść (np. Alt+Tab z wciśniętym klawiszem).
-		if(session.recording_seq && world.time - session.recording_started > max_recording + 1 SECONDS)
-			if(player)
+		if(session.recording_seq)
+			if(!player)
+				// Gracz wyszedł z klawiszem wciśniętym: strona nie może nagrywać dalej.
+				cancel_recording(null, session)
+			else if(world.time - session.recording_started > max_recording + 1 SECONDS)
+				// Puszczenie klawisza mogło nie dojść (np. Alt+Tab z wciśniętym klawiszem).
 				stop_recording(player)
-			else
-				session.recording_seq = null
 		for(var/seq in session.awaiting)
 			if(world.time - session.awaiting[seq] < VOICE_CHAT_RESULT_TIMEOUT)
 				continue
@@ -218,8 +270,7 @@ SUBSYSTEM_DEF(voice_chat)
 		return
 	var/datum/voice_chat_session/session = sessions[player.ckey]
 	if(!session?.connected)
-		to_chat(player, span_notice("Czat głosowy nie jest połączony. Otwieram stronę w przeglądarce…"))
-		open_page(player)
+		not_connected(player, session)
 		return
 	if(session.recording_seq)
 		return
@@ -228,6 +279,21 @@ SUBSYSTEM_DEF(voice_chat)
 	session.recording_started = world.time
 	pending_cmds += list(list("token" = session.token, "cmd" = "start", "seq" = session.recording_seq, "channel" = channel, "max" = CONFIG_GET(number/voice_chat_max_seconds)))
 	player.mob?.create_typing_indicator(TRUE) // TRUE: bez otwartego okna mówienia
+
+/// Klawisz mówienia bez połączonej strony. Stronę otwieramy tylko temu, kto już kiedyś z niej korzystał,
+/// i nie częściej niż raz na minutę, żeby przypadkowe wciśnięcia (pisanie z kursorem na mapie) nie otwierały kart.
+/datum/controller/subsystem/voice_chat/proc/not_connected(client/player, datum/voice_chat_session/session)
+	var/last_open = last_auto_open[player.ckey]
+	if(session && (isnull(last_open) || world.time - last_open >= VOICE_CHAT_AUTO_OPEN_COOLDOWN))
+		last_auto_open[player.ckey] = world.time
+		to_chat(player, span_notice("Czat głosowy nie jest połączony. Otwieram stronę w przeglądarce…"))
+		open_page(player)
+		return
+	var/hinted = last_hint[player.ckey]
+	if(!isnull(hinted) && world.time - hinted < VOICE_CHAT_HINT_COOLDOWN)
+		return
+	last_hint[player.ckey] = world.time
+	to_chat(player, span_notice("Czat głosowy nie jest połączony. Otwórz stronę komendą „Czat głosowy” w zakładce OOC."))
 
 /// Puszczenie klawisza mówienia.
 /datum/controller/subsystem/voice_chat/proc/stop_recording(client/player)
@@ -243,25 +309,43 @@ SUBSYSTEM_DEF(voice_chat)
 	session.recording_seq = null
 	player.mob?.remove_typing_indicator()
 
+/// player może być null (gracz wyszedł z gry w trakcie nagrania).
 /datum/controller/subsystem/voice_chat/proc/cancel_recording(client/player, datum/voice_chat_session/session)
 	pending_cmds += list(list("token" = session.token, "cmd" = "cancel", "seq" = session.recording_seq))
 	session.recording_seq = null
-	player.mob?.remove_typing_indicator()
+	player?.mob?.remove_typing_indicator()
+
+/datum/controller/subsystem/voice_chat/proc/new_token(ckey)
+	return md5("[rand(1, 999999999)]-[rand(1, 999999999)]-[rand(1, 999999999)]-[world.realtime]-[REALTIMEOFDAY]-[world.cpu]-[ckey]")
 
 /// Zakłada sesję (albo bierze istniejącą) i otwiera graczowi stronę z mikrofonem.
+/// Każde otwarcie daje nowy token, więc stary link (np. pokazany na streamie) przestaje działać.
 /datum/controller/subsystem/voice_chat/proc/open_page(client/player)
 	if(!enabled)
 		to_chat(player, span_warning("Czat głosowy jest wyłączony na tym serwerze."))
 		return
 	var/datum/voice_chat_session/session = sessions[player.ckey]
 	if(!session)
-		session = new(player.ckey, md5("[rand(1, 999999999)]-[rand(1, 999999999)]-[world.realtime]-[REALTIMEOFDAY]-[player.ckey]"))
+		session = new(player.ckey, new_token(player.ckey))
 		sessions[player.ckey] = session
 		save_tokens()
 		next_idle_sync = 0
+	else if(isnull(session.opened_at) || world.time - session.opened_at >= VOICE_CHAT_REOPEN_GRACE)
+		// Nowy link przy każdym otwarciu (poza świeżo otwartą stroną, która jeszcze się łączy).
+		// Stara karta dostaje koniec sesji, także cudza, otwarta z wykradzionego linku.
+		if(session.recording_seq)
+			cancel_recording(player, session)
+		session.token = new_token(player.ckey)
+		session.connected = FALSE
+		session.awaiting = list()
+		session.last_used = world.realtime
+		save_tokens()
+		next_idle_sync = 0
+	session.opened_at = world.time
 	var/url = "[CONFIG_GET(string/voice_chat_public_url)]/?t=[session.token]"
 	player << link(url)
-	to_chat(player, span_notice("Otwieram stronę czatu głosowego w przeglądarce. Zezwól na mikrofon, zostaw kartę otwartą i wróć do gry. Jeśli nic się nie otworzyło, wejdź na: [url]"))
+	// Sam adres zawiera token, więc w czacie jest tylko klikalne słowo (zrzut ekranu ani stream go nie zdradzą).
+	to_chat(player, span_notice("Otwieram stronę czatu głosowego w przeglądarce. Zezwól na mikrofon, zostaw kartę otwartą i wróć do gry. Jeśli nic się nie otworzyło, kliknij <a href='[url]'>ten link</a>. Nie pokazuj go nikomu: kto go ma, może mówić za twoją postać."))
 
 /datum/controller/subsystem/voice_chat/proc/key_for(client/player, keybind_name)
 	for(var/bound_key in player.prefs?.key_bindings)
@@ -273,14 +357,30 @@ SUBSYSTEM_DEF(voice_chat)
 	if(!fexists(VOICE_CHAT_TOKENS_FILE))
 		return
 	var/list/saved = json_decode(rustg_file_read(VOICE_CHAT_TOKENS_FILE))
+	if(!islist(saved))
+		return
+	var/expired = FALSE
 	for(var/ckey in saved)
-		sessions[ckey] = new /datum/voice_chat_session(ckey, saved[ckey])
+		var/entry = saved[ckey]
+		var/token
+		var/last_used
+		if(islist(entry))
+			token = entry["token"]
+			last_used = entry["used"]
+		else
+			token = entry // stary zapis: ckey -> token
+		if(!istext(token) || (isnum(last_used) && world.realtime - last_used > VOICE_CHAT_TOKEN_LIFETIME))
+			expired = TRUE
+			continue
+		sessions[ckey] = new /datum/voice_chat_session(ckey, token, isnum(last_used) ? last_used : null)
+	if(expired)
+		save_tokens()
 
 /datum/controller/subsystem/voice_chat/proc/save_tokens()
 	var/list/saved = list()
 	for(var/ckey in sessions)
 		var/datum/voice_chat_session/session = sessions[ckey]
-		saved[ckey] = session.token
+		saved[ckey] = list("token" = session.token, "used" = session.last_used)
 	rustg_file_write(json_encode(saved), VOICE_CHAT_TOKENS_FILE)
 
 /// Komenda OOC. Gracz dostaje ją tylko wtedy, gdy czat głosowy jest włączony w configu.
@@ -297,6 +397,8 @@ SUBSYSTEM_DEF(voice_chat)
 
 /// Klawisze mówienia głosem. Przy wyłączonym czacie nie działają wcale (wciśnięcie idzie do innych bindów).
 /datum/keybinding/client/voice
+	/// Działa też z wciśniętym Shiftem (sprint), Ctrl albo Alt.
+	any_modifier = TRUE
 	/// Kanał przekazywany do SSvoice_chat.start_recording()
 	var/voice_channel
 
@@ -338,26 +440,23 @@ SUBSYSTEM_DEF(voice_chat)
 	keybind_signal = COMSIG_KB_CLIENT_VOICE_DEPARTMENT_DOWN
 	voice_channel = VOICE_CHANNEL_DEPARTMENT
 
-// Zapisane keybindy nie dostają nowych skrótów same (jak sprint). Dopisujemy klawisze głosu, jeśli są wolne.
+// Zapisane keybindy nie dostają nowych skrótów same. Klawisze głosu dopisujemy raz, jeśli są wolne.
 /datum/preferences/load_from_database()
 	. = ..()
-	if(!islist(key_bindings))
-		return
-	for(var/list/default_bind in list(list("voice_say", "N"), list("voice_radio", "U"), list("voice_department", "J")))
-		var/keybind_name = default_bind[1]
-		var/bound = FALSE
-		for(var/bound_key in key_bindings)
-			var/list/names = key_bindings[bound_key]
-			if(islist(names) && (keybind_name in names))
-				bound = TRUE
-				break
-		if(!bound && !length(key_bindings[default_bind[2]]))
-			key_bindings[default_bind[2]] = list(keybind_name)
+	offer_default_keybind("voice_say", "N")
+	offer_default_keybind("voice_radio", "U")
+	offer_default_keybind("voice_department", "J")
 
 #undef VOICE_CHANNEL_SAY
 #undef VOICE_CHANNEL_RADIO
 #undef VOICE_CHANNEL_DEPARTMENT
 #undef VOICE_CHAT_TOKENS_FILE
+#undef VOICE_CHAT_TOKEN_LIFETIME
 #undef VOICE_CHAT_RESULT_TIMEOUT
 #undef VOICE_CHAT_IDLE_SYNC
 #undef VOICE_CHAT_MIN_PRESS
+#undef VOICE_CHAT_FAILS_TO_DISCONNECT
+#undef VOICE_CHAT_MAX_QUEUED_CMDS
+#undef VOICE_CHAT_AUTO_OPEN_COOLDOWN
+#undef VOICE_CHAT_HINT_COOLDOWN
+#undef VOICE_CHAT_REOPEN_GRACE

@@ -12,9 +12,9 @@ Gracz trzyma klawisz w grze i mówi, a jego postać wypowiada rozpoznany tekst (
 Mikrofon nie działa w oknach samego BYOND: Dream Seeker 516 odrzuca prośbę o mikrofon bez pytania
 (sprawdzone testem, `raport/glos_01_rozpoznanie.md`). Stąd strona w zwykłej przeglądarce.
 
-Gra rozmawia z serwisem tylko przez `POST /api/sync` (lista sesji, polecenia start/stop, odbiór tekstu),
-więc działa także, gdy serwis stoi na innej maszynie. Strona może wysłać nagranie tylko wtedy,
-gdy gra o nie poprosiła (gracz trzymał klawisz).
+Gra rozmawia z serwisem tylko przez `POST /api/sync` (lista sesji graczy obecnych na serwerze, polecenia start/stop,
+odbiór tekstu), więc działa także, gdy serwis stoi na innej maszynie (patrz „Serwer gry na innej maszynie”).
+Strona może wysłać nagranie tylko wtedy, gdy gra o nie poprosiła (gracz trzymał klawisz).
 
 ## Uruchomienie lokalne (test)
 
@@ -46,6 +46,17 @@ Scribe v2 ze słowami z gry 3% / 0,9 s. Nagrania głosu idą wtedy do zewnętrzn
 - Wciśnięcie krótsze niż 0,3 s jest anulowane, nagranie najdłużej `VOICE_CHAT_MAX_SECONDS` (domyślnie 15 s).
 - Cisza nie jest wysyłana do Whispera, a typowe zmyślenia Whispera na ciszy („Napisy stworzone przez społeczność Amara.org” itp.) są odrzucane.
 - Tokeny graczy są w `data/voice_chat_tokens.json`, więc otwarta karta działa też w kolejnej rundzie.
+  Token nieużywany przez 30 dni wygasa, a każde kliknięcie „Czat głosowy” daje nowy link i unieważnia stary
+  (wyjątek: strona otwarta mniej niż 30 s temu, która jeszcze się łączy). Link w czacie jest schowany pod słowem „link”.
+- Na jeden token działa jedna karta. Nowa karta z tym samym linkiem odłącza starą, gra ostrzega gracza,
+  a nagranie serwis przyjmuje tylko od bieżącej karty. Zamknięcie albo odświeżenie karty zwalnia połączenie od razu (`/bye`).
+- Strona łączy się z grą dopiero z działającym mikrofonem, więc „Czat głosowy połączony” znaczy, że nagrywanie działa.
+- Klawisze głosu działają też z wciśniętym Shiftem (sprint), Ctrl albo Alt. Klawisze N/U/J są dopisywane graczowi raz
+  (`data/offered_keybinds.json`); usunięte w Preferencjach nie wracają.
+- Klawisz mówienia bez połączonej strony otwiera ją najwyżej raz na minutę i tylko temu, kto już z niej korzystał.
+  Pozostali dostają podpowiedź w czacie.
+- Pojedynczy błąd `/api/sync` (np. restart serwisu) nie rozłącza graczy: polecenia wracają do kolejki,
+  a strony są uznawane za rozłączone dopiero po trzech błędach z rzędu.
 
 ## Diagnostyka
 
@@ -64,6 +75,17 @@ Pliki w `deploy/`: `Caddyfile` (HTTPS i ukrycie `/api` przed internetem), `aquil
 5. `config/voice_chat.txt` serwera gry: `VOICE_CHAT_ENABLED`, `VOICE_CHAT_PUBLIC_URL https://twoja.domena`,
    `VOICE_CHAT_SECRET` taki sam jak w `env`. `VOICE_CHAT_SERVICE_URL` zostaje `http://127.0.0.1:8179`.
 6. Sprawdzenie: `curl https://twoja.domena/health` daje `{"ok": true}`, a `curl https://twoja.domena/api/sync` daje 404.
+
+### Serwer gry na innej maszynie niż serwis
+
+Serwis zostaje na `127.0.0.1` za Caddy, a `/api` przepuszczamy tylko z adresu IP serwera gry:
+
+1. W `Caddyfile` zamień `@api path /api/*` na wariant z `not remote_ip` (zakomentowany w pliku) z IP serwera gry.
+2. W `config/voice_chat.txt` serwera gry: `VOICE_CHAT_SERVICE_URL https://twoja.domena` (sekret idzie wtedy przez HTTPS).
+3. Sprawdzenie z serwera gry: `curl -X POST -H "X-Voice-Secret: <sekret>" https://twoja.domena/api/sync` daje JSON z `status`,
+   a z innego komputera 404.
+
+Sekret najlepiej z `openssl rand -hex 32`. Polskie litery w sekrecie działają, ale nie ma po co ich używać.
 
 Bez karty graficznej na serwerze lokalny Whisper będzie za wolny, więc VPS używa ElevenLabs. Gdy ElevenLabs
 nie odpowiada, gracz dostaje komunikat „rozpoznawanie mowy nie odpowiada”.

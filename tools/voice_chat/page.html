@@ -54,9 +54,12 @@ let ctx = null;
 let rate = 48000;
 let preRoll = [];
 let preRollLen = 0;
-let recording = null;  // {seq, chunks, timer}
+let recording = null;  // {seq, chunks, timer, stopping, postLeft, done}
 let micReady = false;
 let linked = false;
+let conn = "";  // identyfikator tego połączenia od serwisu; nagranie bez niego jest odrzucane
+let started = false;
+let replaced = false;
 
 function setStatus(text, cls, hint) {
 	el("status").textContent = text;
@@ -67,7 +70,8 @@ function setStatus(text, cls, hint) {
 
 function refreshStatus() {
 	if (!micReady) return;
-	if (recording) setStatus("Nagrywam…", "rec", "Puść klawisz w grze, kiedy skończysz mówić.");
+	if (replaced) setStatus("Strona otwarta w innej karcie", "bad", "Ta karta jest odłączona. Jeśli to nie ty otworzyłeś stronę, kliknij „Czat głosowy” w grze: nowy link unieważni stary.");
+	else if (recording && !recording.stopping) setStatus("Nagrywam…", "rec", "Puść klawisz w grze, kiedy skończysz mówić.");
 	else if (linked) setStatus("Gotowe. Możesz wrócić do gry.", "ok", "Trzymaj klawisz mówienia (domyślnie N, radio: U, kanał działu: J).");
 	else setStatus("Brak połączenia z grą", "bad", "Kliknij „Czat głosowy” w grze, jeśli to nie wróci samo.");
 }
@@ -127,6 +131,11 @@ async function enableMic() {
 		}
 		micReady = true;
 		refreshStatus();
+		// Z grą łączymy się dopiero z działającym mikrofonem: inaczej gra pisze „połączony”, a nagranie nie wychodzi.
+		if (!started) {
+			started = true;
+			connect();
+		}
 	} catch (err) {
 		el("enable").hidden = false;
 		setStatus("Brak dostępu do mikrofonu", "bad", "Zezwól przeglądarce na mikrofon (ikona w pasku adresu) i kliknij przycisk. (" + err.name + ")");
@@ -138,7 +147,14 @@ function onSamples(block) {
 	for (let i = 0; i < block.length; i++) sum += block[i] * block[i];
 	el("level").style.width = Math.min(100, Math.sqrt(sum / block.length) * 400) + "%";
 	if (recording) {
-		recording.chunks.push(block);
+		const rec = recording;
+		rec.chunks.push(block);
+		// Końcówkę po puszczeniu klawisza odmierzamy próbkami, nie setTimeout: karta w tle ma timery
+		// wyrównywane do pełnej sekundy, a AudioWorklet działa normalnie.
+		if (rec.stopping) {
+			rec.postLeft -= block.length;
+			if (rec.postLeft <= 0) completeRec(rec);
+		}
 		return;
 	}
 	preRoll.push(block);
@@ -146,11 +162,30 @@ function onSamples(block) {
 	while (preRollLen - preRoll[0].length > PRE_ROLL * rate) preRollLen -= preRoll.shift().length;
 }
 
+/// Ostatnie PRE_ROLL sekund z bloków (pre-roll nowego nagrania, gdy poprzednie jeszcze zbierało końcówkę).
+function tail(chunks) {
+	const out = [];
+	let len = 0;
+	for (let i = chunks.length - 1; i >= 0 && len < PRE_ROLL * rate; i--) {
+		out.unshift(chunks[i]);
+		len += chunks[i].length;
+	}
+	return out;
+}
+
 function startRec(data) {
 	if (!micReady) return;
 	if (ctx.state !== "running") ctx.resume();
-	if (recording) finishRec(recording);
-	recording = { seq: data.seq, chunks: preRoll.slice(), timer: setTimeout(() => stopRec({ seq: data.seq }), (data.max || 15) * 1000) };
+	if (recording && recording.seq === data.seq) return;  // to samo polecenie drugi raz (ponowione przez grę)
+	let head = preRoll.slice();
+	if (recording) {
+		// Klawisz wciśnięty znowu, zanim poprzednie nagranie zebrało końcówkę: kończymy je od razu,
+		// a jego ostatnie próbki są początkiem nowego (inaczej pierwsze słowo byłoby ucięte).
+		const prev = recording;
+		head = prev.stopping ? tail(prev.chunks) : [];
+		completeRec(prev);
+	}
+	recording = { seq: data.seq, chunks: head, stopping: false, postLeft: 0, done: false, timer: setTimeout(() => stopRec({ seq: data.seq }), (data.max || 15) * 1000) };
 	preRoll = [];
 	preRollLen = 0;
 	refreshStatus();
@@ -158,18 +193,29 @@ function startRec(data) {
 
 function stopRec(data) {
 	const rec = recording;
-	if (!rec || rec.seq !== data.seq) return;
+	if (!rec || rec.seq !== data.seq || rec.stopping) return;
 	clearTimeout(rec.timer);
-	setTimeout(() => {
-		if (recording === rec) recording = null;
-		finishRec(rec);
-		refreshStatus();
-	}, POST_ROLL * 1000);
+	rec.stopping = true;
+	rec.postLeft = POST_ROLL * rate;
+	// Zapas, gdyby mikrofon przestał dawać próbki.
+	rec.timer = setTimeout(() => completeRec(rec), 2000);
+	refreshStatus();
+}
+
+/// Kończy nagranie dokładnie raz i wysyła je.
+function completeRec(rec) {
+	if (rec.done) return;
+	rec.done = true;
+	clearTimeout(rec.timer);
+	if (recording === rec) recording = null;
+	finishRec(rec);
+	refreshStatus();
 }
 
 function cancelRec(data) {
-	if (recording && recording.seq === data.seq) {
+	if (recording && (data.seq === undefined || recording.seq === data.seq)) {
 		clearTimeout(recording.timer);
+		recording.done = true;
 		recording = null;
 		refreshStatus();
 	}
@@ -186,7 +232,7 @@ function finishRec(rec) {
 	for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
 	const rms = Math.sqrt(sum / Math.max(1, samples.length));
 	const silent = rms < SILENCE_RMS;
-	fetch(`/audio?t=${token}&seq=${rec.seq}${silent ? "&silent=1" : ""}`, {
+	fetch(`/audio?t=${token}&c=${conn}&seq=${rec.seq}${silent ? "&silent=1" : ""}`, {
 		method: "POST",
 		headers: { "Content-Type": "audio/wav" },
 		body: silent ? new Blob([]) : encodeWav(samples, TARGET_RATE),
@@ -227,6 +273,7 @@ function connect() {
 	es.addEventListener("hello", (e) => {
 		linked = true;
 		const data = JSON.parse(e.data);
+		conn = data.conn || "";
 		el("hint").dataset.ckey = data.ckey;
 		refreshStatus();
 	});
@@ -239,10 +286,20 @@ function connect() {
 		else addLog(data.error || "Nie rozpoznano mowy.", true);
 	});
 	es.addEventListener("ended", () => {
+		// Gracz wyszedł z gry albo dostał nowy link: nic, co teraz nagrywamy, nie zostanie przyjęte.
 		es.close();
 		linked = false;
+		cancelRec({});
 		refreshStatus();
 		setTimeout(connect, 5000);
+	});
+	es.addEventListener("replaced", () => {
+		// Ta sama strona otwarta w innej karcie przejęła mikrofon. Bez ponownego łączenia, żeby karty się nie przepychały.
+		es.close();
+		linked = false;
+		replaced = true;
+		cancelRec({});
+		refreshStatus();
 	});
 	es.onerror = () => {
 		// Sesja nieznana (np. nowa runda jeszcze nie wysłała listy) albo serwis wstaje. Próbujemy dalej.
@@ -254,12 +311,15 @@ function connect() {
 }
 
 el("enable").addEventListener("click", enableMic);
+// Odświeżenie albo zamknięcie karty zwalnia połączenie od razu (inaczej nowa karta wyglądałaby na przejęcie strony).
+window.addEventListener("pagehide", () => {
+	if (linked && conn) navigator.sendBeacon(`/bye?t=${token}&c=${conn}`);
+});
 if (!/^[0-9a-f]{32}$/.test(token)) {
 	setStatus("Zły link", "bad", "Otwórz tę stronę z gry: komenda „Czat głosowy” w zakładce OOC.");
 } else {
 	setStatus("Włączanie mikrofonu…", "bad");
 	enableMic();
-	connect();
 }
 </script>
 </body>

@@ -20,6 +20,7 @@
 	var/datum/voice_chat_test_player/player
 	var/old_enabled
 	var/list/old_cmds
+	var/old_failed
 
 /datum/unit_test/aquila_voice_chat/Run()
 	var/mob/living/carbon/human/speaker = allocate(/mob/living/carbon/human)
@@ -74,6 +75,39 @@
 	SSvoice_chat.enabled = FALSE
 	TEST_ASSERT(!voice_bind.can_use(player), "Bind głosu działa przy wyłączonym czacie")
 	SSvoice_chat.enabled = TRUE
+	TEST_ASSERT(voice_bind.any_modifier, "Bind głosu nie działa z wciśniętym Shiftem (sprint)")
+
+	// Strona sama kończy nagranie po VOICE_CHAT_MAX_SECONDS i tekst wraca, zanim gra dostała puszczenie klawisza
+	SSvoice_chat.start_recording(player, "say")
+	var/long_seq = session.recording_seq
+	SSvoice_chat.handle_result(list("token" = session.token, "seq" = long_seq, "channel" = "say", "text" = "Długie zdanie"))
+	TEST_ASSERT_EQUAL(length(heard), 2, "Tekst długiego nagrania przepadł")
+	TEST_ASSERT(!session.recording_seq, "Po tekście długiego nagrania gra dalej uważa, że trwa nagranie")
+	TEST_ASSERT(!speaker.typing_indicator, "Dymek nie zniknął po tekście długiego nagrania")
+
+	// Gracz wyszedł z gry z wciśniętym klawiszem: strona dostaje „cancel”
+	SSvoice_chat.start_recording(player, "say")
+	GLOB.directory -= player.ckey
+	SSvoice_chat.check_timeouts()
+	TEST_ASSERT_EQUAL(last_cmd(), "cancel", "Wyjście gracza w trakcie nagrania nie anulowało nagrania na stronie")
+	TEST_ASSERT(!session.recording_seq, "Nagranie gracza, który wyszedł, dalej trwa")
+	GLOB.directory[player.ckey] = player
+
+	// Nieudany /api/sync: polecenia wracają do kolejki, a jeden błąd nie rozłącza strony
+	old_failed = SSvoice_chat.failed_syncs
+	SSvoice_chat.failed_syncs = 0
+	var/list/sent = list(list("token" = session.token, "cmd" = "stop", "seq" = 999))
+	SSvoice_chat.in_flight_cmds = sent
+	SSvoice_chat.pending_cmds = list()
+	var/datum/http_response/failed = new
+	failed.errored = TRUE
+	failed.error = "test"
+	SSvoice_chat.handle_sync_response(failed)
+	TEST_ASSERT_EQUAL(last_cmd(), "stop", "Polecenie z nieudanego zapytania nie wróciło do kolejki")
+	TEST_ASSERT(session.connected, "Jeden nieudany sync rozłączył stronę")
+
+	// Serwis liczy ten sam skrót sekretu w Pythonie (hashlib.sha256 z UTF-8), także z polskimi literami
+	TEST_ASSERT_EQUAL(rustg_hash_string(RUSTG_HASH_SHA256, "tajne_hasło"), "2c349d8acc997c876a843354c9cbc237da5bc30c431a4a19c38f01f5f4fd4c5f", "Skrót sekretu w grze różni się od skrótu w serwisie")
 
 	// Adres z configu wklejony z ukośnikiem na końcu nie może dać „//?t=” w linku do strony
 	TEST_ASSERT_EQUAL(trim_voice_chat_url("https://aquila-glos.duckdns.org/ "), "https://aquila-glos.duckdns.org", "Ukośnik na końcu adresu nie został obcięty")
@@ -97,6 +131,9 @@
 	SSvoice_chat.enabled = old_enabled
 	if(old_cmds)
 		SSvoice_chat.pending_cmds = old_cmds
+	if(!isnull(old_failed))
+		SSvoice_chat.failed_syncs = old_failed
+	SSvoice_chat.in_flight_cmds = null
 	return ..()
 
 #undef TEST_ASSERT

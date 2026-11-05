@@ -10,6 +10,7 @@ Tylko biblioteka standardowa Pythona. Uruchomienie: patrz README.md obok.
 """
 
 import argparse
+import hashlib
 import hmac
 import json
 import os
@@ -31,6 +32,8 @@ CHANNELS = ("say", "radio", "department")
 MAX_AUDIO_BYTES = 2 * 1024 * 1024
 MIN_SECONDS = 0.3
 MAX_SECONDS = 20.0
+# Nagranie, o które gra poprosiła, a strona go nie przysłała (zamknięta karta), wygasa po tylu sekundach.
+PENDING_TTL = MAX_SECONDS + 60
 
 # Zdania, które Whisper wymyśla na ciszy albo szumie (z napisów filmów, na których go uczono).
 HALLUCINATIONS = (
@@ -52,16 +55,19 @@ class Session:
 	def __init__(self, token, ckey):
 		self.token = token
 		self.ckey = ckey
-		self.listeners = []  # kolejki zdarzeń otwartych stron (SSE)
-		self.pending = {}  # seq -> kanał nagrania, na które gra czeka
+		# Jedna otwarta strona na token: (kolejka zdarzeń SSE, identyfikator połączenia).
+		# Nowa karta z tym samym tokenem odłącza starą, a nagranie przyjmujemy tylko od bieżącej.
+		self.listener = None
+		self.replaced = False  # nowa karta odłączyła starą (gra ostrzega gracza)
+		self.pending = {}  # seq -> (kanał, time.monotonic() polecenia start)
 
 	@property
 	def connected(self):
-		return bool(self.listeners)
+		return self.listener is not None
 
 	def push(self, event, data):
-		for q in list(self.listeners):
-			q.put((event, data))
+		if self.listener:
+			self.listener[0].put((event, data))
 
 
 class State:
@@ -77,40 +83,66 @@ class State:
 			for token, ckey in sessions.items():
 				if TOKEN_RE.match(str(token)):
 					wanted[token] = str(ckey)
-			for token in list(self.sessions):
-				if token not in wanted:
-					self.sessions.pop(token).push("ended", {})
 			for token, ckey in wanted.items():
 				if token not in self.sessions:
 					self.sessions[token] = Session(token, ckey)
 				else:
 					self.sessions[token].ckey = ckey
+			# Polecenia przed usunięciem sesji: „cancel” dla gracza, który właśnie wyszedł, musi dojść do jego strony.
 			for cmd in cmds:
+				if not isinstance(cmd, dict):
+					continue
 				session = self.sessions.get(cmd.get("token"))
 				if not session:
 					continue
-				seq = int(cmd.get("seq", 0))
+				try:
+					seq = int(cmd.get("seq") or 0)
+				except (TypeError, ValueError):
+					continue
 				if cmd.get("cmd") == "start":
 					channel = cmd.get("channel")
 					if channel not in CHANNELS:
 						continue
-					session.pending[seq] = channel
+					session.pending[seq] = (channel, time.monotonic())
 					session.push("start", {"seq": seq, "channel": channel, "max": cmd.get("max", 15)})
 				elif cmd.get("cmd") == "stop":
 					session.push("stop", {"seq": seq})
 				elif cmd.get("cmd") == "cancel":
 					session.pending.pop(seq, None)
 					session.push("cancel", {"seq": seq})
+			for token in list(self.sessions):
+				if token not in wanted:
+					self.sessions.pop(token).push("ended", {})
+			now = time.monotonic()
+			for session in self.sessions.values():
+				for seq, (_, started) in list(session.pending.items()):
+					if now - started > PENDING_TTL:
+						del session.pending[seq]
 			results, self.results = self.results, []
-			status = {t: {"connected": s.connected} for t, s in self.sessions.items()}
+			status = {}
+			for token, session in self.sessions.items():
+				status[token] = {"connected": session.connected, "replaced": session.replaced}
+				session.replaced = False
 		return {"results": results, "status": status}
 
-	def take_pending(self, token, seq):
+	def take_pending(self, token, seq, conn):
+		"""Nagranie przyjmujemy tylko od bieżącej karty i tylko takie, o które gra poprosiła."""
 		with self.lock:
 			session = self.sessions.get(token)
-			if not session:
+			if not session or not session.listener or not hmac.compare_digest(session.listener[1].encode(), conn.encode("utf-8", "surrogateescape")):
 				return None, None
-			return session, session.pending.pop(seq, None)
+			entry = session.pending.pop(seq, None)
+			return session, entry[0] if entry else None
+
+	def release(self, token, conn):
+		"""Karta zamknięta albo odświeżona: zwalniamy jej połączenie od razu, bez czekania na zerwane gniazdo."""
+		with self.lock:
+			session = self.sessions.get(token)
+			if not session or not session.listener or not hmac.compare_digest(session.listener[1].encode(), conn.encode("utf-8", "surrogateescape")):
+				return
+			q = session.listener[0]
+			session.listener = None
+		q.put(("ended", {}))
 
 	def add_result(self, session, seq, channel, text, error=None):
 		with self.lock:
@@ -260,12 +292,20 @@ class Handler(BaseHTTPRequestHandler):
 		self.send_header("Content-Type", ctype)
 		self.send_header("Content-Length", str(len(body)))
 		self.send_header("Cache-Control", "no-store")
+		if self.close_connection:
+			# Treść żądania nie została odczytana: na tym połączeniu nie może przyjść następne zapytanie.
+			self.send_header("Connection", "close")
 		self.end_headers()
 		self.wfile.write(body)
 
 	def read_body(self, limit):
-		length = int(self.headers.get("Content-Length") or 0)
-		if length > limit:
+		"""Treść żądania albo None (zła lub za duża długość; wtedy połączenie zostanie zamknięte)."""
+		try:
+			length = int(self.headers.get("Content-Length") or 0)
+		except ValueError:
+			length = -1
+		if length < 0 or length > limit:
+			self.close_connection = True
 			return None
 		return self.rfile.read(length)
 
@@ -292,13 +332,26 @@ class Handler(BaseHTTPRequestHandler):
 			return self.api_sync()
 		if url.path == "/audio":
 			return self.audio(self.token_arg(query), query)
+		if url.path == "/bye":
+			self.read_body(4096)
+			token = self.token_arg(query)
+			if token:
+				self.server.state.release(token, (query.get("c") or [""])[0])
+			return self.send_body(200, {"ok": True})
 		self.send_body(404, {"error": "nie ma takiej strony"})
 
 	def api_sync(self):
 		secret = self.server.args.secret
-		if secret and not hmac.compare_digest(self.headers.get("X-Voice-Secret", ""), secret):
+		# Gra wysyła SHA-256 sekretu (hex): nagłówek HTTP przyjmuje tylko ASCII, a sekret może mieć polskie litery.
+		# Porównujemy bajty, bo compare_digest na str rzuca wyjątek dla znaków spoza ASCII.
+		given = self.headers.get("X-Voice-Secret", "").strip().lower().encode("latin-1", "replace")
+		expected = hashlib.sha256(secret.encode("utf-8")).hexdigest().encode("ascii")
+		if secret and not hmac.compare_digest(given, expected):
+			self.close_connection = True
 			return self.send_body(403, {"error": "zły sekret"})
 		body = self.read_body(1024 * 1024)
+		if body is None:
+			return self.send_body(413, {"error": "za duże zapytanie"})
 		try:
 			data = json.loads(body or b"{}")
 		except ValueError:
@@ -316,7 +369,12 @@ class Handler(BaseHTTPRequestHandler):
 			if not session:
 				return self.send_body(404, {"error": "sesja wygasła"})
 			q = queue.Queue()
-			session.listeners.append(q)
+			conn = uuid.uuid4().hex
+			if session.listener:
+				# Ta sama strona otwarta drugi raz (albo przez kogoś z linkiem): stara karta się odłącza.
+				session.listener[0].put(("replaced", {}))
+				session.replaced = True
+			session.listener = (q, conn)
 			ckey = session.ckey
 		try:
 			self.send_response(200)
@@ -324,7 +382,7 @@ class Handler(BaseHTTPRequestHandler):
 			self.send_header("Cache-Control", "no-store")
 			self.send_header("Connection", "close")
 			self.end_headers()
-			self.write_event("hello", {"ckey": ckey})
+			self.write_event("hello", {"ckey": ckey, "conn": conn})
 			while True:
 				try:
 					event, data = q.get(timeout=15)
@@ -333,14 +391,14 @@ class Handler(BaseHTTPRequestHandler):
 					self.wfile.flush()
 					continue
 				self.write_event(event, data)
-				if event == "ended":
+				if event in ("ended", "replaced"):
 					break
 		except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
 			pass
 		finally:
 			with state.lock:
-				if q in session.listeners:
-					session.listeners.remove(q)
+				if session.listener and session.listener[0] is q:
+					session.listener = None
 		self.close_connection = True
 
 	def write_event(self, event, data):
@@ -355,7 +413,8 @@ class Handler(BaseHTTPRequestHandler):
 		body = self.read_body(MAX_AUDIO_BYTES)
 		if body is None:
 			return self.send_body(413, {"error": "za długie nagranie"})
-		session, channel = self.server.state.take_pending(token, seq) if token else (None, None)
+		conn = (query.get("c") or [""])[0]
+		session, channel = self.server.state.take_pending(token, seq, conn) if token else (None, None)
 		if not channel:
 			# Strona może wysłać tylko to, o co poprosiła gra (gracz trzymał klawisz).
 			return self.send_body(409, {"error": "gra nie czeka na to nagranie"})
