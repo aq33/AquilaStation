@@ -56,6 +56,16 @@ const MAIN_LEVER =
 const TANK_LEVER =
   'Window/ExternalTank/SecondaryLeverGrouping/TankLever/Image (1)';
 
+/** Miesza kolor #rrggbb z bielą (amount 0-1) */
+const lighten = (hex: string, amount: number) => {
+  const n = parseInt(hex.replace('#', '').slice(0, 6), 16);
+  if (Number.isNaN(n)) {
+    return hex;
+  }
+  const mix = (c: number) => Math.round(c + (255 - c) * amount);
+  return `rgb(${mix((n >> 16) & 255)}, ${mix((n >> 8) & 255)}, ${mix(n & 255)})`;
+};
+
 const byId = (id: string) => CANISTER_LAYOUT.find((item) => item.id === id);
 
 const digitOf = (value: number, place: number) =>
@@ -102,7 +112,6 @@ const Sprite = (props: {
     width: item.w,
     height: item.h,
     boxSizing: 'border-box',
-    imageRendering: 'pixelated',
     opacity: item.opacity,
     transform:
       item.flipx || item.flipy
@@ -151,7 +160,6 @@ const TintedBody = (props: { item: LayoutItem; color: string }) => {
     top: item.y,
     width: item.w,
     height: item.h,
-    imageRendering: 'pixelated',
     pointerEvents: 'none',
   };
   return (
@@ -243,7 +251,8 @@ export const Canister = (props) => {
     Yellow: !!valveOpen,
     Green: tankPressure > 0 && tankPressure <= 9000,
   };
-  const lampColor = { Red: '#ff3020', Yellow: '#ffe020', Green: '#30ff40' };
+  const lampColor = { Red: '#ff1c00', Yellow: '#e4ff02', Green: '#02ff23' };
+  const lampOff = { Red: '#730000', Yellow: '#5e5400', Green: '#005e00' };
 
   const texts: Record<string, string> = {
     'Window/Internal': 'Stan kanistra',
@@ -262,23 +271,20 @@ export const Canister = (props) => {
     'Window/LabelFrame/PropertyText': canisterName,
   };
 
-  const lever = (item: LayoutItem, open: boolean) => {
-    // rączka zaczyna się pod gniazdem (92/220 wysokości sprite'a) i obraca wokół
-    // tego punktu: zwisa w dół, gdy zawór jest zamknięty, sterczy w górę, gdy otwarty
-    const pivotY = (item.h * 92) / 220;
-    return (
-      <Sprite
-        key={item.id}
-        item={item}
-        style={{
-          transform: open ? 'rotate(180deg)' : undefined,
-          transformOrigin: `50% ${pivotY}px`,
-          transition: 'transform 0.25s steps(5)',
-          zIndex: 0,
-        }}
-      />
-    );
-  };
+  // Dźwignia obraca się cała (gniazdo i rączka) wokół środka gałki:
+  // zwisa w dół przy zamkniętym zaworze, przy otwartym wskazuje w prawo, na strzałki
+  const lever = (item: LayoutItem, open: boolean, z: number) => (
+    <Sprite
+      key={item.id}
+      item={item}
+      style={{
+        transform: open ? 'rotate(-90deg)' : undefined,
+        transformOrigin: `50% ${(item.h * 32) / 220}px`,
+        transition: 'transform 0.2s ease-out',
+        zIndex: z,
+      }}
+    />
+  );
 
   const nodes: ReactNode[] = CANISTER_LAYOUT.map((item) => {
     const { id } = item;
@@ -304,28 +310,28 @@ export const Canister = (props) => {
       return <Label key={id} item={item} text={texts[id] ?? item.text ?? ''} />;
     }
     if (id === 'Window/BG') {
-      return <TintedBody key={id} item={item} color={canisterColor} />;
+      return (
+        <TintedBody key={id} item={item} color={lighten(canisterColor, 0.45)} />
+      );
     }
-    // gniazdo dźwigni leży nad rączką, także gdy rączka jest podniesiona
-    if (
-      id === `${MAIN_LEVER.replace(' (1)', '')}` ||
-      id === `${TANK_LEVER.replace(' (1)', '')}`
-    ) {
-      return <Sprite key={id} item={item} style={{ zIndex: 1 }} />;
+    // gniazdo z gałką leży nad rączką i obraca się razem z nią
+    if (id === MAIN_LEVER || id === MAIN_LEVER.replace(' (1)', '')) {
+      return lever(item, !!valveOpen, id === MAIN_LEVER ? 0 : 1);
     }
-    if (id === MAIN_LEVER) {
-      return lever(item, !!valveOpen);
+    if (id === TANK_LEVER || id === TANK_LEVER.replace(' (1)', '')) {
+      return lever(
+        item,
+        !!valveOpen && !!hasHoldingTank,
+        id === TANK_LEVER ? 0 : 1,
+      );
     }
-    if (id === TANK_LEVER) {
-      return lever(item, !!valveOpen && !!hasHoldingTank);
-    }
-    if (id.startsWith(`${WHEEL}`)) {
+    if (id.startsWith(`${WHEEL}`) && !id.endsWith('Image (7)')) {
       return (
         <Sprite
           key={id}
           item={item}
           style={{
-            transform: `rotate(${wheelAngle}deg)`,
+            transform: `rotate(${-wheelAngle}deg)`,
             transformOrigin: `${wheelCx - item.x}px ${wheelCy - item.y}px`,
             transition: 'transform 0.2s',
           }}
@@ -339,7 +345,7 @@ export const Canister = (props) => {
         <Sprite
           key={id}
           item={item}
-          fill={on ? lampColor[lamp[1]] : item.fill}
+          fill={on ? lampColor[lamp[1]] : lampOff[lamp[1]]}
           style={
             on
               ? { boxShadow: `0 0 10px 2px ${lampColor[lamp[1]]}88` }
