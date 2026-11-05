@@ -417,6 +417,9 @@
 /datum/emote/living/carbon/human/hiccup
 	name = "czknij"
 
+/datum/emote/living/carbon/human/hey
+	name = "hej!"
+
 /datum/emote/living/carbon/human/slowclap
 	name = "klaszcz powoli"
 

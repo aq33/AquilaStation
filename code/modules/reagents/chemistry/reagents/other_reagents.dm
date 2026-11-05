@@ -583,6 +583,7 @@
 						/datum/species/apid,
 						/datum/species/pod,
 						/datum/species/jelly,
+						/datum/species/oozeling, // AQ EDIT - the playable slime race
 						/datum/species/abductor,
 						/datum/species/skeleton)
 
@@ -649,7 +650,7 @@
 		H.reagents.del_reagent(type)
 		return TRUE
 	if(current_cycle >= cycles_to_turn) //overwrite since we want subtypes of jelly
-		var/datum/species/species_type = pick(subtypesof(race))
+		var/datum/species/species_type = pick(subtypesof(race) + /datum/species/oozeling) // AQ EDIT - the playable slime race was never an option
 		H.set_species(species_type)
 		H.reagents.del_reagent(type)
 		to_chat(H, "<span class='warning'>Stajesz się: [initial(species_type.name)]!</span>")

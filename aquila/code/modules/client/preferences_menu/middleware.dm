@@ -240,6 +240,7 @@
 		get_asset_datum(/datum/asset/spritesheet/antagonists),
 		get_asset_datum(/datum/asset/spritesheet/antagonists/second),
 		get_asset_datum(/datum/asset/spritesheet/antagonists/third),
+		get_asset_datum(/datum/asset/spritesheet/antagonists/fourth),
 	)
 
 /datum/preference_middleware/antags/proc/set_antags(list/params, mob/user)
@@ -307,6 +308,8 @@
 		/datum/antagonist/voidwalker = list('aquila/icons/mob/voidwalker.dmi', "voidwalker"),
 		/datum/antagonist/blood_worm = list('aquila/icons/mob/blood_worm_32x32.dmi', "juvenile"),
 		/datum/antagonist/shadow_demon = list('aquila/icons/mob/shadow_demon.dmi', "shadow_demon"),
+		/datum/antagonist/bingle = list('aquila/icons/mob/bingle/bingles.dmi', "bingle"),
+		/datum/antagonist/spider = list('aquila/icons/mob/arachnoid.dmi', "guard"),
 		/datum/antagonist/darkspawn = list('aquila/icons/mob/darkspawn/smol_progenitor.dmi', "smol_progenitor"),
 		/datum/antagonist/nightmare = list('icons/mob/hud.dmi', "shadowling"),
 		/datum/antagonist/bloodling = list('icons/mob/hud.dmi', "bloodling_thrall"),
@@ -314,7 +317,7 @@
 		/datum/antagonist/brother = list('icons/mob/hud.dmi', "brother"),
 		/datum/antagonist/cult = list('icons/mob/hud.dmi', "cult"),
 		/datum/antagonist/servant_of_ratvar = list('icons/mob/hud.dmi', "clockwork"),
-		/datum/antagonist/devil = list('icons/mob/hud.dmi', "devil"),
+		/datum/antagonist/devil = list('icons/mob/32x64.dmi', "true_devil"),
 		/datum/antagonist/rev = list('icons/mob/hud.dmi', "rev_head"),
 		/datum/antagonist/heretic = list('icons/mob/hud.dmi', "heretic"),
 		/datum/antagonist/hivemind = list('icons/mob/hud.dmi', "hivemind"),
@@ -383,9 +386,9 @@
 		cache[type] = get_preview_icon(32)
 	return cache[type]
 
-/// Jedna ikona BYOND ma ograniczony rozmiar: po około 40 ikonach 96x96 kolejne nie wchodzą (bad icon operation),
-/// więc ikony ról dzielimy na kilka arkuszy po ANTAG_ICONS_PER_SHEET
-#define ANTAG_ICONS_PER_SHEET 30
+/// Jedna ikona BYOND ma ograniczony rozmiar: przy postaciach w strojach już po około 22 ikonach 96x96 kolejne nie wchodzą
+/// (bad icon operation), więc ikony ról dzielimy na kilka arkuszy po ANTAG_ICONS_PER_SHEET
+#define ANTAG_ICONS_PER_SHEET 20
 
 /// Nazwa arkusza z ikoną danej roli
 /proc/antag_icon_sheet(pref_type)
@@ -411,6 +414,9 @@
 
 /datum/asset/spritesheet/antagonists/third
 	name = "antagonists3"
+
+/datum/asset/spritesheet/antagonists/fourth
+	name = "antagonists4"
 
 #undef ANTAG_ICONS_PER_SHEET
 

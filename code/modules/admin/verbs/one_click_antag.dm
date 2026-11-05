@@ -452,7 +452,7 @@
 			for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
 				door.open()
 				CHECK_TICK
-		return TRUE
+		return teamSpawned > 0 // AQ EDIT - candidates who left before spawning are not a team
 		//AQUILA EDIT END
 
 	return
