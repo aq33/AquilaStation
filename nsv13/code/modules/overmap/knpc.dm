@@ -639,9 +639,15 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 				G.afterattack(target.loc, H)
 			else
 				G.afterattack(target, H)
+	// AQ EDIT START - strzał i wołanie po radiu mogą uśpić procedurę, a w tym czasie mob bywa usunięty (reset komory testowej)
+	if(QDELETED(HA) || QDELETED(H))
+		return
 	//Call your friends to help :))
 	if(world.time >= HA.next_backup_call)
 		call_backup(HA)
+	if(QDELETED(HA) || QDELETED(H))
+		return
+	// AQ EDIT END
 
 	if(dist <= 1)
 		if(A && !istype(A, /obj/item/gun) && A.force > 0)
@@ -719,6 +725,12 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 
 	// Call for other intelligent AIs
 	for(var/datum/component/knpc/HH as() in GLOB.knpcs - HA)
+		// AQ EDIT START - pathfind_to() niżej usypia, więc kolejni boarderzy z kopii listy (albo my sami) mogą być już usunięci
+		if(QDELETED(H))
+			return
+		if(QDELETED(HH) || QDELETED(HH.parent))
+			continue
+		// AQ EDIT END
 		var/mob/living/carbon/human/ai_boarder/other = HH.parent
 		var/obj/item/radio/headset/other_radio = other.ears
 		if(other.z != H.z || !other.can_hear() || other.incapacitated())
