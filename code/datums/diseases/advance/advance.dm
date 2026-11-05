@@ -168,6 +168,7 @@
 	A.transmission = transmission
 	A.severity = severity
 	A.speed = speed
+	A.mutability = mutability // AQ EDIT - kopia przy zarażeniu ma zachować mutowalność z objawów
 	A.keepid = keepid
 	A.id = id
 	//this is a new disease starting over at stage 1, so processing is not copied

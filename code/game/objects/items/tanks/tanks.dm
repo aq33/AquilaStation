@@ -37,6 +37,9 @@
 			if(!H.wear_mask)
 				to_chat(H, "<span class='warning'>Potrzebujesz maski!</span>")
 				return
+			if(!isclothing(H.wear_mask)) // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
+				to_chat(H, "<span class='warning'>Nie da się użyć [src] z: [H.wear_mask]!</span>")
+				return
 			if(H.wear_mask.mask_adjusted)
 				H.wear_mask.adjustmask(H)
 			if(!(H.wear_mask.clothing_flags & MASKINTERNALS))

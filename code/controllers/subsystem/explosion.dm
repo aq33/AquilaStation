@@ -252,7 +252,7 @@ SUBSYSTEM_DEF(explosions)
 			var/mob/M = MN
 			// Double check for client
 			var/turf/M_turf = get_turf(M)
-			var/multiz_dist = multi_z_dist(M_turf, epicenter)
+			var/multiz_dist = M_turf ? multi_z_dist(M_turf, epicenter) : INFINITY // AQ EDIT - gracz w lobby nie ma kafla i przerywał pętlę
 			if(M_turf && multiz_dist <= 5000)
 				var/dist = multiz_dist
 				var/baseshakeamount

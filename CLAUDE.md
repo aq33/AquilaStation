@@ -98,6 +98,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
   - obrazki ze sprite'ów z gry (wycięte z `.dmi`), z podpisem w `[[File:X.png|Nazwa]]`; brakujące wgrywaj.
 - Sterowanie opisuj dla obu trybów (combat mode i intencje), jeśli się różni.
 - Edytuję z panelu przeglądarki w aplikacji, na koncie użytkownika (sam się loguje). Przed zapisem dużej zmiany albo nowej strony pokaż w czacie plan: które strony, jakie sekcje.
+- Po scaleniu PR-a z nową zawartością albo zmianą działania aktualizuję wiki w tej samej sesji: strony z punktu 7 podsumowania, opisane według kodu z aq33/master. Gdy nie mogę od razu (brak logowania, PR scalony poza sesją), mówię to wprost i zapisuję w pamięci, które PR-y czekają na wiki. Na początku pracy po przerwie sprawdzam scalone PR-y nowsze od ostatniej edycji wiki.
 ## Koniec każdego zadania
 Napisz:
 1. Co zmieniłeś (pliki).

@@ -1,5 +1,5 @@
 // AQUILA - defibrillation like tgstation: no time limit, the body itself decides.
-// A dead heart decays to failing in about 5 minutes (fixable with surgery or medicine), the brain in about 30.
+// A dead heart decays to failing in about 9 minutes (fixable with surgery or medicine), the brain in about 90.
 // The defib refuses with a reason; DNR patients cannot be shocked back.
 
 /// TRUE if the body could be defibrillated right now, not counting whether the player is in it

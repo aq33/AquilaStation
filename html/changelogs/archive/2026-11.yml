@@ -115,3 +115,44 @@
       nie zbija już FPS, a idący kosztuje mniej.
   - tweak: FPS „Zalecane” dopasowuje się do odświeżania monitora (np. 144 Hz), więc
       ruch na ekranie jest równiejszy.
+  - bugfix: 'Kult krwi: rytuały samobójcze można zaliczyć po osiągnięciu rangi oddania.
+      Rytuał „Ostrze duszy” nie jest już losowany.'
+  - bugfix: 'Heretyk: Maelstrom of Silver liczy pękniętą czaszkę, ostrza-klucze mieszczą
+      się w pasie na narzędzia.'
+  - bugfix: 'Wampir: Tremere i caitiff dostają Maskaradę na starcie.'
+  - balance: 'Wampir: Drapieżny skok na poziomie 4 działa do 6 pól, zabicie ofiary
+      żerowaniem odbiera Człowieczeństwo.'
+  - bugfix: Anomalia odczłonkowująca podmienia właściwe kończyny.
+  - bugfix: Losowanie antagonistów w trakcie rundy nie przerywa się przy niskim zagrożeniu.
+  - bugfix: 'Przewody: porażanie w autolacie działa, przewód SI w alarmie powietrza
+      i cyklu śluzy nie jest odwrócony.'
+  - bugfix: Zlecenia na papryczki chili i lodowe papryki znów się pojawiają.
+  - bugfix: Płytki maszyn botaniki, paralizatora mecha, skanera detektywa i kilku
+      konsol można wydrukować po zbadaniu węzła.
+  - rscadd: Projekty odbiornika chemikaliów i pompy cieczy.
+  - bugfix: 'MODsuit: śrubokręt cofa krok konstrukcji.'
+  - bugfix: Katalog operacji pokazuje poprawnie zaokrąglone procenty.
+  - bugfix: NTSL pokazuje ostrzeżenia kompilacji, min() i max() działają z tekstem.
+  - bugfix: 'Choroby: poprawione działanie mocy wirusa i mutowalności.'
+  - bugfix: Rośliny z Rozdzieloną zawartością reagują od razu po zgnieceniu.
+  - bugfix: Kremówkę znów można zrobić.
+  - bugfix: Alkohol nawadnia słabiej niż woda.
+  - balance: Szkodniki szkodzą roślinom zgodnie z założeniem (dwa razy mocniej niż
+      dotąd), kawa i perfumy pachną o połowę słabiej.
+  - bugfix: Butelka Chciwości nie podnosi maksymalnego zdrowia ponad 100.
+  - spellcheck: Poprawione opisy w grze, które nie zgadzały się z działaniem.
+  sh4dow321:
+  - bugfix: Panel lag switchy dla adminów znowu się otwiera.
+  - bugfix: Netpod znowu leczy osobę w środku.
+  - bugfix: Wybuchy słyszą i odczuwają wszyscy gracze, nawet gdy ktoś siedzi w lobby.
+  - bugfix: Klawisze z zapisanych ustawień, które przypisano do usuniętych skrótów,
+      znowu działają.
+  - bugfix: Harmonijka w slocie maski nie powoduje błędów.
+  - bugfix: Oględziny naklejek z serii 1 i 2 pokazują serię i rzadkość.
+  - bugfix: Maska policji wygląda na założoną, gdy jest założona, i odwrotnie.
+  - bugfix: Rola „Cywilne” nazywa się znowu „Gimmick”.
+  - bugfix: Usunięci członkowie składów i ich pagery nie zostają w pamięci serwera.
+  - bugfix: Prom ewakuacyjny i pomieszczenia pod zewnętrzną próżnią na Atlasie nie
+      tracą już powietrza przez sufit.
+  - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
+      przepuszczają powietrze.'
