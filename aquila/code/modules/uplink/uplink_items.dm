@@ -74,6 +74,9 @@
 /datum/uplink_item/suits/modsuit
 	exclude_infiltrators = TRUE
 
+/datum/uplink_item/suits/infiltrator_bundle
+	exclude_infiltrators = TRUE
+
 /datum/uplink_item/device_tools/failsafe
 	exclude_infiltrators = TRUE
 

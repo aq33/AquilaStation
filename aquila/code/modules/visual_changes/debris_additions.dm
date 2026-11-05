@@ -74,5 +74,7 @@
 	. = ..()
 	if(!can_spawn_impact_particles()) // lista argumentów tylko gdy faktycznie coś pokażemy
 		return
+	if(!iswallturf(src)) // pocisk zburzył ścianę i kafel jest już podłogą
+		return
 	var/list/debris_args = impact_debris_args()
 	spawn_impact_debris(src, P, debris_args[1], debris_args[2], debris_args[3], debris_args[4])

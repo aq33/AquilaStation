@@ -49,7 +49,7 @@
 	name = "A Steward's Secret"
 	desc = "Otwiera przed tobą Ścieżkę Zamka.<br>\
 		Pozwala tworzyć Key Blade. \
-		Naraz możesz mieć tylko dwa. Działają jak szybkie łomy \
+		Naraz możesz mieć tylko dwa. Działają jak łomy \
 		i mieszczą się w pasie na narzędzia."
 	transmute_text = "Przemień nóż i łom."
 	gain_text = "Zamknięty Labirynt prowadzi ku wolności. Ale tylko uwięzieni Zarządcy znają właściwą drogę."

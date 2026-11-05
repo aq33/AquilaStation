@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(mobs)
 	while(currentrun.len)
 		var/mob/living/L = currentrun[currentrun.len]
 		currentrun.len--
-		if(L)
+		if(!QDELETED(L)) // AQ EDIT - currentrun przeżywa między tickami, mob usunięty w tym czasie dostawał Life()
 			L.Life(wait * 0.1, times_fired)
 		else
 			GLOB.mob_living_list.Remove(L)

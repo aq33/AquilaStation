@@ -4,9 +4,12 @@
 	/// Stare domyślne FPS 40 zostało już raz zamienione na zalecane (zapisywane w bazie)
 	var/clientfps_migrated = FALSE
 
-/// FPS, które faktycznie dostaje klient
+/// FPS, które faktycznie dostaje klient. Zalecane = odświeżanie monitora zmierzone przez panel czatu
+/// (client.monitor_refresh_rate), a dopóki go nie ma, RECOMMENDED_CLIENT_FPS.
 /datum/preferences/proc/get_client_fps()
-	return clientfps < 0 ? RECOMMENDED_CLIENT_FPS : clientfps
+	if(clientfps >= 0)
+		return clientfps
+	return parent?.monitor_refresh_rate || RECOMMENDED_CLIENT_FPS
 
 /// Body sizes the active character can pick. "Polak" also needs its loadout unlock.
 /datum/preferences/proc/get_body_size_choices()

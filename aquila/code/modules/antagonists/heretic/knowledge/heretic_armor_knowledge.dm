@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/armor
 	name = "Armorer's Ritual"
 	desc = "Stwórz komplet Zbroi Eldritch. \
-		Zbroja Eldritch daje świetną ochronę, a z naciągniętym kapturem działa też jako skupienie."
+		Zbroja Eldritch daje świetną ochronę, a każda ścieżka dodaje do niej własne właściwości."
 	transmute_text = "Transmutuj stół (albo strój wierzchni) i maskę."
 	gain_text = "Rdzawe Wzgórza hojnie przyjęły Kowala. A Kowal \
 		odwdzięczył się im tym samym."

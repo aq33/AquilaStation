@@ -10,10 +10,8 @@ type FpsServerData = FeatureNumericData & {
 const FpsInput = (props: FeatureValueProps<number, number, FpsServerData>) => {
   const { handleSetValue, serverData } = props;
 
-  let recommened = `Zalecane`;
-  if (serverData) {
-    recommened += ` (${serverData.recommended_fps})`;
-  }
+  // AQUILA: zalecane = odświeżanie monitora mierzone przez panel czatu
+  const recommened = `Zalecane (jak monitor)`;
 
   return (
     <Stack fill>
