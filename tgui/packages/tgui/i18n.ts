@@ -187,6 +187,13 @@ const templateRegex = (index: number): RegExp | null => {
   return regex;
 };
 
+/**
+ * Pierwsze wystąpienie tekstu zamienione na tłumaczenie. Funkcja zamiast napisu, bo
+ * String.replace czyta w napisie wzorce $& i $$ ("GR&!%$$" w generatorze grawitacji).
+ */
+const replaceText = (text: string, search: string, value: string) =>
+  text.replace(search, () => value);
+
 /** Ile razy tłumaczymy wartości wstawione w szablon (wartość też bywa złożona) */
 const MAX_DEPTH = 2;
 
@@ -201,11 +208,11 @@ const translateValue = (value: string, depth: number): string => {
   }
   const found = lookupExact(trimmed);
   if (found !== undefined) {
-    return value.replace(trimmed, found);
+    return replaceText(value, trimmed, found);
   }
   const list = translateList(trimmed);
   if (list !== undefined) {
-    return value.replace(trimmed, list);
+    return replaceText(value, trimmed, list);
   }
   return depth < MAX_DEPTH ? translateHtml(value, depth + 1) : value;
 };
@@ -502,7 +509,8 @@ const translateMarkup = (html: string, depth: number): string => {
   }
   const whole = lookupExact(html.trim());
   if (whole !== undefined) {
-    return whole;
+    // spacje z brzegów zostają: węzeł "Ciśnienie: " sąsiaduje w oknie z wartością
+    return replaceText(html, html.trim(), whole);
   }
   // Długie wiadomości (examine, raporty) tylko przez stałe teksty: szablon z
   // sąsiednimi leniwymi grupami mógłby na nich długo blokować wątek UI
@@ -546,8 +554,10 @@ const translateMarkup = (html: string, depth: number): string => {
       );
       let known = 0;
       let unknownLower = 0;
-      for (const value of captures) {
-        if (isKnown(value)) {
+      const options = alternativesOf(index);
+      for (const [i, value] of captures.entries()) {
+        // wartość z alternatywy warunku jest znana: szablon wstawi angielską gałąź
+        if (options[String(i)] || isKnown(value)) {
           known += value.trim().length;
         } else {
           unknownLower += lowercaseLetters(value);
@@ -598,7 +608,7 @@ const translateMarkup = (html: string, depth: number): string => {
   result = `>${result}<`.replace(TEXT_NODE, (match, text: string) => {
     const found = lookupExact(text.trim());
     if (found !== undefined) {
-      return `>${text.replace(text.trim(), found)}<`;
+      return `>${replaceText(text, text.trim(), found)}<`;
     }
     // Examine skleja linie (nazwa, opis, zawartość) znakiem nowej linii w jeden
     // węzeł: każda linia osobno, stałą albo szablonem
@@ -632,12 +642,12 @@ export const translateUiText = (text: string): string => {
   const ui = dictionary?.ui;
   const found = ui?.[trimmed];
   if (found !== undefined) {
-    return text.replace(trimmed, found);
+    return replaceText(text, trimmed, found);
   }
   if (ui && trimmed.endsWith(':')) {
     const base = ui[trimmed.slice(0, -1)];
     if (base !== undefined) {
-      return text.replace(trimmed, base.endsWith(':') ? base : base + ':');
+      return replaceText(text, trimmed, base.endsWith(':') ? base : base + ':');
     }
   }
   return translateHtml(text);

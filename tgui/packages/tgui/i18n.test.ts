@@ -139,4 +139,13 @@ describe('translateHtml', () => {
     setDictionary(null);
     expect(translateHtml('Za mało paliwa.')).toBe('Za mało paliwa.');
   });
+
+  it('nie czyta wzorców $ w tłumaczeniu', () => {
+    setDictionary({
+      version: 2,
+      exact: { 'BŁĄD $$ GR': 'ERR $$ GR $&' },
+      templates: [],
+    } as any);
+    expect(translateHtml('  BŁĄD $$ GR ')).toBe('  ERR $$ GR $& ');
+  });
 });

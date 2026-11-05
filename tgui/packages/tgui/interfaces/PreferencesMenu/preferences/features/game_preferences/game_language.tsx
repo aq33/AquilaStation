@@ -5,6 +5,6 @@ export const game_language: FeatureChoiced = {
   name: 'Język gry / Game language',
   category: 'UI',
   description:
-    'Wersja testowa: tłumaczy czat, examine, panel statystyk, okna, dymki, runechat i screentipy. Otwarte okno zmienia język przy następnym odświeżeniu. Nazwy obiektów pod kursorem zostają po polsku. / Experimental: translates the chat, examine, the stat panel, windows, balloon alerts, runechat and screentips. An open window switches on its next refresh. Object names under the cursor stay Polish.',
+    'Tłumaczy czat, okna, panel, menu Esc, dymki, runechat, screentipy, okienka i napisy na guzikach HUD-u. Otwarte okno zmienia język przy następnym odświeżeniu. Tekst pisany przez graczy zostaje bez zmian. / Translates the chat, windows, the panel, the Esc menu, balloon alerts, runechat, screentips, dialogs and HUD button labels. An open window switches on its next refresh. Text written by players stays as it is.',
   component: FeatureDropdownInput,
 };

@@ -1,4 +1,5 @@
 {
+"\"Czy ${nation} to najlepsze państwo?\"": "\"Is ${nation} the best nation?\"",
 "${deity} nie ma żadnych obrzędów.": "${deity} does not have any invocations.",
 "Alarm, jeśli rasa skanowanej osoby ${reverse ? 'to nie' : 'to'}: ${species?.name}.${target_species === 'zombie' &&\n          ' Wykrywa wszystkie rodzaje zombie, także uśpione.'}": "Trigger if the person scanned is ${reverse ? 'to nie' : 'to'} of the ${species?.name} species.${target_species === 'zombie' &&\n          ' Wykrywa wszystkie rodzaje zombie, także uśpione.'}",
 "Alarm, jeśli skanowana osoba ${reverse ? 'nie jest' : 'jest'} poszukiwana nakazem aresztowania.": "Trigger if the person scanned ${reverse ? 'nie jest' : 'jest'} any warrants for their arrest.",

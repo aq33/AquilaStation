@@ -161,8 +161,12 @@ def ternary_condition(expr):
 AUTO_ARTICLE = re.compile(r"(^|[\s>(„\"'])[Tt]he (?=\S)")
 
 
-def build_pl(parts):
-    """Polski szablon: [tekst0, tekst1, ...] i lista wyrażeń między nimi. None = nie do użycia."""
+def build_pl(parts, js=False):
+    """Polski szablon: [tekst0, tekst1, ...] i lista wyrażeń między nimi. None = nie do użycia.
+    js: literał z okna, w którym "the" zostaje (usuwa je tylko DM przy wstawianiu obiektu)."""
+    def strip(text):
+        return text if js else AUTO_ARTICLE.sub(r"\1", text)
+
     texts, exprs, cur = [], [], []
     for kind, val in parts:
         if kind == "t":
@@ -174,10 +178,10 @@ def build_pl(parts):
                 return None
             # makro bez tekstu: zjada spację za sobą
         else:
-            texts.append(AUTO_ARTICLE.sub(r"\1", "".join(cur)))
+            texts.append(strip("".join(cur)))
             exprs.append(val)
             cur = []
-    texts.append(AUTO_ARTICLE.sub(r"\1", "".join(cur)))
+    texts.append(strip("".join(cur)))
     return texts, exprs
 
 
@@ -359,6 +363,42 @@ def identifier_refactors(table, manual):
     ]
 
 
+# kolory i klasy tgui ({color: 'bad'}), które historia brała za tłumaczenie etykiet ("Martwe" -> "bad")
+CSS_CLASSES = {"good", "bad", "average", "label", "danger", "caution", "notice", "transparent", "grey"}
+
+
+def polish_words_of(table):
+    """Słowa z polskich zdań słownika (klucze z polskimi literami i spacją)."""
+    words = set()
+    for key in table:
+        if " " in key and re.search(r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]", key):
+            words.update(w.lower() for w in re.findall(r"[^\W\d_]+", key))
+    return words
+
+
+def polish_or_class_values(table, exact, manual, check_css):
+    """Klucze, których "tłumaczenie" jest polskim tekstem: samo jest kluczem słownika z innym
+    tłumaczeniem i składa się z polskich słów ("Odciski" -> "Wiek", "Spłacony" -> "Brak komentarzy.").
+    check_css: w tablicy okien także nazwa klasy koloru przy nazwie z wielkiej litery ("Martwe" -> "bad")."""
+    polish_words = polish_words_of(exact)
+    # słowa angielskie z oryginałów upstreamu (czysto angielskie teksty); bez tego pliku: z całego słownika
+    source = load_json("strings/i18n/en_pairs_upstream.json") or exact
+    english_words = set()
+    for value in source.values():
+        english_words.update(w.lower() for w in re.findall(r"[A-Za-z]+", value))
+    out = []
+    for key, value in table.items():
+        if key in manual or value == key:
+            continue
+        words = [w.lower() for w in re.findall(r"[^\W\d_]+", value)]
+        # "Left", "ERROR" też bywają w polskich zdaniach: odpada tylko wartość bez angielskich słów
+        polish_value = value in exact and exact[value] != value and words             and all(w in polish_words and w not in english_words for w in words)
+        css_class = key[:1].isupper() and value in CSS_CLASSES
+        if polish_value or css_class:
+            out.append(key)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pairs", default="strings/i18n/en_pairs.json")
@@ -426,7 +466,7 @@ def main():
         en = pairs[pl]
         parse = parse_js_literal if pl in js_literals else parse_dm_literal
         pl_parts = parse(pl)
-        built = build_pl(pl_parts)
+        built = build_pl(pl_parts, js=pl in js_literals)
         if not built:
             stats["pomijane: przedimek/zaimek w PL"] += 1
             continue
@@ -451,7 +491,8 @@ def main():
                         stats["stałe z wnętrza znaczników"] += 1
             if key and pl in js_literals:
                 # okna: tłumaczenie z kodu okien, jeśli jest; ogólne exact zostaje dla czatu
-                ui_en = ui_pairs.get(pl)
+                # en_manual.json poprawia także tablicę okien (złe pary z historii TSX)
+                ui_en = None if pl in manual else ui_pairs.get(pl)
                 if ui_en:
                     ui_value = "".join(text for kind, text in parse(ui_en) if kind == "t").strip()
                 else:
@@ -473,9 +514,27 @@ def main():
     def plain_words(text):
         return {w.lower() for w in WORD.findall(TAG.sub(" ", text))}
 
+    def anchor_words(texts, alts):
+        """Słowa stałego tekstu bez kawałków przyklejonych do wstawki, która dokleja litery:
+        w "nanit${reverse ? 'ów' : 'y'}" okno pokazuje "nanitów", więc "nanit" jako kotwica
+        nigdy by nie trafiło. Wstawka nr i leży między texts[i] a texts[i + 1]."""
+        def glues(index, at_start):
+            options = alts.get(str(index), [])
+            return any(o and (o[:1] if at_start else o[-1:]).isalpha() for o in options)
+
+        words = set()
+        for i, segment in enumerate(texts):
+            segment = TAG.sub(" ", segment)
+            if i > 0 and segment[:1].isalpha() and glues(i - 1, False):
+                segment = re.sub(r"^\w+", " ", segment)
+            if i < len(texts) - 1 and segment[-1:].isalpha() and glues(i, True):
+                segment = re.sub(r"\w+$", " ", segment)
+            words |= plain_words(segment)
+        return words
+
     freq = collections.Counter()
     for t in templates:
-        freq.update(plain_words("".join(t["pl"])))
+        freq.update(anchor_words(t["pl"], t["alts"]))
         for options in t["alts"].values():
             for option in options:
                 freq.update(plain_words(option))
@@ -485,11 +544,13 @@ def main():
 
     kept = []
     for t in templates:
-        words = plain_words("".join(t["pl"]))
+        words = anchor_words(t["pl"], t["alts"])
         if words:
             t["k"] = rarest(words)
         else:
-            option_words = [plain_words(o) for options in t["alts"].values() for o in options]
+            # pusta alternatywa (${looping ? ', powtarza się' : ''}) nie daje słowa, ale wtedy nie ma
+            # też czego tłumaczyć: kotwicami są słowa pozostałych
+            option_words = [plain_words(o) for options in t["alts"].values() for o in options if o.strip()]
             if not option_words or not all(option_words):
                 stats["pomijane: alternatywa bez słowa-kotwicy"] += 1
                 continue
@@ -503,6 +564,12 @@ def main():
         for key in identifier_refactors(table, manual):
             del table[key]
             stats["pomijane: angielskie słowo na inne angielskie"] += 1
+    # Pary z historii, w których polski tekst zamieniono na inny polski albo na nazwę klasy koloru
+    # ("Odciski" -> "Wiek", "Martwe" -> "bad"); okna dostają wtedy tłumaczenie z ogólnego słownika
+    for table, check_css in ((exact, False), (ui, True)):
+        for key in polish_or_class_values(table, exact, manual, check_css):
+            del table[key]
+            stats["pomijane: polski tekst albo klasa zamiast tłumaczenia"] += 1
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     data = {

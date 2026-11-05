@@ -121,6 +121,36 @@ def logical_lines(path, lines):
         out.append(line)
     if pending is not None:
         out.append(pending)
+    return join_text_blocks(out)
+
+
+def join_text_blocks(lines):
+    """Napis {"..."} na kilka linii (opisy, HTML okien) jako jeden literał "...\\n...": gracz widzi
+    cały tekst naraz, a czytany linia po linii dawał tylko kawałek pierwszej linii."""
+    out, i = [], 0
+    while i < len(lines):
+        line = lines[i]
+        start = line.find('{"')
+        comment = line.find("//")
+        if start < 0 or line.find('"}', start + 2) >= 0 or 0 <= comment < start:
+            out.append(line)
+            i += 1
+            continue
+        parts, j = [line[start + 2:]], i + 1
+        while j < len(lines) and '"}' not in lines[j]:
+            parts.append(lines[j])
+            j += 1
+        if j >= len(lines):  # niezamknięty: zostawiamy linie bez zmian
+            out.append(line)
+            i += 1
+            continue
+        end = lines[j].find('"}')
+        parts.append(lines[j][:end])
+        content = "\n".join(parts)
+        # cudzysłów wewnątrz {"..."} jest dozwolony bez ucieczki; w "..." musi ją mieć
+        content = re.sub(r'(?<!\\)"', r'\\"', content).replace("\n", "\\n")
+        out.append(line[:start] + '"' + content + '"' + lines[j][end + 2:])
+        i = j + 1
     return out
 
 

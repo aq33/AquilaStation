@@ -63,5 +63,13 @@
  "To [name].": "That's [name].",
  "To [name]": "That's [name]",
  "Głośność": "Volume",
- "Cisza": "Silence"
+ "Cisza": "Silence",
+ "Spłacony": "Paid off",
+ "Odciski": "Fingerprints",
+ "Martwe": "Dead",
+ "Przytomne": "Conscious",
+ "Nieprzytomne": "Unconscious",
+ "${PlayerHitpoints} PŻ": "${PlayerHitpoints} HP",
+ "${surgery.time} s${surgery.looping ? ', powtarza się' : ''} · ${formatTools(surgery.tools)}": "${surgery.time} s${surgery.looping ? ', repeats' : ''} · ${formatTools(surgery.tools)}",
+ "Tłumaczy czat, okna, panel, menu Esc, dymki, runechat, screentipy, okienka i napisy na guzikach HUD-u. Otwarte okno zmienia język przy następnym odświeżeniu. Tekst pisany przez graczy zostaje bez zmian. / Translates the chat, windows, the panel, the Esc menu, balloon alerts, runechat, screentips, dialogs and HUD button labels. An open window switches on its next refresh. Text written by players stays as it is.": "Translates the chat, windows, the panel, the Esc menu, balloon alerts, runechat, screentips, dialogs and HUD button labels. An open window switches on its next refresh. Text written by players stays as it is."
 }

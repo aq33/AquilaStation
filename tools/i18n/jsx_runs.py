@@ -33,7 +33,7 @@ import extract_pairs as ep  # noqa: E402
 OUT = "strings/i18n/en_jsx.json"
 JSX_EXT = (".tsx", ".jsx")
 IDENT = re.compile(r"[\w$.)\]]")
-CODE_IN_TEXT = re.compile(r"=>|;\s*(?://|/\*|const|let|type|function|export|interface|return)\b|\b(?:const|let) \w+\s*[:=]|\bexport (?:function|const|default)\b|\bfunction \w+\(")
+CODE_IN_TEXT = re.compile(r"^\)|\)\s*:\s*\(|\|\||&&|\?\s*\(|=>|;\s*(?://|/\*|const|let|type|function|export|interface|return)\b|\b(?:const|let) \w+\s*[:=]|\bexport (?:function|const|default)\b|\bfunction \w+\(")
 JS_STRING = re.compile(r"""(["'`])((?:\\.|(?!\1).)*)\1""", re.S)
 
 
@@ -208,8 +208,11 @@ def runs(src):
 
 
 def split_run(parts):
-    """Ciąg dzieci -> zdania. Wyrażenie z JSX w środku (<b>, warunek z elementem) rozdziela zdanie."""
+    """Ciąg dzieci -> zdania. Wyrażenie z JSX w środku (<b>, warunek z elementem) rozdziela zdanie.
+    Bierzemy zdania z wstawkami i zdania bez wstawek złamane na kilka linii kodu
+    (extract_pairs.py widzi tylko pojedyncze linie, a okno pokazuje całe zdanie)."""
     out, cur = [], []
+    multiline = [False]
 
     def flush():
         literal, exprs, text = "", [], ""
@@ -221,11 +224,13 @@ def split_run(parts):
                 literal += "${" + val.strip() + "}"
                 exprs.append(val)
         cur.clear()
+        broken = multiline[0]
+        multiline[0] = False
         # kod TS złapany jako tekst (typ generyczny wzięty za znacznik): średniki,
         # strzałki i słowa kluczowe w tekście albo instrukcje w wyrażeniu
         if CODE_IN_TEXT.search(text) or any(";" in JS_STRING.sub("", e) for e in exprs):
             return
-        if exprs and re.search(ep.LETTERS + r"{2,}", text):
+        if (exprs or broken) and re.search(ep.LETTERS + r"{2,}", text):
             out.append((literal.strip(), tuple(expr_skeleton(e) for e in exprs)))
 
     for kind, val in parts:
@@ -233,6 +238,8 @@ def split_run(parts):
             text = clean_text(val)
             if text:
                 cur.append(("t", text))
+                if len([line for line in val.split("\n") if line.strip()]) > 1:
+                    multiline[0] = True
             continue
         expr = val.strip()
         if not expr or expr.startswith("/*") or expr.startswith("//"):
@@ -285,6 +292,10 @@ def pair_runs(ours, theirs, sink):
         for k in range(block.size):
             pl, sig = ours[block.a + k]
             en, _ = theirs[block.b + k]
+            if not sig:
+                # zdanie bez wstawek: para tylko po kolejności, a nasze teksty bywają przepisane
+                # (sprawdzone: połowa par wychodziła przesunięta o zdanie); tłumaczenie ręczne
+                continue
             # pojedyncze dopasowanie częstego szkieletu ({data.name}) bywa przypadkowe
             if block.size == 1 and (count_a[sig] > 1 or count_b[sig] > 1):
                 continue
