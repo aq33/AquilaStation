@@ -32,6 +32,7 @@
 	buff_appearance = new(src)
 
 /datum/plant_need/Destroy(force, ...)
+	parent?.unmet_needs -= src // AQUILA - lista do skanera nie trzyma usuniętej potrzeby
 	. = ..()
 	QDEL_NULL(buff_appearance)
 
@@ -55,6 +56,10 @@
 
 /datum/plant_need/proc/check_need(_delta_time)
 	return
+
+/// AQUILA - krótki opis do sekcji „Stan” w skanerze (czego brakuje roślinie)
+/datum/plant_need/proc/get_short_description()
+	return need_description
 
 ///Use this to give ourselves what we need to fufill our needs
 /datum/plant_need/proc/fufill_need(atom/location)

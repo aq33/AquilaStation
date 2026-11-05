@@ -655,7 +655,10 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		if(gunner)
 			to_chat(gunner, "<span class='notice'>Anulowano oznaczanie celu [target].</span>")
 		return FALSE
-	relay('nsv13/sound/effects/fighters/being_locked.ogg', message=null, loop=FALSE, channel=CHANNEL_IMPORTANT_SHIP_ALERT)
+	// AQ EDIT START - namierzający słyszy namierzanie, cel słyszy ostrzeżenie (wcześniej namierzający słyszał ostrzeżenie)
+	relay('nsv13/sound/effects/fighters/locking.ogg', message=null, loop=FALSE, channel=CHANNEL_IMPORTANT_SHIP_ALERT)
+	target.relay('nsv13/sound/effects/fighters/being_locked.ogg', message=null, loop=FALSE) // bez kanału: nie ucina celowi komunikatów o stanie krytycznym
+	// AQ EDIT END
 	addtimer(CALLBACK(src, PROC_REF(finish_lockon), target), lockon_time)
 
 /obj/structure/overmap/proc/finish_lockon(obj/structure/overmap/target, obj/structure/overmap/data_link_origin)

@@ -101,12 +101,12 @@
 	name = "Papryczki chili"
 	wanted_types = list(/obj/item/food/grown/chili)
 
-/datum/bounty/item/botany/chili
+/datum/bounty/item/botany/ice_chili // AQ EDIT - potrójne chili sklejało się w jeden typ
 	name = "Lodowe papryki"
 	wanted_types = list(/obj/item/food/grown/icepepper)
 	multiplier = 2
 
-/datum/bounty/item/botany/chili
+/datum/bounty/item/botany/ghost_chili // AQ EDIT - potrójne chili sklejało się w jeden typ
 	name = "Upiorne papryczki chili"
 	wanted_types = list(/obj/item/food/grown/ghost_chili)
 	multiplier = 2

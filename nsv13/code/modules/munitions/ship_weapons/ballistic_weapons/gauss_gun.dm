@@ -748,7 +748,7 @@ Chair + rack handling
 	ammo_rack.pixel_y = 0
 	ammo_rack.loading = TRUE
 	animate(ammo_rack, pixel_y = 60, time = 4 SECONDS)
-	sleep(4 SECONDS)
+	cycle_sleep(4 SECONDS, "rack") // AQ EDIT - postęp przeładowania na przycisku I4 (aquila/code/modules/munitions/weapon_cycle_stage.dm)
 	ammo_rack.forceMove(src)
 	rackLoad()
 

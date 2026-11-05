@@ -658,7 +658,11 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	if(operation_flags & OPERATION_SELF_OPERABLE)
-		. += "chirurg może to zrobić na sobie"
+		// kroków otwierających organiczne ciało nie da się zrobić na sobie (TRAIT_SELF_SURGERY nikt nie nadaje)
+		if(!(operation_flags & OPERATION_MECHANIC) && (all_surgery_states_required || any_surgery_states_required) && !length(self_operable_zones))
+			. += "chirurg może to zrobić na sobie, jeśli ktoś wcześniej otworzy mu ciało"
+		else
+			. += "chirurg może to zrobić na sobie"
 	else if(length(self_operable_zones))
 		var/list/zone_names = list()
 		for(var/zone in self_operable_zones)

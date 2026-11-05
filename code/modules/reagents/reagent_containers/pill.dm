@@ -115,7 +115,7 @@
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/charcoal
-	name = "pigułka: węgiel aktywowany"
+	name = "pigułka: węgiel aktywny"
 	desc = "Neutralizuje wiele popularnych toksyn."
 	icon_state = "pill_shape_tablet_green_lined"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 10)

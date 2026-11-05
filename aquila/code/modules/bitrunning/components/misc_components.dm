@@ -13,10 +13,10 @@
 	var/mob/living/carbon/player = parent
 	player.apply_status_effect(STATUS_EFFECT_STASIS, -1, TRUE)
 
-	START_PROCESSING(SSmachines, src)
+	START_PROCESSING(SSprocessing, src)
 
 /datum/component/netpod_healing/Destroy(force)
-	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSprocessing, src)
 
 	var/mob/living/carbon/player = parent
 	player?.remove_status_effect(STATUS_EFFECT_STASIS)
