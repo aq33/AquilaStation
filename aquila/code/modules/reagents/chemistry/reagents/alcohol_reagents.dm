@@ -10,6 +10,6 @@
 	glass_name = "kieliszek amareny"
 	glass_desc = "Dobre wino, niska cena, dobre wino, amarena."
 
-/// Stronger booze hydrates less. Like every drink, scaled by REAGENTS_METABOLISM (hydration per tick)
+/// Stronger booze hydrates less
 /datum/reagent/consumable/ethanol/get_hydration_factor()
-	return LERP(15, 0, boozepwr/100) * REAGENTS_METABOLISM
+	return LERP(15, 0, boozepwr/100)
