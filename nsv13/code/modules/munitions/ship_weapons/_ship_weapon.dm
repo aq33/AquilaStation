@@ -334,7 +334,7 @@
 
 		if(unload_sound)
 			playsound(src, unload_sound, 100, 1)
-		sleep(unload_delay)
+		cycle_sleep(unload_delay) // AQ EDIT - pasek etapu nad bronią (aquila/code/modules/munitions/weapon_cycle_bar.dm)
 
 		if(length(ammo))
 			for(var/atom/movable/AM in ammo)
@@ -373,7 +373,7 @@
 		flick("[initial(icon_state)]_loading",src)
 		if(feeding_sound)
 			playsound(src, feeding_sound, 100, 1)
-		sleep(feed_delay)
+		cycle_sleep(feed_delay) // AQ EDIT - pasek etapu nad bronią
 		if("[initial(icon_state)]_loaded" in icon_state_list)
 			icon_state = "[initial(icon_state)]_loaded"
 		if(fed_sound)
@@ -435,7 +435,7 @@
 		if(rapidfire)
 			sleep(chamber_delay_rapid)
 		else
-			sleep(chamber_delay)
+			cycle_sleep(chamber_delay) // AQ EDIT - pasek etapu nad bronią
 		if("[initial(icon_state)]_chambered" in icon_state_list)
 			icon_state = "[initial(icon_state)]_chambered"
 		chambered = ammo[1]
@@ -453,7 +453,7 @@
 	if(state == STATE_CHAMBERED)
 		state = STATE_CHAMBERING // Technically unchambering, but it accomplishes the same purpose without needless defines
 		flick("[initial(icon_state)]_chambering",src)
-		sleep(chamber_delay)
+		cycle_sleep(chamber_delay) // AQ EDIT - pasek etapu nad bronią
 		if("[initial(icon_state)]_loaded" in icon_state_list)
 			icon_state = "[initial(icon_state)]_loaded"
 		if(fed_sound)
