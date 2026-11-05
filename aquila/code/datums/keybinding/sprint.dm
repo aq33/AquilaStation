@@ -16,16 +16,7 @@
 		return
 	SEND_SIGNAL(user.mob, COMSIG_KB_CARBON_SPRINT_UP)
 
-// Zapisane keybindy nie dostają nowych skrótów same. Dopisujemy sprint pod Shift,
-// jeśli gracz nie ma go nigdzie przypisanego, a Shift jest wolny.
+// Zapisane keybindy nie dostają nowych skrótów same. Dopisujemy sprint pod Shift (raz na gracza), jeśli jest wolny.
 /datum/preferences/load_from_database()
 	. = ..()
-	if(!islist(key_bindings))
-		return
-	for(var/bound_key in key_bindings)
-		var/list/names = key_bindings[bound_key]
-		if(islist(names) && ("sprint" in names))
-			return
-	if(length(key_bindings["Shift"]))
-		return
-	key_bindings["Shift"] = list("sprint")
+	offer_default_keybind("sprint", "Shift")
