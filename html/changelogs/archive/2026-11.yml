@@ -115,3 +115,11 @@
       nie zbija już FPS, a idący kosztuje mniej.
   - tweak: FPS „Zalecane” dopasowuje się do odświeżania monitora (np. 144 Hz), więc
       ruch na ekranie jest równiejszy.
+  sh4dow321:
+  - bugfix: Panel lag switchy dla adminów znowu się otwiera.
+  - bugfix: Netpod znowu leczy osobę w środku.
+  - bugfix: Wybuchy słyszą i odczuwają wszyscy gracze, nawet gdy ktoś siedzi w lobby.
+  - bugfix: Klawisze z zapisanych ustawień, które przypisano do usuniętych skrótów,
+      znowu działają.
+  - bugfix: Harmonijka w slocie maski nie powoduje błędów.
+  - bugfix: Oględziny naklejek z serii 1 i 2 pokazują serię i rzadkość.
