@@ -1,8 +1,6 @@
 // Zapisane prefy mogą mieć nazwy keybindów, których już nie ma (usunięte albo przemianowane).
 // keyDown/keyUp dorzucały wtedy null do listy, sortowanie się wywalało i klawisz nie działał.
-/datum/preferences/load_from_database()
-	. = ..()
-	remove_unknown_keybindings()
+// Wołane przy wczytaniu prefów z load_from_database() w sprint.dm, przed dopisaniem sprintu.
 
 /// Usuwa z key_bindings nazwy, których nie ma w GLOB.keybindings_by_name, i klawisze bez żadnego bindu
 /datum/preferences/proc/remove_unknown_keybindings()
