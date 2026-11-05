@@ -191,6 +191,7 @@
 /obj/structure/fighter_launcher/proc/finish_launch()
 	icon_state = "launcher_charge"
 	mag_locked.prime_launch() //Gets us ready to move at PACE.
+	mag_locked.relay('nsv13/sound/effects/fighters/takeoff.ogg') // AQ EDIT - nieużywany dźwięk startu dla pilota
 	var/obj/structure/overmap/our_overmap = get_overmap()
 	if(our_overmap)
 		our_overmap.relay('nsv13/sound/effects/ship/fighter_launch_short.ogg')
