@@ -439,7 +439,7 @@
 /datum/status_effect/exercised/on_creation(mob/living/new_owner, ...)
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
-	START_PROCESSING(SSprocessing, src) //this lasts 20 minutes, so SSfastprocess isn't needed.
+	START_PROCESSING(SSprocessing, src) // AQ EDIT - trwa 2 minuty, więc SSfastprocess nie jest potrzebny
 
 /datum/status_effect/exercised/Destroy()
 	. = ..()

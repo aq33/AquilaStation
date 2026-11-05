@@ -40,7 +40,7 @@
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
 	name = "tyłek przechowywania"
-	desc = "Ten tyłek ma właściwości bluespace, więc zmieścisz w nim więcej rzeczy: cztery maleńkie przedmioty, dwa małe albo jeden zwykły."
+	desc = "Ten tyłek ma właściwości bluespace, więc zmieścisz w nim więcej rzeczy: do czterech przedmiotów, nawet zwykłego rozmiaru."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
 	status = ORGAN_ROBOTIC

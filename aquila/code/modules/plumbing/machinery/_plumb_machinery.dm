@@ -26,6 +26,12 @@
 	if(mapload)
 		begin_processing()
 
+// Zbudowana na przykręconej ramie dostaje anchored z setAnchored(), które nie włącza przetwarzania
+/obj/machinery/plumbing/on_construction()
+	. = ..()
+	if(anchored)
+		begin_processing()
+
 /obj/machinery/plumbing/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || !in_range(src, user))

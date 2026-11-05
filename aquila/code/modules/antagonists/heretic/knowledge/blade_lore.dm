@@ -386,9 +386,9 @@
 		return FALSE
 
 	var/obj/item/bodypart/head/head = sacrifice.get_bodypart(BODY_ZONE_HEAD)
-	if(!head || HAS_TRAIT(sacrifice, TRAIT_HAS_CRANIAL_FISSURE))
+	if(!head || head.get_wound(WOUND_CRANIAL))
 		return TRUE
-	// AQUILA - u nas nie ma pękniętej czaszki (rany z tg), więc wystarczy całkiem zmasakrowana głowa
+	// AQUILA - bez rany pęknięcia czaszki wystarczy całkiem zmasakrowana głowa
 	return head.brute_dam >= head.max_damage
 
 /datum/heretic_knowledge/ultimate/blade_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

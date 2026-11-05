@@ -14,6 +14,7 @@ Repozytorium: `aq33/AquilaStation` (stare `aq33/NSV13` przekierowuje). Język: D
 - Wszystko, co widzi gracz, jest po polsku: nazwy i opisy przedmiotów, komunikaty w czacie, okna TGUI, podpowiedzi, ogłoszenia, nazwy reagentów i receptur, wpisy w `strings/`. Dotyczy to także kodu portowanego z innych serwerów: tłumacz przy porcie, nie zostawiaj angielskiego „na później”.
 - Terminy bierz z `aquila/SLOWNIK_TLUMACZEN.md` i dopisuj tam nowe. Nazwy własne spolszczaj brzmieniowo (Bikarydyna, Kosmiczna Cola); Nanotrasen i nazwy frakcji bez zmian.
 - Nie tłumacz tekstów porównywanych w kodzie (klucze list, `name` sprawdzane w `if`, identyfikatory w TSX, ckey nazw reagentów), chyba że zmieniasz też wszystkie porównania.
+- Gracze poprawiają polski tekst w Crowdinie (https://crowdin.com/project/aquila, komenda „Popraw tłumaczenie” w OOC). Zatwierdzone poprawki przychodzą jako PR z gałęzi `crowdin-poprawki` (`tools/i18n/crowdin.py`, `.github/workflows/crowdin_*.yml`). Nie edytuj tej gałęzi ręcznie, bo workflow ją nadpisuje. Złą poprawkę odrzuć w Crowdinie.
 - Tytuły PR-ów, opisy PR-ów i wpisy changelogu też są po polsku.
 - Nie ruszaj istniejących polskich tekstów ani naszych zmian bez pytania.
 ## Combat mode i intencje (dwa tryby sterowania)
@@ -96,6 +97,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
   - obrazki ze sprite'ów z gry (wycięte z `.dmi`), z podpisem w `[[File:X.png|Nazwa]]`; brakujące wgrywaj.
 - Sterowanie opisuj dla obu trybów (combat mode i intencje), jeśli się różni.
 - Edytuję z panelu przeglądarki w aplikacji, na koncie użytkownika (sam się loguje). Przed zapisem dużej zmiany albo nowej strony pokaż w czacie plan: które strony, jakie sekcje.
+- Po scaleniu PR-a z nową zawartością albo zmianą działania aktualizuję wiki w tej samej sesji: strony z punktu 7 podsumowania, opisane według kodu z aq33/master. Gdy nie mogę od razu (brak logowania, PR scalony poza sesją), mówię to wprost i zapisuję w pamięci, które PR-y czekają na wiki. Na początku pracy po przerwie sprawdzam scalone PR-y nowsze od ostatniej edycji wiki.
 ## Koniec każdego zadania
 Napisz:
 1. Co zmieniłeś (pliki).

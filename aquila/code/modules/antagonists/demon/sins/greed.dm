@@ -79,8 +79,7 @@
 		return
 	to_chat(user, span_danger("Przez chwilę czujesz się lepiej, jakby twoja siła życiowa urosła. Potem nagle twoje ciało złazi płatami i ciemnieje, odsłaniając nową, straszliwą postać..."))
 	user.set_species(/datum/species/shadow)
-	if(user.maxHealth < 100) //cannot bring you above standard max health
-		user.maxHealth += 20
+	user.maxHealth = max(user.maxHealth, min(user.maxHealth + 20, 100)) //cannot bring you above standard max health
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 

@@ -185,7 +185,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
 	name = "droid naprawczy egzoszkieletu"
-	desc = "Automatyczny droid naprawczy do egzoszkieletów. Wyszukuje uszkodzenia i je naprawia. Usuwa niemal każdy rodzaj uszkodzeń zewnętrznych i wewnętrznych."
+	desc = "Automatyczny droid naprawczy do egzoszkieletów. Powoli łata pancerz, usuwa awarię kontroli temperatury i rozszczelnienie zbiornika. Przy zwarciu w egzoszkielecie zamiast naprawiać, uszkadza go." // AQ EDIT - opis zgodny z repairable_damage
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0

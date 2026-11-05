@@ -1,0 +1,81 @@
+name: Crowdin - poprawki graczy
+
+# Raz dziennie (albo ręcznie) pobiera z Crowdina zatwierdzone poprawki polskiego tekstu,
+# wprowadza je do kodu (tools/i18n/crowdin.py apply) i otwiera albo odświeża PR z gałęzi
+# crowdin-poprawki. Gałąź budujemy za każdym razem od mastera, więc PR zawiera wszystkie
+# zatwierdzone poprawki, które jeszcze nie weszły do gry.
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: crowdin
+  cancel-in-progress: false
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    if: github.repository == 'aq33/AquilaStation'
+    env:
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # PR założony przez GITHUB_TOKEN nie uruchamia CI, dlatego najpierw PAT
+      GH_TOKEN: ${{ secrets.CHANGELOG_PAT || secrets.GITHUB_TOKEN }}
+      BRANCH: crowdin-poprawki
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.CHANGELOG_PAT || secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalacja Crowdin CLI
+        run: npm install -g @crowdin/cli@4
+
+      - name: Pobranie zatwierdzonych tłumaczeń
+        run: |
+          python tools/i18n/crowdin.py export --out crowdin_out
+          rm -rf crowdin_out/pl
+          crowdin download --language=pl --no-progress
+
+      - name: Wprowadzenie poprawek do kodu
+        id: apply
+        run: python tools/i18n/crowdin.py apply crowdin_out/pl --report "$RUNNER_TEMP/raport.md"
+
+      - name: PR z poprawkami
+        if: steps.apply.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add -u -- . ':!crowdin_out'
+          git commit -m "Tłumaczenie: poprawki graczy z Crowdina"
+          git push --force origin "$BRANCH"
+          {
+            echo "Poprawki polskiego tekstu zatwierdzone w [Crowdinie](https://crowdin.com/project/aquila)."
+            echo "Workflow \`crowdin_download.yml\` odświeża ten PR codziennie; ręczne zmiany na gałęzi zostaną nadpisane."
+            echo
+            cat "$RUNNER_TEMP/raport.md"
+          } > "$RUNNER_TEMP/body.md"
+          # opis PR ma limit 65536 znaków
+          head -c 60000 "$RUNNER_TEMP/body.md" > "$RUNNER_TEMP/body_cut.md"
+          if gh pr view "$BRANCH" --json state -q .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/body_cut.md"
+          else
+            gh pr create --base master --head "$BRANCH" \
+              --title "Tłumaczenie: poprawki graczy z Crowdina" \
+              --body-file "$RUNNER_TEMP/body_cut.md"
+          fi

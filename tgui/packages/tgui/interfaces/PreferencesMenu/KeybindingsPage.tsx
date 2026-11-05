@@ -184,7 +184,7 @@ class KeybindingButton extends Component<{
         }}
         selected={typingHotkey !== undefined}
       >
-        {typingHotkey || currentHotkey || 'Unbound'}
+        {typingHotkey || currentHotkey || 'Brak'}
       </Button>
     );
 

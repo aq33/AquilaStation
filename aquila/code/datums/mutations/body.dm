@@ -59,6 +59,7 @@
 /datum/mutation/megafart
 	name = "Megabąk"
 	desc = "Mutacja, przez którą pacjent puszcza bąki z taką siłą, że odrzuca wszystkich wokół."
+	quality = POSITIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Czujesz się wzdęty i pełen gazów.</span>"
 	text_lose_indication = "<span class='notice'>Znów czujesz się lekko.</span>"
