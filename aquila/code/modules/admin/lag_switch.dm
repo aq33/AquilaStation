@@ -43,8 +43,8 @@
 	dat += "</body></html>"
 	usr << browse(dat.Join(), "window=lag_switch_panel;size=460x480")
 
-/// Link przełączający jeden środek w panelu
-/datum/admins/proc/lag_switch_link(measure)
+/// Link przełączający jeden środek w panelu (globalna, bo panel jest verbem klienta i src to /client)
+/proc/lag_switch_link(measure)
 	return "<a href='byond://?_src_=holder;[HrefToken()];change_lag_switch=[measure]'><b>[SSlag_switch.measures[measure] ? "Wł." : "Wył."]</b></a>"
 
 /datum/admins/Topic(href, href_list)
