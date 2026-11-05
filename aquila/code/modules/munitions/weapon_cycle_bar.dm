@@ -17,6 +17,8 @@
 	var/obj/effect/overlay/weapon_cycle_bar/cycle_bar
 	/// Ile etapów pokazuje teraz pasek (etapy mogą się nakładać)
 	var/cycle_bar_users = 0
+	/// Numer najnowszego etapu. Starszy, nakładający się etap (np. unload() i feed()) nie zapisuje już postępu do paska.
+	var/cycle_bar_stage = 0
 
 /obj/machinery/ship_weapon/Destroy(force=FALSE)
 	if(cycle_bar)
@@ -29,7 +31,7 @@
 	if(delay < WEAPON_CYCLE_BAR_MIN_DELAY)
 		sleep(delay)
 		return
-	show_cycle_bar()
+	var/stage = show_cycle_bar()
 	var/step = delay / WEAPON_CYCLE_BAR_STEPS
 	var/waited = 0
 	for(var/i in 1 to WEAPON_CYCLE_BAR_STEPS)
@@ -38,10 +40,13 @@
 		waited = next
 		if(QDELETED(src))
 			return
-		cycle_bar.icon_state = "prog_bar_[round(i * 100 / WEAPON_CYCLE_BAR_STEPS, 5)]"
+		if(stage == cycle_bar_stage)
+			cycle_bar.icon_state = "prog_bar_[round(i * 100 / WEAPON_CYCLE_BAR_STEPS, 5)]"
 	hide_cycle_bar()
 
+/// Pokazuje pasek od zera i zwraca numer etapu, który od teraz go prowadzi.
 /obj/machinery/ship_weapon/proc/show_cycle_bar()
+	cycle_bar_stage++
 	if(!cycle_bar)
 		cycle_bar = new
 		var/icon/sprite = icon(icon, icon_state)
@@ -55,6 +60,7 @@
 		vis_contents += cycle_bar
 		cycle_bar.alpha = 0
 		animate(cycle_bar, alpha = 255, time = WEAPON_CYCLE_BAR_FADE)
+	return cycle_bar_stage
 
 /obj/machinery/ship_weapon/proc/hide_cycle_bar()
 	cycle_bar_users = max(cycle_bar_users - 1, 0)
