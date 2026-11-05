@@ -43,13 +43,43 @@ export const DradisContent = (props) => {
       transition: 'all 0.5s ease-out',
     };
     let markerType = 'star_marker' + '_' + ship.alignment;
+    // AQ EDIT START - niepewne kontakty i źródło ostrzału (aquila/code/modules/overmap/dradis_uncertainty.dm)
+    const uncertainty = ship.uncertainty || 0;
+    const circleSize = uncertainty * 2 * scale_factor;
+    const circleStyle: CSSProperties = {
+      position: 'absolute',
+      left: ship.x * scale_factor - circleSize / 2 + 'px',
+      bottom: ship.y * scale_factor - circleSize / 2 + 'px',
+      width: circleSize + 'px',
+      height: circleSize + 'px',
+      borderRadius: '50%',
+      border: '1px dashed ' + ship.colour,
+      color: ship.colour,
+      opacity: ship.opacity,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: Math.max(10, circleSize / 3) + 'px',
+      pointerEvents: 'none',
+      transition: 'all 0.5s ease-out',
+    };
+    const tooltip = ship.ghost
+      ? 'Źródło ostrzału: trafiono nas z tego kierunku, strzelca nie wykryto.'
+      : uncertainty > 0
+        ? 'Niepewny kontakt, pozycja przybliżona. Podejdź bliżej albo użyj radaru.'
+        : undefined;
     return (
       <li key={ship.id}>
+        {uncertainty > 0 && (
+          <div style={circleStyle}>{ship.ghost ? '!' : '?'}</div>
+        )}
+        {/* AQ EDIT END */}
         {!!ship.name && (
           <Button
             style={markerStyle}
             className={markerType}
             content=""
+            tooltip={tooltip}
             onClick={() => act('hail', { target: ship.id })}
           >
             <span className="star_label">
