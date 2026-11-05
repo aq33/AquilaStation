@@ -289,6 +289,8 @@ type Interactable = {
 type AlternateActions = {
   alternate?: string[];
   alternate_icons?: Record<string, string> | null;
+  // AQUILA: ubranie z kieszeniami, Alt+klik przeszukuje je bez zdejmowania
+  searchable?: BooleanLike;
 };
 
 /**
@@ -379,7 +381,9 @@ export const StripMenu = (props) => {
                       />
                     );
 
-                    tooltip = item.name;
+                    tooltip = item.searchable
+                      ? `${item.name} (Alt+klik: przeszukaj)`
+                      : item.name;
                   } else if (
                     'obscured' in item &&
                     (item.obscured === ObscuringLevel.Hidden ||
@@ -482,8 +486,8 @@ export const StripMenu = (props) => {
                         }}
                       >
                         <Button
-                          onClick={() => {
-                            act('use', {
+                          onClick={(event) => {
+                            act(event?.altKey ? 'search' : 'use', {
                               key: keyAtSpot,
                             });
                           }}

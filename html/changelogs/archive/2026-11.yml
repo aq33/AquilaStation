@@ -97,3 +97,17 @@
   - rscadd: Toksyny mutacyjne ze szlamu mogą zamienić w oozelinga.
   - admin: Admin-duch może zalogować się do konsoli komunikacyjnej, a Request Manager
       ma przyciski wybudzenia załogi i ERT.
+'2026-11-05':
+  Joker66613:
+  - soundadd: 'Emotka *hey: okrzyk „Hej!” z reklam LEGO City.'
+  - balance: Czarodziej (na starcie i z duchów) pojawia się dopiero od 30 graczy.
+  - balance: 'Tryb weighted: swarmery tylko w rundach z puli poważnej; pająki, demon
+      grzechu, świadoma choroba, piraci, infiltratorzy i ksenomorfy tylko w rundach
+      z puli umiarkowanej i poważnej.'
+  - balance: 'Kuźnia amunicji: jedno wykucie korpusu Gaussa daje 6 pocisków (pół stojaka)
+      za 6 arkuszy materiału.'
+  - rscadd: Alt+klik na ubranie z kieszeniami w oknie rozbierania przeszukuje je bez
+      zdejmowania.
+  - rscadd: Samouczek Przetrwanie uczy tamowania krwawienia bandażem z pudełka przetrwania.
+  - tweak: Samouczek uczy walki i chwytu w combat mode albo w starych intencjach,
+      zależnie od preferencji gracza, i wspomina o sprincie.
