@@ -77,11 +77,19 @@
 	var/turf/new_turf = get_turf(carbon_parent)
 	if(pending_step && sprinting && !forced && old_turf && new_turf && old_turf.z == new_turf.z && get_dist(old_turf, new_turf) == 1)
 		pending_step = FALSE
-		commit_step(get_dir(old_turf, new_turf), old_turf)
+		// Ruch po pikselach przechodzi kafelki osobno w poziomie i w pionie: rozpęd liczy kierunek z klawiszy,
+		// a po skosie każde z dwóch przejść kosztuje połowę kroku po skosie
+		var/datum/component/pixel_movement/pixel = HAS_TRAIT(carbon_parent, TRAIT_PIXEL_MOVEMENT) ? carbon_parent.GetComponent(/datum/component/pixel_movement) : null
+		if(pixel?.input_dir)
+			var/input_dir = pixel.input_dir
+			commit_step(input_dir, old_turf, (input_dir & (input_dir - 1)) ? SPRINT_DIAGONAL_MODIFIER / 2 : 1)
+		else
+			commit_step(get_dir(old_turf, new_turf), old_turf)
 	check_stairs(old_turf, new_turf)
 
-/datum/component/carbon_sprint/proc/commit_step(direct, turf/old_turf)
-	step_size = (direct & (direct - 1)) ? SPRINT_DIAGONAL_MODIFIER : 1
+/// length: ile kratek liczy ten krok (domyślnie 1, po skosie SPRINT_DIAGONAL_MODIFIER)
+/datum/component/carbon_sprint/proc/commit_step(direct, turf/old_turf, length)
+	step_size = length || ((direct & (direct - 1)) ? SPRINT_DIAGONAL_MODIFIER : 1)
 	// Ruszamy od nowa: pierwszy krok albo po dłuższym postoju z wciśniętym klawiszem
 	if(!last_sprint_dir || world.time > last_sprint_step + SPRINT_SUSTAINED_RUN_GRACE)
 		dust.appear("sprint_cloud", direct, old_turf, 0.6 SECONDS)
