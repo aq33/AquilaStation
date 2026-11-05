@@ -1,5 +1,5 @@
 /// AQUILA - ship signatures (aquila/code/modules/overmap/sensor_signature.dm): a quiet ship is detected later,
-/// thrust and weapons fire give you away, and the radar / paint / EMP exceptions still reveal you
+/// thrust and weapons fire give you away, a radar pulse is heard as an emission, and the paint / EMP exceptions still reveal you
 /datum/unit_test/aquila_sensor_signature
 	var/obj/structure/overmap/small_craft/observer
 	var/obj/structure/overmap/small_craft/target
@@ -10,7 +10,7 @@
 	observer = allocate(/obj/structure/overmap/small_craft/combat/light)
 	target = allocate(/obj/structure/overmap/small_craft/combat/light)
 	target.faction = "syndicate"
-	var/fail = check_signature() || check_detection() || check_offsets()
+	var/fail = check_signature() || check_detection() || check_offsets() || check_pulse_range()
 	observer.ai_controlled = FALSE
 	GLOB.sensor_signature_enabled = was_enabled
 	if(fail)
@@ -61,12 +61,22 @@
 		if(target.is_sensor_visible(observer) == SENSOR_VISIBILITY_GHOST)
 			return "A quiet ship inside the detection range ([range]) was hidden from a [who] observer"
 
-		// Regression: the exceptions must still reveal a ship far outside its passive range
+		// A pulse no longer reveals the emitter outright: the listener only hears an emission
 		place(range + 5)
 		target.last_radar_pulse = world.time
-		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_FULL)
-			return "A ship that just pulsed its radar was not fully visible to a [who] observer"
+		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_GHOST)
+			return "A ship that pulsed its radar was fully revealed to a [who] observer outside its detection range"
 		target.last_radar_pulse = -INFINITY
+		LAZYREMOVE(observer.radar_emissions, target)
+		target.broadcast_radar_emission(range + 10)
+		var/list/estimate = observer.get_emission_estimate(target)
+		if(!estimate)
+			return "A [who] observer in range did not hear a radar pulse"
+		if(abs(estimate[2] - (range + 5)) > estimate[4] + 1)
+			return "The emission distance estimate ([estimate[2]] ± [estimate[4]]) missed the real distance ([range + 5])"
+		LAZYREMOVE(observer.radar_emissions, target)
+
+		// Regression: the exceptions must still reveal a ship far outside its passive range
 		target.target_painted[observer] = FALSE
 		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_FULL)
 			return "A ship painting the [who] observer was not fully visible to it"
@@ -94,3 +104,21 @@
 		if(sqrt(offset[1] ** 2 + offset[2] ** 2) > radius + 1)
 			return "The contact position error left its radius ([offset[1]], [offset[2]] for radius [radius])"
 
+
+/// Regression: upstream send_radar_pulse() restored max_tracking_range to its value at call time,
+/// so a pulse landing on the tick the previous one ended doubled the range for good (50 -> 100 -> 200)
+/datum/unit_test/aquila_sensor_signature/proc/check_pulse_range()
+	observer.ai_controlled = FALSE
+	observer.base_tracking_range = null
+	observer.max_tracking_range = 50
+	observer.last_radar_pulse = -INFINITY
+	observer.send_radar_pulse()
+	if(observer.max_tracking_range != 100)
+		return "A radar pulse did not double the tracking range (got [observer.max_tracking_range])"
+	observer.last_radar_pulse -= 5 SECONDS // The cooldown ends before the restore timer fires
+	observer.send_radar_pulse()
+	if(observer.max_tracking_range != 100)
+		return "A second pulse before the restore ratcheted the tracking range to [observer.max_tracking_range]"
+	observer.end_radar_pulse()
+	if(observer.max_tracking_range != 50)
+		return "Ending the pulse did not restore the base tracking range (got [observer.max_tracking_range])"

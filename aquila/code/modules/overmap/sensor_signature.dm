@@ -81,6 +81,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	for(var/datum/shooter as anything in hit_ghosts?.Copy())
 		if(QDELETED(shooter))
 			LAZYREMOVE(hit_ghosts, shooter)
+	for(var/datum/emitter as anything in radar_emissions?.Copy())
+		if(QDELETED(emitter))
+			LAZYREMOVE(radar_emissions, emitter)
 
 /obj/structure/overmap/slowprocess()
 	// Before ..(), which runs ai_process() and should see the fresh value
@@ -95,8 +98,8 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	else
 		base_range = (observer.dradis ? observer.dradis.sensor_range : SENSOR_RANGE_DEFAULT) * SENSOR_PLAYER_RANGE_MULT
 	var/range = max(base_range * sensor_signature, SENSOR_MIN_DETECTION)
-	// An active pulse is not capped
-	if(observer.last_radar_pulse + RADAR_VISIBILITY_PENALTY > world.time)
+	// A player's active pulse sees the whole map; the AI pulses all the time, so its pulse stays capped
+	if(!observer.ai_controlled && observer.last_radar_pulse + RADAR_VISIBILITY_PENALTY > world.time)
 		return range
 	return min(range, SENSOR_MAX_DETECTION)
 
@@ -104,8 +107,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	. = ..()
 	if(!GLOB.sensor_signature_enabled || . <= SENSOR_VISIBILITY_GHOST || !istype(observer) || observer == src)
 		return
-	// Allies broadcast IFF; a ship that pulsed or is painting the observer is loud no matter what
-	if(observer.faction == faction || last_radar_pulse + RADAR_VISIBILITY_PENALTY > world.time || (observer in target_painted))
+	// Allies broadcast IFF; a ship painting the observer is loud no matter what.
+	// A radar pulse no longer reveals the emitter outright: listeners get a bearing-only emission contact instead (radar_emission.dm)
+	if(observer.faction == faction || (observer in target_painted))
 		return
 	var/dist = overmap_dist(src, observer)
 	if(dist <= sensor_profile) // EMP and other profile penalties
@@ -141,5 +145,3 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 #undef SIGNATURE_DAMAGE_MAX
 #undef SIGNATURE_HULLBURN
 #undef SENSOR_PLAYER_RANGE_MULT
-#undef SENSOR_MIN_DETECTION
-#undef SENSOR_MAX_DETECTION

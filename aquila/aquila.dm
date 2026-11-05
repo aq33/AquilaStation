@@ -816,6 +816,7 @@
 #include "code\modules\overmap\mission_choice.dm"
 #include "code\modules\overmap\sensor_signature.dm"
 #include "code\modules\overmap\dradis_uncertainty.dm"
+#include "code\modules\overmap\radar_emission.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"

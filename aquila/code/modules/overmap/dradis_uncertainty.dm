@@ -28,9 +28,16 @@
 
 /obj/machinery/computer/ship/dradis/ui_data(mob/user)
 	. = ..()
+	var/list/data = .
+	data["sensor_signatures"] = GLOB.sensor_signature_enabled && linked
 	if(!GLOB.sensor_signature_enabled || !linked)
 		return
-	var/list/data = .
+	// How far a typical AI ship (default max_tracking_range) picks us up, passively and while it pulses
+	var/obj/structure/overmap/typical = /obj/structure/overmap
+	var/typical_range = initial(typical.max_tracking_range)
+	data["own_signature"] = round(linked.sensor_signature, 0.01)
+	data["seen_from"] = round(clamp(typical_range * linked.sensor_signature, SENSOR_MIN_DETECTION, SENSOR_MAX_DETECTION))
+	data["seen_from_pulse"] = round(clamp(typical_range * 2 * linked.sensor_signature, SENSOR_MIN_DETECTION, SENSOR_MAX_DETECTION))
 	var/list/blips = data["ships"]
 	for(var/list/blip as anything in blips)
 		var/obj/structure/overmap/OM = locate(blip["id"])
@@ -52,6 +59,27 @@
 		if(!QDELETED(shooter) && shooter.is_sensor_visible(linked) >= SENSOR_VISIBILITY_FAINT)
 			continue // Already a normal contact
 		blips[++blips.len] = list("x" = ghost[1], "y" = ghost[2], "colour" = "#ff8800", "name" = "Źródło ostrzału", "opacity" = 0.8, "alignment" = "unaligned", "id" = "ghost_\ref[shooter]", "uncertainty" = SENSOR_UNCERTAINTY_MAX, "ghost" = TRUE)
+	// Heard radar pulses (radar_emission.dm), unless the emitter is already a normal contact
+	var/list/shown = list()
+	for(var/list/blip as anything in blips)
+		if(blip["id"])
+			shown[blip["id"]] = TRUE
+	for(var/obj/structure/overmap/emitter as anything in linked.radar_emissions?.Copy())
+		var/list/estimate = linked.get_emission_estimate(emitter)
+		if(!estimate || shown["\ref[emitter]"])
+			continue
+		var/list/emission = linked.radar_emissions[emitter]
+		var/fading = world.time > emission[1] + RADAR_VISIBILITY_PENALTY
+		blips[++blips.len] = list(
+			"x" = linked.x + sin(estimate[1]) * estimate[2],
+			"y" = linked.y + cos(estimate[1]) * estimate[2],
+			"colour" = "#e9a040",
+			"name" = "NIEZNANY · emisja",
+			"opacity" = fading ? 0.4 : 0.9,
+			"alignment" = "unaligned",
+			"id" = "emission_\ref[emitter]",
+			"emission" = list("bearing" = round(estimate[1]), "distance" = round(estimate[2], 0.5), "width" = estimate[3], "spread" = round(estimate[4], 0.5)),
+		)
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	var/obj/structure/overmap/shooter = P?.overmap_firer
