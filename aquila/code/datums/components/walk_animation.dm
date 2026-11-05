@@ -13,6 +13,8 @@
  * "arm_a" to ręka bliżej patrzącego, a "leg_a" i "leg_b" pokazują obie nogi w pełnej szerokości.
  * Z boku "leg_b" jest widoczna tylko w trakcie kroku, żeby w spoczynku nogi nie były rysowane podwójnie.
  * Z boku "arm_b" jest pusta: dalsza dłoń, która w sprite'ach wystaje 1 px przed brzuch, jest wycięta na stałe.
+ * Skrzydła (ćmy i inne "wings") też są przenoszone na osobne fragmenty bez masek ("wings_behind" pod ciałem,
+ * "wings_front" nad nim), bo maski rąk i nóg wycinały z nich kawałki i ruszały nimi razem z kończynami.
  *
  * Bufor i filtry masek kosztują klienta w każdej klatce (pomiar: raport/perf_02_przyciecia_animacja_chodu.md),
  * więc są podpięte tylko w ruchu. W spoczynku mob rysuje się zwykle, a fragmenty i maski są zdjęte z vis_contents.
@@ -47,6 +49,8 @@
 	var/idle_after = 0
 	/// Czy czeka już timer sprawdzający bezruch
 	var/idle_check_pending = FALSE
+	/// Warstwa moba -> nakładki skrzydeł zdjęte z niej na czas ruchu (oddawane w deactivate)
+	var/list/detached_wings = list()
 
 /datum/component/walk_animation/Initialize()
 	if(!ishuman(parent))
@@ -67,6 +71,13 @@
 	for(var/index in 1 to 2)
 		var/obj/effect/overlay/walk_held/held = new
 		limbs["hand_[index]"] = held
+	// Skrzydła bez masek: tylne pod wszystkimi fragmentami ciała, przednie nad nimi (jak BODY_BEHIND_LAYER i BODY_FRONT_LAYER)
+	var/obj/effect/overlay/walk_held/wings_behind = new
+	wings_behind.layer = H.layer - 0.002
+	limbs["wings_behind"] = wings_behind
+	var/obj/effect/overlay/walk_held/wings_front = new
+	wings_front.layer = FLOAT_LAYER + 0.01
+	limbs["wings_front"] = wings_front
 
 	RegisterSignal(H, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(H, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
@@ -97,6 +108,7 @@
 	update_side_leg(H.dir)
 	update_held_dir(H.dir)
 	detach_held_items()
+	detach_wings()
 
 /// Zdejmuje bufor, maski i fragmenty; mob znowu rysuje się zwykle, z przedmiotami w dłoniach jako nakładkami.
 /datum/component/walk_animation/proc/deactivate()
@@ -116,6 +128,7 @@
 	for(var/index in 1 to 2)
 		var/obj/effect/overlay/walk_held/held = limbs["hand_[index]"]
 		held.cut_overlays()
+	restore_wings()
 	// Przedmioty w dłoniach były zdjęte z moba, więc budujemy je od nowa
 	if(!QDELETED(H))
 		H.update_inv_hands()
@@ -193,6 +206,53 @@
 	H.overlays_standing[HANDS_LAYER] = kept_overlays
 	H.apply_overlay(HANDS_LAYER)
 
+/// Przenosi nakładki skrzydeł z warstw części mutanckich na fragmenty "wings_behind"/"wings_front", żeby maski ich nie cięły.
+/// Wołane przy podpięciu i po każdym handle_mutant_bodyparts(), które buduje te warstwy od nowa.
+/datum/component/walk_animation/proc/detach_wings()
+	if(!active || QDELING(src))
+		return
+	var/mob/living/carbon/human/H = parent
+	var/obj/effect/overlay/walk_held/wings_behind = limbs["wings_behind"]
+	var/obj/effect/overlay/walk_held/wings_front = limbs["wings_front"]
+	wings_behind.cut_overlays()
+	wings_front.cut_overlays()
+	detached_wings.Cut()
+	for(var/layer in list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER))
+		var/list/layer_overlays = H.overlays_standing[layer]
+		if(!length(layer_overlays))
+			continue
+		var/list/wings = list()
+		var/list/kept_overlays = list()
+		for(var/mutable_appearance/part as anything in layer_overlays)
+			if(istype(part) && findtext(part.icon_state, "wings"))
+				wings += part
+			else
+				kept_overlays += part
+		if(!length(wings))
+			continue
+		H.remove_overlay(layer)
+		H.overlays_standing[layer] = kept_overlays
+		H.apply_overlay(layer)
+		detached_wings["[layer]"] = wings
+		var/obj/effect/overlay/walk_held/fragment = (layer == BODY_BEHIND_LAYER) ? wings_behind : wings_front
+		fragment.add_overlay(wings)
+
+/// Oddaje skrzydła z fragmentów na ich warstwy moba.
+/datum/component/walk_animation/proc/restore_wings()
+	var/obj/effect/overlay/walk_held/wings_behind = limbs["wings_behind"]
+	var/obj/effect/overlay/walk_held/wings_front = limbs["wings_front"]
+	wings_behind.cut_overlays()
+	wings_front.cut_overlays()
+	var/mob/living/carbon/human/H = parent
+	if(!QDELETED(H))
+		for(var/layer_key in detached_wings)
+			var/layer = text2num(layer_key)
+			var/list/layer_overlays = H.overlays_standing[layer]
+			H.remove_overlay(layer)
+			H.overlays_standing[layer] = (layer_overlays || list()) + detached_wings[layer_key]
+			H.apply_overlay(layer)
+	detached_wings.Cut()
+
 /datum/component/walk_animation/proc/on_moved(mob/living/carbon/human/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
 
@@ -253,6 +313,9 @@
 		if(behind || held_behind)
 			held.layer = behind ? H.layer - 0.001 : FLOAT_LAYER
 	held_behind = behind
+	for(var/state in list("wings_behind", "wings_front"))
+		var/obj/effect/overlay/walk_held/wings = limbs[state]
+		wings.dir = new_dir
 
 /// Z boku maska "leg_b" pokrywa się z "leg_a", więc w spoczynku ta noga jest ukryta; z przodu i z tyłu zawsze widoczna.
 /datum/component/walk_animation/proc/update_side_leg(new_dir)
@@ -318,6 +381,11 @@
 	layer = FLOAT_LAYER
 	appearance_flags = KEEP_APART | PIXEL_SCALE | TILE_BOUND
 	vis_flags = VIS_INHERIT_ID
+
+/datum/species/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
+	. = ..()
+	var/datum/component/walk_animation/walk_animation = H.GetComponent(/datum/component/walk_animation)
+	walk_animation?.detach_wings()
 
 /// Kierunek wspólnej maski dla kierunku moba (ikona masek ma 4 kierunki).
 /proc/walk_mask_dir(dir)
