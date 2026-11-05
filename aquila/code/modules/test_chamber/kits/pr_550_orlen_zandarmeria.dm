@@ -6,7 +6,7 @@
 	2) Szafki inżyniera, technika atmosferyki i Głównego Inżyniera: otwórz kartą → oczekiwane: biało-czerwone (atmosferyka czerwona), bez żółci, także po otwarciu. \
 	3) Załóż kolejno mundur inżyniera (zwiń go w menu PPM → wersja zwinięta też biało-czerwona), atmosferyki, Głównego Inżyniera, kask (włącz latarkę), biały kask, beret, kurtkę zimową z kapturem, kamizelkę odblaskową, buty robocze, pas na narzędzia i pelerynę → oczekiwane: wszystko w barwach Orlenu na postaci i w ekwipunku, nic nie znika. \
 	4) Czapki Orlenu: obróć daszek (Alt+klik) → oczekiwane: widać daszek z tyłu, na postaci i w ręce. \
-	5) Śluza inżynierii → oczekiwane: zostaje żółta. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
+	5) Śluza inżynierii → oczekiwane: biała z czerwonym, także przy otwieraniu i jako szklana, śluza atmosferyki czerwona; rama śluzy w budowie w tych samych barwach. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
 	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
 	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
 	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat z zestawu: obróć go (VV dir) → oczekiwane: ciemna strzałka po stronie wyrzutu w każdym kierunku. Zwykły wylot zsypu z zestawu poczty aq33/AquilaStation#447 → oczekiwane: zostaje zwykłym wylotem (paczkomaty są tylko na wylotach poczty w działach na mapach)."
@@ -20,6 +20,8 @@
 		/obj/structure/closet/secure_closet/security = 1,
 		/obj/structure/closet/secure_closet/hos = 1,
 		/obj/machinery/door/airlock/engineering = 1,
+		/obj/machinery/door/airlock/engineering/glass = 1,
+		/obj/machinery/door/airlock/atmos = 1,
 		/obj/machinery/door/airlock/security = 1,
 		/obj/item/clothing/under/ship/engineer = 1,
 		/obj/item/clothing/under/rank/engineering/atmospheric_technician = 1,

@@ -1,7 +1,7 @@
 // AQUILA - dział inżynierii w barwach Orlenu (czerwień i biel).
 // Mundury, kaski, szafki, EngiDrobe/AtmosDrobe, tablety i karty z arkusza orlentekstury.dmi wpisane w miejsce stanów inżynierii,
 // a to, czego arkusz nie ma (drzwi specjalnych szafek, kombinezon ostrzegawczy, opaska, tabliczki), przemalowane z żółci na czerwień.
-// Śluzy inżynierii zostają żółte. Profesje i kanał radia nazywają się jak dotąd, Orlen jest tylko w nazwach rzeczy.
+// Śluzy inżynierii (z ramami w budowie) są biało-czerwone, atmosferyki czerwone (aquila/icons/paradise/obj/doors). Profesje i kanał radia nazywają się jak dotąd, Orlen jest tylko w nazwach rzeczy.
 
 /****************************\
 |********** dekale ***********|
