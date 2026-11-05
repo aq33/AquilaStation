@@ -64,11 +64,20 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		if(!isnull(name))
 			found = copytext(trimmed, 1, 5) + name
 	if(isnull(found))
+		// etykiety dostają w kodzie dwukropek ("<b>Siła:</b>"), słownik ma samo słowo
 		var/last = copytext(trimmed, -1)
-		if(last == "." || last == "!" || last == "?")
+		if(last == "." || last == "!" || last == "?" || last == ":")
 			found = i18n_en_cased(table, copytext(trimmed, 1, -1))
-			if(!isnull(found) && !(copytext(found, -1) in list(".", "!", "?")))
+			if(!isnull(found) && !(copytext(found, -1) in list(".", "!", "?", ":")))
 				found += last
+	if(isnull(found) && copytext(trimmed, -1) == ")")
+		// nazwa z dopiskiem w nawiasie: "alarm powietrza ([get_area_name(src)])", "APC (Mostek)"
+		var/open = findlasttext(trimmed, " (")
+		if(open > 1)
+			var/name = i18n_en_exact(copytext(trimmed, 1, open))
+			if(!isnull(name))
+				var/suffix = copytext(trimmed, open + 2, -1)
+				found = "[name] ([i18n_en_exact(suffix) || suffix])"
 	if(isnull(found))
 		return null
 	var/start = findtext(text, trimmed)
@@ -260,6 +269,14 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 // Dymki: tworzone dla jednego widza, więc wystarczy przetłumaczyć tekst
 /atom/balloon_alert(mob/viewer, text, color = null, show_in_chat = TRUE, offset_x, offset_y)
 	return ..(viewer, i18n_for_client(viewer?.client, text), color, show_in_chat, offset_x, offset_y)
+
+// Dymki z opisem po najechaniu na przedmiot, akcję albo alert: okno tooltip jednego klienta
+/datum/tooltip/show(atom/movable/thing, params = null, title = null, content = null, theme = "default", special = "none")
+	if(owner?.wants_english())
+		// bez makr \proper i \improper, których nie ma w kluczach słownika (core i tak je zdejmuje)
+		title = i18n_en_html(replacetext(replacetext(title, "\proper", ""), "\improper", ""))
+		content = i18n_en_html(content)
+	return ..(thing, params, title, content, theme, special)
 
 // Runechat: jedna wiadomość dla wielu słuchaczy. Gracze z językiem EN dostają osobną, przetłumaczoną.
 // Wartości domyślne jak w chatmessage.dm (CHAT_MESSAGE_LIFESPAN jest tam #undef, więc liczba wprost)

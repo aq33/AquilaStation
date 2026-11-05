@@ -33,7 +33,7 @@ import extract_pairs as ep  # noqa: E402
 OUT = "strings/i18n/en_jsx.json"
 JSX_EXT = (".tsx", ".jsx")
 IDENT = re.compile(r"[\w$.)\]]")
-CODE_IN_TEXT = re.compile(r"=>|;\s*(?://|/\*|const|let|type|function|export|interface|return)\b|\b(?:const|let) \w+\s*[:=]")
+CODE_IN_TEXT = re.compile(r"=>|;\s*(?://|/\*|const|let|type|function|export|interface|return)\b|\b(?:const|let) \w+\s*[:=]|\bexport (?:function|const|default)\b|\bfunction \w+\(")
 JS_STRING = re.compile(r"""(["'`])((?:\\.|(?!\1).)*)\1""", re.S)
 
 

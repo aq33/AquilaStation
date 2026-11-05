@@ -101,6 +101,8 @@ def parse_dm_literal(lit):
 
 # najdłuższy tekst w słowniku dla serwera: dymki i runechat są krótkie
 DM_MAX_LENGTH = 100
+# opisy przedmiotów w dymku po najechaniu (tooltip) są dłuższe: stałe bez HTML do tej długości
+DM_MAX_PLAIN_LENGTH = 2000
 JS_EXT = (".tsx", ".jsx", ".ts", ".js")
 JS_ESCAPES = {"n": "\n", "t": "\t", "r": "\r"}
 
@@ -485,9 +487,10 @@ def main():
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
-    # Serwer (dymki, runechat, screentipy) potrzebuje tylko krótkich tekstów: stałe i szablony
+    # Serwer (dymki, runechat, screentipy, tooltipy) potrzebuje głównie krótkich tekstów: stałe i szablony
     # bez HTML (runechat zdejmuje znaczniki, dymki ich nie mają)
-    short = {k: v for k, v in sorted(exact.items()) if len(k) <= DM_MAX_LENGTH}
+    short = {k: v for k, v in sorted(exact.items())
+             if len(k) <= DM_MAX_LENGTH or (len(k) <= DM_MAX_PLAIN_LENGTH and not TAG.search(k))}
     short_templates = [
         entry for t, entry in zip(templates, data["templates"])
         if not TAG.search("".join(t["pl"])) and len("".join(t["pl"])) <= DM_MAX_LENGTH

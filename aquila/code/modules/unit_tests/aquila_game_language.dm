@@ -49,6 +49,12 @@
 	// Bez klienta z językiem EN tekst okienka input() zostaje
 	TEST_ASSERT(i18n_dialog_text(viewer, "skrzynka narzędziowa") == "skrzynka narzędziowa", "input() text changed for a player without English")
 
+	// Nazwa z obszarem w nawiasie (screentip "alarm powietrza (Komora Programowania SI)") i etykieta z dwukropkiem (tooltip)
+	var/with_area = i18n_en_exact("alarm powietrza (Komora Programowania SI)")
+	TEST_ASSERT(with_area == "air alarm (AI Upload Chamber)", "Name with a parenthesised area is not translated: [with_area]")
+	var/label = i18n_en_html("opis<br><b>Siła:</b> niska")
+	TEST_ASSERT(findtext(label, "<b>[i18n_en_exact("Siła")]:</b>"), "Label with a colon is not translated: [label]")
+
 	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
 	for(var/polish_key in GLOB.i18n_hud_icons_en)
 		var/english = GLOB.i18n_hud_icons_en[polish_key]

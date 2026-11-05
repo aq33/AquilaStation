@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		if(flush_queue)
 			C.browse_queue_flush()
 	C.tgui_panel?.send_game_language()
+	C.escape_menu?.send_game_language()
 	// napisy na guzikach HUD-u (aquila/code/modules/i18n/hud_icons.dm)
 	C.mob?.hud_used?.update_ui_style(ui_style2icon(C.prefs?.UI_style))
 
@@ -63,6 +64,14 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		client.browse_queue_flush()
 		if(!client)
 			return
+	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
+
+/// Menu pod Esc (aquila/code/modules/escape_menu, woła je New): język gracza i słownik, gdy angielski
+/datum/escape_menu/proc/send_game_language()
+	if(!client || !window)
+		return
+	if(client.wants_english())
+		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat))
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
 
 /datum/tgui_panel/on_message(type, payload)

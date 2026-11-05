@@ -211,28 +211,35 @@ const stopObserver = () => {
   });
 };
 
+/**
+ * Język okna: "en" włącza tłumaczenie (po wczytaniu słownika), inny przywraca
+ * polskie teksty. Menu Esc (tgui-escape-menu) woła to wprost z wiadomości DM.
+ */
+export const setDomLanguage = (language: string | undefined) => {
+  if (!language || language === getLanguage()) {
+    return;
+  }
+  setLanguage(language);
+  if (getLanguage() !== 'en') {
+    stopObserver();
+    return;
+  }
+  loadDictionary().then((ready) => {
+    if (!ready) {
+      // słownik nie doszedł: następna wiadomość z językiem EN spróbuje znowu
+      setLanguage('pl');
+      return;
+    }
+    if (isTranslating()) {
+      startObserver();
+    }
+  });
+};
+
 /** Śledzi config.language z DM (aquila/code/modules/i18n/game_language.dm) */
 export const setupDomTranslation = (store: Store) => {
   store.subscribe(() => {
     // stan jak w selectBackend (backend.ts), bez importu: backend ciągnie kod zależny od BYOND
-    const language = store.getState()?.backend?.config?.language;
-    if (!language || language === getLanguage()) {
-      return;
-    }
-    setLanguage(language);
-    if (getLanguage() !== 'en') {
-      stopObserver();
-      return;
-    }
-    loadDictionary().then((ready) => {
-      if (!ready) {
-        // słownik nie doszedł: następna aktualizacja okna z językiem EN spróbuje znowu
-        setLanguage('pl');
-        return;
-      }
-      if (isTranslating()) {
-        startObserver();
-      }
-    });
+    setDomLanguage(store.getState()?.backend?.config?.language);
   });
 };
