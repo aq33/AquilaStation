@@ -73,6 +73,11 @@ module.exports = (env = {}, argv) => {
                 },
               },
             },
+            {
+              // AQUILA: teksty okien przez tłumacza już przy budowie (wersja angielska);
+              // działa przed swc-loader, bo webpack stosuje loadery od końca listy
+              loader: path.resolve(__dirname, 'i18n-jsx.cjs'),
+            },
           ],
         },
         {

@@ -14,6 +14,7 @@ import { Store } from 'common/redux';
 
 import {
   getLanguage,
+  isProducedText,
   isTranslating,
   loadDictionary,
   setLanguage,
@@ -110,7 +111,20 @@ const translateTextNode = (node: Text) => {
   if (isSkipped(node)) {
     return;
   }
+  // tekst przetłumaczony przy budowie (t/tt z tgui/i18n-jsx.cjs): drugi raz nie tłumaczymy
+  // ("Pan" po angielsku to też polski klucz)
+  if (isProducedText(value)) {
+    write(node, value, value);
+    return;
+  }
   const group = textGroup(node);
+  if (
+    group.some((part) => part !== node && isProducedText(part.nodeValue || ''))
+  ) {
+    // zdanie złożone przy budowie, ten węzeł to wartość wstawki z danych
+    write(node, value, translateUiText(value));
+    return;
+  }
   if (group.length < 2) {
     write(node, value, translateUiText(value));
     return;
@@ -246,7 +260,10 @@ const stopObserver = () => {
  * Język okna: "en" włącza tłumaczenie (po wczytaniu słownika), inny przywraca
  * polskie teksty. Menu Esc (tgui-escape-menu) woła to wprost z wiadomości DM.
  */
-export const setDomLanguage = (language: string | undefined) => {
+export const setDomLanguage = (
+  language: string | undefined,
+  onReady?: () => void,
+) => {
   if (!language || language === getLanguage()) {
     return;
   }
@@ -263,6 +280,8 @@ export const setDomLanguage = (language: string | undefined) => {
     }
     if (isTranslating()) {
       startObserver();
+      // okno renderuje teksty z t()/tt() dopiero przy następnym renderze
+      onReady?.();
     }
   });
 };
@@ -271,6 +290,8 @@ export const setDomLanguage = (language: string | undefined) => {
 export const setupDomTranslation = (store: Store) => {
   store.subscribe(() => {
     // stan jak w selectBackend (backend.ts), bez importu: backend ciągnie kod zależny od BYOND
-    setDomLanguage(store.getState()?.backend?.config?.language);
+    setDomLanguage(store.getState()?.backend?.config?.language, () =>
+      store.dispatch({ type: 'i18n/ready' }),
+    );
   });
 };
