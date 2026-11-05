@@ -18,8 +18,14 @@
 
 // Zapisane keybindy nie dostają nowych skrótów same. Dopisujemy sprint pod Shift,
 // jeśli gracz nie ma go nigdzie przypisanego, a Shift jest wolny.
+// Najpierw usuwamy nieznane skróty: Shift z samym usuniętym skrótem wyglądał na zajęty i sprint nie trafiał pod niego.
 /datum/preferences/load_from_database()
 	. = ..()
+	remove_unknown_keybindings()
+	add_sprint_keybind()
+
+/// Dopisuje sprint pod Shift, jeśli nie jest nigdzie przypisany, a Shift jest wolny
+/datum/preferences/proc/add_sprint_keybind()
 	if(!islist(key_bindings))
 		return
 	for(var/bound_key in key_bindings)

@@ -208,6 +208,19 @@
 	if(has_human_emote_voice(user))
 		return 'aquila/sound/voice/human/hiccup.ogg'
 
+/// Okrzyk „Hej!” z reklam LEGO City
+/datum/emote/living/carbon/human/hey
+	key = "hey"
+	key_third_person = "heys"
+	message = "krzyczy „Hej!”"
+	emote_type = EMOTE_AUDIBLE
+	voice_emote = TRUE
+	sound_volume = 50
+
+/datum/emote/living/carbon/human/hey/get_sound(mob/living/user)
+	if(has_human_emote_voice(user))
+		return 'aquila/sound/emotes/hey.ogg'
+
 /datum/emote/living/carbon/human/slowclap
 	key = "slowclap"
 	key_third_person = "slowclaps"
