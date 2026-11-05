@@ -49,3 +49,20 @@ Scribe v2 ze słowami z gry 3% / 0,9 s. Nagrania głosu idą wtedy do zewnętrzn
 ## Diagnostyka
 
 `voice_server.py --save-dir <folder>` zapisuje każde nagranie (WAV) i surowy tekst Whispera, żeby porównywać modele i ustawienia na prawdziwych głosach.
+
+## Wdrożenie na VPS (Linux)
+
+Pliki w `deploy/`: `Caddyfile` (HTTPS i ukrycie `/api` przed internetem), `aquila-voice.service` (systemd), `env.example`.
+
+1. Domena (np. DuckDNS) wskazuje na IP serwera, porty 80 i 443 otwarte (Let's Encrypt potrzebuje 80).
+2. `sudo mkdir -p /etc/aquila-voice`, skopiuj `env.example` jako `/etc/aquila-voice/env`, wpisz sekret
+   (`openssl rand -hex 32`) i klucz ElevenLabs, `sudo chmod 600 /etc/aquila-voice/env`.
+3. Popraw ścieżki i użytkownika w `aquila-voice.service`, skopiuj do `/etc/systemd/system/`,
+   `sudo systemctl daemon-reload && sudo systemctl enable --now aquila-voice`.
+4. Dopisz blok z `deploy/Caddyfile` do `/etc/caddy/Caddyfile` (z wpisaną domeną), `sudo systemctl reload caddy`.
+5. `config/voice_chat.txt` serwera gry: `VOICE_CHAT_ENABLED`, `VOICE_CHAT_PUBLIC_URL https://twoja.domena`,
+   `VOICE_CHAT_SECRET` taki sam jak w `env`. `VOICE_CHAT_SERVICE_URL` zostaje `http://127.0.0.1:8179`.
+6. Sprawdzenie: `curl https://twoja.domena/health` daje `{"ok": true}`, a `curl https://twoja.domena/api/sync` daje 404.
+
+Bez karty graficznej na serwerze lokalny Whisper będzie za wolny, więc VPS używa ElevenLabs. Gdy ElevenLabs
+nie odpowiada, gracz dostaje komunikat „rozpoznawanie mowy nie odpowiada”.

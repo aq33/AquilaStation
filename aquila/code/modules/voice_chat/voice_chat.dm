@@ -27,6 +27,17 @@
 /datum/config_entry/string/voice_chat_public_url
 	config_entry_value = "http://localhost:8179"
 
+// Adres wklejony z przeglądarki zwykle kończy się ukośnikiem, a doklejamy do niego ścieżkę.
+/datum/config_entry/string/voice_chat_service_url/ValidateAndSet(str_val)
+	return ..(trim_voice_chat_url(str_val))
+
+/datum/config_entry/string/voice_chat_public_url/ValidateAndSet(str_val)
+	return ..(trim_voice_chat_url(str_val))
+
+/proc/trim_voice_chat_url(url)
+	var/static/regex/trailing_slashes = regex(@"/+$")
+	return trailing_slashes.Replace(trim(url), "")
+
 /datum/config_entry/string/voice_chat_secret
 	protection = CONFIG_ENTRY_HIDDEN | CONFIG_ENTRY_LOCKED
 

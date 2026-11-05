@@ -66,6 +66,10 @@
 	TEST_ASSERT_EQUAL(SSvoice_chat.speech_text("radio", "Ochrona na mostek"), ";Ochrona na mostek", "Mowa przez radio bez przedrostka kanału")
 	TEST_ASSERT_EQUAL(SSvoice_chat.speech_text("say", "Ochrona na mostek"), "Ochrona na mostek", "Zwykła mowa z przedrostkiem")
 
+	// Adres z configu wklejony z ukośnikiem na końcu nie może dać „//?t=” w linku do strony
+	TEST_ASSERT_EQUAL(trim_voice_chat_url("https://aquila-glos.duckdns.org/ "), "https://aquila-glos.duckdns.org", "Ukośnik na końcu adresu nie został obcięty")
+	TEST_ASSERT_EQUAL(trim_voice_chat_url("http://127.0.0.1:8179"), "http://127.0.0.1:8179", "Adres bez ukośnika się zmienił")
+
 /datum/unit_test/aquila_voice_chat/proc/last_cmd()
 	var/list/cmds = SSvoice_chat.pending_cmds
 	if(!length(cmds))
