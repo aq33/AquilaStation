@@ -151,6 +151,29 @@
       działko), namierzania, drzwi turbowindy i skrzypienie kadłuba w stanie krytycznym.
   - bugfix: Namierzany statek słyszy ostrzeżenie o namierzaniu, a namierzający dźwięk
       namierzania (było odwrotnie).
+  - tweak: Maszyny botaniki (analizator, sekwencer, piec) otwierają się zwykłym kliknięciem,
+      terminal nie jest już potrzebny.
+  - tweak: Okna botaniki mają ten sam wygląd co pozostałe konsole zamiast retro-terminala.
+  - tweak: 'Skaner roślin pokazuje najpierw krótki stan: zdrowie, wzrost, wodę i czego
+      brakuje roślinie; szczegóły są po rozwinięciu.'
+  - tweak: Kliknięcie tacy albo rośliny w tacy zbiera owoce ze wszystkich roślin naraz.
+  - tweak: Piec radiacyjny przyjmuje nasiona bez sadzenia; zmutowaną paczkę wyjmuje
+      się przyciskiem w oknie pieca.
+  - tweak: Nazwa paczki nasion i komunikat o złym podłożu podają potrzebne podłoże.
+  - balance: Rośliny piją 4 razy wolniej, rosną 2 razy dłużej, chwasty pojawiają się
+      3 razy rzadziej, a rośliny jednorazowe dają 2 plony.
+  - bugfix: Pestycyd nie truje już rośliny, którą chroni przed szkodnikami.
+  - bugfix: Piec radiacyjny bierze z łopatki właściwą roślinę, a opis tacy nie pokazuje
+      chwastów, gdy ich nie ma.
+  - bugfix: Ciągnięty obiekt da się przesunąć klikiem w tacę albo w roślinę wystającą
+      nad sąsiedni kafel.
+  - spellcheck: Węgiel aktywowany nazywa się teraz poprawnie Węgiel aktywny.
+  - tweak: Lodówki pokazują najpierw zawartość, potem pojemnik, np. „Węgiel aktywny
+      (butelka)”.
+  - rscadd: 'ChemMaster ma przycisk „Oczyść”: z nieczystego odczynnika w buforze zostaje
+      tylko jego czysta część o czystości 100%.'
+  - tweak: Bufory pH zostają w zlewce jako „Zużyty bufor” i dodają objętość, zamiast
+      znikać.
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.
