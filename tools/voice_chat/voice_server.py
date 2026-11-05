@@ -151,8 +151,10 @@ def post_multipart(url, fields, wav, headers=None, timeout=30):
 	boundary = uuid.uuid4().hex
 	body = bytearray()
 	for name, value in fields.items():
-		if value:
-			body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n{value}\r\n".encode("utf-8")
+		# Lista = to samo pole powtórzone (np. keyterms w ElevenLabs).
+		for item in (value if isinstance(value, list) else [value]):
+			if item:
+				body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n{item}\r\n".encode("utf-8")
 	body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"mowa.wav\"\r\nContent-Type: audio/wav\r\n\r\n".encode()
 	body += wav + f"\r\n--{boundary}--\r\n".encode()
 	req = urllib.request.Request(
@@ -182,6 +184,8 @@ ELEVENLABS_LANGUAGES = {"pl": "pol", "en": "eng"}
 
 def transcribe_elevenlabs(args, wav):
 	fields = {"model_id": args.model or "scribe_v2", "language_code": ELEVENLABS_LANGUAGES.get(args.language, args.language), "tag_audio_events": "false"}
+	if args.keyterms:
+		fields["keyterms"] = args.keyterms  # słowa z gry, do których model ma się skłaniać (+20% ceny)
 	headers = {"xi-api-key": args.api_key}
 	return post_multipart("https://api.elevenlabs.io/v1/speech-to-text", fields, wav, headers).get("text", "")
 
@@ -195,7 +199,27 @@ API_KEY_ENV = {"openai": "OPENAI_API_KEY", "elevenlabs": "ELEVENLABS_API_KEY"}
 
 
 def transcribe(args, wav):
-	return BACKENDS[args.backend](args, wav)
+	if args.backend == "whisper":
+		return transcribe_whisper(args, wav)
+	try:
+		return BACKENDS[args.backend](args, wav)
+	except (urllib.error.URLError, OSError, ValueError) as e:
+		# Chmura nie działa (limit, brak sieci): lokalny Whisper, jeśli stoi.
+		print(f"[glos] {args.backend} nie odpowiada ({e}), używam lokalnego Whispera", flush=True)
+		return transcribe_whisper(args, wav)
+
+
+def read_api_key(path, env_name):
+	"""Klucz z pliku: linia NAZWA=wartość albo sam klucz w jedynej linii."""
+	with open(path, encoding="utf-8-sig") as f:
+		lines = [line.strip() for line in f if line.strip()]
+	for line in lines:
+		name, sep, value = line.partition("=")
+		if sep and name.strip() == env_name:
+			return value.strip()
+	if len(lines) == 1 and "=" not in lines[0]:
+		return lines[0]
+	return ""
 
 
 def save_recording(args, session, seq, wav):
@@ -375,6 +399,8 @@ def main():
 	p.add_argument("--backend", choices=sorted(BACKENDS), default="whisper", help="whisper = lokalny whisper-server, openai / elevenlabs = chmura")
 	p.add_argument("--model", default="", help="model dostawcy w chmurze (domyślnie gpt-4o-transcribe / scribe_v2)")
 	p.add_argument("--api-key", default="", help="klucz API chmury; domyślnie ze zmiennej OPENAI_API_KEY / ELEVENLABS_API_KEY")
+	p.add_argument("--api-key-file", default="", help="plik z kluczem (NAZWA=wartość albo sam klucz)")
+	p.add_argument("--keyterms-file", default="", help="plik ze słowami z gry (jedno na linię) dla ElevenLabs keyterms")
 	p.add_argument("--language", default="pl")
 	p.add_argument("--prompt", default="Halo, tu kapitan. Ochrona, proszę na mostek. Medyczny, mamy rannego. Inżynieria, sprawdźcie zasilanie. Uwaga, syndykat na pokładzie!", help="podpowiedź dla Whispera: naturalne zdania ze słownictwem gry działają lepiej niż lista słów")
 	p.add_argument("--secret", default=os.environ.get("VOICE_CHAT_SECRET", ""), help="musi się zgadzać z VOICE_CHAT_SECRET w configu gry")
@@ -382,8 +408,14 @@ def main():
 	p.add_argument("--verbose", action="store_true")
 	args = p.parse_args()
 	sys.stdout.reconfigure(encoding="utf-8")  # konsola Windows domyślnie psuje polskie znaki
+	args.keyterms = []
+	if args.keyterms_file:
+		with open(args.keyterms_file, encoding="utf-8") as f:
+			args.keyterms = [line.strip() for line in f if line.strip() and not line.startswith("#")][:1000]
 	if args.backend in API_KEY_ENV and not args.api_key:
 		args.api_key = os.environ.get(API_KEY_ENV[args.backend], "")
+		if not args.api_key and args.api_key_file:
+			args.api_key = read_api_key(args.api_key_file, API_KEY_ENV[args.backend])
 		if not args.api_key:
 			p.error(f"brak klucza API: ustaw {API_KEY_ENV[args.backend]} albo --api-key")
 	server = Server((args.host, args.port), Handler)

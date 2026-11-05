@@ -31,8 +31,13 @@ na tym samym komputerze. Dla innych graczy `VOICE_CHAT_PUBLIC_URL` musi być adr
 
 ## Rozpoznawanie w chmurze
 
-`voice_server.py --backend openai` (gpt-4o-transcribe, klucz w `OPENAI_API_KEY`) albo `--backend elevenlabs`
-(Scribe, klucz w `ELEVENLABS_API_KEY`). `--model` zmienia model dostawcy. Nagrania idą wtedy do zewnętrznej firmy.
+`voice_server.py --backend elevenlabs` (Scribe v2) albo `--backend openai` (gpt-4o-transcribe). Klucz ze zmiennej
+`ELEVENLABS_API_KEY` / `OPENAI_API_KEY` albo z pliku `--api-key-file` (`NAZWA=wartość` albo sam klucz).
+`--keyterms-file keyterms.txt` podaje ElevenLabs słownictwo gry (+20% ceny). Gdy chmura nie odpowiada,
+serwis używa lokalnego Whispera. `start.bat` sam wybiera ElevenLabs, jeśli istnieje `%USERPROFILE%\whisper-models\klucze.txt`.
+
+Na 12 nagraniach z gry (błędne słowa / czas): lokalny large-v3 10% / 0,26 s, ElevenLabs Scribe v2 7% / 0,7 s,
+Scribe v2 ze słowami z gry 3% / 0,9 s. Nagrania głosu idą wtedy do zewnętrznej firmy.
 
 ## Zachowanie
 
