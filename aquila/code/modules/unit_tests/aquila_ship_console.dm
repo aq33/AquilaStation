@@ -50,6 +50,12 @@
 	TEST_ASSERT(panel.left_armed_until > world.time, "Left eject switch did not arm")
 	TEST_ASSERT_EQUAL(dummy.loc, fighter, "One eject switch alone must not eject the pilot")
 
+	// przeciągnięty panel nie wyjeżdża za ekran (widok 21x15 kafelków, panel myśliwca 195x155 po skali 0.75)
+	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("40:10,30:5", 21, 15, 195, 155), "15:29,11:5", "Panel dropped past the top-right corner was not pulled back on screen")
+	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("1:-50,1:-50", 21, 15, 195, 155), "1:0,1:0", "Panel dropped past the bottom-left corner was not pulled back on screen")
+	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("5:3,4:7", 21, 15, 195, 155), "5:3,4:7", "Panel fully on screen should stay where it was dropped")
+	TEST_ASSERT(isnull(aquila_console_clamp_screen_loc("CENTER:-100,SOUTH+1", 21, 15, 195, 155)), "Default centered position should not be rewritten")
+
 	// panel usunięty sam (np. statek zniknął) nie zostaje na liście
 	var/atom/movable/screen/movable/aquila_ship_console/extra = new(null, fighter, dummy, "fighter")
 	LAZYADD(dummy.aquila_consoles, extra)

@@ -226,34 +226,74 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		parts += (right_armed_until > world.time) ? "switch_right_armed" : "switch_right"
 	return jointext(parts, ";")
 
-/// Przy oddalonej kamerze (duże statki) kafelki są mniejsze, więc panel rośnie razem z widokiem,
-/// żeby napisy dało się przeczytać. Macierz trzyma lewy dolny róg w miejscu.
-/atom/movable/screen/movable/aquila_ship_console/proc/update_scale(client/C)
+/// Stała skala panelu przy zwykłym widoku. Panel myśliwca jest duży (260x207 przy widoku 21x15 kafelków),
+/// więc jest mniejszy; 0.75 to najmniej, przy którym napisy 5 px dają się jeszcze przeczytać.
+GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
+	AQUILA_CONSOLE_FLIGHT = 1,
+	AQUILA_CONSOLE_FIGHTER = 0.75,
+	AQUILA_CONSOLE_WEAPONS = 1,
+))
+
+/// Skala panelu: stała dla rodzaju razy powiększenie przy oddalonej kamerze (duże statki: kafelki są mniejsze,
+/// więc panel rośnie razem z widokiem, żeby napisy dało się przeczytać).
+/atom/movable/screen/movable/aquila_ship_console/proc/current_scale(client/C)
 	var/list/now = getviewsize(C.view)
 	var/list/base = getviewsize(C.view_size?.default || C.view)
-	var/scale = clamp(now[1] / max(base[1], 1), 1, 2)
+	return clamp(now[1] / max(base[1], 1), 1, 2) * GLOB.aquila_ship_console_base_scale[kind]
+
+/// Macierz trzyma lewy dolny róg w miejscu, więc screen_loc zawsze wskazuje lewy dolny róg panelu.
+/atom/movable/screen/movable/aquila_ship_console/proc/update_scale(client/C)
+	var/scale = current_scale(C)
 	if(scale == last_scale)
 		return
 	last_scale = scale
 	var/list/size = GLOB.aquila_ship_console_sizes[kind]
 	transform = matrix(scale, 0, (scale - 1) * size[1] / 2, 0, scale, (scale - 1) * size[2] / 2)
-	if(!moved)
-		// panele obok siebie, razem wyśrodkowane nad dolnym paskiem HUD
-		var/total = 0
-		var/before = 0
-		for(var/atom/movable/screen/movable/aquila_ship_console/panel in user.aquila_consoles)
-			var/list/panel_size = GLOB.aquila_ship_console_sizes[panel.kind]
-			if(panel.slot < slot)
-				before += panel_size[1] * scale
-			total += panel_size[1] * scale
-		screen_loc = "CENTER:[round(before - total / 2)],SOUTH+1"
+	if(moved)
+		keep_on_screen(C) // mniejszy widok mógł wypchnąć przeciągnięty panel za krawędź
+		return
+	// panele obok siebie, razem wyśrodkowane nad dolnym paskiem HUD
+	var/total = 0
+	var/before = 0
+	for(var/atom/movable/screen/movable/aquila_ship_console/panel in user.aquila_consoles)
+		var/width = GLOB.aquila_ship_console_sizes[panel.kind][1] * panel.current_scale(C)
+		if(panel.slot < slot)
+			before += width
+		total += width
+	screen_loc = "CENTER:[round(before - total / 2)],SOUTH+1"
 
 /// Bazowy MouseDrop zmienia tylko screen_loc; bez `moved` update_scale() wracałby panel na środek.
 /atom/movable/screen/movable/aquila_ship_console/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
 	var/old_loc = screen_loc
 	. = ..()
-	if(screen_loc != old_loc)
-		moved = TRUE
+	if(screen_loc == old_loc)
+		return
+	moved = TRUE
+	if(user?.client)
+		keep_on_screen(user.client)
+
+/// Przycina położenie przeciągniętego panelu tak, żeby cały został na ekranie. Bez tego panel dało się wypchnąć
+/// za krawędź, skąd nie było go czym złapać z powrotem.
+/atom/movable/screen/movable/aquila_ship_console/proc/keep_on_screen(client/C)
+	var/list/view = getviewsize(C.view)
+	var/list/size = GLOB.aquila_ship_console_sizes[kind]
+	var/scale = current_scale(C)
+	var/clamped = aquila_console_clamp_screen_loc(screen_loc, view[1], view[2], size[1] * scale, size[2] * scale)
+	if(clamped)
+		screen_loc = clamped
+
+/// screen_loc w postaci "X:px,Y:py" (kafelki od 1, tak zapisuje go MouseDrop) przycięty tak, żeby prostokąt
+/// width x height pikseli z lewym dolnym rogiem w tym miejscu zmieścił się w widoku view_w x view_h kafelków.
+/// Zwraca null dla innych postaci (CENTER, SOUTH), które ustawiamy tylko sami.
+/proc/aquila_console_clamp_screen_loc(screen_loc, view_w, view_h, width, height)
+	var/static/regex/loc_regex = new(@"^(\d+)(?::(-?\d+))?,(\d+)(?::(-?\d+))?$")
+	if(!loc_regex.Find(screen_loc))
+		return null
+	var/x = (text2num(loc_regex.group[1]) - 1) * world.icon_size + (text2num(loc_regex.group[2]) || 0)
+	var/y = (text2num(loc_regex.group[3]) - 1) * world.icon_size + (text2num(loc_regex.group[4]) || 0)
+	x = clamp(x, 0, max(0, round(view_w * world.icon_size - width)))
+	y = clamp(y, 0, max(0, round(view_h * world.icon_size - height)))
+	return "[1 + round(x / world.icon_size)]:[x % world.icon_size],[1 + round(y / world.icon_size)]:[y % world.icon_size]"
 
 /atom/movable/screen/movable/aquila_ship_console/proc/press(button)
 	pressed_until[button] = world.time + AQUILA_CONSOLE_PRESS_TIME
