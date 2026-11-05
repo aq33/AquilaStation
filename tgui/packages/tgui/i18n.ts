@@ -195,7 +195,54 @@ const translateValue = (value: string, depth: number): string => {
   if (found !== undefined) {
     return value.replace(trimmed, found);
   }
+  const list = translateList(trimmed);
+  if (list !== undefined) {
+    return value.replace(trimmed, list);
+  }
   return depth < MAX_DEPTH ? translateHtml(value, depth + 1) : value;
+};
+
+/** Element listy: opcjonalna liczba z przodu ("2 szkło", "1x kondensator") i nazwa */
+const LIST_ITEM = /^(\d+(?:[.,]\d+)?\s*(?:x\s*)?)?(.+)$/;
+
+/**
+ * Lista składana w kodzie (english_list po polsku): "1 szkło, 2 kondensator i
+ * 1 zwój kabla". Każdy element osobno, tylko gdy wszystkie mają tłumaczenie.
+ */
+const translateList = (text: string): string | undefined => {
+  // nazwa z dopiskiem w nawiasie ("zakrzywiający ekstrakt (żółty)"): obie części osobno
+  const suffix = /^(.+?)\s*\(([^()]+)\)$/.exec(text);
+  if (suffix) {
+    const head =
+      lookupExact(suffix[1].trim()) ?? translateList(suffix[1].trim());
+    const tail =
+      lookupExact(suffix[2].trim()) ?? translateList(suffix[2].trim());
+    if (head !== undefined && tail !== undefined) {
+      return `${head} (${tail})`;
+    }
+  }
+  if (!/,| i | oraz /.test(text)) {
+    // pojedynczy element z liczbą ("1 zasobnik materii")
+    const single = /^(\d+(?:[.,]\d+)?\s*(?:x\s*)?)(\D.*)$/.exec(text);
+    const name = single && lookupExact(single[2].trim());
+    return single && name !== undefined ? single[1] + name : undefined;
+  }
+  const parts = text.split(/,\s*|\s+(?:i|oraz)\s+/);
+  if (parts.length < 2) {
+    return undefined;
+  }
+  const items: string[] = [];
+  for (const part of parts) {
+    const m = LIST_ITEM.exec(part.trim());
+    const name = m && lookupExact(m[2].trim());
+    if (!m || name === undefined) {
+      return undefined;
+    }
+    items.push((m[1] || '') + name);
+  }
+  return items.length === 2
+    ? `${items[0]} and ${items[1]}`
+    : `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`;
 };
 
 /**
@@ -203,14 +250,22 @@ const translateValue = (value: string, depth: number): string => {
  * (emotki: "krzyczy" + "."), więc szukamy też bez niego.
  */
 const lookupExact = (text: string): string | undefined => {
-  const exact = dictionary!.exact;
-  const found = exact[text];
+  const found = lookupCased(text);
   if (found !== undefined || !text) {
     return found;
   }
+  // BYOND dokleja "the" przed wstawionym obiektem ("the dysk R.O.B.U.S.T."):
+  // tłumaczymy samą nazwę, przedimek zostaje
+  const article = /^(the|The) (.+)$/.exec(text);
+  if (article) {
+    const name = lookupExact(article[2]);
+    if (name !== undefined) {
+      return `${article[1]} ${name}`;
+    }
+  }
   const last = text.charAt(text.length - 1);
   if ('.!?'.includes(last)) {
-    const base = exact[text.slice(0, -1)];
+    const base = lookupCased(text.slice(0, -1));
     if (base !== undefined) {
       return /[.!?]$/.test(base) ? base : base + last;
     }
@@ -218,7 +273,33 @@ const lookupExact = (text: string): string | undefined => {
   return undefined;
 };
 
-const isKnown = (value: string) => lookupExact(value.trim()) !== undefined;
+/**
+ * Stała z tolerancją wielkości pierwszej litery: okna i kod często piszą nazwę
+ * małą literą ("amoniak" z "Amoniak"). Wynik dostaje wielkość litery tekstu.
+ */
+const lookupCased = (text: string): string | undefined => {
+  const exact = dictionary!.exact;
+  const found = exact[text];
+  if (found !== undefined || !text) {
+    return found;
+  }
+  const first = text.charAt(0);
+  const lower = first.toLowerCase();
+  const swapped =
+    (first === lower ? first.toUpperCase() : lower) + text.slice(1);
+  const other = exact[swapped];
+  if (other === undefined || !other) {
+    return other;
+  }
+  const head = other.charAt(0);
+  return (
+    (first === lower ? head.toLowerCase() : head.toUpperCase()) + other.slice(1)
+  );
+};
+
+const isKnown = (value: string) =>
+  lookupExact(value.trim()) !== undefined ||
+  translateList(value.trim()) !== undefined;
 
 /**
  * Ile nierozpoznanego tekstu (liter w słowach pisanych małą literą) może

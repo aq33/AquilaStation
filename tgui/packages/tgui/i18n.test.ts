@@ -110,6 +110,20 @@ describe('translateHtml', () => {
     );
   });
 
+  it('nazwy: wielkość litery, przedimek, lista i dopisek w nawiasie', () => {
+    // okna piszą nazwy małą literą, BYOND dokleja "the"
+    expect(translateHtml('Skrzynka narzędziowa')).toBe('Toolbox');
+    expect(translateHtml('the skrzynka narzędziowa')).toBe('the toolbox');
+    // english_list po polsku i nazwa z dopiskiem jako wartość szablonu
+    expect(
+      translateHtml(
+        "<span class='notice'>skrzynka narzędziowa (skrzynka narzędziowa) zamyka się sama.</span>",
+      ),
+    ).toBe(
+      "<span class='notice'>The toolbox (toolbox) closes on its own.</span>",
+    );
+  });
+
   it('nie tłumaczy tego, co powiedział gracz', () => {
     const html =
       "<span class='game say'><span class='name'>Jan</span> <span class='message'>mówi, \"skrzynka narzędziowa\"</span></span>";

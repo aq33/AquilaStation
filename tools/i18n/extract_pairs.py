@@ -99,7 +99,7 @@ def js_strings(line):
         return []
     out = [m.group(2) for m in QUOTED_JS.finditer(line)]
     out += [m.group(1).strip() for m in JSX_TEXT.finditer(line)]
-    if s and not CODEY.search(s) and re.search(r"[A-Za-zĄ-ż]{2,}\s", s + " ") and " " in s:
+    if s and not CODEY.search(s) and re.search(LETTERS + r"{2,}\s", s + " ") and " " in s:
         out.append(s)  # cała linia to tekst JSX
     return out
 
@@ -140,12 +140,17 @@ def strip_embeds(text):
     return text
 
 
+# litery z polskimi (ó to U+00F3 i nie leży w zakresie Ą-ż, więc zakres się nie nadaje)
+LETTERS = r"[^\W\d_]"
+
+
 def wordy(text):
     plain = strip_embeds(text).strip()
-    if not re.search(r"[A-Za-zĄ-ż]{2,}", plain):
+    if not re.search(LETTERS + r"{2,}", plain):
         return False
-    # pojedyncze słowo ("toolbox", "spawarka") to tekst, "brute_damage" czy "icons/x" już nie
-    if re.fullmatch(r"[A-Za-zĄ-ż]+", plain):
+    # pojedyncze słowo, też z dwukropkiem lub kropką ("toolbox", "Lód", "Zawiera:"), to tekst;
+    # "brute_damage" czy "icons/x" już nie
+    if re.fullmatch(LETTERS + r"+[:.!?]?", plain):
         return True
     return not IDENTIFIER.match(plain)
 

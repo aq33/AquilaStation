@@ -72,7 +72,12 @@ def main():
                     item = json.loads(line)
                     files[item["pl"]] = item["file"]
         for pl, en in json.load(open(out_path, encoding="utf-8")).items():
-            if not isinstance(en, str) or en == pl:
+            if not isinstance(en, str):
+                continue
+            if en == pl:
+                # celowo bez tłumaczenia (potrawa, piosenka, kod): zapisujemy, żeby tekst nie wracał
+                # na listę braków; słownik czatu i tak pomija pary tekst -> ten sam tekst
+                merged.setdefault(pl, en)
                 stats["bez zmian"] += 1
                 continue
             if files.get(pl, "").endswith(".dm"):

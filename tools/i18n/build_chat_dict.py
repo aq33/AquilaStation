@@ -210,7 +210,7 @@ def tag_segments(pl, en):
     pairs = []
     for segment_pl, segment_en in zip(re.split(r"<[^>]*>", pl), re.split(r"<[^>]*>", en)):
         segment_pl, segment_en = segment_pl.strip(), segment_en.strip()
-        if segment_pl and segment_pl != segment_en and re.search(r"[A-Za-zĄ-ż]{2,}", segment_pl):
+        if segment_pl and segment_pl != segment_en and re.search(r"[^\W\d_]{2,}", segment_pl):
             pairs.append((segment_pl, segment_en))
     return pairs
 
@@ -355,7 +355,7 @@ def main():
                             "tgui/packages/*.js"],
                            capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
 
-    wanted, names, js_literals = set(), set(), set()
+    wanted, names, js_literals, english_literals = set(), set(), set(), set()
     for path in files:
         if ep.SKIP_PATH.search(path) or lm.NOT_PLAYER_TEXT.search(path):
             continue
@@ -366,6 +366,10 @@ def main():
                 # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
                 for lit in lm.line_literals(path, line):
                     if lit not in pairs:
+                        # zdanie w kodzie po angielsku z wstawką ("[src] looks pretty robust!"):
+                        # szablon na siebie, żeby przetłumaczyć wstawione polskie nazwy
+                        if in_slice and "[" in lit and ep.is_english(lit) and not ep.is_polish(lit):
+                            english_literals.add(lit)
                         continue
                     if is_js:
                         js_literals.add(lit)
@@ -381,6 +385,9 @@ def main():
     # stałe z kodu okien (TSX) mają w oknach pierwszeństwo przed ogólnym słownikiem:
     # "Wróć" w menu Esc to "Back", a nie "Recall" z jakiegoś DM
     ui = {}
+    for literal in english_literals:
+        pairs.setdefault(literal, literal)
+    wanted |= english_literals
     for pl in sorted(wanted | names | set(manual)):
         en = pairs[pl]
         parse = parse_js_literal if pl in js_literals else parse_dm_literal

@@ -57,17 +57,36 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	if(!length(trimmed))
 		return null
 	var/list/table = i18n_en_table()
-	var/found = table[trimmed]
+	var/found = i18n_en_cased(table, trimmed)
+	// BYOND dokleja "the" przed wstawionym obiektem: tłumaczymy samą nazwę, przedimek zostaje
+	if(isnull(found) && (copytext(trimmed, 1, 5) == "the " || copytext(trimmed, 1, 5) == "The "))
+		var/name = i18n_en_exact(copytext(trimmed, 5))
+		if(!isnull(name))
+			found = copytext(trimmed, 1, 5) + name
 	if(isnull(found))
 		var/last = copytext(trimmed, -1)
 		if(last == "." || last == "!" || last == "?")
-			found = table[copytext(trimmed, 1, -1)]
+			found = i18n_en_cased(table, copytext(trimmed, 1, -1))
 			if(!isnull(found) && !(copytext(found, -1) in list(".", "!", "?")))
 				found += last
 	if(isnull(found))
 		return null
 	var/start = findtext(text, trimmed)
 	return copytext(text, 1, start) + found + copytext(text, start + length(trimmed))
+
+/// Stała z tolerancją wielkości pierwszej litery ("amoniak" z "Amoniak"); wynik dostaje wielkość litery tekstu
+/proc/i18n_en_cased(list/table, text)
+	. = table[text]
+	if(!isnull(.) || !length(text))
+		return
+	var/first = copytext_char(text, 1, 2)
+	var/lower = lowertext(first)
+	var/is_lower = (first == lower)
+	var/other = table[(is_lower ? uppertext(first) : lower) + copytext_char(text, 2)]
+	if(!istext(other) || !length(other))
+		return other
+	var/head = copytext_char(other, 1, 2)
+	return (is_lower ? lowertext(head) : uppertext(head)) + copytext_char(other, 2)
 
 /// Tekst do wyrażenia regularnego: znaki specjalne dosłownie, odstępy elastycznie
 /proc/i18n_regex_escape(text)
