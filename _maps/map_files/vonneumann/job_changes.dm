@@ -29,11 +29,13 @@ MAP_REMOVE_JOB(air_traffic_controller)
 	..()
 	MAP_JOB_CHECK
 	total_positions = 2
+	spawn_positions = 2 // AQ EDIT - job_slots.dm obniża spawn_positions, bez tego dodatkowe sloty byłyby tylko dla latejoinu
 
 /datum/job/munitions_tech/New()  // this ship needs gunners, or it will not achieve it's full firepower.
 	..()
 	MAP_JOB_CHECK
 	total_positions = 4
+	spawn_positions = 4 // AQ EDIT - jak wyżej
 
 /datum/uplink_item/explosives/syndicate_bomb/New()
     . = ..()

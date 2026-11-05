@@ -61,6 +61,8 @@ MAP_REMOVE_JOB(air_traffic_controller)
 	. = ..()
 	if(SSmapping?.config?.map_name != JOB_MODIFICATION_MAP_NAME)
 		return
+	if(!loc) // AQ EDIT - płytka tworzona przez maszynę (circuit = new circuit) nie ma loc; jej usunięcie zostawiłoby maszynę z usuniętym circuit
+		return
 	return INITIALIZE_HINT_QDEL
 
 //Bottle Chemistry Packs
