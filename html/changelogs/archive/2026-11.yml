@@ -123,3 +123,6 @@
       znowu działają.
   - bugfix: Harmonijka w slocie maski nie powoduje błędów.
   - bugfix: Oględziny naklejek z serii 1 i 2 pokazują serię i rzadkość.
+  - bugfix: Maska policji wygląda na założoną, gdy jest założona, i odwrotnie.
+  - bugfix: Rola „Cywilne” nazywa się znowu „Gimmick”.
+  - bugfix: Usunięci członkowie składów i ich pagery nie zostają w pamięci serwera.
