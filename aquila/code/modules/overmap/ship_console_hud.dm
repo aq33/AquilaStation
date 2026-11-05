@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	src.user = user
 	src.kind = kind
 	var/list/layers = GLOB.aquila_ship_console_layers[kind]
-	icon = layers["monitor"]
+	icon = i18n_hud_icon(layers["monitor"], user?.client?.wants_english())
 	tab = new
 	tab.panel = src
 	RegisterSignal(ship, COMSIG_PARENT_QDELETING, PROC_REF(on_ship_deleted))
@@ -199,15 +199,18 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		return
 	update_scale(C)
 	update_screen(C)
-	var/state = build_state()
+	// gracz z językiem EN dostaje oryginały NSV13 z angielskimi napisami (aquila/code/modules/i18n/hud_icons.dm)
+	var/english = C.wants_english()
+	var/state = "[english ? "en;" : ""][build_state()]"
 	if(state == last_state)
 		return
 	last_state = state
 	cut_overlays()
 	var/list/layers = GLOB.aquila_ship_console_layers[kind]
+	icon = i18n_hud_icon(layers["monitor"], english)
 	for(var/layer_name in splittext(state, ";"))
 		if(layers[layer_name])
-			add_overlay(image(layers[layer_name]))
+			add_overlay(image(i18n_hud_icon(layers[layer_name], english)))
 
 /// Panel i zakładka na ekranie klienta (po ponownym połączeniu ekran jest pusty, więc dodajemy je za każdym razem).
 /atom/movable/screen/movable/aquila_ship_console/proc/update_screen(client/C)
@@ -222,7 +225,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		C.screen += src
 	if(!(tab in C.screen))
 		C.screen += tab
-	tab.icon = collapsed ? 'aquila/icons/overmap/gui/console_tab_closed.png' : 'aquila/icons/overmap/gui/console_tab_open.png'
+	tab.icon = i18n_hud_icon(collapsed ? 'aquila/icons/overmap/gui/console_tab_closed.png' : 'aquila/icons/overmap/gui/console_tab_open.png', C.wants_english())
 	tab.name = collapsed ? "rozwiń konsolę" : "zwiń konsolę"
 	// zwinięta zakładka leży w miejscu dolnej krawędzi panelu, rozwinięta tuż nad jego górną krawędzią
 	var/tab_loc = collapsed ? screen_loc : aquila_console_raise_screen_loc(screen_loc, round(GLOB.aquila_ship_console_sizes[kind][2] * current_scale(C)))

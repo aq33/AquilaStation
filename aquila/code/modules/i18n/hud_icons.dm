@@ -3,7 +3,8 @@
 // z angielskimi napisami (aquila/icons/hud/en/, robi je tools/i18n/hud_en_icons.py).
 // Stany w kopiach mają te same nazwy, więc podmieniamy tylko plik ikony obiektów HUD-u.
 
-/// Pary: polski plik ikon, angielska kopia
+/// Pary: polski plik ikon, angielska kopia. Panel konsoli statku (ship_console_hud.dm) bierze
+/// oryginały z nsv13/icons/overmap/gui/, które mają angielskie napisy; zakładki zwijania są nasze.
 #define I18N_HUD_ICON_PAIRS list(\
 	'icons/mob/screen_midnight.dmi', 'aquila/icons/hud/en/screen_midnight.dmi',\
 	'icons/mob/screen_retro.dmi', 'aquila/icons/hud/en/screen_retro.dmi',\
@@ -13,6 +14,52 @@
 	'icons/mob/screen_clockwork.dmi', 'aquila/icons/hud/en/screen_clockwork.dmi',\
 	'icons/mob/screen_gen.dmi', 'aquila/icons/hud/en/screen_gen.dmi',\
 	'aquila/icons/hud/ui_porzadki.dmi', 'aquila/icons/hud/en/ui_porzadki.dmi',\
+	'aquila/icons/overmap/gui/fighter_console/brake_off.png', 'nsv13/icons/overmap/gui/fighter_console/brake_off.png',\
+	'aquila/icons/overmap/gui/fighter_console/brake_on.png', 'nsv13/icons/overmap/gui/fighter_console/brake_on.png',\
+	'aquila/icons/overmap/gui/fighter_console/flighttoggle.png', 'nsv13/icons/overmap/gui/fighter_console/flighttoggle.png',\
+	'aquila/icons/overmap/gui/fighter_console/flighttoggle_pressed.png', 'nsv13/icons/overmap/gui/fighter_console/flighttoggle_pressed.png',\
+	'aquila/icons/overmap/gui/fighter_console/hull0.png', 'nsv13/icons/overmap/gui/fighter_console/hull0.png',\
+	'aquila/icons/overmap/gui/fighter_console/hull100.png', 'nsv13/icons/overmap/gui/fighter_console/hull100.png',\
+	'aquila/icons/overmap/gui/fighter_console/hull25.png', 'nsv13/icons/overmap/gui/fighter_console/hull25.png',\
+	'aquila/icons/overmap/gui/fighter_console/hull50.png', 'nsv13/icons/overmap/gui/fighter_console/hull50.png',\
+	'aquila/icons/overmap/gui/fighter_console/hull75.png', 'nsv13/icons/overmap/gui/fighter_console/hull75.png',\
+	'aquila/icons/overmap/gui/fighter_console/monitor.png', 'nsv13/icons/overmap/gui/fighter_console/monitor.png',\
+	'aquila/icons/overmap/gui/fighter_console/pdc_on.png', 'nsv13/icons/overmap/gui/fighter_console/pdc_on.png',\
+	'aquila/icons/overmap/gui/fighter_console/rotation_keyboard.png', 'nsv13/icons/overmap/gui/fighter_console/rotation_keyboard.png',\
+	'aquila/icons/overmap/gui/fighter_console/rotation_mouse.png', 'nsv13/icons/overmap/gui/fighter_console/rotation_mouse.png',\
+	'aquila/icons/overmap/gui/fighter_console/rotationtoggle.png', 'nsv13/icons/overmap/gui/fighter_console/rotationtoggle.png',\
+	'aquila/icons/overmap/gui/fighter_console/rotationtoggle_pressed.png', 'nsv13/icons/overmap/gui/fighter_console/rotationtoggle_pressed.png',\
+	'aquila/icons/overmap/gui/fighter_console/switch_right.png', 'nsv13/icons/overmap/gui/fighter_console/switch_right.png',\
+	'aquila/icons/overmap/gui/fighter_console/torpedo_on.png', 'nsv13/icons/overmap/gui/fighter_console/torpedo_on.png',\
+	'aquila/icons/overmap/gui/fighter_console/weptoggle.png', 'nsv13/icons/overmap/gui/fighter_console/weptoggle.png',\
+	'aquila/icons/overmap/gui/fighter_console/weptoggle_pressed.png', 'nsv13/icons/overmap/gui/fighter_console/weptoggle_pressed.png',\
+	'aquila/icons/overmap/gui/flight_console/brake_off.png', 'nsv13/icons/overmap/gui/flight_console/brake_off.png',\
+	'aquila/icons/overmap/gui/flight_console/brake_on.png', 'nsv13/icons/overmap/gui/flight_console/brake_on.png',\
+	'aquila/icons/overmap/gui/flight_console/flighttoggle.png', 'nsv13/icons/overmap/gui/flight_console/flighttoggle.png',\
+	'aquila/icons/overmap/gui/flight_console/flighttoggle_pressed.png', 'nsv13/icons/overmap/gui/flight_console/flighttoggle_pressed.png',\
+	'aquila/icons/overmap/gui/flight_console/hull0.png', 'nsv13/icons/overmap/gui/flight_console/hull0.png',\
+	'aquila/icons/overmap/gui/flight_console/hull100.png', 'nsv13/icons/overmap/gui/flight_console/hull100.png',\
+	'aquila/icons/overmap/gui/flight_console/hull25.png', 'nsv13/icons/overmap/gui/flight_console/hull25.png',\
+	'aquila/icons/overmap/gui/flight_console/hull50.png', 'nsv13/icons/overmap/gui/flight_console/hull50.png',\
+	'aquila/icons/overmap/gui/flight_console/hull75.png', 'nsv13/icons/overmap/gui/flight_console/hull75.png',\
+	'aquila/icons/overmap/gui/flight_console/monitor.png', 'nsv13/icons/overmap/gui/flight_console/monitor.png',\
+	'aquila/icons/overmap/gui/flight_console/rotation_keyboard.png', 'nsv13/icons/overmap/gui/flight_console/rotation_keyboard.png',\
+	'aquila/icons/overmap/gui/flight_console/rotation_mouse.png', 'nsv13/icons/overmap/gui/flight_console/rotation_mouse.png',\
+	'aquila/icons/overmap/gui/flight_console/rotationtoggle.png', 'nsv13/icons/overmap/gui/flight_console/rotationtoggle.png',\
+	'aquila/icons/overmap/gui/flight_console/rotationtoggle_pressed.png', 'nsv13/icons/overmap/gui/flight_console/rotationtoggle_pressed.png',\
+	'aquila/icons/overmap/gui/weapons_console/hull0.png', 'nsv13/icons/overmap/gui/weapons_console/hull0.png',\
+	'aquila/icons/overmap/gui/weapons_console/hull100.png', 'nsv13/icons/overmap/gui/weapons_console/hull100.png',\
+	'aquila/icons/overmap/gui/weapons_console/hull25.png', 'nsv13/icons/overmap/gui/weapons_console/hull25.png',\
+	'aquila/icons/overmap/gui/weapons_console/hull50.png', 'nsv13/icons/overmap/gui/weapons_console/hull50.png',\
+	'aquila/icons/overmap/gui/weapons_console/hull75.png', 'nsv13/icons/overmap/gui/weapons_console/hull75.png',\
+	'aquila/icons/overmap/gui/weapons_console/monitor.png', 'nsv13/icons/overmap/gui/weapons_console/monitor.png',\
+	'aquila/icons/overmap/gui/weapons_console/pdc_on.png', 'nsv13/icons/overmap/gui/weapons_console/pdc_on.png',\
+	'aquila/icons/overmap/gui/weapons_console/railgun_on.png', 'nsv13/icons/overmap/gui/weapons_console/railgun_on.png',\
+	'aquila/icons/overmap/gui/weapons_console/torpedo_on.png', 'nsv13/icons/overmap/gui/weapons_console/torpedo_on.png',\
+	'aquila/icons/overmap/gui/weapons_console/weptoggle.png', 'nsv13/icons/overmap/gui/weapons_console/weptoggle.png',\
+	'aquila/icons/overmap/gui/weapons_console/weptoggle_pressed.png', 'nsv13/icons/overmap/gui/weapons_console/weptoggle_pressed.png',\
+	'aquila/icons/overmap/gui/console_tab_closed.png', 'aquila/icons/hud/en/console_tab_closed.png',\
+	'aquila/icons/overmap/gui/console_tab_open.png', 'aquila/icons/hud/en/console_tab_open.png',\
 )
 
 /// "polski plik" -> angielska kopia

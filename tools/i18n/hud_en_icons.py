@@ -178,6 +178,45 @@ def build_porzadki(report):
     return cur
 
 
+# Zakładka panelu konsoli statku (aquila/code/modules/overmap/ship_console_hud.dm): czcionka 3x5,
+# "N" ma 4 piksele; KONSOLA -> CONSOLE (ta sama szerokość), ZWIŃ -> HIDE (COLLAPSE się nie mieści)
+FONT_TAB = {
+    "C": [".##", "#..", "#..", "#..", ".##"],
+    "O": [".#.", "#.#", "#.#", "#.#", ".#."],
+    "N": ["#..#", "##.#", "#.##", "#..#", "#..#"],
+    "S": [".##", "#..", ".#.", "..#", "##."],
+    "L": ["#..", "#..", "#..", "#..", "###"],
+    "E": ["###", "#..", "##.", "#..", "###"],
+    "H": ["#.#", "#.#", "###", "#.#", "#.#"],
+    "I": ["#", "#", "#", "#", "#"],
+    "D": ["##.", "#.#", "#.#", "#.#", "##."],
+}
+
+
+def build_console_tab(name, text, erase_box):
+    """Zakładka z napisem po angielsku: tło napisu jest jednolite, więc wystarczy je zamalować."""
+    from PIL import Image
+
+    image = Image.open(f"aquila/icons/overmap/gui/{name}").convert("RGBA")
+    px = image.load()
+    x0, y0, x1, y1 = erase_box
+    text_color = (104, 104, 104, 255)
+    background = px[x0, y1 + 1]
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            if px[x, y] == text_color:
+                px[x, y] = background
+    cx = 12
+    for char in text:
+        glyph = FONT_TAB[char]
+        for gy, row in enumerate(glyph):
+            for gx, cell in enumerate(row):
+                if cell == "#":
+                    px[cx + gx, 4 + gy] = text_color
+        cx += len(glyph[0]) + 1
+    image.save(f"{OUT_DIR}/{name}")
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     report = []
@@ -185,6 +224,11 @@ def main():
         build_style(name, report).to_file(f"{OUT_DIR}/screen_{name}.dmi")
     build_gen(report).to_file(f"{OUT_DIR}/screen_gen.dmi")
     build_porzadki(report).to_file(f"{OUT_DIR}/ui_porzadki.dmi")
+    # panel konsoli statku: grafiki paneli mają angielskie oryginały w nsv13/icons/overmap/gui/,
+    # tylko zakładki zwijania są nasze
+    build_console_tab("console_tab_closed.png", "CONSOLE", (12, 2, 39, 8))
+    build_console_tab("console_tab_open.png", "HIDE", (12, 2, 28, 8))
+    report.append(("console_tab", "closed/open", "CONSOLE / HIDE"))
     sys.stdout.reconfigure(encoding="utf-8")
     for row in report:
         print(*row)
