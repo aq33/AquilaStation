@@ -502,7 +502,7 @@ const translateMarkup = (html: string, depth: number): string => {
     );
     result =
       result.slice(0, match.start) +
-      `\u0001${done.length - 1}\u0002` +
+      `\u0001${depth}.${done.length - 1}\u0002` +
       result.slice(match.end);
   }
   result = `>${result}<`.replace(TEXT_NODE, (match, text: string) => {
@@ -526,8 +526,10 @@ const translateMarkup = (html: string, depth: number): string => {
   });
   result = result.slice(1, -1);
   return result.replace(
-    /\u0001(\d+)\u0002/g,
-    (_match, n: string) => done[Number(n)],
+    /\u0001(\d+)\.(\d+)\u0002/g,
+    // znacznik z wywołania wyżej (linia examine tłumaczona osobno) zostaje dla niego
+    (match, level: string, n: string) =>
+      Number(level) === depth ? done[Number(n)] : match,
   );
 };
 
