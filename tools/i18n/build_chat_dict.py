@@ -362,7 +362,7 @@ def main():
         is_js = path.endswith(JS_EXT)
         in_slice = path.endswith(".dm") and any(path.startswith(p) for p in args.slice)
         with open(path, encoding="utf-8", errors="replace") as f:
-            for line in f:
+            for line in ep.logical_lines(path, f.read().splitlines()):
                 # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
                 for lit in lm.line_literals(path, line):
                     if lit not in pairs:

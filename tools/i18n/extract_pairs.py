@@ -104,6 +104,26 @@ def js_strings(line):
     return out
 
 
+def logical_lines(path, lines):
+    """Linie DM po sklejeniu kontynuacji: tekst kończący się "\\" ciągnie się w następnej
+    linii (bez jej wcięcia), tak jak go widzi kompilator i gracz. Inne pliki bez zmian."""
+    if not path.endswith(".dm"):
+        return list(lines)
+    out, pending = [], None
+    for line in lines:
+        line = line.rstrip("\r")
+        if pending is not None:
+            line = pending + line.lstrip()
+            pending = None
+        if line.endswith("\\") and not line.endswith("\\\\"):
+            pending = line[:-1]
+            continue
+        out.append(line)
+    if pending is not None:
+        out.append(pending)
+    return out
+
+
 def literals(path, line):
     if path.endswith(".dm"):
         return dm_strings(line)
@@ -238,7 +258,7 @@ def tree_literals(rev):
             content = git("show", f"{rev}:{path}")
         except subprocess.CalledProcessError:
             continue
-        for line in content.splitlines():
+        for line in logical_lines(path, content.splitlines()):
             for lit in literals(path, line):
                 present.add(lit)
                 if wordy(lit) and (is_polish(lit) or (NAME_ASSIGN.search(line) and not is_english(lit))):

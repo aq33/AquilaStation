@@ -160,7 +160,15 @@ const templateRegex = (index: number): RegExp | null => {
         source += '([\\s\\S]*?)';
       }
     }
-    source += escapeRegex(text);
+    // odstępy na skrajach szablonu ("...: [n].\n") łapie kotwica, linia po podziale ich nie ma
+    let edge = text;
+    if (i === 0) {
+      edge = edge.replace(/^\s+/, '');
+    }
+    if (i === texts.length - 1) {
+      edge = edge.replace(/\s+$/, '');
+    }
+    source += escapeRegex(edge);
   });
   let regex: RegExp | null = null;
   try {
@@ -600,7 +608,7 @@ const translateMarkup = (html: string, depth: number): string => {
       .split('\n')
       .map((line) =>
         line.trim() && line.length <= MAX_TEMPLATE_INPUT
-          ? translateMarkup(line, depth + 1)
+          ? translateMarkup(line, depth + 1).replace(/\n+$/, '')
           : line,
       );
     return `>${lines.join('\n')}<`;

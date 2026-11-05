@@ -47,7 +47,7 @@ def definitions(lines):
 def read_lines(path):
     try:
         with open(path, encoding="utf-8", errors="replace") as f:
-            return f.read().splitlines()
+            return ep.logical_lines(path, f.read().splitlines())
     except OSError:
         return []
 

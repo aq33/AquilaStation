@@ -93,7 +93,7 @@ def missing_literals(known):
             continue
         try:
             with open(path, encoding="utf-8", errors="replace") as f:
-                lines = f.read().splitlines()
+                lines = ep.logical_lines(path, f.read().splitlines())
         except OSError:
             continue
         for number, line in enumerate(lines, 1):
