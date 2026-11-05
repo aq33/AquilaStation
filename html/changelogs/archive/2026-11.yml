@@ -174,6 +174,33 @@
       tylko jego czysta część o czystości 100%.'
   - tweak: Bufory pH zostają w zlewce jako „Zużyty bufor” i dodają objętość, zamiast
       znikać.
+  - rscadd: 'Czat głosowy: trzymaj N (U dla radia, J dla kanału działu) i mów do mikrofonu,
+      a postać powie to, co mówisz. Włączanie w zakładce OOC → Czat głosowy (strona
+      otwiera się w przeglądarce).'
+  - config: Nowy plik config/voice_chat.txt (domyślnie wyłączony) i serwis tools/voice_chat
+      z rozpoznawaniem mowy przez Whisper, ElevenLabs albo OpenAI.
+  - rscadd: Przyciski etapów w oknie broni statkowej (podanie, komora, przeładowanie
+      ze stojaka) nabijają się paskiem, dopóki etap trwa.
+  - bugfix: Skrzydła, ogony i czułki nie odcinają się już od animacji chodu.
+  - rscadd: Plecaki, torby na ramię i torby podróżne mają siatkę kratek. Przedmioty
+      zajmują miejsce zależne od wielkości, można je przesuwać przeciąganiem i obracać
+      klawiszami E i Q w trakcie przeciągania.
+  - imageadd: Kafle siatki w kolorach wielkości przedmiotu i nagłówek z zajętością
+      plecaka.
+  - rscadd: Skrzynki z narzędziami, apteczki, aktówki i pudełka też mają siatkę kratek,
+      z dawnym limitem liczby przedmiotów.
+  - imageadd: 'Okno schowka na siatce jest mniejsze: kratki mają 24 px.'
+  - rscadd: W trakcie przeciągania przedmiotu po siatce widać, gdzie i jak wyląduje.
+  - rscadd: Przedmiot włożony do pełnego plecaka siłą trafia do czerwonego rzędu nad
+      siatką zamiast znikać.
+  Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
+  - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
+      (wybierany przez admina).
+  - rscadd: 'Shrike 2.0: przebudowana mapa, na pokładzie jest detektyw, silos rudy
+      i działowe techfaby.'
+  - tweak: Na okrętach Syndykatu podczas abordażu walczą nowi przeciwnicy.
+  - tweak: Pojemnik na pigułki można wydrukować w protolathe medycznym.
+  - bugfix: Zniszczony stormdrive w ruinie górniczej nie jest już niewidzialny.
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.
@@ -189,3 +216,8 @@
       tracą już powietrza przez sufit.
   - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
       przepuszczają powietrze.'
+  - bugfix: Przecięcie kabla nie odcina już na chwilę prądu całemu statkowi (APC przestawały
+      się ładować, a monitor mocy spadał do zera).
+  - bugfix: Odcięty kawałek sieci szybciej przestaje brać prąd ze starej sieci.
+  - bugfix: Przecięcie kabla przechodzącego między pokładami już się nie zawiesza.
+  - bugfix: Połączenie dwóch sieci kablem nie gubi na chwilę prądu jednej z nich.

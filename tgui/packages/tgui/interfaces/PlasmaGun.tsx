@@ -2,8 +2,14 @@ import { Button, ProgressBar, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+// AQ EDIT - przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx)
+import {
+  WeaponStageButton,
+  type WeaponStageData,
+} from './common/WeaponStageButton';
 
-type Data = {
+type Data = WeaponStageData & {
+  // AQ EDIT - dane etapu z cycle_stage_ui_data()
   alignment: any;
   ammo: any;
   chambered: any;
@@ -91,8 +97,11 @@ export const PlasmaGun = (props) => {
           </Section>
         </Section>
         <Section title="Sterowanie systemem odstraszającym:">
-          <Button
+          <WeaponStageButton
+            // AQ EDIT - był Button
             fluid
+            data={data}
+            stages={['feed', 'unload']}
             icon={data.loaded ? 'check-circle' : 'square-o'}
             color={data.loaded ? 'red' : ''}
             width="100"
@@ -100,8 +109,11 @@ export const PlasmaGun = (props) => {
             content="Skondensuj masę foronu"
             onClick={() => act('toggle_load')}
           />
-          <Button
+          <WeaponStageButton
+            // AQ EDIT - był Button
             fluid
+            data={data}
+            stages={['chamber']}
             icon={data.chambered ? 'check-circle' : 'square-o'}
             color={data.chambered ? 'red' : ''}
             width="100"

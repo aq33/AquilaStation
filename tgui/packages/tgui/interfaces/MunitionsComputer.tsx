@@ -5,8 +5,14 @@ import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+// AQ EDIT - przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx)
+import {
+  WeaponStageButton,
+  type WeaponStageData,
+} from './common/WeaponStageButton';
 
-type Data = {
+type Data = WeaponStageData & {
+  // AQ EDIT - dane etapu z cycle_stage_ui_data()
   ammo: any;
   canReload: any;
   chambered: any;
@@ -45,16 +51,22 @@ export const MunitionsComputer = (props) => {
       <Window.Content>
         {(!sudo_mode && (
           <Section title="Sterowanie bronią:">
-            <Button
+            <WeaponStageButton
+              // AQ EDIT - był Button
               fluid
+              data={data}
+              stages={['feed', 'unload']}
               icon={loaded ? 'check-circle' : 'square-o'}
               width="100"
               selected={loaded}
               content="I1 - Pocisk podany"
               onClick={() => act('toggle_load')}
             />
-            <Button
+            <WeaponStageButton
+              // AQ EDIT - był Button
               fluid
+              data={data}
+              stages={['chamber']}
               icon={chambered ? 'check-circle' : 'square-o'}
               width="100"
               selected={chambered}
@@ -69,8 +81,11 @@ export const MunitionsComputer = (props) => {
               onClick={() => act('toggle_safety')}
             />
             {!!isgaussgun && (
-              <Button
+              <WeaponStageButton
+                // AQ EDIT - był Button
                 fluid
+                data={data}
+                stages={['rack']}
                 icon={data.canReload ? 'power-off' : 'square-o'}
                 color={data.canReload ? 'green' : 'red'}
                 content="I4 - Przeładuj ze stojaka"
