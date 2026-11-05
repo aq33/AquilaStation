@@ -18,11 +18,15 @@
 	var/area/test_area = get_area(start)
 	var/old_gravity = test_area.has_gravity
 	test_area.has_gravity = STANDARD_GRAVITY
+	// Earlier tests in a full run can leave the room floor wet; a slipped mob lies down, stops being dense and walks through others
+	for(var/turf/open/floor in list(start, east, north, north_east, get_step(start, WEST)))
+		floor.MakeDry(ALL, TRUE)
 	. = run_checks(start, east, north, north_east)
 	test_area.has_gravity = old_gravity
 
 /datum/unit_test/aquila_pixel_movement/proc/run_checks(turf/start, turf/east, turf/north, turf/north_east)
 	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human, start)
+	ADD_TRAIT(walker, TRAIT_NOSLIPALL, "unit_test")
 	var/datum/component/pixel_movement/pixel = walker.AddComponent(/datum/component/pixel_movement)
 	TEST_ASSERT(pixel, "Component did not attach to a human")
 	TEST_ASSERT(walker.bound_width == 1 && walker.bound_height == 1, "Mob did not get the 1x1 bounding box")
@@ -88,11 +92,13 @@
 	// Another mob in the way: the bump at contact swaps places like in tile movement
 	place(pixel, walker, start, 0, 0)
 	var/mob/living/carbon/human/blocker = allocate(/mob/living/carbon/human, east)
+	var/blocker_state = mob_state(blocker)
+	var/walker_state = mob_state(walker)
 	for(var/i in 1 to 20)
 		if(walker.loc != start)
 			break
 		pixel_step(pixel, walker, EAST)
-	TEST_ASSERT(walker.loc == east && blocker.loc == start, "Walking into a help-intent mob did not swap places (walker [walker.x],[walker.y], other [blocker.x],[blocker.y])")
+	TEST_ASSERT(walker.loc == east && blocker.loc == start, "Walking into a help-intent mob did not swap places (walker [walker.x],[walker.y] [walker_state] -> [mob_state(walker)], other [blocker.x],[blocker.y] [blocker_state] -> [mob_state(blocker)])")
 	qdel(blocker)
 
 	// Built-in step() hands such a mob its own tile and pixel offsets; the Move() hook turns it into a tile step.
@@ -135,6 +141,9 @@
 	pixel.last_step = -1
 	pixel.last_external_move = -1
 	pixel.coast()
+
+/datum/unit_test/aquila_pixel_movement/proc/mob_state(mob/living/carbon/human/H)
+	return "(density [H.density], lying [H.lying], stand [!!(H.mobility_flags & MOBILITY_STAND)], stat [H.stat], combat [H.combat_mode], passmob [!!(H.pass_flags & PASSMOB)], blind [H.is_blind()], confused [H.confused], step [H.step_x],[H.step_y])"
 
 /// Puts the mob at a given offset on a tile, standing still
 /datum/unit_test/aquila_pixel_movement/proc/place(datum/component/pixel_movement/pixel, mob/living/walker, turf/where, offset_x, offset_y)
