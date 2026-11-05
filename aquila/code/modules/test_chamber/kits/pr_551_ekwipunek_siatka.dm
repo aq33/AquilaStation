@@ -10,7 +10,6 @@
 		Siódme pudełko nie wejdzie do plecaka (brak miejsca). Plecak „przepełniony” ma 8 apteczek włożonych siłą: nadmiar wisi \
 		na czerwono nad siatką i wskakuje na siatkę, gdy coś wyjmiesz. Skrzynka z narzędziami, apteczka, aktówka i pudełka mają \
 		siatkę z dawnym limitem sztuk: nagłówek pokazuje „szt.”, a po dojściu do limitu nic więcej nie wejdzie mimo wolnych kratek. \
-		Pas na narzędzia nie ma siatki: jego puste przegródki mają wyblakły znak klucza i młotka, a przegródka z kluczem już go nie ma. \
 		Użyj skrzynki na czymś (radial z narzędziami): ikony w radialu mają zwykły rozmiar i nie są obrócone. \
 		Sprawdź w trybie walki i na intencjach."
 	items = list(
@@ -24,8 +23,6 @@
 		/obj/item/storage/toolbox/mechanical = 1,
 		/obj/item/storage/firstaid/regular = 1,
 		/obj/item/storage/briefcase = 1,
-		/obj/item/storage/belt/utility = 1,
-		/obj/item/wrench = 1,
 	)
 
 /datum/test_chamber_kit/pr_551/setup(list/spawned, list/turfs, turf/center, mob/user)

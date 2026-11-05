@@ -1,6 +1,5 @@
 // AQUILA - Ekwipunek na siatce kratek (opis w aquila/code/datums/components/storage/concrete/grid.dm)
 // Siatkę mają plecaki, torby na ramię i torby podróżne oraz skrzynki z narzędziami, apteczki, aktówki i pudełka (te z dawnym limitem sztuk).
-// Pasy zostają na przegródkach, a puste przegródki mają znak klucza i młotka (aquila/code/datums/components/storage/concrete/slot_hints.dm).
 // Typy z własnym komponentem ustawionym w core (plecaki bluespace, hammerspace) zostają na nim, a wymienione niżej wracają do starego systemu.
 
 /obj/item/storage/backpack
@@ -17,14 +16,6 @@
 
 /obj/item/storage/box
 	component_type = /datum/component/storage/concrete/grid/limited
-
-/obj/item/storage/belt
-	component_type = /datum/component/storage/concrete/slot_hints
-
-/obj/item/storage/belt/examine(mob/user)
-	. = ..()
-	if(ispath(component_type, /datum/component/storage/concrete/slot_hints))
-		. += "<span class='notice'>Pas ma przegródki na sztuki, więc nie ma siatki kratek. Wolne przegródki mają znak klucza i młotka.</span>"
 
 /obj/item/storage/Initialize(mapload)
 	. = ..()

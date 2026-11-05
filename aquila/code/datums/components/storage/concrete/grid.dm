@@ -8,7 +8,7 @@
  * Bezpieczeństwo: przedmiot włożony siłą (forceMove, new() w PopulateContents, włożenie z force) bez wolnego
  * miejsca nie znika, tylko ląduje w rzędzie „przepełnienia” nad siatką (czerwone podświetlenie), a do plecaka
  * nic więcej nie wejdzie, dopóki nie zrobi się miejsce. Pozostałe schowki (pasy, kabury, worki) zostają
- * na starym systemie wagi, a pasy mają w pustych przegródkach znak klucza i młotka (slot_hints.dm).
+ * na starym systemie wagi.
  */
 
 /// Najszerszą siatkę ogranicza ekran: start w kolumnie 4, widok 17 kratek, obok jeszcze przycisk zamknięcia

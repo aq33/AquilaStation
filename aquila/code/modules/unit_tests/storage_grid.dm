@@ -334,37 +334,5 @@
 	qdel(bag)
 
 
-/// AQUILA - puste przegródki pasa mają znak klucza i młotka, zajęte nie
-/datum/unit_test/storage_slot_hints
-
-/datum/unit_test/storage_slot_hints/Run()
-	var/obj/item/storage/belt/utility/belt = allocate(/obj/item/storage/belt/utility)
-	var/datum/component/storage/concrete/slot_hints/hints = belt.GetComponent(/datum/component/storage/concrete/slot_hints)
-	TEST_ASSERT(hints, "Utility belt has no slot hints storage")
-	hints.orient2hud()
-	TEST_ASSERT_EQUAL(visible_hints(hints), hints.max_items, "Empty belt should show a hint in every slot")
-	var/obj/item/wrench/wrench = allocate(/obj/item/wrench)
-	TEST_ASSERT(SEND_SIGNAL(belt, COMSIG_TRY_STORAGE_INSERT, wrench, null, TRUE), "Wrench did not fit into the utility belt")
-	hints.orient2hud()
-	TEST_ASSERT_EQUAL(visible_hints(hints), hints.max_items - 1, "Hints should fill only the empty slots")
-	// Pierwsza przegródka (z kluczem) nie ma znaku: znaki zaczynają się za ostatnim przedmiotem
-	var/first_slot = "[hints.screen_start_x]:[hints.screen_pixel_x],[hints.screen_start_y]:[hints.screen_pixel_y]"
-	for(var/atom/movable/screen/storage_slot_hint/hint as anything in hints.hint_screens)
-		if(!hint.invisibility)
-			TEST_ASSERT(hint.screen_loc != first_slot, "A hint covers the slot with the wrench")
-			TEST_ASSERT_EQUAL(hint.icon_state, "tools", "Hint does not use the generic tools sign")
-	// Pas bez listy dozwolonych przedmiotów też ma znak w wolnych przegródkach
-	var/obj/item/storage/belt/fannypack/pack = allocate(/obj/item/storage/belt/fannypack)
-	var/datum/component/storage/concrete/slot_hints/pack_hints = pack.GetComponent(/datum/component/storage/concrete/slot_hints)
-	TEST_ASSERT(pack_hints, "Fannypack has no slot hints storage")
-	pack_hints.orient2hud()
-	TEST_ASSERT(visible_hints(pack_hints) > 0, "Fannypack shows no hints in its empty slots")
-
-/datum/unit_test/storage_slot_hints/proc/visible_hints(datum/component/storage/concrete/slot_hints/hints)
-	. = 0
-	for(var/atom/movable/screen/storage_slot_hint/hint as anything in hints.hint_screens)
-		if(!hint.invisibility)
-			.++
-
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
