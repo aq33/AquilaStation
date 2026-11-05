@@ -67,9 +67,12 @@ SUBSYSTEM_DEF(voice_chat)
 	var/last_seq = 0
 	/// Czy ostatnie /api/sync się udało (żeby nie spamować logu, gdy serwis leży).
 	var/service_up = TRUE
+	/// VOICE_CHAT_ENABLED z configu (osobno od can_fire, żeby test mógł sprawdzić logikę bez łączenia z serwisem).
+	var/enabled = FALSE
 
 /datum/controller/subsystem/voice_chat/Initialize(start_timeofday)
-	if(!CONFIG_GET(flag/voice_chat_enabled))
+	enabled = CONFIG_GET(flag/voice_chat_enabled)
+	if(!enabled)
 		can_fire = FALSE
 		return ..()
 	load_tokens()
@@ -163,9 +166,13 @@ SUBSYSTEM_DEF(voice_chat)
 	if(!text)
 		to_chat(player, span_notice("Czat głosowy: [result["error"] || "nie rozpoznano mowy"]."))
 		return
-	if(result["channel"] == VOICE_CHANNEL_RADIO)
-		text = ";[text]"
-	player.mob.say_verb(text)
+	player.mob.say_verb(speech_text(result["channel"], text))
+
+/// Tekst do say(): radio dostaje zwykły przedrostek kanału ogólnego.
+/datum/controller/subsystem/voice_chat/proc/speech_text(channel, text)
+	if(channel == VOICE_CHANNEL_RADIO)
+		return ";[text]"
+	return text
 
 /datum/controller/subsystem/voice_chat/proc/check_timeouts()
 	var/max_recording = CONFIG_GET(number/voice_chat_max_seconds) SECONDS
@@ -187,7 +194,7 @@ SUBSYSTEM_DEF(voice_chat)
 
 /// Wciśnięcie klawisza mówienia.
 /datum/controller/subsystem/voice_chat/proc/start_recording(client/player, channel)
-	if(!can_fire)
+	if(!enabled)
 		to_chat(player, span_warning("Czat głosowy jest wyłączony na tym serwerze."))
 		return
 	var/datum/voice_chat_session/session = sessions[player.ckey]
@@ -224,7 +231,7 @@ SUBSYSTEM_DEF(voice_chat)
 
 /// Zakłada sesję (albo bierze istniejącą) i otwiera graczowi stronę z mikrofonem.
 /datum/controller/subsystem/voice_chat/proc/open_page(client/player)
-	if(!can_fire)
+	if(!enabled)
 		to_chat(player, span_warning("Czat głosowy jest wyłączony na tym serwerze."))
 		return
 	var/datum/voice_chat_session/session = sessions[player.ckey]

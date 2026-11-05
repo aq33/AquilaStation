@@ -1757,6 +1757,7 @@
 #include "code\modules\unit_tests\aquila_vitals_reader.dm"
 #include "code\modules\unit_tests\aquila_wounds.dm"
 #include "code\modules\unit_tests\aquila_wounds_tg.dm"
+#include "code\modules\unit_tests\aquila_voice_chat.dm"
 #include "code\modules\unit_tests\aquila_votes.dm"
 #include "code\modules\unit_tests\aquila_wiremod.dm"
 #include "code\modules\unit_tests\aquila_xenobio_tubes.dm"
