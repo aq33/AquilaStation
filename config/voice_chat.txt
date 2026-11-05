@@ -2,7 +2,7 @@
 ## Gracz otwiera stronę z mikrofonem w przeglądarce, Whisper zamienia mowę na tekst, postać go wypowiada.
 
 ## Odkomentuj, żeby włączyć.
-#VOICE_CHAT_ENABLED
+VOICE_CHAT_ENABLED
 
 ## Adres serwisu widziany przez serwer gry.
 #VOICE_CHAT_SERVICE_URL http://127.0.0.1:8179
@@ -12,7 +12,7 @@
 #VOICE_CHAT_PUBLIC_URL http://localhost:8179
 
 ## Wspólny sekret z serwisem (voice_server.py --secret albo zmienna VOICE_CHAT_SECRET).
-#VOICE_CHAT_SECRET zmien_mnie
+VOICE_CHAT_SECRET test_lokalny
 
 ## Najdłuższe nagranie w sekundach (3-20).
 #VOICE_CHAT_MAX_SECONDS 15

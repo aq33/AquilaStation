@@ -181,7 +181,7 @@ ELEVENLABS_LANGUAGES = {"pl": "pol", "en": "eng"}
 
 
 def transcribe_elevenlabs(args, wav):
-	fields = {"model_id": args.model or "scribe_v1", "language_code": ELEVENLABS_LANGUAGES.get(args.language, args.language), "tag_audio_events": "false"}
+	fields = {"model_id": args.model or "scribe_v2", "language_code": ELEVENLABS_LANGUAGES.get(args.language, args.language), "tag_audio_events": "false"}
 	headers = {"xi-api-key": args.api_key}
 	return post_multipart("https://api.elevenlabs.io/v1/speech-to-text", fields, wav, headers).get("text", "")
 
@@ -373,7 +373,7 @@ def main():
 	p.add_argument("--port", type=int, default=8179)
 	p.add_argument("--whisper", default="http://127.0.0.1:8178", help="adres whisper-server")
 	p.add_argument("--backend", choices=sorted(BACKENDS), default="whisper", help="whisper = lokalny whisper-server, openai / elevenlabs = chmura")
-	p.add_argument("--model", default="", help="model dostawcy w chmurze (domyślnie gpt-4o-transcribe / scribe_v1)")
+	p.add_argument("--model", default="", help="model dostawcy w chmurze (domyślnie gpt-4o-transcribe / scribe_v2)")
 	p.add_argument("--api-key", default="", help="klucz API chmury; domyślnie ze zmiennej OPENAI_API_KEY / ELEVENLABS_API_KEY")
 	p.add_argument("--language", default="pl")
 	p.add_argument("--prompt", default="Halo, tu kapitan. Ochrona, proszę na mostek. Medyczny, mamy rannego. Inżynieria, sprawdźcie zasilanie. Uwaga, syndykat na pokładzie!", help="podpowiedź dla Whispera: naturalne zdania ze słownictwem gry działają lepiej niż lista słów")
