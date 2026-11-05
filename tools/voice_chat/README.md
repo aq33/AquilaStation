@@ -19,7 +19,8 @@ gdy gra o nie poprosiła (gracz trzymał klawisz).
 ## Uruchomienie lokalne (test)
 
 1. Whisper: `pacman -S mingw-w64-ucrt-x86_64-whisper.cpp` w MSYS2 (ma backend Vulkan, działa na kartach AMD i NVIDIA)
-   i model `ggml-large-v3-turbo-q8_0.bin` w `%USERPROFILE%\whisper-models\`.
+   i model `ggml-large-v3.bin` (3,1 GB) w `%USERPROFILE%\whisper-models\`.
+   Na nagraniach z gry pełny large-v3 mylił 10% słów, turbo 16% (0,2 s i 0,13 s na zdanie na RX 9070 XT).
 2. `tools\voice_chat\start.bat` (whisper-server na porcie 8178, serwis na 8179).
 3. W `config\voice_chat.txt` odkomentuj `VOICE_CHAT_ENABLED` i ustaw ten sam `VOICE_CHAT_SECRET` co w `start.bat`.
 4. Restart serwera gry.
@@ -34,3 +35,7 @@ na tym samym komputerze. Dla innych graczy `VOICE_CHAT_PUBLIC_URL` musi być adr
 - Wciśnięcie krótsze niż 0,3 s jest anulowane, nagranie najdłużej `VOICE_CHAT_MAX_SECONDS` (domyślnie 15 s).
 - Cisza nie jest wysyłana do Whispera, a typowe zmyślenia Whispera na ciszy („Napisy stworzone przez społeczność Amara.org” itp.) są odrzucane.
 - Tokeny graczy są w `data/voice_chat_tokens.json`, więc otwarta karta działa też w kolejnej rundzie.
+
+## Diagnostyka
+
+`voice_server.py --save-dir <folder>` zapisuje każde nagranie (WAV) i surowy tekst Whispera, żeby porównywać modele i ustawienia na prawdziwych głosach.

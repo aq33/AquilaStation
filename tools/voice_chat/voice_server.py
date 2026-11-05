@@ -170,6 +170,27 @@ def transcribe(args, wav):
 		return json.loads(resp.read().decode("utf-8")).get("text", "")
 
 
+def save_recording(args, session, seq, wav):
+	"""Zapis nagrania do porównywania modeli (--save-dir). Zwraca ścieżkę bez rozszerzenia."""
+	if not args.save_dir:
+		return None
+	os.makedirs(args.save_dir, exist_ok=True)
+	path = os.path.join(args.save_dir, f"{time.strftime('%Y%m%d-%H%M%S')}_{session.ckey}_{seq}")
+	with open(path + ".wav", "wb") as f:
+		f.write(wav)
+	return path
+
+
+class Server(ThreadingHTTPServer):
+	daemon_threads = True
+
+	def handle_error(self, request, client_address):
+		# Zamknięta karta zrywa połączenie SSE, to nie błąd.
+		if isinstance(sys.exc_info()[1], (ConnectionResetError, ConnectionAbortedError, BrokenPipeError)):
+			return
+		super().handle_error(request, client_address)
+
+
 class Handler(BaseHTTPRequestHandler):
 	server_version = "AquilaVoice/1"
 	protocol_version = "HTTP/1.1"
@@ -300,6 +321,7 @@ class Handler(BaseHTTPRequestHandler):
 		if seconds > MAX_SECONDS:
 			state.add_result(session, seq, channel, "", "za długo")
 			return self.send_body(413, {"error": "za długie nagranie"})
+		saved = save_recording(self.server.args, session, seq, body)
 		started = time.monotonic()
 		try:
 			raw = transcribe(self.server.args, body)
@@ -310,6 +332,9 @@ class Handler(BaseHTTPRequestHandler):
 		text = clean_text(raw)
 		took = time.monotonic() - started
 		print(f"[glos] {session.ckey} ({channel}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
+		if saved:
+			with open(saved + ".txt", "w", encoding="utf-8") as f:
+				f.write(raw.strip() + "\n")
 		state.add_result(session, seq, channel, text, None if text else "nie rozpoznano mowy")
 		self.send_body(200, {"text": text})
 
@@ -320,13 +345,13 @@ def main():
 	p.add_argument("--port", type=int, default=8179)
 	p.add_argument("--whisper", default="http://127.0.0.1:8178", help="adres whisper-server")
 	p.add_argument("--language", default="pl")
-	p.add_argument("--prompt", default="Rozmowa załogi statku kosmicznego Aquila: kapitan, mostek, inżynieria, ochrona, medyczny, ładownia, syndykat, plazma, reaktor.")
+	p.add_argument("--prompt", default="Halo, tu kapitan. Ochrona, proszę na mostek. Medyczny, mamy rannego. Inżynieria, sprawdźcie zasilanie. Uwaga, syndykat na pokładzie!", help="podpowiedź dla Whispera: naturalne zdania ze słownictwem gry działają lepiej niż lista słów")
 	p.add_argument("--secret", default=os.environ.get("VOICE_CHAT_SECRET", ""), help="musi się zgadzać z VOICE_CHAT_SECRET w configu gry")
+	p.add_argument("--save-dir", default="", help="zapisuj nagrania i rozpoznany tekst do tego folderu (diagnostyka)")
 	p.add_argument("--verbose", action="store_true")
 	args = p.parse_args()
 	sys.stdout.reconfigure(encoding="utf-8")  # konsola Windows domyślnie psuje polskie znaki
-	server =ThreadingHTTPServer((args.host, args.port), Handler)
-	server.daemon_threads = True
+	server = Server((args.host, args.port), Handler)
 	server.args = args
 	server.state = State()
 	print(f"[glos] nasłuch na http://{args.host}:{args.port}, Whisper: {args.whisper}", flush=True)

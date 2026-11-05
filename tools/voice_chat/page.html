@@ -105,7 +105,12 @@ async function enableMic() {
 		const stream = await navigator.mediaDevices.getUserMedia({
 			audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
 		});
-		ctx = new AudioContext();
+		// Kontekst od razu w 16 kHz: przeglądarka sama porządnie przepróbkuje mikrofon (z filtrem).
+		try {
+			ctx = new AudioContext({ sampleRate: TARGET_RATE });
+		} catch (err) {
+			ctx = new AudioContext();
+		}
 		rate = ctx.sampleRate;
 		await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([WORKLET], { type: "application/javascript" })));
 		const source = ctx.createMediaStreamSource(stream);
