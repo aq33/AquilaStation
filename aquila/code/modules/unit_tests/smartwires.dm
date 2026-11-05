@@ -84,6 +84,35 @@
 	TEST_ASSERT_EQUAL(net.avail, 5000, "The larger part of the grid lost its available power")
 	TEST_ASSERT_EQUAL(net.viewavail, 5000, "The power monitor reading of the grid was reset")
 
+/// AQUILA - after a split the old powernet stays with the piece holding its machines, even when another piece has more cables
+/datum/unit_test/smartwires_split_keeps_machines
+
+/datum/unit_test/smartwires_split_keeps_machines/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	// West end: one cable with a generator on its node
+	var/obj/structure/cable/fed = allocate(/obj/structure/cable, start)
+	var/obj/machinery/power/rtg/rtg = allocate(/obj/machinery/power/rtg, start)
+	var/obj/structure/cable/cut = allocate(/obj/structure/cable, locate(start.x + 1, start.y, start.z))
+	// East: a longer run with no machines
+	var/obj/structure/cable/empty_1 = allocate(/obj/structure/cable, locate(start.x + 2, start.y, start.z))
+	allocate(/obj/structure/cable, locate(start.x + 3, start.y, start.z))
+	allocate(/obj/structure/cable, locate(start.x + 4, start.y, start.z))
+	var/datum/powernet/net = fed.powernet
+	TEST_ASSERT_EQUAL(empty_1.powernet, net, "The test line is not one powernet")
+	TEST_ASSERT_EQUAL(rtg.powernet, net, "The generator did not connect to the line")
+	net.avail = 5000
+
+	qdel(cut)
+	SSmachines.dequeue_recalculation(net)
+	net.dirty = FALSE
+	net.repropogate_cables()
+
+	TEST_ASSERT(fed.powernet != empty_1.powernet, "Cutting the cable did not split the powernet")
+	TEST_ASSERT_EQUAL(fed.powernet, net, "The piece with the generator was moved to a new powernet")
+	TEST_ASSERT_EQUAL(rtg.powernet, net, "The generator was moved to a new powernet")
+	TEST_ASSERT_EQUAL(net.avail, 5000, "The piece with the generator lost its available power")
+	TEST_ASSERT(!net.dirty, "The split queued the kept powernet for another recalculation")
+
 /// AQUILA - joining two powernets keeps the power of the absorbed one for the current tick
 /datum/unit_test/smartwires_merge_keeps_power
 
