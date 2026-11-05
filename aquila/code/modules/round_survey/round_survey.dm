@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(round_surveys)
 	return list("max_text" = ROUND_SURVEY_MAX_TEXT)
 
 /datum/round_survey/proc/clean_text(t)
-	t = trim(copytext_char("[t]", 1, ROUND_SURVEY_MAX_TEXT))
+	t = trim(copytext_char("[t]", 1, ROUND_SURVEY_MAX_TEXT + 1))
 	t = replacetext(t, ascii2text(13), "")
 	return replacetext(t, "\n", " / ")
 

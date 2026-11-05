@@ -679,4 +679,4 @@
 		QDEL_NULL(filler)
 	ping()
 	if(length(products))
-		visible_message("<span class='notice'>Na [src] leży gotowy wyrób: [products[1]].</span>")
+		visible_message("<span class='notice'>Na [src] leży gotowy wyrób: [products[1]][length(products) > 1 ? " ×[length(products)]" : ""].</span>")

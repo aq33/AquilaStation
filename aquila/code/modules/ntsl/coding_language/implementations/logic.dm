@@ -173,12 +173,12 @@
 	if(!length(params))
 		return FALSE
 
-	var/max = params[1]
+	var/max = null
 	for(var/e in params)
-		if(isnum(e) && e > max)
+		if(isnum(e) && (isnull(max) || e > max))
 			max = e
 
-	return max
+	return isnull(max) ? params[1] : max
 
 ///Returns the lowest value of the arguments
 /datum/n_function/default/min
@@ -188,12 +188,12 @@
 	if(!length(params))
 		return FALSE
 
-	var/min = params[1]
+	var/min = null
 	for(var/e in params)
-		if(isnum(e) && e < min)
+		if(isnum(e) && (isnull(min) || e < min))
 			min = e
 
-	return min
+	return isnull(min) ? params[1] : min
 
 /datum/n_function/default/prob
 	name = "prob"

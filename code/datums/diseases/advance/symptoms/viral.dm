@@ -58,7 +58,7 @@ BONUS
 	A.mutability += 2
 
 /datum/symptom/viralevolution/OnRemove(datum/disease/advance/A)
-	A.mutability -= 1
+	A.mutability -= 2 // AQ EDIT - symetrycznie do OnAdd (+2)
 
 /*
 //////////////////////////////////////
@@ -200,7 +200,7 @@ Bonus
 /datum/symptom/viralpower/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.speed >= 8)
+	if(A.stage_rate >= 8) // AQ EDIT - speed nigdzie nie jest liczone, próg z opisu dotyczy szybkości stadiów
 		power = 2
 	if(A.transmission >= 8)
 		scramble = TRUE

@@ -12,24 +12,14 @@ const CHAPTER_NAMES = {
 
 export const PlantDictionary = (props) => {
   const { act, data } = useBackend();
-  const {
-    chapters,
-    selected_chapter,
-    selected_entry,
-    selected_type_shortcut,
-    last_command,
-  } = data;
+  const { chapters, selected_chapter, selected_entry, selected_type_shortcut } =
+    data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content scrollable={1}>
         <Box m={'-3px'} height={'100%'}>
           <Flex direction={'column'} height={'100%'}>
-            <Flex.Item>
-              <Section textAlign={'center'}>
-                Indeks Botaniczny [Wersja 1.12.8.0]
-              </Section>
-            </Flex.Item>
             <Flex.Item>
               <Flex direction={'row'}>
                 {/* Side Bar */}
@@ -37,7 +27,7 @@ export const PlantDictionary = (props) => {
                   <Flex direction={'column'}>
                     {/* Chapter Section */}
                     <Flex.Item>
-                      <Section>
+                      <Section title="Rozdziały">
                         {Object.entries(chapters).map(
                           ([chapter_key, chapter]) => (
                             <ChapterEntry
@@ -48,26 +38,25 @@ export const PlantDictionary = (props) => {
                         )}
                       </Section>
                     </Flex.Item>
-                    {/* Search Section */}
+                    {/* Entry Section with search */}
                     <Flex.Item>
-                      <Section>
-                        <Input
-                          width={'100%'}
-                          placeholder={'Szukaj...'}
-                          onChange={(value) => setSearchText(value)}
-                        />
-                      </Section>
-                    </Flex.Item>
-                    {/* Entry Section */}
-                    <Flex.Item>
-                      <Section>
+                      <Section
+                        title="Wpisy"
+                        buttons={
+                          <Input
+                            width="110px"
+                            placeholder={'Szukaj...'}
+                            onChange={(value) => setSearchText(value)}
+                          />
+                        }
+                      >
                         <Box
-                          className={'scrollbox'}
-                          height={'427px'}
+                          className={'plant__scrollbox'}
+                          height={'500px'}
                           overflowY="scroll"
                         >
                           {selected_chapter === 'Features' ? (
-                            <Box className={'discrete'}>
+                            <Box className={'plant__discrete'}>
                               {/* Fruits */}
                               {Object.entries(
                                 chapters[selected_chapter][
@@ -199,10 +188,10 @@ export const PlantDictionary = (props) => {
                 </Flex.Item>
                 {/* Inspection Panel */}
                 <Flex.Item width={'70%'}>
-                  <Section>
+                  <Section title="Indeks botaniczny">
                     <Box
-                      className={'scrollbox'}
-                      height={'559px'}
+                      className={'plant__scrollbox'}
+                      height={'630px'}
                       overflowY="scroll"
                     >
                       <Box mb={'-10px'} />
@@ -308,18 +297,6 @@ export const PlantDictionary = (props) => {
             {/* World building fluff top banner */}
             <Flex.Item height={'100%'}>
               <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
             </Flex.Item>
           </Flex>
         </Box>
