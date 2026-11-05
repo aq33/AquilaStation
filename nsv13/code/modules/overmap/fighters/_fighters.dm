@@ -287,15 +287,16 @@ Been a mess since 2018, we'll fix it someday (probably)
 				to_chat(usr, "<span class='warning'>[src] nie ma zainstalowanej baterii!</span>")
 				return
 			battery.toggle()
+			relay('nsv13/sound/effects/fighters/powerswitch.ogg') // AQ EDIT - nieużywany dźwięk przełącznika zasilania
 			to_chat(usr, "Przestawiasz przełącznik baterii.</span>")
-			. = TRUE
+			return TRUE // AQ EDIT - bez ogólnego switch.ogg z końca ui_act, żeby dźwięki się nie nakładały
 		if("apu")
 			var/obj/item/fighter_component/apu/APU = loadout.get_slot(HARDPOINT_SLOT_APU)
 			if(!APU)
 				to_chat(usr, "<span class='warning'>[src] nie ma zainstalowanego APU!</span>")
 				return
 			APU.toggle()
-			playsound(src, 'nsv13/sound/effects/fighters/warmup.ogg', 100, FALSE)
+			playsound(src, APU.active ? 'nsv13/sound/effects/fighters/apu_start.ogg' : 'nsv13/sound/effects/fighters/warmup.ogg', 100, FALSE) // AQ EDIT - rozruch APU ma własny dźwięk
 			. = TRUE
 		if("ignition")
 			var/obj/item/fighter_component/engine/engine = loadout.get_slot(HARDPOINT_SLOT_ENGINE)
@@ -707,7 +708,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	if(. && !length(mobs_in_ship) && !(QDELETED(src) || QDESTROYING(src))) // Last one out means we don't need this anymore
 		qdel(src)
 
-/obj/structure/overmap/small_craft/proc/create_escape_pod(path, mob/last_pilot)
+/obj/structure/overmap/small_craft/proc/create_escape_pod(path, mob/last_pilot, manual = FALSE) // AQ EDIT - manual: katapulta z panelu konsoli
 	// Create pod
 	var/obj/structure/overmap/small_craft/escapepod/escape_pod = new path(get_turf(src))
 	if(!istype(escape_pod))
@@ -728,7 +729,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	// Transfer occupants
 	if(length(mobs_in_ship))
 		relay('nsv13/sound/effects/computer/alarm_3.ogg', "<span class=userdanger>KATAPULTUJ! KATAPULTUJ! KATAPULTUJ!</span>")
-		visible_message("<span class=userdanger>Włączono sekwencję automatycznego katapultowania! Wystrzelono kapsułę ratunkową!</span>")
+		visible_message("<span class=userdanger>[manual ? "Pilot pociąga za uchwyty katapulty!" : "Włączono sekwencję automatycznego katapultowania!"] Wystrzelono kapsułę ratunkową!</span>") // AQ EDIT - ręczna katapulta
 
 		if(last_pilot && !last_pilot.incapacitated())
 			last_pilot.doMove(escape_pod)
@@ -748,6 +749,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			escape_pod.mobs_in_ship |= M
 			M.overmap_ship = escape_pod
 	mobs_in_ship.Cut()
+	escape_pod.relay('nsv13/sound/effects/fighters/ejecting.ogg') // AQ EDIT - nieużywany dźwięk katapultowania
 
 	return escape_pod
 

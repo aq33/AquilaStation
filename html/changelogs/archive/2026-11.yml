@@ -141,6 +141,16 @@
       dotąd), kawa i perfumy pachną o połowę słabiej.
   - bugfix: Butelka Chciwości nie podnosi maksymalnego zdrowia ponad 100.
   - spellcheck: Poprawione opisy w grze, które nie zgadzały się z działaniem.
+  - rscadd: Osoba za sterami statku ma na ekranie panel konsoli (sternik, strzelec,
+      myśliwiec) z hamulcem, sterowaniem, stanem kadłuba i wybraną bronią; przyciski
+      na panelu działają jak skróty klawiszowe.
+  - rscadd: 'Myśliwiec ma ręczną katapultę: przestaw oba przełączniki na panelu w
+      ciągu 5 sekund, a kapsuła ratunkowa wystrzeli z załogą.'
+  - imageadd: Polskie napisy na grafikach konsol statku.
+  - soundadd: Nowe dźwięki myśliwca (APU, bateria, start z katapulty, katapultowanie,
+      działko), namierzania, drzwi turbowindy i skrzypienie kadłuba w stanie krytycznym.
+  - bugfix: Namierzany statek słyszy ostrzeżenie o namierzaniu, a namierzający dźwięk
+      namierzania (było odwrotnie).
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.
