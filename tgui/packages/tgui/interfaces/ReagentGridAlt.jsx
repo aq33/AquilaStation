@@ -1266,11 +1266,14 @@ class ReagentGrid extends Component {
         </Flex>
         <Flex direction="column" width="30%">
           <Flex.Item>
-            <Section width="100%">
-              {selected_reagent
-                ? all_reagent_data[selected_reagent]['GRID_REAGENT_NAME']
-                : 'Brak danych'}
-              <Divider />
+            <Section
+              width="100%"
+              title={
+                selected_reagent
+                  ? all_reagent_data[selected_reagent]['GRID_REAGENT_NAME']
+                  : 'Brak danych'
+              }
+            >
               {`Dokładność: ${selected_reagent ? (1 / (all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'] * all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'])) * 100 + '%' : 'Brak danych'}`}
               <Button
                 className="plant__button--beacon"
@@ -1292,9 +1295,7 @@ class ReagentGrid extends Component {
             </Section>
           </Flex.Item>
           <Flex.Item height="100%">
-            <Section height="100%" width="100%">
-              Próbkowane refrakcje
-              <Divider />
+            <Section height="100%" width="100%" title="Próbkowane refrakcje">
               <Box
                 className={'plant__scrollbox'}
                 height={'500px'}

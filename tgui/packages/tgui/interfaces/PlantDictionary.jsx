@@ -21,16 +21,13 @@ export const PlantDictionary = (props) => {
         <Box m={'-3px'} height={'100%'}>
           <Flex direction={'column'} height={'100%'}>
             <Flex.Item>
-              <Section textAlign={'center'}>Indeks Botaniczny</Section>
-            </Flex.Item>
-            <Flex.Item>
               <Flex direction={'row'}>
                 {/* Side Bar */}
                 <Flex.Item width={'30%'}>
                   <Flex direction={'column'}>
                     {/* Chapter Section */}
                     <Flex.Item>
-                      <Section>
+                      <Section title="Rozdziały">
                         {Object.entries(chapters).map(
                           ([chapter_key, chapter]) => (
                             <ChapterEntry
@@ -41,22 +38,21 @@ export const PlantDictionary = (props) => {
                         )}
                       </Section>
                     </Flex.Item>
-                    {/* Search Section */}
+                    {/* Entry Section with search */}
                     <Flex.Item>
-                      <Section>
-                        <Input
-                          width={'100%'}
-                          placeholder={'Szukaj...'}
-                          onChange={(value) => setSearchText(value)}
-                        />
-                      </Section>
-                    </Flex.Item>
-                    {/* Entry Section */}
-                    <Flex.Item>
-                      <Section>
+                      <Section
+                        title="Wpisy"
+                        buttons={
+                          <Input
+                            width="110px"
+                            placeholder={'Szukaj...'}
+                            onChange={(value) => setSearchText(value)}
+                          />
+                        }
+                      >
                         <Box
                           className={'plant__scrollbox'}
-                          height={'427px'}
+                          height={'500px'}
                           overflowY="scroll"
                         >
                           {selected_chapter === 'Features' ? (
@@ -192,10 +188,10 @@ export const PlantDictionary = (props) => {
                 </Flex.Item>
                 {/* Inspection Panel */}
                 <Flex.Item width={'70%'}>
-                  <Section>
+                  <Section title="Indeks botaniczny">
                     <Box
                       className={'plant__scrollbox'}
-                      height={'559px'}
+                      height={'630px'}
                       overflowY="scroll"
                     >
                       <Box mb={'-10px'} />

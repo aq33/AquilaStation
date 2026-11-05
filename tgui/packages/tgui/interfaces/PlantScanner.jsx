@@ -1,26 +1,48 @@
-import { Box, Collapsible, Divider, Section } from 'tgui/components';
+import { useState } from 'react';
+import { Box, Button, Divider, LabeledList, Section } from 'tgui/components';
 import { sanitizeText } from 'tgui/sanitize';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const PlantScanner = (props) => {
-  const { act, data } = useBackend();
-  const { buffer, last_target, render_rule } = data;
+  const { data } = useBackend();
+  const { last_target, render_rule } = data;
   return (
     <Window width={750} height={870}>
-      <Window.Content>
-        <Section textAlign={'center'}>
-          {last_target || 'Brak celu w buforze'}
-        </Section>
-        <Section>
-          {render_rule === 'RENDER_RULE_PLANTSEED' ? <SeedRule /> : null}
-          {render_rule === 'RENDER_RULE_FRUIT' ? <FruitRule /> : null}
-          {render_rule === 'RENDER_RULE_TRAY' ? <TrayRule /> : null}
-          {render_rule ? null : 'bufor wyczyszczony 0x0000'}
-        </Section>
+      <Window.Content scrollable>
+        {render_rule === 'RENDER_RULE_PLANTSEED' ? <SeedRule /> : null}
+        {render_rule === 'RENDER_RULE_FRUIT' ? <FruitRule /> : null}
+        {render_rule === 'RENDER_RULE_TRAY' ? <TrayRule /> : null}
+        {render_rule ? null : (
+          <Section title="Skaner roślin">
+            Zeskanuj roślinę, nasiona, owoc albo tacę hydroponiczną.
+          </Section>
+        )}
       </Window.Content>
     </Window>
+  );
+};
+
+const capitalize = (text) =>
+  text ? text.charAt(0).toUpperCase() + text.slice(1) : text;
+
+// AQUILA - linie „Etykieta: wartość” jako LabeledList, jak w innych konsolach
+const StatusList = (props) => {
+  const { lines = [] } = props;
+  return (
+    <LabeledList>
+      {lines.map((line, index) => {
+        const split = line.indexOf(': ');
+        return split === -1 ? (
+          <LabeledList.Item key={index}>{line}</LabeledList.Item>
+        ) : (
+          <LabeledList.Item key={index} label={line.slice(0, split)}>
+            {line.slice(split + 2)}
+          </LabeledList.Item>
+        );
+      })}
+    </LabeledList>
   );
 };
 
@@ -59,86 +81,97 @@ const FeatureBlock = (props) => {
 // AQUILA - najpierw krótki stan rośliny, szczegóły genetyczne i katalog potrzeb dopiero po rozwinięciu
 const SeedRule = (props) => {
   const { data } = useBackend();
-  const { buffer, status = [] } = data;
-  const details = Object.entries(buffer).map(([buffer_key, buffer_data]) => (
-    <FeatureBlock
-      key={buffer_key}
-      feature={buffer_data['feature']}
-      needs={buffer_data['needs']}
-    />
-  ));
+  const { buffer, status = [], last_target } = data;
+  const [showDetails, setShowDetails] = useState(!status.length);
   return (
-    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
+    <>
       {status.length > 0 && (
-        <Section title="Stan">
-          {status.map((line, index) => (
-            <Box key={index} mb={'4px'}>
-              {line}
-            </Box>
-          ))}
+        <Section title={capitalize(last_target)}>
+          <StatusList lines={status} />
         </Section>
       )}
-      {status.length > 0 ? (
-        <Collapsible title="Części, cechy i potrzeby">{details}</Collapsible>
-      ) : (
-        details
-      )}
-    </Box>
+      <Section
+        title={
+          status.length ? 'Części, cechy i potrzeby' : capitalize(last_target)
+        }
+        buttons={
+          status.length > 0 && (
+            <Button
+              icon={showDetails ? 'chevron-up' : 'chevron-down'}
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              {showDetails ? 'Ukryj' : 'Pokaż'}
+            </Button>
+          )
+        }
+      >
+        {showDetails
+          ? Object.entries(buffer).map(([buffer_key, buffer_data]) => (
+              <FeatureBlock
+                key={buffer_key}
+                feature={buffer_data['feature']}
+                needs={buffer_data['needs']}
+              />
+            ))
+          : 'Budowa rośliny, cechy i pełna lista potrzeb.'}
+      </Section>
+    </>
   );
 };
 
 const FruitRule = (props) => {
   const { data } = useBackend();
-  const { buffer } = data;
+  const { buffer, last_target } = data;
   return (
-    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
-      {Object.entries(buffer['genes']).map(([buffer_key, buffer_data]) => (
-        <FeatureBlock
-          key={buffer_key}
-          feature={buffer_data['feature']}
-          needs={buffer_data['needs']}
-        />
-      ))}
-      <Box
-        className="plant__dialogue"
-        style={{ whiteSpace: 'pre-line' }}
-        my={'4px'}
-        p={'4px'}
-      >
-        <Box bold mb={'4px'}>
-          Zawiera:
-        </Box>
-        {Object.entries(buffer['reagents']).map(
-          ([reagent_key, reagent_data]) => (
-            <Box key={reagent_key}>{`${reagent_data}`}</Box>
-          ),
-        )}
-      </Box>
-    </Box>
+    <>
+      <Section title={capitalize(last_target)}>
+        {Object.entries(buffer['genes']).map(([buffer_key, buffer_data]) => (
+          <FeatureBlock
+            key={buffer_key}
+            feature={buffer_data['feature']}
+            needs={buffer_data['needs']}
+          />
+        ))}
+      </Section>
+      <Section title="Zawartość">
+        {Object.values(buffer['reagents']).length
+          ? Object.entries(buffer['reagents']).map(
+              ([reagent_key, reagent_data]) => (
+                <Box key={reagent_key}>{`${reagent_data}`}</Box>
+              ),
+            )
+          : 'Brak odczynników.'}
+      </Section>
+    </>
   );
 };
 
+// AQUILA - skan tacy: najpierw dane tacy, potem osobna sekcja na każdą roślinę (linia „<b>Nazwa</b>” zaczyna roślinę)
 const TrayRule = (props) => {
-  const { act, data } = useBackend();
-  const { buffer, last_target, render_rule } = data;
+  const { data } = useBackend();
+  const { buffer = [], last_target } = data;
+  const groups = [];
+  let current = { title: capitalize(last_target), lines: [] };
+  groups.push(current);
+  Object.values(buffer).forEach((line) => {
+    if (line === '') {
+      return;
+    }
+    const header = /^<b>(.*)<\/b>$/.exec(line);
+    if (header) {
+      current = { title: header[1], lines: [] };
+      groups.push(current);
+      return;
+    }
+    current.lines.push(line);
+  });
   return (
-    <Box className={'plant__scrollbox'} height={'660px'} overflowY="scroll">
-      {Object.entries(buffer).map(([buffer_key, buffer_data]) => (
-        <Box
-          className={buffer_data === '' ? null : 'plant__dialogue'}
-          key={buffer_key}
-          my={'2px'}
-          style={{ whiteSpace: 'pre-line' }}
-        >
-          <span
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: sanitizeText(buffer_data, false), // This is sanitized in code too
-            }}
-          />
-          {buffer_data === '' ? null : <br />}
-        </Box>
+    <>
+      {groups.map((group, index) => (
+        <Section key={index} title={group.title}>
+          <StatusList lines={group.lines} />
+        </Section>
       ))}
-    </Box>
+    </>
   );
 };
