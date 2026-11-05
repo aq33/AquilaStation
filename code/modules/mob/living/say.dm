@@ -154,6 +154,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		to_chat(src, "<span class='warning'>Nie jesteś w stanie mówić!</span>")
 		return
 
+	// AQ EDIT START - tłumacz obcokrajowca: angielski idzie do API i wraca tu we Wspólnym (aquila/code/modules/i18n/foreigner.dm)
+	if(aq_translated_say)
+		aq_translated_say = FALSE
+		language = /datum/language/common
+	else if(aq_translator_intercept(original_message, message, message_mods, language, bubble_type, spans, forced))
+		return TRUE
+	// AQ EDIT END
+
 	var/message_range = 7
 
 	var/succumbed = FALSE

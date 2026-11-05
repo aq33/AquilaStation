@@ -35,7 +35,8 @@
 		/datum/language/terrum,
 		/datum/language/uncommon,
 		/datum/language/vampiric, // AQ EDIT - języki antagów Aquili, jak narsie i ratvar
-		/datum/language/darkspawn)) // AQ EDIT
+		/datum/language/darkspawn, // AQ EDIT
+		/datum/language/english)) // AQ EDIT - obcokrajowiec (aquila/code/modules/i18n/foreigner.dm)
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
