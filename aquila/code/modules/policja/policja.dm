@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(zandarmeria_closet_states, list("sec", "warden", "hos", "armory
 /****************************\
 |********** podłogi **********|
 \****************************/
-#define ZANDARMERIA_DECAL_COLOR "#4F8A5B"
+#define ZANDARMERIA_DECAL_COLOR "#316439"
 
 /obj/effect/turf_decal/tile/ship/police
 	name = "żandarmski narożnik"
