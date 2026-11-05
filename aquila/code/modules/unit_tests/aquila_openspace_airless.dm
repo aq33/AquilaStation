@@ -14,9 +14,8 @@
 			vacuum = candidate
 			floor = below
 			break
-	if(!vacuum)
-		log_world("aquila_openspace_airless: na mapie nie ma openspace/airless nad podłogą, test pominięty")
-		return
+	// Domyślna mapa testów (Atlas) ma takie kafle nad promem ewakuacyjnym; bez nich test niczego by nie sprawdził
+	TEST_ASSERT(vacuum, "No openspace/airless above a floor on the test map, nothing to check")
 
 	TEST_ASSERT(!vacuum.CanAtmosPass(floor, TRUE), "openspace/airless lets air fall to the floor below")
 	TEST_ASSERT(!floor.CanAtmosPass(vacuum, TRUE), "floor below lets air rise into openspace/airless")
