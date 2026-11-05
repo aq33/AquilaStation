@@ -48,6 +48,8 @@
 	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Węgiel aktywny (pigułka, 10 j.)","Lodówka pokazuje [fridge.smartfridge_display_name(pill)]")
 	pill.name = "pigułka: Bikarydyna (mocna)"
 	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Bikarydyna (mocna) (pigułka)", "Lodówka pokazuje [fridge.smartfridge_display_name(pill)]")
+	pill.name = "pigułka: "
+	TEST_ASSERT(fridge.smartfridge_display_name(pill) == "Pigułka:", "Lodówka pokazuje pustą nazwę jako [fridge.smartfridge_display_name(pill)]")
 	var/obj/item/reagent_containers/glass/beaker/plain = allocate(/obj/item/reagent_containers/glass/beaker)
 	TEST_ASSERT(fridge.smartfridge_display_name(plain) == capitalize(plain.name), "Lodówka zmieniła nazwę bez dwukropka: [fridge.smartfridge_display_name(plain)]")
 

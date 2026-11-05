@@ -250,7 +250,7 @@
 				"icon_state" = stored.icon_state,
 				"amount" = 1,
 			)
-	.["contents"] = sortList(listofitems)
+	.["contents"] = listofitems // SmartVend.tsx sorts by the displayed name
 	.["name"] = name
 	.["isdryer"] = FALSE
 
