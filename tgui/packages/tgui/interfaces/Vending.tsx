@@ -5,7 +5,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { PixelText, shade } from './common/PixelArt';
+import { ScreenText, shade } from './common/PixelArt';
 
 type VendingData = {
   all_products_free: boolean;
@@ -319,7 +319,7 @@ export const Vending = (props) => {
                 borderColor: `${shade(accent, 0.35)} ${shade(accent, -0.5)} ${shade(accent, -0.5)} ${shade(accent, 0.35)}`,
               }}
             >
-              <PixelText text={machine_name} scale={3} color="#ffe0a0" />
+              <ScreenText text={machine_name} scale={3} color="#ffe0a0" />
             </div>
             <div className="AqPixel-hazard" />
           </div>
@@ -335,7 +335,7 @@ export const Vending = (props) => {
               ))}
               {!slots.length && (
                 <div className="AqVend__empty">
-                  <PixelText
+                  <ScreenText
                     text={searching ? 'Nic nie pasuje' : 'Automat pusty'}
                     color="#4a505c"
                   />
@@ -361,7 +361,7 @@ export const Vending = (props) => {
               <div className="AqVend__keypad">
                 {['A', 'B', 'C', 'D', '1', '2', '3', '4'].map((key) => (
                   <Key key={key} onClick={() => press(key)}>
-                    <PixelText text={key} />
+                    <ScreenText text={key} />
                   </Key>
                 ))}
                 <Key
@@ -369,7 +369,7 @@ export const Vending = (props) => {
                   onClick={() => press('CLR')}
                   tip="Wyczyść"
                 >
-                  <PixelText text="X" />
+                  <ScreenText text="X" />
                 </Key>
                 <Key
                   variant="ok"
@@ -377,7 +377,7 @@ export const Vending = (props) => {
                   onClick={() => press('OK')}
                   tip="Kup wybrany towar"
                 >
-                  <PixelText text="OK" />
+                  <ScreenText text="OK" />
                 </Key>
                 <Key
                   disabled={!selected?.colorable}
@@ -389,19 +389,19 @@ export const Vending = (props) => {
                   }
                   tip="Zmień kolor"
                 >
-                  <PixelText text="*" color="#e8b923" />
+                  <ScreenText text="*" color="#e8b923" />
                 </Key>
               </div>
               <div className="AqVend__shelf">
                 <Key onClick={() => changePage(-1)} tip="Poprzednia półka">
-                  <PixelText text="<" />
+                  <ScreenText text="<" />
                 </Key>
-                <PixelText
+                <ScreenText
                   text={`Półka ${currentPage + 1}/${pages}`}
                   color="#c9ced6"
                 />
                 <Key onClick={() => changePage(1)} tip="Następna półka">
-                  <PixelText text=">" />
+                  <ScreenText text=">" />
                 </Key>
               </div>
             </div>
@@ -414,7 +414,7 @@ export const Vending = (props) => {
                   <ProductImage product={dropped.product} />
                 </div>
               ) : (
-                <PixelText text="Podajnik" color="#4a505c" />
+                <ScreenText text="Podajnik" color="#4a505c" />
               )}
             </div>
             <div className="AqVend__controls">
@@ -449,7 +449,7 @@ export const Vending = (props) => {
                         setCode('');
                       }}
                     >
-                      <PixelText text={name} />
+                      <ScreenText text={name} />
                     </Key>
                   ))}
                 </div>
@@ -552,8 +552,8 @@ const ProductSlot = (props: ProductSlotProps) => {
       </div>
       <div className="AqVend__coil" />
       <div className="AqVend__tag">
-        <PixelText text={code} color={selected ? '#071a0e' : '#e8b923'} />
-        <PixelText
+        <ScreenText text={code} color={selected ? '#071a0e' : '#e8b923'} />
+        <ScreenText
           text={soldOut ? 'Brak' : free ? 'Gratis' : `${price}`}
           color={
             selected
@@ -606,7 +606,7 @@ const Display = (props: DisplayProps) => {
     <div className="AqVend__display AqPixel-crt AqPixel-inset">
       {lines.map(([text, color], n) => (
         <div key={n}>
-          <PixelText text={text} color={color} />
+          <ScreenText text={text} color={color} />
         </div>
       ))}
     </div>
@@ -636,15 +636,15 @@ const CardReader = (props: CardReaderProps) => {
         />
       </div>
       {free || !onstation ? (
-        <PixelText text="Wszystko za darmo" color="#5dff8f" />
+        <ScreenText text="Wszystko za darmo" color="#5dff8f" />
       ) : user ? (
         <>
-          <PixelText
+          <ScreenText
             text={(user.name || 'Nieznany').slice(0, 22)}
             color="#e6e9ee"
           />
-          <PixelText text={(user.job || '').slice(0, 22)} color="#9aa1ad" />
-          <PixelText
+          <ScreenText text={(user.job || '').slice(0, 22)} color="#9aa1ad" />
+          <ScreenText
             text={`${user.cash || 0}${currency}`}
             color="#e8b923"
             scale={3}
@@ -652,8 +652,8 @@ const CardReader = (props: CardReaderProps) => {
         </>
       ) : (
         <>
-          <PixelText text="Brak karty" color="#ff3e5f" />
-          <PixelText text="Zgłoś się do HoP" color="#9aa1ad" />
+          <ScreenText text="Brak karty" color="#ff3e5f" />
+          <ScreenText text="Zgłoś się do HoP" color="#9aa1ad" />
         </>
       )}
     </div>

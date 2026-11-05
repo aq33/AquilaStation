@@ -3,7 +3,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { PixelBuffer, shade, textWidth, wrapText } from './common/PixelArt';
+import { PixelBuffer, shade, wrapText } from './common/PixelArt';
 
 type Data = {
   proper_name: string | null;
@@ -73,7 +73,10 @@ const CUT_X0 = 120;
 const CUT_X1 = 130;
 const KEYS_X = 179;
 const KEY_W = 11;
-const STATUS_CHARS = 48;
+const STATUS_CHARS = 58;
+/** Napisy zwykłą czcionką okien tgui; rozmiar w pikselach sprite'a */
+const FONT = 'Verdana, Geneva, sans-serif';
+const FONT_SIZE = 4.4;
 
 /** Polskie nazwy funkcji (wartości WIRE_* z DM są porównywane w kodzie, więc tłumaczymy tylko tu) */
 const WIRE_NAMES: Record<string, string> = {
@@ -124,7 +127,16 @@ const WIRE_NAMES: Record<string, string> = {
   'High Voltage Circuit 2': 'Obwód WN 2',
 };
 
-const LABEL_CHARS = Math.floor((LABEL_W - 8) / 4);
+const LABEL_CHARS = 20;
+
+type Label = {
+  x: number;
+  y: number;
+  text: string;
+  color: string;
+  anchor?: 'start' | 'middle';
+  bold?: boolean;
+};
 
 const STEEL = '#5b6270';
 const STEEL_LIGHT = '#9aa1ad';
@@ -216,6 +228,7 @@ export const Wires = (props) => {
   const H = crtY + crtH + (crtH ? 4 : 1);
 
   const buf = new PixelBuffer();
+  const labels: Label[] = [];
 
   // Obudowa
   buf.bevel(0, 0, W, H, STEEL, STEEL_LIGHT, STEEL_DARK);
@@ -224,7 +237,14 @@ export const Wires = (props) => {
   const title = proper_name
     ? `Panel serwisowy: ${proper_name}`
     : 'Panel serwisowy';
-  buf.text(Math.round((W - textWidth(title)) / 2), 11, title, '#e8b923');
+  labels.push({
+    x: W / 2,
+    y: 11,
+    text: title,
+    color: '#e8b923',
+    anchor: 'middle',
+    bold: true,
+  });
 
   // Wnęka z kablami
   buf.bevel(BAY_X, BAY_Y, BAY_W, bayH, '#1a1d23', '#0f1115', KEY, true);
@@ -269,15 +289,15 @@ export const Wires = (props) => {
       true,
     );
     buf.rect(LABEL_X + 2, cy - 2, 2, 5, base);
-    buf.text(
-      LABEL_X + 6,
-      cy - 2,
-      (wire.wire
+    labels.push({
+      x: LABEL_X + 6,
+      y: cy - 2,
+      text: (wire.wire
         ? WIRE_NAMES[wire.wire] || wire.wire
         : COLOR_NAMES[wire.color] || wire.color
       ).slice(0, LABEL_CHARS),
-      wire.wire ? '#e8b923' : '#c9ced6',
-    );
+      color: wire.wire ? '#e8b923' : '#c9ced6',
+    });
 
     if (hovered) {
       buf.rect(BAY_X + 9, cy - 4, BAY_W - 18, 9, '#262a33');
@@ -366,7 +386,7 @@ export const Wires = (props) => {
           buf.rect(8, ly, 1, 1, '#ffffff');
         }
       }
-      buf.text(15, ly, line.text, '#5dff8f');
+      labels.push({ x: 15, y: ly, text: line.text, color: '#5dff8f' });
     });
   }
 
@@ -417,6 +437,21 @@ export const Wires = (props) => {
           onMouseLeave={() => setHover(null)}
         >
           {buf.render()}
+          {labels.map((label, n) => (
+            <text
+              key={n}
+              x={label.x}
+              y={label.y + 4}
+              fill={label.color}
+              fontFamily={FONT}
+              fontSize={FONT_SIZE}
+              fontWeight={label.bold ? 'bold' : 'normal'}
+              textAnchor={label.anchor || 'start'}
+              style={{ pointerEvents: 'none' }}
+            >
+              {label.text}
+            </text>
+          ))}
           {wires.map((wire, i) => {
             const cy = BAY_Y + 7 + i * ROW;
             const name =

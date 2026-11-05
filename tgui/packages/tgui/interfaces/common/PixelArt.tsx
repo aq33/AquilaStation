@@ -210,28 +210,34 @@ export const shade = (hex: string, amount: number) => {
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
 };
 
-type PixelTextProps = {
+type ScreenTextProps = {
   text: string;
   color?: string;
   scale?: number;
   title?: string;
 };
 
-/** Samodzielny napis pikselową czcionką (np. w przycisku HTML). */
-export const PixelText = (props: PixelTextProps) => {
+/**
+ * Napis na ekranie lub klawiszu maszyny, zwykłą czcionką okien tgui (Verdana).
+ * `scale` odpowiada wielkości z siatki pikseli: 2 to zwykły tekst, 3 to duży.
+ */
+export const ScreenText = (props: ScreenTextProps) => {
   const { text, color = '#e6e9ee', scale = 2, title } = props;
-  const buf = new PixelBuffer();
-  const w = Math.max(1, buf.text(0, 1, text, color));
   return (
-    <svg
-      width={w * scale}
-      height={FONT_H * scale}
-      viewBox={`0 0 ${w} ${FONT_H}`}
-      shapeRendering="crispEdges"
-      style={{ display: 'inline-block', verticalAlign: 'middle' }}
+    <span
+      title={title}
+      style={{
+        color,
+        fontFamily: 'Verdana, Geneva, sans-serif',
+        fontSize: `${scale * 6}px`,
+        fontWeight: scale > 2 ? 'bold' : 'normal',
+        lineHeight: 1.2,
+        whiteSpace: 'nowrap',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+      }}
     >
-      {title && <title>{title}</title>}
-      {buf.render()}
-    </svg>
+      {text}
+    </span>
   );
 };
