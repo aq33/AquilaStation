@@ -18,6 +18,8 @@ New paths properties:
     property = @OLD - will copy this modified property from original object even if global @OLD is not used
     property = @OLD:name - will copy [name] property from original object even if global @OLD is not used
     Anything else is copied as written.
+    /new/path/@SUBTYPES - with /old/path/@SUBTYPES, keeps the matched subtype suffix
+    @DELETE - as the new path, removes the matched object
 Old paths properties:
     Will be used as a filter.
     property = @UNSET - will apply the rule only if the property is not mapedited
@@ -95,6 +97,9 @@ def update_path(dmm_data, replacement_string, verbose=False):
         for new_path, new_props in new_paths:
             if new_path == "@OLD":
                 out = match.group('path')
+            elif new_path.endswith("/@SUBTYPES"):
+                # /old/@SUBTYPES : /new/@SUBTYPES keeps the subtype suffix of the matched path
+                out = new_path[:-len("/@SUBTYPES")] + match.group('path')[len(old_path):]
             else:
                 out = new_path
             out_props = dict()
@@ -129,7 +134,7 @@ def update_path(dmm_data, replacement_string, verbose=False):
     keys = list(dmm_data.dictionary.keys())
     for definition_key in keys:
         def_value = dmm_data.dictionary[definition_key]
-        new_value = tuple(y for x in def_value for y in get_result(x))
+        new_value = tuple(y for x in def_value for y in get_result(x) if y != "@DELETE")
         if new_value != def_value:
             dmm_data.overwrite_key(definition_key, new_value, bad_keys)
     dmm_data.reassign_bad_keys(bad_keys)
@@ -140,7 +145,7 @@ def update_map(map_filepath, updates, verbose=False):
     dmm_data = DMM.from_file(map_filepath)
     for update_string in updates:
         update_path(dmm_data, update_string, verbose)
-    dmm_data.to_file(map_filepath, True)
+    dmm_data.to_file(map_filepath, tgm=True)
 
 
 def update_all_maps(map_directory, updates, verbose=False):
