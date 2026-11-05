@@ -126,3 +126,7 @@
   - bugfix: Maska policji wygląda na założoną, gdy jest założona, i odwrotnie.
   - bugfix: Rola „Cywilne” nazywa się znowu „Gimmick”.
   - bugfix: Usunięci członkowie składów i ich pagery nie zostają w pamięci serwera.
+  - bugfix: Prom ewakuacyjny i pomieszczenia pod zewnętrzną próżnią na Atlasie nie
+      tracą już powietrza przez sufit.
+  - bugfix: 'Atlas: techniczne na sterburcie ma dach, a schody między nauką a ksenobiologią
+      przepuszczają powietrze.'
