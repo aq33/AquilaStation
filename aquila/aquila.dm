@@ -648,6 +648,7 @@
 #include "code\modules\food_and_drinks\food\slicing.dm"
 #include "code\modules\food_and_drinks\food\snacks_pie.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\monkeyrecycler.dm"
+#include "code\modules\food_and_drinks\kitchen_machinery\smartfridge.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\processor.dm"
 #include "code\modules\food_and_drinks\recipes\drinks_recipes.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_pie.dm"
@@ -1068,6 +1069,7 @@
 #include "code\modules\test_chamber\kits\pr_517_wyproznianie_na_miejscu.dm"
 #include "code\modules\test_chamber\kits\pr_530_medycyna3.dm"
 #include "code\modules\test_chamber\kits\pr_540_objawy_disease2.dm"
+#include "code\modules\test_chamber\kits\pr_555_chemia_ulepszenia.dm"
 #include "code\modules\test_chamber\kits\pr_547_poprawki_0311.dm"
 #include "code\modules\test_chamber\kits\pr_552_mix_hej_wizard.dm"
 #include "code\modules\weighted\weighted_admin.dm"
@@ -1210,6 +1212,7 @@
 #include "code\modules\detectivework\ballistics.dm"
 #include "code\modules\detectivework\wound_log.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_heater.dm"
+#include "code\modules\reagents\chemistry\machinery\chem_master.dm"
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
@@ -1708,6 +1711,7 @@
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
 #include "code\modules\unit_tests\aquila_bee_windows.dm"
 #include "code\modules\unit_tests\aquila_fermichem.dm"
+#include "code\modules\unit_tests\aquila_chemia_ulepszenia.dm"
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"

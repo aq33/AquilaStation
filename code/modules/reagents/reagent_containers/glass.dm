@@ -203,7 +203,7 @@
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/charcoal
-	name = "zbiornik rezerwowy: węgiel aktywowany"
+	name = "zbiornik rezerwowy: węgiel aktywny"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/epinephrine
