@@ -133,19 +133,26 @@
 	// We need a unique propogation identifier to be able to determine if the cable
 	// was queued by this propogation run
 	var/unique_propogation_identifier = ++SSmachines.unique_powernets
+	// AQ EDIT - find every piece first and keep src on the largest one. Upstream src stays with
+	// cables[1], so a cut that isolates that cable moved the main grid to a fresh powernet with no power
+	// for a tick (APCs stop charging, power monitors start again from zero).
+	var/list/pieces = list()
+	var/list/largest_piece
 	for (var/i in 1 to length(cables))
 		// We already belong
 		var/obj/structure/cable/processing_wire = cables[i]
 		if (powernet_id_array[processing_wire] != null)
 			continue
-		var/datum/powernet/new_powernet = i == 1 ? src : new /datum/powernet
+		var/list/piece = list()
+		pieces[++pieces.len] = piece
 		var/list/to_process = list(processing_wire)
 		processing_wire._last_repropogation_update = unique_propogation_identifier
 		// Process all nodes that can be reached
 		while (length(to_process))
 			processing_wire = to_process[to_process.len]
 			to_process.len--
-			powernet_id_array[processing_wire] = new_powernet
+			powernet_id_array[processing_wire] = piece
+			piece += processing_wire
 			// Process adjacent nodes, cables on other decks and cables bridged by machines (deck relays)
 			var/list/linked_cables = processing_wire.connected.Copy()
 			if (processing_wire.up)
@@ -163,15 +170,18 @@
 				if (linked_cable._last_repropogation_update != unique_propogation_identifier)
 					linked_cable._last_repropogation_update = unique_propogation_identifier
 					to_process += linked_cable
-	for (var/obj/structure/cable/processing_wire as anything in powernet_id_array)
-		var/datum/powernet/new_powernet = powernet_id_array[processing_wire]
-		new_powernet.add_cable(processing_wire)
-		// Get connected machines
-		if (!processing_wire.has_power_node)
-			continue
-		for (var/obj/machinery/power/powered_machine in processing_wire.loc)
-			if (!powered_machine.anchored)
+		if (length(piece) > length(largest_piece))
+			largest_piece = piece
+	for (var/list/piece as anything in pieces)
+		var/datum/powernet/new_powernet = piece == largest_piece ? src : new /datum/powernet
+		for (var/obj/structure/cable/processing_wire as anything in piece)
+			new_powernet.add_cable(processing_wire)
+			// Get connected machines
+			if (!processing_wire.has_power_node)
 				continue
-			if (!powered_machine.connect_to_network())
-				powered_machine.disconnect_from_network()
+			for (var/obj/machinery/power/powered_machine in processing_wire.loc)
+				if (!powered_machine.anchored)
+					continue
+				if (!powered_machine.connect_to_network())
+					powered_machine.disconnect_from_network()
 // AQ EDIT END
