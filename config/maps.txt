@@ -40,6 +40,12 @@ map atlantis
 #	votable
 endmap
 
+map vonneumann
+	minplayers 12
+	maxplayers 40
+#	votable
+endmap
+
 #BEGIN DEBUG MAPS
 
 #map runtimestation
