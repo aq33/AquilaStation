@@ -5,12 +5,14 @@ import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+// AQ EDIT - przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx)
 import {
   WeaponStageButton,
   type WeaponStageData,
 } from './common/WeaponStageButton';
 
 type Data = WeaponStageData & {
+  // AQ EDIT - dane etapu z cycle_stage_ui_data()
   ammo: any;
   canReload: any;
   chambered: any;
@@ -50,6 +52,7 @@ export const MunitionsComputer = (props) => {
         {(!sudo_mode && (
           <Section title="Sterowanie bronią:">
             <WeaponStageButton
+              // AQ EDIT - był Button
               fluid
               data={data}
               stages={['feed', 'unload']}
@@ -60,6 +63,7 @@ export const MunitionsComputer = (props) => {
               onClick={() => act('toggle_load')}
             />
             <WeaponStageButton
+              // AQ EDIT - był Button
               fluid
               data={data}
               stages={['chamber']}
@@ -78,6 +82,7 @@ export const MunitionsComputer = (props) => {
             />
             {!!isgaussgun && (
               <WeaponStageButton
+                // AQ EDIT - był Button
                 fluid
                 data={data}
                 stages={['rack']}

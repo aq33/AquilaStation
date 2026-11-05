@@ -12,12 +12,14 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+// AQ EDIT - przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx)
 import {
   WeaponStageButton,
   type WeaponStageData,
 } from './common/WeaponStageButton';
 
 type Data = WeaponStageData & {
+  // AQ EDIT - dane etapu z cycle_stage_ui_data()
   alignment: any;
   available_power: any;
   capacitor_charge: any;
@@ -44,6 +46,7 @@ export const HybridWeapons = (props) => {
             <Flex.Item width="250px">
               <Section fill position="relative" height="100%">
                 <WeaponStageButton
+                  // AQ EDIT - był Button
                   data={data}
                   stages={['feed', 'unload']}
                   icon={data.loaded ? 'check-circle' : 'square-o'}
@@ -53,6 +56,7 @@ export const HybridWeapons = (props) => {
                   onClick={() => act('toggle_load')}
                 />
                 <WeaponStageButton
+                  // AQ EDIT - był Button
                   data={data}
                   stages={['chamber']}
                   icon={data.chambered ? 'check-circle' : 'square-o'}

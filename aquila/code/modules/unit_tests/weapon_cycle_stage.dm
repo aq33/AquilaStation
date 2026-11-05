@@ -10,24 +10,26 @@
 	gun.cycle_sleep(2, "chamber")
 	TEST_ASSERT(isnull(gun.cycle_stage), "A stage shorter than the minimum was shown in the weapon window")
 
-	INVOKE_ASYNC(gun, TYPE_PROC_REF(/obj/machinery/ship_weapon, cycle_sleep), 10, "feed")
+	INVOKE_ASYNC(gun, TYPE_PROC_REF(/obj/machinery/ship_weapon, cycle_sleep), 20, "feed")
 	var/list/data = list()
 	gun.cycle_stage_ui_data(data)
 	TEST_ASSERT(data["cycle_stage"] == "feed", "The weapon window does not see the feed stage")
 	TEST_ASSERT(data["cycle_stage_progress"] == 0, "The stage did not start empty ([data["cycle_stage_progress"]])")
 
-	sleep(5)
+	sleep(10)
 	data = list()
 	gun.cycle_stage_ui_data(data)
 	TEST_ASSERT(data["cycle_stage_progress"] > 0 && data["cycle_stage_progress"] < 1, "The stage did not advance mid-way ([data["cycle_stage_progress"]])")
-	TEST_ASSERT(data["cycle_stage_time_left"] > 0 && data["cycle_stage_time_left"] < 10, "Wrong time left mid-stage ([data["cycle_stage_time_left"]])")
+	TEST_ASSERT(data["cycle_stage_time_left"] > 0 && data["cycle_stage_time_left"] < 20, "Wrong time left mid-stage ([data["cycle_stage_time_left"]])")
+	TEST_ASSERT(data["cycle_stage_real_time_left"] >= data["cycle_stage_time_left"], "Real time left is shorter than game time left")
 
-	// Nowszy etap w trakcie starszego: koniec starszego nie może go skasować
-	INVOKE_ASYNC(gun, TYPE_PROC_REF(/obj/machinery/ship_weapon, cycle_sleep), 10, "chamber")
-	sleep(6)
+	// Nowszy etap w trakcie starszego (start ok. 10, koniec ok. 40): koniec starszego (ok. 20) nie może go skasować.
+	// Sprawdzenia mają po 5 ds zapasu od końców etapów, żeby przesunięcie wznowienia o tick nie dawało fałszywych wyników.
+	INVOKE_ASYNC(gun, TYPE_PROC_REF(/obj/machinery/ship_weapon, cycle_sleep), 30, "chamber")
+	sleep(15)
 	TEST_ASSERT(gun.cycle_stage == "chamber", "The end of an older stage cleared a newer one")
 
-	sleep(5)
+	sleep(20)
 	data = list()
 	gun.cycle_stage_ui_data(data)
 	TEST_ASSERT(isnull(data["cycle_stage"]), "The stage stayed in the weapon window after it ended")

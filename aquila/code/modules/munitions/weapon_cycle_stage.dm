@@ -34,19 +34,29 @@
 	update_cycle_stage_uis()
 
 /// Odświeża okna, które pokazują etapy tej broni, żeby pasek ruszył od razu, a nie przy następnym autoodświeżeniu.
+/// Konsola połączona multitoolem („Połącz z: …”) ma tylko SW, bez linked_computer w broni, więc szukamy po otwartych oknach.
 /obj/machinery/ship_weapon/proc/update_cycle_stage_uis()
 	SStgui.update_uis(src)
-	if(linked_computer)
-		SStgui.update_uis(linked_computer)
+	var/list/consoles = list()
+	for(var/datum/tgui/ui as anything in SStgui.open_uis)
+		var/obj/machinery/computer/ship/munitions_computer/console = ui.src_object
+		if(istype(console) && console.SW == src)
+			consoles |= console
+	for(var/console in consoles)
+		SStgui.update_uis(console)
 
-/// Dopisuje do danych okna trwający etap, jego postęp (0-1) i pozostały czas (ds).
+/// Dopisuje do danych okna trwający etap, jego postęp (0-1), pozostały czas gry (ds) i przewidywany czas rzeczywisty (ds).
+/// Etap kończy się po sleep() w czasie gry, a okno animuje w czasie rzeczywistym, więc przy spowolnieniu serwera
+/// przeliczamy pozostały czas średnim spowolnieniem, żeby pasek nie dochodził do końca przed etapem.
 /obj/machinery/ship_weapon/proc/cycle_stage_ui_data(list/data)
 	data["cycle_stage"] = cycle_stage
 	if(!cycle_stage)
 		return
 	var/elapsed = world.time - cycle_stage_start
 	data["cycle_stage_progress"] = clamp(elapsed / max(cycle_stage_duration, 1), 0, 1)
-	data["cycle_stage_time_left"] = max(cycle_stage_duration - elapsed, 0)
+	var/time_left = max(cycle_stage_duration - elapsed, 0)
+	data["cycle_stage_time_left"] = time_left
+	data["cycle_stage_real_time_left"] = time_left * (1 + max(SStime_track.time_dilation_avg_fast, 0) / 100)
 
 /obj/machinery/computer/ship/munitions_computer/ui_data(mob/user)
 	. = ..()

@@ -3,6 +3,7 @@ import {
   type ComponentProps,
   type ReactNode,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { Button } from 'tgui-core/components';
@@ -12,6 +13,8 @@ export type WeaponStageData = {
   cycle_stage?: string | null;
   cycle_stage_progress?: number;
   cycle_stage_time_left?: number;
+  /** Pozostały czas etapu przeliczony na czas rzeczywisty ze spowolnieniem serwera (ds) */
+  cycle_stage_real_time_left?: number;
 };
 
 type Props = Omit<
@@ -51,7 +54,11 @@ export const WeaponStageButton = (props: Props) => {
           {active && (
             <StageFill
               progress={data.cycle_stage_progress ?? 0}
-              timeLeft={data.cycle_stage_time_left ?? 0}
+              timeLeft={
+                data.cycle_stage_real_time_left ??
+                data.cycle_stage_time_left ??
+                0
+              }
             />
           )}
           {content ?? children}
@@ -61,17 +68,28 @@ export const WeaponStageButton = (props: Props) => {
   );
 };
 
-/** Pasek od postępu z ostatnich danych do pełna w czasie, który etapowi został. */
+/**
+ * Pasek od postępu z ostatnich danych do pełna w czasie (rzeczywistym), który etapowi został.
+ * Nigdy się nie cofa: jeśli animacja wyprzedziła serwer (np. przy spowolnieniu), zwalnia od miejsca, w którym jest.
+ */
 const StageFill = (props: { progress: number; timeLeft: number }) => {
   const { progress, timeLeft } = props;
-  const [full, setFull] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [fill, setFill] = useState({ width: progress, time: 0 });
 
   useEffect(() => {
-    setFull(false);
+    const element = ref.current;
+    const parentWidth = (element?.offsetParent as HTMLElement | null)
+      ?.clientWidth;
+    const shown =
+      element && parentWidth ? element.offsetWidth / parentWidth : 0;
+    setFill({ width: Math.max(progress, shown), time: 0 });
     let second = 0;
-    // Dwie klatki: najpierw szerokość z danych bez przejścia, dopiero potem przejście do pełna
+    // Dwie klatki: najpierw szerokość startowa bez przejścia, dopiero potem przejście do pełna
     const first = requestAnimationFrame(() => {
-      second = requestAnimationFrame(() => setFull(true));
+      second = requestAnimationFrame(() =>
+        setFill({ width: 1, time: timeLeft }),
+      );
     });
     return () => {
       cancelAnimationFrame(first);
@@ -81,6 +99,7 @@ const StageFill = (props: { progress: number; timeLeft: number }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         position: 'absolute',
         left: 0,
@@ -89,8 +108,8 @@ const StageFill = (props: { progress: number; timeLeft: number }) => {
         zIndex: -1,
         pointerEvents: 'none',
         background: 'rgba(30, 210, 30, 0.9)',
-        width: full ? '100%' : `${progress * 100}%`,
-        transition: full ? `width ${timeLeft / 10}s linear` : 'none',
+        width: `${fill.width * 100}%`,
+        transition: fill.time ? `width ${fill.time / 10}s linear` : 'none',
       }}
     />
   );
