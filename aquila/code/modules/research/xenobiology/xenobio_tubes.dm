@@ -72,8 +72,16 @@
 	if(QDELETED(xeno_hud))
 		xeno_hud = new
 		hud_potion_ref = null
+		RegisterSignal(xeno_hud, COMSIG_PARENT_QDELETING, PROC_REF(on_xeno_hud_deleted))
 		xeno_hud.on_update_hud(count_stored_slimes(), monkeys, max_slimes)
 	return xeno_hud
+
+/// The mob's HUD deletes its static inventory with our screen object in it, drop the reference so it is not a hard delete
+/obj/machinery/computer/camera_advanced/xenobio/proc/on_xeno_hud_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(xeno_hud == source)
+		xeno_hud = null
+		hud_potion_ref = null
 
 /obj/machinery/computer/camera_advanced/xenobio/proc/count_stored_slimes()
 	. = 0

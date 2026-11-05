@@ -219,13 +219,19 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	for(var/obj/machinery/slime_extract_requestor/pad as anything in request_pads)
 		pad.console = null
 	request_pads.Cut()
+	// Zamówienia pamiętają konsolę, z którą je złożono (pad mógł być potem połączony z inną): bez tego harddel,
+	// a anulowane zamówienie oddawałoby ekstrakty do skasowanej konsoli zamiast na pad
+	for(var/obj/machinery/slime_extract_requestor/pad in GLOB.machines)
+		for(var/datum/extract_request_data/request as anything in pad.current_requests)
+			if(request.linked_console == src)
+				request.linked_console = null
 	return ..()
 
 /obj/machinery/computer/slime_market/multitool_act(mob/living/user, obj/item/I)
 	var/obj/item/multitool/M = I
 	if(!istype(M))
 		return FALSE
-	if(!istype(M.buffer, /obj/machinery/slime_extract_requestor))
+	if(!istype(M.buffer, /obj/machinery/slime_extract_requestor) || QDELETED(M.buffer)) // pad z bufora mógł zostać rozebrany
 		M.buffer = src
 		to_chat(user, "<span class='notice'>Zapisujesz [src] w buforze multitoola.</span>")
 		return TRUE

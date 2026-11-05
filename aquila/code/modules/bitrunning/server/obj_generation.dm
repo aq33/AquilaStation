@@ -63,6 +63,9 @@
 		to_wear.r_hand = null
 
 	avatar.equipOutfit(to_wear, TRUE)
+	// Strój awatara jest tylko „na pokaz”, więc post_equip() pomija echolokację, bez której domeny psykerów są nie do przejścia
+	if(istype(to_wear, /datum/outfit/echolocator))
+		avatar.AddComponent(/datum/component/echolocation)
 
 	var/obj/item/clothing/under/jumpsuit = avatar.w_uniform
 	if(istype(jumpsuit))

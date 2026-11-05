@@ -98,8 +98,10 @@
 	for(var/atom/movable/A in get_turf(src))
 		if(A.density && (A != src && A != M))
 			return
-	M.forceMove(get_turf(src))
+	// Bez forceMove przed ..(): przenosiło cel bez do_after, nawet gdy przypięcie się nie udało. buckle_mob() sam przesuwa przy check_loc = FALSE
 	. = ..()
+	if(!.)
+		return
 	playsound(src, 'sound/mecha/mechmove01.ogg', 50, TRUE)
 	check_buckled()
 

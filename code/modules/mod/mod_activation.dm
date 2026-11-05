@@ -81,6 +81,7 @@
 			return FALSE
 		balloon_alert(user, "już rozłożone!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		return FALSE // AQ EDIT - bez tego rozłożona część szła drugi raz do equip
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
 		if(overslot)
