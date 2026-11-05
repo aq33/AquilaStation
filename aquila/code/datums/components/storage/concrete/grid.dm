@@ -11,8 +11,9 @@
  * na starym systemie wagi.
  */
 
-/// Najszerszą siatkę ogranicza ekran: start w kolumnie 4, widok 17 kratek, obok jeszcze przycisk zamknięcia
-#define GRID_STORAGE_MAX_WIDTH 12
+/// Najszerszą siatkę ogranicza ekran: start w kolumnie 4 z widoku 17 kafli, obok jeszcze przycisk zamknięcia,
+/// więc na siatkę zostaje 12 kafli po 32 px. Liczba kratek zależy od ich rozmiaru (grid_max_width())
+#define GRID_STORAGE_MAX_PIXEL_WIDTH 384
 /// Domyślna wysokość siatki
 #define GRID_STORAGE_HEIGHT 4
 /// Do tej wysokości siatka rośnie, gdy zawartość startowa się nie mieści (wyższa zasłaniałaby za dużo ekranu)
@@ -60,6 +61,12 @@
 	var/grid_cell_size = GRID_CELL_SIZE
 	/// Wymiary siatki, dla których zbudowano nakładki tła (boxes)
 	var/grid_background_key
+	/// Rośnie przy każdym przerysowaniu siatki (każda zmiana układu przechodzi przez orient2hud()), żeby podgląd lądowania
+	/// u przeciągającego przeliczył się także po ruchu innego przedmiotu
+	var/grid_revision = 0
+	/// list(REF przedmiotu, miejsce, world.time, kratka) z ostatniego can_be_inserted(), żeby handle_item_insertion()
+	/// w tym samym ticku nie szukał miejsca drugi raz
+	var/list/grid_fit_cache
 
 /datum/component/storage/concrete/grid/Destroy()
 	. = ..()
@@ -68,6 +75,7 @@
 	restore_all_appearances()
 	grid_positions = null
 	grid_pending_rotation = null
+	grid_fit_cache = null
 	pending_cell = null
 
 /// Ustawia siatkę na podstawie dawnej pojemności. Woła ją przedmiot po pełnej inicjalizacji (gdy podtypy ustawiły już max_combined_w_class)
@@ -78,8 +86,9 @@
 	var/cells = max(CEILING(grid_base_weight * 4 / 3, 1), 1)
 	grid_height = GRID_STORAGE_HEIGHT
 	grid_width = CEILING(cells / grid_height, 1)
-	if(grid_width > GRID_STORAGE_MAX_WIDTH)
-		grid_width = GRID_STORAGE_MAX_WIDTH
+	var/max_width = grid_max_width()
+	if(grid_width > max_width)
+		grid_width = max_width
 		grid_height = CEILING(cells / grid_width, 1)
 	// Limit wagi przestaje obowiązywać, miejsce sprawdza siatka. Limit sztuk zostaje tylko w małych schowkach:
 	// w plecakach przedmioty z przepełnienia też są w contents, więc nie mogą blokować wkładania na wolną kratkę
@@ -90,7 +99,7 @@
 	refresh_mob_views()
 
 /// Zawartość startowa ponad dawne limity (zestawy w pudełkach, np. kameleon, kostiumy, części) dostaje większą siatkę
-/// zamiast lądować w przepełnieniu: najpierw szerzej do GRID_STORAGE_MAX_WIDTH, potem wyżej do GRID_STORAGE_MAX_GROWN_HEIGHT
+/// zamiast lądować w przepełnieniu: najpierw szerzej do grid_max_width(), potem wyżej do GRID_STORAGE_MAX_GROWN_HEIGHT
 /datum/component/storage/concrete/grid/proc/fit_initial_contents()
 	var/atom/real_location = real_location()
 	if(!length(real_location.contents))
@@ -104,12 +113,20 @@
 				unplaced++
 		if(!unplaced)
 			return
-		if(grid_width < GRID_STORAGE_MAX_WIDTH)
+		if(grid_width < grid_max_width())
 			grid_width++
 		else if(grid_height < GRID_STORAGE_MAX_GROWN_HEIGHT)
 			grid_height++
 		else
 			return
+
+/// Najwięcej kratek w poziomie, ile mieści się na ekranie przy obecnym rozmiarze kratki
+/datum/component/storage/concrete/grid/proc/grid_max_width()
+	return max(1, round(GRID_STORAGE_MAX_PIXEL_WIDTH / grid_cell_size))
+
+/// Najwyższa siatka, do jakiej rośnie zawartość startowa
+/datum/component/storage/concrete/grid/proc/grid_max_grown_height()
+	return GRID_STORAGE_MAX_GROWN_HEIGHT
 
 /// Kształt przedmiotu na siatce: list(szerokość, wysokość)
 /datum/component/storage/concrete/grid/proc/grid_shape(obj/item/I, rotated = FALSE)
@@ -269,6 +286,8 @@
 	grid_background_key = key
 	boxes.icon = 'aquila/icons/hud/storage_grid.dmi'
 	boxes.icon_state = "cell"
+	// Pole ma przezroczysty margines i zaokrąglone rogi: bez tego klik w szczelinę między polami szedłby na świat pod HUD-em
+	boxes.mouse_opacity = MOUSE_OPACITY_OPAQUE
 	var/list/cells = list()
 	for(var/y in 0 to grid_height - 1)
 		for(var/x in 0 to grid_width - 1)
@@ -377,7 +396,7 @@
 	// MouseDrag przychodzi przy każdym pikselu ruchu: liczymy lądowanie od nowa tylko po zmianie kratki, obrotu albo pozycji
 	var/list/cell = params_to_cell(params)
 	var/list/pos = LAZYACCESS(grid_positions, I)
-	var/input_key = cell ? "[cell[1]],[cell[2]]|[LAZYACCESS(grid_pending_rotation, I)]|[pos ? jointext(pos, ",") : ""]|[length(grid_positions)]" : null
+	var/input_key = cell ? "[cell[1]],[cell[2]]|[LAZYACCESS(grid_pending_rotation, I)]|[pos ? jointext(pos, ",") : ""]|[grid_revision]" : null
 	if(preview && preview.input_key == input_key && input_key)
 		return
 	var/list/landing = cell ? drag_landing(I, params) : null
@@ -406,16 +425,7 @@
 	if(preview.preview_key == key)
 		return
 	preview.preview_key = key
-	var/list/layers = list()
-	for(var/dy in 0 to height - 1)
-		for(var/dx in 0 to width - 1)
-			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
-			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
-			tile.color = landing[5] ? GRID_COLOR_PREVIEW : GRID_COLOR_OVERFLOW
-			tile.alpha = 170
-			tile.pixel_x = dx * size
-			tile.pixel_y = dy * size
-			layers += tile
+	var/list/layers = shape_tiles(width, height, landing[5] ? GRID_COLOR_PREVIEW : GRID_COLOR_OVERFLOW, 170)
 	var/mutable_appearance/ghost = new(I)
 	var/list/saved = LAZYACCESS(grid_saved_appearance, I)
 	var/matrix/look = matrix(saved ? saved[1] : I.transform)
@@ -501,7 +511,23 @@
 			return GRID_COLOR_NORMAL
 	return GRID_COLOR_LARGE
 
-/// Kafel przedmiotu: jeden obiekt ekranu w lewym dolnym rogu kształtu, każda kratka to nakładka z ramką tylko na zewnętrznych bokach
+/// Nakładki kafli kształtu width x height: każda kratka z ramką tylko na zewnętrznych bokach (maska sąsiadów N=1, S=2, E=4, W=8,
+/// dy rośnie w górę ekranu). color i alpha ustawiają się na każdej nakładce, gdy są podane
+/datum/component/storage/concrete/grid/proc/shape_tiles(width, height, color, alpha)
+	. = list()
+	for(var/dy in 0 to height - 1)
+		for(var/dx in 0 to width - 1)
+			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
+			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
+			if(color)
+				tile.color = color
+			if(alpha)
+				tile.alpha = alpha
+			tile.pixel_x = dx * grid_cell_size
+			tile.pixel_y = dy * grid_cell_size
+			. += tile
+
+/// Kafel przedmiotu: jeden obiekt ekranu w lewym dolnym rogu kształtu
 /datum/component/storage/concrete/grid/proc/update_highlight(obj/item/I, px, py, width, height, overflow)
 	var/atom/movable/screen/storage_grid_item/highlight = LAZYACCESS(grid_highlights, I)
 	if(!highlight)
@@ -514,16 +540,7 @@
 	if(highlight.shape_key == shape_key)
 		return
 	highlight.shape_key = shape_key
-	var/list/tiles = list()
-	for(var/dy in 0 to height - 1)
-		for(var/dx in 0 to width - 1)
-			// Maska sąsiadów w tym samym kształcie: N=1, S=2, E=4, W=8 (dy rośnie w górę ekranu)
-			var/mask = (dy < height - 1 ? 1 : 0) | (dy > 0 ? 2 : 0) | (dx < width - 1 ? 4 : 0) | (dx > 0 ? 8 : 0)
-			var/mutable_appearance/tile = mutable_appearance('aquila/icons/hud/storage_grid.dmi', "tile-[mask]")
-			tile.pixel_x = dx * grid_cell_size
-			tile.pixel_y = dy * grid_cell_size
-			tiles += tile
-	highlight.overlays = tiles
+	highlight.overlays = shape_tiles(width, height)
 
 /// Skaluje ikonę przedmiotu do kratek (grid_icon_scale()) i obraca ją o kąt z siatki
 /datum/component/storage/concrete/grid/proc/apply_appearance(obj/item/I, scale, angle = 0)
@@ -581,13 +598,16 @@
 	if(overflow_count)
 		text += " <font color='[GRID_COLOR_OVERFLOW]'>· nie mieści się: [overflow_count]</font>"
 	grid_header.maptext = MAPTEXT(text)
-	grid_header.maptext_width = max(grid_width * grid_cell_size, world.icon_size * 4)
+	// Tekst idzie w jednej linii (pasek ma GRID_HEADER_HEIGHT), więc szerokość nie zależy od siatki: małe schowki z długą
+	// nazwą (np. „zardzewiała niebieska skrzynka narzędziowa”) inaczej zawijały tekst i liczniki znikały pod paskiem
+	grid_header.maptext_width = max(grid_width * grid_cell_size, GRID_STORAGE_MAX_PIXEL_WIDTH)
 	grid_header.screen_loc = grid_loc(0, grid_height * grid_cell_size)
 
 /datum/component/storage/concrete/grid/orient2hud()
 	if(!grid_width)
 		return ..()
 	settle_contents()
+	grid_revision++
 	var/size = grid_cell_size
 	update_background()
 	var/atom/real_location = real_location()
@@ -656,16 +676,29 @@
 	. = ..()
 	if(!. || !grid_width)
 		return
-	if(!find_spot_for(I, pending_cell, settle_contents()))
+	var/list/spot = find_spot_for(I, pending_cell, settle_contents())
+	if(!spot)
+		grid_fit_cache = null
 		if(!stop_messages)
 			var/atom/host = parent
 			host.balloon_alert(M, "brak miejsca")
 		return FALSE
+	grid_fit_cache = list(REF(I), spot, world.time, pending_cell ? jointext(pending_cell, ",") : null)
 
 /datum/component/storage/concrete/grid/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
 	if(!grid_width || !istype(I))
 		return ..()
-	var/list/spot = find_spot_for(I, pending_cell, settle_contents())
+	// Miejsce znalezione przed chwilą w can_be_inserted() dla tego przedmiotu i tej kratki jest aktualne: nic się nie zmieniło w tym ticku
+	var/list/spot
+	var/list/cached = grid_fit_cache
+	grid_fit_cache = null
+	if(cached && cached[1] == REF(I) && cached[3] == world.time && cached[4] == (pending_cell ? jointext(pending_cell, ",") : null) && !LAZYACCESS(grid_positions, I))
+		var/list/cached_spot = cached[2]
+		var/list/shape = grid_shape(I, cached_spot[3])
+		if(cells_free(build_occupancy(), cached_spot[1], cached_spot[2], shape[1], shape[2]))
+			spot = cached_spot
+	if(!spot)
+		spot = find_spot_for(I, pending_cell, settle_contents())
 	pending_cell = null
 	// Pozycję zapisujemy przed włożeniem, bo włożenie od razu odświeża ekran. Bez miejsca (włożenie siłą) przedmiot trafia do przepełnienia
 	var/had_position = LAZYACCESS(grid_positions, I)
@@ -787,6 +820,6 @@
 #undef GRID_COLOR_PREVIEW
 #undef GRID_CELL_SIZE
 #undef GRID_HEADER_HEIGHT
-#undef GRID_STORAGE_MAX_WIDTH
+#undef GRID_STORAGE_MAX_PIXEL_WIDTH
 #undef GRID_STORAGE_HEIGHT
 #undef GRID_STORAGE_MAX_GROWN_HEIGHT

@@ -216,6 +216,25 @@
 	TEST_ASSERT_EQUAL(grid.grid_loc(0, 0), "[grid.screen_start_x]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Grid origin screen_loc")
 	TEST_ASSERT_EQUAL(grid.grid_loc(grid.grid_cell_size * 4, 0), "[grid.screen_start_x + 3]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Four 24 px cells should span three screen tiles")
 
+	// Szerokość siatki liczona w pikselach ekranu: przy mniejszych kratkach mieści się ich więcej
+	TEST_ASSERT_EQUAL(grid.grid_max_width() * grid.grid_cell_size <= 384, TRUE, "Widest grid does not fit the screen space")
+	TEST_ASSERT(grid.grid_max_width() > 12, "Max width still counts 32 px tiles instead of grid cells")
+
+	// Nagłówek idzie w jednej linii: długa nazwa małego schowka mieści się bez zawijania
+	var/obj/item/storage/toolbox/long_name = allocate(/obj/item/storage/toolbox)
+	long_name.name = "zardzewiała niebieska skrzynka narzędziowa"
+	var/datum/component/storage/concrete/grid/long_grid = long_name.GetComponent(/datum/component/storage/concrete/grid)
+	long_grid.orient2hud()
+	TEST_ASSERT(long_grid.grid_header.maptext_width >= 384, "Header of a small storage is as narrow as its grid and wraps long names")
+
+	// Podgląd lądowania liczy się od nowa po każdym przerysowaniu siatki, nawet gdy przesunął się inny przedmiot
+	var/revision = grid.grid_revision
+	grid.orient2hud()
+	TEST_ASSERT(grid.grid_revision > revision, "Grid revision did not change on redraw")
+
+	// Tło łapie klik na całej powierzchni, także w szczelinach między polami
+	TEST_ASSERT_EQUAL(grid.boxes.mouse_opacity, MOUSE_OPACITY_OPAQUE, "Grid background lets clicks through the gaps")
+
 	// Kliknięcie poza siatką nie wskazuje kratki
 	TEST_ASSERT(!grid.params_to_cell("screen-loc=[grid.screen_start_x + grid.grid_width]:20,[grid.screen_start_y]:20"), "Cell found to the right of the grid")
 	var/list/cell = grid.params_to_cell("screen-loc=mapwindow.map:[grid.screen_start_x]:20,[grid.screen_start_y]:20")
@@ -266,9 +285,9 @@
 					if(!LAZYACCESS(grid.grid_positions, stored))
 						unplaced += "[stored.type]"
 				// Mieszczące się w starych limitach musi wejść zawsze. Ponad limity (zestawy w pudełkach) siatka rośnie,
-				// więc przepełnienie jest dopuszczalne dopiero przy siatce w największym rozmiarze (12 szerokości, 7 wysokości)
+				// więc przepełnienie jest dopuszczalne dopiero przy siatce w największym rozmiarze
 				var/within_old_limits = !too_big && old_weight <= grid.grid_base_weight && old_items <= grid.grid_base_items
-				var/grid_maxed = grid.grid_width >= 12 && grid.grid_height >= 7
+				var/grid_maxed = grid.grid_width >= grid.grid_max_width() && grid.grid_height >= grid.grid_max_grown_height()
 				if(length(unplaced) && (within_old_limits || !grid_maxed))
 					failures += "[storage_type] ([grid.grid_width]x[grid.grid_height]): nie mieści się [jointext(unplaced, ", ")]"
 			for(var/atom/movable/thing in container)
@@ -348,6 +367,26 @@
 		qdel(thing)
 	qdel(bag)
 
+
+/// AQUILA - obrót E/Q dopisuje się do zapisanych keybindów raz: skrót odpięty potem przez gracza nie wraca
+/datum/unit_test/storage_grid_keybind_migration
+
+/datum/unit_test/storage_grid_keybind_migration/Run()
+	var/list/bindings = list("E" = list("quick_equip"), "Q" = list("drop_item"))
+	var/list/migrations = list()
+	TEST_ASSERT(storage_grid_migrate_keybinds(bindings, migrations), "First migration did nothing")
+	TEST_ASSERT("storage_grid_rotate_right" in bindings["E"], "Rotate right was not added to E")
+	TEST_ASSERT("quick_equip" in bindings["E"], "Quick equip was removed from E")
+	TEST_ASSERT("storage_grid_rotate_left" in bindings["Q"], "Rotate left was not added to Q")
+	// Gracz odpina obrót z E: kolejne wczytanie nie dopisuje go z powrotem
+	bindings["E"] = list("quick_equip")
+	TEST_ASSERT(!storage_grid_migrate_keybinds(bindings, migrations), "Migration ran twice")
+	TEST_ASSERT(!("storage_grid_rotate_right" in bindings["E"]), "Unbound rotate came back after the migration")
+	// Obrót przypisany przez gracza gdzie indziej nie dostaje drugiego klawisza
+	var/list/custom = list("R" = list("storage_grid_rotate_right"), "E" = list("quick_equip"))
+	storage_grid_migrate_keybinds(custom, list())
+	TEST_ASSERT(!("storage_grid_rotate_right" in custom["E"]), "Rotate got a second key although the player bound it")
+	TEST_ASSERT("storage_grid_rotate_left" in custom["Q"], "Missing rotate left was not added to a free Q")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

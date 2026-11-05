@@ -30,12 +30,20 @@
 
 /client/MouseDrag(src_object, atom/over_object, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	if(!storage_grid_drag)
-		var/obj/item/I = storage_grid_drag_target(src_object)
-		if(!I)
-			return
-		storage_grid_drag = WEAKREF(I)
-	storage_grid_update_preview(params)
+	// Przy każdym ruchu sprawdzamy, co faktycznie jest przeciągane: zapamiętany przedmiot z wcześniejszego przeciągania,
+	// którego koniec nie doszedł, nie może przejąć podglądu ani klawiszy E/Q przy przeciąganiu czegoś innego
+	var/obj/item/I = storage_grid_drag_target(src_object)
+	if(storage_grid_drag?.resolve() != I)
+		storage_grid_drag_end()
+		if(I)
+			storage_grid_drag = WEAKREF(I)
+	if(I)
+		storage_grid_update_preview(params)
+
+/client/MouseDown(object, location, control, params)
+	// Nowe wciśnięcie przycisku zaczyna nowe przeciąganie albo klik, więc stare przeciąganie na pewno się skończyło
+	storage_grid_drag_end()
+	return ..()
 
 /// Odświeża podgląd lądowania dla przeciąganego przedmiotu. Bez params bierze ostatnie położenie myszy
 /client/proc/storage_grid_update_preview(params)
@@ -115,12 +123,17 @@
 	keybind_signal = COMSIG_KB_STORAGE_GRID_ROTATE_LEFT_DOWN
 	clockwise = FALSE
 
-// Zapisane keybindy nie dostają nowych skrótów same. Dopisujemy obrót pod E i Q obok dotychczasowych skrótów,
-// jeśli gracz nie ma go nigdzie przypisanego (wtedy przejmuje klawisz tylko w trakcie przeciągania po siatce).
-/datum/preferences/load_from_database()
-	. = ..()
-	if(!islist(key_bindings))
-		return
+/// Nazwa jednorazowej migracji, która dopisuje obrót pod E i Q do zapisanych keybindów
+#define STORAGE_GRID_KEYBIND_MIGRATION "storage_grid_rotate"
+
+/// Zapisane keybindy nie dostają nowych skrótów same. Raz na gracza dopisujemy obrót pod E i Q obok dotychczasowych
+/// skrótów (wtedy przejmuje klawisz tylko w trakcie przeciągania po siatce), o ile gracz nie ma go już gdzieś przypisanego.
+/// Migracja zapisuje się w migrations, więc skrót, który gracz potem odepnie, nie wraca przy następnym logowaniu.
+/// Zwraca TRUE, jeśli tym razem coś zmieniła
+/proc/storage_grid_migrate_keybinds(list/key_bindings, list/migrations)
+	if(!islist(key_bindings) || !islist(migrations) || (STORAGE_GRID_KEYBIND_MIGRATION in migrations))
+		return FALSE
+	migrations += STORAGE_GRID_KEYBIND_MIGRATION
 	var/list/missing = list("storage_grid_rotate_right" = "E", "storage_grid_rotate_left" = "Q")
 	for(var/bound_key in key_bindings)
 		var/list/names = key_bindings[bound_key]
@@ -133,6 +146,14 @@
 		var/bound_key = missing[kb_name]
 		var/list/names = key_bindings[bound_key]
 		key_bindings[bound_key] = islist(names) ? names + kb_name : list(kb_name)
+	return TRUE
 
+/datum/preferences/load_from_database()
+	. = ..()
+	if(!islist(keybind_migrations))
+		keybind_migrations = list()
+	storage_grid_migrate_keybinds(key_bindings, keybind_migrations)
+
+#undef STORAGE_GRID_KEYBIND_MIGRATION
 #undef COMSIG_KB_STORAGE_GRID_ROTATE_RIGHT_DOWN
 #undef COMSIG_KB_STORAGE_GRID_ROTATE_LEFT_DOWN
