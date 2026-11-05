@@ -1,0 +1,96 @@
+/// AQUILA - ship signatures (aquila/code/modules/overmap/sensor_signature.dm): a quiet ship is detected later,
+/// thrust and weapons fire give you away, and the radar / paint / EMP exceptions still reveal you
+/datum/unit_test/aquila_sensor_signature
+	var/obj/structure/overmap/small_craft/observer
+	var/obj/structure/overmap/small_craft/target
+
+/datum/unit_test/aquila_sensor_signature/Run()
+	var/was_enabled = GLOB.sensor_signature_enabled
+	GLOB.sensor_signature_enabled = TRUE
+	observer = allocate(/obj/structure/overmap/small_craft/combat/light)
+	target = allocate(/obj/structure/overmap/small_craft/combat/light)
+	target.faction = "syndicate"
+	var/fail = check_signature() || check_detection() || check_offsets()
+	observer.ai_controlled = FALSE
+	GLOB.sensor_signature_enabled = was_enabled
+	if(fail)
+		return Fail(fail)
+
+/// Puts target dist tiles east of observer, on the test z level
+/datum/unit_test/aquila_sensor_signature/proc/place(dist)
+	var/z = run_loc_floor_bottom_left.z
+	observer.forceMove(locate(10, 10, z))
+	target.forceMove(locate(10 + round(dist), 10, z))
+
+/datum/unit_test/aquila_sensor_signature/proc/make_quiet()
+	target.thrust_heat = 0
+	target.last_thrust_forward = 0
+	target.last_thrust_right = 0
+	target.brakes = FALSE
+	target.inertial_dampeners = FALSE
+	target.last_weapon_fire = -INFINITY
+	target.last_radar_pulse = -INFINITY
+	target.sensor_profile = 0
+	target.target_painted = list()
+	target.update_sensor_signature()
+
+/datum/unit_test/aquila_sensor_signature/proc/check_signature()
+	make_quiet()
+	var/quiet = target.sensor_signature
+	target.last_thrust_forward = target.forward_maxthrust || 1
+	for(var/i in 1 to 20)
+		target.update_sensor_signature()
+	var/burning = target.sensor_signature
+	if(burning <= quiet)
+		return "Thrusting did not raise the signature ([quiet] -> [burning])"
+	target.last_weapon_fire = world.time
+	target.update_sensor_signature()
+	if(target.sensor_signature <= burning)
+		return "Firing did not raise the signature ([burning] -> [target.sensor_signature])"
+
+/datum/unit_test/aquila_sensor_signature/proc/check_detection()
+	for(var/ai in list(FALSE, TRUE))
+		observer.ai_controlled = ai
+		var/who = ai ? "AI" : "player"
+		make_quiet()
+		var/range = target.get_detection_range(observer)
+		place(range + 5)
+		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_GHOST)
+			return "A quiet ship [range + 5] tiles away was visible to a [who] observer with a detection range of [range]"
+		place(max(1, range - 3))
+		if(target.is_sensor_visible(observer) == SENSOR_VISIBILITY_GHOST)
+			return "A quiet ship inside the detection range ([range]) was hidden from a [who] observer"
+
+		// Regression: the exceptions must still reveal a ship far outside its passive range
+		place(range + 5)
+		target.last_radar_pulse = world.time
+		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_FULL)
+			return "A ship that just pulsed its radar was not fully visible to a [who] observer"
+		target.last_radar_pulse = -INFINITY
+		target.target_painted[observer] = FALSE
+		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_FULL)
+			return "A ship painting the [who] observer was not fully visible to it"
+		target.target_painted = list()
+		target.sensor_profile = range + 10
+		if(target.is_sensor_visible(observer) == SENSOR_VISIBILITY_GHOST)
+			return "A ship with a sensor profile penalty (EMP) was hidden from a [who] observer"
+		target.sensor_profile = 0
+		GLOB.sensor_signature_enabled = FALSE
+		var/disabled_visibility = target.is_sensor_visible(observer)
+		GLOB.sensor_signature_enabled = TRUE
+		if(disabled_visibility == SENSOR_VISIBILITY_GHOST)
+			return "With the system switched off a ship was still hidden by its signature"
+
+/datum/unit_test/aquila_sensor_signature/proc/check_offsets()
+	var/radius = 4
+	var/list/first = observer.get_sensor_offset(target, radius).Copy()
+	var/list/second = observer.get_sensor_offset(target, radius)
+	if(first[1] != second[1] || first[2] != second[2])
+		return "The contact position error was re-rolled between two reads in the same step"
+	for(var/i in 1 to 50)
+		var/list/offset = observer.sensor_offsets[target]
+		offset[3] = world.time - 1 MINUTES // Force a random walk step
+		offset = observer.get_sensor_offset(target, radius)
+		if(sqrt(offset[1] ** 2 + offset[2] ** 2) > radius + 1)
+			return "The contact position error left its radius ([offset[1]], [offset[2]] for radius [radius])"
+
