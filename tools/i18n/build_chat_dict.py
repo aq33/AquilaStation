@@ -29,6 +29,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
 import list_missing as lm  # noqa: E402
+import jsx_runs  # noqa: E402
 
 # Domyślnie cały kod DM. --slice zawęża szablony do wybranych ścieżek (stałe teksty
 # i tak idą ze wszystkich plików, bo są potrzebne jako wartości wstawek).
@@ -178,7 +179,8 @@ def build_pl(parts):
     return texts, exprs
 
 
-TERNARY = re.compile(r'^[^"]+\?\s*"((?:\\.|[^"\\])*)"\s*:\s*"((?:\\.|[^"\\])*)"$')
+# [x ? "A" : "B"] z DM albo ${x ? 'A' : 'B'} z okien; napisy w grupach 2 i 4
+TERNARY = re.compile(r'''^[^"']+?\?\s*(["'])((?:\\.|(?!\1)[^\\])*)\1\s*:\s*(["'])((?:\\.|(?!\3)[^\\])*)\3$''')
 
 
 def unescape_dm(text):
@@ -218,8 +220,8 @@ def tag_segments(pl, en):
 def literal_ternary(expr):
     """[A, B] dla wstawki [x ? "A" : "B"] bez zagnieżdżonych wstawek, inaczej None."""
     m = TERNARY.match(expr.strip())
-    if m and "[" not in m.group(1) and "[" not in m.group(2):
-        return [unescape_dm(m.group(1)), unescape_dm(m.group(2))]
+    if m and "[" not in m.group(2) and "[" not in m.group(4) and "${" not in m.group(2) + m.group(4):
+        return [unescape_dm(m.group(2)), unescape_dm(m.group(4))]
     return None
 
 
@@ -263,7 +265,7 @@ def build_en(parts, pl_exprs):
                 # angielski warunek z tym samym warunkiem co polska alternatywa: gałąź według tego,
                 # która polska alternatywa wystąpiła (["?", nr wstawki PL, [EN dla A, EN dla B]])
                 m = TERNARY.match(val.strip())
-                out.append(["?", pl_conditions[condition], [unescape_dm(m.group(1)), unescape_dm(m.group(2))]])
+                out.append(["?", pl_conditions[condition], [unescape_dm(m.group(2)), unescape_dm(m.group(4))]])
             else:
                 m = PRONOUN_CALL.search(key)
                 if m and m.group(1) in pronouns:
@@ -309,6 +311,8 @@ def load_sources(args):
         merged.update(load_json(args.pairs))
     else:
         merged = load_json(args.all)
+    # zdania z okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py)
+    merged.update(load_json(jsx_runs.OUT))
     merged.update(load_json(args.translated))
     merged.update(load_json(args.manual))
     with open(args.all, "w", encoding="utf-8") as f:
@@ -362,22 +366,29 @@ def main():
         is_js = path.endswith(JS_EXT)
         in_slice = path.endswith(".dm") and any(path.startswith(p) for p in args.slice)
         with open(path, encoding="utf-8", errors="replace") as f:
-            for line in ep.logical_lines(path, f.read().splitlines()):
-                # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
-                for lit in lm.line_literals(path, line):
-                    if lit not in pairs:
-                        # zdanie w kodzie po angielsku z wstawką ("[src] looks pretty robust!"):
-                        # szablon na siebie, żeby przetłumaczyć wstawione polskie nazwy
-                        if in_slice and "[" in lit and ep.is_english(lit) and not ep.is_polish(lit):
-                            english_literals.add(lit)
-                        continue
-                    if is_js:
-                        js_literals.add(lit)
-                        (wanted if "${" in lit else names).add(lit)
-                    elif in_slice:
-                        wanted.add(lit)
-                    elif "[" not in lit:
-                        names.add(lit)  # stałe spoza wycinka: nazwy, czasowniki ataku itp.
+            content = f.read()
+        if path.endswith(jsx_runs.JSX_EXT):
+            # całe zdania z wstawkami: okno tłumaczy razem sąsiednie węzły tekstowe
+            for lit, _ in jsx_runs.runs(content):
+                if lit in pairs:
+                    js_literals.add(lit)
+                    wanted.add(lit)
+        for line in ep.logical_lines(path, content.splitlines()):
+            # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
+            for lit in lm.line_literals(path, line):
+                if lit not in pairs:
+                    # zdanie w kodzie po angielsku z wstawką ("[src] looks pretty robust!"):
+                    # szablon na siebie, żeby przetłumaczyć wstawione polskie nazwy
+                    if in_slice and "[" in lit and ep.is_english(lit) and not ep.is_polish(lit):
+                        english_literals.add(lit)
+                    continue
+                if is_js:
+                    js_literals.add(lit)
+                    (wanted if "${" in lit else names).add(lit)
+                elif in_slice:
+                    wanted.add(lit)
+                elif "[" not in lit:
+                    names.add(lit)  # stałe spoza wycinka: nazwy, czasowniki ataku itp.
 
     manual = load_json(args.manual)
 
@@ -425,7 +436,7 @@ def main():
                 if ui_value and ui_value != key:
                     ui[key] = ui_value
             continue
-        alts = alternatives(exprs) if pl not in js_literals else {}
+        alts = alternatives(exprs)
         fixed = TAG.sub(" ", "".join(texts) + " " + " ".join(" ".join(a) for a in alts.values()))
         if pl not in manual and (len(WORD.findall(fixed)) == 0 or len(re.sub(r"\s", "", fixed)) < 4):
             stats["pomijane: za mało stałego tekstu"] += 1

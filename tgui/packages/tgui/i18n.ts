@@ -254,8 +254,8 @@ const translateList = (text: string): string | undefined => {
 };
 
 /**
- * Stały tekst ze słownika. Kod często dokleja znak końca zdania sam
- * (emotki: "krzyczy" + "."), więc szukamy też bez niego.
+ * Stały tekst ze słownika. Kod często dokleja znak końca zdania albo
+ * dwukropek sam (emotki: "krzyczy" + "."), więc szukamy też bez niego.
  */
 const lookupExact = (text: string): string | undefined => {
   const found = lookupCased(text);
@@ -271,11 +271,12 @@ const lookupExact = (text: string): string | undefined => {
       return `${article[1]} ${name}`;
     }
   }
+  // etykiety w oknach dostają dwukropek w JSX ("Ciśnienie:"), słownik ma samo słowo
   const last = text.charAt(text.length - 1);
-  if ('.!?'.includes(last)) {
+  if ('.!?:'.includes(last)) {
     const base = lookupCased(text.slice(0, -1));
     if (base !== undefined) {
-      return /[.!?]$/.test(base) ? base : base + last;
+      return /[.!?:]$/.test(base) ? base : base + last;
     }
   }
   return undefined;
@@ -628,9 +629,16 @@ const translateMarkup = (html: string, depth: number): string => {
  */
 export const translateUiText = (text: string): string => {
   const trimmed = text.trim();
-  const found = dictionary?.ui?.[trimmed];
+  const ui = dictionary?.ui;
+  const found = ui?.[trimmed];
   if (found !== undefined) {
     return text.replace(trimmed, found);
+  }
+  if (ui && trimmed.endsWith(':')) {
+    const base = ui[trimmed.slice(0, -1)];
+    if (base !== undefined) {
+      return text.replace(trimmed, base.endsWith(':') ? base : base + ':');
+    }
   }
   return translateHtml(text);
 };

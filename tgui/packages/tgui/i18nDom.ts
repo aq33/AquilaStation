@@ -43,6 +43,48 @@ const isSkipped = (node: Node): boolean => {
   return false;
 };
 
+/** Polski tekst węzła: oryginał, jeśli w węźle nadal jest nasze tłumaczenie */
+const sourceText = (node: Text): string => {
+  const value = node.nodeValue || '';
+  const original = originals.get(node);
+  return original !== undefined && written.get(node) === value
+    ? original
+    : value;
+};
+
+const write = (node: Text, source: string, translated: string) => {
+  originals.set(node, source);
+  written.set(node, translated);
+  if (node.nodeValue !== translated) {
+    node.nodeValue = translated;
+  }
+};
+
+/**
+ * Sąsiednie węzły tekstowe wokół węzła. React robi je ze zdania przeciętego
+ * wstawką: "Przeciągnij kartę ID, aby {locked ? 'odblokować' : 'zablokować'} ten
+ * interfejs." to trzy węzły.
+ */
+const textGroup = (node: Text): Text[] => {
+  let first: ChildNode = node;
+  while (first.previousSibling?.nodeType === Node.TEXT_NODE) {
+    first = first.previousSibling;
+  }
+  const group: Text[] = [];
+  for (
+    let next: ChildNode | null = first;
+    next && next.nodeType === Node.TEXT_NODE;
+    next = next.nextSibling
+  ) {
+    group.push(next as Text);
+  }
+  return group;
+};
+
+/** Polski tekst bez tłumaczenia: polskie litery albo częste krótkie słowa */
+const POLISH_LEFT =
+  /[ąćęłńóśźż]|(?<!\p{L})(?:aby|ani|bez|dla|jest|jak|lub|nie|oraz|się|ten|już|przy|albo|na|do|od|za|po|że)(?!\p{L})/iu;
+
 const translateTextNode = (node: Text) => {
   const value = node.nodeValue;
   if (!value || !value.trim() || written.get(node) === value) {
@@ -51,12 +93,28 @@ const translateTextNode = (node: Text) => {
   if (isSkipped(node)) {
     return;
   }
-  const translated = translateUiText(value);
-  originals.set(node, value);
-  written.set(node, translated);
-  if (translated !== value) {
-    node.nodeValue = translated;
+  const group = textGroup(node);
+  if (group.length < 2) {
+    write(node, value, translateUiText(value));
+    return;
   }
+  // całe zdanie naraz: szablon ze słownika zna wstawki (tools/i18n/jsx_runs.py)
+  const sources = group.map(sourceText);
+  const combined = sources.join('');
+  const whole = translateUiText(combined);
+  if (whole !== combined) {
+    group.forEach((part, i) => write(part, sources[i], i === 0 ? whole : ''));
+    return;
+  }
+  // kawałki osobno ("Ciśnienie:", "101", " kPa"), ale bez mieszania języków
+  // w jednym zdaniu ("aby unlock ten"): wtedy całość zostaje po polsku
+  const parts = sources.map(translateUiText);
+  const mixed =
+    parts.some((part, i) => part !== sources[i]) &&
+    parts.some((part, i) => part === sources[i] && POLISH_LEFT.test(part));
+  group.forEach((part, i) =>
+    write(part, sources[i], mixed ? sources[i] : parts[i]),
+  );
 };
 
 const translateAttributes = (el: Element) => {

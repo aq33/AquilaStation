@@ -7,10 +7,33 @@ const DICTIONARY = {
     'skrzynka narzędziowa': 'toolbox',
     Szukaj: 'Search',
     Wróć: 'Recall',
+    odblokować: 'unlock',
+    zablokować: 'lock',
+    Ciśnienie: 'Pressure',
   },
   // teksty z kodu okien mają w oknach pierwszeństwo
   ui: { Wróć: 'Back' },
-  templates: [],
+  templates: [
+    [
+      'przeciągnij',
+      ['Przeciągnij kartę ID, aby ', ' ten interfejs.'],
+      [
+        'Swipe an ID card to ',
+        ['?', 0, ['unlock', 'lock']],
+        ' this interface.',
+      ],
+      { '0': ['odblokować', 'zablokować'] },
+    ],
+  ],
+};
+
+/** Element z kilkoma węzłami tekstowymi, jak robi je React ze zdania z wstawką */
+const textNodes = (...parts: string[]) => {
+  const el = document.createElement('div');
+  const nodes = parts.map((part) => document.createTextNode(part));
+  nodes.forEach((node) => el.appendChild(node));
+  document.body.appendChild(el);
+  return { el, nodes };
 };
 
 // Udaje store tgui: wystarczy subscribe i stan z config.language
@@ -79,5 +102,44 @@ describe('setupDomTranslation', () => {
       'Szukaj',
     );
     expect(other.getAttribute('placeholder')).toBe('Coś nowego');
+  });
+
+  it('tłumaczy zdanie przecięte wstawką i etykietę z dwukropkiem', async () => {
+    const sentence = textNodes(
+      'Przeciągnij kartę ID, aby ',
+      'odblokować',
+      ' ten interfejs.',
+    );
+    const label = textNodes('Ciśnienie:');
+    // nieznane zdanie ze znanym słowem w środku: bez mieszania języków
+    const unknown = textNodes('Kliknij, aby ', 'odblokować', ' drzwi.');
+    const store = createStore();
+    setupDomTranslation(store as any);
+    store.setLanguage('en');
+    await flush();
+    expect(sentence.el.textContent).toBe(
+      'Swipe an ID card to unlock this interface.',
+    );
+    expect(label.el.textContent).toBe('Pressure:');
+    expect(unknown.el.textContent).toBe('Kliknij, aby odblokować drzwi.');
+
+    // React zmienia tylko węzeł wstawki
+    sentence.nodes[1].nodeValue = 'zablokować';
+    await flush();
+    expect(sentence.el.textContent).toBe(
+      'Swipe an ID card to lock this interface.',
+    );
+
+    store.setLanguage('pl');
+    await flush();
+    expect(sentence.el.textContent).toBe(
+      'Przeciągnij kartę ID, aby zablokować ten interfejs.',
+    );
+    expect(sentence.nodes.map((node) => node.nodeValue)).toEqual([
+      'Przeciągnij kartę ID, aby ',
+      'zablokować',
+      ' ten interfejs.',
+    ]);
+    expect(label.el.textContent).toBe('Ciśnienie:');
   });
 });

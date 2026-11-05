@@ -21,9 +21,11 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
+import jsx_runs  # noqa: E402
 
 SOURCES = [
     "strings/i18n/en_all.json",
+    "strings/i18n/en_jsx.json",
     "strings/i18n/en_pairs.json",
     "strings/i18n/en_pairs_upstream.json",
     "strings/i18n/en_manual.json",
@@ -93,9 +95,12 @@ def missing_literals(known):
             continue
         try:
             with open(path, encoding="utf-8", errors="replace") as f:
-                lines = ep.logical_lines(path, f.read().splitlines())
+                content = f.read()
         except OSError:
             continue
+        lines = ep.logical_lines(path, content.splitlines())
+        for lit, number in jsx_missing(path, content, known):
+            found.setdefault(lit, {"pl": lit, "file": path, "line": number, "code": lit[:200]})
         for number, line in enumerate(lines, 1):
             for lit in line_literals(path, line):
                 if lit in known or lit in found:
@@ -105,15 +110,31 @@ def missing_literals(known):
     return found
 
 
+def jsx_missing(path, content, known):
+    """Polskie zdania okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py) bez angielskiego:
+    (literał, numer linii początku zdania)."""
+    if not path.endswith(jsx_runs.JSX_EXT):
+        return []
+    out = []
+    for lit, _ in jsx_runs.runs(content):
+        if lit not in known and jsx_runs.is_polish_run(lit):
+            head = lit.split("${", 1)[0].strip() or lit
+            out.append((lit, content.count("\n", 0, max(content.find(head), 0)) + 1))
+    return out
+
+
 def changed_missing(known, base):
     """Polskie literały w liniach dodanych względem base, bez angielskiego."""
     diff = subprocess.run(["git", "diff", "-U0", "--no-renames", base, "--", *PATHSPECS],
                           capture_output=True, text=True, encoding="utf-8", check=True).stdout
     is_polish = polish_detector(known)
     path, number, found = None, 0, []
+    touched = set()
     for line in diff.splitlines():
         if line.startswith("+++ "):
             path = line[6:] if line.startswith("+++ b/") else None
+            if path:
+                touched.add(path)
         elif m := HUNK.match(line):
             number = int(m.group(1))
         elif line.startswith("+") and path:
@@ -122,6 +143,11 @@ def changed_missing(known, base):
                     if lit not in known and is_polish(lit):
                         found.append((path, number, lit))
             number += 1
+    # zdania z wstawkami JSX ciągną się przez kilka linii: sprawdzamy całe zmienione okna
+    for path in sorted(touched):
+        if os.path.exists(path) and not NOT_PLAYER_TEXT.search(path):
+            with open(path, encoding="utf-8", errors="replace") as f:
+                found += [(path, number, lit) for lit, number in jsx_missing(path, f.read(), known)]
     return found
 
 
