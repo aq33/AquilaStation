@@ -179,6 +179,9 @@
       otwiera się w przeglądarce).'
   - config: Nowy plik config/voice_chat.txt (domyślnie wyłączony) i serwis tools/voice_chat
       z rozpoznawaniem mowy przez Whisper, ElevenLabs albo OpenAI.
+  - rscadd: Przyciski etapów w oknie broni statkowej (podanie, komora, przeładowanie
+      ze stojaka) nabijają się paskiem, dopóki etap trwa.
+  - bugfix: Skrzydła, ogony i czułki nie odcinają się już od animacji chodu.
   Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
   - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
       (wybierany przez admina).
