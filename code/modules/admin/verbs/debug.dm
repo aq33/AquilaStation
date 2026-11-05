@@ -158,7 +158,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(matches.len==0)
 		return
-	var/hsbitem = input(usr, i18n_dialog_text(usr, "Wybierz obiekt do usunięcia."), i18n_dialog_text(usr, "Usuń:")) as null|anything in sortList(matches) // AQ EDIT - i18n okienka
+	var/hsbitem = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz obiekt do usunięcia."), i18n_dialog_text(usr, "Usuń:")) as null|anything in i18n_input_shown(usr, sortList(matches))) // AQ EDIT - i18n okienka
 	if(hsbitem)
 		hsbitem = matches[hsbitem]
 		var/counter = 0
@@ -257,7 +257,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(M.ckey)
 		if(i18n_alert(usr, "Tym mobem steruje [M.key]. Na pewno chcesz oddać kontrolę nad nim komuś innemu? [M.key] zostanie duchem.",,"Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
 			return
-	var/client/newkey = input(src, i18n_dialog_text(src, "Wybierz gracza, który przejmie kontrolę."), i18n_dialog_text(src, "Nowy gracz")) as null|anything in sortList(GLOB.clients) // AQ EDIT - i18n okienka
+	var/client/newkey = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz gracza, który przejmie kontrolę."), i18n_dialog_text(src, "Nowy gracz")) as null|anything in i18n_input_shown(src, sortList(GLOB.clients))) // AQ EDIT - i18n okienka
 	var/mob/oldmob = newkey.mob
 	var/delmob = FALSE
 	if((isobserver(oldmob) || i18n_alert(usr, "Usunąć starego moba gracza [newkey]?","Usunąć?","Tak","Nie") != "Nie")) // AQ EDIT - i18n okienka
@@ -540,7 +540,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(initial(O.can_be_admin_equipped))
 			outfits[initial(O.name)] = path
 
-	var/dresscode = input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in outfits // AQ EDIT - i18n okienka
+	var/dresscode = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in i18n_input_shown(usr, outfits)) // AQ EDIT - i18n okienka
 	if(isnull(dresscode))
 		return
 
@@ -557,7 +557,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(initial(O.can_be_admin_equipped))
 				job_outfits[initial(O.name)] = path
 
-		dresscode = input(i18n_dialog_text(usr, "Wybierz wyposażenie profesji"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(job_outfits) // AQ EDIT - i18n okienka
+		dresscode = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz wyposażenie profesji"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in i18n_input_shown(usr, sortList(job_outfits))) // AQ EDIT - i18n okienka
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -570,7 +570,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(initial(O.can_be_admin_equipped))
 				job_outfits[initial(O.name)] = path
 
-		dresscode = input(i18n_dialog_text(usr, "Wybierz wyposażenie plazmamana"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(job_outfits) // AQ EDIT - i18n okienka
+		dresscode = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz wyposażenie plazmamana"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in i18n_input_shown(usr, sortList(job_outfits))) // AQ EDIT - i18n okienka
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -584,7 +584,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in sortList(custom_names) // AQ EDIT - i18n okienka
+		var/selected_name = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz strój"), i18n_dialog_text(usr, "Szybka przebieralnia")) as null|anything in i18n_input_shown(usr, sortList(custom_names))) // AQ EDIT - i18n okienka
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
@@ -887,7 +887,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		names[name] = ruin_landmark
 
-	var/ruinname = input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Skok do ruiny")) as null|anything in sortList(names) // AQ EDIT - i18n okienka
+	var/ruinname = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Skok do ruiny")) as null|anything in i18n_input_shown(usr, sortList(names))) // AQ EDIT - i18n okienka
 
 
 	var/obj/effect/landmark/ruin/landmark = names[ruinname]
@@ -918,7 +918,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/name in SSmapping.lava_ruins_templates)
 		names[name] = list(SSmapping.lava_ruins_templates[name], ZTRAIT_LAVA_RUINS, /area/lavaland/surface/outdoors/unexplored)
 
-	var/ruinname = input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Postaw ruinę")) as null|anything in sortList(names) // AQ EDIT - i18n okienka
+	var/ruinname = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz ruinę"), i18n_dialog_text(usr, "Postaw ruinę")) as null|anything in i18n_input_shown(usr, sortList(names))) // AQ EDIT - i18n okienka
 	var/data = names[ruinname]
 	if (!data)
 		return
@@ -1062,7 +1062,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Czas łączny"	=	/proc/cmp_profile_time_dsc,
 		"Liczba wywołań"	=	/proc/cmp_profile_count_dsc
 	)
-	var/sort = input(src, i18n_dialog_text(src, "Sortowanie?"), i18n_dialog_text(src, "Rodzaj sortowania"), "Średni czas") as null|anything in sortlist // AQ EDIT - i18n okienka
+	var/sort = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Sortowanie?"), i18n_dialog_text(src, "Rodzaj sortowania"), "Średni czas") as null|anything in i18n_input_shown(src, sortlist)) // AQ EDIT - i18n okienka
 	if (!sort)
 		return
 	sort = sortlist[sort]
@@ -1084,7 +1084,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!check_rights(R_DEBUG) || !C)
 		return
 
-	var/gas_to_add = input(usr, i18n_dialog_text(usr, "Wybierz gaz do zmiany."), i18n_dialog_text(usr, "Wybierz gaz.")) as null|anything in GLOB.gas_data.ids // AQ EDIT - i18n okienka
+	var/gas_to_add = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz gaz do zmiany."), i18n_dialog_text(usr, "Wybierz gaz.")) as null|anything in i18n_input_shown(usr, GLOB.gas_data.ids)) // AQ EDIT - i18n okienka
 	var/amount = input(usr, i18n_dialog_text(usr, "Podaj liczbę moli."), i18n_dialog_text(usr, "Podaj ilość."), 0) as num // AQ EDIT - i18n okienka
 	var/temp = input(usr, i18n_dialog_text(usr, "Podaj temperaturę (w kelwinach)."), i18n_dialog_text(usr, "Podaj temperaturę (K)."), 0) as num // AQ EDIT - i18n okienka
 

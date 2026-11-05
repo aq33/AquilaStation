@@ -7,7 +7,7 @@
 		return
 
 	if (!istype(borgo, /mob/living/silicon/robot))
-		borgo = input(i18n_dialog_text(usr, "Wybierz cyborga"), i18n_dialog_text(usr, "Wybierz cyborga"), null, null) as null|anything in sortNames(GLOB.silicon_mobs) // AQ EDIT - i18n okienka
+		borgo = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz cyborga"), i18n_dialog_text(usr, "Wybierz cyborga"), null, null) as null|anything in i18n_input_shown(usr, sortNames(GLOB.silicon_mobs))) // AQ EDIT - i18n okienka
 	if (!istype(borgo, /mob/living/silicon/robot))
 		to_chat(usr, "<span class='warning'>Panel cyborga wymaga cyborga</span>")
 

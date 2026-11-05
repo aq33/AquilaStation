@@ -535,7 +535,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/away_name
 	var/datum/space_level/away_level
 
-	var/answer = input(i18n_dialog_text(usr, "Jaka misja?"),i18n_dialog_text(usr, "Misja wyjazdowa")) as null|anything in possible_options // AQ EDIT - i18n okienka
+	var/answer = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Jaka misja?"),i18n_dialog_text(usr, "Misja wyjazdowa")) as null|anything in i18n_input_shown(usr, possible_options)) // AQ EDIT - i18n okienka
 	switch(answer)
 		if("Własna")
 			var/mapfile = input(i18n_dialog_text(usr, "Wybierz plik:"), i18n_dialog_text(usr, "Plik")) as null|file // AQ EDIT - i18n okienka

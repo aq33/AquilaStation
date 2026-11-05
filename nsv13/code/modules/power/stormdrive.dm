@@ -1883,7 +1883,7 @@ Control Rods
 				if(!shares_overmap(usr, R))
 					continue
 				choices += R
-			reactor = input(usr, i18n_dialog_text(usr, "Który reaktor napędu burzowego chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in choices // AQ EDIT - i18n okienka
+			reactor = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Który reaktor napędu burzowego chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
 			return TRUE
 
 #undef LOW_ROR

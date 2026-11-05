@@ -273,7 +273,7 @@
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
 			var/datum/dynamic_ruleset/roundstart/newrule = new rule()
 			roundstart_rules[newrule.name] = newrule
-		var/added_rule = input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie startu rundy"), null) as null|anything in roundstart_rules // AQ EDIT - i18n okienka
+		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie startu rundy"), null) as null|anything in i18n_input_shown(usr, roundstart_rules)) // AQ EDIT - i18n okienka
 		if (added_rule)
 			GLOB.dynamic_forced_roundstart_ruleset += roundstart_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.")
@@ -310,7 +310,7 @@
 			var/datum/dynamic_ruleset/latejoin/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			latejoin_rules[newrule.name] = newrule
-		var/added_rule = input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić na następnym spóźnialskim? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie późnego dołączenia"), null) as null|anything in latejoin_rules // AQ EDIT - i18n okienka
+		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić na następnym spóźnialskim? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Ustawianie późnego dołączenia"), null) as null|anything in i18n_input_shown(usr, latejoin_rules)) // AQ EDIT - i18n okienka
 		if (added_rule)
 			mode.forced_latejoin_rule = latejoin_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
@@ -340,7 +340,7 @@
 			var/datum/dynamic_ruleset/midround/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			midround_rules[newrule.name] = rule
-		var/added_rule = input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić teraz? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Wykonaj zestaw reguł"), null) as null|anything in midround_rules // AQ EDIT - i18n okienka
+		var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Który zestaw reguł chcesz wymusić teraz? To pominie ograniczenia poziomu zagrożenia i liczby graczy."), i18n_dialog_text(usr, "Wykonaj zestaw reguł"), null) as null|anything in i18n_input_shown(usr, midround_rules)) // AQ EDIT - i18n okienka
 		if (added_rule)
 			log_admin("[key_name(usr)] executed the [added_rule] ruleset.")
 			message_admins("[key_name(usr)] wykonuje zestaw reguł: [added_rule].", 1)

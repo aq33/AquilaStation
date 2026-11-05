@@ -4,7 +4,7 @@
 
 	var/datum/map_template/template
 
-	var/map = input(src, i18n_dialog_text(src, "Wybierz szablon mapy do postawienia w twoim OBECNYM MIEJSCU"),i18n_dialog_text(src, "Postaw szablon mapy")) as null|anything in sortList(SSmapping.map_templates) // AQ EDIT - i18n okienka
+	var/map = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz szablon mapy do postawienia w twoim OBECNYM MIEJSCU"),i18n_dialog_text(src, "Postaw szablon mapy")) as null|anything in i18n_input_shown(src, sortList(SSmapping.map_templates))) // AQ EDIT - i18n okienka
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]

@@ -519,7 +519,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/target = null	   //Chosen target.
 
 		dest += getpois(mobs_only=1) //Fill list, prompt user with list
-		target = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skocz do istoty"), null, null) as null|anything in dest // AQ EDIT - i18n okienka
+		target = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skocz do istoty"), null, null) as null|anything in i18n_input_shown(usr, dest)) // AQ EDIT - i18n okienka
 
 		if (!target)//Make sure we actually have a target
 			return
@@ -544,7 +544,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/list/views = list()
 		for(var/i in 7 to max_view)
 			views |= i
-		var/new_view = input(i18n_dialog_text(usr, "Wybierz nowy widok"), i18n_dialog_text(usr, "Zmień zasięg widzenia"), 0) as null|anything in views // AQ EDIT - i18n okienka
+		var/new_view = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz nowy widok"), i18n_dialog_text(usr, "Zmień zasięg widzenia"), 0) as null|anything in i18n_input_shown(usr, views)) // AQ EDIT - i18n okienka
 		if(new_view)
 			client.view_size.setTo(clamp(new_view, 7, max_view) - 7)
 	else
@@ -656,7 +656,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
-	var/mob/living/target = input(i18n_dialog_text(usr, "Dziś zaczyna się twoje nowe życie!"), i18n_dialog_text(usr, "Opętaj istotę"), null, null) as null|anything in sortNames(possessible) // AQ EDIT - i18n okienka
+	var/mob/living/target = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Dziś zaczyna się twoje nowe życie!"), i18n_dialog_text(usr, "Opętaj istotę"), null, null) as null|anything in i18n_input_shown(usr, sortNames(possessible))) // AQ EDIT - i18n okienka
 
 	if(!target)
 		return 0
@@ -879,7 +879,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/eye_name = null
 
-	eye_name = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Obserwuj"), null, null) as null|anything in creatures // AQ EDIT - i18n okienka
+	eye_name = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Obserwuj"), null, null) as null|anything in i18n_input_shown(usr, creatures)) // AQ EDIT - i18n okienka
 
 	if (!eye_name)
 		return

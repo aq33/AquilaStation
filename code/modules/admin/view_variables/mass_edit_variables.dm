@@ -28,7 +28,7 @@
 
 		names = sortList(names)
 
-		variable = input(i18n_dialog_text(usr, "Która zmienna?"), i18n_dialog_text(usr, "Zmienna")) as null|anything in names // AQ EDIT - i18n okienka
+		variable = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Która zmienna?"), i18n_dialog_text(usr, "Zmienna")) as null|anything in i18n_input_shown(usr, names)) // AQ EDIT - i18n okienka
 	else
 		variable = var_name
 

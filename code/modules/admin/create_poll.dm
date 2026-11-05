@@ -6,7 +6,7 @@
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
-	var/polltype = input(i18n_dialog_text(usr, "Choose poll type."),i18n_dialog_text(usr, "Poll Type")) as null|anything in list("Single Option","Text Reply","Rating","Multiple Choice", "Instant Runoff Voting") // AQ EDIT - i18n okienka
+	var/polltype = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Choose poll type."),i18n_dialog_text(usr, "Poll Type")) as null|anything in i18n_input_shown(usr, list("Single Option","Text Reply","Rating","Multiple Choice", "Instant Runoff Voting"))) // AQ EDIT - i18n okienka
 	var/choice_amount = 0
 	switch(polltype)
 		if("Single Option")

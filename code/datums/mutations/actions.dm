@@ -65,7 +65,7 @@
 		if(!length(possible))
 			to_chat(user,"<span class='warning'>Mimo twoich starań na [sniffed] nie ma żadnych zapachów...</span>")
 			return
-		tracking_target = input(user, i18n_dialog_text(user, "Wybierz zapach do zapamiętania."), i18n_dialog_text(user, "Śledzenie zapachu")) as null|anything in sortNames(possible) // AQ EDIT - i18n okienka
+		tracking_target = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz zapach do zapamiętania."), i18n_dialog_text(user, "Śledzenie zapachu")) as null|anything in i18n_input_shown(user, sortNames(possible))) // AQ EDIT - i18n okienka
 		if(!tracking_target)
 			if(!old_target)
 				to_chat(user,"<span class='warning'>Postanawiasz nie zapamiętywać żadnych zapachów. Zamiast tego zauważasz kątem oka własny nos. Przypomina ci to, jak kiedyś zacząłeś oddychać ręcznie i nie mogłeś przestać. Co to był za okropny dzień.</span>")

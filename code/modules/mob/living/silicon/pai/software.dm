@@ -175,7 +175,7 @@
 
 /// Wybór obrazu wyświetlacza karty pAI
 /mob/living/silicon/pai/proc/change_card_image()
-	var/newImage = input(src, i18n_dialog_text(src, "Wybierz nowy obraz wyświetlacza."), i18n_dialog_text(src, "Obraz wyświetlacza"), "Happy") as null|anything in sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses")) // AQ EDIT - i18n okienka
+	var/newImage = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz nowy obraz wyświetlacza."), i18n_dialog_text(src, "Obraz wyświetlacza"), "Happy") as null|anything in i18n_input_shown(src, sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses")))) // AQ EDIT - i18n okienka
 	if(!newImage || !card)
 		return
 	var/pID = 1

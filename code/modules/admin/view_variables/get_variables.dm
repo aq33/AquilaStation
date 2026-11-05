@@ -104,7 +104,7 @@
 		if(extra_classes)
 			classes += extra_classes
 
-		.["class"] = input(src, i18n_dialog_text(src, "Jaki rodzaj danych?"), i18n_dialog_text(src, "Typ zmiennej"), default_class) as null|anything in classes // AQ EDIT - i18n okienka
+		.["class"] = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Jaki rodzaj danych?"), i18n_dialog_text(src, "Typ zmiennej"), default_class) as null|anything in i18n_input_shown(src, classes)) // AQ EDIT - i18n okienka
 		if(holder && holder.marked_datum && .["class"] == markstring)
 			.["class"] = VV_MARKED_DATUM
 
@@ -173,7 +173,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in things // AQ EDIT - i18n okienka
+			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
 			if(!value)
 				.["class"] = null
 				return
@@ -186,7 +186,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in things // AQ EDIT - i18n okienka
+			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
 			if(!value)
 				.["class"] = null
 				return
@@ -199,7 +199,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in things // AQ EDIT - i18n okienka
+			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
 			if(!value)
 				.["class"] = null
 				return
@@ -212,14 +212,14 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in things // AQ EDIT - i18n okienka
+			var/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, things)) // AQ EDIT - i18n okienka
 			if(!value)
 				.["class"] = null
 				return
 			.["value"] = WEAKREF(things[value])
 
 		if(VV_CLIENT)
-			.["value"] = input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in GLOB.clients // AQ EDIT - i18n okienka
+			.["value"] = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz referencję:"), i18n_dialog_text(usr, "Referencja"), current_value) as null|anything in i18n_input_shown(usr, GLOB.clients)) // AQ EDIT - i18n okienka
 			if(.["value"] == null)
 				.["class"] = null
 				return

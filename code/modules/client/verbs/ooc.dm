@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		else
 			choices[displayed_choicename] = C
 	choices = sortList(choices)
-	var/selection = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Ignoruj"), null, null) as null|anything in choices // AQ EDIT - i18n okienka
+	var/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Ignoruj"), null, null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
 	if(!selection || !(selection in choices))
 		return
 	displayed_choicename = selection // ckey string

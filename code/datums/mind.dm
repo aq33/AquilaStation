@@ -447,7 +447,7 @@
 		A.admin_remove(usr)
 
 	if (href_list["role_edit"])
-		var/new_role = input(i18n_dialog_text(usr, "Wybierz nową rolę"), i18n_dialog_text(usr, "Przypisana rola"), assigned_role) as null|anything in sortList(get_all_jobs()) // AQ EDIT - i18n okienka
+		var/new_role = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz nową rolę"), i18n_dialog_text(usr, "Przypisana rola"), assigned_role) as null|anything in i18n_input_shown(usr, sortList(get_all_jobs()))) // AQ EDIT - i18n okienka
 		if (!new_role)
 			return
 		assigned_role = new_role
@@ -487,7 +487,7 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input(i18n_dialog_text(usr, "Który antagonista otrzymuje cel:"), i18n_dialog_text(usr, "Antagonista"), "(nowy własny antagonista)") as null|anything in sortList(antag_datums) + "(nowy własny antagonista)" // AQ EDIT - i18n okienka
+						var/datum/antagonist/target = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Który antagonista otrzymuje cel:"), i18n_dialog_text(usr, "Antagonista"), "(nowy własny antagonista)") as null|anything in i18n_input_shown(usr, sortList(antag_datums) + "(nowy własny antagonista)")) // AQ EDIT - i18n okienka
 						if (QDELETED(target))
 							return
 						else if(target == "(nowy własny antagonista)")
@@ -502,7 +502,7 @@
 			if(old_objective.name in GLOB.admin_objective_list)
 				def_value = old_objective.name
 
-		var/selected_type = input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu"), def_value) as null|anything in GLOB.admin_objective_list // AQ EDIT - i18n okienka
+		var/selected_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu"), def_value) as null|anything in i18n_input_shown(usr, GLOB.admin_objective_list)) // AQ EDIT - i18n okienka
 		selected_type = GLOB.admin_objective_list[selected_type]
 		if (!selected_type)
 			return

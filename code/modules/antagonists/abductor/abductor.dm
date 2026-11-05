@@ -107,7 +107,7 @@
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in get_all_teams(/datum/team/abductor_team))
 		current_teams[T.name] = T
-	var/choice = input(admin,i18n_dialog_text(admin, "Do której drużyny dodać?")) as null|anything in (current_teams + "nowa drużyna") // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Do której drużyny dodać?")) as null|anything in i18n_input_shown(admin, (current_teams + "nowa drużyna"))) // AQ EDIT - i18n okienka
 	if (choice == "nowa drużyna")
 		team = new
 	else if(choice in current_teams)

@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","ske
 	if(!is_content_unlocked())
 		i18n_alert(usr, "To ustawienie jest dostępne tylko dla kont BYOND premium.") // AQ EDIT - i18n okienka
 		return
-	var/new_form = input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz wygląd ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in GLOB.ghost_forms // AQ EDIT - i18n okienka
+	var/new_form = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz wygląd ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in i18n_input_shown(src, GLOB.ghost_forms)) // AQ EDIT - i18n okienka
 	if(new_form)
 		prefs.ghost_form = new_form
 		prefs.save_preferences()
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	if(!is_content_unlocked())
 		i18n_alert(usr, "To ustawienie jest dostępne tylko dla kont BYOND premium.") // AQ EDIT - i18n okienka
 		return
-	var/new_orbit = input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz orbitę ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in GLOB.ghost_orbits // AQ EDIT - i18n okienka
+	var/new_orbit = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Dzięki za wspieranie BYOND - wybierz orbitę ducha:"),i18n_dialog_text(src, "Dzięki za wspieranie BYOND"),null) as null|anything in i18n_input_shown(src, GLOB.ghost_orbits)) // AQ EDIT - i18n okienka
 	if(new_orbit)
 		prefs.ghost_orbit = new_orbit
 		prefs.save_preferences()

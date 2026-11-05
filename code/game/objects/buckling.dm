@@ -13,7 +13,7 @@
 		return
 	if(can_buckle && has_buckled_mobs())
 		if(buckled_mobs.len > 1)
-			var/unbuckled = input(user, i18n_dialog_text(user, "Kogo chcesz odpiąć?"),i18n_dialog_text(user, "Odpinanie")) as null|mob in sortNames(buckled_mobs) // AQ EDIT - i18n okienka
+			var/unbuckled = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Kogo chcesz odpiąć?"),i18n_dialog_text(user, "Odpinanie")) as null|mob in i18n_input_shown(user, sortNames(buckled_mobs))) // AQ EDIT - i18n okienka
 			if(user_unbuckle_mob(unbuckled,user))
 				return 1
 		else

@@ -431,7 +431,7 @@
 				specificTarget = null
 			else
 				var/list/mobs = getpois()//code stolen from observer.dm
-				var/inputTarget = input(i18n_dialog_text(usr, "Wybierz moba! (Smiting robi to automatycznie)"), i18n_dialog_text(usr, "Cel"), null, null) as null|anything in mobs // AQ EDIT - i18n okienka
+				var/inputTarget = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz moba! (Smiting robi to automatycznie)"), i18n_dialog_text(usr, "Cel"), null, null) as null|anything in i18n_input_shown(usr, mobs)) // AQ EDIT - i18n okienka
 				if (isnull(inputTarget))
 					return
 				var/mob/target = mobs[inputTarget]

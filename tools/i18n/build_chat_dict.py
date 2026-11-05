@@ -99,6 +99,18 @@ def parse_dm_literal(lit):
     return parts
 
 
+# napis w wyrażeniu okna: ${on ? 'WŁ.' : 'WYŁ.'}
+QUOTED_IN_EXPR = re.compile(r"""(['"])((?:\\.|(?!\1).)*)\1""")
+# Słownik okien (tgui, menu Esc): mniejszy niż czatu, patrz koniec main()
+WINDOWS_OUT = "strings/i18n/en_windows.json"
+# Linia DM, której tekst idzie tylko do czatu (wiadomość, dymek, examine, log): nie do okna
+CHAT_ONLY_LINE = re.compile(
+    r"\bto_chat\(|visible_message\(|audible_message\(|balloon_alert\(|show_message\(|"
+    r"\bsay\(|\bwhisper\(|\bemote\(|\blog_\w+\(|message_admins\(|investigate_log\(|"
+    r"priority_announce\(|minor_announce\(|deadchat_broadcast\(|notify_ghosts\(|"
+    r"examine_list \+=|^\s*\. \+= |send_to_playing_players\("
+)
+
 # najdłuższy tekst w słowniku dla serwera: dymki i runechat są krótkie
 DM_MAX_LENGTH = 100
 # opisy przedmiotów w dymku po najechaniu (tooltip) są dłuższe: stałe bez HTML do tej długości
@@ -423,6 +435,8 @@ def main():
                            capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
 
     wanted, names, js_literals, english_literals = set(), set(), set(), set()
+    # literały, które mogą trafić do okna: kod okien i DM poza liniami wysyłającymi tylko do czatu
+    window_literals = set()
     for path in files:
         if ep.SKIP_PATH.search(path) or lm.NOT_PLAYER_TEXT.search(path):
             continue
@@ -436,9 +450,13 @@ def main():
                 if lit in pairs:
                     js_literals.add(lit)
                     wanted.add(lit)
+                    window_literals.add(lit)
         for line in ep.logical_lines(path, content.splitlines()):
             # z napisami ze środka wstawek: "aś" z [gender == FEMALE ? "aś" : "eś"] też ma wpis
+            to_window = not path.endswith(".dm") or not CHAT_ONLY_LINE.search(line)
             for lit in lm.line_literals(path, line):
+                if to_window:
+                    window_literals.add(lit)
                 if lit not in pairs:
                     # zdanie w kodzie po angielsku z wstawką ("[src] looks pretty robust!"):
                     # szablon na siebie, żeby przetłumaczyć wstawione polskie nazwy
@@ -456,6 +474,7 @@ def main():
     manual = load_json(args.manual)
 
     exact, templates, stats = {}, [], collections.Counter()
+    window_keys = set()  # klucze exact dla słownika okien (bez stałych tylko z czatu)
     # stałe z kodu okien (TSX) mają w oknach pierwszeństwo przed ogólnym słownikiem:
     # "Wróć" w menu Esc to "Back", a nie "Recall" z jakiegoś DM
     ui = {}
@@ -482,6 +501,8 @@ def main():
             if key and key != value:
                 exact[key] = value
                 stats["stałe"] += 1
+                if pl in window_literals or pl in manual:
+                    window_keys.add(key)
                 # Tekst w znacznikach (<span class='notice'>…</span>, <a>metkę</a>) trafia do
                 # gracza jako jeden z wielu węzłów, np. linia examine: pary dla tekstów między
                 # znacznikami, gdy obie strony mają te same znaczniki
@@ -505,7 +526,8 @@ def main():
         if pl not in manual and (len(WORD.findall(fixed)) == 0 or len(re.sub(r"\s", "", fixed)) < 4):
             stats["pomijane: za mało stałego tekstu"] += 1
             continue
-        templates.append({"pl": texts, "en": en_parts, "alts": alts})
+        templates.append({"pl": texts, "en": en_parts, "alts": alts,
+                          "window": pl in window_literals or pl in manual})
         stats["szablony"] += 1
         stats["z alternatywami"] += bool(alts)
 
@@ -594,11 +616,37 @@ def main():
         json.dump({"exact": short, "templates": short_templates}, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     stats["szablony dla serwera"] = len(short_templates)
+    # Okna tgui i menu Esc: każde okno to osobna przeglądarka, która parsuje słownik od nowa, więc
+    # dostaje mniejszy: bez HTML (tłumaczy węzły tekstowe, w nich nie ma znaczników) i bez tekstów
+    # wysyłanych tylko do czatu; tablica ui tylko tam, gdzie różni się od exact
+    # wartości wstawek tłumaczy exact: napisy z alternatyw i ze środka wyrażeń szablonów okien
+    for t in templates:
+        if t["window"]:
+            for options in t["alts"].values():
+                window_keys.update(o.strip() for o in options)
+    for lit in js_literals:
+        for _quote, inner in QUOTED_IN_EXPR.findall("".join(re.findall(r"\$\{((?:[^{}]|\{[^{}]*\})*)\}", lit))):
+            window_keys.add(inner.strip())
+    windows = {
+        "version": 2,
+        "exact": {k: exact[k] for k in sorted(window_keys) if k in exact and not TAG.search(k)},
+        "ui": {k: v for k, v in sorted(ui.items()) if exact.get(k) != v},
+        "templates": [
+            entry for t, entry in zip(templates, data["templates"])
+            if t["window"] and not TAG.search("".join(t["pl"]))
+        ],
+    }
+    with open(WINDOWS_OUT, "w", encoding="utf-8") as f:
+        json.dump(windows, f, ensure_ascii=False, separators=(",", ":"))
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
+    stats["słownik okien: stałe"] = len(windows["exact"])
+    stats["słownik okien: szablony"] = len(windows["templates"])
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"wycinek: {len(wanted)} tekstów, stałe spoza wycinka: {len(names)}, ręczne: {len(manual)}")
     for k, v in stats.most_common():
         print(f"  {k}: {v}")
-    print(f"zapisano {args.out}: {os.path.getsize(args.out) // 1024} KB")
+    print(f"zapisano {args.out}: {os.path.getsize(args.out) // 1024} KB, "
+          f"{WINDOWS_OUT}: {os.path.getsize(WINDOWS_OUT) // 1024} KB")
 
 
 if __name__ == "__main__":

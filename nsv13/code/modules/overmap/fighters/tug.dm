@@ -97,7 +97,7 @@
 		if(craft.mag_lock)
 			continue
 		possible_crafts[craft.name] = craft
-	var/load = input(usr, i18n_dialog_text(usr, "Wybierz myśliwiec do załadowania"),i18n_dialog_text(usr, "[src]")) as null|anything in possible_crafts // AQ EDIT - i18n okienka
+	var/load = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz myśliwiec do załadowania"),i18n_dialog_text(usr, "[src]")) as null|anything in i18n_input_shown(usr, possible_crafts)) // AQ EDIT - i18n okienka
 	if(!possible_crafts[load] || get_dist(possible_crafts[load], src) > 3) // 3 tiles to account for the offset and the size of the vehicles
 		return
 	hitch(possible_crafts[load])

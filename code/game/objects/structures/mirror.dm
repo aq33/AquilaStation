@@ -32,7 +32,7 @@
 
 		//handle facial hair (if necessary)
 		if(H.gender != FEMALE)
-			var/new_style = input(user, i18n_dialog_text(user, "Wybierz styl zarostu"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in GLOB.facial_hair_styles_list // AQ EDIT - i18n okienka
+			var/new_style = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz styl zarostu"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in i18n_input_shown(user, GLOB.facial_hair_styles_list)) // AQ EDIT - i18n okienka
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return	//no tele-grooming
 			if(new_style)
@@ -41,7 +41,7 @@
 			H.facial_hair_style = "Shaved"
 
 		//handle normal hair
-		var/new_style = input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in GLOB.hair_styles_list // AQ EDIT - i18n okienka
+		var/new_style = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Pielęgnacja"))  as null|anything in i18n_input_shown(user, GLOB.hair_styles_list)) // AQ EDIT - i18n okienka
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return	//no tele-grooming
 		if(new_style)
@@ -131,7 +131,7 @@
 
 	var/mob/living/carbon/human/H = user
 
-	var/choice = input(user, i18n_dialog_text(user, "Coś do zmiany?"), i18n_dialog_text(user, "Magiczna pielęgnacja")) as null|anything in list("imię", "rasa", "płeć", "włosy", "oczy") // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Coś do zmiany?"), i18n_dialog_text(user, "Magiczna pielęgnacja")) as null|anything in i18n_input_shown(user, list("imię", "rasa", "płeć", "włosy", "oczy"))) // AQ EDIT - i18n okienka
 
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
@@ -153,7 +153,7 @@
 
 		if("rasa")
 			var/newrace
-			var/racechoice = input(H, i18n_dialog_text(H, "Czym my właściwie jesteśmy?"), i18n_dialog_text(H, "Zmiana rasy")) as null|anything in choosable_races // AQ EDIT - i18n okienka
+			var/racechoice = i18n_input_choice(H, input(H, i18n_dialog_text(H, "Czym my właściwie jesteśmy?"), i18n_dialog_text(H, "Zmiana rasy")) as null|anything in i18n_input_shown(H, choosable_races)) // AQ EDIT - i18n okienka
 			newrace = GLOB.species_list[racechoice]
 
 			if(!newrace)
@@ -163,7 +163,7 @@
 			H.set_species(newrace, icon_update=0)
 
 			if(H.dna.species.use_skintones)
-				var/new_s_tone = input(user, i18n_dialog_text(user, "Wybierz odcień skóry:"), i18n_dialog_text(user, "Zmiana rasy"))  as null|anything in GLOB.skin_tones // AQ EDIT - i18n okienka
+				var/new_s_tone = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz odcień skóry:"), i18n_dialog_text(user, "Zmiana rasy"))  as null|anything in i18n_input_shown(user, GLOB.skin_tones)) // AQ EDIT - i18n okienka
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 					return
 

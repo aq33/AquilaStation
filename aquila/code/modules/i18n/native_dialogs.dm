@@ -2,8 +2,8 @@
 // tools/i18n/wrap_dialogs.py (z markerem "AQ EDIT - i18n okienka"):
 // - alert() -> i18n_alert(usr, ...): gracz widzi przetłumaczony tekst, tytuł i przyciski, a kod dostaje
 //   z powrotem polski przycisk, więc porównania typu `if(alert(...) != "Tak")` dalej działają;
-// - input(): teksty komunikatu i tytułu przez i18n_dialog_text. Lista wyboru zostaje, bo kod
-//   porównuje zwracaną wartość.
+// - input(): teksty komunikatu i tytułu przez i18n_dialog_text, a lista wyboru przez
+//   i18n_input_shown/i18n_input_choice: gracz z EN widzi pozycje po angielsku, kod dostaje polską.
 
 /// Klient odbiorcy okienka (mob albo klient), inaczej null
 /proc/i18n_dialog_viewer(target)
@@ -65,3 +65,38 @@
 	if(!istext(text))
 		return text
 	return i18n_for_client(i18n_dialog_viewer(target) || usr?.client, text)
+
+/// Ostatnia lista wyboru pokazana graczowi z EN: klient -> list(pozycja po angielsku = polska)
+GLOBAL_LIST_EMPTY(i18n_input_choices)
+
+/**
+ * Lista wyboru input() w języku odbiorcy. Dla gracza z EN lista asocjacyjna (angielska pozycja -> polska),
+ * którą input() pokazuje po kluczach; i18n_input_choice zamienia wybór z powrotem na polski.
+ * Lista z czymś innym niż tekst (atomy, typy) albo z dwiema pozycjami o tym samym
+ * tłumaczeniu zostaje, jaka jest. Gracz z PL dostaje tę samą listę.
+ */
+/proc/i18n_input_shown(target, list/items)
+	var/client/viewer = i18n_dialog_viewer(target) || usr?.client
+	if(!viewer?.wants_english() || !islist(items))
+		return items
+	var/list/shown = list()
+	for(var/item in items)
+		if(!istext(item))
+			return items
+		var/translated = i18n_en_html(item)
+		if(!isnull(shown[translated]))
+			return items
+		shown[translated] = item
+	GLOB.i18n_input_choices[viewer] = shown
+	return shown
+
+/// Wybór z listy i18n_input_shown z powrotem po polsku (kod porównuje wynik z polskimi pozycjami)
+/proc/i18n_input_choice(target, result)
+	var/client/viewer = i18n_dialog_viewer(target) || usr?.client
+	var/list/shown = viewer && GLOB.i18n_input_choices[viewer]
+	if(!shown)
+		return result
+	GLOB.i18n_input_choices -= viewer
+	if(istext(result) && !isnull(shown[result]))
+		return shown[result]
+	return result

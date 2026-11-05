@@ -1760,7 +1760,7 @@ Seek a ship thich we'll station ourselves around
 		return FALSE
 
 	var/list/choices = flist("_maps/map_files/Instanced/")
-	var/choice = input(usr, i18n_dialog_text(usr, "Który okręt chcesz wczytać?"),i18n_dialog_text(usr, "Wczytywanie okrętu"), null) as null|anything in choices // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Który okręt chcesz wczytać?"),i18n_dialog_text(usr, "Wczytywanie okrętu"), null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
 	if(!choice)
 		return
 	var/ship_file = file("_maps/map_files/Instanced/[choice]")

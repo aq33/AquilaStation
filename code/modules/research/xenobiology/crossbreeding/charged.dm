@@ -168,7 +168,7 @@ Charged extracts:
 	if(!istype(H))
 		to_chat(user, "<span class='warning'>Musisz być humanoidem, by tego użyć!</span>")
 		return
-	var/racechoice = input(H, i18n_dialog_text(H, "Wybierz swój podgatunek szlamoczłowieka."), i18n_dialog_text(H, "Wybór szlamu")) as null|anything in sortList(subtypesof(/datum/species/jelly), GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/racechoice = i18n_input_choice(H, input(H, i18n_dialog_text(H, "Wybierz swój podgatunek szlamoczłowieka."), i18n_dialog_text(H, "Wybór szlamu")) as null|anything in i18n_input_shown(H, sortList(subtypesof(/datum/species/jelly), GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
 	if(!racechoice)
 		to_chat(user, "<span class='notice'>Postanawiasz na razie nie zostawać szlamem.</span>")
 		return

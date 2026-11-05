@@ -12,7 +12,7 @@
 	for(var/datum/changelingprofile/prof in changeling.stored_profiles)
 		names += "[prof.name]"
 
-	var/chosen_name = input(i18n_dialog_text(usr, "Wybierz docelowe DNA: "), i18n_dialog_text(usr, "Docelowe DNA"), null) as null|anything in sortList(names) // AQ EDIT - i18n okienka
+	var/chosen_name = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz docelowe DNA: "), i18n_dialog_text(usr, "Docelowe DNA"), null) as null|anything in i18n_input_shown(usr, sortList(names))) // AQ EDIT - i18n okienka
 	if(!chosen_name)
 		return
 

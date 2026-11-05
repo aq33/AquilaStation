@@ -85,7 +85,7 @@
 	if(crayon.is_capped)
 		to_chat(user, "<span class='warning'>Najpierw zdejmij zatyczkę!</span>")
 		return
-	var/new_appearance = input(user, i18n_dialog_text(user, "Wybierz nowy wygląd dla [src]."), i18n_dialog_text(user, "Oszustwo XXVI wieku")) as null|anything in sortList(possible_appearances) // AQ EDIT - i18n okienka
+	var/new_appearance = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz nowy wygląd dla [src]."), i18n_dialog_text(user, "Oszustwo XXVI wieku")) as null|anything in i18n_input_shown(user, sortList(possible_appearances))) // AQ EDIT - i18n okienka
 	if(!new_appearance || !crayon || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(!do_after(user, 10, FALSE, src, TRUE))

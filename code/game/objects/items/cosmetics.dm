@@ -211,7 +211,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_style = input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Strzyżenie"))  as null|anything in GLOB.hair_styles_list // AQ EDIT - i18n okienka
+	var/new_style = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz fryzurę"), i18n_dialog_text(user, "Strzyżenie"))  as null|anything in i18n_input_shown(user, GLOB.hair_styles_list)) // AQ EDIT - i18n okienka
 	if(!get_location_accessible(H, location))
 		to_chat(user, "<span class='warning'>Nakrycie głowy przeszkadza!</span>")
 		return
@@ -228,7 +228,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_style = input(user, i18n_dialog_text(user, "Wybierz styl zarostu"), i18n_dialog_text(user, "Golenie"))  as null|anything in GLOB.facial_hair_styles_list // AQ EDIT - i18n okienka
+	var/new_style = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz styl zarostu"), i18n_dialog_text(user, "Golenie"))  as null|anything in i18n_input_shown(user, GLOB.facial_hair_styles_list)) // AQ EDIT - i18n okienka
 	if(!get_location_accessible(H, location))
 		to_chat(user, "<span class='warning'>Maska przeszkadza!</span>")
 		return

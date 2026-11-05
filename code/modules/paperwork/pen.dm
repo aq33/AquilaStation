@@ -147,7 +147,7 @@
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
 	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, i18n_dialog_text(user, "Co chcesz edytować?"), i18n_dialog_text(user, "Zmienić nazwę czy opis?")) as null|anything in list("Zmień nazwę","Zmień opis") // AQ EDIT - i18n okienka
+		var/penchoice = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Co chcesz edytować?"), i18n_dialog_text(user, "Zmienić nazwę czy opis?")) as null|anything in i18n_input_shown(user, list("Zmień nazwę","Zmień opis"))) // AQ EDIT - i18n okienka
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 		if(penchoice == "Zmień nazwę")

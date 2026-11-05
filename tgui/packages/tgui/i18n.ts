@@ -34,7 +34,17 @@ type Dictionary = {
   templates: Template[];
 };
 
-const DICTIONARY_ASSET = 'i18n_en_chat.json';
+/** Słownik czatu (panel); okna i menu Esc biorą mniejszy, patrz selectWindowDictionary */
+let dictionaryAsset = 'i18n_en_chat.json';
+
+/**
+ * Okno tgui albo menu Esc: mniejszy słownik bez tekstów tylko z czatu i bez HTML
+ * (strings/i18n/en_windows.json). Każde okno to osobna przeglądarka, która parsuje
+ * słownik od nowa, więc pełny (11 MB) kosztował przy każdym otwarciu.
+ */
+export const selectWindowDictionary = () => {
+  dictionaryAsset = 'i18n_en_windows.json';
+};
 // od dwóch liter: "ma", "na" bywają jedynym słowem szablonu (jak w build_chat_dict.py)
 const WORD = /[a-ząćęłńóśźż]{2,}/g;
 const TEXT_NODE = />([^<>]+)</g;
@@ -63,7 +73,7 @@ const fetchDictionary = async (): Promise<Dictionary | null> => {
   // kilkadziesiąt sekund, więc próbujemy długo i z rosnącą przerwą
   for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt++) {
     try {
-      const response = await fetch(resolveAsset(DICTIONARY_ASSET));
+      const response = await fetch(resolveAsset(dictionaryAsset));
       if (response.ok) {
         return (await response.json()) as Dictionary;
       }

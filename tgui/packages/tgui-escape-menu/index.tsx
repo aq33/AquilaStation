@@ -1,6 +1,7 @@
 import './styles/main.scss';
 
 import { createRoot, type Root } from 'react-dom/client';
+import { selectWindowDictionary } from 'tgui/i18n';
 import { setDomLanguage } from 'tgui/i18nDom';
 
 import { loadMappings, loadStyleSheet } from './assets';
@@ -8,6 +9,9 @@ import { EscapeMenu, isResizeFrozen, receiveMessage } from './EscapeMenu';
 import { updateScaling } from './scaling';
 
 let reactRoot: Root | null = null;
+
+// AQUILA: menu to osobna przeglądarka, więc mniejszy słownik okien (tgui/i18n.ts)
+selectWindowDictionary();
 
 document.onreadystatechange = () => {
   if (document.readyState !== 'complete') return;

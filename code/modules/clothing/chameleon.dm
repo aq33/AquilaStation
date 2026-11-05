@@ -94,7 +94,7 @@
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
 	if(!user || !IsAvailable())
 		return FALSE
-	var/selected = input(i18n_dialog_text(usr, "Wybierz strój, w który chcesz się przebrać"), i18n_dialog_text(usr, "Strój kameleona")) as null|anything in outfit_options // AQ EDIT - i18n okienka
+	var/selected = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz strój, w który chcesz się przebrać"), i18n_dialog_text(usr, "Strój kameleona")) as null|anything in i18n_input_shown(usr, outfit_options)) // AQ EDIT - i18n okienka
 	if(!IsAvailable() || QDELETED(src) || QDELETED(user))
 		return FALSE
 	var/outfit_type = outfit_options[selected]
@@ -179,7 +179,7 @@
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
 	var/obj/item/picked_item
 	var/picked_name
-	picked_name = input(i18n_dialog_text(usr, "Wybierz, w co chcesz się przebrać ([chameleon_name])"), i18n_dialog_text(usr, "Kameleon: [chameleon_name]"), picked_name) as null|anything in sortList(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	picked_name = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, w co chcesz się przebrać ([chameleon_name])"), i18n_dialog_text(usr, "Kameleon: [chameleon_name]"), picked_name) as null|anything in i18n_input_shown(usr, sortList(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
 	if(!picked_name)
 		return
 	picked_item = chameleon_list[picked_name]

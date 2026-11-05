@@ -23,7 +23,7 @@
 				else
 					return
 			if("Wskaż gracza")
-				target_ghost = input(usr, i18n_dialog_text(usr, "Wybierz gracza, który będzie pilotował okręt widmo:"), i18n_dialog_text(usr, "Wybierz gracza")) as null|anything in GLOB.clients // AQ EDIT - i18n okienka
+				target_ghost = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz gracza, który będzie pilotował okręt widmo:"), i18n_dialog_text(usr, "Wybierz gracza")) as null|anything in i18n_input_shown(usr, GLOB.clients)) // AQ EDIT - i18n okienka
 
 		ghost_ship(target_ghost)
 		message_admins("[key_name_admin(usr)] oddaje [src] duchowi jako okręt widmo!")

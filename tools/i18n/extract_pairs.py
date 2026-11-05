@@ -99,7 +99,8 @@ def js_strings(line):
         return []
     out = [m.group(2) for m in QUOTED_JS.finditer(line)]
     out += [m.group(1).strip() for m in JSX_TEXT.finditer(line)]
-    if s and not CODEY.search(s) and re.search(LETTERS + r"{2,}\s", s + " ") and " " in s:
+    # cała linia to tekst JSX; linia z samym literałem ('...',) to napis JS, już wyżej
+    if s and s[0] not in "'\"`" and not CODEY.search(s) and re.search(LETTERS + r"{2,}\s", s + " ") and " " in s:
         out.append(s)  # cała linia to tekst JSX
     return out
 

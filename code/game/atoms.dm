@@ -1168,7 +1168,7 @@
 							to_chat(usr, "<span class='warning'>Odczynnik o takim ID nie istnieje!</span>")
 
 				if("Wybierz z listy")
-					chosen_id = input(usr, i18n_dialog_text(usr, "Wybierz odczynnik do dodania."), i18n_dialog_text(usr, "Wybierz odczynnik.")) as null|anything in subtypesof(/datum/reagent) // AQ EDIT - i18n okienka
+					chosen_id = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz odczynnik do dodania."), i18n_dialog_text(usr, "Wybierz odczynnik.")) as null|anything in i18n_input_shown(usr, subtypesof(/datum/reagent))) // AQ EDIT - i18n okienka
 
 				if("Szczęśliwy traf")
 					chosen_id = pick(subtypesof(/datum/reagent))
@@ -1188,7 +1188,7 @@
 		usr.client.cmd_admin_emp(src)
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM] && check_rights(R_VAREDIT))
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz przekształcenie do zastosowania"),i18n_dialog_text(usr, "Przekształcenie")) as null|anything in list("Scale","Translate","Rotate") // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz przekształcenie do zastosowania"),i18n_dialog_text(usr, "Przekształcenie")) as null|anything in i18n_input_shown(usr, list("Scale","Translate","Rotate"))) // AQ EDIT - i18n okienka
 		var/matrix/M = transform
 		switch(result)
 			if("Scale")
@@ -1213,7 +1213,7 @@
 	if(href_list[VV_HK_ADD_AI])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in subtypesof(/datum/ai_controller) // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in i18n_input_shown(usr, subtypesof(/datum/ai_controller))) // AQ EDIT - i18n okienka
 		if(!result)
 			return
 		ai_controller = new result(src)
@@ -1222,7 +1222,7 @@
 		usr.client.holder.modify_traits(src)
 
 	if(href_list[VV_HK_ADD_AI] && check_rights(R_VAREDIT))
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in subtypesof(/datum/ai_controller) // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie."), i18n_dialog_text(usr, "Kontroler SI")) as null|anything in i18n_input_shown(usr, subtypesof(/datum/ai_controller))) // AQ EDIT - i18n okienka
 		if(!result)
 			return
 		ai_controller = new result(src)
