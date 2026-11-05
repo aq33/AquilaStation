@@ -286,11 +286,14 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 				last_thrust_right = -side_maxthrust
 
 	//Stops you yeeting off at lightspeed. This made AI ships really frustrating to play against.
-	velocity.a = clamp(velocity.a, -speed_limit, speed_limit)
-	velocity.e = clamp(velocity.e, -speed_limit, speed_limit)
+	// AQ EDIT START - overmap scale: slower ships on the overmap (aquila/code/modules/overmap/overmap_scale.dm)
+	var/speed_mult = get_overmap_speed_mult()
+	velocity.a = clamp(velocity.a, -speed_limit * speed_mult, speed_limit * speed_mult)
+	velocity.e = clamp(velocity.e, -speed_limit * speed_mult, speed_limit * speed_mult)
 
-	velocity.a += thrust_x * time //And speed us up based on how long we've been thrusting (up to a point)
-	velocity.e += thrust_y * time
+	velocity.a += thrust_x * speed_mult * time //And speed us up based on how long we've been thrusting (up to a point)
+	velocity.e += thrust_y * speed_mult * time
+	// AQ EDIT END
 	if(inertial_dampeners) //An optional toggle to make capital ships more "fly by wire" and help you steer in only the direction you want to go.
 		var/side_movement = (sx*velocity.a) + (sy*velocity.e)
 		var/friction_impulse = ((mass / 10) + side_maxthrust) * time //Weighty ships generate more space friction
@@ -514,7 +517,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 		var/other_vector_angle_diff = ((col_angle + 180 - other.velocity.angle()) + 360) % 360
 		var/other_ramvec = other_vel_mag * cos(other_vector_angle_diff)
 
-		var/total_force = (self_ramvec + other_ramvec) //Forces combined
+		var/total_force = (self_ramvec + other_ramvec) / get_overmap_speed_mult() //Forces combined // AQ EDIT - overmap scale: slower ships still ram as hard as before
 
 		if(world.time >= next_collision && total_force >= 2) //Magic!
 			total_force *= OVERMAP_COLLISION_MAGNIFIER //Arbitrary amplifier to collisions (used to be x5, for now x4 because of new math)
