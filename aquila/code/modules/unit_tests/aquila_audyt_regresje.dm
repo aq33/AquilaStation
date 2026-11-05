@@ -274,5 +274,27 @@
 	loose_one.on_construction()
 	TEST_ASSERT(!(loose_one.datum_flags & DF_ISPROCESSING), "nieprzykręcona maszyna nie powinna przetwarzać się po on_construction()")
 
+/// Samobójstwo pustym ostrzem duszy zamyka duszę w ostrzu jako cień, a rytuał „Ostrze duszy” czeka na własny klucz
+/datum/unit_test/aquila_soulblade_suicide
+
+/datum/unit_test/aquila_soulblade_suicide/Run()
+	var/datum/bloodcult_ritual/suicide_soulblade/ritual = new
+	TEST_ASSERT(("suicide_soulblade" in ritual.keys) && !("suicide_tome" in ritual.keys), "rytuał Ostrze duszy nie czeka na klucz suicide_soulblade")
+	qdel(ritual)
+	TEST_ASSERT(/datum/bloodcult_ritual/suicide_soulblade in GLOB.bloodcult_personal_rituals, "rytuał Ostrze duszy nie jest w puli")
+
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
+	victim.mind_initialize()
+	var/datum/mind/victim_mind = victim.mind
+	var/obj/item/melee/soulblade/blade = allocate(/obj/item/melee/soulblade)
+	victim.put_in_active_hand(blade)
+	var/result = blade.suicide_act(victim)
+	TEST_ASSERT(result & MANUAL_SUICIDE, "suicide_act ostrza nie przejmuje zabicia")
+	TEST_ASSERT(blade.shade, "w ostrzu nie ma cienia")
+	TEST_ASSERT(blade.shade.loc == blade, "cień nie siedzi w ostrzu")
+	TEST_ASSERT(blade.shade.mind == victim_mind, "cień nie dostał umysłu samobójcy")
+	allocated += blade.shade
+	TEST_ASSERT(victim.stat == DEAD, "ciało samobójcy żyje")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
