@@ -9,6 +9,8 @@
 #define AQUILA_CONSOLE_WEAPONS "weapons"
 /// Jak długo przełącznik katapulty zostaje przestawiony, zanim sam wróci.
 #define AQUILA_CONSOLE_ARM_TIME (5 SECONDS)
+/// Wysokość zakładki zwijania nad panelem (aquila/icons/overmap/gui/console_tab_*.png).
+#define AQUILA_CONSOLE_TAB_HEIGHT 12
 /// Jak długo przycisk na panelu jest wciśnięty po użyciu skrótu albo kliknięciu.
 #define AQUILA_CONSOLE_PRESS_TIME (0.3 SECONDS)
 
@@ -141,6 +143,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	/// world.time, do którego przełącznik katapulty jest przestawiony
 	var/left_armed_until = 0
 	var/right_armed_until = 0
+	/// Zakładka nad panelem: zwija go i rozwija (osobny obiekt, bo zostaje na ekranie po zwinięciu).
+	var/atom/movable/screen/aquila_ship_console_tab/tab
 
 /atom/movable/screen/movable/aquila_ship_console/Initialize(mapload, obj/structure/overmap/ship, mob/living/user, kind)
 	. = ..()
@@ -149,6 +153,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	src.kind = kind
 	var/list/layers = GLOB.aquila_ship_console_layers[kind]
 	icon = layers["monitor"]
+	tab = new
+	tab.panel = src
 	RegisterSignal(ship, COMSIG_PARENT_QDELETING, PROC_REF(on_ship_deleted))
 	START_PROCESSING(SSprocessing, src)
 	refresh()
@@ -158,6 +164,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	if(user)
 		LAZYREMOVE(user.aquila_consoles, src) // panel bywa usuwany sam (refresh, process, statek usunięty)
 		user.client?.screen -= src
+		user.client?.screen -= tab
+	QDEL_NULL(tab)
 	if(ship)
 		UnregisterSignal(ship, COMSIG_PARENT_QDELETING)
 	ship = null
@@ -189,9 +197,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	var/client/C = user.client
 	if(!C)
 		return
-	if(!(src in C.screen) && !(user.aquila_console_hidden))
-		C.screen += src // po ponownym połączeniu ekran jest pusty
 	update_scale(C)
+	update_screen(C)
 	var/state = build_state()
 	if(state == last_state)
 		return
@@ -201,6 +208,36 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	for(var/layer_name in splittext(state, ";"))
 		if(layers[layer_name])
 			add_overlay(image(layers[layer_name]))
+
+/// Panel i zakładka na ekranie klienta (po ponownym połączeniu ekran jest pusty, więc dodajemy je za każdym razem).
+/atom/movable/screen/movable/aquila_ship_console/proc/update_screen(client/C)
+	if(user.aquila_console_hidden)
+		C.screen -= src
+		C.screen -= tab
+		return
+	var/collapsed = is_collapsed()
+	if(collapsed)
+		C.screen -= src
+	else if(!(src in C.screen))
+		C.screen += src
+	if(!(tab in C.screen))
+		C.screen += tab
+	tab.icon = collapsed ? 'aquila/icons/overmap/gui/console_tab_closed.png' : 'aquila/icons/overmap/gui/console_tab_open.png'
+	tab.name = collapsed ? "rozwiń konsolę" : "zwiń konsolę"
+	// zwinięta zakładka leży w miejscu dolnej krawędzi panelu, rozwinięta tuż nad jego górną krawędzią
+	var/tab_loc = collapsed ? screen_loc : aquila_console_raise_screen_loc(screen_loc, round(GLOB.aquila_ship_console_sizes[kind][2] * current_scale(C)))
+	if(tab.screen_loc != tab_loc)
+		tab.screen_loc = tab_loc
+
+/atom/movable/screen/movable/aquila_ship_console/proc/is_collapsed()
+	return kind in user.aquila_consoles_collapsed
+
+/atom/movable/screen/movable/aquila_ship_console/proc/toggle_collapsed()
+	if(is_collapsed())
+		LAZYREMOVE(user.aquila_consoles_collapsed, kind)
+	else
+		LAZYOR(user.aquila_consoles_collapsed, kind)
+	refresh()
 
 /// Lista warstw do narysowania, jako tekst rozdzielony średnikami (służy też do porównania stanu).
 /atom/movable/screen/movable/aquila_ship_console/proc/build_state()
@@ -226,20 +263,12 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		parts += (right_armed_until > world.time) ? "switch_right_armed" : "switch_right"
 	return jointext(parts, ";")
 
-/// Stała skala panelu przy zwykłym widoku. Panel myśliwca jest duży (260x207 przy widoku 21x15 kafelków),
-/// więc jest mniejszy; 0.75 to najmniej, przy którym napisy 5 px dają się jeszcze przeczytać.
-GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
-	AQUILA_CONSOLE_FLIGHT = 1,
-	AQUILA_CONSOLE_FIGHTER = 0.75,
-	AQUILA_CONSOLE_WEAPONS = 1,
-))
-
-/// Skala panelu: stała dla rodzaju razy powiększenie przy oddalonej kamerze (duże statki: kafelki są mniejsze,
-/// więc panel rośnie razem z widokiem, żeby napisy dało się przeczytać).
+/// Skala panelu: 1 przy zwykłym widoku (mniejsza gubi piksele 5-pikselowych napisów), większa przy oddalonej
+/// kamerze dużych statków, bo kafelki są wtedy mniejsze. Żeby panel nie zasłaniał widoku, można go zwinąć zakładką.
 /atom/movable/screen/movable/aquila_ship_console/proc/current_scale(client/C)
 	var/list/now = getviewsize(C.view)
 	var/list/base = getviewsize(C.view_size?.default || C.view)
-	return clamp(now[1] / max(base[1], 1), 1, 2) * GLOB.aquila_ship_console_base_scale[kind]
+	return clamp(now[1] / max(base[1], 1), 1, 2)
 
 /// Macierz trzyma lewy dolny róg w miejscu, więc screen_loc zawsze wskazuje lewy dolny róg panelu.
 /atom/movable/screen/movable/aquila_ship_console/proc/update_scale(client/C)
@@ -271,6 +300,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 	moved = TRUE
 	if(user?.client)
 		keep_on_screen(user.client)
+	refresh() // zakładka idzie za panelem
 
 /// Przycina położenie przeciągniętego panelu tak, żeby cały został na ekranie. Bez tego panel dało się wypchnąć
 /// za krawędź, skąd nie było go czym złapać z powrotem.
@@ -278,7 +308,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 	var/list/view = getviewsize(C.view)
 	var/list/size = GLOB.aquila_ship_console_sizes[kind]
 	var/scale = current_scale(C)
-	var/clamped = aquila_console_clamp_screen_loc(screen_loc, view[1], view[2], size[1] * scale, size[2] * scale)
+	var/clamped = aquila_console_clamp_screen_loc(screen_loc, view[1], view[2], size[1] * scale, size[2] * scale + AQUILA_CONSOLE_TAB_HEIGHT)
 	if(clamped)
 		screen_loc = clamped
 
@@ -294,6 +324,46 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 	x = clamp(x, 0, max(0, round(view_w * world.icon_size - width)))
 	y = clamp(y, 0, max(0, round(view_h * world.icon_size - height)))
 	return "[1 + round(x / world.icon_size)]:[x % world.icon_size],[1 + round(y / world.icon_size)]:[y % world.icon_size]"
+
+/// screen_loc przesunięty w górę o dy pikseli. Działa dla "X:px,Y:py" i dla "CENTER:px,SOUTH+N";
+/// piksele przeliczamy na kafelki, żeby przesunięcie nie przekraczało rozmiaru kafelka.
+/proc/aquila_console_raise_screen_loc(screen_loc, dy)
+	var/list/parts = splittext(screen_loc, ",")
+	if(length(parts) != 2)
+		return screen_loc
+	var/list/y_parts = splittext(parts[2], ":")
+	var/pixels = (length(y_parts) > 1 ? text2num(y_parts[2]) : 0) + dy
+	var/tiles = round(pixels / world.icon_size)
+	pixels -= tiles * world.icon_size
+	var/static/regex/base_regex = new(@"^([A-Z]*)([+-]?\d*)$")
+	if(!base_regex.Find(y_parts[1]))
+		return screen_loc
+	var/word = base_regex.group[1]
+	var/number = (text2num(base_regex.group[2]) || 0) + tiles
+	var/base
+	if(!word)
+		base = "[number]"
+	else if(number)
+		base = "[word][number > 0 ? "+" : ""][number]"
+	else
+		base = word
+	return "[parts[1]],[base]:[pixels]"
+
+/atom/movable/screen/aquila_ship_console_tab
+	name = "zwiń konsolę"
+	icon = 'aquila/icons/overmap/gui/console_tab_open.png'
+	plane = HUD_PLANE
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	var/atom/movable/screen/movable/aquila_ship_console/panel
+
+/atom/movable/screen/aquila_ship_console_tab/Click(location, control, params)
+	if(!panel || usr != panel.user)
+		return
+	panel.toggle_collapsed()
+
+/atom/movable/screen/aquila_ship_console_tab/Destroy()
+	panel = null
+	return ..()
 
 /atom/movable/screen/movable/aquila_ship_console/proc/press(button)
 	pressed_until[button] = world.time + AQUILA_CONSOLE_PRESS_TIME
@@ -318,7 +388,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 			return
 
 /atom/movable/screen/movable/aquila_ship_console/proc/examine_text()
-	. = "<span class='notice'>Panel konsoli. Kliknij przycisk na panelu albo użyj skrótu: Alt (hamulec), C (sterowanie myszą/klawiszami), spacja (zmiana broni). Panel można przeciągnąć myszą; ukrywa go czasownik „Pokaż/ukryj panel konsoli” w zakładce Ship.</span>"
+	. = "<span class='notice'>Panel konsoli. Kliknij przycisk na panelu albo użyj skrótu: Alt (hamulec), C (sterowanie myszą/klawiszami), spacja (zmiana broni). Zakładka ZWIŃ nad panelem chowa go do małej zakładki KONSOLA. Panel można przeciągnąć myszą; całkiem ukrywa go czasownik „Pokaż/ukryj panel konsoli” w zakładce Ship.</span>"
 	if(kind == AQUILA_CONSOLE_FIGHTER)
 		. += "\n<span class='warning'>Katapulta: przestaw oba przełączniki (L i P) w ciągu [DisplayTimeText(AQUILA_CONSOLE_ARM_TIME)], żeby wystrzelić kapsułę ratunkową.</span>"
 
@@ -362,6 +432,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 	var/list/aquila_consoles
 	/// Gracz ukrył panel czasownikiem.
 	var/aquila_console_hidden = FALSE
+	/// Rodzaje paneli zwiniętych zakładką (zostają zwinięte przy następnym siadaniu za stery).
+	var/list/aquila_consoles_collapsed
 
 /obj/structure/overmap/start_piloting(mob/living/carbon/user, position)
 	. = ..()
@@ -395,7 +467,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 	RegisterSignal(user, COMSIG_KB_OVERMAP_CYCLEFIREMODE_DOWN, PROC_REF(aquila_on_key_weapon), override = TRUE)
 	user.add_verb(/mob/living/proc/aquila_toggle_ship_console)
 	if(!user.aquila_console_hidden)
-		to_chat(user, "<span class='notice'>Na dole ekranu jest panel konsoli. Przyciski na nim działają jak skróty klawiszowe; Shift+klik pokazuje opis.</span>")
+		to_chat(user, "<span class='notice'>Na dole ekranu jest panel konsoli. Przyciski na nim działają jak skróty klawiszowe, zakładka ZWIŃ chowa panel; Shift+klik pokazuje opis.</span>")
 
 /obj/structure/overmap/proc/aquila_remove_consoles(mob/living/user)
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))
@@ -436,10 +508,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 		return
 	aquila_console_hidden = !aquila_console_hidden
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(aquila_consoles))
-		if(aquila_console_hidden)
-			client?.screen -= panel
-		else
-			panel.refresh()
+		panel.refresh()
 	to_chat(src, "<span class='notice'>[aquila_console_hidden ? "Ukrywasz" : "Pokazujesz"] panel konsoli.</span>")
 
 #undef AQUILA_CONSOLE_FLIGHT
@@ -447,3 +516,4 @@ GLOBAL_LIST_INIT(aquila_ship_console_base_scale, list(
 #undef AQUILA_CONSOLE_WEAPONS
 #undef AQUILA_CONSOLE_ARM_TIME
 #undef AQUILA_CONSOLE_PRESS_TIME
+#undef AQUILA_CONSOLE_TAB_HEIGHT

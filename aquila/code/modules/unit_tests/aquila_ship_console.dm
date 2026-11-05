@@ -50,11 +50,22 @@
 	TEST_ASSERT(panel.left_armed_until > world.time, "Left eject switch did not arm")
 	TEST_ASSERT_EQUAL(dummy.loc, fighter, "One eject switch alone must not eject the pilot")
 
-	// przeciągnięty panel nie wyjeżdża za ekran (widok 21x15 kafelków, panel myśliwca 195x155 po skali 0.75)
+	// przeciągnięty panel nie wyjeżdża za ekran (widok 21x15 kafelków, prostokąt 195x155 px)
 	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("40:10,30:5", 21, 15, 195, 155), "15:29,11:5", "Panel dropped past the top-right corner was not pulled back on screen")
 	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("1:-50,1:-50", 21, 15, 195, 155), "1:0,1:0", "Panel dropped past the bottom-left corner was not pulled back on screen")
 	TEST_ASSERT_EQUAL(aquila_console_clamp_screen_loc("5:3,4:7", 21, 15, 195, 155), "5:3,4:7", "Panel fully on screen should stay where it was dropped")
 	TEST_ASSERT(isnull(aquila_console_clamp_screen_loc("CENTER:-100,SOUTH+1", 21, 15, 195, 155)), "Default centered position should not be rewritten")
+
+	// zakładka zwijania stoi tuż nad panelem (myśliwiec ma 207 px wysokości = 6 kafelków i 15 px)
+	TEST_ASSERT_EQUAL(aquila_console_raise_screen_loc("CENTER:-130,SOUTH+1", 207), "CENTER:-130,SOUTH+7:15", "Tab above the default panel position is misplaced")
+	TEST_ASSERT_EQUAL(aquila_console_raise_screen_loc("3:5,4:20", 12), "3:5,5:0", "Tab above a dragged panel is misplaced")
+
+	// zakładka zwija i rozwija panel, stan zostaje przy osobie
+	panel.toggle_collapsed()
+	TEST_ASSERT(panel.is_collapsed(), "Tab click did not collapse the panel")
+	TEST_ASSERT("fighter" in dummy.aquila_consoles_collapsed, "Collapsed state is not remembered on the mob")
+	panel.toggle_collapsed()
+	TEST_ASSERT(!panel.is_collapsed(), "Second tab click did not expand the panel")
 
 	// panel usunięty sam (np. statek zniknął) nie zostaje na liście
 	var/atom/movable/screen/movable/aquila_ship_console/extra = new(null, fighter, dummy, "fighter")
@@ -118,5 +129,3 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
-
-
