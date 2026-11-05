@@ -167,6 +167,13 @@
       chwastów, gdy ich nie ma.
   - bugfix: Ciągnięty obiekt da się przesunąć klikiem w tacę albo w roślinę wystającą
       nad sąsiedni kafel.
+  - spellcheck: Węgiel aktywowany nazywa się teraz poprawnie Węgiel aktywny.
+  - tweak: Lodówki pokazują najpierw zawartość, potem pojemnik, np. „Węgiel aktywny
+      (butelka)”.
+  - rscadd: 'ChemMaster ma przycisk „Oczyść”: z nieczystego odczynnika w buforze zostaje
+      tylko jego czysta część o czystości 100%.'
+  - tweak: Bufory pH zostają w zlewce jako „Zużyty bufor” i dodają objętość, zamiast
+      znikać.
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.
