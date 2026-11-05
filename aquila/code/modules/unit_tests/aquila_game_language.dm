@@ -49,4 +49,15 @@
 	// Bez klienta z językiem EN tekst okienka input() zostaje
 	TEST_ASSERT(i18n_dialog_text(viewer, "skrzynka narzędziowa") == "skrzynka narzędziowa", "input() text changed for a player without English")
 
+	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
+	for(var/polish_key in GLOB.i18n_hud_icons_en)
+		var/english = GLOB.i18n_hud_icons_en[polish_key]
+		var/polish = GLOB.i18n_hud_icons_pl["[english]"]
+		TEST_ASSERT("[polish]" == polish_key, "HUD icon [english] does not map back to [polish_key]")
+		var/list/missing = icon_states(polish) - icon_states(english)
+		TEST_ASSERT(!length(missing), "English HUD icon [english] lacks states: [jointext(missing, ", ")]; run tools/i18n/hud_en_icons.py")
+	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', TRUE) == 'aquila/icons/hud/en/screen_midnight.dmi', "Midnight HUD style has no English copy")
+	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', FALSE) == 'icons/mob/screen_midnight.dmi', "English HUD icon does not go back to Polish")
+	TEST_ASSERT(i18n_hud_icon('icons/obj/storage.dmi', TRUE) == 'icons/obj/storage.dmi', "Icon without an English copy changed")
+
 #undef TEST_ASSERT

@@ -35,6 +35,8 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		if(flush_queue)
 			C.browse_queue_flush()
 	C.tgui_panel?.send_game_language()
+	// napisy na guzikach HUD-u (aquila/code/modules/i18n/hud_icons.dm)
+	C.mob?.hud_used?.update_ui_style(ui_style2icon(C.prefs?.UI_style))
 
 /// Gracz wybrał angielski
 /client/proc/wants_english()
