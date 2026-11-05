@@ -76,6 +76,9 @@
 /datum/reagent/reaction_agent/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
 	if(!target)
 		return FALSE
+	// Nothing fits (the transfer was clamped to the free space of a full beaker): no pH change, no message
+	if(amount < CHEMICAL_VOLUME_ROUNDING)
+		return FALSE
 	if(target.flags & NO_REACT)
 		return FALSE
 	if(target.has_reagent(/datum/reagent/stabilizing_agent))

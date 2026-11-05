@@ -299,6 +299,9 @@
 		return TRUE
 
 	//trying to inject buffer into currently inserted beaker
+	if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume) // AQ EDIT - bufor ma objętość, do pełnej zlewki się nie zmieści
+		say("Zlewka jest pełna!")
+		return FALSE
 	reagents.trans_id_to(beaker, buffer_type, dispense_volume)
 	return TRUE
 

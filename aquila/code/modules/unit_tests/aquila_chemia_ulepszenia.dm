@@ -19,6 +19,16 @@
 	var/obj/item/reagent_containers/glass/beaker/other = allocate(/obj/item/reagent_containers/glass/beaker)
 	beaker.reagents.trans_to(other, 20)
 	TEST_ASSERT(abs(other.reagents.ph - ph_after_buffer) < 0.01, "Przelany roztwór zmienił pH z [ph_after_buffer] na [other.reagents.ph]")
+	// A full beaker takes no buffer: the pH stays and the buffer is not used up
+	var/obj/item/reagent_containers/glass/beaker/full = allocate(/obj/item/reagent_containers/glass/beaker)
+	full.reagents.add_reagent(/datum/reagent/water, full.reagents.maximum_volume)
+	var/full_ph = full.reagents.ph
+	var/buffer_before = buffer.reagents.total_volume
+	buffer.reagents.trans_to(full, 5)
+	TEST_ASSERT(full.reagents.ph == full_ph, "Bufor zmienił pH pełnej zlewki (z [full_ph] na [full.reagents.ph])")
+	TEST_ASSERT(buffer.reagents.total_volume == buffer_before, "Bufor ubył przy przelewaniu do pełnej zlewki")
+	TEST_ASSERT(!full.reagents.has_reagent(/datum/reagent/spent_buffer), "W pełnej zlewce pojawił się zużyty bufor")
+
 	// The plumbing reaction chamber doses buffer by itself: no spent buffer there, it would drain out with the products
 	var/obj/machinery/plumbing/reaction_chamber/chem/chamber = allocate(/obj/machinery/plumbing/reaction_chamber/chem)
 	chamber.reagents.flags &= ~NO_REACT
