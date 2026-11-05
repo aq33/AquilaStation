@@ -63,6 +63,7 @@
 	if(isobserver(chosen_one) && chosen_one.client && reviving.stat != DEAD)
 		message_admins("[key_name_admin(chosen_one)] przejmuje kontrolę nad wskrzeszonym ciałem [ADMIN_LOOKUPFLW(reviving)]")
 		reviving.ghostize(FALSE)
+		give_fresh_mind(reviving)
 		reviving.key = chosen_one.key
 		to_chat(reviving, "<span class='boldnotice'>[you_are_text]</span>")
 		on_successful_revive?.Invoke(reviving)
@@ -70,6 +71,31 @@
 	else if(refuse_revival_if_failed && reviving.stat != DEAD)
 		reviving.death()
 		reviving.visible_message("<span class='deadsay'>Dusza [reviving] nie zdołała wrócić!</span>")
+
+/**
+ * "Bez wspomnień": a body that belonged to a player gets a new, empty mind for the new soul.
+ * The old mind (antag datums, objectives, uplink, memory) stays with the DNR player's ghost, without a body.
+ * Bodies whose mind never had a player (lost crew corpses) keep theirs.
+ */
+/datum/component/ghostrole_on_revive/proc/give_fresh_mind(mob/living/reviving)
+	var/datum/mind/old_mind = reviving.mind
+	if(!old_mind?.key)
+		return
+	// what the old antag datums put on the body (HUDs, actions, traits), like on_body_transfer does
+	for(var/datum/antagonist/antag as anything in old_mind.antag_datums)
+		antag.remove_innate_effects(reviving)
+		var/datum/action/antag_info/info_button = antag.info_button_ref?.resolve()
+		info_button?.Remove(reviving)
+	for(var/obj/effect/proc_holder/spell/spell as anything in old_mind.spell_list)
+		spell.action?.Remove(reviving)
+	if(LAZYLEN(old_mind.antag_datums))
+		reviving.remove_from_current_living_antags()
+	old_mind.UnregisterSignal(reviving, COMSIG_MOB_DEATH)
+	old_mind.set_current(null)
+	reviving.mind = null
+	reviving.mind_initialize()
+	// the job is not a memory, the body still carries its ID
+	reviving.mind.assigned_role = old_mind.assigned_role
 
 /// The DNR choice of the body's own player, for Thanatorenasia
 /mob/living/proc/on_dnr()

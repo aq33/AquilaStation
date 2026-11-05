@@ -415,7 +415,11 @@
 			carbon_user.changeNext_move(CLICK_CD_MELEE)
 			return TRUE
 
-	return ..()
+	// AQ EDIT START - zablokowany chwyt (check_block, TRAIT_ONEWAYROAD) nie spada do ..(), które ponownie odpala grab_act i ciągnie cel
+	var/mob/living/carbon/blocked_user = user
+	blocked_user.changeNext_move(CLICK_CD_MELEE)
+	return FALSE
+	// AQ EDIT END
 
 /mob/proc/CtrlMiddleClickOn(atom/A)
 	// specifically made for admin feature.
