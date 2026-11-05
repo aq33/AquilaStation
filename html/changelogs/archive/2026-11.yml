@@ -111,3 +111,7 @@
   - rscadd: Samouczek Przetrwanie uczy tamowania krwawienia bandażem z pudełka przetrwania.
   - tweak: Samouczek uczy walki i chwytu w combat mode albo w starych intencjach,
       zależnie od preferencji gracza, i wspomina o sprincie.
+  - tweak: Animacja chodu obciąża komputer tylko w trakcie kroku. Tłum stojących ludzi
+      nie zbija już FPS, a idący kosztuje mniej.
+  - tweak: FPS „Zalecane” dopasowuje się do odświeżania monitora (np. 144 Hz), więc
+      ruch na ekranie jest równiejszy.
