@@ -1072,6 +1072,7 @@
 #include "code\modules\test_chamber\kits\pr_555_chemia_ulepszenia.dm"
 #include "code\modules\test_chamber\kits\pr_547_poprawki_0311.dm"
 #include "code\modules\test_chamber\kits\pr_552_mix_hej_wizard.dm"
+#include "code\modules\test_chamber\kits\pr_563_nsv_zaleglosci.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
