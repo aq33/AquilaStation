@@ -155,5 +155,61 @@
 	TEST_ASSERT_EQUAL(left, 0, "Queued powernets were left for the next tick")
 	TEST_ASSERT_EQUAL(still_dirty, 0, "Queued powernets were not recalculated")
 
+/// Test powernet for smartwires_dirty_queue_changes: its recalculation queues or deletes another powernet
+/datum/powernet/unit_test_queue
+	var/datum/powernet/to_queue
+	var/datum/powernet/to_delete
+
+/datum/powernet/unit_test_queue/repropogate_cables()
+	to_queue?.mark_dirty()
+	if (to_delete)
+		qdel(to_delete)
+
+/// AQUILA - a powernet queued or deleted while the queue is processed does not make it skip a queued powernet
+/datum/unit_test/smartwires_dirty_queue_changes
+
+/datum/unit_test/smartwires_dirty_queue_changes/Run()
+	var/list/old_queue = SSmachines.dirty_powernets
+	var/old_index = SSmachines.dirty_index
+	var/old_stop = SSmachines.dirty_stop_index
+	var/datum/powernet/added = new
+	// Processed first: queues a new powernet at the end of the queue
+	var/datum/powernet/unit_test_queue/queuer = new
+	queuer.to_queue = added
+	var/datum/powernet/waiting = new
+	// Processed second: deletes the new powernet, which by then sits before the queue index
+	var/datum/powernet/unit_test_queue/deleter = new
+	deleter.to_delete = added
+	var/list/nets = list(queuer, waiting, deleter)
+	SSmachines.dirty_powernets = list()
+	for (var/datum/powernet/net as anything in nets)
+		net.mark_dirty()
+	SSmachines.dirty_index = 1
+	SSmachines.dirty_stop_index = length(SSmachines.dirty_powernets)
+
+	SSmachines.process_dirty_powernets(FALSE)
+	var/still_dirty = 0
+	for (var/datum/powernet/net as anything in nets)
+		if (net.dirty)
+			still_dirty++
+		net.dirty = FALSE
+	var/live_left = 0
+	for (var/datum/powernet/net in SSmachines.dirty_powernets)
+		live_left++
+	var/added_deleted = QDELETED(added)
+	queuer.to_queue = null
+	deleter.to_delete = null
+	for (var/datum/powernet/net as anything in nets)
+		qdel(net)
+	if (!added_deleted)
+		added.dirty = FALSE
+		qdel(added)
+	SSmachines.dirty_powernets = old_queue
+	SSmachines.dirty_index = old_index
+	SSmachines.dirty_stop_index = old_stop
+	TEST_ASSERT(added_deleted, "The test powernet was not deleted")
+	TEST_ASSERT_EQUAL(still_dirty, 0, "A queued powernet was skipped after another one was queued or deleted")
+	TEST_ASSERT_EQUAL(live_left, 0, "A deleted powernet stayed in the queue")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -82,8 +82,8 @@ SUBSYSTEM_DEF(machines)
 		cable = cables[A]
 		new_powernet.add_cable(cable)
 	new_powernet.repropogate_cables()
+	dequeue_recalculation(new_powernet)
 	new_powernet.dirty = FALSE
-	dirty_powernets -= new_powernet
 	// AQ EDIT END
 
 /datum/controller/subsystem/machines/Recover()
@@ -131,4 +131,11 @@ SUBSYSTEM_DEF(machines)
 		return
 	dirty_powernets += powernet
 	powernet.dirty = TRUE
+
+/// AQ EDIT - Smartwires: takes a powernet out of the queue without shifting the other entries, so a run of
+/// process_dirty_powernets() in progress keeps its indexes (it skips the null)
+/datum/controller/subsystem/machines/proc/dequeue_recalculation(datum/powernet/powernet)
+	var/index = dirty_powernets.Find(powernet)
+	if (index)
+		dirty_powernets[index] = null
 // AQ EDIT END
