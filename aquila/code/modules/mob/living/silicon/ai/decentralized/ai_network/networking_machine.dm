@@ -47,6 +47,10 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	GLOB.ai_networking_machines -= src
 	disconnect()
 	remote_connection_attempt = null
+	// Nadajniki, które wybrały nas multitoolem, trzymały twardą referencję (harddel)
+	for(var/obj/machinery/ai/networking/other as anything in GLOB.ai_networking_machines)
+		if(other.remote_connection_attempt == src)
+			other.remote_connection_attempt = null
 	return ..()
 
 //Nadajnik nie grzeje się i nie potrzebuje chłodzenia

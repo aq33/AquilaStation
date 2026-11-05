@@ -161,10 +161,10 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 	to_chat(user, "<span class='notice'>Przestawiasz automatyczne wyłączanie prysznica: [GLOB.shower_mode_descriptions["[mode]"]].</span>")
 	return TRUE
 
+// The later crowbar_act() in nsv13/code/game/machinery/blast_shower.dm takes the shower apart and calls this one first while the recycler is in
 /obj/machinery/shower/crowbar_act(mob/living/user, obj/item/tool)
 	if(!has_water_reclaimer)
-		to_chat(user, "<span class='warning'>[src] nie ma odzysku wody.</span>")
-		return TRUE
+		return ..()
 
 	tool.play_tool_sound(src)
 	has_water_reclaimer = FALSE

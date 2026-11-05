@@ -273,7 +273,7 @@
 				return 60 SECONDS
 			else
 				var/obj/effect/dummy/lighting_obj/moblight/glow = new(user) //copied from glowy mutation, copied from luminescents
-				glow.set_light(2.5, 2.5, user.dna.features["mcolor"]) //Weaker than regular luminescents
+				glow.set_light_range_power_color(2.5, 2.5, user.dna.features["mcolor"]) //Weaker than regular luminescents // AQ EDIT - set_light() ends in update_light(), which CRASHes on a MOVABLE_LIGHT
 				QDEL_IN(glow, 600)
 				return 60 SECONDS
 
