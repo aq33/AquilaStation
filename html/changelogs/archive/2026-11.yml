@@ -182,6 +182,17 @@
   - rscadd: Przyciski etapów w oknie broni statkowej (podanie, komora, przeładowanie
       ze stojaka) nabijają się paskiem, dopóki etap trwa.
   - bugfix: Skrzydła, ogony i czułki nie odcinają się już od animacji chodu.
+  - rscadd: Plecaki, torby na ramię i torby podróżne mają siatkę kratek. Przedmioty
+      zajmują miejsce zależne od wielkości, można je przesuwać przeciąganiem i obracać
+      klawiszami E i Q w trakcie przeciągania.
+  - imageadd: Kafle siatki w kolorach wielkości przedmiotu i nagłówek z zajętością
+      plecaka.
+  - rscadd: Skrzynki z narzędziami, apteczki, aktówki i pudełka też mają siatkę kratek,
+      z dawnym limitem liczby przedmiotów.
+  - imageadd: 'Okno schowka na siatce jest mniejsze: kratki mają 24 px.'
+  - rscadd: W trakcie przeciągania przedmiotu po siatce widać, gdzie i jak wyląduje.
+  - rscadd: Przedmiot włożony do pełnego plecaka siłą trafia do czerwonego rzędu nad
+      siatką zamiast znikać.
   Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
   - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
       (wybierany przez admina).
