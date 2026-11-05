@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 /obj/item/stack/marker_beacon/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input_color = input(user, i18n_dialog_text(user, "Wybierz kolor."), i18n_dialog_text(user, "Kolor znacznika")) as null|anything in GLOB.marker_beacon_colors // AQ EDIT - i18n okienka
+	var/input_color = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz kolor."), i18n_dialog_text(user, "Kolor znacznika")) as null|anything in i18n_input_shown(user, GLOB.marker_beacon_colors)) // AQ EDIT - i18n okienka
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(input_color)
@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 /obj/structure/marker_beacon/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input_color = input(user, i18n_dialog_text(user, "Wybierz kolor."), i18n_dialog_text(user, "Kolor znacznika")) as null|anything in GLOB.marker_beacon_colors // AQ EDIT - i18n okienka
+	var/input_color = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz kolor."), i18n_dialog_text(user, "Kolor znacznika")) as null|anything in i18n_input_shown(user, GLOB.marker_beacon_colors)) // AQ EDIT - i18n okienka
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(input_color)

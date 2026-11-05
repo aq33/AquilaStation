@@ -14,7 +14,7 @@ const input = process.env.I18N_COVERAGE;
 
 (input ? it : it.skip)('teksty okien po angielsku', () => {
   setDictionary(
-    JSON.parse(readFileSync('../strings/i18n/en_chat.json', 'utf8')),
+    JSON.parse(readFileSync('../strings/i18n/en_windows.json', 'utf8')),
   );
   const texts: { text: string; file: string; key: string }[] = JSON.parse(
     readFileSync(input!, 'utf8'),

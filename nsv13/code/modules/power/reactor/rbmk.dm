@@ -685,7 +685,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(!reactor.fuel_rods.len)
 		to_chat(user, "<span class='warning'>W [reactor] nie załadowano żadnych prętów paliwowych.</span>")
 		return FALSE
-	var/atom/movable/fuel_rod = input(usr, i18n_dialog_text(usr, "Wybierz pręt paliwowy do wyjęcia"), i18n_dialog_text(usr, "[src]"), null) as null|anything in reactor.fuel_rods // AQ EDIT - i18n okienka
+	var/atom/movable/fuel_rod = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz pręt paliwowy do wyjęcia"), i18n_dialog_text(usr, "[src]"), null) as null|anything in i18n_input_shown(usr, reactor.fuel_rods)) // AQ EDIT - i18n okienka
 	if(!fuel_rod)
 		return
 	playsound(src, pick('nsv13/sound/effects/rbmk/switch.ogg','nsv13/sound/effects/rbmk/switch2.ogg','nsv13/sound/effects/rbmk/switch3.ogg'), 100, FALSE)
@@ -880,7 +880,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(!shares_overmap(usr, R))
 					continue
 				choices += R
-			reactor = input(usr, i18n_dialog_text(usr, "Który reaktor chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in choices // AQ EDIT - i18n okienka
+			reactor = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Który reaktor chcesz monitorować?"), i18n_dialog_text(usr, "[src]"), null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
 			powerData = list()
 			psiData = list()
 			tempInputData = list()

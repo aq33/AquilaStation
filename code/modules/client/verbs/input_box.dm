@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(input_window_presets, list(
 /client/verb/fix_chatbox()
 	set name = "Fix chatbox"
 
-	var/preset = input(src, i18n_dialog_text(src, "Które okno czatu chcesz odtworzyć?"), i18n_dialog_text(src, "Napraw okno czatu")) as null|anything in GLOB.input_window_presets // AQ EDIT - i18n okienka
+	var/preset = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Które okno czatu chcesz odtworzyć?"), i18n_dialog_text(src, "Napraw okno czatu")) as null|anything in i18n_input_shown(src, GLOB.input_window_presets)) // AQ EDIT - i18n okienka
 
 	if(!preset)
 		return

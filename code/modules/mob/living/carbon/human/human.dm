@@ -790,7 +790,7 @@
 			var/qname = initial(T.name)
 			options[has_quirk(T) ? "[qname] (usuń)" : "[qname] (dodaj)"] = T
 
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz cechę do dodania/usunięcia"),i18n_dialog_text(usr, "Modyfikacja cech")) as null|anything in options // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cechę do dodania/usunięcia"),i18n_dialog_text(usr, "Modyfikacja cech")) as null|anything in i18n_input_shown(usr, options)) // AQ EDIT - i18n okienka
 		if(result)
 			if(result == "Wyczyść")
 				for(var/datum/quirk/q in roundstart_quirks)
@@ -828,7 +828,7 @@
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in GLOB.species_list // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in i18n_input_shown(usr, GLOB.species_list)) // AQ EDIT - i18n okienka
 		if(result)
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] zmienia gatunek [src] na [result]")

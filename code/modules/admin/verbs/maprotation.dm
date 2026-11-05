@@ -34,7 +34,7 @@
 			mapname += "\]"
 
 		maprotatechoices[mapname] = VM
-	var/chosenmap = input(i18n_dialog_text(usr, "Wybierz mapę, na którą zmienić"), i18n_dialog_text(usr, "Zmiana mapy"))  as null|anything in sortList(maprotatechoices) // AQ EDIT - i18n okienka
+	var/chosenmap = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz mapę, na którą zmienić"), i18n_dialog_text(usr, "Zmiana mapy"))  as null|anything in i18n_input_shown(usr, sortList(maprotatechoices))) // AQ EDIT - i18n okienka
 	if (!chosenmap)
 		return
 	SSticker.maprotatechecked = 1

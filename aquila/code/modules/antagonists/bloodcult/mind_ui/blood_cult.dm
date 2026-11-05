@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(blood_communion, list())
 			available_runes.Add("[initial(instance.name)] - \Roman[i]")
 			available_runes["[initial(instance.name)] - \Roman[i]"] = instance
 			i++
-		var/spell_name = input(M, i18n_dialog_text(M, "Przypomnij sobie, jak nakreślić wybraną runę."), i18n_dialog_text(M, "Kreśl runę z przewodnikiem"), null) as null|anything in available_runes // AQ EDIT - i18n okienka
+		var/spell_name = i18n_input_choice(M, input(M, i18n_dialog_text(M, "Przypomnij sobie, jak nakreślić wybraną runę."), i18n_dialog_text(M, "Kreśl runę z przewodnikiem"), null) as null|anything in i18n_input_shown(M, available_runes)) // AQ EDIT - i18n okienka
 
 		if (spell_name)
 			for(var/datum/mind_ui/bloodcult_runes/BR in parent.subUIs)

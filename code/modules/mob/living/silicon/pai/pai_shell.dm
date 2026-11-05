@@ -67,7 +67,7 @@
 	if(!isturf(loc) && loc != card)
 		to_chat(src, "<span class='boldwarning'>Nie możesz zmienić kompozycji holoobudowy, gdy nie jesteś na ziemi ani w karcie!</span>")
 		return FALSE
-	var/choice = input(src, i18n_dialog_text(src, "Czego chcesz użyć jako kompozycji holoobudowy?")) as null|anything in sortList(possible_chassis) // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Czego chcesz użyć jako kompozycji holoobudowy?")) as null|anything in i18n_input_shown(src, sortList(possible_chassis))) // AQ EDIT - i18n okienka
 	if(!choice)
 		return FALSE
 	chassis = choice

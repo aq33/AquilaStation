@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(P.reset)
 			guardians -= P //clear out guardians that are already reset
 	if(guardians.len)
-		var/mob/living/simple_animal/hostile/guardian/G = input(src, i18n_dialog_text(src, "Wybierz strażnika, którego chcesz zresetować"), i18n_dialog_text(src, "Reset strażnika")) as null|anything in sortNames(guardians) // AQ EDIT - i18n okienka
+		var/mob/living/simple_animal/hostile/guardian/G = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz strażnika, którego chcesz zresetować"), i18n_dialog_text(src, "Reset strażnika")) as null|anything in i18n_input_shown(src, sortNames(guardians))) // AQ EDIT - i18n okienka
 		if(G)
 			to_chat(src, "<span class='holoparasite'>Próbujesz zresetować osobowość <font color=\"[G.guardiancolor]\"><b>[G.real_name]</b></font>...</span>")
 			var/list/mob/dead/observer/candidates = pollGhostCandidates("Chcesz zagrać jako [G.real_name] gracza [src.real_name]?", ROLE_HOLOPARASITE, null, 10 SECONDS)
@@ -555,7 +555,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(random)
 		guardiantype = pick(possible_guardians)
 	else
-		guardiantype = input(user, i18n_dialog_text(user, "Wybierz rodzaj: [mob_name]"), i18n_dialog_text(user, "Tworzenie: [mob_name]")) as null|anything in sortList(possible_guardians) // AQ EDIT - i18n okienka
+		guardiantype = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz rodzaj: [mob_name]"), i18n_dialog_text(user, "Tworzenie: [mob_name]")) as null|anything in i18n_input_shown(user, sortList(possible_guardians))) // AQ EDIT - i18n okienka
 		if(!guardiantype)
 			to_chat(user, "[failure_message]" )
 			used = FALSE

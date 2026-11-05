@@ -406,7 +406,7 @@
 	for(R in GLOB.admin_ranks)
 		if((R.rights & usr.client.holder.rank.can_edit_rights) == R.rights)
 			rank_names[R.name] = R
-	var/new_rank = input(i18n_dialog_text(usr, "Wybierz rangę"), i18n_dialog_text(usr, "Nowa ranga")) as null|anything in rank_names // AQ EDIT - i18n okienka
+	var/new_rank = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz rangę"), i18n_dialog_text(usr, "Nowa ranga")) as null|anything in i18n_input_shown(usr, rank_names)) // AQ EDIT - i18n okienka
 	if(new_rank == "*Nowa ranga*")
 		new_rank = capped_input(usr, "Wpisz nową rangę", "Nowa własna ranga")
 	if(!new_rank)

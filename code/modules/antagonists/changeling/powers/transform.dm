@@ -140,7 +140,7 @@
 	for(var/datum/changelingprofile/prof in stored_profiles)
 		names += "[prof.name]"
 
-	var/chosen_name = input(i18n_dialog_text(usr, prompt), i18n_dialog_text(usr, title), null) as null|anything in sortList(names) // AQ EDIT - i18n okienka
+	var/chosen_name = i18n_input_choice(usr, input(i18n_dialog_text(usr, prompt), i18n_dialog_text(usr, title), null) as null|anything in i18n_input_shown(usr, sortList(names))) // AQ EDIT - i18n okienka
 	if(!chosen_name)
 		return
 

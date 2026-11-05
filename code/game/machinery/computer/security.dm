@@ -803,7 +803,7 @@ What a mess.*/
 							active1.fields["age"] = t1
 					if("species")
 						if(istype(active1, /datum/data/record))
-							var/t1 = input(i18n_dialog_text(usr, "Wybierz gatunek"), i18n_dialog_text(usr, "Wybór gatunku")) as null|anything in GLOB.roundstart_races // AQ EDIT - i18n okienka
+							var/t1 = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gatunek"), i18n_dialog_text(usr, "Wybór gatunku")) as null|anything in i18n_input_shown(usr, GLOB.roundstart_races)) // AQ EDIT - i18n okienka
 							if(!canUseSecurityRecordsConsole(usr, t1, a1))
 								return
 							active1.fields["species"] = t1

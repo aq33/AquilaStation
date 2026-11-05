@@ -79,7 +79,7 @@
 	if(expiry == -1)
 		expiry = null //This is so garbage and hacky.
 	if(type == "note" && isnull(note_severity))
-		note_severity = input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in list("High", "Medium", "Minor", "None") // AQ EDIT - i18n okienka
+		note_severity = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in i18n_input_shown(usr, list("High", "Medium", "Minor", "None"))) // AQ EDIT - i18n okienka
 		if(!note_severity)
 			return
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
@@ -309,7 +309,7 @@
 			old_severity = "NA"
 		var/editor_key = usr.key
 		var/editor_ckey = usr.ckey
-		var/new_severity = input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency // AQ EDIT - i18n okienka
+		var/new_severity = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in i18n_input_shown(usr, list("high", "medium", "minor", "none"))) //lowercase for edit log consistency // AQ EDIT - i18n okienka
 		if(!new_severity)
 			qdel(query_find_edit_note_severity)
 			return

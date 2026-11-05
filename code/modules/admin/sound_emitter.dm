@@ -99,7 +99,7 @@
 	if(href_list["edit_mode"])
 		var/new_mode
 		var/mode_list = list("Lokalny (zwykły dźwięk)" = SOUND_EMITTER_LOCAL, "Bezpośredni (bez wpływu otoczenia/położenia)" = SOUND_EMITTER_DIRECT)
-		new_mode = input(user, i18n_dialog_text(user, "Wybierz nowy tryb."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in mode_list // AQ EDIT - i18n okienka
+		new_mode = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz nowy tryb."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in i18n_input_shown(user, mode_list)) // AQ EDIT - i18n okienka
 		if(!new_mode)
 			return
 		motus_operandi = mode_list[new_mode]
@@ -107,7 +107,7 @@
 	if(href_list["edit_range"])
 		var/new_range
 		var/range_list = list("Promień (wszystkie moby w promieniu)" = SOUND_EMITTER_RADIUS, "Poziom Z (wszystkie moby na tym samym z)" = SOUND_EMITTER_ZLEVEL, "Globalny (wszyscy gracze)" = SOUND_EMITTER_GLOBAL)
-		new_range = input(user, i18n_dialog_text(user, "Wybierz nowy zasięg."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in range_list // AQ EDIT - i18n okienka
+		new_range = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz nowy zasięg."), i18n_dialog_text(user, "Emiter dźwięku")) as null|anything in i18n_input_shown(user, range_list)) // AQ EDIT - i18n okienka
 		if(!new_range)
 			return
 		emitter_range = range_list[new_range]

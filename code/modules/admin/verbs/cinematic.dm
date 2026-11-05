@@ -6,7 +6,7 @@
 	if(!SSticker)
 		return
 
-	var/datum/cinematic/choice = input(src,i18n_dialog_text(src, "Cinematic"),i18n_dialog_text(src, "Choose"),null) as null|anything in sortList(subtypesof(/datum/cinematic), GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/datum/cinematic/choice = i18n_input_choice(src, input(src,i18n_dialog_text(src, "Cinematic"),i18n_dialog_text(src, "Choose"),null) as null|anything in i18n_input_shown(src, sortList(subtypesof(/datum/cinematic), GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
 	if(choice)
 		message_admins("[key_name_admin(usr)] triggered a cinematic: [choice]")
 		log_admin("[key_name(usr)] triggered a cinematic: [choice]")

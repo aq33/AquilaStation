@@ -48,7 +48,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(target?.current)
 		def_value = target.current
 
-	var/mob/new_target = input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), def_value) as null|anything in (sortNames(possible_targets) | list("Cel dowolny","Losowy")) // AQ EDIT - i18n okienka
+	var/mob/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), def_value) as null|anything in i18n_input_shown(admin, (sortNames(possible_targets) | list("Cel dowolny","Losowy")))) // AQ EDIT - i18n okienka
 	if (!new_target)
 		return
 
@@ -685,7 +685,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items
-	var/new_target = input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), steal_target) as null|anything in sortNames(possible_items_all)+"własny" // AQ EDIT - i18n okienka
+	var/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania"), steal_target) as null|anything in i18n_input_shown(admin, sortNames(possible_items_all)+"własny")) // AQ EDIT - i18n okienka
 	if (!new_target)
 		return
 
@@ -947,7 +947,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/admin_edit(mob/admin)
 	var/list/possible_targets = active_ais(1)
 	if(possible_targets.len)
-		var/mob/new_target = input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania")) as null|anything in sortNames(possible_targets) // AQ EDIT - i18n okienka
+		var/mob/new_target = i18n_input_choice(admin, input(admin,i18n_dialog_text(admin, "Wybierz cel:"), i18n_dialog_text(admin, "Cel zadania")) as null|anything in i18n_input_shown(admin, sortNames(possible_targets))) // AQ EDIT - i18n okienka
 		set_target(new_target.mind)
 	else
 		to_chat(admin, "Brak aktywnych SI z umysłami")

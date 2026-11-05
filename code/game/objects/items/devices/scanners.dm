@@ -900,7 +900,7 @@ GENE SCANNER
 	for(var/A in buffer)
 		options += get_display_name(A)
 
-	var/answer = input(user, i18n_dialog_text(user, "Analizuj potencjał"), i18n_dialog_text(user, "Analizator sekwencji"))  as null|anything in sortList(options) // AQ EDIT - i18n okienka
+	var/answer = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Analizuj potencjał"), i18n_dialog_text(user, "Analizator sekwencji"))  as null|anything in i18n_input_shown(user, sortList(options))) // AQ EDIT - i18n okienka
 	if(answer && ready && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		var/sequence
 		for(var/A in buffer) //this physically hurts but i dont know what anything else short of an assoc list

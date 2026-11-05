@@ -303,7 +303,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			dynamic_log("[usr.key] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
 			return TRUE
 		if("force_latejoin_rule")
-			var/added_rule = input(usr,i18n_dialog_text(usr, "Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji."), i18n_dialog_text(usr, "Ustawianie spóźnionego dołączenia"), null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin)) // AQ EDIT - i18n okienka
+			var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji."), i18n_dialog_text(usr, "Ustawianie spóźnionego dołączenia"), null) as null|anything in i18n_input_shown(usr, sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin)))) // AQ EDIT - i18n okienka
 			if (!added_rule)
 				return
 			forced_latejoin_rule = added_rule
@@ -314,7 +314,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			dynamic_log("[key_name(usr)] cleared the forced latejoin ruleset.")
 			return TRUE
 		if("force_midround_rule")
-			var/added_rule = input(usr,i18n_dialog_text(usr, "Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji."), i18n_dialog_text(usr, "Uruchom zestaw zasad"), null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/midround)) // AQ EDIT - i18n okienka
+			var/added_rule = i18n_input_choice(usr, input(usr,i18n_dialog_text(usr, "Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji."), i18n_dialog_text(usr, "Uruchom zestaw zasad"), null) as null|anything in i18n_input_shown(usr, sortNames(init_rulesets(/datum/dynamic_ruleset/midround)))) // AQ EDIT - i18n okienka
 			if (!added_rule)
 				return
 			dynamic_log("[key_name(usr)] executed the [added_rule] ruleset.")

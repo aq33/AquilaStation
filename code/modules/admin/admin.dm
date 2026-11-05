@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	else
 		rebootconfirm = TRUE
 	if(rebootconfirm)
-		var/result = input(usr, i18n_dialog_text(usr, "Wybierz sposób restartu"), i18n_dialog_text(usr, "Restart świata"), options[1]) as null|anything in options // AQ EDIT - i18n okienka
+		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz sposób restartu"), i18n_dialog_text(usr, "Restart świata"), options[1]) as null|anything in i18n_input_shown(usr, options)) // AQ EDIT - i18n okienka
 		if(result)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 			var/init_by = "Restart zlecił: [usr.client.holder.fakekey ? "Admin" : usr.key]."

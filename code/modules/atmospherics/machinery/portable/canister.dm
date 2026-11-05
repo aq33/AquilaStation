@@ -413,7 +413,7 @@
 		return
 	switch(action)
 		if("relabel")
-			var/label = input(i18n_dialog_text(usr, "Nowa etykieta kanistra:"), i18n_dialog_text(usr, name)) as null|anything in sortList(label2types) // AQ EDIT - i18n okienka
+			var/label = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Nowa etykieta kanistra:"), i18n_dialog_text(usr, name)) as null|anything in i18n_input_shown(usr, sortList(label2types))) // AQ EDIT - i18n okienka
 			if(label && !..())
 				var/newtype = label2types[label]
 				if(newtype)

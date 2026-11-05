@@ -547,7 +547,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Wywołaj w swoim miejscu eksplozję o wybranej sile."
 
 	var/list/choices = list("Mała bomba (1, 2, 3, 3)", "Średnia bomba (2, 3, 4, 4)", "Duża bomba (3, 5, 7, 5)", "Maxcap", "Własna bomba")
-	var/choice = input(i18n_dialog_text(usr, "Jaki rozmiar eksplozji chcesz wywołać? UWAGA: możesz to wszystko robić szybko i w sposób IC (pociskami manewrującymi!) czasownikiem Config/Launch Supplypod. OSTRZEŻENIE: to pomija maxcap")) as null|anything in choices // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Jaki rozmiar eksplozji chcesz wywołać? UWAGA: możesz to wszystko robić szybko i w sposób IC (pociskami manewrującymi!) czasownikiem Config/Launch Supplypod. OSTRZEŻENIE: to pomija maxcap")) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
 	var/turf/epicenter = mob.loc
 
 	switch(choice)
@@ -639,7 +639,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	var/type_length = length_char("/obj/effect/proc_holder/spell") + 2
 	for(var/A in GLOB.spells)
 		spell_list[copytext_char("[A]", type_length)] = A
-	var/obj/effect/proc_holder/spell/S = input(i18n_dialog_text(usr, "Wybierz zaklęcie, które chcesz mu dać"), i18n_dialog_text(usr, "ABRAKADABRA")) as null|anything in sortList(spell_list) // AQ EDIT - i18n okienka
+	var/obj/effect/proc_holder/spell/S = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz zaklęcie, które chcesz mu dać"), i18n_dialog_text(usr, "ABRAKADABRA")) as null|anything in i18n_input_shown(usr, sortList(spell_list))) // AQ EDIT - i18n okienka
 	if(!S)
 		return
 
@@ -660,7 +660,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Usuń zaklęcie wybranemu mobowi."
 
 	if(T?.mind)
-		var/obj/effect/proc_holder/spell/S = input(i18n_dialog_text(usr, "Wybierz zaklęcie do usunięcia"), i18n_dialog_text(usr, "NO ABRAKADABRA")) as null|anything in sortList(T.mind.spell_list) // AQ EDIT - i18n okienka
+		var/obj/effect/proc_holder/spell/S = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz zaklęcie do usunięcia"), i18n_dialog_text(usr, "NO ABRAKADABRA")) as null|anything in i18n_input_shown(usr, sortList(T.mind.spell_list))) // AQ EDIT - i18n okienka
 		if(S)
 			T.mind.RemoveSpell(S)
 			log_admin("[key_name(usr)] removed the spell [S] from [key_name(T)].")
@@ -675,7 +675,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!istype(T))
 		to_chat(src, "<span class='notice'>Chorobę możesz dać tylko mobowi typu /mob/living.</span>")
 		return
-	var/datum/disease/D = input(i18n_dialog_text(usr, "Wybierz chorobę, którą chcesz mu dać"), i18n_dialog_text(usr, "ACHOO")) as null|anything in sortList(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/datum/disease/D = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz chorobę, którą chcesz mu dać"), i18n_dialog_text(usr, "ACHOO")) as null|anything in i18n_input_shown(usr, sortList(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
 	if(!D)
 		return
 	T.ForceContractDisease(new D, FALSE, TRUE)

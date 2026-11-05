@@ -821,7 +821,7 @@
 			for(var/i in C.network)
 				cameralist[i] = i
 	var/old_network = network
-	network = input(U, i18n_dialog_text(U, "Którą sieć chcesz oglądać?")) as null|anything in sortList(cameralist) // AQ EDIT - i18n okienka
+	network = i18n_input_choice(U, input(U, i18n_dialog_text(U, "Którą sieć chcesz oglądać?")) as null|anything in i18n_input_shown(U, sortList(cameralist))) // AQ EDIT - i18n okienka
 	if(ai_tracking_target)
 		ai_stop_tracking()
 	if(!U.eyeobj)
@@ -952,7 +952,7 @@
 				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
 
 			if(personnel_list.len)
-				input = input(i18n_dialog_text(usr, "Wybierz członka załogi:")) as null|anything in sortList(personnel_list) // AQ EDIT - i18n okienka
+				input = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz członka załogi:")) as null|anything in i18n_input_shown(usr, sortList(personnel_list))) // AQ EDIT - i18n okienka
 				var/icon/character_icon = personnel_list[input]
 				if(character_icon)
 					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
@@ -977,7 +977,7 @@
 			"spider" = 'icons/mob/animal.dmi'
 			)
 
-			input = input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in sortList(icon_list) // AQ EDIT - i18n okienka
+			input = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in i18n_input_shown(usr, sortList(icon_list))) // AQ EDIT - i18n okienka
 			if(input)
 				qdel(holo_icon)
 				switch(input)
@@ -999,7 +999,7 @@
 				"custom"
 				) //NSV13 - Added Clockwork Hologram and Custom Hologram
 
-			input = input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in sortList(icon_list) // AQ EDIT - i18n okienka
+			input = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz hologram:")) as null|anything in i18n_input_shown(usr, sortList(icon_list))) // AQ EDIT - i18n okienka
 			if(input)
 				qdel(holo_icon)
 				switch(input)
@@ -1255,7 +1255,7 @@
 		to_chat(src, "Nie wykryto żadnych użytecznych nadajników powłok SI.")
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, i18n_dialog_text(src, "Którym ciałem sterować?")) as null|anything in sortNames(possible) // AQ EDIT - i18n okienka
+		target = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Którym ciałem sterować?")) as null|anything in i18n_input_shown(src, sortNames(possible))) // AQ EDIT - i18n okienka
 
 	if (!target || target.stat || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)) || (target.ratvar && !is_servant_of_ratvar(src)))
 		return

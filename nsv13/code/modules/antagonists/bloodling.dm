@@ -630,7 +630,7 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 		if(M == user || issilicon(M) || !isliving(M) || M.invisibility > 0 || !M.alpha || is_bloodling(M))
 			continue
 		mobs += M
-	var/mob/living/M = input(user, i18n_dialog_text(user, "Kogo wchłoniemy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in mobs // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Kogo wchłoniemy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in i18n_input_shown(user, mobs)) // AQ EDIT - i18n okienka
 	if(!M)
 		return FALSE
 	var/datum/component/bloodling/B = user.GetComponent(/datum/component/bloodling)
@@ -767,7 +767,7 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 		if(M == user || !isliving(M) || M.invisibility > 0 || !M.alpha || is_bloodling(M))
 			continue
 		mobs += M
-	var/mob/living/M = input(user, i18n_dialog_text(user, "Kogo zainfekujemy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in mobs // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Kogo zainfekujemy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in i18n_input_shown(user, mobs)) // AQ EDIT - i18n okienka
 	if(!M || !M.mind || is_bloodling(M))
 		to_chat(user, "<span class='warning'>Ta istota nie ma inteligencji, lepiej ją wchłonąć. </span>")
 		refund_biomass(user, biomass_cost)
@@ -810,7 +810,7 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		if(M == user || !isliving(M) || M.invisibility > 0 || !M.alpha)
 			continue
 		mobs += M
-	var/mob/living/M = input(user, i18n_dialog_text(user, "Którą istotę obdarzymy życiem?"), i18n_dialog_text(user, "[src]"), null) as null|anything in mobs // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Którą istotę obdarzymy życiem?"), i18n_dialog_text(user, "[src]"), null) as null|anything in i18n_input_shown(user, mobs)) // AQ EDIT - i18n okienka
 	if(!M || M.mind)
 		to_chat(user, "<span class='warning'>Ta istota ma już inteligencję, lepiej ją zainfekować...</span>")
 		refund_biomass(user, biomass_cost)
@@ -850,7 +850,7 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		if(M == user || !isliving(M) || M.invisibility > 0 || !M.alpha || !is_bloodling(M))
 			continue
 		mobs += M
-	var/mob/living/M = input(user, i18n_dialog_text(user, "Komu przekażemy biomasę?"), i18n_dialog_text(user, "[src]"), null) as null|anything in mobs // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Komu przekażemy biomasę?"), i18n_dialog_text(user, "[src]"), null) as null|anything in i18n_input_shown(user, mobs)) // AQ EDIT - i18n okienka
 	if(!M || !M.mind)
 		to_chat(user, "<span class='warning'>Ta istota nie ma inteligencji, lepiej przemyślmy przekazanie biomasy.</span>")
 		return FALSE
@@ -1112,7 +1112,7 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		if(M == user || !is_bloodling(M) || !iscarbon(M))
 			continue
 		mobs += M
-	var/mob/living/M = input(user, i18n_dialog_text(user, "Którego sługę uleczymy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in mobs // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Którego sługę uleczymy?"), i18n_dialog_text(user, "[src]"), null) as null|anything in i18n_input_shown(user, mobs)) // AQ EDIT - i18n okienka
 	if(!M)
 		return FALSE
 	add_cooldown(1 MINUTES)

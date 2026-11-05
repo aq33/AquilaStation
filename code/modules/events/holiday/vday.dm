@@ -110,7 +110,7 @@ GLOBAL_LIST(valentine_mobs)
 		//Pick names
 		//At this point the user is shown the names of people on the z-level
 		//To prevent metastrats, you can only use this one time.
-		var/picked_name = input(user, i18n_dialog_text(user, "Do kogo ją wysyłasz?"), i18n_dialog_text(user, "Walentynka"), null) as null|anything in mob_names // AQ EDIT - i18n okienka
+		var/picked_name = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Do kogo ją wysyłasz?"), i18n_dialog_text(user, "Walentynka"), null) as null|anything in i18n_input_shown(user, mob_names)) // AQ EDIT - i18n okienka
 		var/mob/living/carbon/human/picked_human = mob_names[picked_name]
 		if(!picked_human || !istype(picked_human))
 			to_chat(user, "<span class='notice'>Kartka znika z twojej dłoni! Miejmy nadzieję, że dotarła...</span>")

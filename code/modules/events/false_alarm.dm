@@ -18,7 +18,7 @@
 			continue
 		possible_types += E
 
-	forced_type = input(usr, i18n_dialog_text(usr, "Wybierz straszaka."),i18n_dialog_text(usr, "Fałszywy event")) as null|anything in sortNames(possible_types) // AQ EDIT - i18n okienka
+	forced_type = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz straszaka."),i18n_dialog_text(usr, "Fałszywy event")) as null|anything in i18n_input_shown(usr, sortNames(possible_types))) // AQ EDIT - i18n okienka
 
 /datum/round_event_control/falsealarm/canSpawnEvent(players_amt, gamemode)
 	return ..() && length(gather_false_events())

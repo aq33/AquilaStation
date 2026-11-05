@@ -19,7 +19,7 @@
 			if("Okręt załogi")
 				target = SSstar_system.find_main_overmap()
 			if("Wybierz")
-				target = input(usr, i18n_dialog_text(usr, "Wybierz okręt docelowy:"), i18n_dialog_text(usr, "Wybierz cel")) as null|anything in GLOB.overmap_objects //Needs to go through global list due to requiring access to any overmap. // AQ EDIT - i18n okienka
+				target = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz okręt docelowy:"), i18n_dialog_text(usr, "Wybierz cel")) as null|anything in i18n_input_shown(usr, GLOB.overmap_objects)) //Needs to go through global list due to requiring access to any overmap. // AQ EDIT - i18n okienka
 
 		var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 		if(!DC)

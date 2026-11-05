@@ -72,7 +72,7 @@
 		revert_cast()
 		to_chat(G, "<span class='notice'>Nie masz kogo śledzić!</span>")
 		return
-	var/mob/living/carbon/human/prey = input(G, i18n_dialog_text(G, "Wybierz swoją ofiarę!"), i18n_dialog_text(G, "Wszystkowidzące oczy")) as null|anything in P.can_track // AQ EDIT - i18n okienka
+	var/mob/living/carbon/human/prey = i18n_input_choice(G, input(G, i18n_dialog_text(G, "Wybierz swoją ofiarę!"), i18n_dialog_text(G, "Wszystkowidzące oczy")) as null|anything in i18n_input_shown(G, P.can_track)) // AQ EDIT - i18n okienka
 	if(!prey)
 		revert_cast()
 		to_chat(G, "<span class='notice'>Nie wybrałeś nikogo do śledzenia!</span>")

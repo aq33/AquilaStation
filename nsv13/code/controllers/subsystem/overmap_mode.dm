@@ -626,7 +626,7 @@ SUBSYSTEM_DEF(overmap_mode)
 				return
 			var/list/gamemode_pool = subtypesof(/datum/overmap_gamemode)
 			gamemode_pool -= /datum/overmap_gamemode/hardmode //Don't include challenge modes
-			var/datum/overmap_gamemode/S = input(usr, i18n_dialog_text(usr, "Wybierz tryb gry overmapy"), i18n_dialog_text(usr, "Zmień tryb gry overmapy")) as null|anything in gamemode_pool // AQ EDIT - i18n okienka
+			var/datum/overmap_gamemode/S = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz tryb gry overmapy"), i18n_dialog_text(usr, "Zmień tryb gry overmapy")) as null|anything in i18n_input_shown(usr, gamemode_pool)) // AQ EDIT - i18n okienka
 			if(isnull(S))
 				return
 			var/newmode = SSovermap_mode.force_mode(S)
@@ -637,12 +637,12 @@ SUBSYSTEM_DEF(overmap_mode)
 			return TRUE
 		if("add_objective")
 			var/list/objectives_pool = (subtypesof(/datum/overmap_objective) - /datum/overmap_objective/custom)
-			var/datum/overmap_objective/S = input(usr, i18n_dialog_text(usr, "Wybierz cel do dodania"), i18n_dialog_text(usr, "Dodaj cel")) as null|anything in objectives_pool // AQ EDIT - i18n okienka
+			var/datum/overmap_objective/S = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cel do dodania"), i18n_dialog_text(usr, "Dodaj cel")) as null|anything in i18n_input_shown(usr, objectives_pool)) // AQ EDIT - i18n okienka
 			if(isnull(S))
 				return
 			var/extra
 			if(ispath(S,/datum/overmap_objective/clear_system) || ispath(S,/datum/overmap_objective/board_station))
-				extra = input(usr, i18n_dialog_text(usr, "Wybierz system docelowy"), i18n_dialog_text(usr, "Wybierz system")) as null|anything in SSstar_system.systems // AQ EDIT - i18n okienka
+				extra = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz system docelowy"), i18n_dialog_text(usr, "Wybierz system")) as null|anything in i18n_input_shown(usr, SSstar_system.systems)) // AQ EDIT - i18n okienka
 			SSovermap_mode.mode.objectives += new S(extra)
 			SSovermap_mode.instance_objectives()
 			return TRUE
@@ -663,7 +663,7 @@ SUBSYSTEM_DEF(overmap_mode)
 									"Wykonany",
 									"Nieudany",
 									"Wymuszone zwycięstwo")
-			var/new_state = input(i18n_dialog_text(usr, "Wybierz stan do ustawienia"), i18n_dialog_text(usr, "Zmień stan celu")) as null|anything in o_state // AQ EDIT - i18n okienka
+			var/new_state = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz stan do ustawienia"), i18n_dialog_text(usr, "Zmień stan celu")) as null|anything in i18n_input_shown(usr, o_state)) // AQ EDIT - i18n okienka
 			if(new_state == "W toku")
 				new_state = STATUS_INPROGRESS
 			else if(new_state == "Wykonany")
@@ -689,7 +689,7 @@ SUBSYSTEM_DEF(overmap_mode)
 			SSovermap_mode.admin_override = !SSovermap_mode.admin_override
 			return TRUE
 		if("toggle_hardmode")
-			var/decision = input(i18n_dialog_text(usr, "Na pewno chcesz [SSovermap_mode.hard_mode_enabled ? "WYŁĄCZYĆ" : "WŁĄCZYĆ"] tryb trudny?"),i18n_dialog_text(usr, "Przełącz tryb trudny"),null) as null|anything in list("tak","nie") // AQ EDIT - i18n okienka
+			var/decision = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Na pewno chcesz [SSovermap_mode.hard_mode_enabled ? "WYŁĄCZYĆ" : "WŁĄCZYĆ"] tryb trudny?"),i18n_dialog_text(usr, "Przełącz tryb trudny"),null) as null|anything in i18n_input_shown(usr, list("tak","nie"))) // AQ EDIT - i18n okienka
 			if(decision == "tak")
 				if(SSovermap_mode.toggle_hardmode())
 					message_admins("[key_name_admin(usr)] [SSovermap_mode.hard_mode_enabled ? "WŁĄCZA" : "WYŁĄCZA"] tryb trudny!")
@@ -718,7 +718,7 @@ SUBSYSTEM_DEF(overmap_mode)
 			ship_list += typesof(/obj/structure/overmap/spacepirate/ai)
 			ship_list += typesof(/obj/structure/overmap/syndicate/ai)
 			ship_list += typesof(/obj/structure/overmap/nanotrasen/solgov/ai)
-			var/obj/structure/overmap/target_ship = input(usr, i18n_dialog_text(usr, "Wybierz, jaki okręt stworzyć (uwaga: frakcje obowiązują):"), i18n_dialog_text(usr, "Wybierz okręt")) as null|anything in ship_list // AQ EDIT - i18n okienka
+			var/obj/structure/overmap/target_ship = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz, jaki okręt stworzyć (uwaga: frakcje obowiązują):"), i18n_dialog_text(usr, "Wybierz okręt")) as null|anything in i18n_input_shown(usr, ship_list)) // AQ EDIT - i18n okienka
 
 			//Choose ghost logic
 			var/target_ghost
@@ -733,7 +733,7 @@ SUBSYSTEM_DEF(overmap_mode)
 					else
 						return
 				if("Wybierz")
-					target_ghost = input(usr, i18n_dialog_text(usr, "Wybierz gracza, który będzie pilotował okręt widmo:"), i18n_dialog_text(usr, "Wybierz gracza")) as null|anything in GLOB.clients // AQ EDIT - i18n okienka
+					target_ghost = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz gracza, który będzie pilotował okręt widmo:"), i18n_dialog_text(usr, "Wybierz gracza")) as null|anything in i18n_input_shown(usr, GLOB.clients)) // AQ EDIT - i18n okienka
 
 			//Now the actual spawning
 			var/obj/structure/overmap/GS = new target_ship(target_location)

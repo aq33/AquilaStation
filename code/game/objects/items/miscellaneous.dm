@@ -38,7 +38,7 @@
 	var/list/display_names = generate_display_names()
 	if(!display_names.len)
 		return
-	var/choice = input(M,i18n_dialog_text(M, "Który przedmiot chcesz zamówić?"),i18n_dialog_text(M, "Wybierz przedmiot")) as null|anything in sortList(display_names) // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(M, input(M,i18n_dialog_text(M, "Który przedmiot chcesz zamówić?"),i18n_dialog_text(M, "Wybierz przedmiot")) as null|anything in i18n_input_shown(M, sortList(display_names))) // AQ EDIT - i18n okienka
 	if(!choice || !M.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 

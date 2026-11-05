@@ -40,7 +40,7 @@
 	if(max_capacity)
 		to_chat(user, "<span class='notice'>[src] trzyma obecnie przedmiotów: [stored_items.len] / [max_capacity].</span>")
 		var/atom/movable/selection = null
-		selection = input(user, i18n_dialog_text(user, "Wyjąć przedmioty załadowane do [src]?"), i18n_dialog_text(user, "[name]"), selection) as null|anything in stored_items // AQ EDIT - i18n okienka
+		selection = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wyjąć przedmioty załadowane do [src]?"), i18n_dialog_text(user, "[name]"), selection) as null|anything in i18n_input_shown(user, stored_items)) // AQ EDIT - i18n okienka
 		if(selection)
 			to_chat(user, "<span class='notice'>Wysypujesz [selection] z [src]</span>")
 			selection.forceMove(get_turf(owner))
@@ -112,7 +112,7 @@
 			LAZYADD(interceptors, HP)
 	var/obj/item/vehicle_hardpoint/HP = null
 	if(interceptors.len > 1)
-		HP = input(user, i18n_dialog_text(user, "Do którego punktu mocowania chcesz załadować [target]?"), i18n_dialog_text(user, "[name]"), HP) as null|anything in interceptors // AQ EDIT - i18n okienka
+		HP = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Do którego punktu mocowania chcesz załadować [target]?"), i18n_dialog_text(user, "[name]"), HP) as null|anything in i18n_input_shown(user, interceptors)) // AQ EDIT - i18n okienka
 	else
 		HP = (interceptors.len) ? interceptors[1] : null//No need to ask them if there's only one hardpoint that accepts this.
 	if(HP)

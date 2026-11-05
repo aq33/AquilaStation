@@ -314,7 +314,7 @@
 		if("destination")
 			var/new_dest
 			if(pda)
-				new_dest = input(user, i18n_dialog_text(user, "Podaj cel:"), i18n_dialog_text(user, name), destination) as null|anything in GLOB.deliverybeacontags // AQ EDIT - i18n okienka
+				new_dest = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Podaj cel:"), i18n_dialog_text(user, name), destination) as null|anything in i18n_input_shown(user, GLOB.deliverybeacontags)) // AQ EDIT - i18n okienka
 			else
 				new_dest = params["value"]
 			if(new_dest)
@@ -332,7 +332,7 @@
 		if("sethome")
 			var/new_home
 			if(pda)
-				new_home = input(user, i18n_dialog_text(user, "Podaj bazę:"), i18n_dialog_text(user, name), home_destination) as null|anything in GLOB.deliverybeacontags // AQ EDIT - i18n okienka
+				new_home = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Podaj bazę:"), i18n_dialog_text(user, name), home_destination) as null|anything in i18n_input_shown(user, GLOB.deliverybeacontags)) // AQ EDIT - i18n okienka
 			else
 				new_home = params["value"]
 			if(new_home)

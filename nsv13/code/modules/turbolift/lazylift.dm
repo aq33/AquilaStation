@@ -142,7 +142,7 @@ That's it, ok bye!
 	var/list/deckNums = list()
 	for(var/obj/machinery/lazylift/LL in master.decks)
 		deckNums += LL.deck
-	var/theDeck = input(user, i18n_dialog_text(user, "Na który pokład chcesz jechać?"), i18n_dialog_text(user, name), null) as null|anything in deckNums // AQ EDIT - i18n okienka
+	var/theDeck = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Na który pokład chcesz jechać?"), i18n_dialog_text(user, name), null) as null|anything in i18n_input_shown(user, deckNums)) // AQ EDIT - i18n okienka
 	if(!theDeck)
 		return FALSE
 	master.path_to(theDeck)

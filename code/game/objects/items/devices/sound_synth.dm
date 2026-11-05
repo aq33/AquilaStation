@@ -51,7 +51,7 @@
 /obj/item/soundsynth/verb/pick_sound()
     set category = "Object"
     set name = "Select Sound Playback"
-    var/thesoundthatwewant = input(i18n_dialog_text(usr, "Wybierz dźwięk:"), null) as null|anything in sound_list // AQ EDIT - i18n okienka
+    var/thesoundthatwewant = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz dźwięk:"), null) as null|anything in i18n_input_shown(usr, sound_list)) // AQ EDIT - i18n okienka
     if(!thesoundthatwewant)
         return
     to_chat(usr, "Odtwarzany dźwięk ustawiony na: [thesoundthatwewant]!")

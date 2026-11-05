@@ -131,7 +131,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			value = "null"
 		names["#[i] [key] = [value]"] = i
 	if (!index)
-		var/variable = input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)" // AQ EDIT - i18n okienka
+		var/variable = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in i18n_input_shown(usr, names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)")) // AQ EDIT - i18n okienka
 
 		if(variable == null)
 			return
@@ -308,7 +308,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		names = sortList(names)
 
-		variable = input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in names // AQ EDIT - i18n okienka
+		variable = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Która zmienna?"),i18n_dialog_text(usr, "Zmienna")) as null|anything in i18n_input_shown(usr, names)) // AQ EDIT - i18n okienka
 		if(!variable)
 			return
 

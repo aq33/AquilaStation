@@ -69,7 +69,7 @@
 	if(!GLOB.admin_objective_list)
 		generate_admin_objective_list()
 
-	var/selected_type = input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu")) as null|anything in GLOB.admin_objective_list // AQ EDIT - i18n okienka
+	var/selected_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu")) as null|anything in i18n_input_shown(usr, GLOB.admin_objective_list)) // AQ EDIT - i18n okienka
 	selected_type = GLOB.admin_objective_list[selected_type]
 	if (!selected_type)
 		return
@@ -104,7 +104,7 @@
 	if(!GLOB.admin_objective_list)
 		generate_admin_objective_list()
 
-	var/selected_type = input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu")) as null|anything in GLOB.admin_objective_list // AQ EDIT - i18n okienka
+	var/selected_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu")) as null|anything in i18n_input_shown(usr, GLOB.admin_objective_list)) // AQ EDIT - i18n okienka
 	selected_type = GLOB.admin_objective_list[selected_type]
 	if (!selected_type)
 		return
@@ -152,7 +152,7 @@
 		if(M.mind?.special_role)
 			continue
 		candidates += M.mind
-	var/datum/mind/value = input(i18n_dialog_text(usr, "Wybierz nowego członka:"), i18n_dialog_text(usr, "Nowy członek drużyny"), null) as null|anything in sortNames(candidates) // AQ EDIT - i18n okienka
+	var/datum/mind/value = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz nowego członka:"), i18n_dialog_text(usr, "Nowy członek drużyny"), null) as null|anything in i18n_input_shown(usr, sortNames(candidates))) // AQ EDIT - i18n okienka
 	if (!value)
 		return
 
@@ -210,7 +210,7 @@
 //This is here if you want admin created teams to tell each other apart easily.
 /datum/team/custom/proc/admin_force_hud(mob/user)
 	var/list/possible_icons = icon_states('icons/mob/hud.dmi')
-	var/new_hud_state = input(user,i18n_dialog_text(user, "Wybierz stan ikony HUD-a"),i18n_dialog_text(user, "Własny HUD"),"traitor") as null|anything in sortList(possible_icons) // AQ EDIT - i18n okienka
+	var/new_hud_state = i18n_input_choice(user, input(user,i18n_dialog_text(user, "Wybierz stan ikony HUD-a"),i18n_dialog_text(user, "Własny HUD"),"traitor") as null|anything in i18n_input_shown(user, sortList(possible_icons))) // AQ EDIT - i18n okienka
 	if(!new_hud_state)
 		return
 	//suppose could ask for color too

@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		return
 	// Okna otwarte przed zmianą nie dostały słownika w send_assets(), a język przyjdzie im z następną aktualizacją
 	if(C.wants_english())
-		var/datum/asset/dictionary = get_asset_datum(/datum/asset/simple/i18n_en_chat)
+		var/datum/asset/dictionary = get_asset_datum(/datum/asset/simple/i18n_en_windows)
 		var/flush_queue = FALSE
 		for(var/datum/tgui/ui as anything in C.mob?.tgui_open_uis)
 			if(ui.window)
@@ -51,10 +51,19 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 		"i18n_en_chat.json" = file("strings/i18n/en_chat.json"),
 	)
 
-// Bez preloadu (ASSET_SIMPLE_PRELOAD wysyła wszystkie zasoby każdemu): słownik dostają tylko gracze z EN
+/// Mniejszy słownik dla okien tgui i menu Esc (bez tekstów tylko z czatu): każde okno to osobna
+/// przeglądarka, która parsuje go od nowa (tools/i18n/build_chat_dict.py, en_windows.json)
+/datum/asset/simple/i18n_en_windows
+	keep_local_name = TRUE
+	assets = list(
+		"i18n_en_windows.json" = file("strings/i18n/en_windows.json"),
+	)
+
+// Bez preloadu (ASSET_SIMPLE_PRELOAD wysyła wszystkie zasoby każdemu): słowniki dostają tylko gracze z EN
 /datum/asset_transport/Initialize(list/assets)
 	..()
 	preload -= "i18n_en_chat.json"
+	preload -= "i18n_en_windows.json"
 
 /// Wysyła panelowi język gracza (i słownik, gdy angielski)
 /datum/tgui_panel/proc/send_game_language()
@@ -72,7 +81,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	if(!client || !window)
 		return
 	if(client.wants_english())
-		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat))
+		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows))
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
 
 /datum/tgui_panel/on_message(type, payload)
@@ -92,5 +101,5 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	// send_assets śpi, więc klient mógł zniknąć
 	if(!user?.client?.wants_english() || !window)
 		return
-	if(window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat)))
+	if(window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows)))
 		user.client.browse_queue_flush()

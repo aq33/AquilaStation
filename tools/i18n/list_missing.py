@@ -155,6 +155,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out")
     ap.add_argument("--changed", metavar="BASE", help="sprawdź tylko linie dodane względem BASE")
+    ap.add_argument("--strict", action="store_true", help="z --changed: błąd (kod wyjścia 1), nie ostrzeżenie")
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -164,9 +165,13 @@ def main():
         for path, number, lit in found:
             # ostrzeżenie GitHub Actions: % i nowe linie muszą być zakodowane
             text = lit.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")[:150]
-            print(f"::warning file={path},line={number}::Tekst bez angielskiego odpowiednika: {text}")
+            level = "error" if args.strict else "warning"
+            print(f"::{level} file={path},line={number}::Tekst bez angielskiego odpowiednika: {text}")
         print(f"nowych polskich tekstów bez angielskiego: {len(found)}"
-              + (" (dopisz je do strings/i18n/en_translated.json)" if found else ""))
+              + (" (dopisz je do strings/i18n/en_translated.json i uruchom tools/i18n/build_chat_dict.py)"
+                 if found else ""))
+        if found and args.strict:
+            sys.exit(1)
         return
 
     missing = missing_literals(known)

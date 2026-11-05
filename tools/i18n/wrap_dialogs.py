@@ -4,8 +4,9 @@ BYOND rysuje alert() i input() sam, więc klient ich nie przetłumaczy. Skrypt z
 miejsca wywołań (aquila/code/modules/i18n/native_dialogs.dm):
     alert(...)            -> i18n_alert(usr, ...)   (tekst, tytuł i przyciski; kod dostaje polski przycisk)
     input(kto, "tekst", "tytuł", ...) -> input(kto, i18n_dialog_text(kto, "tekst"), i18n_dialog_text(kto, "tytuł"), ...)
-W input() owijamy tylko literały komunikatu i tytułu. Domyślna wartość i lista wyboru
-(`in list(...)`) zostają, bo kod porównuje zwracaną wartość.
+    input(...) as X in L  -> i18n_input_choice(kto, input(...) as X in i18n_input_shown(kto, L))
+W input() owijamy komunikat, tytuł i listę wyboru. Lista dla gracza z EN ma pozycje po angielsku,
+a i18n_input_choice zwraca kodowi polską pozycję (kod porównuje wynik). Wartość domyślna zostaje.
 
 Makro na alert() odpada: preprocesor DM po nazwie makra szuka nawiasu i zjada koniec linii,
 co psuje ścieżki typów kończące się na /alert i zmienne o tej nazwie.
@@ -93,6 +94,65 @@ def in_string_or_comment(line, pos):
     return False
 
 
+def input_target(parts):
+    """Odbiorca input() i numery argumentów z tekstem (komunikat, tytuł)."""
+    first = parts[0].strip() if parts else ""
+    # input(Usr = usr, Message, Title, Default): pierwszy argument można pominąć. Bez odbiorcy
+    # owijamy (0, 1), z odbiorcą (1, 2); nigdy wartości domyślnej, bo kod porównuje wynik.
+    if first.startswith('"') or first.startswith('{"') or first.startswith(WRAP) or MESSAGE_NAME.search(first):
+        return "usr", (0, 1)
+    return first, (1, 2)
+
+
+LIST_TAIL = re.compile(r"\s+as\s+[\w|]+\s+in\s+")
+LIST_WRAP = "i18n_input_shown("
+
+
+def list_end(line, start):
+    """Koniec wyrażenia listy za "in " (do końca linii, komentarza albo niezamkniętego nawiasu)."""
+    depth, i = 0, start
+    while i < len(line):
+        c = line[i]
+        if c == '"' or line.startswith('{"', i):
+            end = string_end(line, i)
+            if end is None:
+                return None
+            i = end
+            continue
+        if line.startswith("//", i):
+            break
+        if c in "([":
+            depth += 1
+        elif c in ")]":
+            if depth == 0:
+                break
+            depth -= 1
+        elif c == "," and depth == 0:
+            return None  # input(...) in L jako argument z dalszymi argumentami: zostawiamy
+        i += 1
+    end = i
+    while end > start and line[end - 1] in " \t\r":
+        end -= 1
+    return end if end > start else None
+
+
+def wrap_input_list(line, m):
+    """input(...) as X in L -> i18n_input_choice(kto, input(...) as X in i18n_input_shown(kto, L))"""
+    args, close = split_args(line, m.end())
+    if args is None:
+        return None
+    tail = LIST_TAIL.match(line, close + 1)
+    if not tail or line.startswith(LIST_WRAP, tail.end()):
+        return None
+    end = list_end(line, tail.end())
+    if end is None:
+        return None
+    target, _ = input_target([line[a:b] for a, b in args])
+    expr = line[tail.end():end]
+    return (line[:m.start()] + f"i18n_input_choice({target}, " + line[m.start():tail.end()]
+            + f"{LIST_WRAP}{target}, {expr}))" + line[end:])
+
+
 def wrap_input(line, m):
     args, close = split_args(line, m.end())
     if args is None:
@@ -101,12 +161,7 @@ def wrap_input(line, m):
     first = parts[0].strip() if parts else ""
     if not first:
         return None
-    # input(Usr = usr, Message, Title, Default): pierwszy argument można pominąć. Bez odbiorcy
-    # owijamy (0, 1), z odbiorcą (1, 2); nigdy wartości domyślnej, bo kod porównuje wynik.
-    if first.startswith('"') or first.startswith('{"') or first.startswith(WRAP) or MESSAGE_NAME.search(first):
-        target, text_indexes = "usr", (0, 1)
-    else:
-        target, text_indexes = first, (1, 2)
+    target, text_indexes = input_target(parts)
     changed = False
     for index in text_indexes:
         if index >= len(parts):
@@ -140,11 +195,20 @@ def process(path, check):
                 new = line[:m.start()] + "i18n_alert(usr, " + line[m.end():]
             else:
                 new = wrap_input(line, m)
+                # lista wyboru na tej samej linii (po owinięciu tekstów, żeby odbiorca był ten sam)
+                listed = wrap_input_list(new if new is not None else line, CALL.search(new if new is not None else line, m.start()))
+                if listed is not None:
+                    new = listed
             if new is None:
                 continue
             found.append((k + 1, m.group(1)))
             line = new
-            offset = m.start() + len("i18n_alert(usr, ") if m.group(1) == "alert" else m.end()
+            if m.group(1) == "alert":
+                offset = m.start() + len("i18n_alert(usr, ")
+            else:
+                # za owinięciem listy, żeby nie złapać tego samego input() jeszcze raz
+                again = CALL.search(line, m.start())
+                offset = again.end() if again else len(line)
         if found and found[-1][0] == k + 1 and MARKER not in line:
             eol = "\r" if line.endswith("\r") else ""
             line = line.rstrip("\r") + " " + MARKER + eol
@@ -158,6 +222,7 @@ def process(path, check):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--strict", action="store_true", help="z --check: błąd (kod wyjścia 1), nie ostrzeżenie")
     args = ap.parse_args()
     files = subprocess.run(["git", "ls-files", "-z", "*.dm"], capture_output=True, text=True,
                            encoding="utf-8", check=True).stdout.split("\0")[:-1]
@@ -168,12 +233,15 @@ def main():
         for line_no, kind in process(path, args.check):
             total[kind] += 1
             if args.check:
-                print(f"::warning file={path},line={line_no}::Natywne {kind}() bez tłumaczenia (tools/i18n/wrap_dialogs.py)")
+                level = "error" if args.strict else "warning"
+                print(f"::{level} file={path},line={line_no}::Natywne {kind}() bez tłumaczenia (tools/i18n/wrap_dialogs.py)")
     try:
         sys.stdout.reconfigure(encoding="utf-8")
     except (AttributeError, OSError):
         pass  # wyjście do potoku na Windowsie
     print(f"{'do owinięcia' if args.check else 'owinięte'}: alert {total['alert']}, input {total['input']}")
+    if args.check and args.strict and (total["alert"] or total["input"]):
+        sys.exit(1)
 
 
 if __name__ == "__main__":

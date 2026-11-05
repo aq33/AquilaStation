@@ -86,7 +86,7 @@ Doesn't work on other aliens/AI.*/
 	var/list/options = list()
 	for(var/mob/living/L in oview(user))
 		options += L
-	var/mob/living/M = input(i18n_dialog_text(usr, "Wybierz, do kogo szepnąć:"),i18n_dialog_text(usr, "Szepnąć do?"),null) as null|mob in sortNames(options) // AQ EDIT - i18n okienka
+	var/mob/living/M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, do kogo szepnąć:"),i18n_dialog_text(usr, "Szepnąć do?"),null) as null|mob in i18n_input_shown(usr, sortNames(options))) // AQ EDIT - i18n okienka
 	if(!M)
 		return FALSE
 	var/msg = stripped_input(usr, "Wiadomość:", "Szept obcych")
@@ -117,7 +117,7 @@ Doesn't work on other aliens/AI.*/
 	for(var/mob/living/carbon/A  in oview(user))
 		if(A.getorgan(/obj/item/organ/alien/plasmavessel))
 			aliens_around.Add(A)
-	var/mob/living/carbon/M = input(i18n_dialog_text(usr, "Wybierz, komu przekazać:"),i18n_dialog_text(usr, "Przekazać plazmę komu?"),null) as mob in sortNames(aliens_around) // AQ EDIT - i18n okienka
+	var/mob/living/carbon/M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, komu przekazać:"),i18n_dialog_text(usr, "Przekazać plazmę komu?"),null) as mob in i18n_input_shown(usr, sortNames(aliens_around))) // AQ EDIT - i18n okienka
 	if(!M)
 		return 0
 	var/amount = input(i18n_dialog_text(usr, "Ilość:"), i18n_dialog_text(usr, "Przekaż plazmę: [M]")) as num // AQ EDIT - i18n okienka
@@ -163,7 +163,7 @@ Doesn't work on other aliens/AI.*/
 
 
 /obj/effect/proc_holder/alien/acid/fire(mob/living/carbon/alien/user)
-	var/O = input(i18n_dialog_text(usr, "Wybierz, co rozpuścić:"),i18n_dialog_text(usr, "Rozpuść"),null) as obj|turf in oview(1,user) // AQ EDIT - i18n okienka
+	var/O = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, co rozpuścić:"),i18n_dialog_text(usr, "Rozpuść"),null) as obj|turf in i18n_input_shown(usr, oview(1,user))) // AQ EDIT - i18n okienka
 	if(!O || user.incapacitated())
 		return 0
 	else
@@ -267,7 +267,7 @@ Doesn't work on other aliens/AI.*/
 	if(!check_vent_block(user))
 		return FALSE
 
-	var/choice = input(i18n_dialog_text(usr, "Wybierz, co chcesz uformować."),i18n_dialog_text(usr, "Budowa z żywicy")) as null|anything in structures // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, co chcesz uformować."),i18n_dialog_text(usr, "Budowa z żywicy")) as null|anything in i18n_input_shown(usr, structures)) // AQ EDIT - i18n okienka
 	if(!choice)
 		return FALSE
 	if(!cost_check(check_turf,user))

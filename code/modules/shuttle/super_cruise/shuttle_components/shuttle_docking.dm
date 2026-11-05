@@ -384,7 +384,7 @@
 			L["(L.len)[S.name]"] = S
 
 	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
-	var/selected = input(i18n_dialog_text(usr, "Wybierz lokalizację, do której chcesz skoczyć"), i18n_dialog_text(usr, "Lokalizacje"), null) as null|anything in L // AQ EDIT - i18n okienka
+	var/selected = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz lokalizację, do której chcesz skoczyć"), i18n_dialog_text(usr, "Lokalizacje"), null) as null|anything in i18n_input_shown(usr, L)) // AQ EDIT - i18n okienka
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
 		return
 	playsound(src, "terminal_type", 25, 0)

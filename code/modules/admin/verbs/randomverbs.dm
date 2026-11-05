@@ -65,7 +65,7 @@
 		return
 
 	if (!sender)
-		sender = input(i18n_dialog_text(usr, "Od kogo jest wiadomość?"), i18n_dialog_text(usr, "Nadawca")) as null|anything in list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE) // AQ EDIT - i18n okienka
+		sender = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Od kogo jest wiadomość?"), i18n_dialog_text(usr, "Nadawca")) as null|anything in i18n_input_shown(usr, list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE))) // AQ EDIT - i18n okienka
 		if(!sender)
 			return
 
@@ -151,7 +151,7 @@
 		return
 
 	if(!M)
-		M = input(i18n_dialog_text(usr, "Bezpośrednia narracja do kogo?"), i18n_dialog_text(usr, "Aktywni gracze")) as null|anything in GLOB.player_list // AQ EDIT - i18n okienka
+		M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Bezpośrednia narracja do kogo?"), i18n_dialog_text(usr, "Aktywni gracze")) as null|anything in i18n_input_shown(usr, GLOB.player_list)) // AQ EDIT - i18n okienka
 
 	if(!M)
 		return
@@ -308,13 +308,13 @@
 				continue	//we have a live body we are tied to
 			candidates += M.ckey
 		if(candidates.len)
-			ckey = input(i18n_dialog_text(usr, "Wybierz gracza, którego chcesz odrodzić jako ksenomorfa."), i18n_dialog_text(usr, "Odpowiedni kandydaci")) as null|anything in sortKey(candidates) // AQ EDIT - i18n okienka
+			ckey = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza, którego chcesz odrodzić jako ksenomorfa."), i18n_dialog_text(usr, "Odpowiedni kandydaci")) as null|anything in i18n_input_shown(usr, sortKey(candidates))) // AQ EDIT - i18n okienka
 		else
 			to_chat(usr, "<span class='danger'>Błąd: create_xeno(): brak odpowiednich kandydatów.</span>")
 	if(!istext(ckey))
 		return 0
 
-	var/alien_caste = input(usr, i18n_dialog_text(usr, "Wybierz kastę do stworzenia."),i18n_dialog_text(usr, "Wybór kasty"),null) as null|anything in list("Królowa","Pretorianin","Łowca","Strażnik","Dron","Larwa") // AQ EDIT - i18n okienka
+	var/alien_caste = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz kastę do stworzenia."),i18n_dialog_text(usr, "Wybór kasty"),null) as null|anything in i18n_input_shown(usr, list("Królowa","Pretorianin","Łowca","Strażnik","Dron","Larwa"))) // AQ EDIT - i18n okienka
 	var/obj/effect/landmark/spawn_here = GLOB.xeno_spawn.len ? pick(GLOB.xeno_spawn) : null
 	var/mob/living/carbon/alien/new_xeno
 	switch(alien_caste)
@@ -976,7 +976,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input(i18n_dialog_text(usr, "Wybierz poziom bezpieczeństwa"),i18n_dialog_text(usr, "Poziom alarmu")) as null|anything in list("green","blue","red","delta") // AQ EDIT - i18n okienka
+	var/level = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz poziom bezpieczeństwa"),i18n_dialog_text(usr, "Poziom alarmu")) as null|anything in i18n_input_shown(usr, list("green","blue","red","delta"))) // AQ EDIT - i18n okienka
 	if(level)
 		set_security_level(level)
 
@@ -1053,7 +1053,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
-	var/weather_type = input(i18n_dialog_text(usr, "Wybierz pogodę"), i18n_dialog_text(usr, "Pogoda"))  as null|anything in sortList(subtypesof(/datum/weather), GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/weather_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz pogodę"), i18n_dialog_text(usr, "Pogoda"))  as null|anything in i18n_input_shown(usr, sortList(subtypesof(/datum/weather), GLOBAL_PROC_REF(cmp_typepaths_asc)))) // AQ EDIT - i18n okienka
 	if(!weather_type)
 		return
 
@@ -1280,7 +1280,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_CRYO, ADMIN_PUNISHMENT_ENTRAPPED, ADMIN_PUNISHMENT_DOCK) //NSV13 - added entrapped + Dock
 	if(istype(target, /mob/living/carbon))
 		punishment_list += ADMIN_PUNISHMENT_NUGGET
-	var/punishment = input(i18n_dialog_text(usr, "Wybierz karę"), i18n_dialog_text(usr, "BOSKA KARA")) as null|anything in sortList(punishment_list) // AQ EDIT - i18n okienka
+	var/punishment = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz karę"), i18n_dialog_text(usr, "BOSKA KARA")) as null|anything in i18n_input_shown(usr, sortList(punishment_list))) // AQ EDIT - i18n okienka
 
 	if(QDELETED(target) || !punishment)
 		return
@@ -1566,7 +1566,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!D)
 		return
 
-	var/add_or_remove = input(i18n_dialog_text(usr, "Usunąć/dodać?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in list("Dodaj","Usuń") // AQ EDIT - i18n okienka
+	var/add_or_remove = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Usunąć/dodać?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, list("Dodaj","Usuń"))) // AQ EDIT - i18n okienka
 	if(!add_or_remove)
 		return
 	var/list/available_traits = list()
@@ -1583,7 +1583,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				var/name = GLOB.trait_name_map[trait] || trait
 				available_traits[name] = trait
 
-	var/chosen_trait = input(i18n_dialog_text(usr, "Wybierz cechę do zmiany"), i18n_dialog_text(usr, "Cecha")) as null|anything in available_traits // AQ EDIT - i18n okienka
+	var/chosen_trait = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz cechę do zmiany"), i18n_dialog_text(usr, "Cecha")) as null|anything in i18n_input_shown(usr, available_traits)) // AQ EDIT - i18n okienka
 	if(!chosen_trait)
 		return
 	chosen_trait = available_traits[chosen_trait]
@@ -1593,14 +1593,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Dodaj") //Not doing source choosing here intentionally to make this bit faster to use, you can always vv it.
 			ADD_TRAIT(D,chosen_trait,source)
 		if("Usuń")
-			var/specific = input(i18n_dialog_text(usr, "Wszystkie źródła czy konkretne?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in list("Wszystkie","Konkretne") // AQ EDIT - i18n okienka
+			var/specific = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wszystkie źródła czy konkretne?"), i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, list("Wszystkie","Konkretne"))) // AQ EDIT - i18n okienka
 			if(!specific)
 				return
 			switch(specific)
 				if("Wszystkie")
 					source = null
 				if("Konkretne")
-					source = input(i18n_dialog_text(usr, "Źródło do usunięcia"),i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in D.status_traits[chosen_trait] // AQ EDIT - i18n okienka
+					source = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Źródło do usunięcia"),i18n_dialog_text(usr, "Usuwanie/dodawanie cech")) as null|anything in i18n_input_shown(usr, D.status_traits[chosen_trait])) // AQ EDIT - i18n okienka
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)

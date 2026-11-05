@@ -24,7 +24,7 @@
 	options += "Usuń prom"
 	options += "W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')"
 
-	var/selection = input(user, i18n_dialog_text(user, "Wybierz, dokąd ma lecieć [name || id]:"), i18n_dialog_text(user, "Lot promu")) as null|anything in options // AQ EDIT - i18n okienka
+	var/selection = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz, dokąd ma lecieć [name || id]:"), i18n_dialog_text(user, "Lot promu")) as null|anything in i18n_input_shown(user, options)) // AQ EDIT - i18n okienka
 	if(!selection)
 		return
 
@@ -72,7 +72,7 @@
 		if (canDock(S) == SHUTTLE_CAN_DOCK)
 			options[S.name || S.id] = S
 
-	var/selection = input(user, i18n_dialog_text(user, "Wybierz nowy cel promu przylotów:"), i18n_dialog_text(user, "Lot promu")) as null|anything in options // AQ EDIT - i18n okienka
+	var/selection = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz nowy cel promu przylotów:"), i18n_dialog_text(user, "Lot promu")) as null|anything in i18n_input_shown(user, options)) // AQ EDIT - i18n okienka
 	if(!selection)
 		return
 	target_dock = options[selection]

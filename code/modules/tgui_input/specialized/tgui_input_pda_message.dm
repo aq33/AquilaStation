@@ -139,7 +139,7 @@
 				devices[key] = messenger
 			if(can_send_all)
 				devices["Wszyscy"] = "Wszyscy"
-			var/choice = input(usr, i18n_dialog_text(usr, "Wybierz PDA, do którego wysłać wiadomość."), i18n_dialog_text(usr, "Wybierz PDA"), null) as null|anything in devices // AQ EDIT - i18n okienka
+			var/choice = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz PDA, do którego wysłać wiadomość."), i18n_dialog_text(usr, "Wybierz PDA"), null) as null|anything in i18n_input_shown(usr, devices)) // AQ EDIT - i18n okienka
 			if(istype(target))
 				UnregisterSignal(target, COMSIG_PARENT_QDELETING)
 				target = null

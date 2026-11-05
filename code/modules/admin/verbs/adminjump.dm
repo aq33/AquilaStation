@@ -82,7 +82,7 @@
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in sortKey(keys) // AQ EDIT - i18n okienka
+	var/client/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in i18n_input_shown(usr, sortKey(keys))) // AQ EDIT - i18n okienka
 	if(!selection)
 		to_chat(src, "Nie znaleziono kluczy.")
 		return
@@ -127,7 +127,7 @@
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in sortKey(keys) // AQ EDIT - i18n okienka
+	var/client/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Skok admina"), null, null) as null|anything in i18n_input_shown(usr, sortKey(keys))) // AQ EDIT - i18n okienka
 	if(!selection)
 		return
 	var/mob/M = selection.mob

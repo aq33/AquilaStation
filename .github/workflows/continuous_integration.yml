@@ -53,8 +53,10 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
-          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
-          python tools/i18n/wrap_dialogs.py --check
+          # PR z poprawkami z Crowdina zmienia polskie teksty bez angielskich: tam tylko ostrzeżenia
+          STRICT=$([ "${{ github.head_ref }}" = "crowdin-poprawki" ] || echo --strict)
+          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} $STRICT
+          python tools/i18n/wrap_dialogs.py --check $STRICT
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:

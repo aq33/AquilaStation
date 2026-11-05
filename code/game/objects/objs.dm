@@ -383,7 +383,7 @@
 		var/output = icon2html(src, M, unique_reskin[V])
 		to_chat(M, "[V]: <span class='reallybig'>[output]</span>")
 
-	var/choice = input(M,i18n_dialog_text(M, "Uwaga, wygląd [src] możesz zmienić tylko raz!"),i18n_dialog_text(M, "Zmiana wyglądu obiektu")) as null|anything in sortList(unique_reskin) // AQ EDIT - i18n okienka
+	var/choice = i18n_input_choice(M, input(M,i18n_dialog_text(M, "Uwaga, wygląd [src] możesz zmienić tylko raz!"),i18n_dialog_text(M, "Zmiana wyglądu obiektu")) as null|anything in i18n_input_shown(M, sortList(unique_reskin))) // AQ EDIT - i18n okienka
 	if(!QDELETED(src) && choice && !current_skin && !M.incapacitated() && in_range(M,src))
 		if(!unique_reskin[choice])
 			return

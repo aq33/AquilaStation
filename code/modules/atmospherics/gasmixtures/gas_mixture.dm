@@ -84,7 +84,7 @@ we use a hook instead
 		var/list/gases = get_gases()
 		for(var/gas in gases)
 			gases[gas] = get_moles(gas)
-		var/gasid = input(usr, i18n_dialog_text(usr, "Jaki gaz?"), i18n_dialog_text(usr, "Ustaw gaz")) as null|anything in GLOB.gas_data.ids // AQ EDIT - i18n okienka
+		var/gasid = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Jaki gaz?"), i18n_dialog_text(usr, "Ustaw gaz")) as null|anything in i18n_input_shown(usr, GLOB.gas_data.ids)) // AQ EDIT - i18n okienka
 		if(!gasid)
 			return
 		var/amount = input(usr, i18n_dialog_text(usr, "Podaj ilość"), i18n_dialog_text(usr, "Ustaw gaz"), gases[gasid] || 0) as num|null // AQ EDIT - i18n okienka

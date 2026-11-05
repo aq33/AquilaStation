@@ -282,7 +282,7 @@ B --><-- A
 	else if(random)
 		chosen = pick(matches) || null
 	else
-		chosen = input(i18n_dialog_text(usr, "Wybierz typ"), i18n_dialog_text(usr, "Wybór typu"), matches[1]) as null|anything in sort_list(matches) // AQ EDIT - i18n okienka
+		chosen = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ"), i18n_dialog_text(usr, "Wybór typu"), matches[1]) as null|anything in i18n_input_shown(usr, sort_list(matches))) // AQ EDIT - i18n okienka
 	if(!chosen)
 		return
 	chosen = matches[chosen]

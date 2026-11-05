@@ -321,7 +321,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		if("allspecies")
 			if(!check_rights(R_FUN))
 				return
-			var/result = input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in GLOB.species_list // AQ EDIT - i18n okienka
+			var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz nowy gatunek"),i18n_dialog_text(usr, "Gatunek")) as null|anything in i18n_input_shown(usr, GLOB.species_list)) // AQ EDIT - i18n okienka
 			if(result)
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Species Change", "[result]"))
 				log_admin("[key_name(usr)] turned all humans into [result]", 1)
@@ -372,13 +372,13 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				generate_admin_antag_list()
 			//Get Antag Type
 			var/default_antag
-			var/selected_antag = input(i18n_dialog_text(usr, "Wybierz typ antagonisty:"), i18n_dialog_text(usr, "Typ antagonisty"), default_antag) as null|anything in GLOB.admin_antag_list // AQ EDIT - i18n okienka
+			var/selected_antag = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ antagonisty:"), i18n_dialog_text(usr, "Typ antagonisty"), default_antag) as null|anything in i18n_input_shown(usr, GLOB.admin_antag_list)) // AQ EDIT - i18n okienka
 			selected_antag = GLOB.admin_antag_list[selected_antag]
 			if(!selected_antag)
 				return
 			//Get Objective
 			var/def_value
-			var/selected_type = input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu"), def_value) as null|anything in GLOB.admin_objective_list // AQ EDIT - i18n okienka
+			var/selected_type = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz typ celu:"), i18n_dialog_text(usr, "Typ celu"), def_value) as null|anything in i18n_input_shown(usr, GLOB.admin_objective_list)) // AQ EDIT - i18n okienka
 			selected_type = GLOB.admin_objective_list[selected_type]
 			if(!selected_type)
 				return
@@ -510,7 +510,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				if("Losowa")
 					E = new /datum/round_event/disease_outbreak()
 				if("Wybierz")
-					var/virus = input(i18n_dialog_text(usr, "Wybierz wirusa do rozprzestrzenienia"), i18n_dialog_text(usr, "ZAGROŻENIE BIOLOGICZNE")) as null|anything in sortList(typesof(/datum/disease, GLOBAL_PROC_REF(cmp_typepaths_asc))) // AQ EDIT - i18n okienka
+					var/virus = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz wirusa do rozprzestrzenienia"), i18n_dialog_text(usr, "ZAGROŻENIE BIOLOGICZNE")) as null|anything in i18n_input_shown(usr, sortList(typesof(/datum/disease, GLOBAL_PROC_REF(cmp_typepaths_asc))))) // AQ EDIT - i18n okienka
 					E = new /datum/round_event/disease_outbreak{}()
 					var/datum/round_event/disease_outbreak/DO = E
 					DO.virus_type = virus

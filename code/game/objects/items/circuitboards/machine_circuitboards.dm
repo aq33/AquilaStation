@@ -592,7 +592,7 @@
 			display_vending_names_paths = list()
 			for(var/path in vending_names_paths)
 				display_vending_names_paths[vending_names_paths[path]] = path
-		var/choice =  input(user,i18n_dialog_text(user, "Wybierz nową markę"),i18n_dialog_text(user, "Wybierz przedmiot")) as null|anything in display_vending_names_paths // AQ EDIT - i18n okienka
+		var/choice =  i18n_input_choice(user, input(user,i18n_dialog_text(user, "Wybierz nową markę"),i18n_dialog_text(user, "Wybierz przedmiot")) as null|anything in i18n_input_shown(user, display_vending_names_paths)) // AQ EDIT - i18n okienka
 		set_type(display_vending_names_paths[choice])
 	else
 		return ..()
