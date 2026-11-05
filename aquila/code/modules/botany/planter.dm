@@ -1,4 +1,4 @@
-#define WEED_RATE 0.3
+#define WEED_RATE 0.1 // AQUILA - było 0.3 (chwast co ~5,5 min), teraz co ~17 min
 #define WEED_THRESHOLD 100
 
 /datum/component/planter
@@ -166,7 +166,9 @@
 		examine_text += span_notice("Podłoże ([parent]): [substrate.name].\n[substrate.tooltip]")
 	else
 		examine_text += span_warning("Brak podłoża ([parent])!")
-	// Weeds
+	// Weeds - AQUILA: przy zerze chwastów nic nie piszemy
+	if(weed_level < 1)
+		return
 	if(weed_level <= 10)
 		examine_text += span_warning("Tu i ówdzie wyrasta kilka chwastów ([parent]).")
 	else if(weed_level <= 30)

@@ -4,8 +4,10 @@ import {
   Button,
   Divider,
   Flex,
+  LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -18,128 +20,74 @@ export const SeedEditor = (props) => {
     disk_feature_data,
     disk_trait_data,
     disk_inserted,
-    last_command,
     current_feature_genetic_budget,
     current_feature_remaining_genetic_budget,
   } = data;
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content>
-        <Box m={'-3px'} height={'100%'}>
-          <Flex direction={'column'} height={'100%'}>
-            {/* World building fluff top banner */}
-            <Flex.Item>
-              <Section textAlign={'center'}>
-                Sekwencer Nasion [Wersja 4.1.1.9]
-              </Section>
-            </Flex.Item>
-            {/* Top banner, contains plant name & genetic stability */}
-            <Flex.Item>
-              <Flex direction={'row'}>
-                <Section textAlign={'center'} width={'100%'}>
-                  <Flex direction={'row'} justify="center">
-                    <h1>{inserted_plant || 'Nie włożono nasion'}</h1>
-                    <Button
-                      className="plant__button"
-                      icon={'eject'}
-                      tooltip={'Wysuń nasiona'}
-                      onClick={() => act('remove_seeds')}
-                      mx={'5px'}
-                      my={'8px'}
-                      height={'50%'}
+        <Stack fill>
+          <Stack.Item basis="45%">
+            <Section
+              title={inserted_plant || 'Nie włożono nasion'}
+              buttons={
+                !!inserted_plant && (
+                  <Button icon="eject" onClick={() => act('remove_seeds')}>
+                    Wysuń
+                  </Button>
+                )
+              }
+            >
+              {seeds_feature_data.length
+                ? seeds_feature_data.map((feature_data) => (
+                    <PlantFeaturePanel
+                      feature={feature_data}
+                      key={feature_data['key']}
                     />
-                  </Flex>
-                </Section>
-                <Section textAlign={'center'} width={'100%'}>
-                  Stabilność genetyczna
+                  ))
+                : 'Włóż nasiona.'}
+            </Section>
+            <Section title="Stabilność genetyczna">
+              <LabeledList>
+                <LabeledList.Item label="Wolny budżet">
                   <ProgressBar
-                    color={'#ffff77'}
-                    textColor={
-                      current_feature_genetic_budget
-                        ? current_feature_genetic_budget -
-                            current_feature_remaining_genetic_budget <=
-                          0
-                          ? '#252517ff'
-                          : '#ffff77'
-                        : '#ffff77'
-                    }
                     maxValue={current_feature_genetic_budget || 1}
                     value={current_feature_remaining_genetic_budget || 0}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0, 1],
+                      bad: [-Infinity, 0],
+                    }}
                   >
-                    {current_feature_remaining_genetic_budget || 0}
+                    {`${current_feature_remaining_genetic_budget || 0} / ${
+                      current_feature_genetic_budget || 0
+                    }`}
                   </ProgressBar>
-                </Section>
-              </Flex>
-            </Flex.Item>
-            {/* Bottom section for plant feature select panel, and inspection panel */}
-            <Flex.Item>
-              <Flex direction={'row'}>
-                {/* Feature panel */}
-                <Flex.Item grow={1} width={'100%'}>
-                  <Section>
-                    <Flex direction={'column'} grow={1}>
-                      {/* Features */}
-                      <Flex.Item>
-                        {seeds_feature_data.length
-                          ? seeds_feature_data.map((feature_data) => (
-                              <PlantFeaturePanel
-                                feature={feature_data}
-                                key={feature_data}
-                              />
-                            ))
-                          : '...'}
-                      </Flex.Item>
-                      <Divider />
-                      {/* Disk */}
-                      <Flex.Item>
-                        {disk_feature_data ? (
-                          <DiskFeatureTab feature={disk_feature_data} />
-                        ) : disk_trait_data ? (
-                          <DiskTraitTab data_set={disk_trait_data} />
-                        ) : disk_inserted ? (
-                          <Flex.Item>
-                            <DiskEmptyTab />
-                          </Flex.Item>
-                        ) : (
-                          <Flex.Item>
-                            <Button width={'100%'} className="plant__dialogue">
-                              {'Nie włożono dysku'}
-                            </Button>
-                          </Flex.Item>
-                        )}
-                      </Flex.Item>
-                    </Flex>
-                  </Section>
-                </Flex.Item>
-                {/* Inspection panel */}
-                <Flex.Item width={'100%'}>
-                  <Section>
-                    {current_feature ? <InspectionPanel /> : ' ... '}
-                  </Section>
-                </Flex.Item>
-              </Flex>
-            </Flex.Item>
-            {/* World building fluff top banner */}
-            <Flex.Item>
-              <Box height={'20px'} />
-            </Flex.Item>
-            <Flex.Item height={'100%'}>
-              <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-3px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
-            </Flex.Item>
-          </Flex>
-        </Box>
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+            <Section title="Dysk danych">
+              {disk_feature_data ? (
+                <DiskFeatureTab feature={disk_feature_data} />
+              ) : disk_trait_data ? (
+                <DiskTraitTab data_set={disk_trait_data} />
+              ) : disk_inserted ? (
+                <DiskEmptyTab />
+              ) : (
+                'Nie włożono dysku.'
+              )}
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill scrollable title="Wybrana część">
+              {current_feature ? (
+                <InspectionPanel />
+              ) : (
+                'Wybierz część rośliny z listy po lewej.'
+              )}
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -258,7 +206,7 @@ const InspectionPanel = (props) => {
   const { current_feature_data, current_feature_traits } = data;
   return (
     <Flex direction="column">
-      <Box className={'scrollbox'} height={'520px'} overflowY="scroll">
+      <Box>
         {/* base feature information, stats */}
         <Flex.Item>
           <Button className="plant__dialogue" width={'100%'}>

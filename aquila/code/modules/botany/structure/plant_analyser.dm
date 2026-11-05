@@ -51,7 +51,8 @@
 
 /obj/machinery/plant_machine/plant_analyser/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
+	if(!inserted_plant)
+		to_chat(user, span_notice("Dojrzałą roślinę wkłada się do maszyny ([src]) łopatką."))
 
 /obj/machinery/plant_machine/plant_analyser/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
@@ -113,7 +114,7 @@
 	//Don't let immature plants through
 	var/datum/plant_feature/body/body_feature = locate(/datum/plant_feature/body) in plant.plant_features
 	if(body_feature?.current_stage < body_feature?.growth_stages)
-		playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+		playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 		say("BŁĄD: Okaz rośliny nie jest w pełni dojrzały!")
 		return
 	to_chat(user, span_notice("Zaczynasz wkładać [plant_item] do maszyny ([src])."))
@@ -180,7 +181,7 @@
 /obj/machinery/plant_machine/plant_analyser/ui_act(action, params)
 	if(..())
 		return
-	playsound(controller, get_sfx("keyboard"), 30, TRUE)
+	playsound(controller || src, get_sfx("keyboard"), 30, TRUE)
 	switch(action)
 		if("select_feature")
 			current_feature_ref = current_feature_ref == params["key"] ? null : params["key"]

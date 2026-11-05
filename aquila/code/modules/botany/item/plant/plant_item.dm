@@ -19,6 +19,18 @@
 
 /obj/item/plant/attack_hand(mob/user, modifiers)
 	. = ..()
+	// AQUILA - roślina w tacy przekazuje klik dalej: ciągnięty obiekt jedzie na kliknięty kafel, a pusta ręka zbiera całą tacę
+	var/obj/item/plant_tray/tray = loc
+	if(istype(tray) && isliving(user))
+		var/mob/living/living_user = user
+		if(living_user.pulling)
+			var/turf/clicked
+			if(user.client && LAZYACCESS(modifiers, SCREEN_LOC))
+				var/list/click_modifiers = modifiers
+				clicked = parse_caught_click_modifiers(click_modifiers.Copy(), get_turf(user.client.eye), user.client)
+			living_user.Move_Pulled(clicked || get_turf(tray))
+		else if(!tray.harvest_all(living_user) && !.)
+			to_chat(user, span_notice("Nic tu jeszcze nie dojrzało. Stan roślin pokaże skaner roślin, a łopatką przeniesiesz roślinę."))
 	return FALSE //This item can't be picked up, only with a spade
 
 /obj/item/plant/add_context_self(datum/screentip_context/context, mob/user)
