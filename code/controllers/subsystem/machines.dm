@@ -52,33 +52,9 @@ SUBSYSTEM_DEF(machines)
 		dirty_index = 1
 		dirty_stop_index = length(dirty_powernets)
 
-	// Start processing dirty powernets
-	while (dirty_powernets.len && dirty_index <= dirty_stop_index && dirty_index <= length(dirty_powernets))
-		// Get the element to process
-		var/datum/powernet/first_powernet = dirty_powernets[dirty_index]
-		// Move the last element to our current position in the queue
-		dirty_powernets[dirty_index] = dirty_powernets[length(dirty_powernets)]
-		// Increment the dirty index, to point to the next element
-		// If we needed to process the element we just moved to the start
-		// then don't increment, so we process that element
-		// Note that dirty powernets won't be processed in-order, but they
-		// will always be processed by the end of the machines tick after the
-		// one that they were added on.
-		if (dirty_stop_index <= length(dirty_powernets))
-			dirty_index ++
-		// Shorten the queue without needing to propogate the entire list
-		dirty_powernets.len--
-		// Do processing
-		if (first_powernet)
-			first_powernet.dirty = FALSE
-			if (!QDELETED(first_powernet))
-				first_powernet.repropogate_cables()
-		// Explicitly doesn't use SPLIT_TICK because we need to recalibrate the powernets
-		// before we calculate power consumption, otherwise machines not connected may
-		// get 1 tick of bluespace power transfer.
-		if (MC_TICK_CHECK)
-			return
-		// AQ EDIT END
+	if (process_dirty_powernets())
+		return
+	// AQ EDIT END
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -117,6 +93,39 @@ SUBSYSTEM_DEF(machines)
 		powernets = SSmachines.powernets
 
 // AQ EDIT START - Smartwires
+/// AQ EDIT - Smartwires: the dirty powernet loop of fire(), split out so a unit test can run it. Returns TRUE if it paused.
+/datum/controller/subsystem/machines/proc/process_dirty_powernets(tick_check = TRUE)
+	// Start processing dirty powernets
+	while (dirty_powernets.len && dirty_index <= dirty_stop_index && dirty_index <= length(dirty_powernets))
+		// Get the element to process
+		var/datum/powernet/first_powernet = dirty_powernets[dirty_index]
+		// Move the last element to our current position in the queue
+		dirty_powernets[dirty_index] = dirty_powernets[length(dirty_powernets)]
+		// Increment the dirty index, to point to the next element
+		// If we needed to process the element we just moved to the start
+		// then don't increment, so we process that element
+		// Note that dirty powernets won't be processed in-order, but they
+		// will always be processed by the end of the machines tick after the
+		// one that they were added on.
+		// AQ EDIT - upstream also incremented when the moved element was the last one of this run, so it waited a whole tick
+		if (dirty_stop_index < length(dirty_powernets))
+			dirty_index ++
+		else
+			dirty_stop_index--
+		// Shorten the queue without needing to propogate the entire list
+		dirty_powernets.len--
+		// Do processing
+		if (first_powernet)
+			first_powernet.dirty = FALSE
+			if (!QDELETED(first_powernet))
+				first_powernet.repropogate_cables()
+		// Explicitly doesn't use SPLIT_TICK because we need to recalibrate the powernets
+		// before we calculate power consumption, otherwise machines not connected may
+		// get 1 tick of bluespace power transfer.
+		if (tick_check && MC_TICK_CHECK)
+			return TRUE
+	return FALSE
+
 /datum/controller/subsystem/machines/proc/queue_recalculation(datum/powernet/powernet)
 	if (powernet.dirty)
 		return

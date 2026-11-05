@@ -84,5 +84,33 @@
 	TEST_ASSERT_EQUAL(net.avail, 5000, "The larger part of the grid lost its available power")
 	TEST_ASSERT_EQUAL(net.viewavail, 5000, "The power monitor reading of the grid was reset")
 
+/// AQUILA - every powernet queued before a machines tick is recalculated in that tick
+/datum/unit_test/smartwires_dirty_queue
+
+/datum/unit_test/smartwires_dirty_queue/Run()
+	var/list/old_queue = SSmachines.dirty_powernets
+	var/old_index = SSmachines.dirty_index
+	var/old_stop = SSmachines.dirty_stop_index
+	var/list/nets = list(new /datum/powernet, new /datum/powernet, new /datum/powernet)
+	SSmachines.dirty_powernets = list()
+	for (var/datum/powernet/net as anything in nets)
+		net.mark_dirty()
+	SSmachines.dirty_index = 1
+	SSmachines.dirty_stop_index = length(SSmachines.dirty_powernets)
+
+	SSmachines.process_dirty_powernets(FALSE)
+	var/left = length(SSmachines.dirty_powernets)
+	var/still_dirty = 0
+	for (var/datum/powernet/net as anything in nets)
+		if (net.dirty)
+			still_dirty++
+		net.dirty = FALSE
+		qdel(net)
+	SSmachines.dirty_powernets = old_queue
+	SSmachines.dirty_index = old_index
+	SSmachines.dirty_stop_index = old_stop
+	TEST_ASSERT_EQUAL(left, 0, "Queued powernets were left for the next tick")
+	TEST_ASSERT_EQUAL(still_dirty, 0, "Queued powernets were not recalculated")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
