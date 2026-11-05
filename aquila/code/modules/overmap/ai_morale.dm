@@ -82,11 +82,12 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 		ai_temperament = pick(prob(30); AI_TEMPERAMENT_CAUTIOUS, prob(45); AI_TEMPERAMENT_NORMAL, prob(25); AI_TEMPERAMENT_RECKLESS)
 	ai_odds_error = rand(-30, 30) / 100
 
-/// Ships that never run: stations, fighters, supply ships (they already retreat), anything with an interior or a mission role
+/// Ships that never run: stations, fighters, anything with an interior or a mission role.
+/// Supply ships and carriers do: their own retreat goal only keeps them away, it never gets them out of the system.
 /obj/structure/overmap/proc/can_ai_flee()
 	if(!ai_controlled || essential || nodamage || mass <= MASS_TINY || mass >= MASS_IMMOBILE)
 		return FALSE
-	if(CHECK_BITFIELD(ai_flags, AI_FLAG_STATIONARY) || CHECK_BITFIELD(ai_flags, AI_FLAG_SUPPLY))
+	if(CHECK_BITFIELD(ai_flags, AI_FLAG_STATIONARY))
 		return FALSE
 	if(length(occupying_levels) || reserved_z || role != NORMAL_OVERMAP)
 		return FALSE

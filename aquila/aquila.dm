@@ -822,6 +822,7 @@
 #include "code\modules\overmap\ai_targeting.dm"
 #include "code\modules\overmap\ai_flanking.dm"
 #include "code\modules\overmap\fleet_distress.dm"
+#include "code\modules\overmap\ai_sandbox.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"

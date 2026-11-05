@@ -172,7 +172,7 @@
 	var/obj/structure/overmap/wing = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
 	wing.ai_temperament = "zwykły"
 	enemy.forceMove(locate(ship.x + 30, ship.y, ship.z))
-	enemy.angle = 90 // Heading east
+	enemy.angle = 180 // Heading south; the slot must not depend on it
 	var/list/ships = list(ship, wing)
 	ship.last_target = enemy
 	wing.last_target = enemy
@@ -181,9 +181,9 @@
 	var/turf/slot = wing.get_ai_flank_point(enemy, ships)
 	if(!slot)
 		return "The second attacker did not get a flank slot"
-	// Slot 90 degrees right of the target's heading east: 18 tiles south of it
-	if(abs(slot.x - enemy.x) > 1 || abs(slot.y - (enemy.y - 18)) > 1)
-		return "The flank slot is not on the target's side ([slot.x], [slot.y], target at [enemy.x], [enemy.y] heading 90)"
+	// The anchor attacks from the west (bearing 270 from the target); the second ship takes the slot 90 degrees round: 18 tiles north
+	if(abs(slot.x - enemy.x) > 1 || abs(slot.y - (enemy.y + 18)) > 1)
+		return "The flank slot is not beside the anchor's line of attack ([slot.x], [slot.y], target at [enemy.x], [enemy.y], anchor at [ship.x], [ship.y])"
 	wing.ai_temperament = "brawurowy"
 	if(wing.get_ai_flank_point(enemy, ships))
 		return "A reckless commander took a flank slot instead of charging"

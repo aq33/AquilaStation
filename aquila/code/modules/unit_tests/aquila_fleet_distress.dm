@@ -24,7 +24,7 @@
 	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
 	helper.all_ships += ship
 	caller_fleet.all_ships += ship
-	var/fail = check_responders() || check_retreat_system() || check_state(ship)
+	var/fail = check_responders() || check_retreat_system() || check_state(ship) || check_near_players()
 	next_door.fleets -= helper
 	helper.all_ships = list()
 	caller_fleet.all_ships = list()
@@ -34,10 +34,11 @@
 		return Fail(fail)
 
 /datum/unit_test/aquila_fleet_distress/proc/check_responders()
-	helper.last_encounter_time = -INFINITY
+	// Regression: a fleet that never fought has last_encounter_time 0 and used to count as busy for the first 10 minutes of the round
+	helper.last_encounter_time = 0
 	var/list/responders = caller_fleet.find_ai_distress_responders()
 	if(responders[helper] != 1)
-		return "An allied fleet one jump away did not answer the distress call (got [json_encode(responders)])"
+		return "An allied fleet one jump away that never fought did not answer the distress call (got [json_encode(responders)])"
 	helper.last_encounter_time = world.time
 	responders = caller_fleet.find_ai_distress_responders()
 	helper.last_encounter_time = -INFINITY
@@ -63,3 +64,33 @@
 	var/list/state = caller_fleet.get_ai_fleet_state()
 	if(state[1] != 1 || abs(state[2] - 40) > 0.01 || abs(state[3] - 2 / 3) > 0.01)
 		return "Fleet state is wrong: [state[1]] ships, fear [state[2]], losses [state[3]] (expected 1, 40, 0.67)"
+
+/// Distress calls only go out near the players: in the main ship's system, but not three systems away with nobody around
+/datum/unit_test/aquila_fleet_distress/proc/check_near_players()
+	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
+	if(!player_system)
+		return
+	var/datum/star_system/old_system = caller_fleet.current_system
+	caller_fleet.current_system = player_system
+	var/near = caller_fleet.is_near_players()
+	var/datum/star_system/far
+	for(var/datum/star_system/system as anything in SSstar_system.systems)
+		if(system == player_system || (system.name in player_system.adjacency_list))
+			continue
+		var/has_players = FALSE
+		for(var/obj/structure/overmap/OM in system.system_contents)
+			if(!OM.ai_controlled && OM.z)
+				has_players = TRUE
+				break
+		if(!has_players)
+			far = system
+			break
+	var/far_near = FALSE
+	if(far)
+		caller_fleet.current_system = far
+		far_near = caller_fleet.is_near_players()
+	caller_fleet.current_system = old_system
+	if(!near)
+		return "A fleet in the main ship's system does not count as near the players"
+	if(far_near)
+		return "A fleet in [far], away from every player, counts as near the players"

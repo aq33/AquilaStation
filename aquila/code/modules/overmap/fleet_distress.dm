@@ -1,5 +1,6 @@
-/// AQUILA - fleet distress calls and fleet retreat. A fleet that is losing (heavy losses or a scared crew) calls for help once per fight;
-/// the nearest allied fleet within two jumps that is not fighting itself answers and jumps in a few minutes later.
+/// AQUILA - fleet distress calls and fleet retreat. A fleet that is losing (heavy losses or a scared crew) near the players
+/// (their system or one next to the main ship) may call for help, against players or AI enemies alike: one 50% roll per fight.
+/// The nearest allied fleet within two jumps that is not fighting itself answers and jumps in a few minutes later.
 /// Players in the system intercept the call and get a warning before the help arrives. A fleet that is still losing and has no help coming
 /// spools its drives for 30 s (interdiction stops it) and jumps out together to a neighbouring system.
 /// Stage 3 of the AI plan, switched with AI morale (Debug > Toggle AI morale).
@@ -12,6 +13,8 @@
 /// Retreat thresholds
 #define FLEET_RETREAT_LOSSES 0.67
 #define FLEET_RETREAT_FEAR 65
+/// Chance that a losing fleet calls for help at all; it rolls once per fight
+#define FLEET_DISTRESS_CHANCE 50
 /// How far (in jumps) a distress call reaches
 #define FLEET_DISTRESS_JUMPS 2
 /// Help arrives after this, plus FLEET_DISTRESS_PER_JUMP for each jump past the first
@@ -59,6 +62,21 @@
 			return TRUE
 	return FALSE
 
+/// Any enemy in the system with us, players or AI (Nanotrasen fleets call for help against the Syndicate too)
+/datum/fleet/proc/has_ai_fleet_enemies()
+	for(var/obj/structure/overmap/OM as anything in current_system?.system_contents)
+		if(istype(OM) && OM.z && OM.faction != alignment && !federation_check(OM) && !istype(OM, /obj/structure/overmap/asteroid) && !OM.essential)
+			return TRUE
+	return FALSE
+
+/// Distress calls only go out where players can see them: a system with a player ship, or one next to the main ship's system
+/datum/fleet/proc/is_near_players()
+	for(var/obj/structure/overmap/OM as anything in current_system?.system_contents)
+		if(istype(OM) && !OM.ai_controlled && OM.z)
+			return TRUE
+	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
+	return player_system && (current_system == player_system || (current_system.name in player_system.adjacency_list))
+
 /// list(ships in the fight, average fear, share of the fleet lost)
 /datum/fleet/proc/get_ai_fleet_state()
 	var/count = 0
@@ -79,13 +97,17 @@
 		if(world.time >= ai_retreat_at)
 			try_ai_retreat_jump()
 		return
-	if(!has_player_enemies())
+	if(!has_ai_fleet_enemies())
 		return
 	var/list/state = get_ai_fleet_state()
 	var/fear = state[2]
 	var/losses = state[3]
-	if(!ai_distress_sent && (losses >= FLEET_DISTRESS_LOSSES || fear >= FLEET_DISTRESS_FEAR))
-		send_ai_distress_call()
+	if(!ai_distress_sent && (losses >= FLEET_DISTRESS_LOSSES || fear >= FLEET_DISTRESS_FEAR) && is_near_players())
+		ai_distress_sent = TRUE // One roll per fight
+		if(prob(FLEET_DISTRESS_CHANCE))
+			send_ai_distress_call()
+		else
+			note_ai_fleet_event("losing, but did not call for help (roll failed)")
 	var/help_coming = ai_help_eta && world.time < ai_help_eta + FLEET_DISTRESS_GRACE
 	if(fleet_trait != FLEET_TRAIT_DEFENSE && !help_coming && (losses >= FLEET_RETREAT_LOSSES || fear >= FLEET_RETREAT_FEAR))
 		start_ai_retreat()
@@ -117,16 +139,27 @@
 		return FALSE
 	if(fleet_trait == FLEET_TRAIT_DEFENSE || !length(all_ships))
 		return FALSE // Boss fleets do not move
-	if(current_system.check_conflict_status() || world.time < last_encounter_time + combat_move_delay)
-		return FALSE // Busy with its own fight
+	// Busy with its own fight; last_encounter_time 0 means it never fought
+	if(current_system.check_conflict_status() || (last_encounter_time && world.time < last_encounter_time + combat_move_delay))
+		return FALSE
 	return TRUE
+
+/// On the players' side (their faction or the federation): the bridge hears an ally asking for help, not an intercepted enemy call
+/datum/fleet/proc/is_player_ally()
+	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
+	return main && (main.faction == alignment || federation_check(main))
+
+/// Fleet decisions, for the logs (and the AI sandbox record)
+/datum/fleet/proc/note_ai_fleet_event(text)
+	log_game("[name] ([current_system]): [text]")
 
 /datum/fleet/proc/send_ai_distress_call()
 	ai_distress_sent = TRUE
-	current_system.warn_player_ships("Przechwycono sygnał alarmowy: [name] wzywa pomocy.")
+	var/ally = is_player_ally()
+	current_system.warn_player_ships(ally ? "Sojusznicza [name] wzywa wsparcia." : "Przechwycono sygnał alarmowy: [name] wzywa pomocy.")
 	var/list/responders = find_ai_distress_responders()
 	if(!length(responders))
-		log_game("[name] sent a distress call from [current_system], nobody answered")
+		note_ai_fleet_event("distress call, nobody answered")
 		return
 	var/datum/fleet/answering
 	for(var/datum/fleet/other as anything in responders)
@@ -136,25 +169,29 @@
 	var/delay = rand(FLEET_DISTRESS_DELAY_MIN, FLEET_DISTRESS_DELAY_MAX) + (jumps - 1) * FLEET_DISTRESS_PER_JUMP
 	answering.ai_answering = TRUE
 	ai_help_eta = world.time + delay
-	current_system.warn_player_ships("Przechwycono odpowiedź na sygnał. Posiłki wroga mogą nadlecieć za około [round(delay / (1 MINUTES))] min.")
-	addtimer(CALLBACK(current_system, TYPE_PROC_REF(/datum/star_system, warn_player_ships), "Wykryto zbliżające się sygnatury napędu FTL."), max(0, delay - FLEET_DISTRESS_WARNING))
+	var/minutes = max(1, round(delay / (1 MINUTES)))
+	if(ally)
+		current_system.warn_player_ships("[answering.name] odpowiada na wezwanie i nadleci za około [minutes] min.")
+	else
+		current_system.warn_player_ships("Przechwycono odpowiedź na sygnał. Posiłki wroga mogą nadlecieć za około [minutes] min.")
+	addtimer(CALLBACK(current_system, TYPE_PROC_REF(/datum/star_system, warn_player_ships), ally ? "Sojusznicze posiłki za chwilę wyjdą z nadprzestrzeni." : "Wykryto zbliżające się sygnatury napędu FTL."), max(0, delay - FLEET_DISTRESS_WARNING))
 	addtimer(CALLBACK(answering, TYPE_PROC_REF(/datum/fleet, answer_ai_distress), current_system), delay)
 	message_admins("[name] w systemie [current_system] wezwała pomoc. Odpowiada [answering.name] z systemu [answering.current_system] za [DisplayTimeText(delay)].")
-	log_game("[name] sent a distress call from [current_system], [answering.name] answers from [answering.current_system] in [delay / 10] s")
+	note_ai_fleet_event("distress call answered by [answering.name] from [answering.current_system] in [delay / 10] s")
 
 /datum/fleet/proc/answer_ai_distress(datum/star_system/target)
 	ai_answering = FALSE
 	if(QDELETED(src) || !target || target == current_system || !length(all_ships))
 		return
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
-		log_game("[name] could not answer a distress call: interdicted")
+		note_ai_fleet_event("could not answer a distress call: interdicted")
 		return
 	move(target, force = TRUE)
 
 /datum/fleet/proc/start_ai_retreat()
 	ai_retreat_at = world.time + FLEET_RETREAT_SPOOL
 	current_system.warn_player_ships("[name] rozgrzewa napędy FTL całej floty. Skok za około [FLEET_RETREAT_SPOOL / 10] s.")
-	log_game("[name] starts a retreat from [current_system]")
+	note_ai_fleet_event("starts a retreat")
 
 /// Neighbouring system to fall back to: our own territory first, never where the players' main ship is
 /datum/fleet/proc/pick_ai_retreat_system()
@@ -224,6 +261,7 @@
 #undef FLEET_DISTRESS_FEAR
 #undef FLEET_RETREAT_LOSSES
 #undef FLEET_RETREAT_FEAR
+#undef FLEET_DISTRESS_CHANCE
 #undef FLEET_DISTRESS_JUMPS
 #undef FLEET_DISTRESS_DELAY_MIN
 #undef FLEET_DISTRESS_DELAY_MAX
