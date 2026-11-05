@@ -335,7 +335,8 @@
 			if("LabelFrame/PropertyText")
 				set_text(key, format_text(canister.name))
 			else
-				if(!texts[key][1].maptext)
+				var/atom/movable/screen/canister_hud/label = texts[key][1]
+				if(!label.maptext)
 					set_text(key, entry["text"])
 
 	// lampki: czerwona przy pustym albo przepełnionym kanistrze, żółta przy otwartym zaworze
