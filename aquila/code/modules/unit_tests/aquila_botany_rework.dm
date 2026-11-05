@@ -129,5 +129,21 @@
 	TEST_ASSERT(new_fruit && new_fruit.type != old_type, "Nasiona z pieca mają stary owoc ([new_fruit?.type])")
 	qdel(kiln_single)
 
+// Zniszczony piec wyrzuca paczkę z wynikiem mutacji, a nie pierwotną
+	var/obj/machinery/plant_machine/plant_mutator/doomed_kiln = allocate(/obj/machinery/plant_machine/plant_mutator, get_step(origin, NORTH))
+	var/obj/item/plant_seeds/doomed_seeds = allocate(/obj/item/plant_seeds/preset/tomato, origin)
+	doomed_seeds.seeds = 1
+	TEST_ASSERT(doomed_kiln.insert_seeds(doomed_seeds, null), "Piec nie przyjął pojedynczego nasiona")
+	var/datum/plant_feature/fruit/doomed_fruit = locate() in doomed_kiln.plant_component.plant_features
+	var/doomed_old_type = doomed_fruit.type
+	doomed_kiln.ui_act("mutate", list("key" = REF(doomed_fruit)))
+	doomed_kiln.ui_act("mutate", list("key" = REF(doomed_fruit)))
+	doomed_kiln.reset_working()
+	var/turf/doomed_turf = get_turf(doomed_kiln)
+	qdel(doomed_kiln)
+	TEST_ASSERT(doomed_seeds.loc == doomed_turf, "Paczka nie wypadła ze zniszczonego pieca")
+	var/datum/plant_feature/fruit/doomed_new = locate() in doomed_seeds.plant_features
+	TEST_ASSERT(doomed_new && doomed_new.type != doomed_old_type, "Zniszczony piec oddał paczkę bez mutacji ([doomed_new?.type])")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL

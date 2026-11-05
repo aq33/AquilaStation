@@ -48,7 +48,8 @@
 	soundloop = new(src,  FALSE)
 
 /obj/machinery/plant_machine/plant_mutator/Destroy()
-	if(inserted_seeds) // AQUILA - paczka nasion nie przepada razem z piecem
+	if(inserted_seeds) // AQUILA - paczka nasion nie przepada razem z piecem i zachowuje wynik mutacji
+		sync_seeds_from_plant()
 		inserted_seeds.forceMove(drop_location())
 		inserted_seeds = null
 		QDEL_NULL(plant)
@@ -179,11 +180,11 @@
 	ui_update()
 	return TRUE
 
-/// AQUILA - oddaje paczkę nasion z częściami naświetlonej rośliny
-/obj/machinery/plant_machine/plant_mutator/proc/eject_seeds(mob/user)
-	if(!inserted_seeds || working)
-		return
+/// AQUILA - przepisuje części, nazwę i opis naświetlonej rośliny do paczki nasion w piecu
+/obj/machinery/plant_machine/plant_mutator/proc/sync_seeds_from_plant()
 	var/obj/item/plant_seeds/seeds = inserted_seeds
+	if(!seeds || !plant_component)
+		return
 	QDEL_LIST(seeds.plant_features)
 	for(var/datum/plant_feature/feature as anything in plant_component.plant_features)
 		var/datum/plant_feature/new_feature = feature.copy()
@@ -193,6 +194,13 @@
 	seeds.desc_override = plant_component.desc_override
 	seeds.update_species_id()
 	seeds.update_plant_name()
+
+/// AQUILA - oddaje paczkę nasion z częściami naświetlonej rośliny
+/obj/machinery/plant_machine/plant_mutator/proc/eject_seeds(mob/user)
+	if(!inserted_seeds || working)
+		return
+	var/obj/item/plant_seeds/seeds = inserted_seeds
+	sync_seeds_from_plant()
 	inserted_seeds = null
 	QDEL_NULL(plant)
 	plant_component = null
