@@ -77,6 +77,7 @@
 	M.buckling = null
 	M.buckled = src
 	M.setDir(dir)
+	SEND_SIGNAL(M, COMSIG_LIVING_BUCKLED_TO, src) // AQ EDIT - ruch po pikselach: przypięty mob wraca na środek kafelka
 	buckled_mobs |= M
 	M.update_mobility()
 	M.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)

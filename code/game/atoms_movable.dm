@@ -373,6 +373,11 @@
 ////////////////////////////////////////
 
 /atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
+	// AQ EDIT START - ruch po pikselach: wbudowane step()/walk() podaje mobowi z przesunięciem w kafelku bieżący kafelek i piksele (w miejscu glide_size_override) zamiast sąsiedniego kafelka
+	if(newloc == loc && (direct & (NORTH|SOUTH|EAST|WEST)) && HAS_TRAIT(src, TRAIT_PIXEL_MOVEMENT))
+		newloc = get_step(src, direct & ~(UP|DOWN))
+		glide_size_override = 0
+	// AQ EDIT END
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
