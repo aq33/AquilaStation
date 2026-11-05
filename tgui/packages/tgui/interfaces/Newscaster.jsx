@@ -742,7 +742,10 @@ const NewscasterChannelMessages = (_) => {
                 </Section>
               ) : (
                 <Section pl={1}>
-                  <Box dangerouslySetInnerHTML={processedText(message.body)} />
+                  <Box
+                    className="i18n-skip"
+                    dangerouslySetInnerHTML={processedText(message.body)}
+                  />
                 </Section>
               )}
               {message.photo !== null && !message.censored_message && (
@@ -767,6 +770,7 @@ const NewscasterChannelMessages = (_) => {
                       </Box>
                       <Section ml={2.5}>
                         <Box
+                          className="i18n-skip"
                           dangerouslySetInnerHTML={processedText(comment.body)}
                         />
                       </Section>

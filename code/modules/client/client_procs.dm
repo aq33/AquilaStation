@@ -1131,7 +1131,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		dat += "<br>"
 		dat += "[uuid]"
 
-		src << browse(HTML_SKELETON(dat), "window=accountidentifier;size=600x320")
+		src << browse(i18n_browse_html(src, HTML_SKELETON(dat)), "window=accountidentifier;size=600x320") // AQ EDIT - wersja angielska (aquila/code/modules/i18n/browser_windows.dm)
 		onclose(src, "accountidentifier")
 
 /client/proc/restore_account_identifier()

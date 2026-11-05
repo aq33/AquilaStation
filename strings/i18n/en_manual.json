@@ -61,5 +61,7 @@
  "ctrl-PPM (tylko combat mode):": "ctrl-RMB (combat mode only):",
  "shift-PPM (tylko combat mode):": "shift-RMB (combat mode only):",
  "To [name].": "That's [name].",
- "To [name]": "That's [name]"
+ "To [name]": "That's [name]",
+ "Głośność": "Volume",
+ "Cisza": "Silence"
 }

@@ -142,4 +142,30 @@ describe('setupDomTranslation', () => {
     ]);
     expect(label.el.textContent).toBe('Ciśnienie:');
   });
+
+  it('pomija czat i treść pisaną przez graczy', async () => {
+    document.body.innerHTML =
+      '<div id="ui">skrzynka narzędziowa</div>' +
+      '<div data-i18n-skip=""><span id="chat">skrzynka narzędziowa</span></div>' +
+      '<div class="Paper__Page i18n-skip"><p id="paper">skrzynka narzędziowa</p></div>';
+    const store = createStore();
+    setupDomTranslation(store as any);
+    store.setLanguage('en');
+    await flush();
+    expect(document.getElementById('ui')!.textContent).toBe('toolbox');
+    expect(document.getElementById('chat')!.textContent).toBe(
+      'skrzynka narzędziowa',
+    );
+    expect(document.getElementById('paper')!.textContent).toBe(
+      'skrzynka narzędziowa',
+    );
+    // nowa wiadomość w czacie po włączeniu też zostaje
+    const message = document.createElement('div');
+    message.textContent = 'skrzynka narzędziowa';
+    document.querySelector('[data-i18n-skip]')!.appendChild(message);
+    await flush();
+    expect(message.textContent).toBe('skrzynka narzędziowa');
+    store.setLanguage('pl');
+    await flush();
+  });
 });

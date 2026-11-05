@@ -55,6 +55,11 @@
 	var/label = i18n_en_html("opis<br><b>Siła:</b> niska")
 	TEST_ASSERT(findtext(label, "<b>[i18n_en_exact("Siła")]:</b>"), "Label with a colon is not translated: [label]")
 
+	// Okna HTML (browse, /datum/browser): węzły tekstowe także przez szablony, wcięcia zostają
+	var/window_html = i18n_en_html("<div>\n\tLosowo: wył.\n</div><b>Ciśnienie:</b>", TRUE)
+	TEST_ASSERT(findtext(window_html, "\n\t[i18n_en_template("Losowo: wył.")]\n") && findtext(window_html, "<b>[i18n_en_exact("Ciśnienie")]:</b>"), "HTML window text is not translated: [window_html]")
+	TEST_ASSERT(i18n_browse_html(viewer, "<b>Ciśnienie:</b>") == "<b>Ciśnienie:</b>", "HTML window changed for a player without English")
+
 	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
 	for(var/polish_key in GLOB.i18n_hud_icons_en)
 		var/english = GLOB.i18n_hud_icons_en[polish_key]

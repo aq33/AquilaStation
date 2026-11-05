@@ -597,6 +597,7 @@
 #include "code\modules\client\preferences_menu\middleware.dm"
 #include "code\modules\client\preferences_menu\menu.dm"
 #include "code\modules\client\preferences_menu\assets.dm"
+#include "code\modules\i18n\browser_windows.dm"
 #include "code\modules\i18n\game_language.dm"
 #include "code\modules\i18n\translate.dm"
 #include "code\modules\i18n\hud_icons.dm"

@@ -7,7 +7,8 @@
 import { Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
-import { getLanguage, loadDictionary, setLanguage } from 'tgui/i18n';
+import { getLanguage, loadDictionary } from 'tgui/i18n';
+import { setDomLanguage } from 'tgui/i18nDom';
 
 import {
   addHighlightSetting,
@@ -188,7 +189,8 @@ export const chatMiddleware = (store: Store) => {
     // AQUILA: język gry z preferencji (aquila/code/modules/i18n)
     if (type === 'i18n/setLanguage') {
       const previous = getLanguage();
-      setLanguage(payload.language);
+      // też panel statystyk, ustawienia i reszta panelu poza czatem
+      setDomLanguage(payload.language);
       if (getLanguage() === 'en') {
         loadDictionary().then((ready) => ready && chatRenderer.rebuildChat());
       } else if (previous === 'en') {

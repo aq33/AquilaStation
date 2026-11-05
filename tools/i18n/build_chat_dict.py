@@ -338,6 +338,27 @@ def load_ui_pairs():
     return pairs
 
 
+# polskie słowa bez polskich liter, które są też angielskimi słowami (nie odrzucamy ich par)
+POLISH_ASCII_WORDS = {"szatnia", "mops", "ananas", "paragon", "ko"}
+SINGLE_WORD = re.compile(r"^[A-Za-z_]+$")
+
+
+def identifier_refactors(table, manual):
+    """Klucze par EN -> EN z historii: klucz to jedno słowo ASCII, które występuje w angielskich
+    tłumaczeniach, a nie występuje w polskich zdaniach słownika."""
+    english_words, polish_words = set(), set()
+    for key, value in table.items():
+        english_words.update(w.lower() for w in re.findall(r"[A-Za-z]+", value))
+        if " " in key and re.search(r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]", key):
+            polish_words.update(w.lower() for w in re.findall(r"[^\W\d_]+", key))
+    return [
+        key for key, value in table.items()
+        if SINGLE_WORD.match(key) and key not in manual
+        and key.lower() in english_words and key.lower() not in polish_words
+        and key.lower() not in POLISH_ASCII_WORDS and key.lower() != value.lower()
+    ]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pairs", default="strings/i18n/en_pairs.json")
@@ -475,6 +496,13 @@ def main():
             t["k"] = sorted({rarest(w) for w in option_words})
         kept.append(t)
     templates = kept
+
+    # Pary z refaktoryzacji kodu wzięte za tłumaczenie ("Yes" -> "No", "insert" -> "eject",
+    # "volume" -> "select"): angielski tekst w oknie zamieniałby się w inne słowo
+    for table in (exact, ui):
+        for key in identifier_refactors(table, manual):
+            del table[key]
+            stats["pomijane: angielskie słowo na inne angielskie"] += 1
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     data = {

@@ -236,16 +236,32 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	var/found = i18n_en_exact(inner)
 	return isnull(found) ? match : ">[found]<"
 
-/// Tekst albo HTML po angielsku: stała, szablon (zwykły tekst), a w HTML każdy węzeł tekstowy osobno
-/proc/i18n_en_html(text)
+/// Jak i18n_en_text_node, ale także szablony (okna HTML: "Losowo: [shuffle ? "wł." : "wył."]")
+/proc/i18n_en_text_node_full(match, inner)
+	var/trimmed = trim(inner)
+	var/static/regex/letters = regex(@"[^\W\d_]{2}")
+	if(!length(trimmed) || !letters.Find(trimmed))
+		return match
+	var/found = i18n_en_html(trimmed)
+	if(found == trimmed)
+		return match
+	var/start = findtext(inner, trimmed)
+	return ">[copytext(inner, 1, start)][found][copytext(inner, start + length(trimmed))]<"
+
+/**
+ * Tekst albo HTML po angielsku: stała, szablon (zwykły tekst), a w HTML każdy węzeł tekstowy osobno.
+ * with_templates: węzły HTML także przez szablony (okna HTML, gdzie zdania mają wstawki); screentipy
+ * odświeżane przy każdym ruchu myszy zostają przy samych stałych.
+ */
+/proc/i18n_en_html(text, with_templates = FALSE)
 	if(!istext(text) || !length(text))
 		return text
 	if(findtext(text, "<"))
-		// HTML (screentipy) jest zmienny i tani: tylko stałe, węzeł po węźle, bez pamięci podręcznej
+		// HTML (screentipy) jest zmienny i tani: tylko stałe, węzeł po węźle, bez pamięci podręcznej całości
 		. = i18n_en_exact(text)
 		if(isnull(.))
 			var/static/regex/text_node = regex(@">([^<>]+)<", "g")
-			var/wrapped = text_node.Replace(">[text]<", /proc/i18n_en_text_node)
+			var/wrapped = text_node.Replace(">[text]<", with_templates ? /proc/i18n_en_text_node_full : /proc/i18n_en_text_node)
 			. = copytext(wrapped, 2, -1)
 		return
 	// zwykły tekst (dymki, runechat) się powtarza, a szablony kosztują: pamięć podręczna

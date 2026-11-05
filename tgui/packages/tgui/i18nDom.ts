@@ -34,9 +34,26 @@ const TRANSLATED_SELECTOR = ATTRIBUTES.map(
 
 let observer: MutationObserver | null = null;
 
+/**
+ * Obszar bez tłumaczenia: czat w panelu (ma własne i chroni wypowiedzi graczy) oraz
+ * treść pisana przez graczy (kartki, książki, wiadomości PDA, Newscaster)
+ */
+const SKIP_ATTRIBUTE = 'data-i18n-skip';
+
+/** To samo jako klasa: komponenty tgui-core (Box) przekazują className, nie dowolne atrybuty */
+const SKIP_CLASS = 'i18n-skip';
+
+const hasSkipMark = (el: Element): boolean =>
+  el.hasAttribute(SKIP_ATTRIBUTE) || el.classList.contains(SKIP_CLASS);
+
+const isSkippedElement = (el: Element): boolean =>
+  SKIPPED_TAGS.has(el.tagName) ||
+  (el as HTMLElement).isContentEditable ||
+  hasSkipMark(el);
+
 const isSkipped = (node: Node): boolean => {
   for (let el = node.parentElement; el; el = el.parentElement) {
-    if (SKIPPED_TAGS.has(el.tagName) || el.isContentEditable) {
+    if (isSkippedElement(el)) {
       return true;
     }
   }
@@ -118,6 +135,10 @@ const translateTextNode = (node: Text) => {
 };
 
 const translateAttributes = (el: Element) => {
+  // placeholder pola (input) tłumaczymy; nie ruszamy tylko obszarów oznaczonych do pominięcia
+  if (hasSkipMark(el) || isSkipped(el)) {
+    return;
+  }
   for (const name of ATTRIBUTES) {
     const value = el.getAttribute(name);
     if (!value || el.getAttribute(`data-i18n-${name}`) === value) {
@@ -144,10 +165,20 @@ const translateTree = (root: Node) => {
   if (root.nodeType !== Node.ELEMENT_NODE) {
     return;
   }
+  if (hasSkipMark(root as Element) || isSkipped(root)) {
+    return;
+  }
   translateAttributes(root as Element);
   const walker = document.createTreeWalker(
     root,
     NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
+    {
+      // całe poddrzewo z własnym tłumaczeniem (czat) pomijamy od razu
+      acceptNode: (node) =>
+        node.nodeType === Node.ELEMENT_NODE && hasSkipMark(node as Element)
+          ? NodeFilter.FILTER_REJECT
+          : NodeFilter.FILTER_ACCEPT,
+    },
   );
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     if (node.nodeType === Node.TEXT_NODE) {

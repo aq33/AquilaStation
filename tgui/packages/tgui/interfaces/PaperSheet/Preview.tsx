@@ -535,7 +535,7 @@ export class PreviewView extends Component<PreviewViewProps> {
           bottom="100%"
           minHeight="100%"
           backgroundColor={paper_color}
-          className="Paper__Page"
+          className="Paper__Page i18n-skip"
           dangerouslySetInnerHTML={textHTML}
           p="10px"
         />
