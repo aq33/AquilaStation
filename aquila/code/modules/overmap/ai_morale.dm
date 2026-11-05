@@ -208,10 +208,31 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 			other.dradis.visible_message(text)
 
 /obj/structure/overmap/proc/ai_escape()
+	if(ai_escaped)
+		return
 	ai_escaped = TRUE
+	// The last warship of a fleet does not leave alone: the whole fleet falls back with it,
+	// otherwise its deletion would end the fleet with defeat() and give the players full credit for a kill
+	if(fleet && !QDELETED(fleet) && !has_other_ai_warships())
+		var/datum/star_system/left = current_system
+		fleet.try_ai_retreat_jump()
+		if(fleet?.current_system != left)
+			ai_escaped = FALSE // It is still a ship of that fleet, just somewhere else now
+			return
 	announce_ai_escape("[src] wykonuje skok FTL i opuszcza system.")
 	log_game("[src] escaped [current_system] by FTL")
-	qdel(src)
+	// A jump, not a death: no explosion, wreck or "reactor critical" warning to the ships that fought it
+	destruction_effects = FALSE
+	enemies = list()
+	// Deleted after this tick: the flee goal runs inside ai_process(), which keeps going after choose_goal()
+	QDEL_IN(src, 1)
+
+/// Another ship of our fleet (not a fighter) is still in this system
+/obj/structure/overmap/proc/has_other_ai_warships()
+	for(var/obj/structure/overmap/other as anything in fleet?.all_ships)
+		if(other != src && !QDELETED(other) && other.z == z && other.mass > MASS_TINY && !other.ai_escaped)
+			return TRUE
+	return FALSE
 
 /// Running away: away from the nearest threat, afterburner when lined up, then spool the drive and jump once nobody is close
 /datum/ai_goal/ai_flee
@@ -219,7 +240,7 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	score = AI_SCORE_MAXIMUM + 2 // Above lone "seek" (MAXIMUM) and stations (MAXIMUM + 1, they never flee)
 
 /datum/ai_goal/ai_flee/check_score(obj/structure/overmap/OM)
-	if(!..() || !GLOB.ai_morale_enabled || !OM.ai_fleeing || !OM.can_ai_flee())
+	if(!..() || !GLOB.ai_morale_enabled || !OM.ai_fleeing || OM.ai_escaped || !OM.can_ai_flee())
 		return 0
 	return score
 
@@ -237,7 +258,8 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 		OM.ai_escape_at = 0 // Spool interrupted
 		return
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, OM) & (WEAK_INTERDICT|STRONG_INTERDICT))
-		return // Interdicted, keep running
+		OM.ai_escape_at = 0 // Interdicted: keep running, and spool from scratch once it lifts
+		return
 	if(!OM.ai_escape_at)
 		OM.ai_escape_at = world.time + AI_ESCAPE_SPOOL_TIME
 		OM.announce_ai_escape("[OM] rozgrzewa napęd FTL.")

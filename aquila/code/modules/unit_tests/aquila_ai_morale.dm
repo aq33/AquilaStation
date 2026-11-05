@@ -22,7 +22,7 @@
 	enemy.faction = "nanotrasen"
 	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
 	enemy.forceMove(locate(30, 10, run_loc_floor_bottom_left.z))
-	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget() || check_flanking()
+	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget() || check_flanking() || check_escape()
 	GLOB.ai_morale_enabled = was_enabled
 	if(fail)
 		return Fail(fail)
@@ -181,8 +181,9 @@
 	var/turf/slot = wing.get_ai_flank_point(enemy, ships)
 	if(!slot)
 		return "The second attacker did not get a flank slot"
-	// The anchor attacks from the west (bearing 270 from the target); the second ship takes the slot 90 degrees round: 18 tiles north
-	if(abs(slot.x - enemy.x) > 1 || abs(slot.y - (enemy.y + 18)) > 1)
+	// The anchor attacks from the west (bearing 270 from the target); the second ship takes the slot 90 degrees round on the side
+	// it is already on: 18 tiles north or south
+	if(abs(slot.x - enemy.x) > 1 || abs(abs(slot.y - enemy.y) - 18) > 1)
 		return "The flank slot is not beside the anchor's line of attack ([slot.x], [slot.y], target at [enemy.x], [enemy.y], anchor at [ship.x], [ship.y])"
 	wing.ai_temperament = "brawurowy"
 	if(wing.get_ai_flank_point(enemy, ships))
@@ -192,3 +193,20 @@
 	if(wing.get_ai_flank_point(enemy, ships))
 		return "A lone attacker was sent to a flank slot"
 	wing.last_target = null
+
+/// Regression: the escape used to qdel the ship inside ai_process() (which then kept running on the deleted ship),
+/// with the explosion, the wreck and the "reactor critical" warning of a real kill
+/datum/unit_test/aquila_ai_morale/proc/check_escape()
+	reset()
+	ship.enemies = list(enemy)
+	ship.ai_escape()
+	if(QDELETED(ship))
+		return "An escaping ship was deleted on the spot instead of after the current AI tick"
+	if(ship.destruction_effects || length(ship.enemies))
+		return "An escaping ship would explode and warn its enemies like a destroyed one"
+	var/datum/ai_goal/ai_flee/goal = new
+	ship.ai_fleeing = TRUE
+	var/score = goal.check_score(ship)
+	qdel(goal)
+	if(score)
+		return "A ship that already jumped out still picks the escape goal"

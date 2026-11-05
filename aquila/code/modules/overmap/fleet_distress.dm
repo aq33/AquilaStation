@@ -55,10 +55,14 @@
 		else if(OM.dradis)
 			OM.dradis.visible_message(text)
 
+/// A crewed ship: not run by the AI and not an asteroid (asteroids are not AI controlled and have no faction)
+/obj/structure/overmap/proc/is_crewed_ship()
+	return !ai_controlled && z && !istype(src, /obj/structure/overmap/asteroid)
+
 /// A ship not on our side and not run by the AI is in the system with us
 /datum/fleet/proc/has_player_enemies()
 	for(var/obj/structure/overmap/OM as anything in current_system?.system_contents)
-		if(istype(OM) && !OM.ai_controlled && OM.z && OM.faction != alignment && !federation_check(OM))
+		if(istype(OM) && OM.is_crewed_ship() && OM.faction != alignment && !federation_check(OM))
 			return TRUE
 	return FALSE
 
@@ -72,7 +76,7 @@
 /// Distress calls only go out where players can see them: a system with a player ship, or one next to the main ship's system
 /datum/fleet/proc/is_near_players()
 	for(var/obj/structure/overmap/OM as anything in current_system?.system_contents)
-		if(istype(OM) && !OM.ai_controlled && OM.z)
+		if(istype(OM) && OM.is_crewed_ship())
 			return TRUE
 	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
 	return player_system && (current_system == player_system || (current_system.name in player_system.adjacency_list))
@@ -174,10 +178,18 @@
 		current_system.warn_player_ships("[answering.name] odpowiada na wezwanie i nadleci za około [minutes] min.")
 	else
 		current_system.warn_player_ships("Przechwycono odpowiedź na sygnał. Posiłki wroga mogą nadlecieć za około [minutes] min.")
-	addtimer(CALLBACK(current_system, TYPE_PROC_REF(/datum/star_system, warn_player_ships), ally ? "Sojusznicze posiłki za chwilę wyjdą z nadprzestrzeni." : "Wykryto zbliżające się sygnatury napędu FTL."), max(0, delay - FLEET_DISTRESS_WARNING))
+	// On the answering fleet, so the warning dies with it and is skipped if it cannot come any more
+	addtimer(CALLBACK(answering, TYPE_PROC_REF(/datum/fleet, warn_ai_distress_arrival), current_system, ally), max(0, delay - FLEET_DISTRESS_WARNING))
 	addtimer(CALLBACK(answering, TYPE_PROC_REF(/datum/fleet, answer_ai_distress), current_system), delay)
 	message_admins("[name] w systemie [current_system] wezwała pomoc. Odpowiada [answering.name] z systemu [answering.current_system] za [DisplayTimeText(delay)].")
 	note_ai_fleet_event("distress call answered by [answering.name] from [answering.current_system] in [delay / 10] s")
+
+/datum/fleet/proc/warn_ai_distress_arrival(datum/star_system/target, ally)
+	if(!ai_answering || !length(all_ships) || target == current_system)
+		return
+	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
+		return // It will not get through, so there is nothing to warn about
+	target.warn_player_ships(ally ? "Sojusznicze posiłki za chwilę wyjdą z nadprzestrzeni." : "Wykryto zbliżające się sygnatury napędu FTL.")
 
 /datum/fleet/proc/answer_ai_distress(datum/star_system/target)
 	ai_answering = FALSE

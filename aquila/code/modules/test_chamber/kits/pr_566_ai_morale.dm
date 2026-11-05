@@ -1,8 +1,8 @@
-// Lokalny draft (bez PR) - strach, odwrót i błędy taktyczne AI (aquila/code/modules/overmap/ai_morale.dm)
+// aq33/AquilaStation#566 - strach, odwrót i błędy taktyczne AI (aquila/code/modules/overmap/ai_morale.dm)
 
-/datum/test_chamber_kit/pr_draft_ai_morale
-	name = "Draft: morale AI (strach i odwrót)"
-	pr = "lokalny draft, bez PR"
+/datum/test_chamber_kit/pr_566_ai
+	name = "Morale AI (strach, odwrót, flankowanie)"
+	pr = "aq33/AquilaStation#566"
 	description = "Zestaw stawia konsolę DRADIS i taktyczną oraz przywołuje trzy niszczyciele Syndykatu AI około 60 pól od okrętu głównego: ostrożny, zwykły i brawurowy (który jest który, napisze się w czacie adminów). \
 	1) View Variables na niszczycielu: ai_fear (0-100), ai_temperament, ai_fleeing. \
 	2) Zadaj jednemu duże obrażenia w krótkim czasie (np. salwa z MAC): strach rośnie, przy około 30 okręt odsuwa się poza zasięg dział, przy 60+ zaczyna uciekać. \
@@ -15,7 +15,7 @@
 		/obj/machinery/computer/ship/tactical = 1,
 	)
 
-/datum/test_chamber_kit/pr_draft_ai_morale/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_566_ai/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
 	if(!main?.current_system || !main.z)

@@ -41,7 +41,7 @@
 	var/list/blips = data["ships"]
 	for(var/list/blip as anything in blips)
 		var/obj/structure/overmap/OM = locate(blip["id"])
-		if(!istype(OM) || OM == linked || OM.faction == linked.faction || istype(OM, /obj/structure/overmap/asteroid) || linked.target_painted[OM])
+		if(!istype(OM) || OM == linked || OM.faction == linked.faction || istype(OM, /obj/structure/overmap/asteroid) || (OM in linked.target_painted))
 			continue
 		var/dist = overmap_dist(linked, OM)
 		if(dist <= max(sensor_range, OM.sensor_profile)) // Identified contacts are exact, same rule as the base proc
