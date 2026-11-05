@@ -60,6 +60,9 @@
 			continue // Already a normal contact
 		blips[++blips.len] = list("x" = ghost[1], "y" = ghost[2], "colour" = "#ff8800", "name" = "Źródło ostrzału", "opacity" = 0.8, "alignment" = "unaligned", "id" = "ghost_\ref[shooter]", "uncertainty" = SENSOR_UNCERTAINTY_MAX, "ghost" = TRUE)
 	// Heard radar pulses (radar_emission.dm), unless the emitter is already a normal contact
+	// The overmap wraps but the DRADIS view cannot scroll past its edges, so the UI repeats the emission sector on the far side
+	data["map_width"] = world.maxx
+	data["map_height"] = world.maxy
 	var/list/shown = list()
 	for(var/list/blip as anything in blips)
 		if(blip["id"])
@@ -71,8 +74,8 @@
 		var/list/emission = linked.radar_emissions[emitter]
 		var/fading = world.time > emission[1] + RADAR_VISIBILITY_PENALTY
 		blips[++blips.len] = list(
-			"x" = linked.x + sin(estimate[1]) * estimate[2],
-			"y" = linked.y + cos(estimate[1]) * estimate[2],
+			"x" = WRAP(linked.x + sin(estimate[1]) * estimate[2], 1, world.maxx + 1),
+			"y" = WRAP(linked.y + cos(estimate[1]) * estimate[2], 1, world.maxy + 1),
 			"colour" = "#e9a040",
 			"name" = "NIEZNANY · emisja",
 			"opacity" = fading ? 0.4 : 0.9,

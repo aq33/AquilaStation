@@ -19,6 +19,8 @@ type Data = {
   own_signature: number;
   seen_from: number;
   seen_from_pulse: number;
+  map_width: number;
+  map_height: number;
   sensor_mode: any;
   ships: any;
   showAnomalies: any;
@@ -137,14 +139,35 @@ export const DradisContent = (props) => {
     const polygon = points
       .map((point) => point[0] - minX + ',' + (maxY - point[1]))
       .join(' ');
-    return (
+    // The overmap wraps, but the view cannot scroll past its edges:
+    // the part of the sector beyond an edge is drawn again on the far side
+    const mapWidth = (data.map_width || 0) * scale_factor;
+    const mapHeight = (data.map_height || 0) * scale_factor;
+    const copies: number[][] = [];
+    for (const dx of mapWidth ? [-mapWidth, 0, mapWidth] : [0]) {
+      for (const dy of mapHeight ? [-mapHeight, 0, mapHeight] : [0]) {
+        const left = minX + dx;
+        const bottom = maxY - height + dy;
+        const visible =
+          (dx === 0 && dy === 0) ||
+          (left + width > 0 &&
+            left < mapWidth &&
+            bottom + height > 0 &&
+            bottom < mapHeight);
+        if (visible) {
+          copies.push([left, bottom]);
+        }
+      }
+    }
+    return copies.map(([left, bottom]) => (
       <svg
+        key={left + '_' + bottom}
         width={width}
         height={height}
         style={{
           position: 'absolute',
-          left: minX + 'px',
-          bottom: maxY - height + 'px',
+          left: left + 'px',
+          bottom: bottom + 'px',
           opacity: opacity,
           pointerEvents: 'none',
           overflow: 'visible',
@@ -159,7 +182,7 @@ export const DradisContent = (props) => {
           strokeDasharray="4 3"
         />
       </svg>
-    );
+    ));
   };
   // AQ EDIT END
 
