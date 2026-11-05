@@ -818,6 +818,7 @@
 #include "code\modules\overmap\dradis_uncertainty.dm"
 #include "code\modules\overmap\radar_emission.dm"
 #include "code\modules\overmap\overmap_scale.dm"
+#include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"
@@ -958,6 +959,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_draft_sensory.dm"
+#include "code\modules\test_chamber\kits\pr_draft_ai_morale.dm"
 #include "code\modules\test_chamber\kits\pr_495_ntsl.dm"
 #include "code\modules\test_chamber\kits\pr_506_zapachy.dm"
 #include "code\modules\test_chamber\kits\pr_492_serwery_ai.dm"
@@ -1738,6 +1740,7 @@
 #include "code\modules\unit_tests\aquila_auto_articles.dm"
 #include "code\modules\unit_tests\aquila_pollution.dm"
 #include "code\modules\unit_tests\aquila_pull_click.dm"
+#include "code\modules\unit_tests\aquila_ai_morale.dm"
 #include "code\modules\unit_tests\aquila_overmap_scale.dm"
 #include "code\modules\unit_tests\aquila_sensor_signature.dm"
 #include "code\modules\unit_tests\hotspot_throttle.dm"
