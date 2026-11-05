@@ -179,6 +179,14 @@
       otwiera się w przeglądarce).'
   - config: Nowy plik config/voice_chat.txt (domyślnie wyłączony) i serwis tools/voice_chat
       z rozpoznawaniem mowy przez Whisper, ElevenLabs albo OpenAI.
+  Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
+  - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
+      (wybierany przez admina).
+  - rscadd: 'Shrike 2.0: przebudowana mapa, na pokładzie jest detektyw, silos rudy
+      i działowe techfaby.'
+  - tweak: Na okrętach Syndykatu podczas abordażu walczą nowi przeciwnicy.
+  - tweak: Pojemnik na pigułki można wydrukować w protolathe medycznym.
+  - bugfix: Zniszczony stormdrive w ruinie górniczej nie jest już niewidzialny.
   sh4dow321:
   - bugfix: Panel lag switchy dla adminów znowu się otwiera.
   - bugfix: Netpod znowu leczy osobę w środku.

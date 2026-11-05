@@ -18,6 +18,11 @@
 		//Trawnik
 		#include "map_files\Serendipity\Serendipity1.dmm"
 		#include "map_files\Serendipity\Serendipity2.dmm"
+		//Shrike
+		#include "map_files\Shrike\Shrike2.dmm"
+		#include "map_files\Shrike\Shrike1.dmm"
+		//Von Neumann
+		#include "map_files\vonneumann\vnmk3.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
