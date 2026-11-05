@@ -145,8 +145,7 @@
 	TEST_ASSERT_EQUAL(upper.down, lower, "set_up() did not link the cables both ways")
 
 	lower.deconstruct()
-	TEST_ASSERT(QDELETED(lower), "The cut multi-z cable was not removed")
-	TEST_ASSERT(QDELETED(upper), "The linked multi-z cable was not removed")
+	// Count and clean up the dropped coils before any assert can end the test
 	var/dropped = 0
 	for (var/obj/item/stack/cable_coil/coil in start)
 		dropped += coil.amount
@@ -154,6 +153,8 @@
 	for (var/obj/item/stack/cable_coil/coil in east)
 		dropped += coil.amount
 		qdel(coil)
+	TEST_ASSERT(QDELETED(lower), "The cut multi-z cable was not removed")
+	TEST_ASSERT(QDELETED(upper), "The linked multi-z cable was not removed")
 	TEST_ASSERT_EQUAL(dropped, 2, "Cutting two multi-z cables did not drop exactly two pieces of cable")
 
 /// AQUILA - every powernet queued before a machines tick is recalculated in that tick
