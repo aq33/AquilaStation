@@ -56,7 +56,9 @@
 		where = "w ręce"
 	if(!where)
 		where = equip_in_one_of_slots(translator, list("w plecaku" = ITEM_SLOT_BACKPACK), qdel_on_fail = FALSE)
-	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where || "pod nogami"]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
+	if(!where)
+		where = "pod nogami"
+	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
 
 /**
  * Hook z /mob/living/say, po wyborze języka. Obcokrajowiec mówi po angielsku z tłumaczem przy sobie:
