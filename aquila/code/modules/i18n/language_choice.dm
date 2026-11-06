@@ -54,7 +54,9 @@
 
 // Menu pod Esc: przełącznik języka (przycisk pokazuje się, gdy menu dostanie gameLanguage)
 /datum/escape_menu/on_message(type, payload, href_list)
-	if(type == "action" && client && payload?["action"] == "toggle_language")
+	if(type == "action" && !islist(payload))
+		return FALSE // bazowy handler czyta payload["action"]
+	if(type == "action" && client && payload["action"] == "toggle_language")
 		client.prefs?.choose_game_language(client.wants_english() ? GAME_LANGUAGE_PL : GAME_LANGUAGE_EN)
 		return TRUE
 	. = ..()

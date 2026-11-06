@@ -352,10 +352,14 @@ if (require.main === module && process.argv[2] === 'dump') {
           .replace(/\\/g, '/');
         const source = fs.readFileSync(full, 'utf8');
         for (const item of collect(source, full)) {
+          // zakres zdania JSX bywa otoczony białym znakiem (także \n): linie liczymy od samego tekstu
+          const span = source.slice(item.start, item.end);
+          const start = item.start + (span.length - span.trimStart().length);
+          const end = Math.max(start, item.start + span.trimEnd().length);
           out.push({
             file: rel,
-            line: source.slice(0, item.start).split('\n').length,
-            endLine: source.slice(0, item.end).split('\n').length,
+            line: source.slice(0, start).split('\n').length,
+            endLine: source.slice(0, end).split('\n').length,
             kind: item.kind,
             texts: item.texts,
             slots: item.slots,
