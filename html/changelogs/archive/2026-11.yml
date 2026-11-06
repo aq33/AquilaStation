@@ -258,3 +258,7 @@
   - balance: ERT nie dostaje aquilosów za cele.
   - bugfix: Awatar w domenie z bójką na plaży dostaje broń.
   - code_imp: Testy regresji do poprawek.
+  - rscadd: 'Opcja „Język gry / Game language” w preferencjach: czat, examine, panel
+      statystyk, okna, dymki, runechat, screentipy i okienka po angielsku.'
+  - code_imp: Słownik PL→EN i narzędzia w tools/i18n; CI ostrzega o nowych tekstach
+      bez angielskiego i nieowiniętych okienkach alert/input.
