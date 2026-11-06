@@ -113,7 +113,7 @@
 		else
 			note_ai_fleet_event("losing, but did not call for help (roll failed)")
 	var/help_coming = ai_help_eta && world.time < ai_help_eta + FLEET_DISTRESS_GRACE
-	if(fleet_trait != FLEET_TRAIT_DEFENSE && !help_coming && (losses >= FLEET_RETREAT_LOSSES || fear >= FLEET_RETREAT_FEAR))
+	if(fleet_trait != FLEET_TRAIT_DEFENSE && !help_coming && (losses >= FLEET_RETREAT_LOSSES || fear >= FLEET_RETREAT_FEAR) && can_ai_fleet_retreat())
 		start_ai_retreat()
 
 /// Allied fleets within FLEET_DISTRESS_JUMPS that can answer, as fleet => jumps
@@ -200,6 +200,13 @@
 		return
 	move(target, force = TRUE)
 
+/// The fleet can fall back: no ship of it is crewed by players (it would be dragged along, crew and all) and there is somewhere to go
+/datum/fleet/proc/can_ai_fleet_retreat()
+	for(var/obj/structure/overmap/OM as anything in all_ships)
+		if(!QDELETED(OM) && (!OM.ai_controlled || length(OM.operators)))
+			return FALSE
+	return !!pick_ai_retreat_system()
+
 /datum/fleet/proc/start_ai_retreat()
 	ai_retreat_at = world.time + FLEET_RETREAT_SPOOL
 	current_system.warn_player_ships("[name] rozgrzewa napędy FTL całej floty. Skok za około [FLEET_RETREAT_SPOOL / 10] s.")
@@ -230,14 +237,11 @@
 		ai_retreat_at = world.time + FLEET_RETREAT_RETRY
 		current_system.warn_player_ships("Interdykcja blokuje skok floty [name].")
 		return
-	// A ship the players boarded or took off autopilot would be dragged along, crew and all
-	for(var/obj/structure/overmap/OM as anything in all_ships)
-		if(!QDELETED(OM) && (!OM.ai_controlled || length(OM.operators)))
-			ai_retreat_at = 0
-			return
-	var/datum/star_system/target = pick_ai_retreat_system()
+	// Players boarded a ship during the spool, or the way out closed: call it off (check_ai_fleet_morale does not restart it while that holds)
+	var/datum/star_system/target = can_ai_fleet_retreat() ? pick_ai_retreat_system() : null
 	if(!target)
-		ai_retreat_at = 0 // Nowhere to run, fight to the end
+		ai_retreat_at = 0
+		current_system.warn_player_ships("[name] przerywa przygotowania do skoku.")
 		return
 	// The players drove the fleet off: half the reward of destroying it, once per fleet
 	if(has_player_enemies() && !ai_retreat_paid)

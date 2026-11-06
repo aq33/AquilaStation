@@ -14,6 +14,12 @@
 #define AI_SALVO_OPEN_UNTIL 1
 #define AI_SALVO_NEXT 2
 #define AI_SALVO_WAITING_SINCE 3
+#define AI_SALVO_SHIPS 4
+#define AI_SALVO_SHIPS_UNTIL 5
+/// How long the list of ships taking part in a salvo is reused
+#define AI_SALVO_SHIPS_CACHE (1 SECONDS)
+/// Inside AI gun range (overmap_scale.dm) the AI picks guns first, so the salvo is only planned beyond it
+#define AI_SALVO_GUN_RANGE 25
 
 /// Incoming torpedoes closer than this are dodged
 #define AI_DODGE_RANGE 14
@@ -60,13 +66,17 @@ GLOBAL_VAR_INIT(ai_torpedo_dodge_enabled, TRUE)
 /datum/fleet/proc/ai_salvo_allows(obj/structure/overmap/ship, obj/structure/overmap/target)
 	var/list/salvo = LAZYACCESS(ai_salvos, target)
 	if(!salvo)
-		salvo = list(0, 0, 0)
+		salvo = list(0, 0, 0, null, 0)
 		LAZYSET(ai_salvos, target, salvo)
 	if(world.time < salvo[AI_SALVO_OPEN_UNTIL])
 		return TRUE
 	if(world.time < salvo[AI_SALVO_NEXT])
 		return FALSE
-	var/list/ships = get_ai_salvo_ships(target)
+	var/list/ships = salvo[AI_SALVO_SHIPS]
+	if(!ships || world.time >= salvo[AI_SALVO_SHIPS_UNTIL])
+		ships = get_ai_salvo_ships(target)
+		salvo[AI_SALVO_SHIPS] = ships
+		salvo[AI_SALVO_SHIPS_UNTIL] = world.time + AI_SALVO_SHIPS_CACHE
 	if(length(ships) < 2 || !(ship in ships))
 		return TRUE // Nobody to fire with
 	if(!salvo[AI_SALVO_WAITING_SINCE])
@@ -102,6 +112,10 @@ GLOBAL_VAR_INIT(ai_torpedo_dodge_enabled, TRUE)
 		return
 	var/obj/structure/overmap/ship = linked_overmap
 	if(!ship?.ai_controlled || !ship.fleet || ship.ai_temperament == AI_TEMPERAMENT_RECKLESS)
+		return
+	// can_fire() also runs while ai_fire() is only choosing a weapon; in gun range a gun usually wins and no torpedo goes out,
+	// so the salvo roll and its timers are only spent where torpedoes are what the ship actually fires
+	if(GLOB.overmap_scale_enabled && overmap_dist(ship, target) <= AI_SALVO_GUN_RANGE)
 		return
 	return ship.fleet.ai_salvo_allows(ship, target)
 
@@ -148,6 +162,10 @@ GLOBAL_VAR_INIT(ai_torpedo_dodge_enabled, TRUE)
 #undef AI_SALVO_OPEN_UNTIL
 #undef AI_SALVO_NEXT
 #undef AI_SALVO_WAITING_SINCE
+#undef AI_SALVO_SHIPS
+#undef AI_SALVO_SHIPS_UNTIL
+#undef AI_SALVO_SHIPS_CACHE
+#undef AI_SALVO_GUN_RANGE
 #undef AI_DODGE_RANGE
 #undef AI_DODGE_DISTANCE
 #undef AI_DODGE_TIME

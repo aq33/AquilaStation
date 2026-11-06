@@ -74,8 +74,9 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	var/ai_escaped = FALSE
 	/// AQUILA - commander hesitation after picking a new target
 	var/ai_hold_fire_until = 0
-	/// AQUILA - no new hesitation before this world.time
+	/// AQUILA - no new hesitation before this world.time, and the target the commander last hesitated over
 	var/ai_next_hesitation = 0
+	var/datum/weakref/ai_hesitated_target
 
 /obj/structure/overmap/proc/roll_ai_temperament()
 	if(CHECK_BITFIELD(ai_flags, AI_FLAG_ELITE))
@@ -279,15 +280,16 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	if(ai_fear >= AI_FEAR_CAUTIOUS && is_ai_hostile(target))
 		return max(., AI_FEAR_STANDOFF)
 
-/// Hesitation: a ship that had no target does not open fire straight away; cautious commanders take longer, reckless ones not at all.
-/// Only from no target and at most every AI_HESITATION_COOLDOWN: upstream swaps targets whenever someone else shoots,
-/// and supply ships reset their target every tick, so hesitating on every swap kept some ships from ever firing.
+/// Hesitation: a commander does not open fire on a new target straight away; cautious ones take longer, reckless ones not at all.
+/// ai_fire() calls add_enemy() with the target, so this also covers targets the fleet assigned directly.
+/// At most every AI_HESITATION_COOLDOWN: upstream swaps targets whenever someone else shoots, and supply ships
+/// reset their target every tick, so hesitating on every swap kept some ships from ever firing.
 /obj/structure/overmap/add_enemy(atom/target)
-	var/old_target = last_target
 	. = ..()
-	if(!GLOB.ai_morale_enabled || !ai_controlled || old_target || !last_target || world.time < ai_next_hesitation)
+	if(!GLOB.ai_morale_enabled || !ai_controlled || !last_target || world.time < ai_next_hesitation || ai_hesitated_target?.resolve() == last_target)
 		return
 	ai_next_hesitation = world.time + AI_HESITATION_COOLDOWN
+	ai_hesitated_target = WEAKREF(last_target)
 	if(!ai_temperament)
 		roll_ai_temperament()
 	switch(ai_temperament)
@@ -350,7 +352,7 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 
 /client/proc/toggle_ai_morale()
 	set category = "Debug"
-	set name = "Toggle AI morale"
+	set name = "Przełącz morale AI"
 	set desc = "Włącza lub wyłącza strach, odwrót i błędy taktyczne okrętów AI."
 	if(!check_rights(R_DEBUG))
 		return
