@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(ai_flank_slots, list(list(90), list(-90, 90), list(-90, 90, 180
 /// Does this ship take part in a flank on target
 /obj/structure/overmap/proc/is_ai_flanker(obj/structure/overmap/target)
 	// Reckless commanders charge on their own, so they are not part of the formation
-	return ai_controlled && last_target == target && !ai_fleeing && mass > MASS_TINY && !is_ai_carrier() && ai_temperament != AI_TEMPERAMENT_RECKLESS
+	return ai_controlled && last_target == target && !ai_fleeing && mass > MASS_TINY && !is_ai_carrier() && ai_temperament != AI_TEMPERAMENT_RECKLESS && !CHECK_BITFIELD(ai_flags, AI_FLAG_BOARDER) // Boarders have to get close
 
 /// Ships of our faction attacking target as a formation, in a stable order; the first one is the anchor
 /obj/structure/overmap/proc/get_ai_flank_attackers(obj/structure/overmap/target, list/ships)

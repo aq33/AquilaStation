@@ -60,6 +60,15 @@
 	if(!fleet.ai_salvo_allows(first, enemy))
 		return "A ship waited for a salvo the fleet did not roll"
 	LAZYREMOVE(fleet.ai_salvos, enemy)
+	// Regression: with no fleet override the tuned global chance applies (the sandbox saw no salvos at all)
+	fleet.ai_salvo_chance = null
+	var/old_chance = GLOB.ai_salvo_chance
+	GLOB.ai_salvo_chance = 100
+	var/waited = !fleet.ai_salvo_allows(first, enemy)
+	GLOB.ai_salvo_chance = old_chance
+	LAZYREMOVE(fleet.ai_salvos, enemy)
+	if(!waited)
+		return "A fleet without its own salvo chance ignored the global one"
 	fleet.ai_salvo_chance = 100
 	// The second ship is still reloading: the first one waits for it
 	second_launcher.next_firetime = world.time + 10 SECONDS

@@ -41,6 +41,8 @@
 	var/ai_answering = FALSE
 	/// AQUILA - world.time the retreat jump happens (0 = not retreating)
 	var/ai_retreat_at = 0
+	/// AQUILA - the players already got the half reward for driving this fleet off
+	var/ai_retreat_paid = FALSE
 
 /// Sends a message to the bridge consoles of every player ship in this system
 /datum/star_system/proc/warn_player_ships(message)
@@ -228,12 +230,18 @@
 		ai_retreat_at = world.time + FLEET_RETREAT_RETRY
 		current_system.warn_player_ships("Interdykcja blokuje skok floty [name].")
 		return
+	// A ship the players boarded or took off autopilot would be dragged along, crew and all
+	for(var/obj/structure/overmap/OM as anything in all_ships)
+		if(!QDELETED(OM) && (!OM.ai_controlled || length(OM.operators)))
+			ai_retreat_at = 0
+			return
 	var/datum/star_system/target = pick_ai_retreat_system()
 	if(!target)
 		ai_retreat_at = 0 // Nowhere to run, fight to the end
 		return
-	// The players drove the fleet off: half the reward of destroying it
-	if(has_player_enemies())
+	// The players drove the fleet off: half the reward of destroying it, once per fleet
+	if(has_player_enemies() && !ai_retreat_paid)
+		ai_retreat_paid = TRUE
 		faction = SSstar_system.faction_by_id(faction_id)
 		faction?.lose_influence(round(reward / 2))
 	var/datum/star_system/left = current_system
