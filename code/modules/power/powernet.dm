@@ -129,7 +129,6 @@
 /// Repropogate the cables on the network, and make sure that all points along our
 /// cables are reachable from any other point in the cable.
 /datum/powernet/proc/repropogate_cables()
-	var/list/powernet_id_array = list()
 	// We need a unique propogation identifier to be able to determine if the cable
 	// was queued by this propogation run
 	var/unique_propogation_identifier = ++SSmachines.unique_powernets
@@ -141,7 +140,7 @@
 	for (var/i in 1 to length(cables))
 		// We already belong
 		var/obj/structure/cable/processing_wire = cables[i]
-		if (powernet_id_array[processing_wire] != null)
+		if (processing_wire._last_repropogation_update == unique_propogation_identifier)
 			continue
 		var/list/piece = list()
 		pieces[++pieces.len] = piece
@@ -151,7 +150,6 @@
 		while (length(to_process))
 			processing_wire = to_process[to_process.len]
 			to_process.len--
-			powernet_id_array[processing_wire] = piece
 			piece += processing_wire
 			// Process adjacent nodes, cables on other decks and cables bridged by machines (deck relays)
 			var/list/linked_cables = processing_wire.connected.Copy()

@@ -271,16 +271,20 @@ GLOBAL_LIST_INIT(cable_colors, list(
 		if(dropped_cable)
 			transfer_fingerprints_to(dropped_cable)
 	if (multiz)
-		var/obj/structure/cable/up_cable = up
-		var/obj/structure/cable/down_cable = down
-		// AQ EDIT START - unlink first: two stacked multi-z cables point at each other and deconstructed each other forever
-		up_cable?.set_down(null)
-		down_cable?.set_up(null)
-		up = null
-		down = null
+		// AQ EDIT START - unlink first: stacked multi-z cables point at each other and deconstructed each other forever.
+		// Only the cables right above and below go, not the rest of the stack.
+		var/list/linked_cables = list()
+		if (up)
+			linked_cables += up
+		if (down)
+			linked_cables += down
+		for (var/obj/structure/cable/linked_cable as anything in linked_cables)
+			linked_cable.up?.set_down(null)
+			linked_cable.down?.set_up(null)
+			linked_cable.set_up(null)
+			linked_cable.set_down(null)
+			linked_cable.deconstruct()
 		// AQ EDIT END
-		up_cable?.deconstruct()
-		down_cable?.deconstruct()
 	return ..()
 
 ///////////////////////////////////

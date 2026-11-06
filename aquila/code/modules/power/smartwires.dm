@@ -20,3 +20,26 @@ WANTS_POWER_NODE(/obj/machinery/ship_weapon/hybrid_rail)
 	mid_sounds = list('aquila/sound/machines/transformer.ogg' = 1)
 	mid_length = 0.9 SECONDS
 	volume = 100
+
+/// Powernets taken from `dirty_powernets` at the start of this machines tick and not recalculated yet
+/datum/controller/subsystem/machines/var/list/dirty_run = list()
+
+/// Recalculates the powernets queued before this machines tick. A powernet queued while the run is going
+/// (a split re-marks its old net) waits for the next tick, and a deleted one is skipped, so nothing shifts under the loop.
+/// Returns TRUE if it paused on the tick check.
+/datum/controller/subsystem/machines/proc/process_dirty_powernets(resumed, tick_check = TRUE)
+	if (!resumed)
+		dirty_run += dirty_powernets
+		dirty_powernets = list()
+	while (length(dirty_run))
+		var/datum/powernet/powernet = dirty_run[length(dirty_run)]
+		dirty_run.len--
+		if (QDELETED(powernet))
+			continue
+		powernet.dirty = FALSE
+		powernet.repropogate_cables()
+		// No SPLIT_TICK: the powernets have to be recalculated before machines draw power,
+		// otherwise a cut-off piece gets a tick of power from the old net
+		if (tick_check && MC_TICK_CHECK)
+			return TRUE
+	return FALSE

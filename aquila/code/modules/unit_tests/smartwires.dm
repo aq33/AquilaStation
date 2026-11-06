@@ -103,15 +103,19 @@
 	TEST_ASSERT_EQUAL(net.avail, 4000, "The joined powernet lost available power")
 	TEST_ASSERT_EQUAL(net.newavail, 400, "The joined powernet lost power produced this tick")
 
-/// AQUILA - cutting one of two linked multi-z cables removes both instead of recursing forever
+/// AQUILA - cutting a multi-z cable removes it and the cables right above and below, without recursing forever or taking the rest of the stack
 /datum/unit_test/smartwires_multiz_deconstruct
 
 /datum/unit_test/smartwires_multiz_deconstruct/Run()
 	var/turf/start = run_loc_floor_bottom_left
 	var/turf/east = locate(start.x + 2, start.y, start.z)
+	// Second row for the three-deck stack
+	var/turf/stack_1 = locate(start.x, start.y + 2, start.z)
+	var/turf/stack_2 = locate(start.x + 2, start.y + 2, start.z)
+	var/turf/stack_3 = locate(start.x + 4, start.y + 2, start.z)
 	var/obj/structure/cable/multiz/lower = allocate(/obj/structure/cable/multiz, start)
 	var/obj/structure/cable/multiz/upper = allocate(/obj/structure/cable/multiz, east)
-	// Stand-in for two stacked decks: the test room has one z-level
+	// Stand-in for stacked decks: the test room has one z-level
 	lower.set_up(upper)
 	TEST_ASSERT_EQUAL(upper.down, lower, "set_up() did not link the cables both ways")
 
@@ -127,33 +131,67 @@
 		qdel(coil)
 	TEST_ASSERT_EQUAL(dropped, 2, "Cutting two multi-z cables did not drop exactly two pieces of cable")
 
-/// AQUILA - every powernet queued before a machines tick is recalculated in that tick
+	// Three decks: cutting the bottom one takes the middle one, the top one stays
+	var/obj/structure/cable/multiz/bottom = allocate(/obj/structure/cable/multiz, stack_1)
+	var/obj/structure/cable/multiz/middle = allocate(/obj/structure/cable/multiz, stack_2)
+	var/obj/structure/cable/multiz/third = allocate(/obj/structure/cable/multiz, stack_3)
+	bottom.set_up(middle)
+	middle.set_up(third)
+	bottom.deconstruct()
+	for (var/obj/item/stack/cable_coil/coil in stack_1)
+		qdel(coil)
+	for (var/obj/item/stack/cable_coil/coil in stack_2)
+		qdel(coil)
+	TEST_ASSERT(QDELETED(middle), "The multi-z cable above the cut was not removed")
+	TEST_ASSERT(!QDELETED(third), "Cutting one multi-z cable removed the whole stack")
+	TEST_ASSERT(isnull(third.down), "The top cable still links to the removed one")
+
+/// AQUILA - the powernets queued before a machines tick are recalculated in that tick: a deleted one is skipped
+/// without losing the rest, and a powernet that re-queues itself while splitting waits for the next tick
 /datum/unit_test/smartwires_dirty_queue
 
 /datum/unit_test/smartwires_dirty_queue/Run()
-	var/list/old_queue = SSmachines.dirty_powernets
-	var/old_index = SSmachines.dirty_index
-	var/old_stop = SSmachines.dirty_stop_index
-	var/list/nets = list(new /datum/powernet, new /datum/powernet, new /datum/powernet)
-	SSmachines.dirty_powernets = list()
-	for (var/datum/powernet/net as anything in nets)
-		net.mark_dirty()
-	SSmachines.dirty_index = 1
-	SSmachines.dirty_stop_index = length(SSmachines.dirty_powernets)
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/structure/cable/left = allocate(/obj/structure/cable, start)
+	var/obj/structure/cable/right = allocate(/obj/structure/cable, locate(start.x + 2, start.y, start.z))
+	// Two unconnected cables in one powernet: recalculating it splits off one and marks it dirty again
+	var/datum/powernet/split = left.powernet
+	split.add_cable(right)
 
-	SSmachines.process_dirty_powernets(FALSE)
-	var/left = length(SSmachines.dirty_powernets)
-	var/still_dirty = 0
-	for (var/datum/powernet/net as anything in nets)
-		if (net.dirty)
-			still_dirty++
-		net.dirty = FALSE
-		qdel(net)
+	var/list/old_queue = SSmachines.dirty_powernets
+	var/list/old_run = SSmachines.dirty_run
+	SSmachines.dirty_powernets = list()
+	var/datum/powernet/first = new
+	var/datum/powernet/deleted = new
+	var/datum/powernet/last = new
+	SSmachines.dirty_run = list(first, deleted, split, last)
+	for (var/datum/powernet/net as anything in SSmachines.dirty_run)
+		net.dirty = TRUE
+	// Deleted while the run is in progress
+	qdel(deleted)
+
+	SSmachines.process_dirty_powernets(TRUE, FALSE)
+	var/run_left = length(SSmachines.dirty_run)
+	var/first_dirty = first.dirty
+	var/last_dirty = last.dirty
+	var/split_requeued = (split in SSmachines.dirty_powernets)
+	var/was_split = left.powernet != right.powernet
+
+	// The next tick takes the re-queued powernet
+	SSmachines.process_dirty_powernets(FALSE, FALSE)
+	var/queue_left = length(SSmachines.dirty_powernets) + length(SSmachines.dirty_run)
+
 	SSmachines.dirty_powernets = old_queue
-	SSmachines.dirty_index = old_index
-	SSmachines.dirty_stop_index = old_stop
-	TEST_ASSERT_EQUAL(left, 0, "Queued powernets were left for the next tick")
-	TEST_ASSERT_EQUAL(still_dirty, 0, "Queued powernets were not recalculated")
+	SSmachines.dirty_run = old_run
+	first.dirty = FALSE
+	last.dirty = FALSE
+	qdel(first)
+	qdel(last)
+	TEST_ASSERT_EQUAL(run_left, 0, "Queued powernets were left for the next tick")
+	TEST_ASSERT(!first_dirty && !last_dirty, "A deleted powernet in the queue made the loop skip another one")
+	TEST_ASSERT(was_split, "The queued powernet was not recalculated")
+	TEST_ASSERT(split_requeued, "A powernet re-queued during the run was processed in the same run or dropped")
+	TEST_ASSERT_EQUAL(queue_left, 0, "The re-queued powernet was not recalculated on the next tick")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
