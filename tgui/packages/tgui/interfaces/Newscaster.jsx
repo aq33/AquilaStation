@@ -459,7 +459,7 @@ const NewscasterChannelBox = (_) => {
   return (
     <Section
       fill
-      title={channelName}
+      title={<span className="i18n-skip">{channelName}</span>}
       buttons={
         user.name === channelAuthor || user.admin ? (
           <Button
@@ -482,7 +482,11 @@ const NewscasterChannelBox = (_) => {
             </Section>
           ) : (
             <Box width="100%" height="100%" style={{ overflowY: 'auto' }}>
-              <BlockQuote italic fontSize={1.2}>
+              <BlockQuote
+                italic
+                fontSize={1.2}
+                className={viewing_channel ? 'i18n-skip' : undefined}
+              >
                 {decodeHtmlEntities(channelDesc)}
               </BlockQuote>
             </Box>
@@ -682,9 +686,9 @@ const NewscasterChannelMessages = (_) => {
                     Autor: [UTAJNIONO] (D-Notice)
                   </Box>
                 ) : (
-                  <>
+                  <span className="i18n-skip">
                     Autor: {message.auth}, {message.time}
-                  </>
+                  </span>
                 )}
               </i>
             }
@@ -742,7 +746,10 @@ const NewscasterChannelMessages = (_) => {
                 </Section>
               ) : (
                 <Section pl={1}>
-                  <Box dangerouslySetInnerHTML={processedText(message.body)} />
+                  <Box
+                    className="i18n-skip"
+                    dangerouslySetInnerHTML={processedText(message.body)}
+                  />
                 </Section>
               )}
               {message.photo !== null && !message.censored_message && (
@@ -750,6 +757,7 @@ const NewscasterChannelMessages = (_) => {
                   <Image src={message.photo} />
                   {message.photo_caption && (
                     <Section
+                      className="i18n-skip"
                       dangerouslySetInnerHTML={processedText(
                         message.photo_caption,
                       )}
@@ -762,11 +770,12 @@ const NewscasterChannelMessages = (_) => {
                 <Box>
                   {message.comments.map((comment) => (
                     <BlockQuote key={comment.index}>
-                      <Box italic textColor="white">
+                      <Box italic textColor="white" className="i18n-skip">
                         Autor: {comment.auth}, {comment.time}
                       </Box>
                       <Section ml={2.5}>
                         <Box
+                          className="i18n-skip"
                           dangerouslySetInnerHTML={processedText(comment.body)}
                         />
                       </Section>

@@ -3,7 +3,7 @@ import { Component, createRef } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 
 import { TextArea } from '../components/LegacyTextArea';
-import { CHANNEL_LABELS, WINDOW_SIZES } from '../constants';
+import { channelLabel, WINDOW_SIZES } from '../constants';
 import { eventHandlerMap } from '../handlers';
 import { getCss, getTheme, timers } from '../helpers';
 import { Modal, State } from '../types';
@@ -71,7 +71,7 @@ export class TguiSay extends Component<{}, State> {
               }}
               type="submit"
             >
-              {CHANNEL_LABELS[String(buttonContent)] || buttonContent}
+              {channelLabel(String(buttonContent))}
             </button>
           )}
           <TextArea

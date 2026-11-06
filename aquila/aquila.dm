@@ -17,6 +17,7 @@
 #include "code\__DEFINES\heretic.dm"
 #include "code\__DEFINES\hud.dm"
 #include "code\__DEFINES\hygiene.dm"
+#include "code\__DEFINES\i18n.dm"
 #include "code\__DEFINES\inventory.dm"
 #include "code\__DEFINES\is_helpers.dm"
 #include "code\__DEFINES\keybinding.dm"
@@ -1790,6 +1791,7 @@
 #include "code\modules\unit_tests\aquila_one_click_antag.dm"
 #include "code\modules\unit_tests\aquila_paradox_clone.dm"
 #include "code\modules\unit_tests\aquila_preferences_menu.dm"
+#include "code\modules\unit_tests\aquila_game_language.dm"
 #include "code\modules\unit_tests\aquila_prosthetics_organs.dm"
 #include "code\modules\unit_tests\aquila_shipbreaking.dm"
 #include "code\modules\unit_tests\aquila_restaurant.dm"
@@ -1861,3 +1863,12 @@
 // Heretyk z tg (osobny plik z includami)
 #include "heretic.dm"
 #include "bloodcult.dm"
+
+// Wersja angielska (aquila/code/modules/i18n/): same nadpisania procedur, dołączane na samym końcu,
+// żeby szły po oryginałach. Odpięcie: usunąć ten blok, test aquila_game_language w bloku UNIT_TESTS
+// i loader i18n-jsx.cjs z tgui/webpack.config.js (definicje w code/__DEFINES/i18n.dm mogą zostać).
+#include "code\modules\i18n\game_language.dm"
+#include "code\modules\i18n\translate.dm"
+#include "code\modules\i18n\browser_windows.dm"
+#include "code\modules\i18n\hud_icons.dm"
+#include "code\modules\i18n\language_choice.dm"
