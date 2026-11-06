@@ -2,6 +2,8 @@
 	var/deconstruct_drops = list(/obj/item/stack/sheet/plastic = 2)
 
 /obj/machinery/shower/crowbar_act(mob/living/user, obj/item/I)
+	if(has_water_reclaimer) // AQ EDIT - the water recycler comes out first (crowbar_act() in shower.dm), it was lost with the shower
+		return ..()
 	balloon_alert(user, "Zaczynasz rozbierać prysznic...")
 	if(do_after(user, 4 SECONDS, target = src))
 		for(var/comp_path in deconstruct_drops)

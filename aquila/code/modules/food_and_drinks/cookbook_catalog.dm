@@ -118,12 +118,28 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	if(probed)
 		return
 	probed = TRUE
-	var/static/list/skip = typecacheof(list(/obj/item/food/grown)) // potrzebują nasion, tak jak w create_and_destroy
 	for(var/food_type in subtypesof(/obj/item/food))
-		if(skip[food_type] || GLOB.food_transformations[food_type])
-			continue
-		var/obj/item/food/probe = new food_type(null)
-		qdel(probe)
+		probe_food_type(food_type)
+
+/// Tworzy i od razu usuwa jedzenie danego typu (raz na rundę), żeby jego komponenty zapisały przemiany
+/proc/probe_food_type(food_type)
+	var/static/list/skip = typecacheof(list(/obj/item/food/grown)) // potrzebują nasion, tak jak w create_and_destroy
+	var/static/list/probed_types = list()
+	if(skip[food_type] || probed_types[food_type] || GLOB.food_transformations[food_type])
+		return
+	probed_types[food_type] = TRUE
+	var/obj/item/food/probe = new food_type(null)
+	qdel(probe)
+
+/// Buduje katalog z timera: jedzenie tworzy z CHECK_TICK, żeby pierwszy PDA kucharza w trakcie rundy nie dawał skoku laga.
+/// Nie wołać z danych UI (ui_static_data): ta procka śpi.
+/proc/build_cookbook_catalog_async()
+	for(var/food_type in subtypesof(/obj/item/food))
+		if(GLOB.cookbook_catalog) // katalog zbudował już otwarty program
+			return
+		probe_food_type(food_type)
+		CHECK_TICK
+	get_cookbook_catalog()
 
 /proc/cookbook_entry(result, name, method, list/ingredients, list/tools, category, learned = FALSE)
 	var/result_name = result ? cookbook_name(result) : null
@@ -178,4 +194,4 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	hdd?.store_file(new /datum/computer_file/program/cookbook(hdd))
 	// Katalog tworzy każde jedzenie (~0,4 s), więc lepiej przy starcie niż przy pierwszym otwarciu programu
 	if(!GLOB.cookbook_catalog)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(get_cookbook_catalog)), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(build_cookbook_catalog_async)), 5 SECONDS)

@@ -807,16 +807,13 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 
 	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
-/obj/structure/table/optable/abductor/Initialize(mapload)
+// AQ EDIT START - stół operacyjny podpina już COMSIG_ATOM_ENTERED przez connect_loc (drugi element nadpisałby jego handler)
+/obj/structure/table/optable/abductor/table_entered(datum/source, atom/movable/arrived)
 	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
+	on_entered(source, arrived)
+// AQ EDIT END
 
 /obj/structure/table/optable/abductor/proc/on_entered(datum/source, atom/movable/AM)
-	SIGNAL_HANDLER
-
 	if(iscarbon(AM))
 		START_PROCESSING(SSobj, src)
 		to_chat(AM, "<span class='danger'>Czujesz serię drobnych ukłuć!</span>")

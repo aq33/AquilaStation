@@ -77,8 +77,9 @@
 	if (!HAS_TRAIT(target, TRAIT_RELAYING_ATTACKER)) // Little bit gross but we want to just apply this shit from a bunch of places
 		// AQUILA - nasze odpowiedniki sygnałów tg
 		RegisterSignal(target, COMSIG_PARENT_ATTACKBY, PROC_REF(after_attackby))
+		// popchnięcie (prawy przycisk) po attack_hand_secondary i tak trafia do attack_hand z RIGHT_CLICK, więc osobny
+		// handler COMSIG_ATOM_ATTACK_HAND_SECONDARY zgłaszał je dwa razy
 		RegisterSignals(target, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_ATTACK_PAW, COMSIG_MOB_ATTACK_ALIEN), PROC_REF(on_attack_generic))
-		RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND_SECONDARY, PROC_REF(on_attack_secondary))
 		RegisterSignal(target, COMSIG_ATOM_ATTACK_ANIMAL, PROC_REF(on_attack_npc))
 		RegisterSignal(target, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 		RegisterSignal(target, COMSIG_ATOM_HITBY, PROC_REF(on_hitby))
@@ -92,7 +93,6 @@
 		COMSIG_ATOM_ATTACK_HAND,
 		COMSIG_ATOM_ATTACK_PAW,
 		COMSIG_MOB_ATTACK_ALIEN,
-		COMSIG_ATOM_ATTACK_HAND_SECONDARY,
 		COMSIG_ATOM_ATTACK_ANIMAL,
 		COMSIG_ATOM_BULLET_ACT,
 		COMSIG_ATOM_HITBY,
@@ -121,13 +121,6 @@
 	if(attacker.combat_mode)
 		relay_attacker(target, attacker, ATTACKER_DAMAGING_ATTACK, get_dir(target, attacker))
 		return
-
-/// AQUILA - u nas popchnięcie (prawy przycisk) ma osobny sygnał
-/datum/element/relay_attackers/proc/on_attack_secondary(atom/target, mob/living/attacker, list/modifiers)
-	SIGNAL_HANDLER
-	if(!isliving(attacker))
-		return
-	relay_attacker(target, attacker, ATTACKER_SHOVING, get_dir(target, attacker))
 
 /datum/element/relay_attackers/proc/on_attack_npc(atom/target, mob/living/simple_animal/attacker)
 	SIGNAL_HANDLER

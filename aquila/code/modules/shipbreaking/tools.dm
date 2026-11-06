@@ -93,7 +93,9 @@
 		wall.dismantle_wall()
 	else if(isopenturf(target))
 		var/turf/open/floor_turf = target
-		if(isplatingturf(floor_turf))
+		// płyta poszycia tylko z poszycia wraku i tylko raz z pola (nie z poszycia położonego na miejscu)
+		if(isplatingturf(floor_turf) && GLOB.shipbreak_wreck_floors[floor_turf])
+			GLOB.shipbreak_wreck_floors -= floor_turf
 			new /obj/item/stack/scrap/plating(floor_turf)
 		floor_turf.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	else

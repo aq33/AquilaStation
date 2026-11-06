@@ -70,18 +70,21 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 	// rezerwacji), więc po załadowaniu wypełniamy pokój domyślnym powietrzem.
 	for(var/turf/open/T in reservation.reserved_turfs)
 		T.Initalize_Atmos(0)
-	arrival = null
-	kit_center = null
+	// Stare punkty zostają, dopóki nowe się nie znajdą: nieudany reset nie może zostawić komory bez miejsca wejścia
+	var/turf/new_arrival
+	var/turf/new_kit_center
 	for(var/turf/T as anything in reservation.reserved_turfs)
 		for(var/obj/effect/landmark/test_chamber/L in T)
 			if(istype(L, /obj/effect/landmark/test_chamber/arrival))
-				arrival = T
+				new_arrival = T
 			else if(istype(L, /obj/effect/landmark/test_chamber/kit_center))
-				kit_center = T
+				new_kit_center = T
 			qdel(L)
-	if(!arrival || !kit_center)
+	if(!new_arrival || !new_kit_center)
 		log_world("Test chamber: the template is missing its landmarks")
 		return FALSE
+	arrival = new_arrival
+	kit_center = new_kit_center
 	return TRUE
 
 /// Usuwa wszystko poza graczami (i tym, co mają przy sobie) i układa komorę od nowa
@@ -94,7 +97,8 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 			for(var/atom/movable/AM as anything in T)
 				if(ismob(AM))
 					var/mob/M = AM
-					if(M.key || isobserver(M))
+					// Także ciało, z którego gracz albo admin wyszedł duchem (mob bez klucza, ale z umysłem gracza)
+					if(M.key || M.mind?.key || isobserver(M))
 						continue
 				else if(!isobj(AM))
 					continue // lighting objects itp.

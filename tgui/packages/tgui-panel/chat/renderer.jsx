@@ -8,6 +8,7 @@ import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { createRoot } from 'react-dom/client';
 import { RadarChart, Tooltip } from 'tgui/components';
+import { isTranslating, translateHtml } from 'tgui/i18n';
 import { createLogger } from 'tgui/logging';
 
 import {
@@ -448,14 +449,18 @@ class ChatRenderer {
       else {
         node = createMessageNode();
         // Payload is plain text
+        // AQUILA: gracz z językiem EN widzi tłumaczenie (chat/i18n.ts)
         if (message.text) {
-          node.textContent = message.text;
+          node.textContent = isTranslating()
+            ? translateHtml(message.text)
+            : message.text;
         }
         // Payload is HTML
         else if (message.html) {
-          node.innerHTML = this.highContrast
-            ? formatHighContrast(message.html)
+          const html = isTranslating()
+            ? translateHtml(message.html)
             : message.html;
+          node.innerHTML = this.highContrast ? formatHighContrast(html) : html;
         } else {
           logger.error('Error: message is missing text payload', message);
         }

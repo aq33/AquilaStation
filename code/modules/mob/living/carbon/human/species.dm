@@ -1833,7 +1833,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return
 	if(M.mind)
 		attacker_style = M.mind.martial_art
-	if((M != H) && M.combat_mode && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+	if((M != H) && (M.combat_mode || LAZYACCESS(modifiers, RIGHT_CLICK)) && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK)) // AQ EDIT - tarcza blokuje też popchnięcie poza combat mode
 		log_combat(M, H, "attempted to touch")
 		H.visible_message("<span class='warning'>[M] próbuje dotknąć [H]!</span>", \
 						"<span class='userdanger'>[M] próbuje cię dotknąć!</span>")
@@ -1879,7 +1879,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.apply_item_stamina_damage(I) // AQ EDIT - port Bee#14750: trafienie przedmiotem zabiera staminę
 
 	if (I.bleed_force)
-		var/armour_block = user.run_armor_check(affecting, BLEED, armour_penetration = I.armour_penetration, silent = (I.force > 0))
+		var/armour_block = H.run_armor_check(affecting, BLEED, armour_penetration = I.armour_penetration, silent = (I.force > 0)) // AQ EDIT - pancerz przeciw krwawieniu ofiary, nie atakującego
 		var/hit_amount = (100 - armour_block) / 100
 		H.add_bleeding(I.bleed_force * hit_amount)
 

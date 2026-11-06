@@ -3,6 +3,8 @@
 
 /// Czy tabela ticketów istnieje (sprawdzane raz na rundę)
 GLOBAL_VAR_INIT(ticket_table_ready, FALSE)
+/// CREATE TABLE już raz się nie udał (np. konto bazy bez uprawnienia CREATE), nie próbujemy przy każdym wpisie
+GLOBAL_VAR_INIT(ticket_table_create_failed, FALSE)
 
 /// Tworzy tabelę ticketów, jeśli jej nie ma (schemat jest też w SQL/beestation_schema.sql)
 /proc/ticket_db_ready()
@@ -10,6 +12,12 @@ GLOBAL_VAR_INIT(ticket_table_ready, FALSE)
 		return FALSE
 	if(GLOB.ticket_table_ready)
 		return TRUE
+	// Najpierw zwykły SELECT: działa bez uprawnienia CREATE, gdy tabela już jest
+	var/datum/DBQuery/query_exists = SSdbcore.NewQuery("SELECT 1 FROM [format_table_name("ticket")] LIMIT 1")
+	GLOB.ticket_table_ready = query_exists.Execute(log_error = FALSE)
+	qdel(query_exists)
+	if(GLOB.ticket_table_ready || GLOB.ticket_table_create_failed)
+		return GLOB.ticket_table_ready
 	var/datum/DBQuery/query_create = SSdbcore.NewQuery({"
 		CREATE TABLE IF NOT EXISTS [format_table_name("ticket")] (
 			`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -30,6 +38,7 @@ GLOBAL_VAR_INIT(ticket_table_ready, FALSE)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 	"})
 	GLOB.ticket_table_ready = query_create.Execute()
+	GLOB.ticket_table_create_failed = !GLOB.ticket_table_ready
 	qdel(query_create)
 	return GLOB.ticket_table_ready
 
@@ -104,7 +113,15 @@ GLOBAL_VAR_INIT(ticket_table_ready, FALSE)
 
 /// Admin PM w tickecie (odpowiedź admina albo gracza), wołane z cmd_admin_pm()
 /client/proc/log_ahelp_pm(client/recipient, message)
-	var/datum/admin_help/ticket = recipient?.current_ticket || current_ticket
+	if(!recipient)
+		return
+	// Ticket strony, która nie jest adminem: PW między adminami nie jest odpowiedzią w ahelpie żadnego z nich,
+	// a odpowiedź gracza nie może trafić do otwartego ticketu admina, któremu odpisuje
+	var/datum/admin_help/ticket
+	if(!recipient.holder)
+		ticket = recipient.current_ticket
+	else if(!holder)
+		ticket = current_ticket
 	if(!ticket)
 		return
 	SSblackbox.LogAhelp(ticket.id, "Reply", message, recipient.ckey, ckey)

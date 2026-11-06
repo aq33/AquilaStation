@@ -161,6 +161,8 @@
 	var/obj/item/aicard/salvage = new(death_turf)
 	disconnect_shell()
 	death()
+	// Jak w download_to_card(): SI na karcie nie trzyma CPU/RAM systemu, z którego wypadła
+	get_ai_os()?.remove_ai(src)
 	forceMove(salvage)
 	salvage.AI = src
 	control_disabled = TRUE

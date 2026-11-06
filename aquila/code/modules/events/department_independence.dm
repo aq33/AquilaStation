@@ -6,7 +6,7 @@
 GLOBAL_LIST_INIT(aquila_independence_departments, list(
 	list(
 		"name" = "medyczny",
-		"jobs" = list(JOB_NAME_CHIEFMEDICALOFFICER, JOB_NAME_MEDICALDOCTOR, JOB_NAME_PARAMEDIC, JOB_NAME_CHEMIST, JOB_NAME_VIROLOGIST, JOB_NAME_GENETICIST, JOB_NAME_PSYCHIATRIST),
+		"jobs" = list(JOB_NAME_MEDICALDOCTOR, JOB_NAME_PARAMEDIC, JOB_NAME_CHEMIST, JOB_NAME_VIROLOGIST, JOB_NAME_GENETICIST, JOB_NAME_PSYCHIATRIST),
 		"prefixes" = list("Lekar", "Medy", "Szpital", "Chemi", "Wiro", "Bandaż", "Strzykaw"),
 		"reasons" = list(
 			list("od tygodnia brakuje rękawiczek nitrylowych", "natychmiastowej dostawy rękawiczek"),
@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(aquila_independence_departments, list(
 	),
 	list(
 		"name" = "inżynieryjny",
-		"jobs" = list(JOB_NAME_CHIEFENGINEER, JOB_NAME_STATIONENGINEER),
+		"jobs" = list(JOB_NAME_STATIONENGINEER),
 		"prefixes" = list("Spawal", "Atomo", "Kablo", "Ruro", "Silniko", "Izolo"),
 		"reasons" = list(
 			list("ktoś znowu ukradł wszystkie izolowane rękawice", "zwrotu izolowanych rękawic"),
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(aquila_independence_departments, list(
 	),
 	list(
 		"name" = "naukowy",
-		"jobs" = list(JOB_NAME_RESEARCHDIRECTOR, JOB_NAME_SCIENTIST, JOB_NAME_ROBOTICIST),
+		"jobs" = list(JOB_NAME_SCIENTIST, JOB_NAME_ROBOTICIST),
 		"prefixes" = list("Nauko", "Robo", "Bada", "Labo", "Slime", "Toksy"),
 		"reasons" = list(
 			list("dowództwo obcięło budżet na badania", "przywrócenia budżetu na badania"),
@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(aquila_independence_departments, list(
 	),
 	list(
 		"name" = "amunicji",
-		"jobs" = list(JOB_NAME_MASTERATARMS, JOB_NAME_MUNITIONSTECHNICIAN, JOB_NAME_PILOT),
+		"jobs" = list(JOB_NAME_MUNITIONSTECHNICIAN, JOB_NAME_PILOT),
 		"prefixes" = list("Torpedo", "Amunicjo", "Pocisko", "Hangaro", "Piloto", "Działo"),
 		"reasons" = list(
 			list("zabroniono przerwy na papierosa przy dziale", "przywrócenia przerwy na papierosa"),
@@ -125,13 +125,15 @@ GLOBAL_LIST_INIT(aquila_independence_common_reasons, list(
 	demand = grievance[2]
 	nation_name = "[prob(30) ? "Ludowa Republika " : ""][pick(department["prefixes"])][pick("stan", "landia", "wo", "nia", "ów", "ice", "polis")]"
 
-/// Living, conscious crew on the ship with one of these jobs and no antagonist role yet
+/// Living, conscious crew on the ship with one of these jobs, no antagonist role yet and the separatist role enabled in preferences
 /datum/round_event/aquila_department_independence/proc/get_department_members(list/jobs)
 	. = list()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD || !H.client || !H.mind || !is_station_level(H.z))
 			continue
 		if(!(H.mind.assigned_role in jobs) || length(H.mind.antag_datums))
+			continue
+		if(!H.client.should_include_for_role(role_preference_key = /datum/role_preference/midround_living/aquila_separatist))
 			continue
 		. += H.mind
 

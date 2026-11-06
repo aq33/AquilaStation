@@ -40,6 +40,9 @@ export function HomePage({
     }
   }, [showResources]);
 
+  const languageSwitchLabel =
+    serverState.gameLanguage === 'en' ? 'Polski' : 'English';
+
   return (
     <>
       <div className="escape-menu__home-column">
@@ -67,6 +70,12 @@ export function HomePage({
           >
             Ustawienia
           </MenuButton>
+          {!!serverState.gameLanguage && (
+            <MenuButton onClick={() => onAction('toggle_language')}>
+              {/* AQUILA: nazwa drugiego języka w nim samym, bez tłumacza */}
+              <span className="i18n-skip">{languageSwitchLabel}</span>
+            </MenuButton>
+          )}
           <MenuButton onClick={() => onNavigate('players')}>Gracze</MenuButton>
           <MenuButton
             onClick={() => {

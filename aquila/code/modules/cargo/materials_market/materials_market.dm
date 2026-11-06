@@ -333,7 +333,9 @@
 	for(var/obj/item/stack/sheet_type as anything in counted)
 		. += CEILING(counted[sheet_type] / initial(sheet_type.max_amount), 1)
 
-/// Rozlicza zamówienie z rynkiem: zmniejsza podaż, podbija cenę i zwraca pieniądze za arkusze, których zabrakło
+/// Rozlicza zamówienie z rynkiem: zmniejsza podaż i zwraca pieniądze za arkusze, których zabrakło.
+/// Kupno nie podbija ceny: kupujący płaci cenę sprzed zakupu, a sprzedaż (stock block, eksport arkuszy) też idzie
+/// po cenie bieżącej, więc podwyżka od własnego zamówienia dawała zysk z odsprzedaży tych samych arkuszy.
 /datum/supply_pack/custom/minerals/proc/adjust_market(datum/bank_account/paying_account)
 	var/refund = 0
 	for(var/obj/item/stack/sheet_type as anything in contains.Copy())
@@ -348,10 +350,6 @@
 				contains -= sheet_type
 				continue
 		contains[sheet_type] = available_quantity
-
-		// cena rośnie, gdy materiału na rynku zostaje mało
-		var/fraction = available_quantity / max(market_quantity, 1)
-		SSstock_market.adjust_material_price(mat, SSstock_market.materials_prices[mat] * fraction)
 		SSstock_market.adjust_material_quantity(mat, -available_quantity)
 
 	if(refund)

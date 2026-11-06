@@ -112,6 +112,9 @@
 		return FALSE
 	if(is_type_in_typecache(item, blacklisted_uplink_types) || length(item.restricted_roles) || length(item.restricted_species))
 		return FALSE
+	// AQUILA - jak w uplinku: bez przedmiotów z progiem graczy, którego załoga nie osiąga (tryb spy nie ma minimum graczy)
+	if(item.player_minimum && item.player_minimum > length(GLOB.joined_player_list))
+		return FALSE
 
 	// This will have some overlap, and that's intentional -
 	// Adds some variety, rare moments where you can get a hard reward for an easier bounty (or visa versa)

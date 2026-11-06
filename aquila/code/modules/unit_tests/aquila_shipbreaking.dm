@@ -189,7 +189,21 @@
 		qdel(welder)
 		return
 
+	// Silnik postawiony na miejscu (nie z wraku) rozbiera się po staremu, bez rdzenia
+	var/obj/structure/shuttle/engine/heater/built_engine = new(stand)
+	welder.cut_down(breaker, built_engine)
+	if(!QDELETED(built_engine))
+		return "Rayne welder did not cut a built shuttle engine apart"
+	if(locate(/obj/item/stack/scrap/core) in stand)
+		return "A shuttle engine built in the shipbreaking area dropped a ship core"
+	// Dźwigar postawiony na miejscu daje żelazo, nie srebrny szkielet
+	var/obj/structure/girder/built_girder = new(stand)
+	built_girder.deconstruct(TRUE)
+	if(locate(/obj/item/stack/scrap/framing) in stand)
+		return "A girder built in the shipbreaking area dropped framing scrap"
+
 	var/obj/structure/shuttle/engine/heater/engine = new(stand)
+	ADD_TRAIT(engine, TRAIT_SHIPBREAK_WRECK, SHIPBREAK_WRECK_TRAIT) // jak silnik, który przyleciał z wrakiem
 	welder.cut_down(breaker, engine)
 	if(!QDELETED(engine))
 		return "Rayne welder did not cut a shuttle engine apart"

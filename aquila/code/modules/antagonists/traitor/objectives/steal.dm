@@ -260,7 +260,11 @@ GLOBAL_LIST_INIT(hoarder_targets, list(
 
 /datum/objective/hoarder/proc/add_action()
 	var/list/owners = get_owners()
+	if(!length(owners)) // Mass Antag sets up the objective before it has an owner
+		return
 	var/datum/mind/hoardpicker = owners[1]
+	if(!hoardpicker.current)
+		return
 	var/datum/action/declare_hoard/declare = new /datum/action/declare_hoard(hoardpicker.current)
 	declare.weak_objective = WEAKREF(src)
 	declare.Grant(hoardpicker.current)

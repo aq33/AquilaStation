@@ -177,9 +177,13 @@ export const UserDetails = (props) => {
           <Icon name="id-card" size={1.5} />
         </Stack.Item>
         <Stack.Item>
-          {user
-            ? `${user.name || 'Nieznany'} | ${user.job}`
-            : 'Nie wykryto karty! Zgłoś się do Szefa Personelu.'}
+          {user ? (
+            <>
+              {user.name || 'Nieznany'} | <span>{user.job}</span>
+            </>
+          ) : (
+            'Nie wykryto karty! Zgłoś się do Szefa Personelu.'
+          )}
         </Stack.Item>
       </Stack>
     </NoticeBox>

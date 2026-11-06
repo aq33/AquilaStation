@@ -160,6 +160,9 @@ GLOBAL_LIST_EMPTY_TYPED(ongoing_tutorials, /datum/tutorial)
 			player.prefs.save_preferences()
 
 	if(old_tutorial_mob && !isnewplayer(old_tutorial_mob))
+		// Umysł postaci z samouczka (z kluczem gracza) nie należy do rundy: bez tego liczyłby się jak gracz rundy
+		if(old_tutorial_mob.mind)
+			SSticker.minds -= old_tutorial_mob.mind
 		send_to_lobby(old_tutorial_mob)
 	// Klient mógł być w duchu, więc napis zdejmujemy z niego bezpośrednio
 	if(player && screen_text)

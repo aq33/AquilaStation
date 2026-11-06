@@ -249,6 +249,9 @@
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	if(user.zone_selected != BODY_ZONE_PRECISE_GROIN)
 		return ..()
+	// W walce, przy wzmacnianiu trzymanego chwytu i przy chwytach z kodu (sztuki walki, skok wampira) to zwykły chwyt
+	if(user.combat_mode || user.pulling == src)
+		return ..()
 	var/obj/item/organ/butt/B = getorganslot(ORGAN_SLOT_BUTT)
 	if(w_uniform)
 		if(user == src)

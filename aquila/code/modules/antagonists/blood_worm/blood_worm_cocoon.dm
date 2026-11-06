@@ -288,26 +288,30 @@
 	var/list/candidates = null
 
 /datum/action/cooldown/spell/blood_worm/cocoon/adult/handle_timer()
+	// AQUILA - ankieta śpi 30 s: zapamiętujemy jej kokon, żeby po cancel() nie wykluła larw z kolejnego kokonu
+	var/obj/structure/blood_worm_cocoon/poll_cocoon = cocoon
 	cocoon.balloon_alert(owner, "pytamy duchy")
 	var/list/polled = pollGhostCandidates("Chcesz zagrać jako świeżo wyklęty krwawy robak? (x[num_hatchlings])", ROLE_BLOOD_WORM, /datum/role_preference/midround_ghost/blood_worm, cocoon_time, POLL_IGNORE_BLOOD_WORM, alert_pic = cocoon)
-	candidates = list()
+	var/list/picked = list()
 	// Bierzemy tylu, ilu trzeba (tgstation#95356: działa też z jednym chętnym)
-	while(length(polled) && length(candidates) < num_hatchlings)
-		candidates += pick_n_take(polled)
+	while(length(polled) && length(picked) < num_hatchlings)
+		picked += pick_n_take(polled)
 
-	var/num_candidates = length(candidates)
-	if(QDELETED(cocoon))
-		send_apology_to_candidates()
+	if(QDELETED(poll_cocoon) || cocoon != poll_cocoon)
+		send_apology_to_candidates(picked)
 		return
+	candidates = picked
+	var/num_candidates = length(candidates)
 	if(num_candidates <= 0)
 		owner.balloon_alert(owner, "brak chętnych!")
 		cancel()
 		return
 	if(num_candidates < num_hatchlings && tgui_alert(owner, "Chętnych na larwy jest tylko [num_candidates]/[num_hatchlings]. Rozmnażać się mimo to?", "Za mało duchów", list("Tak", "Nie"), 10 SECONDS) != "Tak")
-		cancel()
+		// Kokon zniszczony w trakcie pytania: cancel() już przeprosił tych chętnych
+		if(!QDELETED(poll_cocoon) && cocoon == poll_cocoon)
+			cancel()
 		return
-	if(QDELETED(cocoon))
-		send_apology_to_candidates()
+	if(QDELETED(poll_cocoon) || cocoon != poll_cocoon)
 		return
 	finalize()
 
@@ -340,8 +344,10 @@
 	candidates = null
 	return ..()
 
-/datum/action/cooldown/spell/blood_worm/cocoon/adult/proc/send_apology_to_candidates()
-	for(var/mob/candidate as anything in candidates)
+/datum/action/cooldown/spell/blood_worm/cocoon/adult/proc/send_apology_to_candidates(list/to_notify)
+	if(isnull(to_notify))
+		to_notify = candidates
+	for(var/mob/candidate as anything in to_notify)
 		if(QDELETED(candidate) || !candidate.client)
 			continue
 		to_chat(candidate, "<span class='warning'>Kokon krwawego robaka, w którym miałeś się wykluć, został zniszczony. Przykro nam.</span>")

@@ -7,8 +7,12 @@
  * z podziałem na sekcje. Same komendy dalej działają z paska poleceń.
  */
 
-/** Zakładki niewidoczne w panelu (ich komendy są gdzie indziej). */
-const HIDDEN_TABS = ['Object', 'Preferences', 'Squad'];
+/**
+ * Zakładki niewidoczne w panelu (ich komendy są gdzie indziej). „Object”
+ * zostaje: to jedyne miejsce z komendami trzymanych i noszonych przedmiotów
+ * (np. dyktafon: odtwórz, wysuń kasetę, drukuj).
+ */
+const HIDDEN_TABS = ['Preferences', 'Squad'];
 
 /** Komendy chowane w danej zakładce. */
 const HIDDEN_VERBS = {

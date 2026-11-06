@@ -35,6 +35,8 @@
 			qdel(src)
 
 /obj/item/implant/infiltrator/activate()
+	if(!imp_in || imp_in.stat != CONSCIOUS) // nieprzytomny albo martwy nie obsłuży uplinku ani wezwania statku
+		return
 	var/obj/item/stack/telecrystal/TC = imp_in.is_holding_item_of_type(/obj/item/stack/telecrystal)
 	if (TC)
 		to_chat(imp_in, span_notice("Wkładasz [TC.amount] TC do swojego ukrytego uplinku."))
@@ -55,7 +57,7 @@
 		else if (homePort)
 			radial_menu["Odeślij statek"] = image(icon = 'icons/obj/decals.dmi', icon_state = "evac")
 	var/chosen = show_radial_menu(imp_in, imp_in, radial_menu, "infiltrator_implant")
-	if (!chosen || !imp_in)
+	if (!chosen || !imp_in || imp_in.stat != CONSCIOUS)
 		return
 	switch (chosen)
 		if ("Uplink Syndykatu")
@@ -74,13 +76,14 @@
 					pinpointer_menu[A] = image(AT.icon, AT.icon_state)
 			pinpointer_menu["Krążownik infiltracyjny"] = image(icon = 'icons/turf/shuttle.dmi', icon_state = "burst_s")
 			var/pinpointer_chosen = show_radial_menu(imp_in, imp_in, pinpointer_menu, "infiltrator_implant_pinpointer")
-			if (pinpointer_chosen)
+			if (pinpointer_chosen && !QDELETED(pinpointer) && imp_in?.stat == CONSCIOUS)
 				if (pinpointer_chosen == "Krążownik infiltracyjny")
-					pinpointer.scan_target = SSshuttle.getShuttle("syndicatecutter")
+					pinpointer.scan_target_ref = WEAKREF(SSshuttle.getShuttle("syndicatecutter"))
 					to_chat(imp_in, span_notice("Cel pinpointera ustawiony na krążownik infiltracyjny."))
 				else
-					pinpointer.scan_target = targets[pinpointer_chosen]
-					to_chat(imp_in, span_notice("Cel pinpointera ustawiony na [pinpointer.scan_target]"))
+					var/atom/new_target = targets[pinpointer_chosen]
+					pinpointer.scan_target_ref = WEAKREF(new_target)
+					to_chat(imp_in, span_notice("Cel pinpointera ustawiony na [new_target]"))
 				pinpointer.point_to_target()
 		if ("Odeślij statek")
 			if (QDELETED(cutter) || QDELETED(homePort))
@@ -120,11 +123,12 @@
 /atom/movable/screen/alert/status_effect/infiltrator_pinpointer/examine(mob/user)
 	. = ..()
 	var/datum/status_effect/infiltrator_pinpointer/effect = attached_effect
-	if (effect?.scan_target)
-		. += span_notice("Obecnie śledzi: [effect.scan_target]")
+	var/atom/tracked = effect?.scan_target_ref?.resolve()
+	if (tracked)
+		. += span_notice("Obecnie śledzi: [tracked]")
 
 /atom/movable/screen/alert/status_effect/infiltrator_pinpointer/Click()
-	if (isliving(usr))
+	if (isliving(usr) && usr.stat == CONSCIOUS)
 		var/obj/item/implant/infiltrator/implant = locate() in usr
 		implant?.activate()
 
@@ -133,23 +137,25 @@
 	duration = -1
 	tick_interval = 40
 	alert_type = /atom/movable/screen/alert/status_effect/infiltrator_pinpointer
-	var/atom/movable/scan_target
+	/// Weakref, żeby usunięty cel (moby, przedmioty kradzieży) nie wisiał w pamięci
+	var/datum/weakref/scan_target_ref
 	var/minimum_range = 4
 	var/range_mid = 8
 	var/range_far = 16
 
 /datum/status_effect/infiltrator_pinpointer/New()
 	. = ..()
-	scan_target = SSshuttle.getShuttle("syndicatecutter")
+	scan_target_ref = WEAKREF(SSshuttle.getShuttle("syndicatecutter"))
 
 /datum/status_effect/infiltrator_pinpointer/proc/point_to_target() //If we found what we're looking for, show the distance and direction
 	linked_alert.cut_overlays()
+	var/atom/movable/scan_target = scan_target_ref?.resolve()
 	if(!scan_target)
 		linked_alert.add_overlay("unknown")
 		return
 	var/turf/here = get_turf(owner)
 	var/turf/there = get_turf(scan_target)
-	if(here.z != there.z)
+	if(!here || !there || here.z != there.z) // cel albo właściciel w nullspace
 		linked_alert.add_overlay("unknown")
 		return
 	if(get_dist_euclidian(here,there)<=minimum_range)

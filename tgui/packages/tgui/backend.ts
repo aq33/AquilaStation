@@ -390,6 +390,8 @@ type BackendState<TData> = {
       name: string;
       observer: number;
     };
+    /** AQUILA: język gracza z preferencji (pl/en) */
+    language?: string;
   };
   data: TData;
   shared: Record<string, any>;

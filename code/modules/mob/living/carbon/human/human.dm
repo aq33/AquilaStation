@@ -516,7 +516,7 @@
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
-	if(istype(idcard, /obj/item/card/id/syndicate))
+	if(istype(idcard, /obj/item/card/id/syndicate) && !istype(idcard, /obj/item/card/id/syndicate/undercover)) // AQ EDIT - Undercover I.D. detektywa bez bonusów karty agenta
 		threatcount -= 5
 
 	//individuals wearing tinfoil hats are 30% more likely to be criminals

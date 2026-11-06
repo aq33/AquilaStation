@@ -70,6 +70,11 @@
 /obj/machinery/jukebox/multitool_act(mob/living/user, obj/item/I)
 	if(panel_open || !multitool_check_buffer(user, I))
 		return FALSE
+	// ten sam dostęp co do obsługi jukeboxa - bez niego nie da się podpiąć amp stacka
+	if(!allowed(user) && verify)
+		to_chat(user, "<span class='warning'>Nie masz uprawnień, aby korzystać z tego urządzenia.</span>")
+		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 1)
+		return TRUE
 	var/obj/item/multitool/M = I
 	M.buffer = src
 	to_chat(user, "<span class='notice'>Zapisujesz [src] w pamięci [I]. Kliknij nim amp stack, aby go podłączyć.</span>")

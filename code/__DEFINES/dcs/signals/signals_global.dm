@@ -31,7 +31,7 @@
 /// research has been researched
 #define COMSIG_GLOB_NEW_RESEARCH "!remote_research_changed"
 
-/// Called whenever something is sold through exports (aquila, xenoarch z Bee)
+/// Called whenever something is sold through exports (aquila, xenoarch z Bee): (atom/movable/thing, sold, allowed_categories)
 #define COMSIG_GLOB_ATOM_SOLD "!atom_sold"
 
 //aquila edit

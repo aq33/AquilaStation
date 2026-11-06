@@ -19,7 +19,7 @@
 	return TRUE
 
 /datum/objective/sabotage/power_sink/proc/give_beacon()
-	var/datum/mind/receiver = owner || pick(get_owners())
+	var/datum/mind/receiver = owner || safepick(get_owners()) // Mass Antag sets up the objective before it has an owner
 	if(!ishuman(receiver?.current))
 		return
 	var/mob/living/carbon/human/H = receiver.current

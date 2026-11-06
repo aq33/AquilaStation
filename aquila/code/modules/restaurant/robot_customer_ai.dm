@@ -88,8 +88,23 @@
 			return
 		if(3)
 			customer.customer_say(customer_data.self_defense_line)
+	var/old_target = blackboard[BB_CUSTOMER_CURRENT_TARGET]
+	if(old_target && old_target != greytider)
+		UnregisterSignal(old_target, COMSIG_PARENT_QDELETING)
 	blackboard[BB_CUSTOMER_CURRENT_TARGET] = greytider
+	// Blackboard trzyma moba wprost (break_spine z core tak go czyta), więc usunięty cel trzeba z niego zdjąć (harddel)
+	RegisterSignal(greytider, COMSIG_PARENT_QDELETING, PROC_REF(on_target_deleted), override = TRUE)
 	CancelActions()
+
+/datum/ai_controller/robot_customer/proc/on_target_deleted(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	if(blackboard[BB_CUSTOMER_CURRENT_TARGET] != source)
+		return
+	CancelActions()
+	blackboard -= BB_CUSTOMER_CURRENT_TARGET
+	if(current_movement_target == source)
+		current_movement_target = null
 
 ///Cios ręką liczy się tylko w trybie walki. Dostęp do lokalu nie chroni: bicie gościa to bicie gościa
 /datum/ai_controller/robot_customer/proc/on_get_punched(datum/source, mob/living/living_hitter)

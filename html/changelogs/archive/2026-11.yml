@@ -179,6 +179,20 @@
       otwiera się w przeglądarce).'
   - config: Nowy plik config/voice_chat.txt (domyślnie wyłączony) i serwis tools/voice_chat
       z rozpoznawaniem mowy przez Whisper, ElevenLabs albo OpenAI.
+  - rscadd: Przyciski etapów w oknie broni statkowej (podanie, komora, przeładowanie
+      ze stojaka) nabijają się paskiem, dopóki etap trwa.
+  - bugfix: Skrzydła, ogony i czułki nie odcinają się już od animacji chodu.
+  - rscadd: Plecaki, torby na ramię i torby podróżne mają siatkę kratek. Przedmioty
+      zajmują miejsce zależne od wielkości, można je przesuwać przeciąganiem i obracać
+      klawiszami E i Q w trakcie przeciągania.
+  - imageadd: Kafle siatki w kolorach wielkości przedmiotu i nagłówek z zajętością
+      plecaka.
+  - rscadd: Skrzynki z narzędziami, apteczki, aktówki i pudełka też mają siatkę kratek,
+      z dawnym limitem liczby przedmiotów.
+  - imageadd: 'Okno schowka na siatce jest mniejsze: kratki mają 24 px.'
+  - rscadd: W trakcie przeciągania przedmiotu po siatce widać, gdzie i jak wyląduje.
+  - rscadd: Przedmiot włożony do pełnego plecaka siłą trafia do czerwonego rzędu nad
+      siatką zamiast znikać.
   Renirion, DeltaFire15, QAI-07, Karmic-Skink, Pockets-byte:
   - rscadd: Nowy statek SolGov klasy Von Neumann z własnym promem zaopatrzeniowym
       (wybierany przez admina).
@@ -207,3 +221,44 @@
   - bugfix: Odcięty kawałek sieci szybciej przestaje brać prąd ze starej sieci.
   - bugfix: Przecięcie kabla przechodzącego między pokładami już się nie zawiesza.
   - bugfix: Połączenie dwóch sieci kablem nie gubi na chwilę prądu jednej z nich.
+'2026-11-06':
+  Joker66613:
+  - bugfix: Jukebox odtwarza tylko linki z YouTube i SoundCloud.
+  - bugfix: Nie da się już tworzyć pieniędzy przez ujemne zlecenia w newscasterze,
+      giełdę materiałów, eksport amunicji z kuźni, złom z klatki wraku ani grzywny
+      płacone holożetonem.
+  - bugfix: Duplikator modułów nie kopiuje już maszyn podpiętych do układu kablem
+      USB.
+  - bugfix: Zwykły gracz nie może anulować próśb do adminów o ERT, kody nuklearne
+      ani wybudzenie załogi.
+  - bugfix: Głosowanie nie pokazuje innym graczom, kto na co głosował.
+  - bugfix: Śluzy zewnętrzne przy brigu na Atlasie nie otwierają się bitrunnerom.
+  - bugfix: Zablokowany chwyt nie ciągnie celu, tarcza blokuje popchnięcia, a pancerz
+      przeciw krwawieniu chroni noszącego.
+  - bugfix: Operacje na intencji rozbrajania w starym trybie sterowania nie kończą
+      się porażką, a po zejściu ze stołu operacyjnego krwawienie wraca do normy.
+  - bugfix: Grill, piec i mikrofala nie podwajają odczynników w jedzeniu.
+  - bugfix: Zwoje kabla zachowują kolor przy dzieleniu i nie łączą się z innym kolorem.
+  - bugfix: Światła cienia nie przyciemniają już korytarzy na stałe.
+  - bugfix: Rury nie zmieniają czystości ani pH odczynników.
+  - bugfix: 'Poprawki antagonistów: konwersja kultu z mindshieldem z nanitów, cele
+      heretyka przy małej obsadzie, krew i żerowanie wampira, uplink zdrajcy z Mass
+      Antag, horror, darkspawn, demony cieni i impulsu, bingle.'
+  - bugfix: Patrol ochrony da się odebrać, a zleceń cywilnych nie da się przelosowywać
+      bez końca.
+  - bugfix: Zakładka Object w panelu statystyk znowu pokazuje verby przedmiotów.
+  - bugfix: Liczne poprawki runtime'ów i wycieków pamięci.
+  - bugfix: Do strajku w evencie niepodległości działu trafiają tylko chętni (nowa
+      opcja „Separatysta” w preferencjach), bez szefów działów.
+  - balance: Wydłużona ręka sięga na 3 pola.
+  - balance: Skrzynka z zabawkami klauna mieści tylko zabawki.
+  - balance: Karta pod przykrywką nie ukrywa przed SI i secbotami jak karta agenta.
+  - bugfix: Gremlin nie loguje się już do konsoli komunikacji.
+  - rscadd: Bose zakrwawione stopy zostawiają ślady, a małpy ślady łap.
+  - balance: ERT nie dostaje aquilosów za cele.
+  - bugfix: Awatar w domenie z bójką na plaży dostaje broń.
+  - code_imp: Testy regresji do poprawek.
+  - rscadd: 'Opcja „Język gry / Game language” w preferencjach: czat, examine, panel
+      statystyk, okna, dymki, runechat, screentipy i okienka po angielsku.'
+  - code_imp: Słownik PL→EN i narzędzia w tools/i18n; CI ostrzega o nowych tekstach
+      bez angielskiego i nieowiniętych okienkach alert/input.
