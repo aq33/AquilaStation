@@ -39,12 +39,14 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	)
 	if(query.Execute() && query.NextRow())
 		game_language = query.item[1]
+		game_language_chosen = TRUE
 	qdel(query)
 	game_language = sanitize_inlist(game_language, GLOB.game_languages, initial(game_language))
 
 /datum/preferences/save_preferences()
 	. = ..()
-	if(!SSdbcore.IsConnected() || !parent?.ckey || IS_GUEST_KEY(parent.ckey))
+	// bez wyboru nie zapisujemy domyślnego języka, inaczej okno wyboru (language_choice.dm) już by nie wróciło
+	if(!game_language_chosen || !SSdbcore.IsConnected() || !parent?.ckey || IS_GUEST_KEY(parent.ckey))
 		return
 	var/datum/DBQuery/query = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name("preferences")] (ckey, preference_tag, preference_value) VALUES (:ckey, :ptag, :pvalue) ON DUPLICATE KEY UPDATE preference_value=:pvalue2",
@@ -54,6 +56,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	qdel(query)
 
 /datum/preference/choiced/game_language/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	prefs.game_language_chosen = TRUE // zmiana w oknie preferencji też jest wyborem
 	if(!C)
 		return
 	// Okna otwarte przed zmianą nie dostały słownika w send_assets(), a język przyjdzie im z następną aktualizacją
@@ -118,6 +121,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	if(client.wants_english())
 		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows))
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
+	send_update(list("gameLanguage" = client.prefs?.game_language || GAME_LANGUAGE_PL)) // przełącznik w menu
 
 /// Okno mówienia (tgui-say): etykiety kanałów po angielsku (tgui/packages/tgui-say/constants)
 /datum/tgui_say/load()
