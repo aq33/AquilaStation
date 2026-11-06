@@ -351,7 +351,9 @@ const capitalizeWords = (text: string) =>
  * (capitalizeAll w automacie, toTitleCase w pasku tytułu). Wynik też Wielkimi Literami.
  */
 const lookupTitleCase = (text: string): string | undefined => {
-  if (!text.includes(' ') || capitalizeWords(text) !== text) {
+  // wielkie litery tylko na początku słów; capitalizeAll z tgui-core pomija polskie litery
+  // ("Hełm środowiskowy Atmosferyki"), więc nie wymagamy wszystkich słów Wielkich
+  if (!text.includes(' ') || /\p{L}\p{Lu}/u.test(text)) {
     return undefined;
   }
   if (!lowerExact) {
