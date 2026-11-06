@@ -43,6 +43,15 @@
 	// Nieznany polski dopisek w nawiasie: bez mieszanki "Blood (po zaschnięciu)", szablon "[name] (po zaschnięciu)" wygrywa
 	var/dried = i18n_en_html("krew (po zaschnięciu)")
 	TEST_ASSERT(dried == "dried blood", "Polish suffix in parentheses made a mixed name: [dried]")
+	// Opis sklejony z dwóch zdań ("[part.desc] [desc]" w MOD-ach): każde zdanie osobno, bez mieszanki
+	var/obj/item/mod/control/control = /obj/item/mod/control
+	var/mod_desc = i18n_en_html("[initial(control.desc)] Skafander dla inżyniera, odporny na ciepło i prąd. Klasyk Nakamura Engineering.")
+	TEST_ASSERT(mod_desc == "[i18n_en_exact(initial(control.desc))] An engineer-fit suit with heat and shock resistance. Nakamura Engineering's classic.", "Joined MOD description is not translated sentence by sentence: [mod_desc]")
+	// Część MOD-a po nałożeniu motywu ("[part.name] (model [name])"), jak w mod_theme.dm
+	var/mod_part = i18n_en_html("hełm MOD (model inżynieryjny)")
+	TEST_ASSERT(mod_part == "engineering MOD helmet", "MOD part name with a theme is not translated: [mod_part]")
+	var/half = i18n_en_html("[initial(control.desc)] Zupełnie nieznane polskie zdanie.")
+	TEST_ASSERT(half == "[initial(control.desc)] Zupełnie nieznane polskie zdanie.", "Joined description with an unknown sentence made a mixed text: [half]")
 	// Screentip z wstawką ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy") idzie przez szablony
 	var/screentip = i18n_en_html("[GLOB.lmb_icon] Otwórz panel serwisowy <br>", TRUE)
 	TEST_ASSERT(!findtext(screentip, "panel serwisowy"), "Screentip action with an embed is not translated: [screentip]")

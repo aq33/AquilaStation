@@ -25,6 +25,10 @@ describe('i18n: Wielkie Litery i kartki', () => {
   it('tłumaczy nazwę po capitalizeAll/toTitleCase', () => {
     expect(translateUiText('Tania Zapalniczka')).toBe('Cheap Lighter');
     expect(translateUiText('Automat Składu')).toBe('Squad Vendor');
+    expect(translateUiText('Hełm środowiskowy Tania')).toBe(
+      'Hełm środowiskowy Tania',
+    );
+    expect(translateUiText('Tania zapalniczka')).toBe('Cheap lighter');
     // zwykła wielkość liter działa jak dawniej
     expect(translateUiText('tania zapalniczka')).toBe('cheap lighter');
   });

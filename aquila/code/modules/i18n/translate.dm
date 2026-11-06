@@ -291,10 +291,37 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		return cached
 	. = i18n_en_exact(text)
 	if(isnull(.))
-		. = i18n_en_template(text) || text
+		. = i18n_en_template(text) || i18n_en_sentences(text) || text
 	if(length(cache) >= I18N_CACHE_SIZE)
 		cache.Cut()
 	cache[text] = .
+
+/**
+ * Kilka zdań sklejonych w kodzie ("[part.desc] [desc]" w MOD-ach, opis z dopiskiem):
+ * od lewej najdłuższy ciąg zdań, który jest w słowniku (opis bywa kluczem z kilku zdań).
+ * Wynik tylko gdy przetłumaczyło się wszystko (bez mieszanki).
+ */
+/proc/i18n_en_sentences(text)
+	var/static/regex/boundary = regex(@"([.!?])\s+(?=\S)", "g")
+	var/list/sentences = splittext(boundary.Replace(text, "$1\n"), "\n")
+	var/count = length(sentences)
+	if(count < 2 || count > 12)
+		return null
+	var/list/out = list()
+	var/start = 1
+	while(start <= count)
+		var/found
+		var/stop
+		for(stop = (start == 1 ? count - 1 : count) to start step -1)
+			var/run = jointext(sentences.Copy(start, stop + 1), " ")
+			found = i18n_en_exact(run) || i18n_en_template(run)
+			if(!isnull(found))
+				break
+		if(isnull(found))
+			return null
+		out += found
+		start = stop + 1
+	return jointext(out, " ")
 
 /// Tekst dla konkretnego gracza: po angielsku, jeśli wybrał angielski
 /proc/i18n_for_client(client/C, text, with_templates = FALSE)
