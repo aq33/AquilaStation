@@ -10,6 +10,7 @@ import {
 import { classes } from 'tgui-core/react';
 
 import { useSharedState } from '../../backend';
+import { isTranslating, translateUiText } from '../../i18n';
 import { SearchBar } from '../common/SearchBar';
 import type { Design, MaterialMap } from './Types';
 
@@ -240,11 +241,17 @@ export const DesignBrowser = <T extends Design = Design>(
                 {searchText.length > 0 ? (
                   <VirtualList>
                     {allDesigns
-                      .filter((design) =>
-                        design.name
-                          .toLowerCase()
-                          .includes(searchText.toLowerCase()),
-                      )
+                      .filter((design) => {
+                        const query = searchText.toLowerCase();
+                        // AQUILA: z EN gracz widzi i wpisuje angielską nazwę
+                        return (
+                          design.name.toLowerCase().includes(query) ||
+                          (isTranslating() &&
+                            translateUiText(design.name)
+                              .toLowerCase()
+                              .includes(query))
+                        );
+                      })
                       .map(renderDesign)}
                   </VirtualList>
                 ) : selectedCategory === ALL_CATEGORY ? (
