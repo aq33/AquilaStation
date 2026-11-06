@@ -548,6 +548,7 @@ const VERB_NAMES = {
   'Toggle OOC': 'Przełącz OOC',
   'Toggle PB Interviews': 'Przełącz rozmowy panic bunkra',
   'Toggle Panic Bunker': 'Przełącz panic bunker',
+  'Toggle Pixel Movement': 'Przełącz ruch po pikselach',
   'Toggle Respawn': 'Przełącz odradzanie',
   'Toggle guests': 'Przełącz gości',
   'Toggle random events on/off': 'Włącz/wyłącz losowe eventy',

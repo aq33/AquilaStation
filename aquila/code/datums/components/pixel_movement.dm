@@ -74,7 +74,7 @@
 	var/own_move = FALSE
 	/// Kiedy ostatnio przesunął nas ktoś inny; w tym ticku już się nie ruszamy
 	var/last_external_move = -1
-	/// Kierunek z klawiszy w ostatnim kroku (sprint liczy po nim rozpęd)
+	/// Kierunek ostatniego kroku po zamroczeniu (sprint liczy po nim rozpęd)
 	var/input_dir = NONE
 	/// Zamroczenie: kierunek albo obrót wylosowany na czas jednego zwykłego kroku
 	var/confused_dir = NONE
@@ -160,9 +160,9 @@
 	if(!direct)
 		return COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE
 	last_step = world.time
-	input_dir = direct
 	var/delay = max(owner.movement_delay(), world.tick_lag)
 	direct = apply_confusion(direct, delay)
+	input_dir = direct
 	owner.setDir(direct)
 	advance(direct, delay)
 	if(QDELETED(src))
@@ -435,7 +435,7 @@
 	return PIXEL_TILE_MOVE_TELEPORTED
 
 /client/proc/toggle_pixel_movement()
-	set name = "Przełącz ruch po pikselach"
+	set name = "Toggle Pixel Movement"
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))
 		return

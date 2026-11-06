@@ -80,7 +80,7 @@
 		// Ruch po pikselach przechodzi kafelki osobno w poziomie i w pionie: rozpęd liczy kierunek z klawiszy,
 		// a po skosie każde z dwóch przejść kosztuje połowę kroku po skosie
 		var/datum/component/pixel_movement/pixel = HAS_TRAIT(carbon_parent, TRAIT_PIXEL_MOVEMENT) ? carbon_parent.GetComponent(/datum/component/pixel_movement) : null
-		if(pixel?.input_dir)
+		if(pixel?.own_move && pixel.input_dir) // tylko krok samego komponentu; zwykły ruch (nieważkość, ktoś na nas siedzi) liczy się jak dotąd
 			var/input_dir = pixel.input_dir
 			commit_step(input_dir, old_turf, (input_dir & (input_dir - 1)) ? SPRINT_DIAGONAL_MODIFIER / 2 : 1)
 		else
