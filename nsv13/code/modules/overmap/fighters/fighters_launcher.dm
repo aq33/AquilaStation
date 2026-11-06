@@ -389,7 +389,8 @@ d) the ships[] list of ssstarsystem is acting up again.
 	OM.overmaps_in_ship += src
 	bound_width = initial(bound_width)
 	bound_height = initial(bound_height)
-	DC.docking_mode = FALSE
+	if(DC) // AQ EDIT - missing docking computer
+		DC.docking_mode = FALSE
 	weapon_safety = TRUE
 	if(pilot)
 		to_chat(pilot, "<span class='notice'>Dokowanie zakończone. <b>Zabezpieczenia broni zostały automatycznie włączone.</b></span>")
