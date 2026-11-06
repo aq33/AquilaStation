@@ -1,5 +1,6 @@
 /// AQUILA - AI torpedo tactics (aquila/code/modules/overmap/ai_torpedo_tactics.dm): a fleet holds its torpedoes until every
-/// launcher on the target has reloaded (or the wait runs out), fires them together, then holds again; a reckless commander
+/// launcher on the target has reloaded (or the wait runs out), fires them together, then holds again; a failed salvo roll
+/// lets every ship fire on its own until the next roll; a reckless commander
 /// fires on its own; an AI ship dodges a torpedo homing on it to the side away from the torpedo's path.
 /datum/unit_test/aquila_ai_torpedo_tactics
 	var/obj/structure/overmap/syndicate/ai/gunboat/morale_test/torpedo/first
@@ -53,6 +54,13 @@
 	var/datum/overmap_ship_weapon/second_launcher = launcher_of(second)
 	if(!second_launcher)
 		return "The test ship has no AI torpedo launcher"
+	// A failed salvo roll: nobody waits, the ships fire on their own until the next roll
+	fleet.ai_salvo_chance = 0
+	second_launcher.next_firetime = world.time + 10 SECONDS
+	if(!fleet.ai_salvo_allows(first, enemy))
+		return "A ship waited for a salvo the fleet did not roll"
+	LAZYREMOVE(fleet.ai_salvos, enemy)
+	fleet.ai_salvo_chance = 100
 	// The second ship is still reloading: the first one waits for it
 	second_launcher.next_firetime = world.time + 10 SECONDS
 	if(fleet.ai_salvo_allows(first, enemy))
