@@ -4,6 +4,7 @@
 // usuniętą część i small_craft/take_damage zadawał jej obrażenia („taking damage after deletion”).
 
 /datum/component/ship_loadout/get_slot(slot)
+	RETURN_TYPE(/obj/item/fighter_component)
 	var/obj/item/fighter_component/component = ..()
 	if(component && QDELETED(component))
 		hardpoint_slots[slot] = null

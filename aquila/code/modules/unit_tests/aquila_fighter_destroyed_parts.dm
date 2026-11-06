@@ -22,6 +22,7 @@
 
 	TEST_ASSERT(isnull(fighter.loadout.get_slot(HARDPOINT_SLOT_CANOPY)), "Destroyed canopy is still in its slot")
 	TEST_ASSERT(isnull(fighter.loadout.get_slot(HARDPOINT_SLOT_ARMOUR)), "Destroyed armour plating is still in its slot")
+	TEST_ASSERT(isnull(fighter.loadout.hardpoint_slots[HARDPOINT_SLOT_CANOPY]) && isnull(fighter.loadout.hardpoint_slots[HARDPOINT_SLOT_ARMOUR]), "get_slot returned null but left the deleted part in hardpoint_slots")
 	TEST_ASSERT(!QDELETED(fighter), "Fighter should survive light damage")
 
 /datum/unit_test/aquila_fighter_destroyed_parts/Destroy()
