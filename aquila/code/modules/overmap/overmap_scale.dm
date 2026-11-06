@@ -1,0 +1,138 @@
+/// AQUILA - overmap scale: one system is the whole battlefield, so everything on the overmap moves slower and guns reach
+/// only half as far. Missiles and torpedoes keep their range and become the long range weapons, for us and for the AI.
+/// Core hooks: physics.dm process() (speed cap and thrust) and collide() (ram force). Design: raport/sensory_03_ustalenia.md
+
+/// Admin switch (Debug > Toggle overmap scale)
+GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
+
+/// Speed cap and thrust multiplier for everything on an overmap level (ships, fighters, boost included)
+#define OVERMAP_SPEED_MULT 0.5
+/// Range multiplier for unguided overmap projectiles (guns, PDC, phasers)
+#define OVERMAP_GUN_RANGE_MULT 0.5
+/// Projectiles with a range this big are relays or special rounds, leave them alone
+#define OVERMAP_GUN_RANGE_SPECIAL 255
+/// The AI does not fire unguided weapons beyond this (default projectile range 50 * OVERMAP_GUN_RANGE_MULT)
+#define OVERMAP_AI_GUN_RANGE 25
+/// AI carriers keep about this far from their target and let the fighters do the work
+#define AI_CARRIER_STANDOFF 40
+/// Torpedo ships stand off at most this far, but close enough to keep the target on their sensors
+#define AI_TORPEDO_STANDOFF 40
+/// Dead band around the standoff distance in which the AI orbits instead of closing or opening the range
+#define AI_STANDOFF_BAND 5
+/// Damage multiplier for projectiles an AI ship fires at another AI ship
+#define AI_VS_AI_DAMAGE_MULT 0.4
+
+/// Speed multiplier for this ship right now; 1 off the overmap (fighters in a hangar, ships on station levels)
+/obj/structure/overmap/proc/get_overmap_speed_mult()
+	if(!GLOB.overmap_scale_enabled || !z || !SSmapping.level_trait(z, ZTRAIT_OVERMAP))
+		return 1
+	return OVERMAP_SPEED_MULT
+
+/obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	. = ..()
+	var/obj/item/projectile/proj = .
+	// The projectile is fired in a spawn() inside ..(), so its range can still be changed here
+	if(!istype(proj) || istype(proj, /obj/item/projectile/guided_munition) || proj.range >= OVERMAP_GUN_RANGE_SPECIAL)
+		return
+	if(get_overmap_speed_mult() == 1)
+		return
+	proj.range = round(proj.range * OVERMAP_GUN_RANGE_MULT)
+
+/// AI fleets shredded each other in under a minute, before fear, retreat or flanking could matter.
+/// Hits between two AI ships do less damage; anything a player ship fires or takes is unchanged.
+/obj/structure/overmap/bullet_act(obj/item/projectile/P)
+	var/obj/structure/overmap/shooter = P?.overmap_firer
+	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(shooter) || !shooter.ai_controlled)
+		return ..()
+	var/full_damage = P.damage
+	P.damage *= AI_VS_AI_DAMAGE_MULT
+	. = ..()
+	// A round that pierces or bounces off a shield goes on at full damage, it may hit a player ship next
+	if(!QDELETED(P))
+		P.damage = full_damage
+
+/// TRUE for weapons that fire missiles or torpedoes
+/datum/overmap_ship_weapon/proc/is_guided_weapon()
+	return used_nonphysical_ammo == OSW_AMMO_MISSILE || used_nonphysical_ammo == OSW_AMMO_TORPEDO || ispath(standard_projectile_type, /obj/item/projectile/guided_munition)
+
+/datum/overmap_ship_weapon/is_valid_ai_target(obj/structure/overmap/target)
+	. = ..()
+	if(!. || !GLOB.overmap_scale_enabled || is_guided_weapon())
+		return
+	// Guns would not reach anyway, so the AI saves them and picks missiles at long range
+	if(overmap_dist(linked_overmap, target) > OVERMAP_AI_GUN_RANGE)
+		return FALSE
+
+/// AI carrier: launches fighters and is not a battleship (Fist of Sol and the like still brawl)
+/obj/structure/overmap/proc/is_ai_carrier()
+	return length(ai_fighter_type) && !CHECK_BITFIELD(ai_flags, AI_FLAG_BATTLESHIP)
+
+/// Torpedoes left and a launcher to fire them
+/obj/structure/overmap/proc/has_ai_torpedoes()
+	if(torpedoes <= 0 || mass <= MASS_TINY) // Bombers and fighters keep diving in
+		return FALSE
+	for(var/datum/overmap_ship_weapon/weapon as anything in overmap_weapon_datums)
+		if(weapon.used_nonphysical_ammo == OSW_AMMO_TORPEDO && (weapon.weapon_control_flags & OSW_CONTROL_AI))
+			return TRUE
+	return FALSE
+
+/// Distance this AI ship wants to keep from target, 0 to close in as usual
+/obj/structure/overmap/proc/get_ai_standoff_range(atom/target)
+	var/obj/structure/overmap/enemy = target
+	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(enemy) || QDELETED(enemy) || enemy.faction == faction || enemy == defense_target)
+		return 0
+	if(is_ai_carrier())
+		return AI_CARRIER_STANDOFF
+	// Torpedo launchers only fire at MASS_SMALL and up; once the torpedoes run out the ship closes in with its guns
+	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
+		// Stay inside our own tracking range of the target, or the torpedo ship loses it and wanders off.
+		// From the initial range: a radar pulse raises max_tracking_range for a while and the ship would move in and out every pulse
+		var/tracking_limit = initial(max_tracking_range) - AI_STANDOFF_BAND
+		return clamp(tracking_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
+	return 0
+
+/obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
+	var/standoff = ram_target ? 0 : get_ai_standoff_range(target)
+	if(!standoff)
+		return ..()
+	var/dist = overmap_dist(src, target)
+	if(dist < standoff - AI_STANDOFF_BAND)
+		move_away_from(target)
+		enable_dampeners()
+		return
+	if(dist <= standoff + AI_STANDOFF_BAND)
+		circle_around(target) // Orbit at range while the missiles and fighters do their job
+		enable_dampeners()
+		return
+	return ..()
+
+/datum/ai_goal/retreat/action(obj/structure/overmap/OM)
+	// Carriers hold at standoff range instead of running away for good; other supply ships still run
+	if(!OM.is_ai_carrier() || !OM.get_ai_standoff_range(OM.last_target))
+		return ..()
+	OM.current_goal = src
+	OM.move_toward(OM.last_target)
+
+/world/AVerbsDebug()
+	. = ..()
+	. += /client/proc/toggle_overmap_scale
+
+/client/proc/toggle_overmap_scale()
+	set category = "Debug"
+	set name = "Toggle overmap scale"
+	set desc = "Włącza lub wyłącza spowolnienie okrętów i krótszy zasięg dział na overmapie."
+	if(!check_rights(R_DEBUG))
+		return
+	GLOB.overmap_scale_enabled = !GLOB.overmap_scale_enabled
+	var/state = GLOB.overmap_scale_enabled ? "włączył" : "wyłączył"
+	message_admins("[key_name_admin(usr)] [state] skalę overmapy (wolniejsze okręty, krótsze działa).")
+	log_admin("[key_name(usr)] toggled overmap scale to [GLOB.overmap_scale_enabled].")
+
+#undef OVERMAP_SPEED_MULT
+#undef OVERMAP_GUN_RANGE_MULT
+#undef OVERMAP_GUN_RANGE_SPECIAL
+#undef OVERMAP_AI_GUN_RANGE
+#undef AI_CARRIER_STANDOFF
+#undef AI_TORPEDO_STANDOFF
+#undef AI_STANDOFF_BAND
+#undef AI_VS_AI_DAMAGE_MULT
