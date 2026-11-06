@@ -61467,7 +61467,7 @@
 "Wyślij wiadomość": "Send Message",
 "Wyślij wiadomość PDA": "Send PDA Message",
 "Wyślij wiadomość admina": "Send Admin Message",
-"Wyślij wiadomość do ${emagged ? '[NIEZNANE]' : 'CentComu'}": "Send a message to ${emagged ? '[NIEZNANE]' : 'CentComu'}",
+"Wyślij wiadomość do ${emagged ? '[NIEZNANE]' : 'CentComu'}": "Send a message to ${emagged ? '[UNKNOWN]' : 'CentCom'}",
 "Wyślij wiadomość do całej drużyny [S].": "Send a squad-wide message to [S].",
 "Wyślij wiadomość do nosiciela": "Send a message to the wearer",
 "Wyślij wiadomość do sojuszniczych stacji": "Send a message to allied stations",

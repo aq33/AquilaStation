@@ -107,7 +107,7 @@ def main():
     env = dict(os.environ, CI="true", I18N_COVERAGE=os.path.abspath(INPUT), I18N_COVERAGE_OUT=os.path.abspath(OUTPUT),
                I18N_JSX=os.path.abspath(JSX_INPUT), I18N_JSX_OUT=os.path.abspath(JSX_OUTPUT))
     subprocess.run([node, f".yarn/releases/{yarn}", "jest", "packages/tgui/i18n.coverage"], cwd="tgui", env=env,
-                   shell=os.name == "nt")
+                   shell=os.name == "nt", check=True)
     if os.path.exists(OUTPUT):
         left = json.load(open(OUTPUT, encoding="utf-8"))
         sys.stdout.reconfigure(encoding="utf-8")

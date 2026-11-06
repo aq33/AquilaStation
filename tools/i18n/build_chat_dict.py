@@ -206,14 +206,14 @@ def unescape_dm(text):
     return re.sub(r"\\(.)", lambda m: {"n": "\n", "t": "\t"}.get(m.group(1), m.group(1)), text)
 
 
-def alternatives(exprs):
+def alternatives(exprs, js=False):
     """Wstawki-warunki z dwoma napisami ([harmful ? "wbija się" : "przykleja się"]): numer -> [A, B].
 
     W szablonie zamiast dowolnego tekstu dopasowujemy jedną z alternatyw. Daje to kotwicę
     i pewniejsze dopasowanie, a wartość i tak tłumaczy słownik stałych (napisy ze wstawek)."""
     found = {}
     for index, expr in enumerate(exprs):
-        options = literal_ternary(expr)
+        options = literal_ternary(expr, js)
         if options:
             found[str(index)] = options
     return found
@@ -236,21 +236,26 @@ def tag_segments(pl, en):
     return pairs
 
 
-def literal_ternary(expr):
-    """[A, B] dla wstawki [x ? "A" : "B"] bez zagnieżdżonych wstawek, inaczej None."""
+def literal_ternary(expr, js=False):
+    """[A, B] dla wstawki [x ? "A" : "B"] bez zagnieżdżonych wstawek, inaczej None.
+
+    W DM nawias kwadratowy w napisie to wstawka, a w literale JS zwykły tekst ('[NIEZNANE]')."""
     m = TERNARY.match(expr.strip())
-    if m and "[" not in m.group(2) and "[" not in m.group(4) and "${" not in m.group(2) + m.group(4):
+    nested = "${" in m.group(2) + m.group(4) if m else True
+    if not js and m and ("[" in m.group(2) or "[" in m.group(4)):
+        nested = True
+    if m and not nested:
         return [unescape_dm(m.group(2)), unescape_dm(m.group(4))]
     return None
 
 
-def build_en(parts, pl_exprs):
+def build_en(parts, pl_exprs, js=False):
     """Angielska strona: lista elementów: tekst albo [nr osadzenia PL, przedimek]."""
     pl_index, pl_conditions = {}, {}
     for k, e in enumerate(pl_exprs):
         pl_index.setdefault(norm_expr(e), k)
         condition = ternary_condition(e)
-        if condition and literal_ternary(e):
+        if condition and literal_ternary(e, js):
             pl_conditions.setdefault(condition, k)
     plural = any(PRONOUN_CALL.search(norm_expr(v)) and PRONOUN_CALL.search(norm_expr(v)).group(1) in ("they", "theyre", "theyve")
                  for kind, v in parts if kind == "e")
@@ -280,7 +285,7 @@ def build_en(parts, pl_exprs):
             condition = ternary_condition(val)
             if key in pl_index:
                 out.append([pl_index[key], article] if article else [pl_index[key]])
-            elif condition in pl_conditions and "[" not in val:
+            elif condition in pl_conditions and literal_ternary(val, js):
                 # angielski warunek z tym samym warunkiem co polska alternatywa: gałąź według tego,
                 # która polska alternatywa wystąpiła (["?", nr wstawki PL, [EN dla A, EN dla B]])
                 m = TERNARY.match(val.strip())
@@ -292,10 +297,10 @@ def build_en(parts, pl_exprs):
                     if m.group(2) and word:
                         word = word[0].upper() + word[1:]
                     add_text(word)
-                elif literal_ternary(val):
+                elif literal_ternary(val, js):
                     # angielski warunek bez polskiego odpowiednika ([gender == PLURAL ? "They are" :
                     # "It is"]): gałąź domyślna, czyli druga
-                    add_text(literal_ternary(val)[1])
+                    add_text(literal_ternary(val, js)[1])
                 else:
                     missing.append(val)
             article = None
@@ -499,7 +504,7 @@ def main():
             stats["pomijane: przedimek/zaimek w PL"] += 1
             continue
         texts, exprs = built
-        en_parts, missing = build_en(parse(en), exprs)
+        en_parts, missing = build_en(parse(en), exprs, js=pl in js_literals)
         if missing:
             stats["pomijane: wstawka EN bez odpowiednika PL"] += 1
             continue
@@ -530,7 +535,7 @@ def main():
                 if ui_value and ui_value != key:
                     ui[key] = ui_value
             continue
-        alts = alternatives(exprs)
+        alts = alternatives(exprs, js=pl in js_literals)
         fixed = TAG.sub(" ", "".join(texts) + " " + " ".join(" ".join(a) for a in alts.values()))
         if pl not in manual and (len(WORD.findall(fixed)) == 0 or len(re.sub(r"\s", "", fixed)) < 4):
             stats["pomijane: za mało stałego tekstu"] += 1

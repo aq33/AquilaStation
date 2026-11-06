@@ -149,3 +149,28 @@ describe('translateHtml', () => {
     expect(translateHtml('  BŁĄD $$ GR ')).toBe('  ERR $$ GR $& ');
   });
 });
+
+describe('słownik okien z tools/i18n/build_chat_dict.py', () => {
+  it('alternatywa JS z nawiasami kwadratowymi jest tekstem, nie wstawką', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.resolve(
+      __dirname,
+      '../../../strings/i18n/en_windows.json',
+    );
+    const built = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const template = built.templates.find(
+      (entry: any[]) =>
+        JSON.stringify(entry[1]) ===
+        JSON.stringify(['Wyślij wiadomość do ', '']),
+    );
+    expect(template).toBeDefined();
+    setDictionary({ version: 1, exact: {}, templates: [template] } as any);
+    expect(translateHtml('Wyślij wiadomość do [NIEZNANE]')).toBe(
+      'Send a message to [UNKNOWN]',
+    );
+    expect(translateHtml('Wyślij wiadomość do CentComu')).toBe(
+      'Send a message to CentCom',
+    );
+  });
+});

@@ -459,7 +459,7 @@ const NewscasterChannelBox = (_) => {
   return (
     <Section
       fill
-      title={channelName}
+      title={<span className="i18n-skip">{channelName}</span>}
       buttons={
         user.name === channelAuthor || user.admin ? (
           <Button
@@ -682,9 +682,9 @@ const NewscasterChannelMessages = (_) => {
                     Autor: [UTAJNIONO] (D-Notice)
                   </Box>
                 ) : (
-                  <>
+                  <span className="i18n-skip">
                     Autor: {message.auth}, {message.time}
-                  </>
+                  </span>
                 )}
               </i>
             }
@@ -766,7 +766,7 @@ const NewscasterChannelMessages = (_) => {
                 <Box>
                   {message.comments.map((comment) => (
                     <BlockQuote key={comment.index}>
-                      <Box italic textColor="white">
+                      <Box italic textColor="white" className="i18n-skip">
                         Autor: {comment.auth}, {comment.time}
                       </Box>
                       <Section ml={2.5}>

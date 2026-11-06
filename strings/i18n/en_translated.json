@@ -12120,7 +12120,7 @@
 "Wyślij telepatyczną wiadomość do wszystkich podłączonych do [linker.network_name].": "Send a telepathic message to everyone connected to [linker.network_name].",
 "Wyślij telepatyczną wiadomość do wszystkich podłączonych do twojego łącza.": "Send a telepathic message to everyone connected to your link.",
 "Wyślij towar": "Send goods",
-"Wyślij wiadomość do ${emagged ? '[NIEZNANE]' : 'CentComu'}": "Send a message to ${emagged ? '[NIEZNANE]' : 'CentComu'}",
+"Wyślij wiadomość do ${emagged ? '[NIEZNANE]' : 'CentComu'}": "Send a message to ${emagged ? '[UNKNOWN]' : 'CentCom'}",
 "Wyślij wiadomość do nosiciela": "Send a message to the wearer",
 "Wyślij więźnia": "Send prisoner",
 "Wyśrodkuj": "Center",
