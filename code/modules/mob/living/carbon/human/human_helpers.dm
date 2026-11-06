@@ -132,8 +132,9 @@
 
 
 /mob/living/carbon/human/can_track(mob/living/user)
-	if(wear_id && istype(wear_id.GetID(), /obj/item/card/id/syndicate))
-		return FALSE
+	var/obj/item/card/id/worn_id = wear_id?.GetID() // AQ EDIT START - Undercover I.D. detektywa nie ukrywa przed kamerami SI
+	if(istype(worn_id, /obj/item/card/id/syndicate) && !istype(worn_id, /obj/item/card/id/syndicate/undercover))
+		return FALSE // AQ EDIT END
 	if(istype(head, /obj/item/clothing/head))
 		var/obj/item/clothing/head/hat = head
 		if(hat.blockTracking)

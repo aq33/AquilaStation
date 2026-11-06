@@ -40,15 +40,37 @@
 /obj/effect/decal/cleanable/blood
 	var/base_color
 
+/// Drużyna kultu dla plam krwi: bez kultu plama nie szuka drużyny w GLOB.antagonist_teams.
+GLOBAL_DATUM(bloodcult_team, /datum/team/cult)
+
+/datum/team/cult/New(starting_members)
+	. = ..()
+	GLOB.bloodcult_team = src
+
+/datum/team/cult/Destroy(force, ...)
+	if(GLOB.bloodcult_team == src)
+		GLOB.bloodcult_team = locate(/datum/team/cult) in (GLOB.antagonist_teams - src)
+	return ..()
+
 /obj/effect/decal/cleanable/blood/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	base_color = color
-	var/datum/team/cult/cult_team = locate_team(/datum/team/cult)
-	cult_team?.add_bloody_floor(get_turf(src))
+	if(. == INITIALIZE_HINT_QDEL)
+		return
+	GLOB.bloodcult_team?.add_bloody_floor(get_turf(src))
 
 /obj/effect/decal/cleanable/blood/Destroy()
-	var/datum/team/cult/cult_team = locate_team(/datum/team/cult)
-	cult_team?.remove_bloody_floor(get_turf(src))
+	var/datum/team/cult/cult_team = GLOB.bloodcult_team
+	if(cult_team)
+		var/turf/T = get_turf(src)
+		// Podłoga zostaje zakrwawiona, dopóki leży na niej inna plama krwi
+		var/other_blood = FALSE
+		for(var/obj/effect/decal/cleanable/blood/other in T)
+			if(other != src && !QDELETED(other))
+				other_blood = TRUE
+				break
+		if(!other_blood)
+			cult_team.remove_bloody_floor(T)
 	return ..()
 
 // ---------------------------------------------------------------------------
@@ -239,7 +261,7 @@
 		animate(redshade, alpha = 0, time = 2.5 SECONDS)
 		QDEL_IN(redshade, 3 SECONDS)
 	if(!QDELETED(deconvertee))
-		deconvertee.blood_volume -= 100 // auć
+		deconvertee.blood_volume = max(0, deconvertee.blood_volume - 100) // auć
 
 /datum/deconversion_ritual/Destroy()
 	if(cultist)

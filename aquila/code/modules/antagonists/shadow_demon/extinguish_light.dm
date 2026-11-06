@@ -162,6 +162,13 @@
 		return FALSE
 	return ..()
 
+// Migotanie (flicker()) samo przełącza on i woła update(), a na końcu zapala lampę z powrotem.
+// Zgaszona przez demona lampa ma zostać ciemna, także gdy zgasła w trakcie migotania.
+/obj/machinery/light/update(trigger = TRUE)
+	if(shadow_extinguished)
+		on = FALSE
+	return ..()
+
 /obj/machinery/light/flicker(amount = rand(10, 20))
 	set waitfor = FALSE
 	if(shadow_extinguished)

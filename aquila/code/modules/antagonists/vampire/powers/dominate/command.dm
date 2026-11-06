@@ -119,10 +119,10 @@
 	//Actually command them now
 	owner.say(command)
 
-	var/power_time_adjusted = FALSE
+	// AQUILA - lokalna zmienna: wczesny return niżej nie zostawia trwale połowy power_time
+	var/command_time = power_time
 	if(HAS_TRAIT(living_target, TRAIT_MINDSHIELD))
-		power_time /= 2
-		power_time_adjusted = TRUE
+		command_time /= 2
 
 	if(IS_VAMPIRE(living_target))
 		var/datum/antagonist/vampire/target_vampdatum = IS_VAMPIRE(living_target)
@@ -131,11 +131,7 @@
 			deactivate_power()
 			return
 
-	living_target.apply_status_effect(/datum/status_effect/commanded, owner, command, power_time)
-
-	if(power_time_adjusted)
-		power_time *= 2
-		power_time_adjusted = FALSE
+	living_target.apply_status_effect(/datum/status_effect/commanded, owner, command, command_time)
 
 	power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 
@@ -209,7 +205,7 @@
 	directives = vampire_brainwash(owner, "[command]!", "Rozkaz od: [caster.real_name]") // AQUILA - nasze brainwash() nie zwraca celów
 
 	// make sure they have a moment to realize what's going on
-	owner.Immobilize(2 SECONDS, TRUE)
+	owner.Immobilize(2 SECONDS, ignore_canstun = TRUE)
 	to_chat(owner, "<br>" + span_awe("<font size='15'>[command]!</font>") + "<br>", type = MESSAGE_TYPE_WARNING)
 
 	// also log it.
@@ -236,6 +232,6 @@
 		caster.stop_pulling()
 	owner.SetAllImmobility(0)
 	if(caster.Adjacent(owner)) // give them a split second to run away
-		caster.Stun(0.5 SECONDS, TRUE)
+		caster.Stun(0.5 SECONDS, ignore_canstun = TRUE)
 	to_chat(owner, span_awe(span_reallybig("You quickly come back to your senses as you're hit by [attacker]!")))
 	qdel(src) */

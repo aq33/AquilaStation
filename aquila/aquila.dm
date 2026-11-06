@@ -376,6 +376,7 @@
 #include "code\modules\antagonists\role_preference\role_sinfuldemon.dm"
 #include "code\modules\antagonists\role_preference\role_pulse_demon.dm"
 #include "code\modules\antagonists\role_preference\role_voidwalker.dm"
+#include "code\modules\antagonists\role_preference\role_separatist.dm"
 #include "code\modules\antagonists\role_preference\role_shadow_demon.dm"
 #include "code\modules\antagonists\role_preference\preview_icons.dm"
 #include "code\modules\antagonists\pulse_demon\pulse_demon.dm"
@@ -717,6 +718,7 @@
 #include "code\modules\mob\living\carbon\emote.dm"
 #include "code\modules\mob\living\carbon\sprint.dm"
 #include "code\modules\mob\living\stamina.dm"
+#include "code\modules\mob\living\carbon\human\bare_feet_footprints.dm"
 #include "code\modules\mob\living\carbon\human\emote.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_defense.dm"
@@ -1696,6 +1698,17 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_review_economy_urls.dm"
+#include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
+#include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"
+#include "code\modules\unit_tests\aquila_review_antagi.dm"
+#include "code\modules\unit_tests\aquila_review_antag_refs.dm"
+#include "code\modules\unit_tests\aquila_review_klikanie_chirurgia.dm"
+#include "code\modules\unit_tests\aquila_review_poprawki_pazdziernik.dm"
+#include "code\modules\unit_tests\aquila_huds_indices.dm"
+#include "code\modules\unit_tests\aquila_review_refs_results.dm"
+#include "code\modules\unit_tests\aquila_review_exploits.dm"
+#include "code\modules\unit_tests\aquila_review_decyzje.dm"
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\aquila_audyt_regresje.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"

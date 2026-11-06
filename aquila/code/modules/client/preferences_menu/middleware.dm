@@ -509,6 +509,8 @@
 	)
 	/// Stan konta z bazy, odświeżany przy otwarciu okna i zakupie (ui_data nie może czekać na bazę)
 	var/cached_balance = 0
+	/// Trwa zakup za monety: zapytania do bazy usypiają, więc drugie kliknięcie przeszłoby sprawdzenie salda przed obciążeniem
+	var/purchase_in_progress = FALSE
 
 /datum/preference_middleware/loadout/proc/refresh_balance()
 	cached_balance = preferences.parent?.get_metabalance() || 0
@@ -568,8 +570,13 @@
 				if(CONFIG_GET(flag/donator_items) && alert(C, "Ten przedmiot jest dostępny tylko dla naszych patronów. Chcesz zostać patronem?", "Tylko dla patronów", "Tak", "Nie") == "Tak")
 					C.donate()
 				return FALSE
+			if(purchase_in_progress)
+				to_chat(user, "<span class='warning'>Poprzedni zakup jeszcze trwa, poczekaj chwilę.</span>")
+				return TRUE
+			purchase_in_progress = TRUE
 			refresh_balance()
 			if(gear.cost >= cached_balance)
+				purchase_in_progress = FALSE
 				to_chat(user, "<span class='warning'>Masz za mało środków ([CONFIG_GET(string/metacurrency_name)]), by kupić: [gear_name_pl(gear)]!</span>")
 				return TRUE
 			if(!gear.multi_purchase) // towar zużywalny (np. antag token) można kupować wiele razy
@@ -578,6 +585,7 @@
 			gear.purchase(C)
 			preferences.save_preferences()
 			refresh_balance()
+			purchase_in_progress = FALSE
 		if(GEAR_DONATOR)
 			if(C.ckey != gear.ckey)
 				log_href_exploit(user)

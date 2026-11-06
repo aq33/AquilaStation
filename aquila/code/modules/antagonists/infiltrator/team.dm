@@ -144,9 +144,9 @@
 
 	if(objectives_failed == 0 && objectives_complete > 0) //Complete all, and fail none, big win!
 		return INFILTRATION_ALLCOMPLETE
-	else if (objectives_failed == 1 && objectives_complete > 0) // Fail one, but complete the rest, still pretty good!
+	else if (objectives_complete > 0 && (objectives_failed == 1 || objectives_complete > objectives_failed)) // Fail one, or complete more than failed, still pretty good!
 		return INFILTRATION_MOSTCOMPLETE
-	else if((objectives_complete == objectives_failed) || (objectives_complete > 0 && objectives_failed > objectives_complete)) //Fail almost all of them, not very good...
+	else if(objectives_complete > 0) //Fail at least half of them, not very good... (2 failed and 3 completed used to fall through to NONECOMPLETE)
 		return INFILTRATION_SOMECOMPLETE
 	else
 		return INFILTRATION_NONECOMPLETE //You completely failed, you suck.

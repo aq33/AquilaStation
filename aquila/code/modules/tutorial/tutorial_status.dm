@@ -46,6 +46,10 @@
 
 /// Postać w samouczku nie jest żywym graczem rundy: dynamic nie liczy jej do populacji ani nie losuje na antagonistę
 /mob/add_to_current_living_players()
-	if(HAS_TRAIT(src, TRAIT_IN_TUTORIAL))
+	if(is_in_tutorial())
 		return
 	return ..()
+
+/// Mob jest w samouczku. Eventy losujące ofiarę spośród graczy (zawał, uraz mózgu, zapalenie wyrostka) go pomijają
+/mob/proc/is_in_tutorial()
+	return HAS_TRAIT(src, TRAIT_IN_TUTORIAL)

@@ -662,16 +662,24 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		report += printplayerlist(thralls)
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
-/// TRUE, jeśli nie został żaden żywy darkspawn z graczem
+/// TRUE, jeśli nie został żaden żywy darkspawn z graczem (ani taki, który jeszcze wstanie)
 /datum/team/darkspawn/proc/check_darkspawn_death()
 	for(var/datum/mind/dark_mind as anything in members)
 		if(!istype(dark_mind) || !dark_mind.current || QDELETED(dark_mind.current))
 			continue
-		if(dark_mind.current.stat == DEAD)
+		var/mob/body = dark_mind.current
+		if(body.stat == DEAD)
+			// Nieśmiertelne sigile podniosą ciało w ciemności, więc to jeszcze nie koniec
+			var/datum/antagonist/darkspawn/antag = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+			if(antag && HAS_TRAIT(antag, TRAIT_DARKSPAWN_UNDYING) && ishuman(body) && (body.ckey || dark_mind.get_ghost(FALSE, TRUE)))
+				return FALSE
 			continue
-		if(isbrain(dark_mind.current) || issilicon(dark_mind.current))
+		if(isbrain(body) || issilicon(body))
+			// W MMI albo borgu liczy się tylko wtedy, gdy może już odtworzyć ciało
+			if(body.ckey && (locate(/datum/action/cooldown/spell/reform_body) in body.actions))
+				return FALSE
 			continue
-		if(!dark_mind.current.ckey)
+		if(!body.ckey)
 			continue
 		return FALSE
 	return TRUE

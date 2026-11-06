@@ -967,7 +967,7 @@
 			layer_flavor = "wewnętrzna warstwa"
 			next_level = AIRLOCK_SECURITY_NONE
 		else
-			return TOOL_ACT_TOOLTYPE_SUCCESS
+			return ..() // AQ EDIT - warstwy, których łom nie zdejmuje: zwykłe podważanie (np. wyjęcie ładunku) zamiast nic nie robić
 
 	user.visible_message(span_notice("Zaczynasz podważać osłonę [src] ([layer_flavor])."))
 	if(!tool.use_tool(src, user, 40, volume=100))

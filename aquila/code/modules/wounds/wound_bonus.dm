@@ -139,10 +139,6 @@
 /obj/item/pen/edagger
 	bare_wound_bonus = 10
 
-/obj/item/projectile/beam
-	wound_bonus = -20
-	bare_wound_bonus = 10
-
 /obj/item/projectile/beam/emitter
 	wound_bonus = -40
 	bare_wound_bonus = 70

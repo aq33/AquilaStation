@@ -211,6 +211,16 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	for(var/pool in odds)
 		if(odds[pool] > 0)
 			pool_draw[pool] = odds[pool]
+	// A forced pool nothing can start from is dropped, otherwise it would stay in the file and send every weighted round back to the lobby
+	if(!length(pool_draw) && forced_pool)
+		message_admins("Weighted: wymuszona pula [pool_name(forced_pool)] nie ma trybu, który może wystartować. Wymuszenie usunięte, losowanie bez niego.")
+		log_game("WEIGHTED: forced pool [forced_pool] has no mode that can start, the force was cleared")
+		forced_pool = null
+		save()
+		odds = pool_odds(pools)
+		for(var/pool in odds)
+			if(odds[pool] > 0)
+				pool_draw[pool] = odds[pool]
 	if(!length(pool_draw)) // an admin gave weight only to pools nothing can start from
 		message_admins("Weighted: żadna pula z wagą większą od 0 nie ma trybu, który może wystartować (wagi admina: [admin_summary()]).")
 		for(var/pool in pools)

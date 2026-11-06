@@ -9,7 +9,9 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 ))
 
 /// Loads a circuit based on json data at a location. Can also load usb connections, such as arrest consoles.
-/obj/item/integrated_circuit/proc/load_circuit_data(json_data, list/errors)
+/// AQUILA: load_external_objects tylko dla adminów - inaczej wydruk z duplikatora modułów albo biblioteki układów
+/// tworzył od nowa podpięte przez USB maszyny (emitery, obudowy) i można je było powielać bez końca.
+/obj/item/integrated_circuit/proc/load_circuit_data(json_data, list/errors, load_external_objects = FALSE)
 	var/list/general_data = json_decode(json_data)
 
 	if(!general_data)
@@ -63,7 +65,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 
 			port.set_input(port_data["stored_data"])
 
-	var/list/external_objects = general_data["external_objects"]
+	var/list/external_objects = load_external_objects ? general_data["external_objects"] : null
 	for(var/identifier in external_objects)
 		var/list/object_data = external_objects[identifier]
 		var/type = text2path(object_data["type"])
@@ -243,7 +245,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 		return
 
 	var/obj/item/integrated_circuit/loaded/circuit = new(user.mob.drop_location())
-	circuit.load_circuit_data(txt, errors)
+	circuit.load_circuit_data(txt, errors, load_external_objects = TRUE)
 
 	if(length(errors))
 		to_chat(user, span_warning("Podczas kompilacji danych układu znaleziono następujące błędy:"))

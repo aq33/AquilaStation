@@ -155,7 +155,8 @@
 	return FALSE
 
 /mob/living/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced)
-	if(!forced && message && lag_switch_slowmode_blocks(message))
+	// Martwy mob w ciele mówi przez say_dead(), który sprawdza slowmode sam: drugie sprawdzenie zawsze by go blokowało
+	if(!forced && message && stat != DEAD && lag_switch_slowmode_blocks(message))
 		return
 	return ..()
 
