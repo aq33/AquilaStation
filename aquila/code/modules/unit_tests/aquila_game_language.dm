@@ -40,6 +40,12 @@
 	// Nazwa z obszarem w nawiasie (screentip "alarm powietrza (Komora Programowania SI)") i etykieta z dwukropkiem (tooltip)
 	var/with_area = i18n_en_exact("alarm powietrza (Komora Programowania SI)")
 	TEST_ASSERT(with_area == "air alarm (AI Upload Chamber)", "Name with a parenthesised area is not translated: [with_area]")
+	// Nieznany polski dopisek w nawiasie: bez mieszanki "Blood (po zaschnięciu)", szablon "[name] (po zaschnięciu)" wygrywa
+	var/dried = i18n_en_html("krew (po zaschnięciu)")
+	TEST_ASSERT(dried == "dried blood", "Polish suffix in parentheses made a mixed name: [dried]")
+	// Screentip z wstawką ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy") idzie przez szablony
+	var/screentip = i18n_en_html("[GLOB.lmb_icon] Otwórz panel serwisowy <br>", TRUE)
+	TEST_ASSERT(!findtext(screentip, "panel serwisowy"), "Screentip action with an embed is not translated: [screentip]")
 	var/label = i18n_en_html("opis<br><b>Siła:</b> niska")
 	TEST_ASSERT(findtext(label, "<b>[i18n_en_exact("Siła")]:</b>"), "Label with a colon is not translated: [label]")
 

@@ -482,7 +482,11 @@ const NewscasterChannelBox = (_) => {
             </Section>
           ) : (
             <Box width="100%" height="100%" style={{ overflowY: 'auto' }}>
-              <BlockQuote italic fontSize={1.2} className="i18n-skip">
+              <BlockQuote
+                italic
+                fontSize={1.2}
+                className={viewing_channel ? 'i18n-skip' : undefined}
+              >
                 {decodeHtmlEntities(channelDesc)}
               </BlockQuote>
             </Box>

@@ -100,6 +100,7 @@ export const setDictionary = (data: Dictionary | null) => {
     }
   }
   dictionary = data;
+  lowerExact = null;
   byAnchor = new Map();
   byTexts = new Map();
   regexCache.clear();
@@ -324,13 +325,46 @@ const lookupCased = (text: string): string | undefined => {
   const swapped =
     (first === lower ? first.toUpperCase() : lower) + text.slice(1);
   const other = exact[swapped];
-  if (other === undefined || !other) {
+  if (other === undefined) {
+    return lookupTitleCase(text);
+  }
+  if (!other) {
     return other;
   }
   const head = other.charAt(0);
   return (
     (first === lower ? head.toLowerCase() : head.toUpperCase()) + other.slice(1)
   );
+};
+
+/** Klucze słownika małymi literami, budowane przy pierwszym tekście Wielkimi Literami */
+let lowerExact: Map<string, string> | null = null;
+
+const capitalizeWords = (text: string) =>
+  text.replace(
+    /(^|[\s(])(\p{L})/gu,
+    (_, before, letter) => before + letter.toUpperCase(),
+  );
+
+/**
+ * Tekst Wielkimi Literami: okna robią z nazwy "tania zapalniczka" napis "Tania Zapalniczka"
+ * (capitalizeAll w automacie, toTitleCase w pasku tytułu). Wynik też Wielkimi Literami.
+ */
+const lookupTitleCase = (text: string): string | undefined => {
+  if (!text.includes(' ') || capitalizeWords(text) !== text) {
+    return undefined;
+  }
+  if (!lowerExact) {
+    lowerExact = new Map();
+    for (const key in dictionary!.exact) {
+      const lower = key.toLowerCase();
+      if (!lowerExact.has(lower)) {
+        lowerExact.set(lower, dictionary!.exact[key]);
+      }
+    }
+  }
+  const found = lowerExact.get(text.toLowerCase());
+  return found ? capitalizeWords(found) : undefined;
 };
 
 const isKnown = (value: string) =>
@@ -651,6 +685,45 @@ const translateMarkup = (html: string, depth: number): string => {
     (match, level: string, n: string) =>
       Number(level) === depth ? done[Number(n)] : match,
   );
+};
+
+/** Polski tekst bez tłumaczenia: polskie litery albo częste krótkie słowa */
+export const POLISH_LEFT =
+  /[ąćęłńóśźż]|(?<!\p{L})(?:aby|ani|bez|dla|jest|jak|lub|nie|oraz|się|ten|już|przy|albo|na|do|od|za|po|że)(?!\p{L})/iu;
+
+/**
+ * Wpis na kartce: tłumaczony tylko wtedy, gdy każdy polski węzeł tekstowy ma tłumaczenie.
+ * Kartki pisane przez kod (klucz monitora, raporty) przechodzą w całości, a tekst gracza
+ * prawie nigdy nie pasuje do słownika i zostaje taki, jak go napisał.
+ */
+export const translatePaperText = (html: string): string => {
+  if (!isTranslating() || !html) {
+    return html;
+  }
+  const whole = lookupExact(html.trim());
+  if (whole !== undefined) {
+    return whole;
+  }
+  let complete = true;
+  const out = html.replace(
+    /(^|>)([^<>]+)(?=<|$)/g,
+    (match, open: string, text: string) => {
+      const trimmed = text.trim();
+      if (!complete || !trimmed) {
+        return match;
+      }
+      const found = translateUiText(trimmed);
+      if (found !== trimmed && !POLISH_LEFT.test(found)) {
+        return open + replaceText(text, trimmed, found);
+      }
+      // bez tłumaczenia: polski tekst (gracza) blokuje całą kartkę, klucz czy imię nie
+      if (POLISH_LEFT.test(trimmed)) {
+        complete = false;
+      }
+      return match;
+    },
+  );
+  return complete ? out : html;
 };
 
 /**

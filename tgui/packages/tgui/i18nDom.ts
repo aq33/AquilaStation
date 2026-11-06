@@ -17,6 +17,7 @@ import {
   isProducedText,
   isTranslating,
   loadDictionary,
+  POLISH_LEFT,
   setLanguage,
   translateUiText,
 } from './i18n';
@@ -98,10 +99,6 @@ const textGroup = (node: Text): Text[] => {
   }
   return group;
 };
-
-/** Polski tekst bez tłumaczenia: polskie litery albo częste krótkie słowa */
-const POLISH_LEFT =
-  /[ąćęłńóśźż]|(?<!\p{L})(?:aby|ani|bez|dla|jest|jak|lub|nie|oraz|się|ten|już|przy|albo|na|do|od|za|po|że)(?!\p{L})/iu;
 
 const translateTextNode = (node: Text) => {
   const value = node.nodeValue;
