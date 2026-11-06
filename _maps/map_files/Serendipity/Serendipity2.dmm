@@ -4212,7 +4212,9 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/hallway/nsv/deck1/hallway)
 "uy" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2,
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	piping_layer = 4
+	},
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -6825,7 +6827,8 @@
 /area/nsv/weapons)
 "Kf" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
-	dir = 1
+	dir = 1;
+	piping_layer = 4
 	},
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/engine,
