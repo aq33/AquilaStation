@@ -7,7 +7,7 @@
 #define AI_SALVO_MAX_WAIT (6 SECONDS)
 /// Ships fire freely for this long (with a 2 s AI torpedo delay, one or two torpedoes each)
 #define AI_SALVO_WINDOW (3 SECONDS)
-/// Torpedoes are held between salvos
+/// Torpedoes are held between salvos; after a failed salvo roll the ships fire on their own for this long
 #define AI_SALVO_INTERVAL (12 SECONDS)
 #define AI_SALVO_OPEN_UNTIL 1
 #define AI_SALVO_NEXT 2
@@ -16,6 +16,8 @@
 /datum/fleet
 	/// AQUILA - lazy list, target => list(salvo open until, next salvo, waiting since)
 	var/list/ai_salvos
+	/// AQUILA - chance that the fleet coordinates its next torpedo salvo; otherwise every ship fires on its own until the next roll
+	var/ai_salvo_chance = 50
 
 /obj/structure/overmap/proc/get_ai_torpedo_launchers()
 	. = list()
@@ -48,6 +50,10 @@
 	if(length(ships) < 2 || !(ship in ships))
 		return TRUE // Nobody to fire with
 	if(!salvo[AI_SALVO_WAITING_SINCE])
+		if(!prob(ai_salvo_chance))
+			salvo[AI_SALVO_OPEN_UNTIL] = world.time + AI_SALVO_INTERVAL // No coordination this time
+			salvo[AI_SALVO_NEXT] = salvo[AI_SALVO_OPEN_UNTIL]
+			return TRUE
 		salvo[AI_SALVO_WAITING_SINCE] = world.time
 	var/all_loaded = TRUE
 	for(var/obj/structure/overmap/other as anything in ships)
