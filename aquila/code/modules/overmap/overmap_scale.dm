@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 
 /client/proc/toggle_overmap_scale()
 	set category = "Debug"
-	set name = "Toggle overmap scale"
+	set name = "Przełącz skalę overmapy"
 	set desc = "Włącza lub wyłącza spowolnienie okrętów i krótszy zasięg dział na overmapie."
 	if(!check_rights(R_DEBUG))
 		return

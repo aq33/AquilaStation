@@ -99,7 +99,7 @@
 	second.ai_temperament = "zwykły"
 	// Regression: a destroyed target leaves no salvo entry behind (hard delete)
 	var/obj/structure/overmap/small_craft/victim = allocate(/obj/structure/overmap/small_craft/combat/light)
-	LAZYSET(fleet.ai_salvos, victim, list(0, 0, 0))
+	LAZYSET(fleet.ai_salvos, victim, list(0, 0, 0, null, 0))
 	qdel(victim)
 	if(LAZYACCESS(fleet.ai_salvos, victim))
 		return "A destroyed target stayed in the fleet's salvo list"

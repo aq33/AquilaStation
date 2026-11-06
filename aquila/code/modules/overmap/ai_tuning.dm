@@ -51,4 +51,11 @@ GLOBAL_LIST_INIT(ai_tuning_settings, list(
 	var/old_value = GLOB.vars[setting[1]]
 	GLOB.vars[setting[1]] = value
 	message_admins("[key_name_admin(usr)] zmienił strojenie AI: [setting[2]] [old_value] → [value].")
+	// "May break off" above "always runs" would leave no roll band at all
+	if(GLOB.ai_fear_retreat > GLOB.ai_fear_panic)
+		if(setting[1] == "ai_fear_panic")
+			GLOB.ai_fear_retreat = GLOB.ai_fear_panic
+		else
+			GLOB.ai_fear_panic = GLOB.ai_fear_retreat
+		message_admins("Strojenie AI: próg „może przerwać walkę” ([GLOB.ai_fear_retreat]) nie może być wyżej niż „ucieka na pewno” ([GLOB.ai_fear_panic]), drugi próg wyrównany.")
 	log_admin("[key_name(usr)] set AI tuning [setting[1]] from [old_value] to [value].")

@@ -24,7 +24,7 @@
 	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
 	helper.all_ships += ship
 	caller_fleet.all_ships += ship
-	var/fail = check_responders() || check_retreat_system() || check_state(ship) || check_near_players()
+	var/fail = check_responders() || check_retreat_system() || check_state(ship) || check_near_players() || check_blocked_retreat(ship)
 	next_door.fleets -= helper
 	helper.all_ships = list()
 	caller_fleet.all_ships = list()
@@ -94,3 +94,14 @@
 		return "A fleet in the main ship's system does not count as near the players"
 	if(far_near)
 		return "A fleet in [far], away from every player, counts as near the players"
+
+/// Regression: a fleet with a ship the players took over cannot retreat, and the morale check must not start
+/// (and announce) a retreat it can never finish, every few seconds
+/datum/unit_test/aquila_fleet_distress/proc/check_blocked_retreat(obj/structure/overmap/ship)
+	ship.ai_controlled = FALSE
+	var/allowed = caller_fleet.can_ai_fleet_retreat()
+	ship.ai_controlled = TRUE
+	if(allowed)
+		return "A fleet with a player-crewed ship was allowed to retreat (it would drag the crew along)"
+	if(!caller_fleet.can_ai_fleet_retreat())
+		return "A fleet of AI ships with a neighbouring system could not retreat"
