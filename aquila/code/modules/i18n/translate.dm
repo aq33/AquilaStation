@@ -257,6 +257,23 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	if(!istext(text) || !length(text))
 		return text
 	if(findtext(text, "<"))
+		// kod okna (<script>, <style>) zostaje bez zmian, tłumaczymy tylko HTML między blokami
+		var/static/regex/code_block = regex(@"<(?:script|style)\b[\s\S]*?</(?:script|style)\s*>", "i")
+		if((findtext(text, "<script") || findtext(text, "<style")) && code_block.Find(text))
+			var/list/blocks = list()
+			var/block_end
+			do
+				// regex bez "g" nie ustawia next, więc koniec bloku z długości dopasowania
+				block_end = code_block.index + length(code_block.match)
+				blocks += list(list(code_block.index, block_end))
+			while(code_block.Find(text, block_end))
+			// wycinki tłumaczymy dopiero po zebraniu bloków, bo rekurencja używa tego samego regexa
+			var/out = ""
+			var/position = 1
+			for(var/list/block as anything in blocks)
+				out += i18n_en_html(copytext(text, position, block[1]), with_templates) + copytext(text, block[1], block[2])
+				position = block[2]
+			return out + i18n_en_html(copytext(text, position), with_templates)
 		// HTML (screentipy) jest zmienny i tani: tylko stałe, węzeł po węźle, bez pamięci podręcznej całości
 		. = i18n_en_exact(text)
 		if(isnull(.))
