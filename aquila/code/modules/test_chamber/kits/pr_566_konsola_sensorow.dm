@@ -1,8 +1,8 @@
-// aq33/AquilaStation#568 - konsola sensorów i operator radaru (aquila/code/modules/overmap/sensor_console.dm)
+// aq33/AquilaStation#566 - konsola sensorów i operator radaru (aquila/code/modules/overmap/sensor_console.dm)
 
-/datum/test_chamber_kit/pr_568
+/datum/test_chamber_kit/pr_566_konsola
 	name = "Konsola sensorów i operator radaru"
-	pr = "aq33/AquilaStation#568"
+	pr = "aq33/AquilaStation#566"
 	description = "Zestaw stawia konsolę sensorów, DRADIS i konsolę taktyczną (wszystkie widzą okręt główny) oraz przywołuje dwie nieuzbrojone fregaty Syndykatu AI, około 40 i 70 pól od okrętu. Fregaty gonią, ale nie strzelają. Najlepiej we dwie osoby: operator przy konsoli sensorów, działonowy przy taktycznej. \
 	1) Konsola sensorów: przełącz Nasłuch / Radar aktywny; w radarze aktywnym impulsy idą same co ustawiony odstęp (−/+), także po zamknięciu okna. Pasek impulsu ładuje się po każdym impulsie. \
 	2) Kliknij fregatę na ekranie albo na liście: karta pokazuje odległość, namiar i dokładność pozycji. Ustaw Cel główny, potem drugą fregatę też jako główny: pierwsza ma zmienić się na drugorzędną. \
@@ -16,7 +16,7 @@
 		/obj/machinery/computer/ship/tactical = 1,
 	)
 
-/datum/test_chamber_kit/pr_568/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_566_konsola/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
 	if(!main?.current_system || !main.z)
