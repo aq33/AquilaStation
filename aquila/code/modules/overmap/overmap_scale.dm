@@ -19,8 +19,6 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #define AI_TORPEDO_STANDOFF 40
 /// Dead band around the standoff distance in which the AI orbits instead of closing or opening the range
 #define AI_STANDOFF_BAND 5
-/// Damage multiplier for projectiles an AI ship fires at another AI ship
-#define AI_VS_AI_DAMAGE_MULT 0.4
 
 /// Speed multiplier for this ship right now; 1 off the overmap (fighters in a hangar, ships on station levels)
 /obj/structure/overmap/proc/get_overmap_speed_mult()
@@ -45,7 +43,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(shooter) || !shooter.ai_controlled)
 		return ..()
 	var/full_damage = P.damage
-	P.damage *= AI_VS_AI_DAMAGE_MULT
+	P.damage *= GLOB.ai_vs_ai_damage_mult // ai_tuning.dm
 	. = ..()
 	// A round that pierces or bounces off a shield goes on at full damage, it may hit a player ship next
 	if(!QDELETED(P))
@@ -135,4 +133,3 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #undef AI_CARRIER_STANDOFF
 #undef AI_TORPEDO_STANDOFF
 #undef AI_STANDOFF_BAND
-#undef AI_VS_AI_DAMAGE_MULT

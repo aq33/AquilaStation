@@ -16,8 +16,8 @@
 /datum/fleet
 	/// AQUILA - lazy list, target => list(salvo open until, next salvo, waiting since)
 	var/list/ai_salvos
-	/// AQUILA - chance that the fleet coordinates its next torpedo salvo; otherwise every ship fires on its own until the next roll
-	var/ai_salvo_chance = 50
+	/// AQUILA - chance that the fleet coordinates its next torpedo salvo, otherwise every ship fires on its own until the next roll; null uses GLOB.ai_salvo_chance (ai_tuning.dm)
+	var/ai_salvo_chance
 
 /obj/structure/overmap/proc/get_ai_torpedo_launchers()
 	. = list()
@@ -50,7 +50,7 @@
 	if(length(ships) < 2 || !(ship in ships))
 		return TRUE // Nobody to fire with
 	if(!salvo[AI_SALVO_WAITING_SINCE])
-		if(!prob(ai_salvo_chance))
+		if(!prob(isnull(ai_salvo_chance) ? GLOB.ai_salvo_chance : ai_salvo_chance))
 			salvo[AI_SALVO_OPEN_UNTIL] = world.time + AI_SALVO_INTERVAL // No coordination this time
 			salvo[AI_SALVO_NEXT] = salvo[AI_SALVO_OPEN_UNTIL]
 			return TRUE

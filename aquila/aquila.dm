@@ -826,6 +826,7 @@
 #include "code\modules\overmap\fighter_toilet.dm"
 #include "code\modules\overmap\start_system_protection.dm"
 #include "code\modules\overmap\mission_choice.dm"
+#include "code\modules\overmap\ai_tuning.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\overmap\ai_targeting.dm"
