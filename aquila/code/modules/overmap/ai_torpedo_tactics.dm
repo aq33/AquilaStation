@@ -24,6 +24,8 @@
 
 /// Switched off only by the AI sandbox, to compare battles with and without these tactics (AI morale switches them off too)
 GLOBAL_VAR_INIT(ai_torpedo_tactics_enabled, TRUE)
+/// Dodging alone, so the sandbox can record the aq33/AquilaStation#569 setup (salvos without dodging)
+GLOBAL_VAR_INIT(ai_torpedo_dodge_enabled, TRUE)
 
 /datum/fleet
 	/// AQUILA - lazy list, target => list(salvo open until, next salvo, waiting since)
@@ -102,7 +104,7 @@ GLOBAL_VAR_INIT(ai_torpedo_tactics_enabled, TRUE)
 
 /// An agile AI ship turns across the path of the closest torpedo homing on it; reckless ones don't bother
 /obj/structure/overmap/proc/can_ai_dodge()
-	return GLOB.ai_morale_enabled && GLOB.ai_torpedo_tactics_enabled && ai_controlled && mass < MASS_LARGE && speed_limit > 0 && ai_temperament != AI_TEMPERAMENT_RECKLESS
+	return GLOB.ai_morale_enabled && GLOB.ai_torpedo_tactics_enabled && GLOB.ai_torpedo_dodge_enabled && ai_controlled && mass < MASS_LARGE && speed_limit > 0 && ai_temperament != AI_TEMPERAMENT_RECKLESS
 
 /// Where to fly to get out of the way of the closest incoming torpedo, or null
 /obj/structure/overmap/proc/get_ai_dodge_point()

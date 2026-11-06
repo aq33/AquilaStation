@@ -5,7 +5,7 @@
 /// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>,
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
 /// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
-/// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_torpedo_tactics=1 (no torpedo salvos or dodging),
+/// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_torpedo_tactics=1 (no torpedo salvos or dodging), ai_sandbox_no_dodge=1,
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -68,6 +68,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_torpedo_tactics"]))
 		GLOB.ai_torpedo_tactics_enabled = FALSE
 		event("Salwy i unikanie torped wyłączone")
+	if(text2num(world.params["ai_sandbox_no_dodge"]))
+		GLOB.ai_torpedo_dodge_enabled = FALSE
+		event("Unikanie torped wyłączone")
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
