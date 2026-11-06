@@ -4001,6 +4001,14 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | DRADIS | DRADIS | m; istniejące (DRADIS-u) |
 | cargo DRADIS | DRADIS ładunkowy | m; istniejące |
 | radar / sensors | radar / czujniki | m / mnoga; istniejące |
+| sensor console | konsola sensorów | ż; nowe (nazwa od graczy; „czujniki” zostają dla pojedynczych czujników) |
+| radar operator | operator radaru / operator sensorów | m; nowe |
+| passive listening (sensor mode) | nasłuch | m; nowe |
+| active radar | radar aktywny | m; nowe |
+| radar pulse | impuls radaru | m; istniejące |
+| designate a target | wyznaczyć cel | czas.; nowe |
+| primary / secondary target | cel główny / drugorzędny | m; nowe |
+| contact (sensor) | kontakt | m; istniejące (Kontakt DRADIS) |
 | hull | kadłub | m; istniejące |
 | hull plating | poszycie kadłuba | n; istniejące |
 | armour (ship) | pancerz | m; istniejące |

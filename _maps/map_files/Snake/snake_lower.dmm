@@ -347,6 +347,18 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
+"aN" = (
+/obj/machinery/computer/ship/dradis/sensors{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/bridge/cic)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -12747,18 +12759,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"QH" = (
-/obj/structure/frame/computer{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/bridge/cic)
 "QI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer2{
 	dir = 10
@@ -60935,7 +60935,7 @@ Eh
 Us
 tc
 BP
-QH
+aN
 mn
 aJ
 aJ

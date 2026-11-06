@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/machinery/computer/ship/dradis/sensors/console{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/bridge/cic)
 "abB" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -56486,7 +56492,7 @@ hcT
 hcT
 qti
 txi
-jKs
+aaa
 psV
 ogb
 gyC
