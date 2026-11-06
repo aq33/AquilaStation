@@ -15,7 +15,8 @@ import subprocess
 import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_cache = None
+_UNSET = object()
+_cache = _UNSET
 
 
 def escape_literal(text):
@@ -36,8 +37,9 @@ def literal(item):
 def dump():
     """Lista {file, line, kind, texts, slots, literal} wszystkich okien albo None (bez Node)."""
     global _cache
-    if _cache is not None:
+    if _cache is not _UNSET:
         return _cache
+    _cache = None  # porażka też zostaje zapamiętana: bez Node nie próbujemy przy każdym pliku
     tgui = os.path.join(ROOT, "tgui")
     releases = os.path.join(tgui, ".yarn", "releases")
     node = os.path.join(ROOT, "tools", "bootstrap", "node.bat" if os.name == "nt" else "node")

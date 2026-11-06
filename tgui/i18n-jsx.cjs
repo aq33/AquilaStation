@@ -355,6 +355,7 @@ if (require.main === module && process.argv[2] === 'dump') {
           out.push({
             file: rel,
             line: source.slice(0, item.start).split('\n').length,
+            endLine: source.slice(0, item.end).split('\n').length,
             kind: item.kind,
             texts: item.texts,
             slots: item.slots,

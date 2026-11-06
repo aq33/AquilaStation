@@ -92,6 +92,7 @@ def jsx_items():
 def main():
     yarn = next(f for f in os.listdir("tgui/.yarn/releases") if f.endswith(".cjs"))
     node = os.path.abspath("tools/bootstrap/node.bat" if os.name == "nt" else "tools/bootstrap/node")
+    os.makedirs("data", exist_ok=True)  # świeży klon nie ma data/, a zrzut tam pisze
     subprocess.run([node, f".yarn/releases/{yarn}", "node", "i18n-jsx.cjs", "dump", os.path.abspath(JSX_DUMP)],
                    cwd="tgui", shell=os.name == "nt", check=True)
     os.makedirs("data", exist_ok=True)
