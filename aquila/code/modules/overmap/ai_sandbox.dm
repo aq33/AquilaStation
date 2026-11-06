@@ -5,6 +5,7 @@
 /// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>,
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
 /// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
+/// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_torpedo_tactics=1 (no torpedo salvos or dodging),
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -43,6 +44,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	/// list of list("t", "text")
 	var/list/events = list()
 
+/datum/ai_sandbox
+	/// Torpedo tactics comparison (ai_torpedo_tactics.dm): torpedoes fired, torpedoes that reached a ship, dodges started
+	var/list/torpedo_stats = list("fired" = 0, "hit" = 0, "dodges" = 0)
+
 /datum/ai_sandbox/proc/event(text)
 	events += list(list("t" = round((world.time - start_time) / 10, 0.1), "text" = text))
 	log_world("AI SANDBOX: [text]")
@@ -57,6 +62,12 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.overmap_scale_enabled = FALSE
 		GLOB.ai_morale_enabled = FALSE
 		event("Tryb starej gry: sygnatury, skala overmapy i morale AI wyłączone")
+	if(text2num(world.params["ai_sandbox_no_sensors"]))
+		GLOB.sensor_signature_enabled = FALSE
+		event("Sygnatury okrętów wyłączone")
+	if(text2num(world.params["ai_sandbox_no_torpedo_tactics"]))
+		GLOB.ai_torpedo_tactics_enabled = FALSE
+		event("Salwy i unikanie torped wyłączone")
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
@@ -162,7 +173,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames)
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats)
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
 
@@ -181,6 +192,22 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 /obj/structure/overmap/announce_ai_escape(message)
 	GLOB.ai_sandbox?.event(message)
 	return ..()
+
+/obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	. = ..()
+	if(GLOB.ai_sandbox && istype(., /obj/item/projectile/guided_munition/torpedo))
+		GLOB.ai_sandbox.torpedo_stats["fired"]++
+
+/obj/structure/overmap/bullet_act(obj/item/projectile/P)
+	if(GLOB.ai_sandbox && istype(P, /obj/item/projectile/guided_munition/torpedo))
+		GLOB.ai_sandbox.torpedo_stats["hit"]++
+	return ..()
+
+/obj/structure/overmap/get_ai_dodge_point()
+	var/was_dodging = world.time <= ai_dodge_until
+	. = ..()
+	if(. && !was_dodging && GLOB.ai_sandbox)
+		GLOB.ai_sandbox.torpedo_stats["dodges"]++
 
 /obj/structure/overmap/start_ai_flight()
 	GLOB.ai_sandbox?.event("[src] ([ai_temperament], strach [round(ai_fear)]) przerywa walkę i ucieka")
