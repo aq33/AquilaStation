@@ -4,6 +4,7 @@
 /// The record goes to data/ai_sandbox.json, then the world shuts down. Nothing here is compiled into a normal build.
 /// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>,
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
+/// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -51,6 +52,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(world.params["ai_sandbox_out"])
 		output_file = world.params["ai_sandbox_out"]
 	fair = text2num(world.params["ai_sandbox_fair"]) ? TRUE : FALSE
+	if(text2num(world.params["ai_sandbox_legacy"]))
+		GLOB.sensor_signature_enabled = FALSE
+		GLOB.overmap_scale_enabled = FALSE
+		GLOB.ai_morale_enabled = FALSE
+		event("Tryb starej gry: sygnatury, skala overmapy i morale AI wyłączone")
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
