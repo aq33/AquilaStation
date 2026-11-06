@@ -1859,6 +1859,7 @@
 #include "code\modules\i18n\translate.dm"
 #include "code\modules\i18n\browser_windows.dm"
 #include "code\modules\i18n\hud_icons.dm"
+#include "code\modules\i18n\language_choice.dm"
 #include "code\modules\i18n\translation_api.dm"
 #include "code\modules\i18n\foreigner.dm"
 #include "code\modules\i18n\translator_item.dm"

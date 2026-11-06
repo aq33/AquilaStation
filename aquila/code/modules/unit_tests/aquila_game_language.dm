@@ -46,7 +46,19 @@
 	// Okna HTML (browse, /datum/browser): węzły tekstowe także przez szablony, wcięcia zostają
 	var/window_html = i18n_en_html("<div>\n\tLosowo: wył.\n</div><b>Ciśnienie:</b>", TRUE)
 	TEST_ASSERT(findtext(window_html, "\n\t[i18n_en_template("Losowo: wył.")]\n") && findtext(window_html, "<b>[i18n_en_exact("Ciśnienie")]:</b>"), "HTML window text is not translated: [window_html]")
-	TEST_ASSERT(i18n_browse_html(viewer, "<b>Ciśnienie:</b>") == "<b>Ciśnienie:</b>", "HTML window changed for a player without English")
+	var/with_code = i18n_en_html("<script>skrzynka narzędziowa</script><b>skrzynka narzędziowa</b><STYLE>skrzynka narzędziowa</STYLE>", TRUE)
+	TEST_ASSERT(with_code == "<script>skrzynka narzędziowa</script><b>toolbox</b><STYLE>skrzynka narzędziowa</STYLE>", "Script or style block in an HTML window was translated: [with_code]")
+	TEST_ASSERT(i18n_browse_html(viewer,"<b>Ciśnienie:</b>") == "<b>Ciśnienie:</b>", "HTML window changed for a player without English")
+
+	// Pierwsze wejście: bez wyboru języka lobby nie wpuszcza do gry, ale zostawia resztę przycisków
+	TEST_ASSERT(i18n_lobby_href_joins(list("ready" = "1")) && i18n_lobby_href_joins(list("ready" = "[PLAYER_READY_TO_OBSERVE]")), "Ready or observe is not blocked before choosing a language")
+	TEST_ASSERT(i18n_lobby_href_joins(list("late_join" = "1")) && i18n_lobby_href_joins(list("SelectedJob" = "Captain")), "Late join is not blocked before choosing a language")
+	TEST_ASSERT(!i18n_lobby_href_joins(list("ready" = "[PLAYER_NOT_READY]")) && !i18n_lobby_href_joins(list("show_preferences" = "1")) && !i18n_lobby_href_joins(list("manifest" = "1")), "Lobby blocks a button that does not join the game")
+	var/datum/preferences/new_prefs = new(null)
+	TEST_ASSERT(!new_prefs.game_language_chosen, "A new player starts with a chosen language")
+	TEST_ASSERT(!new_prefs.choose_game_language("de") && !new_prefs.game_language_chosen, "An unknown language was accepted")
+	TEST_ASSERT(new_prefs.choose_game_language(GAME_LANGUAGE_EN) && new_prefs.game_language == GAME_LANGUAGE_EN && new_prefs.game_language_chosen, "Choosing English did not set the language")
+	TEST_ASSERT(new_prefs.choose_game_language(GAME_LANGUAGE_PL) && new_prefs.game_language == GAME_LANGUAGE_PL, "Switching back to Polish failed")
 
 	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
 	for(var/polish_key in GLOB.i18n_hud_icons_en)

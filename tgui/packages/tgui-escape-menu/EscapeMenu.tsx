@@ -62,6 +62,8 @@ export type ServerState = {
   suicideIcon: string | null;
   /** Klawisze gracza do strony Pomoc, odświeżane przy otwarciu menu. */
   controls: ControlSection[];
+  /** AQUILA: język gry (moduł aquila/code/modules/i18n); bez niego nie ma przełącznika */
+  gameLanguage?: string;
 };
 
 type State = {
