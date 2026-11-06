@@ -44,6 +44,8 @@
 	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
 		if(antag.owner?.key != key || antag.type == /datum/antagonist/custom)
 			continue
+		if(istype(antag, /datum/antagonist/ert)) // ERT wysyła admin, a cel misji jest zaliczony z góry: bez aquilosów za tę rolę
+			continue
 		for(var/datum/objective/objective as anything in antag.objectives)
 			if(objective.optional || is_type_in_typecache(objective, always_completed_objectives))
 				continue

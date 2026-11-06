@@ -286,6 +286,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `unreachable_items_reset_at` | `nsv13/code/modules/overmap/knpc.dm` (`acquire_weapon/action()`) | Lista nieosiągalnych broni rosła przez całą rundę |
 | `SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ATOM_SOLD, thing, sold, allowed_categories)` | `code/modules/cargo/exports.dm` (`export_item_and_contents()`, `export_contents()`) | Sygnał niesie kategorie eksportu, żeby sprzedaż padem piratów (`EXPORT_PIRATE`) nie dawała nauce nagród za artefakty xenoarch |
 | `success_spawn = TRUE` | `code/modules/antagonists/ninja/ninja_event.dm`, `code/modules/events/devil.dm` (`spawn_role()`) | Bez tego `kill()` po udanym evencie zmniejszał `occurrences` i `max_occurrences` nie działało |
+| `!istype(..., /obj/item/card/id/syndicate/undercover)` | `code/modules/mob/living/carbon/human/human.dm` (`assess_threat()`), `human_helpers.dm` (`can_track()`), `nsv13/code/modules/overmap/knpc.dm` | Undercover I.D. detektywa dziedziczyła po karcie agenta -5 zagrożenia, ukrycie przed kamerami SI i kopiowanie dostępów. Test: `aquila_review_undercover_threat` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

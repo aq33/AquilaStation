@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 		return FALSE
 	var/obj/item/card/id/ID = H.get_idcard()
 	if(ID)
-		if(istype(ID, /obj/item/card/id/syndicate) || istype(ID, /obj/item/card/id/syndicate_command) || istype(ID, /obj/item/card/id/syndi_crew))
+		if((istype(ID, /obj/item/card/id/syndicate) && !istype(ID, /obj/item/card/id/syndicate/undercover)) || istype(ID, /obj/item/card/id/syndicate_command) || istype(ID, /obj/item/card/id/syndi_crew)) // AQ EDIT - Undercover I.D. nie kopiuje dostępów
 			if(!victim.dropItemToGround(stolen))
 				return FALSE
 			H.visible_message("<span class='warning'>[H] wyrywa [stolen]. </span>")
