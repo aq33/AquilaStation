@@ -209,7 +209,7 @@
 			qdel(o)
 
 /datum/antagonist/cult/proc/admin_give_devotion(mob/admin)
-	var/amount = input(admin, i18n_dialog_text(admin, "Ile oddania chcesz dać?"), i18n_dialog_text(admin, "Dawanie oddania")) as null|num // AQ EDIT - i18n okienka
+	var/amount = input(admin, "Ile oddania chcesz dać?", "Dawanie oddania") as null|num
 	if (!amount)
 		return
 	gain_devotion(amount, DEVOTION_TIER_4)

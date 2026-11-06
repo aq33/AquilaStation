@@ -14,7 +14,7 @@
 
 /datum/clockcult/scripture/clockwork_armaments/invoke_success()
 	var/mob/living/M = invoker
-	var/choice = i18n_input_choice(M, input(M,i18n_dialog_text(M, "Jaką broń chcesz przywołać?"), i18n_dialog_text(M, "Mechaniczne Uzbrojenie")) as anything in i18n_input_shown(M, list("Mosiężna włócznia","Mosiężny młot bojowy","Mosiężny miecz", "Mosiężny łuk", "Standardowy ekwipunek (bez broni)"))) // AQ EDIT - i18n okienka
+	var/choice = input(M,"Jaką broń chcesz przywołać?", "Mechaniczne Uzbrojenie") as anything in list("Mosiężna włócznia","Mosiężny młot bojowy","Mosiężny miecz", "Mosiężny łuk", "Standardowy ekwipunek (bez broni)")
 	var/datum/antagonist/servant_of_ratvar/servant = is_servant_of_ratvar(M)
 	if(!servant)
 		return FALSE

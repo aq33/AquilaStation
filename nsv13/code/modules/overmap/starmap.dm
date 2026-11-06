@@ -59,7 +59,7 @@
 		if("shipinf")
 			screen = SHIPINFO
 		if("sector")
-			var/sector = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Na który sektor przełączyć?"),i18n_dialog_text(usr, "Wybór sektora"), null) as null|anything in i18n_input_shown(usr, list(ALL_STARMAP_SECTORS))) // AQ EDIT - i18n okienka
+			var/sector = input(usr, "Na który sektor przełączyć?","Wybór sektora", null) as null|anything in list(ALL_STARMAP_SECTORS)
 			if(!sector)
 				return
 			current_sector = sector

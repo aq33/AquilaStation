@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(critical_muni_items)
 		user.visible_message("<span class='notice'>Pinpointer [user] nie wykrywa sygnału.</span>", "<span class='notice'>Twój pinpointer nie wykrywa sygnału.</span>")
 		return
 
-	var/A = input(user, i18n_dialog_text(user, "Nadajnik do śledzenia"), i18n_dialog_text(user, "Namierzanie")) in sortList(found_items) // AQ EDIT - i18n okienka
+	var/A = input(user, "Nadajnik do śledzenia", "Namierzanie") in sortList(found_items)
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 

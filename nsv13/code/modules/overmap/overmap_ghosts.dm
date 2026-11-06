@@ -12,7 +12,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/target_ghost
-		switch(i18n_alert(usr, usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Nabór otwarty", "Wskaż gracza", "Anuluj")) // AQ EDIT - i18n okienka
+		switch(alert(usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Nabór otwarty", "Wskaż gracza", "Anuluj"))
 			if("Anuluj")
 				return
 			if("Nabór otwarty")
@@ -23,7 +23,7 @@
 				else
 					return
 			if("Wskaż gracza")
-				target_ghost = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz gracza, który będzie pilotował okręt widmo:"), i18n_dialog_text(usr, "Wybierz gracza")) as null|anything in i18n_input_shown(usr, GLOB.clients)) // AQ EDIT - i18n okienka
+				target_ghost = input(usr, "Wybierz gracza, który będzie pilotował okręt widmo:", "Wybierz gracza") as null|anything in GLOB.clients
 
 		ghost_ship(target_ghost)
 		message_admins("[key_name_admin(usr)] oddaje [src] duchowi jako okręt widmo!")

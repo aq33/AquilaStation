@@ -306,7 +306,7 @@
 	var/list/options = gps_locators
 	if(area_aim)
 		options += GLOB.teleportlocs
-	var/V = input(user,i18n_dialog_text(user, "Wybierz cel"), i18n_dialog_text(user, "Wybierz cel"),null) in options|null // AQ EDIT - i18n okienka
+	var/V = input(user,"Wybierz cel", "Wybierz cel",null) in options|null
 	target = options[V]
 
 

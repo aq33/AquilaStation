@@ -7,10 +7,10 @@
 
 	if (SSdbcore.IsConnected())
 		if (!check_rights(R_DEBUG,0))
-			i18n_alert(usr, "Baza danych jest już połączona! (Tylko osoby z +debug mogą wymusić ponowne połączenie)", "Baza danych jest już połączona!") // AQ EDIT - i18n okienka
+			alert("Baza danych jest już połączona! (Tylko osoby z +debug mogą wymusić ponowne połączenie)", "Baza danych jest już połączona!")
 			return
 
-		var/reconnect = i18n_alert(usr, "Baza danych jest już połączona! Jeśli *WIESZ*, że to nieprawda, możesz wymusić ponowne połączenie", "Baza danych jest już połączona!", "Wymuś ponowne połączenie", "Anuluj") // AQ EDIT - i18n okienka
+		var/reconnect = alert("Baza danych jest już połączona! Jeśli *WIESZ*, że to nieprawda, możesz wymusić ponowne połączenie", "Baza danych jest już połączona!", "Wymuś ponowne połączenie", "Anuluj")
 		if (reconnect != "Wymuś ponowne połączenie")
 			return
 

@@ -4,7 +4,7 @@
 
 	var/datum/map_template/template
 
-	var/map = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz szablon mapy do postawienia w twoim OBECNYM MIEJSCU"),i18n_dialog_text(src, "Postaw szablon mapy")) as null|anything in i18n_input_shown(src, sortList(SSmapping.map_templates))) // AQ EDIT - i18n okienka
+	var/map = input(src, "Wybierz szablon mapy do postawienia w twoim OBECNYM MIEJSCU","Postaw szablon mapy") as null|anything in sortList(SSmapping.map_templates)
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]
@@ -19,7 +19,7 @@
 		item.plane = ABOVE_LIGHTING_PLANE
 		preview += item
 	images += preview
-	if(i18n_alert(usr, src,"Potwierdź miejsce.","Potwierdzenie szablonu","Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert(src,"Potwierdź miejsce.","Potwierdzenie szablonu","Tak","Nie") == "Tak")
 		if(template.load(T, centered = TRUE))
 			message_admins("<span class='adminnotice'>[key_name_admin(src)] stawia szablon mapy ([template.name]) w [ADMIN_COORDJMP(T)]</span>")
 		else
@@ -30,7 +30,7 @@
 	set category = "Debug"
 	set name = "Map Template - Upload"
 
-	var/map = input(src, i18n_dialog_text(src, "Wybierz szablon mapy do wgrania do magazynu szablonów"),i18n_dialog_text(src, "Wgraj szablon mapy")) as null|file // AQ EDIT - i18n okienka
+	var/map = input(src, "Wybierz szablon mapy do wgrania do magazynu szablonów","Wgraj szablon mapy") as null|file
 	if(!map)
 		return
 	if(copytext("[map]", -4) != ".dmm")//4 == length(".dmm")
@@ -38,7 +38,7 @@
 		return
 	var/datum/map_template/M
 	var/type
-	switch(i18n_alert(usr, src, "Jaki to rodzaj mapy?", "Rodzaj mapy", "Zwykła", "Prom", "Anuluj")) // AQ EDIT - i18n okienka
+	switch(alert(src, "Jaki to rodzaj mapy?", "Rodzaj mapy", "Zwykła", "Prom", "Anuluj"))
 		if("Zwykła")
 			type = "Normal"
 			M = new /datum/map_template(map, "[map] - Uploaded by [ckey] at [time2text(world.timeofday,"YYYY-MM-DD hh:mm:ss")]", TRUE)
@@ -58,11 +58,11 @@
 		report_link = " - <a href='byond://?src=[REF(report)];[HrefToken(TRUE)];show=1'>raport walidacji</a>"
 		to_chat(src, "<span class='warning'>Szablon mapy '[map]' <a href='byond://?src=[REF(report)];[HrefToken()];show=1'>nie przeszedł walidacji</a>.</span>")
 		if(report.loadable)
-			var/response = i18n_alert(usr, src, "Mapa nie przeszła walidacji. Czy mimo to chcesz ją wczytać?", "Błędy mapy", "Anuluj", "Wgraj mimo to") // AQ EDIT - i18n okienka
+			var/response = alert(src, "Mapa nie przeszła walidacji. Czy mimo to chcesz ją wczytać?", "Błędy mapy", "Anuluj", "Wgraj mimo to")
 			if(response != "Wgraj mimo to")
 				return
 		else
-			i18n_alert(usr, src, "Mapa nie przeszła walidacji i nie można jej wczytać.", "Błędy mapy", "No trudno") // AQ EDIT - i18n okienka
+			alert(src, "Mapa nie przeszła walidacji i nie można jej wczytać.", "Błędy mapy", "No trudno")
 			return
 	switch(type)
 		if("Normal")

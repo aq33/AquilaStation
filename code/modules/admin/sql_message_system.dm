@@ -6,7 +6,7 @@
 		return
 	var/target_ckey = ckey(target_key)
 	if(!target_key && (type == "note" || type == "message" || type == "watchlist entry"))
-		var/new_key = input(usr,i18n_dialog_text(usr, "Dla kogo chcesz utworzyć: [type]?"),i18n_dialog_text(usr, "Podaj klucz lub ckey"),null) as null|text // AQ EDIT - i18n okienka
+		var/new_key = input(usr,"Dla kogo chcesz utworzyć: [type]?","Podaj klucz lub ckey",null) as null|text
 		if(!new_key)
 			return
 		var/new_ckey = ckey(new_key)
@@ -18,7 +18,7 @@
 			qdel(query_find_ckey)
 			return
 		if(!query_find_ckey.NextRow())
-			if(i18n_alert(usr, usr, "[new_key]/([new_ckey]) nie był wcześniej widziany. Na pewno chcesz mu utworzyć: [type]?", "Nieznany ckey", "Tak", "Nie", "Anuluj") != "Tak") // AQ EDIT - i18n okienka
+			if(alert(usr, "[new_key]/([new_ckey]) nie był wcześniej widziany. Na pewno chcesz mu utworzyć: [type]?", "Nieznany ckey", "Tak", "Nie", "Anuluj") != "Tak")
 				qdel(query_find_ckey)
 				return
 		qdel(query_find_ckey)
@@ -35,7 +35,7 @@
 	if(!target_ckey)
 		target_ckey = admin_ckey
 	if(!text)
-		text = input(usr,i18n_dialog_text(usr, "Napisz: [type]"),i18n_dialog_text(usr, "Create [type]")) as null|message // AQ EDIT - i18n okienka
+		text = input(usr,"Napisz: [type]","Create [type]") as null|message
 		if(!text)
 			return
 	if(!timestamp)
@@ -46,7 +46,7 @@
 			server_name = ssqlname
 
 	if(isnull(secret))
-		switch(i18n_alert(usr, "Ukryć notatkę przed graczami?", "Tajna notatka?","Tak","Nie","Anuluj")) // AQ EDIT - i18n okienka
+		switch(alert("Ukryć notatkę przed graczami?", "Tajna notatka?","Tak","Nie","Anuluj"))
 			if("Tak")
 				secret = 1
 			if("Nie")
@@ -57,8 +57,8 @@
 	if(CONFIG_GET(flag/manual_note_expiry) && (type in list("note", "message")))
 		expiry = -1
 	else if(isnull(expiry))
-		if(i18n_alert(usr, usr, "Ustawić czas wygaśnięcia? Wygasłe wiadomości są ukrywane tak jak usunięte.", "Czas wygaśnięcia?", "Tak", "Nie", "Anuluj") == "Tak") // AQ EDIT - i18n okienka
-			var/expire_time = input(i18n_dialog_text(usr, "Ustaw czas wygaśnięcia ([type]) w formacie RRRR-MM-DD GG:MM:SS. Wszystkie czasy według czasu serwera. GG:MM:SS jest opcjonalne, zapis 24-godzinny. Musi być późniejszy niż obecny czas, z oczywistych powodów."), i18n_dialog_text(usr, "Czas wygaśnięcia"), SQLtime()) as null|text // AQ EDIT - i18n okienka
+		if(alert(usr, "Ustawić czas wygaśnięcia? Wygasłe wiadomości są ukrywane tak jak usunięte.", "Czas wygaśnięcia?", "Tak", "Nie", "Anuluj") == "Tak")
+			var/expire_time = input("Ustaw czas wygaśnięcia ([type]) w formacie RRRR-MM-DD GG:MM:SS. Wszystkie czasy według czasu serwera. GG:MM:SS jest opcjonalne, zapis 24-godzinny. Musi być późniejszy niż obecny czas, z oczywistych powodów.", "Czas wygaśnięcia", SQLtime()) as null|text
 			if(!expire_time)
 				return
 			var/datum/DBQuery/query_validate_expire_time = SSdbcore.NewQuery(
@@ -79,7 +79,7 @@
 	if(expiry == -1)
 		expiry = null //This is so garbage and hacky.
 	if(type == "note" && isnull(note_severity))
-		note_severity = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in i18n_input_shown(usr, list("High", "Medium", "Minor", "None"))) // AQ EDIT - i18n okienka
+		note_severity = input("Ustaw wagę notatki.", "Waga notatki", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 		if(!note_severity)
 			return
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
@@ -186,7 +186,7 @@
 		var/target_key = query_find_edit_message.item[2]
 		var/admin_key = query_find_edit_message.item[3]
 		var/old_text = query_find_edit_message.item[4]
-		var/new_text = input(i18n_dialog_text(usr, "Wpisz nową treść ([type])"), i18n_dialog_text(usr, "Nowa treść ([type])"), "[old_text]") as null|message // AQ EDIT - i18n okienka
+		var/new_text = input("Wpisz nową treść ([type])", "Nowa treść ([type])", "[old_text]") as null|message
 		if(!new_text)
 			qdel(query_find_edit_message)
 			return
@@ -237,7 +237,7 @@
 		var/admin_key = query_find_edit_expiry_message.item[3]
 		var/old_expiry = query_find_edit_expiry_message.item[4]
 		var/new_expiry
-		var/expire_time = input(i18n_dialog_text(usr, "Ustaw czas wygaśnięcia ([type]) w formacie YYYY-MM-DD HH:MM:SS. Wszystkie czasy są czasem serwera. HH:MM:SS jest opcjonalne, w formacie 24-godzinnym. Z oczywistych powodów musi to być czas późniejszy niż obecny. Wpisz -1, by usunąć czas wygaśnięcia."), i18n_dialog_text(usr, "Czas wygaśnięcia"), old_expiry) as null|text // AQ EDIT - i18n okienka
+		var/expire_time = input("Ustaw czas wygaśnięcia ([type]) w formacie YYYY-MM-DD HH:MM:SS. Wszystkie czasy są czasem serwera. HH:MM:SS jest opcjonalne, w formacie 24-godzinnym. Z oczywistych powodów musi to być czas późniejszy niż obecny. Wpisz -1, by usunąć czas wygaśnięcia.", "Czas wygaśnięcia", old_expiry) as null|text
 		if(!expire_time)
 			qdel(query_find_edit_expiry_message)
 			return
@@ -309,7 +309,7 @@
 			old_severity = "NA"
 		var/editor_key = usr.key
 		var/editor_ckey = usr.ckey
-		var/new_severity = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Ustaw wagę notatki."), i18n_dialog_text(usr, "Waga notatki"), null, null) as null|anything in i18n_input_shown(usr, list("high", "medium", "minor", "none"))) //lowercase for edit log consistency // AQ EDIT - i18n okienka
+		var/new_severity = input("Ustaw wagę notatki.", "Waga notatki", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
 		if(!new_severity)
 			qdel(query_find_edit_note_severity)
 			return

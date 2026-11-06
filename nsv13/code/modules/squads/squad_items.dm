@@ -219,7 +219,7 @@
 		to_chat(user, "<span class='notice'>Smycz aktualizuje się zgodnie z twoją obecną rolą w drużynie.</span>")
 		apply_squad( user.squad )
 		return FALSE
-	if(i18n_alert(usr, user, "Dołączyć do drużyny [squad]?",name,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert(user, "Dołączyć do drużyny [squad]?",name,"Tak","Nie") == "Tak")
 		if(user.squad)
 			user.squad.remove_member(user)
 		squad.add_member(user)
@@ -474,7 +474,7 @@
 	. = ..()
 	if(user.stat || user.restrained())
 		return
-	if(i18n_alert(usr, user, "Spuścić powietrze: [src]?",name,"Tak","Jednak nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert(user, "Spuścić powietrze: [src]?",name,"Tak","Jednak nie") == "Tak")
 		deflate()
 
 //this proc makes squad items take

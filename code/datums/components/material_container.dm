@@ -90,7 +90,7 @@
 	if(istype(I, /obj/item/stack) && precise_insertion)
 		var/atom/current_parent = parent
 		var/obj/item/stack/S = I
-		requested_amount = input(user, i18n_dialog_text(user, "Ile chcesz włożyć?"), i18n_dialog_text(user, "Inserting [S.singular_name]s")) as num|null // AQ EDIT - i18n okienka
+		requested_amount = input(user, "Ile chcesz włożyć?", "Inserting [S.singular_name]s") as num|null
 		if(isnull(requested_amount) || (requested_amount <= 0))
 			return
 		if(QDELETED(I) || QDELETED(user) || QDELETED(src) || parent != current_parent || user.physical_can_use_topic(current_parent) < UI_INTERACTIVE || user.get_active_held_item() != active_held)

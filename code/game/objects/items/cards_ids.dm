@@ -229,7 +229,7 @@
 	. = FALSE
 	var/datum/bank_account/old_account = registered_account
 
-	var/new_bank_id = input(user, i18n_dialog_text(user, "Podaj numer ID swojego konta."), i18n_dialog_text(user, "Odzyskiwanie konta"), 111111) as num // AQ EDIT - i18n okienka
+	var/new_bank_id = input(user, "Podaj numer ID swojego konta.", "Odzyskiwanie konta", 111111) as num
 
 	if(!alt_click_can_use_id(user))
 		return
@@ -267,7 +267,7 @@
 		registered_account.bank_card_talk("<span class='warning'>BŁĄD: NIE MOŻNA SIĘ ZALOGOWAĆ Z POWODU PLANOWANEJ KONSERWACJI. KONSERWACJA ZAKOŃCZY SIĘ ZA [(registered_account.withdrawDelay - world.time)/10] S.</span>", TRUE)
 		return
 
-	var/amount_to_remove =  FLOOR(input(user, i18n_dialog_text(user, "Ile chcesz wypłacić? Obecne saldo: [registered_account.account_balance]"), i18n_dialog_text(user, "Wypłata środków"), 5) as num, 1) // AQ EDIT - i18n okienka
+	var/amount_to_remove =  FLOOR(input(user, "Ile chcesz wypłacić? Obecne saldo: [registered_account.account_balance]", "Wypłata środków", 5) as num, 1)
 
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, "<span class='warning'>Jesteś prawie pewien, że pieniądze tak nie działają.</span>")

@@ -84,7 +84,7 @@
 /obj/item/holochip/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return
-	var/split_amount = round(input(user,i18n_dialog_text(user, "Ile kredytów chcesz wyjąć z holożetonu?")) as null|num) // AQ EDIT - i18n okienka
+	var/split_amount = round(input(user,"Ile kredytów chcesz wyjąć z holożetonu?") as null|num)
 	if(split_amount == null || split_amount <= 0 || !user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return
 	else

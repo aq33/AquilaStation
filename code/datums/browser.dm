@@ -384,13 +384,13 @@
 			if ("string")
 				settings["mainsettings"][setting]["value"] = stripped_input(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]", "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])
 			if ("number")
-				settings["mainsettings"][setting]["value"] = input(user, i18n_dialog_text(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]"), i18n_dialog_text(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]")) as num // AQ EDIT - i18n okienka
+				settings["mainsettings"][setting]["value"] = input(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]", "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]") as num
 			if ("color")
-				settings["mainsettings"][setting]["value"] = input(user, i18n_dialog_text(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]"), i18n_dialog_text(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]"), settings["mainsettings"][setting]["value"]) as color // AQ EDIT - i18n okienka
+				settings["mainsettings"][setting]["value"] = input(user, "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]", "Podaj nową wartość: [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
 			if ("boolean")
 				settings["mainsettings"][setting]["value"] = (settings["mainsettings"][setting]["value"] == "Yes") ? "No" : "Yes" //AQUILA EDIT - przełącznik zamiast pytania (port BeeStation/BeeStation-Hornet#11415)
 			if ("ckey")
-				settings["mainsettings"][setting]["value"] = input(user, i18n_dialog_text(user, "[settings["mainsettings"][setting]["desc"]]?")) in list("none") + GLOB.directory // AQ EDIT - i18n okienka
+				settings["mainsettings"][setting]["value"] = input(user, "[settings["mainsettings"][setting]["desc"]]?") in list("none") + GLOB.directory
 		if (settings["mainsettings"][setting]["callback"])
 			var/datum/callback/callback = settings["mainsettings"][setting]["callback"]
 			settings = callback.Invoke(settings)

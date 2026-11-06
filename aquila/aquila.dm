@@ -600,14 +600,6 @@
 #include "code\modules\client\preferences_menu\middleware.dm"
 #include "code\modules\client\preferences_menu\menu.dm"
 #include "code\modules\client\preferences_menu\assets.dm"
-#include "code\modules\i18n\browser_windows.dm"
-#include "code\modules\i18n\game_language.dm"
-#include "code\modules\i18n\translate.dm"
-#include "code\modules\i18n\hud_icons.dm"
-#include "code\modules\i18n\native_dialogs.dm"
-#include "code\modules\i18n\translation_api.dm"
-#include "code\modules\i18n\foreigner.dm"
-#include "code\modules\i18n\translator_item.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\head\mind_monkey_helmet.dm"
@@ -1090,7 +1082,6 @@
 #include "code\modules\test_chamber\kits\pr_559_czat_glosowy.dm"
 #include "code\modules\test_chamber\kits\pr_563_nsv_zaleglosci.dm"
 #include "code\modules\test_chamber\kits\pr_564_pasek_broni.dm"
-#include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1860,3 +1851,16 @@
 // Heretyk z tg (osobny plik z includami)
 #include "heretic.dm"
 #include "bloodcult.dm"
+
+// Wersja angielska (aquila/code/modules/i18n/): same nadpisania procedur, dołączane na samym końcu,
+// żeby szły po oryginałach. Odpięcie: usunąć ten blok, testy aquila_game_language i aquila_foreigner w bloku UNIT_TESTS
+// i loader i18n-jsx.cjs z tgui/webpack.config.js (definicje w code/__DEFINES/i18n.dm mogą zostać).
+#include "code\modules\i18n\game_language.dm"
+#include "code\modules\i18n\translate.dm"
+#include "code\modules\i18n\browser_windows.dm"
+#include "code\modules\i18n\hud_icons.dm"
+#include "code\modules\i18n\translation_api.dm"
+#include "code\modules\i18n\foreigner.dm"
+#include "code\modules\i18n\translator_item.dm"
+// Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
+#include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"

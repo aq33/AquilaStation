@@ -96,7 +96,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, "<span class='warning'>[src] lekko skwierczy. Niestety nie przyjmuje samobójców!</span>")
 		return
-	var/posi_ask = i18n_alert(usr, "Zostać [name]? (Uwaga: nie będzie można cię już sklonować, a wszystkie poprzednie życia zostaną zapomniane!)","Na pewno?","Tak","Nie") // AQ EDIT - i18n okienka
+	var/posi_ask = alert("Zostać [name]? (Uwaga: nie będzie można cię już sklonować, a wszystkie poprzednie życia zostaną zapomniane!)","Na pewno?","Tak","Nie")
 	if(posi_ask != "Tak" || QDELETED(src))
 		return
 	if(brainmob.suiciding) //clear suicide status if the old occupant suicided.

@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 	if(enabled)
 		ui_interact(user)
 	else if(IsAdminGhost(user))
-		var/response = i18n_alert(usr, user, "Ten komputer jest wyłączony. Czy chcesz go włączyć?", "Obejście admina", "Tak", "Nie") // AQ EDIT - i18n okienka
+		var/response = alert(user, "Ten komputer jest wyłączony. Czy chcesz go włączyć?", "Obejście admina", "Tak", "Nie")
 		if(response == "Tak")
 			turn_on(user)
 
@@ -590,7 +590,7 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 		var/obj/item/computer_hardware/H = all_components[h]
 		component_names.Add(H.name)
 
-	var/choice = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Który komponent chcesz odinstalować?"), i18n_dialog_text(user, "Konserwacja komputera"), null) as null|anything in i18n_input_shown(user, sortList(component_names))) // AQ EDIT - i18n okienka
+	var/choice = input(user, "Który komponent chcesz odinstalować?", "Konserwacja komputera", null) as null|anything in sortList(component_names)
 
 	if(!choice)
 		return

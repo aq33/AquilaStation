@@ -179,7 +179,7 @@
  */
 /datum/component/cult_ritual_item/proc/do_scrape_rune(obj/effect/rune/rune, mob/living/cultist)
 	if(rune.log_when_erased)
-		var/confirm = i18n_alert(usr, cultist, "Starcie runy [rune.cultist_name] może zaszkodzić twoim celom.", "Zacząć ścierać runę [rune.cultist_name]?", "Kontynuuj", "Przerwij") // AQ EDIT - i18n okienka
+		var/confirm = alert(cultist, "Starcie runy [rune.cultist_name] może zaszkodzić twoim celom.", "Zacząć ścierać runę [rune.cultist_name]?", "Kontynuuj", "Przerwij")
 		if(confirm != "Kontynuuj")
 			return
 

@@ -13,7 +13,7 @@
 			coords = "in nullspace"
 			jmp_coords = coords_pl = "w nullspace"
 
-	if (i18n_alert(usr, src, "Na pewno chcesz usunąć:\n[D]\n[coords_pl]?", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
+	if (alert(src, "Na pewno chcesz usunąć:\n[D]\n[coords_pl]?", "Potwierdzenie", "Tak", "Nie") == "Tak")
 		log_admin("[key_name(usr)] deleted [D] [coords]")
 		message_admins("[key_name_admin(usr)] usuwa [D] [jmp_coords]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

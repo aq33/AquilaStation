@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	if(href_list["pull_asteroid"])
 		pull_in_asteroid(usr)
 	if(href_list["push_asteroid"])
-		if(i18n_alert(usr, usr, "Na pewno chcesz uwolnić obecnie trzymaną asteroidę?",name,"Tak","Nie") == "Tak" && Adjacent(usr)) // AQ EDIT - i18n okienka
+		if(alert(usr, "Na pewno chcesz uwolnić obecnie trzymaną asteroidę?",name,"Tak","Nie") == "Tak" && Adjacent(usr))
 			start_push()
 
 	attack_hand(usr) //Refresh window
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 		playsound(src, sound, 100, 1)
 		to_chat(user, "<span class='notice'>Nie można namierzyć żadnej asteroidy w pobliżu [linked]</span>")
 		return FALSE
-	var/obj/structure/overmap/asteroid/AS = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz cel:"), i18n_dialog_text(usr, "Cel")) as null|anything in i18n_input_shown(usr, asteroids)) // AQ EDIT - i18n okienka
+	var/obj/structure/overmap/asteroid/AS = input(usr, "Wybierz cel:", "Cel") as null|anything in asteroids
 	if(!AS || !length(AS.core_composition))
 		return FALSE
 	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>DANGER: Magnet has locked on to an asteroid. Vacate the asteroid cage immediately.</span>")

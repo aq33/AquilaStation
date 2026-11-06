@@ -167,7 +167,7 @@
 			T.assume_air_moles(air, shared_loss)
 
 /obj/machinery/atmospherics/components/proc/safe_input(var/title, var/text, var/default_set)
-	var/new_value = input(usr,i18n_dialog_text(usr, text),i18n_dialog_text(usr, title),default_set) as num // AQ EDIT - i18n okienka
+	var/new_value = input(usr,text,title,default_set) as num
 	if(usr.canUseTopic(src))
 		return new_value
 	return default_set

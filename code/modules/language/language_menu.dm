@@ -67,7 +67,7 @@
 		if("grant_language")
 			if((is_admin || isobserver(AM)) && language_datum)
 				var/list/choices = list("Tylko mówienie", "Tylko rozumienie", "Oba")
-				var/choice = i18n_input_choice(user, input(user,i18n_dialog_text(user, "Jak chcesz dodać ten język?"),i18n_dialog_text(user, "[language_datum]"),null) as null|anything in i18n_input_shown(user, choices)) // AQ EDIT - i18n okienka
+				var/choice = input(user,"Jak chcesz dodać ten język?","[language_datum]",null) as null|anything in choices
 				var/spoken = FALSE
 				var/understood = FALSE
 				switch(choice)
@@ -86,7 +86,7 @@
 		if("remove_language")
 			if((is_admin || isobserver(AM)) && language_datum)
 				var/list/choices = list("Tylko mówienie", "Tylko rozumienie", "Oba")
-				var/choice = i18n_input_choice(user, input(user,i18n_dialog_text(user, "Którą część chcesz usunąć?"),i18n_dialog_text(user, "[language_datum]"),null) as null|anything in i18n_input_shown(user, choices)) // AQ EDIT - i18n okienka
+				var/choice = input(user,"Którą część chcesz usunąć?","[language_datum]",null) as null|anything in choices
 				var/spoken = FALSE
 				var/understood = FALSE
 				switch(choice)

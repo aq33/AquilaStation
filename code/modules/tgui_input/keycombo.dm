@@ -25,7 +25,7 @@
 
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!(user.client?.prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		var/input_key = input(user, i18n_dialog_text(user, message), i18n_dialog_text(user, title + " (modyfikatory w formacie Shift-K)"), default) as null|text // AQ EDIT - i18n okienka
+		var/input_key = input(user, message, title + " (modyfikatory w formacie Shift-K)", default) as null|text
 		if(!input_key)
 			return null
 		return uppertext(copytext_char(input_key, 1, 2)) + copytext_char(input_key, 2)

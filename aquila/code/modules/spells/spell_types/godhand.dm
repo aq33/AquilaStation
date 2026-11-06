@@ -35,7 +35,7 @@
 		return
 
 	to_chat(user,"<span class='notice'>Prosisz [M] o seks.</span>")
-	if(i18n_alert(usr, M, "[user] chce uprawiać z tobą seks. Zgadzasz się?", "Seks na przycisk","Tak", "Nie") == "Nie") // AQ EDIT - i18n okienka
+	if(alert(M, "[user] chce uprawiać z tobą seks. Zgadzasz się?", "Seks na przycisk","Tak", "Nie") == "Nie")
 		to_chat(user, "[M] nie chce uprawiać seksu.")
 		return
 

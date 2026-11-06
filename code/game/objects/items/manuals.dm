@@ -199,7 +199,7 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(!wikiurl)
 		return
-	if(i18n_alert(usr, user, "To otworzy stronę wiki w twojej przeglądarce. Na pewno?", null, "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert(user, "To otworzy stronę wiki w twojej przeglądarce. Na pewno?", null, "Tak", "Nie") != "Tak")
 		return
 	DIRECT_OUTPUT(user, link("[wikiurl]/[page_link]"))
 

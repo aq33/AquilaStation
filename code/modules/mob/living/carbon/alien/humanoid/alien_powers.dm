@@ -56,7 +56,7 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/proc/check_vent_block(mob/living/user)
 	var/obj/machinery/atmospherics/components/unary/atmos_thing = locate() in user.loc
 	if(atmos_thing)
-		var/rusure = i18n_alert(usr, user, "Składanie jaj i formowanie żywicy tutaj zablokuje dostęp do [atmos_thing]. Kontynuować?", "Blokowanie elementu atmosferycznego", "Tak", "Nie") // AQ EDIT - i18n okienka
+		var/rusure = alert(user, "Składanie jaj i formowanie żywicy tutaj zablokuje dostęp do [atmos_thing]. Kontynuować?", "Blokowanie elementu atmosferycznego", "Tak", "Nie")
 		if(rusure != "Tak")
 			return FALSE
 	return TRUE
@@ -86,7 +86,7 @@ Doesn't work on other aliens/AI.*/
 	var/list/options = list()
 	for(var/mob/living/L in oview(user))
 		options += L
-	var/mob/living/M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, do kogo szepnąć:"),i18n_dialog_text(usr, "Szepnąć do?"),null) as null|mob in i18n_input_shown(usr, sortNames(options))) // AQ EDIT - i18n okienka
+	var/mob/living/M = input("Wybierz, do kogo szepnąć:","Szepnąć do?",null) as null|mob in sortNames(options)
 	if(!M)
 		return FALSE
 	var/msg = stripped_input(usr, "Wiadomość:", "Szept obcych")
@@ -117,10 +117,10 @@ Doesn't work on other aliens/AI.*/
 	for(var/mob/living/carbon/A  in oview(user))
 		if(A.getorgan(/obj/item/organ/alien/plasmavessel))
 			aliens_around.Add(A)
-	var/mob/living/carbon/M = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, komu przekazać:"),i18n_dialog_text(usr, "Przekazać plazmę komu?"),null) as mob in i18n_input_shown(usr, sortNames(aliens_around))) // AQ EDIT - i18n okienka
+	var/mob/living/carbon/M = input("Wybierz, komu przekazać:","Przekazać plazmę komu?",null) as mob in sortNames(aliens_around)
 	if(!M)
 		return 0
-	var/amount = input(i18n_dialog_text(usr, "Ilość:"), i18n_dialog_text(usr, "Przekaż plazmę: [M]")) as num // AQ EDIT - i18n okienka
+	var/amount = input("Ilość:", "Przekaż plazmę: [M]") as num
 	amount = min(abs(round(amount)), user.getPlasma())
 	if(!amount)
 		return FALSE
@@ -163,7 +163,7 @@ Doesn't work on other aliens/AI.*/
 
 
 /obj/effect/proc_holder/alien/acid/fire(mob/living/carbon/alien/user)
-	var/O = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, co rozpuścić:"),i18n_dialog_text(usr, "Rozpuść"),null) as obj|turf in i18n_input_shown(usr, oview(1,user))) // AQ EDIT - i18n okienka
+	var/O = input("Wybierz, co rozpuścić:","Rozpuść",null) as obj|turf in oview(1,user)
 	if(!O || user.incapacitated())
 		return 0
 	else
@@ -267,7 +267,7 @@ Doesn't work on other aliens/AI.*/
 	if(!check_vent_block(user))
 		return FALSE
 
-	var/choice = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz, co chcesz uformować."),i18n_dialog_text(usr, "Budowa z żywicy")) as null|anything in i18n_input_shown(usr, structures)) // AQ EDIT - i18n okienka
+	var/choice = input("Wybierz, co chcesz uformować.","Budowa z żywicy") as null|anything in structures
 	if(!choice)
 		return FALSE
 	if(!cost_check(check_turf,user))

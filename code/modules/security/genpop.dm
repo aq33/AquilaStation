@@ -77,7 +77,7 @@
 				say("Nieprawidłowe; najpierw przypisz tę szafkę więźniom, zanim jej użyjesz!") // Prevents officers from "forgetting" to assign lockers to the prisoners they are handling.
 				return
 			else
-				var/unassign = i18n_alert(usr, user, "Czy chcesz cofnąć przypisanie tej szafki?", "Szafka więźnia", "Tak", "Nie") // AQ EDIT - i18n okienka
+				var/unassign = alert(user, "Czy chcesz cofnąć przypisanie tej szafki?", "Szafka więźnia", "Tak", "Nie")
 				switch(unassign)
 					if("Tak")
 						var/obj/item/card/id/prisoner/P = assigned_id
@@ -704,7 +704,7 @@
 			var/obj/item/card/id/prisoner/id = locate(params["id"]) in GLOB.prisoner_ids
 			if(!istype(id))
 				return
-			if(i18n_alert(usr, "Czy na pewno chcesz zwolnić [id.registered_name]? Karta więźnia od razu zaliczy cały wyrok i otworzy mu bramki wyjścia.", "Zwolnienie więźnia", "Tak", "Nie") != "Tak") // AQ EDIT // AQ EDIT - i18n okienka
+			if(alert("Czy na pewno chcesz zwolnić [id.registered_name]? Karta więźnia od razu zaliczy cały wyrok i otworzy mu bramki wyjścia.", "Zwolnienie więźnia", "Tak", "Nie") != "Tak") // AQ EDIT
 				return
 			Radio.talk_into(src, "Więzień [id.registered_name] został zwolniony.")
 			investigate_log("[key_name(usr)] has early-released [id] ([id.loc])", INVESTIGATE_RECORDS)
@@ -714,7 +714,7 @@
 			var/obj/item/card/id/prisoner/id = locate(params["id"]) in GLOB.prisoner_ids
 			if(!istype(id))
 				return
-			if(i18n_alert(usr, "Czy chcesz zresetować wyrok [id.registered_name]? Odsiedziany czas spadnie do zera.", "Ucieczka więźnia", "Tak", "Nie") != "Tak") // AQ EDIT // AQ EDIT - i18n okienka
+			if(alert("Czy chcesz zresetować wyrok [id.registered_name]? Odsiedziany czas spadnie do zera.", "Ucieczka więźnia", "Tak", "Nie") != "Tak") // AQ EDIT
 				return
 			// AQ EDIT - zwolniony już więzień (Ex-Convict) wraca za kratki: karta traci dostęp i znowu liczy czas
 			if(id.served_time >= id.sentence)

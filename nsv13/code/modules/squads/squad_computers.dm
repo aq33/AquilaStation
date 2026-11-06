@@ -101,7 +101,7 @@
 		if("transfer")
 			if(!M)
 				return FALSE
-			var/datum/squad/newSquad = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Przenieś [M]:"), i18n_dialog_text(usr, "Ustawienia drużyny")) as null|anything in i18n_input_shown(usr, GLOB.squad_manager.squads)) // AQ EDIT - i18n okienka
+			var/datum/squad/newSquad = input(usr, "Przenieś [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
 			if(newSquad)
 				log_game("[newSquad]: [usr] reassigned [M] to [newSquad]")
 				if(M.squad)
@@ -231,7 +231,7 @@
 		if("transfer")
 			if(!M)
 				return FALSE
-			var/datum/squad/newSquad = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Przenieś [M]:"), i18n_dialog_text(usr, "Ustawienia drużyny")) as null|anything in i18n_input_shown(usr, GLOB.squad_manager.squads)) // AQ EDIT - i18n okienka
+			var/datum/squad/newSquad = input(usr, "Przenieś [M]:", "Ustawienia drużyny") as null|anything in GLOB.squad_manager.squads
 			if(newSquad)
 				log_game("[newSquad]: [usr] reassigned [M] to [newSquad]")
 				if(M.squad)

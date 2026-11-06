@@ -7,7 +7,7 @@
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	var/list/memo_tasks = list("Pokaż" = "Show", "Napisz" = "Write", "Edytuj" = "Edit", "Usuń" = "Remove")
-	var/memotask = input(usr,i18n_dialog_text(usr, "Wybierz zadanie."),i18n_dialog_text(usr, "Notatki")) in memo_tasks // AQ EDIT - i18n okienka
+	var/memotask = input(usr,"Wybierz zadanie.","Notatki") in memo_tasks
 	if(!memotask)
 		return
 	mentor_memo_output(memo_tasks[memotask])
@@ -77,7 +77,7 @@
 				to_chat(src, "W bazie danych nie znaleziono notatek.")
 				qdel(query_memolist)
 				return
-			var/target_ckey = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz, czyją notatkę edytować"), i18n_dialog_text(src, "Wybierz notatkę")) as null|anything in i18n_input_shown(src, memolist)) // AQ EDIT - i18n okienka
+			var/target_ckey = input(src, "Wybierz, czyją notatkę edytować", "Wybierz notatkę") as null|anything in memolist
 			if(!target_ckey)
 				qdel(query_memolist)
 				return
@@ -157,7 +157,7 @@
 				to_chat(src, "W bazie danych nie znaleziono notatek.")
 				qdel(query_memodellist)
 				return
-			var/target_ckey = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz, czyją notatkę mentora usunąć"), i18n_dialog_text(src, "Wybierz notatkę mentora")) as null|anything in i18n_input_shown(src, memolist)) // AQ EDIT - i18n okienka
+			var/target_ckey = input(src, "Wybierz, czyją notatkę mentora usunąć", "Wybierz notatkę mentora") as null|anything in memolist
 			if(!target_ckey)
 				qdel(query_memodellist)
 				return

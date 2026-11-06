@@ -16,7 +16,7 @@
 	for(var/path in gen_paths)
 		var/datum/mapGenerator/MP = path
 		options[initial(MP.buildmode_name)] = path
-	var/type = i18n_input_choice(c, input(c,i18n_dialog_text(c, "Wybierz typ generatora"),i18n_dialog_text(c, "Typ")) as null|anything in i18n_input_shown(c, options)) // AQ EDIT - i18n okienka
+	var/type = input(c,"Wybierz typ generatora","Typ") as null|anything in options
 	if(!type)
 		return
 
@@ -42,7 +42,7 @@
 				return
 		G.defineRegion(cornerA, cornerB, 1)
 		highlight_region(G.map)
-		var/confirm = i18n_alert(usr, "Na pewno chcesz uruchomić generator mapy?", "Uruchom generator", "Tak", "Nie") // AQ EDIT - i18n okienka
+		var/confirm = alert("Na pewno chcesz uruchomić generator mapy?", "Uruchom generator", "Tak", "Nie")
 		if(confirm == "Tak")
 			G.generate()
 		log_admin("Build Mode: [key_name(c)] ran the map generator '[G.buildmode_name]' in the region from [AREACOORD(cornerA)] to [AREACOORD(cornerB)]")

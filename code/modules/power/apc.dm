@@ -1211,7 +1211,7 @@
 	user.visible_message("<span class='notice'>[user] wsuwa [card] do [src]...</span>", "<span class='notice'>Rozpoczęto proces transferu. Wysyłanie prośby o zgodę SI...</span>")
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	SEND_SOUND(occupier, sound('sound/misc/notice2.ogg')) //To alert the AI that someone's trying to card them if they're tabbed out
-	if(i18n_alert(usr, occupier, "[user] próbuje przenieść cię do [card.name]. Czy wyrażasz zgodę?", "Transfer z APC", "Tak, przenieś mnie", "Nie, zostaję tutaj") == "Nie, zostaję tutaj") // AQ EDIT - i18n okienka
+	if(alert(occupier, "[user] próbuje przenieść cię do [card.name]. Czy wyrażasz zgodę?", "Transfer z APC", "Tak, przenieś mnie", "Nie, zostaję tutaj") == "Nie, zostaję tutaj")
 		to_chat(user, "<span class='danger'>SI odrzuciła prośbę o transfer. Proces przerwany.</span>")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		transfer_in_progress = FALSE

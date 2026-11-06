@@ -8,12 +8,12 @@
 		return
 
 	var/turf/T = get_turf(usr)
-	target = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Masz na myśli konkretny cel? Pamiętaj, że prawidłowe są tylko żywe, ludzkie cele, które nie są cluwne'ami."), i18n_dialog_text(usr, "Cel"), target) as null|anything in i18n_input_shown(usr, GLOB.player_list)) // AQ EDIT - i18n okienka
+	target = input("Masz na myśli konkretny cel? Pamiętaj, że prawidłowe są tylko żywe, ludzkie cele, które nie są cluwne'ami.", "Cel", target) as null|anything in GLOB.player_list
 	if(target && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/mob/living/simple_animal/hostile/floor_cluwne/FC = new /mob/living/simple_animal/hostile/floor_cluwne(T)
 		FC.force_target(H)
-		if(i18n_alert(usr, "Usunąć się po śmierci celu czy szukać kolejnych celów?",,"Usuń","Więcej celów")=="Usuń") // AQ EDIT - i18n okienka
+		if(alert("Usunąć się po śmierci celu czy szukać kolejnych celów?",,"Usuń","Więcej celów")=="Usuń")
 			FC.delete_after_target_killed = TRUE
 	else
 		new /mob/living/simple_animal/hostile/floor_cluwne(T)

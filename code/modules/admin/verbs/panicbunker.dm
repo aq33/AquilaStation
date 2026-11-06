@@ -10,13 +10,13 @@
 	var/time_rec = 0
 	var/message = ""
 	if(new_pb)
-		time_rec = input(src, i18n_dialog_text(src, "Ile minut przeżytych w grze ma być wymagane?"), i18n_dialog_text(src, "Ale jest burdel, co?"), CONFIG_GET(number/panic_bunker_living)) as num // AQ EDIT - i18n okienka
-		message = input(src, i18n_dialog_text(src, "Co mają zobaczyć przy logowaniu? UWAGA: wygląda na to, że to się graczom NIE wyświetla."), i18n_dialog_text(src, "MMM"), CONFIG_GET(string/panic_bunker_message)) as text // AQ EDIT - i18n okienka
+		time_rec = input(src, "Ile minut przeżytych w grze ma być wymagane?", "Ale jest burdel, co?", CONFIG_GET(number/panic_bunker_living)) as num
+		message = input(src, "Co mają zobaczyć przy logowaniu? UWAGA: wygląda na to, że to się graczom NIE wyświetla.", "MMM", CONFIG_GET(string/panic_bunker_message)) as text
 		message = replacetext(message, "%minutes%", time_rec)
 		CONFIG_SET(number/panic_bunker_living, time_rec)
 		CONFIG_SET(string/panic_bunker_message, message)
 
-		var/interview_sys = i18n_alert(usr, src, "Włączyć system rozmów? (Pozwala łączyć się graczom poniżej limitu godzin, ale wymaga ręcznego zatwierdzenia ich do gry)", "Włączyć rozmowy?", "Włącz", "Wyłącz") // AQ EDIT - i18n okienka
+		var/interview_sys = alert(src, "Włączyć system rozmów? (Pozwala łączyć się graczom poniżej limitu godzin, ale wymaga ręcznego zatwierdzenia ich do gry)", "Włączyć rozmowy?", "Włącz", "Wyłącz")
 		interview = interview_sys == "Włącz"
 		CONFIG_SET(flag/panic_bunker_interview, interview)
 	CONFIG_SET(flag/panic_bunker, new_pb)

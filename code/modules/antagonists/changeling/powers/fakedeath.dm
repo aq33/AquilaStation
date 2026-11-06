@@ -57,7 +57,7 @@
 		to_chat(user, "<span class='warning'>Już się ożywiamy.</span>")
 		return
 	if(!user.stat && !revive_ready) //Confirmation for living changelings if they want to fake their death
-		switch(i18n_alert(usr, "Czy na pewno chcemy upozorować własną śmierć?",,"Tak", "Nie")) // AQ EDIT - i18n okienka
+		switch(alert("Czy na pewno chcemy upozorować własną śmierć?",,"Tak", "Nie"))
 			if("Nie")
 				return
 	return ..()

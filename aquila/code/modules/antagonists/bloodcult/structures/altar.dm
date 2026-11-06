@@ -413,7 +413,7 @@
 									extra = " - <span style='color:#FF0000'>MARTWY</span>"
 							dat += "<li><span style='color:#FFFF00'><b>[C.real_name]</b></span></li> - więzień: [gaoler.name][extra]"
 				dat += {"</ul></body>"}
-				user << browse(i18n_browse_html(user, "<HTML><HEAD><meta charset='UTF-8'><TITLE>Lista kultu</TITLE></HEAD>[dat]"), "window=cultroster;size=600x400")
+				user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>Lista kultu</TITLE></HEAD>[dat]", "window=cultroster;size=600x400")
 				onclose(user, "cultroster")
 			if ("Rozmowa z Nar-Sie")
 				if(narsie_message_cooldown)
@@ -565,7 +565,7 @@
 		spawn()
 			var/list/shade_names = list("Orenmir", "Felthorn", "Sparda", "Vengeance", "Klinge")
 			shadeMob.real_name = pick(shade_names)
-			shadeMob.real_name = copytext(sanitize(input(shadeMob, i18n_dialog_text(shadeMob, "Nie pamiętasz swojego poprzedniego życia, o ile w ogóle jakieś miałeś. Jak się nazwiesz?"), i18n_dialog_text(shadeMob, "Nadaj sobie nowe imię"), "[shadeMob.real_name]") as null|text), 1, MAX_NAME_LEN) // AQ EDIT - i18n okienka
+			shadeMob.real_name = copytext(sanitize(input(shadeMob, "Nie pamiętasz swojego poprzedniego życia, o ile w ogóle jakieś miałeś. Jak się nazwiesz?", "Nadaj sobie nowe imię", "[shadeMob.real_name]") as null|text), 1, MAX_NAME_LEN)
 			shadeMob.name = "Cień [shadeMob.real_name]"
 			if (shadeMob.mind)
 				shadeMob.mind.name = shadeMob.real_name

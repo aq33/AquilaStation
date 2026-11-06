@@ -231,13 +231,13 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 // AQ EDIT END
 	var/list/errors = list()
 
-	var/option = i18n_alert(usr, user, "Wczytać z pliku czy z wklejonego tekstu?", "Wczytaj z pliku lub tekstu", "Plik", "Tekst") // AQ EDIT - i18n okienka
+	var/option = alert(user, "Wczytać z pliku czy z wklejonego tekstu?", "Wczytaj z pliku lub tekstu", "Plik", "Tekst")
 	var/txt
 	switch(option)
 		if("Plik")
-			txt = file2text(input(user, i18n_dialog_text(user, "Wybierz plik")) as null|file) // AQ EDIT - i18n okienka
+			txt = file2text(input(user, "Wybierz plik") as null|file)
 		if("Tekst")
-			txt = input(user, i18n_dialog_text(user, "Wklej JSON"), i18n_dialog_text(user, "Wklej JSON")) as text|null // AQ EDIT - i18n okienka
+			txt = input(user, "Wklej JSON", "Wklej JSON") as text|null
 
 	if(!txt)
 		return

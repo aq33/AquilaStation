@@ -170,7 +170,7 @@
 		return
 
 	var/time = round(tempgang.determine_domination_time()/60,0.1)
-	if(i18n_alert(usr, user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi") // AQ EDIT - i18n okienka
+	if(alert(user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi")
 		if((tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
 			return 0
 

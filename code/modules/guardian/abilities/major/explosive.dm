@@ -81,7 +81,7 @@
 	set name = "Detonate Bomb"
 	set category = "Guardian"
 	set desc = "Ręcznie zdetonuj uzbrojoną bombę."
-	var/picked_bomb = i18n_input_choice(src, input(src, i18n_dialog_text(src, "Wybierz bombę do zdetonowania"), i18n_dialog_text(src, "Zdetonuj bombę")) as null|anything in i18n_input_shown(src, src.bombs)) // AQ EDIT - i18n okienka
+	var/picked_bomb = input(src, "Wybierz bombę do zdetonowania", "Zdetonuj bombę") as null|anything in src.bombs
 	if(picked_bomb)
 		bombs -= picked_bomb
 		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));

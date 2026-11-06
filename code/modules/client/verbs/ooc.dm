@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	msg = emoji_parse(msg)
 
 	if((msg[1] in list(".",";",":","#")) || findtext_char(msg, "say", 1, 5))
-		if(i18n_alert(usr, "Twoja wiadomość \"[raw_msg]\" wygląda na przeznaczoną do komunikacji w grze. Napisać ją na OOC?", "Na pewno na OOC?", "Nie", "Tak") != "Tak") // AQ EDIT - i18n okienka
+		if(alert("Twoja wiadomość \"[raw_msg]\" wygląda na przeznaczoną do komunikacji w grze. Napisać ją na OOC?", "Na pewno na OOC?", "Nie", "Tak") != "Tak")
 			return
 
 	if(!holder)
@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		else
 			choices[displayed_choicename] = C
 	choices = sortList(choices)
-	var/selection = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz gracza!"), i18n_dialog_text(usr, "Ignoruj"), null, null) as null|anything in i18n_input_shown(usr, choices)) // AQ EDIT - i18n okienka
+	var/selection = input("Wybierz gracza!", "Ignoruj", null, null) as null|anything in choices
 	if(!selection || !(selection in choices))
 		return
 	displayed_choicename = selection // ckey string

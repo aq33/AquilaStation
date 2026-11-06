@@ -212,7 +212,7 @@
 /obj/machinery/vendor/mining/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/items = list("Kapsuła przetrwania i oporządzenie odkrywcy", "Zestaw z rezonatorem", "Zestaw z robotem górniczym", "Zestaw ewakuacyjno-ratunkowy", "Zestaw z miażdżycielem", "Zestaw poborowego górnika")
 
-	var/selection = i18n_input_choice(redeemer, input(redeemer, i18n_dialog_text(redeemer, "Wybierz swój sprzęt"), i18n_dialog_text(redeemer, "Wymiana bonu górniczego")) as null|anything in i18n_input_shown(redeemer, sortList(items))) // AQ EDIT - i18n okienka
+	var/selection = input(redeemer, "Wybierz swój sprzęt", "Wymiana bonu górniczego") as null|anything in sortList(items)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
 		return
 	var/drop_location = drop_location()

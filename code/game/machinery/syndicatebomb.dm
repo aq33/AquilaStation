@@ -200,11 +200,11 @@
 	notify_ghosts("W [get_area(src)] aktywowano [src]!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Podłożono bombę")
 
 /obj/machinery/syndicatebomb/proc/settings(mob/user)
-	var/new_timer = input(user, i18n_dialog_text(user, "Ustaw zapalnik."), i18n_dialog_text(user, "Zapalnik czasowy"), "[timer_set]") as num // AQ EDIT - i18n okienka
+	var/new_timer = input(user, "Ustaw zapalnik.", "Zapalnik czasowy", "[timer_set]") as num
 	if(in_range(src, user) && isliving(user)) //No running off and setting bombs from across the station
 		timer_set = CLAMP(new_timer, minimum_timer, maximum_timer)
 		loc.visible_message("<span class='notice'>[icon2html(src, viewers(src))] zapalnik ustawiony na [timer_set] s.</span>")
-	if(i18n_alert(usr, user,"Chcesz teraz rozpocząć odliczanie?",,"Tak","Nie") == "Tak" && in_range(src, user) && isliving(user)) // AQ EDIT - i18n okienka
+	if(alert(user,"Chcesz teraz rozpocząć odliczanie?",,"Tak","Nie") == "Tak" && in_range(src, user) && isliving(user))
 		if(!active)
 			visible_message("<span class='danger'>[icon2html(src, viewers(loc))] [timer_set] s do detonacji, opuśćcie teren.</span>")
 			activate()

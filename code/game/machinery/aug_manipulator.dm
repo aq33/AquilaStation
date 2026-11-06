@@ -106,7 +106,7 @@
 		var/style_options = style_list_icons
 		if(istype(storedpart, /obj/item/bodypart/r_leg) || istype(storedpart, /obj/item/bodypart/l_leg))
 			style_options += style_list_legs_bonus_icons //Doing this with assoc lists IS actually legal. Very cool. And Yes I know this somewhat reduces the point of using static lists, but this proc is rare.
-		var/augstyle = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz styl."), i18n_dialog_text(user, "Dopasowanie augmentacji")) as null|anything in i18n_input_shown(user, style_options)) // AQ EDIT - i18n okienka
+		var/augstyle = input(user, "Wybierz styl.", "Dopasowanie augmentacji") as null|anything in style_options
 		//NSV13 end.
 		if(!augstyle)
 			return

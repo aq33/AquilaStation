@@ -389,12 +389,12 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
-		if(i18n_alert(usr, usr, "Na pewno? Admin już opóźnił koniec rundy z następującego powodu: [SSticker.admin_delay_notice]", "Potwierdzenie", "Tak", "Nie") == "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Na pewno? Admin już opóźnił koniec rundy z następującego powodu: [SSticker.admin_delay_notice]", "Potwierdzenie", "Tak", "Nie") == "Tak")
 			rebootconfirm = TRUE
 	else
 		rebootconfirm = TRUE
 	if(rebootconfirm)
-		var/result = i18n_input_choice(usr, input(usr, i18n_dialog_text(usr, "Wybierz sposób restartu"), i18n_dialog_text(usr, "Restart świata"), options[1]) as null|anything in i18n_input_shown(usr, options)) // AQ EDIT - i18n okienka
+		var/result = input(usr, "Wybierz sposób restartu", "Restart świata", options[1]) as null|anything in options
 		if(result)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 			var/init_by = "Restart zlecił: [usr.client.holder.fakekey ? "Admin" : usr.key]."
@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 				if("Zwykły restart")
 					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
 				if("Zwykły restart (z opóźnieniem)")
-					var/delay = input(i18n_dialog_text(usr, "Jakie opóźnienie ma mieć restart (w sekundach)?"), i18n_dialog_text(usr, "Opóźnienie restartu"), 5) as num|null // AQ EDIT - i18n okienka
+					var/delay = input("Jakie opóźnienie ma mieć restart (w sekundach)?", "Opóźnienie restartu", 5) as num|null
 					if(!delay)
 						return FALSE
 					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 	if (!usr.client.holder)
 		return
-	var/confirm = i18n_alert(usr, "Zakończyć rundę i zrestartować świat gry?", "Koniec rundy", "Tak", "Anuluj") // AQ EDIT - i18n okienka
+	var/confirm = alert("Zakończyć rundę i zrestartować świat gry?", "Koniec rundy", "Tak", "Anuluj")
 	if(confirm != "Tak")
 		return
 	SSticker.force_ending = 1
@@ -569,9 +569,9 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	set desc="Opóźnij start gry"
 	set name="Delay pre-game"
 
-	var/newtime = input(i18n_dialog_text(usr, "Ustaw nowy czas w sekundach. -1 oznacza opóźnienie bez końca."),i18n_dialog_text(usr, "Opóźnienie"),round(SSticker.GetTimeLeft()/10)) as num|null // AQ EDIT - i18n okienka
+	var/newtime = input("Ustaw nowy czas w sekundach. -1 oznacza opóźnienie bez końca.","Opóźnienie",round(SSticker.GetTimeLeft()/10)) as num|null
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		return i18n_alert(usr, "Za późno... Gra już się zaczęła!") // AQ EDIT - i18n okienka
+		return alert("Za późno... Gra już się zaczęła!")
 	if(newtime)
 		newtime = newtime*10
 		SSticker.SetTimeLeft(newtime)
@@ -589,14 +589,14 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	set desc= "Wstrzymaj restart serwera po końcu rundy"
 	set name= "Delay round end"
 	if(!SSticker.delay_end)
-		SSticker.admin_delay_notice = input(usr, i18n_dialog_text(usr, "Podaj powód opóźnienia końca rundy"), i18n_dialog_text(usr, "Powód opóźnienia rundy")) as null|text // AQ EDIT - i18n okienka
+		SSticker.admin_delay_notice = input(usr, "Podaj powód opóźnienia końca rundy", "Powód opóźnienia rundy") as null|text
 		if(isnull(SSticker.admin_delay_notice))
 			return
 		for(var/client/admin in GLOB.admins)
 			if(check_rights(R_FUN) && !GLOB.battle_royale && admin.tgui_panel && SSticker.current_state == GAME_STATE_FINISHED)
 				admin.tgui_panel.give_br_popup()
 	else
-		if(i18n_alert(usr, usr, "Na pewno anulować obecne opóźnienie końca rundy? Powód obecnego opóźnienia: \"[SSticker.admin_delay_notice]\"", "Anulowanie opóźnienia", "Tak", "Nie") != "Tak") // AQ EDIT - i18n okienka
+		if(alert(usr, "Na pewno anulować obecne opóźnienie końca rundy? Powód obecnego opóźnienia: \"[SSticker.admin_delay_notice]\"", "Anulowanie opóźnienia", "Tak", "Nie") != "Tak")
 			return
 		SSticker.admin_delay_notice = null
 	SSticker.delay_end = !SSticker.delay_end
@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		message_admins("[key_name_admin(usr)] wypuszcza z więzienia: [key_name_admin(M)]")
 		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
-		i18n_alert(usr, "[M.name] nie jest w więzieniu.") // AQ EDIT - i18n okienka
+		alert("[M.name] nie jest w więzieniu.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -996,7 +996,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		return
 
 	if(!SSjob.initialized)
-		i18n_alert(usr, usr, "Nie możesz zarządzać stanowiskami przed inicjalizacją podsystemu stanowisk!") // AQ EDIT - i18n okienka
+		alert(usr, "Nie możesz zarządzać stanowiskami przed inicjalizacją podsystemu stanowisk!")
 		return
 
 	// AQUILA EDIT - zarządzanie wolnymi stanowiskami w TGUI (okno "AdminJobSlots")
@@ -1105,7 +1105,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		question = "Ten mob ma już użytkownika ([tomob.key]), który nim steruje! "
 	question += "Czy na pewno chcesz dać [frommob.name]([frommob.key]) kontrolę nad [tomob.name]?"
 
-	var/ask = i18n_alert(usr, question, "Dać duchowi kontrolę nad mobem?", "Tak", "Nie") // AQ EDIT - i18n okienka
+	var/ask = alert(question, "Dać duchowi kontrolę nad mobem?", "Tak", "Nie")
 	if (ask != "Tak")
 		return 1
 

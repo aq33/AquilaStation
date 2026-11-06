@@ -4,6 +4,9 @@
 // Panel statystyk pokazuje wtedy oryginalne angielskie nazwy verbów i zakładek.
 // To, co BYOND rysuje sam (dymki, runechat, screentipy), tłumaczy serwer: translate.dm.
 // Słowniki buduje tools/i18n/ (opis w build_chat_dict.py).
+// Moduł nie zmienia kodu gry: wszystko to nadpisania procedur z aquila/code/modules/i18n/ (dołączone
+// na końcu aquila/aquila.dm) i loader tgui (tgui/i18n-jsx.cjs). Odpięcie: usunąć ten blok include
+// i loader z tgui/webpack.config.js.
 
 GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 
@@ -21,6 +24,34 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 
 /datum/preference/choiced/game_language/get_display_names()
 	return list(GAME_LANGUAGE_PL = "Polski", GAME_LANGUAGE_EN = "English")
+
+// Zapis w tabeli preferencji osobnym zapytaniem, bez zmian w preferences2.dm
+/datum/preferences/load_from_database()
+	. = ..()
+	load_game_language()
+
+/datum/preferences/proc/load_game_language()
+	if(!SSdbcore.IsConnected() || !parent?.ckey)
+		return
+	var/datum/DBQuery/query = SSdbcore.NewQuery(
+		"SELECT preference_value FROM [format_table_name("preferences")] WHERE ckey=:ckey AND preference_tag=:ptag",
+		list("ckey" = parent.ckey, "ptag" = PREFERENCE_TAG_GAME_LANGUAGE)
+	)
+	if(query.Execute() && query.NextRow())
+		game_language = query.item[1]
+	qdel(query)
+	game_language = sanitize_inlist(game_language, GLOB.game_languages, initial(game_language))
+
+/datum/preferences/save_preferences()
+	. = ..()
+	if(!SSdbcore.IsConnected() || !parent?.ckey || IS_GUEST_KEY(parent.ckey))
+		return
+	var/datum/DBQuery/query = SSdbcore.NewQuery(
+		"INSERT INTO [format_table_name("preferences")] (ckey, preference_tag, preference_value) VALUES (:ckey, :ptag, :pvalue) ON DUPLICATE KEY UPDATE preference_value=:pvalue2",
+		list("ckey" = parent.ckey, "ptag" = PREFERENCE_TAG_GAME_LANGUAGE, "pvalue" = game_language, "pvalue2" = game_language)
+	)
+	query.Execute()
+	qdel(query)
 
 /datum/preference/choiced/game_language/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
 	if(!C)
@@ -77,12 +108,22 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
 
 /// Menu pod Esc (aquila/code/modules/escape_menu, woła je New): język gracza i słownik, gdy angielski
+/datum/escape_menu/New(client/client)
+	. = ..()
+	send_game_language()
+
 /datum/escape_menu/proc/send_game_language()
 	if(!client || !window)
 		return
 	if(client.wants_english())
 		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows))
 	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
+
+/// Okno mówienia (tgui-say): etykiety kanałów po angielsku (tgui/packages/tgui-say/constants)
+/datum/tgui_say/load()
+	. = ..()
+	if(. && window)
+		window.send_message("i18n/setLanguage", list("language" = client?.prefs?.game_language || GAME_LANGUAGE_PL))
 
 /datum/tgui_panel/on_message(type, payload)
 	. = ..()

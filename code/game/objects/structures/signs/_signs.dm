@@ -43,7 +43,7 @@
 		var/list/sign_types = list("Obszar zabezpieczony", "Zagrożenie biologiczne", "Wysokie napięcie", "Promieniowanie", "Próżnia", "Utylizacja: do przestrzeni kosmicznej", "Niebezpieczeństwo: ogień", "Zakaz palenia", "Ambulatorium", "Nauka", "Chemia", \
 		"Hydroponika", "Ksenobiologia")
 		var/obj/structure/sign/sign_type
-		switch(i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz rodzaj znaku."), i18n_dialog_text(user, "Dostosowanie znaku")) as null|anything in i18n_input_shown(user, sortList(sign_types)))) // AQ EDIT - i18n okienka
+		switch(input(user, "Wybierz rodzaj znaku.", "Dostosowanie znaku") as null|anything in sortList(sign_types))
 			if("Blank")
 				sign_type = /obj/structure/sign/basic
 			if("Obszar zabezpieczony")

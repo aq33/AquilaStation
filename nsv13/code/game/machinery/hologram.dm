@@ -18,12 +18,12 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 	var/icon/final = icon()
 	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
 	var/new_name = null //Name for the hologram. Can be defaulted to your char name otherwise.
-	if(i18n_alert(usr, "Chcesz użyć swojej postaci ([C.prefs.active_character.real_name]) czy wybrać nowe imię i losowy wygląd?",src,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert("Chcesz użyć swojej postaci ([C.prefs.active_character.real_name]) czy wybrać nowe imię i losowy wygląd?",src,"Tak","Nie") == "Tak")
 		C.prefs.active_character.copy_to(D)
 		new_name = C.prefs.active_character.real_name
 	else
 		randomize_human(D)
-		new_name = input(C, i18n_dialog_text(C, "Wybierz imię dla swojego hologramu komunikacyjnego (zostaw puste, by nazywać się po prostu hologram)"), i18n_dialog_text(C, "Kreator hologramu")) as text // AQ EDIT - i18n okienka
+		new_name = input(C, "Wybierz imię dla swojego hologramu komunikacyjnego (zostaw puste, by nazywać się po prostu hologram)", "Kreator hologramu") as text
 	C.admin_apply_outfit(D, C.robust_dress_shop()) // AQUILA: cmd_admin_dress otwiera teraz okno TGUI (asynchronicznie)
 	for(var/dir in list(2, 1, 4, 8)) //A little bit hacky, but does the trick. BYOND's icon format starts with a south facing dir, while cardinals starts with NORTH.
 		CHECK_TICK
@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 
 /mob/living/simple_animal/admin_holopad/ClickOn(target)
 	. = ..()
-	if(i18n_alert(usr, "Zakończyć komunikację?",src,"Tak","Nie") == "Tak") // AQ EDIT - i18n okienka
+	if(alert("Zakończyć komunikację?",src,"Tak","Nie") == "Tak")
 		qdel(src)
 
 /mob/living/simple_animal/admin_holopad/Destroy()
@@ -86,6 +86,6 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 /obj/machinery/holopad/attack_ghost(mob/user)
 	if(!check_rights_for(user.client, R_ADMIN))
 		return
-	if(i18n_alert(usr, "Pojawić się jako hologram?",src,"Tak","Nie") == "Nie") // AQ EDIT - i18n okienka
+	if(alert("Pojawić się jako hologram?",src,"Tak","Nie") == "Nie")
 		return
 	create_admin_hologram(user.client)

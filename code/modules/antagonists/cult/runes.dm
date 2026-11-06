@@ -257,7 +257,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		return
 
-	var/input_rune_key = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz runę, do której chcesz się teleportować."), i18n_dialog_text(user, "Runa docelowa")) as null|anything in i18n_input_shown(user, potential_runes)) //we know what key they picked // AQ EDIT - i18n okienka
+	var/input_rune_key = input(user, "Wybierz runę, do której chcesz się teleportować.", "Runa docelowa") as null|anything in potential_runes //we know what key they picked
 	var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
 	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated() || !actual_selected_rune)
 		fail_invoke()
@@ -365,7 +365,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		return
 	if(potential_revive_mobs.len > 1)
-		mob_to_revive = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz kultystę do wskrzeszenia."), i18n_dialog_text(user, "Kultysta do wskrzeszenia")) as null|anything in i18n_input_shown(user, potential_revive_mobs)) // AQ EDIT - i18n okienka
+		mob_to_revive = input(user, "Wybierz kultystę do wskrzeszenia.", "Kultysta do wskrzeszenia") as null|anything in potential_revive_mobs
 	else
 		mob_to_revive = potential_revive_mobs[1]
 	if(QDELETED(src) || !validness_checks(mob_to_revive, user))
@@ -521,7 +521,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	for(var/datum/mind/M in SSticker.mode.cult)
 		if(!(M.current in invokers) && M.current && M.current.stat != DEAD)
 			cultists |= M.current
-	var/mob/living/cultist_to_summon = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Kogo chcesz wezwać do [src]?"), i18n_dialog_text(user, "Wyznawcy Geometry")) as null|anything in i18n_input_shown(user, cultists)) // AQ EDIT - i18n okienka
+	var/mob/living/cultist_to_summon = input(user, "Kogo chcesz wezwać do [src]?", "Wyznawcy Geometry") as null|anything in cultists
 	var/held_in_place = FALSE
 	if(iscarbon(cultist_to_summon))
 		var/mob/living/carbon/C = cultist_to_summon
@@ -657,7 +657,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	var/mob/living/user = invokers[1]
 	var/turf/T = get_turf(src)
-	var/choice = i18n_alert(usr, user,"Otwierasz połączenie ze światem duchów...",,"Przywołaj ducha kultu","Wznieś się jako mroczny duch","Anuluj") // AQ EDIT - i18n okienka
+	var/choice = alert(user,"Otwierasz połączenie ze światem duchów...",,"Przywołaj ducha kultu","Wznieś się jako mroczny duch","Anuluj")
 	if(choice == "Przywołaj ducha kultu")
 		var/area/A = get_area(T)
 		if(initial(A.name) == "Space" || is_mining_level(T.z))

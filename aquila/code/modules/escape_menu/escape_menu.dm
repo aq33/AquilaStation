@@ -111,7 +111,6 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/escape_menu_sounds))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/escape_menu_icons))
 	send_init()
-	send_game_language() // wersja angielska (aquila/code/modules/i18n/game_language.dm)
 
 /datum/escape_menu/Destroy(force, ...)
 	STOP_PROCESSING(SSescape_menu, src)

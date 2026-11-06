@@ -106,11 +106,11 @@
 
 /mob/living/simple_animal/drone/proc/pickVisualAppearence()
 	picked = FALSE
-	var/appearence = input(i18n_dialog_text(usr, "Wybierz swój wygląd!"), i18n_dialog_text(usr, "Appearance"), "Maintenance Drone") in sortList(list("Maintenance Drone", "Repair Drone", "Scout Drone")) // AQ EDIT - i18n okienka
+	var/appearence = input("Wybierz swój wygląd!", "Appearance", "Maintenance Drone") in sortList(list("Maintenance Drone", "Repair Drone", "Scout Drone"))
 	switch(appearence)
 		if("Maintenance Drone")
 			visualAppearence = MAINTDRONE
-			colour = input(i18n_dialog_text(usr, "Wybierz swój kolor!"), i18n_dialog_text(usr, "Colour"), "grey") in sortList(list("grey", "blue", "red", "green", "pink", "orange")) // AQ EDIT - i18n okienka
+			colour = input("Wybierz swój kolor!", "Colour", "grey") in sortList(list("grey", "blue", "red", "green", "pink", "orange"))
 			icon_state = "[visualAppearence]_[colour]"
 			icon_living = "[visualAppearence]_[colour]"
 			icon_dead = "[visualAppearence]_dead"

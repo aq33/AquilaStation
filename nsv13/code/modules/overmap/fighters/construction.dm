@@ -508,7 +508,7 @@
 /obj/structure/fighter_frame/attack_hand(mob/user)
 	.=..()
 	if(build_state == LBS_PAINT_DETAILING)
-		if(i18n_alert(usr, user, "Ukończyć [src]?",name,"Tak","Nie") == "Tak" && Adjacent(user)) // AQ EDIT - i18n okienka
+		if(alert(user, "Ukończyć [src]?",name,"Tak","Nie") == "Tak" && Adjacent(user))
 			var/obj/structure/overmap/overmap_check = get_overmap(src)
 			if(overmap_check && istype(overmap_check, /obj/structure/overmap/small_craft))	//NO.
 				to_chat(user, "<span class='boldwarning'>Żadnej Sabrecepcji.</span>")

@@ -164,7 +164,7 @@
 				if(is_eligible(I))
 					L[avoid_assoc_duplicate_keys("[M.real_name] ([get_area(M)])", areaindex)] = I
 
-		var/desc = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz lokalizację do namierzenia."), i18n_dialog_text(usr, "Namierzanie")) as null|anything in i18n_input_shown(usr, sortList(L))) // AQ EDIT - i18n okienka
+		var/desc = input("Wybierz lokalizację do namierzenia.", "Namierzanie") as null|anything in sortList(L)
 		target_ref = WEAKREF(L[desc])
 		var/turf/T = get_turf(L[desc])
 		log_game("[key_name(user)] has set the teleporter target to [L[desc]] at [AREACOORD(T)]")
@@ -178,7 +178,7 @@
 		if(!L.len)
 			to_chat(user, "<span class='alert'>Nie znaleziono aktywnych połączonych stacji.</span>")
 			return
-		var/desc = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz stację do namierzenia."), i18n_dialog_text(usr, "Namierzanie")) as null|anything in i18n_input_shown(usr, sortList(L))) // AQ EDIT - i18n okienka
+		var/desc = input("Wybierz stację do namierzenia.", "Namierzanie") as null|anything in sortList(L)
 		var/obj/machinery/teleport/station/target_station = L[desc]
 		if(!target_station || !target_station.teleporter_hub)
 			return

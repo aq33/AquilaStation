@@ -43,7 +43,7 @@
 	for(var/mob/C in targets)
 		if(!C.client)
 			continue
-		C.client.view_size.setTo((input(i18n_dialog_text(usr, "Wybierz zasięg widzenia:"), i18n_dialog_text(usr, "Zasięg"), 4) in ranges) - 7) // AQ EDIT - i18n okienka
+		C.client.view_size.setTo((input("Wybierz zasięg widzenia:", "Zasięg", 4) in ranges) - 7)
 
 /obj/effect/proc_holder/spell/targeted/summon_friend
 	name = "Przywołanie przyjaciela"

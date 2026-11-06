@@ -61,7 +61,7 @@
 			if (!ban)
 				to_chat(usr, "<span class='adminnotice'>Błąd: nie znaleziono sticky bana dla [ckey]!</span>")
 				return
-			if (i18n_alert(usr, "Na pewno chcesz zdjąć sticky bana z [ckey]?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz zdjąć sticky bana z [ckey]?","Na pewno","Tak","Nie") != "Tak")
 				return
 			if (!get_stickyban_from_ckey(ckey))
 				to_chat(usr, "<span class='adminnotice'>Błąd: ban zniknął.</span>")
@@ -98,7 +98,7 @@
 				to_chat(usr, "<span class='adminnotice'>Błąd: [alt] nie jest powiązany ze sticky banem [ckey]!</span>")
 				return
 
-			if (i18n_alert(usr, "Na pewno chcesz odłączyć [alt] od sticky bana [ckey]? \nUwaga: nic nie powstrzyma BYOND-a przed ponownym powiązaniem. Użyj \[E], by zwolnić z bana","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz odłączyć [alt] od sticky bana [ckey]? \nUwaga: nic nie powstrzyma BYOND-a przed ponownym powiązaniem. Użyj \[E], by zwolnić z bana","Na pewno","Tak","Nie") != "Tak")
 				return
 
 			//we have to do this again incase something changes
@@ -180,7 +180,7 @@
 				to_chat(usr, "<span class='adminnotice'>Błąd: [alt] nie jest powiązany ze sticky banem [ckey]!</span>")
 				return
 
-			if (i18n_alert(usr, "Na pewno chcesz zwolnić [alt] ze sticky bana [ckey]?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz zwolnić [alt] ze sticky bana [ckey]?","Na pewno","Tak","Nie") != "Tak")
 				return
 
 			//we have to do this again incase something changes
@@ -230,7 +230,7 @@
 				to_chat(usr, "<span class='adminnotice'>Błąd: [alt] nie jest zwolniony ze sticky bana [ckey]!</span>")
 				return
 
-			if (i18n_alert(usr, "Na pewno chcesz cofnąć zwolnienie [alt] ze sticky bana [ckey]?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz cofnąć zwolnienie [alt] ze sticky bana [ckey]?","Na pewno","Tak","Nie") != "Tak")
 				return
 
 			//we have to do this again incase something changes
@@ -272,7 +272,7 @@
 
 			var/ckey = data["ckey"]
 
-			if (i18n_alert(usr, "Na pewno chcesz zawiesić stickybana [ckey] do następnej rundy (albo do usunięcia)?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz zawiesić stickybana [ckey] do następnej rundy (albo do usunięcia)?","Na pewno","Tak","Nie") != "Tak")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
@@ -298,7 +298,7 @@
 				return
 			var/ckey = data["ckey"]
 
-			if (i18n_alert(usr, "Na pewno chcesz odwiesić stickybana [ckey]?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz odwiesić stickybana [ckey]?","Na pewno","Tak","Nie") != "Tak")
 				return
 
 			var/ban = get_stickyban_from_ckey(ckey)
@@ -323,7 +323,7 @@
 			if (!data["ckey"])
 				return
 			var/ckey = data["ckey"]
-			if (i18n_alert(usr, "Na pewno chcesz przywrócić sticky bana [ckey] do stanu z początku rundy (albo z ostatniej edycji)?","Na pewno","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+			if (alert("Na pewno chcesz przywrócić sticky bana [ckey] do stanu z początku rundy (albo z ostatniej edycji)?","Na pewno","Tak","Nie") != "Tak")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)

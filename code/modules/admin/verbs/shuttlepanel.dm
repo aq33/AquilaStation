@@ -24,7 +24,7 @@
 	options += "Usuń prom"
 	options += "W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')"
 
-	var/selection = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz, dokąd ma lecieć [name || id]:"), i18n_dialog_text(user, "Lot promu")) as null|anything in i18n_input_shown(user, options)) // AQ EDIT - i18n okienka
+	var/selection = input(user, "Wybierz, dokąd ma lecieć [name || id]:", "Lot promu") as null|anything in options
 	if(!selection)
 		return
 
@@ -35,12 +35,12 @@
 			setTimer(ignitionTime)
 
 		if("Usuń prom")
-			if(i18n_alert(usr, user, "Na pewno usunąć [name || id]?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!") // AQ EDIT - i18n okienka
+			if(alert(user, "Na pewno usunąć [name || id]?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
 				return
 			jumpToNullSpace()
 
 		if("W stronę zachodu słońca (usuń i zalicz cele 'ucieczki')")
-			if(i18n_alert(usr, user, "Na pewno usunąć [name || id] i zaliczyć cele ucieczki?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!") // AQ EDIT - i18n okienka
+			if(alert(user, "Na pewno usunąć [name || id] i zaliczyć cele ucieczki?", "Usuń prom", "Anuluj", "Na pewno!") != "Na pewno!")
 				return
 			intoTheSunset()
 
@@ -57,7 +57,7 @@
 	return  // use the existing verbs for this
 
 /obj/docking_port/mobile/arrivals/admin_fly_shuttle(mob/user)
-	switch(i18n_alert(usr, user, "Chcesz raz polecieć promem przylotów czy zmienić jego cel?", "Lot promu", "Leć", "Zmień cel", "Anuluj")) // AQ EDIT - i18n okienka
+	switch(alert(user, "Chcesz raz polecieć promem przylotów czy zmienić jego cel?", "Lot promu", "Leć", "Zmień cel", "Anuluj"))
 		if("Anuluj")
 			return
 		if("Leć")
@@ -72,7 +72,7 @@
 		if (canDock(S) == SHUTTLE_CAN_DOCK)
 			options[S.name || S.id] = S
 
-	var/selection = i18n_input_choice(user, input(user, i18n_dialog_text(user, "Wybierz nowy cel promu przylotów:"), i18n_dialog_text(user, "Lot promu")) as null|anything in i18n_input_shown(user, options)) // AQ EDIT - i18n okienka
+	var/selection = input(user, "Wybierz nowy cel promu przylotów:", "Lot promu") as null|anything in options
 	if(!selection)
 		return
 	target_dock = options[selection]

@@ -20,7 +20,7 @@
 	if(used)
 		to_chat(user, "<span class='brass'>Eminencja została już uwolniona.</span>")
 		return
-	var/option = i18n_alert(usr, user,"Kto ma kierować Eminencją?",,"Ja","Duch", "Anuluj") // AQ EDIT - i18n okienka
+	var/option = alert(user,"Kto ma kierować Eminencją?",,"Ja","Duch", "Anuluj")
 	if(option != "Duch" && option != "Ja") //NSV13
 		return
 	else if(option == "Ja")

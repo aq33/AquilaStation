@@ -510,7 +510,7 @@
 	symptoms += SSdisease.list_symptoms.Copy()
 	do
 		if(user)
-			var/symptom = input(user, i18n_dialog_text(user, "Wybierz objaw do dodania (pozostało: [i])"), i18n_dialog_text(user, "Wybierz symptom")) in sortList(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+			var/symptom = input(user, "Wybierz objaw do dodania (pozostało: [i])", "Wybierz symptom") in sortList(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc))
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))

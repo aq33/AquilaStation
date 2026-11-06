@@ -28,7 +28,7 @@
 		if(Adjacent(C))
 			choices += C
 
-	var/mob/living/M = input(src,i18n_dialog_text(src, "Kim chcesz się pożywić?")) in null|sortNames(choices) // AQ EDIT - i18n okienka
+	var/mob/living/M = input(src,"Kim chcesz się pożywić?") in null|sortNames(choices)
 	if(!M)
 		return 0
 	if(CanFeedon(M))

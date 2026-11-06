@@ -116,7 +116,7 @@
 				return FALSE
 			var/list/must_return = loans_info[H]
 			var/total = length(must_return) * 300
-			if(i18n_alert(usr, usr, "Zostaniesz obciążony kwotą [total] kredytów.", "Grzywna za zgubiony przedmiot", "OK", "Cancel") == "OK") // AQ EDIT - i18n okienka
+			if(alert(usr, "Zostaniesz obciążony kwotą [total] kredytów.", "Grzywna za zgubiony przedmiot", "OK", "Cancel") == "OK")
 				// Why the fuck is there no proc for this
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
 				if(!C)

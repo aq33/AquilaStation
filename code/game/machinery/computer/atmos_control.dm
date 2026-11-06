@@ -280,7 +280,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 	if(!IO.len)
 		to_chat(user, "<span class='alert'>Nie wykryto urządzeń.</span>")
 		return
-	var/S = i18n_input_choice(usr, input(i18n_dialog_text(usr, "Wybierz zestaw urządzeń: "), i18n_dialog_text(usr, "Wybór"), IO[1]) as anything in i18n_input_shown(usr, sortList(IO))) // AQ EDIT - i18n okienka
+	var/S = input("Wybierz zestaw urządzeń: ", "Wybór", IO[1]) as anything in sortList(IO)
 	if(src)
 		src.input_tag = "[S]_in"
 		src.output_tag = "[S]_out"

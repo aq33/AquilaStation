@@ -8,13 +8,13 @@
 		return
 
 	var/cfg_fps = CONFIG_GET(number/fps)
-	var/new_fps = round(input(i18n_dialog_text(usr, "Ustawia liczbę klatek gry na sekundę. Może zepsuć grę (domyślnie: [cfg_fps])"),i18n_dialog_text(usr, "FPS"), world.fps) as num|null) // AQ EDIT - i18n okienka
+	var/new_fps = round(input("Ustawia liczbę klatek gry na sekundę. Może zepsuć grę (domyślnie: [cfg_fps])","FPS", world.fps) as num|null)
 
 	if(new_fps <= 0)
 		to_chat(src, "<span class='danger'>Błąd: set_server_fps(): nieprawidłowa wartość world.fps. Nic nie zmieniono.</span>")
 		return
 	if(new_fps > cfg_fps * 1.5)
-		if(i18n_alert(usr, src, "Ustawiasz wysoką wartość fps:\n\t[new_fps] klatek na sekundę\n\tconfig.fps = [cfg_fps]","Uwaga!","Potwierdź","PRZERWIJ-PRZERWIJ-PRZERWIJ") != "Potwierdź") // AQ EDIT - i18n okienka
+		if(alert(src, "Ustawiasz wysoką wartość fps:\n\t[new_fps] klatek na sekundę\n\tconfig.fps = [cfg_fps]","Uwaga!","Potwierdź","PRZERWIJ-PRZERWIJ-PRZERWIJ") != "Potwierdź")
 			return
 
 	var/msg = "[key_name(src)] has modified world.fps to [new_fps]"

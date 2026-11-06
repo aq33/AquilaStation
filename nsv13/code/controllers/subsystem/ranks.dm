@@ -144,7 +144,7 @@ Checks two text ranks, see which one outranks the other. Used for squad rank ass
 		return
 
 	message_admins("[key_name_admin(src)] otwiera plik: [path]")
-	switch(i18n_alert(usr, "Podgląd (w grze), Otwórz (w edytorze tekstu systemu) czy Wczytaj?", path, "Podgląd", "Otwórz", "Wczytaj")) // AQ EDIT - i18n okienka
+	switch(alert("Podgląd (w grze), Otwórz (w edytorze tekstu systemu) czy Wczytaj?", path, "Podgląd", "Otwórz", "Wczytaj"))
 		if ("Podgląd")
 			src << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
 		if ("Otwórz")

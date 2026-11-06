@@ -8,7 +8,7 @@
 	if(!check_rights(R_FUN))
 		to_chat(src, "Do tej komendy potrzebujesz uprawnienia fun.")
 		return
-	if(i18n_alert(usr, src, "Potwierdzić uleczenie wszystkich?","Na pewno?","Tak","Nie") != "Tak") // AQ EDIT - i18n okienka
+	if(alert(src, "Potwierdzić uleczenie wszystkich?","Na pewno?","Tak","Nie") != "Tak")
 		return
 	message_admins("[key_name_admin(usr)] leczy wszystkie żywe moby")
 	log_admin("[key_name_admin(usr)] healed all living mobs")

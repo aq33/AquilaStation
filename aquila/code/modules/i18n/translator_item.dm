@@ -12,9 +12,15 @@
 	. = ..()
 	ADD_TRAIT(user, TRAIT_AQ_TRANSLATOR, REF(src))
 	user.grant_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
+	if(isliving(user))
+		var/mob/living/living_user = user
+		living_user.aq_update_translator_hook()
 
 /obj/item/aquila_translator/dropped(mob/user)
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_AQ_TRANSLATOR, REF(src))
 	if(!HAS_TRAIT(user, TRAIT_AQ_TRANSLATOR))
 		user.remove_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
+	if(isliving(user))
+		var/mob/living/living_user = user
+		living_user.aq_update_translator_hook()

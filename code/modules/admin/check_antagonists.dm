@@ -114,7 +114,7 @@
 
 /datum/admins/proc/check_antagonists()
 	if(!SSticker.HasRoundStarted())
-		i18n_alert(usr, "Gra jeszcze się nie zaczęła!") // AQ EDIT - i18n okienka
+		alert("Gra jeszcze się nie zaczęła!")
 		return
 	if(!check_antagonists_ui)
 		check_antagonists_ui = new(src)

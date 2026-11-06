@@ -106,8 +106,8 @@
 	button_icon_state = "drone_vision"
 
 /datum/action/innate/change_screen/Activate()
-	var/screen_choice = input(usr, i18n_dialog_text(usr, "Którego ekranu chcesz używać?"), i18n_dialog_text(usr, "Zmiana ekranu")) as null | anything in GLOB.ipc_screens_list // AQ EDIT - i18n okienka
-	var/color_choice = input(usr, i18n_dialog_text(usr, "Jaki kolor ma mieć twój ekran?"), i18n_dialog_text(usr, "Zmiana koloru")) as null | color // AQ EDIT - i18n okienka
+	var/screen_choice = input(usr, "Którego ekranu chcesz używać?", "Zmiana ekranu") as null | anything in GLOB.ipc_screens_list
+	var/color_choice = input(usr, "Jaki kolor ma mieć twój ekran?", "Zmiana koloru") as null | color
 	if(!screen_choice)
 		return
 	if(!color_choice)

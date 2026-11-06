@@ -47,6 +47,7 @@
 /// Tłumacz z rundy: do kieszeni albo do ręki, a silikony mają go wbudowanego. Komunikat idzie do M, bo H nie ma jeszcze klucza.
 /mob/living/proc/aq_give_translator(mob/M)
 	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, "wbudowany")
+	aq_update_translator_hook()
 	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz przekłada mowę w obie strony."))
 
 /mob/living/carbon/aq_give_translator(mob/M)
@@ -60,8 +61,29 @@
 		where = "pod nogami"
 	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
 
+/// Sygnał z /mob/living/say() słucha tylko ten, kto ma tłumacza (przedmiot albo wbudowany)
+/mob/living/proc/aq_update_translator_hook()
+	if(HAS_TRAIT(src, TRAIT_AQ_TRANSLATOR))
+		RegisterSignal(src, COMSIG_LIVING_AQ_PRE_SAY, PROC_REF(aq_on_pre_say), override = TRUE)
+	else if(!aq_translated_say)
+		UnregisterSignal(src, COMSIG_LIVING_AQ_PRE_SAY)
+
+/mob/living/proc/aq_on_pre_say(datum/source, original_message, message, list/message_mods, datum/language/language, bubble_type, list/spans, forced)
+	SIGNAL_HANDLER
+	if(aq_translated_say)
+		aq_translated_say = FALSE
+		return COMPONENT_AQ_SAY_AS_COMMON
+	if(aq_translator_intercept(original_message, message, message_mods, language, bubble_type, spans, forced))
+		return COMPONENT_AQ_SAY_INTERCEPTED
+
+// Angielski mówi każdy język, który mówi Wspólnym (bez zmiany listy w core)
+/obj/item/organ/tongue/could_speak_language(datum/language/dt)
+	if(dt == /datum/language/english)
+		return !!languages_possible?[/datum/language/common]
+	return ..()
+
 /**
- * Hook z /mob/living/say, po wyborze języka. Obcokrajowiec mówi po angielsku z tłumaczem przy sobie:
+ * Z sygnału COMSIG_LIVING_AQ_PRE_SAY (/mob/living/say, po wyborze języka). Obcokrajowiec mówi po angielsku z tłumaczem przy sobie:
  * treść idzie do API, a przetłumaczona wraca przez say() z tymi samymi przedrostkami (radio, szept, śpiew).
  * TRUE = wiadomość przejęta, oryginał nie wychodzi.
  */
@@ -97,8 +119,11 @@
 	if(!erase)
 		rebuilt += replacetext(texts[index], "*", "")
 	aq_translated_say = TRUE
+	// tłumacz mógł zniknąć w trakcie zapytania, a powtórka i tak ma wyjść we Wspólnym
+	RegisterSignal(src, COMSIG_LIVING_AQ_PRE_SAY, PROC_REF(aq_on_pre_say), override = TRUE)
 	say(rebuilt, bubble_type, spans || list(), TRUE, null, TRUE)
 	aq_translated_say = FALSE
+	aq_update_translator_hook()
 
 /// Obcokrajowiec z tłumaczem słyszy mowę we Wspólnym: tłumaczymy ją, zamiast pokazać bełkot
 /mob/living/proc/aq_hears_via_translator(datum/language/message_language)

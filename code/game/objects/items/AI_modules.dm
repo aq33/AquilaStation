@@ -250,11 +250,11 @@ AI MODULES
 	laws = list("")
 
 /obj/item/aiModule/supplied/freeform/attack_self(mob/user)
-	var/newpos = input(i18n_dialog_text(usr, "Podaj priorytet nowego prawa. Można zapisywać tylko w sektorach praw 15 i wyższych."), i18n_dialog_text(usr, "Priorytet prawa (15+)"), lawpos) as num|null // AQ EDIT - i18n okienka
+	var/newpos = input("Podaj priorytet nowego prawa. Można zapisywać tylko w sektorach praw 15 i wyższych.", "Priorytet prawa (15+)", lawpos) as num|null
 	if(newpos == null)
 		return
 	if(newpos < 15)
-		var/response = i18n_alert(usr, "Błąd: priorytet prawa [newpos] jest nieprawidłowy. Priorytety poniżej 14 są zarezerwowane dla praw rdzenia. Zmienić go na 15?", "Nieprawidłowy priorytet prawa", "Zmień na 15", "Anuluj") // AQ EDIT - i18n okienka
+		var/response = alert("Błąd: priorytet prawa [newpos] jest nieprawidłowy. Priorytety poniżej 14 są zarezerwowane dla praw rdzenia. Zmienić go na 15?", "Nieprawidłowy priorytet prawa", "Zmień na 15", "Anuluj")
 		if (!response || response == "Anuluj")
 			return
 		newpos = 15
@@ -288,7 +288,7 @@ AI MODULES
 	var/lawpos = 1
 
 /obj/item/aiModule/remove/attack_self(mob/user)
-	lawpos = input(i18n_dialog_text(usr, "Podaj prawo, które chcesz usunąć."), i18n_dialog_text(usr, "Numer prawa"), lawpos) as num|null // AQ EDIT - i18n okienka
+	lawpos = input("Podaj prawo, które chcesz usunąć.", "Numer prawa", lawpos) as num|null
 	if(lawpos == null)
 		return
 	if(lawpos <= 0)

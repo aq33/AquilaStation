@@ -588,7 +588,7 @@
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 				return
 
-			var/new_price_input = input(usr,i18n_dialog_text(usr, "Ustaw cenę sprzedaży na tej tacy sprzedażowej."),i18n_dialog_text(usr, "nowa cena"),0) as num|null // AQ EDIT - i18n okienka
+			var/new_price_input = input(usr,"Ustaw cenę sprzedaży na tej tacy sprzedażowej.","nowa cena",0) as num|null
 			if(isnull(new_price_input) || (payments_acc != potential_acc.registered_account))
 				to_chat(usr, "<span class='warning'>[src] odrzuca twoją nową cenę.</span>")
 				return

@@ -26,7 +26,7 @@
 				mod_list(target, null, "list", "contents", target_index, autodetect_class = FALSE)
 			if(href_list[VV_HK_LIST_REMOVE])
 				var/variable = target[target_index]
-				var/prompt = i18n_alert(usr, "Usunąć z listy element nr [target_index]?", "Potwierdzenie", "Tak", "Nie") // AQ EDIT - i18n okienka
+				var/prompt = alert("Usunąć z listy element nr [target_index]?", "Potwierdzenie", "Tak", "Nie")
 				if (prompt != "Tak")
 					return
 				target.Cut(target_index, target_index+1)

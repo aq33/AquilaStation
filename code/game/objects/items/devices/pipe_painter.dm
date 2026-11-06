@@ -23,7 +23,7 @@
 		user.visible_message("<span class='notice'>[user] maluje [P] na kolor: [paint_color].</span>","<span class='notice'>Malujesz [P] na kolor: [paint_color].</span>")
 
 /obj/item/pipe_painter/attack_self(mob/user)
-	paint_color = input(i18n_dialog_text(usr, "Jakiego koloru chcesz użyć?"),i18n_dialog_text(usr, "Malarz rur")) in GLOB.pipe_paint_colors // AQ EDIT - i18n okienka
+	paint_color = input("Jakiego koloru chcesz użyć?","Malarz rur") in GLOB.pipe_paint_colors
 
 /obj/item/pipe_painter/examine(mob/user)
 	. = ..()

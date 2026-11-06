@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			message_admins("<span class='danger'><B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] ma ten sam CID i IP co inny gracz, więc najwyraźniej gra na kilku kontach. Dostał ostrzeżenie, że ma opuścić serwer, bo inaczej ryzykuje bana.</span>")
 			log_admin_private("MULTIKEYING: [key_name(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.")
 		spawn(0.5 SECONDS) //needs to run during world init, do not convert to add timer
-			i18n_alert(usr, mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please. // AQ EDIT - i18n okienka
+			alert(mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please.
 			to_chat_immediate(mob, "<span class='danger'>[dupe_login_message]</span>")
 
 
@@ -1116,12 +1116,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	remove_verb(/client/proc/show_account_identifier)
 	addtimer(CALLBACK(src, PROC_REF(restore_account_identifier)), 20) //Don't DoS DB queries, asshole
 
-	var/confirm = i18n_alert(usr, "NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Tak", "Anuluj") // AQ EDIT - i18n okienka
+	var/confirm = alert("NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Tak", "Anuluj")
 	if(confirm != "Tak")
 		return
 	var/uuid = fetch_uuid()
 	if(!uuid)
-		i18n_alert(usr, "Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "OK") // AQ EDIT - i18n okienka
+		alert("Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "OK")
 		log_sql("Failed to fetch UUID for [key_name(src)]")
 	else
 		var/dat
@@ -1131,7 +1131,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		dat += "<br>"
 		dat += "[uuid]"
 
-		src << browse(i18n_browse_html(src, HTML_SKELETON(dat)), "window=accountidentifier;size=600x320") // AQ EDIT - wersja angielska (aquila/code/modules/i18n/browser_windows.dm)
+		src << browse(HTML_SKELETON(dat), "window=accountidentifier;size=600x320")
 		onclose(src, "accountidentifier")
 
 /client/proc/restore_account_identifier()

@@ -420,7 +420,7 @@ Starting Materials
 				playsound(src, sound, 100, 1)
 				return
 
-			else if(i18n_alert(usr, "Oczyszczenie zbiornika uniemożliwi działanie APNP do czasu ponownego napełnienia, kontynuować?",name,"Yes","No") != "No" && Adjacent(usr)) // AQ EDIT - i18n okienka
+			else if(alert("Oczyszczenie zbiornika uniemożliwi działanie APNP do czasu ponownego napełnienia, kontynuować?",name,"Yes","No") != "No" && Adjacent(usr))
 				to_chat(usr, "<span class='warning'>System usuwa zasoby naprawcze</span>")
 				playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100, 1)
 				repair_resources = 0

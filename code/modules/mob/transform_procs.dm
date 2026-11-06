@@ -649,7 +649,7 @@
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input(i18n_dialog_text(usr, "W jaki typ moba ma się zmienić [src]?"), i18n_dialog_text(usr, "Wybierz typ")) in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Wybierz typ") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<span class='danger'>Przepraszamy, ten typ moba jest obecnie niedostępny.</span>")
@@ -671,7 +671,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input(i18n_dialog_text(usr, "W jaki typ moba ma się zmienić [src]?"), i18n_dialog_text(usr, "Wybierz typ")) in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)) // AQ EDIT - i18n okienka
+	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Wybierz typ") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<span class='danger'>Przepraszamy, ten typ moba jest obecnie niedostępny.</span>")

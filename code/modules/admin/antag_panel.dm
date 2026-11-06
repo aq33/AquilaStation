@@ -91,10 +91,10 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/mind/proc/traitor_panel()
 	if(!SSticker.HasRoundStarted())
-		i18n_alert(usr, "Nie przed startem rundy!", "Uwaga") // AQ EDIT - i18n okienka
+		alert("Nie przed startem rundy!", "Uwaga")
 		return
 	if(QDELETED(src))
-		i18n_alert(usr, "Ten umysł nie ma moba albo został usunięty! Z jakiegoś powodu!", "Edycja pamięci") // AQ EDIT - i18n okienka
+		alert("Ten umysł nie ma moba albo został usunięty! Z jakiegoś powodu!", "Edycja pamięci")
 		return
 
 	var/out = "<B>[name]</B>[(current && (current.real_name!=name))?" (jako [current.real_name])":""]<br>"
