@@ -111,6 +111,16 @@ def missing_literals(known):
     return found
 
 
+def jsx_missing_ranges(path, content, known):
+    """Jak jsx_missing, ale z zakresem linii tekstu: (literał, pierwsza linia, ostatnia linia)."""
+    ast = jsx_ast.dump()
+    if ast is not None and path.endswith(jsx_runs.JSX_EXT):
+        return [(item["literal"], item["line"], item.get("endLine", item["line"])) for item in ast
+                if item["file"] == path and item["literal"] not in known
+                and jsx_runs.is_polish_run(item["literal"])]
+    return [(lit, number, number) for lit, number in jsx_missing(path, content, known)]
+
+
 def jsx_missing(path, content, known):
     """Polskie teksty okien bez angielskiego: (literał, numer linii). Z drzewa składni (te same,
     które owija loader tgui/i18n-jsx.cjs); bez Node ze skanu tools/i18n/jsx_runs.py."""
@@ -135,25 +145,31 @@ def changed_missing(known, base):
                           capture_output=True, text=True, encoding="utf-8", check=True).stdout
     is_polish = polish_detector(known)
     path, number, found = None, 0, []
-    touched = set()
+    added = {}  # okno -> numery dodanych linii
+    # teksty okien z drzewa składni (zdania przez kilka linii); bez Node ze skanu linii jak DM
+    windows_from_ast = jsx_ast.dump() is not None
     for line in diff.splitlines():
         if line.startswith("+++ "):
             path = line[6:] if line.startswith("+++ b/") else None
-            if path:
-                touched.add(path)
         elif m := HUNK.match(line):
             number = int(m.group(1))
         elif line.startswith("+") and path:
             if not ep.SKIP_PATH.search(path) and not NOT_PLAYER_TEXT.search(path):
-                for lit in line_literals(path, line[1:]):
-                    if lit not in known and is_polish(lit):
-                        found.append((path, number, lit))
+                if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
+                    added.setdefault(path, set()).add(number)
+                else:
+                    for lit in line_literals(path, line[1:]):
+                        if lit not in known and is_polish(lit):
+                            found.append((path, number, lit))
             number += 1
-    # zdania z wstawkami JSX ciągną się przez kilka linii: sprawdzamy całe zmienione okna
-    for path in sorted(touched):
-        if os.path.exists(path) and not NOT_PLAYER_TEXT.search(path):
-            with open(path, encoding="utf-8", errors="replace") as f:
-                found += [(path, number, lit) for lit, number in jsx_missing(path, f.read(), known)]
+    # tylko teksty, które nachodzą na dodane linie: stare zdania okna nie wracają w każdym PR-ze
+    for path, lines in sorted(added.items()):
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8", errors="replace") as f:
+            for lit, first, last in jsx_missing_ranges(path, f.read(), known):
+                if any(first <= n <= last for n in lines):
+                    found.append((path, first, lit))
     return found
 
 

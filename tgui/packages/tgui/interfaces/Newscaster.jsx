@@ -482,7 +482,7 @@ const NewscasterChannelBox = (_) => {
             </Section>
           ) : (
             <Box width="100%" height="100%" style={{ overflowY: 'auto' }}>
-              <BlockQuote italic fontSize={1.2}>
+              <BlockQuote italic fontSize={1.2} className="i18n-skip">
                 {decodeHtmlEntities(channelDesc)}
               </BlockQuote>
             </Box>
@@ -753,6 +753,7 @@ const NewscasterChannelMessages = (_) => {
                   <Image src={message.photo} />
                   {message.photo_caption && (
                     <Section
+                      className="i18n-skip"
                       dangerouslySetInnerHTML={processedText(
                         message.photo_caption,
                       )}

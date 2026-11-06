@@ -273,13 +273,33 @@ def is_english_run(literal):
     return ep.is_english(text) and not ep.is_polish(text)
 
 
+TERNARY_JS = re.compile(r"""^([^'"?]+?)\?\s*(['"])(?:\\.|(?!\2).)*\2\s*:\s*(['"])(?:\\.|(?!\3).)*\3$""")
+
+
+def ternary_condition(expr):
+    """Warunek wyrażenia `x ? 'A' : 'B'` (bez odstępów) albo None."""
+    m = TERNARY_JS.match(expr.strip())
+    return re.sub(r"\s+", "", m.group(1)) if m else None
+
+
 def with_pl_exprs(en_literal, pl_literal):
     """Angielski literał z wyrażeniami z polskiego (ten sam szkielet, ta sama kolejność),
-    żeby build_chat_dict.py połączył wstawki po tekście wyrażenia."""
+    żeby build_chat_dict.py połączył wstawki po tekście wyrażenia. Warunek z napisami i tym
+    samym warunkiem zostaje angielski (${on ? 'has' : 'does not have'}): build_en robi z niego
+    gałąź wybieraną po polskiej alternatywie, zamiast wstawić polski napis."""
     pattern = re.compile(r"\$\{((?:[^{}]|\{[^{}]*\})*)\}")
     pl_exprs = [m.group(1) for m in pattern.finditer(pl_literal)]
     it = iter(pl_exprs)
-    return pattern.sub(lambda m: "${" + next(it) + "}", en_literal)
+
+    def pick(match):
+        pl = next(it)
+        en = match.group(1)
+        condition = ternary_condition(en)
+        if condition and condition == ternary_condition(pl):
+            return "${" + en + "}"
+        return "${" + pl + "}"
+
+    return pattern.sub(pick, en_literal)
 
 
 def pair_runs(ours, theirs, sink):
