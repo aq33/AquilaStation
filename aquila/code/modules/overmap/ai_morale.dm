@@ -36,11 +36,9 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 #define AI_ODDS_INTERVAL 5
 /// Fear thresholds
 #define AI_FEAR_CAUTIOUS 30
-#define AI_FEAR_RETREAT 60
-#define AI_FEAR_PANIC 85
 /// Standoff of a scared ship: out of gun range of the enemy (OVERMAP_AI_GUN_RANGE 25 + band)
 #define AI_FEAR_STANDOFF 35
-/// How often a ship between AI_FEAR_RETREAT and AI_FEAR_PANIC rolls to break off
+/// How often a ship between GLOB.ai_fear_retreat and GLOB.ai_fear_panic (ai_tuning.dm) rolls to break off
 #define AI_RETREAT_ROLL_TIME (5 SECONDS)
 /// A fleeing ship jumps once no enemy has hurt it for this long and the nearest enemy is this far away
 #define AI_ESCAPE_QUIET_TIME (20 SECONDS)
@@ -138,7 +136,7 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	raw += ai_shock
 	raw += clamp((ai_odds_ratio - 1) * AI_FEAR_PER_ODDS, AI_FEAR_ODDS_MIN, AI_FEAR_ODDS_MAX)
 	raw -= min(AI_CALM_MAX, count_ai_support() * AI_CALM_PER_ALLY)
-	return clamp(raw * get_ai_fear_mult(), 0, 100)
+	return clamp(raw * get_ai_fear_mult() * GLOB.ai_fear_mult, 0, 100)
 
 /obj/structure/overmap/proc/update_ai_morale()
 	if(!ai_temperament)
@@ -164,11 +162,11 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 		if(ai_fear < AI_FEAR_CAUTIOUS) // Rallied
 			stop_ai_flight()
 		return
-	if(ai_fear >= AI_FEAR_PANIC)
+	if(ai_fear >= GLOB.ai_fear_panic)
 		start_ai_flight()
-	else if(ai_fear >= AI_FEAR_RETREAT && world.time >= ai_next_retreat_roll)
+	else if(ai_fear >= GLOB.ai_fear_retreat && world.time >= ai_next_retreat_roll)
 		ai_next_retreat_roll = world.time + AI_RETREAT_ROLL_TIME
-		if(prob((ai_fear - AI_FEAR_RETREAT) * 3))
+		if(prob((ai_fear - GLOB.ai_fear_retreat) * 3))
 			start_ai_flight()
 
 /obj/structure/overmap/slowprocess()
@@ -301,6 +299,20 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 		return
 	return ..()
 
+/// Fear shakes the gunners: from AI_FEAR_CAUTIOUS up, an AI ship fires its guns with a growing spread,
+/// up to GLOB.ai_fear_max_spread degrees (ai_tuning.dm) at full fear. Torpedoes and missiles home in and are not affected.
+/obj/structure/overmap/proc/get_ai_fear_spread(proj_type)
+	if(!GLOB.ai_morale_enabled || !ai_controlled || ai_fear <= AI_FEAR_CAUTIOUS || !ispath(proj_type, /obj/item/projectile) || ispath(proj_type, /obj/item/projectile/guided_munition))
+		return 0
+	return GLOB.ai_fear_max_spread * (ai_fear - AI_FEAR_CAUTIOUS) / (100 - AI_FEAR_CAUTIOUS)
+
+/obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	var/fear_spread = get_ai_fear_spread(proj_type)
+	if(fear_spread)
+		var/obj/item/projectile/prototype = proj_type
+		spread_override = (isnull(spread_override) ? initial(prototype.spread) : spread_override) + fear_spread
+	return ..(proj_type, target, pixel_speed, user_override, firing_flags, ai_aim, miss_chance, max_miss_distance, spread_override, projectile_speed)
+
 /// Reckless commanders chase a target that slipped away to where they guess it went, away from their fleet
 /obj/structure/overmap/ai_process()
 	var/obj/structure/overmap/old_target = last_target
@@ -359,8 +371,6 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 #undef AI_MORALE_SUPPORT_RANGE
 #undef AI_ODDS_INTERVAL
 #undef AI_FEAR_CAUTIOUS
-#undef AI_FEAR_RETREAT
-#undef AI_FEAR_PANIC
 #undef AI_FEAR_STANDOFF
 #undef AI_RETREAT_ROLL_TIME
 #undef AI_ESCAPE_QUIET_TIME

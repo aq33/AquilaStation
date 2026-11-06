@@ -13,8 +13,6 @@
 /// Retreat thresholds
 #define FLEET_RETREAT_LOSSES 0.67
 #define FLEET_RETREAT_FEAR 65
-/// Chance that a losing fleet calls for help at all; it rolls once per fight
-#define FLEET_DISTRESS_CHANCE 50
 /// How far (in jumps) a distress call reaches
 #define FLEET_DISTRESS_JUMPS 2
 /// Help arrives after this, plus FLEET_DISTRESS_PER_JUMP for each jump past the first
@@ -108,7 +106,7 @@
 	var/losses = state[3]
 	if(!ai_distress_sent && (losses >= FLEET_DISTRESS_LOSSES || fear >= FLEET_DISTRESS_FEAR) && is_near_players())
 		ai_distress_sent = TRUE // One roll per fight
-		if(prob(FLEET_DISTRESS_CHANCE))
+		if(prob(GLOB.ai_distress_chance)) // ai_tuning.dm
 			send_ai_distress_call()
 		else
 			note_ai_fleet_event("losing, but did not call for help (roll failed)")
@@ -273,7 +271,6 @@
 #undef FLEET_DISTRESS_FEAR
 #undef FLEET_RETREAT_LOSSES
 #undef FLEET_RETREAT_FEAR
-#undef FLEET_DISTRESS_CHANCE
 #undef FLEET_DISTRESS_JUMPS
 #undef FLEET_DISTRESS_DELAY_MIN
 #undef FLEET_DISTRESS_DELAY_MAX

@@ -22,7 +22,7 @@
 	enemy.faction = "nanotrasen"
 	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
 	enemy.forceMove(locate(30, 10, run_loc_floor_bottom_left.z))
-	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget() || check_flanking() || check_escape()
+	var/fail = check_burst() || check_temperament() || check_flee_goal() || check_standoff() || check_hesitation() || check_retarget() || check_flanking() || check_escape() || check_fear_spread() || check_tuning()
 	GLOB.ai_morale_enabled = was_enabled
 	if(fail)
 		return Fail(fail)
@@ -213,3 +213,25 @@
 	qdel(goal)
 	if(score)
 		return "A ship that already jumped out still picks the escape goal"
+
+/// Fear widens the gun spread up to the tuned maximum, never for homing munitions
+/datum/unit_test/aquila_ai_morale/proc/check_fear_spread()
+	reset()
+	var/gun = /obj/item/projectile/bullet
+	if(ship.get_ai_fear_spread(gun))
+		return "A calm ship fired with a fear spread ([ship.get_ai_fear_spread(gun)])"
+	ship.ai_fear = 100
+	if(ship.get_ai_fear_spread(gun) != GLOB.ai_fear_max_spread)
+		return "A panicking ship's spread was [ship.get_ai_fear_spread(gun)] instead of [GLOB.ai_fear_max_spread]"
+	if(ship.get_ai_fear_spread(/obj/item/projectile/guided_munition/torpedo))
+		return "Fear spread a homing torpedo"
+	reset()
+
+/// Every setting of the admin tuning verb (ai_tuning.dm) names a real global and starts inside its own range
+/datum/unit_test/aquila_ai_morale/proc/check_tuning()
+	for(var/list/setting as anything in GLOB.ai_tuning_settings)
+		if(!(setting[1] in GLOB.vars))
+			return "The AI tuning setting [setting[1]] has no global variable"
+		var/value = GLOB.vars[setting[1]]
+		if(!isnum(value) || value < setting[3] || value > setting[4])
+			return "The AI tuning setting [setting[1]] starts at [value], outside [setting[3]]-[setting[4]]"

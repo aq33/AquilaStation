@@ -828,6 +828,7 @@
 #include "code\modules\overmap\dradis_uncertainty.dm"
 #include "code\modules\overmap\radar_emission.dm"
 #include "code\modules\overmap\sensor_console.dm"
+#include "code\modules\overmap\ai_tuning.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\overmap\ai_targeting.dm"
