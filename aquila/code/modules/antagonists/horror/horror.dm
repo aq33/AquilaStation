@@ -59,6 +59,8 @@
 	var/horror_chems = list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
 
 	var/leaving = FALSE
+	/// AQUILA - TRUE while the revive pulse charges, the chemicals are already spent
+	var/jumpstarting = FALSE
 	var/hiding = FALSE
 	var/invisible = FALSE
 	var/datum/action/innate/horror/talk_to_horror/talk_to_horror_action = new
@@ -515,7 +517,7 @@
 	layer = MOB_LAYER
 	for (var/mob/living/carbon/M in range(1, src))
 		if(!M || !Adjacent(M))
-			return
+			continue // AQUILA - a carbon behind a corner skipped the cooldown, unlimited stuns
 		if(has_upgrade("paralysis"))
 			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
 			M.Stun(50)
@@ -603,6 +605,9 @@
 		to_chat(src, "<span class='warning'>Potrzebujesz nosiciela, by tego użyć.</span>")
 		return
 
+	if(jumpstarting) // AQUILA - the second click during the charge revived twice and went to -250 chemicals
+		return
+
 	if(!can_use_ability())
 		return
 
@@ -619,8 +624,18 @@
 		return
 
 	if(victim.stat == DEAD)
+		// AQUILA START - spend the chemicals before the charge and check the host again after it
+		chemicals -= 250
+		jumpstarting = TRUE
 		playsound(src, 'sound/machines/defib_charge.ogg', 50, 1, -1)
 		sleep(1 SECONDS)
+		if(QDELETED(src))
+			return
+		jumpstarting = FALSE
+		if(!victim || QDELETED(victim) || victim.stat != DEAD)
+			chemicals += 250
+			return
+		// AQUILA END
 		victim.tod = null
 		victim.setToxLoss(0)
 		victim.setOxyLoss(0)
@@ -640,7 +655,6 @@
 		victim.remove_all_embedded_objects()
 		victim.revive()
 		log_game("[src]/([src.ckey]) has revived [victim]/([victim.ckey]")
-		chemicals -= 250
 		to_chat(src, "<span class='notice'>Wysyłasz impuls energii do nosiciela i przywracasz go do życia!</span>")
 		victim.grab_ghost(force = TRUE) //brings the host back, no eggscape
 		victim.adjustOxyLoss(30)

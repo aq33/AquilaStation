@@ -23,17 +23,17 @@
 	M.Turn(angle)
 	transform = M
 	scatter_angle += angle
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_throw_scattered_moved), override = TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_SCATTER_ROTATED)
 
-/obj/item/proc/on_throw_scattered_moved(datum/source)
-	SIGNAL_HANDLER
-	if(!isturf(loc))
+// Przez Moved(), nie przez własny COMSIG_MOVABLE_MOVED: rejestracja z override = TRUE podmieniała i potem wyrejestrowywała
+// handler, który przedmiot miał już na tym sygnale (np. kabel USB po rzucie nigdy się nie rozłączał)
+/obj/item/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	. = ..()
+	if(scatter_angle && !isturf(loc))
 		throw_unscatter()
 
 /// Cofa tylko nasz obrót, więc nie psuje innych zmian transform (np. skalowania)
 /obj/item/proc/throw_unscatter()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	if(!scatter_angle)
 		return
 	var/matrix/M = matrix(transform)

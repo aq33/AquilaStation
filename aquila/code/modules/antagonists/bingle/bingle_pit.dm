@@ -132,6 +132,12 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 	var/list/falling = list()
 	/// Typy, których Dół nie połyka
 	var/static/list/swallow_blacklist
+	/// Pojazdy i maszyny z pilotem w środku: wyciągnięcie pilota forceMove psuje ich stan, więc Dół ich nie połyka
+	var/static/list/swallow_vehicle_blacklist
+	/// Ile ankiet na bingla czeka, bo naraz idzie tylko jedna
+	var/pending_bingle_spawns = 0
+	/// Czy właśnie trwa ankieta na bingla
+	var/polling_bingle = FALSE
 	COOLDOWN_DECLARE(bomb_cooldown)
 
 /obj/structure/bingle_hole/Initialize(mapload)
@@ -143,6 +149,12 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 			/obj/item/projectile,
 			/obj/structure/bingle_hole,
 			/obj/structure/bingle_pit_overlay,
+		))
+	if(isnull(swallow_vehicle_blacklist))
+		swallow_vehicle_blacklist = typecacheof(list(
+			/obj/mecha,
+			/obj/structure/overmap,
+			/obj/vehicle,
 		))
 	GLOB.bingle_holes += src
 	var/static/list/loc_connections = list(
@@ -203,9 +215,13 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 	swallow(arrived)
 
 /obj/structure/bingle_hole/process(delta_time)
-	// Ankieta na bingla co 50 punktów, osobno za każdy przekroczony próg
+	// Ankieta na bingla co 50 punktów, osobno za każdy przekroczony próg, ale po jednej naraz (kilka okienek naraz zasypywało duchy)
 	while(item_value_consumed >= last_bingle_spawn_value + BINGLE_PIT_SPAWN_STEP)
 		last_bingle_spawn_value += BINGLE_PIT_SPAWN_STEP
+		pending_bingle_spawns++
+	if(pending_bingle_spawns > 0 && !polling_bingle)
+		pending_bingle_spawns--
+		polling_bingle = TRUE
 		INVOKE_ASYNC(src, PROC_REF(spawn_bingle_from_ghost))
 
 	var/desired_pit_size = min(1 + round(item_value_consumed / BINGLE_PIT_GROW_STEP), BINGLE_PIT_MAX_SIZE)
@@ -226,10 +242,13 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 		return stack.amount
 	return 1
 
-/obj/structure/bingle_hole/proc/swallow(atom/movable/item)
+/// eat_anchored: rosnący Dół celowo zjada gęste struktury (także przykręcone) na swoich polach
+/obj/structure/bingle_hole/proc/swallow(atom/movable/item, eat_anchored = FALSE)
 	if(QDELETED(src) || QDELETED(item) || item == src)
 		return
 	if(is_type_in_typecache(item, swallow_blacklist) || (item.flags_1 & HOLOGRAM_1))
+		return
+	if(isobj(item) && !can_swallow_obj(item, eat_anchored))
 		return
 	if(falling[item])
 		return
@@ -261,6 +280,20 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 	log_combat(victim, src, "fell into", addition = "(pit value: [item_value_consumed])")
 	animate_falling_into_pit(victim)
 	addtimer(CALLBACK(src, PROC_REF(finish_swallow), victim), 1 SECONDS)
+	return TRUE
+
+/// Czy obiekt można połknąć: bez przykręconych, pojazdów, mechów, myśliwców i rzeczy, w których siedzi istota (AI w karcie, pAI, dusza w mieczu)
+/obj/structure/bingle_hole/proc/can_swallow_obj(obj/thing, eat_anchored = FALSE)
+	if(thing.anchored && !eat_anchored)
+		return FALSE
+	if(is_type_in_typecache(thing, swallow_vehicle_blacklist))
+		return FALSE
+	for(var/mob/living/inside in thing.GetAllContents())
+		if(isbrain(inside)) // mózg w głowie albo MMI spada razem z nią, jak dotąd
+			continue
+		// Z szafek, worków i trzymanych zwierząt istoty wypadają jak dotąd, reszta to pilot albo mieszkaniec obiektu
+		if(!istype(inside.loc, /obj/structure/closet) && !istype(inside.loc, /obj/item/clothing/head/mob_holder))
+			return FALSE
 	return TRUE
 
 /obj/structure/bingle_hole/proc/swallow_obj(obj/thing)
@@ -387,7 +420,7 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 			if(new_size > 3)
 				for(var/obj/structure/thing in T)
 					if(thing.density && !istype(thing, /obj/structure/bingle_pit_overlay))
-						swallow(thing)
+						swallow(thing, eat_anchored = TRUE)
 				if(iswallturf(T))
 					T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					item_value_consumed++
@@ -399,7 +432,9 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 
 /// Spawnuje bingla dla ducha z ankiety
 /obj/structure/bingle_hole/proc/spawn_bingle_from_ghost()
+	polling_bingle = TRUE
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Chcesz zagrać jako bingiel? Po śmierci wrócisz do poprzedniego ciała.", ROLE_BINGLE, /datum/role_preference/midround_ghost/bingle, 20 SECONDS, POLL_IGNORE_BINGLE, alert_pic = src)
+	polling_bingle = FALSE // następną ankietę z kolejki puści process()
 	if(!length(candidates) || QDELETED(src))
 		return
 	var/turf/spawn_loc = get_turf(src)

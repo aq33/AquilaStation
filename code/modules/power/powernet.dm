@@ -34,7 +34,7 @@
 	SSmachines.powernets -= src
 	// AQ EDIT - Smartwires: inaczej kolejka trzyma referencję (GC fail, hard delete i null.dirty w SSmachines)
 	if(dirty)
-		SSmachines.dirty_powernets -= src
+		SSmachines.dequeue_recalculation(src)
 		dirty = FALSE
 	return ..()
 
@@ -133,19 +133,27 @@
 	// We need a unique propogation identifier to be able to determine if the cable
 	// was queued by this propogation run
 	var/unique_propogation_identifier = ++SSmachines.unique_powernets
+	// AQ EDIT - find every piece first (cable -> piece number) and keep src on the piece with the most of
+	// its machines, then the most cables. Upstream src stays with cables[1], so a cut that isolated that cable
+	// moved the main grid to a fresh powernet with no power for a tick (APCs stop charging, power monitors start from zero).
+	var/list/piece_cables = list()
+	var/list/piece_nodes = list()
 	for (var/i in 1 to length(cables))
 		// We already belong
 		var/obj/structure/cable/processing_wire = cables[i]
 		if (powernet_id_array[processing_wire] != null)
 			continue
-		var/datum/powernet/new_powernet = i == 1 ? src : new /datum/powernet
+		var/piece = length(piece_cables) + 1
+		var/cable_count = 0
+		var/node_count = 0
 		var/list/to_process = list(processing_wire)
 		processing_wire._last_repropogation_update = unique_propogation_identifier
 		// Process all nodes that can be reached
 		while (length(to_process))
 			processing_wire = to_process[to_process.len]
 			to_process.len--
-			powernet_id_array[processing_wire] = new_powernet
+			powernet_id_array[processing_wire] = piece
+			cable_count++
 			// Process adjacent nodes, cables on other decks and cables bridged by machines (deck relays)
 			var/list/linked_cables = processing_wire.connected.Copy()
 			if (processing_wire.up)
@@ -154,6 +162,8 @@
 				linked_cables += processing_wire.down
 			if (processing_wire.has_power_node)
 				for (var/obj/machinery/power/bridge in processing_wire.loc)
+					if (nodes[bridge])
+						node_count++
 					var/list/bridged = bridge.get_bridged_cables()
 					if (bridged)
 						linked_cables += bridged
@@ -163,8 +173,20 @@
 				if (linked_cable._last_repropogation_update != unique_propogation_identifier)
 					linked_cable._last_repropogation_update = unique_propogation_identifier
 					to_process += linked_cable
+		piece_cables += cable_count
+		piece_nodes += node_count
+	var/kept_piece = 1
+	for (var/piece in 2 to length(piece_cables))
+		if (piece_nodes[piece] > piece_nodes[kept_piece] || (piece_nodes[piece] == piece_nodes[kept_piece] && piece_cables[piece] > piece_cables[kept_piece]))
+			kept_piece = piece
+	var/list/piece_powernets = list()
+	for (var/piece in 1 to length(piece_cables))
+		piece_powernets += (piece == kept_piece) ? src : new /datum/powernet
+	// AQ EDIT - moving the other pieces out calls remove_cable(), which would queue src again for a full recalculation it does not need
+	var/was_dirty = dirty
+	dirty = TRUE
 	for (var/obj/structure/cable/processing_wire as anything in powernet_id_array)
-		var/datum/powernet/new_powernet = powernet_id_array[processing_wire]
+		var/datum/powernet/new_powernet = piece_powernets[powernet_id_array[processing_wire]]
 		new_powernet.add_cable(processing_wire)
 		// Get connected machines
 		if (!processing_wire.has_power_node)
@@ -174,4 +196,5 @@
 				continue
 			if (!powered_machine.connect_to_network())
 				powered_machine.disconnect_from_network()
+	dirty = was_dirty
 // AQ EDIT END

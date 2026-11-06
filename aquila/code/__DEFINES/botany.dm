@@ -40,15 +40,16 @@
 #define PLANT_BODY_HARVEST_MEDIUM 6
 #define PLANT_BODY_HARVEST_LARGE 10
 	//How many times can this plant be harvested
-#define PLANT_BODY_YIELD_MICRO 1
+#define PLANT_BODY_YIELD_MICRO 2 // AQUILA - było 1, roślina nie usycha po pierwszym zbiorze
 #define PLANT_BODY_YIELD_SMALL 3
 #define PLANT_BODY_YIELD_MEDIUM 5
 #define PLANT_BODY_YIELD_LARGE 8
 #define PLANT_BODY_YIELD_FOREVER INFINITY
 	//How long between yields
-#define PLANT_BODY_YIELD_TIME_SLOW 30 SECONDS
-#define PLANT_BODY_YIELD_TIME_MEDIUM 15 SECONDS
-#define PLANT_BODY_YIELD_TIME_FAST 5 SECONDS
+// AQUILA - czasy wzrostu i przerw między plonami 2 razy dłuższe niż u Bee (skargi na zbyt szybkie tempo)
+#define PLANT_BODY_YIELD_TIME_SLOW 60 SECONDS
+#define PLANT_BODY_YIELD_TIME_MEDIUM 30 SECONDS
+#define PLANT_BODY_YIELD_TIME_FAST 10 SECONDS
 	//How many planter slots does this body take up
 #define PLANT_BODY_SLOT_SIZE_MICRO 0.5 //Use this for mushrooms, weeds, and other support plants
 #define PLANT_BODY_SLOT_SIZE_SMALL 1
@@ -60,10 +61,10 @@
 #define PLANT_BODY_HEALTH_MEDIUM 100
 #define PLANT_BODY_HEALTH_LARGE 200
 	//Plant body growth times
-#define PLANT_BODY_GROWTH_SLOW 120 SECONDS
-#define PLANT_BODY_GROWTH_MEDIUM 60 SECONDS
-#define PLANT_BODY_GROWTH_FAST 30 SECONDS
-#define PLANT_BODY_GROWTH_VERY_FAST 15 SECONDS
+#define PLANT_BODY_GROWTH_SLOW 240 SECONDS
+#define PLANT_BODY_GROWTH_MEDIUM 120 SECONDS
+#define PLANT_BODY_GROWTH_FAST 60 SECONDS
+#define PLANT_BODY_GROWTH_VERY_FAST 30 SECONDS
 
 //Fruit stat values
 	//How many reagents can the fruit hold
@@ -73,10 +74,10 @@
 #define PLANT_FRUIT_VOLUME_LARGE 50
 #define PLANT_FRUIT_VOLUME_VERY_LARGE 100
 	//How long it takes the fruit to grow to maturity
-#define PLANT_FRUIT_GROWTH_SLOW 60 SECONDS
-#define PLANT_FRUIT_GROWTH_MEDIUM 30 SECONDS
-#define PLANT_FRUIT_GROWTH_FAST 20 SECONDS
-#define PLANT_FRUIT_GROWTH_VERY_FAST 5 SECONDS
+#define PLANT_FRUIT_GROWTH_SLOW 120 SECONDS
+#define PLANT_FRUIT_GROWTH_MEDIUM 60 SECONDS
+#define PLANT_FRUIT_GROWTH_FAST 40 SECONDS
+#define PLANT_FRUIT_GROWTH_VERY_FAST 10 SECONDS
 
 //Reagent values as a %
 #define PLANT_REAGENT_MICRO 0.05

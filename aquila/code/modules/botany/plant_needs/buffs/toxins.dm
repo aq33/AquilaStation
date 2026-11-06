@@ -6,8 +6,9 @@
 */
 /datum/plant_need/reagent/buff/toxin
 	reagent_needs = list(/datum/reagent/toxin = 1, /datum/reagent/consumable/ethanol = 5, /datum/reagent/fluorine = 1, /datum/reagent/chlorine = 1, /datum/reagent/phosphorus = 1,
-	/datum/reagent/toxin/acid = 1, /datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/plantbgone = 0.5, /datum/reagent/napalm = 1, /datum/reagent/toxin/plantbgone/weedkiller = 5,
-	/datum/reagent/toxin/pestkiller = 1.5)
+	/datum/reagent/toxin/acid = 1, /datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/plantbgone = 0.5, /datum/reagent/napalm = 1, /datum/reagent/toxin/plantbgone/weedkiller = 5)
+	// AQUILA - bez pestycydu: leczy szkodniki (pests.dm), więc nie może jednocześnie truć łodygi
+	consumption_mod = 1 // AQUILA - toksyna działa od tej samej dawki co u Bee
 	auto_threshold = TRUE
 	nectar_buff_duration = 0 SECONDS
 	do_buff_appearance = FALSE

@@ -220,8 +220,8 @@
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 
 /obj/item/reagent_containers/syringe/charcoal
-	name = "strzykawka (węgiel aktywowany)"
-	desc = "Zawiera węgiel aktywowany."
+	name = "strzykawka (węgiel aktywny)"
+	desc = "Zawiera węgiel aktywny."
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
 
 /obj/item/reagent_containers/syringe/antitoxin

@@ -239,3 +239,20 @@
 	design_ids = list("mech_missile_rack")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3500)
 	export_price = 5000
+
+/*****************************\
+|**** PROJEKTY BEZ WĘZŁA ******|
+\*****************************/
+// Projekty, które nie należały do żadnego węzła i nie dało się ich wydrukować (audyt wiki).
+// Węzły z istniejącym New() w aquila/ (base, comptech, telecomms) mają dopiski w tamtych plikach.
+/datum/techweb_node/botany/New() // płytki maszyn botaniki z Bee, obok ich konsoli
+	. = ..()
+	design_ids += list("seed_editor_board", "plant_mutator_board", "seeder", "plant_analyser_board", "refraction_catalogue_board")
+
+/datum/techweb_node/mech_disabler/New() // paralizator mecha "Pacifier" obok "Peacemakera"
+	. = ..()
+	design_ids += "mech_taser"
+
+/datum/techweb_node/sec_basic/New() // skaner kryminalistyczny do druku w techfabie ochrony
+	. = ..()
+	design_ids += "detective_scanner"

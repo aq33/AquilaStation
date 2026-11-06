@@ -33,7 +33,7 @@
 			if (M.mind && (M.mind.assigned_role in enemy_roles) && (!(M in candidates) || (M.mind.assigned_role in restricted_roles)))
 				job_check++ // Checking for "enemies" (such as sec officers). To be counters, they must either not be candidates to that rule, or have a job that restricts them from it
 
-	var/threat = round(mode.threat_level/10)
+	var/threat = clamp(round(mode.threat_level/10), 1, length(required_enemies)) // AQ EDIT - indeks 0 przy zagrożeniu < 10
 
 	if (job_check < required_enemies[threat])
 		log_game("DYNAMIC: FAIL: [src] is not ready, because there are not enough enemies: [required_enemies[threat]] needed, [job_check] found")
@@ -126,7 +126,7 @@
 		new_head = M.mind.add_antag_datum(new_head, revolution)
 		revolution.update_objectives()
 		revolution.update_heads()
-		SSshuttle.registerHostileEnvironment(revolution)
+		// SSshuttle.registerHostileEnvironment(revolution) // AQ EDIT - rewolucja nie blokuje promu, jak tryb revolution (aq33/AquilaStation#444)
 		return TRUE
 	else
 		log_game("DYNAMIC: [ruletype] [name] discarded [M.name] from head revolutionary due to ineligibility.")

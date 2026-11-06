@@ -133,15 +133,33 @@
 	animate(direction, alpha = 0, time = 1.3 SECONDS)
 	return ..()
 
+// AQUILA - klik w tacę zbiera wszystkie gotowe owoce; z ciągniętym obiektem przesuwa go jak klik w podłogę
 /obj/item/plant_tray/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	if(length(harvest))
-		to_chat(user, span_danger("Zbieraj plony, klikając na rośliny!"))
-	to_chat(user, span_danger("Do sprawdzenia poziomu chwastów i opisów alarmów potrzebny jest skaner roślin."))
+	if(user.pulling && user.pulling != src && isturf(loc))
+		user.Move_Pulled(loc)
+		return TRUE
+	if(harvest_all(user))
+		return TRUE
+	if(length(tray_component?.plants))
+		to_chat(user, span_notice("Nic tu jeszcze nie dojrzało. Stan roślin pokaże skaner roślin, a łopatką przeniesiesz roślinę."))
+
+/// AQUILA - zbiera owoce ze wszystkich roślin w tacy naraz, zwraca TRUE, jeśli coś zebrano
+/obj/item/plant_tray/proc/harvest_all(mob/living/user)
+	if(!tray_component)
+		return FALSE
+	. = FALSE
+	for(var/datum/component/plant/plant as anything in tray_component.plants.Copy())
+		if(QDELETED(plant))
+			continue
+		for(var/datum/plant_feature/fruit/fruit in plant.plant_features)
+			if(length(fruit.fruits) && fruit.catch_attack_hand(src, user))
+				. = TRUE
 
 /obj/item/plant_tray/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
+	context.add_left_click_action("Zbierz plony")
 	context.add_left_click_tool_action("Zasadź nasiona", TOOL_SEED)
 	context.add_right_click_item_action("Usuń wszystkie rośliny", /obj/item/shovel)
 	context.add_left_click_item_action("Sprawdź alarmy", /obj/item/plant_scanner)

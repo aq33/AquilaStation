@@ -394,7 +394,7 @@
 	if(revolution.members.len)
 		revolution.update_objectives()
 		revolution.update_heads()
-		SSshuttle.registerHostileEnvironment(revolution)
+		// SSshuttle.registerHostileEnvironment(revolution) // AQ EDIT - rewolucja nie blokuje promu, jak tryb revolution (aq33/AquilaStation#444)
 		return TRUE
 	log_game("DYNAMIC: [ruletype] [name] failed to get any eligible headrevs. Refunding [cost] threat.")
 	return FALSE

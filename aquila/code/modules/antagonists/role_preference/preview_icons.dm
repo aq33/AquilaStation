@@ -25,6 +25,9 @@
 		/datum/antagonist/vampire = /datum/outfit/aquila_preview/vampire,
 		/datum/antagonist/brother = /datum/outfit/aquila_preview/brother,
 		/datum/antagonist/spy = /datum/outfit/aquila_preview/spy,
+		/datum/antagonist/abductor = /datum/outfit/abductor/agent,
+		/datum/antagonist/fugitive = /datum/outfit/prisoner,
+		/datum/antagonist/paradox_clone = /datum/outfit/aquila_preview/paradox_clone,
 	)
 	for(var/antag_type in outfits)
 		if(ispath(antag_datum, antag_type))
@@ -37,10 +40,15 @@
 	if(!outfit)
 		return null
 	var/mob/living/carbon/human/dummy/dummy = new
+	if(ispath(antag_datum, /datum/antagonist/abductor))
+		dummy.set_species(/datum/species/abductor)
 	dummy.equipOutfit(outfit, TRUE)
 	COMPILE_OVERLAYS(dummy)
 	var/icon/preview = getFlatIcon(dummy)
 	qdel(dummy)
+	// Klon paradoksu: zwykły członek załogi w turkusowej poświacie anomalii
+	if(ispath(antag_datum, /datum/antagonist/paradox_clone))
+		preview.Blend(rgb(110, 200, 255), ICON_MULTIPLY)
 	preview.Scale(115, 115)
 	preview.Shift(WEST, 8)
 	preview.Shift(SOUTH, 30)
@@ -48,6 +56,10 @@
 	return preview
 
 // Stroje tylko do podglądu (nie do gry)
+
+/datum/outfit/aquila_preview/paradox_clone
+	uniform = /obj/item/clothing/under/color/grey
+	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/aquila_preview
 	name = "Preview (Aquila)"

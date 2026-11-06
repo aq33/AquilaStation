@@ -44,7 +44,7 @@
 	return TRUE
 
 /datum/objective/poison_items/proc/give_papers()
-	var/datum/mind/receiver = owner || pick(get_owners())
+	var/datum/mind/receiver = owner || safepick(get_owners()) // Mass Antag sets up the objective before it has an owner
 	if(!ishuman(receiver?.current))
 		return
 	var/mob/living/carbon/human/H = receiver.current
@@ -173,6 +173,8 @@ GLOBAL_DATUM(brother_beacon_site, /turf)
 GLOBAL_DATUM(brother_beacon_active, /obj/structure/brother_beacon)
 /// Every beacon objective of the round, to tell the teams what is going on
 GLOBAL_LIST_EMPTY(brother_beacon_objectives)
+/// TRUE once a beacon got through, the race is over and the spare beacons are useless
+GLOBAL_VAR_INIT(brother_beacon_race_won, FALSE)
 
 /datum/objective/brother_beacon
 	name = "beacon braci"
@@ -258,6 +260,9 @@ GLOBAL_LIST_EMPTY(brother_beacon_objectives)
 	if(!objective)
 		to_chat(user, "<span class='warning'>Nie wiesz, co z tym zrobić.</span>")
 		return
+	if(GLOB.brother_beacon_race_won)
+		to_chat(user, "<span class='warning'>Łączność została już nawiązana. Ten beacon na nic się nie zda.</span>")
+		return
 	if(GLOB.brother_beacon_active)
 		to_chat(user, "<span class='warning'>Jeden beacon już działa. Znajdź go i przestaw na swój kanał.</span>")
 		return
@@ -265,7 +270,7 @@ GLOBAL_LIST_EMPTY(brother_beacon_objectives)
 		to_chat(user, "<span class='warning'>Jesteś za daleko od miejsca rozstawienia ([get_area_name(GLOB.brother_beacon_site)]).</span>")
 		return
 	balloon_alert(user, "rozstawianie...")
-	if(!do_after(user, 3 SECONDS, target = user) || GLOB.brother_beacon_active)
+	if(!do_after(user, 3 SECONDS, target = user) || GLOB.brother_beacon_active || GLOB.brother_beacon_race_won)
 		return
 	var/obj/structure/brother_beacon/deployed = new(get_turf(user))
 	deployed.set_channel(objective.channel, user)
@@ -350,6 +355,10 @@ GLOBAL_LIST_EMPTY(brother_beacon_objectives)
 	if(time_left > 0)
 		return
 	finished = TRUE
+	if(GLOB.brother_beacon_race_won) // should not happen, but only one team can win the race
+		INVOKE_ASYNC(src, PROC_REF(self_destruct))
+		return PROCESS_KILL
+	GLOB.brother_beacon_race_won = TRUE
 	for(var/datum/objective/brother_beacon/objective as anything in GLOB.brother_beacon_objectives)
 		if(objective.channel == channel)
 			objective.completed = TRUE

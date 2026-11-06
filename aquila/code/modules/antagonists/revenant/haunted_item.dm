@@ -36,11 +36,27 @@
 		if(MOB_UNDEAD in possibly_cool.mob_biotypes)
 			haunt_equipper = FALSE
 	if(haunt_equipper)
-		var/list/hauntee_list = blackboard[BB_TO_HAUNT_LIST]
-		hauntee_list[equipper] += HAUNTED_ITEM_AGGRO_ADDITION
+		add_hauntee(equipper, HAUNTED_ITEM_AGGRO_ADDITION)
 	else
 		blackboard[BB_LIKES_EQUIPPER] = TRUE
 	RegisterSignal(pawn, COMSIG_ITEM_DROPPED, PROC_REF(on_dropped))
+
+/// Dopisuje punkty nawiedzenia; blackboard trzyma moby wprost, więc usunięty mob musi z niego zniknąć (harddel)
+/datum/ai_controller/haunted/proc/add_hauntee(mob/victim, amount)
+	var/list/hauntee_list = blackboard[BB_TO_HAUNT_LIST]
+	// override: planowanie wyrzuca z listy moby bez punktów, a sygnał zostaje
+	RegisterSignal(victim, COMSIG_PARENT_QDELETING, PROC_REF(on_hauntee_deleted), override = TRUE)
+	hauntee_list[victim] += amount
+
+/datum/ai_controller/haunted/proc/on_hauntee_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(blackboard[BB_HAUNT_TARGET] == source)
+		CancelActions() // finish_action zdejmuje BB_HAUNT_TARGET i cel ruchu
+		blackboard[BB_HAUNT_TARGET] = null
+	if(current_movement_target == source)
+		current_movement_target = null
+	var/list/hauntee_list = blackboard[BB_TO_HAUNT_LIST]
+	hauntee_list -= source
 
 /datum/ai_controller/haunted/proc/on_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -122,7 +138,7 @@
 
 	if(!isnull(aggro_radius))
 		// Każdy w zasięgu dostaje 5 punktów nawiedzenia, podniesienie przedmiotu daje 2
-		var/list/hauntee_list = haunted_item.ai_controller.blackboard[BB_TO_HAUNT_LIST]
+		var/datum/ai_controller/haunted/haunt_controller = haunted_item.ai_controller
 		for(var/mob/living/victim in view(aggro_radius, haunted_item))
 			if(victim.stat >= SOFT_CRIT)
 				continue
@@ -130,7 +146,7 @@
 				continue
 			if(victim.invisibility >= INVISIBILITY_REVENANT)
 				continue
-			hauntee_list[victim] += 5
+			haunt_controller.add_hauntee(victim, 5)
 
 	if(haunted_item.throwforce < throw_force_max)
 		pre_haunt_throwforce = haunted_item.throwforce

@@ -127,6 +127,12 @@
 	//droppers and syringes go straight into the beaker
 	if(beaker && (istype(I, /obj/item/reagent_containers/dropper) || istype(I, /obj/item/reagent_containers/syringe)))
 		var/obj/item/reagent_containers/injector = I
+		// AQ EDIT START - prawy przycisk (intencja rozbrajania) strzykawką pobiera z zlewki, jak przy kliknięciu w samą zlewkę
+		if(istype(I, /obj/item/reagent_containers/syringe) && LAZYACCESS(params2list(params), RIGHT_CLICK))
+			injector.afterattack_secondary(beaker, user, TRUE, params)
+			ui_update()
+			return TRUE
+		// AQ EDIT END
 		injector.afterattack(beaker, user, TRUE)
 		ui_update()
 		return TRUE
@@ -299,6 +305,9 @@
 		return TRUE
 
 	//trying to inject buffer into currently inserted beaker
+	if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume) // AQ EDIT - bufor ma objętość, do pełnej zlewki się nie zmieści
+		say("Zlewka jest pełna!")
+		return FALSE
 	reagents.trans_id_to(beaker, buffer_type, dispense_volume)
 	return TRUE
 

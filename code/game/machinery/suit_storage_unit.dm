@@ -354,12 +354,15 @@
 			dump_contents()
 
 /obj/machinery/suit_storage_unit/proc/shock(mob/user, prb)
-	if(!prob(prb))
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-		if(electrocute_mob(user, src, src, 1, TRUE))
-			return 1
+	// AQ EDIT START - prb to szansa porażenia (bez prb razi zawsze), wcześniej warunek był odwrócony
+	if(prb && !prob(prb))
+		return
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	if(electrocute_mob(user, src, src, 1, TRUE))
+		return 1
+	// AQ EDIT END
 
 /obj/machinery/suit_storage_unit/relaymove(mob/user)
 	if(locked)

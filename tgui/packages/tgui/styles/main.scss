@@ -31,6 +31,7 @@
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');
 @include meta.load-css('./interfaces/AntagInfo.scss');
+@include meta.load-css('./interfaces/Botany.scss'); // AQUILA
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/ChemDispenser.scss');
 @include meta.load-css('./interfaces/CivCargoHoldTerminal.scss');
@@ -102,7 +103,6 @@
 @include meta.load-css('./themes/narsie.scss');
 @include meta.load-css('./themes/spooky.scss');
 @include meta.load-css('./themes/thinktronic-classic.scss');
-@include meta.load-css('./themes/plant_menu.scss');
 @include meta.load-css('./themes/ntos/blue.scss');
 @include meta.load-css('./themes/ntos/brown.scss');
 @include meta.load-css('./themes/ntos/clown-pink.scss');

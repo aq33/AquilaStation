@@ -39,6 +39,8 @@
 	var/masquerade_breached = FALSE
 	/// Are we at a stage of the process where we can be noticed?
 	var/currently_feeding = FALSE
+	/// Czy ofiara żyła, gdy zaczęliśmy żerować (zabicie żerowaniem kosztuje Człowieczeństwo)
+	var/target_was_alive = FALSE
 
 /datum/action/vampire/targeted/feed/can_use()
 	. = ..()
@@ -142,7 +144,8 @@
 			owner.balloon_alert(owner, "brak krwi!")
 			return FALSE
 		// Cannot be wearing super thick gear
-		if(!human_target.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
+		// AQUILA - u nas can_inject(user, error_msg, target_zone, penetrate_thick): bez przebijania, żeby gruby strój blokował
+		if(!human_target.can_inject(owner, FALSE, BODY_ZONE_HEAD))
 			owner.balloon_alert(owner, "za gruby strój!")
 			return FALSE
 
@@ -180,6 +183,7 @@
 
 	currently_feeding = FALSE
 	masquerade_breached = FALSE
+	target_was_alive = feed_target.stat != DEAD
 
 	if(!living_owner.combat_mode)
 
@@ -204,7 +208,7 @@
 		if(!IS_VASSAL(feed_target))
 			feed_time /= 4
 
-		feed_target.Stun(feed_time, TRUE)
+		feed_target.Stun(feed_time, ignore_canstun = TRUE)
 		feed_target.become_blind(TRAIT_FEED) // AQUILA - u nas zwykła ślepota zamiast nakładki "feed"
 		ADD_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
 
@@ -423,6 +427,7 @@
 	vampiredatum_power.rank_up(levels_absorbed, TRUE)
 
 	vampiredatum_power.adjust_humanity(-victim.humanity / 3)
+	target_was_alive = FALSE // diablerie ma własną karę do Człowieczeństwa
 
 	victim.final_death()
 
@@ -459,6 +464,10 @@
 		if(feed_target.stat == DEAD)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
 			humanity_deducted = TRUE
+			// Picie ze zwłok nic nie kosztuje, ale zabicie żerowaniem (ofiara straciła śmiertelnie dużo krwi) tak
+			if(target_was_alive && feed_fatal)
+				to_chat(owner, span_userdanger("Zabijasz ofiarę..."))
+				vampiredatum_power.adjust_humanity(-1)
 
 		if(feed_fatal && !humanity_deducted)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
@@ -482,6 +491,7 @@
 
 	feed_fatal = FALSE
 	humanity_deducted = FALSE
+	target_was_alive = FALSE
 
 	target_ref = null
 

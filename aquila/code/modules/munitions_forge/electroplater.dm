@@ -59,7 +59,7 @@
 	if(!body_type)
 		return 0
 	var/obj/item/munition_part/body/body = body_type
-	return initial(body.material_amount) * 0.5 * efficiency
+	return initial(body.material_amount) / initial(body.product_count) * 0.5 * efficiency
 
 /obj/machinery/munitions_forge/electroplater/attackby(obj/item/I, mob/living/user, params)
 	if(GLOB.munition_products[I.type])
@@ -138,3 +138,6 @@
 	pending_material = null
 	plated_item.forceMove(drop_location())
 	ping()
+
+/obj/machinery/munitions_forge/electroplater/abort_operation()
+	pending_material = null

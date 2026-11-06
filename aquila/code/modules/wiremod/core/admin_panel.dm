@@ -57,7 +57,7 @@
 			var/list/errors = list()
 
 			var/obj/item/integrated_circuit/loaded/new_circuit = new(usr.drop_location())
-			new_circuit.load_circuit_data(circuit.convert_to_json(), errors)
+			new_circuit.load_circuit_data(circuit.convert_to_json(), errors, load_external_objects = TRUE)
 
 			if (length(errors))
 				to_chat(usr, span_warning("Nie udało się zduplikować układu:"))

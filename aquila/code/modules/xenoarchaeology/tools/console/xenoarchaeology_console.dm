@@ -179,9 +179,12 @@
 
 	ui_update()
 
-/obj/machinery/computer/xenoarchaeology_console/proc/check_sold(datum/source, atom/movable/_label, sold)
+/obj/machinery/computer/xenoarchaeology_console/proc/check_sold(datum/source, atom/movable/_label, sold, allowed_categories)
 	SIGNAL_HANDLER
 
+	// pad piratów sprzedaje na swoje konto, nie statku: nauka nie dostaje za to nagród
+	if(allowed_categories & EXPORT_PIRATE)
+		return
 	var/obj/item/sticker/xenoartifact_label/label = _label
 	if(!istype(label))
 		return
@@ -225,7 +228,9 @@
 		//Discovery Points
 	var/dp_reward = round(max(0, (artifact.item_price*artifact_component.artifact_material.dp_rate)*success_rate) * bonus_rate, 1)
 		//Money
-	var/monetary_reward = round(floor(((artifact.item_price * success_rate * 1.5)^1.1) * (success_rate >= 0.5 ? 1 : 0) * bonus_rate), 1)
+		// AQUILA - w Bee było tu (...)^1.1, ale ^ to w DM XOR: 1.1 obcina się do 1, więc zmieniało to tylko najniższy bit (±1 kr).
+		// Potęga (**1.1) mniej więcej podwoiłaby kredyty, dlatego zostają obecne kwoty, bez mylącego XOR.
+	var/monetary_reward = round(floor(floor(artifact.item_price * success_rate * 1.5) * (success_rate >= 0.5 ? 1 : 0) * bonus_rate), 1)
 	//Alloctae
 	if(is_main_console)
 		linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_GENERIC, rnd_reward)

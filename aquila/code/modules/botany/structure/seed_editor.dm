@@ -166,17 +166,17 @@
 			for(var/datum/plant_trait/local_trait as anything in current_feature.plant_traits)
 				//Don't allow trait duplication
 				if(!local_trait.allow_multiple && local_trait.get_id() == trait.get_id())
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Skład nasion nie obsługuje wielu kopii wybranej cechy!")
 					return
 				//Is this trait blacklisted from another feature
 				if(is_type_in_typecache(local_trait, trait.blacklist) || is_type_in_typecache(trait, local_trait.blacklist))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Niezgodne cechy!")
 					return
 				//If a trait has a whitelist, are we in it?
 				if(length(trait.whitelist) && !is_type_in_typecache(local_trait, trait.whitelist) || length(local_trait.whitelist) && !is_type_in_typecache(trait, local_trait.whitelist))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Brak składu wymaganego przez cechę!")
 					return
 			//Add the trait
@@ -184,7 +184,7 @@
 			if(!QDELING(new_trait))
 				current_feature.plant_traits += new_trait
 			else
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Skład nasion niezgodny z wybraną cechą!")
 				return
 			//Reset the species ID
@@ -199,17 +199,17 @@
 			for(var/datum/plant_feature/current_feature as anything in seeds.plant_features)
 				//Does this plant already have this kind of feature>
 				if(current_feature.feature_catagories & feature.feature_catagories) //If you want to have multiple features of the same type on one plant, this is one of the things stopping you
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Wybrana część nie zmieści się w składzie nasion!")
 					return
 				//Is this feature blacklisted from another feature
 				if(is_type_in_typecache(feature, current_feature.blacklist_features) || is_type_in_typecache(current_feature, feature.blacklist_features))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Skład nasion niezgodny z wybraną częścią![feature?.family == current_feature.family ? "" : " Niezgodne rodziny!"]")
 					return
 				//If a feature has a whitelist, are we in it?
 				if(length(current_feature.whitelist_features) && !is_type_in_typecache(feature, current_feature.whitelist_features) || length(feature.whitelist_features) && !is_type_in_typecache(current_feature, feature.whitelist_features))
-					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+					playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 					say("BŁĄD: Skład nasion niezgodny z wybraną częścią![feature?.family == current_feature.family ? "" : " Niezgodne rodziny!"]")
 					return
 		//Special compatibility checking
@@ -218,11 +218,11 @@
 			var/datum/plant_feature/body/body_feature = locate(/datum/plant_feature/body) in seeds.plant_features //Might create overhead if they spam it and we later add 5 million unique features
 			//These are arranged to be a little more readable, dont sweat efficiency
 			if(istype(fruit_feature) && !body_feature)
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Skład nasion nie zawiera łodygi zdolnej utrzymać tę część!")
 				return
 			if((istype(fruit_feature) && body_feature) && fruit_feature.fruit_size > body_feature.upper_fruit_size)
-				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
+				playsound(controller || src, 'sound/machines/terminal_error.ogg', 60)
 				say("BŁĄD: Łodyga w składzie nasion nie obsługuje tej części!")
 				return
 		//Good to go, slap that bad boy on

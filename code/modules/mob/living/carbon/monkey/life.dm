@@ -134,7 +134,7 @@
 		emote("scratch")
 
 /mob/living/carbon/monkey/has_smoke_protection()
-	if(wear_mask)
+	if(isclothing(wear_mask)) // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		if(wear_mask.clothing_flags & BLOCK_GAS_SMOKE_EFFECT)
 			return 1
 

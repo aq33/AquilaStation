@@ -36,6 +36,8 @@ GLOBAL_LIST_EMPTY(knpcs)
 	var/failsafe_trust_variance = 3 SECONDS
 	///Weakrefs to items we failed to path to, so we stop chasing a gun behind a window forever.
 	var/list/unreachable_items
+	///When unreachable_items is forgotten, so a gun behind a door that got opened is tried again and the list does not grow all round
+	var/unreachable_items_reset_at = 0 // AQ EDIT - czyszczenie unreachable_items
 	///Are we in the middle of a resist do_after?
 	var/resisting = FALSE
 
@@ -96,7 +98,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 		return FALSE
 	var/obj/item/card/id/ID = H.get_idcard()
 	if(ID)
-		if(istype(ID, /obj/item/card/id/syndicate) || istype(ID, /obj/item/card/id/syndicate_command) || istype(ID, /obj/item/card/id/syndi_crew))
+		if((istype(ID, /obj/item/card/id/syndicate) && !istype(ID, /obj/item/card/id/syndicate/undercover)) || istype(ID, /obj/item/card/id/syndicate_command) || istype(ID, /obj/item/card/id/syndi_crew)) // AQ EDIT - Undercover I.D. nie kopiuje dostępów
 			if(!victim.dropItemToGround(stolen))
 				return FALSE
 			H.visible_message("<span class='warning'>[H] wyrywa [stolen]. </span>")
@@ -506,12 +508,20 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 		if(H.put_in_hands(target_item))
 			return TRUE //We're done!
 	//Now we run the more expensive check to find a gun farther away.
+	// AQ EDIT START - lista nieosiągalnych broni rosła przez całą rundę: zapominamy ją co minutę
+	if(HA.unreachable_items && world.time >= HA.unreachable_items_reset_at)
+		HA.unreachable_items = null
+	// AQ EDIT END
 	target_item = find_nearby_gun(HA)
 	if(target_item)
 		var/dist = get_dist(H, target_item)
 		if(dist > 1)
 			if(HA.pathfind_to(target_item) == KNPC_PATHFIND_FAIL)
-				LAZYADD(HA.unreachable_items, WEAKREF(target_item))
+				// AQ EDIT START - bez duplikatów, minuta od pierwszego wpisu
+				if(!HA.unreachable_items)
+					HA.unreachable_items_reset_at = world.time + 1 MINUTES
+				LAZYOR(HA.unreachable_items, WEAKREF(target_item))
+				// AQ EDIT END
 		else
 			if(istype(target_item.loc, /obj/structure/closet))
 				var/obj/structure/closet/C = target_item.loc
@@ -639,9 +649,15 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 				G.afterattack(target.loc, H)
 			else
 				G.afterattack(target, H)
+	// AQ EDIT START - strzał i wołanie po radiu mogą uśpić procedurę, a w tym czasie mob bywa usunięty (reset komory testowej)
+	if(QDELETED(HA) || QDELETED(H))
+		return
 	//Call your friends to help :))
 	if(world.time >= HA.next_backup_call)
 		call_backup(HA)
+	if(QDELETED(HA) || QDELETED(H))
+		return
+	// AQ EDIT END
 
 	if(dist <= 1)
 		if(A && !istype(A, /obj/item/gun) && A.force > 0)
@@ -719,6 +735,12 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 
 	// Call for other intelligent AIs
 	for(var/datum/component/knpc/HH as() in GLOB.knpcs - HA)
+		// AQ EDIT START - pathfind_to() niżej usypia, więc kolejni boarderzy z kopii listy (albo my sami) mogą być już usunięci
+		if(QDELETED(H))
+			return
+		if(QDELETED(HH) || QDELETED(HH.parent))
+			continue
+		// AQ EDIT END
 		var/mob/living/carbon/human/ai_boarder/other = HH.parent
 		var/obj/item/radio/headset/other_radio = other.ears
 		if(other.z != H.z || !other.can_hear() || other.incapacitated())

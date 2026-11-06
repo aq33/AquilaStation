@@ -143,7 +143,7 @@
 		if(!open_turf.planetary_atmos)
 			open_turf.pollute_turf_list(list(/datum/pollutant/smoke = 10, /datum/pollutant/carbon_air_pollution = 2), POLLUTION_PASSIVE_EMITTER_CAP)
 	if(!magical)
-		fire_power += open_turf.flammability
+		fire_power = min(fire_power + open_turf.flammability, TURF_FIRE_MAX_POWER)
 		var/temperature = open_turf.air.return_temperature()
 		if(temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP * ((FIRE_MINIMUM_TEMPERATURE_TO_EXIST - temperature) / FIRE_MINIMUM_TEMPERATURE_TO_EXIST)

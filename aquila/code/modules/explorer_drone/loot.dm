@@ -32,9 +32,16 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index, generate_generator_index())
 /datum/adventure_loot_generator/maintenance/generate()
 	var/list/all_loot = list()
 	for(var/i in 1 to amount)
-		var/lootspawn = pickweight(GLOB.maintenance_loot)
-		while(islist(lootspawn))
-			lootspawn = pickweight(lootspawn)
+		var/lootspawn
+		// Lista łupu z technicznych ma puste wpisy ("" = nic), a new "" to runtime i dron zostaje „zajęty”: losujemy ponownie
+		for(var/attempt in 1 to 10)
+			lootspawn = pickweight(GLOB.maintenance_loot)
+			while(islist(lootspawn))
+				lootspawn = pickweight(lootspawn)
+			if(ispath(lootspawn, /atom/movable))
+				break
+		if(!ispath(lootspawn, /atom/movable))
+			continue
 		var/atom/movable/loot = new lootspawn()
 		all_loot += loot
 	return all_loot

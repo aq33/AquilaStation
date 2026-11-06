@@ -6,7 +6,7 @@
 	do_outline = FALSE
 
 /obj/item/sticker/series_2/get_stats()
-	. = "<span class='notice'>Seria 2</span>\n"
+	. = list(span_notice("Seria 2"))
 	. += ..()
 
 /obj/item/sticker/series_2/generate_unusual()

@@ -298,6 +298,7 @@
 	check_start_society()
 
 /datum/antagonist/vampire/on_removal()
+	coffin?.unclaim_coffin() // AQUILA - trumna i struktury nie trzymają już moba
 	REMOVE_TRAIT(owner, TRAIT_VAMPIRE_ALIGNED, REF(src))
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_NEAR_END, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 

@@ -13,12 +13,43 @@ export const CYCLEABLE_CHANNELS = ['Say', 'Radio', 'Me', 'OOC', 'LOOC'];
 export const NO_RADIO_CHANNELS = ['Me', 'OOC', 'LOOC'];
 /** Polskie etykiety kanałów (same kanały zostają po angielsku, bo idą do DM). */
 export const CHANNEL_LABELS: Record<string, string> = {
-  'Say': 'Mów',
-  'Radio': 'Radio',
-  'Me': 'Akcja',
+  Say: 'Mów',
+  Radio: 'Radio',
+  Me: 'Akcja',
 };
 
 export const RESTRICTED_CHANNELS = ['Asay', 'Dsay', 'Msay'];
+
+/**
+ * AQUILA: etykiety po angielsku dla gracza z językiem EN (język przychodzi w
+ * wiadomości i18n/setLanguage z aquila/code/modules/i18n/game_language.dm). Polska etykieta ->
+ * angielska; kanały (Say, Radio, Me) mają angielskie nazwy same z siebie.
+ */
+const ENGLISH_LABELS: Record<string, string> = {
+  Rój: 'Hive',
+  Dow: 'Cmd',
+  Inż: 'Engi',
+  Lewo: 'Left',
+  Nauk: 'Sci',
+  SI: 'AI',
+  Prawo: 'Right',
+  Pol: 'Sec',
+  Zaop: 'Supp',
+  Usł: 'Svc',
+  Amun: 'Muni',
+};
+
+let english = false;
+
+export const setSayLanguage = (language: string | undefined) => {
+  english = language === 'en';
+};
+
+/** Napis na przycisku kanału w języku gracza */
+export const channelLabel = (content: string): string =>
+  english
+    ? ENGLISH_LABELS[content] || content
+    : CHANNEL_LABELS[content] || content;
 
 /** Window sizes in pixels */
 export enum WINDOW_SIZES {

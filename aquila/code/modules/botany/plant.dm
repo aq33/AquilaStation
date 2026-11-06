@@ -118,7 +118,8 @@
 		to_chat(user, "<span class='warning'>Nie możesz tu zasadzić: [plant_item]!</span>")
 		return
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_ROOT_SUBSTRATE, tray_component.substrate))
-		to_chat(user, "<span class='warning'>W tym podłożu nie da się zasadzić: [plant_item]!</span>")
+		var/datum/plant_feature/roots/roots = locate() in plant_features
+		to_chat(user, "<span class='warning'>W tym podłożu nie da się zasadzić: [plant_item]! Potrzebne podłoże: [roots?.get_substrate_text() || "nieznane"].</span>")
 		return
 	if(!SEND_SIGNAL(src, COMSIG_PLANT_POLL_TRAY_SIZE, target))
 		to_chat(user, "<span class='warning'>Brakuje tu miejsca, by zasadzić: [plant_item]!</span>")

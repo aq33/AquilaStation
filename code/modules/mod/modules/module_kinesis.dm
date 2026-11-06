@@ -122,6 +122,8 @@
 		if(movable_content.density)
 			hitting_atom = movable_content
 			break
+	if(!hitting_atom) // AQ EDIT - ruch zablokowany przez moba: nie ma w co uderzyć (melee_attack_chain z null)
+		return
 	var/obj/item/grabbed_item = grabbed_atom
 	grabbed_item.melee_attack_chain(mod.wearer, hitting_atom)
 	COOLDOWN_START(src, hit_cooldown, hit_cooldown_time)

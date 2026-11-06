@@ -3,9 +3,18 @@
 /datum/request
 	/// For nuke code requests; auto-fulfillment
 	var/autoaccept
+	/// Someone already started fulfilling this request (the automatic poll or an admin), nobody may start it again
+	var/handled = FALSE
+	/// Who is handling the request (an admin key or the automatic poll), shown to an admin who wants to take it over
+	var/handled_by
+	/// The request was fulfilled (crew woken up, team sent): it can never be started again
+	var/fulfilled = FALSE
 
 /datum/request/Topic(href, href_list)
 	. = ..()
+	// linki ANULUJ są tylko w wiadomościach dla adminów, ale href może wysłać każdy klient
+	if(!check_rights(R_ADMIN))
+		return
 	if(href_list["cancel_nuke"])
 		if(req_type != REQUEST_NUKE) // what are you trying to cancel???
 			to_chat(usr, "<span class='admin'>Nie możesz anulować tego rodzaju prośby.</span>")
@@ -90,7 +99,12 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	autoaccept = TRUE
 	message_admins("Za [REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME] s drużyna reagowania, o którą prosi [ADMIN_FULLMONTY(owner)], zostanie wysłana automatycznie. (<a href='byond://?src=[REF(src)];cancel_ert=1'>ANULUJ</a>)")
 	sleep(REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME SECONDS)
+	if(handled) // An admin took the request over during the wait
+		return FALSE
 	if(autoaccept) // pod tym jest kopiuj wklej z one_click_antag.dm
+		autoaccept = FALSE // Too late to cancel from now on
+		handled = TRUE
+		handled_by = "automatyczna ankieta"
 		var/message = "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana, jednakże wszystkie drużyny są obecnie zajęte. Za niedogodności przepraszamy."
 		var/datum/ert/ertemplate
 		var/ert_type = pick_ert_team_type()
@@ -102,6 +116,8 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę do: [ertemplate.polldesc]?", ROLE_ERT, req_hours = 0)
 		var/teamSpawned = FALSE
 		if(candidates.len <= 0)
+			message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: [crew_wake_failure_reason()]. Można ją wysłać ręcznie przyciskiem ERT.")
+			handled = FALSE // Nothing was sent, an admin may still answer the request
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 			return FALSE
 		else
@@ -129,7 +145,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 				var/spawnloc = spawnpoints[numagents]
 				var/mob/dead/observer/chosen_candidate = pick(candidates)
 				candidates -= chosen_candidate
-				if(!chosen_candidate.key)
+				if(!chosen_candidate.key || !chosen_candidate.client)
 					continue
 
 				//Spawn the body
@@ -159,10 +175,15 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 				teamSpawned++
 
 			if (teamSpawned)
+				fulfilled = TRUE
 				message_admins("Pojawia się [ertemplate.polldesc] z misją: [ertemplate.mission]")
+			else
+				message_admins("Drużyna reagowania na prośbę [ADMIN_FULLMONTY(owner)] nie powstała: brak wolnych punktów odrodzenia ERT albo zgłoszeni gracze wyszli. Można ją wysłać ręcznie przyciskiem ERT.")
+				handled = FALSE
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 
 			//Open the Armory doors
-			if(ertemplate.opendoors)
+			if(teamSpawned && ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
 					door.open()
 					CHECK_TICK
@@ -176,11 +197,41 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 	autoaccept = TRUE
 	message_admins("Za [REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME] s załoga zostanie automatycznie wybudzona z kriostazy na prośbę [ADMIN_FULLMONTY(owner)]. (<a href='byond://?src=[REF(src)];cancel_wake=1'>ANULUJ</a>)")
 	sleep(REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME SECONDS)
+	if(handled) // An admin took the request over during the wait
+		return FALSE
 	if(!autoaccept)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi z kriostazy została odrzucona.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 		return FALSE
 	autoaccept = FALSE // Too late to cancel from now on
+	handled = TRUE
+	handled_by = "automatyczna ankieta"
+	return wake_crew_now()
 
+/// Polls ghosts and wakes the volunteers up from cryostasis right away. Also called by the admin button in the request manager.
+/datum/request/proc/wake_crew_now()
+	var/woken = wake_crew_from_cryostasis("Procedurę awaryjnego wybudzenia zlecił kapitan, a takiego rozkazu nie wydaje się bez powodu.")
+	if(!woken)
+		message_admins("Wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)] nikogo nie obudziło: [crew_wake_failure_reason()]. Można spróbować ponownie przyciskiem WYBUDŹ.")
+		handled = FALSE // Nobody woke up, an admin may try again
+		announce_crew_wake_failed()
+		return FALSE
+
+	fulfilled = TRUE
+	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
+	return woken
+
+/// Why a crew wake woke nobody, for the admin message
+/proc/crew_wake_failure_reason()
+	return (GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE) ? "żaden duch się nie zgłosił" : "role duchów są wyłączone w Ghost Pool Protection"
+
+/// Tells the crew that the wake procedure found no volunteers
+/proc/announce_crew_wake_failed()
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
+
+/// Polls ghosts and wakes the volunteers up as assistants at the cryopods. Returns how many woke up.
+/// who_ordered is told to every woken crewman (who started the emergency wake procedure)
+/proc/wake_crew_from_cryostasis(who_ordered)
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Czy chcesz wrócić do gry jako [JOB_NAME_ASSISTANT] wybudzony z kriostazy?", JOB_NAME_ASSISTANT, ignore_category = FALSE)
 	var/list/cryopods = list()
 	for(var/obj/machinery/cryopod/pod in GLOB.machines)
@@ -205,7 +256,7 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		crewman.key = candidate.key
 		SSjob.EquipRank(crewman, JOB_NAME_ASSISTANT, TRUE)
 		to_chat(crewman, "<span class='big bold'>Awaryjne wybudzenie z kriostazy</span>")
-		to_chat(crewman, "<span class='notice'>Budzisz się w komorze snu. To nie twoja zmiana: według harmonogramu miałeś spać jeszcze długo. Procedurę awaryjnego wybudzenia zlecił kapitan, a takiego rozkazu nie wydaje się bez powodu. Na pokładzie musiało wydarzyć się coś złego.</span>")
+		to_chat(crewman, "<span class='notice'>Budzisz się w komorze snu. To nie twoja zmiana: według harmonogramu miałeś spać jeszcze długo. [who_ordered] Na pokładzie musiało wydarzyć się coś złego.</span>")
 		to_chat(crewman, "<span class='notice'>Nie wiesz, co się stało, ile trwa obecna zmiana ani kto z załogi jeszcze żyje. Twoja postać nie ma żadnej wiedzy o wydarzeniach tej rundy. Zgłoś się do dowództwa po rozkazy.</span>")
 		assistant_job?.current_positions++
 		GLOB.data_core.manifest_inject(crewman)
@@ -215,13 +266,43 @@ GLOBAL_VAR_INIT(erts_requested_already, 0)
 		log_game("[key_name(crewman)] has been woken up from cryostasis as [JOB_NAME_ASSISTANT].")
 		woken++
 
-	if(!woken)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Procedura wybudzenia zakończona. Żaden członek załogi w kriostazie nie nadawał się do wybudzenia.", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
-		return FALSE
-
-	message_admins("Wybudzono z kriostazy duchy jako [JOB_NAME_ASSISTANT] (liczba: [woken]) na prośbę [ADMIN_FULLMONTY(owner)].")
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o wybudzenie załogi została zaakceptowana. Z kriostazy wybudzono członków załogi: [woken].", "Automatyczny System Awaryjny Centrali"), 2 SECONDS)
 	return woken
+
+/// Request manager buttons WYBUDŹ and ERT. A request someone else is handling is taken over only after the admin confirms it,
+/// because two open ERT makers could each send a team. A fulfilled request is never started again.
+/datum/request/proc/admin_take_over(mob/admin, action)
+	if(fulfilled)
+		to_chat(admin, "Ta prośba została już spełniona.")
+		return
+	if(handled)
+		if(tgui_alert(admin, "Tę prośbę obsługuje już: [handled_by]. Przejęcie może wysłać drugą drużynę albo obudzić kolejną grupę. Przejąć mimo to?", "Prośba w obsłudze", list("Przejmij", "Anuluj")) != "Przejmij")
+			return
+		if(fulfilled) // fulfilled while the admin was deciding
+			to_chat(admin, "Ta prośba została już spełniona.")
+			return
+	handled = TRUE
+	handled_by = key_name(admin)
+	autoaccept = FALSE
+	if(action == "wake")
+		message_admins("[key_name_admin(admin)] zatwierdza wybudzenie załogi na prośbę [ADMIN_FULLMONTY(owner)].")
+		log_admin("[key_name(admin)] approved the crew wake request of [key_name(owner)].")
+		wake_crew_now()
+		return
+	message_admins("[key_name_admin(admin)] przejmuje prośbę o drużynę reagowania od [ADMIN_FULLMONTY(owner)].")
+	log_admin("[key_name(admin)] took over the response team request of [key_name(owner)].")
+	manual_response_team(admin.client?.holder)
+
+/// An admin answers the response team request with the ERT maker. Cancelling it or finding nobody frees the request again
+/datum/request/proc/manual_response_team(datum/admins/admin)
+	if(admin?.makeEmergencyresponseteam())
+		if(fulfilled)
+			message_admins("Uwaga: na prośbę [ADMIN_FULLMONTY(owner)] wysłano już wcześniej drużynę reagowania, to jest kolejna.")
+		fulfilled = TRUE
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Prośba o przesłanie drużyny szybkiej reakcji została zaakceptowana.", "Centrala"), 2 SECONDS)
+		return TRUE
+	handled = FALSE
+	message_admins("Prośba o drużynę reagowania od [ADMIN_FULLMONTY(owner)] nadal czeka: drużyna nie została wysłana.")
+	return FALSE
 
 #undef REQUEST_AUTOACCEPT_ADMIN_INTERVENTION_TIME
 #undef ERT_REQUEST_REJECTED

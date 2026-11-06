@@ -5,7 +5,7 @@
 	name = "\improper szafkowy egzoszkielet GR-3YT1.DE"
 	icon = 'aquila/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
-	step_in = 4 //Predkosc Ripleya
+	step_in = 4 //Predkosc Ripleya MK-II przy normalnym cisnieniu (zwykly Ripley: 2), nie przyspiesza w prozni
 	max_integrity = 100 //Zrobiony ze zlomu
 	deflect_chance = 0
 	lights_power = 5

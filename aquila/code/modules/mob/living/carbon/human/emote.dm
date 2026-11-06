@@ -49,7 +49,16 @@
 
 	// Bee#10000: niezdarny klaun czasem wyciska z siebie coś więcej niż bąka
 	if(HAS_TRAIT(C, TRAIT_CLUMSY) && prob(5))
-		C.spew_organ(0, 1)
+		// Nie spew_organ(): losuje z wszystkich narządów, więc klaun mógł stracić mózg albo serce od emotki
+		var/list/spewable = list()
+		for(var/obj/item/organ/organ as anything in C.internal_organs)
+			if(organ == B || (organ.organ_flags & ORGAN_VITAL) || (organ.slot in list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS)))
+				continue
+			spewable += organ
+		if(length(spewable))
+			var/obj/item/organ/guts = pick(spewable)
+			guts.Remove(C)
+			guts.forceMove(T)
 		C.add_splatter_floor(T)
 		playsound(T, 'sound/effects/splat.ogg', 50, TRUE)
 		C.visible_message("<span class='warning'>[C] tryska krwawą breją z tyłka!</span>", "<span class='warning'>Wyciskasz z siebie coś więcej niż bąka!</span>")
@@ -207,6 +216,19 @@
 /datum/emote/living/carbon/human/hiccup/get_sound(mob/living/user)
 	if(has_human_emote_voice(user))
 		return 'aquila/sound/voice/human/hiccup.ogg'
+
+/// Okrzyk „Hej!” z reklam LEGO City
+/datum/emote/living/carbon/human/hey
+	key = "hey"
+	key_third_person = "heys"
+	message = "krzyczy „Hej!”"
+	emote_type = EMOTE_AUDIBLE
+	voice_emote = TRUE
+	sound_volume = 50
+
+/datum/emote/living/carbon/human/hey/get_sound(mob/living/user)
+	if(has_human_emote_voice(user))
+		return 'aquila/sound/emotes/hey.ogg'
 
 /datum/emote/living/carbon/human/slowclap
 	key = "slowclap"

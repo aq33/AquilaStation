@@ -170,9 +170,16 @@
 	if(active_count)
 		status_report += "Wysłano przedmioty do zleceń: [active_count]. "
 	else
-		status_report = "Nie znaleziono pasujących przedmiotów. Przerwano wysyłkę."
-		stop_sending()
-		return FALSE
+		// zlecenia bez przedmiotów (np. patrol) są gotowe do odbioru bez niczego na padzie
+		var/any_claimable = FALSE
+		for(var/datum/bounty/stack_item as anything in bounty_stack)
+			if(stack_item.can_claim())
+				any_claimable = TRUE
+				break
+		if(!any_claimable)
+			status_report = "Nie znaleziono pasujących przedmiotów. Przerwano wysyłkę."
+			stop_sending()
+			return FALSE
 
 	var/claimed_count = 0
 	for(var/datum/bounty/stack_item as anything in bounty_stack)

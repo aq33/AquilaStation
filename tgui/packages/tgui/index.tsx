@@ -14,6 +14,8 @@ import { App } from './App';
 import { setGlobalStore } from './backend';
 import { setupGlobalEvents } from './events';
 import { setupHotKeys } from './hotkeys';
+import { selectWindowDictionary } from './i18n';
+import { setupDomTranslation } from './i18nDom';
 import { captureExternalLinks } from './links';
 import { render } from './renderer';
 import { configureStore } from './store';
@@ -36,6 +38,10 @@ function setupApp() {
   setupHotKeys();
   captureExternalLinks();
 
+  // AQUILA: okna po angielsku dla gracza z językiem EN (i18nDom.ts, i18n-jsx.cjs). Przed
+  // renderem, żeby aktualizacja z nowym językiem renderowała się już w nim
+  selectWindowDictionary();
+  setupDomTranslation(store);
   store.subscribe(() => render(<App />));
 
   // Dispatch incoming messages as store actions

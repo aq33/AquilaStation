@@ -247,9 +247,17 @@
 	if(istype(loc, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/C = loc
 		C.rigged = FALSE
-	// Poza polem ruchy trafiają do relaymove() demona, patrz pulse_demon_interactions.dm
-	remote_control = isturf(loc) ? null : src
+	// Poza polem ruchy trafiają do relaymove() demona, patrz pulse_demon_interactions.dm.
+	// Cudzego remote_control (oko obserwatora overmapy z CreateEye()) nie nadpisujemy: „Przestań obserwować” zrobiłoby qdel() na demonie.
+	if(QDELETED(remote_control) || remote_control == src)
+		remote_control = isturf(loc) ? null : src
 	update_tile_visibility()
+
+/// Po wyjściu z widoku overmapy remote_control jest zerowane, a w maszynie ruch ma dalej trafiać do relaymove() demona
+/mob/living/simple_animal/pulse_demon/cancel_camera()
+	. = ..()
+	if(isnull(remote_control) && !isturf(loc))
+		remote_control = src
 
 /mob/living/simple_animal/pulse_demon/proc/give_actions()
 	for(var/action_type in list(

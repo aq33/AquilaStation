@@ -1,12 +1,17 @@
 import './styles/main.scss';
 
 import { createRoot, type Root } from 'react-dom/client';
+import { selectWindowDictionary } from 'tgui/i18n';
+import { setDomLanguage } from 'tgui/i18nDom';
 
 import { loadMappings, loadStyleSheet } from './assets';
 import { EscapeMenu, isResizeFrozen, receiveMessage } from './EscapeMenu';
 import { updateScaling } from './scaling';
 
 let reactRoot: Root | null = null;
+
+// AQUILA: menu to osobna przeglądarka, więc mniejszy słownik okien (tgui/i18n.ts)
+selectWindowDictionary();
 
 document.onreadystatechange = () => {
   if (document.readyState !== 'complete') return;
@@ -27,6 +32,11 @@ document.onreadystatechange = () => {
     }
     if (type === 'asset/mappings') {
       loadMappings(payload);
+      return;
+    }
+    if (type === 'i18n/setLanguage') {
+      // AQUILA: angielska wersja menu (aquila/code/modules/i18n/game_language.dm)
+      setDomLanguage(payload?.language);
       return;
     }
     receiveMessage(type, payload);

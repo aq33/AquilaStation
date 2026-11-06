@@ -16,6 +16,7 @@
 
 /datum/element/decal/blood/Detach(atom/source)
 	UnregisterSignal(source, COMSIG_ATOM_GET_EXAMINE_NAME)
+	REMOVE_KEEP_TOGETHER(source, "item_blood_overlay") // AQ EDIT - para do ADD_KEEP_TOGETHER z generate_appearance(), inaczej KEEP_TOGETHER zostawał po zmyciu krwi
 	return ..()
 
 /datum/element/decal/blood/generate_appearance(_icon, _icon_state, _dir, _layer, _color, _alpha, source)

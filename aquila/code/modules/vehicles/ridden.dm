@@ -32,7 +32,7 @@
 	if(!driving || QDELETED(src))
 		return
 	// A new sound on the same channel replaces the old one, so this also moves the engine to where the vehicle is now
-	playsound(src, drive_sound, drive_sound_volume, FALSE, -2, channel = drive_channel)
+	playsound(src, drive_sound, drive_sound_volume, FALSE, channel = drive_channel, falloff_distance = 3) // full volume up to 3 tiles, the default falloff made the engine almost silent a step away
 	drive_loop_timer = addtimer(CALLBACK(src, PROC_REF(play_drive_sound)), drive_sound_length, TIMER_STOPPABLE)
 
 /obj/vehicle/ridden/proc/stop_drive_sound()
@@ -52,12 +52,16 @@
 
 /obj/vehicle/ridden/Destroy()
 	stop_drive_sound()
+	if(drive_channel)
+		// SSsounds keeps the vehicle as the channel's owner and never frees it on its own
+		SSsounds.free_datum_channels(src)
+		drive_channel = null
 	return ..()
 
 /obj/vehicle/ridden/janicart
 	drive_sound = 'aquila/sound/vehicles/secway_loop.ogg'
 	drive_sound_length = 1.5 SECONDS
-	drive_sound_volume = 50
+	drive_sound_volume = 100
 
 /obj/vehicle/ridden/secway
 	drive_sound = 'aquila/sound/vehicles/secway_loop.ogg'

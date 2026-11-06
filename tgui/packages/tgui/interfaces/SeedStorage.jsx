@@ -1,99 +1,57 @@
 import { Input } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Divider, Flex, Section } from '../components';
+import { Box, Button, Divider, Flex, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const SeedStorage = (props) => {
   const { act, data } = useBackend();
-  const { seeds, focused_seeds, last_command } = data;
+  const { seeds, focused_seeds } = data;
   const [searchText, setSearchText] = useLocalState('searchText', '');
   return (
-    <Window width={600} height={735} theme="plant_menu">
-      <Window.Content scrollable={1}>
-        <Box height={'100%'} width={'100%'} m={'-3px'}>
-          <Flex direction={'column'} height={'100%'} width={'100%'}>
-            {/* Search Section */}
-            <Flex.Item>
-              <Section>
+    <Window width={600} height={735}>
+      <Window.Content>
+        <Stack fill>
+          <Stack.Item basis="40%">
+            <Section
+              fill
+              scrollable
+              title="Nasiona"
+              buttons={
                 <Input
-                  width={'100%'}
+                  width="140px"
                   placeholder={'Szukaj...'}
                   onChange={(value) => setSearchText(value)}
                 />
-              </Section>
-            </Flex.Item>
-            {/* Seed tuff */}
-            <Flex.Item height={'100%'}>
-              <Flex direction={'row'} width={'100%'}>
-                {/* Seed browser */}
-                <Flex.Item width={'40%'}>
-                  <Section>
-                    <Box
-                      className={'scrollbox'}
-                      height={'550px'}
-                      overflowY="scroll"
-                    >
-                      {Object.entries(seeds).map(
-                        ([data_list_key, data_list]) =>
-                          data_list['name']
-                            .toLowerCase()
-                            .includes(searchText.toLowerCase()) ? (
-                            <Entry key={data_list_key} data_list={data_list} />
-                          ) : null,
-                      )}
+              }
+            >
+              {Object.entries(seeds).map(([data_list_key, data_list]) =>
+                data_list['name']
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase()) ? (
+                  <Entry key={data_list_key} data_list={data_list} />
+                ) : null,
+              )}
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill scrollable title="Szczegóły">
+              {focused_seeds['key'] && seeds[focused_seeds['species_id']]
+                ? Object.entries(
+                    seeds[focused_seeds['species_id']]['features'],
+                  ).map(([feature_key, feature]) => (
+                    <Box key={feature_key}>
+                      <InspectionPanel
+                        key={feature_key}
+                        current_feature_data={feature['data']}
+                        current_feature_traits={feature['traits']}
+                      />
                     </Box>
-                  </Section>
-                </Flex.Item>
-                {/* Inspection panel */}
-                <Flex.Item width={'60%'} height={'100%'}>
-                  <Section>
-                    <Box
-                      className={'scrollbox'}
-                      height={'550px'}
-                      overflowY="scroll"
-                    >
-                      <Box mb={'-10px'} />
-                      {focused_seeds['key'] &&
-                      seeds[focused_seeds['species_id']]
-                        ? Object.entries(
-                            seeds[focused_seeds['species_id']]['features'],
-                          ).map(([feature_key, feature]) => (
-                            <Box key={feature_key}>
-                              <InspectionPanel
-                                key={feature_key}
-                                current_feature_data={feature['data']}
-                                current_feature_traits={feature['traits']}
-                              />
-                            </Box>
-                          ))
-                        : ''}
-                    </Box>
-                  </Section>
-                </Flex.Item>
-              </Flex>
-            </Flex.Item>
-            {/* World building fluff top banner */}
-            <Flex.Item>
-              <Box height={'20px'} />
-            </Flex.Item>
-            <Flex.Item height={'100%'}>
-              <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato-lite OS [Wersja 7.3.1.1]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
-            </Flex.Item>
-          </Flex>
-        </Box>
+                  ))
+                : 'Wybierz nasiona z listy po lewej.'}
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );

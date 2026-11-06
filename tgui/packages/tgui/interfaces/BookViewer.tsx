@@ -29,6 +29,7 @@ export const BookViewer = (props) => {
             </Box>
           )}
           <div
+            className="i18n-skip"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: sanitizeText(content || ''),

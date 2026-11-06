@@ -56,6 +56,24 @@
 		return ".\\yt-dlp.exe --no-check-certificate"
 	return CONFIG_GET(string/invoke_youtubedl)
 
+/// Czy link prowadzi do YouTube albo SoundCloud. yt-dlp działa na serwerze, więc dowolny adres
+/// (127.0.0.1, sieć wewnętrzna) pozwoliłby graczowi odpytywać maszyny niedostępne z zewnątrz.
+/proc/aquila_jukebox_url_allowed(url)
+	// host bez loginu (@) i bez końcowej kropki; port dozwolony
+	var/static/regex/host_regex = regex("^https?://(\[a-z0-9.-]+)(?::\\d+)?(?:\[/?#]|$)", "i")
+	// domeny razem z subdomenami (www., m., music., on., api-v2. itd.)
+	var/static/list/allowed_domains = list("youtube.com", "youtu.be", "soundcloud.com")
+	if(!istext(url) || !host_regex.Find(url))
+		return FALSE
+	var/host = lowertext(host_regex.group[1])
+	for(var/domain in allowed_domains)
+		if(host == domain)
+			return TRUE
+		var/suffix_start = length(host) - length(domain)
+		if(suffix_start > 1 && copytext(host, suffix_start) == ".[domain]")
+			return TRUE
+	return FALSE
+
 /obj/machinery/jukebox/proc/yt_available()
 	return !!aquila_ytdl_command()
 
@@ -200,6 +218,9 @@
 			if(!findtext(url, GLOB.is_http_protocol))
 				to_chat(user, "<span class='warning'>Dozwolone są tylko linki http(s).</span>")
 				return
+			if(!aquila_jukebox_url_allowed(url))
+				to_chat(user, "<span class='warning'>Dozwolone są tylko linki do YouTube (youtube.com, youtu.be) i SoundCloud (soundcloud.com).</span>")
+				return
 			INVOKE_ASYNC(src, .proc/yt_load_playlist, url, user)
 		if("yt_toggle")
 			yt_toggle_playback(user)
@@ -242,6 +263,8 @@
 	var/ytdl = aquila_ytdl_command()
 	if(!ytdl || yt_busy) // drugi gracz mógł wczytać playlistę, kiedy ten wpisywał link
 		return
+	if(!aquila_jukebox_url_allowed(url))
+		return
 	var/request = yt_set_busy(TRUE)
 	updateUsrDialog()
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --flat-playlist --dump-single-json --playlist-end [JUKEBOX_YT_PLAYLIST_SCAN] -- \"[shell_url_scrub(url)]\"")
@@ -283,7 +306,7 @@
 			continue
 		// webpage_url ma pierwszeństwo: przy pojedynczym utworze (nie playliście) "url" to bezpośredni, szybko wygasający link do pliku
 		var/track_url = "[E["webpage_url"] || E["url"]]"
-		if(!findtext(track_url, GLOB.is_http_protocol))
+		if(!aquila_jukebox_url_allowed(track_url)) // brak linku albo link spoza YouTube/SoundCloud
 			track_url = is_youtube ? "https://www.youtube.com/watch?v=[E["id"]]" : url
 		new_tracks += list(list("id" = "[E["id"]]", "url" = track_url, "title" = title || "[E["id"]]", "duration" = duration))
 		if(new_tracks.len >= JUKEBOX_YT_MAX_TRACKS)
@@ -321,6 +344,8 @@
 		return null
 	var/list/T = yt_tracks[index]
 	var/track_url = T["url"] || "https://www.youtube.com/watch?v=[T["id"]]"
+	if(!aquila_jukebox_url_allowed(track_url))
+		return null
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --geo-bypass --format \"[JUKEBOX_YT_FORMAT]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(track_url)]\"")
 	if(QDELETED(src))
 		return null

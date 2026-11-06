@@ -16,7 +16,7 @@
 /datum/objective/aquila_test_team_probe/find_target(list/dupe_search_range, list/blacklist)
 	team_at_find_target = team
 
-/// AQUILA - runtime'y z logów rund 6556 i 6558 (26.10.2026) oraz 6539 i 6540 (29.10.2026). Każdy z tych przypadków wcześniej kończył się runtime'em, a runtime oblewa test.
+/// AQUILA - runtime'y z logów rund 6556 i 6558 (26.10.2026) oraz 6539 i 6540 (29.10.2026), wycieki składów z 30.10.2026. Każdy z tych przypadków wcześniej kończył się runtime'em, a runtime oblewa test.
 /datum/unit_test/aquila_logi_rund_26_10
 
 /datum/unit_test/aquila_logi_rund_26_10/Run()
@@ -58,6 +58,35 @@
 	user.managed_vis_overlays = null
 	SSvis_overlays.remove_vis_overlay(user, list(new /obj/effect/overlay/vis))
 	TEST_ASSERT(isnull(user.managed_vis_overlays), "Removing a vis overlay must not create the managed list")
+
+	// Składy: usunięty członek wisiał w members/leader, a pager z kanałem tworzył cykl referencji (GC fail, hard delete)
+	var/datum/squad/squad = GLOB.squad_manager.squads[1]
+	var/mob/living/carbon/human/member = allocate(/mob/living/carbon/human)
+	squad.add_member(member)
+	var/obj/item/squad_pager/pager = new(member, squad)
+	var/datum/action/teamchat/chat_action = pager.squad_channel.chatAction
+	qdel(pager)
+	TEST_ASSERT(isnull(chat_action.holder), "A deleted squad pager is still held by its chat action")
+	qdel(member)
+	TEST_ASSERT(!(member in squad.members), "A deleted human stayed in their squad")
+	TEST_ASSERT(squad.leader != member, "A deleted human stayed the squad leader")
+
+	// SSmobs: mob usunięty, gdy był już w currentrun (lista przeżywa między tickami), nie dostaje Life().
+	// Wcześniej SI z komory testowej bez zasilania wołała wtedy addtimer na usuniętym obiekcie.
+	var/mob/living/aquila_life_probe/life_probe = allocate(/mob/living/aquila_life_probe)
+	qdel(life_probe)
+	var/list/old_currentrun = SSmobs.currentrun
+	SSmobs.currentrun = list(life_probe)
+	SSmobs.fire(TRUE)
+	SSmobs.currentrun = old_currentrun
+	TEST_ASSERT(!life_probe.life_calls, "SSmobs ran Life() on a deleted mob")
+
+/// Mob, który liczy wywołania Life()
+/mob/living/aquila_life_probe
+	var/life_calls = 0
+
+/mob/living/aquila_life_probe/Life(seconds, times_fired)
+	life_calls++
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

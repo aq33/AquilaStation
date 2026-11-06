@@ -22,6 +22,8 @@ type Chemical = {
   id: string;
   volume: number;
   purity?: number;
+  // Only for impure reagents in the buffer: how much is left after purifying
+  pureVolume?: number | null;
 };
 
 type PillStyle = {
@@ -211,6 +213,7 @@ const ChemMasterContent = (props) => {
                 key={chemical.id}
                 chemical={chemical}
                 transferTo="beaker"
+                canPurify={!data.condi}
               />
             ))}
           </Table>
@@ -302,11 +305,13 @@ const ChemMasterContent = (props) => {
 type ReagentProps = {
   chemical: Chemical;
   transferTo: 'buffer' | 'beaker';
+  canPurify?: boolean;
 };
 
 const ReagentEntry = (props: ReagentProps) => {
   const { act } = useBackend<Data>();
-  const { chemical, transferTo } = props;
+  const { chemical, transferTo, canPurify } = props;
+  const pureVolume = canPurify ? chemical.pureVolume : null;
   const transfer = (amount: number) =>
     act('transfer', {
       id: chemical.id,
@@ -331,6 +336,14 @@ const ReagentEntry = (props: ReagentProps) => {
           tooltip="Własna ilość"
           onClick={() => transfer(-1)}
         />
+        {pureVolume !== null && pureVolume !== undefined && (
+          <Button
+            icon="filter"
+            color="average"
+            tooltip={`Oczyść: zostanie ${pureVolume}u czystego odczynnika, reszta idzie do utylizacji`}
+            onClick={() => act('purify', { id: chemical.id })}
+          />
+        )}
         <Button
           icon="question"
           tooltip="Analizuj"

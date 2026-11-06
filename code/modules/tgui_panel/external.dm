@@ -43,4 +43,4 @@
 /client/verb/panel_devtools()
 	set name = "Enable TGUI Devtools"
 	set category = "OOC"
-	winset(src, "", "browser-options=devtools")
+	winset(src, null, list("browser-options" = "[TGUI_BROWSER_OPTIONS],devtools")) // AQ EDIT - samo devtools kasowało find/refresh/byondstorage

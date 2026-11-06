@@ -1,7 +1,7 @@
 // AQUILA - Weighted rotation: every 30-60 minutes ghosts are offered a midround antagonist,
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
-// The heavy ones (slaughter demon, space dragon, blob, bingles, wizard, nuclear assault) are only offered in rounds from the high pool.
-// Blood worms are offered in rounds from the medium and high pools.
+// The heavy ones (slaughter demon, space dragon, blob, bingles, swarmers, wizard, nuclear assault) are only offered in rounds from the high pool.
+// Blood worms, spiders, sinful demons, sentient diseases, pirates, infiltrators and xenomorphs are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
 #define WEIGHTED_MIDROUND_MIN_DELAY (30 MINUTES)
@@ -20,23 +20,17 @@
 /datum/weighted_ghost_midround/proc/common_events()
 	var/static/list/events = list(
 		/datum/round_event_control/abductor,
-		/datum/round_event_control/alien_infestation,
 		/datum/round_event_control/aquila_chrono_legionnaire,
 		/datum/round_event_control/aquila_rogue_drone,
 		/datum/round_event_control/aquila_teratoma,
 		/datum/round_event_control/devil,
 		/datum/round_event_control/fugitives,
 		/datum/round_event_control/horror,
-		/datum/round_event_control/infiltrators,
 		/datum/round_event_control/morph,
 		/datum/round_event_control/ninja,
 		/datum/round_event_control/operative,
 		/datum/round_event_control/paradox_clone,
-		/datum/round_event_control/pirates,
 		/datum/round_event_control/revenant,
-		/datum/round_event_control/sentient_disease,
-		/datum/round_event_control/sinfuldemon,
-		/datum/round_event_control/spawn_swarmer,
 		/datum/round_event_control/wizard/imposter,
 	)
 	// Antagoniści z osobnych PR-ów (i koszmar, którego event zastąpił demon cieni) po ścieżce tekstowej,
@@ -58,7 +52,13 @@
 /// Ghost antagonist events offered in rounds from the medium and high pools
 /datum/weighted_ghost_midround/proc/medium_events()
 	var/static/list/events = list(
+		/datum/round_event_control/alien_infestation,
 		/datum/round_event_control/blood_worm,
+		/datum/round_event_control/infiltrators,
+		/datum/round_event_control/pirates,
+		/datum/round_event_control/sentient_disease,
+		/datum/round_event_control/sinfuldemon,
+		/datum/round_event_control/spider_infestation,
 	)
 	return events
 
@@ -69,7 +69,7 @@
 		/datum/round_event_control/blob,
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/space_dragon,
-		/datum/round_event_control/spider_infestation,
+		/datum/round_event_control/spawn_swarmer,
 	)
 	return events
 
@@ -96,18 +96,13 @@
 	log_game("WEIGHTED: offering midround antagonist [istext(offer) ? offer : "[offer]"] ([round(ratio * 100)]% of the crew alive)")
 	INVOKE_ASYNC(src, PROC_REF(run_offer), offer)
 
-/// Living crew members compared to everyone who got a station job this round
+/// Living crew members compared to everyone who got a station job this round. Counted like the automatic crew wake:
+/// crew that left through a cryopod without dying is not counted at all, a gibbed body still counts as dead
 /datum/weighted_ghost_midround/proc/crew_alive_ratio()
-	var/crew = 0
-	var/alive = 0
-	for(var/datum/mind/crew_mind as anything in SSticker.minds)
-		if(!crew_mind.assigned_role || !SSjob.GetJob(crew_mind.assigned_role))
-			continue
-		crew++
-		var/mob/living/body = crew_mind.current
-		if(istype(body) && body.stat != DEAD)
-			alive++
-	return crew ? alive / crew : 0
+	var/list/counts = GLOB.auto_crew_wake.count_crew()
+	var/crew = counts[1]
+	var/dead = counts[2]
+	return crew ? (crew - dead) / crew : 0
 
 /datum/weighted_ghost_midround/proc/eligible_offers()
 	. = list()
@@ -132,10 +127,19 @@
 	// The wizard and nuclear team poll ghosts through pollGhostCandidates(), which gives nobody with station sentience roles off
 	if(!heavy || !(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return
-	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard())
+	if(!(WEIGHTED_MIDROUND_WIZARD in used_offers) && length(GLOB.wizardstart) && !living_wizard() && enough_players_for_wizard(players))
 		. += WEIGHTED_MIDROUND_WIZARD
 	if(!(WEIGHTED_MIDROUND_NUCLEAR in used_offers) && !istype(SSticker.mode, /datum/game_mode/nuclear))
 		. += WEIGHTED_MIDROUND_NUCLEAR
+
+/// Same player minimum as the roundstart wizard (MIN_POP WIZARD). Midround counts living, active human players,
+/// roundstart counts the ready ones, so the midround wizard is a bit harder to get with many dead or AFK players
+/datum/weighted_ghost_midround/proc/enough_players_for_wizard(players)
+	var/min_pop = CONFIG_GET(keyed_list/min_pop)["wizard"]
+	if(isnull(min_pop))
+		var/datum/game_mode/wizard/mode = /datum/game_mode/wizard
+		min_pop = initial(mode.required_players)
+	return players >= min_pop
 
 /datum/weighted_ghost_midround/proc/living_wizard()
 	for(var/datum/mind/wizard as anything in SSticker.mode.wizards)

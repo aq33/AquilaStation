@@ -6,6 +6,7 @@ import { toTitleCase } from 'tgui-core/string';
 
 import { globalStore } from '../backend';
 import { toggleKitchenSink } from '../debug/actions';
+import { isTranslating, translateUiText } from '../i18n'; // AQ EDIT - i18n tytułu okna
 
 type TitleBarProps = Partial<{
   className: string;
@@ -34,11 +35,17 @@ export function TitleBar(props: TitleBarProps) {
     props;
   const dispatch = globalStore.dispatch;
 
+  // AQ EDIT START - i18n: tytuł (nazwa obiektu) tłumaczony przed toTitleCase, słownik ma małe litery
+  const source =
+    typeof title === 'string' && isTranslating()
+      ? translateUiText(title)
+      : title;
   const finalTitle =
-    (typeof title === 'string' &&
-      title === title.toLowerCase() &&
-      toTitleCase(title)) ||
-    title;
+    (typeof source === 'string' &&
+      source === source.toLowerCase() &&
+      toTitleCase(source)) ||
+    source;
+  // AQ EDIT END
 
   return (
     <div className={classes(['TitleBar', className])}>

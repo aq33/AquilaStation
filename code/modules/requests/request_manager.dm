@@ -192,6 +192,13 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			var/mob/M = request.owner?.mob
 			usr.client.admin_headset_message(M, request.req_type == REQUEST_SYNDICATE ? RADIO_CHANNEL_SYNDICATE : RADIO_CHANNEL_CENTCOM)
 			return TRUE
+		// AQ EDIT START - admins can answer crew wake and response team requests by hand
+		if ("wake", "ert")
+			if (request.req_type != (action == "wake" ? REQUEST_CREW_WAKE : REQUEST_ERT))
+				return TRUE
+			INVOKE_ASYNC(request, TYPE_PROC_REF(/datum/request, admin_take_over), usr, action)
+			return TRUE
+		// AQ EDIT END
 		if ("setcode")
 			if (request.req_type != REQUEST_NUKE)
 				to_chat(usr, "Nie możesz ustawić kodu atomówki dla prośby, która nie dotyczy kodu atomówki!")

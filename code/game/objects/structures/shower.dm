@@ -161,10 +161,10 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 	to_chat(user, "<span class='notice'>Przestawiasz automatyczne wyłączanie prysznica: [GLOB.shower_mode_descriptions["[mode]"]].</span>")
 	return TRUE
 
+// The later crowbar_act() in nsv13/code/game/machinery/blast_shower.dm takes the shower apart and calls this one first while the recycler is in
 /obj/machinery/shower/crowbar_act(mob/living/user, obj/item/tool)
 	if(!has_water_reclaimer)
-		to_chat(user, "<span class='warning'>[src] nie ma odzysku wody.</span>")
-		return TRUE
+		return ..()
 
 	tool.play_tool_sound(src)
 	has_water_reclaimer = FALSE
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 		. = TRUE
 	else if(H.w_uniform && !(H.w_uniform.clothing_flags & SHOWEROKAY))
 		. = TRUE
-	else if(H.wear_mask && !(H.wear_mask.clothing_flags & SHOWEROKAY))
+	else if(isclothing(H.wear_mask) && !(H.wear_mask.clothing_flags & SHOWEROKAY)) // AQ EDIT - w slocie maski bywa nie-ubranie (harmonijka)
 		. = TRUE
 	else if(H.head && !(H.head.clothing_flags & SHOWEROKAY))
 		. = TRUE

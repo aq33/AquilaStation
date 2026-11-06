@@ -159,7 +159,7 @@
 				else if (data[BLOODCOST_LID_HELD])
 					to_chat(user, span_danger("Najpierw zdejmij pokrywkę z [data[BLOODCOST_TARGET_HELD]]!") )
 				else if (data[BLOODCOST_LID_CONTAINER])
-					to_chat(user, span_danger("Najpierw zdejmij pokrywkę z [data[BLOODCOST_TARGET_HELD]]!") )
+					to_chat(user, span_danger("Najpierw zdejmij pokrywkę z [data[BLOODCOST_TARGET_CONTAINER]]!") )
 				else
 					to_chat(user, span_danger("Nie ma tu żadnej krwi. Nawet w twoim własnym ciele!") )
 
@@ -179,12 +179,12 @@
 			data[BLOODCOST_TOTAL] += data[BLOODCOST_AMOUNT_GRAB]
 			if (ishuman(data[BLOODCOST_TARGET_GRAB]))
 				var/mob/living/carbon/human/H = data[BLOODCOST_TARGET_GRAB]
-				H.blood_volume -= data[BLOODCOST_AMOUNT_GRAB]
+				H.blood_volume = max(0, H.blood_volume - data[BLOODCOST_AMOUNT_GRAB])
 				H.take_overall_damage(data[BLOODCOST_AMOUNT_GRAB] ? 0.1 : 0)
 		if (data[BLOODCOST_TARGET_BLEEDER])
 			data[BLOODCOST_TOTAL] += data[BLOODCOST_AMOUNT_BLEEDER]
 			var/mob/living/carbon/human/H = data[BLOODCOST_TARGET_BLEEDER]
-			H.blood_volume -= data[BLOODCOST_AMOUNT_BLEEDER]
+			H.blood_volume = max(0, H.blood_volume - data[BLOODCOST_AMOUNT_BLEEDER])
 			H.take_overall_damage(data[BLOODCOST_AMOUNT_BLEEDER] ? 0.1 : 0)
 		if (data[BLOODCOST_TARGET_HELD])
 			data[BLOODCOST_TOTAL] += data[BLOODCOST_AMOUNT_HELD]
@@ -203,7 +203,7 @@
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
 				var/blood_before = H.blood_volume
-				H.blood_volume -= data[BLOODCOST_AMOUNT_USER]
+				H.blood_volume = max(0, H.blood_volume - data[BLOODCOST_AMOUNT_USER])
 				var/blood_after = H.blood_volume
 				if (blood_before > BLOOD_VOLUME_SAFE && blood_after < BLOOD_VOLUME_SAFE)
 					to_chat(user, span_cult("Zaczynasz blednąć.") )

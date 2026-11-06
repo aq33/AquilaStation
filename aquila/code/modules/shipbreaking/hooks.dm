@@ -1,39 +1,44 @@
-// W strefie złomowania ściany, dźwigary, maszyny i silniki dają złom zamiast zwykłych materiałów.
-// Poza strefą wszystko działa po staremu (..()).
+// W strefie złomowania ściany, dźwigary, maszyny i silniki z wraku dają złom zamiast zwykłych materiałów.
+// Poza strefą i dla rzeczy zbudowanych na miejscu wszystko działa po staremu (..()).
 
 /// Jaki złom zostaje po ścianie rozebranej w strefie złomowania
 /turf/closed/wall/var/scrap_type = /obj/item/stack/scrap/plating
 
 /turf/closed/wall/break_wall()
-	if(!is_shipbreak_area(src))
+	if(!is_shipbreak_area(src) || !GLOB.shipbreak_wreck_walls[src])
 		return ..()
+	consume_shipbreak_wall()
 	new scrap_type(src, sheet_amount)
 	if(girder_type)
-		return new girder_type(src)
+		var/atom/movable/girder = new girder_type(src)
+		ADD_TRAIT(girder, TRAIT_SHIPBREAK_WRECK, SHIPBREAK_WRECK_TRAIT)
+		return girder
 
 /turf/closed/wall/devastate_wall()
-	if(!is_shipbreak_area(src))
+	if(!is_shipbreak_area(src) || !GLOB.shipbreak_wreck_walls[src])
 		return ..()
+	consume_shipbreak_wall()
 	new scrap_type(src, sheet_amount)
 	if(girder_type)
 		new /obj/item/stack/scrap/framing(src)
 
 // r_wall ma własne devastate_wall bez ..(), więc potrzebuje osobnego nadpisania
 /turf/closed/wall/r_wall/devastate_wall()
-	if(!is_shipbreak_area(src))
+	if(!is_shipbreak_area(src) || !GLOB.shipbreak_wreck_walls[src])
 		return ..()
+	consume_shipbreak_wall()
 	new scrap_type(src, sheet_amount)
 	new /obj/item/stack/scrap/framing(src)
 
 /obj/structure/girder/deconstruct(disassembled = TRUE)
-	if(!is_shipbreak_area(src) || (flags_1 & NODECONSTRUCT_1))
+	if(!is_shipbreak_wreck(src) || (flags_1 & NODECONSTRUCT_1))
 		return ..()
 	new /obj/item/stack/scrap/framing(loc)
 	qdel(src)
 
 // Rozkręcenie przesuniętego dźwigara śrubokrętem (w core żelazo powstaje w środku screwdriver_act)
 /obj/structure/girder/screwdriver_act(mob/user, obj/item/tool)
-	if(state != GIRDER_DISPLACED || !is_shipbreak_area(src))
+	if(state != GIRDER_DISPLACED || !is_shipbreak_wreck(src))
 		return ..()
 	user.visible_message("<span class='warning'>[user] rozbiera [src].</span>",
 						"<span class='notice'>Zaczynasz rozbierać [src]...</span>",
@@ -58,12 +63,12 @@
 	shipbreaking_extra_reward = list(/obj/item/stack/scrap/electronics, /obj/item/stack/scrap/core)
 
 /obj/machinery/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_area(src))
+	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_wreck(src))
 		convert_parts_to_scrap()
 	return ..()
 
 /obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
-	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_area(src))
+	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_wreck(src))
 		convert_parts_to_scrap()
 		if(circuit)
 			new /obj/item/stack/scrap/electronics(loc)
@@ -83,7 +88,7 @@
 		qdel(part)
 
 /obj/structure/shuttle/engine/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_area(src))
+	if(!(flags_1 & NODECONSTRUCT_1) && is_shipbreak_wreck(src))
 		new /obj/item/stack/scrap/core(loc)
 	return ..()
 

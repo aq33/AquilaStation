@@ -422,7 +422,7 @@ Class Procs:
 
 /obj/machinery/attackby_secondary(obj/item/weapon, mob/user, params)
 	. = ..()
-	if(.)
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN) // AQ EDIT - SECONDARY_ATTACK_* to zawsze 1..3, więc samo if(.) nigdy nie dochodziło do update_last_used
 		return
 	update_last_used(user)
 

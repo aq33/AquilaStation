@@ -31,12 +31,22 @@ endmap
 
 map shrike
 	maxplayers 24
+#	Na razie poza losową rotacją (Shrike 2.0 do przetestowania). Admin może wybrać ręcznie.
+	voteweight 0
 #	votable
 endmap
 
 map atlantis
 	minplayers 20
 	maxplayers 60
+#	votable
+endmap
+
+map vonneumann
+	minplayers 12
+	maxplayers 40
+#	Na razie poza losową rotacją (nowa mapa do przetestowania). Admin może wybrać ręcznie.
+	voteweight 0
 #	votable
 endmap
 
