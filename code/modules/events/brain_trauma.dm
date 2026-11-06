@@ -12,6 +12,8 @@
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_mob_list))
 		if(!H.client)
 			continue
+		if(H.is_in_tutorial()) // AQ EDIT - postać w samouczku nie jest ofiarą eventu
+			continue
 		if(H.stat == DEAD) // What are you doing in this list
 			continue
 		if(!H.getorgan(/obj/item/organ/brain)) // If only I had a brain

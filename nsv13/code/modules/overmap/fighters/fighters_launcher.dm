@@ -300,8 +300,9 @@ d) the ships[] list of ssstarsystem is acting up again.
 	layer = LOW_OBJ_LAYER
 	addtimer(VARSET_CALLBACK(src, layer, ABOVE_MOB_LAYER), 2 SECONDS) //Gives fighters a small window of immunity from collisions with other overmaps
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
-	DC.docking_cooldown = TRUE
-	addtimer(VARSET_CALLBACK(DC, docking_cooldown, FALSE), 5 SECONDS) //Prevents jank.
+	if(DC) // AQ EDIT - a destroyed docking computer leaves its slot empty (aquila/code/modules/overmap/fighter_component_cleanup.dm)
+		DC.docking_cooldown = TRUE
+		addtimer(VARSET_CALLBACK(DC, docking_cooldown, FALSE), 5 SECONDS) //Prevents jank.
 	resize = resize_factor //Scale down!
 	pixel_w = flight_pixel_w
 	pixel_z = flight_pixel_z
@@ -309,7 +310,8 @@ d) the ships[] list of ssstarsystem is acting up again.
 	bound_height = 32
 	if(pilot)
 		to_chat(pilot, "<span class='notice'>Tryb dokowania wyłączony. Włącz go ponownie w zakładce czasowników „Ship”, a następnie wleć w sojuszniczy okręt, by dokończyć procedurę dokowania.</span>")
-		DC.docking_mode = FALSE
+		if(DC) // AQ EDIT - missing docking computer
+			DC.docking_mode = FALSE
 	SEND_SIGNAL(src, COMSIG_FTL_STATE_CHANGE) //Let dradis comps update their status too
 	current_system = OM.current_system
 	//Add a treadmill for this ship as and when needed.
@@ -374,8 +376,9 @@ d) the ships[] list of ssstarsystem is acting up again.
 	enemies = list() //Reset RWR warning.
 	last_overmap = OM
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
-	DC.docking_cooldown = TRUE
-	addtimer(VARSET_CALLBACK(DC, docking_cooldown, FALSE), 20 SECONDS) //Prevents jank.
+	if(DC) // AQ EDIT - missing docking computer
+		DC.docking_cooldown = TRUE
+		addtimer(VARSET_CALLBACK(DC, docking_cooldown, FALSE), 20 SECONDS) //Prevents jank.
 	resize = 0 //Scale up!
 	pixel_w = initial(pixel_w)
 	pixel_z = initial(pixel_z)
@@ -386,7 +389,8 @@ d) the ships[] list of ssstarsystem is acting up again.
 	OM.overmaps_in_ship += src
 	bound_width = initial(bound_width)
 	bound_height = initial(bound_height)
-	DC.docking_mode = FALSE
+	if(DC) // AQ EDIT - missing docking computer
+		DC.docking_mode = FALSE
 	weapon_safety = TRUE
 	if(pilot)
 		to_chat(pilot, "<span class='notice'>Dokowanie zakończone. <b>Zabezpieczenia broni zostały automatycznie włączone.</b></span>")

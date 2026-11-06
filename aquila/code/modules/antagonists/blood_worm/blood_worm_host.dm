@@ -17,6 +17,7 @@
 	RegisterSignal(host, COMSIG_MOB_STATCHANGE, PROC_REF(on_host_stat_changed))
 	RegisterSignal(host, COMSIG_LIVING_LIFE, PROC_REF(on_host_life))
 	RegisterSignal(host, COMSIG_MOB_EXAMINATE, PROC_REF(on_host_examinate))
+	RegisterSignal(host, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_host_lose_organ))
 
 	ADD_TRAIT(src, TRAIT_IMMOBILIZED, BLOOD_WORM_HOST_TRAIT)
 	ADD_TRAIT(src, TRAIT_MUTE, BLOOD_WORM_HOST_TRAIT)
@@ -80,7 +81,7 @@
 	possess_worm()
 	STOP_PROCESSING(SSfastprocess, src)
 
-	UnregisterSignal(old_host, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_STATCHANGE, COMSIG_LIVING_LIFE, COMSIG_MOB_EXAMINATE))
+	UnregisterSignal(old_host, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_STATCHANGE, COMSIG_LIVING_LIFE, COMSIG_MOB_EXAMINATE, COMSIG_CARBON_LOSE_ORGAN))
 
 	REMOVE_TRAITS_IN(src, BLOOD_WORM_HOST_TRAIT)
 	REMOVE_TRAITS_IN(old_host, BLOOD_WORM_HOST_TRAIT)
@@ -154,6 +155,15 @@
 	SIGNAL_HANDLER
 	host = null
 	qdel(src)
+
+/// Wyjęcie mózgu (też ścięcie głowy): sygnał idzie z /obj/item/organ/Remove() przed transfer_identity(),
+/// więc robak zabiera swój umysł z nosiciela, zanim trafiłby do mózgu. Umysł nosiciela wraca z zaplecza i idzie z mózgiem.
+/mob/living/simple_animal/hostile/blood_worm/proc/on_host_lose_organ(datum/source, obj/item/organ/lost_organ)
+	SIGNAL_HANDLER
+	if(!istype(lost_organ, /obj/item/organ/brain))
+		return
+	// Bez snu wykona się od razu, przed transfer_identity()
+	INVOKE_ASYNC(src, PROC_REF(possess_worm))
 
 /mob/living/simple_animal/hostile/blood_worm/proc/on_host_stat_changed(datum/source, new_stat)
 	SIGNAL_HANDLER

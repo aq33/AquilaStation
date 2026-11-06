@@ -204,6 +204,10 @@
 	if(istype(O, /obj/machinery/door))
 		var/obj/machinery/door/door = O
 		return !door.operating
+	// Drewniane i żelazne drzwi (mineral_door) otwierają się ze sleep(10), więc tick po zderzeniu są jeszcze gęste
+	if(istype(O, /obj/structure/mineral_door))
+		var/obj/structure/mineral_door/mineral_door = O
+		return !mineral_door.isSwitchingStates
 	return TRUE
 
 // ---------------------------------------------------------------------------

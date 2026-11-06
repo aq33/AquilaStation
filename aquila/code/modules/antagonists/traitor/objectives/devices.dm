@@ -35,16 +35,23 @@
 	return length(target_areas)
 
 /datum/objective/plant_device/proc/give_device()
-	var/datum/mind/receiver = owner || pick(get_owners())
+	var/datum/mind/receiver = owner || safepick(get_owners()) // Mass Antag sets up the objective before it has an owner
 	if(!receiver?.current)
 		return
 	device = new device_type(get_turf(receiver.current))
+	RegisterSignal(device, COMSIG_PARENT_QDELETING, PROC_REF(on_device_deleted))
 	if(istype(device, /obj/item/traitor_device))
 		var/obj/item/traitor_device/traitor_device = device
 		traitor_device.objective = src
 	if(ishuman(receiver.current))
 		var/mob/living/carbon/human/H = receiver.current
 		H.equip_in_one_of_slots(device, list("backpack" = ITEM_SLOT_BACKPACK, "left pocket" = ITEM_SLOT_LPOCKET, "right pocket" = ITEM_SLOT_RPOCKET, "hands" = ITEM_SLOT_HANDS))
+
+/// The beacon deletes itself when used and the T1de virus after it goes off, don't keep a hard ref to them
+/datum/objective/plant_device/proc/on_device_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(device == source)
+		device = null
 
 /datum/objective/plant_device/proc/target_area_names()
 	var/list/names = list()

@@ -204,7 +204,8 @@
 
 	// Now grab completely random targets until we'll full
 	var/target_sanity = 0
-	while(length(final_targets) < num_targets_to_generate && length(valid_targets) > num_targets_to_generate && target_sanity < 25)
+	// AQUILA - bierzemy, dopóki są kandydaci (przy małej obsadzie heretyk dostawał 1–3 cele)
+	while(length(final_targets) < num_targets_to_generate && length(valid_targets) && target_sanity < 25)
 		final_targets += pick_n_take(valid_targets)
 		target_sanity++
 

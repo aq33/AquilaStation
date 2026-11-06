@@ -85,20 +85,44 @@
 	var/datum/antagonist/vampire/vampiredatum = IS_VAMPIRE(claimer)
 	if(vampiredatum.claim_coffin(src))
 		resident = claimer
+		// AQUILA - usunięty mieszkaniec zwalnia trumnę, żeby resident nie trzymał moba (harddel)
+		RegisterSignal(resident, COMSIG_PARENT_QDELETING, PROC_REF(on_resident_qdeleting))
 		anchored = TRUE
 		START_PROCESSING(SSprocessing, src)
 
 /obj/structure/closet/crate/coffin/Destroy()
 	unclaim_coffin()
 	STOP_PROCESSING(SSprocessing, src)
+	lair_turfs = null
 	return ..()
 
+/// AQUILA - mieszkaniec jest usuwany: zwalniamy trumnę i referencję
+/obj/structure/closet/crate/coffin/proc/on_resident_qdeleting(datum/source)
+	SIGNAL_HANDLER
+	unclaim_coffin()
+
+/obj/structure/closet/crate/coffin
+	/// AQUILA - kafelki obszaru legowiska (get_area_turfs przegląda wszystkie obszary, więc nie wołamy go co tick)
+	var/list/turf/lair_turfs
+	/// AQUILA - obszar, dla którego policzono lair_turfs
+	var/area/lair_turfs_area
+
 /obj/structure/closet/crate/coffin/process(delta_time)
+	if(!resident)
+		return PROCESS_KILL
 	if(!(resident in src))
 		return
-	var/list/turf/area_turfs = get_area_turfs(get_area(src))
+	// AQUILA - kurz i pajęczyny co kilka sekund zamiast co tick
+	if(!prob(20))
+		return
+	var/area/coffin_area = get_area(src)
+	if(lair_turfs_area != coffin_area || !length(lair_turfs))
+		lair_turfs_area = coffin_area
+		lair_turfs = get_area_turfs(coffin_area)
+	if(!length(lair_turfs))
+		return
 	// Create Dirt etc.
-	var/turf/T_Dirty = pick(area_turfs)
+	var/turf/T_Dirty = pick(lair_turfs)
 	if(T_Dirty && !T_Dirty.density)
 		// Default: Dirt
 		// STEP ONE: COBWEBS
@@ -118,7 +142,17 @@
 /obj/structure/closet/crate/proc/unclaim_coffin(manual = FALSE)
 	// Unanchor it (If it hasn't been broken, anyway)
 	anchored = FALSE
-	if(!resident || !resident.mind)
+	STOP_PROCESSING(SSprocessing, src) // AQUILA - bez mieszkańca trumna nie musi już procesować
+	if(!resident)
+		return
+	UnregisterSignal(resident, COMSIG_PARENT_QDELETING)
+	// AQUILA - bez umysłu też zwalniamy referencję (wcześniej resident zostawał i trzymał moba)
+	if(!resident.mind)
+		for(var/datum/antagonist/vampire/vampire as anything in GLOB.all_vampires)
+			if(vampire.coffin == src)
+				vampire.coffin = null
+				vampire.vampire_lair_area = null
+		resident = null
 		return
 	// Unclaiming
 	var/datum/antagonist/vampire/vampiredatum = IS_VAMPIRE(resident)

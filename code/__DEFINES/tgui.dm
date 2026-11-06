@@ -68,3 +68,8 @@
 #define TGUI_TELEM_CKEY_WARNING "TELEM_CKEY_TEXT"
 #define TGUI_TELEM_IP_WARNING "TELEM_IP_TEXT"
 #define TGUI_TELEM_CID_WARNING "TELEM_CID_TEXT"
+
+// AQ EDIT START - wspólne opcje przeglądarki 516 (client/New i panel_devtools), żeby devtools ich nie kasowały
+/// Base browser-options set for every 516 client
+#define TGUI_BROWSER_OPTIONS "find,refresh,byondstorage"
+// AQ EDIT END

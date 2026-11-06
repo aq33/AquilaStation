@@ -144,7 +144,8 @@
 			owner.balloon_alert(owner, "brak krwi!")
 			return FALSE
 		// Cannot be wearing super thick gear
-		if(!human_target.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
+		// AQUILA - u nas can_inject(user, error_msg, target_zone, penetrate_thick): bez przebijania, żeby gruby strój blokował
+		if(!human_target.can_inject(owner, FALSE, BODY_ZONE_HEAD))
 			owner.balloon_alert(owner, "za gruby strój!")
 			return FALSE
 
@@ -207,7 +208,7 @@
 		if(!IS_VASSAL(feed_target))
 			feed_time /= 4
 
-		feed_target.Stun(feed_time, TRUE)
+		feed_target.Stun(feed_time, ignore_canstun = TRUE)
 		feed_target.become_blind(TRAIT_FEED) // AQUILA - u nas zwykła ślepota zamiast nakładki "feed"
 		ADD_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
 

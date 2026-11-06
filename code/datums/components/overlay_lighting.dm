@@ -30,7 +30,7 @@
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
 	var/real_lum_power = 0.5
-	///The lum power being used
+	///The lum power being used. AQ EDIT: what the lit turfs got added (real_lum_power, or 0 with LIGHT_NO_LUMCOUNT), so they lose the same amount
 	var/used_lum_power = 0.5
 	///Transparency value.
 	var/set_alpha = 0
@@ -125,6 +125,7 @@
 	if(movable_parent.light_flags & LIGHT_ATTACHED)
 		overlay_lighting_flags |= LIGHTING_ATTACHED
 		set_parent_attached_to(ismovable(movable_parent.loc) ? movable_parent.loc : null)
+	update_used_lum_power() // AQ EDIT - LIGHT_NO_LUMCOUNT, lost in the Bee #10474 port
 	check_holder()
 	if(movable_parent.light_on)
 		turn_on()
@@ -175,7 +176,7 @@
 		return
 	. = list()
 	for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
-		lit_turf.dynamic_lumcount += real_lum_power
+		lit_turf.dynamic_lumcount += used_lum_power // AQ EDIT - clean_old_turfs() takes off used_lum_power, a negative light left -1 behind
 		. += lit_turf
 	if(length(.))
 		affected_turfs = .
@@ -418,6 +419,8 @@
 	SIGNAL_HANDLER
 	var/new_flags = source.light_flags
 	var/atom/movable/movable_parent = parent
+	if((new_flags ^ old_flags) & LIGHT_NO_LUMCOUNT) // AQ EDIT - LIGHT_NO_LUMCOUNT, lost in the Bee #10474 port
+		update_used_lum_power()
 	if(!((new_flags ^ old_flags) & LIGHT_ATTACHED))
 		return
 
@@ -458,13 +461,24 @@
 
 ///Here we append the behavior associated to changing lum_power.
 /datum/component/overlay_lighting/proc/set_lum_power(new_lum_power)
+	// AQ EDIT START - the lit turfs follow used_lum_power, which also honours LIGHT_NO_LUMCOUNT
 	if(real_lum_power == new_lum_power)
 		return
 	. = real_lum_power
 	real_lum_power = new_lum_power
-	var/difference = . - real_lum_power
+	update_used_lum_power()
+
+/// Moves the lumcount of the lit turfs to the current used_lum_power: real_lum_power, or 0 if the parent has LIGHT_NO_LUMCOUNT
+/datum/component/overlay_lighting/proc/update_used_lum_power()
+	var/atom/movable/movable_parent = parent
+	var/new_used_lum_power = (movable_parent.light_flags & LIGHT_NO_LUMCOUNT) ? 0 : real_lum_power
+	if(used_lum_power == new_used_lum_power)
+		return
+	var/difference = used_lum_power - new_used_lum_power
+	used_lum_power = new_used_lum_power
 	for(var/turf/lit_turf as anything in affected_turfs)
 		lit_turf.dynamic_lumcount -= difference
+	// AQ EDIT END
 
 ///Here we append the behavior associated to changing lum_power.
 /datum/component/overlay_lighting/proc/cast_directional_light()

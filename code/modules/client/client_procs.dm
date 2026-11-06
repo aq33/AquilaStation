@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.directory[ckey] = src
 
 	if(byond_version >= 516)
-		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+		winset(src, null, list("browser-options" = TGUI_BROWSER_OPTIONS)) // AQ EDIT - wspólny define z panel_devtools
 
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")

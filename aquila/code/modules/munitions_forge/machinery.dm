@@ -140,12 +140,17 @@
 		return
 	if(use_power && (machine_stat & (NOPOWER|BROKEN)))
 		visible_message("<span class='warning'>[src] gaśnie w połowie pracy.</span>")
+		abort_operation()
 		return
 	complete_operation(user)
 	update_icon()
 
 /// Właściwy efekt operacji
 /obj/machinery/munitions_forge/proc/complete_operation(mob/user)
+	return
+
+/// Operacja przerwana (brak zasilania): czyści stan, żeby następna praca nie przejęła starego materiału i wyrobu
+/obj/machinery/munitions_forge/proc/abort_operation()
 	return
 
 /obj/machinery/munitions_forge/proc/try_special_attack(mob/living/user, mob/living/target)
@@ -455,6 +460,11 @@
 	pending_material = null
 	pending_quality = null
 	ping()
+
+/obj/machinery/munitions_forge/arc_forge/abort_operation()
+	pending_product = null
+	pending_material = null
+	pending_quality = null
 
 /obj/machinery/munitions_forge/arc_forge/special_attack(mob/living/user, mob/living/carbon/target)
 	target.visible_message("<span class='danger'>[user] wpycha głowę [target] do [src]!</span>", \

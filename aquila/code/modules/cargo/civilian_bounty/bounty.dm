@@ -307,14 +307,16 @@ GLOBAL_LIST_EMPTY(shared_crew_bounties)
 	return civilian_bounty?.print_required() || "Brak"
 
 /datum/bank_account/proc/set_bounty(datum/bounty/new_bounty, obj/item/card/id/id_card)
+	// zastąpienie zlecenia nie zeruje odliczania, inaczej wybór dawał od razu nowe losowanie propozycji
 	if(civilian_bounty)
-		reset_bounty(id_card)
+		reset_bounty(id_card, reset_cooldown = FALSE)
 	civilian_bounty = new_bounty
 	civilian_bounty.on_selected(id_card)
 
-/// Sprząta po zleceniu po odebraniu albo zastąpieniu
-/datum/bank_account/proc/reset_bounty(obj/item/card/id/id_card)
+/// Sprząta po zleceniu po odebraniu albo zastąpieniu; reset_cooldown = od razu pozwala wziąć nowe propozycje
+/datum/bank_account/proc/reset_bounty(obj/item/card/id/id_card, reset_cooldown = TRUE)
 	if(civilian_bounty)
 		civilian_bounty.on_reset(id_card)
 		civilian_bounty = null
-	COOLDOWN_RESET(src, bounty_timer)
+	if(reset_cooldown)
+		COOLDOWN_RESET(src, bounty_timer)

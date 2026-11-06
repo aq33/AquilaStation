@@ -536,6 +536,10 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 			OM.target_lock = null
 		if(OM.fleet?.shared_targets)
 			OM.fleet.shared_targets -= src
+		// AI memory lists (aquila/code/modules/overmap/): ships in nullspace stop pruning them
+		LAZYREMOVE(OM.ai_attackers, src)
+		if(OM.fleet)
+			LAZYREMOVE(OM.fleet.ai_salvos, src)
 
 	STOP_PROCESSING(SSphysics_processing, src)
 	for(var/mob/living/M in operators)

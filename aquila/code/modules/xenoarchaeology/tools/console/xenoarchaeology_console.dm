@@ -179,9 +179,12 @@
 
 	ui_update()
 
-/obj/machinery/computer/xenoarchaeology_console/proc/check_sold(datum/source, atom/movable/_label, sold)
+/obj/machinery/computer/xenoarchaeology_console/proc/check_sold(datum/source, atom/movable/_label, sold, allowed_categories)
 	SIGNAL_HANDLER
 
+	// pad piratów sprzedaje na swoje konto, nie statku: nauka nie dostaje za to nagród
+	if(allowed_categories & EXPORT_PIRATE)
+		return
 	var/obj/item/sticker/xenoartifact_label/label = _label
 	if(!istype(label))
 		return

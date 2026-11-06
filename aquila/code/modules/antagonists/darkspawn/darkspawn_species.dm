@@ -28,6 +28,10 @@
 	var/dark_healing = 8
 	/// Ile obrażeń na tick w świetle (nadpisywane z antagonisty)
 	var/light_burning = 7
+	// Mnożniki z antagonisty, które już nałożyliśmy na physiology (żeby nie kasować innych modyfikatorów)
+	var/applied_brute_mod = 1
+	var/applied_burn_mod = 1
+	var/applied_stam_mod = 1
 
 /datum/species/darkspawn/check_roundstart_eligible()
 	return FALSE
@@ -35,6 +39,16 @@
 /datum/species/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	C.fully_replace_character_name(null, pick(GLOB.nightmare_names))
+
+/datum/species/darkspawn/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	if(C.physiology)
+		C.physiology.brute_mod /= applied_brute_mod
+		C.physiology.burn_mod /= applied_burn_mod
+		C.physiology.stamina_mod /= applied_stam_mod
+	applied_brute_mod = 1
+	applied_burn_mod = 1
+	applied_stam_mod = 1
+	return ..()
 
 /// Cienie łykają do trzech pocisków, każdy ładunek wraca po 15 sekundach
 /datum/species/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
@@ -57,10 +71,18 @@
 		return
 	dark_healing = antag.dark_healing
 	light_burning = antag.light_burning
-	if(H.physiology)
-		H.physiology.brute_mod = antag.brute_mod
-		H.physiology.burn_mod = antag.burn_mod
-		H.physiology.stamina_mod = antag.stam_mod
+	if(!H.physiology)
+		return
+	// Tylko różnica względem tego, co już nałożyliśmy, żeby nie zjadać modyfikatorów z innych źródeł
+	if(antag.brute_mod != applied_brute_mod)
+		H.physiology.brute_mod *= antag.brute_mod / applied_brute_mod
+		applied_brute_mod = antag.brute_mod
+	if(antag.burn_mod != applied_burn_mod)
+		H.physiology.burn_mod *= antag.burn_mod / applied_burn_mod
+		applied_burn_mod = antag.burn_mod
+	if(antag.stam_mod != applied_stam_mod)
+		H.physiology.stamina_mod *= antag.stam_mod / applied_stam_mod
+		applied_stam_mod = antag.stam_mod
 
 /datum/species/darkspawn/spec_life(mob/living/carbon/human/H)
 	. = ..()

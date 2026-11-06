@@ -260,6 +260,15 @@ SUBSYSTEM_DEF(vote)
 		data["mapvote_banned"] = is_banned_from(user.ckey, "Mapvote")
 		return data
 
+	// AQ EDIT START - do okna idą tylko głosy tego gracza (klucze ckey + wybór), nie głosy wszystkich
+	var/list/own_multi_selection
+	if(current_vote && user.client)
+		own_multi_selection = list()
+		for(var/choice in current_vote.choices)
+			var/selection_key = "[user.client.ckey][choice]"
+			if(current_vote.choices_by_ckey[selection_key])
+				own_multi_selection[selection_key] = current_vote.choices_by_ckey[selection_key]
+	// AQ EDIT END
 	data["user"] = list(
 		"ckey" = user.client?.ckey,
 		"isGhost" = CONFIG_GET(flag/no_dead_vote) && user.stat == DEAD && !user.client?.holder,
@@ -267,7 +276,7 @@ SUBSYSTEM_DEF(vote)
 		"isUpperAdmin" = is_upper_admin,
 		// What the current user has selected in any ongoing votes.
 		"singleSelection" = current_vote?.choices_by_ckey[user.client?.ckey],
-		"multiSelection" = current_vote?.choices_by_ckey,
+		"multiSelection" = own_multi_selection, // AQ EDIT - tylko własne głosy
 	)
 
 	data["voting"] = is_lower_admin ? voting : list()

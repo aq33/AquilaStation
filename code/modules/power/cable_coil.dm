@@ -142,15 +142,34 @@
 	. = ..()
 	update_name()
 
-/obj/item/stack/cable_coil/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+// AQ EDIT START - the colour copy sat in attack_hand() after a return that always fired, and the split prompt missed it.
+// change_stack() makes the split part for both, so the colour is copied there.
+/obj/item/stack/cable_coil/change_stack(mob/user, amount)
 	var/obj/item/stack/cable_coil/new_cable = ..()
 	if(istype(new_cable))
 		new_cable.cable_color = cable_color
 		new_cable.omni = omni
 		new_cable.update_appearance(UPDATE_ICON_STATE | UPDATE_NAME)
+	return new_cable
+
+/// Coils merge only with the same kind: omni with omni, coloured with the same colour. A cyborg coil is charge, so it takes any.
+/obj/item/stack/cable_coil/proc/can_merge_coil(obj/item/stack/cable_coil/other)
+	if(!istype(other) || is_cyborg || other.is_cyborg)
+		return TRUE
+	return omni == other.omni && (omni || cable_color == other.cable_color)
+
+// Every merge path (Initialize(), put_in_hands(), walking over, attackby) ends in merge()
+/obj/item/stack/cable_coil/merge(obj/item/stack/S)
+	if(!can_merge_coil(S))
+		return 0
+	return ..()
+
+// Lets a coil of another colour fall through to the normal attackby
+/obj/item/stack/cable_coil/merge_check(obj/O)
+	. = ..()
+	if(. && !can_merge_coil(O))
+		return FALSE
+// AQ EDIT END
 
 //add cables to the stack
 /obj/item/stack/cable_coil/proc/give(extra)
@@ -218,7 +237,7 @@
 			return
 
 		// If there isn't a cable below us, make one
-		if (locate(/obj/structure/cable) in below_turf)
+		if (get_cable(below_turf, cable_color)) // AQ EDIT - only a cable of our colour links up (reform_connections()), any other cable left the new one unconnected
 			if (!use(1))
 				to_chat(user, "<span class='warning'>Nie został już żaden kabel!</span>")
 				return

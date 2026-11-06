@@ -52,6 +52,10 @@
 
 /obj/vehicle/ridden/Destroy()
 	stop_drive_sound()
+	if(drive_channel)
+		// SSsounds keeps the vehicle as the channel's owner and never frees it on its own
+		SSsounds.free_datum_channels(src)
+		drive_channel = null
 	return ..()
 
 /obj/vehicle/ridden/janicart

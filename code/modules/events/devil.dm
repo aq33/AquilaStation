@@ -41,6 +41,7 @@
 	var/datum/job/jobdatum = SSjob.GetJob(JOB_NAME_ASSISTANT)
 	devil.job = jobdatum.title
 	jobdatum.equip(devil)
+	success_spawn = TRUE // AQ EDIT - bez tego kill() po udanym evencie zmniejszał occurrences i max_occurrences nie działało
 	return SUCCESSFUL_SPAWN
 
 

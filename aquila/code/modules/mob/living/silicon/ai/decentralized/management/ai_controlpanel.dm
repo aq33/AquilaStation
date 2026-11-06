@@ -245,6 +245,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_ai_control_code())
 
 /obj/machinery/computer/ai_control_console/proc/upload_ai()
 	var/mob/living/silicon/ai/AI = intellicard.AI
+	// Martwa SI z karty (death_prompt()) wróciłaby do rdzenia z control_disabled zdjętym i stat == DEAD
+	if(AI.stat == DEAD)
+		to_chat(usr, span_warning("Nie można wgrać SI z intellicardu: jej system nie odpowiada. Najpierw ją przywróć."))
+		return FALSE
 	var/obj/machinery/ai/data_core/core = AI.find_valid_ai_core()
 	if(!core)
 		return FALSE

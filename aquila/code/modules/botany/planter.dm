@@ -97,8 +97,6 @@
 	//Composting - Composted reagents are doubled
 	if(IS_EDIBLE(reagent_source) || istype(reagent_source, /obj/item/reagent_containers/pill))
 		obj_parent.visible_message(span_notice("[attacker] kompostuje [reagent_source], rozprowadzając to po: [obj_parent]."))
-		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
-			reagent_source.reagents?.remove_any(reagent_source.reagents.total_volume*2)
 		reagent_source.reagents?.trans_to(obj_parent, reagent_source.reagents.total_volume, 2, transfered_by = attacker)
 		SEND_SIGNAL(reagent_source, COMSIG_ITEM_ON_COMPOSTED, attacker)
 		qdel(reagent_source)
@@ -106,16 +104,12 @@
 	else if(istype(reagent_source, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/syr = reagent_source
 		obj_parent.visible_message(span_notice("[attacker] wstrzykuje zawartość [syr] do: [obj_parent]."))
-		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
-			reagent_source.reagents?.remove_any(syr.amount_per_transfer_from_this)
 		reagent_source.reagents?.trans_to(obj_parent, syr.amount_per_transfer_from_this, transfered_by = attacker)
 	//Sprays
 	else if(istype(reagent_source, /obj/item/reagent_containers/spray))
 		var/obj/item/reagent_containers/spray/spray = reagent_source
 		obj_parent.visible_message(span_notice("[attacker] spryskuje [obj_parent], używając: [reagent_source]."))
 		playsound(obj_parent)
-		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
-			reagent_source.reagents?.remove_any(spray.amount_per_transfer_from_this)
 		reagent_source.reagents?.trans_to(obj_parent, spray.amount_per_transfer_from_this, transfered_by = attacker)
 
 /datum/component/planter/proc/async_spade_action(mob/user)
@@ -128,7 +122,7 @@
 	var/obj/reagent_source = parent
 	if(do_after(user, 30, target = reagent_source))
 		to_chat(user, span_notice("Kończysz przepychać: [reagent_source]."))
-		reagent_source.reagents.expose(get_turf(src), TOUCH) //splash on the floor
+		reagent_source.reagents.expose(get_turf(parent), TOUCH) //splash on the floor
 		reagent_source.reagents.clear_reagents()
 
 /datum/component/planter/proc/async_hasty_remove(mob/user, obj/item/I)
@@ -149,7 +143,11 @@
 		var/datum/plant_feature/body/body_feature = locate(/datum/plant_feature/body) in plant.plant_features //Garunteed, or it should be...
 		var/datum/plant_feature/fruit/fruit_feature = locate(/datum/plant_feature/fruit) in plant.plant_features //here's the backup, mostly for MUSHROOMS
 		//Link it all up
-		image.appearance = body_feature.icon_state != "" ? body_feature?.feature_appearance : fruit_feature.feature_appearance
+		var/datum/plant_feature/icon_feature = body_feature
+		if(!body_feature || (body_feature.icon_state == "" && fruit_feature))
+			icon_feature = fruit_feature
+		if(icon_feature?.feature_appearance)
+			image.appearance = icon_feature.feature_appearance
 		pick_plants["[plant.plant_item]([length(pick_plants)])"] = image
 		pick_links["[plant.plant_item]([length(pick_links)])"] = plant
 	var/result = show_radial_menu(user, parent, pick_plants)

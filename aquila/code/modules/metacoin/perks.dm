@@ -71,6 +71,17 @@ GLOBAL_LIST_EMPTY(armed_job_tickets)
 
 /// Dodaje (albo odejmuje) sztuki perka; nigdy poniżej zera
 /proc/aquila_perk_adjust(player_ckey, perk, delta)
+	if(!player_ckey)
+		return
+	if(aquila_perks_db_ready())
+		// jedno zapytanie zamiast odczytu i zapisu: między dwoma zapytaniami inna procka mogła zmienić licznik
+		var/datum/DBQuery/query_adjust = SSdbcore.NewQuery({"
+			INSERT INTO [format_table_name("aquila_perks")] (ckey, perk, amount) VALUES (:ckey, :perk, :initial)
+			ON DUPLICATE KEY UPDATE amount = GREATEST(0, amount + :delta)
+		"}, list("ckey" = player_ckey, "perk" = perk, "initial" = max(0, delta), "delta" = delta))
+		query_adjust.Execute()
+		qdel(query_adjust)
+		return
 	aquila_perk_set(player_ckey, perk, max(0, aquila_perk_get(player_ckey, perk) + delta))
 
 /// Odznaki wszystkich graczy: ckey => numer odznaki

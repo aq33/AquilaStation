@@ -4,6 +4,30 @@
 /mob/living
 	/// Trwające operacje: strefa (check_zone) -> /datum/surgery_operation. Lazy, tylko na czas operacji (try_perform).
 	var/list/ongoing_operations
+	/// Kto operuje: strefa -> list(chirurg -> /datum/surgery_operation). Operacje są singletonami, więc bez tego drugi chirurg
+	/// w tej samej strefie nadpisywał wpis, a pierwszy, kończąc, czyścił go mimo trwającej operacji drugiego.
+	var/list/ongoing_operation_surgeons
+
+/// Początek operacji w strefie (try_perform)
+/mob/living/proc/add_ongoing_operation(zone, mob/living/surgeon, datum/surgery_operation/operation)
+	LAZYINITLIST(ongoing_operation_surgeons)
+	var/list/zone_surgeons = ongoing_operation_surgeons[zone]
+	if(!zone_surgeons)
+		zone_surgeons = list()
+		ongoing_operation_surgeons[zone] = zone_surgeons
+	zone_surgeons[surgeon] = operation
+	LAZYSET(ongoing_operations, zone, operation)
+
+/// Koniec operacji tego chirurga. Wpis strefy zostaje, dopóki operuje tam ktoś inny.
+/mob/living/proc/remove_ongoing_operation(zone, mob/living/surgeon)
+	var/list/zone_surgeons = LAZYACCESS(ongoing_operation_surgeons, zone)
+	if(zone_surgeons)
+		zone_surgeons -= surgeon
+		if(length(zone_surgeons))
+			LAZYSET(ongoing_operations, zone, zone_surgeons[zone_surgeons[length(zone_surgeons)]])
+			return
+	LAZYREMOVE(ongoing_operation_surgeons, zone)
+	LAZYREMOVE(ongoing_operations, zone)
 
 /// Ile operacji "dalej" pokazać przy jednej strefie
 #define SURGERY_PROGRESS_MAX_NEXT 6

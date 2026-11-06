@@ -86,6 +86,9 @@
 	for(var/obj/O in T)
 		if(O.density && O.anchored)
 			return TRUE
+		// Otwarte drzwi i blast doory nie są gęste, a dalej są granicą klatki
+		if(istype(O, /obj/machinery/door))
+			return TRUE
 	return FALSE
 
 /obj/effect/xenobio_specimen_monitor/proc/count_specimens()

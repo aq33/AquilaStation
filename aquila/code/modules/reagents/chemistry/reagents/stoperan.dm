@@ -87,7 +87,8 @@
 			if(L != src)
 				L.adjust_disgust(DISGUST_LEVEL_VERYGROSS)
 	log_game("[key_name(src)] was gibbed by stoperan at [AREACOORD(T)]")
-	gib()
+	// Odroczone: wołane z metabolizmu reagentów i ticku efektu, które dalej używają moba i jego reagentów
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, gib)), 0, TIMER_UNIQUE)
 
 #undef STOPERAN_OVERDOSE_CYCLES
 #undef STOPERAN_MAX_CONTINUOUS

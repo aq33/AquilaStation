@@ -25,6 +25,7 @@ import sys
 CODE_EXT = (".dm", ".tsx", ".jsx", ".ts", ".js")
 TEXT_EXT = (".txt", ".json")
 PATHSPECS = ["*.dm", "*.tsx", "*.jsx", "*.ts", "*.js", "strings/*.txt", "strings/*.json"]
+UI_PATHSPECS = ["tgui/packages/*.tsx", "tgui/packages/*.jsx", "tgui/packages/*.ts", "tgui/packages/*.js"]
 # tools/ tylko w katalogu głównym: code/game/objects/items/tools/ to zwykły kod gry
 SKIP_PATH = re.compile(r"^(tools|_maps|SQL|html/changelogs)/|(^|/)(node_modules|\.yarn)/|\.bundle\.|^strings/i18n/")
 
@@ -98,8 +99,91 @@ def js_strings(line):
         return []
     out = [m.group(2) for m in QUOTED_JS.finditer(line)]
     out += [m.group(1).strip() for m in JSX_TEXT.finditer(line)]
-    if s and not CODEY.search(s) and re.search(r"[A-Za-zĄ-ż]{2,}\s", s + " ") and " " in s:
+    # cała linia to tekst JSX; linia z samym literałem ('...',) to napis JS, już wyżej
+    if s and s[0] not in "'\"`" and not CODEY.search(s) and re.search(LETTERS + r"{2,}\s", s + " ") and " " in s:
         out.append(s)  # cała linia to tekst JSX
+    return out
+
+
+def logical_lines(path, lines):
+    """Linie DM po sklejeniu kontynuacji: tekst kończący się "\\" ciągnie się w następnej
+    linii (bez jej wcięcia), tak jak go widzi kompilator i gracz. Inne pliki bez zmian."""
+    if not path.endswith(".dm"):
+        return list(lines)
+    out, pending = [], None
+    for line in lines:
+        line = line.rstrip("\r")
+        if pending is not None:
+            line = pending + line.lstrip()
+            pending = None
+        if line.endswith("\\") and not line.endswith("\\\\"):
+            pending = line[:-1]
+            continue
+        out.append(line)
+    if pending is not None:
+        out.append(pending)
+    return join_text_blocks(out)
+
+
+def block_string_start(line, in_comment):
+    """Początek napisu {" w kodzie linii (nie w komentarzu /* */ ani //, nie w "..." ani w
+    surowym @'...'/@"..."): (indeks albo -1, czy linia kończy się w komentarzu blokowym)."""
+    i, n = 0, len(line)
+    while i < n:
+        if in_comment:
+            end = line.find("*/", i)
+            if end < 0:
+                return -1, True
+            in_comment, i = False, end + 2
+            continue
+        if line.startswith("/*", i):
+            in_comment, i = True, i + 2
+            continue
+        if line.startswith("//", i):
+            return -1, False
+        if line.startswith('{"', i):
+            return i, False
+        c = line[i]
+        if c == "@" and i + 1 < n and line[i + 1] in "'\"":
+            end = line.find(line[i + 1], i + 2)
+            i = n if end < 0 else end + 1
+            continue
+        if c in "'\"":
+            j = i + 1
+            while j < n and line[j] != c:
+                j += 2 if line[j] == "\\" else 1
+            i = j + 1
+            continue
+        i += 1
+    return -1, in_comment
+
+
+def join_text_blocks(lines):
+    """Napis {"..."} na kilka linii (opisy, HTML okien) jako jeden literał "...\\n...": gracz widzi
+    cały tekst naraz, a czytany linia po linii dawał tylko kawałek pierwszej linii."""
+    out, i, in_comment = [], 0, False
+    while i < len(lines):
+        line = lines[i]
+        start, in_comment = block_string_start(line, in_comment)
+        if start < 0 or line.find('"}', start + 2) >= 0:
+            out.append(line)
+            i += 1
+            continue
+        parts, j = [line[start + 2:]], i + 1
+        while j < len(lines) and '"}' not in lines[j]:
+            parts.append(lines[j])
+            j += 1
+        if j >= len(lines):  # niezamknięty: zostawiamy linie bez zmian
+            out.append(line)
+            i += 1
+            continue
+        end = lines[j].find('"}')
+        parts.append(lines[j][:end])
+        content = "\n".join(parts)
+        # cudzysłów wewnątrz {"..."} jest dozwolony bez ucieczki; w "..." musi ją mieć
+        content = re.sub(r'(?<!\\)"', r'\\"', content).replace("\n", "\\n")
+        out.append(line[:start] + '"' + content + '"' + lines[j][end + 2:])
+        i = j + 1
     return out
 
 
@@ -139,12 +223,17 @@ def strip_embeds(text):
     return text
 
 
+# litery z polskimi (ó to U+00F3 i nie leży w zakresie Ą-ż, więc zakres się nie nadaje)
+LETTERS = r"[^\W\d_]"
+
+
 def wordy(text):
     plain = strip_embeds(text).strip()
-    if not re.search(r"[A-Za-zĄ-ż]{2,}", plain):
+    if not re.search(LETTERS + r"{2,}", plain):
         return False
-    # pojedyncze słowo ("toolbox", "spawarka") to tekst, "brute_damage" czy "icons/x" już nie
-    if re.fullmatch(r"[A-Za-zĄ-ż]+", plain):
+    # pojedyncze słowo, też z dwukropkiem lub kropką ("toolbox", "Lód", "Zawiera:"), to tekst;
+    # "brute_damage" czy "icons/x" już nie
+    if re.fullmatch(LETTERS + r"+[:.!?]?", plain):
         return True
     return not IDENTIFIER.match(plain)
 
@@ -232,7 +321,7 @@ def tree_literals(rev):
             content = git("show", f"{rev}:{path}")
         except subprocess.CalledProcessError:
             continue
-        for line in content.splitlines():
+        for line in logical_lines(path, content.splitlines()):
             for lit in literals(path, line):
                 present.add(lit)
                 if wordy(lit) and (is_polish(lit) or (NAME_ASSIGN.search(line) and not is_english(lit))):
@@ -252,7 +341,11 @@ def main():
                     help="dodatkowe źródło oryginałów (tylko tgui/, uzupełnia brakujące wpisy)")
     ap.add_argument("--out", default="strings/i18n")
     ap.add_argument("--report", help="plik .md z raportem pokrycia (np. raport/jezyk_01_slownik_pokrycie.md)")
+    ap.add_argument("--ui", action="store_true",
+                    help="tylko kod okien tgui: pary do en_pairs_ui.json (okna mają własne tłumaczenia, np. Wróć -> Back)")
     args = ap.parse_args()
+    pathspecs = UI_PATHSPECS if args.ui else PATHSPECS
+    out_name = "en_pairs_ui.json" if args.ui else "en_pairs.json"
 
     sink = collections.defaultdict(collections.Counter)
     source = collections.defaultdict(set)
@@ -261,7 +354,7 @@ def main():
     print(f"commity: {len(commits)}", file=sys.stderr)
     for n, sha in enumerate(commits):
         try:
-            diff = git("show", "-U0", "--no-renames", "--format=", sha, "--", *PATHSPECS)
+            diff = git("show", "-U0", "--no-renames", "--format=", sha, "--", *pathspecs)
         except subprocess.CalledProcessError:
             continue
         pairs_from_diff(diff, source, sink)
@@ -270,7 +363,7 @@ def main():
     from_history = len(sink)
 
     print("diff z upstreamem...", file=sys.stderr)
-    diff = git("diff", "-U0", "--no-renames", args.upstream, args.rev, "--", *PATHSPECS)
+    diff = git("diff", "-U0", "--no-renames", args.upstream, args.rev, "--", *pathspecs)
     pairs_from_diff(diff, source, sink)
 
     from_upstream = len(sink)
@@ -295,8 +388,9 @@ def main():
         dictionary[pl] = best
 
     os.makedirs(args.out, exist_ok=True)
-    with open(os.path.join(args.out, "en_pairs.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(args.out, out_name), "w", encoding="utf-8") as f:
         json.dump(dict(sorted(dictionary.items())), f, ensure_ascii=False, indent=1)
+        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
 
     # pokrycie w podziale na katalogi
     total = len(current)

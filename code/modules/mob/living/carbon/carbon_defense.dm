@@ -132,7 +132,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/carbon/attack_hand(mob/living/carbon/human/user, modifiers)
 
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN) // AQ EDIT - modifiers jak w /atom/attack_hand (popchnięcie = RIGHT_CLICK dla relay_attackers i AI małp)
 		. = TRUE
 
 	for(var/thing in diseases)

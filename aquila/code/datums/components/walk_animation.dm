@@ -13,6 +13,11 @@
  * "arm_a" to ręka bliżej patrzącego, a "leg_a" i "leg_b" pokazują obie nogi w pełnej szerokości.
  * Z boku "leg_b" jest widoczna tylko w trakcie kroku, żeby w spoczynku nogi nie były rysowane podwójnie.
  * Z boku "arm_b" jest pusta: dalsza dłoń, która w sprite'ach wystaje 1 px przed brzuch, jest wycięta na stałe.
+ * Części mutanckie z warstw BODY_BEHIND_LAYER i BODY_FRONT_LAYER (ogony, skrzydła, czułki, uszy, kolce) oraz skrzydła
+ * z BODY_ADJ_LAYER też są przenoszone na osobne fragmenty bez masek ("parts_behind" pod ciałem, "parts_front" nad nim),
+ * bo maski rąk i nóg wycinały z nich kawałki i ruszały nimi razem z kończynami. Reszta BODY_ADJ_LAYER (znaczenia
+ * na ciele) zostaje w buforze, bo leży na kończynach i ma się z nimi ruszać. Każdy z tych fragmentów ma własną
+ * blokadę emisji, bo blokada ciała widzi tylko bufor.
  *
  * Bufor i filtry masek kosztują klienta w każdej klatce (pomiar: raport/perf_02_przyciecia_animacja_chodu.md),
  * więc są podpięte tylko w ruchu. W spoczynku mob rysuje się zwykle, a fragmenty i maski są zdjęte z vis_contents.
@@ -47,6 +52,10 @@
 	var/idle_after = 0
 	/// Czy czeka już timer sprawdzający bezruch
 	var/idle_check_pending = FALSE
+	/// Warstwa moba -> nakładki części mutanckich zdjęte z niej na czas ruchu (oddawane w deactivate)
+	var/list/detached_parts = list()
+	/// Blokady emisji fragmentów "parts_behind" i "parts_front"
+	var/list/part_em_blocks = list()
 
 /datum/component/walk_animation/Initialize()
 	if(!ishuman(parent))
@@ -67,6 +76,17 @@
 	for(var/index in 1 to 2)
 		var/obj/effect/overlay/walk_held/held = new
 		limbs["hand_[index]"] = held
+	// Części mutanckie bez masek: tylne pod wszystkimi fragmentami ciała, przednie nad nimi (jak BODY_BEHIND_LAYER i BODY_FRONT_LAYER)
+	var/obj/effect/overlay/walk_held/parts_behind = new
+	parts_behind.layer = H.layer - 0.002
+	limbs["parts_behind"] = parts_behind
+	var/obj/effect/overlay/walk_held/parts_front = new
+	parts_front.layer = FLOAT_LAYER + 0.01
+	limbs["parts_front"] = parts_front
+	for(var/state in list("parts_behind", "parts_front"))
+		var/obj/effect/overlay/walk_held/fragment = limbs[state]
+		fragment.render_target = "walk_[state][REF(H)]" // bez "*": fragment rysuje się normalnie, a blokada emisji go kopiuje
+		part_em_blocks += new /atom/movable/emissive_blocker(null, fragment.render_target)
 
 	RegisterSignal(H, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(H, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
@@ -77,6 +97,7 @@
 		UnregisterSignal(H, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 		deactivate()
 	QDEL_NULL(em_block)
+	QDEL_LIST(part_em_blocks)
 	QDEL_LIST_ASSOC_VAL(limbs)
 	return ..()
 
@@ -89,7 +110,7 @@
 	old_render_target = H.render_target
 	H.render_target = body_target
 	H.add_overlay(body_anchors)
-	var/list/attached = list(em_block)
+	var/list/attached = list(em_block) + part_em_blocks
 	for(var/state in limbs)
 		attached += limbs[state]
 	H.vis_contents += attached
@@ -97,6 +118,7 @@
 	update_side_leg(H.dir)
 	update_held_dir(H.dir)
 	detach_held_items()
+	detach_mutant_parts()
 
 /// Zdejmuje bufor, maski i fragmenty; mob znowu rysuje się zwykle, z przedmiotami w dłoniach jako nakładkami.
 /datum/component/walk_animation/proc/deactivate()
@@ -107,7 +129,7 @@
 	if(H.render_target == body_target)
 		H.render_target = old_render_target
 	H.cut_overlay(body_anchors)
-	var/list/attached = list(em_block)
+	var/list/attached = list(em_block) + part_em_blocks
 	for(var/state in limbs)
 		var/obj/effect/overlay/limb = limbs[state]
 		animate(limb, pixel_w = 0, pixel_z = 0, time = 0) // przerwany krok nie może zostać wychylony na następny raz
@@ -116,6 +138,7 @@
 	for(var/index in 1 to 2)
 		var/obj/effect/overlay/walk_held/held = limbs["hand_[index]"]
 		held.cut_overlays()
+	restore_mutant_parts()
 	// Przedmioty w dłoniach były zdjęte z moba, więc budujemy je od nowa
 	if(!QDELETED(H))
 		H.update_inv_hands()
@@ -193,6 +216,57 @@
 	H.overlays_standing[HANDS_LAYER] = kept_overlays
 	H.apply_overlay(HANDS_LAYER)
 
+/// Przenosi części mutanckie na fragmenty "parts_behind"/"parts_front", żeby maski ich nie cięły:
+/// całe BODY_BEHIND_LAYER i BODY_FRONT_LAYER oraz skrzydła z BODY_ADJ_LAYER (reszta tej warstwy leży na kończynach).
+/// Wołane przy podpięciu i po każdym handle_mutant_bodyparts(), które buduje te warstwy od nowa.
+/datum/component/walk_animation/proc/detach_mutant_parts()
+	if(!active || QDELING(src))
+		return
+	var/mob/living/carbon/human/H = parent
+	var/obj/effect/overlay/walk_held/parts_behind = limbs["parts_behind"]
+	var/obj/effect/overlay/walk_held/parts_front = limbs["parts_front"]
+	parts_behind.cut_overlays()
+	parts_front.cut_overlays()
+	// Kotwice jak w buforze ciała: bufor fragmentu jest przycinany do narysowanej zawartości, a blokada emisji ma do niego pasować
+	parts_behind.add_overlay(body_anchors)
+	parts_front.add_overlay(body_anchors)
+	detached_parts.Cut()
+	for(var/layer in list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER))
+		var/list/layer_overlays = H.overlays_standing[layer]
+		if(!length(layer_overlays))
+			continue
+		var/list/moved = list()
+		var/list/kept_overlays = list()
+		for(var/mutable_appearance/part as anything in layer_overlays)
+			if(layer != BODY_ADJ_LAYER || (istype(part) && findtext(part.icon_state, "wings")))
+				moved += part
+			else
+				kept_overlays += part
+		if(!length(moved))
+			continue
+		H.remove_overlay(layer)
+		H.overlays_standing[layer] = kept_overlays
+		H.apply_overlay(layer)
+		detached_parts["[layer]"] = moved
+		var/obj/effect/overlay/walk_held/fragment = (layer == BODY_BEHIND_LAYER) ? parts_behind : parts_front
+		fragment.add_overlay(moved)
+
+/// Oddaje części mutanckie z fragmentów na ich warstwy moba.
+/datum/component/walk_animation/proc/restore_mutant_parts()
+	var/obj/effect/overlay/walk_held/parts_behind = limbs["parts_behind"]
+	var/obj/effect/overlay/walk_held/parts_front = limbs["parts_front"]
+	parts_behind.cut_overlays()
+	parts_front.cut_overlays()
+	var/mob/living/carbon/human/H = parent
+	if(!QDELETED(H))
+		for(var/layer_key in detached_parts)
+			var/layer = text2num(layer_key)
+			var/list/layer_overlays = H.overlays_standing[layer]
+			H.remove_overlay(layer)
+			H.overlays_standing[layer] = (layer_overlays || list()) + detached_parts[layer_key]
+			H.apply_overlay(layer)
+	detached_parts.Cut()
+
 /datum/component/walk_animation/proc/on_moved(mob/living/carbon/human/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
 
@@ -253,6 +327,9 @@
 		if(behind || held_behind)
 			held.layer = behind ? H.layer - 0.001 : FLOAT_LAYER
 	held_behind = behind
+	for(var/state in list("parts_behind", "parts_front"))
+		var/obj/effect/overlay/walk_held/parts = limbs[state]
+		parts.dir = new_dir
 
 /// Z boku maska "leg_b" pokrywa się z "leg_a", więc w spoczynku ta noga jest ukryta; z przodu i z tyłu zawsze widoczna.
 /datum/component/walk_animation/proc/update_side_leg(new_dir)
@@ -318,6 +395,11 @@
 	layer = FLOAT_LAYER
 	appearance_flags = KEEP_APART | PIXEL_SCALE | TILE_BOUND
 	vis_flags = VIS_INHERIT_ID
+
+/datum/species/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
+	. = ..()
+	var/datum/component/walk_animation/walk_animation = H.GetComponent(/datum/component/walk_animation)
+	walk_animation?.detach_mutant_parts()
 
 /// Kierunek wspólnej maski dla kierunku moba (ikona masek ma 4 kierunki).
 /proc/walk_mask_dir(dir)

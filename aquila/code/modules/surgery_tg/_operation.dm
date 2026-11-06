@@ -21,6 +21,9 @@
 /mob/living/proc/try_tg_surgery(atom/patient, tool = IMPLEMENT_HAND, right_click = FALSE)
 	if(combat_mode || !isliving(patient))
 		return FALSE
+	// stare intencje: rozbrajanie jest tłumaczone na prawy klik, ale nie oznacza celowej porażki operacji
+	if(right_click && uses_legacy_intents() && a_intent == INTENT_DISARM)
+		right_click = FALSE
 	var/mob/living/living_patient = patient
 	// serwety i prześcieradło przygotowują strefę (element surgery_aid), nie są narzędziem operacji
 	if(isitem(tool))
@@ -843,7 +846,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	// AQUILA - trwająca operacja dla analizatora, monitorów i komputera operacyjnego (surgery_progress.dm)
 	var/ongoing_zone = check_zone(operation_args[OPERATION_TARGET_ZONE])
 	if(patient)
-		LAZYSET(patient.ongoing_operations, ongoing_zone, src)
+		patient.add_ongoing_operation(ongoing_zone, surgeon, src)
 		update_surgery_mood(patient, SURGERY_STATE_STARTED)
 		SEND_SIGNAL(patient, COMSIG_ATOM_SURGERY_STARTED, src, operating_on, tool)
 
@@ -883,7 +886,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	while((operation_flags & OPERATION_LOOPING) && can_loop(patient, operating_on, surgeon, tool, operation_args))
 
 	if(patient)
-		LAZYREMOVE(patient.ongoing_operations, ongoing_zone)
+		patient.remove_ongoing_operation(ongoing_zone, surgeon)
 		SEND_SIGNAL(patient, COMSIG_ATOM_SURGERY_FINISHED, src, operating_on, tool)
 
 	return result

@@ -53,18 +53,33 @@
 	update_blood()
 	update_hud()
 
+/datum/antagonist/vampire
+	/// AQUILA - blood_volume ustawione przez ostatnie update_blood(), żeby krew utracona przez ciało zabierała vitae
+	var/last_set_blood_volume
+	/// AQUILA - ciało, któremu ustawiono last_set_blood_volume (po zmianie ciała nie liczymy różnicy)
+	var/datum/weakref/last_blood_body
+
 /**
  * Assuming you aren't Masquerading and your species has blood
 **/
 /datum/antagonist/vampire/proc/update_blood()
-	if(HAS_TRAIT(owner.current, TRAIT_NO_BLOOD))
+	var/mob/living/body = owner.current
+	if(HAS_TRAIT(body, TRAIT_NO_BLOOD))
+		last_set_blood_volume = null
 		return
 
-	if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		owner.current.blood_volume = BLOOD_VOLUME_NORMAL
-		return
+	// AQUILA - utrata krwi od ostatniego ticku (worek z krwią, krwawy robak, rany) idzie z vitae, inaczej krew była nieskończona
+	if(!isnull(last_set_blood_volume) && last_blood_body?.resolve() == body)
+		var/blood_lost = last_set_blood_volume - body.blood_volume
+		if(blood_lost > 0)
+			adjust_vitae(-blood_lost)
 
-	owner.current.blood_volume = max(BLOOD_VOLUME_BAD, min(BLOOD_VOLUME_NORMAL, current_vitae))	// we want to get pale but not completely fucked up
+	if(HAS_TRAIT(body, TRAIT_MASQUERADE))
+		body.blood_volume = BLOOD_VOLUME_NORMAL
+	else
+		body.blood_volume = max(BLOOD_VOLUME_BAD, min(BLOOD_VOLUME_NORMAL, current_vitae))	// we want to get pale but not completely fucked up
+	last_set_blood_volume = body.blood_volume
+	last_blood_body = WEAKREF(body)
 
 /**
  * Pretty simple, add a value to the vampire's vitae volume
@@ -321,6 +336,7 @@
 
 	final_death = TRUE
 	free_all_vassals()
+	coffin?.unclaim_coffin() // AQUILA - po Ostatecznej Śmierci trumna i struktury nie trzymają ciała
 
 	if(!skip_destruction)
 		if(iscarbon(body))

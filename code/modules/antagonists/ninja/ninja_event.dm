@@ -71,6 +71,7 @@ Contents:
 	message_admins("[ADMIN_LOOKUPFLW(Ninja)] zostaje ninja w wyniku eventu.")
 	log_game("[key_name(Ninja)] was spawned as a ninja by an event.")
 
+	success_spawn = TRUE // AQ EDIT - bez tego kill() po udanym evencie zmniejszał occurrences i max_occurrences nie działało
 	return SUCCESSFUL_SPAWN
 
 

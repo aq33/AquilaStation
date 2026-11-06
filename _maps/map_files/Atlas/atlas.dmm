@@ -2718,7 +2718,7 @@
 "fw" = (
 /obj/machinery/door/airlock/ship/external/glass{
 	name = "External Access";
-	req_one_access_txt = "2;78"
+	req_one_access_txt = "2"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
@@ -12684,7 +12684,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/ship/external/glass{
 	name = "External Access";
-	req_one_access_txt = "2;78"
+	req_one_access_txt = "2"
 	},
 /turf/open/floor/plating,
 /area/security/brig)

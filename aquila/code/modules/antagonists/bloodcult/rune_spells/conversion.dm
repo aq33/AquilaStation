@@ -208,7 +208,8 @@ GLOBAL_LIST_INIT(converted_minds, list())
 			// AQUILA - jak w vg: z włączonym kultem w preferencjach zgoda od razu, bez niego gracz wybiera
 			acceptance = victim.client.role_preference_enabled(/datum/role_preference/antagonist/blood_cultist) ? "Yes" : "No"
 
-			for(var/obj/item/implant/mindshield/I in victim.implants)
+			// AQUILA - trait zamiast implantów: łapie też mindshield z nanitów
+			if(HAS_TRAIT(victim, TRAIT_MINDSHIELD))
 				acceptance = "Implanted"
 
 	if(IS_HERETIC(victim) || is_servant_of_ratvar(victim) || HAS_MIND_TRAIT(victim, TRAIT_UNCONVERTABLE))

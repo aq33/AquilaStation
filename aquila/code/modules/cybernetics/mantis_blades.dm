@@ -64,6 +64,10 @@
 /obj/item/mantis_blade/dropped(mob/user, silent)
 	. = ..()
 	set_cutting_mode(user, silent = TRUE)
+	// Podważanie wymaga pary ostrzy, więc ostrze zostające w drugiej ręce wraca do cięcia
+	for(var/obj/item/mantis_blade/other in user?.held_items)
+		if(other != src && istype(src, other.type))
+			other.set_cutting_mode(user)
 
 /// Druga ręka trzyma ostrze tego samego typu
 /obj/item/mantis_blade/proc/get_paired_blade(mob/user)

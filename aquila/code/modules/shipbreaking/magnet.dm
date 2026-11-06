@@ -91,6 +91,7 @@
 	if(!current_wreck)
 		return ..()
 	var/area/shipbreak_area = GLOB.areas_by_type[/area/space/shipbreak]
+	unmark_shipbreak_wreck(get_cage_turfs())
 	for(var/turf/T as anything in get_cage_turfs())
 		for(var/atom/A as anything in T.contents)
 			if(!ismob(A) && !istype(A, /obj/effect/landmark/asteroid_spawn))

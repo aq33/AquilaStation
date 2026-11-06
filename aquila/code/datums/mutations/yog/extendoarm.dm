@@ -1,6 +1,9 @@
 // AQUILA - port z Yogstation (yogstation/code/datums/mutations/extendoarm.dm)
 // Ręka leci jako pocisk: chwyta przedmiot, odkłada trzymany albo klika (attack_hand) cel i wraca.
 
+/// Na ile pól sięga ręka (cel i lot pocisku)
+#define EXTENDOARM_REACH 3
+
 /datum/mutation/extendoarm
 	name = "Wydłużona ręka"
 	desc = "Pacjent potrafi wydłużyć ręce i chwytać przedmioty z daleka."
@@ -19,7 +22,7 @@
 	cooldown_time = 5 SECONDS
 	spell_requirements = NONE
 	antimagic_flags = NONE
-	cast_range = 50
+	cast_range = EXTENDOARM_REACH // u Yoga 50: ręka klikała drzwi i konsole przez całą salę
 	aim_assist = FALSE
 	projectile_type = /obj/item/projectile/extendo_arm
 	active_msg = "Rozluźniasz rękę!"
@@ -73,7 +76,7 @@
 	suppressed = TRUE
 	damage = 0
 	nodamage = TRUE
-	range = 100
+	range = EXTENDOARM_REACH + 1 // o pole więcej, żeby po skosie doleciała do celu na krańcu zasięgu
 	speed = 2
 	hitsound = null
 	homing = TRUE
@@ -129,9 +132,14 @@
 		setAngle(get_angle(src, firer))
 		next_homing_process = 0
 
-// Koniec zasięgu w drodze powrotnej: ręka wraca do właściciela, zamiast spaść gdzieś po drodze
+// Koniec zasięgu: w drodze do celu ręka zawraca, w drodze powrotnej wraca do właściciela, zamiast spaść gdzieś po drodze
 /obj/item/projectile/extendo_arm/on_range()
-	if(returning && firer && !QDELETED(firer))
+	if(firer && !QDELETED(firer))
+		if(!returning)
+			if(grabbed)
+				ungrab()
+			go_home()
+			return
 		return_to_owner()
 		return
 	return ..()
@@ -172,3 +180,5 @@
 		arm = null
 	QDEL_NULL(beam)
 	return ..()
+
+#undef EXTENDOARM_REACH

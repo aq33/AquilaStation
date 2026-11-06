@@ -75,11 +75,16 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 /// Tryb wymuszony przez admina albo głosowanie na hardmode kończy wybór misji
 /datum/controller/subsystem/overmap_mode/force_mode(new_mode)
 	mission_choices = null
+	var/briefing_was_waiting = FALSE
 	if(mission_choice_pending)
 		mission_choice_pending = FALSE
+		briefing_was_waiting = mission_briefing_waiting
 		mission_briefing_waiting = FALSE
 		stop_waiting_for_jump()
-	return ..()
+	. = ..()
+	// Odprawa czekała na wybór, a jej timer z start_reminder() już minął: bez tego nowy tryb nie miałby odprawy
+	if(briefing_was_waiting && . && mode)
+		announce_objectives()
 
 /datum/controller/subsystem/overmap_mode/proc/stop_waiting_for_jump()
 	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()

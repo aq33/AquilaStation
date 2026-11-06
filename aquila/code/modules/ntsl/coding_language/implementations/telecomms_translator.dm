@@ -217,6 +217,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			oldlangbits = APIDITE
 
 	// Signal data
+	var/list/original_spans = signal.data["spans"] // AQ EDIT - kept to tell the speaker's own spans from the ones the script added
 	var/datum/n_struct/signal/script_signal = new(list(
 		"content" = html_decode(signal.data["message"]),
 		"freq" = signal.frequency,
@@ -225,7 +226,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		"sector" = signal.levels.Copy(), // AQ EDIT - a copy, sector[1] = 0 must not edit the signal's own list
 		"job" = signal.data["job"],
 		"pass" = !(signal.data["reject"]),
-		"filters" = signal.data["spans"],
+		"filters" = islist(original_spans) ? original_spans.Copy() : original_spans, // AQ EDIT - a copy, the pruning below must not edit the signal's own list
 		"language" = oldlangbits,
 		"say" = signal.virt.verb_say,
 		"ask" = signal.virt.verb_ask,
@@ -288,8 +289,13 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	signal.data["language"] = lang_instance?.name
 	var/list/setspans = script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
-		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
-		signal.data["spans"] = setspans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
+		// AQ EDIT START - spans the message already had (singing etc.) stay, only the ones the script added must be on the allowed list
+		var/list/new_spans = list()
+		for(var/span in setspans)
+			if((islist(original_spans) && (span in original_spans)) || (span in GLOB.allowed_custom_spans)) //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
+				new_spans |= span
+		signal.data["spans"] = new_spans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
+		// AQ EDIT END
 	else
 		signal.data["spans"] = list()
 
