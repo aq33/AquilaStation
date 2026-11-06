@@ -541,6 +541,8 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		LAZYREMOVE(OM.hit_ghosts, src)
 		LAZYREMOVE(OM.radar_emissions, src)
 		LAZYREMOVE(OM.ai_attackers, src)
+		LAZYREMOVE(OM.designated_targets, src)
+		LAZYREMOVE(OM.sensor_contact_numbers, src)
 
 	STOP_PROCESSING(SSphysics_processing, src)
 	for(var/mob/living/M in operators)
