@@ -282,6 +282,8 @@ Behavior that's still missing from this component that original food items had t
 
 	var/atom/this_food = parent
 
+	if(source_item.reagents) // AQ EDIT - wynik dostaje reagenty surowca zamiast swoich + surowca (podwajanie, jak w tg)
+		this_food.reagents?.clear_reagents()
 	source_item.reagents?.trans_to(this_food, source_item.reagents.total_volume)
 
 ///Makes sure the thing hasn't been destroyed or fully eaten to prevent eating phantom edibles
@@ -464,7 +466,7 @@ Behavior that's still missing from this component that original food items had t
 	if((foodtypes & BREAKFAST) && world.time - SSticker.round_start_time < STOP_SERVING_BREAKFAST)
 		SEND_SIGNAL(human_eater, COMSIG_ADD_MOOD_EVENT, "breakfast", /datum/mood_event/breakfast)
 	if(HAS_TRAIT(human_eater, TRAIT_AGEUSIA))
-		if(foodtypes & tongue.toxic_food)
+		if(foodtypes & tongue?.toxic_food) // AQ EDIT - ageuzja bez języka nie może dawać runtime
 			to_chat(human_eater, "<span class='warning'>Nie czujesz się najlepiej...</span>")
 			human_eater.adjust_disgust(25 + 30 * fraction)
 		return // Later checks are irrelevant if you have ageusia

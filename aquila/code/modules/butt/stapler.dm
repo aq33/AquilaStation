@@ -184,6 +184,9 @@ GLOBAL_VAR_INIT(staple_recipe_added, FALSE)
 
 // Coffin nailing with the staple gun instead of welding
 
+/// Trumna zamknięta zszywkami (nie spawarką): tylko taką wyważa łom i tylko z niej wypadają zszywki
+/obj/structure/closet/crate/coffin/var/stapled = FALSE
+
 /obj/structure/closet/crate/coffin/update_icon()
 	. = ..()
 	if(welded && !opened)
@@ -203,18 +206,20 @@ GLOBAL_VAR_INIT(staple_recipe_added, FALSE)
 			return
 		playsound(src, 'aquila/sound/weapons/staplegun.ogg', 50, TRUE)
 		welded = TRUE
+		stapled = TRUE
 		WS.ammo -= 10
 		WS.update_icon()
 		update_icon()
 		user.visible_message("<span class='notice'>[user] zszywa [src] za pomocą [WS].</span>", "<span class='notice'>Zszywasz [src].</span>")
 		return
-	if(!opened && welded && W.tool_behaviour == TOOL_CROWBAR)
+	if(!opened && welded && stapled && W.tool_behaviour == TOOL_CROWBAR)
 		to_chat(user, "<span class='notice'>Zaczynasz wyważać zszywki z [src]...</span>")
 		W.play_tool_sound(src)
-		if(!do_after(user, 8 SECONDS, target = src) || opened || !welded)
+		if(!do_after(user, 8 SECONDS, target = src) || opened || !welded || !stapled)
 			return
 		W.play_tool_sound(src)
 		welded = FALSE
+		stapled = FALSE
 		update_icon()
 		new /obj/item/stack/staples(drop_location(), 9)
 		user.visible_message("<span class='notice'>[user] wyważa zszywki trzymające [src].</span>", "<span class='notice'>Wyważasz zszywki trzymające [src].</span>")

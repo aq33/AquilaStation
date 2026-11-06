@@ -167,9 +167,17 @@
 	if(!pay)
 		to_chat(user, "<span class='warning'>[chip] wydaje się nic nie być wart!</span>")
 		return FALSE
+	// AQ EDIT START - nie płacimy spłaconej grzywny ani ponad dług; reszta zostaje na holożetonie
+	var/owed = warrant.fine - warrant.paid
+	if(owed <= 0)
+		to_chat(user, "<span class='warning'>Ta grzywna jest już spłacona.</span>")
+		return FALSE
+	pay = chip.spend(min(pay, owed))
+	if(!pay)
+		return FALSE
 	GLOB.data_core.payCitation(target.fields["id"], warrant.dataId, pay)
-	to_chat(user, "<span class='notice'>Wpłacasz [pay] kredytów na poczet grzywny.</span>")
-	qdel(chip)
+	to_chat(user, "<span class='notice'>Wpłacasz [pay] kredytów na poczet grzywny.[QDELETED(chip) ? "" : " Reszta zostaje na holożetonie."]</span>")
+	// AQ EDIT END
 	after_payment(user, target, warrant, pay)
 	add_fingerprint(user)
 	return TRUE

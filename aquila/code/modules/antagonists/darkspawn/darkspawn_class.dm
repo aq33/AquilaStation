@@ -210,6 +210,8 @@
 		return FALSE
 
 	darkspawn.willpower -= willpower_cost
+	// Ciało znika po Sakramencie (QDEL_IN) i przy gibie, nie trzymamy do niego twardej referencji
+	RegisterSignal(shadowhuman, COMSIG_PARENT_QDELETING, PROC_REF(on_shadowhuman_deleted))
 	if(willpower_cost && !silent)
 		to_chat(owner.current, "<span class='velvet'>Odblokowujesz: <b>[name]</b>.</span>")
 	on_gain()
@@ -218,6 +220,12 @@
 			var/datum/action/action = new ability(owner)
 			action.Grant(shadowhuman)
 	return TRUE
+
+/datum/psi_web/proc/on_shadowhuman_deleted(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	if(shadowhuman == source)
+		shadowhuman = null
 
 /// Po udanym kupnie
 /datum/psi_web/proc/on_gain()

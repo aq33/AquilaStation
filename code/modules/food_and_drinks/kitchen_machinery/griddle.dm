@@ -61,9 +61,7 @@
 	return NONE
 */
 
-/obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
-	. = ..()
-	return default_deconstruction_crowbar(I, ignore_panel = TRUE)
+// AQ EDIT - usunięta druga definicja crowbar_act (przez ..() rozbierała płytę dwa razy)
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
 	if(griddled_objects.len >= max_items)
@@ -85,6 +83,8 @@
 
 /obj/machinery/griddle/attack_hand(mob/user, list/modifiers)
 	. = ..()
+	if(.) // AQ EDIT - szanuj przerwanie z rodzica (sygnał, przewody)
+		return
 	on = !on
 	if(on)
 		begin_processing()

@@ -16,6 +16,8 @@
 	var/fade_out_time = 0.3 SECONDS
 	/// Assoc list of world.time to (atom ref -> image)
 	var/list/active_images = list()
+	/// Klient, do którego dodaliśmy obrazki. Gracz może wyjść z ciała (duch, wylogowanie), a obrazki zostałyby w jego client.images
+	var/client/images_client
 	/// Typecache rzeczy, które zawsze pokazujemy
 	var/static/list/echo_typecache
 	/// Typecache rzeczy niebezpiecznych (czerwony obrys)
@@ -52,12 +54,17 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	var/mob/living/echolocator = parent
 	echolocator.clear_fullscreen("echolocation")
+	clear_images()
+	return ..()
+
+/// Zdejmuje wszystkie obrazki z klienta, któremu je dodaliśmy
+/datum/component/echolocation/proc/clear_images()
 	for(var/time in active_images)
 		var/list/image_list = active_images[time]
 		for(var/atom_ref in image_list)
-			echolocator.client?.images -= image_list[atom_ref]
+			images_client?.images -= image_list[atom_ref]
 	active_images.Cut()
-	return ..()
+	images_client = null
 
 /datum/component/echolocation/process()
 	var/mob/living/echolocator = parent
@@ -73,6 +80,10 @@
 	var/turf/center = get_turf(echolocator)
 	if(!center)
 		return
+	// Ciało przejął inny klient: stare obrazki schodzą z poprzedniego
+	if(images_client != echolocator.client)
+		clear_images()
+		images_client = echolocator.client
 
 	var/list/known_refs = list()
 	for(var/time in active_images)
@@ -116,7 +127,7 @@
 		echo.color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
 		echo.filters += filter(type = "outline", size = 1, color = danger ? "#ff4040" : "#ffffff")
 		current[atom_ref] = echo
-		echolocator.client.images += echo
+		images_client.images += echo
 
 	addtimer(CALLBACK(src, PROC_REF(fade_images), current_time), image_expiry_time)
 
@@ -130,10 +141,9 @@
 	addtimer(CALLBACK(src, PROC_REF(cleanup_images), from_time), fade_out_time + 0.2 SECONDS)
 
 /datum/component/echolocation/proc/cleanup_images(from_time)
-	var/mob/living/echolocator = parent
 	var/list/image_list = active_images[from_time]
 	for(var/atom_ref in image_list)
-		echolocator.client?.images -= image_list[atom_ref]
+		images_client?.images -= image_list[atom_ref]
 	active_images -= from_time
 
 /// Czarna zasłona pod obrazkami echolokacji, ale nad grą i oświetleniem

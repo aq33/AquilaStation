@@ -66,10 +66,11 @@
 
 // activate_door_base() to wspólna ścieżka bumpopen() i kliknięcia w drzwi.
 // Logujemy tylko otwarcie drzwi, które naprawdę wymagają dostępu.
+// open() czeka na koniec animacji, więc po ..() widać, czy drzwi się otworzyły (zaryglowane, zaspawane i bez zasilania zostają zamknięte).
 /obj/machinery/door/activate_door_base(mob/user, can_close_door)
 	var/was_closed = density
 	. = ..()
-	if(!. || !was_closed || !user)
+	if(!. || !was_closed || density || !user)
 		return
 	if(emergency || unrestricted_side(user) || check_access(null))
 		return

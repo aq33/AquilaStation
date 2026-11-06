@@ -102,6 +102,11 @@
 	name = "wrak złomiarki"
 	mappath = 'aquila/_maps/shipbreaking/emergency_scrapheap.dmm'
 
+/datum/map_template/shipbreaker/load(turf/T, centered = FALSE, init_atmos = TRUE, finalize = TRUE)
+	. = ..()
+	if(.)
+		mark_shipbreak_wreck(get_affected_turfs(T, centered))
+
 GLOBAL_LIST_EMPTY(shipbreaker_templates)
 
 /// Wszystkie szablony wraków (tworzone przy pierwszym użyciu)

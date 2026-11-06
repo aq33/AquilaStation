@@ -97,6 +97,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 20
+	STR.can_hold = typecacheof(list(/obj/item/toy)) // tylko zabawki: inaczej to drugi plecak w plecaku
 	STR.max_items = 8
 
 /obj/item/storage/toolbox/clown_toys/PopulateContents()

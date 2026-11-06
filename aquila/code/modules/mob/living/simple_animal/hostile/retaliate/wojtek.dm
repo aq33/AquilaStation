@@ -40,17 +40,15 @@
 	gold_core_spawnable = NO_SPAWN
 	do_footstep = TRUE
 	/// Kto ostatnio zadał Wojtkowi obrażenia. Załoga ma tę samą frakcję, więc bazowe Retaliate() by jej nie dopisało do wrogów.
-	var/mob/living/last_attacker
-
-/mob/living/simple_animal/hostile/retaliate/wojtek/Destroy()
-	last_attacker = null
-	return ..()
+	/// Weakref, żeby usunięty napastnik nie wisiał w pamięci (harddel)
+	var/datum/weakref/last_attacker_ref
 
 /// Odda tylko temu, kto go skrzywdził, a nie wszystkim dookoła
 /mob/living/simple_animal/hostile/retaliate/wojtek/Retaliate()
+	var/mob/living/last_attacker = last_attacker_ref?.resolve()
+	last_attacker_ref = null
 	if(isliving(last_attacker) && !QDELETED(last_attacker) && last_attacker != src && (last_attacker in oview(vision_range, src)))
 		add_enemy(last_attacker)
-	last_attacker = null
 	return FALSE
 
 /// Bazowe CanAttack odrzuca cele z tej samej frakcji, więc bez tego Wojtek nie oddałby nikomu z załogi
@@ -61,46 +59,46 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attacked_by(obj/item/I, mob/living/user)
-	last_attacker = user
+	last_attacker_ref = WEAKREF(user)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_hand(mob/living/carbon/human/M, list/modifiers)
 	if(M.combat_mode || LAZYACCESS(modifiers, RIGHT_CLICK))
-		last_attacker = M
+		last_attacker_ref = WEAKREF(M)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	last_attacker = user
+	last_attacker_ref = WEAKREF(user)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_paw(mob/living/carbon/monkey/M)
-	last_attacker = M
+	last_attacker_ref = WEAKREF(M)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_alien(mob/living/carbon/alien/humanoid/M)
-	last_attacker = M
+	last_attacker_ref = WEAKREF(M)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_larva(mob/living/carbon/alien/larva/L)
-	last_attacker = L
+	last_attacker_ref = WEAKREF(L)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_animal(mob/living/simple_animal/M)
-	last_attacker = M
+	last_attacker_ref = WEAKREF(M)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attack_slime(mob/living/simple_animal/slime/M)
-	last_attacker = M
+	last_attacker_ref = WEAKREF(M)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
 	if(isliving(P.firer))
-		last_attacker = P.firer
+		last_attacker_ref = WEAKREF(P.firer)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(isliving(throwingdatum?.thrower))
-		last_attacker = throwingdatum.thrower
+		last_attacker_ref = WEAKREF(throwingdatum.thrower)
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/wojtek/attackby(obj/item/I, mob/living/user, params)

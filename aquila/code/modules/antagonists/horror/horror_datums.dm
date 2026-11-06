@@ -264,6 +264,8 @@
 	real_name = "mózg nosiciela"
 	var/datum/action/innate/resist_control/R
 	var/mob/living/simple_animal/horror/H
+	/// AQUILA - the running resist timer, repeated clicks don't stack more of them
+	var/resist_timer
 
 /mob/living/captive_brain/Initialize(mapload, gen=1)
 	..()
@@ -310,14 +312,20 @@
 	try_resist()
 
 /mob/living/captive_brain/proc/try_resist()
+	if(!H)
+		return
+	if(resist_timer)
+		to_chat(src, "<span class='warning'>Już opierasz się kontroli pasożyta!</span>")
+		return
 	var/delay = rand(20 SECONDS,30 SECONDS)
 	if(H.horrorupgrades["deep_control"])
 		delay += rand(20 SECONDS,30 SECONDS)
 	to_chat(src, "<span class='danger'>Zaczynasz uparcie opierać się kontroli pasożyta.</span>")
 	to_chat(H.victim, "<span class='danger'>Czujesz, że uwięziony umysł [src] zaczyna opierać się twojej kontroli.</span>")
-	addtimer(CALLBACK(src, PROC_REF(return_control)), delay)
+	resist_timer = addtimer(CALLBACK(src, PROC_REF(return_control)), delay, TIMER_STOPPABLE)
 
 /mob/living/captive_brain/proc/return_control()
+	resist_timer = null
 	if(!H || !H.controlling)
 		return
 	to_chat(src, "<span class='userdanger'>Ogromnym wysiłkiem woli odzyskujesz kontrolę nad ciałem!</span>")

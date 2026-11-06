@@ -50,6 +50,12 @@
 #undef SHELLEO_OUT
 
 /proc/shell_url_scrub(url)
+	// AQ EDIT START - cmd /c rozwija %ZMIENNA% także w cudzysłowie, a kodowanie %XX samo tworzy znaki %
+	// (np. "%CD%" z bajtu 0xCD). Na Windowsie znaki spoza bezpiecznego zestawu, z % włącznie, usuwamy zamiast kodować.
+	if(world.system_type == MS_WINDOWS)
+		var/static/regex/windows_bad_chars_regex = regex("\[^#&./:=?\\w-]", "g")
+		return windows_bad_chars_regex.Replace(url, "")
+	// AQ EDIT END
 	var/static/regex/bad_chars_regex = regex("\[^#%&./:=?\\w]*", "g")
 	var/scrubbed_url = ""
 	var/bad_match = ""

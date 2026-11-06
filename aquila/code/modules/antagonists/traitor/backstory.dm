@@ -200,6 +200,13 @@ GLOBAL_LIST_INIT(traitor_motivations, list(
 /datum/antagonist/traitor/proc/uses_backstory()
 	return type == /datum/antagonist/traitor && traitor_kind == TRAITOR_HUMAN && should_equip
 
+/// Traitors made without objectives (admin Mass Antag sets give_objectives = FALSE) never reach forge_traitor_objectives(),
+/// so the faction picker has to be set up here, or they would never get the uplink
+/datum/antagonist/traitor/on_gain()
+	. = ..()
+	if(!give_objectives && traitor_kind == TRAITOR_HUMAN)
+		setup_backstories(!!(locate(/datum/objective/martyr) in objectives), !!(locate(/datum/objective/hijack) in objectives))
+
 /datum/antagonist/traitor/proc/setup_backstories(murderbone, hijack)
 	if(!uses_backstory())
 		return

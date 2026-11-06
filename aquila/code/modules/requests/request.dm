@@ -12,6 +12,9 @@
 
 /datum/request/Topic(href, href_list)
 	. = ..()
+	// linki ANULUJ są tylko w wiadomościach dla adminów, ale href może wysłać każdy klient
+	if(!check_rights(R_ADMIN))
+		return
 	if(href_list["cancel_nuke"])
 		if(req_type != REQUEST_NUKE) // what are you trying to cancel???
 			to_chat(usr, "<span class='admin'>Nie możesz anulować tego rodzaju prośby.</span>")

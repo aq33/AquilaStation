@@ -13,6 +13,8 @@
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_mob_list))
 		if(!H.client)
 			continue
+		if(H.is_in_tutorial()) // AQ EDIT - postać w samouczku nie jest ofiarą eventu
+			continue
 		if(H.stat == DEAD)
 			continue
 		if(!H.getorgan(/obj/item/organ/appendix)) //Don't give the disease to some who lacks it, only for it to be auto-cured

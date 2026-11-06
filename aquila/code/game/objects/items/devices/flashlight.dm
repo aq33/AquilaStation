@@ -7,6 +7,9 @@
 /obj/item/flashlight/flare/torch
 	flare_particle = FALSE
 
+/obj/item/flashlight/flare/culttorch
+	flare_particle = FALSE
+
 /obj/item/flashlight/flare/update_brightness(mob/user = null)
 	..()
 	if(on && flare_particle)

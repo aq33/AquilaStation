@@ -130,7 +130,8 @@ GLOBAL_LIST_INIT(plumbing_layer_names, list(
 			transfer_amount = available[reagent] * (amount / available_volume)
 		if(transfer_amount <= 0)
 			continue
-		if(!target.add_reagent(reagent.type, transfer_amount, copy_data(reagent), chem_temp, no_react = TRUE))
+		// Purity and pH go along, like in trans_to(): without them every pipe reset the reagent to its creation purity
+		if(!target.add_reagent(reagent.type, transfer_amount, copy_data(reagent), chem_temp, no_react = TRUE, added_purity = reagent.purity, added_ph = reagent.ph))
 			continue
 		remove_reagent(reagent.type, transfer_amount)
 		moved += transfer_amount

@@ -50,13 +50,23 @@
 	if(printer.stored_paper < CANVAS_PAPER_COST)
 		to_chat(usr, "<span class='notice'>Błąd drukowania: drukarka potrzebuje co najmniej [CANVAS_PAPER_COST] kartek papieru, by wydrukować płótno.</span>")
 		return
-	printer.stored_paper -= CANVAS_PAPER_COST
 
 	//canvas printing!
 	var/list/tab2key = list(/*TAB_LIBRARY = */"library", /*TAB_SECURE = */"library_secure", /*TAB_PRIVATE = */"library_private")
-	var/folder = tab2key[params["tab"]]
+	// AQ EDIT START - indeksy od klienta sprawdzone przed zabraniem papieru (wcześniej runtime po zużyciu kartek)
+	var/tab = text2num(params["tab"])
+	if(!isnum(tab) || tab != round(tab) || tab < 1 || tab > length(tab2key))
+		return
+	var/folder = tab2key[tab]
 	var/list/current_list = SSpersistence.paintings[folder]
-	var/list/chosen_portrait = current_list[params["selected"]]
+	var/selected = text2num(params["selected"])
+	if(!isnum(selected) || selected != round(selected) || selected < 1 || selected > length(current_list))
+		return
+	var/list/chosen_portrait = current_list[selected]
+	if(!islist(chosen_portrait))
+		return
+	printer.stored_paper -= CANVAS_PAPER_COST
+	// AQ EDIT END
 	var/author = chosen_portrait["author"]
 	var/title = chosen_portrait["title"]
 	var/png = "data/paintings/[folder]/[chosen_portrait["md5"]].png"

@@ -12,10 +12,27 @@
 
 /// Ile kredytów za jeden wyrób; 0 = to nie jest wyrób z kuźni
 /proc/forged_munition_value(obj/O)
-	var/datum/component/forged_munition/forged = get_forged_munition(O)
 	var/body_type = GLOB.munition_products[O.type]
-	if(!forged || !body_type)
+	if(!body_type)
 		return 0
+	if(istype(O, /obj/item/ammo_box))
+		// Pudełko jest warte tyle, ile wykutych nabojów ma teraz w środku: każdy nabój to ułamek pełnego pudełka.
+		// Inaczej rozłożenie nabojów do pustych pudełek mnożyło cenę.
+		var/obj/item/ammo_box/box = O
+		var/capacity = max(box.max_ammo, 1)
+		var/box_value = 0
+		for(var/obj/item/ammo_casing/casing in box.stored_ammo)
+			var/datum/component/forged_munition/round_forged = casing.GetComponent(/datum/component/forged_munition)
+			if(round_forged)
+				box_value += forged_product_value(round_forged, body_type) / capacity
+		return round(box_value)
+	var/datum/component/forged_munition/forged = O.GetComponent(/datum/component/forged_munition)
+	if(!forged)
+		return 0
+	return round(forged_product_value(forged, body_type))
+
+/// Wartość jednego pełnego wyrobu o właściwościach forged, odlanego z korpusu body_type (bez zaokrąglenia)
+/proc/forged_product_value(datum/component/forged_munition/forged, body_type)
 	var/obj/item/munition_part/body/body = body_type
 	// Partia z jednego korpusu (np. 6 pocisków Gaussa) dzieli koszt surowców i premię
 	var/batch = initial(body.product_count)
@@ -29,7 +46,7 @@
 	var/value = raw_value * (0.5 + 0.1 * forged.quality.level)
 	if(!forged.galvanized)
 		value += 10 * (forged.quality.level + 1) / batch
-	return round(value)
+	return value
 
 /// Cena arkusza materiału w eksporcie cargo (najniższa, bo np. plastytan też ma material_id tytanu)
 /proc/munition_sheet_value(material_type)

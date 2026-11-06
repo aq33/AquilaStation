@@ -133,6 +133,8 @@
 
 /obj/machinery/oven/attack_hand(mob/user, modifiers)
 	. = ..()
+	if(.) // AQ EDIT - szanuj przerwanie z rodzica (sygnał, przewody)
+		return
 	open = !open
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)

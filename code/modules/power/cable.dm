@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 
 /obj/structure/cable/Initialize(mapload, param_color = cable_color, multiz = FALSE)
 	. = ..()
+	cable_color = param_color // AQ EDIT - set before the CI overlap check, which compares colours
 
 // If building for CI then we will check to ensure that cables are not incorrectly overlapping.
 #ifdef CIBUILDING
@@ -75,7 +76,6 @@ GLOBAL_LIST_INIT(cable_colors, list(
 		return INITIALIZE_HINT_QDEL
 #endif
 
-	cable_color = param_color
 	// Mapped multi-z cables (/obj/structure/cable/multiz) keep their flag
 	src.multiz = multiz || initial(src.multiz)
 
