@@ -15,6 +15,9 @@ Skutki: jeden takt bez prądu, APC przestają się ładować (wznawiają po 10 t
 i tarcze z kabla tracą zasilanie, monitor mocy zaczyna od 0 i wraca do właściwej wartości po około 40 s.
 Poprawka: stary obiekt zostaje przy największym kawałku. Test `smartwires_split_keeps_main_grid`
 bez poprawki pada, z poprawką przechodzi.
+Ograniczenie: największy kawałek (w kablach) nie musi być tym z generatorami. Jeśli przecięcie odetnie
+małą maszynownię od reszty, maszynownia dostaje nową sieć z 0 na jeden takt. Nie da się tego ogólnie
+rozpoznać bez większej zmiany, bo silnik burzowy, RBMK i rośliny piszą do `newavail` bezpośrednio.
 
 ## Znalezione w przeglądzie (1–3 poprawione na tej gałęzi, z testami)
 
@@ -25,8 +28,9 @@ Po zamianie bieżącego elementu z ostatnim indeks rośnie przy `dirty_stop_inde
 Przykład: kolejka [A, B, C] → przetworzone A i B, C czeka do następnego taktu (2 s).
 Skutek: odcięty kawałek sieci przez dodatkowy takt dalej korzysta z prądu starej sieci, a ponowne
 przeliczenie sieci przychodzi później. To nie powoduje zaników, tylko opóźnia rozcięcie.
-Poprawka: `if (dirty_stop_index < length(dirty_powernets)) dirty_index++ else dirty_stop_index--`.
-Ten sam błąd jest w Bee.
+Poprawka: kolejka jest przetwarzana z migawki (`process_dirty_powernets()` w
+`aquila/code/modules/power/smartwires.dm`), bez indeksów. Usunięta w trakcie sieć jest pomijana, a sieć
+dodana w trakcie przebiegu czeka do następnego taktu. Ten sam błąd jest w Bee.
 
 ### 2. Przecięcie kabla wielopokładowego może się zapętlić (średnie, poprawione: test `smartwires_multiz_deconstruct`)
 `code/modules/power/cable.dm:274-277`, `deconstruct()`.
@@ -38,6 +42,7 @@ a na kafelku zbierają się zwoje kabla. Tak samo jest w Bee.
 Poprawka: rozbierać sąsiada tylko wtedy, gdy nie jest już w trakcie rozbiórki, np. zapamiętać i
 wyzerować `up` i `down` przed wywołaniem (`var/c = up; up = null; c?.deconstruct()`) albo sprawdzić `QDELETED`.
 Nie odtworzone w grze. Warto potwierdzić na mapie z `cable/multiz` (Serendipity, Shrike, Snake).
+Po poprawce przecięcie usuwa tylko kable tuż nad i pod przeciętym, nie cały stos przez wszystkie pokłady.
 
 ### 3. Łączenie sieci gubi prąd wchłoniętej sieci na jeden takt (niskie, poprawione: test `smartwires_merge_keeps_power`)
 `code/modules/power/power.dm:184-205`, `merge_powernets()`.
