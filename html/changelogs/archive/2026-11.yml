@@ -258,3 +258,19 @@
   - balance: ERT nie dostaje aquilosów za cele.
   - bugfix: Awatar w domenie z bójką na plaży dostaje broń.
   - code_imp: Testy regresji do poprawek.
+  - rscadd: 'Opcja „Język gry / Game language” w preferencjach: czat, examine, panel
+      statystyk, okna, dymki, runechat, screentipy i okienka po angielsku.'
+  - code_imp: Słownik PL→EN i narzędzia w tools/i18n; CI ostrzega o nowych tekstach
+      bez angielskiego i nieowiniętych okienkach alert/input.
+  sh4dow321:
+  - balance: Okręty na overmapie latają o połowę wolniej, a działa sięgają o połowę
+      bliżej. Rakiety i torpedy bez zmian.
+  - rscadd: Okręty AI mają charakter dowódcy, boją się, uciekają i skaczą FTL, zmieniają
+      cele, flankują, a lotniskowce i torpedowce trzymają dystans.
+  - rscadd: Floty AI czasem odpalają torpedy salwami.
+  - rscadd: Przestraszone okręty AI strzelają z dział mniej celnie.
+  - bugfix: Zniszczona część myśliwca nie zostaje już w slocie wyposażenia.
+  - rscadd: Przegrywające floty AI mogą wezwać pomoc z sąsiednich systemów albo wycofać
+      się całą flotą.
+  - admin: 'Nowe przełączniki w Debug: Toggle overmap scale, Toggle AI morale, oraz
+      „Strojenie AI” do zmiany liczb walki AI w trakcie rundy.'

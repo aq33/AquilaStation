@@ -38,7 +38,7 @@ export const MessageContent = (props: MessageContentProps) => {
         // przywracamy dwukropki zjedzone przez split(),
         // jeśli następny kawałek nie jest emotką
         return (
-          <span key={index}>
+          <span key={index} className="i18n-skip">
             {part}
             {arr.length - 1 !== index && !isEmoji(arr[index + 1]) ? ':' : ''}
           </span>

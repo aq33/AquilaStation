@@ -2,10 +2,7 @@
 // AQUILA: okno przetłumaczone na polski
 
 import { Fragment } from 'react';
-import {
-  Button,
-  Section,
-} from 'tgui-core/components';
+import { Button, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -43,7 +40,7 @@ export const SquadVendor = (props) => {
           />
         )}
         <Section title="Dostępne zestawy:">
-          {'Witaj, ' + data.user_name}
+          Witaj, {data.user_name}
           <br />
           {Object.keys(data.kits).map((key) => {
             let value = data.kits[key];

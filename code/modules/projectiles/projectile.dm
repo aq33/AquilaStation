@@ -589,7 +589,7 @@
  */
 /obj/item/projectile/Moved(atom/OldLoc, Dir)
 	. = ..()
-	if(!fired)
+	if(!fired || QDELING(src)) // AQ EDIT - moveToNullspace() in Destroy() ran the hit scan and qdel'd the projectile a second time
 		return
 	if(temporary_unstoppable_movement)
 		temporary_unstoppable_movement = FALSE

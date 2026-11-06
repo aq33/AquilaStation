@@ -59,7 +59,8 @@ export class ChatPanel extends Component {
     const { scrollTracking } = this.state;
     return (
       <>
-        <div className="Chat" ref={this.ref} />
+        {/* AQUILA: czat ma własne tłumaczenie (chat/renderer.jsx), reszta panelu idzie przez tgui/i18nDom */}
+        <div className="Chat" ref={this.ref} data-i18n-skip="" />
         {!scrollTracking && (
           <Button
             className="Chat__scrollButton"
