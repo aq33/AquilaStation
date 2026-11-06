@@ -70,7 +70,10 @@ GLOBAL_VAR_INIT(ai_torpedo_dodge_enabled, TRUE)
 	if(length(ships) < 2 || !(ship in ships))
 		return TRUE // Nobody to fire with
 	if(!salvo[AI_SALVO_WAITING_SINCE])
-		if(!prob(isnull(ai_salvo_chance) ? GLOB.ai_salvo_chance : ai_salvo_chance))
+		var/chance = ai_salvo_chance
+		if(isnull(chance))
+			chance = GLOB.ai_salvo_chance
+		if(!prob(chance))
 			salvo[AI_SALVO_OPEN_UNTIL] = world.time + AI_SALVO_INTERVAL // No coordination this time
 			salvo[AI_SALVO_NEXT] = salvo[AI_SALVO_OPEN_UNTIL]
 			return TRUE

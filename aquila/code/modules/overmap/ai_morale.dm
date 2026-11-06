@@ -38,6 +38,8 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 #define AI_FEAR_CAUTIOUS 30
 /// Standoff of a scared ship: out of gun range of the enemy (OVERMAP_AI_GUN_RANGE 25 + band)
 #define AI_FEAR_STANDOFF 35
+/// A ship hesitates before opening fire at most this often
+#define AI_HESITATION_COOLDOWN (15 SECONDS)
 /// How often a ship between GLOB.ai_fear_retreat and GLOB.ai_fear_panic (ai_tuning.dm) rolls to break off
 #define AI_RETREAT_ROLL_TIME (5 SECONDS)
 /// A fleeing ship jumps once no enemy has hurt it for this long and the nearest enemy is this far away
@@ -72,6 +74,8 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	var/ai_escaped = FALSE
 	/// AQUILA - commander hesitation after picking a new target
 	var/ai_hold_fire_until = 0
+	/// AQUILA - no new hesitation before this world.time
+	var/ai_next_hesitation = 0
 
 /obj/structure/overmap/proc/roll_ai_temperament()
 	if(CHECK_BITFIELD(ai_flags, AI_FLAG_ELITE))
@@ -170,7 +174,7 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 			start_ai_flight()
 
 /obj/structure/overmap/slowprocess()
-	if(ai_controlled && GLOB.ai_morale_enabled && current_system)
+	if(ai_controlled && GLOB.ai_morale_enabled && current_system && mass > MASS_TINY) // Fighters never flee, skip the fear maths for them
 		update_ai_morale()
 	return ..()
 
@@ -268,19 +272,22 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 /// A scared ship keeps out of gun range; a reckless one ignores standoff orders and closes in anyway
 /obj/structure/overmap/get_ai_standoff_range(atom/target)
 	. = ..()
-	if(!GLOB.ai_morale_enabled || !ai_controlled)
+	if(!GLOB.ai_morale_enabled || !ai_controlled || CHECK_BITFIELD(ai_flags, AI_FLAG_BOARDER))
 		return
 	if(ai_temperament == AI_TEMPERAMENT_RECKLESS && !is_ai_carrier())
 		return 0
 	if(ai_fear >= AI_FEAR_CAUTIOUS && is_ai_hostile(target))
 		return max(., AI_FEAR_STANDOFF)
 
-/// Hesitation: a new target is not fired on straight away; cautious commanders take longer, reckless ones not at all
+/// Hesitation: a ship that had no target does not open fire straight away; cautious commanders take longer, reckless ones not at all.
+/// Only from no target and at most every AI_HESITATION_COOLDOWN: upstream swaps targets whenever someone else shoots,
+/// and supply ships reset their target every tick, so hesitating on every swap kept some ships from ever firing.
 /obj/structure/overmap/add_enemy(atom/target)
 	var/old_target = last_target
 	. = ..()
-	if(!GLOB.ai_morale_enabled || !ai_controlled || last_target == old_target || !last_target)
+	if(!GLOB.ai_morale_enabled || !ai_controlled || old_target || !last_target || world.time < ai_next_hesitation)
 		return
+	ai_next_hesitation = world.time + AI_HESITATION_COOLDOWN
 	if(!ai_temperament)
 		roll_ai_temperament()
 	switch(ai_temperament)
@@ -371,6 +378,7 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 #undef AI_MORALE_SUPPORT_RANGE
 #undef AI_ODDS_INTERVAL
 #undef AI_FEAR_CAUTIOUS
+#undef AI_HESITATION_COOLDOWN
 #undef AI_FEAR_STANDOFF
 #undef AI_RETREAT_ROLL_TIME
 #undef AI_ESCAPE_QUIET_TIME

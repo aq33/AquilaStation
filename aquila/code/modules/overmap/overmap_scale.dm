@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 /// Distance this AI ship wants to keep from target, 0 to close in as usual
 /obj/structure/overmap/proc/get_ai_standoff_range(atom/target)
 	var/obj/structure/overmap/enemy = target
-	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(enemy) || QDELETED(enemy) || enemy.faction == faction || enemy == defense_target)
+	if(!GLOB.overmap_scale_enabled || !ai_controlled || !istype(enemy) || QDELETED(enemy) || enemy.faction == faction || enemy == defense_target || CHECK_BITFIELD(ai_flags, AI_FLAG_BOARDER))
 		return 0
 	if(is_ai_carrier())
 		return AI_CARRIER_STANDOFF
