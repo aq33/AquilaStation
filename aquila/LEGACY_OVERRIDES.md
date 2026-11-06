@@ -269,6 +269,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `powerswitch.ogg` and `return TRUE` on the battery switch (no generic `switch.ogg` on top), `apu_start.ogg` when the APU turns on | `nsv13/code/modules/overmap/fighters/_fighters.dm` (`ui_act()`, `"battery"`, `"apu"`) | Unused fighter sounds hooked up |
 | `takeoff.ogg` relayed to the fighter | `nsv13/code/modules/overmap/fighters/fighters_launcher.dm` (`finish_launch()`) | Unused fighter sound hooked up |
 | `locking.ogg` for the locker, `being_locked.ogg` for the target (no sound channel, so it does not cut the target's hull crit announcements) | `nsv13/code/modules/overmap/overmap.dm` (`start_lockon()`) | The locker used to hear the "you are being locked" warning and the target heard nothing |
+| `if(DC)` / `DC?.` guards for the docking computer | `nsv13/code/modules/overmap/fighters/fighters_launcher.dm` (`check_overmap_elegibility()`, `transfer_from_overmap()`), `nsv13/code/modules/overmap/fighters/control_console.dm` (`ui_data()`, `ui_act()` "toggle_docking") | A destroyed fighter component now frees its hardpoint slot (`aquila/code/modules/overmap/fighter_component_cleanup.dm`); upstream wrote to the deleted docking computer instead of checking for one. Seen in `fighter_docking` after `test_chamber` blew up a sabre |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

@@ -36,7 +36,7 @@
 				"max_integrity" = OM.max_integrity, \
 				"safeties" = OM.weapon_safety, \
 				"class" = fighter_class, \
-				"docking_mode" = DC.docking_mode))
+				"docking_mode" = DC?.docking_mode)) // AQ EDIT - missing docking computer
 	data["filter_types"] = list()
 	for(var/class in valid_filters)
 		data["filter_types"] += list(list("visible" = LAZYFIND(current_filters, class) ? TRUE : FALSE, "class"=class))
@@ -99,6 +99,8 @@
 					if(OM.pilot)
 						to_chat(OM.pilot, "<span class='notice'>Operator zdalnie nadpisał komputer dokowania.</span>")
 					var/obj/item/fighter_component/docking_computer/DC = OM.loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+					if(!DC) // AQ EDIT - missing docking computer
+						break
 					DC.docking_mode = !DC.docking_mode
 					log_game("\<span class='notice'>[key_name(ui.user)] forcefully [(OM.weapon_safety) ? "Enabled" : "Disabled"] [OM]'s docking computer from a [name] in [get_area(src)]!</span>")
 					break
