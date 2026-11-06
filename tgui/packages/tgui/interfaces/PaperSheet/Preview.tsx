@@ -5,6 +5,7 @@ import { Component, type RefObject } from 'react';
 import { Box, Section } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../../backend';
+import { getLanguage, translatePaperText } from '../../i18n';
 import { sanitizeText } from '../../sanitize';
 import { tokenizer, walkTokens } from './helpers';
 import { StampView } from './StampView';
@@ -42,6 +43,7 @@ export class PreviewView extends Component<PreviewViewProps> {
 
   // State checking variables. Used to determine whether or not to use cache.
   lastReadOnly: boolean = true;
+  lastLanguage: string = '';
   lastDMInputCount: number = 0;
   lastFieldCount: number = 0;
   lastFieldInputCount: number = 0;
@@ -177,6 +179,7 @@ export class PreviewView extends Component<PreviewViewProps> {
     // And the input stats are the same (no new text inputs since last time)
     // Then use any cached values.
     if (
+      this.lastLanguage === getLanguage() &&
       this.lastReadOnly === readOnly &&
       this.lastDMInputCount === raw_text_input?.length &&
       this.lastFieldInputCount === raw_field_input?.length
@@ -185,9 +188,11 @@ export class PreviewView extends Component<PreviewViewProps> {
     }
 
     this.lastReadOnly = readOnly;
+    this.lastLanguage = getLanguage();
 
     raw_text_input?.forEach((value) => {
-      const rawText = value.raw_text.trim();
+      // tekst z kodu po angielsku, tekst gracza bez zmian (translatePaperText)
+      const rawText = translatePaperText(value.raw_text).trim();
       if (!rawText.length) {
         return;
       }

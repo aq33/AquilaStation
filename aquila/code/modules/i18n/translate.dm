@@ -77,7 +77,10 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 			var/name = i18n_en_exact(copytext(trimmed, 1, open))
 			if(!isnull(name))
 				var/suffix = copytext(trimmed, open + 2, -1)
-				found = "[name] ([i18n_en_exact(suffix) || suffix])"
+				var/suffix_en = i18n_en_exact(suffix)
+				// nieznany polski dopisek ("krew (po zaschnięciu)") dałby mieszankę: zostawiamy to szablonom
+				if(!isnull(suffix_en) || !i18n_lowercase_letters(suffix))
+					found = "[name] ([suffix_en || suffix])"
 	if(isnull(found))
 		return null
 	var/start = findtext(text, trimmed)
@@ -250,8 +253,8 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 
 /**
  * Tekst albo HTML po angielsku: stała, szablon (zwykły tekst), a w HTML każdy węzeł tekstowy osobno.
- * with_templates: węzły HTML także przez szablony (okna HTML, gdzie zdania mają wstawki); screentipy
- * odświeżane przy każdym ruchu myszy zostają przy samych stałych.
+ * with_templates: węzły HTML także przez szablony (okna HTML i screentipy, gdzie zdania mają wstawki);
+ * zwykły tekst węzła idzie przez pamięć podręczną, więc screentip przy ruchu myszy jest tani.
  */
 /proc/i18n_en_html(text, with_templates = FALSE)
 	if(!istext(text) || !length(text))
@@ -294,10 +297,10 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	cache[text] = .
 
 /// Tekst dla konkretnego gracza: po angielsku, jeśli wybrał angielski
-/proc/i18n_for_client(client/C, text)
+/proc/i18n_for_client(client/C, text, with_templates = FALSE)
 	if(!C?.wants_english())
 		return text
-	return i18n_en_html(text)
+	return i18n_en_html(text, with_templates)
 
 // Dymki: tworzone dla jednego widza, więc wystarczy przetłumaczyć tekst
 /atom/balloon_alert(mob/viewer, text, color = null, show_in_chat = TRUE, offset_x, offset_y)
@@ -336,4 +339,6 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 
 // Screentipy: ostatni krok każdego screentipa (aquila/code/_onclick/legacy_intents.dm)
 /mob/adapt_screentip_controls(text)
-	return i18n_for_client(client, ..())
+	// z szablonami: akcje mają wstawki ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy"),
+	// a zwykły tekst węzła trafia do pamięci podręcznej i18n_en_html
+	return i18n_for_client(client, ..(), TRUE)
