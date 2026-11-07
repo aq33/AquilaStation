@@ -83,6 +83,13 @@
 			"colour": "yellow",
 			"icon": "tshirt",
 			"sentence": 3000
+		},
+		{
+			"name": "Załatwianie potrzeby w miejscu publicznym",
+			"tooltip": "Wypróżnienie się poza toaletą w miejscu dostępnym dla załogi, w tym na podłogę, do zlewu lub do automatu.",
+			"colour": "yellow",
+			"icon": "poo",
+			"sentence": 3000
 		}
 	],
 	"Występki": [
