@@ -61,7 +61,7 @@
 	TEST_ASSERT(isnull(GLOB.antag_greeting_capture), "Greeting capture was left running after greet()")
 	player.mind.remove_antag_datum(/datum/antagonist/pulse_demon)
 
-/// Pełny schowek bez siatki: puste pola na czerwono
+/// Pełny schowek bez siatki: puste pola na czerwono, ale komplet sztuk (pas 7/7) bez czerwieni, bo nie ma pustych pól
 /datum/unit_test/aquila_storage_full_slots_red
 
 /datum/unit_test/aquila_storage_full_slots_red/Run()
@@ -73,12 +73,20 @@
 		TEST_ASSERT(!grid.grid_width, "Utility belt became a grid storage, pick another old-style storage")
 	for(var/obj/item/thing in belt)
 		qdel(thing)
-	storage.max_items = 1
+	// Limit wagi wyczerpany, a pola wolne: wolne pola na czerwono
+	storage.max_items = 7
+	storage.max_combined_w_class = WEIGHT_CLASS_TINY
 	storage.orient2hud()
 	TEST_ASSERT(isnull(storage.boxes.color), "Empty belt slots are red")
 	var/obj/item/screwdriver/tool = allocate(/obj/item/screwdriver, belt)
+	tool.w_class = WEIGHT_CLASS_TINY
 	storage.orient2hud()
-	TEST_ASSERT_EQUAL(storage.boxes.color, "#ee7b7b", "Full belt does not mark free slots red")
+	TEST_ASSERT_EQUAL(storage.boxes.color, "#ee7b7b", "Belt at its weight limit does not mark free slots red")
+	// Komplet sztuk: żadne pole nie jest puste, więc nic nie jest czerwone
+	storage.max_items = 1
+	storage.orient2hud()
+	TEST_ASSERT(isnull(storage.boxes.color), "Belt with every slot taken is red although it has no free slot")
+	storage.max_items = 7
 	qdel(tool)
 	storage.orient2hud()
 	TEST_ASSERT(isnull(storage.boxes.color), "Belt slots stay red after taking the item out")

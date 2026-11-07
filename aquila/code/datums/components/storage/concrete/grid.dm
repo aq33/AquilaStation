@@ -824,10 +824,13 @@
 		total += I.w_class
 	return total >= max_combined_w_class
 
-// Pełny schowek bez siatki: puste pola na czerwono, żeby było widać, że nic więcej nie wejdzie
+// Pełny schowek bez siatki: puste pola na czerwono, żeby było widać, że nic więcej nie wejdzie.
+// Tylko gdy jakieś pole jest puste: schowek z kompletem sztuk (np. pas 7/7) nie ma czego oznaczać
 /datum/component/storage/standard_orient_objs(rows, cols, list/obj/item/numerical_display_contents)
 	. = ..()
-	boxes.color = storage_hud_full() ? GRID_COLOR_OVERFLOW : null
+	var/atom/real_location = real_location()
+	var/shown = islist(numerical_display_contents) ? length(numerical_display_contents) : length(real_location.contents)
+	boxes.color = (shown < rows * cols && storage_hud_full()) ? GRID_COLOR_OVERFLOW : null
 
 #undef GRID_COLOR_TINY
 #undef GRID_COLOR_SMALL
