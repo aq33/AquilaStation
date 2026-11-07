@@ -163,11 +163,13 @@
 		return
 	switch(action)
 		if("ready_toggle")
-			player.Topic(null, list("ready" = player.ready == PLAYER_READY_TO_PLAY ? PLAYER_NOT_READY : PLAYER_READY_TO_PLAY))
+			// tekst jak w linku Topic: liczba 0 (PLAYER_NOT_READY) byłaby w href_list fałszem i gotowości nie dałoby się cofnąć
+			player.Topic(null, list("ready" = "[player.ready == PLAYER_READY_TO_PLAY ? PLAYER_NOT_READY : PLAYER_READY_TO_PLAY]"))
 		if("join")
-			player.Topic(null, list("late_join" = LAZYACCESS(modifiers, CTRL_CLICK) ? "override" : 1))
+			// bez "override": ten omija limit graczy i dostaje go tylko pierwszy z kolejki (link od tickera)
+			player.Topic(null, list("late_join" = "1"))
 		if("observe")
-			player.Topic(null, list("ready" = PLAYER_READY_TO_OBSERVE))
+			player.Topic(null, list("ready" = "[PLAYER_READY_TO_OBSERVE]"))
 		if("character_setup")
 			player.client.prefs.open_menu(player, PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		if("settings")
