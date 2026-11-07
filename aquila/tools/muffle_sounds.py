@@ -49,8 +49,9 @@ def pick_sounds():
     picked |= set(re.findall(r"'([^']+\.ogg)'", sfx))
     for pattern in EXTRA_GLOBS:
         picked |= {p.replace('\\', '/') for p in glob.glob(pattern)}
-    # Głosy mają własne kopie (voice_muffled_sounds.dm), stłumione kopie nie potrzebują kopii
-    return sorted(f for f in picked if os.path.isfile(f) and '/speech' not in f and not f.startswith(OUT_DIR))
+    # Głosy mają własne kopie (voice_muffled_sounds.dm), stłumione kopie nie potrzebują kopii.
+    # Istnienie pliku sprawdza main() po dopasowaniu wielkości liter (real_paths), bo kod bywa pisany 'Glassbr3.ogg'.
+    return sorted(f for f in picked if '/speech' not in f and not f.startswith(OUT_DIR))
 
 
 def muffle(src, dst):

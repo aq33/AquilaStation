@@ -216,7 +216,9 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
-			if(length(path) && get_turf(H) == path[1]) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+			if(!length(path)) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+				return FALSE
+			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
 		for(var/obj/structure/possible_barrier in this_turf)
@@ -231,7 +233,9 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
-			if(length(path) && get_turf(H) == path[1]) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+			if(!length(path)) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+				return FALSE
+			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
 		if(!length(path)) // AQ EDIT - the path was reset while climbing
