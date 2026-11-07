@@ -3724,6 +3724,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"rO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = -30
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
 "rP" = (
 /obj/machinery/airalarm/directional/north,
 /obj/structure/disposalpipe/segment{
@@ -5239,6 +5252,19 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/red/telecomms,
 /area/comms)
+"Aw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
 "AD" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -5382,6 +5408,10 @@
 	dir = 8
 	},
 /area/engine/engine_room)
+"BG" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "BH" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = 27
@@ -5400,6 +5430,11 @@
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"BM" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "BQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -5896,6 +5931,17 @@
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"ES" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/item/holosign_creator/atmos,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "ET" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/item/airlock_painter,
@@ -6838,6 +6884,15 @@
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"Kh" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons)
 "Kl" = (
 /obj/machinery/missile_builder/assembler{
 	dir = 1
@@ -7102,6 +7157,12 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/crew_quarters/heads/chief)
+"Lw" = (
+/obj/machinery/door/poddoor/ship{
+	id = "mining_bay"
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "Lz" = (
 /turf/closed/wall/ship,
 /area/maintenance/department/electrical)
@@ -8651,6 +8712,13 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"Tf" = (
+/obj/machinery/computer/ai_overclocking{
+	dir = 1
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "Ti" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/engine,
@@ -9177,6 +9245,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engine_room)
+"Wj" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "Wo" = (
 /obj/structure/closet/secure_closet/engineering_electrical{
 	anchored = 1
@@ -37184,7 +37259,7 @@ NK
 VT
 vk
 HW
-dW
+Lw
 dD
 Ks
 Ks
@@ -44368,7 +44443,7 @@ SV
 Nq
 MJ
 iy
-AD
+Kh
 FV
 MI
 NL
@@ -44611,7 +44686,7 @@ fV
 PI
 Sn
 Rg
-zX
+ES
 Wy
 uZ
 bn
@@ -44869,7 +44944,7 @@ PI
 Sf
 Gk
 KK
-GG
+rO
 uZ
 Ur
 Xo
@@ -45125,7 +45200,7 @@ pL
 PI
 rt
 VC
-dh
+Aw
 zH
 uZ
 uZ
@@ -45383,7 +45458,7 @@ PI
 Qx
 Vd
 gc
-bo
+BG
 bm
 bQ
 jK
@@ -47180,9 +47255,9 @@ qN
 rG
 MZ
 GH
-aW
-yE
-bg
+Wj
+BM
+Tf
 gV
 EW
 lw
