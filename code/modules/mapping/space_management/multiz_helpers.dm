@@ -1,10 +1,15 @@
 /proc/get_step_multiz(ref, dir)
+	// AQ EDIT START - makra zamiast procek SSmapping (tgstation/tgstation#76248)
+	var/turf/ref_turf
 	if(dir & UP)
 		dir &= ~UP
-		return get_step(SSmapping.get_turf_above(get_turf(ref)), dir)
+		ref_turf = get_turf(ref)
+		return get_step(GET_TURF_ABOVE(ref_turf), dir)
 	if(dir & DOWN)
 		dir &= ~DOWN
-		return get_step(SSmapping.get_turf_below(get_turf(ref)), dir)
+		ref_turf = get_turf(ref)
+		return get_step(GET_TURF_BELOW(ref_turf), dir)
+	// AQ EDIT END
 	return get_step(ref, dir)
 
 /proc/get_dir_multiz(turf/us, turf/them)
@@ -28,10 +33,10 @@
 		return (dir | get_dir(us, them))
 
 /turf/proc/above()
-	return get_step_multiz(src, UP)
+	return GET_TURF_ABOVE(src) // AQ EDIT - makro zamiast get_step_multiz (tgstation/tgstation#76248)
 
 /turf/proc/below()
-	return get_step_multiz(src, DOWN)
+	return GET_TURF_BELOW(src) // AQ EDIT - makro zamiast get_step_multiz (tgstation/tgstation#76248)
 
 /proc/dir_inverse_multiz(dir)
 	var/holder = dir & (UP|DOWN)

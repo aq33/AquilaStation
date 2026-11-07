@@ -51,21 +51,11 @@
 
 // Attempt to get the turf below the provided one according to Z traits
 /datum/controller/subsystem/mapping/proc/get_turf_below(turf/T)
-	if (!T)
-		return
-	var/offset = level_trait(T.z, ZTRAIT_DOWN)
-	if (!offset)
-		return
-	return locate(T.x, T.y, T.z + offset)
+	return GET_TURF_BELOW(T) // AQ EDIT - multiz_levels zamiast level_trait (tgstation/tgstation#76248)
 
 // Attempt to get the turf above the provided one according to Z traits
 /datum/controller/subsystem/mapping/proc/get_turf_above(turf/T)
-	if (!T)
-		return
-	var/offset = level_trait(T.z, ZTRAIT_UP)
-	if (!offset)
-		return
-	return locate(T.x, T.y, T.z + offset)
+	return GET_TURF_ABOVE(T) // AQ EDIT - multiz_levels zamiast level_trait (tgstation/tgstation#76248)
 
 // Prefer not to use this one too often
 /datum/controller/subsystem/mapping/proc/get_station_center()
