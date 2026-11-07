@@ -380,6 +380,10 @@
       rundy i skasowanie zapisu. Zniszczenie statku i nowa kampania kasują zapis.'
   - config: SHIP_STRUCTURE_PERSISTENCE w game_options.txt włącza trwałą strukturę
       statku.
+  - bugfix: Cela izolacyjna, biblioteka i panele słoneczne w losowych pokojach znów
+      mogą się pojawić (wskazywały nieistniejące pliki map).
+  - code_imp: CI sprawdza mapy Aquili, urwane rury i terminale bez kabla na mapach
+      oraz rozmiary losowych pokoi.
   LemonInTheDark:
   - code_imp: Piętra statku są liczone raz przy tworzeniu poziomu, co przyspiesza
       dźwięki i ruch między piętrami.
