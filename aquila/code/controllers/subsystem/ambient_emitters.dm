@@ -192,7 +192,8 @@ SUBSYSTEM_DEF(ambient_emitters)
 
 /obj/machinery/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(ambient_hum && SSambient_emitters.emitter_cells[src])
+	// Także maszyna, która w Initialize() była poza mapą: add_emitter() sam pomija brak kafelka i podmienia stary wpis
+	if(ambient_hum)
 		SSambient_emitters.add_emitter(src)
 
 /// Czy maszyna teraz szumi

@@ -92,6 +92,10 @@
 		TEST_ASSERT(heard[1] < 0.3, "A loud sound should go around the wall through the open door (got [heard[1]])")
 		TEST_ASSERT(isturf(heard[2]) && heard[2] != source_turf, "The sound should come from the side of the door")
 		var/through_door = heard[1]
+		// Mapa cichszego dźwięku z tego samego kafelka (mniejszy zasięg) nie może zasłonić drogi głośniejszemu
+		GLOB.sound_path_cache = new /datum/sound_path_map(source_turf, 1)
+		heard = sound_heard_through(source_turf, listener, 80, SOUND_RANGE, source_turf)
+		TEST_ASSERT_EQUAL(heard[1], through_door, "A cached map with a smaller radius should be rebuilt")
 		// Zamknięte drzwi: zostaje tylko dłuższa droga dookoła pokoju testowego albo sama ściana
 		side_door.density = TRUE
 		GLOB.sound_path_cache = null
@@ -119,6 +123,12 @@
 	qdel(hum_wall)
 	qdel(hum)
 	TEST_ASSERT(!length(SSambient_emitters.select_for(listener_turf)), "A deleted machine should stop humming")
+
+	// Maszyna stworzona poza mapą szumi po przeniesieniu na kafelek
+	var/obj/machinery/aquila_test_hum/late_hum = new(null)
+	late_hum.forceMove(source_turf)
+	TEST_ASSERT(late_hum in SSambient_emitters.select_for(listener_turf), "A machine moved onto the map after Initialize should hum")
+	qdel(late_hum)
 
 /// Maszyna, która zawsze szumi (do testu)
 /obj/machinery/aquila_test_hum

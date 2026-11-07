@@ -11,6 +11,7 @@ import collections
 import glob
 import os
 import re
+import subprocess
 import sys
 
 import numpy as np
@@ -70,26 +71,34 @@ def muffle(src, dst):
     return True
 
 
+def real_paths():
+    """Ścieżki plików z repozytorium z prawdziwą wielkością liter (kod bywa pisany 'Glassbr3.ogg' przy pliku glassbr3.ogg)."""
+    listed = subprocess.run(['git', 'ls-files', '*.ogg'], capture_output=True, text=True, encoding='utf-8', check=True)
+    return {path.lower(): path for path in listed.stdout.split('\n') if path}
+
+
 def main():
-    sounds = pick_sounds()
-    done = []
-    taken = set()
-    for src in sounds:
-        dst = f'{OUT_DIR}/{src}'
-        # Fireball.ogg i fireball.ogg to dwa pliki, ale na Windowsie kopie nadpisałyby się nawzajem
-        if dst.lower() in taken:
-            print(f'pominięty {src}: kopia o tej nazwie już jest (wielkość liter)', file=sys.stderr)
+    real = real_paths()
+    # prawdziwy plik -> pisownie użyte w kodzie; kopia leży pod prawdziwą nazwą, klucz jest dla każdej pisowni
+    spellings = collections.defaultdict(set)
+    for src in pick_sounds():
+        actual = real.get(src.lower())
+        if not actual:
+            print(f'pominięty {src}: nie ma go w repozytorium', file=sys.stderr)
             continue
-        taken.add(dst.lower())
+        spellings[actual].update({src, actual})
+    done = []
+    for actual in sorted(spellings):
+        dst = f'{OUT_DIR}/{actual}'
         try:
-            if muffle(src, dst):
-                done.append((src, dst))
+            if muffle(actual, dst):
+                done.append((actual, dst))
         except Exception as error:  # uszkodzony albo nietypowy plik: zostaje bez kopii
-            print(f'pominięty {src}: {error}', file=sys.stderr)
+            print(f'pominięty {actual}: {error}', file=sys.stderr)
     lines = ['// Wygenerowane przez aquila/tools/muffle_sounds.py, nie edytuj ręcznie.',
              f'/// Stłumione kopie dźwięków (filtr dolnoprzepustowy {CUTOFF_HZ} Hz) do wygłuszania przez ściany, klucz to ścieżka oryginału jako tekst',
              'GLOBAL_LIST_INIT(muffled_sounds, list(']
-    lines += [f"\t\"{src}\" = '{dst}'," for src, dst in done]
+    lines += [f"\t\"{src}\" = '{dst}'," for actual, dst in done for src in sorted(spellings[actual])]
     lines[-1] = lines[-1].rstrip(',')
     lines.append('))')
     with open(DM_OUT, 'w', encoding='utf-8', newline='\n') as out:

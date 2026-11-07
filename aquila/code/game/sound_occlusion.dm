@@ -94,6 +94,8 @@
 /datum/sound_path_map
 	var/turf/source
 	var/created
+	/// Do ilu kroków sięga mapa; dźwięk o innym zasięgu potrzebuje własnej
+	var/radius
 	/// kafelek -> liczba kroków od źródła
 	var/list/steps = list()
 	/// kafelek -> poprzedni kafelek w stronę źródła
@@ -102,6 +104,7 @@
 /datum/sound_path_map/New(turf/source_turf, radius)
 	source = source_turf
 	created = world.time
+	src.radius = radius
 	steps[source_turf] = 0
 	var/list/queue = list(source_turf)
 	var/index = 1
@@ -129,9 +132,10 @@ GLOBAL_DATUM(sound_path_cache, /datum/sound_path_map)
 	var/occlusion = get_sound_occlusion(source_turf, listener_turf)
 	if(occlusion < SOUND_OCCLUSION_MUFFLE_THRESHOLD || volume < SOUND_PATH_MIN_VOLUME || !listener_turf || listener_turf.z != source_turf.z)
 		return list(occlusion, source)
+	var/radius = min(max_distance, SOUND_RANGE)
 	var/datum/sound_path_map/paths = GLOB.sound_path_cache
-	if(!paths || paths.source != source_turf || paths.created + SOUND_PATH_CACHE_TIME < world.time)
-		paths = new /datum/sound_path_map(source_turf, min(max_distance, SOUND_RANGE))
+	if(!paths || paths.source != source_turf || paths.radius != radius || paths.created + SOUND_PATH_CACHE_TIME < world.time)
+		paths = new /datum/sound_path_map(source_turf, radius)
 		GLOB.sound_path_cache = paths
 	var/path_steps = paths.steps[listener_turf]
 	if(isnull(path_steps))
