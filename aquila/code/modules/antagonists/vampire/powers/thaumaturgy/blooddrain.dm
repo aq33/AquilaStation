@@ -90,7 +90,7 @@
 	vampire = firer
 	spell = fired_from
 	spell.active_effect = src
-	drain_beam = vampire.Beam(new_owner, icon = 'icons/effects/beam.dmi', icon_state = "blood_beam", time = 22 SECONDS, maxdistance = 7)
+	drain_beam = vampire.Beam(new_owner, icon = 'icons/effects/beam.dmi', icon_state = "blood_beam", time = 22 SECONDS, maxdistance = 8) // AQUILA: the beam breaks at get_dist >= maxdistance, 8 keeps a victim at the full range of 7
 	RegisterSignal(drain_beam, COMSIG_QDELETING, PROC_REF(end_drain))
 	new_owner.visible_message(span_warningbold("[vampire] zaczyna wysysać siły życiowe! Ofiara: [new_owner]!"), span_warningbold("[vampire] wysysa z ciebie siły życiowe! Musisz uciec poza zasięg, żeby to przerwać!"))
 	. = ..()
@@ -122,7 +122,8 @@
 		end_drain()
 		return
 
-	if(HAS_TRAIT(owner, TRAIT_INCAPACITATED) || owner.stat)
+	// AQUILA: our core never sets TRAIT_INCAPACITATED for stuns and stamina crit, a downed victim counts as incapacitated
+	if(HAS_TRAIT(owner, TRAIT_INCAPACITATED) || owner.stat || !(owner.mobility_flags & MOBILITY_STAND))
 		//If the victim is incapacitated, drain their blood
 		owner.blood_volume -= blood_drain
 	else

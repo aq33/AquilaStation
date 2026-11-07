@@ -142,6 +142,10 @@
 	new /obj/item/stack/rods(drop_turf, 4)
 	return ..()
 
+/// AQUILA: the generic drag buckle skipped the bolting check and the torture reset below, so the rack buckles only through MouseDrop_T
+/obj/structure/vampire/vassalrack/mouse_buckle_handling(mob/living/M, mob/living/user)
+	return FALSE
+
 /obj/structure/vampire/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
 	if(..())
 		return
@@ -166,7 +170,7 @@
  * Attempts to buckle target into the Vassalization Rack
  */
 /obj/structure/vampire/vassalrack/proc/attach_victim(mob/living/target, mob/living/user)
-	if(!buckle_mob(target))
+	if(!buckle_mob(target, check_loc = FALSE)) // AQUILA: the victim stands on the next tile, buckle_mob moves it onto the rack
 		return
 	user.visible_message(
 		span_notice("[user] przypina [target] do stołu, unieruchamiając ofiarę."),
@@ -241,6 +245,7 @@
 			unbuckle_mob(buckled_carbons)
 		else
 			user_unbuckle_mob(buckled_carbons, user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN // AQUILA: right_click_attack_chain needs a SECONDARY_ATTACK_* result
 
 /obj/structure/vampire/vassalrack/attackby(obj/item/attacking_item, mob/living/user, list/modifiers)
 	if(IS_VAMPIRE(user) && has_buckled_mobs() && !user.combat_mode)
