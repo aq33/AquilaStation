@@ -10,7 +10,9 @@
 		'aquila/sound/machines/fire_alarm/fire_alarm4.ogg',
 	)
 	mid_length = 2.4 SECONDS
-	volume = 45
+	// Jak w tg (75), z zasięgiem o 3 kratki większym, żeby alarm było słychać w całym pomieszczeniu
+	volume = 75
+	extra_range = 3
 
 /datum/looping_sound/firealarm/sound_loop(starttime)
 	var/obj/machinery/firealarm/alarm = parent
