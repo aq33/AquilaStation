@@ -274,3 +274,10 @@
       się całą flotą.
   - admin: 'Nowe przełączniki w Debug: Toggle overmap scale, Toggle AI morale, oraz
       „Strojenie AI” do zmiany liczb walki AI w trakcie rundy.'
+'2026-11-07':
+  Joker66613:
+  - bugfix: Oględziny pustej minikarty SI i konsoli przeciwlotniczej bez wieżyczki
+      znów pokazują opis.
+  - bugfix: W wersji angielskiej opis czapek poczty nie jest już pusty.
+  - bugfix: Przy pierwszym wejściu lobby otwiera się dopiero po wyborze języka, a
+      okno wyboru czeka, aż gra się wczyta.
