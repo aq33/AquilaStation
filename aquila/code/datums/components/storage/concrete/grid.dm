@@ -26,10 +26,9 @@
 #define GRID_COLOR_OVERFLOW "#ee7b7b"
 /// Obrys podglądu lądowania, gdy przedmiot się mieści
 #define GRID_COLOR_PREVIEW "#ffffff"
-/// Bok kratki siatki w pikselach, równy kaflowi świata: ikony 32 px skalują się tylko 1× albo 2× (grid_icon_scale()),
-/// więc piksele zostają ostre. Przy 24 px ikony szły w skali 0,75 i 1,5 i wychodziły rozmyte albo nierówne.
+/// Bok kratki siatki w pikselach. Mniejszy niż kafel świata (32), żeby okno plecaka nie zasłaniało pół ekranu.
 /// Kafle i tło w aquila/icons/hud/storage_grid.dmi są rysowane w tym rozmiarze
-#define GRID_CELL_SIZE 32
+#define GRID_CELL_SIZE 24
 /// Wysokość paska z nagłówkiem nad siatką
 #define GRID_HEADER_HEIGHT 18
 
@@ -259,8 +258,8 @@
 		mark_cells(occupancy, I, spot[1], spot[2], shape[1], shape[2])
 	return occupancy
 
-/// screen_loc dla punktu odsuniętego o px, py pikseli od lewego dolnego rogu siatki. Środki ikon i nagłówek nie leżą
-/// na granicach kafli ekranu, więc pozycje liczymy w pikselach i rozkładamy na kafel i przesunięcie
+/// screen_loc dla punktu odsuniętego o px, py pikseli od lewego dolnego rogu siatki. Kratki są mniejsze niż kafel ekranu,
+/// więc pozycje liczymy w pikselach i rozkładamy na kafel i przesunięcie
 /datum/component/storage/concrete/grid/proc/grid_loc(px, py)
 	var/tile = world.icon_size
 	var/total_x = (screen_start_x - 1) * tile + screen_pixel_x + px
@@ -269,10 +268,11 @@
 	var/tile_y = FLOOR(total_y / tile, 1)
 	return "[tile_x + 1]:[total_x - tile_x * tile],[tile_y + 1]:[total_y - tile_y * tile]"
 
-/// Skala ikony przedmiotu w kształcie width x height: ikona 32 px w jednej kratce, a od 2x2 w górę na dwie kratki.
-/// Przy kratce 32 px to zawsze 1 albo 2, czyli całkowita skala bez rozmycia
+/// Skala ikony przedmiotu na siatce: zawsze 1. Kratka ma 24 px, więc dopasowanie ikony 32 px do kratek dawało skalę
+/// 0,75 albo 1,5, a przy ułamkowej skali piksele rozmywają się albo wychodzą nierówne. Ikona 32 px jest wyśrodkowana
+/// na swoim kształcie: na dużych kształtach zostaje wolne miejsce, a na 1x1 i 1x2 szerszy sprite lekko wystaje poza kratkę
 /datum/component/storage/concrete/grid/proc/grid_icon_scale(width, height)
-	return (min(width, height) >= 2 ? 2 : 1) * grid_cell_size / world.icon_size
+	return 1
 
 /// Piksel na ekranie (od lewego dolnego rogu siatki), w którym trzeba postawić ikonę 32 px, żeby jej środek
 /// wypadł na środku prostokąta width x height kratek zaczynającego się w (px, py)
