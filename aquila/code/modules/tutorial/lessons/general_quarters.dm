@@ -88,7 +88,7 @@
 	UnregisterSignal(pager, COMSIG_TUTORIAL_ITEM_USED)
 	remove_highlight(pager)
 	current_step = "squads"
-	describe_step("Na Aquili załoga bez stanowiska bojowego trafia do <b>składów</b>. <b>Able</b> i <b>Charlie</b> naprawiają statek i łatają wyłomy, <b>Baker</b> to skład medyczny, a <b>Duff</b> pomaga przy amunicji. Kolor składu widać na hełmie i w HUD-zie. Składy przydziela XO na swojej konsoli, a rozkazy dowódcy przychodzą na pager. Pager trzymaj przy sobie, najlepiej przy pasie.", 16 SECONDS, PROC_REF(require_vendor))
+	describe_step("Na Aquili załoga bez stanowiska bojowego trafia do <b>składów</b>. <b>Able</b> i <b>Charlie</b> naprawiają statek i łatają wyłomy, <b>Baker</b> to skład medyczny, a <b>Duff</b> pomaga działowi uzbrojenia. Kolor składu widać na hełmie i w HUD-zie. Składy przydziela XO na swojej konsoli, a rozkazy dowódcy przychodzą na pager. Pager trzymaj przy sobie, najlepiej przy pasie.", 16 SECONDS, PROC_REF(require_vendor))
 
 // 3. Wyposażenie
 

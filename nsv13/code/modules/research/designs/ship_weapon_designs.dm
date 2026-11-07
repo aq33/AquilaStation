@@ -1,7 +1,7 @@
 //General weapons stuff
 /datum/design/board/munitions_computer_circuit
-	name = "Projekt komputera (komputer kontroli amunicji)"
-	desc = "Pozwala zbudować konsolę kontroli amunicji."
+	name = "Projekt komputera (komputer kontroli uzbrojenia)"
+	desc = "Pozwala zbudować konsolę kontroli uzbrojenia."
 	id = "munitions_computer_circuit"
 	build_type = PROTOLATHE|IMPRINTER
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/gold = 1000)

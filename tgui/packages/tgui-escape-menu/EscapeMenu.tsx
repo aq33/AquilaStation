@@ -64,6 +64,10 @@ export type ServerState = {
   controls: ControlSection[];
   /** AQUILA: język gry (moduł aquila/code/modules/i18n); bez niego nie ma przełącznika */
   gameLanguage?: string;
+  /** AQUILA: czat głosowy włączony na serwerze (aquila/code/modules/voice_chat) */
+  voiceChat?: boolean;
+  /** AQUILA: strona czatu głosowego gracza jest połączona */
+  voiceChatConnected?: boolean;
 };
 
 type State = {

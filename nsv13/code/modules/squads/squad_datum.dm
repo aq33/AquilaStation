@@ -178,6 +178,6 @@
 
 /datum/squad/duff
 	name = "Duff"
-	desc = "Drużyna Duff składa się z poborowych i dezerterów. To banda łotrów, ale bywa przydatna, gdy w dziale amunicji brakuje rąk do pracy. Dostęp do broni dajesz im na własne ryzyko."
+	desc = "Drużyna Duff składa się z poborowych i dezerterów. To banda łotrów, ale bywa przydatna, gdy w dziale uzbrojenia brakuje rąk do pracy. Dostęp do broni dajesz im na własne ryzyko."
 	role = MUNITIONS_SUPPORT
 	colour = "#c864c8"
