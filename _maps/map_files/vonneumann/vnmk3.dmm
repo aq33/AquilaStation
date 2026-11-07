@@ -488,10 +488,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering/reactor_control)
-"atr" = (
-/obj/item/target/syndicate,
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "att" = (
 /obj/structure/cable/yellow,
 /obj/machinery/firealarm/directional/west,
@@ -1029,6 +1025,10 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"aMk" = (
+/obj/machinery/computer/prisoner/gulag_teleporter_computer,
+/turf/open/floor/carpet/police,
+/area/security/brig)
 "aMC" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/four,
@@ -1438,6 +1438,18 @@
 "bcQ" = (
 /turf/closed/wall/r_wall/ship,
 /area/nsv/weapons/port)
+"bda" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/ship/security/glass{
+	name = "Dok promu obozu pracy";
+	req_one_access_txt = "2"
+	},
+/turf/open/floor/monotile/dark,
+/area/security/brig)
 "bdm" = (
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/circuit,
@@ -1527,14 +1539,6 @@
 	},
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
-"bhb" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bhE" = (
 /obj/machinery/door/airlock/ship/public/glass,
 /obj/machinery/door/firedoor/border_only,
@@ -3712,6 +3716,13 @@
 "cWX" = (
 /turf/closed/wall/r_wall/ship,
 /area/crew_quarters/heads/cmo)
+"cXh" = (
+/obj/item/target/syndicate,
+/obj/machinery/gulag_item_reclaimer{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/police,
+/area/security/brig)
 "cXS" = (
 /obj/machinery/computer/ship/fighter_controller{
 	dir = 8
@@ -4760,19 +4771,6 @@
 /obj/structure/reagent_dispensers/foamtank/hull_repair_juice,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"dMx" = (
-/obj/structure/cable,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/ship/maintenance{
-	req_one_access_txt = "12"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/toilet/restrooms)
 "dMB" = (
 /obj/machinery/camera/autoname{
 	dir = 5
@@ -5334,19 +5332,6 @@
 /obj/machinery/aug_manipulator,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
-"eqP" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/turf/open/floor/carpet/ship,
-/area/security)
 "erp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7681,10 +7666,6 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/security)
-"ghg" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "ghr" = (
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/junction{
@@ -9271,10 +9252,6 @@
 	},
 /turf/open/floor/carpet/ship/blue,
 /area/crew_quarters/cryopods)
-"hvZ" = (
-/obj/item/target,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "hxc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/full,
@@ -9542,6 +9519,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hIL" = (
+/obj/machinery/gulag_teleporter,
+/turf/open/floor/carpet/police,
+/area/security/brig)
 "hJe" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/remains/xeno,
@@ -18727,23 +18708,6 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering/reactor_control)
-"pAu" = (
-/obj/structure/table/wood,
-/obj/item/folder/red{
-	pixel_x = -4
-	},
-/obj/item/folder/red{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/obj/item/folder/red{
-	pixel_y = 4
-	},
-/obj/machinery/recharger{
-	pixel_x = 14
-	},
-/turf/open/floor/carpet/ship,
-/area/security)
 "pAK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -19067,6 +19031,13 @@
 /obj/machinery/meter,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering/reactor_control)
+"pOG" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/dark,
+/area/security/brig)
 "pPT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -19543,6 +19514,17 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/maintenance/starboard/aft)
+"qjT" = (
+/obj/docking_port/stationary{
+	dwidth = 2;
+	height = 5;
+	id = "laborcamp_home";
+	name = "von neumann gulag shuttle dock";
+	roundstart_template = /datum/map_template/shuttle/labour/corg;
+	width = 8
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "qke" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -20732,6 +20714,15 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"rlQ" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/ship/maintenance{
+	dir = 4;
+	name = "Techniczne brygu";
+	req_access_txt = "12;63"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "rmW" = (
 /turf/closed/wall/ship,
 /area/tcommsat/computer)
@@ -21043,6 +21034,22 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/circuit/green/anim,
 /area/engine/engineering/reactor_control)
+"rDu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/obj/machinery/computer/security/labor{
+	dir = 1
+	},
+/turf/open/floor/carpet/ship,
+/area/security)
 "rDH" = (
 /obj/machinery/button/door{
 	id = "cargi";
@@ -21600,6 +21607,10 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/port)
+"sfB" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/security/brig)
 "sgm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -23109,6 +23120,20 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame1/central)
+"tmO" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/ship/maintenance{
+	name = "Techniczne brygu";
+	req_access_txt = "12;63"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/toilet/restrooms)
 "tmP" = (
 /obj/structure/chair/wood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -23177,11 +23202,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/aisat/hallway)
-"tos" = (
-/obj/structure/frame/machine,
-/obj/item/stock_parts/scanning_module,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "tpL" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow,
@@ -23539,6 +23559,16 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/ship,
+/area/security/brig)
+"tER" = (
+/obj/machinery/door/airlock/ship/external/glass{
+	name = "Dok promu obozu pracy";
+	req_one_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 2
+	},
+/turf/open/floor/monotile/dark,
 /area/security/brig)
 "tFx" = (
 /obj/effect/turf_decal/tile/purple/tile_side{
@@ -24675,6 +24705,26 @@
 "uCG" = (
 /turf/closed/wall/r_wall/ship,
 /area/hydroponics)
+"uCH" = (
+/obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = -4
+	},
+/obj/item/folder/red{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/folder/red{
+	pixel_y = 4
+	},
+/obj/machinery/recharger{
+	pixel_x = 14
+	},
+/obj/item/paper/guides/jobs/security/labor_camp{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/ship,
+/area/security)
 "uDn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
 	dir = 8;
@@ -25626,6 +25676,16 @@
 /obj/machinery/ai_slipper,
 /turf/open/floor/carpet/ship/blue,
 /area/bridge/cic)
+"vvf" = (
+/obj/machinery/door/airlock/ship/external/glass{
+	name = "Dok promu obozu pracy";
+	req_one_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/security/brig)
 "vvG" = (
 /obj/machinery/door/airlock/ship/maintenance{
 	req_one_access_txt = "12"
@@ -27177,18 +27237,6 @@
 "wJw" = (
 /turf/open/floor/monofloor/airless,
 /area/nsv/hanger/mining)
-"wJx" = (
-/obj/machinery/door/airlock/ship/maintenance{
-	name = "Brig Maintenance";
-	req_access_txt = "12;63"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/security/brig)
 "wJX" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
@@ -27819,12 +27867,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"xsr" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/costume,
-/obj/item/storage/toolbox/emergency,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "xsF" = (
 /obj/structure/cable/yellow,
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -27931,6 +27973,13 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"xxx" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/security/brig)
 "xxS" = (
 /obj/machinery/light_switch/north{
 	pixel_y = -5;
@@ -51043,7 +51092,7 @@ bql
 uov
 xLB
 cQF
-eqP
+rDu
 fVf
 vrq
 lrS
@@ -51244,7 +51293,7 @@ bEA
 bql
 dvl
 xLB
-pAu
+uCH
 iSp
 uQe
 mMV
@@ -52041,7 +52090,7 @@ lfF
 vYj
 wEM
 nJc
-nZh
+rlQ
 fVD
 fVD
 fVD
@@ -52243,7 +52292,7 @@ lfF
 vYj
 wEM
 nJc
-cOA
+sfB
 fVD
 cFm
 csN
@@ -52442,11 +52491,11 @@ lfF
 lfF
 lfF
 lfF
-wIv
+jRk
 nJc
 nJc
-bhb
-wJx
+xxx
+bda
 jDc
 jDc
 jDc
@@ -52643,14 +52692,14 @@ lfF
 lfF
 lfF
 lfF
-wEM
-rle
+jRk
+jRk
 nJc
-tos
-cOA
+fVD
+sfB
 fVD
 dPk
-dCz
+aMk
 rjG
 rYg
 lzK
@@ -52844,15 +52893,15 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
-nJc
-hvZ
-cOA
+jRk
+jRk
+qjT
+tER
+vvf
+sfB
 fVD
 lIo
-dCz
+hIL
 bxl
 rYg
 wZP
@@ -53046,12 +53095,12 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
+jRk
+jRk
+jRk
 nJc
-xsr
-cOA
+fVD
+pOG
 fVD
 dHl
 wbI
@@ -53248,17 +53297,17 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
+jRk
+jRk
+jRk
 nJc
-ghg
-cOA
+fVD
+sfB
 fVD
 kFW
 kpO
 wIM
-atr
+cXh
 eLx
 xtl
 xtl
@@ -53450,12 +53499,12 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
+jRk
+jRk
+jRk
 heX
 jFH
-dMx
+tmO
 heX
 heX
 heX
@@ -53652,9 +53701,9 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
+jRk
+jRk
+jRk
 heX
 woy
 rGi
@@ -53854,9 +53903,9 @@ lfF
 lfF
 lfF
 lfF
-jeA
-wEM
-rle
+jRk
+jRk
+jRk
 heX
 jFH
 jFH
@@ -54058,7 +54107,7 @@ lfF
 lfF
 jeA
 wEM
-rle
+wIv
 heX
 hQk
 mzM

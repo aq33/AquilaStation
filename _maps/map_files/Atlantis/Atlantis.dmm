@@ -2335,16 +2335,6 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/monotile/dark,
 /area/storage/eva)
-"bPj" = (
-/obj/structure/closet/secure_closet/genpop,
-/obj/item/clothing/under/rank/prisoner,
-/obj/item/clothing/under/rank/prisoner,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 1
-	},
-/turf/open/floor/monotile/dark,
-/area/security/prison)
 "bQe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/monotile/dark,
@@ -3944,6 +3934,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/nsv/weapons/artillery)
+"dfL" = (
+/obj/machinery/gulag_teleporter,
+/turf/open/floor/monotile/dark,
+/area/security/prison)
 "dgo" = (
 /obj/structure/rack{
 	color = "grey"
@@ -5619,6 +5613,10 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos/starboard_atmos)
+"eMt" = (
+/obj/machinery/computer/prisoner/gulag_teleporter_computer,
+/turf/open/floor/monotile/dark,
+/area/security/prison)
 "eMV" = (
 /obj/effect/turf_decal/tile/ship/full/police,
 /obj/effect/landmark/zebra_interlock_point,
@@ -5737,12 +5735,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons/artillery)
-"eSk" = (
-/obj/structure/table,
-/obj/item/key/security,
-/obj/item/clothing/glasses/material,
-/turf/open/floor/monotile/steel,
-/area/security/warden)
 "eSo" = (
 /obj/structure/chair,
 /turf/open/floor/monotile/dark,
@@ -5941,13 +5933,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine/atmos)
-"eZT" = (
-/obj/structure/closet/secure_closet/genpop,
-/obj/item/clothing/under/rank/prisoner,
-/obj/item/clothing/under/rank/prisoner,
-/obj/machinery/camera/autoname,
-/turf/open/floor/monotile/dark,
-/area/security/prison)
 "fad" = (
 /obj/effect/turf_decal/tile/ship/green,
 /obj/effect/turf_decal/tile/ship/green{
@@ -11222,6 +11207,19 @@
 "jBa" = (
 /turf/open/space/basic,
 /area/maintenance/nsv/deck2/port)
+"jBw" = (
+/obj/structure/closet/secure_closet/genpop,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 1
+	},
+/obj/machinery/gulag_item_reclaimer{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/dark,
+/area/security/prison)
 "jBQ" = (
 /obj/effect/turf_decal/stripes/white/full,
 /obj/effect/turf_decal/caution/stand_clear/red,
@@ -15610,6 +15608,15 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"nkc" = (
+/obj/structure/table,
+/obj/item/key/security,
+/obj/item/clothing/glasses/material,
+/obj/item/paper/guides/jobs/security/labor_camp{
+	pixel_x = 10
+	},
+/turf/open/floor/monotile/steel,
+/area/security/warden)
 "nke" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -17150,6 +17157,16 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"ozb" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 1
+	},
+/obj/machinery/computer/security/labor{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/security/warden)
 "ozq" = (
 /turf/open/floor/carpet/black,
 /area/chapel/office)
@@ -19193,6 +19210,17 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/hallway/secondary/exit)
+"qkx" = (
+/obj/docking_port/stationary{
+	dwidth = 2;
+	height = 5;
+	id = "laborcamp_home";
+	name = "atlantis gulag shuttle dock";
+	roundstart_template = /datum/map_template/shuttle/labour/corg;
+	width = 8
+	},
+/turf/open/space/basic,
+/area/space)
 "qkE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -21931,6 +21959,16 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"sDC" = (
+/obj/machinery/door/airlock/ship/external/glass{
+	name = "Dok promu obozu pracy";
+	req_one_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "sDI" = (
 /obj/effect/turf_decal/stripes/white/full,
 /obj/effect/turf_decal/caution/stand_clear/red,
@@ -23621,6 +23659,17 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/grid/techfloor,
 /area/science)
+"tWx" = (
+/obj/machinery/door/airlock/ship/external/glass{
+	name = "Dok promu obozu pracy";
+	req_one_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/turf/open/floor/plating,
+/area/security/prison)
 "tWT" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/warrant{
@@ -24311,13 +24360,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/science/research)
-"uBc" = (
-/obj/effect/turf_decal/ship/techfloor,
-/obj/effect/turf_decal/tile/ship/half/police{
-	dir = 1
-	},
-/turf/open/floor/monotile/dark,
-/area/security/warden)
 "uBj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/holopad,
@@ -26190,6 +26232,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/security/warden)
+"wpy" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/monotile/dark,
+/area/security/prison)
 "wpZ" = (
 /obj/structure/chair/fancy/bench/pew/left,
 /turf/open/floor/carpet/royalblack,
@@ -61757,8 +61803,8 @@ wdB
 wdB
 wdB
 wdB
-dIM
-dIM
+tMm
+tMm
 cpk
 cpk
 cpk
@@ -62015,12 +62061,12 @@ wdB
 wdB
 wdB
 wdB
-dIM
-dIM
+tMm
 cpk
-bPj
+cpk
+jBw
 jnG
-jnG
+eMt
 cMC
 hIF
 wRO
@@ -62272,12 +62318,12 @@ wdB
 wdB
 wdB
 wdB
-wdB
-dIM
-cpk
-eZT
+qkx
+sDC
+tWx
+wpy
 jnG
-jnG
+dfL
 cMC
 hIF
 vxk
@@ -62530,11 +62576,11 @@ wdB
 wdB
 wdB
 wdB
-dIM
+cpk
 cpk
 fVt
 jnG
-jnG
+fVt
 cMC
 hIF
 tPz
@@ -62786,7 +62832,7 @@ wdB
 wdB
 wdB
 wdB
-dIM
+tMm
 dIM
 cpk
 cpk
@@ -66400,7 +66446,7 @@ xEw
 xEw
 xEw
 npc
-eSk
+nkc
 ugm
 xrd
 ayF
@@ -66917,7 +66963,7 @@ hJo
 bRw
 qiE
 tQN
-uBc
+ozb
 gwq
 vAe
 hHn

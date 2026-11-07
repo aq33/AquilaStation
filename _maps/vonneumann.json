@@ -33,5 +33,6 @@
 		"Advanced Gas Cooled Nuclear Reactor",
 		"Thirring Drive",
 		"Thermoelectric Generator"
-	]
+	],
+	"has_gulag": 1
 }

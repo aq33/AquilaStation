@@ -41,6 +41,9 @@
 		/obj/structure/desk_bell,
 		/obj/machinery/conquest_beacon,
 		/mob/living/simple_animal/hostile/retaliate/wojtek,
+		/obj/machinery/gulag_teleporter,
+		/obj/machinery/computer/prisoner/gulag_teleporter_computer,
+		/obj/machinery/gulag_item_reclaimer,
 	)
 
 /// TRUE if the TGM text places the type or one of its subtypes (atom lines start the line and end with "," "{" or a subtype "/")
@@ -89,6 +92,9 @@
 			// CI compiles the map only if it is in the ALL_MAPS block
 			var/include_path = replacetext("[map_path]/[map_file]", "/", "\\")
 			TEST_ASSERT(findtext(basemap, include_path), "[map_json]: [include_path] is not included in _maps/_basemap.dm, so CI never compiles it")
+		// The labour camp z-level loads only with has_gulag, and its shuttle needs a dock on the ship
+		TEST_ASSERT(config["has_gulag"], "[map_json]: has_gulag is not set, so the labour camp is never loaded")
+		TEST_ASSERT(findtext(map_text, "id = \"laborcamp_home\""), "[map_json]: no laborcamp_home docking port for the labour camp shuttle")
 		check_job_changes(map_json, map_path, config["map_name"])
 		if(!succeeded)
 			return
