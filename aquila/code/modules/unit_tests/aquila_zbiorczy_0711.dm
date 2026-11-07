@@ -1,7 +1,7 @@
-// Kopie makr z code/modules/unit_tests/_unit_tests.dm (tam s¹ #undef na koñcu)
+// Kopie makr z code/modules/unit_tests/_unit_tests.dm (tam sÄ… #undef na koÅ„cu)
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - strza³ z broni palnej zostawia dym (zanieczyszczenie) na kafelku strzelca, broñ na piankê nie
+/// AQUILA - strzaÅ‚ z broni palnej zostawia dym (zanieczyszczenie) na kafelku strzelca, broÅ„ na piankÄ™ nie
 /datum/unit_test/aquila_gun_smoke_pollution
 
 /datum/unit_test/aquila_gun_smoke_pollution/Run()
@@ -25,5 +25,26 @@
 	TEST_ASSERT(!toy_turf.pollution?.pollutants[/datum/pollutant/smoke], "Foam pistol left gun smoke")
 
 	QDEL_NULL(shooter_turf.pollution)
+
+/// AQUILA - karta ID w slocie ID rysuje siÄ™ na postaci, a kaÅ¼da karta ze zwykÅ‚ym sprite'em ma swÃ³j stan na postaci
+/datum/unit_test/aquila_id_worn_overlay
+
+/datum/unit_test/aquila_id_worn_overlay/Run()
+	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/card/id/captains_spare/card = allocate(/obj/item/card/id/captains_spare)
+	TEST_ASSERT(wearer.equip_to_slot_if_possible(card, ITEM_SLOT_ID), "Could not put the ID card in the ID slot")
+	var/mutable_appearance/id_overlay = wearer.overlays_standing[ID_LAYER]
+	TEST_ASSERT(id_overlay, "No ID overlay on a human wearing an ID card")
+	TEST_ASSERT(id_overlay.icon_state in icon_states(id_overlay.icon), "ID overlay state '[id_overlay.icon_state]' missing in [id_overlay.icon]")
+
+	var/list/worn_states = icon_states('aquila/icons/mob/clothing/id.dmi')
+	var/list/missing = list()
+	for(var/obj/item/card/id/card_type as anything in typesof(/obj/item/card/id))
+		if(initial(card_type.icon) != 'nsv13/icons/obj/card.dmi' || initial(card_type.worn_icon))
+			continue
+		var/state = initial(card_type.worn_icon_state) || initial(card_type.icon_state)
+		if(!(state in worn_states))
+			missing |= state
+	TEST_ASSERT(!length(missing), "ID card states without a worn sprite in aquila/icons/mob/clothing/id.dmi: [jointext(missing, ", ")]")
 
 #undef TEST_ASSERT

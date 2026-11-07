@@ -609,6 +609,7 @@
 #include "code\modules\client\preferences_menu\menu.dm"
 #include "code\modules\client\preferences_menu\assets.dm"
 #include "code\modules\clothing\clothing.dm"
+#include "code\modules\clothing\id_worn.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\head\mind_monkey_helmet.dm"
 #include "code\modules\clothing\head\misc.dm"
