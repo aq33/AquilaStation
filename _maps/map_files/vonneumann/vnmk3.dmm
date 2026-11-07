@@ -526,16 +526,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"auO" = (
-/obj/structure/sign/departments/cargo{
-	pixel_x = -31
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "ava" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1979,6 +1969,10 @@
 	},
 /turf/open/floor/engine,
 /area/cargo/lobby)
+"bwV" = (
+/obj/machinery/shipbreaker,
+/turf/closed/wall/r_wall/ship,
+/area/quartermaster/miningoffice)
 "bxi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -10869,6 +10863,13 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/aisat/hallway)
+"iHJ" = (
+/obj/machinery/computer/ship/mineral_magnet{
+	dir = 2;
+	req_access = null
+	},
+/turf/open/floor/monofloor/airless,
+/area/nsv/hanger/mining)
 "iJb" = (
 /turf/closed/wall/r_wall/ship,
 /area/engine/atmos/port_atmos)
@@ -16782,6 +16783,10 @@
 /obj/machinery/shieldgen,
 /turf/open/floor/durasteel,
 /area/engine/storage)
+"nGU" = (
+/obj/effect/landmark/asteroid_spawn,
+/turf/open/space/basic,
+/area/space)
 "nGZ" = (
 /obj/structure/cable/yellow,
 /obj/machinery/shieldwallgen{
@@ -18969,6 +18974,17 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/engine,
 /area/maintenance/nsv/bunker)
+"pDS" = (
+/obj/structure/sign/departments/cargo{
+	pixel_x = -31
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "pDT" = (
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/engine/airless,
@@ -20408,6 +20424,10 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons)
+"qNC" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space)
 "qNO" = (
 /obj/machinery/computer/telecomms/server{
 	dir = 8
@@ -23723,12 +23743,6 @@
 /obj/machinery/duct,
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame2/port)
-"tIN" = (
-/obj/effect/turf_decal/tile/brown/tile_side{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/cargo/lobby)
 "tIU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -27552,6 +27566,11 @@
 "xaH" = (
 /turf/open/floor/engine/n2,
 /area/engine/atmos/port_atmos)
+"xbN" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/turf/open/space/basic,
+/area/space)
 "xbU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -28852,6 +28871,15 @@
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/carpet/ship/purple_carpet,
 /area/crew_quarters/heads/hor)
+"yfk" = (
+/obj/effect/turf_decal/tile/brown/tile_side{
+	dir = 9
+	},
+/obj/machinery/computer/ship/dradis/mining{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/cargo/lobby)
 "yfQ" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/plating,
@@ -46025,10 +46053,10 @@ lfF
 lfF
 lfF
 lfF
+ido
 lfF
 lfF
-lfF
-lfF
+ido
 lfF
 lfF
 lfF
@@ -52055,7 +52083,7 @@ bNx
 xQw
 aOm
 xeO
-tIN
+yfk
 fDy
 lYg
 rzk
@@ -52657,7 +52685,7 @@ upN
 iQn
 bNx
 pWy
-bNx
+bwV
 dnl
 wJw
 xvV
@@ -52859,7 +52887,7 @@ cVR
 iQn
 jPC
 sFq
-auO
+pDS
 vYR
 aUr
 wJw
@@ -53469,7 +53497,7 @@ wJw
 wJw
 aUr
 wJw
-wJw
+iHJ
 rzh
 lfF
 lfF
@@ -53673,52 +53701,52 @@ tXt
 uSS
 sRB
 rzh
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
+qNC
+qNC
+qNC
+qNC
+xbN
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+xbN
 lfF
 lfF
 lfF
@@ -53879,6 +53907,7 @@ mcW
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -53918,9 +53947,8 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
-lfF
+nGU
+qNC
 lfF
 lfF
 lfF
@@ -54081,6 +54109,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -54121,8 +54150,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -54283,9 +54311,7 @@ rzk
 wEM
 vYj
 lfF
-lfF
-ido
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -54325,6 +54351,8 @@ lfF
 lfF
 lfF
 lfF
+lfF
+qNC
 lfF
 lfF
 lfF
@@ -54485,6 +54513,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -54525,8 +54554,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -54687,6 +54715,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -54727,8 +54756,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -54889,6 +54917,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -54929,8 +54958,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -55091,6 +55119,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -55131,8 +55160,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -55293,6 +55321,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -55333,8 +55362,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -55495,6 +55523,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -55535,8 +55564,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -55697,6 +55725,7 @@ rzk
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -55737,8 +55766,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -55899,6 +55927,7 @@ bcQ
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -55939,8 +55968,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -56101,6 +56129,7 @@ ftI
 wEM
 wEM
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -56141,8 +56170,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -56303,6 +56331,7 @@ bcQ
 wEM
 vYj
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -56343,8 +56372,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -56505,6 +56533,7 @@ jRk
 jRk
 jRk
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -56545,8 +56574,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -56707,6 +56735,7 @@ jRk
 jRk
 jRk
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -56747,8 +56776,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -56909,6 +56937,7 @@ jRk
 jRk
 jRk
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -56949,8 +56978,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -57111,6 +57139,7 @@ wEM
 vYj
 wEM
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -57151,8 +57180,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -57313,6 +57341,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -57353,8 +57382,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -57515,6 +57543,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -57555,8 +57584,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -57717,6 +57745,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -57757,8 +57786,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -57919,6 +57947,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -57959,8 +57988,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -58121,6 +58149,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -58161,8 +58190,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -58323,9 +58351,7 @@ wEM
 vYj
 lfF
 lfF
-lfF
-ido
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -58365,6 +58391,8 @@ lfF
 lfF
 lfF
 lfF
+lfF
+qNC
 lfF
 lfF
 lfF
@@ -58525,6 +58553,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -58565,8 +58594,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -58727,6 +58755,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -58767,8 +58796,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -58929,6 +58957,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -58969,8 +58998,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -59131,6 +59159,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -59171,8 +59200,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -59333,6 +59361,7 @@ wEM
 vYj
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -59373,8 +59402,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -59535,6 +59563,7 @@ vYj
 jeA
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -59575,8 +59604,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -59737,6 +59765,7 @@ vYj
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -59777,8 +59806,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -59939,6 +59967,7 @@ vYj
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -59979,8 +60008,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -60141,6 +60169,7 @@ jeA
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -60181,8 +60210,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -60343,6 +60371,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -60383,8 +60412,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -60545,6 +60573,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -60585,8 +60614,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -60747,6 +60775,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -60787,8 +60816,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -60949,6 +60977,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -60989,8 +61018,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -61151,6 +61179,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -61191,8 +61220,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -61353,6 +61381,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -61393,8 +61422,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -61555,6 +61583,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -61595,8 +61624,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -61757,6 +61785,7 @@ lfF
 lfF
 lfF
 lfF
+qNC
 lfF
 lfF
 lfF
@@ -61797,8 +61826,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
+qNC
 lfF
 lfF
 lfF
@@ -61959,48 +61987,48 @@ lfF
 lfF
 lfF
 lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
-lfF
+xbN
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+qNC
+xbN
 lfF
 lfF
 lfF
@@ -63218,7 +63246,7 @@ lfF
 lfF
 lfF
 lfF
-cCT
+lfF
 lfF
 lfF
 lfF
@@ -65642,7 +65670,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+cCT
 lfF
 lfF
 lfF

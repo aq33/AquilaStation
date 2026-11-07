@@ -101,6 +101,20 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/monotile/light,
 /area/medical/medbay/central)
+"age" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/computer/ship/mineral_magnet{
+	density = 0;
+	pixel_y = -32;
+	req_access = null
+	},
+/turf/open/floor/monotile/dark,
+/area/bridge/cic)
 "agN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1448,18 +1462,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/bridge)
-"bxd" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/grid/steel,
-/area/quartermaster/miningdock)
 "bxB" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -6564,15 +6566,6 @@
 	},
 /turf/open/floor/monotile/light,
 /area/medical/virology)
-"gxJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/monotile/dark,
-/area/bridge/cic)
 "gyd" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood{
@@ -7642,6 +7635,10 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/quartermaster/storage)
+"hEE" = (
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/monotile/dark/airless,
+/area/quartermaster/miningdock)
 "hEY" = (
 /obj/machinery/recharge_station,
 /obj/effect/turf_decal/tile/red{
@@ -9518,6 +9515,10 @@
 /obj/machinery/door/airlock/ship/public,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+"jHd" = (
+/obj/structure/lattice/catwalk,
+/turf/open/openspace/airless,
+/area/space)
 "jHy" = (
 /obj/structure/extinguisher_cabinet/north,
 /obj/machinery/slime_extract_requestor,
@@ -14066,6 +14067,10 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/engine/engineering)
+"oBZ" = (
+/obj/machinery/shipbreaker,
+/turf/open/floor/monotile/dark/airless,
+/area/quartermaster/miningdock)
 "oCr" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -14714,6 +14719,21 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"pnQ" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/computer/ship/dradis/mining{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grid/steel,
+/area/quartermaster/miningdock)
 "pnW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -15720,6 +15740,13 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/nsv/deck1/hallway)
+"qpC" = (
+/obj/machinery/computer/ship/mineral_magnet{
+	dir = 2;
+	req_access = null
+	},
+/turf/open/floor/monotile/dark/airless,
+/area/quartermaster/miningdock)
 "qpI" = (
 /obj/structure/railing,
 /obj/machinery/conveyor{
@@ -19133,6 +19160,10 @@
 /obj/item/gun/energy/disabler,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/crew_quarters/heads/xo)
+"tFa" = (
+/obj/effect/landmark/asteroid_spawn,
+/turf/open/openspace/airless,
+/area/space)
 "tFf" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -20842,6 +20873,11 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/xo)
+"voW" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/turf/open/openspace/airless,
+/area/space)
 "vpA" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -49466,7 +49502,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
+kGy
 rYi
 rYi
 rYi
@@ -52733,7 +52769,7 @@ tXT
 tlr
 pUC
 pYP
-bxd
+pnQ
 hyR
 gXi
 sou
@@ -54062,7 +54098,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
+bHh
 rYi
 rYi
 rYi
@@ -54349,7 +54385,7 @@ rYi
 rYi
 rYi
 rYi
-kGy
+rYi
 rYi
 rYi
 rYi
@@ -54797,8 +54833,8 @@ xyz
 xyz
 xyz
 xyz
-xyz
-xyz
+oBZ
+hEE
 lpf
 soj
 soj
@@ -56083,58 +56119,58 @@ qCi
 mMN
 vIJ
 qCi
-xyz
+qpC
 kbk
-soj
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
+xPK
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+voW
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+voW
 rYi
 rYi
 rYi
@@ -56350,20 +56386,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-bHh
+jHd
 rYi
 rYi
 rYi
@@ -56392,6 +56415,19 @@ rYi
 rYi
 rYi
 rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+rYi
+tFa
+jHd
 rYi
 rYi
 rYi
@@ -56607,6 +56643,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -56647,8 +56684,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -56864,6 +56900,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -56904,8 +56941,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -57121,6 +57157,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -57161,8 +57198,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -57378,6 +57414,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -57418,8 +57455,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -57635,6 +57671,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -57675,8 +57712,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -57892,6 +57928,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -57932,8 +57969,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -58093,7 +58129,7 @@ mqY
 njm
 vSX
 vyc
-gxJ
+age
 qti
 iAr
 dNy
@@ -58149,6 +58185,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -58189,8 +58226,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -58406,6 +58442,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -58446,8 +58483,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -58663,6 +58699,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -58703,8 +58740,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -58920,6 +58956,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -58960,8 +58997,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -59177,6 +59213,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -59217,8 +59254,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -59434,6 +59470,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -59474,8 +59511,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -59691,6 +59727,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -59731,8 +59768,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -59948,6 +59984,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -59988,8 +60025,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -60205,6 +60241,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -60245,8 +60282,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -60462,6 +60498,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -60502,8 +60539,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -60719,6 +60755,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -60759,8 +60796,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -60976,6 +61012,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -61016,8 +61053,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -61233,6 +61269,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -61273,8 +61310,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -61490,6 +61526,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -61530,8 +61567,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -61747,6 +61783,7 @@ rYi
 rYi
 rYi
 bHh
+jHd
 rYi
 rYi
 rYi
@@ -61787,8 +61824,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -62004,6 +62040,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -62044,8 +62081,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -62261,6 +62297,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -62301,8 +62338,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -62518,6 +62554,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -62558,8 +62595,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -62775,6 +62811,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -62815,8 +62852,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -63032,6 +63068,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -63072,8 +63109,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -63289,6 +63325,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -63329,8 +63366,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -63546,6 +63582,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -63586,8 +63623,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -63803,6 +63839,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -63843,8 +63880,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -64060,6 +64096,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -64100,8 +64137,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -64317,6 +64353,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -64357,8 +64394,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -64574,6 +64610,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -64614,8 +64651,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -64831,6 +64867,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -64871,8 +64908,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -65088,6 +65124,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -65128,8 +65165,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -65345,6 +65381,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -65385,8 +65422,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -65602,6 +65638,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -65642,8 +65679,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -65859,6 +65895,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -65899,8 +65936,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -66116,6 +66152,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -66156,8 +66193,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -66373,6 +66409,7 @@ rYi
 rYi
 rYi
 rYi
+jHd
 rYi
 rYi
 rYi
@@ -66413,8 +66450,7 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
+jHd
 rYi
 rYi
 rYi
@@ -66630,48 +66666,48 @@ rYi
 rYi
 rYi
 rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
-rYi
+voW
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+jHd
+voW
 rYi
 rYi
 rYi
