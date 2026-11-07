@@ -2680,6 +2680,7 @@
 #include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
 #include "code\modules\unit_tests\aquila_gang_economy.dm"
 #include "code\modules\unit_tests\aquila_salvagers.dm"
+#include "code\modules\unit_tests\aquila_logi_rund_6563.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"

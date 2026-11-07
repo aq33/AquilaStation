@@ -565,7 +565,7 @@
 		animate_projectile(target)
 
 /obj/machinery/ship_weapon/proc/overmap_sound()
-	if(length(linked_overmap_ship_weapon.overmap_firing_sounds))
+	if(length(linked_overmap_ship_weapon?.overmap_firing_sounds)) // AQ EDIT - działo bez podpiętej broni overmapy
 		linked_overmap_ship_weapon.play_weapon_sound()
 
 /**
