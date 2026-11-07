@@ -282,6 +282,27 @@
   - bugfix: Przy pierwszym wejściu lobby otwiera się dopiero po wyborze języka, a
       okno wyboru czeka, aż gra się wczyta.
   - code_imp: Test regresji dla zniszczonych części myśliwca w slotach.
+  - tweak: 'Menu radialne wygląda jak w SS14: tarcza z sektorami, podświetlony sektor
+      pod myszą, nazwa opcji nad menu.'
+  - bugfix: Okno roli antagonisty pokazuje samouczek roli (demon impulsu i wiele innych
+      ról miało tam tylko cele).
+  - bugfix: Porady abordażystów i sługi bloodlinga nie otwierają się puste.
+  - bugfix: Demon impulsu porusza się w nieważkości i nie przepycha ani nie wystrzeliwuje
+      kanistrów.
+  - tweak: Wybuch implantu karnego CE zostawia głowę z mózgiem, więc CE nie wypada
+      z rundy.
+  - tweak: Pełny plecak, pas albo kieszeń pokazuje wolne pola na czerwono.
+  - rscadd: Przycisk „Czat głosowy” w menu pod Esc.
+  - bugfix: Działo Gaussa animuje strzał obu luf.
+  - bugfix: Konsola łączności działa na statku górniczym i innych statkach załogi.
+  - bugfix: Opis przedmiotu w sklepie aquilosów nie chowa się pod podglądem postaci.
+  - bugfix: Zsyp dostaw z nowym sprite'em ma pasującą animację; moduł zsypu MOD wysyła
+      do wybranego celu.
+  - bugfix: Kamera nie zostaje na zsypie po wyjściu z niego.
+  - bugfix: Pierogi i inne składniki w mikrofali nie są czarnymi plamami.
+  - bugfix: Radio artylerii ma swój kolor w czacie i w oknie mówienia.
+  - spellcheck: Kategorie fabrykatorów po polsku, bez „The” w dymkach, dział amunicji
+      nazywa się Uzbrojenie.
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
