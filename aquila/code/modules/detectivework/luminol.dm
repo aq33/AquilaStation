@@ -197,7 +197,7 @@
 	new /obj/item/reagent_containers/spray/luminol(src)
 
 /datum/supply_pack/security/forensics
-	desc = "Depcz przestępcom po piętach dzięki Niezbędnikowi Detektywa(tm) od Nanotrasen. Zawiera skaner kryminalistyczny, luminol w sprayu, sześć torebek na dowody, aparat, dyktafon, białą kredkę i oczywiście fedorę. Do otwarcia wymaga dostępu ochrony."
+	desc = "Depcz przestępcom po piętach dzięki Niezbędnikowi Detektywa(tm) od Nanotrasen. Zawiera skaner kryminalistyczny, luminol w sprayu, sześć torebek na dowody, aparat, tablicę detektywa, dyktafon, białą kredkę i oczywiście fedorę. Do otwarcia wymaga dostępu ochrony."
 
 /datum/supply_pack/security/forensics/New()
 	. = ..()

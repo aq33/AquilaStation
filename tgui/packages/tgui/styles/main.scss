@@ -49,6 +49,7 @@
 @include meta.load-css('./interfaces/ClockworkSlab.scss');
 @include meta.load-css('./interfaces/ColorPicker.scss');
 @include meta.load-css('./interfaces/CrewManifest.scss');
+@include meta.load-css('./interfaces/DetectiveBoard.scss'); // AQUILA
 @include meta.load-css('./interfaces/Fabricator.scss');
 @include meta.load-css('./interfaces/HealthAnalyzer.scss');
 @include meta.load-css('./interfaces/IntegratedCircuit.scss');
