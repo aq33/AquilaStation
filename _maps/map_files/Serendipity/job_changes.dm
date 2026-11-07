@@ -9,7 +9,7 @@
 */
 
 //The Serendipity has a too extensive of a medbay to justify a brig physician
-MAP_REMOVE_JOB(brig_phys)
+MAP_REMOVE_JOB(brig_physician) // AQ EDIT - typ profesji to brig_physician, brig_phys nie istnieje
 //There is an ATC console in the bridge but the position is relegated to the executive officer
 MAP_REMOVE_JOB(air_traffic_controller)
 

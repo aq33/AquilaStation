@@ -12,7 +12,7 @@ MAP_REMOVE_JOB(curator)
 MAP_REMOVE_JOB(lawyer)
 MAP_REMOVE_JOB(chaplain)
 MAP_REMOVE_JOB(virologist)
-MAP_REMOVE_JOB(brig_phys)
+MAP_REMOVE_JOB(brig_physician) // AQ EDIT - typ profesji to brig_physician, brig_phys nie istnieje
 MAP_REMOVE_JOB(deputy)
 MAP_REMOVE_JOB(air_traffic_controller)
 /datum/job/bartender/New()
