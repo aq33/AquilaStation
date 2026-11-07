@@ -263,14 +263,14 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER
 	name = "beret Komendanta"
 
 /obj/item/clothing/head/beret/sec/navyhos
-	name = "galowy beret Komendanta"
+	name = "beret oficerski Komendanta"
 
 /obj/item/clothing/head/beret/sec/navywarden
-	name = "galowy beret Naczelnika"
+	name = "beret oficerski Naczelnika"
 
 // Bez własnej nazwy dziedziczył „beret żandarmski” i w SecDrobe były dwa przedmioty o tej samej nazwie
 /obj/item/clothing/head/beret/sec/navyofficer
-	name = "galowy beret Żandarma"
+	name = "beret oficerski Żandarma"
 
 /obj/item/clothing/head/beret/sec
 	name = "beret żandarmski"
