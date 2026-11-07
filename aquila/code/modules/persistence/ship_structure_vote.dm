@@ -59,5 +59,9 @@
 		return ..()
 	if(!ui || ui.status != UI_INTERACTIVE || !istype(current_vote, /datum/vote/map) || !usr?.client)
 		return TRUE
-	SSship_structure.structure?.set_keep_vote(usr.client.ckey, text2num(params["value"]) == 1)
+	// Tylko 1 (obecny statek) albo 0 (nowy statek); zła wartość nie może liczyć się jako głos
+	var/value = text2num(params["value"])
+	if(!isnum(value) || (value != 0 && value != 1))
+		return TRUE
+	SSship_structure.structure?.set_keep_vote(usr.client.ckey, value == 1)
 	return TRUE
