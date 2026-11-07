@@ -2,22 +2,38 @@
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 #define TEST_ASSERT_EQUAL(a, b, message) if ((a) != (b)) { return Fail("Assertion failed: [message ? message : "No reason"] (expected [b], got [a])") }
 
-/// Wybuch implantu karnego CE zostawia mózg: wcześniej gib(1) kasował mózg i gracz wypadał z rundy
+/// Wybuch implantu karnego CE zostawia mózg: wcześniej gib(1) kasował mózg i gracz wypadał z rundy.
+/// Sonda zapisuje argument gib() zamiast rozrywać ciało: prawdziwe gibs rozrzucają części i krew asynchronicznie,
+/// a krew lądowała na podłodze testowej po sprzątaniu i psuła późniejsze testy (aquila_review_bloody_floors)
 /datum/unit_test/aquila_engineering_implant_keeps_brain
 
+/mob/living/carbon/human/aquila_gib_probe
+	/// Argument no_brain ostatniego gib(), null = gib() nie było
+	var/gib_no_brain
+
+/mob/living/carbon/human/aquila_gib_probe/gib(no_brain, no_organs, no_bodyparts)
+	gib_no_brain = !!no_brain
+
 /datum/unit_test/aquila_engineering_implant_keeps_brain/Run()
-	var/mob/living/carbon/human/engineer = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/brain/brain = engineer.getorganslot(ORGAN_SLOT_BRAIN)
-	TEST_ASSERT(brain, "Test human has no brain")
+	var/mob/living/carbon/human/aquila_gib_probe/engineer = allocate(/mob/living/carbon/human/aquila_gib_probe)
 	var/obj/item/implant/explosive/engineering/chip = new
 	TEST_ASSERT(chip.implant(engineer, null, TRUE), "Engineering implant did not implant")
-	// Bez fali wybuchu w teście: sprawdzamy samo rozerwanie ciała
+	// Bez fali wybuchu w teście
 	chip.heavy = 0
 	chip.medium = 0
 	chip.weak = 0
 	chip.activate("stormdrive")
-	TEST_ASSERT(QDELETED(engineer), "The implant did not gib its host")
-	TEST_ASSERT(!QDELETED(brain), "The engineering implant destroyed the brain, the player leaves the round")
+	TEST_ASSERT(!isnull(engineer.gib_no_brain), "The implant did not gib its host")
+	TEST_ASSERT(!engineer.gib_no_brain, "The engineering implant destroys the brain, the player leaves the round")
+	// Zwykła mikrobomba dalej kasuje mózg
+	var/mob/living/carbon/human/aquila_gib_probe/agent = allocate(/mob/living/carbon/human/aquila_gib_probe)
+	var/obj/item/implant/explosive/bomb = new
+	TEST_ASSERT(bomb.implant(agent, null, TRUE), "Microbomb did not implant")
+	bomb.heavy = 0
+	bomb.medium = 0
+	bomb.weak = 0
+	bomb.activate("death")
+	TEST_ASSERT(agent.gib_no_brain, "The regular microbomb started keeping the brain")
 
 /// Demon impulsu nie przepycha kanistrów, pod którymi przechodzi po kablu (Bump -> PushAM)
 /datum/unit_test/aquila_pulse_demon_does_not_push
