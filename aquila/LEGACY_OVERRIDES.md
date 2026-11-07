@@ -48,6 +48,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `READPREF_INT`/`PREP_WRITEPREF_RAW`/`sanitize_integer` for `soft_lighting`, `glow_level`, `light_glare` + tags `PREFERENCE_TAG_SOFT_LIGHTING` (34), `PREFERENCE_TAG_GLOW_LEVEL` (35), `PREFERENCE_TAG_LIGHT_GLARE` (36) | `code/modules/client/preferences2/preferences2.dm`, `code/__DEFINES/preferences.dm` | Preferencje „Miękkie światło”, „Poświata” i „Promienie świateł” w bazie (`toggles2` jest pełne). Efekty w `aquila/code/modules/lighting/soft_lighting.dm`. |
 | `if(!QDELETED(L))` | `code/controllers/subsystem/mobs.dm` (`fire()`) | `currentrun` survives between ticks, so a mob deleted meanwhile still got `Life()` (e.g. an unpowered AI calling `addtimer` on itself). Test: `aquila_logi_rund_26_10` |
 | `greet_and_capture()` | `code/modules/antagonists/_common/antag_datum.dm` (`on_gain()`) | The role greeting from `greet()` is also stored and shown in the role window (`AntagInfoGeneric` intro) for roles without a `playstyle_string`. Before, many roles (pulse demon, dragon, revenant...) had only the name and objectives there. `aquila/code/modules/antagonists/_common/antag_info.dm`, test `aquila_antag_info_greeting` |
 | `GLOB.antag_greeting_capture.capture_greeting()` | `code/modules/tgchat/to_chat.dm` (`to_chat()`) | Collects the greeting lines sent to the role owner while `greet()` runs (one global null check otherwise). |
