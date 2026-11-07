@@ -567,6 +567,7 @@
 #include "code\modules\explorer_drone\scanner_array.dm"
 #include "code\modules\language\vampiric.dm"
 #include "code\modules\roundend\roundend_ui.dm"
+#include "code\modules\recycling\disposal\delivery_chute.dm"
 #include "code\modules\research\designs\bounty_market_designs.dm"
 #include "code\modules\cargo\exports\large_objects.dm"
 #include "code\modules\cargo\markets\_market.dm"
