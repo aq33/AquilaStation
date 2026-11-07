@@ -67,6 +67,7 @@
 #include "code\_onclick\hud\locked_slots.dm"
 #include "code\_onclick\hud\mouse_pointer.dm"
 #include "code\_onclick\hud\poll_alert.dm"
+#include "code\_onclick\hud\radial_ss14.dm"
 #include "code\_onclick\hud\stamina.dm"
 #include "code\_onclick\hud\vampire.dm"
 #include "code\_onclick\hud\xenobio.dm"
