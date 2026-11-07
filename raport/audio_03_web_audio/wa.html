@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>wa</title></head>
+<body style="background:#222;color:#ccc;font:11px monospace">
+<div id="out">web audio</div>
+<script>
+var ctx = null, R = '', buffers = {}, ir = null, queue = [], master = null, bus = null;
+function log(m) { queue.push(m); document.getElementById('out').textContent = m; }
+setInterval(function () {
+	if (!queue.length || !R) return;
+	var m = queue.join(' | '); queue = [];
+	window.location.href = 'byond://?src=' + R + ';walog=' + encodeURIComponent(m);
+}, 150);
+window.onerror = function (msg, u, l) { log('JSERR ' + msg + ' @' + l); };
+
+function makeIR(seconds) {
+	var rate = ctx.sampleRate, n = Math.floor(rate * seconds), buf = ctx.createBuffer(2, n, rate);
+	for (var c = 0; c < 2; c++) {
+		var d = buf.getChannelData(c);
+		for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3);
+	}
+	return buf;
+}
+
+function init(ref) {
+	R = ref;
+	try {
+		ctx = new (window.AudioContext || window.webkitAudioContext)();
+	} catch (e) { log('noctx ' + e); return; }
+	master = ctx.createGain(); master.connect(ctx.destination);
+	ir = makeIR(1.6);
+	bus = ctx.createConvolver(); bus.buffer = ir; bus.connect(master);
+	log('init state=' + ctx.state + ' rate=' + ctx.sampleRate + ' base=' + ctx.baseLatency + ' out=' + ctx.outputLatency + ' ua=' + navigator.userAgent.slice(-40) + ' url=' + location.href.slice(0, 40));
+	ctx.resume().then(function () { log('resumed state=' + ctx.state); }).catch(function (e) { log('resume err ' + e); });
+	ctx.onstatechange = function () { log('statechange ' + ctx.state); };
+}
+
+function load(name) {
+	var t0 = performance.now();
+	fetch(name).then(function (r) { if (!r.ok) throw 'http ' + r.status; return r.arrayBuffer(); })
+		.then(function (b) { return ctx.decodeAudioData(b); })
+		.then(function (buf) { buffers[name] = buf; log('loaded ' + name + ' ' + buf.duration.toFixed(2) + 's ' + Math.round(performance.now() - t0) + 'ms'); })
+		.catch(function (e) { log('load err ' + name + ' ' + e); });
+}
+
+function play(json) {
+	var p = JSON.parse(json);
+	if (!ctx || !buffers[p.f]) { log('noplay ' + p.id + ' ' + (ctx ? ctx.state : 'noctx')); return; }
+	var src = ctx.createBufferSource(); src.buffer = buffers[p.f];
+	var node = src;
+	var g = ctx.createGain(); g.gain.value = (p.v || 15) / 100;
+	if (p.lp) { var bq = ctx.createBiquadFilter(); bq.type = 'lowpass'; bq.frequency.value = p.lp; bq.Q.value = 0.7; node.connect(bq); node = bq; }
+	node.connect(g); node = g;
+	if (p.pan) {
+		var pn = ctx.createPanner();
+		pn.panningModel = p.hrtf ? 'HRTF' : 'equalpower';
+		pn.distanceModel = 'linear'; pn.refDistance = 1; pn.maxDistance = 1000; pn.rolloffFactor = 0;
+		pn.positionX.value = p.x || 0; pn.positionY.value = 0; pn.positionZ.value = p.z || 0;
+		node.connect(pn); node = pn;
+	}
+	node.connect(master);
+	if (p.bus) { var send = ctx.createGain(); send.gain.value = p.bus; node.connect(send); send.connect(bus); }
+	if (p.rev) { var cv = ctx.createConvolver(); cv.buffer = ir; var wet = ctx.createGain(); wet.gain.value = p.rev; node.connect(cv); cv.connect(wet); wet.connect(master); }
+	src.start();
+	if (!p.quiet) log('play ' + p.id + ' t=' + ctx.currentTime.toFixed(3) + ' ' + ctx.state);
+}
+</script>
+</body></html>
