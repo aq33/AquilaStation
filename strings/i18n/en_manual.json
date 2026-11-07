@@ -1102,5 +1102,10 @@
  "– katastrofalne uszkodzenia. Medyczny – zniszczony. Atmosferyka – częściowo zniszczona. Rdzeń silnika – zniszczony.": "- Catastrophic Damage. Medical, destroyed. Atmospherics, partially destroyed. Engine Core, destroyed.",
  "– nienaruszona.": "- Intact.",
  "– nienaruszona. Utrata tlenu we wschodniej części głównego korytarza.": "- Intact. Loss of oxygen to eastern side of main corridor.",
- "– zniszczona": "- Destroyed"
+ "– zniszczona": "- Destroyed",
+ "Identyfikator": "ID",
+ "Żand": "Sec",
+ "Żandarm": "Security Officer",
+ "Placówka Żandarmerii": "Security Outpost",
+ "Ważne osobistości": "Very Important People"
 }
