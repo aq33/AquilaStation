@@ -3,8 +3,8 @@
 /datum/test_chamber_kit/pr_578_silniki
 	name = "Losowe silniki Trawnika i Padalca"
 	pr = "aq33/AquilaStation#578"
-	description = "Silnik losuje się przy ładowaniu mapy, więc wariant jest stały dla rundy (który wypadł, napisze się w czacie po zrzuceniu zestawu, z linkiem do skoku). Każdy z trzech wariantów na Trawniku i Padalcu sprawdza się w osobnej rundzie. \
-	1) Tesla: przykręć i zespawaj cewki, generatory pola i emitery, odpal akcelerator. Kula ma zostać w polu, a monitor mocy w sterowni ma pokazać prąd. \
+	description = "Silnik losuje się przy ładowaniu mapy, więc wariant jest stały dla rundy (który wypadł, napisze się w czacie po zrzuceniu zestawu, z linkiem do skoku). Każdy wariant (Trawnik: Tesla, Stormdrive, supermateria; Padalec: Stormdrive, supermateria) sprawdza się w osobnej rundzie. \
+	1) Tesla (tylko Trawnik): przykręć i zespawaj cewki, generatory pola i emitery, odpal akcelerator. Kula ma zostać w polu, a monitor mocy w sterowni ma pokazać prąd. \
 	2) Stormdrive: włóż pręty kontrolne ze skrzyń, puść plazmę z kanistra pompą paliwa i odpal akcelerator. Konsola reaktora ma pokazywać reaktor i prąd. \
 	3) Supermateria: włóż butle z plazmą (dozownik obok) do kolektorów, wpuść N2 z portu do pętli, włącz pompy i zamrażarki, potem emitery. Odpad ma iść przez filtry do wtryskiwacza w kosmosie, a temperatura w komorze ma się ustabilizować. \
 	4) Na wszystkich wariantach: brak dziur w ścianach i podłodze na granicy hali, działające drzwi, wenty i oświetlenie."

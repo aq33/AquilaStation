@@ -102,10 +102,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
-"fu" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engineering/reactor_core)
 "gI" = (
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/engine,
@@ -124,13 +120,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/layer2{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/engine/engineering/reactor_core)
-"ip" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "jl" = (
@@ -703,7 +692,7 @@ wS
 Xx
 MN
 oB
-bq
+ZU
 "}
 (9,1,1) = {"
 ZU
@@ -715,7 +704,7 @@ Fu
 an
 ve
 aD
-bq
+ZU
 "}
 (10,1,1) = {"
 ZU
@@ -727,7 +716,7 @@ DW
 hL
 GB
 aP
-ip
+ZU
 "}
 (11,1,1) = {"
 ZU
@@ -739,7 +728,7 @@ bj
 KO
 yc
 ku
-bq
+ZU
 "}
 (12,1,1) = {"
 ZU
@@ -751,7 +740,7 @@ lN
 Fy
 zp
 oq
-bq
+ZU
 "}
 (13,1,1) = {"
 ZU
@@ -763,7 +752,7 @@ Fs
 oM
 IB
 oq
-bq
+ZU
 "}
 (14,1,1) = {"
 ZU
@@ -775,19 +764,19 @@ zp
 IB
 KB
 qy
-bq
+ZU
 "}
 (15,1,1) = {"
 ZU
 bq
 vK
 ZU
-fu
-fu
-fu
-bq
+ZU
+ZU
+ZU
+ZU
 vK
-bq
+ZU
 "}
 (16,1,1) = {"
 ZU

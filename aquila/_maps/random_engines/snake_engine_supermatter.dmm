@@ -338,9 +338,6 @@
 "OF" = (
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"OK" = (
-/turf/closed/wall/r_wall,
-/area/engine/engineering/reactor_core)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
 	dir = 1
@@ -441,13 +438,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"SG" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/engine/engineering/reactor_core)
 "SL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
@@ -523,10 +513,6 @@
 	dir = 8
 	},
 /turf/open/space/basic,
-/area/engine/engineering/reactor_core)
-"Xd" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "Xj" = (
 /obj/structure/cable,
@@ -669,7 +655,7 @@ Ok
 Xj
 eK
 jL
-OK
+uG
 "}
 (9,1,1) = {"
 uG
@@ -681,7 +667,7 @@ Sg
 hM
 hM
 CZ
-OK
+uG
 "}
 (10,1,1) = {"
 uG
@@ -693,7 +679,7 @@ RZ
 SL
 Wv
 Jd
-SG
+uG
 "}
 (11,1,1) = {"
 uG
@@ -705,7 +691,7 @@ QB
 SL
 Sw
 QV
-OK
+uG
 "}
 (12,1,1) = {"
 uG
@@ -717,7 +703,7 @@ RZ
 SL
 Aa
 Ck
-OK
+uG
 "}
 (13,1,1) = {"
 uG
@@ -729,7 +715,7 @@ tw
 hM
 Sj
 He
-OK
+uG
 "}
 (14,1,1) = {"
 uG
@@ -741,19 +727,19 @@ hy
 Uz
 Ra
 JH
-OK
+uG
 "}
 (15,1,1) = {"
 uG
 Bq
 UP
 uG
-Xd
-Xd
-Xd
-OK
+uG
+uG
+uG
+uG
 UP
-OK
+uG
 "}
 (16,1,1) = {"
 uG

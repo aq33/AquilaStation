@@ -1108,6 +1108,10 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"cB" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
 "cC" = (
 /obj/machinery/light{
 	dir = 4
@@ -4980,6 +4984,13 @@
 	dir = 8
 	},
 /area/bridge/cic)
+"mV" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
 "mW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -5688,6 +5699,10 @@
 "ph" = (
 /turf/closed/wall/steel,
 /area/medical/chemistry)
+"pi" = (
+/obj/effect/spawner/room/snake_engine,
+/turf/closed/wall/r_wall,
+/area/engine/engineering/reactor_core)
 "ps" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -6224,10 +6239,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/engine/engineering/reactor_core)
-"rO" = (
-/obj/effect/spawner/room/snake_engine,
-/turf/closed/wall/r_wall,
 /area/engine/engineering/reactor_core)
 "rP" = (
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen,
@@ -8376,17 +8387,6 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit,
 /area/tcommsat/server)
-"Aw" = (
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_core)
 "Ax" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -8767,6 +8767,9 @@
 	},
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
+"Ch" = (
+/turf/template_noop,
+/area/template_noop)
 "Ck" = (
 /obj/structure/rack,
 /obj/item/storage/bag/ore,
@@ -10379,9 +10382,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"Ji" = (
-/turf/template_noop,
-/area/template_noop)
 "Jj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -12037,6 +12037,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"PD" = (
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "PF" = (
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
@@ -35148,7 +35159,7 @@ rP
 rP
 pV
 Ae
-rO
+pi
 DN
 cr
 Ud
@@ -35401,7 +35412,7 @@ Tw
 Ok
 PF
 kL
-Ji
+Ch
 Zm
 mb
 Kv
@@ -35658,10 +35669,10 @@ Tw
 oO
 Xn
 cW
-Ji
-Ji
+Ch
+Ch
 rq
-Aw
+PD
 Tw
 An
 US
@@ -35911,14 +35922,14 @@ aJ
 cj
 oe
 Tw
-Ji
+Ch
 mW
 vm
 cW
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
 ID
 DN
 cr
@@ -36168,14 +36179,14 @@ cj
 oe
 aJ
 Tw
-Ji
+Ch
 jG
 Qt
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
 ID
 DN
 cr
@@ -36426,13 +36437,13 @@ aJ
 aJ
 Tw
 Tw
-Ji
+Ch
 xI
 sK
 sK
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
 Tw
 DN
 cr
@@ -36683,13 +36694,13 @@ aJ
 aJ
 Tw
 Tw
-Ji
+Ch
 Tw
 kI
-Ji
-Ji
+Ch
+Ch
 Tw
-Ji
+Ch
 Tw
 dy
 cr
@@ -36940,14 +36951,14 @@ aJ
 aJ
 Tw
 Qw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 DN
 cr
 fn
@@ -37197,14 +37208,14 @@ aJ
 aJ
 Tw
 rN
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 Nc
 HJ
 nm
@@ -37454,14 +37465,14 @@ aJ
 aJ
 Tw
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+mV
 fl
 Wg
 sH
@@ -37711,14 +37722,14 @@ oe
 aJ
 Tw
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 yH
 oC
 AH
@@ -37968,14 +37979,14 @@ cj
 oe
 Tw
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 gE
 cr
 II
@@ -38224,15 +38235,15 @@ aJ
 aJ
 oe
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 Oe
 rR
 iE
@@ -38481,15 +38492,15 @@ aJ
 aJ
 aJ
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Tw
 ea
 cr
 fn
@@ -38738,15 +38749,15 @@ aJ
 aJ
 vl
 Tw
-Ji
-Ji
+Ch
+Ch
 Tw
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+cB
+cB
+cB
+Tw
+Ch
+Tw
 ns
 Jq
 iN
@@ -38995,14 +39006,14 @@ aJ
 aJ
 aJ
 ri
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
 Tw
 eF
 Dx
@@ -39253,13 +39264,13 @@ aJ
 aJ
 ri
 qm
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
 Tw
 DN
 cr
@@ -39510,13 +39521,13 @@ aJ
 aJ
 ri
 qm
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
-Ji
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
 Tw
 DN
 Sy

@@ -44,14 +44,6 @@
 	template_height = 10
 	template_width = 18
 
-/datum/map_template/random_room/aq_engine_snk_02
-	name = "Padalec - silnik Tesli"
-	room_id = "aq_engine_snk_02_tesla"
-	mappath = 'aquila/_maps/random_engines/snake_engine_tesla.dmm'
-	centerspawner = FALSE
-	template_height = 10
-	template_width = 18
-
 /datum/map_template/random_room/aq_engine_snk_03
 	name = "Padalec - silnik supermaterii"
 	room_id = "aq_engine_snk_03_supermatter"
