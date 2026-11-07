@@ -28,18 +28,18 @@
 	"mine_disable": 1,
 	"starmap_path": "config/starmap/starmap.json",
 
-	"map_description": "Corvid-class tactical cruisers are the backbone of the WhiteRapids heavy squadrons. Two full decks hold every department a long patrol needs, from a dedicated virology lab to a bitrunning den, while a dense battery of gauss turrets, deck guns and VLS cells keeps the hull out of trouble. Large, sturdy and slow to turn, the Atlantis rewards a full crew.",
-	"manufacturer": "Nanotrasen Naval Shipyards",
+	"map_description": "Krążowniki taktyczne klasy Corvid to trzon ciężkich eskadr WhiteRapids. Dwa pełne pokłady mieszczą każdy dział potrzebny na długi patrol, od wirusologii po pracownię bitrunnerów, a gęsta bateria wieżyczek Gaussa, dział pokładowych i wyrzutni VLS trzyma kłopoty z dala od kadłuba. Duży, wytrzymały i ociężały w zwrotach Atlantis nagradza pełną załogę.",
+	"manufacturer": "Stocznie wojenne Nanotrasen",
 	"commission_date": "Mar 3, 2259",
-	"strengths": ["Heavy firepower", "Every department has room to work", "Large fighter and mining wing"],
-	"weaknesses": ["Needs a large crew", "Long walks between decks", "Single storm drive"],
+	"strengths": ["Duża siła ognia", "Każdy dział ma miejsce do pracy", "Duże skrzydło myśliwców i górników"],
+	"weaknesses": ["Potrzebuje licznej załogi", "Długie przejścia między pokładami", "Tylko jeden napęd burzowy"],
 	"equipment": [
-		"2 M4-15 'Hood' deck turrets",
-		"12 M14 VLS loaders",
-		"6 NT-BSG gauss turrets",
-		"2 M4-B torpedo tubes",
-		"3 light fighters",
-		"6 Sabre transports",
-		"1 class IV nuclear storm drive"
+		"2 działa pokładowe M4-15 „Hood”",
+		"12 wyrzutni VLS M14",
+		"6 wieżyczek Gaussa NT-BSG",
+		"2 wyrzutnie torped M4-B",
+		"3 lekkie myśliwce",
+		"6 transportowców Sabre",
+		"1 nuklearny napęd burzowy klasy IV"
 	]
 }
