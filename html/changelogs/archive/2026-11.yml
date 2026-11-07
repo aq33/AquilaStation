@@ -364,6 +364,8 @@
   - tweak: Czepki NFZ chowają włosy, hełmy plazmoludzi medycyny pasują do kombinezonów.
   - tweak: Mundurownie działów bez kolorowych przepasek, turkusowe podłogi medycyny.
   - imageadd: Nowe sprite'y Żandarmerii, Orlenu i NFZ oraz ikonki profesji na HUD-zie.
+  - bugfix: Okno changelogu przy pierwszym wejściu otwiera się dopiero po wyborze
+      wersji językowej.
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
