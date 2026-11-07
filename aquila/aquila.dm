@@ -1739,6 +1739,7 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
+#include "code\modules\unit_tests\aquila_przyspieszenia.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
 #include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"
