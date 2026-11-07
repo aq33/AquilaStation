@@ -383,3 +383,8 @@
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
+  - rscadd: 'Floty AI nadają przez radio: przy wezwaniu pomocy, odpowiedzi na nie
+      i odwrocie mostek słyszy przechwycony, zakłócony fragment transmisji wroga albo
+      czysty komunikat floty sojuszniczej.'
+  - balance: Okręty AI trochę szybciej się boją i wcześniej przerywają walkę, częściej
+      strzelają salwą torped i częściej wzywają pomoc.
