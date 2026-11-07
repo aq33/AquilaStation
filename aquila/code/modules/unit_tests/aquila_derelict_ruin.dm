@@ -9,7 +9,7 @@
 	} \
 } while (FALSE)
 
-/// AQUILA - misja „Wrak”: generator buduje ruinę z celem na własnym poziomie Z, a wykonanie celu Bee zalicza misję
+/// AQUILA - misja „Opuszczona stacja”: generator buduje ruinę z celem na własnym poziomie Z, a wykonanie celu Bee zalicza misję
 /datum/unit_test/derelict_ruin_mission
 
 /datum/unit_test/derelict_ruin_mission/Run()
@@ -41,7 +41,7 @@
 	TEST_ASSERT_EQUAL(mission.status, 1, "The recovered blackbox disappearing changed the mission status")
 	qdel(mission)
 
-/// AQUILA - misja „Wrak”: likwidacja jądrowa nie przepada od razu bez nadajnika z mapy orbitalnej
+/// AQUILA - misja „Opuszczona stacja”: likwidacja jądrowa nie przepada od razu bez nadajnika z mapy orbitalnej
 /datum/unit_test/derelict_ruin_nuke_check
 
 /datum/unit_test/derelict_ruin_nuke_check/Run()
@@ -60,7 +60,7 @@
 /datum/unit_test/mission_extension_choices
 
 /datum/unit_test/mission_extension_choices/Run()
-	TEST_ASSERT_EQUAL(GLOB.mission_choice_names["derelict"], "Wrak", "The derelict mission has no Polish name")
+	TEST_ASSERT_EQUAL(GLOB.mission_choice_names["derelict"], "Opuszczona stacja", "The derelict mission has no Polish name")
 	for(var/choice in SSovermap_mode.get_extension_choices())
 		if(choice == "rubicon")
 			continue

@@ -1,4 +1,4 @@
-// AQUILA - misja overmapy „Wrak”. W systemie sektora 2 dryfuje wrak, którego wnętrze buduje generator losowych ruin
+// AQUILA - misja overmapy „Opuszczona stacja”. W systemie sektora 2 dryfuje opuszczona stacja, której wnętrze buduje generator losowych ruin
 // z supercruise Bee (BeeStation/BeeStation-Hornet#4543) na osobnym poziomie Z. Na ruinie czeka jeden z celów
 // eksploracji Bee (/datum/orbital_objective). Załoga dolatuje promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania
 // (docking_act wymaga FTL po jednej ze stron, tak samo jak przy abordażu stacji).
@@ -11,10 +11,10 @@
 #define REMINDER_COMBAT_DELAY 2
 
 /datum/overmap_gamemode/derelict_ruin
-	name = "Wrak"
+	name = "Opuszczona stacja"
 	config_tag = "derelict"
-	desc = "Tryb wraku – dolecieć do wraku z losowym wnętrzem i wykonać na nim cel eksploracji"
-	brief = "Czujniki dalekiego zasięgu namierzyły dryfujący wrak placówki. Dolećcie do niego promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania, przeszukajcie go i wykonajcie zadanie podane w odprawie."
+	desc = "Tryb opuszczonej stacji – dolecieć do opuszczonej stacji z losowym wnętrzem i wykonać na niej cel eksploracji"
+	brief = "Czujniki dalekiego zasięgu namierzyły dryfującą, opuszczoną stację. Dolećcie do niej promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania, przeszukajcie ją i wykonajcie zadanie podane w odprawie."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"
 	objective_reminder_setting = REMINDER_COMBAT_DELAY // Combat can postpone, but it's not the goal
@@ -24,7 +24,7 @@
 	fixed_objectives = list(/datum/overmap_objective/derelict_ruin)
 
 /obj/structure/overmap/derelict_ruin
-	name = "wrak placówki"
+	name = "opuszczona stacja"
 	desc = "Martwa, dryfująca placówka. Czujniki nie wykrywają łączności, tylko słabe ślady zasilania."
 	icon = 'nsv13/icons/overmap/smallstation.dmi'
 	icon_state = "outpost"
@@ -48,9 +48,9 @@
 	stop_piloting(user)
 
 /datum/overmap_objective/derelict_ruin
-	name = "Wrak"
-	desc = "Dolecieć do wraku z losowym wnętrzem i wykonać na nim cel eksploracji."
-	brief = "Dolećcie do wraku i wykonajcie zadanie na jego pokładzie."
+	name = "Opuszczona stacja"
+	desc = "Dolecieć do opuszczonej stacji z losowym wnętrzem i wykonać na niej cel eksploracji."
+	brief = "Dolećcie do opuszczonej stacji i wykonajcie zadanie na jej pokładzie."
 	var/datum/star_system/target_system
 	var/obj/structure/overmap/derelict_ruin/target_derelict
 	/// Cel eksploracji Bee, który czeka na ruinie
@@ -107,18 +107,18 @@
 		status = STATUS_COMPLETED
 		return
 	target_derelict = instance_overmap(/obj/structure/overmap/derelict_ruin)
-	target_derelict.name = "wrak [ruin_objective.station_name]"
+	target_derelict.name = "opuszczona stacja [ruin_objective.station_name]"
 	target_system.add_ship(target_derelict)
 	target_system.objective_sector = TRUE
 	ruin_objective.on_assign(null)
-	brief = "[ruin_objective.get_text()] Wrak [target_derelict.name] dryfuje w systemie [target_system]. Dolećcie do niego promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania. Nagroda: [ruin_objective.payout] kr."
+	brief = "[ruin_objective.get_text()] Stacja dryfuje w systemie [target_system] ([target_derelict.name]). Dolećcie do niej promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania. Nagroda: [ruin_objective.payout] kr."
 	INVOKE_ASYNC(src, PROC_REF(generate_ruin))
 	START_PROCESSING(SSprocessing, src)
 	update_reminder_interval()
 
-/// Buduje ruinę na nowym poziomie Z i łączy go z wrakiem na overmapie
+/// Buduje ruinę na nowym poziomie Z i łączy go ze stacją na overmapie
 /datum/overmap_objective/derelict_ruin/proc/generate_ruin()
-	SSmapping.add_new_initialized_zlevel("Wrak [target_derelict ? target_derelict.name : ruin_objective.station_name]", ZTRAITS_BOARDABLE_SHIP)
+	SSmapping.add_new_initialized_zlevel("Opuszczona stacja [target_derelict ? target_derelict.name : ruin_objective.station_name]", ZTRAITS_BOARDABLE_SHIP)
 	ruin_z = world.maxz
 	if(target_derelict)
 		var/datum/space_level/SL = SSmapping.get_level(ruin_z)
@@ -131,7 +131,7 @@
 	var/border_y = max(10, round(world.maxy / 2) - 28)
 	generate_space_ruin(round(world.maxx / 2), round(world.maxy / 2), ruin_z, border_x, border_y, ruin_objective)
 	ruin_generated = TRUE
-	message_admins("Misja [name]: wnętrze wraku gotowe na poziomie Z [ruin_z] (cel: [ruin_objective.name]).")
+	message_admins("Misja [name]: wnętrze stacji gotowe na poziomie Z [ruin_z] (cel: [ruin_objective.name]).")
 
 /datum/overmap_objective/derelict_ruin/process(delta_time)
 	if(status != STATUS_INPROGRESS)
@@ -147,7 +147,7 @@
 		status = STATUS_COMPLETED
 	else if(failed)
 		status = STATUS_FAILED
-		priority_announce("Cel misji na wraku [target_derelict?.name] jest już nie do wykonania.", "Dowództwo floty")
+		priority_announce("Cel misji na stacji [target_derelict?.name] jest już nie do wykonania.", "Dowództwo floty")
 
 /// Cel Bee został wykonany: zaliczamy misję od razu, bez czekania na okresowe sprawdzenie
 /datum/overmap_objective/derelict_ruin/proc/ruin_objective_completed()
@@ -158,7 +158,7 @@
 	if(SSovermap_mode.mode)
 		INVOKE_ASYNC(SSovermap_mode.mode, TYPE_PROC_REF(/datum/overmap_gamemode, check_completion))
 
-/// Odstęp przypomnień jak przy abordażu stacji: liczony z czasu lotu do wraku
+/// Odstęp przypomnień jak przy abordażu stacji: liczony z czasu lotu do opuszczonej stacji
 /datum/overmap_objective/derelict_ruin/proc/update_reminder_interval()
 	var/obj/structure/overmap/OM = SSstar_system.find_main_overmap()
 	if(!OM?.ftl_drive || !SSovermap_mode.mode)
@@ -180,7 +180,7 @@
 // Cele eksploracji Bee podpięte pod misję overmapy
 
 /datum/orbital_objective
-	/// AQUILA - misja „Wrak”, do której należy ten cel (null = cel z mapy orbitalnej supercruise)
+	/// AQUILA - misja „Opuszczona stacja”, do której należy ten cel (null = cel z mapy orbitalnej supercruise)
 	var/datum/overmap_objective/derelict_ruin/linked_mission
 
 /datum/orbital_objective/complete_objective()
@@ -190,10 +190,10 @@
 		return
 	completed = TRUE
 	SSeconomy.distribute_funds(payout)
-	priority_announce("Cel misji na wraku wykonany. [payout] kr rozdzielono między budżety działów.", "Dowództwo floty", SSstation.announcer.get_rand_report_sound())
+	priority_announce("Cel misji na opuszczonej stacji wykonany. [payout] kr rozdzielono między budżety działów.", "Dowództwo floty", SSstation.announcer.get_rand_report_sound())
 	linked_mission.ruin_objective_completed()
 
-// Bomba do likwidacji leży we wraku obok dysku, a nie na mostku: do wraku dolatuje się myśliwcem, a bomby nie da się nim przewieźć
+// Bomba do likwidacji leży na stacji obok dysku, a nie na mostku: do stacji dolatuje się myśliwcem, a bomby nie da się nim przewieźć
 /datum/orbital_objective/nuclear_bomb/on_assign(obj/machinery/computer/objective/objective_computer)
 	if(!linked_mission)
 		return ..()
@@ -211,7 +211,7 @@
 /datum/orbital_objective/nuclear_bomb/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Posterunek [station_name] wymaga natychmiastowej likwidacji, by zapobiec wyciekowi informacji do kosmicznej prasy. Na pokładzie wraku leży przestarzały ładunek jądrowy i dysk uwierzytelniania do niego. Znajdźcie oba, uzbrójcie ładunek kodem z raportu Centrali i uciekajcie z wraku przed wybuchem."
+	return "Posterunek [station_name] wymaga natychmiastowej likwidacji, by zapobiec wyciekowi informacji do kosmicznej prasy. Na pokładzie stacji leży przestarzały ładunek jądrowy i dysk uwierzytelniania do niego. Znajdźcie oba, uzbrójcie ładunek kodem z raportu Centrali i uciekajcie ze stacji przed wybuchem."
 
 /datum/orbital_objective/nuclear_bomb/check_failed()
 	if(!linked_mission)
