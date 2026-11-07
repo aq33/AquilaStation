@@ -100,3 +100,18 @@
 	for(var/underlay in underlays)
 		parts += "\ref[underlay]"
 	return jointext(parts, "|")
+
+// Okno „Przyjrzyj się uważniej” (nsv13/code/modules/mob/living/carbon/examine_tgui.dm): obiekt podglądu trafia na mapę
+// dopiero, gdy okno jest widoczne. Zarejestrowany wcześniej, zanim powstanie kontrolka mapy, był malutką postacią
+// w rogu domyślnego widoku 15x15 (to samo co w podglądzie preferencji).
+/datum/examine_panel/proc/aq_show_examine_screen(mob/user, datum/tgui_window/window)
+	if(window && !window.visible)
+		RegisterSignal(window, COMSIG_TGUI_WINDOW_VISIBLE, PROC_REF(aq_on_examine_window_visible), override = TRUE)
+		return
+	user.client?.register_map_obj(examine_panel_screen)
+
+/datum/examine_panel/proc/aq_on_examine_window_visible(datum/tgui_window/window, client/viewer)
+	SIGNAL_HANDLER
+	UnregisterSignal(window, COMSIG_TGUI_WINDOW_VISIBLE)
+	if(viewer && examine_panel_screen)
+		viewer.register_map_obj(examine_panel_screen)

@@ -1939,8 +1939,9 @@ $border-width-px: $border-width * 1px;
 }
 
 .examine_portrait {
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
+  margin: -0.5em 0;
   vertical-align: middle;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
