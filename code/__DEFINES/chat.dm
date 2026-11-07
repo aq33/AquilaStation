@@ -44,8 +44,8 @@
 #define MINOR_ANNOUNCEMENT_TITLE(string) ("<span class='minor_announcement_title'>" + string + "</span>")
 #define MINOR_ANNOUNCEMENT_TEXT(string) ("<span class='minor_announcement_text'>" + string + "</span>")
 #define ANNOUNCEMENT_HEADER(string) ("<span class='announcement_header'>" + string + "</span>")
-/// Pasiasta ramka ogłoszenia; kolory: default, green, blue, pink, yellow, orange, red, purple
-#define CHAT_ALERT_SPAN(color, string) ("<div class='chat_alert_" + ((color) || "default") + "'>" + string + "</div>")
+/// Pasiasta ramka ogłoszenia; kolory: default, green, blue, pink, yellow, orange, red, purple. Klasa chat_alert kieruje ogłoszenie do kart Radio w czacie
+#define CHAT_ALERT_SPAN(color, string) ("<div class='chat_alert chat_alert_" + ((color) || "default") + "'>" + string + "</div>")
 /// Znaczniki sekcji w examine człowieka (niewidoczne); układa je /mob/proc/aq_examine_html()
 #define AQ_EXAMINE_STATUS_MARK "<span class='aq_examine_mark' data-mark='status'></span>"
 #define AQ_EXAMINE_HUD_MARK "<span class='aq_examine_mark' data-mark='hud'></span>"

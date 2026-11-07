@@ -69,31 +69,55 @@
 /atom/proc/aq_examine_portrait(mob/user)
 	return null
 
-/mob/living/carbon/human
+/// Najrzadziej co tyle portret jest liczony od nowa (getFlatIcon i zapis pliku są drogie, a nakładki zmieniają się często: pisanie, obrażenia)
+#define AQ_PORTRAIT_REFRESH_COOLDOWN (10 SECONDS)
+
+/mob/living
 	/// Podpis wyglądu, dla którego policzono portret do examine
 	var/aq_portrait_signature
 	/// Nazwa assetu z portretem
 	var/aq_portrait_asset
+	COOLDOWN_DECLARE(aq_portrait_cooldown)
 
 /mob/living/carbon/human/aq_examine_portrait(mob/user)
+	return aq_build_portrait(user)
+
+// Morf przebrany za człowieka też dostaje portret (swój obecny wygląd), inaczej brak portretu go zdradza
+/mob/living/simple_animal/hostile/morph/aq_examine_portrait(mob/user)
+	if(morphed && ishuman(form))
+		return aq_build_portrait(user)
+	return ..()
+
+/// Portret moba (tag img) z pamięci podręcznej; liczony od nowa po zmianie wyglądu, najwyżej raz na AQ_PORTRAIT_REFRESH_COOLDOWN
+/mob/living/proc/aq_build_portrait(mob/user)
 	if(!user?.client)
 		return null
 	if(SSlag_switch.measures[DISABLE_USR_ICON2HTML] && !HAS_TRAIT(user, TRAIT_BYPASS_MEASURES))
 		return null
-	var/signature = aq_appearance_signature()
-	if(signature != aq_portrait_signature || !aq_portrait_asset)
-		var/icon/flat = getFlatIcon(src, SOUTH, no_anim = TRUE)
-		if(!flat)
-			return null
-		var/list/name_and_ref = generate_and_hash_rsc_file(flat)
-		aq_portrait_asset = "[name_and_ref[3]].png"
-		SSassets.transport.register_asset(aq_portrait_asset, name_and_ref[1], name_and_ref[2])
-		aq_portrait_signature = signature
+	if(!aq_portrait_asset || (COOLDOWN_FINISHED(src, aq_portrait_cooldown) && !aq_portrait_stale_while_moving()))
+		var/signature = aq_appearance_signature()
+		if(signature != aq_portrait_signature || !aq_portrait_asset)
+			var/icon/flat = getFlatIcon(src, SOUTH, no_anim = TRUE)
+			if(!flat)
+				return null
+			var/list/name_and_ref = generate_and_hash_rsc_file(flat)
+			aq_portrait_asset = "[name_and_ref[3]].png"
+			SSassets.transport.register_asset(aq_portrait_asset, name_and_ref[1], name_and_ref[2])
+			aq_portrait_signature = signature
+			COOLDOWN_START(src, aq_portrait_cooldown, AQ_PORTRAIT_REFRESH_COOLDOWN)
 	SSassets.transport.send_assets(user.client, aq_portrait_asset)
 	return "<img class='examine_portrait' src='[SSassets.transport.get_asset_url(aq_portrait_asset)]'>"
 
+/// W ruchu animacja chodu przenosi trzymane przedmioty i części ciała do vis_contents, których getFlatIcon nie widzi:
+/// wtedy zostaje poprzedni portret
+/mob/living/proc/aq_portrait_stale_while_moving()
+	var/datum/component/walk_animation/walk = GetComponent(/datum/component/walk_animation)
+	return walk?.active
+
+#undef AQ_PORTRAIT_REFRESH_COOLDOWN
+
 /// Podpis tego, co widać na sprite'cie (bez kierunku), żeby nie liczyć portretu od nowa przy każdym obrocie
-/mob/living/carbon/human/proc/aq_appearance_signature()
+/mob/living/proc/aq_appearance_signature()
 	var/list/parts = list("[icon]", icon_state, "[color]", "[alpha]")
 	for(var/overlay in overlays)
 		parts += "\ref[overlay]"
