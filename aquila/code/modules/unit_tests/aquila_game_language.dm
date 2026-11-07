@@ -23,6 +23,8 @@
 	TEST_ASSERT(i18n_en_exact("skrzynka narzędziowa") == "toolbox", "Server table lost a basic item name")
 	TEST_ASSERT(i18n_en_exact(" skrzynka narzędziowa.") == " toolbox.", "Trailing period or spaces are not kept")
 	TEST_ASSERT(isnull(i18n_en_exact("Zdanie, którego nie ma w słowniku.")), "Unknown text should not be translated")
+	// zły podział węzłów (opis czapki poczty przed <i>) dawał pusty tekst, oględziny pokazywały pustkę
+	TEST_ASSERT(isnull(i18n_en_exact("Nakrycie głowy poczty")), "A Polish phrase is translated to an empty text")
 	var/html = i18n_en_html("<b>skrzynka narzędziowa</b> i coś nieznanego")
 	TEST_ASSERT(html == "<b>toolbox</b> i coś nieznanego", "HTML text nodes are not translated one by one: [html]")
 

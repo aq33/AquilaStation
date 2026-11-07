@@ -191,7 +191,7 @@
 
 /obj/item/mod/ai_minicard/examine(mob/user)
 	. = ..()
-	. += span_notice("W środku jest zapisane: [stored_ai.resolve() || "brak SI"].")
+	. += span_notice("W środku jest zapisane: [stored_ai?.resolve() || "brak SI"].") // AQ EDIT - pusta minikarta nie przerywa oględzin
 
 /obj/item/mod/ai_minicard/transfer_ai(interaction, mob/user, mob/living/silicon/ai/intAI, obj/item/aicard/card)
 	. = ..()
