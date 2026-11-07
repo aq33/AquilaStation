@@ -324,6 +324,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `stored_ai?.resolve()` | `code/modules/mod/mod_ai.dm` (`/obj/item/mod/ai_minicard/examine()`) | An empty AI minicard runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `if(QDELETED(turret)) return` | `nsv13/code/modules/munitions/ship_weapons/ballistic_weapons/50Cal.dm` (`/obj/machinery/computer/anti_air/examine()`) | An anti-air console without a paired turret runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `try`/`catch` around `A.examine(src)` | `code/modules/mob/mob.dm` (`/mob/proc/run_examinate()`) | A runtime in any type's `examine()` left the player with an empty shift-click. Now the player sees the name and `desc`, and `stack_trace` still reports the runtime (unit tests fail on it) |
+| Mining asteroids and ruins, `_maps/virtual_domains` and `aquila/_maps` added to `DmMapsIncludeTarget` (Aquila maps via `../`) | `tools/build/build.js` | CI (`compile_all_maps`) compiles these templates too; errors in them used to pass |
+| `MAPS=(_maps/**/*.dmm aquila/_maps/**/*.dmm)` instead of `_maps/**/*.dmm` in the map linters | `tools/ci/check_grep.sh` | The map linters cover Aquila maps |
+| Fixed `mappath` of `sk_rdm139`, `sk_rdm165`, `sk_rdm169` (pointed at missing files) | `code/modules/mapping/random_rooms.dm` | These rooms never spawned. Test: `aquila_random_rooms` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
