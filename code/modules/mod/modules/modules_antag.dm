@@ -405,9 +405,9 @@
 		return_look()
 	possible_disguises = null
 
+// AQUILA: hardsuit przebiera się, kiedy jest założony (nie ma stanu „nieaktywny” jak MOD)
 /obj/item/mod/module/chameleon/used()
-	if(mod.active || mod.activating)
-		balloon_alert(mod.wearer, "jednostka aktywna!")
+	if(!mod.wearer)
 		return FALSE
 	return ..()
 
@@ -416,39 +416,35 @@
 		return_look()
 		return
 	var/picked_name = tgui_input_list(mod.wearer, "Wybierz wygląd, który chcesz przyjąć", "Ustawienia kameleona", possible_disguises)
-	if(!possible_disguises[picked_name] || mod.active || mod.activating)
+	if(!possible_disguises[picked_name] || !mod.wearer)
 		return
 	current_disguise = possible_disguises[picked_name]
 	update_look()
 
+/obj/item/mod/module/chameleon
+	/// Wygląd kombinezonu sprzed przebrania
+	var/list/original_look
+
 /obj/item/mod/module/chameleon/proc/update_look()
+	original_look = list("name" = mod.name, "desc" = mod.desc, "icon" = mod.icon, "icon_state" = mod.icon_state, "worn_icon" = mod.worn_icon, 		"worn_icon_state" = mod.worn_icon_state, "item_state" = mod.item_state, "lefthand_file" = mod.lefthand_file, "righthand_file" = mod.righthand_file)
 	mod.name = initial(current_disguise.name)
 	mod.desc = initial(current_disguise.desc)
 	mod.icon_state = initial(current_disguise.icon_state)
 	mod.icon = initial(current_disguise.icon)
 	mod.worn_icon = initial(current_disguise.worn_icon)
-	mod.alternate_worn_layer = initial(current_disguise.alternate_worn_layer)
 	mod.lefthand_file = initial(current_disguise.lefthand_file)
 	mod.righthand_file = initial(current_disguise.righthand_file)
 	mod.worn_icon_state = initial(current_disguise.worn_icon_state)
 	mod.item_state = initial(current_disguise.item_state)
-	mod.wearer.update_clothing(mod.slot_flags)
-	RegisterSignal(mod, COMSIG_MOD_ACTIVATE, PROC_REF(return_look))
+	mod.wearer?.update_clothing(mod.slot_flags)
 
 /obj/item/mod/module/chameleon/proc/return_look()
-	mod.name = "[initial(mod.name)] (model [mod.theme.name])"
-	mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
-	mod.update_icon_state()
-	var/list/mod_skin = mod.theme.variants[mod.skin]
-	mod.icon = mod_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi'
-	mod.worn_icon = mod_skin[MOD_WORN_ICON_OVERRIDE] || 'icons/mob/clothing/modsuit/mod_clothing.dmi'
-	mod.lefthand_file = initial(mod.lefthand_file)
-	mod.righthand_file = initial(mod.righthand_file)
-	mod.worn_icon_state = null
-	mod.item_state = null
-	mod.wearer.update_clothing(mod.slot_flags)
+	if(original_look)
+		for(var/var_name in original_look)
+			mod.vars[var_name] = original_look[var_name]
+	original_look = null
+	mod.wearer?.update_clothing(mod.slot_flags)
 	current_disguise = null
-	UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression

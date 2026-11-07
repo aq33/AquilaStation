@@ -266,9 +266,6 @@
 	. = ..()
 	if(. != MOD_CANCEL_ACTIVATE || !isliving(user))
 		return
-	if(mod.ai_assistant == user)
-		to_chat(mod.ai_assistant, span_danger("<B>kRYTyCZNY BŁĄd</B>: 381200-*#00CODE <B>BLUE</B>\niNGERENCJA SI wYKRyTA\nAKCJa ZIGNOrOWANA"))
-		return
 	var/mob/living/living_user = user
 	to_chat(living_user, span_danger("<B>kRYTyCZNY BŁĄd</B>: 382200-*#00CODE <B>RED</B>\nNIEAUTORYZOWANE UŻYCIE WYKRyTE\nUrUCHAMIANIE PODPR0CEDURY 13...\nELIMINACJA U-U-UŻYTKOWNIKA..."))
 	living_user.investigate_log("has been gibbed by using a MODsuit equipped with [src].", INVESTIGATE_DEATHS)

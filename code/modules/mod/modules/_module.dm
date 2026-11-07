@@ -20,7 +20,7 @@
 	/// ID used by their TGUI
 	var/tgui_id
 	/// Linked MODsuit
-	var/obj/item/mod/control/mod
+	var/obj/item/clothing/suit/space/hardsuit/mod
 	/// If we're an active module, what item are we?
 	var/obj/item/device
 	/// Overlay given to the user when the module is inactive
@@ -393,7 +393,7 @@
 		return
 
 	var/datum/action/item_action/mod/pinned_module/new_action = new(mod, src, user)
-	if(user == mod.wearer || user == mod.ai_assistant)
+	if(user == mod.wearer)
 		new_action.Grant(user)
 
 /// On drop key, concels a device item.
