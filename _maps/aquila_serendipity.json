@@ -1,5 +1,6 @@
 {
     "map_name": "DLV Trawnik",
+    "map_size": "mała",
     "map_link": "serendipity",
     "map_path": "map_files/Serendipity",
     "map_file": ["Serendipity2.dmm", "Serendipity1.dmm"],

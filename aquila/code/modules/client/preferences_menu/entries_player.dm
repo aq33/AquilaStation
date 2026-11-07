@@ -626,9 +626,10 @@
 /datum/preference/choiced/preferred_map/get_display_names()
 	var/list/names = list()
 	for(var/map in get_choices())
-		names[map] = map
+		var/datum/map_config/map_config = config.maplist[map]
+		names[map] = map_config ? map_config.get_vote_label() : map
 	if(config.defaultmap)
-		names["Default"] = "Default ([config.defaultmap.map_name])"
+		names["Default"] = "Default ([config.defaultmap.get_vote_label()])"
 	return names
 
 // Admin

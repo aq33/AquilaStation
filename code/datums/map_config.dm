@@ -29,6 +29,7 @@
 	var/return_system = "Outpost 45" //NSV13 - Which system are we jumping back to when the round ends?
 	var/mine_traits = null
 	var/has_gulag = FALSE // AQ EDIT
+	var/map_size // AQ EDIT - rozmiar mapy w głosowaniu („mała”, „średnia”, „duża”)
 
 	//NSV13 - special mapvote things
 	var/map_description = "Brak danych"
@@ -244,6 +245,8 @@
 
 	if("has_gulag" in json)						// AQ EDIT
 		has_gulag = json["has_gulag"]			//
+	if("map_size" in json)						// AQ EDIT
+		map_size = json["map_size"]				//
 
 	defaulted = FALSE
 	return TRUE
