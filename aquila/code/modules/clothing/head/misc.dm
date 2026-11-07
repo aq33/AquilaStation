@@ -147,8 +147,8 @@
 |******** kosmobagiety *******|
 \****************************/
 /obj/item/clothing/head/soft/sec/alt
-	name = "alternatywna czapka policyjna"
-	desc = "Solidna czapka z daszkiem w policyjnych barwach."
+	name = "alternatywna czapka żandarmska"
+	desc = "Solidna czapka z daszkiem w żandarmskich barwach."
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	icon_state = "secaltsoft"
@@ -163,22 +163,25 @@
 	soft_color = "warden"
 
 /obj/item/clothing/head/beret/sec/bandana
-	name = "policyjna bandana"
-	desc = "Wzmocniona bandana w policyjnych barwach."
+	name = "żandarmska bandana"
+	desc = "Wzmocniona bandana w żandarmskich barwach."
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	icon_state = "secbandana"
+	// Bandana nie przycina fryzury jak beret, z którego dziedziczy (+generic chował włosy)
+	dynamic_hair_suffix = ""
+	dynamic_fhair_suffix = ""
 
 /obj/item/clothing/head/beret/sec/officercap
-	name = "czapka policjanta"
-	desc = "Czapka z daszkiem noszona przez policjantów. Ze wzmocnionego materiału, więc daje wystarczającą ochronę."
+	name = "czapka żandarma"
+	desc = "Czapka z daszkiem noszona przez żandarmów. Ze wzmocnionego materiału, więc daje wystarczającą ochronę."
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	icon_state = "secofficercap"
 
 /obj/item/clothing/head/beret/sec/garrison
-	name = "policyjna furażerka"
-	desc = "Składana furażerka w policyjnych barwach. Ze wzmocnionego materiału, więc daje wystarczającą ochronę."
+	name = "żandarmska furażerka"
+	desc = "Składana furażerka w żandarmskich barwach. Ze wzmocnionego materiału, więc daje wystarczającą ochronę."
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	icon_state = "secgarrisoncap"

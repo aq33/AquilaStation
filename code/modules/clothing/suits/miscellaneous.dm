@@ -619,7 +619,7 @@
 	icon_state = "winterhood_captain"
 
 /obj/item/clothing/suit/hooded/wintercoat/security
-	name = "policyjna kurtka zimowa"
+	name = "żandarmska kurtka zimowa"
 	icon_state = "coatsecurity"
 	item_state = "coatsecurity"
 	armor = list("melee" = 35, "bullet" = 45, "laser" = 10, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45, "stamina" = 30) //NSV13
@@ -717,7 +717,7 @@
 	icon_state = "old_winterhood"
 
 /obj/item/clothing/suit/hooded/wintercoat/security/old
-	name = "nostalgiczna policyjna kurtka zimowa"
+	name = "nostalgiczna żandarmska kurtka zimowa"
 	icon_state = "old_coatsecurity"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/old
 

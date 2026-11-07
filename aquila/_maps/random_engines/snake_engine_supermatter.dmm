@@ -113,6 +113,16 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
+"qw" = (
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "qE" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
@@ -188,8 +198,8 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
-"uj" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
+"up" = (
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 1
 	},
 /obj/structure/cable/yellow,
@@ -279,19 +289,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
-"FU" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
-	dir = 10
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_core)
 "Gr" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -314,17 +311,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"IH" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
-	dir = 4
-	},
-/obj/machinery/power/terminal,
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_core)
 "Jd" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
 	dir = 6
@@ -341,16 +327,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"NN" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
-	dir = 1
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "Ok" = (
 /obj/structure/cable,
@@ -390,6 +366,19 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
+"Qg" = (
+/obj/effect/turf_decal/tile/yellow/orlen{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "Qx" = (
 /obj/machinery/power/rad_collector/anchored,
@@ -463,6 +452,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"TQ" = (
+/obj/effect/turf_decal/tile/yellow/tile_side/orlen{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 4
+	},
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "Uz" = (
 /obj/machinery/button/door{
 	dir = 8;
@@ -619,7 +619,7 @@ uG
 uG
 Gr
 FN
-IH
+TQ
 fq
 uG
 "}
@@ -631,7 +631,7 @@ uG
 Ym
 ua
 Pt
-NN
+qw
 UF
 uG
 "}
@@ -642,8 +642,8 @@ XT
 uG
 uG
 uG
-uj
-FU
+up
+Qg
 Zb
 uG
 "}

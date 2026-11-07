@@ -144,7 +144,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "maint_atmos"
 
 /area/maintenance/department/security
-	name = "Tunel Konserwacyjny Komisariatu"
+	name = "Tunel Konserwacyjny Placówki Żandarmerii"
 	icon_state = "maint_sec"
 
 /area/maintenance/department/security/brig
@@ -1018,7 +1018,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Security
 
 /area/security
-	name = "Komisariat"
+	name = "Placówka Żandarmerii"
 	icon_state = "security"
 	ambience_index = AMBIENCE_DANGER
 	sound_environment = SOUND_AREA_STANDARD_STATION
@@ -1026,7 +1026,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	lighting_colour_bulb = "#ffdfca"
 
 /area/security/main
-	name = "Dyżurka Policji"
+	name = "Dyżurka Żandarmerii"
 	icon_state = "security"
 
 /area/security/brig
@@ -1056,7 +1056,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "sec_prison"
 
 /area/security/processing/cremation
-	name = "Krematorium Komisariatu"
+	name = "Krematorium Placówki Żandarmerii"
 	icon_state = "sec_prison"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
@@ -1109,23 +1109,23 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "checkpoint_esc"
 
 /area/security/checkpoint/supply
-	name = "Posterunek Policji - Zaopatrzeń"
+	name = "Posterunek Żandarmerii - Zaopatrzeń"
 	icon_state = "checkpoint_supp"
 
 /area/security/checkpoint/engineering
-	name = "Posterunek Policji - Inżynieria"
+	name = "Posterunek Żandarmerii - Inżynieria"
 	icon_state = "checkpoint_engi"
 
 /area/security/checkpoint/medical
-	name = "Posterunek Policji - Placówka Medyczna"
+	name = "Posterunek Żandarmerii - Placówka Medyczna"
 	icon_state = "checkpoint_med"
 
 /area/security/checkpoint/science
-	name = "Posterunek Policji - Naukowy"
+	name = "Posterunek Żandarmerii - Naukowy"
 	icon_state = "checkpoint_sci"
 
 /area/security/checkpoint/science/research
-	name = "Posterunek Policji - Departament Naukowy"
+	name = "Posterunek Żandarmerii - Departament Naukowy"
 	icon_state = "checkpoint_res"
 
 /area/security/checkpoint/customs

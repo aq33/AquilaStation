@@ -1472,7 +1472,7 @@
 	toysay = "Zdobądźcie ten pierdolony dysk!"
 
 /obj/item/toy/figure/secofficer
-	name = "figurka: Policjant"
+	name = "figurka: Żandarm"
 	icon_state = "secofficer"
 	toysay = "JA JESTEM PRAWEM!"
 	toysound = 'sound/voice/complionator/dredd.ogg'

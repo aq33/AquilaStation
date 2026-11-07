@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
 	name = "hełm"
-	desc = "Standardowe wyposażenie policji. Chroni głowę przed uderzeniami."
+	desc = "Standardowe wyposażenie Żandarmerii. Chroni głowę przed uderzeniami."
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor = list("melee" = 30, "bullet" = 40, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 50) //NSV13
@@ -181,7 +181,7 @@
 
 /obj/item/clothing/head/helmet/old
 	name = "zużyty hełm"
-	desc = "Standardowy hełm policyjny. Przez zużycie jego przyłbica utrudnia patrzenie na duże odległości."
+	desc = "Standardowy hełm żandarmski. Przez zużycie jego przyłbica utrudnia patrzenie na duże odległości."
 	tint = 2
 
 /obj/item/clothing/head/helmet/blueshirt
@@ -292,8 +292,8 @@
 	strip_delay = 80
 
 /obj/item/clothing/head/helmet/police
-	name = "czapka policjanta"
-	desc = "Czapka policjanta. Podkreśla, że to ty jesteś PRAWEM."
+	name = "czapka żandarma"
+	desc = "Czapka żandarma. Podkreśla, że to ty jesteś PRAWEM."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 

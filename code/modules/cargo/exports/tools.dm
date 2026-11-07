@@ -77,7 +77,7 @@
 
 /datum/export/flashlight/seclite
 	cost = 10
-	message = "szt. – latarka policyjna"
+	message = "szt. – latarka żandarmska"
 	export_types = list(/obj/item/flashlight/seclite)
 
 
