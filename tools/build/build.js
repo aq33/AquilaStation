@@ -49,9 +49,16 @@ export const DmMapsIncludeTarget = new Juke.Target({
       ...Juke.glob('_maps/RandomZLevels/**/*.dmm'),
       ...Juke.glob('_maps/shuttles/**/*.dmm'),
       ...Juke.glob('_maps/templates/**/*.dmm'),
+      // AQ EDIT START - szablony spoza tej listy (asteroidy, domeny bitrunnera, mapy Aquili) nie były kompilowane w CI
+      ...Juke.glob('_maps/map_files/Mining/nsv13/asteroids/**/*.dmm'),
+      ...Juke.glob('_maps/map_files/Mining/nsv13/ruins/**/*.dmm'),
+      ...Juke.glob('_maps/virtual_domains/**/*.dmm'),
+      ...Juke.glob('aquila/_maps/**/*.dmm'),
+      // AQ EDIT END
     ];
     const content = folders
-      .map((file) => file.replace('_maps/', ''))
+      // AQ EDIT - templates.dm leży w _maps/, więc mapy Aquili dołączamy przez ../
+      .map((file) => (file.startsWith('aquila/') ? `../${file}` : file.replace('_maps/', '')))
       .map((file) => `#include "${file}"`)
       .join('\n') + '\n';
     fs.writeFileSync('_maps/templates.dm', content);
