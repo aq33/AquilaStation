@@ -1,9 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/obj/machinery/computer/ship/dradis/sensors,
-/obj/structure/cable,
-/turf/open/floor/circuit,
-/area/bridge/cic)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -59712,7 +59707,7 @@ wuv
 wuv
 skj
 bcI
-aaa
+skj
 pyK
 pyK
 bJV

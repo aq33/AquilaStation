@@ -21,8 +21,6 @@ type Data = {
   seen_from_pulse: number;
   map_width: number;
   map_height: number;
-  // AQ EDIT - konsola sensorów (aquila/code/modules/overmap/sensor_console.dm)
-  sensor_station: boolean;
   sensor_mode: any;
   ships: any;
   showAnomalies: any;
@@ -90,7 +88,6 @@ export const DradisContent = (props) => {
           <div style={circleStyle}>{ship.ghost ? '!' : '?'}</div>
         )}
         {!!emission && drawEmission(emission, ship.colour, ship.opacity)}
-        {!!ship.designation && drawDesignation(ship)}
         {/* AQ EDIT END */}
         {!!ship.name && (
           <Button
@@ -108,41 +105,6 @@ export const DradisContent = (props) => {
       </li>
     );
   };
-
-  // AQ EDIT START - cel wyznaczony przez operatora sensorów (aquila/code/modules/overmap/sensor_console.dm)
-  const drawDesignation = (ship) => {
-    const primary = ship.designation === 'primary';
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          left: ship.x * scale_factor - 9 + 'px',
-          bottom: ship.y * scale_factor - 9 + 'px',
-          width: '18px',
-          height: '18px',
-          border: (primary ? '2px solid ' : '1px dashed ') + '#ffcc00',
-          borderRadius: '3px',
-          pointerEvents: 'none',
-          transition: 'all 0.5s ease-out',
-        }}
-      >
-        <span
-          style={{
-            position: 'absolute',
-            bottom: '20px',
-            left: '-20px',
-            width: '60px',
-            textAlign: 'center',
-            fontSize: '9px',
-            color: '#ffcc00',
-          }}
-        >
-          {primary ? 'CEL GŁÓWNY' : 'CEL'}
-        </span>
-      </div>
-    );
-  };
-  // AQ EDIT END
 
   // AQ EDIT START - wycinek emisji radaru: namiar od naszego okrętu, odległość przybliżona
   const drawEmission = (emission, colour, opacity) => {
@@ -278,8 +240,7 @@ export const DradisContent = (props) => {
         <>
           <Button icon="search-plus" onClick={() => act('zoomin')} />
           <Button icon="search-minus" onClick={() => act('zoomout')} />
-          {/* AQ EDIT - przy konsoli sensorów radarem steruje operator */}
-          {!!data.can_use_radar && !data.sensor_station && (
+          {!!data.can_use_radar && (
             <>
               <Button
                 content="Impuls radaru"
@@ -335,12 +296,6 @@ export const DradisContent = (props) => {
               data.seen_from_pulse +
               ', gdy pulsuje)'}
           </ProgressBar>
-        </Box>
-      )}
-      {!!data.sensor_station && (
-        <Box mb={1} color="label">
-          Sensorami steruje konsola sensorów. Cele wyznaczone przez operatora
-          mają żółtą ramkę.
         </Box>
       )}
       {/* AQ EDIT END */}
