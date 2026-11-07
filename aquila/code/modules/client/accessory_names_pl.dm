@@ -451,10 +451,10 @@ GLOBAL_LIST_INIT(accessory_names_pl, list(
 	"Neck Headstripe" = "Pasek na karku",
 	"Wasp Headstripes" = "Paski osy na głowie",
 	"Arachnid Headstripes" = "Pajęcze paski na głowie",
-	"Shirt (Munitions)" = "Koszulka (amunicyjna)",
-	"Tank Top (Munitions)" = "Podkoszulek (amunicyjny)",
-	"Thigh-high (Munitions)" = "Zakolanówki (amunicyjne)",
-	"Knee-high (Munitions)" = "Podkolanówki (amunicyjne)"
+	"Shirt (Munitions)" = "Koszulka (uzbrojenie)",
+	"Tank Top (Munitions)" = "Podkoszulek (uzbrojenie)",
+	"Thigh-high (Munitions)" = "Zakolanówki (uzbrojenie)",
+	"Knee-high (Munitions)" = "Podkolanówki (uzbrojenie)"
 ))
 
 /// Nazwa akcesorium do wyświetlenia (polska, jeśli jest)
