@@ -188,8 +188,10 @@
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
 	look_grid.orient2hud()
 	var/matrix/shown = big.transform
-	// Kratka 24 px: ikona 2x2 zajmuje dwie kratki, czyli 48 px z 32
-	TEST_ASSERT_EQUAL(shown.a, 2 * look_grid.grid_cell_size / world.icon_size, "Normal item icon was not scaled to its cells")
+	// Ikona 2x2 zajmuje dwie kratki: 64 px z 32, czyli dokładnie 2×. Mniejsze kształty mają ikonę 1:1 (całkowite skale, ostre piksele)
+	TEST_ASSERT_EQUAL(shown.a, 2, "Normal item icon was not scaled exactly 2x to its cells")
+	TEST_ASSERT_EQUAL(look_grid.grid_icon_scale(1, 1), 1, "A 1x1 icon is scaled, so it gets blurry")
+	TEST_ASSERT_EQUAL(look_grid.grid_icon_scale(1, 2), 1, "A 1x2 icon is scaled, so it gets blurry")
 	TEST_ASSERT(big.appearance_flags & PIXEL_SCALE, "Scaled icon has no PIXEL_SCALE")
 	var/atom/movable/screen/storage_grid_item/tile = look_grid.grid_highlights[big]
 	TEST_ASSERT_EQUAL(length(tile.overlays), 4, "A 2x2 item tile should have 4 cell overlays")
@@ -224,18 +226,18 @@
 	SEND_SIGNAL(fill_bag, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/storage/box, 20)
 	TEST_ASSERT_EQUAL(length(fill_bag.contents), 6, "Fill type put more boxes into the bag than its grid holds")
 
-	// Okno w kratkach 24 px: tło ma pole na każdą kratkę, klik w daleką kolumnę trafia w nią, a nie w kafel ekranu
-	TEST_ASSERT(grid.grid_cell_size < world.icon_size, "Grid cells are not smaller than screen tiles")
+	// Kratka ma rozmiar kafla ekranu (ostre ikony): tło ma pole na każdą kratkę, klik w daleką kolumnę trafia w nią
+	TEST_ASSERT_EQUAL(grid.grid_cell_size, world.icon_size, "Grid cells are not as big as screen tiles, so 32 px icons get a fractional scale")
 	grid.orient2hud()
 	TEST_ASSERT_EQUAL(length(grid.boxes.overlays) + 1, grid.grid_width * grid.grid_height, "Grid background should have a field for every cell")
 	var/list/far = grid.params_to_cell(aquila_grid_cell_params(grid, grid.grid_width - 1, 0))
 	TEST_ASSERT(far && far[1] == grid.grid_width - 1 && far[2] == 0, "Click in the last column landed in another cell")
 	TEST_ASSERT_EQUAL(grid.grid_loc(0, 0), "[grid.screen_start_x]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Grid origin screen_loc")
-	TEST_ASSERT_EQUAL(grid.grid_loc(grid.grid_cell_size * 4, 0), "[grid.screen_start_x + 3]:[grid.screen_pixel_x],[grid.screen_start_y]:[grid.screen_pixel_y]", "Four 24 px cells should span three screen tiles")
+	TEST_ASSERT_EQUAL(grid.grid_loc(grid.grid_cell_size * 4 + 8, 0), "[grid.screen_start_x + 4]:[grid.screen_pixel_x + 8],[grid.screen_start_y]:[grid.screen_pixel_y]", "Four cells and 8 px should land 8 px into the fifth screen tile")
 
-	// Szerokość siatki liczona w pikselach ekranu: przy mniejszych kratkach mieści się ich więcej
+	// Szerokość siatki liczona w pikselach ekranu: 384 px to 12 kratek
 	TEST_ASSERT_EQUAL(grid.grid_max_width() * grid.grid_cell_size <= 384, TRUE, "Widest grid does not fit the screen space")
-	TEST_ASSERT(grid.grid_max_width() > 12, "Max width still counts 32 px tiles instead of grid cells")
+	TEST_ASSERT_EQUAL(grid.grid_max_width(), 12, "Max width does not count grid cells in the screen space")
 
 	// Nagłówek idzie w jednej linii: długa nazwa małego schowka mieści się bez zawijania
 	var/obj/item/storage/toolbox/long_name = allocate(/obj/item/storage/toolbox)
