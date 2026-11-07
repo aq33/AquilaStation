@@ -1,9 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red,
-/obj/structure/cable,
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
 "ab" = (
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -28,16 +23,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
-"ad" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red,
-/obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/plasma/twenty,
-/obj/item/stack/cable_coil,
 /turf/open/floor/monotile/dark,
 /area/engine/engine_room)
 "ae" = (
@@ -325,6 +310,13 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
+"Ao" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/engine/engine_room)
 "BK" = (
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall/r_wall,
@@ -390,6 +382,19 @@
 /obj/item/control_rod,
 /obj/item/control_rod,
 /turf/open/floor/engine,
+/area/engine/engine_room)
+"Fv" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
+/obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/item/stack/cable_coil,
+/turf/open/floor/monotile/dark,
 /area/engine/engine_room)
 "GE" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
@@ -867,10 +872,10 @@ kX
 am
 kX
 Rp
-aa
+Ao
 QD
 QD
-ad
+Fv
 MG
 MG
 MG

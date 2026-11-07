@@ -1,18 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red,
-/obj/structure/cable,
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
-"ab" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red,
-/obj/structure/reagent_dispensers/foamtank/hull_repair_juice,
-/obj/item/extinguisher/advanced/hull_repair_juice,
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
 "bB" = (
 /obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
@@ -412,6 +398,18 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/engine/engine_room)
+"FN" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
+/obj/structure/reagent_dispensers/foamtank/hull_repair_juice,
+/obj/item/extinguisher/advanced/hull_repair_juice,
+/turf/open/floor/monotile/dark,
+/area/engine/engine_room)
 "Gw" = (
 /obj/structure/cable,
 /obj/machinery/power/rad_collector,
@@ -496,6 +494,13 @@
 /obj/effect/turf_decal/delivery,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/airless,
+/area/engine/engine_room)
+"KS" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
 /area/engine/engine_room)
 "Ln" = (
 /obj/structure/cable,
@@ -1021,10 +1026,10 @@ ss
 HU
 Tr
 Pe
-aa
+KS
 yO
 bB
-ab
+FN
 TX
 TX
 TX

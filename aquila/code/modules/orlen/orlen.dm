@@ -28,11 +28,6 @@
 	name = "biała połówka Orlenu"
 	color = ORLEN_DECAL_WHITE
 
-// Narożniki NSV (ćwiartki) w inżynierii zamienione na mapach na czerwone połówki od strony ściany, żeby było więcej czerwieni
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red
-	name = "czerwona połówka Orlenu"
-	color = ORLEN_DECAL_COLOR
-
 /obj/effect/turf_decal/tile/ship/full/yellow/orlen
 	name = "białe pole Orlenu"
 	color = ORLEN_DECAL_WHITE

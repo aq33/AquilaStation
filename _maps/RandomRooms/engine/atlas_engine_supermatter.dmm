@@ -1,15 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen/red,
-/obj/machinery/suit_storage_unit/engine,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
 "ab" = (
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
@@ -105,6 +94,20 @@
 /obj/machinery/power/emitter,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
+/area/engine/engine_room)
+"en" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
+/obj/machinery/suit_storage_unit/engine,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
 /area/engine/engine_room)
 "ep" = (
 /obj/structure/cable,
@@ -1670,7 +1673,7 @@ ab
 ae
 UG
 Jv
-aa
+en
 IC
 IC
 IC
