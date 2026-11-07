@@ -12,18 +12,14 @@
 		appearance.color = GLOB.emissive_color
 		. = cache[key] = appearance
 
-// Lampy: świecąca świetlówka lub żarówka, ta sama nakładka co w core
+// Lampy: świecąca świetlówka lub żarówka. Bierzemy nakładkę, którą dodał core (zwykła, awaryjna, nocna),
+// zamiast powtarzać tu jego warunki.
 /obj/machinery/light/update_overlays()
 	. = ..()
-	if(!on || status != LIGHT_OK)
-		return
-	var/area/local_area = get_area(src)
-	var/state = base_state
-	if(emergency_mode || local_area?.fire)
-		state = "[base_state]_emergency"
-	else if(nightshift_enabled)
-		state = "[base_state]_nightshift"
-	. += emissive_appearance(overlayicon, state, alpha = src.alpha)
+	for(var/mutable_appearance/overlay as anything in .)
+		if(overlay?.icon == overlayicon)
+			. += emissive_appearance(overlayicon, overlay.icon_state, alpha = src.alpha)
+			return
 
 // Pociski energetyczne (lasery, paralizatory, plazma, jony, termiczne). Kule się nie świecą.
 /obj/item/projectile/Initialize(mapload)
