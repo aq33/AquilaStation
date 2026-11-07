@@ -256,7 +256,7 @@
 /datum/techweb_node/cyborg_upg_muni
 	id = "cyborg_upg_muni"
 	tech_tier = 3
-	display_name = "Ulepszenia cyborgów: amunicja"
+	display_name = "Ulepszenia cyborgów: uzbrojenie"
 	description = "Ulepszenia cyborgów związane z amunicją."
 	prereq_ids = list("adv_robotics", "adv_engi" , "adv_ballistics")
 	design_ids = list("borg_upgrade_muniapp")

@@ -34,7 +34,7 @@ GLOBAL_DATUM_INIT(lobby_manifest, /datum/lobby_manifest, new)
 	departments = list(
 		"Dowództwo" = GLOB.command_positions,
 		"Ochrona" = GLOB.security_positions,
-		"Amunicja" = GLOB.munitions_positions,
+		"Uzbrojenie" = GLOB.munitions_positions,
 		"Inżynieria" = GLOB.engineering_positions,
 		"Medyczny" = GLOB.medical_positions,
 		"Nauka" = GLOB.science_positions,
