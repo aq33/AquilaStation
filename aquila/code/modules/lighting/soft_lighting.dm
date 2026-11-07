@@ -25,11 +25,11 @@
 /proc/aq_glow_settings(level)
 	switch(level)
 		if(AQ_GLOW_LOW)
-			return list(2, 0.5, 160)
+			return list(1.5, 0, 130)
 		if(AQ_GLOW_MEDIUM)
-			return list(3, 1, 210)
+			return list(2, 0.5, 180)
 		if(AQ_GLOW_HIGH)
-			return list(5, 2, 255)
+			return list(3, 1, 230)
 	return null
 
 /// Kopie płaszczyzn do poświaty. Wspólne dla wszystkich klientów, jak maski animacji chodu.
