@@ -1726,6 +1726,7 @@
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
+#include "code\modules\unit_tests\aquila_random_engines.dm"
 #include "code\modules\unit_tests\aquila_mutation_toxins.dm"
 #include "code\modules\unit_tests\aquila_lag_switch.dm"
 #include "code\modules\unit_tests\aquila_openspace_airless.dm"
