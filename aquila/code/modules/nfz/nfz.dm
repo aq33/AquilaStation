@@ -7,8 +7,8 @@
 |********** dekale ***********|
 \****************************/
 // Niebieskie dekale w obszarach medycznych na mapach są podmienione na te podtypy (te same kształty).
-// Turkus NFZ zamiast błękitu, ten sam co główny kolor szafek, automatów i mundurów z arkusza medycy.dmi.
-#define NFZ_DECAL_COLOR "#029F98"
+// Jasny turkus z palety arkusza medycy.dmi (rozjaśnienia szafek i mundurów): pasuje do działu, a ciemniejszy mundur odcina się od podłogi.
+#define NFZ_DECAL_COLOR "#52CCC2"
 
 /obj/effect/turf_decal/tile/ship/blue/nfz
 	name = "turkusowy narożnik NFZ"
