@@ -7,6 +7,8 @@
 #define HARDSUIT_BODY_SLOTS (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING|ITEM_SLOT_GLOVES|ITEM_SLOT_FEET|ITEM_SLOT_BACK|ITEM_SLOT_BELT|ITEM_SLOT_NECK|ITEM_SLOT_SUITSTORE)
 /// Sloty obsługiwane przez hełm
 #define HARDSUIT_HEAD_SLOTS (ITEM_SLOT_HEAD|ITEM_SLOT_EYES|ITEM_SLOT_MASK|ITEM_SLOT_EARS)
+/// Ciśnienie pełnej wbudowanej butli (tyle daje przy tworzeniu, tyle uzupełnia szafa i najwyżej tyle można dolać)
+#define HARDSUIT_TANK_PRESSURE (6 * ONE_ATMOSPHERE)
 
 /obj/item/clothing/suit/space/hardsuit
 	/// Moduły w kombinezonie
@@ -29,8 +31,12 @@
 	var/obj/item/mod/module/selected_module
 	/// Kto nosi kombinezon
 	var/mob/living/carbon/human/wearer
-	/// Kombinezon założony i gotowy do pracy modułów
+	/// Kombinezon założony i uruchomiony (blokada DNA wpuściła noszącego)
 	var/active = FALSE
+	/// Moduły zależne od części mają prąd: uruchomiony kombinezon z naładowanym rdzeniem (stan z ostatniego refresh_seals())
+	var/modules_powered = FALSE
+	/// Kombinezon zakłada ktoś inny przez menu ściągania (tylko na czas założenia): wtedy kombinezon nie uruchamia się sam
+	var/dressed_by_other = FALSE
 	/// Zgodność z modułami MOD (u nas zawsze FALSE: hardsuit nie ma sekwencji uszczelniania)
 	var/activating = FALSE
 	/// Zgodność z modułami MOD (panel otwiera okno, moduły wkłada się ręką)
@@ -72,9 +78,13 @@
 
 /obj/item/clothing/suit/space/hardsuit/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	// moduły zdejmują efekty z noszącego, póki wearer jest ustawiony
 	for(var/obj/item/mod/module/module as anything in modules)
 		uninstall(module, deleting = TRUE)
 		qdel(module)
+	// przed ..(), bo /obj/item/Destroy() zdejmuje przedmiot z moba dopiero po wyczyszczeniu wearer, więc dropped() nic by nie zrobił
+	if(wearer)
+		unset_wearer()
 	QDEL_NULL(core)
 	QDEL_NULL(integrated_tank)
 	QDEL_LIST_ASSOC_VAL(mod_parts)
@@ -116,8 +126,10 @@
 		return
 	update_helmet_part()
 	body.sealed = active
+	// jak dawniej w MOD: bez prądu moduły zależne od części (także pasywne, np. szybkie noszenie) nie działają
+	modules_powered = active && get_charge() > 0
 	for(var/obj/item/mod/module/module as anything in modules)
-		var/ready = active && module.has_required_parts(mod_parts, need_active = TRUE)
+		var/ready = modules_powered && module.has_required_parts(mod_parts, need_active = TRUE)
 		if(ready && !module.part_activated)
 			module.on_part_activation()
 			module.part_activated = TRUE
@@ -148,17 +160,47 @@
 	if(!istype(user))
 		return
 	wearer = user
-	active = TRUE
 	SEND_SIGNAL(src, COMSIG_MOD_WEARER_SET, wearer)
 	for(var/obj/item/mod/module/module as anything in modules)
 		module.on_equip()
 		var/datum/action/item_action/mod/pinned_module/action = module.pinned_to[REF(wearer)]
 		action?.Grant(wearer)
-	// blokada DNA i podobne moduły mogą nie wpuścić noszącego
-	if(SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, wearer) & MOD_CANCEL_ACTIVATE)
+	if(dressed_by_other)
+		// jak dawniej przy MOD: założony komuś kombinezon czeka, aż noszący sam go uruchomi (try_activate())
 		active = FALSE
+		if(length(modules))
+			to_chat(wearer, "<span class='notice'>Ktoś założył na ciebie [src]. Moduły uruchomisz akcją kombinezonu.</span>")
+	else
+		// blokada DNA i podobne moduły mogą nie wpuścić noszącego
+		active = !(SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, wearer) & MOD_CANCEL_ACTIVATE)
+		if(QDELETED(src) || wearer != user) // wzmocniona blokada ninja zabiła noszącego
+			return
 	refresh_seals()
 	update_charge_alert()
+
+/// Uruchamia kombinezon, którego noszący jeszcze nie uruchomił (założony przez kogoś innego albo odrzucony przez blokadę DNA).
+/// Blokada sprawdza wtedy noszącego tak jak dawniej przy aktywacji MOD. Zwraca TRUE, gdy kombinezon działa.
+/obj/item/clothing/suit/space/hardsuit/proc/try_activate(mob/user)
+	if(active)
+		return TRUE
+	if(!user || user != wearer)
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, user) & MOD_CANCEL_ACTIVATE)
+		return FALSE
+	if(QDELETED(src) || user != wearer)
+		return FALSE
+	active = TRUE
+	refresh_seals()
+	update_charge_alert()
+	balloon_alert(user, "kombinezon uruchomiony")
+	return TRUE
+
+/// Blokada DNA (sygnał jak przy dawnym otwieraniu pokrywy MOD): TRUE, gdy tej osobie nie wolno wkładać ani wyjmować części
+/obj/item/clothing/suit/space/hardsuit/proc/parts_locked(mob/user)
+	if(SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVAL, user) & MOD_CANCEL_REMOVAL)
+		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/proc/unset_wearer()
 	if(!wearer)
@@ -187,8 +229,12 @@
 		for(var/obj/item/mod/module/module as anything in modules)
 			if(module.active)
 				module.deactivate(display_message = FALSE)
+		if(modules_powered)
+			refresh_seals()
 		update_charge_alert()
 		return
+	if(!modules_powered) // prąd wrócił (np. ładowarka borgów)
+		refresh_seals()
 	subtract_charge(charge_drain * delta_time)
 	update_charge_alert()
 	for(var/obj/item/mod/module/module as anything in modules)
@@ -215,6 +261,8 @@
 		if(wearer)
 			balloon_alert(user, "najpierw zdejmij kombinezon!")
 			return TRUE
+		if(parts_locked(user))
+			return TRUE
 		install(I, user)
 		return TRUE
 	if(istype(I, /obj/item/mod/core))
@@ -224,6 +272,8 @@
 		if(core)
 			balloon_alert(user, "ma już rdzeń!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			return TRUE
+		if(parts_locked(user))
 			return TRUE
 		var/obj/item/mod/core/new_core = I
 		if(!user.transferItemToLoc(new_core, src))
@@ -242,19 +292,27 @@
 	if(wearer)
 		balloon_alert(user, "najpierw zdejmij kombinezon!")
 		return TRUE
+	if(parts_locked(user))
+		return TRUE
 	var/list/choices = list()
 	for(var/obj/item/mod/module/module as anything in modules)
 		if(module.removable)
 			choices[module.name] = module
+	var/obj/item/mod/core/standard/cell_core = core
+	if(istype(cell_core) && cell_core.cell)
+		choices["ogniwo: [cell_core.cell.name]"] = cell_core.cell
 	if(core)
 		choices["rdzeń: [core.name]"] = core
 	if(!length(choices))
 		balloon_alert(user, "nic do wyjęcia!")
 		return TRUE
 	var/picked = tgui_input_list(user, "Co wyjąć z kombinezonu?", "Hardsuit", choices)
-	if(!picked || wearer || !user.Adjacent(src))
+	if(!picked || wearer || !user.Adjacent(src) || parts_locked(user))
 		return TRUE
 	var/obj/item/thing = choices[picked]
+	if(istype(cell_core) && core == cell_core && thing == cell_core.cell)
+		cell_core.mod_uninstall_cell(user)
+		return TRUE
 	if(thing == core)
 		core.uninstall()
 		thing.forceMove(drop_location())
@@ -268,6 +326,12 @@
 	tool.play_tool_sound(src, 100)
 	balloon_alert(user, "wyjęto: [thing.name]")
 	return TRUE
+
+// Zniszczenie (obrażenia, kwas, ogień): moduły odinstalowane bez kasowania, więc schowek i klamra wyrzucają zawartość jak dawniej w MOD
+/obj/item/clothing/suit/space/hardsuit/obj_destruction(damage_flag)
+	for(var/obj/item/mod/module/module as anything in modules)
+		uninstall(module)
+	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/emp_act(severity)
 	. = ..()
@@ -487,18 +551,37 @@
 /obj/item/tank/internals/hardsuit/populate_gas()
 	air_contents.set_moles(GAS_O2, full_oxygen_moles())
 
+/obj/item/tank/internals/hardsuit/Destroy()
+	// butla zniszczona w kombinezonie: kombinezon i noszący nie trzymają do niej odwołań
+	var/obj/item/clothing/suit/space/hardsuit/suit = loc
+	if(istype(suit) && suit.integrated_tank == src)
+		suit.integrated_tank = null
+		if(suit.wearer?.internal == src)
+			suit.wearer.internal = null
+			suit.wearer.update_internals_hud_icon(0)
+	return ..()
+
 /// Ile moli tlenu ma pełna butla (tyle dostaje przy tworzeniu i tyle uzupełnia szafa na skafandry)
 /obj/item/tank/internals/hardsuit/proc/full_oxygen_moles()
-	return (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C)
+	return HARDSUIT_TANK_PRESSURE * volume / (R_IDEAL_GAS_EQUATION * T20C)
 
-/// Przelewa gaz z trzymanej butli do wbudowanej, aż ciśnienia się wyrównają
+/// Przelewa gaz z trzymanej butli do wbudowanej, aż ciśnienia się wyrównają, ale najwyżej do ciśnienia pełnej butli
 /obj/item/clothing/suit/space/hardsuit/proc/fill_integrated_tank(obj/item/tank/internals/source, mob/user)
 	var/datum/gas_mixture/source_air = source.return_air()
 	var/datum/gas_mixture/target_air = integrated_tank.return_air()
-	if(source_air.return_pressure() <= target_air.return_pressure())
+	var/source_pressure = source_air.return_pressure()
+	var/target_pressure = target_air.return_pressure()
+	if(target_pressure >= HARDSUIT_TANK_PRESSURE)
+		balloon_alert(user, "butla jest pełna!")
+		return
+	if(source_pressure <= target_pressure)
 		balloon_alert(user, "butla ma za niskie ciśnienie!")
 		return
-	source_air.transfer_to(target_air, (source_air.total_moles() - target_air.total_moles()) / 2)
+	var/source_volume = source_air.return_volume()
+	var/target_volume = target_air.return_volume()
+	var/final_pressure = min((source_pressure * source_volume + target_pressure * target_volume) / (source_volume + target_volume), HARDSUIT_TANK_PRESSURE)
+	var/moles = (final_pressure - target_pressure) * target_volume / (R_IDEAL_GAS_EQUATION * max(source_air.return_temperature(), TCMB))
+	source_air.transfer_to(target_air, moles)
 	playsound(src, 'sound/effects/spray2.ogg', 30, TRUE)
 	balloon_alert(user, "butla napełniona: [round(target_air.return_pressure())] kPa")
 
@@ -533,6 +616,14 @@
 	. = ..()
 	clothing_flags |= HEADINTERNALS
 
+// Tryb bojowy hełmu Syndykatu (uniesiony wizjer) zdejmuje visor_flags, więc razem ze szczelnością znika podawanie powietrza
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize(mapload)
+	. = ..()
+	if(visor_flags & STOPSPRESSUREDAMAGE)
+		visor_flags |= HEADINTERNALS
+		if(!on)
+			clothing_flags &= ~HEADINTERNALS
+
 /datum/action/item_action/hardsuit_tank
 	name = "Wbudowana butla"
 	desc = "Włącza albo wyłącza oddychanie z butli wbudowanej w kombinezon."
@@ -542,26 +633,43 @@
 // Bazowe ui_action_click() woła attack_self(), a to otwierało panel kombinezonu przy każdej akcji (hełm, butla).
 // Akcje modułów mają własne Trigger(), więc tu zostają tylko hełm i butla. Pełne nadpisanie bez ..(): LEGACY_OVERRIDES.md.
 /obj/item/clothing/suit/space/hardsuit/ui_action_click(mob/user, datum/actiontype)
-	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
-		if(ishuman(user))
-			toggle_integrated_tank(user)
+	if(handle_tank_action(user, actiontype))
 		return
 	ToggleHelmet()
 
-// Hardsuity Syndykatu mają własne ui_action_click() bez ..(); butla obsługiwana przed nimi
+/// Akcja wbudowanej butli; TRUE, gdy to była ona
+/obj/item/clothing/suit/space/hardsuit/proc/handle_tank_action(mob/user, datum/actiontype)
+	if(!istype(actiontype, /datum/action/item_action/hardsuit_tank))
+		return FALSE
+	if(ishuman(user))
+		toggle_integrated_tank(user)
+	return TRUE
+
+// Hardsuity Syndykatu i ERT mają własne ui_action_click() bez ..() (switch po akcjach), więc butla jest obsługiwana przed nimi
 /obj/item/clothing/suit/space/hardsuit/syndi/ui_action_click(mob/user, datum/actiontype)
-	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
-		if(ishuman(user))
-			toggle_integrated_tank(user)
+	if(handle_tank_action(user, actiontype))
 		return
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/shielded/syndi/ui_action_click(mob/user, datum/actiontype)
-	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
-		if(ishuman(user))
-			toggle_integrated_tank(user)
+	if(handle_tank_action(user, actiontype))
 		return
 	return ..()
 
+/obj/item/clothing/suit/space/hardsuit/ert/ui_action_click(mob/user, datum/actiontype)
+	if(handle_tank_action(user, actiontype))
+		return
+	return ..()
+
+// Kombinezon założony komuś przez menu ściągania nie uruchamia się sam: blokada DNA sprawdzi noszącego dopiero przy akcji kombinezonu
+/datum/strippable_item/mob_item_slot/finish_equip(atom/source, obj/item/equipping, mob/user)
+	var/obj/item/clothing/suit/space/hardsuit/suit = equipping
+	if(!istype(suit) || user == source)
+		return ..()
+	suit.dressed_by_other = TRUE
+	. = ..()
+	suit.dressed_by_other = FALSE
+
 #undef HARDSUIT_BODY_SLOTS
 #undef HARDSUIT_HEAD_SLOTS
+#undef HARDSUIT_TANK_PRESSURE

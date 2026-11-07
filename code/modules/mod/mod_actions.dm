@@ -29,6 +29,8 @@
 	button_icon_state = "module"
 
 /datum/action/item_action/mod/module/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
+	if(!mod.try_activate(user)) // kombinezon założony przez kogoś innego uruchamia się dopiero tu (blokada DNA)
+		return
 	mod.quick_module(user)
 
 /datum/action/item_action/mod/panel
@@ -37,6 +39,8 @@
 	button_icon_state = "panel"
 
 /datum/action/item_action/mod/panel/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
+	if(!mod.try_activate(user))
+		return
 	mod.ui_interact(user)
 
 /datum/action/item_action/mod/pinned_module
