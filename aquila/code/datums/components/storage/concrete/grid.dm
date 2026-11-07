@@ -616,7 +616,12 @@
 		if(QDELETED(O))
 			continue
 		O.mouse_opacity = MOUSE_OPACITY_OPAQUE
-		O.maptext = ""
+		// Stos pokazuje liczbę sztuk także w plecaku (aquila/code/game/objects/items/stacks/stack_amount.dm)
+		if(istype(O, /obj/item/stack))
+			var/obj/item/stack/stack = O
+			stack.update_amount_maptext()
+		else
+			O.maptext = ""
 		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 		var/list/pos = isitem(O) ? LAZYACCESS(grid_positions, O) : null

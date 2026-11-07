@@ -55,6 +55,21 @@
 	TEST_ASSERT(findtext(iron.maptext, "3"), "The amount did not update after using the stack")
 	holder.dropItemToGround(iron)
 	TEST_ASSERT(!iron.maptext, "A dropped stack still shows its amount")
+	// Opening a bag redraws its contents and used to wipe the amount: both the grid and the plain storage view keep it
+	var/obj/item/storage/backpack/bag = allocate(/obj/item/storage/backpack, run_loc_floor_bottom_left)
+	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_INSERT, iron, null, TRUE), "The stack did not fit into a backpack")
+	var/datum/component/storage/bag_storage = bag.GetComponent(/datum/component/storage)
+	bag_storage.orient2hud()
+	TEST_ASSERT(findtext(iron.maptext, "3"), "A stack in an open grid backpack does not show its amount")
+	// Santa's bag keeps the plain storage view (no grid)
+	var/obj/item/storage/backpack/santabag/sack = allocate(/obj/item/storage/backpack/santabag, run_loc_floor_bottom_left)
+	var/datum/component/storage/sack_storage = sack.GetComponent(/datum/component/storage)
+	TEST_ASSERT(!istype(sack_storage, /datum/component/storage/concrete/grid), "Santa's bag got a grid, pick another plain storage for this test")
+	sack_storage.max_w_class = WEIGHT_CLASS_HUGE
+	var/obj/item/stack/sheet/iron/sacked = allocate(/obj/item/stack/sheet/iron, run_loc_floor_bottom_left, 4)
+	TEST_ASSERT(SEND_SIGNAL(sack, COMSIG_TRY_STORAGE_INSERT, sacked, null, TRUE), "The stack did not fit into a plain bag")
+	sack_storage.orient2hud()
+	TEST_ASSERT(findtext(sacked.maptext, "4"), "A stack in an open plain bag does not show its amount")
 	// A stack created in nullspace (crafting, vendors) has no loc to ask about storage
 	var/obj/item/stack/sheet/iron/nowhere = new(null, 3)
 	var/nowhere_maptext = nowhere.maptext

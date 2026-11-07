@@ -23,3 +23,13 @@
 		maptext = MAPTEXT("<font color='white'>[get_amount()]</font>")
 	else
 		maptext = ""
+
+// Zwykły widok schowka czyści maptext przedmiotów przy każdym odświeżeniu. W trybie grupowania (display_numerical_stacking)
+// liczba na ikonie to liczba zgrupowanych przedmiotów, więc tam jej nie ruszamy. Siatka ma to w swoim orient2hud()
+/datum/component/storage/orient2hud()
+	. = ..()
+	if(display_numerical_stacking)
+		return
+	var/atom/real_location = real_location()
+	for(var/obj/item/stack/stack in real_location)
+		stack.update_amount_maptext()
