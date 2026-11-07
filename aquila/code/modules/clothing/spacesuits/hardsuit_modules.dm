@@ -111,11 +111,11 @@
 
 /// Przelicza szczelność części i włącza albo wyłącza moduły zależne od części
 /obj/item/clothing/suit/space/hardsuit/proc/refresh_seals()
-	update_helmet_part()
 	var/datum/mod_part/body = mod_parts["[HARDSUIT_BODY_SLOTS]"]
+	if(!body || QDELING(src)) // kombinezon w trakcie niszczenia: części już usunięte
+		return
+	update_helmet_part()
 	body.sealed = active
-	if(helmet && helmet.min_cold_protection_temperature && helmet.loc == wearer)
-		ADD_TRAIT(helmet, TRAIT_NODROP, MOD_TRAIT)
 	for(var/obj/item/mod/module/module as anything in modules)
 		var/ready = active && module.has_required_parts(mod_parts, need_active = TRUE)
 		if(ready && !module.part_activated)
