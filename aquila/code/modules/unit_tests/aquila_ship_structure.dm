@@ -220,5 +220,23 @@
 			qdel(O)
 		T.ChangeTurf(/turf/open/space)
 
+/// AQUILA - Głosowanie „Statek w następnej rundzie”: przewaga „odbuduj” odrzuca zapis, remis i głosy dla innej mapy go zostawiają
+/datum/unit_test/ship_structure_vote
+
+/datum/unit_test/ship_structure_vote/Run()
+	var/vote_file = "data/ship_structure/vote.json"
+	var/datum/ship_structure/structure = new(list(1))
+	structure.save_path = "data/ship_structure/unit_test_vote.json"
+	var/list/cases = list(
+		list("votes" = list("a" = TRUE, "b" = FALSE, "c" = FALSE), "save" = structure.save_path, "expected" = TRUE, "name" = "rebuild majority"),
+		list("votes" = list("a" = TRUE, "b" = FALSE), "save" = structure.save_path, "expected" = FALSE, "name" = "tie"),
+		list("votes" = list("a" = FALSE), "save" = "data/ship_structure/other_map.json", "expected" = FALSE, "name" = "vote for another map"),
+	)
+	for(var/list/test_case in cases)
+		rustg_file_write(json_encode(list("save" = test_case["save"], "votes" = test_case["votes"])), vote_file)
+		TEST_ASSERT_EQUAL(structure.consume_last_vote(), test_case["expected"], "Wrong vote result for: [test_case["name"]]")
+		TEST_ASSERT(!fexists(vote_file), "The vote file was not consumed ([test_case["name"]])")
+	TEST_ASSERT(!structure.consume_last_vote(), "No vote file must keep the ship")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

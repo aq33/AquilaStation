@@ -878,7 +878,14 @@ SUBSYSTEM_DEF(ship_structure)
 	var/started = REALTIMEOFDAY
 	structure.baseline = structure.capture()
 	var/captured = REALTIMEOFDAY
-	structure.load()
+	// Głosowanie z końca poprzedniej rundy (ship_structure_vote.dm): przewaga „odbuduj” = statek prosto z mapy
+	if(structure.consume_last_vote())
+		if(fexists(structure.save_path))
+			fdel(structure.save_path)
+		structure.last_report = "gracze zagłosowali za odbudową, statek prosto z mapy"
+		log_game("Ship structure: players voted to rebuild the ship, [structure.save_path] dropped")
+	else
+		structure.load()
 	log_game("Ship structure: map snapshot of [length(structure.baseline)] turfs took [(captured - started) / 10] s, loading the save [(REALTIMEOFDAY - captured) / 10] s")
 
 /datum/controller/subsystem/persistence/CollectData()
@@ -897,7 +904,7 @@ SUBSYSTEM_DEF(ship_structure)
 		to_chat(usr, "<span class='warning'>Trwała struktura statku jest wyłączona (SHIP_STRUCTURE_PERSISTENCE w game_options.txt).</span>")
 		return
 	var/toggle = structure.skip_save ? "Zapisz strukturę po tej rundzie" : "Nie zapisuj tej rundy"
-	var/choice = tgui_alert(usr, "Zapis: [structure.save_path]\nWczytanie: [structure.last_report]\nZapis po tej rundzie: [structure.skip_save ? "NIE" : "TAK"]", "Struktura statku", list(toggle, "Skasuj zapis", "Anuluj"))
+	var/choice = tgui_alert(usr, "Zapis: [structure.save_path]\nWczytanie: [structure.last_report] ([structure.last_vote_report])\nZapis po tej rundzie: [structure.skip_save ? "NIE" : "TAK"]", "Struktura statku", list(toggle, "Skasuj zapis", "Anuluj"))
 	if(choice == toggle)
 		structure.skip_save = !structure.skip_save
 		log_admin("[key_name(usr)] set ship structure saving for this round to [structure.skip_save ? "off" : "on"].")

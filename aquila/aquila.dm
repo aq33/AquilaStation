@@ -311,6 +311,7 @@
 #include "code\modules\admin\admin.dm"
 #include "code\modules\admin\campaign_reset.dm"
 #include "code\modules\persistence\ship_structure.dm"
+#include "code\modules\persistence\ship_structure_vote.dm"
 #include "code\modules\admin\lag_switch.dm"
 #include "code\modules\admin\player_browser.dm"
 #include "code\modules\admin\player_ticket_history.dm"
