@@ -446,45 +446,27 @@
 	layers += ghost
 	preview.overlays = layers
 
-/// Obraca przedmiot o 90° (E w prawo, Q w lewo) w trakcie przeciągania. Obrócony kształt zostaje w miejscu, jeśli się tam mieści
-/// (przy tej samej lewej górnej kratce albo obok niej), a jeśli nie, obrót czeka na upuszczenie
+/// Obraca o 90° (E w prawo, Q w lewo) tylko podgląd przeciąganego przedmiotu. Przedmiot w schowku zostaje, jak leżał,
+/// a wybrany obrót wchodzi dopiero przy upuszczeniu na siatce (move_item()). Bez upuszczenia przepada (clear_pending_rotation())
 /datum/component/storage/concrete/grid/proc/rotate_item(obj/item/I, mob/user, clockwise = TRUE)
 	if(!grid_width || I.loc != real_location())
 		return FALSE
 	settle_contents()
-	var/atom/host = parent
 	var/list/pos = LAZYACCESS(grid_positions, I)
-	if(!pos)
-		host.balloon_alert(user, "najpierw zrób miejsce")
-		return TRUE
 	var/current = LAZYACCESS(grid_pending_rotation, I)
 	if(isnull(current))
 		current = grid_angle(pos)
 	var/angle = (current + (clockwise ? 90 : 270)) % 360
-	var/rotated = angle % 180 != 0
-	var/list/shape = grid_shape(I, rotated)
-	var/list/occupancy = build_occupancy(I)
-	var/list/spot
-	if(cells_free(occupancy, pos[1], pos[2], shape[1], shape[2]))
-		spot = list(pos[1], pos[2], rotated)
-	else
-		spot = find_spot_at(I, occupancy, list(pos[1], pos[2]), list(rotated))
-	if(spot)
-		spot += angle
-		LAZYSET(grid_positions, I, spot)
+	// Powrót do ułożenia, w jakim przedmiot leży: podgląd zachowuje się jak bez obrotu
+	if(pos && angle == grid_angle(pos))
 		LAZYREMOVE(grid_pending_rotation, I)
 	else
 		LAZYSET(grid_pending_rotation, I, angle)
-		host.balloon_alert(user, "obróci się po upuszczeniu")
-	refresh_mob_views()
 	return TRUE
 
 /// Koniec przeciągania bez upuszczenia na siatce: wybrany obrót przepada
 /datum/component/storage/concrete/grid/proc/clear_pending_rotation(obj/item/I)
-	if(isnull(LAZYACCESS(grid_pending_rotation, I)))
-		return
 	LAZYREMOVE(grid_pending_rotation, I)
-	refresh_mob_views()
 
 /datum/component/storage/concrete/grid/proc/forget_item(atom/movable/thing)
 	LAZYREMOVE(grid_positions, thing)
@@ -644,10 +626,8 @@
 		// Ikona na środku zajmowanego prostokąta
 		O.screen_loc = grid_icon_loc(px, py, width, height)
 		if(isitem(O))
-			var/angle = LAZYACCESS(grid_pending_rotation, O)
-			if(isnull(angle))
-				angle = grid_angle(pos)
-			apply_appearance(O, grid_icon_scale(width, height), angle)
+			// Obrót wybrany w trakcie przeciągania widać tylko na podglądzie, przedmiot leży po staremu do upuszczenia
+			apply_appearance(O, grid_icon_scale(width, height), grid_angle(pos))
 			update_highlight(O, px, py, width, height, !pos)
 	update_header(overflow_index)
 	closer.screen_loc = grid_loc(grid_width * size, 0)
