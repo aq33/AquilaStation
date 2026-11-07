@@ -388,3 +388,9 @@
       czysty komunikat floty sojuszniczej.'
   - balance: Okręty AI trochę szybciej się boją i wcześniej przerywają walkę, częściej
       strzelają salwą torped i częściej wzywają pomoc.
+  - bugfix: Filtry tlenu i azotu w atmosie na Serendipity łączą się z rurami (warstwa
+      4).
+  - bugfix: Wyszukiwarka w fabrykatorach w wersji angielskiej znajduje projekty po
+      angielskiej nazwie.
+  - bugfix: Kotary nie zasłaniają już maszyny do przetwarzania rudy na Trawniku.
+  - bugfix: Drobne poprawki map Serendipity.
