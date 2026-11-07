@@ -33,7 +33,8 @@
 	. = ..()
 	if(M?.client?.wants_english() && isliving(H))
 		H.aq_make_foreigner()
-		H.aq_give_translator(M)
+		// Po całym after_spawn (też podtypów prac): ochrona z NSV podmienia słuchawki na działowe, a czip ma trafić do końcowych
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, aq_give_translator), H), 1)
 
 /// Blokuje Wspólny i daje Angielski. Źródło LANGUAGE_FOREIGNER przetrwa zmianę ciała (klon, borg), bo języki trzyma umysł.
 /mob/living/proc/aq_make_foreigner()
@@ -44,7 +45,7 @@
 	if(mind)
 		mind.aq_foreigner = TRUE
 
-/// Tłumacz z rundy: czip w słuchawkach, bez słuchawek tłumacz kieszonkowy do kieszeni albo do ręki, a silikony mają go wbudowanego. Komunikat idzie do M, bo H nie ma jeszcze klucza.
+/// Tłumacz z rundy: czip w słuchawkach, bez słuchawek tłumacz kieszonkowy do kieszeni albo do ręki, a silikony mają go wbudowanego. M dostaje komunikat (przy spawnie to już ciało z graczem).
 /mob/living/proc/aq_give_translator(mob/M)
 	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, "wbudowany")
 	aq_update_translator_hook()

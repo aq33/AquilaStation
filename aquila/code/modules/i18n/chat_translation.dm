@@ -3,9 +3,12 @@
 // Adminhelp i PW: odbiorca widzi oryginał z dopiskiem tłumaczenia, żeby admin mógł sprawdzić, co gracz naprawdę napisał.
 // Admini czytają po polsku, więc adminhelp obcokrajowca idzie do nich z polskim tłumaczeniem.
 
-/// Ostatnie tłumaczenia czatu: OOC idzie do wielu odbiorców, a nieudane zapytanie nie może kazać czekać każdemu z osobna
-GLOBAL_LIST_EMPTY(aq_chat_translations)
-#define AQ_CHAT_TRANSLATIONS_MAX 50
+/// Nieudane tłumaczenia czatu (klucz -> world.time): OOC idzie do wielu odbiorców, a błąd API nie może kazać czekać każdemu z osobna.
+/// Udane tłumaczenia trzyma pamięć SStranslation.
+GLOBAL_LIST_EMPTY(aq_chat_translation_failures)
+#define AQ_CHAT_FAILURES_MAX 50
+/// Po tym czasie nieudane tłumaczenie można spróbować jeszcze raz
+#define AQ_CHAT_FAILURE_MEMORY (30 SECONDS)
 #define AQ_CHAT_TRANSLATION_TIMEOUT (6 SECONDS)
 
 /datum/aq_translation_wait
@@ -18,22 +21,28 @@ GLOBAL_LIST_EMPTY(aq_chat_translations)
 
 /**
  * Tłumaczy jeden tekst i czeka na wynik (śpi). Zwraca tłumaczenie albo null (brak klucza, błąd, limit czasu).
- * Dla wołających z verba albo Topic, które mogą spać. Nieudane próby też są zapamiętane, więc drugi raz nie czekamy.
+ * Dla wołających z verba albo Topic, które mogą spać. Nieudana próba jest pamiętana przez AQ_CHAT_FAILURE_MEMORY, więc kolejni odbiorcy tej samej wiadomości nie czekają.
  */
 /proc/aq_translate_wait(text, source_lang, target_lang)
 	if(!text)
 		return null
 	var/key = "[source_lang]>[target_lang]|[text]"
-	if(key in GLOB.aq_chat_translations)
-		return GLOB.aq_chat_translations[key] || null
+	var/cached = SStranslation.cache_get(source_lang, target_lang, text)
+	if(!isnull(cached))
+		return cached
+	var/failed_at = GLOB.aq_chat_translation_failures[key]
+	if(failed_at && world.time - failed_at < AQ_CHAT_FAILURE_MEMORY)
+		return null
 	var/datum/aq_translation_wait/waiter = new
 	SStranslation.translate(list(text), source_lang, target_lang, CALLBACK(waiter, TYPE_PROC_REF(/datum/aq_translation_wait, receive)))
 	var/give_up = world.time + AQ_CHAT_TRANSLATION_TIMEOUT
 	while(!waiter.done && world.time < give_up)
 		sleep(1)
-	if(length(GLOB.aq_chat_translations) >= AQ_CHAT_TRANSLATIONS_MAX)
-		GLOB.aq_chat_translations.Cut(1, 2)
-	GLOB.aq_chat_translations[key] = waiter.result || ""
+	GLOB.aq_chat_translation_failures -= key
+	if(!waiter.result)
+		if(length(GLOB.aq_chat_translation_failures) >= AQ_CHAT_FAILURES_MAX)
+			GLOB.aq_chat_translation_failures.Cut(1, 2)
+		GLOB.aq_chat_translation_failures[key] = world.time
 	return waiter.result
 
 /client/aq_ooc_for(client/recipient, raw_msg)
@@ -53,5 +62,6 @@ GLOBAL_LIST_EMPTY(aq_chat_translations)
 		return msg
 	return "[msg] ([to_english ? "Translation" : "Tłumaczenie"]: [sanitized ? sanitize(translated) : translated])"
 
-#undef AQ_CHAT_TRANSLATIONS_MAX
+#undef AQ_CHAT_FAILURES_MAX
+#undef AQ_CHAT_FAILURE_MEMORY
 #undef AQ_CHAT_TRANSLATION_TIMEOUT

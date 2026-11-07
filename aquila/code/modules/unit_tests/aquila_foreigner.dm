@@ -164,8 +164,21 @@
 		var/started = world.time
 		TEST_ASSERT(isnull(aq_translate_wait("Nikt tego nie tłumaczył", DEEPL_LANG_PL, DEEPL_LANG_EN)), "Chat translation without a key returned text")
 		TEST_ASSERT(world.time - started < 1 SECONDS, "Chat translation without a key waited")
+	// Świeża porażka: kolejny odbiorca nie czeka; stara wygasa, a tłumaczenie, które już jest w pamięci, wygrywa z porażką
+	var/key = "[DEEPL_LANG_PL]>[DEEPL_LANG_EN]|Spróbuj jeszcze raz"
+	GLOB.aq_chat_translation_failures[key] = world.time
+	var/started_fresh = world.time
+	TEST_ASSERT(isnull(aq_translate_wait("Spróbuj jeszcze raz", DEEPL_LANG_PL, DEEPL_LANG_EN)), "Fresh failure did not short-circuit")
+	TEST_ASSERT(world.time - started_fresh < 1 SECONDS, "Fresh failure still waited for the API")
+	SStranslation.cache_set(DEEPL_LANG_PL, DEEPL_LANG_EN, "Spróbuj jeszcze raz", "Try again")
+	TEST_ASSERT(aq_translate_wait("Spróbuj jeszcze raz", DEEPL_LANG_PL, DEEPL_LANG_EN) == "Try again", "Remembered failure hid a translation that is now cached")
 	SStranslation.cache = list()
-	GLOB.aq_chat_translations = list()
+	GLOB.aq_chat_translation_failures[key] = world.time - 31 SECONDS
+	if(!CONFIG_GET(string/deepl_api_key))
+		aq_translate_wait("Spróbuj jeszcze raz", DEEPL_LANG_PL, DEEPL_LANG_EN)
+		TEST_ASSERT(GLOB.aq_chat_translation_failures[key] > world.time - 1 SECONDS, "Expired failure was not retried")
+	SStranslation.cache = list()
+	GLOB.aq_chat_translation_failures = list()
 
 /// Obcokrajowiec losuje imiona z oryginalnej puli NSV13, a bez gracza z angielskim w lobby zostaje polska pula
 /datum/unit_test/aquila_foreigner_names/Run()
