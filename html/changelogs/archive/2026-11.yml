@@ -333,6 +333,18 @@
       obraca tylko podgląd, przedmiot obraca się po upuszczeniu.
   - rscadd: Postacie mrugają, a nieprzytomne mają zamknięte oczy.
   - rscadd: 'Prawo kosmiczne: nowe wykroczenie „Załatwianie potrzeby w miejscu publicznym”.'
+  - rscadd: 'Gracz z angielskim w preferencjach dołącza jako obcokrajowiec: nie zna
+      Galaktycznego Wspólnego i mówi po Angielsku, którego załoga nie rozumie.'
+  - rscadd: Czip tłumacza w słuchawkach obcokrajowca (własne gniazdo obok kluczy,
+      wyjmowany multitoolem) tłumaczy mowę na polski i polską mowę na angielski przez
+      DeepL. Bez słuchawek obcokrajowiec dostaje tłumacz kieszonkowy.
+  - rscadd: OOC, adminhelpy i PW z adminami są tłumaczone między polskim i angielskim.
+  - rscadd: Obcokrajowiec losuje angielskie imiona z oryginalnej puli NSV13.
+  - rscadd: EMP wyłącza tłumacza na minutę, a silny może go spalić. Zapasowe czipy
+      tłumacza są w szafce HoP-a.
+  - imageadd: Sprite czipu tłumacza (sprawny i spalony).
+  - imageadd: Ikonka języka Angielski.
+  - config: DEEPL_API_KEY w config.txt (klucz DeepL API, darmowy kończy się na ":fx").
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
