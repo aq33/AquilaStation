@@ -49,10 +49,28 @@ GLOBAL_DATUM_INIT(crew_manifest_tgui, /datum/crew_manifest, new)
 	)
 
 /datum/crew_manifest/ui_data(mob/user)
+	var/list/manifest = GLOB.data_core.get_manifest()
+	var/list/silicons = get_silicon_entries()
+	if(length(silicons))
+		manifest["Silicon"] = silicons
 	return list(
-		"manifest" = GLOB.data_core.get_manifest(),
+		"manifest" = manifest,
 		"user_theme" = isdead(user) ? "generic" : null,
 	)
 
 /datum/crew_manifest/ui_assets(mob/user)
 	return list(get_asset_datum(/datum/asset/spritesheet/job_icons))
+
+/// The AI and cyborgs have no crew record (manifest_inject() is for humans only), so the manifest lists them straight from the mobs
+/datum/crew_manifest/proc/get_silicon_entries()
+	var/list/entries = list()
+	for(var/mob/living/silicon/ai/ai as anything in GLOB.ai_list)
+		if(!ai.mind)
+			continue
+		entries += list(list("name" = ai.name, "rank" = JOB_NAME_AI, "hud" = get_hud_by_jobname(JOB_NAME_AI)))
+	for(var/mob/living/silicon/robot/borg in GLOB.silicon_mobs)
+		// AI shells belong to the AI, unlinked cyborgs (syndicate, emagged codes) are not crew
+		if(!borg.mind || borg.shell || borg.scrambledcodes)
+			continue
+		entries += list(list("name" = borg.name, "rank" = JOB_NAME_CYBORG, "hud" = get_hud_by_jobname(JOB_NAME_CYBORG)))
+	return entries
