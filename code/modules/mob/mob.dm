@@ -551,7 +551,14 @@
 		return
 
 	face_atom(A)
-	var/list/result = A.examine(src)
+	var/list/result
+	// AQ EDIT START - runtime w examine() jednego typu nie zostawia gracza z pustym shift-klikiem
+	try
+		result = A.examine(src)
+	catch(var/exception/error)
+		stack_trace("[A.type] examine() runtimed: [error.name] ([error.file]:[error.line])")
+		result = list("[A.get_examine_string(src, thats = TRUE)].", A.desc)
+	// AQ EDIT END
 
 	to_chat(src, EXAMINE_BLOCK(jointext(result, "\n")))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
