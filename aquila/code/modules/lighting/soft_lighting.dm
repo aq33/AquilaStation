@@ -1,6 +1,6 @@
 // Miękkie światło i poświata świecących rzeczy, bliżej wyglądu SS14.
 // Oba efekty liczy tylko karta graficzna klienta (filtry na plane masterach), serwer nic nie dokłada.
-// Gracz wyłącza je w preferencjach: „Miękkie światło” i „Poświata”.
+// Gracz wyłącza je w preferencjach: „Miękkie światło”, „Poświata” i „Promienie świateł”.
 //
 // Miękkie światło: rozmycie płaszczyzny światła, zanim emisyjne wytną w niej dziury.
 // Narożnikowe światło tg daje romby wokół lamp i kafelkowe krawędzie przy ścianach, rozmycie je wygładza.
@@ -8,12 +8,18 @@
 // Poświata: kopia płaszczyzn podłogi i gry, przycięta do emisyjnych (ekrany, lampy, pociski),
 // rozmyta i dodana na wierzch oświetlonej sceny. Ma więc kolor świecącej rzeczy, a mob przed ekranem
 // zasłania ją tak samo jak samo świecenie (emissive_blocker).
+//
+// Promienie: ten sam łańcuch filtrów poświaty z radial_blur przed bloomem, jak „glare” w Paradise.
+// Smugi rozchodzą się od środka ekranu, więc lampy przy krawędzi widoku mają dłuższe promienie.
+// Osobnej płaszczyzny nie ma: między światłem a HUD-em nie została żadna wolna liczba całkowita plane.
 
 /datum/preferences
 	/// Rozmycie płaszczyzny światła
 	var/soft_lighting = TRUE
 	/// AQ_GLOW_*: siła poświaty emisyjnych
 	var/glow_level = AQ_GLOW_MEDIUM
+	/// Promienie od świecących rzeczy
+	var/light_glare = FALSE
 
 /// Ustawienia poświaty: list(rozmiar bloomu, rozrost przed rozmyciem, alfa bloomu)
 /proc/aq_glow_settings(level)
@@ -65,13 +71,17 @@ GLOBAL_LIST_EMPTY(aq_glow_sources)
 	if(!C)
 		return
 	var/list/settings = aq_glow_settings(C.prefs?.glow_level)
-	if(!settings)
+	var/glare = C.prefs?.light_glare
+	if(!settings && !glare)
 		// Bez kopii płaszczyzn plane master jest pusty i nic nie kosztuje
 		C.screen -= get_aq_glow_sources()
 		return
 	C.screen |= get_aq_glow_sources()
 	add_filter("aq_glow_mask", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET))
-	add_filter("aq_glow_bloom", 2, list("type" = "bloom", "threshold" = "#000000", "size" = settings[1], "offset" = settings[2], "alpha" = settings[3]))
+	if(glare)
+		add_filter("aq_glow_glare", 1.5, radial_blur_filter(AQ_GLARE_SIZE))
+	if(settings)
+		add_filter("aq_glow_bloom", 2, list("type" = "bloom", "threshold" = "#000000", "size" = settings[1], "offset" = settings[2], "alpha" = settings[3]))
 	// Sam świecący kształt już jest jasny (wycięty z ciemności), więc zostaje tylko aureola wokół niego.
 	// Bez tego ekrany i lampy prześwietlają się do bieli.
 	add_filter("aq_glow_cut", 3, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))

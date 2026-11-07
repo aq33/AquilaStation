@@ -13,3 +13,6 @@
 #define AQ_GLOW_LOW 1
 #define AQ_GLOW_MEDIUM 2
 #define AQ_GLOW_HIGH 3
+
+/// Długość promieni (radial_blur, ułamek odległości od środka ekranu). Paradise ma 0.035.
+#define AQ_GLARE_SIZE 0.035

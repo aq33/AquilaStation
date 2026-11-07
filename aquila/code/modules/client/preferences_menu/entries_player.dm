@@ -357,6 +357,13 @@
 /datum/preference/choiced/glow_level/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
 	C?.aq_update_lighting_planes()
 
+/datum/preference/toggle/player/light_glare
+	db_key = "light_glare"
+	player_var = "light_glare"
+
+/datum/preference/toggle/player/light_glare/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	C?.aq_update_lighting_planes()
+
 /datum/preference/toggle/player/auto_fit_viewport
 	db_key = "auto_fit_viewport"
 	toggle_var = "toggles2"

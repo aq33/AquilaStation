@@ -69,6 +69,7 @@
 	READPREF_INT(tesla_volume, PREFERENCE_TAG_TESLA_VOLUME)
 	READPREF_INT(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	READPREF_INT(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
+	READPREF_INT(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
 	READPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 
 	READPREF_RAW(asaycolor, PREFERENCE_TAG_ASAY_COLOUR)
@@ -115,6 +116,7 @@
 	tesla_volume	= sanitize_integer(tesla_volume, 0, 100, initial(tesla_volume))
 	soft_lighting	= sanitize_integer(soft_lighting, FALSE, TRUE, initial(soft_lighting)) // AQ EDIT - miękkie światło
 	glow_level	= sanitize_integer(glow_level, 0, 3, initial(glow_level)) // AQ EDIT - poświata emisyjnych, 0-3 = AQ_GLOW_OFF..AQ_GLOW_HIGH
+	light_glare	= sanitize_integer(light_glare, FALSE, TRUE, initial(light_glare)) // AQ EDIT - promienie świateł
 	mod_select		= sanitize_inlist(mod_select, list(MIDDLE_CLICK, ALT_CLICK), initial(mod_select))
 
 	pixel_size		= sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
@@ -177,6 +179,7 @@
 	PREP_WRITEPREF_RAW(tesla_volume, PREFERENCE_TAG_TESLA_VOLUME)
 	PREP_WRITEPREF_RAW(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	PREP_WRITEPREF_RAW(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
+	PREP_WRITEPREF_RAW(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
 	PREP_WRITEPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 	PREP_WRITEPREF_RAW(pda_theme, PREFERENCE_TAG_PDA_THEME)
 	PREP_WRITEPREF_RAW(pda_color, PREFERENCE_TAG_PDA_COLOUR)

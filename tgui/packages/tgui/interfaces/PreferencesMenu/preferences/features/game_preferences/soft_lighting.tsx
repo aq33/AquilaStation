@@ -27,3 +27,12 @@ export const glow_level: Feature<number> = {
     3: 'Mocna',
   }),
 };
+
+export const light_glare: FeatureToggle = {
+  name: 'Promienie świateł',
+  category: 'GRAPHICS',
+  subcategory: 'Quality',
+  description:
+    'Smugi światła od lamp, ekranów i laserów, rozchodzące się od środka ekranu. Dodatkowe obciążenie karty graficznej.',
+  component: CheckboxInput,
+};
