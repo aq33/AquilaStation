@@ -65,4 +65,50 @@
 	SSticker.minds -= foreigner.mind
 	SStranslation.cache = list()
 
+/// Czip tłumacza: własne gniazdo w słuchawkach (klucze zostają wolne), działa tylko na uszach, wychodzi multitoolem
+/datum/unit_test/aquila_translator_chip/Run()
+	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
+	var/obj/item/aquila_translator_chip/chip = allocate(/obj/item/aquila_translator_chip, run_loc_floor_bottom_left)
+
+	TEST_ASSERT(wearer.put_in_hands(chip), "Could not pick up the chip")
+	headset.attackby(chip, wearer)
+	TEST_ASSERT(headset.aq_translator_chip == chip && chip.loc == headset, "Chip did not go into the headset slot")
+	TEST_ASSERT(!headset.keyslot && !headset.keyslot2, "Chip took an encryption key slot")
+
+	// Oba gniazda na klucze dalej przyjmują klucze
+	for(var/i in 1 to 2)
+		var/obj/item/encryptionkey/key = allocate(/obj/item/encryptionkey/headset_sec, run_loc_floor_bottom_left)
+		TEST_ASSERT(wearer.put_in_hands(key), "Could not pick up key [i]")
+		headset.attackby(key, wearer)
+	TEST_ASSERT(headset.keyslot && headset.keyslot2, "Encryption keys did not fit next to the chip")
+
+	TEST_ASSERT(wearer.put_in_hands(headset), "Could not pick up the headset")
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Headset in hand already translates")
+	TEST_ASSERT(wearer.equip_to_slot_if_possible(headset, ITEM_SLOT_EARS), "Could not wear the headset")
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Worn headset with chip does not translate")
+	TEST_ASSERT(wearer.has_language(/datum/language/english), "Worn chip gives no English understanding")
+
+	// Śrubokręt wyjmuje klucze, czip zostaje
+	var/obj/item/screwdriver/screwdriver = allocate(/obj/item/screwdriver, run_loc_floor_bottom_left)
+	headset.attackby(screwdriver, wearer)
+	TEST_ASSERT(!headset.keyslot && !headset.keyslot2, "Screwdriver did not remove the keys")
+	TEST_ASSERT(headset.aq_translator_chip == chip && HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Screwdriver removed the chip")
+
+	// Multitool wyjmuje czip i wyłącza tłumacza
+	var/obj/item/multitool/multitool = allocate(/obj/item/multitool, run_loc_floor_bottom_left)
+	wearer.drop_all_held_items()
+	TEST_ASSERT(headset.multitool_act(wearer, multitool), "Multitool did not act on the chip")
+	TEST_ASSERT(!headset.aq_translator_chip && chip.loc != headset, "Chip still in the headset after the multitool")
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Translator stayed on after removing the chip")
+
+	// Obcokrajowiec ze słuchawkami dostaje czip w nich, a zdjęte słuchawki przestają tłumaczyć
+	wearer.aq_give_translator(wearer)
+	TEST_ASSERT(istype(headset.aq_translator_chip), "Spawn translator did not go into the worn headset")
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Spawn chip does not translate")
+	wearer.dropItemToGround(headset)
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Dropped headset still translates")
+	TEST_ASSERT(!headset.aq_translator_wearer, "Dropped headset still remembers its wearer")
+	SStranslation.cache = list()
+
 #undef TEST_ASSERT

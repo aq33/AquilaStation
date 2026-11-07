@@ -1,6 +1,6 @@
 // Obcokrajowiec: gracz z angielskim w preferencjach (game_language.dm) dołącza do rundy jako ktoś,
 // kto nie zna Galaktycznego Wspólnego. Mówi tylko po Angielsku, a polska załoga słyszy bełkot. Polskiej mowy też nie rozumie.
-// Tłumacz (translator_item.dm) przy sobie zmienia to w dwie strony przez DeepL (translation_api.dm):
+// Tłumacz (czip w słuchawkach, translator_chip.dm, albo tłumacz kieszonkowy, translator_item.dm) przy sobie zmienia to w dwie strony przez DeepL (translation_api.dm):
 // - jego angielska wypowiedź idzie do API i wraca przez say() jako polska mowa we Wspólnym (czat, dymki, radio, szept),
 // - polską mowę, którą słyszy, dostaje po angielsku (czat i dymek nad głową).
 // Bez klucza API albo przy błędzie tekst przechodzi bez tłumaczenia (Polacy dostają angielski, on polski).
@@ -44,13 +44,20 @@
 	if(mind)
 		mind.aq_foreigner = TRUE
 
-/// Tłumacz z rundy: do kieszeni albo do ręki, a silikony mają go wbudowanego. Komunikat idzie do M, bo H nie ma jeszcze klucza.
+/// Tłumacz z rundy: czip w słuchawkach, bez słuchawek tłumacz kieszonkowy do kieszeni albo do ręki, a silikony mają go wbudowanego. Komunikat idzie do M, bo H nie ma jeszcze klucza.
 /mob/living/proc/aq_give_translator(mob/M)
 	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, "wbudowany")
 	aq_update_translator_hook()
 	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz przekłada mowę w obie strony."))
 
 /mob/living/carbon/aq_give_translator(mob/M)
+	// Czip w słuchawkach z ekwipunku pracy (translator_chip.dm); tłumacz kieszonkowy tylko dla tych bez słuchawek
+	var/obj/item/radio/headset/headset = get_item_by_slot(ITEM_SLOT_EARS)
+	if(istype(headset) && !headset.aq_translator_chip)
+		headset.aq_translator_chip = new /obj/item/aquila_translator_chip(headset)
+		headset.aq_update_translator_wearer()
+		to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach przekłada mowę w obie strony, dopóki masz je na uszach."))
+		return
 	var/obj/item/aquila_translator/translator = new(get_turf(src))
 	var/where = equip_in_one_of_slots(translator, list("w lewej kieszeni" = ITEM_SLOT_LPOCKET, "w prawej kieszeni" = ITEM_SLOT_RPOCKET), qdel_on_fail = FALSE)
 	if(!where && put_in_hands(translator))

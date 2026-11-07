@@ -10,17 +10,24 @@
 
 /obj/item/aquila_translator/equipped(mob/user, slot)
 	. = ..()
-	ADD_TRAIT(user, TRAIT_AQ_TRANSLATOR, REF(src))
-	user.grant_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
-	if(isliving(user))
-		var/mob/living/living_user = user
-		living_user.aq_update_translator_hook()
+	user.aq_translator_on(REF(src))
 
 /obj/item/aquila_translator/dropped(mob/user)
 	. = ..()
-	REMOVE_TRAIT(user, TRAIT_AQ_TRANSLATOR, REF(src))
-	if(!HAS_TRAIT(user, TRAIT_AQ_TRANSLATOR))
-		user.remove_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
-	if(isliving(user))
-		var/mob/living/living_user = user
-		living_user.aq_update_translator_hook()
+	user.aq_translator_off(REF(src))
+
+/// Włącza tłumacza z danego źródła (tłumacz kieszonkowy, słuchawki z czipem): rozumienie Angielskiego i przechwytywanie mowy
+/mob/proc/aq_translator_on(source)
+	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, source)
+	grant_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
+	if(isliving(src))
+		var/mob/living/living_src = src
+		living_src.aq_update_translator_hook()
+
+/mob/proc/aq_translator_off(source)
+	REMOVE_TRAIT(src, TRAIT_AQ_TRANSLATOR, source)
+	if(!HAS_TRAIT(src, TRAIT_AQ_TRANSLATOR))
+		remove_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
+	if(isliving(src))
+		var/mob/living/living_src = src
+		living_src.aq_update_translator_hook()
