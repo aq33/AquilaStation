@@ -4,6 +4,27 @@
 // torby, buty, czarne rękawiczki, pilot ordynatora) mają grafikę w aquila/icons/nfz/. Profesje i kanał radia bez zmian.
 
 /****************************\
+|********** dekale ***********|
+\****************************/
+// Niebieskie dekale w obszarach medycznych na mapach są podmienione na te podtypy (te same kształty).
+// Jasna mięta zamiast błękitu: pasuje do turkusu NFZ, a medyk w ciemnoturkusowym mundurze nie zlewa się z podłogą.
+#define NFZ_DECAL_COLOR "#8FDCD3"
+
+/obj/effect/turf_decal/tile/ship/blue/nfz
+	name = "miętowy narożnik NFZ"
+	color = NFZ_DECAL_COLOR
+
+/obj/effect/turf_decal/tile/blue/nfz
+	name = "miętowy narożnik NFZ"
+	color = NFZ_DECAL_COLOR
+
+/obj/effect/turf_decal/tile/blue/flat_side/nfz
+	name = "miętowy bok NFZ"
+	color = NFZ_DECAL_COLOR
+
+#undef NFZ_DECAL_COLOR
+
+/****************************\
 |********** automaty *********|
 \****************************/
 /obj/machinery/vending/wardrobe/medi_wardrobe
