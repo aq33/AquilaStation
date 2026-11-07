@@ -1,20 +1,20 @@
-// AQUILA - dział ochrony w barwach Polskiej Policji (Kosmobagiety, grafika: Ewa).
-// Grafika z arkusza artystki w aquila/icons/policja/, a to, czego arkusz nie ma (śluzy, tablety, ubrania brig physiciana),
-// przemalowane z czerwieni na granat mundurów. Wspólnych arkuszy tg nie ruszamy: typy ochrony dostają tu własne pliki.
+// AQUILA - dział ochrony w barwach Żandarmerii (wcześniej Polskiej Policji z arkusza Kosmobagiet).
+// Mundury, szafki i SecDrobe z arkusza zandarmeria.dmi. To, czego arkusz nie ma (śluzy, tablety, ubrania brig physiciana,
+// dywan, dekale), przemalowane na zieleń mundurów. Folder i ścieżki typów zostały po Policji, żeby nie ruszać map.
 
 /****************************\
 |********** szafki ***********|
 \****************************/
-/// Stany closet.dmi, które w aquila/icons/policja/closet.dmi mają policyjną grafikę (plik jest pełną kopią, więc nakładki zostają)
-GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "tac", "shotguncase", "bio_sec"))
+/// Stany closet.dmi, które w aquila/icons/policja/closet.dmi mają grafikę Żandarmerii (plik jest pełną kopią, więc nakładki zostają)
+GLOBAL_LIST_INIT(zandarmeria_closet_states, list("sec", "warden", "hos", "armory", "tac", "shotguncase", "bio_sec"))
 
 // Łapie też szafki z varedytem icon_state na mapach i spawnowane przez adminów
 /obj/structure/closet/Initialize(mapload)
-	if(icon == 'icons/obj/closet.dmi' && (icon_state in GLOB.policja_closet_states))
+	if(icon == 'icons/obj/closet.dmi' && (icon_state in GLOB.zandarmeria_closet_states))
 		icon = 'aquila/icons/policja/closet.dmi'
 	return ..()
 
-// Typy z policyjną grafiką od razu, żeby edytor map i webmapa też je tak pokazywały
+// Typy z żandarmską grafiką od razu, żeby edytor map i webmapa też je tak pokazywały
 /obj/structure/closet/secure_closet/security
 	icon = 'aquila/icons/policja/closet.dmi'
 
@@ -53,13 +53,13 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 \****************************/
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	icon = 'aquila/icons/policja/vending.dmi'
-	product_ads = "Bij opryszków ze stylem!;Granat nie zdradzi, że to ty!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym policjantem, jak zawsze chciałeś!"
-	light_color = LIGHT_COLOR_BLUE
+	product_ads = "Bij opryszków ze stylem!;Zieleń nie zdradzi, że to ty!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym żandarmem, jak zawsze chciałeś!"
+	light_color = LIGHT_COLOR_GREEN
 
 /****************************\
 |******* ubrania i rzeczy ****|
 \****************************/
-// Brig physician: te same ubrania, czerwień zamieniona na granat
+// Brig physician: te same ubrania, czerwień zamieniona na zieleń Żandarmerii
 /obj/item/clothing/head/soft/sec/brig_physician
 	icon = 'aquila/icons/policja/przedmioty.dmi'
 	worn_icon = 'aquila/icons/policja/przedmioty_noszone.dmi'
@@ -80,12 +80,12 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 	icon = 'aquila/icons/policja/przedmioty.dmi'
 	worn_icon = 'aquila/icons/policja/przedmioty_noszone.dmi'
 
-// Aspirant: mundur policyjny zamiast mallcopa, statystyki bez zmian
+// Aspirant: mundur żandarmski zamiast mallcopa, statystyki bez zmian
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
 	icon_state = "security"
 	item_state = "r_suit"
 
-// Opaska Aspiranta w granacie (nakładka na mundurze w nsv13/icons/mob/accessories.dmi)
+// Opaska Aspiranta w zieleni (nakładka na mundurze w nsv13/icons/mob/accessories.dmi)
 /obj/item/clothing/accessory/armband/deputy
 	icon = 'aquila/icons/policja/przedmioty.dmi'
 	icon_state = "policeband"
@@ -100,30 +100,46 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 /****************************\
 |********** podłogi **********|
 \****************************/
-#define POLICJA_DECAL_COLOR "#4B5BB4"
+#define ZANDARMERIA_DECAL_COLOR "#4F8A5B"
 
 /obj/effect/turf_decal/tile/ship/police
-	name = "policyjny narożnik"
-	color = POLICJA_DECAL_COLOR
+	name = "żandarmski narożnik"
+	color = ZANDARMERIA_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/ship/half/police
-	name = "policyjna połówka"
-	color = POLICJA_DECAL_COLOR
+	name = "żandarmska połówka"
+	color = ZANDARMERIA_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/ship/full/police
-	name = "policyjne pole"
-	color = POLICJA_DECAL_COLOR
+	name = "żandarmskie pole"
+	color = ZANDARMERIA_DECAL_COLOR
 
 /obj/effect/turf_decal/trimline/police
-	color = POLICJA_DECAL_COLOR
+	color = ZANDARMERIA_DECAL_COLOR
 
 /obj/effect/turf_decal/trimline/police/line
 	icon_state = "trimline"
 
-#undef POLICJA_DECAL_COLOR
+#undef ZANDARMERIA_DECAL_COLOR
+
+/****************************\
+|***** hełmy plazmoludzi *****|
+\****************************/
+// Kolory greyscale (podstawa, pas, środkowy pasek) w zieleni Żandarmerii z bordowym akcentem, jak kombinezony środowiskowe
+/obj/item/clothing/head/helmet/space/plasmaman/security
+	greyscale_colors = "#2B4432#2D2D2D#460109"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/warden
+	greyscale_colors = "#2B4432#C0C0C0#460109"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/hos
+	greyscale_colors = "#2B4432#C7B83C#213325"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/secmed
+	greyscale_colors = "#A5A9B6#2B4432#A5A9B6"
 
 /turf/open/floor/carpet/police
-	name = "dywan policyjny"
+	name = "dywan żandarmski"
 	icon = 'aquila/icons/policja/carpet_police.dmi'
 	icon_state = "carpet_police-255"
 	base_icon_state = "carpet_police"
@@ -131,7 +147,7 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 	carpet_connect_type = /turf/open/floor/carpet/police
 
 /obj/item/stack/tile/carpet/police
-	name = "dywan policyjny"
+	name = "dywan żandarmski"
 	icon = 'aquila/icons/policja/przedmioty.dmi'
 	icon_state = "tile-carpet-police"
 	item_state = "tile-carpet-royalblue"
@@ -146,7 +162,7 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 |***** zmiana nazwy roli *****|
 \****************************/
 /// Stary tytuł => nowy. Preferencje, czas gry i bany w bazie są zapisane po tytule roli, więc stare wpisy przenosimy przy odczycie.
-GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER))
+GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER))
 
 /// Przenosi wpisy starych tytułów na nowe. sum_values sumuje (czas gry), inaczej nowy wpis wygrywa (priorytet w preferencjach).
 /proc/migrate_renamed_job_titles(list/entries, sum_values = FALSE)
@@ -174,23 +190,25 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 /****************************\
 |*********** nazwy ***********|
 \****************************/
-// Ubrania i sprzęt ochrony nazwane po policyjnemu, w tym samym języku co dotąd (ubrania tg są po angielsku)
+// Ubrania i sprzęt ochrony nazwane po żandarmskiemu, w tym samym języku co dotąd (ubrania tg są po angielsku)
 /obj/item/clothing/under/ship/military_police
-	name = "mundur policyjny"
-	desc = "Wytrzymały mundur noszony przez policjantów, którzy egzekwują prawo na statku."
+	name = "mundur żandarmski"
+	desc = "Wytrzymały mundur noszony przez żandarmów, którzy egzekwują prawo na statku."
 
 /obj/item/clothing/suit/ship/squad/military_police
-	name = "pancerz policyjny"
-	desc = "Solidny zestaw napierśnika i nagolenników, który oznacza, że nosi go policjant. W przeciwieństwie do zwykłej kamizelki chroni też nogi."
+	name = "pancerz żandarmski"
+	desc = "Solidny zestaw napierśnika i nagolenników, który oznacza, że nosi go żandarm. W przeciwieństwie do zwykłej kamizelki chroni też nogi."
 
 /obj/item/clothing/under/rank/security/officer
-	name = "mundur policyjny"
+	name = "mundur żandarmski"
 
 /obj/item/clothing/under/rank/security/officer/white
-	name = "służbowy mundur policyjny"
+	name = "służbowy mundur żandarmski"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/formal
-	name = "galowy mundur policjanta"
+	name = "galowy mundur żandarma"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
 	name = "mundur Aspiranta"
@@ -200,18 +218,28 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	name = "golf Komendanta"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
 	name = "galowy mundur Komendanta"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/warden
 	name = "mundur Naczelnika"
 
 /obj/item/clothing/under/rank/security/warden/white
 	name = "służbowy mundur Naczelnika"
+	can_adjust = FALSE
+
+// Arkusz rysuje wersje zwinięte tylko dla zwykłych mundurów Żandarma, Naczelnika i Komendanta (_alt), służbowe i galowe ich nie mają
+/obj/item/clothing/under/rank/security/head_of_security/white
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/security/warden/formal
+	can_adjust = FALSE
 
 /obj/item/clothing/suit/security/officer
-	name = "kurtka policjanta"
+	name = "kurtka żandarma"
 
 /obj/item/clothing/suit/security/hos
 	name = "kurtka Komendanta"
@@ -220,7 +248,7 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 	name = "opancerzona kurtka Komendanta"
 
 /obj/item/clothing/suit/hooded/wintercoat/security
-	name = "policyjna kurtka zimowa"
+	name = "żandarmska kurtka zimowa"
 
 /obj/item/clothing/suit/toggle/labcoat/brig_physician
 	name = "fartuch Lekarza Więziennego"
@@ -235,73 +263,80 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 	name = "beret Komendanta"
 
 /obj/item/clothing/head/beret/sec/navyhos
-	name = "galowy beret Komendanta"
+	name = "beret oficerski Komendanta"
+
+/obj/item/clothing/head/beret/sec/navywarden
+	name = "beret oficerski Naczelnika"
+
+// Bez własnej nazwy dziedziczył „beret żandarmski” i w SecDrobe były dwa przedmioty o tej samej nazwie
+/obj/item/clothing/head/beret/sec/navyofficer
+	name = "beret oficerski Żandarma"
 
 /obj/item/clothing/head/beret/sec
-	name = "beret policyjny"
+	name = "beret żandarmski"
 
 /obj/item/clothing/head/beret/sec/bandana
-	name = "bandana policyjna"
+	name = "bandana żandarmska"
 
 /obj/item/clothing/head/beret/sec/garrison
-	name = "furażerka policyjna"
+	name = "furażerka żandarmska"
 
 /obj/item/clothing/head/beret/sec/officercap
-	name = "czapka policjanta"
+	name = "czapka żandarma"
 
 /obj/item/clothing/head/soft/sec
-	name = "czapka policyjna"
+	name = "czapka żandarmska"
 
 /obj/item/clothing/head/soft/sec/alt
-	name = "alternatywna czapka policyjna"
+	name = "alternatywna czapka żandarmska"
 
 /obj/item/clothing/head/soft/sec/brig_physician
 	name = "czapka Lekarza Więziennego"
 
 /obj/item/clothing/mask/gas/sechailer
-	name = "policyjna maska gazowa"
+	name = "żandarmska maska gazowa"
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "policyjna maska z megafonem"
+	name = "żandarmska maska z megafonem"
 
 /obj/item/clothing/glasses/hud/security
-	name = "HUD policyjny"
+	name = "HUD żandarmski"
 
 /obj/item/clothing/glasses/hud/security/deputy
-	name = "HUD policyjny Aspiranta"
+	name = "HUD żandarmski Aspiranta"
 
 /obj/item/clothing/glasses/hud/security/night
-	name = "HUD policyjny z noktowizją"
+	name = "HUD żandarmski z noktowizją"
 
 /obj/item/clothing/glasses/hud/security/prescription
-	name = "korekcyjne okulary z HUD-em policyjnym"
+	name = "korekcyjne okulary z HUD-em żandarmskim"
 
 /obj/item/clothing/glasses/hud/security/sunglasses
-	name = "okulary przeciwsłoneczne z HUD-em policyjnym"
+	name = "okulary przeciwsłoneczne z HUD-em żandarmskim"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/degraded
-	name = "zużyte okulary przeciwsłoneczne z HUD-em policyjnym"
+	name = "zużyte okulary przeciwsłoneczne z HUD-em żandarmskim"
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "opaska Aspiranta"
 
 /obj/item/clothing/accessory/medal/silver/security
-	name = "odznaczenie za solidną służbę w policji"
+	name = "odznaczenie za solidną służbę w Żandarmerii"
 
 /obj/item/storage/belt/security
-	name = "pas policyjny"
+	name = "pas żandarmski"
 
 /obj/item/storage/belt/security/deputy
-	name = "pas policyjny Aspiranta"
+	name = "pas żandarmski Aspiranta"
 
 /obj/item/storage/belt/security/webbing
-	name = "oporządzenie policyjne"
+	name = "oporządzenie żandarmskie"
 
 /obj/item/storage/backpack/security
-	name = "plecak policyjny"
+	name = "plecak żandarmski"
 
 /obj/item/storage/backpack/satchel/sec
-	name = "policyjna torba na ramię"
+	name = "żandarmska torba na ramię"
 
 /obj/item/storage/backpack/duffelbag/sec
-	name = "policyjna torba podróżna"
+	name = "żandarmska torba podróżna"

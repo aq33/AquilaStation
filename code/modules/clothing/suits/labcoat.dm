@@ -23,7 +23,7 @@
 	item_state = "labcoat_cmo"
 
 /obj/item/clothing/suit/toggle/labcoat/brig_physician
-	name = "fartuch laboratoryjny lekarza policyjnego"
+	name = "fartuch laboratoryjny lekarza żandarmskiego"
 	icon_state = "labcoat_sec"
 	item_state = "labcoat_sec"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0, fire = 50, acid = 50, stamina = 30, "bleed" = 10)

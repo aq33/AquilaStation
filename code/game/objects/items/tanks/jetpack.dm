@@ -151,7 +151,7 @@
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/tank/jetpack/oxygen/security
-	name = "policyjny plecak odrzutowy (tlen)"
+	name = "żandarmski plecak odrzutowy (tlen)"
 	desc = "Zbiornik ze sprężonym tlenem, który służy siłom ochrony do poruszania się w strefach bez grawitacji."
 	icon_state = "jetpack-sec"
 	item_state = "jetpack-sec"

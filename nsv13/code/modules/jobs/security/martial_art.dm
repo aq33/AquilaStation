@@ -10,7 +10,7 @@
 	martialname = "Ju jitsu"
 	icon = 'nsv13/icons/obj/library.dmi'
 	icon_state = "edgedweapons"
-	desc = "Podręcznik szkoleniowy z lat 2180., który uczy policjantów, jak przetrwać atak bronią białą i nie tylko. (W zestawie DARMOWY pamiątkowy nóż z wojny marsjańskiej!)"
+	desc = "Podręcznik szkoleniowy z lat 2180., który uczy żandarmów, jak przetrwać atak bronią białą i nie tylko. (W zestawie DARMOWY pamiątkowy nóż z wojny marsjańskiej!)"
 	greet = "<span class='sciradio'> Nagle czujesz się o wiele mniej bezbronny wobec ataków nożem... Potrafisz teraz wykonywać chwyty obezwładniające podejrzanych. Więcej o swojej nowej sztuce dowiesz się z czasownika Recall police training w zakładce ju-jitsu.</span>"
 	remarks = list("Podejrzany z nożem może pokonać 7 kroków i zadać śmiertelny cios w mniej niż półtorej sekundy...", "W razie satanistycznych rytuałów zaaplikuj sprawcy pełny magazynek...", "Podczas przeszukania zdejmij mu czapkę i obejrzyj włosy, nie dotykając ich...", "Niech partner przeszukuje cel, podczas gdy ty go obezwładniasz...", "O co chodzi z tą kulturą noża?...", "Aby zareagować, oddać co najmniej 2 strzały i mieć czas zejść z linii ataku, potrzebny jest minimalny dystans reakcji 21 stóp...")
 
@@ -33,7 +33,7 @@
 
 /mob/living/carbon/human/proc/jujitsu_help()
 	set name = "Recall Police Training"
-	set desc = "Przypomnij sobie szkolenie ze sztuk walki z akademii policyjnej."
+	set desc = "Przypomnij sobie szkolenie ze sztuk walki z akademii żandarmskiej."
 	set category = "Jujitsu"
 	to_chat(usr, "<span class='notice'>Kombinacje:</span>")
 	to_chat(usr, "<span class='warning'><b>Rozbrojenie, chwyt</b> powala cel, jeśli wcześniej został spowolniony / osłabiony</span>")

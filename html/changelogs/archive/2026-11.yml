@@ -345,6 +345,52 @@
   - imageadd: Sprite czipu tłumacza (sprawny i spalony).
   - imageadd: Ikonka języka Angielski.
   - config: DEEPL_API_KEY w config.txt (klucz DeepL API, darmowy kończy się na ":fx").
+  - tweak: 'Ochrona to znowu Żandarmeria: Żandarm zamiast Policjanta, kanał radia
+      Żandarmeria, zielone mundury, szafki, SecDrobe, śluzy i podłogi.'
+  - tweak: 'Inżynieria w barwach Orlenu: czerwono-białe mundury, kaski, szafki, mundurownie,
+      podłogi i śluzy.'
+  - rscadd: Czapki z daszkiem Orlenu w mundurowniach inżynierii i atmosferyki.
+  - tweak: 'Zaopatrzenie w barwach InPostu: żółte mundury, szafki, mundurownia i podłogi.'
+  - rscadd: Beret kwatermistrza, torby InPostu i kombinezon środowiskowy kwatermistrza.
+  - tweak: Wyloty z rur wyglądają jak paczkomaty InPost.
+  - tweak: 'Medycyna w barwach NFZ: turkusowe mundury, fartuchy, szafki i mundurownie.'
+  - rscadd: Czepki, bandana, fartuch operacyjny, golf ordynatora, kitle, torby, buty
+      i czarne rękawiczki NFZ.
+  - imageadd: 'Nowy zestaw przetrwania: kieszonki otwierają się, gdy wyjmiesz z nich
+      przedmioty.'
+  - imageadd: Skafander górniczy InPostu i kombinezony plazmoludzi NFZ i InPostu.
+  - imageadd: Maszyny botaniki i ksenoarcheologii w szarym metalu zamiast beżu.
+  - bugfix: Fartuchy i inne przełączane stroje znowu rozpina się Alt+klikiem.
+  - tweak: Czepki NFZ chowają włosy, hełmy plazmoludzi medycyny pasują do kombinezonów.
+  - tweak: Mundurownie działów bez kolorowych przepasek, turkusowe podłogi medycyny.
+  - imageadd: Nowe sprite'y Żandarmerii, Orlenu i NFZ oraz ikonki profesji na HUD-zie.
+  - bugfix: Okno changelogu przy pierwszym wejściu otwiera się dopiero po wyborze
+      wersji językowej.
+  - rscadd: 'Statek pamięta swoją strukturę między rundami: ściany, podłogi z uszkodzeniami,
+      okna, kraty, drzwi, kable, rury i maszyny zostają tak, jak zostawiła je załoga.
+      Zniszczone maszyny nie wracają, a zbudowane i przeniesione stoją tam, gdzie
+      je zostawiono. Przedmioty uzupełniają się z mapy jak zwykle.'
+  - rscadd: Maszyny ważne dla antagonistów i misji okrętu (ster, nawigacja, FTL, konsola
+      komunikacyjna, serwery R&D i inne) zawsze wracają na swoje miejsca z mapy.
+  - rscadd: Dziury w kadłubie z poprzedniej rundy są na starcie załatane pianką, a
+      rzeczy wiszące na zburzonych ścianach przechodzą na sąsiednią ścianę.
+  - rscadd: 'Po końcu rundy w oknie głosowania na mapę gracze wybierają: kontynuować
+      granie na obecnym statku albo zacząć na nowym statku prosto z mapy.'
+  - admin: 'Server -> Ship Structure: stan zapisu struktury statku, pominięcie zapisu
+      rundy i skasowanie zapisu. Zniszczenie statku i nowa kampania kasują zapis.'
+  - config: SHIP_STRUCTURE_PERSISTENCE w game_options.txt włącza trwałą strukturę
+      statku.
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
+  - rscadd: 'Floty AI nadają przez radio: przy wezwaniu pomocy, odpowiedzi na nie
+      i odwrocie mostek słyszy przechwycony, zakłócony fragment transmisji wroga albo
+      czysty komunikat floty sojuszniczej.'
+  - balance: Okręty AI trochę szybciej się boją i wcześniej przerywają walkę, częściej
+      strzelają salwą torped i częściej wzywają pomoc.
+  - bugfix: Filtry tlenu i azotu w atmosie na Serendipity łączą się z rurami (warstwa
+      4).
+  - bugfix: Wyszukiwarka w fabrykatorach w wersji angielskiej znajduje projekty po
+      angielskiej nazwie.
+  - bugfix: Kotary nie zasłaniają już maszyny do przetwarzania rudy na Trawniku.
+  - bugfix: Drobne poprawki map Serendipity.

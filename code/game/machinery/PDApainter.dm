@@ -48,7 +48,7 @@
 		"Ochrona (standard)" = "pda-security",
 		"Ochrona: Komendant" = "pda-hos",
 		"Ochrona: Naczelnik" = "pda-warden",
-		"Ochrona: Policjant" = "pda-security", //NSV13 - MPs
+		"Ochrona: Żandarm" = "pda-security", //NSV13 - MPs
 		"Ochrona: Detektyw" = "pda-detective",
 		"Ochrona: Lekarz Więzienny" = "pda-brigphys",
 		"Ochrona: Aspirant" = "pda-deputy",
