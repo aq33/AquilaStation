@@ -281,3 +281,4 @@
   - bugfix: W wersji angielskiej opis czapek poczty nie jest już pusty.
   - bugfix: Przy pierwszym wejściu lobby otwiera się dopiero po wyborze języka, a
       okno wyboru czeka, aż gra się wczyta.
+  - code_imp: Test regresji dla zniszczonych części myśliwca w slotach.
