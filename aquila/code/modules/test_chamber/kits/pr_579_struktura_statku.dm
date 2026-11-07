@@ -11,7 +11,7 @@
 	Rozebrana maszyna nie wraca, przeniesiona stoi tam, gdzie ją zostawiono (bez dubla na starym miejscu), obrót zostaje, nowa maszyna ma swoje ulepszenia. Ster lub konsola komunikacyjna stoi na swoim miejscu z mapy. Przedmioty w szafkach i automatach są jak z mapy, a odkręcony sprzęt (kroplówki, kanistry) wraca na swoje miejsca. \
 	Kanister albo inna gęsta rzecz z mapy, która stała tam, gdzie przeniesiono maszynę, stoi na sąsiednim polu. \
 	4) Ship Structure pokazuje, ile pól odtworzono i ile pominięto. Skasuj zapis: kolejna runda zaczyna się na statku prosto z mapy. \
-	Głosowanie: po końcu rundy w oknie głosowania na mapę jest panel „Statek w następnej rundzie”. Przewaga „Odbuduj statek z mapy” = następna runda prosto z mapy, remis albo brak głosów = statek zostaje. Wynik widać w Ship Structure. \
+	Głosowanie: po końcu rundy w oknie głosowania na mapę jest panel „Statek w następnej rundzie”. Przewaga „Zacznij na nowym statku” = następna runda prosto z mapy, remis albo brak głosów = „Kontynuuj granie na obecnym statku”. Wynik widać w Ship Structure. \
 	5) Zniszczenie statku albo Twardy restart + nowa kampania też kasuje zapis."
 	items = list(
 		/obj/item/construction/rcd/loaded = 1,

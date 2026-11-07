@@ -882,7 +882,7 @@ SUBSYSTEM_DEF(ship_structure)
 	if(structure.consume_last_vote())
 		if(fexists(structure.save_path))
 			fdel(structure.save_path)
-		structure.last_report = "gracze zagłosowali za odbudową, statek prosto z mapy"
+		structure.last_report = "gracze zagłosowali za nowym statkiem, statek prosto z mapy"
 		log_game("Ship structure: players voted to rebuild the ship, [structure.save_path] dropped")
 	else
 		structure.load()

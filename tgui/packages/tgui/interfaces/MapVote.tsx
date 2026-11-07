@@ -156,11 +156,16 @@ const PacePanel = (props) => {
 
 // AQUILA - "Statek w następnej rundzie" vote of the persistent ship structure (aquila/code/modules/persistence/ship_structure_vote.dm)
 const SHIP_OPTIONS = [
-  { value: 1, key: 'keep', label: 'Zostaw statek jak jest', icon: 'wrench' },
+  {
+    value: 1,
+    key: 'keep',
+    label: 'Kontynuuj granie na obecnym statku',
+    icon: 'wrench',
+  },
   {
     value: 0,
     key: 'reset',
-    label: 'Odbuduj statek z mapy',
+    label: 'Zacznij na nowym statku',
     icon: 'rotate-left',
   },
 ];
@@ -175,10 +180,10 @@ const ShipPanel = (props) => {
   return (
     <Section mt={1} title="Statek w następnej rundzie">
       <Box mb={1}>
-        Ściany, instalacje i maszyny zostają tak, jak je zostawiliście (liczba
-        rund w zapisie: {ship_rounds}). Jeśli więcej osób wybierze odbudowę,
-        następna runda zacznie się na statku prosto z mapy. Przy remisie albo
-        bez głosów statek zostaje.
+        Na obecnym statku ściany, instalacje i maszyny zostają tak, jak je
+        zostawiliście (liczba rund w zapisie: {ship_rounds}). Jeśli więcej osób
+        wybierze nowy statek, następna runda zacznie się na statku prosto z
+        mapy. Przy remisie albo bez głosów gracie dalej na obecnym statku.
       </Box>
       <Flex>
         {SHIP_OPTIONS.map((option) => (

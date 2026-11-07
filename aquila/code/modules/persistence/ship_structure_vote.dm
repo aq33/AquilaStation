@@ -52,7 +52,7 @@
 		else
 			reset++
 	log_game("Ship structure: last round vote [keep] keep / [reset] rebuild for [save_path]")
-	last_vote_report = "głosowanie: zostaw [keep], odbuduj [reset]"
+	last_vote_report = "głosowanie: obecny statek [keep], nowy statek [reset]"
 	return reset > keep
 
 /datum/ship_structure
