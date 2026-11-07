@@ -69,13 +69,13 @@ This file contains various storage items in this order:
 	new /obj/item/clothing/under/costume/maid(src)
 
 /obj/item/storage/box/radiokey/mun
-	name = "pudełko kluczy radiowych działu amunicji"
-	desc = "Dają dostęp do radia działu amunicji i zaopatrzenia."
+	name = "pudełko kluczy radiowych działu uzbrojenia"
+	desc = "Dają dostęp do radia działu uzbrojenia i zaopatrzenia."
 	radio_key = /obj/item/encryptionkey/munitions_tech
 
 /obj/item/storage/box/radiokey/pilot
 	name = "pudełko kluczy radiowych pilotów"
-	desc = "Dają dostęp do radia Kontroli Lotów i działu amunicji."
+	desc = "Dają dostęp do radia Kontroli Lotów i działu uzbrojenia."
 	radio_key = /obj/item/encryptionkey/pilot
 
 /obj/item/storage/box/squad_lanyards

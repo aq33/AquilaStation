@@ -125,3 +125,12 @@
 	animate(src, time = 3, transform = rotation_matrix, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
 	animate(time = 2, flags = ANIMATION_RELATIVE)
 	animate(time = 1, transform = reset_matrix, flags = ANIMATION_RELATIVE)
+
+// Kamera nie zostaje w kontenerze, z którego postać wyszła zwykłym Move() (zgłoszenie: po wpadnięciu do zsypu
+// kamera stała na zsypie, a postacią dało się chodzić gdzie indziej; pomagało dopiero wyjście z gry).
+// Kamerę na postać przestawia tylko forceMove() (reset_perspective w /mob/living/forceMove), a BYOND pozwala
+// wyjść z obiektu ruchem: get_step() z wnętrza kontenera daje kafel obok niego i Move() tam po prostu przechodzi.
+/mob/living/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	. = ..()
+	if(client && OldLoc && !isturf(OldLoc) && isturf(loc) && client.eye == OldLoc)
+		reset_perspective()
