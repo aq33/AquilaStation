@@ -156,6 +156,15 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		return md5("")
 	return md5(jointext(sort_list(sigs.Copy()), "|"))
 
+/// Pole zamknięte jak ściana: pełne okno albo ściana z pianki (wtedy odchodzą z niego także przedmioty)
+/proc/ship_structure_turf_sealed(turf/T)
+	if(locate(/obj/structure/foamedmetal) in T)
+		return TRUE
+	for(var/obj/structure/window/W in T)
+		if(W.fulltile)
+			return TRUE
+	return FALSE
+
 /// Kierunek ściany, na której wisi obiekt, albo 0
 /proc/ship_structure_mount_dir(obj/O)
 	if(!GLOB.ship_structure_wallmounts[O.type] || !O.anchored)
@@ -569,6 +578,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	var/list/opened = list()
 	var/list/closed = list()
 	var/list/pending_machines = list()
+	/// Pola, na których zapis postawił gęsty obiekt
+	var/list/blocked = list()
 	var/skipped = 0
 	cache_shuttle_areas()
 	for(var/key in delta)
@@ -617,7 +628,9 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 			if(ispath(added_path, /obj/machinery) && !ispath(added_path, /obj/machinery/atmospherics/pipe))
 				pending_machines += list(list(T, added))
 			else
-				create_obj(T, added)
+				var/obj/created = create_obj(T, added)
+				if(created?.density)
+					blocked[T] = TRUE
 
 		applied += T
 		if(!was_space)
@@ -629,10 +642,17 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		CHECK_TICK
 
 	// Maszyny po turfach i konstrukcjach, a przed pianką (śluzy uszczelniają przejścia)
-	create_machines(pending_machines)
+	for(var/obj/machinery/M as anything in create_machines(pending_machines))
+		if(!QDELETED(M) && M.density && isturf(M.loc))
+			blocked[M.loc] = TRUE
 	var/list/mount_turfs = list()
 	for(var/turf/T as anything in closed)
 		mount_turfs |= evict_contents(T)
+	// Pola, na których zapis postawił coś gęstego, a mapa coś tam położyła (np. kanister pod przeniesionym automatem)
+	for(var/turf/T as anything in blocked)
+		if(T in closed)
+			continue
+		mount_turfs |= evict_contents(T, only_dense = !ship_structure_turf_sealed(T))
 	patch_breaches(breach_candidates)
 	for(var/turf/T as anything in opened)
 		mount_turfs |= T
@@ -673,27 +693,50 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 			break
 
 /// Rzeczy z mapy, które wylądowały w nowej ścianie, idą na sąsiednie otwarte pole. Zwraca pola, na które trafiły.
-/datum/ship_structure/proc/evict_contents(turf/T)
+/// only_dense = TRUE: pole nie jest zamknięte, tylko zapis postawił na nim coś gęstego (maszynę), więc odchodzą
+/// tylko gęste rzeczy i moby, a przedmioty mogą zostać pod maszyną jak w zwykłej grze.
+/datum/ship_structure/proc/evict_contents(turf/T, only_dense = FALSE)
 	. = list()
-	var/list/open_neighbours = list()
-	for(var/dir in GLOB.cardinals)
-		var/turf/neighbour = get_step(T, dir)
-		if(neighbour && !isclosedturf(neighbour) && !neighbour.density)
-			open_neighbours += neighbour
-	if(!length(open_neighbours))
-		return
 	for(var/atom/movable/AM as anything in T.contents.Copy())
 		if(isobj(AM))
 			var/obj/O = AM
-			// Instalacje pod podłogą i to, co jest częścią struktury, zostaje w ścianie, jak przy budowie przez gracza
-			if(GLOB.ship_structure_tracked[O.type] || iseffect(O) || istype(O, /obj/machinery/atmospherics) || istype(O, /obj/structure/disposalpipe) \
+			// Instalacje pod podłogą i to, co jest częścią struktury, zostaje na miejscu, jak przy budowie przez gracza
+			if(is_structure_part(O) || iseffect(O) || istype(O, /obj/machinery/atmospherics) || istype(O, /obj/structure/disposalpipe) \
 				|| istype(O, /obj/machinery/power/terminal) || istype(O, /obj/machinery/power/apc))
+				continue
+			if(only_dense && !O.density)
 				continue
 		else if(!ismob(AM))
 			continue
-		var/turf/destination = open_neighbours[1]
+		var/turf/destination = free_turf_near(T)
+		if(!destination)
+			return
 		AM.forceMove(destination)
 		. |= destination
+
+/// Obiekt jest częścią struktury statku (zapisywany typ; maszyna tylko przykręcona)
+/datum/ship_structure/proc/is_structure_part(obj/O)
+	return GLOB.ship_structure_tracked[O.type] && (O.anchored || !istype(O, /obj/machinery))
+
+/// Pole, na które można coś odstawić: otwarte i bez gęstych obiektów
+/datum/ship_structure/proc/is_free_turf(turf/T)
+	if(!T || isclosedturf(T) || T.density || isspaceturf(T))
+		return FALSE
+	for(var/obj/O in T)
+		if(O.density)
+			return FALSE
+	return TRUE
+
+/// Najbliższe wolne pole: najpierw sąsiednie w linii prostej, potem dalej (do SHIP_STRUCTURE_MOUNT_RANGE)
+/datum/ship_structure/proc/free_turf_near(turf/T)
+	for(var/dir in GLOB.cardinals)
+		var/turf/neighbour = get_step(T, dir)
+		if(is_free_turf(neighbour))
+			return neighbour
+	for(var/distance in 1 to SHIP_STRUCTURE_MOUNT_RANGE)
+		for(var/turf/candidate in orange(distance, T))
+			if(get_dist(T, candidate) == distance && is_free_turf(candidate))
+				return candidate
 
 /// Przewiesza rzeczy ze zburzonych ścian. opened = pola, na których stała ściana z mapy.
 /datum/ship_structure/proc/fix_wallmounts(list/turfs, list/opened)

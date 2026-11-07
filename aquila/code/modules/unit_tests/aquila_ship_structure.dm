@@ -51,6 +51,10 @@
 	console.setDir(SOUTH)
 	new /obj/machinery/computer/communications(cell(5, 1))
 	new /obj/machinery/iv_drip(cell(3, 4))
+	// Rzeczy z mapy na polach, które zajmie zapis: kanister i klucz pod przeniesionym automatem, łom pod nowym oknem
+	new /obj/machinery/portable_atmospherics/canister/air(cell(3, 5))
+	new /obj/item/wrench(cell(3, 5))
+	new /obj/item/crowbar(cell(2, 7))
 	// Alarm pożarowy na polu (2,3) wisi na ścianie W1 od wschodu
 	var/obj/machinery/firealarm/alarm = new(cell(2, 3))
 	alarm.pixel_x = 26
@@ -62,7 +66,7 @@
 	bottom_left = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
 	build_map()
 
-	var/datum/ship_structure/structure = new(list(bottom_left.z), list(bottom_left.x, bottom_left.y, bottom_left.x + 6, bottom_left.y + 6))
+	var/datum/ship_structure/structure = new(list(bottom_left.z), list(bottom_left.x, bottom_left.y, bottom_left.x + 8, bottom_left.y + 8))
 	structure.force_ship_area = TRUE
 	structure.baseline = structure.capture()
 
@@ -92,6 +96,8 @@
 	new /obj/machinery/portable_atmospherics/canister/air(cell(5, 2))
 	var/obj/machinery/iv_drip/drip = locate() in cell(3, 4)
 	drip.forceMove(cell(2, 4))
+	new /obj/structure/grille(cell(2, 7))
+	new /obj/structure/window/reinforced/fulltile(cell(2, 7))
 	var/obj/machinery/button/door/button = new(cell(2, 6))
 	button.id = "ship_structure_test"
 	var/obj/machinery/recharger/built = new(cell(3, 6))
@@ -144,6 +150,17 @@
 	TEST_ASSERT_EQUAL(vending_count, 1, "The moved vending machine is not exactly one")
 	TEST_ASSERT(locate(/obj/machinery/vending/cola) in cell(3, 5), "The moved vending machine is not where it was left")
 	TEST_ASSERT(!(locate(/obj/machinery/recharger) in cell(4, 5)), "The destroyed recharger came back")
+	TEST_ASSERT(!(locate(/obj/machinery/portable_atmospherics/canister) in cell(3, 5)), "The map canister stayed under the moved vending machine")
+	var/canisters = 0
+	for(var/turf/T as anything in block(bottom_left, cell(8, 8)))
+		for(var/obj/machinery/portable_atmospherics/canister/found in T)
+			canisters++
+	TEST_ASSERT_EQUAL(canisters, 1, "The pushed canister is not exactly one")
+	TEST_ASSERT(locate(/obj/item/wrench) in cell(3, 5), "An item was pushed out from under a machine (only dense things should move)")
+	TEST_ASSERT(locate(/obj/structure/window) in cell(2, 7), "The built window was not restored")
+	TEST_ASSERT(!(locate(/obj/item/crowbar) in cell(2, 7)), "The map crowbar stayed inside the built full-tile window")
+	var/obj/item/crowbar/pushed_crowbar = locate() in range(2, cell(2, 7))
+	TEST_ASSERT(pushed_crowbar, "The map crowbar was not pushed next to the window")
 	console = locate() in cell(4, 6)
 	TEST_ASSERT(console, "The map console is gone")
 	TEST_ASSERT_EQUAL(console.dir, EAST, "The console rotation was not restored")
