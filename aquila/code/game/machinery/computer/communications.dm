@@ -52,3 +52,16 @@
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, crew_wake_cooldown, 15 MINUTES)
 			. = TRUE
+		// AQUILA: kapitan wyłącza oświetlenie nocne na całym statku
+		if("toggleNightShift")
+			if (!authenticated_as_non_silicon_captain(usr) || !CONFIG_GET(flag/enable_night_shifts))
+				return
+			SSnightshift.toggle_captain_disabled(usr)
+			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			. = TRUE
+
+/obj/machinery/computer/communications/ui_data(mob/user)
+	. = ..()
+	if ((authenticated || issilicon(user)) && authenticated_as_non_silicon_captain(user) && CONFIG_GET(flag/enable_night_shifts))
+		.["canToggleNightShift"] = TRUE
+		.["nightShiftDisabled"] = SSnightshift.captain_disabled

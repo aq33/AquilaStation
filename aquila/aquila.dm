@@ -79,6 +79,7 @@
 #include "code\controllers\subsystem\lag_switch.dm"
 #include "code\controllers\subsystem\market.dm"
 #include "code\controllers\subsystem\miasma.dm"
+#include "code\controllers\subsystem\nightshift.dm"
 #include "code\controllers\subsystem\polling.dm"
 #include "code\controllers\subsystem\pollution.dm"
 #include "code\controllers\subsystem\processing\reagents.dm"
