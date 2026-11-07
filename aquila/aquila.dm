@@ -1098,6 +1098,7 @@
 #include "code\modules\test_chamber\kits\pr_559_czat_glosowy.dm"
 #include "code\modules\test_chamber\kits\pr_563_nsv_zaleglosci.dm"
 #include "code\modules\test_chamber\kits\pr_564_pasek_broni.dm"
+#include "code\modules\test_chamber\kits\pr_576_drobiazgi.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1712,6 +1713,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
 #include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"
