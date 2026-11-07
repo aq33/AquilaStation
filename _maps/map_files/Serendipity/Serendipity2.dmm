@@ -4171,7 +4171,6 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 4
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/miningoffice)
 "ua" = (
