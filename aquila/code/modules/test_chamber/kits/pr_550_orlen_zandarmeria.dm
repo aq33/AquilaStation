@@ -15,7 +15,7 @@
 	13) Bandana żandarmska na głowie → oczekiwane: włosy widać. Zwiń (PPM) mundury Żandarma, Naczelnika i Komendanta → wersje zwinięte z arkusza; galowe, służbowe i golf Komendanta nie dają się zwinąć, a golf kwatermistrza tak. \
 	14) SecDrobe, zakładka premium → oczekiwane: dla Żandarma, Naczelnika i Komendanta galowy mundur, kurtka i czapka (czapka żandarma, czapka Naczelnika, czapka Komendanta), bez beretów; w zwykłej ofercie nie ma alternatywnej czapki, a czapka żandarmska obraca daszek Alt+klikiem. Żandarmeria w jaśniejszej zieleni z arkusza. \
 	15) Hełmy plazmoludzi ochrony, inżynierii i zaopatrzenia → oczekiwane: kolory jak kombinezony środowiskowe (zieleń z bordo, biel z czerwienią, szary z żółcią). \
-	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami. \n	17) Mundur Głównego Inżyniera: zwiń go (PPM) → oczekiwane: wersja z podwiniętymi rękawami, sprite nie znika. \n	18) Śluzy ładowni i górnicza z zestawu → oczekiwane: żółte w barwach InPostu, śluza górnicza bez brązowego nalotu."
+	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami. \n	17) Mundur Głównego Inżyniera: zwiń go (PPM) → oczekiwane: wersja z podwiniętymi rękawami, sprite nie znika. \n	18) Śluzy ładowni i górnicza z zestawu → oczekiwane: żółte w barwach InPostu, śluza górnicza bez brązowego nalotu. \n	19) NFZ: Mundurownia NFZ i trzy mundurownie podgrup, NanoMed, szafki medyczna, ordynatora i chemiczna → oczekiwane: turkus (chemia pomarańczowa), szafki też po otwarciu. Załóż kombinezon lekarza (zwiń go PPM), golf ordynatora (z szafki), fartuchy (Alt+klik rozpina), kitle, czepki, bandanę, kurtkę zimową (Alt+klik zapina, kaptur na plecach), rękawiczki, buty NFZ, plecaki i torby, kombinezon bio → oczekiwane: barwy NFZ, nic nie znika, włosy pod czepkiem i bandaną widać."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -81,6 +81,20 @@
 		/obj/machinery/vending/engivend = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/screwdriver = 1,
+		/obj/machinery/vending/wardrobe/medi_wardrobe = 1,
+		/obj/machinery/vending/wardrobe/chem_wardrobe = 1,
+		/obj/machinery/vending/medical = 1,
+		/obj/structure/closet/secure_closet/medical1 = 1,
+		/obj/structure/closet/secure_closet/CMO = 1,
+		/obj/structure/closet/secure_closet/chemical = 1,
+		/obj/item/clothing/under/ship/medical = 1,
+		/obj/item/clothing/suit/toggle/labcoat/cmo = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/medical = 1,
+		/obj/item/clothing/head/nfz/surgerycap = 1,
+		/obj/item/clothing/head/nfz/bandana = 1,
+		/obj/item/clothing/suit/bio_suit/general = 1,
+		/obj/item/clothing/head/bio_hood/general = 1,
+		/obj/item/door_remote/chief_medical_officer = 1,
 	)
 
 /// Naklejki rozkładają się na podłogę i same znikają, więc nie idą przez items (test liczy obiekty)

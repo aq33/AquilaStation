@@ -86,7 +86,18 @@
 					/obj/item/clothing/head/soft/paramedic = 4,
 					/obj/item/clothing/head/aquila/headband/cyan = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
-					/obj/item/clothing/mask/surgical = 4)
+					/obj/item/clothing/mask/surgical = 4,
+					// AQUILA EDIT START - przedmioty NFZ
+					/obj/item/clothing/suit/apron/surgical/nfz = 4,
+					/obj/item/clothing/head/nfz/surgerycap = 4,
+					/obj/item/clothing/head/nfz/bouffant = 4,
+					/obj/item/clothing/head/nfz/bandana = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz/magenta = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz/orange = 4,
+					/obj/item/clothing/gloves/color/latex/black = 4,
+					/obj/item/clothing/shoes/nfz = 4)
+					// AQUILA EDIT END
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/medical/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
 	payment_department = ACCOUNT_MED
@@ -487,6 +498,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/chemist = 2,
 					/obj/item/storage/backpack/chemistry = 2,
 					/obj/item/storage/backpack/satchel/chem = 2,
+					/obj/item/storage/backpack/duffelbag/med/chemistry = 2, //AQUILA EDIT - NFZ
 					/obj/item/storage/bag/chemistry = 2,
 					/obj/item/clothing/head/beret/med = 2,
 					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
@@ -510,7 +522,8 @@
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
 					/obj/item/storage/backpack/genetics = 2,
-					/obj/item/storage/backpack/satchel/gen = 2)
+					/obj/item/storage/backpack/satchel/gen = 2,
+					/obj/item/storage/backpack/duffelbag/med/genetics = 2) //AQUILA EDIT - NFZ
 	refill_canister = /obj/item/vending_refill/wardrobe/gene_wardrobe
 	payment_department = ACCOUNT_MED
 /obj/item/vending_refill/wardrobe/gene_wardrobe
@@ -531,7 +544,8 @@
 					/obj/item/clothing/mask/surgical = 2,
 					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
 					/obj/item/storage/backpack/virology = 2,
-					/obj/item/storage/backpack/satchel/vir = 2)
+					/obj/item/storage/backpack/satchel/vir = 2,
+					/obj/item/storage/backpack/duffelbag/med/virology = 2) //AQUILA EDIT - NFZ
 	contraband = list(/obj/item/clothing/suit/bio_suit/plaguedoctorsuit = 1,
 					/obj/item/clothing/head/plaguedoctorhat = 1,
 					/obj/item/clothing/mask/gas/plaguedoctor = 1)
