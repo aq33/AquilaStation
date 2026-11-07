@@ -689,6 +689,7 @@
 #include "code\modules\mob\dead\crew_manifest.dm"
 #include "code\modules\mob\dead\new_player\latejoin_menu.dm"
 #include "code\modules\munitions\gauss_gunner_actions.dm"
+#include "code\modules\munitions\gauss_firing_animation.dm"
 #include "code\modules\munitions\weapon_cycle_stage.dm"
 #include "code\modules\munitions_forge\traits.dm"
 #include "code\modules\munitions_forge\materials.dm"
