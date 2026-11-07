@@ -724,6 +724,7 @@
 #include "code\modules\mob\dead\observer\observer.dm"
 #include "code\modules\mob\dead\observer\orbit.dm"
 #include "code\modules\mob\emote_sounds.dm"
+#include "code\modules\mob\examine_layout.dm"
 #include "code\modules\mob\mob_stat.dm"
 #include "code\modules\mob\living\blood_effects.dm"
 #include "code\modules\mob\living\blood_trails.dm"
