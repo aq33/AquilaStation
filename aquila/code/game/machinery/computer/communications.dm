@@ -52,3 +52,13 @@
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, crew_wake_cooldown, 15 MINUTES)
 			. = TRUE
+
+// Łączność mają też konsole na statkach załogi poza poziomem ze znacznikiem stacji: górniczy statek i główny statek
+// załadowany jako instancja (ZTRAITS_MINING_SHIP i ZTRAITS_BOARDABLE_SHIP nie mają ZTRAIT_STATION). Bez tego okno
+// pokazywało tylko „Nie można nawiązać połączenia ze statkiem.”, a każda akcja była odrzucana.
+/obj/machinery/computer/communications/has_communication()
+	. = ..()
+	if(.)
+		return
+	var/obj/structure/overmap/ship = get_overmap()
+	return ship && (ship.role == MAIN_OVERMAP || ship.role == MAIN_MINING_SHIP)
