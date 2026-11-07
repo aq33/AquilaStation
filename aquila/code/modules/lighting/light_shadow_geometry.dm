@@ -2,7 +2,7 @@
 // Czysta matematyka (bez typów gry), żeby dało się ją sprawdzić w małym projekcie BYOND.
 //
 // Cień kafla = suma cieni jego tylnych ścian (odwróconych od światła). Cień ściany AB to czworokąt
-// A, B, Pb, Pa, gdzie P to punkt na promieniu od światła przez wierzchołek, w odległości AQ_SHADOW_REACH.
+// A, B, Pb, Pa, gdzie P to punkt na promieniu od światła przez wierzchołek, w odległości reach (koniec plamy światła).
 // Czworokąt to dwa trójkąty z jedną ikoną trójkąta prostokątnego rozciągniętą macierzą (transform jest afiniczny,
 // więc trójkąt w trójkąt przechodzi dokładnie). Obie połówki mają przekątną A–Pb jako przeciwprostokątną,
 // a ikona wychodzi kilka pikseli poza krawędzie, więc między trójkątami nie ma szczelin.
@@ -16,7 +16,9 @@
 /// Współrzędne względem środka kafla światła; nakładka leży na obiekcie w kaflu światła.
 /// hidden_faces: bity ścian (1 dół, 2 prawo, 4 góra, 8 lewo) stykających się z innym nieprzezroczystym kaflem.
 /// Takie ściany nie rzucają cienia: ich cień leży w sąsiedzie, a ciemniłby jego oświetlony bok.
-/proc/aq_light_shadow_matrices(dx, dy, hidden_faces = 0)
+/// reach: odległość końca cienia od światła w pikselach. Maska cieni jest wspólna dla wszystkich świateł ruchomych,
+/// więc cień dłuższy niż plama tego światła wycinałby światło innych latarek dalej.
+/proc/aq_light_shadow_matrices(dx, dy, hidden_faces = 0, reach = AQ_SHADOW_REACH)
 	. = list()
 	if(!dx && !dy)
 		return
@@ -42,10 +44,13 @@
 			continue
 		var/a_len = sqrt(ax * ax + ay * ay)
 		var/b_len = sqrt(bx * bx + by * by)
-		var/pax = ax / a_len * AQ_SHADOW_REACH
-		var/pay = ay / a_len * AQ_SHADOW_REACH
-		var/pbx = bx / b_len * AQ_SHADOW_REACH
-		var/pby = by / b_len * AQ_SHADOW_REACH
+		// koniec cienia zawsze za ścianą, nawet gdy ściana leży na brzegu plamy
+		var/a_reach = max(reach, a_len + world.icon_size)
+		var/b_reach = max(reach, b_len + world.icon_size)
+		var/pax = ax / a_len * a_reach
+		var/pay = ay / a_len * a_reach
+		var/pbx = bx / b_len * b_reach
+		var/pby = by / b_len * b_reach
 		// kąt prosty w B i w Pa, przeciwprostokątna A–Pb w obu
 		. += aq_shadow_triangle_matrix(bx, by, ax, ay, pbx, pby)
 		. += aq_shadow_triangle_matrix(pax, pay, pbx, pby, ax, ay)

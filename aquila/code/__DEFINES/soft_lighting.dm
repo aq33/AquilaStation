@@ -21,5 +21,6 @@
 /// 11 jest wolne (między BLACKNESS_PLANE a EMISSIVE_BLOCKER_PLANE); niżej niż światło, żeby bufor był gotowy przed maską.
 #define AQ_LIGHT_SHADOW_PLANE 11
 #define AQ_LIGHT_SHADOW_RENDER_TARGET "*AQ_LIGHT_SHADOWS"
-/// Jak daleko od światła sięga trójkąt cienia (dalej niż największe światło ruchome, 6 kafli + przesunięcie stożka)
+/// Domyślny zasięg trójkąta cienia od światła (dalej niż największe światło ruchome, 6 kafli + przesunięcie stożka).
+/// Komponent podaje własny, krótszy zasięg: koniec swojej plamy światła.
 #define AQ_SHADOW_REACH (12 * 32)

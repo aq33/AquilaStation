@@ -30,16 +30,23 @@
 	TEST_ASSERT(length(aq_light_shadow_matrices(1, 0)) == 6, "Kafel na wschód od światła powinien mieć 6 trójkątów cienia")
 	TEST_ASSERT(length(aq_light_shadow_matrices(1, 0, 4)) == 4, "Ściana stykająca się z sąsiednią ścianą rzuca cień")
 	TEST_ASSERT(length(aq_light_shadow_matrices(2, 2)) == 4, "Kafel po przekątnej powinien mieć 2 tylne ściany")
+	// Koniec cienia nie dalej niż podany zasięg (wspólna maska nie może wycinać światła innych latarek dalej)
+	var/reach = 4 * world.icon_size
+	var/center_offset = AQ_SHADOW_TRI_SIZE / 2 + AQ_SHADOW_TRI_MARGIN - world.icon_size / 2
+	var/half_tri = AQ_SHADOW_TRI_SIZE / 2
+	for(var/matrix/triangle as anything in aq_light_shadow_matrices(1, 0, 0, reach))
+		// wierzchołki trójkąta z ikony po przekształceniu, względem środka kafla światła
+		for(var/list/corner in list(list(-half_tri, -half_tri), list(half_tri, -half_tri), list(-half_tri, half_tri)))
+			var/px = triangle.a * corner[1] + triangle.b * corner[2] + triangle.c + center_offset
+			var/py = triangle.d * corner[1] + triangle.e * corner[2] + triangle.f + center_offset
+			TEST_ASSERT(sqrt(px * px + py * py) <= reach + 1, "Trójkąt cienia sięga dalej niż zasięg plamy ([round(px)], [round(py)])")
 
 /datum/unit_test/aquila_soft_lighting/proc/count_emissive(list/appearances)
 	. = 0
 	for(var/mutable_appearance/appearance as anything in appearances)
 		// update_overlays() bywa z null z kodu bazowego. Blokada emisji przedmiotów (emissive_blocker) też leży na EMISSIVE_PLANE,
-		// ale ma stałą czerwieni 0 w macierzy koloru, a świecenie (EMISSIVE_COLOR) ma 1
-		if(appearance?.plane != EMISSIVE_PLANE)
-			continue
-		var/list/color_matrix = appearance.color
-		if(islist(color_matrix) && length(color_matrix) >= 17 && color_matrix[17] == 1)
+		// ale ma inną macierz koloru niż świecenie
+		if(appearance?.plane == EMISSIVE_PLANE && appearance.color ~= GLOB.emissive_color)
 			.++
 
 #undef TEST_ASSERT
