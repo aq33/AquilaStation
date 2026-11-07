@@ -316,7 +316,9 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
 "aE" = (
+/obj/structure/window/plasma/reinforced/spawner/west,
 /obj/machinery/server_chiller,
+/obj/structure/ethernet_cable,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "aF" = (
@@ -542,6 +544,14 @@
 /obj/machinery/light/floor,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"bg" = (
+/obj/machinery/ai/networking{
+	label = "Rdzeń SI";
+	roundstart_connection = "Serwerownia SI"
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "bh" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/clothing/suit/whitedress,
@@ -6289,10 +6299,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"uf" = (
-/obj/structure/window/plasma/reinforced/spawner/west,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "ug" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
 /obj/structure/sign/poster/official/random{
@@ -6309,13 +6315,6 @@
 /obj/machinery/suit_storage_unit/security,
 /turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
-"ul" = (
-/obj/machinery/ai/networking{
-	label = "Rdzeń SI";
-	roundstart_connection = "Serwerownia SI"
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "uo" = (
 /obj/machinery/status_display/ai/south,
 /turf/open/floor/plasteel/tiled/light,
@@ -51653,10 +51652,10 @@ pF
 yZ
 gp
 cp
-uf
+aE
 cp
 gp
-aE
+Rq
 pF
 Te
 az
@@ -51910,7 +51909,7 @@ pF
 pF
 Rq
 Rq
-ul
+bg
 OH
 Rq
 pF
