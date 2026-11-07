@@ -5,8 +5,10 @@
 	pr = "aq33/AquilaStation#579"
 	description = "Zmiany trzeba robić na samym statku, nie w komorze (komora nie leży na poziomie statku). \
 	1) Na statku: zburz kilka ścian, w tym ścianę z alarmem albo interkomem i ścianę kadłuba do próżni, wybij okno przy kosmosie, postaw nową ścianę na polu z przedmiotem, połóż kabel i rurę, przepal albo połam kawałek podłogi. \
+	Maszyny: rozbierz jedną maszynę albo działo, przenieś i przykręć automat lub konsolę w inne miejsce, obróć konsolę, zbuduj nową maszynę z ulepszonymi częściami. Usuń też ster albo konsolę komunikacyjną (maszyny krytyczne). \
 	2) Admin > Server > Ship Structure: zapis po tej rundzie ma być TAK. Zakończ rundę zwykłym końcem rundy (nie twardym restartem). \
-	3) Następna runda, ta sama mapa: ściany, okna, kable, rury i uszkodzenia podłogi wracają, przedmioty i maszyny są jak z mapy. Dziura w kadłubie i wybite okno są zalane pianką, alarm lub interkom wisi na sąsiedniej ścianie, przedmiot z nowej ściany leży obok. \
+	3) Następna runda, ta sama mapa: ściany, okna, kable, rury i uszkodzenia podłogi wracają. Dziura w kadłubie i wybite okno są zalane pianką, alarm lub interkom wisi na sąsiedniej ścianie, przedmiot z nowej ściany leży obok. \
+	Rozebrana maszyna nie wraca, przeniesiona stoi tam, gdzie ją zostawiono (bez dubla na starym miejscu), obrót zostaje, nowa maszyna ma swoje ulepszenia. Ster lub konsola komunikacyjna stoi na swoim miejscu z mapy. Przedmioty w szafkach i automatach są jak z mapy, a odkręcony sprzęt (kroplówki, kanistry) wraca na swoje miejsca. \
 	4) Ship Structure pokazuje, ile pól odtworzono i ile pominięto. Skasuj zapis: kolejna runda zaczyna się na statku prosto z mapy. \
 	5) Zniszczenie statku albo Twardy restart + nowa kampania też kasuje zapis."
 	items = list(
