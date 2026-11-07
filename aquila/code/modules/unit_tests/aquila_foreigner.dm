@@ -146,6 +146,14 @@
 	TEST_ASSERT(chip.icon_state == "translator_chip_burnt", "Burnt chip kept its normal sprite")
 	TEST_ASSERT(findtext(chip.name, "spalony") == 1, "Burnt chip is not named as burnt: [chip.name]")
 
+	// Regresja: kasowany mob z tłumaczem w ręce nie może dostać nowego language_holdera.
+	// Błąd to runtime w language_holder.dm, a każdy runtime w trakcie testów oblewa przebieg (run_all_tests)
+	var/mob/living/carbon/human/doomed = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/aquila_translator/held = allocate(/obj/item/aquila_translator, run_loc_floor_bottom_left)
+	TEST_ASSERT(doomed.put_in_hands(held), "Could not pick up the translator before deleting the mob")
+	qdel(doomed)
+	TEST_ASSERT(QDELETED(doomed), "Mob holding a translator was not deleted")
+
 	// Zapas w szafce HoP-a, także w wersji z NSV, która nie woła ..()
 	for(var/closet_type in list(/obj/structure/closet/secure_closet/hop, /obj/structure/closet/secure_closet/hop/solgov))
 		var/obj/structure/closet/closet = allocate(closet_type, run_loc_floor_bottom_left)

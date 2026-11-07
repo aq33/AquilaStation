@@ -80,7 +80,10 @@
 	aq_refresh()
 
 /// Włącza tłumacza z danego źródła (tłumacz kieszonkowy, słuchawki z czipem): rozumienie Angielskiego i przechwytywanie mowy
+/// Na usuwanym mobie nic nie robi: get_language_holder() założyłby nowy holder na kasowanym atomie (runtime)
 /mob/proc/aq_translator_on(source)
+	if(QDELETED(src))
+		return
 	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, source)
 	grant_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
 	if(isliving(src))
@@ -88,6 +91,8 @@
 		living_src.aq_update_translator_hook()
 
 /mob/proc/aq_translator_off(source)
+	if(QDELETED(src))
+		return
 	REMOVE_TRAIT(src, TRAIT_AQ_TRANSLATOR, source)
 	if(!HAS_TRAIT(src, TRAIT_AQ_TRANSLATOR))
 		remove_language(/datum/language/english, TRUE, FALSE, LANGUAGE_TRANSLATOR)
