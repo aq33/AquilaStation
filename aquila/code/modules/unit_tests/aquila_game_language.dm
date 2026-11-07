@@ -23,6 +23,8 @@
 	TEST_ASSERT(i18n_en_exact("skrzynka narzędziowa") == "toolbox", "Server table lost a basic item name")
 	TEST_ASSERT(i18n_en_exact(" skrzynka narzędziowa.") == " toolbox.", "Trailing period or spaces are not kept")
 	TEST_ASSERT(isnull(i18n_en_exact("Zdanie, którego nie ma w słowniku.")), "Unknown text should not be translated")
+	// zły podział węzłów (opis czapki poczty przed <i>) dawał pusty tekst, oględziny pokazywały pustkę
+	TEST_ASSERT(isnull(i18n_en_exact("Nakrycie głowy poczty")), "A Polish phrase is translated to an empty text")
 	var/html = i18n_en_html("<b>skrzynka narzędziowa</b> i coś nieznanego")
 	TEST_ASSERT(html == "<b>toolbox</b> i coś nieznanego", "HTML text nodes are not translated one by one: [html]")
 
@@ -85,5 +87,11 @@
 	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', TRUE) == 'aquila/icons/hud/en/screen_midnight.dmi', "Midnight HUD style has no English copy")
 	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', FALSE) == 'icons/mob/screen_midnight.dmi', "English HUD icon does not go back to Polish")
 	TEST_ASSERT(i18n_hud_icon('icons/obj/storage.dmi', TRUE) == 'icons/obj/storage.dmi', "Icon without an English copy changed")
+
+	// Dymek "[src] klika." z pustej broni: BYOND dokleja "The" przed nazwą pospolitą, po polsku ma go nie być
+	var/obj/item/clicking = allocate(/obj/item)
+	clicking.name = "protokinetyczny akcelerator"
+	var/stripped = strip_auto_articles("[clicking] klika.")
+	TEST_ASSERT(stripped == "protokinetyczny akcelerator klika.", "BYOND article is left in a Polish balloon: [stripped]")
 
 #undef TEST_ASSERT

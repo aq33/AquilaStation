@@ -150,7 +150,7 @@ export const RADIO_PREFIXES = {
   },
   ':w ': {
     id: 'munition',
-    label: 'Amun',
+    label: 'Uzbr',
   },
   ':z ': {
     id: 'space_pirate',

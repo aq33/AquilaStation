@@ -959,7 +959,7 @@
 
 /datum/preference/name/real_name/create_random_value(datum/preferences/prefs)
 	var/datum/character_save/character = prefs.active_character
-	return character.pref_species.random_name(character.gender, TRUE)
+	return character.aq_random_real_name(prefs.parent)
 
 /// Imiona z GLOB.preferences_custom_names, trzymane w active_character.custom_names
 /datum/preference/name/custom

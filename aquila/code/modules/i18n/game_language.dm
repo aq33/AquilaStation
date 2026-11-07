@@ -70,7 +70,8 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 			C.browse_queue_flush()
 	C.tgui_panel?.send_game_language()
 	C.escape_menu?.send_game_language()
-	C.tgui_say?.load() // etykiety kanałów w oknie mówienia
+	if(C.tgui_say?.window?.is_ready())
+		C.tgui_say.load() // etykiety kanałów w oknie mówienia (niegotowe okno dostanie język przy starcie)
 	// napisy na guzikach HUD-u (aquila/code/modules/i18n/hud_icons.dm)
 	C.mob?.hud_used?.update_ui_style(ui_style2icon(C.prefs?.UI_style))
 

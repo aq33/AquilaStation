@@ -66,4 +66,24 @@
 				space += "[T.type]@[T.x],[T.y]"
 		return "Chamber has unsafe pressure [pressure] kPa (arrival [chamber.arrival.type], [length(space)] empty turfs: [english_list(space.Copy(1, min(length(space), 6) + 1))])"
 
+/// AQUILA - zestaw zrzucony na kratkę ze stosem tego samego rodzaju (wcześniejszy zestaw na arenie) daje osobne stosy:
+/// nowy stos łączył się z leżącym i znikał, więc test komory losowo widział „0 of 1” stosu
+/datum/unit_test/test_chamber_kit_stacks
+
+/datum/unit_test/test_chamber_kit_stacks/Run()
+	var/turf/first = run_loc_floor_bottom_left
+	var/list/turfs = list(first, get_step(first, EAST), get_step(get_step(first, EAST), EAST))
+	allocate(/obj/item/stack/tile/plasteel, first)
+	var/datum/test_chamber_kit/kit = new
+	kit.items = list(/obj/item/stack/tile/plasteel = 2)
+	kit.spawn_kit(turfs, first, null)
+	var/stacks = 0
+	for(var/turf/T as anything in turfs)
+		for(var/obj/item/stack/tile/plasteel/tile in T)
+			stacks++
+			if(T != first)
+				qdel(tile)
+	qdel(kit)
+	TEST_ASSERT(stacks == 3, "Kit stacks merged into a stack already lying in the arena: [stacks] of 3 stacks left")
+
 #undef TEST_ASSERT

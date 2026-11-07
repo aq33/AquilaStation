@@ -521,6 +521,10 @@ def main():
                 # gracza jako jeden z wielu węzłów, np. linia examine: pary dla tekstów między
                 # znacznikami, gdy obie strony mają te same znaczniki
                 for segment_pl, segment_en in tag_segments(key, value):
+                    # pusty odpowiednik całego zwrotu to złe dopasowanie węzłów (opis czapki
+                    # poczty: "A <i>…</i> head wear"), oględziny pokazałyby pusty tekst
+                    if not segment_en and any(len(w) > 3 for w in WORD.findall(segment_pl)):
+                        continue
                     if segment_pl not in exact:
                         exact[segment_pl] = segment_en
                         stats["stałe z wnętrza znaczników"] += 1

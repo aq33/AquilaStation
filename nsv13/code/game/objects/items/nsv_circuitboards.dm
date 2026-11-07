@@ -59,7 +59,7 @@
 ////Munitions consoles////
 
 /obj/item/circuitboard/computer/ship/munitions_computer
-	name = "komputer kontroli amunicji (płytka komputera)"
+	name = "komputer kontroli uzbrojenia (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/munitions_computer
 
 /obj/item/circuitboard/computer/ship/ordnance_computer

@@ -41,6 +41,23 @@
 #define SPRINT_WALLSLAM_KNOCKDOWN (2 SECONDS)
 
 ////
+/// RZUT NA SPRINCIE (nowe)
+////
+
+///Zasięg rzutu (w kratkach)
+#define SPRINT_DIVE_RANGE 3
+///Koszt staminy rzutu
+#define SPRINT_DIVE_COST 40
+///Odstęp między rzutami
+#define SPRINT_DIVE_COOLDOWN (3 SECONDS)
+///Czas powalenia trafionego
+#define SPRINT_DIVE_TARGET_KNOCKDOWN (3 SECONDS)
+///Czas powalenia rzucającego po trafieniu
+#define SPRINT_DIVE_SELF_KNOCKDOWN (1 SECONDS)
+///Czas powalenia rzucającego po pudle
+#define SPRINT_DIVE_MISS_KNOCKDOWN (1.5 SECONDS)
+
+////
 /// UPADEK ZE SCHODÓW (nowe)
 ////
 

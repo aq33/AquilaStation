@@ -30,7 +30,78 @@ const CATEGORY_TITLES: Record<string, string> = {
   Uncategorized: 'Bez kategorii',
 };
 
-const categoryTitle = (title: string) => CATEGORY_TITLES[title] ?? title;
+/**
+ * AQUILA: kategorie designów z DM to klucze filtrów maszyn, więc tłumaczymy tylko
+ * wyświetlany tytuł. Gracz z językiem EN dostaje angielski oryginał z DM.
+ */
+const DM_CATEGORY_TITLES: Record<string, string> = {
+  'Advanced Munitions': 'Zaawansowane uzbrojenie',
+  'AI Modules': 'Moduły SI',
+  Ammo: 'Amunicja',
+  'Asteroid Mining': 'Górnictwo asteroid',
+  'Augmentation Nanites': 'Nanity augmentacyjne',
+  'Basic Dishes': 'Proste dania',
+  'Bluespace Designs': 'Projekty bluespace',
+  'Botany Chemicals': 'Chemia botaniczna',
+  Circuitry: 'Układy',
+  'Complex Dishes': 'Złożone dania',
+  'Computer Boards': 'Płytki komputerów',
+  'Computer Parts': 'Części komputerów',
+  Construction: 'Budowa',
+  'Control Interfaces': 'Interfejsy sterowania',
+  Cybernetics: 'Cybernetyka',
+  'Cyborg Upgrade Modules': 'Ulepszenia cyborgów',
+  'Defective Nanites': 'Wadliwe nanity',
+  Dinnerware: 'Zastawa',
+  Electronics: 'Elektronika',
+  'Engineering Machinery': 'Maszyny inżynieryjne',
+  Equipment: 'Wyposażenie',
+  'Exosuit Equipment': 'Wyposażenie egzoszkieletów',
+  'Exosuit Modules': 'Moduły egzoszkieletów',
+  'Exotic Dishes': 'Egzotyczne dania',
+  'Experimental Technology': 'Technologia eksperymentalna',
+  Firefighter: 'Strażak',
+  'Firing Pins': 'Iglice',
+  Food: 'Jedzenie',
+  Imported: 'Importowane',
+  Implants: 'Implanty',
+  'IPC Components': 'Części IPC',
+  Machinery: 'Maszyny',
+  Medical: 'Medycyna',
+  'Medical Designs': 'Projekty medyczne',
+  'Medical Machinery': 'Maszyny medyczne',
+  'Medical Nanites': 'Nanity medyczne',
+  'Mining Designs': 'Projekty górnicze',
+  Misc: 'Różne',
+  'Misc. Machinery': 'Różne maszyny',
+  'MOD Construction': 'Budowa MOD',
+  'MOD Modules': 'Moduły MOD',
+  'Nutritional Supplements': 'Suplementy',
+  'Organic Materials': 'Materiały organiczne',
+  'Power Designs': 'Zasilanie',
+  Protocols_Nanites: 'Protokoły nanitów',
+  'Research Machinery': 'Maszyny badawcze',
+  Security: 'Ochrona',
+  'Sensor Nanites': 'Nanity czujnikowe',
+  'Ship Components': 'Części statku',
+  'Shuttle Machinery': 'Maszyny promu',
+  'Stock Parts': 'Części podstawowe',
+  'Subspace Telecomms': 'Telekomunikacja podprzestrzenna',
+  'Suppression Nanites': 'Nanity tłumiące',
+  'T-Comm': 'Telekomunikacja',
+  'Teleportation Machinery': 'Maszyny teleportacyjne',
+  'Tool Designs': 'Projekty narzędzi',
+  Tools: 'Narzędzia',
+  'Utility Nanites': 'Nanity użytkowe',
+  Vehicles: 'Pojazdy',
+  'Weaponized Nanites': 'Nanity bojowe',
+  Weapons: 'Broń',
+};
+
+const categoryTitle = (title: string) =>
+  CATEGORY_TITLES[title] ??
+  (isTranslating() ? undefined : DM_CATEGORY_TITLES[title]) ??
+  title;
 
 /**
  * Categories present in this object are not rendered to the final fabricator

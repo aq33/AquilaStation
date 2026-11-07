@@ -430,6 +430,9 @@ Oznaczenia w kolumnie uwag:
 | APC (area power controller) | APC | ndm, uzgadniamy w r. m („APC jest wyłączony”); istniejące (139×) |
 | SMES | SMES | ndm, r. m; istniejące (5×); odrzucone: akumulator |
 | power cell | ogniwo zasilające | n; istniejące (138×); odrzucone: bateria (w nazwie ogniwa) |
+| pocket translator | tłumacz kieszonkowy | m; nowe (`/obj/item/aquila_translator`) |
+| translator chip | czip tłumacza | m; nowe (`/obj/item/aquila_translator/chip`), drzazga w osobnym gnieździe słuchawek |
+| English (language) / foreigner | Angielski / obcokrajowiec | m; nowe; język gracza z angielskim w preferencjach (`foreigner.dm`) |
 | high-capacity power cell | ogniwo dużej pojemności | n; nowe (wzorem „Pamięć dużej pojemności”) |
 | super-capacity power cell | ogniwo bardzo dużej pojemności | n; nowe |
 | hyper-capacity power cell | ogniwo hiperpojemne | n; nowe (historia: „hiper-pojemna bateria”, 1×) |
@@ -1135,7 +1138,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 
 | EN | PL | rodzaj/uwagi |
 |---|---|---|
-| munitions (dział) | amunicja | ż; istniejące („Technik Amunicyjny”) |
+| munitions (dział) | uzbrojenie (dział uzbrojenia) | n; decyzja 2026-11: dział nazywa się „Uzbrojenie”, nie „Amunicja” (obszary, dostęp, sprzęt, etykiety działów); „amunicja” tylko dla naboi i pocisków; tytuł „Technik Amunicyjny” zostaje (klucz `JOB_NAME_*`) |
 | ordnance | uzbrojenie | n; istniejące („Obsługa Uzbrojenia”) |
 | torpedo | torpeda | ż; istniejące (30×) |
 | missile | rakieta | ż; istniejące (20×) |
@@ -3122,7 +3125,7 @@ Oznaczenia w kolumnie uwag:
 | Supply / Cargo | Zaopatrzenie | n; istniejące; kanał radiowy „Dostawy” (istniejące) |
 | Service | Służba | ż; istniejące (radio); odrzucone: Serwis (karta ID, 3×), Usługi |
 | Civilian | Cywile | mnoga; istniejące (latejoin) |
-| Munitions | Amunicja (dział amunicji) | ż; istniejące (manifest, latejoin) |
+| Munitions | Uzbrojenie (dział uzbrojenia) | n; decyzja 2026-11, wcześniej „Amunicja” (manifest, latejoin, Orbit, konsola kart) |
 | Silicon | Syntetyki | mnoga; istniejące (latejoin); pojedynczy: syntetyk (m) |
 | Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); rola gimmick w defines zostaje „Gimmick” |
 | Air Traffic Control (radio) | Kontrola Lotów | ż; istniejące (`RADIO_CHANNEL_ATC`) |
@@ -3764,7 +3767,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Gauss Bay / Gauss Battery | Komory Gaussa / Bateria Gaussa | mnoga / ż; istniejące |
 | Artillery Bay | Artyleria | ż; istniejące |
 | Torpedo Bay / Launchers | Wyrzutnie | mnoga; istniejące (Wyrzutnie 1 & 2) |
-| Munitions Lounge / Equipment Room | Świetlica Amunicji / Pokój Wyposażenia Amunicji | ż / m; nowe |
+| Munitions Lounge / Equipment Room | Świetlica Uzbrojenia / Pokój Wyposażenia Uzbrojenia | ż / m; decyzja 2026-11 (dział = uzbrojenie) |
 | Squad Equipment Room | Pokój Wyposażenia Drużyn | m; istniejące |
 | Damage Control | Kontrola Uszkodzeń | ż; nowe |
 | FTL Control Room | Pokój Kontroli Napędu Nadświetlnego | m; istniejące |

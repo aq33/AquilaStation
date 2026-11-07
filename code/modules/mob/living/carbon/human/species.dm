@@ -636,6 +636,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				eye_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 				eye_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 			standing += eye_overlay
+			standing += H.get_eyelid_overlays(eye_overlay, E, HD) // AQ EDIT - mruganie (port z tg, aquila/code/modules/mob/living/carbon/human/eyelids.dm)
 			standing += H.get_tears_overlays() // AQ EDIT - łzy po *cry (port Yogstation#15690)
 
 	//organic body markings

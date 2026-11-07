@@ -274,3 +274,77 @@
       się całą flotą.
   - admin: 'Nowe przełączniki w Debug: Toggle overmap scale, Toggle AI morale, oraz
       „Strojenie AI” do zmiany liczb walki AI w trakcie rundy.'
+'2026-11-07':
+  Joker66613:
+  - bugfix: Oględziny pustej minikarty SI i konsoli przeciwlotniczej bez wieżyczki
+      znów pokazują opis.
+  - bugfix: W wersji angielskiej opis czapek poczty nie jest już pusty.
+  - bugfix: Przy pierwszym wejściu lobby otwiera się dopiero po wyborze języka, a
+      okno wyboru czeka, aż gra się wczyta.
+  - code_imp: Test regresji dla zniszczonych części myśliwca w slotach.
+  - tweak: 'Menu radialne wygląda jak w SS14: tarcza z sektorami, podświetlony sektor
+      pod myszą, nazwa opcji nad menu.'
+  - bugfix: Okno roli antagonisty pokazuje samouczek roli (demon impulsu i wiele innych
+      ról miało tam tylko cele).
+  - bugfix: Porady abordażystów i sługi bloodlinga nie otwierają się puste.
+  - bugfix: Demon impulsu porusza się w nieważkości i nie przepycha ani nie wystrzeliwuje
+      kanistrów.
+  - tweak: Wybuch implantu karnego CE zostawia głowę z mózgiem, więc CE nie wypada
+      z rundy.
+  - tweak: Pełny plecak, pas albo kieszeń pokazuje wolne pola na czerwono.
+  - rscadd: Przycisk „Czat głosowy” w menu pod Esc.
+  - bugfix: Działo Gaussa animuje strzał obu luf.
+  - bugfix: Konsola łączności działa na statku górniczym i innych statkach załogi.
+  - bugfix: Opis przedmiotu w sklepie aquilosów nie chowa się pod podglądem postaci.
+  - bugfix: Zsyp dostaw z nowym sprite'em ma pasującą animację; moduł zsypu MOD wysyła
+      do wybranego celu.
+  - bugfix: Kamera nie zostaje na zsypie po wyjściu z niego.
+  - bugfix: Pierogi i inne składniki w mikrofali nie są czarnymi plamami.
+  - bugfix: Radio artylerii ma swój kolor w czacie i w oknie mówienia.
+  - spellcheck: Kategorie fabrykatorów po polsku, bez „The” w dymkach, dział amunicji
+      nazywa się Uzbrojenie.
+  - rscadd: 'Miękkie światło: płynne przejścia między światłem a cieniem zamiast kafelkowych
+      schodków (opcja w Grafika → Jakość).'
+  - rscadd: 'Poświata wokół świecących rzeczy: ekranów, lamp, alarmów i laserów, w
+      czterech poziomach (opcja w Grafika → Jakość).'
+  - rscadd: Lampy, pociski energetyczne i światełka śluz świecą w ciemności.
+  - rscadd: Promienie świateł od jasnych rzeczy (opcja, domyślnie wyłączona, działa
+      z poświatą).
+  - rscadd: 'Prototyp cieni od ścian dla latarek, kasków, PDA i borgów: światło latarki
+      nie przechodzi już przez ściany.'
+  - imageadd: Ikona trójkąta cienia dla latarek.
+  - admin: aq_set_light_shadows(FALSE) przez Advanced ProcCall wyłącza cienie latarek.
+  - rscadd: Zmiana zaczyna się zawsze o 7:00 czasu stacji, a noc kończy się o 7:00.
+  - rscadd: Kapitan może w konsoli komunikacji wyłączyć oświetlenie nocne na całym
+      statku i przywrócić automat.
+  - config: Shrike, Von Neumann i Atlantis są w głosowaniu na mapę, a każda mapa ma
+      w nawiasie rozmiar (mała, średnia, duża).
+  - rscadd: Naukowiec ma na start w plecaku neutralizator anomalii.
+  - rscadd: Guzik „leż” w trakcie sprintu z combat mode rzuca postać przed siebie,
+      a trafiony ląduje na ziemi.
+  - balance: Wbiegnięcie sprintem w kogoś, kto stoi w combat mode, przewraca biegnącego
+      jak ściana.
+  - rscadd: Stosy (metal, szkło itd.) pokazują liczbę sztuk na ikonie w ekwipunku.
+  - rscadd: Guzik notatek w HUD-zie (z tg).
+  - soundadd: Alarm pożarowy gra dźwięk z tg w pętli, dopóki alarm trwa.
+  - tweak: 'Ikony w plecaku i innych schowkach z siatką są ostre: nie są już skalowane
+      do kratek.'
+  - tweak: Obrót przedmiotu klawiszem E/Q w trakcie przeciągania po siatce plecaka
+      obraca tylko podgląd, przedmiot obraca się po upuszczeniu.
+  - rscadd: Postacie mrugają, a nieprzytomne mają zamknięte oczy.
+  - rscadd: 'Prawo kosmiczne: nowe wykroczenie „Załatwianie potrzeby w miejscu publicznym”.'
+  - rscadd: 'Gracz z angielskim w preferencjach dołącza jako obcokrajowiec: nie zna
+      Galaktycznego Wspólnego i mówi po Angielsku, którego załoga nie rozumie.'
+  - rscadd: Czip tłumacza w słuchawkach obcokrajowca (własne gniazdo obok kluczy,
+      wyjmowany multitoolem) tłumaczy mowę na polski i polską mowę na angielski przez
+      DeepL. Bez słuchawek obcokrajowiec dostaje tłumacz kieszonkowy.
+  - rscadd: OOC, adminhelpy i PW z adminami są tłumaczone między polskim i angielskim.
+  - rscadd: Obcokrajowiec losuje angielskie imiona z oryginalnej puli NSV13.
+  - rscadd: EMP wyłącza tłumacza na minutę, a silny może go spalić. Zapasowe czipy
+      tłumacza są w szafce HoP-a.
+  - imageadd: Sprite czipu tłumacza (sprawny i spalony).
+  - imageadd: Ikonka języka Angielski.
+  - config: DEEPL_API_KEY w config.txt (klucz DeepL API, darmowy kończy się na ":fx").
+  sh4dow321:
+  - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
+      wersji językowej.

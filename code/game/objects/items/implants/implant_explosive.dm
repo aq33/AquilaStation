@@ -10,6 +10,7 @@
 	var/delay = 7
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
+	var/gib_keeps_brain = FALSE // AQ EDIT - implant karny CE zostawia mózg (aquila/.../implant_explosive.dm)
 
 /obj/item/implant/explosive/on_mob_death(mob/living/L, gibbed)
 	activate("death")
@@ -40,7 +41,7 @@
 	if(delay <= 7)
 		explosion(src,heavy,medium,weak,weak, flame_range = weak)
 		if(imp_in)
-			imp_in.gib(1)
+			imp_in.gib(!gib_keeps_brain) // AQ EDIT - gib_keeps_brain
 		qdel(src)
 		return TRUE
 	timed_explosion()
@@ -73,7 +74,7 @@
 	sleep(delay*0.25)
 	explosion(src,heavy,medium,weak,weak, flame_range = weak)
 	if(imp_in)
-		imp_in.gib(1)
+		imp_in.gib(!gib_keeps_brain) // AQ EDIT - gib_keeps_brain
 	qdel(src)
 
 /obj/item/implant/explosive/macro
