@@ -84,7 +84,6 @@
 					/obj/item/clothing/suit/toggle/labcoat/paramedic = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
 					/obj/item/clothing/head/soft/paramedic = 4,
-					/obj/item/clothing/head/aquila/headband/cyan = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
 					/obj/item/clothing/mask/surgical = 4,
 					// AQUILA EDIT START - przedmioty NFZ
@@ -124,7 +123,6 @@
 					/obj/item/clothing/shoes/workboots = 3,
 					/obj/item/clothing/head/hardhat = 3,
 					/obj/item/clothing/head/hardhat/weldhat = 3,
-					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
 					/obj/item/clothing/head/soft/orlen = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/eng = 3)
@@ -150,7 +148,6 @@
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 3,
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
-					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
 					/obj/item/clothing/head/soft/orlen/atmos = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/atmos = 3)
@@ -211,7 +208,6 @@
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
 					/obj/item/clothing/mask/bandana/skull = 2,
-					/obj/item/clothing/head/aquila/headband/purple = 2, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sci = 2)
 
 	contraband = list(/obj/item/clothing/suit/hooded/techpriest = 2,
@@ -245,8 +241,7 @@
 					/obj/item/radio/headset/headset_sci = 3,
 					/obj/item/clothing/mask/gas = 3,
 					/obj/item/clothing/glasses/science = 2, //AQUILA EDIT
-					/obj/item/clothing/head/beret/sci = 3,
-					/obj/item/clothing/head/aquila/headband/purple = 3)
+					/obj/item/clothing/head/beret/sci = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/science/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/science_wardrobe
 	payment_department = ACCOUNT_SCI
@@ -270,7 +265,6 @@
 					/obj/item/clothing/under/plasmaman/botany = 3,
 					/obj/item/clothing/head/helmet/space/plasmaman/botany = 3,
 					/obj/item/clothing/mask/bandana = 3,
-					/obj/item/clothing/head/aquila/headband/green = 3, //AQUILA EDIT
 					/obj/item/clothing/accessory/armband/hydro = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/hydro/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
@@ -321,7 +315,6 @@
 					/obj/item/clothing/accessory/waistcoat = 2,
 					/obj/item/clothing/suit/apron/purple_bartender = 2,
 					/obj/item/clothing/head/soft/black = 2,
-					/obj/item/clothing/head/aquila/headband/black = 2, //AQUILA EDIT
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/reagent_containers/glass/rag = 2,
 					/obj/item/storage/box/beanbag = 1,
@@ -349,7 +342,6 @@
 					/obj/item/clothing/accessory/waistcoat = 2,
 					/obj/item/clothing/suit/apron/chef = 3,
 					/obj/item/clothing/head/soft = 2,
-					/obj/item/clothing/head/aquila/headband = 2, //AQUILA EDIT
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/suit/toggle/chef = 1,
@@ -379,7 +371,6 @@
 					/obj/item/computer_hardware/hard_drive/role/janitor = 2,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/head/soft/purple = 2,
-					/obj/item/clothing/head/aquila/headband/pink = 2, //AQUILA EDIT
 					/obj/item/pushbroom = 2,
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
@@ -501,7 +492,6 @@
 					/obj/item/storage/backpack/duffelbag/med/chemistry = 2, //AQUILA EDIT - NFZ
 					/obj/item/storage/bag/chemistry = 2,
 					/obj/item/clothing/head/beret/med = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
 					/obj/item/ph_booklet = 3) // AQ EDIT - fermichem z tg
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
 	payment_department = ACCOUNT_MED
@@ -518,7 +508,6 @@
 					//obj/item/clothing/under/rank/medical/geneticist/skirt = 2, //NSV13 no skirts
 					/obj/item/clothing/under/plasmaman/genetics = 2,
 					/obj/item/clothing/head/helmet/space/plasmaman/genetics = 2,
-					/obj/item/clothing/head/aquila/headband/purple = 2, //AQUILA EDIT
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
 					/obj/item/storage/backpack/genetics = 2,
@@ -542,7 +531,6 @@
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/virologist = 2,
 					/obj/item/clothing/mask/surgical = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
 					/obj/item/storage/backpack/virology = 2,
 					/obj/item/storage/backpack/satchel/vir = 2,
 					/obj/item/storage/backpack/duffelbag/med/virology = 2) //AQUILA EDIT - NFZ

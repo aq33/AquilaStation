@@ -19,7 +19,6 @@
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft/cargo = 3,
 					/obj/item/clothing/head/beret/supply = 3,
-					/obj/item/clothing/head/aquila/headband/inpost = 3,
 					/obj/item/storage/backpack/inpost = 3,
 					/obj/item/storage/backpack/satchel/inpost = 3,
 					/obj/item/storage/backpack/duffelbag/inpost = 3,
