@@ -61,6 +61,25 @@
 	machine_name = "Mundurownia NFZ (wirusologia)"
 
 /****************************\
+|***** hełmy plazmoludzi *****|
+\****************************/
+// Kolory greyscale (podstawa, pas, środkowy pasek) dobrane do kombinezonów środowiskowych z arkusza NFZ
+/obj/item/clothing/head/helmet/space/plasmaman/medical
+	greyscale_colors = "#029F98#AF2747#165D6B"
+
+/obj/item/clothing/head/helmet/space/plasmaman/cmo
+	greyscale_colors = "#029F98#AF2747#17171F"
+
+/obj/item/clothing/head/helmet/space/plasmaman/genetics
+	greyscale_colors = "#B8B6A5#6D4D96#737365"
+
+/obj/item/clothing/head/helmet/space/plasmaman/chemist
+	greyscale_colors = "#B8B6A5#D4752C#737365"
+
+/obj/item/clothing/head/helmet/space/plasmaman/viro
+	greyscale_colors = "#B8B6A5#31875F#737365"
+
+/****************************\
 |*********** szafki **********|
 \****************************/
 // Szafka chemiczna miała korpus zwykłej szafki medycznej, arkusz rysuje dla niej własny (stany chemical, chemical_open, chemical_back)
@@ -134,15 +153,17 @@
 /obj/item/clothing/head/nfz
 	icon = 'aquila/icons/nfz/nfz.dmi'
 	worn_icon = 'aquila/icons/nfz/nfz_noszone.dmi'
-	// czepki i bandana nie przycinają fryzury (domyślne +generic chowało włosy)
+	// bandana nie przycina fryzury (domyślne +generic ją obcinało), czepki chowają włosy całkiem przez HIDEHAIR
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/nfz/surgerycap
+	flags_inv = HIDEHAIR
 	name = "czepek chirurgiczny NFZ"
 	desc = "Turkusowy czepek, który trzyma włosy z dala od pola operacyjnego."
 	icon_state = "surgerycap"
 
 /obj/item/clothing/head/nfz/bouffant
+	flags_inv = HIDEHAIR
 	name = "czepek bufiasty NFZ"
 	desc = "Obszerny czepek chirurgiczny na bujniejsze fryzury."
 	icon_state = "bouffant"
