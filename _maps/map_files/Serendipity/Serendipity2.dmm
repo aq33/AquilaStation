@@ -446,12 +446,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"bg" = (
-/obj/machinery/computer/ai_overclocking{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -516,16 +510,6 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
-"bo" = (
-/obj/structure/cable,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/monotile/steel,
-/area/comms)
 "bp" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -826,6 +810,12 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
+"cn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "co" = (
 /obj/structure/munitions_trolley,
 /turf/open/floor/plasteel/dark,
@@ -1013,16 +1003,6 @@
 "db" = (
 /turf/closed/wall/ship,
 /area/quartermaster/warehouse)
-"dh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "dm" = (
 /obj/machinery/airalarm/directional/south,
 /obj/structure/cable,
@@ -1072,6 +1052,13 @@
 "dF" = (
 /turf/closed/wall/ship,
 /area/crew_quarters/heads/chief)
+"dH" = (
+/obj/docking_port/stationary/sabre/mining,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "dI" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -1118,15 +1105,6 @@
 	dir = 10
 	},
 /area/engine/engine_room)
-"dW" = (
-/obj/machinery/door/poddoor/ship{
-	id = "mining_bay"
-	},
-/obj/machinery/door/poddoor/ship{
-	id = "mining_bay"
-	},
-/turf/open/floor/plasteel/dark/airless,
-/area/nsv/hanger/mining)
 "dY" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/advanced_airlock_controller/directional/east,
@@ -1544,6 +1522,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"gh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "gi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1797,6 +1781,12 @@
 /area/engine/engine_room)
 "hn" = (
 /turf/closed/wall/r_wall/ship,
+/area/nsv/hanger/mining)
+"hq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger/mining)
 "hr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2473,6 +2463,12 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
+"kU" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "kX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3921,6 +3917,12 @@
 	dir = 1
 	},
 /area/engine/engine_room)
+"sL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "sM" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -3952,6 +3954,10 @@
 	},
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger)
+"sV" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "sW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -4211,6 +4217,12 @@
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plating,
 /area/engine/storage)
+"up" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "ur" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/dark/corner,
@@ -4322,16 +4334,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"vk" = (
-/obj/machinery/button/door{
-	id = "mining_bay";
-	name = "Mining Bay";
-	pixel_x = -24;
-	req_one_access_txt = "31;48"
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark/airless,
-/area/nsv/hanger/mining)
 "vl" = (
 /obj/structure/cable,
 /obj/structure/sign/departments/minsky/engineering/atmospherics{
@@ -4939,10 +4941,6 @@
 	},
 /turf/closed/wall/ship,
 /area/maintenance/department/electrical)
-"yE" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/engine,
-/area/comms)
 "yH" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -5166,15 +5164,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/atmos)
-"zX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/monotile/steel,
-/area/comms)
 "Ac" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
@@ -5271,18 +5260,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/comms)
-"AD" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons)
 "AK" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 4
@@ -5472,12 +5449,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
-"BW" = (
-/obj/machinery/door/poddoor/ship{
-	id = "mining_bay"
-	},
-/turf/open/floor/monotile/dark/airless,
-/area/nsv/hanger/mining)
 "BX" = (
 /obj/machinery/gravity_generator/main/station,
 /turf/open/floor/monotile/dark,
@@ -5493,6 +5464,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+"Cg" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "Ci" = (
 /obj/machinery/vending/wardrobe/muni_wardrobe,
 /obj/structure/sign/poster/official/random{
@@ -6305,21 +6280,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
-"GG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/holosign_creator/atmos,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Telecomms Admin";
-	departmentType = 5;
-	name = "Telecomms RC";
-	pixel_y = -30
-	},
-/turf/open/floor/monotile/steel,
-/area/comms)
 "GH" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -6426,6 +6386,12 @@
 /obj/structure/sign/poster/official/moth7,
 /turf/closed/wall/ship,
 /area/quartermaster)
+"Ho" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "Hp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable,
@@ -6799,13 +6765,6 @@
 /obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
-"JA" = (
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 5
-	},
-/obj/structure/overmap/small_craft/transport/sabre/mining,
-/turf/open/floor/plasteel/dark/airless,
-/area/nsv/hanger/mining)
 "JG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -7163,12 +7122,6 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/crew_quarters/heads/chief)
-"Lw" = (
-/obj/machinery/door/poddoor/ship{
-	id = "mining_bay"
-	},
-/turf/open/floor/plasteel/dark/airless,
-/area/nsv/hanger/mining)
 "Lz" = (
 /turf/closed/wall/ship,
 /area/maintenance/department/electrical)
@@ -7663,6 +7616,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"NT" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "NY" = (
 /obj/structure/closet/secure_closet/engineering_electrical{
 	anchored = 1
@@ -9141,6 +9098,12 @@
 "VE" = (
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"VF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "VG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -9190,13 +9153,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger/mining)
-"VU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/vending/cola/sodie,
-/turf/open/floor/monotile/steel,
-/area/engine/engineering)
 "VV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -9219,6 +9175,10 @@
 /obj/item/stamp/law,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"VZ" = (
+/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "Wf" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -36752,17 +36712,17 @@ tL
 iJ
 uF
 LX
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
 Ks
 Ks
 Ks
@@ -37009,17 +36969,17 @@ iJ
 iJ
 iS
 iJ
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+xe
+xe
+VF
+xe
+xe
+xe
+xe
+VZ
+xe
+hn
 Ks
 Ks
 Ks
@@ -37263,20 +37223,20 @@ pr
 hn
 NK
 VT
-vk
+NT
 HW
-Lw
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+xe
+cn
+gh
+gh
+gh
+gh
+gh
+gh
+gh
+dH
+hn
 Ks
 Ks
 Ks
@@ -37521,19 +37481,19 @@ hn
 Zn
 iq
 hc
-JA
-BW
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+up
+xe
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -37779,18 +37739,18 @@ Fu
 sM
 xe
 nX
-BW
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -38036,18 +37996,18 @@ ja
 hT
 mV
 rF
-BW
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -38294,17 +38254,17 @@ hi
 hi
 gu
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+Cg
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -38551,17 +38511,17 @@ WV
 db
 Wt
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -38808,17 +38768,17 @@ JN
 db
 NC
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -39065,17 +39025,17 @@ aa
 db
 JZ
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+kU
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+sV
+hn
 Ks
 Ks
 Ks
@@ -39322,17 +39282,17 @@ JW
 db
 gk
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+xe
+sL
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+Ho
+hn
 Ks
 Ks
 Ks
@@ -39579,17 +39539,17 @@ kF
 WB
 Fr
 gu
-dD
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
-Ks
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
+hn
 Ks
 Ks
 Ks

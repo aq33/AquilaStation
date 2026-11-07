@@ -82,6 +82,25 @@
 	qdel(port, TRUE)
 	qdel(hangar)
 
+/// AQUILA - porty Sabre na mapie: na starcie rundy każdy ma wnętrze z jednostką overmapy, a z włazu da się wyjść
+/datum/unit_test/sabre_map_ports
+
+/datum/unit_test/sabre_map_ports/Run()
+	for(var/obj/docking_port/stationary/sabre/port in SSshuttle.stationary)
+		if(!is_station_level(port.z))
+			continue
+		var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+		TEST_ASSERT(istype(shuttle_port), "The Sabre port at [COORD(port)] has no Sabre docked")
+		var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+		TEST_ASSERT(istype(sabre), "The Sabre at [COORD(port)] has no overmap craft")
+		TEST_ASSERT_EQUAL(sabre.shuttle_docked_at, port, "The Sabre at [COORD(port)] doesn't count as docked")
+		var/exits = 0
+		for(var/turf/T as anything in sabre.shuttle_exit_turfs())
+			if(!T.density && !isspaceturf(T) && !istype(T, /turf/open/openspace))
+				exits++
+		TEST_ASSERT(exits, "The hatch of the Sabre at [COORD(port)] doesn't open onto a floor")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
+
 
