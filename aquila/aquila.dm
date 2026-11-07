@@ -682,6 +682,8 @@
 #include "code\modules\lost_crew\lost_crew.dm"
 #include "code\modules\lighting\emissive_extra.dm"
 #include "code\modules\lighting\soft_lighting.dm"
+#include "code\modules\lighting\light_shadow_geometry.dm"
+#include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
 #include "code\modules\mining\equipment\mineral_scanner.dm"
 #include "code\modules\mining\machine_bluespaceminer.dm"
