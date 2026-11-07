@@ -65,5 +65,69 @@
 	TEST_ASSERT_EQUAL(classify_sound_environment(120, 0.2, 0), SOUND_AREA_STANDARD_STATION, "Medium room keeps the station reverb")
 	TEST_ASSERT_EQUAL(classify_sound_environment(120, 0.2, 0.6), SOUND_AREA_MEDIUM_SOFTFLOOR, "Medium carpeted room")
 
+	// Z daleka: stłumiona kopia bez ściany po drodze
+	var/sound/far = sound('sound/effects/bang.ogg')
+	far.volume = 100
+	TEST_ASSERT(!isnull(apply_sound_occlusion(far, 0, 12)), "A sound from 12 tiles should use the muffled copy")
+	TEST_ASSERT_EQUAL(far.volume, 100, "Distance alone should not change the volume (playsound_local does the falloff)")
+
+	// Szczelny hełm: wszystko przytłumione
+	var/obj/item/clothing/head/helmet/space/helmet = allocate(/obj/item/clothing/head/helmet/space)
+	listener.equip_to_slot_or_del(helmet, ITEM_SLOT_HEAD)
+	TEST_ASSERT(listener.has_sealed_helmet(), "A space helmet should count as sealed")
+	var/sound/inside = sound('sound/effects/bang.ogg')
+	inside.volume = 100
+	TEST_ASSERT(!isnull(apply_sound_occlusion(inside, 0, 1, listener)), "A sealed helmet should muffle even a close sound")
+	TEST_ASSERT(inside.volume < 100, "A sealed helmet should make it a bit quieter")
+	qdel(helmet)
+
+	// Dookoła ściany przez otwarte drzwi: ściana na prostej, drzwi kafelek wyżej
+	var/turf/door_turf = locate(source_turf.x + 1, source_turf.y + 1, source_turf.z)
+	if(door_turf && door_turf.y <= run_loc_floor_top_right.y)
+		var/obj/structure/falsewall/blocking = allocate(/obj/structure/falsewall, middle_turf)
+		var/obj/machinery/door/airlock/side_door = allocate(/obj/machinery/door/airlock, door_turf)
+		side_door.density = FALSE
+		GLOB.sound_path_cache = null
+		var/list/heard = sound_heard_through(source_turf, listener, 80, SOUND_RANGE, source_turf)
+		TEST_ASSERT(heard[1] < 0.3, "A loud sound should go around the wall through the open door (got [heard[1]])")
+		TEST_ASSERT(isturf(heard[2]) && heard[2] != source_turf, "The sound should come from the side of the door")
+		var/through_door = heard[1]
+		// Zamknięte drzwi: zostaje tylko dłuższa droga dookoła pokoju testowego albo sama ściana
+		side_door.density = TRUE
+		GLOB.sound_path_cache = null
+		heard = sound_heard_through(source_turf, listener, 80, SOUND_RANGE, source_turf)
+		TEST_ASSERT(heard[1] > through_door, "A closed door should muffle more than an open one ([heard[1]] vs [through_door])")
+		TEST_ASSERT(heard[1] <= blocking.sound_dampening, "A way around should never muffle more than the wall")
+		heard = sound_heard_through(source_turf, listener, 10, SOUND_RANGE, source_turf)
+		TEST_ASSERT_EQUAL(heard[1], blocking.sound_dampening, "A quiet sound should not look for a way around")
+		qdel(side_door)
+		qdel(blocking)
+
+	// Szum otoczenia: słychać najbliższe źródło, jeden szum na rodzaj, za ścianą ciszej
+	var/obj/machinery/aquila_test_hum/hum = allocate(/obj/machinery/aquila_test_hum, source_turf)
+	var/obj/machinery/aquila_test_hum/second_hum = allocate(/obj/machinery/aquila_test_hum, middle_turf)
+	var/list/picked = SSambient_emitters.select_for(listener_turf)
+	TEST_ASSERT(second_hum in picked, "The closest hum should be picked")
+	TEST_ASSERT(!(hum in picked), "Two hums of the same kind should play as one")
+	qdel(second_hum)
+	picked = SSambient_emitters.select_for(listener_turf)
+	var/open_volume = picked[hum]
+	TEST_ASSERT(open_volume > 0, "A hum two tiles away should be heard")
+	var/obj/structure/falsewall/hum_wall = allocate(/obj/structure/falsewall, middle_turf)
+	picked = SSambient_emitters.select_for(listener_turf)
+	TEST_ASSERT(picked[hum] < open_volume, "A hum behind a wall should be quieter")
+	qdel(hum_wall)
+	qdel(hum)
+	TEST_ASSERT(!length(SSambient_emitters.select_for(listener_turf)), "A deleted machine should stop humming")
+
+/// Maszyna, która zawsze szumi (do testu)
+/obj/machinery/aquila_test_hum
+	ambient_hum = 'aquila/sound/ambience/emitters/vent.ogg'
+	ambient_hum_range = 5
+	use_power = NO_POWER_USE
+
+/obj/machinery/aquila_test_hum/ambient_hum_active()
+	return TRUE
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

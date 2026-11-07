@@ -73,7 +73,8 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/mob/M as() in listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref, occlusion = get_sound_occlusion(turf_source, get_turf(M)), source = source) // AQ EDIT - walls muffle the sound, the client tracks the source (aquila/code/game/sound_occlusion.dm)
+			var/list/heard = sound_heard_through(turf_source, M, vol, maxdistance, source) // AQ EDIT - walls muffle the sound, an open door lets it around the corner (aquila/code/game/sound_occlusion.dm)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref, occlusion = heard[1], source = heard[2]) // AQ EDIT - the client tracks the source
 	for(var/mob/M as() in dead_listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
 			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref, source = source) // AQ EDIT - ghosts hear through walls, but still get tracking
@@ -159,7 +160,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			//End Atmosphere affecting sound
 
 		// AQ EDIT START - walls muffle the sound; the position is tracked by the client nearby and the pan is softer (aquila/code/game/sound_occlusion.dm)
-		var/original_file = apply_sound_occlusion(S, occlusion)
+		var/original_file = apply_sound_occlusion(S, occlusion, distance, src)
 
 		if(S.volume <= 0)
 			if(original_file)
@@ -183,7 +184,8 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.echo[3] = 0 //Room setting, 0 means normal reverb
 			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
 
-		// AQ EDIT START - the /sound goes to every listener, restore the unmuffled file
+		// AQ EDIT START - reverb of the source room behind the wall; the /sound goes to every listener, restore the unmuffled file
+		apply_source_reverb(S, turf_source, occlusion)
 		SEND_SOUND(src, S)
 		if(original_file)
 			S.file = original_file
