@@ -1,48 +1,31 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"af" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/emitter/anchored{
-	dir = 1;
-	state = 2
+"dg" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 8;
+	filter_type = "plasma";
+	on = 1;
+	name = "Filtr plazmy"
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"cv" = (
-/obj/effect/turf_decal/tile/yellow/tile_side{
-	dir = 1
+"eK" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"fq" = (
+/obj/machinery/power/smes/engineering{
+	charge = 3e+006;
+	name = "SMES emiterów"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
-"dy" = (
-/obj/machinery/door/airlock/ship/engineering/glass{
-	name = "Reactor core access";
-	req_one_access_txt = "10; 24"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering/reactor_core)
-"eu" = (
-/obj/structure/tank_dispenser,
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"gF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"hn" = (
+"hy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "hM" = (
@@ -63,12 +46,43 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering/reactor_core)
-"jT" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+"iR" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 8;
+	filter_type = "o2";
+	on = 1;
+	name = "Filtr tlenu"
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engineering/reactor_core)
+"jL" = (
+/obj/structure/cable,
+/obj/structure/tank_dispenser,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"jN" = (
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"jS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "mt" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/secure_closet/engineering_electrical{
@@ -99,18 +113,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
-"pL" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_core)
 "qE" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
@@ -135,6 +137,14 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"rW" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 2;
+	state = 2
+	},
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "sf" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
@@ -178,6 +188,13 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
+"uj" = (
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "ur" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer4{
 	dir = 9
@@ -191,20 +208,11 @@
 "uG" = (
 /turf/template_noop,
 /area/template_noop)
-"wN" = (
+"yk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"zq" = (
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 6
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "zV" = (
@@ -246,6 +254,21 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"Dq" = (
+/obj/machinery/airalarm/engine{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"Dx" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1;
+	scrubbing = 0
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "FE" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w,
@@ -255,6 +278,19 @@
 "FN" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/ameridiner,
+/area/engine/engineering/reactor_core)
+"FU" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "Gr" = (
 /obj/effect/turf_decal/bot,
@@ -271,25 +307,23 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"HA" = (
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	dir = 8;
-	filter_type = "plasma";
-	on = 1;
-	name = "Filtr plazmy"
+"Hz" = (
+/obj/machinery/light{
+	dir = 4
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"Id" = (
-/obj/machinery/button/door{
-	dir = 8;
-	id = "snake_smengine";
-	name = "Blokada drzwi";
-	normaldoorcontrol = 1;
-	pixel_x = -24;
-	specialfunctions = 4
+"IH" = (
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 4
 	},
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 4
+	},
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "Jd" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
@@ -308,32 +342,28 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"Lg" = (
-/obj/machinery/airalarm/directional/north,
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	dir = 8;
-	filter_type = "o2";
-	on = 1;
-	name = "Filtr tlenu"
+"NN" = (
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"Or" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
+	dir = 1
+	},
 /obj/structure/cable/yellow,
-/obj/machinery/power/emitter/anchored{
-	dir = 2;
-	state = 2
-	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"OH" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
-"OR" = (
-/obj/machinery/light{
+"Ok" = (
+/obj/structure/cable,
+/obj/structure/reflector/box/anchored{
 	dir = 4
 	},
 /turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"OF" = (
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"OK" = (
+/turf/closed/wall/r_wall,
 /area/engine/engineering/reactor_core)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
@@ -346,6 +376,20 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/ameridiner,
+/area/engine/engineering/reactor_core)
+"PV" = (
+/obj/machinery/door/airlock/ship/engineering/glass{
+	name = "Reactor core access";
+	req_one_access_txt = "10; 24"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "Qx" = (
 /obj/machinery/power/rad_collector/anchored,
@@ -374,18 +418,23 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"Ra" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 2
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"RQ" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/engine/engineering/reactor_core)
 "RZ" = (
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"Sc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
 "Sg" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
@@ -403,16 +452,37 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"SG" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
 "SL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"SR" = (
-/obj/machinery/airalarm/engine{
-	dir = 4;
-	pixel_x = -24
+"Uz" = (
+/obj/machinery/button/door{
+	dir = 8;
+	id = "snake_smengine";
+	name = "Blokada drzwi";
+	normaldoorcontrol = 1;
+	pixel_x = -24;
+	specialfunctions = 4
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"UF" = (
+/obj/machinery/atmospherics/components/unary/thermomachine{
+	dir = 1;
+	piping_layer = 2;
+	target_temperature = 230
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "UG" = (
 /obj/structure/lattice/catwalk,
@@ -454,11 +524,30 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
-"Yh" = (
+"Xd" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
+"Xj" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 1;
+	state = 2
+	},
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"XT" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "Ym" = (
 /obj/effect/turf_decal/stripes/line{
@@ -466,16 +555,24 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
-"YV" = (
-/obj/structure/cable/yellow,
-/obj/structure/reflector/box/anchored{
+"YG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"Zv" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"Zb" = (
+/obj/machinery/atmospherics/components/unary/thermomachine{
+	dir = 1;
+	piping_layer = 2;
+	target_temperature = 230
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 
 (1,1,1) = {"
@@ -522,8 +619,8 @@ uG
 uG
 Gr
 FN
-uG
-OH
+IH
+fq
 uG
 "}
 (5,1,1) = {"
@@ -534,129 +631,129 @@ uG
 Ym
 ua
 Pt
-uG
-uG
+NN
+UF
 uG
 "}
 (6,1,1) = {"
 uG
 uG
+XT
 uG
 uG
 uG
-uG
-cv
-pL
-uG
+uj
+FU
+Zb
 uG
 "}
 (7,1,1) = {"
 uG
 uG
-dy
-uG
+PV
 uG
 uG
 oS
+oS
 uG
-uG
+RQ
 uG
 "}
 (8,1,1) = {"
 uG
 uG
-Sc
-Zv
-Or
-YV
-af
-Zv
-eu
-uG
+jS
+OF
+rW
+Ok
+Xj
+eK
+jL
+OK
 "}
 (9,1,1) = {"
 uG
 uG
-Yh
-Sj
+yk
+hM
 hM
 Sg
 hM
-Sj
+hM
 CZ
-uG
+OK
 "}
 (10,1,1) = {"
 uG
 uG
-wN
+YG
 Qx
-jT
+Dx
 RZ
 SL
 Wv
 Jd
-uG
+SG
 "}
 (11,1,1) = {"
 uG
 uG
-Yh
+yk
 ia
-jT
+Dx
 QB
 SL
 Sw
 QV
-uG
+OK
 "}
 (12,1,1) = {"
 uG
 uG
-zq
+jN
 rM
-jT
+Dx
 RZ
 SL
 Aa
 Ck
-uG
+OK
 "}
 (13,1,1) = {"
 uG
 ir
-Lg
-hM
+iR
+Sj
 hM
 tw
 hM
-hM
+Sj
 He
-uG
+OK
 "}
 (14,1,1) = {"
 uG
 Pn
-HA
-OR
-SR
-hn
-Id
-gF
+dg
+Hz
+Dq
+hy
+Uz
+Ra
 JH
-uG
+OK
 "}
 (15,1,1) = {"
 uG
 Bq
 UP
 uG
-uG
-uG
-uG
-uG
+Xd
+Xd
+Xd
+OK
 UP
-uG
+OK
 "}
 (16,1,1) = {"
 uG

@@ -73,6 +73,13 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"iH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1;
+	scrubbing = 0
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "iO" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark/side{
@@ -434,12 +441,6 @@
 /obj/machinery/meter,
 /turf/closed/wall/r_wall/ship,
 /area/engine/supermatter)
-"WF" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/supermatter)
 "WK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9;
@@ -617,7 +618,7 @@ zH
 zH
 Rm
 Xr
-WF
+iH
 CC
 fS
 vb
@@ -638,7 +639,7 @@ zH
 zH
 Rm
 jh
-WF
+iH
 Nz
 fS
 nS
@@ -659,7 +660,7 @@ zH
 zH
 Rm
 Je
-WF
+iH
 CC
 fS
 nS

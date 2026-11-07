@@ -93,6 +93,10 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
+"fu" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
 "gI" = (
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/engine,
@@ -111,6 +115,13 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/layer2{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
+"ip" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "jl" = (
@@ -276,6 +287,27 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
+"sT" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
+"sV" = (
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "tq" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/crate,
@@ -371,6 +403,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"CY" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
 "DW" = (
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
@@ -439,6 +476,15 @@
 "IB" = (
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"Jn" = (
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
 "KB" = (
 /obj/machinery/light{
 	dir = 4
@@ -455,6 +501,17 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"MA" = (
+/obj/machinery/atmospherics/components/unary/thermomachine{
+	dir = 1;
+	piping_layer = 2;
+	target_temperature = 230
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "MN" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
@@ -499,6 +556,14 @@
 /obj/machinery/particle_accelerator/control_box,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/ameridiner,
+/area/engine/engineering/reactor_core)
+"Uu" = (
+/obj/machinery/atmospherics/components/unary/thermomachine{
+	dir = 1;
+	piping_layer = 2;
+	target_temperature = 230
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
 "UD" = (
 /obj/effect/turf_decal/stripes/line,
@@ -588,7 +653,7 @@ ZU
 ZU
 NE
 NX
-ZU
+Jn
 aa
 ZU
 "}
@@ -600,20 +665,20 @@ ZU
 xY
 jE
 mh
-ZU
-ZU
+sV
+Uu
 ZU
 "}
 (6,1,1) = {"
 ZU
 ZU
-ZU
+sT
 ZU
 ZU
 ZU
 mV
 nF
-ZU
+MA
 ZU
 "}
 (7,1,1) = {"
@@ -622,10 +687,10 @@ ZU
 aj
 ZU
 ZU
-ZU
+CY
 ih
 ZU
-ZU
+bq
 ZU
 "}
 (8,1,1) = {"
@@ -638,7 +703,7 @@ wS
 Xx
 MN
 oB
-ZU
+bq
 "}
 (9,1,1) = {"
 ZU
@@ -650,7 +715,7 @@ Fu
 an
 ve
 aD
-ZU
+bq
 "}
 (10,1,1) = {"
 ZU
@@ -662,7 +727,7 @@ DW
 hL
 GB
 aP
-ZU
+ip
 "}
 (11,1,1) = {"
 ZU
@@ -674,7 +739,7 @@ bj
 KO
 yc
 ku
-ZU
+bq
 "}
 (12,1,1) = {"
 ZU
@@ -686,7 +751,7 @@ lN
 Fy
 zp
 oq
-ZU
+bq
 "}
 (13,1,1) = {"
 ZU
@@ -698,7 +763,7 @@ Fs
 oM
 IB
 oq
-ZU
+bq
 "}
 (14,1,1) = {"
 ZU
@@ -710,19 +775,19 @@ zp
 IB
 KB
 qy
-ZU
+bq
 "}
 (15,1,1) = {"
 ZU
 bq
 vK
 ZU
-ZU
-ZU
-ZU
-ZU
+fu
+fu
+fu
+bq
 vK
-ZU
+bq
 "}
 (16,1,1) = {"
 ZU
