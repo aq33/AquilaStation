@@ -314,6 +314,25 @@
       nie przechodzi już przez ściany.'
   - imageadd: Ikona trójkąta cienia dla latarek.
   - admin: aq_set_light_shadows(FALSE) przez Advanced ProcCall wyłącza cienie latarek.
+  - rscadd: Zmiana zaczyna się zawsze o 7:00 czasu stacji, a noc kończy się o 7:00.
+  - rscadd: Kapitan może w konsoli komunikacji wyłączyć oświetlenie nocne na całym
+      statku i przywrócić automat.
+  - config: Shrike, Von Neumann i Atlantis są w głosowaniu na mapę, a każda mapa ma
+      w nawiasie rozmiar (mała, średnia, duża).
+  - rscadd: Naukowiec ma na start w plecaku neutralizator anomalii.
+  - rscadd: Guzik „leż” w trakcie sprintu z combat mode rzuca postać przed siebie,
+      a trafiony ląduje na ziemi.
+  - balance: Wbiegnięcie sprintem w kogoś, kto stoi w combat mode, przewraca biegnącego
+      jak ściana.
+  - rscadd: Stosy (metal, szkło itd.) pokazują liczbę sztuk na ikonie w ekwipunku.
+  - rscadd: Guzik notatek w HUD-zie (z tg).
+  - soundadd: Alarm pożarowy gra dźwięk z tg w pętli, dopóki alarm trwa.
+  - tweak: 'Ikony w plecaku i innych schowkach z siatką są ostre: nie są już skalowane
+      do kratek.'
+  - tweak: Obrót przedmiotu klawiszem E/Q w trakcie przeciągania po siatce plecaka
+      obraca tylko podgląd, przedmiot obraca się po upuszczeniu.
+  - rscadd: Postacie mrugają, a nieprzytomne mają zamknięte oczy.
+  - rscadd: 'Prawo kosmiczne: nowe wykroczenie „Załatwianie potrzeby w miejscu publicznym”.'
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.

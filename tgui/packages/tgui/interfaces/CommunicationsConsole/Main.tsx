@@ -28,8 +28,10 @@ export function PageMain(props: Props) {
     canSendToSectors,
     canSetAlertLevel,
     canToggleEmergencyAccess,
+    canToggleNightShift,
     emagged,
     emergencyAccess,
+    nightShiftDisabled,
     importantActionReady,
     reinforcementActionReady,
     crewWakeActionReady,
@@ -282,6 +284,23 @@ export function PageMain(props: Props) {
             </Flex.Item>
           )}
 
+          {!!canToggleNightShift && (
+            <Flex.Item mt={0.3}>
+              <Button.Confirm
+                fluid
+                icon="moon"
+                confirmIcon="moon"
+                confirmContent="Na pewno?"
+                color={nightShiftDisabled ? 'bad' : undefined}
+                onClick={() => act('toggleNightShift')}
+              >
+                {nightShiftDisabled
+                  ? 'Przywróć automatyczne oświetlenie nocne'
+                  : 'Wyłącz oświetlenie nocne'}
+              </Button.Confirm>
+            </Flex.Item>
+          )}
+
           {!!canMessageAssociates && (
             <Flex.Item mt={0.3}>
               <Button
@@ -362,6 +381,7 @@ export function PageMain(props: Props) {
 
           {!canMakeAnnouncement &&
             !canToggleEmergencyAccess &&
+            !canToggleNightShift &&
             !canMessageAssociates &&
             !canRequestNuke &&
             !canRequestERT &&

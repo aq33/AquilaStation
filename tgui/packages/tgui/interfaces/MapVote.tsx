@@ -80,7 +80,7 @@ export const MapVote = (props) => {
                       setSelectedChoiceName(choice.name);
                     }}
                   >
-                    {choice.name} ({choice.votes})
+                    {choice.label || choice.name} ({choice.votes})
                   </Tabs.Tab>
                 ))}
               </Tabs>
