@@ -275,6 +275,7 @@
 #include "code\game\objects\items\polskie_znaki.dm"
 #include "code\game\objects\items\robot\robot_upgrades.dm"
 #include "code\game\objects\items\stacks\medical_tg.dm"
+#include "code\game\objects\items\stacks\stack_amount.dm"
 #include "code\game\objects\items\stacks\tape.dm"
 #include "code\game\objects\items\storage\grid_storage.dm"
 #include "code\game\objects\items\storage\commercial.dm"
