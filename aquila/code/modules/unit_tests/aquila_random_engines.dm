@@ -38,4 +38,18 @@
 			for(var/id in found)
 				TEST_ASSERT(found[id] >= 2, "[template_type]: reactor_id \"[id]\" występuje [found[id]] raz, brakuje pary reaktor + konsola")
 
+/// AQUILA - generator Tesli znika, gdy powstaje kula. Trwała struktura statku nie może go śledzić,
+/// bo zapisany jako usunięty skasowałaby go w następnej rundzie z tym samym wariantem silnika.
+/datum/unit_test/aquila_random_engines_tesla_persistence
+
+/datum/unit_test/aquila_random_engines_tesla_persistence/Run()
+	var/turf/T = run_loc_floor_bottom_left
+	var/obj/machinery/the_singularitygen/tesla/generator = allocate(/obj/machinery/the_singularitygen/tesla, T)
+	var/obj/machinery/power/emitter/emitter = allocate(/obj/machinery/power/emitter, T)
+	var/datum/ship_structure/structure = new(list(T.z), list(T.x, T.y, T.x, T.y))
+	var/list/tracked = structure.tracked_objs(T)
+	TEST_ASSERT(emitter in tracked, "emiter powinien być częścią zapisywanej struktury (kontrola testu)")
+	TEST_ASSERT(!(generator in tracked), "generator Tesli jest zapisywany w strukturze statku, więc po odpaleniu kuli zniknie w kolejnej rundzie")
+	qdel(structure)
+
 #undef TEST_ASSERT
