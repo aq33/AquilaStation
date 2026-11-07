@@ -19,7 +19,7 @@ from scipy.signal import butter, resample_poly, sosfiltfilt
 
 CUTOFF_HZ = 900          # jak przez ścianę: zostaje dół i środek, znika syk i klik
 OUT_RATE = 22050         # po filtrze 900 Hz wyższa częstotliwość niczego nie wnosi
-MIN_USES = 5             # dźwięk z co najmniej tylu miejsc w kodzie
+MIN_USES = 2             # dźwięk z co najmniej tylu miejsc w kodzie
 MAX_SECONDS = 20         # dłuższe (muzyka, pętle) zostają bez kopii
 OUT_DIR = 'aquila/sound/muffled'
 DM_OUT = 'aquila/code/game/muffled_sounds.dm'
