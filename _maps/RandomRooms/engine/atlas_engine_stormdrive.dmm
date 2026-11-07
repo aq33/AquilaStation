@@ -10,7 +10,7 @@
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
 "ac" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -184,7 +184,7 @@
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
 "pA" = (
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/clothing/head/radiation,
 /obj/item/clothing/suit/radiation,
@@ -226,7 +226,7 @@
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
 "uk" = (
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/reagent_dispensers/foamtank/hull_repair_juice,
 /obj/item/extinguisher/advanced/hull_repair_juice,
 /turf/open/floor/monotile/dark,
@@ -259,7 +259,7 @@
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
 "wa" = (
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/tank_dispenser,
 /turf/open/floor/monotile/dark,
 /area/engine/engine_room)
@@ -311,7 +311,7 @@
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
 "Ao" = (
-/obj/effect/turf_decal/tile/ship/yellow{
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -384,13 +384,13 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "Fv" = (
-/obj/effect/turf_decal/tile/ship/yellow{
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/yellow{
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/yellow,
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
 /obj/machinery/power/port_gen/pacman,
 /obj/item/stack/sheet/mineral/plasma/twenty,
 /obj/item/stack/cable_coil,
@@ -413,7 +413,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "GM" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/machinery/suit_storage_unit/engine,
@@ -455,7 +455,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "Jb" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -476,7 +476,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "KS" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/structure/closet/radiation,
@@ -487,7 +487,7 @@
 /turf/template_noop,
 /area/template_noop)
 "QD" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -495,7 +495,7 @@
 /area/engine/engine_room)
 "Rm" = (
 /obj/structure/cable/yellow,
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/dark,
@@ -512,7 +512,7 @@
 /turf/open/space/basic,
 /area/engine/engine_room)
 "Tk" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -531,7 +531,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "Uu" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -550,7 +550,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "Ym" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -569,7 +569,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "ZY" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/machinery/light{

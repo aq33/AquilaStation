@@ -111,7 +111,7 @@
 	return
 
 /obj/structure/closet/wardrobe/red
-	name = "szafa z mundurami policyjnymi"
+	name = "szafa z mundurami żandarmskimi"
 	icon_door = "red"
 
 /obj/structure/closet/wardrobe/red/PopulateContents()

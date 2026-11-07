@@ -812,6 +812,10 @@ SHITTING_ENABLED
 ## NSV13 Do we want the game to save the starmap at the end of the round?
 STARMAP_PERSISTENCE_ENABLED
 
+## AQ Ship structure persistence: walls, floors, windows, doors, cables and pipes carry over between rounds (items refill from the map).
+## The save is wiped when the ship is destroyed. Admins: Server -> Ship Structure.
+SHIP_STRUCTURE_PERSISTENCE
+
 ## Uncomment to disable local bans, effectively enforcing only global bans
 DISABLE_LOCAL_BANS
 

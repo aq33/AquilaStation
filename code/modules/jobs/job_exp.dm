@@ -103,7 +103,7 @@ GLOBAL_PROTECT(exp_to_update)
 	while(exp_read.NextRow())
 		play_records[exp_read.item[1]] = text2num(exp_read.item[2])
 	qdel(exp_read)
-	migrate_renamed_job_titles(play_records, sum_values = TRUE) // AQUILA EDIT - Żandarm to teraz Policjant
+	migrate_renamed_job_titles(play_records, sum_values = TRUE) // AQUILA EDIT - dawny Policjant to znowu Żandarm
 
 	for(var/rtype in SSjob.name_occupations)
 		if(!play_records[rtype])

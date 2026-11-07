@@ -20,7 +20,7 @@
 	if(!player_ckey || isnull(roles) || (islist(roles) && !length(roles)))
 		return
 	player_ckey = ckey(player_ckey)
-	roles = add_renamed_job_titles(roles) // AQUILA EDIT - ban na Żandarma obowiązuje Policjanta
+	roles = add_renamed_job_titles(roles) // AQUILA EDIT - ban na dawnego Policjanta obowiązuje Żandarma
 	var/client/C = GLOB.directory[player_ckey]
 	if(C)
 		if(!C.ban_cache)
@@ -83,7 +83,7 @@
 		server_check = "(server_name = '[ssqlname]' OR global_ban = '1')"
 	else
 		server_check = "server_name = '[ssqlname]'"
-	var/list/role_aliases = add_renamed_job_titles(role) // AQUILA EDIT - ban na Żandarma to ban na Policjanta
+	var/list/role_aliases = add_renamed_job_titles(role) // AQUILA EDIT - ban na Żandarma to też ban na dawnego Policjanta
 	var/old_role = length(role_aliases) > 1 ? role_aliases[length(role_aliases)] : role
 	var/datum/DBQuery/query_check_ban = SSdbcore.NewQuery({"
 		SELECT

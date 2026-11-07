@@ -353,7 +353,7 @@
 	display_name = "security jumpskirt"
 	path = /obj/item/clothing/under/rank/security/officer/skirt
 */
-/* AQUILA EDIT - ochrona nosi tylko mundury policji
+/* AQUILA EDIT - ochrona nosi tylko mundury Żandarmerii
 /datum/gear/uniform/rank/security/blueshift
 	display_name = "security jumpsuit, blue shirt and tie"
 	path = /obj/item/clothing/under/rank/security/officer/blueshirt
