@@ -71,3 +71,13 @@
 	if ((authenticated || issilicon(user)) && authenticated_as_non_silicon_captain(user) && CONFIG_GET(flag/enable_night_shifts))
 		.["canToggleNightShift"] = TRUE
 		.["nightShiftDisabled"] = SSnightshift.captain_disabled
+
+// Łączność mają też konsole na statkach załogi poza poziomem ze znacznikiem stacji: górniczy statek i główny statek
+// załadowany jako instancja (ZTRAITS_MINING_SHIP i ZTRAITS_BOARDABLE_SHIP nie mają ZTRAIT_STATION). Bez tego okno
+// pokazywało tylko „Nie można nawiązać połączenia ze statkiem.”, a każda akcja była odrzucana.
+/obj/machinery/computer/communications/has_communication()
+	. = ..()
+	if(.)
+		return
+	var/obj/structure/overmap/ship = get_overmap()
+	return ship && (ship.role == MAIN_OVERMAP || ship.role == MAIN_MINING_SHIP)

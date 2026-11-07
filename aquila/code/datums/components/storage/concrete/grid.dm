@@ -632,6 +632,8 @@
 			apply_appearance(O, grid_icon_scale(width, height), grid_angle(pos))
 			update_highlight(O, px, py, width, height, !pos)
 	update_header(overflow_index)
+	// Przepełniony schowek albo limit sztuk: wolne kratki na czerwono (kafle przedmiotów leżą nad tłem i zostają w swoich kolorach)
+	boxes.color = (overflow_index || (grid_keep_item_limit && length(real_location.contents) >= max_items)) ? GRID_COLOR_OVERFLOW : null
 	closer.screen_loc = grid_loc(grid_width * size, 0)
 
 /datum/component/storage/concrete/grid/show_to(mob/M)
@@ -798,6 +800,24 @@
 /atom/movable/screen/storage_grid_header/Initialize(mapload, datum/component/storage/new_master)
 	. = ..()
 	master = new_master
+
+/// Schowek bez siatki (pasy, kieszenie, kabury): czy limit sztuk albo wagi jest wyczerpany
+/datum/component/storage/proc/storage_hud_full()
+	var/atom/real_location = real_location()
+	if(length(real_location.contents) >= max_items)
+		return TRUE
+	var/total = 0
+	for(var/obj/item/I in real_location)
+		total += I.w_class
+	return total >= max_combined_w_class
+
+// Pełny schowek bez siatki: puste pola na czerwono, żeby było widać, że nic więcej nie wejdzie.
+// Tylko gdy jakieś pole jest puste: schowek z kompletem sztuk (np. pas 7/7) nie ma czego oznaczać
+/datum/component/storage/standard_orient_objs(rows, cols, list/obj/item/numerical_display_contents)
+	. = ..()
+	var/atom/real_location = real_location()
+	var/shown = islist(numerical_display_contents) ? length(numerical_display_contents) : length(real_location.contents)
+	boxes.color = (shown < rows * cols && storage_hud_full()) ? GRID_COLOR_OVERFLOW : null
 
 #undef GRID_COLOR_TINY
 #undef GRID_COLOR_SMALL
