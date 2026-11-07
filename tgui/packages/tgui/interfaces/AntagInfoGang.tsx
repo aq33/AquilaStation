@@ -61,7 +61,11 @@ export const AntagInfoGang = () => {
       <Window.Content>
         <Section scrollable fill>
           <Stack vertical>
-            <Stack.Item textColor={gang_color} fontSize="24px" textAlign="center">
+            <Stack.Item
+              textColor={gang_color}
+              fontSize="24px"
+              textAlign="center"
+            >
               Gang {gang_name}
             </Stack.Item>
             <Stack.Item>
@@ -78,8 +82,8 @@ export const AntagInfoGang = () => {
                   </Stack.Item>
                   <Stack.Item>
                     - Kup Dominatora, postaw go na swoim terenie i włącz.
-                    Brońcie go do końca odliczania, a gang przejmie stację.
-                    Im więcej terenu macie, tym krócej trwa przejęcie.
+                    Brońcie go do końca odliczania, a gang przejmie stację. Im
+                    więcej terenu macie, tym krócej trwa przejęcie.
                   </Stack.Item>
                 </Stack>
               ) : (
