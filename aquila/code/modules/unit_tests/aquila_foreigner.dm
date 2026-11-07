@@ -122,4 +122,17 @@
 	SStranslation.cache = list()
 	GLOB.aq_chat_translations = list()
 
+/// Obcokrajowiec losuje imiona z oryginalnej puli NSV13, a bez gracza z angielskim w lobby zostaje polska pula
+/datum/unit_test/aquila_foreigner_names/Run()
+	TEST_ASSERT(length(GLOB.aq_english_first_names_male) && length(GLOB.aq_english_first_names_female) && length(GLOB.aq_english_last_names), "English name pools are empty")
+	for(var/gender in list(MALE, FEMALE))
+		var/list/parts = splittext(aq_english_random_name(gender, TRUE), " ")
+		TEST_ASSERT(length(parts) == 2, "English name is not first + last: [jointext(parts, " ")]")
+		TEST_ASSERT(parts[1] in (gender == MALE ? GLOB.aq_english_first_names_male : GLOB.aq_english_first_names_female), "First name [parts[1]] is not from the English pool")
+		TEST_ASSERT(parts[2] in GLOB.aq_english_last_names, "Last name [parts[2]] is not from the English pool")
+	var/datum/species/human/species = new
+	var/list/polish = splittext(species.random_name(MALE), " ")
+	TEST_ASSERT(polish[1] in GLOB.first_names_male, "Species name without an English player left the Polish pool: [polish[1]]")
+	qdel(species)
+
 #undef TEST_ASSERT
