@@ -65,7 +65,7 @@
 	icon_state = "pda-engineer"
 
 /obj/item/modular_computer/tablet/pda/security
-	name = "PDA policjanta"
+	name = "PDA żandarma"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/security
 	icon_state = "pda-security"
 

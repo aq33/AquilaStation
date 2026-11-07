@@ -245,7 +245,7 @@
 		))
 
 /obj/item/storage/belt/security
-	name = "pas policyjny"
+	name = "pas żandarmski"
 	desc = "Mieści sprzęt ochrony, na przykład kajdanki i flashe."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
@@ -288,7 +288,7 @@
 	update_icon()
 
 /obj/item/storage/belt/security/deputy
-	name = "pas policyjny aspiranta"
+	name = "pas żandarmski aspiranta"
 
 /obj/item/storage/belt/security/deputy/PopulateContents()
 	new /obj/item/melee/classic_baton/police/deputy(src)
@@ -299,7 +299,7 @@
 	update_icon()
 
 /obj/item/storage/belt/security/webbing
-	name = "policyjne oporządzenie"
+	name = "żandarmskie oporządzenie"
 	desc = "Wyjątkowa i wszechstronna kamizelka taktyczna, mieści sprzęt ochrony."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"

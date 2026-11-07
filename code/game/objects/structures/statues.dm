@@ -187,7 +187,7 @@
 	icon_state = "jani"
 
 /obj/structure/statue/silver/sec
-	name = "posąg policjanta"
+	name = "posąg żandarma"
 	icon_state = "sec"
 
 /obj/structure/statue/silver/secborg

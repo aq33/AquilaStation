@@ -90,7 +90,7 @@
 	path = /obj/item/clothing/suit/hooded/wintercoat/old
 	cost = 3000
 
-/* AQUILA EDIT - ochrona nosi tylko mundury policji
+/* AQUILA EDIT - ochrona nosi tylko mundury Żandarmerii
 /datum/gear/suit/oldwintercoat/security
 	display_name = "nostalgic security winter coat"
 	path = /obj/item/clothing/suit/hooded/wintercoat/security/old

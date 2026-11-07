@@ -176,7 +176,7 @@
 /area/crew_quarters/heads/hos)
 "aC" = (
 /obj/effect/turf_decal/ship/techfloor,
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -2131,7 +2131,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 8
 	},
 /obj/structure/cable/yellow,
@@ -3139,7 +3139,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
 "jE" = (
@@ -3229,10 +3229,10 @@
 /obj/machinery/computer/order_console/bitrunning{
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -3276,7 +3276,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "jU" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /obj/machinery/light_switch/west,
@@ -3333,7 +3333,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/bitrunning/den)
 "kd" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 8
 	},
 /turf/open/floor/monotile/dark,
@@ -3362,7 +3362,7 @@
 /turf/open/floor/circuit/green,
 /area/quartermaster/bitrunning/den)
 "kh" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -3478,7 +3478,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "kx" = (
-/obj/effect/turf_decal/tile/ship/brown{
+/obj/effect/turf_decal/tile/ship/brown/inpost{
 	dir = 2
 	},
 /turf/open/floor/monotile/dark,
@@ -5326,7 +5326,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 8
 	},
 /turf/open/floor/monotile/steel,
@@ -5458,7 +5458,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/disposaloutlet,
+/obj/structure/disposaloutlet/paczkomat,
 /turf/open/floor/plating/airless,
 /area/medical/virology)
 "vh" = (
@@ -6575,7 +6575,7 @@
 /obj/machinery/armour_plating_nanorepair_pump/forward_starboard{
 	apnw_id = "atlas_comedy"
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
 "DB" = (
@@ -7372,10 +7372,10 @@
 /obj/machinery/armour_plating_nanorepair_pump/forward_port{
 	apnw_id = "atlas_comedy"
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 8
 	},
 /turf/open/floor/monotile/steel,
@@ -8041,7 +8041,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow/orlen{
 	dir = 8
 	},
 /obj/machinery/camera/autoname{
@@ -8822,7 +8822,7 @@
 /obj/machinery/armour_plating_nanorepair_pump/aft_starboard{
 	apnw_id = "atlas_comedy"
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
 "Sw" = (
@@ -9007,7 +9007,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
 "TK" = (
@@ -9428,7 +9428,7 @@
 /obj/machinery/armour_plating_nanorepair_pump/aft_port{
 	apnw_id = "atlas_comedy"
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
 "WQ" = (
@@ -9645,7 +9645,7 @@
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow/orlen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,

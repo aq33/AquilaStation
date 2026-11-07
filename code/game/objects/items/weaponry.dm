@@ -923,7 +923,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 0)
 
 /obj/item/club
-	name = "pałka policyjna"
+	name = "pałka żandarmska"
 	desc = "Do rozbijania głów i łamania obrony."
 	icon_state = "billyclub"
 	item_state = "classic_baton"
