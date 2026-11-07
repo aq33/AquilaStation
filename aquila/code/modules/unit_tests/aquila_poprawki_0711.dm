@@ -114,6 +114,7 @@
 /datum/antagonist/aquila_greet_crash_probe
 	name = "sonda testu powitania"
 	show_in_antagpanel = FALSE
+	banning_key = UNBANNABLE_ANTAGONIST // antag_datum_sanity sprawdza każdy podtyp /datum/antagonist
 
 /datum/antagonist/aquila_greet_crash_probe/greet()
 	CRASH("Celowy błąd w greet() (test aquila_antag_greeting_crash_releases_capture)")
