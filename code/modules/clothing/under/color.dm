@@ -104,7 +104,7 @@
 
 /obj/item/clothing/under/color/orange
 	name = "pomarańczowy kombinezon"
-	desc = "Nie noś tego przy paranoicznych policjantach."
+	desc = "Nie noś tego przy paranoicznych żandarmach."
 	greyscale_colors = "#ff8c19"
 
 /obj/item/clothing/under/color/jumpskirt/orange

@@ -444,7 +444,7 @@
 /////////////////////////////////////////
 
 /datum/design/seclite
-	name = "Latarka policyjna"
+	name = "Latarka żandarmska"
 	desc = "Solidna latarka używana przez ochronę."
 	id = "seclite"
 	build_type = PROTOLATHE

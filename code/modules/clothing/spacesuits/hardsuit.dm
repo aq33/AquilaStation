@@ -686,7 +686,7 @@
 */ //aquila edit end
 	//Security hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security
-	name = "policyjny hełm hardsuitu"
+	name = "żandarmski hełm hardsuitu"
 	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	icon_state = "hardsuit0-sec"
 	item_state = "sec_helm"
@@ -696,7 +696,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/security
 	icon_state = "hardsuit-sec"
-	name = "policyjny hardsuit"
+	name = "żandarmski hardsuit"
 	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	item_state = "sec_hardsuit"
 	supports_variations = DIGITIGRADE_VARIATION

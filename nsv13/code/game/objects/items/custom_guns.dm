@@ -2,7 +2,7 @@
 	automatic = 1
 
 /obj/item/gun/ballistic/automatic/peacekeeper
-	name = "policyjny karabin pulsacyjny M2A45"
+	name = "żandarmski karabin pulsacyjny M2A45"
 	desc = "Duża broń osobistej obrony, powszechnie używana przez ochronę Nanotrasen. Ta zaawansowana broń zamiast tradycyjnego prochu korzysta z akceleracji magnetycznej, co pozwala ładować specjalne naboje 6 mm."
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "peacekeeper"
@@ -77,7 +77,7 @@
 
 /obj/item/gun/ballistic/automatic/mp_smg
 	name = "Pistolet maszynowy PM-98 Glauberyt"
-	desc = "Kompaktowy pistolet maszynowy kalibru 9 mm przeznaczony do uzbrojenia Policji na pokładach Okrętów Wojennych."
+	desc = "Kompaktowy pistolet maszynowy kalibru 9 mm przeznaczony do uzbrojenia Żandarmerii na pokładach Okrętów Wojennych."
 	icon = 'nsv13/icons/obj/guns/guns_big.dmi'
 	icon_state = "mp16"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/guns_lefthand.dmi'

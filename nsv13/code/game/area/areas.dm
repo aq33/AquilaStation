@@ -591,7 +591,7 @@
 	icon_state = "nuke_storage"
 
 /area/security/locker_room
-	name = "Szatnia Policji"
+	name = "Szatnia Żandarmerii"
 	icon_state = "checkpoint1"
 
 /area/nsv/shuttle
