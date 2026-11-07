@@ -83,7 +83,13 @@ GLOBAL_DATUM(antag_greeting_capture, /datum/antagonist)
 	GLOB.antag_greeting_capture = src
 	greeting_lines = list()
 	greeting_capture_time = world.time
-	greet()
+	try
+		greet()
+	catch(var/exception/greet_error)
+		// Błąd w greet(): globalny wskaźnik nie może zostać na tej roli (trzymałby referencję do datumu)
+		GLOB.antag_greeting_capture = previous
+		greeting_lines = null
+		throw greet_error
 	GLOB.antag_greeting_capture = previous
 	if(length(greeting_lines))
 		greeting_text = jointext(greeting_lines, "<br>")
