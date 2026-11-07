@@ -40,6 +40,8 @@ $intercom: hsl(93.2, 96.9%, 37.6%);
 $left: hsl(277.8, 90.2%, 24.1%);
 $right: hsl(277.8, 90.2%, 24.1%);
 $holoparasite: hsl(351, 33.6%, 57.5%);
+// AQUILA: kanał działu uzbrojenia (:w), ten sam pomarańczowy co .muniradio w czacie
+$munition: hsl(30, 100%, 55%);
 
 $_restricted_channel_map: (
   'asay': $asay,
@@ -75,6 +77,7 @@ $_channel_map: (
   'holo': $holo,
   'intercom': $intercom,
   'holoparasite': $holoparasite,
+  'munition': $munition,
 );
 
 $channel_keys: map.keys($_channel_map) !default;

@@ -1,6 +1,6 @@
 // Okno konsoli kart ID w TGUI (zamiast HTML z code/game/machinery/computer/card.dm), także działowe konsole szefów.
 // Wszystkie przyciski idą przez dawny Topic(), więc uprawnienia działów, logi id, limity wakatów i wypłat zostają bez zmian.
-// Numery działów jak w card.dm (tam są #undef): 0 wszystkie, 1 ogólny, 2 ochrona, 3 medyczny, 4 nauka, 5 inżynieria, 6 zaopatrzenie, 7 amunicja
+// Numery działów jak w card.dm (tam są #undef): 0 wszystkie, 1 ogólny, 2 ochrona, 3 medyczny, 4 nauka, 5 inżynieria, 6 zaopatrzenie, 7 uzbrojenie
 
 /obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -108,7 +108,7 @@
 		JOB_NAME_RESEARCHDIRECTOR = "Nauka",
 		JOB_NAME_CHIEFMEDICALOFFICER = "Medyczny",
 		JOB_NAME_HEADOFSECURITY = "Ochrona",
-		JOB_NAME_MASTERATARMS = "Amunicja",
+		JOB_NAME_MASTERATARMS = "Uzbrojenie",
 	)
 	var/list/groups = list()
 	var/list/current = list("name" = "Dowództwo", "jobs" = list("Unassigned"))

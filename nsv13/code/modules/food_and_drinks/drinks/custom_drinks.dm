@@ -12,7 +12,7 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/torp_juice
 	name = "Sok torpedowy"
-	desc = "Uwaga, amunicja: ZRÓBCIE TORPEDĘ."
+	desc = "Uwaga, uzbrojenie: ZRÓBCIE TORPEDĘ."
 	list_reagents = list(/datum/reagent/consumable/ethanol/torp_juice = 50)
 	foodtype = ALCOHOL
 
