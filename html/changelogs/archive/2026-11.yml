@@ -366,6 +366,20 @@
   - imageadd: Nowe sprite'y Żandarmerii, Orlenu i NFZ oraz ikonki profesji na HUD-zie.
   - bugfix: Okno changelogu przy pierwszym wejściu otwiera się dopiero po wyborze
       wersji językowej.
+  - rscadd: 'Statek pamięta swoją strukturę między rundami: ściany, podłogi z uszkodzeniami,
+      okna, kraty, drzwi, kable, rury i maszyny zostają tak, jak zostawiła je załoga.
+      Zniszczone maszyny nie wracają, a zbudowane i przeniesione stoją tam, gdzie
+      je zostawiono. Przedmioty uzupełniają się z mapy jak zwykle.'
+  - rscadd: Maszyny ważne dla antagonistów i misji okrętu (ster, nawigacja, FTL, konsola
+      komunikacyjna, serwery R&D i inne) zawsze wracają na swoje miejsca z mapy.
+  - rscadd: Dziury w kadłubie z poprzedniej rundy są na starcie załatane pianką, a
+      rzeczy wiszące na zburzonych ścianach przechodzą na sąsiednią ścianę.
+  - rscadd: 'Po końcu rundy w oknie głosowania na mapę gracze wybierają: kontynuować
+      granie na obecnym statku albo zacząć na nowym statku prosto z mapy.'
+  - admin: 'Server -> Ship Structure: stan zapisu struktury statku, pominięcie zapisu
+      rundy i skasowanie zapisu. Zniszczenie statku i nowa kampania kasują zapis.'
+  - config: SHIP_STRUCTURE_PERSISTENCE w game_options.txt włącza trwałą strukturę
+      statku.
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
