@@ -7,7 +7,8 @@
 |********** dekale ***********|
 \****************************/
 // Żółte dekale w obszarach inżynierii na mapach są podmienione na te podtypy (te same kształty).
-// Narożniki i linie są czerwone, połówki, boki i pełne pola białe, żeby podłoga była czerwono-biała.
+// Narożniki tg i linie są czerwone, a połówki, boki, pełne pola i narożniki NSV białe, żeby podłoga była czerwono-biała.
+// Narożnik NSV to ćwiartka kafelka, więc czerwony wyglądał na kratownicy jak losowo rozrzucone czerwone kwadraty.
 #define ORLEN_DECAL_COLOR "#D8232A"
 #define ORLEN_DECAL_WHITE "#E6E6E6"
 
@@ -20,8 +21,8 @@
 	color = ORLEN_DECAL_WHITE
 
 /obj/effect/turf_decal/tile/ship/yellow/orlen
-	name = "narożnik Orlenu"
-	color = ORLEN_DECAL_COLOR
+	name = "biały narożnik Orlenu"
+	color = ORLEN_DECAL_WHITE
 
 /obj/effect/turf_decal/tile/ship/half/yellow/orlen
 	name = "biała połówka Orlenu"

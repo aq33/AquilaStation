@@ -89,6 +89,18 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmospherics_engine)
+"ai" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light_switch/east,
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
+/obj/machinery/vending/wardrobe/engi_wardrobe,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/break_room)
 "aj" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -45764,7 +45776,7 @@ Hz
 GO
 TN
 Cg
-wL
+ai
 by
 HU
 TN

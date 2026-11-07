@@ -604,6 +604,13 @@
 	},
 /turf/open/floor/engine,
 /area/comms)
+"bw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/vending/wardrobe/engi_wardrobe,
+/turf/open/floor/monotile/steel,
+/area/engine/engineering)
 "bx" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/machinery/telecomms/bus/preset_two,
@@ -44601,7 +44608,7 @@ sr
 gI
 zA
 eX
-VU
+bw
 bF
 OF
 fV
