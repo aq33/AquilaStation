@@ -7,19 +7,19 @@
 |********** dekale ***********|
 \****************************/
 // Niebieskie dekale w obszarach medycznych na mapach są podmienione na te podtypy (te same kształty).
-// Jasna mięta zamiast błękitu: pasuje do turkusu NFZ, a medyk w ciemnoturkusowym mundurze nie zlewa się z podłogą.
-#define NFZ_DECAL_COLOR "#8FDCD3"
+// Turkus NFZ zamiast błękitu, ten sam co główny kolor szafek, automatów i mundurów z arkusza medycy.dmi.
+#define NFZ_DECAL_COLOR "#029F98"
 
 /obj/effect/turf_decal/tile/ship/blue/nfz
-	name = "miętowy narożnik NFZ"
+	name = "turkusowy narożnik NFZ"
 	color = NFZ_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/blue/nfz
-	name = "miętowy narożnik NFZ"
+	name = "turkusowy narożnik NFZ"
 	color = NFZ_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/blue/flat_side/nfz
-	name = "miętowy bok NFZ"
+	name = "turkusowy bok NFZ"
 	color = NFZ_DECAL_COLOR
 
 #undef NFZ_DECAL_COLOR
