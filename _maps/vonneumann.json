@@ -1,5 +1,6 @@
 {
 	"map_name": "SGV Von Neumann",
+	"map_size": "średnia",
 	"map_link": "vonneumann",
     "map_path": "map_files/vonneumann",
     "map_file": ["vnmk3.dmm"],

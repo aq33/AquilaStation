@@ -2,10 +2,12 @@
 // "Śpij" stoi w górnej połówce nad "Relaks" (obok "Rzuć"). Czujniki stroju to wąski guzik
 // we wnęce tuż za guzikiem ekwipunku (po rozwinięciu ekwipunku - za slotem butów), bo zakładka
 // "Przedmiot" zniknęła z panelu. Ikony są w wersji dla każdego stylu HUD-u.
+// Guzik pamięci (port z tgstation/tgstation, /atom/movable/screen/memories) otwiera Notatki, w wolnym rogu obok guzika języków.
 
 #define ui_sleep "EAST-2:26,SOUTH+1:7"
 #define ui_suit_sensors "WEST+1:7,SOUTH:5"
 #define ui_suit_sensors_expanded "WEST+2:9,SOUTH:5"
+#define ui_memories_menu "EAST-4:6,SOUTH:5"
 
 /datum/hud
 	var/atom/movable/screen/suit_sensors/suit_sensors
@@ -24,6 +26,17 @@
 	suit_sensors.hud = src
 	static_inventory += suit_sensors
 
+	using = new /atom/movable/screen/memories()
+	using.hud = src
+	static_inventory += using
+
+	update_porzadki_buttons()
+
+/datum/hud/monkey/New(mob/living/carbon/monkey/owner)
+	. = ..()
+	var/atom/movable/screen/using = new /atom/movable/screen/memories()
+	using.hud = src
+	static_inventory += using
 	update_porzadki_buttons()
 
 /datum/hud/Destroy()
@@ -46,6 +59,8 @@
 			button.icon_state = "[style_name]_sleep"
 		else if(istype(button, /atom/movable/screen/suit_sensors))
 			button.icon_state = "[style_name]_sensors"
+		else if(istype(button, /atom/movable/screen/memories))
+			button.icon_state = "[style_name]_memories"
 
 /// Guzik czujników idzie za ostatni slot dolnego rzędu, zależnie od rozwinięcia ekwipunku
 /atom/movable/screen/human/toggle/Click()
@@ -85,6 +100,21 @@
 		return
 	uniform.set_sensors(user)
 
+/atom/movable/screen/memories
+	name = "notatki"
+	desc = "Notatki i pamięć twojej postaci: cele, kody, zapiski."
+	icon = 'aquila/icons/hud/ui_porzadki.dmi'
+	icon_state = "midnight_memories"
+	screen_loc = ui_memories_menu
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/atom/movable/screen/memories/Click()
+	if(!isliving(usr))
+		return TRUE
+	usr.memory()
+
+#undef ui_memories_menu
 #undef ui_sleep
 #undef ui_suit_sensors
 #undef ui_suit_sensors_expanded
