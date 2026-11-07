@@ -665,6 +665,7 @@
 #include "code\modules\hygiene\hygienebot.dm"
 #include "code\modules\jobs\job_slots.dm"
 #include "code\modules\jobs\job_types\ai_data_core.dm"
+#include "code\modules\mapping\random_engines.dm"
 #include "code\modules\medical\bandage.dm"
 #include "code\modules\medical\bone_repair.dm"
 #include "code\modules\medical\medical_tg_supplies.dm"
