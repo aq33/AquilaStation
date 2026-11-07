@@ -37,7 +37,7 @@
 		var/L = min(round(lastgenlev/100000),11)
 		if(L != 0)
 			soundloop.start() // AQ EDIT
-			add_overlay(image('icons/obj/power.dmi', "teg-op[L]"))
+			add_overlay(image(icon, "teg-op[L]")) // AQ EDIT - sprite TEG Quartofela w aquila/icons
 
 		if(hot_circ && cold_circ)
 			add_overlay("teg-oc[lastcirc]")

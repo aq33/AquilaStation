@@ -9,14 +9,14 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/energy_katana
-	back = /obj/item/mod/control/pre_equipped/ninja
+	suit = /obj/item/clothing/suit/space/hardsuit/ninja
 	implants = list(/obj/item/implant/explosive)
 
 /datum/outfit/ninja/post_equip(mob/living/carbon/human/ninja)
 	//var/obj/item/grenade/plastic/ninja/charge = ninja.l_store
 	//if(istype(charge))
 	//	charge.set_detonation_area(ninja.mind?.has_antag_datum(/datum/antagonist/ninja))
-	var/obj/item/mod/control/mod = ninja.back
+	var/obj/item/clothing/suit/space/hardsuit/mod = ninja.wear_suit
 	if(!istype(mod))
 		return
 	var/obj/item/mod/module/dna_lock/reinforced/lock = locate(/obj/item/mod/module/dna_lock/reinforced) in mod.modules
@@ -31,5 +31,5 @@
 	name = "Space Ninja (Preview only)"
 
 	uniform = /obj/item/clothing/under/syndicate/ninja
-	back = /obj/item/mod/control/pre_equipped/empty/ninja
+	suit = /obj/item/clothing/suit/space/hardsuit/ninja/empty
 	belt = /obj/item/energy_katana

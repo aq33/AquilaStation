@@ -7,14 +7,14 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	/// MOD unit we are powering.
-	var/obj/item/mod/control/mod
+	var/obj/item/clothing/suit/space/hardsuit/mod
 
 /obj/item/mod/core/Destroy()
 	if(mod)
 		uninstall()
 	return ..()
 
-/obj/item/mod/core/proc/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/proc/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	mod = mod_unit
 	mod.core = src
 	forceMove(mod)
@@ -90,7 +90,7 @@
 		QDEL_NULL(cell)
 	return ..()
 
-/obj/item/mod/core/standard/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/standard/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	. = ..()
 	if(cell)
 		install_cell(cell)
@@ -181,9 +181,7 @@
 /obj/item/mod/core/standard/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 
-	if(mod.seconds_electrified && charge_amount() && mod.shock(user))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
-	if(mod.open && mod.loc == user)
+	if(mod.open && mod.loc == user && mod.wearer != user) // ogniwo wyjmuje się z kombinezonu trzymanego w ręce, nie noszonego
 		INVOKE_ASYNC(src,  PROC_REF(mod_uninstall_cell), user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	return NONE
@@ -302,7 +300,7 @@
 	/// Associated list of charge sources and how much they charge, only stacks allowed.
 	var/list/charger_list = list(/obj/item/stack/ore/plasma = PLASMA_CORE_ORE_CHARGE, /obj/item/stack/sheet/mineral/plasma = PLASMA_CORE_SHEET_CHARGE)
 
-/obj/item/mod/core/plasma/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/plasma/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	. = ..()
 	RegisterSignal(mod, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
 

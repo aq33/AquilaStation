@@ -18,7 +18,7 @@
 	display_name += name
 	if(dna?.species && !skipface)
 		apparent_species = ", <span class='[species_examine_font()]'>[dna.species.name]</span>" //NSV13 - species name is colored depending on special conditions.
-	. = list("<span class='info'>To jest <EM>[!obscure_name ? display_name : "Nieznajomy"][apparent_species]</EM>!")
+	. = list("To jest <EM>[!obscure_name ? display_name : "Nieznajomy"][apparent_species]</EM>!") // AQ EDIT - tytuł idzie do zakładki ramki (aquila/code/modules/mob/examine_layout.dm)
 
 	//uniform
 	if(w_uniform && !(obscured & ITEM_SLOT_ICLOTHING) && !(w_uniform.item_flags & EXAMINE_SKIP))
@@ -87,6 +87,8 @@
 	//ID
 	if(wear_id && !(wear_id.item_flags & EXAMINE_SKIP))
 		. += "Nosi [wear_id.get_examine_string(user)]."
+
+	. += AQ_EXAMINE_STATUS_MARK // AQ EDIT - sekcje examine jak w tg (układa je aquila/code/modules/mob/examine_layout.dm)
 
 	//Status effects
 	. += status_effect_examines()
@@ -325,12 +327,14 @@
 	if(legcuffed)
 		. += "<span class='warning'>Ma skute nogi: [legcuffed]!</span>"
 
-	if (length(msg))
+	if (length(msg) > 2) // AQ EDIT - msg ma zawsze otwierający i zamykający span, pusty nie dostaje linii
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
 	if (!isnull(trait_exam))
 		. += trait_exam
+
+	. += AQ_EXAMINE_HUD_MARK // AQ EDIT - początek danych z HUD-ów
 
 	var/traitstring = get_trait_string()
 
@@ -389,6 +393,7 @@
 			. += line
 
 	//NSV13 - Roleplaying Records - End
+	. += AQ_EXAMINE_HUD_END // AQ EDIT - koniec danych z HUD-ów i linku
 
 	//AQ EDIT snip snip
 	if(gender_ambiguous) //jajoskręt

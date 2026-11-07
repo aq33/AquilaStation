@@ -1393,73 +1393,73 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/suits/infiltrator_bundle
-	name = "MODsuit infiltratora"
-	desc = "Opracowany przez Gildię Aktorów Roseus Galactic wspólnie z Maruderami Gorlexa jako funkcjonalny skafander do operacji miejskich. Jest tańszy od standardowego MODsuitu i nie ma ograniczeń ruchu skafandrów kosmicznych używanych przez firmę. Większa swoboda ma jednak swoją cenę – skafander nie chroni przed próżnią kosmosu. Ma za to fabrycznie zamontowany specjalny moduł maskujący z emiterem psi, przez który nie da się rozpoznać noszącego, a załoga Nanotrasen mocno traci morale."
-	item = /obj/item/mod/control/pre_equipped/infiltrator
+	name = "Hardsuit infiltratora"
+	desc = "Opracowany przez Gildię Aktorów Roseus Galactic wspólnie z Maruderami Gorlexa jako skafander do operacji miejskich. Udaje zwykły hardsuit inżynieryjny, a fabrycznie zamontowany moduł maskujący z emiterem psi sprawia, że nie da się rozpoznać noszącego, a załoga Nanotrasen mocno traci morale."
+	item = /obj/item/clothing/suit/space/hardsuit/infiltration/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	cost = 6
 
 /datum/uplink_item/suits/modsuit
-	name = "MODsuit Syndykatu"
-	desc = "Budzący grozę MODsuit agenta Syndykatu. Ma opancerzenie i zestaw wbudowanych modułów."
-	item = /obj/item/mod/control/pre_equipped/traitor
+	name = "Hardsuit Syndykatu z modułami"
+	desc = "Budzący grozę hardsuit agenta Syndykatu z zestawem zamontowanych modułów: schowkiem, osłoną EMP, uprzężą magnetyczną, latarką, blokadą DNA i stabilizatorem czapki."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	cost = 7
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //you can't buy it in nuke, because the elite modsuit costs the same while being better
 
 /datum/uplink_item/suits/modsuit/elite
-	name = "Elitarny MODsuit Syndykatu"
-	desc = "Ulepszona, elitarna wersja MODsuitu Syndykatu. Jest ognioodporna i daje lepszy pancerz oraz swobodę ruchu niż standardowy MODsuit Syndykatu."
-	item = /obj/item/mod/control/pre_equipped/traitor_elite
+	name = "Elitarny hardsuit Syndykatu z modułami"
+	desc = "Ulepszona, elitarna wersja hardsuitu Syndykatu z modułami. Jest ognioodporna i daje lepszy pancerz oraz swobodę ruchu niż standardowy hardsuit Syndykatu."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	cost = 8
 	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/suits/emp_shield
-	name = "Moduł MODsuitu: zaawansowana osłona EMP"
-	desc = "Zaawansowany moduł osłony EMP do MODsuitu. Chroni całe ciało przed impulsami elektromagnetycznymi."
+	name = "Moduł hardsuitu: zaawansowana osłona EMP"
+	desc = "Zaawansowany moduł osłony EMP do hardsuitu. Chroni całe ciało przed impulsami elektromagnetycznymi."
 	item = /obj/item/mod/module/emp_shield/advanced
 	cost = 5
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/suits/injector
-	name = "Moduł MODsuitu: iniektor"
-	desc = "Moduł iniektora do MODsuitu. To wysuwany, przebijający iniektor o pojemności 30 j."
+	name = "Moduł hardsuitu: iniektor"
+	desc = "Moduł iniektora do hardsuitu. To wysuwany, przebijający iniektor o pojemności 30 j."
 	item = /obj/item/mod/module/injector
 	cost = 2
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/suits/holster
-	name = "Moduł MODsuitu: kabura"
-	desc = "Moduł kabury do MODsuitu. Po cichu schowasz w nim każdą niezbyt ciężką broń."
+	name = "Moduł hardsuitu: kabura"
+	desc = "Moduł kabury do hardsuitu. Po cichu schowasz w nim każdą niezbyt ciężką broń."
 	item = /obj/item/mod/module/holster
 	cost = 2
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/suits/thermal
-	name = "Moduł MODsuitu: wizjer termowizyjny"
-	desc = "Wizjer do MODsuitu. Pozwala widzieć żywe istoty przez ściany."
+	name = "Moduł hardsuitu: wizjer termowizyjny"
+	desc = "Wizjer do hardsuitu. Pozwala widzieć żywe istoty przez ściany."
 	item = /obj/item/mod/module/visor/thermal
 	cost = 3
 
 /datum/uplink_item/suits/night
-	name = "Moduł MODsuitu: wizjer noktowizyjny"
-	desc = "Wizjer do MODsuitu. Pozwala lepiej widzieć w ciemności."
+	name = "Moduł hardsuitu: wizjer noktowizyjny"
+	desc = "Wizjer do hardsuitu. Pozwala lepiej widzieć w ciemności."
 	item = /obj/item/mod/module/visor/night
 	cost = 2
 
 /datum/uplink_item/suits/chameleon
-	name = "Moduł MODsuitu: kameleon"
-	desc = "Moduł MODsuitu, który pozwala skafandrowi udawać inne przedmioty."
+	name = "Moduł hardsuitu: kameleon"
+	desc = "Moduł hardsuitu, który pozwala skafandrowi udawać inne przedmioty."
 	item = /obj/item/mod/module/chameleon
 	cost = 2
 
 /datum/uplink_item/suits/plate_compression
-	name = "Moduł MODsuitu: kompresja płyt"
-	desc = "Moduł MODsuitu, który pozwala ścisnąć skafander do mniejszego rozmiaru. Niezgodny z modułami schowka i MODsuitem infiltratora."
+	name = "Moduł hardsuitu: kompresja płyt"
+	desc = "Moduł hardsuitu, który pozwala ścisnąć skafander do mniejszego rozmiaru. Niezgodny z modułami schowka i hardsuitem infiltratora."
 	item = /obj/item/mod/module/plate_compression
 	cost = 2
 
 /datum/uplink_item/suits/noslip
-	name = "Moduł MODsuitu: antypoślizg"
-	desc = "Moduł MODsuitu, który chroni przed poślizgnięciem się na wodzie."
+	name = "Moduł hardsuitu: antypoślizg"
+	desc = "Moduł hardsuitu, który chroni przed poślizgnięciem się na wodzie."
 	item = /obj/item/mod/module/noslip
 	cost = 2
 

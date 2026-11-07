@@ -754,7 +754,7 @@
 	name = "backpack spawner"
 	},
 /obj/effect/spawner/lootdrop{
-	loot = list(/obj/item/storage/box/stockparts/deluxe = 186, /obj/item/storage/box/survival = 120, /obj/item/card/emag = 80, /obj/item/flashlight/lantern/syndicate = 67, /obj/item/storage/box/syndie_kit/space = 67, /obj/item/gun/ballistic/automatic/pistol/m1911 = 67, /obj/item/dualsaber/toy = 67, /obj/item/storage/box/syndie_kit/imp_storage = 67, /obj/item/storage/box/syndie_kit/imp_radio = 67, /obj/item/storage/box/alchemist_random_chems = 67, /obj/item/mod/module/jetpack/advanced = 53, /obj/item/mod/module/visor/night = 27, /obj/item/mod/module/storage/syndicate = 27, /obj/item/autosurgeon/syndicate/anti_stun = 27, /obj/item/mod/control/pre_equipped/responsory/inquisitory = 13);
+	loot = list(/obj/item/storage/box/stockparts/deluxe = 186, /obj/item/storage/box/survival = 120, /obj/item/card/emag = 80, /obj/item/flashlight/lantern/syndicate = 67, /obj/item/storage/box/syndie_kit/space = 67, /obj/item/gun/ballistic/automatic/pistol/m1911 = 67, /obj/item/dualsaber/toy = 67, /obj/item/storage/box/syndie_kit/imp_storage = 67, /obj/item/storage/box/syndie_kit/imp_radio = 67, /obj/item/storage/box/alchemist_random_chems = 67, /obj/item/mod/module/visor/night = 27, /obj/item/mod/module/storage/syndicate = 27, /obj/item/autosurgeon/syndicate/anti_stun = 27, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/loaded = 13);
 	name = "antag gear"
 	},
 /turf/open/floor/plasteel,

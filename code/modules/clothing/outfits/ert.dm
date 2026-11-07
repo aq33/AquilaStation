@@ -28,12 +28,13 @@
 	name = "ERT Commander"
 
 	id = /obj/item/card/id/ert
-	suit_store = /obj/item/melee/baton/loaded
-	l_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	back = /obj/item/mod/control/pre_equipped/responsory/commander
+	back = /obj/item/storage/backpack/ert
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/aiModule/core/full/ert=1)
 	l_pocket = /obj/item/switchblade
 	r_pocket = /obj/item/door_remote/omni
@@ -53,6 +54,7 @@
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/gun/energy/pulse/pistol/loyalpin=1)
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
 
@@ -60,10 +62,10 @@
 	name = "ERT Security"
 
 	id = /obj/item/card/id/ert/Security
-	suit_store = /obj/item/melee/baton/loaded
-	l_hand = /obj/item/gun/energy/e_gun/stun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/sec/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun/stun
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	back = /obj/item/mod/control/pre_equipped/responsory/security
+	back = /obj/item/storage/backpack/ert/security
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
@@ -85,6 +87,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/gun/energy/pulse/carbine/loyalpin=1)
 
 
@@ -92,13 +95,14 @@
 	name = "ERT Medic"
 
 	id = /obj/item/card/id/ert/Medical
-	suit_store = /obj/item/melee/baton/loaded
-	r_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/med/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 	glasses = /obj/item/clothing/glasses/hud/health
-	back = /obj/item/mod/control/pre_equipped/responsory/medic
+	back = /obj/item/storage/backpack/ert/medical
 	belt = /obj/item/storage/belt/medical
 	l_hand = /obj/item/storage/firstaid/regular
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/reagent_containers/hypospray/combat=1,
 		/obj/item/gun/medbeam=1)
 
@@ -117,6 +121,7 @@
 
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/gun/energy/pulse/pistol/loyalpin=1,
 		/obj/item/reagent_containers/hypospray/combat/nanites=1,
 		/obj/item/gun/medbeam=1)
@@ -125,14 +130,15 @@
 	name = "ERT Engineer"
 
 	id = /obj/item/card/id/ert/Engineer
-	suit_store = /obj/item/melee/baton/loaded
-	r_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/engi/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 	glasses =  /obj/item/clothing/glasses/meson/engine
-	back = /obj/item/mod/control/pre_equipped/responsory/engineer
+	back = /obj/item/storage/backpack/ert/engineer
 	belt = /obj/item/storage/belt/utility/full
 	l_pocket = /obj/item/rcd_ammo/large
 	l_hand = /obj/item/storage/firstaid/regular
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/construction/rcd/loaded=1)
 
 /datum/outfit/ert/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -150,6 +156,7 @@
 
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/gun/energy/pulse/pistol/loyalpin=1,
 		/obj/item/construction/rcd/combat=1)
 
@@ -188,9 +195,8 @@
 
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
-
-	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/commander
 	l_hand = /obj/item/nullrod/scythe/talking/chainsword
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisition_commander // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/aiModule/core/full/ert=1,
 		/obj/item/door_remote/omni=1)
@@ -198,24 +204,22 @@
 /datum/outfit/ert/security/inquisitor
 	name = "Inquisition Security"
 
-	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/security
-
-	suit_store = /obj/item/melee/baton/loaded
-	l_hand = /obj/item/gun/energy/e_gun/stun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/loaded/security // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun/stun
 
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/construction/rcd/loaded=1)
 
 /datum/outfit/ert/medic/inquisitor
 	name = "Inquisition Medic"
 
-	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/medic
-
-	suit_store = /obj/item/melee/baton/loaded
-	r_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/loaded/medic // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/reagent_containers/hypospray/combat=1,
 		/obj/item/reagent_containers/hypospray/combat/heresypurge=1,
 		/obj/item/gun/medbeam=1)
@@ -233,11 +237,11 @@
 /datum/outfit/ert/chaplain
 	name = "ERT Chaplain"
 
-	suit_store = /obj/item/tank/internals/oxygen
-	l_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/chaplain // Chap role always gets this suit, AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 	id = /obj/item/card/id/ert/chaplain
 	glasses = /obj/item/clothing/glasses/hud/health
-	back = /obj/item/mod/control/pre_equipped/responsory/chaplain
+	back = /obj/item/storage/backpack/cultpack
 	belt = /obj/item/storage/belt/soulstone
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/nullrod=1)
@@ -245,10 +249,8 @@
 /datum/outfit/ert/chaplain/inquisitor
 	name = "Inquisition Chaplain"
 
-	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/chaplain
-
-	suit_store = /obj/item/tank/internals/oxygen
-	l_hand = /obj/item/gun/energy/e_gun
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/loaded/chaplain // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	suit_store = /obj/item/gun/energy/e_gun
 
 	belt = /obj/item/storage/belt/soulstone/full/chappy
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
@@ -259,15 +261,16 @@
 	name = "ERT Janitor"
 
 	id = /obj/item/card/id/ert/Janitor
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/jani/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	glasses = /obj/item/clothing/glasses/night
-	back = /obj/item/mod/control/pre_equipped/responsory/janitor
-	suit_store = /obj/item/melee/baton/loaded
+	back = /obj/item/storage/backpack
 	belt = /obj/item/storage/belt/janitor/full
 	r_pocket = /obj/item/grenade/chem_grenade/cleaner
 	l_pocket = /obj/item/grenade/chem_grenade/cleaner
 	l_hand = /obj/item/storage/bag/trash/bluespace
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/lights/mixed=1,
+		/obj/item/melee/baton/loaded=1,
 		/obj/item/mop/advanced=1,
 		/obj/item/reagent_containers/glass/bucket=1,
 		/obj/item/grenade/clusterbuster/cleaner=1,
@@ -417,11 +420,12 @@
 	name = JOB_ERT_DEATHSQUAD
 
 	uniform = /obj/item/clothing/under/rank/centcom/commander
+	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad/loaded // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	shoes = /obj/item/clothing/shoes/magboots/commando
 	gloves = /obj/item/clothing/gloves/combat
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
-	back = /obj/item/mod/control/pre_equipped/apocryphal
+	back = /obj/item/storage/backpack/security
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
 	r_pocket = /obj/item/shield/energy
 	suit_store = /obj/item/tank/internals/emergency_oxygen/double
@@ -460,8 +464,8 @@
 
 /datum/outfit/death_commando/officer
 	name = "Death Commando Officer"
-
-	back = /obj/item/mod/control/pre_equipped/apocryphal/officer
+	head = /obj/item/clothing/head/helmet/space/beret
+	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad/loaded/officer // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	backpack_contents = list(/obj/item/aiModule/core/full/deathsquad=1,\
 		/obj/item/ammo_box/a357=1,\
 		/obj/item/storage/firstaid/regular=1,\
@@ -469,17 +473,6 @@
 		/obj/item/flashlight=1,\
 		/obj/item/grenade/plastic/x4=1,
 		/obj/item/door_remote/omni=1)
-
-/datum/outfit/death_commando/officer/post_equip(mob/living/carbon/human/squaddie, visualsOnly = FALSE)
-	. = ..()
-	var/obj/item/mod/control/mod = squaddie.back
-	if(!istype(mod))
-		return
-	var/obj/item/mod/module/hat_stabilizer/hat_holder = locate() in mod.modules
-	if(!hat_holder)
-		return
-	hat_holder.attached_hat = new /obj/item/clothing/head/helmet/space/beret(hat_holder)
-	squaddie.update_clothing(mod.slot_flags)
 
 /datum/outfit/death_commando/doomguy
 	name = "The Juggernaut"
