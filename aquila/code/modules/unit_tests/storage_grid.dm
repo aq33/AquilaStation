@@ -70,20 +70,30 @@
 	TEST_ASSERT_EQUAL(pos[1], 1, "Moved item column")
 	TEST_ASSERT_EQUAL(pos[2], 1, "Moved item row")
 
-	// Obrót klawiszem (E/Q w trakcie przeciągania): small na (0,0) pionowo kładzie się poziomo w miejscu, a ikona obraca się razem z nim
+	// Obrót klawiszem (E/Q w trakcie przeciągania) obraca tylko podgląd: small na (0,0) leży pionowo do upuszczenia,
+	// a upuszczony na swoim miejscu kładzie się poziomo i ikona obraca się razem z nim
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_TAKE, tiny, run_loc_floor_bottom_left), "Could not take the tiny item out")
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_TAKE, small_a, run_loc_floor_bottom_left), "Could not take the small item out")
 	grid.pending_cell = list(0, 0)
 	TEST_ASSERT(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_INSERT, small_a, null, TRUE), "Small item did not fit at a chosen cell")
 	pos = grid.grid_positions[small_a]
 	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && !pos[3], "Small item was not placed upright at the chosen cell")
+	var/small_scale = grid.grid_icon_scale(1, 2)
 	TEST_ASSERT(grid.rotate_item(small_a, null, TRUE), "Rotation was not handled")
 	pos = grid.grid_positions[small_a]
-	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && pos[3], "Small item was not rotated in place")
-	TEST_ASSERT_EQUAL(grid.grid_angle(pos), 90, "Clockwise rotation angle")
+	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && !pos[3] && grid.grid_angle(pos) == 0, "Rotating while dragging turned the item in the bag instead of the preview")
+	TEST_ASSERT_EQUAL(grid.grid_pending_rotation[small_a], 90, "Clockwise preview angle")
 	grid.orient2hud()
 	var/matrix/turned = small_a.transform
-	var/small_scale = grid.grid_icon_scale(1, 2)
+	TEST_ASSERT(abs(turned.a - small_scale) < 0.01 && abs(turned.b) < 0.01, "Item icon in the bag turned before the drop")
+	var/list/rotated_landing = grid.drag_landing(small_a, aquila_grid_cell_params(grid, 0, 0))
+	TEST_ASSERT(rotated_landing && rotated_landing[3] && rotated_landing[4] == 90 && rotated_landing[5], "The preview does not show the chosen rotation")
+	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Drop with a rotation was not handled")
+	pos = grid.grid_positions[small_a]
+	TEST_ASSERT(pos[1] == 0 && pos[2] == 0 && pos[3], "Small item was not rotated in place on drop")
+	TEST_ASSERT_EQUAL(grid.grid_angle(pos), 90, "Clockwise rotation angle")
+	grid.orient2hud()
+	turned = small_a.transform
 	TEST_ASSERT(abs(turned.a) < 0.01 && abs(abs(turned.b) - small_scale) < 0.01, "Item icon was not turned with its shape")
 	// Upuszczenie na sobie samym niczego już nie obraca
 	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Drop on itself was not handled")
@@ -91,6 +101,7 @@
 	TEST_ASSERT(pos[3] && grid.grid_angle(pos) == 90, "Drop on itself changed the rotation")
 	// Q z powrotem: pionowo, ikona prosto
 	TEST_ASSERT(grid.rotate_item(small_a, null, FALSE), "Counter-clockwise rotation was not handled")
+	TEST_ASSERT(grid.move_item(small_a, null, aquila_grid_cell_params(grid, 0, 0)), "Counter-clockwise drop was not handled")
 	pos = grid.grid_positions[small_a]
 	TEST_ASSERT(!pos[3] && grid.grid_angle(pos) == 0, "Counter-clockwise rotation did not undo the turn")
 	grid.orient2hud()
@@ -136,8 +147,14 @@
 	// Obrót kwadratu zmienia tylko ikonę
 	var/obj/item/square = make_item(WEIGHT_CLASS_NORMAL)
 	TEST_ASSERT(SEND_SIGNAL(turn_bag, COMSIG_TRY_STORAGE_INSERT, square, null, TRUE), "Normal item did not fit")
+	var/list/square_pos = turn_grid.grid_positions[square]
+	var/list/square_cell = list(square_pos[1], square_pos[2])
 	TEST_ASSERT(turn_grid.rotate_item(square, null, FALSE), "Square rotation was not handled")
-	TEST_ASSERT_EQUAL(turn_grid.grid_angle(turn_grid.grid_positions[square]), 270, "Square counter-clockwise angle")
+	// Obrót w trakcie przeciągania obraca tylko podgląd: przedmiot w plecaku leży po staremu do upuszczenia
+	TEST_ASSERT_EQUAL(turn_grid.grid_angle(turn_grid.grid_positions[square]), 0, "Rotating while dragging turned the item in the bag instead of the preview")
+	TEST_ASSERT_EQUAL(turn_grid.grid_pending_rotation[square], 270, "Square counter-clockwise preview angle")
+	TEST_ASSERT(turn_grid.move_item(square, null, aquila_grid_cell_params(turn_grid, square_cell[1], square_cell[2])), "Square drop was not handled")
+	TEST_ASSERT_EQUAL(turn_grid.grid_angle(turn_grid.grid_positions[square]), 270, "Square counter-clockwise angle after the drop")
 
 	// Przedmioty z przepełnienia nie blokują wkładania na wolną kratkę (dawny limit max_items liczył całe contents)
 	var/obj/item/storage/backpack/tiny_bag = allocate(/obj/item/storage/backpack)
@@ -170,9 +187,12 @@
 	var/old_flags = big.appearance_flags
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
 	look_grid.orient2hud()
+	// The icon overflows its 24 px cells, so only the item tile catches the mouse
+	TEST_ASSERT_EQUAL(big.mouse_opacity, MOUSE_OPACITY_TRANSPARENT, "An item icon on the grid catches clicks meant for neighbouring cells")
 	var/matrix/shown = big.transform
-	// Kratka 24 px: ikona 2x2 zajmuje dwie kratki, czyli 48 px z 32
-	TEST_ASSERT_EQUAL(shown.a, 2 * look_grid.grid_cell_size / world.icon_size, "Normal item icon was not scaled to its cells")
+	// Ikony nie są skalowane do kratek (24 px): ułamkowa skala 0,75 albo 1,5 rozmywała piksele
+	TEST_ASSERT_EQUAL(shown.a, 1, "Normal item icon was scaled, so its pixels get blurry or uneven")
+	TEST_ASSERT_EQUAL(look_grid.grid_icon_scale(1, 1), 1, "A 1x1 icon is scaled, so it gets blurry")
 	TEST_ASSERT(big.appearance_flags & PIXEL_SCALE, "Scaled icon has no PIXEL_SCALE")
 	var/atom/movable/screen/storage_grid_item/tile = look_grid.grid_highlights[big]
 	TEST_ASSERT_EQUAL(length(tile.overlays), 4, "A 2x2 item tile should have 4 cell overlays")
@@ -180,6 +200,7 @@
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_TAKE, big, run_loc_floor_bottom_left), "Could not take the scaled item out")
 	shown = big.transform
 	TEST_ASSERT_EQUAL(shown.a, 1, "Item kept its grid scale after removal")
+	TEST_ASSERT_EQUAL(big.mouse_opacity, initial(big.mouse_opacity), "Item stayed unclickable after removal from the grid")
 	TEST_ASSERT_EQUAL(big.appearance_flags, old_flags, "Item kept its grid appearance flags after removal")
 	TEST_ASSERT(!LAZYACCESS(look_grid.grid_highlights, big), "Tile of a removed item was not deleted")
 
