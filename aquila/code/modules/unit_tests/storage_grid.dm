@@ -187,6 +187,8 @@
 	var/old_flags = big.appearance_flags
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_INSERT, big, null, TRUE), "Normal item did not fit into an empty bag")
 	look_grid.orient2hud()
+	// The icon overflows its 24 px cells, so only the item tile catches the mouse
+	TEST_ASSERT_EQUAL(big.mouse_opacity, MOUSE_OPACITY_TRANSPARENT, "An item icon on the grid catches clicks meant for neighbouring cells")
 	var/matrix/shown = big.transform
 	// Ikony nie są skalowane do kratek (24 px): ułamkowa skala 0,75 albo 1,5 rozmywała piksele
 	TEST_ASSERT_EQUAL(shown.a, 1, "Normal item icon was scaled, so its pixels get blurry or uneven")
@@ -198,6 +200,7 @@
 	TEST_ASSERT(SEND_SIGNAL(look_bag, COMSIG_TRY_STORAGE_TAKE, big, run_loc_floor_bottom_left), "Could not take the scaled item out")
 	shown = big.transform
 	TEST_ASSERT_EQUAL(shown.a, 1, "Item kept its grid scale after removal")
+	TEST_ASSERT_EQUAL(big.mouse_opacity, initial(big.mouse_opacity), "Item stayed unclickable after removal from the grid")
 	TEST_ASSERT_EQUAL(big.appearance_flags, old_flags, "Item kept its grid appearance flags after removal")
 	TEST_ASSERT(!LAZYACCESS(look_grid.grid_highlights, big), "Tile of a removed item was not deleted")
 

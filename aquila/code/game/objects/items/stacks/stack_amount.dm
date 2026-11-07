@@ -19,10 +19,12 @@
 		update_amount_maptext()
 
 /obj/item/stack/proc/update_amount_maptext()
+	var/new_maptext = ""
 	if(loc && (ismob(loc) || SEND_SIGNAL(loc, COMSIG_CONTAINS_STORAGE)))
-		maptext = MAPTEXT("<font color='white'>[get_amount()]</font>")
-	else
-		maptext = ""
+		new_maptext = MAPTEXT("<font color='white'>[get_amount()]</font>")
+	// Stos na taśmociągu rusza się co tick: bez porównania każdy krok podmieniałby wygląd
+	if(maptext != new_maptext)
+		maptext = new_maptext
 
 // Zwykły widok schowka czyści maptext przedmiotów przy każdym odświeżeniu. W trybie grupowania (display_numerical_stacking)
 // liczba na ikonie to liczba zgrupowanych przedmiotów, więc tam jej nie ruszamy. Siatka ma to w swoim orient2hud()

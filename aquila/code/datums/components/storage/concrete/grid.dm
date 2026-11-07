@@ -628,6 +628,9 @@
 		// Ikona na środku zajmowanego prostokąta
 		O.screen_loc = grid_icon_loc(px, py, width, height)
 		if(isitem(O))
+			// Mysz łapie kafel przedmiotu (storage_grid_item, dokładnie jego kratki), nie sama ikona: ikona 32 px wystaje
+			// poza kratki 24 px i przejmowałaby kliknięcia sąsiednich kratek. Wyjęcie przywraca mouse_opacity (_removal_reset)
+			O.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			// Obrót wybrany w trakcie przeciągania widać tylko na podglądzie, przedmiot leży po staremu do upuszczenia
 			apply_appearance(O, grid_icon_scale(width, height), grid_angle(pos))
 			update_highlight(O, px, py, width, height, !pos)
@@ -754,6 +757,17 @@
 		return TRUE
 	usr.client.Click(item, location, control, params)
 	return TRUE
+
+/// Podpowiedź i obrys przedmiotu po najechaniu, bo sama ikona przedmiotu na siatce nie łapie myszy
+/atom/movable/screen/storage_grid_item/MouseEntered(location, control, params)
+	. = ..()
+	if(!QDELETED(item))
+		item.MouseEntered(location, control, params)
+
+/atom/movable/screen/storage_grid_item/MouseExited(location, control, params)
+	. = ..()
+	if(!QDELETED(item))
+		item.MouseExited(location, control, params)
 
 /atom/movable/screen/storage_grid_item/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(QDELETED(item))

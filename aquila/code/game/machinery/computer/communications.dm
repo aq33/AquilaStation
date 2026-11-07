@@ -68,7 +68,7 @@
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	. = ..()
-	if ((authenticated || issilicon(user)) && authenticated_as_non_silicon_captain(user) && CONFIG_GET(flag/enable_night_shifts))
+	if (authenticated_as_non_silicon_captain(user) && CONFIG_GET(flag/enable_night_shifts))
 		.["canToggleNightShift"] = TRUE
 		.["nightShiftDisabled"] = SSnightshift.captain_disabled
 

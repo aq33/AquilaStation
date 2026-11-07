@@ -96,7 +96,11 @@
 	sprint.last_sprint_step = world.time
 	sprint.sustained_moves = SPRINT_WALLSLAM_MIN_MOVES + 2
 	SEND_SIGNAL(runner, COMSIG_MOVABLE_BUMP, bystander)
-	sleep(2)
+	// Wywrotka idzie z timera po 1 ticku: przy obciążonym serwerze czekamy na nią do sekundy, nie stałe 2 ticki
+	for(var/i in 1 to 10)
+		if(runner.IsKnockdown())
+			break
+		sleep(1)
 	TEST_ASSERT(runner.IsKnockdown(), "Running into a person in combat mode did not knock the runner down")
 	TEST_ASSERT(!bystander.IsKnockdown(), "The person in combat mode fell over too")
 	runner.SetKnockdown(0)
@@ -149,6 +153,24 @@
 	runner.lay_down()
 	TEST_ASSERT(runner.resting, "The rest button did not lay down a runner who was not sprinting")
 	runner.set_resting(FALSE)
+	// Sprint key released: the button lies down even right after a sprint step
+	sprint.last_sprint_step = world.time
+	sprint.sprint_key_down = FALSE
+	TEST_ASSERT(!sprint.can_dive(), "Dived after the sprint key was released")
+	sprint.sprint_key_down = TRUE
+	// No dive over a tile without ground: it would carry the runner into space
+	var/turf/ahead = get_step(runner, NORTH)
+	var/old_turf_type = ahead.type
+	ahead.ChangeTurf(/turf/open/space)
+	sprint.last_sprint_dir = NORTH
+	TEST_ASSERT(!sprint.try_rest_dive(), "Dived towards space")
+	ahead.ChangeTurf(old_turf_type)
+	sprint.last_sprint_dir = EAST
+
+	// NPCs with combat mode on by default do not stop a sprinter, only people and player-controlled mobs do
+	var/mob/living/simple_animal/hostile/morph/npc = allocate(/mob/living/simple_animal/hostile/morph, locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	npc.set_combat_mode(TRUE)
+	TEST_ASSERT(!sprint.is_braced_mob(npc), "An NPC with default combat mode counts as a sprint obstacle")
 
 	// The first impact of a dive on a person knocks them down
 	bystander.set_combat_mode(FALSE)

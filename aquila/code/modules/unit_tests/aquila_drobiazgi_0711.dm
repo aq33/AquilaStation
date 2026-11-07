@@ -94,6 +94,42 @@
 	alarm.reset()
 	TEST_ASSERT(!alarm.soundloop.timerid, "The fire alarm loop did not stop on reset")
 	TEST_ASSERT(!alarm.should_sound_alarm(), "The alarm still wants to sound after reset")
+	// An emagged alarm pulled by hand still sounds (as in tg and before the loop)
+	alarm.obj_flags |= EMAGGED
+	alarm.last_alarm = 0
+	alarm.alarm()
+	TEST_ASSERT(alarm.soundloop.timerid, "A pulled emagged fire alarm stayed silent")
+	alarm.reset()
+
+/// AQUILA - the map vote window gets the map size next to the name, the HUD has the memory button
+/datum/unit_test/aquila_map_vote_label_hud
+
+/datum/unit_test/aquila_map_vote_label_hud/Run()
+	var/datum/map_config/votable
+	for(var/map in config.maplist)
+		var/datum/map_config/candidate = config.maplist[map]
+		if(candidate.votable && candidate.map_size)
+			votable = candidate
+			break
+	TEST_ASSERT(votable, "No votable map with a size to test the vote label")
+	var/mob/living/carbon/human/voter = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/datum/vote/old_vote = SSvote.current_vote
+	var/datum/vote/map/test_vote = new
+	test_vote.choices = list("[votable.map_name]" = 0)
+	SSvote.current_vote = test_vote
+	var/list/data = SSvote.ui_data(voter)
+	SSvote.current_vote = old_vote
+	qdel(test_vote)
+	var/list/choices = data["choices"]
+	TEST_ASSERT(length(choices) == 1, "The map vote window got no choices")
+	var/list/choice = choices[1]
+	TEST_ASSERT_EQUAL(choice["label"], votable.get_vote_label(), "The map vote window does not show the map size")
+	TEST_ASSERT_EQUAL(choice["name"], votable.map_name, "The map vote key changed, so the vote would not pick the map")
+
+	var/datum/hud/human/hud = new(voter)
+	var/found = locate(/atom/movable/screen/memories) in hud.static_inventory
+	qdel(hud)
+	TEST_ASSERT(found, "The human HUD has no memory button")
 
 /// AQUILA - humans get a blinking eyelid in their skin colour
 /datum/unit_test/aquila_eyelids
@@ -104,6 +140,13 @@
 	TEST_ASSERT(blinker.eyelid, "A human has no eyelid")
 	TEST_ASSERT(blinker.eyelid in blinker.vis_contents, "The eyelid is not in vis_contents")
 	TEST_ASSERT(blinker.get_eyelid_color(blinker.get_bodypart(BODY_ZONE_HEAD), blinker.getorganslot(ORGAN_SLOT_EYES)), "A human head has no eyelid colour")
+	// Species colours may already carry a „#” (copper golem fixed_mut_color = "#d95802"); it used to become "##d95802" and runtime
+	var/obj/item/bodypart/head/head = blinker.get_bodypart(BODY_ZONE_HEAD)
+	var/old_color = head.draw_color
+	head.draw_color = "#d95802"
+	var/hash_color = blinker.get_eyelid_color(head, blinker.getorganslot(ORGAN_SLOT_EYES))
+	head.draw_color = old_color
+	TEST_ASSERT(hash_color, "A skin colour with a leading # gives no eyelid colour")
 
 /// AQUILA - scientists start with an anomaly neutralizer, public defecation is in space law
 /datum/unit_test/aquila_scientist_space_law

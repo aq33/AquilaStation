@@ -217,10 +217,14 @@
 	if(!isliving(bumped) || bumped == carbon_parent)
 		return FALSE
 	var/mob/living/target = bumped
+	// Tylko ludzie, małpy i moby z graczem: NPC z domyślnym combat mode (blobbernaut, morph) niczego świadomie nie zapierają
+	if(!iscarbon(target) && !target.client)
+		return FALSE
 	return target.combat_mode && target.density && target.stat == CONSCIOUS && (target.mobility_flags & MOBILITY_STAND)
 
 // ---------------------------------------------------------------------------
-// Rzut na sprincie (nowe): guzik „leż” (albo jego klawisz) w trakcie sprintu z combat mode rzuca postać przed siebie zamiast się położyć
+// Rzut na sprincie (nowe): guzik „leż” (albo jego klawisz) przy wciśniętym klawiszu sprintu i combat mode rzuca postać przed siebie
+// zamiast ją położyć. Po puszczeniu klawisza sprintu guzik zwyczajnie kładzie. Nad kosmosem i przepaścią też zwyczajnie kładzie
 
 /mob/living/carbon/lay_down()
 	if(!resting)
@@ -233,10 +237,24 @@
 /datum/component/carbon_sprint/proc/try_rest_dive()
 	if(!can_dive())
 		return FALSE
-	var/turf/target_turf = get_ranged_target_turf(carbon_parent, last_sprint_dir || carbon_parent.dir, SPRINT_DIVE_RANGE)
-	if(!target_turf || target_turf == get_turf(carbon_parent))
+	var/dive_dir = last_sprint_dir || carbon_parent.dir
+	var/turf/target_turf = get_ranged_target_turf(carbon_parent, dive_dir, SPRINT_DIVE_RANGE)
+	if(!target_turf || target_turf == get_turf(carbon_parent) || !safe_dive_path(dive_dir))
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(start_dive), target_turf)
+	return TRUE
+
+/// Żadna kratka na drodze rzutu nie jest bez podłoża (kosmos, przepaść, otwarta przestrzeń): rzut by tam wyniósł postać
+/datum/component/carbon_sprint/proc/safe_dive_path(dive_dir)
+	var/turf/T = get_turf(carbon_parent)
+	for(var/i in 1 to SPRINT_DIVE_RANGE)
+		T = get_step(T, dive_dir)
+		if(!T)
+			return TRUE
+		if(isgroundlessturf(T) || isspaceturf(T))
+			return FALSE
+		if(T.density)
+			return TRUE
 	return TRUE
 
 /datum/component/carbon_sprint/proc/can_dive()
@@ -245,7 +263,7 @@
 	if(carbon_parent.incapacitated(ignore_restraints = TRUE) || carbon_parent.resting)
 		return FALSE
 	// W starym trybie sterowania combat mode to intencja harm
-	if(!carbon_parent.combat_mode || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
+	if(!carbon_parent.combat_mode || !sprint_key_down || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
 		return FALSE
 	if(carbon_parent.restrained() || carbon_parent.buckled || !isturf(carbon_parent.loc))
 		return FALSE
@@ -260,16 +278,19 @@
 	if(sprinting)
 		stop_sprint()
 	RegisterSignal(carbon_parent, COMSIG_MOVABLE_IMPACT, PROC_REF(on_dive_impact))
+	// Odstęp i komunikat przed throw_at: pierwszy krok rzutu idzie od razu, więc zderzenie z kimś tuż obok
+	// rozstrzyga się jeszcze w throw_at() i jego komunikat musi wyjść po „rzuca się przed siebie”
+	COOLDOWN_START(src, dive_cooldown, SPRINT_DIVE_COOLDOWN)
+	carbon_parent.visible_message("<span class='warning'>[carbon_parent] rzuca się przed siebie!</span>", 		"<span class='notice'>Rzucasz się przed siebie!</span>")
+	playsound(get_turf(carbon_parent), 'sound/weapons/thudswoosh.ogg', 40, TRUE, -1)
 	// Siła WEAK: carbonowe throw_impact nie dokłada swoich obrażeń, rozstrzyga on_dive_impact()
 	if(!carbon_parent.throw_at(target_turf, SPRINT_DIVE_RANGE, 1, carbon_parent, FALSE, callback = CALLBACK(src, PROC_REF(end_dive)), force = MOVE_FORCE_WEAK))
 		// Rzut anulowany (np. COMPONENT_CANCEL_THROW): bez kosztu i bez odstępu
+		COOLDOWN_RESET(src, dive_cooldown)
 		end_dive()
 		return
-	COOLDOWN_START(src, dive_cooldown, SPRINT_DIVE_COOLDOWN)
 	carbon_parent.stamina?.adjust(-SPRINT_DIVE_COST)
 	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
-	carbon_parent.visible_message("<span class='warning'>[carbon_parent] rzuca się przed siebie!</span>", 		"<span class='notice'>Rzucasz się przed siebie!</span>")
-	playsound(get_turf(carbon_parent), 'sound/weapons/thudswoosh.ogg', 40, TRUE, -1)
 
 ///Pierwsze zderzenie rzutu: ktoś (powalony), przeszkoda (wywrotka) albo podłoga (lądowanie)
 /datum/component/carbon_sprint/proc/on_dive_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)

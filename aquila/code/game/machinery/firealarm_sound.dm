@@ -1,6 +1,6 @@
 // AQUILA - dźwięk alarmu pożarowego z tg (tgstation/tgstation, sound/machines/fire_alarm)
 // Zamiast jednego dźwięku NSV przy każdym wyzwoleniu alarm gra w pętli, dopóki obszar jest w alarmie pożarowym.
-// Pętla gaśnie sama po skasowaniu alarmu, utracie zasilania, zepsuciu albo emagu.
+// Pętla gaśnie sama po skasowaniu alarmu, utracie zasilania albo zepsuciu. Zemagowany alarm pociągnięty ręcznie też gra (jak w tg).
 
 /datum/looping_sound/firealarm
 	mid_sounds = list(
@@ -29,7 +29,7 @@
 	return ..()
 
 /obj/machinery/firealarm/proc/should_sound_alarm()
-	if(!is_operational || (obj_flags & EMAGGED))
+	if(!is_operational)
 		return FALSE
 	var/area/our_area = get_area(src)
 	return our_area?.fire

@@ -29,7 +29,11 @@
 /mob/living/carbon/human/proc/get_eyelid_color(obj/item/bodypart/head/head, obj/item/organ/eyes/eyes)
 	if(!head || !eyes || !IS_ORGANIC_LIMB(head) || eyes.status == ORGAN_ROBOTIC || !head.draw_color)
 		return null
-	var/list/hsl = rgb2num("#[head.draw_color]", COLORSPACE_HSL)
+	// draw_color bywa z „#” (species_color z fixed_mut_color, np. miedziany golem) albo bez (skintone2hex, mcolor)
+	var/skin_color = head.draw_color
+	if(copytext(skin_color, 1, 2) != "#")
+		skin_color = "#[skin_color]"
+	var/list/hsl = rgb2num(skin_color, COLORSPACE_HSL)
 	return rgb(hsl[1], hsl[2] * 0.85, hsl[3] * 0.85, space = COLORSPACE_HSL)
 
 /// Wołane z handle_body() zaraz po nakładce oczu. Zwraca nakładki do dorzucenia.
