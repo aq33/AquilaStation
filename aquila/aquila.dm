@@ -193,6 +193,7 @@
 #include "code\game\machinery\computer\prisoner_management_ui.dm"
 #include "code\game\machinery\computer\security_records_ui.dm"
 #include "code\game\machinery\fabricators\modular_fabricator.dm"
+#include "code\game\machinery\firealarm_sound.dm"
 #include "code\game\machinery\iv_drip_beam.dm"
 #include "code\game\machinery\jukebox.dm"
 #include "code\game\machinery\jukebox_ceiling_speaker.dm"

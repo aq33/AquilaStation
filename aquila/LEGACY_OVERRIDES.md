@@ -45,6 +45,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `start_alarm_sound()` zamiast `playsound` | `code/game/machinery/firealarm.dm` (`alarm()`) | Alarm pożarowy gra pętlę dźwięków z tg, dopóki obszar jest w alarmie (`aquila/code/game/machinery/firealarm_sound.dm`). |
 | `map_size` w JSON mapy | `code/datums/map_config.dm` (zmienna + `LoadConfig()`) | Rozmiar mapy w nawiasie w oknie głosowania i w preferencji mapy (`get_vote_label()` w `aquila/code/controllers/subsystem/vote.dm`). |
 | `if(!QDELETED(L))` | `code/controllers/subsystem/mobs.dm` (`fire()`) | `currentrun` survives between ticks, so a mob deleted meanwhile still got `Life()` (e.g. an unpowered AI calling `addtimer` on itself). Test: `aquila_logi_rund_26_10` |
 | `if(type == "display/refresh_rate")` | `code/modules/tgui_panel/tgui_panel.dm` (`on_message()`) | Panel czatu wysyła zmierzone odświeżanie monitora; przy FPS „Zalecane” klient dostaje FPS równe odświeżaniu (`aquila/code/modules/client/monitor_refresh.dm`). |
