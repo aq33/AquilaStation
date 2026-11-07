@@ -98,7 +98,8 @@
 
 	E.icon = RADIAL_SS14_ICON
 	E.sector_state = radial_sector_state(round(zone / length(page_choices)))
-	E.icon_state = E.sector_state
+	// Sektor pod myszą (np. po „Następnej stronie”) zostaje podświetlony, bo MouseEntered nie przyjdzie drugi raz
+	E.icon_state = title_owner == E ? "[E.sector_state]_focus" : E.sector_state
 	E.pixel_x = RADIAL_SS14_OFFSET
 	E.pixel_y = RADIAL_SS14_OFFSET + py_shift
 	var/matrix/sector_matrix = matrix()
@@ -138,8 +139,7 @@
 	E.maptext = null
 	E.cut_overlays()
 	E.vis_contents.Cut()
-	holder.cut_overlays()
-	holder.vis_contents.Cut()
+	clear_icon_holder(holder)
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Następna strona"
 		E.next_page = TRUE
@@ -172,11 +172,18 @@
 /datum/radial_menu/HideElement(atom/movable/screen/radial/slice/E)
 	. = ..()
 	if(E.icon_holder)
-		E.icon_holder.cut_overlays()
-		E.icon_holder.vis_contents.Cut()
+		clear_icon_holder(E.icon_holder)
 		E.icon_holder.alpha = 0
 	if(title_owner == E)
 		hide_title(E)
+
+/// Czyści ikonę opcji. Przyciski informacji leżą w contents holdera (new(holder)), więc samo vis_contents.Cut()
+/// zostawiało je tam przy każdej zmianie strony albo opcji
+/datum/radial_menu/proc/clear_icon_holder(atom/movable/screen/radial/slice_icon/holder)
+	holder.cut_overlays()
+	holder.vis_contents.Cut()
+	for(var/obj/effect/abstract/info/old_info in holder)
+		qdel(old_info)
 
 /// Podpis nad tarczą: nazwa opcji i krótki opis, jeśli opcja go ma
 /datum/radial_menu/proc/show_title(atom/movable/screen/radial/slice/E)
