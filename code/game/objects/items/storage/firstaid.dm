@@ -448,7 +448,7 @@
 	return (TOXLOSS)
 
 /obj/item/storage/pill_bottle/charcoal
-	name = "pojemnik z pigułkami: Węgiel aktywowany"
+	name = "pojemnik z pigułkami: Węgiel aktywny"
 	desc = "Zawiera pigułki przeciw toksynom."
 
 /obj/item/storage/pill_bottle/charcoal/PopulateContents()

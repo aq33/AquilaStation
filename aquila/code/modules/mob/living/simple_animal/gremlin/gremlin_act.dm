@@ -218,12 +218,8 @@
 		siphoning = TRUE
 
 /obj/machinery/computer/communications/npc_tamper_act(mob/living/L)
+	// Gremlin sam się nie loguje: zalogowana przez niego konsola pozwalała każdemu wezwać prom. Psoci tylko na konsoli, którą ktoś zostawił zalogowaną.
 	if(!authenticated)
-		if(prob(20)) //20% chance to log in
-			authenticated = TRUE
-			authorize_access = list()
-			authorize_name = "[L.name]"
-			playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
 		return
 
 	if(prob(50)) //Already logged in, 50% chance to log off

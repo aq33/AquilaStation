@@ -9,6 +9,8 @@
 /datum/round_event/heart_attack/start()
 	var/list/heart_attack_contestants = list()
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.player_list))
+		if(H.is_in_tutorial()) // AQ EDIT - postać w samouczku nie jest ofiarą eventu
+			continue
 		if(!H.client || H.stat == DEAD || H.InCritical() || !H.can_heartattack() || H.has_status_effect(STATUS_EFFECT_EXERCISED) || (/datum/disease/heart_failure in H.diseases) || H.undergoing_cardiac_arrest())
 			continue
 		if(H.satiety <= -60) //Multiple junk food items recently

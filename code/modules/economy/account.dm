@@ -53,6 +53,8 @@
 	return FALSE
 
 /datum/bank_account/proc/transfer_money(datum/bank_account/from, amount)
+	if(!(amount >= 0)) // AQ EDIT - ujemna kwota odwracała przelew i tworzyła pieniądze (zero zostaje, wypłata 0 kr ma przechodzić)
+		return FALSE
 	if(from.has_money(amount))
 		adjust_money(amount)
 		from.adjust_money(-amount)

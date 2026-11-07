@@ -96,18 +96,13 @@
 	log_game("WEIGHTED: offering midround antagonist [istext(offer) ? offer : "[offer]"] ([round(ratio * 100)]% of the crew alive)")
 	INVOKE_ASYNC(src, PROC_REF(run_offer), offer)
 
-/// Living crew members compared to everyone who got a station job this round
+/// Living crew members compared to everyone who got a station job this round. Counted like the automatic crew wake:
+/// crew that left through a cryopod without dying is not counted at all, a gibbed body still counts as dead
 /datum/weighted_ghost_midround/proc/crew_alive_ratio()
-	var/crew = 0
-	var/alive = 0
-	for(var/datum/mind/crew_mind as anything in SSticker.minds)
-		if(!crew_mind.assigned_role || !SSjob.GetJob(crew_mind.assigned_role))
-			continue
-		crew++
-		var/mob/living/body = crew_mind.current
-		if(istype(body) && body.stat != DEAD)
-			alive++
-	return crew ? alive / crew : 0
+	var/list/counts = GLOB.auto_crew_wake.count_crew()
+	var/crew = counts[1]
+	var/dead = counts[2]
+	return crew ? (crew - dead) / crew : 0
 
 /datum/weighted_ghost_midround/proc/eligible_offers()
 	. = list()

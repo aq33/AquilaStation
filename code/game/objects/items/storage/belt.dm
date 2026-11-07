@@ -69,7 +69,8 @@
 		/obj/item/pipe_dispenser,
 		/obj/item/inducer,
 		/obj/item/plunger,
-		/obj/item/airlock_painter
+		/obj/item/airlock_painter,
+		/obj/item/melee/sickly_blade/lock // AQ EDIT - ostrza-klucze heretyka jak w tg
 		))
 	STR.can_hold = can_hold
 

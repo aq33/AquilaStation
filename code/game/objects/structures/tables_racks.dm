@@ -565,8 +565,16 @@
 		if(computer)
 			computer.table = src
 			break
+	// AQ EDIT START - pacjent ustawiany przy wejściu na stół i czyszczony przy zejściu (wcześniej table_entered nie był podpięty, a TRAIT_NO_BLEEDING zostawał na zawsze)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(table_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(table_exited),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+	// AQ EDIT END
 
 /obj/structure/table/optable/Destroy()
+	set_patient(null) // AQ EDIT - nie zostawiaj pacjentowi TRAIT_NO_BLEEDING po zniszczeniu stołu
 	. = ..()
 	if(computer?.table == src)
 		computer.table = null
@@ -578,9 +586,17 @@
 	visible_message("<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>")
 	get_patient()
 
-/obj/structure/table/optable/proc/table_entered()
+// AQ EDIT START - podpięte przez connect_loc w Initialize
+/obj/structure/table/optable/proc/table_entered(datum/source, atom/movable/arrived)
 	SIGNAL_HANDLER
-	get_patient()
+	if(!patient && iscarbon(arrived))
+		set_patient(arrived)
+
+/obj/structure/table/optable/proc/table_exited(datum/source, atom/movable/gone, direction)
+	SIGNAL_HANDLER
+	if(gone == patient)
+		get_patient()
+// AQ EDIT END
 
 /obj/structure/table/optable/proc/get_patient()
 	var/mob/living/carbon/M = locate(/mob/living/carbon) in loc

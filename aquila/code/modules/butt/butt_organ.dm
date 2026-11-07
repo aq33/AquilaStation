@@ -40,7 +40,7 @@
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
 	name = "tyłek przechowywania"
-	desc = "Ten tyłek ma właściwości bluespace, więc zmieścisz w nim więcej rzeczy: cztery maleńkie przedmioty, dwa małe albo jeden zwykły."
+	desc = "Ten tyłek ma właściwości bluespace, więc zmieścisz w nim więcej rzeczy: do czterech przedmiotów, nawet zwykłego rozmiaru."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
 	status = ORGAN_ROBOTIC
@@ -248,6 +248,9 @@
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	if(user.zone_selected != BODY_ZONE_PRECISE_GROIN)
+		return ..()
+	// W walce, przy wzmacnianiu trzymanego chwytu i przy chwytach z kodu (sztuki walki, skok wampira) to zwykły chwyt
+	if(user.combat_mode || user.pulling == src)
 		return ..()
 	var/obj/item/organ/butt/B = getorganslot(ORGAN_SLOT_BUTT)
 	if(w_uniform)

@@ -216,7 +216,10 @@
 	SIGNAL_HANDLER
 
 	var/obj/item/plant_tray/tray = parent?.plant_item?.loc
-	if(!length(fruits) && user)
+	// AQUILA - z ciągniętym obiektem klik przesuwa go (obsługuje /obj/item/plant), a w tacy pustą rękę obsługuje taca
+	if(user?.pulling)
+		return
+	if(!length(fruits) && user && !istype(tray))
 		to_chat(user, span_warning("Do przeniesienia potrzebujesz łopatki: [parent?.plant_item]!"))
 	if(!length(fruits) || SEND_SIGNAL(tray, COMSIG_PLANTER_PAUSE_PLANT))
 		return

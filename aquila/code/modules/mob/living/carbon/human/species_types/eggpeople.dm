@@ -51,7 +51,8 @@
 	if(H.getBruteLoss() >= EGG_SHATTER_BRUTE)
 		H.visible_message("<span class='danger'>[H] pęka z głośnym chrupnięciem!</span>", "<span class='userdanger'>Twoja skorupka się rozpada!</span>")
 		playsound(H, 'aquila/sound/voice/speech/eggcrack4.ogg', 80, TRUE)
-		H.gib(FALSE)
+		// Odroczone: apply_damage woła się w środku ataku i wywołujący dalej używa moba
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, gib), FALSE), 0, TIMER_UNIQUE)
 		return
 	if(dealt >= 5)
 		playsound(H, "eggcrack", 50, TRUE)

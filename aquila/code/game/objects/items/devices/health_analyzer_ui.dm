@@ -117,7 +117,7 @@
 	if(target.blood_volume < BLOOD_VOLUME_SAFE && !HAS_TRAIT(target, TRAIT_NO_BLOOD))
 		body += list(aq_injury("Niski poziom krwi", "Transfuzja, sól fizjologiczna, żelazo", round(target.blood_volume / BLOOD_VOLUME_NORMAL * 100)))
 	if(target.getToxLoss())
-		body += list(aq_injury("Toksyny", "Węgiel aktywowany, antytoksyny", round(target.getToxLoss(), 0.1)))
+		body += list(aq_injury("Toksyny", "Węgiel aktywny, antytoksyny", round(target.getToxLoss(), 0.1)))
 	if(target.getOxyLoss())
 		body += list(aq_injury("Niedotlenienie", "Tlen, salbutamol, deksalina", round(target.getOxyLoss(), 0.1)))
 	if(target.getCloneLoss())

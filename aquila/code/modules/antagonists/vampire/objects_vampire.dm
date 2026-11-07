@@ -33,7 +33,11 @@
 	to_chat(user, span_announce("* Porada wampira: obejrzyj [src], aby zrozumieć, jak to działa!"))
 	user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 	anchored = TRUE
+	if(owner)
+		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	owner = user
+	// AQUILA - usunięty właściciel odczepia strukturę, żeby owner nie trzymał moba (harddel)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(on_owner_qdeleting))
 
 /// This handles unbolting of the structure.
 /obj/structure/vampire/proc/unbolt(mob/user)
@@ -41,7 +45,14 @@
 		to_chat(user, span_danger("Odczepiasz [src]."))
 		user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 	anchored = FALSE
+	if(owner)
+		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	owner = null
+
+/// AQUILA - właściciel jest usuwany: zwalniamy referencję
+/obj/structure/vampire/proc/on_owner_qdeleting(datum/source)
+	SIGNAL_HANDLER
+	unbolt()
 
 /obj/structure/vampire/attackby(obj/item/item, mob/living/user, list/modifiers)
 	/// If a Vampire tries to wrench it in place, yell at them.

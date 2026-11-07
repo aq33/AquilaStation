@@ -50,7 +50,10 @@
 	. = ..()
 	if(visualsOnly)
 		return
+	give_weapon(bum)
 
+/// Losowa broń z dwoma magazynkami. Osobno od post_equip(), bo awatar bitrunnera dostaje strój z visualsOnly.
+/datum/outfit/beachbum_combat/proc/give_weapon(mob/living/carbon/human/bum)
 	var/choice = rand(1, length(ranged_weaps))
 	var/weapon = ranged_weaps[choice]
 	bum.put_in_active_hand(new weapon(bum.drop_location()))

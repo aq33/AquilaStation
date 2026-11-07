@@ -1,3 +1,5 @@
+import { loadedMappings } from 'tgui/assets';
+
 /** Mapa nazw assetów (np. "esc_open.ogg") na adresy URL podesłane przez serwer. */
 export const assetMap: Record<string, string> = {};
 
@@ -10,6 +12,8 @@ export function loadMappings(payload: Record<string, string>): void {
   for (const name in payload) {
     const url = payload[name];
     assetMap[name] = url;
+    // słownik EN (tgui/i18n.ts) szuka adresu w mapowaniach tgui
+    loadedMappings[name] = url;
     if (name.split('.').pop() === 'css') {
       Byond.loadCss(url);
     }

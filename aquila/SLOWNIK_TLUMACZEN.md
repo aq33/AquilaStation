@@ -1891,7 +1891,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Carthatoline (`/medicine/carthatoline`) | Kartatolina | ż; istniejące |
 | Changeling Adrenaline (`/medicine/changelingadrenaline`) | Adrenalina zmiennokształtnego | ż; nowe |
 | Changeling Haste (`/medicine/changelinghaste`) | Pośpiech zmiennokształtnego | m; nowe |
-| Charcoal (`/medicine/charcoal`) | Węgiel aktywowany | m; istniejące; health_analyzer_ui.dm; /carbon to sam „Węgiel” |
+| Charcoal (`/medicine/charcoal`) | Węgiel aktywny | m; istniejące; health_analyzer_ui.dm; /carbon to sam „Węgiel” |
 | Clonexadone (`/medicine/clonexadone`) | Klonoksadon | m; istniejące |
 | Corazone (`/medicine/corazone`) | Korazon | m; istniejące; cure_text zawału |
 | Cryoxadone (`/medicine/cryoxadone`) | Kriooksadon | m; istniejące; odrzucony wariant: kryoksadon |
@@ -2457,6 +2457,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Speed Catalyst Agent (`/catalyst_agent/speed`) | Katalizator szybkości | m; nowe; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
 | Strong Acidic Buffer (`/reaction_agent/acidic_buffer`) | Mocny bufor kwaśny | m; istniejące; fermi_items.dm: „mocnego buforu kwaśnego”; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
 | Strong Basic Buffer (`/reaction_agent/basic_buffer`) | Mocny bufor zasadowy | m; istniejące; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
+| Spent buffer (`/spent_buffer`) | Zużyty bufor | m; nowe (Aquila); obojętna objętość po buforze pH; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
 | Temperature Catalyst Agent (`/catalyst_agent/temperature`) | Katalizator temperatury | m; nowe; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
 | Tempomyocin (`/reaction_agent/speed_agent`) | Tempomiocyna | ż; nowe; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
 | Thermic Modulator (`/catalyst_agent/temperature/generic`) | Modulator termiczny | m; nowe; plik: `aquila/code/modules/reagents/chemistry/fermi/fermi_reagents.dm` |
@@ -3123,7 +3124,7 @@ Oznaczenia w kolumnie uwag:
 | Civilian | Cywile | mnoga; istniejące (latejoin) |
 | Munitions | Amunicja (dział amunicji) | ż; istniejące (manifest, latejoin) |
 | Silicon | Syntetyki | mnoga; istniejące (latejoin); pojedynczy: syntetyk (m) |
-| Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); grupa ról gimmick w defines to „Cywilne” |
+| Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); rola gimmick w defines zostaje „Gimmick” |
 | Air Traffic Control (radio) | Kontrola Lotów | ż; istniejące (`RADIO_CHANNEL_ATC`) |
 | Common (radio) | Ogólny | m; istniejące |
 | AI Private (radio) | Prywatny SI | m; istniejące jako „Prywatny AI”, w nowych tekstach „SI” |
@@ -3192,7 +3193,7 @@ Oznaczenia w kolumnie uwag:
 | King | Król | m; nowe (JOB_NAME_KING jest jeszcze po angielsku, nie zmieniać bez decyzji) |
 | Prisoner | Więzień | m; nowe (j.w.) |
 | Space Police | Kosmiczna Policja | ż; nowe |
-| Gimmick (group) | Cywilne | mnoga; istniejące |
+| Gimmick (group) | Gimmick | bez tłumaczenia (JOB_NAME_GIMMICK, klucz prefów i `config/ranks/`); „Cywilne” cofnięte w aq33/AquilaStation#532 |
 
 ### 2a. ERT i Centrala
 

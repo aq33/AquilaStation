@@ -129,6 +129,12 @@
 			var/obj/item/mod_part = locate(params["ref"]) in get_parts()
 			if(!mod_part)
 				return
+			// AQ EDIT START - jak choose_deploy()/quick_deploy(): bez rozkładania w trakcie uszczelniania
+			if(activating)
+				balloon_alert(ui.user, "trwa [active ? "rozszczelnianie" : "uszczelnianie"]!")
+				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+				return
+			// AQ EDIT END
 			if(mod_part.loc == src)
 				deploy(ui.user, mod_part)
 			else

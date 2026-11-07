@@ -252,7 +252,7 @@
 	if(!hasbrain)
 		to_chat(owner, "<span class='warning'>[C] nie ma mózgu!</span>")
 		return
-	if((!C.key || !C.mind) && C != B.target.current)
+	if((!C.key || !C.mind) && C != B.target?.current)
 		to_chat(owner, "<span class='warning'>Umysł [C] nie reaguje. Spróbuj z kimś innym!</span>")
 		return
 	if(C.has_horror_inside())

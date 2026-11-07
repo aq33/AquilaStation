@@ -254,7 +254,7 @@
 	. = ..()
 	create_reagents(max_volume, NO_REACT)
 	syringes = new
-	known_reagents = list(/datum/reagent/medicine/epinephrine="Epinefryna",/datum/reagent/medicine/charcoal="Węgiel aktywowany")
+	known_reagents = list(/datum/reagent/medicine/epinephrine="Epinefryna",/datum/reagent/medicine/charcoal="Węgiel aktywny")
 	processed_reagents = new
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/detach()

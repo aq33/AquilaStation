@@ -6,8 +6,10 @@ import {
   Divider,
   Flex,
   Icon,
+  LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -15,7 +17,7 @@ export const PlantMutator = (props) => {
   const { act, data } = useBackend();
   const {
     inserted_plant,
-    last_command,
+    inserted_seeds,
     plant_feature_data,
     catalyst,
     catalyst_desc,
@@ -26,121 +28,84 @@ export const PlantMutator = (props) => {
     port_traits,
   } = data;
   return (
-    <Window width={750} height={750} theme="plant_menu">
+    <Window width={750} height={750}>
       <Window.Content>
         {working ? (
-          <Dimmer className={'Dimmer--super'}>
-            <Section>
-              <Icon size={3} name={'radiation'} className={'spinner'} />
-            </Section>
+          <Dimmer className={'plant__dimmer'}>
+            <Icon size={3} name={'radiation'} className={'plant__spinner'} />
           </Dimmer>
         ) : (
           ''
         )}
         {confirm_radiation ? <Dimmer /> : ''}
-        <Box m={'-3px'} height={'100%'}>
-          <Flex direction={'column'} height={'100%'}>
-            {/* World building fluff top banner */}
-            <Flex.Item>
-              <Section textAlign={'center'}>
-                Piec Radiacyjny [Wersja 1.0.0.3]
-              </Section>
-            </Flex.Item>
-            {/* Plant stuff column */}
-            <Flex.Item>
-              <Flex direction={'row'}>
-                {/* Feature row */}
-                <Flex.Item width={'100%'}>
-                  <Flex direction={'column'}>
-                    {/* Plant title */}
-                    <Flex.Item width={'100%'}>
-                      <Section textAlign="center">
-                        <h1>{inserted_plant || 'Nie włożono rośliny'}</h1>
-                      </Section>
-                    </Flex.Item>
-                    {/* Feature panel  */}
-                    <Flex.Item>
-                      <Section>
-                        {plant_feature_data.length
-                          ? plant_feature_data.map((feature_data) => (
-                              <PlantFeaturePanel
-                                feature={feature_data}
-                                key={feature_data}
-                              />
-                            ))
-                          : '...'}
-                      </Section>
-                    </Flex.Item>
-                    {/* Info */}
-                    <Flex.Item width={'100%'}>
-                      {/* Title */}
-                      <Section>
-                        <h1>{catalyst || 'Nie włożono butli'}</h1>
-                        <Divider />
-                        {catalyst_desc || '...'}
-                      </Section>
-                      {/* Body */}
-                      <Section>
-                        <Box textAlign={'center'}>Mole</Box>
-                        <ProgressBar
-                          color={'#ffff77'}
-                          textColor={
-                            catalyst_strength
-                              ? catalyst_strength > 90
-                                ? '#252517ff'
-                                : '#ffff77'
-                              : '#ffff77'
-                          }
-                          value={Math.min(catalyst_strength * 0.01, 1)}
-                        >
-                          {catalyst_strength || '0'}
-                        </ProgressBar>
-                      </Section>
-                    </Flex.Item>
-                  </Flex>
-                </Flex.Item>
-                {/* Inspection row */}
-                <Flex.Item width={'100%'}>
-                  <Section textAlign={'center'}>
-                    <Button.Checkbox
-                      width={'100%'}
-                      className={'plant__button'}
-                      checked={port_traits}
-                      tooltip="Przenieś cechy z pierwotnej części na zmutowany wynik, jeśli to możliwe"
-                      onClick={() =>
-                        act('toggle_port', { port_state: !port_traits })
-                      }
-                    >
-                      Zachowaj cechy
-                    </Button.Checkbox>
-                  </Section>
-                  <Section>
-                    {current_feature ? <InspectionPanel /> : ' ... '}
-                  </Section>
-                </Flex.Item>
-              </Flex>
-            </Flex.Item>
-            {/* World building fluff top banner */}
-            <Flex.Item height={'100%'}>
-              <Box />
-            </Flex.Item>
-            <Flex.Item>
-              <Box height={'20px'} />
-            </Flex.Item>
-            <Flex.Item>
-              <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
-                <br />
-                <Box>
-                  {'C:\\Users\\admin>'}
-                  {last_command}
-                  <span className={'terminal'}>|</span>
-                </Box>
-              </Section>
-            </Flex.Item>
-          </Flex>
-        </Box>
+        <Stack fill>
+          <Stack.Item basis="45%">
+            <Section
+              title={inserted_plant || 'Nie włożono rośliny'}
+              buttons={
+                !!inserted_seeds && (
+                  <Button
+                    icon="eject"
+                    disabled={working}
+                    onClick={() => act('eject_seeds')}
+                  >
+                    Wyjmij nasiona
+                  </Button>
+                )
+              }
+            >
+              {plant_feature_data.length
+                ? plant_feature_data.map((feature_data) => (
+                    <PlantFeaturePanel
+                      feature={feature_data}
+                      key={feature_data['key']}
+                    />
+                  ))
+                : 'Włóż nasiona albo roślinę na łopatce.'}
+            </Section>
+            <Section title={catalyst || 'Nie włożono butli'}>
+              <Box mb={1}>{catalyst_desc || 'Włóż butlę z plazmą.'}</Box>
+              <LabeledList>
+                <LabeledList.Item label="Plazma">
+                  <ProgressBar
+                    value={Math.min((catalyst_strength || 0) * 0.01, 1)}
+                    ranges={{
+                      good: [0.5, Infinity],
+                      average: [0.1, 0.5],
+                      bad: [-Infinity, 0.1],
+                    }}
+                  >
+                    {`${catalyst_strength || 0} mol`}
+                  </ProgressBar>
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section
+              fill
+              scrollable
+              title="Wybrana część"
+              buttons={
+                <Button.Checkbox
+                  checked={port_traits}
+                  tooltip="Przenieś cechy z pierwotnej części na zmutowany wynik, jeśli to możliwe"
+                  onClick={() =>
+                    act('toggle_port', { port_state: !port_traits })
+                  }
+                >
+                  Zachowaj cechy
+                </Button.Checkbox>
+              }
+            >
+              {current_feature ? (
+                <InspectionPanel />
+              ) : (
+                'Wybierz część rośliny z listy po lewej.'
+              )}
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -175,7 +140,7 @@ const InspectionPanel = (props) => {
   const { current_feature_data, current_feature_traits } = data;
   return (
     <Flex direction="column">
-      <Box className={'scrollbox'} height={'535px'} overflowY="scroll">
+      <Box>
         {/* base feature information, stats */}
         <Flex.Item>
           <Button className="plant__dialogue--beacon" width={'100%'}>

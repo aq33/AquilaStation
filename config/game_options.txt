@@ -829,9 +829,11 @@ OMODE_PROBABILITY COURIER 5
 OMODE_MIN_POP COURIER 0
 OMODE_MAX_POP COURIER 0
 
-OMODE_PROBABILITY PVP 5
-OMODE_MIN_POP PVP 30
-OMODE_MAX_POP PVP 0
+## AQ Klucz PVP nie pasuje do żadnego trybu overmapy (Podbój galaktyki ma config_tag "conquest"), więc te linie nic nie robiły.
+## Podbój galaktyki ustawia tylko tryb rundy PVP. Nie dodawaj go tutaj jako CONQUEST, bo trafiłby do zwykłego losowania.
+#OMODE_PROBABILITY PVP 5
+#OMODE_MIN_POP PVP 30
+#OMODE_MAX_POP PVP 0
 
 OMODE_PROBABILITY PATROL 5
 OMODE_MIN_POP PATROL 10

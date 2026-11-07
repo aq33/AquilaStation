@@ -1,0 +1,24 @@
+# Caddy przed serwisem czatu głosowego (HTTPS z Let's Encrypt, Caddy sam odnawia certyfikat).
+# Domenę bierze ze zmiennej VOICE_DOMAIN, np. VOICE_DOMAIN=aquila-glos.duckdns.org
+# albo wpisz ją zamiast {$VOICE_DOMAIN}.
+{$VOICE_DOMAIN} {
+	# /api/sync to kanał serwera gry (łączy się lokalnie z 127.0.0.1:8179), nie wystawiamy go do internetu.
+	@api path /api/*
+	# Serwer gry na innej maszynie: zamiast linii wyżej przepuść /api tylko z jego IP
+	# (i ustaw w grze VOICE_CHAT_SERVICE_URL https://ta.domena):
+	# @api {
+	# 	path /api/*
+	# 	not remote_ip 203.0.113.10
+	# }
+	respond @api 404
+
+	# Nagranie to najwyżej kilkaset KB (WAV 16 kHz, do 20 s).
+	request_body /audio {
+		max_size 2MB
+	}
+
+	reverse_proxy 127.0.0.1:8179 {
+		# /events to strumień zdarzeń (SSE): polecenia „nagrywaj/stop” muszą przechodzić od razu.
+		flush_interval -1
+	}
+}
