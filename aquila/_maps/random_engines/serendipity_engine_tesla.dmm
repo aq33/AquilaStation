@@ -247,6 +247,13 @@
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall/ship,
 /area/nsv/engine/engine_room/core)
+"WO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "Xm" = (
 /obj/structure/cable,
 /obj/machinery/power/tesla_coil,
@@ -395,7 +402,7 @@ uE
 pv
 pv
 Kc
-Dt
+WO
 Dt
 tN
 fJ

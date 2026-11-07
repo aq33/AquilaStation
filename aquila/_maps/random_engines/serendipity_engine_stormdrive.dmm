@@ -211,6 +211,11 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"Ip" = (
+/obj/structure/cable,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "Kc" = (
 /obj/machinery/power/apc/auto_name/west,
 /obj/structure/cable,
@@ -241,6 +246,13 @@
 "Ni" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/monotile/steel,
+/area/nsv/engine/engine_room/core)
+"NQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
 "Ol" = (
 /obj/structure/cable,
@@ -474,8 +486,8 @@ tF
 Rv
 Ho
 Ho
-Ho
-wo
+Ip
+NQ
 wo
 pb
 UJ

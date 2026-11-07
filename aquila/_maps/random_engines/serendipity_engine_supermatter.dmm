@@ -1,16 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bc" = (
-/obj/structure/closet/secure_closet/engineering_electrical{
-	anchored = 1
-	},
-/obj/item/wrench,
-/obj/item/screwdriver,
-/obj/item/wirecutters,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/weldingtool,
-/obj/item/book/manual/wiki/engineering_guide,
-/turf/open/floor/engine,
-/area/engine/engine_room)
 "bg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -28,6 +16,23 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/engine/engine_room)
+"dn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering/glass/critical{
+	heat_proof = 1;
+	name = "Komora supermaterii";
+	security_level = 6;
+	id_tag = "trawnik_smengine";
+	req_one_access_txt = "10;24"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "ds" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall/ship,
@@ -47,6 +52,17 @@
 "fS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
+/area/engine/supermatter)
+"ge" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "trawnik_sm";
+	name = "rolety supermaterii"
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/engine/supermatter)
 "gr" = (
 /obj/structure/cable,
@@ -86,6 +102,10 @@
 	dir = 8
 	},
 /area/engine/engine_room)
+"iS" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/engine/engine_room)
 "jc" = (
 /obj/machinery/light/floor,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -103,15 +123,6 @@
 /obj/structure/window/plasma/reinforced,
 /obj/structure/cable,
 /turf/open/floor/engine,
-/area/engine/supermatter)
-"kb" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "trawnik_sm";
-	name = "Supermatter Shutters"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plating,
 /area/engine/supermatter)
 "lL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -187,6 +198,14 @@
 	},
 /turf/open/floor/plating,
 /area/nsv/engine/engine_room/core)
+"rR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "sm" = (
 /obj/structure/cable,
 /obj/structure/reflector/box/anchored{
@@ -220,23 +239,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
-"xI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/airlock/engineering/glass/critical{
-	heat_proof = 1;
-	name = "Supermatter Chamber";
-	security_level = 6;
-	id_tag = "trawnik_smengine";
-	req_one_access_txt = "10;24"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/engine,
-/area/engine/supermatter)
 "xX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -263,14 +265,6 @@
 "zH" = (
 /turf/template_noop,
 /area/template_noop)
-"Bh" = (
-/obj/structure/cable,
-/obj/machinery/airalarm/engine{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/engine,
-/area/nsv/engine/engine_room/core)
 "Ck" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -285,6 +279,14 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"CR" = (
+/obj/structure/cable,
+/obj/machinery/airalarm/engine{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "Dh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -400,17 +402,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
-"Rm" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "trawnik_sm";
-	name = "Supermatter Shutters"
-	},
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/supermatter)
 "SJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/light/floor,
@@ -419,6 +410,15 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"SW" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "trawnik_sm";
+	name = "rolety supermaterii"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plating,
+/area/engine/supermatter)
 "Vc" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -505,6 +505,20 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"ZC" = (
+/obj/structure/closet/secure_closet/engineering_electrical{
+	anchored = 1
+	},
+/obj/item/wrench,
+/obj/item/stack/cable_coil,
+/obj/item/screwdriver,
+/obj/item/inducer,
+/obj/item/wirecutters,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/weldingtool,
+/obj/item/book/manual/wiki/engineering_guide,
+/turf/open/floor/engine,
+/area/engine/engine_room)
 
 (1,1,1) = {"
 zH
@@ -616,13 +630,13 @@ eJ
 zH
 zH
 zH
-Rm
+ge
 Xr
 iH
 CC
 fS
 vb
-kb
+SW
 zH
 zH
 zn
@@ -637,18 +651,18 @@ eJ
 zH
 zH
 zH
-Rm
+ge
 jh
 iH
 Nz
 fS
 nS
-kb
-zH
+SW
+rR
 zH
 Ev
 Vc
-Ot
+iS
 GB
 Ot
 zH
@@ -658,20 +672,20 @@ eJ
 zH
 zH
 zH
-Rm
+ge
 Je
 iH
 CC
 fS
 nS
-kb
+SW
 zH
 zH
 zn
 XZ
 zH
 fL
-bc
+ZC
 zH
 "}
 (9,1,1) = {"
@@ -682,7 +696,7 @@ OU
 ds
 lO
 Vx
-xI
+dn
 Vx
 WB
 ds
@@ -702,7 +716,7 @@ Xp
 zH
 CK
 Dh
-Bh
+CR
 Zq
 Lt
 bg

@@ -151,15 +151,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
-"ku" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
 "kN" = (
 /obj/structure/particle_accelerator/end_cap{
 	dir = 4
@@ -720,14 +711,14 @@ ZU
 "}
 (11,1,1) = {"
 ZU
-ZU
+bq
 AS
 gI
 yS
 bj
 KO
 yc
-ku
+ZU
 ZU
 "}
 (12,1,1) = {"

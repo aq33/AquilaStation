@@ -57,18 +57,22 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"jL" = (
-/obj/structure/cable,
-/obj/structure/tank_dispenser,
+"iW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/item/radio/intercom/directional/north,
+/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"jN" = (
+"jF" = (
 /obj/machinery/firealarm/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 1
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
@@ -82,6 +86,20 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"kL" = (
+/obj/machinery/door/airlock/ship/engineering/glass{
+	name = "Dostęp do rdzenia reaktora";
+	req_one_access_txt = "10; 24"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "mt" = (
 /obj/effect/turf_decal/stripes/line,
@@ -98,6 +116,41 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/ameridiner,
+/area/engine/engineering/reactor_core)
+"mW" = (
+/obj/machinery/airalarm/engine{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"nS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering/glass/critical{
+	heat_proof = 1;
+	name = "Komora supermaterii";
+	security_level = 6;
+	id_tag = "snake_smengine";
+	req_one_access_txt = "10;24"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"ol" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 5
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "oG" = (
 /obj/structure/lattice/catwalk,
@@ -122,6 +175,13 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
+"qA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
 "qE" = (
 /obj/structure/lattice/catwalk,
@@ -175,23 +235,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
-"tw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/airlock/engineering/glass/critical{
-	heat_proof = 1;
-	name = "Supermatter Chamber";
-	security_level = 6;
-	id_tag = "snake_smengine";
-	req_one_access_txt = "10;24"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/engine,
-/area/engine/supermatter)
 "ua" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -244,32 +287,29 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"Bh" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 2;
+	name = "port azotu pętli"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "Bq" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering/reactor_core)
-"Ck" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
 "CZ" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"Dq" = (
-/obj/machinery/airalarm/engine{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "Dx" = (
@@ -328,6 +368,21 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"Li" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"Mb" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 2
+	},
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "Ok" = (
 /obj/structure/cable,
 /obj/structure/reflector/box/anchored{
@@ -343,26 +398,6 @@
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
-/area/engine/engineering/reactor_core)
-"Pt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/engine/engineering/reactor_core)
-"PV" = (
-/obj/machinery/door/airlock/ship/engineering/glass{
-	name = "Reactor core access";
-	req_one_access_txt = "10; 24"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
 "Qg" = (
 /obj/effect/turf_decal/tile/yellow/orlen{
@@ -390,30 +425,6 @@
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"QV" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer4{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
-"Ra" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
 "RQ" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -541,13 +552,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
-"YG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/engine,
-/area/engine/engineering/reactor_core)
 "Zb" = (
 /obj/machinery/atmospherics/components/unary/thermomachine{
 	dir = 1;
@@ -616,7 +620,7 @@ uG
 uG
 Ym
 ua
-Pt
+qA
 qw
 UF
 uG
@@ -636,7 +640,7 @@ uG
 (7,1,1) = {"
 uG
 uG
-PV
+kL
 uG
 uG
 oS
@@ -654,7 +658,7 @@ rW
 Ok
 Xj
 eK
-jL
+eK
 uG
 "}
 (9,1,1) = {"
@@ -672,7 +676,7 @@ uG
 (10,1,1) = {"
 uG
 uG
-YG
+iW
 Qx
 Dx
 RZ
@@ -683,26 +687,26 @@ uG
 "}
 (11,1,1) = {"
 uG
-uG
-yk
+Mb
+ol
 ia
 Dx
 QB
 SL
 Sw
-QV
+uG
 uG
 "}
 (12,1,1) = {"
 uG
 uG
-jN
+jF
 rM
 Dx
 RZ
 SL
 Aa
-Ck
+Li
 uG
 "}
 (13,1,1) = {"
@@ -711,7 +715,7 @@ ir
 iR
 Sj
 hM
-tw
+nS
 hM
 Sj
 He
@@ -722,10 +726,10 @@ uG
 Pn
 dg
 Hz
-Dq
+mW
 hy
 Uz
-Ra
+Bh
 JH
 uG
 "}
