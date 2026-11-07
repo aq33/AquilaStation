@@ -33,6 +33,6 @@ export const light_glare: FeatureToggle = {
   category: 'GRAPHICS',
   subcategory: 'Quality',
   description:
-    'Smugi światła od lamp, ekranów i laserów, rozchodzące się od środka ekranu. Dodatkowe obciążenie karty graficznej.',
+    'Smugi światła od lamp, ekranów i laserów, rozchodzące się od środka ekranu. Działa tylko z włączoną poświatą.',
   component: CheckboxInput,
 };

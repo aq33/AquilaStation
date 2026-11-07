@@ -11,6 +11,7 @@
 //
 // Promienie: ten sam łańcuch filtrów poświaty z radial_blur przed bloomem, jak „glare” w Paradise.
 // Smugi rozchodzą się od środka ekranu, więc lampy przy krawędzi widoku mają dłuższe promienie.
+// Działają tylko z poświatą: bez bloomu wycięcie kształtu zabiera prawie całe smugi.
 // Osobnej płaszczyzny nie ma: między światłem a HUD-em nie została żadna wolna liczba całkowita plane.
 
 /datum/preferences
@@ -36,7 +37,8 @@
 GLOBAL_LIST_EMPTY(aq_glow_sources)
 
 /proc/get_aq_glow_sources()
-	if(!length(GLOB.aq_glow_sources))
+	var/list/sources = GLOB.aq_glow_sources
+	if(length(sources) != 2 || QDELETED(sources[1]) || QDELETED(sources[2]))
 		GLOB.aq_glow_sources = list(new /atom/movable/screen/aq_glow_source/floor, new /atom/movable/screen/aq_glow_source/game)
 	return GLOB.aq_glow_sources
 
@@ -71,17 +73,15 @@ GLOBAL_LIST_EMPTY(aq_glow_sources)
 	if(!C)
 		return
 	var/list/settings = aq_glow_settings(C.prefs?.glow_level)
-	var/glare = C.prefs?.light_glare
-	if(!settings && !glare)
+	if(!settings)
 		// Bez kopii płaszczyzn plane master jest pusty i nic nie kosztuje
 		C.screen -= get_aq_glow_sources()
 		return
 	C.screen |= get_aq_glow_sources()
 	add_filter("aq_glow_mask", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET))
-	if(glare)
+	if(C.prefs.light_glare)
 		add_filter("aq_glow_glare", 1.5, radial_blur_filter(AQ_GLARE_SIZE))
-	if(settings)
-		add_filter("aq_glow_bloom", 2, list("type" = "bloom", "threshold" = "#000000", "size" = settings[1], "offset" = settings[2], "alpha" = settings[3]))
+	add_filter("aq_glow_bloom", 2, list("type" = "bloom", "threshold" = "#000000", "size" = settings[1], "offset" = settings[2], "alpha" = settings[3]))
 	// Sam świecący kształt już jest jasny (wycięty z ciemności), więc zostaje tylko aureola wokół niego.
 	// Bez tego ekrany i lampy prześwietlają się do bieli.
 	add_filter("aq_glow_cut", 3, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
