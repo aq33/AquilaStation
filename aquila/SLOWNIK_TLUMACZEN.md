@@ -431,7 +431,7 @@ Oznaczenia w kolumnie uwag:
 | SMES | SMES | ndm, r. m; istniejące (5×); odrzucone: akumulator |
 | power cell | ogniwo zasilające | n; istniejące (138×); odrzucone: bateria (w nazwie ogniwa) |
 | pocket translator | tłumacz kieszonkowy | m; nowe (`/obj/item/aquila_translator`) |
-| translator chip | czip tłumacza | m; nowe (`/obj/item/aquila_translator_chip`), drzazga w osobnym gnieździe słuchawek |
+| translator chip | czip tłumacza | m; nowe (`/obj/item/aquila_translator/chip`), drzazga w osobnym gnieździe słuchawek |
 | English (language) / foreigner | Angielski / obcokrajowiec | m; nowe; język gracza z angielskim w preferencjach (`foreigner.dm`) |
 | high-capacity power cell | ogniwo dużej pojemności | n; nowe (wzorem „Pamięć dużej pojemności”) |
 | super-capacity power cell | ogniwo bardzo dużej pojemności | n; nowe |

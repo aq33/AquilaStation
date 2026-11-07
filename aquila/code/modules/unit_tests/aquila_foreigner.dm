@@ -69,7 +69,7 @@
 /datum/unit_test/aquila_translator_chip/Run()
 	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
-	var/obj/item/aquila_translator_chip/chip = allocate(/obj/item/aquila_translator_chip, run_loc_floor_bottom_left)
+	var/obj/item/aquila_translator/chip/chip = allocate(/obj/item/aquila_translator/chip, run_loc_floor_bottom_left)
 
 	TEST_ASSERT(wearer.put_in_hands(chip), "Could not pick up the chip")
 	headset.attackby(chip, wearer)
@@ -95,6 +95,13 @@
 	TEST_ASSERT(!headset.keyslot && !headset.keyslot2, "Screwdriver did not remove the keys")
 	TEST_ASSERT(headset.aq_translator_chip == chip && HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Screwdriver removed the chip")
 
+	// EMP przez słuchawki: czip milknie do restartu i potem znowu tłumaczy
+	headset.emp_act(EMP_LIGHT)
+	TEST_ASSERT(chip.rebooting, "EMP on the headset did not reach the chip")
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Chip still translates right after an EMP")
+	chip.aq_reboot()
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Chip does not translate after rebooting")
+
 	// Multitool wyjmuje czip i wyłącza tłumacza
 	var/obj/item/multitool/multitool = allocate(/obj/item/multitool, run_loc_floor_bottom_left)
 	wearer.drop_all_held_items()
@@ -110,6 +117,44 @@
 	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Dropped headset still translates")
 	TEST_ASSERT(!headset.aq_translator_wearer, "Dropped headset still remembers its wearer")
 	SStranslation.cache = list()
+
+/// EMP: spalony czip i tłumacz kieszonkowy już nie tłumaczą (restart ich nie wskrzesza), a HoP ma zapasowe czipy
+/datum/unit_test/aquila_translator_emp/Run()
+	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/aquila_translator/translator = allocate(/obj/item/aquila_translator, run_loc_floor_bottom_left)
+	TEST_ASSERT(wearer.put_in_hands(translator), "Could not pick up the pocket translator")
+	translator.emp_act(EMP_LIGHT)
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Pocket translator still works right after an EMP")
+	translator.aq_reboot()
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Pocket translator does not work after rebooting")
+	translator.aq_burn()
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Burnt pocket translator still works")
+	translator.aq_reboot()
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Burnt pocket translator came back after a reboot")
+	translator.emp_act(EMP_HEAVY)
+	TEST_ASSERT(translator.burnt && !translator.rebooting, "EMP on a burnt translator changed it")
+
+	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
+	var/obj/item/aquila_translator/chip/chip = allocate(/obj/item/aquila_translator/chip, run_loc_floor_bottom_left)
+	wearer.drop_all_held_items()
+	TEST_ASSERT(wearer.put_in_hands(chip), "Could not pick up the chip")
+	headset.attackby(chip, wearer)
+	TEST_ASSERT(wearer.equip_to_slot_if_possible(headset, ITEM_SLOT_EARS), "Could not wear the headset")
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Worn chip does not translate")
+	chip.aq_burn()
+	TEST_ASSERT(!HAS_TRAIT(wearer, TRAIT_AQ_TRANSLATOR), "Burnt chip still translates")
+	TEST_ASSERT(chip.icon_state == "translator_chip_burnt", "Burnt chip kept its normal sprite")
+	TEST_ASSERT(findtext(chip.name, "spalony") == 1, "Burnt chip is not named as burnt: [chip.name]")
+
+	// Zapas w szafce HoP-a, także w wersji z NSV, która nie woła ..()
+	for(var/closet_type in list(/obj/structure/closet/secure_closet/hop, /obj/structure/closet/secure_closet/hop/solgov))
+		var/obj/structure/closet/closet = allocate(closet_type, run_loc_floor_bottom_left)
+		var/obj/item/storage/box/aquila_translator_chips/box = locate() in closet
+		TEST_ASSERT(box, "[closet_type] has no spare translator chips")
+		var/chips = 0
+		for(var/obj/item/aquila_translator/chip/spare in box)
+			chips++
+		TEST_ASSERT(chips == 4, "[closet_type] box has [chips] chips instead of 4")
 
 /// Czat (OOC, PW): tłumaczenie z czekaniem bierze wynik z pamięci, a bez klucza szybko zwraca null
 /datum/unit_test/aquila_chat_translation/Run()

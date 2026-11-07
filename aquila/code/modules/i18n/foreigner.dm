@@ -54,7 +54,7 @@
 	// Czip w słuchawkach z ekwipunku pracy (translator_chip.dm); tłumacz kieszonkowy tylko dla tych bez słuchawek
 	var/obj/item/radio/headset/headset = get_item_by_slot(ITEM_SLOT_EARS)
 	if(istype(headset) && !headset.aq_translator_chip)
-		headset.aq_translator_chip = new /obj/item/aquila_translator_chip(headset)
+		headset.aq_translator_chip = new /obj/item/aquila_translator/chip(headset)
 		headset.aq_update_translator_wearer()
 		to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach przekłada mowę w obie strony, dopóki masz je na uszach."))
 		return
