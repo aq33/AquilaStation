@@ -67,4 +67,52 @@
 	var/obj/structure/window/fulltile/window = allocate(/obj/structure/window/fulltile)
 	TEST_ASSERT(sprint.is_hard_obstacle(window), "A window is not a sprint obstacle")
 
+/// AQUILA - someone standing in combat mode stops a sprinter like a wall, a sprint dive knocks the target down
+/datum/unit_test/sprint_tackle
+
+/datum/unit_test/sprint_tackle/Run()
+	var/mob/living/carbon/human/runner = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/bystander = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	var/datum/component/carbon_sprint/sprint = runner.GetComponent(/datum/component/carbon_sprint)
+	TEST_ASSERT(sprint, "Humans have no sprint component")
+
+	// Combat mode decides whether a person is a sprint obstacle
+	bystander.set_combat_mode(FALSE)
+	TEST_ASSERT(!sprint.is_hard_obstacle(bystander), "A person without combat mode counts as a sprint obstacle")
+	bystander.set_combat_mode(TRUE)
+	TEST_ASSERT(sprint.is_hard_obstacle(bystander), "A person in combat mode does not stop a sprinter")
+	bystander.Knockdown(1 SECONDS)
+	TEST_ASSERT(!sprint.is_hard_obstacle(bystander), "A person lying down stops a sprinter")
+	bystander.SetKnockdown(0)
+
+	// Running into them: the runner falls, the person in combat mode stays up
+	runner.m_intent = MOVE_INTENT_RUN
+	SEND_SIGNAL(runner, COMSIG_KB_CARBON_SPRINT_DOWN)
+	sprint.sprinting = TRUE
+	sprint.last_sprint_step = world.time
+	sprint.sustained_moves = SPRINT_WALLSLAM_MIN_MOVES + 2
+	SEND_SIGNAL(runner, COMSIG_MOVABLE_BUMP, bystander)
+	sleep(2)
+	TEST_ASSERT(runner.IsKnockdown(), "Running into a person in combat mode did not knock the runner down")
+	TEST_ASSERT(!bystander.IsKnockdown(), "The person in combat mode fell over too")
+	runner.SetKnockdown(0)
+
+	// A dive only goes with combat mode and fresh sprint steps, at a tile at least 2 away
+	var/turf/far = locate(runner.x + 3, runner.y, runner.z)
+	runner.set_combat_mode(FALSE)
+	sprint.sprinting = TRUE
+	sprint.last_sprint_step = world.time
+	TEST_ASSERT(!sprint.can_dive_at(far, list()), "Dived without combat mode")
+	runner.set_combat_mode(TRUE)
+	TEST_ASSERT(sprint.can_dive_at(far, list()), "Could not dive in combat mode while sprinting")
+	TEST_ASSERT(!sprint.can_dive_at(far, list(SHIFT_CLICK = "1")), "Shift-click started a dive")
+	TEST_ASSERT(!sprint.can_dive_at(get_step(runner, EAST), list()), "Dived at an adjacent tile")
+
+	// The first impact of a dive on a person knocks them down
+	bystander.set_combat_mode(FALSE)
+	sprint.diving = TRUE
+	sprint.on_dive_impact(runner, bystander, null)
+	TEST_ASSERT(bystander.IsKnockdown(), "A sprint dive did not knock the target down")
+	TEST_ASSERT(!sprint.diving, "The dive did not end on impact")
+
 #undef TEST_ASSERT

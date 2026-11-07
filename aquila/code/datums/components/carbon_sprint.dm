@@ -4,6 +4,7 @@
 //   działa tylko przy m_intent == MOVE_INTENT_RUN, patrz /mob/living/carbon/update_move_intent_slowdown()
 // - rozpęd liczy każdy krok w tym samym kierunku (w Bee kroki tuż po chmurce kurzu się nie liczyły)
 // - nowe: wywrotka po wpadnięciu z rozpędu w ścianę i potknięcie na schodach
+// - nowe: wbiegnięcie w kogoś z combat mode działa jak ściana, a klik w combat mode podczas sprintu to rzut (powala trafionego)
 
 /datum/component/carbon_sprint
 	var/mob/living/carbon/carbon_parent
@@ -24,6 +25,9 @@
 	var/last_dust = 0
 	///Nasza własna chmurka kurzu
 	var/obj/effect/sprint_dust/dust
+	///Rzut w toku: pierwsze zderzenie go rozstrzyga
+	var/diving = FALSE
+	COOLDOWN_DECLARE(dive_cooldown)
 
 /datum/component/carbon_sprint/Initialize()
 	if(!iscarbon(parent))
@@ -40,6 +44,7 @@
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_pre_move))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
+	RegisterSignal(parent, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	RegisterSignal(parent, COMSIG_KB_CARBON_SPRINT_DOWN, PROC_REF(on_sprint_key_down))
 	RegisterSignal(parent, COMSIG_KB_CARBON_SPRINT_UP, PROC_REF(on_sprint_key_up))
 	// Zamiana ciał itp. potrafi zgubić puszczenie klawisza
@@ -50,6 +55,8 @@
 		COMSIG_MOB_CLIENT_PRE_MOVE,
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_MOVABLE_BUMP,
+		COMSIG_MOB_CLICKON,
+		COMSIG_MOVABLE_IMPACT,
 		COMSIG_KB_CARBON_SPRINT_DOWN,
 		COMSIG_KB_CARBON_SPRINT_UP,
 		COMSIG_MOB_LOGOUT,
@@ -152,7 +159,10 @@
 
 /datum/component/carbon_sprint/proc/on_bump(datum/source, atom/bumped)
 	SIGNAL_HANDLER
-	if(!sprinted_recently() || carbon_parent.throwing || ismob(bumped))
+	if(!sprinted_recently() || carbon_parent.throwing)
+		return
+	// Mob ustępuje albo się przepycha, chyba że stoi w combat mode: wtedy to jak ściana
+	if(ismob(bumped) && !is_braced_mob(bumped))
 		return
 	var/moves = sustained_moves
 	sustained_moves = 0
@@ -182,9 +192,11 @@
 	if(sprinting)
 		stop_sprint()
 
-///Ściana, okno, zamknięte drzwi albo przykręcona gęsta struktura. Mob się nie liczy.
+///Ściana, okno, zamknięte drzwi, przykręcona gęsta struktura albo ktoś stojący w combat mode
 /datum/component/carbon_sprint/proc/is_hard_obstacle(atom/bumped)
-	if(ismob(bumped) || !bumped.density)
+	if(ismob(bumped))
+		return is_braced_mob(bumped)
+	if(!bumped.density)
 		return FALSE
 	if(isturf(bumped))
 		return TRUE
@@ -201,6 +213,90 @@
 		var/obj/structure/mineral_door/mineral_door = O
 		return !mineral_door.isSwitchingStates
 	return TRUE
+
+///Przytomny, stojący mob w combat mode (w starym trybie: na intencji harm) zatrzymuje biegnącego jak ściana
+/datum/component/carbon_sprint/proc/is_braced_mob(atom/bumped)
+	if(!isliving(bumped) || bumped == carbon_parent)
+		return FALSE
+	var/mob/living/target = bumped
+	return target.combat_mode && target.density && target.stat == CONSCIOUS && (target.mobility_flags & MOBILITY_STAND)
+
+// ---------------------------------------------------------------------------
+// Rzut na sprincie (nowe): klik w combat mode w miejsce co najmniej 2 kratki dalej
+
+/datum/component/carbon_sprint/proc/on_click(datum/source, atom/target, list/modifiers)
+	SIGNAL_HANDLER
+	if(!can_dive_at(target, modifiers))
+		return
+	INVOKE_ASYNC(src, PROC_REF(start_dive), target)
+	return COMSIG_MOB_CANCEL_CLICKON
+
+/datum/component/carbon_sprint/proc/can_dive_at(atom/target, list/modifiers)
+	if(diving || !COOLDOWN_FINISHED(src, dive_cooldown))
+		return FALSE
+	if(!carbon_parent.combat_mode || carbon_parent.throw_mode || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
+		return FALSE
+	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK))
+		return FALSE
+	if(istype(target, /atom/movable/screen) || carbon_parent.restrained() || carbon_parent.buckled || !isturf(carbon_parent.loc))
+		return FALSE
+	// Broń w ręce strzela dalej po staremu
+	if(istype(carbon_parent.get_active_held_item(), /obj/item/gun))
+		return FALSE
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf || target_turf.z != carbon_parent.z || get_dist(carbon_parent, target_turf) < 2)
+		return FALSE
+	if(!carbon_parent.stamina || carbon_parent.stamina.current < SPRINT_DIVE_COST)
+		return FALSE
+	return TRUE
+
+/datum/component/carbon_sprint/proc/start_dive(atom/target)
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf)
+		return
+	diving = TRUE
+	COOLDOWN_START(src, dive_cooldown, SPRINT_DIVE_COOLDOWN)
+	carbon_parent.stamina?.adjust(-SPRINT_DIVE_COST)
+	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
+	if(sprinting)
+		stop_sprint()
+	carbon_parent.visible_message("<span class='warning'>[carbon_parent] rzuca się przed siebie!</span>", 		"<span class='notice'>Rzucasz się przed siebie!</span>")
+	playsound(get_turf(carbon_parent), 'sound/weapons/thudswoosh.ogg', 40, TRUE, -1)
+	RegisterSignal(carbon_parent, COMSIG_MOVABLE_IMPACT, PROC_REF(on_dive_impact))
+	// Siła WEAK: carbonowe throw_impact nie dokłada swoich obrażeń, rozstrzyga on_dive_impact()
+	if(!carbon_parent.throw_at(target_turf, SPRINT_DIVE_RANGE, 1, carbon_parent, FALSE, callback = CALLBACK(src, PROC_REF(end_dive)), force = MOVE_FORCE_WEAK))
+		end_dive()
+
+///Pierwsze zderzenie rzutu: ktoś (powalony), przeszkoda (wywrotka) albo podłoga (lądowanie)
+/datum/component/carbon_sprint/proc/on_dive_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)
+	SIGNAL_HANDLER
+	UnregisterSignal(carbon_parent, COMSIG_MOVABLE_IMPACT)
+	if(!diving)
+		return
+	if(isliving(hit_atom) && hit_atom != carbon_parent)
+		dive_hit(hit_atom)
+	else if(hit_atom.density && (isturf(hit_atom) || is_hard_obstacle(hit_atom)))
+		carbon_parent.visible_message("<span class='danger'>[carbon_parent] rzuca się prosto na [hit_atom]!</span>", 			"<span class='userdanger'>Rzucasz się prosto na [hit_atom]!</span>")
+		playsound(get_turf(carbon_parent), 'sound/effects/bang.ogg', 50, TRUE, -1)
+		carbon_parent.apply_damage(SPRINT_WALLSLAM_BASE_DAMAGE, BRUTE, BODY_ZONE_HEAD)
+		carbon_parent.Knockdown(SPRINT_WALLSLAM_KNOCKDOWN)
+	else
+		carbon_parent.Knockdown(SPRINT_DIVE_MISS_KNOCKDOWN)
+	diving = FALSE
+
+/datum/component/carbon_sprint/proc/dive_hit(mob/living/target)
+	carbon_parent.visible_message("<span class='danger'>[carbon_parent] rzuca się na [target] i powala na ziemię!</span>", 		"<span class='userdanger'>Rzucasz się na [target] i powalasz na ziemię!</span>", ignored_mobs = target)
+	to_chat(target, "<span class='userdanger'>[carbon_parent] rzuca się na ciebie i powala cię na ziemię!</span>")
+	playsound(get_turf(target), 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	log_combat(carbon_parent, target, "tackled (sprint dive)")
+	target.Knockdown(SPRINT_DIVE_TARGET_KNOCKDOWN)
+	carbon_parent.Knockdown(SPRINT_DIVE_SELF_KNOCKDOWN)
+
+/datum/component/carbon_sprint/proc/end_dive()
+	if(QDELETED(carbon_parent))
+		return
+	UnregisterSignal(carbon_parent, COMSIG_MOVABLE_IMPACT)
+	diving = FALSE
 
 // ---------------------------------------------------------------------------
 // Potknięcie na schodach (nowe, nie ma w Bee)
