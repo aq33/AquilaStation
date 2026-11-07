@@ -2392,7 +2392,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
 "gX" = (
-/obj/structure/closet/secure_closet/medical1{
+/obj/structure/closet/secure_closet/chemical{
 	anchored = 1
 	},
 /obj/effect/turf_decal/tile/ship/blue/nfz{

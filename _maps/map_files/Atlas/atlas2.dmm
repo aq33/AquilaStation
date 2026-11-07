@@ -9784,7 +9784,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "Gp" = (
-/obj/structure/closet/secure_closet/medical1,
+/obj/structure/closet/secure_closet/chemical,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
