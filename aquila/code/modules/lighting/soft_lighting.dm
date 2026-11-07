@@ -38,7 +38,9 @@ GLOBAL_LIST_EMPTY(aq_glow_sources)
 
 /proc/get_aq_glow_sources()
 	var/list/sources = GLOB.aq_glow_sources
-	if(length(sources) != 2 || QDELETED(sources[1]) || QDELETED(sources[2]))
+	var/atom/movable/screen/aq_glow_source/floor_source = length(sources) == 2 ? sources[1] : null
+	var/atom/movable/screen/aq_glow_source/game_source = length(sources) == 2 ? sources[2] : null
+	if(QDELETED(floor_source) || QDELETED(game_source))
 		GLOB.aq_glow_sources = list(new /atom/movable/screen/aq_glow_source/floor, new /atom/movable/screen/aq_glow_source/game)
 	return GLOB.aq_glow_sources
 
