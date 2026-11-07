@@ -70,6 +70,11 @@
 	alarm.alarm()
 	TEST_ASSERT(test_area.fire, "The fire alarm did not set off the area")
 	TEST_ASSERT(alarm.soundloop?.timerid, "The fire alarm loop did not start")
+	// Power loss stops the loop at its next tick, power coming back restarts it while the alarm lasts
+	alarm.soundloop.stop()
+	alarm.set_is_operational(FALSE)
+	alarm.set_is_operational(TRUE)
+	TEST_ASSERT(alarm.soundloop.timerid, "The fire alarm loop did not restart after power came back")
 	alarm.reset()
 	TEST_ASSERT(!alarm.soundloop.timerid, "The fire alarm loop did not stop on reset")
 	TEST_ASSERT(!alarm.should_sound_alarm(), "The alarm still wants to sound after reset")

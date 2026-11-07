@@ -234,6 +234,9 @@
 /datum/component/carbon_sprint/proc/can_dive_at(atom/target, list/modifiers)
 	if(diving || !COOLDOWN_FINISHED(src, dive_cooldown))
 		return FALSE
+	// COMSIG_MOB_CLICKON idzie przed sprawdzeniem incapacitated() w ClickOn()
+	if(carbon_parent.incapacitated(ignore_restraints = TRUE))
+		return FALSE
 	if(!carbon_parent.combat_mode || carbon_parent.throw_mode || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
 		return FALSE
 	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -255,17 +258,19 @@
 	if(!target_turf)
 		return
 	diving = TRUE
-	COOLDOWN_START(src, dive_cooldown, SPRINT_DIVE_COOLDOWN)
-	carbon_parent.stamina?.adjust(-SPRINT_DIVE_COST)
-	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
 	if(sprinting)
 		stop_sprint()
-	carbon_parent.visible_message("<span class='warning'>[carbon_parent] rzuca się przed siebie!</span>", 		"<span class='notice'>Rzucasz się przed siebie!</span>")
-	playsound(get_turf(carbon_parent), 'sound/weapons/thudswoosh.ogg', 40, TRUE, -1)
 	RegisterSignal(carbon_parent, COMSIG_MOVABLE_IMPACT, PROC_REF(on_dive_impact))
 	// Siła WEAK: carbonowe throw_impact nie dokłada swoich obrażeń, rozstrzyga on_dive_impact()
 	if(!carbon_parent.throw_at(target_turf, SPRINT_DIVE_RANGE, 1, carbon_parent, FALSE, callback = CALLBACK(src, PROC_REF(end_dive)), force = MOVE_FORCE_WEAK))
+		// Rzut anulowany (np. COMPONENT_CANCEL_THROW): bez kosztu i bez odstępu
 		end_dive()
+		return
+	COOLDOWN_START(src, dive_cooldown, SPRINT_DIVE_COOLDOWN)
+	carbon_parent.stamina?.adjust(-SPRINT_DIVE_COST)
+	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
+	carbon_parent.visible_message("<span class='warning'>[carbon_parent] rzuca się przed siebie!</span>", 		"<span class='notice'>Rzucasz się przed siebie!</span>")
+	playsound(get_turf(carbon_parent), 'sound/weapons/thudswoosh.ogg', 40, TRUE, -1)
 
 ///Pierwsze zderzenie rzutu: ktoś (powalony), przeszkoda (wywrotka) albo podłoga (lądowanie)
 /datum/component/carbon_sprint/proc/on_dive_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)

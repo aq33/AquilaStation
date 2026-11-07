@@ -3,6 +3,8 @@
 	COOLDOWN_DECLARE(static/reinforcement_action_cooldown)
 	/// Cooldown before you can wake up another wave of assistants from cryostasis
 	COOLDOWN_DECLARE(static/crew_wake_cooldown)
+	/// Przełącznik oświetlenia nocnego: ogłoszenie i wiadomość dla adminów najwyżej raz na minutę
+	COOLDOWN_DECLARE(static/nightshift_toggle_cooldown)
 	/// Ckey of the admin ghost who logged in with every access. Their window closing (also after moving to another mob
 	/// or disconnecting) logs the console out again; another admin closing their own window does not
 	var/admin_ghost_ckey
@@ -56,6 +58,10 @@
 		if("toggleNightShift")
 			if (!authenticated_as_non_silicon_captain(usr) || !CONFIG_GET(flag/enable_night_shifts))
 				return
+			if (!COOLDOWN_FINISHED(src, nightshift_toggle_cooldown))
+				to_chat(usr, "<span class='warning'>Oświetlenie można przełączyć ponownie za [DisplayTimeText(COOLDOWN_TIMELEFT(src, nightshift_toggle_cooldown))].</span>")
+				return
+			COOLDOWN_START(src, nightshift_toggle_cooldown, 1 MINUTES)
 			SSnightshift.toggle_captain_disabled(usr)
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			. = TRUE

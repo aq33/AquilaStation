@@ -70,6 +70,10 @@
 /// AQUILA - someone standing in combat mode stops a sprinter like a wall, a sprint dive knocks the target down
 /datum/unit_test/sprint_tackle
 
+/datum/unit_test/sprint_tackle/proc/cancel_throw(datum/source, list/arguments)
+	SIGNAL_HANDLER
+	return COMPONENT_CANCEL_THROW
+
 /datum/unit_test/sprint_tackle/Run()
 	var/mob/living/carbon/human/runner = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	var/mob/living/carbon/human/bystander = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
@@ -107,6 +111,18 @@
 	TEST_ASSERT(sprint.can_dive_at(far, list()), "Could not dive in combat mode while sprinting")
 	TEST_ASSERT(!sprint.can_dive_at(far, list(SHIFT_CLICK = "1")), "Shift-click started a dive")
 	TEST_ASSERT(!sprint.can_dive_at(get_step(runner, EAST), list()), "Dived at an adjacent tile")
+	runner.Paralyze(1 SECONDS)
+	TEST_ASSERT(!sprint.can_dive_at(far, list()), "A paralyzed runner could dive")
+	runner.SetParalyzed(0)
+
+	// A cancelled throw costs nothing and starts no cooldown
+	var/stamina_before = runner.stamina.current
+	RegisterSignal(runner, COMSIG_MOVABLE_PRE_THROW, PROC_REF(cancel_throw))
+	sprint.start_dive(far)
+	UnregisterSignal(runner, COMSIG_MOVABLE_PRE_THROW)
+	TEST_ASSERT(!sprint.diving, "A cancelled dive stayed in progress")
+	TEST_ASSERT(runner.stamina.current == stamina_before, "A cancelled dive cost stamina")
+	TEST_ASSERT(COOLDOWN_FINISHED(sprint, dive_cooldown), "A cancelled dive started the cooldown")
 
 	// The first impact of a dive on a person knocks them down
 	bystander.set_combat_mode(FALSE)

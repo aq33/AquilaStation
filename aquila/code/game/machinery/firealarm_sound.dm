@@ -37,6 +37,12 @@
 		soundloop = new(src, FALSE)
 	soundloop.start()
 
+/// Po powrocie zasilania (albo naprawie) alarm, który dalej trwa, znowu gra
+/obj/machinery/firealarm/on_set_is_operational(old_value)
+	. = ..()
+	if(soundloop && should_sound_alarm())
+		start_alarm_sound()
+
 /obj/machinery/firealarm/reset(mob/user)
 	. = ..()
 	soundloop?.stop()
