@@ -26,3 +26,8 @@
 		. = capitalize(human_full_name_random(gender))
 		if(!findname(.))
 			break
+
+/// Losowe imię postaci z okna preferencji. owner: klient, do którego należy postać
+/// (moduł wersji angielskiej daje graczom z angielskim imiona z oryginalnej puli NSV13, aquila/code/modules/i18n/foreigner_names.dm)
+/datum/character_save/proc/aq_random_real_name(client/owner)
+	return pref_species.random_name(gender, TRUE)
