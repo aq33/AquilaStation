@@ -8,20 +8,21 @@
 // „Yunon YN500 Camera Shutter” (yfjesse, freesound.org/s/579884, CC0).
 
 #define LOBBY_CANVAS_HEIGHT 144
-#define LOBBY_SHUTTER_TRAVEL 143
 #define LOBBY_COLLAPSE_SLIDE 82
+/// Roleta zwinięta do górnej krawędzi płótna: skala 0 w pionie wokół środka i przesunięcie o pół płótna w górę
+#define SHUTTER_ROLLED_UP matrix(1, 0, 0, 0, 0.01, LOBBY_CANVAS_HEIGHT / 2)
 
-/// screen_loc dla grafiki, której lewy górny róg jest `left` px od środka i `top` px pod górną krawędzią ekranu
-/proc/aq_lobby_screen_loc(left, top, anchor_x = "CENTER")
-	// CENTER: lewa krawędź środkowego kafelka jest 16 px na lewo od środka ekranu; RIGHT: lewa krawędź ostatniego kafelka
-	var/x_from_tile = anchor_x == "CENTER" ? left + 16 : left + 32
-	var/x_tiles = round(x_from_tile / 32)
-	var/x_px = x_from_tile - x_tiles * 32
-	// dół grafiki względem dolnej krawędzi górnego kafelka (w górę dodatnio)
-	var/y_from_tile = 32 - (top + LOBBY_CANVAS_HEIGHT)
-	var/y_tiles = round(y_from_tile / 32)
-	var/y_px = y_from_tile - y_tiles * 32
-	return "[anchor_x][x_tiles >= 0 ? "+[x_tiles]" : "[x_tiles]"]:[x_px],TOP[y_tiles >= 0 ? "+[y_tiles]" : "[y_tiles]"]:[y_px]"
+/// screen_loc dla grafiki o wysokości `height`, której lewy górny róg jest `left` px od środka widoku (albo od prawej
+/// krawędzi przy anchor_x = "RIGHT") i `top` px pod jego górną krawędzią. Współrzędne liczbowe od lewego dolnego rogu
+/// (kafelek 1,1), bo słowa TOP/CENTER z przesunięciem przy dużych ikonach rozjeżdżały się (sprawdzone na kliencie 516).
+/proc/aq_lobby_screen_loc(left, top, height, anchor_x, list/view_size)
+	var/view_width = view_size[1] * 32
+	var/view_height = view_size[2] * 32
+	var/x = anchor_x == "RIGHT" ? view_width + left : round(view_width / 2) + left
+	var/y = view_height - top - height
+	var/x_tile = floor(x / 32)
+	var/y_tile = floor(y / 32)
+	return "[x_tile + 1]:[x - x_tile * 32],[y_tile + 1]:[y - y_tile * 32]"
 
 /mob/dead/new_player
 	/// Menu lobby w stylu tg (obiekty ekranowe)
@@ -76,12 +77,11 @@
 	add_element(/atom/movable/screen/aq_lobby/button/small/settings, lobby_icon, 29, 122, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/small/changelog, lobby_icon, 57, 122, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/start_now, lobby_icon, -54, 146, TRUE)
-	// roleta stoi w pozycji „zasłoniętej” i jest odsunięta w górę przez pixel_y: obiekt ekranu poza widokiem poszerzyłby mapę
+	// roleta stoi w pozycji „zasłoniętej” i jest zwinięta skalowaniem w pionie: obiekt ekranu (także z pixel_y) poza widokiem poszerzyłby mapę
 	shutter = add_element(/atom/movable/screen/aq_lobby/shutter, lobby_icon, -73, 0, FALSE)
 	collapse_button = add_element(/atom/movable/screen/aq_lobby/button/collapse, lobby_icon, -54, 82, FALSE)
-	// płótno (176 px) całe w widoku, a obrazek telewizorka (128 px) dosunięty do prawej krawędzi przez pixel_x
-	tv = add_element(/atom/movable/screen/aq_lobby/tv, lobby_icon, -176, 32, FALSE, "RIGHT")
-	tv.pixel_x = 48
+	// telewizorek przy prawej krawędzi widoku; ma własny plik 128x96, żeby płótno nie wystawało poza widok
+	tv = add_element(/atom/movable/screen/aq_lobby/tv, 'aquila/icons/hud/lobby_tv.dmi', -132, 32, FALSE, "RIGHT", 96)
 	client_ref.screen += elements
 	START_PROCESSING(SSprocessing, src)
 
@@ -98,10 +98,11 @@
 	client_ref = null
 	return ..()
 
-/datum/aq_lobby_hud/proc/add_element(path, lobby_icon, left, top, can_collapse, anchor_x = "CENTER")
+/datum/aq_lobby_hud/proc/add_element(path, lobby_icon, left, top, can_collapse, anchor_x = "CENTER", height = LOBBY_CANVAS_HEIGHT)
 	var/atom/movable/screen/aq_lobby/element = new path(null, src)
 	element.icon = lobby_icon
-	element.screen_loc = aq_lobby_screen_loc(left, top, anchor_x)
+	var/list/view_size = getviewsize(client_ref.view)
+	element.screen_loc = aq_lobby_screen_loc(left, top, height, anchor_x, view_size)
 	elements += element
 	if(can_collapse)
 		collapsible += element
@@ -137,7 +138,7 @@
 	animating = TRUE
 	// roleta zjeżdża, menu się chowa (albo wraca), roleta odjeżdża
 	shutter.alpha = 255
-	animate(shutter, pixel_y = 0, time = 4, easing = CUBIC_EASING | EASE_OUT)
+	animate(shutter, transform = matrix(), time = 4, easing = CUBIC_EASING | EASE_OUT)
 	addtimer(CALLBACK(src, PROC_REF(finish_collapse)), 6)
 	SEND_SOUND(client_ref, sound('aquila/sound/misc/menu_rolldown.ogg', volume = 40))
 
@@ -149,7 +150,7 @@
 		element.invisibility = collapsed ? INVISIBILITY_ABSTRACT : 0
 	animate(collapse_button, pixel_y = collapsed ? LOBBY_COLLAPSE_SLIDE : 0, time = 4)
 	collapse_button.update_state()
-	animate(shutter, pixel_y = LOBBY_SHUTTER_TRAVEL, time = 4, easing = CUBIC_EASING | EASE_IN)
+	animate(shutter, transform = SHUTTER_ROLLED_UP, time = 4, easing = CUBIC_EASING | EASE_IN)
 	animate(alpha = 0, time = 0)
 	SEND_SOUND(client_ref, sound('aquila/sound/misc/menu_rollup.ogg', volume = 40))
 	addtimer(VARSET_CALLBACK(src, animating, FALSE), 4)
@@ -238,10 +239,13 @@
 /atom/movable/screen/aq_lobby/shutter
 	name = "Roleta"
 	icon_state = "shutter"
-	pixel_y = LOBBY_SHUTTER_TRAVEL
 	alpha = 0
 	layer = SPLASHSCREEN_LAYER + 5
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/movable/screen/aq_lobby/shutter/Initialize(mapload, datum/aq_lobby_hud/new_lobby)
+	. = ..()
+	transform = SHUTTER_ROLLED_UP
 
 /atom/movable/screen/aq_lobby/button
 	layer = SPLASHSCREEN_LAYER + 3
@@ -421,23 +425,29 @@
 
 /atom/movable/screen/aq_lobby/tv
 	name = "Stan serwera"
+	icon = 'aquila/icons/hud/lobby_tv.dmi'
 	icon_state = "newplayer"
 	layer = SPLASHSCREEN_LAYER + 3
 	maptext_x = 14
-	maptext_y = LOBBY_CANVAS_HEIGHT - 28 - 50
+	maptext_y = 96 - 28 - 50
 	maptext_width = 80
 	maptext_height = 50
 
 /atom/movable/screen/aq_lobby/tv/Initialize(mapload, datum/aq_lobby_hud/new_lobby)
 	. = ..()
 	add_overlay(mutable_appearance(icon, "newplayer_overlay"))
-	add_overlay(mutable_appearance(icon, "scanline"))
+	// linie skanowania jak w tg: 5 px od lewej, 29 px od góry, prawie przezroczyste
+	var/mutable_appearance/scanlines = mutable_appearance(icon, "scanline")
+	scanlines.pixel_x = 5
+	scanlines.pixel_y = -29
+	scanlines.alpha = 20
+	add_overlay(scanlines)
 
 /atom/movable/screen/aq_lobby/tv/update_state()
 	if(!lobby)
 		return
-	maptext = MAPTEXT("<span style='color:#8CF0B4;text-align:center;font-size:6px'>[jointext(lobby.tv_lines(), "<br>")]</span>")
+	maptext = MAPTEXT("<span style='color:#FFFFFF;text-align:center;font-size:6px'>[jointext(lobby.tv_lines(), "<br>")]</span>")
 
 #undef LOBBY_CANVAS_HEIGHT
-#undef LOBBY_SHUTTER_TRAVEL
 #undef LOBBY_COLLAPSE_SLIDE
+#undef SHUTTER_ROLLED_UP
