@@ -211,7 +211,7 @@ SUBSYSTEM_DEF(voice_chat)
 	if(session.recording_seq)
 		cancel_recording(player, session)
 	if(player)
-		to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w zakładce OOC, żeby otworzyć stronę ponownie."))
+		to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w menu pod Esc (albo w zakładce OOC), żeby otworzyć stronę ponownie."))
 
 /datum/controller/subsystem/voice_chat/proc/handle_result(list/result)
 	var/datum/voice_chat_session/session = session_by_token(result["token"])
@@ -446,6 +446,25 @@ SUBSYSTEM_DEF(voice_chat)
 	offer_default_keybind("voice_say", "N")
 	offer_default_keybind("voice_radio", "U")
 	offer_default_keybind("voice_department", "J")
+
+// Menu pod Esc: przycisk „Czat głosowy”, gdy serwer ma go włączony (wzór: przełącznik języka w i18n/language_choice.dm)
+/datum/escape_menu/New(client/client)
+	. = ..()
+	send_voice_chat_state()
+
+/datum/escape_menu/proc/send_voice_chat_state()
+	if(!client || !window)
+		return
+	var/datum/voice_chat_session/session = SSvoice_chat.sessions[client.ckey]
+	send_update(list("voiceChat" = !!SSvoice_chat.enabled, "voiceChatConnected" = !!session?.connected))
+
+/datum/escape_menu/on_message(type, payload, href_list)
+	if(type == "action" && islist(payload) && client && payload["action"] == "voice_chat")
+		SSvoice_chat.open_page(client)
+		return TRUE
+	. = ..()
+	if(type == "ready")
+		send_voice_chat_state()
 
 #undef VOICE_CHANNEL_SAY
 #undef VOICE_CHANNEL_RADIO

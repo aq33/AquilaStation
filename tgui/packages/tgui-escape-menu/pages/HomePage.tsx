@@ -76,6 +76,21 @@ export function HomePage({
               <span className="i18n-skip">{languageSwitchLabel}</span>
             </MenuButton>
           )}
+          {!!serverState.voiceChat && (
+            <MenuButton
+              onClick={() => {
+                onAction('voice_chat');
+                onClose();
+              }}
+              tooltip={
+                serverState.voiceChatConnected
+                  ? 'Połączony. Kliknij, żeby otworzyć stronę od nowa.'
+                  : 'Otwiera stronę z mikrofonem w przeglądarce.'
+              }
+            >
+              Czat głosowy
+            </MenuButton>
+          )}
           <MenuButton onClick={() => onNavigate('players')}>Gracze</MenuButton>
           <MenuButton
             onClick={() => {
