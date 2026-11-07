@@ -1080,9 +1080,7 @@ Control Rods
 				reactor_stability -= rand(5, 10)
 		if(12000000 to INFINITY) //12MW+
 			if(prob(1))
-				for(var/obj/machinery/light/L in GLOB.machines)
-					if(prob(50) && shares_overmap(src, L))
-						L.flicker()
+				aq_flicker_ship_lights(src, 50) // AQ EDIT - tgstation/tgstation#92503: pętla po GLOB.machines poza process(), z CHECK_TICK
 			if(prob(5))
 				var/list/light_candidates = list()
 				for(var/obj/machinery/light/L in orange(12, src))

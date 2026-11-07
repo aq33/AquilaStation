@@ -651,19 +651,23 @@
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	set waitfor = 0
-	if(flickering)
+	// AQ EDIT START - tgstation/tgstation#92503: zgaszona lampa nie wchodzi w pętlę, stoplag zamiast sleep, bez zasilania przerywa
+	if(flickering || !on || status != LIGHT_OK)
 		return
 	flickering = 1
-	if(on && status == LIGHT_OK)
-		for(var/i = 0; i < amount; i++)
-			if(status != LIGHT_OK)
-				break
-			on = !on
-			update(0)
-			sleep(rand(5, 15))
-		on = (status == LIGHT_OK)
+	for(var/i in 1 to amount)
+		if(status != LIGHT_OK || !has_power())
+			break
+		on = !on
 		update(0)
+		stoplag(rand(5, 15))
+	if(has_power())
+		on = (status == LIGHT_OK)
+	else
+		on = FALSE
+	update(0)
 	flickering = 0
+	// AQ EDIT END
 
 // ai attack - make lights flicker, because why not
 

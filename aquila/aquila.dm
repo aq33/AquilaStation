@@ -911,6 +911,7 @@
 #include "code\modules\power\smartwires.dm"
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\stationarybike.dm"
+#include "code\modules\power\light_flicker_mass.dm"
 #include "code\modules\projectiles\ammunition\caseless\foam.dm"
 #include "code\modules\projectiles\boxes_magazines\_box_magazine.dm"
 #include "code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
