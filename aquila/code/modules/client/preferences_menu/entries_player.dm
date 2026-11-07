@@ -508,6 +508,12 @@
 	toggle_var = "chat_toggles"
 	toggle_bit = CHAT_INVERTED_ROTATION
 
+// tgstation/tgstation#89865: cecha Zaburzenia Dysocjacyjne bez limitu halucynacji (w tg preferencja postaci)
+/datum/preference/toggle/player/rds_unlimited
+	db_key = "rds_unlimited"
+	toggle_var = "chat_toggles"
+	toggle_bit = CHAT_RDS_UNLIMITED
+
 /datum/preference/toggle/player/screentips
 	db_key = "screentips"
 	toggle_var = "toggles2"

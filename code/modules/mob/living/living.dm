@@ -686,7 +686,7 @@
 	cure_nearsighted()
 	cure_blind()
 	cure_husk()
-	hallucination = 0
+	remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
 	ExtinguishMob()
 	fire_stacks = 0

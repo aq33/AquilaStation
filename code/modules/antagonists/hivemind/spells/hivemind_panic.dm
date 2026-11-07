@@ -48,7 +48,7 @@
 				to_chat(target, "<span class='userdanger'>Robi ci się niedobrze, gdy zalewa cię groza!</span>")
 				target.Dizzy(15)
 				target.apply_damage(30, STAMINA, target.get_bodypart(BODY_ZONE_HEAD))
-				target.hallucination += 45
+				target.adjust_hallucinations(90 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	for(var/mob/living/silicon/target in targets)
 		target.Unconscious(50)

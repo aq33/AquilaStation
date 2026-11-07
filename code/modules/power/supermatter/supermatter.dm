@@ -429,8 +429,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	for(var/mob/living/carbon/human/l in viewers(HALLUCINATION_RANGE(power), src)) // If they can see it without mesons on.  Bad on them.
 		if(!HAS_TRAIT(l.mind, TRAIT_MADNESS_IMMUNE) && !HAS_TRAIT(l, TRAIT_MADNESS_IMMUNE))
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
-			l.hallucination += power * config_hallucination_power * D
-			l.hallucination = CLAMP(0, 200, l.hallucination)
+			l.adjust_hallucinations_up_to((power * config_hallucination_power * D) * 2 SECONDS, 400 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	//Transitions between one function and another, one we use for the fast inital startup, the other is used to prevent errors with fusion temperatures.
 	//Use of the second function improves the power gain imparted by using co2

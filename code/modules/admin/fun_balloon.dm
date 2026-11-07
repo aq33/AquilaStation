@@ -125,7 +125,7 @@
 		qdel(L.pulling)
 		var/turf/LA = get_turf(pick(warp_points))
 		L.forceMove(LA)
-		L.hallucination = 0
+		L.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		to_chat(L, "<span class='reallybig redtext'>Bitwa wygrana. Twoja żądza krwi słabnie.</span>")
 		for(var/obj/item/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)

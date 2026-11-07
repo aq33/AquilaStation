@@ -716,7 +716,13 @@
 		var/status = ""
 		var/brutedamage = LB.brute_dam
 		var/burndamage = LB.burn_dam
-		if(hallucination)
+		// AQ EDIT START - fałszywe rany z halucynacji (Bee#13095)
+		var/list/limb_damage = list(BRUTE = brutedamage, BURN = burndamage)
+		SEND_SIGNAL(LB, COMSIG_BODYPART_CHECKED_FOR_INJURY, src, list(), limb_damage)
+		brutedamage = limb_damage[BRUTE]
+		burndamage = limb_damage[BURN]
+		// AQ EDIT END
+		if(hallucinating()) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			if(prob(30))
 				brutedamage += rand(30,40)
 			if(prob(30))

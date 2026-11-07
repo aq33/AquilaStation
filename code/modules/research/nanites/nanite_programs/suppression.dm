@@ -218,37 +218,40 @@
 	var/mob/living/carbon/C = host_mob
 	if(hal_details == "random")
 		hal_details = null
+	// AQ EDIT START - halucynacje jako efekt statusu (Bee#13095); podtyp losowy z kategorii
 	if(hal_type == "Losowa")
-		C.hallucination += 15
+		C.adjust_hallucinations(30 SECONDS)
 	else
 		switch(hal_type)
 			if("Wiadomość")
-				new /datum/hallucination/chat(C, TRUE, null, sent_message)
+				C.cause_hallucination(/datum/hallucination/chat, "nanites", specific_message = sent_message)
 			if("Walka")
-				new /datum/hallucination/battle(C, TRUE, hal_details)
+				C.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/battle), "nanites")
 			if("Dźwięk")
-				new /datum/hallucination/sounds(C, TRUE, hal_details)
+				C.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/fake_sound/normal), "nanites")
 			if("Dziwny dźwięk")
-				new /datum/hallucination/weird_sounds(C, TRUE, hal_details)
+				C.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/fake_sound/weird), "nanites")
 			if("Ogłoszenie")
-				new /datum/hallucination/stationmessage(C, TRUE, hal_details)
+				C.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/station_message), "nanites")
 			if("Zdrowie")
 				switch(hal_details)
 					if("critical")
-						hal_details = SCREWYHUD_CRIT
+						C.cause_hallucination(/datum/hallucination/screwy_hud/crit, "nanites")
 					if("dead")
-						hal_details = SCREWYHUD_DEAD
+						C.cause_hallucination(/datum/hallucination/screwy_hud/dead, "nanites")
 					if("healthy")
-						hal_details = SCREWYHUD_HEALTHY
-				new /datum/hallucination/hudscrew(C, TRUE, hal_details)
+						C.cause_hallucination(/datum/hallucination/screwy_hud/healthy, "nanites")
+					else
+						C.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/screwy_hud), "nanites")
 			if("Alert")
-				new /datum/hallucination/fake_alert(C, TRUE, hal_details)
+				C.cause_hallucination(/datum/hallucination/fake_alert, "nanites")
 			if("Ogień")
-				new /datum/hallucination/fire(C, TRUE)
+				C.cause_hallucination(/datum/hallucination/fire, "nanites")
 			if("Porażenie")
-				new /datum/hallucination/shock(C, TRUE)
+				C.cause_hallucination(/datum/hallucination/shock, "nanites")
 			if("Zalanie plazmą")
-				new /datum/hallucination/fake_flood(C, TRUE)
+				C.cause_hallucination(/datum/hallucination/fake_flood, "nanites")
+	// AQ EDIT END
 
 /datum/nanite_program/comm/hallucination/set_extra_setting(setting, value)
 	. = ..()

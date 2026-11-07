@@ -23,7 +23,7 @@
 		var/text_output = from.generate_taste_message(taste_sensitivity)
 		// We dont want to spam the same message over and over again at the
 		// person. Give it a bit of a buffer.
-		if(hallucination > 50 && prob(25))
+		if(get_hallucination_duration() > 100 SECONDS && prob(25)) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			text_output = pick("pająki","sny","koszmary","przyszłość","przeszłość","zwycięstwo",\
 			"porażka","ból","błogość","zemsta","trucizna","czas","kosmos","śmierć","życie","prawda","kłamstwa","sprawiedliwość","pamięć",\
 			"żal","twoja dusza","cierpienie","muzyka","hałas","krew","głód","amerykański styl życia")

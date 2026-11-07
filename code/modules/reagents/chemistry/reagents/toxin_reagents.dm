@@ -245,7 +245,7 @@
 	taste_description = "kwaśność"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/carbon/M)
-	M.hallucination += 5
+	M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	return ..()
 
 /datum/reagent/toxin/plantbgone

@@ -31,8 +31,8 @@
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 
 /datum/reagent/drug/space_drugs/overdose_process(mob/living/M)
-	if(M.hallucination < volume && prob(20))
-		M.hallucination += 5
+	if(M.get_hallucination_duration() < volume * 2 SECONDS && prob(20)) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
+		M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	..()
 
 /datum/reagent/drug/nicotine
@@ -317,7 +317,7 @@
 		to_chat(M, "<span class='notice'>[high_message]</span>")
 	M.adjustStaminaLoss(-5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4)
-	M.hallucination += 5
+	M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		step(M, pick(GLOB.cardinals))
 		step(M, pick(GLOB.cardinals))
@@ -325,7 +325,7 @@
 	. = 1
 
 /datum/reagent/drug/bath_salts/overdose_process(mob/living/M)
-	M.hallucination += 5
+	M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		for(var/i in 1 to 8)
 			step(M, pick(GLOB.cardinals))
@@ -336,7 +336,7 @@
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage1(mob/living/M)
-	M.hallucination += 10
+	M.adjust_hallucinations(20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
@@ -347,7 +347,7 @@
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage2(mob/living/M)
-	M.hallucination += 20
+	M.adjust_hallucinations(40 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
@@ -359,7 +359,7 @@
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage3(mob/living/M)
-	M.hallucination += 30
+	M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		for(var/i = 0, i < 12, i++)
 			step(M, pick(GLOB.cardinals))
@@ -371,7 +371,7 @@
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage4(mob/living/carbon/human/M)
-	M.hallucination += 30
+	M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
 		for(var/i = 0, i < 16, i++)
 			step(M, pick(GLOB.cardinals))
@@ -522,7 +522,7 @@
 	M.jitteriness -= 5
 	M.disgust -= 3
 	//Ketamine is also a dissociative anasthetic which means Hallucinations!
-	M.hallucination += 5
+	M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	..()
 
 /datum/reagent/drug/ketamine/overdose_process(mob/living/M)
@@ -531,7 +531,7 @@
 	if(!gained_trauma)
 		B.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_SURGERY)
 		gained_trauma = TRUE
-	M.hallucination += 10
+	M.adjust_hallucinations(20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	//Uh Oh Someone is tired
 	if(prob(40))
 		if(HAS_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN))

@@ -436,8 +436,7 @@
 
 		// Everyone else
 		var/dist = sqrt(1 / max(1, get_dist(near, location)))
-		near.hallucination += strength * dist
-		near.hallucination = clamp(near.hallucination, 0, 150)
+		near.adjust_hallucinations_up_to(strength * dist * 2 SECONDS, 300 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		var/list/messages = list(
 			"Czujesz, jak twój świadomy umysł się rozpada!",
 			"Rzeczywistość wokół ciebie się wypacza!",

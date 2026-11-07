@@ -12,11 +12,11 @@
 	lose_text = "<span class='notice'>Czujesz się bardziej ugruntowany.</span>"
 
 /datum/brain_trauma/mild/hallucinations/on_life()
-	owner.hallucination = min(owner.hallucination + 10, 50)
+	owner.adjust_hallucinations_up_to(10 SECONDS, 60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu, wartości z tgstation/tgstation#89865
 	..()
 
 /datum/brain_trauma/mild/hallucinations/on_lose()
-	owner.hallucination = 0
+	owner.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	..()
 
 /datum/brain_trauma/mild/stuttering

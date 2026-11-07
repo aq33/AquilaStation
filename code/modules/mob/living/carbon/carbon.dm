@@ -207,10 +207,7 @@
 	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
 
 /mob/living/carbon/hallucinating()
-	if(hallucination)
-		return TRUE
-	else
-		return FALSE
+	return !!has_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 /mob/living/carbon/resist_buckle()
 	if(restrained())

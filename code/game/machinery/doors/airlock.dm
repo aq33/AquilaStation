@@ -434,7 +434,7 @@
 		else if(user.hallucinating() && iscarbon(user) && prob(1) && !operating)
 			var/mob/living/carbon/C = user
 			if(!C.wearing_shock_proof_gloves())
-				new /datum/hallucination/shock(C)
+				C.cause_hallucination(/datum/hallucination/shock, "hallucinated shock from [src]") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 				return
 	if(SEND_SIGNAL(src, COMSIG_AIRLOCK_TOUCHED, user) & COMPONENT_PREVENT_OPEN)
 		return

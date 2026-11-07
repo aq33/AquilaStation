@@ -963,6 +963,6 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 					realpower = power + 10
 					if(M.stat)
 						M.emote("scream")
-					M.hallucination = min(40, M.hallucination + (5 * power))
+					M.adjust_hallucinations_up_to((5 * power) * 2 SECONDS, 80 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "hyperactivity", /datum/mood_event/paranoid)
 				M.AdjustAllImmobility((realpower * -10),TRUE)

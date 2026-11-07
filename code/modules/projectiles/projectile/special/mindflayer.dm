@@ -6,4 +6,4 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20)
-		M.hallucination += 30
+		M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)

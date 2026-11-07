@@ -85,7 +85,7 @@
 	var/mob/living/carbon/C = loc
 	if(istype(C) && DT_PROB(1, delta_time)) //cursed by bubblegum
 		if(DT_PROB(7.5, delta_time))
-			new /datum/hallucination/oh_yeah(C)
+			C.cause_hallucination(/datum/hallucination/oh_yeah, "explorer gear") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			to_chat(C, "<span class='colossus'><b>[pick("JESTEM NIEŚMIERTELNY.","ODBIORĘ TO, CO MOJE.","WIDZĘ CIĘ.","NIE UCIEKNIESZ MI NA ZAWSZE.","ŚMIERĆ MNIE NIE ZATRZYMA.")]</b></span>")
 		else
 			to_chat(C, "<span class='warning'>[pick("Słyszysz ciche szepty.","Czujesz zapach popiołu.","Robi ci się gorąco.","Słyszysz ryk w oddali.")]</span>")

@@ -78,6 +78,7 @@
 #define CHAT_LEGACY_INTENTS (1<<14) // AQ EDIT - port BeeStation #11899; stary tryb intencji zamiast combat mode, flaga włączająca, więc domyślnie combat mode
 #define CHAT_DISABLE_COMBATMODE_SOUND (1<<15) // AQ EDIT - port BeeStation #11899; flaga wyłączająca dźwięk przełączania combat mode
 #define CHAT_INVERTED_ROTATION (1<<16) // AQ EDIT - port BeeStation #14313; odwraca kierunek obracania Alt+klikiem
+#define CHAT_RDS_UNLIMITED (1<<17) // AQ EDIT - tgstation/tgstation#89865; Zaburzenia Dysocjacyjne bez limitu halucynacji
 
 //nsv13 for below: add chat_looc
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_LOOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_GHOSTLAWS)

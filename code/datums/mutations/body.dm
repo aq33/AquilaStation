@@ -77,7 +77,7 @@
 	if(prob(5) && owner.stat == CONSCIOUS)
 		owner.emote("scream")
 		if(prob(25))
-			owner.hallucination += 20
+			owner.adjust_hallucinations(40 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/dwarfism

@@ -66,5 +66,5 @@
 	health_required = 10
 
 /datum/reagent/toxin/hunterspider/viper/on_mob_life(mob/living/carbon/M)
-	M.hallucination += 5
+	M.adjust_hallucinations(10 SECONDS)
 	return ..()
