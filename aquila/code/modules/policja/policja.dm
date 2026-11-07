@@ -122,6 +122,22 @@ GLOBAL_LIST_INIT(zandarmeria_closet_states, list("sec", "warden", "hos", "armory
 
 #undef ZANDARMERIA_DECAL_COLOR
 
+/****************************\
+|***** hełmy plazmoludzi *****|
+\****************************/
+// Kolory greyscale (podstawa, pas, środkowy pasek) w zieleni Żandarmerii z bordowym akcentem, jak kombinezony środowiskowe
+/obj/item/clothing/head/helmet/space/plasmaman/security
+	greyscale_colors = "#2B4432#2D2D2D#460109"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/warden
+	greyscale_colors = "#2B4432#C0C0C0#460109"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/hos
+	greyscale_colors = "#2B4432#C7B83C#213325"
+
+/obj/item/clothing/head/helmet/space/plasmaman/security/secmed
+	greyscale_colors = "#A5A9B6#2B4432#A5A9B6"
+
 /turf/open/floor/carpet/police
 	name = "dywan żandarmski"
 	icon = 'aquila/icons/policja/carpet_police.dmi'
@@ -188,9 +204,11 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER
 
 /obj/item/clothing/under/rank/security/officer/white
 	name = "służbowy mundur żandarmski"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/formal
 	name = "galowy mundur żandarma"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
 	name = "mundur Aspiranta"
@@ -200,15 +218,25 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	name = "golf Komendanta"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
 	name = "galowy mundur Komendanta"
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/warden
 	name = "mundur Naczelnika"
 
 /obj/item/clothing/under/rank/security/warden/white
 	name = "służbowy mundur Naczelnika"
+	can_adjust = FALSE
+
+// Arkusz rysuje wersje zwinięte tylko dla zwykłych mundurów Żandarma, Naczelnika i Komendanta (_alt), służbowe i galowe ich nie mają
+/obj/item/clothing/under/rank/security/head_of_security/white
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/security/warden/formal
+	can_adjust = FALSE
 
 /obj/item/clothing/suit/security/officer
 	name = "kurtka żandarma"
@@ -236,6 +264,13 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER
 
 /obj/item/clothing/head/beret/sec/navyhos
 	name = "galowy beret Komendanta"
+
+/obj/item/clothing/head/beret/sec/navywarden
+	name = "galowy beret Naczelnika"
+
+// Bez własnej nazwy dziedziczył „beret żandarmski” i w SecDrobe były dwa przedmioty o tej samej nazwie
+/obj/item/clothing/head/beret/sec/navyofficer
+	name = "galowy beret Żandarma"
 
 /obj/item/clothing/head/beret/sec
 	name = "beret żandarmski"

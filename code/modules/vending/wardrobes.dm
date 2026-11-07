@@ -38,12 +38,18 @@
 					//obj/item/clothing/under/rank/security/officer/blueshirt = 3, //AQUILA EDIT - tylko mundury Żandarmerii
 					//obj/item/clothing/under/rank/security/officer/mallcop = 3, //AQUILA EDIT - tylko mundury Żandarmerii
 					//obj/item/clothing/neck/tie/red = 6, //AQUILA EDIT - tylko mundury Żandarmerii
-					/obj/item/clothing/neck/tie/black = 6,)
+					/obj/item/clothing/neck/tie/black = 6,
+					/obj/item/clothing/suit/security/officer = 3, //AQUILA EDIT - przeniesione z premium
+					/obj/item/clothing/head/beret/sec/officercap = 3,) //AQUILA EDIT - przeniesione z premium
 	//contraband = list(/obj/item/clothing/suit/hooded/wintercoat/security/old = 3) //AQUILA EDIT - tylko mundury Żandarmerii
+	// AQUILA EDIT START - premium: galowe mundury Żandarma, Naczelnika i Komendanta z pasującymi beretami
 	premium = list(/obj/item/clothing/under/rank/security/officer/formal = 3,
-					/obj/item/clothing/suit/security/officer = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3,
-					/obj/item/clothing/head/beret/sec/officercap = 3) //AQUILA EDIT
+					/obj/item/clothing/under/rank/security/warden/formal = 3,
+					/obj/item/clothing/head/beret/sec/navywarden = 3,
+					/obj/item/clothing/under/rank/security/head_of_security/formal = 3,
+					/obj/item/clothing/head/beret/sec/navyhos = 3)
+	// AQUILA EDIT END
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
 

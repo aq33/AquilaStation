@@ -6,28 +6,30 @@
 /****************************\
 |********** dekale ***********|
 \****************************/
-// Żółte dekale w obszarach inżynierii na mapach są podmienione na te podtypy (te same kształty, czerwony kolor).
+// Żółte dekale w obszarach inżynierii na mapach są podmienione na te podtypy (te same kształty).
+// Narożniki i linie są czerwone, połówki, boki i pełne pola białe, żeby podłoga była czerwono-biała.
 #define ORLEN_DECAL_COLOR "#D8232A"
+#define ORLEN_DECAL_WHITE "#E6E6E6"
 
 /obj/effect/turf_decal/tile/yellow/orlen
 	name = "narożnik Orlenu"
 	color = ORLEN_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen
-	name = "bok Orlenu"
-	color = ORLEN_DECAL_COLOR
+	name = "biały bok Orlenu"
+	color = ORLEN_DECAL_WHITE
 
 /obj/effect/turf_decal/tile/ship/yellow/orlen
 	name = "narożnik Orlenu"
 	color = ORLEN_DECAL_COLOR
 
 /obj/effect/turf_decal/tile/ship/half/yellow/orlen
-	name = "połówka Orlenu"
-	color = ORLEN_DECAL_COLOR
+	name = "biała połówka Orlenu"
+	color = ORLEN_DECAL_WHITE
 
 /obj/effect/turf_decal/tile/ship/full/yellow/orlen
-	name = "pole Orlenu"
-	color = ORLEN_DECAL_COLOR
+	name = "białe pole Orlenu"
+	color = ORLEN_DECAL_WHITE
 
 /obj/effect/turf_decal/trimline/yellow/line/orlen
 	color = ORLEN_DECAL_COLOR
@@ -35,9 +37,23 @@
 // Niebieskie pasy w atmosferyce: biel do czerwieni, żeby strefa była czerwono-biała
 /obj/effect/turf_decal/tile/ship/blue/orlen
 	name = "biały narożnik Orlenu"
-	color = "#E6E6E6"
+	color = ORLEN_DECAL_WHITE
 
 #undef ORLEN_DECAL_COLOR
+#undef ORLEN_DECAL_WHITE
+
+/****************************\
+|***** hełmy plazmoludzi *****|
+\****************************/
+// Kolory greyscale (podstawa, pas, środkowy pasek) dobrane do kombinezonów środowiskowych z arkusza
+/obj/item/clothing/head/helmet/space/plasmaman/engineering
+	greyscale_colors = "#CBCDD1#B3252A#CBCDD1"
+
+/obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics
+	greyscale_colors = "#B3252A#CBCDD1#B3252A"
+
+/obj/item/clothing/head/helmet/space/plasmaman/engineering/ce
+	greyscale_colors = "#EEEEEE#B3252A#17171F"
 
 /****************************\
 |******* czapki z daszkiem ***|
@@ -101,10 +117,10 @@
 /obj/item/clothing/head/hardhat/dblue
 	name = "kask"
 
-// Arkusz daje technikowi atmosferyki czerwony kask zamiast hełmu strażackiego; statystyki ognioodporności zostają
+// Hełm strażacki atmosferyki ma tę samą grafikę z maską gazową co hełm strażaka z arkusza (pasuje do kombinezonu przeciwpożarowego)
 /obj/item/clothing/head/hardhat/atmos
-	name = "ognioodporny kask atmosferyki Orlenu"
-	desc = "Czerwony kask technika atmosferyki z osłoną karku. Pozwala zachować chłodną głowę nawet przy pożarze."
+	name = "hełm strażacki atmosferyki Orlenu"
+	desc = "Hełm strażacki technika atmosferyki z maską gazową. Pozwala zachować chłodną głowę nawet przy pożarze."
 
 /obj/item/clothing/head/hardhat/white
 	name = "biały kask Orlenu"

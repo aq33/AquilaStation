@@ -9,7 +9,13 @@
 	5) Śluza inżynierii → oczekiwane: biała z czerwonym, także przy otwieraniu i jako szklana, śluza atmosferyki czerwona; rama śluzy w budowie w tych samych barwach. Dekale Orlenu na podłodze → oczekiwane: czerwone. \
 	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
 	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
-	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat z zestawu: obróć go (VV dir) → oczekiwane: ciemna strzałka po stronie wyrzutu w każdym kierunku. Zwykły wylot zsypu z zestawu poczty aq33/AquilaStation#447 → oczekiwane: zostaje zwykłym wylotem (paczkomaty są tylko na wylotach poczty w działach na mapach)."
+	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat z zestawu: obróć go (VV dir) → oczekiwane: ciemna strzałka po stronie wyrzutu w każdym kierunku. Zwykły wylot zsypu z zestawu poczty aq33/AquilaStation#447 → oczekiwane: zostaje zwykłym wylotem (paczkomaty są tylko na wylotach poczty w działach na mapach). \
+	11) Dekale Orlenu → oczekiwane: narożniki czerwone, połówki białe. \
+	12) Kurtki zimowe Żandarmerii i InPostu: Alt+klik na kurtce → oczekiwane: rozpina się i zapina; załóż i zdejmij kaptur → kurtka zostaje zapięta albo rozpięta jak była, a opuszczony kaptur widać na plecach. \
+	13) Bandana żandarmska na głowie → oczekiwane: włosy widać. Zwiń (PPM) mundury Żandarma, Naczelnika i Komendanta → wersje zwinięte z arkusza; galowe, służbowe i golf Komendanta nie dają się zwinąć, a golf kwatermistrza tak. \
+	14) SecDrobe, zakładka premium → oczekiwane: galowe mundury Żandarma, Naczelnika i Komendanta oraz trzy galowe berety, każdy z inną nazwą; kurtka żandarma i czapka oficerska są w zwykłej ofercie. \
+	15) Hełmy plazmoludzi ochrony, inżynierii i zaopatrzenia → oczekiwane: kolory jak kombinezony środowiskowe (zieleń z bordo, biel z czerwienią, szary z żółcią). \
+	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -57,6 +63,19 @@
 		/obj/item/clothing/suit/hooded/wintercoat/cargo = 1,
 		/obj/item/storage/backpack/inpost = 1,
 		/obj/structure/disposaloutlet/paczkomat = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/security = 1,
+		/obj/item/clothing/head/beret/sec/bandana = 1,
+		/obj/item/clothing/under/rank/security/officer = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/alt = 1,
+		/obj/item/clothing/under/rank/cargo/quartermaster/turtleneck = 1,
+		/obj/item/clothing/head/helmet/space/plasmaman/security = 1,
+		/obj/item/clothing/head/helmet/space/plasmaman/engineering = 1,
+		/obj/item/clothing/head/helmet/space/plasmaman/cargo = 1,
+		/obj/item/clothing/suit/fire/atmos = 1,
+		/obj/item/clothing/head/hardhat/atmos = 1,
+		/obj/machinery/vending/security = 1,
+		/obj/machinery/vending/tool = 1,
+		/obj/machinery/vending/engivend = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/screwdriver = 1,
 	)

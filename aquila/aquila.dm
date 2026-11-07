@@ -611,6 +611,7 @@
 #include "code\modules\clothing\spacesuits\hardsuit.dm"
 #include "code\modules\clothing\suits\jobs.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
+#include "code\modules\clothing\suits\wintercoat_zip.dm"
 #include "code\modules\clothing\under\costume.dm"
 #include "code\modules\clothing\under\jobs\rnd.dm"
 #include "code\modules\clothing\under\syndicate.dm"

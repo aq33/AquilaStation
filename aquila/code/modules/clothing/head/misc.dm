@@ -168,6 +168,9 @@
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	worn_icon = 'aquila/icons/mob/head.dmi'
 	icon_state = "secbandana"
+	// Bandana nie przycina fryzury jak beret, z którego dziedziczy (+generic chował włosy)
+	dynamic_hair_suffix = ""
+	dynamic_fhair_suffix = ""
 
 /obj/item/clothing/head/beret/sec/officercap
 	name = "czapka żandarma"

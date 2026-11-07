@@ -39,6 +39,13 @@
 #undef INPOST_DECAL_COLOR
 
 /****************************\
+|***** hełm plazmoludzi ******|
+\****************************/
+// Żółty pas InPostu na szarym hełmie, jak na kombinezonie środowiskowym
+/obj/item/clothing/head/helmet/space/plasmaman/cargo
+	greyscale_colors = "#ADADAD#FFCD00#ADADAD"
+
+/****************************\
 |******* nowe przedmioty *****|
 \****************************/
 /obj/item/clothing/head/beret/supply/qm
@@ -104,6 +111,7 @@
 
 /obj/item/clothing/under/rank/cargo/quartermaster/turtleneck
 	name = "golf kwatermistrza InPostu"
+	can_adjust = TRUE // arkusz InPostu ma wersję zwiniętą golfu (qmturtle_d)
 
 /obj/item/clothing/under/rank/cargo/miner
 	name = "kombinezon górnika InPostu"
