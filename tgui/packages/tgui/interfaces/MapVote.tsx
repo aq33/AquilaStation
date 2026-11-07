@@ -27,6 +27,11 @@ type Data = {
   pace_can_vote?: boolean;
   pace_choice?: number | null;
   pace_counts?: Record<string, number>;
+  ship_open?: boolean;
+  ship_can_vote?: boolean;
+  ship_choice?: number | null;
+  ship_counts?: Record<string, number>;
+  ship_rounds?: number;
 };
 
 export const MapVote = (props) => {
@@ -66,6 +71,7 @@ export const MapVote = (props) => {
       <Window.Content overflowY="scroll">
         <TimePanel />
         <PacePanel />
+        <ShipPanel />
         <Flex>
           <Flex.Item mt={1} mr={1} mb={1}>
             <Section fill fitted>
@@ -140,6 +146,62 @@ const PacePanel = (props) => {
         ))}
       </Flex>
       {!pace_can_vote && (
+        <Box mt={1} color="label">
+          Głosować mogą tylko gracze, którzy grali postacią w tej rundzie.
+        </Box>
+      )}
+    </Section>
+  );
+};
+
+// AQUILA - "Statek w następnej rundzie" vote of the persistent ship structure (aquila/code/modules/persistence/ship_structure_vote.dm)
+const SHIP_OPTIONS = [
+  {
+    value: 1,
+    key: 'keep',
+    label: 'Kontynuuj granie na obecnym statku',
+    icon: 'wrench',
+  },
+  {
+    value: 0,
+    key: 'reset',
+    label: 'Zacznij na nowym statku',
+    icon: 'undo-alt',
+  },
+];
+
+const ShipPanel = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { ship_open, ship_can_vote, ship_choice, ship_counts, ship_rounds } =
+    data;
+  if (!ship_open) {
+    return null;
+  }
+  return (
+    <Section mt={1} title="Statek w następnej rundzie">
+      <Box mb={1}>
+        Na obecnym statku ściany, instalacje i maszyny zostają tak, jak je
+        zostawiliście (liczba rund w zapisie: {ship_rounds}). Jeśli więcej osób
+        wybierze nowy statek, następna runda zacznie się na statku prosto z
+        mapy. Przy remisie albo bez głosów gracie dalej na obecnym statku.
+      </Box>
+      <Flex>
+        {SHIP_OPTIONS.map((option) => (
+          <Flex.Item key={option.key} grow={1} basis={0} mx={0.5}>
+            <Button
+              fluid
+              textAlign="center"
+              icon={option.icon}
+              selected={ship_choice === option.value}
+              disabled={!ship_can_vote}
+              onClick={() => act('ship_vote', { value: option.value })}
+            >
+              {option.label} ({ship_counts ? ship_counts[option.key] : 0})
+            </Button>
+          </Flex.Item>
+        ))}
+      </Flex>
+      {!ship_can_vote && (
         <Box mt={1} color="label">
           Głosować mogą tylko gracze, którzy grali postacią w tej rundzie.
         </Box>
