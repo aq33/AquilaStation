@@ -979,7 +979,7 @@
 #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
-#include "code\modules\test_chamber\kits\pr_566_konsola_sensorow.dm"
+#include "code\modules\test_chamber\kits\pr_568_konsola_sensorow.dm"
 #include "code\modules\test_chamber\kits\pr_566_ai_morale.dm"
 #include "code\modules\test_chamber\kits\pr_566_sensory.dm"
 #include "code\modules\test_chamber\kits\pr_495_ntsl.dm"
