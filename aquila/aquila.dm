@@ -722,6 +722,7 @@
 #include "code\modules\munitions_forge\hammer.dm"
 #include "code\modules\mob\dead\new_player\lobby_manifest.dm"
 #include "code\modules\mob\dead\new_player\lobby_menu.dm"
+#include "code\modules\mob\dead\new_player\lobby_hud.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessories.dm"
 #include "code\modules\mob\dead\observer\haunt.dm"
 #include "code\modules\mob\dead\observer\observer.dm"
