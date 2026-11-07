@@ -111,8 +111,15 @@
 	var/datum/team/gang/gang = boss_datum.gang
 	TEST_ASSERT(gang, "Gang boss has no gang")
 	TEST_ASSERT(locate(/datum/objective/gang_dominate) in boss_datum.objectives, "Gang boss has no dominator objective")
-	gang.gang_cap = 1
-	TEST_ASSERT(!gang.can_recruit(), "Gang with the boss alone and cap 1 can still recruit")
+	// Limit nie spada poniżej minimum: zapełniamy gang do limitu członkami dodanymi jak przez admina
+	gang.update_gang_cap()
+	var/members_needed = gang.gang_cap - length(gang.living_members())
+	for(var/i in 1 to members_needed)
+		var/mob/living/carbon/human/member = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+		member.mind_initialize()
+		member.mind.add_antag_datum(/datum/antagonist/gang, gang)
+	TEST_ASSERT_EQUAL(length(gang.living_members()), gang.gang_cap, "Gang was not filled up to its cap")
+	TEST_ASSERT(!gang.can_recruit(), "Full gang can still recruit")
 	var/mob/living/carbon/human/recruit = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	recruit.mind_initialize()
 	var/obj/item/pen/gang/pen = allocate(/obj/item/pen/gang)
