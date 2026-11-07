@@ -52,6 +52,9 @@ export type CommsConsoleData = {
   canSendToSectors: BooleanLike;
   canSetAlertLevel: string | BooleanLike;
   canToggleEmergencyAccess: BooleanLike;
+  // AQUILA: kapitan wyłącza oświetlenie nocne
+  canToggleNightShift: BooleanLike;
+  nightShiftDisabled: BooleanLike;
   emagged: BooleanLike;
   emergencyAccess: BooleanLike;
   hasConnection: BooleanLike;

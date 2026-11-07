@@ -743,7 +743,7 @@ ENABLE_NIGHT_SHIFTS
 #RANDOMIZE_SHIFT_TIME
 
 ## Sets shift time to server time at roundstart. Overridden by RANDOMIZE_SHIFT_TIME ##
-SHIFT_TIME_REALTIME
+#SHIFT_TIME_REALTIME
 
 ## Allow withdrawing money from departmental budget cards
 #ALLOW_BUDGET_MONEY_WITHDRAWAL

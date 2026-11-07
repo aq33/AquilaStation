@@ -58,6 +58,7 @@
 #include "code\_globalvars\lists\game.dm"
 #include "code\__HELPERS\pronouns.dm"
 #include "code\__HELPERS\polish.dm"
+#include "code\__HELPERS\chat_translation.dm"
 #include "code\__HELPERS\roundend.dm"
 #include "code\__HELPERS\shell.dm"
 #include "code\_onclick\hud\action_palette.dm"
@@ -81,6 +82,7 @@
 #include "code\controllers\subsystem\lag_switch.dm"
 #include "code\controllers\subsystem\market.dm"
 #include "code\controllers\subsystem\miasma.dm"
+#include "code\controllers\subsystem\nightshift.dm"
 #include "code\controllers\subsystem\polling.dm"
 #include "code\controllers\subsystem\pollution.dm"
 #include "code\controllers\subsystem\processing\reagents.dm"
@@ -194,6 +196,7 @@
 #include "code\game\machinery\computer\prisoner_management_ui.dm"
 #include "code\game\machinery\computer\security_records_ui.dm"
 #include "code\game\machinery\fabricators\modular_fabricator.dm"
+#include "code\game\machinery\firealarm_sound.dm"
 #include "code\game\machinery\iv_drip_beam.dm"
 #include "code\game\machinery\jukebox.dm"
 #include "code\game\machinery\jukebox_ceiling_speaker.dm"
@@ -275,6 +278,7 @@
 #include "code\game\objects\items\polskie_znaki.dm"
 #include "code\game\objects\items\robot\robot_upgrades.dm"
 #include "code\game\objects\items\stacks\medical_tg.dm"
+#include "code\game\objects\items\stacks\stack_amount.dm"
 #include "code\game\objects\items\stacks\tape.dm"
 #include "code\game\objects\items\storage\grid_storage.dm"
 #include "code\game\objects\items\storage\commercial.dm"
@@ -671,6 +675,7 @@
 #include "code\modules\hygiene\hygienebot.dm"
 #include "code\modules\jobs\job_slots.dm"
 #include "code\modules\jobs\job_types\ai_data_core.dm"
+#include "code\modules\jobs\job_types\scientist.dm"
 #include "code\modules\medical\bandage.dm"
 #include "code\modules\medical\bone_repair.dm"
 #include "code\modules\medical\medical_tg_supplies.dm"
@@ -731,6 +736,7 @@
 #include "code\modules\mob\living\stamina.dm"
 #include "code\modules\mob\living\carbon\human\bare_feet_footprints.dm"
 #include "code\modules\mob\living\carbon\human\emote.dm"
+#include "code\modules\mob\living\carbon\human\eyelids.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_defense.dm"
 #include "code\modules\mob\living\carbon\human\species.dm"
@@ -1107,6 +1113,7 @@
 #include "code\modules\test_chamber\kits\pr_559_czat_glosowy.dm"
 #include "code\modules\test_chamber\kits\pr_563_nsv_zaleglosci.dm"
 #include "code\modules\test_chamber\kits\pr_564_pasek_broni.dm"
+#include "code\modules\test_chamber\kits\pr_576_drobiazgi.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1721,6 +1728,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
@@ -1738,6 +1746,7 @@
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
+#include "code\modules\unit_tests\aquila_foreigner.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
 #include "code\modules\unit_tests\aquila_mutation_toxins.dm"
@@ -1898,10 +1907,18 @@
 #include "bloodcult.dm"
 
 // Wersja angielska (aquila/code/modules/i18n/): same nadpisania procedur, dołączane na samym końcu,
-// żeby szły po oryginałach. Odpięcie: usunąć ten blok, test aquila_game_language w bloku UNIT_TESTS
+// żeby szły po oryginałach. Odpięcie: usunąć ten blok, testy aquila_game_language i aquila_foreigner w bloku UNIT_TESTS
 // i loader i18n-jsx.cjs z tgui/webpack.config.js (definicje w code/__DEFINES/i18n.dm mogą zostać).
 #include "code\modules\i18n\game_language.dm"
 #include "code\modules\i18n\translate.dm"
 #include "code\modules\i18n\browser_windows.dm"
 #include "code\modules\i18n\hud_icons.dm"
 #include "code\modules\i18n\language_choice.dm"
+#include "code\modules\i18n\translation_api.dm"
+#include "code\modules\i18n\foreigner.dm"
+#include "code\modules\i18n\translator_item.dm"
+#include "code\modules\i18n\translator_chip.dm"
+#include "code\modules\i18n\chat_translation.dm"
+#include "code\modules\i18n\foreigner_names.dm"
+// Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
+#include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
