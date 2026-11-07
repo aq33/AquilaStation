@@ -12,9 +12,14 @@
 		return FALSE
 	if(multiz_levels.len < z_level)
 		multiz_levels.len = z_level
+	var/z_above = level_trait(z_level, ZTRAIT_UP)
+	var/z_below = level_trait(z_level, ZTRAIT_DOWN)
+	// Makra zawsze idą o jedno piętro, więc inne przesunięcie z mapy byłoby po cichu zignorowane
+	if(!(z_above in list(null, FALSE, TRUE)) || !(z_below in list(null, FALSE, TRUE, -1)))
+		stack_trace("Z-level [z_level]: przesunięcia pięter inne niż 1/-1 nie są obsługiwane (Up: [z_above], Down: [z_below]), piętro wyżej to zawsze z+1, a niżej z-1")
 	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
-	multiz_levels[z_level][Z_LEVEL_UP] = !!level_trait(z_level, ZTRAIT_UP)
-	multiz_levels[z_level][Z_LEVEL_DOWN] = !!level_trait(z_level, ZTRAIT_DOWN)
+	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
+	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
 	return TRUE
 
 /datum/controller/subsystem/mapping/InitializeDefaultZLevels()
