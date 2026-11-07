@@ -221,10 +221,12 @@
 /obj/item/storage/firstaid/radbgone/PopulateContents()
 	if(empty)
 		return
-	if(prob(50))
-		new /obj/item/reagent_containers/pill/mutarad(src)
+	// AQ EDIT START - at most one bonus pill, two overfilled the 7-slot medkit
 	if(prob(80))
 		new /obj/item/reagent_containers/pill/antirad_plus(src)
+	else if(prob(50))
+		new /obj/item/reagent_containers/pill/mutarad(src)
+	// AQ EDIT END
 	new /obj/item/reagent_containers/syringe/charcoal(src)
 	new /obj/item/storage/pill_bottle/charcoal(src)
 	new /obj/item/reagent_containers/pill/mutadone(src)

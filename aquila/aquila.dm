@@ -284,6 +284,7 @@
 #include "code\game\objects\items\storage\commercial.dm"
 #include "code\game\objects\items\storage\toolbox.dm"
 #include "code\game\objects\items\storage\survivalbox.dm"
+#include "code\game\objects\items\storage\firstaid.dm"
 #include "code\game\objects\items\tanks\jetpack.dm"
 #include "code\game\objects\items\tanks\tank_types.dm"
 #include "code\game\objects\items\tools\crowbar.dm"
@@ -1736,6 +1737,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
+#include "code\modules\unit_tests\aquila_zgloszenia_0711.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"

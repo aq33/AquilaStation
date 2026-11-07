@@ -324,6 +324,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `stored_ai?.resolve()` | `code/modules/mod/mod_ai.dm` (`/obj/item/mod/ai_minicard/examine()`) | An empty AI minicard runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `if(QDELETED(turret)) return` | `nsv13/code/modules/munitions/ship_weapons/ballistic_weapons/50Cal.dm` (`/obj/machinery/computer/anti_air/examine()`) | An anti-air console without a paired turret runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `try`/`catch` around `A.examine(src)` | `code/modules/mob/mob.dm` (`/mob/proc/run_examinate()`) | A runtime in any type's `examine()` left the player with an empty shift-click. Now the player sees the name and `desc`, and `stack_trace` still reports the runtime (unit tests fail on it) |
+| `if(!(source_mob.mobility_flags & MOBILITY_STAND))` in `/proc/is_source_facing_target()` (the check was inverted, every standing mob faced nothing) | `code/__HELPERS/atmos.dm` | Vampire mesmerize and lunge, disease spread and `check_target_facings()` see a standing mob face its target. Test: `aquila_zgloszenia_0711.dm` |
+| At most one bonus pill in `/obj/item/storage/firstaid/radbgone/PopulateContents()` | `code/game/objects/items/storage/firstaid.dm` | The radiation kit spawned up to 8 items into 7 slots. Test: `aquila_zgloszenia_0711.dm` |
+| `if(P.hitsound)` before `playsound()` in `/obj/bullet_act()` | `code/game/objects/obj_defense.dm` | Silent projectiles (accelerator particles piercing tesla coils) play nothing |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
