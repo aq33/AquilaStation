@@ -85,13 +85,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/static/list/unconscious_allowed_modes = list(MODE_ALIEN = TRUE)
 
 	var/ic_blocked = FALSE
-	if(client && !forced && CHAT_FILTER_CHECK(message))
+	var/aq_translated = HAS_TRAIT(src, TRAIT_AQ_TRANSLATED_SPEECH) // AQ EDIT - tłumaczenie obcokrajowca: filtry sprawdziły już oryginał
+	if(client && !forced && !aq_translated && CHAT_FILTER_CHECK(message)) // AQ EDIT - !aq_translated
 		//The filter doesn't act on the sanitized message, but the raw message.
 		ic_blocked = TRUE
 
 	// AQ EDIT
 	var/rp_acceptable = TRUE
-	if(client && !forced && RP_FILTER_CHECK(message))
+	if(client && !forced && !aq_translated && RP_FILTER_CHECK(message)) // AQ EDIT - !aq_translated
 		rp_acceptable = FALSE
 	// AQ EDIT END
 
@@ -153,6 +154,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(!can_speak_vocal(message))
 		to_chat(src, "<span class='warning'>Nie jesteś w stanie mówić!</span>")
 		return
+
+	// AQ EDIT START - sygnał przed mową; tłumacz obcokrajowca przejmuje angielski i oddaje go we Wspólnym (aquila/code/modules/i18n/foreigner.dm)
+	var/aq_pre_say = SEND_SIGNAL(src, COMSIG_LIVING_AQ_PRE_SAY, original_message, message, message_mods, language, bubble_type, spans, forced)
+	if(aq_pre_say & COMPONENT_AQ_SAY_INTERCEPTED)
+		return TRUE
+	if(aq_pre_say & COMPONENT_AQ_SAY_AS_COMMON)
+		language = /datum/language/common
+	// AQ EDIT END
 
 	var/message_range = 7
 

@@ -58,6 +58,7 @@
 #include "code\_globalvars\lists\game.dm"
 #include "code\__HELPERS\pronouns.dm"
 #include "code\__HELPERS\polish.dm"
+#include "code\__HELPERS\chat_translation.dm"
 #include "code\__HELPERS\roundend.dm"
 #include "code\__HELPERS\shell.dm"
 #include "code\_onclick\hud\action_palette.dm"
@@ -1742,6 +1743,7 @@
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
+#include "code\modules\unit_tests\aquila_foreigner.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
 #include "code\modules\unit_tests\aquila_mutation_toxins.dm"
@@ -1901,10 +1903,18 @@
 #include "bloodcult.dm"
 
 // Wersja angielska (aquila/code/modules/i18n/): same nadpisania procedur, dołączane na samym końcu,
-// żeby szły po oryginałach. Odpięcie: usunąć ten blok, test aquila_game_language w bloku UNIT_TESTS
+// żeby szły po oryginałach. Odpięcie: usunąć ten blok, testy aquila_game_language i aquila_foreigner w bloku UNIT_TESTS
 // i loader i18n-jsx.cjs z tgui/webpack.config.js (definicje w code/__DEFINES/i18n.dm mogą zostać).
 #include "code\modules\i18n\game_language.dm"
 #include "code\modules\i18n\translate.dm"
 #include "code\modules\i18n\browser_windows.dm"
 #include "code\modules\i18n\hud_icons.dm"
 #include "code\modules\i18n\language_choice.dm"
+#include "code\modules\i18n\translation_api.dm"
+#include "code\modules\i18n\foreigner.dm"
+#include "code\modules\i18n\translator_item.dm"
+#include "code\modules\i18n\translator_chip.dm"
+#include "code\modules\i18n\chat_translation.dm"
+#include "code\modules\i18n\foreigner_names.dm"
+// Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
+#include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
