@@ -327,6 +327,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `if(!(source_mob.mobility_flags & MOBILITY_STAND))` in `/proc/is_source_facing_target()` (the check was inverted, every standing mob faced nothing) | `code/__HELPERS/atmos.dm` | Vampire mesmerize and lunge, disease spread and `check_target_facings()` see a standing mob face its target. Test: `aquila_zgloszenia_0711.dm` |
 | At most one bonus pill in `/obj/item/storage/firstaid/radbgone/PopulateContents()` | `code/game/objects/items/storage/firstaid.dm` | The radiation kit spawned up to 8 items into 7 slots. Test: `aquila_zgloszenia_0711.dm` |
 | `if(P.hitsound)` before `playsound()` in `/obj/bullet_act()` | `code/game/objects/obj_defense.dm` | Silent projectiles (accelerator particles piercing tesla coils) play nothing |
+| `MA.layer += 1` for layers below `TURF_LAYER` in `/proc/t_ray_scan()` | `code/game/objects/items/devices/scanners.dm` | Cables and pipes sit below the floor layer since aq33/AquilaStation#460, so T-ray images were drawn under the tile (scanner, engineering goggles, MOD module). Checked in a client |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

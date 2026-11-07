@@ -66,6 +66,8 @@ GENE SCANNER
 			var/mutable_appearance/MA = new(O)
 			MA.alpha = 128
 			MA.dir = O.dir
+			if(MA.layer < TURF_LAYER) // AQ EDIT - underfloor layers sit below TURF_LAYER since the Paradise walls, the image was drawn under the floor tile
+				MA.layer += 1
 			I.appearance = MA
 			t_ray_images += I
 	if(t_ray_images.len)
