@@ -128,13 +128,14 @@ export function DetectiveBoard(props) {
     };
   }, [connectingEvidence]);
 
+  const currentCaseRef = cases[current_case - 1]?.ref;
   useEffect(() => {
     setConnections(
       current_case - 1 < cases.length
         ? cases[current_case - 1].connections
         : [],
     );
-  }, [current_case]);
+  }, [current_case, currentCaseRef]);
 
   function handleMouseUp(args: MouseEvent) {
     if (movingEvidenceConnections && connectingEvidence) {

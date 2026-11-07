@@ -5,6 +5,9 @@
 	contents -= source
 	to_image -= source
 
+	if(isnull(owner)) // klient się rozłączył, nie ma okna do odświeżenia
+		return
+
 	var/datum/tgui/window = SStgui.get_open_ui(owner.mob, src)
 #if !defined(UNIT_TESTS) // we dont want to delete contents if we're testing
 	if(isnull(window))

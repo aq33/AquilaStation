@@ -19,7 +19,7 @@ export function GroupedContents(props: Props) {
   return (
     <Box m={-0.5}>
       {filteredContents.map((group) => (
-        <LootBox key={group.item.name} group={group} />
+        <LootBox key={group.item.ref} group={group} />
       ))}
     </Box>
   );

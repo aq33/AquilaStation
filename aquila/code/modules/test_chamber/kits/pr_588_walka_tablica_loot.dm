@@ -4,12 +4,13 @@
 	name = "Animacje ataku, pchnięcie, tablica detektywa, okno kafelka"
 	pr = "aq33/AquilaStation#588"
 	description = "1) Animacje: w combat mode uderz obiekt testowy nożem, kataną, włócznią i skrzynką z narzędziami. Nóż i katana tną łukiem, włócznia pcha, skrzynka uderza jak dotąd. Sprawdź atak z każdego kierunku, także po skosie: ostrze ma iść czubkiem do celu, nie rękojeścią. \
-	2) Pchnięcie: prawym przyciskiem nożem, kataną i włączonym mieczem energetycznym (w trybie intencji: intencja rozbrajania i lewy). W czacie „dźga/przebija”, obrażenia nieco mniejsze, rana kłuta (skaner). Wyłączony miecz energetyczny nie pcha. Examine noża pokazuje podpowiedź. \
-	3) Przebicie pancerza: uderz skrzynkę albo maszynę bronią z przebiciem (miecz energetyczny): zadaje więcej niż bez przebicia. \
-	4) Tablica: zamontuj ją na ścianie, kliknij, załóż sprawę, przypnij zdjęcie (aparat) i kartkę, przeciągnij dowody, połącz pinezki nitką, kliknij dowód (podgląd), usuń dowód i sprawę. Prawym przyciskiem kluczem zdejmij tablicę: dowody spadają na podłogę. \
+	2) Pchnięcie: prawym przyciskiem nożem bojowym, kataną i włączonym mieczem energetycznym (w trybie intencji: intencja rozbrajania i lewy). W czacie „dźga/przebija”, obrażenia nieco mniejsze (nóż bojowy 15 zamiast 20), rana kłuta (skaner). Zwykły nóż kuchenny też pcha, ale bez zmniejszenia siły. Wyłączony miecz energetyczny nie pcha. Examine noża pokazuje podpowiedź. \
+	3) Przebicie pancerza: uderz szafę (pancerz 20, wytrzymałość 200) włączonym mieczem energetycznym (siła 30, przebicie 35). Każdy cios zabiera 30 wytrzymałości (VV: obj_integrity), bez przebicia zabierałby 24. \
+	4) Tablica: zamontuj ją na ścianie, kliknij, załóż sprawę, przypnij zdjęcie (aparat) i kartkę, przeciągnij dowody, połącz pinezki nitką, kliknij dowód (podgląd), usuń dowód i sprawę (jej dowody spadają). Załóż nową sprawę, przypnij do niej kartkę i dopiero wtedy prawym przyciskiem kluczem zdejmij tablicę: kartka spada na podłogę. \
 	5) Okno kafelka: rozsyp przedmioty na jednym polu, Alt+klik na podłogę albo przedmiot: okno z ikonami, wyszukiwarka, grupowanie, klik bierze przedmiot, Shift+klik ogląda, Esc zamyka. Alt+klik na krzesło obraca je bez okna. Jako duch Alt+klik też otwiera okno."
 	items = list(
 		/obj/item/kitchen/knife = 1,
+		/obj/item/kitchen/knife/combat = 1,
 		/obj/item/katana = 1,
 		/obj/item/spear = 1,
 		/obj/item/storage/toolbox/mechanical = 1,
@@ -21,6 +22,7 @@
 		/obj/item/wrench = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/structure/chair = 1,
+		/obj/structure/closet = 1,
 	)
 
 // Druga część tego samego PR-a: zupy (tg#74205) i halucynacje (Bee#13095, tg#89865)

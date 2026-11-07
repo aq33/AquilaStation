@@ -24,6 +24,9 @@
 	if(QDELETED(index) || QDELETED(thing)) // Obj is gone
 		return FALSE
 
+	if(isnull(source_turf))
+		return FALSE
+
 	if(thing != source_turf && !(locate(thing) in source_turf.contents))
 		qdel(index) // Item has moved
 		return TRUE

@@ -25,7 +25,7 @@
 	addtimer(CALLBACK(src, PROC_REF(add_new_searchable), arrived, TRUE), 0)
 
 /datum/lootpanel/proc/add_new_searchable(atom/movable/thing, from_signal)
-	if(QDELETED(thing))
+	if(QDELETED(thing) || isnull(owner)) // klient mógł się rozłączyć przed timerem
 		return
 	if(thing.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
 		return

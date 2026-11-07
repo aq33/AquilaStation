@@ -55,7 +55,7 @@
 /datum/unit_test/aquila_lootpanel_alt_click_blockers/Run()
 	var/obj/structure/chair/chair = allocate(/obj/structure/chair, run_loc_floor_bottom_left)
 	var/obj/item/storage/toolbox/box = allocate(/obj/item/storage/toolbox, run_loc_floor_bottom_left)
-	TEST_ASSERT(!chair.opens_loot_panel(), "A chair (own Alt+click action) opens the tile window")
+	TEST_ASSERT(!chair.opens_loot_panel(), "A chair (it has its own Alt+click action) opened the tile window")
 	TEST_ASSERT(box.opens_loot_panel(), "A toolbox does not open the tile window")
 	TEST_ASSERT(run_loc_floor_bottom_left.opens_loot_panel(), "A floor does not open the tile window")
 
