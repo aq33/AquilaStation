@@ -1,0 +1,442 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bF" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "66"
+	},
+/area/shuttle/sabre)
+"bN" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_wing_lt"
+	},
+/area/shuttle/sabre)
+"dm" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "96"
+	},
+/area/shuttle/sabre)
+"dO" = (
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 10
+	},
+/obj/structure/chair/fancy/dropship{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/sabre)
+"eu" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_lt"
+	},
+/area/shuttle/sabre)
+"fQ" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_rrb"
+	},
+/area/shuttle/sabre)
+"gO" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/delivery/yellow,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/item/wrench,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"iF" = (
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 9
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/sabre)
+"mj" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_cockpit_fr"
+	},
+/area/shuttle/sabre)
+"mw" = (
+/obj/effect/landmark/dropship_entry,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"mN" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "18"
+	},
+/area/shuttle/sabre)
+"nS" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_rb"
+	},
+/area/shuttle/sabre)
+"oR" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_wing_rt"
+	},
+/area/shuttle/sabre)
+"pC" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_cockpit_fl"
+	},
+/area/shuttle/sabre)
+"sf" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_wing_lb"
+	},
+/area/shuttle/sabre)
+"sr" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_fr"
+	},
+/area/shuttle/sabre)
+"sT" = (
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/stasis,
+/obj/effect/turf_decal/ship/delivery/yellow,
+/obj/item/storage/firstaid,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"tA" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_rt"
+	},
+/area/shuttle/sabre)
+"tD" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "12"
+	},
+/area/shuttle/sabre)
+"tI" = (
+/turf/template_noop,
+/area/template_noop)
+"uA" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_rrrb"
+	},
+/area/shuttle/sabre)
+"uI" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_front"
+	},
+/area/shuttle/sabre)
+"uU" = (
+/turf/closed/indestructible/dropship/entry/sabre{
+	icon_state = "57"
+	},
+/area/shuttle/sabre)
+"yx" = (
+/turf/closed/indestructible/dropship/sabre_hatch{
+	icon_state = "66"
+	},
+/area/shuttle/sabre)
+"AB" = (
+/turf/closed/indestructible/dropship/entry/sabre{
+	icon_state = "60"
+	},
+/area/shuttle/sabre)
+"Bl" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_llb"
+	},
+/area/shuttle/sabre)
+"Cy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 20
+	},
+/obj/structure/chair/fancy/dropship{
+	dir = 8
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"CO" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/computer/ship/dradis/console,
+/obj/machinery/computer/ship/viewscreen,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"Gd" = (
+/obj/structure/chair/fancy/dropship{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/door/window{
+	name = "cockpit"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/radio/intercom/directional/west,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"Gw" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "97"
+	},
+/area/shuttle/sabre)
+"Hj" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
+"Ir" = (
+/obj/machinery/computer/ship/tactical/console,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"IA" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_fl"
+	},
+/area/shuttle/sabre)
+"IL" = (
+/obj/structure/chair/fancy/dropship{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/window/reinforced,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"IZ" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_wing_rb"
+	},
+/area/shuttle/sabre)
+"Jf" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/computer/ship/helm/console/dropship/sabre,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"Jv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/closed/indestructible/dropship{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
+"Ku" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "79"
+	},
+/area/shuttle/sabre)
+"Ot" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "11"
+	},
+/area/shuttle/sabre)
+"OL" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_lb"
+	},
+/area/shuttle/sabre)
+"PD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/computer/ship/navigation/public{
+	dir = 8
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"Qa" = (
+/obj/machinery/atmospherics/pipe/manifold/general/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/trader_drop_point,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/sabre)
+"Qh" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "98"
+	},
+/area/shuttle/sabre)
+"QY" = (
+/obj/structure/chair/fancy/dropship{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/sabre)
+"SB" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "86"
+	},
+/area/shuttle/sabre)
+"Vf" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "19"
+	},
+/area/shuttle/sabre)
+"Wl" = (
+/obj/docking_port/mobile/sabre{
+	dir = 1;
+	dwidth = 0;
+	dheight = 0;
+	width = 9;
+	height = 9
+	},
+/turf/closed/indestructible/dropship{
+	icon_state = "blue_rearwing_lllb"
+	},
+/area/shuttle/sabre)
+"Wo" = (
+/obj/effect/landmark/dropship_entry,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/indestructible/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"WJ" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "13"
+	},
+/area/shuttle/sabre)
+"XC" = (
+/turf/closed/indestructible/dropship{
+	icon_state = "89"
+	},
+/area/shuttle/sabre)
+
+(1,1,1) = {"
+tI
+tI
+bN
+bF
+yx
+yx
+bF
+sf
+Wl
+"}
+(2,1,1) = {"
+tI
+tI
+oR
+Hj
+Jv
+Jv
+Hj
+IZ
+Bl
+"}
+(3,1,1) = {"
+IA
+pC
+SB
+mN
+uU
+AB
+mN
+eu
+OL
+"}
+(4,1,1) = {"
+uI
+dm
+Jf
+Gd
+mw
+Wo
+gO
+Ku
+Ot
+"}
+(5,1,1) = {"
+uI
+Gw
+CO
+dO
+QY
+Qa
+iF
+Ku
+tD
+"}
+(6,1,1) = {"
+uI
+Qh
+Ir
+IL
+PD
+Cy
+sT
+Ku
+WJ
+"}
+(7,1,1) = {"
+sr
+mj
+XC
+Vf
+Vf
+Vf
+Vf
+tA
+nS
+"}
+(8,1,1) = {"
+tI
+tI
+bN
+bF
+bF
+bF
+bF
+sf
+fQ
+"}
+(9,1,1) = {"
+tI
+tI
+oR
+Hj
+Hj
+Hj
+Hj
+IZ
+uA
+"}
