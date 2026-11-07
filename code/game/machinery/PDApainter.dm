@@ -52,8 +52,8 @@
 		"Ochrona: Detektyw" = "pda-detective",
 		"Ochrona: Lekarz Więzienny" = "pda-brigphys",
 		"Ochrona: Aspirant" = "pda-deputy",
-		"Amunicja (standard)" = "pda-munition", // NSV13 - munitions and MAA
-		"Amunicja: Mistrz Broni" = "pda-maa",
+		"Uzbrojenie (standard)" = "pda-munition", // NSV13 - munitions and MAA
+		"Uzbrojenie: Mistrz Broni" = "pda-maa",
 		"Różne: więzień" = "pda-prisoner"
 	)
 

@@ -268,7 +268,10 @@ const GearEntry = (props: {
         }}
       >
         {gear.description || gear.skirt_description ? (
+          // AQUILA: dymek od lewej krawędzi nazwy, bo wyśrodkowany wchodził pod podgląd postaci
+          // (mapa BYOND rysuje się nad przeglądarką, więc z-index nie pomoże)
           <Tooltip
+            position="bottom-start"
             content={
               jumpsuit_style === 'Jumpskirt' && gear.skirt_description
                 ? gear.skirt_description
@@ -301,7 +304,10 @@ const GearEntry = (props: {
             gear.allowed_roles.length === 1 ? (
               gear.allowed_roles[0]
             ) : (
-              <Tooltip content={gear.allowed_roles.join(', ')}>
+              <Tooltip
+                position="bottom-start"
+                content={gear.allowed_roles.join(', ')}
+              >
                 <Box
                   inline
                   style={{

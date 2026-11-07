@@ -222,7 +222,7 @@
 		if(7) //command
 			return "Dowództwo"
 		if(8) //munitions - NSV13
-			return "Amunicja"
+			return "Uzbrojenie"
 
 /proc/get_access_desc(A)
 	switch(A)
@@ -365,11 +365,11 @@
 		if(ACCESS_MECH_ENGINE)
 			return "Dostęp do Mechów Inżynieryjnych"
 		if(ACCESS_MUNITIONS) //Nsv13 - munitions
-			return "Dostęp do Amunicji"
+			return "Dostęp do Uzbrojenia"
 		if(ACCESS_MAA) //NSV13 - Munitions
 			return "Biuro Mistrza Uzbrojenia"
 		if(ACCESS_MUNITIONS_STORAGE) // NSV13 - Munitions
-			return "Magazyn Amunicji"
+			return "Magazyn Uzbrojenia"
 		if(ACCESS_COMBAT_PILOT) //NSV13 - Munitions
 			return "Licencja Pilota Bojowego"
 		if(ACCESS_TRANSPORT_PILOT) //NSV13 - Munitions

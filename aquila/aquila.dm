@@ -67,6 +67,7 @@
 #include "code\_onclick\hud\locked_slots.dm"
 #include "code\_onclick\hud\mouse_pointer.dm"
 #include "code\_onclick\hud\poll_alert.dm"
+#include "code\_onclick\hud\radial_ss14.dm"
 #include "code\_onclick\hud\stamina.dm"
 #include "code\_onclick\hud\vampire.dm"
 #include "code\_onclick\hud\xenobio.dm"
@@ -566,6 +567,7 @@
 #include "code\modules\explorer_drone\scanner_array.dm"
 #include "code\modules\language\vampiric.dm"
 #include "code\modules\roundend\roundend_ui.dm"
+#include "code\modules\recycling\disposal\delivery_chute.dm"
 #include "code\modules\research\designs\bounty_market_designs.dm"
 #include "code\modules\cargo\exports\large_objects.dm"
 #include "code\modules\cargo\markets\_market.dm"
@@ -653,6 +655,7 @@
 #include "code\modules\food_and_drinks\drinks\drinks.dm"
 #include "code\modules\food_and_drinks\food\slicing.dm"
 #include "code\modules\food_and_drinks\food\snacks_pie.dm"
+#include "code\modules\food_and_drinks\kitchen_machinery\microwave.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\monkeyrecycler.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\smartfridge.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\processor.dm"
@@ -688,6 +691,7 @@
 #include "code\modules\mob\dead\crew_manifest.dm"
 #include "code\modules\mob\dead\new_player\latejoin_menu.dm"
 #include "code\modules\munitions\gauss_gunner_actions.dm"
+#include "code\modules\munitions\gauss_firing_animation.dm"
 #include "code\modules\munitions\weapon_cycle_stage.dm"
 #include "code\modules\munitions_forge\traits.dm"
 #include "code\modules\munitions_forge\materials.dm"
@@ -977,6 +981,7 @@
 #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_574_radial_ss14.dm"
 #include "code\modules\test_chamber\kits\pr_569_ai_morale.dm"
 #include "code\modules\test_chamber\kits\pr_495_ntsl.dm"
 #include "code\modules\test_chamber\kits\pr_551_ekwipunek_siatka.dm"
@@ -1707,6 +1712,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_poprawki_0711.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
 #include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"

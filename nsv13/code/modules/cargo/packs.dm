@@ -54,7 +54,7 @@
 	crate_name = "najlepszy proch kapitana Plazmosoli"
 
 /datum/supply_pack/munitions/muni_pointer
-	name = "Lokalizator amunicji"
+	name = "Lokalizator uzbrojenia"
 	desc = "Klaun wyrzucił twoje wieżyczki w kosmos? Mistrz Broni się poślizgnął i wrzucił lokalizator do recyklera? Oto rozwiązanie twoich problemów!"
 	cost = 5000 //Don't lose yours, MAA.
 	contains = list(/obj/item/pinpointer/munitions)

@@ -34,7 +34,7 @@ export const SquadManager = (props) => {
                     }
                     color={value.access_enabled ? 'good' : 'average'}
                     icon="id-card"
-                    tooltip="Czy drużyna może globalnie korzystać z rozszerzonego dostępu. Zwykle obejmuje to dostęp do amunicji."
+                    tooltip="Czy drużyna może globalnie korzystać z rozszerzonego dostępu. Zwykle obejmuje to dostęp do działu uzbrojenia."
                     onClick={() => act('toggle_access', { squad_id: value.id })}
                   />
                   <Button

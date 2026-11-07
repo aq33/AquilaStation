@@ -174,7 +174,7 @@
 		"medyczny" = list(/area/medical),
 		"naukowy" = list(/area/science),
 		"inżynieria" = list(/area/engine),
-		"amunicja" = list(/area/nsv/weapons, /area/nsv/magazine),
+		"uzbrojenie" = list(/area/nsv/weapons, /area/nsv/magazine),
 	)
 	var/department_name
 
