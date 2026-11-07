@@ -166,7 +166,7 @@ const SHIP_OPTIONS = [
     value: 0,
     key: 'reset',
     label: 'Zacznij na nowym statku',
-    icon: 'rotate-left',
+    icon: 'undo-alt',
   },
 ];
 
