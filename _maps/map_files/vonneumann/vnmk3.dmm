@@ -1025,10 +1025,6 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
-"aMk" = (
-/obj/machinery/computer/prisoner/gulag_teleporter_computer,
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "aMC" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/four,
@@ -1351,6 +1347,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"baj" = (
+/obj/machinery/door/airlock/ship/maintenance{
+	req_one_access_txt = "47"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "baq" = (
 /obj/structure/cable/yellow,
 /obj/machinery/door/firedoor/border_only{
@@ -1945,10 +1948,6 @@
 	},
 /turf/open/floor/engine,
 /area/cargo/lobby)
-"bwV" = (
-/obj/machinery/shipbreaker,
-/turf/closed/wall/r_wall/ship,
-/area/quartermaster/miningoffice)
 "bxi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -2112,6 +2111,11 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"bDN" = (
+/obj/machinery/deepfryer,
+/obj/effect/turf_decal/ship/rust,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bDW" = (
 /obj/structure/cable/yellow,
 /obj/structure/window/reinforced/spawner/east,
@@ -2124,12 +2128,6 @@
 /obj/machinery/restaurant_portal/bar,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"bEA" = (
-/obj/machinery/computer/rdconsole/production{
-	dir = 1
-	},
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "bEH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2272,16 +2270,6 @@
 /obj/effect/turf_decal/stripes/red/full,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
-"bIw" = (
-/obj/docking_port/stationary{
-	dwidth = 14;
-	height = 17;
-	id = "syndicatecutter_s";
-	name = "south of ship";
-	width = 22
-	},
-/turf/open/space/basic,
-/area/space)
 "bIy" = (
 /obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
@@ -3257,17 +3245,6 @@
 "cCQ" = (
 /turf/open/floor/circuit/green/anim,
 /area/engine/gravity_generator)
-"cCT" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_se";
-	name = "southeast of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "cDB" = (
 /obj/item/gun/energy/e_gun/stun,
 /obj/structure/guncase/ecase{
@@ -3463,17 +3440,6 @@
 /obj/machinery/light_switch/south,
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/port)
-"cNj" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_s";
-	name = "south of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "cNs" = (
 /obj/structure/chair{
 	dir = 1
@@ -5224,6 +5190,13 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"ekq" = (
+/obj/machinery/oven,
+/obj/machinery/restaurant_terminal/restaurant{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "ekx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -5252,16 +5225,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"emy" = (
-/obj/docking_port/stationary{
-	dwidth = 14;
-	height = 17;
-	id = "syndicatecutter_nw";
-	name = "northwest of ship";
-	width = 22
-	},
-/turf/open/space/basic,
-/area/space)
 "emJ" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/extinguisher_cabinet/south,
@@ -5699,6 +5662,13 @@
 	},
 /turf/open/floor/engine/airless,
 /area/nsv/hanger)
+"eFq" = (
+/obj/machinery/computer/ship/mineral_magnet{
+	dir = 8;
+	req_access = null
+	},
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "eFF" = (
 /turf/closed/wall/r_wall/ship,
 /area/hallway/nsv/deck1/frame2/port)
@@ -6898,32 +6868,6 @@
 	},
 /turf/open/floor/carpet/police,
 /area/security/brig)
-"fzI" = (
-/obj/item/storage/box/boardingpins,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/boardingpins,
-/obj/structure/rack,
-/obj/item/storage/box/pinpointer_pairs,
-/obj/item/storage/box/trackimp,
-/obj/item/storage/box/chemimp,
-/obj/machinery/camera/motion{
-	c_tag = "Armory"
-	},
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/storage/box/exileimp{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/chemimp{
-	pixel_x = -4
-	},
-/obj/item/storage/box/trackimp{
-	pixel_y = -4
-	},
-/turf/open/floor/carpet/police,
-/area/ai_monitored/security/armory)
 "fAA" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
@@ -7477,6 +7421,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/lobby)
+"fUJ" = (
+/obj/machinery/computer/rdconsole/production{
+	dir = 1
+	},
+/obj/machinery/gulag_teleporter,
+/turf/open/floor/carpet/police,
+/area/security/brig)
 "fUN" = (
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
@@ -7607,13 +7558,6 @@
 	},
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
-"geU" = (
-/obj/machinery/door/airlock/ship/maintenance{
-	req_one_access_txt = "12"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "gft" = (
 /obj/structure/shuttle/engine/huge{
 	dir = 8
@@ -7755,17 +7699,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/shield_generator)
-"glk" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_nw";
-	name = "northwest of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "glG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -9519,10 +9452,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"hIL" = (
-/obj/machinery/gulag_teleporter,
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "hJe" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/remains/xeno,
@@ -9611,6 +9540,18 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"hLS" = (
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/banner/solgov,
+/obj/machinery/digital_clock/directional/north,
+/turf/open/floor/carpet/ship/blue{
+	color = "#9999DD";
+	name = "nanoweave carpet (bluer)"
+	},
+/area/crew_quarters/heads/captain/private)
 "hNt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -9836,6 +9777,21 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hWD" = (
+/obj/structure/cable,
+/obj/machinery/shipbreaker,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
+"hWU" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_nw";
+	name = "na północny zachód od statku";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "hXa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -10599,6 +10555,13 @@
 /obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering)
+"iEZ" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/science/lab)
 "iFU" = (
 /obj/structure/filingcabinet{
 	pixel_x = 9
@@ -10647,13 +10610,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/aisat/hallway)
-"iHJ" = (
-/obj/machinery/computer/ship/mineral_magnet{
-	dir = 2;
-	req_access = null
-	},
-/turf/open/floor/monofloor/airless,
-/area/nsv/hanger/mining)
 "iJb" = (
 /turf/closed/wall/r_wall/ship,
 /area/engine/atmos/port_atmos)
@@ -11481,6 +11437,10 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/ai_upload)
+"joZ" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/monotile/dark,
+/area/science/lab)
 "jpi" = (
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -11911,10 +11871,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jLk" = (
-/obj/machinery/rnd/production/techfab/department/security,
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "jLD" = (
 /obj/structure/cable/yellow,
 /obj/machinery/door/airlock/ship/engineering/glass{
@@ -12959,17 +12915,6 @@
 	name = "nanoweave carpet (bluer)"
 	},
 /area/crew_quarters/heads/captain/private)
-"kzx" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_sw";
-	name = "southwest of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "kAd" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -13023,6 +12968,15 @@
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/durasteel,
 /area/engine/storage)
+"kDW" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/ship/maintenance{
+	dir = 4;
+	name = "Tunele techniczne aresztu";
+	req_access_txt = "12;63"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "kEs" = (
 /obj/machinery/shield_generator,
 /obj/structure/cable/yellow,
@@ -13541,6 +13495,17 @@
 "ldl" = (
 /turf/open/floor/circuit,
 /area/hallway/nsv/deck1/frame1/central)
+"ldL" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_n";
+	name = "na północ od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "ldP" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/north,
@@ -15006,10 +14971,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/cargo/lobby)
-"mkv" = (
-/obj/machinery/oven,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "mkz" = (
 /obj/machinery/atmospherics/pipe/simple/brown/hidden{
 	dir = 4
@@ -15359,16 +15320,6 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
-"mAk" = (
-/obj/docking_port/stationary{
-	dwidth = 14;
-	height = 17;
-	id = "syndicatecutter_n";
-	name = "north of ship";
-	width = 22
-	},
-/turf/open/space/basic,
-/area/space)
 "mAs" = (
 /obj/structure/table,
 /obj/machinery/computer/reactor/pump/rbmk_moderator,
@@ -15918,17 +15869,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/starboard)
-"nef" = (
-/obj/structure/extinguisher_cabinet/east,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/banner/solgov,
-/turf/open/floor/carpet/ship/blue{
-	color = "#9999DD";
-	name = "nanoweave carpet (bluer)"
-	},
-/area/crew_quarters/heads/captain/private)
 "nen" = (
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment{
@@ -16169,6 +16109,20 @@
 /obj/machinery/camera/autoname,
 /turf/open/space/basic,
 /area/ai_monitored/security/armory)
+"not" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/ship/maintenance{
+	name = "Tunele techniczne aresztu";
+	req_access_txt = "12;63"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/toilet/restrooms)
 "nov" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -16868,16 +16822,6 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
-"nUa" = (
-/obj/docking_port/stationary{
-	dwidth = 14;
-	height = 17;
-	id = "syndicatecutter_ne";
-	name = "northeast of ship";
-	width = 22
-	},
-/turf/open/space/basic,
-/area/space)
 "nUe" = (
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment{
@@ -17227,6 +17171,17 @@
 	name = "nanoweave carpet (bluer)"
 	},
 /area/crew_quarters/heads/xo)
+"onc" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_nw";
+	name = "na północny zachód od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "oof" = (
 /obj/machinery/computer/lore_terminal,
 /obj/machinery/airalarm/directional/east,
@@ -17404,16 +17359,6 @@
 /obj/machinery/igniter/incinerator_atmos,
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/port_atmos)
-"ovq" = (
-/obj/docking_port/stationary{
-	dwidth = 14;
-	height = 17;
-	id = "syndicatecutter_sw";
-	name = "southwest of ship";
-	width = 22
-	},
-/turf/open/space/basic,
-/area/space)
 "ovs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -17544,6 +17489,15 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai_upload)
+"oBa" = (
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/obj/item/fuel_pellet{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/cargo/lobby)
 "oBQ" = (
 /obj/machinery/modular_computer/console/preset/command,
 /obj/machinery/status_display/evac/east,
@@ -18573,6 +18527,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/lobby)
+"puU" = (
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 8
+	},
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/west,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_vn_69_112";
+	pixel_x = -32
+	},
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "pvb" = (
 /obj/machinery/conveyor/slow{
 	id = "atlas_torp"
@@ -19514,17 +19482,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/maintenance/starboard/aft)
-"qjT" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 5;
-	id = "laborcamp_home";
-	name = "von neumann gulag shuttle dock";
-	roundstart_template = /datum/map_template/shuttle/labour/corg;
-	width = 8
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "qke" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -19817,6 +19774,17 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame2/starboard)
+"qxA" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_ne";
+	name = "na północny wschód od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "qxC" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -20257,6 +20225,16 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame1/central)
+"qLW" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_n";
+	name = "na północ od statku";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "qNt" = (
 /obj/structure/extinguisher_cabinet/west,
 /obj/structure/cable/yellow,
@@ -20282,14 +20260,6 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/carpet/ship,
 /area/tcommsat/computer)
-"qOj" = (
-/obj/machinery/deepfryer,
-/obj/effect/turf_decal/ship/rust,
-/obj/machinery/restaurant_terminal/restaurant{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "qOl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -20404,6 +20374,16 @@
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"qVf" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_sw";
+	name = "na południowy zachód od statku";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "qVg" = (
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -20714,15 +20694,20 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
-"rlQ" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/ship/maintenance{
-	dir = 4;
-	name = "Techniczne brygu";
-	req_access_txt = "12;63"
+"rmi" = (
+/obj/machinery/camera/autoname{
+	dir = 5
 	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 5
+	},
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = -30
+	},
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "rmW" = (
 /turf/closed/wall/ship,
 /area/tcommsat/computer)
@@ -20942,6 +20927,26 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/cafeteria)
+"rvf" = (
+/obj/item/storage/box/boardingpins,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/boardingpins,
+/obj/structure/rack,
+/obj/item/storage/box/pinpointer_pairs,
+/obj/item/storage/box/trackimp,
+/obj/item/storage/box/chemimp,
+/obj/machinery/camera/motion{
+	c_tag = "Armory"
+	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/storage/box/exileimp{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/police,
+/area/ai_monitored/security/armory)
 "rvk" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/structure/cable,
@@ -21546,6 +21551,17 @@
 	},
 /turf/open/floor/carpet/police,
 /area/security/detectives_office)
+"scP" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_se";
+	name = "na południowy wschód od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "scW" = (
 /obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/turf_decal/tile/purple/tile_side{
@@ -22269,10 +22285,6 @@
 	name = "nanoweave carpet (bluer)"
 	},
 /area/crew_quarters/heads/xo)
-"sEb" = (
-/obj/machinery/xenoarchaeology_machine/conductor,
-/turf/open/floor/monotile/dark,
-/area/science/lab)
 "sEU" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
@@ -22303,6 +22315,17 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"sGh" = (
+/obj/docking_port/stationary{
+	dwidth = 2;
+	height = 5;
+	id = "laborcamp_home";
+	name = "dok promu obozu pracy";
+	roundstart_template = /datum/map_template/shuttle/labour/corg;
+	width = 8
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "sGQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -22451,6 +22474,13 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/crew_quarters/heads/chief)
+"sOt" = (
+/obj/machinery/rnd/production/techfab/department/security,
+/obj/machinery/computer/prisoner/gulag_teleporter_computer{
+	dir = 1
+	},
+/turf/open/floor/carpet/police,
+/area/security/brig)
 "sOP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -22692,24 +22722,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/durasteel,
 /area/engine/storage)
-"sVp" = (
-/obj/machinery/camera/autoname{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/effect/turf_decal/tile/blue/flat_side/nfz{
-	dir = 5
-	},
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_x = -30
-	},
-/obj/machinery/vitals_reader{
-	id_tag = "aq_vitals_vn_69_112";
-	pixel_y = -32
-	},
-/turf/open/floor/monotile/light,
-/area/medical/medbay)
 "sVx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
 	dir = 4
@@ -23120,20 +23132,6 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame1/central)
-"tmO" = (
-/obj/structure/cable,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/ship/maintenance{
-	name = "Techniczne brygu";
-	req_access_txt = "12;63"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/toilet/restrooms)
 "tmP" = (
 /obj/structure/chair/wood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -23518,13 +23516,6 @@
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"tDD" = (
-/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/monotile/dark,
-/area/science/lab)
 "tDG" = (
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -23548,6 +23539,10 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"tEA" = (
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/carpet/ship/purple_carpet,
+/area/science)
 "tEI" = (
 /obj/structure/closet/secure_closet/brig{
 	id = "Cell 3";
@@ -24535,17 +24530,6 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"uvf" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_n";
-	name = "north of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "uvD" = (
 /obj/structure/rack,
 /obj/item/ship_weapon/ammunition/naval_artillery/cannonball,
@@ -25102,6 +25086,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"uYD" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_s";
+	name = "na południe od statku";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "uYG" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
@@ -25258,11 +25252,6 @@
 "vcm" = (
 /turf/closed/wall/r_wall/ship,
 /area/nsv/hanger)
-"vcB" = (
-/obj/effect/spawner/structure/window/reinforced/ship,
-/obj/machinery/digital_clock/directional/north,
-/turf/open/floor/plating,
-/area/bridge/cic)
 "vdy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -26381,11 +26370,6 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/port)
-"vUq" = (
-/obj/machinery/exodrone_launcher,
-/obj/item/exodrone,
-/turf/open/floor/carpet/ship/beige_carpet,
-/area/cargo/lobby)
 "vUB" = (
 /obj/machinery/door/airlock/ship/station{
 	name = "Kitchen Prep";
@@ -26482,10 +26466,6 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons/fore)
-"vYR" = (
-/obj/structure/cable,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "vZa" = (
 /obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/ship,
@@ -26561,10 +26541,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/ship/blue,
 /area/crew_quarters/cryopods)
-"wbI" = (
-/obj/machinery/power/stationarybike,
-/turf/open/floor/carpet/police,
-/area/security/brig)
 "wbO" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/monotile/light,
@@ -26663,6 +26639,16 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer2,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"whU" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_ne";
+	name = "na północny wschód od statku";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "whY" = (
 /turf/closed/wall/ship,
 /area/hallway/primary/starboard)
@@ -27507,6 +27493,17 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame1/central)
+"wYw" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_s";
+	name = "na południe od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "wYG" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/monotile/airless,
@@ -27854,6 +27851,17 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons/fore)
+"xsd" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_sw";
+	name = "na południowy zachód od statku";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "xso" = (
 /obj/machinery/requests_console{
 	department = "Kitchen";
@@ -27937,16 +27945,6 @@
 /obj/machinery/exoscanner,
 /turf/open/floor/monofloor/airless,
 /area/nsv/hanger/mining)
-"xvZ" = (
-/obj/effect/turf_decal/tile/blue/flat_side/nfz{
-	dir = 8
-	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/obj/item/radio/intercom/directional/west,
-/turf/open/floor/monotile/light,
-/area/medical/medbay)
 "xwn" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
@@ -28202,17 +28200,6 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
-"xFf" = (
-/obj/docking_port/stationary{
-	dheight = 1;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_ne";
-	name = "northeast of ship";
-	width = 23
-	},
-/turf/open/space/basic,
-/area/space)
 "xFB" = (
 /obj/item/plant_tray,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -38913,7 +38900,7 @@ lfF
 lfF
 lfF
 lfF
-glk
+onc
 lfF
 lfF
 lfF
@@ -39055,7 +39042,7 @@ lfF
 lfF
 lfF
 lfF
-kzx
+xsd
 lfF
 lfF
 lfF
@@ -39923,7 +39910,7 @@ lfF
 lfF
 lfF
 lfF
-emy
+hWU
 lfF
 lfF
 lfF
@@ -40065,7 +40052,7 @@ lfF
 lfF
 lfF
 lfF
-ovq
+qVf
 lfF
 lfF
 lfF
@@ -42800,9 +42787,9 @@ rqt
 hBu
 wBB
 vTq
-xvZ
+puU
 wMM
-sVp
+rmi
 fGT
 eVx
 tnq
@@ -44841,7 +44828,7 @@ qoC
 ksR
 sUI
 pbp
-nTq
+tEA
 dpT
 viC
 vIB
@@ -47865,7 +47852,7 @@ pzo
 tcz
 ass
 nuf
-sEb
+iEZ
 lBs
 lBs
 hlw
@@ -48066,19 +48053,19 @@ coV
 oQh
 dvg
 ass
-geU
-tDD
+baj
+joZ
 lBs
 lBs
 hlw
-geU
+baj
 ogQ
-geU
+baj
 hlw
 pUp
 xwU
 hlw
-geU
+baj
 ihC
 fzC
 whY
@@ -49103,7 +49090,7 @@ vxV
 sSN
 qUu
 nEp
-vUq
+oBa
 nEp
 nEp
 sSN
@@ -49873,7 +49860,7 @@ vhg
 nJc
 pnk
 eJl
-fzI
+rvf
 fcG
 oQG
 stC
@@ -51033,7 +51020,7 @@ lfF
 lfF
 lfF
 lfF
-uvf
+ldL
 lfF
 lfF
 lfF
@@ -51175,7 +51162,7 @@ lfF
 lfF
 lfF
 lfF
-cNj
+wYw
 lfF
 lfF
 lfF
@@ -51289,7 +51276,7 @@ cmi
 tCi
 hNt
 dCz
-bEA
+fUJ
 bql
 dvl
 xLB
@@ -51491,7 +51478,7 @@ fVD
 fVD
 qWW
 dCz
-jLk
+sOt
 bql
 wgc
 pUT
@@ -52043,7 +52030,7 @@ lfF
 lfF
 lfF
 lfF
-mAk
+qLW
 lfF
 lfF
 lfF
@@ -52090,7 +52077,7 @@ lfF
 vYj
 wEM
 nJc
-rlQ
+kDW
 fVD
 fVD
 fVD
@@ -52185,7 +52172,7 @@ lfF
 lfF
 lfF
 lfF
-bIw
+uYD
 lfF
 lfF
 lfF
@@ -52699,7 +52686,7 @@ fVD
 sfB
 fVD
 dPk
-aMk
+dCz
 rjG
 rYg
 lzK
@@ -52734,7 +52721,7 @@ upN
 iQn
 bNx
 pWy
-bwV
+bNx
 dnl
 wJw
 xvV
@@ -52895,13 +52882,13 @@ lfF
 lfF
 jRk
 jRk
-qjT
+sGh
 tER
 vvf
 sfB
 fVD
 lIo
-hIL
+dCz
 bxl
 rYg
 wZP
@@ -52937,7 +52924,7 @@ iQn
 jPC
 sFq
 pDS
-vYR
+hWD
 aUr
 wJw
 wJw
@@ -53103,7 +53090,7 @@ fVD
 pOG
 fVD
 dHl
-wbI
+dCz
 bxl
 tnl
 dCz
@@ -53504,7 +53491,7 @@ jRk
 jRk
 heX
 jFH
-tmO
+not
 heX
 heX
 heX
@@ -53546,7 +53533,7 @@ wJw
 wJw
 aUr
 wJw
-iHJ
+wJw
 rzh
 lfF
 lfF
@@ -53714,11 +53701,11 @@ txK
 erP
 nin
 noU
-mkv
+ekq
 elY
 kcr
 ePZ
-qOj
+bDN
 ciZ
 rIZ
 txK
@@ -53747,7 +53734,7 @@ iaQ
 uSS
 uSS
 tXt
-uSS
+eFq
 sRB
 rzh
 qNC
@@ -59782,7 +59769,7 @@ lGb
 lGb
 lGb
 quY
-nef
+hLS
 sTC
 quY
 qdJ
@@ -60590,7 +60577,7 @@ lGb
 lGb
 lGb
 wuv
-vcB
+cef
 aiP
 gfN
 dmN
@@ -63153,7 +63140,7 @@ lfF
 lfF
 lfF
 lfF
-xFf
+qxA
 lfF
 lfF
 lfF
@@ -64163,7 +64150,7 @@ lfF
 lfF
 lfF
 lfF
-nUa
+whU
 lfF
 lfF
 lfF
@@ -65719,7 +65706,7 @@ lfF
 lfF
 lfF
 lfF
-cCT
+scP
 lfF
 lfF
 lfF
