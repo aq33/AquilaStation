@@ -101,19 +101,21 @@
 	TEST_ASSERT(!bystander.IsKnockdown(), "The person in combat mode fell over too")
 	runner.SetKnockdown(0)
 
-	// A dive only goes with combat mode and fresh sprint steps, at a tile at least 2 away
+	// A dive comes from the rest button while sprinting, combat mode or not, and replaces lying down
 	var/turf/far = locate(runner.x + 3, runner.y, runner.z)
 	runner.set_combat_mode(FALSE)
+	sprint.last_sprint_step = world.time - SPRINT_RECENT_STEP_WINDOW - 1
+	TEST_ASSERT(!sprint.can_dive(), "Dived without sprinting")
 	sprint.sprinting = TRUE
 	sprint.last_sprint_step = world.time
-	TEST_ASSERT(!sprint.can_dive_at(far, list()), "Dived without combat mode")
-	runner.set_combat_mode(TRUE)
-	TEST_ASSERT(sprint.can_dive_at(far, list()), "Could not dive in combat mode while sprinting")
-	TEST_ASSERT(!sprint.can_dive_at(far, list(SHIFT_CLICK = "1")), "Shift-click started a dive")
-	TEST_ASSERT(!sprint.can_dive_at(get_step(runner, EAST), list()), "Dived at an adjacent tile")
+	TEST_ASSERT(sprint.can_dive(), "Could not dive from the rest button while sprinting")
 	runner.Paralyze(1 SECONDS)
-	TEST_ASSERT(!sprint.can_dive_at(far, list()), "A paralyzed runner could dive")
+	TEST_ASSERT(!sprint.can_dive(), "A paralyzed runner could dive")
 	runner.SetParalyzed(0)
+	// Clicking the world no longer dives
+	runner.set_combat_mode(TRUE)
+	runner.ClickOn(far)
+	TEST_ASSERT(!sprint.diving && COOLDOWN_FINISHED(sprint, dive_cooldown), "Clicking a tile while sprinting started a dive")
 
 	// A cancelled throw costs nothing and starts no cooldown
 	var/stamina_before = runner.stamina.current
@@ -123,6 +125,22 @@
 	TEST_ASSERT(!sprint.diving, "A cancelled dive stayed in progress")
 	TEST_ASSERT(runner.stamina.current == stamina_before, "A cancelled dive cost stamina")
 	TEST_ASSERT(COOLDOWN_FINISHED(sprint, dive_cooldown), "A cancelled dive started the cooldown")
+
+	// The rest button while sprinting throws the runner forward instead of laying them down
+	runner.setDir(EAST)
+	sprint.sprinting = TRUE
+	sprint.last_sprint_step = world.time
+	sprint.last_sprint_dir = EAST
+	RegisterSignal(runner, COMSIG_MOVABLE_PRE_THROW, PROC_REF(cancel_throw))
+	runner.lay_down()
+	sleep(1)
+	UnregisterSignal(runner, COMSIG_MOVABLE_PRE_THROW)
+	TEST_ASSERT(!runner.resting, "The rest button laid a sprinting runner down instead of diving")
+	// Without a sprint the button lies down as before
+	sprint.last_sprint_step = world.time - SPRINT_RECENT_STEP_WINDOW - 1
+	runner.lay_down()
+	TEST_ASSERT(runner.resting, "The rest button did not lay down a runner who was not sprinting")
+	runner.set_resting(FALSE)
 
 	// The first impact of a dive on a person knocks them down
 	bystander.set_combat_mode(FALSE)

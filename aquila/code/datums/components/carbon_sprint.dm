@@ -4,7 +4,7 @@
 //   działa tylko przy m_intent == MOVE_INTENT_RUN, patrz /mob/living/carbon/update_move_intent_slowdown()
 // - rozpęd liczy każdy krok w tym samym kierunku (w Bee kroki tuż po chmurce kurzu się nie liczyły)
 // - nowe: wywrotka po wpadnięciu z rozpędu w ścianę i potknięcie na schodach
-// - nowe: wbiegnięcie w kogoś z combat mode działa jak ściana, a klik w combat mode podczas sprintu to rzut (powala trafionego)
+// - nowe: wbiegnięcie w kogoś z combat mode działa jak ściana, a guzik „leż” podczas sprintu to rzut (powala trafionego)
 
 /datum/component/carbon_sprint
 	var/mob/living/carbon/carbon_parent
@@ -44,7 +44,6 @@
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_pre_move))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
-	RegisterSignal(parent, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	RegisterSignal(parent, COMSIG_KB_CARBON_SPRINT_DOWN, PROC_REF(on_sprint_key_down))
 	RegisterSignal(parent, COMSIG_KB_CARBON_SPRINT_UP, PROC_REF(on_sprint_key_up))
 	// Zamiana ciał itp. potrafi zgubić puszczenie klawisza
@@ -55,7 +54,6 @@
 		COMSIG_MOB_CLIENT_PRE_MOVE,
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_MOVABLE_BUMP,
-		COMSIG_MOB_CLICKON,
 		COMSIG_MOVABLE_IMPACT,
 		COMSIG_KB_CARBON_SPRINT_DOWN,
 		COMSIG_KB_CARBON_SPRINT_UP,
@@ -222,39 +220,39 @@
 	return target.combat_mode && target.density && target.stat == CONSCIOUS && (target.mobility_flags & MOBILITY_STAND)
 
 // ---------------------------------------------------------------------------
-// Rzut na sprincie (nowe): klik w combat mode w miejsce co najmniej 2 kratki dalej
+// Rzut na sprincie (nowe): guzik „leż” (albo jego klawisz) w trakcie sprintu rzuca postać przed siebie zamiast się położyć
 
-/datum/component/carbon_sprint/proc/on_click(datum/source, atom/target, list/modifiers)
-	SIGNAL_HANDLER
-	if(!can_dive_at(target, modifiers))
-		return
-	INVOKE_ASYNC(src, PROC_REF(start_dive), target)
-	return COMSIG_MOB_CANCEL_CLICKON
+/mob/living/carbon/lay_down()
+	if(!resting)
+		var/datum/component/carbon_sprint/sprint = GetComponent(/datum/component/carbon_sprint)
+		if(sprint?.try_rest_dive())
+			return
+	return ..()
 
-/datum/component/carbon_sprint/proc/can_dive_at(atom/target, list/modifiers)
+/// Wołane z lay_down(). TRUE, jeśli zamiast położenia się zaczął się rzut
+/datum/component/carbon_sprint/proc/try_rest_dive()
+	if(!can_dive())
+		return FALSE
+	var/turf/target_turf = get_ranged_target_turf(carbon_parent, last_sprint_dir || carbon_parent.dir, SPRINT_DIVE_RANGE)
+	if(!target_turf || target_turf == get_turf(carbon_parent))
+		return FALSE
+	INVOKE_ASYNC(src, PROC_REF(start_dive), target_turf)
+	return TRUE
+
+/datum/component/carbon_sprint/proc/can_dive()
 	if(diving || !COOLDOWN_FINISHED(src, dive_cooldown))
 		return FALSE
-	// COMSIG_MOB_CLICKON idzie przed sprawdzeniem incapacitated() w ClickOn()
-	if(carbon_parent.incapacitated(ignore_restraints = TRUE))
+	if(carbon_parent.incapacitated(ignore_restraints = TRUE) || carbon_parent.resting)
 		return FALSE
-	if(!carbon_parent.combat_mode || carbon_parent.throw_mode || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
+	if(!sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
 		return FALSE
-	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK))
-		return FALSE
-	if(istype(target, /atom/movable/screen) || carbon_parent.restrained() || carbon_parent.buckled || !isturf(carbon_parent.loc))
-		return FALSE
-	// Broń w ręce strzela dalej po staremu
-	if(istype(carbon_parent.get_active_held_item(), /obj/item/gun))
-		return FALSE
-	var/turf/target_turf = get_turf(target)
-	if(!target_turf || target_turf.z != carbon_parent.z || get_dist(carbon_parent, target_turf) < 2)
+	if(carbon_parent.restrained() || carbon_parent.buckled || !isturf(carbon_parent.loc))
 		return FALSE
 	if(!carbon_parent.stamina || carbon_parent.stamina.current < SPRINT_DIVE_COST)
 		return FALSE
 	return TRUE
 
-/datum/component/carbon_sprint/proc/start_dive(atom/target)
-	var/turf/target_turf = get_turf(target)
+/datum/component/carbon_sprint/proc/start_dive(turf/target_turf)
 	if(!target_turf)
 		return
 	diving = TRUE
