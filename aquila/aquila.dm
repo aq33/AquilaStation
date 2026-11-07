@@ -73,6 +73,7 @@
 #include "code\_onclick\legacy_intents.dm"
 #include "code\controllers\configuration\entries\game_options.dm"
 #include "code\controllers\configuration\entries\general.dm"
+#include "code\controllers\subsystem\ambient_emitters.dm"
 #include "code\controllers\subsystem\bitrunning.dm"
 #include "code\controllers\subsystem\bluespace_locker.dm"
 #include "code\controllers\subsystem\jukeboxes.dm"
