@@ -108,5 +108,104 @@
 	TEST_ASSERT(found_ingredient, "Microwave did not draw the ingredient behind its door")
 	microwave.ingredients -= pierog
 
+/// Błąd w greet() nie zostawia globalnego wskaźnika zbierania powitania na roli
+/datum/unit_test/aquila_antag_greeting_crash_releases_capture
+
+/datum/antagonist/aquila_greet_crash_probe
+	name = "sonda testu powitania"
+	show_in_antagpanel = FALSE
+
+/datum/antagonist/aquila_greet_crash_probe/greet()
+	CRASH("Celowy błąd w greet() (test aquila_antag_greeting_crash_releases_capture)")
+
+/datum/unit_test/aquila_antag_greeting_crash_releases_capture/Run()
+	var/datum/antagonist/aquila_greet_crash_probe/probe = new
+	var/crashed = FALSE
+	try
+		probe.greet_and_capture()
+	catch
+		crashed = TRUE
+	qdel(probe)
+	TEST_ASSERT(crashed, "The probe greet() did not throw, the test checks nothing")
+	TEST_ASSERT(isnull(GLOB.antag_greeting_capture), "Greeting capture still points at a role whose greet() crashed")
+
+/// Konsola łączności poza poziomem ze znacznikiem stacji: działa na statku załogi (górniczy, główny), nie na obcym
+/datum/unit_test/aquila_comms_console_on_crew_ship
+	var/datum/turf_reservation/comms_reservation
+
+/obj/machinery/computer/communications/aquila_probe
+	/// Statek, który zwraca get_overmap() w teście
+	var/obj/structure/overmap/probe_ship
+
+/obj/machinery/computer/communications/aquila_probe/get_overmap(failsafe = FALSE)
+	return probe_ship
+
+/// Bez broni, żeby nic w teście nie strzelało
+/obj/structure/overmap/syndicate/ai/gunboat/aquila_comms_probe
+	missiles = 0
+	shots_left = 0
+	torpedoes = 0
+
+/obj/structure/overmap/syndicate/ai/gunboat/aquila_comms_probe/apply_weapons()
+	return
+
+/datum/unit_test/aquila_comms_console_on_crew_ship/Run()
+	comms_reservation = SSmapping.RequestBlockReservation(3, 3)
+	TEST_ASSERT(comms_reservation, "Could not reserve turfs off the station level")
+	var/turf/off_station = locate(comms_reservation.bottom_left_coords[1] + 1, comms_reservation.bottom_left_coords[2] + 1, comms_reservation.bottom_left_coords[3])
+	TEST_ASSERT(!is_station_level(off_station.z), "The reserved block is on a station level, the test checks nothing")
+	var/obj/machinery/computer/communications/aquila_probe/console = allocate(/obj/machinery/computer/communications/aquila_probe, off_station)
+	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/aquila_comms_probe)
+	console.probe_ship = ship
+	ship.role = NORMAL_OVERMAP
+	TEST_ASSERT(!console.has_communication(), "A console on a foreign ship off the station level has communication")
+	ship.role = MAIN_MINING_SHIP
+	TEST_ASSERT(console.has_communication(), "The console on the mining ship shows no connection to the ship")
+	ship.role = MAIN_OVERMAP
+	TEST_ASSERT(console.has_communication(), "The console on the main ship loaded off the station level shows no connection")
+	console.probe_ship = null
+
+/datum/unit_test/aquila_comms_console_on_crew_ship/Destroy()
+	QDEL_NULL(comms_reservation)
+	return ..()
+
+/// Moduł zsypu MOD losuje numer celu, nie nazwę: zsyp porównuje liczby, a okno konfiguracji czyta TAGGERLOCATIONS[disposal_tag]
+/datum/unit_test/aquila_mod_disposal_tag_is_number
+
+/datum/unit_test/aquila_mod_disposal_tag_is_number/Run()
+	var/obj/item/mod/module/disposal_connector/connector = allocate(/obj/item/mod/module/disposal_connector)
+	TEST_ASSERT(isnum(connector.disposal_tag), "MOD disposal connector tag is not a number: [connector.disposal_tag]")
+	TEST_ASSERT(connector.disposal_tag >= 1 && connector.disposal_tag <= length(GLOB.TAGGERLOCATIONS), "MOD disposal connector tag [connector.disposal_tag] is outside TAGGERLOCATIONS")
+
+/// Radial SS14: najbliższa szerokość sektora, podświetlenie sektora pod myszą po zmianie strony, przyciski info nie narastają
+/datum/unit_test/aquila_radial_ss14
+
+/datum/unit_test/aquila_radial_ss14/Run()
+	var/datum/radial_menu/menu = new
+	TEST_ASSERT_EQUAL(menu.radial_sector_state(50), "sector_51", "Sector width 50 does not snap to the nearest state")
+	TEST_ASSERT_EQUAL(menu.radial_sector_state(360), "sector_360", "Full circle does not use the full disc")
+	var/list/choices = list()
+	for(var/i in 1 to 10)
+		var/datum/radial_menu_choice/choice = new
+		choice.image = image('icons/mob/radial.dmi', "radial_next")
+		choice.info = "opis [i]"
+		choices["opcja [i]"] = choice
+	menu.anchor = run_loc_floor_bottom_left
+	menu.set_choices(choices)
+	TEST_ASSERT(menu.ss14_style, "Menu without radial_icon is not in the SS14 style")
+	TEST_ASSERT(menu.pages > 1, "10 choices did not make a second page")
+	var/atom/movable/screen/radial/slice/hovered = menu.elements[1]
+	// Stan po najechaniu myszą (MouseEntered bez klienta nie działa: screentips czytają usr.client)
+	hovered.icon_state = "[hovered.sector_state]_focus"
+	menu.show_title(hovered)
+	for(var/i in 1 to 3)
+		menu.next_page()
+	TEST_ASSERT_EQUAL(hovered.icon_state, "[hovered.sector_state]_focus", "Hovered sector lost its highlight after a page change")
+	var/info_buttons = 0
+	for(var/obj/effect/abstract/info/info_button in hovered.icon_holder)
+		info_buttons++
+	TEST_ASSERT(info_buttons <= 1, "Info buttons pile up in the choice icon holder: [info_buttons]")
+	qdel(menu)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
