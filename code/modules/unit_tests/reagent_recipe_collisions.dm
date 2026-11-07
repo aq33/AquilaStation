@@ -21,6 +21,18 @@
 	//do the non-list tests first, because they are cheaper
 	if(r1.required_container != r2.required_container)
 		return FALSE
+	// AQ EDIT START - zupy z garnka (tg#74205): różnią się składnikami-przedmiotami, nie odczynnikami
+	if(istype(r1, /datum/chemical_reaction/food/soup) && istype(r2, /datum/chemical_reaction/food/soup))
+		var/datum/chemical_reaction/food/soup/soup1 = r1
+		var/datum/chemical_reaction/food/soup/soup2 = r2
+		if(!length(soup1.required_ingredients) || !length(soup2.required_ingredients))
+			return FALSE
+		for(var/ingredient in soup1.required_ingredients)
+			if(soup1.required_ingredients[ingredient] != soup2.required_ingredients[ingredient])
+				return FALSE
+		if(length(soup1.required_ingredients) != length(soup2.required_ingredients))
+			return FALSE
+	// AQ EDIT END
 	if(r1.is_cold_recipe == r2.is_cold_recipe)
 		if(r1.required_temp != r2.required_temp)
 			//one reaction requires a more extreme temperature than the other, so there is no conflict

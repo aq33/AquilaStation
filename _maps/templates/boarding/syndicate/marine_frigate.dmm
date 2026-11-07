@@ -1708,7 +1708,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "Px" = (
 /obj/structure/table/reinforced,
-/obj/item/food/soup/hotchili,
+/obj/item/reagent_containers/glass/bowl/soup/hotchili,
 /obj/machinery/light{
 	dir = 4
 	},

@@ -22,3 +22,34 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/structure/chair = 1,
 	)
+
+// Druga część tego samego PR-a: zupy (tg#74205) i halucynacje (Bee#13095, tg#89865)
+/datum/test_chamber_kit/pr_588_kuchnia
+	name = "Zupy z garnka i halucynacje"
+	pr = "aq33/AquilaStation#588"
+	description = "Zestaw stawia kuchenkę obok środka areny, a zlewka ma 100 jednostek wody. \
+	1) Zupa: postaw garnek na kuchence, wlej 50 wody, wrzuć klopsik, marchewkę i ziemniak, włącz palniki prawym przyciskiem albo Alt+klikiem. Po chwili w garnku jest zupa z klopsikami (examine, skaner). Chochlą przelej porcję do miski: miska wygląda jak zupa z klopsikami i nazywa się „miska: zupa z klopsikami”. Wyjmij składnik prawym przyciskiem pustą ręką. Bez składników woda nie zmienia się w zupę. \
+	2) Kuchnia z piekarnikiem: zbuduj z płytki (projekt w R&D, Przetwarzanie biologiczne) i sprawdź palniki oraz piekarnik. \
+	3) Restauracja: robot zamawia „porcję zupy”, przyjmuje miskę z tą zupą. \
+	4) Halucynacje: wstrzyknij sobie mindbreaker (syringe), krótko: zwykłe halucynacje (fałszywe dźwięki, czat), dłużej: rzadsze i skrajne. Sprawdź krwawienie, głos w głowie, oczy w ciemności (zgaś światło). Skaner zaawansowany pokazuje halucynacje. Mindbreaker na Zaburzeniach Dysocjacyjnych je zdejmuje. \
+	5) Preferencje → Gra: przełącznik „Halucynacje bez limitu”."
+	items = list(
+		/obj/item/reagent_containers/glass/soup_pot = 1,
+		/obj/item/reagent_containers/glass/soup_ladle = 1,
+		/obj/item/reagent_containers/glass/bowl = 3,
+		/obj/item/food/meatball = 2,
+		/obj/item/food/grown/carrot = 2,
+		/obj/item/food/grown/potato = 2,
+		/obj/item/circuitboard/machine/range = 1,
+		/obj/item/reagent_containers/syringe = 1,
+	)
+
+/datum/test_chamber_kit/pr_588_kuchnia/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	var/turf/stove_spot = locate(center.x + 2, center.y, center.z)
+	if(stove_spot && !stove_spot.density)
+		new /obj/machinery/stove(stove_spot)
+	var/obj/item/reagent_containers/glass/beaker/large/water = new(center)
+	water.reagents.add_reagent(/datum/reagent/water, 100)
+	var/obj/item/reagent_containers/glass/beaker/large/mindbreaker = new(center)
+	mindbreaker.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 30)

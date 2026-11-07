@@ -97,12 +97,12 @@
 	lootcount = 3
 	lootdoubles = FALSE
 	var/soups = list(
-			/obj/item/food/soup/beet,
-			/obj/item/food/soup/sweetpotato,
-			/obj/item/food/soup/stew,
-			/obj/item/food/soup/hotchili,
-			/obj/item/food/soup/nettle,
-			/obj/item/food/soup/meatball)
+			/obj/item/reagent_containers/glass/bowl/soup/beet,
+			/obj/item/reagent_containers/glass/bowl/soup/sweetpotato,
+			/obj/item/reagent_containers/glass/bowl/soup/stew,
+			/obj/item/reagent_containers/glass/bowl/soup/hotchili,
+			/obj/item/reagent_containers/glass/bowl/soup/nettle,
+			/obj/item/reagent_containers/glass/bowl/soup/meatball)
 	var/salads = list(
 			/obj/item/food/salad/herbsalad,
 			/obj/item/food/salad/validsalad,

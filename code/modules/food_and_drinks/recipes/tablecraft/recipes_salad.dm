@@ -34,19 +34,6 @@
 	result = /obj/item/food/salad/validsalad
 	subcategory = CAT_SALAD
 
-/datum/crafting_recipe/food/monkeysdelight
-	name = "małpia rozkosz"
-	reqs = list(
-		/datum/reagent/consumable/flour = 5,
-		/datum/reagent/consumable/sodiumchloride = 1,
-		/datum/reagent/consumable/blackpepper = 1,
-		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/food/monkeycube = 1,
-		/obj/item/food/grown/banana = 1
-	)
-	result = /obj/item/food/soup/monkeysdelight
-	subcategory = CAT_SALAD
-
 /datum/crafting_recipe/food/melonfruitbowl
 	name ="arbuzowa misa owoców"
 	reqs = list(
