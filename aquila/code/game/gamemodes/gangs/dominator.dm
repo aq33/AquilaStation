@@ -136,8 +136,10 @@
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
+	// najpierw własne wyłączenie przejęcia, bo rodzic od razu ustawia BROKEN
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_broken()
+	return ..()
 
 /obj/machinery/dominator/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
