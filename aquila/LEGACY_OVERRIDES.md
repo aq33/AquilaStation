@@ -41,6 +41,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/obj/structure/overmap/move_toward()` | Partial (C) | Overmap scale (`overmap_scale.dm`): a ship with a standoff range (carrier, torpedo ship, scared ship) backs off or orbits instead of closing in. Flanking (`ai_flanking.dm`): a flanker flies to its slot (`..(slot)`) and holds there facing the target. Both call `..()` otherwise. |
 | `/datum/ai_goal/retreat/action()` | Partial (C) | Overmap scale (`aquila/code/modules/overmap/overmap_scale.dm`): an AI carrier holds at its standoff range (`move_toward()` override) instead of running away; every other supply ship calls `..()`. |
 | `/obj/structure/overmap/ai_fire()`, `ai_elite_fire()` | Partial (C) | AI morale (`aquila/code/modules/overmap/ai_morale.dm`): a commander who just picked a new target holds fire for 1-4 slowprocess ticks (`ai_hold_fire_until`); otherwise both call `..()`. |
+| `/obj/item/clothing/suit/space/hardsuit/ui_action_click()` | Replaced (C) | Hardsuity z modułami (`aquila/code/modules/clothing/spacesuits/hardsuit_modules.dm`): bazowe woła `attack_self()`, a to otwierało panel modułów przy każdej akcji; obsługuje tylko hełm i wbudowaną butlę. |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
 

@@ -539,13 +539,29 @@
 	icon_icon = 'icons/obj/tank.dmi'
 	button_icon_state = "emergency_double"
 
-/datum/action/item_action/hardsuit_tank/Trigger()
-	if(!..())
-		return FALSE
-	var/obj/item/clothing/suit/space/hardsuit/suit = target
-	if(istype(suit) && ishuman(owner))
-		suit.toggle_integrated_tank(owner)
-	return TRUE
+// Bazowe ui_action_click() woła attack_self(), a to otwierało panel kombinezonu przy każdej akcji (hełm, butla).
+// Akcje modułów mają własne Trigger(), więc tu zostają tylko hełm i butla. Pełne nadpisanie bez ..(): LEGACY_OVERRIDES.md.
+/obj/item/clothing/suit/space/hardsuit/ui_action_click(mob/user, datum/actiontype)
+	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
+		if(ishuman(user))
+			toggle_integrated_tank(user)
+		return
+	ToggleHelmet()
+
+// Hardsuity Syndykatu mają własne ui_action_click() bez ..(); butla obsługiwana przed nimi
+/obj/item/clothing/suit/space/hardsuit/syndi/ui_action_click(mob/user, datum/actiontype)
+	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
+		if(ishuman(user))
+			toggle_integrated_tank(user)
+		return
+	return ..()
+
+/obj/item/clothing/suit/space/hardsuit/shielded/syndi/ui_action_click(mob/user, datum/actiontype)
+	if(istype(actiontype, /datum/action/item_action/hardsuit_tank))
+		if(ishuman(user))
+			toggle_integrated_tank(user)
+		return
+	return ..()
 
 #undef HARDSUIT_BODY_SLOTS
 #undef HARDSUIT_HEAD_SLOTS
