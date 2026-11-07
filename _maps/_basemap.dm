@@ -21,6 +21,9 @@
 		//Shrike
 		#include "map_files\Shrike\Shrike2.dmm"
 		#include "map_files\Shrike\Shrike1.dmm"
+		//Atlantis // AQ EDIT - mapa jest w rotacji, więc CI ma ją kompilować
+		#include "map_files\Atlantis\Atlantis.dmm"
+		#include "map_files\Atlantis\Atlantis2.dmm"
 		//Von Neumann
 		#include "map_files\vonneumann\vnmk3.dmm"
 		#ifdef CIBUILDING

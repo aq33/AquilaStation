@@ -2256,6 +2256,16 @@
 /obj/effect/turf_decal/stripes/red/full,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"bIw" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_s";
+	name = "south of ship";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "bIy" = (
 /obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
@@ -3185,6 +3195,17 @@
 "cCQ" = (
 /turf/open/floor/circuit/green/anim,
 /area/engine/gravity_generator)
+"cCT" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_se";
+	name = "southeast of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "cDx" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/firstaid/regular,
@@ -3397,6 +3418,17 @@
 /obj/machinery/light_switch/south,
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/port)
+"cNj" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_s";
+	name = "south of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "cNs" = (
 /obj/structure/chair{
 	dir = 1
@@ -5188,6 +5220,16 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"emy" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_nw";
+	name = "northwest of ship";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "emJ" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/extinguisher_cabinet/south,
@@ -7687,6 +7729,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/shield_generator)
+"glk" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_nw";
+	name = "northwest of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "glG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -12910,6 +12963,17 @@
 	name = "nanoweave carpet (bluer)"
 	},
 /area/crew_quarters/heads/captain/private)
+"kzx" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_sw";
+	name = "southwest of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "kAd" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -15274,6 +15338,16 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
+"mAk" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_n";
+	name = "north of ship";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "mAs" = (
 /obj/structure/table,
 /obj/machinery/computer/reactor/pump/rbmk_moderator,
@@ -16823,6 +16897,16 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
+"nUa" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_ne";
+	name = "northeast of ship";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "nUe" = (
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment{
@@ -17324,6 +17408,16 @@
 /obj/machinery/igniter/incinerator_atmos,
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/port_atmos)
+"ovq" = (
+/obj/docking_port/stationary{
+	dwidth = 14;
+	height = 17;
+	id = "syndicatecutter_sw";
+	name = "southwest of ship";
+	width = 22
+	},
+/turf/open/space/basic,
+/area/space)
 "ovs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -24065,6 +24159,17 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"uvf" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_n";
+	name = "north of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "uvE" = (
 /obj/structure/cable/yellow,
 /obj/structure/lattice/catwalk,
@@ -27572,6 +27677,17 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
+"xFf" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_ne";
+	name = "northeast of ship";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space)
 "xFB" = (
 /obj/item/plant_tray,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -38229,7 +38345,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+glk
 lfF
 lfF
 lfF
@@ -38371,7 +38487,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+kzx
 lfF
 lfF
 lfF
@@ -39239,7 +39355,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+emy
 lfF
 lfF
 lfF
@@ -39381,7 +39497,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+ovq
 lfF
 lfF
 lfF
@@ -50349,7 +50465,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+uvf
 lfF
 lfF
 lfF
@@ -50491,7 +50607,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+cNj
 lfF
 lfF
 lfF
@@ -51359,7 +51475,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+mAk
 lfF
 lfF
 lfF
@@ -51501,7 +51617,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+bIw
 lfF
 lfF
 lfF
@@ -62469,7 +62585,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+xFf
 lfF
 lfF
 lfF
@@ -62611,7 +62727,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+cCT
 lfF
 lfF
 lfF
@@ -63479,7 +63595,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+nUa
 lfF
 lfF
 lfF

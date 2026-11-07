@@ -10,6 +10,10 @@
 #define JOB_MODIFICATION_MAP_NAME "DLV Trawnik"
 #include "..\..\..\..\_maps\map_files\Serendipity\job_changes.dm"
 
+// Atlantis też nie był dołączony, więc jego usunięcia profesji i sloty pilotów nie działały.
+#define JOB_MODIFICATION_MAP_NAME "NSV Atlantis"
+#include "..\..\..\..\_maps\map_files\Atlantis\job_changes.dm"
+
 // Upstream (BeeStation/NSV13#2656) nie dołączył tego pliku, więc zmiany profesji Von Neumanna nie działały. Plik kończy się #undef, dlatego jest ostatni.
 #define JOB_MODIFICATION_MAP_NAME "SGV Von Neumann"
 #include "..\..\..\..\_maps\map_files\vonneumann\job_changes.dm"

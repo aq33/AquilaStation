@@ -22,9 +22,24 @@
 	"shuttles": {
 		"cargo": "cargo_hammerhead",
 		"ferry": "ferry_fancy",
-		"arrival": "arrival_atlas",
 		"emergency": "emergency_donut"
 	},
 	"ship_type": "/obj/structure/overmap/nanotrasen/heavy_cruiser/starter",
-	"mine_disable": 1
+	"mine_disable": 1,
+	"starmap_path": "config/starmap/starmap.json",
+
+	"map_description": "Corvid-class tactical cruisers are the backbone of the WhiteRapids heavy squadrons. Two full decks hold every department a long patrol needs, from a dedicated virology lab to a bitrunning den, while a dense battery of gauss turrets, deck guns and VLS cells keeps the hull out of trouble. Large, sturdy and slow to turn, the Atlantis rewards a full crew.",
+	"manufacturer": "Nanotrasen Naval Shipyards",
+	"commission_date": "Mar 3, 2259",
+	"strengths": ["Heavy firepower", "Every department has room to work", "Large fighter and mining wing"],
+	"weaknesses": ["Needs a large crew", "Long walks between decks", "Single storm drive"],
+	"equipment": [
+		"2 M4-15 'Hood' deck turrets",
+		"12 M14 VLS loaders",
+		"6 NT-BSG gauss turrets",
+		"2 M4-B torpedo tubes",
+		"3 light fighters",
+		"6 Sabre transports",
+		"1 class IV nuclear storm drive"
+	]
 }
