@@ -4,7 +4,7 @@
 //   działa tylko przy m_intent == MOVE_INTENT_RUN, patrz /mob/living/carbon/update_move_intent_slowdown()
 // - rozpęd liczy każdy krok w tym samym kierunku (w Bee kroki tuż po chmurce kurzu się nie liczyły)
 // - nowe: wywrotka po wpadnięciu z rozpędu w ścianę i potknięcie na schodach
-// - nowe: wbiegnięcie w kogoś z combat mode działa jak ściana, a guzik „leż” podczas sprintu to rzut (powala trafionego)
+// - nowe: wbiegnięcie w kogoś z combat mode działa jak ściana, a guzik „leż” podczas sprintu z combat mode to rzut (powala trafionego)
 
 /datum/component/carbon_sprint
 	var/mob/living/carbon/carbon_parent
@@ -220,7 +220,7 @@
 	return target.combat_mode && target.density && target.stat == CONSCIOUS && (target.mobility_flags & MOBILITY_STAND)
 
 // ---------------------------------------------------------------------------
-// Rzut na sprincie (nowe): guzik „leż” (albo jego klawisz) w trakcie sprintu rzuca postać przed siebie zamiast się położyć
+// Rzut na sprincie (nowe): guzik „leż” (albo jego klawisz) w trakcie sprintu z combat mode rzuca postać przed siebie zamiast się położyć
 
 /mob/living/carbon/lay_down()
 	if(!resting)
@@ -244,7 +244,8 @@
 		return FALSE
 	if(carbon_parent.incapacitated(ignore_restraints = TRUE) || carbon_parent.resting)
 		return FALSE
-	if(!sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
+	// W starym trybie sterowania combat mode to intencja harm
+	if(!carbon_parent.combat_mode || !sprinted_recently(SPRINT_RECENT_STEP_WINDOW))
 		return FALSE
 	if(carbon_parent.restrained() || carbon_parent.buckled || !isturf(carbon_parent.loc))
 		return FALSE

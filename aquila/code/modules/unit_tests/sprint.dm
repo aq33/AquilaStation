@@ -101,19 +101,21 @@
 	TEST_ASSERT(!bystander.IsKnockdown(), "The person in combat mode fell over too")
 	runner.SetKnockdown(0)
 
-	// A dive comes from the rest button while sprinting, combat mode or not, and replaces lying down
+	// A dive comes from the rest button while sprinting in combat mode, and replaces lying down
 	var/turf/far = locate(runner.x + 3, runner.y, runner.z)
-	runner.set_combat_mode(FALSE)
+	runner.set_combat_mode(TRUE)
 	sprint.last_sprint_step = world.time - SPRINT_RECENT_STEP_WINDOW - 1
 	TEST_ASSERT(!sprint.can_dive(), "Dived without sprinting")
 	sprint.sprinting = TRUE
 	sprint.last_sprint_step = world.time
-	TEST_ASSERT(sprint.can_dive(), "Could not dive from the rest button while sprinting")
+	TEST_ASSERT(sprint.can_dive(), "Could not dive from the rest button while sprinting in combat mode")
+	runner.set_combat_mode(FALSE)
+	TEST_ASSERT(!sprint.can_dive(), "Dived without combat mode")
+	runner.set_combat_mode(TRUE)
 	runner.Paralyze(1 SECONDS)
 	TEST_ASSERT(!sprint.can_dive(), "A paralyzed runner could dive")
 	runner.SetParalyzed(0)
 	// Clicking the world no longer dives
-	runner.set_combat_mode(TRUE)
 	runner.ClickOn(far)
 	TEST_ASSERT(!sprint.diving && COOLDOWN_FINISHED(sprint, dive_cooldown), "Clicking a tile while sprinting started a dive")
 
@@ -136,7 +138,13 @@
 	sleep(1)
 	UnregisterSignal(runner, COMSIG_MOVABLE_PRE_THROW)
 	TEST_ASSERT(!runner.resting, "The rest button laid a sprinting runner down instead of diving")
-	// Without a sprint the button lies down as before
+	// Without combat mode or without a sprint the button lies down as before
+	sprint.last_sprint_step = world.time
+	runner.set_combat_mode(FALSE)
+	runner.lay_down()
+	TEST_ASSERT(runner.resting, "The rest button did not lay down a sprinting runner without combat mode")
+	runner.set_resting(FALSE)
+	runner.set_combat_mode(TRUE)
 	sprint.last_sprint_step = world.time - SPRINT_RECENT_STEP_WINDOW - 1
 	runner.lay_down()
 	TEST_ASSERT(runner.resting, "The rest button did not lay down a runner who was not sprinting")
