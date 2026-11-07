@@ -126,7 +126,7 @@ export const RADIO_PREFIXES = {
   },
   ':s ': {
     id: 'security',
-    label: 'Pol',
+    label: 'Żand',
   },
   ':t ': {
     id: 'syndicate',
