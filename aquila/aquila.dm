@@ -724,6 +724,7 @@
 #include "code\modules\mob\living\stamina.dm"
 #include "code\modules\mob\living\carbon\human\bare_feet_footprints.dm"
 #include "code\modules\mob\living\carbon\human\emote.dm"
+#include "code\modules\mob\living\carbon\human\eyelids.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_defense.dm"
 #include "code\modules\mob\living\carbon\human\species.dm"
