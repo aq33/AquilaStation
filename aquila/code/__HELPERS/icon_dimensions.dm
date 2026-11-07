@@ -1,0 +1,30 @@
+// Wymiary ikon z pamięci podręcznej, z tgstation/tgstation#88266 (`get_icon_dimensions_pure`, bez metadanych rust-g).
+// Wszystkie stany w jednym .dmi mają ten sam rozmiar, więc wystarczy klucz po pliku. HUD-y (zdrowie, ID, diagnostyka)
+// liczyły wcześniej `icon(icon, icon_state, dir).Height()` przy każdej aktualizacji, czyli tworzyły nową ikonę.
+
+GLOBAL_LIST_EMPTY(icon_dimensions)
+
+/// Zwraca list("width" = szerokość, "height" = wysokość) ikony. Pliki są zapamiętywane, ikony tworzone w trakcie gry nie.
+/proc/get_icon_dimensions(icon_path)
+	// Ikona utworzona w trakcie gry (dyn.rsc albo /icon) może istnieć na miliony sposobów, więc jej nie zapamiętujemy.
+	if(!isfile(icon_path) || !length("[icon_path]"))
+		var/icon/my_icon = icon(icon_path)
+		return list("width" = my_icon.Width(), "height" = my_icon.Height())
+	if(isnull(GLOB.icon_dimensions[icon_path]))
+		var/icon/my_icon = icon(icon_path)
+		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
+	return GLOB.icon_dimensions[icon_path]
+
+/// Szerokość ikony atomu w pikselach, z pamięci podręcznej.
+/atom/proc/get_cached_width()
+	if(isnull(icon))
+		return 0
+	var/list/dimensions = get_icon_dimensions(icon)
+	return dimensions["width"]
+
+/// Wysokość ikony atomu w pikselach, z pamięci podręcznej.
+/atom/proc/get_cached_height()
+	if(isnull(icon))
+		return 0
+	var/list/dimensions = get_icon_dimensions(icon)
+	return dimensions["height"]

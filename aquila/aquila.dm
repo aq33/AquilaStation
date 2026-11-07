@@ -54,6 +54,7 @@
 #include "code\__HELPERS\game.dm"
 #include "code\__HELPERS\markov.dm"
 #include "code\__HELPERS\tg_compat.dm"
+#include "code\__HELPERS\icon_dimensions.dm"
 #include "code\__HELPERS\unsorted.dm"
 #include "code\_globalvars\lists\game.dm"
 #include "code\__HELPERS\pronouns.dm"

@@ -104,14 +104,12 @@
 
 /mob/living/simple_animal/drone/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony
 	holder.icon_state = "huddiag[RoundDiagBar(health/maxHealth)]"
 
 /mob/living/simple_animal/drone/med_hud_set_status()
 	var/image/holder = hud_list[DIAG_STAT_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony
 	if(stat == DEAD)
 		holder.icon_state = "huddead2"
 	else if(incapacitated())
