@@ -106,6 +106,24 @@
 /obj/structure/closet/secure_closet/quartermaster/PopulateContents()
 	..()
 	new /obj/item/clothing/head/beret/supply/qm(src)
+	new /obj/item/clothing/under/plasmaman/cargo/quartermaster(src)
+
+// Kwatermistrz-plazmoludź miał kombinezon magazyniera, arkusz inpostenviro.dmi rysuje dla niego własny (w ręku jak magazyniera)
+/obj/item/clothing/under/plasmaman/cargo/quartermaster
+	name = "kombinezon środowiskowy kwatermistrza InPostu"
+	desc = "Kombinezon środowiskowy plazmoluda w barwach kwatermistrza InPostu."
+	icon = 'aquila/icons/inpost/inpost.dmi'
+	worn_icon = 'aquila/icons/inpost/inpost_noszone.dmi'
+	icon_state = "qm_envirosuit"
+
+/datum/outfit/plasmaman/cargo_technician/quartermaster
+	name = "Quartermaster Plasmaman"
+	uniform = /obj/item/clothing/under/plasmaman/cargo/quartermaster
+
+/datum/job/quartermaster
+	species_outfits = list(
+		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/cargo_technician/quartermaster
+	)
 
 /****************************\
 |*********** nazwy ***********|
@@ -130,6 +148,10 @@
 
 /obj/item/clothing/under/plasmaman/cargo
 	name = "kombinezon środowiskowy InPostu"
+
+/obj/item/clothing/under/plasmaman/mining
+	name = "górniczy kombinezon środowiskowy InPostu"
+	desc = "Hermetyczny żółty kombinezon InPostu dla plazmoludzi pracujących w kopalni."
 
 /obj/item/clothing/head/soft/cargo
 	name = "czapka InPostu"
