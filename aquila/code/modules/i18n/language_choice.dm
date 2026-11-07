@@ -23,16 +23,28 @@
 /client/proc/needs_game_language()
 	return prefs && !prefs.game_language_chosen
 
+/// Najdłużej czekamy na gotowy panel czatu, zanim zapytamy mimo to (zepsuty panel nie blokuje gry)
+#define GAME_LANGUAGE_CLIENT_WAIT (20 SECONDS)
+
 /// Okno wyboru języka (śpi do odpowiedzi; zamknięte bez wyboru zostawia gracza w lobby)
 /client/proc/ask_game_language()
 	if(asking_game_language || !needs_game_language())
 		return
 	asking_game_language = TRUE
+	// Klient musi najpierw skończyć start (client/New, panel czatu): wybór od razu odświeża okna (on_changed)
+	var/wait_until = world.time + GAME_LANGUAGE_CLIENT_WAIT
+	UNTIL(QDELETED(src) || tgui_panel?.is_ready() || world.time > wait_until)
+	if(QDELETED(src))
+		return
 	var/choice = tgui_alert(mob, "Wybierz wersję językową gry.\nChoose the game language.", "Język / Language", list("Polski", "English"))
+	if(QDELETED(src))
+		return
 	asking_game_language = FALSE
 	if(!prefs || !choice)
 		return
 	prefs.choose_game_language(choice == "English" ? GAME_LANGUAGE_EN : GAME_LANGUAGE_PL)
+
+#undef GAME_LANGUAGE_CLIENT_WAIT
 
 /// Przycisk lobby, który wpuszcza do gry (gotowość, obserwowanie, późne dołączenie, wybór zawodu)
 /proc/i18n_lobby_href_joins(list/href_list)
@@ -40,10 +52,26 @@
 		return text2num(href_list["ready"]) != PLAYER_NOT_READY
 	return !!(href_list["late_join"] || href_list["SelectedJob"])
 
-/mob/dead/new_player/Login()
-	. = ..()
+// Bramka: bez wyboru języka lobby się nie otwiera, gracz widzi tylko okno wyboru.
+// Login() i inne odświeżenia lobby idą przez new_player_panel(), więc bramka jest tutaj.
+/mob/dead/new_player/new_player_panel()
 	if(client?.needs_game_language() && !client.interviewee)
-		INVOKE_ASYNC(client, TYPE_PROC_REF(/client, ask_game_language))
+		INVOKE_ASYNC(src, PROC_REF(language_gate))
+		return
+	return ..()
+
+/// Pyta o język (aż do wyboru), potem otwiera lobby już w wybranym języku
+/mob/dead/new_player/proc/language_gate()
+	while(client?.needs_game_language())
+		if(client.asking_game_language)
+			return // okno już jest otwarte, lobby otworzy ten, kto je otworzył
+		client.ask_game_language()
+		if(QDELETED(src) || !client || client.mob != src)
+			return
+		if(client.needs_game_language())
+			sleep(1 SECONDS) // zamknięte okno: zapytaj znowu, nie od razu
+	if(client && client.mob == src)
+		new_player_panel()
 
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src == usr && client?.needs_game_language() && i18n_lobby_href_joins(href_list))
@@ -62,3 +90,10 @@
 	. = ..()
 	if(type == "ready")
 		send_update(list("gameLanguage" = client?.prefs?.game_language || GAME_LANGUAGE_PL))
+
+// Samouczek proponujemy dopiero po wyborze języka (okno w wybranym języku, nie dwa okna naraz)
+/client/offer_tutorial()
+	if(needs_game_language())
+		addtimer(CALLBACK(src, PROC_REF(offer_tutorial)), 5 SECONDS)
+		return
+	return ..()
