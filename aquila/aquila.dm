@@ -900,6 +900,7 @@
 #include "code\modules\pollution\smells\fancy_candles.dm"
 #include "code\modules\pollution\smells\perfume.dm"
 #include "code\modules\power\energyharvester.dm"
+#include "code\modules\power\cell_sprites.dm"
 #include "code\modules\power\generator.dm"
 #include "code\modules\power\gravitygenerator.dm"
 #include "code\modules\power\rtg.dm"
