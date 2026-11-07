@@ -202,6 +202,7 @@ SUBSYSTEM_DEF(voice_chat)
 		return
 	session.connected = connected
 	var/client/player = GLOB.directory[session.ckey]
+	player?.escape_menu?.send_voice_chat_state() // dymek przycisku w menu pod Esc
 	if(connected)
 		session.last_used = world.realtime
 		save_tokens()
@@ -463,7 +464,8 @@ SUBSYSTEM_DEF(voice_chat)
 		SSvoice_chat.open_page(client)
 		return TRUE
 	. = ..()
-	if(type == "ready")
+	// Przy każdym otwarciu: menu powstaje raz na sesję, często zanim SSvoice_chat wczyta konfigurację (enabled)
+	if(type == "ready" || (type == "action" && islist(payload) && payload["action"] == "opened"))
 		send_voice_chat_state()
 
 #undef VOICE_CHANNEL_SAY
