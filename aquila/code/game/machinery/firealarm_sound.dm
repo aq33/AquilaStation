@@ -10,7 +10,7 @@
 		'aquila/sound/machines/fire_alarm/fire_alarm4.ogg',
 	)
 	mid_length = 2.4 SECONDS
-	volume = 30
+	volume = 45
 
 /datum/looping_sound/firealarm/sound_loop(starttime)
 	var/obj/machinery/firealarm/alarm = parent
