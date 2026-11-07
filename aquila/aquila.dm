@@ -1745,6 +1745,7 @@
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
 #include "code\modules\unit_tests\aquila_mutation_toxins.dm"
+#include "code\modules\unit_tests\aquila_map_standard.dm"
 #include "code\modules\unit_tests\aquila_lag_switch.dm"
 #include "code\modules\unit_tests\aquila_openspace_airless.dm"
 #include "code\modules\unit_tests\aquila_ship_console.dm"
