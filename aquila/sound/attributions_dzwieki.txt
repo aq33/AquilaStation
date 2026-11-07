@@ -16,6 +16,7 @@ From tgstation/tgstation (b32c9d2), license CC-BY-SA 3.0 unless the source folde
   voice/plasmaman/*                 tgstation sound/mobs/humanoids/plasmaman
   voice/shadow/shadow_wail.ogg      tgstation sound/mobs/humanoids/shadow
   voice/muffspeech/*                tgstation sound/effects/muffspeech
+  machines/fire_alarm/fire_alarm1-4.ogg  tgstation sound/machines/fire_alarm (5ee81d69), alarm pożarowy
 
 From BeeStation/BeeStation-Hornet (1343227), license CC-BY-SA 3.0:
   voice/human/gasp/gasp_f1-6.ogg, gasp_m1-6.ogg   BeeStation sound/emotes/female, sound/emotes/male

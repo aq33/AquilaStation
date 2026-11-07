@@ -22,4 +22,17 @@ GLOBAL_VAR(vote_submit_cooldown)
 	sound_to_playing_players('aquila/sound/misc/Vote_success.ogg')
 	return ..()
 
+/// Nazwa mapy z rozmiarem w nawiasie, np. „NSV Shrike (mała)”
+/datum/map_config/proc/get_vote_label()
+	return map_size ? "[map_name] ([map_size])" : map_name
+
+/// Okno głosowania pokazuje rozmiar mapy obok nazwy. Klucz wyboru zostaje bez zmian, bo po nim wybierana jest mapa.
+/datum/controller/subsystem/vote/ui_data(mob/user)
+	. = ..()
+	if(.["mode"] != "map")
+		return
+	for(var/list/choice as anything in .["choices"])
+		var/datum/map_config/map_config = config.maplist[choice["name"]]
+		choice["label"] = map_config ? map_config.get_vote_label() : choice["name"]
+
 #undef VOTE_SUBMIT_COOLDOWN_TIME

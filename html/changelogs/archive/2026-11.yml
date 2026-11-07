@@ -303,6 +303,17 @@
   - bugfix: Radio artylerii ma swój kolor w czacie i w oknie mówienia.
   - spellcheck: Kategorie fabrykatorów po polsku, bez „The” w dymkach, dział amunicji
       nazywa się Uzbrojenie.
+  - rscadd: 'Miękkie światło: płynne przejścia między światłem a cieniem zamiast kafelkowych
+      schodków (opcja w Grafika → Jakość).'
+  - rscadd: 'Poświata wokół świecących rzeczy: ekranów, lamp, alarmów i laserów, w
+      czterech poziomach (opcja w Grafika → Jakość).'
+  - rscadd: Lampy, pociski energetyczne i światełka śluz świecą w ciemności.
+  - rscadd: Promienie świateł od jasnych rzeczy (opcja, domyślnie wyłączona, działa
+      z poświatą).
+  - rscadd: 'Prototyp cieni od ścian dla latarek, kasków, PDA i borgów: światło latarki
+      nie przechodzi już przez ściany.'
+  - imageadd: Ikona trójkąta cienia dla latarek.
+  - admin: aq_set_light_shadows(FALSE) przez Advanced ProcCall wyłącza cienie latarek.
   sh4dow321:
   - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
       wersji językowej.
