@@ -158,6 +158,9 @@
 		if(!msg)
 			return
 
+	if(recipient)
+		msg = aq_admin_msg_for(recipient, msg) // AQ EDIT - tłumaczenie dla odbiorcy z innym językiem (aquila/code/__HELPERS/chat_translation.dm)
+
 	var/rawmsg = msg
 
 	if(holder)

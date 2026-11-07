@@ -111,4 +111,15 @@
 	TEST_ASSERT(!headset.aq_translator_wearer, "Dropped headset still remembers its wearer")
 	SStranslation.cache = list()
 
+/// Czat (OOC, PW): tłumaczenie z czekaniem bierze wynik z pamięci, a bez klucza szybko zwraca null
+/datum/unit_test/aquila_chat_translation/Run()
+	SStranslation.cache_set(DEEPL_LANG_PL, DEEPL_LANG_EN, "Pomocy, admin", "Help, admin")
+	TEST_ASSERT(aq_translate_wait("Pomocy, admin", DEEPL_LANG_PL, DEEPL_LANG_EN) == "Help, admin", "Cached chat translation was not returned")
+	if(!CONFIG_GET(string/deepl_api_key))
+		var/started = world.time
+		TEST_ASSERT(isnull(aq_translate_wait("Nikt tego nie tłumaczył", DEEPL_LANG_PL, DEEPL_LANG_EN)), "Chat translation without a key returned text")
+		TEST_ASSERT(world.time - started < 1 SECONDS, "Chat translation without a key waited")
+	SStranslation.cache = list()
+	GLOB.aq_chat_translations = list()
+
 #undef TEST_ASSERT

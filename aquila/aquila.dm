@@ -57,6 +57,7 @@
 #include "code\_globalvars\lists\game.dm"
 #include "code\__HELPERS\pronouns.dm"
 #include "code\__HELPERS\polish.dm"
+#include "code\__HELPERS\chat_translation.dm"
 #include "code\__HELPERS\roundend.dm"
 #include "code\__HELPERS\shell.dm"
 #include "code\_onclick\hud\action_palette.dm"
@@ -1892,5 +1893,6 @@
 #include "code\modules\i18n\foreigner.dm"
 #include "code\modules\i18n\translator_item.dm"
 #include "code\modules\i18n\translator_chip.dm"
+#include "code\modules\i18n\chat_translation.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"

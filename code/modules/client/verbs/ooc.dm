@@ -73,7 +73,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	//Get client badges
 	var/badge_data = badge_parse(get_badges())
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
+	var/aq_ooc_original = msg // AQ EDIT - OOC w języku odbiorcy
 	for(var/client/C in GLOB.clients)
+		// AQ EDIT START - OOC w języku odbiorcy (aquila/code/__HELPERS/chat_translation.dm); może czekać na tłumaczenie
+		var/aq_ooc = aq_ooc_for(C, raw_msg)
+		if(!C)
+			continue
+		msg = aq_ooc ? emoji_parse(aq_ooc) : aq_ooc_original
+		// AQ EDIT END
 		if(C.prefs.chat_toggles & CHAT_OOC)
 			if(holder)
 				if(!holder.fakekey || C.holder)
@@ -92,6 +99,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 					to_chat(C, "[badge_data]<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else
 					to_chat(C, "[badge_data]<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
+	msg = aq_ooc_original // AQ EDIT - na Discord idzie oryginał
 	// beestation, send to discord
 	if(holder?.fakekey)
 		discordsendmsg("ooc", "**[holder.fakekey]:** [msg]")
