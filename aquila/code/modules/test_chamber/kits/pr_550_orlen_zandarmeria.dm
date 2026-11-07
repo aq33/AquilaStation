@@ -15,7 +15,7 @@
 	13) Bandana żandarmska na głowie → oczekiwane: włosy widać. Zwiń (PPM) mundury Żandarma, Naczelnika i Komendanta → wersje zwinięte z arkusza; galowe, służbowe i golf Komendanta nie dają się zwinąć, a golf kwatermistrza tak. \
 	14) SecDrobe, zakładka premium → oczekiwane: dla Żandarma, Naczelnika i Komendanta galowy mundur, kurtka i czapka (czapka żandarma, czapka Naczelnika, czapka Komendanta), bez beretów; w zwykłej ofercie nie ma alternatywnej czapki, a czapka żandarmska obraca daszek Alt+klikiem. Żandarmeria w jaśniejszej zieleni z arkusza. \
 	15) Hełmy plazmoludzi ochrony, inżynierii i zaopatrzenia → oczekiwane: kolory jak kombinezony środowiskowe (zieleń z bordo, biel z czerwienią, szary z żółcią). \
-	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami. \n	17) Mundur Głównego Inżyniera: zwiń go (PPM) → oczekiwane: wersja z podwiniętymi rękawami, sprite nie znika. \n	18) Śluzy ładowni i górnicza z zestawu → oczekiwane: żółte w barwach InPostu, śluza górnicza bez brązowego nalotu. \n	19) NFZ: Mundurownia NFZ i trzy mundurownie podgrup, NanoMed, szafki medyczna, ordynatora i chemiczna → oczekiwane: turkus (chemia pomarańczowa), szafki też po otwarciu. Załóż kombinezon lekarza (zwiń go PPM), golf ordynatora (z szafki), fartuchy (Alt+klik rozpina), kitle, czepki, bandanę, kurtkę zimową (Alt+klik zapina, kaptur na plecach), rękawiczki, buty NFZ, plecaki i torby, kombinezon bio → oczekiwane: barwy NFZ, nic nie znika, włosy pod czepkiem i bandaną widać."
+	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami. \n	17) Mundur Głównego Inżyniera: zwiń go (PPM) → oczekiwane: wersja z podwiniętymi rękawami, sprite nie znika. \n	18) Śluzy ładowni i górnicza z zestawu → oczekiwane: żółte w barwach InPostu, śluza górnicza bez brązowego nalotu. \n	19) NFZ: Mundurownia NFZ i trzy mundurownie podgrup, NanoMed, szafki medyczna, ordynatora i chemiczna → oczekiwane: turkus (chemia pomarańczowa), szafki też po otwarciu. Załóż kombinezon lekarza (zwiń go PPM), golf ordynatora (z szafki), fartuchy (Alt+klik rozpina), kitle, czepki, bandanę, kurtkę zimową (Alt+klik zapina, kaptur na plecach), rękawiczki, buty NFZ, plecaki i torby, kombinezon bio → oczekiwane: barwy NFZ, nic nie znika, włosy pod czepkiem i bandaną widać. \n	20) Mundurownie działów → oczekiwane: nigdzie nie ma kolorowych przepasek na głowę. Niebieskie dekale medycyny na mapach są teraz miętowe (podgląd: dekale z zestawu), a medyk w turkusowym mundurze nie zlewa się z podłogą. \n	21) Górniczy hardsuit (z szafy SSU górników) z hełmem: załóż i włącz latarkę → oczekiwane: żółty skafander InPostu z bańką hełmu. \n	22) Pudełko przetrwania: otwórz (Alt+klik) i wyjmuj po kolei skafander, maskę, medipen, butlę i hełm → oczekiwane: z czerwonej skrzynki znika odpowiednia część; po włożeniu z powrotem wraca. \n	23) Kombinezony środowiskowe plazmoludzi: medyka, ordynatora, genetyka, chemika, wirusologa, magazyniera, górnika i kwatermistrza (w szafce QM) → oczekiwane: grafiki z arkuszy NFZ i InPostu. Czapka NFZ (obróć daszek Alt+klikiem), fartuch operacyjny i HUD medyczny z poprawionego arkusza."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -95,6 +95,19 @@
 		/obj/item/clothing/suit/bio_suit/general = 1,
 		/obj/item/clothing/head/bio_hood/general = 1,
 		/obj/item/door_remote/chief_medical_officer = 1,
+		/obj/item/clothing/suit/space/hardsuit/mining = 1,
+		/obj/item/storage/box/survival = 1,
+		/obj/item/clothing/under/plasmaman/medical = 1,
+		/obj/item/clothing/under/plasmaman/cmo = 1,
+		/obj/item/clothing/under/plasmaman/genetics = 1,
+		/obj/item/clothing/under/plasmaman/chemist = 1,
+		/obj/item/clothing/under/plasmaman/viro = 1,
+		/obj/item/clothing/under/plasmaman/cargo = 1,
+		/obj/item/clothing/under/plasmaman/mining = 1,
+		/obj/item/clothing/under/plasmaman/cargo/quartermaster = 1,
+		/obj/item/clothing/head/soft/paramedic = 1,
+		/obj/item/clothing/suit/apron/surgical = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
 	)
 
 /// Naklejki rozkładają się na podłogę i same znikają, więc nie idą przez items (test liczy obiekty)
@@ -106,6 +119,7 @@
 		/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 		/obj/effect/turf_decal/tile/ship/police,
 		/obj/effect/turf_decal/tile/ship/half/police,
+		/obj/effect/turf_decal/tile/ship/blue/nfz,
 	)
 	for(var/i in 1 to min(length(decals), length(turfs)))
 		var/decal_type = decals[i]
