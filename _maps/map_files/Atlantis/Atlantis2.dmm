@@ -480,20 +480,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/hydroponics/garden/abandoned)
-"aHo" = (
-/obj/machinery/stasis{
-	id_tag = "aq_vitals_atlantis2_160_120"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/vitals_reader{
-	id_tag = "aq_vitals_atlantis2_160_120";
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/grid/steel,
-/area/medical/medbay/central)
 "aHA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -1574,17 +1560,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
-"bEl" = (
-/obj/machinery/stasis{
-	id_tag = "aq_vitals_atlantis2_158_118"
-	},
-/obj/machinery/duct,
-/obj/machinery/vitals_reader{
-	id_tag = "aq_vitals_atlantis2_158_118";
-	pixel_y = 32
-	},
-/turf/open/floor/monotile/light,
-/area/medical/medbay/central)
 "bFs" = (
 /obj/item/stack/spacecash/c1,
 /obj/structure/festivus{
@@ -1609,13 +1584,6 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/ai_monitored/turret_protected/aisat/foyer)
-"bFU" = (
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/restaurant_terminal/restaurant{
-	pixel_y = 32
-	},
-/turf/open/floor/monotile/light,
-/area/crew_quarters/kitchen)
 "bGi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3784,6 +3752,17 @@
 /obj/structure/extinguisher_cabinet/north,
 /turf/open/floor/monotile/steel,
 /area/medical/chemistry)
+"dLx" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/steel,
+/area/crew_quarters/cafeteria)
 "dLA" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue,
@@ -7474,6 +7453,14 @@
 	},
 /turf/open/floor/circuit/red,
 /area/bridge/cic)
+"hvS" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlantis2_158_118";
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/central)
 "hvU" = (
 /obj/machinery/porta_turret/ai,
 /obj/effect/turf_decal/stripes/box,
@@ -7769,6 +7756,14 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/engine/gravity_generator)
+"hLO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlantis2_156_118";
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/medical/genetics/cloning)
 "hMg" = (
 /turf/open/floor/carpet/ship,
 /area/maintenance/nsv/deck1/starboard)
@@ -8326,6 +8321,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
+"iuH" = (
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "ivz" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck1/port)
@@ -8986,17 +8985,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/medical/storage)
-"jdx" = (
-/obj/machinery/stasis{
-	id_tag = "aq_vitals_atlantis2_153_118"
-	},
-/obj/machinery/duct,
-/obj/machinery/vitals_reader{
-	id_tag = "aq_vitals_atlantis2_153_118";
-	pixel_y = 32
-	},
-/turf/open/floor/monotile/light,
-/area/medical/medbay/central)
 "jdD" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/structure/cable,
@@ -10392,18 +10380,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/nsv/deck1/port)
-"kuf" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name/west,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/status_display/ai/west,
-/turf/open/floor/monotile/steel,
-/area/crew_quarters/cafeteria)
 "kup" = (
 /obj/structure/bed/roller,
 /obj/structure/cable,
@@ -13753,6 +13729,16 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/crew_quarters/heads/xo)
+"okM" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlantis2_160_120"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/grid/steel,
+/area/medical/medbay/central)
 "okV" = (
 /obj/structure/cable,
 /obj/structure/chair,
@@ -13764,20 +13750,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/maintenance/department/medical)
-"okY" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/power/apc/auto_name/south,
-/obj/machinery/rnd/production/techfab/department/service,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/status_display/evac/south,
-/turf/open/floor/monotile/dark,
-/area/hallway/secondary/service)
 "omd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -14541,6 +14513,13 @@
 	},
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/deck2)
+"pgj" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlantis2_156_118"
+	},
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/monotile/light,
+/area/medical/medbay/central)
 "php" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -16316,6 +16295,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/techmaint,
 /area/ai_monitored/nuke_storage)
+"qWd" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlantis2_160_120";
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/central)
 "qWu" = (
 /obj/structure/extinguisher_cabinet/south,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -18957,10 +18944,6 @@
 	},
 /turf/open/floor/durasteel/lino,
 /area/comms)
-"tHW" = (
-/obj/machinery/processor,
-/turf/open/floor/monotile/light,
-/area/crew_quarters/kitchen)
 "tIG" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/fire,
@@ -19022,6 +19005,19 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
+"tLm" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/rnd/production/techfab/department/service,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/hallway/secondary/service)
 "tLq" = (
 /obj/structure/sign/ship/securearea{
 	dir = 8
@@ -20668,6 +20664,13 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/bridge)
+"vwF" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlantis2_158_118"
+	},
+/obj/machinery/duct,
+/turf/open/floor/monotile/light,
+/area/medical/medbay/central)
 "vxc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -20811,6 +20814,13 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/nsv/deck1/hallway)
+"vBQ" = (
+/obj/machinery/processor,
+/obj/machinery/restaurant_terminal/restaurant{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "vBR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -22221,6 +22231,17 @@
 	},
 /turf/open/floor/engine/airless,
 /area/nsv/hanger/deck2)
+"wVe" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlantis2_153_118"
+	},
+/obj/machinery/duct,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlantis2_153_118";
+	pixel_x = -32
+	},
+/turf/open/floor/monotile/light,
+/area/medical/medbay/central)
 "wVm" = (
 /obj/structure/railing{
 	dir = 1
@@ -22989,17 +23010,6 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/crew_quarters/heads/chief)
-"xLv" = (
-/obj/machinery/stasis{
-	id_tag = "aq_vitals_atlantis2_156_118"
-	},
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/vitals_reader{
-	id_tag = "aq_vitals_atlantis2_156_118";
-	pixel_x = 32
-	},
-/turf/open/floor/monotile/light,
-/area/medical/medbay/central)
 "xMf" = (
 /obj/structure/chair/fancy/corp{
 	dir = 8
@@ -49020,7 +49030,7 @@ bpw
 rpY
 cGV
 fku
-tHW
+vBQ
 hik
 oOS
 wOU
@@ -49277,7 +49287,7 @@ sFp
 qKz
 dsU
 fku
-bFU
+iuH
 uSf
 soF
 uSf
@@ -50571,7 +50581,7 @@ fku
 fku
 rNM
 rZJ
-okY
+tLm
 tIP
 lLx
 lLx
@@ -50818,7 +50828,7 @@ iSk
 jqP
 djI
 gwc
-kuf
+dLx
 haH
 hvj
 hvj
@@ -62662,7 +62672,7 @@ qHo
 gLO
 pSl
 wbn
-jdx
+wVe
 roa
 aAp
 qEB
@@ -63175,7 +63185,7 @@ uMq
 rrw
 kEP
 avj
-wbn
+hLO
 bMC
 bMC
 aAI
@@ -63433,7 +63443,7 @@ kFO
 xrt
 mwZ
 iRB
-xLv
+pgj
 rgp
 kGe
 kgP
@@ -63690,7 +63700,7 @@ tBp
 iRB
 iRB
 iRB
-qGM
+hvS
 hoE
 qGM
 wOd
@@ -63946,8 +63956,8 @@ eRQ
 eYs
 jWk
 xAN
-qGM
-bEl
+qWd
+vwF
 epf
 aAp
 kgP
@@ -64459,7 +64469,7 @@ hoE
 iIh
 wlA
 ydt
-aHo
+okM
 qGM
 kgP
 bMC
