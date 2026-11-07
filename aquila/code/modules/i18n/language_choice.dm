@@ -22,6 +22,8 @@
 	var/datum/tgui_modal/game_language_modal
 	/// Samouczek czeka na wybór języka (offer_tutorial() przed wyborem)
 	var/tutorial_offer_pending = FALSE
+	/// Changelog czeka na wybór języka (aggressive_changelog otwierał go przed oknem wyboru)
+	var/changelog_pending = FALSE
 
 /// Gracz jeszcze nie wybrał języka
 /client/proc/needs_game_language()
@@ -94,6 +96,9 @@
 	if(!client || client.mob != src)
 		return
 	new_player_panel()
+	if(client.changelog_pending)
+		client.changelog_pending = FALSE
+		INVOKE_ASYNC(client, TYPE_VERB_REF(/client, changelog))
 	if(client.tutorial_offer_pending)
 		client.tutorial_offer_pending = FALSE
 		INVOKE_ASYNC(client, TYPE_PROC_REF(/client, offer_tutorial))
@@ -122,5 +127,12 @@
 /client/offer_tutorial()
 	if(needs_game_language())
 		tutorial_offer_pending = TRUE // language_gate() zaproponuje po wyborze
+		return
+	return ..()
+
+// Changelog (też aggressive_changelog przy wejściu) dopiero po wyborze języka: przed bramką nie pokazuje się nic
+/client/changelog()
+	if(needs_game_language() && isnewplayer(mob))
+		changelog_pending = TRUE // language_gate() otworzy po wyborze
 		return
 	return ..()
