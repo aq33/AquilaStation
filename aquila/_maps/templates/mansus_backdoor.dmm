@@ -57,7 +57,6 @@
 	desc = "Wygląda, jakby od dawna nikt w nim nie palił."
 	},
 /obj/effect/decal/cleanable/ash{
-	pixel_y = 0;
 	pixel_x = 4
 	},
 /turf/open/floor/stone,
