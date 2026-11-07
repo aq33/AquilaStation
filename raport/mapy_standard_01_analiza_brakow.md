@@ -30,24 +30,24 @@ Liczby to sztuki na całej mapie (wszystkie pokłady). „Brak” = 0.
 
 | Mechanika (port) | Atlas | Trawnik | Padalec | Atlantis | VN | Co dodać |
 |---|---|---|---|---|---|---|
-| Bitrunning (AQ#452/453): serwer kwantowy, 3 netpody, konsola, byteforge, konsola zamówień, 3 starty, obszar `bitrunning/den` | jest | jest | jest | **brak** | **brak** | pracownia w slocie losowego pokoju przy cargo (sekcja 4) |
-| Exodrony (AQ#478): wyrzutnia, 2 skanery, 2 konsole, dron | jest | jest | jest | **brak** | **brak** | konsole w biurze górników, skanery w hangarze/próżni |
+| Bitrunning (aq33/AquilaStation#452 i aq33/AquilaStation#453): serwer kwantowy, 3 netpody, konsola, byteforge, konsola zamówień, 3 starty, obszar `bitrunning/den` | jest | jest | jest | **brak** | **brak** | pracownia w slocie losowego pokoju przy cargo (sekcja 4) |
+| Exodrony (aq33/AquilaStation#478): wyrzutnia, 2 skanery, 2 konsole, dron | jest | jest | jest | **brak** | **brak** | konsole w biurze górników, skanery w hangarze/próżni |
 | Serwery SI (zdecentralizowane): rdzeń danych + główny, szafa serwerowa, chłodnica, 4 konsole, ekran rdzenia, `rack_creator` | jest | jest | jest | **brak** | **brak** | serwerownia telekomunikacji + rdzeń SI |
-| Kable ethernet SI (AQ#499) | 25 | 25 | 70 | **brak** | **brak** | trasa rdzeń - serwerownia - konsole |
-| Xenoarcheologia (AQ#468): 3 maszyny, konsola, artefakt + samouczkowy, labeler, szczypce | jest | jest | jest | **brak** | **brak** | Atlantis: `science/explab`; VN: `science/lab` |
-| Gizmo (tg#95857) | 1 | 1 | 1 | **brak** | **brak** | spawner w RnD |
-| Kuźnia amunicji (AQ#483): kowadło, piec łukowy, stół montażowy, galwanizer, młot, odlewy, analizator | jest | jest | jest | **brak** | **brak** | Atlantis: `nsv/weapons`; VN: `nsv/weapons/port` |
-| Shipbreaking (AQ#489): stół + szafka | jest | jest | jest | **brak** | **brak** | w klatce magnesu (wymaga magnesu) |
-| Magnes asteroid (AQ#442): 2 konsole magnesu, DRADIS górniczy, landmark klatki 40x40, kamera górnicza | jest | jest | jest | **brak** | **brak** (tylko kamera) | klatka 40x40 w kosmosie przy doku górniczym |
-| Rynek szlamów (AQ#487): konsola, pad, kompresor, pady zamówień | jest | jest | jest | **brak** | **brak** | xenobiologia (obie mapy ją mają) |
-| Zlecenia cywilne + giełda (AQ#434) | jest | jest | jest | **brak** | **brak** | lobby cargo |
-| Restauracja (AQ#435): 2 portale, 2 terminale | jest | jest | jest | **brak** | **brak** | bar/stołówka |
+| Kable ethernet SI (aq33/AquilaStation#499) | 25 | 25 | 70 | **brak** | **brak** | trasa rdzeń - serwerownia - konsole |
+| Xenoarcheologia (aq33/AquilaStation#468): 3 maszyny, konsola, artefakt + samouczkowy, labeler, szczypce | jest | jest | jest | **brak** | **brak** | Atlantis: `science/explab`; VN: `science/lab` |
+| Gizmo (tgstation/tgstation#95857) | 1 | 1 | 1 | **brak** | **brak** | spawner w RnD |
+| Kuźnia amunicji (aq33/AquilaStation#483): kowadło, piec łukowy, stół montażowy, galwanizer, młot, odlewy, analizator | jest | jest | jest | **brak** | **brak** | Atlantis: `nsv/weapons`; VN: `nsv/weapons/port` |
+| Shipbreaking (aq33/AquilaStation#489): stół + szafka | jest | jest | jest | **brak** | **brak** | w klatce magnesu (wymaga magnesu) |
+| Magnes asteroid (aq33/AquilaStation#442): 2 konsole magnesu, DRADIS górniczy, landmark klatki 40x40, kamera górnicza | jest | jest | jest | **brak** | **brak** (tylko kamera) | klatka 40x40 w kosmosie przy doku górniczym |
+| Rynek szlamów (aq33/AquilaStation#487): konsola, pad, kompresor, pady zamówień | jest | jest | jest | **brak** | **brak** | xenobiologia (obie mapy ją mają) |
+| Zlecenia cywilne + giełda (aq33/AquilaStation#434) | jest | jest | jest | **brak** | **brak** | lobby cargo |
+| Restauracja (aq33/AquilaStation#435): 2 portale, 2 terminale | jest | jest | jest | **brak** | **brak** | bar/stołówka |
 | Kuchnia Newfood: patelnia (griddle), piekarnik, wózek | jest | jest | jest (bez wózka) | **brak** | **brak** | kuchnia (wymiana starego sprzętu, nie dokładanie) |
-| Botanika Bee#14133: konsola maszyn, katalog refrakcji, worki podłoża | jest | jest | jest | jest | **brak** konsoli, katalogu, worków | VN: hydroponika 99-104 x 87-99 |
+| Botanika BeeStation/BeeStation-Hornet#14133: konsola maszyn, katalog refrakcji, worki podłoża | jest | jest | jest | jest | **brak** konsoli, katalogu, worków | VN: hydroponika 99-104 x 87-99 |
 | Genetyka: DNA Infuser | jest | jest | jest | jest | **brak** | VN: genetyka w medbayu |
 | Wirusologia: PANDEMIC, lodówka wirusologii, start wirusologa, ekstrapolator, karma dla wirusów | jest | jest | jest | **brak** | PANDEMIC jest, reszty brak | decyzja (sekcja 5) |
-| Circuity (AQ#510): drukarka komponentów, powielacz modułów, BCI | jest | jest | jest | **brak** | **brak** | RnD |
-| NTSL (AQ#495): konsola ruchu telecomms + klucz monitora | jest | jest | jest | **brak** | **brak** | serwerownia telekomunikacji |
+| Circuity (aq33/AquilaStation#510): drukarka komponentów, powielacz modułów, BCI | jest | jest | jest | **brak** | **brak** | RnD |
+| NTSL (aq33/AquilaStation#495): konsola ruchu telecomms + klucz monitora | jest | jest | jest | **brak** | **brak** | serwerownia telekomunikacji |
 | Gułag: teleporter, konsola, odzysk rzeczy, kamera obozu, instrukcja, `has_gulag` + dok `laborcamp_home` | jest | jest | jest | **brak** | **brak** | dok promu przy brygu + `has_gulag` w JSON (sekcja 5) |
 | Bryg Aquili: interfejs GenPop, konsola więźniów, implanty wygnania, rower w więzieniu | jest | jest | częściowo | **brak** | konsola jest, reszty brak | bryg |
 | Fax | 4 | 5 | 6 | **brak** | 5 | Atlantis: mostek, XO, ochrona, cargo, medbay, nauka |
@@ -65,8 +65,8 @@ Liczby to sztuki na całej mapie (wszystkie pokłady). „Brak” = 0.
 | RCD kanalizacji, metkownice, bufor mózgu (`tgui_book/manual/dsm`) itp. drobne | jest | jest | jest | **brak** | **brak** | magazyny działów |
 | Generator tarczy statku | 1 | 1 (spawner) | brak | **brak** | jest | decyzja (balans) |
 | Konsola PvP (`conquest_beacon`) | 1 | 1 | 1 | **brak** | 1 | CIC Atlantis |
-| Losowy silnik (spawner jak `atlasengine`) | jest | w aq33/AquilaStation#578 | w #578 | **brak** | **brak** | po scaleniu #578 (sekcja 5) |
-| Kanalizacja (AQ#443) | jest | jest | jest | jest (287 rur) | jest (118) | nic |
+| Losowy silnik (spawner jak `atlasengine`) | jest | w aq33/AquilaStation#578 | w aq33/AquilaStation#578 | **brak** | **brak** | po scaleniu aq33/AquilaStation#578 (sekcja 5) |
+| Kanalizacja (aq33/AquilaStation#443) | jest | jest | jest | jest (287 rur) | jest (118) | nic |
 | Telecomms, kriogenika, chemia, xenobio, robotyka | jest | jest | jest | jest | jest | nic |
 
 Opisy w `.json`: Atlantis nie ma `map_description`, `manufacturer`, `mapper`, `commission_date`, `strengths`, `weaknesses`, `equipment`, `starmap_path` ani `has_gulag`. W głosowaniu (`MapVote.tsx`) pokazuje „Brak danych”. VN ma wszystko poza `has_gulag`. Atlas, Trawnik i Padalec mają polskie nazwy (NSV Aquilas, DLV Trawnik, NSV Padalec), Atlantis i VN nie.
@@ -111,7 +111,7 @@ Jeden PR, osobne commity na partie:
 2. Drobne obiekty bez instalacji w istniejących pomieszczeniach: dzwonki, zegary, faxy, monitory stazy, automaty, ołtarz, Wojtek, kuchnia Newfood, restauracja, rynek szlamów, zlecenia i giełda, NTSL, circuity, gizmo, xenoarch, kuźnia, baterie, rower, GenPop, drobne przedmioty.
 3. Nowe pracownie w slotach (bitrunning, serwerownia SI z ethernetem, exodrony, wirusologia na Atlantis) z rozpisanymi instalacjami do akceptacji.
 4. Magnes, klatka, shipbreaking; dok gułagu.
-5. (Osobno, po #578) losowy silnik Atlantis.
+5. (Osobno, po aq33/AquilaStation#578) losowy silnik Atlantis.
 
 Każda partia: render przed i po, statyczna kontrola rur i kabli, `dm.exe -DCBT nsv13.dme`, kontrola map jak w CI (`--ci dm -DCIBUILDING -DCITESTING -DALL_MAPS`), dla rzeczy z zasilaniem symulacja rundy bez klienta (tymczasowy `data/next_map.json`).
 
