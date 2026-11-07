@@ -16,9 +16,10 @@ DEF = re.compile(r"^(/[A-Za-z0-9_/]+)/AltClick\(")
 
 def main():
     listed = set()
-    for line in open(LIST_FILE, encoding="utf8"):
-        if line.startswith("/"):
-            listed.add(line.strip())
+    with open(LIST_FILE, encoding="utf8") as list_file:
+        for line in list_file:
+            if line.startswith("/"):
+                listed.add(line.strip())
     missing = []
     for root in ("code", "nsv13", "aquila"):
         for dirpath, _, files in os.walk(root):
@@ -26,7 +27,9 @@ def main():
                 if not name.endswith(".dm"):
                     continue
                 path = os.path.join(dirpath, name)
-                for num, line in enumerate(open(path, encoding="utf8", errors="ignore"), 1):
+                with open(path, encoding="utf8", errors="ignore") as dm_file:
+                    lines = list(dm_file)
+                for num, line in enumerate(lines, 1):
                     m = DEF.match(line)
                     if not m:
                         continue

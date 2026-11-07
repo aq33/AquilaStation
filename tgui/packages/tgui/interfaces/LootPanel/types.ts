@@ -1,6 +1,7 @@
 export type SearchItem = {
   name: string;
-  path: string;
+  /** null dla mobów i pól (DM wysyła typ tylko dla obiektów) */
+  path: string | null;
   ref: string;
 } & Partial<{
   icon: string;
