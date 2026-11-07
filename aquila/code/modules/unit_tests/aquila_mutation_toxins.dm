@@ -122,7 +122,7 @@
 	destinations -= "pirateship_home"
 	TEST_ASSERT(length(destinations), "The pirate shuttle has no destination besides its home port")
 	// Unit tests run on runtimestation, so the ship maps are read from disk
-	for(var/map_json in list("aquila_atlas", "aquila_snake", "aquila_serendipity"))
+	for(var/map_json in list("aquila_atlas", "aquila_snake", "aquila_serendipity", "atlantis", "vonneumann"))
 		var/list/config = json_decode(file2text("_maps/[map_json].json"))
 		var/list/map_files = islist(config["map_file"]) ? config["map_file"] : list(config["map_file"])
 		var/found = FALSE
