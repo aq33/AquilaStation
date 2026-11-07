@@ -114,7 +114,8 @@
 		if(muffled_file)
 			sound_file = muffled_file
 		volume *= 0.8
-	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency, ignore_walls = FALSE)
+	// Przez ścianę słychać niezrozumiałe mamrotanie: wygłuszenie w playsound() podmienia frazę na stłumioną (sound_occlusion.dm)
+	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency)
 
 #undef VOICE_CLEAR
 #undef VOICE_MUFFLED

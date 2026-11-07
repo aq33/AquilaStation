@@ -73,10 +73,11 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/mob/M as() in listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref)
+			var/list/heard = sound_heard_through(turf_source, M, vol, maxdistance, source) // AQ EDIT - walls muffle the sound, an open door lets it around the corner (aquila/code/game/sound_occlusion.dm)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref, occlusion = heard[1], source = heard[2]) // AQ EDIT - the client tracks the source
 	for(var/mob/M as() in dead_listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, volume_pref, source = source) // AQ EDIT - ghosts hear through walls, but still get tracking
 
 /*! playsound
 
@@ -97,7 +98,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 */
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, volume_pref)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, volume_pref, occlusion = 0, atom/source) // AQ EDIT - occlusion and source (aquila/code/game/sound_occlusion.dm)
 	if(!client || !can_hear())
 		return
 
@@ -158,15 +159,16 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.volume *= pressure_factor
 			//End Atmosphere affecting sound
 
+		// AQ EDIT START - walls muffle the sound; the position is tracked by the client nearby and the pan is softer (aquila/code/game/sound_occlusion.dm)
+		var/original_file = apply_sound_occlusion(S, occlusion, distance, src)
+
 		if(S.volume <= 0)
+			if(original_file)
+				S.file = original_file
 			return //No sound
 
-		var/dx = turf_source.x - T.x // Hearing from the right/left
-		S.x = dx * distance_multiplier
-		var/dz = turf_source.y - T.y // Hearing from infront/behind
-		S.z = dz * distance_multiplier
-		// The y value is for above your head, but there is no ceiling in 2d spessmens.
-		S.y = z_change + 1
+		apply_sound_position(S, turf_source, T, source, distance_multiplier, z_change)
+		// AQ EDIT END
 		S.falloff = max_distance || 1 //use max_distance, else just use 1 as we are a direct sound so falloff isnt relevant.
 
 		// Sounds can't have their own environment. A sound's environment will be:
@@ -176,11 +178,19 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.environment = sound_environment_override
 		else
 			var/area/A = get_area(src)
-			S.environment = A.sound_environment
+			S.environment = A.get_sound_environment() // AQ EDIT - reverb from the room shape (aquila/code/game/area/sound_environments.dm)
 
 		if(use_reverb && S.environment != SOUND_ENVIRONMENT_NONE) //We have reverb, reset our echo setting
 			S.echo[3] = 0 //Room setting, 0 means normal reverb
 			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
+
+		// AQ EDIT START - reverb of the source room behind the wall; the /sound goes to every listener, restore the unmuffled file
+		apply_source_reverb(S, turf_source, occlusion)
+		SEND_SOUND(src, S)
+		if(original_file)
+			S.file = original_file
+		return
+		// AQ EDIT END
 
 	SEND_SOUND(src, S)
 

@@ -216,6 +216,8 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
@@ -231,9 +233,13 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - climb_structure() sleeps and the path can be reset meanwhile
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
+		if(!length(path)) // AQ EDIT - the path was reset while climbing
+			return FALSE
 		step_towards(H, path[1])
 		if(get_turf(H) == path[1]) //Successful move
 			increment_path()

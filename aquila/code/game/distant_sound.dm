@@ -46,21 +46,10 @@
 		echo.y = 1
 		echo.falloff = 2
 		var/area/listener_area = get_area(listener_turf)
-		echo.environment = listener_area ? listener_area.sound_environment : SOUND_ENVIRONMENT_NONE
+		echo.environment = listener_area ? listener_area.get_sound_environment() : SOUND_ENVIRONMENT_NONE
 		SEND_SOUND(listener, echo)
 
-/// Sum of the sound_dampening of everything on the line between two turfs, up to 1
-/proc/distant_sound_dampening(turf/source_turf, turf/listener_turf)
-	. = 0
-	for(var/turf/line_turf as anything in getline(source_turf, listener_turf))
-		if(line_turf == source_turf)
-			continue
-		. += line_turf.get_sound_dampening()
-		for(var/obj/O in line_turf)
-			if(O.sound_dampening)
-				. += O.get_sound_dampening()
-		if(. >= 1)
-			return 1
+// distant_sound_dampening() lives in sound_occlusion.dm (same line walk as the wall muffling)
 
 /obj/item/gun
 	/// Last time this gun sent a distant echo, so automatic fire does not flood far listeners
