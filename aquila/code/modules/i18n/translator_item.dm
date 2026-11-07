@@ -25,6 +25,10 @@
 
 /obj/item/aquila_translator/dropped(mob/user)
 	. = ..()
+	aq_dropped(user)
+
+/// Tłumacz kieszonkowy przestaje działać po wypuszczeniu z ręki, kieszeni albo paska
+/obj/item/aquila_translator/proc/aq_dropped(mob/user)
 	user.aq_translator_off(REF(src))
 
 /obj/item/aquila_translator/proc/aq_works()

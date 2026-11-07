@@ -1,6 +1,6 @@
 // Imiona obcokrajowców: gracz z angielskim w preferencjach losuje imię z oryginalnej puli NSV13 (angielskie imiona
 // i nazwiska), a nie z polskiej. Dotyczy losowania w preferencjach (nowa postać, kostka, „zawsze losowe imię”).
-// Gatunki z własną pulą (jaszczury, ćmy, IPC itd.) nie korzystają z bazowej random_name(), więc ich to nie dotyczy.
+// Tylko ludzie: inne gatunki (jaszczury, ćmy, IPC itd.) mają własne pule imion.
 
 GLOBAL_LIST_INIT(aq_english_first_names_male, world.file2list("strings/names/en_first_male.txt"))
 GLOBAL_LIST_INIT(aq_english_first_names_female, world.file2list("strings/names/en_first_female.txt"))
@@ -14,10 +14,11 @@ GLOBAL_LIST_INIT(aq_english_last_names, world.file2list("strings/names/last.txt"
 		if(!unique || !findname(.))
 			return
 
-// Losowanie z okna preferencji idzie od gracza w lobby (usr), który wybrał angielski
-/datum/species/random_name(gender, unique, lastname, attempts)
-	if(isnewplayer(usr) && usr.client?.wants_english())
-		return aq_english_random_name(gender, unique, lastname)
+// Losowanie w oknie preferencji (kostka, nowa postać, domyślne imię) zna właściciela postaci.
+// Tylko ludzie, bo inne gatunki mają własne pule imion.
+/datum/character_save/aq_random_real_name(client/owner)
+	if(owner?.wants_english() && istype(pref_species, /datum/species/human))
+		return aq_english_random_name(gender, TRUE)
 	return ..()
 
 // „Zawsze losowe imię” losuje przy starcie rundy, gdy nie ma już usr z lobby: sprawdzamy właściciela postaci.
@@ -26,8 +27,13 @@ GLOBAL_LIST_INIT(aq_english_last_names, world.file2list("strings/names/last.txt"
 	if(!be_random_name || !istype(pref_species, /datum/species/human) || !aq_owner_wants_english())
 		return ..()
 	real_name = aq_english_random_name(gender)
+	// na czas ..() bez losowania w core; przywrócone także po runtime, żeby zapis postaci nie wyłączył graczowi opcji
 	be_random_name = FALSE
-	. = ..()
+	try
+		. = ..()
+	catch(var/exception/error)
+		be_random_name = TRUE
+		throw error
 	be_random_name = TRUE
 
 /datum/character_save/proc/aq_owner_wants_english()

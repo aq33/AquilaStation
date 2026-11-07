@@ -46,6 +46,7 @@
 	TEST_ASSERT(heard_raw == "Cześć.", "Whispered translation lost: [heard_raw]")
 	TEST_ASSERT(heard_mods?[WHISPER_MODE], "Whisper prefix was lost after translation")
 	TEST_ASSERT(!foreigner.aq_translated_say, "Translated say flag stayed on")
+	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATED_SPEECH), "Filter bypass trait stayed on after the translated say")
 
 	// Bez klucza API i bez pamięci: tekst przechodzi bez tłumaczenia, ale we Wspólnym
 	if(!CONFIG_GET(string/deepl_api_key))
@@ -60,6 +61,12 @@
 	foreigner.dropItemToGround(translator)
 	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Dropped translator still works")
 	TEST_ASSERT(!foreigner.aq_hears_via_translator(/datum/language/common), "Foreigner without translator still gets translations")
+
+	// Spóźnione tłumaczenie po śmierci nie wychodzi (say() puściłby je na czat duchów)
+	heard_raw = null
+	foreigner.death()
+	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), list("Za późno"))
+	TEST_ASSERT(isnull(heard_raw), "Dead foreigner still spoke the late translation: [heard_raw]")
 
 	UnregisterSignal(crew, COMSIG_MOVABLE_HEAR)
 	SSticker.minds -= foreigner.mind
@@ -188,6 +195,19 @@
 	SStranslation.cache = list()
 	GLOB.aq_chat_translation_failures = list()
 
+	// Dopisek z tłumaczeniem: w HTML etykieta w osobnym węźle (słownik EN), tłumaczenie sanityzowane
+	var/html_text = aq_admin_translation_text("Hi", "Cześć <b>", TRUE)
+	TEST_ASSERT(findtext(html_text, "<span class='aq_translation_label'>Tłumaczenie:</span>"), "Translation label is not its own node: [html_text]")
+	TEST_ASSERT(!findtext(html_text, "<b>"), "Translation was not sanitized in the HTML note")
+	// Nowy adminhelp: całość mieści się w limicie, więc /datum/admin_help/New nie utnie tłumaczenia
+	var/long_ahelp = aq_admin_translation_text(jointext(new /list(MAX_MESSAGE_LEN), "a"), "Pełne tłumaczenie", FALSE)
+	TEST_ASSERT(length_char(long_ahelp) < MAX_MESSAGE_LEN, "Adminhelp with translation is longer than the ticket limit: [length_char(long_ahelp)]")
+	TEST_ASSERT(findtext(long_ahelp, "(Tłumaczenie: Pełne tłumaczenie)"), "Long adminhelp lost its translation")
+
+	// Forma po treat_message_min(): tak słuchacz dostaje zdanie, więc pod nią też jest odwrotny wpis
+	TEST_ASSERT(aq_spoken_form("cześć") == "Cześć.", "Spoken form differs from treat_message_min: [aq_spoken_form("cześć")]")
+	TEST_ASSERT(aq_spoken_form("Hej?") == "Hej?", "Spoken form changed a finished sentence")
+
 /// Obcokrajowiec losuje imiona z oryginalnej puli NSV13, a bez gracza z angielskim w lobby zostaje polska pula
 /datum/unit_test/aquila_foreigner_names/Run()
 	TEST_ASSERT(length(GLOB.aq_english_first_names_male) && length(GLOB.aq_english_first_names_female) && length(GLOB.aq_english_last_names), "English name pools are empty")
@@ -200,5 +220,12 @@
 	var/list/polish = splittext(species.random_name(MALE), " ")
 	TEST_ASSERT(polish[1] in GLOB.first_names_male, "Species name without an English player left the Polish pool: [polish[1]]")
 	qdel(species)
+	var/datum/character_save/character = new
+	character.pref_species = new /datum/species/human
+	character.gender = FEMALE
+	var/list/owned = splittext(character.aq_random_real_name(null), " ")
+	TEST_ASSERT(owned[1] in GLOB.first_names_female, "Character without an English owner left the Polish pool: [owned[1]]")
+	qdel(character.pref_species)
+	qdel(character)
 
 #undef TEST_ASSERT

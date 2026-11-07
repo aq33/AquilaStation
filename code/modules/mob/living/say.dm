@@ -85,13 +85,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/static/list/unconscious_allowed_modes = list(MODE_ALIEN = TRUE)
 
 	var/ic_blocked = FALSE
-	if(client && !forced && CHAT_FILTER_CHECK(message))
+	var/aq_translated = HAS_TRAIT(src, TRAIT_AQ_TRANSLATED_SPEECH) // AQ EDIT - tłumaczenie obcokrajowca: filtry sprawdziły już oryginał
+	if(client && !forced && !aq_translated && CHAT_FILTER_CHECK(message)) // AQ EDIT - !aq_translated
 		//The filter doesn't act on the sanitized message, but the raw message.
 		ic_blocked = TRUE
 
 	// AQ EDIT
 	var/rp_acceptable = TRUE
-	if(client && !forced && RP_FILTER_CHECK(message))
+	if(client && !forced && !aq_translated && RP_FILTER_CHECK(message)) // AQ EDIT - !aq_translated
 		rp_acceptable = FALSE
 	// AQ EDIT END
 

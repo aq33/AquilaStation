@@ -14,6 +14,8 @@
 #define TRANSLATION_TIMEOUT (5 SECONDS)
 /// Najwięcej zapamiętanych tłumaczeń w jednym kierunku, potem pamięć zaczyna się od nowa
 #define TRANSLATION_CACHE_SIZE 3000
+/// Spóźnione zapytanie, które nie odpowiedziało nawet po tym czasie, przestajemy sprawdzać
+#define TRANSLATION_LATE_GIVE_UP (60 SECONDS)
 
 SUBSYSTEM_DEF(translation)
 	name = "Tłumacz"
@@ -25,6 +27,8 @@ SUBSYSTEM_DEF(translation)
 	var/list/cache = list()
 	/// Klucz zapytania -> /datum/translation_job. To samo zdanie słyszane przez kilku graczy idzie do API raz.
 	var/list/pending = list()
+	/// Zapytania po TRANSLATION_TIMEOUT: wołający dostali już null, ale odpowiedź trzeba odebrać z rust_g i zapamiętać
+	var/list/datum/translation_job/late = list()
 	/// Kiedy ostatnio zalogowano błąd API (bez zalewania logu, gdy skończy się limit)
 	var/last_error_log = -INFINITY
 
@@ -115,12 +119,19 @@ SUBSYSTEM_DEF(translation)
 			continue
 		else
 			log_api_error("brak odpowiedzi po [TRANSLATION_TIMEOUT / 10] s")
+			late += job
 		pending -= key
 		for(var/datum/callback/on_done as anything in job.callbacks)
 			on_done.InvokeAsync(translations)
 		if(MC_TICK_CHECK)
 			return
-	if(!length(pending))
+	for(var/datum/translation_job/job as anything in late.Copy())
+		if(job.request.is_complete())
+			read_response(job)
+			late -= job
+		else if(world.time > job.started + TRANSLATION_LATE_GIVE_UP)
+			late -= job
+	if(!length(pending) && !length(late))
 		can_fire = FALSE
 
 /// Lista tłumaczeń z odpowiedzi DeepL albo null. Zapamiętuje oba kierunki: obcokrajowiec słyszy własne zdanie w oryginale.
@@ -149,6 +160,18 @@ SUBSYSTEM_DEF(translation)
 		. += translated
 		cache_set(job.source_lang, job.target_lang, job.texts[index], translated)
 		cache_set(job.target_lang, job.source_lang, translated, job.texts[index])
+		// słuchacz dostaje zdanie po treat_message_min() (wielka litera, kropka), więc ta forma też wraca do oryginału
+		var/spoken = aq_spoken_form(translated)
+		if(spoken != translated)
+			cache_set(job.target_lang, job.source_lang, spoken, job.texts[index])
+
+/// Zdanie w formie, w jakiej wychodzi z say(): jak /mob/proc/treat_message_min() (kropka na końcu, wielka litera)
+/proc/aq_spoken_form(text)
+	if(!length(text))
+		return text
+	if(!(copytext(text, length(text)) in list("!", ".", "?", ":", "\"", "-", "~")))
+		text += "."
+	return capitalize(text)
 
 /datum/controller/subsystem/translation/proc/log_api_error(text)
 	if(world.time < last_error_log + 1 MINUTES)
@@ -159,3 +182,4 @@ SUBSYSTEM_DEF(translation)
 #undef TRANSLATION_MAX_PENDING
 #undef TRANSLATION_TIMEOUT
 #undef TRANSLATION_CACHE_SIZE
+#undef TRANSLATION_LATE_GIVE_UP

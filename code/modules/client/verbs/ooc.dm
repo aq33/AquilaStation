@@ -73,14 +73,12 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	//Get client badges
 	var/badge_data = badge_parse(get_badges())
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
-	var/aq_ooc_original = msg // AQ EDIT - OOC w języku odbiorcy
+	// AQ EDIT START - OOC w języku odbiorcy (aquila/code/__HELPERS/chat_translation.dm); tłumaczenie raz, przed rozesłaniem
+	var/aq_ooc_original = msg
+	var/list/aq_ooc_texts = aq_ooc_prepare(raw_msg)
+	// AQ EDIT END
 	for(var/client/C in GLOB.clients)
-		// AQ EDIT START - OOC w języku odbiorcy (aquila/code/__HELPERS/chat_translation.dm); może czekać na tłumaczenie
-		var/aq_ooc = aq_ooc_for(C, raw_msg)
-		if(!C)
-			continue
-		msg = aq_ooc ? emoji_parse(aq_ooc) : aq_ooc_original
-		// AQ EDIT END
+		msg = aq_ooc_texts?[C] ? emoji_parse(aq_ooc_texts[C]) : aq_ooc_original // AQ EDIT - OOC w języku odbiorcy
 		if(C.prefs.chat_toggles & CHAT_OOC)
 			if(holder)
 				if(!holder.fakekey || C.holder)

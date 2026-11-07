@@ -11,6 +11,10 @@
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = NONE
 
+// Czip luzem nie włącza tłumacza (robią to słuchawki ze swoim REF), więc nie ma też czego wyłączać
+/obj/item/aquila_translator/chip/aq_dropped(mob/user)
+	return
+
 // Luzem w ręce czy kieszeni nie tłumaczy: tylko w słuchawkach na uszach
 /obj/item/aquila_translator/chip/aq_refresh()
 	var/obj/item/radio/headset/headset = loc

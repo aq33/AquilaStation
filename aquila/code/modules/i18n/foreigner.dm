@@ -31,10 +31,19 @@
 
 /datum/job/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
-	if(M?.client?.wants_english() && isliving(H))
-		H.aq_make_foreigner()
-		// Po całym after_spawn (też podtypów prac): ochrona z NSV podmienia słuchawki na działowe, a czip ma trafić do końcowych
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, aq_give_translator), H), 1)
+	aq_handle_foreigner(H, M)
+
+// Cyborg w core nie woła ..(), więc bez tego gracz z angielskim jako borg nie byłby obcokrajowcem
+/datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
+	. = ..()
+	aq_handle_foreigner(R, M)
+
+/datum/job/proc/aq_handle_foreigner(mob/living/H, mob/M)
+	if(!M?.client?.wants_english() || !isliving(H) || H.mind?.aq_foreigner)
+		return
+	H.aq_make_foreigner()
+	// Po całym after_spawn (też podtypów prac): ochrona z NSV podmienia słuchawki na działowe, a czip ma trafić do końcowych
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, aq_give_translator), M), 1)
 
 /// Blokuje Wspólny i daje Angielski. Źródło LANGUAGE_FOREIGNER przetrwa zmianę ciała (klon, borg), bo języki trzyma umysł.
 /mob/living/proc/aq_make_foreigner()
@@ -45,11 +54,12 @@
 	if(mind)
 		mind.aq_foreigner = TRUE
 
-/// Tłumacz z rundy: czip w słuchawkach, bez słuchawek tłumacz kieszonkowy do kieszeni albo do ręki, a silikony mają go wbudowanego. M dostaje komunikat (przy spawnie to już ciało z graczem).
+/// Tłumacz z rundy: czip w słuchawkach, bez słuchawek tłumacz kieszonkowy do kieszeni albo do ręki, a silikony mają go wbudowanego.
+/// M to gracz z lobby: na starcie rundy klient przechodzi do ciała dopiero w transfer_characters(), czasem już po tym timerze.
 /mob/living/proc/aq_give_translator(mob/M)
 	ADD_TRAIT(src, TRAIT_AQ_TRANSLATOR, "wbudowany")
 	aq_update_translator_hook()
-	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz przekłada mowę w obie strony."))
+	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz przekłada mowę w obie strony."))
 
 /mob/living/carbon/aq_give_translator(mob/M)
 	// Czip w słuchawkach z ekwipunku pracy (translator_chip.dm); tłumacz kieszonkowy tylko dla tych bez słuchawek
@@ -57,7 +67,7 @@
 	if(istype(headset) && !headset.aq_translator_chip)
 		headset.aq_translator_chip = new /obj/item/aquila_translator/chip(headset)
 		headset.aq_update_translator_wearer()
-		to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach przekłada mowę w obie strony, dopóki masz je na uszach."))
+		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach przekłada mowę w obie strony, dopóki masz je na uszach."))
 		return
 	var/obj/item/aquila_translator/translator = new(get_turf(src))
 	var/where = equip_in_one_of_slots(translator, list("w lewej kieszeni" = ITEM_SLOT_LPOCKET, "w prawej kieszeni" = ITEM_SLOT_RPOCKET), qdel_on_fail = FALSE)
@@ -67,7 +77,11 @@
 		where = equip_in_one_of_slots(translator, list("w plecaku" = ITEM_SLOT_BACKPACK), qdel_on_fail = FALSE)
 	if(!where)
 		where = "pod nogami"
-	to_chat(M, span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
+	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
+
+/// Kto przeczyta komunikat ze spawnu: ciało, jeśli ma już klienta, inaczej gracz w lobby
+/mob/living/proc/aq_spawn_reader(mob/M)
+	return (client || !M?.client) ? src : M
 
 /// Sygnał z /mob/living/say() słucha tylko ten, kto ma tłumacza (przedmiot albo wbudowany)
 /mob/living/proc/aq_update_translator_hook()
@@ -116,7 +130,8 @@
 
 /// Wypowiedź po tłumaczeniu (albo bez niego, gdy translations jest null)
 /mob/living/proc/aq_translator_say(prefix, has_emote, erase, list/originals, bubble_type, list/spans, list/translations)
-	if(QDELETED(src))
+	// Martwy w trakcie zapytania: say() wysłałby mowę IC na czat duchów
+	if(QDELETED(src) || stat == DEAD)
 		return
 	var/list/texts = translations || originals
 	var/rebuilt = prefix
@@ -127,9 +142,12 @@
 	if(!erase)
 		rebuilt += replacetext(texts[index], "*", "")
 	aq_translated_say = TRUE
+	// filtry czatu IC i RP sprawdziły już oryginał, powtórka nie karze drugi raz (AQ EDIT w /mob/living/say)
+	ADD_TRAIT(src, TRAIT_AQ_TRANSLATED_SPEECH, "tłumacz")
 	// tłumacz mógł zniknąć w trakcie zapytania, a powtórka i tak ma wyjść we Wspólnym
 	RegisterSignal(src, COMSIG_LIVING_AQ_PRE_SAY, PROC_REF(aq_on_pre_say), override = TRUE)
 	say(rebuilt, bubble_type, spans || list(), TRUE, null, TRUE)
+	REMOVE_TRAIT(src, TRAIT_AQ_TRANSLATED_SPEECH, "tłumacz")
 	aq_translated_say = FALSE
 	aq_update_translator_hook()
 

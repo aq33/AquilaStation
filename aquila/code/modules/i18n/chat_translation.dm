@@ -45,22 +45,53 @@ GLOBAL_LIST_EMPTY(aq_chat_translation_failures)
 		GLOB.aq_chat_translation_failures[key] = world.time
 	return waiter.result
 
-/client/aq_ooc_for(client/recipient, raw_msg)
+// Jedno tłumaczenie na całą wiadomość, przed pętlą rozsyłania, i tylko gdy ktoś, kto ją zobaczy, mówi innym językiem
+/client/aq_ooc_prepare(raw_msg)
 	var/from_english = wants_english()
-	if(!recipient || from_english == recipient.wants_english())
+	var/list/readers = list()
+	for(var/client/C as anything in GLOB.clients)
+		if(!C?.prefs || !(C.prefs.chat_toggles & CHAT_OOC))
+			continue
+		if(!holder && (key in C.prefs.ignoring))
+			continue
+		if(C.wants_english() != from_english)
+			readers += C
+	if(!length(readers))
 		return null
 	var/translated = aq_translate_wait(html_decode(raw_msg), from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, from_english ? DEEPL_LANG_PL : DEEPL_LANG_EN)
-	return translated ? sanitize(translated) : null
+	if(!translated)
+		return null
+	translated = sanitize(translated)
+	. = list()
+	for(var/client/C as anything in readers)
+		.[C] = translated
 
-/client/aq_admin_msg_for(client/recipient, msg, sanitized = TRUE)
+/client/aq_admin_msg_for(client/recipient, msg, sanitized = TRUE, html = FALSE)
 	var/from_english = wants_english()
 	var/to_english = recipient ? recipient.wants_english() : FALSE
 	if(!msg || from_english == to_english)
 		return msg
-	var/translated = aq_translate_wait(sanitized ? html_decode(msg) : msg, from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL)
+	var/static/regex/html_tags = new(@"<[^>]*>", "g")
+	var/source = html ? html_decode(html_tags.Replace(msg, "")) : (sanitized ? html_decode(msg) : msg)
+	var/translated = aq_translate_wait(source, from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL)
 	if(!translated)
 		return msg
-	return "[msg] ([to_english ? "Translation" : "Tłumaczenie"]: [sanitized ? sanitize(translated) : translated])"
+	return aq_admin_translation_text(msg, translated, sanitized || html)
+
+/**
+ * Oryginał z dopiskiem tłumaczenia. as_html: wynik idzie do czatu bez kolejnego sanitize(), więc tłumaczenie jest
+ * sanityzowane, a etykieta ma osobny węzeł, który słownik wersji EN przetłumaczy klientowi na „Translation:”.
+ * Bez as_html (treść nowego adminhelpa, sanitize() i obcięcie do MAX_MESSAGE_LEN robi /datum/admin_help/New)
+ * oryginał jest skracany tak, żeby całe tłumaczenie zmieściło się w limicie.
+ */
+/proc/aq_admin_translation_text(msg, translated, as_html)
+	if(as_html)
+		return "[msg] (<span class='aq_translation_label'>Tłumaczenie:</span> [sanitize(translated)])"
+	var/suffix = " (Tłumaczenie: [translated])"
+	var/room = MAX_MESSAGE_LEN - 1 - length_char(suffix)
+	if(length_char(msg) > room)
+		msg = room > 3 ? "[copytext_char(msg, 1, room - 2)]..." : ""
+	return "[msg][suffix]"
 
 #undef AQ_CHAT_FAILURES_MAX
 #undef AQ_CHAT_FAILURE_MEMORY
