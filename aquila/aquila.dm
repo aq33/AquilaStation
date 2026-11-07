@@ -333,7 +333,6 @@
 #include "code\modules\antagonists\revolution\revolution_panel.dm"
 #include "code\game\gamemodes\gangs\dominator.dm"
 #include "code\modules\antagonists\gang\gang_war.dm"
-#include "code\modules\antagonists\gang\gang_panel.dm"
 #include "code\modules\antagonists\spider\spider.dm"
 #include "code\modules\antagonists\spy\spy.dm"
 #include "code\modules\antagonists\spy\spy_bounty.dm"

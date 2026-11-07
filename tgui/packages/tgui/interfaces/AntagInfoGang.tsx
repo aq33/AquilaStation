@@ -1,11 +1,25 @@
-import { LabeledList, ProgressBar, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { type Objective, ObjectivePrintout } from './common/Objectives';
 
-// AQUILA: okno roli w wojnie gangów, w stylu okien rewolucji i kultu krwi.
+// AQUILA: okno roli w wojnie gangów (motyw „gang”: noir, mur z cegieł, złoto).
+type Member = {
+  name: string;
+  rank: string;
+  job: string;
+  you: BooleanLike;
+};
+
 type Rival = {
   name: string;
   color: string;
@@ -29,6 +43,7 @@ type Info = {
   dom_remaining: number;
   dom_estimate: number;
   rivals: Rival[];
+  member_list: Member[];
 };
 
 const formatTime = (seconds: number) => {
@@ -54,19 +69,32 @@ export const AntagInfoGang = () => {
     dom_remaining,
     dom_estimate,
     rivals = [],
+    member_list = [],
   } = data;
 
   return (
-    <Window width={460} height={leader ? 560 : 500}>
+    <Window width={480} height={leader ? 680 : 620} theme="gang">
       <Window.Content>
         <Section scrollable fill>
           <Stack vertical>
-            <Stack.Item
-              textColor={gang_color}
-              fontSize="24px"
-              textAlign="center"
-            >
-              Gang {gang_name}
+            <Stack.Item textAlign="center">
+              <Box
+                inline
+                px={1.5}
+                py={0.5}
+                fontSize="26px"
+                bold
+                textColor={gang_color}
+                style={{
+                  fontFamily: 'Georgia, serif',
+                  letterSpacing: '0.12em',
+                  border: `2px solid ${gang_color}`,
+                  textShadow: '2px 2px 0 #000',
+                  transform: 'rotate(-2deg)',
+                }}
+              >
+                Gang {gang_name}
+              </Box>
             </Stack.Item>
             <Stack.Item>
               {leader ? (
@@ -135,6 +163,32 @@ export const AntagInfoGang = () => {
                   </LabeledList.Item>
                 ))}
               </LabeledList>
+            </Stack.Item>
+            <Stack.Divider />
+            <Stack.Item>
+              <Section title="Rodzina">
+                <Table>
+                  {member_list.map((member) => (
+                    <Table.Row key={member.name}>
+                      <Table.Cell
+                        bold={!!member.you}
+                        textColor={
+                          member.rank === 'Gangster' ? undefined : 'label'
+                        }
+                      >
+                        {member.name}
+                        {member.you ? ' (ty)' : ''}
+                      </Table.Cell>
+                      <Table.Cell collapsing textColor="label">
+                        {member.rank}
+                      </Table.Cell>
+                      <Table.Cell collapsing textColor="grey">
+                        {member.job}
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table>
+              </Section>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>

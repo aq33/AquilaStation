@@ -44,6 +44,10 @@
 		cached_at = world.time
 	return max(1, cached_total)
 
+/// Procent terenu stacji pod kontrolą gangu
+/datum/team/gang/proc/territory_percent()
+	return round(LAZYLEN(territories) / claimable_territories_cached() * 100, 1)
+
 /// Czas przejęcia w sekundach: im więcej terenu gang kontroluje, tym krócej (3-8 minut)
 /datum/team/gang/proc/determine_domination_time()
 	var/total = claimable_territories_cached()
@@ -108,16 +112,18 @@
 	if(gang)
 		objectives |= gang.objectives
 		gang.update_gang_cap()
-	owner.current?.DisplayUI("Gang")
-
-/datum/antagonist/gang/on_removal()
-	var/mob/living/old_body = owner.current
-	. = ..()
-	old_body?.HideUI("Gang")
 
 // Okno roli jak w rewolucji i kulcie: stan gangu zmienia się w trakcie rundy, więc jest w ui_data z autoodświeżaniem
 /datum/antagonist/gang
 	ui_name = "AntagInfoGang"
+
+// Przycisk okna roli z kapeluszem gangstera zamiast ogólnej ikony
+/datum/action/antag_info/New(Target)
+	. = ..()
+	if(istype(target, /datum/antagonist/gang))
+		name = "Gang"
+		icon_icon = 'aquila/icons/hud/gang_button.dmi'
+		button_icon_state = "gang"
 
 /datum/antagonist/gang/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -150,6 +156,15 @@
 			continue
 		rivals += list(list("name" = rival.name, "color" = rival.color, "territory" = rival.territory_percent(), "dominating" = rival.domination_time != NOT_DOMINATING))
 	data["rivals"] = rivals
+	var/list/member_list = list()
+	for(var/datum/mind/member as anything in living)
+		var/rank = "Gangster"
+		if(member.has_antag_datum(/datum/antagonist/gang/boss/lieutenant))
+			rank = "Porucznik"
+		else if(member.has_antag_datum(/datum/antagonist/gang/boss))
+			rank = "Szef"
+		member_list += list(list("name" = member.name, "rank" = rank, "job" = member.assigned_role, "you" = member == owner))
+	data["member_list"] = member_list
 	return data
 
 /datum/game_mode/gang/set_round_result()
