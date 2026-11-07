@@ -238,7 +238,7 @@
 					"<span class='danger'>Uderzasz [src] za pomocą [I]!</span>", null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, "melee", 1)
+	take_damage(I.force, I.damtype, "melee", 1, get_dir(src, user), I.armour_penetration) // AQ EDIT - przebicie pancerza broni działa też na konstrukcje (tg#88418)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)

@@ -41,6 +41,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/obj/structure/overmap/move_toward()` | Partial (C) | Overmap scale (`overmap_scale.dm`): a ship with a standoff range (carrier, torpedo ship, scared ship) backs off or orbits instead of closing in. Flanking (`ai_flanking.dm`): a flanker flies to its slot (`..(slot)`) and holds there facing the target. Both call `..()` otherwise. |
 | `/datum/ai_goal/retreat/action()` | Partial (C) | Overmap scale (`aquila/code/modules/overmap/overmap_scale.dm`): an AI carrier holds at its standoff range (`move_toward()` override) instead of running away; every other supply ship calls `..()`. |
 | `/obj/structure/overmap/ai_fire()`, `ai_elite_fire()` | Partial (C) | AI morale (`aquila/code/modules/overmap/ai_morale.dm`): a commander who just picked a new target holds fire for 1-4 slowprocess ticks (`ai_hold_fire_until`); otherwise both call `..()`. |
+| `/atom/movable/do_item_attack_animation()` | Replaced (C) | Port tgstation/tgstation#88418 (`aquila/code/game/objects/items/attack_animations.dm`): the item icon slashes in an arc, thrusts or hits depending on `get_attack_animation()` (pierce wounds = thrust, sharp = slash), turned by `icon_angle`. The old version only flew the icon towards the target, so nothing of it can be reused. Effect icons (`visual_effect_icon`) grow from 0.4 to 0.75 like in tg. |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
 
@@ -324,6 +325,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `stored_ai?.resolve()` | `code/modules/mod/mod_ai.dm` (`/obj/item/mod/ai_minicard/examine()`) | An empty AI minicard runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `if(QDELETED(turret)) return` | `nsv13/code/modules/munitions/ship_weapons/ballistic_weapons/50Cal.dm` (`/obj/machinery/computer/anti_air/examine()`) | An anti-air console without a paired turret runtimed in `examine()`, so shift-click showed nothing. Test: `aquila_examine_no_runtime` |
 | `try`/`catch` around `A.examine(src)` | `code/modules/mob/mob.dm` (`/mob/proc/run_examinate()`) | A runtime in any type's `examine()` left the player with an empty shift-click. Now the player sees the name and `desc`, and `stack_trace` still reports the runtime (unit tests fail on it) |
+| `take_damage(..., get_dir(src, user), I.armour_penetration)` in `/obj/attacked_by()` | `code/_onclick/item_attack.dm` | Port tgstation/tgstation#88418: the attacking weapon's armour penetration now counts against structure and machine armour, like it does against mobs. |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
