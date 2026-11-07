@@ -10,12 +10,12 @@
 	6) SecDrobe (Mundurownia Żandarmska) i szafki ochrony → oczekiwane: zielone, zielone światło automatu. Załóż mundur Żandarma, beret, pancerz, hełm, czapkę Komendanta → oczekiwane: zieleń z czerwonymi akcentami, bez granatu. \
 	7) Śluza ochrony i dekale Żandarmerii → oczekiwane: zielone. Tablety i karty obu działów → oczekiwane: barwy działów. \
 	8) Wejdź jako Żandarm (lub sprawdź w oknie wyboru profesji) → oczekiwane: profesja nazywa się Żandarm, kanał radia :s to Żandarmeria (zielony), a radio inżynierii jest czerwone. \n	9) Mundurownia InPost: żółta z logo, w ofercie opaska i trzy torby InPostu; szafki magazyniera, górnika i Kwatermistrza żółte (w szafce Kwatermistrza żółty beret). Załóż mundur magazyniera, kwatermistrza, górnika, kombinezon górniczy z kapturem, czapkę, kurtkę zimową → oczekiwane: żółć InPostu, nic nie znika. \n	10) Paczkomat z zestawu: obróć go (VV dir) → oczekiwane: ciemna strzałka po stronie wyrzutu w każdym kierunku. Zwykły wylot zsypu z zestawu poczty aq33/AquilaStation#447 → oczekiwane: zostaje zwykłym wylotem (paczkomaty są tylko na wylotach poczty w działach na mapach). \
-	11) Dekale Orlenu → oczekiwane: narożniki czerwone, połówki białe. \
+	11) Dekale Orlenu → oczekiwane: narożniki tg czerwone, narożniki NSV (ćwiartki kafelka) i połówki białe. \
 	12) Kurtki zimowe Żandarmerii i InPostu: Alt+klik na kurtce → oczekiwane: rozpina się i zapina; załóż i zdejmij kaptur → kurtka zostaje zapięta albo rozpięta jak była, a opuszczony kaptur widać na plecach. \
 	13) Bandana żandarmska na głowie → oczekiwane: włosy widać. Zwiń (PPM) mundury Żandarma, Naczelnika i Komendanta → wersje zwinięte z arkusza; galowe, służbowe i golf Komendanta nie dają się zwinąć, a golf kwatermistrza tak. \
-	14) SecDrobe, zakładka premium → oczekiwane: galowe mundury Żandarma, Naczelnika i Komendanta oraz trzy galowe berety, każdy z inną nazwą; kurtka żandarma i czapka oficerska są w zwykłej ofercie. \
+	14) SecDrobe, zakładka premium → oczekiwane: dla Żandarma, Naczelnika i Komendanta galowy mundur, kurtka i czapka (czapka żandarma, czapka Naczelnika, czapka Komendanta), bez beretów; w zwykłej ofercie nie ma alternatywnej czapki, a czapka żandarmska obraca daszek Alt+klikiem. Żandarmeria w jaśniejszej zieleni z arkusza. \
 	15) Hełmy plazmoludzi ochrony, inżynierii i zaopatrzenia → oczekiwane: kolory jak kombinezony środowiskowe (zieleń z bordo, biel z czerwienią, szary z żółcią). \
-	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami."
+	16) Kombinezon przeciwpożarowy z hełmem strażackim atmosferyki → oczekiwane: hełm z maską gazową, nie czerwony kask. SecTech, YouTool i EngiVend z nowymi grafikami. \n	17) Mundur Głównego Inżyniera: zwiń go (PPM) → oczekiwane: wersja z podwiniętymi rękawami, sprite nie znika. \n	18) Śluzy ładowni i górnicza z zestawu → oczekiwane: żółte w barwach InPostu, śluza górnicza bez brązowego nalotu."
 	items = list(
 		/obj/machinery/vending/wardrobe/engi_wardrobe = 1,
 		/obj/machinery/vending/wardrobe/atmos_wardrobe = 1,
@@ -29,6 +29,9 @@
 		/obj/machinery/door/airlock/engineering/glass = 1,
 		/obj/machinery/door/airlock/atmos = 1,
 		/obj/machinery/door/airlock/security = 1,
+		/obj/machinery/door/airlock/ship/cargo = 1,
+		/obj/machinery/door/airlock/ship/station/mining = 1,
+		/obj/item/clothing/head/soft/sec = 1,
 		/obj/item/clothing/under/ship/engineer = 1,
 		/obj/item/clothing/under/rank/engineering/atmospheric_technician = 1,
 		/obj/item/clothing/under/rank/engineering/chief_engineer = 1,
@@ -84,6 +87,7 @@
 /datum/test_chamber_kit/pr_550/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/list/decals = list(
+		/obj/effect/turf_decal/tile/yellow/orlen,
 		/obj/effect/turf_decal/tile/ship/yellow/orlen,
 		/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 		/obj/effect/turf_decal/tile/ship/police,

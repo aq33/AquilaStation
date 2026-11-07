@@ -39,6 +39,14 @@
 #undef INPOST_DECAL_COLOR
 
 /****************************\
+|*********** śluzy ***********|
+\****************************/
+// Grafika śluz górniczych i ładowni (aquila/icons/paradise/.../station/mining.dmi) jest w żółci InPostu.
+// NSV barwił śluzę górniczą dodatkowo na brąz (color), przez co drzwi kwatermistrza i górników wyglądały na brudne.
+/obj/machinery/door/airlock/ship/station/mining
+	color = null
+
+/****************************\
 |***** hełm plazmoludzi ******|
 \****************************/
 // Żółty pas InPostu na szarym hełmie, jak na kombinezonie środowiskowym

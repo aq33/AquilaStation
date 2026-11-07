@@ -2505,7 +2505,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
 "fc" = (
-/obj/machinery/door/airlock/ship{
+/obj/machinery/door/airlock/ship/station/research{
 	name = "Research and Development Lab";
 	req_one_access_txt = "7;29"
 	},
@@ -2674,7 +2674,7 @@
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmos)
 "fq" = (
-/obj/machinery/door/airlock/ship{
+/obj/machinery/door/airlock/ship/cargo{
 	name = "Cargo Bay";
 	req_one_access_txt = "31; 48"
 	},
@@ -15727,7 +15727,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/door/airlock/ship{
+/obj/machinery/door/airlock/ship/cargo{
 	name = "Mining Ready Room";
 	req_one_access_txt = "31; 48"
 	},

@@ -10078,7 +10078,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/door/airlock/ship{
+/obj/machinery/door/airlock/ship/station/research{
 	name = "Research Director";
 	req_one_access_txt = "30"
 	},
