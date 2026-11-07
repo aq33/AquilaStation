@@ -744,6 +744,7 @@
 #include "code\modules\lighting\light_shadow_geometry.dm"
 #include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
+#include "code\modules\mapping\multiz_levels.dm"
 #include "code\modules\mining\equipment\mineral_scanner.dm"
 #include "code\modules\mining\machine_bluespaceminer.dm"
 #include "code\modules\mining\mineral_magnet_ui.dm"
@@ -1785,6 +1786,7 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
+#include "code\modules\unit_tests\aquila_random_rooms.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
 #include "code\modules\unit_tests\aquila_food_cooking_reagents.dm"
 #include "code\modules\unit_tests\aquila_review_kable_swiatlo.dm"
@@ -1828,6 +1830,7 @@
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
 #include "code\modules\unit_tests\aquila_bee_windows.dm"
 #include "code\modules\unit_tests\aquila_fermichem.dm"
+#include "code\modules\unit_tests\aquila_multiz_levels.dm"
 #include "code\modules\unit_tests\aquila_chemia_ulepszenia.dm"
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
