@@ -56,5 +56,17 @@
 	nuke_objective.nuclear_bomb = null
 	qdel(mission)
 
+/// AQUILA - wybór kolejnej misji: tylko misje z losowania i Rubikon
+/datum/unit_test/mission_extension_choices
+
+/datum/unit_test/mission_extension_choices/Run()
+	TEST_ASSERT_EQUAL(GLOB.mission_choice_names["derelict"], "Wrak", "The derelict mission has no Polish name")
+	for(var/choice in SSovermap_mode.get_extension_choices())
+		if(choice == "rubicon")
+			continue
+		TEST_ASSERT(ispath(choice, /datum/overmap_gamemode), "[choice] isn't a mission type")
+		var/datum/overmap_gamemode/mode_type = choice
+		TEST_ASSERT(!initial(mode_type.whitelist_only), "[choice] is a whitelist-only mission")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

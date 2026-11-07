@@ -36,6 +36,7 @@ export function PageObjectives(props) {
     notoriety,
     objectives = {},
     mission_choices = [],
+    mission_choice_extension,
     can_choose_mission,
   } = data;
 
@@ -43,11 +44,19 @@ export function PageObjectives(props) {
     <Section fill scrollable title="Status misji">
       {mission_choices.length > 0 ? (
         <>
-          <Box mb={1}>
-            Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z
-            nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie
-            przyjęta pierwsza.
-          </Box>
+          {mission_choice_extension ? (
+            <Box mb={1}>
+              Misja wykonana. Kapitan wybiera kolejną misję albo atak na
+              Rubikon. Bez wyboru w ciągu pięciu minut dowództwo samo przydzieli
+              cele.
+            </Box>
+          ) : (
+            <Box mb={1}>
+              Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z
+              nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie
+              przyjęta pierwsza.
+            </Box>
+          )}
           {!can_choose_mission && (
             <Box mb={1} color="average">
               Misję może wybrać tylko kapitan (dostęp kapitana).
@@ -56,7 +65,11 @@ export function PageObjectives(props) {
           {mission_choices.map((choice, index) => (
             <Section
               key={choice.id}
-              title={index === 0 ? `${choice.name} (domyślna)` : choice.name}
+              title={
+                index === 0 && !mission_choice_extension
+                  ? `${choice.name} (domyślna)`
+                  : choice.name
+              }
               buttons={
                 <Button
                   icon="check"
