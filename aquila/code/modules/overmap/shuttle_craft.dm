@@ -28,15 +28,20 @@
 	var/list/exit_offsets
 
 /obj/structure/overmap/small_craft/transport/Destroy()
-	if(shuttle_port)
-		shuttle_port = null
-		shuttle_docked_at = null
-		shuttle_home_port = null
-		if(shuttle_parking && !shuttle_parking.docked)
-			qdel(shuttle_parking, TRUE)
-		shuttle_parking = null
-		QDEL_NULL(shuttle_parking_reservation)
-	return ..()
+	if(!shuttle_port)
+		return ..()
+	var/obj/docking_port/stationary/parking = shuttle_parking
+	var/datum/turf_reservation/parking_reservation = shuttle_parking_reservation
+	// Najpierw small_craft/Destroy ewakuuje załogę; rezerwacja z wnętrzem w locie znika dopiero potem
+	. = ..()
+	shuttle_port = null
+	shuttle_docked_at = null
+	shuttle_home_port = null
+	shuttle_parking = null
+	shuttle_parking_reservation = null
+	if(parking && !QDELETED(parking) && !parking.docked)
+		qdel(parking, TRUE)
+	qdel(parking_reservation)
 
 /// Łączy jednostkę z wnętrzem stojącym na porcie
 /obj/structure/overmap/small_craft/transport/proc/shuttle_link(obj/docking_port/mobile/port)
@@ -196,6 +201,8 @@
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 	if(!DC || !DC.docking_mode)
 		return FALSE
+	if(istype(OM, /obj/structure/overmap/asteroid/shipbreak_wreck))
+		return FALSE // Wnętrze wraku istnieje tylko w klatce magnesu (jak w small_craft/docking_act)
 	if(istype(OM, /obj/structure/overmap/asteroid) && OM.interior_status != INTERIOR_READY)
 		var/obj/structure/overmap/asteroid/AS = OM
 		AS.interior_mode = INTERIOR_DYNAMIC
@@ -221,6 +228,8 @@
 	if(QDELETED(src) || QDELETED(OM) || shuttle_docked_at)
 		if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot))
 			qdel(port, TRUE)
+		if(!QDELETED(src) && !shuttle_docked_at && DC)
+			DC.docking_cooldown = FALSE // Cel zniknął w trakcie szukania: komputer dokowania nie może zostać zablokowany
 		return
 	if(!port || !shuttle_land(OM, port))
 		if(pilot && !port)
@@ -308,11 +317,14 @@
 		CHECK_TICK
 	if(best)
 		return best
+	// Pierścienie szerokości 2 od środka (sam środek przy promieniu 0), bez odejmowania list
 	for(var/radius in 0 to SHUTTLE_CRAFT_SEARCH_RANGE step 2)
-		for(var/turf/T as anything in RANGE_TURFS(radius, center) - RANGE_TURFS(max(radius - 2, -1), center))
+		for(var/turf/T as anything in RANGE_TURFS(radius, center))
+			if(radius && max(abs(T.x - center.x), abs(T.y - center.y)) <= radius - 2)
+				continue
 			if(shuttle_spot_free(OM, T.x, T.y, z))
 				return T
-		CHECK_TICK
+			CHECK_TICK
 
 /// Lądowanie: wnętrze na port, jednostka chowa się przy nim (jak transfer_from_overmap myśliwców)
 /obj/structure/overmap/small_craft/transport/proc/shuttle_land(obj/structure/overmap/OM, obj/docking_port/stationary/port)

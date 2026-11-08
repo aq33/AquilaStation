@@ -37,12 +37,11 @@
 	TEST_ASSERT(length(sabre.interior_entry_points), "The Sabre has no entry points inside")
 	for(var/turf/T as anything in sabre.shuttle_exit_turfs())
 		TEST_ASSERT(!istype(T.loc, /area/shuttle/sabre), "An exit tile [COORD(T)] is inside the Sabre")
-	var/obj/machinery/computer/ship/helm/console/dropship/sabre/helm = locate() in shuttle_port.return_turfs()
-	if(!helm)
-		for(var/turf/T as anything in shuttle_port.return_turfs())
-			helm = locate() in T
-			if(helm)
-				break
+	var/obj/machinery/computer/ship/helm/console/dropship/sabre/helm
+	for(var/turf/T as anything in shuttle_port.return_turfs())
+		helm = locate() in T
+		if(helm)
+			break
 	TEST_ASSERT(helm, "The Sabre interior has no helm")
 	TEST_ASSERT_EQUAL(helm.has_overmap(), sabre, "The docked helm doesn't control its own Sabre")
 
