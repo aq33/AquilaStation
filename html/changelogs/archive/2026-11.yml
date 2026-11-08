@@ -443,3 +443,10 @@
   - rscadd: 'Trawnik i Padalec losują silnik na początku rundy, jak Atlas: Trawnik
       Teslę, Stormdrive albo supermaterię, Padalec Stormdrive albo supermaterię. Każdy
       wariant ma na miejscu paliwo, chłodzenie, odpad i zasilanie.'
+  - code_imp: Podsystemy po wejściu do lobby i po starcie rundy ruszają kilka razy
+      szybciej, start świata jest o ok. 1,5 s krótszy, a timery i HUD zdrowia kosztują
+      serwer mniej.
+  - code_imp: Migotanie świateł przy przeciążonym reaktorze nie obciąża serwera w
+      jednym ticku.
+  - bugfix: Reaktor postawiony poza statkiem nie migocze już światłami na wszystkich
+      stacjach i ruinach.
