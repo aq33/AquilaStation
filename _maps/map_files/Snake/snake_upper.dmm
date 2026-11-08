@@ -791,7 +791,7 @@
 	dir = 4
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=Aft";
+	codes_txt = "patrol;next_patrol=aft";
 	location = "UpperExit"
 	},
 /turf/open/floor/plasteel/dark,
