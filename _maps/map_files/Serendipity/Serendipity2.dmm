@@ -409,13 +409,6 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
-"bc" = (
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/computer/ai_server_console{
-	dir = 2
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bd" = (
 /obj/machinery/rack_creator,
 /turf/open/floor/engine,
@@ -1469,16 +1462,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger)
-"gc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "gd" = (
 /obj/effect/spawner/structure/window/reinforced/ship,
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -4709,6 +4692,11 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plasteel/tiled/light,
 /area/quartermaster/warehouse)
+"xm" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "xn" = (
 /obj/machinery/computer/ship/viewscreen{
 	pixel_x = -32;
@@ -5218,19 +5206,6 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/red/telecomms,
 /area/comms)
-"Aw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
-/area/comms)
 "AK" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 4
@@ -5371,10 +5346,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"BG" = (
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "BH" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = 27
@@ -5770,6 +5741,20 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/quartermaster)
+"Ee" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "Ef" = (
 /obj/machinery/door/airlock/ship/command{
 	name = "Chief Engineer Office";
@@ -7554,6 +7539,17 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"Ob" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "Od" = (
 /turf/closed/wall/ship,
 /area/quartermaster)
@@ -8817,6 +8813,14 @@
 /obj/machinery/light/small,
 /turf/open/floor/carpet/ship/purple_carpet,
 /area/shuttle/turbolift/secondary)
+"UA" = (
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "UF" = (
 /turf/closed/wall/r_wall/ship,
 /area/nsv/engine/engine_room/core)
@@ -9078,13 +9082,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/ridged/steel,
 /area/engine/break_room)
-"Wj" = (
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/obj/structure/ethernet_cable,
-/turf/open/floor/engine,
-/area/comms)
 "Wp" = (
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
@@ -45005,7 +45002,7 @@ pL
 PI
 rt
 VC
-Aw
+Ee
 zH
 uZ
 uZ
@@ -45262,8 +45259,8 @@ Xd
 PI
 Qx
 Vd
-gc
-BG
+Ob
+xm
 bm
 bQ
 jK
@@ -46036,7 +46033,7 @@ Nm
 Jn
 TE
 br
-bc
+UA
 lw
 WL
 lW
@@ -47060,7 +47057,7 @@ qN
 rG
 MZ
 GH
-Wj
+aW
 BM
 Tf
 gV

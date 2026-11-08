@@ -1,6 +1,7 @@
 // AQUILA - galaktyczny rynek materiałów z tgstation (code/modules/cargo/materials_market.dm)
 // Sprzedaż: włóż stos arkuszy, dostajesz stock block z ceną zamrożoną na 3 minuty, potem cena „płynie” z rynkiem.
 // Kupno: zamówienie z prywatnego konta albo budżetu zaopatrzenia, przylatuje najbliższym promem.
+// Płaci się cenę z chwili odlotu promu, nie z chwili zamówienia: inaczej zamówienie było darmową opcją na wzrost ceny.
 
 /// Maksymalna liczba pełnych stosów w jednym zamówieniu
 #define MAX_STACK_LIMIT 10
@@ -253,7 +254,7 @@
 		if(current_order.get_final_cost() + added_cost > account_payable.account_balance)
 			say("Zamówienie przekracza dostępne środki! Wyślij je, zanim dokupisz więcej.")
 			return FALSE
-		pack.add_sheets(sheet_to_buy, material_bought, quantity, unit_price)
+		pack.add_sheets(sheet_to_buy, material_bought, quantity)
 		return TRUE
 
 	var/obj/item/stack/stack_type = sheet_to_buy
@@ -263,7 +264,7 @@
 		return FALSE
 
 	var/datum/supply_pack/custom/minerals/mineral_pack = new(is_ordering_private ? user.real_name : "Zaopatrzenie")
-	mineral_pack.add_sheets(sheet_to_buy, material_bought, quantity, unit_price)
+	mineral_pack.add_sheets(sheet_to_buy, material_bought, quantity)
 	var/datum/supply_order/disposable/materials/new_order = new(mineral_pack, user.real_name, GALACTIC_MATERIAL_ORDER, user.ckey, "Galaktyczny rynek materiałów", is_ordering_private ? account_payable : null)
 	if(new_order.get_final_cost() > account_payable.account_balance)
 		say("Za mało środków, by złożyć zamówienie!")
@@ -304,8 +305,6 @@
 	crate_type = /obj/structure/closet/crate
 	/// Typ arkusza => typ materiału
 	var/list/sheet_materials = list()
-	/// Typ arkusza => łączna kwota zapłacona za arkusze tego typu (ceny mogły się zmieniać między zakupami)
-	var/list/sheet_costs = list()
 
 /datum/supply_pack/custom/minerals/New(purchaser)
 	. = ..()
@@ -315,14 +314,16 @@
 	name = "Zamówienie materiałów: [purchaser]"
 	contains = list()
 
+/// Koszt po bieżącej cenie rynkowej. Prom pobiera opłatę przy odlocie (supply.dm, buy()), więc cena z chwili
+/// zamówienia dawała darmową opcję: zamówić tanio, poczekać na wzrost, sprzedać arkusze drożej, a przy spadku anulować.
 /datum/supply_pack/custom/minerals/get_cost()
-	return cost
+	. = 0
+	for(var/sheet_type in contains)
+		. += contains[sheet_type] * (SSstock_market.materials_prices[sheet_materials[sheet_type]] || 0)
 
-/datum/supply_pack/custom/minerals/proc/add_sheets(sheet_type, datum/material/mat, quantity, unit_price)
+/datum/supply_pack/custom/minerals/proc/add_sheets(sheet_type, datum/material/mat, quantity)
 	contains[sheet_type] = (contains[sheet_type] || 0) + quantity
 	sheet_materials[sheet_type] = mat
-	sheet_costs[sheet_type] = (sheet_costs[sheet_type] || 0) + unit_price * quantity
-	cost += unit_price * quantity
 
 /// Ile stosów będzie w zamówieniu, opcjonalnie po dorzuceniu extra_sheets arkuszy typu extra_type
 /datum/supply_pack/custom/minerals/proc/total_stacks(extra_type, extra_sheets = 0)
@@ -343,8 +344,8 @@
 		var/market_quantity = SSstock_market.materials_quantity[mat] || 0
 		var/available_quantity = contains[sheet_type]
 		if(available_quantity > market_quantity)
-			// zwrot po średniej cenie zapłaconej za ten typ arkuszy
-			refund += round((available_quantity - market_quantity) * sheet_costs[sheet_type] / available_quantity)
+			// zwrot po bieżącej cenie, tej samej, którą prom właśnie pobrał w get_cost()
+			refund += round((available_quantity - market_quantity) * (SSstock_market.materials_prices[mat] || 0))
 			available_quantity = market_quantity
 			if(!available_quantity)
 				contains -= sheet_type

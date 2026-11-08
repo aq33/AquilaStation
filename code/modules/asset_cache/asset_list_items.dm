@@ -373,7 +373,7 @@
 		if(initial(D.research_icon) && initial(D.research_icon_state)) //If the design has an icon replacement skip the rest
 			icon_file = initial(D.research_icon)
 			icon_state = initial(D.research_icon_state)
-			if(!(icon_state in icon_states(icon_file)))
+			if(!(icon_state in aq_cached_icon_states(icon_file))) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
 			I = icon(icon_file, icon_state, SOUTH)
@@ -405,7 +405,7 @@
 
 			icon_state = initial(item.icon_state)
 
-			if(!(icon_state in icon_states(icon_file)))
+			if(!(icon_state in aq_cached_icon_states(icon_file))) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
 			I = icon(icon_file, icon_state, SOUTH)
@@ -415,13 +415,14 @@
 				var/obj/machinery/computer/C = item
 				var/screen = initial(C.icon_screen)
 				var/keyboard = initial(C.icon_keyboard)
-				var/all_states = icon_states(icon_file)
+				var/all_states = aq_cached_icon_states(icon_file) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				if (screen && (screen in all_states))
 					I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)
 				if (keyboard && (keyboard in all_states))
 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
+	aq_icon_states_cache = null // AQ EDIT - pamięć stanów potrzebna tylko przy budowie arkusza
 	return ..()
 
 /datum/asset/spritesheet/vending
@@ -439,15 +440,11 @@
 		else
 			icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
-		var/icon/I
 
+		// AQ EDIT START - tgstation/tgstation#69635: icon_states() tylko w testach (brakujący stan i tak pomija Insert())
+		#ifdef UNIT_TESTS
 		var/icon_states_list = icon_states(icon_file)
-		if(icon_state in icon_states_list)
-			I = icon(icon_file, icon_state, SOUTH)
-			var/c = initial(item.color)
-			if (!isnull(c) && c != "#FFFFFF")
-				I.Blend(c, ICON_MULTIPLY)
-		else
+		if(!(icon_state in icon_states_list))
 			var/icon_states_string
 			for (var/an_icon_state in icon_states_list)
 				if (!icon_states_string)
@@ -455,7 +452,14 @@
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-			I = icon('icons/turf/floors.dmi', "", SOUTH)
+			continue
+		#endif
+
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+		var/c = initial(item.color)
+		if (!isnull(c) && c != "#FFFFFF")
+			I.Blend(c, ICON_MULTIPLY)
+		// AQ EDIT END
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 

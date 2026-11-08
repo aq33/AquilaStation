@@ -174,7 +174,7 @@
 			for(var/obj/item/bullet_fragment/fragment in limb)
 				part += list(aq_injury("Pocisk w ciele", "Operacja usuwania ciał obcych"))
 		for(var/obj/item/organ/organ as anything in target.internal_organs)
-			if(organ.zone != zone || !organ.damage)
+			if(check_zone(organ.zone) != zone || !organ.damage) // oczy, usta i pachwina należą do głowy i klatki
 				continue
 			var/failing = organ.organ_flags & ORGAN_FAILING
 			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", "Operacja, leki na narząd", advanced ? round(organ.damage) : null, failing ? 2 : 1))

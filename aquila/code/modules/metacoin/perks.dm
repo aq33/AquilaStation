@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(aquila_badges, list(
 	var/mob/living/carbon/human/body = mob?.mind?.current
 	if(!ishuman(body))
 		return
-	var/datum/bank_account/account = body.get_bank_account() || find_bank_account_by_id(body.account_id)
+	var/datum/bank_account/account = claim_endround_bank_account(body.get_personal_bank_account(), ckey, FALSE)
 	if(!account || account.account_balance <= 0)
 		return
 	if(aquila_perk_get(ckey, PERK_INSURANCE) < 1)
@@ -379,6 +379,7 @@ GLOBAL_LIST_INIT(aquila_badges, list(
 	var/payout = FLOOR(account.account_balance * coeff * INSURANCE_PAYOUT, 1)
 	if(payout <= 0)
 		return
+	claim_endround_bank_account(account, ckey) // to samo konto nie wypłaci się drugi raz innemu graczowi
 	aquila_perk_adjust(ckey, PERK_INSURANCE, -1)
 	inc_metabalance(payout, reason="Ubezpieczenie wypłaciło połowę salda konta.")
 

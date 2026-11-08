@@ -8,6 +8,22 @@
 		qdel(new vendor_type())
 	return ..()
 
+/datum/asset/spritesheet/research_designs
+	/// Stany ikon per plik przy budowie arkusza: ponad 1300 projektów korzysta z dużo mniejszej liczby plików,
+	/// a icon_states() dla każdego projektu kosztowało ok. 1 s startu. Czyszczone po register().
+	var/list/aq_icon_states_cache
+
+/// icon_states() pliku z pamięci; brak pliku daje pustą listę (jak icon_states(null))
+/datum/asset/spritesheet/research_designs/proc/aq_cached_icon_states(icon_file)
+	if(!icon_file)
+		return list()
+	if(!aq_icon_states_cache)
+		aq_icon_states_cache = list()
+	. = aq_icon_states_cache[icon_file]
+	if(isnull(.))
+		. = icon_states(icon_file)
+		aq_icon_states_cache[icon_file] = .
+
 /// Obrazki pustych slotów w oknie StripMenu (z tgstation, icons/ui/inventory)
 /datum/asset/simple/inventory
 	assets = list(

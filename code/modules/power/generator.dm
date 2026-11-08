@@ -103,6 +103,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ThermoElectricGenerator", name)
+		ui.set_autoupdate(TRUE) // AQ EDIT - moc i temperatury z process()
 		ui.open()
 
 /obj/machinery/power/generator/ui_data(mob/user)

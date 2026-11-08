@@ -32,7 +32,7 @@ export const PDAInputModal = (props) => {
           </Box>
           <Button
             ml={1}
-            icon={target !== 'Select PDA' || everyone ? 'envelope' : undefined}
+            icon={data.target || everyone ? 'envelope' : undefined}
             content={everyone ? 'Wszyscy' : target}
             onClick={() => act('select')}
           />

@@ -32,6 +32,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ApcControl", name)
+		ui.set_autoupdate(TRUE) // AQ EDIT - ładunki i obciążenia APC
 		ui.open()
 
 /obj/machinery/computer/apc_control/ui_data(mob/user)

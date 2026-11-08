@@ -115,7 +115,7 @@
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		data["cart"] += list(list(
 			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
+			"cost" = SO.pack.get_cost(), // AQ EDIT - paczka z giełdy materiałów liczy cenę w get_cost(), pole cost ma 0
 			"id" = SO.id,
 			"orderer" = SO.orderer,
 			"paid" = !isnull(SO.paying_account) //paid by requester
@@ -125,7 +125,7 @@
 	for(var/datum/supply_order/SO in SSshuttle.requestlist)
 		data["requests"] += list(list(
 			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
+			"cost" = SO.pack.get_cost(), // AQ EDIT - jak wyżej
 			"orderer" = SO.orderer,
 			"reason" = SO.reason,
 			"id" = SO.id
