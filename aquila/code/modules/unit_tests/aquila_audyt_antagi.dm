@@ -206,5 +206,21 @@
 		construct.mind.remove_antag_datum(/datum/antagonist/cult)
 	cultist_mob.mind.remove_antag_datum(/datum/antagonist/cult)
 
+/// AQUILA - audyt: Kosmiczny zryw i Zaniepokojenie sprawdzają cel przed rzuceniem
+/datum/unit_test/aquila_audyt_antagi_voidwalker
+
+/datum/unit_test/aquila_audyt_antagi_voidwalker/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/turf/inside = locate(left.x + 3, left.y, left.z)
+	var/mob/living/simple_animal/hostile/voidwalker/walker = allocate(/mob/living/simple_animal/hostile/voidwalker, left)
+	TEST_ASSERT(!walker.dash.intercept_check(walker, inside), "Dash accepted a target inside the ship")
+	walker.home_turf = inside.type
+	TEST_ASSERT(walker.dash.intercept_check(walker, inside), "Dash refused a target on its home turf")
+	walker.home_turf = initial(walker.home_turf)
+	var/obj/effect/proc_holder/spell/pointed/unsettle/unsettle = locate() in walker.mob_spell_list
+	TEST_ASSERT(unsettle, "No unsettle")
+	TEST_ASSERT(!unsettle.intercept_check(walker, inside), "Unsettle accepted a turf as the target")
+	TEST_ASSERT(!unsettle.intercept_check(walker, walker), "Unsettle accepted the voidwalker itself")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
