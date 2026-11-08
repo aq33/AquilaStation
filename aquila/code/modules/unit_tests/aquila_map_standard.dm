@@ -47,6 +47,12 @@
 		/obj/machinery/computer/prisoner/gulag_teleporter_computer,
 		/obj/machinery/gulag_item_reclaimer,
 	)
+	/// Mechanics a map does without on purpose (json name = types it may skip)
+	var/list/map_exceptions = list(
+		// Trawnik and Von Neumann have no asteroid cage (removed by the mapper), so no magnet and no shipbreaking
+		"aquila_serendipity" = list(/obj/machinery/computer/ship/mineral_magnet, /obj/effect/landmark/asteroid_spawn, /obj/machinery/shipbreaker),
+		"vonneumann" = list(/obj/machinery/computer/ship/mineral_magnet, /obj/effect/landmark/asteroid_spawn, /obj/machinery/shipbreaker),
+	)
 
 /// The TGM dictionary entries that are actually placed on the map grid, as one text (keys left over in the dictionary do not count)
 /datum/unit_test/aquila_map_standard/proc/placed_entries(map_text)
@@ -133,8 +139,9 @@
 		if(!succeeded)
 			return
 		var/list/missing = list()
+		var/list/skipped = map_exceptions[map_json] || list()
 		for(var/typepath in required_types)
-			if(!map_has_type(placed_text, typepath))
+			if(!(typepath in skipped) && !map_has_type(placed_text, typepath))
 				missing += "[typepath]"
 		TEST_ASSERT(!length(missing), "[map_json] is missing: [missing.Join(", ")]")
 
