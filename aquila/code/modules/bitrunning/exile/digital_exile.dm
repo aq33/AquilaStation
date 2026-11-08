@@ -148,8 +148,10 @@ GLOBAL_LIST_EMPTY(digital_exiles)
 /datum/component/digital_exile
 	/// Umysł wygnańca
 	var/datum/weakref/mind_ref
-	/// Trwa odradzanie
+	/// Trwa odliczanie do odrodzenia po śmierci
 	var/respawning = FALSE
+	/// respawn() już ruszył, drugi raz go nie wołamy
+	var/respawn_started = FALSE
 
 /datum/component/digital_exile/Initialize(datum/mind/exile_mind)
 	if(!ishuman(parent))
@@ -203,14 +205,17 @@ GLOBAL_LIST_EMPTY(digital_exiles)
 /datum/component/digital_exile/proc/on_deleted(datum/source)
 	SIGNAL_HANDLER
 
-	if(respawning)
+	if(respawn_started)
 		return
-	respawning = TRUE
-	// Ciało znika (np. czyszczenie domeny) - odradzamy od razu
+	// Ciało znika (czyszczenie domeny, gib, dust) - odradzamy od razu, także w trakcie odliczania po śmierci,
+	// bo timer odrodzenia ginie razem z komponentem
 	INVOKE_ASYNC(src, PROC_REF(respawn), TRUE)
 
 /// Tworzy nowego awatara w Pętli i przenosi tam umysł
 /datum/component/digital_exile/proc/respawn(deleted = FALSE)
+	if(respawn_started)
+		return
+	respawn_started = TRUE
 	var/datum/mind/exile_mind = mind_ref?.resolve()
 	var/mob/living/carbon/human/old_avatar = parent
 	if(isnull(exile_mind))

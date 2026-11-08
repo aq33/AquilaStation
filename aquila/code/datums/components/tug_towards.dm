@@ -25,6 +25,18 @@
 /datum/component/tug_towards/Destroy(force)
 	tugging_to_targets.Cut()
 
+	// AQUILA - nasz rdzeń ustawia przesunięcie moba bezwzględnie (drgawki, kładzenie się), więc ciągnięcie mogło już zniknąć.
+	// Cofnięcie względne odjęłoby je drugi raz: wracamy do zwykłego przesunięcia moba, tak jak kończą drgawki.
+	var/mob/living/living_parent = parent
+	if(istype(living_parent) && !living_parent.buckled && (current_tug_offset_x || current_tug_offset_y))
+		animate(
+			living_parent,
+			pixel_x = living_parent.base_pixel_x + living_parent.get_standard_pixel_x_offset(living_parent.lying),
+			pixel_y = living_parent.base_pixel_y + living_parent.get_standard_pixel_y_offset(living_parent.lying),
+			time = 0.2 SECONDS
+		)
+		return ..()
+
 	animate(
 		parent,
 		pixel_x = -current_tug_offset_x,

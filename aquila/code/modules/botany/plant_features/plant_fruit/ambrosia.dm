@@ -7,7 +7,7 @@
 	icon_state = "ambrosia"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-ambrosiavulgaris"
-	fruit_product = /obj/item/food/grown/ambrosia
+	fruit_product = /obj/item/food/grown/ambrosia/vulgaris // AQUILA - przepisy i zlecenie chcą podtypu vulgaris
 	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin, /datum/plant_trait/nectar)
 	fast_reagents = list(/datum/reagent/medicine/bicaridine = PLANT_REAGENT_SMALL, /datum/reagent/medicine/kelotane = PLANT_REAGENT_SMALL, /datum/reagent/drug/space_drugs = PLANT_REAGENT_SMALL, /datum/reagent/toxin = PLANT_REAGENT_SMALL)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL

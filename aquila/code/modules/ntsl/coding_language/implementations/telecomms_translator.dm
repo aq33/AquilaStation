@@ -165,7 +165,11 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	)
 
 	broadcasts_left = MAX_BROADCASTS_PER_RUN
-	interpreter.Run() // run the thing
+	// AQ EDIT - błąd typu w kodzie globalnym (np. "abc" - 1) to natywny runtime: bez try przerywał compile_all() na pierwszym serwerze
+	try
+		interpreter.Run() // run the thing
+	catch(var/exception/E)
+		interpreter.RaiseError(new /datum/runtimeError/Internal(E))
 
 	if(Holder)
 		Holder.compile_warnings = parser.warnings || list()
@@ -236,7 +240,12 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 
 	// Run the compiled code
 	broadcasts_left = MAX_BROADCASTS_PER_RUN
-	script_signal = interpreter.CallProc("process_signal", list(script_signal))
+	// AQ EDIT - błąd typu w skrypcie to natywny runtime: bez try przerywał przekaz i wiadomość ginęła. Teraz wpis w logu serwera, sygnał bez zmian
+	try
+		script_signal = interpreter.CallProc("process_signal", list(script_signal))
+	catch(var/exception/E)
+		interpreter.RaiseError(new /datum/runtimeError/Internal(E))
+		return
 	if(!istype(script_signal))
 		signal.data["reject"] = TRUE
 		return

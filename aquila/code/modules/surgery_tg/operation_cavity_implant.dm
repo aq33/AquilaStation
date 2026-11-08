@@ -88,6 +88,7 @@
 	implements = list(
 		/obj/item = 1,
 	)
+	consumes_stack_tool = FALSE // stos trafia do ciała w całości
 	time = 3.2 SECONDS
 	preop_sound = 'sound/surgery/organ1.ogg'
 	success_sound = 'sound/surgery/organ2.ogg'

@@ -282,7 +282,7 @@
 			vision_distance = FEED_SILENT_NOTICE_RANGE, ignored_mobs = feed_target
 		)
 
-	else if(owner.pulling == feed_target && owner.grab_state == GRAB_AGGRESSIVE) // COMBAT FEED BELOW HERE!!!!!!!!!!
+	else if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE) // COMBAT FEED BELOW HERE!!!!!!!!!!
 
 		feed_target.Stun((5 + level_current) SECONDS)
 		feed_target.adjust_jitter((5 + level_current) SECONDS)

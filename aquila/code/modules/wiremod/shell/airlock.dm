@@ -35,6 +35,13 @@
 		return TRUE
 	return isAdminGhostAI(user)
 
+/// Zwykła śluza zbudowana z elektroniką „Obudowa” (misc_objects.dm, apply_circuit_shell()).
+/// Układ może wpuścić dodatkowo, a dostępy z elektroniki działają dalej. Tylko śluza z układem (shell) słucha wyłącznie układu.
+/obj/machinery/door/airlock/allowed(mob/M)
+	if(SEND_SIGNAL(src, COMSIG_AIRLOCK_SHELL_ALLOWED, M) & ACCESS_ALLOWED)
+		return TRUE
+	return ..()
+
 /obj/item/circuit_component/airlock
 	display_name = "Sterowanie śluzą"
 	desc = "Ogólny interfejs śluzy. Zawiera podstawowe stany śluzy."

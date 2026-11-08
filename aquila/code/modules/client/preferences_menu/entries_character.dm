@@ -760,6 +760,23 @@
 	maximum = AGE_MAX
 	can_randomize = TRUE
 
+/// Wysokość głosu w półtonach (aquila/code/modules/mob/voice.dm). Po zmianie gracz słyszy próbkę, przycisk „Posłuchaj” w oknie gra ją jeszcze raz.
+/datum/preference/numeric/voice_pitch
+	db_key = "voice_pitch"
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	feature_key = "voice_pitch"
+	minimum = VOICE_PITCH_MIN
+	maximum = VOICE_PITCH_MAX
+	can_randomize = TRUE
+
+/datum/preference/numeric/voice_pitch/create_random_value(datum/preferences/prefs)
+	return random_voice_pitch()
+
+/datum/preference/numeric/voice_pitch/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	if(C?.mob)
+		prefs.play_voice_pitch_test(C.mob)
+
 /// U nas to tak/nie, w oknie RandomSetting
 /datum/preference/choiced/random_toggle
 	abstract_type = /datum/preference/choiced/random_toggle

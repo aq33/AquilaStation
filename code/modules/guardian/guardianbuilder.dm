@@ -335,7 +335,7 @@
 /obj/item/guardiancreator/carp
 	name = "holokarpiowe paluszki rybne"
 	desc = "Mocą Carp'sie możesz złowić karpia zza zasłony Carpthulu i związać go ze swoją cielesną cielesną postacią."
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/meat.dmi' // AQ EDIT - Newfood przeniósł stan fishfingers do meat.dmi
 	icon_state = "fishfingers"
 	theme = GUARDIAN_CARP
 	mob_name = "Holokarp"

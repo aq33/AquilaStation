@@ -141,13 +141,13 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
 /proc/reset_all_air()
-	SSair.can_fire = 0
+	lazy_template_load_started() // AQ EDIT - wspólny licznik pauz SSair (aquila/code/modules/bitrunning/lazy_template.dm)
 	message_admins("Rozpoczęto reset atmosfery.")
 	for(var/turf/open/T in world)
 		T.Initalize_Atmos(0)
 		CHECK_TICK
 	message_admins("Zakończono reset atmosfery.")
-	SSair.can_fire = 1
+	lazy_template_load_finished() // AQ EDIT
 
 /datum/controller/subsystem/air/proc/check_threads()
 	if(thread_running())

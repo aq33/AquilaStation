@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 
 	..()
 
-	if (!M.stat == DEAD)
+	if (M.stat != DEAD)
 		M.adjustOrganLoss(ORGAN_SLOT_STOMACH, rand(1, 10))
 		to_chat(M, span_warning("Czujesz palący żar w swoim wnętrzu!") )
 		var/datum/antagonist/cult/cult_datum=user.mind.has_antag_datum(/datum/antagonist/cult)
