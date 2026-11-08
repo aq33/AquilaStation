@@ -63,6 +63,17 @@
 	dir = 1
 	},
 /area/bridge/cic)
+"ah" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/holopad,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
+"ai" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/chair/fancy/gauss/west,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "aj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -88,11 +99,10 @@
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
 "al" = (
-/obj/structure/table/reinforced,
 /obj/item/storage/box/munition_casts,
 /obj/item/munitions_analyzer,
 /obj/item/forging_hammer,
-/obj/item/forging_hammer,
+/obj/structure/table/reinforced,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "am" = (
@@ -109,6 +119,11 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"ao" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "ap" = (
 /obj/machinery/door/airlock/ship/external{
 	name = "Labor Shuttle Dock";
@@ -149,6 +164,12 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/captain)
+"au" = (
+/obj/structure/chair/fancy/gauss/west,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "av" = (
 /obj/machinery/button/door{
 	id = "rd_blast";
@@ -313,6 +334,16 @@
 	},
 /turf/open/floor/plating,
 /area/hydroponics)
+"aM" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/munitions_forge/assembly_bench,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -358,11 +389,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"aV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/holopad,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "aW" = (
 /obj/machinery/suit_storage_unit/rd,
 /obj/structure/cable,
@@ -3998,15 +4024,6 @@
 	dir = 1
 	},
 /area/hallway/primary/central)
-"kv" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "kw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -7488,13 +7505,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
-"wZ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/munitions_forge/assembly_bench,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "xa" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -10160,12 +10170,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
-"Ik" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/chair/fancy/gauss/west,
-/obj/structure/marker_beacon,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "Il" = (
 /obj/effect/turf_decal/ship/nt_floor_logo{
 	icon_state = "1,2"
@@ -65235,15 +65239,15 @@ EL
 Al
 SP
 SP
-PV
+KG
 SP
 SP
 SP
-PV
+KG
 lp
 SP
 SP
-PV
+KG
 ub
 ub
 ub
@@ -65492,17 +65496,17 @@ EL
 Al
 SP
 SP
-Ik
+PV
 SP
 SP
 SP
-Ik
+ao
 lp
 SP
 SP
-Ik
-al
+ao
 SP
+al
 SP
 EC
 jb
@@ -65748,18 +65752,18 @@ jb
 EL
 Al
 SP
-SP
 lr
+au
 yS
 yS
 pS
-aV
+ai
 vn
 yS
 pS
+au
 Ln
 Wc
-SP
 SP
 ok
 jb
@@ -66010,13 +66014,13 @@ Vd
 Nr
 ND
 ND
-ND
+ah
 wY
 ND
 iG
 Lf
-wZ
-kv
+Vu
+aM
 jb
 jb
 jb

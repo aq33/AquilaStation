@@ -145,6 +145,22 @@
 	. = ..()
 	. += span_notice("Paliwo: [round(get_fuel())]/[round(get_max_fuel())]. Stan kadłuba: [round(obj_integrity / max_integrity * 100)]%.")
 
+// Obrót kadłuba: kafelki dropshipa składają obraz statku z kawałków w jednym kierunku. Shuttle przy dokowaniu
+// do portu skierowanego inaczej niż szablon obraca dir każdego turfa (i kopiuje go przy przelocie), więc z dir
+// liczy się obrót obrazka. Na mapach te kafelki nie mają dir, czyli SOUTH = bez obrotu.
+
+/proc/dropship_turf_transform(turn_dir)
+	var/angle = dir2angle(turn_dir) - dir2angle(SOUTH)
+	return angle ? matrix(angle, MATRIX_ROTATE) : matrix()
+
+/turf/closed/indestructible/dropship/setDir(newdir)
+	. = ..()
+	transform = dropship_turf_transform(dir)
+
+/turf/open/indestructible/dropship/setDir(newdir)
+	. = ..()
+	transform = dropship_turf_transform(dir)
+
 // Wrota w burcie kokpitu: wyjście na zewnątrz w doku, zablokowane w locie
 
 /turf/closed/indestructible/dropship/entry/sabre

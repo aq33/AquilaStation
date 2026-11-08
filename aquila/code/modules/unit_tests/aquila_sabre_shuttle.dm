@@ -82,6 +82,71 @@
 	qdel(port, TRUE)
 	qdel(hangar)
 
+/// Port skierowany na wschód (jak w zatoce górniczej Atlasa): szablon wczytany na NORTH obraca się przy dokowaniu
+/obj/docking_port/stationary/sabre/mining/unit_test_east
+	dir = EAST
+
+/// AQUILA - Sabre na porcie skierowanym inaczej niż szablon: kadłub obraca się razem z grafiką, właz wychodzi na lewą burtę
+/datum/unit_test/sabre_shuttle_rotated
+
+/datum/unit_test/sabre_shuttle_rotated/Run()
+	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
+	TEST_ASSERT(host?.current_system, "No main ship in a star system to launch from")
+	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	hangar.overmap_fallback = host
+	var/list/bl = hangar.bottom_left_coords
+	// Przy dir EAST port stoi w lewym górnym rogu, a kadłub idzie na wschód i w dół
+	var/obj/docking_port/stationary/sabre/mining/unit_test_east/port = new(locate(bl[1] + 10, bl[2] + 20, bl[3]))
+	var/timeout = world.time + 30 SECONDS
+	while(!port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock at the east-facing port")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+	TEST_ASSERT(istype(sabre), "The rotated Sabre has no overmap craft")
+	TEST_ASSERT_EQUAL(shuttle_port.dir, EAST, "The interior didn't turn to the port's direction")
+
+	// Ster w szablonie stoi w kokpicie (4,7); po obrocie na wschód kokpit jest po wschodniej stronie kadłuba
+	var/obj/machinery/computer/ship/helm/console/dropship/sabre/helm
+	for(var/turf/T as anything in shuttle_port.return_turfs())
+		helm = locate() in T
+		if(helm)
+			break
+	TEST_ASSERT(helm, "The rotated Sabre has no helm")
+	TEST_ASSERT_EQUAL(helm.x, port.x + 6, "The cockpit isn't at the nose after turning east")
+	TEST_ASSERT_EQUAL(helm.y, port.y - 3, "The cockpit isn't at the nose after turning east")
+
+	// Grafika kadłuba obraca się razem z kafelkami (90 stopni zgodnie z ruchem wskazówek zegara)
+	var/turf/closed/indestructible/dropship/hull = get_step(helm, EAST)
+	TEST_ASSERT(istype(hull), "No hull turf in front of the rotated cockpit")
+	var/matrix/turned = hull.transform
+	TEST_ASSERT(abs(turned.a) < 0.01 && abs(turned.b - 1) < 0.01, "The hull art didn't turn with the hull (transform [turned.a],[turned.b],[turned.d],[turned.e])")
+	var/turf/open/indestructible/dropship/floor = get_turf(helm)
+	TEST_ASSERT(istype(floor), "The helm doesn't stand on the dropship floor")
+	TEST_ASSERT(floor.transform ~= hull.transform, "The floor art turned differently than the hull")
+
+	// Właz w lewej gondoli: przy dziobie na wschód otwiera się na północ, tuż nad kadłubem
+	var/list/exits = sabre.shuttle_exit_turfs()
+	TEST_ASSERT_EQUAL(length(exits), 2, "The rotated hatch should open onto two tiles")
+	for(var/turf/T as anything in exits)
+		TEST_ASSERT_EQUAL(T.y, port.y + 1, "The rotated hatch doesn't open to the north of the hull")
+
+	// Start i powrót do tego samego portu nie obracają kadłuba drugi raz
+	sabre.set_fuel(500)
+	TEST_ASSERT(sabre.shuttle_launch(), "The rotated Sabre didn't launch")
+	TEST_ASSERT(sabre.shuttle_land(host, port), "The rotated Sabre didn't land back at its port")
+	TEST_ASSERT_EQUAL(helm.x, port.x + 6, "The cockpit moved after flying out and back")
+	TEST_ASSERT_EQUAL(helm.y, port.y - 3, "The cockpit moved after flying out and back")
+	hull = get_step(helm, EAST)
+	turned = hull.transform
+	TEST_ASSERT(abs(turned.a) < 0.01 && abs(turned.b - 1) < 0.01, "The hull art turned again after flying out and back")
+
+	shuttle_port.jumpToNullSpace()
+	if(!QDELETED(sabre))
+		qdel(sabre)
+	qdel(port, TRUE)
+	qdel(hangar)
+
 /// AQUILA - porty Sabre na mapie: na starcie rundy każdy ma wnętrze z jednostką overmapy, a z włazu da się wyjść
 /datum/unit_test/sabre_map_ports
 
