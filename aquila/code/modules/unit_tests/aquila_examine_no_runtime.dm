@@ -6,8 +6,8 @@
 
 /datum/unit_test/aquila_examine_no_runtime/Run()
 	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human)
-	// pusta minikarta SI i konsola przeciwlotnicza bez wieżyczki nad sobą
-	for(var/path in list(/obj/item/mod/ai_minicard, /obj/machinery/computer/anti_air))
+	// konsola przeciwlotnicza bez wieżyczki nad sobą
+	for(var/path in list(/obj/machinery/computer/anti_air))
 		var/atom/thing = allocate(path)
 		var/list/result
 		try

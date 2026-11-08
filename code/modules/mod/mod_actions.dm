@@ -1,112 +1,47 @@
+// AQUILA: akcje modułów hardsuitu (dawniej MODsuitu). Bez rozkładania i aktywacji (hełm ma swoją akcję) i bez SI w kombinezonie.
 /datum/action/item_action/mod
 	background_icon_state = "bg_mod"
 	icon_icon = 'icons/mob/actions/actions_mod.dmi'
 	button_icon = 'icons/mob/actions/backgrounds.dmi'
 	check_flags = AB_CHECK_CONSCIOUS
-	/// Whether this action is intended for the AI. Stuff breaks a lot if this is done differently.
-	var/ai_action = FALSE
 
 /datum/action/item_action/mod/New(Target)
 	..()
-	if(!istype(Target, /obj/item/mod/control))
+	if(!istype(Target, /obj/item/clothing/suit/space/hardsuit))
 		qdel(src)
 		return
-	if(ai_action)
-		background_icon_state = ACTION_BUTTON_DEFAULT_BACKGROUND
-
-/datum/action/item_action/mod/Grant(mob/user)
-	var/obj/item/mod/control/mod = target
-	if(ai_action && user != mod.ai_assistant)
-		return
-	else if(!ai_action && user == mod.ai_assistant)
-		return
-	return ..()
-
-/datum/action/item_action/mod/Remove(mob/user)
-	var/obj/item/mod/control/mod = target
-	if(ai_action && user != mod.ai_assistant)
-		return
-	else if(!ai_action && user == mod.ai_assistant)
-		return
-	return ..()
 
 /datum/action/item_action/mod/Trigger(trigger_flags)
 	if(!IsAvailable())
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
-	var/obj/item/mod/control/mod = target
-	if(mod.malfunctioning && prob(75))
-		mod.balloon_alert(usr, "przycisk zawodzi!")
-		return FALSE
-	on_activate(owner, mod, trigger_flags)
+	on_activate(owner, target, trigger_flags)
 	return TRUE
 
 /// What the action does when pressed. Called by Trigger() after the availability checks.
-/datum/action/item_action/mod/proc/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
+/datum/action/item_action/mod/proc/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
 	return
-
-/datum/action/item_action/mod/deploy
-	name = "Rozłóż MODsuit"
-	desc = "Klik: rozłóż lub złóż część. Alt-klik: rozłóż lub złóż cały skafander."
-	button_icon_state = "deploy"
-
-/datum/action/item_action/mod/deploy/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
-	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
-		mod.quick_deploy(user)
-	else
-		mod.choose_deploy(user)
-
-/datum/action/item_action/mod/deploy/ai
-	ai_action = TRUE
-
-/datum/action/item_action/mod/activate
-	name = "Aktywuj MODsuit"
-	desc = "Klik: włącz lub wyłącz skafander z potwierdzeniem. Alt-klik: włącz lub wyłącz skafander bez potwierdzenia."
-	button_icon_state = "activate"
-	/// First time clicking this will set it to TRUE, second time will activate it.
-	var/ready = FALSE
-
-/datum/action/item_action/mod/activate/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
-	if(!(trigger_flags & TRIGGER_SECONDARY_ACTION) && !ready)
-		ready = TRUE
-		button_icon_state = "activate-ready"
-		UpdateButtonIcon()
-		addtimer(CALLBACK(src, PROC_REF(reset_ready)), 3 SECONDS)
-		return
-	reset_ready()
-	mod.toggle_activate(user)
-
-/// Resets the state requiring to be doubleclicked again.
-/datum/action/item_action/mod/activate/proc/reset_ready()
-	ready = FALSE
-	button_icon_state = initial(button_icon_state)
-	UpdateButtonIcon()
-
-/datum/action/item_action/mod/activate/ai
-	ai_action = TRUE
 
 /datum/action/item_action/mod/module
 	name = "Przełącz moduł"
-	desc = "Przełącza moduł MODsuitu."
+	desc = "Wybiera moduł kombinezonu do użycia."
 	button_icon_state = "module"
 
-/datum/action/item_action/mod/module/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
+/datum/action/item_action/mod/module/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
+	if(!mod.try_activate(user)) // kombinezon założony przez kogoś innego uruchamia się dopiero tu (blokada DNA)
+		return
 	mod.quick_module(user)
 
-/datum/action/item_action/mod/module/ai
-	ai_action = TRUE
-
 /datum/action/item_action/mod/panel
-	name = "Panel MODsuitu"
-	desc = "Otwiera panel MODsuitu."
+	name = "Panel kombinezonu"
+	desc = "Otwiera panel modułów i zasilania kombinezonu."
 	button_icon_state = "panel"
 
-/datum/action/item_action/mod/panel/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
+/datum/action/item_action/mod/panel/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
+	if(!mod.try_activate(user))
+		return
 	mod.ui_interact(user)
-
-/datum/action/item_action/mod/panel/ai
-	ai_action = TRUE
 
 /datum/action/item_action/mod/pinned_module
 	desc = "Aktywuje moduł."
@@ -120,9 +55,6 @@
 	var/cooldown_timer
 
 /datum/action/item_action/mod/pinned_module/New(Target, obj/item/mod/module/linked_module, mob/user)
-	var/obj/item/mod/control/mod = Target
-	if(user == mod.ai_assistant)
-		ai_action = TRUE
 	. = ..()
 	module = linked_module
 	pinner = user
@@ -163,7 +95,7 @@
 		return
 	return ..()
 
-/datum/action/item_action/mod/pinned_module/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
+/datum/action/item_action/mod/pinned_module/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
 	module.on_select()
 
 /datum/action/item_action/mod/pinned_module/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
@@ -172,7 +104,7 @@
 	current_button.button_icon_state = button_icon_state
 	if(override)
 		return
-	var/obj/item/mod/control/mod = target
+	var/obj/item/clothing/suit/space/hardsuit/mod = target
 	if(module == mod.selected_module)
 		current_button.add_overlay(image(icon = 'icons/mob/radial.dmi', icon_state = "module_selected", layer = FLOAT_LAYER-0.1))
 	else if(module.active)
