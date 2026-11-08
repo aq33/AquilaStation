@@ -1,5 +1,7 @@
+// Dominator gangu: cel ostateczny trybu wojny gangów. Plik z core (nie był w buildzie), dopasowany do naszego kodu.
+// Wzór działającej wersji: FTL13 (stary tg), code/game/gamemodes/gang/dominator.dm.
+
 #define DOM_BLOCKED_SPAM_CAP 6
-#define DOM_REQUIRED_TURFS 30
 #define DOM_HULK_HITS_REQUIRED 10
 
 /obj/machinery/dominator
@@ -31,7 +33,7 @@
 	update_icon()
 
 /obj/machinery/dominator/Destroy()
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		set_broken()
 	GLOB.poi_list.Remove(src)
 	gang = null
@@ -46,12 +48,12 @@
 /obj/machinery/dominator/hulk_damage()
 	return (max_integrity - integrity_failure) / DOM_HULK_HITS_REQUIRED
 
-/obj/machinery/dominator/tesla_act()
+/obj/machinery/dominator/tesla_act(power, tesla_flags, shocked_targets)
 	qdel(src)
 
 /obj/machinery/dominator/update_icon()
 	cut_overlays()
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		icon_state = "dominator-active"
 		if(operating)
 			var/mutable_appearance/dominator_overlay = mutable_appearance('icons/obj/machines/dominator.dmi', "dominator-overlay")
@@ -66,18 +68,18 @@
 		icon_state = "dominator-broken"
 
 /obj/machinery/dominator/examine(mob/user)
-	..()
-	if(stat & BROKEN)
+	. = ..()
+	if(machine_stat & BROKEN)
 		return
 
 	if(gang && gang.domination_time != NOT_DOMINATING)
 		if(gang.domination_time > world.time)
-			to_chat(user, "<span class='notice'>Trwa wrogie przejęcie. Szacowany pozostały czas: [gang.domination_time_remaining()] s.</span>")
+			. += "<span class='notice'>Trwa wrogie przejęcie. Szacowany pozostały czas: [round(gang.domination_time_remaining())] s.</span>"
 		else
-			to_chat(user, "<span class='notice'>Wrogie przejęcie [station_name()] zakończone sukcesem. Miłego dnia.</span>")
+			. += "<span class='notice'>Wrogie przejęcie [station_name()] zakończone sukcesem. Miłego dnia.</span>"
 	else
-		to_chat(user, "<span class='notice'>System w trybie czuwania.</span>")
-	to_chat(user, "<span class='danger'>Integralność systemu: [round((obj_integrity/max_integrity)*100,1)]%</span>")
+		. += "<span class='notice'>System w trybie czuwania.</span>"
+	. += "<span class='danger'>Integralność systemu: [round((obj_integrity/max_integrity)*100,1)]%</span>"
 
 /obj/machinery/dominator/process()
 	if(gang && gang.domination_time != NOT_DOMINATING)
@@ -98,14 +100,15 @@
 			if(!warned && (time_remaining < 180))
 				warned = TRUE
 				var/area/domloc = get_area(loc)
-				gang.message_gangtools("Do końca wrogiego przejęcia zostały niecałe 3 minuty. Brońcie dominatora w [domloc.map_name]!")
+				gang.message_gangtools("Do końca wrogiego przejęcia zostały niecałe 3 minuty. Brońcie dominatora w [domloc.name]!")
 				for(var/G in GLOB.gangs)
 					var/datum/team/gang/tempgang = G
 					if(tempgang != gang)
-						tempgang.message_gangtools("UWAGA: przejęcie przez gang [gang.name] jest bliskie. Ich dominator w [domloc.map_name] musi zostać zniszczony!",1,1)
+						tempgang.message_gangtools("UWAGA: przejęcie przez gang [gang.name] jest bliskie. Ich dominator w [domloc.name] musi zostać zniszczony!")
 		else
 			Cinematic(CINEMATIC_MALF,world)
 			gang.winner = TRUE
+			gang.dominated = TRUE
 			SSticker.force_ending = TRUE
 
 	if(!.)
@@ -121,24 +124,26 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
 		if(obj_integrity/max_integrity > 0.66)
 			if(prob(damage_amount*2))
 				spark_system.start()
-		else if(!(stat & BROKEN))
+		else if(!(machine_stat & BROKEN))
 			spark_system.start()
 			update_icon()
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
+	// najpierw własne wyłączenie przejęcia, bo rodzic od razu ustawia BROKEN
+	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_broken()
+	return ..()
 
 /obj/machinery/dominator/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			set_broken()
 		new /obj/item/stack/sheet/plasteel(src.loc)
 	qdel(src)
@@ -147,9 +152,9 @@
 	add_fingerprint(user)
 	..()
 
-/obj/machinery/dominator/attack_hand(mob/user)
-	if(operating || (stat & BROKEN))
-		examine(user)
+/obj/machinery/dominator/attack_hand(mob/user, list/modifiers)
+	if(operating || (machine_stat & BROKEN))
+		user.examinate(src)
 		return
 
 	var/datum/team/gang/tempgang
@@ -158,7 +163,7 @@
 	if(GA)
 		tempgang = GA.gang
 	if(!tempgang)
-		examine(user)
+		user.examinate(src)
 		return
 
 	if(tempgang.domination_time != NOT_DOMINATING)
@@ -171,11 +176,12 @@
 
 	var/time = round(tempgang.determine_domination_time()/60,0.1)
 	if(alert(user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi")
-		if((tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
+		// okno alert() czeka na gracza: w tym czasie dominator mógł zostać zepsuty, zniszczony albo uruchomiony przez kogoś innego
+		if(QDELETED(src) || operating || (machine_stat & BROKEN) || (tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
 			return 0
 
 		var/area/A = get_area(loc)
-		var/locname = A.map_name
+		var/locname = A.name
 
 		gang = tempgang
 		gang.dom_attempts --
@@ -196,18 +202,10 @@
 		for(var/G in GLOB.gangs)
 			var/datum/team/gang/vagos = G
 			if(vagos != gang)
-				vagos.message_gangtools("Wykryto próbę przejęcia przez wroga w [locname]: szacowany czas do naszej porażki [time] min.",1,1)
+				vagos.message_gangtools("Wykryto próbę przejęcia przez wroga w [locname]: szacowany czas do naszej porażki [time] min.")
 
-/obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
-	var/open = FALSE
-	if(isclosedturf(loc))
-		return TRUE
-	for(var/turf/open/T in view(3, src))
-		open++
-	if(open < DOM_REQUIRED_TURFS)
-		return TRUE
-	else
-		return FALSE
+/obj/machinery/dominator/proc/excessive_walls_check()
+	return aq_dominator_walls_check(get_turf(src))
 
 /obj/machinery/dominator/proc/set_broken()
 	if(gang)
@@ -228,14 +226,13 @@
 				set_security_level("red")
 
 		SSshuttle.clearHostileEnvironment(src)
-		gang.message_gangtools("Wrogie przejęcie anulowane: dominator nie działa.[gang.dom_attempts ? " Pozostałe próby: [gang.dom_attempts]." : " Sieć stacji pewnie zablokuje nasze kolejne próby."]",1,1)
+		gang.message_gangtools("Wrogie przejęcie anulowane: dominator nie działa.[gang.dom_attempts ? " Pozostałe próby: [gang.dom_attempts]." : " Sieć stacji pewnie zablokuje nasze kolejne próby."]")
 
 	set_light(0)
 	operating = FALSE
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
 
 #undef DOM_BLOCKED_SPAM_CAP
-#undef DOM_REQUIRED_TURFS
 #undef DOM_HULK_HITS_REQUIRED

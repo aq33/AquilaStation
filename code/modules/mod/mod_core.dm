@@ -7,14 +7,14 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	/// MOD unit we are powering.
-	var/obj/item/mod/control/mod
+	var/obj/item/clothing/suit/space/hardsuit/mod
 
 /obj/item/mod/core/Destroy()
 	if(mod)
 		uninstall()
 	return ..()
 
-/obj/item/mod/core/proc/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/proc/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	mod = mod_unit
 	mod.core = src
 	forceMove(mod)
@@ -90,13 +90,12 @@
 		QDEL_NULL(cell)
 	return ..()
 
-/obj/item/mod/core/standard/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/standard/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	. = ..()
 	if(cell)
 		install_cell(cell)
 	RegisterSignal(mod, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(mod, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
-	RegisterSignal(mod, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(mod, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby)) // AQ EDIT - bez ATTACK_HAND: ogniwo wyjmuje się łomem (crowbar_act hardsuitu), klik pustą ręką tylko podnosi kombinezon
 	RegisterSignal(mod, COMSIG_MOD_WEARER_SET, PROC_REF(on_wearer_set))
 	if(mod.wearer)
 		on_wearer_set(mod, mod.wearer)
@@ -104,7 +103,7 @@
 /obj/item/mod/core/standard/uninstall()
 	if(!QDELETED(cell))
 		cell.forceMove(drop_location())
-	UnregisterSignal(mod, list(COMSIG_PARENT_EXAMINE, COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY, COMSIG_MOD_WEARER_SET))
+	UnregisterSignal(mod, list(COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY, COMSIG_MOD_WEARER_SET)) // AQ EDIT - bez ATTACK_HAND
 	if(mod.wearer)
 		on_wearer_unset(mod, mod.wearer)
 	return ..()
@@ -176,17 +175,7 @@
 
 	if(!mod.open)
 		return
-	examine_text += cell ? "Możesz wyjąć ogniwo pustą ręką." : "Możesz zainstalować ogniwo, używając go na tym."
-
-/obj/item/mod/core/standard/proc/on_attack_hand(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-
-	if(mod.seconds_electrified && charge_amount() && mod.shock(user))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
-	if(mod.open && mod.loc == user)
-		INVOKE_ASYNC(src,  PROC_REF(mod_uninstall_cell), user)
-		return COMPONENT_CANCEL_ATTACK_CHAIN
-	return NONE
+	examine_text += cell ? "Ogniwo wyjmiesz łomem." : "Możesz zainstalować ogniwo, używając go na tym." // AQ EDIT - ogniwo wyjmuje się łomem
 
 /obj/item/mod/core/standard/proc/mod_uninstall_cell(mob/living/user)
 	if(!cell)
@@ -302,7 +291,7 @@
 	/// Associated list of charge sources and how much they charge, only stacks allowed.
 	var/list/charger_list = list(/obj/item/stack/ore/plasma = PLASMA_CORE_ORE_CHARGE, /obj/item/stack/sheet/mineral/plasma = PLASMA_CORE_SHEET_CHARGE)
 
-/obj/item/mod/core/plasma/install(obj/item/mod/control/mod_unit)
+/obj/item/mod/core/plasma/install(obj/item/clothing/suit/space/hardsuit/mod_unit)
 	. = ..()
 	RegisterSignal(mod, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
 

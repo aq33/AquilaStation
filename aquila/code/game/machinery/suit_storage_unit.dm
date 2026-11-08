@@ -25,3 +25,20 @@
 		uv_soundloop?.stop()
 		playsound(src, 'sound/machines/ding.ogg', 40, TRUE)
 	return ..()
+
+/// Zamknięta, zasilona szafa ładuje ogniwo hardsuitu w środku i uzupełnia tlen w jego wbudowanej butli
+/obj/machinery/suit_storage_unit/process(delta_time)
+	var/obj/item/clothing/suit/space/hardsuit/hardsuit = suit
+	if(!istype(hardsuit) || state_open || uv || !is_operational)
+		return
+	var/obj/item/stock_parts/cell/cell = hardsuit.get_charge_source()
+	if(istype(cell) && cell.charge < cell.maxcharge)
+		use_power(charge_rate * delta_time)
+		cell.give(charge_rate * delta_time)
+	var/obj/item/tank/internals/hardsuit/tank = hardsuit.integrated_tank
+	if(!tank)
+		return
+	var/datum/gas_mixture/air = tank.return_air()
+	var/full_moles = tank.full_oxygen_moles()
+	if(air.get_moles(GAS_O2) < full_moles)
+		air.set_moles(GAS_O2, full_moles)

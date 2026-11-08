@@ -36,9 +36,9 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		user.client.register_map_obj(examine_panel_screen)
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
+		aq_show_examine_screen(user, ui.window) // AQ EDIT - podgląd postaci dopiero po otwarciu okna (aquila/code/modules/mob/examine_layout.dm)
 
 /datum/examine_panel/ui_data(mob/user)
 	var/list/data = list()

@@ -443,25 +443,10 @@
 
 /datum/spellbook_entry/item/battlemage
 	name = "Zbroja maga bitewnego"
-	desc = "Zaczarowany MODsuit, który pozwala rzucać zaklęcia, jest chroniony potężną, odnawialną tarczą i szczelny w próżni kosmosu."
-	item_path = /obj/item/mod/control/pre_equipped/enchanted
+	desc = "Zaczarowany hardsuit, który pozwala rzucać zaklęcia, jest chroniony potężną, odnawialną tarczą i szczelny w próżni kosmosu."
+	item_path = /obj/item/clothing/suit/space/hardsuit/wizard/battlemage // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	limit = 1
 	category = "Defensive"
-
-/datum/spellbook_entry/item/battlemage/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
-	var/obj/item/mod/control/mod = new item_path(get_turf(user))
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	var/obj/item/mod/module/storage/storage = locate() in mod.modules
-	var/obj/item/back = user.back
-	if(back && user.dropItemToGround(back) && storage)
-		for(var/obj/item/item as anything in back.contents)
-			item.forceMove(storage)
-	if(!user.equip_to_slot_if_possible(mod, mod.slot_flags, qdel_on_fail = FALSE, disable_warning = TRUE))
-		return TRUE
-	user.dropItemToGround(user.wear_suit)
-	user.dropItemToGround(user.head)
-	mod.quick_activation()
-	return TRUE
 
 /datum/spellbook_entry/item/battlemage_charge
 	name = "Ładunki zbroi maga bitewnego"
