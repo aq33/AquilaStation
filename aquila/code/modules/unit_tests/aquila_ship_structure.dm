@@ -400,9 +400,13 @@
 	TEST_ASSERT(!("id" in recharger.vars), "Test setup: the recharger has an id var, pick another machine")
 	structure.save_path = "data/ship_structure/unit_test_safety.json"
 	rustg_file_write(json_encode(list("version" = 2, "rounds" = 1, "turfs" = delta)), structure.save_path)
+	// Kopia zapasowa idzie do kwarantanny razem z zapisem, inaczej następne wczytanie wzięłoby starszy statek
+	rustg_file_write("{}", "[structure.save_path].bak")
 	floor_block()
 	structure.baseline = structure.capture()
 	structure.load()
+	TEST_ASSERT(!fexists("[structure.save_path].bak") && fexists("[structure.save_path].bak.broken"), "The backup of a save with errors was not moved aside")
+	fdel("[structure.save_path].bak.broken")
 	TEST_ASSERT_EQUAL(structure.load_errors, 1, "A broken record was not counted as an error")
 	TEST_ASSERT(isclosedturf(cell(3, 3)), "A broken record stopped the rest of the save from loading")
 	TEST_ASSERT(!isclosedturf(cell(2, 2)), "The broken record was applied")
@@ -456,6 +460,27 @@
 	TEST_ASSERT(structure.skip_turf(cell(7, 7)), "A magnet cage turf is not skipped")
 	TEST_ASSERT(!structure.skip_turf(cell(2, 2)), "A turf outside the magnet cage is skipped")
 	qdel(magnet)
+
+	// Suma kontrolna mapy przez load(): ta sama = kabel wraca, inna albo brak (stary zapis) = kabel zostaje z mapy, ściana wraca zawsze
+	var/current_hash = ship_structure_map_hash()
+	TEST_ASSERT(current_hash, "The map hash of the test map is empty, the map change protection would never trigger")
+	for(var/list/hash_case in list(list("hash" = current_hash, "cable" = TRUE), list("hash" = "unit_test_other_map", "cable" = FALSE), list("hash" = null, "cable" = FALSE)))
+		floor_block()
+		structure = new_structure()
+		structure.save_path = "data/ship_structure/unit_test_safety.json"
+		structure.baseline = structure.capture()
+		change(2, 2, /turf/closed/wall)
+		new /obj/structure/cable(cell(3, 3), "yellow")
+		var/list/hash_save = list("version" = 2, "rounds" = 1, "turfs" = structure.diff(structure.baseline, structure.capture(TRUE)))
+		if(hash_case["hash"])
+			hash_save["map_hash"] = hash_case["hash"]
+		rustg_file_write(json_encode(hash_save), structure.save_path)
+		floor_block()
+		structure.baseline = structure.capture()
+		structure.load()
+		TEST_ASSERT(isclosedturf(cell(2, 2)), "A wall was not restored (map hash [hash_case["hash"] || "missing"])")
+		TEST_ASSERT_EQUAL((locate(/obj/structure/cable) in cell(3, 3)) ? TRUE : FALSE, hash_case["cable"], "Wrong cable state for map hash [hash_case["hash"] || "missing"]")
+		fdel(structure.save_path)
 
 	// Zmieniony plik mapy: ściana wraca, kabel i rura zostają z mapy
 	floor_block()
@@ -556,6 +581,12 @@
 	floor_block()
 	change(1, 1, /turf/open/space)
 	TEST_ASSERT(!structure.is_heavily_damaged(structure.diff(structure.baseline, structure.capture(TRUE))), "A ship with one hole is heavily damaged")
+	// Dziury załatane pianką przy wczytaniu (zniszczenia z poprzednich rund) liczą się tak samo
+	floor_block()
+	for(var/dx in 1 to 9)
+		var/turf/patched = cell(dx, 1)
+		patched.ChangeTurf(/turf/open/floor/plating/foam)
+	TEST_ASSERT(structure.is_heavily_damaged(structure.diff(structure.baseline, structure.capture(TRUE))), "Foam-patched holes from earlier rounds do not count as damage")
 
 	// Kamera wisi na ścianie za sobą, teleporter nie ma losowego id w sygnaturze
 	var/obj/machinery/camera/camera = new(cell(4, 4))

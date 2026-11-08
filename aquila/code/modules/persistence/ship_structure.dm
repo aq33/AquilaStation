@@ -99,9 +99,10 @@ GLOBAL_LIST_INIT(ship_structure_random_id, typecacheof(ship_structure_random_id_
 /proc/ship_structure_preloaded(path)
 	return ispath(path, /obj/machinery) || ispath(path, /obj/structure/disposalpipe) || ispath(path, /obj/structure/disposaloutlet)
 
-/// Instalacje przebiegające przez wiele pól (rury i kable): po zmianie pliku mapy zostają z mapy
+/// Instalacje przebiegające przez wiele pól (rury, kable, zsyp): po zmianie pliku mapy zostają z mapy
 /proc/ship_structure_is_installation(path)
-	return ispath(path, /obj/machinery/atmospherics) || ispath(path, /obj/structure/cable)
+	return ispath(path, /obj/machinery/atmospherics) || ispath(path, /obj/structure/cable) \
+		|| ispath(path, /obj/structure/disposalpipe) || ispath(path, /obj/structure/disposaloutlet)
 
 GLOBAL_LIST_INIT(ship_structure_critical, typecacheof(ship_structure_critical_types()))
 
@@ -120,8 +121,12 @@ GLOBAL_LIST_EMPTY(ship_structure_room_turfs)
 /proc/ship_structure_mark_room(datum/map_template/random_room/template, turf/T, centered)
 	if(!T)
 		return
+	// Wariant to szablon razem z treścią pliku: poprawka mappera w szablonie też odcina stary zapis tych pól
+	var/room_key = template.room_id
+	if(istext(template.mappath) && fexists(template.mappath))
+		room_key = "[template.room_id]:[rustg_hash_file(RUSTG_HASH_MD5, template.mappath)]"
 	for(var/turf/room_turf as anything in template.get_affected_turfs(T, centered))
-		GLOB.ship_structure_room_turfs[room_turf] = template.room_id
+		GLOB.ship_structure_room_turfs[room_turf] = room_key
 
 /// Obiekty, które są częścią struktury statku i są zapisywane: konstrukcje, instalacje i wszystkie maszyny poza wyjątkami
 GLOBAL_LIST_INIT(ship_structure_tracked, ship_structure_tracked_types())
@@ -738,10 +743,15 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	// nadal ma: preloader ustawiałby je na ślepo, a zmienna usunięta z kodu dawałaby runtime w New()
 	var/list/saved_vars = record["v"]
 	if(islist(saved_vars))
-		for(var/var_name in saved_vars)
-			if((var_name in (GLOB.ship_structure_machine_vars + "state")) && (var_name in created.vars))
-				var/value = saved_vars[var_name]
-				created.vars[var_name] = islist(value) ? deepCopyList(value) : value
+		try
+			for(var/var_name in saved_vars)
+				if((var_name in (GLOB.ship_structure_machine_vars + "state")) && (var_name in created.vars))
+					var/value = saved_vars[var_name]
+					created.vars[var_name] = islist(value) ? deepCopyList(value) : value
+		catch(var/exception/error)
+			// Bez Initialize() maszyna zostałaby na polu w połowie zbudowana
+			qdel(created)
+			throw error
 	return created
 
 /// Wymienia części maszyny na zapisane (ulepszenia), jeśli różnią się od obecnych. Części leżą w nullspace jak przy budowie z ramy.
@@ -1214,15 +1224,17 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		data = read_save("[save_path].bak")
 		source = "[save_path].bak"
 		// Uszkodzony plik główny nie może trafić do kopii przy następnym zapisie
-		quarantine("unreadable, loading the backup")
+		quarantine("unreadable, loading the backup", with_backup = FALSE)
 	if(!data)
 		log_game("Ship structure: no readable save for [save_path], starting from the map")
 		last_report = "zapis uszkodzony, statek prosto z mapy"
 		return
 	rounds = isnum(data["rounds"]) ? data["rounds"] : 0
-	// Zmieniony plik mapy: przebudowa rur i kabli urwałaby się na polach zmienionych przez mappera, więc zostają z mapy
+	// Zmieniony plik mapy: przebudowa rur i kabli urwałaby się na polach zmienionych przez mappera, więc zostają z mapy.
+	// Zapis bez sumy kontrolnej (sprzed jej wprowadzenia) traktujemy tak samo: nie wiadomo, na jakiej mapie powstał,
+	// a sygnatury pól z rurami zsypu i wieżyczkami zmieniły się razem z nią, więc te pola i tak się nie nałożą.
 	var/map_hash = ship_structure_map_hash()
-	keep_map_installations = istext(data["map_hash"]) && map_hash && data["map_hash"] != map_hash
+	keep_map_installations = map_hash && data["map_hash"] != map_hash
 	check_rooms = data["rooms"] ? TRUE : FALSE
 	load_errors = 0
 	var/list/result
@@ -1245,13 +1257,23 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		last_report += ", błędy: [load_errors] (zapis odłożony jako .broken)"
 		message_admins("Trwała struktura statku: [load_errors] błędów przy wczytaniu zapisu (szczegóły w logu runtime). Plik odłożony jako [save_path].broken.")
 
-/// Odkłada zapis jako .broken (do obejrzenia), żeby nie wczytywać go ponownie
-/datum/ship_structure/proc/quarantine(reason)
-	if(!save_path || !fexists(save_path))
+/**
+ * Odkłada zapis jako .broken (do obejrzenia), żeby nie wczytywać go ponownie.
+ * with_backup = TRUE odkłada też kopię zapasową: inaczej następne wczytanie bez nowego zapisu (runda bez zapisu,
+ * padnięcie serwera) wzięłoby starszy statek z kopii albo te same błędy, jeśli pochodziły z kopii.
+ */
+/datum/ship_structure/proc/quarantine(reason, with_backup = TRUE)
+	if(!save_path)
 		return
-	fcopy(save_path, "[save_path].broken")
-	fdel(save_path)
-	log_game("Ship structure: [save_path] moved to [save_path].broken ([reason])")
+	var/list/paths = list(save_path)
+	if(with_backup)
+		paths += "[save_path].bak"
+	for(var/path in paths)
+		if(!fexists(path))
+			continue
+		fcopy(path, "[path].broken")
+		fdel(path)
+		log_game("Ship structure: [path] moved to [path].broken ([reason])")
 
 /// Suma kontrolna plików mapy statku (pusta w testach i bez konfiguracji)
 /proc/ship_structure_map_hash()
@@ -1288,7 +1310,10 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	saved_this_round = TRUE
 	log_game("Ship structure: saved [length(delta)] changed turfs to [save_path][heavy_damage ? ", the ship is heavily damaged" : ""]")
 
-/// Statek jest mocno zniszczony, gdy co najmniej SHIP_STRUCTURE_HEAVY_DAMAGE pól statku z mapy stało się kosmosem
+/**
+ * Statek jest mocno zniszczony, gdy co najmniej SHIP_STRUCTURE_HEAVY_DAMAGE pól statku z mapy stało się kosmosem.
+ * Podłoga z pianki to dziura załatana przy wczytaniu, więc liczy się tak samo (inaczej zniszczenia z poprzednich rund znikałyby).
+ */
 /datum/ship_structure/proc/is_heavily_damaged(list/delta)
 	var/ship_turfs = 0
 	for(var/key in baseline)
@@ -1303,7 +1328,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		if(!istext(record["t"]) || record["ot"] == SHIP_STRUCTURE_SPACE || ispath(text2path(record["ot"]), /turf/open/space))
 			continue
 		var/turf/new_path = text2path(splittext(record["t"], ";")[1])
-		if(ispath(new_path, /turf/open/space) || ispath(new_path, /turf/open/openspace))
+		if(ispath(new_path, /turf/open/space) || ispath(new_path, /turf/open/openspace) || ispath(new_path, /turf/open/floor/plating/foam))
 			holes++
 	return holes >= ship_turfs * SHIP_STRUCTURE_HEAVY_DAMAGE
 
