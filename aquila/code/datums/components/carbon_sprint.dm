@@ -167,6 +167,12 @@
 	pending_step = FALSE
 	if(moves < SPRINT_WALLSLAM_MIN_MOVES || !bumped.density)
 		return
+	// Drugi krok skosu po udanym pierwszym to ślizg po ścianie, nie uderzenie z rozpędu (Move() dzieli skos zawsze najpierw na N/S)
+	if(carbon_parent.moving_diagonally == SECOND_DIAG_STEP)
+		return
+	// Drzwi otwierają się na bump najwyżej raz na sekundę (door.dm Bumped): druga śluza zaraz za pierwszą tylko chwilowo się nie otwiera
+	if(istype(bumped, /obj/machinery/door) && world.time - carbon_parent.last_bumped <= 10)
+		return
 	// Ocena tick później: drzwi, które się przed nami otwierają, nie przewracają
 	addtimer(CALLBACK(src, PROC_REF(resolve_bump), bumped, moves, get_turf(carbon_parent)), 1)
 
