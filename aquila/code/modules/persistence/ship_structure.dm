@@ -69,7 +69,9 @@
 	/obj/machinery/field/containment,
 	/obj/machinery/shieldwall,
 	/obj/machinery/power/singularity_beacon,
-	/obj/machinery/abductor
+	/obj/machinery/abductor,
+	// Generator Tesli/osobliwości znika, gdy powstaje kula; zapisany jako usunięty kasowałby go w następnej rundzie z tym samym silnikiem
+	/obj/machinery/the_singularitygen
 	)
 
 GLOBAL_LIST_INIT(ship_structure_critical, typecacheof(ship_structure_critical_types()))
