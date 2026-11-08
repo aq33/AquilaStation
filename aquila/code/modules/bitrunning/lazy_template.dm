@@ -3,7 +3,7 @@
  * Mapa ładuje się dopiero na żądanie, do nowej rezerwacji turfów.
  * U nas opiera się na zwykłym /datum/map_template z returns_created_atoms.
  */
-/// Ile szablonów ładuje się teraz naraz (każde trzyma SSair wyłączone)
+/// Ile ładowań trzyma teraz SSair wyłączone (domeny bitrunningu, wnętrza okrętów, reset atmosfery)
 GLOBAL_VAR_INIT(lazy_template_loads, 0)
 
 /// Początek ładowania: atmosfera stoi, dopóki nie skończy się ostatnie z nakładających się ładowań
@@ -11,9 +11,9 @@ GLOBAL_VAR_INIT(lazy_template_loads, 0)
 	GLOB.lazy_template_loads++
 	SSair.can_fire = FALSE
 
-/// Koniec ładowania. Licznik zamiast zapamiętanego stanu: dwa nakładające się ładowania (albo ładowanie wnętrza statku,
-/// które samo wyłącza i włącza SSair) zapamiętywały FALSE od siebie nawzajem i atmosfera stała do końca rundy.
-/// Po ostatnim ładowaniu SSair rusza zawsze, tak jak po ładowaniu wnętrza w nsv13/.../boarding/interiors.dm.
+/// Koniec ładowania. Licznik zamiast zapamiętanego stanu: dwa nakładające się ładowania zapamiętywały FALSE od siebie
+/// nawzajem i atmosfera stała do końca rundy. Wnętrza okrętów (interiors.dm) i reset atmosfery (air.dm) używają tego samego
+/// licznika, więc żadne z nich nie włącza SSair w trakcie cudzego ładowania. Po ostatnim ładowaniu SSair rusza.
 /proc/lazy_template_load_finished()
 	GLOB.lazy_template_loads = max(GLOB.lazy_template_loads - 1, 0)
 	if(!GLOB.lazy_template_loads)
