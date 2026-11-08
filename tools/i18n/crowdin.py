@@ -33,7 +33,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import extract_pairs as ep  # noqa: E402
 import list_missing as lm  # noqa: E402
 
-SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_translated.json", "strings/i18n/en_manual.json"]
+SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_original.json", "strings/i18n/en_translated.json",
+           "strings/i18n/en_manual.json"]
 # przy wprowadzaniu poprawki zmieniamy też mapy, żeby var-edity i porównania w kodzie się zgadzały
 APPLY_PATHSPECS = lm.PATHSPECS + ["*.dmm"]
 SKIP_DIRS = {"code", "modules", "game", "packages", "objects", "interfaces"}

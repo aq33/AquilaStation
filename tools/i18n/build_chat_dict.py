@@ -6,7 +6,7 @@ wskazuje, które przechwycone wartości wstawić i gdzie. Panel (tgui-panel/chat
 dopasowuje szablony do przychodzących wiadomości.
 
 Źródła (po kolei, późniejsze wygrywają): en_pairs_upstream.json i en_pairs.json
-(generowane, poza repo) albo en_all.json, potem en_translated.json i en_manual.json.
+(generowane, poza repo) albo en_all.json, potem en_translated.json, en_original.json i en_manual.json.
 Zapisuje scalony en_all.json, który jest w repo.
 
 Użycie (z katalogu repo, po extract_pairs.py):
@@ -328,7 +328,8 @@ def load_sources(args):
 
     Świeże en_pairs.json (+ oryginały portów) zastępują bazę; bez nich (brak historii
     albo klonów innych serwerów) bazą jest en_all.json z repo. Na wierzch idą
-    tłumaczenia agentów/ręczne (en_translated.json), a na sam koniec en_manual.json.
+    tłumaczenia agentów/ręczne (en_translated.json), oryginały portów, które je zastępują
+    (en_original.json), a na sam koniec en_manual.json.
     """
     if os.path.exists(args.pairs):
         merged = dict(load_json(args.upstream))
@@ -338,6 +339,8 @@ def load_sources(args):
     # zdania z okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py)
     merged.update(load_json(jsx_runs.OUT))
     merged.update(load_json(args.translated))
+    # oryginały portów znalezione dla tłumaczeń zwrotnych i złych par (tools/i18n/match_originals.py)
+    merged.update(load_json(args.original))
     merged.update(load_json(args.manual))
     with open(args.all, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
@@ -429,6 +432,7 @@ def main():
                     help="krótkie stałe dla DM (aquila/code/modules/i18n/translate.dm)")
     ap.add_argument("--slice", nargs="*", default=DEFAULT_SLICE)
     ap.add_argument("--manual", default="strings/i18n/en_manual.json")
+    ap.add_argument("--original", default="strings/i18n/en_original.json")
     args = ap.parse_args()
 
     pairs = load_sources(args)
