@@ -307,12 +307,16 @@ def split(args):
     items = list(best.values())
     seen = judged_before(args.previous)
     merged = load("en_all.json")
+    is_polish = lm.polish_detector(merged)
     os.makedirs(args.dir, exist_ok=True)
     auto, judge, dropped = {}, [], collections.Counter()
     for x in items:
         pl, cur, orig = x["pl"], x["current"], x["original"]
         if (pl, orig) in seen or (pl, rewrap(cur, orig)) in seen:
             dropped["oceniony wcześniej"] += 1
+            continue
+        if is_polish(orig):
+            dropped["kandydat po polsku"] += 1
             continue
         history = x["why"] != "tłumaczenie agenta"
         if x["kind"] == "tsx" and (CODEY_TSX.search(pl) or CODEY_TSX.search(orig)):
