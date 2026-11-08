@@ -289,6 +289,7 @@
 		var/datum/team/cult/cult_team = locate_team(/datum/team/cult)
 		if(cult_team?.CanConvert(newstruct.construct_type))
 			newstruct.mind.add_antag_datum(/datum/antagonist/cult)
+	newstruct.report_construct_built(stoner) // rytuał „Po jednym z każdego”
 	// AQ EDIT END
 	if(iscultist(stoner) || cultoverride)
 		to_chat(newstruct, "<b>Wciąż musisz służyć kultowi[stoner ? " i [stoner]":""]: wykonuj rozkazy i pomagaj osiągnąć cele za wszelką cenę.</b>")

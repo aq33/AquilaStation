@@ -130,5 +130,81 @@
 	TEST_ASSERT(corpse.get_bodypart(BODY_ZONE_L_ARM), "The ghoul got no arm back")
 	corpse.remove_status_effect(/datum/status_effect/ghoul)
 
+/// AQUILA - audyt: księga kultu rani i daje oddanie, puste ostrze dusz nie robi cienia z osoby spoza kultu
+/datum/unit_test/aquila_audyt_antagi_bloodcult
+
+/datum/unit_test/aquila_audyt_antagi_bloodcult/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/cultist_mob = allocate(/mob/living/carbon/human, left)
+	cultist_mob.mind_initialize()
+	var/datum/antagonist/cult/new_cultist = new
+	new_cultist.ignore_implant = TRUE
+	var/datum/antagonist/cult/cultist = cultist_mob.mind.add_antag_datum(new_cultist)
+	TEST_ASSERT(cultist, "Could not make a cultist")
+
+	var/mob/living/carbon/human/crew = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	crew.mind_initialize()
+	var/obj/item/tome/tome = allocate(/obj/item/tome)
+	cultist_mob.put_in_active_hand(tome)
+	var/devotion_before = cultist.devotion
+	tome.attack(crew, cultist_mob)
+	TEST_ASSERT(crew.getOrganLoss(ORGAN_SLOT_STOMACH) > 0, "The tome did not burn the stomach of a living target")
+	TEST_ASSERT(cultist.devotion > devotion_before, "Hitting the crew with the tome gave no devotion")
+
+	// Osoba spoza kultu i puste ostrze: zwykłe samobójstwo, bez cienia
+	var/obj/item/melee/soulblade/blade = allocate(/obj/item/melee/soulblade, get_turf(crew))
+	TEST_ASSERT_EQUAL(blade.suicide_act(crew), BRUTELOSS, "Soulblade suicide by a non-cultist was not a plain suicide")
+	TEST_ASSERT(!blade.shade, "A non-cultist became a shade in the soulblade")
+	TEST_ASSERT(crew.mind?.current == crew, "A non-cultist's mind left the body")
+
+	cultist_mob.mind.remove_antag_datum(/datum/antagonist/cult)
+
+/// AQUILA - audyt: zbudowane konstrukty kultu kończą rytuał „Po jednym z każdego”
+/datum/unit_test/aquila_audyt_antagi_constructs
+	var/datum/team/cult/used_team
+	var/old_ritual
+
+/datum/unit_test/aquila_audyt_antagi_constructs/Destroy()
+	if(used_team)
+		used_team.rituals[RITUAL_FACTION_1] = old_ritual
+		used_team = null
+	return ..()
+
+/datum/unit_test/aquila_audyt_antagi_constructs/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/cultist_mob = allocate(/mob/living/carbon/human, left)
+	cultist_mob.mind_initialize()
+	var/datum/antagonist/cult/new_cultist = new
+	new_cultist.ignore_implant = TRUE
+	var/datum/antagonist/cult/cultist = cultist_mob.mind.add_antag_datum(new_cultist, locate_team(/datum/team/cult))
+	TEST_ASSERT(cultist, "Could not make a cultist")
+	used_team = locate_team(/datum/team/cult)
+	TEST_ASSERT(used_team && cultist.get_team() == used_team, "The cultist is not in the located cult team")
+	old_ritual = used_team.rituals[RITUAL_FACTION_1]
+	var/datum/bloodcult_ritual/produce_constructs/ritual = new
+	ritual.init_ritual()
+	used_team.rituals[RITUAL_FACTION_1] = ritual
+
+	var/list/construct_types = list(
+		/mob/living/simple_animal/hostile/construct/builder,
+		/mob/living/simple_animal/hostile/construct/wraith,
+		/mob/living/simple_animal/hostile/construct/armored,
+	)
+	var/list/constructs = list()
+	for(var/construct_type in construct_types)
+		TEST_ASSERT(used_team.rituals[RITUAL_FACTION_1] == ritual, "The ritual ended before all three constructs were built")
+		var/mob/living/simple_animal/hostile/construct/construct = allocate(construct_type, left)
+		construct.mind_initialize()
+		var/datum/antagonist/cult/construct_cultist = new
+		construct_cultist.ignore_implant = TRUE
+		construct.mind.add_antag_datum(construct_cultist, used_team)
+		construct.report_construct_built(cultist_mob)
+		constructs += construct
+	TEST_ASSERT(!used_team.rituals[RITUAL_FACTION_1], "Building an artificer, a wraith and a juggernaut did not complete the ritual")
+
+	for(var/mob/living/simple_animal/hostile/construct/construct as anything in constructs)
+		construct.mind.remove_antag_datum(/datum/antagonist/cult)
+	cultist_mob.mind.remove_antag_datum(/datum/antagonist/cult)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
