@@ -339,10 +339,15 @@
 	to_chat(user, span_notice("Nabierasz chochlą [trans] j. z [target]."))
 	playsound(src, 'aquila/sound/items/pour.ogg', 15, TRUE)
 
-/obj/item/reagent_containers/glass/soup_ladle/update_icon_state()
-	icon_state = reagents?.total_volume ? "ladle_filled" : "ladle"
-	return ..()
+// „ladle_filled” to sama porcja na chochli (nakładka w kolorze zawartości), nie osobny sprite chochli
+/obj/item/reagent_containers/glass/soup_ladle/update_overlays()
+	. = ..()
+	if(!reagents?.total_volume)
+		return
+	var/mutable_appearance/filled = mutable_appearance(icon, "ladle_filled")
+	filled.color = copytext(mix_color_from_reagents(reagents.reagent_list), 1, 8)
+	. += filled
 
 /obj/item/reagent_containers/glass/soup_ladle/on_reagent_change(changetype)
 	. = ..()
-	update_appearance(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_OVERLAYS)

@@ -31,6 +31,7 @@
 	chef.put_in_active_hand(ladle, forced = TRUE)
 	ladle.afterattack(pot, chef, TRUE)
 	TEST_ASSERT(ladle.reagents.total_volume == SOUP_SERVING_SIZE, "An empty ladle did not scoop a serving from the pot ([ladle.reagents.total_volume] u)")
+	TEST_ASSERT(ladle.icon_state == "ladle" && ladle.managed_overlays, "A full ladle lost its sprite (icon_state [ladle.icon_state]) or has no serving overlay")
 	ladle.afterattack(bowl, chef, TRUE)
 	TEST_ASSERT(!ladle.reagents.total_volume, "The ladle did not pour the serving into the bowl")
 	TEST_ASSERT(bowl.icon_state == "meatballsoup", "A bowl of meatball soup does not look like one (icon_state [bowl.icon_state])")
