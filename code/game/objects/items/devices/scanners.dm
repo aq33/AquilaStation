@@ -447,6 +447,7 @@ GENE SCANNER
 					message += "<span class='notice'>[round(R.volume, 0.001)] j. [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>PRZEDAWKOWANIE</span>" : ".</span>"]"
 			else
 				message += "<span class='notice'>Pacjent nie zawiera odczynników.</span>"
+			message += M.stomach_scan_lines() // AQ EDIT - organy z Bee: zawartość żołądka (stomach_contents.dm)
 			if(M.reagents.addiction_list.len)
 				message += "<span class='boldannounce'>Pacjent jest uzależniony od następujących odczynników:</span>"
 				for(var/datum/reagent/R in M.reagents.addiction_list)

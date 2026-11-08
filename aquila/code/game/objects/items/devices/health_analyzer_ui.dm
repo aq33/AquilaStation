@@ -99,6 +99,7 @@
 	for(var/datum/reagent/reagent as anything in target.reagents?.reagent_list)
 		reagents += list(list("name" = reagent.name, "colour" = reagent.color, "volume" = round(reagent.volume, 0.1)))
 	data["reagents"] = reagents
+	data["stomach"] = target.stomach_ui_data() // port BeeStation/BeeStation-Hornet#14340: połknięte czeka w żołądku (stomach_contents.dm)
 	data["surgeries"] = advanced ? target.get_surgery_progress() : null
 
 	// Whole body

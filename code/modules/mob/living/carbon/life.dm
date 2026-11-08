@@ -12,6 +12,7 @@
 
 		//Reagent processing needs to come before breathing, to prevent edge cases.
 		if(stat != DEAD)
+			handle_stomach_digestion() // AQ EDIT - organy z Bee: żołądek oddaje reagenty do krwi przed metabolizmem wątroby (stomach_contents.dm)
 			for(var/V in internal_organs)
 				var/obj/item/organ/O = V
 				O.on_life()

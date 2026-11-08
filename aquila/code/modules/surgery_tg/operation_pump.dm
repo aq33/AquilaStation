@@ -1,6 +1,7 @@
 // AQUILA - tg code/modules/surgery/operations/operation_pump.dm
 // Płukanie żołądka ręką (stara wersja: aquila/code/modules/surgery/stomach_pump.dm, port z Bee). Zostają nasze efekty:
-// wymioty (20 jedzenia, ogłuszenie) i usunięcie 67% substancji, porażka to 5 uszkodzeń żołądka i 5 obrażeń.
+// wymioty (20 jedzenia, ogłuszenie) i usunięcie 67% zawartości żołądka (port BeeStation/BeeStation-Hornet#14340: połknięte
+// czeka w żołądku, krwi płukanie nie rusza), porażka to 5 uszkodzeń żołądka i 5 obrażeń.
 
 /datum/surgery_operation/organ/stomach_pump
 	name = "płukanie żołądka"
@@ -45,7 +46,7 @@
 		span_notice("[surgeon] zmusza [patient] do wymiotów!"),
 	)
 	patient.vomit(20, stun = TRUE)
-	patient.reagents?.remove_all(patient.reagents.total_volume * 0.67) // mocniej niż zwykłe wymioty
+	organ.purge_contents(0.67) // mocniej niż zwykłe wymioty (stomach_contents.dm)
 
 /datum/surgery_operation/organ/stomach_pump/on_failure(obj/item/organ/stomach/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
