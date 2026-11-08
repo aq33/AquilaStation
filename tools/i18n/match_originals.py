@@ -317,12 +317,16 @@ def split(args):
     seen = judged_before(args.previous)
     merged = load("en_all.json")
     is_polish = lm.polish_detector(merged)
+    has_original = set(load("en_original.json"))
     os.makedirs(args.dir, exist_ok=True)
     auto, judge, dropped = {}, [], collections.Counter()
     for x in items:
         pl, cur, orig = x["pl"], x["current"], x["original"]
         if (pl, orig) in seen or (pl, rewrap(cur, orig)) in seen:
             dropped["oceniony wcześniej"] += 1
+            continue
+        if pl in has_original:
+            dropped["ma już oryginał"] += 1
             continue
         if is_polish(orig):
             dropped["kandydat po polsku"] += 1
@@ -383,6 +387,11 @@ def setting_conflict(pl, current, en):
     return bool(MOD_EN.search(en) and "MOD" not in pl)
 
 
+NAME_MAPS = ["aquila/code/modules/client/accessory_names_pl.dm",
+             "aquila/code/modules/client/loadout/loadout_names_pl.dm"]
+NAME_MAP_PAIR = re.compile(r'^\s*"((?:\\.|[^"\\])+)"\s*=\s*"((?:\\.|[^"\\])+)"', re.M)
+
+
 def apply(args):
     out_path = I18N + "en_original.json"
     # słownik bez naszych wcześniejszych wyników: napisy ze wstawek z poprzedniego apply nie mogą zniknąć
@@ -390,6 +399,7 @@ def apply(args):
     known = {pl: en for pl, en in load("en_all.json").items() if pl not in previous}
     # --keep-previous: nowa runda dokłada się do obecnego pliku (paczki starszych rund leżą poza repo)
     result, nested, stats = (dict(previous) if args.keep_previous else {}), {}, collections.Counter()
+    taken = {}  # pl -> kandydat, z którego wziął się obecny oryginał
     # rundy po kolei: późniejsza ocena tego samego tekstu wygrywa
     for folder in args.dirs:
         auto_path = os.path.join(folder, "auto.json")
@@ -397,7 +407,15 @@ def apply(args):
             for pl, en in json.load(open(auto_path, encoding="utf-8")).items():
                 result[pl] = en
                 stats["od razu"] += 1
-        apply_packs(folder, result, nested, stats)
+        apply_packs(folder, result, nested, stats, taken)
+    # mapy nazw do wyświetlania (fryzury, wyposażenie): klucz to prawdziwa angielska nazwa z danych gry
+    for path in NAME_MAPS:
+        if os.path.exists(path):
+            for en, pl in NAME_MAP_PAIR.findall(open(path, encoding="utf-8").read()):
+                if pl != en and known.get(pl) != en:
+                    result[pl] = en
+                    taken.pop(pl, None)
+                    stats["z mapy nazw"] += 1
     # napisy z wnętrza wstawek tylko, gdy słownik ich jeszcze nie zna (krótkie słowa mają już dobre pary)
     for pl, en in nested.items():
         if pl not in known:
@@ -416,7 +434,7 @@ def apply(args):
     print(f"{dict(stats)}; razem w {out_path}: {len(result) - 1}")
 
 
-def apply_packs(folder, result, nested, stats):
+def apply_packs(folder, result, nested, stats, taken):
     import merge_translations as mt
     for in_path in sorted(glob_packs(folder)):
         out = in_path.replace(".jsonl", ".out.json")
@@ -434,10 +452,19 @@ def apply_packs(folder, result, nested, stats):
                 if setting_conflict(item["pl"], item["current"], en):
                     stats["odrzucone: stacja/MODsuit"] += 1
                     continue
+                if ep.PL_DIACRITICS.search(ep.strip_embeds(en)):
+                    stats["odrzucone: kandydat po polsku"] += 1
+                    continue
             elif isinstance(v, dict) and isinstance(v.get("fix"), str):
                 en = v["fix"]
             else:
-                stats["bez zmian" if v == "current" else "brak decyzji"] += 1
+                # późniejsza runda (np. druga opinia) cofa oryginał przyjęty wcześniej z tego samego kandydata
+                if v == "current" and item["original"] and taken.get(item["pl"]) == item["original"]:
+                    result.pop(item["pl"], None)
+                    del taken[item["pl"]]
+                    stats["cofnięte"] += 1
+                else:
+                    stats["bez zmian" if v == "current" else "brak decyzji"] += 1
                 continue
             pl = item["pl"]
             if embed_shape(kind_of(pl), en) != embed_shape(kind_of(pl), pl):
@@ -446,6 +473,10 @@ def apply_packs(folder, result, nested, stats):
             # starsze oryginały mają linki "?src=..."; BYOND 516 i check_grep.sh wymagają byond://
             en = OLD_LINK.sub(r"\1\2byond://?", en)
             result[pl] = mt.fix_embeds(pl, en, nested)
+            if v == "original":
+                taken[pl] = item["original"]
+            else:
+                taken.pop(pl, None)
             stats["oryginał" if v == "original" else "poprawka"] += 1
 
 
@@ -635,6 +666,77 @@ def prheads(args):
     print(f"par z gałęzi PR: {len(sink)}, kandydatów dla celów: {len(best)}")
 
 
+def walk_json(ours, theirs, out):
+    """Pary (nasz napis, ich napis) z tej samej ścieżki kluczy; listy tylko przy tej samej długości."""
+    if isinstance(ours, str) and isinstance(theirs, str):
+        out.append((ours, theirs))
+    elif isinstance(ours, dict) and isinstance(theirs, dict):
+        for key, val in ours.items():
+            if key in theirs:
+                walk_json(val, theirs[key], out)
+    elif isinstance(ours, list) and isinstance(theirs, list) and len(ours) == len(theirs):
+        for a, b in zip(ours, theirs):
+            walk_json(a, b, out)
+
+
+def jsonfiles(args):
+    """Pliki strings/*.json: ten sam plik w każdej wersji historii innego serwera, pary po ścieżce kluczy."""
+    merged = load("en_all.json")
+    targets = open_targets(merged)
+    files = subprocess.run(["git", "ls-files", "-z", "strings/*.json"], capture_output=True, text=True,
+                           encoding="utf-8", check=True).stdout.split("\0")[:-1]
+    best = {}
+    for path in files:
+        if path.startswith(I18N):
+            continue
+        try:
+            ours = json.load(open(path, encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        # literał w słowniku to zapis z pliku (z ucieczkami JSON-a); wartość po wczytaniu -> ten zapis
+        raw_of = {}
+        for line in open(path, encoding="utf-8"):
+            for lit in ep.literals(path, line):
+                if lit in targets:
+                    try:
+                        raw_of[json.loads(f'"{lit}"')] = lit
+                    except ValueError:
+                        pass
+        if not raw_of:
+            continue
+        for spec in args.repo:
+            label, repo = spec.split("=", 1)
+            for sha in git_lines(repo, "rev-list", "HEAD", "--", path):
+                proc = subprocess.run(["git", "--no-lazy-fetch", "-C", repo, "show", f"{sha}:{path}"],
+                                      capture_output=True)
+                try:
+                    theirs = json.loads(proc.stdout.decode("utf-8"))
+                except ValueError:
+                    continue
+                pairs = []
+                walk_json(ours, theirs, pairs)
+                for pl_val, en_val in pairs:
+                    pl = raw_of.get(pl_val)
+                    if not pl or en_val == pl_val or ep.PL_DIACRITICS.search(en_val):
+                        continue
+                    en = json.dumps(en_val, ensure_ascii=False)[1:-1]
+                    if embed_shape(".dm", en) != embed_shape(".dm", pl):
+                        continue
+                    sim = similarity(merged[pl], en) if pl in merged else 0.0
+                    prev = best.get(pl)
+                    if prev and prev["score"] >= sim:
+                        continue
+                    best[pl] = {"pl": pl, "current": merged.get(pl, ""), "original": en, "score": sim,
+                                "kind": "var", "tree": label, "source": f"{sha[:10]}:{path}", "file": path,
+                                "why": targets[pl], "alts": 0}
+        print(f"  {path}: {sum(1 for x in best.values() if x['file'] == path)} kandydatów", file=sys.stderr)
+    with open(args.out, "w", encoding="utf-8") as f:
+        for item in sorted(best.values(), key=lambda x: -x["score"]):
+            if item["current"]:
+                f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    print(f"kandydatów z plików JSON: {len(best)}")
+
+
 STOP = set("the and you your for with that this are not but can its into from have has was will".split())
 
 
@@ -715,6 +817,9 @@ def main():
     p = sub.add_parser("prheads")
     p.add_argument("--repo", required=True, help="klon bare naszego repo z refs/pull/*")
     p.add_argument("--out", default=I18N + "en_pairs_original_pr.jsonl")
+    p = sub.add_parser("jsonfiles")
+    p.add_argument("--repo", action="append", default=[], help="etykieta=klon bare z historią")
+    p.add_argument("--out", default=I18N + "en_pairs_original_json.jsonl")
     p = sub.add_parser("global")
     p.add_argument("--literals", required=True, help="katalog z wynikiem literals")
     p.add_argument("--out", default=I18N + "en_pairs_original_global.jsonl")
@@ -730,7 +835,7 @@ def main():
     p.add_argument("--keep-previous", action="store_true",
                    help="zachowaj pary z obecnego en_original.json (gdy nie podajesz katalogów starszych rund)")
     args = ap.parse_args()
-    {"find": find, "literals": literals, "snapshots": snapshots, "prheads": prheads, "global": global_match,
+    {"find": find, "literals": literals, "snapshots": snapshots, "prheads": prheads, "jsonfiles": jsonfiles, "global": global_match,
      "split": split, "apply": apply}[args.cmd](args)
 
 
