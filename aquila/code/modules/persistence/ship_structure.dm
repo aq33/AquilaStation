@@ -694,7 +694,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		catch(var/exception/error)
 			GLOB.use_preloader = FALSE
 			load_errors++
-			log_runtime("Ship structure: couldn't create [json_encode(item[2])] at [AREACOORD(item[1])]: [error] ([error.file]:[error.line])")
+			var/turf/failed_turf = item[1]
+			log_runtime("Ship structure: couldn't create [json_encode(item[2])] at [AREACOORD(failed_turf)]: [error] ([error.file]:[error.line])")
 	SSatoms.map_loader_stop()
 	SSatoms.InitializeAtoms(created)
 
