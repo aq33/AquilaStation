@@ -177,6 +177,19 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/sabre)
+"Dv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
+"DP" = (
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
 "Gd" = (
 /obj/structure/chair/fancy/dropship{
 	dir = 1
@@ -247,6 +260,11 @@
 "Ku" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "79"
+	},
+/area/shuttle/sabre)
+"MN" = (
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "66"
 	},
 /area/shuttle/sabre)
 "Ot" = (
@@ -345,10 +363,10 @@
 tI
 tI
 bN
-bF
+MN
 yx
 yx
-bF
+MN
 sf
 Wl
 "}
@@ -356,10 +374,10 @@ Wl
 tI
 tI
 oR
-Hj
-Jv
-Jv
-Hj
+DP
+Dv
+Dv
+DP
 IZ
 Bl
 "}
@@ -422,10 +440,10 @@ nS
 tI
 tI
 bN
-bF
-bF
-bF
-bF
+MN
+MN
+MN
+MN
 sf
 fQ
 "}
@@ -433,10 +451,10 @@ fQ
 tI
 tI
 oR
-Hj
-Hj
-Hj
-Hj
+DP
+DP
+DP
+DP
 IZ
 uA
 "}

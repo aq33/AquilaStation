@@ -46,6 +46,7 @@
 		/obj/machinery/gulag_teleporter,
 		/obj/machinery/computer/prisoner/gulag_teleporter_computer,
 		/obj/machinery/gulag_item_reclaimer,
+		/obj/item/storage/toolbox/shuttle_kit,
 	)
 	/// Mechanics a map does without on purpose (json name = types it may skip)
 	var/list/map_exceptions = list(

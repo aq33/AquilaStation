@@ -169,6 +169,22 @@
 	dir = newdir
 	transform = dropship_turf_transform(dir)
 
+// Skrzydła (boczne gondole) to podłoga: można po nich podejść do wrót kokpitu i kliknięciem wejść do środka
+
+/turf/open/indestructible/dropship/sabre_wing
+	name = "skrzydło Sabre"
+	desc = "Gondola Sabre. Można po niej przejść do wrót kokpitu."
+	icon = 'nsv13/icons/turf/dropship.dmi'
+	initial_gas_mix = AIRLESS_ATMOS
+
+/// Ktoś stoi na skrzydle: w locie zostałby w kosmosie przy parkingu, więc start czeka, aż zejdzie
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/shuttle_can_launch(mob/user)
+	for(var/turf/open/indestructible/dropship/sabre_wing/wing in shuttle_port?.return_turfs())
+		if(locate(/mob/living) in wing)
+			to_chat(user, span_warning("Na skrzydle [src] ktoś stoi. Start po zejściu."))
+			return FALSE
+	return ..()
+
 // Wrota w burcie kokpitu: wyjście na zewnątrz w doku, zablokowane w locie
 
 /turf/closed/indestructible/dropship/entry/sabre
@@ -183,6 +199,28 @@
 			to_chat(AM, span_warning("Wyjście z [A.sabre] jest zablokowane."))
 	else
 		to_chat(AM, span_warning("Wrota są zablokowane w trakcie lotu."))
+
+/// Kliknięcie we wrota: ze skrzydła wejście do środka, od środka wyjście na zewnątrz (jak wejście we wrota)
+/turf/closed/indestructible/dropship/entry/sabre/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	var/area/shuttle/sabre/A = loc
+	if(!istype(A) || !A.sabre || !isliving(user))
+		return
+	if(istype(get_turf(user), /turf/open/indestructible/dropship/sabre_wing))
+		return A.sabre.sabre_board(user)
+	if(get_area(user) != A)
+		return
+	if(!A.sabre.shuttle_docked_at)
+		to_chat(user, span_warning("Wrota są zablokowane w trakcie lotu."))
+	else if(!A.sabre.shuttle_leave(user))
+		to_chat(user, span_warning("Wyjście z [A.sabre] jest zablokowane."))
+	return TRUE
+
+/turf/closed/indestructible/dropship/entry/sabre/attack_robot(mob/user)
+	if(user.Adjacent(src))
+		return attack_hand(user)
 
 // Właz w lewej gondoli: wejście i obsługa jednostki od strony hangaru
 

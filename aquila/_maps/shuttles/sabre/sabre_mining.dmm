@@ -59,6 +59,11 @@
 "hB" = (
 /turf/template_noop,
 /area/template_noop)
+"iK" = (
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
 "lI" = (
 /turf/closed/indestructible/dropship/entry/sabre{
 	icon_state = "60"
@@ -238,6 +243,14 @@
 	icon_state = "blue_wing_rt"
 	},
 /area/shuttle/sabre)
+"Kb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "70"
+	},
+/area/shuttle/sabre)
 "Ks" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "blue_front"
@@ -267,6 +280,11 @@
 "OF" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "blue_wing_lb"
+	},
+/area/shuttle/sabre)
+"Py" = (
+/turf/open/indestructible/dropship/sabre_wing{
+	icon_state = "66"
 	},
 /area/shuttle/sabre)
 "Qc" = (
@@ -347,10 +365,10 @@
 hB
 hB
 xm
-eC
+Py
 ne
 ne
-eC
+Py
 OF
 EH
 "}
@@ -358,10 +376,10 @@ EH
 hB
 hB
 Hl
-WS
-Qc
-Qc
-WS
+iK
+Kb
+Kb
+iK
 VC
 aW
 "}
@@ -424,10 +442,10 @@ ZU
 hB
 hB
 xm
-eC
-eC
-eC
-eC
+Py
+Py
+Py
+Py
 OF
 qt
 "}
@@ -435,10 +453,10 @@ qt
 hB
 hB
 Hl
-WS
-WS
-WS
-WS
+iK
+iK
+iK
+iK
 VC
 wn
 "}
