@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_NNN
+/datum/test_chamber_kit/pr_592
 	name = "Sabre jako wnętrze i promy z Wyznacznika na overmapie"
-	pr = "aq33/AquilaStation#NNN"
+	pr = "aq33/AquilaStation#592"
 	description = "Zestaw: Wyznacznik Stref Promu, RCD, sterownik lotu promu, silnik próżniowy, silnik plazmowy z podgrzewaczem, kanister plazmy, zbiornik kriopaliwa i zapasowa karta kapitana. \
 	1) Sabre na mapie: w hangarze (na Atlasie zatoka górnicza na południu i zatoka obok Trafalgara) stoi wnętrze Sabre, bez spritu. Pustą ręką na lewej gondoli (właz) → wchodzisz do środka; bez dostępu pilota/górnika → „Odmowa dostępu” (negatyw). Wrota w kokpicie → wychodzisz na pole przed włazem. \
 	2) Obsługa: wąż ze zbiornika kriopaliwa przy włazie, kliknięty na właz → tankowanie Sabre (badanie włazu pokazuje paliwo); karta na włazie → okno trybu serwisowego/wyrzucenia; przeciągnięcie skrzyni na właz → ładownia. \
