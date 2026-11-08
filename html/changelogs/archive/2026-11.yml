@@ -510,3 +510,11 @@
   - bugfix: Głośniki nagłośnienia nie nachodzą na przyciski wind.
   - bugfix: Skaner T-ray i gogle inżynierskie znów pokazują kable i rury pod podłogą.
   - bugfix: Czepki i bandana NFZ mieszczą się w kieszeni.
+  - rscadd: Su-437 Sabre stoi w hangarze jako wnętrze, do którego wchodzi się przez
+      właz w lewej gondoli; start ze steru, a przy dokowaniu wnętrze siada przy kadłubie
+      celu, tak że wysiada się prosto na pokład.
+  - rscadd: Promy zbudowane Wyznacznikiem Stref Promu latają po overmapie, z własnym
+      sprite'em; paliwo to plazma w podgrzewaczach silników.
+  - rscadd: Na każdej mapie jeden zwykły i jeden górniczy Sabre (Serendipity tylko
+      górniczy); hangary i zatoki powiększone tam, gdzie się nie mieściły.
+  - imageadd: Sprite promu z Wyznacznika na overmapie.
