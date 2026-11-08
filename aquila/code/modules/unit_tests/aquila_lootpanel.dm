@@ -19,6 +19,9 @@
 	var/mob/living/carbon/human/labrat = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	mock_client.mob = labrat
 	var/turf/one_over = locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
+	// W pełnym przebiegu wcześniejsze testy zostawiały na tym polu obiekty i okno widziało ich więcej
+	for(var/atom/movable/leftover in one_over)
+		qdel(leftover)
 	var/obj/item/storage/toolbox/box = allocate(/obj/item/storage/toolbox, one_over)
 
 	panel.open(one_over)
