@@ -1854,6 +1854,7 @@
 #include "code\modules\unit_tests\aquila_paradox_clone.dm"
 #include "code\modules\unit_tests\aquila_preferences_menu.dm"
 #include "code\modules\unit_tests\aquila_game_language.dm"
+#include "code\modules\unit_tests\aquila_audyt_tlumaczenia.dm"
 #include "code\modules\unit_tests\aquila_examine_no_runtime.dm"
 #include "code\modules\unit_tests\aquila_prosthetics_organs.dm"
 #include "code\modules\unit_tests\aquila_ship_structure.dm"
