@@ -260,8 +260,11 @@
 			screen.flash()
 			ui_update()
 		if("remove_feature") //For disk
-			var/datum/plant_feature/feature = locate(params["key"])
-			disk?.set_saved(null)
+			// AQUILA - usuwamy tylko to, co jest na dysku, nie dowolny datum z refa od klienta
+			var/datum/plant_feature/feature = disk?.saved
+			if(!istype(feature))
+				return
+			disk.set_saved(null)
 			//Fix focus
 			if(feature == current_feature)
 				current_feature_ref = null
@@ -271,8 +274,10 @@
 			screen.flash()
 			ui_update()
 		if("remove_trait") //For disk
-			var/datum/plant_trait/trait = locate(params["key"])
-			disk?.set_saved(null)
+			var/datum/plant_trait/trait = disk?.saved // AQUILA - jak wyżej
+			if(!istype(trait))
+				return
+			disk.set_saved(null)
 			qdel(trait)
 			last_command = "pit trait remove -f -m [encrypt_ref(params["key"])]"
 			screen.flash()

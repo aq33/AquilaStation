@@ -336,6 +336,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Mining asteroids and ruins, `_maps/virtual_domains` and `aquila/_maps` added to `DmMapsIncludeTarget` (Aquila maps via `../`) | `tools/build/build.js` | CI (`compile_all_maps`) compiles these templates too; errors in them used to pass |
 | `MAPS=(_maps/**/*.dmm aquila/_maps/**/*.dmm)` instead of `_maps/**/*.dmm` in the map linters | `tools/ci/check_grep.sh` | The map linters cover Aquila maps |
 | Fixed `mappath` of `sk_rdm139`, `sk_rdm165`, `sk_rdm169` (pointed at missing files) | `code/modules/mapping/random_rooms.dm` | These rooms never spawned. Test: `aquila_random_rooms` |
+| `quality = min(quality, FOOD_QUALITY_TOP)` | `code/datums/components/food/edible.dm` (`examine()`) | Szkielet oglądający szalonego hamburgera kucharza miał jakość 8 przy liście 7 opisów: runtime i brak opisu. `check_liked()` przycinał już tak samo. Test: `aquila_audyt_food_quality_examine` |
+| `icon = 'icons/obj/food/meat.dmi'` | `code/modules/guardian/guardianbuilder.dm` (`/obj/item/guardiancreator/carp`) | Port Newfood przeniósł stan `fishfingers` do `meat.dmi`, więc holokarpie paluszki z uplinka były niewidoczne. Test: `aquila_audyt_holocarp_icon` |
+| `if(QDELETED(src)) return` po `..()` | `code/modules/reagents/reagent_containers/pill.dm` (`afterattack()`) | Taca hydroponiczna kompostuje pigułkę w sygnale `COMSIG_ATOM_AFTER_ATTACKEDBY`, a dalszy kod pigułki wołał `trans_to` na usuniętych reagentach. Test: `aquila_audyt_tray_compost` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
