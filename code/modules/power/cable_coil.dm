@@ -188,7 +188,7 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers[RIGHT_CLICK] && !isturf(target) && user.Adjacent(target))
 		place_on_turf(get_turf(target), user)
-		return TRUE
+		return FALSE // AQ EDIT - u nas FALSE z pre_attack() przerywa łańcuch (w Bee TRUE), inaczej cel dostawał jeszcze attackby(zwój)
 	return ..()
 
 /**
