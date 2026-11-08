@@ -45,7 +45,7 @@ Gdy `original` jest null (para z historii wygląda podejrzanie):
   wstawkami, np. polski ma `[on ? "włączony" : "wyłączony"]`, a angielski `[on ? "on" : "off"]`;
   angielski może mieć zaimki `[p_they()]`, których polski nie ma; może być nieco krótszy lub dłuższy.
 - `"fix"`: angielski jest zły. Obcięty fragment, inne zdanie, inna treść albo nadal po polsku.
-  Wtedy podaj w `en` własne tłumaczenie polskiego tekstu w stylu angielskiego SS13
+  Wtedy podaj w polu `fix` (format niżej) własne tłumaczenie polskiego tekstu w stylu angielskiego SS13
   (krótko, druga osoba „You…”, nazwy przedmiotów małą literą jak w tg). Zachowaj **dokładnie**
   wszystkie wstawki `[...]` i `${...}` z polskiego tekstu (bez zmian w środku, także polskich
   napisów w `[x ? "a" : "b"]`), tagi HTML, `\n`, cudzysłowy i makra.

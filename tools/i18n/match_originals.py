@@ -388,7 +388,8 @@ def apply(args):
     # słownik bez naszych wcześniejszych wyników: napisy ze wstawek z poprzedniego apply nie mogą zniknąć
     previous = load("en_original.json")
     known = {pl: en for pl, en in load("en_all.json").items() if pl not in previous}
-    result, nested, stats = {}, {}, collections.Counter()
+    # --keep-previous: nowa runda dokłada się do obecnego pliku (paczki starszych rund leżą poza repo)
+    result, nested, stats = (dict(previous) if args.keep_previous else {}), {}, collections.Counter()
     # rundy po kolei: późniejsza ocena tego samego tekstu wygrywa
     for folder in args.dirs:
         auto_path = os.path.join(folder, "auto.json")
@@ -402,6 +403,10 @@ def apply(args):
         if pl not in known:
             result.setdefault(pl, en)
     result = {pl: en for pl, en in result.items() if pl != en and en.strip()}
+    lost = [pl for pl in previous if pl not in result]
+    if lost:
+        print(f"UWAGA: {len(lost)} par z obecnego en_original.json nie ma w podanych rundach i zniknie "
+              f"(np. {lost[0][:60]!r}). Podaj wszystkie katalogi rund albo --keep-previous.", file=sys.stderr)
     result["_komentarz"] = ("Oryginały portów zamiast tłumaczeń zwrotnych i poprawki złych par z historii. "
                             "Generuje tools/i18n/match_originals.py apply; build_chat_dict.py nakłada go "
                             "na en_translated.json. Ręczne poprawki: en_manual.json.")
@@ -722,6 +727,8 @@ def main():
     p.add_argument("--packs", type=int, default=PACKS)
     p = sub.add_parser("apply")
     p.add_argument("dirs", nargs="+", help="katalogi rund oceny, od najstarszej")
+    p.add_argument("--keep-previous", action="store_true",
+                   help="zachowaj pary z obecnego en_original.json (gdy nie podajesz katalogów starszych rund)")
     args = ap.parse_args()
     {"find": find, "literals": literals, "snapshots": snapshots, "prheads": prheads, "global": global_match,
      "split": split, "apply": apply}[args.cmd](args)
