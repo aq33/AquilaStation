@@ -62,5 +62,43 @@
 
 	fighter.mind.remove_antag_datum(/datum/antagonist/darkspawn)
 
+/// AQUILA - audyt: moce z BP_CANT_USE_IN_TORPOR są zablokowane w torporze, żerowanie siłą działa też przy chwycie za szyję
+/datum/unit_test/aquila_audyt_antagi_vampire
+
+/datum/unit_test/aquila_audyt_antagi_vampire/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/vampire_mob = allocate(/mob/living/carbon/human, left)
+	vampire_mob.mind_initialize()
+	var/datum/antagonist/vampire/vampire = new
+	vampire.silent = TRUE
+	vampire_mob.mind.add_antag_datum(vampire)
+
+	var/datum/action/vampire/fortitude/fortitude = new
+	fortitude.Grant(vampire_mob)
+	TEST_ASSERT(fortitude.can_use(), "Fortitude cannot be used outside torpor")
+	vampire.torpor_begin()
+	TEST_ASSERT(vampire.is_in_torpor(), "torpor_begin() did not start torpor")
+	TEST_ASSERT(!fortitude.can_use(), "Fortitude can be used in torpor")
+	vampire.torpor_end()
+	TEST_ASSERT(fortitude.can_use(), "Fortitude stayed blocked after torpor")
+	fortitude.Remove(vampire_mob)
+	qdel(fortitude)
+
+	// Żerowanie siłą przy chwycie za szyję
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	var/datum/action/vampire/targeted/feed/feed = locate() in vampire.powers
+	TEST_ASSERT(feed, "The vampire has no Feed")
+	vampire_mob.set_combat_mode(TRUE)
+	vampire_mob.start_pulling(victim)
+	vampire_mob.setGrabState(GRAB_NECK)
+	TEST_ASSERT(vampire_mob.pulling == victim && vampire_mob.grab_state == GRAB_NECK, "Could not set up a neck grab")
+	feed.FireTargetedPower(victim)
+	TEST_ASSERT(feed.currently_feeding, "Combat feed did not start with a neck grab")
+	TEST_ASSERT(HAS_TRAIT_FROM(vampire_mob, TRAIT_IMMOBILIZED, TRAIT_FEED), "Combat feed with a neck grab did not hold the vampire in place")
+	feed.deactivate_power()
+	vampire_mob.stop_pulling() // przy sprzątaniu testu wampir znika przed ofiarą, a puszczanie chwytu bez rąk daje runtime
+
+	vampire_mob.mind.remove_antag_datum(/datum/antagonist/vampire)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
