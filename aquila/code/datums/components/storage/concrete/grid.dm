@@ -701,7 +701,7 @@
 		LAZYREMOVE(grid_positions, I)
 	// Bazowa wersja na koniec ustawia przedmiotowi MOUSE_OPACITY_OPAQUE już po przerysowaniu siatki (orient2hud()),
 	// a ikona 32 px łapałaby wtedy kliknięcia sąsiednich kratek. Mysz łapie kafel przedmiotu, jak po każdym przerysowaniu
-	if(. && I.loc == real_location())
+	if(. && grid_width && I.loc == real_location()) // bez siatki klasyczny widok nie przywraca przezroczystości
 		I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /datum/component/storage/concrete/grid/attackby(datum/source, obj/item/I, mob/M, params)
