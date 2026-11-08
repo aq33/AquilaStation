@@ -206,6 +206,7 @@
 #include "code\__DEFINES\rotation.dm"
 // AQ EDIT - makra span_* z aquili potrzebne juz w core (kod z Bee, port #11899)
 #include "aquila\code\__DEFINES\span.dm"
+#include "aquila\code\__DEFINES\hallucination.dm" // AQ EDIT - halucynacje jako efekt statusu, makro potrzebne w core
 #include "aquila\code\__DEFINES\botany.dm"
 #include "aquila\code\__DEFINES\dcs\signals\signals_botany.dm"
 // AQ EDIT - kolejka verbów z tg, makra potrzebne w core (Click, say, SSinput)
@@ -2262,7 +2263,6 @@
 #include "code\modules\exploration_crew\discovery_research\discoverable_component.dm"
 #include "code\modules\exploration_crew\discovery_research\discovery_scanner.dm"
 #include "code\modules\flufftext\Dreaming.dm"
-#include "code\modules\flufftext\Hallucination.dm"
 #include "code\modules\food_and_drinks\food.dm"
 #include "code\modules\food_and_drinks\pizzabox.dm"
 #include "code\modules\food_and_drinks\plate.dm"

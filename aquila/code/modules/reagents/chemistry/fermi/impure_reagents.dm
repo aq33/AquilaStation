@@ -245,7 +245,7 @@
 				to_chat(M, "<span class='warning'>Głowa ci pęka, prawie nic nie widzisz!</span>")
 				M.blur_eyes(8)
 				M.confused = clamp(M.confused + 5, 0, 20)
-				M.hallucination += 10
+				M.adjust_hallucinations(20 SECONDS)
 			if(prob(10))
 				to_chat(M, "<span class='warning'>Coraz trudniej ci oddychać!</span>")
 				holder.add_reagent(/datum/reagent/toxin/histamine, 3.2)
@@ -256,7 +256,7 @@
 		to_chat(M, "<span class='warning'>Masz wrażenie, że głowa ci zaraz implodouje!</span>")
 		M.blur_eyes(8)
 		M.confused = clamp(M.confused + 10, 0, 20)
-		M.hallucination += 30
+		M.adjust_hallucinations(60 SECONDS)
 	if(prob(20))
 		to_chat(M, "<span class='warning'>Oddychasz słabo i chrapliwie, ledwo jesteś przytomny!</span>")
 		holder.add_reagent(/datum/reagent/toxin/histamine, 4.8)

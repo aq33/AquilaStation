@@ -392,7 +392,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/carbon/M)
 	if(prob(10) && !HAS_TRAIT(M, TRAIT_ALCOHOL_TOLERANCE))
-		M.hallucination += 4 //Reference to the urban myth
+		M.adjust_hallucinations(8 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	..()
 
 /datum/reagent/consumable/ethanol/hooch
@@ -688,9 +688,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(M.mind && HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
 		M.adjustStaminaLoss(-10, 0)
 		if(prob(20))
-			new /datum/hallucination/items_other(M)
+			M.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/nearby_fake_item), "beepsky smash") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		if(prob(10))
-			new /datum/hallucination/stray_bullet(M)
+			M.cause_hallucination(/datum/hallucination/stray_bullet, "beepsky smash") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	..()
 	. = 1
 

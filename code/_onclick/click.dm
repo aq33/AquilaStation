@@ -455,8 +455,7 @@
 		return
 	var/turf/T = get_turf(src)
 	if(T && (isturf(loc) || isturf(src)) && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.set_stat_tab(T.name)
+		user.open_loot_panel(src, T) // AQ EDIT - RPG Loot (tg#82533): okno kafelka zamiast zakładki w panelu statystyk
 
 ///The base proc of when something is right clicked on when alt is held - generally use alt_click_secondary instead
 /atom/proc/alt_click_on_secondary(atom/A)
@@ -479,8 +478,7 @@
 /atom/proc/AltClickNoInteract(mob/user, atom/A)
 	var/turf/T = get_turf(A)
 	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.set_stat_tab(T.name)
+		user.open_loot_panel(A, T, TRUE) // AQ EDIT - RPG Loot (tg#82533): okno kafelka zamiast zakładki w panelu statystyk
 
 /mob/proc/TurfAdjacent(turf/T)
 	return T.Adjacent(src)

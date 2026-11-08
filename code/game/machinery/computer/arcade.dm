@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
 							to_chat(usr, "<span class='userdanger'>Słyszysz okrzyki bojowe. Tupot butów na zimnym metalu. Krzyki agonii. Świst uchodzącego powietrza. Czy ty wariujesz?</span>")
-							M.hallucination += 30
+							M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 						else
 							to_chat(usr, "<span class='userdanger'>Coś uderza cię od tyłu! Boli jak diabli i przypomina tępą broń, ale nic tam nie ma...</span>")
 							M.take_bodypart_damage(30)

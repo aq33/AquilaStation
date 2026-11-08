@@ -46,7 +46,7 @@
 	M.cure_nearsighted()
 	M.cure_blind()
 	M.cure_husk()
-	M.hallucination = 0
+	M.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	new /obj/effect/temp_visual/heal(get_turf(M), "#f8d984")
 	playsound(M, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	playsound(invoker, 'sound/magic/magic_missile.ogg', 50, TRUE)

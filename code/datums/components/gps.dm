@@ -75,6 +75,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 	toggletracking(user)
 	ui_update()
+	return COMPONENT_INTERCEPT_ALT // AQ EDIT - Alt+klik na leżący GPS nie otwiera też okna kafelka (RPG Loot)
 
 ///Toggles the tracking for the gps
 /datum/component/gps/item/proc/toggletracking(mob/user)
