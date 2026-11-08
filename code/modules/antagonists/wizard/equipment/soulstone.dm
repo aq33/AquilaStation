@@ -236,9 +236,9 @@
 					switch(construct_class)
 						if("Juggernaut")
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored/perfect, A, user, 0, T.loc)
-						if("Wraith")
+						if("Widmo")
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith/perfect, A, user, 0, T.loc)
-						if("Artificer")
+						if("Rzemieślnik")
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/perfect, A, user, 0, T.loc)
 					construct_class = null
 				// AQ EDIT END
