@@ -304,10 +304,13 @@
 	if(QDELETED(domain))
 		return
 	var/turf/entry_turf = get_turf(entry)
-	if(!istype(entry, /obj/effect/mob_spawn) && !(locate(/obj/structure/hololadder) in entry_turf))
-		new /obj/structure/hololadder(entry_turf, server)
+	var/turf/arrival_turf = entry_turf
+	if(!istype(entry, /obj/effect/mob_spawn))
+		if(!(locate(/obj/structure/hololadder) in entry_turf))
+			new /obj/structure/hololadder(entry_turf, server)
+		arrival_turf = get_arrival_turf(entry_turf)
 	playsound(user, 'sound/magic/blink.ogg', 40, TRUE)
-	user.forceMove(entry_turf)
+	user.forceMove(arrival_turf)
 	if(domain.forced_outfit && ishuman(user))
 		apply_exile_outfit(user, domain.forced_outfit)
 	for(var/datum/action/avatar_domain_info/old_action in user.actions)
@@ -315,6 +318,17 @@
 	if(domain.help_text)
 		var/datum/action/avatar_domain_info/action = new(new /datum/avatar_help_text(domain.help_text))
 		action.Grant(user)
+
+/// Wolne pole obok drabiny wyjścia. Wejście prosto na drabinę odpalało jej rozłączanie i po 3 s odsyłało wygnańca do Pętli.
+/obj/structure/exile_gate/proc/get_arrival_turf(turf/ladder_turf)
+	var/list/candidates = list()
+	for(var/turf/open/candidate as anything in get_adjacent_open_turfs(ladder_turf))
+		if(isgroundlessturf(candidate) || is_blocked_turf(candidate, TRUE) || (locate(/obj/structure/hololadder) in candidate))
+			continue
+		candidates += candidate
+	if(length(candidates))
+		return pick(candidates)
+	return ladder_turf
 
 /// Przebiera wygnańca w strój wymagany przez domenę albo z powrotem w strój więźnia
 /proc/apply_exile_outfit(mob/living/carbon/human/exile, datum/outfit/outfit_path)

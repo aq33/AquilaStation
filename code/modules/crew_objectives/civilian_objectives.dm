@@ -301,7 +301,8 @@
 		var/mob/living/carbon/human/H = owner.current
 		var/obj/item/card/id/theID = H.get_idcard()
 		if(istype(theID))
-			if(!(H.get_assignment() == JOB_NAME_ASSISTANT) && !(H.get_assignment() == "No id") && !(H.get_assignment() == "No job"))
+			var/assignment = H.get_assignment("No id", "No job") // AQ EDIT - domyślne teksty get_assignment() są po polsku, porównanie ich nie widziało
+			if(assignment != JOB_NAME_ASSISTANT && assignment != "No id" && assignment != "No job")
 				return TRUE
 			if(theID.hud_state != JOB_HUD_ASSISTANT) // non-assistant HUD counts too
 				return TRUE

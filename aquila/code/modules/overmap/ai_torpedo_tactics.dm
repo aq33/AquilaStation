@@ -42,6 +42,13 @@
 			continue
 		. += ship
 
+/// A ship of this fleet is deleted: drop it from the cached ship lists of every salvo, or a salvo on a target nobody fires at any more keeps it (hard delete)
+/datum/fleet/proc/forget_ai_salvo_ship(obj/structure/overmap/ship)
+	for(var/salvo_target in ai_salvos)
+		var/list/salvo = ai_salvos[salvo_target]
+		var/list/ships = salvo[AI_SALVO_SHIPS]
+		ships?.Remove(ship)
+
 /// Whether ship may fire a torpedo at target now. One salvo state per fleet and target.
 /datum/fleet/proc/ai_salvo_allows(obj/structure/overmap/ship, obj/structure/overmap/target)
 	var/list/salvo = LAZYACCESS(ai_salvos, target)

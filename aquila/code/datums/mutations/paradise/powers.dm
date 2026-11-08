@@ -133,7 +133,7 @@
 
 	if(M.dna?.check_mutation(/datum/mutation/empath))
 		to_chat(M, "<span class='warning'>Wyczuwasz, że [owner] czyta twoje myśli.</span>")
-	else if(prob(5) || M.mind?.assigned_role == "Chaplain")
+	else if(prob(5) || M.mind?.assigned_role == JOB_NAME_CHAPLAIN)
 		to_chat(M, "<span class='warning'>Wyczuwasz, że ktoś wdziera się do twoich myśli...</span>")
 
 /// Konto osobiste: najpierw to, z którym przyszedł na rundę, potem to z karty ID

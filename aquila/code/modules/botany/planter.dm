@@ -94,17 +94,13 @@
 	if(istype(reagent_source, /obj/item/reagent_containers) && reagent_source.reagents.total_volume <= 0)
 		to_chat(attacker, span_warning("[reagent_source] jest puste!"))
 		return
-	//Composting - Composted reagents are doubled
+	//Composting - AQUILA: bez podwajania (u Bee mnożnik 2), bo rury wyciągają odczynniki z tacy i obieg pigułek powielał chemię
 	if(IS_EDIBLE(reagent_source) || istype(reagent_source, /obj/item/reagent_containers/pill))
 		obj_parent.visible_message(span_notice("[attacker] kompostuje [reagent_source], rozprowadzając to po: [obj_parent]."))
-		reagent_source.reagents?.trans_to(obj_parent, reagent_source.reagents.total_volume, 2, transfered_by = attacker)
+		reagent_source.reagents?.trans_to(obj_parent, reagent_source.reagents.total_volume, transfered_by = attacker)
 		SEND_SIGNAL(reagent_source, COMSIG_ITEM_ON_COMPOSTED, attacker)
 		qdel(reagent_source)
-	//Syringe
-	else if(istype(reagent_source, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/syr = reagent_source
-		obj_parent.visible_message(span_notice("[attacker] wstrzykuje zawartość [syr] do: [obj_parent]."))
-		reagent_source.reagents?.trans_to(obj_parent, syr.amount_per_transfer_from_this, transfered_by = attacker)
+	//Syringe - AQUILA: wstrzykuje sam afterattack strzykawki (taca jest REFILLABLE), tu była druga dawka
 	//Sprays
 	else if(istype(reagent_source, /obj/item/reagent_containers/spray))
 		var/obj/item/reagent_containers/spray/spray = reagent_source

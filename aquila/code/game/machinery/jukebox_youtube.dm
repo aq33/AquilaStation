@@ -424,8 +424,7 @@
 	yt_track_end = world.time + duration * 10 / yt_speed + 1 SECONDS
 	if(!yt_active)
 		yt_active = TRUE
-		playsound(src, 'sound/machines/terminal_on.ogg', 50, TRUE)
-		START_PROCESSING(SSobj, src)
+		playsound(src, 'sound/machines/terminal_on.ogg', 50, TRUE) // process() (yt_process) idzie z SSmachines od Initialize, bez drugiej kolejki
 	SSjukeboxes.yt_jukeboxes |= src
 	update_icon()
 	SSjukeboxes.update_ceiling_speakers()
@@ -469,7 +468,6 @@
 	SSjukeboxes.release_jukebox(src)
 	SSjukeboxes.update_ceiling_speakers()
 	if(was_active)
-		STOP_PROCESSING(SSobj, src)
 		playsound(src, 'sound/machines/terminal_off.ogg', 50, TRUE)
 	update_icon()
 	updateUsrDialog()

@@ -192,6 +192,9 @@
 		if("open_syndie_roles")
 			parent.select_syndie_role()
 			return FALSE
+		if("voice_pitch_test")
+			play_voice_pitch_test(usr)
+			return FALSE
 	for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
 		if(!isnull(delegation))

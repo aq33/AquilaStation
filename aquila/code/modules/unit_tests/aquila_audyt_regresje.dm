@@ -286,6 +286,10 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
 	victim.mind_initialize()
 	var/datum/mind/victim_mind = victim.mind
+	// cień w ostrzu dostaje tylko kultysta (osoba spoza kultu: test aquila_audyt_antagi_bloodcult)
+	var/datum/antagonist/cult/new_cultist = new
+	new_cultist.ignore_implant = TRUE
+	TEST_ASSERT(victim_mind.add_antag_datum(new_cultist), "nie udało się zrobić kultysty")
 	var/obj/item/melee/soulblade/blade = allocate(/obj/item/melee/soulblade)
 	victim.put_in_active_hand(blade)
 	var/result = blade.suicide_act(victim)
@@ -295,6 +299,7 @@
 	TEST_ASSERT(blade.shade.mind == victim_mind, "cień nie dostał umysłu samobójcy")
 	allocated += blade.shade
 	TEST_ASSERT(victim.stat == DEAD, "ciało samobójcy żyje")
+	victim_mind.remove_antag_datum(/datum/antagonist/cult)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

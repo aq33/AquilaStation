@@ -384,9 +384,9 @@
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
-	ADD_TRAIT(owner, TRAIT_NIGHT_VISION, type)
+	ADD_TRAIT(owner, TRAIT_TRUE_NIGHT_VISION, type) // update_sight czyta tylko TRUE_NIGHT_VISION
 	owner.update_sight()
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
-	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, type)
+	REMOVE_TRAIT(owner, TRAIT_TRUE_NIGHT_VISION, type)
 	owner.update_sight()
