@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 		var/image/effect_image = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
 		effect_image.plane = GAME_PLANE
 		effect_image.transform *= 0.4
-		effect_image.appearance_flags = APPEARANCE_UI
+		effect_image.appearance_flags = APPEARANCE_UI | KEEP_APART
 		flick_overlay(effect_image, GLOB.clients, 1 SECONDS)
 		animate(effect_image, alpha = 175, transform = matrix() * 0.75, time = 0.3 SECONDS)
 		animate(time = 0.1 SECONDS)
@@ -68,7 +68,9 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 	attack.plane = GAME_PLANE
 	attack.pixel_w = used_item.base_pixel_x
 	attack.transform *= 0.5
-	attack.appearance_flags = APPEARANCE_UI
+	// KEEP_APART: człowiek ma KEEP_TOGETHER, a wtedy dołączony obrazek dziedziczy jego obrót mimo RESET_TRANSFORM.
+	// Przy leżącym celu przedmiot lądował obrócony i z innej strony (tak samo vis_contents z tg).
+	attack.appearance_flags = APPEARANCE_UI | KEEP_APART
 	flick_overlay(attack, GLOB.clients, 1 SECONDS)
 
 	var/matrix/copy_transform = matrix()
