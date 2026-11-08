@@ -90,7 +90,7 @@
 	if(action_comp.granted_to[REF(user)]) // Sanity check - don't pin an action for a mob that has already pinned it
 		return
 	var/datum/action/item_action/mod/circuit_pin/new_action = new(mod, user, src, action_comp)
-	if(user == mod.wearer || user == mod.ai_assistant)
+	if(user == mod.wearer)
 		new_action.Grant(user)
 
 /obj/item/mod/module/circuit/proc/unpin_action(obj/item/circuit_component/equipment_action/action_comp, mob/user)
@@ -116,9 +116,6 @@
 	var/mob/pinner
 
 /datum/action/item_action/mod/circuit_pin/New(Target, mob/user, obj/item/mod/module/circuit/linked_module, obj/item/circuit_component/equipment_action/action_comp)
-	var/obj/item/mod/control/mod = Target
-	if(istype(mod) && user == mod.ai_assistant)
-		ai_action = TRUE
 	. = ..()
 	module = linked_module
 	pinner = user
@@ -142,7 +139,7 @@
 		return
 	return ..()
 
-/datum/action/item_action/mod/circuit_pin/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
+/datum/action/item_action/mod/circuit_pin/on_activate(mob/user, obj/item/clothing/suit/space/hardsuit/mod, trigger_flags)
 	if(!istype(mod) || !circuit_component)
 		return FALSE
 	if(!mod.active || mod.activating)
@@ -201,7 +198,7 @@
 	var/datum/port/output/on_toggle_finish
 
 	/// The MODsuit we registered signals on
-	var/obj/item/mod/control/registered_mod
+	var/obj/item/clothing/suit/space/hardsuit/registered_mod
 
 /obj/item/circuit_component/mod_adapter_core/populate_options()
 	module_to_select = add_option_port("Module to Select", list())
@@ -227,7 +224,7 @@
 	if(istype(shell, /obj/item/mod/module))
 		attached_module = shell
 		RegisterSignal(attached_module, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		if(istype(attached_module.loc, /obj/item/mod/control))
+		if(istype(attached_module.loc, /obj/item/clothing/suit/space/hardsuit))
 			register_mod(attached_module.loc)
 
 /obj/item/circuit_component/mod_adapter_core/unregister_shell(atom/movable/shell)
@@ -244,21 +241,20 @@
 	for(var/obj/item/mod/module/potential_module as anything in attached_module.mod.modules)
 		if(potential_module.name == module_to_select.value)
 			module = potential_module
-	if(COMPONENT_TRIGGERED_BY(toggle_suit, port))
-		INVOKE_ASYNC(attached_module.mod, TYPE_PROC_REF(/obj/item/mod/control, toggle_activate), attached_module.mod.wearer)
-	if(COMPONENT_TRIGGERED_BY(toggle_deploy, port))
-		INVOKE_ASYNC(attached_module.mod, TYPE_PROC_REF(/obj/item/mod/control, quick_deploy), attached_module.mod.wearer)
+	// AQUILA: hardsuit nie ma osobnej aktywacji; oba wejścia przełączają hełm
+	if(COMPONENT_TRIGGERED_BY(toggle_suit, port) || COMPONENT_TRIGGERED_BY(toggle_deploy, port))
+		INVOKE_ASYNC(attached_module.mod, TYPE_PROC_REF(/obj/item/clothing/suit/space/hardsuit, ToggleHelmet))
 	if(attached_module.mod.active && module && COMPONENT_TRIGGERED_BY(select_module, port))
 		INVOKE_ASYNC(module, TYPE_PROC_REF(/obj/item/mod/module, on_select))
 
 /obj/item/circuit_component/mod_adapter_core/proc/on_move(atom/movable/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
-	if(istype(source.loc, /obj/item/mod/control))
+	if(istype(source.loc, /obj/item/clothing/suit/space/hardsuit))
 		register_mod(source.loc)
-	else if(istype(old_loc, /obj/item/mod/control))
+	else if(istype(old_loc, /obj/item/clothing/suit/space/hardsuit))
 		unregister_mod()
 
-/obj/item/circuit_component/mod_adapter_core/proc/register_mod(obj/item/mod/control/mod)
+/obj/item/circuit_component/mod_adapter_core/proc/register_mod(obj/item/clothing/suit/space/hardsuit/mod)
 	if(registered_mod == mod)
 		return
 	unregister_mod()
@@ -294,7 +290,7 @@
 	deployed.set_output(FALSE)
 	activated.set_output(FALSE)
 
-/obj/item/circuit_component/mod_adapter_core/proc/update_module_options(obj/item/mod/control/mod)
+/obj/item/circuit_component/mod_adapter_core/proc/update_module_options(obj/item/clothing/suit/space/hardsuit/mod)
 	var/list/modules_list = list()
 	for(var/obj/item/mod/module/module as anything in mod?.modules)
 		if(module.module_type != MODULE_PASSIVE)
@@ -323,14 +319,8 @@
 			is_deployed = FALSE
 		else
 			var/part_name = "Undefined"
-			if(istype(part, /obj/item/clothing/head/mod))
+			if(istype(part, /obj/item/clothing/head))
 				part_name = "Helmet"
-			else if(istype(part, /obj/item/clothing/suit/mod))
-				part_name = "Chestplate"
-			else if(istype(part, /obj/item/clothing/gloves/mod))
-				part_name = "Gloves"
-			else if(istype(part, /obj/item/clothing/shoes/mod))
-				part_name = "Boots"
 			string_list += part_name
 	deployed_parts.set_output(string_list)
 	deployed.set_output(is_deployed)

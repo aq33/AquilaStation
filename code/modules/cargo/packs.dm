@@ -1819,7 +1819,7 @@
 
 /datum/supply_pack/science/mod_core
 	name = "Skrzynia rdzeni MOD"
-	desc = "Trzy rdzenie, idealne do budowy dowolnego MODsuita! Oczywiście ze zbiorów naturalnych™."
+	desc = "Trzy rdzenie zasilania do hardsuitów z modułami. Oczywiście ze zbiorów naturalnych™."
 	cost = 600
 	access = ACCESS_ROBOTICS
 	access_budget = ACCESS_ROBOTICS

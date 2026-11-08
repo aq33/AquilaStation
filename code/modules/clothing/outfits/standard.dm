@@ -22,9 +22,8 @@
 		)
 
 /datum/outfit/debug/mod
-	name = "Debug outfit (MODsuit)"
-	suit = null
-	back = /obj/item/mod/control/pre_equipped/debug
+	name = "Debug outfit (hardsuit z modułami)"
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite/debug // AQ EDIT - hardsuit z modułami zamiast MODsuita
 
 /datum/outfit/admin //for admeem shenanigans and testing things that arent related to equipment, not a subtype of debug just in case debug changes things
 	name = "Admin outfit"
@@ -32,7 +31,8 @@
 	id = /obj/item/card/id/syndicate/debug
 	uniform = /obj/item/clothing/under/misc/patriotsuit
 	suit_store = /obj/item/tank/internals/oxygen
-	back = /obj/item/mod/control/pre_equipped/administrative
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite/admin // AQ EDIT - hardsuit z modułami zamiast MODsuita
+	back = /obj/item/storage/backpack/holding
 	backpack_contents = list(
 		/obj/item/melee/transforming/energy/axe = 1,
 		/obj/item/storage/part_replacer/bluespace/tier4 = 1,
@@ -285,13 +285,12 @@
 	id = /obj/item/card/id/centcom
 
 /datum/outfit/centcom/commander/mod
-	name = "CentCom Commander (MODsuit)"
+	name = "CentCom Commander (hardsuit z modułami)"
 
 	suit_store = /obj/item/tank/internals/oxygen
-	suit = null
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/corporate // AQ EDIT - hardsuit z modułami zamiast MODsuita
 	head = null
 	mask = /obj/item/clothing/mask/gas/sechailer
-	back = /obj/item/mod/control/pre_equipped/corporate
 	internals_slot = ITEM_SLOT_SUITSTORE
 
 /datum/outfit/centcom/commander/plasmaman

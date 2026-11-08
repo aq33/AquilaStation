@@ -438,10 +438,10 @@
 		var/mob/living/mob = get(tool.loc, /mob/living)
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)
-			if(gangster.gang == src)
+			if(gangster?.gang == src) // AQ EDIT - bez runtime'u, gdy gangtool trzyma ktoś spoza gangu
 				to_chat(mob, "<span class='warning'>[icon2html(tool, mob)] [message]</span>")
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
-			return
+			// AQ EDIT - tu był return: wiadomość dostawał tylko pierwszy posiadacz gangtoola
 
 #undef MAXIMUM_RECALLS
 #undef INFLUENCE_INTERVAL
