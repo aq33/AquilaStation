@@ -1762,6 +1762,7 @@
 #include "code\modules\unit_tests\aquila_review_decyzje.dm"
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\aquila_audyt_regresje.dm"
+#include "code\modules\unit_tests\aquila_audyt_ekonomia.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
