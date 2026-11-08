@@ -26,15 +26,20 @@
 /datum/map_template/shuttle/sabre
 	name = "Su-437 Sabre"
 	description = "Jednostka pomocnicza Su-437 Sabre, w hangarze stoi jako wnętrze."
-	prefix = "aquila/_maps/shuttles/"
 	port_id = "sabre"
 	suffix = "nanotrasen"
 	can_be_bought = FALSE
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
+	/// Plik szablonu jako zasób wkompilowany w .rsc: deploy.sh nie kopiuje katalogu aquila/_maps na serwer
+	var/sabre_map = 'aquila/_maps/shuttles/sabre/sabre_nanotrasen.dmm'
+
+/datum/map_template/shuttle/sabre/New(path = null, rename = null, cache = FALSE, admin_load = null)
+	return ..(path || sabre_map, rename, cache, admin_load)
 
 /datum/map_template/shuttle/sabre/mining
 	name = "Su-437 Sabre (górniczy)"
 	suffix = "mining"
+	sabre_map = 'aquila/_maps/shuttles/sabre/sabre_mining.dmm'
 
 /obj/docking_port/mobile/sabre
 	name = "Su-437 Sabre"
