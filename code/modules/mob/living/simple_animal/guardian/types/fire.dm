@@ -28,7 +28,8 @@
 /mob/living/simple_animal/hostile/guardian/fire/AttackingTarget()
 	. = ..()
 	if(. && ishuman(target) && target != summoner)
-		new /datum/hallucination/delusion(target,TRUE,"custom",200,0, icon_state,icon)
+		var/mob/living/living_target = target // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
+		living_target.cause_hallucination(/datum/hallucination/delusion/custom, "fire guardian", duration = 20 SECONDS, affects_us = FALSE, affects_others = TRUE, skip_nearby = FALSE, custom_icon_file = icon, custom_icon_state = icon_state)
 
 /mob/living/simple_animal/hostile/guardian/fire/proc/on_entered(datum/source, AM as mob|obj)
 	SIGNAL_HANDLER

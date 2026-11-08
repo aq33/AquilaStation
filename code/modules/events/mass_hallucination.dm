@@ -8,31 +8,45 @@
 /datum/round_event/mass_hallucination
 	fakeable = FALSE
 
+// AQ EDIT START - halucynacje jako efekt statusu (Bee#13095), wybór jak w Bee
 /datum/round_event/mass_hallucination/start()
-	switch(rand(1,4))
-		if(1) //same sound for everyone
-			var/sound = pick("airlock","airlock_pry","console","explosion","far_explosion","mech","glass","alarm","beepsky","mech","wall_decon","door_hack","tesla")
-			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				new /datum/hallucination/sounds(C, TRUE, sound)
-		if(2)
-			var/weirdsound = pick("phone","hallelujah","highlander","hyperspace","game_over","creepy","tesla")
-			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				new /datum/hallucination/weird_sounds(C, TRUE, weirdsound)
-		if(3)
-			var/stationmessage = pick("ratvar","shuttle_dock","blob_alert","malf_ai","meteors","supermatter")
-			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				new /datum/hallucination/stationmessage(C, TRUE, stationmessage)
-		if(4 to 6)
-			var/picked_hallucination = pick(	/datum/hallucination/bolts,
-												/datum/hallucination/chat,
-												/datum/hallucination/message,
-												/datum/hallucination/bolts,
-												/datum/hallucination/fake_flood,
-												/datum/hallucination/battle,
-												/datum/hallucination/fire,
-												/datum/hallucination/self_delusion,
-												/datum/hallucination/death,
-												/datum/hallucination/delusion,
-												/datum/hallucination/oh_yeah)
-			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				new picked_hallucination(C, TRUE)
+	var/picked_hallucination
+	var/list/other_args
+	switch(rand(1, 10))
+		if(1) // ten sam dźwięk dla wszystkich
+			picked_hallucination = get_random_valid_hallucination_subtype(/datum/hallucination/fake_sound/normal)
+		if(2) // ten sam dziwny dźwięk
+			picked_hallucination = get_random_valid_hallucination_subtype(/datum/hallucination/fake_sound/weird)
+		if(3) // to samo ogłoszenie
+			picked_hallucination = get_random_valid_hallucination_subtype(/datum/hallucination/station_message)
+		if(4) // wszyscy inni wyglądają tak samo
+			picked_hallucination = get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset)
+			other_args = list(duration = 30 SECONDS, skip_nearby = FALSE, affects_us = FALSE, affects_others = TRUE, play_wabbajack = FALSE)
+		if(5) // tylko halucynujący wygląda inaczej
+			picked_hallucination = get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset)
+			other_args = list(duration = 45 SECONDS, skip_nearby = FALSE, affects_us = TRUE, affects_others = FALSE, play_wabbajack = TRUE)
+		if(6 to 10)
+			picked_hallucination = pick(
+				/datum/hallucination/bolts,
+				/datum/hallucination/chat,
+				/datum/hallucination/death,
+				/datum/hallucination/fake_flood,
+				/datum/hallucination/fire,
+				/datum/hallucination/message,
+				/datum/hallucination/oh_yeah,
+				/datum/hallucination/xeno_attack,
+			)
+	if(!picked_hallucination)
+		return
+
+	var/list/hallucination_args = list(picked_hallucination, "mass hallucination")
+	if(islist(other_args))
+		hallucination_args += other_args
+
+	for(var/mob/living/carbon/hallucinating as anything in GLOB.carbon_list)
+		if(is_centcom_level(hallucinating.z) || hallucinating.stat == DEAD)
+			continue
+		if(!hallucinating.client && !is_station_level(hallucinating.z))
+			continue
+		hallucinating._cause_hallucination(hallucination_args)
+// AQ EDIT END
