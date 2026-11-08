@@ -65,4 +65,31 @@
 	west.ChangeTurf(west_type)
 	east.ChangeTurf(east_type)
 
+/// AQUILA - remote blood drain takes blood from a standing victim that is stunned, not only stamina (our core never sets TRAIT_INCAPACITATED)
+/datum/unit_test/aquila_blooddrain_stunned_victim
+
+/datum/unit_test/aquila_blooddrain_stunned_victim/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/vampire_mob = allocate(/mob/living/carbon/human, left)
+	vampire_mob.mind_initialize()
+	var/datum/antagonist/vampire/vampire = new
+	vampire.silent = TRUE
+	vampire_mob.mind.add_antag_datum(vampire)
+	var/datum/action/vampire/targeted/blooddrain/drain = new
+	drain.Grant(vampire_mob)
+
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(left.x + 2, left.y, left.z))
+	victim.Stun(10 SECONDS, ignore_canstun = TRUE)
+	TEST_ASSERT(victim.mobility_flags & MOBILITY_STAND, "the stunned victim fell over, this case needs a standing victim")
+	var/blood_before = victim.blood_volume
+	var/datum/status_effect/blood_drain/effect = victim.apply_status_effect(/datum/status_effect/blood_drain, vampire_mob, drain)
+	TEST_ASSERT(effect, "the blood drain effect was not applied")
+	effect.tick()
+	TEST_ASSERT(victim.blood_volume < blood_before, "a standing stunned victim lost no blood")
+
+	qdel(effect)
+	drain.Remove(vampire_mob)
+	qdel(drain)
+	vampire_mob.mind.remove_antag_datum(/datum/antagonist/vampire)
+
 #undef TEST_ASSERT
