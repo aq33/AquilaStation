@@ -65,6 +65,10 @@
 	if (user.combat_mode)
 		return ..()
 
+	// W tg obudowa dostaje przedmiot przed dystrybutorem (COMSIG_ATOM_ITEM_INTERACTION): układ, karta ID właściciela, komponent
+	if (SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, tool, user, params) & COMPONENT_NO_AFTERATTACK)
+		return TRUE
+
 	if (tool.w_class > max_weight && !istype(tool, /obj/item/storage/bag))
 		balloon_alert(user, "przedmiot za duży!")
 		return TRUE
