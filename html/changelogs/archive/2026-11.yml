@@ -402,6 +402,27 @@
   - bugfix: Kotary nie zasłaniają już maszyny do przetwarzania rudy na Trawniku.
   - bugfix: Drobne poprawki map Serendipity.
 '2026-11-08':
+  FeudeyTF, SmArtKar, jlsnow301, Melbert, Kryson, Kinneb:
+  - rscadd: 'Tablica detektywa: sprawy, przypinanie zdjęć i kartek jako dowodów, łączenie
+      ich nitką. Jest w szafce detektywa i w skrzyni kryminalistycznej.'
+  - rscadd: 'Nowe animacje ataku: ostre przedmioty tną łukiem, szpiczaste pchają do
+      przodu.'
+  - rscadd: 'Noże, miecze i podobne bronie mają pchnięcie prawym przyciskiem (na intencji
+      rozbrajania): rany kłute za nieco mniejsze obrażenia.'
+  - balance: Przebicie pancerza broni działa też na konstrukcje i maszyny.
+  - rscadd: Alt+klik na kafelek otwiera okno z jego zawartością (wyszukiwanie, grupowanie)
+      zamiast zakładki w panelu statystyk.
+  - rscadd: 'Halucynacje mają poziomy: przy lekkich zdarzają się rzadziej i są subtelniejsze,
+      przy silnych częstsze i dziwniejsze. Nowe halucynacje: krwawienie, głos w głowie,
+      oczy w ciemności.'
+  - balance: Zaburzenia Dysocjacyjne dają łagodniejsze halucynacje; w preferencjach
+      (Gra) można zdjąć limit.
+  - rscadd: 'Zupy gotuje się w garnku na kuchence: woda i składniki, potem chochlą
+      do miski. 34 zupy, w tym żurek i barszcz.'
+  - rscadd: Kuchenka i kuchnia z piekarnikiem (płytki w R&D), garnki i chochle w automacie
+      z zastawą.
+  - rscdel: Zupy nie są już przedmiotami z receptury craftingu (poza zupą życzeń,
+      mämmi i galaretkami).
   Joker66613:
   - rscadd: Ogłoszenia w czacie w pasiastych ramkach jak w tg; ramki alarmów w kolorze
       poziomu alarmu.
