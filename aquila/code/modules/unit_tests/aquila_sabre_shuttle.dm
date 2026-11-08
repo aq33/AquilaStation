@@ -143,7 +143,8 @@
 	TEST_ASSERT(stripes, "No floor stripes on the rotated cockpit floor")
 
 	// Drugi Sabre nie zajmie portu domowego tego Sabre (i odwrotnie)
-	var/obj/docking_port/stationary/sabre/mining/other_port = new(locate(bl[1] + 15, bl[2] + 5, bl[3]))
+	// Poza śladem pierwszego (x+0..8, y-8..0 od portu na bl+10, bl+20)
+	var/obj/docking_port/stationary/sabre/mining/other_port = new(locate(bl[1] + 20, bl[2] + 1, bl[3]))
 	timeout = world.time + 30 SECONDS
 	while(!other_port.docked && world.time < timeout)
 		sleep(1)
@@ -302,6 +303,69 @@
 			if(!T.density && !isspaceturf(T) && !istype(T, /turf/open/openspace))
 				exits++
 		TEST_ASSERT(exits, "The hatch of the Sabre at [COORD(port)] doesn't open onto a floor")
+
+/// AQUILA - po skrzydle Sabre da się chodzić, kliknięcie we wrota kokpitu ze skrzydła wprowadza do środka, a start czeka,
+/// aż nikt nie stoi na skrzydle
+/datum/unit_test/sabre_wing_boarding
+
+/datum/unit_test/sabre_wing_boarding/Run()
+	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
+	TEST_ASSERT(host?.current_system, "No main ship in a star system to launch from")
+	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	hangar.overmap_fallback = host
+	var/list/bl = hangar.bottom_left_coords
+	var/obj/docking_port/stationary/sabre/port = new(locate(bl[1] + 5, bl[2] + 5, bl[3]))
+	var/timeout = world.time + 30 SECONDS
+	while(!port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+	sabre.req_access = list()
+	sabre.req_one_access = list()
+
+	// Skrzydło przy wrotach kokpitu (szablon 2,4 obok wrót 3,4)
+	var/turf/open/indestructible/dropship/sabre_wing/wing = locate(port.x + 1, port.y + 3, port.z)
+	TEST_ASSERT(istype(wing), "The nacelle next to the cockpit doors isn't a walkable wing")
+	var/turf/closed/indestructible/dropship/entry/sabre/doors = get_step(wing, EAST)
+	TEST_ASSERT(istype(doors), "No cockpit doors next to the wing")
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	pilot.forceMove(wing)
+	TEST_ASSERT_EQUAL(pilot.loc, wing, "Nobody can stand on the Sabre wing")
+
+	sabre.set_fuel(500)
+	TEST_ASSERT(!sabre.shuttle_launch(), "The Sabre took off with someone on its wing")
+	TEST_ASSERT(sabre.shuttle_docked_at, "The Sabre left the dock with someone on its wing")
+
+	doors.attack_hand(pilot)
+	TEST_ASSERT(istype(pilot.loc, /turf/open/indestructible/dropship) && !istype(pilot.loc, /turf/open/indestructible/dropship/sabre_wing), "Clicking the cockpit doors from the wing didn't take the pilot inside")
+	TEST_ASSERT_EQUAL(get_area(pilot), get_area(doors), "The pilot isn't inside the Sabre after boarding from the wing")
+	// Pilot wysiada (inaczej sprzątanie wysłałoby go kapsułą ratunkową), a pusty Sabre z czystym skrzydłem startuje
+	TEST_ASSERT(sabre.shuttle_leave(pilot), "The pilot couldn't leave the Sabre")
+	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't take off once the wing was clear")
+
+	shuttle_port.jumpToNullSpace()
+	if(!QDELETED(sabre))
+		qdel(sabre)
+	qdel(port, TRUE)
+	qdel(hangar)
+
+/// AQUILA - zestaw budowy promu z inżynierii ma wszystko, czego nie zbuduje się z materiałów
+/datum/unit_test/shuttle_kit_contents
+
+/datum/unit_test/shuttle_kit_contents/Run()
+	var/obj/item/storage/toolbox/shuttle_kit/kit = allocate(/obj/item/storage/toolbox/shuttle_kit)
+	TEST_ASSERT(locate(/obj/item/shuttle_creator) in kit, "The kit has no Rapid Shuttle Designator")
+	TEST_ASSERT(locate(/obj/item/circuitboard/computer/shuttle/flight_control) in kit, "The kit has no flight controller board")
+	var/engines = 0
+	var/heaters = 0
+	for(var/obj/item/circuitboard/machine/shuttle/board in kit)
+		if(istype(board, /obj/item/circuitboard/machine/shuttle/engine/plasma))
+			engines++
+		else if(istype(board, /obj/item/circuitboard/machine/shuttle/heater))
+			heaters++
+	TEST_ASSERT_EQUAL(engines, 2, "The kit should hold two plasma engine boards")
+	TEST_ASSERT_EQUAL(heaters, 2, "The kit should hold two heater boards")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

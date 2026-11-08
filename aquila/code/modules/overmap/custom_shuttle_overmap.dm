@@ -163,3 +163,26 @@
 		return
 	overmap_craft.ui_act(action, params, ui)
 	return TRUE
+
+// Zestaw budowy promu: na start rundy w inżynierii każdej mapy (wszystko poza materiałami i częściami maszyn)
+
+/obj/item/storage/toolbox/shuttle_kit
+	name = "zestaw budowy promu"
+	desc = "Skrzynka z Wyznacznikiem Stref Promu oraz płytkami sterownika lotu, silników plazmowych i ich podgrzewaczy. Wystarczy dobudować ramy maszyn, a prom poleci na overmapę."
+	icon_state = "blue"
+	item_state = "toolbox_blue"
+	material_flags = MATERIAL_NO_COLOR
+
+/obj/item/storage/toolbox/shuttle_kit/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 20
+	STR.max_items = 7
+
+/obj/item/storage/toolbox/shuttle_kit/PopulateContents()
+	new /obj/item/shuttle_creator(src)
+	new /obj/item/circuitboard/computer/shuttle/flight_control(src)
+	for(var/i in 1 to 2)
+		new /obj/item/circuitboard/machine/shuttle/engine/plasma(src)
+		new /obj/item/circuitboard/machine/shuttle/heater(src)

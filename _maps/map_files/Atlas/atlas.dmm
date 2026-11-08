@@ -12315,6 +12315,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
+"Hq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/fax{
+	fax_name = "Engineering";
+	name = "Engineerings Fax Machine";
+	pixel_y = 6
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/break_room)
 "Hr" = (
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
@@ -17391,17 +17403,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/techmaint,
 /area/nsv/hanger/mining)
-"WG" = (
-/obj/structure/table/reinforced,
-/obj/machinery/fax{
-	fax_name = "Engineering";
-	name = "Engineerings Fax Machine";
-	pixel_y = 6
-	},
-/obj/machinery/power/apc/auto_name/north,
-/obj/structure/cable,
-/turf/open/floor/durasteel/techfloor_grid,
-/area/engine/break_room)
 "WH" = (
 /obj/effect/turf_decal/tile/ship/half/green{
 	dir = 1
@@ -44775,7 +44776,7 @@ mX
 GO
 TN
 TN
-WG
+Hq
 xM
 Ts
 TN

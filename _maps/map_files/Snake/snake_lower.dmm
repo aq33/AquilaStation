@@ -7067,32 +7067,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/cryopods)
-"vB" = (
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/structure/sign/warning/enginesafety{
-	pixel_y = -32
-	},
-/obj/item/circuitboard/computer/atmos_control,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/engine/storage)
 "vC" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -14385,6 +14359,33 @@
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"
 	})
+"Xm" = (
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/sign/warning/enginesafety{
+	pixel_y = -32
+	},
+/obj/item/circuitboard/computer/atmos_control,
+/obj/structure/table,
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/plasteel,
+/area/engine/storage)
 "Xn" = (
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 8
@@ -34111,7 +34112,7 @@ eU
 eU
 eU
 eU
-vB
+Xm
 IM
 oe
 aJ
