@@ -1,0 +1,795 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "Gaz do komory"
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"bq" = (
+/obj/structure/sign/poster/official/moth9{
+	pixel_y = 31
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"dn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering/glass/critical{
+	heat_proof = 1;
+	name = "Komora supermaterii";
+	security_level = 6;
+	id_tag = "trawnik_smengine";
+	req_one_access_txt = "10;24"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"ds" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall/ship,
+/area/engine/supermatter)
+"eJ" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/space)
+"fL" = (
+/obj/structure/cable,
+/obj/structure/tank_dispenser,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"fS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"ge" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "trawnik_sm";
+	name = "rolety supermaterii"
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"gr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"hX" = (
+/obj/machinery/atmospherics/pipe/manifold/green/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"ig" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engine_room)
+"ih" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"iH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1;
+	scrubbing = 0
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"iO" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engine_room)
+"iS" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"jc" = (
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/engine/engine_room)
+"jh" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"lL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"lN" = (
+/obj/structure/sign/poster/official/moth6{
+	pixel_y = 30
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"lO" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/ship,
+/area/engine/supermatter)
+"mL" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 1;
+	state = 2
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"mP" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"nS" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"pk" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 9
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/engine/engine_room/core)
+"qe" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/station_engineer,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"qr" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"qI" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/nsv/engine/engine_room/core)
+"rR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"sm" = (
+/obj/structure/cable,
+/obj/structure/reflector/box/anchored{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"uX" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space/basic,
+/area/space)
+"vb" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"xl" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 2;
+	state = 2
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"xX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"zn" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"zE" = (
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/engine_room)
+"zH" = (
+/turf/template_noop,
+/area/template_noop)
+"Ck" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"CC" = (
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"CK" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"CR" = (
+/obj/structure/cable,
+/obj/machinery/airalarm/engine{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"Dh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Gaz do filtrów"
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Ea" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engine_room)
+"Ev" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"Gu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/components/trinary/filter/critical{
+	dir = 1;
+	filter_type = "o2";
+	on = 1;
+	name = "Filtr tlenu"
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"GB" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"HG" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste{
+	dir = 2
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"Ii" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Je" = (
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"Ky" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 1
+	},
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"Lt" = (
+/obj/structure/cable,
+/obj/machinery/button/door{
+	id = "trawnik_sm";
+	pixel_x = -24;
+	name = "Rolety supermaterii"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "trawnik_smengine";
+	name = "Blokada drzwi";
+	normaldoorcontrol = 1;
+	pixel_x = -35;
+	specialfunctions = 4
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"LP" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"Nz" = (
+/obj/machinery/power/supermatter_crystal/engine,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"Oa" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/space/basic,
+/area/space)
+"Ot" = (
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"OU" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 32
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Pq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"SJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"SW" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "trawnik_sm";
+	name = "rolety supermaterii"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"Vc" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"Vx" = (
+/turf/closed/wall/r_wall/ship,
+/area/engine/supermatter)
+"VU" = (
+/obj/structure/closet/radiation,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"WB" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/closed/wall/r_wall/ship,
+/area/engine/supermatter)
+"WK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9;
+	icon_state = "pipe11-1"
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"WZ" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 4;
+	state = 2
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"Xp" = (
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"Xr" = (
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"XZ" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"YY" = (
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"YZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/components/trinary/filter/critical{
+	dir = 1;
+	filter_type = "plasma";
+	on = 1;
+	name = "Filtr plazmy"
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Zq" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"ZC" = (
+/obj/structure/closet/secure_closet/engineering_electrical{
+	anchored = 1
+	},
+/obj/item/wrench,
+/obj/item/stack/cable_coil,
+/obj/item/screwdriver,
+/obj/item/inducer,
+/obj/item/wirecutters,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/weldingtool,
+/obj/item/book/manual/wiki/engineering_guide,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+
+(1,1,1) = {"
+zH
+zH
+zH
+zH
+zH
+zH
+iO
+WZ
+iO
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+"}
+(2,1,1) = {"
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+"}
+(3,1,1) = {"
+Oa
+ih
+qI
+Ck
+lL
+lL
+lL
+SJ
+lL
+lL
+lL
+YY
+LP
+bq
+zH
+zH
+zH
+zH
+zH
+"}
+(4,1,1) = {"
+eJ
+zH
+Xp
+zH
+CK
+xl
+CK
+sm
+CK
+mL
+CK
+zH
+zH
+qe
+zH
+zH
+zH
+zH
+zH
+"}
+(5,1,1) = {"
+eJ
+zH
+zH
+zH
+ds
+Vx
+Vx
+mP
+Vx
+Vx
+ds
+zH
+zH
+jc
+zH
+zH
+zH
+zH
+zH
+"}
+(6,1,1) = {"
+eJ
+zH
+zH
+zH
+ge
+Xr
+iH
+CC
+fS
+vb
+SW
+zH
+zH
+zn
+XZ
+zH
+GB
+VU
+zH
+"}
+(7,1,1) = {"
+eJ
+zH
+zH
+zH
+ge
+jh
+iH
+Nz
+fS
+nS
+SW
+rR
+zH
+Ev
+Vc
+iS
+GB
+Ot
+zH
+"}
+(8,1,1) = {"
+eJ
+zH
+zH
+zH
+ge
+Je
+iH
+CC
+fS
+nS
+SW
+zH
+zH
+zn
+XZ
+zH
+fL
+ZC
+zH
+"}
+(9,1,1) = {"
+eJ
+qr
+Xp
+OU
+ds
+lO
+Vx
+dn
+Vx
+WB
+ds
+zH
+zH
+zE
+zH
+ig
+zH
+zH
+zH
+"}
+(10,1,1) = {"
+eJ
+zH
+Xp
+zH
+CK
+Dh
+CR
+Zq
+Lt
+bg
+CK
+zH
+zH
+gr
+zH
+zH
+zH
+zH
+zH
+"}
+(11,1,1) = {"
+uX
+ih
+qI
+Gu
+YZ
+Pq
+zH
+zH
+zH
+xX
+Ii
+WK
+LP
+lN
+zH
+zH
+zH
+zH
+zH
+"}
+(12,1,1) = {"
+zH
+HG
+Ky
+hX
+pk
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+"}
+(13,1,1) = {"
+zH
+zH
+zH
+zH
+zH
+zH
+Ea
+zH
+Ea
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+zH
+"}

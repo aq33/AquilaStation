@@ -440,3 +440,6 @@
   - bugfix: Atlantis ma wyświetlacze ewakuacji i SI w korytarzach oraz faksy w działach.
   - code_imp: CI kompiluje mapę Atlantis, nowy test sprawdza mechaniki map w rotacji.
   - bugfix: Na Trawniku wróciła drukarka układów w pracowni nauki.
+  - rscadd: 'Trawnik i Padalec losują silnik na początku rundy, jak Atlas: Trawnik
+      Teslę, Stormdrive albo supermaterię, Padalec Stormdrive albo supermaterię. Każdy
+      wariant ma na miejscu paliwo, chłodzenie, odpad i zasilanie.'
