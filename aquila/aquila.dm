@@ -1163,6 +1163,7 @@
 #include "code\modules\surgery\exposed_organs.dm"
 #include "code\modules\surgery\organs\heart_blood.dm"
 #include "code\modules\surgery\organs\liver_cirrhosis.dm"
+#include "code\modules\surgery\organs\tongue_speech.dm"
 #include "code\modules\security\space_law_catalog.dm"
 #include "code\modules\security\citationinator.dm"
 #include "code\modules\security\undercover_id.dm"

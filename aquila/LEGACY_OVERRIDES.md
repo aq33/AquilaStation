@@ -336,6 +336,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Mining asteroids and ruins, `_maps/virtual_domains` and `aquila/_maps` added to `DmMapsIncludeTarget` (Aquila maps via `../`) | `tools/build/build.js` | CI (`compile_all_maps`) compiles these templates too; errors in them used to pass |
 | `MAPS=(_maps/**/*.dmm aquila/_maps/**/*.dmm)` instead of `_maps/**/*.dmm` in the map linters | `tools/ci/check_grep.sh` | The map linters cover Aquila maps |
 | Fixed `mappath` of `sk_rdm139`, `sk_rdm165`, `sk_rdm169` (pointed at missing files) | `code/modules/mapping/random_rooms.dm` | These rooms never spawned. Test: `aquila_random_rooms` |
+| `if(emote_type & EMOTE_AUDIBLE)` zamiast `& (EMOTE_AUDIBLE \| EMOTE_VISIBLE)` przy hologramie | `code/datums/emotes.dm` (`/datum/emote/run_emote()`) | Emotka SI tylko widoczna (np. *nod) przez hologram szła jako dźwięk do niewidomych; gałąź `visible_message` była martwa od przejścia na bitflagi |
+| `ui.set_autoupdate(TRUE)` w `ui_interact()` | `code/game/mecha/mecha_topic.dm`, `code/modules/power/generator.dm`, `code/game/machinery/computer/pod.dm`, `code/game/machinery/computer/apc_control.dm` | Okna z tg (Mecha, ThermoElectricGenerator, MassDriverControl, ApcControl) pokazują dane zmieniające się same; u nas `autoupdate` jest domyślnie FALSE |
+| `PROC_REF(try_handle_speech)` zamiast `PROC_REF(handle_speech)` przy rejestracji `COMSIG_MOB_SAY` | `code/modules/surgery/organs/tongue.dm` (`/obj/item/organ/tongue/Insert()`) | Moduł infiltracyjny hardsuitu blokuje zmianę mowy języka przez `COMSIG_TRY_MODIFY_SPEECH` (jak w tg). Procka w `aquila/code/modules/surgery/organs/tongue_speech.dm` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
