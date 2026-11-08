@@ -363,9 +363,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	radiation_pulse(src, temperature*radioactivity_spice_multiplier)
 	if(power >= 90 && world.time >= next_flicker) //You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 		next_flicker = world.time + 1.5 MINUTES
-		for(var/obj/machinery/light/L in GLOB.machines)
-			if(prob(25) && shares_overmap(src, L)) //If youre running the reactor cold though, no need to flicker the lights.
-				L.flicker()
+		aq_flicker_ship_lights(src, 25) // AQ EDIT - tgstation/tgstation#92503: pętla po GLOB.machines poza process(), z CHECK_TICK
 	for(var/atom/movable/I in get_turf(src))
 		if(isliving(I))
 			var/mob/living/L = I
