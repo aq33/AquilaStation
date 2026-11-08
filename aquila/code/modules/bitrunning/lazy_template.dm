@@ -3,6 +3,22 @@
  * Mapa ładuje się dopiero na żądanie, do nowej rezerwacji turfów.
  * U nas opiera się na zwykłym /datum/map_template z returns_created_atoms.
  */
+/// Ile ładowań trzyma teraz SSair wyłączone (domeny bitrunningu, wnętrza okrętów, reset atmosfery)
+GLOBAL_VAR_INIT(lazy_template_loads, 0)
+
+/// Początek ładowania: atmosfera stoi, dopóki nie skończy się ostatnie z nakładających się ładowań
+/proc/lazy_template_load_started()
+	GLOB.lazy_template_loads++
+	SSair.can_fire = FALSE
+
+/// Koniec ładowania. Licznik zamiast zapamiętanego stanu: dwa nakładające się ładowania zapamiętywały FALSE od siebie
+/// nawzajem i atmosfera stała do końca rundy. Wnętrza okrętów (interiors.dm) i reset atmosfery (air.dm) używają tego samego
+/// licznika, więc żadne z nich nie włącza SSair w trakcie cudzego ładowania. Po ostatnim ładowaniu SSair rusza.
+/proc/lazy_template_load_finished()
+	GLOB.lazy_template_loads = max(GLOB.lazy_template_loads - 1, 0)
+	if(!GLOB.lazy_template_loads)
+		SSair.can_fire = TRUE
+
 /datum/lazy_template
 	/// Unikalny klucz szablonu
 	var/key
@@ -57,15 +73,14 @@
 	template.should_place_on_top = place_on_top
 	template.returns_created_atoms = TRUE
 	// Atomy dużej mapy inicjują się przez kilka ticków; bez pauzy SSair widzi niezainicjowane powietrze i rozrzuca meble
-	var/air_could_fire = SSair.can_fire
-	SSair.can_fire = FALSE
+	lazy_template_load_started()
 	var/list/bounds
 	try
 		bounds = template.load(bottom_left)
 	catch(var/exception/load_error)
-		SSair.can_fire = air_could_fire
+		lazy_template_load_finished()
 		throw load_error
-	SSair.can_fire = air_could_fire
+	lazy_template_load_finished()
 	if(!bounds)
 		reservations -= reservation
 		reservation.Release()

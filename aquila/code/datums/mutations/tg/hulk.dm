@@ -3,6 +3,10 @@
 /// Kolor skóry wariantu hulka (bez #), null = zielony z rdzenia
 /datum/mutation/hulk/var/tg_bodypart_color
 
+// Rdzeń używa TRAIT_HULK tylko jako źródła innych cech; jak w tg sama cecha oznacza hulka (płaszcz cieni, klepnięcie w stół)
+/datum/mutation/hulk
+	mutation_traits = list(TRAIT_HULK)
+
 /datum/mutation/hulk/wizardly
 	name = "Hulk (magiczny)"
 	species_allowed = list() // każdy gatunek, także szkielety i jaszczury
@@ -18,7 +22,7 @@
 	health_req = 0
 	instability = 0
 	// Walka do ostatniego tchu
-	mutation_traits = list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA)
+	mutation_traits = list(TRAIT_HULK, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA)
 
 /datum/mutation/hulk/superhuman/New(class_ = MUT_OTHER, timer, datum/mutation/copymut)
 	..()

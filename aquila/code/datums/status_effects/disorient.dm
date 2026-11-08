@@ -71,11 +71,12 @@
 /atom/movable/proc/twitch()
 	var/degrees = rand(-45, 45)
 	transform = transform.Turn(degrees)
-	var/old_x = pixel_x
-	var/old_y = pixel_y
-	pixel_x += rand(-3, 3)
-	pixel_y += rand(-1, 1)
+	// Cofamy o tę samą deltę: upadek albo przypięcie w trakcie sleep zmienia przesunięcie, którego nie wolno nadpisać starym
+	var/delta_x = rand(-3, 3)
+	var/delta_y = rand(-1, 1)
+	pixel_x += delta_x
+	pixel_y += delta_y
 	sleep(0.2 SECONDS)
 	transform = transform.Turn(-degrees)
-	pixel_x = old_x
-	pixel_y = old_y
+	pixel_x -= delta_x
+	pixel_y -= delta_y

@@ -3501,14 +3501,6 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"kI" = (
-/obj/structure/bed,
-/obj/item/bedsheet/random,
-/obj/machinery/newscaster/directional/south,
-/obj/effect/landmark/start/assistant,
-/obj/machinery/power/apc/auto_name/south,
-/turf/open/floor/wood,
-/area/crew_quarters/cryopods)
 "kJ" = (
 /obj/machinery/light/floor,
 /obj/structure/cable,
@@ -4992,6 +4984,15 @@
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
+"pI" = (
+/obj/structure/cable,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/grass,
+/area/chapel)
 "pK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -6666,6 +6667,12 @@
 /obj/machinery/door/firedoor/border_only/directional/west,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"vz" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "vA" = (
 /turf/closed/wall/ship,
 /area/maintenance/department/crew_quarters/dorms)
@@ -9839,6 +9846,12 @@
 /obj/structure/table/glass/plasma,
 /turf/open/floor/plasteel/tiled/light,
 /area/science/server)
+"Gk" = (
+/obj/structure/cable,
+/obj/machinery/washing_machine,
+/obj/structure/bedsheetbin,
+/turf/open/floor/wood,
+/area/crew_quarters/cryopods)
 "Gl" = (
 /turf/open/openspace,
 /area/shuttle/turbolift/secondary)
@@ -11761,11 +11774,6 @@
 /obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
-"Ni" = (
-/obj/machinery/power/apc/auto_name/north,
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "Nj" = (
 /obj/structure/extinguisher_cabinet/south,
 /mob/living/simple_animal/bot/secbot,
@@ -12491,6 +12499,15 @@
 /obj/machinery/airalarm/directional/north,
 /turf/closed/wall/r_wall/ship,
 /area/security/warden)
+"Py" = (
+/obj/structure/cable,
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/machinery/newscaster/directional/south,
+/obj/effect/landmark/start/assistant,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/wood,
+/area/crew_quarters/cryopods)
 "Pz" = (
 /obj/machinery/computer/ship/navigation/public{
 	name = "starmap console"
@@ -14832,11 +14849,6 @@
 /obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/storage)
-"Xp" = (
-/obj/machinery/washing_machine,
-/obj/structure/bedsheetbin,
-/turf/open/floor/wood,
-/area/crew_quarters/cryopods)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -15180,12 +15192,6 @@
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"YS" = (
-/obj/structure/cable,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/grass,
-/area/chapel)
 "YU" = (
 /obj/machinery/holopad,
 /turf/open/floor/engine/light,
@@ -45215,8 +45221,8 @@ Ad
 mm
 jq
 jG
-Xp
-kI
+Gk
+Py
 Gs
 Qf
 ql
@@ -46230,7 +46236,7 @@ nv
 VF
 gJ
 tx
-Ni
+vz
 Jk
 mB
 ar
@@ -50098,7 +50104,7 @@ nf
 mV
 lK
 YC
-YS
+pI
 ov
 Za
 dP

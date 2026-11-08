@@ -5,13 +5,24 @@
 /datum/export/forged_munition
 	unit_name = "wyrób z kuźni amunicji"
 	k_elasticity = 0
-	export_types = list(/obj/item/ammo_box, /obj/item/ship_weapon/ammunition, /obj/item/ship_weapon/parts/missile/warhead)
+	// Pudełka sprzedają się przez swoje naboje: eksport idzie od środka i kasuje niesprzedane naboje,
+	// zanim dojdzie do pudełka, więc wycena samego pudełka na promie zawsze dawała 0 kr
+	export_types = list(/obj/item/ammo_casing, /obj/item/ship_weapon/ammunition, /obj/item/ship_weapon/parts/missile/warhead)
 
 /datum/export/forged_munition/get_cost(obj/O, allowed_categories = NONE, apply_elastic = TRUE)
+	if(istype(O, /obj/item/ammo_casing))
+		return forged_casing_value(O) // bez zaokrąglenia: nabój bywa wart ułamek kredytu, sumę zaokrągla total_printout
 	return forged_munition_value(O)
+
+/datum/export/forged_munition/total_printout(datum/export_report/ex, notes = TRUE)
+	if(ex.total_value[src])
+		ex.total_value[src] = round(ex.total_value[src])
+	return ..()
 
 /// Ile kredytów za jeden wyrób; 0 = to nie jest wyrób z kuźni
 /proc/forged_munition_value(obj/O)
+	if(istype(O, /obj/item/ammo_casing))
+		return round(forged_casing_value(O))
 	var/body_type = GLOB.munition_products[O.type]
 	if(!body_type)
 		return 0
@@ -19,17 +30,28 @@
 		// Pudełko jest warte tyle, ile wykutych nabojów ma teraz w środku: każdy nabój to ułamek pełnego pudełka.
 		// Inaczej rozłożenie nabojów do pustych pudełek mnożyło cenę.
 		var/obj/item/ammo_box/box = O
-		var/capacity = max(box.max_ammo, 1)
 		var/box_value = 0
 		for(var/obj/item/ammo_casing/casing in box.stored_ammo)
-			var/datum/component/forged_munition/round_forged = casing.GetComponent(/datum/component/forged_munition)
-			if(round_forged)
-				box_value += forged_product_value(round_forged, body_type) / capacity
+			box_value += forged_casing_value(casing)
 		return round(box_value)
 	var/datum/component/forged_munition/forged = O.GetComponent(/datum/component/forged_munition)
 	if(!forged)
 		return 0
 	return round(forged_product_value(forged, body_type))
+
+/// Ile wart jest wykuty nabój w pudełku z kuźni: ułamek ceny pełnego pudełka (bez zaokrąglenia).
+/// Luzem albo w pudełku, którego kuźnia nie robi, nabój nic nie jest wart.
+/proc/forged_casing_value(obj/item/ammo_casing/casing)
+	var/obj/item/ammo_box/box = casing.loc
+	if(!istype(box) || !(casing in box.stored_ammo))
+		return 0
+	var/body_type = GLOB.munition_products[box.type]
+	if(!body_type)
+		return 0
+	var/datum/component/forged_munition/round_forged = casing.GetComponent(/datum/component/forged_munition)
+	if(!round_forged)
+		return 0
+	return forged_product_value(round_forged, body_type) / max(box.max_ammo, 1)
 
 /// Wartość jednego pełnego wyrobu o właściwościach forged, odlanego z korpusu body_type (bez zaokrąglenia)
 /proc/forged_product_value(datum/component/forged_munition/forged, body_type)

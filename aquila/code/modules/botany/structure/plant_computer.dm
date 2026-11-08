@@ -56,8 +56,20 @@
 	if(!result)
 		return
 	var/obj/machinery/machine = option_links[result]
+	if(QDELETED(machine)) // AQUILA - maszyna mogła zniknąć, gdy menu było otwarte
+		return
 	machine.ui_interact(user)
 	screen.flash()
+
+// AQUILA - maszyny nie trzymają usuniętego terminala
+/obj/machinery/computer/plant_machine_controller/Destroy()
+	for(var/obj/machinery/plant_machine/machine as anything in machines)
+		if(machine.controller == src)
+			machine.controller = null
+	machines.Cut()
+	machine_options.Cut()
+	option_links.Cut()
+	return ..()
 
 /obj/machinery/computer/plant_machine_controller/AltClick(mob/user)
 	. = ..()
@@ -165,6 +177,7 @@
 	//Reset our machines
 	for(var/obj/machinery/plant_machine/machine as anything in machines)
 		machine.controller = null
+		UnregisterSignal(machine, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED)) // AQUILA - ponowne łączenie rejestrowało sygnały drugi raz
 	machines.Cut()
 	machine_options.Cut()
 	//Link machines
@@ -184,6 +197,7 @@
 
 /obj/machinery/computer/plant_machine_controller/proc/assemble_menu()
 
+	machine_options.Cut() // AQUILA - menu budowane od zera, bez odpiętych maszyn
 	option_links.Cut()
 	for(var/obj/machinery/machine as anything in machines)
 		var/image/image = new()
@@ -198,13 +212,21 @@
 /obj/machinery/computer/plant_machine_controller/proc/catch_qdel(datum/source)
 	SIGNAL_HANDLER
 
-	machines -= source
+	unlink_machine(source)
 
 /obj/machinery/computer/plant_machine_controller/proc/catch_move(datum/source, atom/newloc, dir)
 	SIGNAL_HANDLER
 
 	if(get_dist(src, source) > PC_LINK_RANGE)
-		machines -= source
+		unlink_machine(source)
+
+/// AQUILA - odpina maszynę i przebudowuje menu, żeby terminal nie trzymał usuniętej ani odsuniętej maszyny
+/obj/machinery/computer/plant_machine_controller/proc/unlink_machine(obj/machinery/plant_machine/machine)
+	machines -= machine
+	UnregisterSignal(machine, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	if(machine.controller == src)
+		machine.controller = null
+	assemble_menu()
 
 /obj/machinery/computer/plant_machine_controller/proc/encrypt_ref(ref_string)
 	return "0x[copytext(md5(ref_string), 1, 8)]"

@@ -526,6 +526,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 
 	if(fleet)
 		fleet.stop_reporting_all(src)
+		fleet.forget_ai_salvo_ship(src) // AQ EDIT - salwy torped trzymają listę okrętów floty (aquila/code/modules/overmap/ai_torpedo_tactics.dm)
 	// AQ EDIT - enemies/last_target są jednokierunkowe; bez tego martwy statek wisiał w cudzych listach (GC fail, hard delete ~50 ms)
 	for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
 		if(OM.enemies) // nie LAZYREMOVE - add_enemy() robi enemies += bez inicjalizacji

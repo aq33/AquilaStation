@@ -23,7 +23,7 @@
 	icon_state = "citrus"
 	colour_override = "#2bff00"
 	seed_icon_state = "seed-lime"
-	fruit_product = /obj/item/food/grown/citrus
+	fruit_product = /obj/item/food/grown/citrus/lime // AQUILA - u Bee abstrakcyjny /citrus bez soku i przepisów
 	mutations = list(/datum/plant_feature/fruit/lemon/combustible = 8)
 
 /*

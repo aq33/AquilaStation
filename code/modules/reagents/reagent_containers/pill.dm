@@ -59,6 +59,8 @@
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user , proximity)
 	. = ..()
+	if(QDELETED(src)) // AQ EDIT - taca hydroponiczna kompostuje pigułkę w sygnale z ..()
+		return
 	if(!proximity)
 		return
 	if(!dissolvable || !target.is_refillable())

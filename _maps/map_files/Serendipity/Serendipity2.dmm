@@ -409,13 +409,6 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
-"bc" = (
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/computer/ai_server_console{
-	dir = 2
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bd" = (
 /obj/machinery/rack_creator,
 /turf/open/floor/engine,
@@ -740,6 +733,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
+"bZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "ca" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -845,6 +852,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
+"cB" = (
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "cC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1469,16 +1484,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger)
-"gc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "gd" = (
 /obj/effect/spawner/structure/window/reinforced/ship,
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -3533,6 +3538,17 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/monotile/steel,
 /area/engine/storage_shared)
+"rk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "rl" = (
 /turf/closed/wall/ship,
 /area/maintenance/department/engine)
@@ -5013,6 +5029,18 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/monotile/light,
 /area/quartermaster/lobby)
+"zT" = (
+/obj/effect/spawner/room/serendipity_engine,
+/obj/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output{
+	id_tag = "n2_out_alt"
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2,
+/turf/open/floor/engine/n2,
+/area/engine/atmos)
 "zU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5109,19 +5137,6 @@
 	},
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/red/telecomms,
-/area/comms)
-"Aw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
 /area/comms)
 "AK" = (
 /obj/structure/window/plasma/reinforced{
@@ -5254,10 +5269,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"BG" = (
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "BH" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = 27
@@ -6027,6 +6038,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
+"FW" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "FY" = (
 /obj/structure/sign/departments/minsky/engineering/engineering{
 	pixel_y = 33
@@ -8964,13 +8980,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/ridged/steel,
 /area/engine/break_room)
-"Wj" = (
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/obj/structure/ethernet_cable,
-/turf/open/floor/engine,
-/area/comms)
 "Wp" = (
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
@@ -9216,25 +9225,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
-"XT" = (
-/turf/template_noop,
-/area/template_noop)
 "XU" = (
 /obj/machinery/computer/ship/navigation/public,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
-"XW" = (
-/obj/effect/spawner/room/serendipity_engine,
-/obj/structure/window/plasma/reinforced,
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output{
-	id_tag = "n2_out_alt"
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2,
-/turf/open/floor/engine/n2,
-/area/engine/atmos)
 "XY" = (
 /obj/machinery/light/small,
 /turf/open/floor/carpet/ship/purple_carpet,
@@ -9502,6 +9496,9 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"Zz" = (
+/turf/template_noop,
+/area/template_noop)
 "ZD" = (
 /obj/structure/closet/crate,
 /obj/item/fighter_component/primary/cannon,
@@ -37178,9 +37175,9 @@ Mo
 BF
 vi
 xX
-XT
-XT
-XT
+Zz
+Zz
+Zz
 xX
 xX
 aw
@@ -37190,7 +37187,7 @@ sJ
 aq
 Ud
 EK
-XW
+zT
 Ku
 zV
 na
@@ -37686,20 +37683,20 @@ Ks
 Ks
 Ks
 Ks
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 hH
 Kz
 eE
@@ -37943,20 +37940,20 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
-XT
+Zz
 VE
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 BU
 Ad
-XT
+Zz
 Pg
 go
 ra
@@ -38200,20 +38197,20 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
 UF
 JH
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 YN
 gS
-XT
+Zz
 zh
 Fo
 Fo
@@ -38457,24 +38454,24 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
 UF
 tz
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 YN
 gS
-XT
-XT
+Zz
+Zz
 qe
-XT
-XT
+Zz
+Zz
 Fk
 FE
 CF
@@ -38714,24 +38711,24 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
 UF
 PF
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 gS
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
 rB
 Pa
 Sy
@@ -38971,24 +38968,24 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
 UF
 Nw
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 YN
 gS
-XT
-XT
+Zz
+Zz
 qe
-XT
-XT
+Zz
+Zz
 Wv
 Pa
 Mk
@@ -39228,22 +39225,22 @@ Ks
 Ks
 Ks
 Ks
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 YN
 gS
-XT
+Zz
 cX
-XT
+Zz
 yn
 Qf
 ry
@@ -39485,20 +39482,20 @@ Ks
 Ks
 Ks
 Ks
-XT
+Zz
 dD
-XT
+Zz
 VE
-XT
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 oh
 GT
-XT
+Zz
 Vb
 Vb
 np
@@ -39742,20 +39739,20 @@ Ks
 Ks
 Ks
 Ks
-XT
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
+Zz
 Lf
 qI
 Lf
-XT
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
+Zz
 YJ
 YJ
 YJ
@@ -40000,10 +39997,10 @@ Ks
 Ks
 Ks
 Ks
-XT
-XT
-XT
-XT
+Zz
+Zz
+Zz
+Zz
 gS
 gS
 gS
@@ -40262,9 +40259,9 @@ Mo
 Gy
 cX
 cX
-XT
+Zz
 Qf
-XT
+Zz
 Qf
 Qf
 KQ
@@ -44902,7 +44899,7 @@ pL
 PI
 rt
 VC
-Aw
+bZ
 zH
 uZ
 uZ
@@ -45159,8 +45156,8 @@ Xd
 PI
 Qx
 Vd
-gc
-BG
+rk
+FW
 bm
 bQ
 jK
@@ -45933,7 +45930,7 @@ Nm
 Jn
 TE
 br
-bc
+cB
 lw
 WL
 lW
@@ -46957,7 +46954,7 @@ qN
 rG
 MZ
 GH
-Wj
+aW
 BM
 Tf
 gV

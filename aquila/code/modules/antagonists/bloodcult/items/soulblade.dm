@@ -132,7 +132,7 @@
 		to_chat(user, span_warning("Niewytłumaczalna siła z mocą odpycha [src] od [target]!") )
 		user.adjustFireLoss(5)
 		return
-	if (IS_CULTIST(user) && !IS_CULTIST(target) && !target.stat == DEAD)
+	if (IS_CULTIST(user) && !IS_CULTIST(target) && target.stat != DEAD)
 		var/datum/antagonist/cult/cult_datum = user.mind.has_antag_datum(/datum/antagonist/cult)
 		if (target.mind)
 			cult_datum.gain_devotion(30, DEVOTION_TIER_3, "attack_soulblade", target)
@@ -209,7 +209,7 @@
 /// vgstation: kultysta przebija się pustym ostrzem i zamyka w nim własną duszę jako cień (klucz rytuału suicide_soulblade)
 /obj/item/melee/soulblade/suicide_act(mob/living/user)
 	user.visible_message(span_danger("[user] rozpruwa sobie brzuch [src]! [shade ? "Wygląda na to, że próbuje popełnić samobójstwo." : "Klejnot nad rękojeścią zaczyna świecić..."]"))
-	if(shade || !iscarbon(user) || !user.mind)
+	if(shade || !iscarbon(user) || !user.mind || !IS_CULTIST(user))
 		return BRUTELOSS
 	playsound(get_turf(user), 'aquila/sound/bloodcult/edibles_short.ogg', 75, 0)
 	playsound(user, 'aquila/sound/bloodcult/bloodyslice.ogg', 50, 1)

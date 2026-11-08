@@ -14,3 +14,6 @@
 
 /// Najwięcej popielnych krawędzi, jakie zapiekanie popiołu zostawi na jednym kafelku
 #define MAX_ASH_RIMS_PER_TURF 5
+
+/// Sent by a /datum/fleet right after it retreats from a system (aquila/code/modules/overmap/fleet_distress.dm): (datum/star_system/left, datum/star_system/target)
+#define COMSIG_FLEET_AI_RETREATED "aq_fleet_ai_retreated"

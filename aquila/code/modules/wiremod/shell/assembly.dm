@@ -7,19 +7,32 @@
 	name = "zespół z układem"
 	desc = "Małe urządzenie elektroniczne, w którym można umieścić układ scalony."
 	icon_state = "wiremod"
+	attachable = TRUE // w tg ASSEMBLY_ALL: zespół podpina się też do przewodów maszyn i drzwi
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 2.5, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)
 
-// U nas zespoły nie wysyłają sygnałów o podłączeniu, więc obudowa nie bierze prądu z maszyny ani borga (jak w tg),
-// tylko z własnej baterii układu.
+// W odróżnieniu od tg obudowa nie bierze prądu z maszyny ani borga, tylko z własnej baterii układu.
 /obj/item/assembly/wiremod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/assembly_input(),
 		new /obj/item/circuit_component/assembly_output(),
 	), SHELL_CAPACITY_SMALL)
+
+// W tg sygnały o podłączeniu wysyła /obj/item/assembly/on_attach()/on_detach(), które przewody wołają przy podpinaniu.
+// U nas przewody ich nie wołają, więc wysyłamy je tutaj. Słucha ich komponent Wirenet, który szuka kabla pod maszyną.
+/datum/wires/attach_assembly(color, obj/item/assembly/S)
+	. = ..()
+	if(.)
+		SEND_SIGNAL(S, COMSIG_ASSEMBLY_ATTACHED, holder)
+
+/datum/wires/detach_assembly(color)
+	var/obj/item/assembly/S = get_attached(color)
+	. = ..()
+	if(. && S)
+		SEND_SIGNAL(S, COMSIG_ASSEMBLY_DETACHED, holder)
 
 /obj/item/assembly/wiremod/activate()
 	. = ..()

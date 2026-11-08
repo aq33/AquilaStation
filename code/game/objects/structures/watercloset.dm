@@ -35,7 +35,7 @@
 
 /obj/structure/toilet/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>W spłuczce jest [round(reagents.total_volume)]/[reagents.maximum_volume] j. wody. <b>Prawy klik</b> spuszcza wodę.</span>"
+	. += "<span class='notice'>W spłuczce jest [round(reagents.total_volume)]/[reagents.maximum_volume] j. wody. Kliknięcie <b>[user.secondary_click_text()]</b> spuszcza wodę.</span>"
 	if(cistern && has_water_reclaimer)
 		. += "<span class='notice'>W spłuczce siedzi odzysk wody, przykręcony dwoma <b>śrubkami</b>.</span>"
 
@@ -356,7 +356,7 @@
 	if(has_water_reclaimer)
 		. += "<span class='notice'>Ma zamontowany odzysk wody. Można go wyważyć <b>łomem</b>.</span>"
 	. += "<span class='notice'>Zostało [round(reagents.total_volume)]/[reagents.maximum_volume] j. wody.</span>"
-	. += "<span class='notice'><b>Prawym klikiem</b> pojemnikiem wylejesz jego zawartość do odpływu.</span>"
+	. += "<span class='notice'>Pojemnikiem klikniętym <b>[user.secondary_click_text()]</b> wylejesz jego zawartość do odpływu.</span>"
 
 /obj/structure/sink/process(delta_time)
 	// Water reclamation complete?
