@@ -57,10 +57,14 @@
 	var/j
 	for(var/i in 1 to images.len)
 		var/image/c = images[i]
+		// AQ EDIT START - najpierw płaszczyzna, potem warstwa, jak w grze: kable, rury i kratownice mają warstwę poniżej TURF_LAYER na GAME_PLANE
+		var/c_plane = c.plane == FLOAT_PLANE ? GAME_PLANE : c.plane
 		for(j = sorted.len, j > 0, --j)
 			var/image/c2 = sorted[j]
-			if(c2.layer <= c.layer)
+			var/c2_plane = c2.plane == FLOAT_PLANE ? GAME_PLANE : c2.plane
+			if(c2_plane < c_plane || (c2_plane == c_plane && c2.layer <= c.layer))
 				break
+		// AQ EDIT END
 		sorted.Insert(j+1, c)
 		CHECK_TICK
 
