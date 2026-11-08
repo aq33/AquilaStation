@@ -36,6 +36,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(__file__))
 import build_chat_dict as bcd  # noqa: E402
@@ -295,6 +296,14 @@ def judged_before(folders):
     return seen
 
 
+# pewność źródła: gałąź PR (ten sam plik przed tłumaczeniem) > to samo miejsce w kodzie > podobna treść
+KIND_RANK = {"pr": 2, "var": 1, "proc": 1, "tsx": 1, "global": 0}
+
+
+def rank(item):
+    return (KIND_RANK.get(item["kind"], 0), item["score"])
+
+
 def split(args):
     # z kilku list kandydatów (różne drzewa, wersje, dopasowanie po treści) wygrywa najwyższe podobieństwo
     best = {}
@@ -302,7 +311,7 @@ def split(args):
         for line in open(path, encoding="utf-8"):
             if line.strip():
                 x = json.loads(line)
-                if x["pl"] not in best or x["score"] > best[x["pl"]]["score"]:
+                if x["pl"] not in best or rank(x) > rank(best[x["pl"]]):
                     best[x["pl"]] = x
     items = list(best.values())
     seen = judged_before(args.previous)
@@ -319,7 +328,11 @@ def split(args):
             dropped["kandydat po polsku"] += 1
             continue
         history = x["why"] != "tłumaczenie agenta"
-        if x["kind"] == "tsx" and (CODEY_TSX.search(pl) or CODEY_TSX.search(orig)):
+        if x["kind"] == "global" and letters_only(cur) == letters_only(orig):
+            # ten sam tekst w innym miejscu: różni się tylko wielkością liter, które zależą od kontekstu
+            dropped["po treści tylko wielkość liter"] += 1
+            continue
+        if x["kind"] in ("tsx", "global", "pr") and (CODEY_TSX.search(pl) or CODEY_TSX.search(orig)):
             dropped["tekst okna z kodem"] += 1
             continue
         orig = rewrap(cur, orig)
@@ -443,6 +456,7 @@ def glob_packs(folder):
 CODE_DIRS = ("code", "modular_", "monkestation", "yogstation", "goon", "nsv13", "tgui", "_std", "strings",
              "modular_skyrat", "modular_nova", "modular_ss220", "modular_bluemoon")
 HIST_EXT = (".dm", ".tsx", ".jsx", ".ts", ".js")
+MAX_LINE = 20000
 
 
 # zbudowane bundle TGUI (tg i Bee commitowały je latami) są duże i nie ma ich w klonie bez dużych plików
@@ -451,13 +465,15 @@ HIST_EXCLUDE = [":(exclude)tgui/public/**", ":(exclude)**/*.bundle.*", ":(exclud
 
 
 def git_lines(repo, *args):
-    proc = subprocess.Popen(["git", "--no-lazy-fetch", "-C", repo, *args], stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
-    for raw in proc.stdout:
-        yield raw.decode("utf-8", "replace").rstrip("\n").rstrip("\r")
-    err = proc.stderr.read().decode("utf-8", "replace")
-    if proc.wait() != 0:
-        print(f"BŁĄD gita w {repo} ({args[0]}): {err.strip()[-300:]}", file=sys.stderr)
+    # stderr do pliku: ostrzeżenia o brakujących plikach potrafią zapchać potok i zakleszczyć odczyt stdout
+    with tempfile.TemporaryFile() as err:
+        proc = subprocess.Popen(["git", "--no-lazy-fetch", "-C", repo, *args], stdout=subprocess.PIPE, stderr=err)
+        for raw in proc.stdout:
+            yield raw.decode("utf-8", "replace").rstrip("\n").rstrip("\r")
+        if proc.wait() != 0:
+            err.seek(0)
+            print(f"BŁĄD gita w {repo} ({args[0]}): {err.read().decode('utf-8', 'replace').strip()[-300:]}",
+                  file=sys.stderr)
 
 
 def missing_paths(repo, pathspecs):
@@ -506,15 +522,23 @@ def literals(args):
         if broken:
             print(f"{label}: pomijam {len(broken)} plików bez pełnej historii: {sorted(broken)[:5]}", file=sys.stderr)
         pathspecs += [f":(exclude,literal){p}" for p in sorted(broken)]
+        done, mark = 0, 0
         for line in git_lines(repo, "log", "-p", "--no-merges", "--no-renames", "-U0", "--format=%x01",
                               "HEAD", "--", *pathspecs):
+            done += len(line)
+            if done - mark > 200 * 1024 * 1024:
+                mark = done
+                print(f"  {label}: {done >> 20} MB diffów, literałów: {len(seen)}", file=sys.stderr, flush=True)
             if line.startswith("diff --git "):
                 flush()
                 path = line.split(" b/", 1)[-1]
             elif line.startswith("@@") or line == "\x01":
                 flush()
             elif line.startswith("+") and not line.startswith("+++"):
-                added.append(line[1:])
+                # gigantyczne linie (dane, zminifikowany kod) parser znak po znaku mieli w nieskończoność,
+                # a tak długich literałów i tak nie bierzemy
+                if len(line) <= MAX_LINE:
+                    added.append(line[1:])
         flush()
         out = os.path.join(args.out, f"{label}.jsonl")
         with open(out, "w", encoding="utf-8") as f:
@@ -530,7 +554,7 @@ def snapshots(args):
         done = set()
         for year in range(args.since, args.until + 1):
             for month in ("01", "07"):
-                rev = next(git_lines(repo, "rev-list", "-1", f"--before={year}-{month}-01", "HEAD"), "")
+                rev = (list(git_lines(repo, "rev-list", "-1", f"--before={year}-{month}-01", "HEAD")) or [""])[0]
                 if not rev or rev in done:
                     continue
                 done.add(rev)
@@ -543,7 +567,8 @@ def snapshots(args):
                     parts = meta.split()
                     if len(parts) < 4 or parts[1] != "blob" or not p.endswith(HIST_EXT):
                         continue
-                    if not p.startswith(CODE_DIRS) or parts[3] == "-" or int(parts[3]) > 400 * 1024:
+                    # rozmiar "BAD" = pliku nie ma w klonie (za duży)
+                    if not p.startswith(CODE_DIRS) or not parts[3].isdigit() or int(parts[3]) > 400 * 1024:
                         continue
                     blobs.append((parts[2], p))
                 write_blobs(repo, blobs, dest)
@@ -553,8 +578,13 @@ def snapshots(args):
 def write_blobs(repo, blobs, dest):
     proc = subprocess.Popen(["git", "--no-lazy-fetch", "-C", repo, "cat-file", "--batch"],
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
-    proc.stdin.write("".join(f"{sha}\n" for sha, _ in blobs).encode())
-    proc.stdin.close()
+    # wejście w osobnym wątku: przy zapisie wszystkiego naraz git czeka, aż odbierzemy wyjście (zakleszczenie)
+    import threading
+
+    def feed():
+        proc.stdin.write("".join(f"{sha}\n" for sha, _ in blobs).encode())
+        proc.stdin.close()
+    threading.Thread(target=feed, daemon=True).start()
     for sha, p in blobs:
         header = proc.stdout.readline().decode().split()
         if len(header) < 3 or header[1] == "missing":
