@@ -420,13 +420,6 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
-"bc" = (
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/computer/ai_server_console{
-	dir = 2
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bd" = (
 /obj/machinery/rack_creator,
 /turf/open/floor/engine,
@@ -1515,16 +1508,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger)
-"gc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "gd" = (
 /obj/effect/spawner/structure/window/reinforced/ship,
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -5258,19 +5241,6 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/red/telecomms,
 /area/comms)
-"Aw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
-/area/comms)
 "AD" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -5414,10 +5384,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"BG" = (
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/comms)
 "BH" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = 27
@@ -5482,6 +5448,20 @@
 /obj/machinery/gravity_generator/main/station,
 /turf/open/floor/monotile/dark,
 /area/engine/gravity_generator)
+"BZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "Cc" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/structure/cable,
@@ -8575,6 +8555,11 @@
 	dir = 1
 	},
 /area/engine/engine_room)
+"SA" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "SB" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -8855,6 +8840,17 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"TM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "TR" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/line{
@@ -9108,6 +9104,14 @@
 /obj/machinery/light/floor,
 /turf/open/floor/engine,
 /area/engine/atmos)
+"Vx" = (
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/engine,
+/area/comms)
 "Vy" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
@@ -9251,13 +9255,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engine_room)
-"Wj" = (
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/obj/structure/ethernet_cable,
-/turf/open/floor/engine,
-/area/comms)
 "Wo" = (
 /obj/structure/closet/secure_closet/engineering_electrical{
 	anchored = 1
@@ -45206,7 +45203,7 @@ pL
 PI
 rt
 VC
-Aw
+BZ
 zH
 uZ
 uZ
@@ -45463,8 +45460,8 @@ Xd
 PI
 Qx
 Vd
-gc
-BG
+TM
+SA
 bm
 bQ
 jK
@@ -46237,7 +46234,7 @@ Nm
 Jn
 TE
 br
-bc
+Vx
 lw
 WL
 lW
@@ -47261,7 +47258,7 @@ qN
 rG
 MZ
 GH
-Wj
+aW
 BM
 Tf
 gV
