@@ -265,6 +265,12 @@
 	SSjukeboxes.update_client(listener)
 	if(panel.plays != 3)
 		return "After the chat panel reloaded the jukebox never sent its track again"
+	// The player silenced the sounds on purpose (Zatrzymaj Dźwięki): the same track does not come back
+	SSjukeboxes.on_foreign_music(listener, TRUE)
+	SSjukeboxes.on_music_silenced(listener)
+	SSjukeboxes.update_client(listener)
+	if(panel.plays != 3)
+		return "After the player silenced the sounds the jukebox sent the same track again"
 	// An admin plays internet music: the jukebox leaves it alone, does not turn it down, and does not cut it off when the player walks away
 	SSjukeboxes.on_foreign_music(listener, FALSE)
 	var/gains_before = panel.gains

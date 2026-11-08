@@ -210,6 +210,15 @@ SUBSYSTEM_DEF(jukeboxes)
 	else
 		state.yielded = TRUE
 
+/// Gracz albo admin celowo wyciszył dźwięki („Zatrzymaj Dźwięki”, „Stop All Playing Sounds”): jukebox nie wraca
+/// z tym samym utworem. Gra znowu dopiero przy nowym utworze albo po wyjściu z zasięgu i powrocie.
+/datum/controller/subsystem/jukeboxes/proc/on_music_silenced(client/C)
+	var/datum/jukebox_listening/state = listening[C]
+	if(!state)
+		return
+	state.stale = FALSE
+	state.yielded = TRUE
+
 /// Włącza jukebox jako nadający na cały statek; poprzedni nadający na tym samym statku przestaje
 /datum/controller/subsystem/jukeboxes/proc/set_shipwide(obj/machinery/jukebox/J, enabled)
 	if(enabled && !J.can_broadcast) // radio i głośnik Syndykatu nie nadają na cały statek

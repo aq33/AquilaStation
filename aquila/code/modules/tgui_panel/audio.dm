@@ -27,3 +27,15 @@
 	. = ..()
 	if(type == "ready" && client)
 		SSjukeboxes.on_foreign_music(client, TRUE)
+
+// Celowe wyciszenie to nie cudza muzyka: jukebox nie puszcza utworu od nowa (stop_music() powyżej oznaczyło go do ponowienia)
+/client/stop_client_sounds()
+	..()
+	SSjukeboxes.on_music_silenced(src)
+
+/client/stop_sounds()
+	. = ..()
+	if(!holder)
+		return
+	for(var/client/C as anything in GLOB.clients)
+		SSjukeboxes.on_music_silenced(C)
