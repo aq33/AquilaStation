@@ -1,0 +1,37 @@
+/**
+ * AQUILA: motyw okien wojny gangów - noir: ciemna cegła, złoto, przygaszony fiolet.
+ */
+
+.theme-gang:root {
+  --color-base: #16120f;
+  --base-gradient-spread: 6;
+  --color-primary: #d4a72c;
+  --color-good: #8ccf6a;
+  --color-bad: #d9443a;
+  --button-background-default: #4a3a1c;
+  --button-background-disabled: #2e2a26;
+  --button-background-selected: #7a5a16;
+  --button-background-caution: #8a6a12;
+  --button-background-danger: #7a1f1a;
+  --input-border-color: #5a4a2a;
+  --notice-box-background: #3a2a10;
+  --tooltip-background: #0c0a08;
+  --titlebar-background: #1e1812;
+
+  .Layout__content {
+    // mur z cegieł (rzędy przesunięte o pół cegły)
+    background-color: #0e0b09;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='36'><rect width='48' height='36' fill='%231b1511'/><rect x='1' y='1' width='46' height='16' fill='%23241b15'/><rect x='-23' y='19' width='46' height='16' fill='%23201813'/><rect x='25' y='19' width='46' height='16' fill='%23261d16'/></svg>");
+    background-size: 48px 36px;
+  }
+
+  .Section {
+    background-color: rgba(10, 8, 6, 0.82);
+  }
+
+  .Section__titleText {
+    color: #d4a72c;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.08em;
+  }
+}

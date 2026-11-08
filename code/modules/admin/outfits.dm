@@ -296,10 +296,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 		if("back")
 			options = typesof(/obj/item/storage/backpack)
-			for(var/obj/item/mod/control/pre_equipped/potential_mod as anything in subtypesof(/obj/item/mod/control/pre_equipped))
-				if(!(initial(potential_mod.slot_flags) == ITEM_SLOT_BACK))
-					continue
-				options |= potential_mod
 
 		if("shoes")
 			options = typesof(/obj/item/clothing/shoes)

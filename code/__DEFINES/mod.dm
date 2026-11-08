@@ -4,9 +4,6 @@
 /// Default cell drain per process on MODsuits
 #define DEFAULT_CHARGE_DRAIN 5
 
-/// Default time for a part of the suit to seal.
-#define MOD_ACTIVATION_STEP_TIME (1 SECONDS)
-
 /// Passive module, just acts when put in naturally.
 #define MODULE_PASSIVE 0
 /// Usable module, does something when you press a button.
@@ -23,35 +20,5 @@
 /// This module can be used while the suit is off
 #define MODULE_ALLOW_INACTIVE (1<<2)
 
-#define UNSEALED_LAYER "unsealed_layer"
-#define SEALED_LAYER "sealed_layer"
-#define UNSEALED_CLOTHING "unsealed_clothing"
-#define SEALED_CLOTHING "sealed_clothing"
-#define UNSEALED_INVISIBILITY "unsealed_invisibility"
-#define SEALED_INVISIBILITY "sealed_invisibility"
-#define UNSEALED_COVER "unsealed_cover"
-#define SEALED_COVER "sealed_cover"
-#define CAN_OVERSLOT "can_overslot"
-#define UNSEALED_MESSAGE "unsealed_message"
-#define SEALED_MESSAGE "sealed_message"
-
-//Defines used to override MOD clothing's icon and worn icon files in the skin.
-#define MOD_ICON_OVERRIDE "mod_icon_override"
-#define MOD_WORN_ICON_OVERRIDE "mod_worn_icon_override"
-
-//Default text for different messages for the user.
-#define HELMET_UNSEAL_MESSAGE "otwiera się z sykiem"
-#define HELMET_SEAL_MESSAGE "zamyka się z sykiem"
-#define CHESTPLATE_UNSEAL_MESSAGE "puszcza twoją klatkę piersiową"
-#define CHESTPLATE_SEAL_MESSAGE "ciasno opina twoją klatkę piersiową"
-#define GAUNTLET_UNSEAL_MESSAGE "luzują się na twoich palcach"
-#define GAUNTLET_SEAL_MESSAGE "zaciskają się na twoich palcach i nadgarstkach"
-#define BOOT_UNSEAL_MESSAGE "luzują uścisk na twoich nogach"
-#define BOOT_SEAL_MESSAGE "uszczelniają się wokół twoich stóp"
-
-/// Global list of all /datum/mod_theme
-GLOBAL_LIST_INIT(mod_themes, setup_mod_themes())
-/// Global cache of mod skins to masks per different configuration of pulled out parts.
-GLOBAL_LIST_EMPTY(mod_masks)
 /// Global cache of mod skins to deployed parts to module icon states
 GLOBAL_LIST_EMPTY(mod_module_overlays)

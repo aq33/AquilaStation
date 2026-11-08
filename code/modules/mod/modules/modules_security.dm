@@ -26,7 +26,7 @@
 	if(!istype(suit))
 		return
 	already_allowed_guns = guns_typecache & suit.allowed
-	suit.allowed |= guns_typecache
+	suit.allowed = suit.allowed | guns_typecache // AQ EDIT - nowa lista: allowed hardsuitów bywa wspólną listą globalną (GLOB.security_hardsuit_allowed)
 
 /obj/item/mod/module/magnetic_harness/on_uninstall(deleting = FALSE)
 	if(deleting)
@@ -34,7 +34,7 @@
 	var/obj/item/clothing/suit = mod.get_part_from_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(suit))
 		return
-	suit.allowed -= (guns_typecache - already_allowed_guns)
+	suit.allowed = suit.allowed - (guns_typecache - already_allowed_guns) // AQ EDIT - nowa lista zamiast zmiany wspólnej
 
 /obj/item/mod/module/magnetic_harness/on_part_activation()
 	RegisterSignal(mod.wearer, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(check_dropped_item))

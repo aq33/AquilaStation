@@ -920,136 +920,6 @@
 
 //MODsuit stuff
 
-/datum/design/mod_shell
-	name = "Skorupa MOD"
-	desc = "Skorupa modułowego skafandra zaprojektowana przez Nakamura Engineering."
-	id = "mod_shell"
-	build_type = MECHFAB
-	materials = list(/datum/material/iron = 10000, /datum/material/plasma = 5000)
-	construction_time = 25 SECONDS
-	build_path = /obj/item/mod/construction/shell
-	category = list("MOD Construction")
-
-/datum/design/mod_helmet
-	name = "Hełm MOD"
-	desc = "Hełm modułowego skafandra zaprojektowany przez Nakamura Engineering."
-	id = "mod_helmet"
-	build_type = MECHFAB
-	materials = list(/datum/material/iron = 5000)
-	construction_time = 10 SECONDS
-	build_path = /obj/item/mod/construction/helmet
-	category = list("MOD Construction")
-
-/datum/design/mod_chestplate
-	name = "Napierśnik MOD"
-	desc = "Napierśnik modułowego skafandra zaprojektowany przez Nakamura Engineering."
-	id = "mod_chestplate"
-	build_type = MECHFAB
-	materials = list(/datum/material/iron = 5000)
-	construction_time = 10 SECONDS
-	build_path = /obj/item/mod/construction/chestplate
-	category = list("MOD Construction")
-
-/datum/design/mod_gauntlets
-	name = "Rękawice MOD"
-	desc = "Rękawice modułowego skafandra zaprojektowane przez Nakamura Engineering."
-	id = "mod_gauntlets"
-	build_type = MECHFAB
-	materials = list(/datum/material/iron = 5000)
-	construction_time = 10 SECONDS
-	build_path = /obj/item/mod/construction/gauntlets
-	category = list("MOD Construction")
-
-/datum/design/mod_boots
-	name = "Buty MOD"
-	desc = "Buty modułowego skafandra zaprojektowane przez Nakamura Engineering."
-	id = "mod_boots"
-	build_type = MECHFAB
-	materials = list(/datum/material/iron = 5000)
-	construction_time = 10 SECONDS
-	build_path = /obj/item/mod/construction/boots
-	category = list("MOD Construction")
-
-/datum/design/mod_plating
-	name = "Zewnętrzne poszycie MOD"
-	desc = "Zewnętrzne poszycie MODsuitu."
-	id = "mod_plating_standard"
-	build_type = MECHFAB|PROTOLATHE
-	materials = list(/datum/material/iron = 6000, /datum/material/glass = 3000, /datum/material/plasma = 1000)
-	construction_time = 15 SECONDS
-	build_path = /obj/item/mod/construction/plating
-	category = list("MOD Construction", "Equipment")
-	research_icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
-	research_icon_state = "standard-plating"
-
-/datum/design/mod_plating/New()
-	. = ..()
-	var/obj/item/mod/construction/plating/armor_type = build_path
-	var/datum/mod_theme/theme = GLOB.mod_themes[initial(armor_type.theme)]
-	name = "Zewnętrzne poszycie MOD (model [theme.name])"
-	desc = "Zewnętrzne poszycie MODsuitu. [theme.desc]"
-
-/datum/design/mod_plating/civilian
-	name = "Zewnętrzne poszycie MOD (model cywilny)"
-	id = "mod_plating_civilian"
-	build_path = /obj/item/mod/construction/plating/civilian
-	materials = list(
-		/datum/material/iron = 3000,
-		/datum/material/glass = 1500,
-		/datum/material/plasma = 1000,
-	)
-	research_icon_state = "civilian-plating"
-
-/datum/design/mod_plating/engineering
-	id = "mod_plating_engineering"
-	build_path = /obj/item/mod/construction/plating/engineering
-	materials = list(
-		/datum/material/iron = 6000,
-		/datum/material/gold = 2000,
-		/datum/material/glass = 1000,
-		/datum/material/plasma = 1000
-	)
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
-	research_icon_state = "engineering-plating"
-
-/datum/design/mod_plating/atmospheric
-	id = "mod_plating_atmospheric"
-	build_path = /obj/item/mod/construction/plating/atmospheric
-	materials = list(/datum/material/iron = 6000, /datum/material/titanium = 2000, /datum/material/glass = 1000, /datum/material/plasma = 1000)
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
-	research_icon_state = "atmospheric-plating"
-
-/datum/design/mod_plating/medical
-	id = "mod_plating_medical"
-	build_path = /obj/item/mod/construction/plating/medical
-	materials = list(/datum/material/iron = 6000, /datum/material/silver = 2000, /datum/material/glass = 1000, /datum/material/plasma = 1000)
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-	research_icon_state = "medical-plating"
-
-/datum/design/mod_plating/security
-	id = "mod_plating_security"
-	build_path = /obj/item/mod/construction/plating/security
-	materials = list(/datum/material/iron = 6000, /datum/material/uranium = 2000, /datum/material/glass = 1000, /datum/material/plasma = 1000)
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-	research_icon_state = "security-plating"
-
-/datum/design/mod_plating/cosmohonk
-	id = "mod_plating_cosmohonk"
-	build_path = /obj/item/mod/construction/plating/cosmohonk
-	materials = list(/datum/material/iron = 6000, /datum/material/bananium = 2000, /datum/material/glass = 1000, /datum/material/plasma = 1000)
-	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
-	research_icon_state = "cosmohonk-plating"
-
-/datum/design/mod_paint_kit
-	name = "Zestaw do malowania MOD"
-	desc = "Zestaw do malowania modułowych skafandrów."
-	id = "mod_paint_kit"
-	build_type = MECHFAB|PROTOLATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/plastic = 500)
-	construction_time = 5 SECONDS
-	build_path = /obj/item/mod/paint
-	category = list("Misc")
-
 /datum/design/module
 	name = "Moduł MOD"
 	build_type = MECHFAB
@@ -1065,290 +935,263 @@
 	desc = "[initial(module.desc)] Złożoność: [initial(module.complexity)]."
 
 /datum/design/module/mod_storage
-	name = "Moduł MODsuitu: schowek"
+	name = "Moduł hardsuitu: schowek"
 	id = "mod_storage"
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 500)
 	build_path = /obj/item/mod/module/storage
 
 /datum/design/module/mod_storage_expanded
-	name = "Moduł MODsuitu: powiększony schowek"
+	name = "Moduł hardsuitu: powiększony schowek"
 	id = "mod_storage_expanded"
 	materials = list(/datum/material/iron = 5000, /datum/material/uranium = 2000)
 	build_path = /obj/item/mod/module/storage/large_capacity
 
 /datum/design/module/mod_visor_medhud
-	name = "Moduł MODsuitu: wizjer medyczny"
+	name = "Moduł hardsuitu: wizjer medyczny"
 	id = "mod_visor_medhud"
 	materials = list(/datum/material/silver = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/visor/medhud
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/mod_visor_diaghud
-	name = "Moduł MODsuitu: wizjer diagnostyczny"
+	name = "Moduł hardsuitu: wizjer diagnostyczny"
 	id = "mod_visor_diaghud"
 	materials = list(/datum/material/gold = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/visor/diaghud
 	department_type = MODULE_SCIENCE
 
 /datum/design/module/mod_visor_sechud
-	name = "Moduł MODsuitu: wizjer ochrony"
+	name = "Moduł hardsuitu: wizjer ochrony"
 	id = "mod_visor_sechud"
 	materials = list(/datum/material/titanium = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/visor/sechud
 	department_type = MODULE_SECURITY
 
 /datum/design/module/mod_visor_meson
-	name = "Moduł MODsuitu: wizjer mezonowy"
+	name = "Moduł hardsuitu: wizjer mezonowy"
 	id = "mod_visor_meson"
 	materials = list(/datum/material/uranium = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/visor/meson
 	department_type = MODULE_SUPPLY
 
 /datum/design/module/mod_visor_welding
-	name = "Moduł MODsuitu: ochrona przy spawaniu"
+	name = "Moduł hardsuitu: ochrona przy spawaniu"
 	id = "mod_welding"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/welding
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_t_ray
-	name = "Moduł MODsuitu: skaner T-ray"
+	name = "Moduł hardsuitu: skaner T-ray"
 	id = "mod_t_ray"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/t_ray
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_health_analyzer
-	name = "Moduł MODsuitu: analizator zdrowia"
+	name = "Moduł hardsuitu: analizator zdrowia"
 	id = "mod_health_analyzer"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/health_analyzer
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/mod_stealth
-	name = "Moduł MODsuitu: maskowanie"
+	name = "Moduł hardsuitu: maskowanie"
 	id = "mod_stealth"
 	materials = list(/datum/material/iron = 1000, /datum/material/bluespace = 500)
 	build_path = /obj/item/mod/module/stealth
 	department_type = MODULE_SECURITY
 
 /datum/design/module/mod_jetpack
-	name = "Moduł MODsuitu: jonowy plecak odrzutowy"
+	name = "Moduł hardsuitu: jonowy plecak odrzutowy"
 	id = "mod_jetpack"
 	materials = list(/datum/material/iron = 1500, /datum/material/plasma = 1000)
 	build_path = /obj/item/mod/module/jetpack
 
 /datum/design/module/mod_magboot
-	name = "Moduł MODsuitu: stabilizacja magnetyczna"
+	name = "Moduł hardsuitu: stabilizacja magnetyczna"
 	id = "mod_magboot"
 	materials = list(/datum/material/iron = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/mod/module/magboot
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_mag_harness
-	name = "Moduł MODsuitu: uprząż magnetyczna"
+	name = "Moduł hardsuitu: uprząż magnetyczna"
 	id = "mod_mag_harness"
 	materials = list(/datum/material/iron = 1500, /datum/material/silver = 500)
 	build_path = /obj/item/mod/module/magnetic_harness
 	department_type = MODULE_SECURITY
 
 /datum/design/module/mod_tether
-	name = "Moduł MODsuitu: awaryjna lina"
+	name = "Moduł hardsuitu: awaryjna lina"
 	id = "mod_tether"
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 500)
 	build_path = /obj/item/mod/module/tether
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_mouthhole
-	name = "Moduł MODsuitu: aparat do jedzenia"
+	name = "Moduł hardsuitu: aparat do jedzenia"
 	id = "mod_mouthhole"
 	materials = list(/datum/material/iron = 1500)
 	build_path = /obj/item/mod/module/mouthhole
 
 /datum/design/module/mod_rad_protection
-	name = "Moduł MODsuitu: ochrona przed promieniowaniem"
+	name = "Moduł hardsuitu: ochrona przed promieniowaniem"
 	id = "mod_rad_protection"
 	materials = list(/datum/material/iron = 1000, /datum/material/uranium = 1000)
 	build_path = /obj/item/mod/module/rad_protection
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_emp_shield
-	name = "Moduł MODsuitu: osłona EMP"
+	name = "Moduł hardsuitu: osłona EMP"
 	id = "mod_emp_shield"
 	materials = list(/datum/material/iron = 1000, /datum/material/plasma = 1000)
 	build_path = /obj/item/mod/module/emp_shield
 
 /datum/design/module/mod_flashlight
-	name = "Moduł MODsuitu: latarka"
+	name = "Moduł hardsuitu: latarka"
 	id = "mod_flashlight"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/flashlight
 
 /datum/design/module/mod_reagent_scanner
-	name = "Moduł MODsuitu: skaner odczynników"
+	name = "Moduł hardsuitu: skaner odczynników"
 	id = "mod_reagent_scanner"
 	materials = list(/datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/reagent_scanner
 	department_type = MODULE_SCIENCE
 
 /datum/design/module/mod_gps
-	name = "Moduł MODsuitu: wewnętrzny GPS"
+	name = "Moduł hardsuitu: wewnętrzny GPS"
 	id = "mod_gps"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/mod/module/gps
 	department_type = MODULE_SUPPLY
 
 /datum/design/module/mod_constructor
-	name = "Moduł MODsuitu: konstruktor"
+	name = "Moduł hardsuitu: konstruktor"
 	id = "mod_constructor"
 	materials = list(/datum/material/iron = 1000, /datum/material/titanium = 500)
 	build_path = /obj/item/mod/module/constructor
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_quick_carry
-	name = "Moduł MODsuitu: szybkie noszenie"
+	name = "Moduł hardsuitu: szybkie noszenie"
 	id = "mod_quick_carry"
 	materials = list(/datum/material/iron = 1000, /datum/material/titanium = 500)
 	build_path = /obj/item/mod/module/quick_carry
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/mod_longfall
-	name = "Moduł MODsuitu: bezpieczny upadek"
+	name = "Moduł hardsuitu: bezpieczny upadek"
 	id = "mod_longfall"
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/mod/module/longfall
 
 /datum/design/module/mod_thermal_regulator
-	name = "Moduł MODsuitu: regulator temperatury"
+	name = "Moduł hardsuitu: regulator temperatury"
 	id = "mod_thermal_regulator"
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/thermal_regulator
 
 /datum/design/module/mod_injector
-	name = "Moduł MODsuitu: iniektor"
+	name = "Moduł hardsuitu: iniektor"
 	id = "mod_injector"
 	materials = list(/datum/material/iron = 1000, /datum/material/diamond = 500)
 	build_path = /obj/item/mod/module/injector
 	department_type = MODULE_MEDICAL
 
-/datum/design/module/mod_bikehorn
-	name = "Moduł MODsuitu: trąbka rowerowa"
-	id = "mod_bikehorn"
-	materials = list(/datum/material/plastic = 500, /datum/material/iron = 500)
-	build_path = /obj/item/mod/module/bikehorn
-	department_type = MODULE_SERVICE
-
-/datum/design/module/mod_microwave_beam
-	name = "Moduł MODsuitu: wiązka mikrofalowa"
-	id = "mod_microwave_beam"
-	materials = list(/datum/material/iron = 1000, /datum/material/uranium = 500)
-	build_path = /obj/item/mod/module/microwave_beam
-	department_type = MODULE_SERVICE
-
-/datum/design/module/mod_waddle
-	name = "Moduł MODsuitu: kaczy chód"
-	id = "mod_waddle"
-	materials = list(/datum/material/plastic = 1000, /datum/material/iron = 1000)
-	build_path = /obj/item/mod/module/waddle
-	department_type = MODULE_SERVICE
-
 /datum/design/module/mod_clamp
-	name = "Moduł MODsuitu: chwytak hydrauliczny"
+	name = "Moduł hardsuitu: chwytak hydrauliczny"
 	id = "mod_clamp"
 	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/mod/module/clamp
 	department_type = MODULE_SUPPLY
 
 /datum/design/module/mod_drill
-	name = "Moduł MODsuitu: wiertło"
+	name = "Moduł hardsuitu: wiertło"
 	id = "mod_drill"
 	materials = list(/datum/material/silver = 1000, /datum/material/iron = 2000)
 	build_path = /obj/item/mod/module/drill
 	department_type = MODULE_SUPPLY
 
 /datum/design/module/mod_orebag
-	name = "Moduł MODsuitu: torba na rudę"
+	name = "Moduł hardsuitu: torba na rudę"
 	id = "mod_orebag"
 	materials = list(/datum/material/iron = 1500)
 	build_path = /obj/item/mod/module/orebag
 	department_type = MODULE_SUPPLY
 
 /datum/design/module/mod_organ_thrower
-	name = "Moduł MODsuitu: miotacz organów"
+	name = "Moduł hardsuitu: miotacz organów"
 	id = "mod_organ_thrower"
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/organ_thrower
 	department_type = MODULE_MEDICAL
 
-/datum/design/module/mod_pathfinder
-	name = "Moduł MODsuitu: nawigator"
-	id = "mod_pathfinder"
-	materials = list(/datum/material/uranium = 1000, /datum/material/iron = 1000)
-	build_path = /obj/item/mod/module/pathfinder
-
 /datum/design/module/mod_dna_lock
-	name = "Moduł MODsuitu: blokada DNA"
+	name = "Moduł hardsuitu: blokada DNA"
 	id = "mod_dna_lock"
 	materials = list(/datum/material/diamond = 500, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/dna_lock
 
 /datum/design/module/mod_plasma_stabilizer
-	name = "Moduł MODsuitu: stabilizator plazmy"
+	name = "Moduł hardsuitu: stabilizator plazmy"
 	id = "mod_plasma"
 	materials = list(/datum/material/plasma = 1000, /datum/material/glass = 1000)
 	build_path = /obj/item/mod/module/plasma_stabilizer
 
 /datum/design/module/mister_atmos
-	name = "Moduł MODsuitu: zraszacz żywicy"
+	name = "Moduł hardsuitu: zraszacz żywicy"
 	id = "mod_mister_atmos"
 	materials = list(/datum/material/glass = 1000, /datum/material/titanium = 1500)
 	build_path = /obj/item/mod/module/mister/atmos
 	department_type = MODULE_ENGINEERING
 
 /datum/design/module/mod_holster
-	name = "Moduł MODsuitu: kabura"
+	name = "Moduł hardsuitu: kabura"
 	id = "mod_holster"
 	materials = list(/datum/material/iron = 1500, /datum/material/glass = 500)
 	build_path = /obj/item/mod/module/holster
 	department_type = MODULE_SECURITY
 
 /datum/design/module/mod_sonar
-	name = "Moduł MODsuitu: aktywny sonar"
+	name = "Moduł hardsuitu: aktywny sonar"
 	id = "mod_sonar"
 	materials = list(/datum/material/titanium = 250, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/uranium = 250)
 	build_path = /obj/item/mod/module/active_sonar
 	department_type = MODULE_SECURITY
 
 /datum/design/module/projectile_dampener
-	name = "Moduł MODsuitu: tłumik pocisków"
+	name = "Moduł hardsuitu: tłumik pocisków"
 	id = "mod_projectile_dampener"
 	materials = list(/datum/material/iron = 1000, /datum/material/bluespace = 500)
 	build_path = /obj/item/mod/module/projectile_dampener
 	department_type = MODULE_SECURITY
 
 /datum/design/module/surgicalprocessor
-	name = "Moduł MODsuitu: procesor chirurgiczny"
+	name = "Moduł hardsuitu: procesor chirurgiczny"
 	id = "mod_surgicalprocessor"
 	materials = list(/datum/material/titanium = 250, /datum/material/glass = 1000, /datum/material/silver = 1500)
 	build_path = /obj/item/mod/module/surgical_processor
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/threadripper
-	name = "Moduł MODsuitu: rozpruwacz nici"
+	name = "Moduł hardsuitu: rozpruwacz nici"
 	id = "mod_threadripper"
 	materials = list(/datum/material/titanium = 250, /datum/material/plastic = 1000, /datum/material/silver = 1500)
 	build_path = /obj/item/mod/module/thread_ripper
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/defibrillator
-	name = "Moduł MODsuitu: defibrylator"
+	name = "Moduł hardsuitu: defibrylator"
 	id = "mod_defib"
 	materials = list(/datum/material/titanium = 250, /datum/material/diamond = 1000, /datum/material/silver = 1500)
 	build_path = /obj/item/mod/module/defibrillator
 	department_type = MODULE_MEDICAL
 
 /datum/design/module/statusreadout
-	name = "Moduł MODsuitu: odczyt stanu"
+	name = "Moduł hardsuitu: odczyt stanu"
 	id = "mod_statusreadout"
 	materials = list(
 		/datum/material/iron = 1500,
@@ -1360,7 +1203,7 @@
 //MODsuit bepis modules
 
 /datum/design/module/disposal
-	name = "Moduł MODsuitu: złącze zsypu"
+	name = "Moduł hardsuitu: złącze zsypu"
 	id = "mod_disposal"
 	materials = list(/datum/material/iron = 2500, /datum/material/titanium = 1000)
 	build_path = /obj/item/mod/module/disposal_connector
@@ -1369,22 +1212,15 @@
 //MODsuit anomalock modules
 
 /datum/design/module/mod_antigrav
-	name = "Moduł MODsuitu: antygrawitacja"
+	name = "Moduł hardsuitu: antygrawitacja"
 	id = "mod_antigrav"
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2000, /datum/material/uranium = 2000)
 	build_path = /obj/item/mod/module/anomaly_locked/antigrav
 	department_type = MODULE_SCIENCE
 
 /datum/design/module/mod_teleporter
-	name = "Moduł MODsuitu: teleporter"
+	name = "Moduł hardsuitu: teleporter"
 	id = "mod_teleporter"
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2000, /datum/material/bluespace = 2000)
 	build_path = /obj/item/mod/module/anomaly_locked/teleporter
 	department_type = MODULE_SCIENCE
-
-/datum/design/module/mod_kinesis
-	name = "Moduł MODsuitu: kineza"
-	id = "mod_kinesis"
-	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2000, /datum/material/uranium = 1000, /datum/material/bluespace = 1000)
-	build_path = /obj/item/mod/module/anomaly_locked/kinesis
-	department_type = MODULE_ENGINEERING
