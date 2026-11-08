@@ -1400,6 +1400,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
+"eU" = (
+/obj/docking_port/stationary/sabre/mining,
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "eW" = (
 /obj/structure/table/wood,
 /obj/item/clothing/neck/tie/red,
@@ -1408,12 +1412,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
-"eY" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "eZ" = (
 /obj/structure/table/wood,
 /obj/machinery/cell_charger,
@@ -5666,10 +5664,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
-"xt" = (
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/engine/airless,
-/area/space)
 "xv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -6029,6 +6023,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/department/engine)
+"zW" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "zZ" = (
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/plasteel/dark,
@@ -6219,12 +6220,6 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plasteel,
 /area/maintenance/fore)
-"BM" = (
-/obj/docking_port/stationary/sabre/mining{
-	dir = 4
-	},
-/turf/open/floor/engine/airless,
-/area/space)
 "BN" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/engine)
@@ -58717,7 +58712,7 @@ Lq
 CY
 KM
 hk
-eY
+zW
 Fz
 mO
 mv
@@ -58973,7 +58968,7 @@ KM
 KM
 KM
 KM
-mO
+fP
 fP
 mO
 mO
@@ -59225,7 +59220,7 @@ Fq
 GD
 Fq
 ao
-BM
+aw
 wG
 uC
 uC
@@ -59233,7 +59228,7 @@ uC
 uC
 uC
 uC
-wG
+eU
 mv
 Rm
 aG
@@ -60766,7 +60761,7 @@ vO
 vO
 vO
 vO
-xt
+aw
 iB
 wG
 wG
@@ -61539,7 +61534,7 @@ ar
 vO
 vO
 vO
-vO
+ar
 vO
 vO
 Hc

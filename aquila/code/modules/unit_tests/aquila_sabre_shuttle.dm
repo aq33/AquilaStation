@@ -147,6 +147,102 @@
 	qdel(port, TRUE)
 	qdel(hangar)
 
+/// Duży obiekt z polem kolizji na kilka kafelków, jak działo Gaussa (96x64 z przesunięciem o kafelek w lewo i w dół)
+/obj/structure/unit_test_wide_neighbour
+	anchored = TRUE
+	density = TRUE
+	bound_x = -32
+	bound_y = -32
+	bound_width = 96
+	bound_height = 64
+
+/// AQUILA - lądujący Sabre nie usuwa sąsiada, który stoi obok portu, a tylko polem kolizji zahacza o skrzydło
+/// (Padalec: działo Gaussa na 200,123 przy padzie 191-199 x 116-124)
+/datum/unit_test/sabre_shuttle_wide_neighbour
+
+/datum/unit_test/sabre_shuttle_wide_neighbour/Run()
+	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
+	TEST_ASSERT(host?.current_system, "No main ship in a star system to launch from")
+	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	hangar.overmap_fallback = host
+	var/list/bl = hangar.bottom_left_coords
+	var/obj/docking_port/stationary/sabre/mining/port = new(locate(bl[1] + 5, bl[2] + 5, bl[3]))
+	var/timeout = world.time + 30 SECONDS
+	while(!port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+	sabre.set_fuel(500)
+	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
+	var/obj/structure/unit_test_wide_neighbour/neighbour = new(locate(port.x + 9, port.y + 7, port.z))
+	TEST_ASSERT(sabre.shuttle_land(host, port), "The Sabre didn't land back")
+	TEST_ASSERT(!QDELETED(neighbour), "Landing deleted the wide object next to the port")
+	TEST_ASSERT_EQUAL(neighbour.loc, locate(port.x + 9, port.y + 7, port.z), "Landing moved the wide object next to the port")
+
+	qdel(neighbour)
+	shuttle_port.jumpToNullSpace()
+	if(!QDELETED(sabre))
+		qdel(sabre)
+	qdel(port, TRUE)
+	qdel(hangar)
+
+/// AQUILA - właz przy zewnętrznych drzwiach śluzy statku (Padalec): wysiadający otwiera śluzę i staje w drzwiach
+/datum/unit_test/sabre_exit_through_airlock
+
+/datum/unit_test/sabre_exit_through_airlock/Run()
+	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	var/list/bl = hangar.bottom_left_coords
+	var/obj/docking_port/stationary/sabre/mining/port = new(locate(bl[1] + 5, bl[2] + 5, bl[3]))
+	var/timeout = world.time + 30 SECONDS
+	while(!port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+	var/list/exits = sabre.shuttle_exit_turfs()
+	TEST_ASSERT_EQUAL(length(exits), 2, "The hatch should open onto two tiles")
+	var/turf/wall_exit = exits[1]
+	var/turf/door_exit = exits[2]
+	wall_exit.ChangeTurf(/turf/closed/wall)
+	door_exit = door_exit.ChangeTurf(/turf/open/floor/plating)
+	var/obj/machinery/door/airlock/external/door = new(door_exit)
+	door.machine_stat &= ~NOPOWER
+	TEST_ASSERT(door.density, "The test airlock should start closed")
+
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	var/obj/machinery/computer/ship/helm/console/dropship/sabre/helm
+	for(var/turf/T as anything in shuttle_port.return_turfs())
+		helm = locate() in T
+		if(helm)
+			break
+	pilot.forceMove(get_turf(helm))
+	TEST_ASSERT(sabre.shuttle_leave(pilot), "Leaving through a closed airlock next to the hatch failed")
+	TEST_ASSERT_EQUAL(pilot.loc, door_exit, "The pilot didn't step into the airlock")
+	timeout = world.time + 5 SECONDS
+	while(door.density && world.time < timeout)
+		sleep(1)
+	TEST_ASSERT(!door.density, "The airlock next to the hatch didn't open")
+
+	// Ryglowana śluza zostaje zamknięta: wtedy nie ma którędy wyjść
+	pilot.forceMove(get_turf(helm))
+	timeout = world.time + 5 SECONDS
+	while(door.operating && world.time < timeout)
+		sleep(1)
+	door.close()
+	while(!door.density && world.time < timeout)
+		sleep(1)
+	TEST_ASSERT(door.density, "The test airlock didn't close again")
+	door.locked = TRUE
+	TEST_ASSERT(!sabre.shuttle_leave(pilot), "The pilot left through a bolted airlock")
+
+	qdel(door)
+	shuttle_port.jumpToNullSpace()
+	if(!QDELETED(sabre))
+		qdel(sabre)
+	qdel(port, TRUE)
+	qdel(hangar)
+
 /// AQUILA - porty Sabre na mapie: na starcie rundy każdy ma wnętrze z jednostką overmapy, a z włazu da się wyjść
 /datum/unit_test/sabre_map_ports
 

@@ -357,13 +357,20 @@
 /// Wyjście z promu na pole przed wyjściem (wolne, najlepiej na podłodze)
 /obj/structure/overmap/small_craft/transport/proc/shuttle_leave(atom/movable/AM)
 	var/turf/T
+	var/obj/machinery/door/airlock/exit_door
 	for(var/turf/candidate as anything in shuttle_exit_turfs())
+		var/obj/machinery/door/airlock/door
 		if(is_blocked_turf(candidate, TRUE))
-			continue
+			door = shuttle_exit_door(candidate)
+			if(!door)
+				continue
 		if(!T || (shuttle_exit_unsafe(T) && !shuttle_exit_unsafe(candidate)))
 			T = candidate
+			exit_door = door
 	if(!T)
 		return FALSE
+	if(exit_door)
+		INVOKE_ASYNC(exit_door, TYPE_PROC_REF(/obj/machinery/door, open))
 	var/mob/user = ismob(AM) ? AM : null
 	var/atom/movable/pulled = user?.pulling
 	playsound(src, 'nsv13/sound/effects/footstep/ladder2.ogg', 50)
@@ -374,6 +381,18 @@
 		user.start_pulling(pulled)
 	mobs_in_ship -= AM
 	return TRUE
+
+/// Wyjście zastawione tylko zamkniętą, zasilaną i nieryglowaną śluzą (właz przy drzwiach śluzy statku): ta śluza, inaczej null
+/obj/structure/overmap/small_craft/transport/proc/shuttle_exit_door(turf/T)
+	if(T.density)
+		return
+	var/obj/machinery/door/airlock/door = locate() in T
+	if(!door || !door.density || door.locked || !door.hasPower())
+		return
+	for(var/atom/movable/AM as anything in T)
+		if(AM != door && AM.density && !ismob(AM))
+			return
+	return door
 
 /// Kosmos albo otwarta przestrzeń pod nogami: wyjście tam tylko, gdy innego nie ma
 /obj/structure/overmap/small_craft/transport/proc/shuttle_exit_unsafe(turf/T)
