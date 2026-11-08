@@ -51,10 +51,16 @@ SUBSYSTEM_DEF(movement)
 	while(processing.len)
 		var/datum/move_loop/loop = processing[processing.len]
 		processing.len--
+		// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
+		// No longer queued since we just got removed from the loop
+		loop.queued_time = null
 		loop.process() //This shouldn't get nulls, if it does, runtime
-		if(!QDELETED(loop)) //Re-Insert the loop
+		// Pętla wstawiona już w process() (pause_for) ma queued_time i drugi raz do kubełka nie idzie
+		if(!QDELETED(loop) && (loop.status & MOVELOOP_STATUS_QUEUED) && isnull(loop.queued_time)) //Re-Insert the loop
+			loop.status &= ~MOVELOOP_STATUS_QUEUED
 			loop.timer = world.time + loop.delay
 			queue_loop(loop)
+		// AQ EDIT END
 		if(MC_TICK_CHECK)
 			break
 
@@ -85,6 +91,13 @@ SUBSYSTEM_DEF(movement)
 	buckets -= "[bucket_time]"
 
 /datum/controller/subsystem/movement/proc/queue_loop(datum/move_loop/loop)
+	// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
+	if(loop.status & MOVELOOP_STATUS_QUEUED)
+		stack_trace("A move loop attempted to queue while already queued")
+		return
+	loop.queued_time = loop.timer
+	loop.status |= MOVELOOP_STATUS_QUEUED
+	// AQ EDIT END
 	var/target_time = loop.timer
 	var/string_time = "[target_time]"
 	// If there's no bucket for this, lets set them up
@@ -97,17 +110,32 @@ SUBSYSTEM_DEF(movement)
 	buckets[string_time] += loop
 
 /datum/controller/subsystem/movement/proc/dequeue_loop(datum/move_loop/loop)
-	var/list/our_entries = buckets["[loop.timer]"]
+	// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176): kubełek z queued_time, nie z timer
+	// Go home, you're not here anyway
+	if(!(loop.status & MOVELOOP_STATUS_QUEUED))
+		return
+	if(isnull(loop.queued_time)) // This happens if a moveloop is dequeued while handling process()
+		loop.status &= ~MOVELOOP_STATUS_QUEUED
+		return
+	var/queued_time = loop.queued_time
+	loop.queued_time = null
+	loop.status &= ~MOVELOOP_STATUS_QUEUED
+	var/list/our_entries = buckets["[queued_time]"]
 	if(!our_entries) //appearantly something already killed the list before we could
 		return
 	our_entries -= loop
 	if(!length(our_entries))
-		smash_bucket(bucket_time = loop.timer) // We can't pass an index in for context because we don't know our position
+		smash_bucket(bucket_time = queued_time) // We can't pass an index in for context because we don't know our position
+	// AQ EDIT END
 
 /datum/controller/subsystem/movement/proc/add_loop(datum/move_loop/add)
+	// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
+	if(add.status & MOVELOOP_STATUS_QUEUED)
+		CRASH("Loop being added that is already queued.")
 	add.start_loop()
-	if(QDELETED(add))
+	if(QDELETED(add) || add.status & MOVELOOP_STATUS_QUEUED)
 		return
+	// AQ EDIT END
 	queue_loop(add)
 
 /datum/controller/subsystem/movement/proc/remove_loop(datum/move_loop/remove)

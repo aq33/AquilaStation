@@ -10,18 +10,55 @@
 	actions_types = list(/datum/action/item_action/set_internals, /datum/action/item_action/toggle_jetpack, /datum/action/item_action/jetpack_stabilization)
 	var/gas_type = GAS_O2
 	var/on = FALSE
-	var/stabilizers = FALSE
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
-	var/datum/effect_system/trail_follow/ion/ion_trail
+	// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864)
+	var/stabilize = FALSE
+	var/thrust_callback
+	var/use_ion_trail = TRUE
+	// AQ EDIT END
 
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): ruch, stabilizacja i smuga są w /datum/component/jetpack
 /obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
-	ion_trail = new
-	ion_trail.set_up(src)
+	thrust_callback = CALLBACK(src, PROC_REF(allow_thrust), 0.01)
+	configure_jetpack(stabilize)
 
 /obj/item/tank/jetpack/Destroy()
-	QDEL_NULL(ion_trail)
+	if(on)
+		turn_off(get_thrust_user())
+	thrust_callback = null
 	return ..()
+
+/**
+ * configures/re-configures the jetpack component
+ *
+ * Arguments
+ * stabilize - Should this jetpack be stabalized
+ */
+/obj/item/tank/jetpack/proc/configure_jetpack(stabilize)
+	src.stabilize = stabilize
+
+	AddComponent( \
+		/datum/component/jetpack, \
+		src.stabilize, \
+		COMSIG_JETPACK_ACTIVATED, \
+		COMSIG_JETPACK_DEACTIVATED, \
+		JETPACK_ACTIVATION_FAILED, \
+		thrust_callback, \
+		use_ion_trail ? /datum/effect_system/trail_follow/ion : null, \
+		thrust_sound \
+	)
+
+/obj/item/tank/jetpack/equipped(mob/user, slot, initial)
+	. = ..()
+	if(on && !(slot & slot_flags))
+		turn_off(user)
+
+/obj/item/tank/jetpack/dropped(mob/user, silent)
+	. = ..()
+	if(on)
+		turn_off(user)
+// AQ EDIT END
 
 /obj/item/tank/jetpack/populate_gas()
 	if(gas_type)
@@ -32,8 +69,8 @@
 		cycle(user)
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
-			stabilizers = !stabilizers
-			to_chat(user, "<span class='notice'>[stabilizers ? "Włączasz" : "Wyłączasz"] stabilizację plecaka odrzutowego.</span>")
+			configure_jetpack(!stabilize) // AQ EDIT - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864)
+			to_chat(user, "<span class='notice'>[stabilize ? "Włączasz" : "Wyłączasz"] stabilizację plecaka odrzutowego.</span>")
 	else
 		toggle_internals(user)
 
@@ -43,8 +80,13 @@
 		return
 
 	if(!on)
-		turn_on(user)
-		to_chat(user, "<span class='notice'>Włączasz plecak odrzutowy.</span>")
+		// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): włączenie może się nie udać (brak paliwa)
+		if(turn_on(user))
+			to_chat(user, "<span class='notice'>Włączasz plecak odrzutowy.</span>")
+		else
+			to_chat(user, "<span class='notice'>Nie udaje ci się włączyć plecaka odrzutowego.</span>")
+			return
+		// AQ EDIT END
 	else
 		turn_off(user)
 		to_chat(user, "<span class='notice'>Wyłączasz plecak odrzutowy.</span>")
@@ -52,38 +94,44 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
-
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864); prędkość zostaje nasza (MOVESPEED_ID_JETPACK)
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
+	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED, user) & JETPACK_ACTIVATION_FAILED)
+		return FALSE
 	on = TRUE
 	icon_state = "[initial(icon_state)]-on"
-	ion_trail.start()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+	return TRUE
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
+	SEND_SIGNAL(src, COMSIG_JETPACK_DEACTIVATED, user)
 	on = FALSE
-	stabilizers = FALSE
 	icon_state = initial(icon_state)
-	ion_trail.stop()
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
+	user?.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
 
-/obj/item/tank/jetpack/proc/move_react(mob/user)
-	SIGNAL_HANDLER
+/// Mob, który ciągnie z tego plecaka (nosi go)
+/obj/item/tank/jetpack/proc/get_thrust_user()
+	return ismob(loc) ? loc : null
 
-	allow_thrust(0.01, user)
+/// Ciąg dysz. use_fuel = FALSE tylko sprawdza, czy jest paliwo (stabilizacja), nic nie zużywa
+/obj/item/tank/jetpack/proc/allow_thrust(num, use_fuel = TRUE)
+	var/mob/user = get_thrust_user()
+	if(!user)
+		return FALSE
 
-/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user)
-	if(!on)
-		return
 	if((num < 0.005 || air_contents.total_moles() < num))
 		turn_off(user)
-		return
+		return FALSE
 
-	assume_air_moles(air_contents, num)
+	// We've got the gas, it's chill
+	if(!use_fuel)
+		return TRUE
+
+	remove_air(num)
 
 	return TRUE
+// AQ EDIT END
 
 /obj/item/tank/jetpack/suicide_act(mob/user)
 	if (istype(user, /mob/living/carbon/human/))
@@ -103,20 +151,17 @@
 	gas_type = null //it starts empty
 	full_speed = FALSE //moves at hardsuit jetpack speeds
 
-/obj/item/tank/jetpack/improvised/allow_thrust(num, mob/living/user)
-	if(!on)
-		return
-	if((num < 0.005 || air_contents.total_moles() < num))
-		turn_off(user)
-		return
-	if(rand(0,250) == 0)
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864)
+/obj/item/tank/jetpack/improvised/allow_thrust(num, use_fuel = TRUE)
+	var/mob/user = get_thrust_user()
+	if(!user)
+		return FALSE
+	if(use_fuel && rand(0,250) == 0)
 		to_chat(user, "<span class='notice'>Czujesz, jak silniki twojego plecaka odrzutowego gasną.</span>")
 		turn_off(user)
-		return
-
-	assume_air_moles(air_contents, num)
-
-	return TRUE
+		return FALSE
+	return ..()
+// AQ EDIT END
 
 /obj/item/tank/jetpack/void
 	name = "próżniowy plecak odrzutowy (tlen)"
@@ -203,13 +248,17 @@
 
 /obj/item/tank/jetpack/suit/turn_on(mob/user)
 	if(!istype(loc, /obj/item/clothing/suit/space/hardsuit) || !ishuman(loc.loc) || loc.loc != user)
-		return
+		return FALSE // AQ EDIT - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864)
 	var/mob/living/carbon/human/H = user
 	tank = H.s_store
 	air_contents = tank.air_contents
 	START_PROCESSING(SSobj, src)
 	cur_user = user
-	..()
+	// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): pusta butla = nie włącza się
+	. = ..()
+	if(!.)
+		turn_off(user)
+	// AQ EDIT END
 
 /obj/item/tank/jetpack/suit/turn_off(mob/user)
 	tank = null
@@ -217,6 +266,11 @@
 	STOP_PROCESSING(SSobj, src)
 	cur_user = null
 	..()
+
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): plecak siedzi w hardsuicie, ciągnie noszący
+/obj/item/tank/jetpack/suit/get_thrust_user()
+	return cur_user
+// AQ EDIT END
 
 /obj/item/tank/jetpack/suit/process()
 	if(!istype(loc, /obj/item/clothing/suit/space/hardsuit) || !ishuman(loc.loc))

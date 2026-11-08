@@ -1,5 +1,3 @@
-/// Thruster sound while an active jetpack moves
-/obj/item/tank/jetpack/Moved(atom/OldLoc, Dir)
-	. = ..()
-	if(on)
-		playsound(src, 'aquila/sound/vehicles/jetpack.ogg', 100, 1)
+/obj/item/tank/jetpack
+	/// Dźwięk dysz przy każdym pchnięciu w próżni (odtwarza /datum/component/jetpack, dawniej Moved() tutaj i AQUILA EDIT w carbon/Move())
+	var/thrust_sound = 'aquila/sound/vehicles/jetpack.ogg'

@@ -180,6 +180,10 @@
 #define COMSIG_ATOM_EXPOSE_REAGENTS "atom_expose_reagents"
 ///signal sent out by an atom when it is no longer being pulled by something else : (atom/puller)
 #define COMSIG_ATOM_NO_LONGER_PULLED "movable_no_longer_pulled"
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864)
+///signal sent out by an atom when it stops pulling something : (atom/movable/was_pulling)
+#define COMSIG_ATOM_NO_LONGER_PULLING "movable_no_longer_pulling"
+// AQ EDIT END
 // AQ EDIT START - port BeeStation #11899 (combat mode, akcje prawego przycisku)
 ///from base of atom/attackby_secondary(): (/obj/item, /mob/living, params)
 #define COMSIG_PARENT_ATTACKBY_SECONDARY "atom_attackby_secondary"

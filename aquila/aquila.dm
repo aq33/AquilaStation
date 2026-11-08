@@ -70,6 +70,7 @@
 #include "code\_onclick\hud\horror.dm"
 #include "code\_onclick\hud\locked_slots.dm"
 #include "code\_onclick\hud\mouse_pointer.dm"
+#include "code\_onclick\hud\parallax.dm"
 #include "code\_onclick\hud\poll_alert.dm"
 #include "code\_onclick\hud\radial_ss14.dm"
 #include "code\_onclick\hud\stamina.dm"
@@ -110,6 +111,7 @@
 #include "code\datums\components\crafting\vampire_structures.dm"
 #include "code\datums\components\carbon_sprint.dm"
 #include "code\datums\components\echolocation.dm"
+#include "code\datums\components\jetpack.dm"
 #include "code\datums\components\nanites.dm"
 #include "code\datums\components\overlay_lighting_scatter.dm"
 #include "code\datums\components\prosthetic_item.dm"
@@ -1807,6 +1809,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_audyt_rosliny.dm"
+#include "code\modules\unit_tests\aquila_jetpack_drift.dm"
 #include "code\modules\unit_tests\aquila_audyt_antagi.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_0711.dm"

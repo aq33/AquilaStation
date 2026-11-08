@@ -143,7 +143,7 @@
 
 	..(gibbed)
 
-/mob/living/simple_animal/parrot/Process_Spacemove()
+/mob/living/simple_animal/parrot/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	if(!stat) //Birds can fly, fun fact. No I don't care that space doesn't have air. Space parrots bitch
 		return TRUE
 	return ..()
