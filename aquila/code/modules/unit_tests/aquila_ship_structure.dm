@@ -316,26 +316,258 @@
 			qdel(O)
 		T.ChangeTurf(/turf/open/space)
 
-/// AQUILA - Głosowanie „Statek w następnej rundzie”: przy restarcie przewaga nowego statku kasuje zapis tej mapy, remis i brak głosów go zostawiają
+/**
+ * AQUILA - Głosowanie „Statek w następnej rundzie”: przy restarcie przewaga nowego statku kasuje zapis tej mapy (razem z kopią
+ * zapasową), remis i brak głosów go zostawiają. Mocno zniszczony statek potrzebuje przewagi głosów za obecnym statkiem.
+ */
 /datum/unit_test/ship_structure_vote
 
 /datum/unit_test/ship_structure_vote/Run()
 	var/datum/ship_structure/structure = new(list(1))
 	structure.save_path = "data/ship_structure/unit_test_vote.json"
+	structure.saved_this_round = TRUE
 	var/list/cases = list(
-		list("votes" = list("a" = TRUE, "b" = FALSE, "c" = FALSE), "kept" = FALSE, "name" = "new ship majority"),
-		list("votes" = list("a" = TRUE, "b" = FALSE), "kept" = TRUE, "name" = "tie"),
-		list("votes" = list("a" = TRUE, "b" = TRUE, "c" = FALSE), "kept" = TRUE, "name" = "keep majority"),
-		list("votes" = list(), "kept" = TRUE, "name" = "no votes"),
+		list("votes" = list("a" = TRUE, "b" = FALSE, "c" = FALSE), "kept" = FALSE, "heavy" = FALSE, "name" = "new ship majority"),
+		list("votes" = list("a" = TRUE, "b" = FALSE), "kept" = TRUE, "heavy" = FALSE, "name" = "tie"),
+		list("votes" = list("a" = TRUE, "b" = TRUE, "c" = FALSE), "kept" = TRUE, "heavy" = FALSE, "name" = "keep majority"),
+		list("votes" = list(), "kept" = TRUE, "heavy" = FALSE, "name" = "no votes"),
+		list("votes" = list("a" = TRUE, "b" = FALSE), "kept" = FALSE, "heavy" = TRUE, "name" = "tie on a heavily damaged ship"),
+		list("votes" = list(), "kept" = FALSE, "heavy" = TRUE, "name" = "no votes on a heavily damaged ship"),
+		list("votes" = list("a" = TRUE, "b" = TRUE, "c" = FALSE), "kept" = TRUE, "heavy" = TRUE, "name" = "keep majority on a heavily damaged ship"),
 	)
 	for(var/list/test_case in cases)
 		rustg_file_write("{}", structure.save_path)
+		rustg_file_write("{}", "[structure.save_path].bak")
 		var/list/votes = test_case["votes"]
 		structure.keep_votes = votes.Copy()
+		structure.heavy_damage = test_case["heavy"]
 		structure.apply_vote()
 		TEST_ASSERT_EQUAL(fexists(structure.save_path) ? TRUE : FALSE, test_case["kept"], "Wrong save state after the vote: [test_case["name"]]")
-	if(fexists(structure.save_path))
-		fdel(structure.save_path)
+		TEST_ASSERT_EQUAL(fexists("[structure.save_path].bak") ? TRUE : FALSE, test_case["kept"], "Wrong backup state after the vote: [test_case["name"]]")
+	for(var/path in list(structure.save_path, "[structure.save_path].bak"))
+		if(fexists(path))
+			fdel(path)
+
+/// Test: zapis, w którym jedno pole rzuca błędem
+/datum/ship_structure/failing_record
+
+/datum/ship_structure/failing_record/apply_record(key, list/record, list/context)
+	if(record["boom"])
+		CRASH("Ship structure unit test: a broken record")
+	return ..()
+
+/**
+ * AQUILA - Trwała struktura statku: zabezpieczenia (zgłoszenia z przeglądu raport/persistencja_01_przeglad.md).
+ * Błąd przy jednym polu nie przerywa reszty, zostawia SSatoms w zwykłym trybie i odkłada zapis jako .broken; zmienna usunięta
+ * z typu nie trafia do maszyny; osłona wieżyczki się nie dubluje; klatka magnesu nie jest zapisywana; po zmianie pliku mapy
+ * rury i kable zostają z mapy; pole losowego pokoju z innym wariantem jest pomijane; maszyny krytycznej nie zamurowuje ściana;
+ * punkt startu zapamiętany jako pole wychodzi ze ściany; rura zsypu wraca z kierunkiem; ocena mocnego zniszczenia.
+ */
+/datum/unit_test/ship_structure/safety
+
+/datum/unit_test/ship_structure/safety/proc/floor_block()
+	for(var/turf/T as anything in block(bottom_left, cell(10, 10)))
+		for(var/obj/O in T)
+			qdel(O)
+		T.ChangeTurf(/turf/open/space)
+	for(var/turf/T as anything in block(cell(1, 1), cell(9, 9)))
+		T.ChangeTurf(/turf/open/floor/plasteel)
+
+/datum/unit_test/ship_structure/safety/proc/new_structure(path = /datum/ship_structure)
+	var/datum/ship_structure/structure = new path(list(bottom_left.z), list(bottom_left.x, bottom_left.y, bottom_left.x + 10, bottom_left.y + 10))
+	structure.force_ship_area = TRUE
+	return structure
+
+/datum/unit_test/ship_structure/safety/Run()
+	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(11, 11)
+	TEST_ASSERT(reservation, "Could not reserve space")
+	bottom_left = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
+
+	// Błąd przy jednym polu: reszta się nakłada, SSatoms wraca do zwykłego trybu, zapis idzie do kwarantanny
+	floor_block()
+	var/datum/ship_structure/structure = new_structure(/datum/ship_structure/failing_record)
+	structure.baseline = structure.capture()
+	change(2, 2, /turf/closed/wall)
+	change(3, 3, /turf/closed/wall)
+	var/obj/machinery/recharger/recharger = new(cell(4, 4))
+	var/list/delta = structure.diff(structure.baseline, structure.capture(TRUE))
+	var/list/broken_record = delta[structure.key_for(cell(2, 2))]
+	broken_record["boom"] = TRUE
+	// Zmienna, której typ nie ma (np. usunięta z kodu po zapisie): preloader ustawiałby ją na ślepo
+	var/list/machine_record = delta[structure.key_for(cell(4, 4))]
+	var/list/added_machine = machine_record["a"][1]
+	added_machine["v"] = list("id" = "no_such_var_on_a_recharger")
+	TEST_ASSERT(!("id" in recharger.vars), "Test setup: the recharger has an id var, pick another machine")
+	structure.save_path = "data/ship_structure/unit_test_safety.json"
+	rustg_file_write(json_encode(list("version" = 2, "rounds" = 1, "turfs" = delta)), structure.save_path)
+	floor_block()
+	structure.baseline = structure.capture()
+	structure.load()
+	TEST_ASSERT_EQUAL(structure.load_errors, 1, "A broken record was not counted as an error")
+	TEST_ASSERT(isclosedturf(cell(3, 3)), "A broken record stopped the rest of the save from loading")
+	TEST_ASSERT(!isclosedturf(cell(2, 2)), "The broken record was applied")
+	TEST_ASSERT(locate(/obj/machinery/recharger) in cell(4, 4), "A machine with a var its type no longer has was not restored")
+	TEST_ASSERT_EQUAL(SSatoms.initialized, INITIALIZATION_INNEW_REGULAR, "SSatoms stayed in map loading mode after the load")
+	TEST_ASSERT(!GLOB.use_preloader, "The preloader stayed on after the load")
+	TEST_ASSERT(!fexists(structure.save_path) && fexists("[structure.save_path].broken"), "A save with errors was not moved aside as .broken")
+	fdel("[structure.save_path].broken")
+
+	// Uszkodzony plik główny: wczytuje się kopia zapasowa
+	floor_block()
+	structure = new_structure()
+	structure.save_path = "data/ship_structure/unit_test_safety.json"
+	structure.baseline = structure.capture()
+	change(5, 5, /turf/closed/wall)
+	structure.save()
+	change(5, 5, /turf/open/floor/plasteel)
+	change(6, 6, /turf/closed/wall)
+	structure.save()
+	TEST_ASSERT(fexists("[structure.save_path].bak"), "Saving did not keep a backup of the previous save")
+	rustg_file_write("{broken", structure.save_path)
+	floor_block()
+	structure.baseline = structure.capture()
+	structure.load()
+	TEST_ASSERT(isclosedturf(cell(5, 5)) && !isclosedturf(cell(6, 6)), "The backup was not loaded when the save was unreadable")
+	for(var/path in list(structure.save_path, "[structure.save_path].bak", "[structure.save_path].broken"))
+		if(fexists(path))
+			fdel(path)
+
+	// Osłona wieżyczki zbudowanej przez załogę: po wczytaniu jedna, z wieżyczką
+	floor_block()
+	structure = new_structure()
+	structure.baseline = structure.capture()
+	new /obj/machinery/porta_turret(cell(5, 5))
+	TEST_ASSERT_EQUAL(count_in_block(/obj/machinery/porta_turret_cover), 1, "Test setup: the turret has no cover")
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	structure.baseline = structure.capture()
+	structure.apply(delta)
+	TEST_ASSERT_EQUAL(count_in_block(/obj/machinery/porta_turret), 1, "The built turret was not restored")
+	TEST_ASSERT_EQUAL(count_in_block(/obj/machinery/porta_turret_cover), 1, "The turret cover was duplicated")
+	var/obj/machinery/porta_turret_cover/cover = locate() in cell(5, 5)
+	TEST_ASSERT(cover?.parent_turret, "The turret cover has no turret")
+
+	// Klatka magnesu nie jest zapisywana
+	floor_block()
+	var/obj/machinery/computer/ship/mineral_magnet/magnet = new(cell(1, 1))
+	magnet.target_location = cell(6, 6)
+	structure = new_structure()
+	structure.cache_shuttle_areas()
+	TEST_ASSERT(structure.skip_turf(cell(7, 7)), "A magnet cage turf is not skipped")
+	TEST_ASSERT(!structure.skip_turf(cell(2, 2)), "A turf outside the magnet cage is skipped")
+	qdel(magnet)
+
+	// Zmieniony plik mapy: ściana wraca, kabel i rura zostają z mapy
+	floor_block()
+	structure = new_structure()
+	structure.baseline = structure.capture()
+	change(2, 2, /turf/closed/wall)
+	new /obj/structure/cable(cell(3, 3), "yellow")
+	new /obj/machinery/atmospherics/pipe/simple(cell(4, 4), TRUE, NORTH)
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	structure.baseline = structure.capture()
+	structure.keep_map_installations = TRUE
+	structure.apply(delta)
+	TEST_ASSERT(isclosedturf(cell(2, 2)), "A wall was dropped because the map file changed")
+	TEST_ASSERT(!(locate(/obj/structure/cable) in cell(3, 3)), "A cable was restored although the map file changed")
+	TEST_ASSERT(!(locate(/obj/machinery/atmospherics/pipe) in cell(4, 4)), "A pipe was restored although the map file changed")
+
+	// Losowy pokój: zapis z innego wariantu jest pomijany, z tego samego nakładany
+	floor_block()
+	structure = new_structure()
+	GLOB.ship_structure_room_turfs[cell(2, 2)] = "unit_test_room_a"
+	GLOB.ship_structure_room_turfs[cell(3, 3)] = "unit_test_room_a"
+	structure.baseline = structure.capture()
+	change(2, 2, /turf/closed/wall)
+	change(3, 3, /turf/closed/wall)
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	GLOB.ship_structure_room_turfs[cell(2, 2)] = "unit_test_room_b"
+	structure.baseline = structure.capture()
+	structure.check_rooms = TRUE
+	structure.apply(delta)
+	GLOB.ship_structure_room_turfs -= list(cell(2, 2), cell(3, 3))
+	TEST_ASSERT(!isclosedturf(cell(2, 2)), "A record from another random room variant was applied")
+	TEST_ASSERT(isclosedturf(cell(3, 3)), "A record from the same random room variant was skipped")
+
+	// Maszyna krytyczna wraca z mapy, więc ściana załogi na jej polu nie powstaje
+	floor_block()
+	structure = new_structure()
+	new /obj/machinery/computer/communications(cell(2, 2))
+	structure.baseline = structure.capture()
+	qdel(locate(/obj/machinery/computer/communications) in cell(2, 2))
+	change(2, 2, /turf/closed/wall)
+	new /obj/structure/grille(cell(3, 3))
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	new /obj/machinery/computer/communications(cell(2, 2))
+	structure.baseline = structure.capture()
+	structure.apply(delta)
+	TEST_ASSERT(!isclosedturf(cell(2, 2)), "A critical machine from the map was walled in")
+	TEST_ASSERT(locate(/obj/machinery/computer/communications) in cell(2, 2), "The critical machine is gone")
+	TEST_ASSERT(locate(/obj/structure/grille) in cell(3, 3), "A record next to the critical machine was not applied")
+
+	// Punkt startu zapamiętany jako pole (np. blob) nie zostaje w nowej ścianie
+	floor_block()
+	structure = new_structure()
+	structure.baseline = structure.capture()
+	change(5, 5, /turf/closed/wall)
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	structure.baseline = structure.capture()
+	var/turf/spawn_turf = cell(5, 5)
+	GLOB.blobstart += spawn_turf
+	var/blobstart_count = length(GLOB.blobstart)
+	structure.apply(delta)
+	var/moved = !(spawn_turf in GLOB.blobstart) && length(GLOB.blobstart) == blobstart_count
+	var/turf/replacement = GLOB.blobstart[length(GLOB.blobstart)]
+	GLOB.blobstart -= replacement
+	TEST_ASSERT(isclosedturf(cell(5, 5)), "Test setup: the wall was not restored")
+	TEST_ASSERT(moved && !isclosedturf(replacement), "A turf-only spawn point stayed inside a restored wall")
+
+	// Rura zsypu wraca z kierunkiem i połączeniami
+	floor_block()
+	structure = new_structure()
+	structure.baseline = structure.capture()
+	var/obj/structure/disposalpipe/segment/disposal = new(cell(6, 6))
+	disposal.setDir(EAST)
+	qdel(disposal)
+	// Jak z mapy: kierunek przed Initialize (przez preloader), żeby rura policzyła połączenia od właściwej strony
+	world.preloader_setup(list("dir" = EAST), /obj/structure/disposalpipe/segment)
+	disposal = new(cell(6, 6))
+	var/expected_dpdir = disposal.dpdir
+	delta = json_decode(json_encode(structure.diff(structure.baseline, structure.capture(TRUE))))
+	floor_block()
+	structure.baseline = structure.capture()
+	structure.apply(delta)
+	disposal = locate() in cell(6, 6)
+	TEST_ASSERT(disposal, "The built disposal pipe was not restored")
+	TEST_ASSERT_EQUAL(disposal.dir, EAST, "The disposal pipe direction was not restored")
+	TEST_ASSERT_EQUAL(disposal.dpdir, expected_dpdir, "The restored disposal pipe connects on the wrong sides")
+
+	// Mocne zniszczenie: co najmniej 10% pól statku zamienionych w kosmos
+	floor_block()
+	structure = new_structure()
+	structure.baseline = structure.capture()
+	for(var/dx in 1 to 9)
+		change(dx, 1, /turf/open/space)
+	TEST_ASSERT(structure.is_heavily_damaged(structure.diff(structure.baseline, structure.capture(TRUE))), "A ship with 9 of 81 turfs in space is not heavily damaged")
+	floor_block()
+	change(1, 1, /turf/open/space)
+	TEST_ASSERT(!structure.is_heavily_damaged(structure.diff(structure.baseline, structure.capture(TRUE))), "A ship with one hole is heavily damaged")
+
+	// Kamera wisi na ścianie za sobą, teleporter nie ma losowego id w sygnaturze
+	var/obj/machinery/camera/camera = new(cell(4, 4))
+	camera.setDir(NORTH)
+	TEST_ASSERT_EQUAL(ship_structure_mount_dir(camera), SOUTH, "A camera facing north does not hang on the wall to the south")
+	var/obj/machinery/computer/teleporter/teleporter = new(cell(5, 4))
+	TEST_ASSERT_EQUAL(ship_structure_obj_sig(teleporter), "[/obj/machinery/computer/teleporter];0", "The random teleporter id is part of the signature")
+
+	for(var/turf/T as anything in block(bottom_left, cell(10, 10)))
+		for(var/obj/O in T)
+			qdel(O)
+		T.ChangeTurf(/turf/open/space)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

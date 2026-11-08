@@ -23,10 +23,19 @@
  * - rzeczy z mapy, które wylądowały w nowo postawionej ścianie albo pod nową maszyną, są wypychane na sąsiednie pole.
  * Zniszczenie statku kasuje zapis. Głosowanie po rundzie (ship_structure_vote.dm) może kazać zacząć na nowym statku.
  * Admin może wyłączyć zapis rundy albo skasować zapis (Server -> Ship Structure).
+ *
+ * Zabezpieczenia:
+ * - błąd przy jednym polu nie przerywa nakładania reszty; zapis, przy którym wystąpiły błędy, idzie do kwarantanny (.broken),
+ * - przed nadpisaniem zapisu zostaje kopia (.bak), z której wczytujemy, gdy główny plik jest uszkodzony,
+ * - gdy plik mapy w repo się zmienił, rury i kable zostają z mapy (inaczej przebudowa załogi urywa się na zmienionych polach),
+ * - pola losowego pokoju (np. silnika) przyjmują zapis tylko przy tym samym wylosowanym wariancie,
+ * - klatka magnesu (asteroidy, wraki) nie jest zapisywana: każda runda zaczyna się z pustą klatką.
  */
 
 #define SHIP_STRUCTURE_DIR "data/ship_structure/"
 #define SHIP_STRUCTURE_VERSION 2
+/// Jaka część pól statku zamieniona w kosmos oznacza mocno zniszczony statek (remis w głosowaniu = nowy statek)
+#define SHIP_STRUCTURE_HEAVY_DAMAGE 0.1
 /// Sygnatura „pustego kosmosu”: takich pól nie trzymamy w zdjęciu
 #define SHIP_STRUCTURE_SPACE ""
 /// Znacznik pola zajętego przez prom: takie pole nie jest porównywane
@@ -71,10 +80,48 @@
 	/obj/machinery/power/singularity_beacon,
 	/obj/machinery/abductor,
 	// Generator Tesli/osobliwości znika, gdy powstaje kula; zapisany jako usunięty kasowałby go w następnej rundzie z tym samym silnikiem
-	/obj/machinery/the_singularitygen
+	/obj/machinery/the_singularitygen,
+	// Osłonę tworzy wieżyczka w Initialize; zapisana dawałaby drugą, osieroconą osłonę co rundę
+	/obj/machinery/porta_turret_cover,
+	// Cel gangu: bez swojego gangu w następnej rundzie to tylko przeszkoda
+	/obj/machinery/dominator
 	)
 
+/// Maszyny, które losują id w Initialize: id nie trafia do sygnatury, inaczej pole z mapy różniłoby się co rundę
+/proc/ship_structure_random_id_types()
+	return list(
+		/obj/machinery/computer/teleporter
+	)
+
+GLOBAL_LIST_INIT(ship_structure_random_id, typecacheof(ship_structure_random_id_types()))
+
+/// Obiekty tworzone jak przy wczytywaniu mapy (preloader i Initialize(mapload)): maszyny i rury zsypu
+/proc/ship_structure_preloaded(path)
+	return ispath(path, /obj/machinery) || ispath(path, /obj/structure/disposalpipe) || ispath(path, /obj/structure/disposaloutlet)
+
+/// Instalacje przebiegające przez wiele pól (rury i kable): po zmianie pliku mapy zostają z mapy
+/proc/ship_structure_is_installation(path)
+	return ispath(path, /obj/machinery/atmospherics) || ispath(path, /obj/structure/cable)
+
 GLOBAL_LIST_INIT(ship_structure_critical, typecacheof(ship_structure_critical_types()))
+
+/// Pola wylosowanych pokoi (np. silników): pole => room_id wariantu, który się na nim wczytał
+GLOBAL_LIST_EMPTY(ship_structure_room_turfs)
+
+/datum/map_template/random_room/stationinitload(turf/T, centered = FALSE)
+	. = ..()
+	ship_structure_mark_room(src, T, centered)
+
+/datum/map_template/random_room/load(turf/T, centered = FALSE, init_atmos = TRUE, finalize = TRUE)
+	. = ..()
+	if(.)
+		ship_structure_mark_room(src, T, centered)
+
+/proc/ship_structure_mark_room(datum/map_template/random_room/template, turf/T, centered)
+	if(!T)
+		return
+	for(var/turf/room_turf as anything in template.get_affected_turfs(T, centered))
+		GLOB.ship_structure_room_turfs[room_turf] = template.room_id
 
 /// Obiekty, które są częścią struktury statku i są zapisywane: konstrukcje, instalacje i wszystkie maszyny poza wyjątkami
 GLOBAL_LIST_INIT(ship_structure_tracked, ship_structure_tracked_types())
@@ -87,8 +134,10 @@ GLOBAL_LIST_INIT(ship_structure_tracked, ship_structure_tracked_types())
 		/obj/structure/lattice,
 		/obj/structure/cable,
 		/obj/machinery,
-		/obj/structure/foamedmetal
-	)) - typecacheof(ship_structure_critical_types()) - typecacheof(ship_structure_untracked_types())
+		/obj/structure/foamedmetal,
+		/obj/structure/disposalpipe,
+		/obj/structure/disposaloutlet
+	)) -typecacheof(ship_structure_critical_types()) - typecacheof(ship_structure_untracked_types())
 	return result
 
 /// Zmienne maszyn, które przenosimy na odtworzoną maszynę (powiązania, sieci, dostęp, stan instalacji)
@@ -129,6 +178,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	/obj/machinery/turretid,
 	/obj/machinery/keycard_auth,
 	/obj/machinery/digital_clock,
+	/obj/machinery/camera,
 	/obj/item/radio/intercom,
 	/obj/structure/sign,
 	/obj/structure/extinguisher_cabinet,
@@ -167,6 +217,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	// poza wiatrołapami i drzwiami przeciwpożarowymi, które stoją na krawędzi pola.
 	// id rozróżnia dwie takie same maszyny na jednym polu (np. przyciski różnych drzwi).
 	if(istype(O, /obj/machinery) && !istype(O, /obj/machinery/door/window) && !istype(O, /obj/machinery/door/firedoor))
+		if(GLOB.ship_structure_random_id[O.type])
+			return "[O.type];0"
 		var/identity = ("id" in O.vars) ? O.vars["id"] : null
 		if(isnull(identity) && ("id_tag" in O.vars))
 			identity = O.vars["id_tag"]
@@ -269,6 +321,9 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		return 0
 	if(istype(O, /obj/machinery/light))
 		return O.dir
+	// Kamera patrzy od ściany, na której wisi
+	if(istype(O, /obj/machinery/camera))
+		return (O.dir in GLOB.cardinals) ? turn(O.dir, 180) : 0
 	if(abs(O.pixel_y) >= 16 && abs(O.pixel_y) >= abs(O.pixel_x))
 		return O.pixel_y > 0 ? NORTH : SOUTH
 	if(abs(O.pixel_x) >= 16)
@@ -279,6 +334,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 /proc/ship_structure_hang(obj/O, old_dir, new_dir)
 	if(istype(O, /obj/machinery/light))
 		O.setDir(new_dir)
+	else if(istype(O, /obj/machinery/camera))
+		O.setDir(turn(new_dir, 180))
 	else
 		if(old_dir != new_dir)
 			O.setDir(turn(O.dir, dir2angle(old_dir) - dir2angle(new_dir)))
@@ -308,6 +365,16 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	var/last_report = "brak"
 	/// Obszary promów (odświeżane przy każdym zdjęciu i wczytaniu)
 	var/list/shuttle_areas
+	/// Pola klatek magnesu (odświeżane razem z obszarami promów)
+	var/list/cage_turfs
+	/// Ile pól nie dało się nałożyć przez błąd (runtime) przy ostatnim wczytaniu
+	var/load_errors = 0
+	/// TRUE = plik mapy zmienił się od zapisu: zmiany rur i kabli są pomijane
+	var/keep_map_installations = FALSE
+	/// TRUE = zapis pamięta wylosowane pokoje, więc pola pokoju sprawdzamy z bieżącym wariantem
+	var/check_rooms = FALSE
+	/// TRUE = statek skończył rundę mocno zniszczony (remis albo brak głosów = nowy statek)
+	var/heavy_damage = FALSE
 
 /datum/ship_structure/New(list/z_levels, list/bounds)
 	. = ..()
@@ -344,14 +411,21 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		return TRUE
 	if(isshuttleturf(T))
 		return TRUE
+	// Klatka magnesu: asteroida albo wrak to nie struktura statku, następna runda zaczyna z pustą klatką
+	if(cage_turfs?[T] || istype(T.loc, /area/space/shipbreak))
+		return TRUE
 	return shuttle_areas?[T.loc]
 
-/// Odświeża listę obszarów wszystkich promów (część promów NSV nie ma obszarów /area/shuttle)
+/// Odświeża listę obszarów wszystkich promów (część promów NSV nie ma obszarów /area/shuttle) i pól klatek magnesu
 /datum/ship_structure/proc/cache_shuttle_areas()
 	shuttle_areas = list()
 	for(var/obj/docking_port/mobile/port as anything in SSshuttle.mobile)
 		for(var/area/A as anything in port.shuttle_areas)
 			shuttle_areas[A] = TRUE
+	cage_turfs = list()
+	for(var/obj/machinery/computer/ship/mineral_magnet/magnet in GLOB.machines)
+		for(var/turf/T as anything in magnet.get_cage_turfs())
+			cage_turfs[T] = TRUE
 
 /datum/ship_structure/proc/is_ship_area(area/A)
 	if(force_ship_area)
@@ -489,6 +563,10 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		if(old_turf == new_turf && !length(removed) && !length(added) && !length(kept))
 			continue
 		var/list/record = list("ot" = old_turf, "oh" = ship_structure_hash(old_sigs))
+		// Pole losowego pokoju pamięta wylosowany wariant
+		var/room_id = T ? GLOB.ship_structure_room_turfs[T] : null
+		if(room_id)
+			record["room"] = room_id
 		if(old_turf != new_turf)
 			if(new_turf == SHIP_STRUCTURE_SPACE)
 				new_turf = T ? "[T.type]" : "[/turf/open/space/basic]"
@@ -560,7 +638,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 /datum/ship_structure/proc/create_obj(turf/T, list/record)
 	var/list/fields = splittext(record["s"], ";")
 	var/obj/path = text2path(fields[1])
-	if(!ispath(path, /obj) || !GLOB.ship_structure_tracked[path] || ispath(path, /obj/machinery))
+	if(!ispath(path, /obj) || !GLOB.ship_structure_tracked[path] || ship_structure_preloaded(path))
 		return
 	var/obj_dir = text2num(fields[2])
 	var/obj/O
@@ -607,48 +685,62 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 
 	SSatoms.map_loader_begin()
 	for(var/list/item in pending)
-		var/turf/T = item[1]
-		var/list/record = item[2]
-		var/list/fields = splittext(record["s"], ";")
-		var/obj/machinery/path = text2path(fields[1])
-		if(!ispath(path, /obj/machinery) || !GLOB.ship_structure_tracked[path])
-			continue
-		if(ispath(path, /obj/machinery/power/terminal) && apc_turfs[T])
-			continue
-		var/list/attributes = list()
-		var/machine_dir = isnum(record["dir"]) ? record["dir"] : text2num(fields[2])
-		if(machine_dir)
-			attributes["dir"] = machine_dir
-		if(isnum(record["px"]))
-			attributes["pixel_x"] = record["px"]
-		if(isnum(record["py"]))
-			attributes["pixel_y"] = record["py"]
-		if(isnum(record["an"]))
-			attributes["anchored"] = record["an"] ? TRUE : FALSE
-		if(ispath(path, /obj/machinery/atmospherics) && length(fields) >= 4)
-			attributes["piping_layer"] = text2num(fields[3]) || PIPING_LAYER_DEFAULT
-			if(length(fields[4]))
-				attributes["pipe_color"] = fields[4]
-		var/list/saved_vars = record["v"]
-		if(islist(saved_vars))
-			for(var/var_name in saved_vars)
-				if(var_name in (GLOB.ship_structure_machine_vars + "state"))
-					attributes[var_name] = saved_vars[var_name]
-		world.preloader_setup(attributes, path)
-		var/obj/machinery/M = new path(T)
-		GLOB.use_preloader = FALSE
-		created += M
-		created_records += list(record)
+		// Błąd przy jednej maszynie nie może zostawić SSatoms w trybie ładowania mapy ani włączonego preloadera
+		try
+			var/obj/created_obj = create_preloaded(item[1], item[2], apc_turfs)
+			if(created_obj)
+				created += created_obj
+				created_records += list(item[2])
+		catch(var/exception/error)
+			GLOB.use_preloader = FALSE
+			load_errors++
+			log_runtime("Ship structure: couldn't create [json_encode(item[2])] at [AREACOORD(item[1])]: [error] ([error.file]:[error.line])")
 	SSatoms.map_loader_stop()
 	SSatoms.InitializeAtoms(created)
 
 	for(var/i in 1 to length(created))
-		var/obj/machinery/M = created[i]
-		if(QDELETED(M))
+		var/obj/O = created[i]
+		if(QDELETED(O))
 			continue
 		var/list/record = created_records[i]
-		set_parts(M, record["p"])
-		set_integrity(M, record["i"])
+		if(istype(O, /obj/machinery))
+			set_parts(O, record["p"])
+		set_integrity(O, record["i"])
+	return created
+
+/// Tworzy jedną maszynę albo rurę zsypu z rekordu (w trybie ładowania mapy, zmienne przez preloader)
+/datum/ship_structure/proc/create_preloaded(turf/T, list/record, list/apc_turfs)
+	var/list/fields = splittext(record["s"], ";")
+	var/obj/path = text2path(fields[1])
+	if(!ship_structure_preloaded(path) || !GLOB.ship_structure_tracked[path])
+		return
+	if(ispath(path, /obj/machinery/power/terminal) && apc_turfs[T])
+		return
+	var/list/attributes = list()
+	var/machine_dir = isnum(record["dir"]) ? record["dir"] : text2num(fields[2])
+	if(machine_dir)
+		attributes["dir"] = machine_dir
+	if(isnum(record["px"]))
+		attributes["pixel_x"] = record["px"]
+	if(isnum(record["py"]))
+		attributes["pixel_y"] = record["py"]
+	if(isnum(record["an"]))
+		attributes["anchored"] = record["an"] ? TRUE : FALSE
+	if(ispath(path, /obj/machinery/atmospherics) && length(fields) >= 4)
+		attributes["piping_layer"] = text2num(fields[3]) || PIPING_LAYER_DEFAULT
+		if(length(fields[4]))
+			attributes["pipe_color"] = fields[4]
+	world.preloader_setup(attributes, path)
+	var/obj/created = new path(T)
+	GLOB.use_preloader = FALSE
+	// Zmienne z zapisu ustawiamy po New(), a przed Initialize() (ten idzie w InitializeAtoms), i tylko te, które typ
+	// nadal ma: preloader ustawiałby je na ślepo, a zmienna usunięta z kodu dawałaby runtime w New()
+	var/list/saved_vars = record["v"]
+	if(islist(saved_vars))
+		for(var/var_name in saved_vars)
+			if((var_name in (GLOB.ship_structure_machine_vars + "state")) && (var_name in created.vars))
+				var/value = saved_vars[var_name]
+				created.vars[var_name] = islist(value) ? deepCopyList(value) : value
 	return created
 
 /// Wymienia części maszyny na zapisane (ulepszenia), jeśli różnią się od obecnych. Części leżą w nullspace jak przy budowie z ramy.
@@ -762,88 +854,48 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
  */
 /datum/ship_structure/proc/apply(list/delta)
 	var/applied = 0
-	var/list/breach_candidates = list()
-	var/list/opened = list()
-	var/list/closed = list()
-	var/list/pending_machines = list()
-	/// Pola, na których zapis postawił gęsty obiekt
-	var/list/blocked = list()
-	/// Pola, na których zmieniła się instalacja atmosferyczna
-	var/list/atmos_changed = list()
-	/// Maszyny zasilania, którym zmieniło się przykręcenie albo które powstały
-	var/list/power_changed = list()
 	var/skipped = 0
+	/// Wspólny stan nakładania pól (listy wypełnia apply_record)
+	var/list/context = list(
+		"breach" = list(),
+		"opened" = list(),
+		"closed" = list(),
+		"pending" = list(),
+		/// Pola, na których zapis postawił gęsty obiekt
+		"blocked" = list(),
+		/// Pola, na których zmieniła się instalacja atmosferyczna
+		"atmos" = list(),
+		/// Maszyny zasilania, którym zmieniło się przykręcenie albo które powstały
+		"power" = list(),
+	)
+	var/list/breach_candidates = context["breach"]
+	var/list/opened = context["opened"]
+	var/list/closed = context["closed"]
+	var/list/blocked = context["blocked"]
+	var/list/atmos_changed = context["atmos"]
+	var/list/power_changed = context["power"]
 	cache_shuttle_areas()
 	for(var/key in delta)
-		var/list/record = delta[key]
-		var/turf/T = turf_for(key)
-		if(!islist(record) || !T || skip_turf(T))
-			skipped++
-			continue
-		var/list/objs = tracked_objs(T)
-		var/list/sigs = list()
-		for(var/obj/O as anything in objs)
-			sigs += ship_structure_obj_sig(O)
-		var/current_turf = (!length(sigs) && isspaceturf(T)) ? SHIP_STRUCTURE_SPACE : ship_structure_turf_sig(T)
-		if(current_turf != record["ot"] || ship_structure_hash(sigs) != record["oh"])
-			skipped++ // na mapie stoi tu teraz coś innego niż przy zapisie
-			continue
-
-		var/was_space = isspaceturf(T)
-		var/was_closed = isclosedturf(T)
-		var/was_open_to_space = ship_structure_open_to_space(T)
-		for(var/sig in record["r"])
-			var/index = sigs.Find(sig)
-			if(!index)
-				continue
-			var/obj/O = objs[index]
-			sigs.Cut(index, index + 1)
-			objs.Cut(index, index + 1)
-			if(istype(O, /obj/machinery/atmospherics))
-				atmos_changed[T] = TRUE
-			qdel(O)
-		if(istext(record["t"]))
-			T = set_turf(T, record["t"])
-		for(var/list/changes in record["d"])
-			var/index = sigs.Find(changes["s"])
-			if(!index)
-				continue
-			var/obj/O = objs[index]
-			sigs.Cut(index, index + 1)
-			objs.Cut(index, index + 1)
-			apply_kept(O, changes)
-			if(istype(O, /obj/machinery/power) && isnum(changes["an"]))
-				power_changed |= O
-		for(var/list/added in record["a"])
-			if(!istext(added["s"]))
-				continue
-			var/obj/added_path = text2path(splittext(added["s"], ";")[1])
-			if(ispath(added_path, /obj/machinery))
-				pending_machines += list(list(T, added))
-				if(ispath(added_path, /obj/machinery/atmospherics))
-					atmos_changed[T] = TRUE
+		// Błąd przy jednym polu (np. kod maszyny zmienił się od zapisu) nie przerywa nakładania reszty i sprzątania
+		try
+			if(apply_record(key, delta[key], context))
+				applied++
 			else
-				var/obj/created = create_obj(T, added)
-				if(created?.density && !(created.flags_1 & ON_BORDER_1))
-					blocked[T] = TRUE
-
-		applied++
-		if(!was_space && !was_open_to_space)
-			breach_candidates[T] = TRUE
-		if(was_closed && !isclosedturf(T))
-			opened[T] = TRUE
-		else if(!was_closed && isclosedturf(T))
-			closed[T] = TRUE
+				skipped++
+		catch(var/exception/error)
+			skipped++
+			load_errors++
+			log_runtime("Ship structure: couldn't apply the record at [key]: [error] ([error.file]:[error.line])")
 		CHECK_TICK
 
 	// Maszyny po turfach i konstrukcjach, a przed pianką (śluzy uszczelniają przejścia)
-	for(var/obj/machinery/M as anything in create_machines(pending_machines))
-		if(QDELETED(M) || !isturf(M.loc))
+	for(var/obj/O as anything in create_machines(context["pending"]))
+		if(QDELETED(O) || !isturf(O.loc))
 			continue
-		if(M.density && !(M.flags_1 & ON_BORDER_1))
-			blocked[M.loc] = TRUE
-		if(istype(M, /obj/machinery/power))
-			power_changed |= M
+		if(O.density && !(O.flags_1 & ON_BORDER_1))
+			blocked[O.loc] = TRUE
+		if(istype(O, /obj/machinery/power))
+			power_changed |= O
 	rebuild_atmos(atmos_changed)
 	for(var/obj/machinery/power/P as anything in power_changed)
 		if(!QDELETED(P) && P.anchored && !P.powernet)
@@ -869,7 +921,120 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 			if(neighbour)
 				mount_turfs |= neighbour
 	fix_wallmounts(mount_turfs, opened)
+	relocate_spawn_points(closed)
 	return list(applied, skipped)
+
+/**
+ * Nakłada zapis jednego pola. Zwraca TRUE, gdy pole zostało zmienione, FALSE, gdy rekord pominięto
+ * (prom, klatka magnesu, inna mapa albo inny wariant losowego pokoju na tym polu).
+ */
+/datum/ship_structure/proc/apply_record(key, list/record, list/context)
+	var/turf/T = turf_for(key)
+	if(!islist(record) || !T || skip_turf(T))
+		return FALSE
+	// Losowy pokój (np. silnik): zapis z innego wariantu nie pasuje do tego, który wylosowano teraz
+	if(check_rooms && record["room"] != GLOB.ship_structure_room_turfs[T])
+		return FALSE
+	var/list/objs = tracked_objs(T)
+	var/list/sigs = list()
+	for(var/obj/O as anything in objs)
+		sigs += ship_structure_obj_sig(O)
+	var/current_turf = (!length(sigs) && isspaceturf(T)) ? SHIP_STRUCTURE_SPACE : ship_structure_turf_sig(T)
+	if(current_turf != record["ot"] || ship_structure_hash(sigs) != record["oh"])
+		return FALSE // na mapie stoi tu teraz coś innego niż przy zapisie
+
+	var/list/atmos_changed = context["atmos"]
+	var/list/power_changed = context["power"]
+	var/list/blocked = context["blocked"]
+	var/list/pending_machines = context["pending"]
+	var/has_critical = ship_structure_has_critical(T)
+	var/was_space = isspaceturf(T)
+	var/was_closed = isclosedturf(T)
+	var/was_open_to_space = ship_structure_open_to_space(T)
+	for(var/sig in record["r"])
+		if(keep_map_installations && ship_structure_is_installation(text2path(splittext(sig, ";")[1])))
+			continue
+		var/index = sigs.Find(sig)
+		if(!index)
+			continue
+		var/obj/O = objs[index]
+		sigs.Cut(index, index + 1)
+		objs.Cut(index, index + 1)
+		if(istype(O, /obj/machinery/atmospherics))
+			atmos_changed[T] = TRUE
+		qdel(O)
+	if(istext(record["t"]))
+		// Maszyna krytyczna wraca z mapy zawsze, więc nie zamurowujemy jej ścianą postawioną przez załogę
+		if(!(has_critical && ispath(text2path(splittext(record["t"], ";")[1]), /turf/closed)))
+			T = set_turf(T, record["t"])
+	for(var/list/changes in record["d"])
+		if(!istext(changes["s"]))
+			continue
+		if(keep_map_installations && ship_structure_is_installation(text2path(splittext(changes["s"], ";")[1])))
+			continue
+		var/index = sigs.Find(changes["s"])
+		if(!index)
+			continue
+		var/obj/O = objs[index]
+		sigs.Cut(index, index + 1)
+		objs.Cut(index, index + 1)
+		apply_kept(O, changes)
+		if(istype(O, /obj/machinery/power) && isnum(changes["an"]))
+			power_changed |= O
+	for(var/list/added in record["a"])
+		if(!istext(added["s"]))
+			continue
+		var/obj/added_path = text2path(splittext(added["s"], ";")[1])
+		if(keep_map_installations && ship_structure_is_installation(added_path))
+			continue
+		if(ship_structure_preloaded(added_path))
+			pending_machines += list(list(T, added))
+			if(ispath(added_path, /obj/machinery/atmospherics))
+				atmos_changed[T] = TRUE
+		else
+			var/obj/created = create_obj(T, added)
+			if(created?.density && !(created.flags_1 & ON_BORDER_1))
+				// Okno albo ściana z pianki na polu maszyny krytycznej odcięłyby ją od załogi
+				if(has_critical)
+					qdel(created)
+				else
+					blocked[T] = TRUE
+
+	if(!was_space && !was_open_to_space)
+		var/list/breach_candidates = context["breach"]
+		breach_candidates[T] = TRUE
+	if(was_closed && !isclosedturf(T))
+		var/list/opened = context["opened"]
+		opened[T] = TRUE
+	else if(!was_closed && isclosedturf(T))
+		var/list/closed = context["closed"]
+		closed[T] = TRUE
+	return TRUE
+
+/// Na polu stoi maszyna, która zawsze wraca z mapy (cele antagonistów, lot)
+/proc/ship_structure_has_critical(turf/T)
+	for(var/obj/O in T)
+		if(GLOB.ship_structure_critical[O.type])
+			return TRUE
+	return FALSE
+
+/**
+ * Punkty startu, które przy starcie zapamiętały tylko pole (latejoin, xenomorfy, blob, sprzęt ochrony, infiltrator)
+ * i już nie istnieją jako obiekty: pole zamurowane przez zapis zamieniamy na wolne pole obok albo usuwamy z listy.
+ */
+/datum/ship_structure/proc/relocate_spawn_points(list/closed)
+	if(!length(closed))
+		return
+	for(var/list/points in list(SSjob.latejoin_trackers, GLOB.xeno_spawn, GLOB.blobstart, GLOB.secequipment, GLOB.infiltrator_start))
+		for(var/i in length(points) to 1 step -1)
+			var/turf/T = points[i]
+			if(!closed[T])
+				continue
+			var/turf/destination = free_turf_near(T)
+			if(destination)
+				points[i] = destination
+			else
+				points.Cut(i, i + 1)
 
 /// Pole jest częścią kadłuba: leży w obszarze statku albo graniczy z otwartym polem statku
 /datum/ship_structure/proc/is_hull_turf(turf/T)
@@ -969,6 +1134,9 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 							O.forceMove(wall)
 							break
 				continue
+			// Kamera może stać też z dala od ściany: ruszamy ją tylko wtedy, gdy zniknęła ściana, przy której wisiała
+			if(istype(O, /obj/machinery/camera) && !isclosedturf(T) && !opened[get_step(T, mount_dir)])
+				continue
 			if(!isclosedturf(T) && isclosedturf(get_step(T, mount_dir)))
 				continue // jego ściana stoi
 			if(!isclosedturf(T) && rehang_in_place(O, mount_dir))
@@ -1019,45 +1187,132 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	evict_contents(T)
 
 /// Wczytuje zapis i nakłada go na mapę. Wymaga zrobionego baseline.
-/datum/ship_structure/proc/load()
-	if(!save_path || !fexists(save_path))
-		last_report = "brak zapisu, statek prosto z mapy"
-		return
+/// Czyta plik zapisu; zwraca dane albo null (brak, uszkodzony, nieznany format)
+/datum/ship_structure/proc/read_save(path)
+	if(!path || !fexists(path))
+		return null
 	var/list/data
 	try
-		data = json_decode(rustg_file_read(save_path))
+		data = json_decode(rustg_file_read(path))
 	catch(var/exception/error)
-		log_game("Ship structure: couldn't read [save_path] ([error]), starting from the map")
+		log_game("Ship structure: couldn't read [path] ([error])")
+		return null
+	if(!islist(data) || data["version"] != SHIP_STRUCTURE_VERSION || !islist(data["turfs"]))
+		log_game("Ship structure: [path] has an unknown format")
+		return null
+	return data
+
+/datum/ship_structure/proc/load()
+	if(!save_path || (!fexists(save_path) && !fexists("[save_path].bak")))
+		last_report = "brak zapisu, statek prosto z mapy"
+		return
+	var/list/data = read_save(save_path)
+	var/source = save_path
+	if(!data)
+		// Serwer padł w trakcie zapisu albo plik jest uszkodzony: kopia sprzed ostatniego zapisu
+		data = read_save("[save_path].bak")
+		source = "[save_path].bak"
+		// Uszkodzony plik główny nie może trafić do kopii przy następnym zapisie
+		quarantine("unreadable, loading the backup")
+	if(!data)
+		log_game("Ship structure: no readable save for [save_path], starting from the map")
 		last_report = "zapis uszkodzony, statek prosto z mapy"
 		return
-	if(!islist(data) || data["version"] != SHIP_STRUCTURE_VERSION || !islist(data["turfs"]))
-		log_game("Ship structure: [save_path] has an unknown format, starting from the map")
-		last_report = "nieznany format zapisu, statek prosto z mapy"
-		return
 	rounds = isnum(data["rounds"]) ? data["rounds"] : 0
-	var/list/result = apply(data["turfs"])
-	last_report = "rundy w zapisie: [rounds], odtworzone pola: [result[1]], pominięte (zmiana mapy): [result[2]]"
-	log_game("Ship structure: loaded [save_path], [rounds] rounds, [result[1]] turfs applied, [result[2]] skipped")
+	// Zmieniony plik mapy: przebudowa rur i kabli urwałaby się na polach zmienionych przez mappera, więc zostają z mapy
+	var/map_hash = ship_structure_map_hash()
+	keep_map_installations = istext(data["map_hash"]) && map_hash && data["map_hash"] != map_hash
+	check_rooms = data["rooms"] ? TRUE : FALSE
+	load_errors = 0
+	var/list/result
+	try
+		result = apply(data["turfs"])
+	catch(var/exception/error)
+		load_errors++
+		log_runtime("Ship structure: applying [source] failed: [error] ([error.file]:[error.line])")
+	if(!result)
+		result = list(0, 0)
+	last_report = "rundy w zapisie: [rounds], odtworzone pola: [result[1]], pominięte: [result[2]]"
+	if(keep_map_installations)
+		last_report += ", plik mapy się zmienił (rury i kable z mapy)"
+	if(source != save_path)
+		last_report += ", wczytano kopię zapasową"
+	log_game("Ship structure: loaded [source], [rounds] rounds, [result[1]] turfs applied, [result[2]] skipped, [load_errors] errors[keep_map_installations ? ", map file changed, pipes and cables kept from the map" : ""]")
+	if(load_errors)
+		// Ten sam zapis dawałby te same błędy co rundę: odkładamy go, a następna runda zapisze statek od nowa
+		quarantine("[load_errors] errors while loading")
+		last_report += ", błędy: [load_errors] (zapis odłożony jako .broken)"
+		message_admins("Trwała struktura statku: [load_errors] błędów przy wczytaniu zapisu (szczegóły w logu runtime). Plik odłożony jako [save_path].broken.")
+
+/// Odkłada zapis jako .broken (do obejrzenia), żeby nie wczytywać go ponownie
+/datum/ship_structure/proc/quarantine(reason)
+	if(!save_path || !fexists(save_path))
+		return
+	fcopy(save_path, "[save_path].broken")
+	fdel(save_path)
+	log_game("Ship structure: [save_path] moved to [save_path].broken ([reason])")
+
+/// Suma kontrolna plików mapy statku (pusta w testach i bez konfiguracji)
+/proc/ship_structure_map_hash()
+	var/datum/map_config/config = SSmapping.config
+	if(!config?.map_path)
+		return null
+	var/list/files = islist(config.map_file) ? config.map_file : list(config.map_file)
+	var/list/hashes = list()
+	for(var/file_name in files)
+		var/path = "_maps/[config.map_path]/[file_name]"
+		if(!fexists(path))
+			return null
+		hashes += rustg_hash_file(RUSTG_HASH_MD5, path)
+	return md5(jointext(hashes, "|"))
 
 /datum/ship_structure/proc/save()
 	if(!save_path || !baseline)
 		return
-	var/list/delta = diff(baseline, capture(TRUE))
+	var/list/current = capture(TRUE)
+	var/list/delta = diff(baseline, current)
+	heavy_damage = is_heavily_damaged(delta)
 	var/list/data = list(
 		"version" = SHIP_STRUCTURE_VERSION,
 		"map" = SSmapping.config?.map_name,
+		"map_hash" = ship_structure_map_hash(),
+		"rooms" = TRUE,
 		"rounds" = rounds + 1,
 		"turfs" = delta,
 	)
+	// Kopia poprzedniego zapisu: padnięcie serwera w trakcie zapisu zostawia uszkodzony plik
+	if(fexists(save_path))
+		fcopy(save_path, "[save_path].bak")
 	rustg_file_write(json_encode(data), save_path)
 	saved_this_round = TRUE
-	log_game("Ship structure: saved [length(delta)] changed turfs to [save_path]")
+	log_game("Ship structure: saved [length(delta)] changed turfs to [save_path][heavy_damage ? ", the ship is heavily damaged" : ""]")
+
+/// Statek jest mocno zniszczony, gdy co najmniej SHIP_STRUCTURE_HEAVY_DAMAGE pól statku z mapy stało się kosmosem
+/datum/ship_structure/proc/is_heavily_damaged(list/delta)
+	var/ship_turfs = 0
+	for(var/key in baseline)
+		var/list/entry = baseline[key]
+		if(islist(entry) && !ispath(text2path(entry[1]), /turf/open/space))
+			ship_turfs++
+	if(!ship_turfs)
+		return FALSE
+	var/holes = 0
+	for(var/key in delta)
+		var/list/record = delta[key]
+		if(!istext(record["t"]) || record["ot"] == SHIP_STRUCTURE_SPACE || ispath(text2path(record["ot"]), /turf/open/space))
+			continue
+		var/turf/new_path = text2path(splittext(record["t"], ";")[1])
+		if(ispath(new_path, /turf/open/space) || ispath(new_path, /turf/open/openspace))
+			holes++
+	return holes >= ship_turfs * SHIP_STRUCTURE_HEAVY_DAMAGE
 
 /datum/ship_structure/proc/wipe(reason)
 	skip_save = TRUE
 	saved_this_round = FALSE
-	if(save_path && fexists(save_path))
-		fdel(save_path)
+	if(save_path)
+		for(var/path in list(save_path, "[save_path].bak"))
+			if(fexists(path))
+				fdel(path)
 	log_game("Ship structure: save [save_path] wiped ([reason])")
 
 /datum/ship_structure/proc/on_round_end()
@@ -1068,13 +1323,19 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	if(skip_save)
 		log_game("Ship structure: saving skipped for this round")
 		return
-	save()
+	// Błąd w trakcie porównania zostawia poprzedni zapis (i jego kopię) bez zmian
+	try
+		save()
+	catch(var/exception/error)
+		saved_this_round = FALSE
+		log_runtime("Ship structure: saving failed: [error] ([error.file]:[error.line])")
+		message_admins("Trwała struktura statku: zapis tej rundy się nie udał (szczegóły w logu runtime). Zostaje zapis z poprzedniej rundy.")
 
 /// Kasuje zapisy wszystkich statków (nowa kampania: mapa gwiezdna jest wspólna dla wszystkich statków)
 /proc/ship_structure_wipe_all(reason)
 	SSship_structure.structure?.wipe(reason)
 	for(var/file_name in flist(SHIP_STRUCTURE_DIR))
-		if(copytext(file_name, -5) == ".json")
+		if(copytext(file_name, -5) == ".json" || copytext(file_name, -9) == ".json.bak")
 			fdel("[SHIP_STRUCTURE_DIR][file_name]")
 	log_game("Ship structure: all ship saves wiped ([reason])")
 
@@ -1157,3 +1418,4 @@ SUBSYSTEM_DEF(ship_structure)
 #undef SHIP_STRUCTURE_SPACE
 #undef SHIP_STRUCTURE_SHUTTLE
 #undef SHIP_STRUCTURE_MOUNT_RANGE
+#undef SHIP_STRUCTURE_HEAVY_DAMAGE
