@@ -63,7 +63,7 @@
 		container.forceMove(real_parent.drop_location())
 
 	QDEL_NULL(soup_smoke)
-	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSobj, src)
 
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACK_HAND_SECONDARY,
@@ -76,7 +76,7 @@
 	))
 
 /datum/component/stove/Destroy(force)
-	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soup_smoke)
 	container = null
 	return ..()
@@ -99,13 +99,13 @@
 	var/obj/machinery/real_parent = parent
 	if(real_parent.machine_stat & (BROKEN|NOPOWER))
 		return
-	START_PROCESSING(SSmachines, src)
+	START_PROCESSING(SSobj, src)
 	on = TRUE
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 
 /datum/component/stove/proc/turn_off()
 	var/obj/machinery/real_parent = parent
-	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSobj, src)
 	on = FALSE
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 

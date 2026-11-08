@@ -70,6 +70,9 @@
 	burners.toggle_burners(chef)
 	TEST_ASSERT(burners.on || (stove.machine_stat & NOPOWER), "The stove did not light up")
 	if(burners.on)
+		// Komponent nie jest maszyną: w SSmachines sypał runtime o use_power i przerywał obsługę innych maszyn
+		TEST_ASSERT(!(burners in SSmachines.processing), "The stove component processes in SSmachines")
+		TEST_ASSERT(burners in SSobj.processing, "A lit stove does not process")
 		var/start_temp = pot.reagents.chem_temp
 		burners.process(2)
 		TEST_ASSERT(pot.reagents.chem_temp > start_temp, "The stove did not heat the pot")
