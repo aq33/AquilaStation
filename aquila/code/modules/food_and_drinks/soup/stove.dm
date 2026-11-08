@@ -244,6 +244,8 @@
 			soup_smoke = new(parent, particle_type)
 			if(soup_smoke.particles)
 				soup_smoke.particles.position = list(container_x, round(world.icon_size * 0.66), 0)
+				// Płótno /particles/smoke ma 100 px wysokości (±50 od środka), a para leci wyżej i była ucinana
+				soup_smoke.particles.height = 256
 		return
 
 	QDEL_NULL(soup_smoke)

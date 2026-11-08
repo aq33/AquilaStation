@@ -307,7 +307,8 @@
 		if(isnull(ingredient.reagents))
 			continue
 		food_reagents |= ingredient.reagents.reagent_list
-	filled_overlay.color = mix_color_from_reagents(reagents.reagent_list + food_reagents)
+	// Bez kanału alfa z koloru odczynnika: woda (#AAAAAA77) była w garnku prawie niewidoczna
+	filled_overlay.color = copytext(mix_color_from_reagents(reagents.reagent_list + food_reagents), 1, 8)
 	. += filled_overlay
 
 /// Chochla: nabiera porcję zupy z garnka i przelewa do miski (u nas łyżki nie nabierają płynów)
@@ -326,6 +327,17 @@
 	w_class = WEIGHT_CLASS_SMALL
 	custom_price = 20
 	fill_icon_thresholds = null
+
+// Pusta chochla nabiera z garnka. Zwykłe szkło przy otwartym pojemniku zawsze przelewa do niego, więc pusta chochla tylko zgłaszała, że jest pusta.
+/obj/item/reagent_containers/glass/soup_ladle/afterattack(obj/target, mob/user, proximity)
+	if(!proximity || reagents.total_volume || !target.is_drainable() || !check_allowed_items(target, target_self = TRUE))
+		return ..()
+	if(!target.reagents?.total_volume)
+		to_chat(user, span_warning("[target] jest pusty!"))
+		return
+	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
+	to_chat(user, span_notice("Nabierasz chochlą [trans] j. z [target]."))
+	playsound(src, 'aquila/sound/items/pour.ogg', 15, TRUE)
 
 /obj/item/reagent_containers/glass/soup_ladle/update_icon_state()
 	icon_state = reagents?.total_volume ? "ladle_filled" : "ladle"

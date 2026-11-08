@@ -23,9 +23,16 @@
 	TEST_ASSERT(pot.reagents.has_reagent(/datum/reagent/consumable/nutriment/soup/meatball_soup), "Water, a meatball, a carrot and a potato did not make meatball soup")
 	TEST_ASSERT(!LAZYLEN(pot.added_ingredients), "The ingredients stayed in the pot after cooking")
 
-	// Do miski: miska przyjmuje wygląd zupy
-	var/obj/item/reagent_containers/glass/bowl/bowl = allocate(/obj/item/reagent_containers/glass/bowl)
-	pot.reagents.trans_to(bowl, SOUP_SERVING_SIZE)
+	TEST_ASSERT(pot.managed_overlays, "A pot with soup has no liquid overlay")
+
+	// Chochlą do miski (pusta chochla nabiera z garnka, pełna przelewa), miska przyjmuje wygląd zupy
+	var/obj/item/reagent_containers/glass/soup_ladle/ladle = allocate(/obj/item/reagent_containers/glass/soup_ladle)
+	var/obj/item/reagent_containers/glass/bowl/bowl = allocate(/obj/item/reagent_containers/glass/bowl, run_loc_floor_bottom_left)
+	chef.put_in_active_hand(ladle, forced = TRUE)
+	ladle.afterattack(pot, chef, TRUE)
+	TEST_ASSERT(ladle.reagents.total_volume == SOUP_SERVING_SIZE, "An empty ladle did not scoop a serving from the pot ([ladle.reagents.total_volume] u)")
+	ladle.afterattack(bowl, chef, TRUE)
+	TEST_ASSERT(!ladle.reagents.total_volume, "The ladle did not pour the serving into the bowl")
 	TEST_ASSERT(bowl.icon_state == "meatballsoup", "A bowl of meatball soup does not look like one (icon_state [bowl.icon_state])")
 
 /// AQUILA - port tgstation/tgstation#74205: bez składników albo w zwykłej zlewce zupa nie powstaje
