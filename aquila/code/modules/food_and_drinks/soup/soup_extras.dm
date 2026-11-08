@@ -1,19 +1,9 @@
 // AQUILA - dawne zupy-przedmioty jako gotowe miski z zupą (do map, łupów, replikatora i zestawów), zamówienia zup
 // w restauracji (tg: /datum/custom_order/reagent/soup) i nasz sprite żurku.
 
-/datum/reagent/consumable/nutriment/soup
-	/// Plik ikony miski, gdy zupa ma własny sprite poza soupsalad_tg.dmi
-	var/bowl_icon
-
 /datum/reagent/consumable/nutriment/soup/zurek
 	bowl_icon = 'aquila/icons/obj/food/polskie.dmi'
 	bowl_icon_state = "zurek"
-
-/obj/item/reagent_containers/glass/bowl/on_reagent_change(changetype)
-	. = ..()
-	var/datum/reagent/consumable/nutriment/soup/soup = reagents?.get_master_reagent()
-	if(istype(soup) && soup.bowl_icon)
-		icon = soup.bowl_icon
 
 /obj/item/reagent_containers/glass/bowl/soup/meatball
 	initial_reagent = /datum/reagent/consumable/nutriment/soup/meatball_soup
@@ -69,7 +59,7 @@
 
 /datum/custom_order/soup/get_order_appearance(datum/venue/our_venue)
 	var/image/food_image = ..()
-	food_image.add_overlay(image(icon = initial(soup_type.bowl_icon) || 'aquila/icons/obj/food/soup/soupsalad_tg.dmi', icon_state = initial(soup_type.bowl_icon_state) || "bowl"))
+	food_image.add_overlay(image(icon = initial(soup_type.bowl_icon), icon_state = initial(soup_type.bowl_icon_state) || "bowl"))
 	return food_image
 
 /datum/custom_order/soup/get_order_name(datum/venue/our_venue)

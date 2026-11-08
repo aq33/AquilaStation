@@ -10,8 +10,10 @@
 /datum/reagent/consumable/nutriment/soup
 	name = "Zupa"
 	nutriment_factor = 12 * REAGENTS_METABOLISM // Slightly less to that of nutriment as soups will come with nutriments in tow
-	/// Stan ikony miski z tą zupą (aquila/icons/obj/food/soup/soupsalad_tg.dmi)
+	/// Stan ikony miski z tą zupą
 	var/bowl_icon_state
+	/// Plik ikony miski, gdy zupa ma własny sprite poza soupsalad_tg.dmi
+	var/bowl_icon = 'aquila/icons/obj/food/soup/soupsalad_tg.dmi'
 
 /**
  * ## Soup base chemical reaction.
@@ -180,16 +182,24 @@
 	if(initial_reagent)
 		reagents.add_reagent(initial_reagent, initial_portion)
 
+/obj/item/reagent_containers/glass/bowl
+	/// Miska ma teraz wygląd, nazwę i opis zupy (przywracamy je tylko wtedy, nie nazwę nadaną przez gracza)
+	var/soup_styled = FALSE
+
 /// Miska wygląda jak zupa, która ma w niej przewagę (tg: glass_style)
 /obj/item/reagent_containers/glass/bowl/on_reagent_change(changetype)
 	. = ..()
 	var/datum/reagent/consumable/nutriment/soup/soup = reagents?.get_master_reagent()
 	if(istype(soup) && soup.bowl_icon_state)
-		icon = 'aquila/icons/obj/food/soup/soupsalad_tg.dmi'
+		icon = soup.bowl_icon
 		icon_state = soup.bowl_icon_state
 		name = "miska: [lowertext(soup.name)]"
 		desc = soup.description
+		soup_styled = TRUE
 		return
+	if(!soup_styled)
+		return
+	soup_styled = FALSE
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 	name = initial(name)
@@ -335,6 +345,10 @@
 	if(!target.reagents?.total_volume)
 		to_chat(user, span_warning("[target] jest pusty!"))
 		return
+	// Bez ..() (szkło przelałoby do garnka), więc sygnały z /obj/item/afterattack() wysyłamy sami
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, src, proximity)
+	SEND_SIGNAL(target, COMSIG_ATOM_AFTER_ATTACKEDBY, src, user, proximity)
 	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 	to_chat(user, span_notice("Nabierasz chochlą [trans] j. z [target]."))
 	playsound(src, 'aquila/sound/items/pour.ogg', 15, TRUE)

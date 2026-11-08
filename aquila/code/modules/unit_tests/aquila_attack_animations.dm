@@ -39,6 +39,12 @@
 	TEST_ASSERT_EQUAL(knife.force, base_force, "The knife force did not come back after the stab")
 	TEST_ASSERT_EQUAL(knife.get_wound_kind(), WOUND_SLASH, "The knife did not go back to slashing")
 
+	// Siła zmieniona w trakcie pchnięcia (np. wyłączony miecz energetyczny) zostaje, a nie dostaje force_mod z powrotem
+	knife.melee_attack_chain(attacker, stabbed, "right=1")
+	knife.force = 7
+	stab.disable_alt_attack()
+	TEST_ASSERT_EQUAL(knife.force, 7, "Restoring after a stab overwrote a force set during the stab")
+
 /// AQUILA - port tgstation/tgstation#88418: tasak nie ma pchnięcia, wyłączony miecz energetyczny nie pchnie
 /datum/unit_test/aquila_stab_exceptions
 

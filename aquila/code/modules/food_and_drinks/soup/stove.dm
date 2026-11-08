@@ -141,6 +141,10 @@
 
 	if(!attacking_item.is_open_container() || !attacking_item.reagents)
 		return
+	if(istype(attacking_item, /obj/item/reagent_containers/glass/soup_ladle))
+		if(container)
+			INVOKE_ASYNC(attacking_item, TYPE_PROC_REF(/obj/item, afterattack), container, user, TRUE)
+		return COMPONENT_NO_AFTERATTACK
 	if(!isnull(container))
 		to_chat(user, span_warning("Nie odważysz się gotować dwóch rzeczy naraz na jednej kuchence. A jeśli się pomieszają?"))
 		return COMPONENT_NO_AFTERATTACK

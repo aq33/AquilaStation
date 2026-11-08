@@ -36,6 +36,12 @@
 	TEST_ASSERT(!ladle.reagents.total_volume, "The ladle did not pour the serving into the bowl")
 	TEST_ASSERT(bowl.icon_state == "meatballsoup", "A bowl of meatball soup does not look like one (icon_state [bowl.icon_state])")
 
+	// Pusta miska z nazwą od gracza zachowuje ją przy wlewaniu czegoś, co nie jest zupą
+	var/obj/item/reagent_containers/glass/bowl/labelled = allocate(/obj/item/reagent_containers/glass/bowl)
+	labelled.name = "miska kapitana"
+	labelled.reagents.add_reagent(/datum/reagent/water, 5)
+	TEST_ASSERT(labelled.name == "miska kapitana", "Pouring water renamed a labelled bowl to [labelled.name]")
+
 /// AQUILA - port tgstation/tgstation#74205: bez składników albo w zwykłej zlewce zupa nie powstaje
 /datum/unit_test/aquila_soup_needs_pot
 

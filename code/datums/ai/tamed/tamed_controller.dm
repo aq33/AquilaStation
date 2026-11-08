@@ -60,6 +60,7 @@
 
 	if(!istype(clicker) || !blackboard[BB_DOG_FRIENDS][WEAKREF(clicker)])
 		return
+	. = COMPONENT_INTERCEPT_ALT // AQ EDIT - menu poleceń nie otwiera też okna kafelka (RPG Loot), jak u psa
 	INVOKE_ASYNC(src, PROC_REF(command_radial), clicker)
 
 /// Show the command radial menu

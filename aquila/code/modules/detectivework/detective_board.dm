@@ -28,6 +28,8 @@
 	var/list/datum/case/cases = list()
 	/// Indeks oglądanej sprawy w cases
 	var/current_case = 1
+	/// Zdjęcia już wysłane klientom („ref klienta-plik”), żeby ui_data nie słało ich przy każdym odświeżeniu
+	var/list/sent_photos = list()
 
 /obj/structure/detectiveboard/Initialize(mapload, ndir, building)
 	. = ..()
@@ -121,8 +123,10 @@
 				if(EVIDENCE_TYPE_PHOTO)
 					var/obj/item/photo/photo = evidence.item
 					var/tmp_picture_name = "evidence_photo[REF(photo)].png"
-					if(photo.picture?.picture_image)
+					var/sent_key = "[REF(user.client)]-[tmp_picture_name]"
+					if(photo.picture?.picture_image && !sent_photos[sent_key])
 						user << browse_rsc(photo.picture.picture_image, tmp_picture_name)
+						sent_photos[sent_key] = TRUE
 					data_evidence["photo_url"] = tmp_picture_name
 				if(EVIDENCE_TYPE_PAPER)
 					var/obj/item/paper/paper = evidence.item

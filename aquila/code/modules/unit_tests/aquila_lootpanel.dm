@@ -65,5 +65,9 @@
 	var/mob/living/carbon/human/labrat = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	TEST_ASSERT(!labrat.open_loot_panel(box, run_loc_floor_bottom_left), "A mob without a client opened a tile window")
 
+	// Akcja Alt+klik przez sygnał (GPS) przechwytuje kliknięcie, więc /atom/AltClick() nie otwiera okna
+	var/obj/item/gps/gps = allocate(/obj/item/gps, run_loc_floor_bottom_left)
+	TEST_ASSERT(SEND_SIGNAL(gps, COMSIG_CLICK_ALT, labrat) & COMPONENT_INTERCEPT_ALT, "Alt+click on a GPS does not intercept the click, so it would also open the tile window")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -66,7 +66,9 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 
 	var/image/attack = image(icon = used_item, loc = A, layer = A.layer + 0.1)
 	attack.plane = GAME_PLANE
-	attack.pixel_w = used_item.base_pixel_x
+	// Obrazek siedzi na celu i ma jego przesunięcie, więc liczymy od atakującego (jak tg: duże moby z base_pixel_x)
+	attack.pixel_w = base_pixel_x - A.base_pixel_x
+	attack.pixel_z = base_pixel_y - A.base_pixel_y
 	attack.transform *= 0.5
 	// KEEP_APART: człowiek ma KEEP_TOGETHER, a wtedy dołączony obrazek dziedziczy jego obrót mimo RESET_TRANSFORM.
 	// Przy leżącym celu przedmiot lądował obrócony i z innej strony (tak samo vis_contents z tg).
@@ -189,6 +191,8 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 	var/list/base_verbs
 	var/base_wound_kind
 	var/base_animation
+	/// Siła w trakcie pchnięcia; inna przy przywracaniu znaczy, że coś (np. wyłączenie miecza) ją ustawiło
+	var/alt_force
 
 /datum/component/alternative_sharpness/Initialize(list/alt_verbs, force_mod = 0)
 	if(!isitem(parent))
@@ -213,6 +217,7 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 		return
 	alt_attacking = TRUE
 	source.force += force_mod
+	alt_force = source.force
 	base_verbs = source.attack_verb
 	base_wound_kind = source.wound_kind
 	base_animation = source.attack_animation
@@ -227,7 +232,8 @@ GLOBAL_LIST_INIT(alt_attack_verbs, list(
 		return
 	var/obj/item/weapon = parent
 	alt_attacking = FALSE
-	weapon.force -= force_mod
+	if(weapon.force == alt_force)
+		weapon.force -= force_mod
 	weapon.attack_verb = base_verbs
 	weapon.wound_kind = base_wound_kind
 	weapon.attack_animation = base_animation
