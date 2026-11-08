@@ -7,6 +7,8 @@
 
 /// Maksymalna odległość (w polach) szukania miejsca do lądowania od środka wnętrza celu
 #define SHUTTLE_CRAFT_SEARCH_RANGE 60
+/// Jak długo komputer dokowania czeka na wczytanie wnętrza asteroidy
+#define SHUTTLE_CRAFT_ASTEROID_WAIT (30 SECONDS)
 
 /// Miejsce lądowania wybrane przez komputer dokowania albo parking w rezerwacji; wymiary i kierunek jak u promu
 /obj/docking_port/stationary/shuttle_craft_spot
@@ -30,10 +32,14 @@
 /obj/structure/overmap/small_craft/transport/Destroy()
 	if(!shuttle_port)
 		return ..()
+	var/obj/docking_port/mobile/interior = shuttle_port
 	var/obj/docking_port/stationary/parking = shuttle_parking
 	var/datum/turf_reservation/parking_reservation = shuttle_parking_reservation
 	// Najpierw small_craft/Destroy ewakuuje załogę; rezerwacja z wnętrzem w locie znika dopiero potem
 	. = ..()
+	// Wnętrze w locie stoi na parkingu: bez jednostki nie ma dokąd wrócić, więc znika razem z nią
+	if(parking && interior && !QDELETED(interior) && interior.docked == parking)
+		interior.jumpToNullSpace()
 	shuttle_port = null
 	shuttle_docked_at = null
 	shuttle_home_port = null
@@ -209,6 +215,7 @@
 		DC.docking_cooldown = TRUE
 		RegisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING, PROC_REF(shuttle_asteroid_loaded))
 		SSstar_system.queue_for_interior_load(AS)
+		addtimer(CALLBACK(src, PROC_REF(shuttle_asteroid_timeout), AS), SHUTTLE_CRAFT_ASTEROID_WAIT)
 		return TRUE
 	DC.docking_cooldown = TRUE
 	INVOKE_ASYNC(src, PROC_REF(shuttle_try_land), OM)
@@ -218,6 +225,16 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING)
 	INVOKE_ASYNC(src, PROC_REF(shuttle_try_land), AS)
+
+/// Asteroida zniknęła albo jej wnętrze się nie wczytało: komputer dokowania nie może czekać w nieskończoność
+/obj/structure/overmap/small_craft/transport/proc/shuttle_asteroid_timeout(obj/structure/overmap/asteroid/AS)
+	if(QDELETED(src) || shuttle_docked_at)
+		return
+	if(!QDELETED(AS))
+		UnregisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING)
+	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(DC)
+		DC.docking_cooldown = FALSE
 
 /// Szuka miejsca (to może potrwać kilka ticków) i ląduje; bez miejsca komputer dokowania odpoczywa 10 sekund
 /obj/structure/overmap/small_craft/transport/proc/shuttle_try_land(obj/structure/overmap/OM)
@@ -373,7 +390,7 @@
 	for(var/turf/candidate as anything in shuttle_exit_turfs())
 		var/obj/machinery/door/airlock/door
 		if(is_blocked_turf(candidate, TRUE))
-			door = shuttle_exit_door(candidate)
+			door = shuttle_exit_door(candidate, AM)
 			if(!door)
 				continue
 		if(!T || (shuttle_exit_unsafe(T) && !shuttle_exit_unsafe(candidate)))
@@ -394,15 +411,16 @@
 	mobs_in_ship -= AM
 	return TRUE
 
-/// Wyjście zastawione tylko zamkniętą, zasilaną i nieryglowaną śluzą (właz przy drzwiach śluzy statku): ta śluza, inaczej null
-/obj/structure/overmap/small_craft/transport/proc/shuttle_exit_door(turf/T)
-	if(T.density)
+/// Wyjście zastawione tylko zamkniętą, zasilaną i nieryglowaną śluzą (właz przy drzwiach śluzy statku), do której
+/// wysiadający ma dostęp: ta śluza, inaczej null
+/obj/structure/overmap/small_craft/transport/proc/shuttle_exit_door(turf/T, atom/movable/AM)
+	if(T.density || !ismob(AM))
 		return
 	var/obj/machinery/door/airlock/door = locate() in T
-	if(!door || !door.density || door.locked || !door.hasPower())
+	if(!door || !door.density || door.locked || !door.hasPower() || !door.allowed(AM))
 		return
-	for(var/atom/movable/AM as anything in T)
-		if(AM != door && AM.density && !ismob(AM))
+	for(var/atom/movable/blocker as anything in T)
+		if(blocker != door && blocker.density && !ismob(blocker))
 			return
 	return door
 
@@ -416,3 +434,4 @@
 	return ..()
 
 #undef SHUTTLE_CRAFT_SEARCH_RANGE
+#undef SHUTTLE_CRAFT_ASTEROID_WAIT

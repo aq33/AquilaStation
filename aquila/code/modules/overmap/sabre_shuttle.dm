@@ -123,10 +123,16 @@
 				. += outside
 				break
 
+/// Porty Sabre bez portów domowych innych istniejących Sabre (te czekają na swój prom)
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/shuttle_preferred_ports(obj/structure/overmap/OM)
 	. = list()
+	var/list/other_homes = list()
+	for(var/obj/docking_port/mobile/sabre/interior in SSshuttle.mobile)
+		if(interior.craft && interior.craft != src && interior.craft.shuttle_home_port)
+			other_homes[interior.craft.shuttle_home_port] = TRUE
 	for(var/obj/docking_port/stationary/sabre/port in SSshuttle.stationary)
-		. += port
+		if(!other_homes[port])
+			. += port
 
 /// Wejście przez właz: tak jak wejście do promu desantowego, tylko z hangaru
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/sabre_board(mob/living/user)
@@ -153,12 +159,14 @@
 	var/angle = dir2angle(turn_dir) - dir2angle(SOUTH)
 	return angle ? matrix(angle, MATRIX_ROTATE) : matrix()
 
+// Bez ..(): /atom/setDir wysyła COMSIG_ATOM_DIR_CHANGE, na który element dekalu sam obraca dekal, a transform
+// kafelka obraca też jego nakładki, więc paski na podłodze obróciłyby się dwa razy (LEGACY_OVERRIDES.md)
 /turf/closed/indestructible/dropship/setDir(newdir)
-	. = ..()
+	dir = newdir
 	transform = dropship_turf_transform(dir)
 
 /turf/open/indestructible/dropship/setDir(newdir)
-	. = ..()
+	dir = newdir
 	transform = dropship_turf_transform(dir)
 
 // Wrota w burcie kokpitu: wyjście na zewnątrz w doku, zablokowane w locie
@@ -171,7 +179,8 @@
 	if(!istype(A) || !A.sabre || !ismob(AM))
 		return
 	if(A.sabre.shuttle_docked_at)
-		A.sabre.shuttle_leave(AM)
+		if(!A.sabre.shuttle_leave(AM))
+			to_chat(AM, span_warning("Wyjście z [A.sabre] jest zablokowane."))
 	else
 		to_chat(AM, span_warning("Wrota są zablokowane w trakcie lotu."))
 

@@ -130,6 +130,33 @@
 	for(var/turf/T as anything in exits)
 		TEST_ASSERT_EQUAL(T.y, port.y + 1, "The rotated hatch doesn't open to the north of the hull")
 
+	// Paski na podłodze kokpitu (szablon 4,6) obraca sam transform kafelka: dekal zostaje w kierunku z szablonu
+	var/turf/striped = locate(port.x + 5, port.y - 3, port.z)
+	var/stripes = 0
+	var/list/decal_overlays = list()
+	SEND_SIGNAL(striped, COMSIG_ATOM_UPDATE_OVERLAYS, decal_overlays)
+	for(var/mutable_appearance/overlay as anything in decal_overlays)
+		if(overlay.icon_state != "warningline")
+			continue
+		stripes++
+		TEST_ASSERT_EQUAL(overlay.dir, SOUTH, "The floor stripes turned with the decal element on top of the tile transform")
+	TEST_ASSERT(stripes, "No floor stripes on the rotated cockpit floor")
+
+	// Drugi Sabre nie zajmie portu domowego tego Sabre (i odwrotnie)
+	var/obj/docking_port/stationary/sabre/mining/other_port = new(locate(bl[1] + 15, bl[2] + 5, bl[3]))
+	timeout = world.time + 30 SECONDS
+	while(!other_port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/other_interior = other_port.docked
+	TEST_ASSERT(istype(other_interior), "The second Sabre template didn't dock")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/other = other_interior.craft
+	TEST_ASSERT(!(port in other.shuttle_preferred_ports(host)), "Another Sabre may take this Sabre's home port")
+	TEST_ASSERT(!(other_port in sabre.shuttle_preferred_ports(host)), "This Sabre may take another Sabre's home port")
+	other_interior.jumpToNullSpace()
+	if(!QDELETED(other))
+		qdel(other)
+	qdel(other_port, TRUE)
+
 	// Start i powrót do tego samego portu nie obracają kadłuba drugi raz
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The rotated Sabre didn't launch")
@@ -180,9 +207,19 @@
 	TEST_ASSERT_EQUAL(neighbour.loc, locate(port.x + 9, port.y + 7, port.z), "Landing moved the wide object next to the port")
 
 	qdel(neighbour)
-	shuttle_port.jumpToNullSpace()
-	if(!QDELETED(sabre))
-		qdel(sabre)
+
+	// Asteroida, której wnętrze się nie wczytało, nie blokuje komputera dokowania na stałe
+	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch again")
+	var/obj/item/fighter_component/docking_computer/DC = sabre.loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(DC)
+		DC.docking_cooldown = TRUE
+		sabre.shuttle_asteroid_timeout(null)
+		TEST_ASSERT(!DC.docking_cooldown, "The docking computer stays locked after the asteroid wait")
+
+	// Zniszczony w locie: wnętrze z parkingu znika razem z jednostką, nie zostaje w SSshuttle
+	qdel(sabre)
+	TEST_ASSERT(QDELETED(shuttle_port), "The interior of a Sabre destroyed in flight stayed behind")
+	TEST_ASSERT(!(shuttle_port in SSshuttle.mobile), "The interior of a Sabre destroyed in flight is still a shuttle")
 	qdel(port, TRUE)
 	qdel(hangar)
 
@@ -216,6 +253,12 @@
 		if(helm)
 			break
 	pilot.forceMove(get_turf(helm))
+	// Bez dostępu do śluzy nie da się nią wyjść
+	door.req_access = list(ACCESS_CAPTAIN)
+	TEST_ASSERT(!sabre.shuttle_leave(pilot), "The pilot left through an airlock they have no access to")
+	TEST_ASSERT(door.density, "The airlock opened for a pilot without access")
+	door.req_access = list()
+	door.req_one_access = list()
 	TEST_ASSERT(sabre.shuttle_leave(pilot), "Leaving through a closed airlock next to the hatch failed")
 	TEST_ASSERT_EQUAL(pilot.loc, door_exit, "The pilot didn't step into the airlock")
 	timeout = world.time + 5 SECONDS

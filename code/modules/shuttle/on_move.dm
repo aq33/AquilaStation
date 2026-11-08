@@ -23,7 +23,7 @@ All ShuttleMove procs go here
 	var/shuttle_dir = shuttle.dir
 	for(var/i in contents)
 		var/atom/movable/thing = i
-		if(thing.loc != src) continue // AQ EDIT - multi-tile neighbours (gauss turret) only overlap this turf, like the multi-tile fix in docking.dm
+		if(thing.loc != src && oldT.density) continue // AQ EDIT - a multi-tile neighbour (gauss turret) that only overlaps solid hull with its bounds stays
 		if(ismob(thing))
 			if(isliving(thing))
 				var/mob/living/M = thing
