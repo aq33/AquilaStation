@@ -152,6 +152,7 @@
 \****************************/
 /obj/item/clothing/head/nfz
 	icon = 'aquila/icons/nfz/nfz.dmi'
+	w_class = WEIGHT_CLASS_SMALL // materiałowe czepki i bandana mieszczą się w kieszeni jak czapka zimowa
 	worn_icon = 'aquila/icons/nfz/nfz_noszone.dmi'
 	// bandana nie przycina fryzury (domyślne +generic ją obcinało), czepki chowają włosy całkiem przez HIDEHAIR
 	dynamic_hair_suffix = ""

@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(jukeboxes)
 		/obj/machinery/light, /obj/machinery/light_switch, /obj/machinery/button, /obj/machinery/newscaster,
 		/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/computer/security/telescreen,
 		/obj/item/radio/intercom, /obj/structure/extinguisher_cabinet, /obj/structure/sign, /obj/structure/noticeboard,
-		/obj/machinery/ceiling_speaker))
+		/obj/machinery/ceiling_speaker, /obj/machinery/lazylift_button, /obj/machinery/turbolift_button))
 	var/list/placed = ceiling_speakers.Copy()
 	var/list/areas = list() // area -> zasięg głośników; najpierw korytarze, żeby to one dostały głośniki, a nie sąsiednie kwatery
 	for(var/area/hallway/A in world)
@@ -84,7 +84,16 @@ SUBSYSTEM_DEF(jukeboxes)
 		if(AM.density || is_type_in_typecache(AM, blocking_types))
 			return 0
 	for(var/wall_dir in list(NORTH, WEST, EAST)) // ściana południowa jest widoczna od góry - głośnik wyglądałby jak wbity w nią
-		if(isclosedturf(get_step(T, wall_dir)))
+		var/turf/wall = get_step(T, wall_dir)
+		if(!isclosedturf(wall))
+			continue
+		// lift buttons and signs are mapped on the wall turf itself
+		var/wall_taken = FALSE
+		for(var/atom/movable/AM as anything in wall)
+			if(is_type_in_typecache(AM, blocking_types))
+				wall_taken = TRUE
+				break
+		if(!wall_taken)
 			return wall_dir
 	return 0
 

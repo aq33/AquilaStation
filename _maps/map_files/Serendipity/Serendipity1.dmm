@@ -5458,7 +5458,6 @@
 /obj/structure/ethernet_cable{
 	icon_state = "0-4"
 	},
-/obj/structure/ethernet_cable,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "rx" = (
@@ -6292,6 +6291,7 @@
 /area/crew_quarters/heads/hor)
 "uf" = (
 /obj/structure/window/plasma/reinforced/spawner/west,
+/obj/structure/ethernet_cable,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "ug" = (
@@ -6315,6 +6315,7 @@
 	label = "Rdzeń SI";
 	roundstart_connection = "Serwerownia SI"
 	},
+/obj/structure/ethernet_cable,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "uo" = (
@@ -51660,9 +51661,9 @@ yZ
 gp
 cp
 uf
-cp
-gp
 aE
+gp
+cp
 pF
 Te
 az
