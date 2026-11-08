@@ -497,7 +497,7 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 	pulser.blind_eyes(300)
 	pulser.Stun(100)
 	pulser.emote("scream")
-	pulser.hallucination = 500
+	pulser.set_hallucinations(1000 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	for(var/r in 1 to max(xrange, yrange))
 		var/xr = min(xrange, r)
 		var/yr = min(yrange, r)
@@ -519,6 +519,6 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 				M.Knockdown(10)
 				M.emote("scream")
 				M.Jitter(50)
-				M.hallucination = M.hallucination + 20
+				M.adjust_hallucinations(40 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			CHECK_TICK
 		sleep(2)

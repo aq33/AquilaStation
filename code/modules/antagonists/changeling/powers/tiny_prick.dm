@@ -234,7 +234,7 @@
 
 /datum/action/changeling/sting/LSD/proc/hallucination_time(mob/living/carbon/target)
 	if(target)
-		target.hallucination = max(90, target.hallucination)
+		target.set_hallucinations_if_lower(180 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 /datum/action/changeling/sting/cryo
 	name = "Żądło kriogeniczne"

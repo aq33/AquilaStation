@@ -46,7 +46,7 @@
 			if(ishuman(mob))
 				//Hilariously enough, running into a closet should make you get hit the hardest.
 				var/mob/living/carbon/human/H = mob
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
+				H.adjust_hallucinations((max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )) * 2 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
 			L.rad_act(rads)
 

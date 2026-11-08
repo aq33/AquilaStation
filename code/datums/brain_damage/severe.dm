@@ -202,7 +202,7 @@
 				to_chat(owner, "<span class='warning'>Czujesz się bardzo samotny...</span>")
 			else
 				to_chat(owner, "<span class='warning'>Wariujesz z samotności!</span>")
-				owner.hallucination += 30
+				owner.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 		if(5)
 			if(!high_stress)

@@ -50,7 +50,7 @@
 		owner.set_jitter_if_lower(20 SECONDS)
 		owner.set_dizzy_if_lower(10 SECONDS)
 		// AQUILA - adjust_hallucinations_up_to(6 s, 48 s) na naszych tyknięciach Life (~2 s)
-		owner.hallucination = min(owner.hallucination + 3, max(owner.hallucination, 24))
+		owner.adjust_hallucinations_up_to(6 SECONDS, 48 SECONDS)
 
 	if(prob(2))
 		playsound(owner, pick(GLOB.creepy_ambience), 50, TRUE)

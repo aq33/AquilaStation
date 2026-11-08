@@ -687,7 +687,9 @@
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
 				for(var/obj/item/bodypart/BP as() in bodyparts)
-					var/damage = BP.burn_dam + BP.brute_dam + (hallucination ? BP.stamina_dam : 0)
+					if(SEND_SIGNAL(BP, COMSIG_BODYPART_UPDATING_HEALTH_HUD, src) & COMPONENT_OVERRIDE_BODYPART_HEALTH_HUD) // AQ EDIT - fałszywy ludzik zdrowia (Bee#13095)
+						continue
+					var/damage = BP.burn_dam + BP.brute_dam + (hallucinating() ? BP.stamina_dam : 0) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 					var/comparison = (BP.max_damage/5)
 					var/icon_num = 0
 					if(damage)
@@ -706,7 +708,7 @@
 						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
 					//Stamina Outline (Communicate that we have stamina damage)
 					//Hallucinations will appear as regular damage
-					if(BP.stamina_dam && !hallucination)
+					if(BP.stamina_dam && !hallucinating()) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 						var/mutable_appearance/MA = mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone]stam")
 						MA.alpha = (BP.stamina_dam / BP.max_stamina_damage) * 70 + 30
 						hud_used.healthdoll.add_overlay(MA)

@@ -311,8 +311,7 @@
 /datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/carbon/target, times)
 	if(times <= 0 || QDELETED(target))
 		return
-	var/picked_hallucination = pickweight(GLOB.hallucination_list)
-	new picked_hallucination(target, TRUE)
+	target.cause_hallucination(get_random_hallucination(HALLUCINATION_TIER_RARE), "darkspawn mass hallucination")
 	addtimer(CALLBACK(src, PROC_REF(hallucinate), target, times - 1), 1 SECONDS)
 
 // Pochwycenie: paraliż z bliska, wyczerpanie z daleka

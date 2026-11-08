@@ -16,6 +16,16 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 /area/test_chamber/arena
 	name = "Komora testowa - arena"
 
+// Ściany komory są niezniszczalne, a montaż ramek (tablice, APC, kamery) obsługuje tylko /turf/closed/wall.
+// W komorze ramki da się zawiesić jak na zwykłej ścianie, żeby dało się sprawdzić przedmioty ścienne.
+/turf/closed/indestructible/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/wallframe) && istype(get_area(src), /area/test_chamber))
+		var/obj/item/wallframe/frame = W
+		if(frame.try_build(src, user))
+			frame.attach(src, user)
+		return TRUE
+	return ..()
+
 /datum/map_template/test_chamber
 	name = "Komora testowa"
 	mappath = 'aquila/_maps/templates/test_chamber.dmm'

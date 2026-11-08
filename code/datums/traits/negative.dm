@@ -484,13 +484,15 @@
 
 /datum/quirk/insanity/on_process(delta_time)
 	if(quirk_holder.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
-		quirk_holder.hallucination = 0
+		quirk_holder.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		return
 	if(DT_PROB(2, delta_time)) //we'll all be mad soon enough
 		madness()
 
 /datum/quirk/insanity/proc/madness()
-	quirk_holder.hallucination += rand(10, 25)
+	// AQ EDIT - tgstation/tgstation#89865: bez skrajnych halucynacji (do 60 s), chyba że gracz zdjął limit w preferencjach
+	var/uncapped = quirk_holder.client?.prefs && (quirk_holder.client.prefs.chat_toggles & CHAT_RDS_UNLIMITED)
+	quirk_holder.adjust_hallucinations_up_to(rand(20, 50) SECONDS, uncapped ? 240 SECONDS : 60 SECONDS)
 
 /datum/quirk/insanity/post_add() //I don't /think/ we'll need this but for newbies who think "roleplay as insane" = "license to kill" it's probably a good thing to have
 	if(!quirk_holder.mind || quirk_holder.mind.special_role)
