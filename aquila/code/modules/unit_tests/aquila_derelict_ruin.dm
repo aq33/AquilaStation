@@ -61,13 +61,25 @@
 
 /datum/unit_test/mission_extension_choices/Run()
 	TEST_ASSERT_EQUAL(GLOB.mission_choice_names["derelict"], "Opuszczona stacja", "The derelict mission has no Polish name")
-	for(var/choice in SSovermap_mode.get_extension_choices())
+	// Tryby z logiką w samym trybie mają zniknąć z wyboru także wtedy, gdy konfiguracja daje im dodatnią wagę
+	var/list/probabilities = config.Get(/datum/config_entry/keyed_list/omode_probability)
+	var/list/old_weights = list()
+	for(var/tag in list("armada", "conquest", "hardmode"))
+		old_weights[tag] = (tag in probabilities) ? probabilities[tag] : null
+		probabilities[tag] = 10
+	var/list/choices = SSovermap_mode.get_extension_choices()
+	for(var/tag in old_weights)
+		if(isnull(old_weights[tag]))
+			probabilities -= tag
+		else
+			probabilities[tag] = old_weights[tag]
+	for(var/choice in choices)
 		if(choice == "rubicon")
 			continue
 		TEST_ASSERT(ispath(choice, /datum/overmap_gamemode), "[choice] isn't a mission type")
 		var/datum/overmap_gamemode/mode_type = choice
 		TEST_ASSERT(!initial(mode_type.whitelist_only), "[choice] is a whitelist-only mission")
-		TEST_ASSERT(!ispath(choice, /datum/overmap_gamemode/armada) && !ispath(choice, /datum/overmap_gamemode/galactic_conquest), "[choice] can't work as a next mission, its logic lives in the mode")
+		TEST_ASSERT(!ispath(choice, /datum/overmap_gamemode/armada) && !ispath(choice, /datum/overmap_gamemode/galactic_conquest) && !ispath(choice, /datum/overmap_gamemode/hardmode), "[choice] can't work as a next mission, its logic lives in the mode")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
