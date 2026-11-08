@@ -15,6 +15,8 @@ SUBSYSTEM_DEF(jukeboxes)
 	var/list/listening = list()
 	/// Wszystkie głośniki nagłośnienia
 	var/list/obj/machinery/ceiling_speaker/ceiling_speakers = list()
+	/// TRUE na czas własnych wywołań play_music/stop_music, żeby odróżnić je od cudzych (admin, flota)
+	var/sending_music = FALSE
 
 /// Stan słuchania jednego klienta
 /datum/jukebox_listening
@@ -27,6 +29,10 @@ SUBSYSTEM_DEF(jukeboxes)
 	var/fx
 	/// Od kiedy klient jest poza zasięgiem (muzyka wyciszona, ale jeszcze gra)
 	var/out_since = 0
+	/// Ktoś inny zatrzymał muzykę w przeglądarce: utwór trzeba wysłać od nowa
+	var/stale = FALSE
+	/// W przeglądarce gra cudza muzyka (admin, flota): nie ruszamy jej, dopóki ten utwór jukeboxa trwa
+	var/yielded = FALSE
 
 /datum/controller/subsystem/jukeboxes/Initialize(start_timeofday)
 	place_ceiling_speakers()
@@ -130,7 +136,9 @@ SUBSYSTEM_DEF(jukeboxes)
 
 	var/datum/jukebox_listening/state = listening[C]
 	if(best_jukebox && best_gain > 0)
-		if(state && state.jukebox == best_jukebox && state.track_started == best_jukebox.yt_track_started)
+		if(state && state.jukebox == best_jukebox && state.track_started == best_jukebox.yt_track_started && !state.stale)
+			if(state.yielded)
+				return
 			// to samo źródło - tylko głośność/efekty (np. przejście od jukeboxa do jego amp stacka nie restartuje utworu)
 			state.out_since = 0
 			var/fx = "[echo]|[muffle]"
@@ -139,12 +147,15 @@ SUBSYSTEM_DEF(jukeboxes)
 				state.fx = fx
 				C.tgui_panel?.set_music_gain(best_gain, echo, muffle)
 			return
-		if(best_jukebox.yt_stream_ready())
+		// przed gotowością panelu play_music przepada po cichu, więc nie zapisujemy, że gra (reconnect, przeładowanie czatu)
+		if(best_jukebox.yt_stream_ready() && C.tgui_panel?.is_ready())
 			var/list/extra = best_jukebox.yt_play_data()
 			extra["volume"] = best_gain
 			extra["echo"] = echo
 			extra["muffle"] = muffle
-			C.tgui_panel?.play_music(best_jukebox.yt_stream_url, extra)
+			sending_music = TRUE
+			C.tgui_panel.play_music(best_jukebox.yt_stream_url, extra)
+			sending_music = FALSE
 			if(!state)
 				state = new
 				listening[C] = state
@@ -153,8 +164,13 @@ SUBSYSTEM_DEF(jukeboxes)
 			state.gain = best_gain
 			state.fx = "[echo]|[muffle]"
 			state.out_since = 0
+			state.stale = FALSE
+			state.yielded = FALSE
 			return
 	if(!state)
+		return
+	if(state.stale || state.yielded) // nic naszego nie gra: zapominamy bez zatrzymywania cudzej muzyki
+		listening -= C
 		return
 	// nic nie słychać: przeglądarka płynnie wycisza, a zatrzymujemy dopiero po JUKEBOX_OUT_GRACE
 	if(!state.out_since)
@@ -163,7 +179,9 @@ SUBSYSTEM_DEF(jukeboxes)
 		C.tgui_panel?.set_music_gain(0, 0, 0)
 	else if(world.time - state.out_since > JUKEBOX_OUT_GRACE)
 		listening -= C
+		sending_music = TRUE
 		C.tgui_panel?.stop_music()
+		sending_music = FALSE
 
 /// Zatrzymuje muzykę wszystkim, którym gra ten jukebox (wyłączony, zniszczony)
 /datum/controller/subsystem/jukeboxes/proc/release_jukebox(obj/machinery/jukebox/J)
@@ -172,7 +190,25 @@ SUBSYSTEM_DEF(jukeboxes)
 		if(state.jukebox != J)
 			continue
 		listening -= C
+		if(state.stale || state.yielded)
+			continue
+		sending_music = TRUE
 		C?.tgui_panel?.stop_music()
+		sending_music = FALSE
+
+/// Muzykę w przeglądarce klienta zmieniło coś innego niż jukebox (admin, flota, przeładowanie panelu).
+/// stopped: nic już nie gra, więc utwór jukeboxa pójdzie od nowa w następnym ticku; inaczej gra cudza muzyka i jukebox jej ustępuje.
+/datum/controller/subsystem/jukeboxes/proc/on_foreign_music(client/C, stopped)
+	if(sending_music)
+		return
+	var/datum/jukebox_listening/state = listening[C]
+	if(!state)
+		return
+	if(stopped)
+		state.stale = TRUE
+		state.yielded = FALSE
+	else
+		state.yielded = TRUE
 
 /// Włącza jukebox jako nadający na cały statek; poprzedni nadający na tym samym statku przestaje
 /datum/controller/subsystem/jukeboxes/proc/set_shipwide(obj/machinery/jukebox/J, enabled)
