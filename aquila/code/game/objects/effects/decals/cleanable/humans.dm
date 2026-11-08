@@ -1,5 +1,3 @@
-#define isexacttype(A, B) (typesof(A).len == typesof(B).len)
- // jaki leń to tutaj wrzucał???? ^^^^
 /obj/effect/decal/cleanable/blood
 	plane = -1
 	var/is_slippery = FALSE
@@ -146,7 +144,8 @@
 
 /obj/effect/decal/cleanable/blood/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	if(isexacttype(src, /obj/effect/decal/cleanable/blood))
+	// Tylko podstawowa plama jest śliska. Wcześniej przez porównanie długości dwóch typesof(), które przy każdej plamie przechodziło całe drzewo podtypów.
+	if(type == /obj/effect/decal/cleanable/blood)
 		is_slippery = TRUE
 	// we revert the is_old values so that asserts in make_* will pass
 	// that's because is_old both corresponds to the initial "desired" value, and the "actual" one
