@@ -80,7 +80,7 @@
 		. += "<span class='notice'>Cena uzupełnienia rynku: <b>[restock_cost] kr</b>.</span>"
 		. += "<span class='notice'>Opłata za wystawienie towaru: <b>[PLACE_ON_MARKET_COST] kr</b>.</span>"
 		. += "<span class='notice'>Podatek od sprzedaży lokalnych towarów: <b>[MARKET_WITHHOLDING_TAX * 100]%</b>.</span>"
-		. += "<span class='notice'>Otwórz i zamknij ręką, włóż przedmiot, a potem <b>prawy klik</b>, żeby wystawić go na rynek. Kredyty uzupełniają rynek.</span>"
+		. += "<span class='notice'>Otwórz i zamknij ręką, włóż przedmiot, a potem kliknij <b>[user.secondary_click_text()]</b>, żeby wystawić go na rynek. Kredyty uzupełniają rynek.</span>"
 
 /obj/machinery/ltsrbt/update_icon_state()
 	. = ..()
