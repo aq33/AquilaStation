@@ -1182,7 +1182,7 @@
 /datum/map_template/random_room/sk_rdm139
 	name = "cela izolacyjna"
 	room_id = "sk_rdm139_containmentcell"
-	mappath = "_maps/RandomRooms/3x3/containmentcell.dmm"
+	mappath = "_maps/RandomRooms/3x3/sk_rdm139_containmentcell.dmm" // AQ EDIT - ścieżka do nieistniejącego pliku, pokój nigdy się nie pojawiał (aquila_random_rooms)
 	centerspawner = FALSE
 	template_height = 3
 	template_width = 3
@@ -1413,7 +1413,7 @@
 /datum/map_template/random_room/sk_rdm165
 	name = "Minibiblioteka"
 	room_id = "sk_rdm165_library"
-	mappath = "_maps/RandomRooms/3x3/sk_rdm165_library.dmm"
+	mappath = "_maps/RandomRooms/3x3/sk_rdm_165_library.dmm" // AQ EDIT - ścieżka do nieistniejącego pliku, pokój nigdy się nie pojawiał (aquila_random_rooms)
 	centerspawner = FALSE
 	template_height = 3
 	template_width = 3
@@ -1449,7 +1449,7 @@
 /datum/map_template/random_room/sk_rdm169
 	name = "Tunele techniczne - panele słoneczne"
 	room_id = "sk_rdm168_solars"
-	mappath = "_maps/RandomRooms/5x4/sk_rdm168_solars.dmm"
+	mappath = "_maps/RandomRooms/5x4/sk_rdm169_solars.dmm" // AQ EDIT - ścieżka do nieistniejącego pliku, pokój nigdy się nie pojawiał (aquila_random_rooms)
 	centerspawner = FALSE
 	template_height = 4
 	template_width = 5

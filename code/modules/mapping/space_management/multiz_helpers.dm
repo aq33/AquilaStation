@@ -1,10 +1,15 @@
 /proc/get_step_multiz(ref, dir)
+	// AQ EDIT START - makra zamiast procek SSmapping (tgstation/tgstation#76248)
+	var/turf/ref_turf
 	if(dir & UP)
 		dir &= ~UP
-		return get_step(SSmapping.get_turf_above(get_turf(ref)), dir)
+		ref_turf = get_turf(ref)
+		return get_step(GET_TURF_ABOVE(ref_turf), dir)
 	if(dir & DOWN)
 		dir &= ~DOWN
-		return get_step(SSmapping.get_turf_below(get_turf(ref)), dir)
+		ref_turf = get_turf(ref)
+		return get_step(GET_TURF_BELOW(ref_turf), dir)
+	// AQ EDIT END
 	return get_step(ref, dir)
 
 /proc/get_dir_multiz(turf/us, turf/them)
@@ -28,10 +33,10 @@
 		return (dir | get_dir(us, them))
 
 /turf/proc/above()
-	return get_step_multiz(src, UP)
+	return GET_TURF_ABOVE(src) // AQ EDIT - makro zamiast get_step_multiz (tgstation/tgstation#76248)
 
 /turf/proc/below()
-	return get_step_multiz(src, DOWN)
+	return GET_TURF_BELOW(src) // AQ EDIT - makro zamiast get_step_multiz (tgstation/tgstation#76248)
 
 /proc/dir_inverse_multiz(dir)
 	var/holder = dir & (UP|DOWN)
@@ -51,25 +56,14 @@
 	. = list(z_level)
 	if(max_z_range <= 0)
 		return
-	var/turf/center_turf = locate(world.maxx / 2, world.maxy / 2, z_level)
-	var/turf/temp = center_turf.above()
-	//Iterate upwards.
-	var/i = 0
-	while(isturf(temp))
-		. += temp.z	//NSV13 - stop reverting my multiz fixes.
-		i ++
-		if(i >= max_z_range)
-			break
-		temp = temp.above()
-	//Iterate downwards.
-	temp = center_turf.below()
-	i = 0
-	while(isturf(temp))
-		. += temp.z	//NSV13 - stop reverting my multiz fixes.
-		i ++
-		if(i >= max_z_range)
-			break
-		temp = temp.below()
+	// AQ EDIT START - stos pięter liczony raz na z-level (aquila/code/modules/mapping/multiz_levels.dm) zamiast chodzenia po kafelkach
+	var/list/stack = SSmapping.get_multiz_stack(z_level)
+	var/list/above = stack[1]
+	var/list/below = stack[2]
+	var/count = CEILING(max_z_range, 1)
+	. += above.Copy(1, min(count, length(above)) + 1)
+	. += below.Copy(1, min(count, length(below)) + 1)
+	// AQ EDIT END
 
 /proc/multi_z_dist(turf/T0, turf/T1)
 	if(T0.get_virtual_z_level() == T1.get_virtual_z_level())
