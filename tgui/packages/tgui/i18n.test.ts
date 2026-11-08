@@ -151,6 +151,20 @@ describe('translateHtml', () => {
 });
 
 describe('słownik okien z tools/i18n/build_chat_dict.py', () => {
+  it('oryginał z kodu DM nie wnosi makr do tekstu okna', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.resolve(
+      __dirname,
+      '../../../strings/i18n/en_windows.json',
+    );
+    const built = JSON.parse(fs.readFileSync(file, 'utf8'));
+    // "\red The syringe gun is empty." z DM dawało w oknie "ed The syringe gun is empty."
+    expect(built.exact['Działko strzykawkowe jest puste.']).toBe(
+      'The syringe gun is empty.',
+    );
+  });
+
   it('alternatywa JS z nawiasami kwadratowymi jest tekstem, nie wstawką', () => {
     const fs = require('fs');
     const path = require('path');

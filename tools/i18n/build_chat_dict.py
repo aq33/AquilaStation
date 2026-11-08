@@ -363,6 +363,19 @@ def load_ui_pairs():
     return pairs
 
 
+WINDOW_EMBED = re.compile(r"\$\{(?:[^{}]|\{[^{}]*\})*\}|\[[^\[\]]*\]")
+
+
+def misaligned(pl, en):
+    """Para wygląda na przesuniętą: angielska strona po polsku, inna liczba wstawek (ich napisy
+    bywają przetłumaczone) albo rażąco inna długość, jak w suspicious_history z match_originals.py."""
+    if ep.PL_DIACRITICS.search(en):
+        return True
+    if len(WINDOW_EMBED.findall(pl)) != len(WINDOW_EMBED.findall(en)):
+        return True
+    return len(pl) > 25 and not (0.4 < len(en) / len(pl) < 2.2)
+
+
 # polskie słowa bez polskich liter, które są też angielskimi słowami (nie odrzucamy ich par)
 POLISH_ASCII_WORDS = {"szatnia", "mops", "ananas", "paragon", "ko"}
 SINGLE_WORD = re.compile(r"^[A-Za-z_]+$")
@@ -490,6 +503,7 @@ def main():
             (wanted if "${" in lit else names).add(lit)
 
     manual = load_json(args.manual)
+    original = load_json(args.original)
 
     exact, templates, stats = {}, [], collections.Counter()
     window_keys = set()  # klucze exact dla słownika okien (bez stałych tylko z czatu)
@@ -536,6 +550,10 @@ def main():
                 # okna: tłumaczenie z kodu okien, jeśli jest; ogólne exact zostaje dla czatu
                 # en_manual.json poprawia także tablicę okien (złe pary z historii TSX)
                 ui_en = None if pl in manual else ui_pairs.get(pl)
+                # oryginał portu (en_original.json) wygrywa z parą z historii okien, gdy ta wygląda na
+                # przesuniętą ("Arkusze: ${data.sheet_name}" -> " sheets")
+                if ui_en and pl in original and misaligned(pl, ui_en):
+                    ui_en = None
                 if ui_en:
                     ui_value = "".join(text for kind, text in parse(ui_en) if kind == "t").strip()
                 else:

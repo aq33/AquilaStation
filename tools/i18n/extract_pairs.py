@@ -128,6 +128,13 @@ def logical_lines(path, lines):
 def block_string_start(line, in_comment):
     """Początek napisu {" w kodzie linii (nie w komentarzu /* */ ani //, nie w "..." ani w
     surowym @'...'/@"..."): (indeks albo -1, czy linia kończy się w komentarzu blokowym)."""
+    # szybka ścieżka: bez {" i /* (albo bez */ w komentarzu) pętla znak po znaku dałaby ten sam wynik,
+    # a {" ma kilkaset z miliona linii DM
+    if in_comment:
+        if "*/" not in line:
+            return -1, True
+    elif '{"' not in line and "/*" not in line:
+        return -1, False
     i, n = 0, len(line)
     while i < n:
         if in_comment:
