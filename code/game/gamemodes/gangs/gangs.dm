@@ -26,13 +26,8 @@ GLOBAL_LIST_EMPTY(gangs)
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += JOB_NAME_ASSISTANT
 
-	//Spawn more bosses depending on server population
-	var/gangs_to_create = 2
-	if(prob(num_players()) && num_players() > 2*required_players)
-		gangs_to_create++
-	if(prob(num_players()) && num_players() > 3*required_players)
-		gangs_to_create++
-	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
+	// AQ EDIT - zawsze dokładnie dwa gangi; z populacją rośnie limit członków (aquila/code/modules/antagonists/gang/gang_war.dm)
+	var/gangs_to_create = min(2, GLOB.possible_gangs.len)
 
 	for(var/i in 1 to gangs_to_create)
 		if(!antag_candidates.len)
@@ -44,7 +39,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		gangboss_candidates += boss
 		boss.restricted_roles = restricted_jobs
 
-	if(gangboss_candidates.len < 1) //Need at least one gangs
+	if(gangboss_candidates.len < 2) // AQ EDIT - bez dwóch szefów nie ma wojny gangów
 		return
 
 	return TRUE

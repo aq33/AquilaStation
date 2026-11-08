@@ -1,38 +1,36 @@
-/obj/item/mod/control/ui_interact(mob/user, datum/tgui/ui)
+// AQUILA: okno modułów hardsuitu (dawny panel MODsuitu). Klucze danych jak w MODsuit.tsx; bez SI, przewodów i blokady ID.
+/obj/item/clothing/suit/space/hardsuit/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MODsuit", name)
 		ui.set_autoupdate(TRUE)
 		ui.open()
 
-/obj/item/mod/control/ui_data(mob/user)
+/obj/item/clothing/suit/space/hardsuit/ui_data(mob/user)
 	var/data = list()
-	// Suit information
 	var/suit_status = list(
 		"core_name" = core?.name,
 		"cell_charge_current" = get_charge(),
 		"cell_charge_max" = get_max_charge(),
 		"active" = active,
-		"ai_name" = ai_assistant?.name,
-		"has_pai" = ispAI(ai_assistant),
-		"is_ai" = ai_assistant && ai_assistant == user,
-		// Wires
-		"open" = open,
-		"seconds_electrified" = seconds_electrified,
-		"malfunctioning" = malfunctioning,
-		"locked" = locked,
-		"interface_break" = interface_break,
-		// Modules
+		"ai_name" = null,
+		"has_pai" = FALSE,
+		"is_ai" = FALSE,
+		"open" = TRUE,
+		"seconds_electrified" = 0,
+		"malfunctioning" = FALSE,
+		"locked" = FALSE,
+		"interface_break" = FALSE,
 		"complexity" = complexity,
+		"tank_pressure" = integrated_tank ? round(integrated_tank.air_contents.return_pressure()) : null,
+		"tank_open" = wearer && integrated_tank && wearer.internal == integrated_tank,
 	)
 	data["suit_status"] = suit_status
-	// User information
 	var/user_status = list(
-		"user_name" = wearer ? (wearer.get_authentification_name("Unknown") || "Unknown") : "",
-		"user_assignment" = wearer ? wearer.get_assignment("Unknown", "Unknown", FALSE) : "",
+		"user_name" = wearer ? (wearer.get_authentification_name("Nieznany") || "Nieznany") : "",
+		"user_assignment" = wearer ? wearer.get_assignment("Nieznany", "Nieznany", FALSE) : "",
 	)
 	data["user_status"] = user_status
-	// Module information
 	var/module_custom_status = list()
 	var/module_info = list()
 	for(var/obj/item/mod/module/module as anything in modules)
@@ -57,59 +55,27 @@
 	data["control"] = name
 	data["module_info"] = module_info
 	var/part_info = list()
-	for(var/obj/item/part as anything in get_parts())
+	if(helmet)
 		part_info += list(list(
-			"slot" = english_list(parse_slot_flags(part.slot_flags)),
-			"name" = part.name,
-			"deployed" = part.loc != src,
-			"ref" = REF(part),
+			"slot" = "głowa",
+			"name" = helmet.name,
+			"deployed" = suittoggled,
+			"ref" = REF(helmet),
 		))
 	data["parts"] = part_info
 	return data
 
-/obj/item/mod/control/ui_static_data(mob/user)
+/obj/item/clothing/suit/space/hardsuit/ui_static_data(mob/user)
 	var/data = list()
-	data["ui_theme"] = ui_theme
+	data["ui_theme"] = "ntos"
 	data["complexity_max"] = complexity_max
 	return data
 
-/obj/item/mod/control/ui_state(mob/user)
-	if(user == ai_assistant)
-		return GLOB.contained_state
-	return ..()
-
-/obj/item/mod/control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/item/clothing/suit/space/hardsuit/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
-	if(malfunctioning && prob(75))
-		balloon_alert(ui.user, "przycisk zawodzi!")
-		return
 	switch(action)
-		if("lock")
-			//Suit locking with an AI requires AI consent. Not the case for PAI's however, thus isAI()
-			if(ai_assistant && isAI(ai_assistant))
-				//Check if the UI user is the AI interacting. Suit pilot cannot toggle lock.
-				if(!isAI(ui.user))
-					balloon_alert(ui.user, "Odblokowanie MODsuitu wspomaganego przez SI wymaga uprawnień SI.")
-					return
-				else
-					to_chat(ui.user, "Udzielono zgody, kontrolerze SI.")
-			if(!locked || allowed(ui.user))
-				locked = !locked
-				balloon_alert(ui.user, "[locked ? "zablokowano" : "odblokowano"]")
-			else
-				balloon_alert(ui.user, "brak dostępu!")
-				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-		/*
-		if("call")
-			if(!mod_link.link_call)
-				call_link(ui.user, mod_link)
-			else
-				mod_link.end_call()
-		*/
-		if("activate")
-			toggle_activate(ui.user)
 		if("select")
 			var/obj/item/mod/module/module = locate(params["ref"]) in modules
 			if(!module)
@@ -125,23 +91,10 @@
 			if(!module)
 				return
 			module.pin(ui.user)
-		if("deploy")
-			var/obj/item/mod_part = locate(params["ref"]) in get_parts()
-			if(!mod_part)
-				return
-			// AQ EDIT START - jak choose_deploy()/quick_deploy(): bez rozkładania w trakcie uszczelniania
-			if(activating)
-				balloon_alert(ui.user, "trwa [active ? "rozszczelnianie" : "uszczelnianie"]!")
-				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-				return
-			// AQ EDIT END
-			if(mod_part.loc == src)
-				deploy(ui.user, mod_part)
-			else
-				retract(ui.user, mod_part)
-		if("eject_pai")
-			if (!ishuman(ui.user))
-				return
-			remove_pai(ui.user)
-
+		if("deploy", "activate")
+			if(ui.user == wearer)
+				ToggleHelmet()
+		if("tank")
+			if(ishuman(ui.user))
+				toggle_integrated_tank(ui.user)
 	return TRUE

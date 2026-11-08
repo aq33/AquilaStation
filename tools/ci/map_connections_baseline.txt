@@ -1,0 +1,620 @@
+# AQUILA - znane błędy rur i terminali sprzed tools/ci/check_map_pipes.py. Nie dopisuj tu nowych, popraw mapę.
+# Po poprawieniu starego błędu: python tools/ci/check_map_connections.py --update-baseline
+_maps/RandomRooms/10x10/sk_rdm060_snakefighter.dmm|1,9,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRooms/engine/atlas_engine_stormdrive.dmm|8,11,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/RandomRooms/engine/atlas_engine_stormdrive.dmm|8,9,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/RandomRooms/engine/atlas_engine_tesla.dmm|12,5,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/RandomRuins/LavaRuins/lavaland_surface_animal_hospital.dmm|12,23,1|components/unary/vent_scrubber/on/layer4/lavaland|L4E|brak połączenia
+_maps/RandomRuins/LavaRuins/lavaland_surface_animal_hospital.dmm|13,22,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/RandomRuins/LavaRuins/lavaland_surface_animal_hospital.dmm|13,24,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/RandomRuins/SpaceRuins/DJstation.dmm|9,15,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|17,10,1|pipe/simple/scrubbers/hidden|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|17,8,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|19,5,1|pipe/simple/scrubbers/hidden|L3E|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|19,6,1|pipe/manifold4w|L3E|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|19,7,1|pipe/simple/scrubbers/hidden|L3E|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|20,5,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|20,6,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/Fast_Food.dmm|20,7,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|29,39,1|components/unary/vent_pump/on|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|35,37,1|pipe/manifold/supply/hidden|L3N|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|36,36,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|36,38,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|36,38,1|pipe/simple/scrubbers/hidden|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|37,37,1|components/unary/portables_connector/visible|L3W|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|38,36,1|components/binary/valve|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|54,44,1|components/unary/vent_scrubber/on|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/TheDerelict.dmm|54,48,1|components/unary/vent_pump/on|L3S|brak połączenia
+_maps/RandomRuins/SpaceRuins/abandonedzoo.dmm|6,10,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/bigderelict1.dmm|4,23,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/bigderelict1.dmm|6,23,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/crashedship.dmm|55,27,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/crashedship.dmm|55,30,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,21,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na components/unary/vent_pump/on
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,22,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,22,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,23,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,23,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,24,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,24,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,25,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|21,25,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|22,25,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|22,25,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|23,25,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|23,25,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,25,1|pipe/manifold/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,25,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,25,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,26,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,26,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,27,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,27,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|24,28,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|25,25,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|25,25,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|26,25,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|26,25,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|27,25,1|pipe/manifold/scrubbers/hidden|L3E|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|27,25,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,22,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,23,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,23,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,24,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,24,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,25,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,25,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,25,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,26,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,26,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,27,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,27,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/listeningstation.dmm|28,28,1|components/unary/vent_scrubber/on|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RandomRuins/SpaceRuins/oldstation.dmm|1,10,1|pipe/simple/supply/hidden|L3N|brak połączenia
+_maps/RandomRuins/SpaceRuins/oldstation.dmm|24,24,1|pipe/simple/supply/hidden|L3E|brak połączenia
+_maps/RandomRuins/SpaceRuins/oldstation.dmm|28,24,1|pipe/manifold/supply/hidden|L3W|brak połączenia
+_maps/RandomRuins/SpaceRuins/oldstation.dmm|5,23,1|pipe/simple/supply/hidden|L3S|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|10,4,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|10,5,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|10,5,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|10,6,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|10,6,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|10,7,1|pipe/manifold/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|10,7,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|10,7,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,10,1|components/unary/vent_scrubber/on|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,7,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,7,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,7,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,8,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,8,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|11,9,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|11,9,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|3,3,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na components/unary/vent_pump/on
+_maps/RuinGeneration/13x13_listening_base.dmm|3,4,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|3,4,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|3,5,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|4,5,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/RuinGeneration/13x13_listening_base.dmm|4,6,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|4,6,1|pipe/manifold/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|4,7,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|4,7,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|5,7,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|5,7,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|6,7,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|6,7,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,10,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,7,1|pipe/manifold/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,7,1|pipe/manifold/scrubbers/hidden|L3N|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,7,1|pipe/manifold/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,8,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,8,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,9,1|pipe/simple/scrubbers/hidden|L3N|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|7,9,1|pipe/simple/scrubbers/hidden|L3S|nakłada się na pipe/simple/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|8,7,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|8,7,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|9,7,1|pipe/simple/scrubbers/hidden|L3E|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x13_listening_base.dmm|9,7,1|pipe/simple/scrubbers/hidden|L3W|nakłada się na pipe/manifold/supply/hidden
+_maps/RuinGeneration/13x17_permabrig.dmm|6,2,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/RuinGeneration/69x45_charliestation.dmm|13,23,1|pipe/simple/supply/hidden|L3E|brak połączenia
+_maps/RuinGeneration/69x45_charliestation.dmm|17,23,1|pipe/manifold/supply/hidden|L3W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|102,119,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
+_maps/map_files/Atlantis/Atlantis.dmm|102,133,1|pipe/simple/cyan/visible/layer2|L2E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|103,133,1|components/trinary/mixer/airmix/flipped/inverse|L1E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|103,133,1|components/trinary/mixer/airmix/flipped/inverse|L1N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|103,133,1|components/trinary/mixer/airmix/flipped/inverse|L1W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|103,134,1|pipe/simple/cyan/visible/layer2|L2S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|104,133,1|pipe/simple/cyan/visible/layer2|L2W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|108,117,1|pipe/manifold/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|110,117,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|123,106,1|pipe/manifold/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|125,93,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|126,96,1|pipe/manifold/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|127,93,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|133,93,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|134,96,1|pipe/manifold/supply/hidden/layer2|L2N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|135,93,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|146,145,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|148,145,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|153,100,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|153,102,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|157,121,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|157,121,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|163,156,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|165,104,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|171,119,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|172,119,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|173,142,1|pipe/manifold/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|173,143,1|pipe/simple/supply/hidden/layer2|L2N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|177,130,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
+_maps/map_files/Atlantis/Atlantis.dmm|74,138,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|75,110,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|86,141,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
+_maps/map_files/Atlantis/Atlantis.dmm|91,160,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|98,112,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis.dmm|99,106,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|101,123,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|119,105,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|119,91,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|136,151,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|159,148,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|165,99,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|167,132,1|pipe/simple/supply/hidden/layer2|L2N|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Atlantis/Atlantis2.dmm|167,132,1|pipe/simple/supply/hidden/layer2|L2S|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Atlantis/Atlantis2.dmm|171,119,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|171,119,1|pipe/layer_manifold|L2N|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Atlantis/Atlantis2.dmm|171,119,1|pipe/layer_manifold|L2S|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Atlantis/Atlantis2.dmm|171,119,1|pipe/simple/supply/hidden/layer2|L2N|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|171,119,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|172,119,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|173,116,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|173,118,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|54,123,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, green
+_maps/map_files/Atlantis/Atlantis2.dmm|54,127,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, green
+_maps/map_files/Atlantis/Atlantis2.dmm|90,149,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|97,107,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|97,108,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlantis/Atlantis2.dmm|98,112,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|119,146,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|124,145,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|125,94,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|127,94,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|128,145,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|133,94,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|135,118,1|pipe/simple/supply/hidden/layer2|L2N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|135,94,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|152,99,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|153,100,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|161,120,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|161,128,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|164,117,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|164,132,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|165,110,1|pipe/simple/general/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|87,136,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|90,140,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|93,147,1|components/unary/outlet_injector/layer2|L2S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|98,135,1|components/unary/thermomachine/freezer|L3S|brak połączenia
+_maps/map_files/Atlas/atlas.dmm|99,115,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|103,115,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|117,143,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|127,140,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|135,146,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|135,146,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|151,117,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|162,138,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Atlas/atlas2.dmm|165,119,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon1.dmm|129,148,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon1.dmm|129,152,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon1.dmm|146,156,1|pipe/layer_manifold/visible|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon1.dmm|146,158,1|pipe/layer_manifold/visible|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|118,136,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|118,136,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|120,131,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|120,131,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|120,134,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|122,136,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|122,136,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|136,153,1|components/unary/portables_connector|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|148,97,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|152,137,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|152,95,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|166,142,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|167,119,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|168,99,1|pipe/simple/scrubbers/hidden/layer4|L4N|nakłada się na pipe/simple/scrubbers/hidden/layer4
+_maps/map_files/Instanced/map_files/Babylon2.dmm|168,99,1|pipe/simple/scrubbers/hidden/layer4|L4S|nakłada się na pipe/simple/scrubbers/hidden/layer4
+_maps/map_files/Instanced/map_files/Babylon2.dmm|72,164,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|79,123,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|79,99,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|84,96,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Babylon2.dmm|94,148,1|pipe/manifold/supply/hidden/layer2|L2E|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Instanced/map_files/Babylon2.dmm|94,148,1|pipe/manifold/supply/hidden/layer2|L2W|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Instanced/map_files/Hammurabi1.dmm|101,126,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi1.dmm|101,132,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|113,131,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|113,133,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|114,122,1|pipe/simple/supply/hidden|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|114,124,1|pipe/simple/supply/hidden|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|143,98,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|89,105,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|90,126,1|pipe/simple/orange/visible/layer2|L2W|brak połączenia
+_maps/map_files/Instanced/map_files/Hammurabi2.dmm|98,112,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|104,128,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|105,127,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|105,129,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|116,123,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|116,133,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|120,125,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|123,125,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|123,125,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|125,125,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|126,125,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,125,1|pipe/manifold/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,127,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,129,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,131,1|pipe/manifold/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,139,1|pipe/simple/general/hidden|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|128,141,1|components/unary/outlet_injector/atmos/nitrous_input|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|131,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|136,135,1|pipe/manifold/supply/visible/layer2|L2E|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|137,122,1|pipe/layer_manifold/visible|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|137,135,1|components/unary/thermomachine/heater|L3W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|141,109,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|142,108,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|143,109,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|169,118,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|169,149,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|172,135,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|179,127,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|179,129,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/HomeOne.dmm|180,128,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|110,125,1|components/unary/tank/air|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|110,126,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|110,130,1|pipe/simple/supply/hidden/layer2|L2N|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|110,131,1|components/unary/tank/air|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|111,125,1|components/unary/tank|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|111,126,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|111,130,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|111,131,1|components/unary/tank|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|113,122,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|113,134,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|136,130,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|136,130,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|139,128,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|139,128,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|139,129,1|pipe/manifold/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Instanced/map_files/NSVElcoPT.dmm|139,129,1|pipe/manifold/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|117,142,1|pipe/simple/supply/hidden|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|121,152,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|121,154,1|components/binary/dp_vent_pump|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|147,136,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|179,95,1|components/unary/vent_pump/on|L3W|brak połączenia
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|91,112,1|components/trinary/filter|L3N|nakłada się na components/unary/vent_scrubber/on
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|94,114,1|pipe/manifold/yellow/visible|L3E|nakłada się na pipe/manifold/yellow/visible
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|94,114,1|pipe/manifold/yellow/visible|L3S|nakłada się na pipe/manifold/yellow/visible
+_maps/map_files/Instanced/map_files/SpaceSHIP.dmm|94,114,1|pipe/manifold/yellow/visible|L3W|nakłada się na pipe/manifold/yellow/visible
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|72,150,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,148,1|pipe/simple/scrubbers/hidden/layer4|L4N|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,149,1|components/trinary/filter/atmos/o2|L3E|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,149,1|components/trinary/filter/atmos/o2|L3S|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,150,1|components/trinary/filter/atmos/flipped/n2|L3N|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,150,1|pipe/simple/yellow/visible|L3W|nakłada się na components/trinary/filter/atmos/flipped/n2
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|73,151,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|74,149,1|pipe/simple/yellow/visible/layer4|L4E|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|74,149,1|pipe/simple/yellow/visible/layer4|L4W|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|75,149,1|components/unary/outlet_injector/atmos/oxygen_input|L3W|nakłada się na pipe/simple/yellow/visible
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|76,145,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|76,149,1|pipe/simple/cyan/visible/layer2|L2E|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|77,149,1|components/unary/outlet_injector/atmos/air_input|L1W|brak połączenia
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|82,137,1|pipe/simple/scrubbers/hidden/layer4|L4E|nakłada się na pipe/simple/scrubbers/hidden/layer4
+_maps/map_files/Instanced/map_files/admiralroyalty.dmm|82,137,1|pipe/simple/scrubbers/hidden/layer4|L4W|nakłada się na pipe/simple/scrubbers/hidden/layer4
+_maps/map_files/Mining/Lavaland.dmm|103,30,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/Lavaland.dmm|124,20,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Mining/Lavaland.dmm|125,35,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/Lavaland.dmm|171,42,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/Lavaland.dmm|88,24,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Mining/Lavaland.dmm|99,30,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/FOB_Shuttle.dmm|67,33,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Mining/nsv13/FOB_Shuttle.dmm|67,35,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Mining/nsv13/FOB_Shuttle.dmm|71,30,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Mining/nsv13/FOB_Shuttle.dmm|73,30,1|pipe/manifold/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|100,113,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|100,121,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|103,116,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|103,118,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|65,103,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|65,130,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|79,103,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|79,131,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|96,112,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Mining/nsv13/Rocinante.dmm|96,122,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/gulag.dmm|125,125,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Mining/nsv13/gulag.dmm|136,131,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/gulag.dmm|140,131,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|11,28,1|pipe/manifold/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|22,16,1|pipe/simple/yellow|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|24,24,1|components/binary/valve|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|24,29,1|pipe/simple/scrubbers/visible|L3W|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|25,15,1|pipe/simple/green/visible|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|25,18,1|pipe/simple/cyan/visible|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|25,21,1|components/binary/valve|L3W|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining1.dmm|26,29,1|pipe/simple/scrubbers/visible|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining2.dmm|18,20,1|pipe/simple/supply/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining2.dmm|19,20,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|19,26,1|pipe/simple/supply/hidden|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|21,25,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|23,26,1|pipe/simple/supply/hidden|L3W|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|25,25,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|28,20,1|pipe/manifold/scrubbers/hidden|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|31,21,1|pipe/simple/scrubbers/hidden|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|32,21,1|pipe/simple/supply/hidden|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|32,26,1|pipe/simple/supply/hidden|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|8,29,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining3.dmm|9,29,1|pipe/simple/supply/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|21,15,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|21,17,1|pipe/simple/scrubbers/hidden|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|23,12,1|pipe/simple/scrubbers/hidden|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|23,13,1|pipe/manifold4w|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|23,14,1|pipe/simple/scrubbers/hidden|L3E|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|24,12,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|24,13,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining43.dmm|24,14,1|components/unary/tank/oxygen|L3S|brak połączenia
+_maps/map_files/Mining/nsv13/ruins/mining8.dmm|22,15,1|components/unary/vent_pump/siphon/atmos|L3N|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|105,132,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|118,122,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|125,126,1|components/unary/vent_pump/on/layer2|L2N|nakłada się na pipe/simple/supply/hidden/layer2
+_maps/map_files/Serendipity/Serendipity1.dmm|133,126,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|85,136,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|86,143,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|89,131,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|91,131,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|97,131,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity1.dmm|99,131,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|106,115,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|108,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|109,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|114,134,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|114,136,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|114,138,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|126,114,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|126,151,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/map_files/Serendipity/Serendipity2.dmm|126,158,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|129,114,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|129,158,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|134,123,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|136,144,1|pipe/simple/scrubbers/hidden|L3N|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|136,144,1|pipe/simple/scrubbers/hidden|L3W|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|149,148,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|149,148,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/map_files/Serendipity/Serendipity2.dmm|151,135,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|107,121,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|110,140,1|power/terminal|-|kilka kolorów kabla pod terminalem: orange, pink
+_maps/map_files/Shrike/Shrike1.dmm|113,131,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|116,164,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|118,91,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|135,101,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|136,164,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Shrike/Shrike1.dmm|143,162,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|110,143,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|116,133,1|pipe/layer_manifold/visible|L*N|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|127,146,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|127,146,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|128,145,1|pipe/manifold/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|128,145,1|pipe/manifold/supply/hidden/layer2|L2W|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|139,87,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|140,128,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|142,87,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|161,161,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Shrike/Shrike2.dmm|161,95,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|103,120,1|pipe/layer_manifold/visible|L*E|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|105,132,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
+_maps/map_files/Snake/snake_lower.dmm|112,117,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|152,117,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|68,127,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|75,134,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
+_maps/map_files/Snake/snake_lower.dmm|79,120,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/Snake/snake_lower.dmm|86,123,1|pipe/layer_manifold/visible|L*E|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|132,120,1|pipe/manifold4w/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|146,129,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|188,134,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|188,138,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|189,118,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|190,138,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|192,128,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|71,126,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|71,128,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|73,119,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|76,122,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/Snake/snake_upper.dmm|76,124,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/debug/multiz.dmm|32,38,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/map_files/debug/runtimestation.dmm|55,74,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/map_files/generic/CentCom.dmm|60,187,1|components/unary/tank/air|L2E|brak połączenia
+_maps/map_files/generic/CentCom.dmm|61,187,1|pipe/simple/supply/hidden|L3W|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|118,78,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|135,115,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|135,71,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|142,108,1|pipe/layer_manifold|L*E|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|38,86,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|62,113,1|pipe/layer_manifold/visible|L*W|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|78,58,1|pipe/layer_manifold|L*S|brak połączenia
+_maps/map_files/vonneumann/vnmk3.dmm|83,123,1|pipe/layer_manifold|L*N|brak połączenia
+_maps/shuttles/emergency/emergency_cere.dmm|16,3,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/shuttles/emergency/emergency_cere.dmm|16,4,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/shuttles/emergency/emergency_meta.dmm|4,2,1|components/unary/tank/air|L3S|brak połączenia
+_maps/shuttles/emergency/emergency_meta.dmm|5,2,1|pipe/manifold/orange/hidden|L3W|brak połączenia
+_maps/shuttles/exploration/exploration_corg.dmm|3,13,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/shuttles/whiteship/whiteship_fland.dmm|7,10,1|pipe/manifold/dark/hidden|L3E|brak połączenia
+_maps/shuttles/whiteship/whiteship_fland.dmm|8,11,1|pipe/simple/dark/hidden|L3W|brak połączenia
+_maps/shuttles/whiteship/whiteship_fland.dmm|9,10,1|components/unary/tank/air|L3W|brak połączenia
+_maps/shuttles/whiteship/whiteship_fland.dmm|9,11,1|pipe/manifold/dark/hidden|L3S|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|4,14,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|5,14,1|components/trinary/filter/atmos/n2|L3N|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|5,14,1|components/trinary/filter/atmos/n2|L3W|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|5,15,1|pipe/manifold/supply/hidden/layer4|L4S|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|6,14,1|components/trinary/filter/atmos/o2|L3E|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|6,14,1|components/trinary/filter/atmos/o2|L3N|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|6,15,1|pipe/manifold/supply/hidden/layer4|L4S|brak połączenia
+_maps/shuttles/whiteship/whiteship_meta.dmm|7,14,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/templates/boarding/boarding_test.dmm|119,120,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/templates/boarding/boarding_test.dmm|119,123,1|power/terminal|-|terminal bez kabla pod spodem
+_maps/templates/boarding/syndicate/carrier.dmm|104,118,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|104,120,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|104,138,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|104,140,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,118,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,120,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,126,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,132,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,138,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|106,140,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,118,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,120,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,126,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,132,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,138,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|108,140,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|110,118,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|110,120,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|110,138,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|110,140,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|115,123,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|115,124,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|115,134,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|115,135,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|117,126,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|117,132,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|118,120,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|118,138,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|120,120,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|120,138,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|121,126,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|121,132,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|123,123,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|123,124,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|123,134,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|123,135,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|125,118,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|125,119,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|125,139,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|125,140,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|127,124,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|127,126,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|127,132,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|127,134,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|131,124,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|131,126,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|131,132,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|131,134,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|133,118,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|133,119,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|133,139,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|133,140,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|135,123,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|135,124,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|135,134,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|135,135,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|137,126,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|137,132,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|138,120,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|138,138,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|140,120,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|140,138,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|141,126,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|141,132,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|143,123,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|143,124,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|143,134,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|143,135,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|148,136,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|148,140,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|150,136,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|150,140,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|153,139,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|154,118,1|components/unary/thermomachine/freezer|L3S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|155,118,1|pipe/manifold|L3W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|155,135,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|156,135,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|157,120,1|components/unary/vent_pump/on/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|157,124,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|158,139,1|components/unary/vent_scrubber/on/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|163,118,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|163,123,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|163,133,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|163,134,1|components/unary/vent_scrubber/on/layer4|L4N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|173,127,1|components/unary/vent_pump/on/layer2|L2N|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|173,131,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|87,128,1|pipe/layer_manifold|L*W|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|92,131,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|92,131,1|pipe/simple/supply/hidden/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|93,121,1|components/unary/vent_pump/on/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|93,123,1|components/unary/vent_scrubber/on/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|95,130,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|95,136,1|components/unary/vent_scrubber/on/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|97,130,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/carrier.dmm|97,136,1|components/unary/vent_pump/on/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|118,132,1|pipe/manifold/supply/hidden/layer2|L2E|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|118,132,1|pipe/manifold/supply/hidden/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|118,132,1|pipe/simple/scrubbers/hidden/layer4|L4E|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|118,132,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|120,132,1|pipe/simple/scrubbers/hidden/layer4|L4S|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|120,132,1|pipe/simple/scrubbers/hidden/layer4|L4W|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|120,132,1|pipe/simple/supply/hidden/layer2|L2S|brak połączenia
+_maps/templates/boarding/syndicate/destroyer.dmm|120,132,1|pipe/simple/supply/hidden/layer2|L2W|brak połączenia
+_maps/templates/boarding/syndicate/marine_frigate.dmm|104,132,1|components/unary/thermomachine/freezer|L3S|brak połączenia
+_maps/templates/boarding/syndicate/marine_frigate.dmm|105,132,1|pipe/manifold|L3W|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|21,12,1|pipe/simple/scrubbers/hidden/layer2|L2S|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|21,12,1|pipe/simple/supply/hidden/layer4|L4S|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|23,19,1|pipe/simple/scrubbers/hidden/layer2|L2N|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|23,19,1|pipe/simple/supply/hidden/layer4|L4N|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|7,24,1|pipe/simple/scrubbers/hidden/layer2|L2N|brak połączenia
+_maps/virtual_domains/heretic_hunt.dmm|7,24,1|pipe/simple/supply/hidden/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|11,17,1|components/unary/vent_scrubber/on/layer2|L2W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|13,24,1|components/unary/vent_pump/on/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|13,31,1|components/unary/vent_pump/on/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|13,34,1|components/unary/portables_connector/visible/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|13,42,1|components/unary/vent_scrubber/on/layer2|L2N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|15,17,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|15,20,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|16,13,1|components/unary/vent_pump/on/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|18,41,1|pipe/simple/scrubbers/hidden/layer2|L2W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|18,41,1|pipe/simple/supply/hidden/layer4|L4W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|19,34,1|components/unary/vent_scrubber/on/layer2|L2W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|20,24,1|components/unary/vent_scrubber/on/layer2|L2N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|21,17,1|components/unary/vent_pump/on/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|21,27,1|components/unary/vent_scrubber/on/layer2|L2N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|21,36,1|pipe/simple/scrubbers/hidden/layer2|L2S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|21,36,1|pipe/simple/supply/hidden/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|23,31,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|24,22,1|components/unary/vent_pump/on/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|25,31,1|components/unary/vent_pump/on/layer4|L4W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|26,29,1|components/unary/vent_pump/on/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|27,17,1|components/unary/vent_scrubber/on/layer2|L2S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|29,34,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|32,13,1|components/unary/vent_scrubber/on/layer2|L2S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|32,17,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|32,42,1|components/unary/vent_pump/on/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|33,21,1|components/unary/vent_pump/on/layer4|L4W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|33,27,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|33,35,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|36,17,1|components/unary/vent_scrubber/on/layer2|L2W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|36,37,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|37,24,1|components/unary/vent_scrubber/on/layer2|L2N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|38,17,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|38,27,1|components/unary/vent_scrubber/on/layer2|L2N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|42,12,1|components/unary/vent_pump/on/layer4|L4S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|43,20,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|43,32,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|43,42,1|components/unary/vent_scrubber/on/layer2|L2E|brak połączenia
+_maps/virtual_domains/meta_central.dmm|5,22,1|components/unary/vent_pump/on/layer4|L4W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|5,32,1|components/unary/vent_scrubber/on/layer2|L2W|brak połączenia
+_maps/virtual_domains/meta_central.dmm|5,42,1|components/unary/vent_pump/on/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|9,21,1|components/unary/vent_pump/on/layer4|L4N|brak połączenia
+_maps/virtual_domains/meta_central.dmm|9,31,1|components/unary/vent_scrubber/on/layer2|L2S|brak połączenia
+_maps/virtual_domains/meta_central.dmm|9,38,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
+_maps/virtual_domains/syndicate_assault.dmm|33,39,1|pipe/simple/supply/hidden|L3E|brak połączenia
+_maps/virtual_domains/syndicate_assault.dmm|35,39,1|pipe/simple/supply/hidden|L3W|brak połączenia
+aquila/_maps/random_engines/snake_engine_supermatter.dmm|15,8,1|pipe/heat_exchanging/junction/layer4|L4W|brak połączenia
+aquila/_maps/shipbreaking/whiteship_fland.dmm|7,10,1|pipe/manifold/dark/hidden|L3E|brak połączenia
+aquila/_maps/shipbreaking/whiteship_fland.dmm|8,11,1|pipe/simple/dark/hidden|L3W|brak połączenia
+aquila/_maps/shipbreaking/whiteship_fland.dmm|9,10,1|components/unary/tank/air|L3W|brak połączenia
+aquila/_maps/shipbreaking/whiteship_fland.dmm|9,11,1|pipe/manifold/dark/hidden|L3S|brak połączenia

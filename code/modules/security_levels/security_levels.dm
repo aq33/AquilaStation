@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		return
 	switch(level)
 		if(SEC_LEVEL_GREEN)
-			minor_announce(CONFIG_GET(string/alert_green), "Przejść w tryb swobodny")
+			minor_announce(CONFIG_GET(string/alert_green), "Przejść w tryb swobodny", color_override = "green") // AQ EDIT - kolor ramki
 			toggle_gq_lights(FALSE)
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 				if(GLOB.security_level >= SEC_LEVEL_RED)
@@ -35,25 +35,25 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 		if(SEC_LEVEL_BLUE)
 			if(GLOB.security_level < SEC_LEVEL_BLUE)
-				minor_announce(CONFIG_GET(string/alert_blue_upto), "Powrót do standardowych procedur",1)
+				minor_announce(CONFIG_GET(string/alert_blue_upto), "Powrót do standardowych procedur",1, color_override = "blue") // AQ EDIT - kolor ramki
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					SSshuttle.emergency.modTimer(0.5)
 			else
-				minor_announce(CONFIG_GET(string/alert_blue_downto), "Odwołać alarm bojowy")
+				minor_announce(CONFIG_GET(string/alert_blue_downto), "Odwołać alarm bojowy", color_override = "blue") // AQ EDIT - kolor ramki
 				toggle_gq_lights(FALSE)
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					SSshuttle.emergency.modTimer(2)
 
 		if(SEC_LEVEL_RED)
 			if(GLOB.security_level < SEC_LEVEL_RED)
-				gq_announce(CONFIG_GET(string/alert_red_upto), sound='nsv13/sound/effects/ship/action_stations.ogg')
+				gq_announce(CONFIG_GET(string/alert_red_upto), sound='nsv13/sound/effects/ship/action_stations.ogg', color_override = "red") // AQ EDIT - kolor ramki
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						SSshuttle.emergency.modTimer(0.25)
 					else
 						SSshuttle.emergency.modTimer(0.5)
 			else
-				minor_announce(CONFIG_GET(string/alert_red_downto), "Uwaga! Alarm bojowy!")
+				minor_announce(CONFIG_GET(string/alert_red_downto), "Uwaga! Alarm bojowy!", color_override = "red") // AQ EDIT - kolor ramki
 			toggle_gq_lights(TRUE)
 			//addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(toggle_gq_lights), FALSE), 45 SECONDS) // AQ EDIT
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
@@ -65,14 +65,14 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		//Nsv13 - Condition Z
 		if(SEC_LEVEL_ZEBRA)
 			if(GLOB.security_level < SEC_LEVEL_ZEBRA)
-				gq_announce(CONFIG_GET(string/alert_zebra_upto), sound='nsv13/sound/effects/ship/condition_zebra.ogg')
+				gq_announce(CONFIG_GET(string/alert_zebra_upto), sound='nsv13/sound/effects/ship/condition_zebra.ogg', color_override = "orange") // AQ EDIT - kolor ramki
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						SSshuttle.emergency.modTimer(0.25)
 					else if(GLOB.security_level == SEC_LEVEL_BLUE)
 						SSshuttle.emergency.modTimer(0.5)
 			else
-				gq_announce(CONFIG_GET(string/alert_zebra_downto), sound='nsv13/sound/effects/ship/condition_zebra.ogg')
+				gq_announce(CONFIG_GET(string/alert_zebra_downto), sound='nsv13/sound/effects/ship/condition_zebra.ogg', color_override = "orange") // AQ EDIT - kolor ramki
 			toggle_gq_lights(TRUE)
 			//addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(toggle_gq_lights), FALSE), 30 SECONDS) // AQ EDIT
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		//Nsv13 - end
 
 		if(SEC_LEVEL_DELTA)
-			minor_announce(CONFIG_GET(string/alert_delta), "Uwaga! Osiągnięto poziom alarmu Delta!",1)
+			minor_announce(CONFIG_GET(string/alert_delta), "Uwaga! Osiągnięto poziom alarmu Delta!",1, color_override = "purple") // AQ EDIT - kolor ramki
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 				if(GLOB.security_level == SEC_LEVEL_GREEN)
 					SSshuttle.emergency.modTimer(0.25)
