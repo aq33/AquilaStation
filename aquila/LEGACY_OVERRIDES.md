@@ -338,6 +338,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Fixed `mappath` of `sk_rdm139`, `sk_rdm165`, `sk_rdm169` (pointed at missing files) | `code/modules/mapping/random_rooms.dm` | These rooms never spawned. Test: `aquila_random_rooms` |
 | Sortowanie obrazów po `plane`, potem po `layer` (`FLOAT_PLANE` jak `GAME_PLANE`) | `code/modules/photography/camera/camera_image_capturing.dm` (`camera_get_icon()`) | Po obniżeniu warstw kable, rury i kratownice mają warstwę poniżej `TURF_LAYER` na `GAME_PLANE`; samo sortowanie po warstwie rysowało na nich turf i znikały ze zdjęć. Test: `aquila_audyt_warstwy_photo` |
 | `return FALSE` po `place_on_turf()` przy prawym kliku | `code/modules/power/cable_coil.dm` (`/obj/item/stack/cable_coil/pre_attack()`) | Port Bee zwracał TRUE, które u nas znaczy „idź dalej”: cel dostawał jeszcze `attackby(zwój)` (maszyna zasilana kładła drugi kabel pod graczem). Test: `aquila_audyt_warstwy_cable_rmb` |
+| `!usr.can_hold_items()` w `MouseDrop()` | `code/game/objects/structures/beds_chairs/chair.dm` | Port combat mode usunął warunek, a nasze `canUseTopic()` nie ma `need_hands` z Bee: zwierzęta i borgi zwijały krzesła. Test: `aquila_audyt_warstwy_chair_drag` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
