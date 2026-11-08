@@ -384,7 +384,7 @@ One-line hooks; everything else is in `aquila/code/modules/mob/voice.dm`, the Aq
 - `code/datums/looping_sounds/_looping_sound.dm`: `play()` passed `extra_range` as `vary`; it also passes `vary`, falloff and `ignore_walls` (vars added in `aquila/code/datums/looping_sounds/machinery_sounds.dm`).
 - `code/game/objects/items.dm`: `equip_sound` only when worn (`slot_flags & slot`), not when picked up.
 - `code/game/turfs/turf.dm`: `handle_fall()` also thuds, more quietly, when lying down on purpose.
-- `code/modules/client/preferences.dm`, `preferences2/character_save.dm`: voice pitch row, its input/random handlers, sanitizing and randomising `features["voice_pitch"]`.
+- `code/modules/client/preferences2/character_save.dm`: sanitizing and randomising `features["voice_pitch"]`. The setting itself is the `voice_pitch` entry of the preferences window (`aquila/code/modules/client/preferences_menu/entries_character.dm`, „Posłuchaj” = `voice_pitch_test` in `menu.dm`); the old HTML row in `code/modules/client/preferences.dm` went away with the HTML menu (aq33/AquilaStation#480).
 - `code/game/machinery/telecomms/broadcasting.dm`: the receive beep goes to the listener only (`play_radio_receive_sound()`), it used to be a positional sound everyone around heard.
 - `code/game/objects/items/devices/radio/radio.dm`: `talk_into_impl()` plays `play_radio_talk_sound()`, audible next to the speaker.
 
