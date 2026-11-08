@@ -37,8 +37,8 @@
 		return FALSE
 
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(conversion_target)
-	var/datum/mind/vassal_master = conversion_target.mind.enslaved_to
-	if((vassaldatum && !vassaldatum.master.broke_masquerade) || (vassal_master && vassal_master != owner))
+	var/mob/living/vassal_master = conversion_target.mind.enslaved_to // AQUILA - u nas enslaved_to to mob, nie umysł
+	if((vassaldatum && !vassaldatum.master.broke_masquerade) || (!vassaldatum && vassal_master && vassal_master != owner.current))
 		living_vampire.balloon_alert(living_vampire, "służy już komuś innemu.")
 		return FALSE
 

@@ -68,7 +68,10 @@
 			continue
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
-	if(iscarbon(current_mob) && !get_shadow_tumor(current_mob))
+	var/obj/item/organ/shadowtumor/old_tumor = get_shadow_tumor(current_mob)
+	if(iscarbon(current_mob) && !istype(old_tumor, /obj/item/organ/shadowtumor/thrall))
+		if(old_tumor) // paciorek z Pożarcia woli zastępuje guz thralla
+			qdel(old_tumor)
 		var/obj/item/organ/shadowtumor/thrall/tumor = new
 		tumor.Insert(current_mob, FALSE, FALSE)
 		tumor.antag_team = team

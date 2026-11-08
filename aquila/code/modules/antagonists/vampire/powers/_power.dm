@@ -111,7 +111,7 @@
 	var/mob/living/carbon/carbon_owner = owner
 
 	// Torpor?
-	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(carbon_owner, TRAIT_TORPOR))
+	if((check_flags & BP_CANT_USE_IN_TORPOR) && vampiredatum_power?.is_in_torpor()) // AQUILA - TRAIT_TORPOR to źródło cech, nie cecha
 		to_chat(carbon_owner, span_warning("Nie w stanie torporu."))
 		return FALSE
 	// Frenzy?

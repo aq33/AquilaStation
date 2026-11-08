@@ -339,6 +339,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `quality = min(quality, FOOD_QUALITY_TOP)` | `code/datums/components/food/edible.dm` (`examine()`) | Szkielet oglądający szalonego hamburgera kucharza miał jakość 8 przy liście 7 opisów: runtime i brak opisu. `check_liked()` przycinał już tak samo. Test: `aquila_audyt_food_quality_examine` |
 | `icon = 'icons/obj/food/meat.dmi'` | `code/modules/guardian/guardianbuilder.dm` (`/obj/item/guardiancreator/carp`) | Port Newfood przeniósł stan `fishfingers` do `meat.dmi`, więc holokarpie paluszki z uplinka były niewidoczne. Test: `aquila_audyt_holocarp_icon` |
 | `if(QDELETED(src)) return` po `..()` | `code/modules/reagents/reagent_containers/pill.dm` (`afterattack()`) | Taca hydroponiczna kompostuje pigułkę w sygnale `COMSIG_ATOM_AFTER_ATTACKEDBY`, a dalszy kod pigułki wołał `trans_to` na usuniętych reagentach. Test: `aquila_audyt_tray_compost` |
+| `newstruct.report_construct_built(stoner)` na końcu bloku `AQ EDIT` | `code/modules/antagonists/wizard/equipment/soulstone.dm` (`makeNewConstruct()`) | Konstrukt kultu krwi zgłasza klucz `build_construct`, więc rytuał „Po jednym z każdego” da się ukończyć (jak `check_ritual("build_construct")` w vg). Procedura w `aquila/code/modules/antagonists/bloodcult/constructs/constructs/_construct.dm`, test `aquila_audyt_antagi_constructs` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
@@ -466,7 +467,7 @@ The BeeStation blood cult is replaced. The new cult (rune words, rune spells, ri
 - `code/modules/mob/living/living_defense.dm`: `/mob/living/narsie_act` always makes a random hostile construct (proteon included).
 - `code/modules/reagents/chemistry/reagents/other_reagents.dm`: holy water no longer purges blood magic nor deconverts after 30u (deconversion is the bible ritual).
 - `code/modules/mob/living/simple_animal/constructs.dm`: rune actions and the eldergod objective cut from constructs; draft construct changes live in `bloodcult/constructs/`.
-- `code/modules/antagonists/wizard/equipment/soulstone.dm`: no sacrifice-target lock, perfect gem constructs, cultists made through `add_antag_datum` and `CanConvert()`.
+- `code/modules/antagonists/wizard/equipment/soulstone.dm`: no sacrifice-target lock, perfect gem constructs, cultists made through `add_antag_datum` and `CanConvert()`, `report_construct_built()` for the `build_construct` ritual key.
 - `code/modules/unit_tests/create_and_destroy.dm`: `bloodcult_create_and_destroy_ignores()` (as the draft's unit_test.dm).
 - `code/modules/shuttle/.../generator_netherworld.dm`: new pylon/forge types.
 - `nsv13/code/modules/antagonists/bloodling.dm`: `SUMMON_POSSIBILITIES` define (was in the removed cult.dm).
