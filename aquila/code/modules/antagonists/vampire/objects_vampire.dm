@@ -161,7 +161,11 @@
 	if(issilicon(living_target))
 		to_chat(user, span_danger("Uświadamiasz sobie, że maszyny nie da się zmienić w wasala, więc przypinanie jej nie ma sensu."))
 		return
+	add_fingerprint(user)
 	if(vampire_do_after(user, 5 SECONDS, living_target))
+		// AQUILA: the rack is not tracked by the do_after, it could be unbolted or moved in the meantime
+		if(!anchored || !living_target.Adjacent(src) || !user.Adjacent(src) || has_buckled_mobs() || living_target.buckled)
+			return
 		density = FALSE // Temporarily set density to false so the target is actually on the rack
 		attach_victim(living_target, user)
 		density = TRUE
@@ -250,6 +254,15 @@
 /obj/structure/vampire/vassalrack/attackby(obj/item/attacking_item, mob/living/user, list/modifiers)
 	if(IS_VAMPIRE(user) && has_buckled_mobs() && !user.combat_mode)
 		return try_to_torture(user, pick(buckled_mobs), attacking_item)
+	// AQUILA: a victim carried on the back goes through the same path as dragging (the generic buckle is disabled above)
+	if(istype(attacking_item, /obj/item/riding_offhand) && user.Adjacent(src))
+		var/obj/item/riding_offhand/riding_item = attacking_item
+		var/mob/living/carried_mob = riding_item.rider
+		if(carried_mob && carried_mob != user)
+			user.unbuckle_mob(carried_mob)
+			carried_mob.forceMove(get_turf(user))
+			MouseDrop_T(carried_mob, user)
+			return TRUE
 	return ..()
 
 /**

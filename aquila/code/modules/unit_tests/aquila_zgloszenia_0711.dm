@@ -10,6 +10,7 @@
 		for(var/i in 1 to 10)
 			var/obj/item/storage/firstaid/kit = allocate(kit_type)
 			var/datum/component/storage/storage = kit.GetComponent(/datum/component/storage)
+			TEST_ASSERT(storage, "[kit_type] has no storage component")
 			TEST_ASSERT(length(kit.contents) <= storage.max_items, "[kit_type] spawned [length(kit.contents)] items into [storage.max_items] slots")
 			qdel(kit)
 

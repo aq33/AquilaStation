@@ -169,7 +169,8 @@
 			target.Paralyze(0.1)
 
 			target.drop_all_held_items()
-			target.grabbedby(owner)
-			target.grippedby(owner, instant = TRUE)
+		// AQUILA: the grab lands from the front too, only the knockdown needs the back or the dark
+		target.grabbedby(owner)
+		target.grippedby(owner, instant = TRUE)
 
 #undef LUNGE_TIME

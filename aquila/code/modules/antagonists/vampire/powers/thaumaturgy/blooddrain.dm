@@ -123,7 +123,7 @@
 		return
 
 	// AQUILA: our core never sets TRAIT_INCAPACITATED for stuns and stamina crit, a downed victim counts as incapacitated
-	if(HAS_TRAIT(owner, TRAIT_INCAPACITATED) || owner.stat || !(owner.mobility_flags & MOBILITY_STAND))
+	if(HAS_TRAIT(owner, TRAIT_INCAPACITATED) || owner.stat || !(owner.mobility_flags & MOBILITY_STAND) || owner.IsStun() || owner.IsParalyzed())
 		//If the victim is incapacitated, drain their blood
 		owner.blood_volume -= blood_drain
 	else

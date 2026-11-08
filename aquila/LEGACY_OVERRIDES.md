@@ -42,6 +42,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/datum/ai_goal/retreat/action()` | Partial (C) | Overmap scale (`aquila/code/modules/overmap/overmap_scale.dm`): an AI carrier holds at its standoff range (`move_toward()` override) instead of running away; every other supply ship calls `..()`. |
 | `/obj/structure/overmap/ai_fire()`, `ai_elite_fire()` | Partial (C) | AI morale (`aquila/code/modules/overmap/ai_morale.dm`): a commander who just picked a new target holds fire for 1-4 slowprocess ticks (`ai_hold_fire_until`); otherwise both call `..()`. |
 | `/obj/item/clothing/suit/space/hardsuit/ui_action_click()` | Replaced (C) | Hardsuity z modułami (`aquila/code/modules/clothing/spacesuits/hardsuit_modules.dm`): bazowe woła `attack_self()`, a to otwierało panel modułów przy każdej akcji; obsługuje tylko hełm i wbudowaną butlę. |
+| `/obj/structure/vampire/vassalrack/mouse_buckle_handling()` | Full override (returns FALSE) | The generic drag buckle (`/atom/movable/MouseDrop_T()`, carried victims in `attackby()`) skipped the bolting check and reset of the torture progress, so the rack buckles only through its own `MouseDrop_T()` and the `riding_offhand` branch of its `attackby()`. `aquila/code/modules/antagonists/vampire/objects_vampire.dm` |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
 

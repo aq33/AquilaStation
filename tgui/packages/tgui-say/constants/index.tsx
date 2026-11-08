@@ -33,7 +33,7 @@ const ENGLISH_LABELS: Record<string, string> = {
   Nauk: 'Sci',
   SI: 'AI',
   Prawo: 'Right',
-  Pol: 'Sec',
+  Żand: 'Sec',
   Zaop: 'Supp',
   Usł: 'Svc',
   Amun: 'Muni',

@@ -136,8 +136,11 @@ export const Stack = (_props) => {
 
   const [searchText, setSearchText] = useState('');
   // AQUILA: z EN gracz widzi i wpisuje angielską nazwę receptury
+  // (przycisk pokazuje nazwę wielką literą, a słownik ma osobne pary: „przełącznik” to switch, „Przełącznik” to Toggle)
   const testSearch = createSearch(searchText, (item: string) =>
-    isTranslating() ? `${item} ${translateUiText(item)}` : item,
+    isTranslating()
+      ? `${item} ${translateUiText(item)} ${translateUiText(toTitleCase(item))}`
+      : item,
   );
   const filteredRecipes = filterRecipeList(recipes, testSearch);
 
