@@ -100,5 +100,35 @@
 
 	vampire_mob.mind.remove_antag_datum(/datum/antagonist/vampire)
 
+/// AQUILA - audyt: hulk ma cechę TRAIT_HULK (płaszcz cieni go odrzuca), ghul odzyskuje brakujące organy i kończyny
+/datum/unit_test/aquila_audyt_antagi_heretic
+
+/datum/unit_test/aquila_audyt_antagi_heretic/Run()
+	var/mob/living/carbon/human/hulk = allocate(/mob/living/carbon/human)
+	hulk.dna.add_mutation(HULK)
+	TEST_ASSERT(hulk.dna.check_mutation(HULK), "Could not give the Hulk mutation")
+	TEST_ASSERT(HAS_TRAIT(hulk, TRAIT_HULK), "The Hulk mutation does not give TRAIT_HULK")
+	var/datum/action/cooldown/spell/shadow_cloak/cloak = new(hulk)
+	TEST_ASSERT(!cloak.is_valid_target(hulk), "Shadow Cloak works on a hulk")
+	hulk.dna.remove_mutation(HULK)
+	TEST_ASSERT(!HAS_TRAIT(hulk, TRAIT_HULK), "TRAIT_HULK stayed after losing the mutation")
+	TEST_ASSERT(cloak.is_valid_target(hulk), "Shadow Cloak does not work after losing the Hulk mutation")
+	qdel(cloak)
+
+	// Zwłoki bez serca i ręki wstają jako ghul z kompletem
+	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/heart/heart = corpse.getorganslot(ORGAN_SLOT_HEART)
+	heart.Remove(corpse)
+	qdel(heart)
+	var/obj/item/bodypart/arm = corpse.get_bodypart(BODY_ZONE_L_ARM)
+	arm.drop_limb()
+	qdel(arm)
+	corpse.death()
+	TEST_ASSERT(corpse.apply_status_effect(/datum/status_effect/ghoul, 50), "Could not make a ghoul")
+	TEST_ASSERT(corpse.stat != DEAD, "The ghoul is still dead")
+	TEST_ASSERT(corpse.getorganslot(ORGAN_SLOT_HEART), "The ghoul got no heart back")
+	TEST_ASSERT(corpse.get_bodypart(BODY_ZONE_L_ARM), "The ghoul got no arm back")
+	corpse.remove_status_effect(/datum/status_effect/ghoul)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
