@@ -309,6 +309,22 @@
 		OM.ai_recent_damage = 0
 		OM.stop_ai_flight()
 		OM.last_target = null
+	SEND_SIGNAL(src, COMSIG_FLEET_AI_RETREATED, left, target)
+
+/// Station boarding: the counterattack is repelled when its fleet is destroyed or when it retreats (it would never come back on its own,
+/// and the objective only waited for the fleet to be deleted)
+/datum/overmap_objective/board_station/send_counterattack()
+	. = ..()
+	watch_counterattack_retreat()
+
+/datum/overmap_objective/board_station/proc/watch_counterattack_retreat()
+	if(reinforcements)
+		RegisterSignal(reinforcements, COMSIG_FLEET_AI_RETREATED, PROC_REF(counterattack_retreated))
+
+/datum/overmap_objective/board_station/proc/counterattack_retreated(datum/fleet/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_FLEET_AI_RETREATED))
+	fleet_destroyed()
 
 /obj/structure/overmap/update_ai_morale()
 	. = ..()
