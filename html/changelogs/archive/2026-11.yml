@@ -401,3 +401,42 @@
       angielskiej nazwie.
   - bugfix: Kotary nie zasłaniają już maszyny do przetwarzania rudy na Trawniku.
   - bugfix: Drobne poprawki map Serendipity.
+'2026-11-08':
+  Joker66613:
+  - rscadd: Ogłoszenia w czacie w pasiastych ramkach jak w tg; ramki alarmów w kolorze
+      poziomu alarmu.
+  - rscadd: 'Examine w nowym układzie: tytuł z portretem postaci, osobne sekcje stanu
+      i danych z HUD-ów.'
+  - rscadd: 'Nowe lobby w stylu tg: przyciski po polsku, roleta, telewizorek z odliczaniem
+      i przycisk samouczka.'
+  - rscdel: Usunięto modsuity.
+  - rscadd: Hardsuity przyjmują moduły (dawne moduły MOD), mają rdzeń z baterią i
+      wbudowaną butlę z tlenem. Szafa na skafandry ładuje baterię i dolewa tlen.
+  - tweak: ZRK, szwadron śmierci, ninja, mag bitewny i uplink używają hardsuitów z
+      modułami.
+  - rscadd: Karta ID na smyczy, PDA i portfel są widoczne na postaci.
+  - rscadd: 'Wojna gangów: zawsze dwa gangi, limit członków rosnący z załogą, panel
+      i okno roli oraz Dominator jako cel ostateczny.'
+  - bugfix: Wiadomości gangtoola docierają do wszystkich posiadaczy w gangu.
+  - rscadd: Strzały z broni palnej zostawiają w powietrzu dym jak pożar.
+  - imageadd: Nowe sprite'y ogniw i ładowarki (Shiptest).
+  - imageadd: Sprite generatora termoelektrycznego (TEG) autorstwa Quartofela.
+  - imageadd: Ikona koła emotek to żółta buźka.
+  - rscadd: Atlantis i Von Neumann mają pracownie bitrunnerów, exodrony, serwery SI
+      z ethernetem, ksenoarcheologię, circuity, kuźnię amunicji, klatkę magnesu asteroid,
+      shipbreaking, rynek szlamów, zlecenia cywilne, giełdę i restaurację, jak Atlas
+      i Trawnik.
+  - rscadd: Atlantis ma wirusologię w skrzydle sal chorych medbayu.
+  - rscadd: 'Atlantis i Von Neumann mają gułag: prom obozu pracy przy nowej śluzie
+      brygu, teleporter gułagu i automat zwrotu rzeczy.'
+  - rscadd: Obie mapy mają nowy sprzęt kuchenny, monitory funkcji życiowych przy łóżkach
+      stazy, dzwonki działów, zegary, GenPop, konsolę NTSL, Wojtka i radiolatarnie
+      MULE.
+  - bugfix: Na Atlantis obserwator z lobby trafia na statek, a abordaże KNPC mają
+      punkty patrolowe.
+  - bugfix: Na Atlantis działają zmiany profesji z job_changes (sloty pilotów, usunięty
+      kurator i prawnik).
+  - bugfix: Prom piratów i Syndykatu może zadokować przy Von Neumannie.
+  - bugfix: Atlantis ma wyświetlacze ewakuacji i SI w korytarzach oraz faksy w działach.
+  - code_imp: CI kompiluje mapę Atlantis, nowy test sprawdza mechaniki map w rotacji.
+  - bugfix: Na Trawniku wróciła drukarka układów w pracowni nauki.
