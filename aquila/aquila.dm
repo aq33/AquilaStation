@@ -1001,6 +1001,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_579_struktura_statku.dm"
+#include "code\modules\test_chamber\kits\pr_NNN_sabre_wnetrze.dm"
 #include "code\modules\test_chamber\kits\pr_581_oswietlenie.dm"
 #include "code\modules\test_chamber\kits\pr_574_radial_ss14.dm"
 #include "code\modules\test_chamber\kits\pr_569_ai_morale.dm"
