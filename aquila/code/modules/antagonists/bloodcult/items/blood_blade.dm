@@ -44,7 +44,7 @@
 			playsound(user, 'sound/weapons/bladeslice.ogg', 30, 0, -2)
 			to_chat(user, span_warning("[capitalize(src.name)] pobiera trochę twojej krwi.") )
 		return
-	if (IS_CULTIST(user) && !IS_CULTIST(target) && !target.stat == DEAD)
+	if (IS_CULTIST(user) && !IS_CULTIST(target) && target.stat != DEAD)
 		var/datum/antagonist/cult/cult_datum = user.mind.has_antag_datum(/datum/antagonist/cult)
 		if (target.mind)
 			cult_datum.gain_devotion(30, DEVOTION_TIER_3, "attack_blooddagger", target)

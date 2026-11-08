@@ -163,6 +163,7 @@ Behavior that's still missing from this component that original food items had t
 
 	var/quality = get_perceived_food_quality(user)
 	if(quality > 0)
+		quality = min(quality, FOOD_QUALITY_TOP) // AQ EDIT - lista opisów ma FOOD_QUALITY_TOP pozycji, jak w check_liked()
 		var/quality_label = GLOB.food_quality_description[quality]
 		examine_list += "<span class='green'>Ten posiłek jest dla ciebie: [quality_label].</span>"
 	else if (quality == 0)

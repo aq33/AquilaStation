@@ -138,7 +138,9 @@
 #define DATATYPE_FLAG_COMPOSITE (1<<3)
 
 // AQ EDIT START - komponenty USB konsoli rekordów ochrony (code/game/machinery/computer/security.dm), u tg wycięte razem ze starą konsolą
-#define COMP_STATE_ARREST "*Arrest*"
+#define COMP_STATE_ARREST "Arrest"
+#define COMP_STATE_SEARCH "Search"
+#define COMP_STATE_MONITOR "Monitor"
 #define COMP_STATE_PRISONER "Incarcerated"
 #define COMP_STATE_PAROL "Paroled"
 #define COMP_STATE_DISCHARGED "Discharged"

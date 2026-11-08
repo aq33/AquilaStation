@@ -70,6 +70,9 @@
 	. = ..()
 	if(suppressed || !fire_sound || world.time < last_distant_shot + 0.3 SECONDS)
 		return
+	// Cięciwa łuku i zabawkowa kusza są ciche: z daleka nie słychać ich jak wystrzału
+	if(istype(src, /obj/item/gun/ballistic/bow) || istype(src, /obj/item/gun/ballistic/shotgun/toy/crossbow))
+		return
 	var/distant_sound = GLOB.distant_gun_sounds["[fire_sound]"]
 	if(!distant_sound)
 		if(istype(src, /obj/item/gun/ballistic))

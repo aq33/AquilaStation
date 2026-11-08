@@ -443,3 +443,49 @@
   - rscadd: 'Trawnik i Padalec losują silnik na początku rundy, jak Atlas: Trawnik
       Teslę, Stormdrive albo supermaterię, Padalec Stormdrive albo supermaterię. Każdy
       wariant ma na miejscu paliwo, chłodzenie, odpad i zasilanie.'
+  - code_imp: Podsystemy po wejściu do lobby i po starcie rundy ruszają kilka razy
+      szybciej, start świata jest o ok. 1,5 s krótszy, a timery i HUD zdrowia kosztują
+      serwer mniej.
+  - code_imp: Migotanie świateł przy przeciążonym reaktorze nie obciąża serwera w
+      jednym ticku.
+  - bugfix: Reaktor postawiony poza statkiem nie migocze już światłami na wszystkich
+      stacjach i ruinach.
+  - bugfix: Przycisk „Nie gotowy” w lobby znowu cofa gotowość, a konsola ID odbiera
+      dostępy.
+  - bugfix: SI w rdzeniu danych korzysta z zasilania rdzenia i nie zapętla się bez
+      prądu w pomieszczeniu.
+  - bugfix: Poszycie kadłuba, kratownice i kładki znów widać nad podłogą; rury nie
+      przebijają pokrytego pomostu, a zdjęcia nie gubią kabli i rur.
+  - bugfix: Kompost w tacy hydroponicznej nie podwaja chemikaliów, strzykawka nie
+      wstrzykuje podwójnie, a limonka i ambrozja dają właściwe owoce.
+  - bugfix: Giełda materiałów pobiera opłatę po cenie z chwili odlotu promu; aquilosy
+      liczą się tylko z osobistego konta.
+  - bugfix: 'Wampir, heretyk, darkspawn, kult krwi i wędrowiec pustki: naprawione
+      moce i rytuały z audytu.'
+  - bugfix: 'Circuity: broń, BCI, implant, śluza, dystrybutor i zespół z układem działają
+      jak w tg.'
+  - bugfix: Misja abordażu stacji kończy się po wycofaniu kontrataku, a Syndykat w
+      skafandrach strzela.
+  - bugfix: Jukebox wraca po cudzym zatrzymaniu muzyki i po przeładowaniu czatu; wysokość
+      głosu znów jest w preferencjach.
+  - bugfix: Padalec ma z powrotem pocztę rurową, a na Trawniku kuchnia i kriokomory
+      mają prąd.
+  - bugfix: Analizator zdrowia pokazuje uszkodzenia oczu i języka, a operacje nie
+      zjadają wkładanych stosów.
+  - bugfix: Sprint nie przewraca na podwójnych śluzach i przy biegu po skosie.
+  - bugfix: 'Wersja angielska: poprawione błędne tłumaczenia w oknach i czacie.'
+  - bugfix: Apteczka na promieniowanie i zestaw do leczenia robotów nie są już przepełnione.
+  - bugfix: Hipnoza wampira działa na stojący cel, który patrzy na wampira; doskok
+      przewraca tylko od tyłu lub w ciemności.
+  - bugfix: Wampir przypina ofiarę do stołu tortur i może zrobić z niej wasala.
+  - bugfix: Zdalne wysysanie krwi wampira zabiera krew ofierze, która leży.
+  - bugfix: Maska Żandarmerii znowu wygląda poprawnie podniesiona i opuszczona.
+  - bugfix: Kanał Żandarmerii w polu mowy ma etykietę „Żand”.
+  - bugfix: 'SI na Trawniku nie umiera już po kilku minutach: rdzeń jest chłodzony
+      i połączony z serwerownią.'
+  - bugfix: Manifest załogi pokazuje SI i cyborgi, a nazwy działów są po polsku.
+  - bugfix: W wersji angielskiej wyszukiwarka receptur ze stosu znajduje angielskie
+      nazwy.
+  - bugfix: Głośniki nagłośnienia nie nachodzą na przyciski wind.
+  - bugfix: Skaner T-ray i gogle inżynierskie znów pokazują kable i rury pod podłogą.
+  - bugfix: Czepki i bandana NFZ mieszczą się w kieszeni.

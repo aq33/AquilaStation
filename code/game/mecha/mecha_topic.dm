@@ -21,6 +21,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Mecha", name)
+		ui.set_autoupdate(TRUE) // AQ EDIT - integralność, ogniwo i atmosfera zmieniają się same
 		ui.open()
 
 /obj/mecha/ui_static_data(mob/user)

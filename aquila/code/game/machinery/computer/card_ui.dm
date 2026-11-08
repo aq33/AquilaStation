@@ -143,7 +143,7 @@
 				return
 			Topic(null, list("choice" = new_mode ? "mode" : "return", "mode_target" = new_mode))
 		if("access")
-			Topic(null, list("choice" = "access", "access_target" = params["access"], "allowed" = params["allowed"] ? 1 : 0))
+			Topic(null, list("choice" = "access", "access_target" = params["access"], "allowed" = params["allowed"] ? "1" : "0")) // tekst, bo Topic sprawdza if(href_list["allowed"])
 		if("assign")
 			Topic(null, list("choice" = "assign", "assign_target" = params["job"]))
 		if("demote")

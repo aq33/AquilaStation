@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 /datum/ai_os/proc/total_ram_assigned()
 	var/total = 0
 	for(var/mob/living/silicon/ai/AI as anything in ram_assigned)
-		total += (ram_assigned[AI] - AI.dashboard?.free_ram)
+		total += ram_assigned[AI] // free_ram (projekt „Kompresja pamięci”) jest doliczany osobno do RAM-u SI, nie do puli serwerów
 	return total
 
 /datum/ai_os/proc/update_hardware()
@@ -126,14 +126,13 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	if(total_assigned_ram > total_ram)
 		var/needed_amount = total_assigned_ram - total_ram
 		for(var/mob/living/silicon/ai/AI as anything in ram_assigned_copy)
-			var/free_ram = AI.dashboard?.free_ram
-			if((ram_assigned_copy[AI] - free_ram) >= needed_amount)
+			if(ram_assigned_copy[AI] >= needed_amount)
 				ram_assigned_copy[AI] -= needed_amount
 				total_assigned_ram -= needed_amount
 				affected_AIs |= AI
 				break
 			else if(ram_assigned_copy[AI])
-				var/amount = ram_assigned_copy[AI] - free_ram
+				var/amount = ram_assigned_copy[AI]
 				ram_assigned_copy[AI] -= amount
 				affected_AIs |= AI
 				needed_amount -= amount

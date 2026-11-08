@@ -7,6 +7,21 @@ import { Window } from '../layouts';
 import { CollapsibleSection } from './common/CollapsibleSection';
 
 type DepartmentCrew = { [department: string]: ManifestEntry[] };
+
+// AQUILA: klucze działów z DM zostają angielskie (CSS, command.dept), gracz widzi polskie nazwy
+const DEPARTMENT_NAMES: Record<string, string> = {
+  Command: 'Dowództwo',
+  'Very Important People': 'Ważne osobistości',
+  Security: 'Żandarmeria',
+  Engineering: 'Inżynieria',
+  Medical: 'Medyczny',
+  Science: 'Nauka',
+  Supply: 'Zaopatrzenie',
+  Civilian: 'Cywile',
+  Munitions: 'Uzbrojenie',
+  Silicon: 'Syntetyki',
+  Misc: 'Inne',
+};
 type JobOrdering = { [job: string]: number };
 
 const sortSpecific = (entries: ManifestEntry[], chain: JobOrdering) =>
@@ -63,7 +78,7 @@ export const CrewManifest = (_props) => {
               className={classes(['CrewManifest', `CrewManifest--${dept}`])}
               key={dept}
               sectionKey={dept}
-              title={dept}
+              title={DEPARTMENT_NAMES[dept] ?? dept}
             >
               <Table>
                 {Object.entries(sorted_jobs).map(([crewIndex, crewMember]) => {

@@ -38,6 +38,13 @@
 /obj/item/storage/backpack/santabag
 	component_type = /datum/component/storage/concrete
 
+// Pudełka admina mają pojemność 1000: siatka urosłaby do 16×84 kratek, a zawartość leżałaby wysoko poza ekranem
+/obj/item/storage/box/material
+	component_type = /datum/component/storage/concrete
+
+/obj/item/storage/box/debugtools
+	component_type = /datum/component/storage/concrete
+
 // Depozyt wygnańca musi przyjąć cały ekwipunek wygnanej osoby, niezależnie od kształtów
 /obj/item/storage/backpack/duffelbag/exile_deposit
 	component_type = /datum/component/storage/concrete

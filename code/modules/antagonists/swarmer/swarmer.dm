@@ -115,14 +115,12 @@ Ctrl+klik na istocie przeniesie ją z okolicy w bezpieczne miejsce do przechowan
 
 /mob/living/simple_animal/hostile/swarmer/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony
 	holder.icon_state = "huddiag[RoundDiagBar(health/maxHealth)]"
 
 /mob/living/simple_animal/hostile/swarmer/med_hud_set_status()
 	var/image/holder = hud_list[DIAG_STAT_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony
 	holder.icon_state = "hudstat"
 
 /mob/living/simple_animal/hostile/swarmer/get_stat_tab_status()

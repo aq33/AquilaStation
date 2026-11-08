@@ -100,6 +100,13 @@
 	tendril_swing(user, target)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
+/// Prawy klik w cel poza zasięgiem ręki: rzut mackami (pre_attack_secondary woła tylko melee_attack_chain)
+/obj/item/umbral_tendrils/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	if(proximity_flag || !isdarkspawn(user))
+		return ..()
+	tendril_swing(user, target)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /// Wyrzuca macki, które przewracają pierwszą trafioną istotę
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, atom/target)
 	if(!COOLDOWN_FINISHED(src, grab_cooldown))
