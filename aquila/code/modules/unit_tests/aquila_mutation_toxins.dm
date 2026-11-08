@@ -121,15 +121,15 @@
 	var/list/destinations = splittext(initial(/obj/machinery/computer/shuttle_flight/pirate::possible_destinations), ";")
 	destinations -= "pirateship_home"
 	TEST_ASSERT(length(destinations), "The pirate shuttle has no destination besides its home port")
-	// Unit tests run on runtimestation, so the ship maps are read from disk
-	for(var/map_json in list("aquila_atlas", "aquila_snake", "aquila_serendipity"))
+	// Unit tests do not load the ship maps (CI runs on the default map only), so they are read from disk
+	for(var/map_json in list("aquila_atlas", "aquila_snake", "aquila_serendipity", "atlantis", "vonneumann"))
 		var/list/config = json_decode(file2text("_maps/[map_json].json"))
 		var/list/map_files = islist(config["map_file"]) ? config["map_file"] : list(config["map_file"])
 		var/found = FALSE
 		for(var/map_file in map_files)
 			var/map_text = file2text("_maps/[config["map_path"]]/[map_file]")
 			for(var/port_id in destinations)
-				if(findtext(map_text, "id = \"[port_id]\""))
+				if(findtextEx(map_text, "id = \"[port_id]\""))
 					found = TRUE
 					break
 			if(found)
