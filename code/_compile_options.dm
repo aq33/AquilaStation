@@ -100,19 +100,23 @@
 #define TESTING
 #endif
 
+// AQ EDIT START - tgstation/tgstation#76214
+// If defined, timers get their full debug name (flags and callback arguments). Costs about 5x more per addtimer.
+// #define TIMER_DEBUG
+// AQ EDIT END
+
 #if defined(UNIT_TESTS)
 //Hard del testing defines
 #define REFERENCE_TRACKING
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
 #define GC_FAILURE_HARD_LOOKUP
-#define TIMER_DEBUG // AQ EDIT - tgstation/tgstation#76214: pełne nazwy timerów w testach
+// AQ EDIT START - tgstation/tgstation#76214: pełne nazwy timerów w testach
+#ifndef TIMER_DEBUG
+#define TIMER_DEBUG
 #endif
-
-// AQ EDIT START - tgstation/tgstation#76214
-// If defined, timers get their full debug name (flags and callback arguments). Costs about 5x more per addtimer.
-// #define TIMER_DEBUG
 // AQ EDIT END
+#endif
 
 #ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.

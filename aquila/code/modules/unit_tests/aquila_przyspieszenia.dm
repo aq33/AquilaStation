@@ -34,15 +34,44 @@
 	TEST_ASSERT(!QDELETED(splatter), "The wall splatter was deleted on spawn")
 	TEST_ASSERT(!splatter.is_slippery, "A blood subtype became slippery")
 
-/// Zgaszona lampa nie zaczyna migotać (tgstation/tgstation#92503): wcześniej ustawiała flickering i wchodziła w pętlę.
-/datum/unit_test/aquila_light_flicker_off
+/// Migotanie (tgstation/tgstation#92503): lampa bez zasilania obszaru przerywa od razu i zostaje zgaszona.
+/// Wcześniej przełączała się, usypiała z flickering = TRUE i na końcu zapalała z powrotem mimo braku zasilania.
+/datum/unit_test/aquila_light_flicker_power
 
-/datum/unit_test/aquila_light_flicker_off/Run()
+/datum/unit_test/aquila_light_flicker_power/Run()
 	var/obj/machinery/light/lamp = allocate(/obj/machinery/light)
+	lamp.status = LIGHT_OK
 	lamp.on = FALSE
 	lamp.flicker()
 	TEST_ASSERT(!lamp.flickering, "A light that is off started flickering")
 	TEST_ASSERT(!lamp.on, "A light that is off was turned on by flicker()")
+
+	var/area/lamp_area = get_area(lamp)
+	var/old_power_light = lamp_area.power_light
+	lamp_area.power_light = FALSE
+	lamp.on = TRUE // stan sprzed power_change(): lampa myśli, że świeci, a obszar właśnie stracił zasilanie
+	lamp.flicker(4)
+	var/still_flickering = lamp.flickering
+	var/still_on = lamp.on
+	lamp_area.power_light = old_power_light
+	TEST_ASSERT(!still_flickering, "A light without area power kept flickering")
+	TEST_ASSERT(!still_on, "A light without area power stayed on after flicker()")
+
+/// Reaktor poza statkiem (get_overmap() == null) nie może migotać lampami spoza statków,
+/// bo dla nich get_overmap() też jest null.
+/datum/unit_test/aquila_ship_flicker_needs_overmap
+
+/datum/unit_test/aquila_ship_flicker_needs_overmap/Run()
+	var/obj/item/reactor_stand_in = allocate(/obj/item/wrench)
+	var/obj/machinery/light/lamp = allocate(/obj/machinery/light)
+	TEST_ASSERT(isnull(reactor_stand_in.get_overmap()), "Precondition: the test room is not on a ship")
+	TEST_ASSERT(isnull(lamp.get_overmap()), "Precondition: the test lamp is not on a ship")
+	lamp.status = LIGHT_OK
+	lamp.on = TRUE
+	TEST_ASSERT(lamp.has_power(), "Precondition: the test room has light power")
+	// Własna lista: pętla po GLOB.machines ustępuje przez CHECK_TICK, zanim dojdzie do lampy testowej
+	aq_flicker_ship_lights(reactor_stand_in, 100, list(lamp))
+	TEST_ASSERT(!lamp.flickering, "A reactor outside any ship made lights outside ships flicker")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

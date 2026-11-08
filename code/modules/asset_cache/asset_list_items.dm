@@ -373,11 +373,9 @@
 		if(initial(D.research_icon) && initial(D.research_icon_state)) //If the design has an icon replacement skip the rest
 			icon_file = initial(D.research_icon)
 			icon_state = initial(D.research_icon_state)
-			#ifdef UNIT_TESTS // AQ EDIT - tgstation/tgstation#69635: icon_states() tylko w testach (brakujący stan i tak pomija Insert())
-			if(!(icon_state in icon_states(icon_file)))
+			if(!(icon_state in aq_cached_icon_states(icon_file))) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
-			#endif
 			I = icon(icon_file, icon_state, SOUTH)
 
 		else
@@ -407,11 +405,9 @@
 
 			icon_state = initial(item.icon_state)
 
-			#ifdef UNIT_TESTS // AQ EDIT - tgstation/tgstation#69635: icon_states() tylko w testach (brakujący stan i tak pomija Insert())
-			if(!(icon_state in icon_states(icon_file)))
+			if(!(icon_state in aq_cached_icon_states(icon_file))) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
-			#endif
 			I = icon(icon_file, icon_state, SOUTH)
 
 			// computers (and snowflakes) get their screen and keyboard sprites
@@ -419,13 +415,14 @@
 				var/obj/machinery/computer/C = item
 				var/screen = initial(C.icon_screen)
 				var/keyboard = initial(C.icon_keyboard)
-				var/all_states = icon_states(icon_file)
+				var/all_states = aq_cached_icon_states(icon_file) // AQ EDIT - stany pliku czytane raz, nie dla każdego projektu
 				if (screen && (screen in all_states))
 					I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)
 				if (keyboard && (keyboard in all_states))
 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
+	aq_icon_states_cache = null // AQ EDIT - pamięć stanów potrzebna tylko przy budowie arkusza
 	return ..()
 
 /datum/asset/spritesheet/vending

@@ -7,13 +7,17 @@
  *
  * * source - reaktor; migoczą lampy z tego samego statku (overmapy)
  * * chance - szansa (w %) na migotanie pojedynczej lampy
+ * * candidates - lista przeszukiwana w poszukiwaniu lamp (domyślnie wszystkie maszyny; test podaje własną)
  */
-/proc/aq_flicker_ship_lights(atom/source, chance)
+/proc/aq_flicker_ship_lights(atom/source, chance, list/candidates = GLOB.machines)
 	set waitfor = FALSE
 	if(QDELETED(source))
 		return
 	var/source_overmap = source.get_overmap()
-	for(var/obj/machinery/light/light in GLOB.machines)
+	// Reaktor poza statkiem: lampy bez overmapy też dają null, więc bez tego migotałyby wszystkie lampy poza statkami
+	if(!source_overmap)
+		return
+	for(var/obj/machinery/light/light in candidates)
 		if(QDELETED(light))
 			continue
 		if(prob(chance) && light.get_overmap() == source_overmap)
