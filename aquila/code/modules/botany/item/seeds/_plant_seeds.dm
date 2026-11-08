@@ -76,6 +76,9 @@
 	var/info = plant(target, user, proximity_flag, click_parameters)
 	if(istext(info))
 		to_chat(user, info)
+	// AQUILA - klik w tacę kończy łańcuch, inaczej afterattack poza walką sadzi drugi raz
+	if(target.GetComponent(/datum/component/planter))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 // AQUILA - zwykły klik poza walką też sadzi (combat mode wyłączony albo intencja help w starym trybie), u Bee tylko prawy przycisk
 /obj/item/plant_seeds/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
