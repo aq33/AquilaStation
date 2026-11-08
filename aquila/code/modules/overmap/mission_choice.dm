@@ -217,11 +217,20 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	extension_choice_timer = addtimer(CALLBACK(src, PROC_REF(finish_extension_choice)), EXTENSION_CHOICE_TIME, TIMER_STOPPABLE)
 	minor_announce("Kapitan wybiera w konsoli łączności (Status misji) kolejną misję albo atak na Rubikon. Bez wyboru w ciągu [EXTENSION_CHOICE_TIME / (1 MINUTES)] minut dowództwo samo przydzieli cele.", "Dowództwo floty")
 
-/// Każda misja z losowania (także ta sama co przed chwilą) i atak na Rubikon, jeśli są tam wrogowie
+/// Każda misja z losowania (także ta sama co przed chwilą) i atak na Rubikon, jeśli są tam wrogowie.
+/// Bez trybów, których logika siedzi w samym trybie, a nie w celach (fale Armady, podbój, szturm na Dolos):
+/// kolejna misja przenosi tylko cele, więc te tryby nie zadziałałyby jako kolejna misja.
 /datum/controller/subsystem/overmap_mode/proc/get_extension_choices()
+	var/static/list/not_extendable = typecacheof(list(
+		/datum/overmap_gamemode/armada,
+		/datum/overmap_gamemode/galactic_conquest,
+		/datum/overmap_gamemode/hardmode,
+	))
 	var/list/probabilities = config.Get(/datum/config_entry/keyed_list/omode_probability)
 	var/list/choices = list()
 	for(var/datum/overmap_gamemode/mode_type as anything in mode_cache)
+		if(not_extendable[mode_type])
+			continue
 		var/config_tag = initial(mode_type.config_tag)
 		var/weight = (config_tag in probabilities) ? probabilities[config_tag] : initial(mode_type.selection_weight)
 		if(weight > 0)
@@ -247,6 +256,8 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		extension_default_objectives = FALSE
 		return
 	var/choice_name = (choice == EXTENSION_RUBICON) ? "atak na Rubikon" : mission_choice_name(choice)
+	// Poprzednia misja jest już rozliczona; jej nieudany cel z ignore_check blokowałby zwycięstwo w nowej
+	mode.objectives = list()
 	if(choice == EXTENSION_RUBICON)
 		mode.objectives += new /datum/overmap_objective/clear_system/rubicon
 	else

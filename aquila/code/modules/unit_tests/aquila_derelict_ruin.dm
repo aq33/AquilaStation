@@ -67,6 +67,7 @@
 		TEST_ASSERT(ispath(choice, /datum/overmap_gamemode), "[choice] isn't a mission type")
 		var/datum/overmap_gamemode/mode_type = choice
 		TEST_ASSERT(!initial(mode_type.whitelist_only), "[choice] is a whitelist-only mission")
+		TEST_ASSERT(!ispath(choice, /datum/overmap_gamemode/armada) && !ispath(choice, /datum/overmap_gamemode/galactic_conquest), "[choice] can't work as a next mission, its logic lives in the mode")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

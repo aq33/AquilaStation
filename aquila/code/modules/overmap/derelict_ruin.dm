@@ -111,15 +111,20 @@
 	target_system.add_ship(target_derelict)
 	target_system.objective_sector = TRUE
 	ruin_objective.on_assign(null)
-	brief = "[ruin_objective.get_text()] Stacja dryfuje w systemie [target_system] ([target_derelict.name]). Dolećcie do niej promem desantowym albo myśliwcem z napędem FTL i komputerem dokowania. Nagroda: [ruin_objective.payout] kr."
+	// Jedno zdanie-szablon na cel (system i nagroda w środku), żeby tłumacz nie musiał rozbierać szablonu w szablonie
+	brief = ruin_objective.get_text()
 	INVOKE_ASYNC(src, PROC_REF(generate_ruin))
 	START_PROCESSING(SSprocessing, src)
 	update_reminder_interval()
 
 /// Buduje ruinę na nowym poziomie Z i łączy go ze stacją na overmapie
 /datum/overmap_objective/derelict_ruin/proc/generate_ruin()
-	SSmapping.add_new_initialized_zlevel("Opuszczona stacja [target_derelict ? target_derelict.name : ruin_objective.station_name]", ZTRAITS_BOARDABLE_SHIP)
-	ruin_z = world.maxz
+	// Jak add_new_initialized_zlevel, ale z poziomem, który dostaliśmy: inicjalizacja atomów może oddać czas
+	// i w tym czasie ktoś inny doda poziom, więc world.maxz nie musi już być nasz
+	var/datum/space_level/level = SSmapping.add_new_zlevel("Opuszczona stacja [target_derelict ? target_derelict.name : ruin_objective.station_name]", ZTRAITS_BOARDABLE_SHIP)
+	ruin_z = level.z_value
+	SSatoms.InitializeAtoms(block(locate(1, 1, ruin_z), locate(world.maxx, world.maxy, ruin_z)))
+	SSmapping.setup_map_transitions(level)
 	if(target_derelict)
 		var/datum/space_level/SL = SSmapping.get_level(ruin_z)
 		SL.linked_overmap = target_derelict
@@ -211,7 +216,7 @@
 /datum/orbital_objective/nuclear_bomb/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Posterunek [station_name] wymaga natychmiastowej likwidacji, by zapobiec wyciekowi informacji do kosmicznej prasy. Na pokładzie stacji leży przestarzały ładunek jądrowy i dysk uwierzytelniania do niego. Znajdźcie oba, uzbrójcie ładunek kodem z raportu Centrali i uciekajcie ze stacji przed wybuchem."
+	return "Posterunek [station_name] wymaga natychmiastowej likwidacji, by zapobiec wyciekowi informacji do kosmicznej prasy. Na pokładzie stacji leży przestarzały ładunek jądrowy i dysk uwierzytelniania do niego. Znajdźcie oba, uzbrójcie ładunek kodem z raportu Centrali i uciekajcie ze stacji przed wybuchem. Stacja dryfuje w systemie [linked_mission.target_system]. Nagroda: [payout] kr."
 
 /datum/orbital_objective/nuclear_bomb/check_failed()
 	if(!linked_mission)
@@ -224,22 +229,22 @@
 /datum/orbital_objective/vip_recovery/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Na [station_name] znajduje się ktoś szczególnie dla nas interesujący. Musimy go natychmiast ewakuować. VIP może być wrogo nastawiony, więc zabierzcie ze sobą ochronę. Aby wykonać cel, dowieźcie go żywego i przytomnego na pokład statku."
+	return "Na [station_name] znajduje się ktoś szczególnie dla nas interesujący. Musimy go natychmiast ewakuować. VIP może być wrogo nastawiony, więc zabierzcie ze sobą ochronę. Aby wykonać cel, dowieźcie go żywego i przytomnego na pokład statku. Stacja dryfuje w systemie [linked_mission.target_system]. Nagroda: [payout] kr."
 
 /datum/orbital_objective/assassination/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Zlokalizowaliśmy wrogiego agenta, który utknął na [station_name]. Wyślijcie zespół i wyeliminujcie cel. Według wywiadu cel jest uzbrojony i niebezpieczny, dlatego zabierzcie ze sobą ochronę."
+	return "Zlokalizowaliśmy wrogiego agenta, który utknął na [station_name]. Wyślijcie zespół i wyeliminujcie cel. Według wywiadu cel jest uzbrojony i niebezpieczny, dlatego zabierzcie ze sobą ochronę. Stacja dryfuje w systemie [linked_mission.target_system]. Nagroda: [payout] kr."
 
 /datum/orbital_objective/artifact/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Posterunek [station_name] to placówka badawcza z niezwykle potężnym obcym artefaktem na pokładzie. Odzyskajcie artefakt i dowieźcie go na pokład statku. Uważajcie na jego strażników."
+	return "Posterunek [station_name] to placówka badawcza z niezwykle potężnym obcym artefaktem na pokładzie. Odzyskajcie artefakt i dowieźcie go na pokład statku. Uważajcie na jego strażników. Stacja dryfuje w systemie [linked_mission.target_system]. Nagroda: [payout] kr."
 
 /datum/orbital_objective/recover_blackbox/get_text()
 	if(!linked_mission)
 		return ..()
-	return "Posterunek [station_name] niedawno zamilkł i nie odpowiada na nasze próby kontaktu. Odzyskajcie czarną skrzynkę stacji i użyjcie jej w dłoni na mostku statku."
+	return "Posterunek [station_name] niedawno zamilkł i nie odpowiada na nasze próby kontaktu. Odzyskajcie czarną skrzynkę stacji i użyjcie jej w dłoni na mostku statku. Stacja dryfuje w systemie [linked_mission.target_system]. Nagroda: [payout] kr."
 
 #undef STATUS_INPROGRESS
 #undef STATUS_COMPLETED
