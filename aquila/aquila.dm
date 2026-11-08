@@ -1878,6 +1878,7 @@
 #include "code\modules\unit_tests\aquila_voice_chat.dm"
 #include "code\modules\unit_tests\aquila_votes.dm"
 #include "code\modules\unit_tests\aquila_wiremod.dm"
+#include "code\modules\unit_tests\aquila_audyt_circuity.dm"
 #include "code\modules\unit_tests\aquila_xenobio_tubes.dm"
 #include "code\modules\unit_tests\atoms_init_state.dm"
 #include "code\modules\unit_tests\bee_floor_sprites.dm"
