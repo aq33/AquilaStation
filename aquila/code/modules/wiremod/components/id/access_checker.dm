@@ -77,10 +77,13 @@
 	var/list/data = list()
 
 	var/list/regions = list()
-	for(var/region in 1 to WIREMOD_ACCESS_REGIONS)
-		regions += list(wiremod_region_tgui(get_region_accesses_name(region), get_region_accesses(region)))
-	if(parent?.admin_only)
-		regions += list(wiremod_region_tgui("CentCom", get_all_centcom_access()))
+	// Grupy dostępów z SSdepartment, Centrala tylko w obwodach admina
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!length(each_dept.access_list))
+			continue
+		if(each_dept.access_filter && !(parent?.admin_only && each_dept.dept_bitflag == DEPARTMENT_BITFLAG_CENTCOM))
+			continue
+		regions += list(wiremod_region_tgui(each_dept.access_group_name, each_dept.access_list))
 	data["regions"] = regions
 	return data
 

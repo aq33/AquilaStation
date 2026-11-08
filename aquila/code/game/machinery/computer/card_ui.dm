@@ -1,6 +1,6 @@
 // Okno konsoli kart ID w TGUI (zamiast HTML z code/game/machinery/computer/card.dm), także działowe konsole szefów.
 // Wszystkie przyciski idą przez dawny Topic(), więc uprawnienia działów, logi id, limity wakatów i wypłat zostają bez zmian.
-// Numery działów jak w card.dm (tam są #undef): 0 wszystkie, 1 ogólny, 2 ochrona, 3 medyczny, 4 nauka, 5 inżynieria, 6 zaopatrzenie, 7 uzbrojenie
+// Działy i grupy dostępów są w SSdepartment (aquila/code/controllers/subsystem/department.dm): department_bitflag konsoli, accessible_region_bitflag zalogowanej karty.
 
 /obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -13,8 +13,8 @@
 	var/list/data = list()
 	data["mode"] = mode
 	data["authenticated"] = authenticated
-	data["department_console"] = !!target_dept
-	data["centcom"] = istype(src, /obj/machinery/computer/card/centcom)
+	data["department_console"] = !!department_bitflag
+	data["centcom"] = is_centcom
 	data["scan_name"] = inserted_scan_id?.name
 	data["modify_name"] = inserted_modify_id?.name
 	data["modify_owner"] = inserted_modify_id?.registered_name
@@ -42,7 +42,7 @@
 
 /obj/machinery/computer/card/proc/card_jobs_data()
 	var/list/jobs = list()
-	var/can_edit = inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !target_dept
+	var/can_edit = inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !department_bitflag
 	var/cooldown = max(0, round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1))
 	for(var/datum/job/job in SSjob.occupations)
 		if(job.title in blacklisted)
@@ -60,15 +60,15 @@
 /obj/machinery/computer/card/proc/card_accounts_data()
 	var/list/departments = list()
 	if(inserted_scan_id)
-		if((ACCESS_HOP in inserted_scan_id.access) && (target_dept == 1 || !target_dept))
+		if((ACCESS_HOP in inserted_scan_id.access) && (!department_bitflag || (department_bitflag & DEPARTMENT_BITFLAG_SERVICE)))
 			departments |= list(ACCOUNT_SRV, ACCOUNT_CIV, ACCOUNT_CAR)
-		if((ACCESS_HOS in inserted_scan_id.access) && (target_dept == 2 || !target_dept))
+		if((ACCESS_HOS in inserted_scan_id.access) && (!department_bitflag || (department_bitflag & DEPARTMENT_BITFLAG_SECURITY)))
 			departments |= ACCOUNT_SEC
-		if((ACCESS_CMO in inserted_scan_id.access) && (target_dept == 3 || !target_dept))
+		if((ACCESS_CMO in inserted_scan_id.access) && (!department_bitflag || (department_bitflag & DEPARTMENT_BITFLAG_MEDICAL)))
 			departments |= ACCOUNT_MED
-		if((ACCESS_RD in inserted_scan_id.access) && (target_dept == 4 || !target_dept))
+		if((ACCESS_RD in inserted_scan_id.access) && (!department_bitflag || (department_bitflag & DEPARTMENT_BITFLAG_SCIENCE)))
 			departments |= ACCOUNT_SCI
-		if((ACCESS_CE in inserted_scan_id.access) && (target_dept == 5 || !target_dept))
+		if((ACCESS_CE in inserted_scan_id.access) && (!department_bitflag || (department_bitflag & DEPARTMENT_BITFLAG_ENGINEERING)))
 			departments |= ACCOUNT_ENG
 	var/list/accounts = list()
 	for(var/datum/bank_account/account as anything in SSeconomy.bank_accounts)
@@ -82,44 +82,29 @@
 		))
 	return accounts
 
+/// Grupy dostępów, które zalogowana karta może zmieniać (ta sama biała lista co w Topic())
 /obj/machinery/computer/card/proc/card_regions_data()
 	var/list/regions = list()
-	if(istype(src, /obj/machinery/computer/card/centcom))
-		var/list/accesses = list()
-		for(var/access in get_all_centcom_access())
-			accesses += list(list("id" = access, "desc" = get_centcom_access_desc(access), "granted" = (access in inserted_modify_id.access)))
-		regions += list(list("name" = "Central Command", "accesses" = accesses))
-		return regions
-	for(var/region in 1 to 8)
-		if(authenticated == 1 && !(region in region_access))
+	var/manageable_bitflag = get_manageable_department_bitflag()
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!(each_dept.dept_bitflag & manageable_bitflag) || !length(each_dept.access_list))
+			continue
+		if(each_dept.access_filter && !is_centcom)
 			continue
 		var/list/accesses = list()
-		for(var/access in get_region_accesses(region))
-			accesses += list(list("id" = access, "desc" = get_access_desc(access), "granted" = (access in inserted_modify_id.access)))
-		regions += list(list("name" = get_region_accesses_name(region), "accesses" = accesses))
+		for(var/access in each_dept.access_list)
+			accesses += list(list("id" = access, "desc" = get_department_access_desc(access), "granted" = (access in inserted_modify_id.access)))
+		regions += list(list("name" = each_dept.access_group_name, "accesses" = accesses))
 	return regions
 
-/// Stanowiska do przypisania pogrupowane jak w dawnym oknie
+/// Stanowiska do przypisania pogrupowane po działach SSdepartment (Centrala tylko w konsoli Centrali)
 /obj/machinery/computer/card/proc/card_assignable_jobs()
-	var/static/list/group_starts = list(
-		JOB_NAME_ASSISTANT = "Serwis",
-		JOB_NAME_QUARTERMASTER = "Zaopatrzenie",
-		JOB_NAME_CHIEFENGINEER = "Inżynieria",
-		JOB_NAME_RESEARCHDIRECTOR = "Nauka",
-		JOB_NAME_CHIEFMEDICALOFFICER = "Medyczny",
-		JOB_NAME_HEADOFSECURITY = "Ochrona",
-		JOB_NAME_MASTERATARMS = "Uzbrojenie",
-	)
 	var/list/groups = list()
-	var/list/current = list("name" = "Dowództwo", "jobs" = list("Unassigned"))
-	var/list/all_jobs = istype(src, /obj/machinery/computer/card/centcom) ? get_all_centcom_jobs() : get_all_jobs()
-	for(var/job in all_jobs)
-		if(group_starts[job])
-			groups += list(current)
-			current = list("name" = group_starts[job], "jobs" = list())
-		current["jobs"] += job
-	groups += list(current)
-	groups += list(list("name" = "Inne", "jobs" = list("Custom")))
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!length(each_dept.jobs) || (each_dept.access_filter && !is_centcom))
+			continue
+		groups += list(list("name" = each_dept.dept_name, "jobs" = each_dept.jobs.Copy()))
+	groups += list(list("name" = "Inne", "jobs" = list("Unassigned", "Custom")))
 	return groups
 
 /obj/machinery/computer/card/ui_act(action, list/params)
@@ -139,7 +124,7 @@
 			var/new_mode = text2num(params["mode"])
 			if(!(new_mode in list(0, 1, 2, 3)))
 				return
-			if(new_mode == 2 && target_dept)
+			if(new_mode == 2 && department_bitflag)
 				return
 			Topic(null, list("choice" = new_mode ? "mode" : "return", "mode_target" = new_mode))
 		if("access")

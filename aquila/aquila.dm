@@ -81,6 +81,7 @@
 #include "code\controllers\configuration\entries\general.dm"
 #include "code\controllers\subsystem\bitrunning.dm"
 #include "code\controllers\subsystem\bluespace_locker.dm"
+#include "code\controllers\subsystem\department.dm"
 #include "code\controllers\subsystem\jukeboxes.dm"
 #include "code\controllers\subsystem\lag_switch.dm"
 #include "code\controllers\subsystem\market.dm"
@@ -1808,6 +1809,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
 #include "code\modules\unit_tests\aquila_audyt_rosliny.dm"
 #include "code\modules\unit_tests\aquila_jetpack_drift.dm"
 #include "code\modules\unit_tests\aquila_audyt_antagi.dm"
