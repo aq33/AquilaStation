@@ -33,7 +33,7 @@
 MAP_REMOVE_JOB(lawyer)
 //Most of security - Because these guys aren't too useful in a brig this SMALL
 MAP_REMOVE_JOB(deputy)
-MAP_REMOVE_JOB(brig_phys)
+MAP_REMOVE_JOB(brig_physician) // AQ EDIT - typ profesji to brig_physician, brig_phys nie istnieje
 //Munitions
 //MAP_REMOVE_JOB(deck_tech)
 
