@@ -3,6 +3,8 @@ set -euo pipefail
 
 #nb: must be bash to support shopt globstar
 shopt -s globstar
+# AQ EDIT - mapy Aquili (aquila/_maps) przechodzą przez te same lintery
+MAPS=(_maps/**/*.dmm aquila/_maps/**/*.dmm)
 
 #ANSI Escape Codes for colors to increase contrast of errors
 RED="\033[0;31m"
@@ -14,101 +16,101 @@ st=0
 
 echo -e "${BLUE}Checking for map issues...${NC}"
 
-if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;    then
+if grep -El '^\".+\" = \(.+\)' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!${NC}"
     st=1
 fi;
-if grep -P '^\ttag = \"icon' _maps/**/*.dmm;    then
+if grep -P '^\ttag = \"icon' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: Tag vars from icon state generation detected in maps, please remove them.${NC}"
     st=1
 fi;
-if grep -P 'step_[xy]' _maps/**/*.dmm;    then
+if grep -P 'step_[xy]' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: step_x/step_y variables detected in maps, please remove them.${NC}"
     st=1
 fi;
-if grep -m 1 'pixel_[xy] = 0' _maps/**/*.dmm;    then
+if grep -m 1 'pixel_[xy] = 0' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: pixel_x/pixel_y = 0 variables detected in maps, please review to ensure they are not dirty varedits.${NC}"
     st=1
 fi;
-if grep -P '\td[1-2] =' _maps/**/*.dmm;    then
+if grep -P '\td[1-2] =' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: d1/d2 cable variables detected in maps, please remove them.${NC}"
     st=1
 fi;
 # AQ EDIT START - Smartwires: cables join by colour, so var-edits and two cables of one colour on a tile break powernets
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/cable[/\w]*?\{' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/cable[/\w]*?\{' "${MAPS[@]}";	then
 	echo
 	echo -e "${RED}ERROR: Var-edited cables detected in maps, use the colour subtypes instead (tools/smartwires/convert.py converts old maps).${NC}"
 	st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/cable(?<type>[/\w]*),\n[^)]*?/obj/structure/cable\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/cable(?<type>[/\w]*),\n[^)]*?/obj/structure/cable\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
 	echo -e "${RED}ERROR: Found multiple cables of the same colour on the same tile, please remove them.${NC}"
 	st=1
 fi;
 # AQ EDIT END
 echo -e "${BLUE}Checking for stacked cables...${NC}"
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple lattices on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/barricade(?<type>[/\w]*),\n[^)]*?/obj/structure/barricade\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/barricade(?<type>[/\w]*),\n[^)]*?/obj/structure/barricade\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical barricades on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/table(?<type>[/\w]*),\n[^)]*?/obj/structure/table\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/table(?<type>[/\w]*),\n[^)]*?/obj/structure/table\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical tables on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/chair(?<type>[/\w]*),\n[^)]*?/obj/structure/chair\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/chair(?<type>[/\w]*),\n[^)]*?/obj/structure/chair\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical chairs on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple airlocks on the same tile, please remove them.${NC}"
     st=1
 fi;
 # NSV13 - only look for windowlocks, we need double firelocks for fastmos
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/firedoor/window[/\w]*?,\n[^)]*?/obj/machinery/door/firedoor/window[/\w]*?,\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/firedoor/window[/\w]*?,\n[^)]*?/obj/machinery/door/firedoor/window[/\w]*?,\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple firelocks on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/closet(?<type>[/\w]*),\n[^)]*?/obj/structure/closet\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/closet(?<type>[/\w]*),\n[^)]*?/obj/structure/closet\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical closets on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/grille(?<type>[/\w]*),\n[^)]*?/obj/structure/grille\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/grille(?<type>[/\w]*),\n[^)]*?/obj/structure/grille\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical grilles on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/girder(?<type>[/\w]*),\n[^)]*?/obj/structure/girder\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/girder(?<type>[/\w]*),\n[^)]*?/obj/structure/girder\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical girders on the same tile, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/stairs(?<type>[/\w]*),\n[^)]*?/obj/structure/stairs\g{type},\n[^)]*?/area/.+\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/stairs(?<type>[/\w]*),\n[^)]*?/obj/structure/stairs\g{type},\n[^)]*?/area/.+\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found multiple identical stairs on the same tile, please remove them.${NC}"
 	st=1
 fi;
-if grep '^/area/.+[\{]' _maps/**/*.dmm;    then
+if grep '^/area/.+[\{]' "${MAPS[@]}";    then
     echo
     echo -e "${RED}ERROR: Variable editted /area path use detected in a map, please replace with a proper area path.${NC}"
     st=1
 fi;
-if grep -P '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
+if grep -P '\W\/turf\s*[,\){]' "${MAPS[@]}"; then
     echo
     echo -e "${RED}ERROR: Base /turf path use detected in maps, please replace a with proper turf path.${NC}"
     st=1
@@ -148,42 +150,42 @@ if grep -n -P '^\s*TEST_FOCUS\(' code/**/*.dm nsv13/**/*.dm aquila/**/*.dm; then
     echo -e "${RED}ERROR: TEST_FOCUS left in code: CI would run only the focused unit tests. Remove it before pushing.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/turf/[/\w]*?,\n[^)]*?/turf/[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm; then
+if grep -Pzo '"\w+" = \(\n[^)]*?/turf/[/\w]*?,\n[^)]*?/turf/[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}"; then
 	echo
     echo -e "${RED}ERROR: Multiple turfs detected on the same tile! Please choose only one turf!${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/area/.+?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm; then
+if grep -Pzo '"\w+" = \(\n[^)]*?/area/.+?,\n[^)]*?/area/.+?\)' "${MAPS[@]}"; then
 	echo
     echo -e "${RED}ERROR: Multiple areas detected on the same tile! Please choose only one area!${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/turf/closed/wall[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/turf/closed/wall[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found a lattice stacked with a wall, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/lattice[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found a lattice stacked within a wall, please remove them.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/window[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/window[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found a window stacked within a wall, please remove it.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/machinery/door/airlock[/\w]*?,\n[^)]*?/turf/closed[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found an airlock stacked within a wall, please remove it.${NC}"
     st=1
 fi;
-if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/stairs[/\w]*?,\n[^)]*?/turf/open/genturf[/\w]*?,\n[^)]*?/area/.+?\)' _maps/**/*.dmm;	then
+if grep -Pzo '"\w+" = \(\n[^)]*?/obj/structure/stairs[/\w]*?,\n[^)]*?/turf/open/genturf[/\w]*?,\n[^)]*?/area/.+?\)' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found a staircase on top of a gen_turf. Please replace the gen_turf with a proper turf.${NC}"
     st=1
 fi;
-if grep -Pzo '/obj/machinery/conveyor/inverted[/\w]*?\{\n[^}]*?dir = [1248];[^}]*?\},?\n' _maps/**/*.dmm;	then
+if grep -Pzo '/obj/machinery/conveyor/inverted[/\w]*?\{\n[^}]*?dir = [1248];[^}]*?\},?\n' "${MAPS[@]}";	then
 	echo
     echo -e "${RED}ERROR: Found an inverted conveyor belt with a cardinal dir. Please replace it with a normal conveyor belt.${NC}"
     st=1

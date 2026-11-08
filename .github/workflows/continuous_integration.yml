@@ -44,6 +44,8 @@ jobs:
           find . -name "*.php" -print0 | xargs -0 -n1 php -l
           find . -name "*.json" -not -path "*/node_modules/*" -print0 | xargs -0 python ./tools/json_verifier.py
           bash tools/ci/check_grep.sh
+          # AQUILA - urwane rury i terminale bez kabla na mapach (stare błędy w tools/ci/map_connections_baseline.txt)
+          python tools/ci/check_map_connections.py
           tools/build/build --ci lint tgui-test tgui
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
