@@ -12,6 +12,7 @@ import { clamp } from 'tgui-core/math';
 import { createSearch, toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
+import { isTranslating, translateUiText } from '../i18n';
 import { Window } from '../layouts';
 import { SearchBar } from './common/SearchBar';
 
@@ -134,7 +135,13 @@ export const Stack = (_props) => {
   const recipes = toRecipeList(data.recipes);
 
   const [searchText, setSearchText] = useState('');
-  const testSearch = createSearch(searchText, (item: string) => item);
+  // AQUILA: z EN gracz widzi i wpisuje angielską nazwę receptury
+  // (przycisk pokazuje nazwę wielką literą, a słownik ma osobne pary: „przełącznik” to switch, „Przełącznik” to Toggle)
+  const testSearch = createSearch(searchText, (item: string) =>
+    isTranslating()
+      ? `${item} ${translateUiText(item)} ${translateUiText(toTitleCase(item))}`
+      : item,
+  );
   const filteredRecipes = filterRecipeList(recipes, testSearch);
 
   const height: number = clamp(96 + Object.keys(recipes).length * 37, 250, 500);
