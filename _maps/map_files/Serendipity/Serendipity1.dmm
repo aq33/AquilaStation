@@ -4984,6 +4984,15 @@
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
+"pI" = (
+/obj/structure/cable,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/grass,
+/area/chapel)
 "pK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -15182,12 +15191,6 @@
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"YS" = (
-/obj/structure/cable,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/grass,
-/area/chapel)
 "YU" = (
 /obj/machinery/holopad,
 /turf/open/floor/engine/light,
@@ -50100,7 +50103,7 @@ nf
 mV
 lK
 YC
-YS
+pI
 ov
 Za
 dP
