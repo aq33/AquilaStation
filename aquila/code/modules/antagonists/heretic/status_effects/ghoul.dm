@@ -52,7 +52,7 @@
 	var/mob/living/carbon/human/human_target = owner
 
 	RegisterSignal(human_target, COMSIG_LIVING_DEATH, PROC_REF(remove_ghoul_status))
-	human_target.revive(ADMIN_HEAL_ALL) // Have to do an admin heal here, otherwise they'll likely just die due to missing organs or limbs
+	human_target.revive(TRUE, TRUE) // AQUILA - u nas revive(full_heal, admin_revive); brakujące organy i kończyny wracają tylko przy admin_revive
 
 	if(new_max_health)
 		if(new_max_health < human_target.maxHealth)

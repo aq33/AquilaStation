@@ -86,6 +86,14 @@
 			// bez przenoszenia tożsamości - umysł zostaje w ciele
 			var/obj/item/organ/brain/old_brain = old_organ
 			old_brain.Remove(new_owner, TRUE, TRUE)
+			// tg (brain/before_organ_replacement): traumy i obrażenia przechodzą na nowy mózg, Insert wywoła ich on_gain
+			var/obj/item/organ/brain/new_brain = src
+			if(istype(new_brain))
+				for(var/datum/brain_trauma/trauma as anything in old_brain.traumas)
+					old_brain.traumas -= trauma
+					new_brain.traumas += trauma
+					trauma.brain = new_brain
+				new_brain.setOrganDamage(old_brain.damage)
 		else
 			old_organ.Remove(new_owner, TRUE)
 		qdel(old_organ)

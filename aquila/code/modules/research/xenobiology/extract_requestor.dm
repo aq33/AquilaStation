@@ -118,9 +118,17 @@
 	current_requests -= request
 	request.finish_request(console)
 
+/// Czy z tego konta można płacić nagrodę. Nagroda trafia na konto nauki (finish_request), więc płacenie z niego
+/// (karta budżetu nauki) oddawało kredyty z powrotem i dawało xenobio points za darmo.
+/obj/machinery/slime_extract_requestor/proc/can_pay_from(datum/bank_account/account)
+	return account && account != SSeconomy.get_dep_account(ACCOUNT_SCI)
+
 /obj/machinery/slime_extract_requestor/proc/create_request(mob/user, obj/item/card/id/card)
 	if(!card.registered_account)
 		to_chat(user, "<span class='warning'>Ta karta nie ma przypisanego konta!</span>")
+		return
+	if(!can_pay_from(card.registered_account))
+		to_chat(user, "<span class='warning'>Nagroda i tak trafia na konto nauki, więc nie da się jej opłacić z budżetu nauki. Użyj innej karty!</span>")
 		return
 	var/choice = show_radial_menu(user, src, extracts, require_near = TRUE, tooltips = TRUE)
 	if(!(choice in name_to_path))
@@ -129,7 +137,7 @@
 	if(!amount || QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	var/payout = tgui_input_number(user, "Ile kredytów nagrody dla xenobiologów? Za każdy kredyt rynek doliczy [SLIME_REQUEST_POINTS_PER_CREDIT] xenobio points.", name, 0, card.registered_account.account_balance, 0)
-	if(isnull(payout) || QDELETED(src) || QDELETED(card) || !user.canUseTopic(src, BE_CLOSE) || find_request(card))
+	if(isnull(payout) || QDELETED(src) || QDELETED(card) || !user.canUseTopic(src, BE_CLOSE) || find_request(card) || !can_pay_from(card.registered_account))
 		return
 	if(QDELETED(console) || !(src in console.request_pads)) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
 		to_chat(user, "<span class='warning'>[src] stracił połączenie z konsolą rynku szlamów!</span>")

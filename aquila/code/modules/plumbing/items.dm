@@ -67,6 +67,23 @@
 /obj/structure/reagent_dispensers/plumbed/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Wydaje płyn do rur przez złącze z przodu. Można go odkręcić <b>kluczem</b>.</span>"
+	. += "<span class='notice'>Pojemnikiem klikniętym <b>[user.secondary_click_text()]</b> dolejesz jego zawartość do zbiornika.</span>"
+
+/// Right click with an open container pours it into the tank (a normal click still fills the container)
+/obj/structure/reagent_dispensers/plumbed/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(!istype(weapon, /obj/item/reagent_containers) || !weapon.is_open_container())
+		return ..()
+	if(!weapon.reagents.total_volume)
+		to_chat(user, "<span class='warning'>[weapon] jest pusty!</span>")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(reagents.holder_full())
+		to_chat(user, "<span class='warning'>[src] jest pełny.</span>")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	var/obj/item/reagent_containers/container = weapon
+	var/trans = container.reagents.trans_to(src, container.amount_per_transfer_from_this, transfered_by = user)
+	playsound(src, 'aquila/sound/items/pour.ogg', 15, TRUE)
+	to_chat(user, "<span class='notice'>Przelewasz [trans] j. roztworu do [src].</span>")
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/reagent_dispensers/plumbed/storage
 	name = "stacjonarny zbiornik magazynowy"

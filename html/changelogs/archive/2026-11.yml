@@ -450,3 +450,27 @@
       jednym ticku.
   - bugfix: Reaktor postawiony poza statkiem nie migocze już światłami na wszystkich
       stacjach i ruinach.
+  - bugfix: Przycisk „Nie gotowy” w lobby znowu cofa gotowość, a konsola ID odbiera
+      dostępy.
+  - bugfix: SI w rdzeniu danych korzysta z zasilania rdzenia i nie zapętla się bez
+      prądu w pomieszczeniu.
+  - bugfix: Poszycie kadłuba, kratownice i kładki znów widać nad podłogą; rury nie
+      przebijają pokrytego pomostu, a zdjęcia nie gubią kabli i rur.
+  - bugfix: Kompost w tacy hydroponicznej nie podwaja chemikaliów, strzykawka nie
+      wstrzykuje podwójnie, a limonka i ambrozja dają właściwe owoce.
+  - bugfix: Giełda materiałów pobiera opłatę po cenie z chwili odlotu promu; aquilosy
+      liczą się tylko z osobistego konta.
+  - bugfix: 'Wampir, heretyk, darkspawn, kult krwi i wędrowiec pustki: naprawione
+      moce i rytuały z audytu.'
+  - bugfix: 'Circuity: broń, BCI, implant, śluza, dystrybutor i zespół z układem działają
+      jak w tg.'
+  - bugfix: Misja abordażu stacji kończy się po wycofaniu kontrataku, a Syndykat w
+      skafandrach strzela.
+  - bugfix: Jukebox wraca po cudzym zatrzymaniu muzyki i po przeładowaniu czatu; wysokość
+      głosu znów jest w preferencjach.
+  - bugfix: Padalec ma z powrotem pocztę rurową, a na Trawniku kuchnia i kriokomory
+      mają prąd.
+  - bugfix: Analizator zdrowia pokazuje uszkodzenia oczu i języka, a operacje nie
+      zjadają wkładanych stosów.
+  - bugfix: Sprint nie przewraca na podwójnych śluzach i przy biegu po skosie.
+  - bugfix: 'Wersja angielska: poprawione błędne tłumaczenia w oknach i czacie.'

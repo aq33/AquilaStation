@@ -46,7 +46,7 @@
 
 /obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
 	if(modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(try_handle_speech)) // AQ EDIT - moduł infiltracyjny może zablokować zmianę mowy (COMSIG_TRY_MODIFY_SPEECH)
 	M.UnregisterSignal(M, COMSIG_MOB_SAY)
 	return ..()
 

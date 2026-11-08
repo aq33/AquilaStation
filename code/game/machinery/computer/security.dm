@@ -135,6 +135,8 @@
 /obj/item/circuit_component/arrest_console_arrest/populate_options()
 	var/static/list/component_options = list(
 		COMP_STATE_ARREST,
+		COMP_STATE_SEARCH,
+		COMP_STATE_MONITOR,
 		COMP_STATE_PRISONER,
 		COMP_STATE_PAROL,
 		COMP_STATE_DISCHARGED,
@@ -185,7 +187,7 @@
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
 			message_admins("Wpisy ochrony ([successful_set]) zostały ustawione na [status_to_set] przez [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
-		for(var/mob/living/carbon/human/human as anything in GLOB.carbon_list)
+		for(var/mob/living/carbon/human/human in GLOB.carbon_list) // carbon_list ma też małpy (Pun Pun)
 			human.sec_hud_set_security_status()
 // AQ EDIT END
 

@@ -186,6 +186,13 @@
 		return
 	return ..()
 
+/// SI w rdzeniu danych ma prąd rdzenia (APC albo bateria zapasowa), nie obszaru: bez tego rdzeń na baterii co Life() przenosił SI sam do siebie
+/mob/living/silicon/ai/lacks_power()
+	if(requires_power == POWER_REQ_ALL && isaicore(loc))
+		var/obj/machinery/ai/data_core/core = loc
+		return !core.has_power()
+	return ..()
+
 /mob/living/silicon/ai/get_stat_tab_status()
 	var/list/tab_data = ..()
 	if(stat)

@@ -1,11 +1,12 @@
 // AQUILA: ustawienia, których nie ma w BeeStation (NSV13 i nasze), do okna PreferencesMenu
-import { Box, Button, Stack } from 'tgui-core/components';
+import { Box, Button, NumberInput, Stack } from 'tgui-core/components';
 
 import {
   CheckboxInput,
   Feature,
   FeatureChoiced,
   FeatureNumeric,
+  FeatureNumericData,
   FeatureSliderInput,
   FeatureToggle,
   FeatureValueProps,
@@ -37,6 +38,38 @@ export const preferred_squad: FeatureChoiced = {
 export const lizard_hiss_style: FeatureChoiced = {
   name: 'Syk jaszczura',
   component: FeatureButtonedDropdownInput,
+};
+
+/** Wysokość głosu w półtonach; zmiana od razu gra próbkę, a przycisk gra ją jeszcze raz */
+export const voice_pitch: FeatureNumeric = {
+  name: 'Wysokość głosu',
+  component: (props: FeatureValueProps<number, number, FeatureNumericData>) => {
+    const { act, handleSetValue, serverData, value } = props;
+
+    if (!serverData) {
+      return <Box>Wczytywanie...</Box>;
+    }
+
+    return (
+      <Stack align="center">
+        <Stack.Item>
+          <NumberInput
+            onChange={(newValue) => handleSetValue(newValue)}
+            minValue={serverData.minimum}
+            maxValue={serverData.maximum}
+            step={serverData.step}
+            value={value ?? 0}
+            format={(shown) => (shown > 0 ? `+${shown}` : `${shown}`)}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Button icon="volume-up" onClick={() => act('voice_pitch_test')}>
+            Posłuchaj
+          </Button>
+        </Stack.Item>
+      </Stack>
+    );
+  },
 };
 
 export const preferred_syndie_role: Feature<string> = {

@@ -37,6 +37,13 @@
 			new_spell.button.moved = "6:[pos],4:-2"
 	update_icon()
 
+/// Konstrukt kultu zgłasza klucz "build_construct" (rytuał „Po jednym z każdego”). vg wysyła go z soulstone.dm, u nas woła go makeNewConstruct()
+/mob/living/simple_animal/hostile/construct/proc/report_construct_built(mob/stoner)
+	if(!iscultist(src))
+		return
+	var/datum/team/cult/cult_team = locate_team(/datum/team/cult)
+	cult_team?.check_ritual("build_construct", src, stoner?.mind?.has_antag_datum(/datum/antagonist/cult))
+
 /mob/living/simple_animal/hostile/construct/Login()
 	. = ..()
 	update_icon()

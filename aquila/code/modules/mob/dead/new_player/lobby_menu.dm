@@ -77,7 +77,7 @@
 			var/new_ready = text2num(params["ready"])
 			if(!(new_ready in list(PLAYER_NOT_READY, PLAYER_READY_TO_PLAY, PLAYER_READY_TO_OBSERVE)))
 				return
-			Topic(null, list("ready" = new_ready))
+			Topic(null, list("ready" = "[new_ready]")) // tekst, bo Topic sprawdza if(href_list["ready"]), a PLAYER_NOT_READY to 0
 		if("manifest")
 			Topic(null, list("manifest" = 1))
 		if("late_join")

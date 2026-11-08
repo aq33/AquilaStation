@@ -35,4 +35,24 @@ GLOBAL_VAR(vote_submit_cooldown)
 		var/datum/map_config/map_config = config.maplist[choice["name"]]
 		choice["label"] = map_config ? map_config.get_vote_label() : choice["name"]
 
+/// Okno głosowania (MapVote albo VotePanel) wybiera się tylko przy tworzeniu. Gdy zaczyna się głosowanie innego rodzaju,
+/// otwarte okno dostałoby dane w obcym formacie i padło (VotePanel czyta user.isLowerAdmin), więc je zamykamy.
+/datum/controller/subsystem/vote/proc/close_mismatched_uis()
+	var/expected_interface = istype(current_vote, /datum/vote/map) ? "MapVote" : "VotePanel"
+	var/list/open_uis = SStgui.get_all_open_uis(src)
+	for(var/datum/tgui/ui as anything in open_uis.Copy())
+		if(ui.interface != expected_interface)
+			ui.close()
+
+/datum/controller/subsystem/vote/ui_interact(mob/user, datum/tgui/ui)
+	close_mismatched_uis()
+	if(ui?.closing)
+		ui = null
+	return ..(user, ui)
+
+/datum/controller/subsystem/vote/initiate_vote(vote_type, vote_initiator_name, mob/vote_initiator, forced = FALSE, anonymous = FALSE, popup = FALSE)
+	. = ..()
+	if(.)
+		close_mismatched_uis() // okna bez popupu; z popupem vote() otworzył już właściwe
+
 #undef VOTE_SUBMIT_COOLDOWN_TIME

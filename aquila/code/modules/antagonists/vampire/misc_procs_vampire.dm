@@ -349,7 +349,7 @@
 	if(istype(living_current) && (watcher in living_current.hasparasites()))
 		return FALSE
 	if(recursion > 0)
-		var/datum/mind/master = watcher.mind.enslaved_to
-		if(master?.current)
-			return .(master.current, recursion - 1)
+		var/mob/living/master = watcher.mind.enslaved_to // AQUILA - u nas enslaved_to to mob, nie umysł
+		if(master)
+			return .(master, recursion - 1)
 	return TRUE

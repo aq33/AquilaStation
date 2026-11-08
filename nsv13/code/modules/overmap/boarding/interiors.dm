@@ -27,11 +27,11 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 				occupying_levels = list()
 				docking_points = list()
 				ifflocs = list()
-				SSair.can_fire = FALSE
+				lazy_template_load_started() // AQ EDIT - wspólny licznik pauz SSair (aquila/code/modules/bitrunning/lazy_template.dm)
 				for(var/turf/T in boarding_interior.get_affected_turfs(locate(1, 1, boarding_reservation_z), FALSE)) //nuke
 					T.empty()
 					CHECK_TICK
-				SSair.can_fire = TRUE
+				lazy_template_load_finished() // AQ EDIT
 				free_boarding_levels += boarding_reservation_z
 				boarding_reservation_z = null
 				QDEL_NULL(boarding_interior)
@@ -175,12 +175,12 @@ The meat of this file. This will instance the dropship's interior in reserved sp
 		entryway.linked = src
 
 /obj/structure/overmap/proc/load_interior(turf/bottom_left, width, height)
-	SSair.can_fire = FALSE
+	lazy_template_load_started() // AQ EDIT - wspólny licznik pauz SSair (aquila/code/modules/bitrunning/lazy_template.dm)
 	if(!boarding_interior.load(bottom_left, centered = FALSE))
 		SSair.enqueue()
 		message_admins("[ADMIN_LOOKUPFLW(src)] nie zdołał wczytać wnętrza [boarding_interior.mappath]")
 		log_mapping("[src] failed to load interior [boarding_interior.mappath]")
-	SSair.can_fire = TRUE
+	lazy_template_load_finished() // AQ EDIT
 	post_load_interior()
 
 	var/turf/center = get_turf(locate(bottom_left.x+boarding_interior.width/2, bottom_left.y+boarding_interior.height/2, bottom_left.z))
