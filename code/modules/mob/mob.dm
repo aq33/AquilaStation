@@ -560,7 +560,7 @@
 		result = list("[A.get_examine_string(src, thats = TRUE)].", A.desc)
 	// AQ EDIT END
 
-	to_chat(src, EXAMINE_BLOCK(jointext(result, "\n")))
+	to_chat(src, aq_examine_html(A, result), type = MESSAGE_TYPE_INFO) // AQ EDIT - układ tg: tytuł w zakładce ramki, portret (aquila/code/modules/mob/examine_layout.dm); typ podany, bo tytuł nie ma już span info
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 /mob/proc/blind_examine_check(atom/examined_thing)
