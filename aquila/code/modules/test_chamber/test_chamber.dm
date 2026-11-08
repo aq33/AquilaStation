@@ -133,7 +133,8 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 	kit.spawn_kit(turfs, kit_center, user)
 	log_admin("[key_name(user)] spawned test chamber kit \"[kit.name]\"[kit.pr ? " ([kit.pr])" : ""]")
 	if(kit.description)
-		to_chat(user, "<span class='notice'><b>[kit.name]</b>[kit.pr ? " ([kit.pr])" : ""]: [kit.description]</span>")
+		// Opis we własnym znaczniku: tłumacz czatu dopasowuje cały węzeł tekstu, więc nie może się zlewać z nazwą i numerem PR
+		to_chat(user, "<span class='notice'><b>[kit.name]</b>[kit.pr ? " ([kit.pr])" : ""]: <span>[kit.description]</span></span>")
 
 /// Lista zestawów do wyboru: nazwa do wyświetlenia -> datum
 /proc/test_chamber_kits()

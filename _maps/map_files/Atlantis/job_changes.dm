@@ -1,4 +1,4 @@
-MAP_REMOVE_JOB(virologist)
+// AQ EDIT - Atlantis dostał wirusologię jak Atlas i Trawnik, więc wirusolog zostaje
 MAP_REMOVE_JOB(curator)
 MAP_REMOVE_JOB(lawyer)
 MAP_REMOVE_JOB(deputy)

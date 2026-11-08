@@ -22,9 +22,25 @@
 	"shuttles": {
 		"cargo": "cargo_hammerhead",
 		"ferry": "ferry_fancy",
-		"arrival": "arrival_atlas",
 		"emergency": "emergency_donut"
 	},
 	"ship_type": "/obj/structure/overmap/nanotrasen/heavy_cruiser/starter",
-	"mine_disable": 1
+	"mine_disable": 1,
+	"starmap_path": "config/starmap/starmap.json",
+
+	"map_description": "Krążowniki taktyczne klasy Corvid to trzon ciężkich eskadr WhiteRapids. Dwa pełne pokłady mieszczą każdy dział potrzebny na długi patrol, od wirusologii po pracownię bitrunnerów, a gęsta bateria wieżyczek Gaussa, dział pokładowych i wyrzutni VLS trzyma kłopoty z dala od kadłuba. Duży, wytrzymały i ociężały w zwrotach Atlantis nagradza pełną załogę.",
+	"manufacturer": "Stocznie wojenne Nanotrasen",
+	"commission_date": "Mar 3, 2259",
+	"strengths": ["Duża siła ognia", "Każdy dział ma miejsce do pracy", "Duże skrzydło myśliwców i górników"],
+	"weaknesses": ["Potrzebuje licznej załogi", "Długie przejścia między pokładami", "Tylko jeden napęd burzowy"],
+	"equipment": [
+		"2 działa pokładowe M4-15 „Hood”",
+		"12 wyrzutni VLS M14",
+		"6 wieżyczek Gaussa NT-BSG",
+		"2 wyrzutnie torped M4-B",
+		"3 lekkie myśliwce",
+		"6 transportowców Sabre",
+		"1 nuklearny napęd burzowy klasy IV"
+	],
+	"has_gulag": 1
 }
