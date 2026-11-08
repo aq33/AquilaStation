@@ -373,7 +373,6 @@ _maps/map_files/Serendipity/Serendipity1.dmm|99,131,1|pipe/layer_manifold|L*S|br
 _maps/map_files/Serendipity/Serendipity2.dmm|106,115,1|pipe/layer_manifold|L*E|brak połączenia
 _maps/map_files/Serendipity/Serendipity2.dmm|108,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
 _maps/map_files/Serendipity/Serendipity2.dmm|109,138,1|pipe/layer_manifold/visible|L*S|brak połączenia
-_maps/map_files/Serendipity/Serendipity2.dmm|113,142,1|pipe/layer_manifold|L*N|brak połączenia
 _maps/map_files/Serendipity/Serendipity2.dmm|114,134,1|pipe/layer_manifold|L*W|brak połączenia
 _maps/map_files/Serendipity/Serendipity2.dmm|114,136,1|pipe/layer_manifold|L*W|brak połączenia
 _maps/map_files/Serendipity/Serendipity2.dmm|114,138,1|pipe/layer_manifold|L*W|brak połączenia
@@ -414,13 +413,7 @@ _maps/map_files/Snake/snake_lower.dmm|152,117,1|pipe/layer_manifold|L*W|brak po�
 _maps/map_files/Snake/snake_lower.dmm|68,127,1|pipe/layer_manifold|L*W|brak połączenia
 _maps/map_files/Snake/snake_lower.dmm|75,134,1|power/terminal|-|kilka kolorów kabla pod terminalem: cable, yellow
 _maps/map_files/Snake/snake_lower.dmm|79,120,1|pipe/layer_manifold/visible|L*W|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|83,130,1|components/unary/portables_connector/visible|L3N|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|83,131,1|pipe/simple/cyan/visible/layer2|L2S|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|85,130,1|components/unary/thermomachine|L3N|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|85,131,1|pipe/manifold/cyan/visible/layer2|L2S|brak połączenia
 _maps/map_files/Snake/snake_lower.dmm|86,123,1|pipe/layer_manifold/visible|L*E|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|86,130,1|components/unary/thermomachine|L3N|brak połączenia
-_maps/map_files/Snake/snake_lower.dmm|86,131,1|pipe/manifold/cyan/visible/layer2|L2S|brak połączenia
 _maps/map_files/Snake/snake_upper.dmm|132,120,1|pipe/manifold4w/scrubbers/hidden/layer4|L4S|brak połączenia
 _maps/map_files/Snake/snake_upper.dmm|146,129,1|pipe/layer_manifold|L*E|brak połączenia
 _maps/map_files/Snake/snake_upper.dmm|188,134,1|pipe/layer_manifold|L*W|brak połączenia
