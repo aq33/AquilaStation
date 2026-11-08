@@ -154,7 +154,7 @@ There are several things that need to be remembered:
 	var/mutable_appearance/id_overlay = overlays_standing[ID_LAYER]
 
 	if(wear_id)
-		var/icon_file = 'icons/mob/mob.dmi'
+		var/icon_file = 'aquila/icons/mob/clothing/id.dmi' // AQ EDIT - karta na smyczy, PDA i portfel widoczne na postaci
 		wear_id.screen_loc = ui_id
 		if(client && hud_used && hud_used.hud_shown)
 			client.screen += wear_id

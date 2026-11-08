@@ -1,10 +1,12 @@
-/proc/gq_announce(message, sound='nsv13/sound/effects/ship/action_stations.ogg')
+/proc/gq_announce(message, sound='nsv13/sound/effects/ship/action_stations.ogg', color_override = "red") // AQ EDIT - kolor ramki
 	if(!message)
 		return
 
+	// AQ EDIT - ramka ogłoszenia jak minor_announce (układ tg)
+	var/complete_msg = CHAT_ALERT_SPAN(color_override, ANNOUNCEMENT_HEADER(MINOR_ANNOUNCEMENT_TITLE(html_encode("Uwaga:"))) + MINOR_ANNOUNCEMENT_TEXT(html_encode(message)))
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
-			to_chat(M, "<span class='big bold'><font color = red>[html_encode("Uwaga:")]</font color><BR>[html_encode(message)]</span><BR>")
+			to_chat(M, complete_msg)
 			if(M.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS)
 				SEND_SOUND(M, sound(sound))
 

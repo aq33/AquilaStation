@@ -981,23 +981,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-//MODsuit tech
+//Moduły hardsuitów (dawniej MODsuity)
 
 /datum/techweb_node/mod_basic
 	id = "mod"
 	tech_tier = 1
 	starting_node = TRUE
-	display_name = "MODsuity: podstawy"
-	description = "Specjalistyczne kombinezony wspomagane noszone na plecach, z wieloma różnymi modułami."
+	display_name = "Moduły hardsuitów: podstawy"
+	description = "Podstawowe moduły do hardsuitów: schowek, latarka, osłona do spawania i inne."
 	design_ids = list(
-		"mod_boots",
-		"mod_chestplate",
-		"mod_gauntlets",
-		"mod_helmet",
-		"mod_paint_kit",
-		"mod_shell",
-		"mod_plating_standard",
-		"mod_plating_civilian",
 		"mod_storage",
 		"mod_welding",
 		"mod_mouthhole",
@@ -1010,8 +1002,8 @@
 /datum/techweb_node/mod_advanced
 	id = "mod_advanced"
 	tech_tier = 2
-	display_name = "MODsuity: zaawansowane"
-	description = "Bardziej zaawansowane moduły ulepszające MODsuity."
+	display_name = "Moduły hardsuitów: zaawansowane"
+	description = "Bardziej zaawansowane moduły ulepszające hardsuity."
 	prereq_ids = list("robotics")
 	design_ids = list(
 		"mod_visor_diaghud",
@@ -1027,11 +1019,10 @@
 /datum/techweb_node/mod_engineering
 	id = "mod_engineering"
 	tech_tier = 2
-	display_name = "MODsuity: inżynieria"
-	description = "Kombinezony inżynieryjne dla wspomaganych inżynierów."
+	display_name = "Moduły hardsuitów: inżynieria"
+	description = "Moduły do hardsuitów dla inżynierów."
 	prereq_ids = list("mod_advanced", "engineering")
 	design_ids = list(
-		"mod_plating_engineering",
 		"mod_visor_meson",
 		"mod_t_ray",
 		"mod_magboot",
@@ -1045,11 +1036,10 @@
 /datum/techweb_node/mod_advanced_engineering
 	id = "mod_advanced_engineering"
 	tech_tier = 4
-	display_name = "MODsuity: zaawansowana inżynieria"
-	description = "Zaawansowane kombinezony inżynieryjne dla zaawansowanych wspomaganych inżynierów."
+	display_name = "Moduły hardsuitów: zaawansowana inżynieria"
+	description = "Zaawansowane moduły inżynieryjne do hardsuitów."
 	prereq_ids = list("mod_engineering", "adv_engi")
 	design_ids = list(
-		"mod_plating_atmospheric",
 		"mod_jetpack",
 		"mod_rad_protection",
 		"mod_emp_shield",
@@ -1061,11 +1051,10 @@
 /datum/techweb_node/mod_medical
 	id = "mod_medical"
 	tech_tier = 3
-	display_name = "MODsuity: medycyna"
-	description = "Kombinezony medyczne do szybkich akcji ratunkowych."
+	display_name = "Moduły hardsuitów: medycyna"
+	description = "Moduły medyczne do hardsuitów, do szybkich akcji ratunkowych."
 	prereq_ids = list("mod_advanced", "biotech")
 	design_ids = list(
-		"mod_plating_medical",
 		"mod_visor_medhud",
 		"mod_health_analyzer",
 		"mod_quick_carry",
@@ -1079,8 +1068,8 @@
 /datum/techweb_node/mod_advanced_medical
 	id = "mod_advanced_medical"
 	tech_tier = 4
-	display_name = "MODsuity: zaawansowana medycyna"
-	description = "Zaawansowane kombinezony medyczne do jeszcze szybszych akcji ratunkowych."
+	display_name = "Moduły hardsuitów: zaawansowana medycyna"
+	description = "Zaawansowane moduły medyczne do hardsuitów, do jeszcze szybszych akcji ratunkowych."
 	prereq_ids = list("mod_medical", "adv_biotech")
 	design_ids = list(
 		"mod_defib",
@@ -1094,15 +1083,13 @@
 /datum/techweb_node/mod_security
 	id = "mod_security"
 	tech_tier = 3
-	display_name = "MODsuity: ochrona"
-	description = "Kombinezony ochrony do walki z kosmiczną przestępczością."
+	display_name = "Moduły hardsuitów: ochrona"
+	description = "Moduły ochrony do hardsuitów, do walki z kosmiczną przestępczością."
 	prereq_ids = list("mod_advanced", "sec_basic")
 	design_ids = list(
-		"mod_plating_security",
 		"mod_visor_sechud",
 		"mod_stealth",
 		"mod_mag_harness",
-		"mod_pathfinder",
 		"mod_holster",
 		"mod_sonar",
 		"mod_projectile_dampener",
@@ -1110,26 +1097,11 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-/datum/techweb_node/mod_entertainment
-	id = "mod_entertainment"
-	tech_tier = 2
-	display_name = "MODsuity: rozrywka"
-	description = "Kombinezony wspomagane chroniące przed środowiskiem o niskim poziomie humoru."
-	prereq_ids = list("mod_advanced", "clown")
-	design_ids = list(
-		"mod_plating_cosmohonk",
-		"mod_bikehorn",
-		"mod_microwave_beam",
-		"mod_waddle",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	export_price = 5000
-
 /datum/techweb_node/mod_anomaly
 	id = "mod_anomaly"
 	tech_tier = 4
-	display_name = "MODsuity: anomalock"
-	description = "Moduły do MODsuitów, które do działania potrzebują rdzeni anomalii."
+	display_name = "Moduły hardsuitów: anomalock"
+	description = "Moduły do hardsuitów, które do działania potrzebują rdzeni anomalii."
 	prereq_ids = list("mod_advanced", "anomaly_research")
 	design_ids = list(
 		"mod_antigrav",
@@ -1138,22 +1110,10 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-/datum/techweb_node/mod_anomaly_engi
-	id = "mod_anomaly_engi"
-	tech_tier = 5
-	display_name = "MODsuity: inżynieryjny anomalock"
-	description = "Zaawansowane moduły do MODsuitów, które dzięki rdzeniom anomalii robią z inżynierów jeszcze lepszych fachowców."
-	prereq_ids = list("mod_advanced_engineering", "mod_anomaly")
-	design_ids = list(
-		"mod_kinesis",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
-	export_price = 5000
-
 /datum/techweb_node/mod_experimental
 	id = "mod_experimental"
-	display_name = "MODsuity: eksperymentalne"
-	description = "Eksperymentowanie przy tworzeniu MODsuitów dało w efekcie to..."
+	display_name = "Moduły hardsuitów: eksperymentalne"
+	description = "Eksperymenty z modułami hardsuitów dały w efekcie to..."
 	prereq_ids = list("base")
 	design_ids = list(
 		"mod_disposal",
