@@ -100,7 +100,7 @@
 	victim.Jitter(5)
 	victim.confused = max(victim.confused, 5)
 	victim.adjust_disgust(40)
-	victim.hallucination += 10
+	victim.adjust_hallucinations(20 SECONDS)
 	victim.Immobilize(3 SECONDS)
 	victim.Stun(1 SECONDS)
 	victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)

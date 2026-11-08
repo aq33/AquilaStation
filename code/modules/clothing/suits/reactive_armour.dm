@@ -361,8 +361,7 @@
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], ale ściąga do [owner] ogromny ładunek energii umysłowej z otoczenia!</span>")
-	owner.hallucination += 25
-	owner.hallucination = clamp(owner.hallucination, 0, 150)
+	owner.adjust_hallucinations_up_to(50 SECONDS, 300 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	return TRUE
 
 //Delimbering

@@ -216,7 +216,7 @@
 	hal_impact_effect_wall = null
 
 /obj/item/projectile/hallucination/change/hal_apply_effect()
-	new /datum/hallucination/self_delusion(hal_target, TRUE, wabbajack = FALSE)
+	hal_target.cause_hallucination(get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), "change bolt hallucination", duration = 30 SECONDS, affects_us = TRUE, affects_others = FALSE, play_wabbajack = FALSE) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 /obj/item/projectile/hallucination/death
 	name = "pocisk śmierci"
@@ -229,4 +229,4 @@
 	hal_impact_effect_wall = null
 
 /obj/item/projectile/hallucination/death/hal_apply_effect()
-	new /datum/hallucination/death(hal_target, TRUE)
+	hal_target.cause_hallucination(/datum/hallucination/death, "death bolt hallucination") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)

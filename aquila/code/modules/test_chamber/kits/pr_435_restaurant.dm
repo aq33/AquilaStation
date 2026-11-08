@@ -46,9 +46,9 @@
 	for(var/food_type in list(
 		/obj/item/food/burger/plain, /obj/item/food/burger/plain, /obj/item/food/burger/cheese, /obj/item/food/fries,
 		/obj/item/food/hotdog, /obj/item/food/taco/plain, /obj/item/food/taco/plain, /obj/item/food/burrito,
-		/obj/item/food/spaghetti/pastatomato, /obj/item/food/baguette, /obj/item/food/omelette, /obj/item/food/soup/miso,
-		/obj/item/food/tofu, /obj/item/food/fishandchips, /obj/item/food/soup/stew, /obj/item/food/golabki,
-		/obj/item/food/soup/zurek, /obj/item/food/icecream, /obj/item/food/sausage,
+		/obj/item/food/spaghetti/pastatomato, /obj/item/food/baguette, /obj/item/food/omelette, /obj/item/reagent_containers/glass/bowl/soup/miso,
+		/obj/item/food/tofu, /obj/item/food/fishandchips, /obj/item/reagent_containers/glass/bowl/soup/stew, /obj/item/food/golabki,
+		/obj/item/reagent_containers/glass/bowl/soup/zurek, /obj/item/food/icecream, /obj/item/food/sausage,
 	))
 		new food_type(food_crate)
 

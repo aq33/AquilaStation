@@ -8,7 +8,7 @@
 	Ptasie mleczko ma też być w automacie z przekąskami (Getmore)."
 	items = list(
 		/obj/item/food/golabki = 1,
-		/obj/item/food/soup/zurek = 1,
+		/obj/item/reagent_containers/glass/bowl/soup/zurek = 1,
 		/obj/item/food/ptasie_mleczko = 1,
 		/obj/structure/table = 2,
 		/obj/item/food/meat/cutlet/plain = 3,

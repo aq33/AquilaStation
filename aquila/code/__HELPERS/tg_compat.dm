@@ -193,11 +193,7 @@
 /mob/living/carbon/set_silence_if_lower(amount)
 	silent = max(silent, TG_TIME_TO_LIFE_TICKS(amount))
 
-/mob/living/proc/adjust_hallucinations(amount)
-	hallucination = max(hallucination + TG_TIME_TO_LIFE_TICKS(amount), 0)
-
-/mob/living/proc/set_hallucinations_if_lower(amount)
-	hallucination = max(hallucination, TG_TIME_TO_LIFE_TICKS(amount))
+// adjust_hallucinations() i podobne: aquila/code/modules/hallucination/timed_status.dm
 
 /// tg: czy mob nic nie widzi
 /mob/proc/is_blind()

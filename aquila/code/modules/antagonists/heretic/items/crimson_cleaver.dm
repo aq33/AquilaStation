@@ -376,7 +376,7 @@
 					"Łakniesz ciała.",
 				)))
 		if(SPT_PROB(10, seconds_between_ticks))
-			owner.hallucination = min(owner.hallucination + 3, 30)
+			owner.adjust_hallucinations_up_to(6 SECONDS, 60 SECONDS)
 		if(SPT_PROB(20, seconds_between_ticks))
 			owner.jitteriness = min(owner.jitteriness + 2, 15)
 			owner.set_confusion_if_lower(2 SECONDS)

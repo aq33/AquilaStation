@@ -45,7 +45,6 @@
 		/obj/item/food/pizza/meat,
 		/obj/item/food/pizza/margherita,
 		/obj/item/food/salad/fruit,
-		/obj/item/food/soup/oatmeal,
 		/obj/item/food/deadmouse
 	) )
 	var/datum/freight_type/single/object/C = new( picked )

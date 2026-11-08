@@ -154,8 +154,7 @@
 #define MELEE "melee"
 /// We're being attacked with an oversized object, perhaps a road roller. Not that anyone use such a thing as a waepon. So only relevant for certain mech based attacks.
 #define OVERWHELMING_ATTACK 6
-/// Animation for blunt attacks
-#define ATTACK_ANIMATION_BLUNT "blunt"
+// ATTACK_ANIMATION_BLUNT jest w attack_animations.dm
 ///ammo box will have a different state for each bullet; <icon_state>-<bullets left>
 #define AMMO_BOX_PER_BULLET 1
 /// Flat addition or subtration to the weapon's force. Set via [MODIFY_ATTACK_FORCE]

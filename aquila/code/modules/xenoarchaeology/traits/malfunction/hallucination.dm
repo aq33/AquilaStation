@@ -16,7 +16,6 @@
 	for(var/mob/living/target in focus)
 		if(!iscarbon(target))
 			continue
-		var/datum/hallucination/H = pickweight(GLOB.hallucination_list.Copy())
-		new H(target, TRUE)
+		target.cause_hallucination(get_random_hallucination(HALLUCINATION_TIER_RARE), "xenoartifact malfunction")
 	dump_targets()
 	clear_focus()

@@ -13,19 +13,6 @@
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/soup/zurek
-	name = "żurek"
-	desc = "Tradycyjna polska zupa na zakwasie, z warzywami, kiełbasą i jajkiem. Najlepiej smakuje z chlebem."
-	icon = 'aquila/icons/obj/food/polskie.dmi'
-	icon_state = "zurek"
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 8,
-		/datum/reagent/consumable/nutriment/vitamin = 2,
-		/datum/reagent/consumable/nutriment/protein = 2,
-	)
-	tastes = list("kremowe warzywa" = 2, "kiełbasa" = 1)
-	foodtypes = VEGETABLES | MEAT | GRAIN | BREAKFAST
-
 /obj/item/food/ptasie_mleczko
 	name = "ptasie mleczko"
 	desc = "Mięciutka pianka w czekoladzie. Popularny słodycz z Polski, idealny do herbaty."

@@ -105,7 +105,7 @@
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
 	if(isplasmaman(M))
-		M.hallucination += 5
+		M.adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 /datum/reagent/blackpowder/on_ex_act()
 	var/location = get_turf(holder.my_atom)

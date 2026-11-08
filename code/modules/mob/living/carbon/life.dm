@@ -252,9 +252,9 @@
 	if(breath.get_moles(GAS_BZ))
 		var/bz_partialpressure = (breath.get_moles(GAS_BZ)/breath.total_moles())*breath_pressure
 		if(bz_partialpressure > 1)
-			hallucination += 10
+			adjust_hallucinations(20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		else if(bz_partialpressure > 0.01)
-			hallucination += 5
+			adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	//TRITIUM
 	if(breath.get_moles(GAS_TRITIUM))
@@ -487,9 +487,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Ej stary, co jeśli byśmy, eee, 
 
 	if(druggy)
 		adjust_drugginess(-1)
-
-	if(hallucination)
-		handle_hallucinations()
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
