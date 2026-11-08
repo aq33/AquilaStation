@@ -613,7 +613,6 @@ _maps/virtual_domains/meta_central.dmm|9,31,1|components/unary/vent_scrubber/on/
 _maps/virtual_domains/meta_central.dmm|9,38,1|components/unary/vent_pump/on/layer4|L4E|brak połączenia
 _maps/virtual_domains/syndicate_assault.dmm|33,39,1|pipe/simple/supply/hidden|L3E|brak połączenia
 _maps/virtual_domains/syndicate_assault.dmm|35,39,1|pipe/simple/supply/hidden|L3W|brak połączenia
-aquila/_maps/random_engines/snake_engine_supermatter.dmm|15,8,1|pipe/heat_exchanging/junction/layer4|L4W|brak połączenia
 aquila/_maps/shipbreaking/whiteship_fland.dmm|7,10,1|pipe/manifold/dark/hidden|L3E|brak połączenia
 aquila/_maps/shipbreaking/whiteship_fland.dmm|8,11,1|pipe/simple/dark/hidden|L3W|brak połączenia
 aquila/_maps/shipbreaking/whiteship_fland.dmm|9,10,1|components/unary/tank/air|L3W|brak połączenia
