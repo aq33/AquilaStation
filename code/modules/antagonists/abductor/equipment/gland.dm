@@ -42,8 +42,7 @@
 	if(!owner)
 		return
 	var/image/holder = owner.hud_list[GLAND_HUD]
-	var/icon/I = icon(owner.icon, owner.icon_state, owner.dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = owner.get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony
 	if(active_mind_control)
 		holder.icon_state = "hudgland_active"
 	else if(mind_control_uses)
