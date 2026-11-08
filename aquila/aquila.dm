@@ -684,6 +684,7 @@
 #include "code\modules\jobs\job_slots.dm"
 #include "code\modules\jobs\job_types\ai_data_core.dm"
 #include "code\modules\jobs\job_types\scientist.dm"
+#include "code\modules\mapping\random_engines.dm"
 #include "code\modules\medical\bandage.dm"
 #include "code\modules\medical\bone_repair.dm"
 #include "code\modules\medical\medical_tg_supplies.dm"
@@ -1008,6 +1009,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_578_losowe_silniki.dm"
 #include "code\modules\test_chamber\kits\pr_579_struktura_statku.dm"
 #include "code\modules\test_chamber\kits\pr_592_sabre_wnetrze.dm"
 #include "code\modules\test_chamber\kits\pr_581_oswietlenie.dm"
@@ -1773,6 +1775,7 @@
 #include "code\modules\unit_tests\aquila_foreigner.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
+#include "code\modules\unit_tests\aquila_random_engines.dm"
 #include "code\modules\unit_tests\aquila_mutation_toxins.dm"
 #include "code\modules\unit_tests\aquila_map_standard.dm"
 #include "code\modules\unit_tests\aquila_lag_switch.dm"

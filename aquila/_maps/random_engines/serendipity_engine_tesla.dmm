@@ -1,0 +1,539 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bd" = (
+/obj/structure/closet/secure_closet/engineering_electrical{
+	anchored = 1
+	},
+/obj/item/wrench,
+/obj/item/stack/cable_coil,
+/obj/item/screwdriver,
+/obj/item/inducer,
+/obj/item/wirecutters,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/weldingtool,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
+/obj/structure/sign/poster/official/moth6{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"fJ" = (
+/obj/structure/particle_accelerator/particle_emitter/center{
+	anchored = 1;
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"hV" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engine_room)
+"ku" = (
+/obj/machinery/power/tesla_coil,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"kM" = (
+/obj/structure/closet/secure_closet/engineering_electrical{
+	anchored = 1
+	},
+/obj/item/wrench,
+/obj/item/stack/cable_coil,
+/obj/item/screwdriver,
+/obj/item/inducer,
+/obj/item/wirecutters,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/weldingtool,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
+/obj/structure/sign/poster/official/moth9{
+	pixel_y = 31
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"lb" = (
+/obj/structure/particle_accelerator/particle_emitter/left{
+	anchored = 1;
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"lk" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/nsv/engine/engine_room/core)
+"lm" = (
+/obj/structure/particle_accelerator/end_cap{
+	anchored = 1;
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"nn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"pn" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"pv" = (
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"qx" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 32
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"tN" = (
+/obj/effect/turf_decal/ship/delivery{
+	color = "#8B0000"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"tX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/station_engineer,
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"uE" = (
+/obj/effect/landmark/event_spawn,
+/obj/machinery/the_singularitygen/tesla{
+	anchored = 1
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"wZ" = (
+/obj/machinery/particle_accelerator/control_box{
+	anchored = 1
+	},
+/obj/structure/cable,
+/obj/item/paper{
+	default_raw_text = "<p>UWAGA: ten statek ma reaktor Tesli. Szczególnie uważajcie, żeby wszystko przykręcić i zespawać, co trzeba. Jeśli chcecie ulepszyć cewki Tesli, użyjcie BSRPED z biura Głównego Inżyniera albo odkręćcie cewkę i odnieście ją od reaktora, zanim ją otworzycie i ulepszycie.</p>";
+	name = "READ ME."
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"xk" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/engine_room)
+"Bm" = (
+/obj/structure/particle_accelerator/fuel_chamber{
+	anchored = 1;
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"By" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/engine/engine_room)
+"Cj" = (
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Dt" = (
+/turf/template_noop,
+/area/template_noop)
+"Fl" = (
+/obj/machinery/door/poddoor/shutters/ship{
+	id = "tesla";
+	name = "Tesla Silencing Shutters"
+	},
+/obj/structure/grille,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"HL" = (
+/obj/structure/particle_accelerator/power_box{
+	anchored = 1;
+	dir = 1
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"IC" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"Jl" = (
+/turf/open/space/basic,
+/area/space)
+"Kc" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Kt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"KG" = (
+/obj/structure/cable,
+/obj/machinery/power/emitter/anchored{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"LC" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Mu" = (
+/obj/structure/particle_accelerator/particle_emitter/right{
+	anchored = 1;
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"Nn" = (
+/obj/machinery/field/generator,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Nt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/floor,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Og" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engine_room)
+"Oy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9;
+	icon_state = "pipe11-1"
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Pr" = (
+/obj/structure/cable,
+/obj/machinery/power/tesla_coil,
+/turf/open/floor/plating,
+/area/nsv/engine/engine_room/core)
+"PA" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engine_room)
+"Rg" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/monotile/steel,
+/area/nsv/engine/engine_room/core)
+"Rj" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"TC" = (
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"Uc" = (
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"WN" = (
+/obj/structure/sign/warning/electricshock,
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
+"WO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Xm" = (
+/obj/structure/cable,
+/obj/machinery/power/tesla_coil,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"XR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+
+(1,1,1) = {"
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+pn
+PA
+pn
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(2,1,1) = {"
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(3,1,1) = {"
+Jl
+IC
+WN
+Rj
+Kt
+Kt
+Kt
+Nt
+Kt
+Kt
+Kt
+Cj
+TC
+kM
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(4,1,1) = {"
+Jl
+Dt
+Fl
+Dt
+Xm
+Pr
+lk
+lk
+lk
+Pr
+Xm
+Dt
+Dt
+tX
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(5,1,1) = {"
+Jl
+Dt
+Dt
+Dt
+Kc
+LC
+pv
+pv
+pv
+LC
+Kc
+Dt
+Dt
+By
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(6,1,1) = {"
+Jl
+Dt
+Dt
+Dt
+Xm
+ku
+Nn
+pv
+Nn
+ku
+Xm
+Dt
+Dt
+tN
+Mu
+Dt
+Uc
+Uc
+Dt
+"}
+(7,1,1) = {"
+Jl
+Dt
+Dt
+Dt
+Kc
+pv
+pv
+uE
+pv
+pv
+Kc
+WO
+Dt
+tN
+fJ
+HL
+Bm
+lm
+Dt
+"}
+(8,1,1) = {"
+Jl
+Dt
+Dt
+Dt
+Xm
+ku
+Nn
+pv
+Nn
+ku
+Xm
+Dt
+Dt
+tN
+lb
+Dt
+wZ
+Uc
+Dt
+"}
+(9,1,1) = {"
+Jl
+IC
+TC
+qx
+Kc
+LC
+pv
+pv
+pv
+LC
+Kc
+Dt
+Dt
+xk
+Dt
+hV
+Dt
+Dt
+Dt
+"}
+(10,1,1) = {"
+Jl
+Dt
+Fl
+Dt
+Xm
+Pr
+lk
+lk
+lk
+Pr
+Xm
+Dt
+Dt
+Og
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(11,1,1) = {"
+Jl
+IC
+WN
+XR
+nn
+nn
+Dt
+Dt
+Dt
+nn
+nn
+Oy
+TC
+bd
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(12,1,1) = {"
+Dt
+IC
+TC
+TC
+Rg
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
+(13,1,1) = {"
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+KG
+Dt
+KG
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+"}
