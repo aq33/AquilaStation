@@ -30,6 +30,16 @@ Gdy `original` nie jest null:
   - kandydat jest wyraźnie nie na temat → current.
   W razie wątpliwości wybierz `"current"`. Zła podmiana szkodzi bardziej niż tłumaczenie zwrotne.
 
+Kandydat bywa znaleziony po treści w całej historii innego serwera, a nie w tym samym miejscu kodu.
+Wtedy jest tylko podobnym zdaniem i może opisywać coś innego, np. inny przedmiot o podobnym opisie.
+„original” wybierz tylko wtedy, gdy polski tekst jest jego tłumaczeniem w całości.
+
+Nie odrzucaj kandydata za drobiazgi, które skrypt poprawia sam: linki `href='?src=...'` bez `byond://`
+dostają `byond://`, a brakujący albo inny zewnętrzny `<span class='...'>` przejmuje z polskiego tekstu.
+Literówki i dziwne wielkie litery z oryginału zostają, bo tekst ma być wierny.
+
+Gdy ani obecny angielski, ani kandydat nie pasują do polskiego tekstu, wybierz `"fix"` (opis niżej).
+
 Gdy `original` jest null (para z historii wygląda podejrzanie):
 - `"current"`: obecny angielski to poprawny odpowiednik polskiego. Może się różnić
   wstawkami, np. polski ma `[on ? "włączony" : "wyłączony"]`, a angielski `[on ? "on" : "off"]`;

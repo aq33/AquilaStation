@@ -1185,5 +1185,8 @@
  "Obecny prom: ${existingShuttle.name}": "Existing Shuttle: ${existingShuttle.name}",
  "${amount} cz. ${name}": "${amount} part(s) ${name}",
  "${power ? 'Wyłącza' : 'Włącza'} bota.": "${power ? 'Turns off' : 'Turns on'} the bot.",
- "${char_length}/${max_length || '∞'}": "${char_length}/${max_length || '∞'}"
+ "${char_length}/${max_length || '∞'}": "${char_length}/${max_length || '∞'}",
+ "Twój umysł spowija mgła - [master ? \"[master] nie jest już twoim panem\" : \"nie masz już pana\"], jesteś wolny!": "Your mind begins to fill with haze - [master ? \"[master] nie jest już twoim panem\" : \"nie masz już pana\"], you are free!",
+ "[master] nie jest już twoim panem": "[master] is no longer your master",
+ "nie masz już pana": "you no longer have a master"
 }
