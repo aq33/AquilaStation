@@ -222,5 +222,25 @@
 	TEST_ASSERT(!unsettle.intercept_check(walker, inside), "Unsettle accepted a turf as the target")
 	TEST_ASSERT(!unsettle.intercept_check(walker, walker), "Unsettle accepted the voidwalker itself")
 
+/// AQUILA - audyt: karpi mózg z DNA infusera przejmuje traumy i obrażenia starego mózgu
+/datum/unit_test/aquila_audyt_antagi_infuser
+
+/datum/unit_test/aquila_audyt_antagi_infuser/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	patient.gain_trauma(/datum/brain_trauma/mild/dumbness, TRAUMA_RESILIENCE_ABSOLUTE)
+	TEST_ASSERT(patient.has_trauma_type(/datum/brain_trauma/mild/dumbness), "Could not give the trauma")
+	patient.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50)
+	var/obj/item/organ/brain/old_brain = patient.getorganslot(ORGAN_SLOT_BRAIN)
+	var/old_damage = old_brain.damage
+	TEST_ASSERT(old_damage > 0, "Could not damage the brain")
+
+	var/obj/item/organ/brain/carp/carp_brain = new
+	carp_brain.replace_into(patient)
+	TEST_ASSERT_EQUAL(patient.getorganslot(ORGAN_SLOT_BRAIN), carp_brain, "The carp brain was not inserted")
+	TEST_ASSERT(patient.has_trauma_type(/datum/brain_trauma/mild/dumbness, TRAUMA_RESILIENCE_ABSOLUTE), "The carp brain cured an absolute trauma")
+	TEST_ASSERT_EQUAL(carp_brain.damage, old_damage, "The carp brain did not keep the brain damage")
+	for(var/datum/brain_trauma/trauma as anything in carp_brain.traumas)
+		TEST_ASSERT(trauma.owner == patient && trauma.brain == carp_brain, "[trauma.type] was not moved to the new brain")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
