@@ -34,7 +34,7 @@
 /datum/unit_test/aquila_audyt_en_pairs
 
 /datum/unit_test/aquila_audyt_en_pairs/Run()
-	TEST_ASSERT_EQUAL(i18n_en_exact(JOB_NAME_SECURITYOFFICER), "Military Police", "The security job is not translated")
+	TEST_ASSERT_EQUAL(i18n_en_exact(JOB_NAME_SECURITYOFFICER), "Security Officer", "The security job is not translated")
 	for(var/english in list("name", "Name", "left", "Left", "good", "center", ROLE_ERT, "Space Dragon", "Agent", "Mansus Grasp"))
 		var/translated = i18n_en_exact(english)
 		TEST_ASSERT(isnull(translated) || translated == english, "English text \"[english]\" is replaced with \"[translated]\"")
