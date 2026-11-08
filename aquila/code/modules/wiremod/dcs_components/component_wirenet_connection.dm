@@ -80,6 +80,7 @@
 /datum/component/circuit_component_wirenet_connection/proc/set_tracked_movable(atom/movable/new_tracked_movable)
 	if(tracked_movable == new_tracked_movable) //Should only happen when an assembly holder the assembly was attached to calls on_attach when it itself is attached to something
 		return
+	unset_tracked_movable() // poprzedni nosiciel mógł nie wysłać sygnału o odpięciu (np. granat chemiczny)
 	tracked_movable = new_tracked_movable
 	RegisterSignal(new_tracked_movable, COMSIG_MOVABLE_SET_ANCHORED, PROC_REF(on_tracked_movable_set_anchored))
 	RegisterSignal(new_tracked_movable, COMSIG_QDELETING, PROC_REF(unset_tracked_movable))

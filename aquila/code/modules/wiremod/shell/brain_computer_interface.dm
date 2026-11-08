@@ -43,6 +43,18 @@
 
 	return ..()
 
+/obj/item/organ/cyberimp/bci/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	. = ..()
+	// Organy u nas lądują w nullspace, a wtedy komponenty zależne od położenia (GPS, radio, słuch, widok) nie działają. Jak w tg.
+	if(owner == M)
+		forceMove(M)
+
+/obj/item/organ/cyberimp/bci/Remove(mob/living/carbon/M, special = FALSE)
+	. = ..()
+	// Wołający zwykle sam przenosi organ, ale jeśli nie, nie zostawiamy go w zawartości dawnego nosiciela.
+	if(M && loc == M)
+		moveToNullspace()
+
 /obj/item/organ/cyberimp/bci/proc/action_comp_registered(datum/source, obj/item/circuit_component/equipment_action/action_comp)
 	SIGNAL_HANDLER
 	LAZYADD(actions, new/datum/action/innate/circuit_equipment_action(src, action_comp))
