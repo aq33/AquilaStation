@@ -46,7 +46,7 @@
 	name = "strumień wysysający życie"
 	icon_state = "nothing"
 	alpha = 0 // AQUILA - u nas nie ma pustego stanu "nothing", widać tylko promień
-	range = 7
+	range = 10 // AQUILA - range liczy kroki wzdłuż toru: cel 7 pól po przekątnej (target_range) to ok. 9,9 kroku
 	var/datum/beam/drain_beam
 	/// Moc, która wystrzeliła pocisk (fired_from to mob)
 	var/datum/action/vampire/targeted/blooddrain/source_power
