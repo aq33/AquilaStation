@@ -25871,6 +25871,7 @@
 "Dowództwo Stacji Charlie": "Charlie Station Command",
 "Dowództwo floty": "Fleet Command",
 "Dowództwo floty przydzieliło [length(mission_choices)] misje do wyboru. Kapitan wybiera jedną w konsoli łączności (Status misji). Bez wyboru pierwsza misja zostanie przyjęta przy pierwszym skoku FTL.": "Fleet Command has assigned [length(mission_choices)] missions to choose from. The captain picks one at the comms console (Mission Status). If no choice is made, the first mission will be accepted at the first FTL jump.",
+"Dowództwo floty przydzieliło dwie misje. Kapitan wybiera jedną z nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie przyjęta pierwsza.": "Fleet Command has assigned two missions. The captain picks one before the first FTL jump. If none is chosen, the first one is taken at the jump.",
 "Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z": "Fleet Command has assigned three missions. The captain chooses one of",
 "Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie przyjęta pierwsza.": "Fleet Command has assigned three missions. The captain picks one before the first FTL jump. If none is chosen, the first one is taken at the jump.",
 "Dowództwo to twoi ministrowie, a załoganci to mieszkańcy Zachodniego Brzegu i Strefy Gazy.": "Command are your ministers, and the crewmembers are the inhabitants of the West Bank and the Gaza Strip.",

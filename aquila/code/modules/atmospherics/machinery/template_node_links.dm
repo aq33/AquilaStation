@@ -12,6 +12,7 @@
 			if(!node || (machine in template_links(node)))
 				continue
 			if(link_back(node, machine))
+				node.update_icon() // atmos_init() rysował ją bez tego połączenia
 				continue
 			if(istype(machine, /obj/machinery/atmospherics/pipe/layer_manifold))
 				var/obj/machinery/atmospherics/pipe/layer_manifold/manifold = machine
@@ -20,6 +21,7 @@
 			var/index = machine.nodes.Find(node)
 			if(index)
 				machine.nodes[index] = null
+			machine.update_icon() // Bez uciętego połączenia
 
 /// Węzły urządzenia; adapter warstw trzyma je w osobnych listach
 /datum/controller/subsystem/air/proc/template_links(obj/machinery/atmospherics/machine)

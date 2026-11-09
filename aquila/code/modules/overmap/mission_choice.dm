@@ -83,6 +83,7 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 /datum/controller/subsystem/overmap_mode/proc/low_pop_missions(list/exclude)
 	var/list/probabilities = config.Get(/datum/config_entry/keyed_list/omode_probability)
 	var/list/min_pop = config.Get(/datum/config_entry/keyed_list/omode_min_pop)
+	var/list/max_pop = config.Get(/datum/config_entry/keyed_list/omode_max_pop)
 	var/list/blacklist = SSmapping.config.omode_blacklist
 	if(locate("all") in blacklist)
 		return list()
@@ -100,6 +101,10 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		var/config_tag = initial(mode_type.config_tag)
 		var/weight = (config_tag in probabilities) ? probabilities[config_tag] : initial(mode_type.selection_weight)
 		if(weight <= 0)
+			continue
+		// Za dużo graczy to nie „za mało”: takiej misji nie dokładamy
+		var/max_players = (config_tag in max_pop) ? max_pop[config_tag] : initial(mode_type.max_players)
+		if(max_players > 0 && player_check > max_players)
 			continue
 		candidates[mode_type] = (config_tag in min_pop) ? min_pop[config_tag] : initial(mode_type.required_players)
 	sortTim(candidates, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)

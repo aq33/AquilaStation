@@ -353,6 +353,16 @@
 
 	//turn off base new Initialization until the whole thing is loaded
 	SSatoms.map_loader_begin()
+	// AQ EDIT START - atoms are made in a separate proc: a runtime there ends only that proc (516), so the
+	// map_loader_stop() below always runs and SSatoms never stays in map loading mode (it counts loads now)
+	build_coordinate_atoms(members, members_attributes, first_turf_index, crds, orig_area, no_changeturf, placeOnTop)
+	// AQ EDIT END
+	//Restore initialization to the previous value
+	SSatoms.map_loader_stop()
+
+// AQ EDIT START - body of build_coordinate() between map_loader_begin() and map_loader_stop(), unchanged
+/datum/parsed_map/proc/build_coordinate_atoms(list/members, list/members_attributes, first_turf_index, turf/crds, area/orig_area, no_changeturf, placeOnTop)
+	var/index
 	//instanciate the first /turf
 	var/turf/T
 	if(ispath(members[first_turf_index], /turf/template_noop))
@@ -385,8 +395,7 @@
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
 		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
-	//Restore initialization to the previous value
-	SSatoms.map_loader_stop()
+// AQ EDIT END
 
 ////////////////
 //Helpers procs

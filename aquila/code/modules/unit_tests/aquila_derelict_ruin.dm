@@ -98,6 +98,47 @@
 	TEST_ASSERT(!(vent in second_pipe.nodes), "The second part's pipe kept a one-way link to the taken vent")
 	TEST_ASSERT_EQUAL(vent.nodes[1], first_pipe, "The vent lost its own pipe")
 
+/// AQUILA - nakładające się wczytywania map: koniec pierwszego nie przywraca stanu, póki drugie trwa,
+/// a nadmiarowe zakończenie nie schodzi poniżej zera
+/datum/unit_test/atoms_overlapping_map_loads
+
+/datum/unit_test/atoms_overlapping_map_loads/Run()
+	TEST_ASSERT(!SSatoms.initialized_changed, "A map load is already running")
+	var/before = SSatoms.initialized
+	SSatoms.map_loader_begin()
+	SSatoms.map_loader_begin()
+	SSatoms.map_loader_stop()
+	var/during = SSatoms.initialized
+	var/still_loading = SSatoms.initialized_changed
+	SSatoms.map_loader_stop()
+	SSatoms.map_loader_stop()
+	TEST_ASSERT(still_loading, "The first load to finish ended the other one too")
+	TEST_ASSERT_EQUAL(during, INITIALIZATION_INSSATOMS, "Initialization came back while a load was still running")
+	TEST_ASSERT_EQUAL(SSatoms.initialized, before, "Initialization didn't come back after both loads")
+	TEST_ASSERT_EQUAL(SSatoms.initialized_changed, 0, "An extra stop left the load counter off zero")
+
+/// AQUILA - dopełnienie wyboru misji nie dokłada misji odrzuconej za zbyt wielu graczy
+/datum/unit_test/mission_low_pop_max_players
+
+/datum/unit_test/mission_low_pop_max_players/Run()
+	var/list/max_pop = config.Get(/datum/config_entry/keyed_list/omode_max_pop)
+	var/had_entry = ("derelict" in max_pop)
+	var/old_max = had_entry ? max_pop["derelict"] : null
+	var/old_players = SSovermap_mode.player_check
+	SSovermap_mode.player_check = 3
+	max_pop["derelict"] = 2
+	var/list/capped = SSovermap_mode.low_pop_missions(list())
+	max_pop["derelict"] = 0
+	var/list/uncapped = SSovermap_mode.low_pop_missions(list())
+	if(had_entry)
+		max_pop["derelict"] = old_max
+	else
+		max_pop -= "derelict"
+	SSovermap_mode.player_check = old_players
+	if(!(/datum/overmap_gamemode/derelict_ruin in uncapped))
+		return // Opuszczona stacja jest w zwykłej puli (dość graczy) albo zablokowana: nie ma czego sprawdzać
+	TEST_ASSERT(!(/datum/overmap_gamemode/derelict_ruin in capped), "A mission over its player limit was added to the choice")
+
 /// AQUILA - przy małej liczbie graczy (w testach 0) kapitan i tak wybiera z trzech różnych misji
 /datum/unit_test/mission_choice_three
 

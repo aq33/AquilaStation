@@ -408,6 +408,10 @@
 	var/plasma_before = heater_air.get_moles(GAS_PLASMA)
 	sabre.use_fuel(TRUE)
 	TEST_ASSERT(heater_air.get_moles(GAS_PLASMA) < plasma_before, "Flying didn't burn the heater plasma")
+	// Podgrzewacz dopompowany ponad wskaźnik: oddanie 50 jednostek (tankowanie w locie) zabiera 25 moli, a nie nadwyżkę
+	heater_air.set_moles(GAS_PLASMA, 2000)
+	sabre.drain_fuel(50)
+	TEST_ASSERT(abs(heater_air.get_moles(GAS_PLASMA) - 1975) < 0.5, "Giving away 50 fuel left [heater_air.get_moles(GAS_PLASMA)] mol instead of 1975")
 	TEST_ASSERT(sabre.shuttle_launch(), "The fuelled Sabre didn't take off")
 
 	shuttle_port.jumpToNullSpace()

@@ -50,6 +50,12 @@ export function PageObjectives(props) {
               Rubikon. Bez wyboru w ciągu pięciu minut dowództwo samo przydzieli
               cele.
             </Box>
+          ) : mission_choices.length === 2 ? (
+            <Box mb={1}>
+              Dowództwo floty przydzieliło dwie misje. Kapitan wybiera jedną z
+              nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie
+              przyjęta pierwsza.
+            </Box>
           ) : (
             <Box mb={1}>
               Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z

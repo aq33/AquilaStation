@@ -320,14 +320,18 @@
 		H.update_parents()
 	return amount
 
+/// Zabiera amount jednostek paliwa z podgrzewaczy po równo; plazma ponad wskaźnik (get_fuel() jest obcięte) zostaje
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/drain_fuel(amount)
+	var/list/heaters = get_fuel_heaters()
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in heaters)
+		H.consumeFuel(amount / SABRE_FUEL_PER_MOLE / length(heaters))
+
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/use_fuel(force = FALSE)
 	if(!engines_active() && !force)
 		return FALSE
 	var/fuel_consumption = 0.5 * (loadout.get_slot(HARDPOINT_SLOT_ENGINE)?.tier)
 	var/amount = user_thrust_dir ? fuel_consumption + 0.25 : fuel_consumption
-	var/list/heaters = get_fuel_heaters()
-	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in heaters)
-		H.consumeFuel(amount / SABRE_FUEL_PER_MOLE / length(heaters))
+	drain_fuel(amount)
 	if(get_fuel() >= amount)
 		return TRUE
 	set_master_caution(TRUE)
@@ -369,7 +373,11 @@
 	var/their_fuel = them.get_fuel()
 	if(!them.set_fuel(their_fuel + transfer_amount))
 		return span_warning("Jednostka docelowa nie przyjmuje paliwa z węża.")
-	us.set_fuel(us.get_fuel() - transfer_amount)
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre_donor = us
+	if(istype(sabre_donor))
+		sabre_donor.drain_fuel(transfer_amount)
+	else
+		us.set_fuel(us.get_fuel() - transfer_amount)
 	us.relay('nsv13/sound/effects/fighters/refuel.ogg')
 	them.relay('nsv13/sound/effects/fighters/refuel.ogg')
 
