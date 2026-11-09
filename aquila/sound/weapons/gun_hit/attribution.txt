@@ -1,3 +1,3 @@
-Dźwięki trafień kul (bullet_glass, bullet_masonry, bullet_metal, bullet_wood, bullet_ricochet, bullet_miss, bullet_bounce)
+Dźwięki trafień kul (bullet_glass, bullet_masonry, bullet_metal, bullet_wood, bullet_ricochet, bullet_miss)
 pochodzą z Shiptest (https://github.com/shiptest-ss13/Shiptest, katalog sound/weapons/gun/hit),
 licencja Creative Commons BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
