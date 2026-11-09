@@ -18667,5 +18667,14 @@
 "<span class='warning'>W [src] nie ma pagera drużyny.</span>": "<span class='warning'>There is no squad pager in \the [src].</span>",
 "<span class='notice'>W bocznej kieszeni jest [aq_squad_pager]. Alt-klik go wyjmuje.</span>": "<span class='notice'>[aq_squad_pager] sits in the side pocket. Alt-click to take it out.</span>",
 "wyżej": "above",
-"niżej": "below"
+"niżej": "below",
+", nie oddał: ${member.missing.length}": ", not returned: ${member.missing.length}",
+"Nie nosi pancerza drużyny, więc kamera nie nadaje": "Not wearing squad armor, so the camera is not transmitting",
+"Kliknij mapę, żeby postawić znacznik. Ctrl+klik na znaczniku go usuwa.": "Click the map to place a marker. Ctrl+click a marker to remove it.",
+"Bez dostępu": "No access",
+"Drużyna nie ma zezwolenia na broń, więc zestaw wychodzi bez": "The squad has no weapons clearance, so the kit comes without",
+"Mianuj dowódcą": "Make leader",
+"Najedź na mapę: sektor i obszar": "Hover over the map: sector and area",
+"Wybierz znacznik, a potem kliknij mapę.": "Pick a marker, then click the map.",
+"Zdegraduj dowódcę": "Demote leader"
 }
