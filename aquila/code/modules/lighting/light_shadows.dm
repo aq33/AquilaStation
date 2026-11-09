@@ -83,14 +83,6 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	// Miękki brzeg cienia zamiast schodków po rozciągnięciu trójkąta
 	add_filter("aq_shadow_soft", 1, gauss_blur_filter(1.5))
 
-/atom/movable/screen/plane_master/aq_light_shadows
-	name = "light shadows plane master"
-	plane = AQ_LIGHT_SHADOW_PLANE
-	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	// Nazwa z gwiazdką, więc płaszczyzna nigdy się nie rysuje (obiekty cienia mają własne render_target)
-	render_target = "*AQ_LIGHT_SHADOWS_UNUSED"
-
 // Drzwi, żaluzje, budowa i rozbiórka ścian: światła ruchome w pobliżu przeliczają cień, także gdy stoją
 /turf/reconsider_lights()
 	. = ..()
@@ -129,6 +121,10 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 
 /datum/component/overlay_lighting/proc/aq_hide_shadow()
 	GLOB.aq_shadow_lights -= src
+	aq_clear_shadow()
+
+/// Zdejmuje trójkąty cienia i chowa obiekt cienia (maska na plamie zostaje: bez źródła nie wycina nic)
+/datum/component/overlay_lighting/proc/aq_clear_shadow()
 	aq_shadow_key = null
 	if(aq_shadow?.loc)
 		aq_shadow.overlays.Cut()
@@ -143,10 +139,7 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	GLOB.aq_shadow_lights |= src
 	if(!GLOB.aq_light_shadows_enabled)
 		aq_set_shadow_mask(null)
-		aq_shadow_key = null
-		if(aq_shadow?.loc)
-			aq_shadow.overlays.Cut()
-			aq_shadow.abstract_move(null)
+		aq_clear_shadow()
 		return
 	// Środek plamy światła w kaflach: przy świetle kierunkowym plama jest przesunięta przed trzymającego
 	var/center_x = 0
@@ -161,6 +154,8 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	var/static/list/face_dirs = list(SOUTH, EAST, NORTH, WEST)
 	var/list/shadow_overlays = list()
 	var/key = ""
+	// Najdalszy wierzchołek trójkąta od światła: koniec cienia albo ściana na brzegu plamy (+ kafel, patrz geometria)
+	var/extent = reach
 	// Kafle z kwadratu wokół plamy, nie z view(): view() z kafla w ciemności nie widzi kafli poza blaskiem trzymającego,
 	// a dalekie ściany snopa latarki zostałyby bez cienia. Ściany schowane za innymi dokładają cień, który i tak jest zakryty.
 	for(var/turf/occluder as anything in RANGE_TURFS(radius, center_turf))
@@ -177,31 +172,37 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 		var/dy = occluder.y - light_turf.y
 		shadow_overlays += aq_light_shadow_appearances(dx, dy, hidden_faces, reach)
 		key += "[dx],[dy],[hidden_faces];"
+		extent = max(extent, sqrt((abs(dx) + 0.5) ** 2 + (abs(dy) + 0.5) ** 2) * world.icon_size + world.icon_size)
 	if(!length(shadow_overlays))
 		aq_set_shadow_mask(null)
-		aq_shadow_key = null
-		if(aq_shadow?.loc)
-			aq_shadow.overlays.Cut()
-			aq_shadow.abstract_move(null)
+		aq_clear_shadow()
 		return
 	if(!aq_shadow)
 		aq_shadow = new
-	// Środek plamy (visible_mask) względem środka kafla światła w pikselach; maska ma leżeć środkiem na kaflu światła
+	if(aq_shadow.loc != light_turf)
+		aq_shadow.abstract_move(light_turf)
+	aq_update_mask_offset()
+	// Przesunięcie trzymającego w kaflu (rozrzut upuszczonego przedmiotu, krzesło) ustawia się zwykle tuż po ruchu
+	addtimer(CALLBACK(src, PROC_REF(aq_update_mask_offset)), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
+	key = "[reach]|[key]"
+	if(aq_shadow_key == key)
+		return
+	// Kotwice tuż za najdalszym wierzchołkiem (margines ikony trójkąta i rozmycia), zaokrąglone, żeby wyglądy się powtarzały
+	shadow_overlays += aq_light_shadow_anchors(CEILING(extent + 16, world.icon_size))
+	aq_shadow.overlays = shadow_overlays
+	aq_shadow_key = key
+
+/// Ustawia maskę z obiektu cienia tak, żeby jej środek leżał na środku kafla światła.
+/// Środek plamy (visible_mask) jest przesunięty od kafla o przesunięcie trzymającego i snop światła kierunkowego.
+/datum/component/overlay_lighting/proc/aq_update_mask_offset()
+	if(!aq_shadow?.loc || !(overlay_lighting_flags & AQ_OVERLAY_LIGHTING_ON) || !isturf(current_holder?.loc))
+		return
 	var/mask_x = current_holder.pixel_x + current_holder.pixel_w
 	var/mask_y = current_holder.pixel_y + current_holder.pixel_z
 	if(directional)
 		mask_x += directional_offset_x + (range - 1) * world.icon_size
 		mask_y += directional_offset_y + (range - 1) * world.icon_size
 	aq_set_shadow_mask(aq_shadow.render_target, -mask_x, -mask_y)
-	key = "[reach]|[key]"
-	if(aq_shadow.loc == light_turf && aq_shadow_key == key)
-		return
-	if(aq_shadow.loc != light_turf)
-		aq_shadow.abstract_move(light_turf)
-	// Kotwice dalej niż najdalszy wierzchołek trójkąta (zasięg do 1,5 raza dalej przy ścianach na brzegu plamy)
-	shadow_overlays += aq_light_shadow_anchors(CEILING(reach * 1.5 + 72, world.icon_size))
-	aq_shadow.overlays = shadow_overlays
-	aq_shadow_key = key
 
 /// Ustawia odwrotną maskę cienia na plamie światła. Wołać tylko, gdy światło jest włączone i stoi na kaflu
 /// (visible_mask wisi wtedy w underlays trzymającego), bo zmiana wyglądu wymaga zdjęcia i ponownego założenia plamy.
