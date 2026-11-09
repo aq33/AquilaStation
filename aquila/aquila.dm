@@ -568,6 +568,7 @@
 #include "code\modules\cargo\materials_market\materials_market.dm"
 #include "code\modules\economy\earnings.dm"
 #include "code\modules\economy\inflation.dm"
+#include "code\modules\economy\department_commission.dm"
 #include "code\modules\explorer_drone\exploration_events\_exploration_event.dm"
 #include "code\modules\explorer_drone\exploration_events\danger.dm"
 #include "code\modules\explorer_drone\exploration_events\resource.dm"
