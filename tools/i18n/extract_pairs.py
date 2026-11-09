@@ -128,6 +128,13 @@ def logical_lines(path, lines):
 def block_string_start(line, in_comment):
     """Początek napisu {" w kodzie linii (nie w komentarzu /* */ ani //, nie w "..." ani w
     surowym @'...'/@"..."): (indeks albo -1, czy linia kończy się w komentarzu blokowym)."""
+    # szybka ścieżka: bez {" i /* (albo bez */ w komentarzu) pętla znak po znaku dałaby ten sam wynik,
+    # a {" ma kilkaset z miliona linii DM
+    if in_comment:
+        if "*/" not in line:
+            return -1, True
+    elif '{"' not in line and "/*" not in line:
+        return -1, False
     i, n = 0, len(line)
     while i < n:
         if in_comment:
@@ -162,6 +169,13 @@ def join_text_blocks(lines):
     """Napis {"..."} na kilka linii (opisy, HTML okien) jako jeden literał "...\\n...": gracz widzi
     cały tekst naraz, a czytany linia po linii dawał tylko kawałek pierwszej linii."""
     out, i, in_comment = [], 0, False
+    # najbliższa linia z "} od danej (liczona raz: przy niezamkniętym {" szukanie od każdej linii
+    # było kwadratowe, co przy dużych hunkach historii innych serwerów trwało godzinami)
+    next_close, nxt = [len(lines)] * (len(lines) + 1), len(lines)
+    for k in range(len(lines) - 1, -1, -1):
+        if '"}' in lines[k]:
+            nxt = k
+        next_close[k] = nxt
     while i < len(lines):
         line = lines[i]
         start, in_comment = block_string_start(line, in_comment)
@@ -169,14 +183,12 @@ def join_text_blocks(lines):
             out.append(line)
             i += 1
             continue
-        parts, j = [line[start + 2:]], i + 1
-        while j < len(lines) and '"}' not in lines[j]:
-            parts.append(lines[j])
-            j += 1
+        j = next_close[i + 1]
         if j >= len(lines):  # niezamknięty: zostawiamy linie bez zmian
             out.append(line)
             i += 1
             continue
+        parts = [line[start + 2:]] + lines[i + 1:j]
         end = lines[j].find('"}')
         parts.append(lines[j][:end])
         content = "\n".join(parts)
