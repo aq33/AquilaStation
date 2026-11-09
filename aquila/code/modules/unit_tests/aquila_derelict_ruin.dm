@@ -81,5 +81,58 @@
 		TEST_ASSERT(!initial(mode_type.whitelist_only), "[choice] is a whitelist-only mission")
 		TEST_ASSERT(!ispath(choice, /datum/overmap_gamemode/armada) && !ispath(choice, /datum/overmap_gamemode/galactic_conquest) && !ispath(choice, /datum/overmap_gamemode/hardmode), "[choice] can't work as a next mission, its logic lives in the mode")
 
+/// Misja bez celów do testu wyboru kolejnej misji (nie tworzy flot ani poziomów Z)
+/datum/overmap_gamemode/unit_test_next_mission
+	name = "misja testowa"
+	config_tag = "unit_test_next_mission"
+	brief = "Misja testowa."
+	starting_faction = "syndicate"
+	reminder_one = "Przypomnienie misji testowej."
+	objective_reminder_interval = 7 MINUTES
+
+/// AQUILA - kolejna misja zastępuje cały tryb: przypomnienia od pierwszego, jej teksty, nowy licznik celów, frakcja statku zostaje
+/datum/unit_test/mission_extension_switch
+
+/datum/unit_test/mission_extension_switch/Run()
+	var/datum/overmap_gamemode/round_mode = SSovermap_mode.mode
+	TEST_ASSERT(round_mode, "No overmap mode to extend")
+	var/round_mode_type = round_mode.type
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	var/old_faction = main_ship?.faction
+	var/old_difficulty = round_mode.difficulty
+	var/old_stacks = SSovermap_mode.objective_reminder_stacks
+	var/old_highest = SSovermap_mode.highest_objective_completion
+	var/old_extended = SSovermap_mode.round_extended
+
+	// Stan po długiej pierwszej misji
+	SSovermap_mode.objective_reminder_stacks = 3
+	SSovermap_mode.highest_objective_completion = 4
+	SSovermap_mode.round_extended = TRUE
+	SSovermap_mode.extension_choice_pending = TRUE
+	SSovermap_mode.extension_choices = list(/datum/overmap_gamemode/unit_test_next_mission)
+	SSovermap_mode.finish_extension_choice(/datum/overmap_gamemode/unit_test_next_mission)
+
+	var/datum/overmap_gamemode/next = SSovermap_mode.mode
+	TEST_ASSERT(istype(next, /datum/overmap_gamemode/unit_test_next_mission), "The next mission didn't replace the round mode")
+	TEST_ASSERT(QDELETED(round_mode), "The previous mission's mode wasn't cleaned up")
+	TEST_ASSERT_EQUAL(next.reminder_one, "Przypomnienie misji testowej.", "The next mission uses the previous mission's reminders")
+	TEST_ASSERT_EQUAL(SSovermap_mode.objective_reminder_stacks, 0, "The next mission continues the previous reminder escalation")
+	TEST_ASSERT_EQUAL(SSovermap_mode.highest_objective_completion, 0, "The next mission keeps the previous objective count")
+	TEST_ASSERT(!SSovermap_mode.round_extended, "The next mission doesn't count as a normal mission")
+	TEST_ASSERT_EQUAL(next.difficulty, old_difficulty, "The next mission lost the round difficulty")
+	if(main_ship)
+		TEST_ASSERT_EQUAL(main_ship.faction, old_faction, "Picking the next mission changed the ship's faction")
+	TEST_ASSERT(!SSovermap_mode.extension_choice_pending, "The choice is still pending")
+
+	// Przywrócenie trybu rundy dla kolejnych testów
+	var/datum/overmap_gamemode/restored = new round_mode_type()
+	restored.objectives = list()
+	restored.difficulty = old_difficulty
+	SSovermap_mode.mode = restored
+	qdel(next)
+	SSovermap_mode.objective_reminder_stacks = old_stacks
+	SSovermap_mode.highest_objective_completion = old_highest
+	SSovermap_mode.round_extended = old_extended
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

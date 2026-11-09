@@ -157,8 +157,8 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		mission_briefing_waiting = FALSE
 		announce_objectives()
 
-/// Cele nowej misji, tak samo jak w setup_overmap_mode()
-/datum/controller/subsystem/overmap_mode/proc/build_mode_objectives(datum/overmap_gamemode/target_mode)
+/// Cele nowej misji, tak samo jak w setup_overmap_mode(); set_faction = FALSE dla kolejnej misji w trakcie rundy
+/datum/controller/subsystem/overmap_mode/proc/build_mode_objectives(datum/overmap_gamemode/target_mode, set_faction = TRUE)
 	target_mode.objectives += target_mode.fixed_objectives
 	if(target_mode.random_objective_amount)
 		var/list/select_objectives = target_mode.random_objectives.Copy()
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		objective_pool += new objective_type()
 	target_mode.objectives = objective_pool
 	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
-	if(main_ship && target_mode.starting_faction)
+	if(set_faction && main_ship && target_mode.starting_faction)
 		main_ship.faction = target_mode.starting_faction
 
 /// Ustawienia przypomnień nowej misji, tak samo jak w setup_overmap_mode()
@@ -256,23 +256,25 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		extension_default_objectives = FALSE
 		return
 	var/choice_name = (choice == EXTENSION_RUBICON) ? "atak na Rubikon" : mission_choice_name(choice)
-	// Poprzednia misja jest już rozliczona; jej nieudany cel z ignore_check blokowałby zwycięstwo w nowej
-	mode.objectives = list()
+	// Poprzednia misja jest już rozliczona: jej cele znikają (nieudany cel z ignore_check blokowałby zwycięstwo
+	// w nowej), a licznik wykonanych celów liczy się od nowa, żeby cele nowej misji znów obniżały zagrożenie
+	highest_objective_completion = 0
 	if(choice == EXTENSION_RUBICON)
-		mode.objectives += new /datum/overmap_objective/clear_system/rubicon
+		QDEL_LIST(mode.objectives)
+		mode.objectives = list(new /datum/overmap_objective/clear_system/rubicon)
 	else
+		// Nowa misja zastępuje cały tryb, jak przy wyborze na starcie rundy: przypomnienia, ich konsekwencje i nazwa
+		// są jej, a nie poprzedniej misji. Frakcja statku i trudność zostają z rundy.
 		var/datum/overmap_gamemode/chosen = new choice()
 		chosen.objectives = list() // Bez celu skoków z New(), statek już lata
-		build_mode_objectives(chosen)
-		mode.objectives += chosen.objectives
-		mode.brief = chosen.brief
-		mode.objective_reminder_setting = chosen.objective_reminder_setting
-		mode.objective_reminder_interval = chosen.objective_reminder_interval
-		mode.combat_delay = chosen.combat_delay
-		chosen.objectives = list()
-		qdel(chosen)
-		// Kolejna misja liczy się jak zwykła: przypomnienia jak w misji, a po jej wykonaniu znów jest głosowanie
+		build_mode_objectives(chosen, set_faction = FALSE)
+		chosen.difficulty = mode.difficulty
+		var/datum/overmap_gamemode/old_mode = mode
+		mode = chosen
+		qdel(old_mode)
+		// Kolejna misja liczy się jak zwykła: przypomnienia od pierwszego, a po jej wykonaniu znów jest głosowanie
 		round_extended = FALSE
+		objective_reminder_stacks = 0
 		apply_reminder_settings()
 	if(chooser)
 		minor_announce("Kapitan [chooser.real_name] przyjął misję: [choice_name]. Szczegóły w odprawie.", "Dowództwo floty")
