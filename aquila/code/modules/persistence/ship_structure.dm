@@ -347,6 +347,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		var/offset = max(abs(O.pixel_x), abs(O.pixel_y))
 		O.pixel_x = (new_dir & EAST) ? offset : ((new_dir & WEST) ? -offset : 0)
 		O.pixel_y = (new_dir & NORTH) ? offset : ((new_dir & SOUTH) ? -offset : 0)
+		O.paradise_wall_place() // przesunięcie i kierunek dla nowej strony ściany (urządzenia 32x32 mają różne odległości na każdej stronie)
 	O.update_appearance()
 
 /datum/ship_structure

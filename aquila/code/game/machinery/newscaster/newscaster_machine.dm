@@ -997,6 +997,6 @@
 	icon_state = "newscaster"
 	custom_materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster
-	pixel_shift = 30
+	pixel_shift = -30 // ujemne: u nas attach() przesuwa w stronę kierunku od ściany do gracza, dodatnie wieszało urządzenie po drugiej stronie gracza
 
 #undef ALERT_DELAY

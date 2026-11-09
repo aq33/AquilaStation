@@ -1,5 +1,5 @@
 // Urządzenia naścienne z Paradise (ParadiseSS13/Paradise, grafiki CC BY-SA 3.0): APC, czujnik powietrza, alarm pożarowy,
-// a na końcu pliku 32x32: włącznik światła, newscaster, request console i szafka gaśnicy.
+// a na końcu pliku ikona szafki gaśnicy (przesunięcia urządzeń 32x32 są w przesuniecia.dm).
 // Pierwsze trzy mają sprite'y 32x48 i 4 kierunki, narysowane pod ściany 3/4, więc siedzą 32 px od środka kafla (jak w Paradise),
 // a nie 23-24 px jak stare 32x32. Przesunięcie liczymy z kierunku ściany po inicjalizacji, więc działa dla map,
 // budowania z ramki i egzemplarzy z ręcznym przesunięciem na mapie.
@@ -77,26 +77,7 @@
 	setDir(turn(wall_dir, 180))
 	paradise_wallmount_offset(src, wall_dir)
 
-// Urządzenia 32x32 z Paradise w 4 kierunkach; zostają na przesunięciu z mapy, kierunek bierzemy z niego.
-// Włącznik światła: dir = od ściany, jak w Paradise
-/obj/machinery/light_switch/Initialize(mapload)
-	. = ..()
-	var/wall_dir = paradise_wall_dir_from_pixels(src)
-	if(wall_dir)
-		setDir(turn(wall_dir, 180))
-
-// Newscaster i request console: dir = strona ściany
-/obj/machinery/newscaster/Initialize(mapload, ndir, building)
-	. = ..()
-	var/wall_dir = paradise_wall_dir_from_pixels(src)
-	if(wall_dir)
-		setDir(wall_dir)
-
-/obj/machinery/requests_console/Initialize(mapload)
-	. = ..()
-	var/wall_dir = paradise_wall_dir_from_pixels(src)
-	if(wall_dir)
-		setDir(wall_dir)
+// Urządzenia 32x32 (włącznik światła, newscaster, request console, gaśnica i reszta): przesunięcie i kierunek w przesuniecia.dm
 
 // Gaśnica: zamknięta szafka pokazuje za szybą, czy gaśnica jest w środku
 // Core wkłada gaśnicę w Initialize(), ale nie odświeża ikony, więc bez tego szafka z mapy zostaje na "extinguisher_closed"
