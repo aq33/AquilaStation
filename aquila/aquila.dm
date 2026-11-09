@@ -511,6 +511,7 @@
 #include "code\modules\atmospherics\environmental\hotspot_throttle.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\cryo.dm"
 #include "code\modules\atmospherics\machinery\pipes\bluespace.dm"
+#include "code\modules\atmospherics\machinery\template_node_links.dm"
 #include "code\modules\atmospherics\machinery\portable\canister.dm"
 #include "code\modules\bluespace_locker\bluespace_locker.dm"
 #include "code\modules\bitrunning\abilities.dm"

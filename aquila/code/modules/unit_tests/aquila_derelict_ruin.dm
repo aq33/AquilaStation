@@ -81,6 +81,44 @@
 		TEST_ASSERT(!initial(mode_type.whitelist_only), "[choice] is a whitelist-only mission")
 		TEST_ASSERT(!ispath(choice, /datum/overmap_gamemode/armada) && !ispath(choice, /datum/overmap_gamemode/galactic_conquest) && !ispath(choice, /datum/overmap_gamemode/hardmode), "[choice] can't work as a next mission, its logic lives in the mode")
 
+/// AQUILA - szablon wczytany obok innego (części ruin) nie zostawia jednostronnych połączeń rur: rura z nowej
+/// części, która wzięła za węzeł zajęty już nawiewnik, nie wywraca budowy sieci (runtime w set_pipenet)
+/datum/unit_test/template_one_way_pipe_link
+
+/datum/unit_test/template_one_way_pipe_link/Run()
+	var/turf/vent_turf = run_loc_floor_bottom_left
+	var/turf/pipe_turf = get_step(vent_turf, EAST)
+	var/obj/machinery/atmospherics/components/unary/vent_pump/vent = allocate(/obj/machinery/atmospherics/components/unary/vent_pump, vent_turf, TRUE, EAST)
+	var/obj/machinery/atmospherics/pipe/simple/general/visible/first_pipe = allocate(/obj/machinery/atmospherics/pipe/simple/general/visible, pipe_turf, TRUE, EAST)
+	SSair.setup_template_machinery(list(vent, first_pipe))
+	TEST_ASSERT_EQUAL(vent.nodes[1], first_pipe, "The vent didn't connect to the first part's pipe")
+	// Druga część kładzie swoją rurę na tym samym polu: nawiewnik ma już węzeł
+	var/obj/machinery/atmospherics/pipe/simple/general/visible/second_pipe = allocate(/obj/machinery/atmospherics/pipe/simple/general/visible, pipe_turf, TRUE, EAST)
+	SSair.setup_template_machinery(list(second_pipe))
+	TEST_ASSERT(!(vent in second_pipe.nodes), "The second part's pipe kept a one-way link to the taken vent")
+	TEST_ASSERT_EQUAL(vent.nodes[1], first_pipe, "The vent lost its own pipe")
+
+/// AQUILA - przy małej liczbie graczy (w testach 0) kapitan i tak wybiera z trzech różnych misji
+/datum/unit_test/mission_choice_three
+
+/datum/unit_test/mission_choice_three/Run()
+	TEST_ASSERT(SSovermap_mode.mode, "No overmap mode")
+	var/list/old_choices = SSovermap_mode.mission_choices
+	var/old_forced = SSovermap_mode.forced_mode
+	SSovermap_mode.forced_mode = null
+	SSovermap_mode.roll_mission_choices()
+	var/list/rolled = SSovermap_mode.mission_choices
+	SSovermap_mode.mission_choices = old_choices
+	SSovermap_mode.forced_mode = old_forced
+	TEST_ASSERT_EQUAL(length(rolled), 3, "The captain doesn't get three missions to pick from")
+	TEST_ASSERT_EQUAL(length(uniqueList(rolled)), 3, "The mission choice repeats a mission")
+	TEST_ASSERT_EQUAL(rolled[1], SSovermap_mode.mode.type, "The rolled round mode isn't the first choice")
+	var/next_missions = 0
+	for(var/choice in SSovermap_mode.get_extension_choices())
+		if(choice != "rubicon")
+			next_missions++
+	TEST_ASSERT(next_missions >= 3, "Only [next_missions] missions to pick as the next mission")
+
 /// Misja bez celów do testu wyboru kolejnej misji (nie tworzy flot ani poziomów Z)
 /datum/overmap_gamemode/unit_test_next_mission
 	name = "misja testowa"

@@ -70,8 +70,40 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		var/picked = pickweight(weights)
 		choices += picked
 		weights -= picked
+	for(var/extra in low_pop_missions(choices))
+		if(length(choices) >= MISSION_CHOICE_COUNT)
+			break
+		choices += extra
 	if(length(choices) > 1)
 		mission_choices = choices
+
+/// Misje odpadłe z puli tylko przez próg graczy (liczonych przy starcie serwera), od najniższego progu. Dopełniają
+/// wybór do MISSION_CHOICE_COUNT, gdy przy małej liczbie graczy w puli zostają dwie misje (Kurier, Rejs próbny).
+/// Bez misji tylko z listy mapy, zablokowanych przez mapę i z zerową wagą.
+/datum/controller/subsystem/overmap_mode/proc/low_pop_missions(list/exclude)
+	var/list/probabilities = config.Get(/datum/config_entry/keyed_list/omode_probability)
+	var/list/min_pop = config.Get(/datum/config_entry/keyed_list/omode_min_pop)
+	var/list/blacklist = SSmapping.config.omode_blacklist
+	if(locate("all") in blacklist)
+		return list()
+	var/list/candidates = list()
+	for(var/datum/overmap_gamemode/mode_type as anything in subtypesof(/datum/overmap_gamemode))
+		if((mode_type in mode_cache) || (mode_type in exclude) || initial(mode_type.whitelist_only))
+			continue
+		var/blacklisted = FALSE
+		for(var/entry in blacklist)
+			if(text2path("/datum/overmap_gamemode/[entry]") == mode_type)
+				blacklisted = TRUE
+				break
+		if(blacklisted)
+			continue
+		var/config_tag = initial(mode_type.config_tag)
+		var/weight = (config_tag in probabilities) ? probabilities[config_tag] : initial(mode_type.selection_weight)
+		if(weight <= 0)
+			continue
+		candidates[mode_type] = (config_tag in min_pop) ? min_pop[config_tag] : initial(mode_type.required_players)
+	sortTim(candidates, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+	return candidates
 
 /datum/controller/subsystem/overmap_mode/setup_overmap_mode()
 	// Krótka odprawa (np. tryb debugowania kuriera) oznacza test, wtedy bez wyboru
@@ -235,6 +267,11 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		var/weight = (config_tag in probabilities) ? probabilities[config_tag] : initial(mode_type.selection_weight)
 		if(weight > 0)
 			choices += mode_type
+	for(var/extra in low_pop_missions(choices))
+		if(length(choices) >= MISSION_CHOICE_COUNT)
+			break
+		if(!not_extendable[extra])
+			choices += extra
 	var/datum/star_system/rubicon = SSstar_system.system_by_id("Rubicon")
 	if(length(rubicon?.enemies_in_system))
 		choices += EXTENSION_RUBICON

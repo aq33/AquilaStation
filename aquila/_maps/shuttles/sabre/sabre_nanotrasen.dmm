@@ -41,6 +41,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/ship/delivery/yellow,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/item/wrench,
 /turf/open/indestructible/dropship{
 	icon_state = "rasputin15"
