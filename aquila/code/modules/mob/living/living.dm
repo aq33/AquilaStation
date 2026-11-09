@@ -30,6 +30,7 @@
 	new /obj/effect/decal/cleanable/feces(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
+	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 	return TRUE
 
 /mob/living/carbon/human/actually_shit_myself()
@@ -79,7 +80,7 @@
 	var/feces_need = feces_need()
 	set_defecation(DEFECATION_NONE)
 	if(urine_need)
-		release_urine(urine_need, clothed, TRUE, !feces_need) // przy kale wystarczy jeden komunikat
+		release_urine(urine_need, clothed, TRUE, !feces_need, !feces_need) // przy kale wystarczy jeden komunikat i jedno zgłoszenie kamery
 	if(clothed)
 		if(feces_need)
 			actually_shit_myself()
@@ -94,6 +95,7 @@
 	new /obj/effect/decal/cleanable/feces(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
+	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 
 /// Czy coś zakrywa krocze (wtedy wypróżnienie idzie w spodnie)
 /mob/living/proc/is_wearing_pants()

@@ -50,8 +50,9 @@
  * need_amount - ile potrzeby oddajemy (mocz to URINE_UNITS_PER_NEED jednostek na jednostkę potrzeby)
  * clothed - w spodnie: smród, ale i tak cieknie na podłogę
  * voluntary - świadomie (emotka, alert), inaczej popuszczenie
+ * report - kamera zgłasza oddawanie moczu (przy wypróżnieniu z kałem zgłoszenie robi kał, jedno na raz)
  */
-/mob/living/proc/release_urine(need_amount, clothed, voluntary = FALSE, show_message = TRUE)
+/mob/living/proc/release_urine(need_amount, clothed, voluntary = FALSE, show_message = TRUE, report = TRUE)
 	var/turf/T = get_turf(src)
 	if(!T || need_amount <= 0)
 		return
@@ -78,10 +79,14 @@
 	if(clothed && ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.set_hygiene(min(H.hygiene, HYGIENE_LEVEL_DIRTY))
-	report_public_urination()
+	if(report)
+		report_public_bodily_function("Publiczne oddawanie moczu", "oddawała mocz")
 
-/// Kamera w zasięgu: wpis do kartoteki i status Poszukiwany (Monke: Automated Criminal Detection Service)
-/mob/living/proc/report_public_urination()
+/**
+ * Kamera w zasięgu: wpis do kartoteki i status Poszukiwany (Monke: Automated Criminal Detection Service, u nas też kał).
+ * crime_name - nazwa wykroczenia, action - co robiła osoba („oddawała mocz”, „załatwiała się”)
+ */
+/mob/living/proc/report_public_bodily_function(crime_name, action)
 	var/turf/T = get_turf(src)
 	var/obj/machinery/camera/seen_by
 	for(var/obj/machinery/camera/camera in view(7, T))
@@ -94,7 +99,7 @@
 	if(!record)
 		return
 	var/area/A = get_area(T)
-	var/datum/data/crime/crime = GLOB.data_core.createCrimeEntry("Publiczne oddawanie moczu", "Kamera nagrała tę osobę, gdy oddawała mocz w: [A?.name].", "Automatyczny system wykrywania wykroczeń", station_time_timestamp())
+	var/datum/data/crime/crime = GLOB.data_core.createCrimeEntry(crime_name, "Kamera nagrała tę osobę, gdy [action] w: [A?.name].", "Automatyczny system wykrywania wykroczeń", station_time_timestamp())
 	GLOB.data_core.addCrime(record.fields["id"], crime)
 	record.fields["criminal"] = "Arrest"
 	for(var/mob/living/carbon/human/human in GLOB.carbon_list)

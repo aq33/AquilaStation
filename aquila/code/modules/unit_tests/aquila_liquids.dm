@@ -175,6 +175,52 @@
 	TEST_ASSERT(locate(/obj/effect/decal/cleanable/feces) in T, "Defecating on the spot left no feces")
 	aquila_liquids_cleanup(T)
 
+/// AQUILA - kamera zgłasza wypróżnienie poza ubikacją (jedno zgłoszenie za kał z moczem) i samo oddawanie moczu
+/datum/unit_test/aquila_public_defecation_camera
+	var/datum/data/record/record
+
+/datum/unit_test/aquila_public_defecation_camera/Destroy()
+	if(record)
+		GLOB.data_core.security -= record
+		QDEL_NULL(record)
+	return ..()
+
+/datum/unit_test/aquila_public_defecation_camera/Run()
+	if(!CONFIG_GET(flag/shitting_enabled))
+		return
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	var/mob/living/carbon/human/pooper = allocate(/mob/living/carbon/human, T)
+	pooper.real_name = "Testowy Załatwiacz"
+	pooper.name = pooper.real_name
+	record = new
+	record.fields["name"] = pooper.name
+	record.fields["id"] = "aquila_test_[REF(pooper)]"
+	record.fields["criminal"] = "None"
+	record.fields["crim"] = list()
+	GLOB.data_core.security += record
+
+	pooper.set_defecation(DEFECATION_SHIT_YOURSELF)
+	pooper.urination = 40
+	pooper.finish_defecate_here(FALSE)
+	TEST_ASSERT(!length(record.fields["crim"]), "Defecating with no camera around was reported")
+
+	allocate(/obj/machinery/camera, get_step(T, NORTH))
+	pooper.set_defecation(DEFECATION_SHIT_YOURSELF)
+	pooper.urination = 40
+	pooper.finish_defecate_here(FALSE)
+	var/list/crimes = record.fields["crim"]
+	TEST_ASSERT(length(crimes) == 1, "Defecating with urine in view of a camera made [length(crimes)] reports instead of one")
+	var/datum/data/crime/crime = crimes[1]
+	TEST_ASSERT(crime.crimeName == "Publiczne wypróżnianie się", "Camera reported [crime.crimeName] instead of public defecation")
+	TEST_ASSERT(record.fields["criminal"] == "Arrest", "Public defecation did not set the Arrest status")
+
+	pooper.set_defecation(40)
+	pooper.urination = 40
+	pooper.urinate_voluntarily()
+	TEST_ASSERT(length(crimes) == 2, "Urinating in view of a camera was not reported")
+	aquila_liquids_cleanup(T)
+
 /// AQUILA - mokra podłoga: chodem bez poślizgu, w biegu poślizg, w sprincie poślizg rzuca jeszcze kafel dalej
 /datum/unit_test/aquila_wet_floor_slip
 	/// Pokój testowy nie ma generatora grawitacji, a bez grawitacji handle_slip nic nie robi
