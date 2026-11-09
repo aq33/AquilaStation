@@ -35,6 +35,10 @@
 		return TRUE
 	return FALSE
 
+/mob/living
+	/// Do kiedy nowy blok lodu nie więzi tej postaci (czas na zejście z kafla po uwolnieniu)
+	var/liquid_ice_grace_until = 0
+
 /obj/structure/liquid_ice_block
 	name = "blok lodu"
 	desc = "Gruba bryła zamarzniętej cieczy. Topi się w cieple i od ognia, da się ją też rozbić."
@@ -90,6 +94,8 @@
 			continue
 		if(isliving(AM))
 			var/mob/living/L = AM
+			if(L.liquid_ice_grace_until > world.time) // dopiero co uwolniona: zostaje na kaflu i może zejść
+				continue
 			L.forceMove(src)
 			ADD_TRAIT(L, TRAIT_IMMOBILIZED, REF(src))
 			ADD_TRAIT(L, TRAIT_HANDS_BLOCKED, REF(src))
@@ -105,6 +111,7 @@
 			var/mob/living/L = AM
 			REMOVE_TRAIT(L, TRAIT_IMMOBILIZED, REF(src))
 			REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, REF(src))
+			L.liquid_ice_grace_until = world.time + LIQUID_ICE_REFREEZE_GRACE
 		AM.forceMove(T)
 
 /obj/structure/liquid_ice_block/Exited(atom/movable/gone, direction)

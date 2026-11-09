@@ -93,6 +93,8 @@
 #define LIQUID_ICE_BLOCKS_PER_RUN 10
 /// Czas wybijania się z bloku lodu od środka
 #define LIQUID_ICE_BLOCK_ESCAPE_TIME (20 SECONDS)
+/// Jak długo uwolniona postać nie da się uwięzić w nowym bloku (w próżni woda zamarza z powrotem po kilku sekundach)
+#define LIQUID_ICE_REFREEZE_GRACE (30 SECONDS)
 
 GLOBAL_LIST_INIT(liquid_blacklist, list(
 	/datum/reagent/sorium,

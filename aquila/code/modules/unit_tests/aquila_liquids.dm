@@ -81,6 +81,14 @@
 	TEST_ASSERT(!HAS_TRAIT(victim, TRAIT_IMMOBILIZED), "Released human is still immobilized")
 	TEST_ASSERT(!QDELETED(T.liquids), "Breaking the ice did not give the water back")
 	TEST_ASSERT(!T.liquids.liquid_group.frozen, "Water from a broken ice block froze right back (it would trap the human again)")
+
+	// W próżni woda i tak zamarza po kilku sekundach i blok może powstać od nowa: uwolniony nie może trafić do niego znowu
+	var/datum/liquid_group/thawed = T.liquids.liquid_group
+	thawed.reagents.chem_temp = TCMB
+	thawed.update_freezing()
+	TEST_ASSERT(thawed.frozen, "Water left in vacuum did not freeze again")
+	TEST_ASSERT(thawed.freeze_into_block(T), "Refrozen deep water did not make a new ice block")
+	TEST_ASSERT(victim.loc == T, "The human who just broke free was trapped again by the refrozen block")
 	aquila_liquids_cleanup(T)
 
 /// AQUILA - pojemnik rzucony w przedmiot działa tylko na przedmiot, bez kałuży pod nim (jak chlust zlewką)
