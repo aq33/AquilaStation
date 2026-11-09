@@ -1,67 +1,99 @@
 // NSV13
-// AQUILA: okno przetłumaczone na polski
+// AQUILA: automat drużyny po reworku: jeden zestaw według funkcji, wydawany w skrzyni.
 
-import { Fragment } from 'react';
-import { Button, Section } from 'tgui-core/components';
+import { Box, Button, NoticeBox, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  already_loaned: any;
-  kits: any;
-  user_name: any;
+  user_name: string;
+  squad: string | null;
+  squad_colour: string | null;
+  position: string | null;
+  weapons_clearance: BooleanLike;
+  already_loaned: BooleanLike;
+  missing: string[];
+  fine: number;
+  kit: { name: string; desc: string; contents: string[] } | null;
 };
 
-export const SquadVendor = (props) => {
+export const SquadVendor = () => {
   const { act, data } = useBackend<Data>();
   return (
-    <Window theme="ntos" width={600} height={800}>
+    <Window theme="ntos" width={460} height={560}>
       <Window.Content scrollable>
-        <br />
+        <Section title={`Witaj, ${data.user_name}`}>
+          {data.squad ? (
+            <Box>
+              Drużyna{' '}
+              <Box inline bold color={data.squad_colour || undefined}>
+                {data.squad}
+              </Box>
+              , funkcja: <b>{data.position}</b>
+            </Box>
+          ) : (
+            <NoticeBox danger>
+              Nie należysz do żadnej drużyny. Poproś XO o przydział.
+            </NoticeBox>
+          )}
+        </Section>
         {!!data.already_loaned && (
           <Section
-            title="Masz już pobrany zestaw"
+            title="Masz pobrany zestaw"
             buttons={
               <>
                 <Button
                   color="average"
-                  content="Zwróć wypożyczony sprzęt"
-                  tooltip="Włóż cały wypożyczony sprzęt do plecaka i kliknij, żeby go zwrócić."
+                  icon="undo"
+                  tooltip="Oddaje sprzęt z rąk i z plecaka. Skrzynię możesz też po prostu włożyć do automatu."
                   onClick={() => act('return_gear')}
-                />
+                >
+                  Zwróć sprzęt
+                </Button>
                 <Button
-                  color="average"
-                  content="Zapłać za zgubione przedmioty"
+                  color="bad"
+                  icon="money-bill"
+                  tooltip={`Grzywna za brakujące przedmioty: ${data.fine} kr`}
                   onClick={() => act('pay_fine')}
-                />
+                >
+                  Zapłać grzywnę
+                </Button>
               </>
             }
-          />
+          >
+            {data.missing.length ? (
+              <Box color="average">Do zwrotu: {data.missing.join(', ')}.</Box>
+            ) : (
+              <Box color="good">Wszystko oddane.</Box>
+            )}
+          </Section>
         )}
-        <Section title="Dostępne zestawy:">
-          Witaj, {data.user_name}
-          <br />
-          {Object.keys(data.kits).map((key) => {
-            let value = data.kits[key];
-            return (
-              <Section
-                key={key}
-                title={value.name}
-                buttons={
-                  <Button
-                    disabled={!!data.already_loaned}
-                    content="Wydaj"
-                    icon="eject"
-                    onClick={() => act('vend', { item_id: value.id })}
-                  />
-                }
+        {!!data.kit && (
+          <Section
+            title={data.kit.name}
+            buttons={
+              <Button
+                icon="box"
+                disabled={!!data.already_loaned}
+                onClick={() => act('vend')}
               >
-                {value.desc}
-              </Section>
-            );
-          })}
-        </Section>
+                Wydaj
+              </Button>
+            }
+          >
+            <Box mb={1}>{data.kit.desc}</Box>
+            <Box color="label">W skrzyni:</Box>
+            <Box>{data.kit.contents.join(', ')}.</Box>
+            {!data.weapons_clearance && (
+              <Box mt={1} color="average">
+                Drużyna nie ma zezwolenia na broń, więc zestaw wychodzi bez
+                broni i amunicji.
+              </Box>
+            )}
+          </Section>
+        )}
       </Window.Content>
     </Window>
   );

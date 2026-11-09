@@ -70,6 +70,7 @@
 	READPREF_INT(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	READPREF_INT(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
 	READPREF_INT(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
+	READPREF_INT(squad_tts, PREFERENCE_TAG_SQUAD_TTS) // AQ EDIT - głos rozkazów drużyny
 	READPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 
 	READPREF_RAW(asaycolor, PREFERENCE_TAG_ASAY_COLOUR)
@@ -117,6 +118,7 @@
 	soft_lighting	= sanitize_integer(soft_lighting, FALSE, TRUE, initial(soft_lighting)) // AQ EDIT - miękkie światło
 	glow_level	= sanitize_integer(glow_level, 0, 3, initial(glow_level)) // AQ EDIT - poświata emisyjnych, 0-3 = AQ_GLOW_OFF..AQ_GLOW_HIGH
 	light_glare	= sanitize_integer(light_glare, FALSE, TRUE, initial(light_glare)) // AQ EDIT - promienie świateł
+	squad_tts	= sanitize_integer(squad_tts, FALSE, TRUE, initial(squad_tts)) // AQ EDIT - głos rozkazów drużyny
 	mod_select		= sanitize_inlist(mod_select, list(MIDDLE_CLICK, ALT_CLICK), initial(mod_select))
 
 	pixel_size		= sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
@@ -180,6 +182,7 @@
 	PREP_WRITEPREF_RAW(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	PREP_WRITEPREF_RAW(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
 	PREP_WRITEPREF_RAW(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
+	PREP_WRITEPREF_RAW(squad_tts, PREFERENCE_TAG_SQUAD_TTS) // AQ EDIT - głos rozkazów drużyny
 	PREP_WRITEPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 	PREP_WRITEPREF_RAW(pda_theme, PREFERENCE_TAG_PDA_THEME)
 	PREP_WRITEPREF_RAW(pda_color, PREFERENCE_TAG_PDA_COLOUR)

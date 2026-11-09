@@ -1,0 +1,22 @@
+## Głos rozkazów drużyny przez ElevenLabs (aquila/code/modules/squads/squad_tts.dm).
+## Rozkazy dowódców i wiadomości z konsoli XO są czytane głosem nadawcy członkom drużyny z pagerem.
+
+## Odkomentuj, żeby włączyć.
+#SQUAD_TTS_ENABLED
+
+## Klucz API ElevenLabs z uprawnieniem "Text to Speech".
+#SQUAD_TTS_API_KEY wpisz_klucz
+
+## Model: eleven_flash_v2_5 (tani, ok. 0,5 kredytu za znak) albo eleven_multilingual_v2 (lepszy polski, 1 kredyt za znak).
+#SQUAD_TTS_MODEL eleven_flash_v2_5
+
+## Adres API (do testów można podać lokalną atrapę).
+#SQUAD_TTS_ENDPOINT https://api.elevenlabs.io
+
+## Ile sekund czekać na odpowiedź.
+#SQUAD_TTS_TIMEOUT 15
+
+## Własne głosy (identyfikatory z biblioteki głosów ElevenLabs), po jednym na linię.
+## Bez nich używane są gotowe głosy ElevenLabs.
+#SQUAD_TTS_VOICE_MALE pNInz6obpgDQGcFmaJgB
+#SQUAD_TTS_VOICE_FEMALE 21m00Tcm4TlvDq8ikWAM

@@ -137,3 +137,11 @@ export const sound_radio_noise: FeatureToggle = {
     'Po włączeniu słyszysz dźwięki mówienia i odbierania rozmów przez radio.',
   component: CheckboxInput,
 };
+
+export const squad_tts: FeatureToggle = {
+  name: 'Głos rozkazów drużyny',
+  category: 'SOUND',
+  description:
+    'Rozkazy dowódcy drużyny i wiadomości z CIC czytane głosem, gdy masz przy sobie pager drużyny.',
+  component: CheckboxInput,
+};
