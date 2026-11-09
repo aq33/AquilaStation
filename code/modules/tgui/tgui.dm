@@ -213,7 +213,10 @@
 		with_static_data = TRUE)
 	if(payload)
 		window.send_message("update", payload)
-		COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
+		// AQ EDIT - pominięty limit go nie odnawia: inaczej następna aktualizacja programu tuż po jego otwarciu
+		// znowu czekałaby 5 s ze skrzynką ładowania, a odłożone wcześniej odświeżenie włączałoby ją ponownie
+		if(!bypass_cooldown)
+			COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
 
 /**
  * public
