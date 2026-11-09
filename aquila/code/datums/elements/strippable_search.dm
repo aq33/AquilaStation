@@ -41,8 +41,12 @@
 /datum/strip_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(action != "search")
 		return ..()
-	// Kieszeń to już przeszukiwanie: Alt+klik opróżnia ją tak samo jak zwykły klik, zamiast „nie ma kieszeni”
-	if(istype(strippable.items[params["key"]], /datum/strippable_item/mob_item_slot/needs_jumpsuit/pocket))
+	// Kieszeń to już przeszukiwanie: Alt+klik opróżnia ją tak samo jak zwykły klik, zamiast „nie ma kieszeni”.
+	// Pustej kieszeni nie ruszamy: „use” włożyłby do niej przedmiot z ręki przeszukującego.
+	var/datum/strippable_item/pocket = strippable.items[params["key"]]
+	if(istype(pocket, /datum/strippable_item/mob_item_slot/needs_jumpsuit/pocket))
+		if(isnull(pocket.get_item(owner)))
+			return TRUE
 		return ..("use", params, ui, state)
 	// Te same warunki co w /datum/ui_act, bez przełącznika akcji z core
 	if(!ui || ui.status != UI_INTERACTIVE)

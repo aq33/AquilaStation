@@ -78,7 +78,7 @@
  * required user the mob currently interacting with the ui
  * optional ui ui to be updated
  */
-/datum/proc/update_static_data(mob/user, datum/tgui/ui, bypass_cooldown = TRUE) // AQ EDIT - z Bee: bez limitu pełnych aktualizacji (PDA kręciło skrzynką do 5 s po zmianie programu)
+/datum/proc/update_static_data(mob/user, datum/tgui/ui, bypass_cooldown = FALSE) // AQ EDIT - bypass_cooldown z Bee: zmiana programu PDA bez 5-sekundowej skrzynki ładowania
 	if(!ui)
 		ui = SStgui.get_open_ui(user, src)
 	if(ui)
