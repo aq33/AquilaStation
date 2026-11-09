@@ -6687,6 +6687,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/engine,
 /area/maintenance/nsv/bunker)
+"fpt" = (
+/obj/structure/table,
+/obj/machinery/computer/reactor/control_rods,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "fpG" = (
 /obj/structure/sign/solgov_seal{
 	pixel_y = 26
@@ -10371,14 +10380,6 @@
 /obj/effect/turf_decal/tile/purple/tile_side,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
-"ilS" = (
-/obj/structure/table,
-/obj/machinery/computer/reactor/control_rods,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/engine/engineering/reactor_control)
 "iol" = (
 /obj/effect/decal/cleanable/greenglow,
 /obj/effect/decal/remains/human,
@@ -39099,7 +39100,7 @@ tyy
 vVS
 kOH
 vwz
-ilS
+fpt
 iaA
 rMS
 mpx

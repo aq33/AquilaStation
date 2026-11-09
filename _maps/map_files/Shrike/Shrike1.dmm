@@ -6473,6 +6473,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
 /area/maintenance/nsv/deck1/starboard)
+"Da" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/tcomms,
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/durasteel,
+/area/storage/tech)
 "Db" = (
 /turf/closed/wall/r_wall/ship,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -10825,11 +10831,6 @@
 	lighting_colour_night = "#c1e1ff";
 	lighting_colour_tube = "#c1e1ff"
 	})
-"UG" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/tcomms,
-/turf/open/floor/durasteel,
-/area/storage/tech)
 "UJ" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/aifixer,
@@ -40110,7 +40111,7 @@ pI
 jg
 iP
 ni
-UG
+Da
 hy
 Ai
 Nk

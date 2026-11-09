@@ -4805,17 +4805,6 @@
 /obj/machinery/computer/ship/munitions_computer/west,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons/artillery)
-"eaD" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger{
-	pixel_y = 10
-	},
-/obj/machinery/cell_charger{
-	pixel_y = -6
-	},
-/turf/open/floor/monotile/dark,
-/area/engine/engineering)
 "ebv" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood/old,
@@ -23857,6 +23846,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
+"ucB" = (
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger{
+	pixel_y = 10
+	},
+/obj/machinery/cell_charger{
+	pixel_y = -6
+	},
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/monotile/dark,
+/area/engine/engineering)
 "ucI" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -50272,7 +50273,7 @@ dpB
 bEX
 llg
 yco
-eaD
+ucB
 ifD
 eul
 odo

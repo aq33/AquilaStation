@@ -3260,20 +3260,6 @@
 "pC" = (
 /turf/closed/wall/r_wall/ship,
 /area/maintenance/disposal)
-"pG" = (
-/obj/structure/cable,
-/obj/structure/sign/poster/official/moth3{
-	pixel_x = 30
-	},
-/obj/machinery/fax{
-	name = "Engineerings Fax Machine";
-	fax_name = "Engineering"
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel/dark/side{
-	dir = 8
-	},
-/area/engine/engine_room)
 "pL" = (
 /obj/structure/extinguisher_cabinet/south,
 /obj/structure/cable,
@@ -5157,6 +5143,21 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/engine/engine_room/core)
+"Af" = (
+/obj/structure/cable,
+/obj/structure/sign/poster/official/moth3{
+	pixel_x = 30
+	},
+/obj/machinery/fax{
+	name = "Engineerings Fax Machine";
+	fax_name = "Engineering"
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/shuttle_kit,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engine_room)
 "Ah" = (
 /obj/structure/ladder,
 /obj/structure/sign/directions/plaque/munitions{
@@ -40373,7 +40374,7 @@ qu
 Vb
 Vb
 XK
-pG
+Af
 wW
 rx
 CX

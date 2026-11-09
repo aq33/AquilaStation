@@ -531,3 +531,7 @@
       jako nowy.
   - server: Przed nadpisaniem zapisu struktury zostaje kopia .bak, a zapis z błędami
       trafia do pliku .broken w data/ship_structure/.
+  - rscadd: Po skrzydłach Sabre można chodzić, a kliknięcie we wrota kokpitu ze skrzydła
+      wprowadza do środka. Sabre nie wystartuje, gdy ktoś stoi na skrzydle.
+  - rscadd: Zestaw budowy promu (Wyznacznik Stref Promu i płytki sterownika lotu,
+      silników plazmowych i podgrzewaczy) leży na starcie w inżynierii na każdej mapie.
