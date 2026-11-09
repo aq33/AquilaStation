@@ -125,7 +125,9 @@
 		return
 
 	var/turf/T = get_turf(src)
-	if(locate(/obj/structure/toilet) in T)
+	var/obj/structure/toilet/toilet = locate() in T
+	if(toilet)
+		toilet.receive_waste(urination * URINE_UNITS_PER_NEED)
 		empty_bladder_into("ubikacji")
 		return
 	if(locate(/obj/structure/urinal) in T)

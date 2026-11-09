@@ -133,4 +133,21 @@
 	TEST_ASSERT(!T.handle_slip(runner, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Running without sprint slipped on a wet floor")
 	TEST_ASSERT(runner.mobility_flags & MOBILITY_STAND, "Runner fell over on a wet floor without sprinting")
 
+/// AQUILA - zatkana toaleta: spłukanie przelewa wodę i zawartość muszli na podłogę
+/datum/unit_test/aquila_toilet_overflow
+
+/datum/unit_test/aquila_toilet_overflow/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	var/obj/structure/toilet/toilet = allocate(/obj/structure/toilet, T)
+	toilet.clogged = TRUE
+	toilet.receive_waste(20, 1)
+	TEST_ASSERT(toilet.flush(null, TRUE), "Clogged toilet with a full cistern did not flush")
+	TEST_ASSERT(!QDELETED(T.liquids), "Clogged toilet did not overflow into a puddle")
+	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/ammonia/urine), "Overflow did not carry the urine from the bowl")
+	TEST_ASSERT(locate(/obj/effect/decal/cleanable/feces) in T, "Overflow did not spill the feces from the bowl")
+	TEST_ASSERT(!toilet.bowl_urine && !toilet.bowl_feces, "Bowl kept its contents after overflowing")
+	TEST_ASSERT(toilet.clogged, "Overflowing unclogged the toilet by itself")
+	aquila_liquids_cleanup(T)
+
 #undef TEST_ASSERT
