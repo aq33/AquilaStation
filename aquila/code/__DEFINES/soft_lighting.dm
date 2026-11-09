@@ -17,10 +17,9 @@
 /// Długość promieni (radial_blur, ułamek odległości od środka ekranu). Paradise ma 0.035.
 #define AQ_GLARE_SIZE 0.035
 
-/// Cienie latarek (aquila/code/modules/lighting/light_shadows.dm): nierysowana płaszczyzna z trójkątami cienia.
-/// 11 jest wolne (między BLACKNESS_PLANE a EMISSIVE_BLOCKER_PLANE); niżej niż światło, żeby bufor był gotowy przed maską.
+/// Cienie latarek (aquila/code/modules/lighting/light_shadows.dm): nierysowana płaszczyzna obiektów z trójkątami cienia
+/// (każdy ma własny render_target, maskę swojej latarki). 11 jest wolne (między BLACKNESS_PLANE a EMISSIVE_BLOCKER_PLANE).
 #define AQ_LIGHT_SHADOW_PLANE 11
-#define AQ_LIGHT_SHADOW_RENDER_TARGET "*AQ_LIGHT_SHADOWS"
 /// Domyślny zasięg trójkąta cienia od światła (dalej niż największe światło ruchome, 6 kafli + przesunięcie stożka).
 /// Komponent podaje własny, krótszy zasięg: koniec swojej plamy światła.
 #define AQ_SHADOW_REACH (12 * 32)
