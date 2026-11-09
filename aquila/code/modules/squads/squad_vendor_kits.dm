@@ -165,12 +165,26 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	name = "skrzynia: [lowertext(squad_position_pl(position))] drużyny [squad?.name || "?"]"
 	update_icon()
 
+// Walizka zestawu z CM-SS13 (CC BY-SA 3.0): pełna z emblematem funkcji, pusta otwarta
+/obj/item/storage/aq_squad_crate/update_icon_state()
+	icon_state = length(contents) ? "crate" : "crate_empty"
+	return ..()
+
 /obj/item/storage/aq_squad_crate/update_overlays()
 	. = ..()
 	var/mutable_appearance/stripe = mutable_appearance(icon, "stripe")
 	stripe.color = squad_colour
 	. += stripe
-	. += mutable_appearance(icon, "emblem_[position]")
+	if(length(contents))
+		. += mutable_appearance(icon, "emblem_[position]")
+
+/obj/item/storage/aq_squad_crate/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	update_icon()
+
+/obj/item/storage/aq_squad_crate/Exited(atom/movable/gone, direction)
+	. = ..()
+	update_icon()
 
 // Automat
 /obj/machinery/squad_vendor
@@ -262,8 +276,8 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	var/obj/item/storage/aq_squad_crate/crate = new(get_turf(src))
 	crate.assign(loan, kit.position, H.squad)
 	for(var/path in issued)
-		var/obj/item/thing = new path(crate)
-		thing.forceMove(crate)
+		new path(crate)
+	crate.update_icon() // przedmioty stworzone w środku nie wywołują Entered()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	H.put_in_hands(crate)
 	log_game("[key_name(H)] took squad kit [kit.name] ([H.squad]) from [src] at [AREACOORD(src)]")

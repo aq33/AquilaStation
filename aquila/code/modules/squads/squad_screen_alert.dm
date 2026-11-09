@@ -45,14 +45,15 @@
 	appearance_flags = APPEARANCE_UI | KEEP_TOGETHER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/// Portret w ramce z TGMC: wygląd nadawcy powiększony x2 na tle z liniami, przycięty do ramki
 /atom/movable/screen/aq_squad_alert_portrait/proc/set_portrait(mutable_appearance/sender_look)
 	cut_overlays()
 	if(sender_look)
 		var/mutable_appearance/face = new /mutable_appearance(sender_look)
 		face.dir = SOUTH
-		face.transform = matrix().Scale(1.5)
+		face.transform = matrix().Scale(2)
 		face.pixel_x = 16
-		face.pixel_y = 10
+		face.pixel_y = 4
 		face.layer = layer + 0.1
 		face.plane = FLOAT_PLANE
 		face.appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | KEEP_TOGETHER

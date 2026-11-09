@@ -242,7 +242,8 @@
 	SIGNAL_HANDLER
 	aq_add_marker_images(source)
 
-// Ikona funkcji w kolorze drużyny nad postacią (HUD drużyny widzą wszyscy członkowie drużyn)
+// Ikona funkcji w kolorze drużyny nad postacią (HUD drużyny widzą wszyscy członkowie drużyn).
+// Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), przeniesione do lewego górnego rogu.
 /mob/living/carbon/human/proc/aq_update_squad_hud()
 	var/image/holder = hud_list?[SQUAD_HUD]
 	if(!holder)

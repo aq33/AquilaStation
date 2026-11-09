@@ -114,6 +114,31 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		"user_z" = user_turf?.z,
 	)
 
+/// Glif CM dla funkcji (blipy mapy taktycznej z CM-SS13, CC BY-SA 3.0)
+GLOBAL_LIST_INIT(squad_blip_glyphs, list(
+	SQUAD_POSITION_LEADER = "leader",
+	SQUAD_POSITION_MEDIC = "medic",
+	SQUAD_POSITION_ENGINEER = "engi",
+	SQUAD_POSITION_SOLDIER = "private",
+))
+/// Pamięć gotowych blipów: "kolor|funkcja|martwy" -> data URI
+GLOBAL_LIST_EMPTY(squad_blip_cache)
+
+/// Blip członka na mapę: tło w kolorze drużyny, glif funkcji, przy śmierci czerwony pasek
+/proc/aq_squad_blip(colour, position, dead)
+	var/key = "[colour]|[position]|[dead]"
+	if(GLOB.squad_blip_cache[key])
+		return GLOB.squad_blip_cache[key]
+	var/icon/blip = icon('aquila/icons/squads/map_blips.dmi', "background")
+	if(colour)
+		blip.Blend(colour, ICON_MULTIPLY)
+	blip.Blend(icon('aquila/icons/squads/map_blips.dmi', GLOB.squad_blip_glyphs[position] || "private"), ICON_OVERLAY)
+	if(dead)
+		blip.Blend(icon('aquila/icons/squads/map_blips.dmi', "undefibbable", frame = 1), ICON_OVERLAY)
+	var/uri = "data:image/png;base64,[icon2base64(blip)]"
+	GLOB.squad_blip_cache[key] = uri
+	return uri
+
 /// Stan członka drużyny (SQUAD_STATUS_*)
 /mob/living/carbon/human/proc/aq_squad_status()
 	if(stat == DEAD)
@@ -161,6 +186,7 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		"leader" = (leader == member),
 		"status" = status,
 		"status_name" = squad_status_pl(status),
+		"blip" = aq_squad_blip(colour, position, status == SQUAD_STATUS_DEAD),
 		"health" = member.maxHealth ? round(max(member.health, 0) / member.maxHealth * 100) : 0,
 		"pager" = member.aq_has_squad_pager(),
 		"cam" = member.aq_has_squad_bodycam(),
@@ -182,6 +208,7 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		. += list(list(
 			"type" = marker_type,
 			"label" = squad_marker_pl(marker_type),
+			"icon" = aq_squad_marker_icon(marker_type),
 			"x" = marker.target_turf.x,
 			"y" = marker.target_turf.y,
 			"z" = marker.target_turf.z,
@@ -223,6 +250,15 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		var/datum/aq_squad_marker/marker = aq_markers[marker_type]
 		if(marker.target_turf)
 			. |= marker.target_turf.z
+
+/// Obrazek znacznika (TGMC) do mapy w oknie
+GLOBAL_LIST_EMPTY(squad_marker_icon_cache)
+
+/proc/aq_squad_marker_icon(marker_type)
+	if(!GLOB.squad_marker_icon_cache[marker_type])
+		var/icon/marker_icon = icon('aquila/icons/squads/markers.dmi', "marker_[marker_type]", SOUTH, 1)
+		GLOB.squad_marker_icon_cache[marker_type] = "data:image/png;base64,[icon2base64(marker_icon)]"
+	return GLOB.squad_marker_icon_cache[marker_type]
 
 /proc/aq_marker_types_data()
 	. = list()

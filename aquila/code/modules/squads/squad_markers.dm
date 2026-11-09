@@ -1,6 +1,8 @@
 // Znaczniki rozkazów: tędy, atak, obrona, odwrót, zbiórka, cel (laser). Stawia je dowódca drużyny
 // (akcja + kliknięcie w widoczne pole albo klik na mapie w pagerze) i XO (mapa w konsoli).
 // Widać je w świecie tylko członkom drużyny, a na mapie taktycznej w pagerze i w konsoli.
+// Sprite'y: atak, obrona, odwrót i zbiórka z TGMC (icons/effects/orders.dmi), cel z TGMC (icons/effects/lases.dmi),
+// „Tędy” dorysowane ze strzałki zbiórki TGMC (CC BY-SA 3.0); ikony akcji z TGMC (icons/mob/actions.dmi).
 
 /// Polska nazwa znacznika
 /proc/squad_marker_pl(marker_type)
@@ -56,7 +58,7 @@
 	marker_image = image('aquila/icons/squads/markers.dmi', target_turf, "marker_[marker_type]", ABOVE_LIGHTING_LAYER)
 	marker_image.plane = ABOVE_LIGHTING_PLANE
 	marker_image.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | KEEP_APART
-	if(arrow_dir && (marker_type == SQUAD_MARKER_MOVE || marker_type == SQUAD_MARKER_RETREAT))
+	if(arrow_dir && marker_type == SQUAD_MARKER_MOVE)
 		marker_image.dir = arrow_dir
 	var/image/label = image(loc = target_turf)
 	label.maptext = MAPTEXT("<span style='text-align:center;color:[squad.colour]'>[squad.name]: [squad_marker_pl(marker_type)]</span>")

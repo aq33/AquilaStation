@@ -97,6 +97,7 @@
 		if(ispath(path, /obj/item/clothing/under)) // mundur gracz już ma
 			continue
 		new path(crate)
+	crate.update_icon()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, usr, crate)
 	return TRUE

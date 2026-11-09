@@ -2,7 +2,7 @@
 // Podkład to holomapa poziomu; kropki członków i znaczniki rysujemy tutaj.
 
 import { useState } from 'react';
-import { Box, Button, Icon, Stack } from 'tgui-core/components';
+import { Box, Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type SquadMember = {
@@ -16,6 +16,8 @@ export type SquadMember = {
   leader: BooleanLike;
   status: string;
   status_name: string;
+  /** Blip CM: tło w kolorze drużyny i glif funkcji (data URI) */
+  blip: string;
   health: number;
   pager: BooleanLike;
   cam: BooleanLike;
@@ -30,6 +32,8 @@ export type SquadMember = {
 export type SquadMarker = {
   type: string;
   label: string;
+  /** Sprite znacznika (data URI) */
+  icon: string;
   x: number;
   y: number;
   z: number;
@@ -95,15 +99,6 @@ export const MARKER_ICONS: Record<string, string> = {
   retreat: 'undo',
   rally: 'flag',
   target: 'bullseye',
-};
-
-export const MARKER_COLORS: Record<string, string> = {
-  move: '#5ae65a',
-  attack: '#f03c32',
-  defend: '#468cff',
-  retreat: '#ff9628',
-  rally: '#ffdc28',
-  target: '#ff2828',
 };
 
 const STATUS_RING: Record<string, string> = {
@@ -214,8 +209,9 @@ export const SquadTacticalMap = (props: MapProps) => {
               style={{ imageRendering: 'pixelated', display: 'block' }}
             />
             {markersHere.map(({ squad, marker }) => (
-              <div
+              <img
                 key={`${squad.id}-${marker.type}`}
+                src={marker.icon}
                 title={`${squad.name}: ${marker.label} (${marker.placer}, ${marker.time_left} s)`}
                 onClick={(e) => {
                   if (onClearMarker && e.ctrlKey) {
@@ -225,38 +221,38 @@ export const SquadTacticalMap = (props: MapProps) => {
                 }}
                 style={{
                   position: 'absolute',
-                  left: `${toLeft(marker.x) - 9}px`,
-                  top: `${toTop(marker.y) - 9}px`,
-                  width: '18px',
-                  height: '18px',
-                  textAlign: 'center',
-                  lineHeight: '18px',
-                  color: MARKER_COLORS[marker.type],
-                  textShadow: '0 0 2px #000, 0 0 2px #000',
-                  borderBottom: `2px solid ${squad.colour}`,
+                  left: `${toLeft(marker.x) - 16}px`,
+                  top: `${toTop(marker.y) - 28}px`,
+                  width: '32px',
+                  height: '32px',
+                  imageRendering: 'pixelated',
+                  filter: `drop-shadow(0 2px 0 ${squad.colour})`,
                 }}
-              >
-                <Icon name={MARKER_ICONS[marker.type] || 'map-marker'} />
-              </div>
+              />
             ))}
             {membersHere.map(({ squad, member }) => {
-              const dot = member.leader ? 10 : 8;
+              const size = member.leader ? 24 : 21;
               const isUser = member.ref === userRef;
               return (
-                <div
+                <img
                   key={member.ref}
+                  src={member.blip}
                   title={`${member.name} (${squad.name}, ${member.position_name}): ${member.status_name}${member.area ? `, ${member.area}` : ''}`}
                   style={{
                     position: 'absolute',
-                    left: `${toLeft(member.x as number) - dot / 2}px`,
-                    top: `${toTop(member.y as number) - dot / 2}px`,
-                    width: `${dot}px`,
-                    height: `${dot}px`,
-                    borderRadius: member.leader ? '2px' : '50%',
-                    background:
-                      member.status === 'dead' ? '#222222' : squad.colour,
-                    border: `2px solid ${isUser ? '#ffffff' : STATUS_RING[member.status] || '#000'}`,
-                    boxSizing: 'content-box',
+                    left: `${toLeft(member.x as number) - size / 2}px`,
+                    top: `${toTop(member.y as number) - size / 2}px`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    imageRendering: 'pixelated',
+                    opacity: member.status === 'ssd' ? 0.6 : 1,
+                    outline: isUser
+                      ? '2px solid #ffffff'
+                      : member.status === 'injured' ||
+                          member.status === 'critical'
+                        ? `2px solid ${STATUS_RING[member.status]}`
+                        : 'none',
+                    pointerEvents: placing ? 'none' : 'auto',
                   }}
                 />
               );
