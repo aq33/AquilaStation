@@ -63,6 +63,8 @@
 	var/turf/T = get_turf(src)
 	release_contents()
 	if(T && reagents?.total_volume)
+		// Rozbity albo stopiony spawarką lód nie zamarza od razu z powrotem (inaczej w zimnie więziłby od nowa)
+		reagents.chem_temp = max(reagents.chem_temp, freezing_point + 2)
 		T.add_liquid_from_reagents(reagents)
 	QDEL_NULL(reagents)
 	escaping = null

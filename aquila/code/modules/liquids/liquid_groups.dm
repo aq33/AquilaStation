@@ -82,6 +82,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	SSliquids.arrayed_groups -= src
 	SSliquids.group_process_work_queue -= src
 	SSliquids.cached_edge_work_queue -= src
+	SSliquids.ice_block_candidates -= src
+	SSliquids.currentrun_disperse_groups -= src
+	SSliquids.currentrun_fire_groups -= src
 	for(var/turf/member_turf as anything in members)
 		if(member_turf?.liquids?.liquid_group == src)
 			QDEL_NULL(member_turf.liquids)

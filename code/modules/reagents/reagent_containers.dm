@@ -151,10 +151,11 @@
 			message_admins("[ADMIN_LOOKUPFLW(thrown_by)] rzutem rozlewa [english_list(reagents.reagent_list)] na [target] w [ADMIN_VERBOSEJMP(target)].")
 		visible_message("<span class='notice'>[src] rozlewa swoją zawartość na [target].</span>")
 		// AQ EDIT START - ciecze z Monke: rozlanie na podłogę idzie przez spill_reagents (rozprysk poniżej progu, kałuża od progu)
-		var/turf/spill_turf = get_turf(target)
-		if(!isopenturf(target)) // ściana (termit) i przedmioty dostają reakcję jak dotąd
+		if(isopenturf(target))
+			var/turf/open/spill_turf = target
+			spill_turf.spill_reagents(reagents)
+		else // ściana (termit) i przedmioty dostają reakcję jak dotąd
 			reagents.reaction(target, TOUCH)
-		spill_turf?.spill_reagents(reagents)
 		// AQ EDIT END
 		if(QDELETED(src))
 			return

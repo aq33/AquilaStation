@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(liquids)
 				if(QDELETED(liquid_group))
 					group_process_work_queue -= liquid_group
 					continue
-				if(populate_evaporation && !liquid_group.frozen && (liquid_group.always_evaporates || liquid_group.expected_turf_height < LIQUID_STATE_ANKLES) && liquid_group.evaporates)
+				if(populate_evaporation && !liquid_group.frozen && (liquid_group.always_evaporates || liquid_group.expected_turf_height <= LIQUID_ANKLES_LEVEL_HEIGHT) && liquid_group.evaporates)
 					for(var/turf/listed_turf as anything in liquid_group.members)
 						if(!listed_turf)
 							continue

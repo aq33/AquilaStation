@@ -57,6 +57,13 @@
 /datum/atom_hud/alternate_appearance/basic/bodily_censor/mobShouldSee(mob/M)
 	return M.censors_bodily_functions()
 
+/// Usunięty widz (np. mob z lobby po wejściu do gry) odpina się sam, a wygląd zostaje dla reszty.
+/// Bazowe unregister_mob() woła remove_from_hud(), które w /basic kasuje cały wygląd.
+/datum/atom_hud/alternate_appearance/basic/bodily_censor/unregister_mob(datum/source, force)
+	remove_hud_from(source, TRUE)
+	if(source == target)
+		remove_from_hud(source)
+
 /// Zamiast kupy i plam moczu cenzurujący widzą czarny brud
 /atom/proc/add_bodily_censor_appearance()
 	var/obj/effect/decal/cleanable/dirt/dirt_type = /obj/effect/decal/cleanable/dirt

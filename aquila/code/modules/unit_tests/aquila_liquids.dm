@@ -49,7 +49,10 @@
 	TEST_ASSERT(!QDELETED(T.liquids), "add_liquid made no puddle")
 	TEST_ASSERT(T.liquids.liquid_group.frozen, "Water at -40 C did not freeze")
 	TEST_ASSERT(T.liquids.frozen, "Frozen group did not freeze its tile")
+	var/datum/liquid_group/frozen_group = T.liquids.liquid_group
+	TEST_ASSERT(frozen_group in SSliquids.ice_block_candidates, "Frozen group is not an ice block candidate")
 	aquila_liquids_cleanup(T)
+	TEST_ASSERT(!(frozen_group in SSliquids.ice_block_candidates), "Deleted frozen group stayed in SSliquids.ice_block_candidates (hard delete)")
 
 	T.add_liquid(/datum/reagent/fuel, 100, chem_temp = T0C - 40)
 	TEST_ASSERT(!T.liquids.liquid_group.frozen, "Welding fuel froze")
@@ -77,7 +80,36 @@
 	TEST_ASSERT(victim.loc == T, "Breaking the ice did not release the human")
 	TEST_ASSERT(!HAS_TRAIT(victim, TRAIT_IMMOBILIZED), "Released human is still immobilized")
 	TEST_ASSERT(!QDELETED(T.liquids), "Breaking the ice did not give the water back")
+	TEST_ASSERT(!T.liquids.liquid_group.frozen, "Water from a broken ice block froze right back (it would trap the human again)")
 	aquila_liquids_cleanup(T)
+
+/// AQUILA - pojemnik rzucony w przedmiot działa tylko na przedmiot, bez kałuży pod nim (jak chlust zlewką)
+/datum/unit_test/aquila_liquid_splash_object
+
+/datum/unit_test/aquila_liquid_splash_object/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	var/obj/structure/table/table = allocate(/obj/structure/table, T)
+	var/obj/item/reagent_containers/glass/bucket/bucket = allocate(/obj/item/reagent_containers/glass/bucket, T)
+	bucket.reagents.add_reagent(/datum/reagent/water, 70)
+	bucket.SplashReagents(table, TRUE)
+	TEST_ASSERT(QDELETED(T.liquids), "Splashing a table also spilled a puddle under it")
+	TEST_ASSERT(!bucket.reagents.total_volume, "Splashed bucket kept its water")
+	aquila_liquids_cleanup(T)
+
+/// AQUILA - cenzura: usunięcie widza (np. moba z lobby) nie kasuje zastępczego wyglądu kupy dla innych
+/datum/unit_test/aquila_bodily_censor_viewer_deleted
+
+/datum/unit_test/aquila_bodily_censor_viewer_deleted/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	var/obj/effect/decal/cleanable/feces/poop = allocate(/obj/effect/decal/cleanable/feces, T)
+	var/datum/atom_hud/alternate_appearance/basic/bodily_censor/censor = poop.alternate_appearances?["bodily_censor"]
+	TEST_ASSERT(censor, "Feces have no censored appearance")
+	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human, T)
+	censor.add_hud_to(viewer)
+	qdel(viewer)
+	TEST_ASSERT(!QDELETED(censor), "Deleting a viewer deleted the censored appearance for everyone")
+	TEST_ASSERT(poop.alternate_appearances?["bodily_censor"] == censor, "Feces lost their censored appearance")
 
 /// AQUILA - wyłom: po gwałtownej dekompresji odessany kafel ma temperaturę kosmosu
 /datum/unit_test/aquila_decompression_chill
