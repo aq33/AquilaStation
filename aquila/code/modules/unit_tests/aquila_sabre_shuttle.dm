@@ -350,6 +350,72 @@
 	qdel(port, TRUE)
 	qdel(hangar)
 
+/// AQUILA - Sabre lata na plazmie z podgrzewacza w ładowni: kanister przykręcony do złącza go tankuje, lot spala
+/// plazmę, a wąż kriopaliwa na włazie już nic nie wlewa
+/datum/unit_test/sabre_plasma_fuel
+
+/datum/unit_test/sabre_plasma_fuel/Run()
+	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
+	TEST_ASSERT(host?.current_system, "No main ship in a star system")
+	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	hangar.overmap_fallback = host
+	var/list/bl = hangar.bottom_left_coords
+	var/obj/docking_port/stationary/sabre/mining/port = new(locate(bl[1] + 5, bl[2] + 5, bl[3]))
+	var/timeout = world.time + 30 SECONDS
+	while(!port.docked && world.time < timeout)
+		sleep(1)
+	var/obj/docking_port/mobile/sabre/shuttle_port = port.docked
+	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock")
+	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+
+	var/obj/machinery/atmospherics/components/unary/portables_connector/connector
+	var/obj/machinery/atmospherics/components/unary/shuttle/heater/sabre/heater
+	var/turf/closed/indestructible/dropship/sabre_hatch/hatch
+	for(var/turf/T as anything in shuttle_port.return_turfs())
+		connector = connector || (locate(/obj/machinery/atmospherics/components/unary/portables_connector) in T)
+		heater = heater || (locate(/obj/machinery/atmospherics/components/unary/shuttle/heater/sabre) in T)
+		if(!hatch && istype(T, /turf/closed/indestructible/dropship/sabre_hatch))
+			hatch = T
+	TEST_ASSERT(connector && heater && hatch, "The Sabre hold has no fuel connector or heater")
+	TEST_ASSERT(heater.nodes[1] == connector, "The fuel heater isn't piped to the connector")
+	TEST_ASSERT(sabre.get_fuel() > 0, "The Sabre starts the round without plasma")
+
+	sabre.set_fuel(0)
+	TEST_ASSERT_EQUAL(sabre.get_fuel(), 0, "Draining the heater left fuel")
+	TEST_ASSERT(!sabre.shuttle_launch(), "The Sabre took off without plasma")
+
+	// Wąż kriopaliwa na włazie nic nie wlewa
+	var/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel/cryo_tank = allocate(/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel)
+	var/obj/item/cryofuel_nozzle/nozzle = allocate(/obj/item/cryofuel_nozzle)
+	nozzle.parent = cryo_tank
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	nozzle.afterattack(hatch, pilot, TRUE)
+	TEST_ASSERT_EQUAL(sabre.get_fuel(), 0, "The cryofuel hose still fuels the Sabre")
+
+	// Kanister plazmy przykręcony do złącza napełnia podgrzewacz
+	var/obj/machinery/portable_atmospherics/canister/toxins/canister = new(get_turf(connector))
+	TEST_ASSERT(canister.connect(connector), "The plasma canister didn't connect")
+	connector.process_atmos()
+	var/datum/pipeline/fuel_line = connector.parents[1]
+	fuel_line.reconcile_air()
+	var/fuel = sabre.get_fuel()
+	TEST_ASSERT(fuel >= sabre.get_max_fuel() * 0.5, "One plasma canister gave only [fuel] fuel")
+	canister.disconnect()
+	qdel(canister)
+
+	// Lot spala plazmę z podgrzewacza
+	var/datum/gas_mixture/heater_air = heater.airs[1]
+	var/plasma_before = heater_air.get_moles(GAS_PLASMA)
+	sabre.use_fuel(TRUE)
+	TEST_ASSERT(heater_air.get_moles(GAS_PLASMA) < plasma_before, "Flying didn't burn the heater plasma")
+	TEST_ASSERT(sabre.shuttle_launch(), "The fuelled Sabre didn't take off")
+
+	shuttle_port.jumpToNullSpace()
+	if(!QDELETED(sabre))
+		qdel(sabre)
+	qdel(port, TRUE)
+	qdel(hangar)
+
 /// AQUILA - zestaw budowy promu z inżynierii ma wszystko, czego nie zbuduje się z materiałów
 /datum/unit_test/shuttle_kit_contents
 
