@@ -1026,6 +1026,7 @@
 #include "code\modules\restaurant\robot_customer_ai.dm"
 #include "code\modules\restaurant\terminal.dm"
 #include "code\modules\restaurant\venues.dm"
+#include "code\modules\character_stats\character_stats.dm"
 #include "code\modules\research\designs\AI_module_designs.dm"
 #include "code\modules\research\designs\biogenerator_designs.dm"
 #include "code\modules\research\designs\machine_designs.dm"
@@ -1809,6 +1810,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"
 #include "code\modules\unit_tests\aquila_audyt_rosliny.dm"
 #include "code\modules\unit_tests\aquila_audyt_antagi.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
