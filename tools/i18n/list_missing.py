@@ -1,7 +1,7 @@
 """Wypisuje polskie teksty z kodu, które nie mają jeszcze angielskiego odpowiednika.
 
 Źródła tłumaczeń: en_all.json (scalony słownik w repo) oraz, jeśli są, en_pairs.json,
-en_pairs_upstream.json, en_translated.json i en_manual.json.
+en_pairs_upstream.json, en_original.json, en_translated.json i en_manual.json.
 
 Użycie (z katalogu repo):
     python tools/i18n/list_missing.py --out braki.jsonl         # cały kod, lista z kontekstem
@@ -30,6 +30,7 @@ SOURCES = [
     "strings/i18n/en_pairs.json",
     "strings/i18n/en_pairs_upstream.json",
     "strings/i18n/en_manual.json",
+    "strings/i18n/en_original.json",
     "strings/i18n/en_translated.json",
 ]
 
