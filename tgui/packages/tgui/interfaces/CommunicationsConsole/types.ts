@@ -76,6 +76,7 @@ export type CommsConsoleData = {
   objectives: Record<string, Objective>;
   // AQUILA - wybór misji przez kapitana
   mission_choices?: MissionChoice[];
+  mission_choice_extension?: BooleanLike;
   can_choose_mission?: BooleanLike;
 
   // static_data
