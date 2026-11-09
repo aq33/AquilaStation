@@ -36,23 +36,8 @@ type Data = {
 };
 
 export const MapVote = (props) => {
-  const { act, data } = useBackend<Data>();
-  const {
-    mode,
-    question,
-    lower_admin,
-    choices,
-    selectedChoice,
-    mapvote_banned,
-  } = data;
-  const [selectedChoiceIndex, setSelectedChoiceIndex] = useLocalState<any>(
-    'choice',
-    undefined,
-  );
-  const [selectedChoiceName, setSelectedChoiceName] = useLocalState<any>(
-    'choiceName',
-    undefined,
-  );
+  const { data } = useBackend<Data>();
+  const { mode, question } = data;
 
   return (
     <Window
@@ -70,44 +55,64 @@ export const MapVote = (props) => {
       height={600}
     >
       <Window.Content overflowY="scroll">
-        <TimePanel />
-        <PacePanel />
-        <ShipPanel />
-        <Flex>
-          <Flex.Item mt={1} mr={1} mb={1}>
-            <Section fill fitted>
-              <Tabs vertical>
-                {choices.map((choice, i) => (
-                  <Tabs.Tab
-                    key={i}
-                    selected={i === selectedChoiceIndex}
-                    icon={i === selectedChoice - 1 ? 'vote-yea' : ''}
-                    onClick={() => {
-                      setSelectedChoiceIndex(i);
-                      setSelectedChoiceName(choice.name);
-                    }}
-                  >
-                    {choice.label || choice.name} ({choice.votes})
-                  </Tabs.Tab>
-                ))}
-              </Tabs>
-              <Button
-                fluid
-                disabled={mapvote_banned === 1}
-                onClick={() => {
-                  act('vote', {
-                    index: selectedChoiceIndex + 1,
-                  });
-                }}
-              >
-                Głosuj
-              </Button>
-            </Section>
-          </Flex.Item>
-          <MapData />
-        </Flex>
+        <MapVoteContent />
       </Window.Content>
     </Window>
+  );
+};
+
+/** AQUILA - the vote without the window, also shown in the round-end report (RoundEndReport.tsx) */
+export const MapVoteContent = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { choices = [], selectedChoice, mapvote_banned } = data;
+  const [selectedChoiceIndex, setSelectedChoiceIndex] = useLocalState<any>(
+    'choice',
+    undefined,
+  );
+  const [selectedChoiceName, setSelectedChoiceName] = useLocalState<any>(
+    'choiceName',
+    undefined,
+  );
+
+  return (
+    <>
+      <TimePanel />
+      <PacePanel />
+      <ShipPanel />
+      <Flex>
+        <Flex.Item mt={1} mr={1} mb={1}>
+          <Section fill fitted>
+            <Tabs vertical>
+              {choices.map((choice, i) => (
+                <Tabs.Tab
+                  key={i}
+                  selected={i === selectedChoiceIndex}
+                  icon={i === selectedChoice - 1 ? 'vote-yea' : ''}
+                  onClick={() => {
+                    setSelectedChoiceIndex(i);
+                    setSelectedChoiceName(choice.name);
+                  }}
+                >
+                  {choice.label || choice.name} ({choice.votes})
+                </Tabs.Tab>
+              ))}
+            </Tabs>
+            <Button
+              fluid
+              disabled={mapvote_banned === 1}
+              onClick={() => {
+                act('vote', {
+                  index: selectedChoiceIndex + 1,
+                });
+              }}
+            >
+              Głosuj
+            </Button>
+          </Section>
+        </Flex.Item>
+        <MapData />
+      </Flex>
+    </>
   );
 };
 

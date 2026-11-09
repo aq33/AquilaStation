@@ -59,10 +59,44 @@ GLOBAL_DATUM_INIT(economy_leaderboard_ui, /datum/economy_leaderboard_ui, new)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RoundEndReport")
+		ui.set_autoupdate(TRUE) // licznik czasu i głosy w głosowaniu o mapę
 		ui.open()
+
+/// Opens the report for the end of round map vote, or reloads the open one (map info comes in the static data)
+/datum/roundend_report_ui/proc/show_with_vote(mob/user)
+	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
+	if(ui)
+		update_static_data(user, ui)
+		return
+	ui_interact(user)
+
+/// Dynamic part: the end of round map vote (same data as the MapVote window) and the survey
+/datum/roundend_report_ui/ui_data(mob/user)
+	var/list/data = list()
+	if(SSvote.map_vote_in_roundend_report())
+		data = SSvote.ui_data(user)
+		data["vote_open"] = TRUE
+	data["survey_open"] = !GLOB.round_survey_submitted[user.client?.ckey]
+	return data
+
+/datum/roundend_report_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("submit")
+			return round_survey_submit(usr, usr?.client?.ckey, params)
+		if("vote", "pace_vote", "ship_vote", "cancel")
+			if(!SSvote.map_vote_in_roundend_report())
+				return
+			return SSvote.ui_act(action, params, ui, state)
 
 /datum/roundend_report_ui/ui_static_data(mob/user)
 	var/list/data = list()
+	data["max_text"] = round_survey_max_text()
+	if(SSvote.map_vote_in_roundend_report())
+		var/list/vote_static = SSvote.ui_static_data(user)
+		data["mapInfo"] = vote_static["mapInfo"]
 	data["station_name"] = station_name()
 	data["round_id"] = GLOB.round_id
 	data["personal"] = GLOB.roundend_personal_data[user.ckey] || list("status" = "observer", "objectives" = list())

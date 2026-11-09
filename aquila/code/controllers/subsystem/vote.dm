@@ -44,7 +44,14 @@ GLOBAL_VAR(vote_submit_cooldown)
 		if(ui.interface != expected_interface)
 			ui.close()
 
+/// The map vote after the round ended is shown in the round-end report window, together with the report and the survey
+/datum/controller/subsystem/vote/proc/map_vote_in_roundend_report()
+	return istype(current_vote, /datum/vote/map) && SSticker.current_state == GAME_STATE_FINISHED
+
 /datum/controller/subsystem/vote/ui_interact(mob/user, datum/tgui/ui)
+	if(map_vote_in_roundend_report() && user?.client)
+		GLOB.roundend_report_ui.show_with_vote(user)
+		return
 	close_mismatched_uis()
 	if(ui?.closing)
 		ui = null
