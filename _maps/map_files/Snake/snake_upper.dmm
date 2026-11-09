@@ -7845,6 +7845,13 @@
 /obj/item/stamp/quartermaster,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"LD" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "LF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -9273,6 +9280,13 @@
 /obj/effect/turf_decal/tile/yellow/orlen,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
+"TJ" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "TK" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/circuit,
@@ -46900,7 +46914,7 @@ ak
 ak
 WD
 oN
-vE
+TJ
 QC
 QC
 gf
@@ -58739,7 +58753,7 @@ Lq
 CY
 KM
 hk
-zW
+LD
 Fz
 mO
 mv

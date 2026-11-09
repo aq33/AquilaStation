@@ -3666,6 +3666,11 @@
 	},
 /turf/open/floor/plating/rusty_techgrid,
 /area/quartermaster/miningoffice)
+"qu" = (
+/obj/structure/hull_plate,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "qz" = (
 /obj/structure/fluff/support_beam{
 	dir = 1
@@ -12049,6 +12054,10 @@
 	lighting_colour_night = "#c1e1ff";
 	lighting_colour_tube = "#c1e1ff"
 	})
+"YZ" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/dark/airless,
+/area/space/nearstation)
 "Zd" = (
 /obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/box/white,
@@ -47117,7 +47126,7 @@ Bh
 Bh
 Bh
 Bh
-gZ
+YZ
 li
 cz
 MB
@@ -49114,7 +49123,7 @@ Wm
 wf
 QI
 ME
-qr
+qu
 TA
 fn
 fn
