@@ -3027,6 +3027,7 @@
 "<span class='warning'>[fruit_parent] zaczyna się [temperature_verb]!</span>": "<span class='warning'>\\The [fruit_parent] starts to [temperature_verb]!</span>",
 "<span class='warning'>[host_mob] drapie się: [bodypart.name].</span>": "<span class='warning'>[host_mob] scratches [bodypart.name].</span>",
 "<span class='warning'>[human] pluje grudą żrącej śliny na [restraint]!</span>": "<span class='warning'>[human] spits a glob of corrosive saliva onto \\the [restraint]!</span>",
+"<span class='warning'>Kieszenie munduru to osobne pola w tym oknie: kliknij kieszeń, żeby ją opróżnić bez zdejmowania munduru.</span>": "<span class='warning'>The jumpsuit pockets are separate slots in this window: click a pocket to empty it without taking the jumpsuit off.</span>",
 "<span class='warning'>[item] nie ma kieszeni do przeszukania.</span>": "<span class='warning'>[item] has no pockets to search.</span>",
 "<span class='warning'>[king] przywołuje mysz do swojego boku!</span>": "<span class='warning'>[king] beckons a mouse to their side!</span>",
 "<span class='warning'>[king] wydaje rozkaz swojej armii, zmieniając myszy w szczury!</span>": "<span class='warning'>[king] gives an order to their army, turning mice into rats!</span>",
