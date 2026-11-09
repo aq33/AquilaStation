@@ -200,6 +200,7 @@
 		if(!ai.client.should_include_for_role(
 			banning_key = initial(traitor.banning_key),
 			role_preference_key = /datum/role_preference/midround_living/malfunctioning_ai,
+			req_hours = initial(traitor.required_living_playtime),
 		))
 			continue
 		. += ai

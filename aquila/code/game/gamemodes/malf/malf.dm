@@ -69,5 +69,12 @@
 	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), 101)
 	return TRUE
 
+/// Slot SI zajęty przez wadliwą SI w pre_setup: FillAIPosition() obsadza wszystkie sloty bez patrzenia na current_positions
+/datum/controller/subsystem/job/FillAIPosition()
+	var/datum/job/ai_job = GetJob(JOB_NAME_AI)
+	if(ai_job && ai_job.current_positions >= ai_job.total_positions)
+		return TRUE
+	return ..()
+
 /datum/game_mode/malf/generate_report()
 	return "Wykryto nieautoryzowany dostęp do rdzeni SI kilku okrętów floty. Sprawdzajcie prawa SI i reagujcie na nietypowe zachowanie maszyn."

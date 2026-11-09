@@ -303,7 +303,6 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | blok `if(world.system_type == MS_WINDOWS)` | `code/__HELPERS/shell.dm` (`shell_url_scrub()`) | `cmd /c` rozwija `%ZMIENNA%`, a kodowanie `%XX` samo tworzy `%`; na Windowsie złe znaki są usuwane zamiast kodowane. Test: `aquila_jukebox_url_whitelist` |
 | `own_multi_selection` | `code/controllers/subsystem/vote.dm` (`ui_data()`) | Do okna głosowania idą tylko własne głosy gracza, nie `choices_by_ckey` wszystkich. |
 | limit `owed` + `chip.spend()` | `code/game/machinery/computer/warrant.dm` (`pay_fine_holochip()`) | Holożeton płacił spłacone grzywny i ponad dług; reszta zostaje na żetonie. Test: `aquila_warrant_holochip_change` |
-| `add_department_commission(ACCOUNT_SCI, ...)` | `code/game/machinery/doppler_array.dm` | Premia działu nauki za sprzedane dane wybuchu (`aquila/code/modules/economy/department_commission.dm`) |
 | `"200 kosmicznych kredytów"` za 1200 pkt | `code/modules/mining/machine_vending.dm` (`prize_list`) | Kurs punktów górniczych na gotówkę w dół: 400 kr za 2400 pkt zamiast 1000 kr |
 | `grilled_result.reagents?.clear_reagents()` | `code/datums/components/grillable.dm` (`FinishGrilling()`) | Zgrillowany wynik miał swoje `food_reagents` + reagenty surowca (płat 8u → stek 16u). Test: `aquila_food_cooking_reagents` |
 | `baked_result.reagents?.clear_reagents()` | `code/datums/components/bakeable.dm` (`FinishBaking()`) | To samo podwajanie przy pieczeniu (tylko dobry wynik; przypalony zostaje jak był). |

@@ -67,6 +67,13 @@
 	TEST_ASSERT(!length(mode.malf_candidates()), "Malf candidates found without any players")
 	TEST_ASSERT(!mode.pre_setup(), "The malf mode started without candidates")
 	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "The malf mode caused runtimes")
+	// Slot SI zajęty przez wadliwą SI: przydział prac nie obsadza go drugi raz
+	var/datum/job/ai_job = SSjob.GetJob(JOB_NAME_AI)
+	var/old_positions = ai_job.current_positions
+	ai_job.current_positions = ai_job.total_positions
+	TEST_ASSERT(SSjob.FillAIPosition(), "A taken AI slot was not reported as filled")
+	TEST_ASSERT_EQUAL(ai_job.current_positions, ai_job.total_positions, "The AI slot was filled twice")
+	ai_job.current_positions = old_positions
 	var/datum/weighted_ghost_midround/midround = new
 	TEST_ASSERT(!length(midround.malf_ai_candidates()), "A midround malf AI was found without any AI players")
 	qdel(midround)
@@ -112,6 +119,14 @@
 	TEST_ASSERT(islist(medic_stats), "The character was not saved to the file")
 	TEST_ASSERT_EQUAL(medic_stats["surgeries"], 5, "Stats were not added up")
 	TEST_ASSERT_EQUAL(medic_stats["earnings_best"], 900, "The best earnings were not kept")
+
+	// Uszkodzony plik: wpisy w innym kształcie są pomijane, poprawne zostają
+	rustg_file_write(json_encode(list("aquilastatstest" = list("Test Medyk" = list("surgeries" = 4, "zle" = "x"), "Zly" = 5), "liczba" = 7)), test_file)
+	var/list/broken = character_stats_load_file(test_file)
+	fdel(test_file)
+	TEST_ASSERT_EQUAL(broken["aquilastatstest"]?["Test Medyk"]?["surgeries"], 4, "A valid stat was lost from a damaged file")
+	TEST_ASSERT(!("liczba" in broken) && !("Zly" in broken["aquilastatstest"]), "Entries of a wrong shape were kept")
+	TEST_ASSERT(!("zle" in broken["aquilastatstest"]["Test Medyk"]), "A non-number stat was kept")
 
 	var/list/window_data = GLOB.character_stats_ui.ui_static_data(medic)
 	TEST_ASSERT(islist(window_data["characters"]), "The stats window has no character list")

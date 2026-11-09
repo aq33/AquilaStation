@@ -122,7 +122,25 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	if(!fexists(file_path))
 		return list()
 	var/list/data = json_decode(rustg_file_read(file_path))
-	return islist(data) ? data : list()
+	if(!islist(data))
+		return list()
+	// ckey => postać => statystyka: wpisy w innym kształcie (uszkodzony plik) są pomijane
+	. = list()
+	for(var/player_ckey in data)
+		var/list/characters = data[player_ckey]
+		if(!istext(player_ckey) || !islist(characters))
+			continue
+		var/list/valid_characters = list()
+		for(var/character_name in characters)
+			var/list/stats = characters[character_name]
+			if(!istext(character_name) || !islist(stats))
+				continue
+			var/list/valid_stats = list()
+			for(var/stat in stats)
+				if(istext(stat) && isnum(stats[stat]))
+					valid_stats[stat] = stats[stat]
+			valid_characters[character_name] = valid_stats
+		.[player_ckey] = valid_characters
 
 /// Statystyki postaci gracza: imię postaci => statystyka => wartość
 /proc/character_stats_load(player_ckey)

@@ -81,6 +81,14 @@ GLOBAL_LIST_EMPTY(department_commission_pending)
 		add_department_commission(ACCOUNT_CAR, pool / 2)
 		add_department_commission(ACCOUNT_MUN, pool / 2)
 
+/// Dane wybuchu sprzedane przez doppler: liczy się przyrost budżetu nauki
+/obj/machinery/doppler_array/research/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
+	var/datum/bank_account/science = SSeconomy.get_dep_account(ACCOUNT_SCI)
+	var/before = science?.account_balance
+	. = ..()
+	if(science)
+		add_department_commission(ACCOUNT_SCI, science.account_balance - before)
+
 /// Spłacone grzywny idą na konto ochrony
 /datum/datacore/payCitation(id, cDataId, amount)
 	. = ..()
