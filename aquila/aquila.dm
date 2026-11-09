@@ -862,6 +862,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack_creator.dm"
 #include "code\modules\mob\living\silicon\robot\robot_modules.dm"
+#include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cockroach.dm"
