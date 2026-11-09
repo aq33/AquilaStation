@@ -19,12 +19,16 @@ type Character = {
 type Data = {
   characters: Character[];
   current?: string;
+  // liczniki tej rundy, jeszcze niezapisane
+  round_stats?: Record<string, number>;
 };
 
 type StatGroup = {
   title: string;
   stats: [string, string][];
 };
+
+const WORK_STATS = 2;
 
 const STAT_GROUPS: StatGroup[] = [
   {
@@ -70,7 +74,10 @@ const STAT_GROUPS: StatGroup[] = [
 
 export const CharacterStats = (props) => {
   const { data } = useBackend<Data>();
-  const { characters = [], current } = data;
+  const { characters = [], current, round_stats = {} } = data;
+  const roundStats = STAT_GROUPS[WORK_STATS].stats.filter(
+    ([key]) => round_stats[key],
+  );
   const startIndex = Math.max(
     0,
     characters.findIndex((character) => character.name === current),
@@ -81,6 +88,17 @@ export const CharacterStats = (props) => {
   return (
     <Window title="Statystyki postaci" width={520} height={620}>
       <Window.Content scrollable>
+        {roundStats.length > 0 && (
+          <Section title="W tej rundzie (zapis na koniec rundy)">
+            <LabeledList>
+              {roundStats.map(([key, label]) => (
+                <LabeledList.Item key={key} label={label}>
+                  {round_stats[key]}
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        )}
         {characters.length === 0 ? (
           <NoticeBox>
             Nie ma jeszcze statystyk. Zapisują się na koniec każdej rundy, w

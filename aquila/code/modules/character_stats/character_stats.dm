@@ -177,6 +177,7 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	return list(
 		"characters" = characters,
 		"current" = user.mind?.name,
+		"round_stats" = user.mind?.aquila_stats || list(),
 	)
 
 // --- Liczniki zdarzeń ---
