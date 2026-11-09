@@ -1,7 +1,8 @@
 // AQUILA: mapa taktyczna drużyn (pager i konsola XO).
-// Podkład to holomapa poziomu; kropki członków i znaczniki rysujemy tutaj.
+// Podkład to plan poziomu z serwera (JSON: rodzaje pól i obszary), rysowany tu na canvasie
+// z siatką sektorów; kropki członków i znaczniki rysujemy na nim.
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -64,8 +65,9 @@ export type MapLevel = { z: number; name: string };
 export type MapData = {
   z: number | null;
   levels: MapLevel[];
+  /** Plan poziomu (asset JSON) */
   url: string | null;
-  /** Pole w lewym dolnym rogu wyciętej mapy; jeden piksel to jedno pole */
+  /** Pole w lewym dolnym rogu wyciętej mapy */
   origin_x: number;
   origin_y: number;
   width: number;
@@ -101,6 +103,117 @@ export const MARKER_ICONS: Record<string, string> = {
   target: 'bullseye',
 };
 
+/** Plan poziomu z aq_generate_squad_map(): wiersze od góry, znak na pole */
+type MapLayout = {
+  width: number;
+  height: number;
+  tiles: string;
+  areas: string[];
+  area_width: number;
+  area_grid: string;
+};
+
+/** Bok sektora siatki w polach (SQUAD_MAP_SECTOR w squad_tactical_map.dm) */
+const SECTOR = 10;
+
+const TILE_COLORS: Record<string, string> = {
+  f: '#1e272c',
+  c: '#2b363c',
+  w: '#7d8e96',
+  d: '#a88a3c',
+  g: '#4f86a8',
+};
+
+const layoutCache: Record<string, MapLayout> = {};
+
+/** Znak z area_grid na liczbę 0-89 (aq_squad_map_code() w DM) */
+const decodeAreaCode = (char: string) => {
+  const code = char.charCodeAt(0);
+  return (code > 92 ? code - 1 : code) - 35;
+};
+
+/** Sektor siatki ("C2") dla pola planu liczonego od lewej i górnej krawędzi */
+const sectorName = (column: number, row: number) =>
+  `${String.fromCharCode(65 + Math.floor(column / SECTOR))}${Math.floor(row / SECTOR) + 1}`;
+
+const useMapLayout = (url: string | null) => {
+  const [layout, setLayout] = useState<MapLayout | null>(
+    url ? layoutCache[url] || null : null,
+  );
+  useEffect(() => {
+    if (!url) {
+      setLayout(null);
+      return;
+    }
+    if (layoutCache[url]) {
+      setLayout(layoutCache[url]);
+      return;
+    }
+    let cancelled = false;
+    setLayout(null);
+    fetch(url)
+      .then((response) => response.json())
+      .then((data: MapLayout) => {
+        layoutCache[url] = data;
+        if (!cancelled) {
+          setLayout(data);
+        }
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, [url]);
+  return layout;
+};
+
+const drawLayout = (
+  canvas: HTMLCanvasElement,
+  layout: MapLayout,
+  zoom: number,
+) => {
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    return;
+  }
+  ctx.fillStyle = '#0d1215';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (let row = 0; row < layout.height; row++) {
+    for (let column = 0; column < layout.width; column++) {
+      const color = TILE_COLORS[layout.tiles[row * layout.width + column]];
+      if (color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(column * zoom, row * zoom, zoom, zoom);
+      }
+    }
+  }
+  const cell = SECTOR * zoom;
+  ctx.strokeStyle = 'rgba(95, 191, 134, 0.45)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  for (let x = cell; x < canvas.width; x += cell) {
+    ctx.moveTo(x + 0.5, 0);
+    ctx.lineTo(x + 0.5, canvas.height);
+  }
+  for (let y = cell; y < canvas.height; y += cell) {
+    ctx.moveTo(0, y + 0.5);
+    ctx.lineTo(canvas.width, y + 0.5);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+  if (cell >= 30) {
+    ctx.fillStyle = 'rgba(95, 191, 134, 0.8)';
+    ctx.font = '10px monospace';
+    ctx.textBaseline = 'top';
+    for (let y = 0; y < canvas.height; y += cell) {
+      for (let x = 0; x < canvas.width; x += cell) {
+        ctx.fillText(sectorName(x / zoom, y / zoom), x + 2, y + 2);
+      }
+    }
+  }
+};
+
 const STATUS_RING: Record<string, string> = {
   ok: '#1a1a1a',
   injured: '#ffa500',
@@ -126,23 +239,61 @@ export const SquadTacticalMap = (props: MapProps) => {
   const longest = Math.max(map.width || 1, map.height || 1);
   // Domyślnie mapa mieści się w oknie (ok. 600 px na dłuższym boku)
   const [zoom, setZoom] = useState(
-    Math.min(8, Math.max(1, Math.round((600 / longest) * 2) / 2)),
+    // całkowity zoom: pole to pełne piksele, bez szwów między polami na canvasie
+    Math.min(8, Math.max(2, Math.floor(600 / longest))),
   );
+  const layout = useMapLayout(map.url);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [hover, setHover] = useState<string | null>(null);
   const scaledWidth = map.width * zoom;
   const scaledHeight = map.height * zoom;
+  useEffect(() => {
+    if (canvasRef.current && layout) {
+      drawLayout(canvasRef.current, layout, zoom);
+    }
+  }, [layout, zoom]);
   const toLeft = (x: number) => (x - map.origin_x + 0.5) * zoom;
   const toTop = (y: number) => (map.height - (y - map.origin_y) - 0.5) * zoom;
+
+  /** Pole planu pod kursorem: kolumna i wiersz od lewego górnego rogu */
+  const cellAt = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    return {
+      column: Math.floor((e.clientX - rect.left) / zoom),
+      row: Math.floor((e.clientY - rect.top) / zoom),
+    };
+  };
+
+  const handleHover = (e) => {
+    if (!layout) {
+      return;
+    }
+    const { column, row } = cellAt(e);
+    if (
+      column < 0 ||
+      row < 0 ||
+      column >= layout.width ||
+      row >= layout.height
+    ) {
+      setHover(null);
+      return;
+    }
+    const index = (row * layout.width + column) * layout.area_width;
+    const area =
+      layout.area_width === 1
+        ? decodeAreaCode(layout.area_grid[index])
+        : decodeAreaCode(layout.area_grid[index]) * 90 +
+          decodeAreaCode(layout.area_grid[index + 1]);
+    const areaName = area > 0 ? layout.areas[area - 1] : null;
+    setHover(`${sectorName(column, row)}${areaName ? ` · ${areaName}` : ''}`);
+  };
 
   const handleClick = (e) => {
     if (!placing || !onPlace || map.z === null) {
       return;
     }
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / zoom;
-    const py = (e.clientY - rect.top) / zoom;
-    const x = Math.floor(px) + map.origin_x;
-    const y = map.origin_y + map.height - 1 - Math.floor(py);
-    onPlace(x, y, map.z);
+    const { column, row } = cellAt(e);
+    onPlace(column + map.origin_x, map.origin_y + map.height - 1 - row, map.z);
   };
 
   const membersHere = squads.flatMap((squad) =>
@@ -170,7 +321,11 @@ export const SquadTacticalMap = (props: MapProps) => {
               </Button>
             </Stack.Item>
           ))}
-          <Stack.Item grow />
+          <Stack.Item grow>
+            <Box color="label" textAlign="right" fontSize="11px">
+              {hover || 'Najedź na mapę: sektor i obszar'}
+            </Box>
+          </Stack.Item>
           <Stack.Item>
             <Button
               icon="search-minus"
@@ -188,7 +343,7 @@ export const SquadTacticalMap = (props: MapProps) => {
         </Stack>
       </Stack.Item>
       <Stack.Item grow basis={0} style={{ overflow: 'auto' }}>
-        {!map.url ? (
+        {!map.url || !layout ? (
           <Box color="label" p={2}>
             Wczytywanie mapy poziomu...
           </Box>
@@ -201,12 +356,14 @@ export const SquadTacticalMap = (props: MapProps) => {
               cursor: placing ? 'crosshair' : 'default',
             }}
             onClick={handleClick}
+            onMouseMove={handleHover}
+            onMouseLeave={() => setHover(null)}
           >
-            <img
-              src={map.url}
+            <canvas
+              ref={canvasRef}
               width={scaledWidth}
               height={scaledHeight}
-              style={{ imageRendering: 'pixelated', display: 'block' }}
+              style={{ display: 'block' }}
             />
             {markersHere.map(({ squad, marker }) => (
               <img
@@ -245,6 +402,8 @@ export const SquadTacticalMap = (props: MapProps) => {
                     width: `${size}px`,
                     height: `${size}px`,
                     imageRendering: 'pixelated',
+                    filter:
+                      'drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000)',
                     opacity: member.status === 'ssd' ? 0.6 : 1,
                     outline: isUser
                       ? '2px solid #ffffff'

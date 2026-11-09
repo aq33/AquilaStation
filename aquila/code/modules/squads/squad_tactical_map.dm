@@ -1,10 +1,10 @@
-// Mapa taktyczna drużyn w oknach TGUI (pager i konsola XO). Podkład to holomapa poziomu
-// (nsv13/code/modules/holomap), generowana na żądanie także dla poziomów spoza okrętu:
-// wrogich okrętów, map abordażu, stacji z misji. Kropki członków i znaczniki rysuje okno.
+// Mapa taktyczna drużyn w oknach TGUI (pager i konsola XO). Podkład to plan poziomu (ściany, podłogi, korytarze,
+// drzwi, okna i obszary) wysyłany jako JSON i rysowany przez okno z siatką sektorów; generowany na żądanie także
+// dla poziomów spoza okrętu: wrogich okrętów, map abordażu, stacji z misji. Kropki członków i znaczniki rysuje okno.
 
-/// Poziom -> nazwa assetu PNG gotowej mapy
+/// Poziom -> nazwa assetu JSON z planem poziomu
 GLOBAL_LIST_EMPTY(squad_map_assets)
-/// Poziom -> list(origin_x, origin_y, width, height): wycinek holomapy, na którym coś jest
+/// Poziom -> list(origin_x, origin_y, width, height): wycinek poziomu, na którym coś jest
 GLOBAL_LIST_EMPTY(squad_map_bounds)
 /// Poziom -> world.time wygenerowania (mapy spoza okrętu odświeżamy, bo poziom bywa używany ponownie)
 GLOBAL_LIST_EMPTY(squad_map_generated_at)
@@ -14,6 +14,8 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 #define SQUAD_MAP_REFRESH_TIME (10 MINUTES)
 /// Margines wokół zabudowy na wyciętej mapie (w polach)
 #define SQUAD_MAP_MARGIN 4
+/// Bok sektora siatki mapy taktycznej (w polach); okno liczy sektory tak samo (SquadTacticalMap.tsx)
+#define SQUAD_MAP_SECTOR 10
 
 /// Nazwa assetu mapy poziomu albo null, gdy dopiero się generuje (wtedy zleca generowanie)
 /proc/aq_squad_map_asset(z)
@@ -26,19 +28,40 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		return asset_name
 	if(!GLOB.squad_map_generating[key])
 		GLOB.squad_map_generating[key] = TRUE
-		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(aq_generate_squad_map), z, !!asset_name && !is_station)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(aq_generate_squad_map), z)
 	return asset_name
 
-/// Wycina z holomapy poziomu prostokąt z zabudową (bez pustego kosmosu) i rejestruje go jako asset
-/proc/aq_generate_squad_map(z, regenerate = FALSE)
+/// Rodzaj pola na planie pokładu (znak w napisie "tiles"; okno rysuje go swoim kolorem)
+/proc/aq_squad_map_tile(turf/tile)
+	if(!tile || isspaceturf(tile) || istype(tile, /turf/open/openspace))
+		return "."
+	if(isclosedturf(tile))
+		return "w"
+	if(locate(/obj/machinery/door) in tile)
+		return "d"
+	if((locate(/obj/structure/window) in tile) || (locate(/obj/structure/grille) in tile))
+		return "g"
+	if(istype(tile.loc, /area/hallway))
+		return "c"
+	return "f"
+
+/// Plan pokładu zapisany jako asset JSON dla okien
+/proc/aq_generate_squad_map(z)
 	var/key = "[z]"
-	var/icon/map_icon = SSholomaps.extra_holomaps["[HOLOMAP_EXTRA_STATIONMAP]_[z]"]
-	if(!map_icon || regenerate)
-		SSholomaps.generate_holomap(z)
-		map_icon = SSholomaps.extra_holomaps["[HOLOMAP_EXTRA_STATIONMAP]_[z]"]
-	if(!map_icon)
-		GLOB.squad_map_generating -= key
-		return
+	var/list/layout = aq_build_squad_map_layout(z)
+	var/asset_name = "aq_squadmap_[z]_[world.time].json"
+	var/file_name = "data/aq_squadmap/[asset_name]"
+	fdel(file_name)
+	text2file(json_encode(layout), file_name)
+	SSassets.transport.register_asset(asset_name, fcopy_rsc(file_name))
+	fdel(file_name)
+	GLOB.squad_map_bounds[key] = list(layout["origin_x"], layout["origin_y"], layout["width"], layout["height"])
+	GLOB.squad_map_assets[key] = asset_name
+	GLOB.squad_map_generated_at[key] = world.time
+	GLOB.squad_map_generating -= key
+
+/// Plan poziomu: prostokąt z zabudową (bez pustego kosmosu), rodzaje pól i obszary
+/proc/aq_build_squad_map_layout(z)
 	var/min_x = world.maxx
 	var/min_y = world.maxy
 	var/max_x = 1
@@ -62,15 +85,63 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 	min_y = max(1, min_y - SQUAD_MAP_MARGIN)
 	max_x = min(world.maxx, max_x + SQUAD_MAP_MARGIN)
 	max_y = min(world.maxy, max_y + SQUAD_MAP_MARGIN)
-	var/icon/cropped = icon(map_icon)
-	cropped.Crop(HOLOMAP_CENTER_X + min_x, HOLOMAP_CENTER_Y + min_y, HOLOMAP_CENTER_X + max_x, HOLOMAP_CENTER_Y + max_y)
-	var/list/name_and_ref = generate_and_hash_rsc_file(cropped)
-	var/asset_name = "aq_squadmap_[name_and_ref[3]].png"
-	SSassets.transport.register_asset(asset_name, name_and_ref[1], name_and_ref[2])
-	GLOB.squad_map_bounds[key] = list(min_x, min_y, max_x - min_x + 1, max_y - min_y + 1)
-	GLOB.squad_map_assets[key] = asset_name
-	GLOB.squad_map_generated_at[key] = world.time
-	GLOB.squad_map_generating -= key
+	// Wiersze od góry (największe y), w wierszu od lewej; obszar pola to indeks w "areas" zapisany jednym
+	// albo dwoma znakami ASCII (od "#", z pominięciem odwrotnego ukośnika), żeby plik był mały
+	var/list/tile_rows = list()
+	var/list/area_ids = list()
+	var/list/area_names = list()
+	var/list/area_cells = list()
+	for(var/y in max_y to min_y step -1)
+		var/list/row = list()
+		for(var/x in min_x to max_x)
+			var/turf/tile = locate(x, y, z)
+			var/tile_char = aq_squad_map_tile(tile)
+			row += tile_char
+			var/area/tile_area = tile?.loc
+			if(tile_char == "." || !tile_area || istype(tile_area, /area/space))
+				area_cells += 0
+				continue
+			if(!area_ids[tile_area])
+				area_names += format_text(tile_area.name)
+				area_ids[tile_area] = length(area_names)
+			area_cells += area_ids[tile_area]
+		tile_rows += jointext(row, "")
+		CHECK_TICK
+	var/area_width = length(area_names) < 90 ? 1 : 2
+	var/list/area_chars = list()
+	for(var/cell in area_cells)
+		area_chars += area_width == 1 ? aq_squad_map_code(cell) : "[aq_squad_map_code(round(cell / 90))][aq_squad_map_code(cell % 90)]"
+	return list(
+		"origin_x" = min_x,
+		"origin_y" = min_y,
+		"width" = max_x - min_x + 1,
+		"height" = max_y - min_y + 1,
+		"tiles" = jointext(tile_rows, ""),
+		"areas" = area_names,
+		"area_width" = area_width,
+		"area_grid" = jointext(area_chars, ""),
+	)
+
+/// Liczba 0-89 jako jeden znak ASCII od "#" bez odwrotnego ukośnika (bezpieczny w JSON)
+/proc/aq_squad_map_code(number)
+	var/code = 35 + number
+	if(code >= 92)
+		code++
+	return ascii2text(code)
+
+/// Sektor siatki mapy taktycznej ("C2"): kolumny co 10 pól od lewej krawędzi planu, wiersze od góry
+/proc/aq_squad_sector(turf/target)
+	if(!target)
+		return null
+	var/list/bounds = GLOB.squad_map_bounds["[target.z]"]
+	if(!bounds)
+		aq_squad_map_asset(target.z) // plan jeszcze nie powstał: zlecamy, następny rozkaz będzie miał sektor
+		return null
+	var/column = round((target.x - bounds[1]) / SQUAD_MAP_SECTOR)
+	var/row = round((bounds[2] + bounds[4] - 1 - target.y) / SQUAD_MAP_SECTOR)
+	if(column < 0 || row < 0 || column > 25)
+		return null
+	return "[ascii2text(65 + column)][row + 1]"
 
 /// Nazwa poziomu dla gracza
 /proc/aq_squad_level_name(z)
@@ -279,3 +350,4 @@ GLOBAL_LIST_EMPTY(squad_marker_icon_cache)
 
 #undef SQUAD_MAP_REFRESH_TIME
 #undef SQUAD_MAP_MARGIN
+#undef SQUAD_MAP_SECTOR

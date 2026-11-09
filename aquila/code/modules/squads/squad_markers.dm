@@ -133,6 +133,9 @@
 		marker.show_to(member)
 	var/area/target_area = get_area(target_turf)
 	var/area_name = target_area ? format_text(target_area.name) : "nieznany obszar"
+	var/sector = aq_squad_sector(target_turf)
+	if(sector)
+		area_name = "[area_name] ([sector])"
 	log_game("[key_name(placer)] placed a [marker_type] marker for squad [name] at [AREACOORD(target_turf)]")
 	aq_squad_screen_alert(squad_marker_order_text(marker_type, area_name), "[squad_marker_pl(marker_type)] - [placer.real_name]", placer, 4 SECONDS)
 	aq_log_message(placer.real_name, squad_marker_order_text(marker_type, area_name), "marker")

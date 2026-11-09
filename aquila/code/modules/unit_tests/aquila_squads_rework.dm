@@ -147,13 +147,13 @@
 
 /datum/unit_test/aquila_squad_marker_pointer/Run()
 	var/atom/movable/screen/aq_marker_pointer/pointer = allocate(/atom/movable/screen/aq_marker_pointer, null, SQUAD_MARKER_ATTACK, "#ff0000")
-	// cel 40 kratek na wschód przy widoku 15x15: wskaźnik przy prawej krawędzi (6,4 kratki), na wysokości środka
+	// cel 40 kratek na wschód przy widoku 15x15: wskaźnik przy prawej krawędzi (5,8 kratki), na wysokości środka
 	pointer.aim_at(40, 0, 7, 7)
-	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(6.4 * world.icon_size)],CENTER:0", "Wskaźnik nie stoi przy prawej krawędzi ekranu: [pointer.screen_loc]")
+	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(5.8 * world.icon_size)],CENTER:0", "Wskaźnik nie stoi przy prawej krawędzi ekranu: [pointer.screen_loc]")
 	TEST_ASSERT(findtext(pointer.maptext, "40"), "Wskaźnik nie pokazuje odległości do znacznika")
 	// cel na skos: przycięty do bliższej krawędzi (tu górnej), proporcje kierunku zachowane
 	pointer.aim_at(10, 20, 7, 7)
-	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(10 * 6.4 / 20 * world.icon_size)],CENTER:[round(6.4 * world.icon_size)]", "Wskaźnik na skos nie trzyma kierunku do celu: [pointer.screen_loc]")
+	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(10 * 5.8 / 20 * world.icon_size)],CENTER:[round(5.8 * world.icon_size)]", "Wskaźnik na skos nie trzyma kierunku do celu: [pointer.screen_loc]")
 	TEST_ASSERT(aq_deck_offset(run_loc_floor_bottom_left.z, run_loc_floor_bottom_left.z) == 0, "Ten sam poziom nie daje różnicy pokładów 0")
 	TEST_ASSERT(isnull(aq_deck_offset(run_loc_floor_bottom_left.z, world.maxz + 1)), "Poziom spoza stosu pięter liczy się jako pokład okrętu")
 
@@ -177,5 +177,30 @@
 	pda.AltClick(member)
 	TEST_ASSERT(!pda.aq_squad_pager && pager.loc == member, "Alt-klik nie wyjął pagera z PDA")
 	TEST_ASSERT(!pda.aq_squad_pager_action, "Przycisk pagera został po wyjęciu pagera")
+
+/// Plan poziomu dla mapy taktycznej: pole na każdy kafelek wycinka, podłoga i ściana rozpoznane, sektory „C2”
+/datum/unit_test/aquila_squad_map_layout
+
+/datum/unit_test/aquila_squad_map_layout/Run()
+	var/turf/floor = run_loc_floor_bottom_left
+	var/list/layout = aq_build_squad_map_layout(floor.z)
+	var/width = layout["width"]
+	var/height = layout["height"]
+	TEST_ASSERT(length(layout["tiles"]) == width * height, "Plan ma [length(layout["tiles"])] pól zamiast [width * height]")
+	TEST_ASSERT(length(layout["area_grid"]) == width * height * layout["area_width"], "Siatka obszarów nie pokrywa planu")
+	var/column = floor.x - layout["origin_x"]
+	var/row = layout["origin_y"] + height - 1 - floor.y
+	var/tile_char = copytext(layout["tiles"], row * width + column + 1, row * width + column + 2)
+	TEST_ASSERT(tile_char == "f" || tile_char == "c", "Podłoga pod testem jest na planie jako „[tile_char]”")
+	var/turf/wall = locate(/turf/closed) in block(locate(layout["origin_x"], layout["origin_y"], floor.z), locate(layout["origin_x"] + width - 1, layout["origin_y"] + height - 1, floor.z))
+	if(wall)
+		TEST_ASSERT(aq_squad_map_tile(wall) == "w", "Ściana nie jest na planie ścianą")
+	GLOB.squad_map_bounds["[floor.z]"] = list(layout["origin_x"], layout["origin_y"], width, height)
+	var/turf/top_left = locate(layout["origin_x"], layout["origin_y"] + height - 1, floor.z)
+	TEST_ASSERT(aq_squad_sector(top_left) == "A1", "Lewy górny róg planu to sektor [aq_squad_sector(top_left)] zamiast A1")
+	var/turf/next = locate(min(world.maxx, layout["origin_x"] + 25), layout["origin_y"] + height - 12, floor.z)
+	if(next.x == layout["origin_x"] + 25)
+		TEST_ASSERT(aq_squad_sector(next) == "C2", "Pole 25 w prawo i 11 w dół to sektor [aq_squad_sector(next)] zamiast C2")
+	GLOB.squad_map_bounds -= "[floor.z]"
 
 #undef TEST_ASSERT
