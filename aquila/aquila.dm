@@ -1827,6 +1827,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
+#include "code\modules\unit_tests\aquila_radiation.dm"
 #include "code\modules\unit_tests\aquila_audyt_rosliny.dm"
 #include "code\modules\unit_tests\aquila_jetpack_drift.dm"
 #include "code\modules\unit_tests\aquila_audyt_antagi.dm"
