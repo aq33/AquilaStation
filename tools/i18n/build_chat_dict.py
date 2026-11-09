@@ -6,7 +6,7 @@ wskazuje, które przechwycone wartości wstawić i gdzie. Panel (tgui-panel/chat
 dopasowuje szablony do przychodzących wiadomości.
 
 Źródła (po kolei, późniejsze wygrywają): en_pairs_upstream.json i en_pairs.json
-(generowane, poza repo) albo en_all.json, potem en_translated.json i en_manual.json.
+(generowane, poza repo) albo en_all.json, potem en_translated.json, en_original.json i en_manual.json.
 Zapisuje scalony en_all.json, który jest w repo.
 
 Użycie (z katalogu repo, po extract_pairs.py):
@@ -328,7 +328,8 @@ def load_sources(args):
 
     Świeże en_pairs.json (+ oryginały portów) zastępują bazę; bez nich (brak historii
     albo klonów innych serwerów) bazą jest en_all.json z repo. Na wierzch idą
-    tłumaczenia agentów/ręczne (en_translated.json), a na sam koniec en_manual.json.
+    tłumaczenia agentów/ręczne (en_translated.json), oryginały portów, które je zastępują
+    (en_original.json), a na sam koniec en_manual.json.
     """
     if os.path.exists(args.pairs):
         merged = dict(load_json(args.upstream))
@@ -338,6 +339,8 @@ def load_sources(args):
     # zdania z okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py)
     merged.update(load_json(jsx_runs.OUT))
     merged.update(load_json(args.translated))
+    # oryginały portów znalezione dla tłumaczeń zwrotnych i złych par (tools/i18n/match_originals.py)
+    merged.update(load_json(args.original))
     merged.update(load_json(args.manual))
     with open(args.all, "w", encoding="utf-8") as f:
         json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
@@ -358,6 +361,19 @@ def load_ui_pairs():
         json.dump(dict(sorted(pairs.items())), f, ensure_ascii=False, indent=0)
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
     return pairs
+
+
+WINDOW_EMBED = re.compile(r"\$\{(?:[^{}]|\{[^{}]*\})*\}|\[[^\[\]]*\]")
+
+
+def misaligned(pl, en):
+    """Para wygląda na przesuniętą: angielska strona po polsku, inna liczba wstawek (ich napisy
+    bywają przetłumaczone) albo rażąco inna długość, jak w suspicious_history z match_originals.py."""
+    if ep.PL_DIACRITICS.search(en):
+        return True
+    if len(WINDOW_EMBED.findall(pl)) != len(WINDOW_EMBED.findall(en)):
+        return True
+    return len(pl) > 25 and not (0.4 < len(en) / len(pl) < 2.2)
 
 
 # polskie słowa bez polskich liter, które są też angielskimi słowami (nie odrzucamy ich par)
@@ -429,6 +445,7 @@ def main():
                     help="krótkie stałe dla DM (aquila/code/modules/i18n/translate.dm)")
     ap.add_argument("--slice", nargs="*", default=DEFAULT_SLICE)
     ap.add_argument("--manual", default="strings/i18n/en_manual.json")
+    ap.add_argument("--original", default="strings/i18n/en_original.json")
     args = ap.parse_args()
 
     pairs = load_sources(args)
@@ -486,6 +503,7 @@ def main():
             (wanted if "${" in lit else names).add(lit)
 
     manual = load_json(args.manual)
+    original = load_json(args.original)
 
     exact, templates, stats = {}, [], collections.Counter()
     window_keys = set()  # klucze exact dla słownika okien (bez stałych tylko z czatu)
@@ -532,6 +550,10 @@ def main():
                 # okna: tłumaczenie z kodu okien, jeśli jest; ogólne exact zostaje dla czatu
                 # en_manual.json poprawia także tablicę okien (złe pary z historii TSX)
                 ui_en = None if pl in manual else ui_pairs.get(pl)
+                # oryginał portu (en_original.json) wygrywa z parą z historii okien, gdy ta wygląda na
+                # przesuniętą ("Arkusze: ${data.sheet_name}" -> " sheets")
+                if ui_en and pl in original and misaligned(pl, ui_en):
+                    ui_en = None
                 if ui_en:
                     ui_value = "".join(text for kind, text in parse(ui_en) if kind == "t").strip()
                 else:
