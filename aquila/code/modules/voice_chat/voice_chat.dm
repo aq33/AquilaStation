@@ -76,10 +76,16 @@
 	/// world.time ostatniego otwarcia strony w tej rundzie.
 	var/opened_at
 
+// Tokeny graczy i polecenie nagrywania nie mogą być dostępne przez VV ani Advanced ProcCall:
+// token pozwala mówić za postać, a wywołanie start_recording() włączyłoby graczowi mikrofon bez wciśnięcia klawisza.
+GENERAL_PROTECT_DATUM(/datum/voice_chat_session)
+
 /datum/voice_chat_session/New(ckey, token, last_used)
 	src.ckey = ckey
 	src.token = token
 	src.last_used = isnull(last_used) ? world.realtime : last_used
+
+GENERAL_PROTECT_DATUM(/datum/controller/subsystem/voice_chat)
 
 SUBSYSTEM_DEF(voice_chat)
 	name = "Czat głosowy"
@@ -403,6 +409,8 @@ SUBSYSTEM_DEF(voice_chat)
 	/// Kanał przekazywany do SSvoice_chat.start_recording()
 	var/voice_channel
 
+GENERAL_PROTECT_DATUM(/datum/keybinding/client/voice)
+
 /datum/keybinding/client/voice/can_use(client/user)
 	return SSvoice_chat.enabled
 
@@ -410,8 +418,24 @@ SUBSYSTEM_DEF(voice_chat)
 	. = ..()
 	if(.)
 		return
+	// Nagranie tylko przy fizycznie wciśniętym klawiszu (keyDown wpisuje go do keys_held przed bindami),
+	// nie z wywołania down() z innego miejsca
+	if(!key_is_held(user))
+		return
 	SSvoice_chat.start_recording(user, voice_channel)
 	return TRUE
+
+/// Któryś klawisz przypisany do tego bindu jest teraz wciśnięty przez gracza
+/datum/keybinding/client/voice/proc/key_is_held(client/user)
+	var/list/held = user.keys_held
+	for(var/bound_key in user.prefs?.key_bindings)
+		if(!(name in user.prefs.key_bindings[bound_key]))
+			continue
+		// „Shift-N”: w keys_held jest sam klawisz bez modyfikatora
+		var/list/parts = splittext(bound_key, "-")
+		if(held?[parts[length(parts)]])
+			return TRUE
+	return FALSE
 
 /datum/keybinding/client/voice/up(client/user)
 	SSvoice_chat.stop_recording(user)
