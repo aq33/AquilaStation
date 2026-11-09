@@ -276,3 +276,20 @@
 
 #undef AQ_FACTORY_MISFIRE_CHANCE
 #undef AQ_OVERHEAT_RECOVERY
+
+// Zestaw konserwacji w pudełku drużyny, gdy zestaw zawiera broń (nie wchodzi do listy zwrotów, więc zużyty zestaw nie daje grzywny)
+/obj/machinery/squad_vendor/ui_act(action, params)
+	var/datum/squad_loadout/loadout = action == "vend" ? locate(params["item_id"]) : null
+	. = ..()
+	if(!. || !istype(loadout))
+		return
+	var/has_gun = FALSE
+	for(var/path in loadout.items)
+		if(ispath(path, /obj/item/gun))
+			has_gun = TRUE
+			break
+	if(!has_gun)
+		return
+	for(var/obj/item/storage/box/squad_kit/box in get_turf(src))
+		if(!(locate(/obj/item/gun_maintenance_kit) in box))
+			new /obj/item/gun_maintenance_kit(box)

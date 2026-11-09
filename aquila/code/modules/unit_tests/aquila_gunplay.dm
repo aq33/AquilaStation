@@ -227,5 +227,57 @@
 	TEST_ASSERT_EQUAL(gun.spread, base_spread, "Removing the sight did not restore spread")
 	TEST_ASSERT(gun.try_attach(simple, user), "Sight slot stayed taken after removing the other sight")
 
+/// Kule zostawiają dziury w naszych ścianach (Paradise), a rykoszet zależy od kąta: prosto w ścianę nigdy, po stycznej czasem
+/datum/unit_test/aquila_gunplay_wall_hits
+
+/datum/unit_test/aquila_gunplay_wall_hits/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/wall_spot = locate(start.x, start.y + 2, start.z)
+	var/old_type = wall_spot.type
+	var/turf/closed/wall/wall = wall_spot.ChangeTurf(/turf/closed/wall)
+	var/dents = 0
+	for(var/i in 1 to 8)
+		var/obj/item/projectile/bullet/c9mm/bullet = new(start)
+		bullet.aq_from_gun = TRUE
+		bullet.ricochets_max = 0
+		bullet.fire(0)
+		for(var/j in 1 to 20)
+			if(QDELETED(bullet))
+				break
+			sleep(1)
+	dents = LAZYLEN(wall.dent_decals)
+	var/head_on = 0
+	var/grazing = 0
+	var/obj/item/projectile/bullet/c9mm/probe = new(start)
+	probe.aq_from_gun = TRUE
+	probe.forceMove(locate(start.x, start.y + 1, start.z))
+	for(var/i in 1 to 40)
+		probe.Angle = 0 // prosto w ścianę od południa
+		if(probe.check_ricochet(wall))
+			head_on++
+		probe.Angle = 82 // prawie równolegle do ściany
+		if(probe.check_ricochet(wall))
+			grazing++
+	var/grazing_angle = probe.get_grazing_angle(wall)
+	qdel(probe)
+	wall.ChangeTurf(old_type)
+	TEST_ASSERT(dents > 0, "Eight bullets into a wall left no bullet holes")
+	TEST_ASSERT_EQUAL(head_on, 0, "A bullet fired straight into the wall ricocheted")
+	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees (grazing angle [grazing_angle]) never ricocheted in 40 tries")
+
+/// Licznik amunicji: po broni energetycznej zwykła broń wraca do zwykłego tła z cyframi
+/datum/unit_test/aquila_gunplay_ammo_hud
+
+/datum/unit_test/aquila_gunplay_ammo_hud/Run()
+	var/atom/movable/screen/aq_ammo_counter/hud = new
+	var/obj/item/gun/energy/laser/laser_gun = allocate(/obj/item/gun/energy/laser)
+	var/obj/item/gun/ballistic/automatic/pistol/pistol = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	laser_gun.fill_ammo_hud(hud)
+	TEST_ASSERT(findtext(hud.icon_state, "eammo_counter"), "Energy gun did not show the battery counter")
+	pistol.fill_ammo_hud(hud)
+	TEST_ASSERT_EQUAL(hud.icon_state, "backing", "Ballistic counter kept the energy background")
+	TEST_ASSERT(!hud.maptext, "Ballistic counter kept the energy percentage text")
+	qdel(hud)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

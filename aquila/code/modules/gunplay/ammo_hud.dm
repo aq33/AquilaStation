@@ -30,6 +30,8 @@
 	oth_t = new_t
 	oth_h = new_h
 	indicator = new_indicator
+	// Licznik broni energetycznej ma inne tło i tekst: po zmianie broni wracamy do zwykłego wyświetlacza
+	icon_state = "backing"
 	maptext = null
 	cut_overlays()
 	var/list/new_overlays = list()

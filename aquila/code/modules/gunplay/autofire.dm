@@ -28,9 +28,15 @@
 	if(!initial(canMouseDown))
 		canMouseDown = TRUE
 
-/// Odstęp między strzałami ognia ciągłego (jak cooldown pojedynczego strzału w process_fire())
+/obj/item/gun
+	/// Odstęp między strzałami ognia ciągłego (ds); null = z fire_rate broni
+	var/autofire_delay
+
+/// Odstęp między strzałami ognia ciągłego: dwa razy szybciej niż klikanie (fire_rate), najwyżej 12 strzałów na sekundę
 /obj/item/gun/proc/get_autofire_delay()
-	return fire_rate ? 10 / fire_rate : CLICK_CD_RANGE
+	if(autofire_delay)
+		return autofire_delay
+	return fire_rate ? max(5 / fire_rate, 0.8) : 1.5
 
 /// Czy wciśnięcie przycisku na tym obiekcie ma od razu strzelić (zamiast czekać na zwykły Click)
 /obj/item/gun/proc/should_fire_on_press(atom/target, mob/living/user, list/modifiers)
@@ -151,6 +157,9 @@
 		stop_firing()
 		return PROCESS_KILL
 	shooter.face_atom(target)
+	// Seria ma własny rytm: cooldown pojedynczego strzału (ranged_cooldown, semicd) by ją dławił
+	gun.ranged_cooldown = 0
+	gun.semicd = FALSE
 	gun.afterattack(target, shooter, FALSE, autofire_params)
 	if(!gun.can_shoot())
 		stop_firing()

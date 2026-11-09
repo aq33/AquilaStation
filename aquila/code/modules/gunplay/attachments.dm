@@ -95,14 +95,81 @@
 	if(max_attachments && LAZYLEN(current_attachments) < max_attachments)
 		. += "<span class='info'>Można na nią założyć dodatki (celowniki, chwyt, laser). Zdejmuje się je <b>śrubokrętem</b>.</span>"
 
-/obj/item/gun/update_overlays()
+// Dodatki są widoczne na broni jak latarka i bagnet: rysujemy je razem z nimi (get_attachment_overlays() przeżywa cut_overlays()
+// w update_icon() broni). Miejsce montażu liczymy z obrysu sprite'a broni (lufa w prawo, jak w ikonach obiektów):
+// celownik na górnej krawędzi środka broni, chwyt i laser pod korpusem (bez magazynka i spustu, które wiszą niżej).
+
+/// "[icon]|[icon_state]" -> list("sight" = list(x, y), "grip" = ..., "laser" = ...)
+GLOBAL_LIST_EMPTY(aq_gun_mount_points)
+
+/obj/item/gun/proc/get_mount_points()
+	var/key = "[icon]|[icon_state]"
+	var/list/cached = GLOB.aq_gun_mount_points[key]
+	if(cached)
+		return cached
+	var/icon/sprite = icon(icon, icon_state, SOUTH, 1)
+	var/width = sprite.Width()
+	var/height = sprite.Height()
+	var/list/col_top = new /list(width)
+	var/list/col_run_bottom = new /list(width)
+	var/left = 0
+	var/right = 0
+	for(var/x in 1 to width)
+		var/top = 0
+		for(var/y in height to 1 step -1)
+			if(sprite.GetPixel(x, y))
+				top = y
+				break
+		if(!top)
+			continue
+		var/bottom = top
+		while(bottom > 1 && sprite.GetPixel(x, bottom - 1))
+			bottom--
+		col_top[x] = top
+		col_run_bottom[x] = bottom
+		if(!left)
+			left = x
+		right = x
+	if(!left)
+		left = 8
+		right = 24
+		for(var/x in left to right)
+			col_top[x] = 20
+			col_run_bottom[x] = 12
+	var/sight_x = round(left + (right - left) * 0.45)
+	var/sight_top = 0
+	for(var/x in max(sight_x - 1, 1) to min(sight_x + 1, width))
+		sight_top = max(sight_top, col_top[x] || 0)
+	var/grip_x = aq_nearest_column(col_top, round(left + (right - left) * 0.7))
+	var/laser_x = aq_nearest_column(col_top, round(left + (right - left) * 0.86))
+	cached = list(
+		"sight" = list(sight_x, sight_top + 1),
+		"grip" = list(grip_x, col_run_bottom[grip_x] - 1),
+		"laser" = list(laser_x, col_run_bottom[laser_x] - 1),
+	)
+	GLOB.aq_gun_mount_points[key] = cached
+	return cached
+
+/proc/aq_nearest_column(list/col_top, x)
+	for(var/offset in 0 to length(col_top))
+		for(var/candidate in list(x - offset, x + offset))
+			if(candidate >= 1 && candidate <= length(col_top) && col_top[candidate])
+				return candidate
+	return x
+
+/obj/item/gun/get_attachment_overlays()
 	. = ..()
-	var/position = 0
+	if(!LAZYLEN(current_attachments))
+		return
+	var/list/mounts = get_mount_points()
 	for(var/obj/item/attachment/attachment as anything in current_attachments)
-		var/mutable_appearance/badge = mutable_appearance(attachment.icon, "[attachment.icon_state]_a")
-		badge.pixel_x = position * 6
-		. += badge
-		position++
+		var/list/point = mounts[attachment.mount_slot]
+		if(!point)
+			continue
+		var/mutable_appearance/mounted = mutable_appearance('aquila/icons/obj/guns/attachment_mounted.dmi', "[attachment.mounted_state][attachment.is_on && attachment.mounted_has_on ? "_on" : ""]")
+		mounted.pixel_x = point[1] - 16
+		mounted.pixel_y = point[2] - 16
+		. += mounted
 
 /obj/item/gun/handle_atom_del(atom/A)
 	if(A in current_attachments)
@@ -156,10 +223,17 @@
 	var/mob/current_user
 	/// Akcje dodawane do broni
 	var/list/actions_list = list()
+	/// Gdzie siedzi na broni: "sight", "grip" albo "laser"
+	var/mount_slot = "sight"
+	/// Stan w aquila/icons/obj/guns/attachment_mounted.dmi
+	var/mounted_state = "simple_sight"
+	/// Ma osobny stan "_on" na broni
+	var/mounted_has_on = FALSE
 
 /obj/item/attachment/update_icon()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
-	return ..()
+	. = ..()
+	attached_gun?.update_icon() // stan na broni (laser i termowizja świecą po włączeniu)
 
 /obj/item/attachment/Destroy()
 	if(attached_gun)
@@ -269,6 +343,8 @@
 	desc = "Wyprofilowany chwyt przedni, dzięki któremu broń pewniej leży w dłoniach i mniej podskakuje przy strzale."
 	icon_state = "vert_grip"
 	steady = 0.3
+	mount_slot = "grip"
+	mounted_state = "vert_grip"
 
 // --- Celowniki ---
 
@@ -297,12 +373,15 @@
 	desc = "Zaawansowany celownik, który rzuca na szkiełko hologram znaku celowniczego. Nie zasłania widoku i pozwala precyzyjnie celować."
 	icon_state = "holo_sight"
 	accuracy = 6
+	mounted_state = "holo_sight"
 
 /obj/item/attachment/scope/infrared
 	name = "celownik termowizyjny"
 	desc = "Kamera wyłapująca promieniowanie podczerwone. Obraz jest kiepski, więc celuje się nim gorzej, ale widać przez nią ciepło ciał."
 	icon_state = "ifr_sight"
 	accuracy = -2
+	mounted_state = "ifr_sight"
+	mounted_has_on = TRUE
 	actions_list = list(/datum/action/item_action/attachment_toggle/infrared)
 
 /datum/action/item_action/attachment_toggle/infrared
@@ -348,6 +427,9 @@
 	name = "celownik laserowy"
 	desc = "Przerośnięty wskaźnik laserowy. Kropka pokazuje, w co celujesz, a wiązkę widzą wszyscy dookoła."
 	icon_state = "laser_sight"
+	mount_slot = "laser"
+	mounted_state = "laser_sight"
+	mounted_has_on = TRUE
 	actions_list = list(/datum/action/item_action/attachment_toggle/laser, /datum/action/item_action/change_laser_sight_color)
 	/// Kolor wiązki
 	var/laser_color = "#ff0000"
@@ -531,10 +613,6 @@
 	plane = ABOVE_LIGHTING_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/item/attachment/laser_sight/update_icon()
-	. = ..()
-	if(attached_gun)
-		attached_gun.update_icon()
 
 // Wiązka idzie za kursorem
 /datum/aq_mouse_tracker/onMouseMove(object, location, control, params)

@@ -85233,6 +85233,7 @@
 "szybkie powtarzanie": "rapid repeater",
 "szybko przechodzi ci obrzydzenie": "disgust wears off quickly",
 "szybkostrzelność: <b>[round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s</b>": "rate of fire: <b>[round(10 / max(get_autofire_delay(), 0.1), 0.1)] shots/s</b>",
+"szybkostrzelność: <b>[single_rate] strz./s</b>[full_auto ? \" (ogień ciągły [round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s)\" : \"\"]": "rate of fire: <b>[single_rate] shots/s</b>[full_auto ? \" (full auto [round(10 / max(get_autofire_delay(), 0.1), 0.1)] shots/s)\" : \"\"]",
 "szybkoładowacz (.357 wyczynowe)": "speed loader (.357 Match)",
 "szybkoładowacz (.357)": "speed loader (.357)",
 "szybkoładowacz (.38 Hot Shot)": "speed loader (.38 Hot Shot)",

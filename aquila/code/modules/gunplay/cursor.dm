@@ -104,21 +104,31 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		return FALSE // kursor na własnej postaci
 	return TRUE
 
+/// Kierunek (N/S/E/W) od postaci do kursora
+/mob/living/proc/get_cursor_facing_dir()
+	if(abs(aq_cursor_dx) > abs(aq_cursor_dy))
+		return aq_cursor_dx > 0 ? EAST : WEST
+	return aq_cursor_dy > 0 ? NORTH : SOUTH
+
 /mob/living/proc/face_cursor_if_needed()
 	if(!should_face_cursor())
 		return
-	var/new_dir
-	if(abs(aq_cursor_dx) > abs(aq_cursor_dy))
-		new_dir = aq_cursor_dx > 0 ? EAST : WEST
-	else
-		new_dir = aq_cursor_dy > 0 ? NORTH : SOUTH
+	var/new_dir = get_cursor_facing_dir()
 	if(new_dir != dir)
 		setDir(new_dir)
 
-/mob/living/Moved(atom/OldLoc, Dir)
-	. = ..()
-	// W ruchu postać dalej patrzy na kursor (chód bokiem i tyłem jak w Novie)
-	face_cursor_if_needed()
+// W combat mode postać nie odwraca się w stronę ruchu: idzie bokiem albo tyłem, cały czas patrząc na kursor (Nova).
+// Blokujemy zmianę kierunku u źródła, zamiast obracać postać z powrotem po kroku (to dawało migotanie).
+/mob/living/setDir(newdir)
+	if(client && aq_cursor_known && combat_mode && should_face_cursor())
+		newdir = get_cursor_facing_dir()
+	var/old_dir = dir
+	. = ..(newdir)
+	// Miniatura broni w ręku jest rysowana pod konkretny kierunek, więc po obrocie trzeba ją przerysować
+	if(dir != old_dir && client)
+		var/obj/item/gun/held_gun = get_active_held_item()
+		if(istype(held_gun) && held_gun.is_aim_posed(src))
+			update_inv_hands()
 
 // --- Kursor rozrzutu ---
 

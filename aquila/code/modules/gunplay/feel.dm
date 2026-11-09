@@ -6,6 +6,10 @@
 
 /// Kule z broni palnej: tyle odbić maks.
 #define AQ_BULLET_RICOCHETS 2
+/// Od jakiego kąta do ściany (stopnie od prostopadłej) kula może się odbić
+#define AQ_RICOCHET_MIN_ANGLE 45
+#define AQ_RICOCHET_MIN_CHANCE 10
+#define AQ_RICOCHET_MAX_CHANCE 75
 /// Co który nabój w karabinach maszynowych jest smugowy
 #define AQ_MG_TRACER_INTERVAL 5
 
@@ -82,6 +86,47 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	playsound(get_turf(src), pick(GLOB.aq_bullet_hit_sounds["ricochet"]), 50, TRUE, -1)
 	do_sparks(1, FALSE, get_turf(A))
 
+/// Pod jakim kątem do ściany leci pocisk: 0 = prosto w nią, 90 = równolegle; null = odlatuje od niej
+/obj/item/projectile/proc/get_grazing_angle(atom/A)
+	var/turf/projectile_turf = get_turf(src)
+	var/face_direction = get_dir(A, projectile_turf)
+	if(!face_direction)
+		return null
+	var/incidence = abs(GET_ANGLE_OF_INCIDENCE(dir2angle(face_direction), (Angle + 180)))
+	if(incidence > 90 && incidence < 270)
+		return null
+	if(incidence >= 270)
+		incidence = 360 - incidence
+	return incidence
+
+// Kula z broni ręcznej odbija się od twardej powierzchni tylko pod ostrym kątem, i to losowo:
+// od AQ_RICOCHET_MIN_ANGLE szansa rośnie liniowo od AQ_RICOCHET_MIN_CHANCE do AQ_RICOCHET_MAX_CHANCE przy strzale prawie równoległym.
+// Przeciwpancerne i wiązki odbijają się rzadziej, amunicja wyczynowa (.38/.357 match) zawsze i pod większym kątem.
+/obj/item/projectile/check_ricochet(atom/A)
+	if(!aq_from_gun || !A)
+		return ..()
+	var/grazing = get_grazing_angle(A)
+	if(isnull(grazing))
+		return FALSE
+	var/trick_shot = initial(ricochet_chance) >= 100
+	var/min_angle = trick_shot ? 25 : AQ_RICOCHET_MIN_ANGLE
+	if(grazing < min_angle)
+		return FALSE
+	if(trick_shot)
+		return TRUE
+	var/chance = AQ_RICOCHET_MIN_CHANCE + (grazing - min_angle) / (90 - min_angle) * (AQ_RICOCHET_MAX_CHANCE - AQ_RICOCHET_MIN_CHANCE)
+	if(armour_penetration >= 20)
+		chance *= 0.4
+	if(flag != "bullet")
+		chance *= 0.5
+	chance *= ricochet_decay_chance ** ricochets
+	return prob(chance)
+
+/obj/item/projectile/check_ricochet_flag(atom/A)
+	if(aq_from_gun)
+		return (A.flags_ricochet & (RICOCHET_HARD | RICOCHET_SHINY))
+	return ..()
+
 // --- Wspólna konfiguracja pocisku z broni ręcznej ---
 
 /obj/item/projectile
@@ -108,6 +153,9 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 /// Pocisk wylatuje z tej broni: smuga, rykoszety, świst
 /obj/item/gun/proc/setup_fired_projectile(obj/item/projectile/projectile)
 	projectile.aq_from_gun = TRUE
+	// Rykoszety dla każdej broni: kąt i szansę liczy check_ricochet(), więc handle_ricochet() nie odrzuca już kątów
+	projectile.ricochets_max = max(projectile.ricochets_max, AQ_BULLET_RICOCHETS)
+	projectile.ricochet_incidence_leeway = 0
 	if(projectile.flag != "bullet" || projectile.hitscan)
 		return
 	var/bright = projectile.tracer_round
@@ -117,9 +165,6 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 			shots_since_tracer = 0
 			bright = TRUE
 	projectile.aq_tail_state = bright ? "trail_bright" : "trail"
-	if(!projectile.ricochets_max)
-		projectile.ricochets_max = AQ_BULLET_RICOCHETS
-		projectile.ricochet_chance = projectile.armour_penetration >= 20 ? 10 : 30
 
 /obj/item/projectile/Range()
 	if(wound_falloff_tile && wound_bonus != CANT_WOUND)
@@ -243,33 +288,58 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	if(!QDELETED(user) && user.is_holding(src))
 		user.update_inv_hands()
 
+/// Szerokość ikony broni w pikselach (karabiny bywają 64x32), żeby miniatura była wyśrodkowana
+GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
+
+/proc/aq_icon_width(icon_file)
+	var/key = "[icon_file]"
+	if(isnull(GLOB.aq_gun_icon_widths[key]))
+		var/icon/sample = icon(icon_file)
+		GLOB.aq_gun_icon_widths[key] = sample.Width()
+	return GLOB.aq_gun_icon_widths[key]
+
+/// Czy broń w ręku jest teraz trzymana „w gotowości” (po strzale albo przy celowaniu)
+/obj/item/gun/proc/is_aim_posed(mob/living/holder)
+	return world.time < aq_aim_pose_until || (istype(holder) && holder.aq_ads_gun == src)
+
+// Po strzale i przy celowaniu w ręku jest pomniejszony sprite samej broni, wyprostowany w stronę, w którą patrzy postać,
+// zamiast zwykłego sprite'a broni wiszącej w dół. Odrzut lekko podbija lufę.
 /obj/item/gun/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
 	. = ..()
-	if(!isinhands || world.time >= aq_aim_pose_until || !ismob(loc))
+	if(!isinhands || !isliving(loc))
+		return
+	var/mob/living/holder = loc
+	if(!is_aim_posed(holder))
 		return
 	var/mutable_appearance/inhand = .
 	if(!istype(inhand))
 		return
-	var/mob/holder = loc
-	var/turn_angle = 0
-	var/shift_x = 0
-	var/shift_y = 2
+	var/mutable_appearance/mini = mutable_appearance(icon, icon_state)
+	mini.layer = inhand.layer
+	mini.plane = inhand.plane
+	mini.appearance_flags = inhand.appearance_flags | PIXEL_SCALE
+	var/left_hand = (holder.get_held_index_of_item(src) % 2) == 1
+	var/center_shift = -(aq_icon_width(icon) - world.icon_size) / 2
+	var/matrix/pose = matrix()
 	switch(holder.dir)
 		if(EAST)
-			turn_angle = -(25 + aq_aim_pose_kick)
-			shift_x = 3
+			pose.Scale(0.6, 0.6)
+			pose.Turn(-aq_aim_pose_kick)
+			pose.Translate(center_shift + 8, -3)
 		if(WEST)
-			turn_angle = 25 + aq_aim_pose_kick
-			shift_x = -3
-		if(NORTH)
-			shift_y = 3
+			pose.Scale(-0.6, 0.6)
+			pose.Turn(aq_aim_pose_kick)
+			pose.Translate(center_shift - 8, -3)
 		if(SOUTH)
-			shift_y = 1
-	var/matrix/pose = matrix()
-	if(turn_angle)
-		pose.Turn(turn_angle)
-	pose.Translate(shift_x, shift_y)
-	inhand.transform = pose
+			pose.Scale(0.55, 0.55)
+			pose.Turn(90)
+			pose.Translate(center_shift + (left_hand ? 7 : -7), -6)
+		else
+			pose.Scale(0.55, 0.55)
+			pose.Turn(-90)
+			pose.Translate(center_shift + (left_hand ? -7 : 7), 0)
+	mini.transform = pose
+	return mini
 
 // --- Statystyki broni w opisie ---
 
@@ -293,7 +363,8 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	if(shown.armour_penetration)
 		stats += "przebicie pancerza: <b>[shown.armour_penetration]</b>"
 	stats += "rozrzut: <b>[round(spread * 0.55, 0.1)]°</b>[requires_wielding ? " (z jednej ręki [round((spread + spread_unwielded) * 0.55, 0.1)]°)" : ""]"
-	stats += "szybkostrzelność: <b>[round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s</b>"
+	var/single_rate = round(fire_rate ? fire_rate : 10 / CLICK_CD_RANGE, 0.1)
+	stats += "szybkostrzelność: <b>[single_rate] strz./s</b>[full_auto ? " (ogień ciągły [round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s)" : ""]"
 	. += "<span class='notice'>[jointext(stats, ", ")].</span>"
 
 /// Pocisk do pokazania w opisie: z komory albo z typu amunicji
@@ -302,3 +373,23 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 
 #undef AQ_BULLET_RICOCHETS
 #undef AQ_MG_TRACER_INTERVAL
+#undef AQ_RICOCHET_MIN_ANGLE
+#undef AQ_RICOCHET_MIN_CHANCE
+#undef AQ_RICOCHET_MAX_CHANCE
+
+// Dziury po kulach w ścianach: fabryczny „bullet_hole” to ciemna plamka 4×4 px, niewidoczna na ciemnych ścianach Paradise.
+// Nasze trzy warianty mają jasny, odpryśnięty brzeg i osmalenie. Cios (WALL_DENT_HIT) zostaje po staremu.
+/turf/closed/wall/add_dent(denttype, x = rand(-8, 8), y = rand(-8, 8))
+	if(denttype != WALL_DENT_SHOT)
+		return ..()
+	if(LAZYLEN(dent_decals) >= 15) // MAX_DENT_DECALS z walls.dm (#undef na końcu pliku)
+		return
+	var/mutable_appearance/decal = mutable_appearance('aquila/icons/effects/bullet_holes.dmi', "bullet_hole[rand(1, 3)]", BULLET_HOLE_LAYER)
+	decal.pixel_x = x
+	decal.pixel_y = y
+	if(LAZYLEN(dent_decals))
+		cut_overlay(dent_decals)
+		dent_decals += decal
+	else
+		dent_decals = list(decal)
+	add_overlay(dent_decals)

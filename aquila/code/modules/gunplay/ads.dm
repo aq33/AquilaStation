@@ -52,21 +52,17 @@
 		return FALSE
 	if(gun.zoomed)
 		return FALSE
-	if(gun.requires_wielding && gun.weapon_weight >= WEAPON_MEDIUM && !gun.is_wielded)
+	if(gun.requires_wielding && gun.weapon_weight >= WEAPON_HEAVY && !gun.is_wielded)
 		balloon_alert(src, "weź broń w obie ręce")
 		return FALSE
 	aq_ads_gun = gun
 	RegisterSignal(gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_TWOHANDED_UNWIELD, COMSIG_PARENT_QDELETING), PROC_REF(on_ads_gun_lost))
 	RegisterSignal(src, list(COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_STUN), PROC_REF(on_ads_interrupted))
 	add_movespeed_modifier(/datum/movespeed_modifier/aq_ads)
-	// Widok najeżdża w stronę kursora (albo przed siebie, jeśli kursora nie znamy)
-	var/angle = aq_cursor_known ? SIMPLIFY_DEGREES(ATAN2(aq_cursor_dy, aq_cursor_dx)) : dir2angle(dir)
-	var/pixels = gun.get_ads_zoom() * world.icon_size
-	aq_ads_offset_x = round(sin(angle) * pixels)
-	aq_ads_offset_y = round(cos(angle) * pixels)
-	animate(client, pixel_x = aq_ads_offset_x, pixel_y = aq_ads_offset_y, time = 2.5, easing = SINE_EASING | EASE_OUT, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
+	update_ads_view(2.5)
 	overlay_fullscreen("aq_ads", /atom/movable/screen/fullscreen/aq_ads, 1)
 	set_ads_blur(TRUE)
+	update_inv_hands() // broń w ręku prostuje się (feel.dm)
 	playsound_local(get_turf(src), 'sound/weapons/gun_magazine_insert_empty_2.ogg', 20, TRUE)
 	update_gun_cursor()
 	return TRUE
@@ -85,6 +81,32 @@
 	clear_fullscreen("aq_ads", 2)
 	set_ads_blur(FALSE)
 	update_gun_cursor()
+	update_inv_hands()
+
+/// Widok przy celowaniu idzie za kursorem: przesunięcie w jego stronę, tym większe, im dalej mierzysz (do zasięgu broni)
+/mob/living/proc/update_ads_view(time = 1)
+	if(!aq_ads_gun || !client)
+		return
+	var/max_pixels = aq_ads_gun.get_ads_zoom() * world.icon_size
+	var/want_x
+	var/want_y
+	if(aq_cursor_known)
+		// aq_cursor_dx/dy liczymy względem postaci (z odjętym przesunięciem widoku), więc to punkt w świecie
+		var/distance = sqrt(aq_cursor_dx ** 2 + aq_cursor_dy ** 2)
+		var/scale = distance ? min(distance * 0.6, max_pixels) / distance : 0
+		want_x = round(aq_cursor_dx * scale)
+		want_y = round(aq_cursor_dy * scale)
+	else
+		var/angle = dir2angle(dir)
+		want_x = round(sin(angle) * max_pixels)
+		want_y = round(cos(angle) * max_pixels)
+	var/delta_x = want_x - aq_ads_offset_x
+	var/delta_y = want_y - aq_ads_offset_y
+	if(abs(delta_x) < 2 && abs(delta_y) < 2)
+		return
+	aq_ads_offset_x = want_x
+	aq_ads_offset_y = want_y
+	animate(client, pixel_x = delta_x, pixel_y = delta_y, time = time, easing = SINE_EASING | EASE_OUT, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
 
 /mob/living/proc/on_ads_gun_lost(datum/source)
 	SIGNAL_HANDLER
@@ -133,8 +155,12 @@
 	var/list/modifiers = params2list(params)
 	var/aiming_click = istype(user) && LAZYACCESS(modifiers, RIGHT_CLICK) && !LAZYACCESS(modifiers, SHIFT_CLICK) && !LAZYACCESS(modifiers, CTRL_CLICK) && !LAZYACCESS(modifiers, ALT_CLICK)
 	if(aiming_click && user.combat_mode && ads_allowed && !initial(canMouseDown) && user.get_active_held_item() == src && (!istype(object, /atom/movable/screen) || istype(object, /atom/movable/screen/click_catcher)))
-		if(user.start_ads(src))
-			user.client.aq_ignore_next_click = TRUE
+		// Prawy przycisk z bronią w combat mode zawsze celuje i nigdy nie strzela (wyjątek: przepchnięcie stojącego obok)
+		var/atom/clicked = object
+		if(isliving(clicked) && get_dist(user, clicked) <= 1)
+			return ..()
+		user.client.aq_ignore_next_click = TRUE
+		user.start_ads(src)
 		return
 	return ..()
 
@@ -178,3 +204,35 @@
 #undef AQ_ADS_RECOIL_SPREAD_MULT
 #undef AQ_ADS_RECOIL_GAIN_MULT
 #undef AQ_ADS_FILTER
+
+// --- Kursor celownika przy celowaniu (jak na filmie: kursor zmienia się w przyrządy broni) ---
+
+/// Stan kursora z aquila/icons/effects/ads_cursor.dmi: przyrządy mechaniczne albo założony celownik
+/obj/item/gun/proc/get_ads_cursor_state()
+	for(var/obj/item/attachment/scope/sight in current_attachments)
+		if(istype(sight, /obj/item/attachment/scope/holo))
+			return "holo"
+		if(istype(sight, /obj/item/attachment/scope/infrared))
+			return "thermal"
+		return "dot"
+	return "iron"
+
+GLOBAL_LIST_EMPTY(aq_ads_cursor_icons)
+
+/proc/aq_get_ads_cursor_icon(state)
+	var/icon/cached = GLOB.aq_ads_cursor_icons[state]
+	if(cached)
+		return cached
+	var/icon/result = new
+	result.Insert(icon('aquila/icons/effects/ads_cursor.dmi', state), "")
+	GLOB.aq_ads_cursor_icons[state] = result
+	return result
+
+/mob/living/get_gun_cursor_icon()
+	if(aq_ads_gun && aq_ads_gun == get_active_held_item())
+		return aq_get_ads_cursor_icon(aq_ads_gun.get_ads_cursor_state())
+	return ..()
+
+/datum/aq_mouse_tracker/onMouseMove(object, location, control, params)
+	. = ..()
+	owner?.update_ads_view()
