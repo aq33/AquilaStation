@@ -1,7 +1,7 @@
 // AQUILA - Su-437 Sabre jako shuttle (jak promy na Aurorze), na mechanice z shuttle_craft.dm. W hangarze stoi jego
 // wnętrze (szablon shuttle'a na porcie /obj/docking_port/stationary/sabre), a jednostka overmapy czeka niewidoczna
-// przy włazie w lewej gondoli: pusta ręka = wejście, przedmioty i wąż paliwowy = obsługa jednostki (tankowanie,
-// części, naprawa, karta), przeciągnięcie skrzyni = ładownia. Start ze steru w kokpicie.
+// przy włazie w lewej gondoli: pusta ręka = wejście, przedmioty = obsługa jednostki (części, naprawa, karta),
+// przeciągnięcie skrzyni = ładownia. Start ze steru w kokpicie. Paliwo: plazma z kanistra w ładowni (niżej).
 // Wnętrza: aquila/_maps/shuttles/sabre/ (kadłub i wyposażenie ze starego wnętrza w rezerwacji).
 
 /area/shuttle/sabre
@@ -99,6 +99,7 @@
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/shuttle_link(obj/docking_port/mobile/sabre/port)
 	port.craft = src
+	fuel_heaters = null
 	for(var/area/shuttle/sabre/A in port.shuttle_areas)
 		A.sabre = src
 		A.name = name
@@ -226,7 +227,7 @@
 
 /turf/closed/indestructible/dropship/sabre_hatch
 	name = "właz Sabre"
-	desc = "Właz w gondoli Sabre. Pustą ręką się wchodzi, a tu też tankuje się jednostkę, montuje części i naprawia kadłub."
+	desc = "Właz w gondoli Sabre. Pustą ręką się wchodzi, a tu też montuje się części i naprawia kadłub. Paliwo (plazmę) wlewa się kanistrem w ładowni."
 
 /turf/closed/indestructible/dropship/sabre_hatch/proc/get_sabre()
 	var/area/shuttle/sabre/A = loc
@@ -266,14 +267,113 @@
 		return ..()
 	return S.MouseDrop_T(target, user)
 
-// Wąż paliwowy na włazie tankuje Sabre, który czeka przy nim ukryty
+// Paliwo: plazma w podgrzewaczach we wnętrzu, jak w promach zbudowanych Wyznacznikiem. W ładowni stoi złącze
+// z podgrzewaczem: przykręcony kanister plazmy napełnia podgrzewacz. Zbiornik paliwa z wyposażenia jednostki
+// wyznacza tylko pojemność (wskaźnik i tankowanie w locie); myśliwce dalej latają na kriopaliwie.
+
+/// Jednostki paliwa Sabre z jednego mola gazu w podgrzewaczu (kanister plazmy napełnia prawie cały zbiornik)
+#define SABRE_FUEL_PER_MOLE 2
+
+/obj/structure/overmap/small_craft/transport/sabre/shuttle
+	/// Podgrzewacze we wnętrzu, z których leci paliwo
+	var/list/fuel_heaters
+	/// Kiedy znów przeszukać wnętrze (dobudowany podgrzewacz)
+	var/fuel_heaters_refresh = 0
+
+/// Podgrzewacze we wnętrzu, które dają paliwo (zamknięty panel, przykręcone), jak w consume_fuel() promów zbudowanych
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/get_fuel_heaters()
+	if(world.time >= fuel_heaters_refresh)
+		fuel_heaters = null
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in fuel_heaters)
+		if(QDELETED(H))
+			fuel_heaters = null
+			break
+	if(!length(fuel_heaters))
+		fuel_heaters = list()
+		fuel_heaters_refresh = world.time + 5 SECONDS
+		for(var/area/shuttle/sabre/A in linked_areas)
+			for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H in A)
+				fuel_heaters += H
+	. = list()
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in fuel_heaters)
+		if(H.anchored && !H.panel_open)
+			. += H
+
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/get_fuel()
+	var/moles = 0
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in get_fuel_heaters())
+		var/datum/gas_mixture/air_contents = H.airs[1]
+		moles += air_contents.total_moles()
+	return min(moles * SABRE_FUEL_PER_MOLE, get_max_fuel())
+
+/// Ustawia paliwo w podgrzewaczach (plazma), rozdzielone po równo
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/set_fuel(amount)
+	var/list/heaters = get_fuel_heaters()
+	if(!length(heaters))
+		return FALSE
+	amount = max(amount, 0)
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in heaters)
+		var/datum/gas_mixture/air_contents = H.airs[1]
+		air_contents.clear()
+		air_contents.set_moles(GAS_PLASMA, amount / SABRE_FUEL_PER_MOLE / length(heaters))
+		air_contents.set_temperature(T20C)
+		H.update_parents()
+	return amount
+
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/use_fuel(force = FALSE)
+	if(!engines_active() && !force)
+		return FALSE
+	var/fuel_consumption = 0.5 * (loadout.get_slot(HARDPOINT_SLOT_ENGINE)?.tier)
+	var/amount = user_thrust_dir ? fuel_consumption + 0.25 : fuel_consumption
+	var/list/heaters = get_fuel_heaters()
+	for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/H as anything in heaters)
+		H.consumeFuel(amount / SABRE_FUEL_PER_MOLE / length(heaters))
+	if(get_fuel() >= amount)
+		return TRUE
+	set_master_caution(TRUE)
+	return FALSE
+
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/empty_fuel_tank()
+	set_fuel(0)
+
+/// Podgrzewacz paliwa Sabre: ten sam co w promach zbudowanych, na start z odrobiną plazmy. Wpuszczony w podłogę
+/// ładowni (da się przejść, a w górniczym stoi na nim skrzynia na rudę), bo wnętrze nie ma wolnego pola.
+/obj/machinery/atmospherics/components/unary/shuttle/heater/sabre
+	name = "podgrzewacz paliwa Sabre"
+	desc = "Trzyma plazmę, na której lata Sabre. Napełnia się go kanistrem plazmy przykręconym do złącza obok."
+	density = FALSE
+	layer = LOW_OBJ_LAYER
+
+/obj/machinery/atmospherics/components/unary/shuttle/heater/sabre/Initialize(mapload)
+	. = ..()
+	var/datum/gas_mixture/air_contents = airs[1]
+	air_contents.set_moles(GAS_PLASMA, rand(250, 500))
+
+// Wąż kriopaliwa nie tankuje Sabre: paliwem jest plazma z kanistra w ładowni
 /obj/item/cryofuel_nozzle/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /turf/closed/indestructible/dropship/sabre_hatch))
-		var/turf/closed/indestructible/dropship/sabre_hatch/hatch = target
-		var/obj/structure/overmap/small_craft/transport/sabre/shuttle/S = hatch.get_sabre()
-		if(S?.shuttle_docked_at)
-			return ..(S, user, proximity)
+		to_chat(user, span_warning("Sabre lata na plazmie: przykręć kanister plazmy do złącza paliwa w jego ładowni."))
+		return
 	return ..()
+
+// Tankowanie w locie z Sabre albo do Sabre: paliwo przez get_fuel()/set_fuel(), bo plazmy nie da się przelać
+// do zbiornika kriopaliwa myśliwca i odwrotnie (jednostki paliwa liczą się tak samo)
+/obj/item/fighter_component/primary/utility/refuel/transfer_fuel(obj/structure/overmap/small_craft/us, obj/structure/overmap/small_craft/them)
+	if(!istype(us, /obj/structure/overmap/small_craft/transport/sabre/shuttle) && !istype(them, /obj/structure/overmap/small_craft/transport/sabre/shuttle))
+		return ..()
+	var/transfer_amount = clamp(them.get_max_fuel() - them.get_fuel(), 0, fuel_transfer_rate)
+	if(transfer_amount <= 0)
+		return span_notice("Jednostka docelowa jest w pełni zatankowana.")
+	if(us.get_fuel() <= minimum_fuel_to_keep)
+		return span_warning("Poziom paliwa poniżej minimalnego bezpiecznego poziomu transferu.")
+	var/their_fuel = them.get_fuel()
+	if(!them.set_fuel(their_fuel + transfer_amount))
+		return span_warning("Jednostka docelowa nie przyjmuje paliwa z węża.")
+	us.set_fuel(us.get_fuel() - transfer_amount)
+	us.relay('nsv13/sound/effects/fighters/refuel.ogg')
+	them.relay('nsv13/sound/effects/fighters/refuel.ogg')
+
+#undef SABRE_FUEL_PER_MOLE
 
 // Ster: w doku pyta o start, potem steruje jak ster promu desantowego
 
