@@ -2,19 +2,25 @@
 // Bez tego plama światła latarki to sam sprite i wizualnie świeci przez ściany.
 //
 // Każde włączone światło ruchome ma obiekt w swoim kaflu z trójkątami cienia za nieprzezroczystymi kaflami w zasięgu
-// swojej plamy (light_shadow_geometry.dm). Obiekt jest na nierysowanej płaszczyźnie AQ_LIGHT_SHADOW_PLANE, a ta płaszczyzna
-// odwrotną maską wycina światło latarek na O_LIGHTING_VISUAL_PLANE. Światło stałe (narożnikowe) zostaje bez zmian.
+// swojej plamy (light_shadow_geometry.dm). Obiekt się nie rysuje (render_target z gwiazdką), tylko służy za odwrotną maskę
+// plamy TEGO światła (filtr na visible_mask). Światło stałe (narożnikowe) i inne latarki zostają bez zmian.
+// Wcześniej maska była wspólna dla płaszczyzny O_LIGHTING_VISUAL_PLANE i cień jednej latarki wycinał światło drugiej
+// (czarne kliny w oświetlonych miejscach, gdy za ścianą świeciła inna latarka).
 //
-// Ograniczenia prototypu:
-// - cień liczony ze środka kafla światła, przy kroku przeskakuje o kafel, a nie przesuwa się płynnie,
-// - maska jest wspólna dla płaszczyzny: cień jednej latarki wycina też światło innej latarki, ale tylko w obrębie
-//   własnej plamy światła (trójkąty kończą się na jej brzegu), więc nie sięga do dalszych pomieszczeń.
+// Ograniczenia:
+// - cień liczony ze środka kafla światła; w trakcie kroku maska jedzie razem z plamą, więc cień przez chwilę
+//   jest przesunięty o część kafla względem ścian,
+// - bufor render_target jest przycinany do narysowanej zawartości, więc obiekt ma KEEP_TOGETHER i dwie prawie
+//   przezroczyste kotwice (alfa 1) w rogach kwadratu wokół kafla światła: środek maski wypada na środku kafla.
 
 /// Wyłącznik prototypu. Zmieniaj przez aq_set_light_shadows() (Advanced ProcCall), wtedy od razu chowa i odtwarza cienie.
 GLOBAL_VAR_INIT(aq_light_shadows_enabled, TRUE)
 
 /// Włączone światła ruchome stojące na kaflu. Dla zmian nieprzezroczystości kafli i wyłącznika.
 GLOBAL_LIST_EMPTY(aq_shadow_lights)
+
+/// Kolejny numer maski (nazwa render_target obiektu cienia)
+GLOBAL_VAR_INIT(aq_light_shadow_serial, 0)
 
 /// "dx,dy,ściany,zasięg" -> lista wyglądów trójkątów cienia kafla przesuniętego o (dx, dy) od światła. Wspólne dla wszystkich świateł.
 GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
@@ -34,6 +40,21 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	GLOB.aq_light_shadow_cache[key] = appearances
 	return appearances
 
+/// Dwa prawie przezroczyste trójkąty na kwadrat o połowie boku half wokół środka kafla światła (kotwice bufora maski)
+/proc/aq_light_shadow_anchors(half)
+	var/key = "anchor[half]"
+	. = GLOB.aq_light_shadow_cache[key]
+	if(.)
+		return
+	var/list/appearances = list()
+	for(var/matrix/triangle in list(aq_shadow_triangle_matrix(-half, -half, half, -half, -half, half), aq_shadow_triangle_matrix(half, half, -half, half, half, -half)))
+		var/mutable_appearance/anchor = mutable_appearance('aquila/icons/effects/light_shadow.dmi', "tri", FLOAT_LAYER, FLOAT_PLANE)
+		anchor.transform = triangle
+		anchor.alpha = 1
+		appearances += anchor
+	GLOB.aq_light_shadow_cache[key] = appearances
+	return appearances
+
 /// Włącza albo wyłącza cienie wszystkim światłom od razu
 /proc/aq_set_light_shadows(enabled)
 	GLOB.aq_light_shadows_enabled = !!enabled
@@ -48,26 +69,27 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = NO_STEPS
+	// Bez KEEP_TOGETHER obiekt bez ikony, z samymi nakładkami, nie daje maski albo daje ją przesuniętą (sprawdzone na 516)
+	appearance_flags = KEEP_TOGETHER
+
+/obj/effect/abstract/aq_light_shadow/New(loc, ...)
+	// Własna maska tego światła (gwiazdka: obiekt się nie rysuje). W New, bo komponent czyta nazwę od razu,
+	// a w trakcie ładowania mapy Initialize przychodzi później
+	render_target = "*AQ_LIGHT_SHADOW_[++GLOB.aq_light_shadow_serial]"
+	return ..()
+
+/obj/effect/abstract/aq_light_shadow/Initialize(mapload)
+	. = ..()
+	// Miękki brzeg cienia zamiast schodków po rozciągnięciu trójkąta
+	add_filter("aq_shadow_soft", 1, gauss_blur_filter(1.5))
 
 /atom/movable/screen/plane_master/aq_light_shadows
 	name = "light shadows plane master"
 	plane = AQ_LIGHT_SHADOW_PLANE
 	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	// Nazwa z gwiazdką, więc płaszczyzna nigdy się nie rysuje. Właściwą nazwę dostaje tylko plane master HUD-u (backdrop),
-	// żeby kopie z okien kamer nie podmieniały maski.
+	// Nazwa z gwiazdką, więc płaszczyzna nigdy się nie rysuje (obiekty cienia mają własne render_target)
 	render_target = "*AQ_LIGHT_SHADOWS_UNUSED"
-
-/atom/movable/screen/plane_master/aq_light_shadows/backdrop(mob/mymob)
-	render_target = AQ_LIGHT_SHADOW_RENDER_TARGET
-	clear_filters()
-	// Miękki brzeg cienia zamiast schodków po rozciągnięciu trójkąta
-	add_filter("aq_shadow_soft", 1, gauss_blur_filter(1.5))
-
-/atom/movable/screen/plane_master/o_light_visual/backdrop(mob/mymob)
-	. = ..()
-	remove_filter("aq_light_shadows")
-	add_filter("aq_light_shadows", 1, alpha_mask_filter(render_source = AQ_LIGHT_SHADOW_RENDER_TARGET, flags = MASK_INVERSE))
 
 // Drzwi, żaluzje, budowa i rozbiórka ścian: światła ruchome w pobliżu przeliczają cień, także gdy stoją
 /turf/reconsider_lights()
@@ -84,6 +106,8 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	var/obj/effect/abstract/aq_light_shadow/aq_shadow
 	/// Zestaw trójkątów ostatnio położony na aq_shadow, żeby nie wysyłać tych samych nakładek ponownie
 	var/aq_shadow_key
+	/// Maska cienia ostatnio ustawiona na visible_mask (render_source i przesunięcie), null: bez maski
+	var/aq_mask_key
 
 /datum/component/overlay_lighting/Destroy()
 	GLOB.aq_shadow_lights -= src
@@ -118,6 +142,7 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 		return
 	GLOB.aq_shadow_lights |= src
 	if(!GLOB.aq_light_shadows_enabled)
+		aq_set_shadow_mask(null)
 		aq_shadow_key = null
 		if(aq_shadow?.loc)
 			aq_shadow.overlays.Cut()
@@ -153,6 +178,7 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 		shadow_overlays += aq_light_shadow_appearances(dx, dy, hidden_faces, reach)
 		key += "[dx],[dy],[hidden_faces];"
 	if(!length(shadow_overlays))
+		aq_set_shadow_mask(null)
 		aq_shadow_key = null
 		if(aq_shadow?.loc)
 			aq_shadow.overlays.Cut()
@@ -160,12 +186,32 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 		return
 	if(!aq_shadow)
 		aq_shadow = new
+	// Środek plamy (visible_mask) względem środka kafla światła w pikselach; maska ma leżeć środkiem na kaflu światła
+	var/mask_x = current_holder.pixel_x + current_holder.pixel_w
+	var/mask_y = current_holder.pixel_y + current_holder.pixel_z
+	if(directional)
+		mask_x += directional_offset_x + (range - 1) * world.icon_size
+		mask_y += directional_offset_y + (range - 1) * world.icon_size
+	aq_set_shadow_mask(aq_shadow.render_target, -mask_x, -mask_y)
 	key = "[reach]|[key]"
 	if(aq_shadow.loc == light_turf && aq_shadow_key == key)
 		return
 	if(aq_shadow.loc != light_turf)
 		aq_shadow.abstract_move(light_turf)
+	// Kotwice dalej niż najdalszy wierzchołek trójkąta (zasięg do 1,5 raza dalej przy ścianach na brzegu plamy)
+	shadow_overlays += aq_light_shadow_anchors(CEILING(reach * 1.5 + 72, world.icon_size))
 	aq_shadow.overlays = shadow_overlays
 	aq_shadow_key = key
+
+/// Ustawia odwrotną maskę cienia na plamie światła. Wołać tylko, gdy światło jest włączone i stoi na kaflu
+/// (visible_mask wisi wtedy w underlays trzymającego), bo zmiana wyglądu wymaga zdjęcia i ponownego założenia plamy.
+/datum/component/overlay_lighting/proc/aq_set_shadow_mask(render_source, offset_x = 0, offset_y = 0)
+	var/key = render_source ? "[render_source];[offset_x];[offset_y]" : null
+	if(aq_mask_key == key)
+		return
+	aq_mask_key = key
+	current_holder.underlays -= visible_mask
+	visible_mask.filters = render_source ? filter(type = "alpha", render_source = render_source, flags = MASK_INVERSE, x = offset_x, y = offset_y) : null
+	current_holder.underlays += visible_mask
 
 #undef AQ_OVERLAY_LIGHTING_ON

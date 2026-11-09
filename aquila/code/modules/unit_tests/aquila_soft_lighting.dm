@@ -30,7 +30,7 @@
 	TEST_ASSERT(length(aq_light_shadow_matrices(1, 0)) == 6, "Kafel na wschód od światła powinien mieć 6 trójkątów cienia")
 	TEST_ASSERT(length(aq_light_shadow_matrices(1, 0, 4)) == 4, "Ściana stykająca się z sąsiednią ścianą rzuca cień")
 	TEST_ASSERT(length(aq_light_shadow_matrices(2, 2)) == 4, "Kafel po przekątnej powinien mieć 2 tylne ściany")
-	// Koniec cienia nie dalej niż podany zasięg (wspólna maska nie może wycinać światła innych latarek dalej)
+	// Koniec cienia nie dalej niż podany zasięg (kotwice maski liczą się z zasięgu)
 	var/reach = 4 * world.icon_size
 	var/center_offset = AQ_SHADOW_TRI_SIZE / 2 + AQ_SHADOW_TRI_MARGIN - world.icon_size / 2
 	var/half_tri = AQ_SHADOW_TRI_SIZE / 2
