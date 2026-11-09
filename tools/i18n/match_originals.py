@@ -444,6 +444,8 @@ def split(args):
         if in_window(pl, places) and (CODEY_JS.search(pl) or CODEY_JS.search(orig)):
             return None, "tekst okna z kodem"
         orig = rewrap(pl, orig)
+        if orig == cur:
+            return None, "po przeniesieniu spanu to obecny tekst"
         if "\n" in orig and "\\n" in cur:
             return None, "prawdziwe nowe linie"
         if not history and case_only(cur, orig):
@@ -503,6 +505,15 @@ NAME_MAPS = ["aquila/code/modules/client/accessory_names_pl.dm",
 NAME_MAP_PAIR = re.compile(r'^\s*"((?:\\.|[^"\\])+)"\s*=\s*"((?:\\.|[^"\\])+)"', re.M)
 # krótki tekst (do 3 słów) używany w kilku plikach: oryginał z jednego miejsca nie pasuje do pozostałych
 SHARED_SHORT_WORDS = 3
+
+
+def end_mark(text):
+    """Dwukropek albo wielokropek na końcu tekstu (bez znaczników i \\n): etykieta "Kołki:" i "Szukaj..."
+    tracą sens bez nich, a polski tekst decyduje o wyglądzie."""
+    text = re.sub(r"(?:<[^>]*>|\\n|\s)+$", "", text)
+    if text.endswith(":"):
+        return ":"
+    return "..." if text.endswith(("...", "…")) else ""
 
 
 def setting_conflict(pl, current, en):
@@ -589,6 +600,8 @@ class Merger:
             files = self.places.get(pl, ())
             if len(files) >= 2 and len(lm.WORD.findall(ep.strip_embeds(pl).lower())) <= SHARED_SHORT_WORDS:
                 return self.reject("krótki tekst w kilku plikach")
+            if end_mark(pl) and end_mark(pl) != end_mark(en):
+                return self.reject("inny znak na końcu (etykieta, wielokropek)")
         if en == pl and source == "fix":
             self.identity.add(pl)
         else:

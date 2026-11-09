@@ -180,11 +180,12 @@ describe('słownik okien z tools/i18n/build_chat_dict.py', () => {
     );
     expect(template).toBeDefined();
     setDictionary({ version: 1, exact: {}, templates: [template] } as any);
+    // brzmienie z oryginału tg (CommunicationsConsole/Main.tsx), tools/i18n/match_originals.py
     expect(translateHtml('Wyślij wiadomość do [NIEZNANE]')).toBe(
-      'Send a message to [UNKNOWN]',
+      'Send message to [UNKNOWN]',
     );
     expect(translateHtml('Wyślij wiadomość do CentComu')).toBe(
-      'Send a message to CentCom',
+      'Send message to CentCom',
     );
   });
 });
