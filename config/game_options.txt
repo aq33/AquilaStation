@@ -118,6 +118,7 @@ PROBABILITY CULT 1
 PROBABILITY NUCLEAR 1
 PROBABILITY INFILTRATION 1
 PROBABILITY DARKSPAWN 1
+PROBABILITY MALF 1
 ## Very rare gamemodes -- 4% chance
 PROBABILITY INTERNAL_AFFAIRS 1
 ## Extremely rare gamemodes -- 1% or 2% chance
@@ -282,6 +283,7 @@ MIN_POP TRAITORVAMP 10
 MIN_POP BLOODLING 15
 MIN_POP INFILTRATION 5
 MIN_POP DARKSPAWN 20
+MIN_POP MALF 20
 
 ## WEIGHTED ROTATION (MASTER_MODE weighted) ###
 ## Every round a threat pool is drawn first (equal chances by default), then a mode from that pool.
@@ -305,6 +307,7 @@ WEIGHTED_POOL NUCLEAR high
 WEIGHTED_POOL WIZARD high
 WEIGHTED_POOL GANG high
 WEIGHTED_POOL DARKSPAWN high
+WEIGHTED_POOL MALF high
 
 ## Most roundstart antagonists of a mode in the weighted rotation, no matter the population: a random amount from 1 to this.
 ## Latejoin antagonists are off in these modes. Modes without an entry are not limited.

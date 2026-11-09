@@ -186,6 +186,7 @@
 #include "code\game\gamemodes\station_goals.dm"
 #include "code\game\gamemodes\darkspawn\darkspawn.dm"
 #include "code\game\gamemodes\spy\spy.dm"
+#include "code\game\gamemodes\malf\malf.dm"
 #include "code\game\gamemodes\vampire\vampire.dm"
 #include "code\game\machinery\battery.dm"
 #include "code\game\machinery\computer\_computer.dm"

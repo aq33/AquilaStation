@@ -1,6 +1,7 @@
 // AQUILA - Weighted rotation: every 30-60 minutes ghosts are offered a midround antagonist,
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
-// The heavy ones (slaughter demon, space dragon, blob, bingles, swarmers, wizard, nuclear assault) are only offered in rounds from the high pool.
+// The heavy ones (slaughter demon, space dragon, blob, bingles, swarmers, wizard, nuclear assault, malfunctioning AI) are only offered in rounds from the high pool.
+// The malfunctioning AI is not a ghost role: the living AI player turns malf, if they enabled "Wadliwa SI" in their antagonist preferences.
 // Blood worms, spiders, sinful demons, sentient diseases, pirates, infiltrators and xenomorphs are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
@@ -11,6 +12,7 @@
 /// Offers that are not a random event, spawned here instead
 #define WEIGHTED_MIDROUND_WIZARD "wizard"
 #define WEIGHTED_MIDROUND_NUCLEAR "nuclear"
+#define WEIGHTED_MIDROUND_MALF "malf"
 
 /datum/weighted_ghost_midround
 	/// Custom offers (wizard, nuclear) that already ran this round, each one runs once
@@ -124,6 +126,8 @@
 		else if(!event.canSpawnEvent(players, SSticker.mode.config_tag))
 			continue
 		. += event
+	if(heavy && !(WEIGHTED_MIDROUND_MALF in used_offers) && length(malf_ai_candidates()))
+		. += WEIGHTED_MIDROUND_MALF
 	// The wizard and nuclear team poll ghosts through pollGhostCandidates(), which gives nobody with station sentience roles off
 	if(!heavy || !(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return
@@ -158,6 +162,9 @@
 	else if(offer == WEIGHTED_MIDROUND_NUCLEAR)
 		used_offers += offer
 		spawn_nuclear_team()
+	else if(offer == WEIGHTED_MIDROUND_MALF)
+		used_offers += offer
+		make_malf_ai()
 	else
 		var/datum/round_event_control/event = offer
 		if(istype(event, /datum/round_event_control/wizard/imposter))
@@ -180,6 +187,32 @@
 	wizard.mind.make_Wizard()
 	message_admins("Weighted: [ADMIN_LOOKUPFLW(wizard)] został czarodziejem midround.")
 	log_game("WEIGHTED: [key_name(wizard)] was made a midround wizard")
+
+/// Living AI players on the ship who want to be the malfunctioning AI and are not antagonists yet (as the dynamic malf ruleset)
+/datum/weighted_ghost_midround/proc/malf_ai_candidates()
+	. = list()
+	var/datum/antagonist/traitor/traitor = /datum/antagonist/traitor
+	for(var/mob/living/silicon/ai/ai as anything in GLOB.ai_list)
+		if(ai.stat == DEAD || !ai.client || !ai.mind || is_centcom_level(ai.z))
+			continue
+		if(ai.mind.special_role || length(ai.mind.antag_datums))
+			continue
+		if(!ai.client.should_include_for_role(
+			banning_key = initial(traitor.banning_key),
+			role_preference_key = /datum/role_preference/midround_living/malfunctioning_ai,
+		))
+			continue
+		. += ai
+
+/datum/weighted_ghost_midround/proc/make_malf_ai()
+	var/list/candidates = malf_ai_candidates()
+	if(!length(candidates))
+		return
+	var/mob/living/silicon/ai/ai = pick(candidates)
+	ai.mind.special_role = ROLE_TRAITOR
+	ai.mind.add_antag_datum(/datum/antagonist/traitor)
+	message_admins("Weighted: [ADMIN_LOOKUPFLW(ai)] został wadliwą SI midround.")
+	log_game("WEIGHTED: [key_name(ai)] was made a midround malfunctioning AI")
 
 /datum/weighted_ghost_midround/proc/spawn_nuclear_team()
 	// Team size by living players, as in the dynamic Nuclear Assault ruleset
@@ -216,3 +249,4 @@
 #undef WEIGHTED_MIDROUND_ALIVE_RATIO
 #undef WEIGHTED_MIDROUND_WIZARD
 #undef WEIGHTED_MIDROUND_NUCLEAR
+#undef WEIGHTED_MIDROUND_MALF
