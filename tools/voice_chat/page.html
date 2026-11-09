@@ -37,7 +37,8 @@
 	<p class="sub">Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.</p>
 	<div class="card consent" id="consent" hidden>
 		<p><strong>Zanim włączysz mikrofon</strong></p>
-		<p>Ten serwer zamienia mowę na tekst w zewnętrznej usłudze <strong id="provider-name"></strong>. Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Bez wciśniętego klawisza nic nie jest wysyłane.</p>
+		<p>Ten serwer zamienia mowę na tekst w zewnętrznej usłudze <strong id="provider-name"></strong>. Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Nagranie obejmuje też ok. 0,4 s przed wciśnięciem klawisza i 0,25 s po jego puszczeniu (żeby nie ucinać pierwszego i ostatniego słowa). Poza tym nic nie jest wysyłane.</p>
+		<p id="consent-saves" hidden>Serwis zapisuje też nagrania na serwerze gry do diagnostyki.</p>
 		<p>Zasady przetwarzania danych: <a id="privacy-link" target="_blank" rel="noopener noreferrer"></a></p>
 		<p><button id="agree">Zgadzam się, włącz mikrofon</button></p>
 	</div>
@@ -394,6 +395,7 @@ async function start() {
 		el("provider-name").textContent = info.provider_name;
 		el("privacy-link").textContent = info.privacy_url;
 		el("privacy-link").href = info.privacy_url;
+		el("consent-saves").hidden = !info.saves_recordings;
 		el("consent").hidden = false;
 		setStatus("Mikrofon wyłączony", "bad", "Przeczytaj informację wyżej i zdecyduj, czy włączyć czat głosowy.");
 		return;
