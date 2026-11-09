@@ -1917,6 +1917,7 @@
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
+#include "code\modules\unit_tests\aquila_gunplay.dm"
 #include "code\modules\unit_tests\aquila_survivalbox.dm"
 #include "code\modules\unit_tests\aquila_suit_toggle_altclick.dm"
 #include "code\modules\unit_tests\aquila_heart_blood.dm"

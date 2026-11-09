@@ -145,7 +145,7 @@
 			distance_to_border = min(distance_to_border, y_to_border)
 
 		if(distance_to_border == INFINITY)
-			stack_trace("Pocisk [type] miał pusty wektor ruchu")
+			stack_trace("Projectile [type] had an empty movement vector")
 			qdel(src)
 			return movements_done
 

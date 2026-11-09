@@ -263,6 +263,9 @@
 	user.visible_message("<span class='notice'>[user] rozkłada [target_gun] i zaczyna ją czyścić.</span>", "<span class='notice'>Rozkładasz [target_gun] i zaczynasz ją czyścić.</span>")
 	if(!do_after(user, 10 SECONDS, target = target_gun))
 		return
+	finish_cleaning(target_gun, user)
+
+/obj/item/gun_maintenance_kit/proc/finish_cleaning(obj/item/gun/target_gun, mob/living/user)
 	uses--
 	target_gun.gun_wear = max(target_gun.gun_wear - wear_removed, 0)
 	user.visible_message("<span class='notice'>[user] kończy czyścić [target_gun].</span>", "<span class='notice'>[target_gun] jest teraz [target_gun.condition_text()].</span>")

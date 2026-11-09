@@ -170,7 +170,9 @@
 		projectile_cover_pass = 25
 		climbable = TRUE
 		layer = (new_dir == NORTH) ? BELOW_MOB_LAYER : ABOVE_MOB_LAYER
+		AddElement(/datum/element/connect_loc, GLOB.aq_flipped_table_connections)
 	else
+		RemoveElement(/datum/element/connect_loc, GLOB.aq_flipped_table_connections)
 		setDir(SOUTH)
 		flags_1 &= ~ON_BORDER_1
 		projectile_cover_pass = null
@@ -211,12 +213,10 @@
 	if(mover.throwing || (mover.movement_type & (FLYING | FLOATING)))
 		return TRUE
 
-/obj/structure/table/Initialize(mapload)
-	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_flipped_exit),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
+/// Wyjście przez krawędź przewróconego stołu (element dokładany tylko przewróconym stołom)
+GLOBAL_LIST_INIT(aq_flipped_table_connections, list(
+	COMSIG_ATOM_EXIT = TYPE_PROC_REF(/obj/structure/table, on_flipped_exit),
+))
 
 /obj/structure/table/proc/on_flipped_exit(datum/source, atom/movable/leaving, direction)
 	SIGNAL_HANDLER

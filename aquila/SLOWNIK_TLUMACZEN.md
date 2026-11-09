@@ -1096,6 +1096,31 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | stock | kolba | ż; istniejące |
 | safety (broni) | bezpiecznik | m; istniejące |
 | fire mode | tryb ognia | m; istniejące (6×) |
+| semi-auto / single fire | ogień pojedynczy | m; nowe (rework strzelania) |
+| burst | seria | ż; istniejące |
+| full auto / autofire | ogień ciągły | m; nowe |
+| aim down sights (ADS) | celowanie przez przyrządy | n; nowe; klawisz „Celuj przez przyrządy” |
+| iron sights | przyrządy mechaniczne | lm; nowe |
+| holographic sight | celownik holograficzny | m; nowe |
+| infrared sight | celownik termowizyjny | m; nowe |
+| simple sight | celownik prosty | m; nowe |
+| laser sight | celownik laserowy | m; nowe |
+| vertical grip / foregrip | chwyt pionowy / chwyt przedni | m; nowe |
+| attachment (broni) | dodatek | m; nowe |
+| recoil | odrzut | m; istniejące |
+| spread | rozrzut | m; istniejące |
+| misfire / dud | niewypał | m; nowe |
+| hang fire | przewlekły wystrzał | m; nowe |
+| overheat | przegrzanie (broń „przegrzana”) | n; nowe |
+| gun maintenance kit | zestaw konserwacji broni | m; nowe |
+| condition (broni) | stan techniczny | m; nowe; „zadbana / lekko zużyta / zabrudzona / mocno zużyta / w opłakanym stanie” |
+| tracer (round) | smuga / nabój smugowy | ż/m; nowe |
+| ricochet | rykoszet | m; istniejące |
+| cover (przed kulami) | osłona | ż; istniejące |
+| flipped table | przewrócony stół | m; nowe |
+| IFF | IFF (znacznik swój–obcy) | bez tłumaczenia skrótu |
+| smart ammo | amunicja inteligentna | ż; nowe |
+| ammo counter | licznik amunicji | m; istniejące (implant S.M.A.R.T.) |
 | lethal / disable (tryby) | zabójczy / obezwładniający | nowe; „obezwładni-” istniejące (23×) |
 
 ## 11. Amunicja i materiały wybuchowe
