@@ -24,17 +24,30 @@
 	#log li { padding: 6px 0; border-bottom: 1px solid #2c333e; }
 	#log li:last-child { border-bottom: 0; }
 	#log .err { color: #8b94a3; font-style: italic; }
+	a { color: #7fb0ff; }
+	.small { color: #8b94a3; font-size: 14px; margin: 8px 0 0; }
+	.consent p { margin: 0 0 10px; }
+	button.link { background: none; color: #7fb0ff; padding: 0; font-size: 14px; text-decoration: underline; }
+	label { color: #8b94a3; font-size: 14px; }
 </style>
 </head>
 <body>
 <main>
 	<h1>Czat głosowy Aquili</h1>
 	<p class="sub">Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.</p>
+	<div class="card consent" id="consent" hidden>
+		<p><strong>Zanim włączysz mikrofon</strong></p>
+		<p>Ten serwer zamienia mowę na tekst w zewnętrznej usłudze <strong id="provider-name"></strong>. Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Bez wciśniętego klawisza nic nie jest wysyłane.</p>
+		<p>Zasady przetwarzania danych: <a id="privacy-link" target="_blank" rel="noopener noreferrer"></a></p>
+		<p><button id="agree">Zgadzam się, włącz mikrofon</button></p>
+	</div>
 	<div class="card">
 		<div id="status" class="bad">Łączenie…</div>
 		<div id="hint"></div>
 		<p><button id="enable" hidden>Włącz mikrofon</button></p>
 		<div class="meter"><div id="level"></div></div>
+		<p class="small" id="privacy-note"></p>
+		<p class="small"><label><input type="checkbox" id="cue"> Krótki dźwięk, gdy zaczyna się nagrywanie</label></p>
 	</div>
 	<div class="card">
 		<strong>Ostatnio rozpoznane</strong>
@@ -60,6 +73,32 @@ let linked = false;
 let conn = "";  // identyfikator tego połączenia od serwisu; nagranie bez niego jest odrzucane
 let started = false;
 let replaced = false;
+let info = { provider: null };  // dokąd idzie nagranie (/info serwisu)
+let consent = "";  // dostawca, na którego gracz się zgodził; idzie z każdym nagraniem
+
+function store(key, value) {
+	try {
+		if (value === null) localStorage.removeItem(key);
+		else localStorage.setItem(key, value);
+	} catch (err) { /* prywatne okno: zgoda tylko na tę kartę */ }
+}
+
+function stored(key) {
+	try { return localStorage.getItem(key); } catch (err) { return null; }
+}
+
+/// Krótki sygnał przy starcie nagrania, żeby gracz wiedział, że mikrofon właśnie nagrywa (karta zwykle jest w tle).
+function playCue() {
+	if (!ctx || !el("cue").checked) return;
+	const osc = ctx.createOscillator();
+	const gain = ctx.createGain();
+	osc.frequency.value = 880;
+	gain.gain.setValueAtTime(0.06, ctx.currentTime);
+	gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+	osc.connect(gain).connect(ctx.destination);
+	osc.start();
+	osc.stop(ctx.currentTime + 0.08);
+}
 
 function setStatus(text, cls, hint) {
 	el("status").textContent = text;
@@ -185,6 +224,7 @@ function startRec(data) {
 		head = prev.stopping ? tail(prev.chunks) : [];
 		completeRec(prev);
 	}
+	playCue();
 	recording = { seq: data.seq, chunks: head, stopping: false, postLeft: 0, done: false, timer: setTimeout(() => stopRec({ seq: data.seq }), (data.max || 15) * 1000) };
 	preRoll = [];
 	preRollLen = 0;
@@ -232,7 +272,7 @@ function finishRec(rec) {
 	for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
 	const rms = Math.sqrt(sum / Math.max(1, samples.length));
 	const silent = rms < SILENCE_RMS;
-	fetch(`/audio?t=${token}&c=${conn}&seq=${rec.seq}${silent ? "&silent=1" : ""}`, {
+	fetch(`/audio?t=${token}&c=${conn}&seq=${rec.seq}${silent ? "&silent=1" : ""}${consent ? "&consent=" + consent : ""}`, {
 		method: "POST",
 		headers: { "Content-Type": "audio/wav" },
 		body: silent ? new Blob([]) : encodeWav(samples, TARGET_RATE),
@@ -311,6 +351,66 @@ function connect() {
 }
 
 el("enable").addEventListener("click", enableMic);
+el("cue").checked = stored("aq_voice_cue") !== "0";
+el("cue").addEventListener("change", () => store("aq_voice_cue", el("cue").checked ? "1" : "0"));
+
+function showPrivacyNote() {
+	const note = el("privacy-note");
+	note.textContent = "";
+	if (info.provider) {
+		note.append(`Rozpoznawanie mowy: ${info.provider_name} (zewnętrzna usługa). `);
+		if (!consent) return;
+		const revoke = document.createElement("button");
+		revoke.className = "link";
+		revoke.textContent = "Cofnij zgodę";
+		revoke.addEventListener("click", () => { store("aq_voice_consent", null); location.reload(); });
+		note.append(revoke);
+	} else {
+		note.append("Rozpoznawanie mowy na serwerze gry, nagrania nie trafiają do zewnętrznych firm.");
+	}
+	if (info.saves_recordings) note.append(" Serwis zapisuje nagrania do diagnostyki.");
+}
+
+/// Pyta serwis, dokąd idzie nagranie. Bez odpowiedzi zakładamy chmurę (zgoda zawsze wymagana).
+async function loadInfo() {
+	try {
+		const resp = await fetch("/info", { cache: "no-store" });
+		if (resp.ok) return await resp.json();
+	} catch (err) { /* serwis niedostępny */ }
+	return null;
+}
+
+async function start() {
+	const loaded = await loadInfo();
+	if (!loaded) {
+		setStatus("Serwis czatu głosowego nie odpowiada", "bad", "Odśwież stronę za chwilę.");
+		setTimeout(start, 5000);
+		return;
+	}
+	info = loaded;
+	if (info.provider && stored("aq_voice_consent") !== info.provider) {
+		showPrivacyNote();
+		el("provider-name").textContent = info.provider_name;
+		el("privacy-link").textContent = info.privacy_url;
+		el("privacy-link").href = info.privacy_url;
+		el("consent").hidden = false;
+		setStatus("Mikrofon wyłączony", "bad", "Przeczytaj informację wyżej i zdecyduj, czy włączyć czat głosowy.");
+		return;
+	}
+	consent = info.provider || "";
+	showPrivacyNote();
+	setStatus("Włączanie mikrofonu…", "bad");
+	enableMic();
+}
+
+el("agree").addEventListener("click", () => {
+	store("aq_voice_consent", info.provider);
+	consent = info.provider;
+	el("consent").hidden = true;
+	showPrivacyNote();
+	setStatus("Włączanie mikrofonu…", "bad");
+	enableMic();
+});
 // Odświeżenie albo zamknięcie karty zwalnia połączenie od razu (inaczej nowa karta wyglądałaby na przejęcie strony).
 window.addEventListener("pagehide", () => {
 	if (linked && conn) navigator.sendBeacon(`/bye?t=${token}&c=${conn}`);
@@ -318,8 +418,7 @@ window.addEventListener("pagehide", () => {
 if (!/^[0-9a-f]{32}$/.test(token)) {
 	setStatus("Zły link", "bad", "Otwórz tę stronę z gry: komenda „Czat głosowy” w zakładce OOC.");
 } else {
-	setStatus("Włączanie mikrofonu…", "bad");
-	enableMic();
+	start();
 }
 </script>
 </body>

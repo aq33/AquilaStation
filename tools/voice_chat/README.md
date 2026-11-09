@@ -39,9 +39,20 @@ serwis używa lokalnego Whispera. `start.bat` sam wybiera ElevenLabs, jeśli ist
 Na 12 nagraniach z gry (błędne słowa / czas): lokalny large-v3 10% / 0,26 s, ElevenLabs Scribe v2 7% / 0,7 s,
 Scribe v2 ze słowami z gry 3% / 0,9 s. Nagrania głosu idą wtedy do zewnętrznej firmy.
 
+Nagrania głosu idą wtedy do zewnętrznej firmy, więc strona przed włączeniem mikrofonu pokazuje graczowi,
+do kogo trafia nagranie (z linkiem do zasad przetwarzania danych), i włącza mikrofon dopiero po zgodzie.
+Zgoda jest zapamiętana w przeglądarce, można ją cofnąć na stronie. Serwis sprawdza ją przy każdym nagraniu
+(`consent` w `/audio`) i bez niej nic nie wysyła. Strona pyta o dostawcę przez `GET /info`
+(też: czy włączone jest `--save-dir`, wtedy strona to pokazuje).
+
 ## Zachowanie
 
 - Tekst przechodzi przez zwykłe `say` (języki postaci, filtry, logi).
+- Nagrywanie zaczyna tylko fizycznie wciśnięty klawisz: bind sprawdza `keys_held` klienta, a podsystem, sesje graczy
+  i bindy głosu są zablokowane przed VV i Advanced ProcCall (`GENERAL_PROTECT_DATUM`), więc nikt nie włączy mikrofonu
+  ani nie podejrzy tokenów z poziomu gry. Kto ma sekret `/api/sync`, nadal może sterować stronami, więc sekret trzymaj
+  tylko na serwerze gry i w usłudze.
+- Strona daje krótki dźwięk przy starcie nagrania (można wyłączyć na stronie).
 - Przy wyłączonym czacie (`VOICE_CHAT_ENABLED` zakomentowane) klawisze N/U/J nic nie robią, a komendy OOC nie ma.
 - Wciśnięcie krótsze niż 0,3 s jest anulowane, nagranie najdłużej `VOICE_CHAT_MAX_SECONDS` (domyślnie 15 s).
 - Cisza nie jest wysyłana do Whispera, a typowe zmyślenia Whispera na ciszy („Napisy stworzone przez społeczność Amara.org” itp.) są odrzucane.
