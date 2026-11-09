@@ -41,6 +41,13 @@
 /datum/strip_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(action != "search")
 		return ..()
+	// Kieszeń to już przeszukiwanie: Alt+klik opróżnia ją tak samo jak zwykły klik, zamiast „nie ma kieszeni”.
+	// Pustej kieszeni nie ruszamy: „use” włożyłby do niej przedmiot z ręki przeszukującego.
+	var/datum/strippable_item/pocket = strippable.items[params["key"]]
+	if(istype(pocket, /datum/strippable_item/mob_item_slot/needs_jumpsuit/pocket))
+		if(isnull(pocket.get_item(owner)))
+			return TRUE
+		return ..("use", params, ui, state)
 	// Te same warunki co w /datum/ui_act, bez przełącznika akcji z core
 	if(!ui || ui.status != UI_INTERACTIVE)
 		return TRUE
@@ -59,7 +66,10 @@
 		return
 	var/datum/component/storage/storage = get_strip_search_storage(item)
 	if(!storage)
-		to_chat(user, "<span class='warning'>[item] nie ma kieszeni do przeszukania.</span>")
+		if(istype(strippable_item, /datum/strippable_item/mob_item_slot/jumpsuit))
+			to_chat(user, "<span class='warning'>Kieszenie munduru to osobne pola w tym oknie: kliknij kieszeń, żeby ją opróżnić bez zdejmowania munduru.</span>")
+		else
+			to_chat(user, "<span class='warning'>[item] nie ma kieszeni do przeszukania.</span>")
 		return
 	if(LAZYACCESS(interactions, user))
 		return

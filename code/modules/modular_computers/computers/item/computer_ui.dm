@@ -57,7 +57,7 @@
 		ui.interface = "NtosMain"
 	//opened a new UI
 	if(old_open_ui != ui.interface)
-		update_static_data(user, ui) // forces a static UI update for the new UI
+		update_static_data(user, ui, bypass_cooldown = TRUE) // forces a static UI update for the new UI // AQ EDIT - nowy program bez 5-sekundowej skrzynki ładowania
 		ui.send_assets() // sends any new asset datums from the new UI
 		if(active_program)
 			active_program.on_ui_create(user, ui)
