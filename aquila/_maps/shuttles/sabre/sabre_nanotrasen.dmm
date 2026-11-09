@@ -41,15 +41,14 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/ship/delivery/yellow,
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/item/wrench,
 /turf/open/indestructible/dropship{
 	icon_state = "rasputin15"
 	},
 /area/shuttle/sabre)
 "iF" = (
-/obj/machinery/atmospherics/pipe/simple/general/hidden{
-	dir = 9
+/obj/machinery/atmospherics/components/unary/shuttle/heater/sabre{
+	dir = 8
 	},
 /turf/open/indestructible/dropship{
 	icon_state = "rasputin3"
@@ -292,8 +291,8 @@
 	},
 /area/shuttle/sabre)
 "Qa" = (
-/obj/machinery/atmospherics/pipe/manifold/general/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 9
 	},
 /obj/effect/landmark/trader_drop_point,
 /turf/open/indestructible/dropship{

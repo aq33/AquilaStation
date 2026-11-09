@@ -1066,6 +1066,7 @@
 #include "code\modules\test_chamber\kits\pr_585_opuszczona_stacja.dm"
 #include "code\modules\test_chamber\kits\pr_592_sabre_wnetrze.dm"
 #include "code\modules\test_chamber\kits\pr_597_sabre_skrzydla.dm"
+#include "code\modules\test_chamber\kits\pr_604_sabre_plazma.dm"
 #include "code\modules\test_chamber\kits\pr_581_oswietlenie.dm"
 #include "code\modules\test_chamber\kits\pr_588_walka_tablica_loot.dm"
 #include "code\modules\test_chamber\kits\pr_583_zbiorczy.dm"
