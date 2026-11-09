@@ -111,4 +111,35 @@
 	leader.aq_next_squad_marker = 0
 	TEST_ASSERT(!squad.aq_place_marker(leader, run_loc_floor_top_right, "nieistniejacy"), "Przyjęto nieznany typ znacznika")
 
+/// Regresja: guziki konsoli (dostęp, broń, przydział) nic nie zmieniały, bo stary ui_act z NSV13 obsługiwał
+/// akcję o tej samej nazwie przed naszą i przełącznik zmieniał się dwa razy
+/datum/unit_test/aquila_squad_console_toggles
+
+/datum/unit_test/aquila_squad_console_toggles/Run()
+	var/datum/squad/squad = aq_squad("Charlie")
+	var/obj/machinery/computer/squad_manager/console = allocate(/obj/machinery/computer/squad_manager)
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
+	usr = officer
+	var/list/params = list("squad_id" = REF(squad))
+	var/old_access = squad.access_enabled
+	var/old_weapons = squad.weapons_clearance
+	var/old_hidden = squad.hidden
+	console.ui_act("aq_toggle_access", params)
+	console.ui_act("aq_toggle_beararms", params)
+	console.ui_act("aq_toggle_hidden", params)
+	TEST_ASSERT(squad.access_enabled != old_access, "Guzik dostępu w konsoli nie zmienił dostępu drużyny")
+	TEST_ASSERT(squad.weapons_clearance != old_weapons, "Guzik broni w konsoli nie zmienił zezwolenia na broń")
+	TEST_ASSERT(squad.hidden != old_hidden, "Guzik przydziału w konsoli nie zmienił przydziału")
+	squad.access_enabled = old_access
+	squad.weapons_clearance = old_weapons
+	squad.hidden = old_hidden
+	for(var/obj/item/clothing/neck/squad/old_pass in console.loc)
+		qdel(old_pass)
+	console.ui_act("aq_print_pass", params)
+	var/passes = 0
+	for(var/obj/item/clothing/neck/squad/pass in console.loc)
+		passes++
+		qdel(pass)
+	TEST_ASSERT(passes == 1, "Guzik Smycz wydrukował [passes] smyczy zamiast jednej")
+
 #undef TEST_ASSERT

@@ -206,7 +206,7 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
           icon="dot-circle"
           color={squad.secondary_objective ? 'good' : 'transparent'}
           tooltip="Cel dodatkowy"
-          onClick={() => act('secondary_objective', { squad_id: squad.id })}
+          onClick={() => act('aq_secondary_objective', { squad_id: squad.id })}
         >
           {squad.secondary_objective || 'Brak celu dodatkowego'}
         </Button>
@@ -217,7 +217,7 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             icon="id-card"
             color={squad.access_enabled ? 'good' : 'average'}
             tooltip="Rozszerzony dostęp drużyny (zależy od zadania)"
-            onClick={() => act('toggle_access', { squad_id: squad.id })}
+            onClick={() => act('aq_toggle_access', { squad_id: squad.id })}
           >
             {squad.access_enabled ? 'Dostęp' : 'Bez dostępu'}
           </Button>
@@ -227,7 +227,7 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             icon={squad.weapons_clearance ? 'fist-raised' : 'peace'}
             color={squad.weapons_clearance ? 'bad' : 'good'}
             tooltip="Czy automaty drużyny wydają broń"
-            onClick={() => act('toggle_beararms', { squad_id: squad.id })}
+            onClick={() => act('aq_toggle_beararms', { squad_id: squad.id })}
           >
             {squad.weapons_clearance ? 'Broń' : 'Bez broni'}
           </Button>
@@ -237,7 +237,7 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             icon={squad.hidden ? 'eye-slash' : 'eye'}
             color={squad.hidden ? 'bad' : 'good'}
             tooltip="Czy nowa załoga trafia tu automatycznie"
-            onClick={() => act('toggle_hidden', { squad_id: squad.id })}
+            onClick={() => act('aq_toggle_hidden', { squad_id: squad.id })}
           >
             {squad.hidden ? 'Bez przydziału' : 'Przydział'}
           </Button>
@@ -246,7 +246,7 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
           <Button
             icon="print"
             tooltip="Smycz, którą ktoś spoza drużyny klika w ręce, żeby dołączyć"
-            onClick={() => act('print_pass', { squad_id: squad.id })}
+            onClick={() => act('aq_print_pass', { squad_id: squad.id })}
           >
             Smycz
           </Button>
@@ -338,7 +338,7 @@ const MemberCard = (props: { squad: SquadInfo; member: SquadMember }) => {
             color={member.leader ? 'average' : 'transparent'}
             tooltip={member.leader ? 'Zdegraduj dowódcę' : 'Mianuj dowódcą'}
             onClick={() =>
-              act(member.leader ? 'demote_leader' : 'set_leader', {
+              act(member.leader ? 'aq_demote_leader' : 'aq_set_leader', {
                 ref: member.ref,
               })
             }

@@ -56,6 +56,8 @@
 	var/mob/living/carbon/human/member = locate(params["ref"])
 	if(member && !istype(member))
 		member = null
+	// Przedrostek aq_ tam, gdzie stary ui_act konsoli z NSV13 (wołany przez ..()) ma akcję o tej samej nazwie:
+	// inaczej obie wersje wykonują się po kolei, a przełącznik wraca do stanu sprzed kliknięcia
 	switch(action)
 		if("select_z")
 			state["z"] = text2num(params["z"])
@@ -84,13 +86,13 @@
 			if(!member?.squad)
 				return FALSE
 			return member.squad.aq_set_position(member, params["position"])
-		if("set_leader")
+		if("aq_set_leader")
 			if(!member?.squad)
 				return FALSE
 			log_game("[key_name(user)] made [key_name(member)] the leader of squad [member.squad]")
 			member.squad.set_leader(member)
 			return TRUE
-		if("demote_leader")
+		if("aq_demote_leader")
 			if(!member?.squad)
 				return FALSE
 			member.squad.unset_leader(member)
@@ -106,7 +108,7 @@
 			for(var/mob/living/carbon/human/squad_member as anything in squad.members)
 				to_chat(squad_member, "<span class='sciradio'>[squad.primary_objective]</span>")
 			return TRUE
-		if("secondary_objective")
+		if("aq_secondary_objective")
 			if(!squad)
 				return FALSE
 			var/orders = stripped_input(user, "Ustaw cel dodatkowy drużyny [squad]:", "Cel dodatkowy", squad.secondary_objective, MAX_BROADCAST_LEN)
@@ -125,25 +127,25 @@
 			if(!message)
 				return FALSE
 			return squad.aq_issue_order(user, message, from_console = TRUE)
-		if("toggle_access")
+		if("aq_toggle_access")
 			if(!squad)
 				return FALSE
 			squad.access_enabled = !squad.access_enabled
 			log_game("[key_name(user)] set elevated access of squad [squad] to [squad.access_enabled]")
 			squad.broadcast(squad, squad.access_enabled ? "Przyznano drużynie rozszerzony dostęp." : "Odebrano drużynie rozszerzony dostęp.", list('nsv13/sound/effects/notice2.ogg'))
 			return TRUE
-		if("toggle_beararms")
+		if("aq_toggle_beararms")
 			if(!squad)
 				return FALSE
 			squad.weapons_clearance = !squad.weapons_clearance
 			log_game("[key_name(user)] set weapons clearance of squad [squad] to [squad.weapons_clearance]")
 			return TRUE
-		if("toggle_hidden")
+		if("aq_toggle_hidden")
 			if(!squad)
 				return FALSE
 			squad.hidden = !squad.hidden
 			return TRUE
-		if("print_pass")
+		if("aq_print_pass")
 			if(!squad || !source || world.time < state["next_print"])
 				return FALSE
 			state["next_print"] = world.time + 5 SECONDS
