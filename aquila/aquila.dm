@@ -1932,6 +1932,7 @@
 #include "code\modules\unit_tests\aquila_lost_crew.dm"
 #include "code\modules\unit_tests\aquila_mining_asteroids.dm"
 #include "code\modules\unit_tests\aquila_hardsuit_modules.dm"
+#include "code\modules\unit_tests\aquila_ai_core_displays.dm"
 #include "code\modules\unit_tests\aquila_stamina_hud.dm"
 #include "code\modules\unit_tests\aquila_ui_porzadki.dm"
 #include "code\modules\unit_tests\aquila_mouse_report.dm"
