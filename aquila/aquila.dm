@@ -1202,6 +1202,7 @@
 #include "code\modules\test_chamber\kits\pr_564_pasek_broni.dm"
 #include "code\modules\test_chamber\kits\pr_576_drobiazgi.dm"
 #include "code\modules\test_chamber\kits\pr_582_mapy_standard.dm"
+#include "code\modules\test_chamber\kits\pr_600_porty_bee.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
