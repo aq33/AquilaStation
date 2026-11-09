@@ -269,6 +269,39 @@
 	TEST_ASSERT_EQUAL(head_on, 0, "A bullet fired straight into the wall ricocheted")
 	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees (grazing angle [grazing_angle]) never ricocheted in 40 tries")
 
+/// Ściany spoza /turf/closed/wall (nieniszczalne w komorze testowej) też dostają dziury i odbijają kule
+/datum/unit_test/aquila_gunplay_indestructible_wall_hits
+
+/datum/unit_test/aquila_gunplay_indestructible_wall_hits/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/wall_spot = locate(start.x, start.y + 2, start.z)
+	var/old_type = wall_spot.type
+	var/turf/closed/wall = wall_spot.ChangeTurf(/turf/closed/indestructible/riveted)
+	for(var/i in 1 to 8)
+		var/obj/item/projectile/bullet/c9mm/bullet = new(start)
+		bullet.aq_from_gun = TRUE
+		bullet.ricochets_max = 0
+		bullet.fire(0)
+		for(var/j in 1 to 20)
+			if(QDELETED(bullet))
+				break
+			sleep(1)
+	var/holes = LAZYLEN(wall.aq_bullet_holes)
+	var/obj/item/projectile/bullet/c9mm/probe = new(start)
+	probe.aq_from_gun = TRUE
+	probe.forceMove(locate(start.x, start.y + 1, start.z))
+	var/flag_ok = probe.check_ricochet_flag(wall)
+	var/grazing = 0
+	for(var/i in 1 to 40)
+		probe.Angle = 82
+		if(probe.check_ricochet(wall))
+			grazing++
+	qdel(probe)
+	wall.ChangeTurf(old_type)
+	TEST_ASSERT(holes > 0, "Eight bullets into an indestructible wall left no bullet holes")
+	TEST_ASSERT(flag_ok, "Indestructible wall is not hard enough for ricochets")
+	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees never ricocheted off an indestructible wall in 40 tries")
+
 /// Licznik amunicji: po broni energetycznej zwykła broń wraca do zwykłego tła z cyframi
 /datum/unit_test/aquila_gunplay_ammo_hud
 

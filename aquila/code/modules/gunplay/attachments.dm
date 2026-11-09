@@ -137,13 +137,18 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 			col_top[x] = 20
 			col_run_bottom[x] = 12
 	var/sight_x = round(left + (right - left) * 0.45)
-	var/sight_top = 0
-	for(var/x in max(sight_x - 1, 1) to min(sight_x + 1, width))
-		sight_top = max(sight_top, col_top[x] || 0)
+	// Celownik leży na typowym wierzchu broni pod całą swoją szerokością (mediana), a nie na najwyższym wystającym
+	// pikselu (muszka, rączka), bo wtedy wisiał w powietrzu
+	var/list/sight_tops = list()
+	for(var/x in max(sight_x - 3, 1) to min(sight_x + 3, width))
+		if(col_top[x])
+			sight_tops += col_top[x]
+	sortTim(sight_tops, GLOBAL_PROC_REF(cmp_numeric_asc))
+	var/sight_top = length(sight_tops) ? sight_tops[round(length(sight_tops) / 2) + 1] : 20
 	var/grip_x = aq_nearest_column(col_top, round(left + (right - left) * 0.7))
 	var/laser_x = aq_nearest_column(col_top, round(left + (right - left) * 0.86))
 	cached = list(
-		"sight" = list(sight_x, sight_top + 1),
+		"sight" = list(sight_x, sight_top - 1), // dolny wiersz sprite'u celownika zachodzi 1 px na broń
 		"grip" = list(grip_x, col_run_bottom[grip_x] - 1),
 		"laser" = list(laser_x, col_run_bottom[laser_x] - 1),
 	)

@@ -8,11 +8,14 @@
 // - Niewypał z jakości naboju (wzór: Coolstation dud_freq): suchy klik, nabój zostaje w komorze, trzeba przeładować.
 //   Co dziesiąty niewypał to przewlekły wystrzał: klik, a pół sekundy później strzał.
 // - Rozrzut prędkości kul ±15% (wzór: CM), żeby seria nie leciała sznurkiem.
+// - Kule z broni ręcznej lecą półtora raza szybciej niż fabryczne 0,8 ds na kratkę (prośba z testu: „trochę szybsze”).
 
 /// Szansa na niewypał zwykłego fabrycznego naboju (procent)
 #define AQ_FACTORY_MISFIRE_CHANCE 0.3
 /// Ciepło, poniżej którego przegrzana broń znowu strzela
 #define AQ_OVERHEAT_RECOVERY 0.3
+/// Przyspieszenie kul z broni ręcznej (pociski energetyczne i działa okrętowe bez zmian)
+#define AQ_HANDGUN_BULLET_SPEED_MULT 1.5
 
 /obj/item/gun
 	/// Zużycie broni 0-100 (stan techniczny = 100 - zużycie)
@@ -98,7 +101,7 @@
 	if(projectile.speed > 0)
 		var/speed_mult = projectile_speed_multiplier * integrity_mult
 		if(projectile.flag == "bullet" && !projectile.hitscan)
-			speed_mult *= rand(85, 115) / 100 // seria nie leci sznurkiem (CM)
+			speed_mult *= AQ_HANDGUN_BULLET_SPEED_MULT * rand(85, 115) / 100 // seria nie leci sznurkiem (CM)
 		if(speed_mult > 0)
 			projectile.speed /= speed_mult // speed to czas na kratkę
 	if(projectile_wound_bonus && projectile.wound_bonus != CANT_WOUND)
@@ -276,6 +279,7 @@
 
 #undef AQ_FACTORY_MISFIRE_CHANCE
 #undef AQ_OVERHEAT_RECOVERY
+#undef AQ_HANDGUN_BULLET_SPEED_MULT
 
 // Zestaw konserwacji w pudełku drużyny, gdy zestaw zawiera broń (nie wchodzi do listy zwrotów, więc zużyty zestaw nie daje grzywny)
 /obj/machinery/squad_vendor/ui_act(action, params)

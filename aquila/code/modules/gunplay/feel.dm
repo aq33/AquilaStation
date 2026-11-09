@@ -393,3 +393,30 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 	else
 		dent_decals = list(decal)
 	add_overlay(dent_decals)
+
+// Kule odbijają się od każdej ściany i zostawiają w niej dziury, nie tylko w /turf/closed/wall: także w nieniszczalnych
+// (komora testowa, ruiny, statki ERT) i w skale. Zwykłe ściany mają własne dent_decals (add_dent wyżej).
+/turf/closed
+	flags_ricochet = RICOCHET_HARD
+	/// Dziury po kulach na ścianach spoza /turf/closed/wall
+	var/list/aq_bullet_holes
+
+/turf/closed/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	// Po ..() kafel mógł się zmienić (skała rozbita kulą kinetyczną), więc typ sprawdzamy dopiero teraz
+	if(!isclosedturf(src) || iswallturf(src) || !istype(P) || P.nodamage || !P.movement_vector)
+		return
+	if((P.damage_type != BRUTE && P.damage_type != BURN) || !prob(75)) // jak dla ścian w on_hit()
+		return
+	add_bullet_hole(clamp(P.entry_x, -12, 12), clamp(P.entry_y, -12, 12))
+
+/turf/closed/proc/add_bullet_hole(x, y)
+	if(LAZYLEN(aq_bullet_holes) >= 15)
+		return
+	var/mutable_appearance/decal = mutable_appearance('aquila/icons/effects/bullet_holes.dmi', "bullet_hole[rand(1, 3)]", BULLET_HOLE_LAYER)
+	decal.pixel_x = x
+	decal.pixel_y = y
+	if(LAZYLEN(aq_bullet_holes))
+		cut_overlay(aq_bullet_holes)
+	LAZYADD(aq_bullet_holes, decal)
+	add_overlay(aq_bullet_holes)
