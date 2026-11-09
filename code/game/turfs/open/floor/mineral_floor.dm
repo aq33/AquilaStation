@@ -267,7 +267,7 @@
 	if(!active)
 		if(world.time > last_event+15)
 			active = 1
-			radiation_pulse(src, 10)
+			radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = URANIUM_IRRADIATION_INTENSITY, minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME) // AQ EDIT - promieniowanie z Bee#13442
 			for(var/turf/open/floor/mineral/uranium/T in (RANGE_TURFS(1,src)-src))
 				T.radiate()
 			last_event = world.time

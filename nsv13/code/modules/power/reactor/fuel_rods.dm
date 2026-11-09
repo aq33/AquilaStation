@@ -9,6 +9,8 @@
 	var/fuel_power = 0.10
 
 	var/rad_strength = 500
+	/// Natężenie obecnego elementu radioactive (AQ EDIT - promieniowanie z Bee#13442)
+	var/rad_element_intensity = 0
 	var/half_life = 2000 // how many depletion ticks are needed to half the fuel_power (1 tick = 1 second)
 	var/time_created = 0
 	var/og_fuel_power = 0.20 //the original fuel power value
@@ -24,9 +26,18 @@
 	. = ..()
 	time_created = world.time
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
-	AddComponent(/datum/component/radioactive, rad_strength, src) // This should be temporary for it won't make rads go lower than 350
+	set_rod_radioactivity(rad_strength) // AQ EDIT - promieniowanie z Bee#13442
 	if(process)
 		START_PROCESSING(SSobj, src)
+
+// AQ EDIT START - promieniowanie z Bee#13442: element radioactive zamiast komponentu; dawna siła / 100 = natężenie impulsu co 3 s
+/obj/item/fuel_rod/proc/set_rod_radioactivity(new_strength)
+	if(rad_element_intensity)
+		RemoveElement(/datum/element/radioactive, 3, RAD_LIGHT_INSULATION, rad_element_intensity)
+	rad_element_intensity = new_strength / 100
+	if(rad_element_intensity > 0)
+		AddElement(/datum/element/radioactive, 3, RAD_LIGHT_INSULATION, rad_element_intensity)
+// AQ EDIT END
 
 /obj/item/fuel_rod/Destroy()
 	if(process)
@@ -214,7 +225,7 @@
 	name = "[name] (wypalony)"
 	desc = "Wysokoenergetyczny, zamaskowany pręt w tytanowej osłonie z gniazdami pełnymi mocno rozrośniętych telekryształów, które można wyjąć ręcznie. To niezwykle wydajne paliwo jądrowe, ale źle użyte wymknie reakcję spod kontroli."
 	icon_state = "tc_used"
-	AddComponent(/datum/component/radioactive, 3000, src)
+	set_rod_radioactivity(3000) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/item/fuel_rod/material/bananium
 	name = "bananiowy pręt paliwowy"
@@ -242,4 +253,4 @@
 	name = "[name] (wypalony)"
 	desc = "Przezabawny, wytrzymały pręt paliwowy, który rozszczepia się nieco wolniej od swoich tchórzliwych odpowiedników. Jego groteskowo grymaśny etap wzrostu dobiegł końca, a narośl bananium buczy, jakby bezczelnie trąbiła klaksonami rowerowymi."
 	icon_state = "bananium_used"
-	AddComponent(/datum/component/radioactive, 1250, src)
+	set_rod_radioactivity(1250) // AQ EDIT - promieniowanie z Bee#13442

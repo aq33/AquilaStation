@@ -1043,11 +1043,20 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "wnętrze reaktora"
-	var/irradiation_level = 1
+	// AQ EDIT START - promieniowanie z Bee#13442
+	/// Obrażenia od toksyn na tyknięcie
+	var/tox_damage = 0.5
+	/// Natężenie promieniowania (%) na tyknięcie
+	var/rad_power = 1
+	// AQ EDIT END
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
-	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
+	// AQ EDIT START - promieniowanie z Bee#13442
+	SSradiation.irradiate_internal(M, rad_power)
+	M.adjustToxLoss(tox_damage, 0)
+	. = TRUE
+	// AQ EDIT END
 	..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -1066,7 +1075,8 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	chem_flags = CHEMICAL_BASIC_ELEMENT
 	taste_description = "kolor niebieski i żal"
-	irradiation_level = 2*REM
+	rad_power = 2 // AQ EDIT - promieniowanie z Bee#13442
+	tox_damage = 1 // AQ EDIT - promieniowanie z Bee#13442
 	process_flags = ORGANIC | SYNTHETIC
 
 

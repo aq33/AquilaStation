@@ -173,13 +173,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			to_chat(user, "<span class='warning'>[src] ma już maksymalny załadunek paliwa.</span>")
 			return FALSE
 		to_chat(user, "<span class='notice'>Zaczynasz wkładać [W] do [src]...</span>")
-		radiation_pulse(src, temperature)
+		radiation_pulse(src, max_range = 3, threshold = RAD_EXTREME_INSULATION) // AQ EDIT - promieniowanie z Bee#13442
 		if(do_after(user, 5 SECONDS, target=src))
 			if(!length(fuel_rods))
 				start_up() //That was the first fuel rod. Let's heat it up.
 			fuel_rods += W
 			W.forceMove(src)
-			radiation_pulse(src, temperature) //Wear protective equipment when even breathing near a reactor!
+			radiation_pulse(src, max_range = 3, threshold = RAD_EXTREME_INSULATION) //Wear protective equipment when even breathing near a reactor! // AQ EDIT - promieniowanie z Bee#13442
 		return TRUE
 	if(!slagged && istype(W, /obj/item/sealant))
 		if(power >= 20)
@@ -360,7 +360,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		temperature -= 10 //Nothing to heat us up, so.
 	handle_alerts() //Let's check if they're about to die, and let them know.
 	update_icon()
-	radiation_pulse(src, temperature*radioactivity_spice_multiplier)
+	radiation_pulse(src, max_range = 4, threshold = RAD_EXTREME_INSULATION, intensity = clamp(temperature * radioactivity_spice_multiplier / 200, 0, DEFAULT_RADIATION_INTENSITY), collector_power = temperature * radioactivity_spice_multiplier) // AQ EDIT - promieniowanie z Bee#13442: wzór Bee (u nas /200 i zasięg 4, bo impuls co 2 s)
 	if(power >= 90 && world.time >= next_flicker) //You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 		next_flicker = world.time + 1.5 MINUTES
 		aq_flicker_ship_lights(src, 25) // AQ EDIT - tgstation/tgstation#92503: pętla po GLOB.machines poza process(), z CHECK_TICK
@@ -459,7 +459,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
 	icon_state = "reactor_slagged"
-	AddComponent(/datum/component/radioactive, 15000 , src)
+	AddElement(/datum/element/radioactive, 3, RAD_EXTREME_INSULATION, 20) // AQ EDIT - promieniowanie z Bee#13442
 	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
 	var/obj/structure/overmap/OM = get_overmap()
 	OM.relay('nsv13/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>Słyszysz okropny metaliczny syk.</span>")
@@ -554,7 +554,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/item/fuel_rod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
-	AddComponent(/datum/component/radioactive, 350 , src)
+	// AQ EDIT - promieniowanie z Bee#13442: promieniotwórczość pręta ustawia fuel_rods.dm (rad_strength)
 
 //Controlling the reactor.
 

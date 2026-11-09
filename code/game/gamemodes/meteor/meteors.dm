@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	..()
 	explosion(src.loc, 0, 0, 4, 3, 0)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
-	radiation_pulse(src, 500)
+	radiation_pulse(src, max_range = 7, threshold = RAD_EXTREME_INSULATION, intensity = 100) // AQ EDIT - promieniowanie z Bee#13442
 
 //Meaty Ore
 /obj/effect/meteor/meaty

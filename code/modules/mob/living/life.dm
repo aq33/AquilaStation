@@ -15,8 +15,8 @@
 	if(!has_status_effect(STATUS_EFFECT_STASIS))
 
 		if(stat != DEAD)
-			//Mutations and radiation
-			handle_mutations_and_radiation()
+			//Mutations
+			handle_mutations() // AQ EDIT - promieniowanie z Bee#13442 (dawniej handle_mutations_and_radiation)
 
 		if(stat != DEAD)
 			//Breathing, if applicable
@@ -63,8 +63,7 @@
 /mob/living/proc/handle_breathing(times_fired)
 	return
 
-/mob/living/proc/handle_mutations_and_radiation()
-	radiation = 0 //so radiation don't accumulate in simple animals
+/mob/living/proc/handle_mutations()
 	return
 
 /mob/living/proc/handle_diseases()

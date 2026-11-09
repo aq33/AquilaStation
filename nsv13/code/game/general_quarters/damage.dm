@@ -17,7 +17,7 @@
 			relay(pick(GLOB.overmap_impact_sounds)) //Kaboom
 		if(prob(70))
 			var/turf/T = pick(get_area_turfs(AR))
-			radiation_pulse(T, 1000, 10)
+			radiation_pulse(T, max_range = 1, threshold = RAD_MEDIUM_INSULATION, intensity = 5) // AQ EDIT - promieniowanie z Bee#13442
 			T.atmos_spawn_air("o2=125;plasma=50;TEMP=1000")
 
 /* Disabled for now, set to return in a new form - KS

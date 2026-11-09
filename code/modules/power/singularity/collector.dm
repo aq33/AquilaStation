@@ -215,8 +215,7 @@
 	else
 		update_icon()
 
-/obj/machinery/power/rad_collector/rad_act(pulse_strength)
-	. = ..()
+/obj/machinery/power/rad_collector/proc/receive_radiation_pulse(pulse_strength) // AQ EDIT - promieniowanie z Bee#13442: woła SSradiation.feed_collectors() zamiast rad_act()
 	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_energy += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
 

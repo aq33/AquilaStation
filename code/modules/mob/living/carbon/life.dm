@@ -257,11 +257,6 @@
 		else if(bz_partialpressure > 0.01)
 			adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
-	//TRITIUM
-	if(breath.get_moles(GAS_TRITIUM))
-		var/tritium_partialpressure = (breath.get_moles(GAS_TRITIUM)/breath.total_moles())*breath_pressure
-		radiation += tritium_partialpressure/10
-
 	//NITRYL
 	if(breath.get_moles(GAS_NITRYL))
 		var/nitryl_partialpressure = (breath.get_moles(GAS_NITRYL)/breath.total_moles())*breath_pressure
@@ -350,7 +345,7 @@
 		if(stat != DEAD || D.process_dead)
 			D.stage_act()
 
-/mob/living/carbon/handle_mutations_and_radiation()
+/mob/living/carbon/handle_mutations() // AQ EDIT - promieniowanie z Bee#13442: natężenie liczy /datum/component/irradiated
 	if(dna && dna.temporary_mutations.len)
 		for(var/mut in dna.temporary_mutations)
 			if(dna.temporary_mutations[mut] < world.time)
@@ -377,10 +372,6 @@
 		for(var/datum/mutation/HM as() in dna.mutations)
 			if(HM?.timed)
 				dna.remove_mutation(HM.type)
-
-	radiation -= min(radiation, RAD_LOSS_PER_TICK)
-	if(radiation > RAD_MOB_SAFE && !HAS_TRAIT(src, TRAIT_TOXIMMUNE)) // NSV13 don't deal toxin damage if they're immune
-		adjustToxLoss(log(radiation-RAD_MOB_SAFE)*RAD_TOX_COEFFICIENT)
 
 
 /*

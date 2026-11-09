@@ -95,7 +95,7 @@ effective or pretty fucking useless.
 			if(M)
 				if(intensity >= 5)
 					M.apply_effect(round(intensity/0.075), EFFECT_UNCONSCIOUS)
-				M.rad_act(intensity*10)
+				SSradiation.irradiate(M, intensity) // AQ EDIT - promieniowanie z Bee#13442 (natężenie 1-20%; Bee tylko usypia)
 	else
 		to_chat(user, "<span class='warning'>Radioaktywny mikrolaser wciąż się ładuje.</span>")
 

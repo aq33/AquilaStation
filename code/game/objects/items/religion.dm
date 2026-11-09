@@ -183,7 +183,7 @@
 	inspiration_available = FALSE
 
 /obj/item/banner/engineering/special_inspiration(mob/living/carbon/human/H)
-	H.radiation = 0
+	qdel(H.GetComponent(/datum/component/irradiated)) // AQ EDIT - promieniowanie z Bee#13442
 
 /datum/crafting_recipe/engineering_banner
 	name = "Sztandar Engitopii"

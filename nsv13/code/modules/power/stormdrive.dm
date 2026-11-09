@@ -228,8 +228,8 @@ Control Rods
 						to_chat(user, "<span class='danger'>Twoje dłonie otula niebieska poświata!</span>")
 						control_rod_installation = TRUE
 						empulse(src, 3, 5)
-						user.radiation += 250 * radiation_modifier
-						radiation_pulse(src, 1000 * radiation_modifier, 5)
+						SSradiation.irradiate_internal(user, 250 * radiation_modifier * RAD_LEGACY_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442: ręce w reaktorze, strój nie chroni
+						radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = radiation_modifier) // AQ EDIT - promieniowanie z Bee#13442
 						playsound(src, 'sound/items/welder.ogg', 100, TRUE) //temp - find a better sound
 						if(!do_after(user, 50, target = src))
 							control_rod_installation = FALSE
@@ -240,8 +240,8 @@ Control Rods
 						I.forceMove(src)
 						update_icon()
 						empulse(src, 3, 5)
-						user.radiation += 250 * radiation_modifier
-						radiation_pulse(src, 1000 * radiation_modifier, 5)
+						SSradiation.irradiate_internal(user, 250 * radiation_modifier * RAD_LEGACY_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442: ręce w reaktorze, strój nie chroni
+						radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = radiation_modifier) // AQ EDIT - promieniowanie z Bee#13442
 						playsound(src, 'sound/items/welder.ogg', 100, TRUE) //temp - find a better sound
 						handle_control_rod_efficiency()
 						handle_control_rod_integrity()
@@ -411,8 +411,8 @@ Control Rods
 							if(affecting && affecting.receive_damage( 0, 20 )) // partially damage the hand
 								H.update_damage_overlays()
 							empulse(src, 3, 5)
-							H.radiation += (heat/2) * radiation_modifier
-							radiation_pulse(src, (heat * 2) * radiation_modifier, 5)
+							SSradiation.irradiate_internal(H, (heat/2) * radiation_modifier * RAD_LEGACY_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442: ręce w reaktorze, strój nie chroni
+							radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = radiation_modifier) // AQ EDIT - promieniowanie z Bee#13442
 							playsound(src, 'sound/items/welder.ogg', 100, TRUE) //temp - find a better sound
 							if(!do_after(usr, 50, target = src))
 								control_rod_installation = FALSE
@@ -426,8 +426,8 @@ Control Rods
 							if(affecting && affecting.receive_damage( 0, 20 )) //damage it even more
 								H.update_damage_overlays()
 							empulse(src, 3, 5)
-							H.radiation += (heat/2) * radiation_modifier
-							radiation_pulse(src, (heat * 2) * radiation_modifier, 5)
+							SSradiation.irradiate_internal(H, (heat/2) * radiation_modifier * RAD_LEGACY_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442: ręce w reaktorze, strój nie chroni
+							radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = radiation_modifier) // AQ EDIT - promieniowanie z Bee#13442
 							playsound(src, 'sound/items/welder.ogg', 100, TRUE) //temp - find a better sound
 							handle_control_rod_efficiency()
 							handle_control_rod_integrity()
@@ -593,7 +593,7 @@ Control Rods
 		return
 
 	if(state == REACTOR_STATE_MELTDOWN)
-		radiation_pulse(src, (1000 * radiation_modifier), 10)
+		radiation_pulse(src, max_range = 4, threshold = RAD_MEDIUM_INSULATION, intensity = clamp(2 * radiation_modifier, 1, 5), collector_power = 1000 * radiation_modifier, collector_falloff = 10) // AQ EDIT - promieniowanie z Bee#13442
 		return
 
 	if(reactor_end_times)
@@ -705,7 +705,9 @@ Control Rods
 	handle_gas_records()
 	handle_reactor_stability()
 	update_icon()
-	radiation_pulse(src, (heat * radiation_modifier), 2)
+	// AQ EDIT START - promieniowanie z Bee#13442: impuls co sekundę, 5x5 kafelków, ścianę zatrzymuje; przy 200-400 stopniach 0,2-0,6% na impuls
+	radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = clamp(heat * radiation_modifier / 1000, 0, 2), collector_power = heat * radiation_modifier, collector_falloff = 2)
+	// AQ EDIT END
 	ambient_temp_bleed()
 
 	if(last_power_produced > 3000000) //3MW
@@ -1245,7 +1247,7 @@ Control Rods
 /obj/machinery/atmospherics/components/binary/stormdrive_reactor/proc/do_meltdown_effects()
 	explosion(get_turf(src), 0, 0, 10, 20, TRUE, TRUE)
 	empulse(src, 25, 50)
-	radiation_pulse(src, 10000, 1)
+	radiation_pulse(src, max_range = 12, threshold = 0.3, intensity = 50, collector_power = 10000) // AQ EDIT - promieniowanie z Bee#13442
 	src.atmos_spawn_air("o2=750;plasma=200;nucleium=100;TEMP=5000")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_STROMDRIVE_EXPLOSION, src) // AQ edit
 
@@ -1263,7 +1265,7 @@ Control Rods
 				var/epi = get_turf(WS)
 				if(WS.range < 10) //small spawner
 					empulse(epi, 5, 15)
-					radiation_pulse(epi, 100)
+					radiation_pulse(epi, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 					if(prob(50))
 						var/anom = rand(1,10)
 						switch(anom)
@@ -1275,7 +1277,7 @@ Control Rods
 								new /obj/effect/anomaly/stormdrive/squall(epi, rand(2000, 5000))
 				else //larger spawner
 					empulse(epi, 10, 25)
-					radiation_pulse(epi, 500)
+					radiation_pulse(epi, max_range = 4, threshold = RAD_MEDIUM_INSULATION, intensity = 10) // AQ EDIT - promieniowanie z Bee#13442
 					var/anom = rand(1,10)
 					switch(anom) //spawn SD anom
 						if(1 to 4)
@@ -1526,7 +1528,7 @@ Control Rods
 	immunity_type = "rad"
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
-	L.rad_act(100)
+	SSradiation.irradiate(L, 0.7) // AQ EDIT - promieniowanie z Bee#13442: dawne rad_act(100) na sekundę plus naturalny zanik
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()
@@ -1593,9 +1595,9 @@ Control Rods
 /obj/effect/anomaly/stormdrive/sheer/anomalyEffect()
 	..()
 	if(prob(90))
-		radiation_pulse(src, 25)
+		radiation_pulse(src, max_range = 1, threshold = RAD_LIGHT_INSULATION, intensity = 1) // AQ EDIT - promieniowanie z Bee#13442
 	else
-		radiation_pulse(src, 125)
+		radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 		var/turf/open/L = get_turf(src)
 		if(!istype(L) || !L.air)
 			return
@@ -1604,16 +1606,16 @@ Control Rods
 		atmos_spawn_air("nucleium=15;TEMP=[temperature]")
 
 /obj/effect/anomaly/stormdrive/sheer/on_entered(datum/source, mob/living/M)
-	radiation_pulse(src, 125)
+	radiation_pulse(src, max_range = 1, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/effect/anomaly/stormdrive/sheer/Bump(mob/living/M)
-	radiation_pulse(src, 125)
+	radiation_pulse(src, max_range = 1, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/effect/anomaly/stormdrive/sheer/Bumped(atom/movable/AM)
-	radiation_pulse(src, 125)
+	radiation_pulse(src, max_range = 1, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/effect/anomaly/stormdrive/sheer/detonate()
-	radiation_pulse(src, 5000)
+	radiation_pulse(src, max_range = 5, threshold = RAD_EXTREME_INSULATION, intensity = 30) // AQ EDIT - promieniowanie z Bee#13442
 	src.atmos_spawn_air("o2=125;plasma=50;nucleium=50;TEMP=5000")
 	explosion(src, 0, 0, 1, 18, FALSE)
 	new /obj/effect/particle_effect/sparks(loc)
