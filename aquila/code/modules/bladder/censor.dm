@@ -70,6 +70,7 @@
 	var/image/censored = image(initial(dirt_type.icon), src, initial(dirt_type.icon_state), layer)
 	censored.color = "#1c1c1c"
 	censored.override = TRUE
+	censored.name = "brud" // obrazek z override i własną nazwą podmienia ją też w menu prawego przycisku i podpowiedzi
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/bodily_censor, "bodily_censor", censored)
 
 /// Po zmianie przełącznika: przelicza, kto widzi zastępczy wygląd

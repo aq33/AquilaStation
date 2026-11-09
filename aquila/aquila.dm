@@ -719,6 +719,7 @@
 #include "code\modules\liquids\liquid_status_effect.dm"
 #include "code\modules\liquids\liquid_interaction.dm"
 #include "code\modules\liquids\liquid_ice.dm"
+#include "code\modules\liquids\liquid_blood.dm"
 #include "code\modules\liquids\drains.dm"
 #include "code\modules\liquids\liquid_pump.dm"
 #include "code\modules\liquids\liquid_plumbers.dm"

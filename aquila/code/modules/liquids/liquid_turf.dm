@@ -114,13 +114,43 @@
 		liquids.liquid_group.expose_members_turf(liquids)
 
 /turf/open/proc/remember_liquid_residue(datum/reagents/giver, multiplier)
-	if(!liquid_residue)
-		liquid_residue = new(LIQUID_SPILL_THRESHOLD * 2, NO_REACT)
-		RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_residue_cleaned), override = TRUE)
+	create_liquid_residue()
 	for(var/datum/reagent/R as anything in giver.reagent_list)
 		if(R.type in GLOB.liquid_blacklist)
 			continue
 		liquid_residue.add_reagent(R.type, R.volume * multiplier, reagtemp = giver.chem_temp, no_react = TRUE)
+
+/turf/open/proc/create_liquid_residue()
+	if(liquid_residue)
+		return
+	liquid_residue = new(LIQUID_SPILL_THRESHOLD * 2, NO_REACT)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_residue_cleaned), override = TRUE)
+
+/**
+ * Dolewa ciecz bez rozprysku i reakcji z podłogą (krew z krwawienia): plamy robi wołający sam.
+ * Na kafelku z kałużą dolewa do niej, inaczej dodaje do pamięci małych rozlań i po przekroczeniu
+ * LIQUID_SPILL_THRESHOLD zamienia całą pamięć w kałużę.
+ */
+/turf/proc/pool_liquid(reagent_type, amount, chem_temp = T20C)
+	return
+
+/turf/open/pool_liquid(reagent_type, amount, chem_temp = T20C)
+	if(amount <= 0 || (reagent_type in GLOB.liquid_blacklist) || isgroundlessturf(src))
+		return
+	if(!QDELETED(liquids))
+		liquids.liquid_group?.add_reagent(liquids, reagent_type, amount, chem_temp)
+		return
+	if(world.time - liquid_residue_time > LIQUID_RESIDUE_DECAY_TIME)
+		clear_liquid_residue()
+	liquid_residue_time = world.time
+	create_liquid_residue()
+	liquid_residue.add_reagent(reagent_type, amount, reagtemp = chem_temp, no_react = TRUE)
+	if(liquid_residue.total_volume < LIQUID_SPILL_THRESHOLD)
+		return
+	var/datum/reagents/old_residue = liquid_residue
+	liquid_residue = null
+	add_liquid_from_reagents(old_residue)
+	qdel(old_residue)
 
 /turf/proc/clear_liquid_residue()
 	if(!liquid_residue)

@@ -205,14 +205,8 @@
 		else
 			if(!(lube & SLIP_WHEN_CRAWLING) && (!(slipper.mobility_flags & MOBILITY_STAND) || !(slipper.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
-			// AQ EDIT START - mokra podłoga i plamy (woda, krew, kupa, olej) ślizgają tylko w sprincie, reszta (PDA klauna) jak dotąd
-			if(lube & NO_SLIP_WHEN_WALKING)
-				if(!O || isturf(O) || istype(O, /obj/effect/decal/cleanable))
-					if(!slipper.is_sprinting())
-						return 0
-				else if(slipper.m_intent == MOVE_INTENT_WALK)
-					return 0
-			// AQ EDIT END
+			if(slipper.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
+				return 0
 		if(!(lube&SLIDE_ICE))
 			to_chat(slipper, "<span class='notice'>Poślizgujesz się[ O ? " na [O.name]" : ""]!</span>")
 			playsound(slipper.loc, 'sound/misc/slip.ogg', 50, 1, -3)
@@ -223,6 +217,7 @@
 				slipper.accident(I)
 
 		var/olddir = slipper.dir
+		var/sprint_slide = slipper.is_sprinting() // AQ EDIT - poślizg w sprincie rzuca kafel dalej (aquila/code/modules/mob/living/carbon/sprint.dm)
 		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			slipper.Knockdown(knockdown_amount)
@@ -244,6 +239,8 @@
 			slipper.AddComponent(/datum/component/force_move, target, TRUE)
 		else if(lube&SLIDE_ICE)
 			slipper.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
+		else if(sprint_slide) // AQ EDIT - poślizg w sprincie rzuca kafel dalej
+			slipper.AddComponent(/datum/component/force_move, get_ranged_target_turf(slipper, olddir, 1), FALSE) // AQ EDIT
 		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)

@@ -130,6 +130,7 @@
 	qdel(viewer)
 	TEST_ASSERT(!QDELETED(censor), "Deleting a viewer deleted the censored appearance for everyone")
 	TEST_ASSERT(poop.alternate_appearances?["bodily_censor"] == censor, "Feces lost their censored appearance")
+	TEST_ASSERT(censor.theImage?.name == "brud", "Censored feces keep their real name in the right-click menu")
 
 /// AQUILA - wyłom: po gwałtownej dekompresji odessany kafel ma temperaturę kosmosu
 /datum/unit_test/aquila_decompression_chill
@@ -174,16 +175,88 @@
 	TEST_ASSERT(locate(/obj/effect/decal/cleanable/feces) in T, "Defecating on the spot left no feces")
 	aquila_liquids_cleanup(T)
 
-/// AQUILA - mokra podłoga ślizga tylko w sprincie (zwykły bieg już nie)
-/datum/unit_test/aquila_wet_floor_sprint_only
+/// AQUILA - mokra podłoga: chodem bez poślizgu, w biegu poślizg, w sprincie poślizg rzuca jeszcze kafel dalej
+/datum/unit_test/aquila_wet_floor_slip
+	/// Pokój testowy nie ma generatora grawitacji, a bez grawitacji handle_slip nic nie robi
+	var/area/gravity_area
+	var/old_gravity
 
-/datum/unit_test/aquila_wet_floor_sprint_only/Run()
+/datum/unit_test/aquila_wet_floor_slip/Destroy()
+	if(gravity_area)
+		gravity_area.has_gravity = old_gravity
+		gravity_area = null
+	return ..()
+
+/datum/unit_test/aquila_wet_floor_slip/Run()
 	var/turf/open/T = run_loc_floor_bottom_left
+	gravity_area = get_area(T)
+	old_gravity = gravity_area.has_gravity
+	gravity_area.has_gravity = STANDARD_GRAVITY
+	TEST_ASSERT(T.has_gravity(), "Test floor still has no gravity")
+	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human, T)
+	walker.m_intent = MOVE_INTENT_WALK
+	TEST_ASSERT(!T.handle_slip(walker, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Walking slipped on a wet floor")
+
 	var/mob/living/carbon/human/runner = allocate(/mob/living/carbon/human, T)
 	runner.m_intent = MOVE_INTENT_RUN
 	TEST_ASSERT(!runner.is_sprinting(), "A fresh human counts as sprinting")
-	TEST_ASSERT(!T.handle_slip(runner, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Running without sprint slipped on a wet floor")
-	TEST_ASSERT(runner.mobility_flags & MOBILITY_STAND, "Runner fell over on a wet floor without sprinting")
+	TEST_ASSERT(T.handle_slip(runner, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Running did not slip on a wet floor")
+	TEST_ASSERT(!(runner.mobility_flags & MOBILITY_STAND), "Runner stayed standing after slipping")
+	TEST_ASSERT(!runner.GetComponent(/datum/component/force_move), "Running without sprint slid forward")
+
+	var/mob/living/carbon/human/sprinter = allocate(/mob/living/carbon/human, T)
+	sprinter.m_intent = MOVE_INTENT_RUN
+	var/datum/component/carbon_sprint/sprint = sprinter.GetComponent(/datum/component/carbon_sprint)
+	TEST_ASSERT(sprint, "Human has no sprint component")
+	sprint.sprinting = TRUE
+	sprinter.setDir(EAST)
+	TEST_ASSERT(T.handle_slip(sprinter, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Sprinting did not slip on a wet floor")
+	TEST_ASSERT(sprinter.GetComponent(/datum/component/force_move), "Slipping in a sprint did not throw the sprinter forward")
+
+/// AQUILA - palna kałuża zapala się od kliknięcia gorącym przedmiotem i od wejścia z ogniem w ręce, zimnym nie
+/datum/unit_test/aquila_liquid_ignition
+
+/datum/unit_test/aquila_liquid_ignition/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	var/turf/open/T2 = get_step(T, EAST)
+	aquila_liquids_cleanup(T)
+	aquila_liquids_cleanup(T2)
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, get_step(T, NORTH))
+	var/obj/item/lighter/lighter = allocate(/obj/item/lighter, user)
+	user.put_in_hands(lighter)
+
+	T.add_liquid(/datum/reagent/fuel, 100)
+	TEST_ASSERT(!QDELETED(T.liquids), "100 units of fuel did not make a puddle")
+	T.attackby(lighter, user)
+	TEST_ASSERT(!T.liquids.fire_state, "An unlit lighter set the puddle on fire")
+	lighter.set_lit(TRUE)
+	T.attackby(lighter, user)
+	TEST_ASSERT(T.liquids.fire_state, "Clicking a fuel puddle with a lit lighter did not ignite it")
+	aquila_liquids_cleanup(T)
+
+	T2.add_liquid(/datum/reagent/fuel, 100)
+	user.forceMove(T2)
+	TEST_ASSERT(T2.liquids.fire_state, "Walking into a fuel puddle with a lit lighter in hand did not ignite it")
+	aquila_liquids_cleanup(T2)
+	user.ExtinguishMob()
+
+/// AQUILA - krew z krwawienia: mniej niż 50 j. to same plamy, więcej sumuje się w kałużę krwi
+/datum/unit_test/aquila_liquid_bleeding_pool
+
+/datum/unit_test/aquila_liquid_bleeding_pool/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human, T)
+	patient.blood_volume = BLOOD_VOLUME_NORMAL
+	patient.bleed(20)
+	TEST_ASSERT(QDELETED(T.liquids), "A single small bleed made a puddle")
+	for(var/i in 1 to 10)
+		if(!QDELETED(T.liquids))
+			break
+		patient.bleed(20)
+	TEST_ASSERT(!QDELETED(T.liquids), "Bleeding over 50 units onto one tile did not make a puddle")
+	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/blood), "Puddle from bleeding has no blood")
+	aquila_liquids_cleanup(T)
 
 /// AQUILA - zatkana toaleta: spłukanie przelewa wodę i zawartość muszli na podłogę
 /datum/unit_test/aquila_toilet_overflow

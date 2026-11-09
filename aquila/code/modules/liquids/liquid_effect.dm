@@ -1,6 +1,6 @@
 // AQUILA - Ciecze, port z Monkestation 2.0 (monkestation/code/modules/liquids/liquid_effect.dm, master 6a4365b)
-// Różnice: bitmaska Aquili (paradise_struktury/smoothing.dm) zamiast SMOOTH_BITMASK, poślizg przez is_sprinting(),
-// examine po polsku, cenzura moczu jako amoniaku, wygląd i poślizg lodu (nowe).
+// Różnice: bitmaska Aquili (paradise_struktury/smoothing.dm) zamiast SMOOTH_BITMASK, poślizg w biegu (sprint rzuca dalej, handle_slip),
+// podpalanie gorącym przedmiotem (klik i wejście), examine po polsku, cenzura moczu jako amoniaku, wygląd i poślizg lodu (nowe).
 
 /obj/effect/abstract/liquid_turf
 	name = "ciecz"
@@ -74,6 +74,7 @@
 
 	RegisterSignal(my_turf, COMSIG_ATOM_ENTERED, PROC_REF(movable_entered))
 	RegisterSignal(my_turf, COMSIG_PARENT_EXAMINE, PROC_REF(examine_turf))
+	RegisterSignal(my_turf, COMSIG_PARENT_ATTACKBY, PROC_REF(turf_attackby))
 
 	// Plamy wody i lodu pod kałużą zastępuje sama kałuża
 	SEND_SIGNAL(my_turf, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER | TURF_WET_ICE, TRUE)
@@ -84,7 +85,7 @@
 
 /obj/effect/abstract/liquid_turf/Destroy(force)
 	if(!isnull(my_turf))
-		UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_EXAMINE))
+		UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
 		liquid_group?.remove_from_group(my_turf)
 		SSliquids.evaporation_queue -= my_turf
 		SSliquids.burning_turfs -= my_turf
@@ -241,7 +242,8 @@
 			liquid_group.expose_atom(L, 1, TOUCH)
 	else if(isliving(AM))
 		var/mob/living/L = AM
-		if(iscarbon(L) && liquid_group.slippery && L.is_sprinting() && !(L.movement_type & FLYING) && (L.mobility_flags & MOBILITY_STAND))
+		// Chodem bez poślizgu (NO_SLIP_WHEN_WALKING), w biegu poślizg, w sprincie handle_slip rzuca jeszcze kafel dalej
+		if(iscarbon(L) && liquid_group.slippery && !(L.movement_type & FLYING) && (L.mobility_flags & MOBILITY_STAND))
 			var/mob/living/carbon/C = L
 			C.slip(3 SECONDS, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
 		if(!(L.movement_type & FLYING) && ishuman(L))
@@ -249,8 +251,43 @@
 			if(!((stepped_human.wear_suit?.body_parts_covered | stepped_human.w_uniform?.body_parts_covered | stepped_human.shoes?.body_parts_covered) & FEET))
 				liquid_group.expose_atom(stepped_human, 0.1, TOUCH)
 
+	if(!fire_state)
+		try_ignite(get_carried_heat(AM))
 	if(fire_state)
 		AM.fire_act((T20C+50) + (50*fire_state), 125)
+
+/// AQUILA - temperatura ognia, który coś wnosi do kałuży: płonący mob, gorący przedmiot w ręce albo wrzucony
+/obj/effect/abstract/liquid_turf/proc/get_carried_heat(atom/movable/AM)
+	if(isitem(AM))
+		var/obj/item/I = AM
+		return I.is_hot()
+	if(!isliving(AM))
+		return 0
+	var/mob/living/L = AM
+	if(L.on_fire)
+		return FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100
+	. = 0
+	for(var/obj/item/held in L.held_items)
+		. = max(., held.is_hot())
+
+/// AQUILA - podpala palną kałużę (paliwo, alkohol, olej). Zwraca TRUE, gdy się zapaliła.
+/obj/effect/abstract/liquid_turf/proc/try_ignite(heat)
+	if(fire_state || heat < FIRE_MINIMUM_TEMPERATURE_TO_EXIST || QDELETED(liquid_group) || liquid_group.frozen)
+		return FALSE
+	var/datum/gas_mixture/air = my_turf.return_air()
+	if(!air || air.get_moles(GAS_O2) < 0.5)
+		return FALSE
+	liquid_group.ignite_turf(my_turf)
+	return fire_state != LIQUID_FIRE_STATE_NONE
+
+/// AQUILA - kliknięcie kafla z kałużą gorącym przedmiotem (zapalniczka, spawarka, papieros) ją podpala
+/obj/effect/abstract/liquid_turf/proc/turf_attackby(datum/source, obj/item/I, mob/user, params)
+	SIGNAL_HANDLER
+	if(!try_ignite(I.is_hot()))
+		return
+	user.visible_message("<span class='danger'>[user] podpala ciecz na podłodze za pomocą [I]!</span>", "<span class='danger'>Podpalasz ciecz na podłodze za pomocą [I]!</span>")
+	log_game("[key_name(user)] ignited a liquid puddle with [I] at [AREACOORD(my_turf)]")
+	return COMPONENT_NO_AFTERATTACK
 
 /// Upadek z piętra w ciecz (Monke: COMSIG_TURF_MOB_FALL)
 /obj/effect/abstract/liquid_turf/proc/mob_fall(mob/living/M)

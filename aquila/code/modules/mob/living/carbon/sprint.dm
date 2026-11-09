@@ -6,7 +6,7 @@
 	if(ishuman(src) || ismonkey(src))
 		AddComponent(/datum/component/carbon_sprint)
 
-///Czy mob właśnie sprintuje (poślizg na mokrych plamach i kałużach jest tylko w sprincie)
+///Czy mob właśnie sprintuje (poślizg w sprincie rzuca kafel dalej, /turf/open/handle_slip)
 /mob/living/proc/is_sprinting()
 	return FALSE
 
