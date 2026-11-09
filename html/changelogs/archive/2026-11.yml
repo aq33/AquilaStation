@@ -535,3 +535,9 @@
       wprowadza do środka. Sabre nie wystartuje, gdy ktoś stoi na skrzydle.
   - rscadd: Zestaw budowy promu (Wyznacznik Stref Promu i płytki sterownika lotu,
       silników plazmowych i podgrzewaczy) leży na starcie w inżynierii na każdej mapie.
+'2026-11-09':
+  Joker66613:
+  - spellcheck: Wersja angielska używa oryginalnych tekstów z serwerów, z których
+      pochodzą porty, zamiast tłumaczeń zwrotnych z polskiego.
+  - spellcheck: Poprawiono kilkaset angielskich komunikatów, które pokazywały zupełnie
+      inne zdanie niż polski tekst.
