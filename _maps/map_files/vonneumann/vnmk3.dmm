@@ -34,6 +34,21 @@
 /obj/structure/grille/wall,
 /turf/open/space/basic,
 /area/space)
+"aai" = (
+/obj/item/radio/intercom/directional/north,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light_switch/north{
+	pixel_x = -12
+	},
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 1
+	},
+/obj/machinery/duct,
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -45139,7 +45154,7 @@ bxi
 bxi
 vNa
 vNa
-uQA
+aai
 aQj
 fsT
 feX

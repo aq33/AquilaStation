@@ -18544,5 +18544,11 @@
 "• Wyższe Człowieczeństwo daje częściową odporność na działanie Sol": "• Higher Humanity grants partial resistance to the effects of Sol",
 "…i jeszcze ${filtered.length - MAX_SHOWN}. Zawęź wyszukiwanie.": "…and ${filtered.length - MAX_SHOWN} more. Narrow your search.",
 "→ skrępuj cel → przeciągnij go na stół → kliknij stół, by rozpocząć tortury.": "→ restrain the target → drag them onto the table → click the table to begin the torture.",
-"∞ minut": "∞ minutes"
+"∞ minut": "∞ minutes",
+"hełm hardsuitu zespołu urazowego": "trauma team hardsuit helmet",
+"Hełm zespołu urazowego do akcji ratunkowych w próżni. Wykonany z lekkich materiałów dla większej wygody, ale nie chroni oczu przed intensywnym światłem.": "A trauma team helmet for rescue operations in vacuum. Made of lightweight materials for comfort, but it does not protect the eyes from bright light.",
+"hardsuit zespołu urazowego": "trauma team hardsuit",
+"Lekki skafander zespołu urazowego do wyciągania rannych z próżni i miejsc katastrof. Łatwo się w nim ruszać.": "A lightweight trauma team suit for pulling the wounded out of vacuum and disaster sites. Easy to move in.",
+"Żandarmeria": "Security",
+"Znak wskazujący posterunek Żandarmerii. Winny, dopóki nie udowodni się niewinności.": "A sign marking the security post. Guilty until proven innocent."
 }
