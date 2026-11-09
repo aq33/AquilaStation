@@ -1318,7 +1318,6 @@
 #include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "code\modules\mob\voice.dm"
 #include "code\modules\mob\voice_muffled_sounds.dm"
-#include "code\modules\modular_computers\file_system\programs\jukebox_broadcast.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
 #include "code\modules\detectivework\access_log.dm"
 #include "code\modules\modular_computers\file_system\programs\logprobe.dm"

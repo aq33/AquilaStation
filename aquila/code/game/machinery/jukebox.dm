@@ -32,13 +32,13 @@
 	var/music_deck_penalty = 4
 	/// Liczy, jak głośno i jak przytłumioną muzykę słyszy gracz (jukebox_emitter.dm)
 	var/datum/music_emitter/emitter
-	/// Nadaje na cały statek (włączane programem nagłośnienia u kapitana)
+	/// Nadaje na cały statek (włącza kapitan z konsoli komunikacji)
 	var/shipwide = FALSE
 	/// Podłączone multitoolem amp stacki
 	var/list/obj/machinery/jukebox_speaker/speakers = list()
 	/// Gra tylko przykręcony; FALSE = gra też odkręcony, np. ciągnięty za sobą (głośnik Syndykatu)
 	var/needs_anchoring = TRUE
-	/// Może nadawać na cały statek z programu nagłośnienia (radio i głośnik Syndykatu nie)
+	/// Może nadawać na cały statek przez nagłośnienie (radio i głośnik Syndykatu nie)
 	var/can_broadcast = TRUE
 
 /obj/machinery/jukebox/disco
