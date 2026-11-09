@@ -13,19 +13,9 @@
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
 
-// Dwa nowe wyglądy księgi kapelana z tg. Listy muszą mieć równą długość (book.dm wybiera po indeksie).
-// Guru Granth Sahib nie ma w tg grafiki w ręku, więc używa stanu zwykłej Biblii.
-/datum/controller/global_vars/InitGlobalbiblenames()
-	. = ..()
-	biblenames += list("Guru Granth Sahib", "Kojiki")
-
-/datum/controller/global_vars/InitGlobalbiblestates()
-	. = ..()
-	biblestates += list("gurugranthsahib", "kojiki")
-
-/datum/controller/global_vars/InitGlobalbibleitemstates()
-	. = ..()
-	bibleitemstates += list("bible", "kojiki")
+// Dwa nowe wyglądy księgi kapelana z tg (Guru Granth Sahib, Kojiki) są dopisane wprost do list w core
+// (code/game/objects/items/storage/book.dm, AQ EDIT): nadpisanie InitGlobal* tutaj nie działało w teście
+// (kontroler woła je przez call() ze ścieżką procki). Guru Granth Sahib w ręku używa stanu Biblii.
 
 // Stare wyglądy plant-26..29 zastąpione w tg sztucznymi roślinami; zostają w puli losowania jako plant-35..38
 /obj/item/kirbyplants/random/generate_states()
