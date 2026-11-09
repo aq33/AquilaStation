@@ -82,13 +82,25 @@
 	TEST_ASSERT(!QDELETED(T.liquids), "Breaking the ice did not give the water back")
 	TEST_ASSERT(!T.liquids.liquid_group.frozen, "Water from a broken ice block froze right back (it would trap the human again)")
 
-	// W próżni woda i tak zamarza po kilku sekundach i blok może powstać od nowa: uwolniony nie może trafić do niego znowu
+	// W próżni woda i tak zamarza po kilku sekundach i blok może powstać od nowa: uwolniony nie może trafić do niego znowu.
+	// Pełna ścieżka: wymiana ciepła z odessanym kafelkiem, przebieg bloków SSliquids, zejście z kafla.
 	var/datum/liquid_group/thawed = T.liquids.liquid_group
-	thawed.reagents.chem_temp = TCMB
-	thawed.update_freezing()
-	TEST_ASSERT(thawed.frozen, "Water left in vacuum did not freeze again")
-	TEST_ASSERT(thawed.freeze_into_block(T), "Refrozen deep water did not make a new ice block")
+	var/datum/gas_mixture/old_air = T.air.copy()
+	T.air.clear()
+	T.air.set_temperature(TCMB)
+	for(var/i in 1 to 20)
+		thawed.share_air_temperature()
+		if(thawed.frozen)
+			break
+	T.air.copy_from(old_air)
+	TEST_ASSERT(thawed.frozen, "Water left in vacuum did not freeze again through heat exchange")
+	TEST_ASSERT(thawed in SSliquids.ice_block_candidates, "Refrozen deep water is not an ice block candidate")
+	SSliquids.process_ice_blocks()
+	TEST_ASSERT(locate(/obj/structure/liquid_ice_block) in T, "SSliquids did not turn the refrozen deep water into a new ice block")
 	TEST_ASSERT(victim.loc == T, "The human who just broke free was trapped again by the refrozen block")
+	TEST_ASSERT(!HAS_TRAIT(victim, TRAIT_IMMOBILIZED), "The human next to the new block cannot move")
+	var/turf/away = get_step(T, EAST)
+	TEST_ASSERT(victim.Move(away) && victim.loc == away, "The human could not step off the tile with the new ice block")
 	aquila_liquids_cleanup(T)
 
 /// AQUILA - pojemnik rzucony w przedmiot działa tylko na przedmiot, bez kałuży pod nim (jak chlust zlewką)
