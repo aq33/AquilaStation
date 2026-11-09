@@ -1840,6 +1840,7 @@
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\aquila_circuit_library.dm"
 #include "code\modules\unit_tests\aquila_defecate_here.dm"
+#include "code\modules\unit_tests\aquila_poprawki_0911.dm"
 #include "code\modules\unit_tests\aquila_foreigner.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
