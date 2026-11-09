@@ -60,6 +60,7 @@ class Session:
 		self.listener = None
 		self.replaced = False  # nowa karta odłączyła starą (gra ostrzega gracza)
 		self.pending = {}  # seq -> (kanał, time.monotonic() polecenia start)
+		self.consent_logged = None  # dostawca, na którego zgodę tej sesji już zapisano w logu
 
 	@property
 	def connected(self):
@@ -229,6 +230,23 @@ BACKENDS = {
 }
 API_KEY_ENV = {"openai": "OPENAI_API_KEY", "elevenlabs": "ELEVENLABS_API_KEY"}
 
+# Zewnętrzne firmy, do których idzie nagranie głosu (strona prosi gracza o zgodę przed włączeniem mikrofonu).
+CLOUD_PROVIDERS = {
+	"openai": {"name": "OpenAI", "privacy": "https://openai.com/policies/privacy-policy/"},
+	"elevenlabs": {"name": "ElevenLabs", "privacy": "https://elevenlabs.io/privacy-policy"},
+}
+
+
+def privacy_info(args):
+	"""Co strona musi powiedzieć graczowi: dokąd idzie nagranie i czy serwis je zapisuje."""
+	provider = CLOUD_PROVIDERS.get(args.backend)
+	return {
+		"provider": args.backend if provider else None,
+		"provider_name": provider["name"] if provider else None,
+		"privacy_url": provider["privacy"] if provider else None,
+		"saves_recordings": bool(args.save_dir),
+	}
+
 
 def transcribe(args, wav):
 	if args.backend == "whisper":
@@ -239,6 +257,10 @@ def transcribe(args, wav):
 		# Chmura nie działa (limit, brak sieci): lokalny Whisper, jeśli stoi.
 		print(f"[glos] {args.backend} nie odpowiada ({e}), używam lokalnego Whispera", flush=True)
 		return transcribe_whisper(args, wav)
+
+
+def args_cloud(args):
+	return args.backend in CLOUD_PROVIDERS
 
 
 def read_api_key(path, env_name):
@@ -323,6 +345,8 @@ class Handler(BaseHTTPRequestHandler):
 			return self.events(self.token_arg(query))
 		if url.path == "/health":
 			return self.send_body(200, {"ok": True})
+		if url.path == "/info":
+			return self.send_body(200, privacy_info(self.server.args))
 		self.send_body(404, {"error": "nie ma takiej strony"})
 
 	def do_POST(self):
@@ -419,6 +443,16 @@ class Handler(BaseHTTPRequestHandler):
 			# Strona może wysłać tylko to, o co poprosiła gra (gracz trzymał klawisz).
 			return self.send_body(409, {"error": "gra nie czeka na to nagranie"})
 		state = self.server.state
+		# Bez zgody gracza nagranie nie wychodzi do chmury (np. stara strona z pamięci przeglądarki, która nie pytała)
+		consent = (query.get("consent") or [""])[0]
+		if args_cloud(self.server.args):
+			if consent != self.server.args.backend:
+				state.add_result(session, seq, channel, "", "brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego")
+				return self.send_body(403, {"error": "brak zgody"})
+			if session.consent_logged != consent:
+				# Ślad w logu usługi (journal), kto i kiedy zgodził się na wysyłanie głosu do tej firmy
+				session.consent_logged = consent
+				print(f"[glos] zgoda: {session.ckey} wysyła głos do {CLOUD_PROVIDERS[consent]['name']}", flush=True)
 		if (query.get("silent") or ["0"])[0] == "1" or not body:
 			state.add_result(session, seq, channel, "", "cisza")
 			return self.send_body(200, {"text": ""})

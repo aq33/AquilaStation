@@ -25,6 +25,17 @@
 	scale = max(1, FLOOR(scale, 0.05))
 	transform = matrix(scale, 0, 0, 0, scale, 0)
 
+// Mapa jest obrazem przypiętym do obiektu HUD-u i skaluje się z nim o ułamek (1–1,6).
+// Bez PIXEL_SCALE karta wygładzała ją dwuliniowo i minimapa była rozmyta; KEEP_TOGETHER skleja mapę
+// z nakładkami (legenda, znaczniki, kursor), żeby całość skalowała się po pikselach jak jeden obraz.
+/datum/station_holomap/initialize_holomap(map_x, map_y, map_z, mob/user = null, reinit_base_map = FALSE, extra_overlays = list())
+	. = ..()
+	base_map?.appearance_flags |= PIXEL_SCALE | KEEP_TOGETHER
+
+/datum/station_holomap/initialize_holomap_bogus()
+	. = ..()
+	base_map?.appearance_flags |= PIXEL_SCALE | KEEP_TOGETHER
+
 #undef HOLOMAP_MAX_SCALE
 #undef HOLOMAP_LEGEND_REACH_X
 #undef HOLOMAP_LEGEND_REACH_Y

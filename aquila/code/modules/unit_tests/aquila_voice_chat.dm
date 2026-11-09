@@ -9,10 +9,15 @@
 	} \
 } while (FALSE)
 
-/// Zastępstwo klienta: SSvoice_chat potrzebuje od gracza tylko ckey i moba.
+/// Zastępstwo klienta: SSvoice_chat potrzebuje od gracza tylko ckey i moba, bind głosu także klawiszy.
 /datum/voice_chat_test_player
 	var/ckey = "voicechattest"
 	var/mob/mob
+	var/list/keys_held = list()
+	var/datum/voice_chat_test_prefs/prefs
+
+/datum/voice_chat_test_prefs
+	var/list/key_bindings = list("N" = list("voice_say"))
 
 /// AQUILA - czat głosowy: klawisz mówienia steruje nagraniem, a rozpoznany tekst wypowiada postać
 /datum/unit_test/aquila_voice_chat
@@ -26,6 +31,7 @@
 	var/mob/living/carbon/human/speaker = allocate(/mob/living/carbon/human)
 	player = new
 	player.mob = speaker
+	player.prefs = new
 	var/datum/voice_chat_session/session = new(player.ckey, "0123456789abcdef0123456789abcdef")
 	session.connected = TRUE
 	// Bez can_fire: podsystem nie łączy się z serwisem, sprawdzamy samą logikę.
@@ -76,6 +82,33 @@
 	TEST_ASSERT(!voice_bind.can_use(player), "Bind głosu działa przy wyłączonym czacie")
 	SSvoice_chat.enabled = TRUE
 	TEST_ASSERT(voice_bind.any_modifier, "Bind głosu nie działa z wciśniętym Shiftem (sprint)")
+
+	// Bind zaczyna nagranie tylko przy fizycznie wciśniętym klawiszu (np. nie z Advanced ProcCall na down())
+	var/datum/keybinding/say_bind = GLOB.keybindings_by_name["voice_say"]
+	say_bind.down(player)
+	TEST_ASSERT(!session.recording_seq, "Bind głosu włączył nagrywanie bez wciśniętego klawisza")
+	player.keys_held["N"] = world.time
+	say_bind.down(player)
+	TEST_ASSERT(session.recording_seq, "Wciśnięty klawisz nie zaczął nagrania")
+	SSvoice_chat.cancel_recording(player, session)
+	player.keys_held.Cut()
+	// Bind z modyfikatorem: sam klawisz bez modyfikatora nie nagrywa
+	player.prefs.key_bindings = list("Ctrl-N" = list("voice_say"))
+	player.keys_held["N"] = world.time
+	say_bind.down(player)
+	TEST_ASSERT(!session.recording_seq, "Bind Ctrl-N nagrywa bez wciśniętego Ctrl")
+	player.keys_held["Ctrl"] = world.time
+	say_bind.down(player)
+	TEST_ASSERT(session.recording_seq, "Bind Ctrl-N nie nagrywa z wciśniętym Ctrl")
+	SSvoice_chat.cancel_recording(player, session)
+	player.keys_held.Cut()
+	player.prefs.key_bindings = list("N" = list("voice_say"))
+	// Tokenów i polecenia nagrywania nie da się ruszyć z VV ani Advanced ProcCall
+	TEST_ASSERT(!SSvoice_chat.CanProcCall("start_recording"), "Advanced ProcCall może włączyć nagrywanie")
+	TEST_ASSERT(!SSvoice_chat.can_vv_get("sessions"), "Tokeny graczy widać w VV")
+	TEST_ASSERT(SSvoice_chat.can_vv_get("enabled"), "Admin nie może sprawdzić, czy czat głosowy jest włączony")
+	TEST_ASSERT(!session.can_vv_get("token"), "Token gracza widać w VV")
+	TEST_ASSERT(!say_bind.CanProcCall("down"), "Advanced ProcCall może wcisnąć klawisz mówienia")
 
 	// Strona sama kończy nagranie po VOICE_CHAT_MAX_SECONDS i tekst wraca, zanim gra dostała puszczenie klawisza
 	SSvoice_chat.start_recording(player, "say")
