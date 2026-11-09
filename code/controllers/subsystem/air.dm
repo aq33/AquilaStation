@@ -494,6 +494,7 @@ SUBSYSTEM_DEF(air)
 		AM = atmos_machines[A]
 		AM.atmos_init()
 		CHECK_TICK
+	fix_template_node_links(atmos_machines) // AQ EDIT - jednostronne połączenia rur między szablonami
 
 	for(var/A in 1 to atmos_machines.len)
 		AM = atmos_machines[A]

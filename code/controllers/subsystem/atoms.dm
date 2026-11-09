@@ -157,16 +157,20 @@ SUBSYSTEM_DEF(atoms)
 
 /// Use this to set initialized to prevent error states where old_initialized is overriden. It keeps happening and it's cheesing me off
 /datum/controller/subsystem/atoms/proc/set_tracked_initalized(value)
+	// AQ EDIT START - count overlapping map loads (ruin generator parts and room spawners sleep mid-load), so the
+	// first one to finish no longer restores initialized while the other is still loading
 	if(!initialized_changed)
 		old_initialized = initialized
 		initialized = value
-		initialized_changed = TRUE // who cares how often this gets called important is only that we don't overwrite old_initialize
-	else
-		stack_trace("We started maploading while we were already maploading. You doing something odd?")
+	initialized_changed++
 
 /datum/controller/subsystem/atoms/proc/clear_tracked_initalize()
-	initialized_changed = FALSE
-	initialized = old_initialized
+	if(initialized_changed <= 0)
+		return
+	initialized_changed--
+	if(!initialized_changed)
+		initialized = old_initialized
+	// AQ EDIT END
 
 /datum/controller/subsystem/atoms/Recover()
 	initialized = SSatoms.initialized
