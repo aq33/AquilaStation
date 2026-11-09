@@ -13128,6 +13128,14 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"kwd" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/carpet/police,
+/area/ai_monitored/security/armory)
 "kwy" = (
 /obj/structure/cable,
 /obj/item/beacon{
@@ -48980,7 +48988,7 @@ tid
 tid
 qlv
 tid
-cfD
+kwd
 eJl
 nos
 eFF

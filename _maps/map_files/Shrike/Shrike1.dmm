@@ -8871,6 +8871,61 @@
 	lighting_colour_night = "#c1e1ff";
 	lighting_colour_tube = "#c1e1ff"
 	})
+"Np" = (
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -1
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -1
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/bot_red/right,
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -1
+	},
+/obj/item/ammo_box/magazine/glock/lethal{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "Nq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -48876,7 +48931,7 @@ vG
 wR
 wR
 Vn
-Sq
+Np
 vG
 Mc
 Wt
