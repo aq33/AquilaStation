@@ -38,7 +38,10 @@
 	lagged.overrun = 0
 	lagged.process()
 	var/turf/after_lag = get_turf(lagged)
-	TEST_ASSERT(after_lag && after_lag.y - after_fire.y == 2, "Projectile delayed by 2 ds moved [after_lag ? after_lag.y - after_fire.y : "?"] tiles instead of 2")
+	// Przy przeciążonym ticku (TICK_CHECK) silnik odkłada resztę drogi na następny tick jako dług (overrun), więc liczymy go razem
+	var/moved_tiles = after_lag ? after_lag.y - after_fire.y : 0
+	var/owed_tiles = round(lagged.overrun / world.icon_size)
+	TEST_ASSERT(moved_tiles + owed_tiles == 2, "Projectile delayed by 2 ds moved [moved_tiles] tiles (+[owed_tiles] owed) instead of 2")
 	qdel(lagged)
 
 	// set_pixel_speed() z overmapu NSV13 to mnożnik prędkości
@@ -68,7 +71,8 @@
 	TEST_ASSERT(beam.hitscan, "Our laser beam should be hitscan (aquila beams.dm)")
 	beam.original = victim
 	beam.fire(0)
-	TEST_ASSERT(victim.getFireLoss() > 0, "Hitscan beam did not hit the target 3 tiles north in the same tick")
+	// Zwykle trafia od razu; przy przeciążonym ticku (TICK_CHECK) hitscan kończy lot w następnym ticku, jak w tg
+	TEST_ASSERT(aq_wait_for_damage(victim), "Hitscan beam did not hit the target 3 tiles north")
 
 /// Tryby ognia, bezpiecznik i przypadkowy wystrzał
 /datum/unit_test/aquila_gunplay_firemodes
