@@ -291,6 +291,7 @@
 #include "code\game\objects\items\storage\firstaid.dm"
 #include "code\game\objects\items\tanks\jetpack.dm"
 #include "code\game\objects\items\tanks\tank_types.dm"
+#include "code\game\objects\items\tg_sprites_sprzatanie.dm"
 #include "code\game\objects\items\tools\crowbar.dm"
 #include "code\game\objects\items\tools\powertools.dm"
 #include "code\game\objects\items\tools\screwdriver.dm"
@@ -863,6 +864,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack_creator.dm"
 #include "code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"
+#include "code\modules\mob\living\simple_animal\bot\medbot.dm"
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cockroach.dm"
@@ -1330,6 +1332,7 @@
 #include "code\modules\detectivework\wound_log.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_heater.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_master.dm"
+#include "code\modules\reagents\chemistry\machinery\condimaster.dm"
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
@@ -1920,6 +1923,8 @@
 #include "code\modules\unit_tests\hotspot_throttle.dm"
 #include "code\modules\unit_tests\hub_status.dm"
 #include "code\modules\unit_tests\aquila_hygiene.dm"
+#include "code\modules\unit_tests\aquila_bot_tg_sprites.dm"
+#include "code\modules\unit_tests\aquila_service_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"
 #include "code\modules\unit_tests\aquila_infiltrator_uplink.dm"
 #include "code\modules\unit_tests\aquila_laser_balance.dm"
