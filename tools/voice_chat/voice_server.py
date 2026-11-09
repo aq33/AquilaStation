@@ -60,6 +60,7 @@ class Session:
 		self.listener = None
 		self.replaced = False  # nowa karta odłączyła starą (gra ostrzega gracza)
 		self.pending = {}  # seq -> (kanał, time.monotonic() polecenia start)
+		self.consent_logged = None  # dostawca, na którego zgodę tej sesji już zapisano w logu
 
 	@property
 	def connected(self):
@@ -444,9 +445,14 @@ class Handler(BaseHTTPRequestHandler):
 		state = self.server.state
 		# Bez zgody gracza nagranie nie wychodzi do chmury (np. stara strona z pamięci przeglądarki, która nie pytała)
 		consent = (query.get("consent") or [""])[0]
-		if args_cloud(self.server.args) and consent != self.server.args.backend:
-			state.add_result(session, seq, channel, "", "brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego")
-			return self.send_body(403, {"error": "brak zgody"})
+		if args_cloud(self.server.args):
+			if consent != self.server.args.backend:
+				state.add_result(session, seq, channel, "", "brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego")
+				return self.send_body(403, {"error": "brak zgody"})
+			if session.consent_logged != consent:
+				# Ślad w logu usługi (journal), kto i kiedy zgodził się na wysyłanie głosu do tej firmy
+				session.consent_logged = consent
+				print(f"[glos] zgoda: {session.ckey} wysyła głos do {CLOUD_PROVIDERS[consent]['name']}", flush=True)
 		if (query.get("silent") or ["0"])[0] == "1" or not body:
 			state.add_result(session, seq, channel, "", "cisza")
 			return self.send_body(200, {"text": ""})

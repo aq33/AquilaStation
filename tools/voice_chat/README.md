@@ -48,11 +48,14 @@ Zgoda jest zapamiętana w przeglądarce, można ją cofnąć na stronie. Serwis 
 ## Zachowanie
 
 - Tekst przechodzi przez zwykłe `say` (języki postaci, filtry, logi).
-- Nagrywanie zaczyna tylko fizycznie wciśnięty klawisz: bind sprawdza `keys_held` klienta, a podsystem, sesje graczy
-  i bindy głosu są zablokowane przed VV i Advanced ProcCall (`GENERAL_PROTECT_DATUM`), więc nikt nie włączy mikrofonu
-  ani nie podejrzy tokenów z poziomu gry. Kto ma sekret `/api/sync`, nadal może sterować stronami, więc sekret trzymaj
-  tylko na serwerze gry i w usłudze.
-- Strona daje krótki dźwięk przy starcie nagrania (można wyłączyć na stronie).
+- Nagrywanie zaczyna tylko wciśnięty klawisz (z modyfikatorami, jeśli bind je ma): bind sprawdza `keys_held` klienta.
+  Podsystem nie przyjmuje Advanced ProcCall, a zmienne z tokenami (sesje, polecenia) są ukryte w VV; sesje graczy
+  i bindy głosu są zablokowane całe (`GENERAL_PROTECT_DATUM`). Admin w grze nie włączy więc nikomu mikrofonu
+  i nie zobaczy tokenów, ale może sprawdzić `enabled` i wyłączyć czat w trakcie rundy.
+- Poza grą: tokeny są w `data/voice_chat_tokens.json` na serwerze gry, a kto ma sekret `/api/sync`, może sterować
+  stronami. Sekret i ten plik trzymaj tylko u osób z dostępem do serwera.
+- Pierwsze nagranie wysłane do chmury po zgodzie zostawia w logu usługi wpis `[glos] zgoda: <ckey> …`.
+- Strona daje krótki dźwięk po każdym nagraniu (można wyłączyć na stronie). Gra po zamknięciu nagrania, więc nie trafia do rozpoznawania.
 - Przy wyłączonym czacie (`VOICE_CHAT_ENABLED` zakomentowane) klawisze N/U/J nic nie robią, a komendy OOC nie ma.
 - Wciśnięcie krótsze niż 0,3 s jest anulowane, nagranie najdłużej `VOICE_CHAT_MAX_SECONDS` (domyślnie 15 s).
 - Cisza nie jest wysyłana do Whispera, a typowe zmyślenia Whispera na ciszy („Napisy stworzone przez społeczność Amara.org” itp.) są odrzucane.
@@ -70,6 +73,8 @@ Zgoda jest zapamiętana w przeglądarce, można ją cofnąć na stronie. Serwis 
   a strony są uznawane za rozłączone dopiero po trzech błędach z rzędu.
 
 ## Diagnostyka
+
+Testy serwisu (zgoda, `/info`, bez sieci): `python -m unittest tools/voice_chat/test_voice_server.py` z katalogu repozytorium.
 
 `voice_server.py --save-dir <folder>` zapisuje każde nagranie (WAV) i surowy tekst Whispera, żeby porównywać modele i ustawienia na prawdziwych głosach.
 

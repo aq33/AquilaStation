@@ -47,7 +47,7 @@
 		<p><button id="enable" hidden>Włącz mikrofon</button></p>
 		<div class="meter"><div id="level"></div></div>
 		<p class="small" id="privacy-note"></p>
-		<p class="small"><label><input type="checkbox" id="cue"> Krótki dźwięk, gdy zaczyna się nagrywanie</label></p>
+		<p class="small"><label><input type="checkbox" id="cue"> Krótki dźwięk po każdym nagraniu</label></p>
 	</div>
 	<div class="card">
 		<strong>Ostatnio rozpoznane</strong>
@@ -87,7 +87,8 @@ function stored(key) {
 	try { return localStorage.getItem(key); } catch (err) { return null; }
 }
 
-/// Krótki sygnał przy starcie nagrania, żeby gracz wiedział, że mikrofon właśnie nagrywa (karta zwykle jest w tle).
+/// Krótki sygnał po każdym wysłanym nagraniu, żeby gracz wiedział, że mikrofon nagrywał (karta zwykle jest w tle).
+/// Gra po zamknięciu nagrania, więc nie trafia do niego (sygnał na starcie nagrywał się przy głośnikach).
 function playCue() {
 	if (!ctx || !el("cue").checked) return;
 	const osc = ctx.createOscillator();
@@ -222,9 +223,8 @@ function startRec(data) {
 		// a jego ostatnie próbki są początkiem nowego (inaczej pierwsze słowo byłoby ucięte).
 		const prev = recording;
 		head = prev.stopping ? tail(prev.chunks) : [];
-		completeRec(prev);
+		completeRec(prev, false);  // bez sygnału: zagrałby już w nowym nagraniu
 	}
-	playCue();
 	recording = { seq: data.seq, chunks: head, stopping: false, postLeft: 0, done: false, timer: setTimeout(() => stopRec({ seq: data.seq }), (data.max || 15) * 1000) };
 	preRoll = [];
 	preRollLen = 0;
@@ -243,12 +243,13 @@ function stopRec(data) {
 }
 
 /// Kończy nagranie dokładnie raz i wysyła je.
-function completeRec(rec) {
+function completeRec(rec, cue = true) {
 	if (rec.done) return;
 	rec.done = true;
 	clearTimeout(rec.timer);
 	if (recording === rec) recording = null;
 	finishRec(rec);
+	if (cue) playCue();
 	refreshStatus();
 }
 
