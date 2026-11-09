@@ -9,11 +9,15 @@
 	3) Akcja „Znacznik taktyczny” → menu, klik w widoczne pole → znacznik; klik w pole poza ekranem → „Możesz oznaczyć tylko pole, które widzisz” (negatyw). \
 	4) Automat: okno pokazuje tylko zestaw dowódcy; Wydaj → skrzynia w ręce (pancerz, skafander obcisły, hełmy, megafon). Drugie wydanie przed zwrotem → odmowa (negatyw). Wyjmij pancerz, oddaj skrzynię (klik skrzynią w automat) → brakuje 1 rzeczy; oddaj pancerz → wypożyczenie zamknięte. \
 	5) Konsola: zakładka Drużyny → Alpha z trzema osobami, ich stan (członkowie bez gracza mają „Bez kontaktu”), zestaw i braki; zmień funkcję medyka na żołnierza → ikona nad postacią się zmienia; przenieś inżyniera do Bravo. Załóż pancerz drużyny i kliknij kamerę przy sobie → widok wokół ciebie. Zakładka Sprzęt → twoje wypożyczenie. \
-	6) Zabij się (np. ghostuj z ciała po śmierci od pistoletu): po 10 s dowodzenie przejmuje inny członek drużyny, a drużyna dostaje komunikat na ekranie."
+	6) Konsola: guziki Dostęp / Broń / Przydział zmieniają napis po jednym kliknięciu, Smycz drukuje jedną smycz. \
+	7) Postaw znacznik i odejdź tak, żeby zniknął z ekranu → przy krawędzi ekranu wskaźnik z ikoną znacznika, strzałką w jego stronę i odległością; podejdź → wskaźnik znika. \
+	8) Kliknij pagerem w PDA → pager w PDA, przycisk „Pager drużyny” otwiera jego okno, rozkaz dalej pokazuje się na ekranie; Alt-klik na PDA wyjmuje pager (długopis wyjmuje Ctrl-klik). \
+	9) Zabij się (np. ghostuj z ciała po śmierci od pistoletu): po 10 s dowodzenie przejmuje inny członek drużyny, a drużyna dostaje komunikat na ekranie."
 	items = list(
 		/obj/machinery/squad_vendor = 1,
 		/obj/machinery/computer/squad_manager = 1,
 		/obj/item/clothing/suit/ship/squad = 1,
+		/obj/item/modular_computer/tablet/pda = 1,
 	)
 
 /datum/test_chamber_kit/pr_602/setup(list/spawned, list/turfs, turf/center, mob/user)

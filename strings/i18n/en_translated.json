@@ -18657,5 +18657,15 @@
 "• Wyższe Człowieczeństwo daje częściową odporność na działanie Sol": "• Higher Humanity grants partial resistance to the effects of Sol",
 "…i jeszcze ${filtered.length - MAX_SHOWN}. Zawęź wyszukiwanie.": "…and ${filtered.length - MAX_SHOWN} more. Narrow your search.",
 "→ skrępuj cel → przeciągnij go na stół → kliknij stół, by rozpocząć tortury.": "→ restrain the target → drag them onto the table → click the table to begin the torture.",
-"∞ minut": "∞ minutes"
+"∞ minut": "∞ minutes",
+"Pager drużyny": "Squad pager",
+"Otwiera pager drużyny schowany w PDA.": "Opens the squad pager tucked into the PDA.",
+"<span class='warning'>W [src] jest już pager drużyny.</span>": "<span class='warning'>There is already a squad pager in \the [src].</span>",
+"<span class='notice'>Wsuwasz [attacking_item] do [src]. Otworzysz go przyciskiem „Pager drużyny”, a wyjmiesz Alt-klikiem.</span>": "<span class='notice'>You slide [attacking_item] into \the [src]. Open it with the \"Squad pager\" button, take it out with Alt-click.</span>",
+"<span class='notice'>Wyjmujesz [pager] z [src].</span>": "<span class='notice'>You take [pager] out of \the [src].</span>",
+"Wyjmij pager": "Eject pager",
+"<span class='warning'>W [src] nie ma pagera drużyny.</span>": "<span class='warning'>There is no squad pager in \the [src].</span>",
+"<span class='notice'>W bocznej kieszeni jest [aq_squad_pager]. Alt-klik go wyjmuje.</span>": "<span class='notice'>[aq_squad_pager] sits in the side pocket. Alt-click to take it out.</span>",
+"wyżej": "above",
+"niżej": "below"
 }

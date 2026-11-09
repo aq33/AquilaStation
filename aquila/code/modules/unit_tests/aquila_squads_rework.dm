@@ -142,4 +142,40 @@
 		qdel(pass)
 	TEST_ASSERT(passes == 1, "Guzik Smycz wydrukował [passes] smyczy zamiast jednej")
 
+/// Wskaźnik znacznika przy krawędzi ekranu: przyklejony do krawędzi w stronę celu, z odległością; pokłady liczone po stosie pięter
+/datum/unit_test/aquila_squad_marker_pointer
+
+/datum/unit_test/aquila_squad_marker_pointer/Run()
+	var/atom/movable/screen/aq_marker_pointer/pointer = allocate(/atom/movable/screen/aq_marker_pointer, null, SQUAD_MARKER_ATTACK, "#ff0000")
+	// cel 40 kratek na wschód przy widoku 15x15: wskaźnik przy prawej krawędzi (6,4 kratki), na wysokości środka
+	pointer.aim_at(40, 0, 7, 7)
+	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(6.4 * world.icon_size)],CENTER:0", "Wskaźnik nie stoi przy prawej krawędzi ekranu: [pointer.screen_loc]")
+	TEST_ASSERT(findtext(pointer.maptext, "40"), "Wskaźnik nie pokazuje odległości do znacznika")
+	// cel na skos: przycięty do bliższej krawędzi (tu górnej), proporcje kierunku zachowane
+	pointer.aim_at(10, 20, 7, 7)
+	TEST_ASSERT(pointer.screen_loc == "CENTER:[round(10 * 6.4 / 20 * world.icon_size)],CENTER:[round(6.4 * world.icon_size)]", "Wskaźnik na skos nie trzyma kierunku do celu: [pointer.screen_loc]")
+	TEST_ASSERT(aq_deck_offset(run_loc_floor_bottom_left.z, run_loc_floor_bottom_left.z) == 0, "Ten sam poziom nie daje różnicy pokładów 0")
+	TEST_ASSERT(isnull(aq_deck_offset(run_loc_floor_bottom_left.z, world.maxz + 1)), "Poziom spoza stosu pięter liczy się jako pokład okrętu")
+
+/// Pager schowany w PDA: dalej odbiera łączność noszącego, PDA daje przycisk pagera, Alt-klik go wyjmuje
+/datum/unit_test/aquila_squad_pager_in_pda
+
+/datum/unit_test/aquila_squad_pager_in_pda/Run()
+	var/datum/squad/squad = aq_squad("Bravo")
+	var/mob/living/carbon/human/member = allocate(/mob/living/carbon/human)
+	squad.add_member(member)
+	var/obj/item/modular_computer/tablet/pda/pda = allocate(/obj/item/modular_computer/tablet/pda)
+	var/obj/item/squad_pager/pager = allocate(/obj/item/squad_pager, null, squad)
+	pager.attack_self(member) // tworzy kanał drużyny
+	member.put_in_hands(pda)
+	member.put_in_hands(pager)
+	pda.attackby(pager, member)
+	TEST_ASSERT(pda.aq_squad_pager == pager && pager.loc == pda, "Pager nie trafił do PDA")
+	TEST_ASSERT(pda.aq_squad_pager_action?.owner == member, "PDA z pagerem nie dało przycisku pagera")
+	TEST_ASSERT(pager.squad_channel?.get_user() == member, "Pager w PDA nie odbiera łączności noszącego")
+	TEST_ASSERT(member.aq_has_squad_pager(), "Pager w PDA nie liczy się do komunikatów na ekranie")
+	pda.AltClick(member)
+	TEST_ASSERT(!pda.aq_squad_pager && pager.loc == member, "Alt-klik nie wyjął pagera z PDA")
+	TEST_ASSERT(!pda.aq_squad_pager_action, "Przycisk pagera został po wyjęciu pagera")
+
 #undef TEST_ASSERT
