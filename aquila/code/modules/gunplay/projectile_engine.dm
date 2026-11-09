@@ -170,6 +170,7 @@
 				pixel_x = entry_x + x_shift * tile_size
 				pixel_y = entry_y + y_shift * tile_size
 			var/angle_before_step = Angle
+			var/turf/old_turf = loc
 			step_towards(src, new_turf)
 			if(QDELETED(src))
 				return movements_done
@@ -189,6 +190,13 @@
 					y_shift = 0
 			if(loc != new_turf)
 				moving_turfs = FALSE
+			else if(!deletion_queued)
+				// Barierki, przewrócone stoły i krzesła (gunplay/cover.dm)
+				var/obj/cover = check_cover(old_turf, new_turf)
+				if(cover)
+					hit_cover(cover)
+					if(QDELETED(src))
+						return movements_done
 
 		movements_done++
 		pixels_moved_last_tile += distance_to_move

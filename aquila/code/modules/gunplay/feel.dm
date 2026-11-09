@@ -1,0 +1,304 @@
+// AQUILA - odczucie strzału: smugi za kulami, rykoszety, świst i drżenie przy przelocie kuli, dźwięki trafień zależne
+// od materiału, grzechot ostatnich naboi, odjazd krzesła na kółkach od odrzutu, przechył i obrót broni przy strzale,
+// spadek siły ran śrutu z odległością i statystyki broni w opisie.
+// Wzory: Shiptest (świst bullet_miss i shake_animation() przy przelocie, dźwięki trafień wg materiału, rykoszety kul),
+// CM (fire_rattle), /vg/ (krzesło odjeżdża od odrzutu), Goon i Yogstation (przechył broni przy strzale), tg (wound_falloff_tile śrutu).
+
+/// Kule z broni palnej: tyle odbić maks.
+#define AQ_BULLET_RICOCHETS 2
+/// Co który nabój w karabinach maszynowych jest smugowy
+#define AQ_MG_TRACER_INTERVAL 5
+
+GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
+	"metal" = list('aquila/sound/weapons/gun_hit/bullet_metal_01.ogg', 'aquila/sound/weapons/gun_hit/bullet_metal_02.ogg', 'aquila/sound/weapons/gun_hit/bullet_metal_03.ogg', 'aquila/sound/weapons/gun_hit/bullet_metal_04.ogg', 'aquila/sound/weapons/gun_hit/bullet_metal_05.ogg', 'aquila/sound/weapons/gun_hit/bullet_metal_06.ogg'),
+	"wood" = list('aquila/sound/weapons/gun_hit/bullet_wood_01.ogg', 'aquila/sound/weapons/gun_hit/bullet_wood_02.ogg', 'aquila/sound/weapons/gun_hit/bullet_wood_03.ogg', 'aquila/sound/weapons/gun_hit/bullet_wood_04.ogg', 'aquila/sound/weapons/gun_hit/bullet_wood_05.ogg', 'aquila/sound/weapons/gun_hit/bullet_wood_06.ogg'),
+	"glass" = list('aquila/sound/weapons/gun_hit/bullet_glass_01.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_02.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_03.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_04.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_05.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_06.ogg', 'aquila/sound/weapons/gun_hit/bullet_glass_07.ogg'),
+	"stone" = list('aquila/sound/weapons/gun_hit/bullet_masonry_01.ogg', 'aquila/sound/weapons/gun_hit/bullet_masonry_02.ogg', 'aquila/sound/weapons/gun_hit/bullet_masonry_03.ogg', 'aquila/sound/weapons/gun_hit/bullet_masonry_04.ogg', 'aquila/sound/weapons/gun_hit/bullet_masonry_05.ogg', 'aquila/sound/weapons/gun_hit/bullet_masonry_06.ogg'),
+	"ricochet" = list('aquila/sound/weapons/gun_hit/bullet_ricochet1.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet2.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet3.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet4.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet5.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet6.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet7.ogg', 'aquila/sound/weapons/gun_hit/bullet_ricochet8.ogg'),
+	"flyby" = list('aquila/sound/weapons/gun_hit/bullet_miss1.ogg', 'aquila/sound/weapons/gun_hit/bullet_miss2.ogg', 'aquila/sound/weapons/gun_hit/bullet_miss3.ogg', 'aquila/sound/weapons/gun_hit/bullet_miss4.ogg', 'sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'),
+))
+
+/// Materiał, w który trafia kula: "metal", "wood", "glass", "stone" albo null (bez dźwięku)
+/atom/proc/get_bullet_hit_material()
+	return null
+
+/turf/closed/get_bullet_hit_material()
+	return "metal"
+
+/turf/closed/wall/mineral/wood/get_bullet_hit_material()
+	return "wood"
+
+/turf/closed/wall/mineral/sandstone/get_bullet_hit_material()
+	return "stone"
+
+/turf/closed/mineral/get_bullet_hit_material()
+	return "stone"
+
+/turf/closed/indestructible/rock/get_bullet_hit_material()
+	return "stone"
+
+/obj/get_bullet_hit_material()
+	return (flags_1 & CONDUCT_1) ? "metal" : null
+
+/obj/structure/window/get_bullet_hit_material()
+	return "glass"
+
+/obj/machinery/door/window/get_bullet_hit_material()
+	return "glass"
+
+/obj/structure/table/glass/get_bullet_hit_material()
+	return "glass"
+
+/obj/structure/table/wood/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/barricade/wooden/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/barricade/sandbags/get_bullet_hit_material()
+	return "stone"
+
+/obj/structure/chair/wood/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/closet/crate/wooden/get_bullet_hit_material()
+	return "wood"
+
+/obj/item/projectile/bullet/on_hit(atom/target, blocked = FALSE, pierce_hit)
+	. = ..()
+	if(isliving(target) || !aq_from_gun)
+		return
+	var/material = target.get_bullet_hit_material()
+	if(!material)
+		return
+	playsound(get_turf(target), pick(GLOB.aq_bullet_hit_sounds[material]), suppressed ? 20 : 55, TRUE, -1)
+
+// --- Rykoszety ---
+
+/obj/item/projectile/on_ricochet(atom/A)
+	. = ..()
+	if(!aq_from_gun)
+		return
+	playsound(get_turf(src), pick(GLOB.aq_bullet_hit_sounds["ricochet"]), 50, TRUE, -1)
+	do_sparks(1, FALSE, get_turf(A))
+
+// --- Wspólna konfiguracja pocisku z broni ręcznej ---
+
+/obj/item/projectile
+	/// Wystrzelony z broni ręcznej (nie z działa okrętowego ani wieżyczki)
+	var/aq_from_gun = FALSE
+	/// Smuga dołożona po pierwszym kafelku lotu ("trail" albo "trail_bright")
+	var/aq_tail_state
+	/// Mobom, które już usłyszały świst tej kuli
+	var/list/aq_flyby_heard
+	/// Nabój smugowy niezależnie od broni
+	var/tracer_round = FALSE
+	/// Spadek siły ran na kafelek (tg wound_falloff_tile)
+	var/wound_falloff_tile = 0
+
+/obj/item/gun
+	/// Co który strzał jest smugowy (0 = żaden poza amunicją smugową)
+	var/tracer_interval = 0
+	/// Licznik strzałów do smugowego
+	var/shots_since_tracer = 0
+
+/obj/item/gun/ballistic/automatic/l6_saw
+	tracer_interval = AQ_MG_TRACER_INTERVAL
+
+/// Pocisk wylatuje z tej broni: smuga, rykoszety, świst
+/obj/item/gun/proc/setup_fired_projectile(obj/item/projectile/projectile)
+	projectile.aq_from_gun = TRUE
+	if(projectile.flag != "bullet" || projectile.hitscan)
+		return
+	var/bright = projectile.tracer_round
+	if(tracer_interval)
+		shots_since_tracer++
+		if(shots_since_tracer >= tracer_interval)
+			shots_since_tracer = 0
+			bright = TRUE
+	projectile.aq_tail_state = bright ? "trail_bright" : "trail"
+	if(!projectile.ricochets_max)
+		projectile.ricochets_max = AQ_BULLET_RICOCHETS
+		projectile.ricochet_chance = projectile.armour_penetration >= 20 ? 10 : 30
+
+/obj/item/projectile/Range()
+	if(wound_falloff_tile && wound_bonus != CANT_WOUND)
+		wound_bonus += wound_falloff_tile
+		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
+	. = ..()
+	if(aq_tail_state && !QDELETED(src))
+		// Smuga dopiero od drugiego kafelka, żeby nie wyrastała strzelcowi z pleców
+		var/mutable_appearance/tail = mutable_appearance('aquila/icons/obj/projectile_tracers.dmi', aq_tail_state)
+		tail.pixel_y = -32 // ikona 32x96: środek pocisku na środku kafla
+		tail.appearance_flags = RESET_COLOR | KEEP_APART
+		add_overlay(tail)
+		aq_tail_state = null
+
+// Śrut: siła ran spada z odległością (tg buckshot: wound_falloff_tile = -1)
+/obj/item/projectile/bullet/pellet
+	wound_falloff_tile = -1
+
+// --- Świst i drżenie przy przelocie kuli ---
+
+/mob/living
+	/// Kiedy postać może znowu drgnąć od przelatującej kuli
+	var/aq_next_flinch = 0
+
+/obj/item/projectile/Moved(atom/OldLoc, Dir)
+	. = ..()
+	if(aq_from_gun && fired && !deletion_queued && !QDELETED(src) && isturf(loc) && flag == "bullet")
+		projectile_flyby()
+
+/obj/item/projectile/proc/projectile_flyby()
+	for(var/mob/living/nearby in range(1, loc))
+		if(nearby == firer || nearby.loc == loc || nearby.stat == DEAD || LAZYACCESS(aq_flyby_heard, nearby))
+			continue
+		LAZYSET(aq_flyby_heard, nearby, TRUE)
+		if(nearby.client && !suppressed)
+			nearby.playsound_local(loc, pick(GLOB.aq_bullet_hit_sounds["flyby"]), 40, TRUE)
+		if(world.time >= nearby.aq_next_flinch && nearby.stat == CONSCIOUS)
+			nearby.aq_next_flinch = world.time + 0.6 SECONDS
+			var/flinch_x = rand(-1, 1)
+			var/flinch_y = rand(-1, 1)
+			animate(nearby, pixel_x = flinch_x, pixel_y = flinch_y, time = 0.5, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
+			animate(pixel_x = -flinch_x, pixel_y = -flinch_y, time = 0.5, flags = ANIMATION_RELATIVE)
+
+/obj/item/projectile/Destroy()
+	aq_flyby_heard = null
+	return ..()
+
+// --- Grzechot ostatnich naboi, odjazd krzesła, przechył i obrót broni ---
+
+/obj/item/gun
+	/// Do kiedy broń w ręku jest wyprostowana po strzale
+	var/aq_aim_pose_until = 0
+	/// Odchylenie broni w ręku przy ostatnim strzale (stopnie)
+	var/aq_aim_pose_kick = 0
+	/// Timer powrotu broni do zwykłej pozycji w ręku
+	var/aq_aim_pose_timer
+
+/obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
+	. = ..()
+	if(!istype(user) || tk_firing(user))
+		return
+	var/shot_recoil = get_shot_recoil(chambered, user)
+	play_low_ammo_rattle()
+	roll_buckled_from_recoil(user, pbtarget, shot_recoil)
+	tilt_gun_sprite(shot_recoil)
+	start_aim_pose(user, shot_recoil)
+
+/// Ostatnie naboje w magazynku grzechoczą (CM fire_rattle)
+/obj/item/gun/proc/play_low_ammo_rattle()
+	return
+
+/obj/item/gun/ballistic/play_low_ammo_rattle()
+	if(!magazine || magazine.max_ammo < 5)
+		return
+	var/left = get_ammo(FALSE)
+	if(left > 0 && left <= 3)
+		playsound(src, 'sound/weapons/gun_magazine_insert_empty_1.ogg', 15, TRUE, -4, frequency = 1.3)
+
+/// Krzesło na kółkach i wózek odjeżdżają od odrzutu (/vg/)
+/obj/item/gun/proc/roll_buckled_from_recoil(mob/living/user, atom/target, shot_recoil)
+	var/atom/movable/seat = user.buckled
+	if(!seat || !target || !(istype(seat, /obj/structure/chair/office) || istype(seat, /obj/vehicle/ridden/wheelchair)))
+		return
+	if(seat.anchored)
+		return
+	var/push_dir = get_dir(target, user)
+	if(!push_dir)
+		return
+	var/steps = clamp(round(shot_recoil / 3), 1, 4)
+	for(var/i in 1 to steps)
+		addtimer(CALLBACK(src, PROC_REF(roll_seat_step), seat, push_dir), (i - 1) * (i + 1))
+
+/obj/item/gun/proc/roll_seat_step(atom/movable/seat, push_dir)
+	if(QDELETED(seat) || !isturf(seat.loc))
+		return
+	var/old_dir = seat.dir
+	step(seat, push_dir)
+	seat.setDir(old_dir)
+
+/// Sprite broni podskakuje od odrzutu (Goon do_icon_recoil, Yog DabAnimation): widać w ręce na HUD-zie i na ziemi
+/obj/item/gun/proc/tilt_gun_sprite(shot_recoil)
+	var/kick = clamp(shot_recoil * 2, 4, 25)
+	var/matrix/tilted = matrix()
+	tilted.Turn(-kick)
+	animate(src, transform = tilted, time = 0.5, flags = ANIMATION_PARALLEL)
+	animate(transform = matrix(), time = 2.5, easing = SINE_EASING | EASE_OUT)
+
+/// Po strzale broń w ręku na chwilę unosi się w stronę strzału (zamiast wisieć w dół)
+/obj/item/gun/proc/start_aim_pose(mob/living/user, shot_recoil)
+	aq_aim_pose_until = world.time + 0.6 SECONDS
+	aq_aim_pose_kick = clamp(shot_recoil * 1.5, 0, 15)
+	if(aq_aim_pose_timer)
+		deltimer(aq_aim_pose_timer)
+	aq_aim_pose_timer = addtimer(CALLBACK(src, PROC_REF(end_aim_pose), user), 0.65 SECONDS, TIMER_STOPPABLE)
+	// process_fire() woła update_inv_hands() po strzale; przy serii odświeżamy tu
+	user.update_inv_hands()
+
+/obj/item/gun/proc/end_aim_pose(mob/living/user)
+	aq_aim_pose_timer = null
+	aq_aim_pose_kick = 0
+	if(!QDELETED(user) && user.is_holding(src))
+		user.update_inv_hands()
+
+/obj/item/gun/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
+	. = ..()
+	if(!isinhands || world.time >= aq_aim_pose_until || !ismob(loc))
+		return
+	var/mutable_appearance/inhand = .
+	if(!istype(inhand))
+		return
+	var/mob/holder = loc
+	var/turn_angle = 0
+	var/shift_x = 0
+	var/shift_y = 2
+	switch(holder.dir)
+		if(EAST)
+			turn_angle = -(25 + aq_aim_pose_kick)
+			shift_x = 3
+		if(WEST)
+			turn_angle = 25 + aq_aim_pose_kick
+			shift_x = -3
+		if(NORTH)
+			shift_y = 3
+		if(SOUTH)
+			shift_y = 1
+	var/matrix/pose = matrix()
+	if(turn_angle)
+		pose.Turn(turn_angle)
+	pose.Translate(shift_x, shift_y)
+	inhand.transform = pose
+
+// --- Statystyki broni w opisie ---
+
+/obj/item/gun/examine(mob/user)
+	. = ..()
+	var/obj/item/projectile/shown = get_examine_projectile()
+	if(!shown || shown.nodamage)
+		return
+	var/integrity_mult = 0.5 + 0.5 * get_condition() / 100
+	var/shot_damage = round(shown.damage * projectile_damage_multiplier * integrity_mult, 0.1)
+	var/pellets = 1
+	if(chambered?.pellets > 1)
+		pellets = chambered.pellets
+	var/list/stats = list()
+	if(shot_damage > 0)
+		stats += "obrażenia: <b>[shot_damage][pellets > 1 ? " × [pellets] śrucin" : ""]</b>"
+		var/to_crit = CEILING(100 / max(shot_damage * pellets, 0.1), 1)
+		stats += "trafień do krytycznego stanu (bez pancerza): <b>[to_crit]</b>"
+	if(shown.stamina > 0)
+		stats += "zmęczenie: <b>[round(shown.stamina * integrity_mult, 0.1)]</b>"
+	if(shown.armour_penetration)
+		stats += "przebicie pancerza: <b>[shown.armour_penetration]</b>"
+	stats += "rozrzut: <b>[round(spread * 0.55, 0.1)]°</b>[requires_wielding ? " (z jednej ręki [round((spread + spread_unwielded) * 0.55, 0.1)]°)" : ""]"
+	stats += "szybkostrzelność: <b>[round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s</b>"
+	. += "<span class='notice'>[jointext(stats, ", ")].</span>"
+
+/// Pocisk do pokazania w opisie: z komory albo z typu amunicji
+/obj/item/gun/proc/get_examine_projectile()
+	return chambered?.BB
+
+#undef AQ_BULLET_RICOCHETS
+#undef AQ_MG_TRACER_INTERVAL

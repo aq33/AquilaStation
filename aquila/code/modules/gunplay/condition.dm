@@ -103,6 +103,7 @@
 			projectile.speed /= speed_mult // speed to czas na kratkę
 	if(projectile_wound_bonus && projectile.wound_bonus != CANT_WOUND)
 		projectile.wound_bonus += projectile_wound_bonus
+	setup_fired_projectile(projectile)
 
 /obj/item/projectile
 	/// Broń już dołożyła swoje mnożniki (śrut i przypadkowe strzały nie liczą ich dwa razy)

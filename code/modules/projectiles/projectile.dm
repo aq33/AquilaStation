@@ -209,6 +209,9 @@
 	if(target == original)
 		hitx = target.pixel_x + p_x - 16
 		hity = target.pixel_y + p_y - 16
+	else if(movement_vector && isturf(target)) // AQ EDIT - ślad na ścianie w miejscu, gdzie kula w nią weszła (silnik tg: entry_x/y)
+		hitx = clamp(entry_x, -12, 12)
+		hity = clamp(entry_y, -12, 12)
 	else
 		hitx = target.pixel_x + rand(-8, 8)
 		hity = target.pixel_y + rand(-8, 8)

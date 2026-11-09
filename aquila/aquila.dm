@@ -995,6 +995,8 @@
 #include "code\modules\gunplay\preferences.dm"
 #include "code\modules\gunplay\ammo_hud.dm"
 #include "code\modules\gunplay\condition.dm"
+#include "code\modules\gunplay\feel.dm"
+#include "code\modules\gunplay\cover.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
 #include "code\modules\projectiles\projectile\bullets\_incendiary.dm"
 #include "code\modules\projectiles\projectile\reusable\foam_dart.dm"
