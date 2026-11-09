@@ -19853,6 +19853,10 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons)
+"qiX" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/engine/airless,
+/area/nsv/hanger)
 "qjt" = (
 /obj/machinery/door/airlock/ship/maintenance{
 	req_one_access_txt = "12"
@@ -25065,6 +25069,10 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/starboard)
+"uNW" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "uNX" = (
 /obj/structure/railing{
 	dir = 10
@@ -27128,6 +27136,13 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame1/central)
+"wog" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "woh" = (
 /obj/machinery/slime_extract_requestor,
 /turf/open/floor/carpet/ship/purple_carpet,
@@ -52471,7 +52486,7 @@ uSS
 uSS
 uSS
 uSS
-oON
+uNW
 uSS
 utM
 mxi
@@ -52662,7 +52677,7 @@ qOl
 bNx
 cgx
 ums
-ioB
+wog
 pHq
 uSS
 uSS
@@ -59487,7 +59502,7 @@ vcm
 qsp
 stn
 fuC
-oNW
+qiX
 oLI
 oLI
 khS

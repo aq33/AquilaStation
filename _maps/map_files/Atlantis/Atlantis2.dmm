@@ -880,6 +880,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
+"aWi" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/dark/airless,
+/area/quartermaster/miningdock)
 "aWn" = (
 /obj/machinery/door/airlock/ship/command{
 	name = "Chief Engineer";
@@ -19482,6 +19486,10 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/cafeteria)
+"tMY" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/deck2)
 "tNJ" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/monotile/light,
@@ -54913,7 +54921,7 @@ dDp
 xyz
 xyz
 xyz
-niN
+aWi
 xyz
 dYM
 oUJ
@@ -71589,7 +71597,7 @@ qbP
 crh
 uyj
 uyj
-sId
+tMY
 uyj
 uyj
 uyj

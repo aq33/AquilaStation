@@ -5365,6 +5365,10 @@
 /obj/machinery/door/firedoor/border_only/directional/east,
 /turf/open/floor/plasteel/techmaint,
 /area/science/nanite)
+"lo" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "lp" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer2{
 	dir = 4
@@ -5635,6 +5639,10 @@
 /obj/machinery/light_switch/north,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
+"mu" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "mv" = (
 /obj/effect/turf_decal/tile/ship/green,
 /obj/effect/turf_decal/tile/ship/green{
@@ -7743,6 +7751,14 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/nsv/hanger/notkmcstupidhanger)
+"sy" = (
+/obj/machinery/camera/autoname{
+	c_tag = "Atmos - Airlock #2";
+	dir = 6
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "sz" = (
 /obj/machinery/shieldgen,
 /turf/open/floor/plating,
@@ -17741,6 +17757,16 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/nsv/deck2/starboard)
+"XO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "XP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -57140,7 +57166,7 @@ nm
 HA
 ez
 Pm
-ls
+lo
 LV
 Uy
 DH
@@ -57397,7 +57423,7 @@ am
 Cb
 ZZ
 Pm
-jG
+sy
 sH
 iG
 DH
@@ -59711,7 +59737,7 @@ Ya
 Vv
 Vv
 Pm
-QB
+XO
 KI
 sH
 sH
@@ -61215,7 +61241,7 @@ Nh
 an
 oT
 JL
-kZ
+mu
 pu
 ii
 Kl
