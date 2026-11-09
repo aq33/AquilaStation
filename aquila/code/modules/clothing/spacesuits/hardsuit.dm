@@ -124,6 +124,11 @@
 
 /obj/item/clothing/suit/space/hardsuit/engine
 	move_sound = list('aquila/sound/items/modsuit/rigstep_heavy.ogg')
+	// Promieniowanie z BeeStation/BeeStation-Hornet#13442: chroni tylko komplet z rad >= 100, a inżynieryjny hardsuit ma chronić (dawniej rad 75)
+	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 15, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75, "stamina" = 20, "bleed" = 70)
+
+/obj/item/clothing/head/helmet/space/hardsuit/engine
+	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 12, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75, "stamina" = 20, "bleed" = 70)
 
 /obj/item/clothing/suit/space/hardsuit/security
 	move_sound = list('aquila/sound/items/modsuit/rigstep_heavy.ogg')

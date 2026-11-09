@@ -115,6 +115,14 @@
 	hardsuit_wearer.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/hardsuit/engine/elite(hardsuit_wearer), ITEM_SLOT_HEAD)
 	TEST_ASSERT(SSradiation.wearing_rad_protected_clothing(hardsuit_wearer), "Komplet hardsuitu z rad 100 nie chroni przed promieniowaniem")
 
+	// Zwykły inżynieryjny hardsuit z hełmem też chroni (Aquila: rad podniesiony do 100), a hardsuit atmosferyki nie
+	var/mob/living/carbon/human/engineer = allocate(/mob/living/carbon/human, target_turf)
+	engineer.equip_to_slot_or_del(new /obj/item/clothing/suit/space/hardsuit/engine(engineer), ITEM_SLOT_OCLOTHING)
+	engineer.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/hardsuit/engine(engineer), ITEM_SLOT_HEAD)
+	TEST_ASSERT(SSradiation.wearing_rad_protected_clothing(engineer), "Inżynieryjny hardsuit z hełmem nie chroni przed promieniowaniem")
+	var/obj/item/clothing/suit/space/hardsuit/engine/atmos/atmos_suit = allocate(/obj/item/clothing/suit/space/hardsuit/engine/atmos)
+	TEST_ASSERT(!HAS_TRAIT(atmos_suit, TRAIT_RADIATION_PROTECTED_CLOTHING), "Hardsuit atmosferyki dostał ochronę przed promieniowaniem")
+
 	// Licznik Geigera na podłodze w zasięgu odnotowuje impuls
 	var/obj/item/geiger_counter/geiger = allocate(/obj/item/geiger_counter, target_turf)
 	radiation_pulse(source_turf, max_range = 4, threshold = RAD_LIGHT_INSULATION, intensity = 10)
