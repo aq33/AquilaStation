@@ -9128,6 +9128,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/comms)
+"WA" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel/dark/airless,
+/area/nsv/hanger/mining)
 "WB" = (
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/door/airlock/ship/maintenance{
@@ -32421,7 +32425,7 @@ tv
 tv
 tv
 tv
-VD
+WA
 kU
 xe
 xe

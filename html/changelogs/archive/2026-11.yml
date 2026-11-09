@@ -541,3 +541,16 @@
       pochodzą porty, zamiast tłumaczeń zwrotnych z polskiego.
   - spellcheck: Poprawiono kilkaset angielskich komunikatów, które pokazywały zupełnie
       inne zdanie niż polski tekst.
+  - bugfix: Cień latarki nie wycina już światła innych latarek (czarne kliny w oświetlonych
+      miejscach).
+  - bugfix: Sprzątacz sprząta odchody.
+  - bugfix: Alt+klik na kieszeni w oknie przeszukiwania opróżnia ją, zamiast mówić,
+      że nie ma kieszeni.
+  - bugfix: PDA nie pokazuje już kręcącej się skrzynki ładowania po zmianie programu.
+  - bugfix: Minimapa jest ostra.
+  - bugfix: 'Atlas: faks na mostku nie zasłania już konsoli DRADIS.'
+  - tweak: 'Czat głosowy: przed włączeniem mikrofonu strona mówi, do jakiej firmy
+      trafia nagranie, i pyta o zgodę.'
+  - bugfix: 'Czat głosowy: nagrywanie włącza tylko wciśnięty klawisz mówienia, nie
+      da się go włączyć z poziomu narzędzi admina.'
+  - tweak: 'Czat głosowy: krótki dźwięk po każdym nagraniu (można wyłączyć na stronie).'
