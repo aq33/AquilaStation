@@ -2030,3 +2030,4 @@
 #include "code\modules\i18n\foreigner_names.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
+#include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
