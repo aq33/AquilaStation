@@ -66,16 +66,19 @@ BAD_CHAR = "\ufffd"  # bajty spoza UTF-8 w źródle innego serwera (Latin-1) po 
 
 
 def load(name):
+    """Słownik strings/i18n/<name> bez klucza _komentarz (pusty, gdy pliku nie ma)."""
     return bcd.load_json(I18N + name)
 
 
 def write_json(path, data, indent=0):
+    """Zapis JSON w UTF-8 z LF i nową linią na końcu (wymóg check_grep.sh)."""
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, ensure_ascii=False, indent=indent)
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
 
 
 def write_candidates(path, best):
+    """Lista kandydatów jako JSONL, od najwyższego podobieństwa."""
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         for item in sorted(best.values(), key=lambda x: -x["score"]):
             f.write(json.dumps(item, ensure_ascii=False) + "\n")
@@ -89,6 +92,7 @@ def offer(best, item):
 
 
 def is_js(text):
+    """Literał JS z wstawkami ${...} (tekst okna)."""
     return "${" in text
 
 
@@ -108,11 +112,13 @@ def embed_shape(text, js=None):
 
 
 def same_embeds(pl, en, js=None):
+    """Czy polski i angielski literał mają te same wstawki (bez treści napisów)."""
     js = is_js(pl) if js is None else js
     return embed_shape(pl, js) == embed_shape(en, js)
 
 
 def words(text):
+    """Słowa tekstu małymi literami, bez wstawek, znaczników i makr DM."""
     text = bcd.TAG.sub(" ", ep.strip_embeds(jsx_runs.plain(text)))
     text = re.sub(r"\\[a-zA-Z]+", " ", text)
     return WORD.findall(text.lower())
@@ -139,6 +145,7 @@ def polish_detector(known):
     vocab = {w for w, count in pl_words.items() if count >= 2 and w not in en_words}
 
     def detect(text):
+        """Czy tekst jest po polsku."""
         plain = ep.strip_embeds(jsx_runs.plain(text))
         return bool(ep.PL_DIACRITICS.search(plain) or any(w in vocab for w in lm.WORD.findall(plain.lower())))
     return detect
@@ -160,6 +167,7 @@ def suspicious_history(merged, skip, detect):
 
 
 def code_files(pathspecs):
+    """Pliki kodu z gita według pathspeców, bez testów i plików spoza tekstów gracza."""
     out = subprocess.run(["git", "ls-files", "-z", *pathspecs], capture_output=True, text=True,
                          encoding="utf-8", check=True).stdout.split("\0")[:-1]
     return [p for p in out if not ep.SKIP_PATH.search(p) and not lm.NOT_PLAYER_TEXT.search(p)]
@@ -207,6 +215,7 @@ class Source:
     """Plik źródłowy serwera: literały według definicji i przypisania zmiennych."""
 
     def __init__(self, path):
+        """Parsuje plik źródłowy: literały według definicji i przypisania zmiennych."""
         lines = mu.read_lines(path)
         self.by_owner = collections.defaultdict(list)
         self.vars = {}
@@ -238,6 +247,7 @@ def file_literals(path, lines):
 
 
 def find(args):
+    """Kandydaci z tego samego miejsca kodu w drzewach innych serwerów (var, proc, tsx)."""
     merged = load("en_all.json")
     targets = open_targets(merged)
     specs = ep.UI_PATHSPECS if args.tgui_only else ["*.dm", *ep.UI_PATHSPECS]
@@ -273,6 +283,7 @@ def find(args):
     cache = {}
 
     def source(p):
+        """Plik źródłowy z pamięci podręcznej (parsowany raz)."""
         if p not in cache:
             cache[p] = Source(p)
         return cache[p]
@@ -349,6 +360,7 @@ KIND_RANK = {"pr": 2, "var": 1, "proc": 1, "tsx": 1, "global": 0}
 
 
 def spans_balanced(text):
+    """Czy liczba otwarć <span> równa się liczbie zamknięć."""
     return len(SPAN_OPEN.findall(text)) == len(SPAN_CLOSE.findall(text))
 
 
@@ -378,6 +390,7 @@ def rewrap(pl, en):
 
 
 def letters_only(text):
+    """Same litery i cyfry małymi literami (porównanie bez interpunkcji i odstępów)."""
     return re.sub(r"[^a-z0-9]", "", text.lower())
 
 
@@ -410,10 +423,12 @@ def judged_before(folders):
 
 
 def rank(item):
+    """Klucz sortowania kandydatów: pewność źródła, potem podobieństwo."""
     return (KIND_RANK.get(item["kind"], 0), item["score"])
 
 
 def split(args):
+    """Dzieli kandydatów na przyjęte od razu, odrzucone i paczki do oceny."""
     if not args.auto_only and glob.glob(os.path.join(args.dir, "paczka_*.out.json")):
         sys.exit(f"{args.dir} ma już ocenione paczki: nowe paczki przypięłyby stare werdykty do innych tekstów")
     by_pl = collections.defaultdict(list)
@@ -568,6 +583,7 @@ class Merger:
     """Stan scalania rund: wynik, źródło każdego oryginału i pary z wnętrza wstawek."""
 
     def __init__(self, previous, keep_previous):
+        """Wczytuje słowniki i miejsca literałów w kodzie; keep_previous zaczyna od obecnego wyniku."""
         self.translated, self.manual = load("en_translated.json"), load("en_manual.json")
         self.base = load("en_original_base.json")
         self.all = load("en_all.json")
@@ -584,6 +600,7 @@ class Merger:
         self.stats = collections.Counter()
 
     def reject(self, reason):
+        """Liczy odrzucenie z powodem i zwraca False."""
         self.stats[f"odrzucone: {reason}"] += 1
         return False
 
@@ -639,6 +656,7 @@ class Merger:
         return True
 
     def revoke(self, pl):
+        """Cofa oryginał przyjęty we wcześniejszej rundzie razem z napisami jego wstawek."""
         self.result.pop(pl, None)
         self.nested.pop(pl, None)
         self.identity.discard(pl)
@@ -646,6 +664,7 @@ class Merger:
         self.stats["cofnięte"] += 1
 
     def apply_round(self, folder):
+        """Stosuje auto.json i ocenione paczki jednej rundy."""
         auto_path = os.path.join(folder, "auto.json")
         if os.path.exists(auto_path):
             for pl, en in json.load(open(auto_path, encoding="utf-8")).items():
@@ -696,6 +715,7 @@ class Merger:
                 self.stats["z mapy nazw"] += 1
 
     def finish(self, base_ref):
+        """Wynik i wartości bazowe: napisy wstawek, filtr pustych wpisów, przywrócenie usuniętych par."""
         for pl, nested in list(self.nested.items()):
             if pl not in self.result:
                 continue
@@ -739,6 +759,7 @@ def git_json(spec):
 
 
 def apply(args):
+    """Scala ocenione rundy w en_original.json i en_original_base.json."""
     previous = load("en_original.json")
     merger = Merger(previous, args.keep_previous)
     for folder in args.dirs:  # rundy po kolei: późniejsza ocena tego samego tekstu wygrywa
@@ -756,6 +777,7 @@ def apply(args):
 
 
 def glob_packs(folder):
+    """Paczki paczka_NN.jsonl katalogu rundy, po kolei."""
     return sorted(glob.glob(os.path.join(folder, "paczka_[0-9]*.jsonl")))
 
 
@@ -796,6 +818,7 @@ def read_blobs(repo, shas):
 
     # wejście w osobnym wątku: przy zapisie wszystkiego naraz git czeka, aż odbierzemy wyjście (zakleszczenie)
     def feed():
+        """Wysyła listę skrótów do git cat-file --batch."""
         proc.stdin.write("".join(f"{sha}\n" for sha in shas).encode())
         proc.stdin.close()
     threading.Thread(target=feed, daemon=True).start()
@@ -831,6 +854,7 @@ def missing_paths(repo, pathspecs):
 
 
 def english_literal(lit):
+    """Czy literał z historii nadaje się na angielskiego kandydata."""
     return (ep.wordy(lit) and not ep.PL_DIACRITICS.search(lit) and BAD_CHAR not in lit and len(lit) <= 3000
             and re.search(r"[A-Za-z]{3}", ep.strip_embeds(lit)))
 
@@ -843,6 +867,7 @@ def literals(args):
         seen, path, added = {}, None, []
 
         def flush():
+            """Zbiera literały z dodanych linii bieżącego hunka."""
             if path and added and path.endswith(HIST_EXT) and not ep.SKIP_PATH.search(path):
                 for line in ep.logical_lines(path, added):
                     for lit in ep.literals(path, line):
@@ -1070,6 +1095,7 @@ def global_match(args):
 
 
 def main():
+    """Wiersz poleceń: podkomendy find, literals, snapshots, prheads, jsonfiles, global, split, apply."""
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
