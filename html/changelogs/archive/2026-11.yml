@@ -518,3 +518,20 @@
   - rscadd: Na każdej mapie jeden zwykły i jeden górniczy Sabre (Serendipity tylko
       górniczy); hangary i zatoki powiększone tam, gdzie się nie mieściły.
   - imageadd: Sprite promu z Wyznacznika na overmapie.
+  - bugfix: 'Trwała struktura statku: błąd przy jednym polu zapisu nie przerywa wczytywania
+      reszty, a zapis z błędami jest odkładany na bok.'
+  - bugfix: Asteroida i wrak w klatce magnesu nie przechodzą do następnej rundy.
+  - bugfix: Osłony wieżyczek zbudowanych przez załogę nie mnożą się co rundę.
+  - bugfix: Po zmianie mapy rury i kable zostają z mapy, a pola losowego silnika przyjmują
+      zapis tylko przy tym samym wariancie.
+  - bugfix: Maszyna krytyczna nie wraca zamurowana, a punkty startu nie zostają w
+      ścianach postawionych przez załogę.
+  - tweak: Rury zsypu zapisują się między rundami, a kamery przechodzą na inną ścianę.
+  - tweak: Mocno zniszczony statek przy remisie albo bez głosów zaczyna następną rundę
+      jako nowy.
+  - server: Przed nadpisaniem zapisu struktury zostaje kopia .bak, a zapis z błędami
+      trafia do pliku .broken w data/ship_structure/.
+  - rscadd: Po skrzydłach Sabre można chodzić, a kliknięcie we wrota kokpitu ze skrzydła
+      wprowadza do środka. Sabre nie wystartuje, gdy ktoś stoi na skrzydle.
+  - rscadd: Zestaw budowy promu (Wyznacznik Stref Promu i płytki sterownika lotu,
+      silników plazmowych i podgrzewaczy) leży na starcie w inżynierii na każdej mapie.

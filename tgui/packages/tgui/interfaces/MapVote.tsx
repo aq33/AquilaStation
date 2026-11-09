@@ -32,6 +32,7 @@ type Data = {
   ship_choice?: number | null;
   ship_counts?: Record<string, number>;
   ship_rounds?: number;
+  ship_heavy_damage?: boolean;
 };
 
 export const MapVote = (props) => {
@@ -172,8 +173,14 @@ const SHIP_OPTIONS = [
 
 const ShipPanel = (props) => {
   const { act, data } = useBackend<Data>();
-  const { ship_open, ship_can_vote, ship_choice, ship_counts, ship_rounds } =
-    data;
+  const {
+    ship_open,
+    ship_can_vote,
+    ship_choice,
+    ship_counts,
+    ship_rounds,
+    ship_heavy_damage,
+  } = data;
   if (!ship_open) {
     return null;
   }
@@ -185,6 +192,12 @@ const ShipPanel = (props) => {
         wybierze nowy statek, następna runda zacznie się na statku prosto z
         mapy. Przy remisie albo bez głosów gracie dalej na obecnym statku.
       </Box>
+      {!!ship_heavy_damage && (
+        <Box mb={1} color="bad">
+          Statek jest mocno zniszczony. Przy remisie albo bez głosów następna
+          runda zacznie się na nowym statku.
+        </Box>
+      )}
       <Flex>
         {SHIP_OPTIONS.map((option) => (
           <Flex.Item key={option.key} grow={1} basis={0} mx={0.5}>

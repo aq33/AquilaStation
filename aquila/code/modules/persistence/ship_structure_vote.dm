@@ -27,20 +27,27 @@
 
 /datum/ship_structure/proc/vote_report()
 	var/list/counts = count_keep_votes()
-	return "obecny statek [counts["keep"]], nowy statek [counts["reset"]]"
+	return "obecny statek [counts["keep"]], nowy statek [counts["reset"]][heavy_damage ? " (statek mocno zniszczony: remis = nowy statek)" : ""]"
 
 /**
  * Applies the vote of this round to this map's save (called from SSship_structure.Shutdown()).
  * More "new ship" than "keep" votes deletes the save; a tie or no votes keeps the ship.
+ * A heavily damaged ship (see is_heavily_damaged()) needs a "keep" majority: a tie or no votes starts on a new ship.
  */
 /datum/ship_structure/proc/apply_vote()
-	var/list/counts = count_keep_votes()
-	if(!counts["keep"] && !counts["reset"])
+	if(!saved_this_round || skip_save)
 		return
-	log_game("Ship structure: vote [counts["keep"]] keep / [counts["reset"]] new ship for [save_path]")
-	if(counts["reset"] > counts["keep"] && save_path && fexists(save_path))
-		fdel(save_path)
-		log_game("Ship structure: players voted for a new ship, [save_path] deleted")
+	var/list/counts = count_keep_votes()
+	if(counts["keep"] || counts["reset"])
+		log_game("Ship structure: vote [counts["keep"]] keep / [counts["reset"]] new ship for [save_path][heavy_damage ? " (heavily damaged)" : ""]")
+	var/new_ship = heavy_damage ? counts["reset"] >= counts["keep"] : counts["reset"] > counts["keep"]
+	if(!new_ship || !save_path)
+		return
+	// Kopia zapasowa też idzie, inaczej następna runda wczytałaby ją zamiast pustego statku
+	for(var/path in list(save_path, "[save_path].bak"))
+		if(fexists(path))
+			fdel(path)
+	log_game("Ship structure: [heavy_damage && counts["reset"] == counts["keep"] ? "the ship is heavily damaged and nobody outvoted a new ship" : "players voted for a new ship"], [save_path] deleted")
 
 /datum/controller/subsystem/vote/ui_data(mob/user)
 	. = ..()
@@ -53,6 +60,7 @@
 	.["ship_choice"] = (ckey in structure.keep_votes) ? (structure.keep_votes[ckey] ? 1 : 0) : null
 	.["ship_counts"] = structure.count_keep_votes()
 	.["ship_rounds"] = structure.rounds + 1
+	.["ship_heavy_damage"] = structure.heavy_damage
 
 /datum/controller/subsystem/vote/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(action != "ship_vote")
