@@ -91,7 +91,13 @@
 		if(user.combat_mode)
 			user.visible_message("<span class='danger'>[user] chlusta zawartością [src] na [target]!</span>", \
 								"<span class='notice'>Chlustasz zawartością [src] na [target].</span>")
-			reagents.reaction(target, TOUCH)
+			// AQ EDIT START - ciecze z Monke: chlust na podłogę przez spill_reagents (rozprysk albo kałuża)
+			if(isopenturf(target))
+				var/turf/open/splash_turf = target
+				splash_turf.spill_reagents(reagents)
+			else
+				reagents.reaction(target, TOUCH)
+			// AQ EDIT END
 			reagents.clear_reagents()
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)

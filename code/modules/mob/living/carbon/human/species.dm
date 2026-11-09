@@ -1367,8 +1367,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(shitting_enabled && !HAS_TRAIT(H, TRAIT_NOSHITTING)) // AQ EDIT
 		if(H.defecation > DEFECATION_ACTUALLY_SHIT_YOURSELF)
-			H.actually_shit_myself()
-			H.set_defecation(DEFECATION_NONE)
+			H.accidental_release() // AQ EDIT - kał albo mocz, czego jest więcej (aquila/code/modules/bladder/urination.dm)
 		else if (H.defecation > DEFECATION_SHIT_YOURSELF)
 			if(prob(LERP(10, 20, ((H.defecation - DEFECATION_SHIT_YOURSELF)/DEFECATION_ACTUALLY_SHIT_YOURSELF))))
 				to_chat(H, "<span class='warning'><i>Pilnie potrzebuję do ubikacji...</i></span>")

@@ -1323,6 +1323,8 @@
 
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
 	ui_update()
+	var/turf/liquid_turf = get_turf(src) // AQ EDIT - ciecze z Monke: zamykana śluza wypycha ciecz
+	liquid_turf?.liquids_push_out_by_door() // AQ EDIT
 	operating = TRUE
 	update_icon(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER

@@ -6,6 +6,16 @@
 	if(ishuman(src) || ismonkey(src))
 		AddComponent(/datum/component/carbon_sprint)
 
+///Czy mob właśnie sprintuje (poślizg na mokrych plamach i kałużach jest tylko w sprincie)
+/mob/living/proc/is_sprinting()
+	return FALSE
+
+/mob/living/carbon/is_sprinting()
+	if(m_intent != MOVE_INTENT_RUN)
+		return FALSE
+	var/datum/component/carbon_sprint/sprint = GetComponent(/datum/component/carbon_sprint)
+	return sprint?.sprinting
+
 ///Prędkość sprintu nadpisuje prędkość biegu z configu
 /mob/living/carbon/update_move_intent_slowdown()
 	..()

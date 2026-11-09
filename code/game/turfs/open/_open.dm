@@ -205,8 +205,14 @@
 		else
 			if(!(lube & SLIP_WHEN_CRAWLING) && (!(slipper.mobility_flags & MOBILITY_STAND) || !(slipper.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
-			if(slipper.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
-				return 0
+			// AQ EDIT START - mokra podłoga i plamy (woda, krew, kupa, olej) ślizgają tylko w sprincie, reszta (PDA klauna) jak dotąd
+			if(lube & NO_SLIP_WHEN_WALKING)
+				if(!O || isturf(O) || istype(O, /obj/effect/decal/cleanable))
+					if(!slipper.is_sprinting())
+						return 0
+				else if(slipper.m_intent == MOVE_INTENT_WALK)
+					return 0
+			// AQ EDIT END
 		if(!(lube&SLIDE_ICE))
 			to_chat(slipper, "<span class='notice'>Poślizgujesz się[ O ? " na [O.name]" : ""]!</span>")
 			playsound(slipper.loc, 'sound/misc/slip.ogg', 50, 1, -3)
