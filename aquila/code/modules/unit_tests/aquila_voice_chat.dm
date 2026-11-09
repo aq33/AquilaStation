@@ -92,9 +92,21 @@
 	TEST_ASSERT(session.recording_seq, "Wciśnięty klawisz nie zaczął nagrania")
 	SSvoice_chat.cancel_recording(player, session)
 	player.keys_held.Cut()
+	// Bind z modyfikatorem: sam klawisz bez modyfikatora nie nagrywa
+	player.prefs.key_bindings = list("Ctrl-N" = list("voice_say"))
+	player.keys_held["N"] = world.time
+	say_bind.down(player)
+	TEST_ASSERT(!session.recording_seq, "Bind Ctrl-N nagrywa bez wciśniętego Ctrl")
+	player.keys_held["Ctrl"] = world.time
+	say_bind.down(player)
+	TEST_ASSERT(session.recording_seq, "Bind Ctrl-N nie nagrywa z wciśniętym Ctrl")
+	SSvoice_chat.cancel_recording(player, session)
+	player.keys_held.Cut()
+	player.prefs.key_bindings = list("N" = list("voice_say"))
 	// Tokenów i polecenia nagrywania nie da się ruszyć z VV ani Advanced ProcCall
 	TEST_ASSERT(!SSvoice_chat.CanProcCall("start_recording"), "Advanced ProcCall może włączyć nagrywanie")
 	TEST_ASSERT(!SSvoice_chat.can_vv_get("sessions"), "Tokeny graczy widać w VV")
+	TEST_ASSERT(SSvoice_chat.can_vv_get("enabled"), "Admin nie może sprawdzić, czy czat głosowy jest włączony")
 	TEST_ASSERT(!session.can_vv_get("token"), "Token gracza widać w VV")
 	TEST_ASSERT(!say_bind.CanProcCall("down"), "Advanced ProcCall może wcisnąć klawisz mówienia")
 

@@ -85,7 +85,25 @@ GENERAL_PROTECT_DATUM(/datum/voice_chat_session)
 	src.token = token
 	src.last_used = isnull(last_used) ? world.realtime : last_used
 
-GENERAL_PROTECT_DATUM(/datum/controller/subsystem/voice_chat)
+// Podsystem: bez Advanced ProcCall (start_recording, open_page), a w VV ukryte tylko zmienne z tokenami graczy.
+// Reszta (enabled, failed_syncs) zostaje widoczna, żeby admin mógł sprawdzić albo wyłączyć czat w trakcie rundy.
+/datum/controller/subsystem/voice_chat/CanProcCall(procname)
+	return FALSE
+
+/datum/controller/subsystem/voice_chat/can_vv_get(var_name)
+	if(var_name in voice_chat_secret_vars())
+		return FALSE
+	return ..()
+
+/datum/controller/subsystem/voice_chat/vv_edit_var(var_name, var_value)
+	if(var_name in voice_chat_secret_vars())
+		return FALSE
+	return ..()
+
+/// Zmienne podsystemu, w których są tokeny graczy (sesje, polecenia dla stron, trwające zapytanie)
+/proc/voice_chat_secret_vars()
+	var/static/list/secret_vars = list("sessions", "pending_cmds", "in_flight_cmds", "sync_request")
+	return secret_vars
 
 SUBSYSTEM_DEF(voice_chat)
 	name = "Czat głosowy"
@@ -431,9 +449,13 @@ GENERAL_PROTECT_DATUM(/datum/keybinding/client/voice)
 	for(var/bound_key in user.prefs?.key_bindings)
 		if(!(name in user.prefs.key_bindings[bound_key]))
 			continue
-		// „Shift-N”: w keys_held jest sam klawisz bez modyfikatora
-		var/list/parts = splittext(bound_key, "-")
-		if(held?[parts[length(parts)]])
+		// „Shift-N”: w keys_held są osobno modyfikator i klawisz, oba muszą być wciśnięte
+		var/all_held = TRUE
+		for(var/part in splittext(bound_key, "-"))
+			if(!held?[part])
+				all_held = FALSE
+				break
+		if(all_held)
 			return TRUE
 	return FALSE
 
