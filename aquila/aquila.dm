@@ -1081,6 +1081,7 @@
 #include "code\modules\test_chamber\kits\pr_578_losowe_silniki.dm"
 #include "code\modules\test_chamber\kits\pr_579_struktura_statku.dm"
 #include "code\modules\test_chamber\kits\pr_592_sabre_wnetrze.dm"
+#include "code\modules\test_chamber\kits\pr_598_ciecze.dm"
 #include "code\modules\test_chamber\kits\pr_581_oswietlenie.dm"
 #include "code\modules\test_chamber\kits\pr_588_walka_tablica_loot.dm"
 #include "code\modules\test_chamber\kits\pr_583_zbiorczy.dm"
