@@ -36,6 +36,9 @@
 /obj/item/assembly/health
 	alt_click_loot = FALSE
 
+/obj/item/attachment/laser_sight
+	alt_click_loot = FALSE
+
 /obj/item/borg/apparatus
 	alt_click_loot = FALSE
 
