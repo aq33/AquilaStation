@@ -283,7 +283,7 @@ MIN_POP TRAITORVAMP 10
 MIN_POP BLOODLING 15
 MIN_POP INFILTRATION 5
 MIN_POP DARKSPAWN 20
-MIN_POP MALF 20
+MIN_POP MALF 15
 
 ## WEIGHTED ROTATION (MASTER_MODE weighted) ###
 ## Every round a threat pool is drawn first (equal chances by default), then a mode from that pool.

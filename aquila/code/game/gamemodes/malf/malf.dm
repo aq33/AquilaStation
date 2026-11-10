@@ -10,7 +10,7 @@
 	role_preference = /datum/role_preference/midround_living/malfunctioning_ai
 	antag_datum = /datum/antagonist/traitor
 	false_report_weight = 10
-	required_players = 20
+	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 1
 
