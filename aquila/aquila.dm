@@ -880,7 +880,6 @@
 #include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
-#include "code\modules\mob\living\simple_animal\friendly\gondola.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
 #include "code\modules\mob\living\simple_animal\friendly\snake.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\event.dm"
@@ -1916,9 +1915,14 @@
 #include "code\modules\mob\living\basic\farm_animals\cow\_cow.dm"
 #include "code\modules\mob\living\basic\farm_animals\cow\cow_ai.dm"
 #include "code\modules\mob\living\basic\farm_animals\cow\cow_moonicorn.dm"
+#include "code\datums\components\ground_sinking.dm"
+#include "code\modules\mob\living\basic\pets\gondolas\gondola.dm"
+#include "code\modules\mob\living\basic\pets\gondolas\gondolapod.dm"
+#include "code\modules\mob\living\basic\retaliate\garden_gnome.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_gondola_gnome.dm"
 #include "code\modules\unit_tests\aquila_basic_cow.dm"
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"

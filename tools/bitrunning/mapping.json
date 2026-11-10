@@ -207,7 +207,7 @@
     "/mob/living/basic/pet/cat/space": "/mob/living/basic/pet/cat/space",
     "/mob/living/basic/pet/dog/corgi": "/mob/living/basic/pet/dog/corgi",
     "/mob/living/basic/pet/fox": "/mob/living/simple_animal/pet/fox",
-    "/mob/living/basic/pet/gondola/virtual_domain": "/mob/living/simple_animal/pet/gondola/virtual_domain",
+    "/mob/living/basic/pet/gondola/virtual_domain": "/mob/living/basic/pet/gondola/virtual_domain",
     "/mob/living/basic/trooper/pirate/melee": {
       "path": "/mob/living/carbon/human/ai_boarder/space_pirate/pistol",
       "approx": "pirat wręcz (basic) -> ai_boarder pirat z pistoletem"

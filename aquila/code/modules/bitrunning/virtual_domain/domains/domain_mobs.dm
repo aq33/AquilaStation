@@ -152,7 +152,7 @@
 
 
 /// Gondole z Asteroidy Gondoli - pchają skrzynię z łupem
-/mob/living/simple_animal/pet/gondola/virtual_domain
+/mob/living/basic/pet/gondola/virtual_domain
 	health = 50
 	maxHealth = 50
 	move_force = MOVE_FORCE_VERY_STRONG

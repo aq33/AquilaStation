@@ -24,11 +24,14 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 
+	/// Amount of time the spike will paralyze (AQ EDIT - z Bee)
+	var/paralyze_duration
+
 	///So we can update ant damage
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
 
-/datum/component/caltrop/Initialize(min_damage = 0, max_damage = 0, probability = 100, flags = NONE, soundfile = null)
+/datum/component/caltrop/Initialize(min_damage = 0, max_damage = 0, probability = 100, flags = NONE, soundfile = null, paralyze_duration = 6 SECONDS) // AQ EDIT - paralyze_duration z Bee (krasnal ogrodowy)
 	. = ..()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -38,6 +41,7 @@
 	src.probability = probability
 	src.flags = flags
 	src.soundfile = soundfile
+	src.paralyze_duration = paralyze_duration // AQ EDIT - paralyze_duration z Bee
 
 	if(ismovable(parent))
 		AddComponent(/datum/component/connect_loc_behalf, parent, crossed_connections)
@@ -114,7 +118,7 @@
 	H.add_bleeding(BLEED_SCRATCH)
 
 	if(!(flags & CALTROP_NOSTUN)) // Won't set off the paralysis.
-		H.Paralyze(60)
+		H.Paralyze(paralyze_duration) // AQ EDIT - paralyze_duration z Bee
 
 	if(!soundfile)
 		return

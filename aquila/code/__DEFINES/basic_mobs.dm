@@ -264,3 +264,22 @@
 
 /// Dogs growl at and attack mobs with this trait (dog AI from BeeStation/BeeStation-Hornet). Bee gives it to felinids and mailman clothes; we give it to no one yet (our clothing has no clothing_traits).
 #define TRAIT_HATED_BY_DOGS "hated_by_dogs"
+
+// Garden gnome colours (code/__DEFINES/colors.dm in Bee)
+#define COLOR_GNOME_RED_ONE "#f10b0b"
+#define COLOR_GNOME_RED_TWO "#bc5347"
+#define COLOR_GNOME_RED_THREE "#b40f1a"
+#define COLOR_GNOME_BLUE_ONE "#2e8ff7"
+#define COLOR_GNOME_BLUE_TWO "#312bd6"
+#define COLOR_GNOME_BLUE_THREE "#4e409a"
+#define COLOR_GNOME_GREEN_ONE "#28da1c"
+#define COLOR_GNOME_GREEN_TWO "#50a954"
+#define COLOR_GNOME_YELLOW "#f6da3c"
+#define COLOR_GNOME_ORANGE "#d56f2f"
+#define COLOR_GNOME_BROWN_ONE "#874e2a"
+#define COLOR_GNOME_BROWN_TWO "#543d2e"
+#define COLOR_GNOME_PURPLE "#ac1dd7"
+#define COLOR_GNOME_WHITE "#e8e8e8"
+#define COLOR_GNOME_GREY "#a9a9a9"
+#define COLOR_GNOME_BLACK "#303030"
+#define COLOR_PALE_GREEN "#20e28e"
