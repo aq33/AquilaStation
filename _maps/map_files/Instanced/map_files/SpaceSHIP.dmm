@@ -3067,7 +3067,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	faction = list("Syndicate");
 	name = "Schrodinger"
 	},

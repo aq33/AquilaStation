@@ -743,7 +743,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/apothecary)
 "bC" = (
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	name = "Darwin"
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -14901,7 +14901,7 @@
 /area/crew_quarters/kitchen)
 "XE" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8

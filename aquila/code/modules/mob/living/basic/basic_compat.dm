@@ -53,3 +53,13 @@
 /// Called when this atom is tamed through the tameable component (Bee code/game/atom/_atom.dm)
 /atom/proc/tamed(mob/living/tamer, obj/item/food)
 	return
+
+// Footsteps: Bee adds the footstep element per mob; our footstep component sits on every /mob/living, so basic mobs
+// gate it with the simple animal var (mice and roaches stay silent, dogs, cats and cows patter)
+/mob/living/basic
+	/// Whether this mob makes footstep sounds
+	var/do_footstep = FALSE
+
+/mob/living/basic/initialize_footstep()
+	if(do_footstep)
+		return ..()

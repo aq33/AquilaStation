@@ -126,7 +126,7 @@
 		/obj/item/dnainjector/chameleonmut = 5,
 		/obj/item/dnainjector/dwarf = 5,
 		/mob/living/basic/pet/dog/corgi/ = 5, // AQ EDIT - basic moby
-		/mob/living/simple_animal/pet/cat = 5,
+		/mob/living/basic/pet/cat = 5, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/bullterrier = 5, // AQ EDIT - basic moby
 		/mob/living/simple_animal/pet/penguin = 5,
 		/mob/living/simple_animal/parrot = 5,

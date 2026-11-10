@@ -10717,7 +10717,7 @@
 /area/engine/atmos/port_atmos)
 "iCl" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	name = "Darwin"
 	},
 /obj/effect/turf_decal/solgov{
@@ -18889,7 +18889,7 @@
 /obj/structure/noticeboard/captain{
 	pixel_y = 25
 	},
-/mob/living/simple_animal/pet/cat/kitten{
+/mob/living/basic/pet/cat/kitten{
 	name = "Professor Mew"
 	},
 /turf/open/floor/carpet/ship/blue{
@@ -18928,7 +18928,7 @@
 	dir = 5
 	},
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},

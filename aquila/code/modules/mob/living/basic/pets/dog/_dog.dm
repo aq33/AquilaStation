@@ -25,6 +25,7 @@
 
 /mob/living/basic/pet/dog
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	do_footstep = TRUE
 	response_help_continuous = "głaszcze"
 	response_disarm_continuous = "pstryka"
 	response_harm_continuous = "kopie"

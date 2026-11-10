@@ -9393,7 +9393,7 @@
 /area/medical/medbay/lobby)
 "jon" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "jps" = (

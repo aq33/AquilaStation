@@ -2518,7 +2518,7 @@
 	name = "Skrzynia z kotem"
 	desc = "Kotek robi miau! W zestawie obroża i ładna zabawka dla kota! Cheeseburger nie jest dołączony."//i can't believe im making this reference
 	cost = 5000 //Cats are worth as much as corgis.
-	contains = list(/mob/living/simple_animal/pet/cat,
+	contains = list(/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar,
 					/obj/item/toy/cattoy)
 	crate_name = "skrzynia z kotem"
@@ -2526,9 +2526,9 @@
 /datum/supply_pack/critter/cat/generate()
 	. = ..()
 	if(prob(50))
-		var/mob/living/simple_animal/pet/cat/C = locate() in .
+		var/mob/living/basic/pet/cat/C = locate() in . // AQ EDIT - basic moby
 		qdel(C)
-		new /mob/living/simple_animal/pet/cat/Proc(.)
+		new /mob/living/basic/pet/cat/_proc(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cat/exotic
 	name = "Skrzynia z egzotycznym kotem"
@@ -2542,15 +2542,15 @@
 	. = ..()
 	switch(rand(1, 5))
 		if(1)
-			new /mob/living/simple_animal/pet/cat/original(.)
+			new /mob/living/basic/pet/cat/original(.) // AQ EDIT - basic moby
 		if(2)
-			new /mob/living/simple_animal/pet/cat/breadcat(.)
+			new /mob/living/basic/pet/cat/breadcat(.) // AQ EDIT - basic moby
 		if(3)
-			new /mob/living/simple_animal/pet/cat/cak(.)
+			new /mob/living/basic/pet/cat/cak(.) // AQ EDIT - basic moby
 		if(4)
-			new /mob/living/simple_animal/pet/cat/space(.)
+			new /mob/living/basic/pet/cat/space(.) // AQ EDIT - basic moby
 		if(5)
-			new /mob/living/simple_animal/pet/cat/halal(.)
+			new /mob/living/basic/pet/cat/halal(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/chick
 	name = "Skrzynia z kurą"

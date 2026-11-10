@@ -240,14 +240,14 @@
 							/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 							/mob/living/simple_animal/crab,
 							/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
-							/mob/living/simple_animal/pet/cat,
+							/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 							/mob/living/basic/mouse, // AQ EDIT - basic moby
 							/mob/living/simple_animal/chicken,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
 							/mob/living/simple_animal/butterfly,
-							/mob/living/simple_animal/pet/cat/cak,
+							/mob/living/basic/pet/cat/cak, // AQ EDIT - basic moby
 							/mob/living/simple_animal/chick)
 			new_mob = new path(M.loc)
 

@@ -10796,7 +10796,7 @@
 /obj/machinery/light_switch/west{
 	pixel_y = 12
 	},
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/machinery/light,
 /obj/item/bedsheet/cmo,
 /turf/open/floor/carpet/blue,

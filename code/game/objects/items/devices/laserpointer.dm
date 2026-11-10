@@ -154,7 +154,7 @@
 			else
 				M.visible_message("<span class='notice'>[M] wpatruje się w światełko</span>","<span class = 'warning'> Wpatrujesz się w światełko... </span>")
 		else if(iscat(M)) //cats!
-			var/mob/living/simple_animal/pet/cat/C = M
+			var/mob/living/basic/pet/cat/C = M // AQ EDIT - basic moby
 			if(prob(50))
 				C.visible_message("<span class='notice'>[C] rzuca się na światełko!</span>","<span class='warning'>LIGHT!</span>")
 				C.Move(targloc)

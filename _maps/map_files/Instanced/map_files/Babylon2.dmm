@@ -6868,7 +6868,7 @@
 /area/science/pvp)
 "hai" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/pet/cat/space{
+/mob/living/basic/pet/cat/space{
 	desc = "A syndicat, but in space.";
 	faction = list("Syndicate");
 	name = "Big MAC"

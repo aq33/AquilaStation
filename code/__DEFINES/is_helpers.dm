@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isdrone(A) (istype(A, /mob/living/simple_animal/drone))
 
-#define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
+#define iscat(A) (istype(A, /mob/living/basic/pet/cat)) // AQ EDIT - basic moby
 
 #define iscorgi(A) (istype(A, /mob/living/basic/pet/dog/corgi)) // AQ EDIT - basic moby
 
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/carbon/alien/humanoid,
 	/mob/living/simple_animal/hostile/alien,
-	/mob/living/simple_animal/pet/cat,
+	/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
 	/mob/living/simple_animal/pet/fox,
 	/mob/living/simple_animal/chicken,

@@ -101,7 +101,7 @@
 		"niech zgadnę, jesteś wielkim fanem tych japońskich robotów turystycznych",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/cat,
+		/mob/living/basic/pet/cat,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/cat,

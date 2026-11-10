@@ -277,7 +277,7 @@
 	color = "#486091";
 	dir = 8
 	},
-/mob/living/simple_animal/pet/cat/Proc{
+/mob/living/basic/pet/cat/_proc{
 	faction = list("neutral", "vdom_fake_crew")
 	},
 /turf/open/floor/plasteel/dark,

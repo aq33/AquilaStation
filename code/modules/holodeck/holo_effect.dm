@@ -107,7 +107,7 @@
 /obj/effect/holodeck_effect/mobspawner/pet
 	mobtype = list(
 		/mob/living/simple_animal/butterfly, /mob/living/simple_animal/chick/holo,
-		/mob/living/simple_animal/pet/cat, /mob/living/simple_animal/pet/cat/kitten,
+		/mob/living/basic/pet/cat, /mob/living/basic/pet/cat/kitten, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/corgi, /mob/living/basic/pet/dog/corgi/puppy, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/pug, /mob/living/simple_animal/pet/fox) // AQ EDIT - basic moby
 
@@ -129,7 +129,7 @@
 	mobtype = /mob/living/simple_animal/pet/penguin/baby
 
 /obj/effect/holodeck_effect/mobspawner/cat
-	mobtype = /mob/living/simple_animal/pet/cat
+	mobtype = /mob/living/basic/pet/cat // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/butterfly
 	mobtype = /mob/living/simple_animal/butterfly

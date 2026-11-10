@@ -10,7 +10,7 @@
 	items = list(
 		/obj/vehicle/sealed/car/vim/with_tank = 1,
 		/mob/living/basic/pet/dog/corgi = 1,
-		/mob/living/simple_animal/pet/cat = 1,
+		/mob/living/basic/pet/cat = 1,
 		/obj/item/clothing/head/helmet/space/eva = 1,
 		/obj/item/bodypart/l_leg/robot = 1,
 		/obj/item/bodypart/r_leg/robot = 1,

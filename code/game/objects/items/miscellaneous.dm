@@ -357,7 +357,7 @@
 /obj/item/choice_beacon/pet/cat
 	name = "nadajnik dostawy kota"
 	default_name = "Tom"
-	mob_choice = /mob/living/simple_animal/pet/cat
+	mob_choice = /mob/living/basic/pet/cat // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/mouse
 	name = "nadajnik dostawy myszy"
@@ -382,7 +382,7 @@
 /obj/item/choice_beacon/pet/ems
 	name = "nadajnik dostawy zwierzęcia wsparcia emocjonalnego"
 	default_name = "Przytulak"
-	mob_choice = /mob/living/simple_animal/pet/cat/kitten
+	mob_choice = /mob/living/basic/pet/cat/kitten // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/pingu
 	name = "nadajnik dostawy pingwina"
