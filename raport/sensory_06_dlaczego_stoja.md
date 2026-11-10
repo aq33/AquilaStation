@@ -10,7 +10,16 @@ lotniskowca, przed stożkami sensorów). Bez nowych bitew. „Stoi” = poniżej
 - **Trzymanie miejsca na skrzydle** (`ai_flanking.dm`: po dolocie `brakes = TRUE`). Kod hamuje, ale w pasie
   14–22 pól od celu, gdzie leży miejsce na skrzydle, okręty stoją 21%, tyle samo co w innych pasach.
 - **Część pomiaru to stacja.** „Stocznie CzanekCorp” stoi 99,8% czasu i była liczona jak okręt.
-  Bez obiektów, które nigdy się nie ruszają, stanie spada z 28,0% do 25,0%.
+  Bez niej stanie spada z 28,0% do 26,9%. Filtr pomija tylko obiekty bez floty i bez celu AI: pierwsza wersja
+  (wszystko, co się nie rusza) wycinała też prawdziwe okręty AI, patrz niżej.
+
+## Okręty AI zamarznięte na całą bitwę
+
+Jakiś okręt AI ani razu się nie ruszył (p95 prędkości < 0,05 pola/s) w 4 z 6 bitew odniesienia, w 2 z 6 bitew
+pełnego AI i w 2 z 6 serii B. Ich ostatni cel: „Break off and escape by FTL” (4 okręty, m.in. lotniskowce Syndykatu),
+„Maintain safe distance from enemies” (2, lotniskowiec Enterprise), „Join a lance…” (2), „Patrol system” (2),
+„Search and destroy” (1). To skrajny przypadek tego samego problemu; ucieczka przez FTL może tu mieć własną przyczynę
+(czekanie na rozruch napędu), do sprawdzenia po poprawkach.
 
 ## Przyczyna 1: AI ciągnie silnikiem tylko w co piątym tiku fizyki
 
@@ -50,16 +59,16 @@ Eskorta zbierająca się przy stojącym okręcie nie dałaby ruchu bokiem wzglę
 więc to nie jest odwrotna zależność. Lotniskowiec z innym dużym okrętem w promieniu 6 pól stoi 62% czasu,
 w 13–20 polach 28%.
 
-## Rozkład stania (bez stacji, 25,0%)
+## Rozkład stania (bez stacji, 26,9%)
 
 | sytuacja | stoi w swoich klatkach | udział w całym staniu |
 |---|---|---|
-| inny duży okręt w promieniu 8 pól | 37,3% | 43% |
-| z celem, wolna droga | 20,0% | 34% |
-| bez celu, wolna droga | 20,3% | 20% |
-| dokowanie do uzbrojenia | 18,4% | 3% |
+| inny duży okręt w promieniu 8 pól | 38,6% | 41% |
+| z celem, wolna droga | 21,7% | 34% |
+| bez celu, wolna droga | 23,5% | 22% |
+| dokowanie do uzbrojenia | 18,4% | 2% |
 
-Tło ok. 20% przy wolnej drodze pasuje do przyczyny 1. Nadwyżka w tłoku to przyczyna 2.
+Tło ok. 22% przy wolnej drodze pasuje do przyczyny 1. Nadwyżka w tłoku to przyczyna 2.
 
 ## Propozycje
 
@@ -68,6 +77,12 @@ Tło ok. 20% przy wolnej drodze pasuje do przyczyny 1. Nadwyżka w tłoku to prz
    To zmiana balansu także w walce z graczem: AI rozpędza się 5× szybciej (prędkość maksymalna bez zmian).
 2. **Omijanie tylko tego, co przed dziobem** — jedna linia `// AQ EDIT` w pętli bazowego `move_toward()`:
    pomijać okręty za okrętem (poza połową przednią względem kierunku lotu). Wpis w tabeli hooków.
-3. **Pomiar bez stacji** — `tools/ai_sandbox/compare_battles.py` pomija obiekty, które się nie ruszają.
+3. **Pomiar bez stacji** — `tools/ai_sandbox/compare_battles.py` pomija obiekty, które się nie ruszają
+   i przez całe nagranie nie mają floty ani celu AI.
+
+Wszystkie trzy są zrobione: `aquila/code/modules/overmap/ai_steering.dm` (przełączniki Debug > Toggle AI continuous
+thrust i Toggle AI forward avoidance, w piaskownicy `ai_sandbox_no_continuous_thrust=1`
+i `ai_sandbox_no_forward_avoidance=1`). Cichy bieg i zasadzka zerują teraz `move_mode`, bo przy ciągłym ciągu
+zostawiony `move_mode` grzałby silnik. Bitew porównawczych jeszcze nie było.
 
 Bez propozycji: trzymanie miejsca na skrzydle (dane nie pokazują efektu), dokowanie (mały udział, sensowne).
