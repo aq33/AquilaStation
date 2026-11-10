@@ -138,6 +138,17 @@
 #include "code\datums\materials\rock.dm"
 #include "code\datums\action.dm"
 #include "code\datums\ai_laws.dm"
+// Rdzeń SI z Bee i basic moby (BeeStation/BeeStation-Hornet#14060 i in.), definicje w code\__DEFINES\basic_mobs.dm (wcześnie w nsv13.dme)
+#include "code\__HELPERS\ai.dm"
+#include "code\_globalvars\lists\basic_ai.dm"
+#include "code\controllers\subsystem\ai_idle_controllers.dm"
+#include "code\controllers\subsystem\processing\ai_idle_behaviors.dm"
+#include "code\datums\ai\basic_mobs\targeting_strategies\_targeting_strategy.dm"
+#include "code\datums\ai\basic_mobs\targeting_strategies\basic_targeting_strategy.dm"
+#include "code\datums\ai\idle_behaviors\_idle_behavior.dm"
+#include "code\datums\ai\idle_behaviors\idle_monkey.dm"
+#include "code\datums\ai\idle_behaviors\idle_random_walk.dm"
+// Koniec bloku rdzenia SI i basic mobów
 #include "code\datums\components\storage\concrete\grid.dm"
 #include "code\datums\components\storage\concrete\pockets.dm"
 #include "code\datums\ert.dm"
@@ -1835,6 +1846,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_ai_core.dm"
 #include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"
 #include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
 #include "code\modules\unit_tests\aquila_radiation.dm"

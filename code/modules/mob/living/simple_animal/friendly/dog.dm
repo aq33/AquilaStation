@@ -13,7 +13,6 @@
 	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
-	ai_controller = /datum/ai_controller/dog
 	can_be_held = TRUE
 	chat_color = "#ECDA88"
 	mobchatspan = "corgi"

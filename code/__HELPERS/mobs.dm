@@ -229,6 +229,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/datum/cogbar/cog // AQ EDIT - cogbar
 	if(progress && !hidden && time >= 1 SECONDS)
 		cog = new(user)
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN) // AQ EDIT - SI z Bee wstrzymuje się w trakcie paska postępu
 
 	var/endtime = world.time+time
 	var/starttime = world.time
@@ -257,6 +258,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!QDELETED(target))
 		LAZYREMOVE(user.do_afters, target)
 		LAZYREMOVE(target.targeted_by, user)
+	if(!QDELETED(user))
+		SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED) // AQ EDIT - SI z Bee wstrzymuje się w trakcie paska postępu
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks)
@@ -303,6 +306,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/datum/cogbar/cog // AQ EDIT - cogbar
 	if(progress && !hidden && delay >= 1 SECONDS)
 		cog = new(user)
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN) // AQ EDIT - SI z Bee wstrzymuje się w trakcie paska postępu
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
@@ -352,6 +356,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!QDELETED(target))
 		LAZYREMOVE(user.do_afters, target)
 		LAZYREMOVE(target.targeted_by, user)
+	if(!QDELETED(user))
+		SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED) // AQ EDIT - SI z Bee wstrzymuje się w trakcie paska postępu
 
 /proc/is_species(A, species_datum)
 	. = FALSE

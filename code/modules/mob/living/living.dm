@@ -1309,6 +1309,7 @@
 			add_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=limbless_slowdown, movetypes=GROUND)
 		else
 			remove_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, update=TRUE)
+	update_incapacitated_signal() // AQ EDIT - sygnał COMSIG_MOB_INCAPACITATE_CHANGED dla SI z Bee (aquila/code/__HELPERS/ai.dm)
 
 /mob/living/proc/fall(forced)
 
@@ -1355,9 +1356,20 @@
 	if (registered_z != new_z)
 		if (registered_z)
 			SSmobs.clients_by_zlevel[registered_z] -= src
+			// AQ EDIT START - rdzeń SI z Bee: ostatni gracz opuścił z-level, kontrolery SI na nim się wyłączają
+			if(!length(SSmobs.clients_by_zlevel[registered_z]) && registered_z <= length(GLOB.ai_controllers_by_zlevel))
+				for(var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[registered_z])
+					controller.set_ai_status(controller.get_expected_ai_status())
+			// AQ EDIT END
 		if (client)
 			if (new_z)
+				var/new_level_old_clients = length(SSmobs.clients_by_zlevel[new_z]) // AQ EDIT - rdzeń SI z Bee
 				SSmobs.clients_by_zlevel[new_z] += src
+				// AQ EDIT START - rdzeń SI z Bee: pierwszy gracz na z-levelu budzi kontrolery SI
+				if(!new_level_old_clients && new_z <= length(GLOB.ai_controllers_by_zlevel))
+					for(var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[new_z])
+						controller.set_ai_status(controller.get_expected_ai_status())
+				// AQ EDIT END
 				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
 					var/mob/living/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
 					if (SA)

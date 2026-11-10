@@ -9,22 +9,7 @@
 /// Called when an organ gets surgically removed (mob/living/user, mob/living/carbon/old_owner, target_zone, obj/item/tool)
 #define COMSIG_ORGAN_SURGICALLY_REMOVED "organ_surgically_removed"
 #endif
-#ifndef TRAIT_RELAYING_ATTACKER
-/// Mob has the relay_attackers element applied
-#define TRAIT_RELAYING_ATTACKER "relaying_attacker"
-#endif
-#ifndef ATTACKER_STAMINA_ATTACK
-#define ATTACKER_STAMINA_ATTACK (1<<0)
-#endif
-#ifndef ATTACKER_SHOVING
-#define ATTACKER_SHOVING (1<<1)
-#endif
-#ifndef ATTACKER_DAMAGING_ATTACK
-#define ATTACKER_DAMAGING_ATTACK (1<<2)
-#endif
-#ifndef ATTACK_RANGED
-#define ATTACK_RANGED (1<<3)
-#endif
+// TRAIT_RELAYING_ATTACKER i ATTACKER_* są w aquila/code/__DEFINES/basic_mobs.dm
 
 /// Indeks języka w argumentach /mob/living/say() (u nas SPEECH_LANGUAGE jest zakomentowany)
 #define SACRIFICE_SAY_LANGUAGE_ARG 5

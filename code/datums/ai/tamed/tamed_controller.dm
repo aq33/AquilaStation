@@ -39,11 +39,19 @@
 	UnregisterSignal(pawn, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_EXAMINE, COMSIG_CLICK_ALT, COMSIG_MOB_DEATH, COMSIG_GLOB_CARBON_THROW_THING, COMSIG_PARENT_QDELETING))
 	return ..()
 
-/datum/ai_controller/tamed/able_to_run()
+/datum/ai_controller/tamed/setup_able_to_run()
+	. = ..()
+	RegisterSignal(pawn, COMSIG_MOB_INCAPACITATE_CHANGED, PROC_REF(update_able_to_run))
+
+/datum/ai_controller/tamed/clear_able_to_run()
+	UnregisterSignal(pawn, COMSIG_MOB_INCAPACITATE_CHANGED)
+	return ..()
+
+/datum/ai_controller/tamed/get_able_to_run()
 	var/mob/living/living_pawn = pawn
 
 	if(IS_DEAD_OR_INCAP(living_pawn))
-		return FALSE
+		return AI_UNABLE_TO_RUN
 	return ..()
 
 /datum/ai_controller/tamed/get_access()
@@ -110,7 +118,7 @@
 					pawn.visible_message("[pawn] nie widzi niczego, za czym mógłby podążać!")
 					return
 			pawn.visible_message("[pawn] zaczyna podążać za [blackboard[BB_FOLLOW_TARGET]]!")
-			current_movement_target = blackboard[BB_FOLLOW_TARGET]
+			set_movement_target(type, blackboard[BB_FOLLOW_TARGET])
 			queue_behavior(/datum/ai_behavior/tamed_follow)
 
 		if(TAMED_COMMAND_ATTACK)
@@ -122,7 +130,7 @@
 			if(!can_see(pawn, blackboard[BB_ATTACK_TARGET], AI_DOG_VISION_RANGE))
 				pawn.visible_message("[pawn] nie widzi: [blackboard[BB_ATTACK_TARGET]]!")
 				return
-			current_movement_target = blackboard[BB_ATTACK_TARGET]
+			set_movement_target(type, blackboard[BB_ATTACK_TARGET])
 			queue_behavior(/datum/ai_behavior/tamed_follow/attack)
 
 		if(TAMED_COMMAND_WANDER)
