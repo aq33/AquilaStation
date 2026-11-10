@@ -12,6 +12,10 @@
 /// Odstęp między wylaniami z jednego alarmu (EMP potrafi trafić kilka razy)
 #define SPRINKLER_COOLDOWN (10 SECONDS)
 
+/datum/liquid_group
+	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa, inne źródła zostają)
+	var/sprinkler_evaporation = FALSE
+
 /obj/machinery/firealarm
 	/// Kiedy ten alarm ostatnio wylał wodę
 	var/last_sprinkle = -SPRINKLER_COOLDOWN
@@ -56,10 +60,18 @@
 		scrubber_turf.add_liquid(/datum/reagent/water, amount)
 		if(QDELETED(scrubber_turf.liquids)) // bariera na ciecze zablokowała wodę: nic nie poleciało
 			continue
-		// Szybkie parowanie tylko dla nowej kałuży ze zraszacza; istniejącej (powódź, krew) nie zmieniamy
-		if(!flood && !had_liquid && scrubber_turf.liquids.liquid_group)
-			scrubber_turf.liquids.liquid_group.always_evaporates = TRUE
-			scrubber_turf.liquids.liquid_group.evaporation_multiplier = max(scrubber_turf.liquids.liquid_group.evaporation_multiplier, SPRINKLER_EVAPORATION_MULTIPLIER)
+		var/datum/liquid_group/group = scrubber_turf.liquids.liquid_group
+		if(group)
+			// Szybkie parowanie tylko dla nowej kałuży ze zraszacza; istniejącej (powódź, krew) nie zmieniamy
+			if(!flood && !had_liquid)
+				group.sprinkler_evaporation = TRUE
+				group.always_evaporates = TRUE
+				group.evaporation_multiplier = max(group.evaporation_multiplier, SPRINKLER_EVAPORATION_MULTIPLIER)
+			// Zalanie dolane do kałuży ze zwykłego zraszacza zabiera jej szybkie parowanie (głęboka woda ma stać)
+			else if(flood && group.sprinkler_evaporation)
+				group.sprinkler_evaporation = FALSE
+				group.always_evaporates = initial(group.always_evaporates)
+				group.evaporation_multiplier = initial(group.evaporation_multiplier)
 		scrubber.visible_message(flood ? "<span class='danger'>Z [scrubber] bucha strumień wody!</span>" : "<span class='warning'>Z [scrubber] tryska woda!</span>")
 		playsound(scrubber_turf, 'aquila/sound/effects/splash_loud.ogg', flood ? 60 : 35, TRUE)
 		.++

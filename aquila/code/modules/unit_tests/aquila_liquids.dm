@@ -370,6 +370,12 @@
 	var/normal_volume = T.liquids.liquid_group.reagents.total_volume
 	TEST_ASSERT(normal_volume > 0 && normal_volume < 100, "A normal sprinkler spilled [normal_volume] units instead of a small puddle")
 	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/water), "The sprinkler puddle is not water")
+	TEST_ASSERT(T.liquids.liquid_group.always_evaporates, "A normal sprinkler puddle does not evaporate quickly")
+
+	// Zalanie dolane do kałuży ze zwykłego zraszacza zabiera jej szybkie parowanie
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.release_sprinkler_water(TRUE)
+	TEST_ASSERT(!T.liquids.liquid_group.always_evaporates && T.liquids.liquid_group.evaporation_multiplier == 1, "A flood poured into a sprinkler puddle kept its quick evaporation")
 	aquila_liquids_cleanup(T)
 
 	fire_alarm.obj_flags |= EMAGGED
