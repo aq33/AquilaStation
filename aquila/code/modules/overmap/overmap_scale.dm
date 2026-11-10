@@ -91,6 +91,9 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	return 0
 
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
+	// Engines off, coasting away from someone who cannot see us (ai_sensor_use.dm)
+	if(!ram_target && ai_coasting_silent(target))
+		return
 	var/standoff = ram_target ? 0 : get_ai_standoff_range(target)
 	if(!standoff)
 		return ..()

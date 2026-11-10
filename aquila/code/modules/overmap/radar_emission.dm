@@ -23,6 +23,9 @@
 		return FALSE
 	if(GLOB.sensor_signature_enabled && ai_controlled && world.time < last_radar_pulse + AI_RADAR_MIN_INTERVAL)
 		return FALSE
+	// Radar discipline: silent while the target is on a passive sensor, while running, and when a fleet mate just pulsed (ai_sensor_use.dm)
+	if(ai_controlled && !try_ai_radar_pulse())
+		return FALSE
 	relay('nsv13/sound/effects/ship/sensor_pulse_send.ogg')
 	relay_to_nearby('nsv13/sound/effects/ship/sensor_pulse_hit.ogg', ignore_self=TRUE, sound_range=255, faction_check=TRUE)
 	last_radar_pulse = world.time
@@ -71,9 +74,15 @@
 		emission[1] = world.time
 		emission[2] = min(emission[2] + 1, RADAR_EMISSION_MAX_STEPS)
 		emission[5] = get_turf(emitter)
-	// An idle AI goes to have a look; it still needs a real contact to lock on
-	if(ai_controlled && !last_target)
-		patrol_target = get_emission_turf(emitter)
+	// An AI with nothing to chase, or one hunting a contact it lost, goes to have a look;
+	// it still needs a real contact to lock on. The fleet gets the bearing too (ai_sensor_use.dm).
+	if(ai_controlled && (!last_target || ai_search_target))
+		var/turf/lead = get_emission_turf(emitter)
+		if(lead)
+			patrol_target = lead
+			if(ai_search_target)
+				ai_search_pulsed = FALSE // A fresh lead is worth one more sweep
+			share_ai_emission_lead(lead)
 
 /// Fresh emission data from emitter, or null
 /obj/structure/overmap/proc/get_radar_emission(obj/structure/overmap/emitter)

@@ -88,7 +88,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 /obj/structure/overmap/slowprocess()
 	// Before ..(), which runs ai_process() and should see the fresh value
 	update_sensor_signature()
-	return ..()
+	. = ..()
+	// After ai_process(), so the sensor tactics see this tick's contacts (ai_sensor_use.dm)
+	update_ai_sensor_use()
 
 /// How far away observer can passively detect this ship
 /obj/structure/overmap/proc/get_detection_range(obj/structure/overmap/observer)

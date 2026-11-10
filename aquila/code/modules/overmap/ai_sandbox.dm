@@ -5,7 +5,7 @@
 /// Dream Daemon -params: ai_sandbox_out=<file>, ai_sandbox_nt=<NT fleet size>, ai_sandbox_syn=<Syndicate fleet size>, ai_sandbox_gap=<tiles between the fleets>,
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
 /// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
-/// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_torpedo_tactics=1 (no torpedo salvos or dodging), ai_sandbox_no_dodge=1,
+/// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_suites=1 (AI sensor suites off), ai_sandbox_no_sensor_tactics=1 (AI stops using them),
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -46,7 +46,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox
 	/// Torpedo tactics comparison (ai_torpedo_tactics.dm): torpedoes fired, torpedoes that reached a ship, dodges started
-	var/list/torpedo_stats = list("fired" = 0, "hit" = 0, "dodges" = 0)
+	var/list/torpedo_stats = list("fired" = 0, "hit" = 0)
+	/// list of list("t", "id", "name", "faction", "range", "heard"): radar pulses over time
+	var/list/pulses = list()
+	/// ship ref => world.time of the pulse already written to pulses
+	var/list/seen_pulses = list()
 
 /datum/ai_sandbox/proc/event(text)
 	events += list(list("t" = round((world.time - start_time) / 10, 0.1), "text" = text))
@@ -61,16 +65,18 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.sensor_signature_enabled = FALSE
 		GLOB.overmap_scale_enabled = FALSE
 		GLOB.ai_morale_enabled = FALSE
-		event("Tryb starej gry: sygnatury, skala overmapy i morale AI wyłączone")
+		GLOB.ai_sensor_suites_enabled = FALSE
+		GLOB.ai_sensor_tactics_enabled = FALSE
+		event("Tryb starej gry: sygnatury, sensory AI, skala overmapy i morale AI wyłączone")
+	if(text2num(world.params["ai_sandbox_no_suites"]))
+		GLOB.ai_sensor_suites_enabled = FALSE
+		event("Zestawy sensorów AI wyłączone")
+	if(text2num(world.params["ai_sandbox_no_sensor_tactics"]))
+		GLOB.ai_sensor_tactics_enabled = FALSE
+		event("Taktyki sensorowe AI wyłączone")
 	if(text2num(world.params["ai_sandbox_no_sensors"]))
 		GLOB.sensor_signature_enabled = FALSE
 		event("Sygnatury okrętów wyłączone")
-	if(text2num(world.params["ai_sandbox_no_torpedo_tactics"]))
-		GLOB.ai_torpedo_tactics_enabled = FALSE
-		event("Salwy i unikanie torped wyłączone")
-	if(text2num(world.params["ai_sandbox_no_dodge"]))
-		GLOB.ai_torpedo_dodge_enabled = FALSE
-		event("Unikanie torped wyłączone")
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
@@ -149,12 +155,52 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	else
 		main.fire_projectile(/obj/item/projectile/bullet/railgun_slug, best)
 
+/// Every radar pulse since the last frame, with the ships that heard it (radar_emission.dm)
+/datum/ai_sandbox/proc/record_pulses(list/present)
+	for(var/obj/structure/overmap/OM as anything in present)
+		if(!OM.last_radar_pulse || OM.last_radar_pulse <= seen_pulses["\ref[OM]"])
+			continue
+		seen_pulses["\ref[OM]"] = OM.last_radar_pulse
+		var/list/heard = list()
+		for(var/obj/structure/overmap/listener as anything in present)
+			if(listener == OM || !listener.get_radar_emission(OM))
+				continue
+			heard += "\ref[listener]"
+		pulses += list(list(
+			"t" = round((world.time - start_time) / 10, 0.1),
+			"id" = "\ref[OM]",
+			"name" = "[OM]",
+			"faction" = OM.faction,
+			"range" = round(OM.max_tracking_range),
+			"heard" = heard,
+		))
+
 /datum/ai_sandbox/proc/record()
 	var/list/ships = list()
+	var/list/present = list()
 	for(var/obj/structure/overmap/OM as anything in system.system_contents)
 		if(!istype(OM) || QDELETED(OM) || OM.z != main.z || istype(OM, /obj/structure/overmap/asteroid))
 			continue
+		present += OM
 		var/obj/structure/overmap/target = OM.last_target
+		// Which sensor holds which contact, and how far this ship could see its reference enemy with each of them.
+		// The suite ranges depend on what the TARGET is doing, so they are recorded against one named enemy, not in the abstract.
+		var/list/contacts = list()
+		for(var/obj/structure/overmap/seen as anything in OM.sensor_contact_suites)
+			if(QDELETED(seen))
+				continue
+			contacts += list(list("id" = "\ref[seen]", "s" = OM.sensor_contact_suites[seen]))
+		var/list/ranges = null
+		var/obj/structure/overmap/reference = (istype(target) && target.faction != OM.faction) ? target : OM.get_ai_nearest_threat()
+		if(istype(reference) && OM.ai_controlled)
+			ranges = list(
+				"id" = "\ref[reference]",
+				"name" = "[reference]",
+				"opt" = round(OM.get_suite_range(SENSOR_OPTICAL, reference), 0.1),
+				"ir" = round(OM.get_suite_range(SENSOR_INFRARED, reference), 0.1),
+				"lid" = round(OM.get_suite_range(SENSOR_LIDAR, reference), 0.1),
+			)
+		var/turf/search_at = OM.ai_search_target ? OM.patrol_target : null
 		ships += list(list(
 			"id" = "\ref[OM]",
 			"name" = "[OM]",
@@ -171,12 +217,23 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			"target" = istype(target) ? "\ref[target]" : null,
 			"tiny" = OM.mass <= MASS_TINY,
 			"main" = OM == main,
+			// Sensors (ai_sensor_suites.dm) and what the ship is doing with them (ai_sensor_use.dm)
+			"tactic" = OM.ai_tactic,
+			"silent" = OM.ai_running_silent,
+			"sig" = round(OM.sensor_signature, 0.01),
+			"heat" = round(OM.get_signature_heat(), 0.01),
+			"size" = round(OM.get_signature_size(), 0.01),
+			"cts" = contacts,
+			"rng" = ranges,
+			"sx" = search_at ? search_at.x : null,
+			"sy" = search_at ? search_at.y : null,
 		))
+	record_pulses(present)
 	frames += list(list("t" = round((world.time - start_time) / 10, 0.1), "ships" = ships))
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats)
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "pulses" = pulses)
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
 
@@ -205,12 +262,6 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(GLOB.ai_sandbox && istype(P, /obj/item/projectile/guided_munition/torpedo))
 		GLOB.ai_sandbox.torpedo_stats["hit"]++
 	return ..()
-
-/obj/structure/overmap/get_ai_dodge_point()
-	var/was_dodging = world.time <= ai_dodge_until
-	. = ..()
-	if(. && !was_dodging && GLOB.ai_sandbox)
-		GLOB.ai_sandbox.torpedo_stats["dodges"]++
 
 /obj/structure/overmap/start_ai_flight()
 	GLOB.ai_sandbox?.event("[src] ([ai_temperament], strach [round(ai_fear)]) przerywa walkę i ucieka")
