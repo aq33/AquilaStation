@@ -95,7 +95,7 @@
 		return
 	time_since_act = 0
 	if(current_size >= STAGE_TWO)
-		radiation_pulse(src, min(5000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
+		radiation_pulse(src, max_range = 5, threshold = RAD_MEDIUM_INSULATION, intensity = 2, collector_power = min(5000, (energy*4.5)+1000), collector_falloff = 0.5) // AQ EDIT - promieniowanie z Bee#13442: kolektory jak dawniej
 		if(prob(event_chance))//Chance for it to run a special event TODO:Come up with one or two more that fit
 			event()
 	dissipate(delta_time)

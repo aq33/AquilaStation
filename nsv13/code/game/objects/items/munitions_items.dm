@@ -12,7 +12,7 @@
 /obj/item/door_remote/master_at_arms
 	name = "pilot drzwi działu uzbrojenia"
 	icon_state = "gangtool-red"
-	region_access = 8
+	department_bitflag = DEPARTMENT_BITFLAG_MUNITIONS // AQ EDIT - bitflaga działów (port BeeStation/BeeStation-Hornet#14139)
 
 ///////ENCRYPTION KEYS///////
 

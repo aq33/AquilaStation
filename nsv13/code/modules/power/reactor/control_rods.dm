@@ -39,7 +39,7 @@
 
 /obj/item/control_rod/irradiated/Initialize(mapload)
 	.=..()
-	AddComponent(/datum/component/radioactive, 500, src)
+	AddElement(/datum/element/radioactive) // AQ EDIT - promieniowanie z Bee#13442
 
 /datum/techweb_node/reactor_control_rods
 	id = "reactor_control_rods"

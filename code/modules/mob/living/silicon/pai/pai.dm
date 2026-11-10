@@ -256,7 +256,7 @@
 	..()
 	P.toggle_integrated_light()
 
-/mob/living/silicon/pai/Process_Spacemove(movement_dir = 0)
+/mob/living/silicon/pai/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	. = ..()
 	if(!.)
 		add_movespeed_modifier(MOVESPEED_ID_PAI_SPACEWALK_SPEEDMOD, TRUE, 100, multiplicative_slowdown = 2)

@@ -174,8 +174,7 @@
 			armor_list += list("MAGIA" = armor.magic)
 		if(armor.melee)
 			armor_list += list("WRĘCZ" = armor.melee)
-		if(armor.rad)
-			armor_list += list("PROMIENIOWANIE" = armor.rad)
+		// AQ EDIT - promieniowanie z Bee#13442: częściowy pancerz "rad" nic już nie daje; pełną ochronę (rad >= 100) opisuje element radiation_protected_clothing
 		if(armor.stamina)
 			armor_list += list("WYTRZYMAŁOŚĆ FIZYCZNA" = armor.stamina)
 		if(armor.bleed)

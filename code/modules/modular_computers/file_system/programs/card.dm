@@ -1,11 +1,4 @@
-#define CARDCON_DEPARTMENT_CIVILIAN "Civilian"
-#define CARDCON_DEPARTMENT_SECURITY "Security"
-#define CARDCON_DEPARTMENT_MEDICAL "Medical"
-#define CARDCON_DEPARTMENT_SUPPLY "Supply"
-#define CARDCON_DEPARTMENT_SCIENCE "Science"
-#define CARDCON_DEPARTMENT_ENGINEERING "Engineering"
-#define CARDCON_DEPARTMENT_MUNITIONS "Munitions" //nsv13
-#define CARDCON_DEPARTMENT_COMMAND "Command"
+// AQ EDIT - działy z grup SSdepartment zamiast CARDCON_DEPARTMENT_* i numerów regionów (port BeeStation/BeeStation-Hornet#14139)
 
 /datum/computer_file/program/card_mod
 	filename = "cardmod"
@@ -24,82 +17,36 @@
 	var/is_centcom = FALSE
 	var/minor = FALSE
 	var/authenticated = FALSE
-	var/list/region_access
+	// AQ EDIT START - działy jako bitflagi SSdepartment (port BeeStation/BeeStation-Hornet#14139)
+	/// Działy, którymi zarządza zalogowana karta szefa
+	var/accessible_region_bitflag = NONE
 	var/list/head_subordinates
-	///Which departments this computer has access to. Defined as access regions. null = all departments
-	var/target_dept
-
-	//For some reason everything was exploding if this was static.
-	var/list/sub_managers
-
-/datum/computer_file/program/card_mod/New(obj/item/modular_computer/comp)
-	. = ..()
-	sub_managers = list(
-		"[ACCESS_HOP]" = list(
-			"department" = list(CARDCON_DEPARTMENT_SUPPLY, CARDCON_DEPARTMENT_COMMAND),
-			"region" = 1,
-			"head" = JOB_NAME_HEADOFPERSONNEL
-		),
-		"[ACCESS_HOS]" = list(
-			"department" = CARDCON_DEPARTMENT_SECURITY,
-			"region" = 2,
-			"head" = JOB_NAME_HEADOFSECURITY
-		),
-		"[ACCESS_CMO]" = list(
-			"department" = CARDCON_DEPARTMENT_MEDICAL,
-			"region" = 3,
-			"head" = JOB_NAME_CHIEFMEDICALOFFICER
-		),
-		"[ACCESS_RD]" = list(
-			"department" = CARDCON_DEPARTMENT_SCIENCE,
-			"region" = 4,
-			"head" = JOB_NAME_RESEARCHDIRECTOR
-		),
-		"[ACCESS_CE]" = list(
-			"department" = CARDCON_DEPARTMENT_ENGINEERING,
-			"region" = 5,
-			"head" = JOB_NAME_CHIEFENGINEER
-		),
-		"[ACCESS_MAA]" = list(
-			"department" = CARDCON_DEPARTMENT_MUNITIONS,
-			"region" = 8,
-			"head" = JOB_NAME_MASTERATARMS
-		)
-	) //nsv13 - add maa
+	/// Działy, którymi program może zarządzać (bitflaga). NONE = wszystkie działy
+	var/department_bitflag = NONE
+	// AQ EDIT END
 
 /datum/computer_file/program/card_mod/proc/authenticate(mob/user, obj/item/card/id/id_card)
 	if(!id_card)
 		return
 
-	region_access = list()
-	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
+	// AQ EDIT START - szef dostaje działy po dostępie swojego biura (HoP: Ogólne i Zaopatrzenie, MAA: Uzbrojenie), podwładni do przypisania jak dotąd (port BeeStation/BeeStation-Hornet#14139)
+	accessible_region_bitflag = NONE
+	head_subordinates = list()
+	if(!department_bitflag && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
 		authenticated = TRUE
-		update_static_data(user)
+		// Okno należy do komputera, nie do programu: update_static_data() programu nie znajduje okna
+		computer.update_static_data(user)
 		return TRUE
 
-	var/list/head_types = list()
-	for(var/access_text in sub_managers)
-		var/list/info = sub_managers[access_text]
-		var/access = text2num(access_text)
-		if((access in id_card.access) && ((info["region"] in target_dept) || !length(target_dept)))
-			region_access += info["region"]
-			//I don't even know what I'm doing anymore
-			head_types += info["head"]
-
-	head_subordinates = list()
-	if(length(head_types))
-		for(var/j in SSjob.occupations)
-			var/datum/job/job = j
-			for(var/head in head_types)//god why
-				if(head in job.department_head)
-					head_subordinates += job.title
-
-	if(length(region_access))
+	accessible_region_bitflag = SSdepartment.get_managed_departments(id_card.access, department_bitflag)
+	if(accessible_region_bitflag)
+		head_subordinates = SSdepartment.get_subordinate_jobs(accessible_region_bitflag)
 		minor = TRUE
 		authenticated = TRUE
-		update_static_data(user)
+		computer.update_static_data(user)
 		return TRUE
+	// AQ EDIT END
 
 	return FALSE
 
@@ -130,6 +77,7 @@
 				return TRUE
 		if("PRG_logout")
 			authenticated = FALSE
+			computer.update_static_data(usr) // AQ EDIT - port BeeStation/BeeStation-Hornet#14139: regiony zależą od zalogowanej karty
 			playsound(computer, 'sound/machines/terminal_off.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_print")
@@ -216,7 +164,7 @@
 				if(minor && !(target in head_subordinates))
 					return
 				var/list/new_access = list()
-				if(is_centcom)
+				if(is_centcom && (target in get_all_centcom_jobs())) // AQ EDIT - Centrala przypisuje też stanowiska stacji (port BeeStation/BeeStation-Hornet#14139)
 					new_access = get_centcom_access(target)
 				else
 					var/datum/job/job
@@ -230,7 +178,7 @@
 						return
 					new_access = job.get_access()
 				log_id("[key_name(usr)] changed [target_id_card] assignment to '[target]', overriding all previous access using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
-				target_id_card.access -= get_all_centcom_access() + get_all_accesses()
+				target_id_card.access -= get_all_accesses() // AQ EDIT - port BeeStation/BeeStation-Hornet#14139: stanowisko zmienia tylko dostępy stacji, jak w konsoli ID
 				target_id_card.access |= new_access
 				target_id_card.assignment = target
 				target_id_card.update_label()
@@ -238,50 +186,66 @@
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_access")
-			if(!authenticated)
+			if(!authenticated || !target_id_card) // AQ EDIT - bez karty do zmiany był runtime
 				return
-			var/access_type = text2num(params["access_target"])
-			if(access_type in (is_centcom ? get_all_centcom_access() : get_all_accesses()))
-				if(access_type in target_id_card.access)
-					target_id_card.access -= access_type
-					log_id("[key_name(usr)] removed [get_access_desc(access_type)] from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
-				else
-					target_id_card.access |= access_type
-					log_id("[key_name(usr)] added [get_access_desc(access_type)] to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
-				playsound(computer, "terminal_type", 50, FALSE)
-				return TRUE
+			// AQ EDIT START - biała lista: tylko dostępy działów, którymi zarządza zalogowana karta (port BeeStation/BeeStation-Hornet#14139)
+			var/access_type = SSdepartment.find_access_in_departments(params["access_target"], get_manageable_department_bitflag())
+			if(isnull(access_type))
+				log_id("[key_name(usr)] tried to change access [params["access_target"]] of [target_id_card], which [user_id_card] does not manage, via a portable ID console at [AREACOORD(usr)].")
+				return
+			// AQ EDIT END
+			if(access_type in target_id_card.access)
+				target_id_card.access -= access_type
+				log_id("[key_name(usr)] removed [get_department_access_desc(access_type)] from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
+			else
+				target_id_card.access |= access_type
+				log_id("[key_name(usr)] added [get_department_access_desc(access_type)] to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
+			playsound(computer, "terminal_type", 50, FALSE)
+			return TRUE
 		if("PRG_grantall")
-			if(!authenticated || minor)
+			if(!authenticated || minor || !target_id_card) // AQ EDIT - bez karty do zmiany był runtime
 				return
-			target_id_card.access |= (is_centcom ? get_all_centcom_access() : get_all_accesses())
+			target_id_card.access |= (is_centcom ? get_all_centcom_access() + get_all_accesses() : get_all_accesses()) // AQ EDIT - Centrala nadaje też dostępy stacji (port BeeStation/BeeStation-Hornet#14139)
 			log_id("[key_name(usr)] granted All Access to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_denyall")
-			if(!authenticated || minor)
+			if(!authenticated || minor || !target_id_card) // AQ EDIT - bez karty do zmiany był runtime
 				return
-			target_id_card.access.Cut()
+			target_id_card.access -= (is_centcom ? get_all_centcom_access() + get_all_accesses() : get_all_accesses()) // AQ EDIT - zdejmuje tylko dostępy, którymi program zarządza, nie wszystkie (port BeeStation/BeeStation-Hornet#14139)
 			log_id("[key_name(usr)] removed All Access from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_grantregion")
-			if(!authenticated)
+			if(!authenticated || !target_id_card) // AQ EDIT - bez karty do zmiany był runtime
 				return
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
-			target_id_card.access |= get_region_accesses(region)
-			log_id("[key_name(usr)] granted [get_region_accesses_name(region)] regional access to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+			// AQ EDIT START - kliknięty region (Bee bierze pierwszy dostępny dział), tylko działy zalogowanej karty, zły href nic nie robi (port BeeStation/BeeStation-Hornet#14139)
+			var/list/granted_departments = SSdepartment.get_department_by_bitflag(region & get_manageable_department_bitflag())
+			if(!length(granted_departments))
+				return
+			for(var/datum/department_group/each_dept as anything in granted_departments)
+				target_id_card.access |= each_dept.access_list
+				log_id("[key_name(usr)] granted [each_dept.access_group_name] regional access to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+			// AQ EDIT END
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_denyregion")
-			if(!authenticated)
+			if(!authenticated || !target_id_card) // AQ EDIT - bez karty do zmiany był runtime
 				return
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
-			target_id_card.access -= get_region_accesses(region)
-			log_id("[key_name(usr)] removed [region] regional access from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+			// AQ EDIT START - kliknięty region (Bee bierze pierwszy dostępny dział), tylko działy zalogowanej karty, zły href nic nie robi (port BeeStation/BeeStation-Hornet#14139)
+			var/list/denied_departments = SSdepartment.get_department_by_bitflag(region & get_manageable_department_bitflag())
+			if(!length(denied_departments))
+				return
+			for(var/datum/department_group/each_dept as anything in denied_departments)
+				target_id_card.access -= each_dept.access_list
+				log_id("[key_name(usr)] removed [each_dept.access_group_name] regional access from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+			// AQ EDIT END
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
 
@@ -291,54 +255,47 @@
 	var/list/data = list()
 	data["station_name"] = station_name()
 	data["centcom_access"] = is_centcom
-	data["minor"] = target_dept || minor ? TRUE : FALSE
+	data["minor"] = department_bitflag || minor ? TRUE : FALSE // AQ EDIT - bitflaga działów
 
-	var/list/departments = target_dept
-	if(is_centcom)
-		departments = list("CentCom" = get_all_centcom_jobs())
-	else if(isnull(departments))
-		departments = list(
-			CARDCON_DEPARTMENT_COMMAND = list(JOB_NAME_CAPTAIN),//lol
-			CARDCON_DEPARTMENT_ENGINEERING = GLOB.engineering_positions,
-			CARDCON_DEPARTMENT_MEDICAL = GLOB.medical_positions,
-			CARDCON_DEPARTMENT_SCIENCE = GLOB.science_positions,
-			CARDCON_DEPARTMENT_SECURITY = GLOB.security_positions,
-			CARDCON_DEPARTMENT_SUPPLY = GLOB.supply_positions,
-			CARDCON_DEPARTMENT_CIVILIAN = GLOB.civilian_positions | GLOB.gimmick_positions,
-			CARDCON_DEPARTMENT_MUNITIONS = GLOB.munitions_positions
-		) //nsv13 - add munitions
+	// AQ EDIT START - stanowiska i dostępy z grup działów SSdepartment, zakładki z polskimi nazwami działów (port BeeStation/BeeStation-Hornet#14139)
 	data["jobs"] = list()
-	for(var/department in departments)
-		var/list/job_list = departments[department]
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!length(each_dept.jobs) || (each_dept.access_filter && !is_centcom))
+			continue
 		var/list/department_jobs = list()
-		for(var/job in job_list)
+		for(var/job in each_dept.jobs)
 			if(minor && !(job in head_subordinates))
 				continue
 			department_jobs += list(list(
-				"display_name" = replacetext(job, "&nbsp", " "),
+				"display_name" = job,
 				"job" = job
 			))
 		if(length(department_jobs))
-			data["jobs"][department] = department_jobs
+			data["jobs"][each_dept.dept_name] = department_jobs
 
+	var/manageable_bitflag = get_manageable_department_bitflag()
 	var/list/regions = list()
-	for(var/i in 1 to 8) //nsv13 - 7 --> 8 //i swear to god if this is what fixes it //it was
-		if((minor || target_dept) && !(i in region_access))
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!(each_dept.dept_bitflag & manageable_bitflag) || !length(each_dept.access_list))
+			continue
+		if(each_dept.access_filter && !is_centcom)
 			continue
 
 		var/list/accesses = list()
-		for(var/access in get_region_accesses(i))
-			if (get_access_desc(access))
+		for(var/access in each_dept.access_list)
+			var/access_desc = get_department_access_desc(access)
+			if(access_desc)
 				accesses += list(list(
-					"desc" = replacetext(get_access_desc(access), "&nbsp", " "),
+					"desc" = replacetext(access_desc, "&nbsp", " "),
 					"ref" = access,
 				))
 
 		regions += list(list(
-			"name" = get_region_accesses_name(i),
-			"regid" = i,
+			"name" = each_dept.access_group_name,
+			"regid" = each_dept.dept_bitflag,
 			"accesses" = accesses
 		))
+	// AQ EDIT END
 
 	data["regions"] = regions
 
@@ -374,14 +331,3 @@
 		data["access_on_card"] = id_card.access
 
 	return data
-
-
-
-#undef CARDCON_DEPARTMENT_CIVILIAN
-#undef CARDCON_DEPARTMENT_SECURITY
-#undef CARDCON_DEPARTMENT_MEDICAL
-#undef CARDCON_DEPARTMENT_SCIENCE
-#undef CARDCON_DEPARTMENT_SUPPLY
-#undef CARDCON_DEPARTMENT_ENGINEERING
-#undef CARDCON_DEPARTMENT_MUNITIONS //nsv13
-#undef CARDCON_DEPARTMENT_COMMAND

@@ -143,11 +143,11 @@
 		switch(fail_tick)
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
-				M.rad_act(40)
+				M.adjustFireLoss(3) // AQ EDIT - promieniowanie z Bee#13442
 				to_chat(M, "<span class='userdanger'>Twój [name] robi się cieplejszy.</span>")
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
-				M.rad_act(80)
+				M.adjustFireLoss(10) // AQ EDIT - promieniowanie z Bee#13442
 				reactor_overloaded = TRUE
 				to_chat(M, "<span class='userdanger'>Reaktor twojego [name] się przeciąża!</span>")
 

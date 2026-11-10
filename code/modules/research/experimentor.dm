@@ -298,7 +298,7 @@
 			ejectItem()
 		else if(prob(EFFECT_PROB_VERYLOW-badThingCoeff))
 			visible_message("<span class='danger'>[src] ulega awarii, topiąc [exp_on] i emitując promieniowanie!</span>")
-			radiation_pulse(src, 500)
+			radiation_pulse(src, max_range = 3, threshold = RAD_LIGHT_INSULATION, intensity = 3) // AQ EDIT - promieniowanie z Bee#13442
 			ejectItem(TRUE)
 		else if(prob(EFFECT_PROB_LOW-badThingCoeff))
 			visible_message("<span class='warning'>[src] ulega awarii, wyrzucając toksyczne odpady!</span>")
