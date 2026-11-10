@@ -286,25 +286,3 @@
 #undef AQ_OVERHEAT_RECOVERY
 #undef AQ_HANDGUN_BULLET_SPEED_MULT
 
-// Zestaw konserwacji w pudełku drużyny, gdy zestaw zawiera broń (nie wchodzi do listy zwrotów, więc zużyty zestaw nie daje grzywny)
-/obj/machinery/squad_vendor/ui_act(action, params)
-	var/list/boxes_before = list()
-	if(action == "vend")
-		for(var/obj/item/storage/box/squad_kit/box in get_turf(src))
-			boxes_before += box
-	. = ..()
-	if(!. || action != "vend")
-		return
-	// Tylko pudełko wydane właśnie teraz i tylko z bronią (drużyna bez dostępu do broni dostaje pudełko bez niej)
-	for(var/obj/item/storage/box/squad_kit/box in get_turf(src))
-		if((box in boxes_before) || !(locate(/obj/item/gun) in box) || (locate(/obj/item/gun_maintenance_kit) in box))
-			continue
-		new /obj/item/gun_maintenance_kit(box)
-
-// Zestaw konserwacji to dodatek do pudełka, nie wypożyczenie: wraca razem z pudełkiem, bo inaczej pudełko nigdy nie byłoby puste
-/obj/machinery/squad_vendor/return_item(mob/living/user, obj/item/I, quiet = FALSE)
-	if(istype(I, /obj/item/gun_maintenance_kit) && istype(I.loc, /obj/item/storage/box/squad_kit))
-		I.forceMove(src)
-		qdel(I)
-		return TRUE
-	return ..()

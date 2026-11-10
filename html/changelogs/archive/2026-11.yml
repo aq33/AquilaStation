@@ -572,6 +572,9 @@
   - bugfix: Generowanie opuszczonej stacji nie sypie już błędami rur i wczytywania
       map.
 '2026-11-10':
+  Aserovich:
+  - imageadd: 'Generator tarczy i jego rama budowy mają nowy, ciemny wygląd z animowaną
+      poświatą (resprite z Hullrot: Eclipsion).'
   Joker66613:
   - tweak: Raport końca zmiany, głosowanie o następną mapę i ankieta po rundzie są
       w jednym oknie.
