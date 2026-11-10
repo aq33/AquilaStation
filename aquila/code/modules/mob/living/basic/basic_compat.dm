@@ -63,3 +63,34 @@
 /mob/living/basic/initialize_footstep()
 	if(do_footstep)
 		return ..()
+
+/**
+ * Makes a tamed mob rideable with our old riding component (decision D6; Bee adds the ridable element with riding/creature).
+ * Used by the lasso and by tamed cows.
+ */
+/mob/living/proc/setup_tamed_riding()
+	if(GetComponent(/datum/component/riding))
+		return
+	if(isanimal(src))
+		var/mob/living/simple_animal/simple_src = src
+		simple_src.tame = TRUE
+	can_buckle = TRUE
+	buckle_lying = FALSE
+	var/datum/component/riding/riding = LoadComponent(/datum/component/riding/tamed)
+	riding.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(0, 8), TEXT_WEST = list(0, 8)))
+	riding.set_vehicle_dir_layer(NORTH, layer)
+	riding.set_vehicle_dir_layer(EAST, layer - 0.1)
+	riding.set_vehicle_dir_layer(WEST, layer - 0.1)
+	riding.set_vehicle_dir_layer(SOUTH, layer + 0.1)
+
+/// Climbing on a rideable basic mob, as on simple animals
+/mob/living/basic/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
+	if(riding_datum)
+		if(user.incapacitated())
+			return
+		for(var/atom/movable/A in get_turf(src))
+			if(A != src && A != M && A.density)
+				return
+		M.forceMove(get_turf(src))
+		return ..()

@@ -243,7 +243,7 @@
 							/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 							/mob/living/basic/mouse, // AQ EDIT - basic moby
 							/mob/living/simple_animal/chicken,
-							/mob/living/simple_animal/cow,
+							/mob/living/basic/cow, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
 							/mob/living/simple_animal/butterfly,

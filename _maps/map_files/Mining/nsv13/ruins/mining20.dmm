@@ -127,7 +127,7 @@
 /turf/template_noop,
 /area/template_noop)
 "H" = (
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "I" = (

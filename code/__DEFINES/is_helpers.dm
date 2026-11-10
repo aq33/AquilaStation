@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,
-	/mob/living/simple_animal/cow,
+	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/cat_butcherer,
 	/mob/living/simple_animal/hostile/faithless,
 	/mob/living/simple_animal/hostile/nanotrasen,

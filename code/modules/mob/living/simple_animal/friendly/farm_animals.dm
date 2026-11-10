@@ -104,87 +104,7 @@
 			H.visible_message("<span class='warning'>[src] odgryza spory kęs [H]!</span>", \
 								  "<span class='userdanger'>[src] odgryza spory kęs twojej kończyny ([NB])!</span>")
 			NB.dismember()
-//cow
-/mob/living/simple_animal/cow
-	name = "krowa"
-	desc = "Słynie z mleka. Tylko jej nie przewracaj."
-	icon_state = "cow"
-	icon_living = "cow"
-	icon_dead = "cow_dead"
-	icon_gib = "cow_gib"
-	gender = FEMALE
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak = list("muu?","muu","MUUUUUU")
-	speak_emote = list("muczy","muczy upiornie")
-	emote_hear = list("ryczy.")
-	emote_see = list("potrząsa głową.")
-	speak_chance = 1
-	turns_per_move = 5
-	see_in_dark = 6
-	butcher_results = list(/obj/item/food/meat/slab = 6)
-	response_help  = "głaszcze"
-	response_disarm = "delikatnie odsuwa na bok"
-	response_harm   = "kopie"
-	attacktext = "kopie"
-	attack_sound = 'sound/weapons/punch1.ogg'
-	health = 50
-	maxHealth = 50
-	var/obj/item/udder/udder = null
-	gold_core_spawnable = FRIENDLY_SPAWN
-	blood_volume = BLOOD_VOLUME_NORMAL
-	chat_color = "#FFFFFF"
-
-	do_footstep = TRUE
-
-/mob/living/simple_animal/cow/Initialize(mapload)
-	udder = new()
-	. = ..()
-
-/mob/living/simple_animal/cow/Destroy()
-	qdel(udder)
-	udder = null
-	return ..()
-
-/mob/living/simple_animal/cow/attackby(obj/item/O, mob/user, params)
-	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		udder.milkAnimal(O, user)
-		return 1
-	else
-		return ..()
-
-/mob/living/simple_animal/cow/Life()
-	. = ..()
-	if(stat == CONSCIOUS)
-		udder.generateMilk()
-
-/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M, list/modifiers)
-	if(!stat && LAZYACCESS(modifiers, RIGHT_CLICK) && icon_state != icon_dead)
-		M.visible_message("<span class='warning'>[M] przewraca [src].</span>",
-			"<span class='notice'>Przewracasz [src].</span>")
-		to_chat(src, "<span class='userdanger'>[M] cię przewraca!</span>")
-		Paralyze(60, ignore_canstun = TRUE)
-		icon_state = icon_dead
-		addtimer(CALLBACK(src, PROC_REF(tip_back), M), rand(20,50))
-	else
-		..()
-
-/mob/living/simple_animal/cow/proc/tip_back(mob/living/carbon/M)
-	if(stat && M)
-		return
-	icon_state = icon_living
-	var/external
-	var/internal
-	switch(pick(1,2,3,4))
-		if(1,2,3)
-			var/text = pick("błagalnie.", "proszącym wzrokiem.",
-				"z rezygnacją.")
-			external = "[src] patrzy na [M] [text]"
-			internal = "Patrzysz na [M] [text]"
-		if(4)
-			external = "[src] wydaje się pogodzony ze swoim losem."
-			internal = "Godzisz się ze swoim losem."
-	visible_message("<span class='notice'>[external]</span>",
-		"<span class='revennotice'>[internal]</span>")
+// AQ EDIT - krowa jest basic mobem (aquila/code/modules/mob/living/basic/farm_animals/cow/)
 
 /mob/living/simple_animal/chick
 	name = "\improper pisklę"
@@ -458,35 +378,12 @@
 		icon_state = icon_living
 
 //udder
-/obj/item/udder
-	name = "wymię"
-	var/milktype = /datum/reagent/consumable/milk
-
+// AQ EDIT START - basic moby: /obj/item/udder jest teraz w komponencie wymienia z Bee (aquila/code/datums/components/udder.dm)
 /obj/item/udder/sheep
 	name = "wymię owcy"
-	milktype = /datum/reagent/consumable/milk/sheep
+	reagent_produced_typepath = /datum/reagent/consumable/milk/sheep
 
 /obj/item/udder/goat
 	name = "wymię kozy"
-	milktype = /datum/reagent/consumable/milk/goat
-
-
-/obj/item/udder/Initialize(mapload)
-	create_reagents(50)
-	reagents.add_reagent(milktype, 20)
-	. = ..()
-
-/obj/item/udder/proc/generateMilk()
-	if(prob(5))
-		reagents.add_reagent(milktype, rand(5, 10))
-
-/obj/item/udder/proc/milkAnimal(obj/O, mob/user)
-	var/obj/item/reagent_containers/glass/G = O
-	if(G.reagents.total_volume >= G.volume)
-		to_chat(user, "<span class='danger'>[O] jest pełne.</span>")
-		return
-	var/transfered = reagents.trans_to(O, rand(5,10))
-	if(transfered)
-		user.visible_message("[user] doi [src] do [O].", "<span class='notice'>Doisz [src] do [O].</span>")
-	else
-		to_chat(user, "<span class='danger'>Wymię jest puste. Zaczekaj jeszcze trochę...</span>")
+	reagent_produced_typepath = /datum/reagent/consumable/milk/goat
+// AQ EDIT END

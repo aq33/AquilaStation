@@ -1334,7 +1334,6 @@
 #include "code\modules\butt\stapler.dm"
 #include "code\modules\cargo\orderconsole.dm"
 #include "code\modules\mob\living\silicon\robot\robot_movement.dm"
-#include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "code\modules\mob\voice.dm"
 #include "code\modules\mob\voice_muffled_sounds.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
@@ -1911,9 +1910,16 @@
 #include "code\modules\mob\living\basic\pets\cat\kitten_ai.dm"
 #include "code\modules\mob\living\basic\pets\cat\keeki.dm"
 #include "code\modules\mob\living\basic\pets\cat\runtime.dm"
+#include "code\datums\components\udder.dm"
+#include "code\datums\components\aggro_emote.dm"
+#include "code\datums\elements\movement_turf_changer.dm"
+#include "code\modules\mob\living\basic\farm_animals\cow\_cow.dm"
+#include "code\modules\mob\living\basic\farm_animals\cow\cow_ai.dm"
+#include "code\modules\mob\living\basic\farm_animals\cow\cow_moonicorn.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_cow.dm"
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"

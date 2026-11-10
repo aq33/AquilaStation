@@ -38,7 +38,7 @@
 /obj/item/mob_lasso/proc/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
 		/mob/living/simple_animal/hostile/carp,
-		/mob/living/simple_animal/cow,
+		/mob/living/basic/cow, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/retaliate/dolphin,
 	))
 
@@ -79,18 +79,7 @@
 	set_target_ai(C, TRUE)
 	//Riding and Tamed
 	C.tamed(user)
-	if(isanimal(C))
-		var/mob/living/simple_animal/simple_target = C
-		simple_target.tame = TRUE
-	if(!C.GetComponent(/datum/component/riding))
-		C.can_buckle = TRUE
-		C.buckle_lying = FALSE
-		var/datum/component/riding/D = C.LoadComponent(/datum/component/riding/tamed)
-		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(0, 8), TEXT_WEST = list( 0, 8)))
-		D.set_vehicle_dir_layer(NORTH, C.layer)
-		D.set_vehicle_dir_layer(EAST, C.layer - 0.1)
-		D.set_vehicle_dir_layer(WEST, C.layer - 0.1)
-		D.set_vehicle_dir_layer(SOUTH, C.layer + 0.1)
+	C.setup_tamed_riding() // our riding/tamed component with the old offsets
 	if(C.ai_controller)
 		QDEL_NULL(C.ai_controller)
 	C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway

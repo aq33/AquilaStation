@@ -57,7 +57,7 @@
 	bite_consumption = 18
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("mleko" = 1, "farma" = 1)
-	spawned_mob = /mob/living/simple_animal/cow
+	spawned_mob = /mob/living/basic/cow // AQ EDIT - basic moby
 
 /obj/item/food/monkeycube/goat
 	name = "kozia kostka"

@@ -2579,7 +2579,7 @@
 	name = "Skrzynia z krową"
 	desc = "Krowa robi muu!"
 	cost = 3000
-	contains = list(/mob/living/simple_animal/cow)
+	contains = list(/mob/living/basic/cow) // AQ EDIT - basic moby
 	crate_name = "skrzynia z krową"
 
 /datum/supply_pack/critter/crab

@@ -51,7 +51,7 @@
 		/obj/item/choice_beacon/music										= 5,
 		/obj/item/toy/plush/moth/random										= 5,
 		/obj/structure/musician/piano/unanchored							= 2,
-		/mob/living/simple_animal/cow										= 1,
+		/mob/living/basic/cow										= 1, // AQ EDIT - basic moby
 	)
 
 	//if the goodie is dangerous for the station, in this list it goes

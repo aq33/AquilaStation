@@ -23,7 +23,7 @@
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/butterfly,
 		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/cow
+		/mob/living/basic/cow // AQ EDIT - basic moby
 	) )
 
 	var/datum/freight_type/single/specimen/C = new /datum/freight_type/single/specimen( picked )
