@@ -9,10 +9,10 @@
 	bitmask_smooth = TRUE
 
 /obj/structure/table/bitmask_connects_to(turf/T)
-	if(!T)
+	if(!T || flipped) // przewrócony stół (gunplay/cover.dm) nie łączy się z blatami
 		return FALSE
 	for(var/obj/structure/table/other in T)
-		if(other == src || !other.bitmask_smooth)
+		if(other == src || !other.bitmask_smooth || other.flipped)
 			continue
 		if(!canSmoothWith)
 			if(other.type == type)

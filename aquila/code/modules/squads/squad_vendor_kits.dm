@@ -108,6 +108,8 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	// tylko rzeczy z automatu: prywatna apteczka tego samego typu z plecaka nie jest zwrotem
 	if(!thing.aq_squad_issued)
 		return FALSE
+	if(istype(thing, /obj/item/gun_maintenance_kit)) // dodatek do broni, nie wypożyczenie (zob. aq_vend())
+		return TRUE
 	for(var/path in outstanding)
 		if(thing.type == path)
 			outstanding -= path
@@ -321,6 +323,11 @@ GLOBAL_LIST_EMPTY(squad_loans)
 		var/obj/item/issued_item = new path(crate)
 		for(var/obj/item/part in issued_item.GetAllContents())
 			part.aq_squad_issued = TRUE
+	// Zestaw konserwacji do każdego zestawu z bronią (gunplay/condition.dm). Nie ma go w liście zwrotów, więc zużyty
+	// zestaw nie daje grzywny, ale accept() przyjmuje go razem ze skrzynią
+	if(locate(/obj/item/gun) in crate)
+		var/obj/item/gun_maintenance_kit/maintenance_kit = new(crate)
+		maintenance_kit.aq_squad_issued = TRUE
 	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	H.put_in_hands(crate)

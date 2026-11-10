@@ -3532,6 +3532,29 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/plasteel/tiled/light,
 /area/maintenance/department/crew_quarters/dorms)
+"kO" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/sniper_rounds{
+	pixel_x = -5
+	},
+/obj/item/ammo_box/magazine/sniper_rounds/soporific{
+	pixel_x = 7
+	},
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/carpet/police,
+/area/ai_monitored/security/armory/lockup)
 "kP" = (
 /obj/structure/cable,
 /turf/open/floor/grass/fairy/yellow,
@@ -54715,7 +54738,7 @@ uj
 jP
 YO
 zZ
-OL
+kO
 pk
 NU
 se

@@ -21970,6 +21970,31 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/engine/stormdrive)
+"sDZ" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 8
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Armory";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/security/armory/security)
 "sEH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -62340,7 +62365,7 @@ fVa
 sKR
 mFn
 ajb
-uCx
+sDZ
 ltE
 wmo
 rsF

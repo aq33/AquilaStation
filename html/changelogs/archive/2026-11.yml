@@ -661,6 +661,29 @@
       znaczniki rozkazów i ramka portretu z TGMC; znacznik „Tędy” i emblematy dorysowane
       w ich stylu.
   - config: Nowy plik config/squad_tts.txt (klucz ElevenLabs, model, głosy).
+  - rscadd: 'Nowy silnik lotu kul: płynny ruch, nadrabianie laga, kula dolatuje do
+      miejsca trafienia.'
+  - rscadd: Ogień ciągły strzela za kursorem w rytmie broni, a strzał pada już przy
+      wciśnięciu przycisku.
+  - rscadd: Wybierak trybu ognia z bezpiecznikiem i osobny klawisz bezpiecznika (do
+      przypisania); nowa broń jest zabezpieczona, odbezpieczona może wystrzelić przy
+      upadku albo rzucie.
+  - rscadd: Odrzut zależny od kalibru narasta przy serii i psuje celność, a ekran
+      kopie w stronę od celu. Kursor pokazuje aktualny rozrzut.
+  - rscadd: Licznik amunicji na HUD-zie, zużycie i przegrzanie broni, niewypały, zestaw
+      konserwacji broni.
+  - rscadd: Smugi za kulami, rykoszety, świst kul, dźwięki trafień zależne od materiału,
+      osłony i przewracanie stołów (Ctrl+Shift+klik).
+  - rscadd: Dodatki do broni (celowniki, chwyt, celownik laserowy z wiązką), IFF drużyn
+      po smyczy, amunicja inteligentna 9mm.
+  - rscadd: Postać w trybie walki patrzy na kursor (ustawienie), statystyki broni
+      w opisie.
+  - tweak: Kule z broni ręcznej lecą szybciej, a dziury i rykoszety działają na każdej
+      ścianie.
+  - soundadd: Dźwięki trafień kul w metal, drewno, szkło i kamień oraz rykoszetów
+      (Shiptest).
+  - imageadd: Kursor rozrzutu, smugi kul, licznik amunicji (Nova), dodatki do broni
+      (Yogstation), zestaw konserwacji (tg).
   dwasint, Absolucy (Monkestation), joker:
   - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
       parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'

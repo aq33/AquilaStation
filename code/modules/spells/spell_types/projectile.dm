@@ -24,15 +24,14 @@
 /obj/item/projectile/magic/spell/Moved(atom/OldLoc, Dir)
 	. = ..()
 	if(trail)
-		create_trail()
+		create_trail(OldLoc) // AQ EDIT - silnik pocisku tg nie ma trajectory, ślad zostaje na poprzednim kafelku
 
-/obj/item/projectile/magic/spell/proc/create_trail()
-	if(!trajectory)
+/obj/item/projectile/magic/spell/proc/create_trail(atom/previous_loc) // AQ EDIT START - ślad na kafelku, z którego pocisk wyleciał
+	if(!isturf(previous_loc))
 		return
-	var/datum/point/vector/previous = trajectory.return_vector_after_increments(1,-1)
-	var/obj/effect/overlay/trail = new /obj/effect/overlay(previous.return_turf())
-	trail.pixel_x = previous.return_px()
-	trail.pixel_y = previous.return_py()
+	var/obj/effect/overlay/trail = new /obj/effect/overlay(previous_loc)
+	trail.pixel_x = pixel_x
+	trail.pixel_y = pixel_y // AQ EDIT END
 	trail.icon = trail_icon
 	trail.icon_state = trail_icon_state
 	//might be changed to temp overlay
