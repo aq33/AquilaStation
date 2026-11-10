@@ -139,8 +139,8 @@
 		return FALSE
 	var/mob/living/carbon/human/H = parent
 	if(get_dist(H, target) > 1)
-		pathfind_to(target)
-		return TRUE
+		// Nieosiągalny (za szybą, za zamkniętymi drzwiami): zostawiamy go zwykłej walce
+		return pathfind_to(target) != KNPC_PATHFIND_FAIL
 	INVOKE_ASYNC(src, PROC_REF(do_cuff), cuffs, target)
 	return TRUE
 
@@ -193,6 +193,8 @@
 	for(var/mob/living/carbon/human/victim in view(KNPC_LOOT_RANGE, H))
 		if(victim == H || victim.stat == DEAD || victim.handcuffed || istype(victim, /mob/living/carbon/human/ai_boarder))
 			continue
+		if(WEAKREF(victim) in HA.unreachable_items)
+			continue
 		if(victim.stat == CONSCIOUS && !victim.incapacitated())
 			continue
 		if(H.faction_check_mob(victim))
@@ -207,8 +209,11 @@
 	if(!can_action(HA))
 		return
 	var/mob/living/carbon/human/prisoner = find_prisoner(HA)
-	if(prisoner)
-		HA.try_cuff(prisoner)
+	if(prisoner && !HA.try_cuff(prisoner))
+		// Nie da się dojść: na minutę pomijamy go tak jak nieosiągalne przedmioty
+		if(!HA.unreachable_items)
+			HA.unreachable_items_reset_at = world.time + 1 MINUTES
+		LAZYOR(HA.unreachable_items, WEAKREF(prisoner))
 
 // ---------- Zbieranie sprzętu ----------
 
@@ -269,6 +274,15 @@
 			break
 	return best
 
+/// Czy I nadal leży na podłodze albo przy martwym ciele (żywym nic nie zabieramy)
+/datum/component/knpc/proc/loot_available(obj/item/I)
+	if(QDELETED(I))
+		return FALSE
+	if(isturf(I.loc))
+		return TRUE
+	var/mob/living/holder = loot_holder(I)
+	return isliving(holder) && holder != parent && holder.stat == DEAD
+
 /// Ciało albo pole, przy którym trzeba stanąć, żeby wziąć I
 /datum/component/knpc/proc/loot_holder(obj/item/I)
 	var/atom/holder = I
@@ -308,7 +322,7 @@
 	if(H.incapacitated() || length(get_aggressors(HA)))
 		return 0
 	var/obj/item/I = HA.loot_target?.resolve()
-	if(!I || !HA.wants_item(I))
+	if(!I || !HA.loot_available(I) || !HA.wants_item(I))
 		HA.loot_target = null
 		if(world.time < HA.next_loot_search)
 			return 0
@@ -324,7 +338,8 @@
 		return
 	var/mob/living/carbon/human/H = HA.parent
 	var/obj/item/I = HA.loot_target?.resolve()
-	if(!I)
+	if(!I || !HA.loot_available(I))
+		HA.loot_target = null
 		return
 	var/atom/holder = HA.loot_holder(I)
 	if(get_dist(H, holder) > 1)

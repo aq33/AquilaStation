@@ -203,5 +203,26 @@
 	TEST_ASSERT(mag in boarder.GetAllContents(), "Boarder did not take the magazine from the body (magazine is in [mag.loc])")
 	TEST_ASSERT(!(mag in body.GetAllContents()), "The magazine is still on the body")
 
+/// AQUILA - magazyn, który ktoś żywy (tu kolega boardera) podniósł, zanim boarder doszedł, nie jest mu zabierany
+/datum/unit_test/aquila_knpc_no_looting_the_living
+
+/datum/unit_test/aquila_knpc_no_looting_the_living/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/crew = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/obj/item/ammo_box/magazine/m10mm/mag = allocate(/obj/item/ammo_box/magazine/m10mm, get_turf(boarder)) // pod nogami: pokój testowy jest ciemny, view() widzi tylko najbliższe pola
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	var/datum/ai_goal/human/scavenge/scavenge = locate() in ai.ai_goals
+	crew.faction = boarder.faction.Copy() // przy wrogu w zasięgu boarder w ogóle nie zbiera, więc żywy właściciel jest tu swój
+	TEST_ASSERT(scavenge.check_score(ai) > 0, "Boarder does not want a magazine of its gun lying nearby")
+	TEST_ASSERT_EQUAL(ai.loot_target?.resolve(), mag, "Boarder picked something else than the magazine")
+	TEST_ASSERT(crew.put_in_hands(mag), "Crew member could not pick up the magazine")
+	ai.next_loot_search = world.time + 1 MINUTES // bez ponownego szukania: sprawdzamy tylko zapamiętany cel
+	TEST_ASSERT(!scavenge.check_score(ai), "Boarder still wants a magazine held by a living crew member")
+	scavenge.action(ai)
+	TEST_ASSERT(crew.is_holding(mag), "Boarder took the magazine from a living crew member")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

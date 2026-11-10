@@ -613,6 +613,7 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	HA.tactical_move(target) // AQ EDIT - z bronią palną trzyma dystans zamiast podchodzić (aquila/code/modules/knpc/knpc_tactics.dm)
 	if(QDELETED(HA) || QDELETED(H)) //Pathfinding sleeps, we may have been deleted meanwhile
 		return
+	dist = get_dist(H, target) // AQ EDIT - tactical_move() mógł nas przesunąć
 	// AQ EDIT START - rzut granatem w grupę wrogów (aquila/code/modules/knpc/knpc_tactics.dm)
 	if(HA.try_throw_grenade(target, enemies))
 		return
