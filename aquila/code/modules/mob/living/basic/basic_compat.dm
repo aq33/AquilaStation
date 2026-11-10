@@ -49,3 +49,7 @@
 
 	SEND_SIGNAL(src, COMSIG_LIVING_UNFRIENDED, old_friend)
 	return TRUE
+
+/// Called when this atom is tamed through the tameable component (Bee code/game/atom/_atom.dm)
+/atom/proc/tamed(mob/living/tamer, obj/item/food)
+	return

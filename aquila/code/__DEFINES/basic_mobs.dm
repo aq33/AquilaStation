@@ -264,3 +264,15 @@
 	#define COMSIG_MOB_TERMINATE_EAT (1<<0)
 /// Mob has the basic_eating element
 #define TRAIT_MOB_EATER "mob_eater"
+
+// --- pet commands keybinding (code/__DEFINES/keybinding.dm and signals_atom_mouse.dm in Bee)
+#define COMSIG_KB_LIVING_VIEW_PET_COMMANDS "keybinding_living_view_pet_commands"
+/// Sent when a held keybinding is released
+#define DEACTIVATE_KEYBIND(A) "[A]_DEACTIVATED"
+// COMSIG_ATOM_MOUSE_ENTERED is in aquila/code/__DEFINES/screentips.dm (sent from the screentips hover)
+/// Beast empathy (Bee quirk, makes taming easier); nothing gives it here yet
+#define TRAIT_BEAST_EMPATHY "beast_empathy"
+/// Trait source of a basic mob playing dead
+#define BASIC_MOB_DEATH_TRAIT "basic_mob_death"
+/// Mob can breed (breed component)
+#define TRAIT_MOB_BREEDER "mob_breeder"

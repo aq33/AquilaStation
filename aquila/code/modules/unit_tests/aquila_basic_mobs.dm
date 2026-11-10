@@ -115,5 +115,64 @@
 	TEST_ASSERT_EQUAL(critter.icon_state, critter.icon_living, "Revived basic mob still looks dead")
 	TEST_ASSERT(controller.able_to_run, "Revived basic mob did not get its AI back")
 
+
+/// Test-only pet: tamed by meat, obeys stay/follow/free
+/mob/living/basic/pet/aquila_test_pet
+	name = "testowy zwierzak"
+	icon_state = "corgi"
+	icon_living = "corgi"
+	icon_dead = "corgi_dead"
+	unsuitable_atmos_damage = 0
+	unsuitable_cold_damage = 0
+	unsuitable_heat_damage = 0
+	ai_controller = /datum/ai_controller/basic_controller/aquila_test_pet
+
+/mob/living/basic/pet/aquila_test_pet/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/meat/slab), tame_chance = 100, bonus_tame_chance = 0, unique = FALSE)
+	AddComponent(/datum/component/obeys_commands, list(/datum/pet_command/idle, /datum/pet_command/free, /datum/pet_command/follow))
+
+/datum/ai_controller/basic_controller/aquila_test_pet
+	blackboard = list(
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+	)
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/pet_planning,
+	)
+
+/// Feeding tames the pet (tameable + basic_eating), then a Polish spoken command makes it follow its new friend
+/datum/unit_test/aquila_pet_taming_and_commands
+
+/datum/unit_test/aquila_pet_taming_and_commands/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/basic/pet/aquila_test_pet/pet = allocate(/mob/living/basic/pet/aquila_test_pet, left)
+	var/mob/living/carbon/human/owner = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	var/datum/ai_controller/controller = pet.ai_controller
+
+	// Strangers are ignored
+	owner.say("za mną")
+	TEST_ASSERT(isnull(controller.blackboard[BB_ACTIVE_PET_COMMAND]), "Pet obeyed a stranger")
+
+	var/obj/item/food/meat/slab/meat = allocate(/obj/item/food/meat/slab, get_turf(owner))
+	owner.put_in_active_hand(meat)
+	pet.attackby(meat, owner)
+	TEST_ASSERT(QDELETED(meat), "Pet did not eat the food it likes")
+	TEST_ASSERT(owner in controller.blackboard[BB_FRIENDS_LIST], "Feeding did not tame the pet")
+	TEST_ASSERT(REF(owner) in pet.faction, "Tamed pet does not share a faction with its owner")
+
+	owner.say("Za mną!")
+	var/datum/pet_command/command = controller.blackboard[BB_ACTIVE_PET_COMMAND]
+	TEST_ASSERT(istype(command, /datum/pet_command/follow), "Pet did not take the spoken follow command")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_CURRENT_PET_TARGET], owner, "Follow command does not target the owner")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/pet_follow_friend)], "Pet with a follow command did not plan to follow")
+
+	owner.say("siad")
+	TEST_ASSERT(istype(controller.blackboard[BB_ACTIVE_PET_COMMAND], /datum/pet_command/idle), "Pet did not take the spoken stay command")
+
+	// Hitting it ends the friendship (unfriend element is not on this pet, so unfriend by hand like unfriend_attacker would)
+	pet.unfriend(owner)
+	TEST_ASSERT(!(owner in controller.blackboard[BB_FRIENDS_LIST]), "Unfriended owner stayed on the friends list")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
