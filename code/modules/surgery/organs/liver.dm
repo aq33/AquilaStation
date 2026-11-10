@@ -20,52 +20,19 @@
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
 	var/filterToxins = TRUE //whether to filter toxins
 
-#define HAS_SILENT_TOXIN 0 //don't provide a feedback message if this is the only toxin present
-#define HAS_NO_TOXIN 1
-#define HAS_PAINFUL_TOXIN 2
-
 /obj/item/organ/liver/on_life()
 	if(HAS_TRAIT(owner, TRAIT_NOMETABOLISM))
 		return
 
 	var/mob/living/carbon/C = owner
 	..()	//perform general on_life()
+	// AQ EDIT START - organy z Bee (BeeStation/BeeStation-Hornet#14340): filtr toksyn, metabolizm i etapy niewydolności w aquila/code/modules/surgery/organs/liver_toxins.dm
 	if(istype(C))
-		if(!(organ_flags & ORGAN_FAILING))//can't process reagents with a failing liver
-
-			var/provide_pain_message = HAS_NO_TOXIN
-			if(filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER))
-				//handle liver toxin filtration
-				for(var/datum/reagent/toxin/T in C.reagents.reagent_list)
-					var/thisamount = C.reagents.get_reagent_amount(T.type)
-					if (thisamount && thisamount <= toxTolerance)
-						C.reagents.remove_reagent(T.type, 1)
-					else
-						damage += (thisamount*toxLethality)
-						if(provide_pain_message != HAS_PAINFUL_TOXIN)
-							provide_pain_message = T.silent_toxin ? HAS_SILENT_TOXIN : HAS_PAINFUL_TOXIN
-
-			//metabolize reagents
-			C.reagents.metabolize(C, can_overdose=TRUE)
-
-			if(provide_pain_message && damage > 10 && prob(damage/3))//the higher the damage the higher the probability
-				to_chat(C, "<span class='warning'>Czujesz tępy ból w brzuchu.</span>")
-
-		else	//for when our liver's failing
-			C.reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
-			C.reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
-			if(HAS_TRAIT(C, TRAIT_STABLELIVER))
-				return
-			C.adjustToxLoss(4, TRUE,  TRUE)
-			if(prob(30))
-				to_chat(C, "<span class='warning'>Czujesz kłujący ból w brzuchu!</span>")
+		process_reagents(C)
+	// AQ EDIT END
 
 	if(damage > maxHealth)//cap liver damage
 		damage = maxHealth
-
-#undef HAS_SILENT_TOXIN
-#undef HAS_NO_TOXIN
-#undef HAS_PAINFUL_TOXIN
 
 /obj/item/organ/liver/fly
 	name = "owadzia wątroba"

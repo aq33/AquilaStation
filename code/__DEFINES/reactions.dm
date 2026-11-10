@@ -19,6 +19,18 @@
 #define TRITIUM_BURN_TRIT_FACTOR			10
 #define TRITIUM_BURN_RADIOACTIVITY_FACTOR	50000 	//! The neutrons gotta go somewhere. Completely arbitrary number.
 #define TRITIUM_MINIMUM_RADIATION_ENERGY	0.1  	//! minimum 0.01 moles trit or 10 moles oxygen to start producing rads
+// AQ EDIT START - promieniowanie z Bee#13442
+/// Najmniejsza energia spalania trytu (przy objętości CELL_VOLUME), od której pożar napromieniowuje ludzi
+#define TRITIUM_RADIATION_RELEASE_THRESHOLD (FIRE_HYDROGEN_ENERGY_RELEASED)
+/// Dzielnik zasięgu impulsu z pożaru trytu
+#define TRITIUM_RADIATION_RANGE_DIVISOR 0.5
+/// Próg impulsu z pożaru trytu; niżej = przenika przez więcej konstrukcji
+#define TRITIUM_RADIATION_THRESHOLD 0.3
+/// Wykładnik objętości mieszaniny przy progu energii
+#define ATMOS_RADIATION_VOLUME_EXP 3
+/// Największy zasięg impulsu z reakcji gazów
+#define GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE 20
+// AQ EDIT END
 #define MINIMUM_TRIT_OXYBURN_ENERGY 		2000000	//! This is calculated to help prevent singlecap bombs(Overpowered tritium/oxygen single tank bombs)
 #define SUPER_SATURATION_THRESHOLD			96
 #define STIMULUM_HEAT_SCALE					100000

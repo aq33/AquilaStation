@@ -545,24 +545,27 @@
 		occupant_message("<span class='warning'>Połączenie z portem powietrza zostało zerwane!</span>")
 		log_message("Lost connection to gas port.", LOG_MECHA)
 
-/obj/mecha/Process_Spacemove(var/movement_dir = 0)
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864): mech zatrzymuje się przy ścianie jak mob, w trakcie dryfu
+// (continuous_move) nie odpycha się od przedmiotów, a odepchnięty przedmiot nie służy w tym ticku za oparcie
+/obj/mecha/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	. = ..()
 	if(.)
-		return
+		return TRUE
 
-	var/atom/backup = get_spacemove_backup(movement_dir)
-	if(backup && movement_dir)
-		if(isturf(backup)) //get_spacemove_backup() already checks if a returned turf is solid, so we can just go
+	var/atom/movable/backup = get_spacemove_backup(movement_dir, continuous_move)
+	if(backup)
+		if(!istype(backup) || !movement_dir || backup.anchored || continuous_move) //get_spacemove_backup() already checks if a returned turf is solid, so we can just go
 			return TRUE
-		if(istype(backup, /atom/movable))
-			var/atom/movable/movable_backup = backup
-			if((!movable_backup.anchored) && (movable_backup.newtonian_move(turn(movement_dir, 180))))
-				step_silent = TRUE
-				if(occupant)
-					to_chat(occupant, "<span class='info'>Odpychasz się od [movable_backup], by się rozpędzić.</span>")
-			return TRUE
+		last_pushoff = world.time
+		if(backup.newtonian_move(turn(movement_dir, 180), instant = TRUE))
+			backup.last_pushoff = world.time
+			step_silent = TRUE
+			if(occupant)
+				to_chat(occupant, "<span class='info'>Odpychasz się od [backup], by się rozpędzić.</span>")
+		return TRUE
+	// AQ EDIT END
 
-	if(can_move <= world.time && active_thrusters && movement_dir && active_thrusters.thrust(movement_dir))
+	if(!continuous_move && can_move <= world.time && active_thrusters && movement_dir && active_thrusters.thrust(movement_dir)) // AQ EDIT - dysze tylko przy własnym ruchu, dryfu nie zatrzymują ani nie zużywają gazu
 		step_silent = TRUE
 		return TRUE
 

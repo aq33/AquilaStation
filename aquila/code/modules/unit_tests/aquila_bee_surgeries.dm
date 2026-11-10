@@ -10,14 +10,16 @@
 	ADD_TRAIT(surgeon, TRAIT_IGNORE_SURGERY_MODIFIERS, TRAIT_SOURCE_UNIT_TESTS)
 	patient.set_resting(TRUE)
 
-	// Stomach pump purges most chemicals
-	patient.reagents.add_reagent(/datum/reagent/toxin, 30)
+	// Stomach pump purges most of what waits in the stomach (BeeStation/BeeStation-Hornet#14340: swallowed reagents go there first)
 	var/datum/surgery_operation/organ/stomach_pump/pump = GLOB.operations.operations_by_typepath[/datum/surgery_operation/organ/stomach_pump]
 	var/obj/item/organ/stomach/stomach = patient.getorganslot(ORGAN_SLOT_STOMACH)
-	TEST_ASSERT(pump && stomach, "No stomach pump operation or no stomach")
+	TEST_ASSERT(pump && stomach?.reagents, "No stomach pump operation or no stomach")
+	stomach.reagents.add_reagent(/datum/reagent/toxin, 30)
+	patient.reagents.add_reagent(/datum/reagent/water, 10)
 	TEST_ASSERT(pump.state_check(stomach), "Stomach pump cannot be done on a human with a stomach")
 	pump.on_success(stomach, surgeon, IMPLEMENT_HAND, list())
-	TEST_ASSERT(patient.reagents.get_reagent_amount(/datum/reagent/toxin) <= 10, "Stomach pump did not purge the toxin")
+	TEST_ASSERT(stomach.reagents.get_reagent_amount(/datum/reagent/toxin) <= 10, "Stomach pump did not purge the toxin from the stomach")
+	TEST_ASSERT(patient.reagents.get_reagent_amount(/datum/reagent/water) == 10, "Stomach pump took reagents out of the blood")
 
 	// Identity recalibration is not offered on an organic chest (the robotic one is in aquila_surgery_tg_advanced)
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)

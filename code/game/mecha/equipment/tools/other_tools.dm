@@ -456,14 +456,14 @@
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
-	var/rad_per_cycle = 30
+	var/rad_per_cycle = 1 // AQ EDIT - promieniowanie z Bee#13442: natężenie (%) na cykl
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/generator_init()
 	fuel = new /obj/item/stack/sheet/mineral/uranium(src, 0)
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
 	if(..())
-		radiation_pulse(get_turf(src), rad_per_cycle)
+		radiation_pulse(get_turf(src), max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = rad_per_cycle) // AQ EDIT - promieniowanie z Bee#13442
 
 
 /////////////////////////////////////////// THRUSTERS /////////////////////////////////////////////

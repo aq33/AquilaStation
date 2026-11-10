@@ -48,7 +48,7 @@
 	M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
 	M.setCloneLoss(0, 0)
 	M.setOxyLoss(0, 0)
-	M.radiation = 0
+	qdel(M.GetComponent(/datum/component/irradiated)) // AQ EDIT - promieniowanie z Bee#13442
 	M.heal_bodypart_damage(5,5)
 	M.adjustToxLoss(-5, 0, TRUE)
 	M.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
@@ -478,6 +478,10 @@
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
+	// AQ EDIT START - promieniowanie z Bee#13442: 10% natężenia na tyknięcie
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	irradiated_component?.adjust_intensity(irradiated_component.intensity * -0.1)
+	// AQ EDIT END
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
@@ -555,8 +559,13 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/potass_iodide/on_mob_life(mob/living/carbon/M)
-	if(M.radiation > 0)
-		M.radiation -= min(M.radiation, 8)
+	// AQ EDIT START - promieniowanie z Bee#13442: -1% natężenia i lekkie leczenie toksyn na tyknięcie
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		irradiated_component.adjust_intensity(-1)
+		M.adjustToxLoss(-1 * REM, 0)
+		. = TRUE
+	// AQ EDIT END
 	..()
 
 /datum/reagent/medicine/pen_acid
@@ -568,7 +577,8 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/pen_acid/on_mob_life(mob/living/carbon/M)
-	M.radiation -= max(M.radiation-RAD_MOB_SAFE, 0)/50
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442
+	irradiated_component?.adjust_intensity(-2) // AQ EDIT - promieniowanie z Bee#13442
 	M.adjustToxLoss(-2*REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)

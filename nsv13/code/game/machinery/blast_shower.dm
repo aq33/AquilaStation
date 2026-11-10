@@ -45,7 +45,8 @@
 	SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	L.wash_cream()
 	L.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-	L.radiation -= min(L.radiation, 15)
+	var/datum/component/irradiated/irradiated_component = L.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442: odkażanie zbija natężenie
+	irradiated_component?.adjust_intensity(-2) // AQ EDIT - promieniowanie z Bee#13442
 	L.damage_clothes(8, BRUTE)
 	if(!(obj_flags & EMAGGED))
 		L.adjustBruteLoss(0.5)

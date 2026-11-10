@@ -1,11 +1,4 @@
-#define DEPT_ALL 0
-#define DEPT_GEN 1
-#define DEPT_SEC 2
-#define DEPT_MED 3
-#define DEPT_SCI 4
-#define DEPT_ENG 5
-#define DEPT_SUP 6
-#define DEPT_MUN 7 //NSV13
+// AQ EDIT - numery działów DEPT_* zastąpione bitflagami DEPARTMENT_BITFLAG_* i grupami dostępów SSdepartment (port BeeStation/BeeStation-Hornet#14139)
 
 //Keeps track of the time for the ID console. Having it as a global variable prevents people from dismantling/reassembling it to
 //increase the slots of many jobs.
@@ -20,7 +13,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	circuit = /obj/item/circuitboard/computer/card
 	var/mode = 0
 	var/printing = null
-	var/target_dept = DEPT_ALL //Which department this computer has access to.
+	var/department_bitflag = NONE // AQ EDIT - NONE = wszystkie działy, inaczej bitflaga działów konsoli (port BeeStation/BeeStation-Hornet#14139)
+	var/is_centcom = FALSE // AQ EDIT - konsola Centrali zmienia też dostępy Centrali i grupy „Inne” (port BeeStation/BeeStation-Hornet#14139)
 
 	//Cooldown for closing positions in seconds
 	//if set to -1: No cooldown... probably a bad idea
@@ -49,7 +43,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	var/list/opened_positions = list();
 	var/obj/item/card/id/inserted_scan_id
 	var/obj/item/card/id/inserted_modify_id
-	var/list/region_access = null
+	var/accessible_region_bitflag = NONE // AQ EDIT - działy, którymi zarządza zalogowana karta (port BeeStation/BeeStation-Hornet#14139)
 	var/list/head_subordinates = null
 
 	light_color = LIGHT_COLOR_BLUE
@@ -235,58 +229,47 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		if ("auth")
 			if ((!( authenticated ) && (inserted_scan_id || issilicon(usr)) && (inserted_modify_id || mode)))
 				if (check_access(inserted_scan_id))
-					region_access = list()
+					// AQ EDIT START - działy jako bitflagi SSdepartment: szef dostaje działy po dostępie swojego biura (MAA = Uzbrojenie, dawniej przez pomyłkę Dowództwo), konsola Centrali loguje każdą kartę z jej dostępem (port BeeStation/BeeStation-Hornet#14139)
+					accessible_region_bitflag = NONE
 					head_subordinates = list()
-					if(ACCESS_CHANGE_IDS in inserted_scan_id.access)
-						if(target_dept)
+					if(is_centcom || (ACCESS_CHANGE_IDS in inserted_scan_id.access))
+						if(department_bitflag)
 							head_subordinates = get_all_jobs()
-							region_access |= target_dept
+							accessible_region_bitflag = department_bitflag
 							authenticated = 1
 						else
 							authenticated = 2
 						playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
 
 					else
-						if((ACCESS_HOP in inserted_scan_id.access) && ((target_dept==DEPT_GEN) || !target_dept))
-							region_access |= DEPT_GEN
-							region_access |= DEPT_SUP //Currently no seperation between service/civillian and supply
-							get_subordinates(JOB_NAME_HEADOFPERSONNEL)
-						if((ACCESS_HOS in inserted_scan_id.access) && ((target_dept==DEPT_SEC) || !target_dept))
-							region_access |= DEPT_SEC
-							get_subordinates(JOB_NAME_HEADOFSECURITY)
-						if((ACCESS_CMO in inserted_scan_id.access) && ((target_dept==DEPT_MED) || !target_dept))
-							region_access |= DEPT_MED
-							get_subordinates(JOB_NAME_CHIEFMEDICALOFFICER)
-						if((ACCESS_RD in inserted_scan_id.access) && ((target_dept==DEPT_SCI) || !target_dept))
-							region_access |= DEPT_SCI
-							get_subordinates(JOB_NAME_RESEARCHDIRECTOR)
-						if((ACCESS_CE in inserted_scan_id.access) && ((target_dept==DEPT_ENG) || !target_dept))
-							region_access |= DEPT_ENG
-							get_subordinates(JOB_NAME_CHIEFENGINEER)
-						if((ACCESS_MAA in inserted_scan_id.access) && ((target_dept==DEPT_MUN) || !target_dept)) //NSV13 - munitions
-							region_access |= DEPT_MUN
-							get_subordinates(JOB_NAME_MASTERATARMS)
-						if(region_access)
+						accessible_region_bitflag = SSdepartment.get_managed_departments(inserted_scan_id.access, department_bitflag)
+						if(accessible_region_bitflag)
+							head_subordinates = SSdepartment.get_subordinate_jobs(accessible_region_bitflag)
 							authenticated = 1
+					// AQ EDIT END
 			else if ((!( authenticated ) && issilicon(usr)) && (!inserted_modify_id))
 				to_chat(usr, "<span class='warning'>Nie możesz zmodyfikować ID bez włożonej karty do modyfikacji! Gdy będzie w gnieździe modyfikacji komputera, możesz się zalogować.</span>")
 		if ("logout")
-			region_access = null
+			accessible_region_bitflag = NONE // AQ EDIT - bitflaga działów (port BeeStation/BeeStation-Hornet#14139)
 			head_subordinates = null
 			authenticated = 0
 			playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
 
 		if("access")
 			if(href_list["allowed"])
-				if(authenticated)
-					var/access_type = text2num(href_list["access_target"])
+				if(authenticated && inserted_modify_id) // AQ EDIT - bez karty do zmiany był runtime
+					// AQ EDIT START - biała lista: tylko dostępy działów, którymi zarządza zalogowana karta (port BeeStation/BeeStation-Hornet#14139)
+					var/access_type = SSdepartment.find_access_in_departments(href_list["access_target"], get_manageable_department_bitflag())
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (istype(src, /obj/machinery/computer/card/centcom)?get_all_centcom_access() : get_all_accesses()))
+					if(isnull(access_type))
+						log_id("[key_name(usr)] tried to change access [href_list["access_target"]] of [inserted_modify_id], which [inserted_scan_id] does not manage, at [AREACOORD(usr)].")
+					else
+					// AQ EDIT END
 						inserted_modify_id.access -= access_type
-						log_id("[key_name(usr)] removed [get_access_desc(access_type)] from [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].")
+						log_id("[key_name(usr)] removed [get_department_access_desc(access_type)] from [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 						if(access_allowed == 1)
 							inserted_modify_id.access += access_type
-							log_id("[key_name(usr)] added [get_access_desc(access_type)] to [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].")
+							log_id("[key_name(usr)] added [get_department_access_desc(access_type)] to [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 						playsound(src, "terminal_type", 50, FALSE)
 		if ("assign")
 			if (authenticated == 2)
@@ -301,6 +284,12 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					inserted_modify_id.access -= get_all_accesses()
 					log_id("[key_name(usr)] unassigned and stripped all access from [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].")
 
+				// AQ EDIT START - stanowisko Centrali na konsoli Centrali zmienia tylko dostępy Centrali (port BeeStation/BeeStation-Hornet#14139)
+				else if(is_centcom && (t1 in get_all_centcom_jobs()))
+					inserted_modify_id.access -= get_all_centcom_access()
+					inserted_modify_id.access |= get_centcom_access(t1)
+					log_id("[key_name(usr)] assigned [t1] CentCom job to [inserted_modify_id], overriding previous CentCom access using [inserted_scan_id] at [AREACOORD(usr)].")
+				// AQ EDIT END
 				else
 					var/datum/job/jobdatum
 					for(var/jobtype in typesof(/datum/job))
@@ -315,14 +304,18 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						updateUsrDialog()
 						return
 
-					inserted_modify_id.access = ( istype(src, /obj/machinery/computer/card/centcom) ? get_centcom_access(t1) : jobdatum.get_access() )
-					log_id("[key_name(usr)] assigned [jobdatum] job to [inserted_modify_id], overriding all previous access using [inserted_scan_id] at [AREACOORD(usr)].")
+					// AQ EDIT START - stanowisko zmienia tylko dostępy stacji, reszta dostępów karty zostaje (port BeeStation/BeeStation-Hornet#14139)
+					inserted_modify_id.access -= get_all_accesses()
+					inserted_modify_id.access |= jobdatum.get_access()
+					log_id("[key_name(usr)] assigned [jobdatum] job to [inserted_modify_id], overriding previous station access using [inserted_scan_id] at [AREACOORD(usr)].")
+					// AQ EDIT END
 
 				if (inserted_modify_id)
 					inserted_modify_id.assignment = t1
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 		if ("demote")
-			if(inserted_modify_id.assignment in head_subordinates || inserted_modify_id.assignment == "Assistant")
+			// AQ EDIT - tylko zalogowany szef: podwładni albo Majtek (warunek z "Assistant" był martwy: zły tytuł i pierwszeństwo operatora in)
+			if(authenticated && inserted_modify_id && ((inserted_modify_id.assignment in head_subordinates) || inserted_modify_id.assignment == JOB_NAME_ASSISTANT))
 				inserted_modify_id.assignment = "Unassigned"
 				log_id("[key_name(usr)] demoted [inserted_modify_id], unassigning the card without affecting access, using [inserted_scan_id] at [AREACOORD(usr)].")
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -356,7 +349,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if("make_job_available")
 			// MAKE ANOTHER JOB POSITION AVAILABLE FOR LATE JOINERS
-			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !target_dept)
+			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !department_bitflag) // AQ EDIT - bitflaga działów
 				var/edit_job_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(edit_job_target)
 				if(!j)
@@ -373,7 +366,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if("make_job_unavailable")
 			// MAKE JOB POSITION UNAVAILABLE FOR LATE JOINERS
-			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !target_dept)
+			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !department_bitflag) // AQ EDIT - bitflaga działów
 				var/edit_job_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(edit_job_target)
 				if(!j)
@@ -391,7 +384,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if ("prioritize_job")
 			// TOGGLE WHETHER JOB APPEARS AS PRIORITIZED IN THE LOBBY
-			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !target_dept)
+			if(inserted_scan_id && (ACCESS_CHANGE_IDS in inserted_scan_id.access) && !department_bitflag) // AQ EDIT - bitflaga działów
 				var/priority_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(priority_target)
 				if(!j)
@@ -512,15 +505,13 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		inserted_modify_id.update_label()
 	updateUsrDialog()
 
-/obj/machinery/computer/card/proc/get_subordinates(rank)
-	for(var/datum/job/job in SSjob.occupations)
-		if(rank in job.department_head)
-			head_subordinates += job.title
+// AQ EDIT - get_subordinates() zastąpione SSdepartment.get_subordinate_jobs() (port BeeStation/BeeStation-Hornet#14139)
 
 /obj/machinery/computer/card/centcom
 	name = "\improper konsola identyfikacyjna Centrali"
 	circuit = /obj/item/circuitboard/computer/card/centcom
 	req_access = list(ACCESS_CENT_CAPTAIN)
+	is_centcom = TRUE // AQ EDIT - port BeeStation/BeeStation-Hornet#14139
 
 /obj/machinery/computer/card/minor
 	name = "konsola zarządzania działem"
@@ -531,40 +522,34 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 /obj/machinery/computer/card/minor/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/computer/card/minor/typed_circuit = circuit
-	if(target_dept)
-		typed_circuit.target_dept = target_dept
+	// AQ EDIT START - działy jako bitflagi z płytki (port BeeStation/BeeStation-Hornet#14139)
+	if(department_bitflag)
+		var/board_index = typed_circuit.dept_list.Find(department_bitflag)
+		if(board_index)
+			typed_circuit.counting = board_index
 	else
-		target_dept = typed_circuit.target_dept
-	var/list/dept_list = list("ogólny","ochrona","medyczny","nauka","inżynieria")
-	name = "konsola działu ([dept_list[target_dept]])"
+		department_bitflag = typed_circuit.dept_list[typed_circuit.counting]
+	name = "konsola działu ([typed_circuit.dept_list_name[typed_circuit.counting]])"
+	// AQ EDIT END
 
 /obj/machinery/computer/card/minor/hos
-	target_dept = DEPT_SEC
+	department_bitflag = DEPARTMENT_BITFLAG_SECURITY // AQ EDIT - bitflaga działu
 	icon_screen = "idhos"
 
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/computer/card/minor/cmo
-	target_dept = DEPT_MED
+	department_bitflag = DEPARTMENT_BITFLAG_MEDICAL // AQ EDIT - bitflaga działu
 	icon_screen = "idcmo"
 
 /obj/machinery/computer/card/minor/rd
-	target_dept = DEPT_SCI
+	department_bitflag = DEPARTMENT_BITFLAG_SCIENCE // AQ EDIT - bitflaga działu
 	icon_screen = "idrd"
 
 	light_color = LIGHT_COLOR_PINK
 
 /obj/machinery/computer/card/minor/ce
-	target_dept = DEPT_ENG
+	department_bitflag = DEPARTMENT_BITFLAG_ENGINEERING // AQ EDIT - bitflaga działu
 	icon_screen = "idce"
 
 	light_color = LIGHT_COLOR_YELLOW
-
-#undef DEPT_ALL
-#undef DEPT_GEN
-#undef DEPT_SEC
-#undef DEPT_MED
-#undef DEPT_SCI
-#undef DEPT_ENG
-#undef DEPT_SUP
-#undef DEPT_MUN //NSV13

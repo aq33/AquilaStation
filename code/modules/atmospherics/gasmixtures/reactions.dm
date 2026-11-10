@@ -131,8 +131,12 @@
 		location.temperature_expose(air, temperature, CELL_VOLUME)
 
 /proc/radiation_burn(turf/open/location, energy_released)
+	// AQ EDIT START - promieniowanie z Bee#13442 (woła to też auxmos przy natywnym spalaniu trytu): zasięg od spalonego trytu, kolektory po staremu
 	if(istype(location) && prob(10))
-		radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+		var/burned_fuel = energy_released / FIRE_HYDROGEN_ENERGY_RELEASED
+		var/human_intensity = (burned_fuel > TRITIUM_MINIMUM_RADIATION_ENERGY && energy_released > TRITIUM_RADIATION_RELEASE_THRESHOLD) ? 1 : 0
+		radiation_pulse(location, max_range = min(sqrt(burned_fuel) / TRITIUM_RADIATION_RANGE_DIVISOR, GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE), threshold = TRITIUM_RADIATION_THRESHOLD, intensity = human_intensity, collector_power = energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	// AQ EDIT END
 
 /datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
@@ -156,7 +160,8 @@
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
 		if(location && prob(10) && burned_fuel > TRITIUM_MINIMUM_RADIATION_ENERGY) //woah there let's not crash the server
-			radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+			// AQ EDIT - promieniowanie z Bee#13442: zasięg od spalonego trytu, kolektory po staremu
+			radiation_pulse(location, max_range = min(sqrt(burned_fuel) / TRITIUM_RADIATION_RANGE_DIVISOR, GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE), threshold = TRITIUM_RADIATION_THRESHOLD, intensity = (energy_released > TRITIUM_RADIATION_RELEASE_THRESHOLD * (air.return_volume() / CELL_VOLUME) ** ATMOS_RADIATION_VOLUME_EXP) ? 1 : 0, collector_power = energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 		//oxygen+more-or-less hydrogen=H2O
 		air.adjust_moles(GAS_H2O, burned_fuel )// Yogs -- Conservation of Mass
@@ -415,7 +420,7 @@
 			var/standard_energy = 400 * air.get_moles(GAS_PLASMA) * air.return_temperature() //Prevents putting meaningless waste gases to achieve high rads.
 			if(prob(PERCENT(((PARTICLE_CHANCE_CONSTANT)/(reaction_energy-PARTICLE_CHANCE_CONSTANT)) + 1))) //Asymptopically approaches 100% as the energy of the reaction goes up.
 				location.fire_nuclear_particle(customize = TRUE, custompower = standard_energy)
-			radiation_pulse(location, max(2000 * 3 ** (log(10,standard_energy) - FUSION_RAD_MIDPOINT), 0))
+			radiation_pulse(location, max_range = rand(6, 30), threshold = RAD_EXTREME_INSULATION, intensity = 20, collector_power = max(2000 * 3 ** (log(10,standard_energy) - FUSION_RAD_MIDPOINT), 0)) // AQ EDIT - promieniowanie z Bee#13442
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(clamp(thermal_energy/new_heat_capacity, TCMB, INFINITY))

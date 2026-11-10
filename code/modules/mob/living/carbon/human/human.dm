@@ -544,7 +544,6 @@
 			if(prob(current_size * 5) && hand.w_class >= ((11-current_size)/2)  && dropItemToGround(hand))
 				step_towards(hand, src)
 				to_chat(src, "<span class='warning'>[S] wyrywa ci [hand] z uchwytu!</span>")
-	rad_act(current_size * 3)
 
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)

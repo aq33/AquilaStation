@@ -32,9 +32,12 @@
 /obj/item/electronics/airlock/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/regions = list()
-	for(var/i in 1 to 8) //nsv13: 7 -> 8 to add munitions
+	// AQ EDIT START - grupy dostępów stacji z SSdepartment, regid to bitflaga działu (port BeeStation/BeeStation-Hornet#14139)
+	for(var/datum/department_group/each_dept as anything in SSdepartment.sorted_department_for_access)
+		if(!length(each_dept.access_list) || each_dept.access_filter)
+			continue
 		var/list/accesses = list()
-		for(var/access in get_region_accesses(i))
+		for(var/access in each_dept.access_list)
 			if (get_access_desc(access))
 				accesses += list(list(
 					"desc" = replacetext(get_access_desc(access), "&nbsp", " "),
@@ -42,10 +45,11 @@
 				))
 
 		regions += list(list(
-			"name" = get_region_accesses_name(i),
-			"regid" = i,
+			"name" = each_dept.access_group_name,
+			"regid" = each_dept.dept_bitflag,
 			"accesses" = accesses
 		))
+	// AQ EDIT END
 
 	data["regions"] = regions
 	return data
@@ -88,13 +92,15 @@
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
-			accesses |= get_region_accesses(region)
+			for(var/datum/department_group/each_dept as anything in SSdepartment.get_department_by_bitflag(region & DEPARTMENT_BITFLAG_STATIONS)) // AQ EDIT - region to bitflaga działu, zły href nic nie robi (port BeeStation/BeeStation-Hornet#14139)
+				accesses |= each_dept.access_list
 			. = TRUE
 		if("deny_region")
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
-			accesses -= get_region_accesses(region)
+			for(var/datum/department_group/each_dept as anything in SSdepartment.get_department_by_bitflag(region & DEPARTMENT_BITFLAG_STATIONS)) // AQ EDIT - region to bitflaga działu, zły href nic nie robi (port BeeStation/BeeStation-Hornet#14139)
+				accesses -= each_dept.access_list
 			. = TRUE
 		// AQUILA: nazwa i ID cyklowania z okna tg
 		if("passedName")

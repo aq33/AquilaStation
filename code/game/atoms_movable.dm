@@ -24,6 +24,11 @@
 	var/inertia_moving = FALSE
 	///Delay in deciseconds between inertia based movement
 	var/inertia_move_delay = 5
+	// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864)
+	///The last time we pushed off something
+	///This is a hack to get around dumb him him me scenarios
+	var/last_pushoff
+	// AQ EDIT END
 	/// Things we can pass through while moving. If any of this matches the thing we're trying to pass's [pass_flags_self], then we can pass through.
 	var/pass_flags = NONE
 	/// If false makes CanPass call CanPassThrough on this type instead of using default behaviour
@@ -230,6 +235,7 @@
 		if(isliving(ex_pulled))
 			var/mob/living/L = ex_pulled
 			L.update_mobility()// mob gets up if it was lyng down in a chokehold
+		SEND_SIGNAL(src, COMSIG_ATOM_NO_LONGER_PULLING, ex_pulled) // AQ EDIT - drift (port BeeStation/BeeStation-Hornet#14864): puszczony przedmiot leci dalej
 
 /atom/movable/proc/Move_Pulled(atom/A)
 	if(!pulling)
@@ -438,6 +444,10 @@
 					setDir(first_step_dir)
 				else if (!inertia_moving)
 					newtonian_move(direct)
+			// AQ EDIT START - paralaksa (port BeeStation/BeeStation-Hornet#14864): ruch po skosie przesuwa ją raz, po obu krokach
+			if (length(client_mobs_in_contents))
+				update_parallax_contents()
+			// AQ EDIT END
 			moving_diagonally = 0
 			return
 
@@ -472,7 +482,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if (!inertia_moving)
 		newtonian_move(Dir)
-	if (length(client_mobs_in_contents))
+	if (!moving_diagonally && length(client_mobs_in_contents)) // AQ EDIT - paralaksa (port BeeStation/BeeStation-Hornet#14864): skos aktualizuje ją raz w Move()
 		update_parallax_contents()
 
 	move_stacks--
@@ -648,12 +658,15 @@
 //Return 0 to have src start/keep drifting in a no-grav area and 1 to stop/not start drifting
 //Mobs should return 1 if they should be able to move of their own volition, see client/Move() in mob_movement.dm
 //movement_dir == 0 when stopping or any dir when trying to move
-/atom/movable/proc/Process_Spacemove(movement_dir = 0)
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864)
+//continuous_move - If this check is coming from something in the context of already drifting
+/atom/movable/proc/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	if(has_gravity(src))
 		return 1
 
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_SPACEMOVE, movement_dir) & COMSIG_MOVABLE_STOP_SPACEMOVE)
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_SPACEMOVE, movement_dir, continuous_move) & COMSIG_MOVABLE_STOP_SPACEMOVE)
 		return 1
+	// AQ EDIT END
 
 	if(pulledby)
 		return 1
@@ -670,14 +683,17 @@
 	return 0
 
 
-/atom/movable/proc/newtonian_move(direction, instant = FALSE) // Accepts the direction to move, and if the push should be instant
-	if(!loc || Process_Spacemove(0) || !direction)
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864): ślizg ustawia komponent driftu (apply_initial_visuals)
+/// Only moves the object if it's under no gravity
+/// Accepts the direction to move, if the push should be instant, and an optional parameter to fine tune the start delay
+/atom/movable/proc/newtonian_move(direction, instant = FALSE, start_delay = 0)
+	if(!isturf(loc) || !direction || Process_Spacemove(direction, continuous_move = TRUE))
 		return FALSE
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_NEWTONIAN_MOVE, direction) & COMPONENT_MOVABLE_NEWTONIAN_BLOCK)
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_NEWTONIAN_MOVE, direction, start_delay) & COMPONENT_MOVABLE_NEWTONIAN_BLOCK)
 		return TRUE
-	set_glide_size(MOVEMENT_ADJUSTED_GLIDE_SIZE(inertia_move_delay, SSspacedrift.visual_delay))
-	AddComponent(/datum/component/drift, direction, instant)
+	AddComponent(/datum/component/drift, direction, instant, start_delay)
 	return TRUE
+// AQ EDIT END
 
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	set waitfor = 0
@@ -824,24 +840,22 @@
 /atom/movable/proc/on_enter_storage(datum/component/storage/concrete/S)
 	return
 
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864): bez obiektu, od którego w tym ticku już się odepchnięto
 /atom/movable/proc/get_spacemove_backup()
-	var/atom/movable/dense_object_backup
-	for(var/A in orange(1, get_turf(src)))
-		if(isarea(A))
+	for(var/checked_range in orange(1, get_turf(src)))
+		if(isarea(checked_range))
 			continue
-		else if(isturf(A))
-			var/turf/turf = A
+		if(isturf(checked_range))
+			var/turf/turf = checked_range
 			if(!turf.density)
 				continue
 			return turf
-		else
-			var/atom/movable/AM = A
-			if(!AM.CanPass(src) || AM.density)
-				if(AM.anchored)
-					return AM
-				dense_object_backup = AM
-				break
-	. = dense_object_backup
+		var/atom/movable/checked_atom = checked_range
+		if(checked_atom.density || !checked_atom.CanPass(src, get_turf(checked_atom)))
+			if(checked_atom.last_pushoff == world.time)
+				continue
+			return checked_atom
+// AQ EDIT END
 
 //Called when something resists while this atom is its loc
 /atom/movable/proc/container_resist(mob/living/user)

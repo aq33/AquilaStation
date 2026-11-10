@@ -128,43 +128,60 @@
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/on = FALSE
-	var/datum/effect_system/trail_follow/ion/ion_trail
 
-/obj/item/organ/cyberimp/chest/thrusters/Insert(mob/living/carbon/M, special = 0)
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864); prędkość zostaje nasza (MOVESPEED_ID_CYBER_THRUSTER)
+/obj/item/organ/cyberimp/chest/thrusters/Initialize(mapload)
 	. = ..()
-	if(!ion_trail)
-		ion_trail = new
-	ion_trail.set_up(M)
+	AddComponent( \
+		/datum/component/jetpack, \
+		FALSE, \
+		COMSIG_THRUSTER_ACTIVATED, \
+		COMSIG_THRUSTER_DEACTIVATED, \
+		THRUSTER_ACTIVATION_FAILED, \
+		CALLBACK(src, PROC_REF(allow_thrust), 0.01), \
+		/datum/effect_system/trail_follow/ion \
+	)
 
 /obj/item/organ/cyberimp/chest/thrusters/Remove(mob/living/carbon/M, special = 0)
 	if(on)
-		toggle(silent = TRUE)
+		deactivate(silent = TRUE)
 	..()
 
 /obj/item/organ/cyberimp/chest/thrusters/ui_action_click()
 	toggle()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/toggle(silent = FALSE)
-	if(!on)
-		if((organ_flags & ORGAN_FAILING))
-			if(!silent)
-				to_chat(owner, "<span class='warning'>Twój zestaw silników manewrowych chyba jest zepsuty!</span>")
-			return 0
-		on = TRUE
-		if(allow_thrust(0.01))
-			ion_trail.start()
-			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
-			owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
-			if(!silent)
-				to_chat(owner, "<span class='notice'>Włączasz zestaw silników manewrowych.</span>")
+	if(on)
+		deactivate(silent)
 	else
-		ion_trail.stop()
-		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-		owner.remove_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER)
+		activate(silent)
+
+/obj/item/organ/cyberimp/chest/thrusters/proc/activate(silent = FALSE)
+	if(on || !owner)
+		return
+	if(organ_flags & ORGAN_FAILING)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>Wyłączasz zestaw silników manewrowych.</span>")
-		on = FALSE
+			to_chat(owner, "<span class='warning'>Twój zestaw silników manewrowych chyba jest zepsuty!</span>")
+		return
+	if(SEND_SIGNAL(src, COMSIG_THRUSTER_ACTIVATED, owner) & THRUSTER_ACTIVATION_FAILED)
+		return
+
+	on = TRUE
+	owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+	if(!silent)
+		to_chat(owner, "<span class='notice'>Włączasz zestaw silników manewrowych.</span>")
 	update_icon()
+
+/obj/item/organ/cyberimp/chest/thrusters/proc/deactivate(silent = FALSE)
+	if(!on)
+		return
+	SEND_SIGNAL(src, COMSIG_THRUSTER_DEACTIVATED, owner)
+	owner?.remove_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER)
+	if(!silent)
+		to_chat(owner, "<span class='notice'>Wyłączasz zestaw silników manewrowych.</span>")
+	on = FALSE
+	update_icon()
+// AQ EDIT END
 
 /obj/item/organ/cyberimp/chest/thrusters/update_icon()
 	if(on)
@@ -175,35 +192,40 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
-/obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
-	SIGNAL_HANDLER
-
-	allow_thrust(0.01)
-
-/obj/item/organ/cyberimp/chest/thrusters/proc/allow_thrust(num)
-	if(!on || !owner)
-		return 0
+// AQ EDIT START - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): use_fuel = FALSE tylko sprawdza,
+// gaz z butli wraca do otoczenia, a ciąg z butli nie wyłącza już implantu (dawniej brakowało return po zużyciu)
+/obj/item/organ/cyberimp/chest/thrusters/proc/allow_thrust(num, use_fuel = TRUE)
+	if(!owner)
+		return FALSE
 
 	var/turf/T = get_turf(owner)
 	if(!T) // No more runtimes from being stuck in nullspace.
-		return 0
+		return FALSE
 	if(owner.is_flying() && owner.has_gravity())
-		return 0
+		return FALSE
 	// Priority 1: use air from environment.
 	var/datum/gas_mixture/environment = T.return_air()
 	if(environment && environment.return_pressure() > 30)
-		return 1
+		return TRUE
 
 	// Priority 2: use plasma from internal plasma storage.
 	// (just in case someone would ever use this implant system to make cyber-alien ops with jetpacks and taser arms)
 	if(owner.getPlasma() >= num*100)
-		owner.adjustPlasma(-num*100)
-		return 1
+		if(use_fuel)
+			owner.adjustPlasma(-num*100)
+		return TRUE
 
 	// Priority 3: use internals tank.
 	var/obj/item/tank/I = owner.internal
-	if(I && I.air_contents && I.air_contents.total_moles() >= num)
-		T.assume_air_moles(I.air_contents, num)
+	if(I && I.air_contents && I.air_contents.total_moles() > num)
+		if(!use_fuel)
+			return TRUE
+		var/datum/gas_mixture/removed = I.air_contents.remove(num)
+		if(removed.total_moles() > 0.005)
+			T.assume_air(removed)
+			return TRUE
+		T.assume_air(removed)
 
-	toggle(silent = TRUE)
-	return 0
+	deactivate(silent = TRUE)
+	return FALSE
+// AQ EDIT END

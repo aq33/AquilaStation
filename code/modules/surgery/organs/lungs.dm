@@ -276,19 +276,20 @@
 
 	// Nucleium - NSV 13
 		var/nucleium_pp = PP(breath, GAS_NUCLEIUM)
+		// AQ EDIT - promieniowanie z Bee#13442: natężenie (%) na oddech, ponad naturalny zanik tyle, ile dawniej przybywało radów
 		switch(nucleium_pp)
 			if(0.1 to 5)
 				H.adjustFireLoss(1)
-				H.radiation += 1
+				SSradiation.irradiate_internal(H, 0.2) // AQ EDIT - promieniowanie z Bee#13442
 			if(5 to 15)
 				H.adjustFireLoss(3)
-				H.radiation += 3
+				SSradiation.irradiate_internal(H, 0.3) // AQ EDIT - promieniowanie z Bee#13442
 			if(15 to 30)
 				H.adjustFireLoss(5)
-				H.radiation += 5
+				SSradiation.irradiate_internal(H, 0.35) // AQ EDIT - promieniowanie z Bee#13442
 			if(30 to INFINITY)
 				H.adjustFireLoss(10)
-				H.radiation += 10
+				SSradiation.irradiate_internal(H, 0.5) // AQ EDIT - promieniowanie z Bee#13442
 
 		if(prob(nucleium_pp/4))
 			to_chat(owner, "<span class='warning'>Masz wrażenie, że twoje płuca się rozpadają!</span>")

@@ -69,8 +69,9 @@
 			if(istype(carbon))
 				user.visible_message("<span class='notice'>[user] analizuje poziom promieniowania [carbon].</span>", "<span class='notice'>Analizujesz poziom promieniowania [carbon].</span>")
 				last_record = "Wyniki analizy dla [carbon]:\n"
-				if(carbon.radiation)
-					last_record += "Poziom promieniowania: [carbon.radiation]%"
+				var/datum/component/irradiated/irradiated_component = carbon.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442
+				if(irradiated_component) // AQ EDIT - promieniowanie z Bee#13442
+					last_record += "Poziom promieniowania: [round(irradiated_component.intensity)]%" // AQ EDIT - promieniowanie z Bee#13442
 				else
 					last_record += "Nie wykryto promieniowania."
 				return FALSE

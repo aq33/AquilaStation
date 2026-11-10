@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(inertia_dampeners)
 /obj/machinery/inertial_dampener/process()
 	if(on)
 		if(power_input > 0 && try_use_power())
-			radiation_pulse( src, radiationAmountOnProcess ) // Let's turn one form of energy into another form of energy. Using science!
+			radiation_pulse(src, max_range = 1, threshold = RAD_LIGHT_INSULATION, intensity = radiationAmountOnProcess * RAD_LEGACY_PULSE_TO_INTENSITY) // Let's turn one form of energy into another form of energy. Using science! // AQ EDIT - promieniowanie z Bee#13442
 		else
 			on = FALSE
 			update_visuals()
