@@ -8,14 +8,14 @@
 // - Niewypał z jakości naboju (wzór: Coolstation dud_freq): suchy klik, nabój zostaje w komorze, trzeba przeładować.
 //   Co dziesiąty niewypał to przewlekły wystrzał: klik, a pół sekundy później strzał.
 // - Rozrzut prędkości kul ±15% (wzór: CM), żeby seria nie leciała sznurkiem.
-// - Kule z broni ręcznej lecą półtora raza szybciej niż fabryczne 0,8 ds na kratkę (prośba z testu: „trochę szybsze”).
+// - Kule z broni ręcznej lecą dwa razy szybciej niż fabryczne 0,8 ds na kratkę (prośba z testów w grze).
 
 /// Szansa na niewypał zwykłego fabrycznego naboju (procent)
 #define AQ_FACTORY_MISFIRE_CHANCE 0.3
 /// Ciepło, poniżej którego przegrzana broń znowu strzela
 #define AQ_OVERHEAT_RECOVERY 0.3
 /// Przyspieszenie kul z broni ręcznej (pociski energetyczne i działa okrętowe bez zmian)
-#define AQ_HANDGUN_BULLET_SPEED_MULT 1.5
+#define AQ_HANDGUN_BULLET_SPEED_MULT 2
 
 /obj/item/gun
 	/// Zużycie broni 0-100 (stan techniczny = 100 - zużycie)
