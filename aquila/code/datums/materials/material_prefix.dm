@@ -90,3 +90,11 @@
 /datum/material/rock
 	polish_name = "kamień"
 	name_adjectives = list("kamienny", "kamienna", "kamienne")
+
+/datum/material/wood
+	polish_name = "drewno"
+	name_adjectives = list("drewniany", "drewniana", "drewniane")
+
+/datum/material/meat
+	polish_name = "mięso"
+	name_adjectives = list("mięsny", "mięsna", "mięsne")

@@ -21,3 +21,5 @@
 #define MATERIAL_AFFECT_STATISTICS (1<<3)
 /// Applies the material greyscale color to the atom's greyscale color.
 #define MATERIAL_GREYSCALE (1<<4)
+
+#define MATERIAL_SOURCE(mat) "[mat.name]_material"

@@ -107,9 +107,12 @@
 						to_chat(user, "<span class='warning'>Ktoś jest przypięty do [O]! Odepnij [M], by go przesunąć.</span>")
 						return
 			var/obj/item/stack/tile/W = C
+			var/list/tile_materials = istype(W, /obj/item/stack/tile/material) ? W.mats_per_unit : null // AQ EDIT - Bee#10703 place_tile(): podłoga z materiału płytki
 			if(!W.use(1))
 				return
 			var/turf/open/floor/T = PlaceOnTop(W.turf_type, flags = CHANGETURF_INHERIT_AIR)
+			if(tile_materials) // AQ EDIT
+				T.set_custom_materials(tile_materials)
 			if(istype(W, /obj/item/stack/tile/light)) //TODO: get rid of this ugly check somehow
 				var/obj/item/stack/tile/light/L = W
 				var/turf/open/floor/light/F = T

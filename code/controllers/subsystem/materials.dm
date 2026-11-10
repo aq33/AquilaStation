@@ -12,11 +12,14 @@ SUBSYSTEM_DEF(materials)
 	var/list/materials
 	///Dictionary of category || list of material refs
 	var/list/materials_by_category
+	///Dictionary of category || list of material types, mostly used by rnd machines like autolathes.
+	var/list/materialtypes_by_category
 	///A cache of all material combinations that have been used
 	var/list/list/material_combos
 	///List of stackcrafting recipes for materials using rigid materials
 	var/list/rigid_stack_recipes = list(
 		new /datum/stack_recipe("krzesło z materiału", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE),
+		new /datum/stack_recipe("płytka podłogowa z materiału", /obj/item/stack/tile/material, 1, 4, 20, applies_mats = TRUE),
 	)
 
 /datum/controller/subsystem/materials/Initialize(timeofday)
@@ -40,12 +43,21 @@ SUBSYSTEM_DEF(materials)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()
 	materials = list()
 	materials_by_category = list()
+	materialtypes_by_category = list()
 	material_combos = list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/ref = new type
 		materials[type] = ref
 		for(var/c in ref.categories)
 			materials_by_category[c] += list(ref)
+			materialtypes_by_category[c] += list(type)
+
+/// AQ EDIT - typy materiałów z kategorii, z leniwą inicjalizacją (Bee czyta materialtypes_by_category wprost, zanim lista powstanie)
+/datum/controller/subsystem/materials/proc/get_material_types(category)
+	if(!materials)
+		InitializeMaterials()
+	var/list/types = materialtypes_by_category[category]
+	return types ? types.Copy() : list()
 
 /datum/controller/subsystem/materials/proc/GetMaterialRef(datum/material/fakemat)
 	if(!materials)

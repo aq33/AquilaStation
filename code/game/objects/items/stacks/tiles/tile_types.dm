@@ -12,6 +12,7 @@
 	throw_range = 7
 	max_amount = 60
 	novariants = TRUE
+	material_flags = MATERIAL_EFFECTS
 	/// What type of turf does this tile produce.
 	var/turf_type = null
 	/// Determines certain welder interactions.
@@ -26,6 +27,24 @@
 	if(tile_reskin_types)
 		tile_reskin_types = tile_reskin_list(tile_reskin_types)
 
+/obj/item/stack/tile/examine(mob/user)
+	. = ..()
+	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
+		var/verb
+		switch(CEILING(MAX_LIVING_HEALTH / throwforce, 1)) //throws to crit a human
+			if(1 to 3)
+				verb = "znakomitą"
+			if(4 to 6)
+				verb = "świetną"
+			if(7 to 9)
+				verb = "dobrą"
+			if(10 to 12)
+				verb = "całkiem przyzwoitą"
+			if(13 to 15)
+				verb = "przeciętną"
+		if(!verb)
+			return
+		. += "<span class='notice'>Te mogłyby posłużyć za [verb] broń miotaną.</span>"
 
 /obj/item/stack/tile/attackby(obj/item/W, mob/user, params)
 
@@ -490,7 +509,7 @@
 /obj/item/stack/tile/plasteel
 	name = "płytka podłogowa"
 	singular_name = "płytka podłogowa"
-	desc = "Te mogłyby całkiem nieźle posłużyć za broń miotaną."
+	desc = "Grunt, po którym chodzisz."
 	icon_state = "tile"
 	item_state = "tile"
 	force = 6

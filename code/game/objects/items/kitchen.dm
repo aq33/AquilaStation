@@ -303,6 +303,7 @@
 	name = "wałek do ciasta"
 	desc = "Służy do nokautowania barmana."
 	icon_state = "rolling_pin"
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 1.5)
 	force = 8
 	throwforce = 5
 	throw_speed = 3

@@ -407,6 +407,7 @@
 	name = "moździerz"
 	desc = "Specjalnie wyprofilowana misa o starożytnym kształcie. Włożone do niej przedmioty można zmiażdżyć tłuczkiem albo wycisnąć z nich sok, ale w przeciwieństwie do nowoczesnych metod jest to powolne i męczące. Alt + klik wyjmuje przedmiot."
 	icon_state = "mortar"
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT)
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
 	volume = 100

@@ -176,8 +176,16 @@
 		if(user && !silent)
 			to_chat(user, "<span class='notice'>Zdejmujesz płytkę podłogową.</span>")
 		if(floor_tile && make_tile)
-			new floor_tile(src)
+			spawn_tile()
 	return make_plating()
+
+/turf/open/floor/proc/has_tile()
+	return floor_tile
+
+/turf/open/floor/proc/spawn_tile()
+	if(!has_tile())
+		return null
+	return new floor_tile(src)
 
 /turf/open/floor/singularity_pull(S, current_size)
 	..()

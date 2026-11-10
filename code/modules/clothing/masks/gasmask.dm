@@ -176,6 +176,7 @@
 	desc = "Upiorna drewniana maska. Zaskakująco wyrazista jak na niezgrabnie wyrzeźbiony kawałek drewna."
 	icon_state = "tiki_eyebrow"
 	item_state = "tiki_eyebrow"
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 1.25)
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	actions_types = list(/datum/action/item_action/adjust)

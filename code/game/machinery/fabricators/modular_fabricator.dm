@@ -71,7 +71,7 @@
 	if(remote_materials)
 		AddComponent(/datum/component/remote_materials, "modfab", mapload, TRUE, auto_link)
 	else
-		AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium, /datum/material/plastic, /datum/material/adamantine), 0, TRUE, null, null, CALLBACK(src, PROC_REF(AfterMaterialInsert)))
+		AddComponent(/datum/component/material_container, SSmaterials.get_material_types(MAT_CATEGORY_RIGID) + /datum/material/bluespace, 0, TRUE, null, null, CALLBACK(src, PROC_REF(AfterMaterialInsert))) // AQ EDIT - Bee#10703 daje tylko RIGID, my zostawiamy też bluespace
 	. = ..()
 	stored_research = new stored_research_type
 

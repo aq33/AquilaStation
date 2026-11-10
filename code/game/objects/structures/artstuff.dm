@@ -238,6 +238,7 @@
 	name = "rama na obraz"
 	desc = "Idealne miejsce na twoje ulubione wspomnienia ze śmiertelnych pułapek."
 	icon = 'icons/obj/decals.dmi'
+	custom_materials = list(/datum/material/wood = 2000)
 	flags_1 = NONE
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting
@@ -247,6 +248,7 @@
 	desc = "Sztuka czy „sztuka”? Ty decydujesz."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "frame-empty"
+	custom_materials = list(/datum/material/wood = 2000)
 	base_icon_state = "frame" //temporal replacement before the update_appearance() port
 	buildable_sign = FALSE
 	///Canvas we're currently displaying.

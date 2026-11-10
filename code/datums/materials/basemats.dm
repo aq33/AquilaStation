@@ -190,6 +190,31 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.025
 
 
+/datum/material/wood
+	name = "wood"
+	id = "wood"
+	desc = "Giętkie i wytrzymałe, ale łatwopalne. W kosmosie trudno o nie."
+	color = "#bb8e53"
+	greyscale_colors = "#bb8e53"
+	strength_modifier = 0.5
+	sheet_type = /obj/item/stack/sheet/mineral/wood
+	sheet_recipes_glob = "wood_recipes"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
+	value_per_unit = 0.01
+	texture_layer_icon_state = "woodgrain"
+
+/datum/material/wood/on_applied_obj(obj/source, amount, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/wooden = source
+		wooden.resistance_flags |= FLAMMABLE
+
+/datum/material/wood/on_removed_obj(obj/source, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/wooden = source
+		wooden.resistance_flags &= ~FLAMMABLE
+
 ///Stronk force increase
 /datum/material/adamantine
 	name = "adamantine"
