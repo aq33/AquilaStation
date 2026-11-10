@@ -227,6 +227,7 @@
 #include "code\game\sound_dampening.dm"
 #include "code\game\machinery\newscaster.dm"
 #include "code\game\machinery\requests_console_ui.dm"
+#include "code\game\machinery\requests_console_ui_bounties.dm"
 #include "code\game\machinery\spaceheater.dm"
 #include "code\datums\fonts\fonts_datum.dm"
 #include "code\datums\fonts\tiny_unicode.dm"
