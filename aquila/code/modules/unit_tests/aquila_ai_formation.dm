@@ -29,7 +29,7 @@
 	target.faction = "syndicate"
 	ship.ai_controlled = TRUE
 	ship.mass = MASS_MEDIUM
-	var/fail = check_standoff_point() || check_waiting() || check_disabled()
+	var/fail = check_standoff_point() || check_waiting() || check_guard() || check_disabled()
 	ship.ai_controlled = FALSE
 	GLOB.ai_formation_enabled = was_enabled
 	if(fail)
@@ -110,6 +110,47 @@
 	ship.last_target = null
 	ship.fleet = null
 	flota.all_ships = null
+	return wynik
+
+/// Eskorta przy osłanianym okręcie krąży zamiast parkować (nadpisanie guard() w ai_formation.dm)
+/datum/unit_test/aquila_ai_formation/proc/check_guard()
+	var/z = run_loc_floor_bottom_left.z
+	var/datum/ai_goal/cel = new /datum/ai_goal/defend()
+	var/obj/structure/overmap/small_craft/oslaniany = allocate(/obj/structure/overmap/small_craft/combat/light)
+	oslaniany.forceMove(locate(60, 60, z))
+	ship.forceMove(locate(66, 60, z)) // 6 pól, czyli w promieniu AI_PDC_RANGE
+	ship.brakes = TRUE
+	ship.move_mode = null
+	cel.guard(ship, oslaniany)
+	var/wynik
+	if(ship.brakes)
+		wynik = "Eskorta w promieniu osłony dalej ma zaciągnięte hamulce"
+	else if(!ship.move_mode)
+		wynik = "Eskorta w promieniu osłony nie ma ustawionego ciągu"
+	if(!wynik)
+		// Z wyłączonym przełącznikiem wraca bazowe parkowanie
+		GLOB.ai_formation_enabled = FALSE
+		ship.brakes = FALSE
+		ship.move_mode = NORTH
+		cel.guard(ship, oslaniany)
+		if(!ship.brakes || ship.move_mode)
+			wynik = "Z wyłączonym przełącznikiem eskorta nie wróciła do bazowego parkowania"
+		GLOB.ai_formation_enabled = TRUE
+	if(!wynik)
+		// Okręt osłaniający sam siebie nie ma wokół czego krążyć
+		ship.brakes = FALSE
+		ship.move_mode = NORTH
+		cel.guard(ship, ship)
+		if(!ship.brakes || ship.move_mode)
+			wynik = "Okręt osłaniający sam siebie próbował krążyć wokół siebie"
+	if(!wynik)
+		// Poza promieniem osłony lecimy do osłanianego, a nie krążymy
+		ship.forceMove(locate(100, 60, z)) // 40 pól
+		ship.brakes = TRUE
+		cel.guard(ship, oslaniany)
+		if(ship.brakes)
+			wynik = "Eskorta daleko od osłanianego okrętu nie ruszyła do niego"
+	qdel(cel)
 	return wynik
 
 /// Z wyłączonym przełącznikiem nie ma ani punktu, ani czekania

@@ -159,6 +159,27 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 	ai_standoff_until = world.time + rand(AI_REPOSITION_MIN, AI_REPOSITION_MAX)
 	return ai_standoff_point
 
+// ---------------------------------------------------------------- osłona lotniskowca
+
+/// AQUILA - pełne nadpisanie `/datum/ai_goal/proc/guard()` z ai-skynet.dm (klasa C, LEGACY_OVERRIDES.md).
+/// Bazowa wersja po dolocie na AI_PDC_RANGE wciskała hamulce i zerowała ciąg, więc eskorta parkowała
+/// przy lotniskowcu do końca bitwy. Z pomiaru nagrań: cel "Protect supply lines" stał 42,3% klatek,
+/// co dawało 25% całego stania we flocie. Teraz eskorta krąży wokół osłanianego okrętu.
+/// `..()` nie wchodzi w grę: to nadpisanie na tym samym typie, więc rodzic nie ma tej procki.
+/datum/ai_goal/guard(obj/structure/overmap/OM, obj/structure/overmap/to_guard)
+	if(QDELETED(OM) || QDELETED(to_guard))
+		return
+	if(overmap_dist(OM, to_guard) > AI_PDC_RANGE)
+		OM.move_toward(to_guard)
+		return
+	// Okręt "osłaniający sam siebie" (flota bez zaopatrzenia) nie ma wokół czego krążyć
+	if(!GLOB.ai_formation_enabled || to_guard == OM)
+		OM.brakes = TRUE
+		OM.move_mode = null
+		OM.desired_angle = to_guard.angle // zachowanie bazowe: stań i patrz w tę samą stronę
+		return
+	OM.circle_around(to_guard) // ustawia brakes = FALSE i move_mode = NORTH
+
 // ---------------------------------------------------------------- czekanie na resztę floty
 
 /// Czy warto poczekać ze zbliżeniem, aż będzie nas dość
