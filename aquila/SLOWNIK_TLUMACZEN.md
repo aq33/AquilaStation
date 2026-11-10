@@ -1073,6 +1073,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | rifle | karabin | m; istniejące (20×) |
 | assault rifle | karabin szturmowy | m; istniejące („Karabinek szturmowy wz. 96 Beryl” jako nazwa własna) |
 | sniper rifle | karabin snajperski | m; nowe |
+| marksman rifle | karabin wyborowy | m; nowe (Alexis-BOR) |
 | SMG | pistolet maszynowy | m; istniejące („Pistolet maszynowy PM-98”) |
 | shotgun | strzelba | ż; istniejące (10×) |
 | combat shotgun | strzelba bojowa | ż; nowe |
@@ -1332,6 +1333,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | steak | stek | m; istniejące |
 | bacon | boczek | m; nowe |
 | sausage | kiełbasa | ż; istniejące |
+| frankfurter | parówka | ż; nowe |
 | salami | salami | n/ndm; nowe |
 | jerky | suszone mięso | n; istniejące |
 | fish fillet | filet rybny | m; nowe („filet” istniejące) |
