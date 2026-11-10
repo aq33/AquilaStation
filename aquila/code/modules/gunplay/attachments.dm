@@ -372,6 +372,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	desc = "Wytrzymały celownik z podświetlanymi kropkami do nocnych akcji. Lepszy niż przyrządy mechaniczne."
 	icon_state = "simple_sight"
 	accuracy = 3
+	ads_look_range = 4
 
 /obj/item/attachment/scope/holo
 	name = "celownik holograficzny"
@@ -379,6 +380,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	icon_state = "holo_sight"
 	accuracy = 6
 	mounted_state = "holo_sight"
+	ads_look_range = 3
 
 /obj/item/attachment/scope/infrared
 	name = "celownik termowizyjny"
@@ -388,6 +390,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	mounted_state = "ifr_sight"
 	mounted_has_on = TRUE
 	actions_list = list(/datum/action/item_action/attachment_toggle/infrared)
+	ads_look_range = 4
 
 /datum/action/item_action/attachment_toggle/infrared
 	name = "Termowizja celownika"

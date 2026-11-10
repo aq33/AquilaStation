@@ -48760,6 +48760,7 @@
 "Przytrzymaj, by przełączyć tryb ruchu": "Hold to toggle move intent",
 "Przytrzymaj, by włączyć tryb rzucania, i puść, by go wyłączyć": "Hold this to turn on throw mode, and release it to turn off throw mode",
 "Przytrzymaj, by zmieniać kierunek patrzenia": "Hold to change facing",
+"Przytrzymaj, żeby przyłożyć broń do oka: kursor staje się celownikiem, widok wysuwa się w stronę kursora, rozrzut i odrzut są mniejsze, ruch wolniejszy.": "Hold to aim down the sights: the cursor becomes the sight, the view leans towards the cursor, spread and recoil are lower, movement is slower.",
 "Przytrzymaj, żeby przyłożyć broń do oka: pod kursorem pojawia się powiększenie, rozrzut i odrzut są mniejsze, ruch wolniejszy.": "Hold to aim down the sights: a magnified view appears under the cursor, spread and recoil are lower, movement is slower.",
 "Przytrzymując Alt i klikając pole lewym przyciskiem, zobaczysz jego zawartość w prawym górnym panelu.": "Holding alt and left clicking a tile will allow you to see its contents in the top right window pane.",
 "Przytul": "Hug",
