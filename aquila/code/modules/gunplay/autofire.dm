@@ -44,7 +44,7 @@
 		return FALSE
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK) || LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK))
 		return FALSE
-	if(user.is_secondary_click(modifiers)) // stary tryb intencji: rozbrajanie to akcja dodatkowa (celowanie przez przyrządy)
+	if(user.is_secondary_click(modifiers)) // stary tryb intencji: rozbrajanie to akcja dodatkowa
 		return FALSE
 	if(!isatom(target) || (istype(target, /atom/movable/screen)))
 		return FALSE

@@ -309,18 +309,6 @@
 	TEST_ASSERT(flag_ok, "Indestructible wall is not hard enough for ricochets")
 	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees never ricocheted off an indestructible wall in 40 tries")
 
-/// Lewy przycisk przy przytrzymanym prawym (celowanie) strzela: BYOND podaje oba trzymane przyciski naraz
-/datum/unit_test/aquila_gunplay_ads_buttons
-
-/datum/unit_test/aquila_gunplay_ads_buttons/Run()
-	TEST_ASSERT_EQUAL(aq_mouse_button(params2list("left=1;right=1;button=left")), LEFT_CLICK, "The button param should decide which button was pressed")
-	TEST_ASSERT_EQUAL(aq_mouse_button(params2list("left=1;right=1"), TRUE), LEFT_CLICK, "While aiming, left+right without a button param is the left button")
-	TEST_ASSERT_EQUAL(aq_mouse_button(params2list("right=1")), RIGHT_CLICK, "A plain right click should stay a right click")
-	var/list/stripped = params2list(aq_params_without_held_right("left=1;right=1;button=left;icon-x=5"))
-	TEST_ASSERT(!stripped[RIGHT_CLICK] && stripped[LEFT_CLICK], "A left click while aiming still carried the held right button")
-	var/list/kept = params2list(aq_params_without_held_right("left=1;right=1;button=right"))
-	TEST_ASSERT(kept[RIGHT_CLICK], "Releasing the right button lost its right flag")
-
 /// Licznik amunicji: po broni energetycznej zwykła broń wraca do zwykłego tła z cyframi
 /datum/unit_test/aquila_gunplay_ammo_hud
 

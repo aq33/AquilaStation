@@ -18,8 +18,6 @@
 #define COMSIG_KB_AQ_CYCLE_FIREMODE "keybinding_aq_cycle_firemode"
 /// Klawisz: zabezpiecz albo odbezpiecz trzymaną broń
 #define COMSIG_KB_AQ_TOGGLE_SAFETY "keybinding_aq_toggle_safety"
-/// Klawisz: celowanie przez przyrządy (na intencjach, w combat mode jest pod prawym przyciskiem)
-#define COMSIG_KB_AQ_AIM_DOWN "keybinding_aq_aim_down"
 /// Z /obj/item/gun/proc/set_firemode(): (new_mode)
 #define COMSIG_AQ_GUN_FIREMODE_CHANGED "aq_gun_firemode_changed"
 /// Z broni, gdy zmienia się coś, co pokazuje licznik amunicji (strzał, przeładowanie, ciepło, stan)

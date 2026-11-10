@@ -298,11 +298,11 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 		GLOB.aq_gun_icon_widths[key] = sample.Width()
 	return GLOB.aq_gun_icon_widths[key]
 
-/// Czy broń w ręku jest teraz trzymana „w gotowości” (po strzale albo przy celowaniu)
+/// Czy broń w ręku jest teraz trzymana „w gotowości” (chwilę po strzale)
 /obj/item/gun/proc/is_aim_posed(mob/living/holder)
-	return world.time < aq_aim_pose_until || (istype(holder) && holder.aq_ads_gun == src)
+	return world.time < aq_aim_pose_until
 
-// Po strzale i przy celowaniu w ręku jest pomniejszony sprite samej broni, wyprostowany w stronę, w którą patrzy postać,
+// Po strzale w ręku jest pomniejszony sprite samej broni, wyprostowany w stronę, w którą patrzy postać,
 // zamiast zwykłego sprite'a broni wiszącej w dół. Odrzut lekko podbija lufę.
 /obj/item/gun/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
 	. = ..()

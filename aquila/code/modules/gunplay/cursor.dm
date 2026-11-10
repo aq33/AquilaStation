@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		total += spread_unwielded
 	if(chambered)
 		total += chambered.variance
-	return total * 0.55
+	return max(total * 0.55, 0)
 
 /// Ikona kursora dla trzymanej broni albo null
 /mob/living/proc/get_gun_cursor_icon()
