@@ -7,12 +7,18 @@
 	/// Kiedy ten nadawca może postawić następny znacznik
 	var/aq_next_squad_marker = 0
 
+/// Czy nadawca może już wydać rozkaz; sprawdzane przed oknem z tekstem, żeby wpisany rozkaz nie przepadał
+/mob/living/proc/aq_can_issue_order()
+	if(world.time < aq_next_squad_order)
+		to_chat(src, "<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(aq_next_squad_order - world.time)].</span>")
+		return FALSE
+	return TRUE
+
 /// Wysyła rozkaz na ekran drużyny. from_console = XO z konsoli (bez wymogu pagera).
 /datum/squad/proc/aq_issue_order(mob/living/sender, message, from_console = FALSE)
 	if(!sender || !message)
 		return FALSE
-	if(world.time < sender.aq_next_squad_order)
-		to_chat(sender, "<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(sender.aq_next_squad_order - world.time)].</span>")
+	if(!sender.aq_can_issue_order())
 		return FALSE
 	message = trim(replacetext(copytext_char(message, 1, SQUAD_ORDER_MAX_LEN + 1), "\n", " "))
 	if(!length(message))
@@ -73,6 +79,8 @@
 		return FALSE
 	if(!user.aq_has_squad_pager())
 		to_chat(user, "<span class='warning'>Potrzebujesz pagera drużyny, żeby wydawać rozkazy.</span>")
+		return FALSE
+	if(!user.aq_can_issue_order())
 		return FALSE
 	var/message = tgui_input_text(user, "Rozkaz dla drużyny [squad] (do [SQUAD_ORDER_MAX_LEN] znaków):", "Rozkaz", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 	if(!message || QDELETED(src) || squad.leader != user)

@@ -92,6 +92,8 @@
 		return FALSE
 	switch(action)
 		if("order")
+			if(!user.aq_can_issue_order())
+				return FALSE
 			var/message = tgui_input_text(user, "Rozkaz dla drużyny [view_squad] (do [SQUAD_ORDER_MAX_LEN] znaków):", "Rozkaz", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 			if(!message || view_squad.leader != user)
 				return FALSE

@@ -123,7 +123,7 @@
 					to_chat(squad_member, "<span class='sciradio'>Dodatkowy cel drużyny: [orders]</span>")
 			return TRUE
 		if("order")
-			if(!squad)
+			if(!squad || !user.aq_can_issue_order())
 				return FALSE
 			var/message = tgui_input_text(user, "Rozkaz dla drużyny [squad] (do [SQUAD_ORDER_MAX_LEN] znaków). Drużyna zobaczy go na ekranie z twoim portretem.", "Rozkaz z CIC", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 			if(!message)
@@ -283,6 +283,9 @@
 	if(..())
 		return TRUE
 	if(!isliving(usr))
+		return FALSE
+	// required_access sprawdza tylko uruchomienie: po wyjęciu karty program dalej jest otwarty, więc sprawdzamy przy każdej akcji
+	if(action != "select_z" && !can_run(usr, TRUE))
 		return FALSE
 	if(aq_squad_console_act(action, params, usr, computer, null, aq_state))
 		return TRUE

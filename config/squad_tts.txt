@@ -13,6 +13,10 @@
 ## Adres API (do testów można podać lokalną atrapę).
 #SQUAD_TTS_ENDPOINT https://api.elevenlabs.io
 
+## Ile znaków na rundę wolno łącznie wysłać do ElevenLabs (wszyscy nadawcy razem); 0 = bez limitu.
+## Flash v2.5 to ok. 0,5 kredytu za znak, więc 6000 znaków to ok. 3000 kredytów na rundę.
+#SQUAD_TTS_ROUND_CHAR_LIMIT 6000
+
 ## Ile sekund czekać na odpowiedź.
 #SQUAD_TTS_TIMEOUT 15
 

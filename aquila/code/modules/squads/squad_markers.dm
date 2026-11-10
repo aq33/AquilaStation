@@ -88,10 +88,12 @@
 
 /datum/aq_squad_marker/proc/show_to(mob/viewer)
 	var/client/viewer_client = viewer?.client
-	if(!viewer_client || (viewer_client in viewers))
+	if(!viewer_client)
 		return
+	// Login() czyści client.images, więc obrazek dokładamy od nowa także klientom już z listy (bez duplikatu)
+	viewer_client.images -= marker_image
 	viewer_client.images += marker_image
-	viewers += viewer_client
+	viewers |= viewer_client
 
 /datum/aq_squad_marker/proc/hide_from(mob/viewer)
 	var/client/viewer_client = viewer?.client

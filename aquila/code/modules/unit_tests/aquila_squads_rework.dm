@@ -232,8 +232,7 @@
 	TEST_ASSERT(alpha.aq_recolour("#00ff00", officer) && alpha.colour == "#00ff00", "Nie udało się zmienić koloru drużyny")
 	alpha.aq_rename("Alpha", officer)
 	alpha.aq_recolour(old_colour, officer)
-	GLOB.squad_manager.squads -= created
-	qdel(created)
+	GLOB.squad_manager.aq_delete_squad(created, officer)
 
 /// Niezwrócony sprzęt: XO zgłasza go z konsoli, wykroczenie trafia do akt ochrony, drugi raz się nie da
 /datum/unit_test/aquila_squad_gear_crime

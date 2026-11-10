@@ -289,6 +289,8 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	return issued
 
 /obj/machinery/squad_vendor/ui_act(action, params)
+	// stara obsługa NSV13 (w ..()) wydaje zestaw z params["item_id"] bez rejestru wydań; bez tego klucza nic nie robi
+	params?.Remove("item_id")
 	. = ..()
 	if(.)
 		return

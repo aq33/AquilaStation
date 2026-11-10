@@ -20,6 +20,14 @@
 /// Głosy żeńskie
 /datum/config_entry/str_list/squad_tts_voice_female
 
+/// Ile znaków na rundę wolno wysłać do ElevenLabs łącznie (wszyscy nadawcy); 0 = bez limitu
+/datum/config_entry/number/squad_tts_round_char_limit
+	config_entry_value = 6000
+	min_val = 0
+
+/// Ile znaków poszło już w tej rundzie do ElevenLabs
+GLOBAL_VAR_INIT(squad_tts_chars_used, 0)
+
 /datum/config_entry/number/squad_tts_timeout
 	config_entry_value = 15
 	min_val = 3
@@ -60,6 +68,11 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 			wanting += listener
 	if(!length(wanting))
 		return FALSE
+	// wspólny budżet rundy: cooldown na nadawcę nie ogranicza sumy płatnych zapytań
+	var/char_limit = CONFIG_GET(number/squad_tts_round_char_limit)
+	if(char_limit && GLOB.squad_tts_chars_used + length_char(message) > char_limit)
+		return FALSE
+	GLOB.squad_tts_chars_used += length_char(message)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_request), squad_tts_voice_for(speaker), message, wanting)
 	return TRUE
 

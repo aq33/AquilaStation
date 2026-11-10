@@ -113,9 +113,8 @@ GLOBAL_LIST_EMPTY(aq_marker_pointer_icons)
 		pointer = new(null, marker_type, squad?.colour)
 		LAZYSET(pointers, viewer, pointer)
 	pointer.aim_at(dx, dy, half_w, half_h, deck_offset > 0 ? "wyżej" : (deck_offset < 0 ? "niżej" : null))
-	if(!pointer.shown)
-		viewer.screen += pointer
-		pointer.shown = TRUE
+	viewer.screen |= pointer // Login() czyści client.screen, a flaga shown mogła zostać
+	pointer.shown = TRUE
 
 /datum/aq_squad_marker/proc/remove_pointer(mob/member)
 	var/client/viewer = member?.client

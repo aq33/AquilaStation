@@ -19088,5 +19088,6 @@
 "Pancerz ciężki": "Heavy armor",
 "Pancerz lekki": "Light armor",
 "Rozwiązać?": "Disband?",
-"<span class='warning'>Brak dostępu: zarządzanie drużynami wymaga dostępu dowództwa.</span>": "<span class='warning'>Access denied: squad management requires command access.</span>"
+"<span class='warning'>Brak dostępu: zarządzanie drużynami wymaga dostępu dowództwa.</span>": "<span class='warning'>Access denied: squad management requires command access.</span>",
+"<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(aq_next_squad_order - world.time)].</span>": "<span class='warning'>You can give the next order in [DisplayTimeText(aq_next_squad_order - world.time)].</span>"
 }

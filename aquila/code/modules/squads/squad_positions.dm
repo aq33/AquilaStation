@@ -127,7 +127,7 @@
 	if(job?.aq_squad_role)
 		var/list/matching = list()
 		for(var/datum/squad/squad as anything in candidates)
-			if(squad.role == job.aq_squad_role)
+			if(squad.role == job.aq_squad_role && length(squad.members) < squad.max_members)
 				matching += squad
 		if(length(matching))
 			return aq_smallest_squad(matching)

@@ -16138,6 +16138,7 @@
 "<span class='warning'>Nar'Sie jest już na tym planie, nie da się opóźnić końca wszystkiego.</span>": "<span class='warning'>Nar'Sie is already on this plane, there is no delaying the end of all things.</span>",
 "<span class='warning'>Naruszenie izolacji kryształu supermaterii nie byłoby dla nas korzystne. Przerywanie.</span>": "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>",
 "<span class='warning'>Nasadka zabezpieczająca nie pozwala ci włożyć [A] do [src].</span>": "<span class='warning'>The safety cap prevents you from inserting [A] into [src].</span>",
+"<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(aq_next_squad_order - world.time)].</span>": "<span class='warning'>You can give the next order in [DisplayTimeText(aq_next_squad_order - world.time)].</span>",
 "<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(sender.aq_next_squad_order - world.time)].</span>": "<span class='warning'>You can give the next order in [DisplayTimeText(sender.aq_next_squad_order - world.time)].</span>",
 "<span class='warning'>Nasz nadajnik bluespace nie znajduje działającego łącza bluespace, nasze zdolności teleportacji są tu bezużyteczne.</span>": "<span class='warning'>Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area.</span>",
 "<span class='warning'>Nasza koncentracja została przerwana!</span>": "<span class='warning'>Our concentration has been broken!</span>",

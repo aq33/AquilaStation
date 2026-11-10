@@ -342,12 +342,13 @@ export const SquadTacticalMap = (props: MapProps) => {
   const [fitted, setFitted] = useState(false);
   useEffect(() => {
     const width = containerRef.current?.clientWidth;
-    if (fitted || !width || !map.width) {
+    // dopiero gdy plan jest gotowy: wcześniej width to zastępcze world.maxx
+    if (fitted || !width || !map.width || !map.url) {
       return;
     }
     setFitted(true);
     setZoom(Math.min(8, Math.max(2, Math.floor((width - 16) / map.width))));
-  }, [map.width, fitted]);
+  }, [map.width, map.url, fitted]);
   const layout = useMapLayout(map.url);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hover, setHover] = useState<string | null>(null);
