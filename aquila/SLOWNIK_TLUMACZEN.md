@@ -1037,6 +1037,8 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | EN | PL | rodzaj/uwagi |
 |---|---|---|
 | weapon | broń | ż; istniejące (162×) |
+| block / parry | blok, blokować / parowanie, parować | m / n; parowanie = aktywne na klawisz (Paradise), blok = pasywny (Bee) |
+| counter-attack / knock off balance | kontra, kontratakować / wytrącić z równowagi | ż; nowe |
 | knife | nóż | m; istniejące (30×) |
 | combat knife | nóż bojowy | m; nowe |
 | kitchen knife | nóż kuchenny | m; istniejące |
