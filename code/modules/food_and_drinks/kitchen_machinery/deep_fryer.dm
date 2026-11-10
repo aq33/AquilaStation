@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 		var/obj/item/clothing/head/mob_holder/P = weapon
 		QDEL_NULL(P.held_mob)	//just so the pet doesn't escape his incoming death
 	// Handle opening up the fryer with tools
-	if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off", weapon)) //where's the open maint panel icon?!
+	if(default_deconstruction_screwdriver(user, "fryer_open", "fryer_off", weapon)) // AQ EDIT - otwarty panel ze sprite'em z tg
 		return
 	else
 		// So we skip the attack animation

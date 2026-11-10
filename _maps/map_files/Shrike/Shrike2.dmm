@@ -12,6 +12,12 @@
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space)
+"ac" = (
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/medical/break_room)
 "ad" = (
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
@@ -45688,7 +45694,7 @@ PN
 PN
 ex
 Gf
-NZ
+ac
 TO
 ex
 Nl
