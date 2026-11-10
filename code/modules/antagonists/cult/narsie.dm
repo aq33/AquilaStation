@@ -205,7 +205,7 @@
 		sound_to_playing_players('sound/machines/alarm.ogg')
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper)), 120)
 
-/obj/eldritch/narsie/Process_Spacemove()
+/obj/eldritch/narsie/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return clashing
 
 /proc/ending_helper()

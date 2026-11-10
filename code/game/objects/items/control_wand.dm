@@ -12,13 +12,17 @@
 	desc = "Zdalnie steruje śluzami."
 	w_class = WEIGHT_CLASS_TINY
 	var/mode = WAND_OPEN
-	var/region_access = 1 //See access.dm
+	var/department_bitflag = DEPARTMENT_BITFLAG_SERVICE // AQ EDIT - pilot dostaje dostępy działów z tej bitflagi (port BeeStation/BeeStation-Hornet#14139)
 	var/list/access_list
 	network_id = NETWORK_DOOR_REMOTES
 
 /obj/item/door_remote/Initialize(mapload)
 	. = ..()
-	access_list = get_region_accesses(region_access)
+	// AQ EDIT START - dostępy z grup działów SSdepartment (port BeeStation/BeeStation-Hornet#14139)
+	access_list = SSdepartment.get_accesses_by_bitflag(department_bitflag)
+	if(!length(access_list))
+		stack_trace("[type] has no department_bitflag access, it cannot open any door")
+	// AQ EDIT END
 	RegisterSignal(src, COMSIG_COMPONENT_NTNET_NAK, PROC_REF(bad_signal))
 	RegisterSignal(src, COMSIG_COMPONENT_NTNET_ACK, PROC_REF(good_signal))
 
@@ -72,43 +76,43 @@
 	name = "uniwersalny pilot do drzwi"
 	desc = "Ten pilot ma dostęp do wszystkich drzwi na stacji."
 	icon_state = "gangtool-yellow"
-	region_access = 0
+	department_bitflag = DEPARTMENT_BITFLAG_STATIONS // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/captain
 	name = "pilot do drzwi dowództwa"
 	icon_state = "gangtool-yellow"
-	region_access = 7
+	department_bitflag = DEPARTMENT_BITFLAG_COMMAND // AQ EDIT - bitflaga działów, zostaje Dowództwo (Bee daje całą stację)
 
 /obj/item/door_remote/chief_engineer
 	name = "pilot do drzwi inżynierii"
 	icon_state = "gangtool-orange"
-	region_access = 5
+	department_bitflag = DEPARTMENT_BITFLAG_ENGINEERING // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/research_director
 	name = "pilot do drzwi działu naukowego"
 	icon_state = "gangtool-purple"
-	region_access = 4
+	department_bitflag = DEPARTMENT_BITFLAG_SCIENCE // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/head_of_security
 	name = "pilot do drzwi ochrony"
 	icon_state = "gangtool-red"
-	region_access = 2
+	department_bitflag = DEPARTMENT_BITFLAG_SECURITY // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/quartermaster
 	name = "pilot do drzwi zaopatrzenia"
 	desc = "Zdalnie steruje śluzami. Ten pilot ma też dostęp do Skarbca."
 	icon_state = "gangtool-green"
-	region_access = 6
+	department_bitflag = DEPARTMENT_BITFLAG_CARGO // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/chief_medical_officer
 	name = "pilot do drzwi medycznych"
 	icon_state = "gangtool-blue"
-	region_access = 3
+	department_bitflag = DEPARTMENT_BITFLAG_MEDICAL // AQ EDIT - bitflaga działów
 
 /obj/item/door_remote/civillian
 	name = "pilot do drzwi cywilnych"
 	icon_state = "gangtool-white"
-	region_access = 1
+	department_bitflag = DEPARTMENT_BITFLAG_SERVICE // AQ EDIT - bitflaga działów
 
 #undef WAND_OPEN
 #undef WAND_BOLT

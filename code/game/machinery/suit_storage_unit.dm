@@ -312,7 +312,7 @@
 		if(!toasted) //Special toast check to prevent a double finishing message.
 			if(occupant)
 				visible_message("<span class='warning'>Drzwi [src] się rozsuwają, zalewając cię mdlącym zapachem zwęglonego ciała.</span>")
-				mob_occupant.radiation = 0
+				qdel(mob_occupant.GetComponent(/datum/component/irradiated)) // AQ EDIT - promieniowanie z Bee#13442
 			else
 				visible_message("<span class='notice'>Drzwi [src] się rozsuwają. Świecące żółte światła przygasają do łagodnej zieleni.</span>")
 		toasted = FALSE
@@ -335,9 +335,7 @@
 			things_to_clear += occupant.GetAllContents()
 		for(var/atom/movable/AM in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 			SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRONG)
-			var/datum/component/radioactive/contamination = AM.GetComponent(/datum/component/radioactive)
-			if(contamination)
-				qdel(contamination)
+			qdel(AM.GetComponent(/datum/component/irradiated)) // AQ EDIT - promieniowanie z Bee#13442
 		open_machine(FALSE)
 		if(occupant)
 			dump_contents()

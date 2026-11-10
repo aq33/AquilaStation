@@ -657,6 +657,8 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 			clear_reagents_to_vomit_pool(C,V)
 
 /proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V)
+	if(M.vomit_from_stomach(V)) // AQ EDIT - organy z Bee: wymioty opróżniają żołądek, nie krew (stomach_contents.dm)
+		return
 	M.reagents.trans_to(V, M.reagents.total_volume / 10, transfered_by = M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)                //clears the stomach of anything that might be digested as food
 		if(istype(R, /datum/reagent/consumable))

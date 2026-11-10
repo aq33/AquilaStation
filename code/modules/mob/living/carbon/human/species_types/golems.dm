@@ -344,19 +344,18 @@
 	meat = /obj/item/stack/ore/uranium
 	info_text = "Jako <span class='danger'>uranowy golem</span> co jakiś czas emitujesz impulsy promieniowania. Nie szkodzą innym golemom, ale działają na organiczne formy życia."
 
-	var/last_event = 0
-	var/active = null
 	prefix = "Uranium"
 	special_names = list("Oxide", "Rod", "Meltdown", "235")
 
+	COOLDOWN_DECLARE(radiate_cooldown) // AQ EDIT - promieniowanie z Bee#13442
+
 /datum/species/golem/uranium/spec_life(mob/living/carbon/human/H)
-	if(!active)
-		if(world.time > last_event+30)
-			active = 1
-			radiation_pulse(H, 50)
-			last_event = world.time
-			active = null
-	..()
+	// AQ EDIT START - promieniowanie z Bee#13442
+	. = ..()
+	if(COOLDOWN_FINISHED(src, radiate_cooldown))
+		COOLDOWN_START(src, radiate_cooldown, 3 SECONDS)
+		radiation_pulse(H, max_range = 2, threshold = RAD_LIGHT_INSULATION)
+	// AQ EDIT END
 
 //Immune to physical bullets and resistant to brute, but very vulnerable to burn damage. Dusts on death.
 /datum/species/golem/sand

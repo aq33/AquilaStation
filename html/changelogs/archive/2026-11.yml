@@ -571,3 +571,36 @@
   - tweak: Kapitan zawsze wybiera z trzech misji, także przy małej liczbie graczy.
   - bugfix: Generowanie opuszczonej stacji nie sypie już błędami rur i wczytywania
       map.
+'2026-11-10':
+  ? rkz (Tsar-Salat), EvilDragonfiend, mrmanlikesbt, Rohesie, Fikou, ShizCalev, nemvar,
+    ArcaneMusic, MrMelbert, Mothblocks, SyncIt21
+  : - rscadd: 'Jetpack ma prawdziwe paliwo: każde pchnięcie zużywa gaz z butli, pełna
+        butla starcza na ok. 1700 pól. Ze stabilizacją postać staje, bez niej dryfuje
+        dalej.'
+    - tweak: Dryf w kosmosie jest płynniejszy, puszczony ciągnięty przedmiot leci
+        dalej, a tło kosmosu przesuwa się płynnie.
+    - bugfix: Dźwięk jetpacka nie zużywa już paliwa drugi raz, a implant dysz nie
+        wyłącza się przy ciągu z plecaka.
+    - tweak: Konsola ID, NtOS, piloty do drzwi i elektronika śluz grupują dostępy
+        według działów; konsola nadaje tylko dostępy działów, którymi zarządza zalogowana
+        karta.
+    - rscadd: Konsola Centrali edytuje dostępy stacji i specjalne.
+    - bugfix: MAA nie może już nadać dostępu Kapitana, a degradacja Majtka działa.
+    - rscadd: Jedzenie, napoje i pigułki trafiają najpierw do żołądka; wymioty i płukanie
+        żołądka usuwają to, co jeszcze nie weszło do krwi. Analizator pokazuje zawartość
+        żołądka.
+    - balance: Wątroba nie usuwa od ręki małych dawek toksyn; niewydolność wątroby
+        postępuje etapami.
+    - rscadd: Promieniowanie ma natężenie w procentach i progi objawów; mija samo
+        w kilka minut, szybciej z jodkiem potasu albo kwasem pentetowym.
+    - balance: Przed promieniowaniem chroni tylko pełny strój przeciwradiacyjny, hardsuit
+        inżynieryjny z hełmem albo inny strój z ochroną 100; skażone przedmioty przestają
+        promieniować po ok. 30 s.
+    - rscadd: 'Ludzie-strąki żywią się promieniowaniem: odżywia ich, a powyżej 50%
+        leczy.'
+    - rscadd: Burza radiacyjna ma syrenę, a licznik Geigera pokazuje cztery stopnie
+        zagrożenia.
+    - tweak: Konsola DNA zadaje uszkodzenia genetyczne zamiast promieniowania; pluoksium
+        powstaje z CO2, tlenu i trytu w zimnie.
+    - soundadd: Syrena burzy radiacyjnej z BeeStation (CC-BY 4.0).
+    - imageadd: Ikona alertu napromieniowania z BeeStation.

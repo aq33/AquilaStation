@@ -66,7 +66,7 @@
 	var/fraction = min(gulp_amount/reagents.total_volume, 1)
 	checkLiked(fraction, M)
 	reagents.reaction(M, INGEST, fraction)
-	reagents.trans_to(M, gulp_amount, transfered_by = user)
+	reagents.trans_to_ingested(M, gulp_amount, transfered_by = user) // AQ EDIT - organy z Bee: napój trafia do żołądka
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	SEND_SIGNAL(src, COMSIG_DRINK_DRANK, M, user) // AQ EDIT - bitrunning
 	return 1

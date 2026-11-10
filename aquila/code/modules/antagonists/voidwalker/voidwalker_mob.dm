@@ -141,7 +141,7 @@
 	client?.images -= self_image
 	return ..()
 
-/mob/living/simple_animal/hostile/voidwalker/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/voidwalker/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/voidwalker/Life(seconds, times_fired)

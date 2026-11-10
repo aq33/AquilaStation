@@ -205,7 +205,7 @@
 
 	// Funny rad flamethrower go brrr
 	if(fuel_mix.get_moles(GAS_TRITIUM)) // Tritium fires cause a bit of radiation
-		radiation_pulse(target, min(fuel_mix.get_moles(GAS_TRITIUM), fuel_mix.get_moles(GAS_O2)/2) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+		radiation_pulse(target, max_range = 1, threshold = TRITIUM_RADIATION_THRESHOLD, intensity = 1, collector_power = min(fuel_mix.get_moles(GAS_TRITIUM), fuel_mix.get_moles(GAS_O2)/2) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR) // AQ EDIT - promieniowanie z Bee#13442
 
 	// 8 damage at 0.5 mole transfer or ~17 kPa release pressure
 	// 16 damage at 1 mole transfer or ~35 kPa release pressure

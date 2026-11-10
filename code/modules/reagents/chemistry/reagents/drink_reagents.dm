@@ -559,7 +559,7 @@
 	M.drowsyness = 0
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	M.radiation += 4
+	SSradiation.irradiate_internal(M, 3) // AQ EDIT - promieniowanie z Bee#13442
 	..()
 	. = 1
 
