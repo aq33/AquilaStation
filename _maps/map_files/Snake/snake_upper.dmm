@@ -9087,6 +9087,33 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"SH" = (
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police,
+/obj/structure/rack,
+/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/head/helmet/riot,
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/machinery/button/door{
+	id = "riot_storage";
+	name = "Armory General Access Control";
+	pixel_y = -26;
+	req_one_access_txt = "3"
+	},
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/plasteel/dark/side{
+	dir = 10
+	},
+/area/ai_monitored/security/armory)
 "SJ" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "virology_airlock_exterior";
@@ -51514,7 +51541,7 @@ gW
 bu
 kM
 Fu
-CX
+SH
 gW
 KN
 cP
