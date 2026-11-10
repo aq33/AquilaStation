@@ -13,3 +13,13 @@
 		if(C.body_parts_covered & def_zone.body_part)
 			covering_part += C
 	return covering_part
+
+/// Wybuch, który ogłuszył (dołożył głuchoty), daje pisk w uszach jak po flashbangu
+/mob/living/carbon/human/ex_act(severity, target, origin)
+	var/obj/item/organ/ears/ears_organ = getorgan(/obj/item/organ/ears)
+	var/deaf_before = ears_organ?.deaf
+	. = ..()
+	if(QDELETED(src) || stat == DEAD || QDELETED(ears_organ) || ears_organ.owner != src)
+		return
+	if(ears_organ.deaf > deaf_before)
+		SEND_SOUND(src, sound('sound/weapons/flash_ring.ogg'))
