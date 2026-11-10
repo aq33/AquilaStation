@@ -56,11 +56,6 @@ SUBSYSTEM_DEF(liquids)
 	arrayed_groups = SSliquids.arrayed_groups
 	ice_block_candidates = SSliquids.ice_block_candidates
 
-/// Pierwsza ciecz po pustym okresie: zaczynamy od początku cyklu
-/datum/controller/subsystem/liquids/proc/wake_up()
-	if(!can_fire)
-		can_fire = TRUE
-
 /datum/controller/subsystem/liquids/fire(resumed)
 	// Bez SS_HIBERNATE: pusty świat kończy od razu
 	if(!length(active_groups) && !length(evaporation_queue) && !length(burning_turfs) && !length(arrayed_groups))
@@ -246,7 +241,7 @@ SUBSYSTEM_DEF(liquids)
 			continue
 		var/turf/open/member = pick(liquid_group.members)
 		if(!liquid_group.freeze_into_block(member))
-			// Kafel się nie nadaje (np. stoi na nim coś gęstego): grupa wraca w następnym przebiegu
+			// Kafel się nie nadaje (np. stoi na nim coś gęstego): grupa wraca przy następnym update_freezing() (dolanie, wymiana ciepła)
 			ice_block_candidates.len--
 			continue
 		blocks_left--

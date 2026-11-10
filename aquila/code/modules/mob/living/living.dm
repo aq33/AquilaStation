@@ -16,7 +16,7 @@
 	urination = clamp(urination, 0, defecation)
 	return TRUE
 
-/// Kał w spodnie (popuszczenie). Mocz oddaje release_urine() w urination.dm.
+/// Kał w spodnie (popuszczenie). Mocz oddaje release_urine() w urination.dm. Kamera tego nie zgłasza (mimowolne).
 /mob/living/proc/actually_shit_myself()
 	if(!CONFIG_GET(flag/shitting_enabled))
 		return FALSE
@@ -30,7 +30,6 @@
 	new /obj/effect/decal/cleanable/feces(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
-	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 	return TRUE
 
 /mob/living/carbon/human/actually_shit_myself()
@@ -84,6 +83,7 @@
 	if(clothed)
 		if(feces_need)
 			actually_shit_myself()
+			report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 		return
 	if(!feces_need)
 		return

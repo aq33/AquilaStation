@@ -101,4 +101,23 @@ GLOBAL_LIST_INIT(liquid_blacklist, list(
 	/datum/reagent/liquid_dark_matter,
 ))
 
+/// AQUILA - reagenty, które przy rozlaniu same zamieniają się w coś na podłodze (gaz, świecąca plama, kupka, brud),
+/// więc rozlane reagują z podłogą i nie trafiają do kałuży ani pamięci rozlań (inaczej byłyby podwójnie)
+GLOBAL_LIST_INIT(liquid_turf_converting, typecacheof(list(
+	/datum/reagent/oxygen,
+	/datum/reagent/nitrogen,
+	/datum/reagent/carbondioxide,
+	/datum/reagent/nitrous_oxide,
+	/datum/reagent/toxin/plasma,
+	/datum/reagent/uranium,
+	/datum/reagent/consumable/flour,
+	/datum/reagent/consumable/sodiumchloride,
+	/datum/reagent/carbon,
+	/datum/reagent/glitter,
+	/datum/reagent/ants,
+)))
+
+/// AQUILA - najwięcej cieczy, jaka zostaje w kałuży po rozprysku z granatu albo rozbitego zbiornika
+#define LIQUID_SPLASH_PUDDLE_MAX 200
+
 #define MOVESPEED_ID_LIQUIDS "LIQUIDS"

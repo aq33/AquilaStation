@@ -240,7 +240,7 @@
 		else if(lube&SLIDE_ICE)
 			slipper.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
 		else if(sprint_slide) // AQ EDIT - poślizg w sprincie rzuca kafel dalej
-			slipper.AddComponent(/datum/component/force_move, get_ranged_target_turf(slipper, olddir, 1), FALSE) // AQ EDIT
+			slipper.sprint_slip_slide(olddir) // AQ EDIT
 		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)

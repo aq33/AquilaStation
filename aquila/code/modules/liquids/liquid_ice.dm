@@ -8,7 +8,7 @@
 	var/list/candidates = list()
 	if(preferred)
 		candidates += preferred
-	candidates |= members
+	candidates += members // członkowie są unikalni, a preferowany kafel najwyżej powtórzy się raz (bez |=, które jest kwadratowe)
 	for(var/turf/open/member as anything in candidates)
 		if(!istype(member) || QDELETED(member.liquids) || member.liquids.liquid_group != src)
 			continue
@@ -21,8 +21,8 @@
 				break
 		if(blocked)
 			continue
-		var/obj/structure/liquid_ice_block/block = new(member)
 		update_volume_cache()
+		var/obj/structure/liquid_ice_block/block = new(member, reagents_per_turf)
 		reagents.trans_to(block.reagents, reagents_per_turf, no_react = TRUE)
 		block.reagents.chem_temp = reagents.chem_temp
 		block.update_freezing_point()
@@ -55,9 +55,9 @@
 	/// Kto właśnie się wybija od środka
 	var/list/escaping = list()
 
-/obj/structure/liquid_ice_block/Initialize(mapload)
+/obj/structure/liquid_ice_block/Initialize(mapload, volume = 0)
 	. = ..()
-	create_reagents(LIQUID_ICE_BLOCK_VOLUME * 3, NO_REACT)
+	create_reagents(max(LIQUID_ICE_BLOCK_VOLUME * 3, volume + 1), NO_REACT) // cały kafel cieczy, bez obcinania nadmiaru
 	air_update_turf()
 	START_PROCESSING(SSobj, src)
 	playsound(src, 'sound/effects/glassbr1.ogg', 30, TRUE)
@@ -133,22 +133,15 @@
 	var/turf/open/T = get_turf(src)
 	if(!istype(T))
 		return
-	// Blok powoli przyjmuje temperaturę powietrza, a uwięzieni przyjmują temperaturę bloku
+	// Blok powoli przyjmuje temperaturę powietrza. Uwięzieni przyjmują temperaturę bloku przez return_temperature()
+	// w zwykłym Life (get_temperature), z ochroną przed zimnem jak w powietrzu, bez drugiego chłodzenia.
 	var/air_temperature = T.GetTemperature()
 	reagents.chem_temp += (air_temperature - reagents.chem_temp) * 0.1 * delta_time
-	for(var/mob/living/L in contents)
-		chill_trapped(L, delta_time)
 	if(reagents.chem_temp > freezing_point + 1)
 		melt()
 
-/obj/structure/liquid_ice_block/proc/chill_trapped(mob/living/L, delta_time)
-	if(L.bodytemperature <= reagents.chem_temp)
-		return
-	var/protection = 0
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		protection = H.get_cold_protection(reagents.chem_temp)
-	L.adjust_bodytemperature(max((reagents.chem_temp - L.bodytemperature) * 0.05 * delta_time * (1 - protection), BODYTEMP_COOLING_MAX))
+/obj/structure/liquid_ice_block/return_temperature()
+	return reagents?.chem_temp
 
 /obj/structure/liquid_ice_block/proc/melt()
 	visible_message("<span class='notice'>[src] topnieje!</span>")

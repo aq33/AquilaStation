@@ -50,9 +50,9 @@
  * need_amount - ile potrzeby oddajemy (mocz to URINE_UNITS_PER_NEED jednostek na jednostkę potrzeby)
  * clothed - w spodnie: smród, ale i tak cieknie na podłogę
  * voluntary - świadomie (emotka, alert), inaczej popuszczenie
- * report - kamera zgłasza oddawanie moczu (przy wypróżnieniu z kałem zgłoszenie robi kał, jedno na raz)
+ * report - kamera zgłasza oddawanie moczu: tylko świadome (emotka, alert), przy wypróżnieniu z kałem zgłoszenie robi kał
  */
-/mob/living/proc/release_urine(need_amount, clothed, voluntary = FALSE, show_message = TRUE, report = TRUE)
+/mob/living/proc/release_urine(need_amount, clothed, voluntary = FALSE, show_message = TRUE, report = FALSE)
 	var/turf/T = get_turf(src)
 	if(!T || need_amount <= 0)
 		return
@@ -83,13 +83,17 @@
 		report_public_bodily_function("Publiczne oddawanie moczu", "oddawała mocz")
 
 /**
- * Kamera w zasięgu: wpis do kartoteki i status Poszukiwany (Monke: Automated Criminal Detection Service, u nas też kał).
+ * Kamera w zasięgu: wpis do kartoteki i status do aresztowania (Monke: Automated Criminal Detection Service, u nas też kał).
+ * Tylko za świadome czynności (emotka *piss, alert wypróżnienia na miejscu): wołający nie zgłaszają popuszczenia.
+ * Przytomna postać stojąca na kafelku (nie w szafce ani mechu). Więźnia (Incarcerated, Paroled) status się nie zmienia.
  * crime_name - nazwa wykroczenia, action - co robiła osoba („oddawała mocz”, „załatwiała się”)
  */
 /mob/living/proc/report_public_bodily_function(crime_name, action)
-	var/turf/T = get_turf(src)
+	if(stat != CONSCIOUS || !isturf(loc))
+		return
+	var/turf/T = loc
 	var/obj/machinery/camera/seen_by
-	for(var/obj/machinery/camera/camera in view(7, T))
+	for(var/obj/machinery/camera/camera in dview(7, T)) // dview: zwykłe view() z kafla nie widzi ciemnych kafli
 		if(camera.can_use() && get_dist(src, camera) <= camera.view_range)
 			seen_by = camera
 			break
@@ -101,9 +105,12 @@
 	var/area/A = get_area(T)
 	var/datum/data/crime/crime = GLOB.data_core.createCrimeEntry(crime_name, "Kamera nagrała tę osobę, gdy [action] w: [A?.name].", "Automatyczny system wykrywania wykroczeń", station_time_timestamp())
 	GLOB.data_core.addCrime(record.fields["id"], crime)
-	record.fields["criminal"] = "Arrest"
-	for(var/mob/living/carbon/human/human in GLOB.carbon_list)
-		human.sec_hud_set_security_status()
+	if(!(record.fields["criminal"] in list("Incarcerated", "Paroled")))
+		record.fields["criminal"] = "Arrest"
+	log_game("[key_name(src)] was reported by camera [seen_by.c_tag] for [crime_name] at [AREACOORD(T)]")
+	if(ishuman(src)) // status widać na HUD-zie tej postaci
+		var/mob/living/carbon/human/H = src
+		H.sec_hud_set_security_status()
 
 /// Emotka *piss: sam mocz
 /mob/living/carbon/human/proc/urinate_voluntarily()
@@ -132,7 +139,7 @@
 	var/turf/T = get_turf(src)
 	var/obj/structure/toilet/toilet = locate() in T
 	if(toilet)
-		toilet.receive_waste(urination * URINE_UNITS_PER_NEED)
+		toilet.receive_waste(urination * URINE_UNITS_PER_NEED, 0, reagent_type)
 		empty_bladder_into("ubikacji")
 		return
 	if(locate(/obj/structure/urinal) in T)
@@ -142,7 +149,7 @@
 	var/urine_need = urination
 	urination = 0
 	adjust_defecation(-urine_need)
-	release_urine(urine_need, is_wearing_pants(), TRUE, TRUE)
+	release_urine(urine_need, is_wearing_pants(), TRUE, TRUE, TRUE)
 
 /// Mocz do ubikacji albo pisuaru: tylko część z picia
 /mob/living/proc/empty_bladder_into(where)

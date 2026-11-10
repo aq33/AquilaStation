@@ -219,6 +219,27 @@
 	pooper.urination = 40
 	pooper.urinate_voluntarily()
 	TEST_ASSERT(length(crimes) == 2, "Urinating in view of a camera was not reported")
+
+	// Mimowolne popuszczenie nie jest zgłaszane
+	pooper.set_defecation(DEFECATION_ACTUALLY_SHIT_YOURSELF + 10)
+	pooper.urination = 0
+	pooper.accidental_release()
+	TEST_ASSERT(length(crimes) == 2, "An accidental release in view of a camera was reported")
+
+	// Status więźnia nie jest nadpisywany, ale wpis dochodzi
+	record.fields["criminal"] = "Incarcerated"
+	pooper.set_defecation(DEFECATION_SHIT_YOURSELF)
+	pooper.urination = 0
+	pooper.finish_defecate_here(FALSE)
+	TEST_ASSERT(length(crimes) == 3, "Defecating on the spot as a prisoner was not added to the record")
+	TEST_ASSERT(record.fields["criminal"] == "Incarcerated", "A camera report overwrote the Incarcerated status with [record.fields["criminal"]]")
+
+	// Nieprzytomny nie jest zgłaszany
+	pooper.stat = UNCONSCIOUS
+	pooper.set_defecation(DEFECATION_SHIT_YOURSELF)
+	pooper.finish_defecate_here(FALSE)
+	pooper.stat = CONSCIOUS
+	TEST_ASSERT(length(crimes) == 3, "An unconscious mob was reported by the camera")
 	aquila_liquids_cleanup(T)
 
 /// AQUILA - mokra podłoga: chodem bez poślizgu, w biegu poślizg, w sprincie poślizg rzuca jeszcze kafel dalej
@@ -255,6 +276,7 @@
 	var/datum/component/carbon_sprint/sprint = sprinter.GetComponent(/datum/component/carbon_sprint)
 	TEST_ASSERT(sprint, "Human has no sprint component")
 	sprint.sprinting = TRUE
+	sprint.last_sprint_step = world.time // prawdziwy krok sprintu przed chwilą (sama flaga nie wystarcza)
 	sprinter.setDir(EAST)
 	TEST_ASSERT(T.handle_slip(sprinter, 2 SECONDS, T, NO_SLIP_WHEN_WALKING), "Sprinting did not slip on a wet floor")
 	TEST_ASSERT(sprinter.GetComponent(/datum/component/force_move), "Slipping in a sprint did not throw the sprinter forward")

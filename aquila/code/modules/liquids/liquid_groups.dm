@@ -74,7 +74,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		add_to_group(created_liquid.my_turf)
 		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
 	SSliquids.active_groups |= src
-	SSliquids.wake_up()
 
 /datum/liquid_group/Destroy()
 	SSliquids.active_groups -= src
@@ -125,8 +124,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	reagents.maximum_volume += 1000 /// each turf will hold 1000 units plus the base amount spread across the group
 	if(group_color)
 		T.liquids.color = group_color
-	if(frozen)
-		T.liquids.set_frozen(TRUE)
+	T.liquids.set_frozen(frozen) // AQUILA - w obie strony: kafle wchłoniętego lodu topnieją razem z grupą
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T, should_reprocess = TRUE)
@@ -161,11 +159,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	otherg.merging = TRUE
-	var/list/created_reagent_list = list()
-	for(var/datum/reagent/reagent in otherg.reagents.reagent_list)
-		created_reagent_list[reagent.type] = reagent.volume
-
-	add_reagents(reagent_list = created_reagent_list, chem_temp = otherg.reagents.chem_temp)
+	// AQUILA - przelanie z danymi (DNA krwi, czystość) zamiast samych typów i ilości
+	reagents.maximum_volume += otherg.reagents.total_volume
+	otherg.reagents.trans_to(reagents, otherg.reagents.total_volume, no_react = TRUE)
+	update_volume_cache()
+	handle_visual_changes()
+	process_group()
+	update_freezing()
 	cached_edge_turfs |= otherg.cached_edge_turfs
 
 	for(var/turf/liquid_turf as anything in otherg.members)
@@ -257,6 +257,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 	// Z podłogą reagują tylko reagenty, które coś z nią robią (krew robi plamę, termit pali), w ilości ponad próg
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list)
+		if(QDELETED(src) || !length(members)) // reakcja z podłogą mogła skasować kafel, a z nim grupę
+			return
 		if(!reagent.turf_exposure)
 			continue
 		var/amount = reagent.volume / length(members)
@@ -375,6 +377,15 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		chem_temp = T20C
 	for(var/reagent_type in reagent_list)
 		reagents.add_reagent(reagent_type, reagent_list[reagent_type], reagtemp = chem_temp, no_react = TRUE)
+	update_volume_cache()
+	handle_visual_changes()
+	process_group()
+	update_freezing()
+
+/// AQUILA - dolewa reagenty razem z danymi i czystością (liquid_copy_reagents), bez zużywania giver
+/datum/liquid_group/proc/add_reagents_from(datum/reagents/giver, multiplier = 1, skip_converting = FALSE)
+	if(!liquid_copy_reagents(giver, reagents, multiplier, skip_converting))
+		return
 	update_volume_cache()
 	handle_visual_changes()
 	process_group()
@@ -558,7 +569,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	member.liquids.set_fire_effect()
 	burning_members |= member
 	SSliquids.burning_turfs |= member
-	SSliquids.wake_up()
 
 /datum/liquid_group/proc/build_fire_cache(turf/burning_member)
 	cached_fire_spreads |= burning_member
@@ -743,13 +753,16 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		current_head.temporary_split_key = generated_key
 		adjacent_liquid_count++
 
-	if(adjacent_liquid_count == 0)
-		return
-	if(adjacent_liquid_count > 0) ///if there is only 1 adjacent liquid it physically can't split
+	// AQUILA - w Monke warunek był odwrócony (licznik startuje od -1) i grupa nie dzieliła się nigdy:
+	// zamknięte drzwi zostawiały oba pomieszczenia ze wspólną cieczą. Jeden sąsiad (albo żaden) nie może się rozdzielić.
+	if(adjacent_liquid_count <= 0)
 		return FALSE
 
 	if(current_head)
 		connected_liquids = return_connected_liquids(current_head, adjacent_liquid_count)
+		// AQUILA - BFS nie dopisuje kafla startowego, więc odcięta wyspa z jednego kafla nie oddzielała się wcale
+		if(islist(connected_liquids))
+			connected_liquids |= current_head.my_turf
 
 	if(!length(connected_liquids) || length(connected_liquids) == length(members)) //yes yes i know if two groups are identical in size this will break but fixing this would add to much processing
 		if(return_list)
@@ -772,7 +785,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	trans_to_seperate_group(new_group.reagents, amount_to_transfer)
 	new_group.total_reagent_volume = new_group.reagents.total_volume
 	new_group.reagents_per_turf = length(new_group.members) ? new_group.total_reagent_volume / length(new_group.members) : 0
-	new_group.frozen = frozen
+	new_group.set_frozen(frozen) // AQUILA - przez set_frozen, żeby lód z podziału mógł robić bloki
 
 	///asses the group to see if it should exist
 	var/new_group_length = length(new_group.members)
@@ -851,7 +864,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		var/datum/liquid_group/new_group = new(1)
 		new_group.copy_properties(src)
-		new_group.frozen = frozen
+		new_group.set_frozen(frozen)
 		if(!members)
 			members = list()
 		trans_to_seperate_group(new_group.reagents, amount_to_transfer, merge = TRUE)
@@ -900,7 +913,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		build_turf_reagent()
 	if(!turf_reagents || frozen)
 		return
-	if(HAS_TRAIT(target, LIQUID_PROTECTION))
+	if(target.is_liquid_protected())
 		return
 	turf_reagents.reaction(target, method, modifier)
 
@@ -970,7 +983,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			reagents.reaction(target_atom, TOUCH, (reagents_per_turf * 0.5) / max(1, reagents.total_volume))
 			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
 				return
-			step(target_atom, direction)
+			// AQUILA - asynchronicznie: krok w drzwi otwiera je przez open() ze sleep, a to woła SSliquids.fire()
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(_step), target_atom, direction)
 			if(isliving(target_atom) && prob(60))
 				var/mob/living/target_living = target_atom
 				target_living.Paralyze(6 SECONDS)
@@ -1002,9 +1016,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	// Lód topnieje dopiero kawałek ponad punktem zamarzania, żeby nie migał na granicy
 	if(frozen && !isnull(point) && reagents.chem_temp < point + 1)
 		should_freeze = TRUE
-	if(should_freeze == frozen)
-		return
-	set_frozen(should_freeze)
+	if(should_freeze != frozen)
+		set_frozen(should_freeze)
+	// Zamarznięta grupa dolana albo zablokowana wcześniej wraca do kandydatów na bloki lodu
+	if(frozen && reagents_per_turf >= LIQUID_ICE_BLOCK_VOLUME)
+		SSliquids.ice_block_candidates |= src
 
 /datum/liquid_group/proc/set_frozen(new_frozen)
 	frozen = new_frozen
@@ -1014,8 +1030,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(QDELETED(member.liquids))
 			continue
 		member.liquids.set_frozen(frozen)
-		if(frozen)
-			SSliquids.evaporation_queue -= member
 	if(frozen)
 		SSliquids.ice_block_candidates |= src
 

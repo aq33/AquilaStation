@@ -37,7 +37,8 @@
 /datum/reagent/oil
 	liquid_fire_power = 15
 
-// Reakcje z podłogą pod kałużą (lista z Monke, bez reagentów, których nie mamy)
+// Reakcje z podłogą pod kałużą (lista z Monke, bez reagentów, których nie mamy). Termit i ClF3 wypadły:
+// reagowały co cykl bez zużycia (termit narastał na każdym kaflu, ClF3 bez końca dziurawił pokład), a z podłogą reagują raz przy rozlaniu.
 /datum/reagent/blood
 	turf_exposure = TRUE
 	opacity = 230
@@ -63,12 +64,6 @@
 	turf_exposure = TRUE
 
 /datum/reagent/metalgen
-	turf_exposure = TRUE
-
-/datum/reagent/thermite
-	turf_exposure = TRUE
-
-/datum/reagent/clf3
 	turf_exposure = TRUE
 
 /datum/reagent/cryostylane

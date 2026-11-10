@@ -34,13 +34,12 @@
 	var/static/mutable_appearance/ice_overlay
 
 	var/obj/effect/abstract/liquid_fire/displayed_content
-	/// Opisy poziomów do examine (fragment przed nazwą cieczy, poziom za nią)
-	var/static/list/liquid_state_messages = list(
-		"[LIQUID_STATE_PUDDLE]" = "Jest tu kałuża: $.",
-		"[LIQUID_STATE_ANKLES]" = "Jest tu $, <span class='warning'>po kostki</span>.",
-		"[LIQUID_STATE_WAIST]" = "Jest tu $, <span class='warning'>po pas</span>.",
-		"[LIQUID_STATE_SHOULDERS]" = "Jest tu $, <span class='warning'>po ramiona</span>.",
-		"[LIQUID_STATE_FULLTILE]" = "Jest tu $, <span class='danger'>ponad głowę</span>.",
+	/// Głębokość do examine (kałuża nie ma osobnego dopisku). Gotowe teksty bez szablonów, żeby działał tłumacz czatu.
+	var/static/list/liquid_depth_texts = list(
+		"[LIQUID_STATE_ANKLES]" = "<span class='warning'>po kostki</span>",
+		"[LIQUID_STATE_WAIST]" = "<span class='warning'>po pas</span>",
+		"[LIQUID_STATE_SHOULDERS]" = "<span class='warning'>po ramiona</span>",
+		"[LIQUID_STATE_FULLTILE]" = "<span class='danger'>ponad głowę</span>",
 	)
 
 	var/temporary_split_key
@@ -77,7 +76,7 @@
 	RegisterSignal(my_turf, COMSIG_PARENT_ATTACKBY, PROC_REF(turf_attackby))
 
 	// Plamy wody i lodu pod kałużą zastępuje sama kałuża
-	SEND_SIGNAL(my_turf, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER | TURF_WET_ICE, TRUE)
+	SEND_SIGNAL(my_turf, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE) // tylko woda: siła 5 suszyła też stały lód (permafrost) lodowych podłóg
 
 	if(z)
 		queue_smooth(src)
@@ -243,7 +242,8 @@
 	else if(isliving(AM))
 		var/mob/living/L = AM
 		// Chodem bez poślizgu (NO_SLIP_WHEN_WALKING), w biegu poślizg, w sprincie handle_slip rzuca jeszcze kafel dalej
-		if(iscarbon(L) && liquid_group.slippery && !(L.movement_type & FLYING) && (L.mobility_flags & MOBILITY_STAND))
+		// Chód sprawdzamy już tutaj, bo carbon/slip() zapisuje log „slipped on” jeszcze przed odrzuceniem chodu w handle_slip
+		if(iscarbon(L) && liquid_group.slippery && L.m_intent != MOVE_INTENT_WALK && !(L.movement_type & FLYING) && (L.mobility_flags & MOBILITY_STAND))
 			var/mob/living/carbon/C = L
 			C.slip(3 SECONDS, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
 		if(!(L.movement_type & FLYING) && ishuman(L))
@@ -271,11 +271,15 @@
 		. = max(., held.is_hot())
 
 /// AQUILA - podpala palną kałużę (paliwo, alkohol, olej). Zwraca TRUE, gdy się zapaliła.
+/// AQUILA - płomień z wybuchu i inne hotspoty, które nie wołają hotspot_expose kafla, wołają fire_act na zawartości
+/obj/effect/abstract/liquid_turf/fire_act(exposed_temperature, exposed_volume)
+	try_ignite(exposed_temperature)
+
 /obj/effect/abstract/liquid_turf/proc/try_ignite(heat)
 	if(fire_state || heat < FIRE_MINIMUM_TEMPERATURE_TO_EXIST || QDELETED(liquid_group) || liquid_group.frozen)
 		return FALSE
 	var/datum/gas_mixture/air = my_turf.return_air()
-	if(!air || air.get_moles(GAS_O2) < 0.5)
+	if(!air || air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD) // jak w hotspot_expose
 		return FALSE
 	liquid_group.ignite_turf(my_turf)
 	return fire_state != LIQUID_FIRE_STATE_NONE
@@ -301,7 +305,7 @@
 	playsound(T, 'aquila/sound/effects/splash_loud.ogg', 50, 0)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(C.wear_mask && C.wear_mask.flags_cover & MASKCOVERSMOUTH)
+		if(C.stat == DEAD || C.is_mouth_covered()) // maska albo szczelny hełm; martwy nie łyka
 			to_chat(C, "<span class='userdanger'>Wpadasz do cieczy!</span>")
 		else
 			liquid_group.transfer_to_atom(src, CHOKE_REAGENTS_INGEST_ON_FALL_AMOUNT, C)
@@ -313,7 +317,7 @@
 
 /// Nazwa reagentu w kałuży dla danego widza (cenzura pokazuje mocz jako amoniak)
 /obj/effect/abstract/liquid_turf/proc/reagent_name_for(datum/reagent/reagent, mob/viewer)
-	if(istype(reagent, /datum/reagent/ammonia/urine) && viewer?.client?.prefs?.hide_bodily_functions)
+	if(istype(reagent, /datum/reagent/ammonia/urine) && viewer?.censors_bodily_functions())
 		var/datum/reagent/ammonia/ammonia_type = /datum/reagent/ammonia
 		return initial(ammonia_type.name)
 	return reagent.name
@@ -331,23 +335,34 @@
 	if(liquid_group.frozen)
 		examine_list += "<span class='notice'>Ciecz na podłodze zamarzła w śliski lód.</span>"
 
-	var/liquid_state_template = liquid_state_messages["[liquid_group.group_overlay_state]"]
+	var/depth = liquid_depth_texts["[liquid_group.group_overlay_state]"] // null = kałuża
 	var/member_count = max(1, length(liquid_group.members))
 
 	if(examiner.can_see_reagents())
 		if(length(liquid_group.reagents.reagent_list) == 1)
 			var/datum/reagent/reagent_type = liquid_group.reagents.reagent_list[1]
 			var/volume = round(reagent_type.volume / member_count, 0.01)
-			examine_list += "<span class='notice'>[replacetext(liquid_state_template, "$", "[volume] j. [reagent_name_for(reagent_type, examiner)]")]</span>"
+			var/reagent_name = reagent_name_for(reagent_type, examiner)
+			if(depth)
+				examine_list += "<span class='notice'>Jest tu [volume] j. [reagent_name], [depth].</span>"
+			else
+				examine_list += "<span class='notice'>Jest tu kałuża: [volume] j. [reagent_name].</span>"
 		else
-			examine_list += "<span class='notice'>[replacetext(liquid_state_template, "$", "mieszanina")] Skład:</span>"
+			if(depth)
+				examine_list += "<span class='notice'>Jest tu mieszanina, [depth]. Skład:</span>"
+			else
+				examine_list += "<span class='notice'>Jest tu kałuża mieszaniny. Skład:</span>"
 			for(var/datum/reagent/reagent_type as anything in liquid_group.reagents.reagent_list)
 				var/volume = round(reagent_type.volume / member_count, 0.01)
-				examine_list += "&bull; [volume] j. [reagent_name_for(reagent_type, examiner)]"
+				var/reagent_name = reagent_name_for(reagent_type, examiner)
+				examine_list += "&bull; [volume] j. [reagent_name]"
 		examine_list += "<span class='notice'>Temperatura cieczy: [round(liquid_group.group_temperature, 0.1)] K.</span>"
 		return
 
-	examine_list += "<span class='notice'>[replacetext(liquid_state_template, "$", "ciecz")]</span>"
+	if(depth)
+		examine_list += "<span class='notice'>Jest tu ciecz, [depth].</span>"
+	else
+		examine_list += "<span class='notice'>Jest tu kałuża.</span>"
 
 /obj/effect/temp_visual/liquid_splash
 	icon = 'aquila/icons/obj/effects/splash.dmi'

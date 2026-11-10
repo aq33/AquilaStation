@@ -27,7 +27,11 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, BLOOD_SLIPPERY_KNOCKDOWN, NO_SLIP_WHEN_WALKING)
 	add_bodily_censor_appearance()
-	QDEL_IN(src, 10 MINUTES)
+	// Timer na własnej procce: QDEL_IN (GLOBAL_PROC) trzyma plamę i po wcześniejszym sprzątnięciu kończy się hard delete
+	addtimer(CALLBACK(src, PROC_REF(dry_up)), 10 MINUTES)
+
+/obj/effect/decal/cleanable/urine/proc/dry_up()
+	qdel(src)
 
 /obj/item/organ/bladder
 	name = "pęcherz"

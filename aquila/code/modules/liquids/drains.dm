@@ -108,11 +108,12 @@
 		return
 	my_turf = loc
 	RegisterSignal(my_turf, COMSIG_TURF_LIQUIDS_CREATION, PROC_REF(on_liquid_creation))
+	RegisterSignal(my_turf, COMSIG_TURF_CHANGE, PROC_REF(on_turf_change))
 	ADD_TRAIT(my_turf, TRAIT_BLOCK_LIQUID_SPREAD, REF(src))
 
 /obj/structure/liquid_barrier/Destroy()
 	if(my_turf)
-		UnregisterSignal(my_turf, COMSIG_TURF_LIQUIDS_CREATION)
+		UnregisterSignal(my_turf, list(COMSIG_TURF_LIQUIDS_CREATION, COMSIG_TURF_CHANGE))
 		REMOVE_TRAIT(my_turf, TRAIT_BLOCK_LIQUID_SPREAD, REF(src))
 	my_turf = null
 	return ..()
@@ -120,6 +121,17 @@
 /obj/structure/liquid_barrier/proc/on_liquid_creation(datum/source)
 	SIGNAL_HANDLER
 	return BLOCK_LIQUID_CREATION
+
+/// Zmiana podłogi (płytka zdjęta, wybuch) zeruje traity kafla, a sygnały przechodzą: trait zakładamy z powrotem
+/obj/structure/liquid_barrier/proc/on_turf_change(datum/source, path, new_baseturfs, flags, list/post_change_callbacks)
+	SIGNAL_HANDLER
+	post_change_callbacks += CALLBACK(src, PROC_REF(reapply_block_trait))
+
+/obj/structure/liquid_barrier/proc/reapply_block_trait(turf/new_turf)
+	if(QDELETED(src) || !isturf(new_turf) || loc != new_turf)
+		return
+	my_turf = new_turf
+	ADD_TRAIT(my_turf, TRAIT_BLOCK_LIQUID_SPREAD, REF(src))
 
 /// Zestaw odpływu z cargo: klucz na podłodze montuje odpływ
 /obj/item/drain_kit

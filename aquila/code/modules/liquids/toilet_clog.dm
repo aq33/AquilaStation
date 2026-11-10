@@ -1,7 +1,7 @@
 // AQUILA - Zatkane ubikacje (nowe, nie ma tego w Monke).
 // Muszla trzyma to, co do niej trafiło (kał i mocz). Spłukanie zabiera zawartość, ale czasem toaleta się zatyka:
 // wtedy woda nie schodzi, a każde kolejne spłukanie przelewa wodę ze spłuczki razem z zawartością muszli na podłogę
-// (przez spill_reagents, więc 50 j. wody to od razu kałuża). Odtyka się przepychaczką.
+// (przez spill_reagents, więc 50 j. wody to od razu kałuża). Odtyka się przepychaczem.
 
 /// Szansa na zatkanie przy spłukiwaniu pustej muszli
 #define TOILET_CLOG_CHANCE_EMPTY 1
@@ -15,28 +15,41 @@
 	var/clogged = FALSE
 	/// Ile jednostek moczu jest w muszli
 	var/bowl_urine = 0
+	/// Co to za mocz (pęcherz klauna oddaje lubrykant)
+	var/bowl_urine_type = /datum/reagent/ammonia/urine
 	/// Ile kup jest w muszli
 	var/bowl_feces = 0
 
 /obj/structure/toilet/examine(mob/user)
 	. = ..()
 	if(clogged)
-		. += "<span class='warning'>Woda w muszli stoi niebezpiecznie wysoko. Toaleta jest zatkana, spłukanie ją przeleje. Przepchaj ją <b>przepychaczką</b>.</span>"
+		. += "<span class='warning'>Woda w muszli stoi niebezpiecznie wysoko. Toaleta jest zatkana, spłukanie ją przeleje. Przepchaj ją <b>przepychaczem</b>.</span>"
 	else if(open && (bowl_urine || bowl_feces) && !user.censors_bodily_functions())
 		. += "<span class='notice'>Ktoś nie spuścił wody.</span>"
 
 /// Coś trafia do muszli (wypróżnienie, mocz)
-/obj/structure/toilet/proc/receive_waste(urine_units = 0, feces = 0)
-	bowl_urine += max(0, urine_units)
+/obj/structure/toilet/proc/receive_waste(urine_units = 0, feces = 0, urine_type = /datum/reagent/ammonia/urine)
+	if(urine_units > 0)
+		bowl_urine += urine_units
+		bowl_urine_type = urine_type
 	bowl_feces += max(0, feces)
 
 /obj/structure/toilet/flush(mob/user, silent = FALSE)
 	var/had_waste = bowl_urine || bowl_feces
+	// Spłukanie zabiera ze spłuczki TOILET_FLUSH_VOLUME tego, co w niej jest (plumbingiem może być nie tylko woda),
+	// więc przy zatkanej toalecie przelewa się właśnie to
+	var/datum/reagents/flushed
+	if(clogged && reagents?.total_volume)
+		flushed = new(TOILET_FLUSH_VOLUME, NO_REACT)
+		reagents.copy_to(flushed, TOILET_FLUSH_VOLUME)
 	. = ..()
+	if(!. || !clogged)
+		qdel(flushed)
 	if(!.)
 		return
 	if(clogged)
-		overflow(user)
+		overflow(user, flushed)
+		qdel(flushed)
 		return
 	if(prob(had_waste ? TOILET_CLOG_CHANCE_WASTE : TOILET_CLOG_CHANCE_EMPTY))
 		clogged = TRUE
@@ -46,21 +59,27 @@
 	bowl_feces = 0
 
 /// Zatkana toaleta przelewa wodę ze spłukania i zawartość muszli na podłogę
-/obj/structure/toilet/proc/overflow(mob/user)
+/obj/structure/toilet/proc/overflow(mob/user, datum/reagents/flushed)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
 	visible_message("<span class='danger'>[src] się przelewa!</span>")
+	var/had_waste = bowl_urine || bowl_feces
 	var/datum/reagents/spilled = new(TOILET_FLUSH_VOLUME + bowl_urine + 10, NO_REACT)
-	spilled.add_reagent(reagent_id, TOILET_FLUSH_VOLUME, no_react = TRUE)
+	if(flushed?.total_volume)
+		flushed.trans_to(spilled, flushed.total_volume, no_react = TRUE)
+	else
+		spilled.add_reagent(reagent_id, TOILET_FLUSH_VOLUME, no_react = TRUE)
 	if(bowl_urine)
-		spilled.add_reagent(/datum/reagent/ammonia/urine, bowl_urine, reagtemp = T20C, no_react = TRUE)
+		spilled.add_reagent(bowl_urine_type, bowl_urine, reagtemp = T20C, no_react = TRUE)
 	T.spill_reagents(spilled)
 	qdel(spilled)
 	for(var/i in 1 to min(bowl_feces, TOILET_OVERFLOW_MAX_FECES))
 		new /obj/effect/decal/cleanable/feces(T)
 	bowl_urine = 0
 	bowl_feces = 0
+	if(!had_waste) // czysta woda nikogo nie brzydzi
+		return
 	for(var/mob/living/L in viewers(7, T))
 		if(!L.censors_bodily_functions())
 			L.adjust_disgust(DISGUST_LEVEL_GROSS)

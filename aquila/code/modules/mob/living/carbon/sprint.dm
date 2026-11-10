@@ -14,7 +14,15 @@
 	if(m_intent != MOVE_INTENT_RUN)
 		return FALSE
 	var/datum/component/carbon_sprint/sprint = GetComponent(/datum/component/carbon_sprint)
-	return sprint?.sprinting
+	// Prawdziwy krok sprintu przed chwilą: sama flaga zostaje, póki gracz trzyma klawisz, także na stojąco
+	return sprint?.sprinted_recently(SPRINT_RECENT_STEP_WINDOW)
+
+/// Poślizg w sprincie rzuca o kafel dalej, ale nie w ścianę, maszynę, człowieka ani kryształ supermaterii
+/mob/living/carbon/proc/sprint_slip_slide(direction)
+	var/turf/target = get_step(src, direction)
+	if(!target || is_blocked_turf(target))
+		return
+	AddComponent(/datum/component/force_move, target, FALSE)
 
 ///Prędkość sprintu nadpisuje prędkość biegu z configu
 /mob/living/carbon/update_move_intent_slowdown()

@@ -144,9 +144,15 @@
 	playsound(T, 'sound/machines/twobeep.ogg', 40, TRUE)
 	qdel(src)
 
-/// Woźny dostaje nadajnik pompy w plecaku (Monke: janitor.dm)
-/datum/outfit/job/janitor
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced = 1, /obj/item/liquid_pump_beacon = 1)
+/// Woźny dostaje nadajnik pompy w plecaku (Monke: janitor.dm). Przy profesji, nie w stroju:
+/// /datum/outfit/job/janitor noszą też zombie KNPC i inne warianty, które nadajnika dostać nie powinny.
+/datum/job/janitor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	. = ..()
+	if(!istype(H))
+		return
+	var/obj/item/liquid_pump_beacon/beacon = new(H)
+	if(!H.equip_to_slot_if_possible(beacon, ITEM_SLOT_BACKPACK, disable_warning = TRUE))
+		H.put_in_hands(beacon)
 
 /// Monke: monkestation/code/modules/cargo/packs/service.dm
 /datum/supply_pack/service/liquid_pump

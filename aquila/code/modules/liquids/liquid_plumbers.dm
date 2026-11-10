@@ -191,7 +191,13 @@
 	var/datum/liquid_group/targeted_group = affected_turf.liquids.liquid_group
 	if(!targeted_group.reagents_per_turf)
 		return
-	var/turfs_to_pull = round(target_value / targeted_group.reagents_per_turf,1)
+	// AQUILA - w dół: w Monke round(..., 1) dawał 0 przy głębokiej cieczy, a 0 w return_connected_liquids_in_range
+	// znaczy „bez limitu”, więc pompa kasowała całą kałużę. Mniej niż kafel cieczy: kałuża tylko płycieje.
+	var/turfs_to_pull = round(target_value / targeted_group.reagents_per_turf)
+	if(turfs_to_pull < 1)
+		targeted_group.trans_to_seperate_group(reagents, target_value, merge = TRUE)
+		targeted_group.update_volume_cache()
+		return
 
 	var/list/removed_turfs = targeted_group.return_connected_liquids_in_range(affected_turf.liquids, turfs_to_pull)
 	targeted_group.trans_to_seperate_group(reagents, target_value, merge = TRUE)

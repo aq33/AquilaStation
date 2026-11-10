@@ -71,7 +71,10 @@
 	)
 
 /datum/round_event/scrubber_overflow/announce(fake)
-	priority_announce("W sieci scrubberów wystąpił skok ciśnienia zwrotnego. Możliwe wyrzuty zawartości.", "Dział inżynierii [command_name()]")
+	// kill() w setup() nie zatrzymuje eventu (round_event/New dodaje go do SSevents.running po setup), więc bez oczyszczaczy milczymy tutaj
+	if(!fake && !length(scrubbers))
+		return
+	priority_announce("W sieci oczyszczaczy powietrza wystąpił skok ciśnienia zwrotnego. Możliwe wyrzuty zawartości.", "Dział inżynierii [command_name()]")
 
 /datum/round_event/scrubber_overflow/setup()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent in GLOB.machines)
@@ -81,8 +84,6 @@
 		if(!prob(overflow_probability))
 			continue
 		scrubbers += temp_vent
-	if(!length(scrubbers))
-		return kill()
 
 /// proc that will run the prob check of the event and return a safe or dangerous reagent based off of that.
 /datum/round_event/scrubber_overflow/proc/get_overflowing_reagent(dangerous)

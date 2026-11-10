@@ -1838,6 +1838,7 @@
 #include "code\modules\unit_tests\aquila_audyt_antagi.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_0711.dm"
 #include "code\modules\unit_tests\aquila_liquids.dm"
+#include "code\modules\unit_tests\aquila_liquids_review.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_0711.dm"
 #include "code\modules\unit_tests\aquila_audyt_interfejs.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
