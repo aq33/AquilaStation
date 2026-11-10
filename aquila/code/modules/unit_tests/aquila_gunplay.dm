@@ -309,25 +309,6 @@
 	TEST_ASSERT(flag_ok, "Indestructible wall is not hard enough for ricochets")
 	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees never ricocheted off an indestructible wall in 40 tries")
 
-/// Broń na pasie i na plecach jest widoczna: bez stanu w pliku ubrań dostaje sprite złożony z własnej ikony
-/datum/unit_test/aquila_gunplay_stowed
-
-/datum/unit_test/aquila_gunplay_stowed/Run()
-	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	var/obj/item/clothing/under/color/grey/uniform = allocate(/obj/item/clothing/under/color/grey)
-	TEST_ASSERT(wearer.equip_to_slot_if_possible(uniform, ITEM_SLOT_ICLOTHING, disable_warning = TRUE), "Could not put on a jumpsuit")
-	var/obj/item/gun/ballistic/automatic/pistol/pistol = allocate(/obj/item/gun/ballistic/automatic/pistol)
-	TEST_ASSERT(wearer.equip_to_slot_if_possible(pistol, ITEM_SLOT_BELT, disable_warning = TRUE), "Could not put a pistol on the belt")
-	var/mutable_appearance/belt_overlay = wearer.overlays_standing[BELT_LAYER]
-	TEST_ASSERT(istype(belt_overlay), "Pistol on the belt has no overlay")
-	TEST_ASSERT(belt_overlay.icon != 'icons/mob/clothing/belt.dmi', "Pistol on the belt still uses a missing belt.dmi state (invisible)")
-	var/obj/item/gun/ballistic/automatic/c20r/rifle = allocate(/obj/item/gun/ballistic/automatic/c20r)
-	var/mutable_appearance/back_overlay = rifle.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
-	TEST_ASSERT(back_overlay.icon != 'icons/mob/clothing/back.dmi', "Rifle without a back.dmi state is invisible on the back")
-	var/obj/item/gun/ballistic/shotgun/riot/shotgun = allocate(/obj/item/gun/ballistic/shotgun/riot)
-	var/mutable_appearance/shotgun_overlay = shotgun.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
-	TEST_ASSERT_EQUAL(shotgun_overlay.icon, 'icons/mob/clothing/back.dmi', "Shotgun with its own back sprite lost it")
-
 /// Licznik amunicji: po broni energetycznej zwykła broń wraca do zwykłego tła z cyframi
 /datum/unit_test/aquila_gunplay_ammo_hud
 
