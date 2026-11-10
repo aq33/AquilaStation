@@ -27,10 +27,14 @@
 	var/next_loot_search = 0
 	/// Trwa zakładanie kajdanek (do_mob usypia)
 	var/cuffing = FALSE
+	/// Wybrany jeniec (weakref) i kiedy szukać następnego
+	var/datum/weakref/prisoner_target
+	var/next_prisoner_search = 0
 
 /datum/component/knpc/Destroy(force, silent)
 	cover_turf = null
 	loot_target = null
+	prisoner_target = null
 	return ..()
 
 // ---------- Osłony ----------
@@ -118,11 +122,7 @@
 /// Kajdanki lub opaski przy sobie albo w plecaku (bez tych, które sami mamy na rękach)
 /datum/component/knpc/proc/find_cuffs()
 	var/mob/living/carbon/human/H = parent
-	var/list/expanded_contents = H.contents.Copy()
-	var/obj/item/storage/S = H.back
-	if(S)
-		expanded_contents += S.contents
-	for(var/obj/item/restraints/handcuffs/cuffs in expanded_contents)
+	for(var/obj/item/restraints/handcuffs/cuffs in carried_items())
 		if(cuffs != H.handcuffed)
 			return cuffs
 
@@ -141,6 +141,8 @@
 	if(get_dist(H, target) > 1)
 		// Nieosiągalny (za szybą, za zamkniętymi drzwiami): zostawiamy go zwykłej walce
 		return pathfind_to(target) != KNPC_PATHFIND_FAIL
+	path = list() // inaczej next_path_step() wchodzi na pole leżącego i przerywa do_mob
+	dest = null
 	INVOKE_ASYNC(src, PROC_REF(do_cuff), cuffs, target)
 	return TRUE
 
@@ -184,20 +186,39 @@
 	var/mob/living/carbon/human/H = HA.parent
 	if(H.incapacitated() || length(get_aggressors(HA)) || !HA.find_cuffs())
 		return 0
-	return find_prisoner(HA) ? score : 0
+	return get_prisoner(HA) ? score : 0
+
+/// Zapamiętany jeniec, jeśli nadal się nadaje; nowe szukanie (view) najwyżej co KNPC_LOOT_SEARCH_DELAY
+/datum/ai_goal/human/secure_prisoner/proc/get_prisoner(datum/component/knpc/HA)
+	var/mob/living/carbon/human/H = HA.parent
+	var/mob/living/carbon/human/prisoner = HA.prisoner_target?.resolve()
+	if(prisoner && is_valid_prisoner(HA, prisoner) && get_dist(H, prisoner) <= KNPC_LOOT_RANGE)
+		return prisoner
+	HA.prisoner_target = null
+	if(world.time < HA.next_prisoner_search)
+		return null
+	HA.next_prisoner_search = world.time + KNPC_LOOT_SEARCH_DELAY
+	prisoner = find_prisoner(HA)
+	if(prisoner)
+		HA.prisoner_target = WEAKREF(prisoner)
+	return prisoner
+
+/datum/ai_goal/human/secure_prisoner/proc/is_valid_prisoner(datum/component/knpc/HA, mob/living/carbon/human/victim)
+	var/mob/living/carbon/human/H = HA.parent
+	if(QDELETED(victim) || victim == H || victim.stat == DEAD || victim.handcuffed || istype(victim, /mob/living/carbon/human/ai_boarder))
+		return FALSE
+	if(WEAKREF(victim) in HA.unreachable_items)
+		return FALSE
+	if(victim.stat == CONSCIOUS && !victim.incapacitated())
+		return FALSE
+	return !H.faction_check_mob(victim)
 
 /datum/ai_goal/human/secure_prisoner/proc/find_prisoner(datum/component/knpc/HA)
 	var/mob/living/carbon/human/H = HA.parent
 	var/mob/living/carbon/human/best = null
 	var/best_dist = INFINITY
 	for(var/mob/living/carbon/human/victim in view(KNPC_LOOT_RANGE, H))
-		if(victim == H || victim.stat == DEAD || victim.handcuffed || istype(victim, /mob/living/carbon/human/ai_boarder))
-			continue
-		if(WEAKREF(victim) in HA.unreachable_items)
-			continue
-		if(victim.stat == CONSCIOUS && !victim.incapacitated())
-			continue
-		if(H.faction_check_mob(victim))
+		if(!is_valid_prisoner(HA, victim))
 			continue
 		var/dist = get_dist(H, victim)
 		if(dist < best_dist)
@@ -208,12 +229,13 @@
 /datum/ai_goal/human/secure_prisoner/action(datum/component/knpc/HA)
 	if(!can_action(HA))
 		return
-	var/mob/living/carbon/human/prisoner = find_prisoner(HA)
+	var/mob/living/carbon/human/prisoner = get_prisoner(HA)
 	if(prisoner && !HA.try_cuff(prisoner))
 		// Nie da się dojść: na minutę pomijamy go tak jak nieosiągalne przedmioty
 		if(!HA.unreachable_items)
 			HA.unreachable_items_reset_at = world.time + 1 MINUTES
 		LAZYOR(HA.unreachable_items, WEAKREF(prisoner))
+		HA.prisoner_target = null
 
 // ---------- Zbieranie sprzętu ----------
 
@@ -233,13 +255,8 @@
 	return FALSE
 
 /datum/component/knpc/proc/count_spare_magazines(obj/item/gun/ballistic/B)
-	var/mob/living/carbon/human/H = parent
-	var/list/expanded_contents = H.contents.Copy()
-	var/obj/item/storage/S = H.back
-	if(S)
-		expanded_contents += S.contents
 	. = 0
-	for(var/obj/item/ammo_box/magazine/M in expanded_contents)
+	for(var/obj/item/ammo_box/magazine/M in carried_items())
 		if(M != B.magazine && istype(M, B.mag_type) && M.ammo_count())
 			.++
 
@@ -267,6 +284,10 @@
 		for(var/obj/item/I in candidates)
 			if(WEAKREF(I) in unreachable_items)
 				continue
+			if(iscarbon(I.loc))
+				var/mob/living/carbon/owner = I.loc
+				if(I == owner.handcuffed || I == owner.legcuffed)
+					continue // nie zdejmujemy kajdanek z rąk zwłok
 			if(!wants_item(I))
 				continue
 			best = I

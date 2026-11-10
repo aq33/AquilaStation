@@ -48,6 +48,10 @@
 	ai.tactical_move(enemy)
 	TEST_ASSERT_EQUAL(get_dist(boarder, enemy), 3, "Armed boarder 2 tiles from the enemy should step back to 3 tiles")
 	TEST_ASSERT(!length(ai.path), "Armed boarder in range should not keep a path towards the enemy")
+	enemy.Paralyze(20 SECONDS)
+	ai.next_move = 0
+	ai.tactical_move(enemy)
+	TEST_ASSERT_EQUAL(ai.dest, get_turf(enemy), "Armed boarder does not walk up to an incapacitated enemy (ID theft, cuffing)")
 
 /// AQUILA - przy krytycznym zdrowiu medipen wygrywa z walką, przy lekkich ranach nie
 /datum/unit_test/aquila_knpc_heals_in_combat
@@ -93,12 +97,31 @@
 
 	door.close()
 	door.obj_integrity = door.max_integrity
+	ai.path = list(door_turf)
+	ai.next_door_action = world.time + 10 SECONDS
+	ai.tries = 0
+	ai.next_move = 0
+	TEST_ASSERT(ai.handle_blocking_door(), "Door basher between hits should keep waiting at the door")
+	TEST_ASSERT(ai.next_path_step() == FALSE && ai.tries == 0, "Door basher between hits walked into the door (tries [ai.tries])")
+	door.open(2)
+
+	door.close()
+	door.obj_integrity = door.max_integrity
 	TEST_ASSERT(door.density, "Test airlock did not close again")
 	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
 	ai.path = list(door_turf)
 	ai.next_door_action = 0
 	TEST_ASSERT(ai.handle_blocking_door(), "Door hacker did not act on an airlock it has no access to")
 	TEST_ASSERT(ai.hacking_door, "Door hacker did not start hacking")
+	ai.path = list() // walka albo odwrót skasowały trasę przez drzwi
+	TEST_ASSERT(!ai.handle_blocking_door(), "Door hacker without a path through the door still stands at it")
+	TEST_ASSERT(!ai.hacking_door, "Hacking was not cancelled when the path changed")
+	ai.finish_door_hack(WEAKREF(door))
+	TEST_ASSERT(door.density, "A cancelled hack still opened the airlock")
+
+	ai.path = list(door_turf)
+	ai.next_door_action = 0
+	TEST_ASSERT(ai.handle_blocking_door() && ai.hacking_door, "Door hacker did not restart hacking")
 	ai.finish_door_hack(WEAKREF(door))
 	TEST_ASSERT(!ai.hacking_door, "Hacking flag stayed set after the hack finished")
 	TEST_ASSERT(!door.density, "Door hacker failed to open the airlock")
@@ -130,6 +153,10 @@
 		qdel(old_ears)
 	boarder.equip_to_slot_or_del(new /obj/item/radio/headset/syndicate/alt(boarder), ITEM_SLOT_EARS)
 	TEST_ASSERT(boarder.get_eye_protection() >= 1 && boarder.get_ear_protection() >= 1, "Test boarder is still unprotected (eyes [boarder.get_eye_protection()], ears [boarder.get_ear_protection()], species [boarder.dna?.species?.type], glasses [boarder.glasses?.type], eye organ [boarder.getorganslot(ORGAN_SLOT_EYES)?.type])")
+	var/obj/structure/barricade/wooden/blocker = allocate(/obj/structure/barricade/wooden, locate(base.x + 3, base.y + 1, base.z))
+	ai.next_grenade = 0
+	TEST_ASSERT(!ai.try_throw_grenade(enemy, enemies), "Boarder threw a grenade into a barricade standing on its path")
+	qdel(blocker)
 	ai.next_grenade = 0
 	TEST_ASSERT(ai.try_throw_grenade(enemy, enemies), "Protected boarder did not throw a flashbang at a group of enemies")
 	TEST_ASSERT(flash.active && !boarder.is_holding(flash), "The thrown grenade should be the primed flashbang")
@@ -244,6 +271,23 @@
 	ai.unreachable_items_reset_at = world.time - 1
 	ai.expire_unreachable()
 	TEST_ASSERT_EQUAL(secure.find_prisoner(ai), victim, "An armed boarder never forgets an unreachable prisoner")
+
+/// AQUILA - boarder bez kajdanek nie zdejmuje ich z rąk zakutych zwłok
+/datum/unit_test/aquila_knpc_no_cuffs_from_corpse
+
+/datum/unit_test/aquila_knpc_no_cuffs_from_corpse/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/body = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/restraints/handcuffs/cuffs = allocate(/obj/item/restraints/handcuffs)
+	cuffs.forceMove(body)
+	body.handcuffed = cuffs
+	body.update_handcuffed()
+	TEST_ASSERT(body.handcuffed, "Could not cuff the test body")
+	body.death()
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(!ai.find_cuffs(), "Test boarder already has cuffs")
+	TEST_ASSERT(!ai.find_loot(), "Boarder wants the handcuffs on a corpse's wrists")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

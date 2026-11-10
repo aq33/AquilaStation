@@ -42,6 +42,8 @@
 	var/next_door_action = 0
 	/// Trwa hakowanie drzwi
 	var/hacking_door = FALSE
+	/// Hakowane drzwi (weakref)
+	var/datum/weakref/hack_target
 	var/next_fall_back_shout = 0
 	/// Karta ze wszystkimi dostępami stacji, tylko do planowania trasy boarderów wyłamujących drzwi
 	var/static/obj/item/card/id/breach_card
@@ -109,10 +111,12 @@
 	return best
 
 /// Ruch w walce: z bronią palną trzyma dystans KNPC_RANGE_MIN–KNPC_RANGE_MAX, bez niej (albo bez linii strzału) podchodzi.
+/// Do obezwładnionego wroga podchodzi zawsze: kradzież ID, zakucie i dobijanie w engage_targets wymagają stania obok.
 /datum/component/knpc/proc/tactical_move(atom/movable/target)
 	var/mob/living/carbon/human/ai_boarder/H = parent
 	var/obj/item/gun/G = H.get_active_held_item()
-	if(!istype(G) || !G.can_shoot())
+	var/mob/living/living_target = isliving(target) ? target : null
+	if(!istype(G) || !G.can_shoot() || living_target?.incapacitated())
 		cover_turf = null
 		return pathfind_to(target)
 	if(try_take_cover(target)) // aquila/code/modules/knpc/knpc_cover_loot.dm
@@ -152,6 +156,8 @@
 	if(dist < 3 || dist > 7 || H.incapacitated() || !isturf(H.loc) || !can_see(H, target, view_range))
 		return FALSE
 	var/turf/target_turf = get_turf(target)
+	if(!throw_path_clear(target_turf))
+		return FALSE // granat zatrzymałby się po drodze, bliżej nas i kolegów
 	var/enemies_near = 0
 	for(var/atom/movable/enemy as anything in enemies)
 		if(get_dist(enemy, target_turf) <= 2)
@@ -184,6 +190,19 @@
 	nade.throw_at(target_turf, 7, 1, H)
 	return TRUE
 
+/// Czy rzucony przedmiot doleci do T: między nami a T nie ma ściany ani gęstego obiektu (przez stoły się przerzuca)
+/datum/component/knpc/proc/throw_path_clear(turf/T)
+	var/mob/living/H = parent
+	var/list/line = getline(get_turf(H), T)
+	for(var/i in 2 to length(line) - 1)
+		var/turf/step = line[i]
+		if(step.density)
+			return FALSE
+		for(var/atom/movable/AM in step)
+			if(AM.density && !(AM.pass_flags_self & LETPASSTHROW))
+				return FALSE
+	return TRUE
+
 /// Czy w promieniu range od T stoi ktoś żywy z naszej frakcji (z nami włącznie)
 /datum/component/knpc/proc/friendlies_near(turf/T, range)
 	var/mob/living/H = parent
@@ -202,14 +221,17 @@
 			return FALSE
 	return TRUE
 
-/// Granat noszony przy sobie lub w plecaku: lethal = wybuchowy/odłamkowy, inaczej hukowy
-/datum/component/knpc/proc/find_grenade(lethal = TRUE)
+/// Przedmioty przy sobie i w plecaku (kopia: dopisanie do H.contents przeniosłoby przedmiot)
+/datum/component/knpc/proc/carried_items()
 	var/mob/living/carbon/human/H = parent
-	var/list/expanded_contents = H.contents.Copy()
+	. = H.contents.Copy()
 	var/obj/item/storage/S = H.back
 	if(S)
-		expanded_contents += S.contents
-	for(var/obj/item/grenade/nade in expanded_contents)
+		. += S.contents
+
+/// Granat noszony przy sobie lub w plecaku: lethal = wybuchowy/odłamkowy, inaczej hukowy
+/datum/component/knpc/proc/find_grenade(lethal = TRUE)
+	for(var/obj/item/grenade/nade in carried_items())
 		if(nade.active || nade.dud_flags)
 			continue
 		if(lethal)
@@ -220,12 +242,7 @@
 
 /// Medipen z zawartością noszony przy sobie lub w plecaku
 /datum/component/knpc/proc/find_medipen()
-	var/mob/living/carbon/human/H = parent
-	var/list/expanded_contents = H.contents.Copy()
-	var/obj/item/storage/S = H.back
-	if(S)
-		expanded_contents += S.contents
-	for(var/obj/item/reagent_containers/hypospray/medipen/survival/P in expanded_contents)
+	for(var/obj/item/reagent_containers/hypospray/medipen/survival/P in carried_items())
 		if(P.reagents?.total_volume)
 			return P
 
@@ -287,15 +304,17 @@
 /// Drzwi na następnym polu trasy, których nie otworzymy normalnie: hakowanie albo wyważanie.
 /// Zwraca TRUE, gdy boarder zajmuje się drzwiami i nie powinien iść dalej.
 /datum/component/knpc/proc/handle_blocking_door()
-	if(hacking_door)
-		return TRUE
-	if(!length(path) || world.time < next_door_action)
+	if(!length(path))
+		if(hacking_door)
+			cancel_door_hack() // trasa się zmieniła (walka, odwrót): nie stoimy przy drzwiach
 		return FALSE
 	var/mob/living/carbon/human/ai_boarder/H = parent
 	if(!istype(H) || !(H.knpc_traits & (KNPC_IS_DOOR_BASHER | KNPC_IS_DOOR_HACKER)) || H.incapacitated() || !isturf(H.loc))
 		return FALSE
 	var/turf/next_turf = get_step_towards(H, path[1])
 	if(!next_turf || next_turf == H.loc)
+		if(hacking_door)
+			cancel_door_hack()
 		return FALSE
 	var/obj/machinery/door/D = null
 	for(var/obj/machinery/door/candidate in next_turf)
@@ -303,13 +322,21 @@
 			continue
 		D = candidate
 		break
+	if(hacking_door)
+		if(D && hack_target?.resolve() == D)
+			return TRUE // dalej hakujemy drzwi, przez które idzie trasa
+		cancel_door_hack()
 	if(!D)
 		return FALSE
 	if(!D.welded && !D.locked && D.hasPower() && D.allowed(H))
 		return FALSE // otworzy się samo przy wejściu
+	// 2. Przerwa między uderzeniami: czekamy przy drzwiach, zamiast oddawać ruch core (wchodził w drzwi i nabijał tries)
+	if(world.time < next_door_action)
+		return TRUE
 	H.face_atom(D)
 	if((H.knpc_traits & KNPC_IS_DOOR_HACKER) && !D.welded)
 		hacking_door = TRUE
+		hack_target = WEAKREF(D)
 		H.visible_message("<span class='warning'>[H] zdejmuje osłonę panelu [D] i zaczyna przy nim majstrować!</span>")
 		playsound(D, 'sound/items/screwdriver.ogg', 50, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(finish_door_hack), WEAKREF(D)), KNPC_HACK_TIME)
@@ -324,8 +351,15 @@
 		H.visible_message("<span class='danger'>[H] wyważa [D]!</span>")
 	return TRUE
 
-/datum/component/knpc/proc/finish_door_hack(datum/weakref/door_ref)
+/// Przerywa hakowanie: timer finish_door_hack() potem nic nie zrobi
+/datum/component/knpc/proc/cancel_door_hack()
 	hacking_door = FALSE
+	hack_target = null
+
+/datum/component/knpc/proc/finish_door_hack(datum/weakref/door_ref)
+	if(!hacking_door || hack_target != door_ref)
+		return // przerwane albo to stary timer
+	cancel_door_hack()
 	var/mob/living/carbon/human/H = parent
 	var/obj/machinery/door/D = door_ref?.resolve()
 	if(!D || QDELETED(H) || H.incapacitated() || get_dist(H, D) > 1 || !D.density || D.welded)
