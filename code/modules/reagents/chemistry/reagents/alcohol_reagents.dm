@@ -250,7 +250,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	shot_glass_icon_state = "shotglassclear"
 
 /datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/carbon/M)
-	M.radiation = max(M.radiation-2,0)
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442
+	irradiated_component?.adjust_intensity(-2 * RAD_LEGACY_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442
 	return ..()
 
 /datum/reagent/consumable/ethanol/bilk
@@ -557,7 +558,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/screwdrivercocktail/on_mob_life(mob/living/carbon/M)
 	if(M.mind && (M.mind.assigned_role in list(JOB_NAME_STATIONENGINEER, JOB_NAME_ATMOSPHERICTECHNICIAN, JOB_NAME_CHIEFENGINEER))) //Engineers lose radiation poisoning at a massive rate.
-		M.radiation = max(M.radiation - 25, 0)
+		if(HAS_TRAIT(M, TRAIT_IRRADIATED)) // AQ EDIT - promieniowanie z Bee#13442: inżynier leczy toksyny, gdy jest napromieniowany
+			M.adjustToxLoss(-2 * REM, 0) // AQ EDIT - promieniowanie z Bee#13442
 	return ..()
 
 /datum/reagent/consumable/ethanol/booger

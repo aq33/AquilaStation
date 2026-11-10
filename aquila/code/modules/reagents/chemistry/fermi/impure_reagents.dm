@@ -145,8 +145,9 @@
 /datum/reagent/inverse/pen_acid/on_mob_life(mob/living/carbon/M)
 	holder.remove_reagent(/datum/reagent/medicine/potass_iodide, 40 * REM, TRUE)
 	holder.remove_reagent(/datum/reagent/medicine/charcoal, 40 * REM, TRUE)
-	if(M.radiation > 0)
-		M.radiation += 5
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		irradiated_component.adjust_intensity(1)
 		M.Jitter(10)
 		M.adjust_disgust(5)
 		if(prob(5))

@@ -865,7 +865,7 @@
 
 // Prąd nie odbija się od niczego: bez tego w nieważkości demon stawał bez oparcia, dryfował wzdłuż kabli
 // i wystrzeliwał kanistry, od których „odpychał się” (Process_Spacemove w mob_movement.dm)
-/mob/living/simple_animal/pulse_demon/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/pulse_demon/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 // Nic nie przepycha: zablokowany ruch po kablu kończy się forceMove pod przeszkodę (Move), a kanister zostaje na miejscu

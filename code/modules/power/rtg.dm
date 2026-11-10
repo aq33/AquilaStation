@@ -28,7 +28,7 @@
 	..()
 	add_avail(power_gen)
 	if(panel_open && irradiate)
-		radiation_pulse(src, 60)
+		radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 1) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0

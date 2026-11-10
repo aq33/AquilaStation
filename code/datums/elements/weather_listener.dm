@@ -27,6 +27,13 @@
 	RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_z_level_change), TRUE)
 	RegisterSignal(target, COMSIG_MOB_LOGOUT, PROC_REF(handle_logout), TRUE)
 
+	// AQ EDIT START - Bee#13796: kto już jest na pasującym poziomie, od razu słyszy pętlę (bez zmiany poziomu)
+	if(ismovable(target))
+		var/turf/T = get_turf(target)
+		if(T && (T.z in SSmapping.levels_by_trait(weather_trait)))
+			handle_z_level_change(target, T.z, T.z)
+	// AQ EDIT END
+
 /datum/element/weather_listener/Detach(datum/source)
 	. = ..()
 	UnregisterSignal(source, COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_LOGOUT)

@@ -32,7 +32,7 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 
-/mob/living/simple_animal/hostile/retaliate/dolphin/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/retaliate/dolphin/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return TRUE
 
 /mob/living/simple_animal/hostile/retaliate/dolphin/AttackingTarget()

@@ -62,7 +62,7 @@
 /datum/munition_trait/radioactive/on_hit(obj/item/projectile/P, atom/target, datum/component/forged_munition/forged)
 	if(isliving(target))
 		var/mob/living/L = target
-		L.apply_effect(round(30 * power), EFFECT_IRRADIATE)
+		SSradiation.irradiate(L, intensity = 30 * power * RAD_LEGACY_TO_INTENSITY)
 
 /datum/munition_trait/incendiary
 	name = "zapalająca"

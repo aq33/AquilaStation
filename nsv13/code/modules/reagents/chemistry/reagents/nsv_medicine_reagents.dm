@@ -7,6 +7,11 @@
 
 /datum/reagent/medicine/radioactive_disinfectant/on_mob_life(mob/living/carbon/M)
 	// Reskinned potassium iodide for synthetics
-	if(M.radiation > 0)
-		M.radiation -= min(M.radiation, 8)
+	// AQ EDIT START - promieniowanie z Bee#13442: jak jodek potasu
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		irradiated_component.adjust_intensity(-1)
+		M.adjustToxLoss(-1 * REM, 0)
+		. = TRUE
+	// AQ EDIT END
 	..()

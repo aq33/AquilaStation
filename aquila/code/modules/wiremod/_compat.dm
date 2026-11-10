@@ -88,9 +88,6 @@
 /proc/find_functional_ntnet_relay()
 	return SSnetworks.station_network?.check_function()
 
-/// Regiony dostępu jak w oknie elektroniki śluzy (1-8, z amunicją NSV13).
-#define WIREMOD_ACCESS_REGIONS 8
-
 /// Dane regionu dla okna AccessConfig w TGUI.
 /proc/wiremod_region_tgui(name, list/accesses)
 	var/list/entries = list()
@@ -108,13 +105,11 @@
 		"accesses" = entries,
 	)
 
-/// Dostępy regionu po nazwie z okna (TGUI wysyła nazwę regionu).
+/// Dostępy grupy działu (stacja albo Centrala) po nazwie z okna (TGUI wysyła nazwę regionu).
 /proc/wiremod_region_accesses(region_name)
-	if(region_name == "CentCom")
-		return get_all_centcom_access()
-	for(var/region in 1 to WIREMOD_ACCESS_REGIONS)
-		if(get_region_accesses_name(region) == region_name)
-			return get_region_accesses(region)
+	for(var/datum/department_group/each_dept as anything in SSdepartment.get_department_by_bitflag(DEPARTMENT_BITFLAG_STATIONS | DEPARTMENT_BITFLAG_CENTCOM))
+		if(each_dept.access_group_name == region_name)
+			return each_dept.access_list.Copy()
 	return list()
 
 /// Nakładka widoczna tylko dla jednej osoby (tg: one_person, u nas onePerson). Nasze add_alt_appearance nic nie zwraca.

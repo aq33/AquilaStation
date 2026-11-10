@@ -365,7 +365,7 @@ This section is for the destabilized crystal
 	if(!active)
 		return
 	if(prob(75))
-		radiation_pulse(src, 250, 6)
+		radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = 1)
 	if(prob(30))
 		playsound(loc, 'sound/weapons/emitter2.ogg', 100, TRUE, extrarange = 10)
 	if(prob(15))
@@ -410,7 +410,7 @@ This section is for the destabilized crystal
 		return TRUE
 	to_chat(user, "<span class='notice'>[src] gwałtownie reaguje z płynem!</span>")
 	fire_nuclear_particle()
-	radiation_pulse(src, 1000, 6)
+	radiation_pulse(src, max_range = 3, threshold = RAD_MEDIUM_INSULATION, intensity = 5)
 	if(!W.use_tool(src, user, 2 SECONDS, volume = 100) || !active) // the deadline may pass mid-injection
 		return TRUE
 	to_chat(user, "<span class='notice'>[src] został przywrócony i ustabilizowany!</span>")

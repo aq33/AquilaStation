@@ -68,7 +68,7 @@ Here we define the cargo crate, as well as the contents
 
 /obj/structure/closet/crate/large/cargo/nuke/Initialize(mapload)
   . = ..()
-  AddComponent(/datum/component/radioactive, 75)
+  AddElement(/datum/element/radioactive, 1, RAD_LIGHT_INSULATION, 1) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/structure/closet/crate/large/cargo/nuke/PopulateContents()
   var/list/l = list(/obj/machinery/nuclearbomb/nuke/fake_cargo)

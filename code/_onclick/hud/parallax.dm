@@ -66,6 +66,7 @@
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
+	C.do_parallax_animations = C.prefs?.parallax != PARALLAX_LOW // AQ EDIT - paralaksa (port BeeStation/BeeStation-Hornet#14864): na niskich bez animacji
 	if(C.prefs)
 		var/pref = C.prefs.parallax
 		if (isnull(pref))
@@ -207,6 +208,14 @@
 
 	var/last_delay = world.time - C.last_parallax_shift
 	last_delay = min(last_delay, C.parallax_throttle)
+	// AQ EDIT START - paralaksa (port BeeStation/BeeStation-Hornet#14864): warstwy ślizgają się tyle, ile ślizga się obiekt niosący oko
+	// (get_parallax_glide_rate() w aquila/code/_onclick/hud/parallax.dm); oko bez ślizgu (kamera overmapy) zostaje przy starym czasie
+	var/glide_rate = get_parallax_glide_rate(C.eye) || last_delay
+	var/largest_change = max(abs(offset_x), abs(offset_y))
+	var/max_allowed_dist = (glide_rate / world.tick_lag) + 1
+	// If we aren't already moving/don't allow parallax, have made some movement, and that movement was smaller then our "glide" size, animate
+	var/run_parallax = (C.do_parallax_animations && glide_rate && !new_parallax_movedir && C.dont_animate_parallax <= world.time && largest_change && largest_change <= max_allowed_dist)
+	// AQ EDIT END
 	C.previous_turf = posobj
 	C.last_parallax_shift = world.time
 
@@ -238,9 +247,13 @@
 				L.offset_y += 480
 
 
-		if(!new_parallax_movedir && C.dont_animate_parallax <= world.time && (offset_x || offset_y) && abs(offset_x) <= max(C.parallax_throttle/world.tick_lag+1,1) && abs(offset_y) <= max(C.parallax_throttle/world.tick_lag+1,1) && (round(abs(change_x)) > 1 || round(abs(change_y)) > 1))
+		// AQ EDIT START - paralaksa (port BeeStation/BeeStation-Hornet#14864)
+		// We're going to use a transform to "glide" that last movement out, so it looks nicer
+		// Don't do any animates if we're not actually moving enough distance yeah? thanks lad
+		if(run_parallax && (largest_change * L.speed > 1))
 			L.transform = matrix(1, 0, offset_x*L.speed, 0, 1, offset_y*L.speed)
-			animate(L, transform=matrix(), time = last_delay)
+			animate(L, transform=matrix(), time = glide_rate)
+		// AQ EDIT END
 
 		L.screen_loc = "CENTER-7:[round(L.offset_x,1)],CENTER-7:[round(L.offset_y,1)]"
 

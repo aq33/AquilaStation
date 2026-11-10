@@ -110,10 +110,6 @@
 	if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-/mob/living/carbon/human/handle_mutations_and_radiation()
-	if(!dna || !dna.species.handle_mutations_and_radiation(src))
-		..()
-
 /mob/living/carbon/human/breathe()
 	if(!dna.species.breathe(src))
 		..()
