@@ -17,8 +17,6 @@
 		/obj/item/trash/kabanosy,
 		/obj/item/food/parowka,
 		/obj/item/food/peto_parowek,
-		/obj/item/food/cmoparowka,
-		/obj/item/food/cmodog,
 	)
 	for(var/obj/item/path as anything in items)
 		var/icon_file = initial(path.icon)
@@ -42,7 +40,7 @@
 	var/obj/machinery/vending/snack/snack = allocate(/obj/machinery/vending/snack)
 	TEST_ASSERT(snack.products[/obj/item/food/kabanosy], "Kabanosów nie ma w automacie z przekąskami")
 
-	for(var/recipe_type in list(/datum/crafting_recipe/food/peto_parowek, /datum/crafting_recipe/food/cmoparowka, /datum/crafting_recipe/food/hotdog_parowka, /datum/crafting_recipe/food/cmodog))
+	for(var/recipe_type in list(/datum/crafting_recipe/food/peto_parowek, /datum/crafting_recipe/food/hotdog_parowka))
 		var/found = FALSE
 		for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
 			if(recipe.type == recipe_type)

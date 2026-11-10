@@ -21,7 +21,7 @@
 	result = /obj/item/food/ptasie_mleczko
 	subcategory = CAT_MISCFOOD
 
-// Przepisy z Polonium Station (polonium14/polonium-station): parówki, ćmoparówki i hot dogi.
+// Przepisy z Polonium Station (polonium14/polonium-station): parówki i hot dogi.
 
 /datum/crafting_recipe/food/peto_parowek
 	name = "Pęto parówek"
@@ -32,14 +32,6 @@
 	result = /obj/item/food/peto_parowek
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/cmoparowka
-	name = "Ćmoparówka"
-	reqs = list(
-		/obj/item/stack/sheet/cotton/cloth = 1,
-	)
-	result = /obj/item/food/cmoparowka
-	subcategory = CAT_MEAT
-
 /datum/crafting_recipe/food/hotdog_parowka
 	name = "Hot dog z parówką"
 	reqs = list(
@@ -48,14 +40,4 @@
 		/obj/item/food/parowka = 1,
 	)
 	result = /obj/item/food/hotdog
-	subcategory = CAT_SANDWICH
-
-/datum/crafting_recipe/food/cmodog
-	name = "Ćmodog"
-	reqs = list(
-		/datum/reagent/consumable/ketchup = 5,
-		/obj/item/food/bun = 1,
-		/obj/item/food/cmoparowka = 1,
-	)
-	result = /obj/item/food/cmodog
 	subcategory = CAT_SANDWICH

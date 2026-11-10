@@ -4,7 +4,7 @@
 	name = "Polonium: VIS, Alexis-BOR, kabanosy, parówki, Żabka Cafe"
 	pr = "aq33/AquilaStation#607"
 	description = "1) Broń: VIS MPS (ochrona i cywilny) w ręce i na pasku, strzel aż do pustego magazynka (odsunięty zamek), przeładuj, zmień tryb ognia. Makarow, pistolet kolekcjonerski i Winona mają stare sprite'y. Alexis-BOR: w rękach, na plecach, z magazynkiem i bez, celownik. \
-	2) Jedzenie: kabanosy z automatu z przekąskami (zostaje opakowanie). Z mięsa i kartki ulep pęto parówek, pokrój je nożem na stole na 4 parówki, zrób hot doga (bułka, parówka, keczup). Dla ćmy: ćmoparówka z kawałka tkaniny i ćmodog (bułka, ćmoparówka, keczup), ćma je chętnie. \
+	2) Jedzenie: kabanosy z automatu z przekąskami (zostaje opakowanie). Z mięsa i kartki ulep pęto parówek, pokrój je nożem na stole na 4 parówki, zrób hot doga (bułka, parówka, keczup). \
 	3) Szyldy: kliknij szyld baru z zapasowym ID kapitana w ręce i wybierz Żabka Cafe (animacja)."
 	items = list(
 		/obj/item/gun/ballistic/automatic/pistol/glock/security = 1,

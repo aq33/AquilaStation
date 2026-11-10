@@ -80,28 +80,3 @@
 
 /obj/item/food/peto_parowek/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/parowka, 4, 3 SECONDS, table_required = TRUE, screentip_verb = "Pokrój")
-
-/obj/item/food/cmoparowka
-	name = "ćmoparówka"
-	desc = "Bo ćmy też chcą skosztować parówek. Zrobiona z tkaniny."
-	icon = 'aquila/icons/obj/food/polskie.dmi'
-	icon_state = "cmoparowka"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	tastes = list("bawełna" = 2, "kurz" = 1)
-	foodtypes = CLOTH
-	food_flags = FOOD_FINGER_FOOD
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/food/cmodog
-	name = "ćmodog"
-	desc = "Mimo nazwy ten hot dog nie jest zrobiony z ćmy, tylko dla ćmy."
-	icon = 'aquila/icons/obj/food/polskie.dmi'
-	icon_state = "cmodog"
-	bite_consumption = 3
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 7,
-		/datum/reagent/consumable/ketchup = 3,
-	)
-	tastes = list("bułka" = 2, "bawełna" = 2)
-	foodtypes = GRAIN | CLOTH
-	w_class = WEIGHT_CLASS_SMALL
