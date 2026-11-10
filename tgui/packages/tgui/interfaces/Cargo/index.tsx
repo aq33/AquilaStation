@@ -27,7 +27,7 @@ const TAB_TITLES: Record<TAB, string> = {
 
 export function Cargo(props) {
   return (
-    <Window width={800} height={750}>
+    <Window width={1000} height={800}>
       <Window.Content>
         <CargoContent />
       </Window.Content>
