@@ -85,7 +85,8 @@ h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09
       <span><i class="dot" style="background:var(--opt)"></i>optyczny</span>
       <span><i class="dot" style="background:var(--ir)"></i>termiczny (IR)</span>
       <span><i class="dot" style="background:var(--lidar)"></i>lidar</span>
-      <span><i class="dot" style="background:var(--memory)"></i>ostatnia znana pozycja</span>
+      <span><i class="dot" style="background:var(--memory)"></i>ostatnia znana pozycja / cel tylko z meldunku floty (linia przerywana)</span>
+      <span>pierścień wokół okrętu i linia do celu: kolor sensora, którym go widzi</span>
       <span><i class="dot" style="background:var(--lidar)"></i>łuk przy okręcie: szpica floty</span>
       <span><i class="dot" style="background:var(--nt)"></i>Nanotrasen</span>
       <span><i class="dot" style="background:var(--syn)"></i>Syndykat</span>
@@ -260,6 +261,7 @@ function rysuj(){
   if(warstwy.trk) rysujSlady();
   if(warstwy.pls) rysujImpulsy(t);
   if(sel && warstwy.rng) rysujZasiegi(sel);
+  if(warstwy.cts) rysujCeleWszystkich(s, sel);
   if(sel && warstwy.cts) rysujKontakty(sel);
   if(sel && sel.sx) rysujPunktSzukania(sel);
 
@@ -341,7 +343,33 @@ function rysujZasiegi(sel){
   }
 }
 
-// Warstwa 2: do kogo wybrany okret ma kontakt i czym go trzyma
+// Warstwa 2a: kazdy okret i jego cel, linia w kolorze sensora, ktory ten cel trzyma.
+// Bez tego sensory bierne byly widoczne dopiero po kliknieciu w okret, a impulsy radaru
+// rysowaly sie dla wszystkich, wiec na podgladzie wygladalo, jakby AI mialo tylko radar.
+function rysujCeleWszystkich(lista, sel){
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i];
+    if(sh.tiny || !sh.target || (sel && sh.id === sel.id)) continue;
+    var cel = znajdzW(lista, sh.target);
+    if(!cel) continue;
+    var suite = null, cts = sh.cts || [];
+    for(var j = 0; j < cts.length; j++) if(cts[j].id === sh.target){ suite = cts[j].s; break; }
+    // Brak celu wsrod wlasnych kontaktow: okret zna go tylko z meldunku floty
+    var kol = suite ? SUITE_KOLOR[suite] : getCss("--memory");
+    var x1 = px(sh.x), y1 = py(sh.y), x2 = px(cel.x), y2 = py(cel.y);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = kol; ctx.lineWidth = 1.1;
+    ctx.globalAlpha = sel ? .18 : .45;
+    ctx.setLineDash(suite ? [] : [3, 4]);
+    ctx.stroke(); ctx.setLineDash([]);
+    // Pierscien wokol okretu: tym widzi swoj cel
+    ctx.beginPath(); ctx.arc(x1, y1, 7.5, 0, 6.2832);
+    ctx.lineWidth = 2; ctx.globalAlpha = sel ? .3 : .9; ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+}
+
+// Warstwa 2b: do kogo wybrany okret ma kontakt i czym go trzyma
 function rysujKontakty(sel){
   var cts = sel.cts || [];
   for(var i = 0; i < cts.length; i++){
