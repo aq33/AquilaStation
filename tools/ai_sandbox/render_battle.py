@@ -36,8 +36,26 @@ def zbuduj(nagranie, tytul):
     return szablon.replace("__TITLE__", tytul).replace("__DATA__", dane)
 
 
+# Serie bitew: prefiks pliku -> czytelny opis. Ta sama lista jest na stronie z bitwami (index.html na VDS),
+# zeby tytul odtwarzacza i opis serii mowily to samo.
+SERIE = [
+    ("S_wszystko_", "Przepustnica i skradanie: wszystko włączone"),
+    ("S_bez_dyscypliny_", "Przepustnica i skradanie: bez przepustnicy i oszczędnego boostu"),
+    ("R_poprawki_", "Poprawki ruchu: z poprawkami"),
+    ("R_bez_", "Poprawki ruchu: bez poprawek"),
+    ("fin_zwykla_", "Pełne AI (przed poprawkami ruchu)"),
+    ("fin_odniesienie_", "Odniesienie: AI bez nowych zachowań"),
+    ("fin_szpica_", "Szpica floty (przed poprawkami ruchu)"),
+    ("fin_zasadzka_", "Zasadzka (przed poprawkami ruchu)"),
+]
+
+
 def domyslny_tytul(sciezka):
     nazwa = os.path.splitext(os.path.basename(sciezka))[0]
+    for prefiks, opis in SERIE:
+        if nazwa.startswith(prefiks):
+            litera = nazwa[len(prefiks):]
+            return "%s, bitwa %s" % (opis, litera.upper()) if litera else opis
     return nazwa.replace("_", " ").strip().capitalize()
 
 
