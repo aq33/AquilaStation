@@ -34,3 +34,11 @@
 
 /proc/aq_html_entity(match)
 	return "&#[text2ascii(match)];"
+
+/// Restart natychmiastowy (admin, fast_track, restart z powodem) pomija Master.Shutdown(), więc panel czatu
+/// nie dostawał komunikatu o restarcie i nie łączył gracza ponownie po starcie nowego świata.
+/world/Reboot(reason = 0, fast_track = FALSE)
+	if(reason || fast_track)
+		for(var/client/restarting_client as anything in GLOB.clients)
+			restarting_client?.tgui_panel?.send_roundrestart()
+	return ..()
