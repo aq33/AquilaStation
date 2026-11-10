@@ -18760,5 +18760,14 @@
 "Tunele techniczne": "Maintenance",
 "Przyloty": "Arrivals",
 "Kwatery": "Dormitories",
-"Hangar": "Hangar"
+"Hangar": "Hangar",
+"<span class='warning'>Ostatniej drużyny nie da się rozwiązać.</span>": "<span class='warning'>The last squad cannot be disbanded.</span>",
+"Drużyna [squad.name] zostaje rozwiązana.": "Squad [squad.name] is being disbanded.",
+"Ciężki pancerz z płytami balistycznymi dla drużyn wysyłanych do walki. Chroni dużo lepiej od lekkiego, ale spowalnia.": "Heavy armor with ballistic plates for squads sent into combat. Protects much better than the light armor, but slows you down.",
+"ciężki pancerz": "heavy armor",
+"Rozwiąż drużynę: członkowie zostają bez drużyny": "Disband the squad: its members are left without a squad",
+"Jaki pancerz automat wydaje drużynie: ciężki chroni lepiej, ale spowalnia": "Which armor the vendor issues to the squad: heavy protects better but slows you down",
+"Pancerz ciężki": "Heavy armor",
+"Pancerz lekki": "Light armor",
+"Rozwiązać?": "Disband?"
 }

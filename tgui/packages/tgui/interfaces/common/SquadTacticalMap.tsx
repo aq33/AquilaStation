@@ -54,6 +54,7 @@ export type SquadInfo = {
   access_enabled: BooleanLike;
   weapons_clearance: BooleanLike;
   hidden: BooleanLike;
+  heavy_armor: BooleanLike;
   leader: string | null;
   leader_name: string | null;
   members: SquadMember[];

@@ -322,6 +322,7 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 		"access_enabled" = access_enabled,
 		"weapons_clearance" = weapons_clearance,
 		"hidden" = hidden,
+		"heavy_armor" = aq_heavy_armor,
 		"leader" = leader ? REF(leader) : null,
 		"leader_name" = leader?.real_name,
 		"members" = members_data,

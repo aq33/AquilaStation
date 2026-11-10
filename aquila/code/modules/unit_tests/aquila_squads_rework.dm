@@ -255,4 +255,46 @@
 	qdel(loan)
 	qdel(kit)
 
+/// Rozwiązanie drużyny (członkowie bez drużyny, pager bez kanału) i limit 10 drużyn
+/datum/unit_test/aquila_squad_delete_limit
+
+/datum/unit_test/aquila_squad_delete_limit/Run()
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/member = allocate(/mob/living/carbon/human)
+	var/datum/squad/doomed = GLOB.squad_manager.aq_create_squad("Golf", "#aa00aa")
+	TEST_ASSERT(doomed, "Nie powstała drużyna do rozwiązania")
+	doomed.add_member(member)
+	var/obj/item/squad_pager/pager = allocate(/obj/item/squad_pager, null, doomed)
+	TEST_ASSERT(GLOB.squad_manager.aq_delete_squad(doomed, officer), "Nie udało się rozwiązać drużyny")
+	TEST_ASSERT(!(doomed in GLOB.squad_manager.squads), "Rozwiązana drużyna została na liście")
+	TEST_ASSERT(!member.squad && !(member in doomed.members), "Członek rozwiązanej drużyny dalej w niej jest")
+	TEST_ASSERT(!pager.squad && !pager.squad_channel, "Pager rozwiązanej drużyny dalej jest na jej kanale")
+	var/list/created = list()
+	for(var/i in 1 to 12)
+		var/datum/squad/extra = GLOB.squad_manager.aq_create_squad("Limit[i]", "#101010")
+		if(extra)
+			created += extra
+	TEST_ASSERT(length(GLOB.squad_manager.squads) == 10, "Drużyn jest [length(GLOB.squad_manager.squads)] zamiast limitu 10")
+	for(var/datum/squad/extra as anything in created)
+		GLOB.squad_manager.aq_delete_squad(extra, officer)
+
+/// XO ustawia ciężki pancerz: automat wydaje go zamiast lekkiego, skrzynia i zwrot go przyjmują
+/datum/unit_test/aquila_squad_heavy_armor
+
+/datum/unit_test/aquila_squad_heavy_armor/Run()
+	var/datum/squad/squad = aq_squad("Charlie")
+	var/obj/machinery/squad_vendor/vendor = allocate(/obj/machinery/squad_vendor)
+	var/datum/squad_loadout/aquila/kit = new /datum/squad_loadout/aquila/nt/soldier
+	squad.aq_heavy_armor = TRUE
+	var/list/issued = vendor.aq_issued_items(kit, squad)
+	TEST_ASSERT((/obj/item/clothing/suit/ship/squad/aq_heavy in issued) && !(/obj/item/clothing/suit/ship/squad in issued), "Drużyna z ciężkim pancerzem dostaje lekki")
+	squad.aq_heavy_armor = FALSE
+	issued = vendor.aq_issued_items(kit, squad)
+	TEST_ASSERT((/obj/item/clothing/suit/ship/squad in issued) && !(/obj/item/clothing/suit/ship/squad/aq_heavy in issued), "Drużyna z lekkim pancerzem dostaje ciężki")
+	var/obj/item/storage/aq_squad_crate/crate = allocate(/obj/item/storage/aq_squad_crate)
+	var/obj/item/clothing/suit/ship/squad/aq_heavy/heavy = allocate(/obj/item/clothing/suit/ship/squad/aq_heavy)
+	var/datum/component/storage/storage = crate.GetComponent(/datum/component/storage)
+	TEST_ASSERT(is_type_in_typecache(heavy, storage.can_hold), "Skrzynia nie przyjmuje ciężkiego pancerza")
+	qdel(kit)
+
 #undef TEST_ASSERT

@@ -3,7 +3,7 @@
 // a wiadomości pokazują aktualną nazwę i kolor drużyny.
 
 /// Ile drużyn można mieć łącznie (cztery stałe + utworzone w konsoli)
-#define SQUAD_MAX_TOTAL 8
+#define SQUAD_MAX_TOTAL 10
 
 GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 
@@ -104,6 +104,40 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 /proc/aq_clean_squad_name(new_name)
 	new_name = trim(reject_bad_name(strip_html_simple(new_name), allow_numbers = TRUE, max_length = 20, ascii_only = FALSE))
 	return length(new_name) ? new_name : null
+
+/// Rozwiązuje drużynę: członkowie zostają bez drużyny, znaczniki znikają, pagery tracą kanał
+/// (dostroją się same, gdy właściciel dołączy do innej drużyny). Ostatniej drużyny nie da się usunąć.
+/datum/squad_manager/proc/aq_delete_squad(datum/squad/squad, mob/user)
+	if(!(squad in squads) || length(squads) <= 1)
+		return FALSE
+	squad.broadcast(squad, "Drużyna [squad.name] zostaje rozwiązana.", list('nsv13/sound/effects/notice2.ogg'))
+	for(var/mob/living/carbon/human/member as anything in squad.members.Copy())
+		squad.remove_member(member)
+		member.squad = null
+		member.aq_update_squad_hud()
+	for(var/marker_type in squad.aq_markers)
+		squad.aq_clear_marker(marker_type)
+	for(var/datum/component/simple_teamchat/radio_dependent/squad/channel as anything in GLOB.simple_teamchats[squad.aq_channel_key]?.Copy())
+		if(channel.squad != squad && channel != squad.squad_channel)
+			continue
+		var/obj/item/squad_pager/pager = channel.parent
+		if(istype(pager))
+			if(pager.squad_channel == channel)
+				pager.squad_channel = null
+			if(pager.squad == squad)
+				pager.squad = null
+		qdel(channel)
+	// pager dopisuje się do kanału sekundę po powstaniu, więc sprawdzamy też same pagery
+	for(var/obj/item/squad_pager/pager in world)
+		if(pager.squad != squad)
+			continue
+		if(pager.squad_channel)
+			QDEL_NULL(pager.squad_channel)
+		pager.squad = null
+	squads -= squad
+	LAZYREMOVEASSOC(role_squad_map, squad.role, squad)
+	log_game("[key_name(user)] disbanded squad [squad.name]")
+	return TRUE
 
 /datum/squad/proc/aq_rename(new_name, mob/user)
 	new_name = aq_clean_squad_name(new_name)

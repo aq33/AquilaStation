@@ -215,6 +215,13 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             tooltip="Zmień kolor drużyny"
             onClick={() => act('aq_recolour_squad', { squad_id: squad.id })}
           />
+          <Button.Confirm
+            icon="trash"
+            color="bad"
+            tooltip="Rozwiąż drużynę: członkowie zostają bez drużyny"
+            confirmContent="Rozwiązać?"
+            onClick={() => act('aq_delete_squad', { squad_id: squad.id })}
+          />
           <Button
             icon="bullhorn"
             tooltip="Rozkaz na ekran drużyny, z twoim portretem i głosem"
@@ -264,6 +271,16 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             onClick={() => act('aq_toggle_beararms', { squad_id: squad.id })}
           >
             {squad.weapons_clearance ? 'Broń' : 'Bez broni'}
+          </Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="shield-alt"
+            color={squad.heavy_armor ? 'average' : 'good'}
+            tooltip="Jaki pancerz automat wydaje drużynie: ciężki chroni lepiej, ale spowalnia"
+            onClick={() => act('aq_toggle_heavy_armor', { squad_id: squad.id })}
+          >
+            {squad.heavy_armor ? 'Pancerz ciężki' : 'Pancerz lekki'}
           </Button>
         </Stack.Item>
         <Stack.Item>

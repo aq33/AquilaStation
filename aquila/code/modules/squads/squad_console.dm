@@ -169,6 +169,19 @@
 				return FALSE
 			log_game("[key_name(user)] created squad [created.name]")
 			return TRUE
+		if("aq_delete_squad")
+			if(!squad)
+				return FALSE
+			if(!GLOB.squad_manager.aq_delete_squad(squad, user))
+				to_chat(user, "<span class='warning'>Ostatniej drużyny nie da się rozwiązać.</span>")
+				return FALSE
+			return TRUE
+		if("aq_toggle_heavy_armor")
+			if(!squad)
+				return FALSE
+			squad.aq_heavy_armor = !squad.aq_heavy_armor
+			log_game("[key_name(user)] set squad [squad] armor to [squad.aq_heavy_armor ? "heavy" : "light"]")
+			return TRUE
 		if("aq_rename_squad")
 			if(!squad)
 				return FALSE

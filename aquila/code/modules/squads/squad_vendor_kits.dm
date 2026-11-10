@@ -153,6 +153,7 @@ GLOBAL_LIST_EMPTY(squad_loans)
 			var/datum/squad_loadout/loadout = new loadout_type
 			paths |= loadout.items
 			qdel(loadout)
+		paths |= /obj/item/clothing/suit/ship/squad/aq_heavy
 		kit_items = typecacheof(paths, only_root_path = TRUE)
 	storage.can_hold = kit_items
 
@@ -265,6 +266,10 @@ GLOBAL_LIST_EMPTY(squad_loans)
 /// Co faktycznie wyjdzie z automatu (bez zezwolenia na broń bez broni i amunicji)
 /obj/machinery/squad_vendor/proc/aq_issued_items(datum/squad_loadout/kit, datum/squad/squad)
 	var/list/issued = kit.items.Copy()
+	// XO wybiera w konsoli ciężki pancerz dla całej drużyny
+	if(squad?.aq_heavy_armor && (/obj/item/clothing/suit/ship/squad in issued))
+		issued -= /obj/item/clothing/suit/ship/squad
+		issued += /obj/item/clothing/suit/ship/squad/aq_heavy
 	if(aq_energy_weapons && (/obj/item/gun/ballistic/automatic/pistol/glock in issued))
 		issued -= /obj/item/ammo_box/magazine/glock/lethal
 		issued -= /obj/item/gun/ballistic/automatic/pistol/glock
@@ -404,3 +409,29 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	if(loan)
 		loan.owner = null
 	return ..()
+
+// Ciężki pancerz drużyny: wydawany zamiast lekkiego, gdy XO tak ustawi w konsoli. Lepsza ochrona kosztem szybkości.
+// Sprite kamizelki piechoty morskiej NSV (nsv13/icons/obj/clothing/suits.dmi, stan "marine"), bez pasków drużyny.
+/datum/squad
+	/// Czy automat wydaje drużynie ciężki pancerz zamiast lekkiego
+	var/aq_heavy_armor = FALSE
+
+/obj/item/clothing/suit/ship/squad/aq_heavy
+	name = "ciężki pancerz"
+	desc = "Ciężki pancerz z płytami balistycznymi dla drużyn wysyłanych do walki. Chroni dużo lepiej od lekkiego, ale spowalnia."
+	icon_state = "marine"
+	item_state = "marine"
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 1
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	armor = list("melee" = 45, "bullet" = 60, "laser" = 25, "energy" = 20, "bomb" = 50, "bio" = 20, "rad" = 25, "fire" = 40, "acid" = 60, "bleed" = 30)
+
+/// Sprite "marine" nie ma warstwy pasków ("marine_stripes"), więc tylko nazwa i drużyna (pełne nadpisanie dla podtypu)
+/obj/item/clothing/suit/ship/squad/aq_heavy/apply_squad(datum/squad/squad)
+	if(!istype(squad))
+		var/mob/living/carbon/human/user = ishuman(loc) ? loc : loc?.loc
+		if(!ishuman(user) || !user.squad)
+			return
+		squad = user.squad
+	name = "[initial(name)] drużyny [squad]"
+	src.squad = squad
