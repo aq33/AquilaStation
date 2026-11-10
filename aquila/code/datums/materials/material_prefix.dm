@@ -4,8 +4,8 @@
 // „złota moneta”, „drewniane krzesło”, „mięsna ściana”.
 
 /atom
-	/// Rodzaj gramatyczny nazwy dla przymiotnika materiału: MALE, FEMALE, NEUTER albo PLURAL
-	var/material_name_gender = MALE
+	/// Rodzaj gramatyczny nazwy dla przymiotnika materiału: MALE, FEMALE, NEUTER albo PLURAL; null = zgadnij z nazwy
+	var/material_name_gender
 
 /datum/material
 	/// Polska nazwa materiału w mianowniku (opis „Materiał: …”)
@@ -24,12 +24,31 @@
 	if(length(name_adjectives) < 3)
 		return "[source.name] [name_suffix || get_polish_name()]"
 	var/adjective = name_adjectives[1]
-	switch(source.material_name_gender)
+	switch(source.material_name_gender || guess_polish_name_gender(source.name))
 		if(FEMALE)
 			adjective = name_adjectives[2]
 		if(NEUTER, PLURAL)
 			adjective = name_adjectives[3]
 	return "[adjective] [source.name]"
+
+/**
+ * Rodzaj gramatyczny polskiej nazwy po końcówce pierwszego słowa. W polskim przymiotnik zgadza się z rzeczownikiem,
+ * więc pierwsze słowo („skrzynka narzędziowa”, „eleganckie krzesło”, „długopis”) zwykle wystarcza:
+ * -a żeński, -o/-e/-ę/-um nijaki, reszta męski. Typy z nietypową nazwą ustawiają material_name_gender.
+ */
+/proc/guess_polish_name_gender(name)
+	var/list/words = splittext(lowertext(name), " ")
+	var/first_word = length(words) ? words[1] : ""
+	if(!length(first_word))
+		return MALE
+	var/last_letter = copytext_char(first_word, -1)
+	if(last_letter == "a")
+		return FEMALE
+	if(last_letter in list("o", "e", "ę"))
+		return NEUTER
+	if(length_char(first_word) > 2 && copytext_char(first_word, -2) == "um")
+		return NEUTER
+	return MALE
 
 /datum/material/iron
 	polish_name = "żelazo"

@@ -14,6 +14,7 @@
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	material_name_gender = FEMALE
 	merge_type = /obj/item/stack/tile/material
+	mats_per_unit = list(/datum/material/iron = 500) // w Bee bez materiału; z menu craftingu i z mapy wychodzi żelazna, która coś oddaje
 
 /turf/open/floor/material
 	name = "podłoga"
