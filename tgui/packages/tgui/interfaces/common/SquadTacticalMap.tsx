@@ -111,7 +111,32 @@ type MapLayout = {
   areas: string[];
   area_width: number;
   area_grid: string;
+  /** Kolor działu obszaru z holomapy (#rrggbb) albo null */
+  area_colours: (string | null)[];
+  /** Środek obszaru: kolumna, wiersz, liczba pól */
+  area_centres: number[][];
 };
+
+/** Działy według kolorów holomapy (HOLOMAP_AREACOLOR_* w nsv13/code/__DEFINES/holomap.dm) */
+const DEPARTMENTS: Record<string, string> = {
+  '#3434d4': 'Dowództwo',
+  '#ae1212': 'Ochrona',
+  '#447bc2': 'Medyczny',
+  '#a154a6': 'Naukowy',
+  '#f1c231': 'Inżynieria',
+  '#853100': 'Zaopatrzenie',
+  '#b9b9b9': 'Korytarze',
+  '#5e5e5e': 'Tunele techniczne',
+  '#6464ff': 'Przyloty',
+  '#ff5858': 'Ewakuacja',
+  '#bfff83': 'Kwatery',
+  '#3ab336': 'Usługi',
+  '#ec7701': 'Uzbrojenie',
+  '#2681a5': 'Hangar',
+};
+
+/** Podpisy tylko dla obszarów z co najmniej tyloma polami */
+const LABEL_MIN_TILES = 30;
 
 /** Bok sektora siatki w polach (SQUAD_MAP_SECTOR w squad_tactical_map.dm) */
 const SECTOR = 10;
@@ -130,6 +155,15 @@ const layoutCache: Record<string, MapLayout> = {};
 const decodeAreaCode = (char: string) => {
   const code = char.charCodeAt(0);
   return (code > 92 ? code - 1 : code) - 35;
+};
+
+/** Indeks obszaru pola (od 1; 0 = brak obszaru) */
+const areaIndexAt = (layout: MapLayout, column: number, row: number) => {
+  const index = (row * layout.width + column) * layout.area_width;
+  return layout.area_width === 1
+    ? decodeAreaCode(layout.area_grid[index])
+    : decodeAreaCode(layout.area_grid[index]) * 90 +
+        decodeAreaCode(layout.area_grid[index + 1]);
 };
 
 /** Sektor siatki ("C2") dla pola planu liczonego od lewej i górnej krawędzi */
@@ -180,10 +214,23 @@ const drawLayout = (
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   for (let row = 0; row < layout.height; row++) {
     for (let column = 0; column < layout.width; column++) {
-      const color = TILE_COLORS[layout.tiles[row * layout.width + column]];
-      if (color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(column * zoom, row * zoom, zoom, zoom);
+      const tile = layout.tiles[row * layout.width + column];
+      const color = TILE_COLORS[tile];
+      if (!color) {
+        continue;
+      }
+      ctx.fillStyle = color;
+      ctx.fillRect(column * zoom, row * zoom, zoom, zoom);
+      // podłoga w kolorze działu (ściany zostają szare, żeby kontury były czytelne)
+      if (tile !== 'w' && layout.area_colours) {
+        const area = areaIndexAt(layout, column, row);
+        const areaColor = area > 0 ? layout.area_colours[area - 1] : null;
+        if (areaColor) {
+          ctx.globalAlpha = 0.3;
+          ctx.fillStyle = areaColor;
+          ctx.fillRect(column * zoom, row * zoom, zoom, zoom);
+          ctx.globalAlpha = 1;
+        }
       }
     }
   }
@@ -202,6 +249,52 @@ const drawLayout = (
   }
   ctx.stroke();
   ctx.setLineDash([]);
+  if (layout.area_centres) {
+    ctx.font = `${zoom >= 4 ? 11 : 9}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)';
+    ctx.fillStyle = '#e8eef2';
+    // od największych obszarów; podpis, który zachodziłby na już narysowany, pomijamy
+    const drawn: number[][] = [];
+    const order = layout.area_centres
+      .map((centre, index) => index)
+      .sort((a, b) => layout.area_centres[b][2] - layout.area_centres[a][2]);
+    for (const index of order) {
+      const [column, row, count] = layout.area_centres[index];
+      // tunele techniczne i korytarze bez podpisów: są wszędzie i zasłaniałyby pomieszczenia
+      const color = layout.area_colours[index];
+      if (
+        count < LABEL_MIN_TILES ||
+        !color ||
+        color === '#5e5e5e' ||
+        color === '#b9b9b9'
+      ) {
+        continue;
+      }
+      const name = layout.areas[index];
+      const x = (column + 0.5) * zoom;
+      const y = (row + 0.5) * zoom;
+      const halfWidth = ctx.measureText(name).width / 2 + 2;
+      const box = [x - halfWidth, y - 7, x + halfWidth, y + 7];
+      if (
+        drawn.some(
+          (other) =>
+            box[0] < other[2] &&
+            box[2] > other[0] &&
+            box[1] < other[3] &&
+            box[3] > other[1],
+        )
+      ) {
+        continue;
+      }
+      drawn.push(box);
+      ctx.strokeText(name, x, y);
+      ctx.fillText(name, x, y);
+    }
+    ctx.textAlign = 'start';
+  }
   if (cell >= 30) {
     ctx.fillStyle = 'rgba(95, 191, 134, 0.8)';
     ctx.font = '10px monospace';
@@ -237,11 +330,21 @@ export const SquadTacticalMap = (props: MapProps) => {
   const { map, squads, userRef, placing, onSelectZ, onPlace, onClearMarker } =
     props;
   const longest = Math.max(map.width || 1, map.height || 1);
-  // Domyślnie mapa mieści się w oknie (ok. 600 px na dłuższym boku)
+  // całkowity zoom: pole to pełne piksele, bez szwów między polami na canvasie
   const [zoom, setZoom] = useState(
-    // całkowity zoom: pole to pełne piksele, bez szwów między polami na canvasie
     Math.min(8, Math.max(2, Math.floor(600 / longest))),
   );
+  // po pierwszym rysowaniu dopasowujemy zoom do szerokości panelu (konsola XO ma go dużo więcej niż pager)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [fitted, setFitted] = useState(false);
+  useEffect(() => {
+    const width = containerRef.current?.clientWidth;
+    if (fitted || !width || !map.width) {
+      return;
+    }
+    setFitted(true);
+    setZoom(Math.min(8, Math.max(2, Math.floor((width - 16) / map.width))));
+  }, [map.width, fitted]);
   const layout = useMapLayout(map.url);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hover, setHover] = useState<string | null>(null);
@@ -278,12 +381,7 @@ export const SquadTacticalMap = (props: MapProps) => {
       setHover(null);
       return;
     }
-    const index = (row * layout.width + column) * layout.area_width;
-    const area =
-      layout.area_width === 1
-        ? decodeAreaCode(layout.area_grid[index])
-        : decodeAreaCode(layout.area_grid[index]) * 90 +
-          decodeAreaCode(layout.area_grid[index + 1]);
+    const area = areaIndexAt(layout, column, row);
     const areaName = area > 0 ? layout.areas[area - 1] : null;
     setHover(`${sectorName(column, row)}${areaName ? ` · ${areaName}` : ''}`);
   };
@@ -343,6 +441,7 @@ export const SquadTacticalMap = (props: MapProps) => {
         </Stack>
       </Stack.Item>
       <Stack.Item grow basis={0} style={{ overflow: 'auto' }}>
+        <div ref={containerRef} style={{ width: '100%', height: 0 }} />
         {!map.url || !layout ? (
           <Box color="label" p={2}>
             Wczytywanie mapy poziomu...
@@ -434,6 +533,31 @@ export const SquadTacticalMap = (props: MapProps) => {
           </div>
         )}
       </Stack.Item>
+      {!!layout?.area_colours && (
+        <Stack.Item>
+          <Stack wrap="wrap" align="center">
+            {Object.keys(DEPARTMENTS)
+              .filter((color) => layout.area_colours.includes(color))
+              .map((color) => (
+                <Stack.Item key={color} mr={1}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      width: '10px',
+                      height: '10px',
+                      marginRight: '4px',
+                      background: color,
+                      verticalAlign: 'middle',
+                    }}
+                  />
+                  <Box inline fontSize="11px" color="label">
+                    {DEPARTMENTS[color]}
+                  </Box>
+                </Stack.Item>
+              ))}
+          </Stack>
+        </Stack.Item>
+      )}
     </Stack>
   );
 };

@@ -91,6 +91,9 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 	var/list/area_ids = list()
 	var/list/area_names = list()
 	var/list/area_cells = list()
+	// kolor działu z holomapy (bez przezroczystości) i suma pozycji pól, z której okno liczy środek podpisu
+	var/list/area_colours = list()
+	var/list/area_sums = list()
 	for(var/y in max_y to min_y step -1)
 		var/list/row = list()
 		for(var/x in min_x to max_x)
@@ -104,7 +107,14 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 			if(!area_ids[tile_area])
 				area_names += format_text(tile_area.name)
 				area_ids[tile_area] = length(area_names)
-			area_cells += area_ids[tile_area]
+				area_colours += tile_area.holomap_color ? lowertext(copytext(tile_area.holomap_color, 1, 8)) : null
+				area_sums += list(list(0, 0, 0))
+			var/area_index = area_ids[tile_area]
+			area_cells += area_index
+			var/list/sums = area_sums[area_index]
+			sums[1] += x - min_x
+			sums[2] += max_y - y
+			sums[3]++
 		tile_rows += jointext(row, "")
 		CHECK_TICK
 	var/area_width = length(area_names) < 90 ? 1 : 2
@@ -118,9 +128,17 @@ GLOBAL_LIST_EMPTY(squad_map_generating)
 		"height" = max_y - min_y + 1,
 		"tiles" = jointext(tile_rows, ""),
 		"areas" = area_names,
+		"area_colours" = area_colours,
+		"area_centres" = aq_squad_map_centres(area_sums),
 		"area_width" = area_width,
 		"area_grid" = jointext(area_chars, ""),
 	)
+
+/// Środki obszarów na planie: list(kolumna, wiersz, liczba pól) dla każdego obszaru
+/proc/aq_squad_map_centres(list/area_sums)
+	. = list()
+	for(var/list/sums as anything in area_sums)
+		. += list(list(round(sums[1] / sums[3]), round(sums[2] / sums[3]), sums[3]))
 
 /// Liczba 0-89 jako jeden znak ASCII od "#" bez odwrotnego ukośnika (bezpieczny w JSON)
 /proc/aq_squad_map_code(number)
