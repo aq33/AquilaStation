@@ -17,6 +17,21 @@ GLOBAL_VAR_INIT(ai_continuous_thrust_enabled, TRUE)
 GLOBAL_VAR_INIT(ai_forward_avoidance_enabled, TRUE)
 /// Debug > Toggle AI engine discipline: przepustnica (dryf przy prędkości maksymalnej) i boost tylko jako zryw
 GLOBAL_VAR_INIT(ai_engine_discipline_enabled, TRUE)
+/// Debug > Toggle AI detour: okręt zablokowany przez inny przed dziobem omija go łukiem
+GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
+
+/// Pod jakim kątem od kursu okręt omija przeszkodę i jak daleko leży punkt objazdu
+/// (dalej niż martwa strefa silników z ai_formation.dm, inaczej silnik by nie ruszył)
+#define AI_DETOUR_ANGLE 60
+#define AI_DETOUR_DISTANCE 16
+/// Jak długo trzyma się raz wybranej strony objazdu, żeby nie przeskakiwać lewo-prawo
+#define AI_DETOUR_HOLD (4 SECONDS)
+
+/obj/structure/overmap
+	/// AQUILA - 1 albo -1: w którą stronę od kursu okręt omija przeszkodę
+	var/ai_detour_side = 0
+	/// AQUILA - world.time, do którego trzyma tę stronę
+	var/ai_detour_until = 0
 
 /// Od tej części prędkości maksymalnej (wzdłuż dziobu) okręt przestaje ciągnąć i dryfuje
 #define AI_CRUISE_FRACTION 0.95
@@ -79,11 +94,67 @@ GLOBAL_VAR_INIT(ai_engine_discipline_enabled, TRUE)
 		return TRUE // na tym samym kafelku albo cel pod nami: ostrożnie, jak dotąd
 	return abs(closer_angle_difference(course, to_other)) < 90
 
+/// Duży okręt, który bazowe move_toward() uznałoby za przeszkodę na drodze do goal: ta sama linia (8 pól),
+/// ten sam promień (5 pól), tylko okręty przed dziobem (ai_should_avoid). contents podawane, żeby dało się testować.
+/obj/structure/overmap/proc/find_ai_path_blocker(atom/goal, list/contents)
+	for(var/turf/T in getline(src, goal))
+		if(overmap_dist(get_turf(src), T) >= 8)
+			break
+		for(var/obj/structure/overmap/other as anything in contents)
+			if(other == src || other == goal || !istype(other) || other.mass <= MASS_TINY)
+				continue
+			if(overmap_dist(get_turf(other), T) <= 5 && ai_should_avoid(other, goal))
+				return other
+	return null
+
+/// Punkt objazdu wokół przeszkody przed dziobem albo null, gdy droga wolna.
+/// Bazowa odpowiedź na przeszkodę to sam ciąg boczny, ze stroną wybieraną według znaku prędkości przeszkody
+/// w osi X mapy. Gdy przeszkoda się kołysze, strona przeskakuje co tik i okręt drży w miejscu: w nagraniach
+/// lotniskowce stały tak całą bitwę, z unikiem bokiem w 72% klatek i prędkością 0. Tu okręt skręca o 60 stopni
+/// od kursu na stronę dalszą od przeszkody i trzyma ją przez kilka sekund.
+/obj/structure/overmap/proc/get_ai_detour_point(atom/goal, list/contents)
+	if(!GLOB.ai_detour_enabled || !ai_controlled || !goal)
+		return null
+	var/obj/structure/overmap/blocker = find_ai_path_blocker(goal, contents)
+	if(!blocker)
+		return null
+	var/course = overmap_angle(src, goal)
+	if(isnull(course))
+		return null
+	if(!ai_detour_side || world.time >= ai_detour_until)
+		var/to_blocker = overmap_angle(src, blocker)
+		// Przeszkoda po prawej od kursu: objeżdżamy z lewej, i odwrotnie. Na tym samym kafelku: losowo.
+		ai_detour_side = isnull(to_blocker) ? pick(1, -1) : (closer_angle_difference(course, to_blocker) >= 0 ? -1 : 1)
+		ai_detour_until = world.time + AI_DETOUR_HOLD
+	var/bearing = course + ai_detour_side * AI_DETOUR_ANGLE
+	return locate(clamp(round(x + sin(bearing) * AI_DETOUR_DISTANCE), 1, world.maxx),
+		clamp(round(y + cos(bearing) * AI_DETOUR_DISTANCE), 1, world.maxy), z)
+
+/obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
+	if(ram_target || ignore_all_collisions || !current_system)
+		return ..()
+	var/turf/objazd = get_ai_detour_point(target, current_system.system_contents)
+	if(objazd)
+		return ..(objazd, FALSE, ignore_all_collisions)
+	return ..()
+
 /world/AVerbsDebug()
 	. = ..()
+	. += /client/proc/toggle_ai_detour
 	. += /client/proc/toggle_ai_continuous_thrust
 	. += /client/proc/toggle_ai_forward_avoidance
 	. += /client/proc/toggle_ai_engine_discipline
+
+/client/proc/toggle_ai_detour()
+	set category = "Debug"
+	set name = "Toggle AI detour"
+	set desc = "Włącza lub wyłącza omijanie łukiem przeszkody przed dziobem (wyłączony: sam ciąg boczny jak w bazowym NSV13)."
+	if(!check_rights(R_DEBUG))
+		return
+	GLOB.ai_detour_enabled = !GLOB.ai_detour_enabled
+	var/state = GLOB.ai_detour_enabled ? "włączył" : "wyłączył"
+	message_admins("[key_name_admin(usr)] [state] omijanie przeszkód łukiem u AI.")
+	log_admin("[key_name(usr)] toggled AI detour to [GLOB.ai_detour_enabled].")
 
 /client/proc/toggle_ai_engine_discipline()
 	set category = "Debug"
@@ -119,3 +190,6 @@ GLOBAL_VAR_INIT(ai_engine_discipline_enabled, TRUE)
 	log_admin("[key_name(usr)] toggled AI forward avoidance to [GLOB.ai_forward_avoidance_enabled].")
 
 #undef AI_CRUISE_FRACTION
+#undef AI_DETOUR_ANGLE
+#undef AI_DETOUR_DISTANCE
+#undef AI_DETOUR_HOLD

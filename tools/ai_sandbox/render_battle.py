@@ -39,6 +39,8 @@ def zbuduj(nagranie, tytul):
 # Serie bitew: prefiks pliku -> czytelny opis. Ta sama lista jest na stronie z bitwami (index.html na VDS),
 # zeby tytul odtwarzacza i opis serii mowily to samo.
 SERIE = [
+    ("T_wszystko_", "Objazd przeszkód: wszystko włączone"),
+    ("T_bez_objazdu_", "Objazd przeszkód: bez objazdu (sam ciąg boczny)"),
     ("S_wszystko_", "Przepustnica i skradanie: wszystko włączone"),
     ("S_bez_dyscypliny_", "Przepustnica i skradanie: bez przepustnicy i oszczędnego boostu"),
     ("R_poprawki_", "Poprawki ruchu: z poprawkami"),

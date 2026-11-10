@@ -52,6 +52,13 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 /datum/ai_sandbox
 	/// Torpedo tactics comparison (ai_torpedo_tactics.dm): torpedoes fired, torpedoes that reached a ship, dodges started
 	var/list/torpedo_stats = list("fired" = 0, "hit" = 0)
+	/// Strzały okrętów AI wg rodzaju broni: list(rodzaj = list("fired", "hit", "dist" = suma odległości, "blind" = do celu,
+	/// którego strzelający sam nie trzymał na sensorach)). Okręt główny gracza się nie liczy.
+	var/list/munitions = list(
+		"torpeda" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
+		"rakieta" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
+		"niekierowane" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
+	)
 	/// list of list("t", "id", "name", "faction", "range", "heard"): radar pulses over time
 	var/list/pulses = list()
 	/// ship ref => world.time of the pulse already written to pulses
@@ -99,6 +106,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_forward_avoidance"]))
 		GLOB.ai_forward_avoidance_enabled = FALSE
 		event("Omijanie przeszkód dookoła, jak w bazowym NSV13")
+	if(text2num(world.params["ai_sandbox_no_detour"]))
+		GLOB.ai_detour_enabled = FALSE
+		event("Bez objazdu łukiem: przeszkoda przed dziobem tylko ciągiem bocznym")
 	if(text2num(world.params["ai_sandbox_no_engine_discipline"]))
 		GLOB.ai_engine_discipline_enabled = FALSE
 		event("Bez przepustnicy, boost co 15 s jak w bazowym NSV13")
@@ -320,7 +330,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "pulses" = pulses,
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "pulses" = pulses,
 		"cones" = list("tel_half" = TELESCOPE_HALF_ANGLE, "ir_blind_half" = INFRARED_BLIND_HALF_ANGLE, "enabled" = GLOB.ai_sensor_cones_enabled))
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
@@ -341,14 +351,36 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	GLOB.ai_sandbox?.event(message)
 	return ..()
 
+/// Rodzaj pocisku do liczników piaskownicy
+/proc/ai_sandbox_munition_kind(obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/guided_munition/torpedo))
+		return "torpeda"
+	if(istype(P, /obj/item/projectile/guided_munition))
+		return "rakieta"
+	return "niekierowane"
+
 /obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
 	. = ..()
-	if(GLOB.ai_sandbox && istype(., /obj/item/projectile/guided_munition/torpedo))
+	if(!GLOB.ai_sandbox || !istype(., /obj/item/projectile))
+		return
+	if(istype(., /obj/item/projectile/guided_munition/torpedo))
 		GLOB.ai_sandbox.torpedo_stats["fired"]++
+	if(!ai_controlled || src == GLOB.ai_sandbox.main)
+		return
+	var/list/licznik = GLOB.ai_sandbox.munitions[ai_sandbox_munition_kind(.)]
+	licznik["fired"]++
+	if(target && target.z == z)
+		licznik["dist"] += overmap_dist(src, target)
+	if(istype(target, /obj/structure/overmap) && !get_contact_suite(target))
+		licznik["blind"]++
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
-	if(GLOB.ai_sandbox && istype(P, /obj/item/projectile/guided_munition/torpedo))
-		GLOB.ai_sandbox.torpedo_stats["hit"]++
+	if(GLOB.ai_sandbox && istype(P))
+		if(istype(P, /obj/item/projectile/guided_munition/torpedo))
+			GLOB.ai_sandbox.torpedo_stats["hit"]++
+		var/obj/structure/overmap/shooter = P.overmap_firer
+		if(istype(shooter) && shooter.ai_controlled && shooter != GLOB.ai_sandbox.main)
+			GLOB.ai_sandbox.munitions[ai_sandbox_munition_kind(P)]["hit"]++
 	return ..()
 
 /obj/structure/overmap/start_ai_flight()

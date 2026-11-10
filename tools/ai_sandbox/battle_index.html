@@ -78,6 +78,12 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Objazd przeszkód i liczniki uzbrojenia",
+    opis: "Okręt zablokowany przez inny przed dziobem omija go łukiem (60° od kursu, w stałą stronę), zamiast drżeć w miejscu " +
+          "na samym ciągu bocznym. To była główna przyczyna lotniskowców stojących przez całą bitwę. Pierwsze nagrania, " +
+          "które liczą też rakiety i działa.",
+    wynik: null,
+    warianty: [["T_wszystko_", "z objazdem"], ["T_bez_objazdu_", "bez objazdu"]] },
   { tytul: "Przepustnica, boost i skradanie",
     opis: "AI przy prędkości maksymalnej dryfuje zamiast grzać silnikiem, boost odpala tylko w pościgu albo ucieczce, " +
           "skrada się z budżetem ciepła (silnik tylko na tyle, żeby termika wroga go nie sięgnęła) i bez radaru. " +
