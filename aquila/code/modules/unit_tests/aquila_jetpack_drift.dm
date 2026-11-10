@@ -156,6 +156,17 @@
 	TEST_ASSERT(isnull(thrusters.user), "The hardsuit jetpack kept listening after turn_off()")
 	TEST_ASSERT(pack.air_contents != tank.air_contents, "The hardsuit jetpack kept the suit storage tank after turn_off()")
 
+	// Taking the hardsuit off shuts the jetpack at once, not on the next process() (review of aq33/AquilaStation#600)
+	TEST_ASSERT(pack.turn_on(engineer), "The hardsuit jetpack did not turn on again")
+	engineer.dropItemToGround(suit, force = TRUE)
+	TEST_ASSERT(!pack.on, "The hardsuit jetpack stayed on after the hardsuit was taken off")
+	TEST_ASSERT(isnull(thrusters.user), "The hardsuit jetpack kept the former wearer flying")
+
+	// A backpack jetpack only offers its toggle when worn on the back, not held in a hand
+	var/obj/item/tank/jetpack/oxygen/backpack = allocate(/obj/item/tank/jetpack/oxygen)
+	TEST_ASSERT(!backpack.item_action_slot_check(ITEM_SLOT_HANDS, engineer), "A jetpack held in a hand offers its toggle")
+	TEST_ASSERT(backpack.item_action_slot_check(ITEM_SLOT_BACK, engineer), "A jetpack worn on the back offers no toggle")
+
 /// Implant dysz też idzie przez komponent i nie ma stabilizacji
 /datum/unit_test/aquila_jetpack_implant
 

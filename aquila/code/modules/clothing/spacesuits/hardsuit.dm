@@ -165,3 +165,10 @@
 	if(!can_play_move_sound(loc))
 		return
 	return ..()
+
+/// Port BeeStation/BeeStation-Hornet#14864: jetpack hardsuitu ciągnie noszącego (cur_user), więc po zdjęciu stroju gaśnie od razu,
+/// a nie dopiero w process() za 2 s (Bee: jetpack.turn_off() w dropped())
+/obj/item/clothing/suit/space/hardsuit/dropped(mob/user)
+	. = ..()
+	if(jetpack?.on)
+		jetpack.turn_off(user)

@@ -266,10 +266,10 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					else
 					// AQ EDIT END
 						inserted_modify_id.access -= access_type
-						log_id("[key_name(usr)] removed [get_access_desc(access_type)] from [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].")
+						log_id("[key_name(usr)] removed [get_department_access_desc(access_type)] from [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 						if(access_allowed == 1)
 							inserted_modify_id.access += access_type
-							log_id("[key_name(usr)] added [get_access_desc(access_type)] to [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].")
+							log_id("[key_name(usr)] added [get_department_access_desc(access_type)] to [inserted_modify_id] using [inserted_scan_id] at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 						playsound(src, "terminal_type", 50, FALSE)
 		if ("assign")
 			if (authenticated == 2)

@@ -35,7 +35,8 @@
 	if(!department_bitflag && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
 		authenticated = TRUE
-		update_static_data(user)
+		// Okno należy do komputera, nie do programu: update_static_data() programu nie znajduje okna
+		computer.update_static_data(user)
 		return TRUE
 
 	accessible_region_bitflag = SSdepartment.get_managed_departments(id_card.access, department_bitflag)
@@ -43,7 +44,7 @@
 		head_subordinates = SSdepartment.get_subordinate_jobs(accessible_region_bitflag)
 		minor = TRUE
 		authenticated = TRUE
-		update_static_data(user)
+		computer.update_static_data(user)
 		return TRUE
 	// AQ EDIT END
 
@@ -76,6 +77,7 @@
 				return TRUE
 		if("PRG_logout")
 			authenticated = FALSE
+			computer.update_static_data(usr) // AQ EDIT - port BeeStation/BeeStation-Hornet#14139: regiony zależą od zalogowanej karty
 			playsound(computer, 'sound/machines/terminal_off.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_print")
@@ -176,7 +178,7 @@
 						return
 					new_access = job.get_access()
 				log_id("[key_name(usr)] changed [target_id_card] assignment to '[target]', overriding all previous access using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
-				target_id_card.access -= get_all_centcom_access() + get_all_accesses()
+				target_id_card.access -= get_all_accesses() // AQ EDIT - port BeeStation/BeeStation-Hornet#14139: stanowisko zmienia tylko dostępy stacji, jak w konsoli ID
 				target_id_card.access |= new_access
 				target_id_card.assignment = target
 				target_id_card.update_label()
@@ -194,10 +196,10 @@
 			// AQ EDIT END
 			if(access_type in target_id_card.access)
 				target_id_card.access -= access_type
-				log_id("[key_name(usr)] removed [get_department_access_desc(access_type)] from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+				log_id("[key_name(usr)] removed [get_department_access_desc(access_type)] from [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 			else
 				target_id_card.access |= access_type
-				log_id("[key_name(usr)] added [get_department_access_desc(access_type)] to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].")
+				log_id("[key_name(usr)] added [get_department_access_desc(access_type)] to [target_id_card] using [user_id_card] via a portable ID console at [AREACOORD(usr)].") // AQ EDIT - nazwy dostępów Centrali i „Inne” w logu
 			playsound(computer, "terminal_type", 50, FALSE)
 			return TRUE
 		if("PRG_grantall")
