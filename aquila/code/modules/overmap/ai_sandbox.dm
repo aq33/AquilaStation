@@ -14,7 +14,11 @@
 /// Fleet difficulty: destroyers = size / 2, battleships and supply ships = size / 4 each
 #define AI_SANDBOX_FLEET_SIZE 8
 #define AI_SANDBOX_HELP_SIZE 4
-#define AI_SANDBOX_STEP (2 SECONDS)
+/// Default gap between recorded frames; positions go down this often, so playback is not a slideshow
+#define AI_SANDBOX_STEP (0.5 SECONDS)
+/// Every this many frames the whole state is written (contacts, sensor ranges, tactic, names);
+/// in between only what moves, so the recording stays about the size it was at 2 s per frame
+#define AI_SANDBOX_FULL_EVERY 4
 #define AI_SANDBOX_GUN_TIME (6 SECONDS)
 #define AI_SANDBOX_OUTPUT "data/ai_sandbox.json"
 
@@ -52,6 +56,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/list/pulses = list()
 	/// ship ref => world.time of the pulse already written to pulses
 	var/list/seen_pulses = list()
+	/// Deciseconds between frames, from ai_sandbox_step
+	var/step = AI_SANDBOX_STEP
+	/// Counts frames, so every AI_SANDBOX_FULL_EVERY-th one carries the whole state
+	var/frame_number = 0
 
 /datum/ai_sandbox/proc/event(text)
 	events += list(list("t" = round((world.time - start_time) / 10, 0.1), "text" = text))
@@ -111,6 +119,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/nt_size = text2num(world.params["ai_sandbox_nt"]) || AI_SANDBOX_FLEET_SIZE
 	var/syn_size = text2num(world.params["ai_sandbox_syn"]) || AI_SANDBOX_FLEET_SIZE
 	var/gap = text2num(world.params["ai_sandbox_gap"]) || 58
+	step = text2num(world.params["ai_sandbox_step"]) || AI_SANDBOX_STEP
 	event("System [system], okręt główny [main] na [main.x],[main.y]; floty NT [nt_size], Syndykat [syn_size], odstęp [gap] pól[fair ? ", okręt główny poza walką" : ""]")
 	if(fair)
 		main.essential = TRUE // AI targeting skips essential ships
@@ -165,7 +174,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			next_gun = world.time + AI_SANDBOX_GUN_TIME
 			script_fire()
 	record()
-	addtimer(CALLBACK(src, PROC_REF(tick)), AI_SANDBOX_STEP)
+	addtimer(CALLBACK(src, PROC_REF(tick)), step)
 
 /// The "player" gunner: missiles at range, railgun up close, at the nearest Syndicate ship
 /datum/ai_sandbox/proc/script_fire()
@@ -208,6 +217,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 /datum/ai_sandbox/proc/record()
 	var/list/ships = list()
 	var/list/present = list()
+	var/full = !(frame_number % AI_SANDBOX_FULL_EVERY)
+	frame_number++
 	for(var/obj/structure/overmap/OM as anything in system.system_contents)
 		if(!istype(OM) || QDELETED(OM) || OM.z != main.z || istype(OM, /obj/structure/overmap/asteroid))
 			continue
@@ -215,14 +226,14 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		var/obj/structure/overmap/target = OM.last_target
 		// Which sensor holds which contact, and how far this ship could see its reference enemy with each of them.
 		// The suite ranges depend on what the TARGET is doing, so they are recorded against one named enemy, not in the abstract.
-		var/list/contacts = list()
-		for(var/obj/structure/overmap/seen as anything in OM.sensor_contact_suites)
+		var/list/contacts = full ? list() : null
+		for(var/obj/structure/overmap/seen as anything in (full ? OM.sensor_contact_suites : null))
 			if(QDELETED(seen))
 				continue
 			contacts += list(list("id" = "\ref[seen]", "s" = OM.sensor_contact_suites[seen]))
 		var/list/ranges = null
 		var/obj/structure/overmap/reference = (istype(target) && target.faction != OM.faction) ? target : OM.get_ai_nearest_threat()
-		if(istype(reference) && OM.ai_controlled)
+		if(full && istype(reference) && OM.ai_controlled)
 			ranges = list(
 				"id" = "\ref[reference]",
 				"name" = "[reference]",
@@ -230,26 +241,32 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 				"ir" = round(OM.get_suite_range(SENSOR_INFRARED, reference), 0.1),
 				"lid" = round(OM.get_suite_range(SENSOR_LIDAR, reference), 0.1),
 			)
-		var/turf/search_at = OM.ai_search_target ? OM.patrol_target : null
-		ships += list(list(
+		var/turf/search_at = (full && OM.ai_search_target) ? OM.patrol_target : null
+		// Lekka klatka: tylko to, co sie rusza. Reszte odtwarzacz bierze z ostatniej pelnej klatki.
+		var/list/wpis = list(
 			"id" = "\ref[OM]",
-			"name" = "[OM]",
-			"faction" = OM.faction,
-			"fleet" = OM.fleet?.name,
 			"x" = round(OM.x + OM.offset?.a, 0.1),
 			"y" = round(OM.y + OM.offset?.e, 0.1),
 			"angle" = round(OM.angle),
 			"hull" = OM.max_integrity ? round(OM.obj_integrity / OM.max_integrity * 100) : 100,
 			"fear" = round(OM.ai_fear),
-			"temperament" = OM.ai_temperament,
 			"fleeing" = OM.ai_fleeing,
+			"silent" = OM.ai_running_silent,
+		)
+		if(!full)
+			ships += list(wpis)
+			continue
+		ships += list(wpis + list(
+			"name" = "[OM]",
+			"faction" = OM.faction,
+			"fleet" = OM.fleet?.name,
+			"temperament" = OM.ai_temperament,
 			"goal" = OM.current_goal?.name,
 			"target" = istype(target) ? "\ref[target]" : null,
 			"tiny" = OM.mass <= MASS_TINY,
 			"main" = OM == main,
 			// Sensors (ai_sensor_suites.dm) and what the ship is doing with them (ai_sensor_use.dm)
 			"tactic" = OM.ai_tactic,
-			"silent" = OM.ai_running_silent,
 			"picket" = OM.fleet?.ai_picket == OM,
 			"wait" = OM.is_ai_lying_in_wait(),
 			"sig" = round(OM.sensor_signature, 0.01),
@@ -261,7 +278,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			"sy" = search_at ? search_at.y : null,
 		))
 	record_pulses(present)
-	frames += list(list("t" = round((world.time - start_time) / 10, 0.1), "ships" = ships))
+	frames += list(list("t" = round((world.time - start_time) / 10, 0.1), "full" = full, "ships" = ships))
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
@@ -308,6 +325,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 #undef AI_SANDBOX_FLEET_SIZE
 #undef AI_SANDBOX_HELP_SIZE
 #undef AI_SANDBOX_STEP
+#undef AI_SANDBOX_FULL_EVERY
 #undef AI_SANDBOX_GUN_TIME
 #undef AI_SANDBOX_OUTPUT
 

@@ -176,10 +176,35 @@ function lerpKat(a, b, u){
 var AKTUALNE = [];   // okrety w tej chwili, po interpolacji
 var AKTUALNY_T = 0;  // czas nagrania w tej chwili
 
+// Zapis idzie co 0,5 s, ale caly stan (kontakty, zasiegi, taktyka, nazwy) jest co czwarta klatka.
+// PELNA_DO[i] mowi, gdzie szukac tych danych dla klatki i.
+var PELNA_DO = (function () {
+  var out = new Array(FRAMES.length);
+  var ostatnia = 0;
+  for (var i = 0; i < FRAMES.length; i++) {
+    if (FRAMES[i].full !== false) ostatnia = i;
+    out[i] = ostatnia;
+  }
+  return out;
+})();
+
+// Okret z klatki i, uzupelniony o pola z ostatniej pelnej klatki
+function pelnyStatek(i, lekki) {
+  if (lekki.name !== undefined) return lekki;
+  var baza = znajdzW(statki(PELNA_DO[i]), lekki.id);
+  if (!baza) return lekki;
+  var out = {};
+  for (var k in baza) out[k] = baza[k];
+  for (var k2 in lekki) out[k2] = lekki[k2];
+  return out;
+}
+
 function przeliczChwile(){
   var i = Math.floor(pozycja), u = pozycja - i;
   if(i >= FRAMES.length - 1){ i = FRAMES.length - 1; u = 0; }
-  var a = statki(i), b = statki(Math.min(i + 1, FRAMES.length - 1));
+  var i2 = Math.min(i + 1, FRAMES.length - 1);
+  var a = statki(i).map(function (sh) { return pelnyStatek(i, sh); });
+  var b = statki(i2).map(function (sh) { return pelnyStatek(i2, sh); });
   AKTUALNY_T = FRAMES[i] ? lerp(FRAMES[i].t, (FRAMES[Math.min(i + 1, FRAMES.length - 1)] || FRAMES[i]).t, u) : 0;
   if(!u){ AKTUALNE = a; return; }
   var out = [];
