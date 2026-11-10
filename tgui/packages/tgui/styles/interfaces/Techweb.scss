@@ -132,7 +132,10 @@ $tree-future: #666;
 .Techweb__TreeNode {
   position: absolute;
   box-sizing: border-box;
-  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 12px;
   border: 2px solid $tree-future;
   border-radius: 6px;
   background-color: #1d1d1d;
@@ -158,8 +161,10 @@ $tree-future: #666;
   color: #aaa;
 }
 
+// Pasek gałęzi to box-shadow z okna, więc stany używają obrysu
 .Techweb__TreeNode--ready {
-  box-shadow: 0 0 8px $tree-available;
+  outline: 2px solid $tree-available;
+  outline-offset: 2px;
 }
 
 .Techweb__TreeNode--related {
@@ -168,7 +173,20 @@ $tree-future: #666;
 
 .Techweb__TreeNode--selected {
   border-color: #ffd54f;
-  box-shadow: 0 0 12px #ffd54f;
+  outline: 3px solid #ffd54f;
+  outline-offset: 2px;
+}
+
+.Techweb__TreeNodeIcon {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.Techweb__TreeNodeText {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .Techweb__TreeNode--dim {

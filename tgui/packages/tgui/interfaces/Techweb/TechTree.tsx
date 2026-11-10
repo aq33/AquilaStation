@@ -1,5 +1,8 @@
-// AQUILA: sieć badań jako drzewko nauki. Węzły w kolumnach według głębokości wymagań,
-// linie od wymagań do węzłów, przesuwanie przeciąganiem i zoom kółkiem (jak tablica detektywa).
+// AQUILA: sieć badań jako drzewko nauki rosnące od środka. Węzeł bazowy stoi w środku, a główne gałęzie
+// (dzieci węzła bazowego i osobne korzenie) rosną od niego w prawo i w lewo, ułożone jedna nad drugą
+// w górę i w dół od środka. Każda gałąź to zwarte drzewko: im dalej od środka, tym głębiej w wymaganiach.
+// Gałąź ma swój kolor i ikonę pierwszej technologii. Przesuwanie przeciąganiem i zoom kółkiem jak na
+// tablicy detektywa.
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 
@@ -9,21 +12,49 @@ import type { NodeCache, TechwebNode } from './types';
 
 const NODE_WIDTH = 190;
 const NODE_HEIGHT = 46;
-const COLUMN_GAP = 90;
-const ROW_GAP = 16;
-const MIN_ZOOM = 0.25;
+/** Odstęp między kolejnymi poziomami gałęzi */
+const LEVEL_GAP = 70;
+/** Odstęp między sąsiednimi węzłami na tym samym poziomie */
+const ROW_GAP = 14;
+/** Odstęp między gałęziami po tej samej stronie i od środka */
+const BRANCH_GAP = 60;
+const MIN_ZOOM = 0.15;
 const MAX_ZOOM = 1.6;
+/** Węzeł, od którego rośnie drzewo */
+const CENTER_ID = 'base';
 
-type Placed = { id: string; x: number; y: number; depth: number };
+type Side = 'right' | 'left';
+
+type Placed = {
+  /** Lewy górny róg ramki */
+  x: number;
+  y: number;
+  id: string;
+  /** Indeks gałęzi, -1 dla środka */
+  branch: number;
+};
+
+type Branch = { root: string; hue: number };
+
+type Layout = {
+  placed: Record<string, Placed>;
+  branches: Branch[];
+  width: number;
+  height: number;
+};
 
 type View = { x: number; y: number; zoom: number };
 
-/** Kolumna = najdłuższa ścieżka wymagań, kolejność w kolumnie wg średniej pozycji wymagań */
 function layoutTree(
   nodes: TechwebNode[],
   node_cache: Record<string, NodeCache>,
-): Record<string, Placed> {
-  const visible = new Set(nodes.map((n) => n.id));
+): Layout {
+  const ids = nodes.map((n) => n.id).filter((id) => node_cache[id]);
+  const visible = new Set(ids);
+  const prereqs = (id: string) =>
+    (node_cache[id]?.prereq_ids ?? []).filter((p) => visible.has(p));
+
+  // Głębokość = najdłuższa ścieżka wymagań
   const depth: Record<string, number> = {};
   const visiting = new Set<string>();
   const getDepth = (id: string): number => {
@@ -31,41 +62,147 @@ function layoutTree(
     if (visiting.has(id)) return 0; // cykl w danych nie zawiesi okna
     visiting.add(id);
     let d = 0;
-    for (const pre of node_cache[id]?.prereq_ids ?? []) {
-      if (visible.has(pre)) d = Math.max(d, getDepth(pre) + 1);
-    }
+    for (const pre of prereqs(id)) d = Math.max(d, getDepth(pre) + 1);
     visiting.delete(id);
     depth[id] = d;
     return d;
   };
-  const columns: string[][] = [];
-  for (const n of nodes) {
-    if (!node_cache[n.id]) continue;
-    const d = getDepth(n.id);
-    (columns[d] ??= []).push(n.id);
+  ids.forEach(getDepth);
+
+  // Gałęzie: dzieci środka i osobne korzenie; reszta dziedziczy gałąź po wymaganiu
+  const hasCenter = visible.has(CENTER_ID);
+  const roots: string[] = [];
+  for (const id of ids) {
+    if (id === CENTER_ID) continue;
+    const pre = prereqs(id);
+    if (!pre.length || (pre.length === 1 && pre[0] === CENTER_ID)) {
+      roots.push(id);
+    }
   }
-  const placed: Record<string, Placed> = {};
-  columns.forEach((column, d) => {
-    const order = column.map((id) => {
-      const parents = (node_cache[id].prereq_ids ?? []).filter(
-        (p) => placed[p],
-      );
-      const key = parents.length
-        ? parents.reduce((sum, p) => sum + placed[p].y, 0) / parents.length
-        : -1;
-      return { id, key, name: node_cache[id].name };
-    });
-    order.sort((a, b) => a.key - b.key || a.name.localeCompare(b.name));
-    order.forEach((entry, row) => {
-      placed[entry.id] = {
-        id: entry.id,
-        depth: d,
-        x: d * (NODE_WIDTH + COLUMN_GAP),
-        y: row * (NODE_HEIGHT + ROW_GAP),
-      };
+  const branchOf: Record<string, number> = {};
+  roots.forEach((id, i) => (branchOf[id] = i));
+  for (const id of [...ids].sort((a, b) => depth[a] - depth[b])) {
+    if (id === CENTER_ID || branchOf[id] !== undefined) continue;
+    const parent = prereqs(id).find(
+      (p) => p !== CENTER_ID && branchOf[p] !== undefined,
+    );
+    branchOf[id] = parent !== undefined ? branchOf[parent] : 0;
+  }
+
+  // Poziom w gałęzi liczony od jej korzenia
+  const level: Record<string, number> = {};
+  for (const id of ids) {
+    if (id === CENTER_ID) continue;
+    level[id] = Math.max(0, depth[id] - depth[roots[branchOf[id]]]);
+  }
+
+  // Każda gałąź jako małe drzewko: poziomy i kolejność na poziomie wg średniej pozycji wymagań
+  type Local = { levels: string[][]; rows: number; size: number };
+  const locals: Local[] = roots.map(() => ({ levels: [], rows: 0, size: 0 }));
+  const rowOf: Record<string, number> = {};
+  for (const id of [...ids].sort((a, b) => level[a] - level[b])) {
+    if (id === CENTER_ID) continue;
+    const local = locals[branchOf[id]];
+    (local.levels[level[id]] ??= []).push(id);
+    local.size++;
+  }
+  locals.forEach((local) => {
+    local.levels.forEach((onLevel) => {
+      if (!onLevel) return;
+      const keyed = onLevel.map((id) => {
+        const parents = prereqs(id).filter((p) => rowOf[p] !== undefined);
+        const key = parents.length
+          ? parents.reduce((sum, p) => sum + rowOf[p], 0) / parents.length
+          : -1;
+        return { id, key, name: node_cache[id].name };
+      });
+      keyed.sort((a, b) => a.key - b.key || a.name.localeCompare(b.name));
+      keyed.forEach((entry, row) => (rowOf[entry.id] = row));
+      local.rows = Math.max(local.rows, keyed.length);
     });
   });
-  return placed;
+
+  // Rozdział gałęzi na dwie strony: największe najpierw, zawsze na stronę z mniejszą liczbą węzłów
+  const sides: Side[] = ['right', 'left'];
+  const sideLoad: Record<Side, number> = { right: 0, left: 0 };
+  const sideBranches: Record<Side, number[]> = { right: [], left: [] };
+  const order = roots
+    .map((_, i) => i)
+    .sort((a, b) => locals[b].size - locals[a].size);
+  for (const b of order) {
+    const side = sides.reduce((best, s) =>
+      sideLoad[s] < sideLoad[best] ? s : best,
+    );
+    sideBranches[side].push(b);
+    sideLoad[side] += locals[b].size;
+  }
+
+  // Wysokość gałęzi: tyle węzłów, ile ma jej najszerszy poziom
+  const across = (b: number) => locals[b].rows * (NODE_HEIGHT + ROW_GAP);
+  const sideSpan = (side: Side) =>
+    sideBranches[side].reduce(
+      (sum, b) => sum + across(b) + BRANCH_GAP,
+      -BRANCH_GAP,
+    );
+
+  // Środki ramek względem środka drzewa (0,0)
+  const centers: Record<string, { x: number; y: number }> = {};
+  if (hasCenter) centers[CENTER_ID] = { x: 0, y: 0 };
+  for (const side of sides) {
+    // Największe gałęzie w środku strony, mniejsze na zmianę po obu bokach
+    const arranged: number[] = [];
+    sideBranches[side].forEach((b, i) =>
+      i % 2 ? arranged.push(b) : arranged.unshift(b),
+    );
+    let offset = -sideSpan(side) / 2;
+    for (const b of arranged) {
+      const local = locals[b];
+      local.levels.forEach((onLevel, lv) => {
+        if (!onLevel) return;
+        // Węzły poziomu wyśrodkowane w poprzek gałęzi
+        const shift = (local.rows - onLevel.length) / 2;
+        onLevel.forEach((id) => {
+          const row = rowOf[id] + shift;
+          const dist = NODE_WIDTH + BRANCH_GAP + lv * (NODE_WIDTH + LEVEL_GAP);
+          centers[id] = {
+            x: side === 'right' ? dist : -dist,
+            y: offset + row * (NODE_HEIGHT + ROW_GAP) + NODE_HEIGHT / 2,
+          };
+        });
+      });
+      offset += across(b) + BRANCH_GAP;
+    }
+  }
+
+  // Przesunięcie do dodatnich współrzędnych lewego górnego rogu (SVG z liniami zaczyna się w 0,0)
+  const all = Object.values(centers);
+  if (!all.length) {
+    return { placed: {}, branches: [], width: 0, height: 0 };
+  }
+  const minX = Math.min(...all.map((c) => c.x));
+  const minY = Math.min(...all.map((c) => c.y));
+  const maxX = Math.max(...all.map((c) => c.x));
+  const maxY = Math.max(...all.map((c) => c.y));
+  const placed: Record<string, Placed> = {};
+  for (const [id, c] of Object.entries(centers)) {
+    placed[id] = {
+      id,
+      branch: id === CENTER_ID ? -1 : branchOf[id],
+      x: c.x - minX,
+      y: c.y - minY,
+    };
+  }
+  // Kolejne gałęzie co „złoty kąt” na kole barw, żeby sąsiednie miały wyraźnie różne kolory
+  const branches = roots.map((root, i) => ({
+    root,
+    hue: Math.round((i * 137.5) % 360),
+  }));
+  return {
+    placed,
+    branches,
+    width: maxX - minX + NODE_WIDTH,
+    height: maxY - minY + NODE_HEIGHT,
+  };
 }
 
 const stateOf = (node?: TechwebNode) =>
@@ -84,9 +221,28 @@ export function TechwebTree(props: { selectedNode?: string }) {
 
   // Układ zależy tylko od listy widocznych węzłów, nie od punktów
   const layoutKey = nodes.map((n) => n.id).join(',');
-  const placed = useMemo(
+  const layout = useMemo(
     () => layoutTree(nodes, node_cache),
     [layoutKey, node_cache],
+  );
+  const { placed, branches, width, height } = layout;
+  // Ikona gałęzi: pierwszy projekt korzenia gałęzi (albo pierwszego węzła gałęzi, który ma projekty)
+  const branchIcons = useMemo(
+    () =>
+      branches.map((branch) => {
+        const own = node_cache[branch.root]?.design_ids ?? [];
+        const design = own.find((d) => design_cache[d]);
+        if (design) return design_cache[design].class;
+        for (const p of Object.values(placed)) {
+          if (branches[p.branch] !== branch) continue;
+          const found = node_cache[p.id]?.design_ids.find(
+            (d) => design_cache[d],
+          );
+          if (found) return design_cache[found].class;
+        }
+        return null;
+      }),
+    [layout],
   );
   const byId = useMemo(() => {
     const result: Record<string, TechwebNode> = {};
@@ -125,9 +281,12 @@ export function TechwebTree(props: { selectedNode?: string }) {
     }));
   };
 
-  // Węzeł wybrany z analizatora albo dysku: wyśrodkuj go po otwarciu drzewa
+  // Po otwarciu drzewa środek (albo węzeł wybrany z analizatora lub dysku) stoi na środku okna
   useEffect(() => {
-    if (props.selectedNode) focusNode(props.selectedNode);
+    focusNode(
+      props.selectedNode ??
+        (placed[CENTER_ID] ? CENTER_ID : Object.keys(placed)[0]),
+    );
   }, []);
 
   // Przeciąganie tła przesuwa widok; nasłuch na oknie, żeby nie gubić myszy poza drzewem
@@ -179,13 +338,6 @@ export function TechwebTree(props: { selectedNode?: string }) {
     });
   };
 
-  let width = 0;
-  let height = 0;
-  for (const p of Object.values(placed)) {
-    width = Math.max(width, p.x + NODE_WIDTH);
-    height = Math.max(height, p.y + NODE_HEIGHT);
-  }
-
   const related = new Set<string>();
   if (selected && node_cache[selected]) {
     for (const id of node_cache[selected].prereq_ids) related.add(id);
@@ -197,16 +349,16 @@ export function TechwebTree(props: { selectedNode?: string }) {
     for (const pre of node_cache[p.id].prereq_ids) {
       const from = placed[pre];
       if (!from) continue;
-      const x1 = from.x + NODE_WIDTH;
+      // Linie od środka do środka ramek: w układzie promienistym węzły leżą we wszystkich kierunkach
+      const x1 = from.x + NODE_WIDTH / 2;
       const y1 = from.y + NODE_HEIGHT / 2;
-      const x2 = p.x;
+      const x2 = p.x + NODE_WIDTH / 2;
       const y2 = p.y + NODE_HEIGHT / 2;
-      const mid = (x1 + x2) / 2;
       const highlighted = selected === p.id || selected === pre;
       lines.push(
         <path
           key={`${pre}>${p.id}`}
-          d={`M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`}
+          d={`M ${x1} ${y1} L ${x2} ${y2}`}
           className={`Techweb__TreeLine Techweb__TreeLine--${stateOf(byId[pre])}${highlighted ? ' Techweb__TreeLine--highlight' : ''}`}
         />,
       );
@@ -262,7 +414,11 @@ export function TechwebTree(props: { selectedNode?: string }) {
                         ),
                       ),
                     );
-                    setView({ zoom, x: 20, y: 20 });
+                    setView({
+                      zoom,
+                      x: (box.width - width * zoom) / 2,
+                      y: (box.height - height * zoom) / 2,
+                    });
                   }}
                 />
               </Stack.Item>
@@ -311,6 +467,8 @@ export function TechwebTree(props: { selectedNode?: string }) {
                   const node = byId[p.id];
                   const state = stateOf(node);
                   const dim = !!matches && !matches.has(p.id);
+                  const branch = branches[p.branch];
+                  const icon = branch ? branchIcons[p.branch] : null;
                   return (
                     <div
                       key={p.id}
@@ -331,17 +489,28 @@ export function TechwebTree(props: { selectedNode?: string }) {
                         top: `${p.y}px`,
                         width: `${NODE_WIDTH}px`,
                         height: `${NODE_HEIGHT}px`,
+                        // Pasek w kolorze gałęzi po lewej stronie ramki
+                        boxShadow: branch
+                          ? `inset 6px 0 0 hsl(${branch.hue}, 70%, 55%)`
+                          : undefined,
                       }}
                       onMouseUp={(e) => {
                         if (e.button !== 0 || drag.current?.moved) return;
                         setSelected(p.id === selected ? null : p.id);
                       }}
                     >
-                      <div className="Techweb__TreeNodeName">
-                        {node_cache[p.id].name}
-                      </div>
-                      <div className="Techweb__TreeNodeTier">
-                        Poziom {node_cache[p.id].node_tier}
+                      {!!icon && (
+                        <div className="Techweb__TreeNodeIcon">
+                          <div className={icon} />
+                        </div>
+                      )}
+                      <div className="Techweb__TreeNodeText">
+                        <div className="Techweb__TreeNodeName">
+                          {node_cache[p.id].name}
+                        </div>
+                        <div className="Techweb__TreeNodeTier">
+                          Poziom {node_cache[p.id].node_tier}
+                        </div>
                       </div>
                     </div>
                   );
