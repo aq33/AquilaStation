@@ -1068,6 +1068,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_607_tg_sprite.dm"
+#include "code\modules\test_chamber\kits\pr_607_polonium.dm"
 #include "code\modules\test_chamber\kits\pr_578_losowe_silniki.dm"
 #include "code\modules\test_chamber\kits\pr_579_struktura_statku.dm"
 #include "code\modules\test_chamber\kits\pr_585_opuszczona_stacja.dm"
@@ -1938,6 +1939,7 @@
 #include "code\modules\unit_tests\aquila_bot_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_service_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_kaplan.dm"
+#include "code\modules\unit_tests\aquila_polonium_polskie.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"
 #include "code\modules\unit_tests\aquila_infiltrator_uplink.dm"
 #include "code\modules\unit_tests\aquila_laser_balance.dm"
