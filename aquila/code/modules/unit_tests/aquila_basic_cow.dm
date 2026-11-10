@@ -10,7 +10,7 @@
 	} \
 } while (FALSE)
 
-/// Milking the basic cow through the whole attack chain fills the beaker from the udder component; the simple animal goat still milks through the old udder
+/// Milking the basic cow through the whole attack chain fills the beaker from the udder component
 /datum/unit_test/aquila_cow_milking_udder
 
 /datum/unit_test/aquila_cow_milking_udder/Run()
@@ -33,12 +33,6 @@
 	cow.death()
 	beaker.melee_attack_chain(farmer, cow)
 	TEST_ASSERT_EQUAL(beaker.reagents.total_volume, milk_before, "A dead cow was milked")
-
-	// The goat keeps its own /obj/item/udder (old API, now wrappers of the Bee udder)
-	var/mob/living/simple_animal/hostile/retaliate/goat/goat = allocate(/mob/living/simple_animal/hostile/retaliate/goat, get_step(run_loc_floor_bottom_left, NORTH))
-	var/obj/item/reagent_containers/glass/beaker/goat_beaker = allocate(/obj/item/reagent_containers/glass/beaker)
-	goat.attackby(goat_beaker, farmer)
-	TEST_ASSERT(goat_beaker.reagents.has_reagent(/datum/reagent/consumable/milk/goat), "The goat gave no goat milk")
 
 /// Feeding a cow wheat by hand can tame it, and a tamed cow can be ridden with our riding component
 /datum/unit_test/aquila_cow_taming_riding

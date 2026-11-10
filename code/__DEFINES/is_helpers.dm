@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/simple_animal/hostile/retaliate/clown,
 	/mob/living/simple_animal/hostile/retaliate/spaceman,
 	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
-	/mob/living/simple_animal/hostile/retaliate/goat,
+	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,
 	)))
 
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
 	/mob/living/simple_animal/pet/fox,
-	/mob/living/simple_animal/chicken,
+	/mob/living/basic/chicken, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/bear,
 	/mob/living/simple_animal/hostile/jungle/mega_arachnid
 	)))

@@ -397,7 +397,7 @@
 /obj/item/choice_beacon/pet/goat
 	name = "nadajnik dostawy kozy"
 	default_name = "Billy"
-	mob_choice = /mob/living/simple_animal/hostile/retaliate/goat
+	mob_choice = /mob/living/basic/goat // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/janicart
 	name = "nadajnik dostawy wózka woźnego"

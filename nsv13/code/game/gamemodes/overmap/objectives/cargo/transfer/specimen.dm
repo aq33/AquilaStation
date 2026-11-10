@@ -19,7 +19,7 @@
 		/mob/living/simple_animal/pet/fox,
 		/mob/living/simple_animal/pet/hamster,
 		/mob/living/simple_animal/pet/penguin/emperor,
-		/mob/living/simple_animal/chicken,
+		/mob/living/basic/chicken, // AQ EDIT - basic moby
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/butterfly,
 		/mob/living/simple_animal/crab,

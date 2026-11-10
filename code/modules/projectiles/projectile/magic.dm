@@ -221,7 +221,7 @@
 							/mob/living/simple_animal/hostile/mushroom,
 							/mob/living/simple_animal/hostile/statue,
 							/mob/living/simple_animal/hostile/retaliate/bat,
-							/mob/living/simple_animal/hostile/retaliate/goat,
+							/mob/living/basic/goat, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/killertomato,
 							/mob/living/simple_animal/hostile/spider/giant/guard,
 							/mob/living/simple_animal/hostile/spider/giant/hunter,
@@ -242,13 +242,13 @@
 							/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
 							/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 							/mob/living/basic/mouse, // AQ EDIT - basic moby
-							/mob/living/simple_animal/chicken,
+							/mob/living/basic/chicken, // AQ EDIT - basic moby
 							/mob/living/basic/cow, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
 							/mob/living/simple_animal/butterfly,
 							/mob/living/basic/pet/cat/cak, // AQ EDIT - basic moby
-							/mob/living/simple_animal/chick)
+							/mob/living/basic/chick) // AQ EDIT - basic moby
 			new_mob = new path(M.loc)
 
 		if("humanoid")

@@ -1,7 +1,7 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/components/udder.dm (bee/master 0adf0fe9ae), decision D9.
 // We have no item_interaction chain, so milking goes through COMSIG_PARENT_ATTACKBY; our milk containers are reagent_containers/glass.
-// The goat, the sheep and the gutlunch stay simple animals and keep their own /obj/item/udder through
-// generateMilk()/milkAnimal() below (the old API, now wrappers); only basic mobs use the component.
+// Cows, goats and sheep are basic mobs with this component (their udder items are next to them). The gutlunch stays a simple animal
+// and keeps its own /obj/item/udder through generateMilk()/milkAnimal() below (the old API, now wrappers).
 /**
  * Udder component; for farm animals to generate milk.
  *
@@ -14,7 +14,8 @@
 	var/datum/callback/on_milk_callback
 
 //udder_type and reagent_produced_typepath are typepaths, not reference
-/datum/component/udder/Initialize(udder_type = /obj/item/udder, datum/callback/on_milk_callback, datum/callback/on_generate_callback, reagent_produced_typepath = /datum/reagent/consumable/milk)
+// AQUILA: no default reagent here (Bee: cow milk), so the goat and sheep udder subtypes keep their own milk
+/datum/component/udder/Initialize(udder_type = /obj/item/udder, datum/callback/on_milk_callback, datum/callback/on_generate_callback, reagent_produced_typepath)
 	if(!isliving(parent)) //technically is possible to drop this on carbons... but you wouldn't do that to me, would you?
 		return COMPONENT_INCOMPATIBLE
 	udder = new udder_type(null, parent, on_generate_callback, reagent_produced_typepath)
@@ -80,7 +81,7 @@
 	src.udder_mob = udder_mob
 	src.on_generate_callback = on_generate_callback
 	create_reagents(size)
-	// AQUILA: no argument keeps the subtype's milk (the old udders of goats and sheep are made with new())
+	// AQUILA: no argument keeps the subtype's milk (goat and sheep udders, the gutlunch udder is made with new())
 	if(reagent_produced_typepath)
 		src.reagent_produced_typepath = reagent_produced_typepath
 	initial_conditions()
@@ -133,7 +134,7 @@
 	else
 		to_chat(user, span_danger("Wymię jest puste. Zaczekaj jeszcze trochę..."))
 
-/// Old udder API of our simple animals (goat, sheep, gutlunch): called from their Life()
+/// Old udder API of our simple animal gutlunch: called from its Life()
 /obj/item/udder/proc/generateMilk()
 	generate()
 

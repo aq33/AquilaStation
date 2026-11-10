@@ -283,3 +283,18 @@
 #define COLOR_GNOME_GREY "#a9a9a9"
 #define COLOR_GNOME_BLACK "#303030"
 #define COLOR_PALE_GREEN "#20e28e"
+
+// --- BeeStation/BeeStation-Hornet#14771 (farm animals and pets converted to basic mobs)
+///Finding adult mob
+///key holds the adult we found
+#define BB_FOUND_MOM "BB_found_mom"
+///list of types of mobs we will look for
+#define BB_FIND_MOM_TYPES "BB_find_mom_types"
+///list of types of mobs we must ignore
+#define BB_IGNORE_MOM_TYPES "BB_ignore_mom_types"
+///cooldown between emoting at our parent
+#define BB_PARENT_EMOTE_COOLDOWN "BB_parent_emote_cooldown"
+/// Tree climbing (tree_climber component): the tree the AI wants to climb
+#define BB_CLIMBED_TREE "BB_climbed_tree"
+/// From the climb_tree AI behaviour: (obj/structure/flora/tree/target)
+#define COMSIG_LIVING_CLIMB_TREE "living_climb_tree"

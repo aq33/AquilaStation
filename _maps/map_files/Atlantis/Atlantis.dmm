@@ -2662,7 +2662,7 @@
 /turf/open/floor/plasteel/grid/techfloor,
 /area/engine/stormdrive)
 "cds" = (
-/mob/living/simple_animal/chicken/rabbit,
+/mob/living/basic/rabbit/easter,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
 "cdu" = (

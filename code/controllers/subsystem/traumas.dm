@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(traumas)
 					   "aliens"   = typecacheof(list(/mob/living/carbon/alien, /mob/living/simple_animal/slime)),
 					   "conspiracies" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209, /mob/living/simple_animal/drone,
 					   /mob/living/simple_animal/pet/penguin)),
-					   "birds" = typecacheof(list(/mob/living/simple_animal/parrot, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
+					   "birds" = typecacheof(list(/mob/living/simple_animal/parrot, /mob/living/basic/chick, /mob/living/basic/chicken, /mob/living/basic/turkey, // AQ EDIT - basic moby
 					   /mob/living/simple_animal/pet/penguin)),
 					   "anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian))
 					   )

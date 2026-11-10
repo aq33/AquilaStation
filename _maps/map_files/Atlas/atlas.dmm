@@ -14961,7 +14961,7 @@
 /obj/machinery/camera/autoname{
 	dir = 10
 	},
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat{
 	name = "Matołek"
 	},
 /turf/open/floor/plasteel/freezer,

@@ -2556,7 +2556,7 @@
 	name = "Skrzynia z kurą"
 	desc = "Kura robi ko-ko!"
 	cost = 2000
-	contains = list( /mob/living/simple_animal/chick)
+	contains = list( /mob/living/basic/chick) // AQ EDIT - basic moby
 	crate_name = "skrzynia z kurą"
 
 /datum/supply_pack/critter/corgi
@@ -2615,7 +2615,7 @@
 	name = "Skrzynia z kozą"
 	desc = "Koza robi mee! Gwarancja traci ważność, jeśli posłuży jako zastępstwo za Pete'a."
 	cost = 2500
-	contains = list(/mob/living/simple_animal/hostile/retaliate/goat)
+	contains = list(/mob/living/basic/goat) // AQ EDIT - basic moby
 	crate_name = "skrzynia z kozą"
 
 /datum/supply_pack/critter/mothroach
@@ -2646,7 +2646,7 @@
 	name = "Skrzynia z owcą"
 	desc = "Owca robi bee!"
 	cost = 2000
-	contains = list(/mob/living/simple_animal/sheep)
+	contains = list(/mob/living/basic/sheep) // AQ EDIT - basic moby
 	crate_name = "skrzynia z owcą"
 
 /datum/supply_pack/critter/bullterrier

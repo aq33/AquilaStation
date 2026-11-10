@@ -6403,7 +6403,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/quartermaster/pvp)
 "gFd" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat{
 	name = "Evil Pete"
 	},
 /turf/open/floor/plasteel/freezer,

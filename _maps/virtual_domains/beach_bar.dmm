@@ -418,7 +418,7 @@
 /area/virtual_domain/fullbright)
 "bn" = (
 /obj/item/melee/skateboard/hoverboard,
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Chicken Joe"
 	},
 /turf/open/floor/plating/beach/sand,
