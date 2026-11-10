@@ -483,6 +483,15 @@ GLOBAL_LIST_EMPTY(species_list)
 					mob_spawn_meancritters += T
 				if(FRIENDLY_SPAWN)
 					mob_spawn_nicecritters += T
+		// AQ EDIT START - basic moby
+		for(var/T in typesof(/mob/living/basic))
+			var/mob/living/basic/basic_mob = T
+			switch(initial(basic_mob.gold_core_spawnable))
+				if(HOSTILE_SPAWN)
+					mob_spawn_meancritters += T
+				if(FRIENDLY_SPAWN)
+					mob_spawn_nicecritters += T
+		// AQ EDIT END
 
 	var/chosen
 	if(mob_class == FRIENDLY_SPAWN)

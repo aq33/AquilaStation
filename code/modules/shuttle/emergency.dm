@@ -381,7 +381,7 @@
 			if(player.stat != DEAD)
 				if(issilicon(player)) //Borgs are technically dead anyways
 					continue
-				if(isanimal(player)) //animals don't count
+				if(isanimal_or_basicmob(player)) //animals don't count // AQ EDIT - basic moby
 					continue
 				if(isbrain(player)) //also technically dead
 					continue
@@ -411,7 +411,7 @@
 	for(var/mob/living/player in GLOB.alive_mob_list)
 		if(issilicon(player)) //Borgs are technically dead anyways
 			continue
-		if(isanimal(player)) //animals don't count
+		if(isanimal_or_basicmob(player)) //animals don't count // AQ EDIT - basic moby
 			continue
 		if(isbrain(player)) //also technically dead
 			continue

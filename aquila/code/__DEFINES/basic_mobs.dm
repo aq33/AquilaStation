@@ -224,3 +224,43 @@
 /datum/controller/subsystem/unplanned_controllers/##X
 
 #define FIRE_PRIORITY_UNPLANNED_NPC 3
+
+// --- basic mob signals (signals_atom_attack.dm, signals_living.dm, signals_simplemob.dm in Bee)
+///from base of atom/attack_basic_mob(): (/mob/user)
+#define COMSIG_ATOM_ATTACK_BASIC_MOB "attack_basic_mob"
+/// From /mob/living/basic/handle_breathing() (Bee: base of /mob/living/Life()): (seconds_per_tick, times_fired)
+#define COMSIG_LIVING_HANDLE_BREATHING "living_handle_breathing"
+///from base of /mob/living/basic/proc/update_basic_mob_varspeed(): ()
+#define POST_BASIC_MOB_UPDATE_VARSPEED "post_basic_mob_update_varspeed"
+/// From /mob/living/befriend() : (mob/living/new_friend)
+#define COMSIG_LIVING_MADE_NEW_FRIEND "made_new_friend"
+/// From /mob/living/befriend() : (mob/living/new_friend)
+#define COMSIG_LIVING_BEFRIENDED "living_befriended"
+/// From /mob/living/unfriend() : (mob/living/old_friend)
+#define COMSIG_LIVING_UNFRIENDED "living_unfriended"
+/// From /datum/element/basic_eating and friends: (atom/eaten)
+#define COMSIG_MOB_ATE "mob_ate"
+///before a basic mob attacks its target: (atom/target), return COMPONENT_HOSTILE_NO_ATTACK to cancel
+#define COMSIG_HOSTILE_PRE_ATTACKINGTARGET "hostile_pre_attackingtarget"
+///after a basic mob attacked its target: (atom/target, result)
+#define COMSIG_HOSTILE_POST_ATTACKINGTARGET "hostile_post_attackingtarget"
+
+/// Simple animal or basic mob
+#define isanimal_or_basicmob(A) (istype(A, /mob/living/simple_animal) || istype(A, /mob/living/basic))
+
+// --- mob factions used by the basic mobs (code/__DEFINES/mobfactions.dm in Bee; FACTION_HOSTILE and FACTION_CULT are in heretic.dm)
+#define FACTION_NEUTRAL "neutral"
+#define FACTION_CAT "cat"
+#define FACTION_GONDOLA "gondola"
+#define FACTION_LIZARD "lizard"
+#define FACTION_MAINT_CREATURES "maint_creatures"
+#define FACTION_RAT "rats"
+
+/// From /datum/element/basic_eating/try_eating(): (atom/food, mob/living/feeder, list/effect_mult)
+#define COMSIG_MOB_PRE_EAT "mob_pre_eat"
+	///cancel eating
+	#define COMSIG_MOB_CANCEL_EAT (1<<0)
+	///from basic_eating finish_eating(): stop the food from being consumed
+	#define COMSIG_MOB_TERMINATE_EAT (1<<0)
+/// Mob has the basic_eating element
+#define TRAIT_MOB_EATER "mob_eater"

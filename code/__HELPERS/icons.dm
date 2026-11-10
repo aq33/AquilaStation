@@ -1062,6 +1062,12 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			var/mob/living/simple_animal/SA = T
 			if(initial(SA.gold_core_spawnable) == FRIENDLY_SPAWN)
 				GLOB.friendly_animal_types += SA
+		// AQ EDIT START - basic moby
+		for(var/T in typesof(/mob/living/basic))
+			var/mob/living/basic/basic_mob = T
+			if(initial(basic_mob.gold_core_spawnable) == FRIENDLY_SPAWN)
+				GLOB.friendly_animal_types += basic_mob
+		// AQ EDIT END
 
 
 	var/mob/living/simple_animal/SA = pick(GLOB.friendly_animal_types)

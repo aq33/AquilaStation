@@ -113,7 +113,7 @@
 		if(BM.stat == DEAD)
 			operating = 0
 			return
-		else if(ismonkey(BM) || isanimal(BM))
+		else if(ismonkey(BM) || isanimal_or_basicmob(BM))
 			operating = simple_power
 		else if(ishuman(BM))
 			if(!BM.mind)

@@ -275,7 +275,7 @@
 						C.update_equipment_speed_mods()
 						C.update_inv_legcuffed()
 						SSblackbox.record_feedback("tally", "handcuffs", 1, type)
-			else if(snap && isanimal(L))
+			else if(snap && isanimal_or_basicmob(L)) // AQ EDIT - basic moby
 				var/mob/living/simple_animal/SA = L
 				if(SA.mob_size <= MOB_SIZE_TINY) //don't close the trap if they're as small as a mouse.
 					snap = FALSE

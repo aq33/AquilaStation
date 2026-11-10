@@ -67,7 +67,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	return data
 
 /obj/machinery/keycard_auth/ui_status(mob/user)
-	if(isanimal(user))
+	if(isanimal_or_basicmob(user)) // AQ EDIT - basic moby
 		var/mob/living/simple_animal/A = user
 		if(!A.dextrous)
 			to_chat(user, "<span class='warning'>Jesteś zbyt prymitywny, żeby użyć tego urządzenia!</span>")

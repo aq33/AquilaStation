@@ -756,7 +756,7 @@
 		do_sparks(5, FALSE, get_turf(src))
 		qdel(src)
 		return
-	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
+	if(!isanimal_or_basicmob(M) || M.ckey) //only works on animals that aren't player controlled // AQ EDIT - basic moby
 		to_chat(user, "<span class='warning'>[M] jest już zbyt inteligentny, by to zadziałało!</span>")
 		return
 	if(M.stat)
@@ -814,7 +814,7 @@
 /obj/item/slimepotion/transference/afterattack(mob/living/M, mob/user)
 	if(prompted || !ismob(M))
 		return
-	if(!isanimal(M) || M.ckey) //much like sentience, these will not work on something that is already player controlled
+	if(!isanimal_or_basicmob(M) || M.ckey) //much like sentience, these will not work on something that is already player controlled // AQ EDIT - basic moby
 		to_chat(user, "<span class='warning'>[M] ma już wyższą świadomość!</span>")
 		return ..()
 	if(M.stat)
@@ -1062,7 +1062,7 @@
 /obj/item/slimepotion/slime/slimeradio/attack(mob/living/M, mob/user)
 	if(!ismob(M))
 		return
-	if(!isanimal(M))
+	if(!isanimal_or_basicmob(M)) // AQ EDIT - basic moby
 		to_chat(user, "<span class='warning'>[M] jest zbyt złożony dla tej mikstury!</span>")
 		return
 	if(M.stat)

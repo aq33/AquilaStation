@@ -117,8 +117,9 @@
 		laser.our_master = WEAKREF(master)
 	RegisterSignal(master, COMSIG_MOB_POINTED, PROC_REF(on_master_pointed), override = TRUE)
 
-/// tg: befriend() z basic mobów - AI nie atakuje przyjaciół
-/mob/living/simple_animal/hostile/heretic_summon/star_gazer/proc/befriend(mob/living/new_friend)
+/// tg: befriend() z basic mobów - AI nie atakuje przyjaciół (/mob/living/befriend() jest w aquila/code/modules/mob/living/basic/basic_compat.dm)
+/mob/living/simple_animal/hostile/heretic_summon/star_gazer/befriend(mob/living/new_friend)
+	. = ..()
 	friends |= new_friend
 	if(target == new_friend)
 		LoseTarget()

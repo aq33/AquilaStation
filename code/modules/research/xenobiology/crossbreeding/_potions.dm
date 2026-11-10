@@ -59,7 +59,7 @@ Slimecrossing Potions
 		to_chat(user, "<span class='notice'>Podajesz [M] [src]!</span>")
 	else
 		to_chat(user, "<span class='warning'>Wypijasz [src]!</span>")
-	if(isanimal(M))
+	if(isanimal_or_basicmob(M)) // AQ EDIT - basic moby
 		ADD_TRAIT(M, TRAIT_PACIFISM, MAGIC_TRAIT)
 	else if(iscarbon(M))
 		var/mob/living/carbon/C = M

@@ -107,9 +107,10 @@
 		relay_attacker(target, attacker, ATTACKER_DAMAGING_ATTACK, get_dir(target, attacker))
 		return
 
-/datum/element/relay_attackers/proc/on_attack_npc(atom/target, mob/living/simple_animal/attacker)
+/// Simple animals and basic mobs (attack_basic_mob() ends in attack_animal(), so COMSIG_ATOM_ATTACK_ANIMAL covers both)
+/datum/element/relay_attackers/proc/on_attack_npc(atom/target, mob/living/attacker)
 	SIGNAL_HANDLER
-	if(!istype(attacker))
+	if(!isanimal_or_basicmob(attacker))
 		return
 	if(attacker.melee_damage > 0)
 		relay_attacker(target, attacker, ATTACKER_DAMAGING_ATTACK, get_dir(target, attacker))

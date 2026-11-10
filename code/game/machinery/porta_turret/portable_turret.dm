@@ -418,7 +418,7 @@
 				continue
 
 			if(check_anomalies)//if it's set to check for simple animals
-				if(isanimal(A))
+				if(isanimal_or_basicmob(A)) // AQ EDIT - basic moby
 					var/mob/living/simple_animal/SA = A
 					if(SA.stat || in_faction(SA)) //don't target if dead or in faction
 						continue

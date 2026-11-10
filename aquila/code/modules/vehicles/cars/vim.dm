@@ -79,7 +79,7 @@
 	return tank?.return_analyzable_air()
 
 /obj/vehicle/sealed/car/vim/mob_try_enter(mob/entering)
-	if(!isanimal(entering))
+	if(!isanimal_or_basicmob(entering))
 		return FALSE
 	var/mob/living/animal = entering
 	if(animal.mob_size > maximum_mob_size && !is_type_in_list(animal, allowed_bigger_mobs))

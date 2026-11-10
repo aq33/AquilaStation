@@ -91,6 +91,11 @@
 	var/mob/living/simple_animal/S = user
 	if(istype(S) && S.deathmessage)
 		message_simple = S.deathmessage
+	// AQ EDIT START - basic moby (death_message z Bee)
+	var/mob/living/basic/basic_user = user
+	if(istype(basic_user) && basic_user.death_message)
+		message_simple = basic_user.death_message
+	// AQ EDIT END
 	. = ..()
 	message_simple = initial(message_simple)
 	if(!.)
@@ -330,7 +335,7 @@
 
 /datum/emote/living/scream/select_message_type(mob/user, intentional)
 	. = ..()
-	if(!intentional && isanimal(user))
+	if(!intentional && isanimal_or_basicmob(user)) // AQ EDIT - basic moby
 		return "skamle z bólu."
 
 /datum/emote/living/scowl
