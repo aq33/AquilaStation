@@ -182,8 +182,25 @@ var PELNA_DO = (function () {
   var out = new Array(FRAMES.length);
   var ostatnia = 0;
   for (var i = 0; i < FRAMES.length; i++) {
-    if (FRAMES[i].full !== false) ostatnia = i;
+    // DM zapisuje "full" jako liczbe 0/1, wiec sprawdzamy prawdziwosc, a nie !== false:
+    // 0 !== false jest w JS prawda, przez co kazda klatka uchodzila za pelna i lekkie
+    // klatki szukaly nazw same w sobie (okrety robily sie "undefined" po pierwszej sekundzie).
+    if (FRAMES[i].full) ostatnia = i;
     out[i] = ostatnia;
+  }
+  return out;
+})();
+
+// Okret, ktory pojawil sie miedzy pelnymi klatkami (swiezo wypuszczony mysliwiec), nie ma jeszcze
+// zadnej pelnej klatki za soba. Jego stale dane bierzemy z pierwszej pelnej klatki, w ktorej wystepuje.
+var BAZA_ID = (function () {
+  var out = {};
+  for (var i = 0; i < FRAMES.length; i++) {
+    if (!FRAMES[i].full) continue;
+    var lista = statki(i);
+    for (var j = 0; j < lista.length; j++) {
+      if (out[lista[j].id] === undefined) out[lista[j].id] = lista[j];
+    }
   }
   return out;
 })();
@@ -191,7 +208,7 @@ var PELNA_DO = (function () {
 // Okret z klatki i, uzupelniony o pola z ostatniej pelnej klatki
 function pelnyStatek(i, lekki) {
   if (lekki.name !== undefined) return lekki;
-  var baza = znajdzW(statki(PELNA_DO[i]), lekki.id);
+  var baza = znajdzW(statki(PELNA_DO[i]), lekki.id) || BAZA_ID[lekki.id];
   if (!baza) return lekki;
   var out = {};
   for (var k in baza) out[k] = baza[k];
