@@ -191,7 +191,7 @@
 // Pełne nadpisanie (LEGACY_OVERRIDES.md): najwyższy stopniem spośród żywych (najpierw z graczem);
 // gdy żywych nie ma, najwyższy stopniem w ogóle (jak w NSV13)
 /datum/squad/assign_leader()
-	if(!length(members))
+	if(!length(members) || aq_disbanding)
 		return
 	var/mob/living/carbon/human/highest = aq_best_leader_candidate()
 	if(!highest)
@@ -256,7 +256,7 @@
 	holder.icon = 'aquila/icons/squads/squad_hud.dmi'
 	holder.icon_state = "frame"
 	holder.color = squad.colour
-	holder.appearance_flags = RESET_COLOR | KEEP_APART
+	holder.appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_APART
 	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[get_squad_position()]")
 	glyph.appearance_flags = RESET_COLOR
 	holder.add_overlay(glyph)

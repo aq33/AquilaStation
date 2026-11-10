@@ -105,6 +105,9 @@ GLOBAL_LIST_EMPTY(squad_loans)
 
 /// Zwraca przedmiot do wypożyczenia; TRUE, jeśli pasował
 /datum/squad_loan/proc/accept(obj/item/thing)
+	// tylko rzeczy z automatu: prywatna apteczka tego samego typu z plecaka nie jest zwrotem
+	if(!thing.aq_squad_issued)
+		return FALSE
 	for(var/path in outstanding)
 		if(thing.type == path)
 			outstanding -= path
@@ -117,6 +120,10 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	for(var/path in outstanding)
 		var/obj/item/item_type = path
 		. += initial(item_type.name)
+
+/obj/item
+	/// Wydany przez automat drużyny (razem z początkową zawartością); tylko takie rzeczy przyjmuje zwrot
+	var/aq_squad_issued = FALSE
 
 // Skrzynia zestawu: noszona w ręce, mieści tylko sprzęt z zestawów drużyn
 /obj/item/storage/aq_squad_crate
@@ -309,7 +316,9 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	var/obj/item/storage/aq_squad_crate/crate = new(get_turf(src))
 	crate.assign(loan, kit.position, H.squad)
 	for(var/path in issued)
-		new path(crate)
+		var/obj/item/issued_item = new path(crate)
+		for(var/obj/item/part in issued_item.GetAllContents())
+			part.aq_squad_issued = TRUE
 	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	H.put_in_hands(crate)
@@ -337,6 +346,7 @@ GLOBAL_LIST_EMPTY(squad_loans)
 		var/datum/squad_loan/crate_loan = crate.loan || get_squad_loan(user)
 		for(var/obj/item/thing in crate.contents.Copy())
 			if(crate_loan?.accept(thing))
+				aq_release_foreign(thing)
 				qdel(thing)
 		if(length(crate.contents))
 			if(!quiet)
@@ -356,12 +366,19 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	if(ismob(I.loc))
 		var/mob/holder = I.loc
 		holder.temporarilyRemoveItemFromInventory(I, TRUE)
+	aq_release_foreign(I)
 	qdel(I)
 	aq_finish_loan(loan)
 	if(!quiet)
 		notify(user, loan)
 	ui_update()
 	return TRUE
+
+/// Przed skasowaniem zwróconego pojemnika (apteczka, pas, pudełko) wykłada to, czego automat nie wydał, np. dołożone pigułki
+/obj/machinery/squad_vendor/proc/aq_release_foreign(obj/item/returned)
+	for(var/obj/item/inner in returned.GetAllContents() - returned)
+		if(!inner.aq_squad_issued && !QDELETED(inner))
+			inner.forceMove(drop_location())
 
 /// Zamyka wypożyczenie, gdy wszystko wróciło
 /obj/machinery/squad_vendor/proc/aq_finish_loan(datum/squad_loan/loan)

@@ -226,6 +226,8 @@
 
 // Konsola
 /obj/machinery/computer/squad_manager
+	// w NSV13 było req_one_access = ACCESS_HEADS (liczba, nie lista): length() z liczby to 0, więc allowed() przepuszczało każdego
+	req_one_access = list(ACCESS_HEADS)
 	var/datum/aq_squad_bodycam/aq_bodycam
 	/// Stan okna: wybrany poziom mapy, odstęp drukowania smyczy
 	var/list/aq_state = list()
@@ -261,6 +263,10 @@
 	if(.)
 		return
 	if(!isliving(usr))
+		return FALSE
+	// req_one_access konsoli nie działa sam w ui_act: zarządzanie drużynami tylko z dostępem dowództwa
+	if(!(action in list("select_z", "close_cam")) && !allowed(usr))
+		to_chat(usr, "<span class='warning'>Brak dostępu: zarządzanie drużynami wymaga dostępu dowództwa.</span>")
 		return FALSE
 	if(aq_squad_console_act(action, params, usr, src, aq_bodycam, aq_state))
 		ui_update()

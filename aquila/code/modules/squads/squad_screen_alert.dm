@@ -65,6 +65,9 @@
 
 /// Dodaje komunikat do kolejki klienta
 /client/proc/aq_queue_squad_alert(datum/aq_squad_alert/alert)
+	// pierwszy jest na ekranie; z czekających zostają najnowsze, żeby rozkazy nie przychodziły z minutowym opóźnieniem
+	while(length(aq_squad_alerts) > SQUAD_ALERT_QUEUE_MAX)
+		aq_squad_alerts.Cut(2, 3)
 	LAZYADD(aq_squad_alerts, alert)
 	if(length(aq_squad_alerts) == 1)
 		INVOKE_ASYNC(src, PROC_REF(aq_play_squad_alerts))
@@ -101,8 +104,21 @@
 		qdel(text_box)
 		LAZYREMOVE(aq_squad_alerts, alert)
 
+/// Pager przy sobie: w ręce, na sobie (także w kieszeni), w noszonym PDA albo luzem w plecaku (tam drużyna wkłada go
+/// nowym członkom). Bez przeszukiwania całego ekwipunku, bo sprawdzamy to przy każdej aktualizacji okien.
 /mob/proc/aq_has_squad_pager()
-	return length(GetAllContents(/obj/item/squad_pager)) > 0
+	return FALSE
+
+/mob/living/aq_has_squad_pager()
+	for(var/obj/item/thing in held_items + get_equipped_items(TRUE))
+		if(istype(thing, /obj/item/squad_pager))
+			return TRUE
+		var/obj/item/modular_computer/tablet/pda = thing
+		if(istype(pda) && pda.aq_squad_pager)
+			return TRUE
+		if(istype(thing, /obj/item/storage/backpack) && (locate(/obj/item/squad_pager) in thing))
+			return TRUE
+	return FALSE
 
 /// Kto dostaje komunikaty drużyny na ekran: członkowie z pagerem przy sobie
 /datum/squad/proc/aq_alert_recipients()

@@ -40,3 +40,5 @@
 #define SQUAD_LOAN_FINE 300
 /// Auto-przydział omija drużyny, które mają tylu członków (XO może dopisać więcej)
 #define SQUAD_AUTO_MAX_MEMBERS 12
+/// Ile komunikatów drużyny może czekać w kolejce za tym na ekranie
+#define SQUAD_ALERT_QUEUE_MAX 3

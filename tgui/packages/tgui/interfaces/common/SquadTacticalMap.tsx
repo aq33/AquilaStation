@@ -17,7 +17,7 @@ export type SquadMember = {
   leader: BooleanLike;
   status: string;
   status_name: string;
-  /** Blip CM: tło w kolorze drużyny i glif funkcji (data URI) */
+  /** Klucz obrazka w SquadInfo.blips (blip CM: tło w kolorze drużyny i glif funkcji) */
   blip: string;
   health: number;
   pager: BooleanLike;
@@ -58,6 +58,8 @@ export type SquadInfo = {
   leader: string | null;
   leader_name: string | null;
   members: SquadMember[];
+  /** Blipy członków: klucz -> data URI, raz na drużynę */
+  blips: Record<string, string>;
   markers: SquadMarker[];
 };
 
@@ -493,7 +495,7 @@ export const SquadTacticalMap = (props: MapProps) => {
               return (
                 <img
                   key={member.ref}
-                  src={member.blip}
+                  src={squad.blips?.[member.blip]}
                   title={`${member.name} (${squad.name}, ${member.position_name}): ${member.status_name}${member.area ? `, ${member.area}` : ''}`}
                   style={{
                     position: 'absolute',

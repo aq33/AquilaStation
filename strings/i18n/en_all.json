@@ -14958,6 +14958,7 @@
 "<span class='warning'>Brak dostępu do przeglądarki pamięci podręcznej zasobów. Jeśli używasz własnego pliku skórki, pozwól DS pobrać nową wersję; jeśli nie - zgłoś błąd. To nie jest krytyczne, ale może powodować problemy z pobieraniem zasobów.</span>": "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>",
 "<span class='warning'>Brak dostępu. Potrzebna jest karta z dostępem do tego lokalu.</span>": "<span class='warning'>Access denied. A card with access to this venue is required.</span>",
 "<span class='warning'>Brak dostępu.</span>": "<span class='warning'>no access!</span>",
+"<span class='warning'>Brak dostępu: zarządzanie drużynami wymaga dostępu dowództwa.</span>": "<span class='warning'>Access denied: squad management requires command access.</span>",
 "<span class='warning'>Brak konta bankowego do rejestracji napiwku.</span>": "<span class='warning'>No bank account to register the tip.</span>",
 "<span class='warning'>Brak miejsca, by tu zasadzić: [src]!</span>": "<span class='warning'>There's no room to plant [src] here!</span>",
 "<span class='warning'>Brak odpowiedzi z kwatery głównej. Spróbuj ponownie później.</span>": "<span class='warning'>No response from headquarters. Please wait and try again later.</span>",

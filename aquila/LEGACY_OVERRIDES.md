@@ -54,6 +54,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/obj/machinery/computer/squad_manager/ui_interact()`, `ui_data()`, `ui_act()` (po `..()`), `/datum/computer_file/program/squad_manager/ui_data()`, `ui_act()` (po `..()`) | Replaced (C) | Rework drużyn (`squad_console.dm`): nowe okno `SquadManager.tsx` (cztery kolumny, przydział, funkcje, stan, sprzęt, mapa taktyczna, kamera pancerza w konsoli). Akcje wspólne w `aq_squad_console_act()`. |
 | `/obj/item/squad_pager/attack_self()` | Replaced (C) | Rework drużyn (`squad_pager_ui.dm`): otwiera okno `SquadPager.tsx` (członkowie, zadanie, wiadomości, mapa) zamiast pokazywać ostatnią wiadomość. Pager do samouczka ma własne `attack_self()`. |
 | `/datum/component/simple_teamchat/radio_dependent/squad/style_message()` | Replaced (C) | Drużyny XO (`aquila/code/modules/squads/squad_custom.dm`): gdy kanał zna drużynę, wiadomość pokazuje aktualną nazwę i kolor drużyny zamiast klucza kanału (klucz zostaje po zmianie nazwy, żeby pagery się nie rozłączały). Bez drużyny (globalny pager dowództwa) idzie wersja bazowa. |
+| `/obj/item/clothing/suit/ship/squad/aq_heavy/apply_squad()` | Replaced (C) | Ciężki pancerz drużyny (`aquila/code/modules/squads/squad_vendor_kits.dm`): sprite kamizelki piechoty morskiej (`marine`) nie ma stanu `marine_stripes`, więc bazowe `generate_clothing_overlay()` by go zepsuło; ustawia tylko nazwę i drużynę. |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
 

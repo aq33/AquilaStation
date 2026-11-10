@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 
 /// Czy kamera w pancerzu drużyny nadaje (pancerz musi być założony)
 /mob/living/carbon/human/proc/aq_has_squad_bodycam()
-	return istype(wear_suit, /obj/item/clothing/suit/ship/squad)
+	return istype(wear_suit, /obj/item/clothing/suit/ship/squad) && !istype(wear_suit, /obj/item/clothing/suit/ship/squad/bomber) // kurtka bez pancerza nie ma kamery
 
 /datum/squad/proc/aq_member_data(mob/living/carbon/human/member)
 	var/turf/member_turf = get_turf(member)
@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 		"leader" = (leader == member),
 		"status" = status,
 		"status_name" = squad_status_pl(status),
-		"blip" = aq_squad_blip(colour, position, status == SQUAD_STATUS_DEAD),
+		"blip" = "[position]|[status == SQUAD_STATUS_DEAD]", // klucz do "blips" drużyny (obrazki wysyłane raz na drużynę)
 		"health" = member.maxHealth ? round(max(member.health, 0) / member.maxHealth * 100) : 0,
 		"pager" = member.aq_has_squad_pager(),
 		"cam" = member.aq_has_squad_bodycam(),
@@ -308,9 +308,14 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 
 /datum/squad/proc/aq_squad_data(include_members = TRUE)
 	var/list/members_data = list()
+	var/list/blips = list()
 	if(include_members)
 		for(var/mob/living/carbon/human/member as anything in members)
-			members_data += list(aq_member_data(member))
+			var/list/member_data = aq_member_data(member)
+			members_data += list(member_data)
+			var/blip_key = member_data["blip"]
+			if(!blips[blip_key])
+				blips[blip_key] = aq_squad_blip(colour, member_data["position"], member_data["status"] == SQUAD_STATUS_DEAD)
 	return list(
 		"id" = REF(src),
 		"name" = name,
@@ -326,6 +331,7 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 		"leader" = leader ? REF(leader) : null,
 		"leader_name" = leader?.real_name,
 		"members" = members_data,
+		"blips" = blips,
 		"markers" = aq_markers_data(),
 	)
 
@@ -361,6 +367,13 @@ GLOBAL_LIST_EMPTY(squad_marker_icon_cache)
 	var/y = text2num(params["y"])
 	var/z = text2num(params["z"])
 	if(!isnum(x) || !isnum(y) || !isnum(z) || z < 1 || z > world.maxz)
+		return FALSE
+	// tylko poziomy z listy mapy (okręt, poziomy drużyny i stawiającego), nie np. CentCom z ręcznie wysłanego zapytania
+	var/list/allowed_levels = SSmapping.levels_by_trait(ZTRAIT_STATION) | aq_active_levels()
+	var/turf/placer_turf = get_turf(placer)
+	if(placer_turf)
+		allowed_levels |= placer_turf.z
+	if(!(z in allowed_levels))
 		return FALSE
 	var/turf/target_turf = locate(clamp(x, 1, world.maxx), clamp(y, 1, world.maxy), z)
 	if(!target_turf)

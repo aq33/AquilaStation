@@ -6,6 +6,12 @@
 #define SQUAD_MAX_TOTAL 10
 
 GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
+/// Wszystkie pagery drużyn (żeby nowa i rozwiązana drużyna nie przechodziły pętlą po całym świecie)
+GLOBAL_LIST_EMPTY(aq_squad_pagers)
+
+/obj/item/squad_pager/Initialize(mapload, datum/squad/squad)
+	GLOB.aq_squad_pagers += src
+	return ..()
 
 /datum/squad
 	/// Nazwa z definicji typu: preferencje postaci zapisują ją na stałe, więc po zmianie nazwy dalej prowadzi do tej drużyny
@@ -89,7 +95,7 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 	squads += squad
 	LAZYADDASSOCLIST(role_squad_map, squad.role, squad)
 	// globalne pagery dowództwa dostrajają się do drużyn tylko przy starcie (LateInitialize)
-	for(var/obj/item/squad_pager/all_channels/global_pager in world)
+	for(var/obj/item/squad_pager/all_channels/global_pager in GLOB.aq_squad_pagers)
 		var/datum/component/simple_teamchat/radio_dependent/squad/channel = global_pager.AddComponent(squad.squad_channel_type, override = TRUE)
 		channel.squad = squad
 	return squad
@@ -111,6 +117,9 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 	if(!(squad in squads) || length(squads) <= 1)
 		return FALSE
 	squad.broadcast(squad, "Drużyna [squad.name] zostaje rozwiązana.", list('nsv13/sound/effects/notice2.ogg'))
+	// bez przekazywania dowództwa i komunikatów przy każdym usuniętym członku
+	squad.aq_disbanding = TRUE
+	squad.unset_leader() // zdejmuje akcje rozkazu i znacznika, bez komunikatu na kanale
 	for(var/mob/living/carbon/human/member as anything in squad.members.Copy())
 		squad.remove_member(member)
 		member.squad = null
@@ -118,9 +127,8 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 	for(var/marker_type in squad.aq_markers)
 		squad.aq_clear_marker(marker_type)
 	var/list/channels = GLOB.simple_teamchats[squad.aq_channel_key]
+	// klucz kanału jest tylko tej drużyny, więc znikają wszystkie jego kanały (także w globalnych pagerach dowództwa)
 	for(var/datum/component/simple_teamchat/radio_dependent/squad/channel as anything in channels?.Copy())
-		if(channel.squad != squad && channel != squad.squad_channel)
-			continue
 		var/obj/item/squad_pager/pager = channel.parent
 		if(istype(pager))
 			if(pager.squad_channel == channel)
@@ -129,7 +137,7 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 				pager.squad = null
 		qdel(channel)
 	// pager dopisuje się do kanału sekundę po powstaniu, więc sprawdzamy też same pagery
-	for(var/obj/item/squad_pager/pager in world)
+	for(var/obj/item/squad_pager/pager as anything in GLOB.aq_squad_pagers)
 		if(pager.squad != squad)
 			continue
 		if(pager.squad_channel)
@@ -139,6 +147,15 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 	LAZYREMOVEASSOC(role_squad_map, squad.role, squad)
 	log_game("[key_name(user)] disbanded squad [squad.name]")
 	return TRUE
+
+/datum/squad
+	/// Trwa rozwiązywanie: bez przekazywania dowództwa i komunikatów kanału
+	var/aq_disbanding = FALSE
+
+/datum/squad/broadcast(mob/living/carbon/human/sender, message, list/sounds)
+	if(aq_disbanding)
+		return FALSE
+	return ..()
 
 /datum/squad/proc/aq_rename(new_name, mob/user)
 	new_name = aq_clean_squad_name(new_name)

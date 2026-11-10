@@ -19033,5 +19033,6 @@
 "Jaki pancerz automat wydaje drużynie: ciężki chroni lepiej, ale spowalnia": "Which armor the vendor issues to the squad: heavy protects better but slows you down",
 "Pancerz ciężki": "Heavy armor",
 "Pancerz lekki": "Light armor",
-"Rozwiązać?": "Disband?"
+"Rozwiązać?": "Disband?",
+"<span class='warning'>Brak dostępu: zarządzanie drużynami wymaga dostępu dowództwa.</span>": "<span class='warning'>Access denied: squad management requires command access.</span>"
 }

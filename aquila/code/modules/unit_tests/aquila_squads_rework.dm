@@ -126,6 +126,11 @@
 	var/old_access = squad.access_enabled
 	var/old_weapons = squad.weapons_clearance
 	var/old_hidden = squad.hidden
+	// bez dostępu dowództwa konsola niczego nie zmienia (req_one_access nie działał sam w ui_act)
+	console.ui_act("aq_toggle_access", params)
+	TEST_ASSERT(squad.access_enabled == old_access, "Konsola XO zmieniła dostęp drużyny osobie bez dostępu dowództwa")
+	console.req_one_access = null
+	console.req_access = null
 	console.ui_act("aq_toggle_access", params)
 	console.ui_act("aq_toggle_beararms", params)
 	console.ui_act("aq_toggle_hidden", params)
@@ -296,5 +301,49 @@
 	var/datum/component/storage/storage = crate.GetComponent(/datum/component/storage)
 	TEST_ASSERT(is_type_in_typecache(heavy, storage.can_hold), "Skrzynia nie przyjmuje ciężkiego pancerza")
 	qdel(kit)
+
+/// Regresje z przeglądu: ikona HUD bez obrotu, znacznik tylko na poziomach mapy, zwrot tylko wydanych rzeczy,
+/// rozwiązanie drużyny bez przekazywania dowództwa
+/datum/unit_test/aquila_squad_review_fixes
+
+/datum/unit_test/aquila_squad_review_fixes/Run()
+	var/datum/squad/squad = aq_squad("Delta")
+	var/mob/living/carbon/human/leader = allocate(/mob/living/carbon/human)
+	squad.add_member(leader)
+	squad.set_leader(leader)
+	var/image/holder = leader.hud_list?[SQUAD_HUD]
+	TEST_ASSERT(holder && (holder.appearance_flags & RESET_TRANSFORM), "Ikona funkcji w HUD-zie obraca się i skaluje z postacią")
+	var/list/centcom = SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
+	if(length(centcom) && !(centcom[1] in squad.aq_active_levels()) && !(centcom[1] in SSmapping.levels_by_trait(ZTRAIT_STATION)) && centcom[1] != leader.z)
+		leader.aq_next_squad_marker = 0
+		TEST_ASSERT(!squad.aq_place_marker_from_map(leader, list("x" = 10, "y" = 10, "z" = centcom[1], "marker" = SQUAD_MARKER_ATTACK)), "Znacznik z mapy stanął na poziomie CentCom")
+	// zwrot: prywatna apteczka tego samego typu zostaje, dołożona pigułka nie znika
+	var/obj/machinery/squad_vendor/vendor = allocate(/obj/machinery/squad_vendor)
+	leader.squad_position = SQUAD_POSITION_MEDIC
+	squad.unset_leader(leader)
+	TEST_ASSERT(vendor.aq_vend(leader), "Automat nie wydał zestawu medyka")
+	var/obj/item/storage/aq_squad_crate/crate = locate() in leader.held_items
+	var/obj/item/storage/firstaid/regular/issued_kit = locate() in crate
+	var/obj/item/storage/firstaid/regular/private_kit = allocate(/obj/item/storage/firstaid/regular)
+	var/obj/item/reagent_containers/pill/patch/styptic/extra = allocate(/obj/item/reagent_containers/pill/patch/styptic)
+	extra.forceMove(issued_kit)
+	TEST_ASSERT(!vendor.return_item(leader, private_kit, quiet = TRUE) && !QDELETED(private_kit), "Automat przyjął prywatną apteczkę jako zwrot")
+	vendor.return_item(leader, crate, quiet = TRUE)
+	TEST_ASSERT(!QDELETED(extra) && extra.loc == vendor.drop_location(), "Rzecz dołożona do wydanej apteczki zniknęła przy zwrocie")
+	qdel(extra)
+	var/datum/squad_loan/loan = get_squad_loan(leader)
+	if(loan)
+		qdel(loan)
+	// rozwiązanie: nikt nie przejmuje dowodzenia po drodze i nie zostają mu akcje dowódcy
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
+	var/datum/squad/doomed = GLOB.squad_manager.aq_create_squad("Hotel", "#336699")
+	var/mob/living/carbon/human/first = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/second = allocate(/mob/living/carbon/human)
+	doomed.add_member(first)
+	doomed.add_member(second)
+	doomed.set_leader(first)
+	TEST_ASSERT(GLOB.squad_manager.aq_delete_squad(doomed, officer), "Nie udało się rozwiązać drużyny")
+	TEST_ASSERT(!(doomed.aq_order_action?.owner) && !(doomed.aq_marker_action?.owner), "Po rozwiązaniu drużyny komuś zostały akcje dowódcy")
+	TEST_ASSERT(!doomed.leader, "Rozwiązana drużyna ma dowódcę")
 
 #undef TEST_ASSERT
