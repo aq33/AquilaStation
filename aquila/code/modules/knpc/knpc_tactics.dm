@@ -57,6 +57,12 @@
 	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
 	if(!istype(current_goal, /datum/ai_goal/human/engage_targets))
 		cover_turf = null // po walce nie trzymamy osłony dla siebie
+	expire_unreachable()
+
+/// Zapomina nieosiągalne przedmioty i jeńców po minucie. W nsv13 robił to tylko cel acquire_weapon, którego uzbrojony boarder nie wybiera.
+/datum/component/knpc/proc/expire_unreachable()
+	if(unreachable_items && world.time >= unreachable_items_reset_at)
+		unreachable_items = null
 
 /datum/component/knpc/register_bullet(datum/source, obj/item/projectile/Proj)
 	. = ..()

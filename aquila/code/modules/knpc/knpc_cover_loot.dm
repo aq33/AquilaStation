@@ -280,8 +280,8 @@
 		return FALSE
 	if(isturf(I.loc))
 		return TRUE
-	var/mob/living/holder = loot_holder(I)
-	return isliving(holder) && holder != parent && holder.stat == DEAD
+	var/mob/living/carbon/human/holder = loot_holder(I)
+	return ishuman(holder) && holder != parent && holder.stat == DEAD // tak jak w find_loot(): tylko martwi ludzie
 
 /// Ciało albo pole, przy którym trzeba stanąć, żeby wziąć I
 /datum/component/knpc/proc/loot_holder(obj/item/I)

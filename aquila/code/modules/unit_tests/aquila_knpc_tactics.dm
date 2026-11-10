@@ -224,5 +224,26 @@
 	scavenge.action(ai)
 	TEST_ASSERT(crew.is_holding(mag), "Boarder took the magazine from a living crew member")
 
+/// AQUILA - nieosiągalny jeniec jest pomijany tylko przez minutę, także przez uzbrojonego boardera
+/datum/unit_test/aquila_knpc_unreachable_prisoner_expires
+
+/datum/unit_test/aquila_knpc_unreachable_prisoner_expires/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	victim.SetUnconscious(20 SECONDS)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	var/datum/ai_goal/human/secure_prisoner/secure = locate() in ai.ai_goals
+	TEST_ASSERT_EQUAL(secure.find_prisoner(ai), victim, "Unconscious enemy next to the boarder is not picked as a prisoner")
+	LAZYOR(ai.unreachable_items, WEAKREF(victim))
+	ai.unreachable_items_reset_at = world.time + 1 MINUTES
+	ai.expire_unreachable()
+	TEST_ASSERT(!secure.find_prisoner(ai), "A prisoner marked unreachable is still picked")
+	ai.unreachable_items_reset_at = world.time - 1
+	ai.expire_unreachable()
+	TEST_ASSERT_EQUAL(secure.find_prisoner(ai), victim, "An armed boarder never forgets an unreachable prisoner")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
