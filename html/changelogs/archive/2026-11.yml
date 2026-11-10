@@ -588,6 +588,37 @@
   - rscadd: 'Statystyki postaci zapisywane między rundami (rundy, przeżycia, cele,
       misje, zarobki, operacje, ruda, aresztowania i inne). Podgląd: Esc → Statystyki,
       razem z rankingiem zarobków.'
+  - imageadd: 'Sprite''y z tg: gibber, condimaster, wózek z jedzeniem, jukebox, limbgrower,
+      mikrofalówka, jednoręki bandyta, boty, mechy, plecaki i torby, skrzynki narzędziowe,
+      wytłaczanka, pudełko pączków, RPD, wiadro, spryskiwacze, książki, rośliny doniczkowe
+      i napoje.'
+  - rscadd: 'Księga kapelana ma dwa nowe wyglądy: Guru Granth Sahib i Kojiki.'
+  - imageadd: Tablica ochrony z orłem Żandarmerii zamiast starej tablicy Policji.
+  - imageadd: Hardsuity inżynierii, atmosferyki i Głównego Inżyniera w barwach Orlenu,
+      czerwony hardsuit Ordynatora.
+  - rscadd: Hardsuit zespołu urazowego dla lekarzy, w nowej szafie w części medycznej
+      na każdej mapie.
+  - rscadd: 'Nowy wygląd rdzenia SI: Claude.'
+  - rscadd: Kapłan zaczyna w sutannie i birecie, oba są też w ChapDrobe.
+  - imageadd: Nowe ikony umiejętności odmieńca, zaklęć czarodzieja i mocy genetycznych;
+      butle i plecaki odrzutowe z tg.
+  - imageadd: 'Sprite''y z tg: sleeper, narzędzia chirurgiczne, frytkownica, ekspres
+      do kawy, granaty, lasery, granatnik, rewolwer detektywa, wyrzutnie strzykawek,
+      tarcze, gaśnice, GPS, pinpointery, wiertła, lampki, jedzenie i plony.'
+  - bugfix: Wkład w ekspresie do kawy jest widoczny; GPS, radio, monitor załogi i
+      wiertła widać w ręku i na pasku.
+  - bugfix: Gibber pokazuje lampki i krew, RPD i spryskiwacz są widoczne w ręku i
+      na pasku.
+  - tweak: Urządzenia na ścianach (włączniki, newscastery, interkomy, gaśnice, przyciski,
+      ekrany, tablice i inne) wiszą na ścianie zamiast nad podłogą; gaśnice, przyciski,
+      newscastery, szafki na topór i reszta mają obrócone wersje na ściany boczne.
+  - bugfix: Newscaster, monitor funkcji życiowych, skrzynka na układ i lustro wieszane
+      z ramki trafiają na ścianę przy graczu, a nie po drugiej stronie.
+  - imageadd: Pistolety ochrony i cywilne wyglądają jak polski VIS MPS, a karabin
+      snajperski jak Alexis-BOR (sprite'y z Polonium Station).
+  - rscadd: Kabanosy w automacie z przekąskami, parówki i pęto parówek, hot dog z
+      parówką, ćmoparówki i ćmodog.
+  - rscadd: 'Nowy szyld baru: Żabka Cafe.'
   dwasint, Absolucy (Monkestation), joker:
   - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
       parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'
