@@ -143,13 +143,9 @@
 		cel.guard(ship, ship)
 		if(!ship.brakes || ship.move_mode)
 			wynik = "Okręt osłaniający sam siebie próbował krążyć wokół siebie"
-	if(!wynik)
-		// Poza promieniem osłony lecimy do osłanianego, a nie krążymy
-		ship.forceMove(locate(100, 60, z)) // 40 pól
-		ship.brakes = TRUE
-		cel.guard(ship, oslaniany)
-		if(ship.brakes)
-			wynik = "Eskorta daleko od osłanianego okrętu nie ruszyła do niego"
+	// Gałąź "daleko od osłanianego" to bazowe move_toward(), przepisane bez zmian. Nie da się jej tu wywołać:
+	// bazowe omijanie przeszkód czyta current_system.system_contents (ai-skynet.dm), a okręt w teście
+	// nie jest w żadnym systemie gwiezdnym.
 	qdel(cel)
 	return wynik
 
