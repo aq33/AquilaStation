@@ -181,6 +181,8 @@
 			step_towards(src, new_turf)
 			if(QDELETED(src))
 				return movements_done
+			if(aq_teleported_during_step(old_turf, new_turf))
+				return movements_done
 			if(loc != new_turf && !deletion_queued)
 				var/pass_through = !aq_hold_position
 				aq_hold_position = FALSE
@@ -188,7 +190,7 @@
 					// Przebicie (process_hit() włączył PHASING): wchodzimy przez Move(), jak w starym silniku,
 					// żeby zadziałały Move() pocisków (zapalnik torpedy NSV13, kaster plazmy, zapalający)
 					step_towards(src, new_turf)
-					if(QDELETED(src))
+					if(QDELETED(src) || aq_teleported_during_step(old_turf, new_turf))
 						return movements_done
 				if(loc != new_turf)
 					if(Angle != angle_before_step)
@@ -425,3 +427,8 @@
 	if(deletion_queued || (istype(other) && other.deletion_queued))
 		return
 	return ..()
+
+/// Krok skończył się gdzie indziej niż na starym albo nowym kaflu (przejście z-levela, portal): forceMove() już ustawił
+/// pocisk na nowym miejscu, więc pętla nie może go cofać na new_turf ani liczyć dalej przesunięć sprzed teleportu
+/obj/item/projectile/proc/aq_teleported_during_step(turf/old_turf, turf/new_turf)
+	return isturf(loc) && loc != old_turf && loc != new_turf

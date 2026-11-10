@@ -417,7 +417,10 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 		pellets = chambered.pellets
 	var/list/stats = list()
 	if(shot_damage > 0)
-		stats += "obrażenia: <b>[shot_damage][pellets > 1 ? " × [pellets] śrucin" : ""]</b>"
+		if(pellets > 1)
+			stats += "obrażenia: <b>[shot_damage] × [pellets] śrucin</b>"
+		else
+			stats += "obrażenia: <b>[shot_damage]</b>"
 		var/to_crit = CEILING(100 / max(shot_damage * pellets, 0.1), 1)
 		stats += "trafień do krytycznego stanu (bez pancerza): <b>[to_crit]</b>"
 	if(shown.stamina > 0)
@@ -425,9 +428,16 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	if(shown.armour_penetration)
 		stats += "przebicie pancerza: <b>[shown.armour_penetration]</b>"
 	var/shown_spread = max(spread - aq_attachment_accuracy, 0)
-	stats += "rozrzut: <b>[round(shown_spread * 0.55, 0.1)]°</b>[requires_wielding ? " (z jednej ręki [round((shown_spread + spread_unwielded) * 0.55, 0.1)]°)" : ""]"
+	var/spread_degrees = round(shown_spread * 0.55, 0.1)
+	if(requires_wielding)
+		stats += "rozrzut: <b>[spread_degrees]°</b> (z jednej ręki [round((shown_spread + spread_unwielded) * 0.55, 0.1)]°)"
+	else
+		stats += "rozrzut: <b>[spread_degrees]°</b>"
 	var/single_rate = round(fire_rate ? fire_rate : 10 / CLICK_CD_RANGE, 0.1)
-	stats += "szybkostrzelność: <b>[single_rate] strz./s</b>[full_auto ? " (ogień ciągły [round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s)" : ""]"
+	if(full_auto)
+		stats += "szybkostrzelność: <b>[single_rate] strz./s</b> (ogień ciągły [round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s)"
+	else
+		stats += "szybkostrzelność: <b>[single_rate] strz./s</b>"
 	. += "<span class='notice'>[jointext(stats, ", ")].</span>"
 
 /// Pocisk do pokazania w opisie: z komory albo z typu amunicji

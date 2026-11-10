@@ -140,9 +140,17 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
 /// Połowa kąta stożka rozrzutu następnego strzału (tak jak liczy go process_fire(): ±0,55 × (rozrzut broni + dodatkowy))
 /obj/item/gun/proc/get_spread_cone(mob/living/user)
-	var/total = spread + get_dynamic_spread(user) - aq_attachment_accuracy
+	var/base_spread = max(spread, 0)
+	var/extra_spread = get_dynamic_spread(user)
+	if(aq_attachment_accuracy)
+		var/from_base = min(aq_attachment_accuracy, base_spread)
+		base_spread -= from_base
+		extra_spread = max(extra_spread - (aq_attachment_accuracy - from_base), 0)
 	if(requires_wielding && !is_wielded)
-		total += spread_unwielded
+		extra_spread += spread_unwielded
+	if(HAS_TRAIT(user, TRAIT_POOR_AIM))
+		extra_spread += 25
+	var/total = base_spread + extra_spread
 	if(chambered)
 		total += chambered.variance
 	return max(total * 0.55, 0)

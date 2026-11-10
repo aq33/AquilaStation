@@ -161,6 +161,6 @@
 	gun.ranged_cooldown = 0
 	gun.semicd = FALSE
 	gun.afterattack(target, shooter, FALSE, autofire_params)
-	if(!gun.can_shoot())
+	if(!gun.can_shoot() || gun.overheated)
 		stop_firing()
 		return PROCESS_KILL
