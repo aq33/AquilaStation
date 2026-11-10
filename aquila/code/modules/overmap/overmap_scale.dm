@@ -83,10 +83,11 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return AI_CARRIER_STANDOFF
 	// Torpedo launchers only fire at MASS_SMALL and up; once the torpedoes run out the ship closes in with its guns
 	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
-		// Stay inside our own tracking range of the target, or the torpedo ship loses it and wanders off.
-		// From the initial range: a radar pulse raises max_tracking_range for a while and the ship would move in and out every pulse
-		var/tracking_limit = initial(max_tracking_range) - AI_STANDOFF_BAND
-		return clamp(tracking_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
+		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off.
+		// From the base tracking range: our own radar pulses double it for 5 s and the ship would move in and out every pulse
+		var/tracking = base_tracking_range || max_tracking_range
+		var/sensor_limit = max(tracking * enemy.sensor_signature, SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
+		return clamp(sensor_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
 	return 0
 
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)

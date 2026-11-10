@@ -1,5 +1,5 @@
 import { CSSProperties, useState } from 'react';
-import { Button, Knob, Section } from 'tgui-core/components';
+import { Box, Button, Knob, ProgressBar, Section } from 'tgui-core/components';
 
 // NSV13
 import { useBackend } from '../backend';
@@ -14,6 +14,15 @@ type Data = {
   focus_x: any;
   focus_y: any;
   pulse_delay: any;
+  // AQ EDIT - sygnatura okrętu (aquila/code/modules/overmap/dradis_uncertainty.dm)
+  sensor_signatures: any;
+  own_signature: number;
+  seen_from: number;
+  seen_from_pulse: number;
+  map_width: number;
+  map_height: number;
+  // AQ EDIT - konsola sensorów (aquila/code/modules/overmap/sensor_console.dm)
+  sensor_station: boolean;
   sensor_mode: any;
   ships: any;
   showAnomalies: any;
@@ -43,13 +52,52 @@ export const DradisContent = (props) => {
       transition: 'all 0.5s ease-out',
     };
     let markerType = 'star_marker' + '_' + ship.alignment;
+    // AQ EDIT START - niepewne kontakty i źródło ostrzału (aquila/code/modules/overmap/dradis_uncertainty.dm)
+    const uncertainty = ship.uncertainty || 0;
+    const circleSize = uncertainty * 2 * scale_factor;
+    const circleStyle: CSSProperties = {
+      position: 'absolute',
+      left: ship.x * scale_factor - circleSize / 2 + 'px',
+      bottom: ship.y * scale_factor - circleSize / 2 + 'px',
+      width: circleSize + 'px',
+      height: circleSize + 'px',
+      borderRadius: '50%',
+      border: '1px dashed ' + ship.colour,
+      color: ship.colour,
+      opacity: ship.opacity,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: Math.max(10, circleSize / 3) + 'px',
+      pointerEvents: 'none',
+      transition: 'all 0.5s ease-out',
+    };
+    const emission = ship.emission;
+    const tooltip = emission
+      ? 'Emisja radaru: kierunek ' +
+        emission.bearing +
+        '°, odległość około ' +
+        Math.round(emission.distance) +
+        ' pól. Kolejne impulsy zawężają namiar.'
+      : ship.ghost
+        ? 'Źródło ostrzału: trafiono nas z tego kierunku, strzelca nie wykryto.'
+        : uncertainty > 0
+          ? 'Niepewny kontakt, pozycja przybliżona. Podejdź bliżej albo użyj radaru.'
+          : undefined;
     return (
       <li key={ship.id}>
+        {uncertainty > 0 && (
+          <div style={circleStyle}>{ship.ghost ? '!' : '?'}</div>
+        )}
+        {!!emission && drawEmission(emission, ship.colour, ship.opacity)}
+        {!!ship.designation && drawDesignation(ship)}
+        {/* AQ EDIT END */}
         {!!ship.name && (
           <Button
             style={markerStyle}
             className={markerType}
             content=""
+            tooltip={tooltip}
             onClick={() => act('hail', { target: ship.id })}
           >
             <span className="star_label">
@@ -60,6 +108,121 @@ export const DradisContent = (props) => {
       </li>
     );
   };
+
+  // AQ EDIT START - cel wyznaczony przez operatora sensorów (aquila/code/modules/overmap/sensor_console.dm)
+  const drawDesignation = (ship) => {
+    const primary = ship.designation === 'primary';
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: ship.x * scale_factor - 9 + 'px',
+          bottom: ship.y * scale_factor - 9 + 'px',
+          width: '18px',
+          height: '18px',
+          border: (primary ? '2px solid ' : '1px dashed ') + '#ffcc00',
+          borderRadius: '3px',
+          pointerEvents: 'none',
+          transition: 'all 0.5s ease-out',
+        }}
+      >
+        <span
+          style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '-20px',
+            width: '60px',
+            textAlign: 'center',
+            fontSize: '9px',
+            color: '#ffcc00',
+          }}
+        >
+          {primary ? 'CEL GŁÓWNY' : 'CEL'}
+        </span>
+      </div>
+    );
+  };
+  // AQ EDIT END
+
+  // AQ EDIT START - wycinek emisji radaru: namiar od naszego okrętu, odległość przybliżona
+  const drawEmission = (emission, colour, opacity) => {
+    const half = emission.width / 2;
+    const inner = Math.max(0, emission.distance - emission.spread);
+    const outer = emission.distance + emission.spread;
+    const steps = 8;
+    const points: number[][] = [];
+    const toPoint = (degrees, radius) => {
+      const radians = (degrees * Math.PI) / 180;
+      return [
+        (focus_x + Math.sin(radians) * radius) * scale_factor,
+        (focus_y + Math.cos(radians) * radius) * scale_factor,
+      ];
+    };
+    for (let i = 0; i <= steps; i++) {
+      points.push(
+        toPoint(emission.bearing - half + (i * 2 * half) / steps, outer),
+      );
+    }
+    for (let i = steps; i >= 0; i--) {
+      points.push(
+        toPoint(emission.bearing - half + (i * 2 * half) / steps, inner),
+      );
+    }
+    const xs = points.map((point) => point[0]);
+    const ys = points.map((point) => point[1]);
+    const minX = Math.min(...xs);
+    const maxY = Math.max(...ys);
+    const width = Math.max(1, Math.max(...xs) - minX);
+    const height = Math.max(1, maxY - Math.min(...ys));
+    const polygon = points
+      .map((point) => point[0] - minX + ',' + (maxY - point[1]))
+      .join(' ');
+    // The overmap wraps, but the view cannot scroll past its edges:
+    // the part of the sector beyond an edge is drawn again on the far side
+    const mapWidth = (data.map_width || 0) * scale_factor;
+    const mapHeight = (data.map_height || 0) * scale_factor;
+    const copies: number[][] = [];
+    for (const dx of mapWidth ? [-mapWidth, 0, mapWidth] : [0]) {
+      for (const dy of mapHeight ? [-mapHeight, 0, mapHeight] : [0]) {
+        const left = minX + dx;
+        const bottom = maxY - height + dy;
+        const visible =
+          (dx === 0 && dy === 0) ||
+          (left + width > 0 &&
+            left < mapWidth &&
+            bottom + height > 0 &&
+            bottom < mapHeight);
+        if (visible) {
+          copies.push([left, bottom]);
+        }
+      }
+    }
+    return copies.map(([left, bottom]) => (
+      <svg
+        key={left + '_' + bottom}
+        width={width}
+        height={height}
+        style={{
+          position: 'absolute',
+          left: left + 'px',
+          bottom: bottom + 'px',
+          opacity: opacity,
+          pointerEvents: 'none',
+          overflow: 'visible',
+          transition: 'opacity 0.5s ease-out',
+        }}
+      >
+        <polygon
+          points={polygon}
+          fill={colour}
+          fillOpacity={0.18}
+          stroke={colour}
+          strokeDasharray="4 3"
+        />
+      </svg>
+    ));
+  };
+  // AQ EDIT END
 
   const DradisMap = (ships, zoom_factor, width_mod, focus_x, focus_y) => {
     let scale_factor = 5 * zoom_factor;
@@ -115,7 +278,8 @@ export const DradisContent = (props) => {
         <>
           <Button icon="search-plus" onClick={() => act('zoomin')} />
           <Button icon="search-minus" onClick={() => act('zoomout')} />
-          {!!data.can_use_radar && (
+          {/* AQ EDIT - przy konsoli sensorów radarem steruje operator */}
+          {!!data.can_use_radar && !data.sensor_station && (
             <>
               <Button
                 content="Impuls radaru"
@@ -152,6 +316,34 @@ export const DradisContent = (props) => {
         </>
       }
     >
+      {/* AQ EDIT START - własna sygnatura okrętu */}
+      {!!data.sensor_signatures && (
+        <Box mb={1}>
+          <ProgressBar
+            value={Math.min(data.own_signature / 2, 1)}
+            ranges={{
+              good: [0, 0.45],
+              average: [0.45, 0.7],
+              bad: [0.7, 1],
+            }}
+          >
+            {'Twoja sygnatura: ' +
+              data.own_signature.toFixed(2).replace('.', ',') +
+              ' · AI widzi cię z ~' +
+              data.seen_from +
+              ' pól (~' +
+              data.seen_from_pulse +
+              ', gdy pulsuje)'}
+          </ProgressBar>
+        </Box>
+      )}
+      {!!data.sensor_station && (
+        <Box mb={1} color="label">
+          Sensorami steruje konsola sensorów. Cele wyznaczone przez operatora
+          mają żółtą ramkę.
+        </Box>
+      )}
+      {/* AQ EDIT END */}
       Sojusznicy:
       <Knob
         tickWhileDragging
