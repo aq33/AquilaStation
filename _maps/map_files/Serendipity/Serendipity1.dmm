@@ -5527,6 +5527,30 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/carpet/ship,
 /area/medical/morgue)
+"rH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/light/floor,
+/obj/machinery/duct,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/nsv/trauma)
 "rK" = (
 /obj/structure/table/wood,
 /obj/structure/window/plasma/reinforced/spawner,
@@ -9335,6 +9359,20 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/bridge/meeting_room/council)
+"Ey" = (
+/obj/machinery/smartfridge/genetics,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/structure/sign/departments/minsky/research/genetics{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/genetics/cloning)
 "Ez" = (
 /obj/item/radio/intercom/directional/south,
 /obj/structure/disposalpipe/segment{
@@ -14248,30 +14286,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/science/server)
-"Vy" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/light/floor,
-/obj/machinery/duct,
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/nsv/trauma)
 "Vz" = (
 /obj/structure/cable,
 /turf/closed/wall/ship,
@@ -15037,19 +15051,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
-"Yi" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/structure/sign/departments/minsky/research/genetics{
-	pixel_x = -29
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/genetics/cloning)
 "Yj" = (
 /obj/machinery/munitions_forge/arc_forge,
 /turf/open/floor/engine,
@@ -44943,7 +44944,7 @@ ZH
 YX
 nv
 tO
-Yi
+Ey
 vr
 xr
 wA
@@ -45452,7 +45453,7 @@ AR
 rM
 FT
 RZ
-Vy
+rH
 cD
 cD
 UC

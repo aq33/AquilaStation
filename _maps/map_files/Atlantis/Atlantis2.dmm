@@ -3041,6 +3041,10 @@
 /obj/structure/railing/corner,
 /turf/open/openspace,
 /area/engine/engineering)
+"cPv" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/steel,
+/area/medical/genetics)
 "cPF" = (
 /obj/structure/chair/fancy/sofa/mono/left,
 /obj/machinery/duct,
@@ -3522,10 +3526,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/medical/storage)
-"drc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/genetics)
 "drB" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -6730,10 +6730,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science/explab)
-"gzI" = (
-/obj/structure/extinguisher_cabinet/north,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
 "gzW" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -11029,6 +11025,10 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"kPI" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
 "kQe" = (
 /obj/item/stack/ore/glass,
 /obj/item/stack/ore/copper,
@@ -51255,7 +51255,7 @@ fAR
 qyN
 fAR
 hcT
-gzI
+kPI
 sux
 sux
 sux
@@ -62858,7 +62858,7 @@ sUt
 sUt
 sUt
 fbE
-drc
+cPv
 vcI
 fbE
 cvE

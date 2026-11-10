@@ -653,24 +653,6 @@
 "bo" = (
 /turf/closed/wall/steel,
 /area/library)
-"bp" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/disks,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/book/manual/infuser,
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
-	},
-/turf/open/floor/durasteel/lino,
-/area/medical/genetics)
 "bq" = (
 /obj/effect/turf_decal/ship/letter,
 /turf/open/floor/engine/airless,
@@ -3153,6 +3135,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/bridge/cic)
+"hu" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/steel,
+/area/medical/genetics)
 "hv" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -11006,6 +10992,21 @@
 /obj/machinery/chem_heater,
 /turf/open/floor/durasteel/alt,
 /area/science/xenobiology)
+"Ki" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/disks,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/book/manual/infuser,
+/turf/open/floor/durasteel/lino,
+/area/medical/genetics)
 "Kj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -11278,6 +11279,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
+"Lf" = (
+/obj/effect/turf_decal/tile/ship/half/green{
+	dir = 1
+	},
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
 "Lh" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -15340,15 +15350,6 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
-"ZQ" = (
-/obj/effect/turf_decal/tile/ship/half/green{
-	dir = 1
-	},
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32
-	},
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
 "ZR" = (
 /obj/structure/railing{
 	dir = 8
@@ -49713,7 +49714,7 @@ Tc
 wW
 Tc
 Tc
-ZQ
+Lf
 wu
 iJ
 LJ
@@ -53317,8 +53318,8 @@ mV
 ze
 mV
 Ht
-aQ
-bp
+hu
+Ki
 uw
 bm
 bl

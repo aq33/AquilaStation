@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Box,
   Button,
   ImageButton,
   Input,
@@ -21,6 +22,8 @@ type Item = {
   amount: number;
   icon: string;
   icon_state: string;
+  /** AQUILA: opis przy przedmiocie (gablota DNA pokazuje, co robi iniektor) */
+  desc?: string;
 };
 
 type Data = {
@@ -114,7 +117,7 @@ const ItemTile = ({ item }) => {
       dmIcon={item.icon}
       dmIconState={item.icon_state}
       disabled={item.amount < 1}
-      tooltip={item.name}
+      tooltip={item.desc ? `${item.name}: ${item.desc}` : item.name}
       tooltipPosition={'bottom'}
       buttons={
         item.amount > 1 && (
@@ -204,7 +207,14 @@ const ItemList = ({ item }) => {
       }
     >
       <Stack textAlign="left">
-        <Stack.Item grow>{item.name}</Stack.Item>
+        <Stack.Item grow>
+          {item.name}
+          {!!item.desc && (
+            <Box fontSize={0.85} color="label" style={{ whiteSpace: 'normal' }}>
+              {item.desc}
+            </Box>
+          )}
+        </Stack.Item>
         <Stack.Item opacity={0.5} fontSize={0.8}>
           x{item.amount}
         </Stack.Item>

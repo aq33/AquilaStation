@@ -1088,6 +1088,7 @@
 #include "code\modules\research\designs\weapon_designs.dm"
 #include "code\modules\research\designs\power_designs.dm"
 #include "code\modules\research\fabricator_ui.dm"
+#include "code\modules\research\genetics\gene_fridge.dm"
 #include "code\modules\research\machinery\_production.dm"
 #include "code\modules\research\master_server.dm"
 #include "code\modules\research\ai_hardware.dm"

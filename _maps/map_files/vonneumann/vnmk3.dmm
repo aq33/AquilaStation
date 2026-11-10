@@ -14040,6 +14040,10 @@
 	},
 /turf/open/floor/monotile/dark/airless,
 /area/space/nearstation)
+"ljq" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/ship,
+/area/medical/medbay)
 "ljs" = (
 /obj/structure/cable/yellow,
 /obj/structure/sign/poster/official/random{
@@ -46379,7 +46383,7 @@ aUd
 vNa
 wxW
 hNn
-bxi
+ljq
 pIv
 boR
 juY
