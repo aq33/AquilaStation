@@ -682,10 +682,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/obj/effect/abstract/liquid_turf/current_head
 	///compares after each iteration to see if we even need to continue
 	var/visited_length = 0
-	while(length(queued_liquids))
-		current_head = queued_liquids[1]
+	var/queue_index = 1 // AQUILA - kolejka po indeksie, bez kosztownego zdejmowania z początku listy
+	while(queue_index <= length(queued_liquids))
+		current_head = queued_liquids[queue_index++]
 		queued_turf = current_head.my_turf
-		queued_liquids -= current_head
 
 		for(var/turf/adjacent_turf in get_adjacent_open_turfs(queued_turf))
 			if(QDELETED(adjacent_turf.liquids) || !members[adjacent_turf])
@@ -694,9 +694,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				continue
 			visited_length = length(previously_visited)
 			previously_visited["[adjacent_turf.liquids.x]_[adjacent_turf.liquids.y]"] = adjacent_turf.liquids
-			if(length(previously_visited) != visited_length)
-				queued_liquids |= adjacent_turf.liquids
-				connected_liquids |= adjacent_turf
+			if(length(previously_visited) != visited_length) // AQUILA - previously_visited pilnuje unikalności, więc += zamiast kwadratowego |=
+				queued_liquids += adjacent_turf.liquids
+				connected_liquids += adjacent_turf
 				if(adjacent_checks)
 					if(temporary_split_key == adjacent_turf.liquids.temporary_split_key && adjacent_turf != first_turf)
 						adjacent_checks--
@@ -717,10 +717,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/obj/effect/abstract/liquid_turf/current_head
 	///compares after each iteration to see if we even need to continue
 	var/visited_length = 0
-	while(length(queued_liquids))
-		current_head = queued_liquids[1]
+	var/queue_index = 1 // AQUILA - kolejka po indeksie, bez kosztownego zdejmowania z początku listy
+	while(queue_index <= length(queued_liquids))
+		current_head = queued_liquids[queue_index++]
 		queued_turf = current_head.my_turf
-		queued_liquids -= current_head
 
 		for(var/turf/adjacent_turf in get_adjacent_open_turfs(queued_turf))
 			if(QDELETED(adjacent_turf.liquids) || !members[adjacent_turf])
@@ -728,9 +728,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 			visited_length = length(previously_visited)
 			previously_visited["[adjacent_turf.liquids.x]_[adjacent_turf.liquids.y]"] = adjacent_turf.liquids
-			if(length(previously_visited) != visited_length)
-				queued_liquids |= adjacent_turf.liquids
-				connected_liquids |= adjacent_turf
+			if(length(previously_visited) != visited_length) // AQUILA - previously_visited pilnuje unikalności, więc += zamiast kwadratowego |=
+				queued_liquids += adjacent_turf.liquids
+				connected_liquids += adjacent_turf
 				if(total_turfs > 0 && length(connected_liquids) >= total_turfs)
 					return connected_liquids
 	return connected_liquids

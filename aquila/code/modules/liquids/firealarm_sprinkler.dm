@@ -12,6 +12,9 @@
 #define SPRINKLER_WATER_NORMAL_MIN 60
 #define SPRINKLER_WATER_FLOOD_MIN 400
 #define SPRINKLER_WATER_MAX 5000
+/// Najwięcej wody z jednego włączenia alarmu (duże obszary: korytarze techniczne, hole)
+#define SPRINKLER_WATER_TOTAL_MAX_NORMAL 3000
+#define SPRINKLER_WATER_TOTAL_MAX_FLOOD 12000
 /// Ile szybciej parują kałuże ze zraszaczy (zwykłe; zalanie paruje normalnie). Niewiele, żeby woda zdążyła rozlać się po pokoju.
 #define SPRINKLER_EVAPORATION_MULTIPLIER 3
 /// Odstęp między wylaniami z jednego alarmu (EMP potrafi trafić kilka razy)
@@ -44,12 +47,13 @@
 	return FALSE
 
 /**
- * Wylewa wodę z każdego niezaspawanego oczyszczacza powietrza w obszarze alarmu.
+ * Wylewa wodę z każdego działającego oczyszczacza powietrza w obszarze alarmu (włączony, zasilony, niezaspawany).
+ * Sam alarm musi być zmontowany i sprawny (także przy EMP).
  * flood - zalanie po kostki (emag, EMP); inaczej cienka warstwa na całe pomieszczenie, która szybko paruje
  * Zwraca liczbę oczyszczaczy, z których poleciała woda.
  */
 /obj/machinery/firealarm/proc/release_sprinkler_water(flood, mob/user)
-	if(world.time < last_sprinkle + SPRINKLER_COOLDOWN)
+	if(world.time < last_sprinkle + SPRINKLER_COOLDOWN || buildstage != 2 || !is_operational)
 		return 0
 	var/area/alarm_area = get_area(src)
 	if(!alarm_area)
@@ -57,7 +61,7 @@
 	last_sprinkle = world.time
 	var/list/scrubbers = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber in GLOB.machines)
-		if(scrubber.welded || get_area(scrubber) != alarm_area)
+		if(scrubber.welded || !scrubber.on || (scrubber.machine_stat & (NOPOWER|BROKEN)) || get_area(scrubber) != alarm_area)
 			continue
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
@@ -69,7 +73,8 @@
 	var/floor_tiles = 0
 	for(var/turf/open/floor/floor_tile in alarm_area)
 		floor_tiles++
-	var/amount = max(floor_tiles, 1) * (flood ? SPRINKLER_WATER_PER_TILE_FLOOD : SPRINKLER_WATER_PER_TILE_NORMAL) / length(scrubbers)
+	var/total = min(max(floor_tiles, 1) * (flood ? SPRINKLER_WATER_PER_TILE_FLOOD : SPRINKLER_WATER_PER_TILE_NORMAL), flood ? SPRINKLER_WATER_TOTAL_MAX_FLOOD : SPRINKLER_WATER_TOTAL_MAX_NORMAL)
+	var/amount = total / length(scrubbers)
 	amount = clamp(amount, flood ? SPRINKLER_WATER_FLOOD_MIN : SPRINKLER_WATER_NORMAL_MIN, SPRINKLER_WATER_MAX)
 	. = 0
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber as anything in scrubbers)
@@ -106,5 +111,7 @@
 #undef SPRINKLER_WATER_NORMAL_MIN
 #undef SPRINKLER_WATER_FLOOD_MIN
 #undef SPRINKLER_WATER_MAX
+#undef SPRINKLER_WATER_TOTAL_MAX_NORMAL
+#undef SPRINKLER_WATER_TOTAL_MAX_FLOOD
 #undef SPRINKLER_EVAPORATION_MULTIPLIER
 #undef SPRINKLER_COOLDOWN

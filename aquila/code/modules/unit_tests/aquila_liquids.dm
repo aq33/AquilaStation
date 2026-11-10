@@ -356,7 +356,9 @@
 /datum/unit_test/aquila_firealarm_sprinkler/Run()
 	var/turf/open/T = run_loc_floor_bottom_left
 	aquila_liquids_cleanup(T)
-	allocate(/obj/machinery/atmospherics/components/unary/vent_scrubber, T)
+	var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber = allocate(/obj/machinery/atmospherics/components/unary/vent_scrubber, T)
+	scrubber.on = TRUE
+	scrubber.set_machine_stat(scrubber.machine_stat & ~NOPOWER) // pokój testowy nie ma APC
 	var/mob/living/carbon/human/puller = allocate(/mob/living/carbon/human, get_step(T, EAST))
 	fire_alarm = allocate(/obj/machinery/firealarm, get_step(T, EAST))
 	fire_alarm.set_is_operational(TRUE)
@@ -392,6 +394,18 @@
 	fire_alarm.last_sprinkle = -INFINITY
 	fire_alarm.emp_act(EMP_LIGHT)
 	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume >= 300, "An EMP on the fire alarm did not flood the scrubber")
+	aquila_liquids_cleanup(T)
+
+	// Zepsuty (niezmontowany) alarm i wyłączony oczyszczacz nie leją wody
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.buildstage = 0
+	fire_alarm.emp_act(EMP_LIGHT)
+	TEST_ASSERT(QDELETED(T.liquids), "An EMP on an unbuilt fire alarm flooded the room")
+	fire_alarm.buildstage = 2
+	scrubber.on = FALSE
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.emp_act(EMP_LIGHT)
+	TEST_ASSERT(QDELETED(T.liquids), "A switched off scrubber spilled water")
 	aquila_liquids_cleanup(T)
 
 #undef TEST_ASSERT

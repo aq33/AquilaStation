@@ -34,6 +34,22 @@
 	for(var/turf/open/tile as anything in line)
 		aquila_liquids_cleanup(tile)
 
+/// Usunięcie środkowego kafla (mop, pompa, wypalenie) dzieli kałużę: check_liquid_removal -> try_split
+/datum/unit_test/aquila_liquid_removal_split
+
+/datum/unit_test/aquila_liquid_removal_split/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	var/list/line = aquila_liquids_make_line(T)
+	var/turf/open/middle = line[2]
+	var/turf/open/far = line[3]
+	var/datum/liquid_group/group = middle.liquids.liquid_group
+	group.check_liquid_removal(middle.liquids, group.reagents_per_turf + 1)
+	TEST_ASSERT(QDELETED(middle.liquids), "Removing the middle tile kept its liquid")
+	TEST_ASSERT(!QDELETED(T.liquids) && !QDELETED(far.liquids), "Removing the middle tile removed its neighbours")
+	TEST_ASSERT(T.liquids.liquid_group != far.liquids.liquid_group, "Removing the middle tile left both ends as one group")
+	for(var/turf/open/tile as anything in line)
+		aquila_liquids_cleanup(tile)
+
 /// Wiadro wody od 50 j. robi kałużę i nadal reaguje z podłogą (gasi płomień), a uran nie mnoży się przez pamięć rozlań
 /datum/unit_test/aquila_liquid_spill_reacts_once
 
