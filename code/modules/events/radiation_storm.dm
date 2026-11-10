@@ -7,7 +7,7 @@
 
 /datum/round_event/radiation_storm
 	/// Pętle syreny dla fałszywego alarmu: obszar -> typ pętli (Bee#13796)
-	var/list/playlist = list()
+	var/list/playlist = list() // AQ EDIT - burza radiacyjna z Bee#13796
 
 /datum/round_event/radiation_storm/setup()
 	startWhen = 3

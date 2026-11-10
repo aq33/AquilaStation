@@ -24,7 +24,7 @@
 	immunity_type = "rad"
 
 	/// Obszar -> pętla syreny na czas tej burzy (Bee#13796)
-	var/list/playlist = list()
+	var/list/playlist = list() // AQ EDIT - burza radiacyjna z Bee#13796
 
 // AQ EDIT START - burza radiacyjna z Bee#13796: syrena w obszarach, napromieniowanie 1-5% zamiast mieszania DNA
 /datum/weather/rad_storm/telegraph()

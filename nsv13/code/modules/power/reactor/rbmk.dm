@@ -98,6 +98,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	desc = "Sprawdzona konstrukcja, która daje stabilną moc przy akceptowalnie niskim ryzyku. Moderator można wymieniać, by uzyskać różne efekty."
 	icon = 'nsv13/icons/obj/machinery/rbmk.dmi'
 	icon_state = "reactor_map"
+	rad_insulation = RAD_MEDIUM_INSULATION // AQ EDIT - promieniowanie z Bee#13442: obudowa osłania pręty w środku (próg prętów 0,8); własny impuls reaktora ma próg 0,5
 	pixel_x = -32
 	pixel_y = -32
 	density = FALSE //It burns you if you're stupid enough to walk over it.

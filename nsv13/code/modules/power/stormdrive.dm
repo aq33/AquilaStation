@@ -705,8 +705,9 @@ Control Rods
 	handle_gas_records()
 	handle_reactor_stability()
 	update_icon()
-	// AQ EDIT START - promieniowanie z Bee#13442: impuls co sekundę, 5x5 kafelków, ścianę zatrzymuje; przy 200-400 stopniach 0,2-0,6% na impuls
-	radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = clamp(heat * radiation_modifier / 1000, 0, 2), collector_power = heat * radiation_modifier, collector_falloff = 2)
+	// AQ EDIT START - promieniowanie z Bee#13442: impuls co 2 s (slowprocess z SSmachines), 5x5 kafelków, ścianę zatrzymuje;
+	// przy 200-400 stopniach 0,4-0,8% na impuls, czyli 0,1-0,3%/s ponad naturalny zanik 0,1%/s
+	radiation_pulse(src, max_range = 2, threshold = RAD_MEDIUM_INSULATION, intensity = clamp(heat * radiation_modifier / 500, 0, 4), collector_power = heat * radiation_modifier, collector_falloff = 2)
 	// AQ EDIT END
 	ambient_temp_bleed()
 

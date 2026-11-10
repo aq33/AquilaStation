@@ -32,7 +32,7 @@
 	var/safety = 1000
 	while(length(SSradiation.processing) && safety-- > 0)
 		var/datum/radiation_pulse_information/pulse_information = SSradiation.processing[1]
-		var/atom/source = pulse_information.source_ref.resolve()
+		var/atom/source = pulse_information.source_ref?.resolve() || pulse_information.source_turf
 		if(isnull(source) || !length(pulse_information.turfs_to_process))
 			SSradiation.processing -= pulse_information
 			continue
@@ -176,6 +176,59 @@
 	warm.set_temperature(T20C)
 	formation.react(warm, null)
 	TEST_ASSERT_EQUAL(warm.get_moles(GAS_PLUOXIUM), 0, "Pluoxium powstało w temperaturze pokojowej")
+
+/// Poprawki z przeglądu aq33/AquilaStation#600: źródło w basenie, źródło usunięte zaraz po impulsie,
+/// licznik Geigera cyborga, ludzie-strąki żywiący się promieniowaniem, moduł ochrony hardsuitu
+/datum/unit_test/aquila_radiation/review_fixes
+
+/datum/unit_test/aquila_radiation/review_fixes/Run()
+	var/turf/source_turf = locate(run_loc_floor_bottom_left.x, run_loc_floor_bottom_left.y + 2, run_loc_floor_bottom_left.z)
+	var/turf/target_turf = locate(source_turf.x + 1, source_turf.y, source_turf.z)
+	TEST_ASSERT(isopenturf(source_turf) && isopenturf(target_turf), "Linia testowa nie leży na podłodze")
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, target_turf)
+
+	// Źródło leżące w basenie (pręt w basenie na wypalone paliwo) osłania jego własny kafelek
+	swap_turf(source_turf, /turf/open/indestructible/sound/pool)
+	var/obj/item/pooled_source = allocate(/obj/item/screwdriver, source_turf)
+	radiation_pulse(pooled_source, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 10)
+	flush_pulses()
+	TEST_ASSERT_EQUAL(intensity_of(victim), 0, "Źródło leżące w basenie napromieniowało człowieka obok basenu")
+	source_turf = source_turf.ChangeTurf(/turf/open/floor/plasteel)
+
+	// Źródło usunięte zaraz po impulsie (granat gluonowy, meteor, wybuch PDSR) dalej promieniuje z zapamiętanego kafelka
+	var/obj/item/deleted_source = new /obj/item/screwdriver(source_turf)
+	radiation_pulse(deleted_source, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 10)
+	qdel(deleted_source)
+	flush_pulses()
+	TEST_ASSERT_EQUAL(intensity_of(victim), 10, "Impuls źródła usuniętego zaraz po nim nikogo nie napromieniował")
+
+	// Cyborg nie łapie promieniowania, ale jego licznik Geigera ma słyszeć impulsy
+	var/mob/living/silicon/robot/borg = allocate(/mob/living/silicon/robot, target_turf)
+	var/obj/item/geiger_counter/borg_counter = new(borg)
+	borg_counter.equipped(borg, ITEM_SLOT_HANDS)
+	radiation_pulse(source_turf, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = 10)
+	flush_pulses()
+	TEST_ASSERT(!isnull(borg_counter.last_perceived_radiation_danger), "Licznik Geigera cyborga nie usłyszał impulsu")
+	qdel(borg_counter)
+
+	// Człowiek-strąk żywi się promieniowaniem jak Diona w Bee: leczy się powyżej 50% i nie ma bazowych objawów
+	var/mob/living/carbon/human/pod = allocate(/mob/living/carbon/human, target_turf)
+	pod.set_species(/datum/species/pod)
+	pod.adjustBruteLoss(20)
+	var/datum/component/irradiated/pod_rads = pod.AddComponent(/datum/component/irradiated, 60)
+	TEST_ASSERT(pod_rads, "Człowiek-strąk nie dał się napromieniować")
+	pod_rads.process(2)
+	TEST_ASSERT(pod.getBruteLoss() < 20, "Człowiek-strąk przy 60% nie leczy się promieniowaniem")
+
+	// Moduł ochrony hardsuitu daje cechę ochrony, a zdjęcie modułu ją zabiera
+	var/obj/item/clothing/suit/radiation/part = allocate(/obj/item/clothing/suit/radiation)
+	var/obj/item/clothing/suit/space/hardsuit/plain_suit = allocate(/obj/item/clothing/suit/space/hardsuit)
+	TEST_ASSERT(HAS_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING), "Kombinezon przeciwradiacyjny nie ma cechy ochrony")
+	TEST_ASSERT(!HAS_TRAIT(plain_suit, TRAIT_RADIATION_PROTECTED_CLOTHING), "Zwykły hardsuit ma cechę ochrony")
+	ADD_TRAIT(plain_suit, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT)
+	TEST_ASSERT(HAS_TRAIT(plain_suit, TRAIT_RADIATION_PROTECTED_CLOTHING), "Cecha ochrony z modułu (MOD_TRAIT) nie działa")
+	REMOVE_TRAIT(plain_suit, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT)
+	TEST_ASSERT(!HAS_TRAIT(plain_suit, TRAIT_RADIATION_PROTECTED_CLOTHING), "Cecha ochrony z modułu została po zdjęciu")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -77,7 +77,7 @@
 		O.updatehealth()
 		// AQ EDIT START - promieniowanie z Bee#13442
 		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
-		if(irradiated_component)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
 			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
 		// AQ EDIT END
 
@@ -239,7 +239,7 @@
 		O.updatehealth()
 		// AQ EDIT START - promieniowanie z Bee#13442
 		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
-		if(irradiated_component)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
 			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
 		// AQ EDIT END
 
@@ -400,7 +400,7 @@
 		O.updatehealth()
 		// AQ EDIT START - promieniowanie z Bee#13442
 		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
-		if(irradiated_component)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
 			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
 		// AQ EDIT END
 

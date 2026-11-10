@@ -19,8 +19,9 @@
 /// O ile spada natężenie na sekundę z TRAIT_RADHEALER
 #define RAD_HEALER_DECREASE_PER_SECOND 0.5
 
-// Prysznice działają na SSmachines
-#define RADIATION_CLEAN_IMMUNITY_TIME (SSMACHINES_DT + (1 SECONDS))
+// Prysznice działają na SSmachines. Aquila: SSmachines.wait w decysekundach; Bee dodawało SSMACHINES_DT (sekundy)
+// do 1 SECONDS (decysekundy), więc odporność trwała 1,2 s przy prysznicu co 2 s i czasem go „nie było”
+#define RADIATION_CLEAN_IMMUNITY_TIME (SSmachines.wait + (1 SECONDS))
 
 /// Atom jest napromieniowany i świeci na zielono.
 /// Ludzie dostają obrażenia od toksyn, dopóki natężenie nie spadnie do zera.

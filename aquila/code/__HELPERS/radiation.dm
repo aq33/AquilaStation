@@ -39,6 +39,16 @@
 
 	var/datum/radiation_pulse_information/pulse_information = new
 	pulse_information.source_ref = WEAKREF(source)
+	// Aquila: kafelek i nazwa zostają, gdy źródło zniknie przed przetworzeniem impulsu (granat, meteor)
+	pulse_information.source_turf = source_turf
+	pulse_information.source_name = "[source]"
+	// Aquila: osłona samego źródła. Kafelek źródła nie leży na linii do celu, więc pręt w basenie na wypalone paliwo
+	// albo w reaktorze osłaniają tylko kafelek i pojemniki, w których leży (dawniej źródło w basenie miało 10% siły).
+	if(source != source_turf)
+		var/source_insulation = source_turf.rad_insulation
+		for(var/atom/container = source.loc; container && container != source_turf; container = container.loc)
+			source_insulation *= container.rad_insulation
+		pulse_information.source_insulation = source_insulation
 	pulse_information.max_range = max_range
 	pulse_information.threshold = threshold
 	pulse_information.intensity = intensity
@@ -51,6 +61,12 @@
 
 /datum/radiation_pulse_information
 	var/datum/weakref/source_ref
+	/// Aquila: kafelek źródła z chwili impulsu
+	var/turf/source_turf
+	/// Aquila: nazwa źródła do logu
+	var/source_name
+	/// Aquila: iloczyn izolacji kafelka i pojemników źródła
+	var/source_insulation = 1
 	var/max_range
 	var/threshold
 	var/intensity

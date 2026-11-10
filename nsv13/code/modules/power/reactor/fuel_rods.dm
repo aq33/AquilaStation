@@ -30,13 +30,17 @@
 	if(process)
 		START_PROCESSING(SSobj, src)
 
-// AQ EDIT START - promieniowanie z Bee#13442: element radioactive zamiast komponentu; dawna siła / 100 = natężenie impulsu co 3 s
+// AQ EDIT START - promieniowanie z Bee#13442: element radioactive zamiast komponentu.
+// Natężenie impulsu co 3 s z dawnej siły: zwykły pręt (500) ok. 1,7%, plutonowy (1500) 5% jak każdy pręt w Bee, zużyty (6000) najwyżej 10%.
+// Pręty w reaktorze osłania jego obudowa (rad_insulation reaktora), więc w pracującym RBMK promieniuje sam reaktor.
+#define FUEL_ROD_STRENGTH_TO_INTENSITY(strength) clamp((strength) / 300, 1, 10)
 /obj/item/fuel_rod/proc/set_rod_radioactivity(new_strength)
 	if(rad_element_intensity)
 		RemoveElement(/datum/element/radioactive, 3, RAD_LIGHT_INSULATION, rad_element_intensity)
-	rad_element_intensity = new_strength / 100
+	rad_element_intensity = new_strength > 0 ? FUEL_ROD_STRENGTH_TO_INTENSITY(new_strength) : 0
 	if(rad_element_intensity > 0)
 		AddElement(/datum/element/radioactive, 3, RAD_LIGHT_INSULATION, rad_element_intensity)
+#undef FUEL_ROD_STRENGTH_TO_INTENSITY
 // AQ EDIT END
 
 /obj/item/fuel_rod/Destroy()

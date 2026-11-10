@@ -63,7 +63,7 @@
 /mob/living/proc/handle_breathing(times_fired)
 	return
 
-/mob/living/proc/handle_mutations()
+/mob/living/proc/handle_mutations() // AQ EDIT - promieniowanie z Bee#13442: dawne handle_mutations_and_radiation(), promieniowanie robi komponent irradiated
 	return
 
 /mob/living/proc/handle_diseases()
