@@ -55,6 +55,8 @@
 /datum/component/knpc/process()
 	. = ..()
 	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
+	if(!istype(current_goal, /datum/ai_goal/human/engage_targets))
+		cover_turf = null // po walce nie trzymamy osłony dla siebie
 
 /datum/component/knpc/register_bullet(datum/source, obj/item/projectile/Proj)
 	. = ..()
@@ -105,7 +107,10 @@
 	var/mob/living/carbon/human/ai_boarder/H = parent
 	var/obj/item/gun/G = H.get_active_held_item()
 	if(!istype(G) || !G.can_shoot())
+		cover_turf = null
 		return pathfind_to(target)
+	if(try_take_cover(target)) // aquila/code/modules/knpc/knpc_cover_loot.dm
+		return
 	var/dist = get_dist(H, target)
 	if(dist > KNPC_RANGE_MAX || !can_see(H, target, view_range))
 		return pathfind_to(target)
@@ -335,16 +340,16 @@
 	// Słuchawki bowman chronią uszy, zaawansowane okulary (zwykłe nie chronią przed błyskiem) oczy: hukowy rzucony przez kolegę nie ogłusza Syndykatu
 	if(!glasses)
 		equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/advanced(src), ITEM_SLOT_EYES)
-	give_knpc_grenades()
+	give_knpc_gear()
 
 /mob/living/carbon/human/ai_boarder/space_pirate/Initialize(mapload)
 	. = ..()
 	knpc_traits |= KNPC_IS_DOOR_BASHER
-	give_knpc_grenades()
+	give_knpc_gear()
 
-/// Granat hukowy i z szansą KNPC_FRAG_CHANCE odłamkowy do plecaka (bez plecaka do kieszeni, jeśli wolna)
-/mob/living/carbon/human/ai_boarder/proc/give_knpc_grenades()
-	var/list/grenades = list(/obj/item/grenade/flashbang)
+/// Granat hukowy, z szansą KNPC_FRAG_CHANCE odłamkowy i dwie opaski zaciskowe do plecaka (bez plecaka do kieszeni, jeśli wolna)
+/mob/living/carbon/human/ai_boarder/proc/give_knpc_gear()
+	var/list/grenades = list(/obj/item/grenade/flashbang, /obj/item/restraints/handcuffs/cable/zipties, /obj/item/restraints/handcuffs/cable/zipties)
 	if(prob(KNPC_FRAG_CHANCE))
 		grenades += /obj/item/grenade/frag
 	for(var/grenade_type in grenades)

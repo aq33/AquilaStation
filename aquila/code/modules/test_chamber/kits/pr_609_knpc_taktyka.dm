@@ -104,3 +104,56 @@
 		/mob/living/carbon/human/ai_boarder/space_pirate/pistol = 1,
 		/mob/living/carbon/human = 1,
 	)
+
+/datum/test_chamber_kit/pr_609_cover
+	name = "PR 609: boarder KNPC chowa się za murkiem"
+	pr = "aq33/AquilaStation#609"
+	description = "Syndykat z pistoletem i dwa murki z worków z piaskiem 2 pola na wschód od środka. Stań z bronią kilka pól na wschód od murków. 	1) Obserwuj → oczekiwane: syndykat idzie za najbliższy murek (murek między nim a tobą) i stamtąd strzela, nie cofa się na otwarte pole. 	2) Strzelaj do niego → oczekiwane: część twoich pocisków trafia w murek. 	3) Obejdź murek z boku → oczekiwane: syndykat zmienia osłonę albo wraca do zwykłego trzymania dystansu. 	Uwaga: stoły nie są osłoną (pociski przez nie przelatują), więc boarder ich nie szuka."
+	items = list(
+		/mob/living/carbon/human/ai_boarder/syndicate/pistol = 1,
+		/obj/structure/barricade/sandbags = 2,
+	)
+
+/datum/test_chamber_kit/pr_609_cover/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	var/list/barricades = list()
+	for(var/obj/structure/barricade/B in spawned)
+		barricades += B
+	var/turf/first = get_ranged_target_turf(center, EAST, 2)
+	if(length(barricades) >= 2 && first)
+		var/obj/structure/barricade/one = barricades[1]
+		var/obj/structure/barricade/two = barricades[2]
+		one.forceMove(first)
+		two.forceMove(get_step(first, NORTH))
+	var/mob/living/carbon/human/ai_boarder/boarder = locate() in spawned
+	boarder?.forceMove(get_ranged_target_turf(center, WEST, 1))
+
+/datum/test_chamber_kit/pr_609_loot
+	name = "PR 609: boarder KNPC zakuwa i zbiera sprzęt"
+	pr = "aq33/AquilaStation#609"
+	description = "Syndykat z pistoletem (ma 2 opaski zaciskowe), obok nieprzytomny człowiek i martwy człowiek z plecakiem: 3 magazyny 10 mm i medipen. Nie pokazuj się syndykatowi z bronią. 	1) Obserwuj → oczekiwane: syndykat podchodzi do nieprzytomnego i zakłada mu opaskę („Mam jeńca!”); zakutego potem nie bije. 	2) → oczekiwane: przeszukuje martwego i zabiera magazyny (najwyżej 4 zapasowe) do plecaka, medipen tylko, jeśli swój zużył. 	3) Pokaż się z bronią w trakcie → oczekiwane: przerywa zbieranie i walczy."
+	items = list(
+		/mob/living/carbon/human/ai_boarder/syndicate/pistol = 1,
+		/mob/living/carbon/human = 2,
+	)
+
+/datum/test_chamber_kit/pr_609_loot/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	var/list/humans = list()
+	for(var/mob/living/carbon/human/H in spawned)
+		if(!istype(H, /mob/living/carbon/human/ai_boarder))
+			humans += H
+	if(length(humans) < 2)
+		return
+	var/mob/living/carbon/human/prisoner = humans[1]
+	var/mob/living/carbon/human/body = humans[2]
+	prisoner.real_name = "nieprzytomny"
+	prisoner.name = prisoner.real_name
+	prisoner.SetUnconscious(3 MINUTES)
+	body.real_name = "martwy z magazynami"
+	body.name = body.real_name
+	body.equip_to_slot_or_del(new /obj/item/storage/backpack(body), ITEM_SLOT_BACK)
+	for(var/i in 1 to 3)
+		new /obj/item/ammo_box/magazine/m10mm(body.back)
+	new /obj/item/reagent_containers/hypospray/medipen/survival(body.back)
+	body.death()

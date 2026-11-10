@@ -706,6 +706,7 @@
 #include "code\modules\jobs\job_slots.dm"
 #include "code\modules\jobs\job_types\ai_data_core.dm"
 #include "code\modules\jobs\job_types\scientist.dm"
+#include "code\modules\knpc\knpc_cover_loot.dm"
 #include "code\modules\knpc\knpc_tactics.dm"
 #include "code\modules\mapping\random_engines.dm"
 #include "code\modules\medical\bandage.dm"

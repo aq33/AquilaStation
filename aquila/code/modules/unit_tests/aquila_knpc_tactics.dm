@@ -136,5 +136,72 @@
 	TEST_ASSERT(!frag.active && boarder.is_holding(frag), "The frag grenade should stay unthrown in hand")
 	qdel(flash) // nie wybucha w kolejnych testach
 
+/// AQUILA - strzelec idzie za murek między nim a wrogiem i zostaje tam, zamiast cofać się na otwartym polu
+/datum/unit_test/aquila_knpc_takes_cover
+
+/datum/unit_test/aquila_knpc_takes_cover/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/turf/cover_spot = locate(base.x + 2, base.y + 1, base.z)
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/enemy = allocate(/mob/living/carbon/human, locate(base.x + 5, base.y + 1, base.z))
+	allocate(/obj/structure/barricade, locate(base.x + 3, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai.turf_gives_cover(cover_spot, enemy), "The tile behind the barricade does not count as cover")
+	TEST_ASSERT(!ai.turf_gives_cover(get_turf(boarder), enemy), "An open tile counts as cover")
+	ai.next_move = 0
+	ai.tactical_move(enemy)
+	TEST_ASSERT_EQUAL(ai.cover_turf, cover_spot, "Armed boarder did not pick the tile behind the barricade as cover")
+	TEST_ASSERT_EQUAL(ai.dest, cover_spot, "Armed boarder is not heading to its cover")
+	boarder.forceMove(cover_spot)
+	ai.tactical_move(enemy)
+	TEST_ASSERT_EQUAL(get_turf(boarder), cover_spot, "Boarder left its cover")
+	TEST_ASSERT(!length(ai.path), "Boarder in cover should hold position")
+
+/// AQUILA - boarder z opaską zakuwa nieprzytomnego wroga, a zakuty przestaje być celem
+/datum/unit_test/aquila_knpc_cuffs_prisoner
+
+/datum/unit_test/aquila_knpc_cuffs_prisoner/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/restraints/handcuffs/cable/zipties/ties = allocate(/obj/item/restraints/handcuffs/cable/zipties)
+	boarder.put_in_inactive_hand(ties)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	var/datum/ai_goal/human/engage_targets/engage = locate() in ai.ai_goals
+	TEST_ASSERT(victim in engage.get_aggressors(ai), "An uncuffed enemy should be a target")
+	victim.SetUnconscious(20 SECONDS)
+	TEST_ASSERT(ai.try_cuff(victim), "Boarder with zipties did not try to cuff an unconscious enemy")
+	for(var/i in 1 to 80)
+		if(victim.handcuffed)
+			break
+		sleep(1)
+	TEST_ASSERT(victim.handcuffed, "Boarder failed to cuff the unconscious enemy")
+	TEST_ASSERT(!ai.cuffing, "Cuffing flag stayed set")
+	victim.SetUnconscious(0)
+	TEST_ASSERT(!(victim in engage.get_aggressors(ai)), "A cuffed enemy should not be a target")
+
+/// AQUILA - po walce boarder zabiera z martwego ciała magazyn do swojej broni
+/datum/unit_test/aquila_knpc_scavenges_magazine
+
+/datum/unit_test/aquila_knpc_scavenges_magazine/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/body = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/obj/item/ammo_box/magazine/m10mm/mag = allocate(/obj/item/ammo_box/magazine/m10mm)
+	TEST_ASSERT(body.equip_to_slot_or_del(new /obj/item/storage/backpack(body), ITEM_SLOT_BACK), "Could not give the body a backpack")
+	TEST_ASSERT(SEND_SIGNAL(body.back, COMSIG_TRY_STORAGE_INSERT, mag, null, TRUE, TRUE), "Could not put the magazine in the body's backpack")
+	body.death()
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	var/datum/ai_goal/human/scavenge/scavenge = locate() in ai.ai_goals
+	TEST_ASSERT(scavenge, "Missing scavenge goal")
+	TEST_ASSERT(scavenge.check_score(ai) > 0, "Boarder does not want the magazine of its own gun from a body next to it")
+	scavenge.action(ai)
+	TEST_ASSERT(mag in boarder.GetAllContents(), "Boarder did not take the magazine from the body (magazine is in [mag.loc])")
+	TEST_ASSERT(!(mag in body.GetAllContents()), "The magazine is still on the body")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

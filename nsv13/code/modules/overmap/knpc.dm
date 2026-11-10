@@ -674,6 +674,10 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 						HA.stealing_id = TRUE
 						addtimer(CALLBACK(HA, TYPE_PROC_REF(/datum/component/knpc, steal_id), their_id, target), 5 SECONDS)
 
+					// AQ EDIT START - z kajdankami zakuwa obezwładnionego zamiast judo i dobijania (aquila/code/modules/knpc/knpc_cover_loot.dm)
+					if(HA.try_cuff(target))
+						return
+					// AQ EDIT END
 					if(istype(H) && CHECK_BITFIELD(H.knpc_traits, KNPC_IS_MARTIAL_ARTIST))
 						switch(rand(0, 2))
 							//Throw!
