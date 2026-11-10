@@ -169,10 +169,11 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 
 // --- Okno ---
 
+/// Okno „Statystyki”: statystyki postaci gracza i ranking zarobków wszech czasów (także w menu pod Esc)
 /client/verb/character_stats()
-	set name = "Statystyki postaci"
+	set name = "Statystyki"
 	set category = "OOC"
-	set desc = "Pokazuje statystyki twoich postaci ze wszystkich rund."
+	set desc = "Statystyki twoich postaci i ranking zarobków ze wszystkich rund."
 
 	GLOB.character_stats_ui.ui_interact(mob)
 
@@ -192,10 +193,14 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	var/list/loaded = character_stats_load(user.client?.ckey)
 	for(var/character_name in loaded)
 		characters += list(list("name" = character_name, "stats" = loaded[character_name]))
+	if(!GLOB.economy_leaderboard_loaded)
+		economy_load_leaderboard()
 	return list(
 		"characters" = characters,
 		"current" = user.mind?.name,
 		"round_stats" = user.mind?.aquila_stats || list(),
+		"leaderboard" = GLOB.economy_leaderboard,
+		"my_ckey" = user.ckey,
 	)
 
 // --- Liczniki zdarzeń ---

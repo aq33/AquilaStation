@@ -8,7 +8,6 @@ GLOBAL_LIST_EMPTY(roundend_popcount)
 /// ckey => dane osobiste gracza z chwili końca rundy
 GLOBAL_LIST_EMPTY(roundend_personal_data)
 GLOBAL_DATUM_INIT(roundend_report_ui, /datum/roundend_report_ui, new)
-GLOBAL_DATUM_INIT(economy_leaderboard_ui, /datum/economy_leaderboard_ui, new)
 
 /datum/controller/subsystem/ticker/display_report(popcount)
 	GLOB.roundend_popcount = popcount
@@ -161,22 +160,4 @@ GLOBAL_DATUM_INIT(economy_leaderboard_ui, /datum/economy_leaderboard_ui, new)
 		"faction" = capitalize(mode.starting_faction),
 		"objectives" = objectives,
 		"won" = victory_override || completed >= length(mode.objectives),
-	)
-
-/// Okno rankingu zarobków wszech czasów
-/datum/economy_leaderboard_ui
-
-/datum/economy_leaderboard_ui/ui_state(mob/user)
-	return GLOB.always_state
-
-/datum/economy_leaderboard_ui/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "EconomyLeaderboard")
-		ui.open()
-
-/datum/economy_leaderboard_ui/ui_static_data(mob/user)
-	return list(
-		"leaderboard" = GLOB.economy_leaderboard,
-		"my_ckey" = user.ckey,
 	)
