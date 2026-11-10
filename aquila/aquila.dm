@@ -196,6 +196,7 @@
 #include "code\game\gamemodes\station_goals.dm"
 #include "code\game\gamemodes\darkspawn\darkspawn.dm"
 #include "code\game\gamemodes\spy\spy.dm"
+#include "code\game\gamemodes\malf\malf.dm"
 #include "code\game\gamemodes\vampire\vampire.dm"
 #include "code\game\machinery\battery.dm"
 #include "code\game\machinery\computer\_computer.dm"
@@ -581,6 +582,7 @@
 #include "code\modules\cargo\materials_market\materials_market.dm"
 #include "code\modules\economy\earnings.dm"
 #include "code\modules\economy\inflation.dm"
+#include "code\modules\economy\department_commission.dm"
 #include "code\modules\explorer_drone\exploration_events\_exploration_event.dm"
 #include "code\modules\explorer_drone\exploration_events\danger.dm"
 #include "code\modules\explorer_drone\exploration_events\resource.dm"
@@ -1042,6 +1044,7 @@
 #include "code\modules\restaurant\robot_customer_ai.dm"
 #include "code\modules\restaurant\terminal.dm"
 #include "code\modules\restaurant\venues.dm"
+#include "code\modules\character_stats\character_stats.dm"
 #include "code\modules\research\designs\AI_module_designs.dm"
 #include "code\modules\research\designs\biogenerator_designs.dm"
 #include "code\modules\research\designs\machine_designs.dm"
@@ -1337,7 +1340,6 @@
 #include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "code\modules\mob\voice.dm"
 #include "code\modules\mob\voice_muffled_sounds.dm"
-#include "code\modules\modular_computers\file_system\programs\jukebox_broadcast.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
 #include "code\modules\detectivework\access_log.dm"
 #include "code\modules\modular_computers\file_system\programs\logprobe.dm"
@@ -1833,6 +1835,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"
 #include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
 #include "code\modules\unit_tests\aquila_radiation.dm"
 #include "code\modules\unit_tests\aquila_audyt_rosliny.dm"
@@ -2057,3 +2060,4 @@
 #include "code\modules\i18n\foreigner_names.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
+#include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"

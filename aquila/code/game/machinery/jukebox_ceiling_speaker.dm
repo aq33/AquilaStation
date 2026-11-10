@@ -1,5 +1,5 @@
 // AQUILA EDIT - głośnik pokładowego nagłośnienia: wisi na ścianie korytarza i gra jukebox, który kapitan
-// puścił na cały statek (program "Nagłośnienie statku"). Rozwieszane automatycznie na starcie rundy (SSjukeboxes).
+// puścił na cały statek (konsola komunikacji, sekcja "Nagłośnienie statku"). Rozwieszane automatycznie na starcie rundy (SSjukeboxes).
 
 /obj/machinery/ceiling_speaker
 	name = "głośnik nagłośnienia"
