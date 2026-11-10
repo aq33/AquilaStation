@@ -358,6 +358,12 @@
 
 	operating = TRUE
 
+	// AQ EDIT START - ciecze z Monke: zamykane drzwi wypychają ciecz
+	var/turf/liquid_turf = get_turf(src)
+	if(liquid_turf && !(flags_1 & ON_BORDER_1))
+		liquid_turf.liquids_push_out_by_door()
+	// AQ EDIT END
+
 	do_animate("closing")
 	layer = closingLayer
 	if(air_tight)
