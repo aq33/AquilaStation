@@ -40,6 +40,25 @@
 	else
 		create_reagents(STOMACH_REAGENT_VOLUME)
 
+// Wszczepiony organ leży w nullspace (Insert() -> moveToNullspace()), więc reakcja w żołądku nie miałaby kafelka:
+// wybuchy by nie wybuchały, a przedmioty z receptur lądowały poza mapą. Bee trzyma organ w części ciała.
+// Połknięte reaguje więc dopiero we krwi, jak przed portem (my_atom to mob, działa też mob_react = FALSE).
+/obj/item/organ/stomach/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	. = ..()
+	if(owner == M && reagents)
+		reagents.flags |= NO_REACT
+
+/obj/item/organ/stomach/Remove(mob/living/carbon/M, special = 0)
+	if(reagents)
+		reagents.flags &= ~NO_REACT
+	return ..()
+
+/// Ile wolnej odżywki (każdy rodzaj nutriment) jest w żołądku. Bee: get_free_nutriment_volume()
+/obj/item/organ/stomach/proc/get_free_nutriment_volume()
+	. = 0
+	for(var/datum/reagent/consumable/nutriment/bit in reagents?.reagent_list)
+		. += get_free_amount(bit)
+
 /// Ile jednostek reagentu w żołądku pochodzi z połkniętych rzeczy, a nie z własnego jedzenia organu (food_reagents zjadliwego organu)
 /obj/item/organ/stomach/proc/get_free_amount(datum/reagent/bit)
 	var/reserved = 0
@@ -50,13 +69,12 @@
 /// Żołądek oddaje część zawartości do krwi (Bee: /obj/item/organ/stomach/on_life()).
 /// Woła to /mob/living/carbon/Life() przed organami, żeby wątroba od razu metabolizowała to, co doszło do krwi.
 /obj/item/organ/stomach/proc/digest()
-	if(!owner?.reagents || !reagents?.total_volume)
+	// Sam własny pokarm organu (5 j. odżywki) to pusty żołądek: nie ma czego trawić
+	if(!owner?.reagents || get_contents_volume() <= 0)
 		return
-	// Jak krew w metabolize(): zawartość ma temperaturę ciała, a nie reaguje w 300 K jak w zlewce
-	reagents.expose_temperature(owner.bodytemperature, 0.25)
 	for(var/datum/reagent/bit as anything in reagents.reagent_list.Copy())
-		// To, co się nie metabolizuje (np. plastik), zostaje w żołądku
-		if(bit.holder != reagents || bit.metabolization_rate <= 0)
+		// Bee pomija reagenty z metabolization_rate 0, ale u nas to tylko mikrokapsułki toksyny, które czekają na aktywację we krwi
+		if(bit.holder != reagents)
 			continue
 		var/free = get_free_amount(bit)
 		if(free <= 0)
@@ -137,7 +155,11 @@
 		return 0
 	if(belly == target.reagents)
 		return trans_to(target, amount, multiplier, transfered_by = transfered_by)
-	return trans_to(belly, amount, multiplier, transfered_by = transfered_by)
+	// Log na ofiarę, nie na organ (trans_to() do pojemnika żołądka zapisałby „to żołądek” i nic w logu ofiary)
+	if(transfered_by)
+		target.add_hiddenprint(transfered_by)
+		log_combat(transfered_by, target, "transferred reagents ([log_list()]) from [my_atom] to")
+	return trans_to(belly, amount, multiplier)
 
 /// Mob bez żołądka zwraca to, co próbował połknąć (Bee: /mob/living/carbon/proc/expel_ingested())
 /mob/living/carbon/proc/expel_ingested(datum/reagents/source, amount)

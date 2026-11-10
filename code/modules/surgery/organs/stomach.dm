@@ -20,7 +20,6 @@
 /obj/item/organ/stomach/on_life()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	var/datum/reagent/nutriment
 
 	if(istype(H))
 		if(!(organ_flags & ORGAN_FAILING))
@@ -30,15 +29,16 @@
 	if(damage < low_threshold)
 		return
 
-	nutriment = locate(/datum/reagent/consumable/nutriment) in H.reagents.reagent_list
-
-	if(nutriment)
-		if(prob((damage/40) * nutriment.volume * nutriment.volume))
+	// AQ EDIT START - organy z Bee#14340: jedzenie czeka w żołądku, nie we krwi, więc liczy się odżywka w żołądku (Bee: get_free_nutriment_volume())
+	var/nutriment_volume = get_free_nutriment_volume()
+	// AQ EDIT END
+	if(nutriment_volume)
+		if(prob((damage/40) * nutriment_volume * nutriment_volume))
 			H.vomit(damage)
 			to_chat(H, "<span class='warning'>Twój żołądek skręca się z bólu, bo nie możesz utrzymać w sobie tyle jedzenia!</span>")
 
-	else if(nutriment && damage > high_threshold)
-		if(prob((damage/10) * nutriment.volume * nutriment.volume))
+	else if(nutriment_volume && damage > high_threshold) // AQ EDIT - organy z Bee#14340
+		if(prob((damage/10) * nutriment_volume * nutriment_volume))
 			H.vomit(damage)
 			to_chat(H, "<span class='warning'>Twój żołądek skręca się z bólu, bo nie możesz utrzymać w sobie tyle jedzenia!</span>")
 

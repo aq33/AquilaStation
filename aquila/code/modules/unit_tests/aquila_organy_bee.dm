@@ -173,5 +173,41 @@
 	SSmobs.ignite()
 	return ..()
 
+/// Poprawki z przeglądu aq33/AquilaStation#600: w żołądku nic nie reaguje (wszczepiony organ jest w nullspace),
+/// mikrokapsułki toksyny przechodzą do krwi, a uszkodzony żołądek liczy odżywkę w żołądku
+/datum/unit_test/aquila_stomach_review_fixes
+
+/datum/unit_test/aquila_stomach_review_fixes/Run()
+	SSmobs.pause()
+	var/mob/living/carbon/human/eater = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/stomach/belly = eater.getorganslot(ORGAN_SLOT_STOMACH)
+	TEST_ASSERT(belly?.reagents, "A human has no stomach that holds reagents")
+	TEST_ASSERT(belly.reagents.flags & NO_REACT, "An implanted stomach lets swallowed reagents react in nullspace")
+
+	// Fluorosurfactant and water would foam in a beaker; in the stomach they just wait
+	belly.reagents.add_reagent(/datum/reagent/fluorosurfactant, 5)
+	belly.reagents.add_reagent(/datum/reagent/water, 5)
+	TEST_ASSERT(belly.reagents.has_reagent(/datum/reagent/fluorosurfactant), "Swallowed reagents reacted inside the stomach")
+
+	// Toxin microcapsules (metabolization_rate 0) leave the stomach like everything else
+	belly.reagents.add_reagent(/datum/reagent/toxin/delayed, 5)
+	for(var/i in 1 to 10)
+		eater.handle_stomach_digestion()
+	TEST_ASSERT(!belly.reagents.has_reagent(/datum/reagent/toxin/delayed), "Toxin microcapsules never left the stomach")
+	TEST_ASSERT(eater.reagents.has_reagent(/datum/reagent/toxin/delayed), "Toxin microcapsules did not reach the blood")
+
+	// A damaged stomach counts the food in the stomach, not in the blood
+	belly.reagents.add_reagent(/datum/reagent/consumable/nutriment, 8)
+	TEST_ASSERT(belly.get_free_nutriment_volume() >= 8, "The stomach does not count swallowed nutriment for vomiting")
+
+	// A removed stomach reacts again like any container
+	belly.Remove(eater)
+	TEST_ASSERT(!(belly.reagents.flags & NO_REACT), "A removed stomach still blocks reactions")
+	qdel(belly)
+
+/datum/unit_test/aquila_stomach_review_fixes/Destroy()
+	SSmobs.ignite()
+	return ..()
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

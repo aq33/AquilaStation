@@ -60,7 +60,8 @@
 			var/amount = toxin.volume
 			if(belly?.reagents)
 				amount += belly.reagents.get_reagent_amount(toxin.type)
-			if(amount <= tolerance)
+			// Mikrokapsułki (metabolization_rate 0) same znikają po aktywacji; tolerancja zostawiłaby je we krwi na zawsze
+			if(amount <= tolerance && toxin.metabolization_rate > 0)
 				LAZYADD(tolerated, toxin)
 				continue
 			if(!toxin_harms_liver(toxin))

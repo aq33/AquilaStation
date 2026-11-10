@@ -73,6 +73,9 @@
 
 /// Pigułka zostaje połknięta i trafia do żołądka jak każda inna
 /obj/item/reagent_containers/pill/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = FALSE)
+	// Plaster to u nas podtyp pigułki (w Bee osobny typ): nie połyka się go, idzie zwykłą drogą małego przedmiotu
+	if(apply_type != INGEST)
+		return ..()
 	to_chat(victim, span_warning("Połykasz coś małego. [source_item ? "Czy to było w [source_item]?" : ""]"))
 	reagents?.trans_to(victim, reagents.total_volume, transfered_by = user, method = INGEST)
 	qdel(src)
