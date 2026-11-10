@@ -60,3 +60,4 @@
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
 		if(D)
 			D.adjust_money(power_avaliable * 0.000005)
+			add_department_commission(ACCOUNT_ENG, power_avaliable * 0.000005) // premia działu (department_commission.dm)
