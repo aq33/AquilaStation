@@ -217,6 +217,7 @@
 				slipper.accident(I)
 
 		var/olddir = slipper.dir
+		var/sprint_slide = slipper.is_sprinting() // AQ EDIT - poślizg w sprincie rzuca kafel dalej (aquila/code/modules/mob/living/carbon/sprint.dm)
 		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			slipper.Knockdown(knockdown_amount)
@@ -238,6 +239,8 @@
 			slipper.AddComponent(/datum/component/force_move, target, TRUE)
 		else if(lube&SLIDE_ICE)
 			slipper.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
+		else if(sprint_slide) // AQ EDIT - poślizg w sprincie rzuca kafel dalej
+			slipper.sprint_slip_slide(olddir) // AQ EDIT
 		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
