@@ -159,14 +159,25 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 		return FALSE
 	return overmap_dist(src, watcher) <= get_detection_range(watcher)
 
-/// Engines off and coasting: called from move_toward (overmap_scale.dm) to skip the burn
+/// Engines off and coasting: called from move_toward (overmap_scale.dm) to skip the burn.
+/// Only for a ship running away (C). A ship sneaking up (E) steers as usual and burns within its heat budget
+/// (ai_sneak_burn_allowed), otherwise a slow ship coasting with its engines off never arrived at all.
 /obj/structure/overmap/proc/ai_coasting_silent(atom/target)
-	if(!ai_running_silent || QDELETED(src))
+	if(!ai_running_silent || !ai_fleeing || QDELETED(src))
 		return FALSE
 	// Never coast into the ship we are running from
 	if(istype(target, /obj/structure/overmap) && overmap_dist(src, target) < max_weapon_range)
 		return FALSE
 	return TRUE
+
+/// Skradanie (E): wolno odpalić silnik, póki nasze ciepło nie zbliża termiki wroga na odległość, z której nas zobaczy
+/obj/structure/overmap/proc/ai_sneak_burn_allowed()
+	if(ai_fleeing)
+		return FALSE
+	var/obj/structure/overmap/threat = get_ai_hiding_from()
+	if(QDELETED(threat))
+		return TRUE
+	return thrust_heat < get_ai_engine_heat_budget(threat)
 
 /// Decides whether to keep the engines off this tick
 /obj/structure/overmap/proc/update_ai_silent_running()

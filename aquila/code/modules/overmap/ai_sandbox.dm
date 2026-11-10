@@ -99,6 +99,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_forward_avoidance"]))
 		GLOB.ai_forward_avoidance_enabled = FALSE
 		event("Omijanie przeszkód dookoła, jak w bazowym NSV13")
+	if(text2num(world.params["ai_sandbox_no_engine_discipline"]))
+		GLOB.ai_engine_discipline_enabled = FALSE
+		event("Bez przepustnicy, boost co 15 s jak w bazowym NSV13")
 	// Pojedyncze zachowania floty (ai_fleet_picture.dm), żeby dało się pokazać każde osobno
 	var/static/list/przelaczniki = list(
 		"picture" = "ai_fleet_picture_enabled",
@@ -278,7 +281,19 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 				"tb" = (SENSOR_TELESCOPE in OM.get_sensor_suites()) ? round(OM.get_telescope_bearing()) : null,
 				"irb" = OM.is_infrared_rear_blind() ? 1 : 0,
 			)
+		// Diagnostyka ruchu: co trzyma okręt w miejscu (hamulce, brak zamiaru ruchu, unik bokiem, dryf)
+		var/list/dbg = null
+		if(OM.ai_controlled)
+			dbg = list(
+				"br" = OM.brakes ? 1 : 0,
+				"mm" = OM.move_mode || 0,
+				"v" = round(OM.velocity?.ln() || 0, 0.01),
+				"dmp" = OM.inertial_dampeners ? 1 : 0,
+				"th" = round(OM.thrust_heat, 0.01),
+				"sp" = OM.ai_standoff_point ? round(overmap_dist(OM, OM.ai_standoff_point)) : null,
+			)
 		ships += list(wpis + list(
+			"dbg" = dbg,
 			"cones" = stozki,
 			"name" = "[OM]",
 			"faction" = OM.faction,

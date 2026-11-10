@@ -31,15 +31,18 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 #define OPTICAL_BASE_RANGE 30
 /// Optical never drops below this, so nothing sits invisible on top of us
 #define OPTICAL_MIN_RANGE 15
-/// Infrared range against a ship at full heat
-#define INFRARED_BASE_RANGE 70
+/// Infrared range against a ship at full heat (with the cones: abeam, engine heat 1).
+/// Was 70: in recordings hot ships were seen from 80-130 tiles, half the map and further than anything but the radar.
+/// A passive sensor reaches less than the active radar (100 during a pulse): about 40 tiles abeam, outside gun range (25),
+/// inside missile and tracking range (50).
+#define INFRARED_BASE_RANGE 35
 
 /// Wide-angle camera: a fraction of the old all-round optical range (a wide lens resolves less)
 #define OPTICAL_WIDE_MULT 0.5
 #define OPTICAL_WIDE_MIN_RANGE 10
 /// Telescope: further than the old optical range, but only inside a narrow cone.
 /// The half angles stay defined: the sandbox recording draws the cones (ai_sandbox.dm).
-#define TELESCOPE_RANGE_MULT 1.5
+#define TELESCOPE_RANGE_MULT 1
 #define TELESCOPE_HALF_ANGLE 10
 /// Infrared: the ship's own drive blinds a wedge behind it while the engines burn (an IRST looking into its own exhaust)
 #define INFRARED_BLIND_HALF_ANGLE 30
@@ -100,6 +103,22 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 				. = overmap_angle(src, guess)
 	if(isnull(.))
 		. = angle
+
+/// Najwyższe ciepło napędu (thrust_heat, 0..1), przy którym termika watchera sięga nas najwyżej na margin * dystans.
+/// Podejście dziobem do watchera chowa dysze za kadłubem, więc wolno wtedy grzać więcej.
+/obj/structure/overmap/proc/get_ai_engine_heat_budget(obj/structure/overmap/watcher, margin = 0.8)
+	if(QDELETED(watcher))
+		return 1
+	var/heat = get_signature_heat()
+	var/other = heat - clamp(thrust_heat, 0, heat) // pożar, uszkodzenia, gorące działa: tego nie wyłączymy
+	var/reach = margin * overmap_dist(src, watcher) / INFRARED_BASE_RANGE
+	if(!GLOB.ai_sensor_cones_enabled)
+		return clamp(reach - other, 0, 1) // bez stożków zasięg termiki rośnie liniowo z ciepłem
+	var/mult = INFRARED_ASPECT_MID
+	var/to_watcher = overmap_angle(src, watcher)
+	if(!isnull(to_watcher))
+		mult = INFRARED_ASPECT_MID - INFRARED_ASPECT_SWING * cos(abs(closer_angle_difference(angle, to_watcher)))
+	return clamp((reach * reach - other) / mult, 0, 1)
 
 /// TRUE while our own drive blinds the infrared wedge behind us
 /obj/structure/overmap/proc/is_infrared_rear_blind()
