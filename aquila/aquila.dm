@@ -1875,6 +1875,7 @@
 #include "code\modules\research\designs\wiremod\shell_designs.dm"
 #include "code\modules\research\designs\wiremod\string_designs.dm"
 #include "code\modules\research\designs\wiremod\utility_designs.dm"
+#include "code\modules\research\techweb\techweb_categories.dm"
 #include "code\modules\research\techweb\wiremod_nodes.dm"
 // Wiremod z tg - koniec
 

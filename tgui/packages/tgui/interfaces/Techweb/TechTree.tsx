@@ -1,212 +1,114 @@
-// AQUILA: sieć badań jako drzewko nauki rosnące od środka. Węzeł bazowy stoi w środku, a główne gałęzie
-// (dzieci węzła bazowego i osobne korzenie) rosną od niego w prawo i w lewo, ułożone jedna nad drugą
-// w górę i w dół od środka. Każda gałąź to zwarte drzewko: im dalej od środka, tym głębiej w wymaganiach.
-// Gałąź ma swój kolor i ikonę pierwszej technologii. Przesuwanie przeciąganiem i zoom kółkiem jak na
-// tablicy detektywa.
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+// AQUILA: sieć badań podzielona na kategorie tematyczne (techweb_categories.dm). Widok jednej kategorii:
+// kolumny według poziomu technologii, duże karty z ikoną wiodącej technologii, linie tylko wewnątrz
+// kategorii, a wymagania z innych kategorii jako klikalne etykiety. Widok „Wszystkie”: wszystkie kategorie
+// naraz w siatce, w mniejszych kartach. Sama sieć badań, wymagania i koszty się nie zmieniają.
+import { useEffect, useMemo, useState } from 'react';
+import { Box, Button, Icon, Input, Section, Stack } from 'tgui-core/components';
 
-import { useRemappedBackend } from './helpers';
+import { abbreviatePoint, useRemappedBackend } from './helpers';
 import { TechNode } from './nodes/TechNode';
-import type { NodeCache, TechwebNode } from './types';
+import type { DesignCache, NodeCache, TechwebNode } from './types';
 
-const NODE_WIDTH = 190;
-const NODE_HEIGHT = 46;
-/** Odstęp między kolejnymi poziomami gałęzi */
-const LEVEL_GAP = 70;
-/** Odstęp między sąsiednimi węzłami na tym samym poziomie */
-const ROW_GAP = 14;
-/** Odstęp między gałęziami po tej samej stronie i od środka */
-const BRANCH_GAP = 60;
-const MIN_ZOOM = 0.15;
-const MAX_ZOOM = 1.6;
-/** Węzeł, od którego rośnie drzewo */
-const CENTER_ID = 'base';
+type Category = { key: string; name: string; icon: string; hue: number };
 
-type Side = 'right' | 'left';
+const CATEGORIES: Category[] = [
+  {
+    key: 'medical',
+    name: 'Medycyna i biologia',
+    icon: 'heart-pulse',
+    hue: 140,
+  },
+  { key: 'robotics', name: 'Robotyka i cyborgi', icon: 'robot', hue: 280 },
+  {
+    key: 'exosuits',
+    name: 'Egzoszkielety i hardsuity',
+    icon: 'user-astronaut',
+    hue: 30,
+  },
+  { key: 'weapons', name: 'Uzbrojenie', icon: 'crosshairs', hue: 0 },
+  { key: 'ship', name: 'Statek i myśliwce', icon: 'rocket', hue: 200 },
+  { key: 'bluespace', name: 'Bluespace i anomalie', icon: 'atom', hue: 250 },
+  {
+    key: 'computing',
+    name: 'Informatyka i nanity',
+    icon: 'microchip',
+    hue: 180,
+  },
+  {
+    key: 'engineering',
+    name: 'Inżynieria i górnictwo',
+    icon: 'wrench',
+    hue: 55,
+  },
+];
+const ALL = 'all';
 
-type Placed = {
-  /** Lewy górny róg ramki */
-  x: number;
-  y: number;
-  id: string;
-  /** Indeks gałęzi, -1 dla środka */
-  branch: number;
-};
+const categoryOf = (cache?: NodeCache) =>
+  CATEGORIES.find((c) => c.key === cache?.category) ??
+  CATEGORIES[CATEGORIES.length - 1];
 
-type Branch = { root: string; hue: number };
+const stateOf = (node?: TechwebNode) =>
+  node?.tier === 0 ? 'researched' : node?.tier === 1 ? 'available' : 'future';
 
-type Layout = {
-  placed: Record<string, Placed>;
-  branches: Branch[];
+type CardSize = { w: number; h: number; colGap: number; rowGap: number };
+const FULL: CardSize = { w: 230, h: 64, colGap: 64, rowGap: 12 };
+const COMPACT: CardSize = { w: 175, h: 44, colGap: 34, rowGap: 8 };
+
+type BlockLayout = {
+  pos: Record<string, { x: number; y: number }>;
   width: number;
   height: number;
 };
 
-type View = { x: number; y: number; zoom: number };
-
-function layoutTree(
-  nodes: TechwebNode[],
+/** Kolumny = poziomy technologii; kolejność w kolumnie wg średniej pozycji wymagań z tej samej kategorii */
+function layoutBlock(
+  ids: string[],
   node_cache: Record<string, NodeCache>,
-): Layout {
-  const ids = nodes.map((n) => n.id).filter((id) => node_cache[id]);
-  const visible = new Set(ids);
-  const prereqs = (id: string) =>
-    (node_cache[id]?.prereq_ids ?? []).filter((p) => visible.has(p));
-
-  // Głębokość = najdłuższa ścieżka wymagań
-  const depth: Record<string, number> = {};
-  const visiting = new Set<string>();
-  const getDepth = (id: string): number => {
-    if (depth[id] !== undefined) return depth[id];
-    if (visiting.has(id)) return 0; // cykl w danych nie zawiesi okna
-    visiting.add(id);
-    let d = 0;
-    for (const pre of prereqs(id)) d = Math.max(d, getDepth(pre) + 1);
-    visiting.delete(id);
-    depth[id] = d;
-    return d;
-  };
-  ids.forEach(getDepth);
-
-  // Gałęzie: dzieci środka i osobne korzenie; reszta dziedziczy gałąź po wymaganiu
-  const hasCenter = visible.has(CENTER_ID);
-  const roots: string[] = [];
-  for (const id of ids) {
-    if (id === CENTER_ID) continue;
-    const pre = prereqs(id);
-    if (!pre.length || (pre.length === 1 && pre[0] === CENTER_ID)) {
-      roots.push(id);
-    }
-  }
-  const branchOf: Record<string, number> = {};
-  roots.forEach((id, i) => (branchOf[id] = i));
-  for (const id of [...ids].sort((a, b) => depth[a] - depth[b])) {
-    if (id === CENTER_ID || branchOf[id] !== undefined) continue;
-    const parent = prereqs(id).find(
-      (p) => p !== CENTER_ID && branchOf[p] !== undefined,
-    );
-    branchOf[id] = parent !== undefined ? branchOf[parent] : 0;
-  }
-
-  // Poziom w gałęzi liczony od jej korzenia
-  const level: Record<string, number> = {};
-  for (const id of ids) {
-    if (id === CENTER_ID) continue;
-    level[id] = Math.max(0, depth[id] - depth[roots[branchOf[id]]]);
-  }
-
-  // Każda gałąź jako małe drzewko: poziomy i kolejność na poziomie wg średniej pozycji wymagań
-  type Local = { levels: string[][]; rows: number; size: number };
-  const locals: Local[] = roots.map(() => ({ levels: [], rows: 0, size: 0 }));
+  size: CardSize,
+): BlockLayout {
+  const inBlock = new Set(ids);
+  const tiers = [...new Set(ids.map((id) => node_cache[id].node_tier))].sort(
+    (a, b) => a - b,
+  );
   const rowOf: Record<string, number> = {};
-  for (const id of [...ids].sort((a, b) => level[a] - level[b])) {
-    if (id === CENTER_ID) continue;
-    const local = locals[branchOf[id]];
-    (local.levels[level[id]] ??= []).push(id);
-    local.size++;
-  }
-  locals.forEach((local) => {
-    local.levels.forEach((onLevel) => {
-      if (!onLevel) return;
-      const keyed = onLevel.map((id) => {
-        const parents = prereqs(id).filter((p) => rowOf[p] !== undefined);
-        const key = parents.length
-          ? parents.reduce((sum, p) => sum + rowOf[p], 0) / parents.length
-          : -1;
-        return { id, key, name: node_cache[id].name };
-      });
-      keyed.sort((a, b) => a.key - b.key || a.name.localeCompare(b.name));
-      keyed.forEach((entry, row) => (rowOf[entry.id] = row));
-      local.rows = Math.max(local.rows, keyed.length);
+  const pos: Record<string, { x: number; y: number }> = {};
+  let rows = 0;
+  tiers.forEach((tier, col) => {
+    const column = ids.filter((id) => node_cache[id].node_tier === tier);
+    const keyed = column.map((id) => {
+      const parents = node_cache[id].prereq_ids.filter(
+        (p) => inBlock.has(p) && rowOf[p] !== undefined,
+      );
+      const key = parents.length
+        ? parents.reduce((sum, p) => sum + rowOf[p], 0) / parents.length
+        : -1;
+      return { id, key, name: node_cache[id].name };
     });
+    keyed.sort((a, b) => a.key - b.key || a.name.localeCompare(b.name));
+    keyed.forEach((entry, row) => {
+      rowOf[entry.id] = row;
+      pos[entry.id] = {
+        x: col * (size.w + size.colGap),
+        y: row * (size.h + size.rowGap),
+      };
+    });
+    rows = Math.max(rows, keyed.length);
   });
-
-  // Rozdział gałęzi na dwie strony: największe najpierw, zawsze na stronę z mniejszą liczbą węzłów
-  const sides: Side[] = ['right', 'left'];
-  const sideLoad: Record<Side, number> = { right: 0, left: 0 };
-  const sideBranches: Record<Side, number[]> = { right: [], left: [] };
-  const order = roots
-    .map((_, i) => i)
-    .sort((a, b) => locals[b].size - locals[a].size);
-  for (const b of order) {
-    const side = sides.reduce((best, s) =>
-      sideLoad[s] < sideLoad[best] ? s : best,
-    );
-    sideBranches[side].push(b);
-    sideLoad[side] += locals[b].size;
-  }
-
-  // Wysokość gałęzi: tyle węzłów, ile ma jej najszerszy poziom
-  const across = (b: number) => locals[b].rows * (NODE_HEIGHT + ROW_GAP);
-  const sideSpan = (side: Side) =>
-    sideBranches[side].reduce(
-      (sum, b) => sum + across(b) + BRANCH_GAP,
-      -BRANCH_GAP,
-    );
-
-  // Środki ramek względem środka drzewa (0,0)
-  const centers: Record<string, { x: number; y: number }> = {};
-  if (hasCenter) centers[CENTER_ID] = { x: 0, y: 0 };
-  for (const side of sides) {
-    // Największe gałęzie w środku strony, mniejsze na zmianę po obu bokach
-    const arranged: number[] = [];
-    sideBranches[side].forEach((b, i) =>
-      i % 2 ? arranged.push(b) : arranged.unshift(b),
-    );
-    let offset = -sideSpan(side) / 2;
-    for (const b of arranged) {
-      const local = locals[b];
-      local.levels.forEach((onLevel, lv) => {
-        if (!onLevel) return;
-        // Węzły poziomu wyśrodkowane w poprzek gałęzi
-        const shift = (local.rows - onLevel.length) / 2;
-        onLevel.forEach((id) => {
-          const row = rowOf[id] + shift;
-          const dist = NODE_WIDTH + BRANCH_GAP + lv * (NODE_WIDTH + LEVEL_GAP);
-          centers[id] = {
-            x: side === 'right' ? dist : -dist,
-            y: offset + row * (NODE_HEIGHT + ROW_GAP) + NODE_HEIGHT / 2,
-          };
-        });
-      });
-      offset += across(b) + BRANCH_GAP;
-    }
-  }
-
-  // Przesunięcie do dodatnich współrzędnych lewego górnego rogu (SVG z liniami zaczyna się w 0,0)
-  const all = Object.values(centers);
-  if (!all.length) {
-    return { placed: {}, branches: [], width: 0, height: 0 };
-  }
-  const minX = Math.min(...all.map((c) => c.x));
-  const minY = Math.min(...all.map((c) => c.y));
-  const maxX = Math.max(...all.map((c) => c.x));
-  const maxY = Math.max(...all.map((c) => c.y));
-  const placed: Record<string, Placed> = {};
-  for (const [id, c] of Object.entries(centers)) {
-    placed[id] = {
-      id,
-      branch: id === CENTER_ID ? -1 : branchOf[id],
-      x: c.x - minX,
-      y: c.y - minY,
-    };
-  }
-  // Kolejne gałęzie co „złoty kąt” na kole barw, żeby sąsiednie miały wyraźnie różne kolory
-  const branches = roots.map((root, i) => ({
-    root,
-    hue: Math.round((i * 137.5) % 360),
-  }));
   return {
-    placed,
-    branches,
-    width: maxX - minX + NODE_WIDTH,
-    height: maxY - minY + NODE_HEIGHT,
+    pos,
+    width: Math.max(0, tiers.length * (size.w + size.colGap) - size.colGap),
+    height: Math.max(0, rows * (size.h + size.rowGap) - size.rowGap),
   };
 }
 
-const stateOf = (node?: TechwebNode) =>
-  node?.tier === 0 ? 'researched' : node?.tier === 1 ? 'available' : 'future';
+/** Ikona wiodącej technologii węzła: jego pierwszy projekt z obrazkiem */
+const leadIcon = (
+  cache: NodeCache,
+  design_cache: Record<string, DesignCache>,
+) => {
+  const design = cache.design_ids.find((d) => design_cache[d]);
+  return design ? design_cache[design].class : null;
+};
 
 export function TechwebTree(props: { selectedNode?: string }) {
   const { data } = useRemappedBackend();
@@ -214,213 +116,160 @@ export function TechwebTree(props: { selectedNode?: string }) {
   const [selected, setSelected] = useState<string | null>(
     props.selectedNode ?? null,
   );
+  const [view, setView] = useState<string>(
+    props.selectedNode && node_cache[props.selectedNode]
+      ? categoryOf(node_cache[props.selectedNode]).key
+      : ALL,
+  );
   const [searchText, setSearchText] = useState('');
-  const [view, setView] = useState<View>({ x: 20, y: 20, zoom: 0.8 });
-  const viewport = useRef<HTMLDivElement>(null);
-  const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const [onlyAvailable, setOnlyAvailable] = useState(false);
 
-  // Układ zależy tylko od listy widocznych węzłów, nie od punktów
-  const layoutKey = nodes.map((n) => n.id).join(',');
-  const layout = useMemo(
-    () => layoutTree(nodes, node_cache),
-    [layoutKey, node_cache],
-  );
-  const { placed, branches, width, height } = layout;
-  // Ikona gałęzi: pierwszy projekt korzenia gałęzi (albo pierwszego węzła gałęzi, który ma projekty)
-  const branchIcons = useMemo(
-    () =>
-      branches.map((branch) => {
-        const own = node_cache[branch.root]?.design_ids ?? [];
-        const design = own.find((d) => design_cache[d]);
-        if (design) return design_cache[design].class;
-        for (const p of Object.values(placed)) {
-          if (branches[p.branch] !== branch) continue;
-          const found = node_cache[p.id]?.design_ids.find(
-            (d) => design_cache[d],
-          );
-          if (found) return design_cache[found].class;
-        }
-        return null;
-      }),
-    [layout],
-  );
   const byId = useMemo(() => {
     const result: Record<string, TechwebNode> = {};
-    for (const n of nodes) result[n.id] = n;
+    for (const n of nodes) {
+      if (node_cache[n.id]) result[n.id] = n;
+    }
     return result;
   }, [nodes]);
+
+  // Węzły każdej kategorii (bez węzłów ukrytych w sieci)
+  const layoutKey = Object.keys(byId).join(',');
+  const idsByCategory = useMemo(() => {
+    const result: Record<string, string[]> = {};
+    for (const c of CATEGORIES) result[c.key] = [];
+    for (const id of Object.keys(byId)) {
+      result[categoryOf(node_cache[id]).key].push(id);
+    }
+    return result;
+  }, [layoutKey]);
 
   const query = searchText.trim().toLowerCase();
   const matches = useMemo(() => {
     if (query.length < 2) return null;
     const found = new Set<string>();
-    for (const n of nodes) {
-      const c = node_cache[n.id];
+    for (const id of Object.keys(byId)) {
+      const c = node_cache[id];
       if (
-        c &&
-        (c.name.toLowerCase().includes(query) ||
-          c.description.toLowerCase().includes(query) ||
-          c.design_ids.some((e) =>
-            design_cache[e]?.name.toLowerCase().includes(query),
-          ))
+        c.name.toLowerCase().includes(query) ||
+        c.description.toLowerCase().includes(query) ||
+        c.design_ids.some((e) =>
+          design_cache[e]?.name.toLowerCase().includes(query),
+        )
       ) {
-        found.add(n.id);
+        found.add(id);
       }
     }
     return found;
-  }, [query, nodes]);
+  }, [query, layoutKey]);
 
-  const focusNode = (id: string) => {
-    const p = placed[id];
-    const box = viewport.current?.getBoundingClientRect();
-    if (!p || !box) return;
-    setView((v) => ({
-      zoom: v.zoom,
-      x: box.width / 2 - (p.x + NODE_WIDTH / 2) * v.zoom,
-      y: box.height / 2 - (p.y + NODE_HEIGHT / 2) * v.zoom,
-    }));
-  };
-
-  // Po otwarciu drzewa środek (albo węzeł wybrany z analizatora lub dysku) stoi na środku okna
-  useEffect(() => {
-    focusNode(
-      props.selectedNode ??
-        (placed[CENTER_ID] ? CENTER_ID : Object.keys(placed)[0]),
-    );
-  }, []);
-
-  // Przeciąganie tła przesuwa widok; nasłuch na oknie, żeby nie gubić myszy poza drzewem
-  useEffect(() => {
-    const move = (e: MouseEvent) => {
-      const d = drag.current;
-      if (!d) return;
-      const dx = e.clientX - d.x;
-      const dy = e.clientY - d.y;
-      if (Math.abs(dx) + Math.abs(dy) > 2) d.moved = true;
-      d.x = e.clientX;
-      d.y = e.clientY;
-      setView((v) => ({ ...v, x: v.x + dx, y: v.y + dy }));
-    };
-    const up = () => {
-      drag.current = null;
-    };
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
-    return () => {
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
-    };
-  }, []);
-
-  const onWheel = (e: React.WheelEvent) => {
-    const box = viewport.current?.getBoundingClientRect();
-    if (!box) return;
-    const mx = e.clientX - box.left;
-    const my = e.clientY - box.top;
-    setView((v) => {
-      const zoom = Math.min(
-        MAX_ZOOM,
-        Math.max(MIN_ZOOM, v.zoom * (e.deltaY < 0 ? 1.1 : 1 / 1.1)),
-      );
-      const k = zoom / v.zoom;
-      return { zoom, x: mx - (mx - v.x) * k, y: my - (my - v.y) * k };
-    });
-  };
-
-  const zoomBy = (factor: number) => {
-    const box = viewport.current?.getBoundingClientRect();
-    const mx = (box?.width ?? 0) / 2;
-    const my = (box?.height ?? 0) / 2;
-    setView((v) => {
-      const zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, v.zoom * factor));
-      const k = zoom / v.zoom;
-      return { zoom, x: mx - (mx - v.x) * k, y: my - (my - v.y) * k };
-    });
-  };
-
-  const related = new Set<string>();
-  if (selected && node_cache[selected]) {
-    for (const id of node_cache[selected].prereq_ids) related.add(id);
-    for (const id of node_cache[selected].unlock_ids) related.add(id);
-  }
-
-  const lines: React.ReactNode[] = [];
-  for (const p of Object.values(placed)) {
-    for (const pre of node_cache[p.id].prereq_ids) {
-      const from = placed[pre];
-      if (!from) continue;
-      // Linie od środka do środka ramek: w układzie promienistym węzły leżą we wszystkich kierunkach
-      const x1 = from.x + NODE_WIDTH / 2;
-      const y1 = from.y + NODE_HEIGHT / 2;
-      const x2 = p.x + NODE_WIDTH / 2;
-      const y2 = p.y + NODE_HEIGHT / 2;
-      const highlighted = selected === p.id || selected === pre;
-      lines.push(
-        <path
-          key={`${pre}>${p.id}`}
-          d={`M ${x1} ${y1} L ${x2} ${y2}`}
-          className={`Techweb__TreeLine Techweb__TreeLine--${stateOf(byId[pre])}${highlighted ? ' Techweb__TreeLine--highlight' : ''}`}
-        />,
-      );
+  // Cała ścieżka wymagań wybranego węzła, także przez inne kategorie
+  const path = useMemo(() => {
+    const result = new Set<string>();
+    const stack = selected ? [selected] : [];
+    while (stack.length) {
+      const id = stack.pop()!;
+      for (const pre of node_cache[id]?.prereq_ids ?? []) {
+        if (byId[pre] && !result.has(pre)) {
+          result.add(pre);
+          stack.push(pre);
+        }
+      }
     }
-  }
+    return result;
+  }, [selected, layoutKey]);
 
+  const pick = (id: string, openCategory = false) => {
+    setSelected(id);
+    if (openCategory) setView(categoryOf(node_cache[id]).key);
+  };
+
+  // Wybrany węzeł zawsze widoczny w przewijanym obszarze
+  useEffect(() => {
+    if (selected) {
+      document
+        .getElementById(`techweb-node-${selected}`)
+        ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  }, [selected, view]);
+
+  const dimmed = (id: string) =>
+    (!!matches && !matches.has(id)) ||
+    (onlyAvailable && stateOf(byId[id]) !== 'available');
+
+  const renderBlock = (category: Category, compact: boolean) => (
+    <CategoryBlock
+      key={category.key}
+      category={category}
+      ids={idsByCategory[category.key]}
+      size={compact ? COMPACT : FULL}
+      compact={compact}
+      byId={byId}
+      node_cache={node_cache}
+      design_cache={design_cache}
+      selected={selected}
+      path={path}
+      dimmed={dimmed}
+      onPick={pick}
+      onOpen={() => setView(category.key)}
+    />
+  );
+
+  const current = CATEGORIES.find((c) => c.key === view);
   const selectedNode = selected ? byId[selected] : null;
 
   return (
     <Stack fill>
+      <Stack.Item width="15em">
+        <Section fill scrollable title="Kategorie">
+          <CategoryButton
+            name="Wszystkie"
+            icon="table-cells"
+            done={Object.values(byId).filter((n) => n.tier === 0).length}
+            total={Object.keys(byId).length}
+            hue={-1}
+            active={view === ALL}
+            onClick={() => setView(ALL)}
+          />
+          {CATEGORIES.map((category) => {
+            const ids = idsByCategory[category.key];
+            return (
+              <CategoryButton
+                key={category.key}
+                name={category.name}
+                icon={category.icon}
+                done={ids.filter((id) => byId[id].tier === 0).length}
+                total={ids.length}
+                hue={category.hue}
+                active={view === category.key}
+                onClick={() => setView(category.key)}
+              />
+            );
+          })}
+          <Box mt={1}>
+            <Button.Checkbox
+              fluid
+              checked={onlyAvailable}
+              tooltip="Przygasza wszystko, czego nie da się teraz zbadać"
+              onClick={() => setOnlyAvailable(!onlyAvailable)}
+            >
+              Tylko dostępne
+            </Button.Checkbox>
+          </Box>
+        </Section>
+      </Stack.Item>
       <Stack.Item grow>
         <Stack vertical fill>
           <Stack.Item>
             <Stack align="center" className="Techweb__HeaderSectionTabs">
-              <Stack.Item className="Techweb__HeaderTabTitle">
-                Drzewo badań
-              </Stack.Item>
-              <Stack.Item grow>
-                <Box inline className="Techweb__TreeLegend--researched">
-                  ■ Zbadane
-                </Box>
-                <Box inline ml={1} className="Techweb__TreeLegend--available">
-                  ■ Dostępne
-                </Box>
-                <Box inline ml={1} className="Techweb__TreeLegend--future">
-                  ■ Przyszłe
-                </Box>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  icon="minus"
-                  tooltip="Oddal"
-                  onClick={() => zoomBy(1 / 1.25)}
-                />
-                <Button
-                  icon="plus"
-                  tooltip="Przybliż"
-                  onClick={() => zoomBy(1.25)}
-                />
-                <Button
-                  icon="expand"
-                  tooltip="Pokaż całe drzewo"
-                  onClick={() => {
-                    const box = viewport.current?.getBoundingClientRect();
-                    if (!box || !width) return;
-                    const zoom = Math.max(
-                      MIN_ZOOM,
-                      Math.min(
-                        MAX_ZOOM,
-                        Math.min(
-                          (box.width - 40) / width,
-                          (box.height - 40) / height,
-                        ),
-                      ),
-                    );
-                    setView({
-                      zoom,
-                      x: (box.width - width * zoom) / 2,
-                      y: (box.height - height * zoom) / 2,
-                    });
-                  }}
-                />
+              <Stack.Item grow className="Techweb__HeaderTabTitle">
+                {current ? (
+                  <>
+                    <Icon name={current.icon} mr={1} />
+                    {current.name}
+                  </>
+                ) : (
+                  'Wszystkie kategorie'
+                )}
               </Stack.Item>
               <Stack.Item>
                 <Input
@@ -428,95 +277,31 @@ export function TechwebTree(props: { selectedNode?: string }) {
                   onChange={setSearchText}
                   onEnter={() => {
                     const first = matches && [...matches][0];
-                    if (first) {
-                      setSelected(first);
-                      focusNode(first);
-                    }
+                    if (first) pick(first, true);
                   }}
-                  placeholder="Szukaj węzła lub projektu..."
-                  width="16em"
+                  placeholder="Szukaj we wszystkich kategoriach..."
+                  width="20em"
                   expensive
                 />
               </Stack.Item>
             </Stack>
           </Stack.Item>
           <Stack.Item grow>
-            <div
-              ref={viewport}
-              className="Techweb__TreeViewport"
-              onWheel={onWheel}
-              onMouseDown={(e) => {
-                if (e.button !== 0) return;
-                drag.current = { x: e.clientX, y: e.clientY, moved: false };
-              }}
-            >
-              <div
-                className="Techweb__TreeCanvas"
-                style={{
-                  transform: `translate(${view.x}px, ${view.y}px) scale(${view.zoom})`,
-                }}
-              >
-                <svg
-                  className="Techweb__TreeLines"
-                  width={width}
-                  height={height}
-                >
-                  {lines}
-                </svg>
-                {Object.values(placed).map((p) => {
-                  const node = byId[p.id];
-                  const state = stateOf(node);
-                  const dim = !!matches && !matches.has(p.id);
-                  const branch = branches[p.branch];
-                  const icon = branch ? branchIcons[p.branch] : null;
-                  return (
-                    <div
-                      key={p.id}
-                      className={[
-                        'Techweb__TreeNode',
-                        `Techweb__TreeNode--${state}`,
-                        selected === p.id && 'Techweb__TreeNode--selected',
-                        related.has(p.id) && 'Techweb__TreeNode--related',
-                        dim && 'Techweb__TreeNode--dim',
-                        node?.can_unlock &&
-                          state === 'available' &&
-                          'Techweb__TreeNode--ready',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                      style={{
-                        left: `${p.x}px`,
-                        top: `${p.y}px`,
-                        width: `${NODE_WIDTH}px`,
-                        height: `${NODE_HEIGHT}px`,
-                        // Pasek w kolorze gałęzi po lewej stronie ramki
-                        boxShadow: branch
-                          ? `inset 6px 0 0 hsl(${branch.hue}, 70%, 55%)`
-                          : undefined,
-                      }}
-                      onMouseUp={(e) => {
-                        if (e.button !== 0 || drag.current?.moved) return;
-                        setSelected(p.id === selected ? null : p.id);
-                      }}
-                    >
-                      {!!icon && (
-                        <div className="Techweb__TreeNodeIcon">
-                          <div className={icon} />
-                        </div>
-                      )}
-                      <div className="Techweb__TreeNodeText">
-                        <div className="Techweb__TreeNodeName">
-                          {node_cache[p.id].name}
-                        </div>
-                        <div className="Techweb__TreeNodeTier">
-                          Poziom {node_cache[p.id].node_tier}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="Techweb__CatArea">
+              {current ? (
+                renderBlock(current, false)
+              ) : (
+                <div className="Techweb__CatGrid">
+                  {CATEGORIES.map((category) => renderBlock(category, true))}
+                </div>
+              )}
             </div>
+          </Stack.Item>
+          <Stack.Item className="Techweb__CatLegend">
+            <span className="Techweb__CatLegend--researched">■</span> zbadane ·{' '}
+            <span className="Techweb__CatLegend--available">■</span> dostępne ·{' '}
+            <span className="Techweb__CatLegend--future">■</span> przyszłe ·
+            żółta etykieta: wymaganie z innej kategorii (kliknij, żeby przejść)
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -525,7 +310,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
           <Section
             fill
             scrollable
-            title="Wybrany węzeł"
+            title={categoryOf(node_cache[selectedNode.id]).name}
             buttons={<Button icon="times" onClick={() => setSelected(null)} />}
           >
             <TechNode node={selectedNode} nodetails />
@@ -534,25 +319,218 @@ export function TechwebTree(props: { selectedNode?: string }) {
               ids={node_cache[selectedNode.id].prereq_ids}
               byId={byId}
               node_cache={node_cache}
-              onPick={(id) => {
-                setSelected(id);
-                focusNode(id);
-              }}
+              onPick={(id) => pick(id, true)}
             />
             <NodeLinks
               title="Odblokowuje"
               ids={node_cache[selectedNode.id].unlock_ids}
               byId={byId}
               node_cache={node_cache}
-              onPick={(id) => {
-                setSelected(id);
-                focusNode(id);
-              }}
+              onPick={(id) => pick(id, true)}
             />
           </Section>
         </Stack.Item>
       )}
     </Stack>
+  );
+}
+
+type CategoryButtonProps = {
+  name: string;
+  icon: string;
+  done: number;
+  total: number;
+  hue: number;
+  active: boolean;
+  onClick: () => void;
+};
+
+function CategoryButton(props: CategoryButtonProps) {
+  const { name, icon, done, total, hue, active, onClick } = props;
+  return (
+    <div
+      className={`Techweb__CatButton${active ? ' Techweb__CatButton--active' : ''}`}
+      style={
+        hue >= 0 ? { borderLeftColor: `hsl(${hue}, 65%, 55%)` } : undefined
+      }
+      onClick={onClick}
+    >
+      <Stack>
+        <Stack.Item grow>
+          <Icon name={icon} mr={1} />
+          {name}
+        </Stack.Item>
+        <Stack.Item color="label">
+          {done}/{total}
+        </Stack.Item>
+      </Stack>
+      <div className="Techweb__CatBar">
+        <div style={{ width: `${total ? (done / total) * 100 : 0}%` }} />
+      </div>
+    </div>
+  );
+}
+
+type CategoryBlockProps = {
+  category: Category;
+  ids: string[];
+  size: CardSize;
+  compact: boolean;
+  byId: Record<string, TechwebNode>;
+  node_cache: Record<string, NodeCache>;
+  design_cache: Record<string, DesignCache>;
+  selected: string | null;
+  path: Set<string>;
+  dimmed: (id: string) => boolean;
+  onPick: (id: string, openCategory?: boolean) => void;
+  onOpen: () => void;
+};
+
+function CategoryBlock(props: CategoryBlockProps) {
+  const {
+    category,
+    ids,
+    size,
+    compact,
+    byId,
+    node_cache,
+    design_cache,
+    selected,
+    path,
+    dimmed,
+    onPick,
+    onOpen,
+  } = props;
+  const layout = useMemo(() => layoutBlock(ids, node_cache, size), [ids, size]);
+  const inBlock = new Set(ids);
+  const color = `hsl(${category.hue}, 65%, 55%)`;
+
+  const lines: React.ReactNode[] = [];
+  for (const id of ids) {
+    for (const pre of node_cache[id].prereq_ids) {
+      if (!inBlock.has(pre)) continue;
+      const from = layout.pos[pre];
+      const to = layout.pos[id];
+      const x1 = from.x + size.w;
+      const y1 = from.y + size.h / 2;
+      const x2 = to.x;
+      const y2 = to.y + size.h / 2;
+      const mid = (x1 + x2) / 2;
+      const lit =
+        (selected === id || path.has(id)) &&
+        (pre === selected || path.has(pre));
+      lines.push(
+        <path
+          key={`${pre}>${id}`}
+          d={`M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`}
+          className={`Techweb__CatLine${lit ? ' Techweb__CatLine--lit' : ''}`}
+        />,
+      );
+    }
+  }
+
+  return (
+    <div className="Techweb__CatBlock">
+      <div
+        className="Techweb__CatBlockTitle"
+        style={{ color }}
+        onClick={compact ? onOpen : undefined}
+      >
+        <Icon name={category.icon} mr={1} />
+        {category.name} ({ids.filter((id) => byId[id].tier === 0).length}/
+        {ids.length})
+      </div>
+      <div
+        className="Techweb__CatCanvas"
+        style={{ width: `${layout.width}px`, height: `${layout.height}px` }}
+      >
+        <svg
+          className="Techweb__CatLines"
+          width={layout.width}
+          height={layout.height}
+        >
+          {lines}
+        </svg>
+        {ids.map((id) => {
+          const cache = node_cache[id];
+          const node = byId[id];
+          const state = stateOf(node);
+          const icon = leadIcon(cache, design_cache);
+          const p = layout.pos[id];
+          const outside = cache.prereq_ids.filter(
+            (pre) => byId[pre] && !inBlock.has(pre),
+          );
+          const costs = Object.entries(node.costs ?? {})
+            .map(([type, cost]) => `${cost} ${abbreviatePoint(type)}`)
+            .join(', ');
+          return (
+            <div
+              key={id}
+              id={`techweb-node-${id}`}
+              className={[
+                'Techweb__Card',
+                `Techweb__Card--${state}`,
+                compact && 'Techweb__Card--compact',
+                selected === id && 'Techweb__Card--selected',
+                path.has(id) && 'Techweb__Card--path',
+                dimmed(id) && 'Techweb__Card--dim',
+                node.can_unlock &&
+                  state === 'available' &&
+                  'Techweb__Card--ready',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              style={{
+                left: `${p.x}px`,
+                top: `${p.y}px`,
+                width: `${size.w}px`,
+                height: `${size.h}px`,
+                borderLeftColor: color,
+              }}
+              onClick={() => onPick(id)}
+            >
+              <div className="Techweb__CardIcon">
+                {icon ? (
+                  <div className={icon} />
+                ) : (
+                  <Icon name={category.icon} />
+                )}
+              </div>
+              <div className="Techweb__CardText">
+                <div className="Techweb__CardName">{cache.name}</div>
+                {!compact && (
+                  <div className="Techweb__CardMeta">
+                    Poziom {cache.node_tier} ·{' '}
+                    {state === 'researched' ? 'zbadane' : costs || 'za darmo'}
+                  </div>
+                )}
+                {!compact &&
+                  outside.slice(0, 1).map((pre) => (
+                    <div
+                      key={pre}
+                      className="Techweb__CardChip"
+                      title={outside
+                        .map(
+                          (o) =>
+                            `${node_cache[o].name} (${categoryOf(node_cache[o]).name})`,
+                        )
+                        .join(', ')}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onPick(pre, true);
+                      }}
+                    >
+                      wymaga: {node_cache[pre].name} (
+                      {categoryOf(node_cache[pre]).name})
+                      {outside.length > 1 ? ` +${outside.length - 1}` : ''}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -577,10 +555,11 @@ function NodeLinks(props: NodeLinksProps) {
         <Button
           key={id}
           fluid
+          icon={byId[id].tier === 0 ? 'check' : undefined}
           className={`Techweb__TreeLink--${stateOf(byId[id])}`}
           onClick={() => onPick(id)}
         >
-          {node_cache[id].name}
+          {node_cache[id].name} ({categoryOf(node_cache[id]).name})
         </Button>
       ))}
     </Box>

@@ -98,5 +98,20 @@
 	qdel(request)
 	TEST_ASSERT(found, "Zakładka zleceń nie pokazuje ogłoszenia z newscastera")
 
+/// AQUILA - każdy węzeł sieci badań trafia do jednej ze znanych kategorii okna R&D
+/datum/unit_test/aquila_techweb_categories
+
+/datum/unit_test/aquila_techweb_categories/Run()
+	var/list/known = list("medical", "robotics", "exosuits", "weapons", "ship", "bluespace", "computing", "engineering")
+	for(var/node_id in SSresearch.techweb_nodes)
+		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
+		TEST_ASSERT(node.aq_category() in known, "Węzeł [node.id] ma nieznaną kategorię [node.aq_category()]")
+	var/list/expected = list("mech_gygax" = "exosuits", "nanite_base" = "computing", "fighter_tier1" = "ship", "adv_surgery" = "medical", "beam_weapons" = "weapons", "bluespace_travel" = "bluespace", "cyborg" = "robotics", "basic_mining" = "engineering")
+	for(var/node_id in expected)
+		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
+		if(!node)
+			continue
+		TEST_ASSERT(node.aq_category() == expected[node_id], "Węzeł [node_id] trafił do [node.aq_category()] zamiast [expected[node_id]]")
+
 #undef TEST_ASSERT
 
