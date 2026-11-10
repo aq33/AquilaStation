@@ -733,6 +733,12 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | techfab | techfab | m; istniejące (3×) |
 | exosuit fabricator | fabrykator egzoszkieletów | m; istniejące (TGUI) |
 | destructive analyzer | analizator destrukcyjny | m; istniejące (TGUI) |
+| liquid / puddle (liquids z Monke) | ciecz / kałuża | ż; nowe; poziomy: kałuża, po kostki, po pas, po ramiona, ponad głowę |
+| drain / big drain | odpływ / duży odpływ | m; nowe |
+| liquid barrier | bariera na ciecze | ż; nowe |
+| portable liquid pump | przenośna pompa cieczy | ż; nowe; nie mylić z pompą gejzeru z plumbingu |
+| liquid input / output pump | podłogowa pompa ssąca / wylewająca | ż; nowe |
+| bladder | pęcherz | m; nowe (organ) |
 | R&D console | konsola B+R | ż; istniejące |
 | research server | serwer badawczy | m; nowe |
 | ore redemption machine | maszyna wymiany rudy | ż; istniejące (TGUI) |
@@ -1067,6 +1073,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | rifle | karabin | m; istniejące (20×) |
 | assault rifle | karabin szturmowy | m; istniejące („Karabinek szturmowy wz. 96 Beryl” jako nazwa własna) |
 | sniper rifle | karabin snajperski | m; nowe |
+| marksman rifle | karabin wyborowy | m; nowe (Alexis-BOR) |
 | SMG | pistolet maszynowy | m; istniejące („Pistolet maszynowy PM-98”) |
 | shotgun | strzelba | ż; istniejące (10×) |
 | combat shotgun | strzelba bojowa | ż; nowe |
@@ -1326,6 +1333,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | steak | stek | m; istniejące |
 | bacon | boczek | m; nowe |
 | sausage | kiełbasa | ż; istniejące |
+| frankfurter | parówka | ż; nowe |
 | salami | salami | n/ndm; nowe |
 | jerky | suszone mięso | n; istniejące |
 | fish fillet | filet rybny | m; nowe („filet” istniejące) |
@@ -2041,6 +2049,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Acetone (`/acetone`) | Aceton | m; nowe |
 | Aluminium (`/aluminium`) | Aluminium | n; istniejące; nie „glin”; bez zmian |
 | Ammonia (`/ammonia`) | Amoniak | m; istniejące |
+| Urine (`/ammonia/urine`) | Mocz | m; nowe (ciecze z Monke); przy cenzurze wypróżniania widziany jako Amoniak |
 | Ash (`/ash`) | Popiół | m; istniejące |
 | Blood (`/blood`) | Krew | ż; istniejące |
 | Bluespace Dust (`/bluespace`) | Pył bluespace | m; istniejące; „bluespace” zostaje |

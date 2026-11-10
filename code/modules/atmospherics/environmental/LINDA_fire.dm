@@ -20,6 +20,9 @@
 	if (air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD)
 		return
 
+	if(liquids?.liquid_group && !liquids.fire_state && exposed_temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST) // AQ EDIT - ciecze z Monke: zapłon palnej kałuży
+		liquids.liquid_group.ignite_turf(src)
+
 	var/has_fuel = (air.get_moles(GAS_PLASMA) + air.get_moles(GAS_CONSTRICTED_PLASMA)) > 0.5 || air.get_moles(GAS_TRITIUM) > 0.5
 
 	if(active_hotspot)
