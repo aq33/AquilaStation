@@ -94,11 +94,11 @@ export function HomePage({
           <MenuButton onClick={() => onNavigate('players')}>Gracze</MenuButton>
           <MenuButton
             onClick={() => {
-              onAction('leaderboard');
+              onAction('stats');
               onClose();
             }}
           >
-            Ranking zarobków
+            Statystyki
           </MenuButton>
           <MenuButton onClick={() => onNavigate('help')}>Pomoc</MenuButton>
           <MenuButton

@@ -65,12 +65,48 @@
 			SSnightshift.toggle_captain_disabled(usr)
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			. = TRUE
+		// AQUILA: kapitan puszcza jukebox przez głośniki nagłośnienia na korytarzach
+		if("togglePA")
+			if (!authenticated_as_non_silicon_captain(usr))
+				return
+			var/obj/machinery/jukebox/jukebox = locate(params["ref"]) in pa_jukeboxes()
+			if (!jukebox)
+				return
+			SSjukeboxes.set_shipwide(jukebox, !jukebox.shipwide)
+			log_game("[key_name(usr)] [jukebox.shipwide ? "enabled" : "disabled"] shipwide broadcast of [jukebox] at [AREACOORD(jukebox)]")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] [jukebox.shipwide ? "włączył(a)" : "wyłączył(a)"] nadawanie [jukebox] na cały statek [ADMIN_JMP(jukebox)]")
+			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			. = TRUE
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	. = ..()
 	if (authenticated_as_non_silicon_captain(user) && CONFIG_GET(flag/enable_night_shifts))
 		.["canToggleNightShift"] = TRUE
 		.["nightShiftDisabled"] = SSnightshift.captain_disabled
+	if (authenticated_as_non_silicon_captain(user))
+		.["canControlPA"] = TRUE
+		.["paOnShip"] = !!get_overmap()
+		var/list/jukeboxes = list()
+		for(var/obj/machinery/jukebox/jukebox as anything in pa_jukeboxes())
+			jukeboxes += list(list(
+				"ref" = REF(jukebox),
+				"name" = "[jukebox]",
+				"area" = get_area_name(jukebox, TRUE),
+				"playing" = jukebox.yt_active,
+				"title" = (jukebox.yt_active && jukebox.yt_index) ? jukebox.yt_tracks[jukebox.yt_index]["title"] : null,
+				"shipwide" = jukebox.shipwide,
+			))
+		.["paJukeboxes"] = jukeboxes
+
+/// Jukeboxy, które mogą nadawać przez nagłośnienie statku tej konsoli (bez radia i głośnika Syndykatu)
+/obj/machinery/computer/communications/proc/pa_jukeboxes()
+	. = list()
+	var/obj/structure/overmap/ship = get_overmap()
+	if(!ship)
+		return
+	for(var/obj/machinery/jukebox/jukebox in GLOB.machines)
+		if(jukebox.can_broadcast && jukebox.get_overmap() == ship)
+			. += jukebox
 
 // Łączność mają też konsole na statkach załogi poza poziomem ze znacznikiem stacji: górniczy statek i główny statek
 // załadowany jako instancja (ZTRAITS_MINING_SHIP i ZTRAITS_BOARDABLE_SHIP nie mają ZTRAIT_STATION). Bez tego okno

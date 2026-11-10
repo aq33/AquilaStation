@@ -29,9 +29,10 @@ map aquila_serendipity
 	votable
 endmap
 
+#AQ: Shrike is out of the rotation (no votes, no random rotation), admins can still change the map to it
 map shrike
 	maxplayers 24
-	votable
+	voteweight 0
 endmap
 
 map atlantis

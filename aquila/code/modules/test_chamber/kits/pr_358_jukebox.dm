@@ -25,7 +25,7 @@
 	description = "Amp stack: multitoolem kliknij jukebox, potem amp stack - podłączony. Klik na amp stack go włącza/wyłącza, gra ciszej (70%) w zasięgu 8 kratek z animacją. \
 	Radio (każdy ma dostęp): mały jukebox z własną playlistą, zasięg 10, amp stacki podłącza się tak samo. Głośnik Syndykatu (karta agenta) gra też odkręcony - weź go i ciągnij, muzyka idzie z nim. \
 	Odkręcony amp stack przykręć kluczem. Płytki amp stacka i radia są w drukarce od startu (węzeł \"Nagłośnienie\"). \
-	Głośnik nagłośnienia stoi tylko do obejrzenia: program \"Nagłośnienie statku\" i rozwieszanie głośników działają tylko na statku (komora nie jest na overmapie) - sprawdź na konsoli dowodzenia w rundzie."
+	Głośnik nagłośnienia stoi tylko do obejrzenia: nagłośnienie i rozwieszanie głośników działają tylko na statku (komora nie jest na overmapie) - sprawdź w rundzie w konsoli komunikacji, zalogowany jako kapitan (sekcja „Nagłośnienie statku”)."
 	items = list(
 		/obj/machinery/jukebox = 1,
 		/obj/machinery/jukebox/radio = 1,

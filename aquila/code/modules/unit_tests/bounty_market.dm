@@ -118,11 +118,11 @@
 	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human)
 	var/runtimes_before = GLOB.total_runtimes
 	var/list/data = GLOB.roundend_report_ui.ui_static_data(viewer)
-	var/list/leaderboard_data = GLOB.economy_leaderboard_ui.ui_static_data(viewer)
+	var/list/leaderboard_data = GLOB.character_stats_ui.ui_static_data(viewer)
 	TEST_ASSERT(GLOB.total_runtimes == runtimes_before, "Building the round-end report data caused [GLOB.total_runtimes - runtimes_before] runtime(s)")
 	TEST_ASSERT(islist(data["stats"]) && data["stats"]["duration"], "The report has no round stats")
 	TEST_ASSERT(islist(data["personal"]), "The report has no personal part")
-	TEST_ASSERT(islist(leaderboard_data["leaderboard"]), "The leaderboard window has no leaderboard")
+	TEST_ASSERT(islist(leaderboard_data["leaderboard"]), "The stats window has no earnings leaderboard")
 
 /// AQUILA - metacurrency perks: consumables can be bought many times, every ranking badge points at real badge data
 /datum/unit_test/aquila_metacoin_perks

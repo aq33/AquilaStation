@@ -192,15 +192,7 @@ GLOBAL_VAR_INIT(economy_leaderboard_loaded, FALSE)
 		parts += economy_leaderboard_lines()
 	return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 
-/// Ranking zarobków dostępny w każdej chwili z zakładki OOC
-/client/verb/economy_leaderboard()
-	set name = "Ranking zarobków"
-	set category = "OOC"
-	set desc = "Pokazuje graczy, którzy zarobili najwięcej we wszystkich rundach."
-
-	if(!GLOB.economy_leaderboard_loaded)
-		economy_load_leaderboard()
-	GLOB.economy_leaderboard_ui.ui_interact(mob)
+// Ranking zarobków jest zakładką okna „Statystyki” (aquila/code/modules/character_stats/character_stats.dm)
 
 #undef EARNINGS_REPORT_SIZE
 #undef EARNINGS_LEADERBOARD_SIZE
