@@ -137,9 +137,7 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 /obj/shapeshift_holder/artifact/shapeDeath(death = TRUE)
 	restore(death = death)
 
-/// Karaluch odporny na rozdeptanie (forma z Bestialized Δ)
-/mob/living/simple_animal/cockroach/strong
-	squish_chance = 0
+// Karaluch odporny na rozdeptanie (forma z Bestialized Δ) to /mob/living/basic/cockroach/strong z portu basic mobów
 
 /// Wygłodzony niedźwiedź z Bee - przywoływany przez wadliwy artefakt
 /mob/living/simple_animal/hostile/bear/malnourished

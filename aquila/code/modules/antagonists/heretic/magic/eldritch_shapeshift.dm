@@ -14,7 +14,7 @@
 	// AQUILA - u nas te zwierzęta i boty to simple_animal
 	possible_shapes = list(
 		/mob/living/simple_animal/hostile/carp,
-		/mob/living/simple_animal/mouse,
+		/mob/living/basic/mouse,
 		/mob/living/simple_animal/pet/cat,
 		/mob/living/simple_animal/pet/dog/corgi,
 		/mob/living/simple_animal/pet/fox,

@@ -22,7 +22,7 @@
 			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 				continue
 
-			if(data["donor"] == /mob/living/simple_animal/mouse && L) // NSV13 - Lizards do not get rat viruses
+			if(data["donor"] == /mob/living/basic/mouse && L) // NSV13 - Lizards do not get rat viruses
 				if(islizard(L))
 					continue
 

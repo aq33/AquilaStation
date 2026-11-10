@@ -362,7 +362,7 @@
 /obj/item/choice_beacon/pet/mouse
 	name = "nadajnik dostawy myszy"
 	default_name = "Jerry"
-	mob_choice = /mob/living/simple_animal/mouse
+	mob_choice = /mob/living/basic/mouse // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/corgi
 	name = "nadajnik dostawy corgiego"

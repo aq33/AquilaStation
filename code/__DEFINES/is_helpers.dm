@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isshade(A) (istype(A, /mob/living/simple_animal/shade))
 
-#define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
+#define ismouse(A) (istype(A, /mob/living/basic/mouse)) // AQ EDIT - basic moby
 
 // AQUILA EDIT - szczury z tg
 #define israt(A) (istype(A, /mob/living/simple_animal/hostile/rat))

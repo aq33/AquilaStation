@@ -3426,7 +3426,7 @@
 /area/crew_quarters/heads/captain/private)
 "cMb" = (
 /obj/structure/cable,
-/mob/living/simple_animal/mothroach,
+/mob/living/basic/mothroach,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
@@ -12557,7 +12557,7 @@
 /turf/open/floor/carpet/ship,
 /area/security/brig)
 "jZF" = (
-/mob/living/simple_animal/mouse,
+/mob/living/basic/mouse,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -28009,7 +28009,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/mob/living/simple_animal/mouse/brown,
+/mob/living/basic/mouse/brown,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "xqA" = (

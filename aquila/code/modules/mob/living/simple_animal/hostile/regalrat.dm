@@ -185,26 +185,43 @@ GLOBAL_LIST_EMPTY(hostile_rats)
  * Królewski ser (przepis już był w craftingu): mysz, która go zje albo dostanie pod łapy, staje się szczurzym królem.
  * Z tg mouse.dm (evolve()), u nas przez mouse_eat() z aquilowych myszy.
  */
-/obj/item/food/royalcheese/mouse_eat(mob/living/simple_animal/mouse/M)
+/obj/item/food/royalcheese/mouse_eat(mob/living/basic/mouse/M)
 	qdel(src)
 	M.evolve_into_regal_rat()
 
-/mob/living/simple_animal/mouse/on_entered(datum/source, atom/movable/AM) // SIGNAL_HANDLER dziedziczy z bazowego proca
+// Od portu basic mobów (decyzja D8) mysz nie ma już haków simple_animal: ser sam pilnuje, czy mysz weszła na jego pole,
+// albo czy on wylądował przy myszy, a myszy SI i tak przychodzą do sera (polowanie na ser z Bee)
+/obj/item/food/royalcheese/Initialize(mapload)
 	. = ..()
-	if(istype(AM, /obj/item/food/royalcheese) && stat == CONSCIOUS && !QDELETED(AM))
-		qdel(AM)
-		INVOKE_ASYNC(src, PROC_REF(evolve_into_regal_rat))
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_royal_cheese_crossed),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_royal_cheese_moved))
 
-/mob/living/simple_animal/mouse/handle_automated_action()
-	. = ..()
-	if(stat != CONSCIOUS || QDELETED(src))
+/// Mysz weszła na pole sera
+/obj/item/food/royalcheese/proc/on_royal_cheese_crossed(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	try_crown(arrived)
+
+/// Ser położono albo rzucono na mysz (każdą, także gracza) albo obok myszy bez gracza
+/obj/item/food/royalcheese/proc/on_royal_cheese_moved(datum/source)
+	SIGNAL_HANDLER
+	if(!isturf(loc))
 		return
-	var/obj/item/food/royalcheese/bigcheese = locate() in range(1, src)
-	if(bigcheese)
-		qdel(bigcheese)
-		evolve_into_regal_rat()
+	for(var/mob/living/basic/mouse/nearby in range(1, src))
+		if(try_crown(nearby, allow_player = (get_turf(nearby) == loc)))
+			return
 
-/mob/living/simple_animal/mouse/proc/evolve_into_regal_rat()
+/// Przytomna mysz przy serze zostaje królem; mysz gracza tylko z serem pod łapami (zwykle je go Ctrl+klikiem)
+/obj/item/food/royalcheese/proc/try_crown(mob/living/basic/mouse/new_king, allow_player = FALSE)
+	if(QDELETED(src) || !istype(new_king) || new_king.stat != CONSCIOUS || (new_king.key && !allow_player))
+		return FALSE
+	qdel(src)
+	INVOKE_ASYNC(new_king, TYPE_PROC_REF(/mob/living/basic/mouse, evolve_into_regal_rat))
+	return TRUE
+
+/mob/living/basic/mouse/proc/evolve_into_regal_rat()
 	if(QDELETED(src))
 		return
 	var/mob/living/simple_animal/hostile/regalrat/controlled/regalrat = new(loc, !mind)
@@ -270,7 +287,7 @@ GLOBAL_LIST_EMPTY(hostile_rats)
 		return FALSE
 	var/mob/living/king = owner
 	var/converted = FALSE
-	for(var/mob/living/simple_animal/mouse/M in oview(king, 5))
+	for(var/mob/living/basic/mouse/M in oview(king, 5))
 		if(M.stat == DEAD)
 			continue
 		var/mob/living/simple_animal/hostile/rat/new_rat = new(get_turf(M))
@@ -284,12 +301,12 @@ GLOBAL_LIST_EMPTY(hostile_rats)
 		king.visible_message("<span class='warning'>[king] wydaje rozkaz swojej armii, zmieniając myszy w szczury!</span>")
 	else
 		var/rodents = length(GLOB.hostile_rats)
-		for(var/mob/living/simple_animal/mouse/M in GLOB.alive_mob_list)
+		for(var/mob/living/basic/mouse/M in GLOB.alive_mob_list)
 			rodents++
 		if(rodents >= REGALRAT_RAT_CAP)
 			to_chat(king, "<span class='warning'>Na statku jest za dużo gryzoni, żeby przywołać kolejnego! Najpierw je znajdź!</span>")
 			return FALSE
-		new /mob/living/simple_animal/mouse(king.loc)
+		new /mob/living/basic/mouse(king.loc)
 		king.visible_message("<span class='warning'>[king] przywołuje mysz do swojego boku!</span>")
 	StartCooldown()
 	return TRUE

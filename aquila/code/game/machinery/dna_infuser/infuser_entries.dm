@@ -57,7 +57,7 @@
 		"mam nadzieję, że było warto",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/mothroach,
+		/mob/living/basic/mothroach,
 	)
 	output_organs = list(
 		/obj/item/organ/infuser_feature/moth_antennae,
@@ -199,7 +199,7 @@
 	)
 	input_obj_or_mob = list(
 		/obj/item/food/deadmouse,
-		/mob/living/simple_animal/mouse,
+		/mob/living/basic/mouse,
 		/mob/living/simple_animal/hostile/rat,
 	)
 	output_organs = list(
@@ -230,7 +230,7 @@
 		"zawsze chętny na przekąskę",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/cockroach,
+		/mob/living/basic/cockroach,
 	)
 	output_organs = list(
 		/obj/item/organ/heart/roach,

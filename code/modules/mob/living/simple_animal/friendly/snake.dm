@@ -47,7 +47,7 @@
 	var/list/mice = list()
 	for(var/mob/living/HM in oview(vision_range, target_from))
 		//Yum a tasty mouse
-		if(istype(HM, /mob/living/simple_animal/mouse))
+		if(istype(HM, /mob/living/basic/mouse)) // AQ EDIT - basic moby
 			mice += HM
 			continue
 		living_mobs += HM
@@ -59,7 +59,7 @@
 	return mice
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
-	if(istype(target, /mob/living/simple_animal/mouse))
+	if(istype(target, /mob/living/basic/mouse)) // AQ EDIT - basic moby
 		visible_message("<span class='notice'>[name] połyka [target] w całości!</span>", "<span class='notice'>Połykasz [target] w całości!</span>")
 		QDEL_NULL(target)
 		adjustBruteLoss(-2)

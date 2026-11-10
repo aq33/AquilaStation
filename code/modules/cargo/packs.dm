@@ -2622,7 +2622,7 @@
 	name = "Skrzynia z ćmokaraluchem"
 	desc = "Połóż sobie ćmokaralucha na głowie i przekonaj się, jak wygląda prawdziwa słodycz."
 	cost = 5000
-	contains = list(/mob/living/simple_animal/mothroach)
+	contains = list(/mob/living/basic/mothroach) // AQ EDIT - basic moby
 	crate_name = "skrzynia z ćmokaraluchem"
 
 /datum/supply_pack/critter/monkey

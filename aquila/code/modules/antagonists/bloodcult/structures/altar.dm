@@ -636,7 +636,7 @@
 				if(R)
 					var/remaining = R.volume - R.reagents.total_volume
 					if(R && R.is_open_container())
-						if(istype(M, /mob/living/simple_animal/mouse))
+						if(istype(M, /mob/living/basic/mouse))
 							M.transfer_blood_to(R, min(remaining, 30))
 						else
 							M.transfer_blood_to(R, min(remaining, 60))

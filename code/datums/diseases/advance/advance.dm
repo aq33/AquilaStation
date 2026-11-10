@@ -646,7 +646,7 @@
 			if(/obj/effect/decal/cleanable)
 				prefixes += list("Bloody ", "Maintenance ")
 				bodies += list("Maint")
-			if(/mob/living/simple_animal/mouse)
+			if(/mob/living/basic/mouse) // AQ EDIT - basic moby
 				prefixes += list("Vermin ", "Zoo", "Maintenance ")
 				bodies += list("Rat", "Maint")
 			if(/obj/item/reagent_containers/syringe)

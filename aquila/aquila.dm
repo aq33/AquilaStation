@@ -880,7 +880,6 @@
 #include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
-#include "code\modules\mob\living\simple_animal\friendly\cockroach.dm"
 #include "code\modules\mob\living\simple_animal\friendly\dog.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
 #include "code\modules\mob\living\simple_animal\friendly\gondola.dm"
@@ -1899,9 +1898,14 @@
 #include "code\datums\ai\babies\babies_behaviors.dm"
 #include "code\datums\ai\babies\babies_subtrees.dm"
 #include "code\datums\keybinding\pet_commands.dm"
+#include "code\datums\components\squashable.dm"
+#include "code\modules\mob\living\basic\vermin\cockroach.dm"
+#include "code\modules\mob\living\basic\vermin\mothroach.dm"
+#include "code\modules\mob\living\basic\vermin\mouse.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_ai_core.dm"
 #include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"

@@ -293,7 +293,7 @@
 
 /obj/effect/mob_spawn/mouse
 	name = "kapsuła snu"
-	mob_type = 	/mob/living/simple_animal/mouse
+	mob_type = 	/mob/living/basic/mouse // AQ EDIT - basic moby
 	death = FALSE
 	roundstart = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'

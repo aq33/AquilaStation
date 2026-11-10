@@ -276,3 +276,9 @@
 #define BASIC_MOB_DEATH_TRAIT "basic_mob_death"
 /// Mob can breed (breed component)
 #define TRAIT_MOB_BREEDER "mob_breeder"
+
+// --- squashable component flags (code/__DEFINES/mobs.dm in Bee; both are 1<<0 there too)
+///Squashing will not occur if the mob is not lying down (bodyposition is LYING_DOWN)
+#define SQUASHED_SHOULD_BE_DOWN (1<<0)
+///If this flag is on, squashing will deal no damage but gib the mob instead
+#define SQUASHED_SHOULD_BE_GIBBED (1<<0)

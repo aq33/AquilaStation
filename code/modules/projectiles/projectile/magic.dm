@@ -241,7 +241,7 @@
 							/mob/living/simple_animal/crab,
 							/mob/living/simple_animal/pet/dog/pug,
 							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
+							/mob/living/basic/mouse, // AQ EDIT - basic moby
 							/mob/living/simple_animal/chicken,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/hostile/lizard,

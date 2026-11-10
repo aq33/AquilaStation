@@ -273,3 +273,23 @@
 /mob/living/basic/gib_animation()
 	if(icon_gib)
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
+
+/// Same question as /mob/living/simple_animal/proc/environment_air_is_safe() (mouse migration spawns, minor_mapping.dm),
+/// answered from habitable_atmos (the atmos_requirements element does the damage)
+/mob/living/basic/proc/environment_air_is_safe()
+	if(!unsuitable_atmos_damage || !isopenturf(loc))
+		return TRUE
+	var/turf/open/open_turf = loc
+	var/datum/gas_mixture/air = open_turf.air
+	if(isnull(air))
+		return !(habitable_atmos["min_oxy"] || habitable_atmos["min_plas"] || habitable_atmos["min_n2"] || habitable_atmos["min_co2"])
+	var/list/gases = list(
+		"oxy" = air.get_moles(GAS_O2),
+		"plas" = air.get_moles(GAS_PLASMA) + air.get_moles(GAS_CONSTRICTED_PLASMA),
+		"n2" = air.get_moles(GAS_N2),
+		"co2" = air.get_moles(GAS_CO2),
+	)
+	for(var/gas in gases)
+		if(!ISINRANGE(gases[gas], habitable_atmos["min_[gas]"], (habitable_atmos["max_[gas]"] || INFINITY)))
+			return FALSE
+	return TRUE

@@ -7,7 +7,7 @@
 		W drugiej skrzyni składniki do wytworzenia królewskiego sera."
 	items = list(
 		/mob/living/simple_animal/hostile/regalrat/controlled = 1,
-		/mob/living/simple_animal/mouse = 4,
+		/mob/living/basic/mouse = 4,
 		/obj/item/food/cheese/wedge = 3,
 		/obj/item/food/cheese/wheel = 1,
 		/obj/item/assembly/mousetrap/armed = 2,

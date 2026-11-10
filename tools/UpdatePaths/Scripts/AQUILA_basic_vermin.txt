@@ -1,0 +1,4 @@
+/mob/living/simple_animal/mouse/brown/Tom : /mob/living/basic/mouse/brown/tom{@OLD}
+/mob/living/simple_animal/mouse/@SUBTYPES : /mob/living/basic/mouse/@SUBTYPES{@OLD; chew_probability = @SKIP}
+/mob/living/simple_animal/cockroach/@SUBTYPES : /mob/living/basic/cockroach/@SUBTYPES{@OLD; squish_chance = @SKIP}
+/mob/living/simple_animal/mothroach : /mob/living/basic/mothroach{@OLD}

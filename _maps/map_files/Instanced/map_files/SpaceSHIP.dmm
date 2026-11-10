@@ -830,7 +830,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/mouse,
+/mob/living/basic/mouse,
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "cl" = (
@@ -17086,7 +17086,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/mouse,
+/mob/living/basic/mouse,
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "TU" = (

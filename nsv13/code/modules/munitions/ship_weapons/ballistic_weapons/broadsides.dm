@@ -315,7 +315,7 @@
 			state = STATE_CHAMBERED
 			update()
 		busy = FALSE
-	if((ismoth(A) || istype(A, /mob/living/simple_animal/mothroach)) && A != user)
+	if((ismoth(A) || istype(A, /mob/living/basic/mothroach)) && A != user) // AQ EDIT - basic moby
 		mothclean(A, user)
 		return TRUE
 
