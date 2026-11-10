@@ -1878,6 +1878,7 @@
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_konsole_przejrzystosc.dm"
 #include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"
 #include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
 #include "code\modules\unit_tests\aquila_radiation.dm"
