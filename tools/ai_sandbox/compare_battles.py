@@ -58,9 +58,24 @@ def metryki(sciezka):
     samotne = pary = 0
     taktyki = collections.Counter()
     sensory = collections.Counter()
+    # Obiekty, ktore nie sa okretami AI (stacje, np. "Stocznie CzanekCorp"): nigdy sie nie ruszaja i przez cale
+    # nagranie nie maja ani floty, ani celu AI. Nie licza sie ani do stania, ani do swoich i wrogow.
+    # Okret AI, ktory przez cala bitwe stoi, zostaje: to prawdziwy objaw (raport/sensory_06_dlaczego_stoja.md)
+    predkosci = collections.defaultdict(list)
+    okrety_ai = set()
     for i in range(len(klatki) - 1):
         poprzednie = {s["id"]: s for s in klatki[i][1]}
-        biezace = [s for s in klatki[i + 1][1] if not s.get("main")]
+        for s in klatki[i + 1][1]:
+            if s.get("fleet") or s.get("goal"):
+                okrety_ai.add(s["id"])
+            stary = poprzednie.get(s["id"])
+            if stary:
+                predkosci[s["id"]].append(dystans(stary, s) / dt)
+    statyczne = {k for k, v in predkosci.items()
+                 if k not in okrety_ai and len(v) >= 10 and sorted(v)[int(len(v) * 0.95)] < 0.05}
+    for i in range(len(klatki) - 1):
+        poprzednie = {s["id"]: s for s in klatki[i][1]}
+        biezace = [s for s in klatki[i + 1][1] if not s.get("main") and s["id"] not in statyczne]
         for s in biezace:
             stary = poprzednie.get(s["id"])
             if not stary:

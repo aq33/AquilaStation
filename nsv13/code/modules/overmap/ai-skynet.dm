@@ -1663,6 +1663,10 @@ Seek a ship thich we'll station ourselves around
 				continue
 			if(OM == target && ram_target)
 				continue
+			// AQ EDIT START - omijamy tylko okręty przed dziobem, nie za rufą (aquila/code/modules/overmap/ai_steering.dm)
+			if(!ai_should_avoid(OM, target))
+				continue
+			// AQ EDIT END
 			if(overmap_dist(get_turf(OM), T) <= 5 && OM.mass > MASS_TINY) //Who cares about fighters anyway!
 				blocked = OM
 				break

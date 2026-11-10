@@ -96,6 +96,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
 	// Engines off, coasting away from someone who cannot see us (ai_sensor_use.dm)
 	if(!ram_target && ai_coasting_silent(target))
+		move_mode = null // Dryf bez ciągu; inaczej ciąg w każdym kroku fizyki grzałby silnik (ai_steering.dm)
 		return
 	// Przekierowania poniżej podają bazowemu move_toward() kafelek zamiast okrętu, a ono przy
 	// omijaniu przeszkód czyta current_system.system_contents bez zabezpieczenia (ai-skynet.dm).
@@ -103,6 +104,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(!ram_target && current_system)
 		// Cold ambush: the fleet waits instead of flying around (ai_fleet_picture.dm)
 		if(is_ai_lying_in_wait())
+			move_mode = null
 			return
 		// Przewaga wroga: wracamy do swoich zamiast lecieć w nich samemu (ai_formation.dm)
 		var/turf/zbiorka = get_ai_regroup_point()
