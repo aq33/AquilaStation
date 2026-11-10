@@ -211,6 +211,8 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	if(last_target)
 		if(overmap_dist(src, last_target) <= max_weapon_range)
 			return "walka"
+		if(ai_waiting_for_support)
+			return "czeka na flotę"
 		if(get_contact_suite(last_target))
 			return "pościg"
 		return LAZYACCESS(ai_last_contact, last_target) ? "pościg w ciemno" : "pościg z meldunku"
@@ -240,6 +242,7 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 			continue_ai_search()
 	ai_prev_target = last_target
 	update_ai_silent_running()
+	update_ai_formation()
 	fleet?.prune_ai_picture()
 	fleet?.update_ai_ambush()
 	ai_tactic = get_ai_tactic()

@@ -77,15 +77,40 @@ silników chowa cię przed jednym okrętem, a reszta floty dalej leci prosto na 
 
 Każde z tych czterech ma własny przełącznik, żeby dało się je pokazywać pojedynczo.
 
+## Jak okręty się ustawiają
+
+Z nagrań wyszły dwie rzeczy, które psuły wrażenie walki:
+
+- Okręty trzymające dystans **stały w miejscu**: 22–41% klatek z prędkością poniżej 0,3 pola/s,
+  lotniskowce 27–68%, a w 43% tych klatek okręt nawet się nie obracał. Przyczyną był kod z #569,
+  który w pasie wokół celu wołał `circle_around()` i zaraz `enable_dampeners()` — tłumiki
+  wyhamowywały okręt do zera. Stojące okręty siedziały w 20–50 polach od wroga, czyli dokładnie
+  w tym pasie.
+- Pojedyncze okręty **wchodziły same w kilku wrogów** (0,7% klatek przy kryterium: dwóch wrogów
+  bliżej niż 25 pól, najbliższy swój dalej niż 40).
+
+`ai_formation.dm` zmienia oba:
+
+- `get_ai_standoff_point()` daje punkt na okręgu dystansu, odsunięty o 45–110° od obecnego namiaru;
+  okręt leci do niego, a po dotarciu albo po 6–13 s wybiera następny. Stronę okrążania wybiera tę,
+  po której są jego sojusznicy, więc flota się schodzi. Tłumiki już nie zatrzymują okrętu w pasie.
+- `ai_waits_for_support()` liczy wrogów w promieniu 45 pól i swoich w promieniu wsparcia.
+  Przy przewadze wroga okręt trzyma się na `zasięg dział + podwójny pas` zamiast wchodzić w środek.
+  Zapas zależy od charakteru: brawurowy rusza mimo przewagi trzech, ostrożny czeka już przy jednym.
+  Myśliwców, okrętów bez floty i uciekających to nie dotyczy.
+
 ## Przełączniki
 
 - Debug > **Toggle AI sensor suites** (`GLOB.ai_sensor_suites_enabled`) — same sensory.
 - Debug > **Toggle AI sensor tactics** (`GLOB.ai_sensor_tactics_enabled`) — korzystanie z nich.
 - `GLOB.ai_fleet_picture_enabled`, `ai_picket_enabled`, `ai_triangulation_enabled`,
   `ai_ambush_enabled` — cztery zachowania floty osobno.
+- Debug > **Toggle AI formation** (`GLOB.ai_formation_enabled`) — krążenie na dystansie
+  i czekanie na resztę floty.
 - Piaskownica: `ai_sandbox_no_suites=1`, `ai_sandbox_no_sensor_tactics=1`,
   `ai_sandbox_no_picture/_no_picket/_no_triangulation/_no_ambush=1`,
-  `ai_sandbox_only=picture|picket|triangulation|ambush` zostawia włączone jedno z czterech,
+  `ai_sandbox_only=picture|picket|triangulation|ambush|formation` zostawia włączone jedno z nich,
+  `ai_sandbox_step=<decysekundy>` zmienia gęstość zapisu (domyślnie 5, czyli co pół sekundy),
   a `ai_sandbox_legacy=1` wyłącza wszystko razem z sygnaturami i morale.
 
 ## Czego tu nie ma

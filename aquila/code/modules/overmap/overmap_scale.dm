@@ -81,6 +81,9 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return 0
 	if(is_ai_carrier())
 		return AI_CARRIER_STANDOFF
+	// Przewaga wroga: zanim zejdziemy na zasięg dział, czekamy na resztę floty (ai_formation.dm)
+	if(ai_waits_for_support(enemy))
+		return OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND * 2
 	// Torpedo launchers only fire at MASS_SMALL and up; once the torpedoes run out the ship closes in with its guns
 	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
 		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off.
@@ -106,6 +109,12 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(!standoff)
 		return ..()
 	var/dist = overmap_dist(src, target)
+	// Okrąg dystansu: lecimy do punktu na nim, zamiast hamować tłumikami i wisieć (ai_formation.dm).
+	// Stary kod zatrzymywał okręt w miejscu - na nagraniach lotniskowce stały nawet 68% czasu.
+	if(dist <= standoff + AI_STANDOFF_BAND)
+		var/turf/spot = get_ai_standoff_point(target, standoff)
+		if(spot)
+			return ..(spot, FALSE, ignore_all_collisions)
 	if(dist < standoff - AI_STANDOFF_BAND)
 		move_away_from(target)
 		enable_dampeners()

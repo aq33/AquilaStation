@@ -6,7 +6,7 @@
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
 /// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
 /// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_suites=1 (AI sensor suites off), ai_sandbox_no_sensor_tactics=1 (AI stops using them),
-/// ai_sandbox_no_picture / _no_picket / _no_triangulation / _no_ambush =1 (single fleet behaviours off), ai_sandbox_only=<picture|picket|triangulation|ambush> (leave just one of them on),
+/// ai_sandbox_no_picture / _no_picket / _no_triangulation / _no_ambush =1 (single fleet behaviours off), ai_sandbox_only=<picture|picket|triangulation|ambush|formation> (leave just one of them on),
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -80,6 +80,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.ai_picket_enabled = FALSE
 		GLOB.ai_triangulation_enabled = FALSE
 		GLOB.ai_ambush_enabled = FALSE
+		GLOB.ai_formation_enabled = FALSE
 		event("Tryb starej gry: sygnatury, sensory AI, skala overmapy i morale AI wyłączone")
 	if(text2num(world.params["ai_sandbox_no_suites"]))
 		GLOB.ai_sensor_suites_enabled = FALSE
@@ -93,6 +94,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		"picket" = "ai_picket_enabled",
 		"triangulation" = "ai_triangulation_enabled",
 		"ambush" = "ai_ambush_enabled",
+		"formation" = "ai_formation_enabled",
 	)
 	for(var/nazwa in przelaczniki)
 		if(text2num(world.params["ai_sandbox_no_[nazwa]"]))
