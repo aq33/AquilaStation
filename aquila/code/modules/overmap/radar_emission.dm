@@ -77,7 +77,8 @@
 	// An AI with nothing to chase, or one hunting a contact it lost, goes to have a look;
 	// it still needs a real contact to lock on. The fleet gets the bearing too (ai_sensor_use.dm).
 	if(ai_controlled && (!last_target || ai_search_target))
-		var/turf/lead = get_emission_turf(emitter)
+		// Two fleet mates that heard the same pulse cross their bearings (ai_fleet_picture.dm)
+		var/turf/lead = fleet?.triangulate_ai_emission(emitter) || get_emission_turf(emitter)
 		if(lead)
 			patrol_target = lead
 			if(ai_search_target)

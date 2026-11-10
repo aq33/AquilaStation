@@ -16,7 +16,7 @@
 	target = allocate(/obj/structure/overmap/small_craft/combat/light)
 	target.faction = "syndicate"
 	observer.ai_controlled = TRUE
-	var/fail = check_suites() || check_contact_suite() || check_search() || check_radar_discipline() || check_disabled()
+	var/fail = check_suites() || check_contact_suite() || check_search() || check_radar_discipline() || check_fleet_picture() || check_picket() || check_disabled()
 	observer.ai_controlled = FALSE
 	GLOB.sensor_signature_enabled = was_signature
 	GLOB.ai_sensor_suites_enabled = was_suites
@@ -159,3 +159,74 @@
 		return "Radar discipline still applied with the suites switched off"
 	observer.ai_fleeing = FALSE
 	GLOB.ai_sensor_suites_enabled = TRUE
+
+/// The fleet shares a picture that ages, not the target's live position
+/datum/unit_test/aquila_ai_sensors/proc/check_fleet_picture()
+	var/datum/fleet/flota = new /datum/fleet()
+	var/obj/structure/overmap/small_craft/mate = allocate(/obj/structure/overmap/small_craft/combat/light)
+	mate.ai_controlled = TRUE
+	observer.fleet = flota
+	mate.fleet = flota
+	flota.all_ships = list(observer, mate)
+	flota.shared_targets = list()
+	flota.shared_targets[target] = list(observer)
+	place(5)
+	target.velocity.a = 2
+	target.velocity.e = 0
+	observer.remember_ai_contact(target)
+	if(!flota.get_ai_contact(target))
+		return "A ship that saw the target did not report it to the fleet"
+	// The mate has never seen it, but can still steer at what the fleet reported
+	mate.forceMove(locate(40, 40, run_loc_floor_bottom_left.z))
+	mate.ai_last_contact = null
+	if(!mate.get_ai_contact_guess(target))
+		return "A fleet mate got nothing out of the fleet picture"
+	// A fresh report is the real position, and rightly so; the point is what happens once it ages
+	var/list/picture = LAZYACCESS(flota.ai_contact_picture, target)
+	picture[5] = world.time - 10 SECONDS
+	var/turf/blind = mate.get_ai_blind_point(target)
+	if(!blind)
+		return "A mate without its own contact did not get a blind point to fly at"
+	if(blind == get_turf(target))
+		return "A ten second old report still pointed at the target's real position"
+	if(blind.x <= target.x)
+		return "The reported point did not lead the target's course ([blind.x] vs [target.x])"
+	// A ship that can see the target flies at the target itself
+	observer.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
+	target.last_thrust_forward = target.forward_maxthrust || 1
+	for(var/i in 1 to 20)
+		target.update_sensor_signature()
+	target.is_sensor_visible(observer)
+	if(observer.get_ai_blind_point(target))
+		return "A ship that can see the target was still flying at a remembered point"
+	// The report ages out completely and the fleet stops passing the target around
+	picture[5] = world.time - 60 SECONDS
+	flota.ai_picture_pruned = 0
+	flota.prune_ai_picture()
+	if(flota.get_ai_contact(target) || flota.shared_targets[target])
+		return "A report nobody refreshed stayed in the fleet picture"
+	// Nie qdel: /datum/fleet/Destroy() siega do current_system.fleets, a testowa flota nie ma systemu
+	observer.fleet = null
+	mate.fleet = null
+	flota.all_ships = null
+
+/// Only one ship of a fleet runs its radar
+/datum/unit_test/aquila_ai_sensors/proc/check_picket()
+	var/datum/fleet/flota = new /datum/fleet()
+	var/obj/structure/overmap/small_craft/mate = allocate(/obj/structure/overmap/small_craft/combat/light)
+	mate.ai_controlled = TRUE
+	observer.fleet = flota
+	mate.fleet = flota
+	flota.all_ships = list(observer, mate)
+	var/wynik
+	if(!flota.is_ai_picket(observer))
+		wynik = "The first ship to ask did not become the picket"
+	else if(flota.is_ai_picket(mate))
+		wynik = "A second ship became the picket while the job was taken"
+	else if(!flota.is_ai_picket(observer))
+		wynik = "The picket lost the job it had just taken"
+	// Nie qdel: /datum/fleet/Destroy() siega do current_system.fleets, a testowa flota nie ma systemu
+	observer.fleet = null
+	mate.fleet = null
+	flota.all_ships = null
+	return wynik

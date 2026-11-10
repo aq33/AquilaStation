@@ -52,11 +52,40 @@ z zimnymi silnikami — z około 18, czyli tylko optycznie.
 - **Ciche podejście.** Okręt, który widzi cel, nie jest przez niego widziany i jest jeszcze
   poza zasięgiem broni, podchodzi z wyłączonymi tłumikami i bez impulsów.
 
+## Co wie flota
+
+Upstream dzieli cele przez `shared_targets` (`ai-skynet.dm:75`): jedna lista raportujących na cel.
+Okręt, któremu ktoś raportuje, trzyma `last_target` i leci do jego **prawdziwych współrzędnych**,
+nawet jeśli sam nie ma żadnego kontaktu — a `seek_new_target()` potrafi wziąć cel z floty
+(`ai-skynet.dm:1738`) okrętowi, który nigdy go nie widział. Przy sensorach to znaczyło, że zgaszenie
+silników chowa cię przed jednym okrętem, a reszta floty dalej leci prosto na ciebie.
+
+`ai_fleet_picture.dm` zamienia to na obraz sytuacji:
+
+- **Meldunek niesie pozycję, kurs i czas** (`report_ai_contact()`), nie referencję do okrętu.
+- Okręt bez własnego kontaktu leci do punktu z meldunku, wyliczonego z kursu
+  (`get_ai_blind_point()` w `move_toward`), a nie do celu.
+- Meldunek starzeje się po 30 s. Gdy wygasa, cel wypada też z `shared_targets`,
+  więc cała flota gubi go dokładnie tak, jak gubi go pojedynczy okręt.
+- **Szpica**: jeden okręt na flotę ma prawo do radaru przez 60 s (`is_ai_picket()`),
+  nigdy lotniskowiec ani uciekający. Reszta leci zimna i korzysta z jego obrazu.
+- **Triangulacja**: dwa okręty, które usłyszały ten sam impuls, przecinają swoje namiary
+  (`triangulate_ai_emission()`); przy namiarach bliższych niż 12° wynik jest odrzucany,
+  bo przecięcie jest bezużyteczne.
+- **Zasadzka**: flota z `FLEET_TRAIT_DEFENSE` bez żadnego celu dryfuje z zimnymi silnikami
+  i bez radaru, dopóki coś nie wejdzie w 90% jej zasięgu wykrycia.
+
+Każde z tych czterech ma własny przełącznik, żeby dało się je pokazywać pojedynczo.
+
 ## Przełączniki
 
 - Debug > **Toggle AI sensor suites** (`GLOB.ai_sensor_suites_enabled`) — same sensory.
 - Debug > **Toggle AI sensor tactics** (`GLOB.ai_sensor_tactics_enabled`) — korzystanie z nich.
+- `GLOB.ai_fleet_picture_enabled`, `ai_picket_enabled`, `ai_triangulation_enabled`,
+  `ai_ambush_enabled` — cztery zachowania floty osobno.
 - Piaskownica: `ai_sandbox_no_suites=1`, `ai_sandbox_no_sensor_tactics=1`,
+  `ai_sandbox_no_picture/_no_picket/_no_triangulation/_no_ambush=1`,
+  `ai_sandbox_only=picture|picket|triangulation|ambush` zostawia włączone jedno z czterech,
   a `ai_sandbox_legacy=1` wyłącza wszystko razem z sygnaturami i morale.
 
 ## Czego tu nie ma

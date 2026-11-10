@@ -86,6 +86,7 @@ h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09
       <span><i class="dot" style="background:var(--ir)"></i>termiczny (IR)</span>
       <span><i class="dot" style="background:var(--lidar)"></i>lidar</span>
       <span><i class="dot" style="background:var(--memory)"></i>ostatnia znana pozycja</span>
+      <span><i class="dot" style="background:var(--lidar)"></i>łuk przy okręcie: szpica floty</span>
       <span><i class="dot" style="background:var(--nt)"></i>Nanotrasen</span>
       <span><i class="dot" style="background:var(--syn)"></i>Syndykat</span>
     </div>
@@ -213,6 +214,10 @@ function rysujStatek(sh, wyb){
   if(wyb){
     ctx.beginPath(); ctx.arc(x, y, r + 7, 0, 6.2832);
     ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 1.4; ctx.stroke();
+  }
+  if(sh.picket){
+    ctx.beginPath(); ctx.arc(x, y, r + 5.5, -0.9, 0.9);
+    ctx.strokeStyle = getCss("--lidar"); ctx.lineWidth = 2; ctx.stroke();
   }
   if(sh.fleeing){
     ctx.beginPath(); ctx.arc(x, y, r + 3.5, 0, 6.2832);
@@ -395,6 +400,8 @@ function panelWybranego(sel){
   }
   html += wiersz("Kontakty", cts.length ? cts.join("<br>") : "żadnych");
   if(sel.silent) html += wiersz("Silniki", "wyłączone, leci rozpędem");
+  if(sel.picket) html += wiersz("Rola", "szpica floty - to ona pulsuje radarem");
+  if(sel.wait) html += wiersz("Stan", "zasadzka: zimne silniki, radar wyłączony");
   d.innerHTML = html;
 }
 function wiersz(k, v){ return '<div class="row"><span>' + k + "</span><b>" + v + "</b></div>"; }
@@ -412,6 +419,7 @@ function listaStatkow(){
       '"></i>' + sh.name + "</span><span style='color:var(--muted)'>" + Math.round(sh.hull) + "%</span></div>" +
       '<div class="meta"><span>' + (sh.tactic || "") + "</span>" +
       (sh.silent ? "<span>cisza</span>" : "") +
+      (sh.picket ? "<span>szpica</span>" : "") +
       (sh.fleeing ? "<span>ucieka</span>" : "") +
       "<span>strach " + Math.round(sh.fear) + "</span></div>" +
       '<div class="bar"><i style="width:' + Math.max(0, sh.hull) + '%;background:' +

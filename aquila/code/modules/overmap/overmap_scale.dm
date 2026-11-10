@@ -94,6 +94,14 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	// Engines off, coasting away from someone who cannot see us (ai_sensor_use.dm)
 	if(!ram_target && ai_coasting_silent(target))
 		return
+	if(!ram_target)
+		// Cold ambush: the fleet waits instead of flying around (ai_fleet_picture.dm)
+		if(is_ai_lying_in_wait())
+			return
+		// We hold this target only through the fleet's report: fly at the reported picture, not at the real ship
+		var/turf/blind = get_ai_blind_point(target)
+		if(blind)
+			return ..(blind, FALSE, ignore_all_collisions)
 	var/standoff = ram_target ? 0 : get_ai_standoff_range(target)
 	if(!standoff)
 		return ..()

@@ -59,10 +59,14 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	if(QDELETED(target))
 		return
 	LAZYSET(ai_last_contact, target, list(target.x, target.y, target.velocity?.a || 0, target.velocity?.e || 0, world.time))
+	// The fleet gets the same picture, so mates that cannot see it steer at this instead of the real position
+	fleet?.report_ai_contact(target, src)
 
 /// Where target probably is now, guessing from its last course; null when we have nothing to go on
 /obj/structure/overmap/proc/get_ai_contact_guess(obj/structure/overmap/target)
 	var/list/seen = LAZYACCESS(ai_last_contact, target)
+	if(!seen)
+		seen = fleet?.get_ai_contact(target) // What a fleet mate reported, if we never saw it ourselves
 	if(!seen)
 		return null
 	var/elapsed = (world.time - seen[5]) / (1 SECONDS)
@@ -116,7 +120,12 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	// The target is already on a passive sensor, so there is nothing to gain
 	if(last_target && get_contact_suite(last_target))
 		return FALSE
+	if(is_ai_lying_in_wait())
+		return FALSE
 	if(fleet)
+		// One radar runs for the whole fleet, and it is the picket's (ai_fleet_picture.dm)
+		if(!fleet.is_ai_picket(src))
+			return FALSE
 		var/gap = ai_temperament == AI_TEMPERAMENT_CAUTIOUS ? AI_CAUTIOUS_PULSE_GAP : AI_FLEET_PULSE_GAP
 		if(world.time < fleet.last_ai_pulse + gap)
 			return FALSE
@@ -179,6 +188,16 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	else if(was_silent)
 		enable_dampeners()
 
+/// Where to actually fly when the goal points at a ship we cannot see: our own guess or the fleet's,
+/// never its real position. Returns null when we do see it, so movement runs as usual.
+/obj/structure/overmap/proc/get_ai_blind_point(atom/goal)
+	if(!uses_ai_sensor_tactics() || !istype(goal, /obj/structure/overmap))
+		return null
+	var/obj/structure/overmap/other = goal
+	if(other.faction == faction || get_contact_suite(other))
+		return null
+	return get_ai_contact_guess(other)
+
 // ---------------------------------------------------------------- bookkeeping
 
 /// One label for what the ship is doing, written into the sandbox recording
@@ -192,7 +211,11 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	if(last_target)
 		if(overmap_dist(src, last_target) <= max_weapon_range)
 			return "walka"
-		return get_contact_suite(last_target) ? "pościg" : "pościg w ciemno"
+		if(get_contact_suite(last_target))
+			return "pościg"
+		return LAZYACCESS(ai_last_contact, last_target) ? "pościg w ciemno" : "pościg z meldunku"
+	if(is_ai_lying_in_wait())
+		return "zasadzka"
 	return patrol_target ? "sprawdza namiar" : "patrol"
 
 /// Run once per slowprocess from sensor_signature.dm, after ai_process() has refreshed the contacts
@@ -217,6 +240,8 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 			continue_ai_search()
 	ai_prev_target = last_target
 	update_ai_silent_running()
+	fleet?.prune_ai_picture()
+	fleet?.update_ai_ambush()
 	ai_tactic = get_ai_tactic()
 
 /obj/structure/overmap/prune_sensor_memory()

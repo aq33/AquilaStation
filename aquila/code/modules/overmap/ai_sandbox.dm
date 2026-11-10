@@ -6,6 +6,7 @@
 /// ai_sandbox_nt_type=<fleet path>, ai_sandbox_syn_type=<fleet path> (default /datum/fleet/nanotrasen and /datum/fleet),
 /// ai_sandbox_legacy=1 (the old game: sensor signatures, overmap scale and AI morale all switched off, for before/after comparisons),
 /// ai_sandbox_no_sensors=1 (sensor signatures off), ai_sandbox_no_suites=1 (AI sensor suites off), ai_sandbox_no_sensor_tactics=1 (AI stops using them),
+/// ai_sandbox_no_picture / _no_picket / _no_triangulation / _no_ambush =1 (single fleet behaviours off), ai_sandbox_only=<picture|picket|triangulation|ambush> (leave just one of them on),
 /// ai_sandbox_fair=1 (the main ship sits out: it does not fire and the AI ignores it, so neither side gets a free invulnerable ally)
 #ifdef AQ_AI_SANDBOX
 
@@ -67,6 +68,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.ai_morale_enabled = FALSE
 		GLOB.ai_sensor_suites_enabled = FALSE
 		GLOB.ai_sensor_tactics_enabled = FALSE
+		GLOB.ai_fleet_picture_enabled = FALSE
+		GLOB.ai_picket_enabled = FALSE
+		GLOB.ai_triangulation_enabled = FALSE
+		GLOB.ai_ambush_enabled = FALSE
 		event("Tryb starej gry: sygnatury, sensory AI, skala overmapy i morale AI wyłączone")
 	if(text2num(world.params["ai_sandbox_no_suites"]))
 		GLOB.ai_sensor_suites_enabled = FALSE
@@ -74,6 +79,26 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_sensor_tactics"]))
 		GLOB.ai_sensor_tactics_enabled = FALSE
 		event("Taktyki sensorowe AI wyłączone")
+	// Pojedyncze zachowania floty (ai_fleet_picture.dm), żeby dało się pokazać każde osobno
+	var/static/list/przelaczniki = list(
+		"picture" = "ai_fleet_picture_enabled",
+		"picket" = "ai_picket_enabled",
+		"triangulation" = "ai_triangulation_enabled",
+		"ambush" = "ai_ambush_enabled",
+	)
+	for(var/nazwa in przelaczniki)
+		if(text2num(world.params["ai_sandbox_no_[nazwa]"]))
+			GLOB.vars[przelaczniki[nazwa]] = FALSE
+			event("Wyłączone: [nazwa]")
+	var/tylko = world.params["ai_sandbox_only"]
+	if(tylko)
+		if(!przelaczniki[tylko])
+			event("Nieznana nazwa w ai_sandbox_only: [tylko]")
+		else
+			for(var/nazwa in przelaczniki)
+				if(nazwa != tylko)
+					GLOB.vars[przelaczniki[nazwa]] = FALSE
+			event("Z zachowań floty zostaje tylko: [tylko]")
 	if(text2num(world.params["ai_sandbox_no_sensors"]))
 		GLOB.sensor_signature_enabled = FALSE
 		event("Sygnatury okrętów wyłączone")
@@ -220,6 +245,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			// Sensors (ai_sensor_suites.dm) and what the ship is doing with them (ai_sensor_use.dm)
 			"tactic" = OM.ai_tactic,
 			"silent" = OM.ai_running_silent,
+			"picket" = OM.fleet?.ai_picket == OM,
+			"wait" = OM.is_ai_lying_in_wait(),
 			"sig" = round(OM.sensor_signature, 0.01),
 			"heat" = round(OM.get_signature_heat(), 0.01),
 			"size" = round(OM.get_signature_size(), 0.01),

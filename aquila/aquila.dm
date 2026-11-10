@@ -911,6 +911,7 @@
 #include "code\modules\overmap\radar_emission.dm"
 #include "code\modules\overmap\sensor_console.dm"
 #include "code\modules\overmap\ai_sensor_suites.dm"
+#include "code\modules\overmap\ai_fleet_picture.dm"
 #include "code\modules\overmap\ai_sensor_use.dm"
 #include "code\modules\overmap\derelict_ruin.dm"
 #include "code\modules\overmap\shuttle_craft.dm"
