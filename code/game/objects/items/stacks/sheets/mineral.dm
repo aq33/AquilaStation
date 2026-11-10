@@ -466,7 +466,9 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	icon_state = "sheet-adamantine"
 	item_state = "sheet-adamantine"
 	singular_name = "arkusz adamantytu"
+	mats_per_unit = list(/datum/material/adamantine=MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/adamantine
+	material_type = /datum/material/adamantine
 	grind_results = list(/datum/reagent/liquidadamantine = 10)
 
 /obj/item/stack/sheet/mineral/adamantine/Initialize(mapload, new_amount, merge = TRUE)

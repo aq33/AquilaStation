@@ -8,7 +8,7 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/iron
 	sheet_recipes_glob = "metal_recipes"
-	coin_type = /obj/item/coin/iron
+	value_per_unit = 0.0025
 
 ///Breaks extremely easily but is transparent.
 /datum/material/glass
@@ -21,6 +21,7 @@
 	categories = list(MAT_CATEGORY_RIGID = TRUE/*, MAT_CATEGORY_BASE_RECIPES = TRUE*/) //Excluding glass for now
 	integrity_modifier = 0.1
 	sheet_type = /obj/item/stack/sheet/glass
+	value_per_unit = 0.0025
 
 /*
 Color matrices are like regular colors but unlike with normal colors, you can go over 255 on a channel.
@@ -38,7 +39,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	sheet_recipes_glob = "silver_recipes"
-	coin_type = /obj/item/coin/silver
+	value_per_unit = 0.025
 
 ///Slight force increase
 /datum/material/gold
@@ -51,7 +52,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	sheet_recipes_glob = "gold_recipes"
-	coin_type = /obj/item/coin/gold
+	value_per_unit = 0.0625
 
 ///Has no special properties
 /datum/material/diamond
@@ -63,7 +64,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	alpha = 132
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE/*, MAT_CATEGORY_BASE_RECIPES = TRUE*/)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
-	coin_type = /obj/item/coin/diamond
+	value_per_unit = 0.25
 
 ///Is slightly radioactive
 /datum/material/uranium
@@ -75,7 +76,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	sheet_recipes_glob = "uranium_recipes"
-	coin_type = /obj/item/coin/uranium
+	value_per_unit = 0.05
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -104,7 +105,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	sheet_recipes_glob = "plasma_recipes"
-	coin_type = /obj/item/coin/plasma
+	value_per_unit = 0.1
 
 /datum/material/plasma/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -127,6 +128,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	alpha = 200
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/ore/bluespace_crystal/refined
+	value_per_unit = 0.15
 
 ///Honks and slips
 /datum/material/bananium
@@ -138,7 +140,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
 	sheet_recipes_glob = "bananium_recipes"
-	coin_type = /obj/item/coin/bananium
+	value_per_unit = 0.5
 
 /datum/material/bananium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -162,6 +164,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	sheet_recipes_glob = "titanium_recipes"
+	value_per_unit = 0.0625
 
 ///Force decrease
 /datum/material/plastic
@@ -174,6 +177,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/plastic
 	sheet_recipes_glob = "plastic_recipes"
+	value_per_unit = 0.0125
 
 ///Force decrease and mushy sound effect. (Not yet implemented)
 /datum/material/biomass
@@ -183,7 +187,21 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	color = "#735b4d"
 	greyscale_colors = "#735b4d"
 	strength_modifier = 0.8
+	value_per_unit = 0.025
 
+
+///Stronk force increase
+/datum/material/adamantine
+	name = "adamantine"
+	id = "adamantine"
+	desc = "Potężny materiał zrobiony z magii, to znaczy z nauki!"
+	color = "#6d7e8e"
+	greyscale_colors = "#6d7e8e"
+	strength_modifier = 1.5
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/adamantine
+	sheet_recipes_glob = "adamantine_recipes"
+	value_per_unit = 0.25
 
 /datum/material/copper
 	name = "copper"

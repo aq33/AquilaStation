@@ -23,12 +23,12 @@ Simple datum which is instanced once per type and is used for every object of sa
 	var/obj/item/stack/sheet_type
 	///AQ EDIT - nazwa listy GLOB z recepturami arkusza (u nas stosy ustawiają `recipes` w Initialize(), Bee#10701 czyta get_recipes())
 	var/sheet_recipes_glob
-	///The type of coin this material spawns. This should be replaced as soon as possible by greyscale coins.
-	var/coin_type
 	///This is a modifier for force, and resembles the strength of the material
 	var/strength_modifier = 1
 	///This is a modifier for integrity, and resembles the strength of the material
 	var/integrity_modifier = 1
+	///This is the amount of value per 1 unit of the material
+	var/value_per_unit = 0
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)

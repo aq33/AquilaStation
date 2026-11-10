@@ -79,6 +79,10 @@
 	polish_name = "biomasa"
 	name_adjectives = list("organiczny", "organiczna", "organiczne")
 
+/datum/material/adamantine
+	polish_name = "adamantyt"
+	name_adjectives = list("adamantytowy", "adamantytowa", "adamantytowe")
+
 /datum/material/copper
 	polish_name = "miedź"
 	name_adjectives = list("miedziany", "miedziana", "miedziane")

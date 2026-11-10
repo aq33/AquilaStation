@@ -31,11 +31,11 @@ GLOBAL_LIST_INIT(mirror_maid_names, list(
 	desc = "Zaskakująco ciężka, zdobiona moneta. Za każdym razem, gdy na nią patrzysz, jej boki przedstawiają coś innego."
 	icon = 'aquila/icons/obj/eldritch_coin.dmi'
 	icon_state = "coin_heretic"
-	cmineral = "heretic"
 	sideslist = list("heretic", "blade")
 	custom_materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5)
+	material_flags = NONE // własny sprite, bez przedrostka i koloru plazmy z monet Bee (BeeStation/BeeStation-Hornet#9386)
 	grind_results = list(/datum/reagent/carbon = 5, /datum/reagent/toxin/plasma = 5, /datum/reagent/eldritch = 4)
-	value = 0
+	value_override = 0
 	/// Nazwa strony "orzeł"
 	var/heads_name = "heretic"
 	/// Zasięg działania na śluzy
