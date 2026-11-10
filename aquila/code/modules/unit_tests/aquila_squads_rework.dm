@@ -59,6 +59,7 @@
 	TEST_ASSERT(vendor.aq_vend(medic), "Automat nie wydał zestawu")
 	var/obj/item/storage/aq_squad_crate/crate = locate() in medic.held_items
 	TEST_ASSERT(crate, "Zestaw nie trafił do ręki w skrzyni")
+	TEST_ASSERT(crate.icon_state == "eq-box-closed", "Pełna skrzynia nie jest zamknięta (stan [crate.icon_state])")
 	TEST_ASSERT(locate(/obj/item/storage/firstaid/regular) in crate, "W skrzyni medyka nie ma apteczki")
 	TEST_ASSERT(locate(/obj/item/clothing/suit/ship/squad/space) in crate, "W skrzyni nie ma skafandra obcisłego (trudne warunki miały być w każdym zestawie)")
 	TEST_ASSERT(!(locate(/obj/item/gun) in crate), "Drużyna bez zezwolenia na broń dostała broń")
@@ -69,6 +70,7 @@
 	// Jedną rzecz wyjmujemy i oddajemy luzem, resztę w skrzyni
 	var/obj/item/clothing/suit/ship/squad/armor = locate(/obj/item/clothing/suit/ship/squad) in crate
 	armor.forceMove(get_turf(medic))
+	TEST_ASSERT(crate.icon_state == "eq-box-open", "Skrzynia bez pancerza nie otworzyła się (stan [crate.icon_state])")
 	vendor.return_item(medic, crate, quiet = TRUE)
 	TEST_ASSERT(QDELETED(crate), "Pusta skrzynia nie została przyjęta")
 	TEST_ASSERT(!QDELETED(loan) && length(loan.outstanding) == 1, "Po zwrocie skrzyni bez pancerza powinna brakować jedna rzecz, brakuje [QDELETED(loan) ? 0 : length(loan.outstanding)]")
@@ -202,5 +204,55 @@
 	if(next.x == layout["origin_x"] + 25)
 		TEST_ASSERT(aq_squad_sector(next) == "C2", "Pole 25 w prawo i 11 w dół to sektor [aq_squad_sector(next)] zamiast C2")
 	GLOB.squad_map_bounds -= "[floor.z]"
+
+/// Drużyny XO: nowa drużyna z kanałem pagera, zmiana nazwy (stara preferencja dalej prowadzi do drużyny) i koloru
+/datum/unit_test/aquila_squad_custom
+
+/datum/unit_test/aquila_squad_custom/Run()
+	for(var/datum/squad/squad as anything in GLOB.squad_manager.squads)
+		TEST_ASSERT(squad.type != /datum/squad/aq_custom || squad.name != "Echo", "Wzorzec drużyny Echo z subtypesof() został na liście drużyn")
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
+	var/datum/squad/created = GLOB.squad_manager.aq_create_squad("Foxtrot", "#123456")
+	TEST_ASSERT(created && (created in GLOB.squad_manager.squads), "Nie powstała nowa drużyna")
+	TEST_ASSERT(created.squad_channel?.squad == created && created.squad_channel.key == created.aq_channel_key, "Nowa drużyna nie ma własnego kanału pagera")
+	TEST_ASSERT(!GLOB.squad_manager.aq_create_squad("foxtrot", "#654321"), "Powstała druga drużyna o tej samej nazwie")
+	var/datum/squad/alpha = aq_squad("Alpha")
+	var/old_key = alpha.squad_channel.key
+	TEST_ASSERT(alpha.aq_rename("Wilki", officer), "Nie udało się zmienić nazwy drużyny")
+	TEST_ASSERT(aq_squad("Wilki") == alpha && aq_squad("Alpha") == alpha && aq_squad("Able") == alpha, "Po zmianie nazwy drużyna nie jest do znalezienia po nowej, pierwotnej i starej nazwie")
+	TEST_ASSERT(alpha.squad_channel.key == old_key, "Zmiana nazwy przestawiła kanał pagera")
+	TEST_ASSERT(findtext(alpha.squad_channel.style_message("Jan", "test"), "(Wilki)"), "Wiadomość pagera nie pokazuje nowej nazwy")
+	TEST_ASSERT(!alpha.aq_rename("Bravo", officer), "Udało się nazwać drużynę jak inną")
+	var/old_colour = alpha.colour
+	TEST_ASSERT(alpha.aq_recolour("#00ff00", officer) && alpha.colour == "#00ff00", "Nie udało się zmienić koloru drużyny")
+	alpha.aq_rename("Alpha", officer)
+	alpha.aq_recolour(old_colour, officer)
+	GLOB.squad_manager.squads -= created
+	qdel(created)
+
+/// Niezwrócony sprzęt: XO zgłasza go z konsoli, wykroczenie trafia do akt ochrony, drugi raz się nie da
+/datum/unit_test/aquila_squad_gear_crime
+
+/datum/unit_test/aquila_squad_gear_crime/Run()
+	var/mob/living/carbon/human/soldier = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
+	soldier.real_name = "Szeregowy Testowy"
+	var/datum/data/record/record = new
+	record.fields["id"] = "aq_test_gear"
+	record.fields["name"] = soldier.real_name
+	record.fields["crim"] = list()
+	record.fields["citation"] = list()
+	GLOB.data_core.security += record
+	var/datum/squad_loadout/aquila/kit = new /datum/squad_loadout/aquila/nt/soldier
+	var/datum/squad_loan/loan = new(soldier, kit, list(/obj/item/clothing/suit/ship/squad))
+	TEST_ASSERT(loan.aq_report(officer), "Zgłoszenie niezwróconego sprzętu się nie udało")
+	var/list/crimes = record.fields["crim"]
+	var/datum/data/crime/crime = length(crimes) ? crimes[1] : null
+	TEST_ASSERT(crime?.crimeName == "Przywłaszczenie sprzętu drużyny", "W aktach nie ma wykroczenia za sprzęt")
+	TEST_ASSERT(!loan.aq_report(officer), "To samo wypożyczenie zgłoszono drugi raz")
+	GLOB.data_core.security -= record
+	qdel(record)
+	qdel(loan)
+	qdel(kit)
 
 #undef TEST_ASSERT

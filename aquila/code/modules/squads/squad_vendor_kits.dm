@@ -122,8 +122,8 @@ GLOBAL_LIST_EMPTY(squad_loans)
 /obj/item/storage/aq_squad_crate
 	name = "skrzynia sprzętu drużyny"
 	desc = "Wojskowa skrzynia na zestaw drużyny. Odłóż do niej sprzęt, choćby luzem, i oddaj ją do automatu drużyny."
-	icon = 'aquila/icons/squads/squad_crate.dmi'
-	icon_state = "crate"
+	icon = 'aquila/icons/squads/squad_eqbox.dmi'
+	icon_state = "eq-box-closed"
 	item_state = "ammobox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
@@ -135,7 +135,10 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	/// Czyje to wypożyczenie
 	var/datum/squad_loan/loan
 	var/position = SQUAD_POSITION_SOLDIER
-	var/squad_colour = "#888888"
+	/// Drużyna, której kolor mają paski skrzyni (po zmianie koloru drużyny skrzynia też się zmienia)
+	var/datum/squad/squad
+	/// Ile rzeczy było w skrzyni przy wydaniu: póki wszystkie są w środku, skrzynia jest zamknięta
+	var/full_count = 0
 
 /obj/item/storage/aq_squad_crate/ComponentInitialize()
 	. = ..()
@@ -155,28 +158,53 @@ GLOBAL_LIST_EMPTY(squad_loans)
 
 /obj/item/storage/aq_squad_crate/Destroy()
 	loan = null
+	squad = null
 	return ..()
 
 /obj/item/storage/aq_squad_crate/proc/assign(datum/squad_loan/new_loan, new_position, datum/squad/squad)
 	loan = new_loan
 	position = new_position
-	if(squad)
-		squad_colour = squad.colour
+	src.squad = squad
 	name = "skrzynia: [lowertext(squad_position_pl(position))] drużyny [squad?.name || "?"]"
 	update_icon()
 
-// Walizka zestawu z CM-SS13 (CC BY-SA 3.0): pełna z emblematem funkcji, pusta otwarta
+/// Wypełniona przy wydaniu: zapamiętuje pełny stan (przedmioty stworzone w środku nie wywołują Entered())
+/obj/item/storage/aq_squad_crate/proc/aq_filled()
+	full_count = length(contents)
+	update_icon()
+
+// Skrzynia sprzętu (sprite eqbox z Aquili): zamknięta z pełnym zestawem, otwarta z widoczną zawartością,
+// paski w kolorze drużyny
 /obj/item/storage/aq_squad_crate/update_icon_state()
-	icon_state = length(contents) ? "crate" : "crate_empty"
+	icon_state = (full_count && length(contents) >= full_count) ? "eq-box-closed" : "eq-box-open"
 	return ..()
 
 /obj/item/storage/aq_squad_crate/update_overlays()
 	. = ..()
-	var/mutable_appearance/stripe = mutable_appearance(icon, "stripe")
-	stripe.color = squad_colour
-	. += stripe
-	if(length(contents))
-		. += mutable_appearance(icon, "emblem_[position]")
+	var/closed = icon_state == "eq-box-closed"
+	var/mutable_appearance/stripes = mutable_appearance(icon, closed ? "eq-box-closed-colour-overlay" : "eq-box-open-colour-overlay")
+	stripes.color = squad?.colour || "#888888"
+	. += stripes
+	if(closed)
+		return
+	var/magazines = 0
+	var/has_armor = FALSE
+	var/has_helmet = FALSE
+	for(var/obj/item/thing in contents)
+		if(istype(thing, /obj/item/clothing/suit))
+			has_armor = TRUE
+		else if(istype(thing, /obj/item/clothing/head))
+			has_helmet = TRUE
+		else if(istype(thing, /obj/item/ammo_box) || istype(thing, /obj/item/gun))
+			magazines++
+	if(has_armor)
+		. += mutable_appearance(icon, "eq-box-armor-overlay")
+	if(has_helmet)
+		. += mutable_appearance(icon, "eq-box-helmet-overlay")
+	if(magazines >= 1)
+		. += mutable_appearance(icon, "eq-box-mag1-overlay")
+	if(magazines >= 2)
+		. += mutable_appearance(icon, "eq-box-mag2-overlay")
 
 /obj/item/storage/aq_squad_crate/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -277,7 +305,7 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	crate.assign(loan, kit.position, H.squad)
 	for(var/path in issued)
 		new path(crate)
-	crate.update_icon() // przedmioty stworzone w środku nie wywołują Entered()
+	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	H.put_in_hands(crate)
 	log_game("[key_name(H)] took squad kit [kit.name] ([H.squad]) from [src] at [AREACOORD(src)]")
