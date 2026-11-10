@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 		return KNPC_PATHFIND_SKIP //No need to recalculate this path.
 	path = list()
 	dest = null
-	var/obj/item/card/id/access_card = H.wear_id
+	var/obj/item/card/id/access_card = path_access_card() // AQ EDIT - boarderzy wyłamujący drzwi planują trasę przez śluzy bez dostępu
 	if(target)
 		dest = get_turf(target)
 		// AQ EDIT - cel albo boarder w nullspace (np. przy resecie komory testowej) dawał runtime „Invalid A* start or destination”
@@ -367,8 +367,7 @@ of a specific action goes up, to encourage skynet to go for that one instead.
 /datum/ai_goal/proc/get_aggressors(datum/component/knpc/HA)
 	. = list()
 	var/mob/living/carbon/human/ai_boarder/H = HA.parent
-	var/list/detected_objects = view(HA.view_range, HA.parent)
-	var/list/guessed_objects = view(HA.guess_range, HA.parent)
+	var/list/guessed_objects = view(HA.guess_range, HA.parent) // AQ EDIT - jedno view() zamiast dwóch, zasięg wzroku liczony get_dist niżej
 	for(var/mob/living/M in guessed_objects)
 		//Invis is a no go. Non-human, -cyborg or -hostile mobs are ignored.
 		if(M.invisibility >= INVISIBILITY_ABSTRACT || M.alpha <= 0 || (!ishuman(M) && !iscyborg(M))) //Removed && !ishostile(M) temporarily because of Sgt. Araneus
@@ -380,7 +379,7 @@ of a specific action goes up, to encourage skynet to go for that one instead.
 			continue
 		if(H.faction_check_mob(M))
 			continue
-		if(!(M in detected_objects) && !(M in HA.last_aggressors))
+		if(get_dist(H, M) > HA.view_range && !(M in HA.last_aggressors)) // AQ EDIT - jedno view() zamiast dwóch
 			continue
 		. += M
 	//Check for nearby mechas....
@@ -606,20 +605,18 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	var/mob/living/carbon/human/ai_boarder/H = HA.parent
 	var/list/enemies = get_aggressors(HA)
 	var/obj/item/A = H.get_active_held_item()
-	var/closest_dist = 1000
-	var/mob/living/target = null
-	for(var/mob/living/L as() in enemies)
-		var/dist = get_dist(L, H)
-		if(dist < closest_dist)
-			closest_dist = dist
-			target = L
+	var/mob/living/target = HA.pick_target(enemies) // AQ EDIT - wybór celu nie tylko po odległości (aquila/code/modules/knpc/knpc_tactics.dm)
 	if(!target)
 		return
 	var/dist = get_dist(H, target)
 	//We're holding a gun. See if we can shoot it....
-	HA.pathfind_to(target) //Walk up close and YEET SLAM
+	HA.tactical_move(target) // AQ EDIT - z bronią palną trzyma dystans zamiast podchodzić (aquila/code/modules/knpc/knpc_tactics.dm)
 	if(QDELETED(HA) || QDELETED(H)) //Pathfinding sleeps, we may have been deleted meanwhile
 		return
+	// AQ EDIT START - rzut granatem w grupę wrogów (aquila/code/modules/knpc/knpc_tactics.dm)
+	if(HA.try_throw_grenade(target, enemies))
+		return
+	// AQ EDIT END
 	var/obj/item/gun/G = null
 	if(istype(A, /obj/item/gun))
 		G = A
@@ -734,7 +731,8 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	H.say(support_text, forced = "knpc AI")
 
 	// Call for other intelligent AIs
-	for(var/datum/component/knpc/HH as() in GLOB.knpcs - HA)
+	var/responders = 0 // AQ EDIT - na wezwanie odpowiada kilku najbliższych, nie cały poziom
+	for(var/datum/component/knpc/HH as() in HA.backup_candidates()) // AQ EDIT - kolejność od najbliższych
 		// AQ EDIT START - pathfind_to() niżej usypia, więc kolejni boarderzy z kopii listy (albo my sami) mogą być już usunięci
 		if(QDELETED(H))
 			return
@@ -753,6 +751,10 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 			thetext += pick(H.response_lines)
 			HH.pathfind_to(H)
 			other.say(thetext, forced = "knpc AI")
+			// AQ EDIT START - limit odpowiadających na wezwanie
+			if(++responders >= KNPC_MAX_BACKUP_RESPONDERS)
+				break
+			// AQ EDIT END
 	//Firstly! Call for the simplemobs..
 	for(var/mob/living/simple_animal/hostile/M in oview(HA.view_range, HA.parent))
 		if(H.faction_check_mob(M, TRUE))

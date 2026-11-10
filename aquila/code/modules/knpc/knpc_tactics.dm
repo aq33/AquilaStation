@@ -1,0 +1,416 @@
+// Taktyka boarderów KNPC (Syndykat, piraci, zombie, ERT i inni ai_boarder).
+// Hooki w core: nsv13/code/modules/overmap/knpc.dm (pick_target, tactical_move, try_throw_grenade,
+// backup_candidates, path_access_card) i KNPC_MAX_BACKUP_RESPONDERS w nsv13/code/__DEFINES/knpc.dm.
+
+/// Strzelec trzyma się co najmniej tylu pól od celu
+#define KNPC_RANGE_MIN 3
+/// Dalej niż tyle pól strzelec podchodzi do celu
+#define KNPC_RANGE_MAX 6
+/// Jak długo boarder pamięta, kto do niego strzelał
+#define KNPC_SHOOTER_MEMORY (15 SECONDS)
+/// Przerwa między granatami jednego boardera
+#define KNPC_GRENADE_COOLDOWN (20 SECONDS)
+/// Czas hakowania panelu drzwi
+#define KNPC_HACK_TIME (10 SECONDS)
+/// Przerwa między uderzeniami w drzwi
+#define KNPC_BASH_DELAY (1.5 SECONDS)
+/// Obrażenia uderzenia w drzwi ponad próg odporności drzwi (damage_deflection)
+#define KNPC_BASH_DAMAGE 10
+/// Poniżej tej części zdrowia boarder z medipenem leczy się nawet w walce
+#define KNPC_HEAL_IN_COMBAT_RATIO 0.35
+/// Poniżej tej części zdrowia boarder bez medipena wycofuje się do kolegów
+#define KNPC_FALL_BACK_RATIO 0.3
+/// Od tej części zdrowia w dół medyk podchodzi do rannego kolegi
+#define KNPC_HEAL_ALLY_RATIO 0.4
+/// Jak daleko boarder szuka rannego kolegi albo kolegi, do którego się wycofa
+#define KNPC_ALLY_RANGE 7
+#define KNPC_FALL_BACK_RANGE 15
+
+/datum/component/knpc
+	/// Cel z poprzedniej akcji (weakref), żeby boarder nie przeskakiwał między celami co sekundę
+	var/datum/weakref/current_target
+	/// weakref strzelającego => world.time, do kiedy pamiętamy, że do nas strzelał
+	var/list/recent_shooters
+	/// Wynik get_aggressors() w bieżącym process() (check_score i action liczą to samo)
+	var/list/aggressors_cache
+	var/aggressors_cached_at = -1
+	var/next_grenade = 0
+	var/next_door_action = 0
+	/// Trwa hakowanie drzwi
+	var/hacking_door = FALSE
+	var/next_fall_back_shout = 0
+	/// Karta ze wszystkimi dostępami stacji, tylko do planowania trasy boarderów wyłamujących drzwi
+	var/static/obj/item/card/id/breach_card
+
+/datum/component/knpc/Destroy(force, silent)
+	current_target = null
+	recent_shooters = null
+	aggressors_cache = null
+	return ..()
+
+/datum/component/knpc/process()
+	. = ..()
+	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
+
+/datum/component/knpc/register_bullet(datum/source, obj/item/projectile/Proj)
+	. = ..()
+	if(!Proj.nodamage && isliving(Proj.firer))
+		LAZYSET(recent_shooters, WEAKREF(Proj.firer), world.time + KNPC_SHOOTER_MEMORY)
+
+/// Czy target strzelał do nas w ostatnich sekundach
+/datum/component/knpc/proc/shot_us_recently(atom/target)
+	if(!recent_shooters)
+		return FALSE
+	var/datum/weakref/ref = WEAKREF(target)
+	return recent_shooters[ref] && recent_shooters[ref] > world.time
+
+/// Wybiera cel: najbliższy, ale woli tego, kto do nas strzela, rannego i dotychczasowy cel; omija leżących i niewidocznych.
+/datum/component/knpc/proc/pick_target(list/enemies)
+	var/mob/living/carbon/human/H = parent
+	var/atom/movable/old_target = current_target?.resolve()
+	var/atom/movable/best = null
+	var/best_score = INFINITY
+	for(var/atom/movable/enemy as anything in enemies)
+		if(QDELETED(enemy))
+			continue
+		var/score = get_dist(H, enemy)
+		if(enemy == old_target)
+			score -= 2
+		if(shot_us_recently(enemy))
+			score -= 3
+		if(isliving(enemy))
+			var/mob/living/L = enemy
+			if(L.incapacitated())
+				score += 3 // leżący nie strzela, najpierw ci, którzy mogą
+			else if(L.health < L.maxHealth * 0.5)
+				score -= 2
+		if(!can_see(H, enemy, view_range))
+			score += 4
+		if(score < best_score)
+			best_score = score
+			best = enemy
+	current_target = best ? WEAKREF(best) : null
+	// Czyścimy przeterminowane wpisy, żeby lista nie rosła przez rundę
+	for(var/datum/weakref/ref as anything in recent_shooters)
+		if(recent_shooters[ref] <= world.time)
+			LAZYREMOVE(recent_shooters, ref)
+	return best
+
+/// Ruch w walce: z bronią palną trzyma dystans KNPC_RANGE_MIN–KNPC_RANGE_MAX, bez niej (albo bez linii strzału) podchodzi.
+/datum/component/knpc/proc/tactical_move(atom/movable/target)
+	var/mob/living/carbon/human/ai_boarder/H = parent
+	var/obj/item/gun/G = H.get_active_held_item()
+	if(!istype(G) || !G.can_shoot())
+		return pathfind_to(target)
+	var/dist = get_dist(H, target)
+	if(dist > KNPC_RANGE_MAX || !can_see(H, target, view_range))
+		return pathfind_to(target)
+	// Dobra pozycja do strzału: nie pchamy się dalej
+	path = list()
+	dest = null
+	if(world.time < next_move || H.incapacitated() || !isturf(H.loc))
+		return
+	if(dist < KNPC_RANGE_MIN)
+		if(tactical_step(get_step_away(H, target), target))
+			return
+	if(CHECK_BITFIELD(H.knpc_traits, KNPC_IS_DODGER) && prob(40))
+		tactical_step(get_step(H, turn(get_dir(H, target), pick(90, -90))), target)
+
+/// Krok na bezpieczne pole (nie w kosmos, przepaść ani ścianę), z twarzą do celu
+/datum/component/knpc/proc/tactical_step(turf/T, atom/target)
+	var/mob/living/carbon/human/ai_boarder/H = parent
+	if(!T || T.density || isgroundlessturf(T))
+		return FALSE
+	next_move = world.time + H.move_delay
+	if(!H.Move(T, get_dir(H, T)))
+		return FALSE
+	H.face_atom(target)
+	return TRUE
+
+/// Rzut granatem (tylko wybuchowym albo odłamkowym), gdy cel jest 3–7 pól dalej, widać go i obok nie ma swoich.
+/datum/component/knpc/proc/try_throw_grenade(atom/movable/target, list/enemies)
+	if(world.time < next_grenade)
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	var/dist = get_dist(H, target)
+	if(dist < 3 || dist > 7 || H.incapacitated() || !isturf(H.loc) || !can_see(H, target, view_range))
+		return FALSE
+	var/obj/item/grenade/nade = find_grenade()
+	if(!nade)
+		return FALSE
+	var/turf/target_turf = get_turf(target)
+	var/enemies_near = 0
+	for(var/atom/movable/enemy as anything in enemies)
+		if(get_dist(enemy, target_turf) <= 2)
+			enemies_near++
+	if(enemies_near < 2 && !prob(30))
+		return FALSE
+	for(var/mob/living/L in range(2, target_turf))
+		if(L.stat != DEAD && H.faction_check_mob(L))
+			return FALSE // nie rzucamy w swoich
+	next_grenade = world.time + KNPC_GRENADE_COOLDOWN
+	if(isitem(nade.loc) && nade.loc != H)
+		SEND_SIGNAL(nade.loc, COMSIG_TRY_STORAGE_TAKE, nade, H.drop_location(), TRUE)
+	else if(!H.temporarilyRemoveItemFromInventory(nade))
+		return FALSE
+	nade.forceMove(H.drop_location())
+	nade.preprime(H, null, FALSE)
+	H.visible_message("<span class='danger'>[H] rzuca [nade]!</span>")
+	H.say(pick("Granat!", "Uwaga, granat!", "Odłamkowy!"), forced = "knpc AI")
+	nade.throw_at(target_turf, 7, 1, H)
+	return TRUE
+
+/// Granat wybuchowy albo odłamkowy noszony przy sobie lub w plecaku
+/datum/component/knpc/proc/find_grenade()
+	var/mob/living/carbon/human/H = parent
+	var/list/expanded_contents = H.contents.Copy()
+	var/obj/item/storage/S = H.back
+	if(S)
+		expanded_contents += S.contents
+	for(var/obj/item/grenade/nade in expanded_contents)
+		if(nade.active || nade.dud_flags)
+			continue
+		if(nade.ex_dev || nade.ex_heavy || nade.ex_light || nade.shrapnel_type)
+			return nade
+
+/// Medipen z zawartością noszony przy sobie lub w plecaku
+/datum/component/knpc/proc/find_medipen()
+	var/mob/living/carbon/human/H = parent
+	var/list/expanded_contents = H.contents.Copy()
+	var/obj/item/storage/S = H.back
+	if(S)
+		expanded_contents += S.contents
+	for(var/obj/item/reagent_containers/hypospray/medipen/survival/P in expanded_contents)
+		if(P.reagents?.total_volume)
+			return P
+
+/// Inni boarderzy z tego samego Z, od najbliższego (wezwanie wsparcia)
+/datum/component/knpc/proc/backup_candidates()
+	var/mob/living/H = parent
+	var/list/candidates = list()
+	for(var/datum/component/knpc/other as anything in GLOB.knpcs)
+		if(other == src || QDELETED(other) || QDELETED(other.parent))
+			continue
+		var/mob/living/other_mob = other.parent
+		if(other_mob.z != H.z)
+			continue
+		candidates[other] = get_dist(H, other_mob)
+	sortTim(candidates, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+	return candidates
+
+/// Najbliższy żywy boarder z tej samej frakcji w promieniu range (bez nas); conscious_only pomija nieprzytomnych
+/datum/component/knpc/proc/nearest_ally(range, max_health_ratio = INFINITY, conscious_only = FALSE)
+	var/mob/living/carbon/human/H = parent
+	var/mob/living/carbon/human/best = null
+	var/best_dist = INFINITY
+	for(var/datum/component/knpc/other as anything in GLOB.knpcs)
+		if(other == src || QDELETED(other))
+			continue
+		var/mob/living/carbon/human/ally = other.parent
+		if(QDELETED(ally) || ally.stat == DEAD || ally.z != H.z)
+			continue
+		if(conscious_only && ally.stat != CONSCIOUS)
+			continue
+		if(ally.health > ally.maxHealth * max_health_ratio)
+			continue
+		var/dist = get_dist(H, ally)
+		if(dist > range || dist >= best_dist)
+			continue
+		if(!H.faction_check_mob(ally, TRUE))
+			continue
+		best = ally
+		best_dist = dist
+	return best
+
+/// Karta do planowania trasy: wyłamujący drzwi liczą trasę przez śluzy, do których nie mają dostępu
+/datum/component/knpc/proc/path_access_card()
+	var/mob/living/carbon/human/H = parent
+	if(istype(H, /mob/living/carbon/human/ai_boarder))
+		var/mob/living/carbon/human/ai_boarder/boarder = H
+		if(boarder.knpc_traits & (KNPC_IS_DOOR_BASHER | KNPC_IS_DOOR_HACKER))
+			if(!breach_card)
+				breach_card = new
+				breach_card.access = get_all_accesses()
+			return breach_card
+	return H.wear_id
+
+/datum/component/knpc/next_path_step()
+	if(handle_blocking_door())
+		return FALSE
+	return ..()
+
+/// Drzwi na następnym polu trasy, których nie otworzymy normalnie: hakowanie albo wyważanie.
+/// Zwraca TRUE, gdy boarder zajmuje się drzwiami i nie powinien iść dalej.
+/datum/component/knpc/proc/handle_blocking_door()
+	if(hacking_door)
+		return TRUE
+	if(!length(path) || world.time < next_door_action)
+		return FALSE
+	var/mob/living/carbon/human/ai_boarder/H = parent
+	if(!istype(H) || !(H.knpc_traits & (KNPC_IS_DOOR_BASHER | KNPC_IS_DOOR_HACKER)) || H.incapacitated() || !isturf(H.loc))
+		return FALSE
+	var/turf/next_turf = get_step_towards(H, path[1])
+	if(!next_turf || next_turf == H.loc)
+		return FALSE
+	var/obj/machinery/door/D = null
+	for(var/obj/machinery/door/candidate in next_turf)
+		if(!(istype(candidate, /obj/machinery/door/airlock) || istype(candidate, /obj/machinery/door/window)) || !candidate.density) // bez grodzi, rolet i firelocków
+			continue
+		D = candidate
+		break
+	if(!D)
+		return FALSE
+	if(!D.welded && !D.locked && D.hasPower() && D.allowed(H))
+		return FALSE // otworzy się samo przy wejściu
+	H.face_atom(D)
+	if((H.knpc_traits & KNPC_IS_DOOR_HACKER) && !D.welded)
+		hacking_door = TRUE
+		H.visible_message("<span class='warning'>[H] zdejmuje osłonę panelu [D] i zaczyna przy nim majstrować!</span>")
+		playsound(D, 'sound/items/screwdriver.ogg', 50, TRUE)
+		addtimer(CALLBACK(src, PROC_REF(finish_door_hack), WEAKREF(D)), KNPC_HACK_TIME)
+		return TRUE
+	next_door_action = world.time + KNPC_BASH_DELAY
+	var/obj/item/held = H.get_active_held_item()
+	var/damage = KNPC_BASH_DAMAGE + max(0, held?.force - KNPC_BASH_DAMAGE)
+	H.do_attack_animation(D)
+	playsound(D, 'sound/effects/bang.ogg', 50, TRUE)
+	D.take_damage(damage + D.damage_deflection, BRUTE, MELEE, TRUE, get_dir(D, H))
+	if(!QDELETED(D) && D.density && D.obj_integrity <= D.max_integrity * 0.5 && D.open(2))
+		H.visible_message("<span class='danger'>[H] wyważa [D]!</span>")
+	return TRUE
+
+/datum/component/knpc/proc/finish_door_hack(datum/weakref/door_ref)
+	hacking_door = FALSE
+	var/mob/living/carbon/human/H = parent
+	var/obj/machinery/door/D = door_ref?.resolve()
+	if(!D || QDELETED(H) || H.incapacitated() || get_dist(H, D) > 1 || !D.density || D.welded)
+		return
+	if(istype(D, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/A = D
+		if(A.locked)
+			A.unbolt()
+	if(D.open(2))
+		H.visible_message("<span class='warning'>[H] otwiera [D] zwarciem w panelu!</span>")
+		do_sparks(3, TRUE, D)
+
+// Syndykat hakuje drzwi, piraci je wyważają (zombie mają to od zawsze w nsv13)
+/mob/living/carbon/human/ai_boarder/syndicate/Initialize(mapload)
+	. = ..()
+	knpc_traits |= KNPC_IS_DOOR_HACKER
+
+/mob/living/carbon/human/ai_boarder/space_pirate/Initialize(mapload)
+	. = ..()
+	knpc_traits |= KNPC_IS_DOOR_BASHER
+
+// Przy krytycznym zdrowiu medipen idzie przed walką
+/datum/ai_goal/human/heal_self/check_score(datum/component/knpc/HA)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/human/H = HA.parent
+	if(H.health <= H.maxHealth * KNPC_HEAL_IN_COMBAT_RATIO)
+		return AI_SCORE_SUPERPRIORITY + 10
+
+// check_score i action w jednym process() liczą tych samych wrogów: drugi raz z pamięci
+/datum/ai_goal/get_aggressors(datum/component/knpc/HA)
+	if(istype(HA) && HA.aggressors_cache && HA.aggressors_cached_at == world.time)
+		return HA.aggressors_cache.Copy()
+	var/list/found = ..()
+	if(istype(HA))
+		HA.aggressors_cache = found?.Copy()
+		HA.aggressors_cached_at = world.time
+	return found
+
+// Nie strzelamy w ścianę do kogoś, kogo tylko „pamiętamy” zza rogu
+/datum/ai_goal/human/CheckFriendlyFire(mob/living/us, mob/living/them)
+	. = ..()
+	if(!. && !can_see(us, them, get_dist(us, them) + 1))
+		return TRUE
+
+/// Ciężko ranny boarder bez medipena wycofuje się do najbliższego kolegi zamiast walczyć sam
+/datum/ai_goal/human/fall_back
+	name = "Fall back"
+	score = AI_SCORE_SUPERPRIORITY + 5
+	required_ai_flags = null
+
+/datum/ai_goal/human/fall_back/check_score(datum/component/knpc/HA)
+	if(!..())
+		return 0
+	var/mob/living/carbon/human/H = HA.parent
+	if(H.health > H.maxHealth * KNPC_FALL_BACK_RATIO || H.incapacitated() || HA.find_medipen())
+		return 0
+	if(!length(get_aggressors(HA)))
+		return 0
+	var/mob/living/carbon/human/ally = HA.nearest_ally(KNPC_FALL_BACK_RANGE, conscious_only = TRUE)
+	if(!ally || get_dist(H, ally) <= 2)
+		return 0 // nie ma do kogo albo już jesteśmy przy swoich: walczymy razem
+	return score
+
+/datum/ai_goal/human/fall_back/action(datum/component/knpc/HA)
+	if(!can_action(HA))
+		return
+	var/mob/living/carbon/human/H = HA.parent
+	var/mob/living/carbon/human/ally = HA.nearest_ally(KNPC_FALL_BACK_RANGE, conscious_only = TRUE)
+	if(!ally)
+		return
+	if(world.time >= HA.next_fall_back_shout)
+		HA.next_fall_back_shout = world.time + 20 SECONDS
+		H.say(pick("Jestem ranny, wycofuję się!", "Dostałem! Osłaniajcie mnie!", "Cofam się!"), forced = "knpc AI")
+	HA.pathfind_to(ally)
+
+/// Boarder z medipenem leczy ciężko rannego kolegę obok (rannego w krytycznym stanie też)
+/datum/ai_goal/human/heal_ally
+	name = "Heal ally"
+	score = AI_SCORE_SUPERPRIORITY + 2
+	required_ai_flags = null
+
+/datum/ai_goal/human/heal_ally/check_score(datum/component/knpc/HA)
+	if(!..())
+		return 0
+	var/mob/living/carbon/human/H = HA.parent
+	if(H.incapacitated() || !HA.find_medipen())
+		return 0
+	var/mob/living/carbon/human/ally = HA.nearest_ally(KNPC_ALLY_RANGE, KNPC_HEAL_ALLY_RATIO)
+	if(!ally)
+		return 0
+	// Przytomny kolega z własnym medipenem poradzi sobie sam
+	if(ally.stat == CONSCIOUS)
+		var/datum/component/knpc/ally_ai = ally.GetComponent(/datum/component/knpc)
+		if(ally_ai?.find_medipen())
+			return 0
+	// Wróg tuż obok: najpierw walka
+	for(var/atom/movable/enemy as anything in get_aggressors(HA))
+		if(get_dist(H, enemy) <= 2)
+			return 0
+	return score
+
+/datum/ai_goal/human/heal_ally/action(datum/component/knpc/HA)
+	if(!can_action(HA))
+		return
+	var/mob/living/carbon/human/H = HA.parent
+	var/mob/living/carbon/human/ally = HA.nearest_ally(KNPC_ALLY_RANGE, KNPC_HEAL_ALLY_RATIO)
+	var/obj/item/reagent_containers/hypospray/medipen/survival/P = HA.find_medipen()
+	if(!ally || !P)
+		return
+	if(get_dist(H, ally) > 1)
+		HA.pathfind_to(ally)
+		return
+	H.say(pick("Trzymaj się!", "Medyk! Mam cię!", "Nie umieraj mi tu!"), forced = "knpc AI")
+	P.attack(ally, H)
+	if(P.loc == H)
+		H.dropItemToGround(P)
+	else if(isitem(P.loc))
+		SEND_SIGNAL(P.loc, COMSIG_TRY_STORAGE_TAKE, P, H.drop_location(), TRUE)
+
+#undef KNPC_RANGE_MIN
+#undef KNPC_RANGE_MAX
+#undef KNPC_SHOOTER_MEMORY
+#undef KNPC_GRENADE_COOLDOWN
+#undef KNPC_HACK_TIME
+#undef KNPC_BASH_DELAY
+#undef KNPC_BASH_DAMAGE
+#undef KNPC_HEAL_IN_COMBAT_RATIO
+#undef KNPC_FALL_BACK_RATIO
+#undef KNPC_HEAL_ALLY_RATIO
+#undef KNPC_ALLY_RANGE
+#undef KNPC_FALL_BACK_RANGE
