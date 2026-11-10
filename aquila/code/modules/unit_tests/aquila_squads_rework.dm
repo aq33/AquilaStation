@@ -122,18 +122,21 @@
 	var/obj/machinery/computer/squad_manager/console = allocate(/obj/machinery/computer/squad_manager)
 	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
 	usr = officer
+	// prawdziwy obiekt okna: bez niego /datum/ui_act przerywa i stara obsługa NSV13 nie dostaje akcji, więc test nie złapałby dublowania
+	var/datum/tgui/window = new(officer, console, "SquadManager")
+	window.status = UI_INTERACTIVE
 	var/list/params = list("squad_id" = REF(squad))
 	var/old_access = squad.access_enabled
 	var/old_weapons = squad.weapons_clearance
 	var/old_hidden = squad.hidden
 	// bez dostępu dowództwa konsola niczego nie zmienia (req_one_access nie działał sam w ui_act)
-	console.ui_act("aq_toggle_access", params)
+	console.ui_act("aq_toggle_access", params, window)
 	TEST_ASSERT(squad.access_enabled == old_access, "Konsola XO zmieniła dostęp drużyny osobie bez dostępu dowództwa")
 	console.req_one_access = null
 	console.req_access = null
-	console.ui_act("aq_toggle_access", params)
-	console.ui_act("aq_toggle_beararms", params)
-	console.ui_act("aq_toggle_hidden", params)
+	console.ui_act("aq_toggle_access", params, window)
+	console.ui_act("aq_toggle_beararms", params, window)
+	console.ui_act("aq_toggle_hidden", params, window)
 	TEST_ASSERT(squad.access_enabled != old_access, "Guzik dostępu w konsoli nie zmienił dostępu drużyny")
 	TEST_ASSERT(squad.weapons_clearance != old_weapons, "Guzik broni w konsoli nie zmienił zezwolenia na broń")
 	TEST_ASSERT(squad.hidden != old_hidden, "Guzik przydziału w konsoli nie zmienił przydziału")
@@ -142,11 +145,12 @@
 	squad.hidden = old_hidden
 	for(var/obj/item/clothing/neck/squad/old_pass in console.loc)
 		qdel(old_pass)
-	console.ui_act("aq_print_pass", params)
+	console.ui_act("aq_print_pass", params, window)
 	var/passes = 0
 	for(var/obj/item/clothing/neck/squad/pass in console.loc)
 		passes++
 		qdel(pass)
+	qdel(window)
 	TEST_ASSERT(passes == 1, "Guzik Smycz wydrukował [passes] smyczy zamiast jednej")
 
 /// Wskaźnik znacznika przy krawędzi ekranu: przyklejony do krawędzi w stronę celu, z odległością; pokłady liczone po stosie pięter
@@ -344,5 +348,45 @@
 	TEST_ASSERT(GLOB.squad_manager.aq_delete_squad(doomed, officer), "Nie udało się rozwiązać drużyny")
 	TEST_ASSERT(!(doomed.aq_order_action?.owner) && !(doomed.aq_marker_action?.owner), "Po rozwiązaniu drużyny komuś zostały akcje dowódcy")
 	TEST_ASSERT(!doomed.leader, "Rozwiązana drużyna ma dowódcę")
+
+/// Regresja: akcja "vend" z item_id szła też do starej obsługi NSV13, która wydawała pudełko bez rejestru wydań
+/datum/unit_test/aquila_squad_vendor_ui_act
+
+/datum/unit_test/aquila_squad_vendor_ui_act/Run()
+	var/datum/squad/squad = aq_squad("Charlie")
+	var/obj/machinery/squad_vendor/vendor = allocate(/obj/machinery/squad_vendor)
+	var/mob/living/carbon/human/soldier = allocate(/mob/living/carbon/human)
+	soldier.squad_position = SQUAD_POSITION_SOLDIER
+	squad.add_member(soldier)
+	if(squad.leader == soldier)
+		squad.unset_leader(soldier)
+	usr = soldier
+	var/datum/squad_loadout/legacy = new /datum/squad_loadout/aquila/nt/soldier
+	// prawdziwy obiekt okna: bez niego /datum/ui_act przerywa i stara obsługa NSV13 nie dostaje akcji
+	var/datum/tgui/window = new(soldier, vendor, "SquadVendor")
+	window.status = UI_INTERACTIVE
+	TEST_ASSERT(vendor.ui_act("vend", list("item_id" = REF(legacy)), window), "Zwykłe wydanie przez okno automatu nie zadziałało")
+	var/datum/squad_loan/loan = get_squad_loan(soldier)
+	TEST_ASSERT(loan, "Wydanie przez okno nie założyło wypożyczenia")
+	var/kits_before = 0
+	for(var/obj/item/storage/thing in vendor.loc)
+		kits_before++
+	vendor.ui_act("vend", list("item_id" = REF(legacy)), window)
+	var/kits_after = 0
+	for(var/obj/item/storage/thing in vendor.loc)
+		kits_after++
+	TEST_ASSERT(kits_after == kits_before && length(soldier.held_items - null) <= 2, "Drugie „vend” z item_id wydało zestaw mimo aktywnego wypożyczenia")
+	var/loans = 0
+	for(var/datum/squad_loan/other as anything in GLOB.squad_loans)
+		if(other.owner == soldier)
+			loans++
+	TEST_ASSERT(loans == 1, "Osoba ma [loans] wypożyczeń zamiast jednego")
+	for(var/obj/item/storage/aq_squad_crate/crate in soldier.held_items)
+		qdel(crate)
+	qdel(loan)
+	for(var/obj/item/storage/box/stray in vendor.loc)
+		qdel(stray)
+	qdel(legacy)
+	qdel(window)
 
 #undef TEST_ASSERT
