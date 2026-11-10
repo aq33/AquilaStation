@@ -20,7 +20,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 	///Materials "Traits". its a map of key = category | Value = Bool. Used to define what it can be used for
 	var/list/categories = list()
 	///The type of sheet this material creates. This should be replaced as soon as possible by greyscale sheets
-	var/sheet_type
+	var/obj/item/stack/sheet_type
+	///AQ EDIT - nazwa listy GLOB z recepturami arkusza (u nas stosy ustawiają `recipes` w Initialize(), Bee#10701 czyta get_recipes())
+	var/sheet_recipes_glob
 	///The type of coin this material spawns. This should be replaced as soon as possible by greyscale coins.
 	var/coin_type
 	///This is a modifier for force, and resembles the strength of the material
@@ -120,3 +122,11 @@ Simple datum which is instanced once per type and is used for every object of sa
 		if(type != initial(path.material_skin))
 			continue
 		return path
+
+
+/// Returns GLOB.recipes of a material to modify the recipes.
+/// This will be only called once from SSMaterials.
+/datum/material/proc/get_material_recipes()
+	if(!initial(sheet_type.material_type) || !categories[MAT_CATEGORY_BASE_RECIPES] || !sheet_recipes_glob) // AQ EDIT - lista z nazwy zamiast atrapy arkusza
+		return
+	return GLOB.vars[sheet_recipes_glob]

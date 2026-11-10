@@ -7,7 +7,7 @@ These materials call on_applied() on whatever item they are applied to, common e
 
 SUBSYSTEM_DEF(materials)
 	name = "Materials"
-	flags = SS_NO_FIRE | SS_NO_INIT
+	flags = SS_NO_FIRE // AQ EDIT - bez SS_NO_INIT: Initialize() dopisuje receptury z materiału do list GLOB (Bee#10701)
 	///Dictionary of material.type || material ref
 	var/list/materials
 	///Dictionary of category || list of material refs
@@ -18,6 +18,23 @@ SUBSYSTEM_DEF(materials)
 	var/list/rigid_stack_recipes = list(
 		new /datum/stack_recipe("krzesło z materiału", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE),
 	)
+
+/datum/controller/subsystem/materials/Initialize(timeofday)
+	if(!materials)
+		InitializeMaterials()
+	// Adds the dupe recipes into multiple material recipes
+	for(var/type in materials)
+		var/datum/material/ref = materials[type]
+		var/list/global_mat_recipes = ref.get_material_recipes()
+		if(!global_mat_recipes)
+			continue
+		if(ref.categories[MAT_CATEGORY_BASE_RECIPES])
+			global_mat_recipes += SSmaterials.rigid_stack_recipes.Copy()
+		/* put more material recipes here. example:
+		if(ref.categories[MAT_CATEGORY_SOME_NEW_RECIPES])
+			global_mat_recipes += SSmaterials.SOME_NEW_RECIPES.Copy()
+		*/
+	return ..()
 
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()

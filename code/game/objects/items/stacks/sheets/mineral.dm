@@ -314,6 +314,7 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 	grind_results = list(/datum/reagent/copper = 20)
 	point_value = 3
 	merge_type = /obj/item/stack/sheet/mineral/copper
+	material_type = /datum/material/copper
 
 GLOBAL_LIST_INIT(copper_recipes, list ( \
 	new/datum/stack_recipe("miedziane drzwi", /obj/structure/mineral_door/copper, 10, one_per_turf = 1, on_floor = 1), \

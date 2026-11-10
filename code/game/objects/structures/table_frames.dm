@@ -43,7 +43,7 @@
 			to_chat(user, "<span class='warning'>Do tego potrzebujesz arkusza: [material.name]!</span>")
 			return
 		to_chat(user, "<span class='notice'>Zaczynasz dodawać [material] do [src]...</span>")
-		if(!do_after(user, 2 SECONDS, target = src) && material.use(1))
+		if(!do_after(user, 2 SECONDS, target = src) || !material.use(1))
 			return
 		var/list/material_list = list()
 		material_list[material.material_type] = MINERAL_MATERIAL_AMOUNT

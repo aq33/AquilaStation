@@ -120,13 +120,19 @@
   * - multiplier: The amount to multiply the mats per unit by. Defaults to 1.
   */
 /obj/item/stack/proc/set_mats_per_unit(list/mats, multiplier=1)
-	mats_per_unit = SSmaterials.FindOrCreateMaterialCombo(mats, multiplier)
+	mats_per_unit = length(mats) ? SSmaterials.FindOrCreateMaterialCombo(mats, multiplier) : null // AQ EDIT - pusty stos ma null, jak stos bez materiałów z typu (merge_check porównuje listy)
 	update_custom_materials()
 
 /** Updates the custom materials list of this stack.
   */
 /obj/item/stack/proc/update_custom_materials()
-	set_custom_materials(mats_per_unit, amount)
+	set_custom_materials(mats_per_unit, amount, is_update=TRUE)
+
+/**
+ * Override to make things like metalgen accurately set custom materials
+ */
+/obj/item/stack/set_custom_materials(list/materials, multiplier=1, is_update=FALSE)
+	return is_update ? ..() : set_mats_per_unit(materials, multiplier/(amount || 1))
 
 /obj/item/stack/proc/check_max_amount()
 	while(amount > max_amount)
@@ -384,7 +390,7 @@
 		return FALSE
 	amount -= used
 	if(check && zero_amount())
-		return FALSE
+		return TRUE
 	if(length(mats_per_unit))
 		update_custom_materials()
 	update_icon()

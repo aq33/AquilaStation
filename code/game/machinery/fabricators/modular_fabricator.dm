@@ -393,8 +393,8 @@
 	return T
 
 /obj/machinery/modular_fabricator/on_deconstruction()
-	var/datum/component/material_container/materials = get_material_container()
-	materials.retrieve_all()
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	materials?.retrieve_all() // AQ EDIT - ?. bo fabrykator na silosie nie ma lokalnego kontenera
 
 /obj/machinery/modular_fabricator/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
 	if(ispath(type_inserted, /obj/item/stack/ore/bluespace_crystal))

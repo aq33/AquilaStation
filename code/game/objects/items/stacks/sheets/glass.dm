@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 		CC.use(5)
 		use(1)
 		to_chat(user, "<span class='notice'>Przymocowujesz przewód do [name].</span>")
-		new /obj/item/stack/light_w(user.loc, 5, TRUE, user)
+		new /obj/item/stack/light_w(user.loc, 1, TRUE, user)
 	else if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/V = W
 		if (V.get_amount() >= 1 && get_amount() >= 1)
