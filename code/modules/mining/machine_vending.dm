@@ -182,7 +182,7 @@
 		//new /datum/data/vendor_equipment("Mining Outpost Capsule",		/obj/item/survivalcapsule/encampment,								5000),
 		new /datum/data/vendor_equipment("Luksusowa kapsuła z barem",			/obj/item/survivalcapsule/luxuryelite,								10000),
 		new /datum/data/vendor_equipment("Iniektor Łazarza",			/obj/item/lazarus_injector,											1000),
-		new /datum/data/vendor_equipment("1000 kosmicznych kredytów",				/obj/item/stack/spacecash/c1000,									2400),
+		new /datum/data/vendor_equipment("200 kosmicznych kredytów",				/obj/item/stack/spacecash/c200,									1200), // AQ EDIT - kurs punktów w dół (było 1000 kr za 2400 pkt)
 		new /datum/data/vendor_equipment("Pizza",						/obj/item/pizzabox/margherita,										200),
 		new /datum/data/vendor_equipment("Whisky",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100),
 		new /datum/data/vendor_equipment("Absynt",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100),
