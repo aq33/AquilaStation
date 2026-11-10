@@ -73,6 +73,7 @@
 	READPREF_INT(gun_cursor, PREFERENCE_TAG_GUN_CURSOR) // AQ EDIT - kursor rozrzutu
 	READPREF_INT(face_cursor_combat, PREFERENCE_TAG_FACE_CURSOR) // AQ EDIT - obracanie do kursora
 	READPREF_INT(recoil_camera_strength, PREFERENCE_TAG_RECOIL_CAMERA) // AQ EDIT - kopnięcie kamery
+	READPREF_INT(hide_bodily_functions, PREFERENCE_TAG_HIDE_BODILY_FUNCTIONS) // AQ EDIT - cenzura wypróżniania
 	READPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 
 	READPREF_RAW(asaycolor, PREFERENCE_TAG_ASAY_COLOUR)
@@ -123,6 +124,7 @@
 	gun_cursor	= sanitize_integer(gun_cursor, FALSE, TRUE, initial(gun_cursor)) // AQ EDIT - kursor rozrzutu
 	face_cursor_combat	= sanitize_integer(face_cursor_combat, FALSE, TRUE, initial(face_cursor_combat)) // AQ EDIT - obracanie do kursora
 	recoil_camera_strength	= sanitize_integer(recoil_camera_strength, 0, 100, initial(recoil_camera_strength)) // AQ EDIT - kopnięcie kamery
+	hide_bodily_functions	= sanitize_integer(hide_bodily_functions, FALSE, TRUE, initial(hide_bodily_functions)) // AQ EDIT - cenzura wypróżniania
 	mod_select		= sanitize_inlist(mod_select, list(MIDDLE_CLICK, ALT_CLICK), initial(mod_select))
 
 	pixel_size		= sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
@@ -189,6 +191,7 @@
 	PREP_WRITEPREF_RAW(gun_cursor, PREFERENCE_TAG_GUN_CURSOR) // AQ EDIT - kursor rozrzutu
 	PREP_WRITEPREF_RAW(face_cursor_combat, PREFERENCE_TAG_FACE_CURSOR) // AQ EDIT - obracanie do kursora
 	PREP_WRITEPREF_RAW(recoil_camera_strength, PREFERENCE_TAG_RECOIL_CAMERA) // AQ EDIT - kopnięcie kamery
+	PREP_WRITEPREF_RAW(hide_bodily_functions, PREFERENCE_TAG_HIDE_BODILY_FUNCTIONS) // AQ EDIT - cenzura wypróżniania
 	PREP_WRITEPREF_RAW(mod_select, PREFERENCE_TAG_MOD_SELECT)
 	PREP_WRITEPREF_RAW(pda_theme, PREFERENCE_TAG_PDA_THEME)
 	PREP_WRITEPREF_RAW(pda_color, PREFERENCE_TAG_PDA_COLOUR)

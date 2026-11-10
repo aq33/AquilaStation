@@ -588,6 +588,31 @@
   - rscadd: 'Statystyki postaci zapisywane między rundami (rundy, przeżycia, cele,
       misje, zarobki, operacje, ruda, aresztowania i inne). Podgląd: Esc → Statystyki,
       razem z rankingiem zarobków.'
+  dwasint, Absolucy (Monkestation), joker:
+  - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
+      parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'
+  - rscadd: Odpływy, bariera na ciecze, przenośna pompa cieczy i podłogowe pompy do
+      instalacji rurowej; nadajnik pompy u woźnego i skrzynie pomp i odpływów w cargo.
+  - rscadd: 'Eventy: przelewający się scrubber i anomalia płynów.'
+  - rscadd: Alarm przeciwpożarowy włączony ręcznie zrasza wodą z oczyszczaczy powietrza
+      całe pomieszczenie; zemagowany albo po EMP zalewa je po kostki.
+  - tweak: Alarm przeciwpożarowy jest głośniejszy i słychać go dalej.
+  - rscadd: Ciecz zamarza w zimnie, a głęboka zamienia się w bloki lodu, które zatykają
+      wyłomy i więżą postacie.
+  - rscadd: Pęcherz i mocz jako część potrzeby wypróżnienia, emotka *piss, pisuary,
+      kamery zgłaszają świadome oddawanie moczu i wypróżnianie się w miejscach publicznych,
+      klaun ma pęcherz z lubrykantem.
+  - rscadd: Ubikacje mogą się zatkać i przelać zawartość na podłogę; odtyka je przepychaczka.
+  - rscadd: Przełącznik „Cenzura wypróżniania” w ustawieniach gry.
+  - tweak: Poślizg w sprincie rzuca postać kafel dalej.
+  - rscadd: Palną kałużę można podpalić kliknięciem gorącym przedmiotem albo wchodząc
+      w nią z ogniem w ręce.
+  - rscadd: Krew z krwawienia sumuje się na kafelku i od 50 jednostek tworzy kałużę
+      krwi.
+  - tweak: Po gwałtownej dekompresji odessane pomieszczenie ma temperaturę kosmosu.
+  - admin: Verby Spawn Liquid, Remove Liquids i kolory grup cieczy.
+  - imageadd: Grafiki cieczy, odpływów, pompy, pęcherza i anomalii płynów z Monkestation.
+  - soundadd: Dźwięki brodzenia i plusku z Monkestation.
   ? rkz (Tsar-Salat), EvilDragonfiend, mrmanlikesbt, Rohesie, Fikou, ShizCalev, nemvar,
     ArcaneMusic, MrMelbert, Mothblocks, SyncIt21
   : - rscadd: 'Jetpack ma prawdziwe paliwo: każde pchnięcie zużywa gaz z butli, pełna
