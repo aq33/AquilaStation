@@ -96,7 +96,10 @@
 	for(var/path in kit.items)
 		if(ispath(path, /obj/item/clothing/under)) // mundur gracz już ma
 			continue
-		new path(crate)
+		var/obj/item/gun/tutorial_gun = new path(crate)
+		// Nowa broń jest zabezpieczona (gunplay/firemodes.dm), a lekcja nie uczy bezpiecznika: strzelnica dostaje ją odbezpieczoną
+		if(istype(tutorial_gun) && tutorial_gun.aq_firemode == AQ_FIREMODE_SAFE)
+			tutorial_gun.toggle_safety()
 	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, usr, crate)
