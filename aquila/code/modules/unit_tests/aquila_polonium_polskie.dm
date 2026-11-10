@@ -1,7 +1,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - aq33/AquilaStation#607: broń, jedzenie i szyldy z Polonium mają swoje stany ikon, a podtypy Walthera, które zostały przy starych sprite'ach, nie zgubiły swoich.
+/// AQUILA - aq33/AquilaStation#607: broń, jedzenie i szyld z Polonium mają swoje stany ikon, a podtypy Walthera, które zostały przy starych sprite'ach, nie zgubiły swoich.
 /datum/unit_test/aquila_polonium_polskie
 
 /datum/unit_test/aquila_polonium_polskie/Run()
@@ -18,9 +18,7 @@
 		/obj/item/food/parowka,
 		/obj/item/food/peto_parowek,
 		/obj/item/food/cmoparowka,
-		/obj/item/food/peto_cmoparowek,
 		/obj/item/food/cmodog,
-		/obj/item/food/hotmot,
 	)
 	for(var/obj/item/path as anything in items)
 		var/icon_file = initial(path.icon)
@@ -38,13 +36,13 @@
 		TEST_ASSERT(overlay in vis_states, "Brak nakładki [overlay]")
 	TEST_ASSERT("bor" in icon_states('aquila/icons/mob/clothing/back_polskie.dmi'), "Brak sprite'a Alexis-BOR na plecach")
 
-	for(var/datum/barsign/sign_type as anything in list(/datum/barsign/zabkacafe, /datum/barsign/szkodnik))
+	for(var/datum/barsign/sign_type as anything in list(/datum/barsign/zabkacafe))
 		TEST_ASSERT(initial(sign_type.icon) in icon_states(initial(sign_type.icon_file)), "[sign_type]: brak stanu szyldu")
 
 	var/obj/machinery/vending/snack/snack = allocate(/obj/machinery/vending/snack)
 	TEST_ASSERT(snack.products[/obj/item/food/kabanosy], "Kabanosów nie ma w automacie z przekąskami")
 
-	for(var/recipe_type in list(/datum/crafting_recipe/food/peto_parowek, /datum/crafting_recipe/food/peto_cmoparowek, /datum/crafting_recipe/food/hotdog_parowka, /datum/crafting_recipe/food/cmodog, /datum/crafting_recipe/food/hotmot))
+	for(var/recipe_type in list(/datum/crafting_recipe/food/peto_parowek, /datum/crafting_recipe/food/cmoparowka, /datum/crafting_recipe/food/hotdog_parowka, /datum/crafting_recipe/food/cmodog))
 		var/found = FALSE
 		for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
 			if(recipe.type == recipe_type)

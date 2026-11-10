@@ -32,13 +32,12 @@
 	result = /obj/item/food/peto_parowek
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/peto_cmoparowek
-	name = "Pęto ćmoparówek"
+/datum/crafting_recipe/food/cmoparowka
+	name = "Ćmoparówka"
 	reqs = list(
-		/obj/item/stack/sheet/cotton/cloth = 4,
-		/obj/item/paper = 1,
+		/obj/item/stack/sheet/cotton/cloth = 1,
 	)
-	result = /obj/item/food/peto_cmoparowek
+	result = /obj/item/food/cmoparowka
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/hotdog_parowka
@@ -59,14 +58,4 @@
 		/obj/item/food/cmoparowka = 1,
 	)
 	result = /obj/item/food/cmodog
-	subcategory = CAT_SANDWICH
-
-/datum/crafting_recipe/food/hotmot
-	name = "Hotmot"
-	reqs = list(
-		/datum/reagent/consumable/ketchup = 5,
-		/obj/item/food/bun = 1,
-		/obj/item/food/meat/slab/mothroach = 1,
-	)
-	result = /obj/item/food/hotmot
 	subcategory = CAT_SANDWICH
