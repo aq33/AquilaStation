@@ -7,6 +7,10 @@
 	/// Część nazwy stanu ikony; null = przedmiot ma własną grafikę i update_icon_state jej nie rusza
 	var/remote_department = "civilian"
 
+/obj/item/door_remote/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /obj/item/door_remote/update_icon_state()
 	if(remote_department)
 		icon_state = "door_remote_[remote_department]_[mode]"
@@ -84,7 +88,7 @@
 /obj/item/lipstick/attack_self(mob/user)
 	. = ..()
 	item_state = open ? "lipstickopen" : "lipstick"
-	user.update_inv_hands()
+	user?.update_inv_hands()
 
 // Wiertła górnicze mają w tg własne stany w ręku i na pasku (wcześniej używały stanów młota pneumatycznego)
 /obj/item/pickaxe/drill

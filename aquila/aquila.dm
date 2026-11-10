@@ -1999,6 +1999,7 @@
 #include "code\modules\unit_tests\aquila_service_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_narzedzia_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_kaplan.dm"
+#include "code\modules\unit_tests\aquila_tg_kosz_ekspres.dm"
 #include "code\modules\unit_tests\aquila_goon_genetics_icons.dm"
 #include "code\modules\unit_tests\aquila_polonium_polskie.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"

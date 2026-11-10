@@ -21,7 +21,7 @@
 	var/border_index = new_overlays.Find("mw")
 	if(operating && border_index)
 		new_overlays[border_index] = "mw1"
-	if(machine_stat & NOPOWER)
+	if((machine_stat & NOPOWER) || broken || dirty == 100)
 		return
 	for(var/border_state in list("mw1", "mw", "mwo"))
 		if(border_state in new_overlays)

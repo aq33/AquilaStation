@@ -21,6 +21,10 @@
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain/sutanna
 	head = /obj/item/clothing/head/biret
 
+// Wariant frakcji SolGov ma własny mundur i zostaje bez nakrycia głowy
+/datum/outfit/job/chaplain/solgov
+	head = null
+
 /obj/machinery/vending/wardrobe/chap_wardrobe/Initialize(mapload)
 	products[/obj/item/clothing/under/rank/civilian/chaplain/sutanna] = 2
 	products[/obj/item/clothing/head/biret] = 2

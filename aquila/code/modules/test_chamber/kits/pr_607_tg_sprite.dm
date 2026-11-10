@@ -1,7 +1,7 @@
 // aq33/AquilaStation#607 - sprite'y z tg, hardsuity Orlenu i zespołu urazowego, tablica Żandarmerii, SI Claude, urządzenia na ścianach
 
 /datum/test_chamber_kit/pr_607
-	name = "Sprite'y z tg, hardsuity, SI Claude, ściany"
+	name = "Sprite'y z tg, hardsuity, kapłan, SI Claude, ściany"
 	pr = "aq33/AquilaStation#607"
 	description = "1) Maszyny: włącz mikrofalówkę z jedzeniem (animowana ramka, świecenie w ciemności), wrzuć coś do gibbera i uruchom (lampki, krew), zagraj w jukeboxie, pociągnij jednorękiego bandytę, otwórz condimaster i limbgrower śrubokrętem. \
 	2) Boty: medibot na podłodze (koła, lampka) i w trakcie leczenia rannej małpy, floorbot, cleanbot, secbot. Zbuduj medibota z apteczki brute (wygląd skrzynki). \
@@ -9,7 +9,7 @@
 	4) Hardsuity: załóż inżynieryjny, atmosferyki i CE (barwy Orlenu), Ordynatora (czerwony hełm) i zespołu urazowego; włącz lampę hełmu (stan on). Spróbuj na postaci z nogami digitigrade (jaszczur): nogi zwykłe, bez starego sprite'a. Szafa zespołu urazowego wydaje skafander. \
 	5) Tablica Żandarmerii na ścianie. \
 	6) SI: w preferencjach wybierz wygląd rdzenia Claude, zostań SI (animacja), zabij rdzeń (ekran NO TOKENS). \
-	7) Ściany: zawieś z ramki newscaster (ma trafić na ścianę przy tobie, w każdym kierunku), sprawdź w komorze rząd urządzeń na ścianie (zestaw aq33/AquilaStation#469) i na mapie włączniki, interkomy, gaśnice i szafkę na topór na ścianach bocznych."
+	7) Ściany: zawieś z ramki newscaster (ma trafić na ścianę przy tobie, w każdym kierunku), sprawdź w komorze rząd urządzeń na ścianie (zestaw aq33/AquilaStation#469) i na mapie włączniki, interkomy, gaśnice i szafkę na topór, a także gaśnice, przyciski i NanoMedy na ścianach bocznych (obrócone grafiki). \n	8) Kapłan: dołącz jako kapłan (sutanna i biret), ChapDrobe ma oba. Wydaj sutannę i biret z zestawu. \n	9) Ikony: odmieniec i czarodziej (panel admina: daj antagonistę) i moce genetyczne (wstrzyknij mutację ognistego oddechu): przyciski z przezroczystym tłem. Butla tlenowa i plecak odrzutowy na plecach, plecak włączony. \n	10) Biuro, medbay, kuchnia: holopad, pad kwantowy, gablota, lampka (włącz w ręku), worek treningowy (uderz), kosz na śmieci (otwórz i opróżnij workiem), sleeper, zaawansowane narzędzia chirurgiczne (przełącz tryb w ręku), łóżko na kółkach (złóż i weź do ręki), frytkownica (otwórz panel), ekspres do kawy z dzbankiem. \n	11) Broń i narzędzia: granaty, laser (wskaźnik ładunku), laser kapitana, granatnik, rewolwer detektywa, wyrzutnia strzykawek (w ręku i na podłodze), tarcza na plecach, pilot do drzwi (zmień tryb: zmienia się wygląd), pinpointer i wiertło na pasku, gaśnica, GPS, radio, szminka (otwórz). Jedzenie: burger, chleb, jabłko."
 	items = list(
 		/obj/machinery/microwave = 1,
 		/obj/machinery/gibber = 1,
@@ -54,4 +54,45 @@
 		/obj/machinery/suit_storage_unit/medical/trauma = 1,
 		/obj/item/wallframe/newscaster = 1,
 		/obj/item/screwdriver = 1,
+		/obj/item/clothing/under/rank/civilian/chaplain/sutanna = 1,
+		/obj/item/clothing/head/biret = 1,
+		/obj/item/tank/jetpack/oxygen = 1,
+		/obj/item/tank/internals/oxygen = 1,
+		/obj/machinery/holopad = 1,
+		/obj/machinery/quantumpad = 1,
+		/obj/structure/displaycase = 1,
+		/obj/item/flashlight/lamp = 1,
+		/obj/structure/punching_bag = 1,
+		/obj/structure/closet/crate/bin = 1,
+		/obj/structure/bedsheetbin = 1,
+		/obj/machinery/sleeper = 1,
+		/obj/item/scalpel/advanced = 1,
+		/obj/item/retractor/advanced = 1,
+		/obj/item/surgicaldrill/advanced = 1,
+		/obj/item/roller = 1,
+		/obj/machinery/deepfryer = 1,
+		/obj/machinery/coffeemaker = 1,
+		/obj/item/reagent_containers/glass/coffeepot = 1,
+		/obj/item/kitchen/knife = 1,
+		/obj/item/grenade/flashbang = 1,
+		/obj/item/grenade/chem_grenade/large = 1,
+		/obj/item/gun/energy/laser = 1,
+		/obj/item/gun/energy/laser/captain = 1,
+		/obj/item/gun/grenadelauncher = 1,
+		/obj/item/gun/ballistic/revolver/detective = 1,
+		/obj/item/gun/syringe = 1,
+		/obj/item/shield/riot = 1,
+		/obj/item/door_remote/captain = 1,
+		/obj/item/pinpointer/crew = 1,
+		/obj/item/extinguisher = 1,
+		/obj/item/pickaxe/drill = 1,
+		/obj/item/pickaxe/drill/jackhammer = 1,
+		/obj/item/gps = 1,
+		/obj/item/radio = 1,
+		/obj/item/camera = 1,
+		/obj/item/sensor_device = 1,
+		/obj/item/lipstick = 1,
+		/obj/item/food/burger/plain = 1,
+		/obj/item/food/bread/plain = 1,
+		/obj/item/food/grown/apple = 1,
 	)
