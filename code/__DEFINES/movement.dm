@@ -35,6 +35,14 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 ///Should we override the loop's glide?
 #define MOVEMENT_LOOP_IGNORE_GLIDE (1<<2)
 
+// AQ EDIT START - stan pętli ruchu (BeeStation/BeeStation-Hornet#14176), potrzebny driftowi z BeeStation/BeeStation-Hornet#14864
+// Movement loop status flags
+/// Is the loop running? (Is true even when paused)
+#define MOVELOOP_STATUS_RUNNING (1<<1)
+/// Is the loop queued in a subsystem?
+#define MOVELOOP_STATUS_QUEUED (1<<2)
+// AQ EDIT END
+
 //Index defines for movement bucket data packets
 #define MOVEMENT_BUCKET_TIME 1
 #define MOVEMENT_BUCKET_LIST 2

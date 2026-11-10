@@ -34,7 +34,7 @@
 	if(cooldown < world.time - 60)
 		cooldown = world.time
 		flick(pulseicon, src)
-		radiation_pulse(src, 400, 2)
+		radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, intensity = 10) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/item/nuke_core/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] pociera się [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
@@ -132,7 +132,7 @@
 		return
 	else
 		to_chat(user, "<span class='notice'>Gdy dotyka [src], zarówno [src], jak i [W] obracają się w pył!</span>")
-		radiation_pulse(user, 100)
+		radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, intensity = 25) // AQ EDIT - promieniowanie z Bee#13442
 		playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 		qdel(W)
 		qdel(src)
@@ -145,7 +145,7 @@
 	user.visible_message("<span class='danger'>[ded] sięga, by podnieść [src]. Jego ciało zaczyna świecić i staje w płomieniach, po czym obraca się w pył!</span>",\
 			"<span class='userdanger'>Sięgasz po [src] gołymi rękami. To było głupie.</span>",\
 			"<span class='italics'>Nagle zapada zupełna cisza.</span>")
-	radiation_pulse(user, 500, 2)
+	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, intensity = 25) // AQ EDIT - promieniowanie z Bee#13442
 	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
 	ded.dust()
 
@@ -247,7 +247,7 @@
 			"<span class='userdanger'>Dotykasz [AM] za pomocą [src] i nagle zapada cisza.\n[AM] i [sliver] obracają się w pył, a zanim zdążysz to pojąć, ty również.</span>",\
 			"<span class='italics'>Nagle zapada zupełna cisza.</span>")
 		user.dust()
-	radiation_pulse(src, 500, 2)
+	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, intensity = 25) // AQ EDIT - promieniowanie z Bee#13442
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 	QDEL_NULL(sliver)
 	update_icon()

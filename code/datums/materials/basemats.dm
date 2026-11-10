@@ -69,11 +69,19 @@
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
-	source.AddComponent(/datum/component/radioactive, amount / 10, source, 0) //half-life of 0 because we keep on going.
+	// AQ EDIT START - promieniowanie z Bee#13442: uranowe konstrukcje pulsują, przedmioty nie (górnik z rudą)
+	if(isitem(source))
+		return
+	source.AddElement(/datum/element/radioactive)
+	// AQ EDIT END
 
 /datum/material/uranium/on_removed(atom/source, material_flags)
 	. = ..()
-	qdel(source.GetComponent(/datum/component/radioactive))
+	// AQ EDIT START - promieniowanie z Bee#13442
+	if(isitem(source))
+		return
+	source.RemoveElement(/datum/element/radioactive)
+	// AQ EDIT END
 
 
 ///Adds firestacks on hit (Still needs support to turn into gas on destruction)

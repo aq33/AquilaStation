@@ -158,7 +158,7 @@
 	if(HAS_TRAIT(target, TRAIT_RADIMMUNE))
 		return
 	to_chat(target, "<span class='danger'>Robi ci się ciepło.</span>")
-	target.rad_act(250/(damage_coeff ** 2))
+	SSradiation.irradiate(target, 250/(damage_coeff ** 2) * RAD_LEGACY_PULSE_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442
 
 	if(!target.has_dna() || HAS_TRAIT(target, TRAIT_BADDNA))
 		return

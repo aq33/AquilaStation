@@ -150,7 +150,7 @@ const DnaScannerContent = (props) => {
           {subjectHealth}%
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Promieniowanie">
+      <LabeledList.Item label="Uszkodzenia genetyczne">
         <ProgressBar
           value={subjectRads}
           minValue={0}

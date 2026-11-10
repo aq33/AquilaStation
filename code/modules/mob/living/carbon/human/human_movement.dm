@@ -73,7 +73,7 @@
 				//End bloody footprints
 				S.step_action()
 
-/mob/living/carbon/human/Process_Spacemove(movement_dir = 0) //Temporary laziness thing. Will change to handles by species reee.
+/mob/living/carbon/human/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) //Temporary laziness thing. Will change to handles by species reee. (AQ EDIT - continuous_move, port BeeStation/BeeStation-Hornet#14864)
 	if(dna.species.space_move(src))
 		return TRUE
 	return ..()

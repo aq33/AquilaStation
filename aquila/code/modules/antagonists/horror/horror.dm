@@ -643,7 +643,7 @@
 		victim.SetUnconscious(0)
 		victim.SetStun(0)
 		victim.SetKnockdown(0)
-		victim.radiation = 0
+		qdel(victim.GetComponent(/datum/component/irradiated))
 		victim.heal_overall_damage(victim.getBruteLoss(), victim.getFireLoss())
 		victim.reagents.clear_reagents()
 		if(HAS_TRAIT_FROM(victim, TRAIT_HUSK, BURN))

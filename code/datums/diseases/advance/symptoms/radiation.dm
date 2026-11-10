@@ -40,7 +40,7 @@
 
 /datum/symptom/radiation/proc/radiate(mob/living/carbon/M)
 	to_chat(M, "<span class='danger'>Przez twoje ciało przechodzi fala bólu!</span>")
-	M.radiation += 75 * power
+	SSradiation.irradiate_internal(M, 5 * power) // AQ EDIT - promieniowanie z Bee#13442 (natężenie zamiast radów)
 	return 1
 
 /datum/symptom/radconversion
@@ -80,8 +80,9 @@
 		return
 	var/mob/living/M = A.affected_mob
 	if(A.stage >= 4)
-		if(M.radiation)
-			M.radiation -= max(M.radiation * 0.05, min(10, M.radiation))
+		var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442
+		if(irradiated_component) // AQ EDIT - promieniowanie z Bee#13442
+			irradiated_component.adjust_intensity(-max(irradiated_component.intensity * 0.05, 1)) // AQ EDIT - promieniowanie z Bee#13442
 			M.take_overall_damage(2)
 			if(prob(5))
 				to_chat(M, "<span class='userdanger'>W twoim ciele otwiera się rana!</span>")
@@ -97,5 +98,5 @@
 			M.take_overall_damage(burn = 2) //this uses burn, so as not to make it so you can heal brute to heal all the damage types this deals, and it isn't a no-brainer to use with Pituitary
 			if(prob(5))
 				to_chat(M, "<span class='userdanger'>Na twojej skórze pojawia się paskudna wysypka!</span>")
-	else if(prob(2) && ((M.getCloneLoss() && cellheal) || (M.getToxLoss() && toxheal) || M.radiation))
+	else if(prob(2) && ((M.getCloneLoss() && cellheal) || (M.getToxLoss() && toxheal) || HAS_TRAIT(M, TRAIT_IRRADIATED))) // AQ EDIT - promieniowanie z Bee#13442
 		to_chat(M, "<span class='notice'>Czujesz mrowienie</span>")
