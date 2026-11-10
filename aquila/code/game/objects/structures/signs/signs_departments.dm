@@ -50,3 +50,7 @@
 /obj/structure/sign/departments/holy
 	name = "\improper WIARA"
 	desc = "Znak wskazujący miejsce kultu."
+
+/obj/structure/sign/departments/minsky/security/security
+	name = "Żandarmeria"
+	desc = "Znak wskazujący posterunek Żandarmerii. Winny, dopóki nie udowodni się niewinności."
