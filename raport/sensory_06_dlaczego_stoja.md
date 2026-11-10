@@ -86,3 +86,31 @@ i `ai_sandbox_no_forward_avoidance=1`). Cichy bieg i zasadzka zerują teraz `mov
 zostawiony `move_mode` grzałby silnik. Bitew porównawczych jeszcze nie było.
 
 Bez propozycji: trzymanie miejsca na skrzydle (dane nie pokazują efektu), dokowanie (mały udział, sensowne).
+
+## Wyniki (6 bitew z poprawkami, 6 bez; stożki sensorów w obu włączone)
+
+| | bez poprawek ruchu | z poprawkami |
+|---|---|---|
+| stoi% | 29,4 (23–38) | **14,3 (9–21)** |
+| lotniskowce stoją% | 44,4 (35–57) | 30,4 (16–45) |
+| mediana prędkości okrętów AI | 0,85 pola/s | 1,82 pola/s |
+| pierwsze trafienie (mediana) | 22 s | 12 s |
+| zniszczone okręty | 18,5 (14–22) | 15,7 (10–21) |
+| samotne szarże% | 1,3 | 1,7 |
+| termika oślepiona za rufą | 3,7% klatek | 94,4% klatek |
+| kontakty trzymane termiką | 85,4% | 93,7% |
+| bitwy z okrętem AI zamarzniętym na całą bitwę | 3 z 6 | 4 z 6 |
+
+Stanie spadło o połowę, zakresy się nie nakładają. Pozostałe skutki:
+
+- **Tempo wzrosło bardziej, niż szacowałem** (~20%): mediana prędkości ×2,1, pierwsze trafienie 22 s → 12 s.
+  Pominąłem boost: `move_toward()` odpala go co 15 s (limit prędkości +5 na 6 s), a wcześniej AI nie miało
+  czym się w tym oknie rozpędzić. Teraz leci z limitem boostu (po skosie do ~6 pól/s, bo limit jest na każdą oś
+  osobno). Przeskoki przez krawędź mapy: 177 klatek na 6 bitew.
+- **AI ciągnie bez przerwy.** Nie ma przepustnicy: `move_mode = NORTH` to pełny ciąg także przy prędkości maksymalnej,
+  gdzie ciąg już nic nie daje. Silnik jest więc gorący prawie zawsze, ślepy klin za rufą działa w 94% klatek,
+  a termika trzyma 94% kontaktów. Optyka i teleskop prawie przestają mieć znaczenie.
+- **Lotniskowce zamarznięte na całą bitwę zostały** (wszystkie z celem „Maintain safe distance”, oba typy
+  przechodzą przez `is_ai_carrier()`). To osobna przyczyna; nagrania nie zapisują hamulców, `move_mode`
+  ani przyłożonego ciągu, więc nie da się jej z nich wyczytać.
+
