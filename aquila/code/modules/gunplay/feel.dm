@@ -394,6 +394,20 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 		dent_decals = list(decal)
 	add_overlay(dent_decals)
 
+// Dziura leży kawałek w głębi ściany, a nie na samej krawędzi, w którą weszła kula. Ściany 3/4 z Paradise (32x40) mają
+// u podstawy jasną listwę (5 px nad dołem kafla), a front ściany ciągnie się od niej do górnej krawędzi kafla i wyżej,
+// więc tam dziura nie schodzi poniżej frontu.
+/obj/item/projectile/proc/get_wall_hole_offset(turf/wall)
+	var/depth = 9
+	var/hole_x = entry_x + (movement_vector ? movement_vector.pixel_x * depth : 0)
+	var/hole_y = entry_y + (movement_vector ? movement_vector.pixel_y * depth : 0)
+	var/lowest = -12
+	var/highest = 12
+	if(wall && findtext("[wall.icon]", "32x40"))
+		lowest = -6
+		highest = 14
+	return list(clamp(round(hole_x), -12, 12), clamp(round(hole_y), lowest, highest))
+
 // Kule odbijają się od każdej ściany i zostawiają w niej dziury, nie tylko w /turf/closed/wall: także w nieniszczalnych
 // (komora testowa, ruiny, statki ERT) i w skale. Zwykłe ściany mają własne dent_decals (add_dent wyżej).
 /turf/closed
@@ -408,7 +422,8 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 		return
 	if((P.damage_type != BRUTE && P.damage_type != BURN) || !prob(75)) // jak dla ścian w on_hit()
 		return
-	add_bullet_hole(clamp(P.entry_x, -12, 12), clamp(P.entry_y, -12, 12))
+	var/list/hole = P.get_wall_hole_offset(src)
+	add_bullet_hole(hole[1], hole[2])
 
 /turf/closed/proc/add_bullet_hole(x, y)
 	if(LAZYLEN(aq_bullet_holes) >= 15)
