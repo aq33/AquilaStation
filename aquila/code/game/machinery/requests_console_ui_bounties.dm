@@ -26,7 +26,7 @@
 		"assistant" = "Ogólne",
 		"botany" = "Botanika",
 		"chef" = "Kuchnia",
-		"munitions" = "Amunicja",
+		"munitions" = "Uzbrojenie",
 		"mining" = "Górnictwo",
 		"asteroid_mining" = "Górnictwo",
 		"science" = "Nauka",
