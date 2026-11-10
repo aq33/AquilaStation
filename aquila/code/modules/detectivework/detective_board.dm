@@ -284,7 +284,7 @@
 	desc = "Tablica do łączenia dowodów ze sprawami. Zamontuj ją na ścianie."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
-	materials = list() // u nas nie ma materiału drewna
+	custom_materials = null // u nas nie ma materiału drewna
 	resistance_flags = FLAMMABLE
 	result_path = /obj/structure/detectiveboard
 	pixel_shift = -32

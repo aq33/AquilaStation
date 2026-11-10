@@ -31,7 +31,7 @@
 	novariants = TRUE // AQ EDIT - our stack update_icon() would add _2/_3 suffixes
 	usesound = 'sound/items/deconstruct.ogg'
 
-	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
+	mats_per_unit = list(/datum/material/iron = 10, /datum/material/glass = 5)
 	grind_results = list(/datum/reagent/copper = 2) //2 copper per cable in the coil
 
 	var/cable_color = "white"
@@ -48,7 +48,7 @@
 
 /obj/item/stack/cable_coil/cyborg
 	is_cyborg = 1
-	materials = list()
+	mats_per_unit = null
 	cost = 1
 
 #define OMNI_CABLE "Omni"

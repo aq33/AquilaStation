@@ -31,11 +31,11 @@ GLOBAL_LIST_INIT(mirror_maid_names, list(
 	desc = "Zaskakująco ciężka, zdobiona moneta. Za każdym razem, gdy na nią patrzysz, jej boki przedstawiają coś innego."
 	icon = 'aquila/icons/obj/eldritch_coin.dmi'
 	icon_state = "coin_heretic"
-	cmineral = "heretic"
 	sideslist = list("heretic", "blade")
-	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5)
+	material_flags = NONE // własny sprite, bez przedrostka i koloru plazmy z monet Bee (BeeStation/BeeStation-Hornet#9386)
 	grind_results = list(/datum/reagent/carbon = 5, /datum/reagent/toxin/plasma = 5, /datum/reagent/eldritch = 4)
-	value = 0
+	value_override = 0
 	/// Nazwa strony "orzeł"
 	var/heads_name = "heretic"
 	/// Zasięg działania na śluzy
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(mirror_maid_names, list(
 	desc = "Niezawieszone lustro. Przyłóż je do ściany, by go używać."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
-	materials = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 5, /datum/material/silver = MINERAL_MATERIAL_AMOUNT * 2)
+	custom_materials = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 5, /datum/material/silver = MINERAL_MATERIAL_AMOUNT * 2)
 	result_path = /obj/structure/mirror
 	pixel_shift = 28
 
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(mirror_maid_names, list(
 	name = "miraculous mirror"
 	desc = "Patrząc na swoje odbicie, czujesz, że mógłbyś być kimś lepszym."
 	icon_state = "magic_mirror"
-	materials = list()
+	custom_materials = null
 	result_path = /obj/structure/mirror/magic/lesser/heretic
 
 /obj/structure/mirror/magic/lesser/heretic

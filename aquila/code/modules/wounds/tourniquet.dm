@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	resistance_flags = FLAMMABLE
-	materials = list(/datum/material/plastic = 500)
+	custom_materials = list(/datum/material/plastic = 500)
 	/// Na kim jest założona
 	var/mob/living/carbon/wearer
 	/// Strefa ciała, na której jest założona

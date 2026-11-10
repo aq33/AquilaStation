@@ -150,7 +150,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 200)
+	custom_materials = list(/datum/material/iron = 500, /datum/material/glass = 200)
 	/// Wybrany typ tagu, null oznacza zdejmowanie tagów
 	var/obj/item/sticker/sticky_note/triage/selected = /obj/item/sticker/sticky_note/triage/minor
 

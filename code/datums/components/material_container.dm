@@ -134,10 +134,11 @@
 /datum/component/material_container/proc/insert_item_materials(obj/item/I, multiplier = 1)
 	var/primary_mat
 	var/max_mat_value = 0
+	var/list/item_materials = get_item_materials(I) // AQ EDIT
 	for(var/MAT in materials)
-		materials[MAT] += I.materials[MAT] * multiplier
-		total_amount += I.materials[MAT] * multiplier
-		if(I.materials[MAT] > max_mat_value)
+		materials[MAT] += item_materials[MAT] * multiplier
+		total_amount += item_materials[MAT] * multiplier
+		if(item_materials[MAT] > max_mat_value)
 			primary_mat = MAT
 	if(primary_mat)
 		SEND_SIGNAL(parent, COMSIG_MATERIAL_CONTAINER_CHANGED)
@@ -353,10 +354,24 @@
 /datum/component/material_container/proc/get_item_material_amount(obj/item/I)
 	if(!istype(I))
 		return FALSE
+	var/list/item_materials = get_item_materials(I) // AQ EDIT
+	if(!item_materials)
+		return FALSE
 	var/material_amount = 0
 	for(var/MAT in materials)
-		material_amount += I.materials[MAT]
+		material_amount += item_materials[MAT]
 	return material_amount
+
+/**
+ * AQ EDIT - materiały jednej sztuki przedmiotu.
+ * Po Bee#10135 `custom_materials` stosu to suma całego stosu, a ten kontener (insert_stack(), sprawdzanie miejsca,
+ * logi silosu) liczy na sztukę, jak stare `materials`. Dla stosu bierze więc `mats_per_unit`.
+ */
+/datum/component/material_container/proc/get_item_materials(obj/item/I)
+	if(isstack(I))
+		var/obj/item/stack/S = I
+		return S.mats_per_unit
+	return I.custom_materials
 
 /// Returns the amount of a specific material in this container.
 /datum/component/material_container/proc/get_material_amount(var/datum/material/mat)

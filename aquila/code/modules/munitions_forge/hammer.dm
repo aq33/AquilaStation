@@ -13,6 +13,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(/datum/material/iron = 4000)
+	custom_materials = list(/datum/material/iron = 4000)
 	attack_verb = list("uderza", "wali", "grzmoci")
 	hitsound = 'sound/effects/clang.ogg'

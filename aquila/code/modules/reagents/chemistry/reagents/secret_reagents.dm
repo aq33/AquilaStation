@@ -6,6 +6,10 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 	/turf/open/indestructible,
 	/turf/open/space,
 	/obj/effect,
+	// Od BeeStation/BeeStation-Hornet#10135 recyklery, silos i eksport czytają custom_materials, więc metalgen na stosie
+	// albo monecie zmieniałby żelazo w diament
+	/obj/item/stack,
+	/obj/item/coin,
 )))
 
 /datum/reagent/wittel
@@ -50,8 +54,8 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 		return
 	metal_transmute(target, metal_ref)
 
-/// Zmienia materiał obiektu lub tura, razem z kolorem i efektami materiału.
-/// Nasze recyklery czytają `materials`, nie `custom_materials`, więc to nie dubluje surowców.
+/// Zmienia materiał obiektu lub tura, razem z kolorem, efektami i przymiotnikiem materiału w nazwie („złota kartka”).
+/// Stosy i monety są na czarnej liście, bo recyklery czytają custom_materials.
 /proc/metal_transmute(atom/target, metal_type, default_material_amount = 100)
 	if(is_type_in_typecache(target, GLOB.blacklisted_metalgen_types))
 		return
@@ -71,14 +75,8 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 		target.set_custom_materials()
 		target.custom_materials = null
 		target.material_flags = old_flags
-	target.material_flags &= ~MATERIAL_NO_COLOR
+	target.material_flags |= MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_ADD_PREFIX
 	target.set_custom_materials(list((metal) = metal_amount))
-
-	if(isobj(target))
-		var/obj/transmuted = target
-		var/initial_name = initial(transmuted.name)
-		if(transmuted.name == initial_name || findtext(transmuted.name, " [initial_name]"))
-			transmuted.name = "[metal.name] [initial_name]"
 
 /// Zamienia w KAMIEŃ
 /datum/reagent/metalgen/gorgium

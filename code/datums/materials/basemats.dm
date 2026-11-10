@@ -5,21 +5,28 @@
 	desc = "Pospolita ruda żelaza, często spotykana w osadowych i magmowych warstwach skorupy."
 	color = "#878687"
 	greyscale_colors = "#878687"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/iron
-	coin_type = /obj/item/coin/iron
+	sheet_recipes_glob = "metal_recipes"
+	value_per_unit = 0.0025
 
 ///Breaks extremely easily but is transparent.
 /datum/material/glass
 	name = "glass"
 	id = "glass"
 	desc = "Szkło wytopione z piasku."
-	color = "#dae6f0"
-	greyscale_colors = "#dae6f0"
-	alpha = 210
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	color = "#88cdf1"
+	greyscale_colors = "#88cdf196"
+	alpha = 150
+	categories = list(MAT_CATEGORY_RIGID = TRUE/*, MAT_CATEGORY_BASE_RECIPES = TRUE*/) //Excluding glass for now
 	integrity_modifier = 0.1
 	sheet_type = /obj/item/stack/sheet/glass
+	value_per_unit = 0.0025
+
+/*
+Color matrices are like regular colors but unlike with normal colors, you can go over 255 on a channel.
+Unless you know what you're doing, only use the first three numbers. They're in RGB order.
+*/
 
 
 ///Has no special properties. Could be good against vampires in the future perhaps.
@@ -27,45 +34,49 @@
 	name = "silver"
 	id = "silver"
 	desc = "Srebro"
-	color = "#bdbebf"
-	greyscale_colors = "#bdbebf"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	color = list(255/255, 284/255, 302/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+	greyscale_colors = "#e3f1f8"
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/silver
-	coin_type = /obj/item/coin/silver
+	sheet_recipes_glob = "silver_recipes"
+	value_per_unit = 0.025
 
 ///Slight force increase
 /datum/material/gold
 	name = "gold"
 	id = "gold"
 	desc = "Złoto"
-	color = "#f0972b"
-	greyscale_colors = "#f0972b"
+	color = list(340/255, 240/255, 50/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0) //gold is shiny, but not as bright as bananium
+	greyscale_colors = "#dbdd4c"
 	strength_modifier = 1.2
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/gold
-	coin_type = /obj/item/coin/gold
+	sheet_recipes_glob = "gold_recipes"
+	value_per_unit = 0.0625
 
 ///Has no special properties
 /datum/material/diamond
 	name = "diamond"
 	id = "diamond"
 	desc = "Węgiel pod ogromnym ciśnieniem"
-	color = "#22c2d4"
-	greyscale_colors = "#22c2d4"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	color = list(48/255, 272/255, 301/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+	greyscale_colors = "#71c8f784"
+	alpha = 132
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE/*, MAT_CATEGORY_BASE_RECIPES = TRUE*/)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
-	coin_type = /obj/item/coin/diamond
+	value_per_unit = 0.25
 
 ///Is slightly radioactive
 /datum/material/uranium
 	name = "uranium"
 	id = "uranium"
 	desc = "Uran"
-	color = "#1fb83b"
-	greyscale_colors = "#1fb83b"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	color = rgb(48, 237, 26)
+	greyscale_colors = rgb(48, 237, 26)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
-	coin_type = /obj/item/coin/uranium
+	sheet_recipes_glob = "uranium_recipes"
+	value_per_unit = 0.05
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -89,11 +100,12 @@
 	name = "plasma"
 	id = "plasma"
 	desc = "Czy plazma to nie jest przypadkiem stan skupienia? Zresztą nieważne."
-	color = "#c716b8"
-	greyscale_colors = "#c716b8"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	color = list(298/255, 46/255, 352/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+	greyscale_colors = "#c162ec"
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
-	coin_type = /obj/item/coin/plasma
+	sheet_recipes_glob = "plasma_recipes"
+	value_per_unit = 0.1
 
 /datum/material/plasma/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -111,21 +123,24 @@
 	name = "bluespace crystal"
 	id = "bluespace_crystal"
 	desc = "Kryształy o właściwościach bluespace"
-	color = "#506bc7"
-	greyscale_colors = "#506bc7"
+	color = list(119/255, 217/255, 396/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+	greyscale_colors = "#4e7dffC8"
+	alpha = 200
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/ore/bluespace_crystal/refined
+	value_per_unit = 0.15
 
 ///Honks and slips
 /datum/material/bananium
 	name = "bananium"
 	id = "bananium"
 	desc = "Materiał o przezabawnych właściwościach"
-	color = "#fff263"
-	greyscale_colors = "#fff263"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	color = list(460/255, 464/255, 0, 0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0) //obnoxiously bright yellow
+	greyscale_colors = "#ffff00"
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
-	coin_type = /obj/item/coin/bananium
+	sheet_recipes_glob = "bananium_recipes"
+	value_per_unit = 0.5
 
 /datum/material/bananium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -146,8 +161,10 @@
 	color = "#b3c0c7"
 	greyscale_colors = "#b3c0c7"
 	strength_modifier = 1.3
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
+	sheet_recipes_glob = "titanium_recipes"
+	value_per_unit = 0.0625
 
 ///Force decrease
 /datum/material/plastic
@@ -157,7 +174,10 @@
 	color = "#caccd9"
 	greyscale_colors = "#caccd9"
 	strength_modifier = 0.85
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/plastic
+	sheet_recipes_glob = "plastic_recipes"
+	value_per_unit = 0.0125
 
 ///Force decrease and mushy sound effect. (Not yet implemented)
 /datum/material/biomass
@@ -167,7 +187,46 @@
 	color = "#735b4d"
 	greyscale_colors = "#735b4d"
 	strength_modifier = 0.8
+	value_per_unit = 0.025
 
+
+/datum/material/wood
+	name = "wood"
+	id = "wood"
+	desc = "Giętkie i wytrzymałe, ale łatwopalne. W kosmosie trudno o nie."
+	color = "#bb8e53"
+	greyscale_colors = "#bb8e53"
+	strength_modifier = 0.5
+	sheet_type = /obj/item/stack/sheet/mineral/wood
+	sheet_recipes_glob = "wood_recipes"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
+	value_per_unit = 0.01
+	texture_layer_icon_state = "woodgrain"
+
+/datum/material/wood/on_applied_obj(obj/source, amount, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/wooden = source
+		wooden.resistance_flags |= FLAMMABLE
+
+/datum/material/wood/on_removed_obj(obj/source, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/wooden = source
+		wooden.resistance_flags &= ~FLAMMABLE
+
+///Stronk force increase
+/datum/material/adamantine
+	name = "adamantine"
+	id = "adamantine"
+	desc = "Potężny materiał zrobiony z magii, to znaczy z nauki!"
+	color = "#6d7e8e"
+	greyscale_colors = "#6d7e8e"
+	strength_modifier = 1.5
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/adamantine
+	sheet_recipes_glob = "adamantine_recipes"
+	value_per_unit = 0.25
 
 /datum/material/copper
 	name = "copper"
@@ -175,5 +234,6 @@
 	desc = "Miedź to miękki, kowalny i ciągliwy metal o bardzo wysokim przewodnictwie cieplnym i elektrycznym."
 	color = "#d95802"
 	greyscale_colors = "#d95802"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/copper
+	sheet_recipes_glob = "copper_recipes"

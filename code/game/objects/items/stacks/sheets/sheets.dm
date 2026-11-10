@@ -11,7 +11,10 @@
 	throw_range = 3
 	attack_verb = list("grzmoci", "okłada", "tłucze", "młóci", "rozbija")
 	novariants = FALSE
+	material_flags = MATERIAL_EFFECTS
 	var/perunit = MINERAL_MATERIAL_AMOUNT
 	var/sheettype = null //this is used for girders in the creation of walls/false walls
 	var/point_value = 0 //turn-in value for the gulag stacker - loosely relative to its rarity.
+	///What type of wall does this sheet spawn
+	var/walltype
 	var/turf_type = null //nsv13 - Wall stuff

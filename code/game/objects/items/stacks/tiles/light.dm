@@ -30,7 +30,7 @@
 		return ..()
 
 /obj/item/stack/tile/light/cyborg
-	materials = list() 
+	mats_per_unit = null 
 	is_cyborg = 1
 	cost = 125
 

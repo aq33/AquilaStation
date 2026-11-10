@@ -4,7 +4,7 @@
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "pdc_frame"
 	result_path = /obj/structure/frame/machine/ship_weapon/pdc_mount
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*5)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*5)
 
 /obj/structure/frame/machine/ship_weapon/pdc_mount
 	name = "\improper rama stojaka ładowania PDC"

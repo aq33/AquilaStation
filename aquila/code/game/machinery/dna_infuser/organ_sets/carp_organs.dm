@@ -101,7 +101,7 @@
 	desc = "Wygląda na ostry. Wystarczająco ostry, żeby komuś wydłubać oko. O kurde, jaki wielki."
 	icon = 'aquila/icons/dna_infuser/organs.dmi'
 	icon_state = "carptooth"
-	materials = list()
+	custom_materials = null
 	custom_price = 0
 
 /obj/item/organ/tongue/carp

@@ -14,10 +14,17 @@
 	if(!isitem(O))
 		return 0
 	var/obj/item/I = O
-	if(!(getmaterialref(material_id) in I.materials))
+	var/datum/material/export_material = SSmaterials.GetMaterialRef(material_id)
+	// AQ EDIT START - custom_materials stosu to suma całego stosu (Bee#10135), więc dla stosu ilość na sztukę razy amount; Bee mnoży sumę i wychodzi ilość do kwadratu
+	var/list/item_materials = I.custom_materials
+	if(istype(I, /obj/item/stack))
+		var/obj/item/stack/item_stack = I
+		item_materials = item_stack.mats_per_unit
+	// AQ EDIT END
+	if(!(export_material in item_materials))
 		return 0
 
-	var/amount = I.materials[getmaterialref(material_id)]
+	var/amount = item_materials[export_material]
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I

@@ -540,6 +540,8 @@ Behavior that's still missing from this component that original food items had t
 
 	on_consume?.Invoke(eater, feeder)
 
+	if(!istype(parent, /obj/item/food)) // AQ EDIT - BeeStation/BeeStation-Hornet#10703 (jadalne rzeczy z mięsa); zwykłego jedzenia nie komentujemy
+		to_chat(feeder, "<span class='warning'>[parent] znika do ostatniego kęsa!</span>")
 	if(isturf(parent))
 		var/turf/T = parent
 		T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)

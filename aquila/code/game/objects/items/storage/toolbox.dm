@@ -87,7 +87,7 @@
 	desc = "Zielona skrzynka wypchana zabawkami. Robust i śmieszna zarazem."
 	icon_state = "green"
 	item_state = "artistic_toolbox"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 	w_class = WEIGHT_CLASS_NORMAL // mieści się w plecaku klauna
 	/// Ile zabawek wkładamy
 	var/toy_count = 5

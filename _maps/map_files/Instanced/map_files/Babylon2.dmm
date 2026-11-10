@@ -8802,7 +8802,7 @@
 	desc = "The little 'A' insignia indicates that this is part of a rare and valuable set created by Aether Collectables Co. Only fifty five of these coins were ever created.";
 	pixel_x = -4;
 	pixel_y = -3;
-	value = 660
+	value_override = 660
 	},
 /turf/open/floor/plating,
 /area/maintenance/pvp)
