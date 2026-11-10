@@ -946,6 +946,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(QDELETED(new_turf.liquids) && source_turf.turf_height == new_turf.turf_height) // no space turfs, or oceans turfs, also don't attempt to spread onto a turf that already has liquids wastes processing time
 		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR)
 			return FALSE
+		// Krew z krwawienia ma zbierać się w jedną kałużę pod ciałem, a nie od razu rozchodzić na 5 kafelków po 10 j.
+		if(reagents_per_turf < LIQUID_VISCOUS_SPREAD_PER_TURF && is_viscous())
+			return FALSE
 		if(!length(members))
 			return FALSE
 		reagents_per_turf = total_reagent_volume / length(members)
@@ -1051,3 +1054,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	reagents.chem_temp += (air_temperature - reagents.chem_temp) * LIQUID_AIR_TEMPERATURE_SHARE
 	group_temperature = reagents.chem_temp
 	update_freezing()
+
+/// Czy grupa to gęsta ciecz (przeważa krew), która rozlewa się wolniej. Liczone tylko dla małych kałuż.
+/datum/liquid_group/proc/is_viscous()
+	var/datum/reagent/master = reagents?.get_master_reagent()
+	return istype(master, /datum/reagent/blood)
