@@ -966,6 +966,7 @@
 #include "code\modules\overmap\fighter_manual_eject.dm"
 #include "code\modules\overmap\fighter_component_cleanup.dm"
 #include "code\modules\overmap\ship_sounds.dm"
+#include "code\modules\overmap\shieldgen_sprite.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"
