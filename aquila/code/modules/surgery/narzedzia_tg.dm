@@ -36,3 +36,9 @@
 	. = ..()
 	item_state = tool_behaviour == TOOL_CAUTERY ? "e_cautery" : "e_cautery_on"
 	user.update_inv_hands()
+
+/// Złożone łóżko na kółkach w rękach (tg emergency_bed)
+/obj/item/roller
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "emergencybed"

@@ -1,4 +1,4 @@
-// AQUILA - sprite'y z tg dla GPS, lampek biurkowych i worka treningowego: tylko zmienne i zmiana stanu w rękach
+// AQUILA - sprite'y z tg dla GPS, lampek biurkowych, worka treningowego i kosza na śmieci: zmienne i drobne nadpisania wyglądu
 
 // GPS w ręku i na pasku jak w tg (stan electronic w plikach urządzeń i w icons/mob/belt.dmi)
 /obj/item/gps
@@ -20,3 +20,17 @@
 // Worek treningowy z tg; plik Goona (goon/icons/obj/fitness.dmi) zostaje bez zmian
 /obj/structure/punching_bag
 	icon = 'aquila/icons/obj/structures/gym_equipment.dmi'
+
+// Kosz na śmieci z tg: cały kosz w stanach trashbin/trashbinopen (pokrywa w sprite'cie), bez obracanej pokrywy skrzyń
+/obj/structure/closet/crate/bin
+	door_anim_time = 0
+
+/obj/structure/closet/crate/bin/update_icon()
+	icon_state = opened ? "trashbinopen" : "trashbin"
+	. = ..()
+	cut_overlay(list("[icon_state]_door", "[icon_state]_open"))
+
+/obj/structure/closet/crate/bin/do_animate()
+	. = ..()
+	if(!opened)
+		flick("trashbin_animate", src)
