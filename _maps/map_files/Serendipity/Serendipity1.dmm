@@ -392,10 +392,6 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
-"aN" = (
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/grass/fairy/yellow,
-/area/crew_quarters/dorms/nsv/nature_deck)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5465,13 +5461,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/storage)
-"rw" = (
-/obj/structure/cable/pink,
-/obj/structure/ethernet_cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "rx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7476,31 +7465,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
-"xZ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/light/floor,
-/obj/machinery/duct,
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/nsv/trauma)
 "ya" = (
 /obj/machinery/door/airlock/ship/security{
 	id_tag = "pw_fd_inner";
@@ -14284,6 +14248,30 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/science/server)
+"Vy" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/light/floor,
+/obj/machinery/duct,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/nsv/trauma)
 "Vz" = (
 /obj/structure/cable,
 /turf/closed/wall/ship,
@@ -45464,7 +45452,7 @@ AR
 rM
 FT
 RZ
-xZ
+Vy
 cD
 cD
 UC
@@ -48053,7 +48041,7 @@ Kb
 Jz
 Jz
 DX
-aN
+gg
 oP
 MR
 Vr
@@ -50904,7 +50892,7 @@ OU
 bw
 ZT
 Rh
-rw
+ac
 pF
 pF
 Te

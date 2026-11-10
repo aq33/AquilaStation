@@ -43,7 +43,3 @@
 		buyer_card.registered_account = buyer_account
 		buyer_account.bank_cards += buyer_card
 		buyer_account.adjust_money(5000)
-	var/obj/machinery/computer/slime_market/console = locate() in spawned
-	var/obj/machinery/slime_extract_requestor/request_pad = locate() in spawned
-	if(console && request_pad)
-		request_pad.link_console(console)

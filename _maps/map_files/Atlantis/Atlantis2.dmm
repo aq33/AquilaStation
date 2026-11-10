@@ -6730,6 +6730,10 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science/explab)
+"gzI" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
 "gzW" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -15348,11 +15352,6 @@
 /obj/effect/spawner/lootdrop/maintenance/five,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port/aft)
-"pKY" = (
-/obj/structure/extinguisher_cabinet/north,
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
 "pLh" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -51256,7 +51255,7 @@ fAR
 qyN
 fAR
 hcT
-pKY
+gzI
 sux
 sux
 sux

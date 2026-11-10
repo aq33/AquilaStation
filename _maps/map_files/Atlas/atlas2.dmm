@@ -11870,16 +11870,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/durasteel/techfloor,
 /area/ai_monitored/turret_protected/aisat)
-"MO" = (
-/obj/effect/turf_decal/tile/ship/half/green{
-	dir = 1
-	},
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32
-	},
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
 "MQ" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -15350,6 +15340,15 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
+"ZQ" = (
+/obj/effect/turf_decal/tile/ship/half/green{
+	dir = 1
+	},
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
 "ZR" = (
 /obj/structure/railing{
 	dir = 8
@@ -49714,7 +49713,7 @@ Tc
 wW
 Tc
 Tc
-MO
+ZQ
 wu
 iJ
 LJ
