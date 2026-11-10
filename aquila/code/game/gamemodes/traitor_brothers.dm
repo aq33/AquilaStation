@@ -3,7 +3,7 @@
 
 /datum/game_mode/traitor
 	/// Szansa (%), że dwóch wylosowanych zdrajców zostanie parą braci krwi. Tylko czysty tryb traitor
-	var/brother_pair_chance = 50
+	var/brother_pair_chance = 25
 	/// Drużyny braci zrobione z wylosowanych zdrajców, dostają datumy w post_setup
 	var/list/datum/team/brother_team/pre_traitor_brother_teams = list()
 

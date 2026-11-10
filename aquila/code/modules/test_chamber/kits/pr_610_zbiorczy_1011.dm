@@ -7,7 +7,7 @@
 	4) Dyszenie: sprintuj, aż pojawi się „Jesteś wyczerpany” → co kilka sekund ciężki oddech (męski albo żeński według płci). Po „Łapiesz oddech” cichnie. \
 	5) Beryl ze zwykłą iglicą strzela poza abordażem; zwykły Beryl z iglicą abordażową odmawia (negatyw). Na Atlantisie zbrojownia ma same Beryle i magazynki 5.56. \
 	6) Maggi nalewa po 1, 5 albo 10 j., smak lubczyku; oba majonezy dają zwykły majonez (działa w recepturach). Wszystkie trzy są w automacie z zastawą. \
-	Poza komorą: reconnect (zakończ rundę, gra sama łączy po starcie serwera) i bracia krwi w trybie zdrajcy (admin wymusza traitor przy kilku graczach z preferencjami zdrajcy i brata; z szansą 50% dwóch zdrajców dostaje braci krwi)."
+	Poza komorą: reconnect (zakończ rundę, gra sama łączy po starcie serwera) i bracia krwi w trybie zdrajcy (admin wymusza traitor przy kilku graczach z preferencjami zdrajcy i brata; z szansą 25% dwóch zdrajców dostaje braci krwi)."
 	items = list(
 		/obj/machinery/suit_storage_unit/engine = 1,
 		/obj/item/toy/crayon/spraycan = 1,
