@@ -1,7 +1,7 @@
 // Znaczniki rozkazów: tędy, atak, obrona, odwrót, zbiórka, cel (laser). Stawia je dowódca drużyny
 // (akcja + kliknięcie w widoczne pole albo klik na mapie w pagerze) i XO (mapa w konsoli).
 // Widać je w świecie tylko członkom drużyny, a na mapie taktycznej w pagerze i w konsoli.
-// Sprite'y: atak, obrona, odwrót i zbiórka z TGMC (icons/effects/orders.dmi), cel z TGMC (icons/effects/lases.dmi),
+// Sprite'y: atak, obrona, odwrót i zbiórka z TGMC (icons/effects/orders.dmi), cel (gwiazdka) dorysowany w ich stylu,
 // „Tędy” dorysowane ze strzałki zbiórki TGMC (CC BY-SA 3.0); ikony akcji z TGMC (icons/mob/actions.dmi).
 
 /// Polska nazwa znacznika
@@ -154,7 +154,6 @@
 	desc = "Wybierz rozkaz (tędy, atak, obrona, odwrót, zbiórka, cel) i kliknij pole. Znacznik zobaczy cała drużyna, także na mapie w pagerze."
 	icon_icon = 'aquila/icons/squads/actions.dmi'
 	button_icon_state = "marker"
-	background_icon_state = "bg_default"
 	/// Wybrany typ, gdy czekamy na kliknięcie
 	var/pending_type
 

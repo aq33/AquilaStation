@@ -62,7 +62,6 @@
 	desc = "Rozkaz pojawi się na ekranie każdego członka drużyny z pagerem, z twoim portretem i głosem. Raz na 30 sekund."
 	icon_icon = 'aquila/icons/squads/actions.dmi'
 	button_icon_state = "order"
-	background_icon_state = "bg_default"
 
 /datum/action/innate/aq_squad_order/Trigger()
 	var/datum/squad/squad = target
