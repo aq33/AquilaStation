@@ -1586,6 +1586,7 @@
 #include "code\datums\mutations\yog\_yog.dm"
 #include "code\datums\mutations\monke\_monke.dm"
 #include "code\datums\mutations\paradise\_paradise.dm"
+#include "code\datums\mutations\goon_ikony.dm"
 #include "code\game\machinery\dna_infuser\_dna_infuser.dm"
 
 // Struktury z Paradise: ściany, okna i drzwi 3/4. Na końcu, żeby nadpisać wcześniejsze ikony (także te z aquila/).
@@ -1939,6 +1940,7 @@
 #include "code\modules\unit_tests\aquila_bot_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_service_tg_sprites.dm"
 #include "code\modules\unit_tests\aquila_kaplan.dm"
+#include "code\modules\unit_tests\aquila_goon_genetics_icons.dm"
 #include "code\modules\unit_tests\aquila_polonium_polskie.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"
 #include "code\modules\unit_tests\aquila_infiltrator_uplink.dm"
