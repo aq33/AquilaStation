@@ -52,8 +52,12 @@
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
 			continue
+		var/had_liquid = !QDELETED(scrubber_turf.liquids)
 		scrubber_turf.add_liquid(/datum/reagent/water, amount)
-		if(!flood && scrubber_turf.liquids?.liquid_group)
+		if(QDELETED(scrubber_turf.liquids)) // bariera na ciecze zablokowała wodę: nic nie poleciało
+			continue
+		// Szybkie parowanie tylko dla nowej kałuży ze zraszacza; istniejącej (powódź, krew) nie zmieniamy
+		if(!flood && !had_liquid && scrubber_turf.liquids.liquid_group)
 			scrubber_turf.liquids.liquid_group.always_evaporates = TRUE
 			scrubber_turf.liquids.liquid_group.evaporation_multiplier = max(scrubber_turf.liquids.liquid_group.evaporation_multiplier, SPRINKLER_EVAPORATION_MULTIPLIER)
 		scrubber.visible_message(flood ? "<span class='danger'>Z [scrubber] bucha strumień wody!</span>" : "<span class='warning'>Z [scrubber] tryska woda!</span>")
