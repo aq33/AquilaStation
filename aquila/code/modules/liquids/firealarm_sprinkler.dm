@@ -13,8 +13,10 @@
 #define SPRINKLER_COOLDOWN (10 SECONDS)
 
 /datum/liquid_group
-	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa, inne źródła zostają)
+	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa do stanu sprzed zraszacza)
 	var/sprinkler_evaporation = FALSE
+	/// Parowanie grupy sprzed zraszacza (always_evaporates, evaporation_multiplier)
+	var/list/pre_sprinkler_evaporation
 
 /obj/machinery/firealarm
 	/// Kiedy ten alarm ostatnio wylał wodę
@@ -64,14 +66,18 @@
 		if(group)
 			// Szybkie parowanie tylko dla nowej kałuży ze zraszacza; istniejącej (powódź, krew) nie zmieniamy
 			if(!flood && !had_liquid)
+				if(!group.sprinkler_evaporation)
+					group.pre_sprinkler_evaporation = list(group.always_evaporates, group.evaporation_multiplier)
 				group.sprinkler_evaporation = TRUE
 				group.always_evaporates = TRUE
 				group.evaporation_multiplier = max(group.evaporation_multiplier, SPRINKLER_EVAPORATION_MULTIPLIER)
 			// Zalanie dolane do kałuży ze zwykłego zraszacza zabiera jej szybkie parowanie (głęboka woda ma stać)
 			else if(flood && group.sprinkler_evaporation)
 				group.sprinkler_evaporation = FALSE
-				group.always_evaporates = initial(group.always_evaporates)
-				group.evaporation_multiplier = initial(group.evaporation_multiplier)
+				var/list/before = group.pre_sprinkler_evaporation || list(initial(group.always_evaporates), initial(group.evaporation_multiplier))
+				group.always_evaporates = before[1]
+				group.evaporation_multiplier = before[2]
+				group.pre_sprinkler_evaporation = null
 		scrubber.visible_message(flood ? "<span class='danger'>Z [scrubber] bucha strumień wody!</span>" : "<span class='warning'>Z [scrubber] tryska woda!</span>")
 		playsound(scrubber_turf, 'aquila/sound/effects/splash_loud.ogg', flood ? 60 : 35, TRUE)
 		.++
