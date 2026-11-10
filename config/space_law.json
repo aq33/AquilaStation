@@ -1,6 +1,13 @@
 {
 	"Wykroczenia": [
 		{
+			"name": "Przywłaszczenie sprzętu drużyny",
+			"tooltip": "Niezwrócenie do automatu drużyny wydanego zestawu (pancerza, broni, amunicji lub innego sprzętu) po zakończeniu alarmu albo na wezwanie oficera wykonawczego.",
+			"colour": "yellow",
+			"icon": "box-open",
+			"sentence": 3000
+		},
+		{
 			"name": "Drobny wandalizm",
 			"tooltip": "Uszkodzenie, zniszczenie lub trwałe oszpecenie niekrytycznych mebli, automatów lub cudzej własności.",
 			"colour": "yellow",
