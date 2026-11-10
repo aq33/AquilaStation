@@ -542,6 +542,18 @@
 /obj/machinery/light/floor,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"bg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/nsv/trauma)
 "bh" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/clothing/suit/whitedress,
@@ -47506,7 +47518,7 @@ BV
 BV
 Ji
 oi
-Fp
+bg
 xB
 oy
 UH
