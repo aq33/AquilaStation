@@ -116,6 +116,46 @@
 	TEST_ASSERT_EQUAL(by_stat["survived"], 1, "A living character did not survive")
 	TEST_ASSERT(!by_stat["deaths"], "A living character died")
 
+	// Zarobek trafia tylko do postaci, której konto się liczyło, nie do każdej postaci tego samego gracza
+	var/list/old_results = GLOB.economy_round_results
+	GLOB.economy_round_results = list(list("ckey" = "aquilastatstest", "name" = "Test Medyk", "balance" = 700, "counted" = TRUE))
+	var/datum/mind/other_character = new("Aquila Stats Test")
+	other_character.name = "Inna Postac"
+	other_character.assigned_role = JOB_NAME_ASSISTANT
+	allocated += other_character
+	var/medic_earnings = 0
+	var/other_earnings = 0
+	var/other_deaths = 0
+	for(var/list/row as anything in character_stats_round_rows(list(medic.mind, other_character)))
+		if(row["stat"] == "earnings_total")
+			if(row["character_name"] == "Test Medyk")
+				medic_earnings = row["value"]
+			else
+				other_earnings = row["value"]
+		if(row["stat"] == "deaths" && row["character_name"] == "Inna Postac")
+			other_deaths = row["value"]
+	GLOB.economy_round_results = old_results
+	TEST_ASSERT_EQUAL(medic_earnings, 700, "The counted character did not get its earnings")
+	TEST_ASSERT_EQUAL(other_earnings, 0, "Another character of the same player got the earnings too")
+	// Postać bez ciała, która nie umarła (wyjście przez kriokomorę), nie ma zgonu
+	TEST_ASSERT_EQUAL(other_deaths, 0, "A character that left without dying got a death")
+
+	// Zgon liczy się przy śmierci, także gdy ciało potem zniknie
+	medic.death()
+	TEST_ASSERT_EQUAL(medic.mind.aquila_stats["deaths"], 1, "A death was not counted")
+	medic.death() // martwy umiera drugi raz: bez nowego zgonu
+	TEST_ASSERT_EQUAL(medic.mind.aquila_stats["deaths"], 1, "A dead body counted a second death")
+
+	// Długie imię z polskimi znakami: najwyżej 64 znaki, bez uciętego znaku
+	var/long_name = "[repeat_string(63, "a")]żółw"
+	medic.mind.name = long_name
+	var/saved_name
+	for(var/list/row as anything in character_stats_round_rows(list(medic.mind)))
+		saved_name = row["character_name"]
+	TEST_ASSERT_EQUAL(length_char(saved_name), 64, "The character name was not cut to 64 characters")
+	TEST_ASSERT_EQUAL(copytext_char(saved_name, -1), "ż", "The character name was cut inside a character")
+	medic.mind.name = "Test Medyk"
+
 	var/test_file = "data/unit_test_character_stats.json"
 	fdel(test_file)
 	character_stats_merge_file(list(

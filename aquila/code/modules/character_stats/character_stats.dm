@@ -1,9 +1,9 @@
 // AQUILA - statystyki postaci zapisywane między rundami (baza danych, bez bazy plik JSON).
 //
-// Nic nie jest liczone co tick: w trakcie rundy liczniki rosną tylko przy zdarzeniach (operacja, reanimacja, wykopana
-// ruda, kajdanki, strzał, grzywna, obsłużony robot w restauracji, zniszczony okręt wroga) na umyśle gracza.
-// Reszta (rundy, przeżycia, zgony, cele, misje, zarobki) jest liczona raz na koniec rundy.
-// Postać to para ckey + imię postaci. Podgląd: czasownik OOC „Statystyki postaci”.
+// Nic nie jest liczone co tick: w trakcie rundy liczniki rosną tylko przy zdarzeniach (zgon, operacja, reanimacja,
+// wykopana ruda, kajdanki, strzał, grzywna, obsłużony robot w restauracji, zniszczony okręt wroga) na umyśle gracza.
+// Reszta (rundy, przeżycia, cele, misje, zarobki) jest liczona raz na koniec rundy.
+// Postać to para ckey + imię postaci. Podgląd: Esc → Statystyki albo czasownik OOC „Statystyki”.
 
 /// Plik zapasowy, gdy baza danych nie działa: ckey => imię postaci => statystyka => wartość
 #define CHARACTER_STATS_FALLBACK_FILE "data/character_stats.json"
@@ -12,6 +12,8 @@
 
 /// Czy statystyki tej rundy zostały już zapisane
 GLOBAL_VAR_INIT(character_stats_saved, FALSE)
+/// Czy tabela statystyk w bazie była już w tej rundzie sprawdzona (CREATE TABLE IF NOT EXISTS raz na rundę)
+GLOBAL_VAR_INIT(character_stats_table_ready, FALSE)
 GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 
 /datum/mind
@@ -20,11 +22,14 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 
 /// Dolicza graczowi sterującemu mobem statystykę jego postaci w tej rundzie
 /proc/record_character_stat(mob/user, stat, amount = 1)
-	var/datum/mind/user_mind = user?.mind
-	if(!user_mind?.key || !stat || !amount)
+	record_mind_stat(user?.mind, stat, amount)
+
+/// Dolicza statystykę postaci umysłowi gracza (np. przy zgonie, gdy ciało mogło już zniknąć)
+/proc/record_mind_stat(datum/mind/player_mind, stat, amount = 1)
+	if(!player_mind?.key || !stat || !amount)
 		return
-	LAZYINITLIST(user_mind.aquila_stats)
-	user_mind.aquila_stats[stat] += amount
+	LAZYINITLIST(player_mind.aquila_stats)
+	player_mind.aquila_stats[stat] += amount
 
 /// Statystyki rundy jako wiersze do zapisu: lista list("ckey", "character_name", "stat", "value")
 /proc/character_stats_round_rows(list/minds = SSticker.minds)
@@ -32,10 +37,11 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	var/list/mission = GLOB.roundend_report_ui.roundend_mission()
 	var/mission_won = mission?["won"]
 	var/first_death_name = SSblackbox.first_death?["name"]
-	var/list/earnings_by_ckey = list()
+	// zarobek należy do postaci, której konto się liczyło (ckey + imię właściciela konta), nie do każdej postaci gracza
+	var/list/earnings_by_character = list()
 	for(var/list/result as anything in GLOB.economy_round_results)
 		if(result["counted"])
-			earnings_by_ckey[result["ckey"]] = result["balance"]
+			earnings_by_character["[result["ckey"]]|[result["name"]]"] = result["balance"]
 
 	for(var/datum/mind/player_mind as anything in minds)
 		if(!player_mind?.key || !player_mind.assigned_role || !player_mind.name)
@@ -43,13 +49,12 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 		var/player_ckey = ckey(player_mind.key)
 		var/list/stats = player_mind.aquila_stats ? player_mind.aquila_stats.Copy() : list()
 		stats["rounds"] += 1
+		// Zgony liczy record_mind_stat() przy śmierci, więc wyjście przez kriokomorę (ciało usunięte bez śmierci) nie jest zgonem
 		var/mob/living/body = player_mind.current
 		if(isliving(body) && body.stat != DEAD)
 			stats["survived"] += 1
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (body.onCentCom() || body.onSyndieBase()))
 				stats["escaped"] += 1
-		else
-			stats["deaths"] += 1
 		if(first_death_name && first_death_name == player_mind.name)
 			stats["first_death"] += 1
 		if(length(player_mind.antag_datums))
@@ -63,21 +68,23 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 		for(var/datum/objective/crew/crew_objective as anything in player_mind.crew_objectives)
 			if(crew_objective.check_completion())
 				stats["crew_objectives"] += 1
-		var/earned = earnings_by_ckey[player_ckey]
+		var/earned = earnings_by_character["[player_ckey]|[player_mind.name]"]
 		if(earned)
 			stats["earnings_total"] += earned
 			stats[CHARACTER_STAT_BEST_EARNINGS] = earned
 
-		var/character_name = copytext(player_mind.name, 1, 64)
+		var/character_name = copytext_char(player_mind.name, 1, 65) // VARCHAR(64) liczy znaki, nie bajty
 		for(var/stat in stats)
 			var/value = round(stats[stat])
 			if(value > 0)
 				. += list(list("ckey" = player_ckey, "character_name" = character_name, "stat" = stat, "value" = value))
 
-/// Tworzy tabelę, jeśli jej nie ma (schemat jest też w SQL/beestation_schema.sql)
+/// Tworzy tabelę, jeśli jej nie ma (schemat jest też w SQL/beestation_schema.sql); raz na rundę
 /proc/character_stats_ensure_table()
 	if(!SSdbcore.Connect())
 		return FALSE
+	if(GLOB.character_stats_table_ready)
+		return TRUE
 	var/datum/DBQuery/query_create = SSdbcore.NewQuery({"
 		CREATE TABLE IF NOT EXISTS [format_table_name("character_stats")] (
 			`ckey` VARCHAR(32) NOT NULL,
@@ -89,6 +96,7 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	"})
 	var/success = query_create.Execute()
 	qdel(query_create)
+	GLOB.character_stats_table_ready = success
 	return success
 
 /// Zapisuje statystyki rundy raz na rundę: sumy, a przy najlepszym zarobku maksimum
@@ -100,7 +108,7 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	if(!length(rows))
 		return
 	if(character_stats_ensure_table())
-		SSdbcore.MassInsert(format_table_name("character_stats"), rows, duplicate_key = "\nON DUPLICATE KEY UPDATE value = IF(stat = '[CHARACTER_STAT_BEST_EARNINGS]', GREATEST(value, VALUES(value)), value + VALUES(value))", warn = TRUE)
+		SSdbcore.MassInsert(format_table_name("character_stats"), rows, duplicate_key = "\nON DUPLICATE KEY UPDATE value = IF(stat = '[CHARACTER_STAT_BEST_EARNINGS]', GREATEST(value, VALUES(value)), value + VALUES(value))", warn = TRUE, async = FALSE) // zaraz restart świata, jak w rankingu zarobków
 		return
 	character_stats_merge_file(rows)
 
@@ -207,6 +215,14 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 
 /// Udana operacja (tylko „ważne” operacje, jak w blackboksie) jest liczona w /datum/surgery_operation/proc/success()
 
+/// Zgon: umysł zapamiętany przed śmiercią, bo przy gibie albo rozpyleniu ciało oddaje go duchowi
+/mob/living/death(gibbed)
+	var/was_dead_before = stat == DEAD
+	var/datum/mind/dying_mind = mind
+	. = ..()
+	if(!was_dead_before)
+		record_mind_stat(dying_mind, "deaths")
+
 /obj/item/shockpaddles/do_help(mob/living/carbon/H, mob/living/user)
 	var/was_dead = H.stat == DEAD
 	. = ..()
@@ -240,9 +256,18 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	if(server_ckey)
 		record_character_stat(get_mob_by_ckey(server_ckey), "restaurant_orders")
 
-/// Zniszczony okręt Syndykatu: liczy się każdej żywej osobie na głównym statku
+/obj/structure/overmap/syndicate/ai
+	/// Ostatnie trafienie przyszło od statku graczy (główny statek albo statek z załogą), patrz Destroy()
+	var/last_hit_by_players = FALSE
+
+/obj/structure/overmap/syndicate/ai/bullet_act(obj/item/projectile/P)
+	var/obj/structure/overmap/firer = P?.overmap_firer
+	last_hit_by_players = istype(firer) && (firer.role == MAIN_OVERMAP || length(firer.mobs_in_ship))
+	return ..()
+
+/// Zniszczony okręt Syndykatu, który ostatnio oberwał od statku graczy: liczy się każdej żywej osobie na głównym statku
 /obj/structure/overmap/syndicate/ai/Destroy()
-	if(obj_integrity <= 0)
+	if(obj_integrity <= 0 && last_hit_by_players)
 		var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
 		for(var/mob/living/carbon/human/crew in GLOB.alive_mob_list)
 			if(crew.mind?.key && main_ship && crew.get_overmap() == main_ship)
