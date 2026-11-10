@@ -121,7 +121,9 @@ const BountiesScreen = () => {
   const { act, data } = useBackend<Data>();
   const bounties = data.bounties || [];
   const [filter, setFilter] = useState('');
-  const departments = [...new Set(bounties.map((b) => b.department))].sort();
+  const departments = Array.from(
+    new Set(bounties.map((b) => b.department)),
+  ).sort();
   const shown = filter
     ? bounties.filter((b) => b.department === filter)
     : bounties;

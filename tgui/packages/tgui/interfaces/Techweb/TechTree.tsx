@@ -67,9 +67,9 @@ function layoutBlock(
   size: CardSize,
 ): BlockLayout {
   const inBlock = new Set(ids);
-  const tiers = [...new Set(ids.map((id) => node_cache[id].node_tier))].sort(
-    (a, b) => a - b,
-  );
+  const tiers = Array.from(
+    new Set(ids.map((id) => node_cache[id].node_tier)),
+  ).sort((a, b) => a - b);
   const rowOf: Record<string, number> = {};
   const pos: Record<string, { x: number; y: number }> = {};
   let rows = 0;
@@ -276,7 +276,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
                   value={searchText}
                   onChange={setSearchText}
                   onEnter={() => {
-                    const first = matches && [...matches][0];
+                    const first = matches && Array.from(matches)[0];
                     if (first) pick(first, true);
                   }}
                   placeholder="Szukaj we wszystkich kategoriach..."
@@ -411,6 +411,7 @@ function CategoryBlock(props: CategoryBlockProps) {
       if (!inBlock.has(pre)) continue;
       const from = layout.pos[pre];
       const to = layout.pos[id];
+      if (!from || !to) continue;
       const x1 = from.x + size.w;
       const y1 = from.y + size.h / 2;
       const x2 = to.x;
