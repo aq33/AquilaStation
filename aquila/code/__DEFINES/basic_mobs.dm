@@ -171,30 +171,6 @@
 #define MONKEY_SONG "BPM: 200\nC4/0,14,C,A4-F2,F3,A3,F-F2,A-F,F4,G4,F,D4-Bb2-G2\nD3,G3,D-G2,G3-G2,D,D4-G3,D,B4-B2,G,B3,G-B2,B3-B2\nG4,A4,G,E4-C3,E3,G3,E-C,G-C,E,E4-G,E,C5-E-A3,C4\nA-E3,C,E4-C3,A4-C4,B4-A3-A2,C5-C4,D5-F-B3,D4,B-F3\nD,F4-D3,D4,F-B-B2,G4-D,A4-C-F3,F,C/2,B3/2,A3-C3/2\nB/2,C4,E-C3,F4,G-C,F-F3,F-C,C4/2,B/2,A-A2/2,G3/2\nF/I"
 #define MOUSE_SONG "BPM: 250\nD4/0,03,Eb4,C-En,C5,E3-G,E4,E3-C/0,5,Bb-C4-E4,C5\nF/0,5,A-C4/0,5,E3,C5,G-C4-D5,Eb5,G-En,C5,C4-E4-D\nE5,G,Bn4,B3-D/0,5,C-C5/0,5,G/0,5,C3/0,5,D4,Eb4\nC-En,C5,E3-G,E4,E3-C/0,5,Bb-C4-E4,C5,F/0,5\nA-C4/0,5,E3/0,5,Eb-A4,G4,D3-Gb,A,G3-A3-C5,En5,D,D5\nG-A-C,A4,Gn-Bn-D/0,5,G2/0,5,A2/0,5,B2-D4,Eb4,C3-En\nC5,E3-G3,E4,E3-C/0,5,Bb3-C4-E4,C5,F/0,5,A3-C4/0,5\nE3,C5,G-C4-D5,Eb5,G-En,C5,C4-E4-D,E5,G,Bn4\nB3-D/0,5,C-C5/0,5,G/0,5,C3/0,5,C5,D,C3-E3-G-E5,C5\nD,E,E3-Bb-C4,C5,D,C,F-A-C4-E5,C5,D,E,F-Ab-C4,C5,D\nC,G-C4-E4-E5,C5,D,E,G,Bn4,D/0,5,C4-C5/0,5,G/0,5,C3\nE4,F4,Gb4,C-Gn/0,5,G3-An4,G4,G2,E,G3-F,Gb4\nC-Gn/0,5,G3-A,G4,G2,E5,G3-C5,G4,F3-A,B,A3-C4-C5,D\nF-E,D,Ab-C4-C5,D,E3-G/0,5,G3-C4-E4,F4,D3-An4,G4\nB3-E,F,C3-G/0,5,G3-A,G4,G2,E,G3-F,Gb4,C-Gn/0,5\nG3-A,G4,E3,G,Eb-A,Bb4,D-Bn,B,B3,B4,D,A,A3-Gb,D4\nGn3-G4/0,5,F3/0,5,En,E4,D3-F4,Gb,C-Gn/0,5,G3-A4,G4\nG2,E,G3-F,Gb4,C-Gn/0,5,G3-A,G4,G2,E5,G3-C5,G4,F3-A\nB,A3-C4-C5,D5,F-E,D,Ab-C4-C5,D,E3-C/0,5,G3-C4/0,5\nE,G4,G3-C-Gb4,Gn,F-An-C-C5/0,5,A4,C,Gb3-A3-C4,A4\nC5,A,Gn-C4-E4-G4,C5,E5,G5,G3-C4-E4,E5,C5,G4\nD3-A/0,5,Gb3-C4-C5/0,5,Gn-B3-E,D5/0,5,C,C4/0,5\nG/0,5,C3/0,5,D4,Eb4,C-En,C5,E3-G,E4,E3-C/0,5\nBb-C4-E4,C5,F/0,5,A3-C4/0,5,E3,C5,G-C4-D5,Eb5,G-En\nC5,C4-E4-D,E5,G,Bn4,B3-D/0,5,C-C5/0,5,G/0,5,C3/0,5\nC5,D,C3-E3-G-E5,C5,D,E,E3-Bb-C4,C5,D,C,F-A-C4-E5\nC5,D,E,F-Ab-C4,C5,D,C,G-C4-E4-E5,C5,D,E,G,Bn4\nD/0,5,C4-C5/0,5,G/0"
 
-// --- Legacy keys of the old dog AI (simple_animal dogs) and the old tamed AI
-#define BB_FETCH_TARGET "BB_FETCH_TARGET"
-#define BB_DOG_FRIENDS "BB_DOG_FRIENDS"
-#define BB_DOG_ORDER_MODE "BB_DOG_ORDER_MODE"
-#define BB_DOG_PLAYING_DEAD "BB_DOG_PLAYING_DEAD"
-/// After being ordered to heel, we spend this long chilling out
-#define AI_DOG_HEEL_DURATION (20 SECONDS)
-/// After either being given a verbal order or a pointing order, ignore further of each for this duration
-#define AI_DOG_COMMAND_COOLDOWN (2 SECONDS)
-// dog command modes (what pointing at something/someone does depending on the last order the dog heard)
-/// Don't do anything (will still react to stuff around them though)
-#define DOG_COMMAND_NONE 0
-/// Will try to pick up and bring back whatever you point to
-#define DOG_COMMAND_FETCH 1
-/// Will get within a few tiles of whatever you point at and continually growl/bark. If the target is a living mob who gets too close, the dog will attack them with bites
-#define DOG_COMMAND_ATTACK 2
-//enumerators for parsing command speech
-#define COMMAND_HEEL "Heel"
-#define COMMAND_FETCH "Fetch"
-#define COMMAND_FOLLOW "Follow"
-#define COMMAND_STOP "Stop"
-#define COMMAND_ATTACK "Attack"
-#define COMMAND_DIE "Play Dead"
-
 // --- moved here from aquila/code/__DEFINES/vampires.dm, because the synced AI core uses them
 #define HAS_MIND_TRAIT(target, trait) (HAS_TRAIT(target, trait) || (target.mind ? HAS_TRAIT(target.mind, trait) : FALSE))
 #define TRAIT_NO_TRANSFORM "block_transformations"
@@ -282,3 +258,9 @@
 #define SQUASHED_SHOULD_BE_DOWN (1<<0)
 ///If this flag is on, squashing will deal no damage but gib the mob instead
 #define SQUASHED_SHOULD_BE_GIBBED (1<<0)
+
+/// Strip menu slot of a pet collar (wears_collar element), the TGUI strip menu already knows it
+#define STRIPPABLE_ITEM_PET_COLLAR "pet_collar"
+
+/// Dogs growl at and attack mobs with this trait (dog AI from BeeStation/BeeStation-Hornet). Bee gives it to felinids and mailman clothes; we give it to no one yet (our clothing has no clothing_traits).
+#define TRAIT_HATED_BY_DOGS "hated_by_dogs"

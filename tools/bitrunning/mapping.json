@@ -205,7 +205,7 @@
     "/mob/living/basic/parrot": "/mob/living/simple_animal/parrot",
     "/mob/living/basic/pet/cat/_proc": "/mob/living/simple_animal/pet/cat/Proc",
     "/mob/living/basic/pet/cat/space": "/mob/living/simple_animal/pet/cat/space",
-    "/mob/living/basic/pet/dog/corgi": "/mob/living/simple_animal/pet/dog/corgi",
+    "/mob/living/basic/pet/dog/corgi": "/mob/living/basic/pet/dog/corgi",
     "/mob/living/basic/pet/fox": "/mob/living/simple_animal/pet/fox",
     "/mob/living/basic/pet/gondola/virtual_domain": "/mob/living/simple_animal/pet/gondola/virtual_domain",
     "/mob/living/basic/trooper/pirate/melee": {

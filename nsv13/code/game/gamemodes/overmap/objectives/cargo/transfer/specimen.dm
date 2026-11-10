@@ -13,8 +13,8 @@
 
 		// Benign specimens
 		/mob/living/simple_animal/hostile/lizard,
-		/mob/living/simple_animal/pet/dog/corgi,
-		/mob/living/simple_animal/pet/dog/bullterrier,
+		/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
+		/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
 		/mob/living/simple_animal/pet/cat,
 		/mob/living/simple_animal/pet/fox,
 		/mob/living/simple_animal/pet/hamster,

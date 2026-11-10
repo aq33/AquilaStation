@@ -197,7 +197,7 @@
 	stage3	= list("<span class='danger'>Muszę... zjeść... czekoladę....</span>", "<span class='danger'>YAP</span>")
 	stage4	= list("<span class='danger'>Twój umysł nawiedzają wizje pralek!</span>")
 	stage5	= list("<span class='danger'>AUUUUUU!!!</span>")
-	new_form = /mob/living/simple_animal/pet/dog/corgi
+	new_form = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /datum/disease/transformation/corgi/stage_act()
 	..()

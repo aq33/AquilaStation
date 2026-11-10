@@ -86,7 +86,7 @@
 /datum/modular_mob_segment/corgis
 	max = 2
 	mobs = list(
-		/mob/living/simple_animal/pet/dog/corgi,
+		/mob/living/basic/pet/dog/corgi,
 	)
 
 

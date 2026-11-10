@@ -2563,17 +2563,17 @@
 	name = "Skrzynia z corgim"
 	desc = "Tysiące naukowców uznają ją za optymalną rasę psa. Ten corgi to zaledwie jeden z milionów psów ze szlachetnego rodu Iana. W zestawie urocza obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/corgi,
+	contains = list(/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z corgim"
 
 /datum/supply_pack/critter/corgi/generate()
 	. = ..()
 	if(prob(50))
-		var/mob/living/simple_animal/pet/dog/corgi/D = locate() in .
+		var/mob/living/basic/pet/dog/corgi/D = locate() in . // AQ EDIT - basic moby
 		if(D.gender == FEMALE)
 			qdel(D)
-			new /mob/living/simple_animal/pet/dog/corgi/Lisa(.)
+			new /mob/living/basic/pet/dog/corgi/lisa(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cow
 	name = "Skrzynia z krową"
@@ -2599,7 +2599,7 @@
 	name = "Skrzynia z egzotycznym corgim"
 	desc = "Corgi godne króla. Mają wyjątkowe umaszczenie, które podkreśla ich wyższość. W zestawie urocza obroża!"
 	cost = 5500
-	contains = list(/mob/living/simple_animal/pet/dog/corgi/exoticcorgi,
+	contains = list(/mob/living/basic/pet/dog/corgi/exoticcorgi, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z egzotycznym corgim"
 
@@ -2638,7 +2638,7 @@
 	name = "Skrzynia z mopsem"
 	desc = "Jak zwykły pies, tylko... spłaszczony. W zestawie ładna obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/pug,
+	contains = list(/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z mopsem"
 
@@ -2653,7 +2653,7 @@
 	name = "Skrzynia z bulterierem"
 	desc = "Jak zwykły pies, tylko z głową w kształcie jajka. W zestawie ładna obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/bullterrier,
+	contains = list(/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z bulterierem"
 

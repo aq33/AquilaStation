@@ -40,7 +40,7 @@
 	///Maximum size of a mob trying to enter the mech
 	var/maximum_mob_size = MOB_SIZE_SMALL
 	///Bigger animals that still fit inside (the station corgis)
-	var/list/allowed_bigger_mobs = list(/mob/living/simple_animal/pet/dog/corgi)
+	var/list/allowed_bigger_mobs = list(/mob/living/basic/pet/dog/corgi)
 	///Whether the headlights are on
 	var/headlights_toggle = FALSE
 	/// Air tank used for internals.

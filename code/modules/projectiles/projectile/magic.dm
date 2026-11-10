@@ -237,9 +237,9 @@
 							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
 							/mob/living/simple_animal/hostile/gorilla,
 							/mob/living/simple_animal/parrot,
-							/mob/living/simple_animal/pet/dog/corgi,
+							/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 							/mob/living/simple_animal/crab,
-							/mob/living/simple_animal/pet/dog/pug,
+							/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
 							/mob/living/simple_animal/pet/cat,
 							/mob/living/basic/mouse, // AQ EDIT - basic moby
 							/mob/living/simple_animal/chicken,

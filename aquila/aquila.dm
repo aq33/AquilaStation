@@ -880,7 +880,6 @@
 #include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
-#include "code\modules\mob\living\simple_animal\friendly\dog.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
 #include "code\modules\mob\living\simple_animal\friendly\gondola.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
@@ -1902,9 +1901,15 @@
 #include "code\modules\mob\living\basic\vermin\cockroach.dm"
 #include "code\modules\mob\living\basic\vermin\mothroach.dm"
 #include "code\modules\mob\living\basic\vermin\mouse.dm"
+#include "code\datums\ai\idle_behaviors\idle_dog.dm"
+#include "code\modules\mob\living\basic\pets\dog\_dog.dm"
+#include "code\modules\mob\living\basic\pets\dog\corgi.dm"
+#include "code\modules\mob\living\basic\pets\dog\dog_subtypes.dm"
+#include "code\modules\mob\living\basic\pets\dog\strippable_items.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_ai_core.dm"

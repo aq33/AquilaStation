@@ -1,3 +1,6 @@
+// AQUILA: taming synced with BeeStation/BeeStation-Hornet code/game/objects/items/carp_lasso.dm (bee/master 0adf0fe9ae),
+// see "AI core sync" in aquila/LEGACY_OVERRIDES.md. A tamed mob gets the dog AI and pet commands (obeys_commands) instead of
+// our old tamed AI and its radial. Our names, whitelists, unlimited uses and riding component (riding/tamed) stay.
 /obj/item/mob_lasso
 	name = "kosmiczne lasso"
 	desc = "Standardowe wyposażenie każdego kosmicznego kowboja.\nPozwala oswajać kosmiczne karpie."
@@ -6,87 +9,160 @@
 	///Ref to timer
 	var/timer
 	///Ref to lasso'd carp
-	var/mob/living/simple_animal/mob_target
+	var/mob/living/mob_target
+	///Range we can lasso things at
+	var/range = 9
 	///Whitelist of allowed animals
-	var/list/whitelist_mobs = list(/mob/living/simple_animal/hostile/carp, /mob/living/simple_animal/cow, /mob/living/simple_animal/hostile/retaliate/dolphin)
+	var/list/whitelist_mobs
+	///blacklist of disallowed animals
+	var/list/blacklist_mobs
+	///Typecache caches
+	var/static/list/whitelist_mob_cache = list()
+	var/static/list/blacklist_mob_cache = list()
+	/// Instructions you can give to tamed targets - stolen from dogs
+	var/static/list/pet_commands = list(
+		/datum/pet_command/idle,
+		/datum/pet_command/free,
+		/datum/pet_command/good_boy,
+		/datum/pet_command/follow,
+		/datum/pet_command/attack,
+	)
+
+/obj/item/mob_lasso/Initialize(mapload)
+	. = ..()
+	if(!whitelist_mob_cache[type] && !blacklist_mob_cache[type])
+		init_whitelists()
+	whitelist_mobs = whitelist_mob_cache[type]
+	blacklist_mobs = blacklist_mob_cache[type]
+
+/obj/item/mob_lasso/proc/init_whitelists()
+	whitelist_mob_cache[type] = typecacheof(list(
+		/mob/living/simple_animal/hostile/carp,
+		/mob/living/simple_animal/cow,
+		/mob/living/simple_animal/hostile/retaliate/dolphin,
+	))
 
 /obj/item/mob_lasso/afterattack(atom/target, mob/living/user, proximity_flag, click_parameters)
 	. = ..()
-	if(isliving(target) && check_allowed(target) && !iscarbon(target) && !issilicon(target) && locate(target) in oview(9, get_turf(src)))
-		var/mob/living/simple_animal/C = target
-		if(IS_DEAD_OR_INCAP(C))
-			to_chat(user, "<span class='warning'>[target] nie żyje.</span>")
-			return
-		if(!user.combat_mode && C == mob_target) //if trying to tie up previous target
-			to_chat(user, "<span class='notice'>Zaczynasz rozwiązywać [C]</span>")
-			if(proximity_flag && do_after(user, 2 SECONDS, FALSE, target))
-				user.faction |= "carpboy_[user]"
-				C.faction |= "carpboy_[user]"
-				C.faction |= user.faction
-				C.transform = transform.Turn(0)
-				C.toggle_ai(AI_ON)
-				var/datum/component/tamed_command/T = C.AddComponent(/datum/component/tamed_command)
-				T.add_ally(user)
-				to_chat(user, "<span class='notice'>[C] łasi się do ciebie.</span>")
-				UnregisterSignal(mob_target, COMSIG_PARENT_QDELETING)
-				mob_target = null
-				if(timer)
-					deltimer(timer)
-					timer = null
-				return
-		else if(timer) //if trying to add new target while old target is still flipped
-			to_chat(user, "<span class='warning'>Nie możesz teraz tego zrobić!</span>")
-			return
-		//Do lasso/beam for style points
-		var/datum/beam/B = new(loc, C, time=1 SECONDS, beam_icon='icons/effects/beam.dmi', beam_icon_state="carp_lasso", btype=/obj/effect/ebeam)
-		INVOKE_ASYNC(B, TYPE_PROC_REF(/datum/beam/, Start))
-		C.unbuckle_all_mobs()
-		mob_target = C
-		C.throw_at(get_turf(src), 9, 2, user, FALSE, force = 0)
-		C.transform = transform.Turn(180)
-		C.toggle_ai(AI_OFF)
-		RegisterSignal(C, COMSIG_PARENT_QDELETING, PROC_REF(handle_hard_del))
-		to_chat(user, "<span class='notice'>Łapiesz [C] na lasso!</span>")
-		timer = addtimer(CALLBACK(src, PROC_REF(fail_ally)), 6 SECONDS, TIMER_STOPPABLE) //after 6 seconds set the carp back
+	if(!isliving(target) || iscarbon(target) || issilicon(target) || !check_allowed(target))
+		if(ismob(target))
+			to_chat(user, span_notice("[target] wydaje się trochę za duży..."))
+		return
+	if(!(locate(target) in oview(range, get_turf(src))))
+		return
+	var/mob/living/C = target
+	if(IS_DEAD_OR_INCAP(C))
+		to_chat(user, span_warning("[target] nie żyje."))
+		return
+	if(!user.combat_mode && C == mob_target) //if trying to tie up previous target
+		to_chat(user, span_notice("Zaczynasz rozwiązywać [C]"))
+		if(proximity_flag && do_after(user, 2 SECONDS, FALSE, target))
+			tame_target(C, user)
+		return
+	else if(timer) //if trying to add new target while old target is still flipped
+		to_chat(user, span_warning("Nie możesz teraz tego zrobić!"))
+		return
+	//Do lasso/beam for style points
+	user.Beam(C, icon_state = "carp_lasso", icon = 'icons/effects/beam.dmi', time = 1 SECONDS)
+	C.unbuckle_all_mobs()
+	mob_target = C
+	C.throw_at(get_turf(src), 9, 2, user, FALSE, force = 0)
+	C.transform = C.transform.Turn(180)
+	set_target_ai(C, FALSE)
+	RegisterSignal(C, COMSIG_PARENT_QDELETING, PROC_REF(handle_hard_del), override = TRUE)
+	to_chat(user, span_notice("Łapiesz [C] na lasso!"))
+	timer = addtimer(CALLBACK(src, PROC_REF(fail_ally)), 6 SECONDS, TIMER_STOPPABLE) //after 6 seconds set the carp back
+
+/// Bee: the tamed mob acts like a dog and takes pet commands (Alt+click or speech) from its friends
+/obj/item/mob_lasso/proc/tame_target(mob/living/C, mob/living/user)
+	C.transform = C.transform.Turn(-180)
+	set_target_ai(C, TRUE)
+	//Riding and Tamed
+	C.tamed(user)
+	if(isanimal(C))
+		var/mob/living/simple_animal/simple_target = C
+		simple_target.tame = TRUE
+	if(!C.GetComponent(/datum/component/riding))
+		C.can_buckle = TRUE
+		C.buckle_lying = FALSE
+		var/datum/component/riding/D = C.LoadComponent(/datum/component/riding/tamed)
+		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(0, 8), TEXT_WEST = list( 0, 8)))
+		D.set_vehicle_dir_layer(NORTH, C.layer)
+		D.set_vehicle_dir_layer(EAST, C.layer - 0.1)
+		D.set_vehicle_dir_layer(WEST, C.layer - 0.1)
+		D.set_vehicle_dir_layer(SOUTH, C.layer + 0.1)
+	if(C.ai_controller)
+		QDEL_NULL(C.ai_controller)
+	C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
+	C.AddComponent(/datum/component/obeys_commands, pet_commands)
+	C.befriend(user)
+	//Faction - overwrites the faction code from befriend()
+	user.faction |= "carpboy_[user]"
+	C.faction = list(FACTION_NEUTRAL) //So the mob doesn't go back to mauling everyone
+	C.faction |= "carpboy_[user]"
+	C.faction |= user.faction
+	C.faction |= REF(user) // AQUILA: keep the befriend() faction, unfriend() looks for it
+	//Housekeeping
+	to_chat(user, span_notice("[C] łasi się do ciebie."))
+	UnregisterSignal(C, COMSIG_PARENT_QDELETING)
+	mob_target = null
+	if(timer)
+		deltimer(timer)
+		timer = null
+
+/// Lassoed mobs stop thinking until they are tamed or break free
+/obj/item/mob_lasso/proc/set_target_ai(mob/living/C, on)
+	if(isanimal(C))
+		var/mob/living/simple_animal/simple_target = C
+		simple_target.toggle_ai(on ? AI_ON : AI_OFF)
+	if(on)
+		REMOVE_TRAIT(C, TRAIT_AI_PAUSED, REF(src))
 	else
-		to_chat(user, "<span class='notice'>[target] wydaje się trochę za duży...</span>")
+		ADD_TRAIT(C, TRAIT_AI_PAUSED, REF(src))
 
 /obj/item/mob_lasso/proc/check_allowed(atom/target)
-	return (locate(target) in whitelist_mobs)
-
+	return ((!whitelist_mobs || is_type_in_typecache(target, whitelist_mobs)) && (!blacklist_mobs || !is_type_in_typecache(target, blacklist_mobs)))
 
 /obj/item/mob_lasso/proc/fail_ally()
-	visible_message("<span class='warning'>[mob_target] się uwalnia!</span>")
-	mob_target?.transform = transform.Turn(0)
-	mob_target.toggle_ai(AI_ON)
+	if(!mob_target)
+		return
+	visible_message(span_warning("[mob_target] się uwalnia!"))
+	mob_target.transform = mob_target.transform.Turn(-180)
+	set_target_ai(mob_target, TRUE)
 	UnregisterSignal(mob_target, COMSIG_PARENT_QDELETING)
 	mob_target = null
 	timer = null
 
 /obj/item/mob_lasso/proc/handle_hard_del()
+	SIGNAL_HANDLER
 	mob_target = null
+	timer = null
 
 ///Primal version, allows lavaland goobers to tame goliaths
 /obj/item/mob_lasso/primal
 	name = "pierwotne lasso"
 	desc = "Spotykane wśród narzędzi popielnych wędrowców.\nPozwala oswajać goliaty."
-	whitelist_mobs = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/goldgrub)
+
+/obj/item/mob_lasso/primal/init_whitelists()
+	whitelist_mob_cache[type] = typecacheof(list(
+		/mob/living/simple_animal/hostile/asteroid/goliath,
+		/mob/living/simple_animal/hostile/asteroid/goldgrub,
+	))
 
 /obj/item/mob_lasso/antag
 	name = "lasso bluespace"
 	desc = "Standardowe wyposażenie każdego złego kosmicznego kowboja!\nPozwala oswoić niemal wszystko."
-	///blacklist of disallowed mobs
-	var/list/blacklist_mobs = list(/mob/living/simple_animal/hostile/megafauna, /mob/living/simple_animal/hostile/alien, /mob/living/simple_animal/hostile/syndicate)
 
-/obj/item/mob_lasso/antag/check_allowed(atom/target)
-	//do type checking becuase I didn't think this through
-	for(var/atom/type as () in blacklist_mobs)
-		if(istype(target, type))
-			return FALSE
-	return(!locate(target) in blacklist_mobs)
+/obj/item/mob_lasso/antag/init_whitelists()
+	blacklist_mob_cache[type] = typecacheof(list(
+		/mob/living/simple_animal/hostile/megafauna,
+		/mob/living/simple_animal/hostile/alien,
+		/mob/living/simple_animal/hostile/syndicate,
+	))
 
 /obj/item/mob_lasso/antag/debug
 	name = "lasso debugowe"
 	desc = "Standardowe wyposażenie każdego kosmicznego kowboja-administratora!\nPozwala oswoić wszystko."
-	blacklist_mobs = list() //anything goes
 
+/obj/item/mob_lasso/antag/debug/init_whitelists()
+	blacklist_mob_cache[type] = list() // An empty list so we know this got initialized

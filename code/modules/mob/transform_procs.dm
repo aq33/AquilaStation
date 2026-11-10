@@ -622,7 +622,7 @@
 	if(pre_transform())
 		return
 
-	var/mob/living/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/simple_animal/pet/dog/corgi (loc)
+	var/mob/living/basic/pet/dog/corgi/new_corgi = new /mob/living/basic/pet/dog/corgi (loc) // AQ EDIT - basic moby
 	new_corgi.set_combat_mode(TRUE)
 	new_corgi.key = key
 
@@ -715,7 +715,7 @@
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_animal/pet/cat))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/pet/dog/corgi))
+	if(ispath(MP, /mob/living/basic/pet/dog/corgi)) // AQ EDIT - basic moby
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/crab))
 		return 1

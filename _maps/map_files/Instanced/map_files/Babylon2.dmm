@@ -2996,7 +2996,7 @@
 	dir = 4
 	},
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/bullterrier{
+/mob/living/basic/pet/dog/bullterrier{
 	desc = "Like the shotgun";
 	name = "Bulldog"
 	},

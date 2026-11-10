@@ -13576,7 +13576,7 @@
 	desc = "Skipper's bed! Looks comfy.";
 	name = "Dog Bed"
 	},
-/mob/living/simple_animal/pet/dog/corgi/Ian{
+/mob/living/basic/pet/dog/corgi/ian{
 	name = "Galactica"
 	},
 /obj/item/bedsheet/hop{

@@ -12890,7 +12890,7 @@
 /area/medical/chemistry)
 "Sc" = (
 /obj/structure/bed/dogbed/walter,
-/mob/living/simple_animal/pet/dog/bullterrier/walter,
+/mob/living/basic/pet/dog/bullterrier/walter,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8
@@ -14905,7 +14905,7 @@
 /area/engine/gravity_generator)
 "ZM" = (
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"

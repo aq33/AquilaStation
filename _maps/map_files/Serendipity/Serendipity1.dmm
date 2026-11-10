@@ -7372,7 +7372,7 @@
 	dir = 10
 	},
 /obj/structure/bed/dogbed/walter,
-/mob/living/simple_animal/pet/dog/bullterrier/walter,
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/carpet/police,
 /area/security/warden)
 "xP" = (
@@ -10684,7 +10684,7 @@
 "Jf" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /obj/structure/bed/dogbed/ian,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/xo)

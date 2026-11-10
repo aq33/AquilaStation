@@ -470,7 +470,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "tz" = (
 /obj/structure/bed/dogbed,
-/mob/living/simple_animal/pet/dog/corgi/Lisa{
+/mob/living/basic/pet/dog/corgi/lisa{
 	faction = list("Syndicate");
 	name = "Hermione"
 	},

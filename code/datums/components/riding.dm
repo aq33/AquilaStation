@@ -400,6 +400,7 @@
 		var/mob/living/simple_animal/S = parent
 		M.spacewalk = S.spacewalk
 		S.toggle_ai(AI_OFF)
+	ADD_TRAIT(parent, TRAIT_AI_PAUSED, REF(src)) // AQ EDIT - basic moby: oswojone zwierzę ma SI psa z Bee, jeździec nią steruje
 	..()
 
 /datum/component/riding/tamed/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
@@ -407,4 +408,5 @@
 	if(istype(parent, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = parent
 		S.toggle_ai(AI_ON)
+	REMOVE_TRAIT(parent, TRAIT_AI_PAUSED, REF(src)) // AQ EDIT - basic moby
 	..()

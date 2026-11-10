@@ -361,7 +361,7 @@
 	nonhuman_mobtype = /mob/living/simple_animal/hostile/gorilla
 
 /datum/preset_holoimage/corgi
-	nonhuman_mobtype = /mob/living/simple_animal/pet/dog/corgi
+	nonhuman_mobtype = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /datum/preset_holoimage/clown
 	outfit_type = /datum/outfit/job/clown

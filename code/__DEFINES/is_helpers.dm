@@ -164,9 +164,9 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
-#define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
+#define iscorgi(A) (istype(A, /mob/living/basic/pet/dog/corgi)) // AQ EDIT - basic moby
 
-#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
+#define isdog(A) (istype(A, /mob/living/basic/pet/dog)) // AQ EDIT - basic moby
 
 #define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
 
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/carbon/alien/humanoid,
 	/mob/living/simple_animal/hostile/alien,
 	/mob/living/simple_animal/pet/cat,
-	/mob/living/simple_animal/pet/dog,
+	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
 	/mob/living/simple_animal/pet/fox,
 	/mob/living/simple_animal/chicken,
 	/mob/living/simple_animal/hostile/bear,

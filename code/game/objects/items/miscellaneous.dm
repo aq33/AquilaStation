@@ -327,7 +327,7 @@
 	name = "nadajnik dostawy zwierzęcia"
 	desc = "Nie ma szybszych sposobów, są tylko bardziej humanitarne."
 	var/default_name = "Bacon"
-	var/mob_choice = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	var/mob_choice = /mob/living/basic/pet/dog/corgi/exoticcorgi // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/generate_options(mob/living/M)
 	var/input_name = stripped_input(M, "Jak ma się nazywać twój nowy zwierzak?", "Imię nowego zwierzaka", default_name, MAX_NAME_LEN)
@@ -367,7 +367,7 @@
 /obj/item/choice_beacon/pet/corgi
 	name = "nadajnik dostawy corgiego"
 	default_name = "Tosha"
-	mob_choice = /mob/living/simple_animal/pet/dog/corgi
+	mob_choice = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/hamster
 	name = "nadajnik dostawy chomika"
@@ -377,7 +377,7 @@
 /obj/item/choice_beacon/pet/pug
 	name = "nadajnik dostawy mopsa"
 	default_name = "Silvestro"
-	mob_choice = /mob/living/simple_animal/pet/dog/pug
+	mob_choice = /mob/living/basic/pet/dog/pug // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/ems
 	name = "nadajnik dostawy zwierzęcia wsparcia emocjonalnego"

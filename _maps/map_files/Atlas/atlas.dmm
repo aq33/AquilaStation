@@ -14403,7 +14403,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Nm" = (
-/mob/living/simple_animal/pet/dog/pug{
+/mob/living/basic/pet/dog/pug{
 	desc = "It's Pugley IV, the research department's lovable pug clone. Hopefully nothing happens to this one - fourth time lucky!";
 	name = "Pugley IV";
 	real_name = "Pugley IV"

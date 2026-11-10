@@ -588,11 +588,11 @@
 			if("runtime")
 				M.change_mob_type( /mob/living/simple_animal/pet/cat/Runtime , null, null, delmob )
 			if("corgi")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi , null, null, delmob )
+				M.change_mob_type( /mob/living/basic/pet/dog/corgi , null, null, delmob ) // AQ EDIT - basic moby
 			if("ian")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi/Ian , null, null, delmob )
+				M.change_mob_type( /mob/living/basic/pet/dog/corgi/ian , null, null, delmob ) // AQ EDIT - basic moby
 			if("pug")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/pug , null, null, delmob )
+				M.change_mob_type( /mob/living/basic/pet/dog/pug , null, null, delmob ) // AQ EDIT - basic moby
 			if("crab")
 				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
 			if("coffee")

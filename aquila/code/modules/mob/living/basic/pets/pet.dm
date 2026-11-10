@@ -19,3 +19,7 @@
 	for(var/i in list(1,2,4,8,4,2,1,2))
 		setDir(i)
 		sleep(1)
+
+/mob/living/basic/pet/machine_wash(obj/machinery/washing_machine/WM)
+	WM.bloody_mess = TRUE
+	gib()

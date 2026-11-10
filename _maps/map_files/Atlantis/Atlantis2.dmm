@@ -18366,7 +18366,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /obj/structure/bed/dogbed/ian,
 /obj/machinery/light{
 	dir = 4

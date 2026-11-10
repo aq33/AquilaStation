@@ -251,7 +251,7 @@
 			'sound/creatures/monkey/monkey_screech_7.ogg')
 	if(isalien(user))
 		return "hiss"
-	if(istype(user, /mob/living/simple_animal/pet/dog))
+	if(istype(user, /mob/living/basic/pet/dog))
 		return 'aquila/sound/voice/speech/dog1.ogg'
 	if(istype(user, /mob/living/simple_animal/pet/cat))
 		return 'nsv13/sound/voice/felinid/scream_cat.ogg'

@@ -11,16 +11,16 @@
 		/datum/reagent/corgium = 10
 	)
 
-/mob/living/simple_animal/pet/dog/corgi/chef/Initialize(mapload)
+/mob/living/basic/pet/dog/corgi/chef/Initialize(mapload) // AQ EDIT - basic moby
 	..()
 	var/obj/item/clothing/head/chefhat/hat = new (src)
 	inventory_head = hat
 	update_corgi_fluff()
-	regenerate_icons()
+	update_appearance() // AQ EDIT - basic moby
 
-/mob/living/simple_animal/pet/dog/corgi/seccie/Initialize(mapload)
+/mob/living/basic/pet/dog/corgi/seccie/Initialize(mapload) // AQ EDIT - basic moby
 	..()
 	var/obj/item/clothing/head/helmet/sec/hat = new (src) // AQUILA EDIT - zwykły hełm nie ma dog_fashion, regenerate_icons() sypało runtime
 	inventory_head = hat
 	update_corgi_fluff()
-	regenerate_icons()
+	update_appearance() // AQ EDIT - basic moby
