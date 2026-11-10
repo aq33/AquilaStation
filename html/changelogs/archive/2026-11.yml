@@ -635,6 +635,32 @@
   - balance: Na wezwanie wsparcia odpowiada najwyżej 3 najbliższych boarderów KNPC.
   - code_imp: Mniej pracy przy szukaniu wrogów przez AI KNPC (jedno view() zamiast
       dwóch).
+  - rscadd: Drużyny nazywają się Alpha, Bravo, Charlie i Delta. Do drużyn trafia cała
+      załoga według zawodu (medycy do medycznej, inżynierowie do kontroli uszkodzeń),
+      XO może to zmienić.
+  - rscadd: Funkcje w drużynie (żołnierz, medyk, inżynier, dowódca) z ikoną w kolorze
+      drużyny nad postacią. Po śmierci dowódcy dowodzenie przejmuje następny członek.
+  - rscadd: Automat drużyny wydaje jeden zestaw według funkcji w skrzyni sprzętu,
+      z pancerzem i skafandrem obcisłym. Skrzynię oddajesz do automatu, także ze sprzętem
+      luzem. Po skrzyni widać, czego w niej brakuje.
+  - rscadd: XO tworzy, rozwiązuje i przemianowuje drużyny (do 10), zmienia ich kolory
+      i wybiera, czy dostają lekki, czy ciężki pancerz.
+  - rscadd: 'Nowe wykroczenie w kosmicznym prawie: Przywłaszczenie sprzętu drużyny.
+      XO zgłasza je do akt ochrony z konsoli.'
+  - rscadd: 'Nowa konsola drużyn XO: cztery drużyny obok siebie, przydział załogi,
+      stan członków, kto nie oddał sprzętu, mapa taktyczna, rozkazy i kamera pancerza.'
+  - rscadd: 'Pager drużyny otwiera okno z członkami, zadaniem, wiadomościami i mapą
+      taktyczną: planem pokładu z siatką sektorów (A1, B2…), których używają rozkazy.'
+  - rscadd: Rozkazy dowódcy i XO pojawiają się na ekranie z portretem nadawcy. Znaczniki
+      rozkazów (tędy, atak, obrona, odwrót, zbiórka, cel) widać w świecie i na mapie.
+  - rscadd: Znaczniki drużyny spoza ekranu pokazują się przy jego krawędzi ze strzałką
+      i odległością.
+  - rscadd: Pager drużyny można schować w PDA.
+  - rscadd: Głos rozkazów drużyny przez ElevenLabs (preferencja „Głos rozkazów drużyny”).
+  - imageadd: Nowa skrzynia sprzętu drużyny. Ikony funkcji i blipy mapy z CM-SS13,
+      znaczniki rozkazów i ramka portretu z TGMC; znacznik „Tędy” i emblematy dorysowane
+      w ich stylu.
+  - config: Nowy plik config/squad_tts.txt (klucz ElevenLabs, model, głosy).
   dwasint, Absolucy (Monkestation), joker:
   - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
       parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'
