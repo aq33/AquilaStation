@@ -986,6 +986,7 @@
 #include "code\modules\projectiles\disorient.dm"
 #include "code\modules\projectiles\boxes_magazines\internal\shotgun.dm"
 #include "code\modules\projectiles\guns\ballistic\automatic.dm"
+#include "code\modules\projectiles\guns\ballistic\polskie.dm"
 #include "code\modules\projectiles\guns\ballistic\rifle\blaster.dm"
 #include "code\modules\projectiles\guns\energy\energy.dm"
 #include "code\modules\projectiles\guns\energy\laser.dm"
