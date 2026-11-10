@@ -20,6 +20,8 @@ import {
   LeaderboardTable,
   PlayerName,
 } from './EconomyLeaderboard';
+import { MapVoteContent } from './MapVote';
+import { RoundSurveyContent } from './RoundSurvey';
 
 type Objective = {
   text: string;
@@ -89,6 +91,10 @@ type Data = {
   earnings: Earning[];
   leaderboard: LeaderboardEntry[];
   my_ckey: string;
+  // the end of round map vote (MapVote.tsx data) and the survey (RoundSurvey.tsx data)
+  vote_open?: BooleanLike;
+  survey_open?: BooleanLike;
+  time_remaining?: number;
 };
 
 const STATUS_INFO = {
@@ -121,51 +127,96 @@ const percent = (part: number, total: number) =>
 
 export const RoundEndReport = (props) => {
   const { data } = useBackend<Data>();
-  const { station_name, round_id, sections = [], earnings = [] } = data;
-  const [tab, setTab] = useState('summary');
+  const { station_name, vote_open, survey_open } = data;
+  // The report, the next round vote and the survey in one window: the vote and the survey in the right column
+  const sideColumn = !!vote_open || !!survey_open;
 
   return (
-    <Window title={`Koniec zmiany na ${station_name}`} width={820} height={680}>
-      <Window.Content scrollable>
-        <PersonalBanner />
-        <Tabs fluid>
-          <Tabs.Tab
-            icon="flag-checkered"
-            selected={tab === 'summary'}
-            onClick={() => setTab('summary')}
-          >
-            Podsumowanie
-          </Tabs.Tab>
-          <Tabs.Tab
-            icon="coins"
-            selected={tab === 'earnings'}
-            onClick={() => setTab('earnings')}
-          >
-            Zarobki ({earnings.length})
-          </Tabs.Tab>
-          <Tabs.Tab
-            icon="scroll"
-            selected={tab === 'details'}
-            onClick={() => setTab('details')}
-          >
-            Szczegóły ({sections.length})
-          </Tabs.Tab>
-        </Tabs>
-        {tab === 'summary' && (
-          <>
-            <StatsSection />
-            <MissionSection />
-          </>
-        )}
-        {tab === 'earnings' && <EarningsSection />}
-        {tab === 'details' && <DetailsSection />}
-        {!!round_id && (
-          <Box color="label" textAlign="right" mt={1}>
-            Runda #{round_id}
+    <Window
+      title={`Koniec zmiany na ${station_name}`}
+      width={sideColumn ? 1280 : 820}
+      height={720}
+    >
+      <Window.Content>
+        {sideColumn ? (
+          <Stack fill>
+            <Stack.Item grow basis={0} overflowY="auto" pr={0.5}>
+              <ReportContent />
+            </Stack.Item>
+            <Stack.Item grow basis={0} overflowY="auto" pr={0.5}>
+              <SideColumn />
+            </Stack.Item>
+          </Stack>
+        ) : (
+          <Box height="100%" overflowY="auto">
+            <ReportContent />
           </Box>
         )}
       </Window.Content>
     </Window>
+  );
+};
+
+const SideColumn = (props) => {
+  const { data } = useBackend<Data>();
+  const { vote_open } = data;
+  return (
+    <>
+      {!!vote_open && (
+        <Section title="Głosowanie o następną rundę">
+          <MapVoteContent />
+        </Section>
+      )}
+      <RoundSurveyContent />
+    </>
+  );
+};
+
+const ReportContent = (props) => {
+  const { data } = useBackend<Data>();
+  const { round_id, sections = [], earnings = [] } = data;
+  const [tab, setTab] = useState('summary');
+
+  return (
+    <>
+      <PersonalBanner />
+      <Tabs fluid>
+        <Tabs.Tab
+          icon="flag-checkered"
+          selected={tab === 'summary'}
+          onClick={() => setTab('summary')}
+        >
+          Podsumowanie
+        </Tabs.Tab>
+        <Tabs.Tab
+          icon="coins"
+          selected={tab === 'earnings'}
+          onClick={() => setTab('earnings')}
+        >
+          Zarobki ({earnings.length})
+        </Tabs.Tab>
+        <Tabs.Tab
+          icon="scroll"
+          selected={tab === 'details'}
+          onClick={() => setTab('details')}
+        >
+          Szczegóły ({sections.length})
+        </Tabs.Tab>
+      </Tabs>
+      {tab === 'summary' && (
+        <>
+          <StatsSection />
+          <MissionSection />
+        </>
+      )}
+      {tab === 'earnings' && <EarningsSection />}
+      {tab === 'details' && <DetailsSection />}
+      {!!round_id && (
+        <Box color="label" textAlign="right" mt={1}>
+          Runda #{round_id}
+        </Box>
+      )}
+    </>
   );
 };
 
