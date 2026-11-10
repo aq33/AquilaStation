@@ -694,6 +694,7 @@
 #include "code\modules\food_and_drinks\drinks\drinks.dm"
 #include "code\modules\food_and_drinks\food\slicing.dm"
 #include "code\modules\food_and_drinks\food\snacks_pie.dm"
+#include "code\modules\food_and_drinks\food\condiment_polskie.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\microwave.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\monkeyrecycler.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\smartfridge.dm"
