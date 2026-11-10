@@ -236,6 +236,7 @@
 		linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_GENERIC, rnd_reward)
 		linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_DISCOVERY, dp_reward)
 		budget.adjust_money(monetary_reward)
+		add_department_commission(ACCOUNT_SCI, monetary_reward) // premia działu (department_commission.dm)
 	//Announce victory or fuck up
 	var/success_type
 	switch(success_rate)
