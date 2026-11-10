@@ -14,6 +14,9 @@
 /obj/structure/overmap/small_craft/combat/light/formation_test/count_ai_support()
 	return test_support
 
+/obj/structure/overmap/small_craft/combat/light/formation_test/count_ai_threats_allies(range)
+	return test_support
+
 /datum/unit_test/aquila_ai_formation
 	var/obj/structure/overmap/small_craft/combat/light/formation_test/ship
 	var/obj/structure/overmap/small_craft/target
@@ -48,6 +51,9 @@
 		return "Punkt nie leży na okręgu dystansu (odległość od celu [promien], miało być około 40)"
 	if(spot == get_turf(ship))
 		return "Punktem okazało się miejsce, w którym okręt już stoi"
+	// Bazowe move_toward() odpala silniki dopiero powyżej 12 pól, więc bliższy punkt znaczyłby stanie
+	if(overmap_dist(ship, spot) < 13)
+		return "Punkt wypadł w martwej strefie silników ([overmap_dist(ship, spot)] pól)"
 	// Dopóki nie dolecimy i nie minie czas, trzymamy ten sam punkt, żeby nie zygzakować
 	var/turf/znowu = ship.get_ai_standoff_point(target, 40)
 	if(znowu != spot)

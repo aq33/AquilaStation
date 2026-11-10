@@ -76,7 +76,7 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 
 /// Starts hunting a contact we just lost
 /obj/structure/overmap/proc/start_ai_search(obj/structure/overmap/target)
-	var/turf/guess = get_ai_contact_guess(target)
+	var/turf/guess = ai_far_enough_point(get_ai_contact_guess(target))
 	if(!guess)
 		return FALSE
 	ai_search_target = target
@@ -104,8 +104,9 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 		ai_search_pulsed = TRUE
 		send_radar_pulse()
 	var/turf/centre = get_ai_contact_guess(ai_search_target) || get_turf(src)
-	patrol_target = locate(clamp(centre.x + rand(-AI_SEARCH_SWEEP, AI_SEARCH_SWEEP), 1, world.maxx),
+	var/turf/sweep = locate(clamp(centre.x + rand(-AI_SEARCH_SWEEP, AI_SEARCH_SWEEP), 1, world.maxx),
 		clamp(centre.y + rand(-AI_SEARCH_SWEEP, AI_SEARCH_SWEEP), 1, world.maxy), z)
+	patrol_target = ai_far_enough_point(sweep)
 
 // ---------------------------------------------------------------- B: radar discipline
 
@@ -196,7 +197,8 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 	var/obj/structure/overmap/other = goal
 	if(other.faction == faction || get_contact_suite(other))
 		return null
-	return get_ai_contact_guess(other)
+	// Punkt bliżej niż martwa strefa silników znaczyłby, że okręt tam dryfuje bez ciągu (ai_formation.dm)
+	return ai_far_enough_point(get_ai_contact_guess(other))
 
 // ---------------------------------------------------------------- bookkeeping
 
@@ -208,11 +210,11 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 		return "ciche podejście"
 	if(ai_search_target)
 		return ai_search_pulsed ? "przeczesywanie" : "szukanie"
+	if(ai_waiting_for_support)
+		return "czeka na flotę"
 	if(last_target)
 		if(overmap_dist(src, last_target) <= max_weapon_range)
 			return "walka"
-		if(ai_waiting_for_support)
-			return "czeka na flotę"
 		if(get_contact_suite(last_target))
 			return "pościg"
 		return LAZYACCESS(ai_last_contact, last_target) ? "pościg w ciemno" : "pościg z meldunku"

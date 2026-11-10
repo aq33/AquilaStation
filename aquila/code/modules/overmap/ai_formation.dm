@@ -17,20 +17,21 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 /// Jak długo okręt trzyma się raz wybranego punktu na okręgu dystansu
 #define AI_REPOSITION_MIN (6 SECONDS)
 #define AI_REPOSITION_MAX (13 SECONDS)
-/// Uznajemy punkt za osiągnięty z tej odległości
-#define AI_REPOSITION_REACHED 7
-/// O tyle stopni obok obecnego namiaru szukamy nowej pozycji
-#define AI_REPOSITION_ARC_MIN 45
-#define AI_REPOSITION_ARC_MAX 110
+/// Uznajemy punkt za osiągnięty z tej odległości.
+/// Musi być większe niż 12, bo bazowe move_toward() (ai-skynet.dm) odpala silniki tylko wtedy,
+/// gdy cel jest dalej niż 12 pól - bliżej okręt sam z siebie hamuje tłumikami i staje.
+#define AI_REPOSITION_REACHED 16
+/// Najbliższy punkt, jaki w ogóle wybieramy; poniżej tego okręt by do niego dopłynął bez ciągu
+#define AI_REPOSITION_MIN_HOP 22
 /// Co ile okręt może zmienić stronę okrążania, żeby nie zygzakował
 #define AI_SIDE_SWITCH_CHANCE 15
 
 /// W jakim promieniu liczymy wrogów, przed którymi warto poczekać na swoich
-#define AI_ENGAGE_THREAT_RANGE 45
+#define AI_ENGAGE_THREAT_RANGE 35
 /// Przewaga wroga, przy której zwykły dowódca czeka na resztę floty
-#define AI_ENGAGE_MARGIN 1
-#define AI_ENGAGE_MARGIN_CAUTIOUS 0
-#define AI_ENGAGE_MARGIN_RECKLESS 3
+#define AI_ENGAGE_MARGIN 2
+#define AI_ENGAGE_MARGIN_CAUTIOUS 1
+#define AI_ENGAGE_MARGIN_RECKLESS 5
 
 #define AI_TEMPERAMENT_CAUTIOUS "ostrożny"
 #define AI_TEMPERAMENT_RECKLESS "brawurowy"
@@ -45,6 +46,22 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 	/// AQUILA - czeka na resztę floty, zamiast wchodzić na zasięg dział
 	var/ai_waiting_for_support = FALSE
 
+/// Bazowe move_toward() (ai-skynet.dm) odpala silniki tylko wtedy, gdy cel jest dalej niż 12 pól.
+/// Bliżej okręt sam ustawia kurs, włącza tłumiki i staje. Każdy punkt, który mu podajemy,
+/// przechodzi więc przez to: zbyt bliski jest przesuwany dalej po tym samym namiarze.
+#define AI_ENGINE_DEAD_ZONE 14
+
+/obj/structure/overmap/proc/ai_far_enough_point(turf/point, minimum = AI_ENGINE_DEAD_ZONE)
+	if(!point || point.z != z)
+		return point
+	var/dist = overmap_dist(src, point)
+	if(dist >= minimum)
+		return point
+	// Ten sam kierunek, tylko dalej; przy punkcie dokładnie pod nami bierzemy własny kurs
+	var/bearing = dist ? overmap_angle(src, point) : angle
+	return locate(clamp(round(x + sin(bearing) * minimum), 1, world.maxx),
+		clamp(round(y + cos(bearing) * minimum), 1, world.maxy), z)
+
 // ---------------------------------------------------------------- krążenie zamiast stania
 
 /// Ilu wrogów jest w promieniu, w którym mogliby nas wspólnie ostrzelać
@@ -54,6 +71,42 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 		if(!istype(other) || other == src || other.z != z || other.mass <= MASS_TINY)
 			continue
 		if(!is_ai_hostile(other) || istype(other, /obj/structure/overmap/asteroid))
+			continue
+		if(overmap_dist(src, other) <= range)
+			.++
+
+/// Najbliższy sojusznik godny tej nazwy (nie myśliwiec, nie asteroida), albo null
+/obj/structure/overmap/proc/get_ai_nearest_ally()
+	var/obj/structure/overmap/best
+	var/best_dist = INFINITY
+	for(var/obj/structure/overmap/other as anything in current_system?.system_contents)
+		if(!istype(other) || other == src || other.z != z || other.faction != faction)
+			continue
+		if(other.mass <= MASS_TINY || istype(other, /obj/structure/overmap/asteroid) || other.ai_fleeing)
+			continue
+		var/dist = overmap_dist(src, other)
+		if(dist < best_dist)
+			best_dist = dist
+			best = other
+	return best
+
+/// Dokąd lecieć, gdy wrogów jest więcej niż swoich: do najbliższego swojego, nie na wroga.
+/// Null, gdy nie ma do kogo dołączyć albo i tak jesteśmy już przy nim.
+/obj/structure/overmap/proc/get_ai_regroup_point()
+	if(!ai_waiting_for_support)
+		return null
+	var/obj/structure/overmap/ally = get_ai_nearest_ally()
+	if(QDELETED(ally) || overmap_dist(src, ally) < 12)
+		return null
+	return ai_far_enough_point(get_turf(ally))
+
+/// Ilu swoich jest w tym samym promieniu, w którym liczymy wrogów
+/obj/structure/overmap/proc/count_ai_threats_allies(range = AI_ENGAGE_THREAT_RANGE)
+	. = 0
+	for(var/obj/structure/overmap/other as anything in current_system?.system_contents)
+		if(!istype(other) || other == src || other.z != z || other.faction != faction)
+			continue
+		if(other.mass <= MASS_TINY || istype(other, /obj/structure/overmap/asteroid))
 			continue
 		if(overmap_dist(src, other) <= range)
 			.++
@@ -90,11 +143,19 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 			ai_standoff_side = pick(1, -1)
 		else
 			ai_standoff_side = closer_angle_difference(bearing, ally_bearing) >= 0 ? 1 : -1
-	var/arc = ai_standoff_side * rand(AI_REPOSITION_ARC_MIN, AI_REPOSITION_ARC_MAX)
-	var/new_bearing = (bearing + arc + 360) % 360
-	ai_standoff_point = locate(
-		clamp(round(target.x + sin(new_bearing) * standoff), 1, world.maxx),
-		clamp(round(target.y + cos(new_bearing) * standoff), 1, world.maxy), z)
+	// Bierzemy pierwszy punkt na okręgu, do którego jest dość daleko, żeby silniki w ogóle ruszyły
+	// Coraz szersze łuki: bierzemy pierwszy, który wypada dość daleko
+	var/static/list/luki = list(60, 90, 120, 150)
+	var/turf/wybrany
+	for(var/arc in luki)
+		var/new_bearing = (bearing + ai_standoff_side * arc + 360) % 360
+		var/turf/kandydat = locate(
+			clamp(round(target.x + sin(new_bearing) * standoff), 1, world.maxx),
+			clamp(round(target.y + cos(new_bearing) * standoff), 1, world.maxy), z)
+		wybrany = kandydat
+		if(overmap_dist(src, kandydat) >= AI_REPOSITION_MIN_HOP)
+			break
+	ai_standoff_point = wybrany
 	ai_standoff_until = world.time + rand(AI_REPOSITION_MIN, AI_REPOSITION_MAX)
 	return ai_standoff_point
 
@@ -116,7 +177,9 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 	var/threats = count_ai_threats()
 	if(threats <= 1)
 		return FALSE // Jeden na jednego to nie szarża
-	return threats > count_ai_support() + 1 + margin
+	// Swoich liczymy w tym samym promieniu co wrogów, inaczej porównujemy różne rzeczy.
+	// Z rozkładu w nagraniach: "wrogów >= swoich + 2" to około 19% sytuacji, + 3 to 13%.
+	return threats >= count_ai_threats_allies() + margin
 
 /// Stan do nagrania i do etykiety taktyki
 /obj/structure/overmap/proc/update_ai_formation()
@@ -142,8 +205,8 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 #undef AI_REPOSITION_MIN
 #undef AI_REPOSITION_MAX
 #undef AI_REPOSITION_REACHED
-#undef AI_REPOSITION_ARC_MIN
-#undef AI_REPOSITION_ARC_MAX
+#undef AI_ENGINE_DEAD_ZONE
+#undef AI_REPOSITION_MIN_HOP
 #undef AI_SIDE_SWITCH_CHANCE
 #undef AI_ENGAGE_THREAT_RANGE
 #undef AI_ENGAGE_MARGIN
