@@ -66,6 +66,8 @@
 /obj/item/ammo_casing/proc/get_misfire_chance()
 	if(!isnull(misfire_chance))
 		return misfire_chance
+	if(!caliber) // magia, strzałki, chemia: nie ma prochu, nie ma niewypału (różdżka po niewypale już by się nie ładowała)
+		return 0
 	var/datum/component/forged_munition/forged = GetComponent(/datum/component/forged_munition)
 	if(forged && !forged.galvanized)
 		// klasa I (bonus 1) 2%, każda wyższa klasa mniej, mistrzowska prawie nigdy
@@ -100,7 +102,7 @@
 	projectile.stamina *= integrity_mult
 	if(projectile.speed > 0)
 		var/speed_mult = projectile_speed_multiplier * integrity_mult
-		if(projectile.flag == "bullet" && !projectile.hitscan)
+		if(projectile.is_gun_bullet())
 			speed_mult *= AQ_HANDGUN_BULLET_SPEED_MULT * rand(85, 115) / 100 // seria nie leci sznurkiem (CM)
 		if(speed_mult > 0)
 			projectile.speed /= speed_mult // speed to czas na kratkę
@@ -140,14 +142,17 @@
 /obj/item/gun/proc/hang_fire(obj/item/ammo_casing/casing, obj/item/projectile/held_projectile, atom/target, mob/living/user)
 	if(QDELETED(held_projectile))
 		return
-	if(QDELETED(casing) || chambered != casing || casing.BB || QDELETED(user))
+	if(QDELETED(casing) || chambered != casing || casing.BB)
 		qdel(held_projectile)
 		return
 	casing.BB = held_projectile
+	if(QDELETED(user) || !(src in user.held_items) || user.incapacitated())
+		return // broń już nie w ręku strzelca: nabój zostaje w komorze, a nie wylatuje z kafla, na którym ktoś stał
 	skip_misfire_roll = TRUE
 	if(get_dist(user, target) > 20 || target?.z != user.z)
 		target = get_ranged_target_turf(user, user.dir, 7)
 	process_fire(target, user, TRUE)
+	skip_misfire_roll = FALSE // strzał mógł nie paść (bezpiecznik, przegrzanie)
 
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	. = ..()
@@ -173,7 +178,7 @@
 			to_chat(holder, "<span class='warning'>[src] jest rozgrzana do czerwoności i nie strzela, dopóki nie ostygnie.</span>")
 			burn_holder_hand(holder)
 		playsound(src, 'sound/items/welder.ogg', 30, TRUE)
-	update_icon()
+		update_icon()
 
 /obj/item/gun/proc/burn_holder_hand(mob/living/carbon/holder)
 	if(!istype(holder) || holder.gloves)
@@ -283,17 +288,23 @@
 
 // Zestaw konserwacji w pudełku drużyny, gdy zestaw zawiera broń (nie wchodzi do listy zwrotów, więc zużyty zestaw nie daje grzywny)
 /obj/machinery/squad_vendor/ui_act(action, params)
-	var/datum/squad_loadout/loadout = action == "vend" ? locate(params["item_id"]) : null
+	var/list/boxes_before = list()
+	if(action == "vend")
+		for(var/obj/item/storage/box/squad_kit/box in get_turf(src))
+			boxes_before += box
 	. = ..()
-	if(!. || !istype(loadout))
+	if(!. || action != "vend")
 		return
-	var/has_gun = FALSE
-	for(var/path in loadout.items)
-		if(ispath(path, /obj/item/gun))
-			has_gun = TRUE
-			break
-	if(!has_gun)
-		return
+	// Tylko pudełko wydane właśnie teraz i tylko z bronią (drużyna bez dostępu do broni dostaje pudełko bez niej)
 	for(var/obj/item/storage/box/squad_kit/box in get_turf(src))
-		if(!(locate(/obj/item/gun_maintenance_kit) in box))
-			new /obj/item/gun_maintenance_kit(box)
+		if((box in boxes_before) || !(locate(/obj/item/gun) in box) || (locate(/obj/item/gun_maintenance_kit) in box))
+			continue
+		new /obj/item/gun_maintenance_kit(box)
+
+// Zestaw konserwacji to dodatek do pudełka, nie wypożyczenie: wraca razem z pudełkiem, bo inaczej pudełko nigdy nie byłoby puste
+/obj/machinery/squad_vendor/return_item(mob/living/user, obj/item/I, quiet = FALSE)
+	if(istype(I, /obj/item/gun_maintenance_kit) && istype(I.loc, /obj/item/storage/box/squad_kit))
+		I.forceMove(src)
+		qdel(I)
+		return TRUE
+	return ..()

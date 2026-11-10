@@ -66,7 +66,8 @@
 	aq_firemode = new_mode
 	if(new_mode != AQ_FIREMODE_SAFE)
 		aq_last_fire_mode = new_mode
-	if(new_mode == AQ_FIREMODE_BURST)
+	// Bezpiecznik zostawia serię broni (NPC bezpiecznika nie używają i strzelają jak dawniej, seriami)
+	if(new_mode == AQ_FIREMODE_BURST || new_mode == AQ_FIREMODE_SAFE)
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
 	else if(initial(burst_size) > 1)
@@ -74,7 +75,7 @@
 		fire_delay = 0
 	if(istype(src, /obj/item/gun/ballistic/automatic))
 		var/obj/item/gun/ballistic/automatic/auto = src
-		auto.select = (new_mode == AQ_FIREMODE_BURST) ? 1 : 0
+		auto.select = (burst_size > 1) ? 1 : 0
 	if(autofire_component)
 		autofire_component.stop_firing()
 	if(!silent && user)
@@ -116,6 +117,9 @@
 /obj/item/gun/ballistic/automatic/burst_select()
 	cycle_firemode(usr)
 
+/obj/item/gun/ballistic/automatic/m90/burst_select()
+	cycle_firemode(usr)
+
 /obj/item/gun/examine(mob/user)
 	. = ..()
 	if(length(aq_firemodes) > 1)
@@ -130,7 +134,21 @@
 		return FALSE
 	if(!istype(user) || !user.client || issilicon(user))
 		return FALSE
+	if(!(src in user.held_items))
+		return FALSE
 	return TRUE
+
+// Samobójstwo mnoży obrażenia naboju w komorze ×5 i dopiero potem strzela. Gdy strzał nie padnie (bezpiecznik,
+// przegrzanie), mnożnik nie może zostać na naboju i rosnąć z każdą próbą
+/obj/item/gun/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
+	if(safety_blocks(user))
+		balloon_alert(user, "bezpiecznik!")
+		return
+	var/obj/item/projectile/loaded = chambered?.BB
+	var/loaded_damage = loaded?.damage
+	. = ..()
+	if(loaded && !QDELETED(loaded) && !loaded.fired && chambered?.BB == loaded)
+		loaded.damage = loaded_damage
 
 /obj/item/gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed = FALSE)
 	if(safety_blocks(user))
@@ -141,20 +159,34 @@
 
 /// Przypadkowy wystrzał w losowym kierunku (upadek, rzut)
 /obj/item/gun/proc/accidental_discharge(mob/living/holder)
-	if(aq_firemode == AQ_FIREMODE_SAFE || !chambered?.BB || !can_shoot())
+	if(!has_safety || aq_firemode == AQ_FIREMODE_SAFE || !chambered?.BB || !can_shoot())
+		return FALSE
+	if(holder && HAS_TRAIT(holder, TRAIT_PACIFISM))
+		return FALSE
+	// Iglica jak przy zwykłym strzale (bez komunikatów): bez iglicy, z obcą albo bez właściciela broń sama nie odpali
+	if(!no_pin_required && (!pin || (!(pin.obj_flags & EMAGGED) && (!holder || !pin.pin_auth(holder)))))
 		return FALSE
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
 		return FALSE
-	var/obj/item/projectile/stray = chambered.BB
-	chambered.BB = null
-	stray.forceMove(our_turf)
-	stray.starting = our_turf
-	stray.firer = holder
-	stray.fired_from = src
-	stray.def_zone = ran_zone(BODY_ZONE_CHEST, 30)
-	stray.ignore_source_check = TRUE // przypadkowa kula może trafić właściciela
-	stray.fire(rand(0, 359))
+	var/obj/item/ammo_casing/casing = chambered
+	var/stray_angle = rand(0, 359)
+	casing.ready_proj(our_turf, holder, suppressed, ran_zone(BODY_ZONE_CHEST, 30), src) // kuźnia, odczynniki, tłumik
+	var/list/strays = list(casing.BB)
+	casing.BB = null
+	// Śrut: reszta śrucin z łuski, każda z własnym odchyleniem (zwykły strzał robi to w fire_casing())
+	for(var/i in 2 to max(casing.pellets, 1))
+		var/obj/item/projectile/pellet = new casing.projectile_type(our_turf)
+		pellet.firer = holder
+		pellet.fired_from = src
+		pellet.suppressed = suppressed
+		pellet.def_zone = ran_zone(BODY_ZONE_CHEST, 30)
+		strays += pellet
+	for(var/obj/item/projectile/stray as anything in strays)
+		stray.forceMove(our_turf)
+		stray.starting = our_turf
+		stray.ignore_source_check = TRUE // przypadkowa kula może trafić właściciela
+		stray.fire(stray_angle + (length(strays) > 1 ? rand(-casing.variance, casing.variance) : 0))
 	fire_sounds()
 	visible_message("<span class='danger'>[src] wystrzeliwuje sam!</span>", "<span class='hear'>Słyszysz wystrzał!</span>")
 	if(holder)
@@ -175,7 +207,13 @@
 
 /obj/item/gun/proc/on_holder_fall(mob/living/source, amount)
 	SIGNAL_HANDLER
-	if(amount <= 0 || !prob(accidental_fall_chance) || source.stat == DEAD)
+	if(amount <= 0 || source.stat == DEAD)
+		return
+	if(HAS_TRAIT(source, TRAIT_STUNIMMUNE) || !(source.status_flags & CANKNOCKDOWN))
+		return
+	if(source.IsKnockdown() || source.IsParalyzed() || !(source.mobility_flags & MOBILITY_STAND))
+		return // już leży: kolejne ogłuszenie nie jest nowym upadkiem
+	if(!prob(accidental_fall_chance))
 		return
 	INVOKE_ASYNC(src, PROC_REF(accidental_discharge), source)
 
@@ -219,6 +257,3 @@
 	held_gun.toggle_safety(user.mob)
 	return TRUE
 
-/datum/preferences/load_from_database()
-	. = ..()
-	offer_default_keybind("aq_firemode", "V")

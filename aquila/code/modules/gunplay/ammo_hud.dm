@@ -69,7 +69,7 @@
 	if(!client || !hud_used)
 		return
 	var/obj/item/gun/shown_gun = get_ammo_hud_gun()
-	if(!shown_gun || !shown_gun.shows_ammo_hud())
+	if(!shown_gun || !shown_gun.shows_ammo_hud() || hud_used.hud_version == HUD_STYLE_NOHUD)
 		if(aq_ammo_hud)
 			client.screen -= aq_ammo_hud
 		return
@@ -81,6 +81,13 @@
 /mob/living/Destroy()
 	QDEL_NULL(aq_ammo_hud)
 	return ..()
+
+// show_hud() (F12, ponowne wejście, zmiana stylu HUD-u) czyści client.screen, a licznika nie ma w listach HUD-u
+/datum/hud/show_hud(version = 0, mob/viewmob)
+	. = ..()
+	var/mob/living/living_owner = mymob
+	if(istype(living_owner))
+		living_owner.update_ammo_hud()
 
 /mob/living/carbon/swap_hand(held_index)
 	. = ..()
@@ -114,7 +121,7 @@
 	if(!magazine && !chambered)
 		hud.set_hud(get_ammo_hud_color(AQ_AMMO_HUD_COLOR_EMPTY), "oe", "te", "he", mode_indicator)
 		return
-	var/rounds = get_ammo(TRUE)
+	var/rounds = get_live_rounds()
 	if(!rounds)
 		hud.set_hud(AQ_AMMO_HUD_COLOR_EMPTY, "o0", "t0", "h0", mode_indicator)
 		return
@@ -124,6 +131,13 @@
 	var/oth_t = len >= 2 ? "t[rounds_text[len - 1]]" : null
 	var/oth_h = len >= 3 ? "h[rounds_text[len - 2]]" : null
 	hud.set_hud(get_ammo_hud_color(AQ_AMMO_HUD_COLOR_BALLISTIC), oth_o, oth_t, oth_h, mode_indicator)
+
+/// Ostre naboje w broni: puste łuski zostają w bębnie rewolweru i w komorze strzelby do przeładowania, a nabój w komorze
+/// rewolweru leży też w bębnie (get_ammo(TRUE) liczył go dwa razy). Tego samego używa implant S.M.A.R.T.
+/obj/item/gun/ballistic/proc/get_live_rounds()
+	. = magazine ? magazine.ammo_count(FALSE) : 0
+	if(chambered?.BB && !istype(src, /obj/item/gun/ballistic/revolver))
+		.++
 
 /obj/item/gun/energy/fill_ammo_hud(atom/movable/screen/aq_ammo_counter/hud)
 	hud.cut_overlays()

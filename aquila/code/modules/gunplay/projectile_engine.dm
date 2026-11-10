@@ -51,6 +51,10 @@
 	var/ticks_to_deletion = 1
 	/// Mnożnik prędkości z set_pixel_speed() (stary silnik: global_pixel_speed 2 = mnożnik 1)
 	var/pixel_speed_multiplier = 1
+	/// Bump() bez trafienia ma zatrzymać pocisk przy przeszkodzie zamiast przepuszczać (czar z linger)
+	var/aq_hold_position = FALSE
+	/// Trwa process_movement() (trafienie hitscanu kończy się wtedy w pętli, z poprawnym punktem końca wiązki)
+	var/aq_in_movement = FALSE
 
 /obj/item/projectile/Destroy()
 	. = ..()
@@ -117,16 +121,18 @@
 		return 0
 	var/tile_size = world.icon_size
 	var/total_move_distance = max(pixels_to_move, 1)
-	var/movements_done = 0
 	last_projectile_move = world.time
+	aq_in_movement = TRUE
+	. = aq_process_movement_loop(pixels_to_move, hitscan, tile_limit, tile_size, total_move_distance)
+	aq_in_movement = FALSE
+
+/obj/item/projectile/proc/aq_process_movement_loop(pixels_to_move, hitscan, tile_limit, tile_size, total_move_distance)
+	var/movements_done = 0
 	while(pixels_to_move > 0 && isturf(loc) && !QDELETED(src) && !deletion_queued)
 		// pixel_x/y to przesunięcie od środka kafla, więc +16 daje pozycję od lewej/dolnej krawędzi
-		var/pixel_x_actual = pixel_x + tile_size / 2
-		if(pixel_x_actual > tile_size)
-			pixel_x_actual = pixel_x_actual % tile_size
-		var/pixel_y_actual = pixel_y + tile_size / 2
-		if(pixel_y_actual > tile_size)
-			pixel_y_actual = pixel_y_actual % tile_size
+		// Przesunięcie zawsze w obrębie kafla: wartość spoza [-16, 16] dawała w tg zerową odległość do krawędzi w nieskończoność
+		var/pixel_x_actual = clamp(pixel_x + tile_size / 2, 0, tile_size)
+		var/pixel_y_actual = clamp(pixel_y + tile_size / 2, 0, tile_size)
 
 		var/distance_to_border = INFINITY
 		var/x_to_border = INFINITY
@@ -171,27 +177,45 @@
 				pixel_y = entry_y + y_shift * tile_size
 			var/angle_before_step = Angle
 			var/turf/old_turf = loc
+			aq_hold_position = FALSE
 			step_towards(src, new_turf)
 			if(QDELETED(src))
 				return movements_done
 			if(loc != new_turf && !deletion_queued)
-				if(Angle == angle_before_step)
-					// Zatrzymało nas coś, czego nie wolno trafić (strzelec, jego mech, okręt tej samej frakcji) - lecimy przez to
-					trajectory_ignore_forcemove = TRUE
-					forceMove(new_turf)
-					trajectory_ignore_forcemove = FALSE
+				var/pass_through = !aq_hold_position
+				aq_hold_position = FALSE
+				if(Angle == angle_before_step && (movement_type & PHASING))
+					// Przebicie (process_hit() włączył PHASING): wchodzimy przez Move(), jak w starym silniku,
+					// żeby zadziałały Move() pocisków (zapalnik torpedy NSV13, kaster plazmy, zapalający)
+					step_towards(src, new_turf)
 					if(QDELETED(src))
 						return movements_done
-				else
-					// Rykoszet zmienił kierunek: zostajemy na krawędzi kafla i lecimy dalej nowym wektorem
-					entry_x += x_shift * tile_size
-					entry_y += y_shift * tile_size
-					x_shift = 0
-					y_shift = 0
+				if(loc != new_turf)
+					if(Angle != angle_before_step)
+						// Rykoszet zmienił kierunek: zostajemy na krawędzi kafla i lecimy dalej nowym wektorem
+						entry_x += x_shift * tile_size
+						entry_y += y_shift * tile_size
+						x_shift = 0
+						y_shift = 0
+					else if(pass_through)
+						// Strzelec, jego mech, okręt tej samej frakcji, przyjaciel z IFF: nie trafiamy, więc przelatujemy
+						trajectory_ignore_forcemove = TRUE
+						forceMove(new_turf)
+						trajectory_ignore_forcemove = FALSE
+						if(QDELETED(src))
+							return movements_done
+					else
+						// Czar z linger: stoi przy przeszkodzie jak w starym silniku,
+						// a zasięg dalej się zużywa, więc w końcu zgaśnie
+						entry_x += x_shift * tile_size
+						entry_y += y_shift * tile_size
+						x_shift = 0
+						y_shift = 0
+						distance_to_move = pixels_to_move
 			if(loc != new_turf)
 				moving_turfs = FALSE
-			else if(!deletion_queued)
-				// Barierki, przewrócone stoły i krzesła (gunplay/cover.dm)
+			else if(!deletion_queued && aq_from_gun)
+				// Barierki, przewrócone stoły i krzesła (gunplay/cover.dm), tylko dla broni ręcznej
 				var/obj/cover = check_cover(old_turf, new_turf)
 				if(cover)
 					hit_cover(cover)
@@ -207,11 +231,11 @@
 			if(QDELETED(src))
 				return movements_done
 
-		if(physics2d) // NSV13 - kolizje z okrętami na overmapie
-			physics2d.update(x * tile_size + pixel_x, y * tile_size + pixel_y, Angle)
-
 		if(deletion_queued)
 			if(hitscan)
+				if(moving_turfs) // trafienie po wejściu na kafel: koniec wiązki liczony od nowego kafla
+					pixel_x -= x_shift * tile_size
+					pixel_y -= y_shift * tile_size
 				qdel(src)
 				return movements_done
 			// Dolecieliśmy do celu: dograj animację do krawędzi trafienia i zniknij
@@ -226,6 +250,8 @@
 			if(!move_animate(delete_x, delete_y, animate_time, deleting = TRUE))
 				animate(src, pixel_x = delete_x, pixel_y = delete_y, time = animate_time, flags = ANIMATION_PARALLEL | ANIMATION_CONTINUE)
 				animate(alpha = 0, time = 0, flags = ANIMATION_CONTINUE)
+			if(physics2d) // NSV13 - kolizje z okrętami na overmapie
+				physics2d.update(x * tile_size + delete_x, y * tile_size + delete_y, Angle)
 			return movements_done
 
 		pixels_to_move -= distance_to_move
@@ -238,6 +264,9 @@
 			pixel_y -= y_shift * tile_size
 			if(!move_animate(entry_x, entry_y, world.tick_lag * distance_to_move / total_move_distance))
 				animate(src, pixel_x = entry_x, pixel_y = entry_y, time = world.tick_lag * distance_to_move / total_move_distance, flags = ANIMATION_PARALLEL | ANIMATION_CONTINUE)
+
+		if(physics2d) // NSV13 - kolizje z okrętami na overmapie, liczone z położenia po tym odcinku (stary pixel_move też po animacji)
+			physics2d.update(x * tile_size + entry_x, y * tile_size + entry_y, Angle)
 
 		if(homing && world.time >= next_homing_process)
 			process_homing()
@@ -288,13 +317,13 @@
 		var/turf/target = locate(CLAMP(starting_turf.x + xo, 1, world.maxx), CLAMP(starting_turf.y + yo, 1, world.maxy), starting_turf.z)
 		setAngle(get_angle(src, target))
 	original_angle = Angle
-	if(!nondirectional_sprite)
-		var/matrix/M = new
-		M.Turn(Angle)
-		transform = M
+	setAngle(Angle) // obrót sprite'a przez setAngle(): podtypy (kult krwi: extra_rotation) dokładają własny
 	trajectory_ignore_forcemove = TRUE
 	forceMove(starting_turf)
 	trajectory_ignore_forcemove = FALSE
+	// Pocisk z okrętu NSV13 przejmuje przesunięcie okrętu (do 31 px); silnik liczy położenie w obrębie kafla
+	pixel_x = clamp(pixel_x, -world.icon_size / 2, world.icon_size / 2)
+	pixel_y = clamp(pixel_y, -world.icon_size / 2, world.icon_size / 2)
 	QDEL_NULL(movement_vector)
 	movement_vector = new(1, Angle)
 	overrun = 0
@@ -365,7 +394,34 @@
 
 /// Zamiast qdel po trafieniu: pocisk dolatuje wizualnie do miejsca trafienia i znika w następnym ticku (tg)
 /obj/item/projectile/proc/queue_impact_deletion()
+	if(hitscan && aq_in_movement && fired && movement_vector && isturf(loc))
+		// process_movement() sam usunie wiązkę po tym kroku, z końcem w miejscu trafienia
+		deletion_queued = AQ_PROJECTILE_IMPACT_DELETE
+		return
 	if(!fired || hitscan || !movement_vector || !isturf(loc) || !(datum_flags & DF_ISPROCESSING))
 		qdel(src)
 		return
 	deletion_queued = AQ_PROJECTILE_IMPACT_DELETE
+
+// Czar z linger (magiczny pocisk) trafia tylko wybrany cel: inna przeszkoda zatrzymuje go jak w starym silniku,
+// zamiast przepuszczać przez ściany jak strzelca czy przyjaciela z IFF
+/obj/item/projectile/magic/spell/Bump(atom/A)
+	if(linger && A != original && A.density)
+		aq_hold_position = TRUE
+	return ..()
+
+// Pocisk po trafieniu jeszcze tick dogrywa animację (deletion_queued): nie jest już celem dla innych pocisków
+/obj/item/projectile/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
+	if(isprojectile(target))
+		var/obj/item/projectile/other = target
+		if(other.deletion_queued)
+			return FALSE
+	return ..()
+
+// NSV13: torpeda przechwytuje wrogie kule wchodzące na jej kafel. Zdetonowana (czeka na usunięcie) już nic nie przechwytuje,
+// a kula, która już trafiła, nie zestrzeliwuje torpedy
+/obj/item/projectile/guided_munition/on_entered(datum/source, atom/movable/AM)
+	var/obj/item/projectile/other = AM
+	if(deletion_queued || (istype(other) && other.deletion_queued))
+		return
+	return ..()

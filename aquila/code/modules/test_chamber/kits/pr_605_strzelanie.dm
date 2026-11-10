@@ -2,7 +2,7 @@
 	name = "Rework strzelania"
 	pr = "aq33/AquilaStation#605"
 	description = "Zestaw: pistolet, C-20r (seria i ogień ciągły), CKM L6 (smugi co 5. nabój, przegrzanie), karabin laserowy (przegrzanie), strzelba, rewolwer z amunicją wyczynową (rykoszety), P99 z magazynkiem inteligentnym, wszystkie dodatki, zestaw konserwacji, dwie smycze drużyny; na arenie stół, barierka i krzesło biurowe. Sprawdź w obu trybach sterowania (combat mode i intencje). \
-	1) Bezpiecznik: nowa broń jest zabezpieczona → strzał daje „bezpiecznik!”. Klawisz V albo akcja „Zmień Tryb Ognia” przełącza: bezpiecznik → pojedynczy → seria → ogień ciągły (licznik amunicji przy prawej kolumnie HUD-u pokazuje ikonę trybu). \
+	1) Bezpiecznik: nowa broń jest zabezpieczona → strzał daje „bezpiecznik!”. Akcja „Zmień Tryb Ognia” (albo klawisz „Tryb ognia” przypisany w ustawieniach) przełącza: bezpiecznik → pojedynczy → seria → ogień ciągły; klawisz „Bezpiecznik broni” zabezpiecza i wraca do ostatniego trybu (licznik amunicji przy prawej kolumnie HUD-u pokazuje ikonę trybu). Przewracanie stołu nie oferuje broni stojącym obok. M-90gl: przycisk trybu też zdejmuje bezpiecznik, a granatnik podlufowy strzela. \
 	2) Strzał przy wciśnięciu: kula wylatuje, gdy wciskasz przycisk, nie gdy go puszczasz. C-20r w ogniu ciągłym: przytrzymaj i przeciągaj mysz, seria idzie za kursorem; krótkie kliknięcie = jeden strzał. \
 	3) Odrzut: długa seria się rozjeżdża, krótkie serie są celne; ekran kopie w stronę od celu (siła w ustawieniach: „Siła odrzutu ekranu”). Kursor z odbezpieczoną bronią to celownik, którego rogi rozsuwają się w ruchu, z jednej ręki i przy serii. \
 	4) Obracanie: w combat mode postać idzie tyłem i bokiem, cały czas patrząc na kursor; po strzale broń w ręku na chwilę się prostuje. \

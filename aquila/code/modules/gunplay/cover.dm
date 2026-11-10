@@ -57,7 +57,7 @@
 	if(!move_dir)
 		return null
 	for(var/obj/cover in from_turf)
-		if(isnull(cover.projectile_cover_pass) || !(cover.flags_1 & ON_BORDER_1) || !(cover.dir & move_dir))
+		if(isnull(cover.projectile_cover_pass) || !cover.is_edge_cover() || !(cover.dir & move_dir))
 			continue
 		if(roll_cover(cover))
 			return cover
@@ -65,11 +65,18 @@
 	for(var/obj/cover in to_turf)
 		if(isnull(cover.projectile_cover_pass))
 			continue
-		if((cover.flags_1 & ON_BORDER_1) && !(cover.dir & back_dir))
+		if(cover.is_edge_cover() && !(cover.dir & back_dir))
 			continue
 		if(roll_cover(cover))
 			return cover
 	return null
+
+/// Osłona na krawędzi kafla (osłania tylko od swojej strony). Barierki nie mają ON_BORDER_1 (kierunek liczą same w CanPass)
+/obj/proc/is_edge_cover()
+	return flags_1 & ON_BORDER_1
+
+/obj/structure/railing/is_edge_cover()
+	return TRUE
 
 /// Kula wpada w osłonę: trafienie w osłonę zamiast w to, co za nią
 /obj/item/projectile/proc/hit_cover(obj/cover)
@@ -128,11 +135,32 @@
 	. = ..()
 	if(flipped)
 		. += "<span class='notice'>Leży na boku. <b>Ctrl+Shift+klik</b> stawia go z powrotem.</span>"
-	else if(flip_state_prefix)
+	else if(can_flip())
 		. += "<span class='notice'><b>Ctrl+Shift+klik</b> przewraca go na bok jako osłonę (w stronę od ciebie).</span>"
 
+/// "ikona|przedrostek" -> czy ikona ma stany przewróconego stołu
+GLOBAL_LIST_EMPTY(aq_table_flip_icons)
+
+/// Da się przewrócić tylko stół z wygładzaniem bitmaską i stanami przewróconego stołu w swojej ikonie
+/// (stół z kapsuły przetrwania ma jeden stan "table" i po przewróceniu znikał na stałe)
+/obj/structure/table/proc/can_flip()
+	if(!flip_state_prefix || !bitmask_smooth)
+		return FALSE
+	var/key = "[icon]|[flip_state_prefix]"
+	if(isnull(GLOB.aq_table_flip_icons[key]))
+		GLOB.aq_table_flip_icons[key] = icon_exists(icon, "[flip_state_prefix]flip0") ? TRUE : FALSE
+	return GLOB.aq_table_flip_icons[key]
+
+// Ctrl+Shift+klik u człowieka woła też Give() (give.dm), więc przewracanie stołu oferowałoby broń wszystkim obok
+/mob/living/carbon/human/CtrlShiftClickOn(atom/A)
+	var/obj/structure/table/table = A
+	if(istype(table) && (table.flipped || table.can_flip()))
+		table.CtrlShiftClick(src)
+		return
+	return ..()
+
 /obj/structure/table/CtrlShiftClick(mob/living/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE) || !flip_state_prefix)
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE) || !(flipped || can_flip()))
 		return ..()
 	if(flipped)
 		unflip_table(user)
@@ -180,7 +208,8 @@
 	update_flipped_neighbours()
 
 /obj/structure/table/proc/update_flipped_neighbours()
-	bitmask_smooth_icon()
+	if(bitmask_smooth)
+		bitmask_smooth_icon()
 	for(var/direction in GLOB.alldirs)
 		for(var/obj/structure/table/other in get_step(src, direction))
 			if(other.bitmask_smooth)
@@ -204,14 +233,27 @@
 // Przewrócony stół blokuje przejście tylko przez swoją krawędź (jak barierka)
 /obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!flipped)
-		return ..()
-	. = ..()
+		. = ..()
+		// Rdzeń wpuszcza na stół każdego, kto stoi na stole; stół na boku to nie blat, więc z niego się na blaty nie wchodzi
+		if(. && !mover.throwing && !(pass_flags_self & mover.pass_flags) && only_flipped_tables_under(mover))
+			return FALSE
+		return
 	if(istype(mover, /obj/item/projectile))
 		return TRUE // kulę zatrzymuje albo nie silnik pocisku (check_cover)
 	if(!(get_dir(loc, target) & dir))
 		return TRUE
 	if(mover.throwing || (mover.movement_type & (FLYING | FLOATING)))
 		return TRUE
+	return (pass_flags_self & mover.pass_flags) ? TRUE : FALSE // przez krawędź tylko to, co przechodzi nad stołami
+
+/obj/structure/table/proc/only_flipped_tables_under(atom/movable/mover)
+	var/turf/mover_turf = get_turf(mover)
+	var/found = FALSE
+	for(var/obj/structure/table/table in mover_turf)
+		if(!table.flipped)
+			return FALSE
+		found = TRUE
+	return found
 
 /// Wyjście przez krawędź przewróconego stołu (element dokładany tylko przewróconym stołom)
 GLOBAL_LIST_INIT(aq_flipped_table_connections, list(

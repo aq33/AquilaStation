@@ -52,7 +52,9 @@
 
 /obj/item/projectile/bullet/c9mm/smart/process_homing()
 	// Gubi cel, którego nie widzi (za ścianą, za rogiem poza zasięgiem wzroku)
-	if(QDELETED(homing_target) || homing_target.z != z || !(homing_target in view(7, get_turf(src))))
+	// can_see() idzie linią i patrzy tylko na nieprzezroczyste kafle: view() z kafla nie widział celu w ciemności,
+	// a liczone co odcinek lotu kosztowało widok 15×15 kafli
+	if(QDELETED(homing_target) || homing_target.z != z || get_dist(src, homing_target) > 7 || !can_see(get_turf(src), homing_target, 7))
 		homing = FALSE
 		homing_target = null
 		return FALSE

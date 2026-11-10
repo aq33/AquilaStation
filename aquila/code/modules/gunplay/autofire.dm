@@ -18,9 +18,8 @@
 		return
 	return ..()
 
-/client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
-	aq_ignore_next_click = FALSE
-	return ..()
+// MouseDrop nie zeruje flagi: upuszczenie na ten sam obiekt rdzeń zamienia w Click() (drag_drop.dm), a to jest
+// właśnie puszczenie przycisku po strzale. Flagę zeruje każde kolejne wciśnięcie (MouseDown).
 
 /obj/item/gun/Initialize(mapload)
 	. = ..()
@@ -60,6 +59,7 @@
 
 /obj/item/gun/onMouseDown(object, location, params, mob)
 	var/mob/living/user = mob
+	var/press_params = params
 	var/list/modifiers = params2list(params)
 	var/atom/target = object
 	if(istype(target, /atom/movable/screen/click_catcher) && istype(user) && user.client)
@@ -70,8 +70,9 @@
 		params = list2params(modifiers)
 	if(!should_fire_on_press(target, user, modifiers))
 		return
-	user.client.aq_ignore_next_click = TRUE
-	user.ClickOn(target, params)
+	// Strzał idzie zwykłą drogą kliknięcia klienta: limit kliknięć na sekundę i minutę oraz kolejka SSinput przy przeciążeniu
+	user.client.Click(object, location, null, press_params)
+	user.client?.aq_ignore_next_click = TRUE
 	if(aq_firemode == AQ_FIREMODE_AUTO && autofire_component)
 		autofire_component.start_firing(target, params, user)
 
@@ -138,8 +139,6 @@
 /datum/component/full_auto/unset_target()
 	stop_firing()
 
-/datum/component/full_auto/set_target(atom/target)
-	return
 
 /datum/component/full_auto/process()
 	var/obj/item/gun/gun = parent
@@ -148,7 +147,8 @@
 		return PROCESS_KILL
 	if(world.time < next_shot)
 		return
-	if(gun.loc != shooter || shooter.stat != CONSCIOUS || shooter.incapacitated() || shooter.get_active_held_item() != gun || gun.aq_firemode != AQ_FIREMODE_AUTO)
+	// Bez klienta nie ma puszczenia przycisku (MouseUp): rozłączony gracz nie strzela dalej do pustego magazynka
+	if(!shooter.client || gun.loc != shooter || shooter.stat != CONSCIOUS || shooter.incapacitated() || shooter.get_active_held_item() != gun || gun.aq_firemode != AQ_FIREMODE_AUTO)
 		stop_firing()
 		return PROCESS_KILL
 	next_shot = world.time + gun.get_autofire_delay()

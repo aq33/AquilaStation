@@ -1106,7 +1106,6 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | semi-auto / single fire | ogień pojedynczy | m; nowe (rework strzelania) |
 | burst | seria | ż; istniejące |
 | full auto / autofire | ogień ciągły | m; nowe |
-| aim down sights (ADS) | celowanie przez przyrządy | n; nowe; klawisz „Celuj przez przyrządy” |
 | iron sights | przyrządy mechaniczne | lm; nowe |
 | holographic sight | celownik holograficzny | m; nowe |
 | infrared sight | celownik termowizyjny | m; nowe |

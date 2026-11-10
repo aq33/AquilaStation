@@ -68,6 +68,29 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 /obj/structure/closet/crate/wooden/get_bullet_hit_material()
 	return "wood"
 
+/obj/structure/closet/cabinet/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/closet/crate/large/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/mineral_door/wood/get_bullet_hit_material()
+	return "wood"
+
+/obj/structure/flora/tree/get_bullet_hit_material()
+	return "wood"
+
+/turf/closed/wall/mineral/snow/get_bullet_hit_material()
+	return "stone"
+
+/turf/closed/wall/ice/get_bullet_hit_material()
+	return "glass"
+
+/obj/item/gun
+	/// Kiedy i gdzie ostatnio zagrał dźwięk trafienia kuli z tej broni (śrut: jeden dźwięk na strzał, nie na śrucinę)
+	var/aq_hit_sound_time = 0
+	var/turf/aq_hit_sound_turf
+
 /obj/item/projectile/bullet/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(isliving(target) || !aq_from_gun)
@@ -75,7 +98,14 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	var/material = target.get_bullet_hit_material()
 	if(!material)
 		return
-	playsound(get_turf(target), pick(GLOB.aq_bullet_hit_sounds[material]), suppressed ? 20 : 55, TRUE, -1)
+	var/turf/hit_turf = get_turf(target)
+	var/obj/item/gun/gun = fired_from
+	if(istype(gun))
+		if(gun.aq_hit_sound_time == world.time && gun.aq_hit_sound_turf == hit_turf)
+			return // reszta śrucin tego samego strzału w ten sam kafel
+		gun.aq_hit_sound_time = world.time
+		gun.aq_hit_sound_turf = hit_turf
+	playsound(hit_turf, pick(GLOB.aq_bullet_hit_sounds[material]), suppressed ? 20 : 55, TRUE, -1)
 
 // --- Rykoszety ---
 
@@ -103,7 +133,7 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 // od AQ_RICOCHET_MIN_ANGLE szansa rośnie liniowo od AQ_RICOCHET_MIN_CHANCE do AQ_RICOCHET_MAX_CHANCE przy strzale prawie równoległym.
 // Przeciwpancerne i wiązki odbijają się rzadziej, amunicja wyczynowa (.38/.357 match) zawsze i pod większym kątem.
 /obj/item/projectile/check_ricochet(atom/A)
-	if(!aq_from_gun || !A)
+	if(!aq_angle_ricochet || !A)
 		return ..()
 	var/grazing = get_grazing_angle(A)
 	if(isnull(grazing))
@@ -123,15 +153,51 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	return prob(chance)
 
 /obj/item/projectile/check_ricochet_flag(atom/A)
-	if(aq_from_gun)
-		return (A.flags_ricochet & (RICOCHET_HARD | RICOCHET_SHINY))
+	if(aq_angle_ricochet)
+		return (A.flags_ricochet & RICOCHET_HARD) // kula odbija się od twardego, a nie od luster (to robią wiązki w rdzeniu)
 	return ..()
+
+/// Zwykła kula z broni ręcznej: przyspieszenie, smuga, świst, rykoszet pod kątem, dźwięk materiału.
+/// Macka, hak, plazma, KA czy strzałki mają domyślną flagę "bullet", ale kulami nie są.
+/obj/item/projectile/proc/is_gun_bullet()
+	return FALSE
+
+/obj/item/projectile/bullet/is_gun_bullet()
+	return flag == "bullet" && !hitscan
+
+/obj/item/projectile/bullet/dart/is_gun_bullet()
+	return FALSE
+
+/obj/item/projectile/bullet
+	/// Odbija się pod ostrym kątem; rakiety, granaty i amunicja, która w rdzeniu ma wyłączone rykoszety, nie
+	var/aq_ricochets = TRUE
+
+/obj/item/projectile/bullet/gyro
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/a84mm
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/a84mm_he
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/a40mm
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/dart
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/c38/dumdum
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/c38/trac
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/c38/hotshot
+	aq_ricochets = FALSE
+/obj/item/projectile/bullet/c38/iceblox
+	aq_ricochets = FALSE
 
 // --- Wspólna konfiguracja pocisku z broni ręcznej ---
 
 /obj/item/projectile
 	/// Wystrzelony z broni ręcznej (nie z działa okrętowego ani wieżyczki)
 	var/aq_from_gun = FALSE
+	/// Rykoszet liczony z kąta (tylko kule z broni ręcznej, zob. check_ricochet())
+	var/aq_angle_ricochet = FALSE
 	/// Smuga dołożona po pierwszym kafelku lotu ("trail" albo "trail_bright")
 	var/aq_tail_state
 	/// Mobom, które już usłyszały świst tej kuli
@@ -153,11 +219,16 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 /// Pocisk wylatuje z tej broni: smuga, rykoszety, świst
 /obj/item/gun/proc/setup_fired_projectile(obj/item/projectile/projectile)
 	projectile.aq_from_gun = TRUE
-	// Rykoszety dla każdej broni: kąt i szansę liczy check_ricochet(), więc handle_ricochet() nie odrzuca już kątów
-	projectile.ricochets_max = max(projectile.ricochets_max, AQ_BULLET_RICOCHETS)
-	projectile.ricochet_incidence_leeway = 0
-	if(projectile.flag != "bullet" || projectile.hitscan)
+	if(!projectile.is_gun_bullet())
 		return
+	// Rykoszety kul z każdej broni: kąt i szansę liczy check_ricochet(), więc handle_ricochet() nie odrzuca już kątów
+	var/obj/item/projectile/bullet/bullet = projectile
+	if(bullet.aq_ricochets)
+		bullet.aq_angle_ricochet = TRUE
+		bullet.ricochets_max = max(bullet.ricochets_max, AQ_BULLET_RICOCHETS)
+		bullet.ricochet_incidence_leeway = 0
+	// Dźwięk trafienia w ścianę daje materiał (on_hit()), a nie rdzeniowy „ricochet” przy każdym trafieniu
+	bullet.hitsound_wall = null
 	var/bright = projectile.tracer_round
 	if(tracer_interval)
 		shots_since_tracer++
@@ -191,7 +262,7 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 
 /obj/item/projectile/Moved(atom/OldLoc, Dir)
 	. = ..()
-	if(aq_from_gun && fired && !deletion_queued && !QDELETED(src) && isturf(loc) && flag == "bullet")
+	if(aq_from_gun && fired && !deletion_queued && !QDELETED(src) && isturf(loc) && is_gun_bullet())
 		projectile_flyby()
 
 /obj/item/projectile/proc/projectile_flyby()
@@ -279,24 +350,15 @@ GLOBAL_LIST_INIT(aq_bullet_hit_sounds, list(
 	if(aq_aim_pose_timer)
 		deltimer(aq_aim_pose_timer)
 	aq_aim_pose_timer = addtimer(CALLBACK(src, PROC_REF(end_aim_pose), user), 0.65 SECONDS, TIMER_STOPPABLE)
-	// process_fire() woła update_inv_hands() po strzale; przy serii odświeżamy tu
-	user.update_inv_hands()
+	// Pojedynczy strzał i ogień ciągły odświeża process_fire() (gun.dm) zaraz po strzale; process_burst() tego nie robi
+	if(firing_burst)
+		user.update_inv_hands()
 
 /obj/item/gun/proc/end_aim_pose(mob/living/user)
 	aq_aim_pose_timer = null
 	aq_aim_pose_kick = 0
 	if(!QDELETED(user) && user.is_holding(src))
 		user.update_inv_hands()
-
-/// Szerokość ikony broni w pikselach (karabiny bywają 64x32), żeby miniatura była wyśrodkowana
-GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
-
-/proc/aq_icon_width(icon_file)
-	var/key = "[icon_file]"
-	if(isnull(GLOB.aq_gun_icon_widths[key]))
-		var/icon/sample = icon(icon_file)
-		GLOB.aq_gun_icon_widths[key] = sample.Width()
-	return GLOB.aq_gun_icon_widths[key]
 
 /// Czy broń w ręku jest teraz trzymana „w gotowości” (chwilę po strzale)
 /obj/item/gun/proc/is_aim_posed(mob/living/holder)
@@ -319,7 +381,7 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 	mini.plane = inhand.plane
 	mini.appearance_flags = inhand.appearance_flags | PIXEL_SCALE
 	var/left_hand = (holder.get_held_index_of_item(src) % 2) == 1
-	var/center_shift = -(aq_icon_width(icon) - world.icon_size) / 2
+	var/center_shift = -(get_cached_width() - world.icon_size) / 2 // karabiny bywają 64x32
 	var/matrix/pose = matrix()
 	switch(holder.dir)
 		if(EAST)
@@ -362,7 +424,8 @@ GLOBAL_LIST_EMPTY(aq_gun_icon_widths)
 		stats += "zmęczenie: <b>[round(shown.stamina * integrity_mult, 0.1)]</b>"
 	if(shown.armour_penetration)
 		stats += "przebicie pancerza: <b>[shown.armour_penetration]</b>"
-	stats += "rozrzut: <b>[round(spread * 0.55, 0.1)]°</b>[requires_wielding ? " (z jednej ręki [round((spread + spread_unwielded) * 0.55, 0.1)]°)" : ""]"
+	var/shown_spread = max(spread - aq_attachment_accuracy, 0)
+	stats += "rozrzut: <b>[round(shown_spread * 0.55, 0.1)]°</b>[requires_wielding ? " (z jednej ręki [round((shown_spread + spread_unwielded) * 0.55, 0.1)]°)" : ""]"
 	var/single_rate = round(fire_rate ? fire_rate : 10 / CLICK_CD_RANGE, 0.1)
 	stats += "szybkostrzelność: <b>[single_rate] strz./s</b>[full_auto ? " (ogień ciągły [round(10 / max(get_autofire_delay(), 0.1), 0.1)] strz./s)" : ""]"
 	. += "<span class='notice'>[jointext(stats, ", ")].</span>"

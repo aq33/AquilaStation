@@ -57,6 +57,7 @@
 	shooter.put_in_hands(gun)
 	gun.spread = 0
 	gun.set_firemode(AQ_FIREMODE_SEMI)
+	gun.chambered.misfire_chance = 0 // fabryczne 0,3% niewypału robiło losowo czerwone CI
 	gun.process_fire(victim, shooter, FALSE)
 	TEST_ASSERT(aq_wait_for_damage(victim), "Pistol shot did not hit the target 3 tiles away with the tg projectile engine")
 
@@ -95,20 +96,30 @@
 	smg.toggle_safety()
 	TEST_ASSERT_EQUAL(smg.aq_firemode, AQ_FIREMODE_AUTO, "Safety toggle did not return to the last fire mode")
 
-	// Bez gracza (NPC) bezpiecznik nie blokuje, z klientem by blokował
+	// Bez gracza (NPC) bezpiecznik nie blokuje, z klientem by blokował; na bezpieczniku broń zostawia swoją serię (NPC strzelają seriami)
 	var/mob/living/carbon/human/npc = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	smg.set_firemode(AQ_FIREMODE_SAFE)
 	TEST_ASSERT(!smg.safety_blocks(npc), "Safety should not block NPCs without a client")
+	TEST_ASSERT_EQUAL(smg.burst_size, initial(smg.burst_size), "Safety reset the gun's burst size, NPCs would lose burst fire")
+
+	// Przycisk trybu M-90 idzie przez wybierak (własne burst_select() M-90 nie woła ..())
+	var/obj/item/gun/ballistic/automatic/m90/m90 = allocate(/obj/item/gun/ballistic/automatic/m90)
+	m90.burst_select()
+	TEST_ASSERT(m90.aq_firemode != AQ_FIREMODE_SAFE, "M-90 fire-mode button did not change the fire selector")
 
 	// Przypadkowy wystrzał odbezpieczonej broni zużywa nabój
 	smg.set_firemode(AQ_FIREMODE_SEMI)
 	var/obj/item/projectile/chambered_bullet = smg.chambered?.BB
 	TEST_ASSERT(chambered_bullet, "C-20r has no chambered bullet")
 	smg.forceMove(run_loc_floor_bottom_left)
-	TEST_ASSERT(smg.accidental_discharge(null), "Unsafe gun did not discharge")
+	TEST_ASSERT(!smg.accidental_discharge(null), "Gun discharged with nobody to authorise its firing pin")
+	TEST_ASSERT(smg.accidental_discharge(npc), "Unsafe gun did not discharge")
 	TEST_ASSERT(chambered_bullet.fired, "Accidental discharge did not fire the chambered bullet")
 	smg.set_firemode(AQ_FIREMODE_SAFE)
-	TEST_ASSERT(!smg.accidental_discharge(null), "Gun on safety discharged by accident")
+	TEST_ASSERT(!smg.accidental_discharge(npc), "Gun on safety discharged by accident")
+	QDEL_NULL(smg.pin)
+	smg.set_firemode(AQ_FIREMODE_SEMI)
+	TEST_ASSERT(!smg.accidental_discharge(npc), "Gun without a firing pin discharged by accident")
 
 /// Odrzut, zużycie i przegrzanie po strzale; zestaw konserwacji czyści broń
 /datum/unit_test/aquila_gunplay_recoil_wear
@@ -120,6 +131,7 @@
 	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
 	shooter.put_in_hands(gun)
 	gun.set_firemode(AQ_FIREMODE_SEMI)
+	gun.chambered.misfire_chance = 0
 	gun.process_fire(far, shooter, FALSE)
 	TEST_ASSERT(shooter.aq_recoil > 0, "Shot added no recoil to the shooter")
 	TEST_ASSERT(gun.gun_wear > 0, "Shot added no wear to the gun")
@@ -206,6 +218,7 @@
 	var/mob/living/carbon/human/hider = allocate(/mob/living/carbon/human, behind)
 	var/obj/item/projectile/bullet/c9mm/bullet = allocate(/obj/item/projectile/bullet/c9mm, start)
 	bullet.original = hider
+	bullet.aq_from_gun = TRUE // osłony liczą się tylko dla kul z broni ręcznej
 	bullet.fire(0)
 	for(var/i in 1 to 30)
 		if(QDELETED(bullet) || bullet.deletion_queued)
@@ -222,20 +235,21 @@
 /datum/unit_test/aquila_gunplay_attachments/Run()
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
-	var/base_spread = gun.spread
+	var/base_spread = gun.aq_attachment_accuracy
 	var/obj/item/attachment/scope/holo/holo = allocate(/obj/item/attachment/scope/holo)
 	var/obj/item/attachment/scope/simple/simple = allocate(/obj/item/attachment/scope/simple)
 	var/obj/item/attachment/grip/vertical/grip = allocate(/obj/item/attachment/grip/vertical)
 	user.put_in_hands(holo)
 	TEST_ASSERT(gun.try_attach(holo, user), "Could not attach a holographic sight")
-	TEST_ASSERT_EQUAL(gun.spread, base_spread - holo.accuracy, "Sight did not reduce spread")
+	TEST_ASSERT_EQUAL(gun.aq_attachment_accuracy, base_spread + holo.accuracy, "Sight did not add accuracy")
+	TEST_ASSERT(gun.spread >= 0, "Sight made the gun's base spread negative (adds inaccuracy in process_fire)")
 	user.put_in_hands(grip)
 	TEST_ASSERT(gun.try_attach(grip, user), "Could not attach a grip next to the sight")
 	TEST_ASSERT(gun.recoil_multiplier < 1, "Grip did not reduce recoil")
 	user.put_in_hands(simple)
 	TEST_ASSERT(!gun.try_attach(simple, user), "Two sights on one gun (Yogstation &= slot bug)")
 	holo.on_detach(gun, user)
-	TEST_ASSERT_EQUAL(gun.spread, base_spread, "Removing the sight did not restore spread")
+	TEST_ASSERT_EQUAL(gun.aq_attachment_accuracy, base_spread, "Removing the sight did not restore accuracy")
 	TEST_ASSERT(gun.try_attach(simple, user), "Sight slot stayed taken after removing the other sight")
 
 /// Kule zostawiają dziury w naszych ścianach (Paradise), a rykoszet zależy od kąta: prosto w ścianę nigdy, po stycznej czasem
@@ -261,6 +275,7 @@
 	var/grazing = 0
 	var/obj/item/projectile/bullet/c9mm/probe = new(start)
 	probe.aq_from_gun = TRUE
+	probe.aq_angle_ricochet = TRUE // jak setup_fired_projectile() dla kuli z broni
 	probe.forceMove(locate(start.x, start.y + 1, start.z))
 	for(var/i in 1 to 40)
 		probe.Angle = 0 // prosto w ścianę od południa
@@ -296,6 +311,7 @@
 	var/holes = LAZYLEN(wall.aq_bullet_holes)
 	var/obj/item/projectile/bullet/c9mm/probe = new(start)
 	probe.aq_from_gun = TRUE
+	probe.aq_angle_ricochet = TRUE // jak setup_fired_projectile() dla kuli z broni
 	probe.forceMove(locate(start.x, start.y + 1, start.z))
 	var/flag_ok = probe.check_ricochet_flag(wall)
 	var/grazing = 0
@@ -308,6 +324,57 @@
 	TEST_ASSERT(holes > 0, "Eight bullets into an indestructible wall left no bullet holes")
 	TEST_ASSERT(flag_ok, "Indestructible wall is not hard enough for ricochets")
 	TEST_ASSERT(grazing > 0, "A bullet at 82 degrees never ricocheted off an indestructible wall in 40 tries")
+
+/// Pocisk z okrętu NSV13 przejmuje przesunięcie okrętu (do 31 px). Przesunięcie ≥17 px w stronę lotu dawało w silniku tg
+/// zerową odległość do krawędzi w kółko: pocisk przeskakiwał cały rząd mapy w jednym ticku
+/datum/unit_test/aquila_gunplay_projectile_offset
+
+/datum/unit_test/aquila_gunplay_projectile_offset/Run()
+	var/turf/start = run_loc_floor_top_right
+	var/obj/item/projectile/bullet/shot = new(start)
+	shot.pixel_x = 20
+	shot.speed = 10 // wolno: fire() robi tylko pierwszy krok
+	shot.fire(270) // na zachód
+	TEST_ASSERT(!QDELETED(shot), "Projectile with a ship-like pixel offset vanished on fire")
+	var/tiles_flown = start.x - shot.x
+	TEST_ASSERT(tiles_flown >= 0 && tiles_flown <= 2, "Projectile with a 20 px offset jumped [tiles_flown] tiles on its first step")
+	TEST_ASSERT(abs(shot.pixel_x) <= world.icon_size, "Projectile pixel offset ran away to [shot.pixel_x]")
+	TEST_ASSERT_EQUAL(shot.y, start.y, "Projectile fired west changed row")
+	qdel(shot)
+
+/// Samobójstwo mnoży obrażenia naboju ×5 przed strzałem; zablokowany strzał (przegrzanie) nie może zostawić mnożnika
+/datum/unit_test/aquila_gunplay_suicide_blocked
+
+/datum/unit_test/aquila_gunplay_suicide_blocked/Run()
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/gun/energy/laser/laser_gun = allocate(/obj/item/gun/energy/laser)
+	user.put_in_hands(laser_gun)
+	laser_gun.set_firemode(AQ_FIREMODE_SEMI)
+	var/obj/item/projectile/loaded = laser_gun.chambered?.BB
+	TEST_ASSERT(loaded, "Laser gun has no chambered projectile")
+	var/base_damage = loaded.damage
+	laser_gun.overheated = TRUE
+	laser_gun.handle_suicide(user, user, null, TRUE)
+	TEST_ASSERT_EQUAL(loaded.damage, base_damage, "Blocked suicide shot left the x5 damage on the chambered projectile")
+
+/// Ogień ciągły: rozłączony gracz (bez klienta nie ma puszczenia przycisku) nie strzela dalej
+/datum/unit_test/aquila_gunplay_full_auto
+
+/datum/unit_test/aquila_gunplay_full_auto/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/far = locate(start.x, start.y + 3, start.z)
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, start)
+	var/obj/item/gun/ballistic/automatic/c20r/unrestricted/smg = allocate(/obj/item/gun/ballistic/automatic/c20r/unrestricted)
+	shooter.put_in_hands(smg)
+	smg.set_firemode(AQ_FIREMODE_AUTO)
+	TEST_ASSERT(smg.autofire_component, "C-20r has no full-auto component")
+	var/rounds_before = smg.get_ammo(TRUE)
+	TEST_ASSERT(smg.autofire_component.start_firing(far, null, shooter), "Full auto did not start")
+	smg.autofire_component.next_shot = 0
+	smg.autofire_component.process()
+	TEST_ASSERT(!smg.autofire_component.autofire_target, "Full auto kept firing for a shooter without a client")
+	TEST_ASSERT_EQUAL(smg.get_ammo(TRUE), rounds_before, "Full auto fired for a shooter without a client")
+	TEST_ASSERT(smg.get_autofire_delay() > 0, "Full auto delay is not positive")
 
 /// Licznik amunicji: po broni energetycznej zwykła broń wraca do zwykłego tła z cyframi
 /datum/unit_test/aquila_gunplay_ammo_hud

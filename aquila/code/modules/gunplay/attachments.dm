@@ -9,10 +9,6 @@
 
 /// Celowniki, lunety
 #define ATTACHMENT_SLOT_SIGHT (1<<0)
-/// Lufa
-#define ATTACHMENT_SLOT_BARREL (1<<1)
-/// Spust
-#define ATTACHMENT_SLOT_TRIGGER (1<<2)
 /// Chwyt przedni
 #define ATTACHMENT_SLOT_FOREGRIP (1<<3)
 
@@ -136,19 +132,9 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 		for(var/x in left to right)
 			col_top[x] = 20
 			col_run_bottom[x] = 12
-	var/sight_x = round(left + (right - left) * 0.45)
-	// Celownik leży na typowym wierzchu broni pod całą swoją szerokością (mediana), a nie na najwyższym wystającym
-	// pikselu (muszka, rączka), bo wtedy wisiał w powietrzu
-	var/list/sight_tops = list()
-	for(var/x in max(sight_x - 3, 1) to min(sight_x + 3, width))
-		if(col_top[x])
-			sight_tops += col_top[x]
-	sortTim(sight_tops, GLOBAL_PROC_REF(cmp_numeric_asc))
-	var/sight_top = length(sight_tops) ? sight_tops[round(length(sight_tops) / 2) + 1] : 20
 	var/grip_x = aq_nearest_column(col_top, round(left + (right - left) * 0.7))
 	var/laser_x = aq_nearest_column(col_top, round(left + (right - left) * 0.86))
 	cached = list(
-		"sight" = list(sight_x, sight_top - 1), // dolny wiersz sprite'u celownika zachodzi 1 px na broń
 		"grip" = list(grip_x, col_run_bottom[grip_x] - 1),
 		"laser" = list(laser_x, col_run_bottom[laser_x] - 1),
 	)
@@ -168,7 +154,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 		return
 	var/list/mounts = get_mount_points()
 	for(var/obj/item/attachment/attachment as anything in current_attachments)
-		if(!attachment.shown_on_gun)
+		if(!attachment.mount_slot)
 			continue
 		var/list/point = mounts[attachment.mount_slot]
 		if(!point)
@@ -230,14 +216,12 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	var/mob/current_user
 	/// Akcje dodawane do broni
 	var/list/actions_list = list()
-	/// Gdzie siedzi na broni: "sight", "grip" albo "laser"
-	var/mount_slot = "sight"
+	/// Gdzie siedzi na broni: "grip" albo "laser"; null = nie widać go na broni (celowniki, decyzja po teście w grze)
+	var/mount_slot
 	/// Stan w aquila/icons/obj/guns/attachment_mounted.dmi
-	var/mounted_state = "simple_sight"
+	var/mounted_state
 	/// Ma osobny stan "_on" na broni
 	var/mounted_has_on = FALSE
-	/// Czy widać go na sprite'cie broni
-	var/shown_on_gun = TRUE
 
 /obj/item/attachment/update_icon()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
@@ -321,6 +305,8 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	var/attachment_path
 
 /datum/action/item_action/attachment_toggle/Trigger()
+	if(!IsAvailable()) // zakuty, ogłuszony albo leżący nie przełącza dodatków, jak przy każdej akcji przedmiotu
+		return FALSE
 	var/obj/item/gun/gun = target
 	if(!istype(gun))
 		return FALSE
@@ -359,17 +345,16 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 
 /obj/item/attachment/scope
 	name = "celownik"
-	shown_on_gun = FALSE // celowników nie widać na broni (decyzja po teście w grze); sprite'y zostają w attachment_mounted.dmi
 	attachment_type = ATTACHMENT_SLOT_SIGHT
 	/// O ile zmniejsza rozrzut broni (stopnie)
 	var/accuracy = 0
 
 /obj/item/attachment/scope/on_attach(obj/item/gun/gun, mob/user)
 	. = ..()
-	gun.spread -= accuracy
+	gun.aq_attachment_accuracy += accuracy
 
 /obj/item/attachment/scope/on_detach(obj/item/gun/gun, mob/living/user)
-	gun.spread += accuracy
+	gun.aq_attachment_accuracy -= accuracy
 	return ..()
 
 /obj/item/attachment/scope/simple
@@ -383,14 +368,12 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	desc = "Zaawansowany celownik, który rzuca na szkiełko hologram znaku celowniczego. Nie zasłania widoku i pozwala precyzyjnie celować."
 	icon_state = "holo_sight"
 	accuracy = 6
-	mounted_state = "holo_sight"
 
 /obj/item/attachment/scope/infrared
 	name = "celownik termowizyjny"
 	desc = "Kamera wyłapująca promieniowanie podczerwone. Obraz jest kiepski, więc celuje się nim gorzej, ale widać przez nią ciepło ciał."
 	icon_state = "ifr_sight"
 	accuracy = -2
-	mounted_state = "ifr_sight"
 	mounted_has_on = TRUE
 	actions_list = list(/datum/action/item_action/attachment_toggle/infrared)
 
@@ -435,6 +418,8 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 
 /obj/item/attachment/laser_sight
 	name = "celownik laserowy"
+	/// Kiedy ostatnio przeliczono wiązkę (ruch myszy, krok i proces wołają to niezależnie)
+	var/last_beam_update = 0
 	desc = "Przerośnięty wskaźnik laserowy. Kropka pokazuje, w co celujesz, a wiązkę widzą wszyscy dookoła."
 	icon_state = "laser_sight"
 	mount_slot = "laser"
@@ -461,6 +446,8 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	button_icon_state = "laser_sight"
 
 /datum/action/item_action/change_laser_sight_color/Trigger()
+	if(!IsAvailable()) // zakuty, ogłuszony albo leżący nie przełącza dodatków, jak przy każdej akcji przedmiotu
+		return FALSE
 	var/obj/item/gun/gun = target
 	if(!istype(gun) || !owner)
 		return FALSE
@@ -489,11 +476,11 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 /obj/item/attachment/laser_sight/on_attach(obj/item/gun/gun, mob/user)
 	. = ..()
 	if(is_on)
-		gun.spread -= accuracy
+		gun.aq_attachment_accuracy += accuracy
 
 /obj/item/attachment/laser_sight/on_detach(obj/item/gun/gun, mob/living/user)
 	if(is_on)
-		gun.spread += accuracy
+		gun.aq_attachment_accuracy -= accuracy
 	clear_beam()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
@@ -506,7 +493,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	is_on = !is_on
 	playsound(get_turf(src), is_on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
 	if(attached_gun)
-		attached_gun.spread += is_on ? -accuracy : accuracy
+		attached_gun.aq_attachment_accuracy += is_on ? accuracy : -accuracy
 	if(is_on)
 		START_PROCESSING(SSfastprocess, src)
 		update_beam()
@@ -550,6 +537,9 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	if(!is_on || !check_user() || !isliving(current_user))
 		clear_beam()
 		return
+	if(last_beam_update == world.time)
+		return
+	last_beam_update = world.time
 	var/mob/living/shooter = current_user
 	if(!shooter.aq_cursor_known)
 		return
@@ -722,6 +712,4 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 #undef ATTACHMENT_SLOT_SIGHT
-#undef ATTACHMENT_SLOT_BARREL
-#undef ATTACHMENT_SLOT_TRIGGER
 #undef ATTACHMENT_SLOT_FOREGRIP

@@ -18,8 +18,11 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		return cached
 	var/icon/result = new
 	result.Insert(icon('aquila/icons/effects/gun_cursor.dmi', "[size]"), "")
-	GLOB.aq_gun_cursor_icons["[size]"] = result
-	return result
+	// Plik z cache zasobów: client.mouse_pointer_icon po przypisaniu /icon trzyma odnośnik do cache, więc porównanie
+	// z obiektem /icon w update_gun_cursor() nigdy nie wychodziło i kursor przestawał się zmieniać
+	var/cached_file = fcopy_rsc(result)
+	GLOB.aq_gun_cursor_icons["[size]"] = cached_file
+	return cached_file
 
 /client
 	/// Pokazujemy kursor rozrzutu (żeby nie nadpisać kursora czaru albo mecha)
@@ -62,6 +65,9 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
 /datum/aq_mouse_tracker/onMouseMove(object, location, control, params)
 	if(!owner?.client)
+		return
+	// Bez broni w ręku i poza trybem walki położenia kursora nic nie czyta: bez parsowania przy każdym ruchu myszy
+	if(!owner.combat_mode && !istype(owner.get_active_held_item(), /obj/item/gun))
 		return
 	var/list/modifiers = params2list(params)
 	var/screen_loc = modifiers["screen-loc"]
@@ -134,7 +140,7 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
 /// Połowa kąta stożka rozrzutu następnego strzału (tak jak liczy go process_fire(): ±0,55 × (rozrzut broni + dodatkowy))
 /obj/item/gun/proc/get_spread_cone(mob/living/user)
-	var/total = spread + get_dynamic_spread(user)
+	var/total = spread + get_dynamic_spread(user) - aq_attachment_accuracy
 	if(requires_wielding && !is_wielded)
 		total += spread_unwielded
 	if(chambered)
@@ -146,16 +152,13 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	if(!client?.prefs?.gun_cursor)
 		return null
 	var/obj/item/gun/held_gun = get_active_held_item()
-	if(!istype(held_gun) || held_gun.aq_firemode == AQ_FIREMODE_SAFE || held_gun.has_own_cursor())
+	if(!istype(held_gun) || held_gun.aq_firemode == AQ_FIREMODE_SAFE)
 		return null
 	var/distance = aq_cursor_known ? sqrt(aq_cursor_dx ** 2 + aq_cursor_dy ** 2) : AQ_GUN_CURSOR_DEFAULT_DISTANCE
 	var/half_angle = min(held_gun.get_spread_cone(src), 60)
 	var/radius = tan(half_angle) * max(distance, world.icon_size)
 	return aq_get_gun_cursor_icon(radius - 4)
 
-/// Bronie z własnym kursorem (np. luneta z dodatku) nie dostają kursora rozrzutu
-/obj/item/gun/proc/has_own_cursor()
-	return FALSE
 
 /mob/living/proc/update_gun_cursor()
 	if(!client)

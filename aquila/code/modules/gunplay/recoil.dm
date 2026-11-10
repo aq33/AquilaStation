@@ -29,6 +29,12 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	"40mm" = 8,
 	".50" = 15,
 	"84mm" = 15,
+	"mm71282" = 6, // L6 SAW, 7.12x82 mm
+	".310 strilka" = 6, // karabin heretyka
+	"foam force" = 0.3,
+	"harpoon" = 4,
+	"tentacle" = 0, // macka i hak to nie broń palna
+	"hook" = 0,
 ))
 
 /// Domyślny przyrost odrzutu dla nieznanego kalibru
@@ -44,13 +50,11 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	var/aq_recoil = 0
 	/// Timer zaniku odrzutu
 	var/aq_recoil_timer
-	/// Kiedy postać ostatnio zrobiła krok (kara za strzelanie w ruchu)
-	var/aq_last_step_time = 0
 
 /mob/living/Moved(atom/OldLoc, Dir)
 	. = ..()
 	if(!buckled && isturf(loc) && isturf(OldLoc) && loc != OldLoc)
-		aq_last_step_time = world.time
+		last_move_time = world.time // zmienna z rdzenia (atoms_movable.dm), wcześniej nieużywana
 
 /obj/item/ammo_casing
 	/// Przyrost odrzutu na strzał; null = z tabeli kalibrów
@@ -59,20 +63,14 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 /obj/item/ammo_casing/proc/get_recoil_strength()
 	if(!isnull(recoil_strength))
 		return recoil_strength
+	if(!caliber) // magia, strzałki, chemia: bez odrzutu (rdzeń: „Magic has no recoil”)
+		return 0
 	var/table_value = GLOB.aq_caliber_recoil[caliber]
 	return isnull(table_value) ? AQ_DEFAULT_CALIBER_RECOIL : table_value
 
 /obj/item/gun
 	/// Mnożnik odrzutu broni (ciężka broń i kolba trzymają lepiej)
 	var/recoil_multiplier = 1
-	/// Dodatkowe kopnięcie kamery z dawnej zmiennej recoil broni (BANG)
-	var/camera_kick_bonus = 0
-
-/obj/item/gun/Initialize(mapload)
-	. = ..()
-	// Stara zmienna recoil robiła tylko losowe trzęsienie kamerą; teraz dokłada się do kierunkowego kopnięcia
-	camera_kick_bonus = recoil
-	recoil = 0
 
 /// Ile odrzutu dodaje jeden strzał tej broni tym nabojem
 /obj/item/gun/proc/get_shot_recoil(obj/item/ammo_casing/casing, mob/living/user)
@@ -80,7 +78,7 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	. = base * recoil_multiplier
 	if(requires_wielding && !is_wielded)
 		. *= 1.5
-	if(istype(user) && (!(user.mobility_flags & MOBILITY_STAND) || world.time - user.aq_last_step_time > AQ_MOVE_PENALTY_TIME * 2))
+	if(istype(user) && (!(user.mobility_flags & MOBILITY_STAND) || world.time - user.last_move_time > AQ_MOVE_PENALTY_TIME * 2))
 		. *= 0.8 // postawa: leżący albo stojący w miejscu lepiej trzyma broń
 
 /// Dodatkowy rozrzut z odrzutu postaci i ruchu
@@ -88,11 +86,24 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	if(!istype(user))
 		return 0
 	. = user.aq_recoil
-	if(world.time - user.aq_last_step_time < AQ_MOVE_PENALTY_TIME)
+	if(world.time - user.last_move_time < AQ_MOVE_PENALTY_TIME)
 		. += (requires_wielding && !is_wielded) ? AQ_MOVE_PENALTY_SPREAD * 2 : AQ_MOVE_PENALTY_SPREAD
 
+/obj/item/gun
+	/// Celność z dodatków (celowniki, laser): zmniejsza rozrzut broni, a potem dodatkowy, nigdy poniżej zera.
+	/// Odejmowanie wprost od `spread` dawało ujemny rozrzut, który w rdzeniu (rand(0, spread)) dodaje niecelności.
+	var/aq_attachment_accuracy = 0
+
 /obj/item/gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed = FALSE)
-	return ..(target, user, message, params, zone_override, bonus_spread + get_dynamic_spread(user), aimed)
+	var/extra_spread = get_dynamic_spread(user)
+	var/base_spread = spread
+	if(aq_attachment_accuracy)
+		// Rdzeń czyta spread od razu na początku process_fire() (seria dostaje wylosowaną wartość), więc wystarczy na czas wywołania
+		var/from_base = min(aq_attachment_accuracy, max(spread, 0))
+		spread -= from_base
+		extra_spread = max(extra_spread - (aq_attachment_accuracy - from_base), 0)
+	. = ..(target, user, message, params, zone_override, bonus_spread + extra_spread, aimed)
+	spread = base_spread
 
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	. = ..()
@@ -100,7 +111,9 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 		return
 	var/shot_recoil = get_shot_recoil(chambered, user)
 	user.add_recoil(shot_recoil)
-	var/kick = shot_recoil * AQ_RECOIL_CAMERA_PER_DEGREE + camera_kick_bonus * 0.05
+	// Stara zmienna recoil (losowe trzęsienie, wyłączone w rdzeniu) dokłada się do kierunkowego kopnięcia.
+	// Czytana przy każdym strzale, bo część broni zmienia ją w trakcie gry (kompaktowa strzelba, obrzyn)
+	var/kick = shot_recoil * AQ_RECOIL_CAMERA_PER_DEGREE + recoil * 0.05
 	if(kick > 0 && pbtarget)
 		recoil_camera_kick(user, kick, get_angle(pbtarget, user) + rand(-20, 20))
 
@@ -140,8 +153,8 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	if(multiplier <= 0)
 		return
 	var/pixels = min(strength * multiplier, 0.6) * world.icon_size
-	var/kick_x = round(sin(angle) * pixels)
-	var/kick_y = round(cos(angle) * pixels)
+	var/kick_x = round(sin(angle) * pixels, 1) // round() z jednym argumentem to podłoga: kopnięcie byłoby niesymetryczne
+	var/kick_y = round(cos(angle) * pixels, 1)
 	if(!kick_x && !kick_y)
 		return
 	animate(C, pixel_x = kick_x, pixel_y = kick_y, time = 0.5, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)

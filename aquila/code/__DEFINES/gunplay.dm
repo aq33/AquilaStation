@@ -20,8 +20,6 @@
 #define COMSIG_KB_AQ_TOGGLE_SAFETY "keybinding_aq_toggle_safety"
 /// Z /obj/item/gun/proc/set_firemode(): (new_mode)
 #define COMSIG_AQ_GUN_FIREMODE_CHANGED "aq_gun_firemode_changed"
-/// Z broni, gdy zmienia się coś, co pokazuje licznik amunicji (strzał, przeładowanie, ciepło, stan)
-#define COMSIG_AQ_GUN_STATE_CHANGED "aq_gun_state_changed"
 
 /// Maksymalny odrzut postaci w stopniach rozrzutu (Eris: MAX_ACCURACY_OFFSET)
 #define AQ_RECOIL_MAX 45
