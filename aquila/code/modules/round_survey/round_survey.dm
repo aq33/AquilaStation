@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(round_survey_submitted)
 	return replacetext(t, "\n", " / ")
 
 /// Saves the survey of the player ckey, user gets the messages. Returns TRUE when it was saved.
+/// ckey has to come from the client that sent the form (usr.client.ckey), not from UI params: it is not checked here.
 /proc/round_survey_submit(mob/user, ckey, list/params, survey_file = ROUND_SURVEY_FILE)
 	if(!ckey || GLOB.round_survey_submitted[ckey])
 		return FALSE

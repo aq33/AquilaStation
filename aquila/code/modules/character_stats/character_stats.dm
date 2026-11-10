@@ -194,7 +194,12 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CharacterStats")
+		ui.set_autoupdate(TRUE) // liczniki bieżącej rundy
 		ui.open()
+
+/// Liczniki tej rundy zmieniają się w trakcie gry, więc idą w danych odświeżanych przy aktualizacji okna
+/datum/character_stats_ui/ui_data(mob/user)
+	return list("round_stats" = user.mind?.aquila_stats || list())
 
 /datum/character_stats_ui/ui_static_data(mob/user)
 	var/list/characters = list()
@@ -206,7 +211,6 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	return list(
 		"characters" = characters,
 		"current" = user.mind?.name,
-		"round_stats" = user.mind?.aquila_stats || list(),
 		"leaderboard" = GLOB.economy_leaderboard,
 		"my_ckey" = user.ckey,
 	)

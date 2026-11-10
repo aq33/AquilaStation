@@ -69,10 +69,7 @@ export const MapVoteContent = (props) => {
     'choice',
     undefined,
   );
-  const [selectedChoiceName, setSelectedChoiceName] = useLocalState<any>(
-    'choiceName',
-    undefined,
-  );
+  const [, setSelectedChoiceName] = useLocalState<any>('choiceName', undefined);
 
   return (
     <>
