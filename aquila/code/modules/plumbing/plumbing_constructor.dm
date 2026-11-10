@@ -34,6 +34,8 @@
 			/obj/machinery/plumbing/splitter = 5,
 			/obj/machinery/plumbing/sender = 20,
 			/obj/machinery/plumbing/output = 5,
+			/obj/machinery/plumbing/floor_pump/input = 20, // AQUILA - ciecze z Monke
+			/obj/machinery/plumbing/floor_pump/output = 20,
 		),
 		"Storage" = list(
 			/obj/machinery/plumbing/tank = 20,

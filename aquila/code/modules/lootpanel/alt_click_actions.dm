@@ -420,6 +420,9 @@
 /obj/structure/frame/computer
 	alt_click_loot = FALSE
 
+/obj/structure/liquid_pump
+	alt_click_loot = FALSE
+
 /obj/structure/marker_beacon
 	alt_click_loot = FALSE
 
