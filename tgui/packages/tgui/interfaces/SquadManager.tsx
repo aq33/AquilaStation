@@ -39,6 +39,8 @@ type Loan = {
   missing: string[];
   minutes: number;
   lost: BooleanLike;
+  ref: string;
+  reported: BooleanLike;
 };
 
 type Position = { id: string; name: string };
@@ -58,7 +60,7 @@ export type SquadConsoleData = {
 
 export const SquadManager = () => {
   return (
-    <Window theme="hackerman" width={1360} height={860}>
+    <Window theme="ntos" width={1360} height={860}>
       <Window.Content>
         <SquadConsoleContent />
       </Window.Content>
@@ -99,20 +101,40 @@ export const SquadConsoleContent = () => {
 };
 
 const SquadsTab = () => {
-  const { data } = useBackend<SquadConsoleData>();
+  const { act, data } = useBackend<SquadConsoleData>();
   return (
     <Stack vertical fill>
       <Stack.Item>
         <UnassignedCrew />
       </Stack.Item>
+      <Stack.Item>
+        <Button
+          icon="plus"
+          tooltip="Nowa drużyna z własną nazwą i kolorem"
+          onClick={() => act('aq_create_squad')}
+        >
+          Nowa drużyna
+        </Button>
+      </Stack.Item>
       <Stack.Item grow basis={0}>
-        <Stack fill>
+        {/* przy więcej niż czterech drużynach kolumny się przewijają w poziomie */}
+        <div
+          style={{
+            display: 'flex',
+            height: '100%',
+            overflowX: 'auto',
+            gap: '6px',
+          }}
+        >
           {data.squads.map((squad) => (
-            <Stack.Item key={squad.id} grow basis={0}>
+            <div
+              key={squad.id}
+              style={{ flex: '1 0 310px', minWidth: '310px', height: '100%' }}
+            >
               <SquadColumn squad={squad} />
-            </Stack.Item>
+            </div>
           ))}
-        </Stack>
+        </div>
       </Stack.Item>
       {!!data.has_camera && !!data.camera_target && (
         <Stack.Item height="300px">
@@ -182,14 +204,26 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
         </Box>
       }
       buttons={
-        <Button
-          icon="bullhorn"
-          tooltip="Rozkaz na ekran drużyny, z twoim portretem i głosem"
-          disabled={data.order_cooldown > 0}
-          onClick={() => act('order', { squad_id: squad.id })}
-        >
-          {data.order_cooldown > 0 ? `${data.order_cooldown} s` : 'Rozkaz'}
-        </Button>
+        <>
+          <Button
+            icon="pen"
+            tooltip="Zmień nazwę drużyny"
+            onClick={() => act('aq_rename_squad', { squad_id: squad.id })}
+          />
+          <Button
+            icon="palette"
+            tooltip="Zmień kolor drużyny"
+            onClick={() => act('aq_recolour_squad', { squad_id: squad.id })}
+          />
+          <Button
+            icon="bullhorn"
+            tooltip="Rozkaz na ekran drużyny, z twoim portretem i głosem"
+            disabled={data.order_cooldown > 0}
+            onClick={() => act('order', { squad_id: squad.id })}
+          >
+            {data.order_cooldown > 0 ? `${data.order_cooldown} s` : 'Rozkaz'}
+          </Button>
+        </>
       }
     >
       <Box mb={1}>
@@ -507,7 +541,7 @@ const MapTab = () => {
 };
 
 const LoansTab = () => {
-  const { data } = useBackend<SquadConsoleData>();
+  const { act, data } = useBackend<SquadConsoleData>();
   if (!data.loans.length) {
     return (
       <Section fill>
@@ -524,6 +558,7 @@ const LoansTab = () => {
           <Table.Cell>Zestaw</Table.Cell>
           <Table.Cell>Minut temu</Table.Cell>
           <Table.Cell>Nie oddano</Table.Cell>
+          <Table.Cell />
         </Table.Row>
         {data.loans.map((loan, i) => (
           <Table.Row key={i}>
@@ -541,6 +576,22 @@ const LoansTab = () => {
             <Table.Cell>{loan.minutes}</Table.Cell>
             <Table.Cell color={loan.missing.length ? 'average' : 'good'}>
               {loan.missing.length ? loan.missing.join(', ') : 'wszystko'}
+            </Table.Cell>
+            <Table.Cell collapsing>
+              {!!loan.missing.length &&
+                (loan.reported ? (
+                  <Box color="bad">Zgłoszono</Box>
+                ) : (
+                  <Button.Confirm
+                    icon="gavel"
+                    color="bad"
+                    tooltip="Dopisuje do akt ochrony wykroczenie: Przywłaszczenie sprzętu drużyny"
+                    confirmContent="Na pewno?"
+                    onClick={() => act('aq_report_gear', { loan: loan.ref })}
+                  >
+                    Zgłoś do ochrony
+                  </Button.Confirm>
+                ))}
             </Table.Cell>
           </Table.Row>
         ))}

@@ -23,6 +23,8 @@
 			"missing" = loan.outstanding_names(),
 			"minutes" = round((world.time - loan.issued_at) / (1 MINUTES)),
 			"lost" = !loan.owner,
+			"ref" = REF(loan),
+			"reported" = loan.aq_reported,
 		))
 
 /// Wspólne dane okna konsoli i programu
@@ -152,6 +154,43 @@
 			new /obj/item/clothing/neck/squad(get_turf(source), squad)
 			playsound(source, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
 			return TRUE
+		if("aq_create_squad")
+			if(!source)
+				return FALSE
+			var/new_name = tgui_input_text(user, "Nazwa nowej drużyny (do 20 znaków):", "Nowa drużyna", max_length = 20)
+			if(!new_name)
+				return FALSE
+			var/new_colour = input(user, "Kolor nowej drużyny:", "Nowa drużyna", "#3cb371") as color|null
+			if(!new_colour)
+				return FALSE
+			var/datum/squad/created = GLOB.squad_manager.aq_create_squad(new_name, new_colour)
+			if(!created)
+				to_chat(user, "<span class='warning'>Nie da się utworzyć drużyny: nazwa jest zajęta albo niepoprawna, albo drużyn jest już za dużo.</span>")
+				return FALSE
+			log_game("[key_name(user)] created squad [created.name]")
+			return TRUE
+		if("aq_rename_squad")
+			if(!squad)
+				return FALSE
+			var/new_name = tgui_input_text(user, "Nowa nazwa drużyny [squad.name] (do 20 znaków):", "Nazwa drużyny", squad.name, max_length = 20)
+			if(!new_name)
+				return FALSE
+			if(!squad.aq_rename(new_name, user))
+				to_chat(user, "<span class='warning'>Tej nazwy nie da się użyć: jest zajęta albo niepoprawna.</span>")
+				return FALSE
+			return TRUE
+		if("aq_recolour_squad")
+			if(!squad)
+				return FALSE
+			var/new_colour = input(user, "Kolor drużyny [squad.name]:", "Kolor drużyny", squad.colour) as color|null
+			if(!new_colour)
+				return FALSE
+			return squad.aq_recolour(new_colour, user)
+		if("aq_report_gear")
+			var/datum/squad_loan/loan = locate(params["loan"]) in GLOB.squad_loans
+			if(!loan)
+				return FALSE
+			return loan.aq_report(user)
 		if("place_marker")
 			if(!squad)
 				return FALSE

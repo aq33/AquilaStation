@@ -1230,6 +1230,8 @@
 #include "code\modules\squads\squad_markers.dm"
 #include "code\modules\squads\squad_pointers.dm"
 #include "code\modules\squads\squad_pager_pda.dm"
+#include "code\modules\squads\squad_custom.dm"
+#include "code\modules\squads\squad_gear_crime.dm"
 #include "code\modules\squads\squad_tts.dm"
 #include "code\modules\squads\squad_vendor_kits.dm"
 #include "code\modules\squads\squad_tactical_map.dm"

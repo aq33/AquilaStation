@@ -12,7 +12,10 @@
 	6) Konsola: guziki Dostęp / Broń / Przydział zmieniają napis po jednym kliknięciu, Smycz drukuje jedną smycz. \
 	7) Postaw znacznik i odejdź tak, żeby zniknął z ekranu → przy krawędzi ekranu wskaźnik z ikoną znacznika, strzałką w jego stronę i odległością; podejdź → wskaźnik znika. \
 	8) Kliknij pagerem w PDA → pager w PDA, przycisk „Pager drużyny” otwiera jego okno, rozkaz dalej pokazuje się na ekranie; Alt-klik na PDA wyjmuje pager (długopis wyjmuje Ctrl-klik). \
-	9) Zabij się (np. ghostuj z ciała po śmierci od pistoletu): po 10 s dowodzenie przejmuje inny członek drużyny, a drużyna dostaje komunikat na ekranie."
+	9) Konsola: „Nowa drużyna” → nazwa i kolor → nowa kolumna; ołówek zmienia nazwę, paleta kolor (ikony nad głowami i paski skrzyń zmieniają barwę); okno ma barwy pagera. \
+	10) Weź zestaw z automatu → zamknięta skrzynia z paskami w kolorze drużyny; wyjmij pancerz → skrzynia otwarta, widać hełm i magazynek. Zakładka Sprzęt → „Zgłoś do ochrony” → wykroczenie w aktach (konsola ochrony). \
+	11) Mapa: podłogi w kolorach działów, podpisy dużych pomieszczeń, legenda pod mapą. \
+	12) Zabij się (np. ghostuj z ciała po śmierci od pistoletu): po 10 s dowodzenie przejmuje inny członek drużyny, a drużyna dostaje komunikat na ekranie."
 	items = list(
 		/obj/machinery/squad_vendor = 1,
 		/obj/machinery/computer/squad_manager = 1,
