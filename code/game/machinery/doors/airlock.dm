@@ -122,7 +122,6 @@
 	var/protected_door = FALSE // Protects the door against any form of power outage, AI control, screwdrivers and welders.
 	var/door_animation_speed = 4 //nsv13 if you want a door that snaps open QUICKLY like on turbolifts
 
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/electrification_timing // Set to true while electrified_loop is running, to prevent multiple being started

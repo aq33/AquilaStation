@@ -19,7 +19,6 @@ WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 	var/rods_broken = TRUE
 	var/grille_type = null
 	var/broken_type = /obj/structure/grille/broken
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\
 	)

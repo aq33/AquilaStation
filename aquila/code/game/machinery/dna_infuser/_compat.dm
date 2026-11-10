@@ -114,8 +114,9 @@
 	return "[pick("zdeformowany", "pulsujący", "dziwny", "obślizgły", "pomarszczony", "odrażający", "ohydny", "lepki", "napuchnięty")] [pick("narząd", "organ", "gruczoł", "worek", "guz", "węzeł", "płat", "zwój")]"
 
 //-- TRAIT_SPACEWALK: ruch w próżni jak karp --//
-/mob/living/carbon/human/Process_Spacemove(movement_dir = 0)
-	if(movement_dir && HAS_TRAIT(src, TRAIT_SPACEWALK) && isturf(loc))
+// Tylko własny ruch (continuous_move = FALSE): w trakcie dryfu cecha go nie zatrzymuje, tak jak dawniej przy kierunku 0
+/mob/living/carbon/human/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+	if(movement_dir && !continuous_move && HAS_TRAIT(src, TRAIT_SPACEWALK) && isturf(loc))
 		return TRUE
 	return ..()
 

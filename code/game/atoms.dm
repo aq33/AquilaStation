@@ -72,8 +72,6 @@
 	//List of datums orbiting this atom
 	var/datum/component/orbiter/orbiters
 
-	/// Will move to flags_1 when i can be arsed to (2019, has not done so)
-	var/rad_flags = NONE
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
@@ -869,16 +867,6 @@
   */
 /atom/proc/emag_act()
 	SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
-
-/**
-  * Respond to a radioactive wave hitting this atom
-  *
-  * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
-  */
-/atom/proc/rad_act(strength)
-	if(istype(get_turf(src), /turf/open/indestructible/sound/pool)) //Nsv13 - Pools protect you from rads.
-		strength *= 0.25
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
 
 /**
   * Respond to narsie eating our atom

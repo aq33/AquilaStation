@@ -27,11 +27,11 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
-	radiation_pulse(src, 625, 5) //MORE RADS
+	radiation_pulse(src, max_range = 1, threshold = RAD_EXTREME_INSULATION, intensity = 15) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
-		radiation_pulse(src, 500, 5) //MORE RADS //The careful clearing of sludge should not give off as much radiation as casually running through it.
+		radiation_pulse(src, max_range = 1, threshold = RAD_EXTREME_INSULATION, intensity = 20) // AQ EDIT - promieniowanie z Bee#13442
 		to_chat(user, "<span class='notice'>Zaczynasz usuwać [src]...</span>")
 		if(tool.use_tool(src, user, 50, volume=100))
 			to_chat(user, "<span class='notice'>Usuwasz [src]. </span>")
@@ -45,4 +45,4 @@
 
 /obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/radioactive, 1500, src, 0)
+	AddElement(/datum/element/radioactive, 3, RAD_EXTREME_INSULATION, 5) // AQ EDIT - promieniowanie z Bee#13442 (Bee usunął promieniowanie epicentrum)

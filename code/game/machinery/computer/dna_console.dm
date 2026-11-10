@@ -315,7 +315,10 @@
 		else
 			data["subjectStatus"] = scanner_occupant.stat
 		data["subjectHealth"] = scanner_occupant.health
-		data["subjectRads"] = scanner_occupant.radiation/(RAD_MOB_SAFE/100)
+		// AQ EDIT START - uszkodzenia genetyczne z Bee#13442 zamiast promieniowania (klucz subjectRads zostaje dla okna)
+		var/datum/status_effect/genetic_damage/genetic_damage = scanner_occupant.has_status_effect(/datum/status_effect/genetic_damage)
+		data["subjectRads"] = genetic_damage ? round((genetic_damage.total_damage / genetic_damage.minimum_before_tox_damage) * 100, 0.1) : 0
+		// AQ EDIT END
 		data["subjectEnzymes"] = scanner_occupant.dna.unique_enzymes
 		data["isMonkey"] = ismonkey(scanner_occupant)
 		data["subjectUNI"] = scanner_occupant.dna.uni_identity
@@ -420,7 +423,7 @@
 			scanner_occupant.dna.generate_dna_blocks()
 			scrambleready = world.time + SCRAMBLE_TIMEOUT
 			to_chat(usr,"<span class='notice'>DNA zostało wymieszane.</span>")
-			scanner_occupant.radiation += RADIATION_STRENGTH_MULTIPLIER*50/(connected_scanner.damage_coeff ** 2)
+			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, RADIATION_STRENGTH_MULTIPLIER*50/(connected_scanner.damage_coeff ** 2)) // AQ EDIT - uszkodzenia genetyczne z Bee#13442
 			return
 
 		// Check whether a specific mutation is eligible for discovery within the
@@ -531,7 +534,7 @@
 			//  we've increased the occupant rads
 			sequence = copytext_char(sequence, 1, genepos) + newgene + copytext_char(sequence, genepos + 1)
 			scanner_occupant.dna.mutation_index[path] = sequence
-			scanner_occupant.radiation += RADIATION_STRENGTH_MULTIPLIER/connected_scanner.damage_coeff
+			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, RADIATION_STRENGTH_MULTIPLIER/connected_scanner.damage_coeff) // AQ EDIT - uszkodzenia genetyczne z Bee#13442
 			scanner_occupant.domutcheck()
 
 			// GUARD CHECK - Modifying genetics can lead to edge cases where the
@@ -1540,7 +1543,7 @@
 				return FALSE
 			scanner_occupant.dna.uni_identity = buffer_slot["UI"]
 			scanner_occupant.updateappearance(mutations_overlay_update=1)
-			scanner_occupant.radiation += rad_increase
+			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, rad_increase) // AQ EDIT - uszkodzenia genetyczne z Bee#13442
 			scanner_occupant.domutcheck()
 			return TRUE
 		if("ue")
@@ -1554,7 +1557,7 @@
 			scanner_occupant.name = buffer_slot["name"]
 			scanner_occupant.dna.unique_enzymes = buffer_slot["UE"]
 			scanner_occupant.dna.blood_type = buffer_slot["blood_type"]
-			scanner_occupant.radiation += rad_increase
+			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, rad_increase) // AQ EDIT - uszkodzenia genetyczne z Bee#13442
 			scanner_occupant.domutcheck()
 			return TRUE
 		if("mixed")
@@ -1570,7 +1573,7 @@
 			scanner_occupant.name = buffer_slot["name"]
 			scanner_occupant.dna.unique_enzymes = buffer_slot["UE"]
 			scanner_occupant.dna.blood_type = buffer_slot["blood_type"]
-			scanner_occupant.radiation += rad_increase
+			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, rad_increase) // AQ EDIT - uszkodzenia genetyczne z Bee#13442
 			scanner_occupant.domutcheck()
 			return TRUE
 

@@ -23,6 +23,13 @@
 	///Used primarially as a hint to be reasoned about by our [controller], and as the id of our bucket
 	///Should not be modified directly outside of [start_loop]
 	var/timer = 0
+	// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
+	///The time we are CURRENTLY queued for processing
+	///Do not modify this directly
+	var/queued_time = -1
+	/// Status bitfield for what state the move loop is currently in
+	var/status = NONE
+	// AQ EDIT END
 
 /datum/move_loop/New(datum/movement_packet/owner, datum/controller/subsystem/movement/controller, atom/moving, priority, flags, datum/extra_info)
 	src.owner = owner
@@ -51,6 +58,7 @@
 /datum/move_loop/proc/start_loop()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_START)
+	status |= MOVELOOP_STATUS_RUNNING // AQ EDIT - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
 	//If this is our first time starting to move with this loop
 	//And we're meant to start instantly
 	if(!timer && flags & MOVEMENT_LOOP_START_FAST)
@@ -61,6 +69,7 @@
 /datum/move_loop/proc/stop_loop()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_STOP)
+	status &= ~MOVELOOP_STATUS_RUNNING // AQ EDIT - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
 
 /datum/move_loop/proc/info_deleted(datum/source)
 	SIGNAL_HANDLER
@@ -78,6 +87,20 @@
 ///Exists as a helper so outside code can modify delay in a sane way
 /datum/move_loop/proc/set_delay(new_delay)
 	delay =  max(new_delay, world.tick_lag)
+
+// AQ EDIT START - pauza pętli ruchu (BeeStation/BeeStation-Hornet#14176)
+///Pauses the move loop for some passed in period
+///This functionally means shifting its timer up, and clearing it from its current bucket
+/datum/move_loop/proc/pause_for(time)
+	if(!controller || !(status & MOVELOOP_STATUS_RUNNING)) //No controller or not running? go away
+		return
+	//Dequeue us from our current bucket
+	controller.dequeue_loop(src)
+	//Offset our timer
+	timer = world.time + time
+	//Now requeue us with our new target start time
+	controller.queue_loop(src)
+// AQ EDIT END
 
 /datum/move_loop/process()
 	if(!controller) // AQUILA - pętla usunięta w trakcie przetwarzania (np. qdel moba w ruchu)

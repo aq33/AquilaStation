@@ -4,7 +4,7 @@
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
-	inherent_traits = list(TRAIT_ALWAYS_CLEAN, TRAIT_BEEFRIEND, TRAIT_NONECRODISEASE)
+	inherent_traits = list(TRAIT_ALWAYS_CLEAN, TRAIT_BEEFRIEND, TRAIT_NONECRODISEASE, TRAIT_RADHEALER) // AQ EDIT - TRAIT_RADHEALER jak Diona w Bee#13442
 	inherent_factions = list("plants", "vines")
 	fixed_mut_color = "59CE00"
 	attack_verb = "slash"
@@ -54,7 +54,7 @@
 	switch(P.type)
 		if(/obj/item/projectile/energy/floramut)
 			if(prob(15))
-				H.rad_act(rand(30,80))
+				SSradiation.irradiate(H, rand(30,80) * RAD_LEGACY_PULSE_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442
 				H.Paralyze(100)
 				H.visible_message("<span class='warning'>[H] wije się z bólu, gdy jego wakuole się gotują.</span>", "<span class='userdanger'>Wijesz się z bólu, gdy twoje wakuole się gotują!</span>", "<span class='italics'>Słyszysz chrzęst liści.</span>")
 				if(prob(80))

@@ -8,8 +8,15 @@
 	power_coeff = 1
 
 
+	COOLDOWN_DECLARE(last_radioactive_pulse) // AQ EDIT - promieniowanie z Bee#13442
+
 /datum/mutation/radioactive/on_life()
-	radiation_pulse(owner, 20 * GET_MUTATION_POWER(src))
+	// AQ EDIT START - promieniowanie z Bee#13442
+	if(!COOLDOWN_FINISHED(src, last_radioactive_pulse))
+		return
+	COOLDOWN_START(src, last_radioactive_pulse, 5 SECONDS)
+	radiation_pulse(owner, max_range = 1 * (GET_MUTATION_POWER(src) * 2), threshold = RAD_MEDIUM_INSULATION)
+	// AQ EDIT END
 
 /datum/mutation/radioactive/New(class_ = MUT_OTHER, timer, datum/mutation/copymut)
 	..()

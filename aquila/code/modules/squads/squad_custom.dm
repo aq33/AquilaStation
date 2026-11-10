@@ -117,7 +117,8 @@ GLOBAL_VAR_INIT(aq_custom_squad_count, 0)
 		member.aq_update_squad_hud()
 	for(var/marker_type in squad.aq_markers)
 		squad.aq_clear_marker(marker_type)
-	for(var/datum/component/simple_teamchat/radio_dependent/squad/channel as anything in GLOB.simple_teamchats[squad.aq_channel_key]?.Copy())
+	var/list/channels = GLOB.simple_teamchats[squad.aq_channel_key]
+	for(var/datum/component/simple_teamchat/radio_dependent/squad/channel as anything in channels?.Copy())
 		if(channel.squad != squad && channel != squad.squad_channel)
 			continue
 		var/obj/item/squad_pager/pager = channel.parent

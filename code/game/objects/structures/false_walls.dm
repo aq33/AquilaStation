@@ -24,7 +24,6 @@
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
 	var/mineral = /obj/item/stack/sheet/iron
 	var/mineral_amount = 2
@@ -188,7 +187,7 @@
 	if(!active)
 		if(world.time > last_event+15)
 			active = 1
-			radiation_pulse(src, 150)
+			radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = URANIUM_IRRADIATION_INTENSITY, minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME) // AQ EDIT - promieniowanie z Bee#13442
 			for(var/turf/closed/wall/mineral/uranium/T in (RANGE_TURFS(1,src)-src))
 				T.radiate()
 			last_event = world.time

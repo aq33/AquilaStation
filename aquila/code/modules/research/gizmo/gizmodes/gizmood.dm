@@ -38,8 +38,8 @@
 /datum/gizpulse/radiation_pulse/activate(atom/movable/holder, datum/gizmodes/master, datum/gizmo_interface/interface)
 	new /obj/effect/temp_visual/circle_wave(get_turf(holder), COLOR_GREEN)
 
-	// AQUILA: tg radiation_pulse(max_range = 5, threshold = RAD_LIGHT_INSULATION, chance = 30), u nas stary system z natężeniem
-	radiation_pulse(holder, 200)
+	// AQUILA: tg radiation_pulse(max_range = 5, threshold = RAD_LIGHT_INSULATION, chance = 30); u nas API z Bee#13442 z natężeniem
+	radiation_pulse(holder, max_range = 5, threshold = RAD_LIGHT_INSULATION, intensity = DEFAULT_RADIATION_INTENSITY)
 
 /datum/mood_event/gizmo_negative
 	description = "<span class='warning'>Słyszę szepczący głos i nie podoba mi się to, co mówi.</span>\n"
