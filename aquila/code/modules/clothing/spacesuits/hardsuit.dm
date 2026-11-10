@@ -172,3 +172,39 @@
 	. = ..()
 	if(jetpack?.on)
 		jetpack.turn_off(user)
+
+/*************************************\
+|****** malowanie hardsuitów *********|
+\*************************************/
+// Spray (i każdy inny zmywalny kolor) barwi kombinezon razem z hełmem, a sprite na postaci odświeża się od razu.
+// Zmycie koloru z jednej części zmywa go też z drugiej.
+
+/// Zwraca zmywalny kolor części hardsuitu (null, gdy brak)
+/obj/item/clothing/proc/get_washable_colour()
+	if(!length(atom_colours) || atom_colours.len < WASHABLE_COLOUR_PRIORITY)
+		return null
+	return atom_colours[WASHABLE_COLOUR_PRIORITY]
+
+/obj/item/clothing/update_atom_colour()
+	. = ..()
+	update_slot_icon()
+
+/obj/item/clothing/suit/space/hardsuit/add_atom_colour(coloration, colour_priority)
+	. = ..()
+	if(colour_priority == WASHABLE_COLOUR_PRIORITY && helmet && helmet.get_washable_colour() != coloration)
+		helmet.add_atom_colour(coloration, colour_priority)
+
+/obj/item/clothing/suit/space/hardsuit/remove_atom_colour(colour_priority, coloration)
+	. = ..()
+	if(colour_priority == WASHABLE_COLOUR_PRIORITY && helmet?.get_washable_colour())
+		helmet.remove_atom_colour(colour_priority)
+
+/obj/item/clothing/head/helmet/space/hardsuit/add_atom_colour(coloration, colour_priority)
+	. = ..()
+	if(colour_priority == WASHABLE_COLOUR_PRIORITY && suit && suit.get_washable_colour() != coloration)
+		suit.add_atom_colour(coloration, colour_priority)
+
+/obj/item/clothing/head/helmet/space/hardsuit/remove_atom_colour(colour_priority, coloration)
+	. = ..()
+	if(colour_priority == WASHABLE_COLOUR_PRIORITY && suit?.get_washable_colour())
+		suit.remove_atom_colour(colour_priority)
