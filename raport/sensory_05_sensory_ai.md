@@ -113,6 +113,26 @@ Z nagrań wyszły dwie rzeczy, które psuły wrażenie walki:
   `ai_sandbox_step=<decysekundy>` zmienia gęstość zapisu (domyślnie 5, czyli co pół sekundy),
   a `ai_sandbox_legacy=1` wyłącza wszystko razem z sygnaturami i morale.
 
+## Stożki sensorów (jak na prawdziwym okręcie)
+
+`aquila/code/modules/overmap/ai_sensor_suites.dm`, przełącznik Debug > **Toggle AI sensor cones**
+(`GLOB.ai_sensor_cones_enabled`), w piaskownicy `ai_sandbox_no_cones=1`.
+
+| sensor | pierwowzór | w grze |
+|---|---|---|
+| optyczny | panoramiczne kamery szerokokątne | dookoła, połowa dawnego zasięgu optycznego (najmniej 10 pól) |
+| teleskop | wąski obiektyw na przegubie, trzeba go wycelować | stożek 2×10°, 1,5× dawnego zasięgu optycznego; celuje w trzymany cel, potem w miejsce, gdzie cel powinien być, a bez celu wzdłuż kursu. Tylko okręty większe od myśliwca |
+| termiczny | panoramiczny IRST | dookoła poza klinem 2×30° za rufą, gdy własny napęd pracuje (`thrust_heat` ≥ 0,2); ciepło napędu celu zależy od kąta: od dysz ×2,25, z boku ×1,37, od dzioba ×0,49 (pożar, uszkodzenia i gorące działa świecą dookoła); zasięg rośnie z pierwiastkiem ciepła |
+| lidar (impuls) | obrotowy radar, emisja zdradza nadawcę | bez zmian |
+| nasłuch | pasywny, sam namiar | bez zmian |
+
+Dla okrętu, który ciągnie tylko na napędzie, daje to zasięg termiki 1,5× od strony dysz i 0,7× od dzioba.
+Skutki, których się spodziewamy: uciekający okręt traci termikę na pościg za rufą, a podejście od strony
+dysz wroga jest trudniejsze do wykrycia termiką. Liczby są startowe i czekają na serię bitew porównawczych.
+
+Odtwarzacz ma warstwę „Stożki sensorów": turkusowy stożek teleskopu (obrót doliczany między pełnymi
+klatkami) i pomarańczowy klin martwego pola termiki. Koło termiki zaznaczonego okrętu ma ten klin wycięty.
+
 ## Czego tu nie ma
 
 - Gracz nie dostaje zestawów sensorów. Jego DRADIS działa jak dotąd, więc AI i gracz

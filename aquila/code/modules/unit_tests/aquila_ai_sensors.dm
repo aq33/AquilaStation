@@ -9,6 +9,8 @@
 	var/was_signature = GLOB.sensor_signature_enabled
 	var/was_suites = GLOB.ai_sensor_suites_enabled
 	var/was_tactics = GLOB.ai_sensor_tactics_enabled
+	var/was_cones = GLOB.ai_sensor_cones_enabled
+	GLOB.ai_sensor_cones_enabled = TRUE
 	GLOB.sensor_signature_enabled = TRUE
 	GLOB.ai_sensor_suites_enabled = TRUE
 	GLOB.ai_sensor_tactics_enabled = TRUE
@@ -16,11 +18,12 @@
 	target = allocate(/obj/structure/overmap/small_craft/combat/light)
 	target.faction = "syndicate"
 	observer.ai_controlled = TRUE
-	var/fail = check_suites() || check_contact_suite() || check_search() || check_radar_discipline() || check_fleet_picture() || check_picket() || check_disabled()
+	var/fail = check_suites() || check_contact_suite() || check_cones() || check_search() || check_radar_discipline() || check_fleet_picture() || check_picket() || check_disabled()
 	observer.ai_controlled = FALSE
 	GLOB.sensor_signature_enabled = was_signature
 	GLOB.ai_sensor_suites_enabled = was_suites
 	GLOB.ai_sensor_tactics_enabled = was_tactics
+	GLOB.ai_sensor_cones_enabled = was_cones
 	if(fail)
 		return Fail(fail)
 
@@ -88,6 +91,66 @@
 	place(5)
 	if(target.is_sensor_visible(observer) <= SENSOR_VISIBILITY_GHOST || observer.get_contact_suite(target) != SENSOR_OPTICAL)
 		return "A cold ship next to us was not picked up by the optical sensor"
+
+/// Stożki sensorów: teleskop widzi tylko tam, gdzie patrzy, własny napęd oślepia termikę za rufą,
+/// a dysze celu świecą najmocniej od tyłu. Kąty z overmap_angle(), żeby nie zgadywać konwencji.
+/datum/unit_test/aquila_ai_sensors/proc/check_cones()
+	place(40)
+	make_cold()
+	observer.last_target = null
+	observer.ai_search_target = null
+	observer.thrust_heat = 0
+	var/do_celu = overmap_angle(observer, target)
+
+	// Teleskop bez celu patrzy wzdłuż kursu
+	observer.angle = do_celu
+	if(observer.get_suite_range(SENSOR_TELESCOPE, target) <= 0)
+		return "Teleskop nie widział okrętu, który był dokładnie na kursie"
+	observer.angle = do_celu + 90
+	if(observer.get_suite_range(SENSOR_TELESCOPE, target) > 0)
+		return "Teleskop widział okręt 90 stopni od kierunku, w który patrzył"
+	// Trzymany cel: teleskop celuje w niego niezależnie od kursu
+	observer.last_target = target
+	LAZYSET(observer.sensor_contact_suites, target, SENSOR_OPTICAL)
+	if(observer.get_suite_range(SENSOR_TELESCOPE, target) <= 0)
+		return "Teleskop nie celował w trzymany cel, gdy okręt leciał bokiem"
+	observer.last_target = null
+	LAZYREMOVE(observer.sensor_contact_suites, target)
+
+	// Termika: napęd okrętu oślepia klin za rufą
+	target.thrust_heat = 1
+	observer.angle = do_celu + 180 // cel za rufą
+	observer.thrust_heat = 1
+	if(observer.get_suite_range(SENSOR_INFRARED, target) > 0)
+		return "Termika widziała cel za rufą mimo pracującego napędu"
+	observer.thrust_heat = 0
+	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
+		return "Termika nie widziała gorącego celu za rufą przy wyłączonym napędzie"
+	observer.angle = do_celu
+	observer.thrust_heat = 1
+	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
+		return "Pracujący napęd oślepił termikę także do przodu"
+	observer.thrust_heat = 0
+
+	// Dysze celu: od tyłu widać go dalej niż od dzioba
+	target.angle = overmap_angle(target, observer) + 180 // patrzymy mu w dysze
+	var/od_dysz = observer.get_suite_range(SENSOR_INFRARED, target)
+	target.angle = overmap_angle(target, observer) // patrzymy mu w dziób
+	var/od_dziobu = observer.get_suite_range(SENSOR_INFRARED, target)
+	if(od_dysz <= od_dziobu * 1.8)
+		return "Cel widziany od strony dysz nie był widoczny wyraźnie dalej niż od dzioba ([od_dysz] i [od_dziobu])"
+
+	// Wyłączone stożki: wszystko jak przed nimi
+	GLOB.ai_sensor_cones_enabled = FALSE
+	observer.angle = do_celu + 180
+	observer.thrust_heat = 1
+	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
+		return "Z wyłączonymi stożkami napęd dalej oślepiał termikę"
+	if(observer.get_suite_range(SENSOR_TELESCOPE, target) > 0)
+		return "Z wyłączonymi stożkami teleskop dalej działał"
+	GLOB.ai_sensor_cones_enabled = TRUE
+	observer.thrust_heat = 0
+	target.thrust_heat = 0
 
 /// Losing a contact starts a search at the point the target was heading for, not at the point it was last seen
 /datum/unit_test/aquila_ai_sensors/proc/check_search()

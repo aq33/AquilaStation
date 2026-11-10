@@ -8,7 +8,7 @@
 :root{
   --bg:#0b0e14; --panel:#121722; --panel2:#171d2a; --ink:#e8ebf2; --muted:#8b93a7;
   --line:#232b3b; --nt:#4f9dff; --syn:#ff5a5f; --neutral:#8b93a7;
-  --opt:#9ad2ff; --ir:#ffa24f; --lidar:#b48bff; --esm:#5ad18c; --memory:#e8c35a;
+  --opt:#9ad2ff; --tel:#3fd6c4; --ir:#ffa24f; --lidar:#b48bff; --esm:#5ad18c; --memory:#e8c35a;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -73,6 +73,7 @@ h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09
     </div>
     <div class="overlays">
       <span class="lab">Warstwy:</span>
+      <button id="w-con" aria-pressed="true">Stożki sensorów</button>
       <button id="w-rng" aria-pressed="true">Zasięgi sensorów</button>
       <button id="w-cts" aria-pressed="true">Kontakty i sensor</button>
       <button id="w-tac" aria-pressed="true">Taktyka i stan</button>
@@ -82,7 +83,9 @@ h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09
     </div>
     <div class="strip"><canvas id="pasek" width="1000" height="104"></canvas></div>
     <div class="key">
-      <span><i class="dot" style="background:var(--opt)"></i>optyczny</span>
+      <span><i class="dot" style="background:var(--opt)"></i>optyczny (kamery szerokokątne, dookoła)</span>
+      <span><i class="dot" style="background:var(--tel)"></i>teleskop (wąski stożek, celowany)</span>
+      <span>pomarańczowy klin za rufą: termika oślepiona własnym napędem</span>
       <span><i class="dot" style="background:var(--ir)"></i>termiczny (IR)</span>
       <span><i class="dot" style="background:var(--lidar)"></i>lidar</span>
       <span><i class="dot" style="background:var(--memory)"></i>ostatnia znana pozycja / cel tylko z meldunku floty (linia przerywana)</span>
@@ -111,7 +114,7 @@ var MAPW = (D.map && D.map[0]) || 255, MAPH = (D.map && D.map[1]) || 255;
 var KONIEC = FRAMES.length ? FRAMES[FRAMES.length - 1].t : 0;
 
 var SUITE_KOLOR = {
-  "optyczny": getCss("--opt"), "termiczny": getCss("--ir"),
+  "optyczny": getCss("--opt"), "teleskop": getCss("--tel"), "termiczny": getCss("--ir"),
   "lidar": getCss("--lidar"), "nasłuch": getCss("--esm"), "pamięć": getCss("--memory")
 };
 function getCss(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
@@ -129,7 +132,7 @@ function czas(s){
 var mapa = document.getElementById("mapa"), ctx = mapa.getContext("2d");
 var pasek = document.getElementById("pasek"), pctx = pasek.getContext("2d");
 var klatka = 0, gra = false, tempo = 1, wybrany = null, ostatniCzas = 0;
-var warstwy = { rng: true, cts: true, tac: true, pls: true, trk: false };
+var warstwy = { con: true, rng: true, cts: true, tac: true, pls: true, trk: false };
 
 document.getElementById("sub").textContent =
   (D.system ? "System " + D.system + " · " : "") + FRAMES.length + " klatek · " +
@@ -191,6 +194,31 @@ var PELNA_DO = (function () {
   }
   return out;
 })();
+
+// PELNA_PO[i]: najblizsza pelna klatka od i w przod (kierunek teleskopu jest tylko w pelnych klatkach)
+var PELNA_PO = (function () {
+  var out = new Array(FRAMES.length);
+  var nastepna = FRAMES.length - 1;
+  for (var i = FRAMES.length - 1; i >= 0; i--) {
+    if (FRAMES[i].full) nastepna = i;
+    out[i] = nastepna;
+  }
+  return out;
+})();
+var STOZKI = D.cones || null; // polowy katow z nagrania; starsze nagrania ich nie maja
+
+// Stozki okretu w tej chwili: kierunek teleskopu doliczany miedzy pelnymi klatkami, zeby sie plynnie obracal
+function stozkiTeraz(id){
+  var i = Math.min(Math.floor(pozycja), FRAMES.length - 1);
+  var a = PELNA_DO[i];
+  var b = a + 1 < FRAMES.length ? PELNA_PO[a + 1] : a;
+  var sa = znajdzW(statki(a), id), sb = znajdzW(statki(b), id);
+  var ca = sa && sa.cones, cb = sb && sb.cones;
+  if(!ca) return null;
+  if(!cb || b === a || ca.tb == null || cb.tb == null) return ca;
+  var u = Math.min(1, Math.max(0, (pozycja - a) / (b - a)));
+  return { tb: lerpKat(ca.tb, cb.tb, u), irb: u < 0.5 ? ca.irb : cb.irb };
+}
 
 // Okret, ktory pojawil sie miedzy pelnymi klatkami (swiezo wypuszczony mysliwiec), nie ma jeszcze
 // zadnej pelnej klatki za soba. Jego stale dane bierzemy z pierwszej pelnej klatki, w ktorej wystepuje.
@@ -261,6 +289,7 @@ function rysuj(){
   if(warstwy.trk) rysujSlady();
   if(warstwy.pls) rysujImpulsy(t);
   if(sel && warstwy.rng) rysujZasiegi(sel);
+  if(warstwy.con) rysujStozki(s, sel);
   if(warstwy.cts) rysujCeleWszystkich(s, sel);
   if(sel && warstwy.cts) rysujKontakty(sel);
   if(sel && sel.sx) rysujPunktSzukania(sel);
@@ -319,6 +348,39 @@ function rysujStatek(sh, wyb){
   }
 }
 
+// Klin od (x, y): srodek w kierunku kat (0 = gora, zgodnie ze wskazowkami jak w grze), polowa rozwarcia pol, promien r w pikselach
+function klin(x, y, kat, pol, r){
+  var a1 = (kat - pol - 90) * Math.PI / 180, a2 = (kat + pol - 90) * Math.PI / 180;
+  ctx.beginPath(); ctx.moveTo(x, y); ctx.arc(x, y, r, a1, a2); ctx.closePath();
+}
+
+// Warstwa 0: stozki sensorow kazdego okretu AI. Teleskop: waski stozek tam, gdzie celuje.
+// Termika: klin za rufa, ktory oslepia wlasny naped, gdy okret ciagnie.
+function rysujStozki(lista, sel){
+  if(!STOZKI || !STOZKI.enabled) return;
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i];
+    var c = stozkiTeraz(sh.id);
+    if(!c) continue;
+    var x = px(sh.x), y = py(sh.y);
+    var przygaszony = sel && sel.id !== sh.id;
+    if(c.tb != null){
+      var zasT = (sh.rng && sh.rng.tel) || 45;
+      klin(x, y, c.tb, STOZKI.tel_half, zasT * skala());
+      ctx.fillStyle = getCss("--tel"); ctx.globalAlpha = przygaszony ? .03 : .09; ctx.fill();
+      ctx.strokeStyle = getCss("--tel"); ctx.globalAlpha = przygaszony ? .15 : .55; ctx.lineWidth = 1; ctx.stroke();
+    }
+    if(c.irb){
+      var zasI = Math.max((sh.rng && sh.rng.ir) || 0, 25);
+      klin(x, y, (sh.angle || 0) + 180, STOZKI.ir_blind_half, zasI * skala());
+      ctx.fillStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .03 : .1; ctx.fill();
+      ctx.setLineDash([3, 3]); ctx.strokeStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .12 : .45; ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.globalAlpha = 1;
+  }
+}
+
 // Warstwa 1: zasiegi sensorow wybranego okretu wobec jego punktu odniesienia
 function rysujZasiegi(sel){
   if(!sel.rng) return;
@@ -328,7 +390,14 @@ function rysujZasiegi(sel){
     var nazwa = kola[i][0], zas = kola[i][1];
     if(!zas || zas <= 0) continue;
     ctx.beginPath();
-    ctx.arc(x, y, zas * skala(), 0, 6.2832);
+    var ct = (nazwa === "termiczny" && STOZKI && STOZKI.enabled) ? stozkiTeraz(sel.id) : null;
+    if(ct && ct.irb){
+      // Kolo bez klina za rufa: tam termika jest slepa
+      var tyl = (sel.angle || 0) + 180;
+      ctx.arc(x, y, zas * skala(), (tyl + STOZKI.ir_blind_half - 90) * Math.PI / 180, (tyl - STOZKI.ir_blind_half - 90 + 360) * Math.PI / 180);
+    } else {
+      ctx.arc(x, y, zas * skala(), 0, 6.2832);
+    }
     ctx.strokeStyle = SUITE_KOLOR[nazwa];
     ctx.globalAlpha = .5; ctx.lineWidth = 1.2;
     ctx.setLineDash(nazwa === "lidar" ? [6, 4] : []);
@@ -618,7 +687,7 @@ document.getElementById("faster").onclick = function(){
 document.getElementById("slower").onclick = function(){
   tempo = Math.max(0.25, tempo / 2); document.getElementById("speed").textContent = tempo + "×";
 };
-["rng", "cts", "tac", "pls", "trk"].forEach(function(k){
+["con", "rng", "cts", "tac", "pls", "trk"].forEach(function(k){
   var b = document.getElementById("w-" + k);
   b.onclick = function(){
     warstwy[k] = !warstwy[k];

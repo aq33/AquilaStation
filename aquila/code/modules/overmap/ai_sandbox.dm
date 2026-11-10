@@ -88,6 +88,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_sensor_tactics"]))
 		GLOB.ai_sensor_tactics_enabled = FALSE
 		event("Taktyki sensorowe AI wyłączone")
+	// Pola widzenia sensorów (ai_sensor_suites.dm): osobno, bo to cecha sensorów, nie zachowanie floty
+	if(text2num(world.params["ai_sandbox_no_cones"]))
+		GLOB.ai_sensor_cones_enabled = FALSE
+		event("Stożki sensorów wyłączone: wszystkie sensory widzą dookoła")
 	// Pojedyncze zachowania floty (ai_fleet_picture.dm), żeby dało się pokazać każde osobno
 	var/static/list/przelaczniki = list(
 		"picture" = "ai_fleet_picture_enabled",
@@ -240,6 +244,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 				"id" = "\ref[reference]",
 				"name" = "[reference]",
 				"opt" = round(OM.get_suite_range(SENSOR_OPTICAL, reference), 0.1),
+				// Teleskop: jak daleko sięga stożek (bez sprawdzania, czy cel w nim jest), żeby odtwarzacz narysował jego długość
+				"tel" = (SENSOR_TELESCOPE in OM.get_sensor_suites()) && GLOB.ai_sensor_cones_enabled ? round(OM.get_telescope_reach(reference), 0.1) : 0,
 				"ir" = round(OM.get_suite_range(SENSOR_INFRARED, reference), 0.1),
 				"lid" = round(OM.get_suite_range(SENSOR_LIDAR, reference), 0.1),
 			)
@@ -258,7 +264,15 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		if(!full)
 			ships += list(wpis)
 			continue
+		// Stożki sensorów (ai_sensor_suites.dm): gdzie patrzy teleskop i czy własny napęd oślepia termikę za rufą
+		var/list/stozki = null
+		if(OM.ai_controlled && GLOB.ai_sensor_cones_enabled)
+			stozki = list(
+				"tb" = (SENSOR_TELESCOPE in OM.get_sensor_suites()) ? round(OM.get_telescope_bearing()) : null,
+				"irb" = OM.is_infrared_rear_blind() ? 1 : 0,
+			)
 		ships += list(wpis + list(
+			"cones" = stozki,
 			"name" = "[OM]",
 			"faction" = OM.faction,
 			"fleet" = OM.fleet?.name,
@@ -284,7 +298,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "pulses" = pulses)
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "pulses" = pulses,
+		"cones" = list("tel_half" = TELESCOPE_HALF_ANGLE, "ir_blind_half" = INFRARED_BLIND_HALF_ANGLE, "enabled" = GLOB.ai_sensor_cones_enabled))
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
 
