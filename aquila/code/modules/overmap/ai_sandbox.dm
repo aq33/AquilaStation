@@ -124,6 +124,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	event("Typy flot: [nt_type] kontra [syn_type]")
 	friendly_fleet = spawn_fleet(nt_type, system, nt_size, "Flota Nanotrasen", 12)
 	enemy_fleet = spawn_fleet(syn_type, system, syn_size, "Flota Syndykatu", 12 + gap)
+	// Flota syndykatu jako obronna, do pokazania zasadzki (ai_fleet_picture.dm);
+	// pewniejsze niż podawanie typu floty, bo nie zależy od text2path na parametrze
+	if(text2num(world.params["ai_sandbox_defense"]) && enemy_fleet)
+		enemy_fleet.fleet_trait = FLEET_TRAIT_DEFENSE
+		event("Flota Syndykatu przestawiona na obronną (zasadzka)")
 	// One help fleet for each side, in two different systems next door
 	var/list/neighbours = list()
 	for(var/system_name in system.adjacency_list)

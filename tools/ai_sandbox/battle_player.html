@@ -160,14 +160,47 @@ function px(x){ return (x - WIDOK.x) * skala(); }
 function py(y){ return mapa.height - (y - WIDOK.y) * skala(); }
 
 function statki(i){ return (FRAMES[i] && FRAMES[i].ships) || []; }
-function znajdz(i, id){
-  var s = statki(i);
-  for(var k = 0; k < s.length; k++) if(s[k].id === id) return s[k];
+function znajdzW(lista, id){
+  for(var k = 0; k < lista.length; k++) if(lista[k].id === id) return lista[k];
   return null;
+}
+function znajdz(i, id){ return znajdzW(statki(i), id); }
+
+// Zapis piaskownicy idzie co 2 s, a ekran odswieza sie 60 razy na sekunde. Bez tego okrety
+// przeskakuja co dwie sekundy; tu pozycja, kurs i kadlub sa doliczane miedzy klatkami.
+function lerp(a, b, u){ return a + (b - a) * u; }
+function lerpKat(a, b, u){
+  var d = ((b - a) % 360 + 540) % 360 - 180; // najkrotsza droga, zeby nie obracal sie dokola
+  return a + d * u;
+}
+var AKTUALNE = [];   // okrety w tej chwili, po interpolacji
+var AKTUALNY_T = 0;  // czas nagrania w tej chwili
+
+function przeliczChwile(){
+  var i = Math.floor(pozycja), u = pozycja - i;
+  if(i >= FRAMES.length - 1){ i = FRAMES.length - 1; u = 0; }
+  var a = statki(i), b = statki(Math.min(i + 1, FRAMES.length - 1));
+  AKTUALNY_T = FRAMES[i] ? lerp(FRAMES[i].t, (FRAMES[Math.min(i + 1, FRAMES.length - 1)] || FRAMES[i]).t, u) : 0;
+  if(!u){ AKTUALNE = a; return; }
+  var out = [];
+  for(var k = 0; k < a.length; k++){
+    var sa = a[k], sb = znajdzW(b, sa.id);
+    if(!sb){ out.push(sa); continue; } // zniszczony w tej klatce: zostaje na ostatniej pozycji
+    var kopia = {};
+    for(var key in sa) kopia[key] = sa[key];
+    kopia.x = lerp(sa.x, sb.x, u);
+    kopia.y = lerp(sa.y, sb.y, u);
+    kopia.angle = lerpKat(sa.angle || 0, sb.angle || 0, u);
+    kopia.hull = lerp(sa.hull, sb.hull, u);
+    kopia.fear = lerp(sa.fear, sb.fear, u);
+    out.push(kopia);
+  }
+  AKTUALNE = out;
 }
 
 function rysuj(){
-  var s = statki(klatka), t = FRAMES[klatka] ? FRAMES[klatka].t : 0;
+  przeliczChwile();
+  var s = AKTUALNE, t = AKTUALNY_T;
   ctx.clearRect(0, 0, mapa.width, mapa.height);
 
   // siatka
@@ -180,7 +213,7 @@ function rysuj(){
     ctx.beginPath(); ctx.moveTo(0, py(h)); ctx.lineTo(mapa.width, py(h)); ctx.stroke();
   }
 
-  var sel = wybrany ? znajdz(klatka, wybrany) : null;
+  var sel = wybrany ? znajdzW(AKTUALNE, wybrany) : null;
 
   if(warstwy.trk) rysujSlady();
   if(warstwy.pls) rysujImpulsy(t);
@@ -270,7 +303,7 @@ function rysujZasiegi(sel){
 function rysujKontakty(sel){
   var cts = sel.cts || [];
   for(var i = 0; i < cts.length; i++){
-    var inny = znajdz(klatka, cts[i].id);
+    var inny = znajdzW(AKTUALNE, cts[i].id);
     if(!inny) continue;
     var kol = SUITE_KOLOR[cts[i].s] || "#8b93a7";
     ctx.beginPath();
@@ -285,7 +318,7 @@ function rysujKontakty(sel){
   }
   // cel, ktorego nie widzimy: pogon w ciemno
   if(sel.target){
-    var cel = znajdz(klatka, sel.target), widzimy = false;
+    var cel = znajdzW(AKTUALNE, sel.target), widzimy = false;
     for(var k = 0; k < cts.length; k++) if(cts[k].id === sel.target) widzimy = true;
     if(cel && !widzimy){
       ctx.beginPath();
@@ -315,7 +348,7 @@ function rysujImpulsy(t){
   for(var i = 0; i < PULSES.length; i++){
     var p = PULSES[i], wiek = t - p.t;
     if(wiek < 0 || wiek > 3) continue;
-    var src = znajdz(klatka, p.id);
+    var src = znajdzW(AKTUALNE, p.id);
     if(!src) continue;
     ctx.beginPath();
     ctx.arc(px(src.x), py(src.y), p.range * wiek / 3 * skala(), 0, 6.2832);
@@ -326,10 +359,11 @@ function rysujImpulsy(t){
 }
 
 function rysujSlady(){
-  var od = Math.max(0, klatka - 25);
+  var biez = Math.round(pozycja);
+  var od = Math.max(0, biez - 25);
   ctx.lineWidth = 1;
-  for(var i = od; i < klatka; i++){
-    var a = statki(i), alpha = .05 + .2 * (i - od) / Math.max(1, klatka - od);
+  for(var i = od; i < biez; i++){
+    var a = statki(i), alpha = .05 + .2 * (i - od) / Math.max(1, biez - od);
     for(var k = 0; k < a.length; k++){
       if(a[k].tiny) continue;
       ctx.globalAlpha = alpha;
@@ -382,10 +416,10 @@ function panelWybranego(sel){
     return;
   }
   var cts = (sel.cts || []).map(function(c){
-    var o = znajdz(klatka, c.id);
+    var o = znajdzW(AKTUALNE, c.id);
     return '<span style="color:' + (SUITE_KOLOR[c.s] || "#8b93a7") + '">' + c.s + "</span> → " + (o ? o.name : "?");
   });
-  var cel = sel.target ? znajdz(klatka, sel.target) : null;
+  var cel = sel.target ? znajdzW(AKTUALNE, sel.target) : null;
   var html = "<b>" + sel.name + "</b><div class='meta'>" + (sel.fleet || sel.faction || "") + "</div>";
   html += wiersz("Taktyka", sel.tactic || "—");
   html += wiersz("Cel", cel ? cel.name : "brak");
@@ -407,7 +441,7 @@ function panelWybranego(sel){
 function wiersz(k, v){ return '<div class="row"><span>' + k + "</span><b>" + v + "</b></div>"; }
 
 function listaStatkow(){
-  var s = statki(klatka).slice().sort(function(a, b){
+  var s = (AKTUALNE.length ? AKTUALNE : statki(klatka)).slice().sort(function(a, b){
     return (a.faction || "").localeCompare(b.faction || "") || a.name.localeCompare(b.name);
   });
   var c = document.getElementById("lista");
@@ -485,7 +519,7 @@ mapa.onclick = function(e){
   var r = mapa.getBoundingClientRect();
   var mx = (e.clientX - r.left) / r.width * mapa.width;
   var my = (e.clientY - r.top) / r.height * mapa.height;
-  var s = statki(klatka), best = null, bestD = 26;
+  var s = AKTUALNE, best = null, bestD = 26;
   for(var i = 0; i < s.length; i++){
     var dx = px(s[i].x) - mx, dy = py(s[i].y) - my, d = Math.sqrt(dx * dx + dy * dy);
     if(d < bestD){ bestD = d; best = s[i]; }
@@ -506,7 +540,7 @@ document.getElementById("play").onclick = function(){
   if(gra) requestAnimationFrame(tik);
 };
 document.getElementById("scrub").oninput = function(){
-  klatka = parseInt(this.value, 10); pozycja = klatka; rysuj(); listaStatkow();
+  pozycja = klatka = parseInt(this.value, 10); rysuj(); listaStatkow();
 };
 document.getElementById("faster").onclick = function(){
   tempo = Math.min(16, tempo * 2); document.getElementById("speed").textContent = tempo + "×";
@@ -537,9 +571,10 @@ function tik(now){
     document.getElementById("play").setAttribute("aria-pressed", "false");
   }
   var nowa = Math.round(pozycja);
+  rysuj(); // co klatke ekranu, zeby ruch byl plynny
   if(nowa !== klatka){
     klatka = nowa;
-    rysuj(); listaStatkow();
+    listaStatkow(); // przebudowa listy jest droga, wystarczy co klatke zapisu
   }
   if(gra) requestAnimationFrame(tik);
 }
