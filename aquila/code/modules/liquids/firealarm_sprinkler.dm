@@ -1,14 +1,19 @@
 // AQUILA - Zraszacze w oczyszczaczach powietrza (nowe, nie ma tego w Monke).
 // Alarm przeciwpożarowy włączony ręcznie przez gracza wylewa wodę z każdego oczyszczacza powietrza w obszarze.
-// Zemagowany alarm pociągnięty ręcznie i alarm trafiony EMP wylewają jej bardzo dużo.
+// Wody jest tyle, żeby rozlała się na całe pomieszczenie: cienka warstwa, która szybko paruje.
+// Zemagowany alarm pociągnięty ręcznie i alarm trafiony EMP zalewają całe pomieszczenie po kostki.
 // Alarm z czujnika temperatury (prawdziwy pożar) wody nie wylewa, żeby zwykły pożar nie zalewał statku.
 
-/// Ile wody wylewa jeden oczyszczacz po ręcznym włączeniu alarmu (kałuża od LIQUID_SPILL_THRESHOLD)
-#define SPRINKLER_WATER_NORMAL 60
-/// Ile wody wylewa jeden oczyszczacz przy zemagowanym alarmie albo po EMP
-#define SPRINKLER_WATER_FLOOD 400
-/// Ile szybciej parują kałuże ze zraszaczy (zwykłe; zalanie paruje normalnie)
-#define SPRINKLER_EVAPORATION_MULTIPLIER 10
+/// Ile wody na kafel pomieszczenia daje zwykłe zraszanie (ciecz rozlewa się, póki ma ponad LIQUID_HEIGHT_DIVISOR na kafel)
+#define SPRINKLER_WATER_PER_TILE_NORMAL 15
+/// Ile wody na kafel pomieszczenia daje zalanie (emag, EMP): ponad poziom kostek
+#define SPRINKLER_WATER_PER_TILE_FLOOD 100
+/// Najmniej i najwięcej wody z jednego oczyszczacza
+#define SPRINKLER_WATER_NORMAL_MIN 60
+#define SPRINKLER_WATER_FLOOD_MIN 400
+#define SPRINKLER_WATER_MAX 5000
+/// Ile szybciej parują kałuże ze zraszaczy (zwykłe; zalanie paruje normalnie). Niewiele, żeby woda zdążyła rozlać się po pokoju.
+#define SPRINKLER_EVAPORATION_MULTIPLIER 3
 /// Odstęp między wylaniami z jednego alarmu (EMP potrafi trafić kilka razy)
 #define SPRINKLER_COOLDOWN (10 SECONDS)
 
@@ -40,7 +45,7 @@
 
 /**
  * Wylewa wodę z każdego niezaspawanego oczyszczacza powietrza w obszarze alarmu.
- * flood - bardzo dużo wody (emag, EMP); inaczej mała kałuża, która szybko paruje
+ * flood - zalanie po kostki (emag, EMP); inaczej cienka warstwa na całe pomieszczenie, która szybko paruje
  * Zwraca liczbę oczyszczaczy, z których poleciała woda.
  */
 /obj/machinery/firealarm/proc/release_sprinkler_water(flood, mob/user)
@@ -50,14 +55,25 @@
 	if(!alarm_area)
 		return 0
 	last_sprinkle = world.time
-	var/amount = flood ? SPRINKLER_WATER_FLOOD : SPRINKLER_WATER_NORMAL
-	. = 0
+	var/list/scrubbers = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber in GLOB.machines)
 		if(scrubber.welded || get_area(scrubber) != alarm_area)
 			continue
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
 			continue
+		scrubbers += scrubber
+	if(!length(scrubbers))
+		return 0
+	// Woda na całe pomieszczenie, podzielona między oczyszczacze
+	var/floor_tiles = 0
+	for(var/turf/open/floor/floor_tile in alarm_area)
+		floor_tiles++
+	var/amount = max(floor_tiles, 1) * (flood ? SPRINKLER_WATER_PER_TILE_FLOOD : SPRINKLER_WATER_PER_TILE_NORMAL) / length(scrubbers)
+	amount = clamp(amount, flood ? SPRINKLER_WATER_FLOOD_MIN : SPRINKLER_WATER_NORMAL_MIN, SPRINKLER_WATER_MAX)
+	. = 0
+	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber as anything in scrubbers)
+		var/turf/open/scrubber_turf = get_turf(scrubber)
 		var/had_liquid = !QDELETED(scrubber_turf.liquids)
 		scrubber_turf.add_liquid(/datum/reagent/water, amount)
 		if(QDELETED(scrubber_turf.liquids)) // bariera na ciecze zablokowała wodę: nic nie poleciało
@@ -85,7 +101,10 @@
 		log_game("Fire alarm at [AREACOORD(src)] flooded [.] scrubbers with water[user ? " (triggered by [key_name(user)])" : " (EMP)"]")
 		message_admins("Alarm przeciwpożarowy w [ADMIN_VERBOSEJMP(src)] zalewa wodą [.] oczyszczaczy[user ? " ([ADMIN_LOOKUPFLW(user)])" : " (EMP)"].")
 
-#undef SPRINKLER_WATER_NORMAL
-#undef SPRINKLER_WATER_FLOOD
+#undef SPRINKLER_WATER_PER_TILE_NORMAL
+#undef SPRINKLER_WATER_PER_TILE_FLOOD
+#undef SPRINKLER_WATER_NORMAL_MIN
+#undef SPRINKLER_WATER_FLOOD_MIN
+#undef SPRINKLER_WATER_MAX
 #undef SPRINKLER_EVAPORATION_MULTIPLIER
 #undef SPRINKLER_COOLDOWN

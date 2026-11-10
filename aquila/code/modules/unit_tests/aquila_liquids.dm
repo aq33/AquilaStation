@@ -368,7 +368,10 @@
 	fire_alarm.alarm(puller)
 	TEST_ASSERT(!QDELETED(T.liquids), "A fire alarm pulled by a player spilled no water from the scrubber")
 	var/normal_volume = T.liquids.liquid_group.reagents.total_volume
-	TEST_ASSERT(normal_volume > 0 && normal_volume < 100, "A normal sprinkler spilled [normal_volume] units instead of a small puddle")
+	var/floor_tiles = 0
+	for(var/turf/open/floor/floor_tile in get_area(T))
+		floor_tiles++
+	TEST_ASSERT(normal_volume >= min(floor_tiles * 15, 5000) - 1, "A normal sprinkler spilled [normal_volume] units, not enough to cover the [floor_tiles] floor tiles of the room")
 	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/water), "The sprinkler puddle is not water")
 	TEST_ASSERT(T.liquids.liquid_group.always_evaporates, "A normal sprinkler puddle does not evaporate quickly")
 

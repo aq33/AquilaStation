@@ -14,7 +14,7 @@
 	8) Ubikacja: spłucz ją prawym przyciskiem (w starym trybie na intencji rozbrajania) → przelewa wodę ze spłuczki, mocz i kupę na podłogę. Przepychacz ją odtyka, potem spłukiwanie działa normalnie. \
 	9) Cenzura: w ustawieniach gry (Rozgrywka) włącz „Cenzura wypróżniania” → kupa i plamy moczu wyglądają jak czarny brud, mocz w kałuży w examine to amoniak, cudze wypróżnienia bez komunikatów i dźwięków, własne z łagodnym komunikatem, a w menu prawego przycisku kupa nazywa się „brud”. \
 	10) Krew: potnij nożem manekina kilka razy, aż krwawi, i zostaw go → najpierw krople i plamy, a gdy z kafla uzbiera się ok. 50 j. krwi, robi się kałuża krwi. \
-	11) Zraszacze: zestaw stawia oczyszczacz powietrza i alarm przeciwpożarowy. Włącz alarm ręką → z oczyszczacza tryska woda (mała kałuża, szybko paruje). Skasuj alarm, zemaguj go emagiem i włącz znowu albo rzuć obok granat EMP → z oczyszczacza bucha ok. 400 j. wody, a admini dostają komunikat. Alarm włączony przez prawdziwy pożar wody nie leje."
+	11) Zraszacze: zestaw stawia oczyszczacz powietrza i alarm przeciwpożarowy. Włącz alarm ręką → alarm wyje głośno w całym pomieszczeniu, a z oczyszczacza tryska woda, która rozlewa się cienką warstwą po całym pomieszczeniu i szybko paruje. Skasuj alarm, zemaguj go emagiem i włącz znowu albo rzuć obok granat EMP → oczyszczacz zalewa całe pomieszczenie po kostki, a admini dostają komunikat. Alarm włączony przez prawdziwy pożar wody nie leje."
 	items = list(
 		/obj/machinery/atmospherics/components/unary/vent_scrubber = 1,
 		/obj/machinery/firealarm = 1,
