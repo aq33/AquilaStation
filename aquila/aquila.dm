@@ -240,6 +240,7 @@
 #include "code\game\objects\effects\spiderwebs.dm"
 #include "code\game\objects\effects\sprint_dust.dm"
 #include "code\game\objects\items_stamina.dm"
+#include "code\game\objects\tg_sprites_biuro.dm"
 #include "code\game\objects\effects\turf_fire.dm"
 #include "code\game\objects\effects\temporary_visuals\projectiles\impact.dm"
 #include "code\game\objects\effects\temporary_visuals\projectiles\muzzle.dm"
