@@ -73,6 +73,19 @@
 	ai_job.current_positions = ai_job.total_positions
 	TEST_ASSERT(SSjob.FillAIPosition(), "A taken AI slot was not reported as filled")
 	TEST_ASSERT_EQUAL(ai_job.current_positions, ai_job.total_positions, "The AI slot was filled twice")
+	// Częściowa obsada: 2 sloty, 1 zajęty → jeden wolny; FillAIPosition() przywraca liczbę slotów
+	// (bez graczy w kolejce, bo FindOccupationCandidates() wymaga klienta z preferencjami)
+	var/old_total = ai_job.total_positions
+	ai_job.total_positions = 2
+	ai_job.current_positions = 1
+	TEST_ASSERT_EQUAL(SSjob.free_ai_positions(), 1, "Wrong amount of free AI slots")
+	var/list/old_unassigned = SSjob.unassigned
+	SSjob.unassigned = list()
+	SSjob.FillAIPosition()
+	SSjob.unassigned = old_unassigned
+	TEST_ASSERT_EQUAL(ai_job.total_positions, 2, "The AI slot count was not restored")
+	TEST_ASSERT_EQUAL(ai_job.current_positions, 1, "An AI slot was filled without players")
+	ai_job.total_positions = old_total
 	ai_job.current_positions = old_positions
 	var/datum/weighted_ghost_midround/midround = new
 	TEST_ASSERT(!length(midround.malf_ai_candidates()), "A midround malf AI was found without any AI players")
