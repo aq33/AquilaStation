@@ -693,6 +693,7 @@
 #include "code\modules\food_and_drinks\recipes\drinks_recipes.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_pie.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_polskie.dm"
+#include "code\modules\hydroponics\grown\cannabis.dm"
 #include "code\modules\hydroponics\grown\onion.dm"
 #include "code\modules\hydroponics\grown\towercap.dm"
 #include "code\modules\hygiene\hygiene.dm"
