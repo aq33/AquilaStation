@@ -64,7 +64,7 @@
 		return
 	update_mob()
 	playsound(loc, 'sound/effects/empulse.ogg', 50, 1)
-	radiation_pulse(src, rad_damage)
+	radiation_pulse(src, max_range = freeze_range, threshold = RAD_EXTREME_INSULATION, intensity = 50) // AQ EDIT - promieniowanie z Bee#13442
 	for(var/turf/open/floor/F in view(freeze_range,loc))
 		F.MakeSlippery(TURF_WET_PERMAFROST, 6 MINUTES)
 		for(var/mob/living/carbon/L in F)

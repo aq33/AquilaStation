@@ -202,10 +202,16 @@ GENE SCANNER
 			message += "\t<span class='alert'>Wykryto pasożytniczy organizm w okolicy czaszki.</span>"
 			message += "\t<span class='alert'>Zalecane postępowanie: <b>operacja manipulacji organami głowy</b>.</span>"
 
-	if(M.radiation)
+	// AQ EDIT START - promieniowanie z Bee#13442
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
 		message += "\t<span class='alert'>Pacjent jest napromieniowany.</span>"
 		if(advanced)
-			message += "\t<span class='info'>Poziom promieniowania: [M.radiation]%.</span>"
+			message += "\t<span class='info'>Skażenie nastąpiło około [DisplayTimeText(world.time - irradiated_component.beginning_of_irradiation, 5)] temu. Poziom promieniowania: [round(irradiated_component.intensity)]%.</span>"
+	var/datum/status_effect/genetic_damage/genetic_damage = M.has_status_effect(/datum/status_effect/genetic_damage)
+	if(genetic_damage)
+		message += "\t<span class='alert'>[genetic_damage.get_scan_text(advanced)]</span>"
+	// AQ EDIT END
 
 	if(advanced && M.hallucinating())
 		message += "\t<span class='info'>Pacjent ma halucynacje.</span>"
@@ -447,6 +453,7 @@ GENE SCANNER
 					message += "<span class='notice'>[round(R.volume, 0.001)] j. [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>PRZEDAWKOWANIE</span>" : ".</span>"]"
 			else
 				message += "<span class='notice'>Pacjent nie zawiera odczynników.</span>"
+			message += M.stomach_scan_lines() // AQ EDIT - organy z Bee: zawartość żołądka (stomach_contents.dm)
 			if(M.reagents.addiction_list.len)
 				message += "<span class='boldannounce'>Pacjent jest uzależniony od następujących odczynników:</span>"
 				for(var/datum/reagent/R in M.reagents.addiction_list)

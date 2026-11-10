@@ -194,7 +194,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/energy/nuclear_particle/dirty_shell_stage_three/on_hit(atom/target, blocked)
 	. = ..()
 	if(!isturf(target))
-		target.AddComponent(/datum/component/radioactive, 300, target, 5 MINUTES)
+		add_temporary_radioactivity(target, 5 MINUTES, 2, RAD_LIGHT_INSULATION, 3) // AQ EDIT - promieniowanie z Bee#13442: element na 5 minut zamiast komponentu z połowicznym rozpadem
 
 #undef DIRTY_SHELL_TURF_SLUDGE_PROB
 #undef DIRTY_SHELL_SLUDGE_RANGE

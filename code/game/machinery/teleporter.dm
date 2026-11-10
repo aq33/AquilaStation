@@ -86,7 +86,6 @@
 						to_chat(M, "<span class='italics'>Słyszysz brzęczenie w uszach.</span>")
 						human.set_species(/datum/species/fly)
 
-					human.apply_effect((rand(160 - accuracy * 40, 240 - accuracy * 60)), EFFECT_IRRADIATE, 0)
 			calibrated = 0
 	return
 

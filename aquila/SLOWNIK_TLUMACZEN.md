@@ -2633,6 +2633,12 @@ Nazwa rasy w nawiasie to mianownik z sekcji 04 §6, małą literą (przegląd sp
 | genetic damage | uszkodzenia genetyczne | mn; istniejące |
 | radiation (stan pacjenta) | napromieniowanie | n; istniejące |
 | radiation (zjawisko) | promieniowanie | n; istniejące |
+| radiation level, intensity (irradiated) | poziom promieniowania (w %) | m; nowe (port promieniowania Bee#13442) |
+| radioactive contamination | skażenie radioaktywne | n; istniejące |
+| radiation protected (clothing) | chroniący przed promieniowaniem | nowe; examine: „<b>chroni przed promieniowaniem</b>” |
+| Geiger counter | licznik Geigera | m; istniejące |
+| radiation storm | burza radiacyjna | ż; istniejące |
+| pluoxium formation | powstawanie pluoksium | n; nowe (nazwa reakcji gazowej) |
 | health | zdrowie | n; istniejące |
 | vitals | funkcje życiowe | mn; istniejące |
 | critical condition, crit | stan krytyczny | m; istniejące |

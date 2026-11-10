@@ -48,7 +48,7 @@
 				var/mob/living/carbon/human/H = mob
 				H.adjust_hallucinations((max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )) * 2 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
-			L.rad_act(rads)
+			SSradiation.irradiate(L, rads * RAD_LEGACY_PULSE_TO_INTENSITY) // AQ EDIT - promieniowanie z Bee#13442
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.get_virtual_z_level() == supermatter_z)

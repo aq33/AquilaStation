@@ -127,6 +127,12 @@
 #define DEPARTMENT_BITFLAG_SECURITY (1<<6)
 #define DEPARTMENT_BITFLAG_SILICON  (1<<7)
 #define DEPARTMENT_BITFLAG_MUNITIONS (1<<8) //NSV13 munitions
+// AQ EDIT START - grupy dostępów SSdepartment (port BeeStation/BeeStation-Hornet#14139)
+#define DEPARTMENT_BITFLAG_CENTCOM (1<<9)
+#define DEPARTMENT_BITFLAG_OTHER (1<<10)
+/// Działy stacji, których dostępy daje get_all_accesses()
+#define DEPARTMENT_BITFLAG_STATIONS (DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MUNITIONS)
+// AQ EDIT END
 
 //-------------------------------------------------------------------------------------------
 //------------------------------------- Job names -------------------------------------------

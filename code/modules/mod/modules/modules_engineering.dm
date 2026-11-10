@@ -158,20 +158,27 @@
 	/// Rad armor each part had before we maxed it out
 	var/list/old_rad_armor = list()
 
-// Our radiation still uses rad armor instead of a protection trait, so we max out the rad armor of every part
+// Rad armor is maxed for display; protection itself comes from the trait, as in Bee
 /obj/item/mod/module/rad_protection/on_part_activation()
 	for(var/obj/item/part as anything in mod.get_parts(all = TRUE))
 		old_rad_armor[part] = part.armor.rad
 		part.armor = part.armor.setRating(rad = 100)
+		ADD_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT) // AQ EDIT - promieniowanie z Bee#13442: ochronę daje cecha, nie pancerz
 
 /obj/item/mod/module/rad_protection/on_part_deactivation(deleting = FALSE)
 	for(var/obj/item/part as anything in old_rad_armor)
 		if(QDELETED(part))
 			continue
 		part.armor = part.armor.setRating(rad = old_rad_armor[part])
+		REMOVE_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT) // AQ EDIT - promieniowanie z Bee#13442
 	old_rad_armor.Cut()
 
 /obj/item/mod/module/rad_protection/on_uninstall(deleting = FALSE)
+	// AQ EDIT START - promieniowanie z Bee#13442: zdjęcie modułu bez dezaktywacji nie zostawia cechy
+	for(var/obj/item/part as anything in old_rad_armor)
+		if(!QDELETED(part))
+			REMOVE_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT)
+	// AQ EDIT END
 	old_rad_armor.Cut()
 
 ///Constructor - Lets you build quicker and create RCD holograms.

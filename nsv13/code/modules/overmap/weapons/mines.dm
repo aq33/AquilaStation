@@ -53,7 +53,7 @@
 	. = ..()
 
 /// This makes us not drift like normal objects in space do
-/obj/structure/space_mine/Process_Spacemove(movement_dir = 0)
+/obj/structure/space_mine/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return 1
 
 //OVerride

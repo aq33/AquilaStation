@@ -312,22 +312,30 @@
   *
   * You can move in space if you have a spacewalk ability
   */
-/mob/Process_Spacemove(movement_dir = 0)
+// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864): w trakcie driftu (continuous_move) nie odpychamy się od niczego
+/mob/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	if(spacewalk || ..())
 		return TRUE
-	var/atom/movable/backup = get_spacemove_backup(movement_dir)
-	if(backup)
-		if(istype(backup) && movement_dir && !backup.anchored)
-			if(backup.newtonian_move(turn(movement_dir, 180), instant = TRUE)) //You're pushing off something movable, so it moves
-				to_chat(src, "<span class='info'>Odpychasz się od [backup], żeby się rozpędzić.</span>")
+	var/atom/movable/backup = get_spacemove_backup(movement_dir, continuous_move)
+	if(!backup)
+		return FALSE
+	if(continuous_move || !istype(backup) || !movement_dir || backup.anchored)
 		return TRUE
-	return FALSE
+	// last pushoff exists for one reason
+	// to ensure pushing a mob doesn't just lead to it considering us as backup, and failing
+	last_pushoff = world.time
+	if(backup.newtonian_move(turn(movement_dir, 180), instant = TRUE)) //You're pushing off something movable, so it moves
+		// We set it down here so future calls to Process_Spacemove by the same pair in the same tick don't lead to fucky
+		backup.last_pushoff = world.time
+		to_chat(src, "<span class='info'>Odpychasz się od [backup], żeby się rozpędzić.</span>")
+	return TRUE
+// AQ EDIT END
 
 /**
    * Finds a target near a mob that is viable for pushing off when moving.
-   * Takes the intended movement direction as input.
+   * Takes the intended movement direction as input, alongside if the context is checking if we're allowed to continue drifting
   */
-/mob/get_spacemove_backup(moving_direction)
+/mob/get_spacemove_backup(moving_direction, continuous_move) // AQ EDIT - drift (port BeeStation/BeeStation-Hornet#14864)
 	for(var/atom/pushover as anything in range(1, get_turf(src)))
 		if(pushover == src)
 			continue
@@ -348,8 +356,19 @@
 		var/pass_allowed = rebound.CanPass(src, get_dir(rebound, src))
 		if(!rebound.density && pass_allowed)
 			continue
-		if(moving_direction == get_dir(src, pushover) && !pass_allowed) // Can't push "off" of something that you're walking into
+		// AQ EDIT START - drift (port BeeStation/BeeStation-Hornet#14864)
+		//Sometime this tick, this pushed off something. Doesn't count as a valid pushoff target
+		if(rebound.last_pushoff == world.time)
 			continue
+		if(continuous_move && !pass_allowed)
+			var/datum/move_loop/move/rebound_engine = SSmove_manager.processing_on(rebound, SSspacedrift)
+			// If you're moving toward it and you're both going the same direction, stop
+			if(moving_direction == get_dir(src, pushover) && rebound_engine && moving_direction == rebound_engine.direction)
+				continue
+		else if(!pass_allowed)
+			if(moving_direction == get_dir(src, pushover)) // Can't push "off" of something that you're walking into
+				continue
+		// AQ EDIT END
 		if(rebound.anchored)
 			return rebound
 		if(pulling == rebound)
@@ -362,13 +381,7 @@
 /mob/proc/mob_negates_gravity()
 	return FALSE
 
-/mob/newtonian_move(direction, instant = FALSE)
-	. = ..()
-	if(!.) //Only do this if we're actually going somewhere
-		return
-	if(!client)
-		return
-	client.visual_delay = MOVEMENT_ADJUSTED_GLIDE_SIZE(inertia_move_delay, SSspacedrift.visual_delay) //Make sure moving into a space move looks like a space move
+// AQ EDIT - drift (port BeeStation/BeeStation-Hornet#14864): /mob/newtonian_move() usunięte, client.visual_delay ustawia komponent driftu
 
 /// Called when this mob slips over, override as needed
 /mob/proc/slip(knockdown, paralyze, forcedrop, w_amount, obj/O, lube)
