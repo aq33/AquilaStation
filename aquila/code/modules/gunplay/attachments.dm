@@ -168,6 +168,8 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 		return
 	var/list/mounts = get_mount_points()
 	for(var/obj/item/attachment/attachment as anything in current_attachments)
+		if(!attachment.shown_on_gun)
+			continue
 		var/list/point = mounts[attachment.mount_slot]
 		if(!point)
 			continue
@@ -234,6 +236,8 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 	var/mounted_state = "simple_sight"
 	/// Ma osobny stan "_on" na broni
 	var/mounted_has_on = FALSE
+	/// Czy widać go na sprite'cie broni
+	var/shown_on_gun = TRUE
 
 /obj/item/attachment/update_icon()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
@@ -355,6 +359,7 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 
 /obj/item/attachment/scope
 	name = "celownik"
+	shown_on_gun = FALSE // celowników nie widać na broni (decyzja po teście w grze); sprite'y zostają w attachment_mounted.dmi
 	attachment_type = ATTACHMENT_SLOT_SIGHT
 	/// O ile zmniejsza rozrzut broni (stopnie)
 	var/accuracy = 0
