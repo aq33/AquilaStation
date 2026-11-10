@@ -321,4 +321,46 @@
 	TEST_ASSERT(toilet.clogged, "Overflowing unclogged the toilet by itself")
 	aquila_liquids_cleanup(T)
 
+/// AQUILA - zraszacze: alarm pożarowy włączony ręcznie wylewa wodę z oczyszczaczy w obszarze, emag i EMP bardzo dużo
+/datum/unit_test/aquila_firealarm_sprinkler
+	var/obj/machinery/firealarm/fire_alarm
+
+/datum/unit_test/aquila_firealarm_sprinkler/Destroy()
+	var/area/alarm_area = get_area(fire_alarm)
+	alarm_area?.firereset()
+	fire_alarm = null
+	return ..()
+
+/datum/unit_test/aquila_firealarm_sprinkler/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	allocate(/obj/machinery/atmospherics/components/unary/vent_scrubber, T)
+	var/mob/living/carbon/human/puller = allocate(/mob/living/carbon/human, get_step(T, EAST))
+	fire_alarm = allocate(/obj/machinery/firealarm, get_step(T, EAST))
+	fire_alarm.set_is_operational(TRUE)
+
+	fire_alarm.alarm()
+	TEST_ASSERT(QDELETED(T.liquids), "A fire alarm without a player (fire sensor) spilled water")
+
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(!QDELETED(T.liquids), "A fire alarm pulled by a player spilled no water from the scrubber")
+	var/normal_volume = T.liquids.liquid_group.reagents.total_volume
+	TEST_ASSERT(normal_volume > 0 && normal_volume < 100, "A normal sprinkler spilled [normal_volume] units instead of a small puddle")
+	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/water), "The sprinkler puddle is not water")
+	aquila_liquids_cleanup(T)
+
+	fire_alarm.obj_flags |= EMAGGED
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume >= 300, "An emagged fire alarm pulled by a player did not flood the scrubber")
+	aquila_liquids_cleanup(T)
+
+	fire_alarm.obj_flags &= ~EMAGGED
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.emp_act(EMP_LIGHT)
+	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume >= 300, "An EMP on the fire alarm did not flood the scrubber")
+	aquila_liquids_cleanup(T)
+
 #undef TEST_ASSERT

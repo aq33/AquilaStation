@@ -13,8 +13,13 @@
 	7) Mocz (wymaga SHITTING_ENABLED): *piss na podłodze → plama albo kałuża moczu; z pustą zlewką w ręce → mocz do zlewki; na ubikacji → do muszli. Sikanie przy działającej kamerze → wpis „Publiczne oddawanie moczu” i status Poszukiwany w kartotece; wypróżnienie poza ubikacją (na miejscu albo popuszczenie kału) → wpis „Publiczne wypróżnianie się”, przy kale z moczem tylko jeden wpis. Ustaw sobie VV defecation ponad 200 przy dużym urination → popuszczenie oddaje tylko mocz; przy małym urination → tylko kał. Alert wypróżnienia na miejscu oddaje obie części. \
 	8) Ubikacja: spłucz ją prawym przyciskiem → przelewa wodę, mocz i kupę na podłogę. Przepychaczka ją odtyka, potem spłukiwanie działa normalnie. \
 	9) Cenzura: w ustawieniach gry (Rozgrywka) włącz „Cenzura wypróżniania” → kupa i plamy moczu wyglądają jak czarny brud, mocz w kałuży w examine to amoniak, cudze wypróżnienia bez komunikatów i dźwięków, własne z łagodnym komunikatem, a w menu prawego przycisku kupa nazywa się „brud”. \
-	10) Krew: potnij nożem manekina kilka razy, aż krwawi, i zostaw go → najpierw krople i plamy, a gdy z kafla uzbiera się ok. 50 j. krwi, robi się kałuża krwi."
+	10) Krew: potnij nożem manekina kilka razy, aż krwawi, i zostaw go → najpierw krople i plamy, a gdy z kafla uzbiera się ok. 50 j. krwi, robi się kałuża krwi. \
+	11) Zraszacze: zestaw stawia oczyszczacz powietrza i alarm przeciwpożarowy. Włącz alarm ręką → z oczyszczacza tryska woda (mała kałuża, szybko paruje). Skasuj alarm, zemaguj go emagiem i włącz znowu albo rzuć obok granat EMP → z oczyszczacza bucha ok. 400 j. wody, a admini dostają komunikat. Alarm włączony przez prawdziwy pożar wody nie leje."
 	items = list(
+		/obj/machinery/atmospherics/components/unary/vent_scrubber = 1,
+		/obj/machinery/firealarm = 1,
+		/obj/item/card/emag = 1,
+		/obj/item/grenade/empgrenade = 1,
 		/obj/item/reagent_containers/glass/bucket = 2,
 		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/reagent_containers/glass/beaker/bluespace = 1,

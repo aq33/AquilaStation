@@ -727,6 +727,7 @@
 #include "code\modules\liquids\liquid_events.dm"
 #include "code\modules\liquids\tools.dm"
 #include "code\modules\liquids\toilet_clog.dm"
+#include "code\modules\liquids\firealarm_sprinkler.dm"
 #include "code\modules\lost_crew\ghostrole_on_revive.dm"
 #include "code\modules\lost_crew\lost_crew.dm"
 #include "code\modules\lootpanel\_lootpanel.dm"
