@@ -88,6 +88,13 @@
 	smg.cycle_firemode()
 	TEST_ASSERT_EQUAL(smg.aq_firemode, AQ_FIREMODE_BURST, "Cycling from single fire should go to burst")
 
+	// Osobny klawisz bezpiecznika: zabezpiecza i wraca do ostatniego trybu
+	smg.set_firemode(AQ_FIREMODE_AUTO)
+	smg.toggle_safety()
+	TEST_ASSERT_EQUAL(smg.aq_firemode, AQ_FIREMODE_SAFE, "Safety toggle did not put the gun on safety")
+	smg.toggle_safety()
+	TEST_ASSERT_EQUAL(smg.aq_firemode, AQ_FIREMODE_AUTO, "Safety toggle did not return to the last fire mode")
+
 	// Bez gracza (NPC) bezpiecznik nie blokuje, z klientem by blokował
 	var/mob/living/carbon/human/npc = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	smg.set_firemode(AQ_FIREMODE_SAFE)

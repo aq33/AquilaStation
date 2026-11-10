@@ -7,6 +7,8 @@
 	var/has_safety = TRUE
 	/// Aktualny tryb ognia
 	var/aq_firemode
+	/// Ostatni tryb strzelania przed zabezpieczeniem (do niego wraca odbezpieczenie)
+	var/aq_last_fire_mode
 	/// Dostępne tryby w kolejności przełączania
 	var/list/aq_firemodes
 	/// Szansa na przypadkowy wystrzał odbezpieczonej broni, gdy właściciel się przewróci
@@ -62,6 +64,8 @@
 		return FALSE
 	var/burst_before = burst_size
 	aq_firemode = new_mode
+	if(new_mode != AQ_FIREMODE_SAFE)
+		aq_last_fire_mode = new_mode
 	if(new_mode == AQ_FIREMODE_BURST)
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
@@ -90,6 +94,17 @@
 	var/index = aq_firemodes.Find(aq_firemode)
 	index = (index % length(aq_firemodes)) + 1
 	return set_firemode(aq_firemodes[index], user)
+
+/// Bezpiecznik osobno od wybieraka: zabezpiecza albo wraca do ostatniego trybu ognia
+/obj/item/gun/proc/toggle_safety(mob/user)
+	if(!has_safety)
+		if(user)
+			balloon_alert(user, "brak bezpiecznika")
+		return FALSE
+	if(aq_firemode != AQ_FIREMODE_SAFE)
+		return set_firemode(AQ_FIREMODE_SAFE, user)
+	var/fire_mode = (aq_last_fire_mode in aq_firemodes) ? aq_last_fire_mode : AQ_FIREMODE_SEMI
+	return set_firemode(fire_mode, user)
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -185,6 +200,23 @@
 	if(!istype(held_gun))
 		return
 	held_gun.cycle_firemode(user.mob)
+	return TRUE
+
+/datum/keybinding/mob/aq_toggle_safety
+	key = "Unbound"
+	name = "aq_safety"
+	full_name = "Bezpiecznik broni"
+	description = "Zabezpiecz albo odbezpiecz trzymaną broń. Odbezpieczona wraca do ostatniego trybu ognia."
+	keybind_signal = COMSIG_KB_AQ_TOGGLE_SAFETY
+
+/datum/keybinding/mob/aq_toggle_safety/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/obj/item/gun/held_gun = user.mob.get_active_held_item()
+	if(!istype(held_gun))
+		return
+	held_gun.toggle_safety(user.mob)
 	return TRUE
 
 /datum/preferences/load_from_database()
