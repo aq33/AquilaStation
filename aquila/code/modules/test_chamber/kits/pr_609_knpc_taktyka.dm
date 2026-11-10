@@ -3,9 +3,9 @@
 /datum/test_chamber_kit/pr_609
 	name = "PR 609: taktyka boarderów KNPC - walka"
 	pr = "aq33/AquilaStation#609"
-	description = "Dwóch syndykatów z pistoletami, jeden ma w kieszeni granat odłamkowy. Wyjdź z aghosta jako człowiek z bronią (albo zespawnuj sobie ciało) i walcz z nimi. \
+	description = "Dwóch syndykatów z pistoletami: każdy ma w plecaku granat hukowy i zaawansowane okulary, jeden ma też w kieszeni granat odłamkowy. Wyjdź z aghosta jako człowiek z bronią (albo zespawnuj sobie ciało) i walcz z nimi. \
 	1) Podejdź na 1-2 pola do uzbrojonego syndykata → oczekiwane: cofa się na 3+ pola i strzela, a nie idzie na ciebie; czasem robi unik w bok. \
-	2) Stań 4-7 pól od nich, najlepiej przy drugim celu (np. zwykłym człowieku obok) → oczekiwane: syndykat z granatem krzyczy „Granat!” i rzuca go (najwyżej raz na 20 s, nigdy gdy obok ciebie stoi drugi syndykat). \
+	2) Stań 3-7 pól od nich przy drugim celu (zwykłym człowieku obok) → oczekiwane: rzucają hukowy („Hukowy!”) i sami nie padają od błysku; odłamkowy leci tylko z 5+ pól i nigdy, gdy w promieniu 4 pól od ciebie stoi drugi syndykat (najwyżej jeden granat na 20 s na boardera). \
 	3) Schowaj się za ścianą komory → oczekiwane: nie strzelają w ścianę, tylko idą tam, gdzie cię widzieli. \
 	4) Strzel do dalszego syndykata, gdy bliżej stoi zwykły człowiek → oczekiwane: obaj biorą na cel ciebie (strzelającego), nie człowieka. \
 	5) Wezwanie wsparcia: odpowiada najwyżej 3 najbliższych boarderów."

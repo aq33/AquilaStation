@@ -103,5 +103,38 @@
 	TEST_ASSERT(!ai.hacking_door, "Hacking flag stayed set after the hack finished")
 	TEST_ASSERT(!door.density, "Door hacker failed to open the airlock")
 
+/// AQUILA - boarder nie rzuca odłamkowego, gdy sam jest w zasięgu wybuchu, a hukowy tylko z ochroną oczu i uszu
+/datum/unit_test/aquila_knpc_grenade_safety
+
+/datum/unit_test/aquila_knpc_grenade_safety/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/enemy = allocate(/mob/living/carbon/human, locate(base.x + 5, base.y + 1, base.z))
+	var/mob/living/carbon/human/enemy_two = allocate(/mob/living/carbon/human, locate(base.x + 5, base.y + 2, base.z))
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(!boarder.faction_check_mob(enemy), "Test enemy is in the boarder's faction")
+	var/obj/item/grenade/frag/frag = allocate(/obj/item/grenade/frag)
+	boarder.put_in_active_hand(frag)
+	var/list/enemies = list(enemy, enemy_two)
+	TEST_ASSERT(!ai.try_throw_grenade(enemy, enemies), "Boarder threw a frag grenade 4 tiles away while standing in its blast radius")
+	TEST_ASSERT(!frag.active, "Frag grenade got primed although it was not thrown")
+
+	var/obj/item/grenade/flashbang/flash = allocate(/obj/item/grenade/flashbang)
+	boarder.put_in_inactive_hand(flash)
+	ai.next_grenade = 0
+	TEST_ASSERT(!ai.try_throw_grenade(enemy, enemies), "Boarder without eye and ear protection threw a flashbang at itself")
+
+	boarder.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/advanced(boarder), ITEM_SLOT_EYES)
+	var/obj/item/old_ears = boarder.ears
+	if(old_ears)
+		qdel(old_ears)
+	boarder.equip_to_slot_or_del(new /obj/item/radio/headset/syndicate/alt(boarder), ITEM_SLOT_EARS)
+	TEST_ASSERT(boarder.get_eye_protection() >= 1 && boarder.get_ear_protection() >= 1, "Test boarder is still unprotected (eyes [boarder.get_eye_protection()], ears [boarder.get_ear_protection()], species [boarder.dna?.species?.type], glasses [boarder.glasses?.type], eye organ [boarder.getorganslot(ORGAN_SLOT_EYES)?.type])")
+	ai.next_grenade = 0
+	TEST_ASSERT(ai.try_throw_grenade(enemy, enemies), "Protected boarder did not throw a flashbang at a group of enemies")
+	TEST_ASSERT(flash.active && !boarder.is_holding(flash), "The thrown grenade should be the primed flashbang")
+	TEST_ASSERT(!frag.active && boarder.is_holding(frag), "The frag grenade should stay unthrown in hand")
+	qdel(flash) // nie wybucha w kolejnych testach
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

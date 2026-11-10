@@ -10,6 +10,10 @@
 #define KNPC_SHOOTER_MEMORY (15 SECONDS)
 /// Przerwa między granatami jednego boardera
 #define KNPC_GRENADE_COOLDOWN (20 SECONDS)
+/// Zapalnik granatu rzuconego przez KNPC (gracz ma 5 s, boarder trzyma chwilę w ręku)
+#define KNPC_GRENADE_FUSE (3 SECONDS)
+/// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
+#define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
 #define KNPC_HACK_TIME (10 SECONDS)
 /// Przerwa między uderzeniami w drzwi
@@ -127,7 +131,8 @@
 	H.face_atom(target)
 	return TRUE
 
-/// Rzut granatem (tylko wybuchowym albo odłamkowym), gdy cel jest 3–7 pól dalej, widać go i obok nie ma swoich.
+/// Rzut granatem, gdy cel jest 3–7 pól dalej i go widać. Odłamkowy/wybuchowy najchętniej w grupę, tylko spoza jego zasięgu i nigdy, gdy w zasięgu są swoi;
+/// hukowy tylko wtedy, gdy każdy swój w jego zasięgu (z rzucającym) ma ochronę oczu i uszu.
 /datum/component/knpc/proc/try_throw_grenade(atom/movable/target, list/enemies)
 	if(world.time < next_grenade)
 		return FALSE
@@ -135,33 +140,59 @@
 	var/dist = get_dist(H, target)
 	if(dist < 3 || dist > 7 || H.incapacitated() || !isturf(H.loc) || !can_see(H, target, view_range))
 		return FALSE
-	var/obj/item/grenade/nade = find_grenade()
-	if(!nade)
-		return FALSE
 	var/turf/target_turf = get_turf(target)
 	var/enemies_near = 0
 	for(var/atom/movable/enemy as anything in enemies)
 		if(get_dist(enemy, target_turf) <= 2)
 			enemies_near++
-	if(enemies_near < 2 && !prob(30))
+	var/obj/item/grenade/nade = null
+	var/obj/item/grenade/frag = find_grenade(lethal = TRUE)
+	if(frag)
+		// Odłamki i ogień sięgają dalej niż sam wybuch: strefa to największy z promieni granatu
+		var/blast_radius = max(frag.ex_light, frag.ex_flame, frag.shrapnel_radius, 1)
+		if(dist > blast_radius && (enemies_near >= 2 || prob(30)) && !friendlies_near(target_turf, blast_radius))
+			nade = frag
+	if(!nade)
+		var/obj/item/grenade/flashbang/flash = find_grenade(lethal = FALSE)
+		if(flash && (enemies_near >= 2 || prob(50)) && flashbang_safe(flash, target_turf))
+			nade = flash
+	if(!nade)
 		return FALSE
-	for(var/mob/living/L in range(2, target_turf))
-		if(L.stat != DEAD && H.faction_check_mob(L))
-			return FALSE // nie rzucamy w swoich
 	next_grenade = world.time + KNPC_GRENADE_COOLDOWN
 	if(isitem(nade.loc) && nade.loc != H)
 		SEND_SIGNAL(nade.loc, COMSIG_TRY_STORAGE_TAKE, nade, H.drop_location(), TRUE)
 	else if(!H.temporarilyRemoveItemFromInventory(nade))
 		return FALSE
 	nade.forceMove(H.drop_location())
-	nade.preprime(H, null, FALSE)
+	nade.preprime(H, KNPC_GRENADE_FUSE, FALSE)
 	H.visible_message("<span class='danger'>[H] rzuca [nade]!</span>")
-	H.say(pick("Granat!", "Uwaga, granat!", "Odłamkowy!"), forced = "knpc AI")
+	if(istype(nade, /obj/item/grenade/flashbang))
+		H.say(pick("Granat!", "Hukowy!", "Zamknąć oczy!"), forced = "knpc AI")
+	else
+		H.say(pick("Granat!", "Uwaga, granat!", "Odłamkowy!"), forced = "knpc AI")
 	nade.throw_at(target_turf, 7, 1, H)
 	return TRUE
 
-/// Granat wybuchowy albo odłamkowy noszony przy sobie lub w plecaku
-/datum/component/knpc/proc/find_grenade()
+/// Czy w promieniu range od T stoi ktoś żywy z naszej frakcji (z nami włącznie)
+/datum/component/knpc/proc/friendlies_near(turf/T, range)
+	var/mob/living/H = parent
+	for(var/mob/living/L in range(range, T))
+		if(L.stat != DEAD && H.faction_check_mob(L))
+			return TRUE
+	return FALSE
+
+/// Hukowy w T nie ogłuszy nikogo swojego: każdy swój bliżej niż zasięg granatu ma ochronę oczu i uszu
+/datum/component/knpc/proc/flashbang_safe(obj/item/grenade/flashbang/flash, turf/T)
+	var/mob/living/H = parent
+	for(var/mob/living/L in range(flash.flashbang_range - 1, T))
+		if(L.stat == DEAD || !H.faction_check_mob(L))
+			continue
+		if(L.get_eye_protection() < 1 || L.get_ear_protection() < 1)
+			return FALSE
+	return TRUE
+
+/// Granat noszony przy sobie lub w plecaku: lethal = wybuchowy/odłamkowy, inaczej hukowy
+/datum/component/knpc/proc/find_grenade(lethal = TRUE)
 	var/mob/living/carbon/human/H = parent
 	var/list/expanded_contents = H.contents.Copy()
 	var/obj/item/storage/S = H.back
@@ -170,7 +201,10 @@
 	for(var/obj/item/grenade/nade in expanded_contents)
 		if(nade.active || nade.dud_flags)
 			continue
-		if(nade.ex_dev || nade.ex_heavy || nade.ex_light || nade.shrapnel_type)
+		if(lethal)
+			if(nade.ex_dev || nade.ex_heavy || nade.ex_light || nade.shrapnel_type)
+				return nade
+		else if(istype(nade, /obj/item/grenade/flashbang))
 			return nade
 
 /// Medipen z zawartością noszony przy sobie lub w plecaku
@@ -293,14 +327,33 @@
 		H.visible_message("<span class='warning'>[H] otwiera [D] zwarciem w panelu!</span>")
 		do_sparks(3, TRUE, D)
 
-// Syndykat hakuje drzwi, piraci je wyważają (zombie mają to od zawsze w nsv13)
+// Syndykat hakuje drzwi, piraci je wyważają (zombie mają to od zawsze w nsv13).
+// Oba dostają granat hukowy, a z małą szansą też odłamkowy.
 /mob/living/carbon/human/ai_boarder/syndicate/Initialize(mapload)
 	. = ..()
 	knpc_traits |= KNPC_IS_DOOR_HACKER
+	// Słuchawki bowman chronią uszy, zaawansowane okulary (zwykłe nie chronią przed błyskiem) oczy: hukowy rzucony przez kolegę nie ogłusza Syndykatu
+	if(!glasses)
+		equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/advanced(src), ITEM_SLOT_EYES)
+	give_knpc_grenades()
 
 /mob/living/carbon/human/ai_boarder/space_pirate/Initialize(mapload)
 	. = ..()
 	knpc_traits |= KNPC_IS_DOOR_BASHER
+	give_knpc_grenades()
+
+/// Granat hukowy i z szansą KNPC_FRAG_CHANCE odłamkowy do plecaka (bez plecaka do kieszeni, jeśli wolna)
+/mob/living/carbon/human/ai_boarder/proc/give_knpc_grenades()
+	var/list/grenades = list(/obj/item/grenade/flashbang)
+	if(prob(KNPC_FRAG_CHANCE))
+		grenades += /obj/item/grenade/frag
+	for(var/grenade_type in grenades)
+		if(back)
+			new grenade_type(back)
+		else
+			var/obj/item/grenade/nade = new grenade_type(src)
+			if(!equip_to_slot_if_possible(nade, ITEM_SLOT_LPOCKET, disable_warning = TRUE) && !equip_to_slot_if_possible(nade, ITEM_SLOT_RPOCKET, disable_warning = TRUE))
+				qdel(nade)
 
 // Przy krytycznym zdrowiu medipen idzie przed walką
 /datum/ai_goal/human/heal_self/check_score(datum/component/knpc/HA)
@@ -406,6 +459,8 @@
 #undef KNPC_RANGE_MAX
 #undef KNPC_SHOOTER_MEMORY
 #undef KNPC_GRENADE_COOLDOWN
+#undef KNPC_GRENADE_FUSE
+#undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY
 #undef KNPC_BASH_DAMAGE
