@@ -57,12 +57,48 @@
 	var/obj/structure/extinguisher_cabinet/cabinet = locate() in get_turf(user)
 	TEST_ASSERT(cabinet, "The extinguisher cabinet frame did not build a cabinet")
 	allocated += cabinet
-	TEST_ASSERT_EQUAL(cabinet.pixel_x, -25, "An extinguisher cabinet built on the west wall has the wrong offset")
+	TEST_ASSERT_EQUAL(cabinet.pixel_x, -29, "An extinguisher cabinet built on the west wall has the wrong offset")
 	TEST_ASSERT_EQUAL(cabinet.pixel_y, 4, "An extinguisher cabinet built on the west wall was raised the wrong amount")
+	TEST_ASSERT_EQUAL(cabinet.dir, WEST, "An extinguisher cabinet built on the west wall does not face it")
+
+	// Urządzenia z dorysowanymi kierunkami: na ścianie bocznej dir = strona ściany, a każdy stan ich pliku ma 4 kierunki
+	// (inaczej obrócona podstawa i nieobrócone nakładki się rozjadą)
+	for(var/path in list(
+		/obj/structure/extinguisher_cabinet,
+		/obj/machinery/button/door,
+		/obj/machinery/flasher,
+		/obj/machinery/keycard_auth,
+		/obj/machinery/advanced_airlock_controller,
+		/obj/machinery/doorButtons/access_button,
+		/obj/machinery/embedded_controller/radio/simple_vent_controller,
+		/obj/machinery/airlock_sensor,
+		/obj/machinery/turretid,
+		/obj/machinery/defibrillator_mount,
+		/obj/machinery/vending/wallmed,
+		/obj/structure/mirror,
+		/obj/structure/reagent_dispensers/peppertank,
+		/obj/item/storage/secure/safe))
+		var/obj/east_mount = mapped_mount(path, spot, 30, 0)
+		TEST_ASSERT_EQUAL(east_mount.dir, EAST, "[path] on the east wall does not face it")
+		var/obj/west_mount = mapped_mount(path, spot, -30, 0)
+		TEST_ASSERT_EQUAL(west_mount.dir, WEST, "[path] on the west wall does not face it")
+		TEST_ASSERT(findtext("[west_mount.icon]", "aquila/icons/obj/nascienne/"), "[path] does not use the directional sprites ([west_mount.icon])")
+		for(var/state in icon_states(west_mount.icon))
+			if(state == "hologram-line") // linię hologramu kontrolera śluzy kod obraca macierzą
+				continue
+			for(var/check_dir in list(NORTH, EAST, WEST))
+				TEST_ASSERT(length(icon_states(icon(west_mount.icon, state, check_dir))), "[west_mount.icon] state '[state]' has no [dir2text(check_dir)] direction")
+
+	// Poza ścianą (przesunięcie po skosie) oryginalny sprite, nawet gdy mapa ustawiła inny kierunek
+	var/obj/machinery/button/door/diagonal_button = mapped_mount(/obj/machinery/button/door, spot, -24, 22, WEST)
+	TEST_ASSERT_EQUAL(diagonal_button.dir, SOUTH, "A door button off the wall kept the mapped direction")
 
 /// Tworzy urządzenie tak jak ładowanie mapy: przesunięcie ustawione przed Initialize()
-/datum/unit_test/aquila_wall_mounts/proc/mapped_mount(path, turf/spot, offset_x, offset_y)
-	world.preloader_setup(list("pixel_x" = offset_x, "pixel_y" = offset_y), path)
+/datum/unit_test/aquila_wall_mounts/proc/mapped_mount(path, turf/spot, offset_x, offset_y, map_dir)
+	var/list/attributes = list("pixel_x" = offset_x, "pixel_y" = offset_y)
+	if(map_dir)
+		attributes["dir"] = map_dir
+	world.preloader_setup(attributes, path)
 	var/atom/movable/mount = new path(spot)
 	GLOB.use_preloader = FALSE
 	allocated += mount

@@ -130,67 +130,171 @@
 	if(wall_dir)
 		setDir(wall_dir)
 
-// --- Urządzenia jednokierunkowe
+// --- Urządzenia z kierunkami dorysowanymi w aquila/icons/obj/nascienne/ (jak szafka na topór): dir = strona ściany,
+// północ i południe = oryginalny sprite, wschód i zachód = sprite obrócony dołem w stronę pokoju.
+// Nakładki (add_overlay z nazwą stanu) dziedziczą dir, więc w plikach są obrócone wszystkie stany urządzenia.
+
+/// paradise_wall_snap() i kierunek = strona ściany. Poza ścianą SOUTH (oryginalny sprite), nawet jeśli mapa ma inny dir.
+/obj/proc/paradise_wall_turn(north, south, east, west)
+	var/wall_dir = paradise_wall_snap(north, south, east, west)
+	setDir(wall_dir || SOUTH)
+	return wall_dir
+
+/obj/structure/extinguisher_cabinet
+	icon = 'aquila/icons/obj/nascienne/extinguisher.dmi'
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload, ndir, building)
 	. = ..()
 	paradise_wall_place()
 
 /obj/structure/extinguisher_cabinet/paradise_wall_place()
-	paradise_wall_snap(34, -25, 25, -25)
+	paradise_wall_turn(34, -25, 29, -29)
+
+/obj/machinery/button
+	icon = 'aquila/icons/obj/nascienne/buttons.dmi'
 
 /obj/machinery/button/Initialize(mapload, ndir, built)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/button/paradise_wall_place()
-	paradise_wall_snap(34, -19, 23, -23)
+	paradise_wall_turn(34, -19, 22, -22)
+
+/obj/machinery/flasher
+	icon = 'aquila/icons/obj/nascienne/flasher.dmi'
 
 /obj/machinery/flasher/Initialize(mapload, ndir, built)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/flasher/paradise_wall_place()
-	paradise_wall_snap(32, -22, 23, -22)
+	paradise_wall_turn(32, -22, 21, -21)
 
-// Przenośny flasher stoi na podłodze
+// Przenośny flasher stoi na podłodze, sprite'y zostają w core
+/obj/machinery/flasher/portable
+	icon = 'icons/obj/stationobjs.dmi'
+
 /obj/machinery/flasher/portable/paradise_wall_place()
 	return
+
+/obj/machinery/keycard_auth
+	icon = 'aquila/icons/obj/nascienne/keycard_auth.dmi'
 
 /obj/machinery/keycard_auth/Initialize(mapload)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/keycard_auth/paradise_wall_place()
-	paradise_wall_snap(34, -20, 25, -24)
+	paradise_wall_turn(34, -20, 23, -23)
+
+// Linia hologramu do celu zostaje jednokierunkowa, bo kod obraca ją macierzą
+/obj/machinery/advanced_airlock_controller
+	icon = 'aquila/icons/obj/nascienne/airlock_controller.dmi'
 
 /obj/machinery/advanced_airlock_controller/Initialize(mapload)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/advanced_airlock_controller/paradise_wall_place()
-	paradise_wall_snap(36, -18, 26, -27)
+	paradise_wall_turn(36, -18, 25, -25)
+
+/obj/machinery/doorButtons/access_button
+	icon = 'aquila/icons/obj/nascienne/airlock_machines.dmi'
+
+/obj/machinery/doorButtons/airlock_controller
+	icon = 'aquila/icons/obj/nascienne/airlock_machines.dmi'
 
 /obj/machinery/doorButtons/Initialize(mapload)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/doorButtons/paradise_wall_place()
-	paradise_wall_snap(34, -19, 22, -22)
+	paradise_wall_turn(34, -19, 22, -22)
+
+/obj/machinery/embedded_controller/radio/airlock_controller
+	icon = 'aquila/icons/obj/nascienne/airlock_machines.dmi'
+
+/obj/machinery/embedded_controller/radio/simple_vent_controller
+	icon = 'aquila/icons/obj/nascienne/airlock_machines.dmi'
 
 /obj/machinery/embedded_controller/Initialize(mapload)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/embedded_controller/paradise_wall_place()
-	paradise_wall_snap(34, -19, 23, -23)
+	paradise_wall_turn(34, -19, 25, -25)
+
+/obj/machinery/airlock_sensor
+	icon = 'aquila/icons/obj/nascienne/airlock_machines.dmi'
 
 /obj/machinery/airlock_sensor/Initialize(mapload)
 	. = ..()
 	paradise_wall_place()
 
 /obj/machinery/airlock_sensor/paradise_wall_place()
-	paradise_wall_snap(34, -19, 23, -23)
+	paradise_wall_turn(34, -19, 22, -22)
+
+/obj/machinery/turretid
+	icon = 'aquila/icons/obj/nascienne/turret_control.dmi'
+
+/obj/machinery/turretid/Initialize(mapload, ndir, built)
+	. = ..()
+	paradise_wall_place()
+
+/obj/machinery/turretid/paradise_wall_place()
+	paradise_wall_turn(34, -21, 24, -24)
+
+/obj/machinery/defibrillator_mount
+	icon = 'aquila/icons/obj/nascienne/defib_mount.dmi'
+
+/obj/machinery/defibrillator_mount/Initialize(mapload)
+	. = ..()
+	paradise_wall_place()
+
+/obj/machinery/defibrillator_mount/paradise_wall_place()
+	paradise_wall_turn(32, -24, 23, -23)
+
+/obj/machinery/vending/wallmed
+	icon = 'aquila/icons/obj/nascienne/wallmed.dmi'
+
+/obj/machinery/vending/wallmed/Initialize(mapload)
+	. = ..()
+	paradise_wall_place()
+
+/obj/machinery/vending/wallmed/paradise_wall_place()
+	paradise_wall_turn(36, -25, 32, -32)
+
+/obj/structure/mirror
+	icon = 'aquila/icons/obj/nascienne/mirror.dmi'
+
+/obj/structure/mirror/Initialize(mapload)
+	. = ..()
+	paradise_wall_place()
+
+/obj/structure/mirror/paradise_wall_place()
+	paradise_wall_turn(32, -27, 25, -25)
+
+/obj/structure/reagent_dispensers/peppertank
+	icon = 'aquila/icons/obj/nascienne/peppertank.dmi'
+
+/obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
+	. = ..()
+	paradise_wall_place()
+
+/obj/structure/reagent_dispensers/peppertank/paradise_wall_place()
+	paradise_wall_turn(34, -27, 29, -29)
+
+/obj/item/storage/secure/safe
+	icon = 'aquila/icons/obj/nascienne/safe.dmi'
+
+/obj/item/storage/secure/safe/Initialize(mapload)
+	. = ..()
+	paradise_wall_place()
+
+/obj/item/storage/secure/safe/paradise_wall_place()
+	paradise_wall_turn(34, -23, 25, -25)
+
+// --- Urządzenia jednokierunkowe: tekst, cyfry albo obraz na ekranie (obrót by je przekręcił)
 
 /obj/machinery/status_display/Initialize(mapload, ndir, building)
 	. = ..()
@@ -205,48 +309,6 @@
 
 /obj/machinery/door_timer/paradise_wall_place()
 	paradise_wall_snap(33, -28, 32, -32)
-
-/obj/machinery/turretid/Initialize(mapload, ndir, built)
-	. = ..()
-	paradise_wall_place()
-
-/obj/machinery/turretid/paradise_wall_place()
-	paradise_wall_snap(34, -21, 26, -28)
-
-/obj/machinery/defibrillator_mount/Initialize(mapload)
-	. = ..()
-	paradise_wall_place()
-
-/obj/machinery/defibrillator_mount/paradise_wall_place()
-	paradise_wall_snap(32, -24, 27, -27)
-
-/obj/machinery/vending/wallmed/Initialize(mapload)
-	. = ..()
-	paradise_wall_place()
-
-/obj/machinery/vending/wallmed/paradise_wall_place()
-	paradise_wall_snap(36, -25, 25, -24)
-
-/obj/structure/mirror/Initialize(mapload)
-	. = ..()
-	paradise_wall_place()
-
-/obj/structure/mirror/paradise_wall_place()
-	paradise_wall_snap(32, -27, 25, -25)
-
-/obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
-	. = ..()
-	paradise_wall_place()
-
-/obj/structure/reagent_dispensers/peppertank/paradise_wall_place()
-	paradise_wall_snap(34, -27, 30, -30)
-
-/obj/item/storage/secure/safe/Initialize(mapload)
-	. = ..()
-	paradise_wall_place()
-
-/obj/item/storage/secure/safe/paradise_wall_place()
-	paradise_wall_snap(34, -23, 34, -24)
 
 /obj/machinery/vitals_reader/Initialize(mapload)
 	. = ..()
