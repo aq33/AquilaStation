@@ -1167,7 +1167,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | munitions forge | kuźnia amunicji | ż; istniejące |
 | DRADIS | DRADIS | m/ndm; istniejące |
 | radar | radar | m; istniejące (26×) |
-| squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Able”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (zostaje tylko w starym `squad_vendor.dm`: „zestaw składu”, „automat składu”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
+| squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Alpha”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (od reworku drużyn także automat to „automat drużyny”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
 
 ## 13. Górnictwo
 
@@ -3272,7 +3272,11 @@ Oznaczenia w kolumnie uwag:
 | Squad Leader | dowódca drużyny | m; nowe; odrzucone: dowódca oddziału (1×) |
 | Squad Kit | zestaw drużyny | m; nowe; odrzucone: zestaw składu |
 | Squad Pager | pager drużyny | m; nowe |
-| Able / Baker / Charlie / Duff (squads) | Able / Baker / Charlie / Duff | nazwy własne drużyn, bez tłumaczenia |
+| Able / Baker / Charlie / Duff (squads) | Alpha / Bravo / Charlie / Delta | nazwy własne drużyn; od reworku drużyn alfabet NATO zamiast starych nazw NSV13 (typy w kodzie zostały: `/datum/squad/able` itd.) |
+| Squad Position (NSV13 rework) | funkcja w drużynie | ż; żołnierz, dowódca, medyk, inżynier |
+| Squad Crate | skrzynia sprzętu drużyny | ż; nowe; zestaw z automatu drużyny |
+| Squad Vendor | automat drużyny | m; zamiast „automat składu” |
+| Order Marker | znacznik rozkazu | m; tędy, atak, obrona, odwrót, zbiórka, cel |
 | CAG (Commander Air Group) | CAG (dowódca grupy lotniczej) | m; istniejące „CAG Syndykatu” |
 | Flight Leader | dowódca klucza | m; nowe |
 | Wingman | skrzydłowy | m; nowe |
