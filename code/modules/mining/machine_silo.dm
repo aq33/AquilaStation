@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(!istype(I) || (I.flags_1 & HOLOGRAM_1) || (I.item_flags & NO_MAT_REDEMPTION))
 		to_chat(user, "<span class='warning'>[M] nie przyjmuje [I]!</span>")
 		return
-	var/item_mats = I.materials & materials.materials
+	var/item_mats = (isstack(I) ? I.mats_per_unit : I.custom_materials) & materials.materials // AQ EDIT - log mnoży przez amount, więc dla stosu ilość na sztukę
 	if(!length(item_mats))
 		to_chat(user, "<span class='warning'>[I] nie zawiera dość materiałów, by [M] je przyjął.</span>")
 		return
@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(istype(AM, /obj/item/stack))
 		var/obj/item/stack/S = AM
 
-		var/item_mats = S.materials & materials.materials
+		var/item_mats = S.mats_per_unit & materials.materials
 		if(!length(item_mats))
 			return
 

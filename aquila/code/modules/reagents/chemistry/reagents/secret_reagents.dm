@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 		target.set_custom_materials()
 		target.custom_materials = null
 		target.material_flags = old_flags
-	target.material_flags &= ~MATERIAL_NO_COLOR
+	target.material_flags |= MATERIAL_EFFECTS | MATERIAL_COLOR
 	target.set_custom_materials(list((metal) = metal_amount))
 
 	if(isobj(target))

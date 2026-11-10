@@ -61,12 +61,12 @@ Note: Must be placed within 3 tiles of the R&D Console
 	. = 0
 	var/datum/component/material_container/storage = linked_console?.linked_lathe?.materials.mat_container
 	if(storage) //Also sends salvaged materials to a linked protolathe, if any.
-		for(var/material in thing.materials)
-			var/can_insert = min((storage.max_amount - storage.total_amount), (min(thing.materials[material]*(decon_mod/10), thing.materials[material])))
+		for(var/material in thing.custom_materials)
+			var/can_insert = min((storage.max_amount - storage.total_amount), (min(thing.custom_materials[material]*(decon_mod/10), thing.custom_materials[material])))
 			storage.insert_amount_mat(can_insert, material)
 			. += can_insert
 		if (.)
-			linked_console.linked_lathe.materials.silo_log(src, "reclaimed", 1, "[thing.name]", thing.materials)
+			linked_console.linked_lathe.materials.silo_log(src, "reclaimed", 1, "[thing.name]", thing.custom_materials)
 
 /obj/machinery/rnd/destructive_analyzer/proc/destroy_item(obj/item/thing, innermode = FALSE)
 	if(QDELETED(thing) || QDELETED(src) || QDELETED(linked_console))
@@ -137,7 +137,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		var/user_mode_string = ""
 		if(length(point_value))
 			user_mode_string = " za [json_encode(point_value)] pkt"
-		else if(loaded_item.materials.len)
+		else if(length(loaded_item.custom_materials))
 			user_mode_string = " w celu odzysku materiałów"
 		if(!confirmed)
 			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Kontynuuj", "Anuluj")
@@ -182,8 +182,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 	data["already_deconstructed"] = !!research.deconstructed_items[loaded_item.type]
 	var/list/points = techweb_item_point_check(loaded_item)
 	data["recoverable_points"] = length(points) ? techweb_point_display_generic(points, FALSE) : null
-	for(var/material in loaded_item.materials)
-		data["item_mats"] += "[CallMaterialName(material)] x [loaded_item.materials[material]]"
+	for(var/material in loaded_item.custom_materials)
+		data["item_mats"] += "[CallMaterialName(material)] x [loaded_item.custom_materials[material]]"
 	for(var/node_id in techweb_item_boost_check(loaded_item))
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
 		if(!istype(node))

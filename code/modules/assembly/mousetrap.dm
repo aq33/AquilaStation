@@ -3,7 +3,7 @@
 	desc = "Poręczna sprężynowa pułapka na uciążliwe gryzonie."
 	icon_state = "mousetrap"
 	item_state = "mousetrap"
-	materials = list(/datum/material/iron=100)
+	custom_materials = list(/datum/material/iron=100)
 	attachable = TRUE
 	var/armed = FALSE
 	layer = BELOW_OBJ_LAYER //AQ EDIT

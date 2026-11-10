@@ -6,14 +6,14 @@
 	icon_state = "blshell"
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "nabój z woreczkiem"
 	desc = "Słaby nabój z woreczkiem do tłumienia zamieszek."
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun_beanbag
-	materials = list(/datum/material/iron=250)
+	custom_materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "breneka zapalająca"
@@ -34,7 +34,7 @@
 	desc = "Ogłuszająca breneka paralizatora."
 	icon_state = "stunshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun_stunslug
-	materials = list(/datum/material/iron=250)
+	custom_materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/meteorslug
 	name = "nabój meteorytowy"
@@ -71,7 +71,7 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
 	variance = 20
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/incapacitate
 	name = "niestandardowy nabój obezwładniający"
@@ -80,14 +80,14 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_incapacitate
 	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
 	variance = 20
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/improvised
 	name = "improwizowany nabój"
 	desc = "Wyjątkowo słaby nabój do strzelby z wieloma drobnymi śrucinami z metalowych odłamków."
 	icon_state = "improvshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_improvised
-	materials = list(/datum/material/iron=250)
+	custom_materials = list(/datum/material/iron=250)
 	pellets = 10
 	variance = 25
 
@@ -154,4 +154,4 @@
 	desc = "Breneka kalibru 12 przeciw materiałom. Świetnie wyważa śluzy i okna niewielką liczbą strzałów."
 	icon_state = "breacher"
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)

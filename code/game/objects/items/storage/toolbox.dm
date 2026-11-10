@@ -11,7 +11,7 @@
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron = 500)
+	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
 	attack_verb = list("robustuje")
 	hitsound = 'sound/weapons/smash.ogg'
 	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
@@ -44,7 +44,7 @@
 	name = "awaryjna skrzynka narzędziowa"
 	icon_state = "red"
 	item_state = "toolbox_red"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/emergency/PopulateContents()
 	new /obj/item/crowbar/red(src)
@@ -63,13 +63,13 @@
 	name = "zardzewiała czerwona skrzynka narzędziowa"
 	icon_state = "toolbox_red_old"
 	has_latches = FALSE
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/mechanical
 	name = "mechaniczna skrzynka narzędziowa"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/mechanical/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -83,7 +83,7 @@
 	name = "zardzewiała niebieska skrzynka narzędziowa"
 	icon_state = "toolbox_blue_old"
 	has_latches = FALSE
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/heirloomtoolbox //Not actually a toolbox at all, just an heirloom
 	name = "rodzinna skrzynka narzędziowa"
@@ -137,7 +137,7 @@
 	name = "elektryczna skrzynka narzędziowa"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/electrical/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -157,7 +157,7 @@
 	item_state = "toolbox_syndi"
 	force = 15
 	throwforce = 18
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()
@@ -177,7 +177,7 @@
 	name = "mechaniczna skrzynka narzędziowa"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/drone/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -197,7 +197,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("robustuje", "miażdży", "rozbija")
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/brass/ComponentInitialize()
 	. = ..()
@@ -222,7 +222,7 @@
 	icon_state = "green"
 	item_state = "artistic_toolbox"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/artistic/ComponentInitialize()
 	. = ..()

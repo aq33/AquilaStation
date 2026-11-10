@@ -17,7 +17,7 @@
 	name = "maska spawalnicza"
 	desc = "Maska gazowa z wbudowanymi goglami spawalniczymi i osłoną twarzy. Wygląda jak czaszka - wyraźnie zaprojektował ją nerd."
 	icon_state = "weldingmask"
-	materials = list(/datum/material/iron=4000, /datum/material/glass=2000)
+	custom_materials = list(/datum/material/iron=4000, /datum/material/glass=2000)
 	flash_protect = 2
 	tint = 2
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 55, "stamina" = 15, "bleed" = 5)

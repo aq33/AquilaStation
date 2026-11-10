@@ -519,12 +519,10 @@
 	else
 		for(var/i=1, i<=multiplier, i++)
 			var/obj/item/new_item = new being_built.build_path(A)
-			new_item.materials.Cut()	//appearantly the material datum gets initialized in a subsystem so there is no need to qdelete it but we still need to empty the list
-			for(var/mat in materials_used)
-				new_item.materials[mat] = materials_used[mat] / multiplier
-
 			if(length(picked_materials))
 				new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
+			else // AQ EDIT - przedmiot oddaje przy recyklingu tyle, ile zużyto (oszczędne części), inaczej recykling dawałby zysk
+				new_item.set_custom_materials(materials_used, 1 / multiplier)
 	being_built = null
 	set_default_sprite()
 	soundloop?.stop() // AQ EDIT

@@ -136,6 +136,7 @@
 #include "code\datums\diseases\gbs.dm"
 #include "code\datums\diseases\transformation.dm"
 #include "code\datums\materials\rock.dm"
+#include "code\datums\materials\material_prefix.dm"
 #include "code\datums\action.dm"
 #include "code\datums\ai_laws.dm"
 #include "code\datums\components\storage\concrete\grid.dm"

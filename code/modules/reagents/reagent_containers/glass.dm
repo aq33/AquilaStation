@@ -139,7 +139,7 @@
 	name = "duża zlewka"
 	desc = "Duża zlewka. Mieści do 100 j."
 	icon_state = "beakerlarge"
-	materials = list(/datum/material/glass=2500)
+	custom_materials = list(/datum/material/glass=2500)
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
@@ -148,7 +148,7 @@
 	name = "bardzo duża zlewka"
 	desc = "Bardzo duża zlewka. Mieści do 120 j."
 	icon_state = "beakerwhite"
-	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
+	custom_materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
@@ -159,7 +159,7 @@
 	desc = "Duża zlewka. Mieści do 180 j."
 	icon_state = "beakergold"
 	fill_icon_thresholds = list(1, 10, 25, 50, 60, 80, 100) //AQUILA EDIT
-	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
+	custom_materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
 	volume = 180
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120,180)
@@ -169,7 +169,7 @@
 	desc = "Zlewka kriostatyczna, w której chemikalia można przechowywać bez \
 		reakcji. Mieści do 50 j."
 	icon_state = "beakernoreact"
-	materials = list(/datum/material/iron=3000)
+	custom_materials = list(/datum/material/iron=3000)
 	reagent_flags = OPENCONTAINER | NO_REACT
 	volume = 50
 	amount_per_transfer_from_this = 10
@@ -180,7 +180,7 @@
 		oraz Pierwiastkiem Kubańskim połączonym ze Związkiem Pete. Mieści do \
 		300 j."
 	icon_state = "beakerbluespace"
-	materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
+	custom_materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
@@ -221,7 +221,7 @@
 	item_state = "bucket"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
-	materials = list(/datum/material/iron=200)
+	custom_materials = list(/datum/material/iron=200)
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,70)
@@ -287,7 +287,7 @@
 	icon_state = "smallbottle"
 	item_state = "bottle"
 	list_reagents = list(/datum/reagent/water = 49.5, /datum/reagent/fluorine = 0.5)//see desc, don't think about it too hard
-	materials = list(/datum/material/glass=0)
+	custom_materials = list(/datum/material/glass=0)
 	volume = 50
 	amount_per_transfer_from_this = 10
 	fill_icon_thresholds = list(0, 10, 25, 50, 75, 80, 90)
@@ -386,7 +386,7 @@
 /obj/item/reagent_containers/glass/waterbottle/large
 	desc = "Świeża, duża butelka wody ze sklepu."
 	icon_state = "largebottle"
-	materials = list(/datum/material/glass=0)
+	custom_materials = list(/datum/material/glass=0)
 	list_reagents = list(/datum/reagent/water = 100)
 	volume = 100
 	amount_per_transfer_from_this = 20

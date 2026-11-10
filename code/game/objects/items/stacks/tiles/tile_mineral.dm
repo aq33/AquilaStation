@@ -6,7 +6,7 @@
 	item_state = "tile-plasma"
 	turf_type = /turf/open/floor/mineral/plasma
 	mineralType = "plasma"
-	materials = list(/datum/material/plasma=500)
+	mats_per_unit = list(/datum/material/plasma=500)
 
 /obj/item/stack/tile/mineral/uranium
 	name = "uranowa płytka"
@@ -16,7 +16,7 @@
 	item_state = "tile-uranium"
 	turf_type = /turf/open/floor/mineral/uranium
 	mineralType = "uranium"
-	materials = list(/datum/material/uranium=500)
+	mats_per_unit = list(/datum/material/uranium=500)
 
 /obj/item/stack/tile/mineral/gold
 	name = "złota płytka"
@@ -26,7 +26,7 @@
 	item_state = "tile-gold"
 	turf_type = /turf/open/floor/mineral/gold
 	mineralType = "gold"
-	materials = list(/datum/material/gold=500)
+	mats_per_unit = list(/datum/material/gold=500)
 
 /obj/item/stack/tile/mineral/silver
 	name = "srebrna płytka"
@@ -36,7 +36,7 @@
 	item_state = "tile-silver"
 	turf_type = /turf/open/floor/mineral/silver
 	mineralType = "silver"
-	materials = list(/datum/material/silver=500)
+	mats_per_unit = list(/datum/material/silver=500)
 
 /obj/item/stack/tile/mineral/copper
 	name = "miedziana płytka"
@@ -45,7 +45,7 @@
 	icon_state = "tile_copper"
 	turf_type = /turf/open/floor/mineral/copper
 	mineralType = "copper"
-	materials = list(/datum/material/copper=500)
+	mats_per_unit = list(/datum/material/copper=500)
 
 /obj/item/stack/tile/mineral/diamond
 	name = "diamentowa płytka"
@@ -55,7 +55,7 @@
 	item_state = "tile-diamond"
 	turf_type = /turf/open/floor/mineral/diamond
 	mineralType = "diamond"
-	materials = list(/datum/material/diamond=500)
+	mats_per_unit = list(/datum/material/diamond=500)
 
 /obj/item/stack/tile/mineral/bananium
 	name = "płytka z bananium"
@@ -65,7 +65,8 @@
 	item_state = "tile-bananium"
 	turf_type = /turf/open/floor/mineral/bananium
 	mineralType = "bananium"
-	materials = list(/datum/material/bananium=500)
+	mats_per_unit = list(/datum/material/bananium=500)
+	material_flags = NONE //The slippery comp makes it unpractical for good clown decor. The material tiles should still slip.
 
 /obj/item/stack/tile/mineral/abductor
 	name = "płytka podłogowa obcych"
@@ -85,7 +86,7 @@
 	item_state = "tile-shuttle"
 	turf_type = /turf/open/floor/mineral/titanium
 	mineralType = "titanium"
-	materials = list(/datum/material/titanium=500)
+	mats_per_unit = list(/datum/material/titanium=500)
 	tile_reskin_types = list(
 		/obj/item/stack/tile/mineral/titanium,
 		/obj/item/stack/tile/mineral/titanium/yellow,
@@ -170,7 +171,7 @@
 	item_state = "tile-darkshuttle"
 	turf_type = /turf/open/floor/mineral/plastitanium
 	mineralType = "plastitanium"
-	materials = list(/datum/material/titanium=250, /datum/material/plasma=250)
+	mats_per_unit = list(/datum/material/titanium=250, /datum/material/plasma=250)
 
 /obj/item/stack/tile/mineral/snow
 	name = "śnieżna płytka"

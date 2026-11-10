@@ -235,13 +235,13 @@
 			return FALSE
 
 		if (merge_stacks)
-			if (istype(active_stack) && istype(I_stack, active_stack.merge_type))
+			if (istype(active_stack) && active_stack.merge_check(I_stack))
 				if (I_stack.merge(active_stack))
 					to_chat(usr, "<span class='notice'>Stos [active_stack.name] ma teraz [active_stack.get_amount()] szt.</span>")
 					return TRUE
 			else
 				var/obj/item/stack/inactive_stack = get_inactive_held_item()
-				if (istype(inactive_stack) && istype(I_stack, inactive_stack.merge_type))
+				if (istype(inactive_stack) && inactive_stack.merge_check(I_stack))
 					if (I_stack.merge(inactive_stack))
 						to_chat(usr, "<span class='notice'>Stos [inactive_stack.name] ma teraz [inactive_stack.get_amount()] szt.</span>")
 						return TRUE

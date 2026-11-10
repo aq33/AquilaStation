@@ -12,6 +12,7 @@
 /obj/item/stack
 	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
+	material_modifier = 0.05 //5%, so that a 50 sheet stack has the effect of 5k materials instead of 100k.
 	///The list recipes you can make with the stack
 	var/list/datum/stack_recipe/recipes
 	///The name of the thing when it's singular
@@ -32,6 +33,10 @@
 	var/full_w_class = WEIGHT_CLASS_NORMAL
 	//Determines whether the item should update it's sprites based on amount.
 	var/novariants = TRUE
+	//list that tells you how much is in a single unit.
+	var/list/mats_per_unit
+	///Datum material type that this stack is made of
+	var/material_type
 	///Stores table variant to be built from this stack
 	var/obj/structure/table/tableVariant
 
@@ -44,7 +49,6 @@
 	return TRUE
 
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE, mob/user = null)
-	. = ..()
 	if(new_amount != null)
 		amount = new_amount
 	if(user)
@@ -52,9 +56,16 @@
 	check_max_amount()
 	if(!merge_type)
 		merge_type = type
+
+	if(LAZYLEN(mats_per_unit))
+		set_mats_per_unit(mats_per_unit, 1)
+	else if(LAZYLEN(custom_materials))
+		set_mats_per_unit(custom_materials, amount ? 1/amount : 1)
+
+	. = ..()
 	if(merge)
 		for(var/obj/item/stack/S in loc)
-			if(S.merge_type == merge_type)
+			if(merge_check(S))
 				merge(S)
 				if(QDELETED(src))
 					return
@@ -101,6 +112,21 @@
 	 */
 	use(available_amount, check = FALSE)
 	return available_amount == current_amount
+
+/** Sets the amount of materials per unit for this stack.
+  *
+  * Arguments:
+  * - [mats][/list]: The value to set the mats per unit to.
+  * - multiplier: The amount to multiply the mats per unit by. Defaults to 1.
+  */
+/obj/item/stack/proc/set_mats_per_unit(list/mats, multiplier=1)
+	mats_per_unit = SSmaterials.FindOrCreateMaterialCombo(mats, multiplier)
+	update_custom_materials()
+
+/** Updates the custom materials list of this stack.
+  */
+/obj/item/stack/proc/update_custom_materials()
+	set_custom_materials(mats_per_unit, amount)
 
 /obj/item/stack/proc/check_max_amount()
 	while(amount > max_amount)
@@ -271,13 +297,12 @@
 				O.setDir(usr.dir)
 			use(R.req_amount * multiplier)
 
-			/* // We don't have R.applies_mats, leaving this in here for convenience in case we get it
-			if(R.applies_mats && custom_materials && custom_materials.len)
-				var/list/used_materials = list()
-				for(var/i in custom_materials)
-					used_materials[SSmaterials.GetMaterialRef(i)] = R.req_amount / R.res_amount * (MINERAL_MATERIAL_AMOUNT / custom_materials.len)
-				O.set_custom_materials(used_materials)
-			*/
+			if(R.applies_mats && LAZYLEN(mats_per_unit))
+				if(isstack(O))
+					var/obj/item/stack/crafted_stack = O
+					crafted_stack.set_mats_per_unit(mats_per_unit, R.req_amount / R.res_amount)
+				else
+					O.set_custom_materials(mats_per_unit, R.req_amount / R.res_amount)
 
 			if(istype(O, /obj/structure/windoor_assembly))
 				var/obj/structure/windoor_assembly/W = O
@@ -358,8 +383,10 @@
 	if(amount < used)
 		return FALSE
 	amount -= used
-	if(check)
-		zero_amount()
+	if(check && zero_amount())
+		return FALSE
+	if(length(mats_per_unit))
+		update_custom_materials()
 	update_icon()
 	ui_update()
 	update_weight()
@@ -391,6 +418,8 @@
 	else
 		src.amount += amount
 		check_max_amount()
+	if(length(mats_per_unit))
+		update_custom_materials()
 	update_icon()
 	update_weight()
 	ui_update()
@@ -472,6 +501,7 @@
 		return FALSE
 	var/obj/item/stack/F = new type(user ? user : drop_location(), amount, FALSE)
 	. = F
+	F.set_mats_per_unit(mats_per_unit, 1) // Required for greyscale sheets and tiles.
 	F.copy_evidences(src)
 	if(user)
 		if(!user.put_in_hands(F, merge_stacks = FALSE))
@@ -494,7 +524,7 @@
 			return TRUE
 		else
 			var/obj/item/stack/ostack = O
-			if(istype(src,ostack.merge_type)) //Merge types have to go in both directions, so inheritance != stackable together
+			if(istype(src,ostack.merge_type) && mats_per_unit == ostack.mats_per_unit) //Merge types have to go in both directions, so inheritance != stackable together; AQ EDIT - i ten sam materiał (Bee#10135 can_merge())
 				return TRUE
 	return FALSE
 
@@ -533,8 +563,10 @@
 	var/window_checks = FALSE
 	///Do we do placement checks while placing the recipe?
 	var/placement_checks = FALSE
+	///Does the result get the materials of the stack it was made from?
+	var/applies_mats = FALSE
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE )
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -545,6 +577,7 @@
 	src.on_floor = on_floor
 	src.window_checks = window_checks
 	src.placement_checks = placement_checks
+	src.applies_mats = applies_mats
 /*
  * Recipe list datum
  */

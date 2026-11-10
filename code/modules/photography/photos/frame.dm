@@ -4,7 +4,7 @@
 	name = "ramka na zdjęcie"
 	desc = "Idealna gablotka na ulubione wspomnienia ze śmiertelnej pułapki."
 	icon = 'icons/obj/decals.dmi'
-	materials = list()
+	custom_materials = null
 	flags_1 = 0
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/picture_frame
