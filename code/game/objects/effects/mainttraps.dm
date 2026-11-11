@@ -170,7 +170,7 @@
 	var/crossed = 0
 	var/mobs = 1
 	reusable = TRUE
-	var/mob/living/simple_animal/hostile/spawned = /mob/living/simple_animal/hostile/retaliate/spaceman
+	var/mob/living/spawned = /mob/living/basic/spaceman // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/Initialize(mapload)
 	. = ..()
@@ -200,11 +200,18 @@
 	if(validturfs.len)
 		T = pick(validturfs)
 	if(mobs)
-		var/mob/living/simple_animal/hostile/spawninstance = new spawned(T)
-		spawninstance.target = AM
+		// AQ EDIT START - basic moby: a basic mob gets the victim as its AI target and grudge
+		var/mob/living/spawninstance = new spawned(T)
+		if(isbasicmob(spawninstance))
+			spawninstance.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, AM)
+			spawninstance.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, AM)
+		else if(ishostile(spawninstance))
+			var/mob/living/simple_animal/hostile/hostile_instance = spawninstance
+			hostile_instance.target = AM
 		if(istype(spawninstance, /mob/living/simple_animal/hostile/retaliate))
 			var/mob/living/simple_animal/hostile/retaliate/R = spawninstance
 			R.enemies += AM
+		// AQ EDIT END
 		mobs--
 		crossattempts = rand(1, 5)
 		if(!mobs)
@@ -216,7 +223,7 @@
 	spawned = /mob/living/simple_animal/hostile/cat_butcherer/hugbox
 
 /obj/effect/trap/nexus/trickyspawner/faithless
-	spawned = /mob/living/simple_animal/hostile/faithless
+	spawned = /mob/living/basic/faithless // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/shitsec
 	spawned = /mob/living/simple_animal/hostile/nanotrasen/hugbox
@@ -225,10 +232,10 @@
 	spawned = /mob/living/simple_animal/hostile/netherworld
 
 /obj/effect/trap/nexus/trickyspawner/spookyskeleton
-	spawned = /mob/living/simple_animal/hostile/skeleton
+	spawned = /mob/living/basic/skeleton // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/zombie
-	spawned = /mob/living/simple_animal/hostile/zombie/hugbox
+	spawned = /mob/living/basic/zombie/hugbox // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/xeno
 	spawned = /mob/living/simple_animal/hostile/alien/hugbox
@@ -241,7 +248,7 @@
 	spawned = /mob/living/simple_animal/hostile/retaliate/clown/mutant
 
 /obj/effect/trap/nexus/trickyspawner/tree
-	spawned = /mob/living/simple_animal/hostile/tree
+	spawned = /mob/living/basic/tree // AQ EDIT - basic moby
 
 
 #undef PICK_STYLE_RANDOM
@@ -254,11 +261,7 @@
 	mobchatspan = "headofsecurity"
 	del_on_death = TRUE
 
-/mob/living/simple_animal/hostile/zombie/hugbox
-	melee_damage = 12 //zombies have a base of 21, a bit much
-	stat_attack = CONSCIOUS
-	mobchatspan = "chaplain"
-	discovery_points = 1000
+// AQ EDIT - basic moby: the hugbox zombie is in aquila\code\modules\mob\living\basic\ruin_defender\zombie.dm
 
 /mob/living/simple_animal/hostile/alien/hugbox
 	health = 60 //they go down easy, to lull the player into a sense of false security

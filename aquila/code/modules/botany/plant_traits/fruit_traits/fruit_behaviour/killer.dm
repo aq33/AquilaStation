@@ -62,4 +62,4 @@
 */
 
 /datum/plant_trait/fruit/killer/friendly/walking
-	awaken_mob = /mob/living/simple_animal/hostile/mushroom
+	awaken_mob = /mob/living/basic/mushroom

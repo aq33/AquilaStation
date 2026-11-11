@@ -18,4 +18,4 @@
 
 /datum/round_event/dolphin_migration/start()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
-		new /mob/living/simple_animal/hostile/retaliate/dolphin(C.loc)
+		new /mob/living/basic/dolphin(C.loc) // AQ EDIT - basic moby

@@ -309,7 +309,7 @@
 		/mob/living/simple_animal/hostile/retaliate/clown/longface = 1,
 		/mob/living/basic/pet/gondola = 2, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/macrophage/aggro/vector = 2,
-		/mob/living/simple_animal/hostile/retaliate/spaceman = 2,
+		/mob/living/basic/spaceman = 2, // AQ EDIT - basic moby
 		/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection = 1,
 		/mob/living/basic/frog = 2) // AQ EDIT - basic moby
 
