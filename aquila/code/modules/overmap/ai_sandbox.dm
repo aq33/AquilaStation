@@ -74,6 +74,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/step = AI_SANDBOX_STEP
 	/// Counts frames, so every AI_SANDBOX_FULL_EVERY-th one carries the whole state
 	var/frame_number = 0
+	/// ship ref => list(turf, world.time): where a ship with thrust last stood and since when (find_blockers)
+	var/list/stuck_at = list()
+	/// Ships whose blockade was already written to the events
+	var/list/stuck_reported = list()
 
 /datum/ai_sandbox/proc/event(text)
 	events += list(list("t" = round((world.time - start_time) / 10, 0.1), "text" = text))
@@ -216,9 +220,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	new_fleet.assemble(where, size)
 	if(where == system)
 		var/n = 0
+		// The column is shifted as a whole to fit the map; clamping each ship separately stacked them on one tile at the edge
+		var/first_y = clamp(main.y - round(length(new_fleet.all_ships) / 2) * 7, 20, world.maxy - 20 - length(new_fleet.all_ships) * 7)
 		for(var/obj/structure/overmap/OM as anything in new_fleet.all_ships)
 			n++
-			OM.forceMove(locate(WRAP(main.x + offset + (n % 2) * 6, 1, world.maxx + 1), clamp(main.y + (n - length(new_fleet.all_ships) / 2) * 7, 20, world.maxy - 20), main.z))
+			OM.forceMove(locate(WRAP(main.x + offset + (n % 2) * 6, 1, world.maxx + 1), first_y + n * 7, main.z))
 	event("[fleet_name] w systemie [where]: [length(new_fleet.all_ships)] okrętów")
 	return new_fleet
 
@@ -272,6 +278,36 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			"heard" = heard,
 		))
 
+/// A ship that wants to fly (move_mode, no brakes) but has not left its tile for 10 s: which dense things share or border its outline.
+/// Written once per ship as an event, so frozen ships in the recordings have a cause (wrecks and asteroids are not recorded as ships).
+/datum/ai_sandbox/proc/find_blockers(obj/structure/overmap/OM)
+	if(!OM.ai_controlled || OM.mass <= MASS_TINY || OM.role == MAIN_OVERMAP || stuck_reported["\ref[OM]"])
+		return
+	var/turf/here = OM.loc
+	if(!isturf(here) || !OM.move_mode || OM.brakes)
+		stuck_at -= "\ref[OM]"
+		return
+	var/list/last = stuck_at["\ref[OM]"]
+	if(!last || last[1] != here)
+		stuck_at["\ref[OM]"] = list(here, world.time)
+		return
+	if(world.time - last[2] < 10 SECONDS)
+		return
+	stuck_reported["\ref[OM]"] = TRUE
+	var/w = CEILING(OM.bound_width / 32, 1)
+	var/h = CEILING(OM.bound_height / 32, 1)
+	var/list/found = list()
+	for(var/turf/T as anything in block(locate(max(here.x - 1, 1), max(here.y - 1, 1), here.z), locate(min(here.x + w, world.maxx), min(here.y + h, world.maxy), here.z)))
+		if(T.density)
+			found += "ściana [T.type] ([T.x],[T.y])"
+			continue
+		for(var/atom/movable/A as anything in T)
+			if(A == OM || !A.density)
+				continue
+			var/inside = T.x >= here.x && T.x < here.x + w && T.y >= here.y && T.y < here.y + h
+			found |= "[A] [A.type] [inside ? "w obrysie" : "przy obrysie"] ([T.x],[T.y])"
+	event("[OM] stoi 10 s z ciągiem w ([here.x],[here.y]), obrys [w]x[h]; blokuje: [length(found) ? jointext(found, "; ") : "nic gęstego"]")
+
 /datum/ai_sandbox/proc/record()
 	var/list/ships = list()
 	var/list/present = list()
@@ -281,6 +317,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		if(!istype(OM) || QDELETED(OM) || OM.z != main.z || istype(OM, /obj/structure/overmap/asteroid))
 			continue
 		present += OM
+		find_blockers(OM)
 		var/obj/structure/overmap/target = OM.last_target
 		// Which sensor holds which contact, and how far this ship could see its reference enemy with each of them.
 		// The suite ranges depend on what the TARGET is doing, so they are recorded against one named enemy, not in the abstract.

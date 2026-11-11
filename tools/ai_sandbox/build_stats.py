@@ -34,6 +34,8 @@ KOLEJNOSC = [
     ("Z_bez_", "torpedy do 50 pól"), ("Z_daleko_", "daleki ostrzał"),
     ("F_legacy_", "legacy: zmiany AI wyłączone"), ("F_pelne_", "wszystkie zmiany AI"),
     ("G_pelne_", "wszystkie zmiany, po optymalizacji"), ("F_daleko_", "wszystkie zmiany, daleki start"),
+    ("H_legacy_", "legacy, z diagnostyką blokad"), ("H_pelne_", "wszystkie zmiany, z diagnostyką blokad"),
+    ("H_daleko_", "daleki start, z diagnostyką blokad"),
 ]
 STOI = 0.3
 

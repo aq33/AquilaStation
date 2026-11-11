@@ -82,6 +82,11 @@ nav.zakladki a.on{border-color:var(--nt);color:#cfe4ff}
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Diagnostyka zamarzniętych okrętów",
+    opis: "Okręt, który chce lecieć, a od 10 s nie ruszył się z pola, zapisuje w zdarzeniach, co gęstego stoi w jego obrysie i wokół niego. " +
+          "Poprawione też ustawianie flot: przy krawędzi mapy kilka okrętów lądowało na jednym polu.",
+    wynik: "",
+    warianty: [["H_pelne_", "wszystkie zmiany AI"], ["H_legacy_", "legacy (zmiany wyłączone)"], ["H_daleko_", "wszystkie zmiany, daleki start"]] },
   { tytul: "Poprawka namierzania i pomiar wydajności (profiler)",
     opis: "Zwiadowca trzyma namierzenie przez przeładowanie i okno salwy floty, a strzał na namiar albo tor radaru nie czeka na okno salwy. " +
           "Każda bitwa ma zapisany profil procedur; tryb legacy to te same bitwy z wyłączonymi wszystkimi zmianami AI z aquila/.",
