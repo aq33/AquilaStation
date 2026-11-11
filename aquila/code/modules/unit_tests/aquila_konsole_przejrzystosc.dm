@@ -46,8 +46,8 @@
 	var/obj/item/dnainjector/xraymut/injector = allocate(/obj/item/dnainjector/xraymut)
 	TEST_ASSERT(fridge.accept_check(injector), "Gablota nie przyjmuje iniektora DNA")
 	var/datum/mutation/xray = GET_INITIALIZED_MUTATION(injector.add_mutations[1])
-	var/desc = fridge.gene_fridge_desc(injector)
-	TEST_ASSERT(findtext(desc, xray.name), "Opis iniektora nie podaje mutacji: [desc]")
+	var/list/desc = fridge.gene_fridge_desc(injector)
+	TEST_ASSERT(("Daje: [xray.name]") in desc, "Opis iniektora nie podaje mutacji: [jointext(desc, " | ")]")
 	injector.used = TRUE
 	TEST_ASSERT(!fridge.accept_check(injector), "Gablota przyjęła zużyty iniektor")
 	TEST_ASSERT(!fridge.accept_check(allocate(/obj/item/reagent_containers/glass/beaker)), "Gablota przyjęła zlewkę")

@@ -158,7 +158,7 @@ const BountiesScreen = () => {
       )}
       {shown.map((bounty, i) => (
         <Section
-          key={i}
+          key={`${bounty.source}|${bounty.name}|${bounty.where}|${i}`}
           title={
             <>
               {!!bounty.urgent && (

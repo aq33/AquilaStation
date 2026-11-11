@@ -947,7 +947,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR)
 			return FALSE
 		// Krew z krwawienia ma zbierać się w jedną kałużę pod ciałem, a nie od razu rozchodzić na 5 kafelków po 10 j.
-		if(reagents_per_turf < LIQUID_VISCOUS_SPREAD_PER_TURF && is_viscous())
+		// Liczone dla objętości po dołożeniu kafelka, bo reagents_per_turf przelicza się dopiero niżej
+		if(is_viscous() && total_reagent_volume / (length(members) + 1) < LIQUID_VISCOUS_SPREAD_PER_TURF)
 			return FALSE
 		if(!length(members))
 			return FALSE

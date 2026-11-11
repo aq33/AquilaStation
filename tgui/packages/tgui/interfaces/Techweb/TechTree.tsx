@@ -124,6 +124,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
   const [searchText, setSearchText] = useState('');
   const [onlyAvailable, setOnlyAvailable] = useState(false);
 
+  // node_cache i design_cache to dane statyczne zbuforowane raz w useRemappedBackend, więc nie ma ich w zależnościach
   const byId = useMemo(() => {
     const result: Record<string, TechwebNode> = {};
     for (const n of nodes) {

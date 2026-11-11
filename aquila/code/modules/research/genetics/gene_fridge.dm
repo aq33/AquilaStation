@@ -25,24 +25,23 @@
 		if(listofitems[key] && isnull(listofitems[key]["desc"]))
 			listofitems[key]["desc"] = gene_fridge_desc(stored)
 
-/// Opis przedmiotu w oknie gabloty: mutacje z iniektora albo opis chromosomu
+/// Opis przedmiotu w oknie gabloty jako lista linii (każdą tłumaczy się osobno): mutacje z iniektora albo opis chromosomu
 /obj/machinery/smartfridge/genetics/proc/gene_fridge_desc(obj/item/stored)
 	if(istype(stored, /obj/item/chromosome))
-		return stored.desc
+		return list(stored.desc)
 	if(!istype(stored, /obj/item/dnainjector))
-		return ""
+		return list()
 	var/obj/item/dnainjector/injector = stored
 	var/list/parts = list()
 	for(var/mutation in injector.add_mutations)
 		var/datum/mutation/info = gene_fridge_mutation(mutation)
 		if(!info)
 			continue
-		var/line = "Daje: [info.name]"
+		parts += "Daje: [info.name]"
 		if(info.instability)
-			line += " (niestabilność [info.instability])"
+			parts += "Niestabilność: [info.instability]"
 		if(info.desc)
-			line += ". [info.desc]"
-		parts += line
+			parts += info.desc
 	for(var/mutation in injector.remove_mutations)
 		var/datum/mutation/info = gene_fridge_mutation(mutation)
 		if(info)
@@ -50,8 +49,8 @@
 	if(injector.fields)
 		parts += "Zmienia wygląd lub tożsamość według zapisanego DNA"
 	if(!length(parts))
-		return "Nie zawiera znanych mutacji"
-	return jointext(parts, " | ")
+		return list("Nie zawiera znanych mutacji")
+	return parts
 
 /// Iniektory trzymają mutacje jako typy (gotowe iniektory) albo jako obiekty (iniektory z konsoli DNA)
 /obj/machinery/smartfridge/genetics/proc/gene_fridge_mutation(mutation)

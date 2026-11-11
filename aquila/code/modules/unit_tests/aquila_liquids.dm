@@ -338,8 +338,13 @@
 	// Do kałuży trafia tylko część krwi: wykrwawienie się jednego ciała to kilka kafelków, nie kilkadziesiąt
 	patient.blood_volume = BLOOD_VOLUME_NORMAL
 	patient.unpooled_blood = 0
-	patient.bleed(BLOOD_VOLUME_NORMAL)
-	TEST_ASSERT(T.liquids?.liquid_group?.total_reagent_volume <= BLOOD_VOLUME_NORMAL * 0.3, "A body that bled out pooled [round(T.liquids?.liquid_group?.total_reagent_volume)] units of blood")
+	for(var/i in 1 to 500)
+		if(patient.blood_volume < 20)
+			break
+		patient.bleed(BLOOD_VOLUME_NORMAL)
+	TEST_ASSERT(patient.blood_volume < 20, "Test setup: the body did not bleed out ([round(patient.blood_volume)] units left)")
+	TEST_ASSERT(!QDELETED(T.liquids?.liquid_group), "A body that bled out left no puddle")
+	TEST_ASSERT(T.liquids.liquid_group.total_reagent_volume <= BLOOD_VOLUME_NORMAL * 0.3, "A body that bled out pooled [round(T.liquids.liquid_group.total_reagent_volume)] units of blood")
 	aquila_liquids_cleanup(T)
 
 /// AQUILA - zatkana toaleta: spłukanie przelewa wodę i zawartość muszli na podłogę

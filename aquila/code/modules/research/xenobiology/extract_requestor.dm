@@ -165,6 +165,10 @@
 		return
 	switch(action)
 		if("buy")
+			// Okno odświeża się z opóźnieniem: kupujący płaci tylko cenę, którą widział na przycisku
+			if(text2num(params["price"]) != (prices[extract_type] || default_price(extract_type)))
+				say("Cena się zmieniła. Sprawdź ofertę jeszcze raz.")
+				return TRUE
 			buy_extract(usr, extract_type, usr.get_idcard(TRUE))
 			return TRUE
 		if("take")

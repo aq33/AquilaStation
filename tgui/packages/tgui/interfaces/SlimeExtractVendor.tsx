@@ -138,7 +138,7 @@ const ExtractOffer = (props: { entry: StockEntry }) => {
               icon="cart-shopping"
               color={tooPoor ? 'bad' : 'good'}
               disabled={data.balance === null || tooPoor}
-              onClick={() => act('buy', { id: entry.id })}
+              onClick={() => act('buy', { id: entry.id, price: entry.price })}
             >
               Kup za {entry.price} kr
             </Button>
