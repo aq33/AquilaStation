@@ -18,6 +18,11 @@
 /obj/machinery/computer/ship/tactical/proc/uses_fire_control()
 	return linked && !istype(linked, /obj/structure/overmap/small_craft)
 
+/// Strzelec dużego okrętu ma okno kontroli ognia, więc przy siadaniu do konsoli taktycznej DRADIS się nie otwiera
+/// (hak w start_piloting(), nsv13/code/modules/overmap/camera.dm). Pilot i małe jednostki dostają DRADIS jak dotąd.
+/obj/structure/overmap/proc/skip_dradis_popup(position)
+	return (position & OVERMAP_USER_ROLE_GUNNER) && !(position & OVERMAP_USER_ROLE_PILOT) && !istype(src, /obj/structure/overmap/small_craft)
+
 // Pełne nadpisanie (LEGACY_OVERRIDES.md): okno kontroli ognia zamiast TacticalConsole dla dużych okrętów
 /obj/machinery/computer/ship/tactical/ui_interact(mob/user, datum/tgui/ui)
 	if(!uses_fire_control())

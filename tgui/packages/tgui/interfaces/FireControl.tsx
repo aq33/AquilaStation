@@ -82,9 +82,9 @@ const FIRE = {
   ringText: '#a07a6a',
 };
 
-const SCOPE = 510;
+const SCOPE = 340;
 const CENTER = SCOPE / 2;
-const RADIUS = 243;
+const RADIUS = 160;
 const RANGES: [number, string][] = [
   [100, '100 pól'],
   [200, '200 pól'],
@@ -115,21 +115,21 @@ const ArmourDiagram = (props: { armour: number[]; title?: ReactNode }) => {
           border: '1px solid ' + colour,
           background: colour + '26',
           borderRadius: index < 2 ? '14px 14px 4px 4px' : '4px 4px 10px 10px',
-          padding: '6px 0',
+          padding: '2px 0',
           textAlign: 'center',
         }}
       >
         <div
           style={{
             fontFamily: MONO,
-            fontSize: '18px',
+            fontSize: '14px',
             fontWeight: 700,
             color: colour,
           }}
         >
           {value}%
         </div>
-        <div style={{ fontSize: '10.5px', color: COLOR.ink2 }}>
+        <div style={{ fontSize: '9.5px', color: COLOR.ink2 }}>
           {QUADRANTS[index]}
         </div>
       </div>
@@ -143,7 +143,7 @@ const ArmourDiagram = (props: { armour: number[]; title?: ReactNode }) => {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '4px',
-          maxWidth: '300px',
+          maxWidth: '240px',
         }}
       >
         {cell(0)}
@@ -157,7 +157,7 @@ const ArmourDiagram = (props: { armour: number[]; title?: ReactNode }) => {
           alignItems: 'center',
           gap: '8px',
           marginTop: '6px',
-          maxWidth: '300px',
+          maxWidth: '240px',
         }}
       >
         <span style={{ color: COLOR.ink2, width: '50px' }}>Kadłub</span>
@@ -858,11 +858,7 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
   const { act, data } = useBackend<Data>();
   const { contact } = props;
   if (!contact) {
-    return (
-      <Box style={card} color="label">
-        Wybierz kontakt na ekranie albo w liście.
-      </Box>
-    );
+    return null;
   }
   const distance = distanceOf(contact);
   const label: CSSProperties = { color: COLOR.muted };
@@ -911,15 +907,7 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
           {distance <= data.gun_range ? 'w zasięgu' : 'za daleko'}
         </span>
       </div>
-      {contact.armour ? (
-        <ArmourDiagram armour={contact.armour} />
-      ) : (
-        contact.hostile && (
-          <Box style={{ color: COLOR.muted, fontSize: '11.5px' }}>
-            Pancerz i kadłub celu widać po namierzeniu.
-          </Box>
-        )
-      )}
+      {!!contact.armour && <ArmourDiagram armour={contact.armour} />}
       <div
         style={{
           display: 'flex',
@@ -1015,11 +1003,7 @@ const DesignatedBar = () => {
         Cele od operatora
       </span>
       {designated.length === 0 && (
-        <span style={{ color: COLOR.muted, fontSize: '12px' }}>
-          {data.sensor_station
-            ? 'operator nie przekazał celów'
-            : 'na okręcie nie ma stanowiska rozpoznania'}
-        </span>
+        <span style={{ color: COLOR.muted, fontSize: '12px' }}>brak</span>
       )}
       {designated.map((target) => (
         <span
@@ -1057,11 +1041,6 @@ const DesignatedBar = () => {
           </Button>
         </span>
       ))}
-      <span
-        style={{ marginLeft: 'auto', color: COLOR.muted, fontSize: '11.5px' }}
-      >
-        Strzelasz na overmapie; tu wybierasz cele.
-      </span>
     </Box>
   );
 };
@@ -1094,7 +1073,7 @@ export const FireControl = (props) => {
   const heading = ((turned % 360) + 360) % 360;
   const current = contacts.find((contact) => contact.id === selected);
   return (
-    <Window width={1180} height={780}>
+    <Window width={760} height={560}>
       <Window.Content
         style={{
           background: COLOR.bg,
@@ -1110,7 +1089,7 @@ export const FireControl = (props) => {
           <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
             <Box
               style={{
-                width: '530px',
+                width: '360px',
                 padding: '10px',
                 display: 'flex',
                 flexDirection: 'column',

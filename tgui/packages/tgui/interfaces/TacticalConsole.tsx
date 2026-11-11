@@ -240,9 +240,7 @@ export const TacticalConsole = (props) => {
           {!!data.sensor_station && (
             <Section title="Cele od operatora rozpoznania:">
               {(data.designated_targets || []).length === 0 && (
-                <Box color="label">
-                  Operator nie przekazał celów. Możesz namierzać sam z DRADIS.
-                </Box>
+                <Box color="label">brak</Box>
               )}
               {(data.designated_targets || []).map((target) => (
                 <Stack key={target.id} align="center" mb={0.5}>

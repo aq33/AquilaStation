@@ -784,7 +784,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 /obj/structure/overmap/proc/enable_dampeners(mob/user)
 	if(HAS_TRAIT(src, TRAIT_NODAMPENERS))
 		if(user)
-			to_chat(user, "<span class='danger'>OSTRZEŻENIE: tłumiki bezwładności niedostępne! Możliwe przyczyny: grawitacja powyżej tolerancji, awarie, uszkodzenia, samoistne przemieszczenie bluespace.</span>")
+			to_chat(user, "<span class='danger'>OSTRZEŻENIE: wspomaganie bezwładnościowe (IAS) niedostępne! Możliwe przyczyny: grawitacja powyżej tolerancji, awarie, uszkodzenia, samoistne przemieszczenie bluespace.</span>")
 		return FALSE
 	inertial_dampeners = TRUE
 	return TRUE

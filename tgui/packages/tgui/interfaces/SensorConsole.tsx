@@ -88,6 +88,8 @@ type Data = {
   pulse_bearing: number;
   pulse_reach: number;
   radar_beam: number;
+  radar_beam_mode: 'cel' | 'kurs' | 'recznie';
+  radar_beam_bearing: number;
   radar_reach: number;
   objects: ScopeObject[];
 };
@@ -358,8 +360,8 @@ const TopBar = () => {
               '(radar słychać daleko, jako namiar)'
             ) : (
               <>
-                (napęd {heatPct}%, tłumiki{' '}
-                {data.dampeners ? 'włączone' : 'wyłączone'})
+                (napęd {heatPct}%, IAS{' '}
+                {data.dampeners ? 'włączony' : 'wyłączony'})
               </>
             )}
           </span>
@@ -404,16 +406,67 @@ type ScopeProps = {
   contacts: Contact[];
   heading: number;
   pulseAge: number;
+  aimTarget: AimTarget;
   selected: string | null;
   onSelect: (id: string) => void;
 };
 
+// Przeciąganie po ekranie ustawia teleskop albo wiązkę radaru: to, w czym ostatnio wybrano tryb ręczny
+type AimTarget = 'telescope' | 'radar';
+
 // Teleskop ręczny: przy przeciąganiu wysyłamy namiar najwyżej co tyle ms
 const DRAG_SEND_MS = 120;
 
+// Fala impulsu jako animacja CSS: płynna niezależnie od odświeżania okna. Opóźnienie liczone raz,
+// w chwili pojawienia się fali, z wieku impulsu, więc fala zgadza się z prawdziwym impulsem.
+const PULSE_STYLE = `@keyframes aqRadarPulse {
+  from { transform: scale(0.02); opacity: 1; }
+  to { transform: scale(1); opacity: 0.25; }
+}`;
+
+const PulseWave = (props: {
+  age: number;
+  reach: number;
+  width: number;
+  bearing: number;
+}) => {
+  const [startAge] = useState(props.age);
+  const style: CSSProperties = {
+    transformOrigin: CENTER + 'px ' + CENTER + 'px',
+    transformBox: 'view-box',
+    animation: 'aqRadarPulse ' + PULSE_WAVE_SECONDS + 's linear forwards',
+    animationDelay: -Math.min(startAge, PULSE_WAVE_SECONDS) + 's',
+  };
+  if (props.width) {
+    return (
+      <path
+        d={wedgePath(props.bearing, props.width / 2, props.reach)}
+        fill="rgba(94,224,138,0.08)"
+        stroke="rgba(94,224,138,0.9)"
+        strokeWidth={3}
+        vectorEffect="non-scaling-stroke"
+        style={style}
+      />
+    );
+  }
+  return (
+    <circle
+      cx={CENTER}
+      cy={CENTER}
+      r={props.reach}
+      fill="rgba(94,224,138,0.05)"
+      stroke="rgba(94,224,138,0.9)"
+      strokeWidth={3}
+      vectorEffect="non-scaling-stroke"
+      style={style}
+    />
+  );
+};
+
 const Scope = (props: ScopeProps) => {
   const { act, data } = useBackend<Data>();
-  const { range, contacts, heading, pulseAge, selected, onSelect } = props;
+  const { range, contacts, heading, pulseAge, aimTarget, selected, onSelect } =
+    props;
   const markers = data.markers || [];
   const objects = data.objects || [];
   const [dragBearing, setDragBearing] = useState<number | null>(null);
@@ -430,7 +483,13 @@ const Scope = (props: ScopeProps) => {
       clamp < 1,
     ];
   };
-  const manual = data.telescope_mode === 'recznie' && !!data.cones;
+  const manual =
+    !!data.cones &&
+    (aimTarget === 'radar'
+      ? !!data.radar_beam && data.radar_beam_mode === 'recznie'
+      : data.telescope_mode === 'recznie');
+  const serverBearing =
+    aimTarget === 'radar' ? data.radar_beam_bearing : data.telescope_bearing;
   const bearingAt = (event: MouseEvent<SVGSVGElement>) => {
     const box = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - box.left - CENTER;
@@ -442,7 +501,9 @@ const Scope = (props: ScopeProps) => {
     const now = Date.now();
     if (force || now - lastSent.current >= DRAG_SEND_MS) {
       lastSent.current = now;
-      act('set_telescope', { bearing: bearing });
+      act(aimTarget === 'radar' ? 'set_radar_aim' : 'set_telescope', {
+        bearing: bearing,
+      });
     }
   };
   const startAim = (event: MouseEvent<SVGSVGElement>) => {
@@ -468,13 +529,19 @@ const Scope = (props: ScopeProps) => {
     if (
       !dragging.current &&
       dragBearing !== null &&
-      (!manual || data.telescope_bearing === dragBearing)
+      (!manual || serverBearing === dragBearing)
     ) {
       setDragBearing(null);
     }
-  }, [data.telescope_bearing, manual]);
-  const telescopeBearing =
-    manual && dragBearing !== null ? dragBearing : data.telescope_bearing;
+  }, [serverBearing, manual]);
+  const dragging_telescope =
+    manual && aimTarget === 'telescope' && dragBearing !== null;
+  const dragging_radar =
+    manual && aimTarget === 'radar' && dragBearing !== null;
+  const telescopeBearing = dragging_telescope
+    ? dragBearing
+    : data.telescope_bearing;
+  const radarBearing = dragging_radar ? dragBearing : data.radar_beam_bearing;
   const ticks: ReactNode[] = [];
   for (let b = 0; b < 360; b += 10) {
     const a = ((b - 90) * Math.PI) / 180;
@@ -640,10 +707,11 @@ const Scope = (props: ScopeProps) => {
             </text>
           );
         })}
-      {!!data.cones && !!data.radar_beam && telescopeBearing !== null && (
+      <style>{PULSE_STYLE}</style>
+      {!!data.cones && !!data.radar_beam && (
         <path
           d={wedgePath(
-            telescopeBearing,
+            radarBearing,
             data.radar_beam / 2,
             Math.min(data.radar_reach * scale, RADIUS),
           )}
@@ -652,33 +720,15 @@ const Scope = (props: ScopeProps) => {
           strokeDasharray="6 4"
         />
       )}
-      {!!data.pulse_active &&
-        (() => {
-          const reachPx = Math.min(data.pulse_reach * scale, RADIUS);
-          const progress = Math.min(pulseAge / PULSE_WAVE_SECONDS, 1);
-          const r = Math.max(1, reachPx * progress);
-          const fade = progress < 1 ? 0.9 : 0.25;
-          if (data.pulse_width) {
-            return (
-              <path
-                d={wedgePath(data.pulse_bearing, data.pulse_width / 2, r)}
-                fill="rgba(94,224,138,0.08)"
-                stroke={'rgba(94,224,138,' + fade + ')'}
-                strokeWidth={progress < 1 ? 3 : 1}
-              />
-            );
-          }
-          return (
-            <circle
-              cx={CENTER}
-              cy={CENTER}
-              r={r}
-              fill="rgba(94,224,138,0.05)"
-              stroke={'rgba(94,224,138,' + fade + ')'}
-              strokeWidth={progress < 1 ? 3 : 1}
-            />
-          );
-        })()}
+      {!!data.pulse_active && (
+        <PulseWave
+          key={'pulse' + data.pulse_at}
+          age={pulseAge}
+          reach={Math.min(data.pulse_reach * scale, RADIUS)}
+          width={data.pulse_width}
+          bearing={data.pulse_bearing}
+        />
+      )}
       {objects.map((thing) => {
         const [x, y, outside] = toPoint(thing.dx, thing.dy);
         if (outside) {
@@ -953,7 +1003,10 @@ const SensorRow = (props: {
   </>
 );
 
-const Sensors = (props: { contacts: Contact[] }) => {
+const Sensors = (props: {
+  contacts: Contact[];
+  onAimTarget: (target: AimTarget) => void;
+}) => {
   const { act, data } = useBackend<Data>();
   const cooldown = data.pulse_cooldown || 0;
   const delay = Math.max(1, data.radar_delay);
@@ -962,16 +1015,34 @@ const Sensors = (props: { contacts: Contact[] }) => {
   const aim = props.contacts.find(
     (contact) => contact.id === data.telescope_target,
   );
-  let pulseText: ReactNode = 'gotowy · odsłania nas na 5 s';
+  let pulseText: ReactNode = 'gotowy';
   if (data.pulse_active) {
-    pulseText = 'impuls trwa: dokładne pozycje, słyszy nas każdy wróg';
+    pulseText = 'impuls trwa';
   } else if (cooldown > 0) {
     pulseText = <>ładowanie: {Math.ceil(cooldown)} s</>;
   }
   const telescope = (mode: Data['telescope_mode'], label: string) => (
     <Button
       selected={data.telescope_mode === mode}
-      onClick={() => act('set_telescope', { mode: mode })}
+      onClick={() => {
+        act('set_telescope', { mode: mode });
+        if (mode === 'recznie') {
+          props.onAimTarget('telescope');
+        }
+      }}
+    >
+      {label}
+    </Button>
+  );
+  const radarAim = (mode: Data['radar_beam_mode'], label: string) => (
+    <Button
+      selected={data.radar_beam_mode === mode}
+      onClick={() => {
+        act('set_radar_aim', { mode: mode });
+        if (mode === 'recznie') {
+          props.onAimTarget('radar');
+        }
+      }}
     >
       {label}
     </Button>
@@ -1026,8 +1097,8 @@ const Sensors = (props: { contacts: Contact[] }) => {
             <span style={{ color: COLOR.ink2, fontSize: '12px' }}>
               {data.radar_beam ? (
                 <>
-                  {data.radar_beam}° wzdłuż teleskopu · do {data.radar_reach}{' '}
-                  pól
+                  {data.radar_beam}° · namiar {pad(data.radar_beam_bearing)}° ·
+                  do {data.radar_reach} pól
                 </>
               ) : (
                 <>dookoła · do {data.radar_reach} pól</>
@@ -1044,6 +1115,26 @@ const Sensors = (props: { contacts: Contact[] }) => {
                 </Button>
               ))}
             </span>
+            {!!data.radar_beam && (
+              <>
+                <span />
+                <span style={{ color: COLOR.muted, fontSize: '12px' }}>
+                  Kierunek
+                </span>
+                <span style={{ color: COLOR.ink2, fontSize: '12px' }}>
+                  {data.radar_beam_mode === 'recznie'
+                    ? 'ręcznie'
+                    : data.radar_beam_mode === 'kurs'
+                      ? 'wzdłuż kursu'
+                      : 'na cel główny albo cel działonowego'}
+                </span>
+                <span>
+                  {radarAim('cel', 'Cel')}
+                  {radarAim('kurs', 'Kurs')}
+                  {radarAim('recznie', 'Ręczny')}
+                </span>
+              </>
+            )}
           </>
         )}
         <span />
@@ -1107,7 +1198,7 @@ const Sensors = (props: { contacts: Contact[] }) => {
             ) : data.telescope_mode === 'kurs' ? (
               'wzdłuż kursu'
             ) : (
-              'ręcznie (kliknij na ekranie)'
+              'ręcznie'
             )}
             {' · namiar '}
             <span style={{ fontFamily: MONO }}>
@@ -1272,11 +1363,7 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
   const { act, data } = useBackend<Data>();
   const { contact } = props;
   if (!contact) {
-    return (
-      <Box style={card} color="label">
-        Wybierz kontakt na ekranie albo w liście.
-      </Box>
-    );
+    return null;
   }
   const distance = distanceOf(contact);
   const designate = (designation: Designation) =>
@@ -1337,16 +1424,6 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
       </div>
       {!!data.suites && !!contact.suites && (
         <>
-          <Box
-            style={{
-              color: COLOR.muted,
-              fontSize: '11.5px',
-              marginBottom: '3px',
-            }}
-          >
-            Co go widzi (biała kreska: jego odległość, pasek: zasięg sensora na
-            niego)
-          </Box>
           {contact.suites.map((report) => {
             const suite = SUITES[report.suite] || [report.suite, COLOR.muted];
             const sees = report.state === 'sees';
@@ -1525,9 +1602,7 @@ const PassedToBridge = (props: { contacts: Contact[] }) => {
         Przekazane mostkowi
       </span>
       {designated.length === 0 && (
-        <span style={{ color: COLOR.muted, fontSize: '12px' }}>
-          nic; działonowy namierza sam z DRADIS
-        </span>
+        <span style={{ color: COLOR.muted, fontSize: '12px' }}>brak</span>
       )}
       {designated.map((contact) => (
         <span
@@ -1578,6 +1653,7 @@ export const SensorConsole = (props) => {
   const { data } = useBackend<Data>();
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
+  const [aimTarget, setAimTarget] = useState<AimTarget>('telescope');
   // Serwer przysyła dane mniej więcej co sekundę. Pewne kontakty (bez okręgu niepewności) mają kurs,
   // więc między aktualizacjami przesuwamy je sami, tak samo obrót własnego okrętu.
   const receivedAt = useRef(Date.now());
@@ -1637,6 +1713,7 @@ export const SensorConsole = (props) => {
                   contacts={contacts}
                   heading={heading}
                   pulseAge={pulseAge}
+                  aimTarget={aimTarget}
                   selected={selected}
                   onSelect={setSelected}
                 />
@@ -1663,7 +1740,7 @@ export const SensorConsole = (props) => {
                 overflowY: 'auto',
               }}
             >
-              <Sensors contacts={contacts} />
+              <Sensors contacts={contacts} onAimTarget={setAimTarget} />
               <ContactList
                 contacts={contacts}
                 selected={selected}

@@ -17,7 +17,7 @@
 	description = "Zestaw stawia konsolę DRADIS i taktyczną (obie widzą okręt główny) oraz przywołuje nieuzbrojoną fregatę Syndykatu AI około 70 pól od okrętu. Fregata wykrywa i goni, ale nie strzela. \
 	1) Otwórz DRADIS: fregata poza zasięgiem identyfikacji to pomarańczowy okrąg z „?” i podpowiedzią; okrąg rośnie z odległością i pływa powoli, nie skacze. \
 	2) Impuls radaru: przez 5 s kontakty są dokładne (bez okręgów), a AI dostaje twoją pozycję. \
-	3) Pilot: dryf bez ciągu i z wyłączonymi tłumikami vs pełny ciąg - z jakiej odległości fregata zaczyna cię gonić. \
+	3) Pilot: dryf bez ciągu i z wyłączonym wspomaganiem bezwładnościowym (IAS) vs pełny ciąg - z jakiej odległości fregata zaczyna cię gonić. \
 	4) Źródło ostrzału (okrąg „!”) wymaga strzelającego wroga - tej fregaty to nie dotyczy. \
 	5) Admin > Debug > Toggle sensor signatures wyłącza całość - DRADIS wraca do starego wyglądu."
 	items = list(

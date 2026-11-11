@@ -6,7 +6,7 @@
 	pr = "aq33/AquilaStation#566"
 	description = "Zestaw stawia DRADIS i stanowisko rozpoznania oraz przywołuje nieuzbrojoną fregatę Syndykatu AI około 90 pól od okrętu. Fregata wykrywa i goni, ale nie strzela, więc da się jej uciec i wrócić. \
 	1) Leć pełnym ciągiem: fregata łapie cię termicznie z daleka (około 45-65 pól) i rusza w pogoń. \
-	2) Zgaś silniki i tłumiki, poczekaj kilkanaście sekund: ciepło spada, kontakt termiczny wygasa i zostaje tylko optyczny, czyli około 15-20 pól. Fregata gubi cię i leci NIE tam, gdzie byłeś, tylko tam, gdzie byłbyś, gdybyś nie zmienił kursu. \
+	2) Zgaś silniki i wspomaganie bezwładnościowe (IAS), poczekaj kilkanaście sekund: ciepło spada, kontakt termiczny wygasa i zostaje tylko optyczny, czyli około 15-20 pól. Fregata gubi cię i leci NIE tam, gdzie byłeś, tylko tam, gdzie byłbyś, gdybyś nie zmienił kursu. \
 	3) Zmień kurs po zgaszeniu silników i patrz, jak mija cię bokiem, pulsuje raz radarem w punkcie, który sobie wyliczyła, i przez około 45 s przeczesuje okolicę, zanim odpuści. \
 	4) Impuls radaru ze stanowiska rozpoznania w trakcie jej szukania: fregata usłyszy emisję i przyjdzie na namiar, mimo że dalej cię nie widzi. \
 	5) Gdy fregata ucieka (dobij ją prawie do zera albo przywołaj drugą obok), poza twoim zasięgiem wykrycia gasi silniki i leci rozpędem - na DRADIS po prostu znika. \

@@ -3,8 +3,8 @@
 /// zamiast jednego zasięgu z sygnatury. Okręt bez stanowiska działa jak dotąd.
 /// Zasięgi gracza są dłuższe o ten sam stosunek co dawniej (60 pól bazowego zasięgu DRADIS gracza wobec 50 u AI).
 ///
-/// Teleskop i radar kierunkowy siedzą na jednej głowicy: operator kieruje nią (cel, kurs albo ręcznie), a radar
-/// kierunkowy świeci tam, gdzie patrzy teleskop. Impuls dookólny widzi wszystko do 100 pól i słyszy go każdy wróg
+/// Teleskop i radar kierunkowy celuje się osobno, każde w trybie cel, kurs albo ręcznie.
+/// Impuls dookólny widzi wszystko do 100 pól i słyszy go każdy wróg
 /// w systemie. Wiązka kierunkowa widzi tylko w swoim wycinku, ale dalej (zasięg radaru rośnie z pierwiastkiem
 /// zysku anteny: 100 × √(360 / szerokość)), i słyszą ją tylko okręty w tym wycinku.
 
@@ -12,6 +12,8 @@
 GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 
 #define PLAYER_SUITE_RANGE_MULT 1.2
+/// Teleskop stanowiska rozpoznania: duża optyka okrętu, sięga dalej niż teleskop AI
+#define PLAYER_TELESCOPE_MULT 2
 #define TELESCOPE_MODE_TARGET "cel"
 #define TELESCOPE_MODE_COURSE "kurs"
 #define TELESCOPE_MODE_MANUAL "recznie"
@@ -29,6 +31,9 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	var/sensor_view_basic = FALSE
 	/// AQUILA - szerokość wiązki radaru w stopniach; 0 to radar dookólny
 	var/radar_beam_width = 0
+	/// AQUILA - jak operator kieruje wiązką radaru (TELESCOPE_MODE_*, te same tryby co teleskop) i jej namiar w trybie ręcznym
+	var/radar_beam_mode = TELESCOPE_MODE_TARGET
+	var/radar_beam_manual_bearing = 0
 	/// AQUILA - wiązka ostatniego impulsu: szerokość i namiar w chwili wysłania (trzyma przez cały impuls)
 	var/radar_pulse_width = 0
 	var/radar_pulse_bearing = 0
@@ -69,6 +74,8 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	. = ..()
 	if(!ai_controlled && suite != SENSOR_LIDAR)
 		. *= PLAYER_SUITE_RANGE_MULT
+		if(suite == SENSOR_TELESCOPE)
+			. *= PLAYER_TELESCOPE_MULT
 
 /// Cel teleskopu w trybie "cel": cel główny od operatora, potem cel działonowego
 /obj/structure/overmap/proc/get_telescope_target()
@@ -81,9 +88,17 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 /obj/structure/overmap/get_telescope_bearing()
 	if(ai_controlled || !uses_sensor_suites())
 		return ..()
-	switch(telescope_mode)
+	return get_aim_bearing(telescope_mode, telescope_manual_bearing)
+
+/// Kierunek wiązki radaru gracza, niezależny od teleskopu
+/obj/structure/overmap/proc/get_radar_beam_bearing()
+	return get_aim_bearing(radar_beam_mode, radar_beam_manual_bearing)
+
+/// Namiar dla trybu celowania: cel główny albo cel działonowego, kurs okrętu albo kierunek ustawiony ręcznie
+/obj/structure/overmap/proc/get_aim_bearing(mode, manual_bearing)
+	switch(mode)
 		if(TELESCOPE_MODE_MANUAL)
-			return telescope_manual_bearing
+			return manual_bearing
 		if(TELESCOPE_MODE_TARGET)
 			var/obj/structure/overmap/target = get_telescope_target()
 			if(target)
@@ -104,7 +119,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 		var/state
 		switch(suite)
 			if(SENSOR_TELESCOPE)
-				reach = get_telescope_reach(target) * mult
+				reach = get_telescope_reach(target) * mult * (ai_controlled ? 1 : PLAYER_TELESCOPE_MULT)
 				state = !is_in_telescope_cone(target) ? "cone" : (reach >= dist ? "sees" : "far")
 			if(SENSOR_INFRARED)
 				reach = get_infrared_reach(target) * mult
@@ -144,8 +159,16 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 			if(width in list(0, 30, 60, 90))
 				linked.radar_beam_width = width
 			return TRUE
+		if("set_radar_aim")
+			if(params["mode"] in list(TELESCOPE_MODE_TARGET, TELESCOPE_MODE_COURSE, TELESCOPE_MODE_MANUAL))
+				linked.radar_beam_mode = params["mode"]
+			var/bearing = text2num(params["bearing"])
+			if(isnum(bearing))
+				linked.radar_beam_manual_bearing = SIMPLIFY_DEGREES(round(bearing))
+				linked.radar_beam_mode = TELESCOPE_MODE_MANUAL
+			return TRUE
 
-/// Impuls ze stanowiska rozpoznania: dookólny do 100 pól albo wiązką w kierunku teleskopu.
+/// Impuls ze stanowiska rozpoznania: dookólny do 100 pól albo wiązką w ustawionym kierunku.
 /// Pełne nadpisanie (LEGACY_OVERRIDES.md): bazowy impuls konsoli widzi całą mapę i słyszy go każdy wróg.
 /obj/machinery/computer/ship/dradis/sensors/send_radar_pulse()
 	var/obj/structure/overmap/OM = get_overmap()
@@ -154,7 +177,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	if(!can_radar_pulse() || !OM.send_radar_pulse())
 		return FALSE
 	OM.radar_pulse_width = GLOB.ai_sensor_cones_enabled ? OM.radar_beam_width : 0
-	OM.radar_pulse_bearing = OM.get_telescope_bearing()
+	OM.radar_pulse_bearing = OM.get_radar_beam_bearing()
 	var/reach = OM.get_radar_reach(OM.radar_pulse_width)
 	addtimer(VARSET_CALLBACK(src, sensor_range, base_sensor_range), RADAR_VISIBILITY_PENALTY)
 	sensor_range = reach
@@ -186,6 +209,8 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	data["ir_blind_half"] = INFRARED_BLIND_HALF_ANGLE
 	data["camera_reach"] = round(linked.get_optical_reach(1) * PLAYER_SUITE_RANGE_MULT)
 	data["radar_beam"] = cones ? linked.radar_beam_width : 0
+	data["radar_beam_mode"] = linked.radar_beam_mode
+	data["radar_beam_bearing"] = round(linked.get_radar_beam_bearing())
 	data["radar_reach"] = linked.get_radar_reach(data["radar_beam"])
 	data["pulse_width"] = linked.radar_pulse_width
 	data["pulse_bearing"] = round(linked.radar_pulse_bearing)
@@ -217,6 +242,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	log_admin("[key_name(usr)] toggled player sensor suites to [GLOB.player_sensor_suites_enabled].")
 
 #undef PLAYER_SUITE_RANGE_MULT
+#undef PLAYER_TELESCOPE_MULT
 #undef PLAYER_RADAR_OMNI_RANGE
 #undef PLAYER_RADAR_HEARING_MULT
 #undef TELESCOPE_MODE_TARGET

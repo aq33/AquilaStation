@@ -389,12 +389,6 @@ export const DradisContent = (props) => {
           </ProgressBar>
         </Box>
       )}
-      {!!data.sensor_station && (
-        <Box mb={1} color="label">
-          Sensorami steruje stanowisko rozpoznania. Cele wyznaczone przez
-          operatora mają żółtą ramkę.
-        </Box>
-      )}
       {/* AQ EDIT END */}
       Sojusznicy:
       <Knob
