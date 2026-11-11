@@ -1,8 +1,6 @@
-// AQUILA - skull wounds. A fracture or a compound fracture on the head is a cracked or a caved-in skull: the head is split
-// down the middle by a displacement map drawn for our head sprite (aquila/icons/effects/skull_crack.dmi: a one pixel notch at the
-// top, the right half with its eye one pixel lower, the jaw untouched; checked in a BYOND render against the look the
-// user asked for). The tgstation cranial fissure map only flattened our head. The split skull uses it too. Like
-// tgstation bones.dm on the head, the wound keeps giving brain traumas until the bone is fixed.
+// AQUILA - skull wounds. A fracture or a compound fracture on the head is a cracked or a caved-in skull: the head wears
+// the cranial fissure displacement (aquila/icons/effects/cranial_fissure.dmi, the same map tgstation uses, size 3), like
+// the split skull. Like tgstation bones.dm on the head, the wound keeps giving brain traumas until the bone is fixed.
 
 #define AQ_SKULL_FILTER "cranial_fissure_displacement"
 
@@ -37,8 +35,7 @@
 		return
 	if(get_filter(AQ_SKULL_FILTER))
 		return
-	// the map stores offsets of whole pixels as 128 +- 127/9 per pixel, so size 9 moves them by exactly one
-	add_filter(AQ_SKULL_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/skull_crack.dmi', "displacement"), size = 9))
+	add_filter(AQ_SKULL_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/cranial_fissure.dmi', "displacement"), size = 3))
 
 /datum/wound/blunt
 	/// Head texts, used instead of the limb ones when the bone breaks on the head
