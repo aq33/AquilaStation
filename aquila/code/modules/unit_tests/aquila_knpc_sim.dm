@@ -19,6 +19,11 @@
 
 GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 
+/// Obszar areny: z grawitacją (w pokoju testowym jej nie ma, a dryf przerywał do_mob i rozrzucał boarderów) i bez prądu, więc oświetlony
+/area/testroom/knpc_sim
+	name = "Arena symulacji KNPC"
+	has_gravity = STANDARD_GRAVITY
+
 /mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim
 	difficulty_override = TRUE
 
@@ -54,12 +59,52 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/hits_taken = 0
 	var/friendly_hits_dealt = 0
 	var/died_at
+	// Zachowania z aq33/AquilaStation#609
+	var/grenades = 0
+	var/heals_self = 0
+	var/falls_back = 0
+	var/heals_ally = 0
+	var/backup_calls = 0
+	var/backup_responses = 0
+	/// Strzały do celu, którego boarder nie widzi (miały zniknąć)
+	var/blind_shots = 0
+	/// Klatki walki z bronią palną przeciw stojącemu celowi: razem, w dystansie 3–6, bliżej niż 3, w osłonie
+	var/armed_frames = 0
+	var/band_frames = 0
+	var/close_frames = 0
+	var/cover_frames = 0
+	var/target_switches = 0
+	var/last_target
 
 /datum/knpc_sim_track/Destroy(force)
 	mob = null
 	last_turf = null
 	prev_turf = null
+	last_target = null
 	return ..()
+
+/// Zachowania z AQ#609 do logu (tylko te, które wystąpiły)
+/datum/knpc_sim_track/proc/tactics_text()
+	var/list/parts = list()
+	if(armed_frames)
+		parts += "dystans 3–6: [round(100 * band_frames / armed_frames)]% walki z bronią, bliżej niż 3: [round(100 * close_frames / armed_frames)]%, w osłonie: [round(100 * cover_frames / armed_frames)]%"
+	if(target_switches)
+		parts += "zmiany wroga [target_switches]"
+	if(grenades)
+		parts += "granaty [grenades]"
+	if(heals_self)
+		parts += "medipen [heals_self]"
+	if(falls_back)
+		parts += "odwrót [falls_back]"
+	if(heals_ally)
+		parts += "leczy kolegę [heals_ally]"
+	if(backup_calls)
+		parts += "wzywa wsparcie [backup_calls]"
+	if(backup_responses)
+		parts += "odpowiada na wezwanie [backup_responses]"
+	if(blind_shots)
+		parts += "STRZAŁY NA ŚLEPO [blind_shots]"
+	return parts.Join(", ")
 
 /datum/unit_test/aquila_knpc_sim
 	focus = TRUE
@@ -83,11 +128,13 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/list/events
 	/// Wszystkie zakończone scenariusze
 	var/list/all_scenarios = list()
+	/// Scenariusz granatu: czy kolega rzucającego był choć raz ogłuszony
+	var/ally_stunned = FALSE
 
 /datum/unit_test/aquila_knpc_sim/Run()
 	GLOB.knpc_sim = src
 	sim_z = run_loc_floor_bottom_left.z
-	arena_area = get_area(run_loc_floor_bottom_left)
+	arena_area = GLOB.areas_by_type[/area/testroom/knpc_sim] || new /area/testroom/knpc_sim
 	// Grupa scenariuszy z parametru serwera (-params "knpc_sim=walki1"), bez niego wszystkie. Na 516 serwer potrafi paść
 	// po kilku minutach (rust_g.dll_unloaded, niezależnie od symulacji), więc grupy da się puszczać osobno.
 	var/group = world.params["knpc_sim"]
@@ -112,6 +159,12 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		scenario_door(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, "drzwi_hakowanie")
 		scenario_door(/mob/living/carbon/human/ai_boarder/space_pirate/pistol/knpc_sim, "drzwi_wywazanie")
 		scenario_window()
+	if(!group || group == "taktyka")
+		scenario_heal_in_combat()
+		scenario_fall_back()
+		scenario_medic()
+		scenario_backup()
+		scenario_grenade()
 	if(!group || group == "walki1")
 		for(var/i in 1 to 3)
 			scenario_fight(1, i, "walka_1v1")
@@ -222,7 +275,11 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	track.shots++
 	track.shots_this_frame++
 	var/datum/component/knpc/ai = user.GetComponent(/datum/component/knpc)
-	add_event("shot", null, track.id, id_of(ai?.current_target?.resolve()))
+	var/atom/target = ai?.current_target?.resolve()
+	add_event("shot", null, track.id, id_of(target))
+	if(target && !can_see(user, target, get_dist(user, target) + 1))
+		track.blind_shots++
+		sim_log("STRZAŁ NA ŚLEPO: [track.label] strzela do [label_of(target)], którego nie widzi", "stall")
 
 /datum/unit_test/aquila_knpc_sim/proc/on_bullet(mob/living/source, obj/item/projectile/P)
 	SIGNAL_HANDLER
@@ -245,7 +302,27 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 
 /datum/unit_test/aquila_knpc_sim/proc/on_say(mob/living/source, list/speech_args)
 	SIGNAL_HANDLER
-	sim_log("[label_of(source)] mówi: \"[speech_args[SPEECH_MESSAGE]]\"", "say")
+	var/message = speech_args[SPEECH_MESSAGE]
+	sim_log("[label_of(source)] mówi: \"[message]\"", "say")
+	var/datum/knpc_sim_track/track = tracks[source]
+	var/mob/living/carbon/human/ai_boarder/boarder = source
+	if(!track || !istype(boarder))
+		return
+	// Okrzyki z knpc_tactics.dm i knpc.dm: tak liczymy zachowania bez hooków w kodzie AI
+	var/static/list/grenade_lines = list("Granat!", "Hukowy!", "Zamknąć oczy!", "Uwaga, granat!", "Odłamkowy!")
+	var/static/list/heal_ally_lines = list("Trzymaj się!", "Medyk! Mam cię!", "Nie umieraj mi tu!")
+	if(message in grenade_lines)
+		track.grenades++
+	else if(message in heal_ally_lines)
+		track.heals_ally++
+	for(var/line in boarder.response_lines)
+		if(findtext(message, line))
+			track.backup_responses++
+			return
+	for(var/line in boarder.call_lines)
+		if(findtext(message, line))
+			track.backup_calls++
+			return
 
 /datum/unit_test/aquila_knpc_sim/proc/on_cuff_attempt(mob/living/source, mob/attemptee)
 	SIGNAL_HANDLER
@@ -310,6 +387,25 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 			track.goal_switches++
 			sim_log("[track.label]: cel AI [track.last_goal || "-"] -> [goal]", "goal")
 			track.last_goal = goal
+			if(goal == "Heal Self")
+				track.heals_self++
+			else if(goal == "Fall back")
+				track.falls_back++
+		// Dystans, osłona i przeskakiwanie między celami w walce z bronią palną przeciw stojącemu celowi
+		var/mob/living/living_target = isliving(target) ? target : null
+		if(goal == "Engage targets" && living_target && !living_target.incapacitated() && istype(H.get_active_held_item(), /obj/item/gun))
+			track.armed_frames++
+			var/dist = get_dist(H, living_target)
+			if(dist >= 3 && dist <= 6)
+				track.band_frames++
+			else if(dist < 3)
+				track.close_frames++
+			if(ai.cover_turf && ai.cover_turf == here)
+				track.cover_frames++
+		if(goal == "Engage targets" && target && target != track.last_target)
+			if(track.last_target)
+				track.target_switches++
+			track.last_target = target
 		var/active = moved || track.shots_this_frame || ai.cuffing || ai.hacking_door
 		track.idle = active ? 0 : track.idle + 1
 		track.max_idle = max(track.max_idle, track.idle)
@@ -346,10 +442,13 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	for(var/mob/living/carbon/human/H as anything in tracks)
 		var/datum/knpc_sim_track/track = tracks[H]
 		var/has_ai = !QDELETED(H) && H.GetComponent(/datum/component/knpc)
-		mob_info += list(list("id" = track.id, "label" = track.label, "team" = track.team, "ai" = has_ai ? 1 : 0, "shots" = track.shots, "hits" = track.hits_taken, "ff" = track.friendly_hits_dealt, "idle" = track.max_idle * KNPC_SIM_FRAME / 10, "osc" = track.oscillations, "goals" = track.goal_switches, "died" = track.died_at || 0))
+		mob_info += list(list("id" = track.id, "label" = track.label, "team" = track.team, "ai" = has_ai ? 1 : 0, "shots" = track.shots, "hits" = track.hits_taken, "ff" = track.friendly_hits_dealt, "idle" = track.max_idle * KNPC_SIM_FRAME / 10, "osc" = track.oscillations, "goals" = track.goal_switches, "died" = track.died_at || 0, \
+			"armed" = track.armed_frames, "band" = track.band_frames, "close" = track.close_frames, "cover" = track.cover_frames, "switches" = track.target_switches, \
+			"grenades" = track.grenades, "heals" = track.heals_self, "fallback" = track.falls_back, "medic" = track.heals_ally, "calls" = track.backup_calls, "responses" = track.backup_responses, "blind" = track.blind_shots))
 		if(!has_ai)
 			continue
-		stats += "[track.label]: strzały [track.shots], trafiony [track.hits_taken], bratobójcze [track.friendly_hits_dealt], maks. zastój [track.max_idle * KNPC_SIM_FRAME / 10] s, wahadło [track.oscillations], zmiany celu [track.goal_switches][track.died_at ? ", zginął w [track.died_at] s" : ""]"
+		var/tactics = track.tactics_text()
+		stats += "[track.label]: strzały [track.shots], trafiony [track.hits_taken], bratobójcze [track.friendly_hits_dealt], maks. zastój [track.max_idle * KNPC_SIM_FRAME / 10] s, wahadło [track.oscillations], zmiany celu AI [track.goal_switches][track.died_at ? ", zginął w [track.died_at] s" : ""][tactics ? ", [tactics]" : ""]"
 	var/stat_text = stats.Join(" | ")
 	sim_log("WYNIK: [result] [details] || [stat_text]", "result")
 	text2file("[scenario];[scenario_run];[result];[elapsed()];[details] || [stat_text]", csv_path)
@@ -418,6 +517,119 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 
 /datum/unit_test/aquila_knpc_sim/proc/never()
 	return FALSE
+
+// ---------- Taktyka z aq33/AquilaStation#609 ----------
+
+/// Rani do części zdrowia toksynami (obrażenia fizyczne rozkładają się na kończyny z limitem)
+/datum/unit_test/aquila_knpc_sim/proc/wound(mob/living/carbon/human/H, ratio)
+	H.adjustToxLoss(H.health - H.maxHealth * ratio, forced = TRUE)
+
+/datum/unit_test/aquila_knpc_sim/proc/remove_medipens(mob/living/carbon/human/H)
+	for(var/obj/item/reagent_containers/hypospray/medipen/survival/P in H.GetAllContents())
+		qdel(P)
+
+/// Ciężko ranny boarder z medipenem wstrzykuje go sobie mimo wroga w zasięgu
+/datum/unit_test/aquila_knpc_sim/proc/scenario_heal_in_combat()
+	begin("leczenie_medipenem_w_walce")
+	add_mob(/mob/living/carbon/human, 15, 8, "załoga", "Cel")
+	var/mob/living/carbon/human/boarder = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 9, 8, "syndykat", "Ranny")
+	wound(boarder, 0.3)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	var/time = run_until(25, CALLBACK(src, PROC_REF(medipen_used), ai))
+	finish(time ? "MEDIPEN UŻYTY" : "BEZ MEDIPENA", "HP rannego [round(boarder.health)]")
+	if(!time)
+		Fail("leczenie_medipenem_w_walce: boarder z 30% HP i medipenem nie użył go w 25 s")
+
+/datum/unit_test/aquila_knpc_sim/proc/medipen_used(datum/component/knpc/ai)
+	return !QDELETED(ai) && !ai.find_medipen()
+
+/// Ciężko ranny boarder bez medipena wycofuje się do kolegi
+/datum/unit_test/aquila_knpc_sim/proc/scenario_fall_back()
+	begin("odwrot_bez_medipena")
+	add_mob(/mob/living/carbon/human, 15, 8, "załoga", "Cel")
+	var/mob/living/carbon/human/wounded = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 10, 8, "syndykat", "Ranny")
+	var/mob/living/carbon/human/ally = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 2, 13, "syndykat", "Kolega")
+	remove_medipens(wounded)
+	remove_medipens(ally) // inaczej kolega przyjdzie go leczyć i nie sprawdzimy samego odwrotu
+	wound(wounded, 0.25)
+	var/time = run_until(25, CALLBACK(src, PROC_REF(fell_back), wounded, ally))
+	var/datum/knpc_sim_track/track = tracks[wounded]
+	finish(time ? "WYCOFAŁ SIĘ" : "BEZ ODWROTU", "odwrót [track.falls_back], odległość od kolegi [get_dist(wounded, ally)]")
+	if(!time)
+		Fail("odwrot_bez_medipena: ranny boarder bez medipena nie dołączył do kolegi w 25 s")
+
+/datum/unit_test/aquila_knpc_sim/proc/fell_back(mob/living/carbon/human/wounded, mob/living/carbon/human/ally)
+	var/datum/knpc_sim_track/track = tracks[wounded]
+	return track.falls_back && get_dist(wounded, ally) <= 2
+
+/// Boarder z medipenem leczy nieprzytomnego kolegę, gdy wroga nie ma w pobliżu
+/datum/unit_test/aquila_knpc_sim/proc/scenario_medic()
+	begin("medyk_leczy_kolege")
+	var/mob/living/carbon/human/patient = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 12, 8, "syndykat", "Ranny")
+	var/mob/living/carbon/human/medic = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 6, 8, "syndykat", "Medyk")
+	remove_medipens(patient)
+	patient.adjustToxLoss(patient.health + 10, forced = TRUE) // miękki krytyk
+	var/time = run_until(25, CALLBACK(src, PROC_REF(ally_healed), medic))
+	finish(time ? "WYLECZONY" : "BEZ POMOCY", "HP rannego [round(patient.health)], stan [patient.stat]")
+	if(!time)
+		Fail("medyk_leczy_kolege: boarder z medipenem nie podał go nieprzytomnemu koledze w 25 s")
+
+/datum/unit_test/aquila_knpc_sim/proc/ally_healed(mob/living/carbon/human/medic)
+	var/datum/knpc_sim_track/track = tracks[medic]
+	return track.heals_ally > 0
+
+/// Na wezwanie przez radio odpowiada najwyżej 3 najbliższych z 5 kolegów
+/datum/unit_test/aquila_knpc_sim/proc/scenario_backup()
+	begin("wsparcie_najwyzej_trzech")
+	add_mob(/mob/living/carbon/human, 27, 8, "załoga", "Cel")
+	var/mob/living/carbon/human/caller_mob = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 21, 8, "syndykat", "Wzywający")
+	var/list/others = list()
+	for(var/i in 1 to 5)
+		others += add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 2 + (i % 2) * 2, 1 + i * 2, "syndykat", "Kolega[i]")
+	var/time = run_until(20, CALLBACK(src, PROC_REF(backup_called), caller_mob))
+	sleep(2 SECONDS) // odpowiedzi padają chwilę po wezwaniu
+	var/responders = 0
+	for(var/mob/living/carbon/human/H as anything in others)
+		var/datum/knpc_sim_track/track = tracks[H]
+		if(track.backup_responses)
+			responders++
+	finish(time ? "ODPOWIEDZIAŁO [responders] Z 5" : "BEZ WEZWANIA", "pierwsze wezwanie w [time || "-"] s")
+	if(!time)
+		Fail("wsparcie_najwyzej_trzech: boarder widzący wroga nie wezwał wsparcia w 20 s")
+	else if(responders < 1 || responders > 3)
+		Fail("wsparcie_najwyzej_trzech: na wezwanie odpowiedziało [responders] z 5 boarderów (oczekiwane 1–3)")
+
+/datum/unit_test/aquila_knpc_sim/proc/backup_called(mob/living/carbon/human/caller_mob)
+	var/datum/knpc_sim_track/track = tracks[caller_mob]
+	return track.backup_calls > 0
+
+/// Grupa trzech wrogów: boarder Syndykatu rzuca granat hukowy, a kolega obok (z ochroną oczu i uszu) nie zostaje ogłuszony
+/datum/unit_test/aquila_knpc_sim/proc/scenario_grenade()
+	begin("granat_w_grupe")
+	for(var/y in 7 to 9)
+		add_mob(/mob/living/carbon/human, 21, y, "załoga", "Cel[y - 6]")
+	var/mob/living/carbon/human/thrower = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 15, 8, "syndykat", "Rzucający")
+	var/mob/living/carbon/human/ally = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 14, 10, "syndykat", "Kolega")
+	ally_stunned = FALSE
+	var/time = run_until(30, CALLBACK(src, PROC_REF(grenade_thrown), thrower, ally))
+	sleep(5 SECONDS) // zapalnik i błysk
+	snapshot(TRUE)
+	check_ally_stun(ally)
+	var/datum/knpc_sim_track/track = tracks[thrower]
+	finish(time ? "RZUCIŁ [track.grenades]" : "BEZ GRANATU", "kolega ogłuszony: [ally_stunned ? "TAK" : "nie"]")
+	if(!time)
+		Fail("granat_w_grupe: boarder z granatem hukowym nie rzucił go w grupę trzech wrogów w 30 s")
+	if(ally_stunned)
+		Fail("granat_w_grupe: granat boardera ogłuszył kolegę z ochroną oczu i uszu")
+
+/datum/unit_test/aquila_knpc_sim/proc/grenade_thrown(mob/living/carbon/human/thrower, mob/living/carbon/human/ally)
+	check_ally_stun(ally)
+	var/datum/knpc_sim_track/track = tracks[thrower]
+	return track.grenades > 0
+
+/datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
+	if(!QDELETED(ally) && (ally.IsParalyzed() || ally.IsKnockdown() || ally.IsStun()))
+		ally_stunned = TRUE
 
 /// Syndykat kontra ERT Nanotrasenu, opcjonalnie z osłonami na środku
 /datum/unit_test/aquila_knpc_sim/proc/scenario_fight(per_side, run, name, cover = FALSE)
