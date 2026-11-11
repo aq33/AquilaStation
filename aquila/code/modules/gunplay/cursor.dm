@@ -7,6 +7,9 @@
 #define AQ_GUN_CURSOR_STATES 41
 /// Rozrzut liczymy dla tej odległości, gdy nie znamy położenia kursora (piksele, ok. 6 kratek)
 #define AQ_GUN_CURSOR_DEFAULT_DISTANCE 192
+/// Co ile pikseli zmienia się rozmiar kursora. Każdy rozmiar to osobny plik kursora, który klient pobiera i podmienia,
+/// więc kursor co piksel przy szybkim ruchu myszy dawał przycięcia
+#define AQ_GUN_CURSOR_SIZE_STEP 4
 
 /// Rozmiar -> ikona kursora z jednym stanem "" (BYOND bierze kursor ze stanu domyślnego)
 GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
@@ -55,6 +58,10 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
 /datum/aq_mouse_tracker
 	var/mob/living/owner
+	/// Kiedy ostatnio obrócono postać i przeliczono kursor (najwyżej raz na tick)
+	var/last_update = -1
+	/// Czeka timer z odświeżeniem po ostatnim ruchu w tym ticku
+	var/update_pending = FALSE
 
 /datum/aq_mouse_tracker/New(mob/living/new_owner)
 	owner = new_owner
@@ -79,8 +86,24 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	owner.aq_cursor_dx = offsets[1]
 	owner.aq_cursor_dy = offsets[2]
 	owner.aq_cursor_known = TRUE
+	// Szybki ruch myszy to kilkanaście wywołań na tick: obrót, kursor rozrzutu i wiązka lasera liczą się raz na tick,
+	// a ostatnia pozycja z ticku dochodzi timerem w następnym
+	if(last_update == world.time)
+		if(!update_pending)
+			update_pending = TRUE
+			addtimer(CALLBACK(src, PROC_REF(apply_cursor_update)), world.tick_lag)
+		return
+	apply_cursor_update()
+
+/// Obraca postać do kursora i odświeża kursor rozrzutu według ostatniej znanej pozycji kursora
+/datum/aq_mouse_tracker/proc/apply_cursor_update()
+	update_pending = FALSE
+	last_update = world.time
+	if(QDELETED(owner) || !owner.client)
+		return FALSE
 	owner.face_cursor_if_needed()
 	owner.update_gun_cursor()
+	return TRUE
 
 /// screen-loc kursora -> przesunięcie w pikselach od środka widoku (jak calculate_projectile_angle_and_pixel_offsets())
 /proc/aq_screen_loc_to_view_offset(client/C, screen_loc)
@@ -165,7 +188,7 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	var/distance = aq_cursor_known ? sqrt(aq_cursor_dx ** 2 + aq_cursor_dy ** 2) : AQ_GUN_CURSOR_DEFAULT_DISTANCE
 	var/half_angle = min(held_gun.get_spread_cone(src), 60)
 	var/radius = tan(half_angle) * max(distance, world.icon_size)
-	return aq_get_gun_cursor_icon(radius - 4)
+	return aq_get_gun_cursor_icon(round(radius - 4, AQ_GUN_CURSOR_SIZE_STEP))
 
 
 /mob/living/proc/update_gun_cursor()
@@ -221,3 +244,4 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
 #undef AQ_GUN_CURSOR_STATES
 #undef AQ_GUN_CURSOR_DEFAULT_DISTANCE
+#undef AQ_GUN_CURSOR_SIZE_STEP
