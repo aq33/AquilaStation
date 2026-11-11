@@ -91,5 +91,58 @@
 	aquila_ai_melee_once(controller)
 	TEST_ASSERT(victim.health < health_before, "The Kurwinox hit did not hurt")
 
+/// Walking mushrooms fight only each other: the winner chews on the fainted one and devours it on the third bite to level up
+/datum/unit_test/aquila_mushroom_devours_and_levels
+
+/datum/unit_test/aquila_mushroom_devours_and_levels/Run()
+	var/mob/living/basic/mushroom/eater = allocate(/mob/living/basic/mushroom, run_loc_floor_bottom_left)
+	var/mob/living/basic/mushroom/victim = allocate(/mob/living/basic/mushroom, get_step(run_loc_floor_bottom_left, EAST))
+	var/mob/living/carbon/human/bystander = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, NORTH))
+	var/datum/ai_controller/controller = eater.ai_controller
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets))
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The mushroom did not go for the other mushroom")
+	TEST_ASSERT(bystander != controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], "The mushroom went for a human")
+
+	victim.death()
+	TEST_ASSERT_EQUAL(victim.stat, DEAD, "The victim mushroom did not faint")
+	var/level_before = eater.powerlevel
+	for(var/bite in 1 to 3)
+		controller.SelectBehaviors(1)
+		aquila_ai_melee_once(controller)
+	TEST_ASSERT(QDELETED(victim), "Three bites did not devour the fainted mushroom")
+	TEST_ASSERT(eater.powerlevel > level_before, "Devouring a mushroom did not level up the eater")
+
+	// A bruised mushroom gives no level when eaten
+	var/mob/living/basic/mushroom/bruised = allocate(/mob/living/basic/mushroom, get_step(run_loc_floor_bottom_left, EAST))
+	bystander.set_combat_mode(TRUE)
+	bruised.attack_hand(bystander)
+	TEST_ASSERT(bruised.bruised, "Punching the mushroom did not bruise it")
+	bruised.death()
+	level_before = eater.powerlevel
+	eater.consume_mushroom(bruised)
+	TEST_ASSERT_EQUAL(eater.powerlevel, level_before, "A bruised mushroom still gave a level")
+
+/// A fainted mushroom comes back when fed a mushroom (once in a while); the killer fruit trait wakes up a basic walking mushroom
+/datum/unit_test/aquila_mushroom_recovers
+
+/datum/unit_test/aquila_mushroom_recovers/Run()
+	var/mob/living/basic/mushroom/shroom = allocate(/mob/living/basic/mushroom, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/feeder = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	shroom.death()
+	var/obj/item/food/grown/mushroom/chanterelle/meal = allocate(/obj/item/food/grown/mushroom/chanterelle)
+	feeder.put_in_active_hand(meal)
+	shroom.attackby(meal, feeder)
+	TEST_ASSERT_EQUAL(shroom.stat, CONSCIOUS, "Feeding a mushroom did not bring the fainted one back")
+	TEST_ASSERT(QDELETED(meal), "The mushroom was not eaten")
+	shroom.death()
+	var/obj/item/food/grown/mushroom/chanterelle/second = allocate(/obj/item/food/grown/mushroom/chanterelle)
+	feeder.put_in_active_hand(second)
+	shroom.attackby(second, feeder)
+	TEST_ASSERT_EQUAL(shroom.stat, DEAD, "The mushroom came back twice in a row")
+
+	var/datum/plant_trait/fruit/killer/friendly/walking/trait = /datum/plant_trait/fruit/killer/friendly/walking
+	TEST_ASSERT(ispath(initial(trait.awaken_mob), /mob/living/basic/mushroom), "The walking killer fruit trait does not wake up a basic walking mushroom")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

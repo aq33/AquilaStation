@@ -218,7 +218,7 @@
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
 							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
 							/mob/living/basic/bear, // AQ EDIT - basic moby
-							/mob/living/simple_animal/hostile/mushroom,
+							/mob/living/basic/mushroom, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/statue,
 							/mob/living/basic/bat, // AQ EDIT - basic moby
 							/mob/living/basic/goat, // AQ EDIT - basic moby

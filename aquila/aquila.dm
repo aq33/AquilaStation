@@ -2053,6 +2053,7 @@
 #include "code\modules\mob\living\basic\space_fauna\ant.dm"
 #include "code\modules\mob\living\basic\space_fauna\spaceman.dm"
 #include "code\modules\mob\living\basic\space_fauna\kurwinoxy.dm"
+#include "code\modules\mob\living\basic\space_fauna\mushroom.dm"
 // Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS
