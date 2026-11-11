@@ -2048,6 +2048,8 @@
 #include "code\datums\ai\basic_mobs\basic_subtrees\targeted_mob_ability.dm"
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\targeted_mob_ability.dm"
 #include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
+#include "code\datums\ai\basic_mobs\basic_ai_behaviors\step_towards_turf.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
