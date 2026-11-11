@@ -297,7 +297,7 @@
 					if (do_after(user, 2 SECONDS, target = src))
 						M.visible_message(span_notice("[user] uwalnia [M] z [src]!") , "[user] uwalnia cię z [src].")
 						unbuckle_mob(M)
-						if(istype(M, /mob/living/simple_animal))
+						if(isanimal_or_basicmob(M))
 							M.pixel_y = 0
 						if (blade)
 							blade.forceMove(loc)

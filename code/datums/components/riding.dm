@@ -390,6 +390,7 @@
 	if(istype(parent, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = parent
 		override_allow_spacemove = S.spacewalk
+	if(isliving(parent)) // AQ EDIT - basic moby: martwy oswojony wierzchowiec (krowa, zwierzę z lassa) też przestaje wozić
 		RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(handle_mortality))
 
 /datum/component/riding/tamed/proc/handle_mortality()

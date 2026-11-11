@@ -94,3 +94,18 @@
 				return
 		M.forceMove(get_turf(src))
 		return ..()
+
+/**
+ * AQUILA: core code told aggressive animals apart by type (`/mob/living/simple_animal/hostile`); basic mobs have no such
+ * type, so a basic mob counts as aggressive outside the neutral faction, as in Bee's gold capture device.
+ */
+/proc/is_hostile_basicmob(mob/living/animal)
+	return isbasicmob(animal) && !(FACTION_NEUTRAL in animal.faction)
+
+/// AQUILA: animals the petsplosion wizard event copies: peaceful simple animals (no bots) and basic mobs on the station
+/proc/petsplosion_can_dupe(mob/living/animal)
+	if(!is_station_level(animal.z))
+		return FALSE
+	if(isanimal(animal))
+		return !ishostile(animal) && !istype(animal, /mob/living/simple_animal/bot)
+	return isbasicmob(animal) && !is_hostile_basicmob(animal)

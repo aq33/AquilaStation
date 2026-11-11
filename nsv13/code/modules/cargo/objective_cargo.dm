@@ -40,17 +40,35 @@
 	..()
 
 /obj/structure/closet/crate/large/freight_objective/proc/poll_for_ghost_sentience()
-	for ( var/mob/living/simple_animal/M in contents )
+	// AQ EDIT START - basic moby: okazy to też basic moby (AIStatus tylko u simple animali, sentience_act() u obu)
+	for ( var/mob/living/M in contents )
+		if ( !isanimal_or_basicmob( M ) )
+			continue
+		var/mob/living/simple_animal/simple_specimen = M
 		if ( rand( 1, 20 ) == 20 ) // Random sentient mob event!
 			var/list/candidates = pollCandidatesForMob("Chcesz zagrać jako [M]?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, M)
-			M.AIStatus = AI_ON // Keep the mob asleep unless the poll receives no candidates
+			if ( istype( simple_specimen ) )
+				simple_specimen.AIStatus = AI_ON // Keep the mob asleep unless the poll receives no candidates
+			REMOVE_TRAIT(M, TRAIT_AI_PAUSED, FREIGHT_SPECIMEN_TRAIT)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
 				M.key = C.key
-				M.sentience_act()
+				if ( istype( simple_specimen ) )
+					simple_specimen.sentience_act()
+				else
+					var/mob/living/basic/basic_specimen = M
+					basic_specimen.sentience_act()
 				log_game("[key_name(M)] took control of [M].")
 		else
-			M.AIStatus = AI_ON
+			if ( istype( simple_specimen ) )
+				simple_specimen.AIStatus = AI_ON
+			REMOVE_TRAIT(M, TRAIT_AI_PAUSED, FREIGHT_SPECIMEN_TRAIT)
+	// AQ EDIT END
+
+/// AQ EDIT - basic moby: okaz, który wyszedł ze skrzyni (rozbita, otwarta inaczej niż łomem), budzi swoją SI
+/obj/structure/closet/crate/large/freight_objective/Exited(atom/movable/gone, direction)
+	. = ..()
+	REMOVE_TRAIT(gone, TRAIT_AI_PAUSED, FREIGHT_SPECIMEN_TRAIT)
 
 /obj/structure/closet/crate/large/freight_objective/examine( mob/user )
 	. = ..()

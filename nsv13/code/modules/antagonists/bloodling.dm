@@ -824,6 +824,9 @@ Depending on what creature the entity gives life to, this can be EXTREMELY stron
 		if(istype(M, /mob/living/simple_animal))
 			var/mob/living/simple_animal/SM = M
 			SM.sentience_act()
+		else if(isbasicmob(M)) // AQ EDIT - basic moby
+			var/mob/living/basic/basic_mob = M
+			basic_mob.sentience_act()
 		to_chat(M, "<span class='warning'>Nagle wszystko ma sens: wiesz, czym i kim jesteś! Zyskujesz samoświadomość!</span>")
 		to_chat(M, "<span class='userdanger'>Jesteś wdzięczny za samoświadomość i masz wielki dług wobec [user.real_name]. Służ [user.real_name] i za wszelką cenę pomagaj w realizacji celów.</span>")
 		if(M.flags_1 & HOLOGRAM_1) //Check to see if it's a holodeck creature

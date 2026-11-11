@@ -26,6 +26,17 @@
 				to_chat(user, "<span class='info'>[src] nie działa na tego rodzaju stworzenia.</span>")
 				return
 			if(M.stat == DEAD)
+				// AQ EDIT START - basic moby: przyjaciele to frakcja REF() i lista BB_FRIENDS_LIST naraz; reset frakcji zostawiał
+				// ich w liście SI bez frakcji, więc odłączamy ich przez unfriend() i po ożywieniu zaprzyjaźniamy na nowo
+				var/list/old_friends = list()
+				if(isbasicmob(target))
+					var/mob/living/basic/dead_basic = target
+					var/list/friends_list = dead_basic.ai_controller?.blackboard[BB_FRIENDS_LIST]
+					for(var/mob/living/old_friend as anything in friends_list?.Copy())
+						if(!QDELETED(old_friend))
+							old_friends += old_friend
+						dead_basic.unfriend(old_friend)
+				// AQ EDIT END
 				M.faction = list("neutral")
 				M.revive(full_heal = 1, admin_revive = 1)
 				if(ishostile(target))
@@ -42,6 +53,8 @@
 				if(isbasicmob(target))
 					var/mob/living/basic/basic_target = target
 					basic_target.befriend(user)
+					for(var/mob/living/old_friend as anything in old_friends)
+						basic_target.befriend(old_friend)
 					if(malfunctioning)
 						basic_target.faction |= list("lazarus", "[REF(user)]")
 						log_game("[key_name(user)] has revived mob [key_name(target)] with a malfunctioning lazarus injector")
