@@ -2,6 +2,7 @@
 // xenobiolodzy wkładają ekstrakty, które mają, i ustalają ceny, a załoga kupuje je kartą.
 // Przy każdym ekstrakcie automat pokazuje, co robi (reakcje z programu PDA „Ekstrakty”).
 // Zapłata trafia na konto działu nauki, a rynek dolicza xenobio points (3 za kredyt), jak przy starych zamówieniach.
+// Kupno ekstraktu wystawionego z własnego konta nie daje punktów (inaczej kredyty dałoby się wymieniać na punkty bez końca).
 
 /// Ile xenobio points za każdy kredyt zapłacony w automacie
 // Używane też w slime_market.dm, który go #undefuje
@@ -25,6 +26,8 @@
 	req_access = list(ACCESS_XENOBIOLOGY)
 	/// typ ekstraktu -> cena w kredytach ustawiona przez xenobiologa
 	var/list/prices = list()
+	/// ekstrakt w automacie -> konto osoby, która go wystawiła
+	var/list/stocked_by = list()
 
 /obj/machinery/slime_extract_requestor/Destroy()
 	// Rozebrany automat wysypuje towar zamiast go kasować
@@ -32,6 +35,10 @@
 	for(var/obj/item/slime_extract/extract in contents)
 		extract.forceMove(drop)
 	return ..()
+
+/obj/machinery/slime_extract_requestor/Exited(atom/movable/gone, direction)
+	. = ..()
+	stocked_by -= gone
 
 /obj/machinery/slime_extract_requestor/examine(mob/user)
 	. = ..()
@@ -57,14 +64,14 @@
 		if(istype(W, /obj/item/slime_extract))
 			if(!user.transferItemToLoc(W, src))
 				return
-			stock_extract(W)
+			stock_extract(W, user)
 			to_chat(user, "<span class='notice'>Wystawiasz [W] na sprzedaż.</span>")
 			return
 		var/added = 0
 		for(var/obj/item/slime_extract/extract in W)
 			if(!SEND_SIGNAL(W, COMSIG_TRY_STORAGE_TAKE, extract, src))
 				continue
-			stock_extract(extract)
+			stock_extract(extract, user)
 			added++
 		if(added)
 			to_chat(user, "<span class='notice'>Wystawiasz na sprzedaż ekstrakty z [W] ([added]).</span>")
@@ -73,12 +80,19 @@
 		return
 	return ..()
 
-/// Ekstrakt jest już w automacie: nowy kolor dostaje cenę domyślną
-/obj/machinery/slime_extract_requestor/proc/stock_extract(obj/item/slime_extract/extract)
+/// Ekstrakt jest już w automacie: nowy kolor dostaje cenę domyślną, a automat pamięta konto wystawiającego
+/obj/machinery/slime_extract_requestor/proc/stock_extract(obj/item/slime_extract/extract, mob/user)
+	var/obj/item/card/id/card = user?.get_idcard(TRUE)
+	if(card?.registered_account)
+		stocked_by[extract] = card.registered_account
 	if(isnull(prices[extract.type]))
 		prices[extract.type] = default_price(extract.type)
 	flick("[base_icon_state]_vend", src)
 	SStgui.update_uis(src)
+
+/// Cena, którą automat bierze teraz za ekstrakt danego typu
+/obj/machinery/slime_extract_requestor/proc/current_price(extract_type)
+	return prices[extract_type] || default_price(extract_type)
 
 /obj/machinery/slime_extract_requestor/proc/default_price(extract_type)
 	var/obj/item/slime_extract/path = extract_type
@@ -106,13 +120,14 @@
 	if(!can_pay_from(card.registered_account))
 		say("Zapłata trafia na konto nauki, więc nie da się płacić z budżetu nauki.")
 		return
-	var/price = prices[extract_type] || default_price(extract_type)
+	var/price = current_price(extract_type)
 	if(!card.registered_account.adjust_money(-price))
 		say("Na koncie nie ma tylu kredytów.")
 		return
 	var/datum/bank_account/science = SSeconomy.get_dep_account(ACCOUNT_SCI)
 	science?.adjust_money(price)
-	GLOB.slime_market.points += price * SLIME_REQUEST_POINTS_PER_CREDIT
+	if(stocked_by[extract] != card.registered_account)
+		GLOB.slime_market.points += price * SLIME_REQUEST_POINTS_PER_CREDIT
 	extract.forceMove(drop_location())
 	user?.put_in_hands(extract)
 	flick("[base_icon_state]_vend", src)
@@ -146,7 +161,7 @@
 			"icon" = initial(extract_type.icon),
 			"icon_state" = initial(extract_type.icon_state),
 			"amount" = counts[extract_type],
-			"price" = prices[extract_type] || default_price(extract_type),
+			"price" = current_price(extract_type),
 		))
 	data["stock"] = stock
 	data["can_manage"] = allowed(user)
@@ -166,7 +181,7 @@
 	switch(action)
 		if("buy")
 			// Okno odświeża się z opóźnieniem: kupujący płaci tylko cenę, którą widział na przycisku
-			if(text2num(params["price"]) != (prices[extract_type] || default_price(extract_type)))
+			if(text2num(params["price"]) != current_price(extract_type))
 				say("Cena się zmieniła. Sprawdź ofertę jeszcze raz.")
 				return TRUE
 			buy_extract(usr, extract_type, usr.get_idcard(TRUE))

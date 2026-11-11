@@ -3002,6 +3002,16 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/apothecary)
+"iI" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/genetics/cloning)
 "iJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3349,6 +3359,10 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
+"ka" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/ship,
+/area/medical/genetics/cloning)
 "kb" = (
 /obj/item/wrench/medical,
 /obj/structure/table/glass/plasma,
@@ -6251,10 +6265,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
-"tO" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/genetics/cloning)
 "tP" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/tiled/light,
@@ -9382,20 +9392,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/bridge/meeting_room/council)
-"Ey" = (
-/obj/machinery/smartfridge/genetics,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/structure/sign/departments/minsky/research/genetics{
-	pixel_x = -29
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/genetics/cloning)
 "Ez" = (
 /obj/item/radio/intercom/directional/south,
 /obj/structure/disposalpipe/segment{
@@ -13109,6 +13105,13 @@
 /obj/item/circuitboard/aicore,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+"RC" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/structure/sign/departments/minsky/research/genetics{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/genetics/cloning)
 "RD" = (
 /obj/item/toy/plush/moth,
 /obj/structure/falsewall/durasteel{
@@ -44710,7 +44713,7 @@ Ww
 ZS
 nv
 nv
-nv
+ka
 pB
 nv
 nv
@@ -44966,8 +44969,8 @@ Ia
 ZH
 YX
 nv
-tO
-Ey
+RC
+iI
 vr
 xr
 wA

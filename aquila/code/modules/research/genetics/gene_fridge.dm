@@ -25,6 +25,32 @@
 		if(listofitems[key] && isnull(listofitems[key]["desc"]))
 			listofitems[key]["desc"] = gene_fridge_desc(stored)
 
+/// Konsola DNA nazywa każdy aktywator „aktywator DNA”, a każdy mutator „mutator DNA”, więc grupowanie po typie i nazwie
+/// sklejałoby różne mutacje w jeden wiersz. Klucz i nazwa w oknie zawierają więc mutacje iniektora.
+/obj/machinery/smartfridge/genetics/smartfridge_item_key(atom/movable/stored)
+	. = ..()
+	var/list/mutations = gene_fridge_mutation_names(stored)
+	if(length(mutations))
+		. += "|[jointext(mutations, ",")]"
+
+/obj/machinery/smartfridge/genetics/smartfridge_display_name(atom/movable/stored)
+	. = ..()
+	var/list/mutations = gene_fridge_mutation_names(stored)
+	if(length(mutations))
+		. += " ([jointext(mutations, ", ")])"
+
+/// Nazwy mutacji, które iniektor daje (posortowane, żeby ta sama kombinacja dawała ten sam klucz)
+/obj/machinery/smartfridge/genetics/proc/gene_fridge_mutation_names(atom/movable/stored)
+	var/list/names = list()
+	if(!istype(stored, /obj/item/dnainjector))
+		return names
+	var/obj/item/dnainjector/injector = stored
+	for(var/mutation in injector.add_mutations)
+		var/datum/mutation/info = gene_fridge_mutation(mutation)
+		if(info)
+			names += info.name
+	return sortList(names)
+
 /// Opis przedmiotu w oknie gabloty jako lista linii (każdą tłumaczy się osobno): mutacje z iniektora albo opis chromosomu
 /obj/machinery/smartfridge/genetics/proc/gene_fridge_desc(obj/item/stored)
 	if(istype(stored, /obj/item/chromosome))

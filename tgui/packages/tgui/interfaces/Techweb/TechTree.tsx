@@ -417,33 +417,37 @@ function CategoryBlock(props: CategoryBlockProps) {
     onOpen,
   } = props;
   const layout = useMemo(() => layoutBlock(ids, node_cache, size), [ids, size]);
-  const inBlock = new Set(ids);
+  // Okno odświeża dane co sekundę (punkty), a linie zależą tylko od układu i zaznaczenia
+  const inBlock = useMemo(() => new Set(ids), [ids]);
   const color = `hsl(${category.hue}, 65%, 55%)`;
 
-  const lines: React.ReactNode[] = [];
-  for (const id of ids) {
-    for (const pre of node_cache[id].prereq_ids) {
-      if (!inBlock.has(pre)) continue;
-      const from = layout.pos[pre];
-      const to = layout.pos[id];
-      if (!from || !to) continue;
-      const x1 = from.x + size.w;
-      const y1 = from.y + size.h / 2;
-      const x2 = to.x;
-      const y2 = to.y + size.h / 2;
-      const mid = (x1 + x2) / 2;
-      const lit =
-        (selected === id || path.has(id)) &&
-        (pre === selected || path.has(pre));
-      lines.push(
-        <path
-          key={`${pre}>${id}`}
-          d={`M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`}
-          className={`Techweb__CatLine${lit ? ' Techweb__CatLine--lit' : ''}`}
-        />,
-      );
+  const lines = useMemo(() => {
+    const result: React.ReactNode[] = [];
+    for (const id of ids) {
+      for (const pre of node_cache[id].prereq_ids) {
+        if (!inBlock.has(pre)) continue;
+        const from = layout.pos[pre];
+        const to = layout.pos[id];
+        if (!from || !to) continue;
+        const x1 = from.x + size.w;
+        const y1 = from.y + size.h / 2;
+        const x2 = to.x;
+        const y2 = to.y + size.h / 2;
+        const mid = (x1 + x2) / 2;
+        const lit =
+          (selected === id || path.has(id)) &&
+          (pre === selected || path.has(pre));
+        result.push(
+          <path
+            key={`${pre}>${id}`}
+            d={`M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`}
+            className={`Techweb__CatLine${lit ? ' Techweb__CatLine--lit' : ''}`}
+          />,
+        );
+      }
     }
-  }
+    return result;
+  }, [layout, inBlock, selected, path]);
 
   return (
     <div className="Techweb__CatBlock">

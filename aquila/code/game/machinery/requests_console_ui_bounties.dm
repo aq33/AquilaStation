@@ -3,13 +3,15 @@
 // CentCom w konsoli zleceń zaopatrzenia, zlecenia cywilne w konsoli zleceń cywilnych, ogłoszenia załogi w newscasterze.
 
 /obj/machinery/requests_console
-	/// Czy okno pokazuje listę zleceń; lista liczy się tylko wtedy
-	var/aq_bounty_view = FALSE
+	/// Kto ma otwartą listę zleceń (REF moba -> TRUE). Osobno dla każdego gracza, żeby wybór jednego
+	/// nie przełączał widoku innym; lista liczy się tylko dla tych graczy.
+	var/list/aq_bounty_viewers
 
 /obj/machinery/requests_console/ui_data(mob/user)
 	. = ..()
-	.["bounty_view"] = aq_bounty_view
-	if(aq_bounty_view)
+	var/viewing = !!LAZYACCESS(aq_bounty_viewers, REF(user))
+	.["bounty_view"] = viewing
+	if(viewing)
 		.["bounties"] = requests_console_bounty_list(user)
 
 /obj/machinery/requests_console/ui_act(action, list/params)
@@ -17,8 +19,16 @@
 	if(.)
 		return
 	if(action == "bounty_view")
-		aq_bounty_view = !!text2num(params["show"])
+		if(text2num(params["show"]))
+			LAZYSET(aq_bounty_viewers, REF(usr), TRUE)
+		else
+			LAZYREMOVE(aq_bounty_viewers, REF(usr))
 		return TRUE
+
+/// Zamknięte okno zaczyna następnym razem od ekranu głównego
+/obj/machinery/requests_console/ui_close(mob/user, datum/tgui/tgui)
+	. = ..()
+	LAZYREMOVE(aq_bounty_viewers, REF(user))
 
 /// Dział zlecenia CentComu z gałęzi typu (/datum/bounty/item/<gałąź>/...)
 /proc/requests_console_bounty_department(datum/bounty/bounty)

@@ -35,6 +35,18 @@
 	vendor.prices[/obj/item/slime_extract/grey] = 500
 	TEST_ASSERT(!vendor.buy_extract(null, /obj/item/slime_extract/grey, card), "Automat sprzedał ekstrakt bez pieniędzy na koncie")
 	TEST_ASSERT(second.loc == vendor && buyer.account_balance == 60, "Nieudany zakup zabrał ekstrakt albo kredyty")
+	// Ekstrakt wystawiony z własnego konta: kredyty przechodzą, ale punktów xenobio nie ma
+	second.forceMove(get_turf(vendor)) // automat wydaje pierwszy pasujący ekstrakt
+	var/obj/item/slime_extract/grey/own = allocate(/obj/item/slime_extract/grey)
+	own.forceMove(vendor)
+	vendor.stock_extract(own)
+	vendor.stocked_by[own] = buyer
+	vendor.prices[/obj/item/slime_extract/grey] = 10
+	buyer.account_balance = 100
+	var/points_own = GLOB.slime_market.points
+	TEST_ASSERT(vendor.buy_extract(null, /obj/item/slime_extract/grey, card) == own, "Nie udało się kupić własnego ekstraktu")
+	TEST_ASSERT(GLOB.slime_market.points == points_own, "Kupno własnego ekstraktu dało xenobio points")
+	TEST_ASSERT(!(own in vendor.stocked_by), "Automat pamięta wystawiającego po wydaniu ekstraktu")
 	SSeconomy.bank_accounts -= buyer
 	qdel(buyer)
 
@@ -48,6 +60,13 @@
 	var/datum/mutation/xray = GET_INITIALIZED_MUTATION(injector.add_mutations[1])
 	var/list/desc = fridge.gene_fridge_desc(injector)
 	TEST_ASSERT(("Daje: [xray.name]") in desc, "Opis iniektora nie podaje mutacji: [jointext(desc, " | ")]")
+	// Dwa aktywatory o tej samej nazwie, ale z innymi mutacjami, to dwa osobne wiersze gabloty
+	var/obj/item/dnainjector/activator/first = allocate(/obj/item/dnainjector/activator)
+	var/obj/item/dnainjector/activator/second = allocate(/obj/item/dnainjector/activator)
+	first.add_mutations = list(injector.add_mutations[1])
+	second.add_mutations = list(/datum/mutation/telekinesis)
+	TEST_ASSERT(first.name == second.name, "Test setup: aktywatory mają różne nazwy")
+	TEST_ASSERT(fridge.smartfridge_item_key(first) != fridge.smartfridge_item_key(second), "Gablota łączy aktywatory z różnymi mutacjami w jeden wiersz")
 	injector.used = TRUE
 	TEST_ASSERT(!fridge.accept_check(injector), "Gablota przyjęła zużyty iniektor")
 	TEST_ASSERT(!fridge.accept_check(allocate(/obj/item/reagent_containers/glass/beaker)), "Gablota przyjęła zlewkę")

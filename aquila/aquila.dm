@@ -1154,7 +1154,6 @@
 // #include "code\modules\test_chamber\kits\pr_506_zapachy.dm"
 #include "code\modules\test_chamber\kits\pr_558_konsola_pilota.dm"
 // #include "code\modules\test_chamber\kits\pr_492_serwery_ai.dm"
-// #include "code\modules\test_chamber\kits\pr_487_xeno_rynek.dm"
 // #include "code\modules\test_chamber\kits\pr_496_bingle.dm"
 // #include "code\modules\test_chamber\kits\pr_497_glod.dm"
 // #include "code\modules\test_chamber\kits\pr_499_kable_ethernet.dm"
