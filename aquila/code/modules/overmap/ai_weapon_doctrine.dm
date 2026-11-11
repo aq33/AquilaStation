@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(ai_long_range_guided_enabled, TRUE)
 
 /// Torpeda (albo rakieta w mały cel) w kogoś, kogo widzimy dalej niż bazowe 50 pól
 /obj/structure/overmap/proc/update_ai_long_range_fire()
-	if(!GLOB.ai_long_range_guided_enabled || !ai_controlled || mass <= MASS_TINY || ai_fleeing || ai_scout_target || !current_system)
+	if(!GLOB.ai_long_range_guided_enabled || !ai_controlled || mass <= MASS_TINY || ai_fleeing || is_ai_scouting() || !current_system)
 		return
 	if(GLOB.ai_morale_enabled && world.time < ai_hold_fire_until)
 		return

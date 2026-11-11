@@ -10,6 +10,11 @@
 ///   leci prosto, chyba że jest już na tyle blisko, że łapie cel własną głowicą;
 /// - zwiad się kończy, gdy każdy okręt rakietowy widzi cel sam, cel zaczyna gonić zwiadowcę, nie ma już komu
 ///   celować albo minie czas służby. Wtedy myśliwiec wraca do zwykłych zadań, czyli do ataku.
+/// - zwiad wysunięty: zanim ktokolwiek zobaczy wroga, zwiadowca leci w stronę namiaru z nasłuchu albo ostatniej
+///   znanej pozycji i przechodzi w zwykły zwiad, gdy coś złapie;
+/// - tor radaru: gdy okręt floty pulsuje radarem, okręty rakietowe strzelają do tego, co ten radar widzi;
+/// - pocisk na namiar trzyma cel, dopóki źródło go trzyma (namierzanie albo impuls radaru); potem leci prosto
+///   w punkt przechwycenia i łapie cel własną głowicą z AI_SEEKER_RANGE.
 /// Na razie tylko myśliwce mają radar frontalny; duże okręty namierzają dookoła (radar operatora przyjdzie później).
 
 /// Debug > Toggle AI scouting
@@ -34,6 +39,8 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 /obj/structure/overmap
 	/// AQUILA - wróg, którego ten myśliwiec śledzi na zwiadzie
 	var/obj/structure/overmap/ai_scout_target
+	/// AQUILA - zwiad wysunięty: miejsce, w które zwiadowca leci, zanim ktokolwiek zobaczy wroga
+	var/turf/ai_scout_lead
 	/// AQUILA - world.time, do którego trwa zwiad
 	var/ai_scout_until = 0
 	/// AQUILA - world.time, od którego myśliwiec może znów pójść na zwiad
@@ -44,7 +51,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	var/ai_scout_side = 0
 	/// AQUILA - zwiadowca, na którego namiar ten okręt właśnie strzela
 	var/obj/structure/overmap/ai_datalink_firing
-	/// AQUILA - lazy list: pocisk => zwiadowca, którego namierzanie go prowadzi
+	/// AQUILA - lazy list: pocisk => list(źródło namiaru, cel)
 	var/list/ai_datalink_shots
 
 /datum/fleet
@@ -94,7 +101,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 
 /datum/fleet/proc/prune_ai_scouts()
 	for(var/obj/structure/overmap/scout as anything in ai_scouts?.Copy())
-		if(QDELETED(scout) || !scout.ai_scout_target)
+		if(QDELETED(scout) || !scout.is_ai_scouting())
 			LAZYREMOVE(ai_scouts, scout)
 
 /// Cel dla zwiadowcy: najbliższy mu duży wróg z obrazu sytuacji floty albo z jego własnego celu
@@ -115,11 +122,53 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 			best = contact
 	return best
 
+/// Gdzie zwiadowca może szukać wroga, którego nikt jeszcze nie widzi: namiar z nasłuchu (ze skrzyżowania, jeśli
+/// usłyszało go dwóch) albo ostatnia znana pozycja z obrazu floty. Najbliższe zwiadowcy miejsce albo null.
+/datum/fleet/proc/get_ai_scout_lead(obj/structure/overmap/scout)
+	var/turf/best
+	var/best_dist = INFINITY
+	var/list/miejsca = list()
+	for(var/obj/structure/overmap/member as anything in all_ships)
+		if(QDELETED(member) || member.z != scout.z)
+			continue
+		for(var/obj/structure/overmap/emitter as anything in member.radar_emissions)
+			if(QDELETED(emitter) || !member.get_radar_emission(emitter) || !scout.is_ai_hostile(emitter))
+				continue
+			miejsca += (triangulate_ai_emission(emitter) || member.get_emission_turf(emitter))
+	for(var/obj/structure/overmap/contact as anything in ai_contact_picture)
+		if(!QDELETED(contact) && contact.mass > MASS_TINY && scout.is_ai_hostile(contact))
+			miejsca += scout.get_ai_contact_guess(contact)
+	for(var/turf/miejsce as anything in miejsca)
+		if(!istype(miejsce) || miejsce.z != scout.z)
+			continue
+		var/dist = overmap_dist(scout, miejsce)
+		if(dist < best_dist)
+			best_dist = dist
+			best = miejsce
+	return best
+
+/// Czy ten okręt jest teraz na zwiadzie (śledzi cel albo leci do namiaru)
+/obj/structure/overmap/proc/is_ai_scouting()
+	return ai_scout_target || ai_scout_lead
+
+/// Czy okręt właśnie pulsuje radarem i jego radar sięga target
+/obj/structure/overmap/proc/ai_radar_sees(obj/structure/overmap/target)
+	if(QDELETED(target) || target.z != z || world.time >= last_radar_pulse + RADAR_VISIBILITY_PENALTY)
+		return FALSE
+	return overmap_dist(src, target) <= get_suite_range(SENSOR_LIDAR, target)
+
 // ---------------------------------------------------------------- zwiadowca
 
 /obj/structure/overmap/proc/start_ai_scout(obj/structure/overmap/target)
 	ai_scout_event("[src] idzie na zwiad nad [target]")
 	ai_scout_target = target
+	ai_scout_until = world.time + AI_SCOUT_DUTY
+	ai_scout_side = pick(1, -1)
+	LAZYOR(fleet.ai_scouts, src)
+
+/obj/structure/overmap/proc/start_ai_scout_lead(turf/lead)
+	ai_scout_event("[src] leci na zwiad wysunięty w stronę [lead.x],[lead.y]")
+	ai_scout_lead = lead
 	ai_scout_until = world.time + AI_SCOUT_DUTY
 	ai_scout_side = pick(1, -1)
 	LAZYOR(fleet.ai_scouts, src)
@@ -130,6 +179,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	if(ai_scout_target && (ai_scout_target in target_painted))
 		dump_lock(ai_scout_target)
 	ai_scout_target = null
+	ai_scout_lead = null
 	ai_scout_ready_at = world.time + AI_SCOUT_COOLDOWN
 	LAZYREMOVE(fleet?.ai_scouts, src)
 
@@ -188,6 +238,9 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	if(!fleet)
 		return
 	fleet.prune_ai_scouts()
+	if(ai_scout_lead && !ai_scout_target)
+		update_ai_scout_lead()
+		return
 	if(ai_scout_target)
 		var/powod = get_ai_scout_end_reason()
 		if(powod)
@@ -200,6 +253,26 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	var/obj/structure/overmap/target = fleet.get_ai_scout_target(src)
 	if(target && overmap_dist(src, target) >= AI_SCOUT_MIN_RANGE)
 		start_ai_scout(target)
+		return
+	var/turf/lead = fleet.get_ai_scout_lead(src)
+	if(lead && overmap_dist(src, lead) > AI_SCOUT_MIN_RANGE)
+		start_ai_scout_lead(lead)
+
+/// Zwiad wysunięty: leci do namiaru, a gdy jego sensory złapią dużego wroga, przechodzi w zwykły zwiad
+/obj/structure/overmap/proc/update_ai_scout_lead()
+	for(var/obj/structure/overmap/contact as anything in sensor_contact_suites)
+		if(QDELETED(contact) || contact.mass <= MASS_TINY || !is_ai_hostile(contact))
+			continue
+		ai_scout_event("[src] na zwiadzie wysuniętym złapał [contact]")
+		ai_scout_lead = null
+		ai_scout_target = contact
+		return
+	if(world.time >= ai_scout_until)
+		stop_ai_scout("koniec służby")
+	else if(ai_fleeing)
+		stop_ai_scout("ucieka")
+	else if(overmap_dist(src, ai_scout_lead) <= AI_SCOUT_MIN_RANGE)
+		stop_ai_scout("nic nie znalazł w miejscu namiaru")
 
 /// Namierzanie radarem frontalnym tylko wtedy, gdy ktoś czeka z salwą; namierzanie to emisja, cel ją słyszy
 /obj/structure/overmap/proc/update_ai_scout_lock()
@@ -225,6 +298,8 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 /// Dokąd leci zwiadowca: krąży na granicy, z której widzi cel, a przy namierzaniu leci skosem z celem w stożku
 /obj/structure/overmap/proc/get_ai_scout_point()
 	var/obj/structure/overmap/target = ai_scout_target
+	if(!target && ai_scout_lead)
+		return ai_far_enough_point(ai_scout_lead)
 	if(QDELETED(target))
 		return null
 	var/list/best = get_best_suite(target)
@@ -243,8 +318,10 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 
 // ---------------------------------------------------------------- strzał przez łącze danych
 
-/// Pierwszy cel, na który zwiadowca floty trzyma namierzanie w zasięgu łącza, jako list(zwiadowca, cel), albo null
-/obj/structure/overmap/proc/get_ai_datalink_target()
+/// Cel z łącza danych jako list(źródło, cel), albo null. Najpierw namierzanie zwiadowcy (dokładne), potem tor
+/// radaru okrętu floty, który właśnie pulsuje: do celów, których ten okręt sam nie widzi, w zasięgu łącza.
+/// contents podawane, żeby dało się testować bez systemu gwiezdnego.
+/obj/structure/overmap/proc/get_ai_datalink_target(list/contents)
 	for(var/obj/structure/overmap/scout as anything in fleet?.ai_scouts)
 		var/obj/structure/overmap/target = scout?.ai_scout_target
 		if(QDELETED(scout) || QDELETED(target) || !(target in scout.target_painted))
@@ -252,30 +329,56 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 		if(target.z != z || overmap_dist(src, target) > AI_DATALINK_RANGE)
 			continue
 		return list(scout, target)
-	return null
+	var/list/radary = list()
+	for(var/obj/structure/overmap/member as anything in fleet?.all_ships)
+		if(!QDELETED(member) && member != src && member.z == z && world.time < member.last_radar_pulse + RADAR_VISIBILITY_PENALTY)
+			radary += member
+	if(!length(radary))
+		return null
+	var/obj/structure/overmap/best
+	var/obj/structure/overmap/best_source
+	var/best_dist = INFINITY
+	for(var/obj/structure/overmap/other as anything in contents)
+		if(!istype(other) || QDELETED(other) || other.mass <= MASS_TINY || !is_ai_hostile(other) || get_contact_suite(other))
+			continue
+		var/dist = overmap_dist(src, other)
+		if(dist > AI_DATALINK_RANGE || dist >= best_dist)
+			continue
+		for(var/obj/structure/overmap/radar as anything in radary)
+			if(radar.ai_radar_sees(other))
+				best = other
+				best_source = radar
+				best_dist = dist
+				break
+	return best ? list(best_source, best) : null
 
-/// Czy pocisk ma dalej trzymać cel: tak, dopóki zwiadowca go namierza albo pocisk jest dość blisko dla własnej głowicy
-/proc/ai_datalink_keeps_homing(obj/structure/overmap/scout, obj/structure/overmap/target, dist_to_target)
+/// Czy pocisk ma teraz trzymać cel: dopóki źródło go trzyma (zwiadowca namierza albo jego radar pulsuje i sięga celu),
+/// a bez tego tylko z bliska, własną głowicą
+/proc/ai_datalink_keeps_homing(obj/structure/overmap/source, obj/structure/overmap/target, dist_to_target)
 	if(QDELETED(target))
 		return FALSE
-	if(!QDELETED(scout) && (target in scout.target_painted))
+	if(dist_to_target <= AI_SEEKER_RANGE)
 		return TRUE
-	return dist_to_target <= AI_SEEKER_RANGE
+	if(QDELETED(source))
+		return FALSE
+	return (target in source.target_painted) || source.ai_radar_sees(target)
 
 /obj/structure/overmap/proc/update_ai_datalink_fire()
 	for(var/obj/item/projectile/shot as anything in ai_datalink_shots?.Copy())
-		if(QDELETED(shot) || !shot.homing)
+		var/list/dane = ai_datalink_shots[shot]
+		var/obj/structure/overmap/target = dane[2]
+		if(QDELETED(shot) || QDELETED(target))
 			LAZYREMOVE(ai_datalink_shots, shot)
 			continue
-		var/obj/structure/overmap/target = shot.homing_target
-		var/dist = istype(target) ? get_dist(shot, target) : INFINITY
-		if(!ai_datalink_keeps_homing(ai_datalink_shots[shot], target, dist))
-			shot.homing_target = null // jak przy tarczy w damage.dm: dalej leci prosto
+		var/trzyma = ai_datalink_keeps_homing(dane[1], target, get_dist(shot, target))
+		if(trzyma && !shot.homing)
+			shot.set_homing_target(target) // głowica złapała cel albo źródło znów go trzyma
+		else if(!trzyma && shot.homing)
+			shot.homing_target = null // jak przy tarczy w damage.dm: dalej leci prosto w punkt przechwycenia
 			shot.homing = FALSE
-			LAZYREMOVE(ai_datalink_shots, shot)
-	if(mass <= MASS_TINY || ai_fleeing)
+	if(mass <= MASS_TINY || ai_fleeing || is_ai_scouting())
 		return
-	var/list/namiar = get_ai_datalink_target()
+	var/list/namiar = get_ai_datalink_target(current_system?.system_contents)
 	if(!namiar)
 		return
 	var/obj/structure/overmap/target = namiar[2]
@@ -283,14 +386,16 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	if(!weapon)
 		return
 	ai_datalink_firing = namiar[1]
-	ai_scout_event("[src] strzela na namiar od [namiar[1]] ([overmap_dist(src, target)] pól) w [target]")
+	add_enemy(target)
+	var/obj/structure/overmap/zrodlo = namiar[1]
+	ai_scout_event("[src] strzela na [(target in zrodlo.target_painted) ? "namiar od" : "tor radaru od"] [zrodlo] ([overmap_dist(src, target)] pól) w [target]")
 	fire_weapon(target, firing_weapon = weapon, ai_aim = TRUE)
 	ai_datalink_firing = null
 
 /obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
 	. = ..()
-	if(ai_datalink_firing && istype(., /obj/item/projectile/guided_munition))
-		LAZYSET(ai_datalink_shots, ., ai_datalink_firing)
+	if(ai_datalink_firing && istype(., /obj/item/projectile/guided_munition) && istype(target, /obj/structure/overmap))
+		LAZYSET(ai_datalink_shots, ., list(ai_datalink_firing, target))
 
 // ---------------------------------------------------------------- wpięcie
 
@@ -303,7 +408,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	update_ai_datalink_fire()
 
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
-	if(ai_scout_target && !ram_target && GLOB.ai_scouting_enabled)
+	if(is_ai_scouting() && !ram_target && GLOB.ai_scouting_enabled)
 		var/turf/punkt = get_ai_scout_point()
 		if(punkt)
 			return ..(punkt, FALSE, ignore_all_collisions)
@@ -311,24 +416,27 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 
 /// Zwiadowca nie strzela: strzał to ciepło i błysk, a jego robotą jest widzieć, nie walczyć
 /obj/structure/overmap/ai_fire(obj/structure/overmap/target)
-	if(ai_scout_target && GLOB.ai_scouting_enabled)
+	if(is_ai_scouting() && GLOB.ai_scouting_enabled)
 		return
 	return ..()
 
 /obj/structure/overmap/ai_elite_fire(obj/structure/overmap/target)
-	if(ai_scout_target && GLOB.ai_scouting_enabled)
+	if(is_ai_scouting() && GLOB.ai_scouting_enabled)
 		return
 	return ..()
 
 /obj/structure/overmap/get_ai_tactic()
 	if(ai_scout_target && !ai_fleeing)
 		return (ai_scout_target in target_painted) ? "naprowadza" : "zwiad"
+	if(ai_scout_lead && !ai_fleeing)
+		return "zwiad wysunięty"
 	return ..()
 
 /obj/structure/overmap/Destroy()
 	if(fleet)
 		LAZYREMOVE(fleet.ai_scouts, src)
 	ai_scout_target = null
+	ai_scout_lead = null
 	ai_datalink_firing = null
 	ai_datalink_shots = null
 	return ..()

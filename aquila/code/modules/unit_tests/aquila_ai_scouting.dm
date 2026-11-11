@@ -33,7 +33,7 @@
 	flota.all_ships = list(scout, shooter)
 	scout.fleet = flota
 	shooter.fleet = flota
-	var/fail = check_slots() || check_lock_geometry() || check_datalink() || check_homing() || check_end()
+	var/fail = check_slots() || check_lock_geometry() || check_datalink() || check_homing() || check_end() || check_radar_track() || check_lead()
 	scout.fleet = null
 	shooter.fleet = null
 	flota.all_ships = null
@@ -141,3 +141,66 @@
 	if(powod != "koniec służby")
 		return "Zwiad trwał po końcu służby (powód: [powod || "brak"])"
 	scout.ai_scout_target = null
+
+/// Tor radaru: okręt floty pulsuje radarem, okręt rakietowy strzela do tego, co ten radar widzi, a pocisk
+/// trzyma cel, dopóki trwa impuls; potem tylko z bliska
+/datum/unit_test/aquila_ai_scouting/proc/check_radar_track()
+	var/z = run_loc_floor_bottom_left.z
+	var/obj/structure/overmap/small_craft/combat/light/radar = allocate(/obj/structure/overmap/small_craft/combat/light)
+	radar.mass = MASS_MEDIUM
+	radar.max_tracking_range = 100
+	radar.forceMove(locate(100, 40, z))
+	flota.all_ships += radar
+	flota.ai_scouts = null
+	shooter.forceMove(locate(100, 20, z))
+	enemy.forceMove(locate(100, 90, z)) // 70 pól od okrętu rakietowego, 50 od radaru
+	LAZYREMOVE(shooter.sensor_contact_suites, enemy)
+	var/list/okrety = list(scout, shooter, radar, enemy)
+	var/wynik
+	radar.last_radar_pulse = -INFINITY
+	if(shooter.get_ai_datalink_target(okrety))
+		wynik = "Okręt rakietowy dostał tor radaru, choć nikt nie pulsował"
+	if(!wynik)
+		radar.last_radar_pulse = world.time
+		var/list/namiar = shooter.get_ai_datalink_target(okrety)
+		if(!namiar || namiar[1] != radar || namiar[2] != enemy)
+			wynik = "Okręt rakietowy nie dostał toru od okrętu floty, który pulsował i widział cel"
+	if(!wynik && !ai_datalink_keeps_homing(radar, enemy, 60))
+		wynik = "Pocisk na tor radaru zgubił cel w czasie impulsu"
+	if(!wynik)
+		radar.last_radar_pulse = -INFINITY
+		if(ai_datalink_keeps_homing(radar, enemy, 60))
+			wynik = "Pocisk na tor radaru trzymał cel 60 pól dalej po końcu impulsu"
+		else if(!ai_datalink_keeps_homing(radar, enemy, 10))
+			wynik = "Pocisk na tor radaru nie złapał celu własną głowicą z bliska"
+	flota.all_ships -= radar
+	return wynik
+
+/// Zwiad wysunięty: zanim ktokolwiek widzi wroga, zwiadowca dostaje miejsce z namiaru nasłuchu
+/datum/unit_test/aquila_ai_scouting/proc/check_lead()
+	var/z = run_loc_floor_bottom_left.z
+	scout.ai_scout_target = null
+	scout.ai_scout_lead = null
+	flota.ai_contact_picture = null
+	var/obj/structure/overmap/small_craft/combat/light/sluchacz = allocate(/obj/structure/overmap/small_craft/combat/light)
+	sluchacz.forceMove(locate(100, 50, z))
+	flota.all_ships += sluchacz
+	enemy.forceMove(locate(100, 140, z))
+	var/wynik
+	if(flota.get_ai_scout_lead(scout))
+		wynik = "Zwiadowca dostał miejsce do zwiadu, choć flota nic nie słyszała ani nie widziała"
+	if(!wynik)
+		sluchacz.hear_radar_emission(enemy)
+		var/turf/lead = flota.get_ai_scout_lead(scout)
+		if(!lead)
+			wynik = "Zwiadowca nie dostał miejsca do zwiadu z namiaru nasłuchu"
+		else if(get_dist(lead, enemy) > 60)
+			wynik = "Miejsce zwiadu z nasłuchu wypadło daleko od nadawcy ([get_dist(lead, enemy)] pól)"
+		else
+			scout.ai_scout_lead = lead
+			if(scout.get_ai_tactic() != "zwiad wysunięty" || !scout.is_ai_scouting())
+				wynik = "Zwiadowca lecący do namiaru nie był na zwiadzie wysuniętym ([scout.get_ai_tactic()])"
+			scout.ai_scout_lead = null
+	LAZYREMOVE(sluchacz.radar_emissions, enemy)
+	flota.all_ships -= sluchacz
+	return wynik
