@@ -66,6 +66,15 @@
 	scout.angle = overmap_angle(scout, enemy) + 90
 	if(scout.ai_lock_geometry_ok(enemy))
 		return "Myśliwiec namierzył cel 90 stopni od nosa"
+	// Zapas: 70 stopni od nosa nie wystarcza na rozpoczęcie, ale wystarcza, żeby trzymać już złapany cel
+	scout.angle = overmap_angle(scout, enemy) + 70
+	if(scout.ai_lock_geometry_ok(enemy))
+		return "Myśliwiec zaczął namierzać cel 70 stopni od nosa"
+	if(!scout.ai_lock_geometry_ok(enemy, keep = TRUE))
+		return "Myśliwiec zgubił już złapany cel 70 stopni od nosa, w granicy wychylenia anteny"
+	scout.angle = overmap_angle(scout, enemy) + 85
+	if(scout.ai_lock_geometry_ok(enemy, keep = TRUE))
+		return "Myśliwiec trzymał cel 85 stopni od nosa, za granicą wychylenia anteny"
 	scout.angle = overmap_angle(scout, enemy)
 	enemy.forceMove(locate(100, 140, run_loc_floor_bottom_left.z)) // 80 pól
 	var/daleko = scout.ai_lock_geometry_ok(enemy)

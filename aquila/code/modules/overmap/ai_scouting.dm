@@ -27,6 +27,8 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 /// Zasięg namierzania radarem frontalnym myśliwca i połowa jego stożka
 #define AI_SCOUT_LOCK_RANGE 35
 #define AI_SCOUT_LOCK_CONE 60
+/// Raz złapany cel radar trzyma aż do granicy wychylenia anteny, żeby namierzenie nie mrugało na brzegu stożka
+#define AI_SCOUT_LOCK_CONE_KEEP 75
 /// Przy namierzaniu myśliwiec leci skosem, z celem tuż w stożku, żeby nie pchać się prosto na niego
 #define AI_SCOUT_CRANK 50
 /// Bliżej celu zwiad nie ma sensu: myśliwiec jest już w walce
@@ -184,22 +186,25 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	LAZYREMOVE(fleet?.ai_scouts, src)
 
 /// Czy któryś okręt rakietowy floty mógłby teraz strzelić w target na namiar ze zwiadu
+/// Bez okna salwy i przeładowania: pierwsza wersja pytała can_fire(), więc zwiadowca zrywał namierzenie, gdy tylko
+/// okno salwy się zamknęło albo wyrzutnia się przeładowywała (w piaskownicy 24 z 28 namierzeń trwało krócej niż 2 s),
+/// a samo pytanie przesuwało licznik salw floty (ai_torpedo_tactics.dm).
 /obj/structure/overmap/proc/has_ai_datalink_shooter(obj/structure/overmap/target)
 	for(var/obj/structure/overmap/ship as anything in fleet?.all_ships)
-		if(QDELETED(ship) || ship == src || !ship.ai_controlled || ship.z != z)
+		if(QDELETED(ship) || ship == src || !ship.ai_controlled || ship.z != z || ship.mass <= MASS_TINY)
 			continue
-		if(overmap_dist(ship, target) <= AI_DATALINK_RANGE && ship.get_ai_guided_weapon(target))
+		if(overmap_dist(ship, target) <= AI_DATALINK_RANGE && ship.has_ai_guided_option(target))
 			return TRUE
 	return FALSE
 
 /// Czy cel jest w stożku i zasięgu radaru frontalnego (sama geometria)
-/obj/structure/overmap/proc/ai_lock_geometry_ok(obj/structure/overmap/target)
+/obj/structure/overmap/proc/ai_lock_geometry_ok(obj/structure/overmap/target, keep = FALSE)
 	if(QDELETED(target) || target.z != z || overmap_dist(src, target) > AI_SCOUT_LOCK_RANGE)
 		return FALSE
 	var/bearing = overmap_angle(src, target)
 	if(isnull(bearing))
 		return TRUE
-	return abs(closer_angle_difference(angle, bearing)) <= AI_SCOUT_LOCK_CONE
+	return abs(closer_angle_difference(angle, bearing)) <= (keep ? AI_SCOUT_LOCK_CONE_KEEP : AI_SCOUT_LOCK_CONE)
 
 /// Powód, dla którego zwiad ma się skończyć, albo null
 /obj/structure/overmap/proc/get_ai_scout_end_reason()
@@ -280,11 +285,13 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	var/trzyma = (target in target_painted)
 	if(!has_ai_datalink_shooter(target))
 		if(trzyma)
+			ai_scout_event("[src] puszcza namierzenie [target]: nikt nie ma czym strzelić")
 			dump_lock(target) // nikt nie strzela: nie świecimy po próżnicy
 		return
 	var/widzi = target.is_sensor_visible(src) >= SENSOR_VISIBILITY_TARGETABLE
 	if(trzyma)
-		if(!widzi || !ai_lock_geometry_ok(target))
+		if(!widzi || !ai_lock_geometry_ok(target, keep = TRUE))
+			ai_scout_event("[src] traci namierzenie [target]: [!widzi ? "nie widzi celu" : (overmap_dist(src, target) > AI_SCOUT_LOCK_RANGE ? "za daleko" : "cel poza stożkiem radaru")]")
 			dump_lock(target)
 			return
 		target.hear_radar_emission(src)
@@ -382,10 +389,12 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	if(!namiar)
 		return
 	var/obj/structure/overmap/target = namiar[2]
+	// Ustawione przed wyborem broni: strzał na namiar sam jest koordynacją, więc nie czeka na okno salwy floty
+	ai_datalink_firing = namiar[1]
 	var/datum/overmap_ship_weapon/weapon = get_ai_guided_weapon(target)
 	if(!weapon)
+		ai_datalink_firing = null
 		return
-	ai_datalink_firing = namiar[1]
 	add_enemy(target)
 	var/obj/structure/overmap/zrodlo = namiar[1]
 	ai_scout_event("[src] strzela na [(target in zrodlo.target_painted) ? "namiar od" : "tor radaru od"] [zrodlo] ([overmap_dist(src, target)] pól) w [target]")
@@ -460,6 +469,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 #undef AI_SCOUT_COOLDOWN
 #undef AI_SCOUT_LOCK_RANGE
 #undef AI_SCOUT_LOCK_CONE
+#undef AI_SCOUT_LOCK_CONE_KEEP
 #undef AI_SCOUT_CRANK
 #undef AI_SCOUT_MIN_RANGE
 #undef AI_DATALINK_RANGE
