@@ -127,6 +127,8 @@ h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09
           <div class="it"><span class="sw" style="background:var(--tel)"></span>teleskop</div>
           <div class="it"><span class="sw" style="background:var(--lidar)"></span>radar (w czasie impulsu)</div>
           <div class="it"><span class="sw dash" style="border-color:var(--memory)"></span>cel znany tylko z meldunku floty</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--lidar)"></span>myśliwiec na zwiadzie śledzi cel</div>
+          <div class="it"><span class="sw" style="background:var(--lidar)"></span>„namierza”: zwiadowca trzyma cel radarem dla okrętów rakietowych</div>
         </div>
         <div>
           <h4>Widoczność okrętów</h4>
@@ -379,6 +381,7 @@ function rysuj(){
   if(warstwy.rng) rysujWidocznosc(s, sel);
   if(warstwy.con) rysujStozki(s, sel);
   if(warstwy.cts) rysujCeleWszystkich(s, sel);
+  if(warstwy.cts) rysujZwiad(s);
   if(sel && warstwy.cts) rysujKontakty(sel);
   if(sel && sel.sx) rysujPunktSzukania(sel);
 
@@ -599,6 +602,22 @@ function rysujCeleWszystkich(lista, sel){
     ctx.beginPath(); ctx.arc(x1, y1, 7.5, 0, 6.2832);
     ctx.lineWidth = 2; ctx.globalAlpha = sel ? .3 : .9; ctx.stroke();
     ctx.globalAlpha = 1;
+  }
+}
+
+// Zwiad mysliwcow (ai_scouting.dm): przerywana linia do sledzonego celu, pelna i podpisana przy namierzaniu radarem
+function rysujZwiad(lista){
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i], d = sh.dbg;
+    if(!d || !d.sc) continue;
+    var cel = znajdzW(lista, d.sc);
+    if(!cel) continue;
+    var x1 = px(sh.x), y1 = py(sh.y), x2 = px(cel.x), y2 = py(cel.y);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = SUITE_KOLOR["lidar"];
+    ctx.lineWidth = d.lk ? 1.8 : 1; ctx.globalAlpha = d.lk ? .9 : .4;
+    ctx.setLineDash(d.lk ? [] : [2, 5]); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    if(d.lk) napis("namierza", (x1 + x2) / 2, (y1 + y2) / 2 - 5, SUITE_KOLOR["lidar"], 11, "center", true);
   }
 }
 

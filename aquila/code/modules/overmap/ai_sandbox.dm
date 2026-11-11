@@ -106,6 +106,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_forward_avoidance"]))
 		GLOB.ai_forward_avoidance_enabled = FALSE
 		event("Omijanie przeszkód dookoła, jak w bazowym NSV13")
+	if(text2num(world.params["ai_sandbox_no_scouting"]))
+		GLOB.ai_scouting_enabled = FALSE
+		event("Bez zwiadu myśliwców i łącza danych")
 	if(text2num(world.params["ai_sandbox_no_finite_supply"]))
 		GLOB.ai_finite_supply_enabled = FALSE
 		event("Pełny magazyn rakiet i torped co 5 s przy lotniskowcu, jak w bazowym NSV13")
@@ -307,6 +310,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 				"tp" = OM.torpedoes,
 				"ms" = OM.missiles,
 			)
+			// Zwiad: kogo śledzi i czy go namierza radarem (ai_scouting.dm)
+			if(OM.ai_scout_target)
+				dbg["sc"] = "\ref[OM.ai_scout_target]"
+				if(OM.ai_scout_target in OM.target_painted)
+					dbg["lk"] = 1
 			if(OM.can_resupply)
 				dbg["zt"] = OM.ai_supply_torpedoes
 				dbg["zm"] = OM.ai_supply_missiles
