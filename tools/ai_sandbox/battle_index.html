@@ -78,6 +78,12 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Daleki ostrzał: zwiad wysunięty i tor radaru szpicy",
+    opis: "Torpedy i rakiety dalej niż 50 pól: z własnych sensorów, na namiar zwiadowcy albo na tor radaru okrętu floty w czasie impulsu. " +
+          "Zwiadowca leci w stronę namiaru z nasłuchu, zanim ktokolwiek zobaczy wroga. W zdarzeniach odtwarzacza widać każdy daleki strzał i jego źródło.",
+    wynik: "Strzały kierowane dalej niż 50 pól przy dalekim starcie: 2,7% → 6,1%, przy zwykłym 3,2% → 4,4%. Zwiad wysunięty łapie cel w 7 na 8 prób. " +
+           "Strzałów na tor radaru i na namiar zwiadowcy wciąż mało: okręty z torpedami zwykle widzą cel same, bo walka szybko schodzi na 20–40 pól.",
+    warianty: [["E_blisko_", "zwykły start"], ["E_daleko_", "daleki start (120 pól)"]] },
   { tytul: "Działa jako ostateczność",
     opis: "Okręt AI, który ma amunicję kierowaną pasującą do celu, strzela do niego dalej niż 12 pól tylko rakietami lub torpedami; " +
           "gdy wyrzutnia się przeładowuje albo czeka na salwę floty, nie strzela wcale. Działa wracają z bliska, " +
