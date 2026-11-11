@@ -231,7 +231,7 @@
 	spawned = /mob/living/simple_animal/hostile/zombie/hugbox
 
 /obj/effect/trap/nexus/trickyspawner/xeno
-	spawned = /mob/living/simple_animal/hostile/alien/hugbox
+	spawned = /mob/living/basic/alien/hugbox // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/honkling
 	mobs = 5 //honklings are annoying, but nearly harmless.
@@ -260,7 +260,7 @@
 	mobchatspan = "chaplain"
 	discovery_points = 1000
 
-/mob/living/simple_animal/hostile/alien/hugbox
+/mob/living/basic/alien/hugbox // AQ EDIT - basic moby
 	health = 60 //they go down easy, to lull the player into a sense of false security
 	maxHealth = 60
 	mobchatspan = "researchdirector"

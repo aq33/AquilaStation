@@ -929,7 +929,6 @@
 #include "code\modules\mob\living\simple_animal\gremlin\event.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin_act.dm"
-#include "code\modules\mob\living\simple_animal\hostile\alien.dm"
 #include "code\modules\mob\living\simple_animal\hostile\carp.dm"
 #include "code\modules\mob\living\simple_animal\hostile\gorilla\gorilla.dm"
 #include "code\modules\mob\living\simple_animal\hostile\headcrab.dm"
@@ -2053,6 +2052,7 @@
 #include "code\modules\mob\living\basic\space_fauna\hivebot.dm"
 #include "code\datums\elements\content_barfer.dm"
 #include "code\modules\mob\living\basic\farm_animals\goose.dm"
+#include "code\modules\mob\living\basic\alien\alien.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

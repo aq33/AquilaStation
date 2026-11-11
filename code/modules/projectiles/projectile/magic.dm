@@ -211,7 +211,7 @@
 			if(M.ckey)
 				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
 			else
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
+				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/basic/alien/sentinel) // AQ EDIT - basic moby
 			new_mob = new Xe(M.loc)
 
 		if("animal")

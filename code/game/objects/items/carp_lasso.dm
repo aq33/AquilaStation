@@ -156,7 +156,7 @@
 /obj/item/mob_lasso/antag/init_whitelists()
 	blacklist_mob_cache[type] = typecacheof(list(
 		/mob/living/simple_animal/hostile/megafauna,
-		/mob/living/simple_animal/hostile/alien,
+		/mob/living/basic/alien, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/syndicate,
 	))
 

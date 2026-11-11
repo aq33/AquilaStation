@@ -197,6 +197,142 @@
 	TEST_ASSERT(!vomit.IsAvailable(), "The vomit ability is available with an empty stomach")
 	TEST_ASSERT(vomit.next_use_time <= world.time, "The vomit ability stayed on cooldown after throwing up")
 
+/// Counts a signal
+/datum/aquila_signal_counter
+	var/count = 0
+
+/datum/aquila_signal_counter/proc/on_signal(datum/source)
+	SIGNAL_HANDLER
+	count++
+
+/// Simple xenomorphs: the sentinel and the queen spit neurotoxin at their target through the AI (and a player in one spits by
+/// clicking), the hunter slashes, drones and queens plant weeds unless told not to, a fertile queen lays eggs, the maid
+/// polishes instead of hurting and cleans up messes, the barmaid has no AI and cannot be hurt
+/datum/unit_test/aquila_xenomorph_family
+
+/datum/unit_test/aquila_xenomorph_family/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/datum/ai_behavior/find_target = GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets)
+	var/datum/ai_behavior/spit = GET_AI_BEHAVIOR(/datum/ai_behavior/basic_ranged_attack/alien)
+	var/datum/ai_behavior/melee = GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)
+
+	for(var/spitter_type in list(/mob/living/basic/alien/sentinel, /mob/living/basic/alien/queen))
+		var/mob/living/basic/alien/spitter = allocate(spitter_type, corner)
+		var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(corner.x + 3, corner.y, corner.z))
+		TEST_ASSERT(isalienadult(spitter), "[spitter_type] is not an adult alien for isalienadult()")
+		var/datum/aquila_bullet_recorder/recorder = new
+		recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+		var/datum/ai_controller/controller = spitter.ai_controller
+		controller.SelectBehaviors(1)
+		controller.ProcessBehavior(1, find_target)
+		TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "[spitter_type] did not pick the human three tiles away")
+		controller.SelectBehaviors(1)
+		TEST_ASSERT(controller.current_behaviors[spit], "[spitter_type] with a target did not plan to spit")
+		var/health_before = victim.health
+		controller.ProcessBehavior(1, spit)
+		TEST_ASSERT(aquila_wait_for_hit(recorder), "[spitter_type]: the neurotoxin did not hit the human")
+		TEST_ASSERT(istype(recorder.projectiles[1], /obj/item/projectile/neurotox), "[spitter_type] did not spit neurotoxin")
+		TEST_ASSERT(victim.health < health_before, "[spitter_type]: the neurotoxin did not hurt")
+		controller.CancelActions()
+
+		controller.set_ai_status(AI_STATUS_OFF)
+		recorder.projectiles.Cut()
+		var/datum/component/ranged_attacks/ranged = spitter.GetComponent(/datum/component/ranged_attacks)
+		COOLDOWN_RESET(ranged, fire_cooldown)
+		spitter.next_click = 0
+		spitter.next_move = 0
+		spitter.ClickOn(victim, LEFT_CLICK)
+		TEST_ASSERT(aquila_wait_for_hit(recorder), "[spitter_type]: a player click on a far target did not spit")
+		qdel(recorder)
+		qdel(spitter)
+		qdel(victim)
+
+	// The hunter slashes the human next to it
+	var/mob/living/basic/alien/hunter = allocate(/mob/living/basic/alien, corner)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(corner, EAST))
+	var/datum/ai_controller/controller = hunter.ai_controller
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, find_target)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[melee], "The hunter did not plan a melee attack")
+	controller.ProcessBehavior(1, melee)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	hunter.next_move = 0
+	hunter.next_click = 0
+	var/brute_before = victim.getBruteLoss()
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The hunter did not slash the human")
+	controller.CancelActions()
+	qdel(hunter)
+
+	// The maid goes for the human, but polishes instead of hurting; she cleans up the blood she clicks
+	var/mob/living/basic/alien/maid/maid = allocate(/mob/living/basic/alien/maid, corner)
+	var/datum/aquila_signal_counter/attacks = new
+	attacks.RegisterSignal(maid, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, TYPE_PROC_REF(/datum/aquila_signal_counter, on_signal))
+	controller = maid.ai_controller
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, find_target)
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, melee)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	maid.next_move = 0
+	maid.next_click = 0
+	brute_before = victim.getBruteLoss()
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(attacks.count, "The maid did not go for the human at all")
+	TEST_ASSERT_EQUAL(victim.getBruteLoss(), brute_before, "The maid hurt the human")
+	qdel(attacks)
+	controller.CancelActions()
+	controller.set_ai_status(AI_STATUS_OFF)
+	var/obj/effect/decal/cleanable/blood/mess = allocate(/obj/effect/decal/cleanable/blood, get_step(corner, NORTH))
+	maid.next_move = 0
+	maid.next_click = 0
+	maid.ClickOn(mess, LEFT_CLICK)
+	TEST_ASSERT(QDELETED(mess), "The maid did not clean up the blood she clicked")
+	qdel(maid)
+	qdel(victim)
+
+	// Weeds: a drone plants a node after its cooldown unless plants_off is set
+	var/turf/far_corner = locate(corner.x + 4, corner.y + 4, corner.z)
+	for(var/plants_off in list(FALSE, TRUE))
+		var/mob/living/basic/alien/drone/drone = allocate(/mob/living/basic/alien/drone, plants_off ? far_corner : corner)
+		drone.plants_off = plants_off
+		drone.plant_cooldown = 1
+		var/datum/idle_behavior/idle = drone.ai_controller.idle_behavior
+		TEST_ASSERT(istype(idle, /datum/idle_behavior/idle_random_walk/plant_weeds), "The drone does not have the weed planting idle behaviour")
+		drone.mobility_flags &= ~MOBILITY_MOVE // stand still for the check
+		idle.perform_idle_behavior(1, drone.ai_controller)
+		var/obj/structure/alien/weeds/node/node = locate() in get_turf(drone)
+		if(plants_off)
+			TEST_ASSERT(!node, "A drone with plants_off planted weeds")
+		else
+			TEST_ASSERT(node, "The drone did not plant weeds after its cooldown")
+		qdel(drone)
+
+	// Eggs: a fertile queen lays one, a sterile one does not
+	for(var/sterile in list(TRUE, FALSE))
+		var/turf/queen_turf = sterile ? locate(corner.x + 2, corner.y + 2, corner.z) : locate(corner.x + 3, corner.y + 3, corner.z)
+		var/mob/living/basic/alien/queen/queen = allocate(/mob/living/basic/alien/queen, queen_turf)
+		queen.sterile = sterile
+		queen.plants_off = TRUE
+		queen.egg_cooldown = 1
+		queen.mobility_flags &= ~MOBILITY_MOVE
+		queen.ai_controller.idle_behavior.perform_idle_behavior(1, queen.ai_controller)
+		var/obj/structure/alien/egg/egg = locate() in get_turf(queen)
+		if(sterile)
+			TEST_ASSERT(!egg, "A sterile queen laid an egg")
+		else
+			TEST_ASSERT(egg, "A fertile queen did not lay an egg")
+		qdel(queen)
+
+	// The shuttle barmaid: no AI, cannot be hurt, can open the bar
+	var/mob/living/basic/alien/maid/barmaid/barmaid = allocate(/mob/living/basic/alien/maid/barmaid, corner)
+	TEST_ASSERT(isnull(barmaid.ai_controller), "The barmaid has an AI")
+	var/barmaid_health = barmaid.health
+	barmaid.adjustBruteLoss(50)
+	TEST_ASSERT_EQUAL(barmaid.health, barmaid_health, "The barmaid was hurt")
+	TEST_ASSERT(barmaid.access_card && (ACCESS_CENT_BAR in barmaid.access_card.access), "The barmaid has no bar access")
+
 #undef LEFT_CLICK
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

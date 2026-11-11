@@ -150,18 +150,19 @@
 	ADD_TRAIT(src, TRAIT_SOMMELIER, ROUNDSTART_TRAIT)
 
 
-/mob/living/simple_animal/hostile/alien/maid/barmaid
+// AQ EDIT START - basic moby: the barmaid is a basic xenomorph maid without AI
+/mob/living/basic/alien/maid/barmaid
 	gold_core_spawnable = NO_SPAWN
 	name = "Barmanka"
 	desc = "Barmanka, czyli panna spotykana w barze."
 	pass_flags = PASSTABLE
 	status_flags = GODMODE
 	unique_name = FALSE
-	AIStatus = AI_OFF
-	stop_automated_movement = TRUE
+	ai_controller = null
 	initial_language_holder = /datum/language_holder/universal
 
-/mob/living/simple_animal/hostile/alien/maid/barmaid/Initialize(mapload)
+/mob/living/basic/alien/maid/barmaid/Initialize(mapload)
+// AQ EDIT END
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
@@ -171,7 +172,7 @@
 	ADD_TRAIT(src, TRAIT_BARMASTER, ROUNDSTART_TRAIT)
 	ADD_TRAIT(src, TRAIT_SOMMELIER, ROUNDSTART_TRAIT)
 
-/mob/living/simple_animal/hostile/alien/maid/barmaid/Destroy()
+/mob/living/basic/alien/maid/barmaid/Destroy() // AQ EDIT - basic moby
 	qdel(access_card)
 	. = ..()
 
