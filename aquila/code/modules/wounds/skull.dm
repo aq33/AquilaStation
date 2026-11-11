@@ -1,5 +1,5 @@
 // AQUILA - skull wounds. A fracture or a compound fracture on the head is a cracked or a caved-in skull: the head is split
-// down the middle by a displacement map drawn for our head sprite (aquila/icons/effects/skull_crack.dmi: a V gap at the
+// down the middle by a displacement map drawn for our head sprite (aquila/icons/effects/skull_crack.dmi: a one pixel notch at the
 // top, the right half with its eye one pixel lower, the jaw untouched; checked in a BYOND render against the look the
 // user asked for). The tgstation cranial fissure map only flattened our head. The split skull uses it too. Like
 // tgstation bones.dm on the head, the wound keeps giving brain traumas until the bone is fixed.
