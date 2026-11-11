@@ -13544,6 +13544,10 @@
 /obj/effect/landmark/start/master_at_arms,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"UC" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/r_wall,
+/area/medical/genetics/cloning)
 "UF" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -47229,7 +47233,7 @@ vd
 aN
 Vn
 eO
-KO
+UC
 Qv
 Md
 MJ

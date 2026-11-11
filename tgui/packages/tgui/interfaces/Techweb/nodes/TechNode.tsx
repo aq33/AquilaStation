@@ -103,10 +103,10 @@ export function TechNode(props: Props) {
                 <Button
                   icon="tasks"
                   onClick={() => {
-                    setTechwebRoute({ route: 'details', selectedNode: id });
+                    setTechwebRoute({ route: '', selectedNode: id });
                   }}
                 >
-                  Szczegóły
+                  Pokaż w drzewie
                 </Button>
               )}
             </>
