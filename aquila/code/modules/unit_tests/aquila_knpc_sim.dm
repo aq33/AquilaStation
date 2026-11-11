@@ -329,14 +329,14 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	cuff_attempts++
 	sim_log("[label_of(attemptee)] zaczyna zakuwać [label_of(source)]", "cuff")
 
-/// Ruch w trakcie zakuwania przerywa do_mob: zapisujemy, kto go wywołał (stos w runtime.log)
+/// Ruch w trakcie zakuwania przerywa do_mob. W walce bywa normalny (wróg pchnął), więc tylko zapis w logu;
+/// przy szukaniu przyczyny można tu dopisać stack_trace(), żeby zobaczyć stos wywołań w runtime.log.
 /datum/unit_test/aquila_knpc_sim/proc/on_moved(mob/living/source, atom/old_loc, dir)
 	SIGNAL_HANDLER
 	var/datum/component/knpc/ai = source.GetComponent(/datum/component/knpc)
 	if(!ai?.cuffing)
 		return
 	sim_log("RUCH W TRAKCIE ZAKUWANIA: [label_of(source)] ([dir2text(dir)])", "stall")
-	stack_trace("knpc_sim: [label_of(source)] moved while cuffing")
 
 // ---------- Przebieg ----------
 
@@ -638,9 +638,12 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		for(var/y in list(4, 8, 12))
 			add_object(/obj/structure/barricade/sandbags, 12, y, "sandbags")
 			add_object(/obj/structure/barricade/sandbags, 19, y, "sandbags")
+	// Pojedynek zaczyna się w zasięgu wzroku: z rogów areny obaj patrolowali w tę samą stronę i nigdy się nie spotykali
+	var/syndi_x = per_side == 1 ? 11 : 3
+	var/ert_x = per_side == 1 ? 19 : KNPC_SIM_W - 4
 	for(var/i in 1 to per_side)
-		add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 3, 4 + i * 2, "syndykat", "Syndykat[i]")
-		add_mob(/mob/living/carbon/human/ai_boarder/ert/knpc_sim, KNPC_SIM_W - 4, 4 + i * 2, "ert", "ERT[i]")
+		add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, syndi_x, 4 + i * 2, "syndykat", "Syndykat[i]")
+		add_mob(/mob/living/carbon/human/ai_boarder/ert/knpc_sim, ert_x, 4 + i * 2, "ert", "ERT[i]")
 	var/time = run_until(120, CALLBACK(src, PROC_REF(fight_over)))
 	var/syndi = team_standing("syndykat")
 	var/ert = team_standing("ert")

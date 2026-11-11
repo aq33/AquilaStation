@@ -12,6 +12,8 @@
 #define KNPC_GRENADE_COOLDOWN (20 SECONDS)
 /// Zapalnik granatu rzuconego przez KNPC (gracz ma 5 s, boarder trzyma chwilę w ręku)
 #define KNPC_GRENADE_FUSE (3 SECONDS)
+/// Tak daleko od uzbrojonego granatu boarder nie podchodzi do leżącego i nie rzuca drugiego (odłamki sięgają 4 pól)
+#define KNPC_GRENADE_DANGER_RANGE 4
 /// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
 #define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
@@ -120,9 +122,10 @@
 	var/mob/living/living_target = isliving(target) ? target : null
 	if(!istype(G) || !G.can_shoot() || living_target?.incapacitated())
 		cover_turf = null
-		if(living_target?.incapacitated() && get_dist(H, target) <= 1)
+		if(living_target?.incapacitated() && (get_dist(H, target) <= 1 || live_grenade_near(get_turf(target))))
 			// Już stoimy przy leżącym. Trasa na jego pole kończyła się wejściem na nie, a potem nieudanym
 			// szukaniem drogi do własnego pola, karą czasową i losowym błądzeniem.
+			// Przy leżącym tyka granat kolegi: z bliska ogłusza mimo ochrony oczu i uszu, więc czekamy na wybuch.
 			path = list()
 			dest = null
 			return
@@ -169,6 +172,8 @@
 	var/turf/target_turf = get_turf(target)
 	if(!throw_path_clear(target_turf))
 		return FALSE // granat zatrzymałby się po drodze, bliżej nas i kolegów
+	if(live_grenade_near(target_turf))
+		return FALSE // kolega już tam rzucił: drugi granat to strata, a po pierwszym wszyscy biegną do ogłuszonych
 	var/enemies_near = 0
 	for(var/atom/movable/enemy as anything in enemies)
 		if(get_dist(enemy, target_turf) <= 2)
@@ -200,6 +205,15 @@
 		H.say(pick("Granat!", "Uwaga, granat!", "Odłamkowy!"), forced = "knpc AI")
 	nade.throw_at(target_turf, 7, 1, H)
 	return TRUE
+
+/// Uzbrojony granat (nasz albo cudzy) w promieniu KNPC_GRENADE_DANGER_RANGE od T
+/datum/component/knpc/proc/live_grenade_near(turf/T)
+	if(!T)
+		return FALSE
+	for(var/obj/item/grenade/nade in range(KNPC_GRENADE_DANGER_RANGE, T))
+		if(nade.active)
+			return TRUE
+	return FALSE
 
 /// Czy rzucony przedmiot doleci do T: między nami a T nie ma ściany ani gęstego obiektu (przez stoły się przerzuca)
 /datum/component/knpc/proc/throw_path_clear(turf/T)
@@ -527,6 +541,7 @@
 #undef KNPC_SHOOTER_MEMORY
 #undef KNPC_GRENADE_COOLDOWN
 #undef KNPC_GRENADE_FUSE
+#undef KNPC_GRENADE_DANGER_RANGE
 #undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY

@@ -334,6 +334,33 @@
 	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
 	TEST_ASSERT(door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker cannot plan a path through a bolted airlock it can hack open")
 
+/// AQUILA - przy tykającym granacie boarder nie biegnie do ogłuszonego wroga i nie rzuca tam drugiego granatu.
+/// W symulacji drugi hukowy ogłuszał kolegów, którzy po pierwszym podbiegli zakuwać (z bliska ochrona oczu i uszu nie pomaga).
+/datum/unit_test/aquila_knpc_waits_for_live_grenade
+
+/datum/unit_test/aquila_knpc_waits_for_live_grenade/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/enemy = allocate(/mob/living/carbon/human, locate(base.x + 4, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/obj/item/grenade/flashbang/thrown = allocate(/obj/item/grenade/flashbang, locate(base.x + 4, base.y + 2, base.z))
+	thrown.active = TRUE // udajemy uzbrojony granat kolegi, bez prawdziwego wybuchu
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai.live_grenade_near(get_turf(enemy)), "Live grenade next to the enemy is not detected")
+	var/obj/item/grenade/flashbang/spare = allocate(/obj/item/grenade/flashbang)
+	boarder.put_in_inactive_hand(spare)
+	ai.next_grenade = 0
+	TEST_ASSERT(!ai.try_throw_grenade(enemy, list(enemy)), "Boarder threw a second grenade next to a live one")
+	enemy.Paralyze(20 SECONDS)
+	ai.next_move = 0
+	ai.tactical_move(enemy)
+	TEST_ASSERT(!ai.dest && !length(ai.path), "Boarder walks up to a downed enemy next to a live grenade")
+	thrown.active = FALSE
+	ai.tactical_move(enemy)
+	TEST_ASSERT_EQUAL(ai.dest, get_turf(enemy), "Boarder does not approach the downed enemy once the grenade is gone")
+	qdel(thrown)
+
 /// AQUILA - boarder bez kajdanek nie zdejmuje ich z rąk zakutych zwłok
 /datum/unit_test/aquila_knpc_no_cuffs_from_corpse
 

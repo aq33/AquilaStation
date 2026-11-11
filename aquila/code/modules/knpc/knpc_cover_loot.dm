@@ -167,6 +167,10 @@
 		return FALSE
 	var/mob/living/carbon/human/H = parent
 	if(get_dist(H, target) > 1)
+		if(live_grenade_near(get_turf(target)))
+			path = list() // czekamy na wybuch granatu przy jeńcu
+			dest = null
+			return TRUE
 		// Nieosiągalny (za szybą, za zamkniętymi drzwiami): zostawiamy go zwykłej walce
 		return pathfind_to(target) != KNPC_PATHFIND_FAIL
 	path = list() // inaczej next_path_step() wchodzi na pole leżącego i przerywa do_mob
@@ -203,7 +207,9 @@
 /datum/component/knpc/proc/finish_cuff(mob/living/carbon/target, obj/item/rewield)
 	var/mob/living/carbon/human/H = parent
 	cuffing = FALSE
-	if(rewield && H.is_holding(rewield) && !QDELETED(H))
+	if(QDELETED(src) || QDELETED(H))
+		return // boardera usunięto w trakcie do_mob
+	if(rewield && H.is_holding(rewield))
 		var/datum/component/two_handed/TH = rewield.GetComponent(/datum/component/two_handed)
 		TH?.wield(H)
 	if(QDELETED(target) || target.handcuffed)
