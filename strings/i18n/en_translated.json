@@ -20352,5 +20352,12 @@
 "- Gdy szef zginie, możesz przejąć dowodzenie przy szafce.": "- If the boss dies, you can take over the gang at the locker.",
 "- Każdy przychód gangu dostaje każdy z was, a ten, kto go przyniósł, o 25% więcej. Punkty dają znaki (im więcej ludzi przechodzi obok, tym więcej), pranie gotówki, sprzedaż broni i narkotyków w szafce oraz zrzuty skrzyń i toreb.": "- Every gang income goes to each of you, and whoever brought it in gets 25% more. Points come from tags (the more people pass by, the more), laundering cash, selling guns and drugs at the locker, and crate and bag drops.",
 "- Pełny mundur (kombinezon i nakrycie głowy) na waszym terenie daje więcej zdrowia i staminy. Bez munduru na terenie wroga tracisz staminę.": "- A full uniform (jumpsuit and headwear) on your territory gives more health and stamina. Without the uniform on enemy territory you lose stamina.",
-"PR 621: gangi i złomiarze": "PR 621: gangs and salvagers"
+"PR 621: gangi i złomiarze": "PR 621: gangs and salvagers",
+"Rywale już noszą tę nazwę.": "Your rivals already use that name.",
+"Rywale już noszą ten mundur.": "Your rivals already wear that uniform.",
+"Tożsamość gangu": "Gang identity",
+"<span class='warning'>Tyle się nie zmieści. Do prania zmieści się jeszcze [GANG_LOCKER_CASH_CAP - cash] kr.</span>": "<span class='warning'>That will not fit. There is room for [GANG_LOCKER_CASH_CAP - cash] more cr. to launder.</span>",
+"<span class='warning'>Kolor tej puszki to nie kolor twojego gangu.</span>": "<span class='warning'>This can's color is not your gang's color.</span>",
+"Pełny mundur na waszym terenie daje premie.": "A full uniform on your territory gives bonuses.",
+"Zatwierdź nazwę i mundur": "Confirm name and uniform"
 }
