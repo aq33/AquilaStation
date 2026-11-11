@@ -3,6 +3,10 @@
 // Wody jest tyle, żeby rozlała się na całe pomieszczenie: cienka warstwa, która szybko paruje.
 // Zemagowany alarm pociągnięty ręcznie i alarm trafiony EMP zalewają całe pomieszczenie po kostki.
 // Alarm z czujnika temperatury (prawdziwy pożar) wody nie wylewa, żeby zwykły pożar nie zalewał statku.
+// Ochrona przed spamem: pociągnięcie przez gracza leje wodę najwyżej raz na SPRINKLER_AREA_COOLDOWN w całym obszarze
+// (wszystkie alarmy pomieszczenia razem; zwykłe zraszanie i zalanie z emaga liczą się osobno, a odstęp startuje dopiero,
+// gdy woda naprawdę poleciała). Zwykłe zraszanie pomija oczyszczacze stojące w niepłonącej kałuży.
+// Alarm da się przełączyć ręką najwyżej raz na FIREALARM_TOGGLE_COOLDOWN (pożarowe drzwi nie trzaskają w kółko).
 
 /// Ile wody na kafel pomieszczenia daje zwykłe zraszanie (ciecz rozlewa się, póki ma ponad LIQUID_HEIGHT_DIVISOR na kafel)
 #define SPRINKLER_WATER_PER_TILE_NORMAL 15
@@ -19,6 +23,16 @@
 #define SPRINKLER_EVAPORATION_MULTIPLIER 3
 /// Odstęp między wylaniami z jednego alarmu (EMP potrafi trafić kilka razy)
 #define SPRINKLER_COOLDOWN (10 SECONDS)
+/// Odstęp między wylaniami wody pociągnięciem alarmu przez gracza, wspólny dla całego obszaru
+#define SPRINKLER_AREA_COOLDOWN (3 MINUTES)
+/// Odstęp między przełączeniami alarmu ręką (włącz/wyłącz)
+#define FIREALARM_TOGGLE_COOLDOWN (3 SECONDS)
+
+/area
+	/// Kiedy w tym obszarze gracz ostatnio wylał wodę ze zraszaczy zwykłym alarmem pożarowym
+	var/last_sprinkle = -SPRINKLER_AREA_COOLDOWN
+	/// Kiedy w tym obszarze gracz ostatnio zalał pomieszczenie zemagowanym alarmem
+	var/last_sprinkler_flood = -SPRINKLER_AREA_COOLDOWN
 
 /datum/liquid_group
 	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa do stanu sprzed zraszacza)
@@ -29,6 +43,19 @@
 /obj/machinery/firealarm
 	/// Kiedy ten alarm ostatnio wylał wodę
 	var/last_sprinkle = -SPRINKLER_COOLDOWN
+	/// Kiedy alarm ostatnio przełączono ręką
+	var/last_manual_toggle = -FIREALARM_TOGGLE_COOLDOWN
+
+/obj/machinery/firealarm/attack_hand(mob/user)
+	if(buildstage == 2 && world.time < last_manual_toggle + FIREALARM_TOGGLE_COOLDOWN)
+		to_chat(user, "<span class='warning'>[src] jeszcze się przełącza!</span>")
+		return TRUE
+	var/area/alarm_area = get_area(src)
+	var/was_on_fire = alarm_area?.fire
+	. = ..()
+	// Odstęp tylko po prawdziwym przełączeniu (bez zasilania albo w trakcie odstępu alarmu nic się nie zmienia)
+	if(buildstage == 2 && alarm_area && alarm_area.fire != was_on_fire)
+		last_manual_toggle = world.time
 
 /obj/machinery/firealarm/alarm(mob/user)
 	var/old_alarm = last_alarm
@@ -58,6 +85,8 @@
 	var/area/alarm_area = get_area(src)
 	if(!alarm_area)
 		return 0
+	if(user && world.time < (flood ? alarm_area.last_sprinkler_flood : alarm_area.last_sprinkle) + SPRINKLER_AREA_COOLDOWN)
+		return 0
 	last_sprinkle = world.time
 	var/list/scrubbers = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber in GLOB.machines)
@@ -65,6 +94,9 @@
 			continue
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
+			continue
+		// Zwykłe zraszanie nie dolewa do stojącej kałuży, chyba że ta płonie (np. paliwo pod oczyszczaczem)
+		if(!flood && !QDELETED(scrubber_turf.liquids) && scrubber_turf.liquids.fire_state == LIQUID_FIRE_STATE_NONE)
 			continue
 		scrubbers += scrubber
 	if(!length(scrubbers))
@@ -102,6 +134,11 @@
 		scrubber.visible_message(flood ? "<span class='danger'>Z [scrubber] bucha strumień wody!</span>" : "<span class='warning'>Z [scrubber] tryska woda!</span>")
 		playsound(scrubber_turf, 'aquila/sound/effects/splash_loud.ogg', flood ? 60 : 35, TRUE)
 		.++
+	if(. && user)
+		if(flood)
+			alarm_area.last_sprinkler_flood = world.time
+		else
+			alarm_area.last_sprinkle = world.time
 	if(. && flood)
 		log_game("Fire alarm at [AREACOORD(src)] flooded [.] scrubbers with water[user ? " (triggered by [key_name(user)])" : " (EMP)"]")
 		message_admins("Alarm przeciwpożarowy w [ADMIN_VERBOSEJMP(src)] zalewa wodą [.] oczyszczaczy[user ? " ([ADMIN_LOOKUPFLW(user)])" : " (EMP)"].")
@@ -115,3 +152,5 @@
 #undef SPRINKLER_WATER_TOTAL_MAX_FLOOD
 #undef SPRINKLER_EVAPORATION_MULTIPLIER
 #undef SPRINKLER_COOLDOWN
+#undef SPRINKLER_AREA_COOLDOWN
+#undef FIREALARM_TOGGLE_COOLDOWN
