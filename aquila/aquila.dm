@@ -947,7 +947,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\regalrat.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\wojtek.dm"
 #include "code\modules\mob\living\simple_animal\hostile\skeleton.dm"
 #include "code\modules\mob\living\simple_animal\parrot.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
@@ -2047,11 +2046,14 @@
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\stop_and_stare.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\stare_at_thing.dm"
 #include "code\modules\mob\living\basic\farm_animals\deer.dm"
+#include "code\modules\mob\living\basic\space_fauna\wojtek.dm"
+#include "code\modules\mob\living\basic\space_fauna\ghost.dm"
 // Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
 #include "code\modules\unit_tests\aquila_basic_deer.dm"
+#include "code\modules\unit_tests\aquila_basic_retaliate_p1.dm"
 #include "code\modules\unit_tests\aquila_basic_cat_house.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"

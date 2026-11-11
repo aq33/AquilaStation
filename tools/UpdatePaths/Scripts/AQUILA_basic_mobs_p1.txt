@@ -1,0 +1,4 @@
+# Tanie basic moby z tg sprzed drzew zachowań, część 2 (tg 926bf40c5a): Wojtek, duch i reszta mobów bez zdolności.
+# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku.
+/mob/living/simple_animal/hostile/retaliate/wojtek : /mob/living/basic/bear/wojtek{@OLD}
+/mob/living/simple_animal/hostile/retaliate/ghost : /mob/living/basic/ghost{@OLD}

@@ -316,7 +316,7 @@
 /turf/open/floor/durasteel,
 /area/crew_quarters/kitchen)
 "aK" = (
-/mob/living/simple_animal/hostile/retaliate/wojtek,
+/mob/living/basic/bear/wojtek,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "aL" = (
