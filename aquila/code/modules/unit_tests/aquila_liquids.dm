@@ -404,9 +404,29 @@
 	TEST_ASSERT(!T.liquids.liquid_group.always_evaporates && T.liquids.liquid_group.evaporation_multiplier == 1, "A flood poured into a sprinkler puddle kept its quick evaporation")
 	aquila_liquids_cleanup(T)
 
+	// Ponowne pociągnięcie (ten sam albo inny alarm w obszarze) przed upływem odstępu obszaru nie leje wody
+	var/area/alarm_area = get_area(fire_alarm)
+	alarm_area.firereset()
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(QDELETED(T.liquids), "A fire alarm pulled again right after the last sprinkle spilled water again")
+	alarm_area.firereset()
+
+	// Przełączanie ręką ma odstęp: drugie kliknięcie od razu nie kasuje alarmu
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_manual_toggle = -INFINITY
+	fire_alarm.attack_hand(puller)
+	TEST_ASSERT(alarm_area.fire, "Clicking the fire alarm did not raise the alarm")
+	fire_alarm.attack_hand(puller)
+	TEST_ASSERT(alarm_area.fire, "Clicking the fire alarm twice in a row reset it despite the toggle cooldown")
+	alarm_area.firereset()
+	aquila_liquids_cleanup(T)
+
 	fire_alarm.obj_flags |= EMAGGED
 	fire_alarm.last_alarm = -INFINITY
 	fire_alarm.last_sprinkle = -INFINITY
+	alarm_area.last_sprinkle = -INFINITY
 	fire_alarm.alarm(puller)
 	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume >= 300, "An emagged fire alarm pulled by a player did not flood the scrubber")
 	aquila_liquids_cleanup(T)
@@ -427,6 +447,28 @@
 	fire_alarm.last_sprinkle = -INFINITY
 	fire_alarm.emp_act(EMP_LIGHT)
 	TEST_ASSERT(QDELETED(T.liquids), "A switched off scrubber spilled water")
+	aquila_liquids_cleanup(T)
+
+/// AQUILA - kałuża wchodząca na kafel zmywa plamy i ślady, a ich reagenty (i krew z krwawych plam) trafiają do kałuży
+/datum/unit_test/aquila_liquid_washes_decals
+
+/datum/unit_test/aquila_liquid_washes_decals/Run()
+	var/turf/open/T = run_loc_floor_bottom_left
+	aquila_liquids_cleanup(T)
+	var/obj/effect/decal/cleanable/blood/stain = new(T)
+	var/obj/effect/decal/cleanable/oil/oil_stain = new(T)
+	var/oil_amount = oil_stain.reagents.total_volume
+	T.add_liquid(/datum/reagent/water, 100)
+	TEST_ASSERT(!QDELETED(T.liquids), "100 units of water made no puddle")
+	TEST_ASSERT(QDELETED(stain), "The puddle did not wash away the blood stain under it")
+	TEST_ASSERT(QDELETED(oil_stain), "The puddle did not wash away the oil stain under it")
+	var/datum/reagents/puddle = T.liquids.liquid_group.reagents
+	TEST_ASSERT(puddle.has_reagent(/datum/reagent/blood), "The washed blood stain added no blood to the puddle")
+	if(oil_amount)
+		TEST_ASSERT(puddle.has_reagent(/datum/reagent/oil), "The washed oil stain added no oil to the puddle")
+	// Samotny kafel kałuży nie jest kwadratem
+	T.liquids.bitmask_smooth_icon()
+	TEST_ASSERT(findtext(T.liquids.icon_state, "puddle-") == 1, "A lone puddle tile uses the square state [T.liquids.icon_state]")
 	aquila_liquids_cleanup(T)
 
 #undef TEST_ASSERT

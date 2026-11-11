@@ -3,6 +3,9 @@
 // Wody jest tyle, żeby rozlała się na całe pomieszczenie: cienka warstwa, która szybko paruje.
 // Zemagowany alarm pociągnięty ręcznie i alarm trafiony EMP zalewają całe pomieszczenie po kostki.
 // Alarm z czujnika temperatury (prawdziwy pożar) wody nie wylewa, żeby zwykły pożar nie zalewał statku.
+// Ochrona przed spamem: pociągnięcie przez gracza leje wodę najwyżej raz na SPRINKLER_AREA_COOLDOWN w całym obszarze
+// (wszystkie alarmy pomieszczenia razem), zwykłe zraszanie pomija oczyszczacze stojące już w kałuży,
+// a sam alarm da się przełączyć najwyżej raz na FIREALARM_TOGGLE_COOLDOWN (pożarowe drzwi nie trzaskają w kółko).
 
 /// Ile wody na kafel pomieszczenia daje zwykłe zraszanie (ciecz rozlewa się, póki ma ponad LIQUID_HEIGHT_DIVISOR na kafel)
 #define SPRINKLER_WATER_PER_TILE_NORMAL 15
@@ -19,6 +22,14 @@
 #define SPRINKLER_EVAPORATION_MULTIPLIER 3
 /// Odstęp między wylaniami z jednego alarmu (EMP potrafi trafić kilka razy)
 #define SPRINKLER_COOLDOWN (10 SECONDS)
+/// Odstęp między wylaniami wody pociągnięciem alarmu przez gracza, wspólny dla całego obszaru
+#define SPRINKLER_AREA_COOLDOWN (3 MINUTES)
+/// Odstęp między przełączeniami alarmu ręką (włącz/wyłącz)
+#define FIREALARM_TOGGLE_COOLDOWN (3 SECONDS)
+
+/area
+	/// Kiedy w tym obszarze gracz ostatnio wylał wodę z zraszaczy (alarm pożarowy)
+	var/last_sprinkle = -SPRINKLER_AREA_COOLDOWN
 
 /datum/liquid_group
 	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa do stanu sprzed zraszacza)
@@ -29,6 +40,16 @@
 /obj/machinery/firealarm
 	/// Kiedy ten alarm ostatnio wylał wodę
 	var/last_sprinkle = -SPRINKLER_COOLDOWN
+	/// Kiedy alarm ostatnio przełączono ręką
+	var/last_manual_toggle = -FIREALARM_TOGGLE_COOLDOWN
+
+/obj/machinery/firealarm/attack_hand(mob/user)
+	if(buildstage == 2 && world.time < last_manual_toggle + FIREALARM_TOGGLE_COOLDOWN)
+		to_chat(user, "<span class='warning'>[src] jeszcze się przełącza!</span>")
+		return TRUE
+	. = ..()
+	if(buildstage == 2)
+		last_manual_toggle = world.time
 
 /obj/machinery/firealarm/alarm(mob/user)
 	var/old_alarm = last_alarm
@@ -58,13 +79,19 @@
 	var/area/alarm_area = get_area(src)
 	if(!alarm_area)
 		return 0
+	if(user && world.time < alarm_area.last_sprinkle + SPRINKLER_AREA_COOLDOWN)
+		return 0
 	last_sprinkle = world.time
+	if(user)
+		alarm_area.last_sprinkle = world.time
 	var/list/scrubbers = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber in GLOB.machines)
 		if(scrubber.welded || !scrubber.on || (scrubber.machine_stat & (NOPOWER|BROKEN)) || get_area(scrubber) != alarm_area)
 			continue
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
+			continue
+		if(!flood && !QDELETED(scrubber_turf.liquids)) // zwykłe zraszanie nie dolewa do stojącej wody
 			continue
 		scrubbers += scrubber
 	if(!length(scrubbers))
@@ -115,3 +142,5 @@
 #undef SPRINKLER_WATER_TOTAL_MAX_FLOOD
 #undef SPRINKLER_EVAPORATION_MULTIPLIER
 #undef SPRINKLER_COOLDOWN
+#undef SPRINKLER_AREA_COOLDOWN
+#undef FIREALARM_TOGGLE_COOLDOWN
