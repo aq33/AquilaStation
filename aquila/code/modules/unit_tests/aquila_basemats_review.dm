@@ -223,5 +223,43 @@
 	lathe.do_print(/obj/item/stack/rods, 1, list(/datum/material/iron = 400), FALSE)
 	TEST_ASSERT_EQUAL(rods.amount, 5 + initial(rods.amount), "A printed rod stack did not merge with a normal one")
 
+/// M4: trwała struktura statku pamięta materiał ściany i podłogi z materiału (i to, że pochodzi z metalgenu)
+/datum/unit_test/aquila_basemats_ship_structure_materials
+
+/datum/unit_test/aquila_basemats_ship_structure_materials/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/east = locate(start.x + 1, start.y, start.z)
+	var/turf/east_2 = locate(start.x + 2, start.y, start.z)
+	var/old_type = east.type
+	var/list/old_baseturfs = east.baseturfs
+	var/old_type_2 = east_2.type
+	var/list/old_baseturfs_2 = east_2.baseturfs
+	var/datum/ship_structure/structure = new(list(start.z), null)
+
+	var/turf/closed/wall/material/wall = east.PlaceOnTop(/turf/closed/wall/material)
+	wall.set_custom_materials(list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT * 2))
+	var/wall_sig = ship_structure_turf_sig(wall)
+	east.ScrapeAway()
+	var/turf/restored_wall = structure.set_turf(east, wall_sig)
+	var/wall_gold = aquila_test_material_amount(restored_wall, /datum/material/gold)
+	var/wall_name = restored_wall.name
+
+	var/turf/open/floor/material/floor = east_2.PlaceOnTop(/turf/open/floor/material)
+	floor.set_custom_materials(list(/datum/material/iron = 500))
+	metal_transmute(floor, /datum/material/diamond)
+	var/floor_sig = ship_structure_turf_sig(floor)
+	east_2.ScrapeAway()
+	var/turf/restored_floor = structure.set_turf(east_2, floor_sig)
+	var/floor_diamond = aquila_test_material_amount(restored_floor, /datum/material/diamond)
+	var/floor_reclaimable = length(restored_floor.get_unit_materials())
+
+	east.ChangeTurf(old_type, old_baseturfs)
+	east_2.ChangeTurf(old_type_2, old_baseturfs_2)
+	qdel(structure)
+	TEST_ASSERT_EQUAL(wall_gold, MINERAL_MATERIAL_AMOUNT * 2, "A saved gold wall came back without its gold")
+	TEST_ASSERT_EQUAL(wall_name, "złota ściana", "A saved gold wall came back with the wrong name")
+	TEST_ASSERT_EQUAL(floor_diamond, 500, "A saved transmuted floor came back without its look")
+	TEST_ASSERT(!floor_reclaimable, "A saved transmuted floor came back with reclaimable material")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
