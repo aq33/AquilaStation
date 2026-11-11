@@ -59,8 +59,8 @@
 
 	if(isliving(parent) && isliving(tamer))
 		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob/living, befriend), tamer)
-		if(inform_tamer)
-			source.balloon_alert(tamer, "oswojony")
+		// AQUILA: always tell the tamer (Bee only tells beast empathy, the rest could not tell whether taming worked)
+		source.balloon_alert(tamer, "oswojony")
 
 	if(HAS_TRAIT(tamer, TRAIT_BEAST_EMPATHY))
 		INVOKE_ASYNC(src, PROC_REF(rename_pet), source, tamer)

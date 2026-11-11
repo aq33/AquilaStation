@@ -2035,6 +2035,7 @@
 #include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_farm.dm"
+#include "code\modules\unit_tests\aquila_basic_clicks.dm"
 #include "code\modules\unit_tests\aquila_basic_gondola_gnome.dm"
 #include "code\modules\unit_tests\aquila_basic_cow.dm"
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
