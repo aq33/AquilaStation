@@ -294,3 +294,25 @@
 #define COMSIG_LIVING_CLIMB_TREE "living_climb_tree"
 ///people the turtle headbutts!
 #define BB_TURTLE_HEADBUTT_VICTIM "turtle_headbutt_victim"
+
+// --- mob abilities and ranged attacks of basic mobs (aq33 framework: tg 926bf40c5a cooldown_action.dm, mobcooldown.dm and
+// ai_blackboard.dm, Bee signals_mob_basic.dm). AB_CHECK_INCAPACITATED is next to the other AB_CHECK_* bits in spells.dm.
+/// Shared cooldown groups of /datum/action/cooldown/mob_cooldown (shared_cooldown): using one ability starts the cooldown of the others in the group
+#define MOB_SHARED_COOLDOWN_1 (1<<0)
+#define MOB_SHARED_COOLDOWN_2 (1<<1)
+#define MOB_SHARED_COOLDOWN_3 (1<<2)
+/// From /datum/action/cooldown/mob_cooldown/proc/PreActivate() after the ability ran: (datum/action/cooldown/ability)
+#define COMSIG_MOB_ABILITY_FINISHED "mob_ability_base_finished"
+///from the ranged_attacks component for basic mobs: (mob/living/basic/firer, atom/target, params)
+#define COMSIG_BASICMOB_PRE_ATTACK_RANGED "basicmob_pre_attack_ranged"
+	#define COMPONENT_CANCEL_RANGED_ATTACK COMPONENT_CANCEL_ATTACK_CHAIN //! Cancel to prevent the attack from happening
+///from the ranged_attacks component for basic mobs: (mob/living/basic/firer, atom/target, params)
+#define COMSIG_BASICMOB_POST_ATTACK_RANGED "basicmob_post_attack_ranged"
+/// Emote or list of emotes the run_emote subtree picks from
+#define BB_EMOTE_KEY "BB_emotes"
+/// Chance per second (percent) that the run_emote subtree runs an emote
+#define BB_EMOTE_CHANCE "BB_EMOTE_CHANCE"
+/// List of traits; targeting_strategy/basic/require_traits only attacks targets with one of them (empty list: anyone)
+#define BB_TARGET_ONLY_WITH_TRAITS "BB_target_only_with_traits"
+/// Generic search range of find_and_set behaviours (food, items)
+#define BB_SEARCH_RANGE "BB_search_range"
