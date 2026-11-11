@@ -24,6 +24,8 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 #define SENSOR_PLAYER_RANGE_MULT 1.5
 /// Passive detection never drops below this, so nothing can sit invisible right next to you
 #define SENSOR_MIN_DETECTION 15
+/// Gracz widzi słaby, niepewny sygnał do tylu zasięgów wykrycia
+#define SENSOR_FAINT_BAND 1.6
 /// Passive detection cap; only an active radar pulse sees further
 #define SENSOR_MAX_DETECTION 100
 
@@ -118,8 +120,14 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	var/dist = overmap_dist(src, observer)
 	if(dist <= sensor_profile) // EMP and other profile penalties
 		return
-	if(dist > get_detection_range(observer))
-		return SENSOR_VISIBILITY_GHOST
+	var/range = get_detection_range(observer)
+	if(dist <= range)
+		return
+	// Słaby sygnał: graczowi kontakt trochę poza zasięgiem wykrycia miga na DRADIS jako niepewny,
+	// ale nie da się go namierzyć (FAINT < TARGETABLE). AI dalej widzi tylko to, co naprawdę wykrywa.
+	if(!observer.ai_controlled && dist <= range * SENSOR_FAINT_BAND)
+		return SENSOR_VISIBILITY_FAINT
+	return SENSOR_VISIBILITY_GHOST
 
 /datum/overmap_ship_weapon/fire_proc_chain(atom/target, mob/living/firer, ai_aim = FALSE, list/inplace_report)
 	. = ..()

@@ -391,8 +391,8 @@ export const DradisContent = (props) => {
       )}
       {!!data.sensor_station && (
         <Box mb={1} color="label">
-          Sensorami steruje konsola sensorów. Cele wyznaczone przez operatora
-          mają żółtą ramkę.
+          Sensorami steruje stanowisko rozpoznania. Cele wyznaczone przez
+          operatora mają żółtą ramkę.
         </Box>
       )}
       {/* AQ EDIT END */}

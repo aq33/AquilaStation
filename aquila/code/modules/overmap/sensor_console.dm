@@ -45,12 +45,12 @@
 	designated_targets = null
 
 /obj/item/circuitboard/computer/ship/sensors
-	name = "konsola sensorów (płytka komputera)"
+	name = "stanowisko rozpoznania (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/dradis/sensors
 
 /datum/design/board/sensor_console
-	name = "Projekt komputera (konsola sensorów)"
-	desc = "Pozwala zbudować konsolę sensorów, stanowisko operatora radaru."
+	name = "Projekt komputera (stanowisko rozpoznania)"
+	desc = "Pozwala zbudować stanowisko rozpoznania, z którego operator steruje sensorami okrętu."
 	id = "sensor_console"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 200, /datum/material/diamond = 1000)
 	build_path = /obj/item/circuitboard/computer/ship/sensors
@@ -62,8 +62,8 @@
 	design_ids += "sensor_console"
 
 /obj/machinery/computer/ship/dradis/sensors
-	name = "konsola sensorów"
-	desc = "Stanowisko operatora radaru. Steruje sensorami okrętu, czyli nasłuchem, radarem aktywnym i impulsem, a wybrane kontakty przekazuje jako cele na DRADIS i do konsoli taktycznej."
+	name = "stanowisko rozpoznania"
+	desc = "Stanowisko operatora rozpoznania. Steruje sensorami okrętu, czyli radarem dookólnym albo kierunkowym, teleskopem, podczerwienią i nasłuchem, a wybrane kontakty przekazuje jako cele na DRADIS i do konsoli taktycznej."
 	icon_screen = "comm_monitor"
 	circuit = /obj/item/circuitboard/computer/ship/sensors
 
@@ -96,7 +96,7 @@
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SensorConsole", "Konsola sensorów")
+		ui = new(user, src, "SensorConsole", "Stanowisko rozpoznania")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -141,7 +141,7 @@
 				linked.designated_targets[other] = SENSOR_DESIGNATION_SECONDARY
 	LAZYSET(linked.designated_targets, target, designation)
 	var/label = linked.get_contact_label(target, linked.is_contact_identified(target, sensor_range))
-	var/message = "<span class='notice'>Operator sensorów: [designation == SENSOR_DESIGNATION_PRIMARY ? "cel główny" : "cel drugorzędny"] [label], namiar [round(overmap_angle(linked, target))]°, [round(overmap_dist(linked, target))] pól.</span>"
+	var/message = "<span class='notice'>Operator rozpoznania: [designation == SENSOR_DESIGNATION_PRIMARY ? "cel główny" : "cel drugorzędny"] [label], namiar [round(overmap_angle(linked, target))]°, [round(overmap_dist(linked, target))] pól.</span>"
 	var/list/crew = list()
 	crew |= linked.gunner
 	crew |= linked.pilot
@@ -233,16 +233,20 @@
 			continue
 		var/kind
 		var/name
+		var/detail
 		if(istype(thing, /obj/effect/overmap_anomaly))
 			var/obj/effect/overmap_anomaly/anomaly = thing
 			kind = "anomaly"
 			name = anomaly.scanned ? anomaly.name : "anomalia"
+			detail = anomaly.scanned ? "zbadana" : "niezbadana"
 		else if(istype(thing, /obj/structure/overmap/asteroid))
 			var/obj/structure/overmap/asteroid/rock = thing
 			if(overmap_dist(linked, rock) > max(sensor_range * 2, rock.sensor_profile) || rock.is_sensor_visible(linked) < SENSOR_VISIBILITY_FAINT)
 				continue
 			kind = istype(rock, /obj/structure/overmap/asteroid/shipbreak_wreck) ? "wreck" : "asteroid"
 			name = rock.name
+			if(kind == "asteroid")
+				detail = "wydobycie: poziom [rock.required_tier]"
 		else
 			continue
 		var/dx = thing.x - linked.x
@@ -251,7 +255,7 @@
 			dx -= dx > 0 ? world.maxx : -world.maxx
 		if(abs(dy) > world.maxy / 2)
 			dy -= dy > 0 ? world.maxy : -world.maxy
-		. += list(list("kind" = kind, "name" = name, "dx" = dx, "dy" = dy))
+		. += list(list("id" = "\ref[thing]", "kind" = kind, "name" = name, "detail" = detail, "dx" = dx, "dy" = dy))
 
 /// Every DRADIS on a ship with a sensor console follows the operator: its range and its contact labels.
 /obj/machinery/computer/ship/dradis/ui_data(mob/user)
@@ -266,6 +270,12 @@
 		return
 	data["sensor_station"] = follows_station
 	linked.prune_designations()
+	// Namiar usłyszanego radaru wroga zna tylko operator rozpoznania; DRADIS mostka go nie pokazuje
+	if(follows_station)
+		var/list/blips = data["ships"]
+		for(var/list/blip as anything in blips.Copy())
+			if(blip["emission"])
+				blips -= list(blip)
 	for(var/list/blip as anything in data["ships"])
 		var/obj/structure/overmap/OM = locate(blip["id"])
 		if(!istype(OM) || OM == linked || istype(OM, /obj/structure/overmap/asteroid) || OM.faction == linked.faction)

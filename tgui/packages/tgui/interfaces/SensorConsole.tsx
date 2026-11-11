@@ -83,15 +83,33 @@ type Data = {
   camera_reach: number;
   turn: number;
   pulse_at: number;
+  pulse_age: number;
+  pulse_width: number;
+  pulse_bearing: number;
+  pulse_reach: number;
+  radar_beam: number;
+  radar_reach: number;
   objects: ScopeObject[];
 };
 
 type ScopeObject = {
+  id: string;
   kind: 'asteroid' | 'wreck' | 'anomaly';
   name: string;
+  detail: string | null;
   dx: number;
   dy: number;
 };
+
+const OBJECT_KIND = {
+  asteroid: 'asteroida',
+  wreck: 'wrak',
+  anomaly: 'anomalia',
+};
+
+// Fala impulsu dochodzi do granicy zasięgu w tyle sekund
+const PULSE_WAVE_SECONDS = 1.8;
+const LABEL_CHAR_PX = 6.6;
 
 const OBJECT_COLOR = {
   asteroid: '#8a8f98',
@@ -385,6 +403,7 @@ type ScopeProps = {
   range: number;
   contacts: Contact[];
   heading: number;
+  pulseAge: number;
   selected: string | null;
   onSelect: (id: string) => void;
 };
@@ -394,7 +413,7 @@ const DRAG_SEND_MS = 120;
 
 const Scope = (props: ScopeProps) => {
   const { act, data } = useBackend<Data>();
-  const { range, contacts, heading, selected, onSelect } = props;
+  const { range, contacts, heading, pulseAge, selected, onSelect } = props;
   const markers = data.markers || [];
   const objects = data.objects || [];
   const [dragBearing, setDragBearing] = useState<number | null>(null);
@@ -487,6 +506,47 @@ const Scope = (props: ScopeProps) => {
     }
   }
   const ha = ((heading - 90) * Math.PI) / 180;
+  const labelled = new Set<string>();
+  const placed: [number, number, number, number][] = [];
+  const contactRank = { hostile: 0, unknown: 1, friend: 2 };
+  const candidates = [
+    ...[...contacts]
+      .sort(
+        (a, b) =>
+          (b.designation ? 1 : 0) - (a.designation ? 1 : 0) ||
+          contactRank[sideOf(a)] - contactRank[sideOf(b)],
+      )
+      .map((c) => ({
+        id: c.id,
+        dx: c.dx,
+        dy: c.dy,
+        text: shortOf(c) + (c.designation === 'primary' ? ' · CEL' : ''),
+        offset: 10,
+      })),
+    ...objects.map((o) => ({
+      id: o.id,
+      dx: o.dx,
+      dy: o.dy,
+      text: o.name,
+      offset: 8,
+    })),
+  ];
+  for (const item of candidates) {
+    const [px, py] = toPoint(item.dx, item.dy);
+    const box: [number, number, number, number] = [
+      px + item.offset,
+      py - 20,
+      px + item.offset + item.text.length * LABEL_CHAR_PX,
+      py - 6,
+    ];
+    const hit = placed.some(
+      (b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1],
+    );
+    if (!hit) {
+      placed.push(box);
+      labelled.add(item.id);
+    }
+  }
   return (
     <svg
       width={SCOPE}
@@ -580,33 +640,45 @@ const Scope = (props: ScopeProps) => {
             </text>
           );
         })}
-      {!!data.pulse_active && (
-        <g key={'pulse' + data.pulse_at}>
-          <circle
-            cx={CENTER}
-            cy={CENTER}
-            r={0}
-            fill="rgba(94,224,138,0.06)"
-            stroke="rgba(94,224,138,0.9)"
-            strokeWidth={3}
-          >
-            <animate
-              attributeName="r"
-              from="0"
-              to={RADIUS}
-              dur="1.8s"
-              fill="freeze"
-            />
-            <animate
-              attributeName="opacity"
-              from="1"
-              to="0.15"
-              dur="1.8s"
-              fill="freeze"
-            />
-          </circle>
-        </g>
+      {!!data.cones && !!data.radar_beam && telescopeBearing !== null && (
+        <path
+          d={wedgePath(
+            telescopeBearing,
+            data.radar_beam / 2,
+            Math.min(data.radar_reach * scale, RADIUS),
+          )}
+          fill="none"
+          stroke="rgba(94,224,138,0.45)"
+          strokeDasharray="6 4"
+        />
       )}
+      {!!data.pulse_active &&
+        (() => {
+          const reachPx = Math.min(data.pulse_reach * scale, RADIUS);
+          const progress = Math.min(pulseAge / PULSE_WAVE_SECONDS, 1);
+          const r = Math.max(1, reachPx * progress);
+          const fade = progress < 1 ? 0.9 : 0.25;
+          if (data.pulse_width) {
+            return (
+              <path
+                d={wedgePath(data.pulse_bearing, data.pulse_width / 2, r)}
+                fill="rgba(94,224,138,0.08)"
+                stroke={'rgba(94,224,138,' + fade + ')'}
+                strokeWidth={progress < 1 ? 3 : 1}
+              />
+            );
+          }
+          return (
+            <circle
+              cx={CENTER}
+              cy={CENTER}
+              r={r}
+              fill="rgba(94,224,138,0.05)"
+              stroke={'rgba(94,224,138,' + fade + ')'}
+              strokeWidth={progress < 1 ? 3 : 1}
+            />
+          );
+        })()}
       {objects.map((thing) => {
         const [x, y, outside] = toPoint(thing.dx, thing.dy);
         if (outside) {
@@ -614,8 +686,40 @@ const Scope = (props: ScopeProps) => {
         }
         const colour = OBJECT_COLOR[thing.kind];
         return (
-          <g key={thing.kind + thing.dx + '_' + thing.dy}>
+          <g
+            key={thing.id}
+            style={{ cursor: 'pointer' }}
+            onMouseDown={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect(thing.id);
+            }}
+          >
             <title>{thing.name}</title>
+            {selected === thing.id && (
+              <circle
+                cx={x}
+                cy={y}
+                r={12}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={1}
+              />
+            )}
+            {labelled.has(thing.id) && (
+              <text
+                x={x + 8}
+                y={y - 6}
+                fontSize="11"
+                stroke="#08110f"
+                strokeWidth={3}
+                paintOrder="stroke"
+                fill={colour}
+              >
+                {thing.name}
+              </text>
+            )}
+            <circle cx={x} cy={y} r={10} fill="transparent" />
             {thing.kind === 'asteroid' && (
               <path
                 d={`M${x - 4},${y - 1} L${x - 1},${y - 4} L${x + 3},${y - 3} L${x + 4},${y + 2} L${x},${y + 4} L${x - 3},${y + 3} Z`}
@@ -653,6 +757,7 @@ const Scope = (props: ScopeProps) => {
             key={contact.id}
             style={{ cursor: 'pointer' }}
             opacity={outside ? 0.55 : 1}
+            onMouseDown={(event) => event.stopPropagation()}
             onClick={(event) => {
               event.stopPropagation();
               onSelect(contact.id);
@@ -729,6 +834,7 @@ const Scope = (props: ScopeProps) => {
             <text
               x={x + 10}
               y={y - 8}
+              display={labelled.has(contact.id) ? undefined : 'none'}
               fontSize="12"
               fontWeight="bold"
               stroke="#08110f"
@@ -905,12 +1011,41 @@ const Sensors = (props: { contacts: Contact[] }) => {
         >
           {data.radar_mode ? (
             <span style={{ color: COLOR.bad }}>
-              aktywny: słyszy nas każdy wróg
+              {data.radar_beam
+                ? 'aktywny: słyszą nas okręty w wiązce'
+                : 'aktywny: słyszy nas każdy wróg'}
             </span>
           ) : (
             <span style={{ color: COLOR.good }}>nasłuch: nas nie słychać</span>
           )}
         </SensorRow>
+        {!!data.cones && (
+          <>
+            <span />
+            <span style={{ color: COLOR.muted, fontSize: '12px' }}>Wiązka</span>
+            <span style={{ color: COLOR.ink2, fontSize: '12px' }}>
+              {data.radar_beam ? (
+                <>
+                  {data.radar_beam}° wzdłuż teleskopu · do {data.radar_reach}{' '}
+                  pól
+                </>
+              ) : (
+                <>dookoła · do {data.radar_reach} pól</>
+              )}
+            </span>
+            <span>
+              {[0, 30, 60, 90].map((width) => (
+                <Button
+                  key={width}
+                  selected={data.radar_beam === width}
+                  onClick={() => act('set_radar_beam', { width: width })}
+                >
+                  {width ? width + '°' : 'Dookólna'}
+                </Button>
+              ))}
+            </span>
+          </>
+        )}
         <span />
         <span />
         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -1116,7 +1251,7 @@ const ContactList = (props: {
                           {suite[0]}
                         </>
                       ) : (
-                        '—'
+                        <span style={{ color: COLOR.muted }}>słaby sygnał</span>
                       )}
                     </td>
                   )}
@@ -1317,6 +1452,49 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
   );
 };
 
+const ObjectCard = (props: { thing: ScopeObject }) => {
+  const { thing } = props;
+  const label: CSSProperties = { color: COLOR.muted };
+  const fact: CSSProperties = { fontFamily: MONO, fontWeight: 500 };
+  return (
+    <Box style={card}>
+      <div style={sectionTitle}>Wybrany obiekt</div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '6px',
+        }}
+      >
+        <span style={swatch(OBJECT_COLOR[thing.kind])} />
+        <b style={{ fontSize: '15px' }}>{thing.name}</b>
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr auto 1fr',
+          gap: '3px 10px',
+          fontSize: '12.5px',
+        }}
+      >
+        <span style={label}>rodzaj</span>
+        <span style={fact}>{OBJECT_KIND[thing.kind]}</span>
+        <span style={label}>odległość</span>
+        <span style={fact}>{distanceOf(thing)} pól</span>
+        <span style={label}>namiar</span>
+        <span style={fact}>{pad(bearingOf(thing)) + '°'}</span>
+        {!!thing.detail && (
+          <>
+            <span style={label}>stan</span>
+            <span style={fact}>{thing.detail}</span>
+          </>
+        )}
+      </div>
+    </Box>
+  );
+};
+
 const PassedToBridge = (props: { contacts: Contact[] }) => {
   const { data } = useBackend<Data>();
   const designated = props.contacts
@@ -1424,6 +1602,10 @@ export const SensorConsole = (props) => {
   const turned = (data.heading || 0) + (data.turn || 0) * Math.min(elapsed, 1);
   const heading = ((turned % 360) + 360) % 360;
   const current = contacts.find((contact) => contact.id === selected);
+  const currentObject = (data.objects || []).find(
+    (thing) => thing.id === selected,
+  );
+  const pulseAge = (data.pulse_age || 0) + elapsed;
   return (
     <Window width={1140} height={740}>
       <Window.Content
@@ -1454,6 +1636,7 @@ export const SensorConsole = (props) => {
                   range={SCOPE_RANGES[rangeIndex]}
                   contacts={contacts}
                   heading={heading}
+                  pulseAge={pulseAge}
                   selected={selected}
                   onSelect={setSelected}
                 />
@@ -1486,7 +1669,11 @@ export const SensorConsole = (props) => {
                 selected={selected}
                 onSelect={setSelected}
               />
-              <ContactCard contact={current} />
+              {currentObject ? (
+                <ObjectCard thing={currentObject} />
+              ) : (
+                <ContactCard contact={current} />
+              )}
             </Box>
           </Box>
           <PassedToBridge contacts={contacts} />

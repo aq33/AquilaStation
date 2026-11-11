@@ -22,8 +22,12 @@
 	ship.forceMove(locate(100, 60, z))
 	enemy.forceMove(locate(113, 60, z)) // 13 pól na wschód
 	ship.angle = 0
-	var/fail = check_console() || check_range_mult() || check_telescope() || check_report()
+	var/was_signatures = GLOB.sensor_signature_enabled
+	GLOB.sensor_signature_enabled = TRUE
+	var/fail = check_console() || check_range_mult() || check_telescope() || check_report() || check_radar_beam() || check_faint()
+	GLOB.sensor_signature_enabled = was_signatures
 	ship.designated_targets = null
+	ship.last_radar_pulse = 0
 	GLOB.player_sensor_suites_enabled = was_player
 	GLOB.ai_sensor_suites_enabled = was_suites
 	GLOB.ai_sensor_cones_enabled = was_cones
@@ -105,3 +109,50 @@
 		return "Radar bez impulsu nie był wyłączony (stan [state_of(SENSOR_LIDAR)])"
 	ship.angle = 0
 	enemy.thrust_heat = 0
+
+/// Radar kierunkowy: wiązka sięga dalej niż impuls dookólny, widzi tylko w swoim wycinku i tylko tam ją słychać
+/datum/unit_test/aquila_player_sensors/proc/check_radar_beam()
+	var/to_enemy = overmap_angle(ship, enemy)
+	if(ship.get_radar_reach(0) != 100)
+		return "Impuls dookólny gracza nie sięgał 100 pól ([ship.get_radar_reach(0)])"
+	if(ship.get_radar_reach(60) <= ship.get_radar_reach(0))
+		return "Wiązka 60° nie sięgała dalej niż impuls dookólny ([ship.get_radar_reach(60)])"
+	ship.last_radar_pulse = world.time
+	ship.radar_pulse_width = 60
+	ship.radar_pulse_bearing = to_enemy
+	if(ship.get_player_lidar_range(enemy) != ship.get_radar_reach(60))
+		return "Cel w wiązce nie był widoczny na pełny zasięg wiązki ([ship.get_player_lidar_range(enemy)])"
+	ship.radar_pulse_bearing = SIMPLIFY_DEGREES(to_enemy + 90)
+	if(ship.get_player_lidar_range(enemy))
+		return "Wiązka radaru widziała cel 90° obok swojego kierunku"
+	LAZYREMOVE(enemy.radar_emissions, ship)
+	ship.broadcast_radar_emission(300, ship.radar_pulse_bearing, 30)
+	if(LAZYACCESS(enemy.radar_emissions, ship))
+		return "Okręt poza wiązką usłyszał impuls kierunkowy"
+	ship.broadcast_radar_emission(300, to_enemy, 30)
+	if(!LAZYACCESS(enemy.radar_emissions, ship))
+		return "Okręt w wiązce nie usłyszał impulsu kierunkowego"
+	LAZYREMOVE(enemy.radar_emissions, ship)
+	ship.radar_pulse_width = 0
+	if(ship.get_player_lidar_range(enemy) != 100)
+		return "Impuls dookólny nie widział celu 13 pól obok"
+	ship.last_radar_pulse = 0
+	if(ship.get_player_lidar_range(enemy))
+		return "Radar widział cel bez impulsu"
+
+/// Słaby sygnał: kontakt trochę poza zasięgiem wykrycia widać jako niepewny, ale nie da się go namierzyć
+/datum/unit_test/aquila_player_sensors/proc/check_faint()
+	enemy.thrust_heat = 0
+	enemy.inertial_dampeners = FALSE
+	ship.telescope_mode = "kurs"
+	ship.angle = SIMPLIFY_DEGREES(overmap_angle(ship, enemy) + 180) // teleskop patrzy w drugą stronę
+	var/range = enemy.get_detection_range(ship)
+	var/dist = overmap_dist(ship, enemy)
+	if(dist <= range || dist > range * 1.6)
+		return "Ustawienie testu słabego sygnału nie wyszło (odległość [dist], zasięg [range])"
+	var/visible = enemy.is_sensor_visible(ship)
+	ship.angle = 0
+	if(visible != SENSOR_VISIBILITY_FAINT)
+		return "Kontakt tuż poza zasięgiem wykrycia nie był słabym sygnałem (widoczność [visible])"
+	if(visible >= SENSOR_VISIBILITY_TARGETABLE)
+		return "Słaby sygnał dało się namierzyć"

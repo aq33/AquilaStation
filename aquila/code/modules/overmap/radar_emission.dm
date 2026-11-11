@@ -56,13 +56,18 @@
 	else
 		OM.broadcast_radar_emission(sensor_range)
 
-/// Every hostile ship within range on our z level hears the pulse
-/obj/structure/overmap/proc/broadcast_radar_emission(range)
+/// Every hostile ship within range on our z level hears the pulse. A directional pulse (beam_half > 0, player_sensors.dm)
+/// is heard only by ships inside its beam.
+/obj/structure/overmap/proc/broadcast_radar_emission(range, beam_bearing, beam_half = 0)
 	for(var/obj/structure/overmap/listener as anything in GLOB.overmap_objects)
 		if(QDELETED(listener) || listener == src || listener.z != z || listener.faction == faction || istype(listener, /obj/structure/overmap/asteroid))
 			continue
 		if(overmap_dist(src, listener) > range)
 			continue
+		if(beam_half > 0)
+			var/bearing = overmap_angle(src, listener)
+			if(!isnull(bearing) && abs(closer_angle_difference(beam_bearing, bearing)) > beam_half)
+				continue
 		listener.hear_radar_emission(src)
 
 /obj/structure/overmap/proc/hear_radar_emission(obj/structure/overmap/emitter)

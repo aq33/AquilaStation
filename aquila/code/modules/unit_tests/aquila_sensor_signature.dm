@@ -54,26 +54,31 @@
 		var/who = ai ? "AI" : "player"
 		make_quiet()
 		var/range = target.get_detection_range(observer)
-		place(range + 5)
+		// Gracz widzi tuż za zasięgiem słaby, nienamierzalny sygnał (do 1,6 zasięgu); AI nic
+		place(round(range * 1.3))
+		var/faint = target.is_sensor_visible(observer)
+		if(ai ? faint != SENSOR_VISIBILITY_GHOST : faint != SENSOR_VISIBILITY_FAINT)
+			return "A quiet ship [round(range * 1.3)] tiles away had visibility [faint] for a [who] observer with a detection range of [range]"
+		place(round(range * 1.6) + 3)
 		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_GHOST)
-			return "A quiet ship [range + 5] tiles away was visible to a [who] observer with a detection range of [range]"
+			return "A quiet ship [round(range * 1.6) + 3] tiles away was visible to a [who] observer with a detection range of [range]"
 		place(max(1, range - 3))
 		if(target.is_sensor_visible(observer) == SENSOR_VISIBILITY_GHOST)
 			return "A quiet ship inside the detection range ([range]) was hidden from a [who] observer"
 
 		// A pulse no longer reveals the emitter outright: the listener only hears an emission
-		place(range + 5)
+		place(round(range * 1.6) + 3)
 		target.last_radar_pulse = world.time
 		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_GHOST)
 			return "A ship that pulsed its radar was fully revealed to a [who] observer outside its detection range"
 		target.last_radar_pulse = -INFINITY
 		LAZYREMOVE(observer.radar_emissions, target)
-		target.broadcast_radar_emission(range + 10)
+		target.broadcast_radar_emission(round(range * 1.6) + 13)
 		var/list/estimate = observer.get_emission_estimate(target)
 		if(!estimate)
 			return "A [who] observer in range did not hear a radar pulse"
-		if(abs(estimate[2] - (range + 5)) > estimate[4] + 1)
-			return "The emission distance estimate ([estimate[2]] ± [estimate[4]]) missed the real distance ([range + 5])"
+		if(abs(estimate[2] - (round(range * 1.6) + 3)) > estimate[4] + 1)
+			return "The emission distance estimate ([estimate[2]] ± [estimate[4]]) missed the real distance ([round(range * 1.6) + 3])"
 		LAZYREMOVE(observer.radar_emissions, target)
 
 		// Regression: the exceptions must still reveal a ship far outside its passive range
@@ -81,7 +86,7 @@
 		if(target.is_sensor_visible(observer) != SENSOR_VISIBILITY_FULL)
 			return "A ship painting the [who] observer was not fully visible to it"
 		target.target_painted = list()
-		target.sensor_profile = range + 10
+		target.sensor_profile = round(range * 1.6) + 8
 		if(target.is_sensor_visible(observer) == SENSOR_VISIBILITY_GHOST)
 			return "A ship with a sensor profile penalty (EMP) was hidden from a [who] observer"
 		target.sensor_profile = 0

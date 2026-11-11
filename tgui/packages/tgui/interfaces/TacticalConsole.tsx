@@ -238,7 +238,7 @@ export const TacticalConsole = (props) => {
           </Section>
           {/* AQ EDIT START - cele od operatora sensorów (aquila/code/modules/overmap/sensor_console.dm) */}
           {!!data.sensor_station && (
-            <Section title="Cele od operatora sensorów:">
+            <Section title="Cele od operatora rozpoznania:">
               {(data.designated_targets || []).length === 0 && (
                 <Box color="label">
                   Operator nie przekazał celów. Możesz namierzać sam z DRADIS.

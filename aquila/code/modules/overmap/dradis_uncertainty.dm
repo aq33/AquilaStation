@@ -46,7 +46,7 @@
 		var/dist = overmap_dist(linked, OM)
 		if(dist <= max(sensor_range, OM.sensor_profile)) // Identified contacts are exact, same rule as the base proc
 			continue
-		var/radius = SENSOR_UNCERTAINTY_MIN + (SENSOR_UNCERTAINTY_MAX - SENSOR_UNCERTAINTY_MIN) * clamp(dist / OM.get_detection_range(linked), 0, 1)
+		var/radius = SENSOR_UNCERTAINTY_MIN + (SENSOR_UNCERTAINTY_MAX - SENSOR_UNCERTAINTY_MIN) * clamp(dist / OM.get_detection_range(linked), 0, 1.6) // poza zasięgiem (słaby sygnał) okrąg rośnie dalej
 		var/list/offset = linked.get_sensor_offset(OM, radius)
 		blip["x"] += offset[1]
 		blip["y"] += offset[2]
