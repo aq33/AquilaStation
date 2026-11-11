@@ -1,4 +1,5 @@
 // AQUILA - konsola zgłoszeń (aquila/code/game/machinery/requests_console_ui.dm)
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -49,6 +50,21 @@ type Data = {
   announce_auth: boolean;
   departments: Department[];
   messages: string[];
+  bounty_view: boolean;
+  bounties?: Bounty[];
+};
+
+// AQUILA: zakładka „Zlecenia” (requests_console_ui_bounties.dm)
+type Bounty = {
+  name: string;
+  description: string;
+  reward: string;
+  progress: string;
+  source: string;
+  where: string;
+  department: string;
+  urgent: boolean;
+  own?: boolean;
 };
 
 const NEW_MESSAGE_NOTICE = [
@@ -74,9 +90,10 @@ export const RequestsConsole = (_) => {
   const { data } = useBackend<Data>();
   const { screen } = data;
   return (
-    <Window width={480} height={520}>
+    <Window width={520} height={600}>
       <Window.Content scrollable>
-        {screen === SCREEN_MAIN && <MainScreen />}
+        {screen === SCREEN_MAIN && !data.bounty_view && <MainScreen />}
+        {screen === SCREEN_MAIN && !!data.bounty_view && <BountiesScreen />}
         {(screen === SCREEN_ASSISTANCE ||
           screen === SCREEN_SUPPLIES ||
           screen === SCREEN_RELAY) && <DepartmentScreen />}
@@ -97,6 +114,79 @@ export const RequestsConsole = (_) => {
         {screen === SCREEN_ANNOUNCE && <AnnounceScreen />}
       </Window.Content>
     </Window>
+  );
+};
+
+const BountiesScreen = () => {
+  const { act, data } = useBackend<Data>();
+  const bounties = data.bounties || [];
+  const [filter, setFilter] = useState('');
+  const departments = Array.from(
+    new Set(bounties.map((b) => b.department)),
+  ).sort();
+  const shown = filter
+    ? bounties.filter((b) => b.department === filter)
+    : bounties;
+  return (
+    <Section
+      title={`Zlecenia (${shown.length})`}
+      buttons={
+        <Button
+          icon="arrow-left"
+          onClick={() => act('bounty_view', { show: 0 })}
+        >
+          Wróć
+        </Button>
+      }
+    >
+      <Box mb={1}>
+        <Button selected={!filter} onClick={() => setFilter('')}>
+          Wszystkie
+        </Button>
+        {departments.map((department) => (
+          <Button
+            key={department}
+            selected={filter === department}
+            onClick={() => setFilter(department)}
+          >
+            {department}
+          </Button>
+        ))}
+      </Box>
+      {shown.length === 0 && (
+        <NoticeBox>Na statku nie ma teraz zleceń.</NoticeBox>
+      )}
+      {shown.map((bounty, i) => (
+        <Section
+          key={`${bounty.source}|${bounty.name}|${bounty.where}|${i}`}
+          title={
+            <>
+              {!!bounty.urgent && (
+                <Box inline color="bad" mr={1}>
+                  PILNE
+                </Box>
+              )}
+              {bounty.name}
+            </>
+          }
+          buttons={
+            <Box inline bold color="good">
+              {bounty.reward}
+            </Box>
+          }
+        >
+          <Box color={bounty.own ? 'good' : 'label'} mb={0.5}>
+            {bounty.source} · {bounty.department} · oddaj: {bounty.where}
+          </Box>
+          <Box>{bounty.description}</Box>
+          {!!bounty.progress && (
+            <Box mt={0.5} color="average">
+              Postęp: {bounty.progress}
+            </Box>
+          )}
+        </Section>
+      ))}
+    </Section>
   );
 };
 
@@ -135,6 +225,13 @@ const MainScreen = () => {
           onClick={() => act('set_screen', { screen: SCREEN_MESSAGES })}
         >
           Wiadomości
+        </Button>
+        <Button
+          fluid
+          icon="clipboard-list"
+          onClick={() => act('bounty_view', { show: 1 })}
+        >
+          Zlecenia na statku
         </Button>
       </Section>
       <Section title="Wyślij">
@@ -176,7 +273,9 @@ const MainScreen = () => {
       </Section>
       <Section title="Alarm">
         {emergency ? (
-          <NoticeBox danger>{emergency}: wysłano wezwanie na to miejsce.</NoticeBox>
+          <NoticeBox danger>
+            {emergency}: wysłano wezwanie na to miejsce.
+          </NoticeBox>
         ) : (
           <Stack>
             <Stack.Item grow>
@@ -184,9 +283,7 @@ const MainScreen = () => {
                 fluid
                 color="bad"
                 icon="shield-alt"
-                onClick={() =>
-                  act('emergency', { type: EMERGENCY_SECURITY })
-                }
+                onClick={() => act('emergency', { type: EMERGENCY_SECURITY })}
               >
                 Ochrona
               </Button>

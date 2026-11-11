@@ -19,6 +19,8 @@ type DefaultNode = {
   prereq_ids?: number[];
   design_ids?: number[];
   unlock_ids?: number[];
+  /** AQUILA: kategoria w oknie (techweb_categories.dm) */
+  category?: string;
 };
 
 // Węzeł po rozpakowaniu ID
@@ -30,6 +32,7 @@ export type NodeCache = {
   prereq_ids: string[];
   design_ids: string[];
   unlock_ids: string[];
+  category?: string;
 };
 
 export type DesignCache = {

@@ -229,6 +229,7 @@
 #include "code\game\sound_dampening.dm"
 #include "code\game\machinery\newscaster.dm"
 #include "code\game\machinery\requests_console_ui.dm"
+#include "code\game\machinery\requests_console_ui_bounties.dm"
 #include "code\game\machinery\spaceheater.dm"
 #include "code\datums\fonts\fonts_datum.dm"
 #include "code\datums\fonts\tiny_unicode.dm"
@@ -1103,6 +1104,7 @@
 #include "code\modules\research\designs\weapon_designs.dm"
 #include "code\modules\research\designs\power_designs.dm"
 #include "code\modules\research\fabricator_ui.dm"
+#include "code\modules\research\genetics\gene_fridge.dm"
 #include "code\modules\research\machinery\_production.dm"
 #include "code\modules\research\master_server.dm"
 #include "code\modules\research\ai_hardware.dm"
@@ -1130,6 +1132,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
 #include "code\modules\test_chamber\kits\pr_605_strzelanie.dm"
 #include "code\modules\test_chamber\kits\pr_607_tg_sprite.dm"
 #include "code\modules\test_chamber\kits\pr_607_polonium.dm"
@@ -1151,7 +1154,6 @@
 // #include "code\modules\test_chamber\kits\pr_506_zapachy.dm"
 #include "code\modules\test_chamber\kits\pr_558_konsola_pilota.dm"
 // #include "code\modules\test_chamber\kits\pr_492_serwery_ai.dm"
-// #include "code\modules\test_chamber\kits\pr_487_xeno_rynek.dm"
 // #include "code\modules\test_chamber\kits\pr_496_bingle.dm"
 // #include "code\modules\test_chamber\kits\pr_497_glod.dm"
 // #include "code\modules\test_chamber\kits\pr_499_kable_ethernet.dm"
@@ -1905,10 +1907,12 @@
 #include "code\modules\research\designs\wiremod\shell_designs.dm"
 #include "code\modules\research\designs\wiremod\string_designs.dm"
 #include "code\modules\research\designs\wiremod\utility_designs.dm"
+#include "code\modules\research\techweb\techweb_categories.dm"
 #include "code\modules\research\techweb\wiremod_nodes.dm"
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_konsole_przejrzystosc.dm"
 #include "code\modules\unit_tests\aquila_ekonomia_malf_statystyki.dm"
 #include "code\modules\unit_tests\aquila_dostepy_dzialy.dm"
 #include "code\modules\unit_tests\aquila_radiation.dm"

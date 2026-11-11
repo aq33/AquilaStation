@@ -84,7 +84,7 @@
 /// Exploration drone unlockables ///
 
 /datum/supply_pack/exploration
-	group = "Outsourced"
+	group = "Zlecone na zewnątrz"
 	special = TRUE
 
 /datum/supply_pack/exploration/scrapyard

@@ -101,7 +101,31 @@ type SurgeryProgress = {
   next: string[];
 };
 
+type WoundEntry = {
+  name: string;
+  /** blunt, slash, pierce, burn (WOUND_* z DM) */
+  type?: string | null;
+  /** 1 umiarkowana, 2 ciężka, 3 krytyczna */
+  severity: number;
+  treated: boolean;
+};
+
+type SenseEntry = {
+  name: string;
+  text: string;
+  healthy: boolean;
+};
+
 type Data = {
+  wounds?: { [zone: string]: WoundEntry[] };
+  blood_compatible?: string | null;
+  stamina?: string;
+  quirks?: string | null;
+  brain_activity?: string | null;
+  genetic_stability?: string | null;
+  time_of_death?: string | null;
+  senses?: SenseEntry[] | null;
+  implants?: string[];
   surgeries?: SurgeryProgress[] | null;
   target?: string;
   is_dead?: boolean;
@@ -193,8 +217,38 @@ export const HealthAnalyzer = (props) => {
                 const active = (data.injuries?.[part.zone] ?? []).filter(
                   isActive,
                 );
+                const wounds = data.wounds?.[part.zone] ?? [];
+                const worstWound = wounds.reduce<WoundEntry | null>(
+                  (worst, wound) =>
+                    !worst ||
+                    (!wound.treated && worst.treated) ||
+                    (wound.treated === worst.treated &&
+                      wound.severity > worst.severity)
+                      ? wound
+                      : worst,
+                  null,
+                );
                 return (
                   <g key={part.zone}>
+                    {!!worstWound && (
+                      <path
+                        d={part.outline}
+                        fill={WoundColour(worstWound)}
+                        fillOpacity={0.55}
+                        stroke={WoundColour(worstWound)}
+                        strokeWidth={0.6}
+                        strokeDasharray={worstWound.treated ? '1 1' : undefined}
+                      >
+                        <title>
+                          {wounds
+                            .map(
+                              (wound) =>
+                                `${wound.name}${wound.treated ? ' (opatrzona)' : ''}`,
+                            )
+                            .join(', ')}
+                        </title>
+                      </path>
+                    )}
                     <path
                       className="areaPath"
                       d={part.outline}
@@ -212,6 +266,24 @@ export const HealthAnalyzer = (props) => {
                       fill="transparent"
                       style={{ cursor: 'pointer' }}
                     />
+                    {!!worstWound && (
+                      <text
+                        x={part.center.x}
+                        y={part.center.y + 5}
+                        fill="white"
+                        stroke="black"
+                        strokeWidth={0.3}
+                        paintOrder="stroke"
+                        fontSize={2.6}
+                        fontWeight="bold"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{ pointerEvents: 'none' }}
+                      >
+                        {WoundShortName(worstWound)}
+                        {wounds.length > 1 ? ` +${wounds.length - 1}` : ''}
+                      </text>
+                    )}
                     {active.length > 0 && (
                       <>
                         <circle
@@ -341,10 +413,29 @@ export const HealthAnalyzer = (props) => {
               }
             >
               {!!data.species && <div>Gatunek: {data.species}</div>}
-              {!!data.blood_type && <div>Grupa krwi: {data.blood_type}</div>}
+              {!!data.blood_type && (
+                <div>
+                  Grupa krwi: {data.blood_type}
+                  {!!data.blood_compatible &&
+                    ` (zgodne: ${data.blood_compatible})`}
+                </div>
+              )}
               {!!data.body_temperature && (
                 <div>Temperatura: {data.body_temperature}</div>
               )}
+              {!!data.time_of_death && (
+                <div className="color-bad">
+                  Czas zgonu: {data.time_of_death}
+                </div>
+              )}
+              {!!data.stamina && <div>Zmęczenie: {data.stamina}</div>}
+              {!!data.brain_activity && (
+                <div>Aktywność mózgu: {data.brain_activity}</div>
+              )}
+              {!!data.genetic_stability && (
+                <div>Stabilność genetyczna: {data.genetic_stability}</div>
+              )}
+              {!!data.quirks && <div>Cechy fizjologiczne: {data.quirks}</div>}
             </Section>
             {!!data.surgeries?.length && (
               <Section title="Trwające operacje">
@@ -373,6 +464,25 @@ export const HealthAnalyzer = (props) => {
             {selectedSection !== 'body' &&
               !!data.injuries?.[selectedSection] &&
               MapZone(selectedSection, data.injuries[selectedSection])}
+            {!!data.senses && (
+              <Section title="Zmysły">
+                {data.senses.map((sense) => (
+                  <div
+                    key={sense.name}
+                    className={sense.healthy ? 'color-good' : 'color-average'}
+                  >
+                    {sense.name}: {sense.text}
+                  </div>
+                ))}
+              </Section>
+            )}
+            {!!data.implants?.length && (
+              <Section title="Wszczepy cybernetyczne">
+                {data.implants.map((implant) => (
+                  <div key={implant}>{implant}</div>
+                ))}
+              </Section>
+            )}
             {!!data.reagents && (
               <Section title="Substancje we krwi">
                 <div className="injury_row">
@@ -489,3 +599,30 @@ function GetWorstInjuryColour(injuries: InjuryEntry[]) {
   })[0];
   return worst ? GetInjuryColour(worst) : undefined;
 }
+
+// Kolor rany na sylwetce: żółty umiarkowana, pomarańczowy ciężka, czerwony krytyczna; opatrzona przygaszona
+const WoundColour = (wound: WoundEntry) => {
+  if (wound.treated) {
+    return '#8a8a5a';
+  }
+  return wound.severity >= 3
+    ? '#ff3030'
+    : wound.severity === 2
+      ? '#ff8c1a'
+      : '#ffd23f';
+};
+
+// Krótki podpis na kończynie według rodzaju rany
+const WoundShortName = (wound: WoundEntry) => {
+  switch (wound.type) {
+    case 'blunt':
+      return wound.name.startsWith('Zwichn') ? 'Zwichnięcie' : 'Złamanie';
+    case 'slash':
+      return 'Cięcie';
+    case 'pierce':
+      return 'Kłucie';
+    case 'burn':
+      return 'Oparzenie';
+  }
+  return wound.name.split(' ')[0];
+};

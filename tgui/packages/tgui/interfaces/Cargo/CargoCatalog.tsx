@@ -241,7 +241,7 @@ function CatalogList(props: CatalogListProps) {
             dmIcon={pack.first_item_icon || null}
             dmIconState={pack.first_item_icon_state || null}
             fallbackIcon="box"
-            imageSize={32}
+            imageSize={64}
             color={color}
             disabled={disabled}
             buttonsAlt={
@@ -260,7 +260,7 @@ function CatalogList(props: CatalogListProps) {
             }
           >
             <Stack fill textAlign="right">
-              <Stack.Item grow textAlign="left">
+              <Stack.Item grow textAlign="left" fontSize={1.15} bold>
                 {pack.name}
               </Stack.Item>
               {(!!pack.small_item || !!pack.access || !!pack.contraband) && (
@@ -275,8 +275,8 @@ function CatalogList(props: CatalogListProps) {
                   </Stack>
                 </Stack.Item>
               )}
-              <Stack.Item align="center" width={5.5} mt={-0.75} mb={-0.75}>
-                <Stack vertical color="gold" lineHeight={0.75} fontSize={0.85}>
+              <Stack.Item align="center" width={6.5}>
+                <Stack vertical color="gold" lineHeight={0.9} fontSize={1.05}>
                   <Stack.Item
                     opacity={privateBuy ? 0.75 : undefined}
                     style={{
@@ -349,7 +349,7 @@ function CatalogPackInfo(props: CatalogContentsProps) {
                       </Stack.Item>
                     )
                   }
-                  imageSize={32}
+                  imageSize={64}
                 >
                   <Stack fill>
                     <Stack.Item textAlign="left">{item.name}</Stack.Item>
