@@ -261,5 +261,20 @@
 	TEST_ASSERT_EQUAL(floor_diamond, 500, "A saved transmuted floor came back without its look")
 	TEST_ASSERT(!floor_reclaimable, "A saved transmuted floor came back with reclaimable material")
 
+/// M5: żetony z automatów nie dają materiału do recyklera (żeton z bananium to było 200 kr z mennicy)
+/datum/unit_test/aquila_basemats_prize_coins
+
+/datum/unit_test/aquila_basemats_prize_coins/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/machinery/modular_fabricator/autolathe/lathe = allocate(/obj/machinery/modular_fabricator/autolathe, start)
+	var/datum/component/material_container/container = lathe.GetComponent(/datum/component/material_container)
+	for(var/coin_type in list(/obj/item/coin/arcade_token, /obj/item/coin/antagtoken))
+		var/obj/item/coin/coin = allocate(coin_type, start)
+		TEST_ASSERT(!container.get_item_material_amount(coin), "[coin_type] gives material to the autolathe")
+		TEST_ASSERT(!container.insert_item(coin), "The autolathe took [coin_type]")
+		TEST_ASSERT_EQUAL(coin.get_item_credit_value(), 0, "[coin_type] is worth money")
+	var/obj/item/coin/arcade_token/token = allocate(/obj/item/coin/arcade_token, start)
+	TEST_ASSERT(token.color, "The arcade token lost its yellow colour")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
