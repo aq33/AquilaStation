@@ -3,6 +3,7 @@
 // simple animal (biotypes, crusher trophy). Changes against tg:
 // - a consumed body dies and waits inside without stasis (we have no stasis status effect); reviving it bursts the legion;
 //   no legion tumour, no speech copied from the victim (no copy_recent_speech here), the legion keeps its own name;
+//   no gibs on infestation (as our simple animal; thrown gibs drift in zero gravity and runtime in the drift component);
 // - no emissive overlays (our sprites have none), no snow legion (no ice moon), no legion monkey (our monkeys are not
 //   humans, a skull does not infest them);
 // - the tendril legion (spawner_made) drops the charred skeleton of our old tendril legions, the dwarf the dwarf corpse;
@@ -83,7 +84,6 @@
 
 /// Put a corpse in this guy
 /mob/living/basic/mining/legion/proc/consume(mob/living/carbon/human/consumed)
-	new /obj/effect/gibspawner/generic(consumed.loc)
 	gender = consumed.gender
 	consumed.death()
 	consumed.ExtinguishMob()

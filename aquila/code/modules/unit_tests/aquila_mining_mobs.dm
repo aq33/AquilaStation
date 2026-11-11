@@ -118,7 +118,7 @@
 
 	var/turf/host_turf = get_turf(host)
 	host.death()
-	TEST_ASSERT_EQUAL(victim.loc, host_turf, "The dead legion did not drop the body")
+	TEST_ASSERT(isturf(victim.loc) && get_dist(victim, host_turf) <= 1, "The dead legion did not drop the body") // content_barfer may push it a step
 	var/obj/item/organ/regenerative_core/legion/core = locate() in host_turf
 	TEST_ASSERT(core, "The dead legion dropped no legion core")
 	qdel(core)
@@ -316,6 +316,8 @@
 	STOP_PROCESSING(SSobj, udder_component.udder) // no breeding until the end of the test
 	TEST_ASSERT_EQUAL(udder_component.udder.reagents.total_volume, 0, "The gutlunch udder does not start empty")
 	var/datum/ai_controller/controller = guthen.ai_controller
+	for(var/obj/effect/decal/cleanable/leftover in range(9, floor)) // gibs of earlier tests
+		qdel(leftover)
 	for(var/i in 1 to 20)
 		var/obj/effect/decal/cleanable/blood/gibs/gibs = new(get_step(floor, EAST))
 		controller.SelectBehaviors(1)
