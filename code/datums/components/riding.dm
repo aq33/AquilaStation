@@ -390,6 +390,7 @@
 	if(istype(parent, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = parent
 		override_allow_spacemove = S.spacewalk
+	if(isliving(parent)) // AQ EDIT - basic moby: martwy oswojony wierzchowiec (krowa, zwierzę z lassa) też przestaje wozić
 		RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(handle_mortality))
 
 /datum/component/riding/tamed/proc/handle_mortality()
@@ -400,6 +401,7 @@
 		var/mob/living/simple_animal/S = parent
 		M.spacewalk = S.spacewalk
 		S.toggle_ai(AI_OFF)
+	ADD_TRAIT(parent, TRAIT_AI_PAUSED, REF(src)) // AQ EDIT - basic moby: oswojone zwierzę ma SI psa z Bee, jeździec nią steruje
 	..()
 
 /datum/component/riding/tamed/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
@@ -407,4 +409,5 @@
 	if(istype(parent, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = parent
 		S.toggle_ai(AI_ON)
+	REMOVE_TRAIT(parent, TRAIT_AI_PAUSED, REF(src)) // AQ EDIT - basic moby
 	..()

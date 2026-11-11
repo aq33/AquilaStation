@@ -14,6 +14,7 @@
 	item_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
 	singular_name = "bryła rudy"
+	material_flags = MATERIAL_EFFECTS
 	var/points = 0 //How many points this ore gets you from the ore redemption machine
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
@@ -71,7 +72,8 @@
 	item_state = "Uranium ore"
 	singular_name = "bryła rudy uranu"
 	points = 30
-	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
+	material_flags = NONE
+	mats_per_unit = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 	scan_state = "rock_Uranium"
 	spreadChance = 5
@@ -82,7 +84,7 @@
 	item_state = "Iron ore"
 	singular_name = "bryła rudy żelaza"
 	points = 1
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/iron
 	scan_state = "rock_Iron"
 	spreadChance = 20
@@ -93,7 +95,7 @@
 	item_state = "Glass ore"
 	singular_name = "kupka piasku"
 	points = 1
-	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
 
@@ -136,7 +138,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Plasma ore"
 	singular_name = "bryła rudy plazmy"
 	points = 15
-	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
 	scan_state = "rock_Plasma"
 	spreadChance = 8
@@ -151,7 +153,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Copper ore"
 	singular_name = "bryła rudy miedzi"
 	points = 5
-	materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/copper
 	scan_state = "rock_Copper"
 	spreadChance = 5
@@ -162,7 +164,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Silver ore"
 	singular_name = "bryła rudy srebra"
 	points = 16
-	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
 	scan_state = "rock_Silver"
 	spreadChance = 5
@@ -173,7 +175,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "Gold ore"
 	singular_name = "bryła rudy złota"
 	points = 18
-	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
 	scan_state = "rock_Gold"
 	spreadChance = 5
@@ -184,7 +186,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Diamond ore"
 	singular_name = "bryła rudy diamentów"
 	points = 50
-	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
 	scan_state = "rock_Diamond"
 
@@ -194,7 +196,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Bananium ore"
 	singular_name = "bryła rudy bananium"
 	points = 60
-	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 	scan_state = "rock_Bananium"
 
@@ -204,7 +206,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Titanium ore"
 	singular_name = "bryła rudy tytanu"
 	points = 50
-	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
 	scan_state = "rock_Titanium"
 	spreadChance = 5
@@ -331,19 +333,42 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 // Yes, the gold standard makes a come-back!
 // This is the only way to make coins that are possible to produce on station actually worth anything.
 /obj/item/coin
-	icon = 'icons/obj/economy.dmi'
+	icon = 'aquila/icons/obj/economy/coins.dmi' // AQ EDIT - szare monety z Bee (BeeStation/BeeStation-Hornet#9386), barwione materiałem
 	name = "moneta"
-	icon_state = "coin__heads"
+	icon_state = "coin"
 	flags_1 = CONDUCT_1
 	force = 1
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(/datum/material/iron = 400)
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+	material_name_gender = FEMALE
 	var/string_attached
 	var/list/sideslist = list("heads","tails")
-	var/cmineral = null
 	var/cooldown = 0
-	var/value = 1
+	var/value
+	/// AQ EDIT - stała wartość zamiast wartości materiału (żetony, moneta heretyka, mithril, kolekcjonerska moneta z mapy)
+	var/value_override
 	var/coinflip
+
+/obj/item/coin/Initialize(mapload)
+	. = ..()
+	coinflip = pick(sideslist)
+	icon_state = "coin_[coinflip]"
+	pixel_x = base_pixel_x + rand(0, 16) - 8
+	pixel_y = base_pixel_y + rand(0, 8) - 8
+	if(!isnull(value_override)) // AQ EDIT - moneta bez materiału też dostaje swoją wartość
+		value = value_override
+
+/obj/item/coin/set_custom_materials(list/materials, multiplier = 1)
+	. = ..()
+	if(!isnull(value_override)) // AQ EDIT
+		value = value_override
+		return
+	value = 0
+	for(var/i in custom_materials)
+		var/datum/material/M = i
+		value += M.value_per_unit * custom_materials[M]
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -367,108 +392,82 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	else
 		user.visible_message("<span class='suicide'>Wypada: [coinflip]! [user] żyje dalej!</span>")
 
-/obj/item/coin/Initialize(mapload)
-	. = ..()
-	pixel_x = base_pixel_x + rand(0,16) - 8
-	pixel_y = base_pixel_y + rand(0,8) - 8
-
 /obj/item/coin/examine(mob/user)
 	. = ..()
 	if(value)
 		. += "<span class='info'>Jest warta [value] kr.</span>"
 
 /obj/item/coin/gold
-	name = "złota moneta"
-	cmineral = "gold"
-	icon_state = "coin_gold_heads"
-	value = 25
-	materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/gold = 400)
 	grind_results = list(/datum/reagent/gold = 4)
 
 /obj/item/coin/silver
-	name = "srebrna moneta"
-	cmineral = "silver"
-	icon_state = "coin_silver_heads"
-	value = 10
-	materials = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/silver = 400)
 	grind_results = list(/datum/reagent/silver = 4)
 
 /obj/item/coin/diamond
-	name = "diamentowa moneta"
-	cmineral = "diamond"
-	icon_state = "coin_diamond_heads"
-	value = 100
-	materials = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/diamond = 400)
 	grind_results = list(/datum/reagent/carbon = 4)
 
 /obj/item/coin/iron
-	name = "żelazna moneta"
-	cmineral = "iron"
-	icon_state = "coin_iron_heads"
-	value = 1
-	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/iron = 4)
 
 /obj/item/coin/plasma
-	name = "plazmowa moneta"
-	cmineral = "plasma"
-	icon_state = "coin_plasma_heads"
-	value = 40
-	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/plasma = 400)
 	grind_results = list(/datum/reagent/toxin/plasma = 4)
 
 /obj/item/coin/uranium
-	name = "uranowa moneta"
-	cmineral = "uranium"
-	icon_state = "coin_uranium_heads"
-	value = 25
-	materials = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/uranium = 400)
 	grind_results = list(/datum/reagent/uranium = 4)
 
+/obj/item/coin/titanium
+	custom_materials = list(/datum/material/titanium = 400)
+
 /obj/item/coin/bananium
-	name = "bananiumowa moneta"
-	cmineral = "bananium"
-	icon_state = "coin_bananium_heads"
-	value = 200 //makes the clown cry
-	materials = list(/datum/material/bananium = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/bananium = 400)
 	grind_results = list(/datum/reagent/consumable/banana = 4)
 
 /obj/item/coin/adamantine
-	name = "adamantytowa moneta"
-	cmineral = "adamantine"
-	icon_state = "coin_adamantine_heads"
-	value = 100
+	custom_materials = list(/datum/material/adamantine = 400)
 
 /obj/item/coin/mythril
 	name = "mithrilowa moneta"
-	cmineral = "mythril"
-	icon_state = "coin_mythril_heads"
-	value = 300
+	custom_materials = list(/datum/material/plastic = 400)// cause we dont have mythril as a material, yet for some reason mappers like using this coin
+	material_flags = NONE // AQ EDIT - bez przedrostka „plastikowa”
+	value_override = 300 // AQ EDIT - zostaje dawne 300 kr (z plastiku byłoby 5)
+
+/obj/item/coin/mythril/Initialize(mapload)
+	. = ..()
+	add_atom_colour("#ebcbcd", FIXED_COLOUR_PRIORITY) // AQ EDIT - kolor dawnej monety, bo nie ma materiału mithrilu
+
+/obj/item/coin/plastic
+	custom_materials = list(/datum/material/plastic = 400)
 
 /obj/item/coin/twoheaded
-	cmineral = "iron"
-	icon_state = "coin_iron_heads"
 	desc = "Hej, ta moneta ma po obu stronach to samo!"
 	sideslist = list("heads")
-	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
-	value = 1
 	grind_results = list(/datum/reagent/iron = 4)
 
 /obj/item/coin/antagtoken
 	name = "żeton antagonisty"
-	icon_state = "coin_valid_valid"
-	cmineral = "valid"
 	desc = "Pamiątkowa moneta, dzięki której serce wie to, czego twarde dowody nie potrafią udowodnić."
+	icon_state = "coin_valid"
+	custom_materials = null // AQ EDIT - nagroda z automatu: bez materiału do odzysku (recykler dawałby plastik z niczego), jak przed portem
 	sideslist = list("valid", "salad")
-	value = 0
+	material_flags = NONE
+	value_override = 0 // AQ EDIT - pamiątka, nie pieniądz
 	grind_results = list(/datum/reagent/consumable/sodiumchloride = 4)
 
 /obj/item/coin/arcade_token
 	name = "żeton automatu"
-	icon_state = "coin_bananium_heads"
-	cmineral = "bananium"
+	custom_materials = null // AQ EDIT - nagroda z automatu: bez materiału do odzysku (400 bananium z recyklera to 200 kr z mennicy), jak przed portem
 	desc = "Moneta, za którą odbierzesz nagrodę z automatu do gier."
-	value = 0
+	material_flags = NONE // AQ EDIT - bez poślizgu i piszczenia bananium
+	value_override = 0 // AQ EDIT - automaty wydają żetony, więc z bananium (200 kr) karta ID dawałaby darmowe pieniądze
+
+/obj/item/coin/arcade_token/Initialize(mapload)
+	. = ..()
+	add_atom_colour("#fff263", FIXED_COLOUR_PRIORITY) // AQ EDIT - żółty jak dawny żeton, bez efektów bananium
 
 /obj/item/coin/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -502,10 +501,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		if(string_attached) //does the coin have a wire attached
 			to_chat(user, "<span class='warning'>Moneta nie podrzuci się dobrze z czymś przywiązanym!</span>" )
 			return FALSE//do not flip the coin
-		coinflip = pick(sideslist)
 		cooldown = world.time + 15
-		flick("coin_[cmineral]_flip", src)
-		icon_state = "coin_[cmineral]_[coinflip]"
+		flick("coin_[coinflip]_flip", src)
+		coinflip = pick(sideslist)
+		icon_state = "coin_[coinflip]"
 		playsound(user.loc, 'sound/items/coinflip.ogg', 50, 1)
 		var/oldloc = loc
 		sleep(15)

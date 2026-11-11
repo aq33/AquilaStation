@@ -1,0 +1,1 @@
+/mob/living/simple_animal/cow/@SUBTYPES : /mob/living/basic/cow/@SUBTYPES{@OLD; atmos_requirements = @SKIP; emote_hear = @SKIP; emote_see = @SKIP; speak = @SKIP; speak_chance = @SKIP; turns_per_move = @SKIP}

@@ -169,7 +169,7 @@
 	force = 1
 	throwforce = 1
 	amount_per_transfer_from_this = 5
-	materials = list(/datum/material/iron=100)
+	custom_materials = list(/datum/material/iron=100)
 	possible_transfer_amounts = list()
 	volume = 5
 	flags_1 = CONDUCT_1
@@ -185,7 +185,7 @@
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
-	materials = list(/datum/material/gold=1000)
+	custom_materials = list(/datum/material/gold=1000)
 	volume = 150
 
 /obj/item/reagent_containers/food/drinks/trophy/silver_cup
@@ -196,7 +196,7 @@
 	force = 10
 	throwforce = 8
 	amount_per_transfer_from_this = 15
-	materials = list(/datum/material/silver=800)
+	custom_materials = list(/datum/material/silver=800)
 	volume = 100
 
 
@@ -208,7 +208,7 @@
 	force = 5
 	throwforce = 4
 	amount_per_transfer_from_this = 10
-	materials = list(/datum/material/iron=400)
+	custom_materials = list(/datum/material/iron=400)
 	volume = 25
 
 ///////////////////////////////////////////////Drinks
@@ -430,7 +430,7 @@
 	name = "shaker"
 	desc = "Metalowy shaker do mieszania drinków."
 	icon_state = "shaker"
-	materials = list(/datum/material/iron=1500)
+	custom_materials = list(/datum/material/iron=1500)
 	amount_per_transfer_from_this = 10
 	volume = 100
 	isGlass = FALSE
@@ -440,7 +440,7 @@
 	desc = "Każdy dobry kosmonauta wie, że warto mieć przy sobie parę kufli whisky, gdziekolwiek się wybiera."
 	custom_price = 30
 	icon_state = "flask"
-	materials = list(/datum/material/iron=250)
+	custom_materials = list(/datum/material/iron=250)
 	volume = 60
 	isGlass = FALSE
 
@@ -448,7 +448,7 @@
 	name = "piersiówka kapitana"
 	desc = "Złota piersiówka należąca do kapitana."
 	icon_state = "flask_gold"
-	materials = list(/datum/material/gold=500)
+	custom_materials = list(/datum/material/gold=500)
 
 /obj/item/reagent_containers/food/drinks/flask/det
 	name = "piersiówka detektywa"

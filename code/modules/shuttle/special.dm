@@ -310,13 +310,13 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/hostile/bear/fightpit
+/mob/living/basic/bear/fightpit // AQ EDIT - basic moby
 	name = "niedźwiedź z areny"
 	desc = "Ten niedźwiedź został wyszkolony starożytnymi rosyjskimi sekretami, by bać się ścian swojego szklanego więzienia."
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/bear/fightpit/Initialize(mapload)
+/mob/living/basic/bear/fightpit/Initialize(mapload) // AQ EDIT - basic moby
 	. = ..()
 	var/multiplier = max(round(length(SSticker.mode.current_players[CURRENT_LIVING_PLAYERS]) / BASE_BEAR_DIVISOR, 0.1), 1)
 	maxHealth *= multiplier

@@ -47,7 +47,7 @@
 		qdel(held)
 
 	var/obj/item/wallframe/kszysz/kszysz_drewniany/wooden = allocate(/obj/item/wallframe/kszysz/kszysz_drewniany)
-	TEST_ASSERT(!length(wooden.materials), "Wooden cross still carries the wallframe iron")
+	TEST_ASSERT(!length(wooden.custom_materials), "Wooden cross still carries the wallframe iron")
 
 	// Reklamówki to działający storage
 	for(var/bag_type in list(/obj/item/storage/commercial/reklamowka_biedronka, /obj/item/storage/commercial/reklamowka_lidl))

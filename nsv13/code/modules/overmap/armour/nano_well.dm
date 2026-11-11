@@ -69,7 +69,7 @@ Starting Materials
 	var/system_stress = 0 //how overloaded the system has been over time
 	var/system_stress_threshold = 100 //Threshold at which stress beings to build up
 	var/system_cooling = 1 //Rate at which stress is reduced
-	var/material_modifier = 0 //efficiency of our materials
+	var/repair_material_modifier = 0 //efficiency of our materials; AQ EDIT - było material_modifier, Bee#10135 dodało tę nazwę do /atom
 	var/material_tier = 0 //The selected tier recipe producing RR
 	var/apnw_id = null //The ID by which we identify our child devices - These should match the child devices and follow the formula: 1 - Main Ship, 2 - Secondary Ship, 3 - Syndie PvP Ship
 
@@ -123,7 +123,7 @@ Starting Materials
 	return FALSE
 
 /obj/machinery/armour_plating_nanorepair_well/proc/handle_repair_efficiency() //Sigmoidal Curve
-	repair_efficiency = ((1 / (0.01 + (NUM_E ** (-0.000003334 * power_allocation)))) * material_modifier) / 100
+	repair_efficiency = ((1 / (0.01 + (NUM_E ** (-0.000003334 * power_allocation)))) * repair_material_modifier) / 100
 	if(power_allocation > 3e6) //If overclocking
 		repair_efficiency += ((power_allocation - 3e6) / 3e7) / 2
 
@@ -191,7 +191,7 @@ Starting Materials
 					if(materials.has_enough_of_material(/datum/material/iron, iron_amount))
 						materials.use_amount_mat(iron_amount, /datum/material/iron)
 						repair_resources += iron_amount / 8
-						material_modifier = 0.33 //Very Low modifier
+						repair_material_modifier = 0.33 //Very Low modifier
 						repair_resources_processing = TRUE
 				if(2) //Plasteel
 					var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -201,7 +201,7 @@ Starting Materials
 						materials.use_amount_mat(iron_amount, /datum/material/iron)
 						materials.use_amount_mat(plasma_amount, /datum/material/plasma)
 						repair_resources += (iron_amount + plasma_amount) / 8
-						material_modifier = 0.50 //Low Modifier
+						repair_material_modifier = 0.50 //Low Modifier
 						repair_resources_processing = TRUE
 				if(3) //Ferrotitanium
 					var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -211,7 +211,7 @@ Starting Materials
 						materials.use_amount_mat(iron_amount, /datum/material/iron)
 						materials.use_amount_mat(titanium_amount, /datum/material/titanium)
 						repair_resources += (iron_amount + titanium_amount) / 8
-						material_modifier = 0.50 //Low Modifier
+						repair_material_modifier = 0.50 //Low Modifier
 						repair_resources_processing = TRUE
 				if(4) //Durasteel
 					var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -223,7 +223,7 @@ Starting Materials
 						materials.use_amount_mat(silver_amount, /datum/material/silver)
 						materials.use_amount_mat(titanium_amount, /datum/material/titanium)
 						repair_resources += (iron_amount + silver_amount + titanium_amount) / 8
-						material_modifier = 0.75 //Moderate Modifier
+						repair_material_modifier = 0.75 //Moderate Modifier
 						repair_resources_processing = TRUE
 				if(5) //Duranium
 					var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -237,7 +237,7 @@ Starting Materials
 						materials.use_amount_mat(plasma_amount, /datum/material/plasma)
 						materials.use_amount_mat(titanium_amount, /datum/material/titanium)
 						repair_resources += (iron_amount + silver_amount + plasma_amount + titanium_amount) / 8
-						material_modifier = 1 //High Modifier
+						repair_material_modifier = 1 //High Modifier
 						repair_resources_processing = TRUE
 	else
 		repair_resources_processing = FALSE

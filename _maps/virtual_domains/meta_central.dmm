@@ -5957,7 +5957,7 @@
 /area/virtual_domain)
 "nu" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox,
+/mob/living/basic/pet/fox,
 /obj/item/stack/spacecash/c1000{
 	pixel_x = 5;
 	pixel_y = 15

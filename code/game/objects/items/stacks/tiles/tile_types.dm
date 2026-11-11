@@ -12,6 +12,7 @@
 	throw_range = 7
 	max_amount = 60
 	novariants = TRUE
+	material_flags = MATERIAL_EFFECTS
 	/// What type of turf does this tile produce.
 	var/turf_type = null
 	/// Determines certain welder interactions.
@@ -26,6 +27,24 @@
 	if(tile_reskin_types)
 		tile_reskin_types = tile_reskin_list(tile_reskin_types)
 
+/obj/item/stack/tile/examine(mob/user)
+	. = ..()
+	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
+		var/verb
+		switch(CEILING(MAX_LIVING_HEALTH / throwforce, 1)) //throws to crit a human
+			if(1 to 3)
+				verb = "znakomitą"
+			if(4 to 6)
+				verb = "świetną"
+			if(7 to 9)
+				verb = "dobrą"
+			if(10 to 12)
+				verb = "całkiem przyzwoitą"
+			if(13 to 15)
+				verb = "przeciętną"
+		if(!verb)
+			return
+		. += "<span class='notice'>Te mogłyby posłużyć za [verb] broń miotaną.</span>"
 
 /obj/item/stack/tile/attackby(obj/item/W, mob/user, params)
 
@@ -490,11 +509,11 @@
 /obj/item/stack/tile/plasteel
 	name = "płytka podłogowa"
 	singular_name = "płytka podłogowa"
-	desc = "Te mogłyby całkiem nieźle posłużyć za broń miotaną."
+	desc = "Grunt, po którym chodzisz."
 	icon_state = "tile"
 	item_state = "tile"
 	force = 6
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
@@ -504,7 +523,7 @@
 
 /obj/item/stack/tile/plasteel/cyborg
 	desc = "Grunt, po którym chodzisz." //Not the usual floor tile desc as that refers to throwing, Cyborgs can't do that - RR
-	materials = list() // All other Borg versions of items have no Iron or Glass - RR
+	mats_per_unit = null // All other Borg versions of items have no Iron or Glass - RR
 	is_cyborg = 1
 	cost = 125
 
@@ -514,7 +533,7 @@
 	singular_name = "szara płytka kratkowana"
 	desc = "Kratkowana wersja standardowych płytek stacji."
 	icon_state = "tile_grid"
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/grid
 
 /obj/item/stack/tile/ridge
@@ -522,7 +541,7 @@
 	singular_name = "szara płytka żebrowana"
 	desc = "Żebrowana wersja standardowych płytek stacji."
 	icon_state = "tile_ridged"
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/ridged
 
 //Techtiles
@@ -531,7 +550,7 @@
 	singular_name = "szara płytka techniczna"
 	desc = "Elegancka płytka, spotykana zwykle w strzeżonych strefach i warsztatach inżynierii."
 	icon_state = "tile_tech_grey"
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech
 
 /obj/item/stack/tile/techgrid
@@ -539,7 +558,7 @@
 	singular_name = "kratkowana płytka techniczna"
 	desc = "Elegancka płytka, spotykana zwykle w strzeżonych strefach i warsztatach inżynierii. Ta ma wzór kratki."
 	icon_state = "tile_tech_grid"
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech/grid
 
 /obj/item/stack/tile/techmaint
@@ -547,7 +566,7 @@
 	singular_name = "ciemna płytka techniczna"
 	desc = "Elegancka płytka, spotykana zwykle w strzeżonych strefach i warsztatach inżynierii. Ta jest ciemna."
 	icon_state = "tile_tech_maint"
-	materials = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/techmaint //NSV13 End
 
 /obj/item/stack/tile/dock
@@ -555,7 +574,7 @@
 	singular_name = "płytka dokowa"
 	desc = "Masywny fragment podłogi, który utrzyma ciężar promu."
 	icon_state = "tile_dock"
-	materials = list(/datum/material/iron=500, /datum/material/plasma=500)
+	mats_per_unit = list(/datum/material/iron=500, /datum/material/plasma=500)
 	turf_type = /turf/open/floor/dock
 
 /obj/item/stack/tile/drydock
@@ -563,5 +582,5 @@
 	singular_name = "płytka suchego doku"
 	desc = "Wyjątkowo masywny fragment podłogi, na którym można budować promy."
 	icon_state = "tile_drydock"
-	materials = list(/datum/material/iron=1000, /datum/material/plasma=1000)
+	mats_per_unit = list(/datum/material/iron=1000, /datum/material/plasma=1000)
 	turf_type = /turf/open/floor/dock/drydock

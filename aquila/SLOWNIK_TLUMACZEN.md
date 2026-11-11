@@ -241,7 +241,7 @@ Verby obiektowe z menu prawego przycisku (`set src in view()` / `oview()`) dalej
 
 ### 6.4 Unit testy sprawdzające tekst
 Jeśli tłumaczysz tekst, który test porównuje, popraw test w tym samym commicie (uruchomienie testów opisuje `CLAUDE.md`). Przykłady:
-- `aquila/code/modules/unit_tests/aquila_secret_chems.dm:49,56`: `rock_paper.name == "rock paper"`, `"gold paper"`,
+- `aquila/code/modules/unit_tests/aquila_secret_chems.dm:49,56`: `rock_paper.name == "kamienna kartka"`, `"złota kartka"` (przymiotnik materiału, rozdz. o materiałach),
 - `aquila/code/modules/unit_tests/dakimakura.dm:21`: `daki.name == "Ian dakimakura"`,
 - `aquila/code/modules/unit_tests/revenant.dm:82`: `!findtext(rev.name, " of ")`, czyli imię revenanta nie może być angielskie,
 - teksty już polskie, których nie zmieniaj bez poprawienia testu: `aquila_screentips.dm:16-35` (`"Otwórz"`, `"Rozwałkuj"`, `"Naciśnij"`, `"Zmień tryb"`), `aquila_mouse_report.dm:23` (`"Zjedzone śmieci: 3"`), `aquila_wounds.dm:90` (`"nacięcie"`, `"skalpel"`),
@@ -612,6 +612,14 @@ Oznaczenia w kolumnie uwag:
 | ore | ruda | ż; istniejące |
 | bar (gold bar) | sztabka | ż; istniejące |
 | coin | moneta | ż; istniejące |
+| meat (materiał) | mięso | n; nowe (BeeStation/BeeStation-Hornet#10703) |
+| meat sheet | arkusz mięsa | m; nowe |
+| Sheet-meister 2000 | Arkuszomistrz 2000 | m; nowe, nazwa własna maszyny |
+| material floor tile | płytka podłogowa z materiału | ż; nowe (receptura); gotowa płytka dostaje przymiotnik: „drewniana płytka podłogowa” |
+| material chair | krzesło z materiału | n; nowe (receptura); gotowe krzesło: „złote krzesło” |
+| material wall / floor / table | ściana / podłoga / stół z materiału | gotowe dostają przymiotnik materiału: „mięsna ściana”, „srebrny stół” |
+| arcade token / antag token | żeton automatu / żeton antagonisty | m; istniejące |
+| X material (przedrostek, MATERIAL_ADD_PREFIX) | przymiotnik materiału w rodzaju nazwy | żelazny/-a/-e, szklany, srebrny, złoty, diamentowy, uranowy, plazmowy, bananiumowy, tytanowy, plastikowy, organiczny (biomasa), miedziany, adamantytowy, kamienny, drewniany, mięsny; bluespace po nazwie („krzesło bluespace”). Rodzaj z `material_name_gender` albo z końcówki pierwszego słowa nazwy (`aquila/code/datums/materials/material_prefix.dm`). `name` materiału zostaje po angielsku (porównują go mennica, fabrykatory i TGUI) |
 | scrap | złom | m; istniejące |
 | shard (of glass) | odłamek szkła | m; istniejące (8×) |
 | floor tile | płytka podłogowa | ż; istniejące (11×) |

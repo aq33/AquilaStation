@@ -6,6 +6,7 @@
 	var/active = null
 	canSmoothWith = null
 	smooth = SMOOTH_TRUE
+	material_flags = MATERIAL_EFFECTS
 
 /turf/closed/wall/mineral/gold
 	name = "złota ściana"

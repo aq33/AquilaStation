@@ -12,18 +12,18 @@
 		/mob/living/simple_animal/hostile/carp,
 
 		// Benign specimens
-		/mob/living/simple_animal/hostile/lizard,
-		/mob/living/simple_animal/pet/dog/corgi,
-		/mob/living/simple_animal/pet/dog/bullterrier,
-		/mob/living/simple_animal/pet/cat,
-		/mob/living/simple_animal/pet/fox,
-		/mob/living/simple_animal/pet/hamster,
-		/mob/living/simple_animal/pet/penguin/emperor,
-		/mob/living/simple_animal/chicken,
+		/mob/living/basic/lizard, // AQ EDIT - basic moby
+		/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
+		/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
+		/mob/living/basic/pet/cat, // AQ EDIT - basic moby
+		/mob/living/basic/pet/fox, // AQ EDIT - basic moby
+		/mob/living/basic/pet/hamster, // AQ EDIT - basic moby
+		/mob/living/basic/pet/penguin/emperor, // AQ EDIT - basic moby
+		/mob/living/basic/chicken, // AQ EDIT - basic moby
 		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/butterfly,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/cow
+		/mob/living/basic/butterfly, // AQ EDIT - basic moby
+		/mob/living/basic/crab, // AQ EDIT - basic moby
+		/mob/living/basic/cow // AQ EDIT - basic moby
 	) )
 
 	var/datum/freight_type/single/specimen/C = new /datum/freight_type/single/specimen( picked )

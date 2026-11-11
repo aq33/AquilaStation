@@ -17,40 +17,80 @@ Simple datum which is instanced once per type and is used for every object of sa
 	var/greyscale_colors
 	///Base alpha of the material, is used for greyscale icons.
 	var/alpha
-	///Materials "Traits". its a map of key = category | Value = Bool. Used to define what it can be used for.gold
+	///Materials "Traits". its a map of key = category | Value = Bool. Used to define what it can be used for
 	var/list/categories = list()
-	///The type of sheet this material creates. This should be replaced as soon as possible by greyscale sheets.
-	var/sheet_type
-	///The type of coin this material spawns. This should be replaced as soon as possible by greyscale coins.
-	var/coin_type
+	///The type of sheet this material creates. This should be replaced as soon as possible by greyscale sheets
+	var/obj/item/stack/sheet_type
+	///AQ EDIT - nazwa listy GLOB z recepturami arkusza (u nas stosy ustawiają `recipes` w Initialize(), Bee#10701 czyta get_recipes())
+	var/sheet_recipes_glob
 	///This is a modifier for force, and resembles the strength of the material
 	var/strength_modifier = 1
 	///This is a modifier for integrity, and resembles the strength of the material
 	var/integrity_modifier = 1
+	///This is the amount of value per 1 unit of the material
+	var/value_per_unit = 0
+	///Can be used to override the sound items make, lets add some SLOSHing.
+	var/item_sound_override
+	///Can be used to override the stepsound a turf makes. MORE SLOOOSH
+	var/turf_sound_override
+	///what texture icon state to overlay
+	var/texture_layer_icon_state
+	///a cached icon for the texture filter
+	var/cached_texture_filter_icon
+
+/datum/material/New()
+	. = ..()
+	if(texture_layer_icon_state)
+		cached_texture_filter_icon = icon('aquila/icons/materials/composite.dmi', texture_layer_icon_state) // AQ EDIT - ikona w aquila/
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
-	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
+	if(material_flags & MATERIAL_COLOR) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color) //Do we have a custom color?
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
 			source.alpha = alpha
+		// AQ EDIT - bez tekstury na sprite'ach Paradise 32x40 (bitmask_smooth): KEEP_TOGETHER daje na nich czarny klin
+		if(texture_layer_icon_state && !source.bitmask_smooth)
+			ADD_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
+			source.add_filter("material_texture_[name]",1,layering_filter(icon=cached_texture_filter_icon,blend_mode=BLEND_INSET_OVERLAY))
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)
 		source.set_greyscale(greyscale_colors, config_path)
 
+	// AQ EDIT START - Bee porównuje null < 255 i każda ściana z materiału bez alpha robiła się przezroczysta
+	if(!isnull(alpha) && alpha < 255)
+		source.set_opacity(FALSE)
+		if(isturf(source))
+			var/turf/see_through = source
+			see_through.recalc_atom_opacity()
+			see_through.reconsider_lights()
+	// AQ EDIT END
+	if(material_flags & MATERIAL_ADD_PREFIX)
+		source.name = get_prefixed_name(source) // AQ EDIT - polski przymiotnik w rodzaju nazwy (aquila/code/datums/materials/material_prefix.dm)
+
 	if(istype(source, /obj)) //objs
 		on_applied_obj(source, amount, material_flags)
 
+	if(istype(source, /turf)) //turfs
+		on_applied_turf(source, amount, material_flags)
+
+	source.mat_update_desc(src)
+
+///This proc is called when a material updates an object's description
+/atom/proc/mat_update_desc(datum/material/mat)
+	return
+
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)
-	var/new_max_integrity = CEILING(o.max_integrity * integrity_modifier, 1)
-	// This is to keep the same damage relative to the max integrity of the object
-	o.obj_integrity = (o.obj_integrity / o.max_integrity) * new_max_integrity
-	o.max_integrity = new_max_integrity
-	o.force *= strength_modifier
-	o.throwforce *= strength_modifier
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		if(isnull(o.obj_integrity)) // AQ EDIT - stosy nakładają materiały przed /obj/Initialize(), z null wychodziła 1 wytrzymałości
+			o.obj_integrity = o.max_integrity
+		var/new_max_integrity = CEILING(o.max_integrity * integrity_modifier, 1)
+		o.modify_max_integrity(new_max_integrity)
+		o.force *= strength_modifier
+		o.throwforce *= strength_modifier
 
 	if(!isitem(o))
 		return
@@ -67,29 +107,62 @@ Simple datum which is instanced once per type and is used for every object of sa
 			new_inhand_right = righthand_path
 		)
 
+	if(!item_sound_override)
+		return
+	item.hitsound = item_sound_override
+	item.usesound = item_sound_override
+	item.mob_throw_hit_sound = item_sound_override
+	item.equip_sound = item_sound_override
+	item.pickup_sound = item_sound_override
+	item.drop_sound = item_sound_override
+
+/datum/material/proc/on_applied_turf(var/turf/T, amount, material_flags)
+	if(isopenturf(T))
+		if(!turf_sound_override)
+			return
+		var/turf/open/O = T
+		O.footstep = turf_sound_override
+		O.barefootstep = turf_sound_override
+		O.clawfootstep = turf_sound_override
+		O.heavyfootstep = turf_sound_override
+	return
 
 ///This proc is called when the material is removed from an object.
 /datum/material/proc/on_removed(atom/source, material_flags)
-	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
+	if(material_flags & MATERIAL_COLOR) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color)
 			source.remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
+		if(texture_layer_icon_state && !source.bitmask_smooth) // AQ EDIT
+			source.remove_filter("material_texture_[name]")
+			REMOVE_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
 		source.alpha = initial(source.alpha)
+
+	if(!isnull(alpha) && alpha < 255 && initial(source.opacity)) // AQ EDIT - przezroczystość znika razem z materiałem
+		source.set_opacity(TRUE)
+		if(isturf(source))
+			var/turf/see_through = source
+			see_through.has_opaque_atom = TRUE
+			see_through.reconsider_lights()
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		source.set_greyscale(initial(source.greyscale_colors), initial(source.greyscale_config))
 
+	if(material_flags & MATERIAL_ADD_PREFIX)
+		source.name = initial(source.name)
+
 	if(istype(source, /obj)) //objs
 		on_removed_obj(source, material_flags)
 
-///This proc is called when the material is removed from an object specifically.
-/datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
-	var/new_max_integrity = initial(o.max_integrity)
-	// This is to keep the same damage relative to the max integrity of the object
-	o.obj_integrity = (o.obj_integrity / o.max_integrity) * new_max_integrity
+	if(istype(source, /turf)) //turfs
+		on_removed_turf(source, material_flags)
 
-	o.max_integrity = new_max_integrity
-	o.force = initial(o.force)
-	o.throwforce = initial(o.throwforce)
+///This proc is called when the material is removed from an object specifically.
+/datum/material/proc/on_removed_obj(obj/o, material_flags)
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/new_max_integrity = initial(o.max_integrity)
+		o.modify_max_integrity(new_max_integrity)
+		o.force = initial(o.force)
+		o.throwforce = initial(o.throwforce)
 
 	if(isitem(o) && (material_flags & MATERIAL_GREYSCALE))
 		var/obj/item/item = o
@@ -98,6 +171,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 			new_inhand_left = initial(item.greyscale_config_inhand_left),
 			new_inhand_right = initial(item.greyscale_config_inhand_right)
 		)
+
+/datum/material/proc/on_removed_turf(turf/T, material_flags)
+	return
 
 /**
  * This proc is called when the mat is found in an item that's consumed by accident. see /obj/item/proc/on_accidental_consumption.
@@ -115,3 +191,11 @@ Simple datum which is instanced once per type and is used for every object of sa
 		if(type != initial(path.material_skin))
 			continue
 		return path
+
+
+/// Returns GLOB.recipes of a material to modify the recipes.
+/// This will be only called once from SSMaterials.
+/datum/material/proc/get_material_recipes()
+	if(!initial(sheet_type.material_type) || !categories[MAT_CATEGORY_BASE_RECIPES] || !sheet_recipes_glob) // AQ EDIT - lista z nazwy zamiast atrapy arkusza
+		return
+	return GLOB.vars[sheet_recipes_glob]

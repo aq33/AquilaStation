@@ -3,7 +3,7 @@
 	desc = "Poręczna sprężynowa pułapka na uciążliwe gryzonie."
 	icon_state = "mousetrap"
 	item_state = "mousetrap"
-	materials = list(/datum/material/iron=100)
+	custom_materials = list(/datum/material/iron=100)
 	attachable = TRUE
 	var/armed = FALSE
 	layer = BELOW_OBJ_LAYER //AQ EDIT
@@ -77,7 +77,7 @@
 			if(affecting.receive_damage(1, 0))
 				H.update_damage_overlays()
 	else if(ismouse(target))
-		var/mob/living/simple_animal/mouse/M = target
+		var/mob/living/basic/mouse/M = target // AQ EDIT - basic moby
 		visible_message("<span class='boldannounce'>PLASK!</span>")
 		M.splat()
 	else if(israt(target)) // AQUILA EDIT - szczury z tg

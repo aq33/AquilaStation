@@ -37,7 +37,7 @@
 		"mam nadzieję, że było warto",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/fox,
+		/mob/living/basic/pet/fox,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/cat/fox,
@@ -57,7 +57,7 @@
 		"mam nadzieję, że było warto",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/mothroach,
+		/mob/living/basic/mothroach,
 	)
 	output_organs = list(
 		/obj/item/organ/infuser_feature/moth_antennae,
@@ -80,7 +80,7 @@
 		"szczerze mówiąc niewiele",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/hostile/lizard,
+		/mob/living/basic/lizard,
 	)
 	output_organs = list(
 		/obj/item/organ/infuser_feature/lizard_horns,
@@ -101,7 +101,7 @@
 		"niech zgadnę, jesteś wielkim fanem tych japońskich robotów turystycznych",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/cat,
+		/mob/living/basic/pet/cat,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/cat,
@@ -119,7 +119,7 @@
 		"kołyszesz się, gdy chodzisz",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/penguin,
+		/mob/living/basic/pet/penguin,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/penguin,
@@ -199,7 +199,7 @@
 	)
 	input_obj_or_mob = list(
 		/obj/item/food/deadmouse,
-		/mob/living/simple_animal/mouse,
+		/mob/living/basic/mouse,
 		/mob/living/simple_animal/hostile/rat,
 	)
 	output_organs = list(
@@ -230,7 +230,7 @@
 		"zawsze chętny na przekąskę",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/cockroach,
+		/mob/living/basic/cockroach,
 	)
 	output_organs = list(
 		/obj/item/organ/heart/roach,

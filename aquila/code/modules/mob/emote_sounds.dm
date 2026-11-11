@@ -45,7 +45,7 @@
 	key_third_person = "moos"
 	message = "muczy"
 	emote_type = EMOTE_AUDIBLE
-	mob_type_allowed_typecache = list(/mob/living/simple_animal/cow)
+	mob_type_allowed_typecache = list(/mob/living/basic/cow)
 	sound = 'aquila/sound/creatures/cow.ogg'
 
 /datum/emote/silicon/dwoop

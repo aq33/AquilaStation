@@ -2,7 +2,7 @@
 	name = "czujnik zdrowia"
 	desc = "Służy do skanowania i monitorowania zdrowia."
 	icon_state = "health"
-	materials = list(/datum/material/iron=800, /datum/material/glass=200)
+	custom_materials = list(/datum/material/iron=800, /datum/material/glass=200)
 	attachable = TRUE
 
 	var/scanning = FALSE

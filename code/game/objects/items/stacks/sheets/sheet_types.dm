@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	singular_name = "arkusz żelaza"
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
@@ -151,6 +151,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 20)
 	point_value = 2
 	tableVariant = /obj/structure/table
+	material_type = /datum/material/iron
 
 /obj/item/stack/sheet/iron/ratvar_act()
 	new /obj/item/stack/tile/brass(loc, amount)
@@ -173,7 +174,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/iron/cyborg
-	materials = list()
+	mats_per_unit = null
 	is_cyborg = 1
 	cost = 500
 
@@ -218,7 +219,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "Ten arkusz to stop żelaza i plazmy."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-plasteel"
-	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
+	mats_per_unit = list(/datum/material/iron=2000, /datum/material/plasma=2000)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80, "stamina" = 0, "bleed" = 0)
@@ -227,6 +228,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 	point_value = 23
 	tableVariant = /obj/structure/table/reinforced
+	material_flags = NONE
 
 /obj/item/stack/sheet/plasteel/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.plasteel_recipes
@@ -267,6 +269,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("regał na książki",								/obj/structure/bookcase, 4, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("suszarka",							/obj/machinery/smartfridge/drying_rack, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("legowisko dla psa",								/obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	//AQ EDIT - domek dla kota z Bee (basic moby, aquila/code/modules/mob/living/basic/pets/cat/cat_house.dm)
+	new/datum/stack_recipe("domek dla kota",								/obj/structure/cat_house, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("komoda",								/obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("ramka na zdjęcie",							/obj/item/wallframe/picture, 1, time = 10),\
 	new/datum/stack_recipe("rama na obraz",						/obj/item/wallframe/painting, 1, time = 10),\
@@ -298,10 +302,12 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	icon_state = "sheet-wood"
 	item_state = "sheet-wood"
 	icon = 'icons/obj/stack_objects.dmi'
+	mats_per_unit = list(/datum/material/wood=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "wood"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/wood
+	material_type = /datum/material/wood
 	novariants = TRUE
 	grind_results = list(/datum/reagent/carbon = 20)
 
@@ -717,7 +723,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	novariants = FALSE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/teslium = 15)
 	merge_type = /obj/item/stack/tile/brass
-	materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
+	mats_per_unit = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
 
 /obj/item/stack/tile/brass/narsie_act()
 	new /obj/item/stack/sheet/runed_metal(loc, amount)
@@ -748,7 +754,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/tile/brass/cyborg
-	materials = list()
+	mats_per_unit = null
 	is_cyborg = 1
 	cost = 500
 
@@ -865,9 +871,10 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	singular_name = "arkusz plastiku"
 	icon_state = "sheet-plastic"
 	item_state = "sheet-plastic"
-	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	merge_type = /obj/item/stack/sheet/plastic
+	material_type = /datum/material/plastic
 
 /obj/item/stack/sheet/plastic/fifty
 	amount = 50

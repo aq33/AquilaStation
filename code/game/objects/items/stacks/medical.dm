@@ -27,11 +27,11 @@
 		to_chat(user, "<span class='danger'>[M] nie żyje, nie możesz mu pomóc!</span>")
 		return
 
-	if(!iscarbon(M) && !isanimal(M))
+	if(!iscarbon(M) && !isanimal_or_basicmob(M)) // AQ EDIT - basic moby
 		to_chat(user, "<span class='danger'>Nie wiesz, jak użyć [src] na [M]!</span>")
 		return
 
-	if(isanimal(M))
+	if(isanimal_or_basicmob(M)) // AQ EDIT - basic moby (healable jest też na basic mobach)
 		var/mob/living/simple_animal/critter = M
 		if(!(critter.healable) || stop_bleeding)
 			to_chat(user, "<span class='notice'>Nie możesz użyć [src] na [M]!</span>")

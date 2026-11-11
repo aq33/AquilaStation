@@ -1,34 +1,34 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/mob/living/simple_animal/pet/dog/bullterrier,
+/mob/living/basic/pet/dog/bullterrier,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "ab" = (
-/mob/living/simple_animal/pet/dog/corgi/chef,
+/mob/living/basic/pet/dog/corgi/chef,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "ac" = (
-/mob/living/simple_animal/pet/dog/corgi/exoticcorgi,
+/mob/living/basic/pet/dog/corgi/exoticcorgi,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "ad" = (
-/mob/living/simple_animal/pet/dog/corgi/puppy,
+/mob/living/basic/pet/dog/corgi/puppy,
 /turf/open/floor/holofloor/beach/coast_t,
 /area/ruin/space/has_grav/powered)
 "ae" = (
-/mob/living/simple_animal/pet/dog/corgi/puppy,
+/mob/living/basic/pet/dog/corgi/puppy,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "af" = (
-/mob/living/simple_animal/pet/dog/corgi/seccie,
+/mob/living/basic/pet/dog/corgi/seccie,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "ag" = (
-/mob/living/simple_animal/pet/dog/corgi/seccie,
+/mob/living/basic/pet/dog/corgi/seccie,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "ah" = (
-/mob/living/simple_animal/pet/dog/pug,
+/mob/living/basic/pet/dog/pug,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "ai" = (

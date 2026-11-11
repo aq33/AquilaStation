@@ -163,5 +163,5 @@
 		/datum/reagent/blood = 50,
 		/datum/reagent/medicine/strange_reagent = 5
 		)
-	result = /mob/living/simple_animal/pet/cat/breadcat
+	result = /mob/living/basic/pet/cat/breadcat // AQ EDIT - basic moby
 	subcategory = CAT_BREAD

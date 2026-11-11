@@ -71,15 +71,15 @@
 	if(!is_operational)
 		balloon_alert(user, "brak zasilania!")
 		return FALSE
-	if(length(exportable.materials) != 1)
+	if(length(exportable.mats_per_unit) != 1)
 		balloon_alert(user, "tylko czyste materiały!")
 		return FALSE
-	var/datum/material/sold_material = exportable.materials[1]
+	var/datum/material/sold_material = exportable.mats_per_unit[1]
 	var/price = get_market_price(sold_material)
 	if(!price)
 		balloon_alert(user, "rynek tego nie kupi!")
 		return FALSE
-	var/sheets = round(exportable.materials[sold_material] * exportable.amount / MINERAL_MATERIAL_AMOUNT)
+	var/sheets = round(exportable.mats_per_unit[sold_material] * exportable.amount / MINERAL_MATERIAL_AMOUNT)
 	if(sheets < 1)
 		balloon_alert(user, "za mało materiału!")
 		return FALSE

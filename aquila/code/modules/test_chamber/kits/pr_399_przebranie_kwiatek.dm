@@ -9,6 +9,6 @@
 	4) Negatyw: odłóż kwiatek na podłogę → oczekiwane: przebranie znika, postać wygląda normalnie i animacja chodu (kończyny) wraca."
 	items = list(
 		/obj/item/kirbyplants = 1,
-		/mob/living/simple_animal/mouse = 3,
+		/mob/living/basic/mouse = 3,
 		/obj/item/wrench = 1,
 	)

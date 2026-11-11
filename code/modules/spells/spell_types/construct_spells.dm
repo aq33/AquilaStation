@@ -267,7 +267,7 @@
 		revert_cast()
 		return
 
-	var/mob/living/simple_animal/S = targets[1]
+	var/mob/living/S = targets[1] // AQ EDIT - basic moby
 
 	if(S.ckey)
 		to_chat(user, "<span class='warning'>[S] jest zbyt inteligentny, by go zdominować!</span>")
@@ -279,10 +279,19 @@
 		revert_cast()
 		return
 
-	if(!istype(S) || S.sentience_type != SENTIENCE_ORGANIC)
+	// AQ EDIT START - basic moby: sentience_type ma simple animal i basic mob
+	var/sentience_type
+	if(isanimal(S))
+		var/mob/living/simple_animal/simple_target = S
+		sentience_type = simple_target.sentience_type
+	else if(isbasicmob(S))
+		var/mob/living/basic/basic_target = S
+		sentience_type = basic_target.sentience_type
+	if(sentience_type != SENTIENCE_ORGANIC)
 		to_chat(user, "<span class='warning'>Nie można zdominować [S]!</span>")
 		revert_cast()
 		return
+	// AQ EDIT END
 
 	if(!(S in oview(range)))
 		to_chat(user, "<span class='notice'>[S] jest za daleko!</span>")
@@ -295,7 +304,7 @@
 	new /obj/effect/temp_visual/cult/sac(get_turf(S))
 
 /obj/effect/proc_holder/spell/targeted/dominate/can_target(mob/living/target)
-	if(!isanimal(target) || target.stat)
+	if(!isanimal_or_basicmob(target) || target.stat) // AQ EDIT - basic moby
 		return FALSE
 	if("cult" in target.faction)
 		return FALSE

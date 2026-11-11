@@ -10,7 +10,7 @@
 	weight = 15
 	conductivity = 12
 	///List of potential animals we could turn people into
-	var/list/possible_animals = list(/mob/living/simple_animal/pet/dog/corgi, /mob/living/simple_animal/pet/dog/bullterrier, /mob/living/simple_animal/pet/dog/pug)
+	var/list/possible_animals = list(/mob/living/basic/pet/dog/corgi, /mob/living/basic/pet/dog/bullterrier, /mob/living/basic/pet/dog/pug)
 	///The animal we will turn people into
 	var/mob/choosen_animal
 	///How long we keep them as animals
@@ -54,7 +54,7 @@
 
 /datum/xenoartifact_trait/major/animalize/vermin
 	label_name = "Bestialized Δ"
-	possible_animals = list(/mob/living/simple_animal/mothroach, /mob/living/simple_animal/mouse, /mob/living/simple_animal/cockroach/strong)
+	possible_animals = list(/mob/living/basic/mothroach, /mob/living/basic/mouse, /mob/living/basic/cockroach/strong)
 	conductivity = 6
 
 /datum/xenoartifact_trait/major/animalize/vermin/get_dictionary_hint()
@@ -63,7 +63,7 @@
 
 /datum/xenoartifact_trait/major/animalize/dangerous
 	label_name = "Bestialized Σ"
-	possible_animals = list(/mob/living/simple_animal/hostile/bear, /mob/living/simple_animal/hostile/carp, /mob/living/simple_animal/hostile/killertomato)
+	possible_animals = list(/mob/living/basic/bear, /mob/living/simple_animal/hostile/carp, /mob/living/basic/killer_tomato)
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/animalize/dangerous/get_dictionary_hint()

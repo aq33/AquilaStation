@@ -116,7 +116,7 @@
 	name = "Postać niedźwiedzia polarnego"
 	desc = "Przybierz postać niedźwiedzia polarnego."
 	invocation = "RAWR!"
-	shapeshift_type = /mob/living/simple_animal/hostile/bear/snow
+	shapeshift_type = /mob/living/basic/bear/snow
 	clothes_req = FALSE
 
 

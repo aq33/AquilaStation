@@ -327,7 +327,7 @@
 /turf/open/floor/grass,
 /area/virtual_domain)
 "T" = (
-/mob/living/simple_animal/pet/gondola/virtual_domain,
+/mob/living/basic/pet/gondola/virtual_domain,
 /turf/open/floor/grass,
 /area/virtual_domain)
 "U" = (

@@ -1062,6 +1062,12 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			var/mob/living/simple_animal/SA = T
 			if(initial(SA.gold_core_spawnable) == FRIENDLY_SPAWN)
 				GLOB.friendly_animal_types += SA
+		// AQ EDIT START - basic moby
+		for(var/T in typesof(/mob/living/basic))
+			var/mob/living/basic/basic_mob = T
+			if(initial(basic_mob.gold_core_spawnable) == FRIENDLY_SPAWN)
+				GLOB.friendly_animal_types += basic_mob
+		// AQ EDIT END
 
 
 	var/mob/living/simple_animal/SA = pick(GLOB.friendly_animal_types)
@@ -1071,7 +1077,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 	var/image/final_image = image(icon, icon_state=icon_state, loc = A)
 
-	if(ispath(SA, /mob/living/simple_animal/butterfly))
+	if(ispath(SA, /mob/living/basic/butterfly)) // AQ EDIT - basic moby
 		final_image.color = rgb(rand(0,255), rand(0,255), rand(0,255))
 
 	// For debugging

@@ -292,7 +292,7 @@
 	icon = 'nsv13/icons/obj/ammo.dmi'
 	icon_state = "tasershell"
 	projectile_type = /obj/item/projectile/energy/electrode/hitscan
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)
 	harmful = TRUE
 
 /obj/item/projectile/energy/electrode/hitscan

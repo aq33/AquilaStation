@@ -16,25 +16,25 @@
 		switch (bloodstone_backup)
 			if (0, 1, 2)
 				mobtype = pick(
-					1;/mob/living/simple_animal/hostile/retaliate/bat,
-					2;/mob/living/simple_animal/hostile/retaliate/bat,
+					1;/mob/living/basic/bat,
+					2;/mob/living/basic/bat,
 					)
 			if (3, 4)
 				mobtype = pick(
-					1;/mob/living/simple_animal/hostile/retaliate/bat,
-					3;/mob/living/simple_animal/hostile/retaliate/bat,
-					2;/mob/living/simple_animal/hostile/retaliate/bat,
+					1;/mob/living/basic/bat,
+					3;/mob/living/basic/bat,
+					2;/mob/living/basic/bat,
 					)
 			if (5, 6)
 				mobtype = pick(
-					2;/mob/living/simple_animal/hostile/retaliate/bat,
-					2;/mob/living/simple_animal/hostile/retaliate/bat,
-					1;/mob/living/simple_animal/hostile/retaliate/bat,
+					2;/mob/living/basic/bat,
+					2;/mob/living/basic/bat,
+					1;/mob/living/basic/bat,
 					)
 			if (7 to INFINITY)
 				mobtype = pick(
-					2;/mob/living/simple_animal/hostile/retaliate/bat,
-					1;/mob/living/simple_animal/hostile/retaliate/bat,
+					2;/mob/living/basic/bat,
+					1;/mob/living/basic/bat,
 					)
 		new mobtype(get_turf(src))
 		qdel(src)

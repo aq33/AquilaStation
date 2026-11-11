@@ -40,7 +40,7 @@
 	///Maximum size of a mob trying to enter the mech
 	var/maximum_mob_size = MOB_SIZE_SMALL
 	///Bigger animals that still fit inside (the station corgis)
-	var/list/allowed_bigger_mobs = list(/mob/living/simple_animal/pet/dog/corgi)
+	var/list/allowed_bigger_mobs = list(/mob/living/basic/pet/dog/corgi)
 	///Whether the headlights are on
 	var/headlights_toggle = FALSE
 	/// Air tank used for internals.
@@ -79,7 +79,7 @@
 	return tank?.return_analyzable_air()
 
 /obj/vehicle/sealed/car/vim/mob_try_enter(mob/entering)
-	if(!isanimal(entering))
+	if(!isanimal_or_basicmob(entering))
 		return FALSE
 	var/mob/living/animal = entering
 	if(animal.mob_size > maximum_mob_size && !is_type_in_list(animal, allowed_bigger_mobs))

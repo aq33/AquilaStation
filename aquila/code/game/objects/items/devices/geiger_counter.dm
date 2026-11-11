@@ -10,7 +10,7 @@
 	righthand_file = 'aquila/icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
+	custom_materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
 
 	var/last_perceived_radiation_danger = null
 	var/scanning = FALSE

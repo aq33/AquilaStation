@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(minor_mapping)
 				regal_rat_chance_per_mouse = 0
 				M = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
 			else
-				M = new /mob/living/simple_animal/mouse(proposed_turf)
+				M = new /mob/living/basic/mouse(proposed_turf) // AQ EDIT - basic moby
 			// AQUILA EDIT END
 		else
 			M.forceMove(proposed_turf)
