@@ -1995,6 +1995,7 @@
 #include "code\modules\unit_tests\aquila_chemia_ulepszenia.dm"
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
+#include "code\modules\unit_tests\aquila_medycyna4.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"
 #include "code\modules\unit_tests\aquila_blood_types.dm"
 #include "code\modules\unit_tests\aquila_jezyki_ras.dm"
