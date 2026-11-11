@@ -188,7 +188,7 @@
 
 /datum/modular_mob_segment/venus_trap
 	mobs = list(
-		/mob/living/simple_animal/hostile/venus_human_trap,
+		/mob/living/basic/venus_human_trap,
 	)
 
 

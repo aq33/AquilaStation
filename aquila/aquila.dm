@@ -2056,6 +2056,8 @@
 #include "code\datums\components\unobserved_actor.dm"
 #include "code\datums\components\health_scaling_effects.dm"
 #include "code\modules\mob\living\basic\space_fauna\netherworld.dm"
+#include "code\datums\elements\lifesteal.dm"
+#include "code\modules\mob\living\basic\jungle\venus_human_trap.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

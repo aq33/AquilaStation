@@ -112,6 +112,53 @@
 	sleep(1)
 	TEST_ASSERT(blank.melee_damage > blank_damage, "A hurt blank body does not hit harder")
 
+/// The venus human trap with the legacy intents
+/mob/living/basic/venus_human_trap/aquila_legacy
+
+/mob/living/basic/venus_human_trap/aquila_legacy/uses_legacy_intents()
+	return TRUE
+
+/// A venus human trap's AI tangles a human out of reach with a vine (leash) and its bites heal it (lifesteal);
+/// a player trap tangles by clicking out of reach in combat mode / on the harm intent, in both control modes
+/datum/unit_test/aquila_venus_human_trap
+
+/datum/unit_test/aquila_venus_human_trap/Run()
+	var/mob/living/basic/venus_human_trap/trap = allocate(/mob/living/basic/venus_human_trap, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	var/datum/ai_controller/controller = trap.ai_controller
+	var/datum/action/cooldown/mob_cooldown/projectile_attack/vine_tangle/tangle = controller.blackboard[BB_TARGETED_ACTION]
+	TEST_ASSERT(istype(tangle), "The trap has no tangle ability in its blackboard")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The trap did not look for targets")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The trap did not pick the human")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/targeted_mob_ability), "The trap's AI did not plan to tangle its target")
+	TEST_ASSERT(victim.GetComponent(/datum/component/leash), "The tangle did not leash the human to the trap")
+	TEST_ASSERT(tangle.next_use_time > world.time, "The tangle did not start its cooldown")
+	controller.CancelActions()
+
+	// Lifesteal: a bite on a living target heals the trap
+	victim.forceMove(get_step(run_loc_floor_bottom_left, EAST))
+	trap.adjustBruteLoss(20)
+	var/trap_health = trap.health
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	trap.next_move = 0
+	trap.next_click = 0
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/basic_melee_attack), "The trap did not bite a target next to it")
+	TEST_ASSERT(trap.health > trap_health, "The bite did not heal the trap (lifesteal)")
+	controller.CancelActions()
+	qdel(trap)
+
+	for(var/legacy in list(FALSE, TRUE))
+		var/mob/living/basic/venus_human_trap/player = allocate(legacy ? /mob/living/basic/venus_human_trap/aquila_legacy : /mob/living/basic/venus_human_trap, run_loc_floor_bottom_left)
+		player.ai_controller.set_ai_status(AI_STATUS_OFF)
+		var/mob/living/carbon/human/prey = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y + 1, run_loc_floor_bottom_left.z))
+		aquila_rest_click(player, prey, harm = FALSE)
+		TEST_ASSERT(!prey.GetComponent(/datum/component/leash), "[legacy ? "legacy intents" : "combat mode"]: a click out of combat mode tangled the prey")
+		aquila_rest_click(player, prey, harm = TRUE)
+		TEST_ASSERT(prey.GetComponent(/datum/component/leash), "[legacy ? "legacy intents" : "combat mode"]: a harmful click out of reach did not tangle the prey")
+		qdel(player)
+		qdel(prey)
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS
