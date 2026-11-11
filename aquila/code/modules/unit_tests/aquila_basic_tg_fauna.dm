@@ -85,5 +85,15 @@
 	var/mob/living/basic/frog/rare/rare = allocate(/mob/living/basic/frog/rare, get_step(run_loc_floor_bottom_left, NORTHEAST))
 	TEST_ASSERT_EQUAL(rare.icon_state, "rare_frog", "The rare frog does not look rare")
 
+/// Sergeant Araneus takes no cold or atmos damage, like the old simple animal (minbodytemp 0, no atmos requirements)
+/datum/unit_test/aquila_araneus_space_proof
+
+/datum/unit_test/aquila_araneus_space_proof/Run()
+	var/mob/living/basic/bat/sgt_araneus/araneus = allocate(/mob/living/basic/bat/sgt_araneus, run_loc_floor_bottom_left)
+	araneus.bodytemperature = 100
+	SEND_SIGNAL(araneus, COMSIG_LIVING_LIFE, SSMOBS_DT, 1)
+	TEST_ASSERT_EQUAL(araneus.health, araneus.maxHealth, "Sergeant Araneus took cold damage")
+	TEST_ASSERT_EQUAL(araneus.unsuitable_atmos_damage, 0, "Sergeant Araneus is hurt by bad air")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
