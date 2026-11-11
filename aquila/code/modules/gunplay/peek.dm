@@ -43,3 +43,14 @@
 	pixel_x = peek[1]
 	pixel_y = peek[2]
 	setAngle(Angle + correction) // rozrzut już doliczony w Angle zostaje
+
+/// Ile pikseli wychylenia na jedno wywołanie (co tick przy trzymanej strzałce); w NSV13 był 1 px, pełne 16 px trwało ok. 0,8 s
+#define AQ_PIXEL_SHIFT_STEP 4
+
+/mob/living/pixel_shift(direction)
+	for(var/i in 1 to AQ_PIXEL_SHIFT_STEP)
+		. = ..()
+		if(. == FALSE) // canface() odmówił (martwy, skuty, przypięty)
+			return
+
+#undef AQ_PIXEL_SHIFT_STEP
