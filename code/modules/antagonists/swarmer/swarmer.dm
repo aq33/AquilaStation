@@ -4,7 +4,7 @@
 	desc = "Całkowicie wyłączona skorupa rojowca. Nie może się już sama aktywować."
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_unactivated"
-	materials = list(/datum/material/iron=10000, /datum/material/glass=4000)
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=4000)
 
 /obj/effect/mob_spawn/swarmer
 	name = "nieaktywny rojowiec"
@@ -191,8 +191,9 @@ Ctrl+klik na istocie przeniesie ją z okolicy w bezpieczne miejsce do przechowan
 	return 0
 
 /obj/item/IntegrateAmount() //returns the amount of resources gained when eating this item
-	if(materials[getmaterialref(/datum/material/iron)] || materials[getmaterialref(/datum/material/glass)])
-		return 1
+	if(custom_materials)
+		if(custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)] || custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)])
+			return 1
 	return ..()
 
 /obj/item/gun/swarmer_act()//Stops you from eating the entire armory

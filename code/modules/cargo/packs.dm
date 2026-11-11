@@ -2506,19 +2506,19 @@
 	desc = "Niezbyt groźne owady, ale dają lepsze wrażenie niż, dajmy na to, muchy czy karaluchy."//is that a motherfucking worm reference
 	contraband = TRUE
 	cost = 5000
-	contains = list(/mob/living/simple_animal/butterfly)
+	contains = list(/mob/living/basic/butterfly) // AQ EDIT - basic moby
 	crate_name = "skrzynia z okazami entomologicznymi"
 
 /datum/supply_pack/critter/butterfly/generate()
 	. = ..()
 	for(var/i in 1 to 49)
-		new /mob/living/simple_animal/butterfly(.)
+		new /mob/living/basic/butterfly(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cat
 	name = "Skrzynia z kotem"
 	desc = "Kotek robi miau! W zestawie obroża i ładna zabawka dla kota! Cheeseburger nie jest dołączony."//i can't believe im making this reference
 	cost = 5000 //Cats are worth as much as corgis.
-	contains = list(/mob/living/simple_animal/pet/cat,
+	contains = list(/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar,
 					/obj/item/toy/cattoy)
 	crate_name = "skrzynia z kotem"
@@ -2526,9 +2526,9 @@
 /datum/supply_pack/critter/cat/generate()
 	. = ..()
 	if(prob(50))
-		var/mob/living/simple_animal/pet/cat/C = locate() in .
+		var/mob/living/basic/pet/cat/C = locate() in . // AQ EDIT - basic moby
 		qdel(C)
-		new /mob/living/simple_animal/pet/cat/Proc(.)
+		new /mob/living/basic/pet/cat/_proc(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cat/exotic
 	name = "Skrzynia z egzotycznym kotem"
@@ -2542,64 +2542,64 @@
 	. = ..()
 	switch(rand(1, 5))
 		if(1)
-			new /mob/living/simple_animal/pet/cat/original(.)
+			new /mob/living/basic/pet/cat/original(.) // AQ EDIT - basic moby
 		if(2)
-			new /mob/living/simple_animal/pet/cat/breadcat(.)
+			new /mob/living/basic/pet/cat/breadcat(.) // AQ EDIT - basic moby
 		if(3)
-			new /mob/living/simple_animal/pet/cat/cak(.)
+			new /mob/living/basic/pet/cat/cak(.) // AQ EDIT - basic moby
 		if(4)
-			new /mob/living/simple_animal/pet/cat/space(.)
+			new /mob/living/basic/pet/cat/space(.) // AQ EDIT - basic moby
 		if(5)
-			new /mob/living/simple_animal/pet/cat/halal(.)
+			new /mob/living/basic/pet/cat/halal(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/chick
 	name = "Skrzynia z kurą"
 	desc = "Kura robi ko-ko!"
 	cost = 2000
-	contains = list( /mob/living/simple_animal/chick)
+	contains = list( /mob/living/basic/chick) // AQ EDIT - basic moby
 	crate_name = "skrzynia z kurą"
 
 /datum/supply_pack/critter/corgi
 	name = "Skrzynia z corgim"
 	desc = "Tysiące naukowców uznają ją za optymalną rasę psa. Ten corgi to zaledwie jeden z milionów psów ze szlachetnego rodu Iana. W zestawie urocza obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/corgi,
+	contains = list(/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z corgim"
 
 /datum/supply_pack/critter/corgi/generate()
 	. = ..()
 	if(prob(50))
-		var/mob/living/simple_animal/pet/dog/corgi/D = locate() in .
+		var/mob/living/basic/pet/dog/corgi/D = locate() in . // AQ EDIT - basic moby
 		if(D.gender == FEMALE)
 			qdel(D)
-			new /mob/living/simple_animal/pet/dog/corgi/Lisa(.)
+			new /mob/living/basic/pet/dog/corgi/lisa(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cow
 	name = "Skrzynia z krową"
 	desc = "Krowa robi muu!"
 	cost = 3000
-	contains = list(/mob/living/simple_animal/cow)
+	contains = list(/mob/living/basic/cow) // AQ EDIT - basic moby
 	crate_name = "skrzynia z krową"
 
 /datum/supply_pack/critter/crab
 	name = "Krabia rakieta"
 	desc = "KRAAAAAAABIA RAKIETA. KRABIA RAKIETA. KRABIA RAKIETA. KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB RAKIETA. ZRÓB. RAKIETĘ. KUP. ZRÓB RAKIETĘ. KRABIA RAKIEEETA. KRABIA RAKIEEEETA. KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB RAKIEEEEEEEEEEEEEEEEEEEEEEEEE EEEEEEEEEEEEEEEEEEEEEEEEE EEEETTTTTTTTTTTTAAAAAAAAA AAAHHHHHHHHHHHHH. KRABIA RAKIETA. KRAAABIA RAKIEEEEEEEEEGGGGHHHHTA KRAB KRAB KRAABIARAKIETA KRABIA RAKIEEEETA."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
 	cost = 5000
-	contains = list(/mob/living/simple_animal/crab)
+	contains = list(/mob/living/basic/crab) // AQ EDIT - basic moby
 	crate_name = "patrz pan, darmowe kraby"
 	DropPodOnly = TRUE
 
 /datum/supply_pack/critter/crab/generate()
 	. = ..()
 	for(var/i in 1 to 49)
-		new /mob/living/simple_animal/crab(.)
+		new /mob/living/basic/crab(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/corgis/exotic
 	name = "Skrzynia z egzotycznym corgim"
 	desc = "Corgi godne króla. Mają wyjątkowe umaszczenie, które podkreśla ich wyższość. W zestawie urocza obroża!"
 	cost = 5500
-	contains = list(/mob/living/simple_animal/pet/dog/corgi/exoticcorgi,
+	contains = list(/mob/living/basic/pet/dog/corgi/exoticcorgi, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z egzotycznym corgim"
 
@@ -2607,7 +2607,7 @@
 	name = "Skrzynia z lisem"
 	desc = "A lis robi...? W zestawie obroża!"//what does the fox say
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/fox,
+	contains = list(/mob/living/basic/pet/fox, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z lisem"
 
@@ -2615,14 +2615,14 @@
 	name = "Skrzynia z kozą"
 	desc = "Koza robi mee! Gwarancja traci ważność, jeśli posłuży jako zastępstwo za Pete'a."
 	cost = 2500
-	contains = list(/mob/living/simple_animal/hostile/retaliate/goat)
+	contains = list(/mob/living/basic/goat) // AQ EDIT - basic moby
 	crate_name = "skrzynia z kozą"
 
 /datum/supply_pack/critter/mothroach
 	name = "Skrzynia z ćmokaraluchem"
 	desc = "Połóż sobie ćmokaralucha na głowie i przekonaj się, jak wygląda prawdziwa słodycz."
 	cost = 5000
-	contains = list(/mob/living/simple_animal/mothroach)
+	contains = list(/mob/living/basic/mothroach) // AQ EDIT - basic moby
 	crate_name = "skrzynia z ćmokaraluchem"
 
 /datum/supply_pack/critter/monkey
@@ -2638,7 +2638,7 @@
 	name = "Skrzynia z mopsem"
 	desc = "Jak zwykły pies, tylko... spłaszczony. W zestawie ładna obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/pug,
+	contains = list(/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z mopsem"
 
@@ -2646,14 +2646,14 @@
 	name = "Skrzynia z owcą"
 	desc = "Owca robi bee!"
 	cost = 2000
-	contains = list(/mob/living/simple_animal/sheep)
+	contains = list(/mob/living/basic/sheep) // AQ EDIT - basic moby
 	crate_name = "skrzynia z owcą"
 
 /datum/supply_pack/critter/bullterrier
 	name = "Skrzynia z bulterierem"
 	desc = "Jak zwykły pies, tylko z głową w kształcie jajka. W zestawie ładna obroża!"
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/dog/bullterrier,
+	contains = list(/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z bulterierem"
 
@@ -2662,9 +2662,9 @@
 	desc = "Masz dość tych PIERDOLONYCH węży na tej PIERDOLONEJ stacji kosmicznej? To ta skrzynia nie jest dla ciebie. Zawiera trzy jadowite węże."
 	cost = 3000
 	access_budget = ACCESS_SECURITY
-	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
-					/mob/living/simple_animal/hostile/retaliate/poison/snake,
-					/mob/living/simple_animal/hostile/retaliate/poison/snake)
+	contains = list(/mob/living/basic/snake, // AQ EDIT - basic moby
+					/mob/living/basic/snake, // AQ EDIT - basic moby
+					/mob/living/basic/snake) // AQ EDIT - basic moby
 	crate_name = "skrzynia z wężami"
 
 //////////////////////////////////////////////////////////////////////////////

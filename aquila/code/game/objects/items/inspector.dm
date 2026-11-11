@@ -15,7 +15,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
 	throw_speed = 1
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 460, /datum/material/uranium = 2000, /datum/material/gold = 1000)
+	custom_materials = list(/datum/material/iron = 5000, /datum/material/glass = 460, /datum/material/uranium = 2000, /datum/material/gold = 1000)
 	/// Ogniwo zasilające skaner. Ścieżka zostaje zamieniona na obiekt w Initialize.
 	var/obj/item/stock_parts/cell/cell = /obj/item/stock_parts/cell/crap
 	/// Czy klapka ogniwa jest otwarta.

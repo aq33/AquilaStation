@@ -761,7 +761,7 @@
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "bT" = (
-/mob/living/simple_animal/pet/cat/space,
+/mob/living/basic/pet/cat/space,
 /obj/structure/bed/dogbed{
 	name = "cat bed"
 	},

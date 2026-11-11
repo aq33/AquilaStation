@@ -9,8 +9,8 @@
 	5) Negatyw: weź czystą kartę Majtka (bez dostępu) i użyj Citationinatora → „brak dostępu!”; bez żadnej karty → „brak identyfikatora!”. Emag na urządzeniu → iskry, „blokada dostępu obejścia”, po tym działa bez karty."
 	items = list(
 		/obj/vehicle/sealed/car/vim/with_tank = 1,
-		/mob/living/simple_animal/pet/dog/corgi = 1,
-		/mob/living/simple_animal/pet/cat = 1,
+		/mob/living/basic/pet/dog/corgi = 1,
+		/mob/living/basic/pet/cat = 1,
 		/obj/item/clothing/head/helmet/space/eva = 1,
 		/obj/item/bodypart/l_leg/robot = 1,
 		/obj/item/bodypart/r_leg/robot = 1,

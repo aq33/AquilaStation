@@ -77,7 +77,7 @@
 			if(inp.amount <= 0)
 				return
 			var/obj/item/stack/sheet/out = new inp.type(null, inp.amount)
-			inp.amount = 0
+			inp.use(inp.amount, check = FALSE) // AQ EDIT - use() przelicza custom_materials (suma stosu po Bee#10135)
 			machine.unload_mineral(out)
 			return TRUE
 		if("rotate")
@@ -167,10 +167,11 @@
 	if(!storage) //It's the first of this sheet added
 		stack_list[key] = storage = new inp.type(src, 0)
 	storage.amount += inp.amount //Stack the sheets
+	storage.update_custom_materials() // AQ EDIT - add() rozdzieliłby stos ponad max_amount, więc tylko przeliczenie sumy materiałów
 	qdel(inp)
 
 	if(materials.silo && !materials.on_hold()) //Dump the sheets to the silo
-		var/matlist = storage.materials & materials.mat_container.materials
+		var/matlist = storage.mats_per_unit & materials.mat_container.materials
 		if (length(matlist))
 			var/inserted = materials.mat_container.insert_stack(storage)
 			materials.silo_log(src, "collected", inserted, "sheets", matlist)
@@ -181,4 +182,4 @@
 	while(storage.amount >= stack_amt) //Get rid of excessive stackage
 		var/obj/item/stack/sheet/out = new inp.type(null, stack_amt)
 		unload_mineral(out)
-		storage.amount -= stack_amt
+		storage.use(stack_amt, check = FALSE) // AQ EDIT - use() przelicza custom_materials

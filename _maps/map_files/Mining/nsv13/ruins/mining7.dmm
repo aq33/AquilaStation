@@ -13,7 +13,7 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered)
 "e" = (
-/mob/living/simple_animal/pet/gondola,
+/mob/living/basic/pet/gondola,
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered)
 "f" = (
@@ -37,7 +37,7 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered)
 "k" = (
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	dir = 8;
 	icon_state = "gondola"
 	},
@@ -98,7 +98,7 @@
 /turf/open/floor/carpet/black,
 /area/ruin/powered)
 "x" = (
-/mob/living/simple_animal/pet/gondola,
+/mob/living/basic/pet/gondola,
 /turf/open/floor/carpet/black,
 /area/ruin/powered)
 "y" = (
@@ -117,7 +117,7 @@
 /turf/open/floor/carpet/black,
 /area/ruin/powered)
 "B" = (
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	dir = 4;
 	icon_state = "gondola"
 	},
@@ -161,7 +161,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "J" = (
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	dir = 4;
 	icon_state = "gondola"
 	},
@@ -176,7 +176,7 @@
 /obj/structure/sign/poster/official/no_erp{
 	pixel_x = 32
 	},
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	dir = 8;
 	icon_state = "gondola"
 	},
@@ -198,7 +198,7 @@
 /turf/open/floor/carpet/black,
 /area/ruin/powered)
 "P" = (
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	dir = 1;
 	icon_state = "gondola"
 	},
@@ -211,7 +211,7 @@
 /area/ruin/powered)
 "R" = (
 /obj/structure/closet/cardboard,
-/mob/living/simple_animal/pet/gondola{
+/mob/living/basic/pet/gondola{
 	name = "benis snake"
 	},
 /turf/open/floor/plating/asteroid,

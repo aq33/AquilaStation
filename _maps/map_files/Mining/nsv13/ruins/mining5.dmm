@@ -60,7 +60,7 @@
 "at" = (
 /obj/structure/cable,
 /obj/effect/gibspawner/human,
-/mob/living/simple_animal/hostile/retaliate/bat,
+/mob/living/basic/bat,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "au" = (
@@ -362,7 +362,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/bat,
+/mob/living/basic/bat,
 /turf/open/floor/durasteel/riveted,
 /area/ruin/unpowered)
 "bw" = (
@@ -1105,7 +1105,7 @@
 	dir = 4;
 	pixel_x = 11
 	},
-/mob/living/simple_animal/hostile/retaliate/bat,
+/mob/living/basic/bat,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "dK" = (

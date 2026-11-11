@@ -305,8 +305,8 @@
 		message_admins("[ADMIN_LOOKUPFLW(usr)] buduje [path] ×[amount] w: [src] ([type]).")
 	for(var/i in 1 to amount)
 		var/obj/item/I = new path(get_turf(src))
-		if(efficient_with(I.type))
-			I.materials = matlist.Copy()
+		if(efficient_with(I.type)) // stos (efficient_with() = FALSE) zostaje z materiałem z typu i łączy się ze zwykłymi
+			I.set_custom_materials(matlist) // AQ EDIT - Bee#10135 tylko tworzy przedmiot; u nas oddaje przy recyklingu tyle, ile zużyto
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, var/mat)	// now returns how many times the item can be built with the material
@@ -324,7 +324,7 @@
 	return round(A / max(1, all_materials[mat] / ef))
 
 /obj/machinery/rnd/production/proc/efficient_with(path)
-	return !ispath(path, /obj/item/stack/sheet) && !ispath(path, /obj/item/stack/ore/bluespace_crystal)
+	return !ispath(path, /obj/item/stack) // AQ EDIT - stosy bez oszczędności części, jak w autolacie: drukowany stos ma materiał z typu, więc tańszy dawałby zysk z recyklingu
 
 /obj/machinery/rnd/production/proc/user_try_print_id(id, amount)
 	if((!istype(linked_console) && requires_console) || !id)

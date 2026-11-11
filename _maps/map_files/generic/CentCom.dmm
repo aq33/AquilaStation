@@ -18641,7 +18641,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/simple_animal/chicken,
+/mob/living/basic/chicken,
 /turf/open/floor/grass,
 /area/centcom/holding)
 "YO" = (
@@ -18915,7 +18915,7 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "ZT" = (
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/grass,
 /area/centcom/holding)
 "ZU" = (

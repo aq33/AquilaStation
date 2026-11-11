@@ -216,7 +216,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "dW" = (
 /obj/structure/fluff/empty_terrarium,
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little spider";
 	icon = 'icons/effects/effects.dmi';
 	icon_dead = "spiderling";
@@ -349,7 +349,7 @@
 "gE" = (
 /obj/structure/fluff/empty_terrarium,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little spider";
 	icon = 'icons/effects/effects.dmi';
 	icon_dead = "spiderling";
@@ -1080,7 +1080,7 @@
 /turf/open/floor/monotile/dark,
 /area/ruin/powered/nsv13/boarding_interior)
 "uf" = (
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little spider";
 	icon = 'icons/effects/effects.dmi';
 	icon_dead = "spiderling";
@@ -1931,7 +1931,7 @@
 /turf/open/floor/plasteel/ridged/steel,
 /area/ruin/powered/nsv13/boarding_interior)
 "GT" = (
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little spider";
 	icon = 'icons/effects/effects.dmi';
 	icon_dead = "spiderling";

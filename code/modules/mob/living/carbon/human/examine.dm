@@ -309,7 +309,7 @@
 			if(InCritical())
 				msg += "Ledwo jest przytomny.\n"
 		if(getorgan(/obj/item/organ/brain))
-			if(ai_controller?.ai_status == AI_STATUS_ON || isknpc(src)) //NSV13 added KNPCs
+			if(ai_controller?.ai_status == AI_STATUS_ON || (ai_controller && !key) || isknpc(src)) //NSV13 added KNPCs // AQ EDIT - SI wyłączone na czas ogłuszenia to nie katatonia
 				msg += "<span class='deadsay'>Nie wydaje się być sobą.</span>\n"
 			else if(!key)
 				msg += "<span class='deadsay'>Jest w całkowitej katatonii. Stres życia w głębokim kosmosie musiał go przerosnąć. Powrót do zdrowia jest mało prawdopodobny.</span>\n"

@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 /proc/ship_structure_indestructible_turf(path)
 	return ispath(path, /turf/closed/indestructible) || ispath(path, /turf/open/indestructible)
 
-/// Sygnatura pola: typ turfa i jego uszkodzenia
+/// Sygnatura pola: typ turfa, jego uszkodzenia i materiał ściany albo podłogi z materiału
 /proc/ship_structure_turf_sig(turf/T)
 	. = "[T.type]"
 	if(isfloorturf(T))
@@ -208,6 +208,55 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		var/turf/closed/wall/r_wall/R = T
 		if(R.d_state != INTACT)
 			. += ";[R.d_state]"
+	var/materials_field = ship_structure_materials_field(T)
+	if(materials_field)
+		. += ";[materials_field]"
+
+/// Ściana i podłoga z materiału biorą materiał z płytki albo arkusza, nie z typu, więc zapis go pamięta
+/proc/ship_structure_has_materials(turf/T)
+	return istype(T, /turf/open/floor/material) || istype(T, /turf/closed/wall/material)
+
+/**
+ * Pole materiałów w sygnaturze: "m=/datum/material/gold:500" (kilka materiałów po przecinku, posortowane),
+ * "mt=" dla materiału z metalgenu (sam wygląd, bez zwrotu arkuszy).
+ */
+/proc/ship_structure_materials_field(turf/T)
+	if(!ship_structure_has_materials(T) || !length(T.custom_materials))
+		return null
+	var/list/entries = list()
+	for(var/datum/material/material as anything in T.custom_materials)
+		entries += "[material.type]:[T.custom_materials[material]]"
+	sortTim(entries, GLOBAL_PROC_REF(cmp_text_asc))
+	return "[HAS_TRAIT(T, TRAIT_MATERIALS_TRANSMUTED) ? "mt" : "m"]=[entries.Join(",")]"
+
+/// Nakłada na pole materiały z sygnatury (pole „m=” albo „mt=”), jeśli różnią się od obecnych
+/proc/ship_structure_apply_materials(turf/T, list/fields)
+	if(!ship_structure_has_materials(T))
+		return
+	var/wanted_field
+	for(var/field in fields)
+		if(findtext(field, "m=", 1, 3) || findtext(field, "mt=", 1, 4))
+			wanted_field = field
+			break
+	if(!wanted_field || wanted_field == ship_structure_materials_field(T))
+		return
+	var/transmuted = findtext(wanted_field, "mt=", 1, 4)
+	var/list/materials = list()
+	for(var/entry in splittext(copytext(wanted_field, transmuted ? 4 : 3), ","))
+		var/list/parts = splittext(entry, ":")
+		if(length(parts) != 2)
+			continue
+		var/material_type = text2path(parts[1])
+		var/amount = text2num(parts[2])
+		if(ispath(material_type, /datum/material) && amount > 0)
+			materials[material_type] = amount
+	if(!length(materials))
+		return
+	if(transmuted)
+		ADD_TRAIT(T, TRAIT_MATERIALS_TRANSMUTED, METALGEN_TRAIT)
+	else
+		REMOVE_TRAIT(T, TRAIT_MATERIALS_TRANSMUTED, METALGEN_TRAIT)
+	T.set_custom_materials(materials)
 
 /// Sygnatura obiektu struktury: "typ;kierunek;dodatki". Te same sygnatury = ten sam obiekt dla porównania rund.
 /proc/ship_structure_obj_sig(obj/O)
@@ -632,6 +681,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		if(R.d_state != wanted_state)
 			R.d_state = wanted_state
 			R.update_appearance()
+	ship_structure_apply_materials(T, fields)
 	return T
 
 /datum/ship_structure/proc/set_integrity(obj/O, value)

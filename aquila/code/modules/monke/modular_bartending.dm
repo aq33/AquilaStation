@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(glass_variants)
 	icon_state = "mglass-1-"
 	amount_per_transfer_from_this = 10
 	volume = 50
-	materials = list(/datum/material/glass = 500, /datum/material/silver = 100)
+	custom_materials = list(/datum/material/glass = 500, /datum/material/silver = 100)
 	max_integrity = 30
 	spillable = TRUE
 	resistance_flags = ACID_PROOF
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(glass_variants)
 /obj/item/reagent_containers/food/drinks/modglass/small
 	name = "mała plastyczna szklanka"
 	icon_state = "sglass-1-"
-	materials = list(/datum/material/glass = 100, /datum/material/silver = 100)
+	custom_materials = list(/datum/material/glass = 100, /datum/material/silver = 100)
 	volume = 25
 	rim = RIM_SMALL
 	variants = SMALL_VARIANTS

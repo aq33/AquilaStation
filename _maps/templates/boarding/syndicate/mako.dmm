@@ -236,7 +236,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "lO" = (
-/mob/living/simple_animal/hostile/bear,
+/mob/living/basic/bear,
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -414,7 +414,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "tz" = (
 /obj/structure/bed/dogbed,
-/mob/living/simple_animal/pet/dog/corgi/Lisa{
+/mob/living/basic/pet/dog/corgi/lisa{
 	faction = list("Syndicate");
 	name = "Hermione"
 	},
@@ -947,7 +947,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "UJ" = (
-/mob/living/simple_animal/hostile/bear/Hudson,
+/mob/living/basic/bear/hudson,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "UT" = (

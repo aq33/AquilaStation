@@ -135,7 +135,7 @@
 /datum/unit_test/aquila_audyt_warstwy_chair_drag/Run()
 	var/turf/floor = run_loc_floor_bottom_left
 	var/obj/structure/chair/chair = allocate(/obj/structure/chair, floor)
-	var/mob/living/simple_animal/pet/dog/corgi/dog = allocate(/mob/living/simple_animal/pet/dog/corgi, floor)
+	var/mob/living/basic/pet/dog/corgi/dog = allocate(/mob/living/basic/pet/dog/corgi, floor)
 	usr = dog
 	chair.MouseDrop(dog, floor, floor)
 	usr = null

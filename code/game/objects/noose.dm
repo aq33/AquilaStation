@@ -17,8 +17,7 @@
 					buckled_mob.visible_message("<span class='danger'>[buckled_mob] przewraca się i uderza o ziemię!</span>")
 					to_chat(buckled_mob, "<span class='userdanger'>Przewracasz się i uderzasz o ziemię!</span>")
 					buckled_mob.adjustBruteLoss(10)
-		var/obj/item/stack/cable_coil/C = new(get_turf(src))
-		C.amount = 25
+		new /obj/item/stack/cable_coil(get_turf(src), 25) // AQ EDIT - ilość w konstruktorze, żeby suma materiałów była dla 25 odcinków
 		qdel(src)
 		return
 	..()

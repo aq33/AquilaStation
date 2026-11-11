@@ -77,7 +77,7 @@
 /// AQUILA: u nas nie ma wędkowania, więc skrzynię odsłania przetrzebienie krabów
 /datum/lazy_template/virtual_domain/breeze_bay/setup_domain(list/created_atoms)
 	. = ..()
-	for(var/mob/living/simple_animal/crab/crab in created_atoms)
+	for(var/mob/living/basic/crab/crab in created_atoms)
 		RegisterSignal(crab, COMSIG_MOB_DEATH, PROC_REF(on_crab_killed))
 
 /// Eventually reveal the cache

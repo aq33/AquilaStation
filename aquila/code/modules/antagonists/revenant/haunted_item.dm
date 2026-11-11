@@ -1,7 +1,7 @@
 // AQUILA - nawiedzone przedmioty z tg (code/modules/antagonists/revenant/haunted_item.dm + code/datums/ai/hauntium)
 // Rewenant rzuca na nie Haunt Object: unoszą się, świecą i rzucają się na ludzi w pobliżu.
 // Zachowania item_escape_grasp i item_move_close_and_attack/haunted mamy już w code/datums/ai/_item_behaviors.dm,
-// brakowało samego kontrolera, więc tu jest jego wersja na nasz stary framework z planning_subtrees.
+// tu są kontroler, poddrzewo i zachowanie bezczynności (rdzeń SI z Bee, jak w tg).
 
 /// Czy przedmiot lubi tego, kto go trzyma (nieumarli), wtedy się nie wyrywa
 #define BB_LIKES_EQUIPPER "BB_likes_equipper"
@@ -15,6 +15,7 @@
 		BB_HAUNTED_THROW_ATTEMPT_COUNT = 0,
 	)
 	planning_subtrees = list(/datum/ai_planning_subtree/haunted)
+	idle_behavior = /datum/idle_behavior/idle_ghost_item
 
 /datum/ai_controller/haunted/TryPossessPawn(atom/new_pawn)
 	if(!isitem(new_pawn))
@@ -23,7 +24,8 @@
 	return ..()
 
 /datum/ai_controller/haunted/UnpossessPawn(destroy)
-	UnregisterSignal(pawn, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
+	if(!isnull(pawn))
+		UnregisterSignal(pawn, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	return ..()
 
 /// Ktoś podniósł przedmiot: żywy trafia na listę nawiedzanych, nieumarłego przedmiot polubi
@@ -38,35 +40,25 @@
 	if(haunt_equipper)
 		add_hauntee(equipper, HAUNTED_ITEM_AGGRO_ADDITION)
 	else
-		blackboard[BB_LIKES_EQUIPPER] = TRUE
+		set_blackboard_key(BB_LIKES_EQUIPPER, TRUE)
 	RegisterSignal(pawn, COMSIG_ITEM_DROPPED, PROC_REF(on_dropped))
 
-/// Dopisuje punkty nawiedzenia; blackboard trzyma moby wprost, więc usunięty mob musi z niego zniknąć (harddel)
+/// Dopisuje punkty nawiedzenia; usunięte moby zdejmuje z blackboardu sam kontroler (set_blackboard_key śledzi qdel)
 /datum/ai_controller/haunted/proc/add_hauntee(mob/victim, amount)
-	var/list/hauntee_list = blackboard[BB_TO_HAUNT_LIST]
-	// override: planowanie wyrzuca z listy moby bez punktów, a sygnał zostaje
-	RegisterSignal(victim, COMSIG_PARENT_QDELETING, PROC_REF(on_hauntee_deleted), override = TRUE)
-	hauntee_list[victim] += amount
-
-/datum/ai_controller/haunted/proc/on_hauntee_deleted(datum/source)
-	SIGNAL_HANDLER
-	if(blackboard[BB_HAUNT_TARGET] == source)
-		CancelActions() // finish_action zdejmuje BB_HAUNT_TARGET i cel ruchu
-		blackboard[BB_HAUNT_TARGET] = null
-	if(current_movement_target == source)
-		current_movement_target = null
-	var/list/hauntee_list = blackboard[BB_TO_HAUNT_LIST]
-	hauntee_list -= source
+	add_blackboard_key_assoc(BB_TO_HAUNT_LIST, victim, amount)
 
 /datum/ai_controller/haunted/proc/on_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
-	blackboard[BB_LIKES_EQUIPPER] = FALSE
+	set_blackboard_key(BB_LIKES_EQUIPPER, FALSE)
 	RegisterSignal(pawn, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 	UnregisterSignal(pawn, COMSIG_ITEM_DROPPED)
 
-/// Bez celu co jakiś czas przeskakuje w inne miejsce
-/datum/ai_controller/haunted/PerformIdleBehavior(delta_time)
-	var/obj/item/item_pawn = pawn
+/// Bez celu co jakiś czas przeskakuje w inne miejsce (tg: idle_behaviors/idle_haunted.dm)
+/datum/idle_behavior/idle_ghost_item
+
+/datum/idle_behavior/idle_ghost_item/perform_idle_behavior(delta_time, datum/ai_controller/controller)
+	. = ..()
+	var/obj/item/item_pawn = controller.pawn
 	if(ismob(item_pawn.loc) || !isturf(item_pawn.loc))
 		return
 	if(DT_PROB(HAUNTED_ITEM_TELEPORT_CHANCE, delta_time))
@@ -93,10 +85,10 @@
 	var/list/to_haunt_list = controller.blackboard[BB_TO_HAUNT_LIST]
 	for(var/mob/living/potential_target as anything in to_haunt_list)
 		if(QDELETED(potential_target) || to_haunt_list[potential_target] <= 0)
-			to_haunt_list -= potential_target
+			controller.remove_thing_from_blackboard_key(BB_TO_HAUNT_LIST, potential_target)
 			continue
 		if(get_dist(potential_target, item_pawn) <= CURSED_VIEW_RANGE)
-			controller.blackboard[BB_HAUNT_TARGET] = potential_target
+			controller.set_blackboard_key(BB_HAUNT_TARGET, potential_target)
 			controller.queue_behavior(/datum/ai_behavior/item_move_close_and_attack/haunted, BB_HAUNT_TARGET, BB_HAUNTED_THROW_ATTEMPT_COUNT)
 			return SUBTREE_RETURN_FINISH_PLANNING
 

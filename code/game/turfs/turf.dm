@@ -109,6 +109,13 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 		T.multiz_turf_new(src, UP)
 		SEND_SIGNAL(T, COMSIG_TURF_MULTIZ_NEW, src, UP)
 
+	// AQ EDIT START - Bee#10703: turf nakłada materiały z typu (ten Initialize nie woła /atom/Initialize), przed liczeniem nieprzezroczystości
+	if(length(custom_materials) && ispath(custom_materials[1]))
+		var/list/initial_materials = custom_materials
+		custom_materials = null
+		set_custom_materials(initial_materials)
+	// AQ EDIT END
+
 	if (opacity)
 		has_opaque_atom = TRUE
 

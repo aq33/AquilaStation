@@ -269,7 +269,7 @@
 /turf/open/floor/plating/beach/coastline_b,
 /area/ruin/space/has_grav/powered)
 "yp" = (
-/mob/living/simple_animal/crab,
+/mob/living/basic/crab,
 /turf/open/floor/plating/beach/sand,
 /area/ruin/space/has_grav/powered)
 "yA" = (

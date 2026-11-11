@@ -1,5 +1,5 @@
 /obj/item/food/meat
-	//custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4)
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4)
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/food/meat.dmi'
 	var/subjectname = ""
@@ -358,6 +358,7 @@
 	AddElement(/datum/element/dryable, /obj/item/food/sosjerky/healthy/monkey)
 
 /obj/item/food/meat/rawbacon
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "surowy plaster boczku"
 	desc = "Surowy plaster boczku."
 	icon_state = "bacon"
@@ -374,6 +375,7 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/bacon, rand(25 SECONDS, 45 SECONDS), TRUE, TRUE)
 
 /obj/item/food/meat/bacon
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "plaster boczku"
 	desc = "Pyszny plaster boczku."
 	icon_state = "baconcooked"
@@ -421,6 +423,7 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/meat/rawcutlet/penguin, 3, 30)
 
 /obj/item/food/meat/rawcrab
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "surowe mięso kraba"
 	desc = "Kupka surowego mięsa kraba."
 	icon_state = "crabmeatraw"
@@ -437,6 +440,7 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/crab, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/food/meat/crab
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "mięso kraba"
 	desc = "Pysznie ugotowane mięso kraba."
 	icon_state = "crabmeat"
@@ -633,6 +637,7 @@
 //Raw cutlets
 
 /obj/item/food/meat/rawcutlet
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "surowy kotlet"
 	desc = "Surowy kotlet mięsny."
 	icon_state = "rawcutlet"
@@ -750,6 +755,7 @@
 //Cooked cutlets
 
 /obj/item/food/meat/cutlet
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4 / 3) // AQ EDIT - jedna trzecia płata (jak w tg), nie cały płat: kotlety z jednego płata dawały 12 arkuszy w autolacie
 	name = "kotlet"
 	desc = "Upieczony kotlet mięsny."
 	icon_state = "cutlet"

@@ -400,8 +400,13 @@
 	var/iron = 0
 	for(var/obj/item/O in ingredients)
 		O.microwave_act(src)
-		if(O.materials[/datum/material/iron])
-			iron += O.materials[/datum/material/iron]
+		// AQ EDIT START - przed BeeStation/BeeStation-Hornet#10135 to sprawdzenie nigdy nie działało (Initialize() zamieniał
+		// klucze `materials` na instancje, a szukało ścieżki), więc mikrofalówka nie psuła się od żelaza. Po porcie wybuchałaby
+		// od każdego przedmiotu z żelazem (puszki, sztućce), dlatego zostaje wyłączone, jak było w praktyce.
+		//if(O.custom_materials && length(O.custom_materials))
+		//	if(O.custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)])
+		//		iron += O.custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)]
+		// AQ EDIT END
 
 	if(iron)
 		spark()

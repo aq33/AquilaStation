@@ -79,14 +79,14 @@
 
 /datum/modular_mob_segment/gondolas
 	mobs = list(
-		/mob/living/simple_animal/pet/gondola,
+		/mob/living/basic/pet/gondola,
 	)
 
 
 /datum/modular_mob_segment/corgis
 	max = 2
 	mobs = list(
-		/mob/living/simple_animal/pet/dog/corgi,
+		/mob/living/basic/pet/dog/corgi,
 	)
 
 
@@ -121,7 +121,7 @@
 /datum/modular_mob_segment/bears
 	max = 2
 	mobs = list(
-		/mob/living/simple_animal/hostile/bear,
+		/mob/living/basic/bear,
 	)
 
 

@@ -11,7 +11,7 @@
 	items = list(
 		/mob/living/carbon/human = 3,
 		/mob/living/carbon/monkey = 1,
-		/mob/living/simple_animal/mouse = 1,
+		/mob/living/basic/mouse = 1,
 		/obj/item/tome = 1,
 		/obj/item/talisman = 3,
 		/obj/item/kitchen/knife/ritual = 1,

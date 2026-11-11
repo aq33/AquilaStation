@@ -10,7 +10,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 200)
+	custom_materials = list(/datum/material/iron = 500, /datum/material/glass = 200)
 	/// Ostatni wynik do wydruku
 	var/list/last_scan
 	var/last_scan_name

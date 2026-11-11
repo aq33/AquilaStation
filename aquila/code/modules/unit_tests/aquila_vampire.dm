@@ -63,7 +63,7 @@
 	// Humanity is gained from petting animals
 	var/old_humanity = vampire.humanity
 	for(var/i in 1 to vampire.humanity_petting_goal)
-		var/mob/living/simple_animal/pet/dog/corgi/pet = allocate(/mob/living/simple_animal/pet/dog/corgi)
+		var/mob/living/basic/pet/dog/corgi/pet = allocate(/mob/living/basic/pet/dog/corgi)
 		SEND_SIGNAL(vampire_mob, COMSIG_LIVING_PET_ANIMAL, pet)
 	TEST_ASSERT(vampire.humanity > old_humanity, "Petting [vampire.humanity_petting_goal] animals gave no humanity")
 

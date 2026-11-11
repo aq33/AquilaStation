@@ -44,7 +44,7 @@
 			if(prob(30))
 				M.visible_message("<span class='danger'>[M] wije się, gdy z jego porów wypełza karaluch!</span>", \
 								  "<span class='userdanger'>Z twojej twarzy wypełza karaluch!!</span>")
-				new /mob/living/simple_animal/cockroach(M.loc)
+				new /mob/living/basic/cockroach(M.loc) // AQ EDIT - basic moby
 			if(prob(50))
 				to_chat(M, "<span class='notice'>Czujesz, jak coś pełza ci w rurach!</span>")
 
@@ -55,5 +55,5 @@
 		var/mob/living/M = A.affected_mob
 		to_chat(M, "<span class='warning'>Twoje pory eksplodują kolonią karaluchów!</span>")
 		for(var/i in 1 to rand(1,5))
-			new /mob/living/simple_animal/cockroach(M.loc)
+			new /mob/living/basic/cockroach(M.loc) // AQ EDIT - basic moby
 

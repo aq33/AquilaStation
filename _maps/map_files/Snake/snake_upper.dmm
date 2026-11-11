@@ -5119,7 +5119,7 @@
 /area/ai_monitored/turret_protected/ai)
 "tE" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/machinery/power/apc/auto_name/west,
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
@@ -6706,7 +6706,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "EC" = (
-/mob/living/simple_animal/hostile/retaliate/bat/sgt_araneus,
+/mob/living/basic/bat/sgt_araneus,
 /turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "EG" = (

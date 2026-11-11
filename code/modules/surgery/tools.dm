@@ -6,7 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "clamps"
-	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
+	custom_materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	tool_behaviour = TOOL_RETRACTOR
@@ -18,7 +18,7 @@
 	desc = "Mikromechaniczny manipulator do rozchylania różnych rzeczy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
-	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
+	custom_materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
@@ -32,7 +32,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "clamps"
-	materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
+	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("atakuje", "szczypie")
@@ -45,7 +45,7 @@
 	desc = "Maleńkie serwomechanizmy napędzają parę szczypiec, które tamują krwawienie."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
-	materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
+	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
@@ -60,7 +60,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "cautery"
-	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
+	custom_materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("parzy")
@@ -73,7 +73,7 @@
 	desc = "Rozgrzany element, który przyżega rany."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "cautery"
-	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
+	custom_materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
@@ -87,7 +87,7 @@
 	icon_state = "bloodfilter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	materials = list(/datum/material/iron=2000, /datum/material/glass=1500, /datum/material/silver=500)
+	custom_materials = list(/datum/material/iron=2000, /datum/material/glass=1500, /datum/material/silver=500)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("pompuje", "wysysa")
@@ -103,7 +103,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	flags_1 = CONDUCT_1
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
@@ -124,7 +124,7 @@
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	flags_1 = CONDUCT_1
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -146,7 +146,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
+	custom_materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("atakuje", "ciacha", "dźga", "kroi", "rozdziera", "rozrywa", "sieka", "tnie")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP_ACCURATE
@@ -169,7 +169,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
+	custom_materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("atakuje", "ciacha", "dźga", "kroi", "rozdziera", "rozrywa", "sieka", "tnie")
 	toolspeed = 0.5
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -196,7 +196,7 @@
 	throwforce = 9
 	throw_speed = 2
 	throw_range = 5
-	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("atakuje", "ciacha", "piłuje", "tnie")
 	sharpness = IS_SHARP
 	bleed_force = BLEED_DEEP_WOUND
@@ -220,7 +220,7 @@
 	throwforce = 9
 	throw_speed = 2
 	throw_range = 5
-	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	toolspeed = 0.5
 	attack_verb = list("atakuje", "ciacha", "piłuje", "tnie")
 	sharpness = IS_SHARP

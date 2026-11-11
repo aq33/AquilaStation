@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(abductor_operations, list(
 	name = "Surgery Procedure Disk"
 	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
 	icon_state = "datadisk1"
-	materials = list(/datum/material/iron=300, /datum/material/glass=100)
+	custom_materials = list(/datum/material/iron=300, /datum/material/glass=100)
 	/// Typy operacji (/datum/surgery_operation/...) odblokowywane przez dysk
 	var/list/surgeries
 

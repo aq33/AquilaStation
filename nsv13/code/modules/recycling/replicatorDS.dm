@@ -380,11 +380,11 @@
 			if(emagged)
 				switch(rand(1,6))
 					if(1)
-						new /mob/living/simple_animal/hostile/killertomato(get_turf(src))
+						new /mob/living/basic/killer_tomato(get_turf(src)) // AQ EDIT - basic moby
 					if(2)
 						new /mob/living/simple_animal/hostile/netherworld(get_turf(src))
 					if(3)
-						new /mob/living/simple_animal/hostile/bear(get_turf(src))
+						new /mob/living/basic/bear(get_turf(src)) // AQ EDIT - basic moby
 					if(4)
 						new /mob/living/simple_animal/hostile/blob/blobspore(get_turf(src))
 					if(5)

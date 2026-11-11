@@ -180,16 +180,10 @@
 #define FACTION_VAMPIRE "Vampire"
 #define LANGUAGE_VAMPIRE "vampire"
 
-#define HAS_MIND_TRAIT(target, trait) (HAS_TRAIT(target, trait) || (target.mind ? HAS_TRAIT(target.mind, trait) : FALSE))
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 // TRAIT_WHISPER_ONLY jest w code/__DEFINES/traits.dm (obsługa w code/modules/mob/living/say.dm)
-#define TRAIT_NO_TRANSFORM "block_transformations"
-
-// Bee: incapacitated jako maska bitów; u nas incapacitated(ignore_restraints, ignore_grab)
-#define INCAPABLE_RESTRAINTS (1<<1)
-#define INCAPABLE_STASIS (1<<2)
-#define INCAPABLE_GRAB (1<<3)
-#define INCAPACITATED_IGNORING(mob, flags) (mob.incapacitated(((flags) & INCAPABLE_RESTRAINTS) ? TRUE : FALSE, ((flags) & INCAPABLE_GRAB) ? TRUE : FALSE))
+// HAS_MIND_TRAIT, TRAIT_NO_TRANSFORM, INCAPABLE_* i INCAPACITATED_IGNORING są w aquila/code/__DEFINES/basic_mobs.dm
+// (dołączany wcześnie, bo używa ich rdzeń SI z Bee)
 
 // Bee: zawód jako datum; u nas assigned_role to tekst
 #define is_curator_job(job_to_check) ((job_to_check) == JOB_NAME_CURATOR || istype(job_to_check, /datum/job/curator))

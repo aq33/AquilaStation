@@ -31,15 +31,20 @@ Slimecrossing Mobs
 	return
 
 //Slime corgi - Chilling Pink
-/mob/living/simple_animal/pet/dog/corgi/puppy/slime
+/mob/living/basic/pet/dog/corgi/puppy/slime // AQ EDIT - basic moby
 	name = "\improper szlamowy szczeniak corgi"
 	real_name = "szlamowy szczeniak corgi"
 	desc = "Nieznośnie uroczy różowy szlamowy szczeniak corgi."
 	icon_state = "slime_puppy"
 	icon_living = "slime_puppy"
 	icon_dead = "slime_puppy_dead"
-	nofur = TRUE
+	can_be_shaved = FALSE // AQ EDIT - basic moby
 	gold_core_spawnable = NO_SPAWN
 	speak_emote = list("bulgocze", "bąbelkuje", "szczeka")
-	emote_hear = list("bąbelkuje!", "chlupie.", "plaska!")
-	emote_see = list("rozchlapuje maź dookoła.", "pada płasko.", "trzęsie się!")
+
+// AQ EDIT START - basic moby: mowa psa jest w SI
+/mob/living/basic/pet/dog/corgi/puppy/slime/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	. = ..()
+	speech.emote_hear = string_list(list("bąbelkuje!", "chlupie.", "plaska!"))
+	speech.emote_see = string_list(list("rozchlapuje maź dookoła.", "pada płasko.", "trzęsie się!"))
+// AQ EDIT END

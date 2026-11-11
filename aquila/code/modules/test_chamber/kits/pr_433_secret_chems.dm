@@ -8,7 +8,7 @@
 	5) Pigułki daj małpom do zjedzenia: gibbium (GBS, leczy synaptizine + siarka), polyjuice (przemiana po 10 cyklach), spider serum (pajączki, pająk po 30 cyklach) → oczekiwane: każda robi swoje po podanym czasie. \
 	6) Butelka maint pilli → oczekiwane: losuje z nowej puli."
 	items = list(
-		/mob/living/simple_animal/chicken/rabbit = 2,
+		/mob/living/basic/rabbit/easter = 2,
 		/mob/living/carbon/monkey = 2,
 		/obj/item/paper/secretrecipe/gorgium = 1,
 		/obj/item/paper/secretrecipe/metalgen = 1,

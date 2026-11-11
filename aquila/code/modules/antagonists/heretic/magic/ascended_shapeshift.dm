@@ -29,7 +29,7 @@
 	monster.melee_damage = round((max(monster.melee_damage * 2, 40) + monster.melee_damage / 2) / 2)
 	monster.transform *= 1.5
 	// AQUILA - zamiast elementu wall_tearer: niszczenie ścian (także wzmocnionych) atakiem simple_animal
-	if(isanimal(monster))
+	if(isanimal_or_basicmob(monster)) // basic moby mają tę samą zmienną
 		var/mob/living/simple_animal/animal_monster = monster
 		animal_monster.environment_smash |= ENVIRONMENT_SMASH_STRUCTURES | ENVIRONMENT_SMASH_WALLS | ENVIRONMENT_SMASH_RWALLS
 

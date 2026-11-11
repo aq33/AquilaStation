@@ -19,6 +19,9 @@ export const MATERIAL_KEYS = {
   titanium: 'sheet-titanium_3',
   'bluespace crystal': 'polycrystal',
   plastic: 'sheet-plastic_3',
+  adamantine: 'sheet-adamantine_3',
+  wood: 'sheet-wood_3',
+  meat: 'sheet-meat_3',
 } as const;
 
 export type Material = {
