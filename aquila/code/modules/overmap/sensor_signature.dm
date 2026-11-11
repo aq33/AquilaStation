@@ -98,7 +98,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	if(observer.ai_controlled)
 		base_range = observer.max_tracking_range // Doubled by the AI's own radar pulse
 	else
-		base_range = (observer.dradis ? observer.dradis.sensor_range : SENSOR_RANGE_DEFAULT) * SENSOR_PLAYER_RANGE_MULT
+		// The operator's console runs the sensors; a DRADIS only copies its range while its window is open (sensor_console.dm)
+		var/obj/machinery/computer/ship/dradis/display = observer.sensor_console || observer.dradis
+		base_range = (display ? display.sensor_range : SENSOR_RANGE_DEFAULT) * SENSOR_PLAYER_RANGE_MULT
 	var/range = max(base_range * sensor_signature, SENSOR_MIN_DETECTION)
 	// A player's active pulse sees the whole map; the AI pulses all the time, so its pulse stays capped
 	if(!observer.ai_controlled && observer.last_radar_pulse + RADAR_VISIBILITY_PENALTY > world.time)

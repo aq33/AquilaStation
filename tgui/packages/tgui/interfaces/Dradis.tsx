@@ -84,6 +84,8 @@ export const DradisContent = (props) => {
         : uncertainty > 0
           ? 'Niepewny kontakt, pozycja przybliżona. Podejdź bliżej albo użyj radaru.'
           : undefined;
+    // AQ EDIT - podpis zasłonięty przez ważniejszy kontakt pokazuje się dopiero po najechaniu
+    const labelShown = shownLabels.has(ship);
     return (
       <li key={ship.id}>
         {uncertainty > 0 && (
@@ -97,11 +99,15 @@ export const DradisContent = (props) => {
             style={markerStyle}
             className={markerType}
             content=""
-            tooltip={tooltip}
+            tooltip={
+              labelShown
+                ? tooltip
+                : ship.name + (tooltip ? ' · ' + tooltip : '')
+            }
             onClick={() => act('hail', { target: ship.id })}
           >
             <span className="star_label">
-              <p>{ship.name}</p>
+              {labelShown && <p>{ship.name}</p>}
             </span>
           </Button>
         )}
@@ -224,8 +230,54 @@ export const DradisContent = (props) => {
   };
   // AQ EDIT END
 
+  // AQ EDIT START - podpisy bez nakładania: przy wielu kontaktach w jednym miejscu nazwy zlewały się w nieczytelną plamę.
+  // Pierwszeństwo: własny okręt, cele operatora, wrogowie, nierozpoznani, sojusznicy, asteroidy i anomalie.
+  let shownLabels = new Set<any>();
+  const labelPriority = (ship) => {
+    if (ship.colour === '#00FFFF') {
+      return 0;
+    }
+    if (ship.designation) {
+      return 1;
+    }
+    if (ship.colour === '#FF0000') {
+      return 2;
+    }
+    if (ship.colour === '#a66300') {
+      return 3;
+    }
+    if (ship.colour === '#32CD32') {
+      return 4;
+    }
+    return 5;
+  };
+  const pickLabels = (ships, scale) => {
+    const placed: { x: number; y: number; w: number }[] = [];
+    const shown = new Set<any>();
+    const order = [...(ships || [])]
+      .filter((ship) => !!ship.name)
+      .sort((a, b) => labelPriority(a) - labelPriority(b));
+    for (const ship of order) {
+      const x = ship.x * scale;
+      const y = ship.y * scale;
+      const w = String(ship.name).length * 6.5;
+      const blocked = placed.some(
+        (other) =>
+          Math.abs(other.x - x) < (other.w + w) / 2 + 4 &&
+          Math.abs(other.y - y) < 13,
+      );
+      if (!blocked) {
+        placed.push({ x: x, y: y, w: w });
+        shown.add(ship);
+      }
+    }
+    return shown;
+  };
+  // AQ EDIT END
+
   const DradisMap = (ships, zoom_factor, width_mod, focus_x, focus_y) => {
     let scale_factor = 5 * zoom_factor;
+    shownLabels = pickLabels(ships, scale_factor); // AQ EDIT - podpisy bez nakładania
     let multiplier = 562.5 * zoom_factor;
     let rangeStyle = {
       left: focus_x * scale_factor + 'px',

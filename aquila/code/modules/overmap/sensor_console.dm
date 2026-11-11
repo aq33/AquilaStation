@@ -177,18 +177,22 @@
 		var/obj/structure/overmap/OM = locate(blip["id"])
 		if(!istype(OM) || OM == linked || istype(OM, /obj/structure/overmap/asteroid))
 			continue
-		// Positions come from the blip, so the operator sees the same uncertain contact as the DRADIS map
-		var/dx = blip["x"] - linked.x
-		var/dy = blip["y"] - linked.y
+		// Positions come from the blip, so the operator sees the same uncertain contact as the DRADIS map.
+		// A certain contact gets its exact position and course, so the window can move it between updates.
+		var/certain = !blip["uncertainty"]
+		var/dx = certain ? (OM.x + OM.offset.a) - (linked.x + linked.offset.a) : blip["x"] - linked.x
+		var/dy = certain ? (OM.y + OM.offset.e) - (linked.y + linked.offset.e) : blip["y"] - linked.y
 		if(abs(dx) > world.maxx / 2)
 			dx -= dx > 0 ? world.maxx : -world.maxx
 		if(abs(dy) > world.maxy / 2)
 			dy -= dy > 0 ? world.maxy : -world.maxy
 		contacts += list(list(
+			"vx" = certain ? round(OM.velocity.a - linked.velocity.a, 0.01) : 0,
+			"vy" = certain ? round(OM.velocity.e - linked.velocity.e, 0.01) : 0,
 			"id" = blip["id"],
 			"name" = blip["name"],
-			"dx" = dx,
-			"dy" = dy,
+			"dx" = round(dx, 0.01),
+			"dy" = round(dy, 0.01),
 			"uncertainty" = blip["uncertainty"] || 0,
 			"hostile" = OM.faction != linked.faction,
 			"identified" = linked.is_contact_identified(OM, sensor_range),
@@ -213,7 +217,41 @@
 		markers += list(list("dx" = dx, "dy" = dy, "emission" = blip["emission"], "ghost" = !!blip["ghost"], "opacity" = blip["opacity"]))
 	data["markers"] = markers
 	data["gunner"] = !!linked.gunner
+	data["turn"] = round(linked.angular_velocity, 0.1)
+	data["pulse_at"] = linked.last_radar_pulse
+	data["objects"] = get_scope_objects()
 	data["near_range"] = SENSOR_THREAT_NEAR
+
+/// Asteroids, wrecks and anomalies for the operator's scope: not contacts (nothing to designate), only obstacles and things to look at.
+/// Asteroids and wrecks follow the same visibility as ships; anomalies show anywhere in the system, as on DRADIS.
+/obj/machinery/computer/ship/dradis/sensors/proc/get_scope_objects()
+	. = list()
+	if(!linked?.current_system)
+		return
+	for(var/atom/movable/thing as anything in linked.current_system.system_contents)
+		if(QDELETED(thing) || thing.z != linked.z)
+			continue
+		var/kind
+		var/name
+		if(istype(thing, /obj/effect/overmap_anomaly))
+			var/obj/effect/overmap_anomaly/anomaly = thing
+			kind = "anomaly"
+			name = anomaly.scanned ? anomaly.name : "anomalia"
+		else if(istype(thing, /obj/structure/overmap/asteroid))
+			var/obj/structure/overmap/asteroid/rock = thing
+			if(overmap_dist(linked, rock) > max(sensor_range * 2, rock.sensor_profile) || rock.is_sensor_visible(linked) < SENSOR_VISIBILITY_FAINT)
+				continue
+			kind = istype(rock, /obj/structure/overmap/asteroid/shipbreak_wreck) ? "wreck" : "asteroid"
+			name = rock.name
+		else
+			continue
+		var/dx = thing.x - linked.x
+		var/dy = thing.y - linked.y
+		if(abs(dx) > world.maxx / 2)
+			dx -= dx > 0 ? world.maxx : -world.maxx
+		if(abs(dy) > world.maxy / 2)
+			dy -= dy > 0 ? world.maxy : -world.maxy
+		. += list(list("kind" = kind, "name" = name, "dx" = dx, "dy" = dy))
 
 /// Every DRADIS on a ship with a sensor console follows the operator: its range and its contact labels.
 /obj/machinery/computer/ship/dradis/ui_data(mob/user)

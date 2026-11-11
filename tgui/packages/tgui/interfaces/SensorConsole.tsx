@@ -4,6 +4,8 @@ import {
   type CSSProperties,
   type MouseEvent,
   type ReactNode,
+  useEffect,
+  useRef,
   useState,
 } from 'react';
 import { Box, Button } from 'tgui-core/components';
@@ -32,6 +34,8 @@ type Contact = {
   painted: boolean;
   locked: boolean;
   designation: Designation;
+  vx: number;
+  vy: number;
   sensor?: string | null;
   suites?: SuiteReport[];
 };
@@ -77,6 +81,22 @@ type Data = {
   ir_blind: boolean;
   ir_blind_half: number;
   camera_reach: number;
+  turn: number;
+  pulse_at: number;
+  objects: ScopeObject[];
+};
+
+type ScopeObject = {
+  kind: 'asteroid' | 'wreck' | 'anomaly';
+  name: string;
+  dx: number;
+  dy: number;
+};
+
+const OBJECT_COLOR = {
+  asteroid: '#8a8f98',
+  wreck: '#a9b0ba',
+  anomaly: '#eb9534',
 };
 
 const COLOR = {
@@ -272,6 +292,7 @@ const TopBar = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
+        flexWrap: 'wrap',
         gap: '10px',
         padding: '8px 10px',
         borderBottom: '1px solid ' + COLOR.line,
@@ -362,15 +383,23 @@ const TopBar = () => {
 
 type ScopeProps = {
   range: number;
+  contacts: Contact[];
+  heading: number;
   selected: string | null;
   onSelect: (id: string) => void;
 };
 
+// Teleskop ręczny: przy przeciąganiu wysyłamy namiar najwyżej co tyle ms
+const DRAG_SEND_MS = 120;
+
 const Scope = (props: ScopeProps) => {
   const { act, data } = useBackend<Data>();
-  const { range, selected, onSelect } = props;
-  const contacts = data.contacts || [];
+  const { range, contacts, heading, selected, onSelect } = props;
   const markers = data.markers || [];
+  const objects = data.objects || [];
+  const [dragBearing, setDragBearing] = useState<number | null>(null);
+  const dragging = useRef(false);
+  const lastSent = useRef(0);
   const scale = RADIUS / range;
   const toPoint = (dx: number, dy: number): [number, number, boolean] => {
     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -382,18 +411,51 @@ const Scope = (props: ScopeProps) => {
       clamp < 1,
     ];
   };
-  const heading = data.heading || 0;
-  const aimManually = (event: MouseEvent<SVGSVGElement>) => {
-    if (data.telescope_mode !== 'recznie' || !data.cones) {
-      return;
-    }
+  const manual = data.telescope_mode === 'recznie' && !!data.cones;
+  const bearingAt = (event: MouseEvent<SVGSVGElement>) => {
     const box = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - box.left - CENTER;
     const y = CENTER - (event.clientY - box.top);
-    const bearing =
-      (Math.round((Math.atan2(x, y) * 180) / Math.PI) + 360) % 360;
-    act('set_telescope', { bearing: bearing });
+    return (Math.round((Math.atan2(x, y) * 180) / Math.PI) + 360) % 360;
   };
+  const aim = (bearing: number, force: boolean) => {
+    setDragBearing(bearing);
+    const now = Date.now();
+    if (force || now - lastSent.current >= DRAG_SEND_MS) {
+      lastSent.current = now;
+      act('set_telescope', { bearing: bearing });
+    }
+  };
+  const startAim = (event: MouseEvent<SVGSVGElement>) => {
+    if (!manual || event.button !== 0) {
+      return;
+    }
+    dragging.current = true;
+    aim(bearingAt(event), true);
+  };
+  const moveAim = (event: MouseEvent<SVGSVGElement>) => {
+    if (dragging.current) {
+      aim(bearingAt(event), false);
+    }
+  };
+  const endAim = (event: MouseEvent<SVGSVGElement>) => {
+    if (dragging.current) {
+      dragging.current = false;
+      aim(bearingAt(event), true);
+    }
+  };
+  // Po puszczeniu przycisku trzymamy własny namiar, aż serwer go potwierdzi
+  useEffect(() => {
+    if (
+      !dragging.current &&
+      dragBearing !== null &&
+      (!manual || data.telescope_bearing === dragBearing)
+    ) {
+      setDragBearing(null);
+    }
+  }, [data.telescope_bearing, manual]);
+  const telescopeBearing =
+    manual && dragBearing !== null ? dragBearing : data.telescope_bearing;
   const ticks: ReactNode[] = [];
   for (let b = 0; b < 360; b += 10) {
     const a = ((b - 90) * Math.PI) / 180;
@@ -432,9 +494,13 @@ const Scope = (props: ScopeProps) => {
       viewBox={'0 0 ' + SCOPE + ' ' + SCOPE}
       style={{
         display: 'block',
-        cursor: data.telescope_mode === 'recznie' ? 'crosshair' : 'default',
+        cursor: manual ? 'crosshair' : 'default',
+        userSelect: 'none',
       }}
-      onClick={aimManually}
+      onMouseDown={startAim}
+      onMouseMove={moveAim}
+      onMouseUp={endAim}
+      onMouseLeave={endAim}
     >
       <defs>
         <radialGradient id="scopeBg">
@@ -472,9 +538,9 @@ const Scope = (props: ScopeProps) => {
           strokeDasharray="4 3"
         />
       )}
-      {!!data.cones && data.telescope_bearing !== null && (
+      {!!data.cones && telescopeBearing !== null && (
         <path
-          d={wedgePath(data.telescope_bearing, data.telescope_half, RADIUS)}
+          d={wedgePath(telescopeBearing, data.telescope_half, RADIUS)}
           fill="rgba(76,201,240,0.10)"
           stroke="rgba(76,201,240,0.7)"
         />
@@ -515,15 +581,66 @@ const Scope = (props: ScopeProps) => {
           );
         })}
       {!!data.pulse_active && (
-        <circle
-          cx={CENTER}
-          cy={CENTER}
-          r={RADIUS - 2}
-          fill="none"
-          stroke="rgba(94,224,138,0.5)"
-          strokeWidth={3}
-        />
+        <g key={'pulse' + data.pulse_at}>
+          <circle
+            cx={CENTER}
+            cy={CENTER}
+            r={0}
+            fill="rgba(94,224,138,0.06)"
+            stroke="rgba(94,224,138,0.9)"
+            strokeWidth={3}
+          >
+            <animate
+              attributeName="r"
+              from="0"
+              to={RADIUS}
+              dur="1.8s"
+              fill="freeze"
+            />
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.15"
+              dur="1.8s"
+              fill="freeze"
+            />
+          </circle>
+        </g>
       )}
+      {objects.map((thing) => {
+        const [x, y, outside] = toPoint(thing.dx, thing.dy);
+        if (outside) {
+          return null;
+        }
+        const colour = OBJECT_COLOR[thing.kind];
+        return (
+          <g key={thing.kind + thing.dx + '_' + thing.dy}>
+            <title>{thing.name}</title>
+            {thing.kind === 'asteroid' && (
+              <path
+                d={`M${x - 4},${y - 1} L${x - 1},${y - 4} L${x + 3},${y - 3} L${x + 4},${y + 2} L${x},${y + 4} L${x - 3},${y + 3} Z`}
+                fill={colour}
+                fillOpacity={0.5}
+                stroke={colour}
+              />
+            )}
+            {thing.kind === 'wreck' && (
+              <path
+                d={`M${x - 4},${y - 4} L${x + 4},${y + 4} M${x + 4},${y - 4} L${x - 4},${y + 4}`}
+                stroke={colour}
+                strokeWidth={2}
+              />
+            )}
+            {thing.kind === 'anomaly' && (
+              <path
+                d={`M${x},${y - 6} L${x + 2},${y - 2} L${x + 6},${y} L${x + 2},${y + 2} L${x},${y + 6} L${x - 2},${y + 2} L${x - 6},${y} L${x - 2},${y - 2} Z`}
+                fill={colour}
+                fillOpacity={0.7}
+              />
+            )}
+          </g>
+        );
+      })}
       {contacts.map((contact) => {
         const [x, y, outside] = toPoint(contact.dx, contact.dy);
         const side = sideOf(contact);
@@ -687,6 +804,22 @@ const Legend = () => (
     <span>
       <span style={swatch('rgba(177,140,255,0.33)')} />
       usłyszany impuls
+    </span>
+    <span>
+      <span style={swatch(OBJECT_COLOR.asteroid)} />
+      asteroida
+    </span>
+    <span>
+      <span style={{ color: OBJECT_COLOR.wreck, marginRight: '5px' }}>
+        {'\u2715'}
+      </span>
+      wrak
+    </span>
+    <span>
+      <span style={{ color: OBJECT_COLOR.anomaly, marginRight: '5px' }}>
+        {'\u2726'}
+      </span>
+      anomalia
     </span>
   </Box>
 );
@@ -961,7 +1094,7 @@ const ContactList = (props: {
                   <td style={row}>
                     <Symbol side={sideOf(contact)} />
                   </td>
-                  <td style={row}>
+                  <td style={{ ...row, whiteSpace: 'normal' }}>
                     <b>{shortOf(contact)}</b> {contact.name}
                     {contact.uncertainty > 0 && (
                       <span style={{ color: COLOR.muted }}>
@@ -1151,6 +1284,7 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
             alignItems: 'center',
             gap: '6px',
             marginTop: '8px',
+            flexWrap: 'wrap',
           }}
         >
           <span style={{ color: COLOR.muted, fontSize: '11.5px' }}>
@@ -1266,10 +1400,32 @@ export const SensorConsole = (props) => {
   const { data } = useBackend<Data>();
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
-  const contacts = data.contacts || [];
+  // Serwer przysyła dane mniej więcej co sekundę. Pewne kontakty (bez okręgu niepewności) mają kurs,
+  // więc między aktualizacjami przesuwamy je sami, tak samo obrót własnego okrętu.
+  const receivedAt = useRef(Date.now());
+  const [, setFrame] = useState(0);
+  useEffect(() => {
+    receivedAt.current = Date.now();
+  }, [data]);
+  useEffect(() => {
+    const timer = setInterval(() => setFrame((frame) => frame + 1), 100);
+    return () => clearInterval(timer);
+  }, []);
+  const elapsed = Math.min((Date.now() - receivedAt.current) / 1000, 1.5);
+  const contacts = (data.contacts || []).map((contact) =>
+    contact.vx || contact.vy
+      ? {
+          ...contact,
+          dx: contact.dx + contact.vx * elapsed,
+          dy: contact.dy + contact.vy * elapsed,
+        }
+      : contact,
+  );
+  const turned = (data.heading || 0) + (data.turn || 0) * Math.min(elapsed, 1);
+  const heading = ((turned % 360) + 360) % 360;
   const current = contacts.find((contact) => contact.id === selected);
   return (
-    <Window width={1000} height={700}>
+    <Window width={1140} height={740}>
       <Window.Content
         style={{
           background: COLOR.bg,
@@ -1296,6 +1452,8 @@ export const SensorConsole = (props) => {
               <Box style={{ position: 'relative', width: SCOPE + 'px' }}>
                 <Scope
                   range={SCOPE_RANGES[rangeIndex]}
+                  contacts={contacts}
+                  heading={heading}
                   selected={selected}
                   onSelect={setSelected}
                 />
