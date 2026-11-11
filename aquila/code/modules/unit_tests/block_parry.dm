@@ -48,8 +48,9 @@
 	defender.setDir(WEST) // plecami do atakującego: pasywny blok nie działa
 
 	TEST_ASSERT(!defender.check_shields(toolbox, 10, "cios", MELEE_ATTACK), "A hit from behind was stopped without parrying")
-	SEND_SIGNAL(defender, COMSIG_HUMAN_PARRY)
-	TEST_ASSERT(defender.check_shields(toolbox, 10, "cios", MELEE_ATTACK), "A katana did not parry right after the parry key")
+	TEST_ASSERT(defender.space_parry(), "Space with a katana in hand did not go to parrying")
+	TEST_ASSERT(defender.check_shields(toolbox, 10, "cios", MELEE_ATTACK), "A katana did not parry right after Space")
+	TEST_ASSERT(!attacker.space_parry(), "Space with a toolbox went to parrying instead of the throw mode")
 
 	var/datum/component/parry/parry = katana.GetComponent(/datum/component/parry)
 	TEST_ASSERT(parry, "A katana has no parry component")

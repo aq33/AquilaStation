@@ -93,13 +93,18 @@
 	SIGNAL_HANDLER
 	if(source.stat != CONSCIOUS || source.incapacitated())
 		return
+	var/obj/item/item_parent = parent
 	if(!can_parry_now())
+		source.balloon_alert(source, requires_two_hands ? "chwyć oburącz" : "włącz broń", show_in_chat = FALSE)
 		return
 	if(world.time - time_parried < parry_cooldown)
+		source.balloon_alert(source, "za szybko", show_in_chat = FALSE)
 		return
 	time_parried = world.time
 	source.changeNext_move(CLICK_CD_PARRY)
-	source.do_attack_animation(source, used_item = parent)
+	source.do_attack_animation(source, used_item = item_parent)
+	playsound(source, 'sound/weapons/punchmiss.ogg', 35, TRUE)
+	source.balloon_alert(source, "paruję", show_in_chat = FALSE)
 
 /datum/component/parry/proc/attempt_parry(mob/living/carbon/human/source, atom/movable/hitby, damage, attack_text, attack_type, armour_penetration)
 	SIGNAL_HANDLER
@@ -122,6 +127,7 @@
 	source.apply_damage(stamina_damage, STAMINA)
 	if(source.stamina && source.stamina.loss_as_percent >= 100)
 		return NONE
+	parry_feedback(source, perfect ? "idealne parowanie!" : "parowanie!", perfect ? "#ffd700" : null)
 	if(perfect)
 		source.visible_message("<span class='danger'>[source] idealnie paruje [attack_text] za pomocą [parent]!</span>", "<span class='userdanger'>Idealnie parujesz [attack_text]!</span>")
 	else
@@ -145,7 +151,7 @@
 		conditions = " (trzymany oburącz)"
 	else if(requires_activation)
 		conditions = " (włączony)"
-	examine_list += "<span class='notice'>Potrafi <b>parować</b>[conditions]: [english_list(names, and_text = " i ")]. Klawisz parowania: domyślnie Ctrl+Spacja.</span>"
+	examine_list += "<span class='notice'>Potrafi <b>parować</b>[conditions]: [english_list(names, and_text = " i ")]. Paruj Spacją, trzymając ją w ręce.</span>"
 
 /// Czy przedmiot jest włączony na potrzeby parowania (requires_activation)
 /obj/item/proc/is_parry_active()
@@ -157,19 +163,33 @@
 /obj/item/shield/riot/tele/is_parry_active()
 	return active
 
-/datum/keybinding/human/parry
-	key = "Ctrl-Space"
-	name = "parry"
-	full_name = "Paruj"
-	description = "Paruj ciosy bronią, która to potrafi (okno ok. 1 s, idealnie w pierwszej połowie)"
-	keybind_signal = COMSIG_KB_HUMAN_PARRY_DOWN
+/// Błysk tarczy na broniącym się i napis nad nim dla wszystkich, którzy to widzą (blok i parowanie)
+/proc/parry_feedback(mob/living/defender, text, color)
+	var/obj/effect/temp_visual/parry/flash = new(get_turf(defender))
+	if(color)
+		flash.color = color
+	for(var/mob/viewer in viewers(DEFAULT_MESSAGE_RANGE, defender))
+		defender.balloon_alert(viewer, text, color, show_in_chat = FALSE)
 
-/datum/keybinding/human/parry/down(client/user)
-	. = ..()
-	if(.)
-		return
-	SEND_SIGNAL(user.mob, COMSIG_HUMAN_PARRY)
-	return TRUE
+/// Spacja paruje, gdy w ręce jest broń, która to potrafi. Zwraca TRUE, jeśli klawisz poszedł na parowanie
+/mob/living/carbon/human/proc/space_parry()
+	for(var/obj/item/held in held_items)
+		if(held.GetComponent(/datum/component/parry))
+			SEND_SIGNAL(src, COMSIG_HUMAN_PARRY)
+			return TRUE
+	return FALSE
+
+// Parowanie siedzi pod tym samym skrótem co przytrzymanie rzutu (domyślnie Spacja), bo nowy osobny skrót
+// nie trafiłby do zapisanych ustawień klawiszy graczy. Z bronią do parowania w ręce Spacja paruje zamiast rzutu.
+/datum/keybinding/carbon/hold_throw_mode
+	full_name = "Przytrzymaj tryb rzucania / paruj"
+	description = "Przytrzymaj, by włączyć tryb rzucania, i puść, by go wyłączyć. Z bronią, która paruje, w ręce: paruj (okno ok. 1 s, idealnie w pierwszej połowie)"
+
+/datum/keybinding/carbon/hold_throw_mode/down(client/user)
+	var/mob/living/carbon/human/parrying_human = user.mob
+	if(ishuman(parrying_human) && parrying_human.space_parry())
+		return TRUE
+	return ..()
 
 // Bronie, które parują (wartości z Paradise dla przedmiotów, które mamy)
 /obj/item/nullrod/staff/Initialize(mapload)

@@ -17,7 +17,10 @@
 	if(!is_shield && !COOLDOWN_FINISHED(owner, block_cooldown))
 		return FALSE
 	. = ..()
-	if(. && !is_shield)
+	if(!.)
+		return
+	parry_feedback(owner, "blok!")
+	if(!is_shield)
 		COOLDOWN_START(owner, block_cooldown, BLOCK_CD)
 
 /obj/item/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
