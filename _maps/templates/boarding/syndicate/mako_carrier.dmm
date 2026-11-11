@@ -1019,7 +1019,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "VT" = (
-/mob/living/simple_animal/hostile/bear,
+/mob/living/basic/bear,
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -1034,7 +1034,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Wj" = (
-/mob/living/simple_animal/hostile/bear/Hudson,
+/mob/living/basic/bear/hudson,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "Wn" = (

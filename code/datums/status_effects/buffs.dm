@@ -532,6 +532,8 @@
 			else if(isanimal(L))
 				var/mob/living/simple_animal/SM = L
 				SM.adjustHealth(-3.5, forced = TRUE)
+			else if(isbasicmob(L)) // AQ EDIT - basic moby
+				L.adjustBruteLoss(-3.5, forced = TRUE)
 
 /atom/movable/screen/alert/status_effect/regenerative_core
 	name = "Błogosławieństwo Nekropolii"

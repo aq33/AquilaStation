@@ -121,7 +121,7 @@
 /datum/modular_mob_segment/bears
 	max = 2
 	mobs = list(
-		/mob/living/simple_animal/hostile/bear,
+		/mob/living/basic/bear,
 	)
 
 

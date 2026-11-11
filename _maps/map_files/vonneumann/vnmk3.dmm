@@ -4586,7 +4586,7 @@
 /area/bridge/cic)
 "dGh" = (
 /obj/structure/sink/puddle,
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /turf/open/floor/grass,
 /area/maintenance/fore/secondary)
 "dGs" = (
@@ -9445,11 +9445,8 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
 "hzu" = (
-/mob/living/simple_animal/hostile/retaliate/frog{
-	emote_hear = list("Croaks");
-	emote_taunt = list("Ribbits Argressively");
+/mob/living/basic/frog{
 	health = 20;
-	jitteriness = 5;
 	name = "Large Toad"
 	},
 /obj/structure/sink/puddle,
@@ -19704,7 +19701,7 @@
 /area/maintenance/port/aft)
 "qgK" = (
 /obj/structure/sink/puddle,
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -23503,7 +23500,7 @@
 /turf/open/floor/plating,
 /area/security/detectives_office)
 "tql" = (
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
 /area/maintenance/fore/secondary)
@@ -27085,7 +27082,7 @@
 /turf/open/floor/carpet/ship,
 /area/crew_quarters/dorms)
 "wnq" = (
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 1

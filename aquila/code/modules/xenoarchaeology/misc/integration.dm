@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 // Karaluch odporny na rozdeptanie (forma z Bestialized Δ) to /mob/living/basic/cockroach/strong z portu basic mobów
 
 /// Wygłodzony niedźwiedź z Bee - przywoływany przez wadliwy artefakt
-/mob/living/simple_animal/hostile/bear/malnourished
+/mob/living/basic/bear/malnourished
 	name = "wygłodzony kosmiczny niedźwiedź"
 	desc = "Przez przerzedzone futro niemal widać mu żebra. Wygląda, jakby od dawna nic nie jadł."
 	maxHealth = 60

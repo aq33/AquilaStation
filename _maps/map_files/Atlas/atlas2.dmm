@@ -5845,7 +5845,7 @@
 /area/hallway/nsv/deck1/hallway)
 "rj" = (
 /obj/structure/extinguisher_cabinet/east,
-/mob/living/simple_animal/hostile/retaliate/bat/sgt_araneus,
+/mob/living/basic/bat/sgt_araneus,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},

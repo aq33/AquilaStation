@@ -311,7 +311,7 @@
 		/mob/living/simple_animal/hostile/macrophage/aggro/vector = 2,
 		/mob/living/simple_animal/hostile/retaliate/spaceman = 2,
 		/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection = 1,
-		/mob/living/simple_animal/hostile/retaliate/frog = 2)
+		/mob/living/basic/frog = 2) // AQ EDIT - basic moby
 
 /obj/effect/spawner/lootdrop/costume
 	icon_state = "random_costume"

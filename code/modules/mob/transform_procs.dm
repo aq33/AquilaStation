@@ -725,11 +725,11 @@
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/shade))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/killertomato))
+	if(ispath(MP, /mob/living/basic/killer_tomato)) // AQ EDIT - basic moby
 		return 1
 	if(ispath(MP, /mob/living/basic/mouse)) // AQ EDIT - basic moby
 		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+	if(ispath(MP, /mob/living/basic/bear)) // AQ EDIT - basic moby
 		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
 	if(ispath(MP, /mob/living/simple_animal/parrot))
 		return 1 //Parrots are no longer unfinished! -Nodrak

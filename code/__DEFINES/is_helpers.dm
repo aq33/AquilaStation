@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
 	/mob/living/basic/pet/fox, // AQ EDIT - basic moby
 	/mob/living/basic/chicken, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/bear,
+	/mob/living/basic/bear, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/jungle/mega_arachnid
 	)))
 

@@ -12,7 +12,7 @@
 	///Max summons?
 	var/max_summons = 4
 	///What kinda of *thing* are we summoning
-	var/mob/summon_type = /mob/living/simple_animal/hostile/bear/malnourished
+	var/mob/summon_type = /mob/living/basic/bear/malnourished
 
 /datum/xenoartifact_trait/malfunction/animal/trigger(datum/source, _priority, atom/override)
 	. = ..()

@@ -160,7 +160,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered)
 "S" = (
-/mob/living/simple_animal/hostile/bear,
+/mob/living/basic/bear,
 /turf/open/floor/grass/fakebasalt,
 /area/ruin/powered)
 "T" = (

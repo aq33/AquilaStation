@@ -106,6 +106,8 @@
 	var/unsuitable_cold_damage = 1
 	///This damage is taken when the body temp is too hot. Set both this and unsuitable_cold_damage to 0 to avoid adding the basic_body_temp_sensitive element.
 	var/unsuitable_heat_damage = 1
+	/// AQUILA: research points for scanning this mob with a discovery scanner, as for our simple animals (0 = not discoverable)
+	var/discovery_points = 200
 
 /mob/living/basic/Initialize(mapload)
 	. = ..()
@@ -136,6 +138,9 @@
 
 	if(unsuitable_cold_damage != 0 && unsuitable_heat_damage != 0)
 		AddElement(/datum/element/basic_body_temp_sensitive, minimum_survivable_temperature, maximum_survivable_temperature, unsuitable_cold_damage, unsuitable_heat_damage)
+
+	if(discovery_points)
+		AddComponent(/datum/component/discoverable, discovery_points)
 
 /mob/living/basic/Destroy()
 	QDEL_NULL(access_card)

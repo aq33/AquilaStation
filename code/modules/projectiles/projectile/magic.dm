@@ -217,12 +217,12 @@
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
 							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
-							/mob/living/simple_animal/hostile/bear,
+							/mob/living/basic/bear, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/mushroom,
 							/mob/living/simple_animal/hostile/statue,
-							/mob/living/simple_animal/hostile/retaliate/bat,
+							/mob/living/basic/bat, // AQ EDIT - basic moby
 							/mob/living/basic/goat, // AQ EDIT - basic moby
-							/mob/living/simple_animal/hostile/killertomato,
+							/mob/living/basic/killer_tomato, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/spider/giant/guard,
 							/mob/living/simple_animal/hostile/spider/giant/hunter,
 							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
