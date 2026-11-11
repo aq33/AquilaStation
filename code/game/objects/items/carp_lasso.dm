@@ -145,7 +145,7 @@
 
 /obj/item/mob_lasso/primal/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
-		/mob/living/simple_animal/hostile/asteroid/goliath,
+		/mob/living/basic/mining/goliath, // AQ EDIT - goliat jest basic mobem
 		/mob/living/simple_animal/hostile/asteroid/goldgrub,
 	))
 

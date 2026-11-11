@@ -11,7 +11,7 @@
 	///Weighted list of extra features that can spawn in the area, such as geysers.
 	var/list/feature_spawn_list = list(/obj/structure/geyser/random = 1)
 	///Weighted list of mobs that can spawn in the area.
-	var/list/mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
+	var/list/mob_spawn_list = list(/mob/living/basic/mining/goliath/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/basic/mining/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
 		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)

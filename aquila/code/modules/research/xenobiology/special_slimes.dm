@@ -251,8 +251,8 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 		return ..()
 	var/mob/living/evolving_mob = A
 	var/mob/living/new_monster
-	if(istype(evolving_mob, /mob/living/simple_animal/hostile/asteroid/goliath/beast) && !istype(evolving_mob, /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient))
-		new_monster = new /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient(evolving_mob.loc)
+	if(istype(evolving_mob, /mob/living/basic/mining/goliath) && !istype(evolving_mob, /mob/living/basic/mining/goliath/ancient))
+		new_monster = new /mob/living/basic/mining/goliath/ancient/immortal(evolving_mob.loc)
 	else if(evolving_mob.type == /mob/living/simple_animal/hostile/asteroid/basilisk/watcher)
 		if(prob(50))
 			new_monster = new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(evolving_mob.loc)

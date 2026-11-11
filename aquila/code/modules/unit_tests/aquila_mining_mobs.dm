@@ -37,9 +37,9 @@
 	return controller
 
 /// Runs the melee behaviour of a basic mob until it attacks once (the first call only starts the attack delay)
-/proc/aquila_mining_melee(mob/living/basic/pawn)
+/proc/aquila_mining_melee(mob/living/basic/pawn, behavior_type = /datum/ai_behavior/basic_melee_attack)
 	var/datum/ai_controller/controller = pawn.ai_controller
-	var/datum/ai_behavior/melee = GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)
+	var/datum/ai_behavior/melee = GET_AI_BEHAVIOR(behavior_type)
 	controller.ProcessBehavior(1, melee)
 	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
 	pawn.next_move = 0
@@ -126,6 +126,70 @@
 	for(var/mob/living/carbon/human/body in range(1, host_turf))
 		humans_around++
 	TEST_ASSERT_EQUAL(humans_around, 1, "A legion holding a body also left a corpse")
+
+/// The goliath digs tentacles under a target it has held for a while through the AI, the tentacles grab and hurt, a grabbed
+/// target gets hit in melee; a punch next to it releases tentacles around it (revenge); a goliath killed mostly by
+/// a crusher keeps its trophy for butchering; a tamed goliath can be ridden
+/datum/unit_test/aquila_mining_goliath
+
+/datum/unit_test/aquila_mining_goliath/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/mining/goliath/goliath = allocate(/mob/living/basic/mining/goliath, corner)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, aquila_mining_test_turf(corner, run_loc_floor_top_right, 3))
+	var/datum/ai_controller/controller = aquila_mining_find_target(goliath)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The goliath did not pick the human three tiles away")
+	TEST_ASSERT(goliath.GetComponent(/datum/component/ai_target_timer), "The goliath has no target timer")
+
+	var/datum/ai_behavior/use_ability = GET_AI_BEHAVIOR(/datum/ai_behavior/targeted_mob_ability)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[use_ability], "The goliath used its tentacles before keeping its target for a while")
+	controller.CancelActions()
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.set_blackboard_key(BB_BASIC_MOB_HAS_TARGET_TIME, 5 SECONDS)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[use_ability], "The goliath that kept its target did not plan to use its tentacles")
+	var/brute_before = victim.getBruteLoss()
+	controller.ProcessBehavior(1, use_ability)
+	TEST_ASSERT(goliath.tentacles.next_use_time > world.time, "The tentacles did not start their cooldown")
+	TEST_ASSERT(locate(/obj/effect/temp_visual/goliath_tentacle) in get_turf(victim), "No tentacle came up under the target")
+	TEST_ASSERT(aquila_mining_wait(CALLBACK(victim, TYPE_PROC_REF(/mob/living, IsStun)), 2 SECONDS), "The tentacle did not grab the target")
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The tentacle did not hurt the target")
+	controller.CancelActions()
+
+	// A grabbed target is hit in melee
+	goliath.forceMove(get_step(victim, WEST))
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[use_ability], "The goliath went for its tentacles on a grabbed target")
+	TEST_ASSERT(controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack/goliath)], "The goliath did not plan a melee attack on the grabbed target")
+	brute_before = victim.getBruteLoss()
+	aquila_mining_melee(goliath, /datum/ai_behavior/basic_melee_attack/goliath)
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The goliath did not hit the grabbed target in melee")
+	controller.CancelActions()
+
+	// A punch next to it releases tentacles all around (revenge ability)
+	var/mob/living/carbon/human/puncher = allocate(/mob/living/carbon/human, get_step(goliath, NORTH))
+	puncher.set_combat_mode(TRUE)
+	puncher.UnarmedAttack(goliath, TRUE)
+	TEST_ASSERT(goliath.melee_tentacles.next_use_time > world.time, "A punch did not make the goliath release tentacles around it")
+	var/tentacles_around = 0
+	for(var/obj/effect/temp_visual/goliath_tentacle/tentacle in range(1, goliath))
+		tentacles_around++
+	TEST_ASSERT(tentacles_around >= 3, "The tentacle burst made only [tentacles_around] tentacles")
+
+	// Taming makes it rideable through our riding component
+	goliath.tamed(puncher)
+	TEST_ASSERT(goliath.GetComponent(/datum/component/riding), "A tamed goliath cannot be ridden")
+
+	// Crusher trophy: a goliath killed by a crusher keeps the tentacle trophy for butchering
+	var/datum/status_effect/crusher_damage/crusher = goliath.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	crusher.total_damage = goliath.maxHealth * 10
+	goliath.death()
+	TEST_ASSERT(goliath.guaranteed_butcher_results?[/obj/item/crusher_trophy/goliath_tentacle], "The goliath killed by a crusher has no trophy to butcher")
+	TEST_ASSERT(goliath.guaranteed_butcher_results?[/obj/item/stack/sheet/animalhide/goliath_hide], "The goliath has no hide to butcher")
+	TEST_ASSERT_EQUAL(goliath.move_resist, MOVE_RESIST_DEFAULT, "The dead goliath kept its huge move resistance")
+	for(var/obj/effect/temp_visual/goliath_tentacle/tentacle in range(3, corner))
+		qdel(tentacle)
 
 /// The legion holding this body, if any
 /proc/aquila_mining_holder_of(mob/living/victim)

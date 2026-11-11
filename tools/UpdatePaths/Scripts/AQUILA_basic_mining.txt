@@ -1,3 +1,5 @@
 # Moby górnicze z tg sprzed drzew zachowań (tg 926bf40c5a) jako basic moby. Zastosowane w mapach skryptem zamiany ścieżek
 # (nie UpdatePaths, mapy nie mają edycji zmiennych tych mobów), zapis dla porządku.
 /mob/living/simple_animal/hostile/asteroid/hivelord : /mob/living/basic/mining/hivelord{@OLD}
+/mob/living/simple_animal/hostile/asteroid/goliath/beast : /mob/living/basic/mining/goliath{@OLD}
+/mob/living/simple_animal/hostile/asteroid/goliath : /mob/living/basic/mining/goliath/ancient{@OLD}

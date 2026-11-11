@@ -2063,6 +2063,12 @@
 #include "code\modules\mob\living\basic\lavaland\legion\legion_ai.dm"
 #include "code\modules\mob\living\basic\lavaland\legion\legion_brood.dm"
 #include "code\modules\mob\living\basic\lavaland\legion\legion_corpses.dm"
+#include "code\datums\components\ai_target_timer.dm"
+#include "code\datums\components\revenge_ability.dm"
+#include "code\modules\mob\living\basic\lavaland\goliath\goliath.dm"
+#include "code\modules\mob\living\basic\lavaland\goliath\goliath_actions.dm"
+#include "code\modules\mob\living\basic\lavaland\goliath\goliath_ai.dm"
+#include "code\modules\mob\living\basic\lavaland\goliath\tentacle.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

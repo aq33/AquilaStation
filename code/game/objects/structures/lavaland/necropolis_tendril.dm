@@ -20,7 +20,7 @@
 
 
 /obj/structure/spawner/lavaland/goliath
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril)
+	mob_types = list(/mob/living/basic/mining/goliath) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/lavaland/legion
 	mob_types = list(/mob/living/basic/mining/legion/spawner_made) // AQ EDIT - legion jest basic mobem

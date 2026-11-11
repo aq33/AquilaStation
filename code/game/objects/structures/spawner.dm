@@ -65,7 +65,7 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/basic/mining/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
@@ -76,7 +76,7 @@
 /obj/structure/spawner/mining/goliath
 	name = "legowisko goliatów"
 	desc = "Legowisko z gniazdem goliatów. O Boże, czemu?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
+	mob_types = list(/mob/living/basic/mining/goliath) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/mining/hivelord
 	name = "legowisko władców roju"

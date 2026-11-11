@@ -2828,7 +2828,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\basilisk.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\curse_blob.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\goldgrub.dm"
-#include "code\modules\mob\living\simple_animal\hostile\mining_mobs\goliath.dm"
+// AQ EDIT - goliat jest basic mobem (aquila\code\modules\mob\living\basic\lavaland\goliath\)
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\gutlunch.dm"
 // AQ EDIT - władca roju i legion są basic mobami (aquila\code\modules\mob\living\basic\lavaland\)
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\mining_mobs.dm"
