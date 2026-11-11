@@ -700,6 +700,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
 	.["user"] = null
+	.["needs_account"] = onstation && ishuman(user) // vend() pobiera opłatę tylko od ludzi; SI i cyborgi kupują bez karty
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/card/id/C = H.get_idcard(TRUE)

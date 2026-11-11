@@ -25,6 +25,8 @@ type VendingData = {
   categories: Record<string, Category>;
   /** AQUILA: account department that gets regular products for free */
   department?: string;
+  /** AQUILA: czy vend() pobierze od tego gracza opłatę (SI i cyborgi kupują bez karty) */
+  needs_account?: boolean;
 };
 
 type Category = {
@@ -96,6 +98,8 @@ type Slot = {
 type ViewState = {
   entry: string;
   sel: number | null;
+  /** Towar pod wybranym kodem; gdy pod kodem stanie inny towar, wybór przepada */
+  selKey: string | null;
   msg: { lines: [string, string]; until: number } | null;
   deny: number;
   pressed: { k: string; t: number } | null;
@@ -193,6 +197,9 @@ export const Vending = (props) => {
   // Just in case we still have undefined values in the list
   inventory = inventory.filter((item) => !!item);
 
+  // SI, cyborgi i automaty spoza stacji nie sprawdzają karty ani salda
+  const payer = data.needs_account !== false && !all_products_free;
+
   const searching = stockSearch.length >= 2;
   if (searching) {
     inventory = inventory.filter(
@@ -234,9 +241,9 @@ export const Vending = (props) => {
       let blocked: string | null = null;
       if (remaining === 0) {
         blocked = 'wyprzedane';
-      } else if (!all_products_free && !user) {
+      } else if (payer && !user) {
         blocked = 'brak karty';
-      } else if (!free && !access && price > (user?.cash ?? 0)) {
+      } else if (payer && !free && !access && price > (user?.cash ?? 0)) {
         blocked = 'za mało środków';
       }
       return {
@@ -256,7 +263,7 @@ export const Vending = (props) => {
     slots,
     machineName: machine_name,
     user,
-    free: all_products_free || !onstation,
+    free: !payer || !onstation,
     ownDepartment: !!department && user?.department === department,
     currency: displayed_currency_name,
     pages,
@@ -270,6 +277,7 @@ export const Vending = (props) => {
   const view = useRef<ViewState>({
     entry: '',
     sel: null,
+    selKey: null,
     msg: null,
     deny: 0,
     pressed: null,
@@ -279,9 +287,17 @@ export const Vending = (props) => {
     tray: null,
   });
 
+  // Gdy pod wybranym kodem stanie inny towar (np. ktoś wykupił ostatnią sztukę w automacie na zamówienie), wybór przepada
+  const selected = view.current;
+  if (selected.sel !== null && slots[selected.sel]?.key !== selected.selKey) {
+    selected.sel = null;
+    selected.selKey = null;
+  }
+
   const resetSelection = () => {
     view.current.entry = '';
     view.current.sel = null;
+    view.current.selKey = null;
   };
 
   const flash = (l1: string, l2: string, ms = 1500) => {
@@ -338,6 +354,7 @@ export const Vending = (props) => {
         return;
       }
       v.sel = idx;
+      v.selKey = slots[idx].key;
       return;
     }
     if (k === 'X') {
@@ -364,6 +381,7 @@ export const Vending = (props) => {
         return;
       }
       v.sel = idx;
+      v.selKey = slots[idx].key;
       v.entry = '';
     } else if (kind === 'page') {
       setPage((currentPage + +arg + pages) % pages);

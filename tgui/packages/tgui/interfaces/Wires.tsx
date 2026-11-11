@@ -417,9 +417,20 @@ export const Wires = (props) => {
       height={h}
       fill="transparent"
       style={{ cursor: 'pointer' }}
+      role="button"
+      tabIndex={0}
+      aria-label={tip}
       onMouseEnter={() => setHover(key)}
       onMouseLeave={() => setHover(null)}
+      onFocus={() => setHover(key)}
+      onBlur={() => setHover(null)}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
     >
       <title>{tip}</title>
     </rect>
