@@ -21,6 +21,8 @@
 
 ///Called by the AI controller when this action is performed
 ///Returns a set of flags defined in [code/__DEFINES/ai/ai.dm]
+/// AQUILA: must not sleep, it runs inside SSai_behaviors for every AI: run anything that can sleep (do_after, input)
+/// with INVOKE_ASYNC. A sleeping perform() is reported by /datum/ai_controller/proc/ProcessBehavior()
 /datum/ai_behavior/proc/perform(seconds_per_tick, datum/ai_controller/controller, ...)
 	return
 

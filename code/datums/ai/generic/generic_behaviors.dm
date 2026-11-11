@@ -1,9 +1,26 @@
 // AQUILA: synced with BeeStation/BeeStation-Hornet (bee/master 0adf0fe9ae), see "AI core sync" in aquila/LEGACY_OVERRIDES.md
 
+/// AQUILA: resist() can sleep (container_resist() of lockers and pet carriers runs a do_after of 20 s - 2 min), and a
+/// sleeping perform() stalls SSai_behaviors for every AI. So the resist runs asynchronously and the behaviour waits
+/// (blocking planning, like a player stuck in the progress bar) until it is done.
 /datum/ai_behavior/resist/perform(delta_time, datum/ai_controller/controller)
-	var/mob/living/living_pawn = controller.pawn
+	switch(controller.blackboard[BB_RESIST_STATE])
+		if(AI_RESIST_RUNNING)
+			return AI_BEHAVIOR_DELAY
+		if(AI_RESIST_DONE)
+			controller.clear_blackboard_key(BB_RESIST_STATE)
+			return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	controller.set_blackboard_key(BB_RESIST_STATE, AI_RESIST_RUNNING)
+	INVOKE_ASYNC(src, PROC_REF(async_resist), controller, controller.pawn)
+	if(controller.blackboard[BB_RESIST_STATE] == AI_RESIST_DONE) // did not sleep
+		controller.clear_blackboard_key(BB_RESIST_STATE)
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_DELAY
+
+/datum/ai_behavior/resist/proc/async_resist(datum/ai_controller/controller, mob/living/living_pawn)
 	living_pawn.execute_resist()
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	if(!QDELETED(controller) && controller.pawn == living_pawn)
+		controller.set_blackboard_key(BB_RESIST_STATE, AI_RESIST_DONE)
 
 /datum/ai_behavior/battle_screech
 	behavior_flags = AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
@@ -102,6 +119,11 @@
 		pawn.UnarmedAttack(target, TRUE)
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+
+/// AQUILA: the target is used once, otherwise a monkey keeps pressing the same thing (or person) for the rest of the round
+/datum/ai_behavior/use_on_object/finish_action(datum/ai_controller/controller, succeeded, target_key)
+	. = ..()
+	controller.clear_blackboard_key(target_key)
 
 /datum/ai_behavior/give
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
@@ -309,6 +331,8 @@
 /datum/ai_behavior/find_nearby/perform(delta_time, datum/ai_controller/controller, target_key)
 	var/list/possible_targets = list()
 	for(var/atom/thing in view(2, controller.pawn))
+		if(thing == controller.pawn) // AQUILA: view() includes the pawn, which then beat itself up
+			continue
 		if(!thing.mouse_opacity)
 			continue
 		if(thing.IsObscured())

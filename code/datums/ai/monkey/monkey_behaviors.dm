@@ -144,7 +144,7 @@
 	var/mob/living/living_pawn = controller.pawn
 	var/datum/targeting_strategy/strategy = GET_TARGETING_STRATEGY(controller.blackboard[BB_TARGETING_STRATEGY])
 
-	if(QDELETED(target) || !strategy.can_attack(living_pawn, target)) //Target == owned
+	if(QDELETED(target) || !strategy.can_attack(living_pawn, target, MONKEY_ENEMY_VISION)) //Target == owned // AQUILA: the range the target was picked from
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	// check if target has a weapon

@@ -47,13 +47,24 @@
 
 /**
  * Returns TRUE if a movable can "Reach" this atom (Bee /atom/proc/IsReachableBy).
- * AQUILA: our click code already has CanReach() with the same depth search, so this wraps it.
+ * AQUILA: the AI asks this every tick while it moves to a target, and our CanReach() builds lists (for living mobs
+ * GetAllContents()) on every call. Like Bee, atoms on a turf only need the adjacency check and atoms carried by the user
+ * walk up their loc chain; only atoms inside something else (bags, lockers) fall back to CanReach()'s storage checks.
  */
 /atom/proc/IsReachableBy(atom/movable/user, reacher_range = 1, depth = INFINITY)
 	if(isnull(user))
 		return FALSE
-	if(reacher_range > 1 && get_dist(user, src) <= reacher_range && isturf(loc))
+	if(src == user || loc == user || src == user.loc)
 		return TRUE
+	if(isturf(src) || isturf(loc))
+		if(user.Adjacent(src))
+			return TRUE
+		return reacher_range > 1 && isturf(loc) && get_dist(user, src) <= reacher_range
+	if(isnull(loc) || isarea(loc))
+		return FALSE
+	for(var/atom/holder = loc; holder && !isturf(holder); holder = holder.loc)
+		if(holder == user) // in the user's own inventory or a bag on them
+			return TRUE
 	return user.CanReach(src)
 
 /// Returns whether it is safe for an atom to move across this turf (lava, chasms, open space for walkers)
@@ -71,15 +82,29 @@
 /mob/living/proc/execute_resist()
 	resist()
 
-/// Last incapacitated() result seen by update_mobility(), so COMSIG_MOB_INCAPACITATE_CHANGED fires only on change
-/mob/living/var/last_incapacitated_for_ai = FALSE
+/// Last AI incapacitation state seen by update_mobility() (see update_incapacitated_signal()), null when not tracked
+/mob/living/var/last_incapacitated_for_ai
 
 /// Called from the end of /mob/living/proc/update_mobility() (AQ EDIT). Bee turned incapacitated into a var with a setter
 /// that sends this signal (BeeStation/BeeStation-Hornet#14060); we keep the proc and compare here instead.
+/// The state is a bitfield of every part controllers ask incapacitated() about with different ignore flags (restraints,
+/// grabs, stasis) plus the stat, so the signal fires whenever any controller's answer can change. Only mobs with an AI
+/// controller pay for it.
 /mob/living/proc/update_incapacitated_signal()
-	var/new_incapacitated = incapacitated() ? TRUE : FALSE
-	if(new_incapacitated == last_incapacitated_for_ai)
+	if(!ai_controller)
+		last_incapacitated_for_ai = null
 		return
-	var/old_incapacitated = last_incapacitated_for_ai
-	last_incapacitated_for_ai = new_incapacitated
-	SEND_SIGNAL(src, COMSIG_MOB_INCAPACITATE_CHANGED, old_incapacitated, new_incapacitated)
+	var/new_state = stat
+	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+		new_state |= AI_INCAP_STATE_BASE
+	if(restrained(TRUE))
+		new_state |= AI_INCAP_STATE_RESTRAINED
+	if(restrained(FALSE))
+		new_state |= AI_INCAP_STATE_RESTRAINED_OR_GRABBED
+	if(IsInStasis())
+		new_state |= AI_INCAP_STATE_STASIS
+	if(new_state == last_incapacitated_for_ai)
+		return
+	var/old_state = last_incapacitated_for_ai
+	last_incapacitated_for_ai = new_state
+	SEND_SIGNAL(src, COMSIG_MOB_INCAPACITATE_CHANGED, old_state, new_state)

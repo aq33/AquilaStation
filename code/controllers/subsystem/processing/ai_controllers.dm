@@ -14,6 +14,11 @@ SUBSYSTEM_DEF(ai_controllers)
 	var/our_cost
 	/// The tick cost of all currently processed AI, being summed together
 	var/summing_cost
+	/// AQUILA: how often a controller of ours re-checks its status (idle without clients nearby, see should_idle())
+	var/idle_check_interval = AI_IDLE_CHECK_INTERVAL
+	/// AQUILA: plan a controller at most this often (0: every fire); lets the idle subsystem check for clients often
+	/// while planning rarely
+	var/planning_interval = 0
 
 /datum/controller/subsystem/ai_controllers/Initialize(timeofday)
 	setup_subtrees()
@@ -36,9 +41,20 @@ SUBSYSTEM_DEF(ai_controllers)
 	while(length(current_run))
 		var/datum/ai_controller/ai_controller = current_run[length(current_run)]
 		current_run.len--
+		// AQUILA: no spatial grid to idle and wake controllers (decision D4), so they check themselves now and then
+		if(ai_controller.next_idle_check <= world.time)
+			ai_controller.next_idle_check = world.time + idle_check_interval
+			var/expected_status = ai_controller.get_expected_ai_status()
+			if(expected_status != planning_status)
+				ai_controller.set_ai_status(expected_status)
+				continue
 		if(!ai_controller.able_to_plan)
 			continue
-		ai_controller.SelectBehaviors(wait * 0.1)
+		if(planning_interval)
+			if(ai_controller.next_planning > world.time)
+				continue
+			ai_controller.next_planning = world.time + planning_interval
+		ai_controller.SelectBehaviors(max(wait, planning_interval) * 0.1)
 
 		if(!length(ai_controller.current_behaviors)) //Still no plan
 			ai_controller.planning_failed()

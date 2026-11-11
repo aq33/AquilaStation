@@ -12,8 +12,24 @@
 	RegisterSignal(basic_mob, COMSIG_LIVING_UNFRIENDED, PROC_REF(on_untamed))
 	RegisterSignals(basic_mob, list(POST_BASIC_MOB_UPDATE_VARSPEED, COMSIG_MOB_MOVESPEED_UPDATED), PROC_REF(update_speed))
 	RegisterSignal(basic_mob, COMSIG_MOB_ATE, PROC_REF(on_mob_eat))
+	RegisterSignal(basic_mob, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(reset_target_search_backoff)) // AQUILA: target search backoff
 
 	return ..() //Run parent at end
+
+/datum/ai_controller/basic_controller/UnpossessPawn(destroy)
+	if(!isnull(pawn))
+		UnregisterSignal(pawn, COMSIG_ATOM_WAS_ATTACKED)
+	return ..()
+
+/// AQUILA: an attacked mob looks for targets at the normal rate again (find_potential_targets backs off after empty scans)
+/datum/ai_controller/basic_controller/proc/reset_target_search_backoff()
+	SIGNAL_HANDLER
+	if(!blackboard[BB_FIND_TARGETS_EMPTY_SCANS])
+		return
+	clear_blackboard_key(BB_FIND_TARGETS_EMPTY_SCANS)
+	for(var/datum/ai_behavior/behavior as anything in behavior_cooldowns)
+		if(istype(behavior, /datum/ai_behavior/find_potential_targets))
+			behavior_cooldowns[behavior] = world.time
 
 /datum/ai_controller/basic_controller/on_stat_changed(mob/living/source, new_stat)
 	. = ..()
