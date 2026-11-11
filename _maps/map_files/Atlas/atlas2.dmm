@@ -469,6 +469,16 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
+"aU" = (
+/obj/machinery/computer/ship/dradis/sensors{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/royalblack,
+/area/bridge/cic)
 "aV" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -3077,16 +3087,6 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"hq" = (
-/obj/machinery/computer/ship/dradis{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/carpet/royalblack,
-/area/bridge/cic)
 "hr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -47139,7 +47139,7 @@ ov
 hP
 Rl
 nL
-hq
+aU
 GG
 ij
 Qh
