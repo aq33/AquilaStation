@@ -61,7 +61,8 @@
 	. = ..()
 	if (!HAS_TRAIT(target, TRAIT_RELAYING_ATTACKER)) // Little bit gross but we want to just apply this shit from a bunch of places
 		// AQUILA - nasze odpowiedniki sygnałów tg
-		RegisterSignal(target, COMSIG_PARENT_ATTACKBY, PROC_REF(after_attackby))
+		// Po ataku, jak COMSIG_ATOM_AFTER_ATTACKEDBY w tg/Bee: klik przejęty wcześniej (karmienie, dojenie, zbroja) nie jest ciosem
+		RegisterSignal(target, COMSIG_ATOM_AFTER_ATTACKEDBY, PROC_REF(after_attackby))
 		// popchnięcie (prawy przycisk) po attack_hand_secondary i tak trafia do attack_hand z RIGHT_CLICK, więc osobny
 		// handler COMSIG_ATOM_ATTACK_HAND_SECONDARY zgłaszał je dwa razy
 		RegisterSignals(target, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_ATTACK_PAW, COMSIG_MOB_ATTACK_ALIEN), PROC_REF(on_attack_generic))
@@ -74,7 +75,7 @@
 /datum/element/relay_attackers/Detach(datum/source, ...)
 	. = ..()
 	UnregisterSignal(source, list(
-		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_AFTER_ATTACKEDBY,
 		COMSIG_ATOM_ATTACK_HAND,
 		COMSIG_ATOM_ATTACK_PAW,
 		COMSIG_MOB_ATTACK_ALIEN,
@@ -85,9 +86,12 @@
 	))
 	REMOVE_TRAIT(source, TRAIT_RELAYING_ATTACKER, REF(src))
 
-/datum/element/relay_attackers/proc/after_attackby(atom/target, obj/item/weapon, mob/attacker, params)
+/datum/element/relay_attackers/proc/after_attackby(atom/target, obj/item/weapon, mob/attacker, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
 	if(!istype(weapon) || !ismob(attacker))
+		return
+	// AQUILA: our afterattack also runs for ranged clicks, and NOBLUDGEON items never hit
+	if(!proximity_flag || (weapon.item_flags & NOBLUDGEON))
 		return
 	if(weapon.force)
 		relay_attacker(target, attacker, weapon.damtype == STAMINA ? ATTACKER_STAMINA_ATTACK : ATTACKER_DAMAGING_ATTACK, get_dir(target, attacker))
@@ -107,7 +111,8 @@
 		relay_attacker(target, attacker, ATTACKER_DAMAGING_ATTACK, get_dir(target, attacker))
 		return
 
-/// Simple animals and basic mobs (attack_basic_mob() ends in attack_animal(), so COMSIG_ATOM_ATTACK_ANIMAL covers both)
+/// Simple animals and basic mobs (attack_basic_mob() ends in attack_animal(); /mob/living/attack_animal() sends
+/// COMSIG_ATOM_ATTACK_ANIMAL on a real attack, objects send it from /atom/proc/attack_animal())
 /datum/element/relay_attackers/proc/on_attack_npc(atom/target, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(!isanimal_or_basicmob(attacker))

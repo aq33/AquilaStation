@@ -134,6 +134,8 @@
 		return TRUE
 
 /mob/living/basic/bullet_act(obj/item/projectile/Proj, def_zone, piercing_hit = FALSE)
+	// AQUILA: Bee skips the signal here (its relay_attackers listens elsewhere); ours relays shots through it (odwet, żółw)
+	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, Proj, def_zone)
 	apply_damage(Proj.damage, Proj.damage_type)
 	Proj.on_hit(src, 0, piercing_hit)
 	return BULLET_ACT_HIT
