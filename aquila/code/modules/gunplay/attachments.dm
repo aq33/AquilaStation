@@ -615,8 +615,10 @@ GLOBAL_LIST_EMPTY(aq_gun_mount_points)
 
 
 // Wiązka idzie za kursorem
-/datum/aq_mouse_tracker/onMouseMove(object, location, control, params)
+/datum/aq_mouse_tracker/apply_cursor_update()
 	. = ..()
+	if(!.)
+		return
 	var/obj/item/gun/held_gun = owner?.get_active_held_item()
 	if(!istype(held_gun))
 		return

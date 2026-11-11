@@ -776,3 +776,13 @@
       A1–D3, wyświetlacz, klawiatura, czytnik karty i podajnik, do którego spada kupiony
       towar.'
   - tweak: Funkcje kabli widoczne z planami stacji są po polsku.
+  - rscadd: Kałuża zmywa plamy i ślady z kafli, na które wpływa, i wchłania ich zawartość
+      (krew, olej, popiół).
+  - imageadd: Pojedyncza kałuża (np. krwi) ma nieregularny kształt zamiast kwadratu.
+  - balance: Alarm pożarowy pociągnięty przez gracza leje wodę najwyżej raz na 3 minuty
+      w pomieszczeniu (zalanie z emaga osobno), zraszacz nie dolewa do stojącej, niepłonącej
+      kałuży, a alarm da się przełączać najwyżej co 3 sekundy.
+  - bugfix: Radial celowania z broni ma polskie podpisy zamiast raise_hands i drop_weapon.
+  - bugfix: Ctrl+Shift+klik z przedmiotem w ręku nie spamuje już ofertami, oferuje
+      tylko osobie, którą klikasz obok, i tylko jej.
+  - bugfix: Mniej przycięć przy szybkim ruchu myszy z bronią w ręku.
