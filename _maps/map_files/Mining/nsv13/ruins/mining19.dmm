@@ -36,7 +36,7 @@
 /area/ruin/powered)
 "h" = (
 /obj/structure/bed/dogbed,
-/mob/living/simple_animal/hostile/carp/megacarp,
+/mob/living/basic/carp/mega,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "i" = (
@@ -55,7 +55,7 @@
 /area/ruin/powered)
 "k" = (
 /obj/structure/bed/dogbed,
-/mob/living/simple_animal/hostile/carp,
+/mob/living/basic/carp,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "m" = (

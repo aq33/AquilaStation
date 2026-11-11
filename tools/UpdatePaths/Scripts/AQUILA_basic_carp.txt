@@ -1,0 +1,12 @@
+# Karpie jako basic moby (tg 926bf40c5a). Zastosowane w mapach skryptem zamiany ścieżek; gałka oczna zostaje simple_animal na
+# własnym typie, jej angielskie nazwy z mapy (emergency_narnar) usunięte, frakcja zostaje.
+/mob/living/simple_animal/hostile/carp/cayenne : /mob/living/basic/carp/pet/cayenne{@OLD}
+/mob/living/simple_animal/hostile/carp/megacarp : /mob/living/basic/carp/mega{@OLD}
+/mob/living/simple_animal/hostile/carp/eyeball : /mob/living/simple_animal/hostile/eyeball{@OLD; name = @SKIP}
+/mob/living/simple_animal/hostile/carp/holocarp : /mob/living/basic/carp/holographic{@OLD}
+/mob/living/simple_animal/hostile/carp/lia : /mob/living/basic/carp/pet/lia{@OLD}
+/mob/living/simple_animal/hostile/carp/ranged/chaos/xenobio : /mob/living/basic/carp/magic/chaos/xenobiology{@OLD}
+/mob/living/simple_animal/hostile/carp/ranged/chaos : /mob/living/basic/carp/magic/chaos{@OLD}
+/mob/living/simple_animal/hostile/carp/ranged/xenobio : /mob/living/basic/carp/magic/xenobiology{@OLD}
+/mob/living/simple_animal/hostile/carp/ranged : /mob/living/basic/carp/magic{@OLD}
+/mob/living/simple_animal/hostile/carp/@SUBTYPES : /mob/living/basic/carp/@SUBTYPES{@OLD}

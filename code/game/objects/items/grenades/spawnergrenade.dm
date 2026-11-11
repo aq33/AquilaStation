@@ -35,7 +35,7 @@
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "granat dostawczy z karpiami"
-	spawner_type = /mob/living/simple_animal/hostile/carp
+	spawner_type = /mob/living/basic/carp // AQ EDIT - basic moby
 	deliveryamt = 5
 
 /obj/item/grenade/spawnergrenade/syndiesoap

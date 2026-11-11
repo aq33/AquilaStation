@@ -2771,20 +2771,20 @@
 #include "code\modules\mob\living\simple_animal\friendly\drone\say.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\verbs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\visuals_icons.dm"
-#include "code\modules\mob\living\simple_animal\hostile\alien.dm"
 // AQ EDIT - olbrzymia mrówka jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\ant.dm)
+// AQ EDIT - proste ksenomorfy są basic mobami (aquila\code\modules\mob\living\basic\alien\alien.dm)
 // AQ EDIT - niedźwiedzie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\bear.dm)
 #include "code\modules\mob\living\simple_animal\hostile\bees.dm"
 #include "code\modules\mob\living\simple_animal\hostile\bread.dm"
-#include "code\modules\mob\living\simple_animal\hostile\carp.dm"
+// AQ EDIT - karpie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\carp\)
 #include "code\modules\mob\living\simple_animal\hostile\cat_butcher.dm"
-#include "code\modules\mob\living\simple_animal\hostile\eyeballs.dm"
 // AQ EDIT - Niewierny jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\faithless.dm)
+// AQ EDIT - gałka oczna na własnym typie simple_animal (aquila\code\modules\mob\living\simple_animal\hostile\eyeball.dm)
 #include "code\modules\mob\living\simple_animal\hostile\floor_cluwne.dm"
-#include "code\modules\mob\living\simple_animal\hostile\goose.dm"
+// AQ EDIT - gęsi są basic mobami (aquila\code\modules\mob\living\basic\farm_animals\goose.dm)
 #include "code\modules\mob\living\simple_animal\hostile\headcrab.dm"
 #include "code\modules\mob\living\simple_animal\hostile\heart.dm"
-#include "code\modules\mob\living\simple_animal\hostile\hivebot.dm"
+// AQ EDIT - hiveboty są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\hivebot.dm)
 #include "code\modules\mob\living\simple_animal\hostile\hostile.dm"
 #include "code\modules\mob\living\simple_animal\hostile\illusion.dm"
 // AQ EDIT - pomidor zabójca jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)

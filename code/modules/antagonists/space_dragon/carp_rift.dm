@@ -120,16 +120,16 @@
 
 /obj/structure/carp_rift/process(delta_time)
 	// Heal carp around us
-	for(var/mob/living/simple_animal/hostile/hostilehere in range(1))
-		if("carp" in hostilehere.faction)
-			hostilehere.adjustHealth(-10)
+	for(var/mob/living/hostilehere in range(1, src)) // AQ EDIT - basic moby: basic carp heal at the rift too
+		if(("carp" in hostilehere.faction) && (ishostile(hostilehere) || isbasicmob(hostilehere))) // AQ EDIT - basic moby
+			hostilehere.adjustBruteLoss(-10)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"
 
 	// If we're fully charged, just start mass spawning carp and move around.
 	if(charge_state == CHARGE_COMPLETED)
 		if(DT_PROB(1.25, delta_time))
-			new /mob/living/simple_animal/hostile/carp/advanced(loc)
+			new /mob/living/basic/carp/advanced(loc) // AQ EDIT - basic moby
 		if(DT_PROB(1.5, delta_time))
 			var/rand_dir = pick(GLOB.cardinals)
 			Move(get_step(src, rand_dir), rand_dir)
@@ -216,7 +216,7 @@
 	if(carp_stored <= 0)
 		to_chat(user, "<span class='warning'>Szczelina przywołała już dość karpi!</span>")
 		return FALSE
-	var/mob/living/simple_animal/hostile/carp/advanced/newcarp = new(loc)
+	var/mob/living/basic/carp/advanced/newcarp = new(loc) // AQ EDIT - basic moby
 	var/datum/action/innate/wavespeak/wave_action = new
 	wave_action.Grant(newcarp)
 	if(!is_listed)

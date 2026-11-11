@@ -388,7 +388,7 @@
 					if(4)
 						new /mob/living/simple_animal/hostile/blob/blobspore(get_turf(src))
 					if(5)
-						new /mob/living/simple_animal/hostile/carp(get_turf(src))
+						new /mob/living/basic/carp(get_turf(src)) // AQ EDIT - basic moby
 					if(6)
 						food = new /obj/item/reagent_containers/glass/bowl/soup/mystery(get_turf(src))
 				playsound(src.loc, 'sound/effects/explosion3.ogg', 50, 1)

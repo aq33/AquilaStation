@@ -1270,7 +1270,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/crew_quarters/heads/chief/pvp)
 "dr" = (
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /turf/open/floor/carpet/red,
 /area/crew_quarters/bar/pvp)
 "ds" = (

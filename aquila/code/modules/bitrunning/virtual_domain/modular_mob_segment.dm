@@ -150,21 +150,21 @@
 
 /datum/modular_mob_segment/carps
 	mobs = list(
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/basic/carp,
 	)
 
 
 /datum/modular_mob_segment/hivebots
 	mobs = list(
-		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/hostile/hivebot/range,
+		/mob/living/basic/hivebot,
+		/mob/living/basic/hivebot/range,
 	)
 
 
 /datum/modular_mob_segment/hivebots_strong
 	mobs = list(
-		/mob/living/simple_animal/hostile/hivebot/strong,
-		/mob/living/simple_animal/hostile/hivebot/range,
+		/mob/living/basic/hivebot/strong,
+		/mob/living/basic/hivebot/range,
 	)
 
 
@@ -194,9 +194,9 @@
 
 /datum/modular_mob_segment/xenos
 	mobs = list(
-		/mob/living/simple_animal/hostile/alien,
-		/mob/living/simple_animal/hostile/alien/sentinel,
-		/mob/living/simple_animal/hostile/alien/drone,
+		/mob/living/basic/alien,
+		/mob/living/basic/alien/sentinel,
+		/mob/living/basic/alien/drone,
 	)
 
 

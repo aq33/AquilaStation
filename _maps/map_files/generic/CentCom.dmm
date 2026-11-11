@@ -6029,7 +6029,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "rh" = (

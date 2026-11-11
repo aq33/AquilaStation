@@ -159,9 +159,9 @@
     "/obj/modular_map_root/safehouse": null,
     "/obj/modular_map_connector": null,
     "/area/icemoon/underground/explored/virtual_domain": "/area/virtual_domain/ice",
-    "/mob/living/basic/alien": "/mob/living/simple_animal/hostile/alien",
-    "/mob/living/basic/alien/drone": "/mob/living/simple_animal/hostile/alien/drone",
-    "/mob/living/basic/alien/queen/large": "/mob/living/simple_animal/hostile/alien/queen/large",
+    "/mob/living/basic/alien": "/mob/living/basic/alien",
+    "/mob/living/basic/alien/drone": "/mob/living/basic/alien/drone",
+    "/mob/living/basic/alien/queen/large": "/mob/living/basic/alien/queen/large",
     "/mob/living/basic/bear/butter": "/mob/living/basic/bear/butter",
     "/mob/living/basic/bear/fightpit": "/mob/living/basic/bear/fightpit",
     "/mob/living/basic/bear/russian": "/mob/living/basic/bear/russian",
@@ -200,7 +200,7 @@
     "/mob/living/basic/fake_crewman/md": "/mob/living/carbon/human/ai_boarder/fake_crew/md",
     "/mob/living/basic/fake_crewman/sec": "/mob/living/carbon/human/ai_boarder/fake_crew/sec",
     "/mob/living/basic/heretic_summon/raw_prophet": "/mob/living/simple_animal/hostile/heretic_summon/raw_prophet",
-    "/mob/living/basic/hivebot/strong": "/mob/living/simple_animal/hostile/hivebot/strong",
+    "/mob/living/basic/hivebot/strong": "/mob/living/basic/hivebot/strong",
     "/mob/living/basic/mimic/crate": "/mob/living/simple_animal/hostile/mimic/crate",
     "/mob/living/basic/parrot": "/mob/living/simple_animal/parrot",
     "/mob/living/basic/pet/cat/_proc": "/mob/living/basic/pet/cat/_proc",
@@ -1548,7 +1548,7 @@
       }
     },
     {
-      "type": "/mob/living/simple_animal/hostile/alien",
+      "type": "/mob/living/basic/alien",
       "from": "can_plant_weeds",
       "to": "plants_off",
       "values": {

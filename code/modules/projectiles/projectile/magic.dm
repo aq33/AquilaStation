@@ -211,11 +211,11 @@
 			if(M.ckey)
 				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
 			else
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
+				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/basic/alien/sentinel) // AQ EDIT - basic moby
 			new_mob = new Xe(M.loc)
 
 		if("animal")
-			var/path = pick(/mob/living/simple_animal/hostile/carp,
+			var/path = pick(/mob/living/basic/carp, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
 							/mob/living/basic/bear, // AQ EDIT - basic moby
 							/mob/living/basic/mushroom, // AQ EDIT - basic moby
@@ -226,8 +226,8 @@
 							/mob/living/simple_animal/hostile/spider/giant/guard,
 							/mob/living/simple_animal/hostile/spider/giant/hunter,
 							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
-							/mob/living/simple_animal/hostile/carp/ranged,
-							/mob/living/simple_animal/hostile/carp/ranged/chaos,
+							/mob/living/basic/carp/magic, // AQ EDIT - basic moby
+							/mob/living/basic/carp/magic/chaos, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
 							/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 							/mob/living/simple_animal/hostile/headcrab,
