@@ -127,6 +127,12 @@ Stabilized extracts:
 			switch(initial(SA.gold_core_spawnable))
 				if(FRIENDLY_SPAWN)
 					mob_spawn_pets += T
+		// AQ EDIT START - basic moby
+		for(var/T in typesof(/mob/living/basic))
+			var/mob/living/basic/basic_mob = T
+			if(initial(basic_mob.gold_core_spawnable) == FRIENDLY_SPAWN)
+				mob_spawn_pets += T
+		// AQ EDIT END
 	mob_type = pick(mob_spawn_pets)
 
 /obj/item/slimecross/stabilized/gold/Initialize(mapload)

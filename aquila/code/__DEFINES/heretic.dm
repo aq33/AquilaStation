@@ -31,19 +31,10 @@
 /// Continue processing while in stasis
 
 // --- z tg: code/__DEFINES/ai/ai_blackboard.dm
-#define BB_TARGETING_STRATEGY "targeting_strategy"
-/// Key for the minimum status at which we want to target mobs (does not need to be specified if STABLE)
-#define BB_TARGET_MINIMUM_STAT "BB_target_minimum_stat"
-/// Generic key for a non-specific targeted action
-#define BB_TARGETED_ACTION "BB_TARGETED_action"
-/// Generic key for a non-specific action
-#define BB_GENERIC_ACTION "BB_generic_action"
+// (BB_TARGETING_STRATEGY, BB_TARGET_MINIMUM_STAT, BB_TARGETED_ACTION, BB_GENERIC_ACTION i BB_PET_TARGETING_STRATEGY
+// są w code/__DEFINES/ai.dm i aquila/code/__DEFINES/basic_mobs.dm, rdzeń SI z Bee)
 /// Generic key for a shapeshifting action
 #define BB_SHAPESHIFT_ACTION "BB_shapeshift_action"
-
-// --- z tg: code/__DEFINES/ai/pet_commands.dm
-/// Blackboard field for how we target things, as usually we want to be more permissive than normal
-#define BB_PET_TARGETING_STRATEGY "BB_pet_targeting"
 
 // --- z tg: code/__DEFINES/antagonists.dm
 #define PATH_START "Start Path"
@@ -180,8 +171,7 @@
 #define COMSIG_ACTION_STATUS_UPDATE "action_status_update"
 
 // --- z tg: code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm
-///from relay_attackers element: (atom/attacker, attack_flags, direction)
-#define COMSIG_ATOM_WAS_ATTACKED "atom_was_attacked"
+// COMSIG_ATOM_WAS_ATTACKED jest w aquila/code/__DEFINES/basic_mobs.dm
 /// Called on the atom being hit, from /datum/component/anti_magic/on_attack() : (obj/item/weapon, mob/user, antimagic_flags)
 #define COMSIG_ATOM_HOLYATTACK "atom_holyattacked"
 /// Called from [/mob/living/proc/send_item_attack_message()]: (obj/item/weapon, /mob/living/victim, mob/living/attacker)
@@ -787,8 +777,7 @@
 /// Wynik alt-kliknięcia
 #define CLICK_ACTION_SUCCESS (1<<0)
 #define CLICK_ACTION_BLOCKING (1<<1)
-/// Usuwanie po śmierci (dla mobów heretyka z del_on_death)
-#define DEL_ON_DEATH (1<<0)
+// DEL_ON_DEATH (usuwanie po śmierci) jest w aquila/code/__DEFINES/basic_mobs.dm
 
 // --- Zaklęcia z tg (spell_types_tg.dm)
 #define SCHOOL_UNSET "unset"

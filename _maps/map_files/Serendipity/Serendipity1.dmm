@@ -751,7 +751,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/apothecary)
 "bC" = (
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	name = "Darwin"
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -5143,7 +5143,7 @@
 /obj/structure/bed/dogbed{
 	name = "Wags-His-Tail's bed"
 	},
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	name = "Wags-His-Tail"
 	},
 /obj/machinery/requests_console{
@@ -6154,7 +6154,7 @@
 	name = "Vault turret control panel";
 	pixel_y = 26
 	},
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /obj/structure/bed/dogbed/renault,
 /turf/open/floor/carpet,
 /area/ai_monitored/nuke_storage)
@@ -7429,8 +7429,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/structure/bed/dogbed/walter,
-/mob/living/simple_animal/pet/dog/bullterrier/walter,
+/obj/structure/bed/dogbed/tyson,
+/mob/living/basic/pet/dog/bullterrier/tyson,
 /turf/open/floor/carpet/police,
 /area/security/warden)
 "xP" = (
@@ -10717,7 +10717,7 @@
 "Jf" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /obj/structure/bed/dogbed/ian,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/xo)
@@ -11501,7 +11501,7 @@
 	pixel_x = -11
 	},
 /obj/structure/bed/dogbed/vector,
-/mob/living/simple_animal/pet/hamster/vector,
+/mob/living/basic/pet/hamster/vector,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/west,
 /obj/machinery/airalarm/directional/north,
@@ -14941,7 +14941,7 @@
 /area/crew_quarters/kitchen)
 "XE" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8

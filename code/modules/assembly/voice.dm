@@ -7,7 +7,7 @@
 	name = "analizator głosu"
 	desc = "Małe urządzenie elektroniczne, które nagrywa próbkę głosu i wysyła sygnał, gdy ta próbka się powtórzy."
 	icon_state = "voice"
-	materials = list(/datum/material/iron=500, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=500, /datum/material/glass=50)
 	attachable = TRUE
 	verb_say = "pika"
 	verb_ask = "pika"

@@ -56,4 +56,6 @@
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
+	for(var/mob/living/basic/M in sortmob) // AQ EDIT - basic moby
+		moblist.Add(M)
 	return moblist

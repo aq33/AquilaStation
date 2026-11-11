@@ -186,7 +186,7 @@
 		. = message_ipc
 	else if((ismoth(user) || isapid(user) || isflyperson(user)) && message_insect)
 		. = message_insect
-	else if(isanimal(user) && message_simple)
+	else if(isanimal_or_basicmob(user) && message_simple) // AQ EDIT - basic moby
 		. = message_simple
 
 /datum/emote/proc/select_param(mob/user, params)

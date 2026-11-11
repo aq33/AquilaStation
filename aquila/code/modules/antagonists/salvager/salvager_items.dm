@@ -16,7 +16,7 @@
 	toolspeed = 0.7
 	usesound = 'sound/items/crowbar.ogg'
 	attack_verb = list("uderza", "wali", "grzmoci")
-	materials = list(/datum/material/iron = 8000)
+	custom_materials = list(/datum/material/iron = 8000)
 
 /obj/item/salvage_reclaimer/examine(mob/user)
 	. = ..()

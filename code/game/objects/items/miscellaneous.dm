@@ -327,7 +327,7 @@
 	name = "nadajnik dostawy zwierzęcia"
 	desc = "Nie ma szybszych sposobów, są tylko bardziej humanitarne."
 	var/default_name = "Bacon"
-	var/mob_choice = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	var/mob_choice = /mob/living/basic/pet/dog/corgi/exoticcorgi // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/generate_options(mob/living/M)
 	var/input_name = stripped_input(M, "Jak ma się nazywać twój nowy zwierzak?", "Imię nowego zwierzaka", default_name, MAX_NAME_LEN)
@@ -357,37 +357,37 @@
 /obj/item/choice_beacon/pet/cat
 	name = "nadajnik dostawy kota"
 	default_name = "Tom"
-	mob_choice = /mob/living/simple_animal/pet/cat
+	mob_choice = /mob/living/basic/pet/cat // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/mouse
 	name = "nadajnik dostawy myszy"
 	default_name = "Jerry"
-	mob_choice = /mob/living/simple_animal/mouse
+	mob_choice = /mob/living/basic/mouse // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/corgi
 	name = "nadajnik dostawy corgiego"
 	default_name = "Tosha"
-	mob_choice = /mob/living/simple_animal/pet/dog/corgi
+	mob_choice = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/hamster
 	name = "nadajnik dostawy chomika"
 	default_name = "Doktor"
-	mob_choice = /mob/living/simple_animal/pet/hamster
+	mob_choice = /mob/living/basic/pet/hamster // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/pug
 	name = "nadajnik dostawy mopsa"
 	default_name = "Silvestro"
-	mob_choice = /mob/living/simple_animal/pet/dog/pug
+	mob_choice = /mob/living/basic/pet/dog/pug // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/ems
 	name = "nadajnik dostawy zwierzęcia wsparcia emocjonalnego"
 	default_name = "Przytulak"
-	mob_choice = /mob/living/simple_animal/pet/cat/kitten
+	mob_choice = /mob/living/basic/pet/cat/kitten // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/pingu
 	name = "nadajnik dostawy pingwina"
 	default_name = "Pingu"
-	mob_choice = /mob/living/simple_animal/pet/penguin/baby
+	mob_choice = /mob/living/basic/pet/penguin/baby // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/clown
 	name = "nadajnik dostawy żywego lubrykantu"
@@ -397,7 +397,7 @@
 /obj/item/choice_beacon/pet/goat
 	name = "nadajnik dostawy kozy"
 	default_name = "Billy"
-	mob_choice = /mob/living/simple_animal/hostile/retaliate/goat
+	mob_choice = /mob/living/basic/goat // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/janicart
 	name = "nadajnik dostawy wózka woźnego"

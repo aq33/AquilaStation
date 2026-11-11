@@ -101,7 +101,7 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/ruin/space/has_grav/powered/aesthetic)
 "w" = (
-/mob/living/simple_animal/butterfly,
+/mob/living/basic/butterfly,
 /turf/open/floor/plasteel/vaporwave,
 /area/ruin/space/has_grav/powered/aesthetic)
 "x" = (

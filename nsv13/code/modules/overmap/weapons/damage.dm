@@ -124,7 +124,7 @@ Bullet reactions
 /obj/structure/overmap/proc/has_occupants()
 	if(length(mobs_in_ship))
 		for(var/mob/M in mobs_in_ship) // Hopefully we don't have to do this super often but I didn't want one list of people who have to hear noises and announcements and another list of people who matter for this
-			if(istype(M, /mob/living) && !istype(M, /mob/living/simple_animal))
+			if(istype(M, /mob/living) && !isanimal_or_basicmob(M)) // AQ EDIT - basic moby: zwierzęta nie trzymają wraków ani asteroid
 				return TRUE
 	if(length(overmaps_in_ship))
 		if(CHECK_BITFIELD(overmap_deletion_traits, FIGHTERS_ARE_OCCUPANTS))

@@ -30,7 +30,7 @@
 	desc = "Wolframowy nabój 6 mm."
 	caliber = "6mm"
 	projectile_type = /obj/item/projectile/bullet/peacekeeper/stun
-	materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/peacekeeper/lethal
 	name = "wolframowy nabój 6 mm"

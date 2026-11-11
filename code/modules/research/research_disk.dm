@@ -3,7 +3,7 @@
 	name = "dysk z technologiami"
 	desc = "Dysk do przechowywania danych technologicznych do dalszych badań."
 	icon_state = "datadisk0"
-	materials = list(/datum/material/iron=300, /datum/material/glass=100)
+	custom_materials = list(/datum/material/iron=300, /datum/material/glass=100)
 	var/datum/techweb/stored_research
 
 /obj/item/disk/tech_disk/Initialize(mapload)
@@ -15,7 +15,7 @@
 /obj/item/disk/tech_disk/debug
 	name = "dysk z technologiami Centrali"
 	desc = "Przedmiot debugowy do badań"
-	materials = list()
+	custom_materials = null
 
 /obj/item/disk/tech_disk/debug/Initialize(mapload)
 	. = ..()

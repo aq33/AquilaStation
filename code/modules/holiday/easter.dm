@@ -26,39 +26,11 @@
 		if(R.name != "blobspawn")
 			if(prob(35))
 				if(isspaceturf(R.loc))
-					new /mob/living/simple_animal/chicken/rabbit/space(R.loc)
+					new /mob/living/basic/rabbit/easter/space(R.loc) // AQ EDIT - basic moby
 				else
-					new /mob/living/simple_animal/chicken/rabbit(R.loc)
+					new /mob/living/basic/rabbit/easter(R.loc) // AQ EDIT - basic moby
 
-/mob/living/simple_animal/chicken/rabbit
-	name = "\improper królik"
-	desc = "Najbardziej hipisowski skoczek w okolicy."
-	icon = 'icons/mob/easter.dmi'
-	icon_state = "rabbit_white"
-	icon_living = "rabbit_white"
-	icon_dead = "rabbit_white_dead"
-	speak = list("Wskocz w Wielkanoc!","Chodźcie po jajka!","Nagrody dla wszystkich!")
-	speak_emote = list("pociąga nosem","drga")
-	emote_hear = list("skacze.")
-	emote_see = list("skacze dookoła","podskakuje w górę i w dół")
-	butcher_results = list(/obj/item/food/meat/slab = 1)
-	egg_type = /obj/item/suprise_egg
-	food_type = /obj/item/food/grown/carrot
-	eggsleft = 10
-	eggsFertile = FALSE
-	icon_prefix = "rabbit"
-	feedMessages = list("Radośnie skubie.","Radośnie chrupie.")
-	layMessage = list("chowa jajko.","podejrzanie się kręci.","zaczyna robić straszny harmider.","zaczyna się wiercić.")
-
-/mob/living/simple_animal/chicken/rabbit/space
-	icon_prefix = "s_rabbit"
-	icon_state = "s_rabbit_white"
-	icon_living = "s_rabbit_white"
-	icon_dead = "s_rabbit_white_dead"
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
-	maxbodytemp = 1500
-	unsuitable_atmos_damage = 0
+// AQ EDIT - króliki są basic mobami (aquila/code/modules/mob/living/basic/farm_animals/rabbit.dm)
 
 //Easter Baskets
 /obj/item/storage/bag/easterbasket
@@ -103,7 +75,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 //Egg prizes and egg spawns!
-/obj/item/surprise_egg
+/obj/item/suprise_egg // AQ EDIT - jedna ścieżka jajka niespodzianki (wcześniej wygląd był na surprise_egg, a procedury na suprise_egg)
 	name = "zawinięte jajko"
 	desc = "Czekoladowe jajko z małą niespodzianką w środku. Rozpakuj i ciesz się!"
 	icon_state = "egg"

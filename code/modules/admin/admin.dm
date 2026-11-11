@@ -119,7 +119,7 @@
 	data["is_corgi"] = iscorgi(M)
 	data["is_ai"] = isAI(M)
 	data["is_cluwne"] = istype(M, /mob/living/simple_animal/cluwne)
-	data["is_animal"] = isanimal(M)
+	data["is_animal"] = isanimal_or_basicmob(M) // AQ EDIT - basic moby
 
 	var/client/C = M.client
 	data["has_client"] = !!C

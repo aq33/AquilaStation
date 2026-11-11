@@ -237,6 +237,11 @@
 		current_item = A.access_card
 		if(current_item)
 			new_access += current_item.GetAccess()
+	else if(isbasicmob(host_mob)) // AQ EDIT - basic moby
+		var/mob/living/basic/basic_host = host_mob
+		current_item = basic_host.access_card
+		if(current_item)
+			new_access += current_item.GetAccess()
 	access = new_access
 
 /datum/nanite_program/spreading

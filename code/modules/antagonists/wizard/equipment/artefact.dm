@@ -37,7 +37,7 @@
 	icon_state = "rift"
 	density = TRUE
 	anchored = TRUE
-	var/spawn_path = /mob/living/simple_animal/cow //defaulty cows to prevent unintentional narsies
+	var/spawn_path = /mob/living/basic/cow //defaulty cows to prevent unintentional narsies (AQ EDIT - basic moby)
 	var/spawn_amt_left = 20
 	var/spawn_fast = 0
 
@@ -75,7 +75,7 @@
 /obj/item/veilrender/vealrender
 	name = "rozdzieracz cielęciny"
 	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnej farmy."
-	spawn_type = /mob/living/simple_animal/cow
+	spawn_type = /mob/living/basic/cow // AQ EDIT - basic moby
 	spawn_amt = 20
 	activate_descriptor = "samemu głodowi"
 	rend_desc = "Rozbrzmiewa odgłosem dziesięciu tysięcy muczeń."

@@ -22,7 +22,7 @@
 			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 				continue
 
-			if(data["donor"] == /mob/living/simple_animal/mouse && L) // NSV13 - Lizards do not get rat viruses
+			if(data["donor"] == /mob/living/basic/mouse && L) // NSV13 - Lizards do not get rat viruses // AQ EDIT - basic moby
 				if(islizard(L))
 					continue
 
@@ -137,7 +137,7 @@
 	color = "#ecca7f"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "przysmaki dla psów"
-	var/mob/living/simple_animal/pet/dog/corgi/new_corgi
+	var/mob/living/basic/pet/dog/corgi/new_corgi // AQ EDIT - basic moby
 
 /datum/reagent/corgium/on_mob_metabolize(mob/living/L)
 	. = ..()

@@ -139,7 +139,7 @@
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
-	if(!isanimal(pushed_mob) || iscat(pushed_mob))
+	if(!isanimal_or_basicmob(pushed_mob) || iscat(pushed_mob)) // AQ EDIT - basic moby: na stole kładą się tylko koty spośród zwierząt, jak przed portem
 		pushed_mob.set_resting(TRUE, TRUE)
 	pushed_mob.visible_message("<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>", \
 								"<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>")
@@ -248,12 +248,21 @@
 /obj/structure/table/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/T = get_turf(src)
-		new buildstack(T, buildstackamount)
+		if(buildstack)
+			new buildstack(T, buildstackamount)
+		else
+			drop_material_sheets(T) // AQ EDIT - bez materiałów bez arkusza (kamień) i z metalgenu
 		if(!wrench_disassembly)
 			new frame(T)
 		else
 			new framestack(T, framestackamount)
 	qdel(src)
+
+/obj/structure/table/greyscale
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+	custom_materials = list(/datum/material/iron = 2000) // AQ EDIT - w Bee dziedziczy to ze zwykłego stołu
+	buildstack = null //No buildstack, so generate from mat datums
+	canSmoothWith = list(/obj/structure/table/greyscale) // AQ EDIT - nasze stoły łączą się po typie, nie po grupach
 
 
 /*
@@ -581,7 +590,7 @@
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
-	if(!isanimal(pushed_mob) || iscat(pushed_mob))
+	if(!isanimal_or_basicmob(pushed_mob) || iscat(pushed_mob)) // AQ EDIT - basic moby: na stole kładą się tylko koty spośród zwierząt, jak przed portem
 		pushed_mob.set_resting(TRUE, TRUE)
 	visible_message("<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>")
 	get_patient()
@@ -731,7 +740,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
-	materials = list(/datum/material/iron=2000)
+	custom_materials = list(/datum/material/iron=2000)
 	var/building = FALSE
 
 /obj/item/rack_parts/attackby(obj/item/W, mob/user, params)

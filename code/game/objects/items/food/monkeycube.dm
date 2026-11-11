@@ -49,7 +49,7 @@
 	bite_consumption = 15
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("puch" = 1, "farma" = 1)
-	spawned_mob = /mob/living/simple_animal/sheep
+	spawned_mob = /mob/living/basic/sheep // AQ EDIT - basic moby
 
 /obj/item/food/monkeycube/cow
 	name = "krowia kostka"
@@ -57,7 +57,7 @@
 	bite_consumption = 18
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("mleko" = 1, "farma" = 1)
-	spawned_mob = /mob/living/simple_animal/cow
+	spawned_mob = /mob/living/basic/cow // AQ EDIT - basic moby
 
 /obj/item/food/monkeycube/goat
 	name = "kozia kostka"
@@ -65,4 +65,4 @@
 	bite_consumption = 18
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("mleko" = 1, "farma" = 1)
-	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat
+	spawned_mob = /mob/living/basic/goat // AQ EDIT - basic moby

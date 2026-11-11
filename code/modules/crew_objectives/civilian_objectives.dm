@@ -146,7 +146,7 @@
 
 /datum/objective/crew/exterminator/check_completion()
 	var/num_mice = 0
-	for(var/mob/living/simple_animal/mouse/M in GLOB.alive_mob_list)
+	for(var/mob/living/basic/mouse/M in GLOB.alive_mob_list) // AQ EDIT - basic moby
 		if((M.z in SSmapping.levels_by_trait(ZTRAIT_STATION)))
 			num_mice++
 	if(num_mice <= target_amount)

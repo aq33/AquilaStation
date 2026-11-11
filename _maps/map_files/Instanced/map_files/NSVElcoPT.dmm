@@ -2810,7 +2810,7 @@
 	pixel_x = 32
 	},
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /turf/open/floor/monotile/dark,
 /area/awaymission/badmiral/central)
 "Uu" = (

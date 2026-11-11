@@ -389,7 +389,7 @@
 /datum/job/gimmick/stage_magician
 	mail_goodies = list(
 		//AND FOR MY NEXT TRICK... Bnnuy
-		/mob/living/simple_animal/chicken/rabbit/normal = 40,
+		/mob/living/basic/rabbit = 40, // AQ EDIT - basic moby
 		/obj/item/gun/magic/wand = 10,
 		/obj/item/clothing/head/collectable/tophat = 10,
 		/obj/item/clothing/head/bowler = 5,

@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isshade(A) (istype(A, /mob/living/simple_animal/shade))
 
-#define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
+#define ismouse(A) (istype(A, /mob/living/basic/mouse)) // AQ EDIT - basic moby
 
 // AQUILA EDIT - szczury z tg
 #define israt(A) (istype(A, /mob/living/simple_animal/hostile/rat))
@@ -162,11 +162,11 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isdrone(A) (istype(A, /mob/living/simple_animal/drone))
 
-#define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
+#define iscat(A) (istype(A, /mob/living/basic/pet/cat)) // AQ EDIT - basic moby
 
-#define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
+#define iscorgi(A) (istype(A, /mob/living/basic/pet/dog/corgi)) // AQ EDIT - basic moby
 
-#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
+#define isdog(A) (istype(A, /mob/living/basic/pet/dog)) // AQ EDIT - basic moby
 
 #define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
 
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,
-	/mob/living/simple_animal/cow,
+	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/cat_butcherer,
 	/mob/living/simple_animal/hostile/faithless,
 	/mob/living/simple_animal/hostile/nanotrasen,
@@ -200,24 +200,24 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/simple_animal/hostile/retaliate/clown,
 	/mob/living/simple_animal/hostile/retaliate/spaceman,
 	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
-	/mob/living/simple_animal/hostile/retaliate/goat,
+	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,
 	)))
 
 GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/carbon/alien/humanoid,
 	/mob/living/simple_animal/hostile/alien,
-	/mob/living/simple_animal/pet/cat,
-	/mob/living/simple_animal/pet/dog,
-	/mob/living/simple_animal/pet/fox,
-	/mob/living/simple_animal/chicken,
-	/mob/living/simple_animal/hostile/bear,
+	/mob/living/basic/pet/cat, // AQ EDIT - basic moby
+	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
+	/mob/living/basic/pet/fox, // AQ EDIT - basic moby
+	/mob/living/basic/chicken, // AQ EDIT - basic moby
+	/mob/living/basic/bear, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/jungle/mega_arachnid
 	)))
 
 GLOBAL_LIST_INIT(barefootmob, typecacheof(list(
 	/mob/living/carbon/monkey,
-	/mob/living/simple_animal/pet/penguin,
+	/mob/living/basic/pet/penguin, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/gorilla,
 	/mob/living/simple_animal/hostile/jungle/mook
 	)))

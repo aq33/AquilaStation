@@ -216,6 +216,14 @@ GLOBAL_LIST_EMPTY(cooking_recipes_atoms)
 			else
 				aquila_add_stack_crafting_recipe(stack, stack_recipe)
 
+	// Receptury z materiału (BeeStation/BeeStation-Hornet#10135, #10703) raz, z żelazem; inny materiał daje przedmiot z tego materiału
+	for(var/datum/stack_recipe/stack_recipe as anything in SSmaterials.rigid_stack_recipes)
+		var/datum/crafting_recipe/stack/recipe = new /datum/crafting_recipe/stack(/obj/item/stack/sheet/iron, stack_recipe)
+		if(!recipe.name || !recipe.result)
+			continue
+		recipe.steps = list("Użyj w ręce arkuszy innego materiału, by zrobić przedmiot z tego materiału")
+		GLOB.crafting_recipes += recipe
+
 	aquila_init_crafting_recipes_atoms()
 
 /proc/aquila_add_stack_crafting_recipe(stack, datum/stack_recipe/stack_recipe)

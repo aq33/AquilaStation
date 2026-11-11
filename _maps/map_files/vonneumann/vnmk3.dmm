@@ -1145,7 +1145,7 @@
 /area/hallway/upper/primary/starboard)
 "aQz" = (
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /turf/open/floor/carpet/ship/blue{
 	color = "#9999DD";
 	name = "nanoweave carpet (bluer)"
@@ -3441,7 +3441,7 @@
 /area/crew_quarters/heads/captain/private)
 "cMb" = (
 /obj/structure/cable,
-/mob/living/simple_animal/mothroach,
+/mob/living/basic/mothroach,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
@@ -4601,7 +4601,7 @@
 /area/bridge/cic)
 "dGh" = (
 /obj/structure/sink/puddle,
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /turf/open/floor/grass,
 /area/maintenance/fore/secondary)
 "dGs" = (
@@ -5333,7 +5333,7 @@
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/starboard)
 "elY" = (
-/mob/living/simple_animal/hostile/retaliate/goat,
+/mob/living/basic/goat,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -9460,11 +9460,8 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
 "hzu" = (
-/mob/living/simple_animal/hostile/retaliate/frog{
-	emote_hear = list("Croaks");
-	emote_taunt = list("Ribbits Argressively");
+/mob/living/basic/frog{
 	health = 20;
-	jitteriness = 5;
 	name = "Large Toad"
 	},
 /obj/structure/sink/puddle,
@@ -10475,7 +10472,7 @@
 /turf/open/floor/circuit/green/anim,
 /area/engine/engineering/reactor_control)
 "ira" = (
-/mob/living/simple_animal/sloth/paperwork,
+/mob/living/basic/sloth/paperwork,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "irv" = (
@@ -10732,7 +10729,7 @@
 /area/engine/atmos/port_atmos)
 "iCl" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	name = "Darwin"
 	},
 /obj/effect/turf_decal/solgov{
@@ -11755,7 +11752,7 @@
 /obj/structure/window{
 	dir = 1
 	},
-/mob/living/simple_animal/turtle,
+/mob/living/basic/turtle,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "jon" = (
@@ -12572,7 +12569,7 @@
 /turf/open/floor/carpet/ship,
 /area/security/brig)
 "jZF" = (
-/mob/living/simple_animal/mouse,
+/mob/living/basic/mouse,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -18916,7 +18913,7 @@
 /obj/structure/noticeboard/captain{
 	pixel_y = 25
 	},
-/mob/living/simple_animal/pet/cat/kitten{
+/mob/living/basic/pet/cat/kitten{
 	name = "Professor Mew"
 	},
 /turf/open/floor/carpet/ship/blue{
@@ -18955,7 +18952,7 @@
 	dir = 5
 	},
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
@@ -19731,7 +19728,7 @@
 /area/maintenance/port/aft)
 "qgK" = (
 /obj/structure/sink/puddle,
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -22579,7 +22576,7 @@
 /area/hallway/upper/primary/starboard)
 "sDq" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /turf/open/floor/carpet/ship/blue{
 	color = "#9999DD";
 	name = "nanoweave carpet (bluer)"
@@ -23530,7 +23527,7 @@
 /turf/open/floor/plating,
 /area/security/detectives_office)
 "tql" = (
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
 /area/maintenance/fore/secondary)
@@ -24882,6 +24879,8 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 30
 	},
+/obj/structure/bed/dogbed/tyson,
+/mob/living/basic/pet/dog/bullterrier/tyson,
 /turf/open/floor/carpet/ship,
 /area/security)
 "uBu" = (
@@ -25412,11 +25411,11 @@
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/port)
 "vam" = (
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Kentucky";
 	real_name = "Kentucky"
 	},
-/mob/living/simple_animal/chick,
+/mob/living/basic/chick,
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/carpet/ship,
 /area/hydroponics)
@@ -27112,7 +27111,7 @@
 /turf/open/floor/carpet/ship,
 /area/crew_quarters/dorms)
 "wnq" = (
-/mob/living/simple_animal/hostile/retaliate/frog,
+/mob/living/basic/frog,
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 1
@@ -27943,7 +27942,7 @@
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
 "xjo" = (
-/mob/living/simple_animal/chicken/rabbit/normal,
+/mob/living/basic/rabbit,
 /turf/open/floor/carpet/ship,
 /area/hydroponics)
 "xll" = (
@@ -28036,7 +28035,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/mob/living/simple_animal/mouse/brown,
+/mob/living/basic/mouse/brown,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "xqA" = (

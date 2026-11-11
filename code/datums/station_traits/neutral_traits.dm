@@ -13,8 +13,8 @@
 	report_message = "Ian wyruszył na wyprawę gdzieś po stacji."
 
 /datum/station_trait/ian_adventure/on_round_start()
-	for(var/mob/living/simple_animal/pet/dog/corgi/dog in GLOB.mob_list)
-		if(!(istype(dog, /mob/living/simple_animal/pet/dog/corgi/Ian) || istype(dog, /mob/living/simple_animal/pet/dog/corgi/puppy/Ian)))
+	for(var/mob/living/basic/pet/dog/corgi/dog in GLOB.mob_list) // AQ EDIT - basic moby
+		if(!(istype(dog, /mob/living/basic/pet/dog/corgi/ian) || istype(dog, /mob/living/basic/pet/dog/corgi/puppy/ian))) // AQ EDIT - basic moby
 			continue
 
 		// The extended safety checks at time of writing are about chasms and lava

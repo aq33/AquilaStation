@@ -52,6 +52,6 @@
 	amount = 1
 
 /obj/item/stack/medical/bandage/cyborg
-	materials = list()
+	mats_per_unit = null
 	is_cyborg = TRUE
 	cost = 250

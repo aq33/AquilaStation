@@ -11,7 +11,7 @@
 
 	keys = list("altar_sacrifice_animal")
 
-/datum/bloodcult_ritual/sacrifice_mouse/key_found(mob/living/simple_animal/mouse/extra)
+/datum/bloodcult_ritual/sacrifice_mouse/key_found(mob/living/basic/mouse/extra)
 	if(istype(extra))
 		return TRUE
 	return FALSE

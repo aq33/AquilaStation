@@ -48,7 +48,7 @@
 		return ..()
 	if(S.amount > S.max_amount)
 		var/overrun = S.amount - S.max_amount
-		S.amount = S.max_amount
+		S.use(overrun, check = FALSE) // AQ EDIT - use() przelicza custom_materials (suma stosu po Bee#10135)
 		var/obj/item/stack/temp = new S.type(real_location, overrun)
 		handle_item_insertion(temp)
 	return ..(S, new_location)

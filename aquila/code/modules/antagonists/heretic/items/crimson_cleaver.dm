@@ -8,7 +8,7 @@
 	armour_penetration = 50
 	throw_speed = 4
 	throw_range = 7
-	materials = list()
+	custom_materials = null
 	/// Cooldown between lifesteal triggers
 	COOLDOWN_DECLARE(lifesteal_cd)
 	/// Range that which it will boomerang back to the wielder

@@ -323,7 +323,7 @@
 
 /// Skamieniała kartka z recepturą gorgium, tylko w technicznych
 /obj/item/paper/secretrecipe/gorgium
-	name = "paper"
+	name = "kartka"
 	possible_recipes = list(/datum/chemical_reaction/randomized/gorgium)
 
 /obj/item/paper/secretrecipe/gorgium/Initialize(mapload)
@@ -332,7 +332,7 @@
 
 /// Kartka zawsze z metalgenem
 /obj/item/paper/secretrecipe/metalgen
-	name = "paper"
+	name = "kartka"
 	possible_recipes = list(/datum/chemical_reaction/randomized/metalgen)
 
 /obj/item/paper/secretrecipe/metalgen/Initialize(mapload)

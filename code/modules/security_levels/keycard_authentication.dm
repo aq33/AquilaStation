@@ -67,11 +67,12 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	return data
 
 /obj/machinery/keycard_auth/ui_status(mob/user)
-	if(isanimal(user))
-		var/mob/living/simple_animal/A = user
-		if(!A.dextrous)
-			to_chat(user, "<span class='warning'>Jesteś zbyt prymitywny, żeby użyć tego urządzenia!</span>")
-			return UI_CLOSE
+	// AQ EDIT START - basic moby: nie mają rąk (dextrous jest tylko u simple animali)
+	var/mob/living/simple_animal/A = user
+	if(isbasicmob(user) || (istype(A) && !A.dextrous))
+		to_chat(user, "<span class='warning'>Jesteś zbyt prymitywny, żeby użyć tego urządzenia!</span>")
+		return UI_CLOSE
+	// AQ EDIT END
 	return ..()
 
 /obj/machinery/keycard_auth/ui_act(action, params)

@@ -72,7 +72,7 @@
 	TEST_ASSERT(istype(controller), "Item was not haunted")
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(left, EAST))
 	controller.add_hauntee(victim, 5)
-	controller.blackboard[BB_HAUNT_TARGET] = victim
+	controller.set_blackboard_key(BB_HAUNT_TARGET, victim)
 	var/list/hauntee_list = controller.blackboard[BB_TO_HAUNT_LIST]
 	TEST_ASSERT(hauntee_list[victim] == 5, "Victim was not added to the haunt list")
 	qdel(victim)
