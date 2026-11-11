@@ -24,3 +24,7 @@
 ## Bez nich używane są gotowe głosy ElevenLabs.
 #SQUAD_TTS_VOICE_MALE pNInz6obpgDQGcFmaJgB
 #SQUAD_TTS_VOICE_FEMALE 21m00Tcm4TlvDq8ikWAM
+
+## Głos ogłoszeń SI (przycisk ogłoszenia w HUD-zie SI czyta wtedy dowolny tekst zamiast słów VOX).
+## Korzysta z tego samego klucza i limitu znaków co rozkazy drużyn.
+#AI_TTS_VOICE 21m00Tcm4TlvDq8ikWAM

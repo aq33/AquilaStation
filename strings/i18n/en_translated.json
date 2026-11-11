@@ -20203,5 +20203,12 @@
 "∞ minut": "∞ minutes",
 "■ Dostępne": "■ Available",
 "■ Przyszłe": "■ Future",
-"■ Zbadane": "■ Researched"
+"■ Zbadane": "■ Researched",
+"<span class='notice'>Zaczekaj [DisplayTimeText(GLOB.aq_ai_tts_next_announcement - world.time)].</span>": "<span class='notice'>Please wait [DisplayTimeText(GLOB.aq_ai_tts_next_announcement - world.time)].</span>",
+"Wpisz tekst ogłoszenia (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków). Usłyszy je cała załoga statku. Nadużywanie ogłoszeń może skończyć się banem na rolę.": "Type the announcement text (at most [AQ_AI_TTS_MAX_CHARS] characters). The whole ship's crew will hear it. Abusing announcements may result in a job ban.",
+"<span class='warning'>Syntezator mowy wyczerpał limit na tę zmianę. Ogłoszenie nie poszło.</span>": "<span class='warning'>The speech synthesizer has used up its limit for this shift. The announcement was not sent.</span>",
+"[key_name(src)] wygłasza ogłoszenie głosowe o treści: [html_encode(message)].": "[key_name(src)] made a vocal announcement with the following message: [html_encode(message)].",
+"<span class='notice'>Ogłaszasz: \\\"[html_encode(message)]\\\"</span>": "<span class='notice'>You announce: \\\"[html_encode(message)]\\\"</span>",
+"<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone.</span>": "<span class='warning'>The speech synthesizer did not respond. The announcement was not played.</span>",
+"<span class='notice'>Syntezator mowy jest włączony: przycisk ogłoszenia przyjmuje dowolny tekst po polsku (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków, jedno ogłoszenie na [DisplayTimeText(AQ_AI_TTS_DELAY)]).</span>": "<span class='notice'>The speech synthesizer is on: the announcement button accepts any text in Polish (at most [AQ_AI_TTS_MAX_CHARS] characters, one announcement per [DisplayTimeText(AQ_AI_TTS_DELAY)]).</span>"
 }
