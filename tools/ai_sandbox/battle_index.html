@@ -78,11 +78,19 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Zwiad myśliwców i łącze danych",
+    opis: "Jeden myśliwiec na lotniskowiec krąży na granicy, z której widzi wroga, i nie strzela. Gdy okręt rakietowy floty może strzelić, " +
+          "zwiadowca namierza cel radarem frontalnym (cel musi być przed nosem, namierzany słyszy to i dostaje namiar na myśliwca), " +
+          "a okręt rakietowy strzela na ten namiar z odległości do 120 pól. Torpeda trzyma cel, dopóki trwa namierzanie. " +
+          "Fioletowa linia „namierza” w odtwarzaczu to właśnie to.",
+    wynik: null,
+    warianty: [["V_zwiad_", "ze zwiadem"], ["V_bez_zwiadu_", "bez zwiadu"]] },
   { tytul: "Skończone zapasy rakiet i torped",
     opis: "Lotniskowiec dawał okrętowi w promieniu 15 pól pełny magazyn rakiet i torped co 5 s, czyli bez końca. " +
           "Teraz ma zapas na całą bitwę (20 torped, 40 rakiet) i oddaje po kilka sztuk. Okręt bez torped nie wraca po nie, " +
           "gdy flocie się skończyły, tylko walczy dalej. Pierwszy krok przed zwiadem myśliwców i łączem danych.",
-    wynik: null,
+    wynik: "Torpedy 143 → 91 na bitwę, rakiety bez zmian (ok. 110: rzadko trzeba je uzupełniać). Działa i obrona punktowa 3942 → 5078 strzałów: " +
+           "gdzie zabrakło torped, AI przeszło na działa. Zapasy schodzą nierówno: część lotniskowców kończy z pełnymi 20 torpedami, część z zerem.",
     warianty: [["U_zapasy_", "zapasy włączone"], ["U_bez_zapasow_", "pełny magazyn co 5 s (jak dotąd)"]] },
   { tytul: "Objazd przeszkód i liczniki uzbrojenia",
     opis: "Okręt zablokowany przez inny przed dziobem omija go łukiem (60° od kursu, w stałą stronę), zamiast drżeć w miejscu " +
