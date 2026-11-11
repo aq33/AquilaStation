@@ -76,6 +76,7 @@ GLOBAL_VAR_INIT(ai_long_range_guided_enabled, TRUE)
 	if(!weapon)
 		return
 	add_enemy(target) // jak w bazowym ai_fire(): gracz dostaje alarm, że jest namierzany
+	ai_scout_event("[src] strzela z daleka ([overmap_dist(src, target)] pól, własne sensory: [get_contact_suite(target) || "?"]) w [target]")
 	fire_weapon(target, firing_weapon = weapon, ai_aim = TRUE)
 
 /obj/structure/overmap/update_ai_sensor_use()

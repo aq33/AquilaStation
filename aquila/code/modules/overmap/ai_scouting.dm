@@ -283,6 +283,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 	if(!weapon)
 		return
 	ai_datalink_firing = namiar[1]
+	ai_scout_event("[src] strzela na namiar od [namiar[1]] ([overmap_dist(src, target)] pól) w [target]")
 	fire_weapon(target, firing_weapon = weapon, ai_aim = TRUE)
 	ai_datalink_firing = null
 

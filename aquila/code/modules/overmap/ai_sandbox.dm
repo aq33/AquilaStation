@@ -56,6 +56,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	/// którego strzelający sam nie trzymał na sensorach)). Okręt główny gracza się nie liczy.
 	/// Strzały niekierowane wg strzelca: myśliwiec, okręt bez pasującej amunicji kierowanej, okręt z nią
 	/// (ten ostatni dalej niż 12 pól powinien przy włączonej doktrynie zniknąć, ai_weapon_doctrine.dm)
+	/// Strzały kierowane wg odległości (przedziały co 10 pól, ostatni: 100 i dalej)
+	var/list/guided_dist = list("0" = 0, "10" = 0, "20" = 0, "30" = 0, "40" = 0, "50" = 0, "60" = 0, "70" = 0, "80" = 0, "90" = 0, "100" = 0)
 	var/list/gun_shooters = list("mysliwiec" = 0, "okret_bez_kierowanej" = 0, "okret_z_kierowana_blisko" = 0, "okret_z_kierowana_daleko" = 0)
 	var/list/munitions = list(
 		"torpeda" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
@@ -361,7 +363,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "gun_shooters" = gun_shooters, "pulses" = pulses,
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "gun_shooters" = gun_shooters, "guided_dist" = guided_dist, "pulses" = pulses,
 		"cones" = list("tel_half" = TELESCOPE_HALF_ANGLE, "ir_blind_half" = INFRARED_BLIND_HALF_ANGLE, "enabled" = GLOB.ai_sensor_cones_enabled))
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
@@ -402,6 +404,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	licznik["fired"]++
 	if(target && target.z == z)
 		licznik["dist"] += overmap_dist(src, target)
+		if(ai_sandbox_munition_kind(.) != "niekierowane")
+			GLOB.ai_sandbox.guided_dist["[min(FLOOR(overmap_dist(src, target), 10), 100)]"]++
 	if(istype(target, /obj/structure/overmap) && !get_contact_suite(target))
 		licznik["blind"]++
 	if(ai_sandbox_munition_kind(.) == "niekierowane" && istype(target, /obj/structure/overmap))
