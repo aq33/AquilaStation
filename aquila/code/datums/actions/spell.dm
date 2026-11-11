@@ -78,8 +78,9 @@
 		return FALSE
 	return can_cast_spell(feedback)
 
-/// Sprawdza check_flags akcji, łącznie z flagami z tg (AB_CHECK_HANDS_BLOCKED, AB_CHECK_IMMOBILE)
-/datum/action/cooldown/spell/proc/check_action_flags(feedback = FALSE)
+/// Sprawdza check_flags akcji, łącznie z flagami z tg (AB_CHECK_HANDS_BLOCKED, AB_CHECK_IMMOBILE, AB_CHECK_INCAPACITATED).
+/// Na /datum/action/cooldown, bo używają go też zdolności mobów (mob_cooldown.dm).
+/datum/action/cooldown/proc/check_action_flags(feedback = FALSE)
 	var/mob/living/living_owner = isliving(owner) ? owner : null
 	if((check_flags & AB_CHECK_RESTRAINED) && owner.restrained())
 		return FALSE
@@ -92,6 +93,8 @@
 	if((check_flags & AB_CHECK_HANDS_BLOCKED) && (owner.restrained() || (living_owner && !(living_owner.mobility_flags & MOBILITY_USE))))
 		return FALSE
 	if((check_flags & AB_CHECK_IMMOBILE) && living_owner && !(living_owner.mobility_flags & MOBILITY_MOVE))
+		return FALSE
+	if((check_flags & AB_CHECK_INCAPACITATED) && owner.incapacitated())
 		return FALSE
 	return TRUE
 
@@ -117,6 +120,9 @@
 			return unset_click_ability(owner, refund_cooldown = TRUE)
 		if(istype(already_set))
 			already_set.unset_click_ability(owner, refund_cooldown = TRUE)
+		else if(istype(owner.click_intercept, /datum/action/cooldown/mob_cooldown)) // zdolność moba też chowamy
+			var/datum/action/cooldown/mob_cooldown/mob_ability = owner.click_intercept
+			mob_ability.unset_click_ability(owner, refund_cooldown = TRUE)
 		return set_click_ability(owner)
 
 	return PreActivate(owner)

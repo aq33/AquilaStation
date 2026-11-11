@@ -2041,6 +2041,8 @@
 #include "code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm"
 // Zdolności mobów i ataki dystansowe basic mobów (baza części 2), opis w LEGACY_OVERRIDES.md "Mob abilities and ranged attacks"
 #include "code\modules\projectiles\mob_fire_projectile.dm"
+#include "code\datums\actions\mob_cooldown.dm"
+#include "code\datums\actions\mobs\projectile_attack.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
