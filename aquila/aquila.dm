@@ -1055,6 +1055,7 @@
 #include "code\modules\gunplay\cover.dm"
 #include "code\modules\gunplay\attachments.dm"
 #include "code\modules\gunplay\iff_smart.dm"
+#include "code\modules\gunplay\peek.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
 #include "code\modules\projectiles\projectile\bullets\_incendiary.dm"
 #include "code\modules\projectiles\projectile\reusable\foam_dart.dm"

@@ -497,5 +497,37 @@
 			fractional_shots++
 	TEST_ASSERT(fractional_shots > 0, "All shots with 0.9° bonus spread flew at whole degrees, fractional spread was lost")
 
+/// Wychylony strzelec (przesunięcie pod C) strzela zza rogu: pocisk startuje z krawędzi kafla, nie ze środka
+/datum/unit_test/aquila_gunplay_peek_corner
+
+/datum/unit_test/aquila_gunplay_peek_corner/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/corner = locate(start.x, start.y + 1, start.z)
+	var/turf/far = locate(start.x + 1, start.y + 3, start.z)
+	TEST_ASSERT(isopenturf(corner) && isopenturf(far) && isopenturf(locate(start.x + 1, start.y, start.z)), "Test room too small for the corner test")
+	allocate(/obj/structure/window/reinforced/fulltile, corner) // róg na północ od strzelca
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, start)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, far)
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	shooter.put_in_hands(gun)
+	gun.set_firemode(AQ_FIREMODE_SEMI)
+	gun.spread = 0
+	gun.recoil_multiplier = 0
+
+	gun.chambered.misfire_chance = 0
+	gun.process_fire(victim, shooter, FALSE)
+	sleep(5)
+	TEST_ASSERT(victim.getBruteLoss() <= 0, "Shot from the tile centre passed the corner, the test setup does not block it")
+
+	// pixel_shift() czyta client.last_turn, więc wychylenie jak po 16 wciśnięciach C+prawo ustawiamy wprost
+	shooter.pixel_x += 16
+	shooter.is_shifted = TRUE
+	TEST_ASSERT(shooter.get_peek_offset(), "Pixel shift east did not register as a peek")
+	gun.semicd = FALSE
+	shooter.aq_recoil = 0
+	gun.chambered.misfire_chance = 0
+	gun.process_fire(victim, shooter, FALSE)
+	TEST_ASSERT(aq_wait_for_damage(victim), "Shot while peeking east did not get past the corner")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
