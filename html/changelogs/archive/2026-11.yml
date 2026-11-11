@@ -768,3 +768,5 @@
   - tweak: Kategorie w konsoli zaopatrzenia są po polsku.
   - bugfix: Krew z krwawienia zbiera się w kałużę pod ciałem zamiast od razu rozlewać
       się na pół korytarza, a jedno ciało daje kilka kafelków krwi, nie kilkadziesiąt.
+  - server: CI ustawia publiczny DNS (a w ostateczności lustro archive.ubuntu.com),
+      gdy runner nie rozwiązuje lustra Ubuntu, i ponawia nieudaną instalację pakietów.
