@@ -794,3 +794,21 @@
   - bugfix: Boarderzy KNPC nie podbiegają pod uzbrojony granat kolegi i nie rzucają
       drugiego granatu w to samo miejsce.
   - code_imp: Symulacja walk boarderów KNPC do testów lokalnych (-DKNPC_SIM).
+  Nikita:
+  - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
+      strzał z jednej ręki, tak jak pojedyncze kule.
+  - balance: Rozrzut broni jest losowany dokładnie, a nie w pełnych stopniach, i strzały
+      nie uciekają już lekko w jedną stronę.
+  - balance: 'Kara do celności za ruch zależy od tempa: chód najmniejsza, bieg średnia,
+      sprint największa, a po sprincie znika w ciągu sekundy. Nie dostajesz jej, gdy
+      ktoś cię ciągnie albo wiezie taśmociąg.'
+  - rscadd: 'Celownik zmienia kształt zależnie od broni: T-krzyż dla snajperek, łuki
+      dla śrutu, siatka dla granatników, pierścień dla łuków, chmura dla różdżek,
+      pomarańczowy krzyż dla zabawek.'
+  - imageadd: Nowe kształty kursora celownika.
+  - rscadd: 'Wychylenie się pod C pozwala strzelać zza rogu: kula leci z miejsca,
+      w które się wychylasz.'
+  - tweak: Wychylanie się pod C jest 4 razy szybsze.
+  - bugfix: Celownik rozsuwa się też od pojedynczych strzałów i biegu, nie tylko od
+      śrutu.
+  - bugfix: Karabin Alexis-BOR w rękach wygląda poprawnie we wszystkich kierunkach.
