@@ -52,6 +52,8 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 /datum/ai_sandbox
 	/// Torpedo tactics comparison (ai_torpedo_tactics.dm): torpedoes fired, torpedoes that reached a ship, dodges started
 	var/list/torpedo_stats = list("fired" = 0, "hit" = 0)
+	/// Co pełną klatkę: list(sekunda, world.cpu, liczba okrętów AI w systemie)
+	var/list/cpu_samples = list()
 	/// Strzały okrętów AI wg rodzaju broni: list(rodzaj = list("fired", "hit", "dist" = suma odległości, "blind" = do celu,
 	/// którego strzelający sam nie trzymał na sensorach)). Okręt główny gracza się nie liczy.
 	/// Strzały niekierowane wg strzelca: myśliwiec, okręt bez pasującej amunicji kierowanej, okręt z nią
@@ -93,7 +95,16 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.ai_triangulation_enabled = FALSE
 		GLOB.ai_ambush_enabled = FALSE
 		GLOB.ai_formation_enabled = FALSE
-		event("Tryb starej gry: sygnatury, sensory AI, skala overmapy i morale AI wyłączone")
+		GLOB.ai_sensor_cones_enabled = FALSE
+		GLOB.ai_continuous_thrust_enabled = FALSE
+		GLOB.ai_forward_avoidance_enabled = FALSE
+		GLOB.ai_engine_discipline_enabled = FALSE
+		GLOB.ai_detour_enabled = FALSE
+		GLOB.ai_finite_supply_enabled = FALSE
+		GLOB.ai_scouting_enabled = FALSE
+		GLOB.ai_guns_last_resort_enabled = FALSE
+		GLOB.ai_long_range_guided_enabled = FALSE
+		event("Tryb starej gry: wszystkie zmiany AI z aquila/ wyłączone")
 	if(text2num(world.params["ai_sandbox_no_suites"]))
 		GLOB.ai_sensor_suites_enabled = FALSE
 		event("Zestawy sensorów AI wyłączone")
@@ -153,6 +164,10 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_sensors"]))
 		GLOB.sensor_signature_enabled = FALSE
 		event("Sygnatury okrętów wyłączone")
+	// Profil tylko samej bitwy, bez ładowania świata
+	if(text2num(world.params["ai_sandbox_profile"]))
+		world.Profile(PROFILE_RESTART)
+		event("Profiler procedur włączony")
 	main = SSstar_system.find_main_overmap()
 	system = main?.current_system
 	if(!system?.occupying_z || !main.z)
@@ -360,12 +375,21 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		))
 	record_pulses(present)
 	frames += list(list("t" = round((world.time - start_time) / 10, 0.1), "full" = full, "ships" = ships))
+	if(full)
+		var/ai_okretow = 0
+		for(var/obj/structure/overmap/OM as anything in system?.system_contents)
+			if(istype(OM) && OM.ai_controlled)
+				ai_okretow++
+		cpu_samples += list(list(round((world.time - start_time) / 10, 0.1), round(world.cpu, 0.1), ai_okretow))
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "gun_shooters" = gun_shooters, "guided_dist" = guided_dist, "pulses" = pulses,
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "gun_shooters" = gun_shooters, "guided_dist" = guided_dist, "cpu" = cpu_samples, "pulses" = pulses,
 		"cones" = list("tel_half" = TELESCOPE_HALF_ANGLE, "ir_blind_half" = INFRARED_BLIND_HALF_ANGLE, "enabled" = GLOB.ai_sensor_cones_enabled))
 	rustg_file_write(json_encode(out), output_file)
+	// Profil procedur z całej bitwy (ai_sandbox_profile=1): czas każdej procki, do porównania z trybem legacy
+	if(text2num(world.params["ai_sandbox_profile"]))
+		rustg_file_write(world.Profile(PROFILE_REFRESH, format = "json"), replacetext(output_file, ".json", "_profil.json"))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
 
 /proc/end_ai_sandbox()
