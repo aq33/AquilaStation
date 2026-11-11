@@ -155,7 +155,7 @@
 	radial_icon = 'icons/mob/actions/actions_spells.dmi'
 	radial_icon_state = "projectile"
 	requires_pointing = TRUE
-	speech_commands = list("użyj zdolności", "uzyj zdolnosci", "strzelaj", "shoot", "blast", "cast")
+	speech_commands = list("użyj zdolności", "uzyj zdolnosci", "shoot", "blast", "cast") // AQUILA: bez „strzelaj”, które pada w zwykłych rozmowach w walce
 	command_feedback = "warczy"
 	pointed_reaction = "i groźnie warczy"
 	/// Blackboard key where a reference to some kind of mob ability is stored
