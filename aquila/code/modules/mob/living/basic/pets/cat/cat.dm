@@ -57,6 +57,8 @@
 
 	///item we are currently holding
 	var/obj/item/held_food
+	/// AQUILA: when we picked up held_food (the AI eats prey it could not deliver to a kitten)
+	var/held_food_since = 0
 	///mutable appearance for held item
 	var/mutable_appearance/held_item_overlay
 	///callback for after a kitten is born
@@ -68,6 +70,10 @@
 	AddElement(/datum/element/wears_collar, collar_icon_state = collar_icon_state, collar_resting_icon_state = TRUE)
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/pet_bonus, "mruczy!", /datum/mood_event/pet_animal, 'aquila/sound/misc/purr.ogg')
+	// AQUILA: cats are tamed by feeding them their prey from the hand, so their pet commands can be reached without the lasso
+	// (Bee and tg have nothing that befriends a cat). The prey the cat attacks itself is still picked up, see on_pre_eat().
+	AddComponent(/datum/component/tameable, food_types = huntable_items, tame_chance = 30, bonus_tame_chance = 15, unique = FALSE)
+	RegisterSignal(src, COMSIG_MOB_PRE_EAT, PROC_REF(on_pre_eat))
 	add_verb(/mob/living/proc/lay_down)
 	ai_controller.set_blackboard_key(BB_HUNTABLE_PREY, typecacheof(huntable_items))
 	if(can_breed)
@@ -86,6 +92,13 @@
 	if(user.combat_mode && stat != DEAD)
 		manual_emote("syczy!")
 
+/// AQUILA: prey the cat attacks itself goes into its mouth (pre_attack) instead of being eaten, unless the mouth is full
+/mob/living/basic/pet/cat/proc/on_pre_eat(mob/living/source, atom/food, mob/living/feeder, list/effect_mult)
+	SIGNAL_HANDLER
+	if(isnull(feeder) && can_hold_item && !held_food)
+		return COMSIG_MOB_CANCEL_EAT
+	return NONE
+
 /mob/living/basic/pet/cat/proc/pre_attack(mob/living/source, atom/movable/target)
 	SIGNAL_HANDLER
 	if(!is_type_in_list(target, huntable_items) || held_food)
@@ -102,6 +115,7 @@
 /mob/living/basic/pet/cat/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(is_type_in_list(arrived, huntable_items))
 		held_food = arrived
+		held_food_since = world.time
 		update_appearance(UPDATE_OVERLAYS)
 	return ..()
 
@@ -189,10 +203,6 @@
 	ai_controller = /datum/ai_controller/basic_controller/cat/kitten
 	can_hold_item = FALSE
 	collar_icon_state = "kitten"
-
-/mob/living/basic/pet/cat/kitten/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/basic_eating, food_types = huntable_items)
 
 /mob/living/basic/pet/cat/_proc
 	name = "Proc"

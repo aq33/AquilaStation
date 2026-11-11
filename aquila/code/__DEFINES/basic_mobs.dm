@@ -59,6 +59,8 @@
 #define BB_CAT_FOOD_TARGET "cat_food_target"
 /// key that holds the food we must deliver
 #define BB_FOOD_TO_DELIVER "food_to_deliver"
+/// AQUILA: how long a cat carries its prey around without a kitten to feed before eating it itself
+#define CAT_KEEP_PREY_TIME (1 MINUTES)
 /// key that holds things we can hunt
 #define BB_HUNTABLE_PREY "huntable_prey"
 /// key that holds target kitten to feed

@@ -71,6 +71,73 @@
 	snack.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(isnull(cat.held_food), "The cat still holds the dead mouse it dropped")
 
+/// A male cat breeding with Runtime (only males start breeding) still adds the kitten to Runtime's children (her save)
+/datum/unit_test/aquila_runtime_counts_kittens
+
+/datum/unit_test/aquila_runtime_counts_kittens/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/basic/pet/cat/runtime/runtime = allocate(/mob/living/basic/pet/cat/runtime, get_step(left, EAST))
+	runtime.cats_deployed = TRUE // no family from a real save on the test floor
+	var/mob/living/basic/pet/cat/male = allocate(/mob/living/basic/pet/cat, left)
+	male.gender = MALE
+	male.combat_mode = FALSE
+	var/list/before = left.contents.Copy()
+	SEND_SIGNAL(male, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, runtime)
+	var/mob/living/basic/pet/cat/kitten/kitten = locate() in (left.contents - before)
+	TEST_ASSERT(kitten, "The cats made no kitten")
+	allocated += kitten
+	TEST_ASSERT_EQUAL(length(runtime.children), 1, "Runtime did not count the kitten the male started")
+	TEST_ASSERT_EQUAL(runtime.children[1], kitten, "Runtime counted something else")
+
+/// A cat with no kitten to feed eats its prey after a while and can hunt again; a cat fed from the hand gets tamed
+/datum/unit_test/aquila_cat_prey_and_taming
+
+/datum/unit_test/aquila_cat_prey_and_taming/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/basic/pet/cat/cat = allocate(/mob/living/basic/pet/cat, left)
+	var/datum/ai_controller/controller = cat.ai_controller
+	var/obj/item/food/deadmouse/snack = allocate(/obj/item/food/deadmouse, left)
+	// The cat clicking its prey (the AI interacts the same way) picks it up instead of eating it
+	cat.UnarmedAttack(snack, TRUE)
+	TEST_ASSERT_EQUAL(snack.loc, cat, "The cat did not pick up its prey")
+
+	cat.held_food_since = world.time - CAT_KEEP_PREY_TIME
+	var/datum/ai_behavior/eat_held_prey/eat = GET_AI_BEHAVIOR(/datum/ai_behavior/eat_held_prey)
+	for(var/i in 1 to 20)
+		controller.SelectBehaviors(1)
+		if(controller.current_behaviors[eat])
+			break
+	TEST_ASSERT(controller.current_behaviors[eat], "The cat never planned to eat the prey it could not deliver")
+	controller.ProcessBehavior(1, eat)
+	TEST_ASSERT(QDELETED(snack), "The cat did not eat its prey")
+	TEST_ASSERT(isnull(cat.held_food), "The cat still thinks it holds its prey")
+
+	// Feeding from the hand: dead mouse, fish, fish meat
+	var/mob/living/carbon/human/feeder = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	var/datum/component/tameable/tameable = cat.GetComponent(/datum/component/tameable)
+	TEST_ASSERT(tameable, "Cats cannot be tamed")
+	tameable.current_tame_chance = 100
+	var/obj/item/food/deadmouse/treat = allocate(/obj/item/food/deadmouse, left)
+	cat.attackby(treat, feeder)
+	TEST_ASSERT(QDELETED(treat), "The cat did not eat the dead mouse from the hand")
+	TEST_ASSERT(feeder in controller.blackboard[BB_FRIENDS_LIST], "The cat fed from the hand did not become a friend")
+
+/// Two tomcats fighting over territory wait between threats
+/datum/unit_test/aquila_cat_territorial_delay
+
+/datum/unit_test/aquila_cat_territorial_delay/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/basic/pet/cat/cat = allocate(/mob/living/basic/pet/cat, left)
+	var/mob/living/basic/pet/cat/rival = allocate(/mob/living/basic/pet/cat, get_step(left, EAST))
+	cat.ai_controller.set_blackboard_key(BB_TRESSPASSER_TARGET, rival)
+	rival.ai_controller.set_blackboard_key(BB_TRESSPASSER_TARGET, cat)
+	var/datum/ai_behavior/territorial_struggle/struggle = GET_AI_BEHAVIOR(/datum/ai_behavior/territorial_struggle)
+	var/old_chance = struggle.end_battle_chance
+	struggle.end_battle_chance = 0
+	var/result = struggle.perform(1, cat.ai_controller, BB_TRESSPASSER_TARGET, BB_HOSTILE_MEOWS)
+	struggle.end_battle_chance = old_chance
+	TEST_ASSERT(result & AI_BEHAVIOR_DELAY, "The territorial struggle runs again on the next tick")
+
 #undef RUNTIME_SAVE_PATH
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

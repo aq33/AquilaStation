@@ -92,7 +92,7 @@
 		living_pawn.say(pick(threaten_list), forced = "ai_controller")
 
 	if(!prob(end_battle_chance))
-		return
+		return AI_BEHAVIOR_DELAY // AQUILA: without the delay the threats were spoken every tick
 
 	//50 50 chance we lose
 	var/datum/ai_controller/loser_controller = prob(50) ? controller : target.ai_controller
@@ -120,6 +120,21 @@
 		return
 	return ..()
 
+
+/// AQUILA: mice are mobs, so look among the mobs in view instead of every atom in range(9), and look less often
+/datum/ai_behavior/find_hunt_target/hunt_mice
+	action_cooldown = 5 SECONDS
+
+/datum/ai_behavior/find_hunt_target/hunt_mice/perform(delta_time, datum/ai_controller/controller, hunting_target_key, types_to_hunt, hunt_range)
+	var/mob/living/living_mob = controller.pawn
+	for(var/mob/living/possible_dinner in hearers(hunt_range, living_mob))
+		if(!is_type_in_typecache(possible_dinner, types_to_hunt))
+			continue
+		if(!valid_dinner(living_mob, possible_dinner, hunt_range, controller, delta_time))
+			continue
+		controller.set_blackboard_key(hunting_target_key, possible_dinner)
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 /datum/ai_behavior/find_hunt_target/hunt_mice/valid_dinner(mob/living/source, mob/living/mouse, radius)
 	if(mouse.stat == DEAD || mouse.mind)
@@ -179,6 +194,10 @@
 /datum/ai_behavior/hunt_target/interact_with_target/find_cat_food
 	always_reset_target = TRUE
 
+/// AQUILA: cat food lies on the floor, so the range(9) scan stays, just less often
+/datum/ai_behavior/find_hunt_target/find_cat_food
+	action_cooldown = 5 SECONDS
+
 /datum/ai_behavior/find_hunt_target/find_cat_food/valid_dinner(mob/living/source, atom/dinner, radius)
 	//this food is already near a kitten, let the kitten eat it
 	var/mob/living/nearby_kitten = locate(/mob/living/basic/pet/cat/kitten) in oview(2, dinner)
@@ -190,6 +209,11 @@
 	if(!controller.blackboard_key_exists(BB_FOOD_TO_DELIVER))
 		controller.queue_behavior(/datum/ai_behavior/find_and_set/in_hands/given_list, BB_FOOD_TO_DELIVER, controller.blackboard[BB_HUNTABLE_PREY])
 		return
+	// AQUILA: with no kitten around the prey would stay in the mouth forever and the cat would never hunt again, so it eats it after a while
+	var/mob/living/basic/pet/cat/cat = controller.pawn
+	if(istype(cat) && cat.held_food && world.time >= cat.held_food_since + CAT_KEEP_PREY_TIME)
+		controller.queue_behavior(/datum/ai_behavior/eat_held_prey, BB_FOOD_TO_DELIVER)
+		return SUBTREE_RETURN_FINISH_PLANNING
 	if(!controller.blackboard_key_exists(BB_KITTEN_TO_FEED))
 		controller.queue_behavior(/datum/ai_behavior/find_and_set/valid_kitten, BB_KITTEN_TO_FEED, /mob/living/basic/pet/cat/kitten)
 		return
@@ -241,6 +265,20 @@
 	controller.clear_blackboard_key(target_key)
 	controller.clear_blackboard_key(food_key)
 
+/// AQUILA: the cat eats the prey it carried around without finding a kitten to feed
+/datum/ai_behavior/eat_held_prey
+	action_cooldown = 2 SECONDS
 
+/datum/ai_behavior/eat_held_prey/perform(delta_time, datum/ai_controller/controller, food_key)
+	var/mob/living/living_pawn = controller.pawn
+	var/obj/item/food = controller.blackboard[food_key]
+	if(QDELETED(food) || food.loc != living_pawn)
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	living_pawn.manual_emote("zjada [food].")
+	playsound(living_pawn, 'sound/items/eatfood.ogg', rand(10, 50), TRUE)
+	qdel(food)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
-
+/datum/ai_behavior/eat_held_prey/finish_action(datum/ai_controller/controller, succeeded, food_key)
+	. = ..()
+	controller.clear_blackboard_key(food_key)
