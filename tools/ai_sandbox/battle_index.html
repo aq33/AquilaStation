@@ -78,6 +78,14 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Działa jako ostateczność",
+    opis: "Okręt AI, który ma amunicję kierowaną pasującą do celu, strzela do niego dalej niż 12 pól tylko rakietami lub torpedami; " +
+          "gdy wyrzutnia się przeładowuje albo czeka na salwę floty, nie strzela wcale. Działa wracają z bliska, " +
+          "po wyczerpaniu amunicji kierowanej albo gdy cel do niej nie pasuje.",
+    wynik: "Okręty z pasującą amunicją kierowaną strzelają z dział z dystansu 200 → 0,5 razy na bitwę, torped i rakiet ok. 20% więcej. " +
+           "Ale 90% strzałów z dział oddają okręty, które nie mają czym strzelić kierowanie w ten cel: bez wyrzutni albo z rakietami, " +
+           "których w bazowej grze nie wolno użyć na cele większe niż MASS_SMALL. Okręty z torpedami stoją tylko w 3–4% klatek.",
+    warianty: [["X_doktryna_", "z doktryną"], ["X_bez_doktryny_", "bez doktryny"]] },
   { tytul: "Zwiad po poprawce warunków końca",
     opis: "Pierwsza wersja kończyła zwiad, gdy ktokolwiek z floty był 25 pól od celu: zwiady trwały ok. 3 s i nikt nie namierzał. " +
           "Teraz zwiad trwa, dopóki okręt rakietowy nie widzi celu sam, i kończy się, gdy cel zaczyna gonić zwiadowcę. " +

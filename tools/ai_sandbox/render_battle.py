@@ -39,6 +39,8 @@ def zbuduj(nagranie, tytul):
 # Serie bitew: prefiks pliku -> czytelny opis. Ta sama lista jest na stronie z bitwami (index.html na VDS),
 # zeby tytul odtwarzacza i opis serii mowily to samo.
 SERIE = [
+    ("X_doktryna_", "Działa jako ostateczność: włączone"),
+    ("X_bez_doktryny_", "Działa jako ostateczność: wyłączone"),
     ("W2_blisko_", "Zwiad po poprawce: zwykły start (58 pól)"),
     ("W2_daleko_", "Zwiad po poprawce: daleki start (120 pól)"),
     ("V_zwiad_", "Zwiad myśliwców i łącze danych: włączone"),

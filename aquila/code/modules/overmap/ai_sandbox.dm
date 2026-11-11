@@ -54,6 +54,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	var/list/torpedo_stats = list("fired" = 0, "hit" = 0)
 	/// Strzały okrętów AI wg rodzaju broni: list(rodzaj = list("fired", "hit", "dist" = suma odległości, "blind" = do celu,
 	/// którego strzelający sam nie trzymał na sensorach)). Okręt główny gracza się nie liczy.
+	/// Strzały niekierowane wg strzelca: myśliwiec, okręt bez pasującej amunicji kierowanej, okręt z nią
+	/// (ten ostatni dalej niż 12 pól powinien przy włączonej doktrynie zniknąć, ai_weapon_doctrine.dm)
+	var/list/gun_shooters = list("mysliwiec" = 0, "okret_bez_kierowanej" = 0, "okret_z_kierowana_blisko" = 0, "okret_z_kierowana_daleko" = 0)
 	var/list/munitions = list(
 		"torpeda" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
 		"rakieta" = list("fired" = 0, "hit" = 0, "dist" = 0, "blind" = 0),
@@ -355,7 +358,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
-	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "pulses" = pulses,
+	var/list/out = list("system" = "[system]", "map" = list(world.maxx, world.maxy), "events" = events, "frames" = frames, "torpedoes" = torpedo_stats, "munitions" = munitions, "gun_shooters" = gun_shooters, "pulses" = pulses,
 		"cones" = list("tel_half" = TELESCOPE_HALF_ANGLE, "ir_blind_half" = INFRARED_BLIND_HALF_ANGLE, "enabled" = GLOB.ai_sensor_cones_enabled))
 	rustg_file_write(json_encode(out), output_file)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_ai_sandbox)), 1 SECONDS)
@@ -398,6 +401,13 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		licznik["dist"] += overmap_dist(src, target)
 	if(istype(target, /obj/structure/overmap) && !get_contact_suite(target))
 		licznik["blind"]++
+	if(ai_sandbox_munition_kind(.) == "niekierowane" && istype(target, /obj/structure/overmap))
+		var/klucz = "okret_bez_kierowanej"
+		if(mass <= MASS_TINY)
+			klucz = "mysliwiec"
+		else if(has_ai_guided_option(target))
+			klucz = overmap_dist(src, target) > 12 ? "okret_z_kierowana_daleko" : "okret_z_kierowana_blisko"
+		GLOB.ai_sandbox.gun_shooters[klucz]++
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	if(GLOB.ai_sandbox && istype(P))
