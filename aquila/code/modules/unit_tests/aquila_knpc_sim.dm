@@ -40,6 +40,12 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	. = ..()
 	GLOB.knpc_sim?.on_shot(user)
 
+// Ogłuszenie przez granat sprawdzamy wprost: stan każdego boardera Syndykatu tuż przed i tuż po wybuchu hukowego
+/obj/item/grenade/flashbang/prime(mob/living/lanced_by)
+	var/list/before = GLOB.knpc_sim?.syndicate_stun_levels()
+	. = ..()
+	GLOB.knpc_sim?.check_grenade_stuns(before)
+
 /// Dane jednego uczestnika symulacji
 /datum/knpc_sim_track
 	var/id
@@ -128,7 +134,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/list/events
 	/// Wszystkie zakończone scenariusze
 	var/list/all_scenarios = list()
-	/// Scenariusz granatu: czy swój został ogłuszony przez granat (do 1,5 s po wybuchu)
+	/// Czy któryś boarder Syndykatu dostał ogłuszenie od wybuchu hukowego (porównanie przed i po prime())
 	var/ally_stunned = FALSE
 	/// Kto z boarderów leży teraz (mob => TRUE): wpis w logu tylko przy przewróceniu, każdy osobno
 	var/list/allies_down = list()
@@ -649,6 +655,26 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/datum/knpc_sim_track/ally_track = tracks[ally]
 	return track.grenades + ally_track.grenades > 0
 
+/// Suma paraliżu, powalenia i ogłuszenia (w decysekundach) każdego żywego boardera Syndykatu
+/datum/unit_test/aquila_knpc_sim/proc/syndicate_stun_levels()
+	. = list()
+	for(var/mob/living/carbon/human/H as anything in tracks)
+		var/datum/knpc_sim_track/track = tracks[H]
+		if(track.team == "syndykat" && !QDELETED(H) && H.stat != DEAD)
+			.[H] = H.AmountParalyzed() + H.AmountKnockdown() + H.AmountStun()
+
+/// Po wybuchu hukowego: komu z Syndykatu przybyło ogłuszenia (także temu, kto już leżał)
+/datum/unit_test/aquila_knpc_sim/proc/check_grenade_stuns(list/before)
+	if(!before)
+		return
+	for(var/mob/living/carbon/human/H as anything in before)
+		if(QDELETED(H))
+			continue
+		var/now = H.AmountParalyzed() + H.AmountKnockdown() + H.AmountStun()
+		if(now > before[H] + 1)
+			ally_stunned = TRUE
+			sim_log("OGŁUSZONY WŁASNYM GRANATEM: [label_of(H)] (+[now - before[H]] ds, ochrona oczu [H.get_eye_protection()], uszu [H.get_ear_protection()])", "ff")
+
 /datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
 	if(QDELETED(ally))
 		return
@@ -658,15 +684,13 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	if(allies_down[ally])
 		return
 	allies_down[ally] = TRUE
-	// Winą granatu jest tylko przewrócenie tuż po wybuchu (zapalnik KNPC 3 s, okrzyk pada przy rzucie);
-	// w symulacji boarder potrafił się też pośliznąć na kałuży obok postrzelonych
+	// Tylko wpis w logu: winę granatu rozstrzyga check_grenade_stuns() w chwili wybuchu.
+	// W symulacji boarder potrafił się też pośliznąć na kałuży obok postrzelonych.
 	var/since_throw = elapsed() - last_grenade_at
-	if(last_grenade_at && since_throw >= 2.5 && since_throw <= 4.5)
-		ally_stunned = TRUE
 	var/list/nades = list()
 	for(var/obj/item/grenade/nade in range(7, ally))
 		nades += "[nade.name] [get_dist(ally, nade)] pól[nade.active ? " uzbrojony" : ""]"
-	sim_log("SWÓJ NA ZIEMI ([ally_stunned ? "po granacie" : "nie od granatu, [last_grenade_at ? "[since_throw] s po rzucie" : "przed rzutem"]"]): [label_of(ally)] paraliż [ally.AmountParalyzed()], powalenie [ally.AmountKnockdown()], ogłuszenie [ally.AmountStun()], ochrona oczu [ally.get_eye_protection()], uszu [ally.get_ear_protection()], granaty w pobliżu: [length(nades) ? nades.Join(", ") : "brak"]", "stall")
+	sim_log("SWÓJ NA ZIEMI ([last_grenade_at ? "[since_throw] s po okrzyku przy rzucie" : "przed rzutem"]): [label_of(ally)] paraliż [ally.AmountParalyzed()], powalenie [ally.AmountKnockdown()], ogłuszenie [ally.AmountStun()], ochrona oczu [ally.get_eye_protection()], uszu [ally.get_ear_protection()], granaty w pobliżu: [length(nades) ? nades.Join(", ") : "brak"]", "stall")
 
 /// Syndykat kontra ERT Nanotrasenu, opcjonalnie z osłonami na środku
 /datum/unit_test/aquila_knpc_sim/proc/scenario_fight(per_side, run, name, cover = FALSE)
