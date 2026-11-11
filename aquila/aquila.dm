@@ -1049,6 +1049,7 @@
 // Rework strzelania: silnik pocisku tg, autofire, odrzut, stan broni
 #include "code\modules\gunplay\projectile_engine.dm"
 #include "code\modules\gunplay\firemodes.dm"
+#include "code\modules\gunplay\aiming_labels.dm"
 #include "code\modules\gunplay\autofire.dm"
 #include "code\modules\gunplay\recoil.dm"
 #include "code\modules\gunplay\cursor.dm"
@@ -1057,6 +1058,7 @@
 #include "code\modules\gunplay\condition.dm"
 #include "code\modules\gunplay\feel.dm"
 #include "code\modules\gunplay\cover.dm"
+#include "code\modules\mob\living\carbon\human\give_click.dm"
 #include "code\modules\gunplay\attachments.dm"
 #include "code\modules\gunplay\iff_smart.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
@@ -1136,6 +1138,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
 #include "code\modules\test_chamber\kits\pr_605_strzelanie.dm"
 #include "code\modules\test_chamber\kits\pr_607_tg_sprite.dm"
