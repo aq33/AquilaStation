@@ -128,9 +128,10 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/list/events
 	/// Wszystkie zakończone scenariusze
 	var/list/all_scenarios = list()
-	/// Scenariusz granatu: czy swój został ogłuszony przez granat (do 1,5 s po wybuchu) i czy w ogóle leżał
+	/// Scenariusz granatu: czy swój został ogłuszony przez granat (do 1,5 s po wybuchu)
 	var/ally_stunned = FALSE
-	var/ally_down_logged = FALSE
+	/// Kto z boarderów leży teraz (mob => TRUE): wpis w logu tylko przy przewróceniu, każdy osobno
+	var/list/allies_down = list()
 	/// Kiedy padł ostatni okrzyk „Granat!” (zapalnik KNPC to 3 s)
 	var/last_grenade_at = 0
 
@@ -141,6 +142,10 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	// Grupa scenariuszy z parametru serwera (-params "knpc_sim=walki1"), bez niego wszystkie. Na 516 serwer potrafi paść
 	// po kilku minutach (rust_g.dll_unloaded, niezależnie od symulacji), więc grupy da się puszczać osobno.
 	var/group = world.params["knpc_sim"]
+	var/static/list/groups = list("zakucie", "drzwi", "taktyka", "walki1", "walki3")
+	if(group && !(group in groups))
+		GLOB.knpc_sim = null
+		return Fail("Nieznana grupa scenariuszy knpc_sim=[group], dostępne: [groups.Join(", ")]")
 	var/suffix = group ? "_[group]" : ""
 	log_path = "[GLOB.log_directory]/knpc_sim[suffix].log"
 	csv_path = "[GLOB.log_directory]/knpc_sim[suffix].csv"
@@ -229,6 +234,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		qdel(tracks[M])
 	tracks = list()
 	sim_objects = list()
+	allies_down = list()
 	for(var/turf/T as anything in arena_turfs)
 		for(var/atom/movable/AM as anything in T.contents)
 			if(ismob(AM) || isobj(AM))
@@ -615,8 +621,12 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/mob/living/carbon/human/thrower = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 15, 8, "syndykat", "Rzucający")
 	var/mob/living/carbon/human/ally = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 14, 10, "syndykat", "Kolega")
 	ally_stunned = FALSE
-	ally_down_logged = FALSE
+	allies_down = list()
 	last_grenade_at = 0
+	// Granat odłamkowy (10% szansy) poleciałby przed hukowym, a scenariusz sprawdza ochronę przed błyskiem i hukiem
+	for(var/mob/living/carbon/human/H as anything in list(thrower, ally))
+		for(var/obj/item/grenade/frag/frag in H.GetAllContents())
+			qdel(frag)
 	var/time = run_until(30, CALLBACK(src, PROC_REF(grenade_thrown), thrower, ally))
 	for(var/i in 1 to 10) // zapalnik i błysk
 		sleep(KNPC_SIM_FRAME)
@@ -625,7 +635,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		check_ally_stun(thrower)
 	var/datum/knpc_sim_track/track = tracks[thrower]
 	var/datum/knpc_sim_track/ally_track = tracks[ally]
-	finish(time ? "RZUCIŁ [track.grenades + ally_track.grenades]" : "BEZ GRANATU", "swój ogłuszony granatem: [ally_stunned ? "TAK" : "nie"][ally_down_logged && !ally_stunned ? " (przewrócony z innego powodu, zob. log)" : ""]")
+	finish(time ? "RZUCIŁ [track.grenades + ally_track.grenades]" : "BEZ GRANATU", "swój ogłuszony granatem: [ally_stunned ? "TAK" : "nie"][length(allies_down) && !ally_stunned ? " (przewrócony z innego powodu, zob. log)" : ""]")
 	if(!time)
 		Fail("granat_w_grupe: żaden z dwóch boarderów z granatem hukowym nie rzucił go w grupę trzech wrogów w 30 s")
 	if(ally_stunned)
@@ -640,17 +650,23 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	return track.grenades + ally_track.grenades > 0
 
 /datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
-	if(QDELETED(ally) || ally_down_logged || !(ally.IsParalyzed() || ally.IsKnockdown() || ally.IsStun()))
+	if(QDELETED(ally))
 		return
-	ally_down_logged = TRUE
-	// Ogłuszenie liczymy jako winę granatu tylko tuż po wybuchu; w symulacji boarder potrafił się też pośliznąć na kałuży obok postrzelonych
+	if(!(ally.IsParalyzed() || ally.IsKnockdown() || ally.IsStun()))
+		allies_down -= ally // wstał: kolejne przewrócenie znowu sprawdzamy
+		return
+	if(allies_down[ally])
+		return
+	allies_down[ally] = TRUE
+	// Winą granatu jest tylko przewrócenie tuż po wybuchu (zapalnik KNPC 3 s, okrzyk pada przy rzucie);
+	// w symulacji boarder potrafił się też pośliznąć na kałuży obok postrzelonych
 	var/since_throw = elapsed() - last_grenade_at
-	if(last_grenade_at && since_throw <= 4.5)
+	if(last_grenade_at && since_throw >= 2.5 && since_throw <= 4.5)
 		ally_stunned = TRUE
 	var/list/nades = list()
 	for(var/obj/item/grenade/nade in range(7, ally))
 		nades += "[nade.name] [get_dist(ally, nade)] pól[nade.active ? " uzbrojony" : ""]"
-	sim_log("SWÓJ NA ZIEMI ([ally_stunned ? "po granacie" : "nie od granatu, [since_throw] s po rzucie"]): [label_of(ally)] paraliż [ally.AmountParalyzed()], powalenie [ally.AmountKnockdown()], ogłuszenie [ally.AmountStun()], ochrona oczu [ally.get_eye_protection()], uszu [ally.get_ear_protection()], granaty w pobliżu: [length(nades) ? nades.Join(", ") : "brak"]", "stall")
+	sim_log("SWÓJ NA ZIEMI ([ally_stunned ? "po granacie" : "nie od granatu, [last_grenade_at ? "[since_throw] s po rzucie" : "przed rzutem"]"]): [label_of(ally)] paraliż [ally.AmountParalyzed()], powalenie [ally.AmountKnockdown()], ogłuszenie [ally.AmountStun()], ochrona oczu [ally.get_eye_protection()], uszu [ally.get_ear_protection()], granaty w pobliżu: [length(nades) ? nades.Join(", ") : "brak"]", "stall")
 
 /// Syndykat kontra ERT Nanotrasenu, opcjonalnie z osłonami na środku
 /datum/unit_test/aquila_knpc_sim/proc/scenario_fight(per_side, run, name, cover = FALSE)
@@ -671,12 +687,12 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/result = time ? (syndi ? "WYGRYWA SYNDYKAT" : (ert ? "WYGRYWA ERT" : "OBIE STRONY LEŻĄ")) : "LIMIT CZASU"
 	finish(result, "na nogach: Syndykat [syndi], ERT [ert]")
 
-/// Ilu z drużyny jest przytomnych, nieobezwładnionych i niezakutych
+/// Ilu z drużyny jest przytomnych, nieobezwładnionych (paraliż, ogłuszenie) i niezakutych
 /datum/unit_test/aquila_knpc_sim/proc/team_standing(team)
 	. = 0
 	for(var/mob/living/carbon/human/H as anything in tracks)
 		var/datum/knpc_sim_track/track = tracks[H]
-		if(track.team == team && !QDELETED(H) && H.stat == CONSCIOUS && !H.handcuffed)
+		if(track.team == team && !QDELETED(H) && H.stat == CONSCIOUS && !H.incapacitated() && !H.handcuffed)
 			.++
 
 /datum/unit_test/aquila_knpc_sim/proc/fight_over()

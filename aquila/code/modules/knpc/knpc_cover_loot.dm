@@ -150,10 +150,17 @@
 		return FALSE
 	if(WEAKREF(target) in unreachable_items)
 		return FALSE
-	if(!find_cuffs())
+	var/obj/item/restraints/handcuffs/cuffs = find_cuffs()
+	if(!cuffs)
 		return FALSE
 	var/mob/living/carbon/human/H = parent
-	return length(H.get_empty_held_indexes()) || wielded_item()
+	return H.is_holding(cuffs) || length(H.get_empty_held_indexes()) || wielded_item()
+
+/// Na minutę pomijamy A (przedmiot albo jeńca), do którego nie da się dojść
+/datum/component/knpc/proc/mark_unreachable(atom/A)
+	if(!unreachable_items)
+		unreachable_items_reset_at = world.time + 1 MINUTES
+	LAZYOR(unreachable_items, WEAKREF(A))
 
 /// Obezwładniony wróg, którego zakujemy zamiast do niego strzelać i go kopać
 /datum/component/knpc/proc/wants_to_cuff(mob/living/target)
@@ -218,9 +225,7 @@
 	if(++cuff_failures < KNPC_CUFF_MAX_FAILURES)
 		return
 	cuff_failures = 0
-	if(!unreachable_items)
-		unreachable_items_reset_at = world.time + 1 MINUTES
-	LAZYOR(unreachable_items, WEAKREF(target))
+	mark_unreachable(target)
 	prisoner_target = null
 
 /// Chowa przedmiot do plecaka albo kieszeni

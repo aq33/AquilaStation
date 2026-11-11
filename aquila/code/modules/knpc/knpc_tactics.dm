@@ -129,7 +129,12 @@
 			path = list()
 			dest = null
 			return
-		return pathfind_to(target)
+		. = pathfind_to(target)
+		if(. == KNPC_PATHFIND_FAIL && living_target?.incapacitated())
+			// Leżący za szybą albo zamkniętymi drzwiami: bez tego wants_to_cuff() dalej wstrzymywał ogień,
+			// a boarder ani nie strzelał, ani nie dochodził. Na minutę wraca zwykła walka.
+			mark_unreachable(living_target)
+		return
 	if(try_take_cover(target)) // aquila/code/modules/knpc/knpc_cover_loot.dm
 		return
 	var/dist = get_dist(H, target)
