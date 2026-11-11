@@ -337,6 +337,18 @@
 	TEST_ASSERT(!sabre.shuttle_launch(), "The Sabre took off with someone on its wing")
 	TEST_ASSERT(sabre.shuttle_docked_at, "The Sabre left the dock with someone on its wing")
 
+	// Wejście we wrota ze skrzydła prowadzi do środka, a nie wyrzuca do hangaru; przytrzymany klawisz nie dokłada drugiego paska
+	doors.Bumped(pilot)
+	doors.Bumped(pilot)
+	TEST_ASSERT(LAZYLEN(sabre.boarding_mobs) == 1, "Walking into the cockpit doors from the wing didn't start boarding exactly once")
+	timeout = world.time + 5 SECONDS
+	while(pilot.loc == wing && world.time < timeout)
+		sleep(1)
+	TEST_ASSERT(istype(pilot.loc, /turf/open/indestructible/dropship) && !istype(pilot.loc, /turf/open/indestructible/dropship/sabre_wing), "Walking into the cockpit doors from the wing didn't take the pilot inside (got [pilot.loc] [COORD(pilot.loc)])")
+	TEST_ASSERT(!LAZYLEN(sabre.boarding_mobs), "The pilot is still marked as boarding after getting in")
+	TEST_ASSERT(sabre.shuttle_leave(pilot), "The pilot couldn't leave the Sabre after walking in")
+	pilot.forceMove(wing)
+
 	doors.attack_hand(pilot)
 	TEST_ASSERT(istype(pilot.loc, /turf/open/indestructible/dropship) && !istype(pilot.loc, /turf/open/indestructible/dropship/sabre_wing), "Clicking the cockpit doors from the wing didn't take the pilot inside")
 	TEST_ASSERT_EQUAL(get_area(pilot), get_area(doors), "The pilot isn't inside the Sabre after boarding from the wing")

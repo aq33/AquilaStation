@@ -83,12 +83,15 @@
 /obj/structure/overmap/small_craft/transport/sabre/shuttle
 	interior_mode = NO_INTERIOR
 	possible_interior_maps = list()
+	/// Kto właśnie wchodzi przez właz albo wrota (przytrzymany klawisz ruchu wchodzi we wrota co krok: jeden pasek naraz)
+	var/list/boarding_mobs
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/mining
 	icon = 'nsv13/icons/overmap/nanotrasen/carrier_mining.dmi'
 	req_one_access = list(ACCESS_CARGO, ACCESS_MINING, ACCESS_TRANSPORT_PILOT)
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/Destroy()
+	boarding_mobs = null
 	for(var/area/shuttle/sabre/A in linked_areas)
 		if(A.sabre == src)
 			A.sabre = null
@@ -142,8 +145,13 @@
 	if(!allowed(user))
 		to_chat(user, span_warning("Odmowa dostępu."))
 		return FALSE
+	if(LAZYACCESS(boarding_mobs, user))
+		return FALSE
 	to_chat(user, span_notice("Otwierasz właz [src] i wchodzisz do środka..."))
-	if(!do_after(user, 2 SECONDS, target = user))
+	LAZYSET(boarding_mobs, user, TRUE)
+	var/success = do_after(user, 2 SECONDS, target = user)
+	LAZYREMOVE(boarding_mobs, user)
+	if(!success)
 		return FALSE
 	enter(user)
 	return TRUE
@@ -194,6 +202,11 @@
 /turf/closed/indestructible/dropship/entry/sabre/Bumped(atom/movable/AM)
 	var/area/shuttle/sabre/A = loc
 	if(!istype(A) || !A.sabre || !ismob(AM))
+		return
+	// Ze skrzydła wrota prowadzą do środka (jak kliknięcie), a nie wyrzucają na zewnątrz
+	if(istype(get_turf(AM), /turf/open/indestructible/dropship/sabre_wing))
+		if(isliving(AM))
+			INVOKE_ASYNC(A.sabre, TYPE_PROC_REF(/obj/structure/overmap/small_craft/transport/sabre/shuttle, sabre_board), AM)
 		return
 	if(A.sabre.shuttle_docked_at)
 		if(!A.sabre.shuttle_leave(AM))
