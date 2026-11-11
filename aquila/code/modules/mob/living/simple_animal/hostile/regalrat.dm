@@ -189,37 +189,16 @@ GLOBAL_LIST_EMPTY(hostile_rats)
 	qdel(src)
 	M.evolve_into_regal_rat()
 
-// Od portu basic mobów (decyzja D8) mysz nie ma już haków simple_animal: ser sam pilnuje, czy mysz weszła na jego pole,
-// albo czy on wylądował przy myszy, a myszy SI i tak przychodzą do sera (polowanie na ser z Bee)
-/obj/item/food/royalcheese/Initialize(mapload)
-	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_royal_cheese_crossed),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_royal_cheese_moved))
+// Od portu basic mobów (decyzja D8) ser obsługuje sama mysz, jak w tg: SI poluje na niego jak na zwykły ser i zjada go
+// kliknięciem (UnarmedAttack), mysz bez gracza wchodząca na ser zjada go w Move(), a ser rzucony lub położony na mysz
+// (także gracza) koronuje ją w on_entered()
 
-/// Mysz weszła na pole sera
-/obj/item/food/royalcheese/proc/on_royal_cheese_crossed(datum/source, atom/movable/arrived)
-	SIGNAL_HANDLER
-	try_crown(arrived)
-
-/// Ser położono albo rzucono na mysz (każdą, także gracza) albo obok myszy bez gracza
-/obj/item/food/royalcheese/proc/on_royal_cheese_moved(datum/source)
-	SIGNAL_HANDLER
-	if(!isturf(loc))
+/// Mysz zjada królewski ser i zostaje szczurzym królem
+/mob/living/basic/mouse/proc/eat_royal_cheese(obj/item/food/royalcheese/royal_cheese)
+	if(QDELETED(royal_cheese) || QDELETED(src) || stat != CONSCIOUS)
 		return
-	for(var/mob/living/basic/mouse/nearby in range(1, src))
-		if(try_crown(nearby, allow_player = (get_turf(nearby) == loc)))
-			return
-
-/// Przytomna mysz przy serze zostaje królem; mysz gracza tylko z serem pod łapami (zwykle je go Ctrl+klikiem)
-/obj/item/food/royalcheese/proc/try_crown(mob/living/basic/mouse/new_king, allow_player = FALSE)
-	if(QDELETED(src) || !istype(new_king) || new_king.stat != CONSCIOUS || (new_king.key && !allow_player))
-		return FALSE
-	qdel(src)
-	INVOKE_ASYNC(new_king, TYPE_PROC_REF(/mob/living/basic/mouse, evolve_into_regal_rat))
-	return TRUE
+	qdel(royal_cheese)
+	evolve_into_regal_rat()
 
 /mob/living/basic/mouse/proc/evolve_into_regal_rat()
 	if(QDELETED(src))

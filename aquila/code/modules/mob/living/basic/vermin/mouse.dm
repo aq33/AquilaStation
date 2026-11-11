@@ -48,6 +48,8 @@
 	var/cheesed = FALSE
 	/// AQ szczury: when the cheese wears off
 	var/cheese_time = 0
+	/// AQ szczury: does the AI bite cables (a mouse once possessed by a ghost never does, as before)
+	var/chews_cables = TRUE
 
 /mob/living/basic/mouse/Initialize(mapload)
 	. = ..()
@@ -112,6 +114,9 @@
 	SIGNAL_HANDLER
 	if(ishuman(entered) && stat == CONSCIOUS)
 		to_chat(entered, span_notice("[icon2html(src, entered)] Pisk!"))
+	// AQ szczury: the royal cheese thrown or put on any mouse crowns it (our old simple animal mouse)
+	if(istype(entered, /obj/item/food/royalcheese))
+		INVOKE_ASYNC(src, PROC_REF(eat_royal_cheese), entered)
 
 /// The AI bites cables and eats cheese by clicking them; player mice eat through CtrlClick (AQ szczury)
 /mob/living/basic/mouse/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
@@ -119,6 +124,9 @@
 		return ..()
 	if(istype(attack_target, /obj/item/food/cheese))
 		eat_cheese(attack_target)
+		return TRUE
+	if(istype(attack_target, /obj/item/food/royalcheese))
+		eat_royal_cheese(attack_target)
 		return TRUE
 	if(istype(attack_target, /obj/structure/cable))
 		try_bite_cable(attack_target)
@@ -259,7 +267,7 @@
 // Mouse subtree to hunt down delicious cheese.
 /datum/ai_planning_subtree/find_and_hunt_target/look_for_cheese
 	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/mouse
-	hunt_targets = list(/obj/item/food/cheese)
+	hunt_targets = list(/obj/item/food/cheese, /obj/item/food/royalcheese) // AQUILA: the royal cheese crowns the mouse (regalrat.dm)
 	hunt_range = 1
 
 // Mouse subtree to hunt down ... delicious cabling?
@@ -269,7 +277,14 @@
 	finding_behavior = /datum/ai_behavior/find_hunt_target/mouse_cable
 	hunt_targets = list(/obj/structure/cable)
 	hunt_range = 0 // Only look below us
-	hunt_chance = 1
+	// AQUILA: about our old rate (1% per Life and then 15%, every 2 s); Bee's 1% per second bit cables ~13 times as often
+	hunt_chance = 0.075
+
+/datum/ai_planning_subtree/find_and_hunt_target/look_for_cables/SelectBehaviors(datum/ai_controller/controller, delta_time)
+	var/mob/living/basic/mouse/mouse = controller.pawn
+	if(istype(mouse) && !mouse.chews_cables)
+		return
+	return ..()
 
 // When looking for a cable, we can only bite things we can reach.
 /datum/ai_behavior/find_hunt_target/mouse_cable
