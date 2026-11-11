@@ -270,6 +270,93 @@
 		qdel(diamond)
 	TEST_ASSERT_EQUAL(diamonds, 2, "The dead basilisk did not drop its two diamonds")
 
+/// The goldgrub runs from a human and eats ore it sees through the AI, and spits the ore out when it dies
+/datum/unit_test/aquila_mining_goldgrub
+
+/datum/unit_test/aquila_mining_goldgrub/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/mining/goldgrub/grub = allocate(/mob/living/basic/mining/goldgrub, corner)
+	grub.will_burrow = FALSE
+	for(var/obj/item/stack/ore/swallowed in grub)
+		qdel(swallowed)
+	var/obj/item/stack/ore/gold/gold = allocate(/obj/item/stack/ore/gold, get_step(corner, EAST))
+	var/datum/ai_controller/controller = grub.ai_controller
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_and_set/in_list))
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], gold, "The goldgrub did not spot the gold ore next to it")
+	controller.SelectBehaviors(1)
+	aquila_mining_melee(grub)
+	TEST_ASSERT(QDELETED(gold) || gold.loc == grub, "The gold ore is still lying next to the goldgrub")
+	var/obj/item/stack/ore/gold/swallowed_gold = locate() in grub
+	TEST_ASSERT(swallowed_gold, "The goldgrub did not swallow the gold ore")
+	controller.CancelActions()
+
+	// Someone outside the mining faction makes it run
+	var/mob/living/carbon/human/miner = allocate(/mob/living/carbon/human, aquila_mining_test_turf(corner, run_loc_floor_top_right, 2))
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets))
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_FLEE_TARGET], miner, "The goldgrub did not notice the miner")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/run_away_from_target)], "The goldgrub did not plan to run from the miner")
+	controller.CancelActions()
+
+	var/turf/death_turf = get_turf(grub)
+	grub.death()
+	TEST_ASSERT_EQUAL(swallowed_gold.loc, death_turf, "The dead goldgrub did not spit out the ore")
+
+/// The gutlunch eats gibs through the AI, which fills its udder, and gets milked with a beaker; a full guthen keeps its
+/// udder overlay; a full guthen breeds with a gubbuck nearby
+/datum/unit_test/aquila_mining_gutlunch
+
+/datum/unit_test/aquila_mining_gutlunch/Run()
+	var/turf/floor = run_loc_floor_bottom_left
+	var/mob/living/basic/mining/gutlunch/guthen/guthen = allocate(/mob/living/basic/mining/gutlunch/guthen, floor)
+	var/datum/component/udder/udder_component = guthen.GetComponent(/datum/component/udder)
+	TEST_ASSERT(udder_component, "The gutlunch has no udder component")
+	STOP_PROCESSING(SSobj, udder_component.udder) // no breeding until the end of the test
+	TEST_ASSERT_EQUAL(udder_component.udder.reagents.total_volume, 0, "The gutlunch udder does not start empty")
+	var/datum/ai_controller/controller = guthen.ai_controller
+	for(var/i in 1 to 20)
+		var/obj/effect/decal/cleanable/blood/gibs/gibs = new(get_step(floor, EAST))
+		controller.SelectBehaviors(1)
+		controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_and_set/in_list))
+		TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], gibs, "The gutlunch did not spot the gibs")
+		controller.SelectBehaviors(1)
+		aquila_mining_melee(guthen)
+		TEST_ASSERT(QDELETED(gibs), "The gutlunch did not eat the gibs")
+		controller.CancelActions()
+		if(udder_component.udder.reagents.total_volume)
+			break
+	TEST_ASSERT(udder_component.udder.reagents.total_volume > 0, "Eating gibs did not fill the gutlunch udder")
+
+	var/mob/living/carbon/human/farmer = allocate(/mob/living/carbon/human, get_step(floor, NORTH))
+	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
+	farmer.put_in_active_hand(beaker)
+	beaker.melee_attack_chain(farmer, guthen)
+	TEST_ASSERT(beaker.reagents.total_volume > 0, "Milking the gutlunch gave nothing")
+	TEST_ASSERT_EQUAL(guthen.health, guthen.maxHealth, "Milking the gutlunch also hit it")
+
+	// A full udder shows and breeds with a gubbuck nearby
+	udder_component.udder.reagents.add_reagent(/datum/reagent/consumable/cream, udder_component.udder.reagents.maximum_volume)
+	guthen.udder_changed()
+	TEST_ASSERT(guthen.udder_full, "A full guthen does not show its full udder")
+	var/mob/living/basic/mining/gutlunch/gubbuck/gubbuck = allocate(/mob/living/basic/mining/gutlunch/gubbuck, get_step(floor, NORTHEAST))
+	udder_component.udder.process(1)
+	var/mob/living/basic/mining/gutlunch/grublunch/baby = locate() in floor
+	TEST_ASSERT(baby, "A full guthen with a gubbuck nearby made no grublunch")
+	TEST_ASSERT_EQUAL(udder_component.udder.reagents.total_volume, 0, "Breeding did not empty the udder")
+	TEST_ASSERT(!guthen.udder_full, "The guthen kept its full udder overlay after breeding")
+	baby.grow_up()
+	var/grown_up = 0
+	for(var/mob/living/basic/mining/gutlunch/grown in floor)
+		if(grown != guthen && !istype(grown, /mob/living/basic/mining/gutlunch/grublunch))
+			grown_up++
+	TEST_ASSERT_EQUAL(grown_up, 1, "The grublunch did not grow up into a gubbuck or a guthen")
+	for(var/mob/living/basic/mining/gutlunch/grown in floor)
+		if(grown != guthen)
+			qdel(grown)
+	qdel(gubbuck)
+
 /// The legion holding this body, if any
 /proc/aquila_mining_holder_of(mob/living/victim)
 	return istype(victim.loc, /mob/living/basic/mining/legion) ? victim.loc : null

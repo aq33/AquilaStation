@@ -65,13 +65,14 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
+	mob_types = list(/mob/living/basic/mining/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
 	name = "legowisko złotych pędraków"
 	desc = "Legowisko z gniazdem złotych pędraków. Irytujące, ale chyba lepsze od wszystkiego innego, co znajdziesz w gnieździe."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
+	mob_types = list(/mob/living/basic/mining/goldgrub) // AQ EDIT - złoty pędrak jest basic mobem
 
 /obj/structure/spawner/mining/goliath
 	name = "legowisko goliatów"

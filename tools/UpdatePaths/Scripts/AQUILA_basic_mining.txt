@@ -5,3 +5,5 @@
 /mob/living/simple_animal/hostile/asteroid/goliath : /mob/living/basic/mining/goliath/ancient{@OLD}
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher : /mob/living/basic/mining/watcher{@OLD}
 /mob/living/simple_animal/hostile/asteroid/basilisk : /mob/living/basic/mining/basilisk{@OLD}
+/mob/living/simple_animal/hostile/asteroid/gutlunch/@SUBTYPES : /mob/living/basic/mining/gutlunch/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/asteroid/goldgrub : /mob/living/basic/mining/goldgrub{@OLD}

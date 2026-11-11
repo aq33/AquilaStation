@@ -76,7 +76,7 @@
 	mob_types = list(/mob/living/basic/mining/goliath/ancient) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/lavaland/gutlunch
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/gutlunch)
+	mob_types = list(/mob/living/basic/mining/gutlunch) // AQ EDIT - żarłoczek jest basic mobem
 
 /obj/structure/spawner/lavaland/hivelord
 	mob_types = list(/mob/living/basic/mining/hivelord) // AQ EDIT - władca roju jest basic mobem

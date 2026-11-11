@@ -22,3 +22,17 @@
 		/mob/living/basic/mining/watcher/icewing = 1,
 		/mob/living/basic/mining/basilisk = 1,
 	)
+
+/datum/test_chamber_kit/pr_mob_mining_peaceful
+	name = "Pokojowe moby górnicze (basic moby)"
+	pr = "aq33/AquilaStation#XXX"
+	description = "Pokojowe moby górnicze jako basic moby z tg, z rudą i flakami. 		1) Złoty pędrak zjada leżącą obok rudę złota i srebra, ucieka przed tobą i po 10 s pościgu zakopuje się na dobre; pociski się od niego odbijają, zabity wypluwa połkniętą rudę. 		2) Żarłoczki (samiec i samica) zjadają flaki; potem żarłoczkę można wydoić zlewką (śmietanka, sól fizjologiczna). Żarłoczka z pełnym workiem i samcem obok rodzi młodego żarłoczka, który po chwili dorasta."
+	items = list(
+		/mob/living/basic/mining/goldgrub = 1,
+		/obj/item/stack/ore/gold = 1,
+		/obj/item/stack/ore/silver = 1,
+		/mob/living/basic/mining/gutlunch/gubbuck = 1,
+		/mob/living/basic/mining/gutlunch/guthen = 1,
+		/obj/effect/decal/cleanable/blood/gibs = 1,
+		/obj/item/reagent_containers/glass/beaker = 1,
+	)

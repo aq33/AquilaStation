@@ -2074,6 +2074,8 @@
 #include "code\modules\mob\living\basic\lavaland\watcher\watcher_gaze.dm"
 #include "code\modules\mob\living\basic\lavaland\watcher\watcher_projectiles.dm"
 #include "code\modules\mob\living\basic\lavaland\basilisk.dm"
+#include "code\modules\mob\living\basic\lavaland\goldgrub.dm"
+#include "code\modules\mob\living\basic\lavaland\gutlunch.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

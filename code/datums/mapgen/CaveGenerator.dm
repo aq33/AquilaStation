@@ -11,10 +11,11 @@
 	///Weighted list of extra features that can spawn in the area, such as geysers.
 	var/list/feature_spawn_list = list(/obj/structure/geyser/random = 1)
 	///Weighted list of mobs that can spawn in the area.
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
 	var/list/mob_spawn_list = list(/mob/living/basic/mining/goliath/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/basic/mining/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/basic/mining/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
-		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
+		SPAWN_MEGAFAUNA = 4, /mob/living/basic/mining/goldgrub = 10)
 	///Weighted list of flora that can spawn in the area.
 	var/list/flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
 	// Weighted list of Megafauna that can spawn in the caves

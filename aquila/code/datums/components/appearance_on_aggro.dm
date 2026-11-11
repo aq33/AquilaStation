@@ -16,9 +16,11 @@
 	/// visibility of our icon when deaggroed
 	var/alpha_on_deaggro
 
-/datum/component/appearance_on_aggro/Initialize(aggro_state, overlay_icon, overlay_state, alpha_on_aggro, alpha_on_deaggro)
+/datum/component/appearance_on_aggro/Initialize(aggro_state, overlay_icon, overlay_state, alpha_on_aggro, alpha_on_deaggro, target_key)
 	if (!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
+	if (target_key) // AQUILA: the goldgrub shows its alert sprite while fleeing (tg: the current target only)
+		src.target_key = target_key
 	src.aggro_state = aggro_state
 	src.alpha_on_aggro = alpha_on_aggro
 	src.alpha_on_deaggro = alpha_on_deaggro

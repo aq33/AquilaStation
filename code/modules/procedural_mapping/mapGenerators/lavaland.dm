@@ -10,6 +10,7 @@
 
 /datum/mapGeneratorModule/splatterLayer/lavalandMonsters
 	spawnableTurfs = list()
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
 	spawnableAtoms = list(/mob/living/basic/mining/goliath = 10,
 	/mob/living/basic/mining/legion = 10,
 	/mob/living/basic/mining/watcher = 10)
