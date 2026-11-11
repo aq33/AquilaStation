@@ -252,6 +252,74 @@
 	attacker.ClickOn(glutton, LEFT_CLICK)
 	TEST_ASSERT(glutton.health < glutton.maxHealth, "A strong hit did not hurt the glutton")
 
+/// Mimics: a crate mimic sleeps until someone tries to open it, then bites through its AI; a copy mimic takes the look of
+/// its object, befriends its creator and dies when the object is taken out; a gun copy shoots through its AI and goes for
+/// melee when the gun is empty; a vending machine copy speaks the lines from its blackboard
+/datum/unit_test/aquila_mimics
+
+/datum/unit_test/aquila_mimics/Run()
+	var/mob/living/basic/mimic/crate/crate = allocate(/mob/living/basic/mimic/crate, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	var/datum/ai_controller/controller = crate.ai_controller
+	TEST_ASSERT(HAS_TRAIT(crate, TRAIT_AI_PAUSED), "The crate mimic is not inert at the start")
+	victim.set_combat_mode(FALSE, silent = TRUE)
+	victim.next_click = 0
+	victim.next_move = 0
+	victim.ClickOn(crate, LEFT_CLICK)
+	TEST_ASSERT(!HAS_TRAIT(crate, TRAIT_AI_PAUSED), "Trying to open the crate mimic did not wake it up")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The awake crate did not look for targets")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The awake crate did not pick the human")
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	crate.next_move = 0
+	crate.next_click = 0
+	var/brute_before = victim.getBruteLoss()
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/basic_melee_attack), "The crate did not attack")
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The crate's bite did not hurt")
+	controller.CancelActions()
+	qdel(crate)
+
+	// A copy of an item: its look, its creator as a friend, death when the item is taken out
+	var/mob/living/carbon/human/creator = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, NORTH))
+	var/obj/item/kitchen/knife/knife = allocate(/obj/item/kitchen/knife, run_loc_floor_bottom_left)
+	var/mob/living/basic/mimic/copy/copy = allocate(/mob/living/basic/mimic/copy, run_loc_floor_bottom_left, knife, creator)
+	TEST_ASSERT_EQUAL(copy.name, knife.name, "The copy did not take the name of its item")
+	TEST_ASSERT_EQUAL(knife.loc, copy, "The copied item is not inside the copy")
+	TEST_ASSERT(creator in copy.ai_controller.blackboard[BB_FRIENDS_LIST], "The copy did not befriend its creator")
+	var/datum/targeting_strategy/strategy = GET_TARGETING_STRATEGY(copy.ai_controller.blackboard[BB_TARGETING_STRATEGY])
+	TEST_ASSERT(!strategy.can_attack(copy, creator), "The copy would attack its creator")
+	knife.forceMove(run_loc_floor_bottom_left)
+	TEST_ASSERT(QDELETED(copy) || copy.stat == DEAD, "The copy lived on after its item was taken out")
+
+	// A gun copy shoots through its AI
+	var/obj/item/gun/energy/laser/laser = allocate(/obj/item/gun/energy/laser, run_loc_floor_bottom_left)
+	var/mob/living/basic/mimic/copy/ranged/gun_mimic = allocate(/mob/living/basic/mimic/copy/ranged, run_loc_floor_bottom_left, laser)
+	victim.forceMove(locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	creator.forceMove(locate(run_loc_floor_bottom_left.x, run_loc_floor_bottom_left.y + 4, run_loc_floor_bottom_left.z))
+	var/datum/aquila_bullet_recorder/recorder = new
+	recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+	var/datum/ai_controller/gun_controller = gun_mimic.ai_controller
+	gun_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	TEST_ASSERT(aquila_rest_run_behavior(gun_controller, /datum/ai_behavior/basic_ranged_attack/avoid_friendly_fire), "The gun copy did not plan to shoot")
+	TEST_ASSERT(aquila_wait_for_hit(recorder), "The gun copy's shot did not hit")
+	gun_controller.CancelActions()
+	laser.cell.use(laser.cell.charge)
+	gun_mimic.fire_gun(victim)
+	TEST_ASSERT(gun_controller.blackboard[BB_GUNMIMIC_GUN_EMPTY], "The gun copy did not notice its gun is empty")
+	gun_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	gun_controller.SelectBehaviors(1)
+	TEST_ASSERT(!gun_controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/basic_ranged_attack/avoid_friendly_fire)], "The gun copy kept shooting an empty gun")
+	TEST_ASSERT(gun_controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)], "The gun copy with an empty gun did not go for melee")
+	gun_controller.CancelActions()
+	qdel(recorder)
+
+	// A vending machine brought to life speaks from its blackboard
+	var/obj/machinery/vending/cola/vendor = allocate(/obj/machinery/vending/cola, locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y + 2, run_loc_floor_bottom_left.z))
+	var/mob/living/basic/mimic/copy/vending_mimic = allocate(/mob/living/basic/mimic/copy, vendor.loc, vendor, null, TRUE)
+	TEST_ASSERT(QDELETED(vendor), "The vending machine stayed after it came to life")
+	vending_mimic.ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, list(BB_EMOTE_SAY = list("Agresywna strategia rozwojowa!"), BB_SPEAK_CHANCE = 100))
+	vending_mimic.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	TEST_ASSERT(aquila_rest_run_behavior(vending_mimic.ai_controller, /datum/ai_behavior/perform_speech), "The vending machine mimic did not speak its line with a target")
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS

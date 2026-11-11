@@ -2790,7 +2790,7 @@
 // AQ EDIT - pomidor zabójca jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mecha_pilot.dm"
-#include "code\modules\mob\living\simple_animal\hostile\mimic.dm"
+// AQ EDIT - mimiki są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\mimic.dm)
 #include "code\modules\mob\living\simple_animal\hostile\mushroom.dm"
 #include "code\modules\mob\living\simple_animal\hostile\nanotrasen.dm"
 // AQ EDIT - istoty z Netherworldu są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\netherworld.dm)

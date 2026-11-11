@@ -2063,6 +2063,7 @@
 #include "code\datums\elements\lube_walking.dm"
 #include "code\datums\elements\damage_threshold.dm"
 #include "code\modules\mob\living\basic\clown\clown.dm"
+#include "code\modules\mob\living\basic\ruin_defender\mimic.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

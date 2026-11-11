@@ -312,7 +312,7 @@
 	..()
 
 /atom/proc/animate_atom_living(var/mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
+	if((isitem(src) || isstructure(src)) && !is_type_in_typecache(src, GLOB.animatable_blacklist)) // AQ EDIT - basic moby (lista z mimika tg)
 		if(istype(src, /obj/structure/statue/petrified))
 			var/obj/structure/statue/petrified/P = src
 			if(P.petrified_mob)
@@ -335,15 +335,15 @@
 		else
 			var/obj/O = src
 			if(istype(O, /obj/item/gun))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(loc, src, owner)
+				new /mob/living/basic/mimic/copy/ranged(loc, src, owner) // AQ EDIT - basic moby
 			else
-				new /mob/living/simple_animal/hostile/mimic/copy(loc, src, owner)
+				new /mob/living/basic/mimic/copy(loc, src, owner) // AQ EDIT - basic moby
 
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
+	else if(istype(src, /mob/living/basic/mimic/copy)) // AQ EDIT - basic moby
 		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
+		var/mob/living/basic/mimic/copy/C = src // AQ EDIT - basic moby
 		if(owner)
-			C.ChangeOwner(owner)
+			C.change_owner(owner) // AQ EDIT - basic moby
 
 /obj/item/projectile/magic/spellblade
 	name = "energia ostrza"
