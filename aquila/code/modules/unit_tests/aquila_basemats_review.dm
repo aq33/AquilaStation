@@ -125,5 +125,23 @@
 	TEST_ASSERT(girder, "A stone material wall left no girder")
 	TEST_ASSERT(!ispath(turf_after, /turf/closed/wall), "A stone material wall was not dismantled")
 
+/// N8: przymiotnik materiału w liczbie mnogiej i w rodzaju żeńskim rzeczowników zakończonych spółgłoską
+/datum/unit_test/aquila_basemats_polish_adjective
+
+/datum/unit_test/aquila_basemats_polish_adjective/Run()
+	var/datum/material/gold = SSmaterials.GetMaterialRef(/datum/material/gold)
+	var/obj/item/clothing/glasses/glasses = allocate(/obj/item/clothing/glasses)
+	glasses.name = "okulary"
+	TEST_ASSERT_EQUAL(gold.get_prefixed_name(glasses), "złote okulary", "Plural glasses got the wrong adjective")
+	var/obj/item/paper/paper = allocate(/obj/item/paper)
+	paper.name = "drzwi"
+	TEST_ASSERT_EQUAL(gold.get_prefixed_name(paper), "złote drzwi", "Plural doors got the wrong adjective")
+	paper.name = "kość"
+	TEST_ASSERT_EQUAL(gold.get_prefixed_name(paper), "złota kość", "A feminine consonant noun got the wrong adjective")
+	paper.name = "czerwony kubek"
+	TEST_ASSERT_EQUAL(gold.get_prefixed_name(paper), "złoty czerwony kubek", "A masculine adjective-first name got the wrong adjective")
+	paper.name = "czarne okulary"
+	TEST_ASSERT_EQUAL(gold.get_prefixed_name(paper), "złote czarne okulary", "A plural adjective-first name got the wrong adjective")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -34,13 +34,28 @@
 /**
  * Rodzaj gramatyczny polskiej nazwy po końcówce pierwszego słowa. W polskim przymiotnik zgadza się z rzeczownikiem,
  * więc pierwsze słowo („skrzynka narzędziowa”, „eleganckie krzesło”, „długopis”) zwykle wystarcza:
- * -a żeński, -o/-e/-ę/-um nijaki, reszta męski. Typy z nietypową nazwą ustawiają material_name_gender.
+ * -a żeński, -o/-e/-ę/-um nijaki, reszta męski. Końcówki -y/-i nie wystarczą („złoty” to przymiotnik, „okulary” liczba
+ * mnoga), więc rzeczowniki tylko w liczbie mnogiej i żeńskie zakończone spółgłoską są na listach niżej.
+ * Typy z nietypową nazwą ustawiają material_name_gender.
  */
 /proc/guess_polish_name_gender(name)
+	// Rzeczowniki używane tylko (albo prawie zawsze) w liczbie mnogiej: „złote okulary”, „złote drzwi”
+	var/static/list/plural_nouns = list("okulary", "drzwi", "nożyczki", "nożyce", "rękawice", "rękawiczki", "buty", "spodnie",
+		"kajdanki", "słuchawki", "gogle", "szczypce", "obcęgi", "sanki", "skrzypce", "kości", "szelki", "majtki", "bokserki",
+		"kapcie", "sandały", "trampki", "klapki", "łyżwy", "narty", "wrotki", "korale", "koraliki", "cymbałki", "dzwonki",
+		"skarpety", "skarpetki", "rajstopy", "pończochy", "nogawice", "naramienniki", "nagolenniki", "karwasze", "kalesony")
+	// Rzeczowniki żeńskie zakończone spółgłoską: „złota kość”, „miedziana sieć”
+	var/static/list/feminine_consonant_nouns = list("kość", "sieć", "nić", "maść", "broń", "sól", "łódź", "mysz", "twarz", "rzecz",
+		"odzież", "pościel", "dłoń", "krew", "miedź", "kieszeń", "noc", "pieśń", "rękojeść", "płeć", "postać",
+		"przepaść", "jabłoń", "łączność", "paproć", "gałąź", "złość", "pierś", "brew", "uprząż", "kiść", "oś", "ość")
 	var/list/words = splittext(lowertext(name), " ")
 	var/first_word = length(words) ? words[1] : ""
 	if(!length(first_word))
 		return MALE
+	if(first_word in plural_nouns)
+		return PLURAL
+	if(first_word in feminine_consonant_nouns)
+		return FEMALE
 	var/last_letter = copytext_char(first_word, -1)
 	if(last_letter == "a")
 		return FEMALE
