@@ -2119,6 +2119,7 @@
 #include "code\modules\unit_tests\test_chamber.dm"
 #include "code\modules\unit_tests\test_room_integrity.dm"
 #include "code\modules\unit_tests\vending_spritesheet.dm"
+#include "code\modules\unit_tests\vending_window_color.dm"
 #include "code\modules\unit_tests\visual_changes.dm"
 #include "code\modules\unit_tests\voidwalker.dm"
 #include "code\modules\unit_tests\walk_animation_idle.dm"

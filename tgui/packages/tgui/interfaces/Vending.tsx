@@ -4,6 +4,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { dragStartHandler } from '../drag';
+import { t } from '../i18n';
 import { Window } from '../layouts';
 import { closeWindow } from '../layouts/Window';
 import { shade } from './common/PixelArt';
@@ -160,6 +161,11 @@ const KX = [108, 117, 126];
 const KY = [40, 49, 58];
 const FONT = 'Verdana, Geneva, "DejaVu Sans", sans-serif';
 
+// Stałe napisy wstawiane do złożonych tekstów (słownik EN zbiera literały spoza ${...})
+const TXT_LEFT = 'zostało';
+const TXT_PAY = 'płatność kartą ID';
+const TXT_ACCOUNT = 'KONTO';
+
 const productKey = (product: Product) => product.path || product.name;
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -201,6 +207,14 @@ export const Vending = (props) => {
   }
   // Just in case we still have undefined values in the list
   inventory = inventory.filter((item) => !!item);
+
+  // Ile zostało każdego towaru, także spoza bieżącej półki; brak wpisu = wyprzedany (automat na zamówienie usuwa wpis)
+  const stockOf: Record<string, number> = {};
+  for (const product of inventory) {
+    stockOf[productKey(product)] = custom
+      ? (product as CustomInput).amount
+      : ((product.path ? stock[product.path]?.amount : 0) ?? 0);
+  }
 
   // SI, cyborgi i automaty spoza stacji nie sprawdzają karty ani salda
   // DM wysyła 0/1, nie false/true; brak pola (stare dane) znaczy, że płaci
@@ -269,6 +283,7 @@ export const Vending = (props) => {
   /** Wszystko, co rysuje pętla canvasa; odświeżane przy każdym renderze */
   const model = {
     slots,
+    stockOf,
     machineName: machine_name,
     color: data.machine_color,
     searching: searchFocus || !!stockSearch,
@@ -386,6 +401,10 @@ export const Vending = (props) => {
       if (v.anim) {
         return;
       }
+      if (!slots[idx]) {
+        flash('PUSTO', 'pusta półka', 900);
+        return;
+      }
       if (v.sel === idx) {
         buy();
         return;
@@ -486,7 +505,7 @@ export const Vending = (props) => {
               view.current.hover = h ? h.act : null;
               e.currentTarget.style.cursor =
                 h?.act === 'drag' ? 'move' : h ? 'pointer' : 'default';
-              e.currentTarget.title = h ? h.tip : '';
+              e.currentTarget.title = h ? t(h.tip) : '';
             }}
             onMouseLeave={() => {
               view.current.hover = null;
@@ -509,8 +528,8 @@ export const Vending = (props) => {
           {/* Wyszukiwarka w pasku pod wyświetlaczem; pusta i bez fokusu jest niewidoczna, a pasek pokazuje nazwę */}
           <input
             value={stockSearch}
-            placeholder="szukaj…"
-            title="Szukaj towaru"
+            placeholder={t('szukaj…')}
+            title={t('Szukaj towaru')}
             spellCheck={false}
             onFocus={() => setSearchFocus(true)}
             onBlur={() => setSearchFocus(false)}
@@ -682,12 +701,19 @@ const getSprite = (product: Product): Sprite | null => {
   if (key in SPRITES) {
     return SPRITES[key] ?? null;
   }
-  SPRITES[key] = null;
+  // Mapa ikon wczytuje się asynchronicznie, a obrazek może nie przyjść: kolejna próba za sekundę
+  const retry = () => {
+    SPRITES[key] = null;
+    setTimeout(() => delete SPRITES[key], 1000);
+  };
   const source = spriteSource(product);
   if (!source) {
+    retry();
     return null;
   }
+  SPRITES[key] = null;
   const img = new Image();
+  img.onerror = retry;
   img.onload = () => {
     const full = document.createElement('canvas');
     full.width = 32;
@@ -763,8 +789,39 @@ const fit = (sprite: Sprite) => {
 
 // --- rysowanie automatu (port prototypu „Automat Przekąski”) ---
 
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Odblask szyby: ten sam w każdej klatce, więc rysowany raz */
+let GLARE: HTMLCanvasElement | null = null;
+const glare = () => {
+  if (GLARE) {
+    return GLARE;
+  }
+  GLARE = document.createElement('canvas');
+  GLARE.width = NW;
+  GLARE.height = NH;
+  const x = GLARE.getContext('2d');
+  if (x) {
+    x.fillStyle = '#ffffff';
+    for (let y = 13; y <= 143; y++) {
+      for (let gx = 4; gx <= 101; gx++) {
+        const d = (gx + y) % 97;
+        if (d < 3 || d === 8) {
+          x.globalAlpha = d < 3 ? 0.16 : 0.1;
+          x.fillRect(gx, y, 1, 1);
+        }
+      }
+    }
+  }
+  return GLARE;
+};
+
+/** Tekst szyldu dla nazwy: pełna nazwa albo pierwsze słowo, gdy się nie mieści */
+const SIGNS: Record<string, string> = {};
+
 type Model = {
   slots: Slot[];
+  stockOf: Record<string, number>;
   machineName: string;
   color?: string;
   searching: boolean;
@@ -811,7 +868,7 @@ const drawMachine = (
   v: ViewState,
   now: number,
 ): Hit[] => {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = REDUCED_MOTION;
   const texts: (Text | Ticker)[] = [];
   const rect = (x: number, y: number, w: number, h: number, c: string) => {
     p.fillStyle = c;
@@ -859,11 +916,15 @@ const drawMachine = (
 /** Zakup potwierdzony przez serwer (stan spadł): spirala się obraca, towar spada do podajnika */
 const stepAnimation = (m: Model, v: ViewState, now: number) => {
   if (v.pending) {
-    const slotIdx = m.slots.findIndex((s) => s.key === v.pending?.key);
-    const slot = m.slots[slotIdx];
-    if (slot && slot.remaining < v.pending.before) {
+    const { key, before } = v.pending;
+    const slotIdx = m.slots.findIndex((s) => s.key === key);
+    if ((m.stockOf[key] ?? 0) < before && slotIdx < 0) {
+      // Towaru nie ma na widocznej półce (inna półka albo wyprzedany wpis): od razu w podajniku
+      v.tray = { key, until: now + 4000 };
+      v.pending = null;
+    } else if ((m.stockOf[key] ?? 0) < before) {
       v.anim = {
-        key: slot.key,
+        key,
         idx: slotIdx,
         phase: 'coil',
         t0: now,
@@ -887,6 +948,14 @@ const stepAnimation = (m: Model, v: ViewState, now: number) => {
     }
     return;
   }
+  // Gracz zmienił półkę w trakcie: towar ląduje w podajniku bez animacji z cudzej przegródki
+  const idx = m.slots.findIndex((s) => s.key === a.key);
+  if (idx < 0) {
+    v.tray = { key: a.key, until: now + 4000 };
+    v.anim = null;
+    return;
+  }
+  a.idx = idx;
   if (a.phase === 'coil') {
     a.k = Math.min(1, (now - a.t0) / 750);
     if (a.k >= 1) {
@@ -913,11 +982,14 @@ const drawSign = (P: Painter, g: CanvasRenderingContext2D) => {
     P.rect(71, 1, 35, 4, '#ffffff');
   }
   // „automat Space Cola” -> „SPACE COLA”: słowo „automat” nic nie mówi na szyldzie automatu
-  const name = P.m.machineName.replace(/^automat\s+/i, '') || P.m.machineName;
-  const sign = name.toUpperCase();
-  g.font = `bold ${(9 * K) / 2}px ${FONT}`;
-  const text =
-    g.measureText(sign).width > 33 * K * 1.6 ? sign.split(' ')[0] : sign;
+  const full = t(P.m.machineName);
+  let text = SIGNS[full];
+  if (text === undefined) {
+    const sign = (full.replace(/^automat\s+/i, '') || full).toUpperCase();
+    g.font = `bold ${(9 * K) / 2}px ${FONT}`;
+    text = g.measureText(sign).width > 33 * K * 1.6 ? sign.split(' ')[0] : sign;
+    SIGNS[full] = text;
+  }
   P.T(
     88.5,
     5.6,
@@ -966,18 +1038,7 @@ const drawGlass = (P: Painter) => {
       p.restore();
     }
   }
-  // Odblask szyby
-  p.fillStyle = '#ffffff';
-  for (let y = 13; y <= 143; y++) {
-    for (let x = 4; x <= 101; x++) {
-      const d = (x + y) % 97;
-      if (d < 3 || d === 8) {
-        p.globalAlpha = d < 3 ? 0.16 : 0.1;
-        p.fillRect(x, y, 1, 1);
-      }
-    }
-  }
-  p.globalAlpha = 1;
+  p.drawImage(glare(), 0, 0);
 };
 
 const drawCell = (P: Painter, i: number) => {
@@ -1045,15 +1106,19 @@ const drawCell = (P: Painter, i: number) => {
     w: 32,
     h: 32,
     act: `cell:${i}`,
-    tip: slot ? cellTip(slot, code, m.currency) : `${code}: pusta półka`,
+    tip: slot
+      ? cellTip(slot, code, m.currency)
+      : `${code}: ${t('pusta półka')}`,
   });
 };
 
 const cellTip = (slot: Slot, code: string, currency: string) => {
-  const price = slot.free ? 'za darmo' : `${slot.price}${currency}`;
-  const left = slot.remaining ? `zostało ${slot.remaining}` : 'wyprzedane';
-  return `${code}: ${cap(slot.product.name)}, ${price} (${left})`;
+  const price = slot.free ? t('za darmo') : `${slot.price}${currency}`;
+  return `${code}: ${cap(t(slot.product.name))}, ${price} (${leftText(slot)})`;
 };
+
+const leftText = (slot: Slot) =>
+  slot.remaining ? `${t(TXT_LEFT)} ${slot.remaining}` : t('wyprzedane');
 
 /** Wyświetlacz i pasek z przewijaną nazwą */
 const drawDisplay = (P: Painter) => {
@@ -1071,8 +1136,8 @@ const drawDisplay = (P: Painter) => {
   if (!m.searching) {
     P.texts.push({
       ticker: sel
-        ? `${cap(sel.product.name)} · ${sel.remaining ? 'zostało ' + sel.remaining : 'wyprzedane'}`
-        : `${m.machineName} · płatność kartą ID`,
+        ? `${cap(t(sel.product.name))} · ${leftText(sel)}`
+        : `${t(m.machineName)} · ${t(TXT_PAY)}`,
       x: 108,
       y: 30,
       w: 26,
@@ -1129,7 +1194,7 @@ const drawKeypad = (P: Painter) => {
         w: 8,
         h: 8,
         act: `key:${k}`,
-        tip: KEY_TIPS[k] ?? `Klawisz ${k}`,
+        tip: KEY_TIPS[k] ?? `${t('Klawisz')} ${k}`,
       });
     }),
   );
@@ -1163,7 +1228,7 @@ const drawCard = (P: Painter) => {
   rect(110, 80, 22, 1, '#000000');
   rect(110, 81, 22, 1, '#3b454b');
   const label = card
-    ? (card.name || 'Nieznany').toUpperCase()
+    ? (card.name || t('Nieznany')).toUpperCase()
     : m.free
       ? 'BEZ KARTY'
       : 'BRAK KARTY';
@@ -1176,7 +1241,7 @@ const drawCard = (P: Painter) => {
     h: 22,
     act: 'card',
     tip: card
-      ? `Karta: ${card.name}, ${card.job}`
+      ? `${t('Karta')}: ${card.name}, ${t(card.job)}`
       : 'Brak karty ID w ręce ani w slocie',
   });
   rect(107, 93, 28, 8, '#0a090d');
@@ -1184,7 +1249,7 @@ const drawCard = (P: Painter) => {
   const account = m.free
     ? 'ZA DARMO'
     : card
-      ? `KONTO ${card.cash || 0}${m.currency}`
+      ? `${t(TXT_ACCOUNT)} ${card.cash || 0}${m.currency}`
       : 'BRAK KONTA';
   T(121, 98.9, account, 4.8, ok ? '#9bd143' : '#5d9128', 'center', true, 24);
 };
@@ -1223,7 +1288,7 @@ const drawControls = (P: Painter) => {
     T(
       121,
       119.2,
-      m.category.toUpperCase(),
+      t(m.category).toUpperCase(),
       5,
       contraband ? '#ffffff' : '#17171f',
       'center',
@@ -1315,7 +1380,12 @@ const drawTray = (P: Painter) => {
 };
 
 /** Napis Verdaną; za długi zmniejsza się do maxW */
-const drawText = (g: CanvasRenderingContext2D, t: Text) => {
+const drawText = (g: CanvasRenderingContext2D, text: Text) => {
+  const tr = { ...text, s: t(text.s) };
+  drawTextRaw(g, tr);
+};
+
+const drawTextRaw = (g: CanvasRenderingContext2D, t: Text) => {
   let size = (t.size * K) / 2;
   g.font = `${t.bold ? 'bold ' : ''}${size}px ${FONT}`;
   if (t.maxW) {
