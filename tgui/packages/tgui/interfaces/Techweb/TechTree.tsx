@@ -1,7 +1,7 @@
 // AQUILA: sieć badań podzielona na kategorie tematyczne (techweb_categories.dm). Widok jednej kategorii:
-// kolumny według poziomu technologii, duże karty z ikoną wiodącej technologii, linie tylko wewnątrz
+// kolumny według kolejności wymagań, duże karty z ikoną wiodącej technologii, linie tylko wewnątrz
 // kategorii, a wymagania z innych kategorii jako klikalne etykiety. Widok „Wszystkie”: wszystkie kategorie
-// naraz w siatce, w mniejszych kartach. Sama sieć badań, wymagania i koszty się nie zmieniają.
+// naraz w siatce, w mniejszych kartach. Kategorie są niezależnymi drzewkami (wymagania przebudowuje DM).
 import { useEffect, useMemo, useState } from 'react';
 import { Box, Button, Icon, Input, Section, Stack } from 'tgui-core/components';
 
@@ -60,21 +60,35 @@ type BlockLayout = {
   height: number;
 };
 
-/** Kolumny = poziomy technologii; kolejność w kolumnie wg średniej pozycji wymagań z tej samej kategorii */
+/** Kolumny = kolejne kroki wymagań w kategorii; kolejność w kolumnie wg średniej pozycji wymagań */
 function layoutBlock(
   ids: string[],
   node_cache: Record<string, NodeCache>,
   size: CardSize,
 ): BlockLayout {
   const inBlock = new Set(ids);
-  const tiers = Array.from(
-    new Set(ids.map((id) => node_cache[id].node_tier)),
-  ).sort((a, b) => a - b);
+  // Kolumna = najdłuższa ścieżka wymagań wewnątrz kategorii, więc linie zawsze idą w prawo
+  const depth: Record<string, number> = {};
+  const visiting = new Set<string>();
+  const getDepth = (id: string): number => {
+    if (depth[id] !== undefined) return depth[id];
+    if (visiting.has(id)) return 0; // cykl w danych nie zawiesi okna
+    visiting.add(id);
+    let d = 0;
+    for (const pre of node_cache[id].prereq_ids) {
+      if (inBlock.has(pre)) d = Math.max(d, getDepth(pre) + 1);
+    }
+    visiting.delete(id);
+    depth[id] = d;
+    return d;
+  };
+  ids.forEach(getDepth);
+  const columns = Math.max(0, ...ids.map((id) => depth[id] + 1));
   const rowOf: Record<string, number> = {};
   const pos: Record<string, { x: number; y: number }> = {};
   let rows = 0;
-  tiers.forEach((tier, col) => {
-    const column = ids.filter((id) => node_cache[id].node_tier === tier);
+  for (let col = 0; col < columns; col++) {
+    const column = ids.filter((id) => depth[id] === col);
     const keyed = column.map((id) => {
       const parents = node_cache[id].prereq_ids.filter(
         (p) => inBlock.has(p) && rowOf[p] !== undefined,
@@ -93,10 +107,10 @@ function layoutBlock(
       };
     });
     rows = Math.max(rows, keyed.length);
-  });
+  }
   return {
     pos,
-    width: Math.max(0, tiers.length * (size.w + size.colGap) - size.colGap),
+    width: Math.max(0, columns * (size.w + size.colGap) - size.colGap),
     height: Math.max(0, rows * (size.h + size.rowGap) - size.rowGap),
   };
 }
@@ -220,7 +234,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
 
   return (
     <Stack fill>
-      <Stack.Item width="15em">
+      <Stack.Item width="20em">
         <Section fill scrollable title="Kategorie">
           <CategoryButton
             name="Wszystkie"
@@ -460,7 +474,8 @@ function CategoryBlock(props: CategoryBlockProps) {
           const icon = leadIcon(cache, design_cache);
           const p = layout.pos[id];
           const outside = cache.prereq_ids.filter(
-            (pre) => byId[pre] && !inBlock.has(pre),
+            // Podstawy wymaga każda kategoria, więc nie dostają etykiety
+            (pre) => byId[pre] && !inBlock.has(pre) && pre !== 'base',
           );
           const costs = Object.entries(node.costs ?? {})
             .map(([type, cost]) => `${cost} ${abbreviatePoint(type)}`)

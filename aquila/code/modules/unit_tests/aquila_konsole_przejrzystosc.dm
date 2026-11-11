@@ -113,5 +113,47 @@
 			continue
 		TEST_ASSERT(node.aq_category() == expected[node_id], "Węzeł [node_id] trafił do [node.aq_category()] zamiast [expected[node_id]]")
 
+/// AQUILA - kategorie sieci badań są niezależne: wymagania z innej kategorii tylko jako wyjątki, każdy węzeł osiągalny od podstaw lub węzła startowego
+/datum/unit_test/aquila_techweb_independent_categories
+
+/datum/unit_test/aquila_techweb_independent_categories/Run()
+	for(var/category in GLOB.techweb_category_roots)
+		var/datum/techweb_node/root = SSresearch.techweb_nodes[GLOB.techweb_category_roots[category]]
+		TEST_ASSERT(root, "Brak węzła startowego kategorii [category]")
+		TEST_ASSERT(length(root.prereq_ids) == 1 && ("base" in root.prereq_ids), "Węzeł startowy [root.id] wymaga [jointext(root.prereq_ids, ", ")] zamiast samych podstaw")
+	for(var/node_id in SSresearch.techweb_nodes)
+		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
+		var/category = node.aq_category()
+		for(var/prereq_id in node.prereq_ids)
+			var/datum/techweb_node/prereq = SSresearch.techweb_nodes[prereq_id]
+			if(prereq_id == "base" || prereq.aq_category() == category)
+				continue
+			TEST_ASSERT(prereq_id in GLOB.techweb_cross_prereq_keep[node.id], "Węzeł [node.id] ([category]) wymaga [prereq_id] z kategorii [prereq.aq_category()]")
+		// Każdy węzeł z wymaganiami dochodzi do podstaw bez cyklu
+		if(!length(node.prereq_ids) || node.id == "base")
+			continue
+		var/list/seen = list()
+		var/list/stack = node.prereq_ids.Copy()
+		var/reached_base = FALSE
+		while(length(stack))
+			var/current = stack[length(stack)]
+			stack.len--
+			if(current == "base")
+				reached_base = TRUE
+				continue
+			TEST_ASSERT(current != node.id, "Cykl wymagań przez węzeł [node.id]")
+			if(seen[current])
+				continue
+			seen[current] = TRUE
+			var/datum/techweb_node/next = SSresearch.techweb_nodes[current]
+			if(!next)
+				continue
+			// Węzły startowe (zbadane od początku rundy) nie mają wymagań i też są dobrym początkiem
+			if(!length(next.prereq_ids))
+				reached_base = TRUE
+				continue
+			stack += next.prereq_ids
+		TEST_ASSERT(reached_base, "Węzeł [node.id] nie prowadzi do podstaw ani do węzła startowego")
+
 #undef TEST_ASSERT
 
