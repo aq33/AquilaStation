@@ -531,7 +531,7 @@
 
 		if(sheets.len > 0)
 			var/obj/item/stack/sheet/S = pick(sheets)
-			S.amount++
+			S.add(1) // AQ EDIT - add() przelicza custom_materials (inaczej arkusz bez materiału)
 			to_chat(owner, "<span class='notice'>[linked_extract] dodaje warstwę szlamu do [S], która przemienia się w kolejny arkusz materiału!</span>")
 	return ..()
 

@@ -365,13 +365,10 @@
 /**
  * AQ EDIT - materiały jednej sztuki przedmiotu.
  * Po Bee#10135 `custom_materials` stosu to suma całego stosu, a ten kontener (insert_stack(), sprawdzanie miejsca,
- * logi silosu) liczy na sztukę, jak stare `materials`. Dla stosu bierze więc `mats_per_unit`.
+ * logi silosu) liczy na sztukę, jak stare `materials`. Wspólny odczyt: /atom/proc/get_unit_materials() w aquila/.
  */
 /datum/component/material_container/proc/get_item_materials(obj/item/I)
-	if(isstack(I))
-		var/obj/item/stack/S = I
-		return S.mats_per_unit
-	return I.custom_materials
+	return I.get_unit_materials()
 
 /// Returns the amount of a specific material in this container.
 /datum/component/material_container/proc/get_material_amount(var/datum/material/mat)
