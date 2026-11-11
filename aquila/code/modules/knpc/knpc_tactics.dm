@@ -12,6 +12,10 @@
 #define KNPC_GRENADE_COOLDOWN (20 SECONDS)
 /// Zapalnik granatu rzuconego przez KNPC (gracz ma 5 s, boarder trzyma chwilę w ręku)
 #define KNPC_GRENADE_FUSE (3 SECONDS)
+/// Tak daleko od uzbrojonego granatu boarder nie podchodzi do leżącego i nie rzuca drugiego (odłamki sięgają 4 pól)
+#define KNPC_GRENADE_DANGER_RANGE 4
+/// Zakuwanie (do_mob 4 s) trwające dłużej oznacza przerwaną procedurę: process() zdejmuje flagę sam
+#define KNPC_CUFF_TIMEOUT (10 SECONDS)
 /// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
 #define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
@@ -55,8 +59,17 @@
 	return ..()
 
 /datum/component/knpc/process()
+	if(cuffing)
+		if(world.time < cuffing_since + KNPC_CUFF_TIMEOUT)
+			// do_mob przerywa każdy krok boardera: wybór celu, trasa i patrol czekają, aż skończy zakuwać.
+			// Kara za nieudaną trasę i lista nieosiągalnych płyną dalej, jak w zwykłym process().
+			pathfind_timeout = max(0, pathfind_timeout - SSfastprocess.wait)
+			expire_unreachable()
+			return
+		cuffing = FALSE // do_cuff() nie dotarł do finish_cuff() (runtime): bez tego boarder stałby do końca rundy
 	. = ..()
 	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
+	cuffs_cache = null
 	if(!istype(current_goal, /datum/ai_goal/human/engage_targets))
 		cover_turf = null // po walce nie trzymamy osłony dla siebie
 	expire_unreachable()
@@ -118,7 +131,19 @@
 	var/mob/living/living_target = isliving(target) ? target : null
 	if(!istype(G) || !G.can_shoot() || living_target?.incapacitated())
 		cover_turf = null
-		return pathfind_to(target)
+		if(living_target?.incapacitated() && (get_dist(H, target) <= 1 || live_grenade_near(get_turf(target))))
+			// Już stoimy przy leżącym. Trasa na jego pole kończyła się wejściem na nie, a potem nieudanym
+			// szukaniem drogi do własnego pola, karą czasową i losowym błądzeniem.
+			// Przy leżącym tyka granat kolegi: z bliska ogłusza mimo ochrony oczu i uszu, więc czekamy na wybuch.
+			path = list()
+			dest = null
+			return
+		. = pathfind_to(target)
+		if(. == KNPC_PATHFIND_FAIL && living_target?.incapacitated())
+			// Leżący za szybą albo zamkniętymi drzwiami: bez tego wants_to_cuff() dalej wstrzymywał ogień,
+			// a boarder ani nie strzelał, ani nie dochodził. Na minutę wraca zwykła walka.
+			mark_unreachable(living_target)
+		return
 	if(try_take_cover(target)) // aquila/code/modules/knpc/knpc_cover_loot.dm
 		return
 	var/dist = get_dist(H, target)
@@ -155,9 +180,14 @@
 	var/dist = get_dist(H, target)
 	if(dist < 3 || dist > 7 || H.incapacitated() || !isturf(H.loc) || !can_see(H, target, view_range))
 		return FALSE
+	var/mob/living/living_target = isliving(target) ? target : null
+	if(living_target?.incapacitated())
+		return FALSE // leżący już nie walczy: szkoda granatu
 	var/turf/target_turf = get_turf(target)
 	if(!throw_path_clear(target_turf))
 		return FALSE // granat zatrzymałby się po drodze, bliżej nas i kolegów
+	if(live_grenade_near(target_turf))
+		return FALSE // kolega już tam rzucił: drugi granat to strata, a po pierwszym wszyscy biegną do ogłuszonych
 	var/enemies_near = 0
 	for(var/atom/movable/enemy as anything in enemies)
 		if(get_dist(enemy, target_turf) <= 2)
@@ -189,6 +219,15 @@
 		H.say(pick("Granat!", "Uwaga, granat!", "Odłamkowy!"), forced = "knpc AI")
 	nade.throw_at(target_turf, 7, 1, H)
 	return TRUE
+
+/// Uzbrojony granat (nasz albo cudzy) w promieniu KNPC_GRENADE_DANGER_RANGE od T
+/datum/component/knpc/proc/live_grenade_near(turf/T)
+	if(!T)
+		return FALSE
+	for(var/obj/item/grenade/nade in range(KNPC_GRENADE_DANGER_RANGE, T))
+		if(nade.active)
+			return TRUE
+	return FALSE
 
 /// Czy rzucony przedmiot doleci do T: między nami a T nie ma ściany ani gęstego obiektu (przez stoły się przerzuca)
 /datum/component/knpc/proc/throw_path_clear(turf/T)
@@ -291,10 +330,29 @@
 		var/mob/living/carbon/human/ai_boarder/boarder = H
 		if(boarder.knpc_traits & (KNPC_IS_DOOR_BASHER | KNPC_IS_DOOR_HACKER))
 			if(!breach_card)
-				breach_card = new
+				breach_card = new /obj/item/card/id/knpc_breach
 				breach_card.access = get_all_accesses()
 			return breach_card
 	return H.wear_id
+
+/// Karta, którą planują trasę boarderzy wyłamujący drzwi (nigdy nie trafia do świata)
+/obj/item/card/id/knpc_breach
+	name = "karta wyłamania drzwi (KNPC)"
+
+// Zaryglowana albo pozbawiona zasilania śluza blokowała wyszukiwanie trasy nawet z kartą wszystkich dostępów,
+// więc haker i wyważacz omijali dokładnie te drzwi, które handle_blocking_door() umie otworzyć.
+/obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+	if(istype(ID, /obj/item/card/id/knpc_breach) && knpc_can_breach(caller))
+		return TRUE
+	return ..()
+
+/// Czy boarder otworzy te drzwi: wyważy każde zniszczalne, a haker otworzy też niezniszczalne, jeśli nie są zaspawane.
+/// Niezniszczalnej śluzy wyważacz nie uszkodzi, więc trasa przez nią kończyła się biciem w drzwi bez końca.
+/obj/machinery/door/airlock/proc/knpc_can_breach(atom/movable/breacher)
+	if(!(resistance_flags & INDESTRUCTIBLE))
+		return TRUE
+	var/mob/living/carbon/human/ai_boarder/boarder = breacher
+	return istype(boarder) && (boarder.knpc_traits & KNPC_IS_DOOR_HACKER) && !welded
 
 /datum/component/knpc/next_path_step()
 	if(handle_blocking_door())
@@ -505,6 +563,8 @@
 #undef KNPC_SHOOTER_MEMORY
 #undef KNPC_GRENADE_COOLDOWN
 #undef KNPC_GRENADE_FUSE
+#undef KNPC_GRENADE_DANGER_RANGE
+#undef KNPC_CUFF_TIMEOUT
 #undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY

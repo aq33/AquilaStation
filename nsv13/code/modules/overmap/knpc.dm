@@ -627,7 +627,7 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	// AQ EDIT - port Bee #11899: zamiast intencji harm/disarm combat mode i czasem prawy przycisk (odepchnięcie)
 	H.set_combat_mode(TRUE)
 	var/list/knpc_modifiers = prob(35) ? list(RIGHT_CLICK = "1") : null
-	if(G && dist > 0)
+	if(G && dist > 0 && !HA.wants_to_cuff(target)) // AQ EDIT - obezwładnionego wroga z kajdankami zakuwamy, nie dobijamy (aquila/code/modules/knpc/knpc_cover_loot.dm)
 		//We need to reload first.... If that fails we've ditched the gun.
 		if(!G.can_shoot() && !reload(HA, G))
 			G = null
@@ -665,7 +665,8 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 		else
 			//Stop them from trying to knee a mech in the stomach
 			if(iscarbon(target))
-				H.dna.species.spec_attack_hand(H, target, null, knpc_modifiers)
+				if(!HA.wants_to_cuff(target)) // AQ EDIT - pchnięcie odsuwało leżącego i przerywało zakuwanie
+					H.dna.species.spec_attack_hand(H, target, null, knpc_modifiers)
 				if(target.incapacitated())
 					//I know kung-fu.
 
