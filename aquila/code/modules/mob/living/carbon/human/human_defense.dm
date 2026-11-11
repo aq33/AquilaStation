@@ -14,7 +14,8 @@
 			covering_part += C
 	return covering_part
 
-/// Wybuch, który ogłuszył (dołożył głuchoty), daje pisk w uszach jak po flashbangu
+/// Wybuch, który ogłuszył (dołożył głuchoty), daje pisk w uszach jak po flashbangu.
+/// Te same parametry dźwięku co w soundbang_act (głośność 250, po huku), inaczej wybuch go zagłusza.
 /mob/living/carbon/human/ex_act(severity, target, origin)
 	var/obj/item/organ/ears/ears_organ = getorgan(/obj/item/organ/ears)
 	var/deaf_before = ears_organ?.deaf
@@ -22,4 +23,5 @@
 	if(QDELETED(src) || stat == DEAD || QDELETED(ears_organ) || ears_organ.owner != src)
 		return
 	if(ears_organ.deaf > deaf_before)
-		SEND_SOUND(src, sound('sound/weapons/flash_ring.ogg'))
+		to_chat(src, "<span class='warning'>W uszach mocno ci dzwoni!</span>")
+		SEND_SOUND(src, sound('sound/weapons/flash_ring.ogg', 0, 1, 0, 250))
