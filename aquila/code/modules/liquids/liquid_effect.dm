@@ -78,6 +78,10 @@
 	// Plamy wody i lodu pod kałużą zastępuje sama kałuża
 	SEND_SIGNAL(my_turf, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE) // tylko woda: siła 5 suszyła też stały lód (permafrost) lodowych podłóg
 
+	// Plamy i ślady na kaflu kałuża zmywa i wchłania (mapowe zostają)
+	if(!mapload)
+		wash_decals()
+
 	if(z)
 		queue_smooth(src)
 		queue_smooth_liquid_neighbors()
@@ -107,6 +111,52 @@
 	for(var/turf/neighbor as anything in RANGE_TURFS(1, center))
 		if(!QDELETED(neighbor.liquids) && neighbor.liquids != src)
 			queue_smooth(neighbor.liquids)
+
+/// Ile krwi oddaje kałuży krwawa plama albo ślad (plamy krwi nie trzymają reagentów, tylko bloodiness)
+#define LIQUID_WASHED_BLOOD_PER_DECAL 2
+/// Ile wariantów kształtu ma samotny kafel kałuży (stany puddle-N w liquid.dmi)
+#define LIQUID_LONE_PUDDLE_VARIANTS 4
+
+/**
+ * AQUILA - kałuża wchodząca na kafel zmywa z niego plamy i ślady (wszystko, co zmywa woda: is_cleanable()).
+ * Reagenty plamy (popiół, olej, wnętrzności) trafiają do kałuży, a krwawe plamy i ślady oddają trochę krwi.
+ * Tylko przy wejściu na kafel: krew w kałuży sama robi plamę pod sobą (reaction_turf), więc zbieranie każdej
+ * nowej plamy pompowałoby krew w kałużę bez końca.
+ * Bez process_group(): to się dzieje w Initialize kafla, a grupę i tak przeliczy SSliquids.
+ */
+/obj/effect/abstract/liquid_turf/proc/wash_decals()
+	if(QDELETED(liquid_group) || QDELETED(my_turf))
+		return
+	var/washed_blood = 0
+	var/anything_washed = FALSE
+	for(var/obj/effect/decal/cleanable/decal in my_turf)
+		if(QDELETED(decal) || !is_cleanable(decal))
+			continue
+		if(decal.reagents?.total_volume)
+			liquid_copy_reagents(decal.reagents, liquid_group.reagents)
+		if(istype(decal, /obj/effect/decal/cleanable/blood) && decal.blood_state == BLOOD_STATE_HUMAN)
+			washed_blood += LIQUID_WASHED_BLOOD_PER_DECAL
+		anything_washed = TRUE
+		qdel(decal)
+	if(!anything_washed)
+		return
+	if(washed_blood)
+		liquid_group.reagents.add_reagent(/datum/reagent/blood, washed_blood, reagtemp = liquid_group.reagents.chem_temp, no_react = TRUE)
+	liquid_group.update_volume_cache()
+	liquid_group.handle_visual_changes()
+
+/// Samotny kafel kałuży (bez sąsiednich kałuż) dostaje nieregularny kształt zamiast zaokrąglonego kwadratu
+/obj/effect/abstract/liquid_turf/bitmask_smoothed()
+	. = ..()
+	if(!my_turf)
+		return
+	for(var/turf/neighbor as anything in RANGE_TURFS(1, my_turf))
+		if(neighbor != my_turf && !QDELETED(neighbor.liquids))
+			return
+	icon_state = "puddle-[(my_turf.x + my_turf.y * 3) % LIQUID_LONE_PUDDLE_VARIANTS + 1]"
+
+#undef LIQUID_WASHED_BLOOD_PER_DECAL
+#undef LIQUID_LONE_PUDDLE_VARIANTS
 
 /obj/effect/abstract/liquid_turf/bitmask_connects_to(turf/T)
 	if(!T)
