@@ -71,15 +71,29 @@
 /mob/living/proc/execute_resist()
 	resist()
 
-/// Last incapacitated() result seen by update_mobility(), so COMSIG_MOB_INCAPACITATE_CHANGED fires only on change
-/mob/living/var/last_incapacitated_for_ai = FALSE
+/// Last AI incapacitation state seen by update_mobility() (see update_incapacitated_signal()), null when not tracked
+/mob/living/var/last_incapacitated_for_ai
 
 /// Called from the end of /mob/living/proc/update_mobility() (AQ EDIT). Bee turned incapacitated into a var with a setter
 /// that sends this signal (BeeStation/BeeStation-Hornet#14060); we keep the proc and compare here instead.
+/// The state is a bitfield of every part controllers ask incapacitated() about with different ignore flags (restraints,
+/// grabs, stasis) plus the stat, so the signal fires whenever any controller's answer can change. Only mobs with an AI
+/// controller pay for it.
 /mob/living/proc/update_incapacitated_signal()
-	var/new_incapacitated = incapacitated() ? TRUE : FALSE
-	if(new_incapacitated == last_incapacitated_for_ai)
+	if(!ai_controller)
+		last_incapacitated_for_ai = null
 		return
-	var/old_incapacitated = last_incapacitated_for_ai
-	last_incapacitated_for_ai = new_incapacitated
-	SEND_SIGNAL(src, COMSIG_MOB_INCAPACITATE_CHANGED, old_incapacitated, new_incapacitated)
+	var/new_state = stat
+	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+		new_state |= AI_INCAP_STATE_BASE
+	if(restrained(TRUE))
+		new_state |= AI_INCAP_STATE_RESTRAINED
+	if(restrained(FALSE))
+		new_state |= AI_INCAP_STATE_RESTRAINED_OR_GRABBED
+	if(IsInStasis())
+		new_state |= AI_INCAP_STATE_STASIS
+	if(new_state == last_incapacitated_for_ai)
+		return
+	var/old_state = last_incapacitated_for_ai
+	last_incapacitated_for_ai = new_state
+	SEND_SIGNAL(src, COMSIG_MOB_INCAPACITATE_CHANGED, old_state, new_state)

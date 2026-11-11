@@ -180,6 +180,17 @@
 #define INCAPABLE_GRAB (1<<3)
 #define INCAPACITATED_IGNORING(mob, flags) (mob.incapacitated(((flags) & INCAPABLE_RESTRAINTS) ? TRUE : FALSE, ((flags) & INCAPABLE_GRAB) ? TRUE : FALSE))
 
+// --- AQUILA: resist behaviour runs resist() asynchronously (container_resist() can sleep in a do_after)
+///State of the asynchronous resist of /datum/ai_behavior/resist: AI_RESIST_RUNNING or AI_RESIST_DONE
+#define BB_RESIST_STATE "BB_resist_state"
+#define AI_RESIST_RUNNING 1
+#define AI_RESIST_DONE 2
+///AQUILA: bits of /mob/living/var/last_incapacitated_for_ai above the stat (stat takes the low 2 bits)
+#define AI_INCAP_STATE_BASE (1<<2)
+#define AI_INCAP_STATE_RESTRAINED (1<<3)
+#define AI_INCAP_STATE_RESTRAINED_OR_GRABBED (1<<4)
+#define AI_INCAP_STATE_STASIS (1<<5)
+
 // --- AI subsystems (code/__DEFINES/MC.dm and subsystems.dm in Bee)
 #define AI_CONTROLLER_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/ai_controllers/##X);\
 /datum/controller/subsystem/ai_controllers/##X/New(){\

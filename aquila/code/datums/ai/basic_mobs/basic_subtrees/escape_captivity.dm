@@ -18,6 +18,11 @@
 			controller.queue_behavior(/datum/ai_behavior/break_out_of_object, living_pawn.buckled)
 		return SUBTREE_RETURN_FINISH_PLANNING
 
+	// AQUILA: a pet in a pet carrier waits to be let out, as the simple animal pets did. Its container_resist() fiddles
+	// with the lock for 30-40 s, and an unlocked but closed carrier only opens on relaymove(), so the AI would loop
+	if (istype(living_pawn.loc, /obj/item/pet_carrier))
+		return SUBTREE_RETURN_FINISH_PLANNING
+
 	if (!isturf(living_pawn.loc) && !ismob(living_pawn.loc) && !istype(living_pawn.loc, /obj/item/clothing/head/mob_holder))
 		var/atom/contained_in = living_pawn.loc
 		var/attack_effective = FALSE

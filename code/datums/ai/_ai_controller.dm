@@ -68,6 +68,8 @@ multiple modular subtrees with behaviors
 	var/able_to_plan = TRUE
 	/// are we currently on failed planning timeout?
 	var/on_failed_planning_timeout = FALSE
+	/// AQUILA: the z-level whose GLOB.ai_controllers_by_zlevel list holds us, so we leave the right list
+	var/registered_z
 
 /datum/ai_controller/New(atom/new_pawn)
 	change_ai_movement_type(ai_movement)
@@ -144,10 +146,7 @@ multiple modular subtrees with behaviors
 	pawn.ai_controller = src
 
 	var/turf/pawn_turf = get_turf(pawn)
-	if(pawn_turf)
-		if(pawn_turf.z > length(GLOB.ai_controllers_by_zlevel)) // AQUILA: pawn created before SSai_controllers set the lists up
-			SSai_controllers.on_max_z_changed()
-		GLOB.ai_controllers_by_zlevel[pawn_turf.z] += src
+	set_registered_z(pawn_turf?.z)
 
 	SEND_SIGNAL(src, COMSIG_AI_CONTROLLER_POSSESSED_PAWN)
 
@@ -224,20 +223,27 @@ multiple modular subtrees with behaviors
 	return AI_STATUS_ON
 
 ///Called when the AI controller pawn changes z levels, we check if there's any clients on the new one and wake up the AI if there is.
+/// AQUILA: Bee skips this for pawns with a client, which left the controller in the old z-level list (and its
+/// UnpossessPawn() then missed it); the list follows the pawn always, the status check handles the client
 /datum/ai_controller/proc/on_changed_z_level(atom/source, old_z, new_z)
 	SIGNAL_HANDLER
-	if (ismob(pawn))
-		var/mob/mob_pawn = pawn
-		if((mob_pawn?.client && !continue_processing_when_client))
-			return
-	if(!isnull(old_z) && old_z <= length(GLOB.ai_controllers_by_zlevel))
-		GLOB.ai_controllers_by_zlevel[old_z] -= src
+	set_registered_z(new_z)
 	if(isnull(new_z))
 		return
-	if(new_z > length(GLOB.ai_controllers_by_zlevel))
+	reset_ai_status()
+
+/// AQUILA: moves the controller to the GLOB.ai_controllers_by_zlevel list of new_z (null: out of all lists)
+/datum/ai_controller/proc/set_registered_z(new_z)
+	if(registered_z == new_z)
+		return
+	if(registered_z && registered_z <= length(GLOB.ai_controllers_by_zlevel))
+		GLOB.ai_controllers_by_zlevel[registered_z] -= src
+	registered_z = new_z
+	if(!new_z)
+		return
+	if(new_z > length(GLOB.ai_controllers_by_zlevel)) // pawn created before SSai_controllers set the lists up
 		SSai_controllers.on_max_z_changed()
 	GLOB.ai_controllers_by_zlevel[new_z] += src
-	reset_ai_status()
 
 ///Abstract proc for initializing the pawn to the new controller
 /datum/ai_controller/proc/TryPossessPawn(atom/new_pawn)
@@ -255,9 +261,7 @@ multiple modular subtrees with behaviors
 	clear_able_to_run()
 	if(ai_movement.moving_controllers[src])
 		ai_movement.stop_moving_towards(src)
-	var/turf/pawn_turf = get_turf(pawn)
-	if(pawn_turf)
-		GLOB.ai_controllers_by_zlevel[pawn_turf.z] -= src
+	set_registered_z(null)
 	remove_from_unplanned_controllers()
 	pawn.ai_controller = null
 	pawn = null
@@ -368,7 +372,7 @@ multiple modular subtrees with behaviors
 	SEND_SIGNAL(src, COMSIG_AI_CONTROLLER_PICKED_BEHAVIORS, current_behaviors, planned_behaviors)
 	for(var/datum/ai_behavior/forgotten_behavior as anything in current_behaviors - planned_behaviors)
 		var/list/arguments = list(src, FALSE)
-		var/list/stored_arguments = behavior_args[type]
+		var/list/stored_arguments = behavior_args[forgotten_behavior.type] // AQUILA: Bee/tg read behavior_args[type] (the controller type)
 		if(stored_arguments)
 			arguments += stored_arguments
 		forgotten_behavior.finish_action(arglist(arguments))
@@ -487,14 +491,25 @@ multiple modular subtrees with behaviors
 	stop_previous_processing()
 
 /datum/ai_controller/proc/ProcessBehavior(delta_time, datum/ai_behavior/behavior)
+	// AQUILA: a perform() that sleeps must not stall SSai_behaviors for every AI, so the subsystem does not wait for it
+	set waitfor = FALSE
 	var/list/arguments = list(delta_time, src)
 	var/list/stored_arguments = behavior_args[behavior.type]
 	if(stored_arguments)
 		arguments += stored_arguments
 
+	// AQUILA: no second run while a sleeping perform() waits; restored below unless perform() set its own cooldown
+	var/started_at = world.time
+	var/old_cooldown = behavior_cooldowns[behavior]
+	var/guard_cooldown = started_at + max(behavior.get_cooldown(src), 1)
+	behavior_cooldowns[behavior] = guard_cooldown
 	var/process_flags = behavior.perform(arglist(arguments))
+	if(world.time != started_at)
+		stack_trace("AI behaviour [behavior.type] slept in perform() for [world.time - started_at] ds, run the sleeping part with INVOKE_ASYNC")
 	if(process_flags & AI_BEHAVIOR_DELAY)
 		behavior_cooldowns[behavior] = world.time + behavior.get_cooldown(src)
+	else if(behavior_cooldowns[behavior] == guard_cooldown)
+		behavior_cooldowns[behavior] = old_cooldown
 	if(process_flags & AI_BEHAVIOR_FAILED)
 		arguments[1] = src
 		arguments[2] = FALSE
@@ -521,6 +536,15 @@ multiple modular subtrees with behaviors
 /datum/ai_controller/proc/on_stat_changed(mob/living/source, new_stat)
 	SIGNAL_HANDLER
 	reset_ai_status()
+	update_able_to_run()
+	// AQUILA: our set_stat() sends COMSIG_MOB_STATCHANGE before it assigns the stat (Bee: after), so the checks above still
+	// see the old one. update_mobility() after the change sends COMSIG_MOB_INCAPACITATE_CHANGED with the stat in it, and
+	// for paths without update_mobility() we look again right after
+	addtimer(CALLBACK(src, PROC_REF(recheck_after_stat_change)), 1, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/datum/ai_controller/proc/recheck_after_stat_change()
+	if(isnull(pawn))
+		return
 	update_able_to_run()
 
 /datum/ai_controller/proc/on_sentience_gained()

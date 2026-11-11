@@ -1358,7 +1358,7 @@
 			SSmobs.clients_by_zlevel[registered_z] -= src
 			// AQ EDIT START - rdzeń SI z Bee: ostatni gracz opuścił z-level, kontrolery SI na nim się wyłączają
 			if(!length(SSmobs.clients_by_zlevel[registered_z]) && registered_z <= length(GLOB.ai_controllers_by_zlevel))
-				for(var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[registered_z])
+				for(var/datum/ai_controller/controller in GLOB.ai_controllers_by_zlevel[registered_z]) // filtrujące in: pomija null
 					controller.set_ai_status(controller.get_expected_ai_status())
 			// AQ EDIT END
 		if (client)
@@ -1367,7 +1367,7 @@
 				SSmobs.clients_by_zlevel[new_z] += src
 				// AQ EDIT START - rdzeń SI z Bee: pierwszy gracz na z-levelu budzi kontrolery SI
 				if(!new_level_old_clients && new_z <= length(GLOB.ai_controllers_by_zlevel))
-					for(var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[new_z])
+					for(var/datum/ai_controller/controller in GLOB.ai_controllers_by_zlevel[new_z]) // filtrujące in: pomija null
 						controller.set_ai_status(controller.get_expected_ai_status())
 				// AQ EDIT END
 				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
