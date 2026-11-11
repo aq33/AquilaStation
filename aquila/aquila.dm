@@ -1140,6 +1140,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_mob_abilities_troop.dm"
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
 #include "code\modules\test_chamber\kits\pr_614_celowniki.dm"
@@ -2073,6 +2074,7 @@
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_mob_abilities.dm"
+#include "code\modules\unit_tests\aquila_basic_troopers.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"
