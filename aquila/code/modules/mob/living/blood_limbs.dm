@@ -148,9 +148,10 @@
 		return 0
 	var/mob/living/carbon/carbon_owner = owner
 	var/zone = istype(carbon_owner) ? carbon_owner.aq_held_bleed_zone : null
-	if(!zone || !limb_bleed[zone])
+	if(!zone) // held before a zone was chosen: the worst wound
 		zone = length(limb_bleed) ? zones_by_bleeding()[1] : null
-	return zone ? min(BLEED_RATE_MINOR, limb_bleed[zone]) : 0
+	// the held wound got bandaged: the hand still presses it, not some other limb
+	return zone ? min(BLEED_RATE_MINOR, limb_bleed[zone] || 0) : 0
 
 /datum/status_effect/bleeding/tick()
 	if(HAS_TRAIT(owner, TRAIT_NO_BLOOD))
@@ -319,7 +320,8 @@
 	var/zone = check_zone(user.zone_selected)
 	var/obj/item/bodypart/limb = patient.get_bodypart(zone)
 	if(patient.is_bleeding() && !patient.is_bleeding(zone))
-		to_chat(user, "<span class='warning'>Ta część ciała ([strefa_pl(zone)]) nie krwawi. Krwawi: [patient.aq_bleeding_zones_text()].</span>")
+		var/datum/status_effect/bleeding/bleed = patient.get_bleed_status()
+		to_chat(user, "<span class='warning'>Ta część ciała ([strefa_pl(zone)]) nie krwawi. Najmocniej krwawi: [strefa_pl(bleed.zones_by_bleeding()[1])].</span>")
 		if(!limb?.brute_dam || !heal_brute)
 			return
 		// Only the bruises of this limb get treated: the core attack must not report a bleeding it did not touch
@@ -349,39 +351,33 @@
 	aq_held_bleed_zone = null
 	return ..()
 
-/// "lewa noga 1.2/s, klatka piersiowa 0.4/s" for the scanner and messages
-/mob/living/carbon/proc/aq_bleeding_zones_text(bandaged = FALSE)
-	var/datum/status_effect/bleeding/bleed = get_bleed_status()
-	if(!bleed)
-		return ""
-	var/list/source = bandaged ? bleed.limb_bandaged : bleed.limb_bleed
-	var/list/parts = list()
-	for(var/zone in source)
-		var/stump = get_bodypart(zone) ? "" : " (kikut)"
-		parts += bandaged ? "[strefa_pl(zone)][stump]" : "[strefa_pl(zone)][stump] [round(source[zone], 0.1)]/s"
-	return jointext(parts, ", ")
+// Lines are per zone, so the English chat dictionary can translate each zone name (strefa_pl) on its own
 
 /mob/living/carbon/get_wound_scan_lines()
 	. = ..()
 	var/datum/status_effect/bleeding/bleed = get_bleed_status()
 	if(!bleed || HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		return
-	if(length(bleed.limb_bleed))
-		. += "<span class='alert'>Krwawienie: [aq_bleeding_zones_text()].</span>"
-	if(length(bleed.limb_bandaged))
-		. += "<span class='notice'>Opatrzone krwawienie: [aq_bleeding_zones_text(TRUE)].</span>"
+	for(var/zone in bleed.zones_by_bleeding())
+		if(get_bodypart(zone))
+			. += "<span class='alert'>Krwawienie ([strefa_pl(zone)]): [round(bleed.limb_bleed[zone], 0.1)]/s.</span>"
+		else
+			. += "<span class='alert'>Krwawienie z kikuta ([strefa_pl(zone)]): [round(bleed.limb_bleed[zone], 0.1)]/s.</span>"
+	for(var/zone in bleed.limb_bandaged)
+		. += "<span class='notice'>Opatrzone krwawienie ([strefa_pl(zone)]).</span>"
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
 	var/datum/status_effect/bleeding/bleed = get_bleed_status()
 	if(!bleed || !length(bleed.limb_bleed) || HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		return
-	var/list/parts = list()
+	var/robotic = istype(bleed, /datum/status_effect/bleeding/robotic)
 	for(var/zone in bleed.zones_by_bleeding())
-		parts += get_bodypart(zone) ? strefa_pl(zone) : "kikut ([strefa_pl(zone)])"
-	if(istype(bleed, /datum/status_effect/bleeding/robotic))
-		. += "<span class='warning'>Wycieka z: [jointext(parts, ", ")].</span>"
-	else
-		. += "<span class='warning'>Krew cieknie z: [jointext(parts, ", ")].</span>"
+		if(robotic)
+			. += "<span class='warning'>Wycieka ([strefa_pl(zone)]).</span>"
+		else if(get_bodypart(zone))
+			. += "<span class='warning'>Krew cieknie ([strefa_pl(zone)]).</span>"
+		else
+			. += "<span class='warning'>Krew cieknie z kikuta ([strefa_pl(zone)]).</span>"
 
 #undef AQ_BLEED_HIT_MEMORY

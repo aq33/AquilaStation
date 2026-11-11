@@ -152,8 +152,10 @@
 
 	// A limb under analgesia (anaesthesia) feels nothing
 	ADD_TRAIT(patient, TRAIT_ANALGESIA, TRAIT_GENERIC)
+	patient.aq_pain = 100
 	patient.aq_handle_pain()
 	TEST_ASSERT(patient.aq_pain_raw == 0, "Analgesia left [patient.aq_pain_raw] pain")
+	TEST_ASSERT(patient.aq_pain == 0, "Analgesia left [patient.aq_pain] felt pain")
 	REMOVE_TRAIT(patient, TRAIT_ANALGESIA, TRAIT_GENERIC)
 
 	// A paralysed limb feels nothing

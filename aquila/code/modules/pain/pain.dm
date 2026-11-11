@@ -134,6 +134,8 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	aq_handle_adrenal_glands() // adrenaline.dm
 	var/target = max(0, aq_pain_raw - aq_pain_suppression(aq_pain_raw))
 	aq_pain += (target - aq_pain) * (target > aq_pain ? AQ_PAIN_RISE : AQ_PAIN_FALL)
+	if(HAS_TRAIT(src, TRAIT_ANALGESIA))
+		aq_pain = 0 // anaesthesia numbs at once, it does not wear the pain off slowly
 	if(aq_pain < 1)
 		aq_pain = target < 1 ? 0 : aq_pain
 	var/sharp = aq_pain_raw - aq_pain_last_raw >= AQ_PAIN_SHARP_JUMP && target > 10
@@ -238,8 +240,10 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	. = ..()
 	if(aq_pain >= 10 || aq_pain_raw >= 10)
 		. += "<span class='alert'>Ból: [aq_pain_level_text(aq_pain)] ([round(aq_pain)], bez leków [round(aq_pain_raw)]).</span>"
-	if(aq_adrenal_reserve < 100 || aq_adrenaline_tolerance >= 0.2)
-		. += "<span class='notice'>Rezerwa nadnerczy: [round(aq_adrenal_reserve)]%[aq_adrenaline_tolerance >= 0.2 ? ", tolerancja na adrenalinę [round(aq_adrenaline_tolerance * 100)]%" : ""].</span>"
+	if(aq_adrenaline_tolerance >= 0.2)
+		. += "<span class='notice'>Rezerwa nadnerczy: [round(aq_adrenal_reserve)]%, tolerancja na adrenalinę [round(aq_adrenaline_tolerance * 100)]%.</span>"
+	else if(aq_adrenal_reserve < 100)
+		. += "<span class='notice'>Rezerwa nadnerczy: [round(aq_adrenal_reserve)]%.</span>"
 
 /mob/living/carbon/human/fully_heal(admin_revive = FALSE)
 	. = ..()
