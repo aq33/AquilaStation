@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/simple_animal/hostile/wizard,
 	/mob/living/basic/zombie, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/retaliate/clown,
-	/mob/living/simple_animal/hostile/retaliate/spaceman,
+	/mob/living/basic/spaceman, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
 	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,

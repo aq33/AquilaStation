@@ -940,7 +940,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\spider\giant_spiders.dm"
 #include "code\modules\mob\living\simple_animal\hostile\spider\young_spiders.dm"
 #include "code\modules\mob\living\simple_animal\hostile\spider\spiderlings.dm"
-#include "code\modules\mob\living\simple_animal\hostile\kurwinoxy.dm"
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\hivelord.dm"
 #include "code\modules\mob\living\simple_animal\hostile\nsv_syndicate.dm"
@@ -2050,6 +2049,10 @@
 #include "code\datums\components\spawner_basic.dm"
 #include "code\modules\mob\living\basic\ruin_defender\zombie.dm"
 #include "code\modules\mob\living\basic\ruin_defender\skeleton.dm"
+#include "code\modules\mob\living\basic\space_fauna\tree.dm"
+#include "code\modules\mob\living\basic\space_fauna\ant.dm"
+#include "code\modules\mob\living\basic\space_fauna\spaceman.dm"
+#include "code\modules\mob\living\basic\space_fauna\kurwinoxy.dm"
 // Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS
@@ -2057,6 +2060,7 @@
 #include "code\modules\unit_tests\aquila_basic_deer.dm"
 #include "code\modules\unit_tests\aquila_basic_retaliate_p1.dm"
 #include "code\modules\unit_tests\aquila_basic_undead_p1.dm"
+#include "code\modules\unit_tests\aquila_basic_fauna_p1.dm"
 #include "code\modules\unit_tests\aquila_basic_cat_house.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"

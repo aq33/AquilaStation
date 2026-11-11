@@ -170,7 +170,7 @@
 	var/crossed = 0
 	var/mobs = 1
 	reusable = TRUE
-	var/mob/living/spawned = /mob/living/simple_animal/hostile/retaliate/spaceman // AQ EDIT - basic moby
+	var/mob/living/spawned = /mob/living/basic/spaceman // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/Initialize(mapload)
 	. = ..()
@@ -248,7 +248,7 @@
 	spawned = /mob/living/simple_animal/hostile/retaliate/clown/mutant
 
 /obj/effect/trap/nexus/trickyspawner/tree
-	spawned = /mob/living/simple_animal/hostile/tree
+	spawned = /mob/living/basic/tree // AQ EDIT - basic moby
 
 
 #undef PICK_STYLE_RANDOM
