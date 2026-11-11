@@ -74,6 +74,44 @@
 			TEST_ASSERT(patient.getFireLoss() < burn_before, "[legacy ? "legacy intents" : "combat mode"], [harm ? "harm" : "help"]: a player lightgeist did not heal by clicking")
 		qdel(player)
 
+/// A Netherworld creature finds and hits a human through its AI and hits harder when hurt (health_scaling_effects);
+/// its teleport is not blocked when nobody sees it (unobserved_actor); the blank body scales too
+/datum/unit_test/aquila_netherworld_creatures
+
+/datum/unit_test/aquila_netherworld_creatures/Run()
+	var/mob/living/basic/creature/creature = allocate(/mob/living/basic/creature, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	var/datum/ai_controller/controller = creature.ai_controller
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The creature did not look for targets")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The creature did not pick the human next to it")
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	creature.next_move = 0
+	creature.next_click = 0
+	var/brute_before = victim.getBruteLoss()
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/basic_melee_attack), "The creature did not go for its target")
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The creature's AI attack did not hurt the human")
+	controller.CancelActions()
+
+	var/full_damage = creature.melee_damage
+	creature.adjustBruteLoss(creature.maxHealth * 0.8)
+	sleep(1) // the stats update asynchronously
+	TEST_ASSERT(creature.melee_damage > full_damage, "A hurt creature does not hit harder")
+	creature.adjustBruteLoss(-creature.maxHealth)
+	sleep(1)
+	TEST_ASSERT_EQUAL(creature.melee_damage, full_damage, "A healed creature kept the extra damage")
+
+	var/datum/component/unobserved_actor/blocker = creature.GetComponent(/datum/component/unobserved_actor)
+	TEST_ASSERT(blocker, "The creature's teleport has no unobserved actor component")
+	var/datum/action/cooldown/spell/jaunt/creature_teleport/teleport = locate() in creature.actions
+	TEST_ASSERT(teleport, "The creature has no teleport")
+	TEST_ASSERT(!(SEND_SIGNAL(creature, COMSIG_MOB_BEFORE_SPELL_CAST, teleport, creature) & SPELL_CANCEL_CAST), "The teleport was blocked although no player sees the creature")
+
+	var/mob/living/basic/blankbody/blank = allocate(/mob/living/basic/blankbody, get_step(run_loc_floor_bottom_left, NORTH))
+	var/blank_damage = blank.melee_damage
+	blank.adjustBruteLoss(blank.maxHealth * 0.8)
+	sleep(1)
+	TEST_ASSERT(blank.melee_damage > blank_damage, "A hurt blank body does not hit harder")
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS

@@ -222,7 +222,7 @@
 	spawned = /mob/living/simple_animal/hostile/nanotrasen/hugbox
 
 /obj/effect/trap/nexus/trickyspawner/eldritch //currently unused. if used, note these guys are quite powerful with a whopping 35 melee
-	spawned = /mob/living/simple_animal/hostile/netherworld
+	spawned = /mob/living/basic/creature // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/spookyskeleton
 	spawned = /mob/living/simple_animal/hostile/skeleton

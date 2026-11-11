@@ -302,7 +302,7 @@
 		/obj/effect/decal/remains/human = 10,
 		/mob/living/simple_animal/hostile/cat_butcherer = 2,
 		/mob/living/simple_animal/hostile/stickman = 2,
-		/mob/living/simple_animal/hostile/netherworld/blankbody = 2,
+		/mob/living/basic/blankbody = 2, // AQ EDIT - basic moby
 		/mob/living/simple_animal/cluwne = 1,
 		/mob/living/simple_animal/hostile/retaliate/clown = 1,
 		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus = 1,

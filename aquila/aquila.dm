@@ -2053,6 +2053,9 @@
 // Basic moby części 2, grupa „reszta”: mimiki, muchołówka, Netherworld, klauni, fugu, świetlik, kosmiczny smok (tg 926bf40c5a)
 #include "code\datums\components\healing_touch.dm"
 #include "code\modules\mob\living\basic\space_fauna\lightgeist.dm"
+#include "code\datums\components\unobserved_actor.dm"
+#include "code\datums\components\health_scaling_effects.dm"
+#include "code\modules\mob\living\basic\space_fauna\netherworld.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
