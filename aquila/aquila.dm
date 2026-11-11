@@ -943,7 +943,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\kurwinoxy.dm"
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\hivelord.dm"
-#include "code\modules\mob\living\simple_animal\hostile\nsv_syndicate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\regalrat.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"

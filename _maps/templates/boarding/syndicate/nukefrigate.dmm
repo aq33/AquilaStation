@@ -1,4 +1,67 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ab" = (
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/plating,
+/area/ruin/powered/nsv13/boarding_interior)
+"ac" = (
+/obj/structure/fluff/support_beam{
+	color = "#5e5e5c";
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ad" = (
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ae" = (
+/obj/structure/railing,
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/nsv13/boarding_interior)
+"af" = (
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ag" = (
+/mob/living/carbon/human/ai_boarder/syndicate/smg,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ah" = (
+/mob/living/carbon/human/ai_boarder/syndicate/smg,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/nsv13/boarding_interior)
+"ai" = (
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"aj" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "safety seat"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ak" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "safety seat"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/door/firedoor/border_only/directional/north,
+/mob/living/carbon/human/ai_boarder/syndicate/smg,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
 "am" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -20,16 +83,6 @@
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/powered/nsv13/boarding_interior)
-"bH" = (
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
 "bQ" = (
 /obj/structure/lattice/catwalk/over/ship/dark,
 /obj/structure/railing,
@@ -44,10 +97,6 @@
 	dir = 8;
 	req_one_access_txt = "150"
 	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
-"cj" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
 "cn" = (
@@ -136,10 +185,6 @@
 /obj/item/storage/box/donkpockets/donkpocketspicy,
 /turf/open/floor/monotile/dark,
 /area/ruin/powered/nsv13/boarding_interior)
-"eM" = (
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
 "eU" = (
 /obj/machinery/power/smes,
 /obj/machinery/light,
@@ -149,16 +194,6 @@
 /obj/structure/table/reinforced,
 /obj/item/wrench,
 /obj/item/wrench,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"fh" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "safety seat"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/obj/machinery/door/firedoor/border_only/directional/north,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "fA" = (
@@ -207,10 +242,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/powered/nsv13/boarding_interior)
-"gY" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/shotgun,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
 "hg" = (
 /obj/effect/landmark/iff_console_spawner{
 	dir = 8
@@ -242,13 +273,6 @@
 	id = "aether_torp"
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"hA" = (
-/obj/effect/turf_decal/arrows{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "iv" = (
 /obj/effect/turf_decal/ship/techfloor{
@@ -560,10 +584,6 @@
 "rX" = (
 /turf/open/space/basic,
 /area/space)
-"sa" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
 "sc" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/ausbushes/brflowers,
@@ -603,10 +623,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
-/area/ruin/powered/nsv13/boarding_interior)
-"tJ" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "tL" = (
 /obj/structure/railing{
@@ -655,10 +671,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
-"wh" = (
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "ws" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
@@ -685,13 +697,6 @@
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
-/area/ruin/powered/nsv13/boarding_interior)
-"xg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/space,
-/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "xz" = (
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -733,10 +738,6 @@
 	dir = 1
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/nsv13/boarding_interior)
-"yI" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/sword,
-/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "yS" = (
 /obj/machinery/missile_builder{
@@ -788,13 +789,6 @@
 	},
 /obj/item/wirecutters,
 /turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
-"BI" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/space,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "BN" = (
 /obj/structure/chair{
@@ -975,15 +969,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"Ix" = (
-/obj/structure/railing,
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/nsv13/boarding_interior)
-"IF" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/shotgun,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
 "IL" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/stripes/red/line{
@@ -1010,14 +995,6 @@
 "IY" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"Ji" = (
-/obj/structure/chair{
-	dir = 8;
-	name = "safety seat"
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Jq" = (
 /obj/machinery/computer/ship/viewscreen,
@@ -1305,10 +1282,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"RS" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/sword,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "Se" = (
 /obj/machinery/computer/ship/ftl_computer/syndicate{
 	dir = 4;
@@ -1389,17 +1362,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
-"Uv" = (
-/obj/structure/fluff/support_beam{
-	color = "#5e5e5c";
-	dir = 4
-	},
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "Uw" = (
 /obj/machinery/ship_weapon/torpedo_launcher/east,
 /turf/open/floor/engine,
@@ -1437,16 +1399,6 @@
 "Vw" = (
 /obj/structure/hull_plate,
 /turf/open/floor/plating/airless,
-/area/ruin/powered/nsv13/boarding_interior)
-"VW" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "safety seat"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/obj/machinery/door/firedoor/border_only/directional/south,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg,
-/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "Wn" = (
 /obj/effect/turf_decal/ship/techfloor{
@@ -1538,10 +1490,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"XQ" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "Yi" = (
 /obj/effect/turf_decal/tile/ship/half/red{
 	alpha = 200;
@@ -1557,11 +1505,6 @@
 /turf/open/floor/plasteel/dark/corner{
 	dir = 8
 	},
-/area/ruin/powered/nsv13/boarding_interior)
-"Ym" = (
-/obj/effect/spawner/lootdrop/maintenance/four,
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "Yv" = (
 /obj/structure/rack,
@@ -19141,7 +19084,7 @@ rX
 rX
 rw
 aR
-bH
+FX
 Mr
 FX
 eU
@@ -19399,7 +19342,7 @@ rw
 Pq
 cr
 Qg
-RS
+aa
 cr
 rw
 rX
@@ -20942,7 +20885,7 @@ rw
 FY
 FY
 Jw
-Ym
+ab
 Jw
 rw
 Vw
@@ -21182,7 +21125,7 @@ gP
 Vw
 rw
 Jw
-wh
+Jw
 Jw
 FY
 nd
@@ -21963,7 +21906,7 @@ qm
 gM
 gM
 iv
-BI
+gM
 gM
 Aa
 Fu
@@ -22209,13 +22152,13 @@ rX
 Fu
 Dz
 cr
-XQ
+cr
 cr
 cr
 dZ
 rw
 Qg
-Uv
+ac
 xH
 xH
 xH
@@ -24009,7 +23952,7 @@ bQ
 Qg
 rw
 DT
-yI
+ad
 Da
 uQ
 hx
@@ -24517,7 +24460,7 @@ me
 me
 me
 me
-Ix
+ae
 Qg
 rw
 Ea
@@ -25292,7 +25235,7 @@ nF
 uQ
 uQ
 uQ
-xg
+ov
 Lx
 rw
 rX
@@ -26572,7 +26515,7 @@ uQ
 uQ
 uQ
 uQ
-gY
+af
 uQ
 rw
 rX
@@ -27329,7 +27272,7 @@ rX
 rw
 uQ
 uQ
-sa
+ag
 uQ
 uQ
 uQ
@@ -29628,7 +29571,7 @@ rX
 BV
 rw
 ws
-IF
+xM
 cr
 rw
 Pq
@@ -30158,7 +30101,7 @@ JF
 Mk
 qs
 Mk
-Ji
+JF
 Mk
 oQ
 Jw
@@ -31178,7 +31121,7 @@ xM
 cr
 cr
 Lr
-hA
+HC
 cr
 cr
 aA
@@ -31427,7 +31370,7 @@ xM
 xM
 xM
 xM
-eM
+xM
 xM
 xM
 LV
@@ -31679,7 +31622,7 @@ rw
 xM
 xM
 xM
-cj
+ah
 xM
 xM
 xM
@@ -31948,7 +31891,7 @@ cr
 Lr
 cr
 cr
-tJ
+cr
 Lr
 cr
 cr
@@ -32198,7 +32141,7 @@ cr
 cr
 JZ
 cr
-eM
+xM
 cr
 JZ
 aA
@@ -33735,7 +33678,7 @@ zX
 cr
 cr
 BN
-tJ
+ai
 cr
 fV
 rw
@@ -33985,7 +33928,7 @@ oZ
 rw
 Jw
 rw
-wh
+Jw
 rw
 OJ
 cr
@@ -34244,15 +34187,15 @@ rw
 sw
 rw
 Xl
-VW
+aj
 cr
 cr
 cr
-fh
+ak
 Tm
 rw
 Jw
-wh
+Jw
 rw
 rw
 rX
