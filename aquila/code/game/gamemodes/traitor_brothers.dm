@@ -26,6 +26,8 @@
 		pre_traitors -= bro
 		team.add_member(bro)
 		bro.special_role = "brother"
+		// Jak w trybie bros: brat nie może zostać SI (implant, spotkanie i wspólne cele wymagają ciała)
+		bro.restricted_roles = (islist(bro.restricted_roles) ? bro.restricted_roles : list()) | JOB_NAME_AI
 		log_game("[key_name(bro)] has been selected as a Brother instead of a traitor")
 	pre_traitor_brother_teams += team
 	return team

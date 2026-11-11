@@ -59,10 +59,9 @@
 	if(holder == new_holder)
 		return
 	if(holder)
-		UnregisterSignal(holder, list(COMSIG_HUMAN_PARRY, COMSIG_HUMAN_CHECK_SHIELDS, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(holder, list(COMSIG_HUMAN_CHECK_SHIELDS, COMSIG_PARENT_QDELETING))
 	holder = new_holder
 	if(holder)
-		RegisterSignal(holder, COMSIG_HUMAN_PARRY, PROC_REF(start_parry))
 		RegisterSignal(holder, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(attempt_parry))
 		RegisterSignal(holder, COMSIG_PARENT_QDELETING, PROC_REF(holder_deleted))
 
@@ -90,7 +89,6 @@
 	return TRUE
 
 /datum/component/parry/proc/start_parry(mob/living/carbon/human/source)
-	SIGNAL_HANDLER
 	if(source.stat != CONSCIOUS || source.incapacitated())
 		return
 	var/obj/item/item_parent = parent
@@ -151,7 +149,7 @@
 		conditions = " (trzymany oburącz)"
 	else if(requires_activation)
 		conditions = " (włączony)"
-	examine_list += "<span class='notice'>Potrafi <b>parować</b>[conditions]: [english_list(names, and_text = " i ")]. Paruj Spacją, trzymając ją w ręce.</span>"
+	examine_list += "<span class='notice'>Potrafi <b>parować</b>[conditions]: [english_list(names, and_text = " i ")]. Paruj Spacją, trzymając ją w aktywnej ręce (albo w drugiej, gdy aktywna jest pusta).</span>"
 
 /// Czy przedmiot jest włączony na potrzeby parowania (requires_activation)
 /obj/item/proc/is_parry_active()
@@ -171,13 +169,21 @@
 	for(var/mob/viewer in viewers(DEFAULT_MESSAGE_RANGE, defender))
 		defender.balloon_alert(viewer, text, color, show_in_chat = FALSE)
 
-/// Spacja paruje, gdy w ręce jest broń, która to potrafi. Zwraca TRUE, jeśli klawisz poszedł na parowanie
+/// Spacja paruje jedną bronią: z aktywnej ręki, a z drugiej tylko wtedy, gdy aktywna jest pusta.
+/// Gdy ta broń nie może teraz parować (nieuchwycona oburącz, wyłączona), zwraca FALSE i Spacja zostaje przy rzucaniu.
+/// Zwraca TRUE, jeśli klawisz poszedł na parowanie (także gdy parowanie jest jeszcze na przerwie)
 /mob/living/carbon/human/proc/space_parry()
-	for(var/obj/item/held in held_items)
-		if(held.GetComponent(/datum/component/parry))
-			SEND_SIGNAL(src, COMSIG_HUMAN_PARRY)
-			return TRUE
-	return FALSE
+	var/obj/item/active_item = get_active_held_item()
+	var/datum/component/parry/parry = active_item?.GetComponent(/datum/component/parry)
+	if(!active_item)
+		for(var/obj/item/held in held_items)
+			parry = held.GetComponent(/datum/component/parry)
+			if(parry)
+				break
+	if(!parry || !parry.can_parry_now())
+		return FALSE
+	parry.start_parry(src)
+	return TRUE
 
 // Parowanie siedzi pod tym samym skrótem co przytrzymanie rzutu (domyślnie Spacja), bo nowy osobny skrót
 // nie trafiłby do zapisanych ustawień klawiszy graczy. Z bronią do parowania w ręce Spacja paruje zamiast rzutu.

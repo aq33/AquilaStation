@@ -88,5 +88,32 @@
 	extinguisher.melee_attack_chain(attacker, defender)
 	TEST_ASSERT_EQUAL(defender.getBruteLoss(), 0, "An ion sabre did not parry an extinguisher from behind")
 
+/// Spacja paruje jedną bronią (aktywna ręka), a gdy nie da się parować, zostaje przy trybie rzucania
+/datum/unit_test/aquila_space_parry_choice
+
+/datum/unit_test/aquila_space_parry_choice/Run()
+	var/mob/living/carbon/human/fighter = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/katana/katana = allocate(/obj/item/katana)
+	var/obj/item/shield/riot/shield = allocate(/obj/item/shield/riot)
+	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
+	var/obj/item/fireaxe/axe = allocate(/obj/item/fireaxe)
+	var/datum/component/parry/katana_parry = katana.GetComponent(/datum/component/parry)
+	var/datum/component/parry/shield_parry = shield.GetComponent(/datum/component/parry)
+
+	fighter.put_in_active_hand(toolbox)
+	fighter.put_in_inactive_hand(shield)
+	TEST_ASSERT(!fighter.space_parry(), "Space parried with the off-hand shield while the active hand held something to throw")
+
+	fighter.dropItemToGround(toolbox)
+	fighter.put_in_active_hand(katana)
+	TEST_ASSERT(fighter.space_parry(), "Space did not parry with a katana in the active hand")
+	TEST_ASSERT_EQUAL(katana_parry.time_parried, world.time, "The active hand katana did not start parrying")
+	TEST_ASSERT(shield_parry.time_parried != world.time, "The off-hand shield started parrying too, a hit would cost stamina twice")
+
+	fighter.dropItemToGround(katana)
+	fighter.dropItemToGround(shield)
+	fighter.put_in_active_hand(axe)
+	TEST_ASSERT(!fighter.space_parry(), "Space went to parrying with a fire axe held in one hand, the throw mode was lost")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

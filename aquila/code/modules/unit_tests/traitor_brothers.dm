@@ -29,6 +29,8 @@
 	TEST_ASSERT_EQUAL(length(mode.pre_traitors), 1, "The brothers stayed on the traitor list")
 	TEST_ASSERT(loner in mode.pre_traitors, "The unwilling traitor lost the traitor role")
 	TEST_ASSERT_EQUAL(first.special_role, "brother", "Wrong special role of a brother")
+	TEST_ASSERT(JOB_NAME_AI in first.restricted_roles, "A blood brother can still be picked as the AI")
+	TEST_ASSERT(!(JOB_NAME_AI in mode.restricted_jobs), "Restricting the brother changed the traitor mode's own job list")
 	TEST_ASSERT(team in mode.pre_traitor_brother_teams, "The team does not get its antag datums in post_setup")
 
 	var/list/pool_config = CONFIG_GET(keyed_list/weighted_pool)
