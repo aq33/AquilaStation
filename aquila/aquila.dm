@@ -1045,6 +1045,7 @@
 // Rework strzelania: silnik pocisku tg, autofire, odrzut, stan broni
 #include "code\modules\gunplay\projectile_engine.dm"
 #include "code\modules\gunplay\firemodes.dm"
+#include "code\modules\gunplay\aiming_labels.dm"
 #include "code\modules\gunplay\autofire.dm"
 #include "code\modules\gunplay\recoil.dm"
 #include "code\modules\gunplay\cursor.dm"
@@ -1053,6 +1054,7 @@
 #include "code\modules\gunplay\condition.dm"
 #include "code\modules\gunplay\feel.dm"
 #include "code\modules\gunplay\cover.dm"
+#include "code\modules\mob\living\carbon\human\give_click.dm"
 #include "code\modules\gunplay\attachments.dm"
 #include "code\modules\gunplay\iff_smart.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
