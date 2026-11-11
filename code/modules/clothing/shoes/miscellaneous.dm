@@ -122,7 +122,7 @@
 
 /obj/item/clothing/shoes/jackboots
 	name = "buty wojskowe"
-	desc = "Policyjne buty bojowe wydawane przez Nanotrasen na scenariusze bojowe i sytuacje bojowe. Walka zawsze i wszędzie."
+	desc = "Żandarmskie buty bojowe wydawane przez Nanotrasen na scenariusze bojowe i sytuacje bojowe. Walka zawsze i wszędzie."
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

@@ -274,3 +274,470 @@
       się całą flotą.
   - admin: 'Nowe przełączniki w Debug: Toggle overmap scale, Toggle AI morale, oraz
       „Strojenie AI” do zmiany liczb walki AI w trakcie rundy.'
+'2026-11-07':
+  Joker66613:
+  - bugfix: Oględziny pustej minikarty SI i konsoli przeciwlotniczej bez wieżyczki
+      znów pokazują opis.
+  - bugfix: W wersji angielskiej opis czapek poczty nie jest już pusty.
+  - bugfix: Przy pierwszym wejściu lobby otwiera się dopiero po wyborze języka, a
+      okno wyboru czeka, aż gra się wczyta.
+  - code_imp: Test regresji dla zniszczonych części myśliwca w slotach.
+  - tweak: 'Menu radialne wygląda jak w SS14: tarcza z sektorami, podświetlony sektor
+      pod myszą, nazwa opcji nad menu.'
+  - bugfix: Okno roli antagonisty pokazuje samouczek roli (demon impulsu i wiele innych
+      ról miało tam tylko cele).
+  - bugfix: Porady abordażystów i sługi bloodlinga nie otwierają się puste.
+  - bugfix: Demon impulsu porusza się w nieważkości i nie przepycha ani nie wystrzeliwuje
+      kanistrów.
+  - tweak: Wybuch implantu karnego CE zostawia głowę z mózgiem, więc CE nie wypada
+      z rundy.
+  - tweak: Pełny plecak, pas albo kieszeń pokazuje wolne pola na czerwono.
+  - rscadd: Przycisk „Czat głosowy” w menu pod Esc.
+  - bugfix: Działo Gaussa animuje strzał obu luf.
+  - bugfix: Konsola łączności działa na statku górniczym i innych statkach załogi.
+  - bugfix: Opis przedmiotu w sklepie aquilosów nie chowa się pod podglądem postaci.
+  - bugfix: Zsyp dostaw z nowym sprite'em ma pasującą animację; moduł zsypu MOD wysyła
+      do wybranego celu.
+  - bugfix: Kamera nie zostaje na zsypie po wyjściu z niego.
+  - bugfix: Pierogi i inne składniki w mikrofali nie są czarnymi plamami.
+  - bugfix: Radio artylerii ma swój kolor w czacie i w oknie mówienia.
+  - spellcheck: Kategorie fabrykatorów po polsku, bez „The” w dymkach, dział amunicji
+      nazywa się Uzbrojenie.
+  - rscadd: 'Miękkie światło: płynne przejścia między światłem a cieniem zamiast kafelkowych
+      schodków (opcja w Grafika → Jakość).'
+  - rscadd: 'Poświata wokół świecących rzeczy: ekranów, lamp, alarmów i laserów, w
+      czterech poziomach (opcja w Grafika → Jakość).'
+  - rscadd: Lampy, pociski energetyczne i światełka śluz świecą w ciemności.
+  - rscadd: Promienie świateł od jasnych rzeczy (opcja, domyślnie wyłączona, działa
+      z poświatą).
+  - rscadd: 'Prototyp cieni od ścian dla latarek, kasków, PDA i borgów: światło latarki
+      nie przechodzi już przez ściany.'
+  - imageadd: Ikona trójkąta cienia dla latarek.
+  - admin: aq_set_light_shadows(FALSE) przez Advanced ProcCall wyłącza cienie latarek.
+  - rscadd: Zmiana zaczyna się zawsze o 7:00 czasu stacji, a noc kończy się o 7:00.
+  - rscadd: Kapitan może w konsoli komunikacji wyłączyć oświetlenie nocne na całym
+      statku i przywrócić automat.
+  - config: Shrike, Von Neumann i Atlantis są w głosowaniu na mapę, a każda mapa ma
+      w nawiasie rozmiar (mała, średnia, duża).
+  - rscadd: Naukowiec ma na start w plecaku neutralizator anomalii.
+  - rscadd: Guzik „leż” w trakcie sprintu z combat mode rzuca postać przed siebie,
+      a trafiony ląduje na ziemi.
+  - balance: Wbiegnięcie sprintem w kogoś, kto stoi w combat mode, przewraca biegnącego
+      jak ściana.
+  - rscadd: Stosy (metal, szkło itd.) pokazują liczbę sztuk na ikonie w ekwipunku.
+  - rscadd: Guzik notatek w HUD-zie (z tg).
+  - soundadd: Alarm pożarowy gra dźwięk z tg w pętli, dopóki alarm trwa.
+  - tweak: 'Ikony w plecaku i innych schowkach z siatką są ostre: nie są już skalowane
+      do kratek.'
+  - tweak: Obrót przedmiotu klawiszem E/Q w trakcie przeciągania po siatce plecaka
+      obraca tylko podgląd, przedmiot obraca się po upuszczeniu.
+  - rscadd: Postacie mrugają, a nieprzytomne mają zamknięte oczy.
+  - rscadd: 'Prawo kosmiczne: nowe wykroczenie „Załatwianie potrzeby w miejscu publicznym”.'
+  - rscadd: 'Gracz z angielskim w preferencjach dołącza jako obcokrajowiec: nie zna
+      Galaktycznego Wspólnego i mówi po Angielsku, którego załoga nie rozumie.'
+  - rscadd: Czip tłumacza w słuchawkach obcokrajowca (własne gniazdo obok kluczy,
+      wyjmowany multitoolem) tłumaczy mowę na polski i polską mowę na angielski przez
+      DeepL. Bez słuchawek obcokrajowiec dostaje tłumacz kieszonkowy.
+  - rscadd: OOC, adminhelpy i PW z adminami są tłumaczone między polskim i angielskim.
+  - rscadd: Obcokrajowiec losuje angielskie imiona z oryginalnej puli NSV13.
+  - rscadd: EMP wyłącza tłumacza na minutę, a silny może go spalić. Zapasowe czipy
+      tłumacza są w szafce HoP-a.
+  - imageadd: Sprite czipu tłumacza (sprawny i spalony).
+  - imageadd: Ikonka języka Angielski.
+  - config: DEEPL_API_KEY w config.txt (klucz DeepL API, darmowy kończy się na ":fx").
+  - tweak: 'Ochrona to znowu Żandarmeria: Żandarm zamiast Policjanta, kanał radia
+      Żandarmeria, zielone mundury, szafki, SecDrobe, śluzy i podłogi.'
+  - tweak: 'Inżynieria w barwach Orlenu: czerwono-białe mundury, kaski, szafki, mundurownie,
+      podłogi i śluzy.'
+  - rscadd: Czapki z daszkiem Orlenu w mundurowniach inżynierii i atmosferyki.
+  - tweak: 'Zaopatrzenie w barwach InPostu: żółte mundury, szafki, mundurownia i podłogi.'
+  - rscadd: Beret kwatermistrza, torby InPostu i kombinezon środowiskowy kwatermistrza.
+  - tweak: Wyloty z rur wyglądają jak paczkomaty InPost.
+  - tweak: 'Medycyna w barwach NFZ: turkusowe mundury, fartuchy, szafki i mundurownie.'
+  - rscadd: Czepki, bandana, fartuch operacyjny, golf ordynatora, kitle, torby, buty
+      i czarne rękawiczki NFZ.
+  - imageadd: 'Nowy zestaw przetrwania: kieszonki otwierają się, gdy wyjmiesz z nich
+      przedmioty.'
+  - imageadd: Skafander górniczy InPostu i kombinezony plazmoludzi NFZ i InPostu.
+  - imageadd: Maszyny botaniki i ksenoarcheologii w szarym metalu zamiast beżu.
+  - bugfix: Fartuchy i inne przełączane stroje znowu rozpina się Alt+klikiem.
+  - tweak: Czepki NFZ chowają włosy, hełmy plazmoludzi medycyny pasują do kombinezonów.
+  - tweak: Mundurownie działów bez kolorowych przepasek, turkusowe podłogi medycyny.
+  - imageadd: Nowe sprite'y Żandarmerii, Orlenu i NFZ oraz ikonki profesji na HUD-zie.
+  - bugfix: Okno changelogu przy pierwszym wejściu otwiera się dopiero po wyborze
+      wersji językowej.
+  - rscadd: 'Statek pamięta swoją strukturę między rundami: ściany, podłogi z uszkodzeniami,
+      okna, kraty, drzwi, kable, rury i maszyny zostają tak, jak zostawiła je załoga.
+      Zniszczone maszyny nie wracają, a zbudowane i przeniesione stoją tam, gdzie
+      je zostawiono. Przedmioty uzupełniają się z mapy jak zwykle.'
+  - rscadd: Maszyny ważne dla antagonistów i misji okrętu (ster, nawigacja, FTL, konsola
+      komunikacyjna, serwery R&D i inne) zawsze wracają na swoje miejsca z mapy.
+  - rscadd: Dziury w kadłubie z poprzedniej rundy są na starcie załatane pianką, a
+      rzeczy wiszące na zburzonych ścianach przechodzą na sąsiednią ścianę.
+  - rscadd: 'Po końcu rundy w oknie głosowania na mapę gracze wybierają: kontynuować
+      granie na obecnym statku albo zacząć na nowym statku prosto z mapy.'
+  - admin: 'Server -> Ship Structure: stan zapisu struktury statku, pominięcie zapisu
+      rundy i skasowanie zapisu. Zniszczenie statku i nowa kampania kasują zapis.'
+  - config: SHIP_STRUCTURE_PERSISTENCE w game_options.txt włącza trwałą strukturę
+      statku.
+  - bugfix: Cela izolacyjna, biblioteka i panele słoneczne w losowych pokojach znów
+      mogą się pojawić (wskazywały nieistniejące pliki map).
+  - code_imp: CI sprawdza mapy Aquili, urwane rury i terminale bez kabla na mapach
+      oraz rozmiary losowych pokoi.
+  LemonInTheDark:
+  - code_imp: Piętra statku są liczone raz przy tworzeniu poziomu, co przyspiesza
+      dźwięki i ruch między piętrami.
+  sh4dow321:
+  - bugfix: Konsola łączności i inne okna nie wywalają się już błędem przy angielskiej
+      wersji językowej.
+  - rscadd: 'Floty AI nadają przez radio: przy wezwaniu pomocy, odpowiedzi na nie
+      i odwrocie mostek słyszy przechwycony, zakłócony fragment transmisji wroga albo
+      czysty komunikat floty sojuszniczej.'
+  - balance: Okręty AI trochę szybciej się boją i wcześniej przerywają walkę, częściej
+      strzelają salwą torped i częściej wzywają pomoc.
+  - bugfix: Filtry tlenu i azotu w atmosie na Serendipity łączą się z rurami (warstwa
+      4).
+  - bugfix: Wyszukiwarka w fabrykatorach w wersji angielskiej znajduje projekty po
+      angielskiej nazwie.
+  - bugfix: Kotary nie zasłaniają już maszyny do przetwarzania rudy na Trawniku.
+  - bugfix: Drobne poprawki map Serendipity.
+'2026-11-08':
+  FeudeyTF, SmArtKar, jlsnow301, Melbert, Kryson, Kinneb:
+  - rscadd: 'Tablica detektywa: sprawy, przypinanie zdjęć i kartek jako dowodów, łączenie
+      ich nitką. Jest w szafce detektywa i w skrzyni kryminalistycznej.'
+  - rscadd: 'Nowe animacje ataku: ostre przedmioty tną łukiem, szpiczaste pchają do
+      przodu.'
+  - rscadd: 'Noże, miecze i podobne bronie mają pchnięcie prawym przyciskiem (na intencji
+      rozbrajania): rany kłute za nieco mniejsze obrażenia.'
+  - balance: Przebicie pancerza broni działa też na konstrukcje i maszyny.
+  - rscadd: Alt+klik na kafelek otwiera okno z jego zawartością (wyszukiwanie, grupowanie)
+      zamiast zakładki w panelu statystyk.
+  - rscadd: 'Halucynacje mają poziomy: przy lekkich zdarzają się rzadziej i są subtelniejsze,
+      przy silnych częstsze i dziwniejsze. Nowe halucynacje: krwawienie, głos w głowie,
+      oczy w ciemności.'
+  - balance: Zaburzenia Dysocjacyjne dają łagodniejsze halucynacje; w preferencjach
+      (Gra) można zdjąć limit.
+  - rscadd: 'Zupy gotuje się w garnku na kuchence: woda i składniki, potem chochlą
+      do miski. 34 zupy, w tym żurek i barszcz.'
+  - rscadd: Kuchenka i kuchnia z piekarnikiem (płytki w R&D), garnki i chochle w automacie
+      z zastawą.
+  - rscdel: Zupy nie są już przedmiotami z receptury craftingu (poza zupą życzeń,
+      mämmi i galaretkami).
+  Joker66613:
+  - rscadd: Ogłoszenia w czacie w pasiastych ramkach jak w tg; ramki alarmów w kolorze
+      poziomu alarmu.
+  - rscadd: 'Examine w nowym układzie: tytuł z portretem postaci, osobne sekcje stanu
+      i danych z HUD-ów.'
+  - rscadd: 'Nowe lobby w stylu tg: przyciski po polsku, roleta, telewizorek z odliczaniem
+      i przycisk samouczka.'
+  - rscdel: Usunięto modsuity.
+  - rscadd: Hardsuity przyjmują moduły (dawne moduły MOD), mają rdzeń z baterią i
+      wbudowaną butlę z tlenem. Szafa na skafandry ładuje baterię i dolewa tlen.
+  - tweak: ZRK, szwadron śmierci, ninja, mag bitewny i uplink używają hardsuitów z
+      modułami.
+  - rscadd: Karta ID na smyczy, PDA i portfel są widoczne na postaci.
+  - rscadd: 'Wojna gangów: zawsze dwa gangi, limit członków rosnący z załogą, panel
+      i okno roli oraz Dominator jako cel ostateczny.'
+  - bugfix: Wiadomości gangtoola docierają do wszystkich posiadaczy w gangu.
+  - rscadd: Strzały z broni palnej zostawiają w powietrzu dym jak pożar.
+  - imageadd: Nowe sprite'y ogniw i ładowarki (Shiptest).
+  - imageadd: Sprite generatora termoelektrycznego (TEG) autorstwa Quartofela.
+  - imageadd: Ikona koła emotek to żółta buźka.
+  - rscadd: Atlantis i Von Neumann mają pracownie bitrunnerów, exodrony, serwery SI
+      z ethernetem, ksenoarcheologię, circuity, kuźnię amunicji, klatkę magnesu asteroid,
+      shipbreaking, rynek szlamów, zlecenia cywilne, giełdę i restaurację, jak Atlas
+      i Trawnik.
+  - rscadd: Atlantis ma wirusologię w skrzydle sal chorych medbayu.
+  - rscadd: 'Atlantis i Von Neumann mają gułag: prom obozu pracy przy nowej śluzie
+      brygu, teleporter gułagu i automat zwrotu rzeczy.'
+  - rscadd: Obie mapy mają nowy sprzęt kuchenny, monitory funkcji życiowych przy łóżkach
+      stazy, dzwonki działów, zegary, GenPop, konsolę NTSL, Wojtka i radiolatarnie
+      MULE.
+  - bugfix: Na Atlantis obserwator z lobby trafia na statek, a abordaże KNPC mają
+      punkty patrolowe.
+  - bugfix: Na Atlantis działają zmiany profesji z job_changes (sloty pilotów, usunięty
+      kurator i prawnik).
+  - bugfix: Prom piratów i Syndykatu może zadokować przy Von Neumannie.
+  - bugfix: Atlantis ma wyświetlacze ewakuacji i SI w korytarzach oraz faksy w działach.
+  - code_imp: CI kompiluje mapę Atlantis, nowy test sprawdza mechaniki map w rotacji.
+  - bugfix: Na Trawniku wróciła drukarka układów w pracowni nauki.
+  - rscadd: 'Trawnik i Padalec losują silnik na początku rundy, jak Atlas: Trawnik
+      Teslę, Stormdrive albo supermaterię, Padalec Stormdrive albo supermaterię. Każdy
+      wariant ma na miejscu paliwo, chłodzenie, odpad i zasilanie.'
+  - code_imp: Podsystemy po wejściu do lobby i po starcie rundy ruszają kilka razy
+      szybciej, start świata jest o ok. 1,5 s krótszy, a timery i HUD zdrowia kosztują
+      serwer mniej.
+  - code_imp: Migotanie świateł przy przeciążonym reaktorze nie obciąża serwera w
+      jednym ticku.
+  - bugfix: Reaktor postawiony poza statkiem nie migocze już światłami na wszystkich
+      stacjach i ruinach.
+  - bugfix: Przycisk „Nie gotowy” w lobby znowu cofa gotowość, a konsola ID odbiera
+      dostępy.
+  - bugfix: SI w rdzeniu danych korzysta z zasilania rdzenia i nie zapętla się bez
+      prądu w pomieszczeniu.
+  - bugfix: Poszycie kadłuba, kratownice i kładki znów widać nad podłogą; rury nie
+      przebijają pokrytego pomostu, a zdjęcia nie gubią kabli i rur.
+  - bugfix: Kompost w tacy hydroponicznej nie podwaja chemikaliów, strzykawka nie
+      wstrzykuje podwójnie, a limonka i ambrozja dają właściwe owoce.
+  - bugfix: Giełda materiałów pobiera opłatę po cenie z chwili odlotu promu; aquilosy
+      liczą się tylko z osobistego konta.
+  - bugfix: 'Wampir, heretyk, darkspawn, kult krwi i wędrowiec pustki: naprawione
+      moce i rytuały z audytu.'
+  - bugfix: 'Circuity: broń, BCI, implant, śluza, dystrybutor i zespół z układem działają
+      jak w tg.'
+  - bugfix: Misja abordażu stacji kończy się po wycofaniu kontrataku, a Syndykat w
+      skafandrach strzela.
+  - bugfix: Jukebox wraca po cudzym zatrzymaniu muzyki i po przeładowaniu czatu; wysokość
+      głosu znów jest w preferencjach.
+  - bugfix: Padalec ma z powrotem pocztę rurową, a na Trawniku kuchnia i kriokomory
+      mają prąd.
+  - bugfix: Analizator zdrowia pokazuje uszkodzenia oczu i języka, a operacje nie
+      zjadają wkładanych stosów.
+  - bugfix: Sprint nie przewraca na podwójnych śluzach i przy biegu po skosie.
+  - bugfix: 'Wersja angielska: poprawione błędne tłumaczenia w oknach i czacie.'
+  - bugfix: Apteczka na promieniowanie i zestaw do leczenia robotów nie są już przepełnione.
+  - bugfix: Hipnoza wampira działa na stojący cel, który patrzy na wampira; doskok
+      przewraca tylko od tyłu lub w ciemności.
+  - bugfix: Wampir przypina ofiarę do stołu tortur i może zrobić z niej wasala.
+  - bugfix: Zdalne wysysanie krwi wampira zabiera krew ofierze, która leży.
+  - bugfix: Maska Żandarmerii znowu wygląda poprawnie podniesiona i opuszczona.
+  - bugfix: Kanał Żandarmerii w polu mowy ma etykietę „Żand”.
+  - bugfix: 'SI na Trawniku nie umiera już po kilku minutach: rdzeń jest chłodzony
+      i połączony z serwerownią.'
+  - bugfix: Manifest załogi pokazuje SI i cyborgi, a nazwy działów są po polsku.
+  - bugfix: W wersji angielskiej wyszukiwarka receptur ze stosu znajduje angielskie
+      nazwy.
+  - bugfix: Głośniki nagłośnienia nie nachodzą na przyciski wind.
+  - bugfix: Skaner T-ray i gogle inżynierskie znów pokazują kable i rury pod podłogą.
+  - bugfix: Czepki i bandana NFZ mieszczą się w kieszeni.
+  - rscadd: Su-437 Sabre stoi w hangarze jako wnętrze, do którego wchodzi się przez
+      właz w lewej gondoli; start ze steru, a przy dokowaniu wnętrze siada przy kadłubie
+      celu, tak że wysiada się prosto na pokład.
+  - rscadd: Promy zbudowane Wyznacznikiem Stref Promu latają po overmapie, z własnym
+      sprite'em; paliwo to plazma w podgrzewaczach silników.
+  - rscadd: Na każdej mapie jeden zwykły i jeden górniczy Sabre (Serendipity tylko
+      górniczy); hangary i zatoki powiększone tam, gdzie się nie mieściły.
+  - imageadd: Sprite promu z Wyznacznika na overmapie.
+  - bugfix: 'Trwała struktura statku: błąd przy jednym polu zapisu nie przerywa wczytywania
+      reszty, a zapis z błędami jest odkładany na bok.'
+  - bugfix: Asteroida i wrak w klatce magnesu nie przechodzą do następnej rundy.
+  - bugfix: Osłony wieżyczek zbudowanych przez załogę nie mnożą się co rundę.
+  - bugfix: Po zmianie mapy rury i kable zostają z mapy, a pola losowego silnika przyjmują
+      zapis tylko przy tym samym wariancie.
+  - bugfix: Maszyna krytyczna nie wraca zamurowana, a punkty startu nie zostają w
+      ścianach postawionych przez załogę.
+  - tweak: Rury zsypu zapisują się między rundami, a kamery przechodzą na inną ścianę.
+  - tweak: Mocno zniszczony statek przy remisie albo bez głosów zaczyna następną rundę
+      jako nowy.
+  - server: Przed nadpisaniem zapisu struktury zostaje kopia .bak, a zapis z błędami
+      trafia do pliku .broken w data/ship_structure/.
+  - rscadd: Po skrzydłach Sabre można chodzić, a kliknięcie we wrota kokpitu ze skrzydła
+      wprowadza do środka. Sabre nie wystartuje, gdy ktoś stoi na skrzydle.
+  - rscadd: Zestaw budowy promu (Wyznacznik Stref Promu i płytki sterownika lotu,
+      silników plazmowych i podgrzewaczy) leży na starcie w inżynierii na każdej mapie.
+'2026-11-09':
+  Joker66613:
+  - spellcheck: Wersja angielska używa oryginalnych tekstów z serwerów, z których
+      pochodzą porty, zamiast tłumaczeń zwrotnych z polskiego.
+  - spellcheck: Poprawiono kilkaset angielskich komunikatów, które pokazywały zupełnie
+      inne zdanie niż polski tekst.
+  - bugfix: Cień latarki nie wycina już światła innych latarek (czarne kliny w oświetlonych
+      miejscach).
+  - bugfix: Sprzątacz sprząta odchody.
+  - bugfix: Alt+klik na kieszeni w oknie przeszukiwania opróżnia ją, zamiast mówić,
+      że nie ma kieszeni.
+  - bugfix: PDA nie pokazuje już kręcącej się skrzynki ładowania po zmianie programu.
+  - bugfix: Minimapa jest ostra.
+  - bugfix: 'Atlas: faks na mostku nie zasłania już konsoli DRADIS.'
+  - tweak: 'Czat głosowy: przed włączeniem mikrofonu strona mówi, do jakiej firmy
+      trafia nagranie, i pyta o zgodę.'
+  - bugfix: 'Czat głosowy: nagrywanie włącza tylko wciśnięty klawisz mówienia, nie
+      da się go włączyć z poziomu narzędzi admina.'
+  - tweak: 'Czat głosowy: krótki dźwięk po każdym nagraniu (można wyłączyć na stronie).'
+  - rscadd: 'Nowa misja overmapy „Opuszczona stacja”: losowo generowana opuszczona
+      stacja w sektorze 2 z jednym z celów: czarna skrzynka, artefakt obcych, likwidacja
+      jądrowa, ewakuacja VIP-a albo zabójstwo.'
+  - rscadd: Po wykonaniu misji i głosowaniu za dodatkowymi celami kapitan wybiera
+      w konsoli łączności kolejną dowolną misję albo atak na Rubikon.
+  - config: Dodano wpisy OMODE_* dla trybu DERELICT.
+  - code_imp: Zestaw komory testowej dla skrzydeł Sabre i zestawu budowy promu jest
+      dostępny w komorze.
+  - tweak: 'Sabre tankuje się plazmą: przykręć kanister plazmy do złącza paliwa w
+      ładowni, tak jak w promach budowanych. Myśliwce dalej tankują kriopaliwo.'
+  - tweak: W ładowni Sabre zamiast kanistra tlenu jest złącze paliwa i podgrzewacz
+      paliwa w podłodze.
+  - tweak: Przy promach Sabre w hangarach stoją kanistry plazmy zamiast zbiorników
+      kriopaliwa, a w ładowni Sabre kanister plazmy na złączu paliwa.
+  - tweak: Kapitan zawsze wybiera z trzech misji, także przy małej liczbie graczy.
+  - bugfix: Generowanie opuszczonej stacji nie sypie już błędami rur i wczytywania
+      map.
+'2026-11-10':
+  Aserovich:
+  - imageadd: 'Generator tarczy i jego rama budowy mają nowy, ciemny wygląd z animowaną
+      poświatą (resprite z Hullrot: Eclipsion).'
+  Joker66613:
+  - tweak: Raport końca zmiany, głosowanie o następną mapę i ankieta po rundzie są
+      w jednym oknie.
+  - tweak: Nagłośnienie statku (jukebox na cały statek) kapitan włącza teraz w konsoli
+      komunikacji zamiast w programie na konsoli dowodzenia.
+  - config: NSV Shrike nie jest już w głosowaniu ani w losowej rotacji map.
+  - balance: Automat górniczy płaci 400 kr gotówki za 2400 punktów zamiast 1000 kr.
+  - rscadd: 'Premie działów: 20% tego, co dział zarobi pracą (artefakty, doppler,
+      uratowana załoga, energia, eksport, nagrody misji, grzywny), trafia przy wypłacie
+      do członków działu.'
+  - rscadd: Wadliwa SI może być trybem rundy (pula zagrożeń „Poważne”, od 15 graczy)
+      albo pojawić się w trakcie takiej rundy, jeśli gracz SI ma włączoną preferencję
+      „Wadliwa SI”.
+  - rscadd: 'Statystyki postaci zapisywane między rundami (rundy, przeżycia, cele,
+      misje, zarobki, operacje, ruda, aresztowania i inne). Podgląd: Esc → Statystyki,
+      razem z rankingiem zarobków.'
+  - imageadd: 'Sprite''y z tg: gibber, condimaster, wózek z jedzeniem, jukebox, limbgrower,
+      mikrofalówka, jednoręki bandyta, boty, mechy, plecaki i torby, skrzynki narzędziowe,
+      wytłaczanka, pudełko pączków, RPD, wiadro, spryskiwacze, książki, rośliny doniczkowe
+      i napoje.'
+  - rscadd: 'Księga kapelana ma dwa nowe wyglądy: Guru Granth Sahib i Kojiki.'
+  - imageadd: Tablica ochrony z orłem Żandarmerii zamiast starej tablicy Policji.
+  - imageadd: Hardsuity inżynierii, atmosferyki i Głównego Inżyniera w barwach Orlenu,
+      czerwony hardsuit Ordynatora.
+  - rscadd: Hardsuit zespołu urazowego dla lekarzy, w nowej szafie w części medycznej
+      na każdej mapie.
+  - rscadd: 'Nowy wygląd rdzenia SI: Claude.'
+  - rscadd: Kapłan zaczyna w sutannie i birecie, oba są też w ChapDrobe.
+  - imageadd: Nowe ikony umiejętności odmieńca, zaklęć czarodzieja i mocy genetycznych;
+      butle i plecaki odrzutowe z tg.
+  - imageadd: 'Sprite''y z tg: sleeper, narzędzia chirurgiczne, frytkownica, ekspres
+      do kawy, granaty, lasery, granatnik, rewolwer detektywa, wyrzutnie strzykawek,
+      tarcze, gaśnice, GPS, pinpointery, wiertła, lampki, jedzenie i plony.'
+  - bugfix: Wkład w ekspresie do kawy jest widoczny; GPS, radio, monitor załogi i
+      wiertła widać w ręku i na pasku.
+  - bugfix: Gibber pokazuje lampki i krew, RPD i spryskiwacz są widoczne w ręku i
+      na pasku.
+  - tweak: Urządzenia na ścianach (włączniki, newscastery, interkomy, gaśnice, przyciski,
+      ekrany, tablice i inne) wiszą na ścianie zamiast nad podłogą; gaśnice, przyciski,
+      newscastery, szafki na topór i reszta mają obrócone wersje na ściany boczne.
+  - bugfix: Newscaster, monitor funkcji życiowych, skrzynka na układ i lustro wieszane
+      z ramki trafiają na ścianę przy graczu, a nie po drugiej stronie.
+  - imageadd: Pistolety ochrony i cywilne wyglądają jak polski VIS MPS, a karabin
+      snajperski jak Alexis-BOR (sprite'y z Polonium Station).
+  - rscadd: Kabanosy w automacie z przekąskami, parówki i pęto parówek, hot dog z
+      parówką, ćmoparówki i ćmodog.
+  - rscadd: 'Nowy szyld baru: Żabka Cafe.'
+  - rscadd: Boarderzy KNPC wybierają cel rozsądniej (najpierw ten, kto do nich strzela,
+      i ranni), z bronią palną trzymają dystans i robią uniki, a w cel, którego nie
+      widzą, nie strzelają.
+  - rscadd: Boarderzy Syndykatu i piraci mają granat hukowy (czasem też odłamkowy)
+      i rzucają je w grupy wrogów, nie raniąc swoich; ciężko ranni leczą się medipenem
+      w walce albo wycofują do kolegów, a koledzy z medipenem ich leczą.
+  - rscadd: Boarderzy KNPC chowają się za barykadami i murkami, zakuwają obezwładnionych
+      zamiast ich dobijać i po walce zbierają magazyny, medipeny i kajdanki z ciał.
+  - rscadd: Syndykat hakuje śluzy, do których nie ma dostępu, a piraci i zombie je
+      wyważają.
+  - balance: Na wezwanie wsparcia odpowiada najwyżej 3 najbliższych boarderów KNPC.
+  - code_imp: Mniej pracy przy szukaniu wrogów przez AI KNPC (jedno view() zamiast
+      dwóch).
+  - rscadd: Drużyny nazywają się Alpha, Bravo, Charlie i Delta. Do drużyn trafia cała
+      załoga według zawodu (medycy do medycznej, inżynierowie do kontroli uszkodzeń),
+      XO może to zmienić.
+  - rscadd: Funkcje w drużynie (żołnierz, medyk, inżynier, dowódca) z ikoną w kolorze
+      drużyny nad postacią. Po śmierci dowódcy dowodzenie przejmuje następny członek.
+  - rscadd: Automat drużyny wydaje jeden zestaw według funkcji w skrzyni sprzętu,
+      z pancerzem i skafandrem obcisłym. Skrzynię oddajesz do automatu, także ze sprzętem
+      luzem. Po skrzyni widać, czego w niej brakuje.
+  - rscadd: XO tworzy, rozwiązuje i przemianowuje drużyny (do 10), zmienia ich kolory
+      i wybiera, czy dostają lekki, czy ciężki pancerz.
+  - rscadd: 'Nowe wykroczenie w kosmicznym prawie: Przywłaszczenie sprzętu drużyny.
+      XO zgłasza je do akt ochrony z konsoli.'
+  - rscadd: 'Nowa konsola drużyn XO: cztery drużyny obok siebie, przydział załogi,
+      stan członków, kto nie oddał sprzętu, mapa taktyczna, rozkazy i kamera pancerza.'
+  - rscadd: 'Pager drużyny otwiera okno z członkami, zadaniem, wiadomościami i mapą
+      taktyczną: planem pokładu z siatką sektorów (A1, B2…), których używają rozkazy.'
+  - rscadd: Rozkazy dowódcy i XO pojawiają się na ekranie z portretem nadawcy. Znaczniki
+      rozkazów (tędy, atak, obrona, odwrót, zbiórka, cel) widać w świecie i na mapie.
+  - rscadd: Znaczniki drużyny spoza ekranu pokazują się przy jego krawędzi ze strzałką
+      i odległością.
+  - rscadd: Pager drużyny można schować w PDA.
+  - rscadd: Głos rozkazów drużyny przez ElevenLabs (preferencja „Głos rozkazów drużyny”).
+  - imageadd: Nowa skrzynia sprzętu drużyny. Ikony funkcji i blipy mapy z CM-SS13,
+      znaczniki rozkazów i ramka portretu z TGMC; znacznik „Tędy” i emblematy dorysowane
+      w ich stylu.
+  - config: Nowy plik config/squad_tts.txt (klucz ElevenLabs, model, głosy).
+  - rscadd: 'Nowy silnik lotu kul: płynny ruch, nadrabianie laga, kula dolatuje do
+      miejsca trafienia.'
+  - rscadd: Ogień ciągły strzela za kursorem w rytmie broni, a strzał pada już przy
+      wciśnięciu przycisku.
+  - rscadd: Wybierak trybu ognia z bezpiecznikiem i osobny klawisz bezpiecznika (do
+      przypisania); nowa broń jest zabezpieczona, odbezpieczona może wystrzelić przy
+      upadku albo rzucie.
+  - rscadd: Odrzut zależny od kalibru narasta przy serii i psuje celność, a ekran
+      kopie w stronę od celu. Kursor pokazuje aktualny rozrzut.
+  - rscadd: Licznik amunicji na HUD-zie, zużycie i przegrzanie broni, niewypały, zestaw
+      konserwacji broni.
+  - rscadd: Smugi za kulami, rykoszety, świst kul, dźwięki trafień zależne od materiału,
+      osłony i przewracanie stołów (Ctrl+Shift+klik).
+  - rscadd: Dodatki do broni (celowniki, chwyt, celownik laserowy z wiązką), IFF drużyn
+      po smyczy, amunicja inteligentna 9mm.
+  - rscadd: Postać w trybie walki patrzy na kursor (ustawienie), statystyki broni
+      w opisie.
+  - tweak: Kule z broni ręcznej lecą szybciej, a dziury i rykoszety działają na każdej
+      ścianie.
+  - soundadd: Dźwięki trafień kul w metal, drewno, szkło i kamień oraz rykoszetów
+      (Shiptest).
+  - imageadd: Kursor rozrzutu, smugi kul, licznik amunicji (Nova), dodatki do broni
+      (Yogstation), zestaw konserwacji (tg).
+  dwasint, Absolucy (Monkestation), joker:
+  - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
+      parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'
+  - rscadd: Odpływy, bariera na ciecze, przenośna pompa cieczy i podłogowe pompy do
+      instalacji rurowej; nadajnik pompy u woźnego i skrzynie pomp i odpływów w cargo.
+  - rscadd: 'Eventy: przelewający się scrubber i anomalia płynów.'
+  - rscadd: Alarm przeciwpożarowy włączony ręcznie zrasza wodą z oczyszczaczy powietrza
+      całe pomieszczenie; zemagowany albo po EMP zalewa je po kostki.
+  - tweak: Alarm przeciwpożarowy jest głośniejszy i słychać go dalej.
+  - rscadd: Ciecz zamarza w zimnie, a głęboka zamienia się w bloki lodu, które zatykają
+      wyłomy i więżą postacie.
+  - rscadd: Pęcherz i mocz jako część potrzeby wypróżnienia, emotka *piss, pisuary,
+      kamery zgłaszają świadome oddawanie moczu i wypróżnianie się w miejscach publicznych,
+      klaun ma pęcherz z lubrykantem.
+  - rscadd: Ubikacje mogą się zatkać i przelać zawartość na podłogę; odtyka je przepychaczka.
+  - rscadd: Przełącznik „Cenzura wypróżniania” w ustawieniach gry.
+  - tweak: Poślizg w sprincie rzuca postać kafel dalej.
+  - rscadd: Palną kałużę można podpalić kliknięciem gorącym przedmiotem albo wchodząc
+      w nią z ogniem w ręce.
+  - rscadd: Krew z krwawienia sumuje się na kafelku i od 50 jednostek tworzy kałużę
+      krwi.
+  - tweak: Po gwałtownej dekompresji odessane pomieszczenie ma temperaturę kosmosu.
+  - admin: Verby Spawn Liquid, Remove Liquids i kolory grup cieczy.
+  - imageadd: Grafiki cieczy, odpływów, pompy, pęcherza i anomalii płynów z Monkestation.
+  - soundadd: Dźwięki brodzenia i plusku z Monkestation.
+  ? rkz (Tsar-Salat), EvilDragonfiend, mrmanlikesbt, Rohesie, Fikou, ShizCalev, nemvar,
+    ArcaneMusic, MrMelbert, Mothblocks, SyncIt21
+  : - rscadd: 'Jetpack ma prawdziwe paliwo: każde pchnięcie zużywa gaz z butli, pełna
+        butla starcza na ok. 1700 pól. Ze stabilizacją postać staje, bez niej dryfuje
+        dalej.'
+    - tweak: Dryf w kosmosie jest płynniejszy, puszczony ciągnięty przedmiot leci
+        dalej, a tło kosmosu przesuwa się płynnie.
+    - bugfix: Dźwięk jetpacka nie zużywa już paliwa drugi raz, a implant dysz nie
+        wyłącza się przy ciągu z plecaka.
+    - tweak: Konsola ID, NtOS, piloty do drzwi i elektronika śluz grupują dostępy
+        według działów; konsola nadaje tylko dostępy działów, którymi zarządza zalogowana
+        karta.
+    - rscadd: Konsola Centrali edytuje dostępy stacji i specjalne.
+    - bugfix: MAA nie może już nadać dostępu Kapitana, a degradacja Majtka działa.
+    - rscadd: Jedzenie, napoje i pigułki trafiają najpierw do żołądka; wymioty i płukanie
+        żołądka usuwają to, co jeszcze nie weszło do krwi. Analizator pokazuje zawartość
+        żołądka.
+    - balance: Wątroba nie usuwa od ręki małych dawek toksyn; niewydolność wątroby
+        postępuje etapami.
+    - rscadd: Promieniowanie ma natężenie w procentach i progi objawów; mija samo
+        w kilka minut, szybciej z jodkiem potasu albo kwasem pentetowym.
+    - balance: Przed promieniowaniem chroni tylko pełny strój przeciwradiacyjny, hardsuit
+        inżynieryjny z hełmem albo inny strój z ochroną 100; skażone przedmioty przestają
+        promieniować po ok. 30 s.
+    - rscadd: 'Ludzie-strąki żywią się promieniowaniem: odżywia ich, a powyżej 50%
+        leczy.'
+    - rscadd: Burza radiacyjna ma syrenę, a licznik Geigera pokazuje cztery stopnie
+        zagrożenia.
+    - tweak: Konsola DNA zadaje uszkodzenia genetyczne zamiast promieniowania; pluoksium
+        powstaje z CO2, tlenu i trytu w zimnie.
+    - soundadd: Syrena burzy radiacyjnej z BeeStation (CC-BY 4.0).
+    - imageadd: Ikona alertu napromieniowania z BeeStation.

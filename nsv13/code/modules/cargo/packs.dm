@@ -54,7 +54,7 @@
 	crate_name = "najlepszy proch kapitana Plazmosoli"
 
 /datum/supply_pack/munitions/muni_pointer
-	name = "Lokalizator amunicji"
+	name = "Lokalizator uzbrojenia"
 	desc = "Klaun wyrzucił twoje wieżyczki w kosmos? Mistrz Broni się poślizgnął i wrzucił lokalizator do recyklera? Oto rozwiązanie twoich problemów!"
 	cost = 5000 //Don't lose yours, MAA.
 	contains = list(/obj/item/pinpointer/munitions)
@@ -455,7 +455,7 @@
 
 /datum/supply_pack/security/glock
 	name = "Glocki-13 (x3)"
-	desc = "Paczka 3 policyjnych Glocków-13, załadowanych gumowymi kulami."
+	desc = "Paczka 3 żandarmskich Glocków-13, załadowanych gumowymi kulami."
 	cost = 5000
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/glock,
 					/obj/item/gun/ballistic/automatic/pistol/glock,
@@ -464,7 +464,7 @@
 
 /datum/supply_pack/security/glock_single
 	name = "Glock-13 (pojedynczy)"
-	desc = "Pojedynczy policyjny Glock-13, załadowany gumowymi kulami."
+	desc = "Pojedynczy żandarmski Glock-13, załadowany gumowymi kulami."
 	cost = 2000
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/glock)
@@ -478,7 +478,7 @@
 
 /datum/supply_pack/security/glock_ammo
 	name = "Amunicja do Glocka-13 (nieśmiercionośna)"
-	desc = "5 magazynków nieśmiercionośnej amunicji do policyjnej broni bocznej."
+	desc = "5 magazynków nieśmiercionośnej amunicji do żandarmskiej broni bocznej."
 	cost = 1500
 	contains = list(/obj/item/ammo_box/magazine/glock,
 					/obj/item/ammo_box/magazine/glock,
@@ -490,7 +490,7 @@
 
 /datum/supply_pack/security/glock_lethal
 	name = "Amunicja do Glocka-13 (śmiercionośna)"
-	desc = "5 magazynków śmiercionośnej amunicji do policyjnej broni bocznej."
+	desc = "5 magazynków śmiercionośnej amunicji do żandarmskiej broni bocznej."
 	cost = 1500
 	contains = list(/obj/item/ammo_box/magazine/glock/lethal,
 					/obj/item/ammo_box/magazine/glock/lethal,
@@ -544,8 +544,8 @@
 	crate_name = "skrzynia z laserami"
 
 /datum/supply_pack/security/mparmor
-	name = "Skrzynia uzupełnień dla Policji"
-	desc = "Trzy kamizelki kuloodporne Policji wraz z koszulkami Policji, czyli wszystko, by zastąpić to, co pochłonął ogień."
+	name = "Skrzynia uzupełnień dla Żandarmerii"
+	desc = "Trzy kamizelki kuloodporne Żandarmerii wraz z koszulkami Żandarmerii, czyli wszystko, by zastąpić to, co pochłonął ogień."
 	cost = 3600
 	contains = list(/obj/item/clothing/suit/ship/squad/military_police,
 					/obj/item/clothing/suit/ship/squad/military_police,
@@ -556,7 +556,7 @@
 					/obj/item/clothing/head/helmet/ship/squad/leader,
 					/obj/item/clothing/head/helmet/ship/squad/leader,
 					/obj/item/clothing/head/helmet/ship/squad/leader)
-	crate_name = "skrzynia z pancerzami Policji"
+	crate_name = "skrzynia z pancerzami Żandarmerii"
 
 /datum/supply_pack/security/armory/m45single
 	name = "Pistolet M1911 (pojedynczy)"
@@ -655,8 +655,8 @@
 	crate_name = "skrzynia z zaopatrzeniem AmuniSzafy"
 
 /datum/supply_pack/security/armory/mp_smg
-	name = "Skrzynia z pistoletami maszynowymi Policji MP-16A4"
-	desc = "Zawiera trzy standardowe pistolety maszynowe Policji, przeznaczone do ukrytego noszenia podczas działań na okręcie i abordażu. Do otwarcia wymaga dostępu do zbrojowni."
+	name = "Skrzynia z pistoletami maszynowymi Żandarmerii MP-16A4"
+	desc = "Zawiera trzy standardowe pistolety maszynowe Żandarmerii, przeznaczone do ukrytego noszenia podczas działań na okręcie i abordażu. Do otwarcia wymaga dostępu do zbrojowni."
 	cost = 3280 //20%
 	contains = list(/obj/item/gun/ballistic/automatic/mp_smg,
 					/obj/item/gun/ballistic/automatic/mp_smg,
@@ -664,7 +664,7 @@
 	crate_name = "skrzynia z pistoletami maszynowymi MP-16A4"
 
 /datum/supply_pack/security/armory/mp_smgammo
-	name = "Skrzynia z amunicją do pistoletów maszynowych Policji MP-16A4"
+	name = "Skrzynia z amunicją do pistoletów maszynowych Żandarmerii MP-16A4"
 	desc = "Zawiera dwa 21-nabojowe magazynki do pistoletu maszynowego peacekeeper i dwa pudełka amunicji 9 mm. Do otwarcia wymaga dostępu do zbrojowni."
 	cost = 1700
 	contains = list(/obj/item/ammo_box/magazine/smgm9mm,

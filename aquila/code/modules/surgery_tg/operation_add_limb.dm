@@ -19,6 +19,7 @@
 	time = 3.2 SECONDS
 	operation_flags = OPERATION_STANDING_ALLOWED | OPERATION_PRIORITY_NEXT_STEP | OPERATION_NOTABLE | OPERATION_IGNORE_CLOTHES | OPERATION_SELF_OPERABLE
 	targets_missing_limb = TRUE
+	consumes_stack_tool = FALSE // stos trafia do ciała w całości
 	allow_stumps = TRUE
 	/// Przedmioty, które zawsze mogą zastąpić rękę, nawet gdy nie spełniają innych warunków
 	var/list/always_accepted_prosthetics = list(

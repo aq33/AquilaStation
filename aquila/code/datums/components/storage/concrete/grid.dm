@@ -268,9 +268,11 @@
 	var/tile_y = FLOOR(total_y / tile, 1)
 	return "[tile_x + 1]:[total_x - tile_x * tile],[tile_y + 1]:[total_y - tile_y * tile]"
 
-/// Skala ikony przedmiotu w kształcie width x height: ikona 32 px w jednej kratce, a od 2x2 w górę na dwie kratki
+/// Skala ikony przedmiotu na siatce: zawsze 1. Kratka ma 24 px, więc dopasowanie ikony 32 px do kratek dawało skalę
+/// 0,75 albo 1,5, a przy ułamkowej skali piksele rozmywają się albo wychodzą nierówne. Ikona 32 px jest wyśrodkowana
+/// na swoim kształcie: na dużych kształtach zostaje wolne miejsce, a na 1x1 i 1x2 szerszy sprite lekko wystaje poza kratkę
 /datum/component/storage/concrete/grid/proc/grid_icon_scale(width, height)
-	return (min(width, height) >= 2 ? 2 : 1) * grid_cell_size / world.icon_size
+	return 1
 
 /// Piksel na ekranie (od lewego dolnego rogu siatki), w którym trzeba postawić ikonę 32 px, żeby jej środek
 /// wypadł na środku prostokąta width x height kratek zaczynającego się w (px, py)
@@ -446,45 +448,27 @@
 	layers += ghost
 	preview.overlays = layers
 
-/// Obraca przedmiot o 90° (E w prawo, Q w lewo) w trakcie przeciągania. Obrócony kształt zostaje w miejscu, jeśli się tam mieści
-/// (przy tej samej lewej górnej kratce albo obok niej), a jeśli nie, obrót czeka na upuszczenie
+/// Obraca o 90° (E w prawo, Q w lewo) tylko podgląd przeciąganego przedmiotu. Przedmiot w schowku zostaje, jak leżał,
+/// a wybrany obrót wchodzi dopiero przy upuszczeniu na siatce (move_item()). Bez upuszczenia przepada (clear_pending_rotation())
 /datum/component/storage/concrete/grid/proc/rotate_item(obj/item/I, mob/user, clockwise = TRUE)
 	if(!grid_width || I.loc != real_location())
 		return FALSE
 	settle_contents()
-	var/atom/host = parent
 	var/list/pos = LAZYACCESS(grid_positions, I)
-	if(!pos)
-		host.balloon_alert(user, "najpierw zrób miejsce")
-		return TRUE
 	var/current = LAZYACCESS(grid_pending_rotation, I)
 	if(isnull(current))
 		current = grid_angle(pos)
 	var/angle = (current + (clockwise ? 90 : 270)) % 360
-	var/rotated = angle % 180 != 0
-	var/list/shape = grid_shape(I, rotated)
-	var/list/occupancy = build_occupancy(I)
-	var/list/spot
-	if(cells_free(occupancy, pos[1], pos[2], shape[1], shape[2]))
-		spot = list(pos[1], pos[2], rotated)
-	else
-		spot = find_spot_at(I, occupancy, list(pos[1], pos[2]), list(rotated))
-	if(spot)
-		spot += angle
-		LAZYSET(grid_positions, I, spot)
+	// Powrót do ułożenia, w jakim przedmiot leży: podgląd zachowuje się jak bez obrotu
+	if(pos && angle == grid_angle(pos))
 		LAZYREMOVE(grid_pending_rotation, I)
 	else
 		LAZYSET(grid_pending_rotation, I, angle)
-		host.balloon_alert(user, "obróci się po upuszczeniu")
-	refresh_mob_views()
 	return TRUE
 
 /// Koniec przeciągania bez upuszczenia na siatce: wybrany obrót przepada
 /datum/component/storage/concrete/grid/proc/clear_pending_rotation(obj/item/I)
-	if(isnull(LAZYACCESS(grid_pending_rotation, I)))
-		return
 	LAZYREMOVE(grid_pending_rotation, I)
-	refresh_mob_views()
 
 /datum/component/storage/concrete/grid/proc/forget_item(atom/movable/thing)
 	LAZYREMOVE(grid_positions, thing)
@@ -616,7 +600,12 @@
 		if(QDELETED(O))
 			continue
 		O.mouse_opacity = MOUSE_OPACITY_OPAQUE
-		O.maptext = ""
+		// Stos pokazuje liczbę sztuk także w plecaku (aquila/code/game/objects/items/stacks/stack_amount.dm)
+		if(istype(O, /obj/item/stack))
+			var/obj/item/stack/stack = O
+			stack.update_amount_maptext()
+		else
+			O.maptext = ""
 		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 		var/list/pos = isitem(O) ? LAZYACCESS(grid_positions, O) : null
@@ -639,12 +628,15 @@
 		// Ikona na środku zajmowanego prostokąta
 		O.screen_loc = grid_icon_loc(px, py, width, height)
 		if(isitem(O))
-			var/angle = LAZYACCESS(grid_pending_rotation, O)
-			if(isnull(angle))
-				angle = grid_angle(pos)
-			apply_appearance(O, grid_icon_scale(width, height), angle)
+			// Mysz łapie kafel przedmiotu (storage_grid_item, dokładnie jego kratki), nie sama ikona: ikona 32 px wystaje
+			// poza kratki 24 px i przejmowałaby kliknięcia sąsiednich kratek. Wyjęcie przywraca mouse_opacity (_removal_reset)
+			O.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			// Obrót wybrany w trakcie przeciągania widać tylko na podglądzie, przedmiot leży po staremu do upuszczenia
+			apply_appearance(O, grid_icon_scale(width, height), grid_angle(pos))
 			update_highlight(O, px, py, width, height, !pos)
 	update_header(overflow_index)
+	// Przepełniony schowek albo limit sztuk: wolne kratki na czerwono (kafle przedmiotów leżą nad tłem i zostają w swoich kolorach)
+	boxes.color = (overflow_index || (grid_keep_item_limit && length(real_location.contents) >= max_items)) ? GRID_COLOR_OVERFLOW : null
 	closer.screen_loc = grid_loc(grid_width * size, 0)
 
 /datum/component/storage/concrete/grid/show_to(mob/M)
@@ -707,6 +699,10 @@
 	. = ..()
 	if(!. && !had_position && I.loc != real_location())
 		LAZYREMOVE(grid_positions, I)
+	// Bazowa wersja na koniec ustawia przedmiotowi MOUSE_OPACITY_OPAQUE już po przerysowaniu siatki (orient2hud()),
+	// a ikona 32 px łapałaby wtedy kliknięcia sąsiednich kratek. Mysz łapie kafel przedmiotu, jak po każdym przerysowaniu
+	if(. && grid_width && I.loc == real_location()) // bez siatki klasyczny widok nie przywraca przezroczystości
+		I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /datum/component/storage/concrete/grid/attackby(datum/source, obj/item/I, mob/M, params)
 	// Kliknięcie w siatkę trzymanym przedmiotem przychodzi z /atom/movable/screen/storage bez źródła sygnału
@@ -766,6 +762,17 @@
 	usr.client.Click(item, location, control, params)
 	return TRUE
 
+/// Podpowiedź i obrys przedmiotu po najechaniu, bo sama ikona przedmiotu na siatce nie łapie myszy
+/atom/movable/screen/storage_grid_item/MouseEntered(location, control, params)
+	. = ..()
+	if(!QDELETED(item))
+		item.MouseEntered(location, control, params)
+
+/atom/movable/screen/storage_grid_item/MouseExited(location, control, params)
+	. = ..()
+	if(!QDELETED(item))
+		item.MouseExited(location, control, params)
+
 /atom/movable/screen/storage_grid_item/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(QDELETED(item))
 		return
@@ -811,6 +818,24 @@
 /atom/movable/screen/storage_grid_header/Initialize(mapload, datum/component/storage/new_master)
 	. = ..()
 	master = new_master
+
+/// Schowek bez siatki (pasy, kieszenie, kabury): czy limit sztuk albo wagi jest wyczerpany
+/datum/component/storage/proc/storage_hud_full()
+	var/atom/real_location = real_location()
+	if(length(real_location.contents) >= max_items)
+		return TRUE
+	var/total = 0
+	for(var/obj/item/I in real_location)
+		total += I.w_class
+	return total >= max_combined_w_class
+
+// Pełny schowek bez siatki: puste pola na czerwono, żeby było widać, że nic więcej nie wejdzie.
+// Tylko gdy jakieś pole jest puste: schowek z kompletem sztuk (np. pas 7/7) nie ma czego oznaczać
+/datum/component/storage/standard_orient_objs(rows, cols, list/obj/item/numerical_display_contents)
+	. = ..()
+	var/atom/real_location = real_location()
+	var/shown = islist(numerical_display_contents) ? length(numerical_display_contents) : length(real_location.contents)
+	boxes.color = (shown < rows * cols && storage_hud_full()) ? GRID_COLOR_OVERFLOW : null
 
 #undef GRID_COLOR_TINY
 #undef GRID_COLOR_SMALL

@@ -1,7 +1,7 @@
 /// AQUILA - fleet distress calls and fleet retreat. A fleet that is losing (heavy losses or a scared crew) near the players
-/// (their system or one next to the main ship) may call for help, against players or AI enemies alike: one 50% roll per fight.
+/// (their system or one next to the main ship) may call for help, against players or AI enemies alike: one roll per fight (GLOB.ai_distress_chance, ai_tuning.dm).
 /// The nearest allied fleet within two jumps that is not fighting itself answers and jumps in a few minutes later.
-/// Players in the system intercept the call and get a warning before the help arrives. A fleet that is still losing and has no help coming
+/// Players in the system hear the fleet radio (an ally clearly, an enemy as an intercepted fragment) and get a warning before the help arrives. A fleet that is still losing and has no help coming
 /// spools its drives for 30 s (interdiction stops it) and jumps out together to a neighbouring system.
 /// Stage 3 of the AI plan, switched with AI morale (Debug > Toggle AI morale).
 
@@ -54,6 +54,30 @@
 			OM.tactical.relay_sound('nsv13/sound/effects/computer/alarm_3.ogg', text)
 		else if(OM.dradis)
 			OM.dradis.visible_message(text)
+
+/// Share of words lost to static in an intercepted enemy transmission
+#define FLEET_TRANSMISSION_STATIC 25
+
+/// Fleet radio heard on the players' bridges: an allied fleet comes through clear, an enemy one as a fragment of an intercepted
+/// transmission with words lost to static. Numbers always get through, so the players still learn how long they have.
+/datum/fleet/proc/broadcast_ai_fleet(list/ally_lines, list/enemy_lines, datum/star_system/heard_in = current_system)
+	if(is_player_ally())
+		heard_in.warn_player_ships("Transmisja od [name]: „[pick(ally_lines)]”")
+	else
+		heard_in.warn_player_ships("<i>Przechwycono fragment transmisji ([name]): „[garble_ai_transmission(pick(enemy_lines))]”</i>")
+
+/// "… wszystkie jednostki … rozgrzać napędy, skok za 30 sekund …": some words lost to static, never the numbers
+/proc/garble_ai_transmission(text)
+	var/list/heard = list("…")
+	for(var/word in splittext(text, " "))
+		if(isnull(text2num(word)) && prob(FLEET_TRANSMISSION_STATIC))
+			if(heard[length(heard)] != "…")
+				heard += "…"
+			continue
+		heard += word
+	if(heard[length(heard)] != "…")
+		heard += "…"
+	return jointext(heard, " ")
 
 /// A crewed ship: not run by the AI and not an asteroid (asteroids are not AI controlled and have no faction)
 /obj/structure/overmap/proc/is_crewed_ship()
@@ -160,7 +184,15 @@
 /datum/fleet/proc/send_ai_distress_call()
 	ai_distress_sent = TRUE
 	var/ally = is_player_ally()
-	current_system.warn_player_ships(ally ? "Sojusznicza [name] wzywa wsparcia." : "Przechwycono sygnał alarmowy: [name] wzywa pomocy.")
+	broadcast_ai_fleet(list(
+		"Tu [name]. Ponosimy ciężkie straty, potrzebujemy natychmiastowego wsparcia!",
+		"Mayday, mayday, tu [name]. Nie utrzymamy pozycji, prosimy o posiłki.",
+		"Do wszystkich jednostek w zasięgu: [name] pod ostrzałem, wzywamy wsparcia.",
+	), list(
+		"Tu [name], jesteśmy pod ciężkim ostrzałem, potrzebne natychmiastowe wsparcie, powtarzam, natychmiastowe wsparcie",
+		"wszystkie jednostki w zasięgu, kadłub nie wytrzyma długo, przyślijcie posiłki na nasze współrzędne",
+		"straciliśmy osłony, wróg naciska, prosimy o pomoc każdej jednostki w sektorze",
+	))
 	var/list/responders = find_ai_distress_responders()
 	if(!length(responders))
 		note_ai_fleet_event("distress call, nobody answered")
@@ -174,10 +206,13 @@
 	answering.ai_answering = TRUE
 	ai_help_eta = world.time + delay
 	var/minutes = max(1, round(delay / (1 MINUTES)))
-	if(ally)
-		current_system.warn_player_ships("[answering.name] odpowiada na wezwanie i nadleci za około [minutes] min.")
-	else
-		current_system.warn_player_ships("Przechwycono odpowiedź na sygnał. Posiłki wroga mogą nadlecieć za około [minutes] min.")
+	answering.broadcast_ai_fleet(list(
+		"Tu [answering.name]. Słyszymy was, [name]. Będziemy na miejscu za około [minutes] min.",
+		"[answering.name] do [name]: idziemy z pomocą, wytrzymajcie jeszcze około [minutes] min.",
+	), list(
+		"zrozumiałem, idziemy z pomocą, będziemy za około [minutes] min, wytrzymajcie",
+		"potwierdzam odbiór, grupa wsparcia wyrusza, czas dolotu [minutes] min",
+	), current_system)
 	// On the answering fleet, so the warning dies with it and is skipped if it cannot come any more
 	addtimer(CALLBACK(answering, TYPE_PROC_REF(/datum/fleet, warn_ai_distress_arrival), current_system, ally), max(0, delay - FLEET_DISTRESS_WARNING))
 	addtimer(CALLBACK(answering, TYPE_PROC_REF(/datum/fleet, answer_ai_distress), current_system), delay)
@@ -209,7 +244,15 @@
 
 /datum/fleet/proc/start_ai_retreat()
 	ai_retreat_at = world.time + FLEET_RETREAT_SPOOL
-	current_system.warn_player_ships("[name] rozgrzewa napędy FTL całej floty. Skok za około [FLEET_RETREAT_SPOOL / 10] s.")
+	var/seconds = FLEET_RETREAT_SPOOL / 10
+	broadcast_ai_fleet(list(
+		"Tu [name]. Nie utrzymamy pozycji, wycofujemy się. Skok za około [seconds] s.",
+		"[name] do wszystkich: przerywamy walkę i wycofujemy się z systemu. Skok za około [seconds] s.",
+	), list(
+		"wszystkie jednostki, przerwać atak, rozgrzać napędy, skok za [seconds] sekund",
+		"wycofujemy się, powtarzam, wycofujemy się, zbiórka w punkcie skoku za [seconds] sekund",
+		"zbyt duże straty, rozkaz odwrotu dla całej floty, skok za [seconds] sekund",
+	))
 	note_ai_fleet_event("starts a retreat")
 
 /// Neighbouring system to fall back to: our own territory first, never where the players' main ship is
@@ -266,6 +309,22 @@
 		OM.ai_recent_damage = 0
 		OM.stop_ai_flight()
 		OM.last_target = null
+	SEND_SIGNAL(src, COMSIG_FLEET_AI_RETREATED, left, target)
+
+/// Station boarding: the counterattack is repelled when its fleet is destroyed or when it retreats (it would never come back on its own,
+/// and the objective only waited for the fleet to be deleted)
+/datum/overmap_objective/board_station/send_counterattack()
+	. = ..()
+	watch_counterattack_retreat()
+
+/datum/overmap_objective/board_station/proc/watch_counterattack_retreat()
+	if(reinforcements)
+		RegisterSignal(reinforcements, COMSIG_FLEET_AI_RETREATED, PROC_REF(counterattack_retreated))
+
+/datum/overmap_objective/board_station/proc/counterattack_retreated(datum/fleet/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_FLEET_AI_RETREATED))
+	fleet_destroyed()
 
 /obj/structure/overmap/update_ai_morale()
 	. = ..()
@@ -278,6 +337,7 @@
 	if(fleet?.ai_help_eta && world.time < fleet.ai_help_eta + FLEET_DISTRESS_GRACE)
 		. = max(0, . - FLEET_HELP_CALM)
 
+#undef FLEET_TRANSMISSION_STATIC
 #undef FLEET_MORALE_INTERVAL
 #undef FLEET_DISTRESS_LOSSES
 #undef FLEET_DISTRESS_FEAR

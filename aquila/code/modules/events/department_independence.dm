@@ -55,9 +55,9 @@ GLOBAL_LIST_INIT(aquila_independence_departments, list(
 		),
 	),
 	list(
-		"name" = "amunicji",
+		"name" = "uzbrojenia",
 		"jobs" = list(JOB_NAME_MUNITIONSTECHNICIAN, JOB_NAME_PILOT),
-		"prefixes" = list("Torpedo", "Amunicjo", "Pocisko", "Hangaro", "Piloto", "Działo"),
+		"prefixes" = list("Torpedo", "Uzbrojo", "Pocisko", "Hangaro", "Piloto", "Działo"),
 		"reasons" = list(
 			list("zabroniono przerwy na papierosa przy dziale", "przywrócenia przerwy na papierosa"),
 			list("piloci znowu lądują na pasie startowym bokiem", "nowego kursu lądowania dla pilotów"),

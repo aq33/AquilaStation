@@ -134,7 +134,7 @@
 		// Pills and food slowly get absorbed
 		if(istype(I, /obj/item/reagent_containers/pill) || istype(I, /obj/item/reagent_containers/food) || istype(I, /obj/item/food))
 			if(I.reagents?.total_volume)
-				I.reagents.trans_to(owner, 1, transfered_by = owner, method = INGEST)
+				I.reagents.trans_to(owner, 1, transfered_by = owner, method = INGEST, ignore_stomach = TRUE) // wchłania się prosto do krwi, nie przez żołądek
 			else
 				qdel(I)
 

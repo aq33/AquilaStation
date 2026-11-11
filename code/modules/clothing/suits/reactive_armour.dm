@@ -138,7 +138,6 @@
 	owner.visible_message("<span class='danger'>Reaktywny system teleportacji odrzuca [owner] z dala od [attack_text], wyłączając się przy tym!</span>")
 	playsound(get_turf(owner),'sound/magic/blink.ogg', 100, 1)
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
-	owner.rad_act(rad_amount)
 	return TRUE
 
 /obj/item/clothing/suit/armor/reactive/teleport/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
@@ -147,7 +146,6 @@
 	playsound(get_turf(owner), 'sound/machines/buzz-sigh.ogg', 50, 1)
 	playsound(get_turf(owner), 'sound/magic/blink.ogg', 100, 1)
 	do_teleport(teleatom = src, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
-	owner.rad_act(rad_amount)
 	return FALSE //you didn't actually evade the attack now did you
 
 //Fire
@@ -361,8 +359,7 @@
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], ale ściąga do [owner] ogromny ładunek energii umysłowej z otoczenia!</span>")
-	owner.hallucination += 25
-	owner.hallucination = clamp(owner.hallucination, 0, 150)
+	owner.adjust_hallucinations_up_to(50 SECONDS, 300 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	return TRUE
 
 //Delimbering

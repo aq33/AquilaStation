@@ -148,7 +148,7 @@
 	//NSV13 - AI QoL - Start
 	var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 	if(hologram)
-		if(emote_type & (EMOTE_AUDIBLE | EMOTE_VISIBLE))
+		if(emote_type & EMOTE_AUDIBLE) // AQ EDIT - emotka tylko widoczna idzie przez visible_message (dawniej każda była słyszalna)
 			hologram.audible_message(msg, deaf_message = "<span class='emote'>Widzisz, jak <b>[user]</b> [msg]</span>", audible_message_flags = list(CHATMESSAGE_EMOTE = TRUE))
 		else if(emote_type & EMOTE_VISIBLE)
 			hologram.visible_message(msg, visible_message_flags = list(CHATMESSAGE_EMOTE = TRUE))

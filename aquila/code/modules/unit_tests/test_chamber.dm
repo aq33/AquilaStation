@@ -66,4 +66,52 @@
 				space += "[T.type]@[T.x],[T.y]"
 		return "Chamber has unsafe pressure [pressure] kPa (arrival [chamber.arrival.type], [length(space)] empty turfs: [english_list(space.Copy(1, min(length(space), 6) + 1))])"
 
+/// AQUILA - na niezniszczalnych ścianach komory da się zawiesić ramkę ścienną (tablica detektywa z aq33/AquilaStation#588 nie montowała się)
+/datum/unit_test/test_chamber_wallmount
+
+/datum/unit_test/test_chamber_wallmount/Run()
+	var/datum/test_chamber/chamber = get_test_chamber()
+	TEST_ASSERT(chamber, "Test chamber failed to load")
+	var/turf/open/floor/spot
+	var/turf/closed/indestructible/wall
+	for(var/turf/open/floor/T in chamber.reservation.reserved_turfs)
+		if(!istype(T.loc, /area/test_chamber) || T.density || locate(/obj/structure) in T)
+			continue
+		for(var/direction in GLOB.cardinals)
+			var/turf/closed/indestructible/candidate = get_step(T, direction)
+			if(istype(candidate) && istype(candidate.loc, /area/test_chamber))
+				wall = candidate
+				break
+		if(wall)
+			spot = T
+			break
+	TEST_ASSERT(spot && wall, "No chamber floor next to a chamber wall")
+	var/mob/living/carbon/human/detective = allocate(/mob/living/carbon/human, spot)
+	var/obj/item/wallframe/detectiveboard/frame = allocate(/obj/item/wallframe/detectiveboard)
+	detective.put_in_active_hand(frame, forced = TRUE)
+	wall.attackby(frame, detective)
+	var/obj/structure/detectiveboard/board = locate() in spot
+	TEST_ASSERT(board, "The detective board did not mount on the chamber wall")
+	qdel(board)
+
+/// AQUILA - zestaw zrzucony na kratkę ze stosem tego samego rodzaju (wcześniejszy zestaw na arenie) daje osobne stosy:
+/// nowy stos łączył się z leżącym i znikał, więc test komory losowo widział „0 of 1” stosu
+/datum/unit_test/test_chamber_kit_stacks
+
+/datum/unit_test/test_chamber_kit_stacks/Run()
+	var/turf/first = run_loc_floor_bottom_left
+	var/list/turfs = list(first, get_step(first, EAST), get_step(get_step(first, EAST), EAST))
+	allocate(/obj/item/stack/tile/plasteel, first)
+	var/datum/test_chamber_kit/kit = new
+	kit.items = list(/obj/item/stack/tile/plasteel = 2)
+	kit.spawn_kit(turfs, first, null)
+	var/stacks = 0
+	for(var/turf/T as anything in turfs)
+		for(var/obj/item/stack/tile/plasteel/tile in T)
+			stacks++
+			if(T != first)
+				qdel(tile)
+	qdel(kit)
+	TEST_ASSERT(stacks == 3, "Kit stacks merged into a stack already lying in the arena: [stacks] of 3 stacks left")
+
 #undef TEST_ASSERT

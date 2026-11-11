@@ -335,9 +335,11 @@ Oznaczenia w kolumnie uwag:
 |---|---|---|
 | `name` przedmiotu | małą literą, jak w oryginale | Nazwy własne, marki i modele wielką. Prefiksy `\improper` i `\proper` zostają w ciągu bez zmian. |
 | X's Y (np. captain's jacket) | Y + dopełniacz posiadacza (kurtka kapitana) | istniejące: „plecak kapitana”, „buty kapitana”, „hełm inżyniera”, „kurtka technika”. |
-| departmental X (dział) | przymiotnik, jeśli jest naturalny: medyczny, inżynieryjny, górniczy, policyjny (przedmioty ochrony); w pozostałych przypadkach dopełniacz: chemii, genetyki, wirologii, botaniki, nauki, zaopatrzenia | istniejące: „plecak medyczny”, „plecak policyjny”, „plecak chemii”, „plecak genetyki”, „plecak wirologii”, „plecak botaniki”, „plecak nauki”. |
+| departmental X (dział) | przymiotnik, jeśli jest naturalny: medyczny, inżynieryjny, górniczy, żandarmski (przedmioty ochrony); w pozostałych przypadkach dopełniacz: chemii, genetyki, wirologii, botaniki, nauki, zaopatrzenia | istniejące: „plecak medyczny”, „plecak żandarmski”, „plecak chemii”, „plecak genetyki”, „plecak wirologii”, „plecak botaniki”, „plecak nauki”. |
 | security (dział, teksty ogólne) | ochrona; „... ochrony” | istniejące (99×): „HUD ochrony”, „akta ochrony”, „implant ochrony”. |
-| security X (ubranie, sprzęt policjanta) | X policyjny / policyjna | istniejące: „plecak policyjny”, „mundur policyjny”, „Mundurownia Policyjna”, „Zbrojownia Policyjna”, „taśma policyjna”. Zawody ochrony to Policjant, Komendant, Naczelnik, Aspirant. |
+| security X (ubranie, sprzęt żandarma) | X żandarmski / żandarmska | istniejące: „plecak żandarmski”, „mundur żandarmski”, „Mundurownia Żandarmska”, „Zbrojownia Żandarmska”; zostaje „taśma policyjna” (ogólny termin). Zawody ochrony to Żandarm, Komendant, Naczelnik, Aspirant. |
+| cargo X (ubranie zaopatrzenia) | X InPostu | istniejące: „kombinezon magazyniera InPostu”, „czapka InPostu”, „Mundurownia InPost”. Wylot z rury to „paczkomat”. Zawody i kanał radia zostają. |
+| engineering X (ubranie inżyniera) | X Orlenu | istniejące: „kombinezon inżyniera Orlenu”, „kask Orlenu”, „Mundurownia Orlenu”. Zawody i kanał radia zostają: Inżynier, Technik Atmosferyki, Główny Inżynier, Inżynieria. |
 | Syndicate X | X Syndykatu | m; istniejące (245×), np. „zestaw słuchawkowy Syndykatu”, „uśpiacz Syndykatu”. |
 | Nanotrasen X | X Nanotrasen | nazwa firmy po rzeczowniku nieodmienna; istniejące: „kapsuła zaopatrzeniowa Nanotrasen”. W zdaniu odmiana „Nanotrasenu” dopuszczalna. |
 | CentCom X | X Centrali | istniejące (111×); odrzucone: „CentComu” (11×). |
@@ -430,6 +432,9 @@ Oznaczenia w kolumnie uwag:
 | APC (area power controller) | APC | ndm, uzgadniamy w r. m („APC jest wyłączony”); istniejące (139×) |
 | SMES | SMES | ndm, r. m; istniejące (5×); odrzucone: akumulator |
 | power cell | ogniwo zasilające | n; istniejące (138×); odrzucone: bateria (w nazwie ogniwa) |
+| pocket translator | tłumacz kieszonkowy | m; nowe (`/obj/item/aquila_translator`) |
+| translator chip | czip tłumacza | m; nowe (`/obj/item/aquila_translator/chip`), drzazga w osobnym gnieździe słuchawek |
+| English (language) / foreigner | Angielski / obcokrajowiec | m; nowe; język gracza z angielskim w preferencjach (`foreigner.dm`) |
 | high-capacity power cell | ogniwo dużej pojemności | n; nowe (wzorem „Pamięć dużej pojemności”) |
 | super-capacity power cell | ogniwo bardzo dużej pojemności | n; nowe |
 | hyper-capacity power cell | ogniwo hiperpojemne | n; nowe (historia: „hiper-pojemna bateria”, 1×) |
@@ -721,13 +726,19 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 |---|---|---|
 | machine | maszyna / urządzenie | ż / n; istniejące |
 | vending machine | automat | m; istniejące („automat z jedzeniem”) |
-| XDrobe (np. SecDrobe) | mundurownia (np. Mundurownia Policyjna) | ż; istniejące |
+| XDrobe (np. SecDrobe) | mundurownia (np. Mundurownia Żandarmska, Mundurownia Orlenu) | ż; istniejące |
 | autolathe | autolat | m; nowe. Odrzucone: „autolatarka” (3×, myli się z latarką) |
 | protolathe | protolat | m; istniejące (1×) |
 | circuit imprinter | drukarka obwodów | ż; istniejące |
 | techfab | techfab | m; istniejące (3×) |
 | exosuit fabricator | fabrykator egzoszkieletów | m; istniejące (TGUI) |
 | destructive analyzer | analizator destrukcyjny | m; istniejące (TGUI) |
+| liquid / puddle (liquids z Monke) | ciecz / kałuża | ż; nowe; poziomy: kałuża, po kostki, po pas, po ramiona, ponad głowę |
+| drain / big drain | odpływ / duży odpływ | m; nowe |
+| liquid barrier | bariera na ciecze | ż; nowe |
+| portable liquid pump | przenośna pompa cieczy | ż; nowe; nie mylić z pompą gejzeru z plumbingu |
+| liquid input / output pump | podłogowa pompa ssąca / wylewająca | ż; nowe |
+| bladder | pęcherz | m; nowe (organ) |
 | R&D console | konsola B+R | ż; istniejące |
 | research server | serwer badawczy | m; nowe |
 | ore redemption machine | maszyna wymiany rudy | ż; istniejące (TGUI) |
@@ -890,7 +901,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | belt | pas | m; istniejące |
 | utility belt | pas na narzędzia | m; istniejące |
 | medical belt | pas medyczny | m; nowe |
-| security belt | pas policyjny | m; nowe |
+| security belt | pas żandarmski | m; istniejące |
 | webbing | oporządzenie | n; nowe |
 | pill bottle | pojemnik na pigułki | m; nowe |
 | first-aid kit / medkit | apteczka | ż; istniejące |
@@ -1062,6 +1073,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | rifle | karabin | m; istniejące (20×) |
 | assault rifle | karabin szturmowy | m; istniejące („Karabinek szturmowy wz. 96 Beryl” jako nazwa własna) |
 | sniper rifle | karabin snajperski | m; nowe |
+| marksman rifle | karabin wyborowy | m; nowe (Alexis-BOR) |
 | SMG | pistolet maszynowy | m; istniejące („Pistolet maszynowy PM-98”) |
 | shotgun | strzelba | ż; istniejące (10×) |
 | combat shotgun | strzelba bojowa | ż; nowe |
@@ -1091,6 +1103,30 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | stock | kolba | ż; istniejące |
 | safety (broni) | bezpiecznik | m; istniejące |
 | fire mode | tryb ognia | m; istniejące (6×) |
+| semi-auto / single fire | ogień pojedynczy | m; nowe (rework strzelania) |
+| burst | seria | ż; istniejące |
+| full auto / autofire | ogień ciągły | m; nowe |
+| iron sights | przyrządy mechaniczne | lm; nowe |
+| holographic sight | celownik holograficzny | m; nowe |
+| infrared sight | celownik termowizyjny | m; nowe |
+| simple sight | celownik prosty | m; nowe |
+| laser sight | celownik laserowy | m; nowe |
+| vertical grip / foregrip | chwyt pionowy / chwyt przedni | m; nowe |
+| attachment (broni) | dodatek | m; nowe |
+| recoil | odrzut | m; istniejące |
+| spread | rozrzut | m; istniejące |
+| misfire / dud | niewypał | m; nowe |
+| hang fire | przewlekły wystrzał | m; nowe |
+| overheat | przegrzanie (broń „przegrzana”) | n; nowe |
+| gun maintenance kit | zestaw konserwacji broni | m; nowe |
+| condition (broni) | stan techniczny | m; nowe; „zadbana / lekko zużyta / zabrudzona / mocno zużyta / w opłakanym stanie” |
+| tracer (round) | smuga / nabój smugowy | ż/m; nowe |
+| ricochet | rykoszet | m; istniejące |
+| cover (przed kulami) | osłona | ż; istniejące |
+| flipped table | przewrócony stół | m; nowe |
+| IFF | IFF (znacznik swój–obcy) | bez tłumaczenia skrótu |
+| smart ammo | amunicja inteligentna | ż; nowe |
+| ammo counter | licznik amunicji | m; istniejące (implant S.M.A.R.T.) |
 | lethal / disable (tryby) | zabójczy / obezwładniający | nowe; „obezwładni-” istniejące (23×) |
 
 ## 11. Amunicja i materiały wybuchowe
@@ -1135,7 +1171,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 
 | EN | PL | rodzaj/uwagi |
 |---|---|---|
-| munitions (dział) | amunicja | ż; istniejące („Technik Amunicyjny”) |
+| munitions (dział) | uzbrojenie (dział uzbrojenia) | n; decyzja 2026-11: dział nazywa się „Uzbrojenie”, nie „Amunicja” (obszary, dostęp, sprzęt, etykiety działów); „amunicja” tylko dla naboi i pocisków; tytuł „Technik Amunicyjny” zostaje (klucz `JOB_NAME_*`) |
 | ordnance | uzbrojenie | n; istniejące („Obsługa Uzbrojenia”) |
 | torpedo | torpeda | ż; istniejące (30×) |
 | missile | rakieta | ż; istniejące (20×) |
@@ -1155,7 +1191,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | munitions forge | kuźnia amunicji | ż; istniejące |
 | DRADIS | DRADIS | m/ndm; istniejące |
 | radar | radar | m; istniejące (26×) |
-| squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Able”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (zostaje tylko w starym `squad_vendor.dm`: „zestaw składu”, „automat składu”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
+| squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Alpha”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (od reworku drużyn także automat to „automat drużyny”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
 
 ## 13. Górnictwo
 
@@ -1255,7 +1291,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | ashtray | popielniczka | ż; nowe |
 | flashlight | latarka | ż; istniejące (25×) |
 | penlight | latarka diagnostyczna | ż; nowe |
-| seclite | latarka policyjna | ż; nowe |
+| seclite | latarka żandarmska | ż; istniejące |
 | flare | raca | ż; nowe |
 | glowstick | świetlik chemiczny | m; nowe |
 | lantern | latarenka | ż; nowe |
@@ -1321,6 +1357,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | steak | stek | m; istniejące |
 | bacon | boczek | m; nowe |
 | sausage | kiełbasa | ż; istniejące |
+| frankfurter | parówka | ż; nowe |
 | salami | salami | n/ndm; nowe |
 | jerky | suszone mięso | n; istniejące |
 | fish fillet | filet rybny | m; nowe („filet” istniejące) |
@@ -2036,6 +2073,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Acetone (`/acetone`) | Aceton | m; nowe |
 | Aluminium (`/aluminium`) | Aluminium | n; istniejące; nie „glin”; bez zmian |
 | Ammonia (`/ammonia`) | Amoniak | m; istniejące |
+| Urine (`/ammonia/urine`) | Mocz | m; nowe (ciecze z Monke); przy cenzurze wypróżniania widziany jako Amoniak |
 | Ash (`/ash`) | Popiół | m; istniejące |
 | Blood (`/blood`) | Krew | ż; istniejące |
 | Bluespace Dust (`/bluespace`) | Pył bluespace | m; istniejące; „bluespace” zostaje |
@@ -2603,6 +2641,12 @@ Nazwa rasy w nawiasie to mianownik z sekcji 04 §6, małą literą (przegląd sp
 | genetic damage | uszkodzenia genetyczne | mn; istniejące |
 | radiation (stan pacjenta) | napromieniowanie | n; istniejące |
 | radiation (zjawisko) | promieniowanie | n; istniejące |
+| radiation level, intensity (irradiated) | poziom promieniowania (w %) | m; nowe (port promieniowania Bee#13442) |
+| radioactive contamination | skażenie radioaktywne | n; istniejące |
+| radiation protected (clothing) | chroniący przed promieniowaniem | nowe; examine: „<b>chroni przed promieniowaniem</b>” |
+| Geiger counter | licznik Geigera | m; istniejące |
+| radiation storm | burza radiacyjna | ż; istniejące |
+| pluoxium formation | powstawanie pluoksium | n; nowe (nazwa reakcji gazowej) |
 | health | zdrowie | n; istniejące |
 | vitals | funkcje życiowe | mn; istniejące |
 | critical condition, crit | stan krytyczny | m; istniejące |
@@ -3113,16 +3157,16 @@ Oznaczenia w kolumnie uwag:
 | EN | PL | rodzaj/uwagi |
 |---|---|---|
 | Command | Dowództwo | n; istniejące (radio, manifest, latejoin) |
-| Security | Ochrona | ż; istniejące jako nazwa działu w menu; kanał radiowy i ludzie to **Policja** (patrz niżej) |
-| Security (radio channel) | Policja | ż; istniejące (`RADIO_CHANNEL_SECURITY`, gałąź policja) |
-| security (people, in prose) | policja / policjanci | ż / mnoga (policjanci); istniejące; odrzucone: ochroniarze (13×, tylko w starych tekstach) |
+| Security | Ochrona | ż; istniejące jako nazwa działu w menu; kanał radiowy i ludzie to **Żandarmeria** (patrz niżej) |
+| Security (radio channel) | Żandarmeria | ż; istniejące (`RADIO_CHANNEL_SECURITY`); wcześniej Policja |
+| security (people, in prose) | Żandarmeria / żandarmi | ż / mnoga (żandarmi); istniejące; odrzucone: policja, policjanci (dawna nazwa), ochroniarze |
 | Engineering | Inżynieria | ż; istniejące (radio, manifest) |
 | Medical | Medyczny (dział medyczny) | m; istniejące (radio, manifest); w zdaniu „dział medyczny”, „lekarze” |
 | Science / Research | Nauka (dział naukowy) | ż; istniejące; kanał radiowy „Naukowy”; odrzucone: dział badawczy (w nazwach obszarów zostaje „Wydział Badawczy”) |
 | Supply / Cargo | Zaopatrzenie | n; istniejące; kanał radiowy „Dostawy” (istniejące) |
 | Service | Służba | ż; istniejące (radio); odrzucone: Serwis (karta ID, 3×), Usługi |
 | Civilian | Cywile | mnoga; istniejące (latejoin) |
-| Munitions | Amunicja (dział amunicji) | ż; istniejące (manifest, latejoin) |
+| Munitions | Uzbrojenie (dział uzbrojenia) | n; decyzja 2026-11, wcześniej „Amunicja” (manifest, latejoin, Orbit, konsola kart) |
 | Silicon | Syntetyki | mnoga; istniejące (latejoin); pojedynczy: syntetyk (m) |
 | Gimmick / Special | Specjalne | mnoga; istniejące (latejoin); rola gimmick w defines zostaje „Gimmick” |
 | Air Traffic Control (radio) | Kontrola Lotów | ż; istniejące (`RADIO_CHANNEL_ATC`) |
@@ -3178,7 +3222,7 @@ Oznaczenia w kolumnie uwag:
 | Exploration Crew / Explorer | Odkrywca | m; istniejące |
 | Head of Security / HoS | Komendant | m; istniejące; odrzucone: szef ochrony (jako nazwa stanowiska) |
 | Warden | Naczelnik | m; istniejące |
-| Security Officer / Military Police / MP | Policjant | m; istniejące; odrzucone: Żandarm (stary tytuł, migrowany w policja.dm) |
+| Security Officer / Military Police / MP | Żandarm | m; istniejące; odrzucone: Policjant (dawny tytuł, migrowany w policja.dm) |
 | Detective | Detektyw | m; istniejące |
 | Deputy | Aspirant | m; istniejące |
 | Master at Arms / MAA | Mistrz Broni | m; istniejące |
@@ -3252,7 +3296,11 @@ Oznaczenia w kolumnie uwag:
 | Squad Leader | dowódca drużyny | m; nowe; odrzucone: dowódca oddziału (1×) |
 | Squad Kit | zestaw drużyny | m; nowe; odrzucone: zestaw składu |
 | Squad Pager | pager drużyny | m; nowe |
-| Able / Baker / Charlie / Duff (squads) | Able / Baker / Charlie / Duff | nazwy własne drużyn, bez tłumaczenia |
+| Able / Baker / Charlie / Duff (squads) | Alpha / Bravo / Charlie / Delta | nazwy własne drużyn; od reworku drużyn alfabet NATO zamiast starych nazw NSV13 (typy w kodzie zostały: `/datum/squad/able` itd.) |
+| Squad Position (NSV13 rework) | funkcja w drużynie | ż; żołnierz, dowódca, medyk, inżynier |
+| Squad Crate | skrzynia sprzętu drużyny | ż; nowe; zestaw z automatu drużyny |
+| Squad Vendor | automat drużyny | m; zamiast „automat składu” |
+| Order Marker | znacznik rozkazu | m; tędy, atak, obrona, odwrót, zbiórka, cel |
 | CAG (Commander Air Group) | CAG (dowódca grupy lotniczej) | m; istniejące „CAG Syndykatu” |
 | Flight Leader | dowódca klucza | m; nowe |
 | Wingman | skrzydłowy | m; nowe |
@@ -3656,8 +3704,8 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Gateway | Brama | ż; istniejące |
 | EVA Storage | Magazyn EVA | m; istniejące |
 | Brig | Areszt | m; istniejące; odrzucone: Bryg |
-| Security Office / Precinct | Komisariat | m; istniejące |
-| Security Post / Checkpoint | Posterunek Policji / Punkt Kontroli Bezpieczeństwa | m; istniejące |
+| Security Office / Precinct | Placówka Żandarmerii | ż; istniejące; odrzucone: Komisariat (dawna nazwa) |
+| Security Post / Checkpoint | Posterunek Żandarmerii / Punkt Kontroli Bezpieczeństwa | m; istniejące |
 | Armory | Zbrojownia | ż; istniejące |
 | Warden's Office | Biuro Naczelnika | n; istniejące |
 | HoS Office | Gabinet Komendanta | m; istniejące |
@@ -3764,7 +3812,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Gauss Bay / Gauss Battery | Komory Gaussa / Bateria Gaussa | mnoga / ż; istniejące |
 | Artillery Bay | Artyleria | ż; istniejące |
 | Torpedo Bay / Launchers | Wyrzutnie | mnoga; istniejące (Wyrzutnie 1 & 2) |
-| Munitions Lounge / Equipment Room | Świetlica Amunicji / Pokój Wyposażenia Amunicji | ż / m; nowe |
+| Munitions Lounge / Equipment Room | Świetlica Uzbrojenia / Pokój Wyposażenia Uzbrojenia | ż / m; decyzja 2026-11 (dział = uzbrojenie) |
 | Squad Equipment Room | Pokój Wyposażenia Drużyn | m; istniejące |
 | Damage Control | Kontrola Uszkodzeń | ż; nowe |
 | FTL Control Room | Pokój Kontroli Napędu Nadświetlnego | m; istniejące |

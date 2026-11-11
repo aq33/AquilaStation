@@ -88,7 +88,7 @@
 	if(!active)
 		if(world.time > last_event+15)
 			active = 1
-			radiation_pulse(src, 30)
+			radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION, intensity = URANIUM_IRRADIATION_INTENSITY, minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME) // AQ EDIT - promieniowanie z Bee#13442
 			last_event = world.time
 			active = null
 			return
@@ -187,7 +187,7 @@
 	icon_state = "jani"
 
 /obj/structure/statue/silver/sec
-	name = "posąg policjanta"
+	name = "posąg żandarma"
 	icon_state = "sec"
 
 /obj/structure/statue/silver/secborg

@@ -92,7 +92,7 @@
 	icon_state = "warden_jacket"
 
 /obj/item/clothing/suit/armor/vest/leather
-	name = "płaszcz policyjny"
+	name = "płaszcz żandarmski"
 	desc = "Lekko opancerzony skórzany płaszcz do codziennego noszenia przez wysokich rangą oficerów. Ma herb ochrony Nanotrasen."
 	icon_state = "leathercoat-sec"
 	item_state = "hostrench"

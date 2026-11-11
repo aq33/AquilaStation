@@ -127,6 +127,12 @@
 #define DEPARTMENT_BITFLAG_SECURITY (1<<6)
 #define DEPARTMENT_BITFLAG_SILICON  (1<<7)
 #define DEPARTMENT_BITFLAG_MUNITIONS (1<<8) //NSV13 munitions
+// AQ EDIT START - grupy dostępów SSdepartment (port BeeStation/BeeStation-Hornet#14139)
+#define DEPARTMENT_BITFLAG_CENTCOM (1<<9)
+#define DEPARTMENT_BITFLAG_OTHER (1<<10)
+/// Działy stacji, których dostępy daje get_all_accesses()
+#define DEPARTMENT_BITFLAG_STATIONS (DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MUNITIONS)
+// AQ EDIT END
 
 //-------------------------------------------------------------------------------------------
 //------------------------------------- Job names -------------------------------------------
@@ -180,7 +186,7 @@
 // Security
 #define JOB_NAME_HEADOFSECURITY "Komendant"
 #define JOB_NAME_WARDEN "Naczelnik"
-#define JOB_NAME_SECURITYOFFICER "Policjant" //NSV13 - MPs
+#define JOB_NAME_SECURITYOFFICER "Żandarm" //NSV13 - MPs
 #define JOB_NAME_DETECTIVE "Detektyw"
 #define JOB_NAME_DEPUTY  "Aspirant"
 
@@ -336,17 +342,17 @@
 #define JOB_CHATCOLOR_BARBER    "#BD9E86"
 
 // Cargo
-#define JOB_CHATCOLOR_RAWCARGO        "#ECCE9A" // custom cargo color
-#define JOB_CHATCOLOR_QUARTERMASTER   "#C79C52"
-#define JOB_CHATCOLOR_CARGOTECHNICIAN "#D3A372"
-#define JOB_CHATCOLOR_SHAFTMINER      "#CE957E"
+#define JOB_CHATCOLOR_RAWCARGO        "#FFE88A" // custom cargo color //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_QUARTERMASTER   "#FFCD00" //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_CARGOTECHNICIAN "#F2D35C" //AQUILA EDIT - żółć InPostu
+#define JOB_CHATCOLOR_SHAFTMINER      "#E3C46A" //AQUILA EDIT - żółć InPostu
 #define JOB_CHATCOLOR_BITRUNNER       "#9ECF6B" // AQ EDIT - bitrunning
 
 // Engineering
-#define JOB_CHATCOLOR_RAWENGINEERING        "#E9D1A8" // custom engineering color
-#define JOB_CHATCOLOR_CHIEFENGINEER         "#CFBB72"
-#define JOB_CHATCOLOR_STATIONENGINEER       "#D9BC89"
-#define JOB_CHATCOLOR_ATMOSPHERICTECHNICIAN "#D4A07D"
+#define JOB_CHATCOLOR_RAWENGINEERING        "#F2C4C4" // custom engineering color //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_CHIEFENGINEER         "#E0484E" //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_STATIONENGINEER       "#E87F83" //AQUILA EDIT - czerwień Orlenu
+#define JOB_CHATCOLOR_ATMOSPHERICTECHNICIAN "#D9666B" //AQUILA EDIT - czerwień Orlenu
 
 // Medical
 #define JOB_CHATCOLOR_RAWMEDICAL           "#B1E5EC" // custom medical color
@@ -366,13 +372,13 @@
 #define JOB_CHATCOLOR_EXPLORATIONCREW  "#85D8B8"
 
 // Security
-#define JOB_CHATCOLOR_RAWSECURITY     "#C3CAF5" // custom security color, has some color than deputy //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_HEADOFSECURITY  "#5C6FE0" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_WARDEN          "#7C8BE6" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_SECURITYOFFICER "#A3AEEB" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_DETECTIVE       "#8E95BF" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#8F86D1" //AQUILA EDIT - granat Policji
-#define JOB_CHATCOLOR_DEPUTY          "#E8EBFF" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_RAWSECURITY     "#C5E3CC" // custom security color, has some color than deputy //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_HEADOFSECURITY  "#3FA15A" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_WARDEN          "#5BB473" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_SECURITYOFFICER "#8CCB9C" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_DETECTIVE       "#8FB89A" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#7FBF9F" //AQUILA EDIT - zieleń Żandarmerii
+#define JOB_CHATCOLOR_DEPUTY          "#E6F5EA" //AQUILA EDIT - zieleń Żandarmerii
 
 //NSV13 - Munitions
 #define JOB_CHATCOLOR_RAWMUNITIONS "#FF7F00"

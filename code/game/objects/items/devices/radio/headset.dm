@@ -110,20 +110,20 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	recalculateChannels()
 
 /obj/item/radio/headset/headset_sec
-	name = "słuchawki radiowe Policji"
-	desc = "Używane przez twoje elitarne siły policyjne."
+	name = "słuchawki radiowe Żandarmerii"
+	desc = "Używane przez twoje elitarne siły żandarmskie."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_sec
 
 /obj/item/radio/headset/headset_medsec
-	name = "słuchawki radiowe medyczne i Policji"
-	desc = "Służą do słuchania, ilu policjantów trzeba będzie pozszywać."
+	name = "słuchawki radiowe medyczne i Żandarmerii"
+	desc = "Służą do słuchania, ilu żandarmów trzeba będzie pozszywać."
 	icon_state = "medsec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
 
 /obj/item/radio/headset/headset_sec/alt
-	name = "policyjne słuchawki nauszne"
-	desc = "Używane przez twoje elitarne siły policyjne. Chronią uszy przed granatami hukowo-błyskowymi."
+	name = "żandarmskie słuchawki nauszne"
+	desc = "Używane przez twoje elitarne siły żandarmskie. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "sec_headset_alt"
 	item_state = "sec_headset_alt"
 	bang_protect = 1
@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_srvsec
 	name = "słuchawki prawa i porządku"
-	desc = "W słuchawkach wymiaru sprawiedliwości klucz szyfrujący reprezentuje dwie odrębne, ale równie ważne grupy: Policję, która ściga przestępstwa, i Służbę, która świadczy usługi. Oto ich łączność."
+	desc = "W słuchawkach wymiaru sprawiedliwości klucz szyfrujący reprezentuje dwie odrębne, ale równie ważne grupy: Żandarmerię, która ściga przestępstwa, i Służbę, która świadczy usługi. Oto ich łączność."
 	icon_state = "srvsec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_srvsec
 

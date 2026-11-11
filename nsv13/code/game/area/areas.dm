@@ -559,7 +559,7 @@
 	icon_state = "artillery"
 
 /area/nsv/weapons/access_corridor
-	name = "Korytarz Dostępu Amunicji"
+	name = "Korytarz Dostępu Uzbrojenia"
 	icon_state = "hallF"
 
 /area/nsv/magazine
@@ -591,7 +591,7 @@
 	icon_state = "nuke_storage"
 
 /area/security/locker_room
-	name = "Szatnia Policji"
+	name = "Szatnia Żandarmerii"
 	icon_state = "checkpoint1"
 
 /area/nsv/shuttle
@@ -760,23 +760,23 @@
 	light_color = "#e69602"
 
 /area/nsv/weapons/munitions_lounge
-    name = "Świetlica Amunicji"
+    name = "Świetlica Uzbrojenia"
     icon_state = "hallF"
 
 /area/nsv/weapons/weapons_secure_storage
-    name = "Zabezpieczony Magazyn Amunicji"
+    name = "Zabezpieczony Magazyn Uzbrojenia"
     icon_state = "hallF"
 
 /area/nsv/weapons/equipment_room
-    name = "Pokój Wyposażenia Amunicji"
+    name = "Pokój Wyposażenia Uzbrojenia"
     icon_state = "hallF"
 
 /area/nsv/weapons/observation_deck
-    name = "Pokład Obserwacyjny Amunicji"
+    name = "Pokład Obserwacyjny Uzbrojenia"
     icon_state = "hallF"
 
 /area/nsv/weapons/main_passageway
-    name = "Korytarz Dostępowy Amunicji"
+    name = "Korytarz Dostępowy Uzbrojenia"
     icon_state = "hallF"
 
 /area/nsv/engine/dcc

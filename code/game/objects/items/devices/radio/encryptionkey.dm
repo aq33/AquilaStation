@@ -53,7 +53,7 @@
 	desc = "Klucz modułu wzmacniającego do słuchawek radiowych. Włącza tryb głośny w każdych słuchawkach, do których zostanie włożony."
 
 /obj/item/encryptionkey/headset_sec
-	name = "klucz szyfrujący radia Policji"
+	name = "klucz szyfrujący radia Żandarmerii"
 	icon_state = "sec_cypherkey"
 	channels = list(RADIO_CHANNEL_SECURITY = 1)
 
@@ -83,7 +83,7 @@
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_MEDICAL = 1)
 
 /obj/item/encryptionkey/headset_medsec
-	name = "klucz szyfrujący radia medycznego i Policji"
+	name = "klucz szyfrujący radia medycznego i Żandarmerii"
 	icon_state = "medsec_cypherkey"
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1)
 

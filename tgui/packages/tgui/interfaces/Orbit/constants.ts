@@ -18,7 +18,7 @@ export const DEPARTMENT2COLOR: Record<string, Department> = {
   command: { color: 'blue', name: 'Dowództwo' },
   engineering: { color: 'orange', name: 'Inżynieria' },
   medical: { color: 'teal', name: 'Medyczny' },
-  munitions: { color: 'yellow', name: 'Amunicja' },
+  munitions: { color: 'yellow', name: 'Uzbrojenie' },
   science: { color: 'pink', name: 'Nauka' },
   security: { color: 'red', name: 'Ochrona' },
   service: { color: 'green', name: 'Cywile' },

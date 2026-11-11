@@ -3,7 +3,7 @@
 	antagpanel_category = "Boarder"
 	roundend_category = "abordażyści"
 	should_equip = FALSE
-	tips = 'html/antagtips/boarder.html'
+	tips = "boarder" // AQ EDIT - show_tips() sam składa ścieżkę html/antagtips/[nazwa].html
 	show_to_ghosts = TRUE
 
 /datum/antagonist/traitor/boarder/forge_human_objectives()

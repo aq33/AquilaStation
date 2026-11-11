@@ -148,7 +148,7 @@
 
 /obj/item/clothing/head/HoS
 	name = "czapka komendanta"
-	desc = "Solidna regulaminowa czapka Komendanta. Pokazuje policjantom, kto tu rządzi."
+	desc = "Solidna regulaminowa czapka Komendanta. Pokazuje żandarmom, kto tu rządzi."
 	icon_state = "hoscap"
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 15, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "stamina" = 30) //NSV13
 	strip_delay = 80
@@ -168,8 +168,8 @@
 	desc = "Czarny beret z grubą wyściółką pancerną w środku. Stylowy i wytrzymały."
 
 /obj/item/clothing/head/warden
-	name = "czapka policyjna naczelnika"
-	desc = "Specjalna opancerzona czapka wydawana Naczelnikowi policji. Chroni głowę przed uderzeniami."
+	name = "czapka żandarmska naczelnika"
+	desc = "Specjalna opancerzona czapka wydawana Naczelnikowi Żandarmerii. Chroni głowę przed uderzeniami."
 	icon_state = "policehelm"
 	armor = list("melee" = 40, "bullet" = 45, "laser" = 10, "energy" = 30, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60, "stamina" = 30, "bleed" = 25) //NSV13
 	strip_delay = 60
@@ -177,7 +177,7 @@
 
 /obj/item/clothing/head/warden/drill
 	name = "kapelusz musztrowy naczelnika"
-	desc = "Specjalny opancerzony kapelusz musztrowy z insygniami policji. Wzmocniony materiał zapewnia wystarczającą ochronę."
+	desc = "Specjalny opancerzony kapelusz musztrowy z insygniami Żandarmerii. Wzmocniony materiał zapewnia wystarczającą ochronę."
 	icon_state = "wardendrill"
 	item_state = "wardendrill"
 	dog_fashion = null
@@ -252,16 +252,16 @@
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sec
-	name = "beret policyjny"
-	desc = "Solidny beret z insygniami policji. Wzmocniony materiał zapewnia wystarczającą ochronę."
+	name = "beret żandarmski"
+	desc = "Solidny beret z insygniami Żandarmerii. Wzmocniony materiał zapewnia wystarczającą ochronę."
 	icon_state = "beret_badge"
 	armor = list("melee" = 30, "bullet" = 40, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 25) //NSV13
 	strip_delay = 60
 	dog_fashion = null
 
 /obj/item/clothing/head/beret/corpsec
-	name = "korporacyjny beret policyjny"
-	desc = "Specjalny czarny beret na przyziemne życie korporacyjnego policjanta."
+	name = "korporacyjny beret żandarmski"
+	desc = "Specjalny czarny beret na przyziemne życie korporacyjnego żandarma."
 	icon_state = "beret_corporate_officer"
 	armor = list("melee" = 35, "bullet" = 40, "laser" = 20, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50, "stamina" = 30, "bleed" = 25) //NSV13
 	strip_delay = 60
@@ -280,7 +280,7 @@
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sec/navyofficer
-	desc = "Specjalny beret z insygniami policji. Dla policjantów z klasą."
+	desc = "Specjalny beret z insygniami Żandarmerii. Dla żandarmów z klasą."
 	icon_state = "officerberet"
 
 //Curator

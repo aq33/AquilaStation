@@ -1,4 +1,4 @@
-// AQUILA - ranking zarobków wszech czasów
+// AQUILA - ranking zarobków wszech czasów (zakładka okna Statystyki i raport końca rundy)
 import {
   Box,
   Icon,
@@ -8,9 +8,6 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 export type Badge = {
   name: string;
@@ -38,35 +35,31 @@ export type LeaderboardEntry = {
   rounds: number;
 };
 
-type Data = {
-  leaderboard: LeaderboardEntry[];
-  my_ckey: string;
-};
-
 const PODIUM = [
   { color: 'gold', height: 7 },
   { color: 'silver', height: 5.5 },
   { color: '#cd7f32', height: 4.5 },
 ];
 
-export const EconomyLeaderboard = (props) => {
-  const { data } = useBackend<Data>();
-  const { leaderboard = [], my_ckey } = data;
+/** Ranking zarobków wszech czasów, zakładka okna „Statystyki” (CharacterStats.tsx) */
+export const EarningsRanking = (props: {
+  leaderboard: LeaderboardEntry[];
+  myCkey?: string;
+}) => {
+  const { leaderboard, myCkey } = props;
   return (
-    <Window title="Ranking zarobków" width={520} height={560}>
-      <Window.Content scrollable>
-        <Section>
-          <Box color="label">
-            Suma sald z karty ID na koniec rund, w których postać przeżyła i się
-            ewakuowała - tak samo jak przy aquilosach.
-          </Box>
-        </Section>
-        {leaderboard.length > 0 && <Podium leaderboard={leaderboard} />}
-        <Section title="Top 10">
-          <LeaderboardTable leaderboard={leaderboard} myCkey={my_ckey} />
-        </Section>
-      </Window.Content>
-    </Window>
+    <>
+      <Section>
+        <Box color="label">
+          Suma sald z karty ID na koniec rund, w których postać przeżyła i się
+          ewakuowała - tak samo jak przy aquilosach.
+        </Box>
+      </Section>
+      {leaderboard.length > 0 && <Podium leaderboard={leaderboard} />}
+      <Section title="Top 10">
+        <LeaderboardTable leaderboard={leaderboard} myCkey={myCkey} />
+      </Section>
+    </>
   );
 };
 

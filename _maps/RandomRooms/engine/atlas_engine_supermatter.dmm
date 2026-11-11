@@ -96,13 +96,13 @@
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "en" = (
-/obj/effect/turf_decal/tile/ship/yellow{
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/yellow{
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/yellow,
+/obj/effect/turf_decal/tile/ship/yellow/orlen,
 /obj/machinery/suit_storage_unit/engine,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -307,7 +307,7 @@
 /turf/open/floor/durasteel/riveted,
 /area/engine/engine_room)
 "lu" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/structure/closet/radiation,
@@ -481,7 +481,7 @@
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "qm" = (
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/clothing/head/radiation,
 /obj/item/clothing/suit/radiation,
@@ -1334,7 +1334,7 @@
 /area/engine/supermatter)
 "Zf" = (
 /obj/structure/cable/yellow,
-/obj/effect/turf_decal/tile/ship/half/yellow,
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
@@ -1344,7 +1344,7 @@
 /turf/open/floor/monotile/dark,
 /area/engine/engine_room)
 "Zo" = (
-/obj/effect/turf_decal/tile/ship/half/yellow{
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
 	dir = 1
 	},
 /obj/structure/cable,

@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(squad_role_names_pl, list(
 	MEDICAL_SQUAD = "Zespół medyczny",
 	SECURITY_SQUAD = "Wsparcie ochrony",
 	COMBAT_AIR_PATROL = "Bojowy patrol powietrzny",
-	MUNITIONS_SUPPORT = "Wsparcie działu amunicji",
+	MUNITIONS_SUPPORT = "Wsparcie działu uzbrojenia",
 	CIC_OPS = "Obsada CIB",
 ))
 

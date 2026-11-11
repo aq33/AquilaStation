@@ -766,7 +766,7 @@
 	round_credits += "<br>"
 
 	// MUNITIONS - NSV13
-	round_credits += "<center><h1>Dzielna obsługa amunicji:</h1>"
+	round_credits += "<center><h1>Dzielna obsługa uzbrojenia:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.munitions_positions))
 		round_credits += "<center><h2>[current.name] jako [current.assigned_role]</h2>"

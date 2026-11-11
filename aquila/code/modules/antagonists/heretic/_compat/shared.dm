@@ -124,65 +124,30 @@
 	return ..()
 
 // ---------------------------------------------------------------------------
-// Halucynacje w API tg (u nas /datum/hallucination przyjmuje carbona)
-
-/// tg: wywołuje halucynację danego typu. Dla urojeń (delusion) obsługuje czas i to, kogo dotyczą.
-/mob/living/proc/cause_hallucination(hallucination_type, source = "an external source", duration, affects_us, affects_others, skip_nearby, play_wabbajack)
-	if(!ispath(hallucination_type, /datum/hallucination))
-		CRASH("cause_hallucination called with invalid type: [hallucination_type] ([source])")
-	if(!iscarbon(src))
-		return null
-	var/mob/living/carbon/carbon_src = src
-	if(ispath(hallucination_type, /datum/hallucination/delusion/preset))
-		var/datum/hallucination/delusion/preset/preset = hallucination_type
-		var/final_duration = isnull(duration) ? initial(preset.preset_duration) : duration
-		var/hit_others = isnull(affects_others) ? initial(preset.preset_affects_others) : affects_others
-		var/hit_us = isnull(affects_us) ? initial(preset.preset_affects_us) : affects_us
-		var/skip = isnull(skip_nearby) ? FALSE : skip_nearby
-		. = null
-		if(hit_others)
-			. = new hallucination_type(carbon_src, TRUE, "custom", final_duration, skip, initial(preset.delusion_icon_state), initial(preset.delusion_icon_file), initial(preset.delusion_name))
-		if(hit_us)
-			var/datum/hallucination/self_delusion/self = new /datum/hallucination/self_delusion(carbon_src, TRUE, "custom", final_duration, initial(preset.delusion_icon_state), initial(preset.delusion_icon_file), !!play_wabbajack)
-			if(!.)
-				. = self
-		return .
-	if(ispath(hallucination_type, /datum/hallucination/delusion))
-		return new hallucination_type(carbon_src, TRUE, null, isnull(duration) ? 30 SECONDS : duration, isnull(skip_nearby) ? TRUE : skip_nearby)
-	return new hallucination_type(carbon_src, TRUE)
-
-/// tg: gotowe urojenia (u nas "custom" z ustalonym obrazkiem)
-/datum/hallucination/delusion/preset
-	/// Plik ikony urojenia
-	var/delusion_icon_file = 'icons/effects/effects.dmi'
-	/// Stan ikony urojenia
-	var/delusion_icon_state = "nothing"
-	/// Nazwa wyświetlana zamiast imion
-	var/delusion_name = "..."
-	/// Domyślny czas trwania
-	var/preset_duration = 30 SECONDS
-	/// Czy inni wyglądają inaczej dla ofiary
-	var/preset_affects_others = TRUE
-	/// Czy ofiara widzi siebie inaczej
-	var/preset_affects_us = FALSE
+// Gotowe urojenia heretyka z tg (system halucynacji: aquila/code/modules/hallucination/)
 
 /datum/hallucination/delusion/preset/moon
 	delusion_icon_file = 'aquila/icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	delusion_icon_state = "moon_mass"
 	delusion_name = "księżyc"
-	preset_duration = 15 SECONDS
+	duration = 15 SECONDS
+	affects_others = TRUE
+	random_hallucination_weight = 0
 
 // Halucynacja obrazów heretyka. tg buduje wygląd człowieka w szatach; u nas najbliższy gotowy obrazek.
 /datum/hallucination/delusion/preset/heretic
 	delusion_icon_file = 'aquila/icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	delusion_icon_state = "stalker"
 	delusion_name = "Heretyk"
-	preset_duration = 11 SECONDS
+	duration = 11 SECONDS
+	affects_others = TRUE
+	affects_us = FALSE
+	random_hallucination_weight = 0
 
 /datum/hallucination/delusion/preset/heretic/gate
 	delusion_name = "Brama Umysłu"
-	preset_duration = 60 SECONDS
-	preset_affects_us = TRUE
+	duration = 60 SECONDS
+	affects_us = TRUE
 
 // ---------------------------------------------------------------------------
 // Kosmiczny prześladowca (szaty kosmosu zakładane przez nie-heretyka)

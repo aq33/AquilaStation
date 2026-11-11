@@ -16,6 +16,16 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 /area/test_chamber/arena
 	name = "Komora testowa - arena"
 
+// Ściany komory są niezniszczalne, a montaż ramek (tablice, APC, kamery) obsługuje tylko /turf/closed/wall.
+// W komorze ramki da się zawiesić jak na zwykłej ścianie, żeby dało się sprawdzić przedmioty ścienne.
+/turf/closed/indestructible/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/wallframe) && istype(get_area(src), /area/test_chamber))
+		var/obj/item/wallframe/frame = W
+		if(frame.try_build(src, user))
+			frame.attach(src, user)
+		return TRUE
+	return ..()
+
 /datum/map_template/test_chamber
 	name = "Komora testowa"
 	mappath = 'aquila/_maps/templates/test_chamber.dmm'
@@ -133,7 +143,8 @@ GLOBAL_DATUM(test_chamber, /datum/test_chamber)
 	kit.spawn_kit(turfs, kit_center, user)
 	log_admin("[key_name(user)] spawned test chamber kit \"[kit.name]\"[kit.pr ? " ([kit.pr])" : ""]")
 	if(kit.description)
-		to_chat(user, "<span class='notice'><b>[kit.name]</b>[kit.pr ? " ([kit.pr])" : ""]: [kit.description]</span>")
+		// Opis we własnym znaczniku: tłumacz czatu dopasowuje cały węzeł tekstu, więc nie może się zlewać z nazwą i numerem PR
+		to_chat(user, "<span class='notice'><b>[kit.name]</b>[kit.pr ? " ([kit.pr])" : ""]: <span>[kit.description]</span></span>")
 
 /// Lista zestawów do wyboru: nazwa do wyświetlenia -> datum
 /proc/test_chamber_kits()

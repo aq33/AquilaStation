@@ -169,7 +169,9 @@
 			target.Paralyze(0.1)
 
 			target.drop_all_held_items()
-			target.grabbedby(owner)
+		// AQUILA: the grab lands from the front too, only the knockdown needs the back or the dark
+		target.grabbedby(owner)
+		if(owner.pulling == target && !HAS_TRAIT(target, TRAIT_PUSHIMMUNE)) // grippedby() nie sprawdza tego, co grabbedby(): odporności (Hulk) ani udanego chwytu (sieć energetyczna)
 			target.grippedby(owner, instant = TRUE)
 
 #undef LUNGE_TIME

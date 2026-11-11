@@ -57,12 +57,60 @@
 	return TRUE
 
 /// Wprowadzenie do roli w oknie ogólnym (AntagInfoGeneric). Domyślnie opis potwora z playstyle_string
-/// (pradawny horror, morph, demon, imp...), role mogą to nadpisać.
+/// (pradawny horror, morph, demon, imp...), a bez niego powitanie z greet() zapisane przy starcie roli.
+/// Role mogą to nadpisać.
 /datum/antagonist/proc/get_antag_intro()
 	var/mob/current = owner?.current
-	if(current && ("playstyle_string" in current.vars))
+	if(current && ("playstyle_string" in current.vars) && current.vars["playstyle_string"])
 		return current.vars["playstyle_string"]
-	return null
+	return greeting_text
+
+/datum/antagonist
+	/// Powitanie roli z czatu (greet()), pokazywane w oknie roli, gdy rola nie ma własnego opisu
+	var/greeting_text
+	/// Wiersze powitania zbierane w trakcie greet()
+	var/list/greeting_lines
+	/// world.time, w którym zaczęło się zbieranie (greet() nie powinno spać, późniejsze wiadomości to już nie powitanie)
+	var/greeting_capture_time
+
+/// Rola, której powitanie właśnie zbiera to_chat()
+GLOBAL_DATUM(antag_greeting_capture, /datum/antagonist)
+
+/// greet() z zapisem wiadomości dla gracza. Wcześniej cały samouczek wielu ról (demon impulsu, smok, rewenant...)
+/// szedł tylko do czatu, a okno pod przyciskiem roli miało samą nazwę i cele. Woła to on_gain() w antag_datum.dm.
+/datum/antagonist/proc/greet_and_capture()
+	var/datum/antagonist/previous = GLOB.antag_greeting_capture
+	GLOB.antag_greeting_capture = src
+	greeting_lines = list()
+	greeting_capture_time = world.time
+	try
+		greet()
+	catch(var/exception/greet_error)
+		// Błąd w greet(): globalny wskaźnik nie może zostać na tej roli (trzymałby referencję do datumu)
+		GLOB.antag_greeting_capture = previous
+		greeting_lines = null
+		throw greet_error
+	GLOB.antag_greeting_capture = previous
+	if(length(greeting_lines))
+		greeting_text = jointext(greeting_lines, "<br>")
+	greeting_lines = null
+
+/// Hak z to_chat(): wiadomość do gracza tej roli w trakcie greet()
+/datum/antagonist/proc/capture_greeting(target, html)
+	if(world.time != greeting_capture_time || !islist(greeting_lines))
+		GLOB.antag_greeting_capture = null // greet() zasnął albo się wywalił: dalej nie zbieramy
+		return
+	if(!istext(html) || !owner || (target != owner && target != owner.current && target != owner.current?.client))
+		return
+	var/static/regex/media = regex(@"<(img|audio|source)[^>]*>", "gi") // ikony icon2html z czatu nie istnieją w oknie
+	greeting_lines += media.Replace(html, "")
+
+// Cele okno pokazuje osobno, więc nie trafiają do powitania
+/datum/mind/announce_objectives()
+	var/datum/antagonist/capturing = GLOB.antag_greeting_capture
+	GLOB.antag_greeting_capture = null
+	. = ..()
+	GLOB.antag_greeting_capture = capturing
 
 /datum/antagonist/ui_static_data(mob/user)
 	. = ..()

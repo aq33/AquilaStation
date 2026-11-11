@@ -16,7 +16,7 @@
 		"naukowy" = list(/area/science/lab, /area/science/server, /area/science/robotics, /area/science/xenobiology, /area/crew_quarters/heads/hor),
 		"inżynieria" = list(/area/engine/engineering, /area/engine/atmos, /area/nsv/engine/engine_room, /area/crew_quarters/heads/chief),
 		"ochrona" = list(/area/security/brig, /area/security/main, /area/ai_monitored/security/armory, /area/crew_quarters/heads/hos, /area/nsv/crew_quarters/heads/maa),
-		"amunicja" = list(/area/nsv/weapons, /area/nsv/magazine),
+		"uzbrojenie" = list(/area/nsv/weapons, /area/nsv/magazine),
 		"zaopatrzenie" = list(/area/quartermaster/storage, /area/quartermaster/office, /area/quartermaster/qm),
 		"telekomunikacja" = list(/area/tcommsat/server, /area/tcommsat/computer),
 	)

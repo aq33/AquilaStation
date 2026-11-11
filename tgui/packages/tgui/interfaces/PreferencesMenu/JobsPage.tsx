@@ -369,7 +369,7 @@ export const JobsPage = () => {
                 <Gap amount={6} />
               </Department>
 
-              {/* AQUILA: dział amunicji NSV */}
+              {/* AQUILA: dział uzbrojenia NSV */}
               <Department department="Munitions">
                 <Gap amount={6} />
               </Department>

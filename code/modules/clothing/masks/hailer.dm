@@ -2,8 +2,8 @@
 // **** Security gas mask ****
 
 /obj/item/clothing/mask/gas/sechailer
-	name = "policyjna maska gazowa"
-	desc = "Standardowa policyjna maska gazowa ze zintegrowanym urządzeniem „Compli-o-nator 3000”. Odtwarza kilkanaście nagranych wcześniej haseł, które mają sprawić, że szumowiny stoją spokojnie, gdy razisz je paralizatorem. Nie majstruj przy urządzeniu."
+	name = "żandarmska maska gazowa"
+	desc = "Standardowa żandarmska maska gazowa ze zintegrowanym urządzeniem „Compli-o-nator 3000”. Odtwarza kilkanaście nagranych wcześniej haseł, które mają sprawić, że szumowiny stoją spokojnie, gdy razisz je paralizatorem. Nie majstruj przy urządzeniu."
 	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust, /datum/action/item_action/dispatch)
 	icon_state = "sechailer"
 	item_state = "sechailer"
@@ -38,7 +38,7 @@
 	item_state = "spacepol"
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "policyjny megafon"
+	name = "żandarmski megafon"
 	desc = "Zestaw rozpoznawalnych, nagranych wcześniej komunikatów, których cyborgi używają przy zatrzymywaniu przestępców."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_idle"

@@ -48,6 +48,10 @@
 		return FALSE
 	return TRUE
 
+// Zaklęcia /pointed sprawdzają cel tylko przez intercept_check, can_target wołają jedynie targeted/aoe
+/obj/effect/proc_holder/spell/pointed/unsettle/intercept_check(mob/user, atom/target)
+	return can_target(target, user, FALSE)
+
 /obj/effect/proc_holder/spell/pointed/unsettle/cast(list/targets, mob/living/user)
 	var/mob/living/target = targets[1]
 	if(!istype(target))
@@ -142,6 +146,9 @@
 			user.balloon_alert(user, "za daleko!")
 		return FALSE
 	return TRUE
+
+/obj/effect/proc_holder/spell/pointed/voidwalker_dash/intercept_check(mob/user, atom/target)
+	return can_target(target, user, FALSE)
 
 /obj/effect/proc_holder/spell/pointed/voidwalker_dash/cast(list/targets, mob/living/user)
 	var/turf/target_turf = get_turf(targets[1])

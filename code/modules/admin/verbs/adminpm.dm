@@ -158,6 +158,10 @@
 		if(!msg)
 			return
 
+	if(recipient)
+		var/aq_html = check_rights(R_SERVER|R_DEBUG, 0) // AQ EDIT - wyżsi admini piszą HTML bez sanitize()
+		msg = aq_admin_msg_for(recipient, msg, !aq_html, aq_html) // AQ EDIT - tłumaczenie dla odbiorcy z innym językiem (aquila/code/__HELPERS/chat_translation.dm)
+
 	var/rawmsg = msg
 
 	if(holder)

@@ -72,7 +72,7 @@
 /obj/item/organ/cyberimp/arm/ammo_counter/proc/shots_left()
 	if(istype(our_gun, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/ballistic_gun = our_gun
-		return ballistic_gun.get_ammo(TRUE)
+		return ballistic_gun.get_live_rounds() // gunplay/ammo_hud.dm: tylko ostre naboje, bez podwójnego naboju z bębna
 	var/obj/item/gun/energy/energy_gun = our_gun
 	if(!energy_gun.cell || !length(energy_gun.ammo_type))
 		return 0

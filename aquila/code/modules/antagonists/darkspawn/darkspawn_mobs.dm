@@ -297,7 +297,7 @@
 			L.Immobilize(3 SECONDS)
 	time_to_next_roar = world.time + roar_cooldown
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()

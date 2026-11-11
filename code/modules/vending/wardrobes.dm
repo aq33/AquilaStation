@@ -7,11 +7,11 @@
 	payment_department = NO_FREEBIES
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
-	desc = "Automat z ubraniami policyjnymi i wszystkim, co z policją związane!"
+	name = "\improper Mundurownia Żandarmska" //AQUILA EDIT - SecDrobe
+	desc = "Automat z ubraniami żandarmskimi i wszystkim, co z Żandarmerią związane!"
 	icon_state = "secdrobe"
 	product_ads = "Bij opryszkow ze stylem!;Jest czerwone, więc nie zauważysz krwi!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym ochroniarzem, jak zawsze chciałeś!"
-	vend_reply = "Dziękujemy za użycie Mundurowni Policyjnej!" //AQUILA EDIT
+	vend_reply = "Dziękujemy za użycie Mundurowni Żandarmskiej!" //AQUILA EDIT
 	light_color = LIGHT_COLOR_RED
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 3,
 					/obj/item/storage/backpack/security = 3,
@@ -20,35 +20,41 @@
 					/obj/item/clothing/under/rank/security/officer = 3,
 					/obj/item/clothing/under/plasmaman/security = 3,
 					/obj/item/clothing/suit/armor/vest/corporate = 3,
-					//obj/item/clothing/under/rank/security/officer/corporate = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/under/rank/security/officer/corporate = 3, //AQUILA EDIT - tylko mundury Żandarmerii
 					/obj/item/clothing/head/helmet/space/plasmaman/security = 3,
-					//obj/item/clothing/head/beret/corpsec = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/head/beret/corpsec = 3, //AQUILA EDIT - tylko mundury Żandarmerii
 					/obj/item/clothing/shoes/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
-					/obj/item/clothing/head/soft/sec/alt = 3, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sec/bandana = 3, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sec/garrison = 3, //AQUILA EDIT
-					//obj/item/clothing/mask/bandana/red = 3, //AQUILA EDIT - tylko mundury policji
-					//obj/item/clothing/head/aquila/headband/red/sec = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/mask/bandana/red = 3, //AQUILA EDIT - tylko mundury Żandarmerii
+					//obj/item/clothing/head/aquila/headband/red/sec = 3, //AQUILA EDIT - tylko mundury Żandarmerii
 					/obj/item/clothing/mask/gas/sechailer = 6,
 					//obj/item/clothing/under/rank/security/officer/skirt = 3, //NSV13 no skirts
 					/obj/item/clothing/under/rank/security/officer/white = 3,
-					//obj/item/clothing/under/pants/khaki = 3, //AQUILA EDIT - tylko mundury policji
-					//obj/item/clothing/under/rank/security/officer/blueshirt = 3, //AQUILA EDIT - tylko mundury policji
-					//obj/item/clothing/under/rank/security/officer/mallcop = 3, //AQUILA EDIT - tylko mundury policji
-					//obj/item/clothing/neck/tie/red = 6, //AQUILA EDIT - tylko mundury policji
-					/obj/item/clothing/neck/tie/black = 6,)
-	//contraband = list(/obj/item/clothing/suit/hooded/wintercoat/security/old = 3) //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/under/pants/khaki = 3, //AQUILA EDIT - tylko mundury Żandarmerii
+					//obj/item/clothing/under/rank/security/officer/blueshirt = 3, //AQUILA EDIT - tylko mundury Żandarmerii
+					//obj/item/clothing/under/rank/security/officer/mallcop = 3, //AQUILA EDIT - tylko mundury Żandarmerii
+					//obj/item/clothing/neck/tie/red = 6, //AQUILA EDIT - tylko mundury Żandarmerii
+					/obj/item/clothing/neck/tie/black = 6)
+	//contraband = list(/obj/item/clothing/suit/hooded/wintercoat/security/old = 3) //AQUILA EDIT - tylko mundury Żandarmerii
+	// AQUILA EDIT START - premium: galowe mundury, kurtki i czapki Żandarma, Naczelnika i Komendanta
 	premium = list(/obj/item/clothing/under/rank/security/officer/formal = 3,
 					/obj/item/clothing/suit/security/officer = 3,
-					/obj/item/clothing/head/beret/sec/navyofficer = 3,
-					/obj/item/clothing/head/beret/sec/officercap = 3) //AQUILA EDIT
+					/obj/item/clothing/head/beret/sec/officercap = 3,
+					/obj/item/clothing/under/rank/security/warden/formal = 3,
+					/obj/item/clothing/suit/security/warden = 3,
+					/obj/item/clothing/head/warden = 3,
+					/obj/item/clothing/under/rank/security/head_of_security/formal = 3,
+					/obj/item/clothing/suit/security/hos = 3,
+					/obj/item/clothing/head/HoS = 3)
+	// AQUILA EDIT END
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
+	machine_name = "Mundurownia Żandarmska" //AQUILA EDIT - SecDrobe
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"
@@ -78,9 +84,19 @@
 					/obj/item/clothing/suit/toggle/labcoat/paramedic = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
 					/obj/item/clothing/head/soft/paramedic = 4,
-					/obj/item/clothing/head/aquila/headband/cyan = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
-					/obj/item/clothing/mask/surgical = 4)
+					/obj/item/clothing/mask/surgical = 4,
+					// AQUILA EDIT START - przedmioty NFZ
+					/obj/item/clothing/suit/apron/surgical/nfz = 4,
+					/obj/item/clothing/head/nfz/surgerycap = 4,
+					/obj/item/clothing/head/nfz/bouffant = 4,
+					/obj/item/clothing/head/nfz/bandana = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz/magenta = 4,
+					/obj/item/clothing/under/rank/medical/doctor/nfz/orange = 4,
+					/obj/item/clothing/gloves/color/latex/black = 4,
+					/obj/item/clothing/shoes/nfz = 4)
+					// AQUILA EDIT END
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/medical/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
 	payment_department = ACCOUNT_MED
@@ -88,12 +104,12 @@
 	machine_name = "MediDrobe"
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
-	name = "EngiDrobe"
-	desc = "Automat słynący z ubrań klasy przemysłowej."
+	name = "\improper Mundurownia Orlenu" //AQUILA EDIT - EngiDrobe
+	desc = "Automat z odzieżą roboczą Orlenu dla inżynierów." //AQUILA EDIT
 	icon_state = "engidrobe"
-	product_ads = "Gwarantuje twoim stopom ochronę przed wypadkami w pracy!;Przerażony radiacją? W takim razie wskakuj w żółte!"
-	vend_reply = "Dziękujemy za użycie EngiDrobe!"
-	light_color = LIGHT_COLOR_YELLOW
+	product_ads = "Gwarantuje twoim stopom ochronę przed wypadkami w pracy!;Przerażony radiacją? W takim razie wskakuj w czerwone!" //AQUILA EDIT - barwy Orlenu
+	vend_reply = "Dziękujemy za zakupy w Orlenie!" //AQUILA EDIT
+	light_color = LIGHT_COLOR_RED //AQUILA EDIT
 	products = list(/obj/item/clothing/accessory/pocketprotector = 3,
 					/obj/item/storage/backpack/duffelbag/engineering = 3,
 					/obj/item/storage/backpack/industrial = 3,
@@ -107,21 +123,22 @@
 					/obj/item/clothing/shoes/workboots = 3,
 					/obj/item/clothing/head/hardhat = 3,
 					/obj/item/clothing/head/hardhat/weldhat = 3,
-					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
+					/obj/item/clothing/head/soft/orlen = 3, //AQUILA EDIT - czapki Orlenu
+					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/eng = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/engineering/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/engi_wardrobe
-	machine_name = "EngiDrobe"
+	machine_name = "Mundurownia Orlenu" //AQUILA EDIT - EngiDrobe
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
-	name = "AtmosDrobe"
-	desc = "Ten mało znany automat wydaje ubrania dla Techników Atmosferyki, czyli równie mało znanego zawodu."
+	name = "\improper Mundurownia Orlenu (atmosferyka)" //AQUILA EDIT - AtmosDrobe
+	desc = "Automat z odzieżą roboczą Orlenu dla techników atmosferyki." //AQUILA EDIT
 	icon_state = "atmosdrobe"
 	product_ads = "Zdobądź swoje niepalnie ubranie tutaj!!!"
-	vend_reply = "Dziękujemy za użycie AtmosDrobe!"
-	light_color = LIGHT_COLOR_YELLOW
+	vend_reply = "Dziękujemy za zakupy w Orlenie!" //AQUILA EDIT
+	light_color = LIGHT_COLOR_RED //AQUILA EDIT
 	products = list(/obj/item/clothing/accessory/pocketprotector = 2,
 					/obj/item/storage/backpack/duffelbag/engineering = 2,
 					/obj/item/storage/backpack/satchel/eng = 2,
@@ -131,13 +148,14 @@
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 3,
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
-					/obj/item/clothing/head/aquila/headband/yellow = 3, //AQUILA EDIT
+					/obj/item/clothing/head/soft/orlen/atmos = 3, //AQUILA EDIT - czapki Orlenu
+					/obj/item/clothing/head/soft/orlen/highvis = 3, //AQUILA EDIT - czapki Orlenu
 					/obj/item/clothing/head/beret/atmos = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
-	machine_name = "AtmosDrobe"
+	machine_name = "Mundurownia Orlenu (atmosferyka)" //AQUILA EDIT - AtmosDrobe
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
@@ -169,7 +187,7 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	payment_department = ACCOUNT_CAR
 /obj/item/vending_refill/wardrobe/cargo_wardrobe
-	machine_name = "CargoDrobe"
+	machine_name = "Mundurownia InPost" //AQUILA EDIT - CargoDrobe
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	name = "RoboDrobe"
@@ -190,7 +208,6 @@
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
 					/obj/item/clothing/mask/bandana/skull = 2,
-					/obj/item/clothing/head/aquila/headband/purple = 2, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sci = 2)
 
 	contraband = list(/obj/item/clothing/suit/hooded/techpriest = 2,
@@ -224,8 +241,7 @@
 					/obj/item/radio/headset/headset_sci = 3,
 					/obj/item/clothing/mask/gas = 3,
 					/obj/item/clothing/glasses/science = 2, //AQUILA EDIT
-					/obj/item/clothing/head/beret/sci = 3,
-					/obj/item/clothing/head/aquila/headband/purple = 3)
+					/obj/item/clothing/head/beret/sci = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/science/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/science_wardrobe
 	payment_department = ACCOUNT_SCI
@@ -249,7 +265,6 @@
 					/obj/item/clothing/under/plasmaman/botany = 3,
 					/obj/item/clothing/head/helmet/space/plasmaman/botany = 3,
 					/obj/item/clothing/mask/bandana = 3,
-					/obj/item/clothing/head/aquila/headband/green = 3, //AQUILA EDIT
 					/obj/item/clothing/accessory/armband/hydro = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/hydro/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
@@ -300,7 +315,6 @@
 					/obj/item/clothing/accessory/waistcoat = 2,
 					/obj/item/clothing/suit/apron/purple_bartender = 2,
 					/obj/item/clothing/head/soft/black = 2,
-					/obj/item/clothing/head/aquila/headband/black = 2, //AQUILA EDIT
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/reagent_containers/glass/rag = 2,
 					/obj/item/storage/box/beanbag = 1,
@@ -328,7 +342,6 @@
 					/obj/item/clothing/accessory/waistcoat = 2,
 					/obj/item/clothing/suit/apron/chef = 3,
 					/obj/item/clothing/head/soft = 2,
-					/obj/item/clothing/head/aquila/headband = 2, //AQUILA EDIT
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/suit/toggle/chef = 1,
@@ -358,7 +371,6 @@
 					/obj/item/computer_hardware/hard_drive/role/janitor = 2,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/head/soft/purple = 2,
-					/obj/item/clothing/head/aquila/headband/pink = 2, //AQUILA EDIT
 					/obj/item/pushbroom = 2,
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
@@ -477,9 +489,9 @@
 					/obj/item/clothing/suit/toggle/labcoat/chemist = 2,
 					/obj/item/storage/backpack/chemistry = 2,
 					/obj/item/storage/backpack/satchel/chem = 2,
+					/obj/item/storage/backpack/duffelbag/med/chemistry = 2, //AQUILA EDIT - NFZ
 					/obj/item/storage/bag/chemistry = 2,
 					/obj/item/clothing/head/beret/med = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
 					/obj/item/ph_booklet = 3) // AQ EDIT - fermichem z tg
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
 	payment_department = ACCOUNT_MED
@@ -496,11 +508,11 @@
 					//obj/item/clothing/under/rank/medical/geneticist/skirt = 2, //NSV13 no skirts
 					/obj/item/clothing/under/plasmaman/genetics = 2,
 					/obj/item/clothing/head/helmet/space/plasmaman/genetics = 2,
-					/obj/item/clothing/head/aquila/headband/purple = 2, //AQUILA EDIT
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
 					/obj/item/storage/backpack/genetics = 2,
-					/obj/item/storage/backpack/satchel/gen = 2)
+					/obj/item/storage/backpack/satchel/gen = 2,
+					/obj/item/storage/backpack/duffelbag/med/genetics = 2) //AQUILA EDIT - NFZ
 	refill_canister = /obj/item/vending_refill/wardrobe/gene_wardrobe
 	payment_department = ACCOUNT_MED
 /obj/item/vending_refill/wardrobe/gene_wardrobe
@@ -519,9 +531,9 @@
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/virologist = 2,
 					/obj/item/clothing/mask/surgical = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
 					/obj/item/storage/backpack/virology = 2,
-					/obj/item/storage/backpack/satchel/vir = 2)
+					/obj/item/storage/backpack/satchel/vir = 2,
+					/obj/item/storage/backpack/duffelbag/med/virology = 2) //AQUILA EDIT - NFZ
 	contraband = list(/obj/item/clothing/suit/bio_suit/plaguedoctorsuit = 1,
 					/obj/item/clothing/head/plaguedoctorhat = 1,
 					/obj/item/clothing/mask/gas/plaguedoctor = 1)

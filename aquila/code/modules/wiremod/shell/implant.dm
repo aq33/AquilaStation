@@ -233,5 +233,18 @@
 	desc = "Szklany pojemnik z obudową implantu układu."
 	imp_type = /obj/item/implant/circuit
 
+// Implant nigdy nie leży luzem, więc etui przekazuje mu układ, kartę ID, komponenty, multitool i śrubokręt (jak w tg).
+/obj/item/implantcase/circuit/attackby(obj/item/W, mob/user, params)
+	if(imp && !istype(W, /obj/item/pen) && !istype(W, /obj/item/implanter) && imp.attackby(W, user, params))
+		return TRUE
+	return ..()
+
+/obj/item/implantcase/circuit/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(imp)
+		. = imp.tool_act(user, tool, tool_type, is_right_clicking)
+		if(.)
+			return
+	return ..()
+
 /obj/item/implant/circuit/get_data()
 	return "<b>Specyfikacja implantu:</b><BR>[implant_info]<HR>[implant_lore]"

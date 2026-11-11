@@ -73,3 +73,6 @@
 /datum/config_entry/number/movedelay/sprint_delay
 	config_entry_value = 1.5
 	integer = FALSE
+
+/// Trwała struktura statku: ściany, okna, drzwi, kable i rury zostają między rundami (aquila/code/modules/persistence/ship_structure.dm)
+/datum/config_entry/flag/ship_structure_persistence

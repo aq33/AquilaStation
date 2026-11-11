@@ -40,6 +40,11 @@
 
 	RegisterSignal(shell, COMSIG_SHELL_CIRCUIT_ATTACHED, PROC_REF(on_circuit_attached))
 
+/// W tg sygnał wysyła bazowe /obj/item/gun/process_chamber(), u nas każdy typ broni ma własne, więc wysyłamy go tutaj.
+/obj/item/gun/energy/wiremod_gun/process_chamber()
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_GUN_CHAMBER_PROCESSED)
+
 /obj/item/circuit_component/wiremod_gun
 	display_name = "Broń"
 	desc = "Odbiera obiekty trafione pociskami z broni."

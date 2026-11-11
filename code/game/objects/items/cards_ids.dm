@@ -1142,7 +1142,7 @@ update_label("John Doe", "Clowny")
 	hud_state = JOB_HUD_WARDEN
 
 /obj/item/card/id/job/security_officer
-	name = "karta stanowiska (Ochr.) – Policjant"
+	name = "karta stanowiska (Ochr.) – Żandarm"
 	icon_state = "sec"
 	assignment = JOB_NAME_SECURITYOFFICER
 	hud_state = JOB_HUD_SECURITYOFFICER
@@ -1172,37 +1172,37 @@ update_label("John Doe", "Clowny")
 
 // ---- Munitions - NSV13 ----
 /obj/item/card/id/job/master_at_arms
-	name = "karta stanowiska (Amun.) – Mistrz Broni"
+	name = "karta stanowiska (Uzbr.) – Mistrz Broni"
 	icon_state = "maa"
 	assignment = JOB_NAME_MASTERATARMS
 	hud_state = JOB_HUD_MASTERATARMS
 
 /obj/item/card/id/job/munitions_technician
-	name = "karta stanowiska (Amun.) – Technik Amunicyjny"
+	name = "karta stanowiska (Uzbr.) – Technik Amunicyjny"
 	icon_state = "munitech"
 	assignment = JOB_NAME_MUNITIONSTECHNICIAN
 	hud_state = JOB_HUD_MUNITIONSTECHNICIAN
 
 /obj/item/card/id/job/deck_technician
-	name = "karta stanowiska (Amun.) – Technik Pokładowy"
+	name = "karta stanowiska (Uzbr.) – Technik Pokładowy"
 	icon_state = "munitech" // AQ EDIT: brak stanu "decktechnician" w card.dmi
 	assignment = JOB_NAME_DECKTECHNICIAN
 	hud_state = JOB_HUD_DECKTECHNICIAN
 
 /obj/item/card/id/job/air_traffic_controller
-	name = "karta stanowiska (Amun.) – Kontroler Lotów"
+	name = "karta stanowiska (Uzbr.) – Kontroler Lotów"
 	icon_state = "atc"
 	assignment = JOB_NAME_AIRTRAFFICCONTROLLER
 	hud_state = JOB_HUD_AIRTRAFFICCONTROLLER
 
 /obj/item/card/id/job/pilot
-	name = "karta stanowiska (Amun.) – Pilot"
+	name = "karta stanowiska (Uzbr.) – Pilot"
 	icon_state = "pilot"
 	assignment = JOB_NAME_PILOT
 	hud_state = JOB_HUD_PILOT
 
 /obj/item/card/id/job/bridge_staff
-	name = "karta stanowiska (Amun.) – Oficer Pokładowy"
+	name = "karta stanowiska (Uzbr.) – Oficer Pokładowy"
 	icon_state = "silver"
 	assignment = JOB_NAME_BRIDGESTAFF
 	hud_state = JOB_HUD_BRIDGESTAFF

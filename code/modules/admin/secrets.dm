@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 		data["Categories"]["Podwyższony poziom ochrony"] = list(
 			list("Ustaw dostęp do wszystkich drzwi technicznych tylko dla inżynierii i aresztu", "maint_access_engiebrig"),
 			list("Ustaw dostęp do wszystkich drzwi technicznych tylko dla aresztu", "maint_access_brig"),
-			list("Zdejmij limit policjantów", "infinite_sec")
+			list("Zdejmij limit żandarmów", "infinite_sec")
 			)
 
 	return data
@@ -652,7 +652,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				return
 			J.total_positions = -1
 			J.spawn_positions = -1
-			message_admins("[key_name_admin(usr)] zdejmuje limit policjantów.")
+			message_admins("[key_name_admin(usr)] zdejmuje limit żandarmów.")
 
 		if("ctfbutton")
 			if(!check_rights(R_ADMIN))

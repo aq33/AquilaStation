@@ -710,7 +710,7 @@
 	var/datum/character_save/character = preferences.active_character
 	character.randomise()
 	character.remove_locked_accessories(preferences.parent)
-	character.real_name = character.pref_species.random_name(character.gender, TRUE)
+	character.real_name = character.aq_random_real_name(preferences.parent)
 	preferences.update_character_preview()
 	return TRUE
 

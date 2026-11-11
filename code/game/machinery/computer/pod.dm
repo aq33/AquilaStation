@@ -44,6 +44,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MassDriverControl", title)
+		ui.set_autoupdate(TRUE) // AQ EDIT - odliczanie czasu w process()
 		ui.open()
 
 /obj/machinery/computer/pod/ui_data(mob/user)

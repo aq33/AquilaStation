@@ -7,6 +7,9 @@
 	var/datum/star_system/next_door
 
 /datum/unit_test/aquila_fleet_distress/Run()
+	var/radio_fail = check_transmission() // Needs no star systems
+	if(radio_fail)
+		return Fail(radio_fail)
 	for(var/datum/star_system/system as anything in SSstar_system.systems)
 		if(length(system.adjacency_list) && !system.hidden)
 			var/datum/star_system/adjacent = SSstar_system.system_by_id(system.adjacency_list[1])
@@ -105,3 +108,10 @@
 		return "A fleet with a player-crewed ship was allowed to retreat (it would drag the crew along)"
 	if(!caller_fleet.can_ai_fleet_retreat())
 		return "A fleet of AI ships with a neighbouring system could not retreat"
+
+/// An intercepted enemy transmission loses words to static, but never the numbers (how long until the jump or the help)
+/datum/unit_test/aquila_fleet_distress/proc/check_transmission()
+	for(var/i in 1 to 20)
+		var/heard = garble_ai_transmission("wszystkie jednostki przerwać atak skok za 30 sekund")
+		if(!findtext(heard, " 30 ") || findtext(heard, "…") != 1)
+			return "An intercepted transmission lost its numbers or did not read as a fragment: [heard]"

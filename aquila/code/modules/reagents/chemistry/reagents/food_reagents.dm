@@ -55,3 +55,22 @@
 		if(R != src)
 			L.reagents.remove_reagent(R.type, purge_amount)
 	to_chat(L, "<span class='notice'>Czujesz, jak twój organizm się oczyszcza.</span>")
+
+// Szklanki z tg: napoje, które w tg mają własny sprite zamiast wspólnej kolorowej szklanki
+/datum/reagent/consumable/space_cola
+	glass_icon_state = "spacecola"
+
+/datum/reagent/consumable/lemon_lime
+	glass_icon_state = "lemonlime"
+
+/datum/reagent/consumable/pwr_game
+	glass_icon_state = "pwrgame"
+
+/datum/reagent/consumable/shamblers
+	glass_icon_state = "shamblerjuice"
+
+/datum/reagent/consumable/sodawater
+	glass_icon_state = "glass_clearcarb"
+
+/datum/reagent/consumable/tonic
+	glass_icon_state = "glass_clearcarb"

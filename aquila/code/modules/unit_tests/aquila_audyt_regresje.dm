@@ -164,18 +164,43 @@
 /datum/unit_test/aquila_round_survey_length
 
 /datum/unit_test/aquila_round_survey_length/Run()
-	var/mob/living/carbon/human/player = allocate(/mob/living/carbon/human)
-	var/datum/round_survey/survey = new(player) // New() only reads the ckey
-	allocated += survey
-	var/list/static_data = survey.ui_static_data(player)
-	var/max_text = static_data["max_text"]
+	var/max_text = round_survey_max_text()
 	TEST_ASSERT_EQUAL(max_text, 1000, "Survey text limit changed")
 
 	var/answer = "[repeat_string(max_text - 1, "a")]ż"
-	var/cleaned = survey.clean_text(answer)
+	var/cleaned = round_survey_clean_text(answer)
 	TEST_ASSERT_EQUAL(length_char(cleaned), max_text, "A [max_text] character answer was cut")
 	TEST_ASSERT_EQUAL(copytext_char(cleaned, -1), "ż", "The last character of a [max_text] character answer was lost")
-	TEST_ASSERT_EQUAL(length_char(survey.clean_text("[answer]bbb")), max_text, "A too long answer was not cut to [max_text] characters")
+	TEST_ASSERT_EQUAL(length_char(round_survey_clean_text("[answer]bbb")), max_text, "A too long answer was not cut to [max_text] characters")
+
+/// End of round survey in the report window: no rating = not saved, one survey per player, the report sends the survey state
+/datum/unit_test/aquila_round_survey_submit
+
+/datum/unit_test/aquila_round_survey_submit/Run()
+	var/mob/living/carbon/human/player = allocate(/mob/living/carbon/human)
+	var/ckey = "aquilasurveytest"
+	var/survey_file = "data/unit_test_ankiety.txt"
+	fdel(survey_file)
+	GLOB.round_survey_submitted -= ckey
+
+	TEST_ASSERT(!round_survey_submit(player, ckey, list("fun" = "0", "bugs" = "x"), survey_file), "A survey without a rating was saved")
+	TEST_ASSERT(!round_survey_submit(player, ckey, list("fun" = "2.5"), survey_file), "A survey with a fractional rating was saved")
+	TEST_ASSERT(!fexists(survey_file), "A rejected survey was written to the file")
+
+	TEST_ASSERT(round_survey_submit(player, ckey, list("fun" = "4", "bugs" = "linia 1\nlinia 2", "comments" = ""), survey_file), "A correct survey was not saved")
+	var/saved = file2text(survey_file)
+	TEST_ASSERT(findtext(saved, "Wrażenia: 4/5"), "The rating is missing in the file: [saved]")
+	TEST_ASSERT(findtext(saved, "Błędy: linia 1 / linia 2"), "The answer was not put in one line: [saved]")
+	TEST_ASSERT(findtext(saved, "Uwagi: -"), "An empty answer was not saved as \"-\": [saved]")
+	TEST_ASSERT(!round_survey_submit(player, ckey, list("fun" = "5"), survey_file), "The same player sent the survey twice")
+
+	var/list/data = GLOB.roundend_report_ui.ui_data(player)
+	TEST_ASSERT(!data["vote_open"], "The report shows the map vote while no map vote is running")
+	var/list/static_data = GLOB.roundend_report_ui.ui_static_data(player)
+	TEST_ASSERT_EQUAL(static_data["max_text"], round_survey_max_text(), "The report sends a wrong survey text limit")
+
+	GLOB.round_survey_submitted -= ckey
+	fdel(survey_file)
 
 /// Separated Contents: once the fruit mixes, the whole content reacts at once, then the holder goes back to normal reactions
 /datum/unit_test/aquila_separated_contents_react
@@ -286,6 +311,10 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
 	victim.mind_initialize()
 	var/datum/mind/victim_mind = victim.mind
+	// cień w ostrzu dostaje tylko kultysta (osoba spoza kultu: test aquila_audyt_antagi_bloodcult)
+	var/datum/antagonist/cult/new_cultist = new
+	new_cultist.ignore_implant = TRUE
+	TEST_ASSERT(victim_mind.add_antag_datum(new_cultist), "nie udało się zrobić kultysty")
 	var/obj/item/melee/soulblade/blade = allocate(/obj/item/melee/soulblade)
 	victim.put_in_active_hand(blade)
 	var/result = blade.suicide_act(victim)
@@ -295,6 +324,7 @@
 	TEST_ASSERT(blade.shade.mind == victim_mind, "cień nie dostał umysłu samobójcy")
 	allocated += blade.shade
 	TEST_ASSERT(victim.stat == DEAD, "ciało samobójcy żyje")
+	victim_mind.remove_antag_datum(/datum/antagonist/cult)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

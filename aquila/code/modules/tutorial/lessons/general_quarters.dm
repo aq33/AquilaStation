@@ -7,7 +7,7 @@
 /// Lekcja 3: alarm bojowy (General Quarters), skład, wyposażenie, strzelanie i działo Gaussa
 /datum/tutorial/aquila/general_quarters
 	name = "Alarm bojowy"
-	desc = "Co robić, gdy na statku ogłoszą alarm bojowy (General Quarters): pager i składy, wyposażenie z vendora, strzelanie i obsługa działa Gaussa."
+	desc = "Co robić, gdy na statku ogłoszą alarm bojowy (General Quarters): pager i drużyny, wyposażenie z automatu drużyny, strzelanie i obsługa działa Gaussa."
 	tutorial_id = "aquila_gq_1"
 	icon = "crosshairs"
 	order = 3
@@ -73,8 +73,8 @@
 /datum/tutorial/aquila/general_quarters/proc/require_pager()
 	current_step = "pager"
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/squad_pager/tutorial, pager)
-	pager.add_tutorial_message("Alarm bojowy! Skład Able: do vendora składu po wyposażenie, potem na strzelnicę i do działa Gaussa.")
-	message_to_player("Przy koi leży twój <b>pager składu</b>. Podnieś go i przeczytaj rozkaz: aktywuj go w ręce klawiszem <b>[retrieve_bind("activate_inhand")]</b>.")
+	pager.add_tutorial_message("Alarm bojowy! Drużyna Alpha: do automatu drużyny po wyposażenie, potem na strzelnicę i do działa Gaussa.")
+	message_to_player("Przy koi leży twój <b>pager drużyny</b>. Podnieś go i przeczytaj rozkaz: aktywuj go w ręce klawiszem <b>[retrieve_bind("activate_inhand")]</b>.")
 	update_objective("Podnieś pager i przeczytaj rozkaz ([retrieve_bind("activate_inhand")]).")
 	add_highlight(pager)
 	RegisterSignal(pager, COMSIG_TUTORIAL_ITEM_USED, PROC_REF(on_pager_read))
@@ -88,7 +88,7 @@
 	UnregisterSignal(pager, COMSIG_TUTORIAL_ITEM_USED)
 	remove_highlight(pager)
 	current_step = "squads"
-	describe_step("Na Aquili załoga bez stanowiska bojowego trafia do <b>składów</b>. <b>Able</b> i <b>Charlie</b> naprawiają statek i łatają wyłomy, <b>Baker</b> to skład medyczny, a <b>Duff</b> pomaga przy amunicji. Kolor składu widać na hełmie i w HUD-zie. Składy przydziela XO na swojej konsoli, a rozkazy dowódcy przychodzą na pager. Pager trzymaj przy sobie, najlepiej przy pasie.", 16 SECONDS, PROC_REF(require_vendor))
+	describe_step("Na Aquili każdy członek załogi trafia do <b>drużyny</b> według zawodu. <b>Alpha</b> i <b>Charlie</b> naprawiają statek i łatają wyłomy, <b>Bravo</b> to drużyna medyczna, a <b>Delta</b> pomaga działowi uzbrojenia. Kolor drużyny widać na hełmie i na ikonie nad postacią. Przydział zmienia XO na swojej konsoli. Rozkazy dowódcy pojawiają się na ekranie i w oknie pagera, gdzie jest też mapa taktyczna. Pager trzymaj przy sobie, najlepiej przy pasie.", 18 SECONDS, PROC_REF(require_vendor))
 
 // 3. Wyposażenie
 
@@ -97,8 +97,8 @@
 		return
 	current_step = "vendor"
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/machinery/squad_vendor/tutorial, vendor)
-	message_to_player("Podejdź do <b>vendora składu</b> i weź zestaw <b>Żołnierz składu (standardowy)</b>. Zestaw wypadnie w pudełku obok vendora.")
-	update_objective("Weź zestaw z vendora składu.")
+	message_to_player("Podejdź do <b>automatu drużyny</b> i weź zestaw <b>Żołnierz drużyny</b>. Zestaw wypadnie w skrzyni obok automatu.")
+	update_objective("Weź zestaw z automatu drużyny.")
 	add_highlight(vendor)
 	RegisterSignal(vendor, COMSIG_TUTORIAL_ITEM_USED, PROC_REF(on_kit_vended))
 
@@ -109,8 +109,8 @@
 	UnregisterSignal(vendor, COMSIG_TUTORIAL_ITEM_USED)
 	remove_highlight(vendor)
 	current_step = "equip"
-	message_to_player("Otwórz pudełko (<b>Alt+klik</b>) i załóż <b>kamizelkę</b> oraz <b>hełm</b> składu ([retrieve_bind("quick_equip")]). Na statku zestaw jest wypożyczony: po alarmie oddajesz go do vendora. Broń z zestawu dostajesz tylko wtedy, gdy XO wyda składom <b>zgodę na broń</b>.")
-	update_objective("Załóż kamizelkę i hełm składu.")
+	message_to_player("Otwórz skrzynię (<b>Alt+klik</b>) i załóż <b>pancerz</b> oraz <b>hełm</b> drużyny ([retrieve_bind("quick_equip")]). Na statku zestaw jest wypożyczony: po alarmie odkładasz sprzęt do skrzyni i oddajesz ją do automatu. Broń z zestawu dostajesz tylko wtedy, gdy XO wyda drużynie <b>zgodę na broń</b>.")
+	update_objective("Załóż pancerz i hełm drużyny.")
 	RegisterSignal(tutorial_mob, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(on_equipped))
 
 /datum/tutorial/aquila/general_quarters/proc/on_equipped(datum/source)

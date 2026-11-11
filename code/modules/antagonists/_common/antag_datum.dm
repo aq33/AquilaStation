@@ -121,7 +121,7 @@ GLOBAL_LIST(admin_antag_list)
 			// Tik później: podtypy dodają cele dopiero po ..() w swoim on_gain()
 			addtimer(CALLBACK(info_button, /datum/action/proc/Trigger), 1)
 	// AQ EDIT END
-	greet()
+	greet_and_capture() // AQ EDIT - powitanie trafia też do okna roli (aquila/code/modules/antagonists/_common/antag_info.dm)
 	apply_innate_effects()
 	give_antag_moodies()
 	if(is_banned(owner.current) && replace_banned)

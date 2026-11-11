@@ -107,7 +107,7 @@
 		return
 
 	to_chat(examiner, span_notice("Samo patrzenie na niego oczyszcza ci umysł."))
-	examiner.hallucination = 0
+	examiner.remove_status_effect(/datum/status_effect/hallucination)
 	examiner.add_mood_event("heretic_eldritch_painting", /datum/mood_event/eldritch_painting/weeping_heretic)
 
 // The First Desire painting, using a lot of the painting/eldritch framework

@@ -147,7 +147,7 @@
 	last_alarm = world.time
 	var/area/A = get_area(src)
 	A.firealert(src)
-	playsound(loc, 'nsv13/sound/effects/computer/alarm.ogg', 100)//NSV13 - Fire alarm sound change.
+	start_alarm_sound() // AQ EDIT - pętla alarmu pożarowego z tg (aquila/code/game/machinery/firealarm_sound.dm)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
 

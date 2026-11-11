@@ -82,7 +82,7 @@
 	update_icon()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "policyjny karabin automatyczny"
+	name = "żandarmski karabin automatyczny"
 	desc = "Przestarzała broń osobistej obrony. Strzela nabojami 4.6x30mm, oznaczenie: karabin automatyczny WT-550."
 	icon_state = "wt550"
 	item_state = "arg"

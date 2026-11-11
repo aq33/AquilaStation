@@ -25,21 +25,23 @@ $ai: hsl(332.2, 59.6%, 60.2%);
 $binary: hsl(130.1, 100%, 55.9%);
 $centcom: hsl(197, 62.6%, 39.8%);
 $command: hsl(243.6, 100%, 71%);
-$engi: hsl(17, 87.8%, 61.4%);
+$engi: hsl(358, 78%, 60%);
 $exploration: hsl(157.2, 58.5%, 59.4%);
 $hive: hsl(300, 17.7%, 44.3%);
 $medical: hsl(202, 83.6%, 64.1%);
 $science: hsl(271.6, 91.7%, 76.5%);
-$security: hsl(232, 70%, 68%);
+$security: hsl(137, 42%, 55%);
 $syndicate: hsl(359.1, 31.8%, 42.5%);
 $service: hsl(88.1, 60.6%, 40.8%);
-$supply: hsl(33.7, 44.9%, 49.8%);
+$supply: hsl(48, 100%, 50%);
 $uplink: hsl(0, 85.8%, 27.6%);
 $holo: hsl(339.8, 77.6%, 47.3%);
 $intercom: hsl(93.2, 96.9%, 37.6%);
 $left: hsl(277.8, 90.2%, 24.1%);
 $right: hsl(277.8, 90.2%, 24.1%);
 $holoparasite: hsl(351, 33.6%, 57.5%);
+// AQUILA: kanał działu uzbrojenia (:w), ten sam pomarańczowy co .muniradio w czacie
+$munition: hsl(30, 100%, 55%);
 
 $_restricted_channel_map: (
   'asay': $asay,
@@ -75,6 +77,7 @@ $_channel_map: (
   'holo': $holo,
   'intercom': $intercom,
   'holoparasite': $holoparasite,
+  'munition': $munition,
 );
 
 $channel_keys: map.keys($_channel_map) !default;

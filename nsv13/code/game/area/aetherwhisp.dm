@@ -11,7 +11,7 @@
 	icon_state = "engine_sm"
 
 /area/security/main/warroom
-	name = "Sala Odpraw Policji" //AQ EDIT
+	name = "Sala Odpraw Żandarmerii" //AQ EDIT
 
 /area/hallway/primary/central/hallway
 	name = "Korytarz" //AQ EDIT

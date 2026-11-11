@@ -1,6 +1,6 @@
 //Standard munitions console
 /obj/machinery/computer/ship/munitions_computer
-	name = "komputer kontroli amunicji"
+	name = "komputer kontroli uzbrojenia"
 	desc = "Ta konsola pozwala sterować podłączoną bronią okrętową i ją monitorować."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "munitions_console"
@@ -61,7 +61,7 @@
 /obj/machinery/computer/ship/munitions_computer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MunitionsComputer", "Kontrola amunicji")
+		ui = new(user, src, "MunitionsComputer", "Kontrola uzbrojenia")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Loading delay, weapon getting fired
 

@@ -83,7 +83,7 @@
 	soft_color = "rainbow"
 
 /obj/item/clothing/head/soft/sec
-	name = "czapka policyjna"
+	name = "czapka żandarmska"
 	desc = "Solidna czapka bejsbolówka w gustownym czerwonym kolorze."
 	icon_state = "secsoft"
 	soft_color = "sec"

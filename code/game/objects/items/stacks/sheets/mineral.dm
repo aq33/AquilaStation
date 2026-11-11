@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 	new/datum/stack_recipe("srebrna płytka", /obj/item/stack/tile/mineral/silver, 1, 4, 20), \
 	new/datum/stack_recipe("posąg lekarza", /obj/structure/statue/silver/md, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("posąg woźnego", /obj/structure/statue/silver/janitor, 5, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("posąg policjanta", /obj/structure/statue/silver/sec, 5, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("posąg żandarma", /obj/structure/statue/silver/sec, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("posąg cyborga ochrony", /obj/structure/statue/silver/secborg, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("posąg cyborga medycznego", /obj/structure/statue/silver/medborg, 5, one_per_turf = 1, on_floor = 1), \
 	))

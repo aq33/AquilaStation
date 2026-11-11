@@ -45,10 +45,10 @@ em						{font-style: normal;	font-weight: bold;}
 .sciradio				{color: #993399;}
 .explradio				{color: #7ed4c2;}
 .comradio				{color: #948f02;}
-.secradio				{color: #2c3aa8;}
+.secradio				{color: #2f7d43;} /* AQUILA EDIT - zieleń Żandarmerii */
 .medradio				{color: #337296;}
-.engradio				{color: #fbb213;}
-.suppradio				{color: #a8732b;}
+.engradio				{color: #c8202a;} /* AQUILA EDIT - czerwień Orlenu */
+.suppradio				{color: #b38a00;} /* AQUILA EDIT - żółć InPostu */
 .servradio				{color: #6eaa2c;}
 .syndradio				{color: #6d3f40;}
 .centcomradio			{color: #686868;}

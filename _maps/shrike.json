@@ -1,5 +1,6 @@
 {
 	"map_name": "NSV Shrike",
+	"map_size": "mała",
 	"map_link": "shrike",
     "map_path": "map_files/Shrike",
     "map_file": ["Shrike2.dmm", "Shrike1.dmm"],

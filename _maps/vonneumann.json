@@ -1,5 +1,6 @@
 {
 	"map_name": "SGV Von Neumann",
+	"map_size": "średnia",
 	"map_link": "vonneumann",
     "map_path": "map_files/vonneumann",
     "map_file": ["vnmk3.dmm"],
@@ -15,22 +16,23 @@
 	"faction": "solgov",
 	"starmap_path": "config/starmap/starmap.json",
 
-    "map_description": "The Von Neumann class Mark III point defense frigate is the latest in a line of frigates produced by solgov, based on an older decommissioned blueprint, featuring a conventional drive system, light hull, and a disproportionately large standard grade defensive armament, this ship has only one job, to de-kesslerize earth, and clear out particularly threatening asteroid fields.",
-    "manufacturer": "SolGov Research and Development",
+    "map_description": "Fregata obrony punktowej klasy Von Neumann Mark III to najnowsza z linii fregat SolGovu, zbudowana na starym, wycofanym projekcie. Ma konwencjonalny napęd, lekki kadłub i nieproporcjonalnie duże standardowe uzbrojenie obronne. Statek ma jedno zadanie: oczyścić orbitę Ziemi z kosmicznych śmieci i rozbijać szczególnie groźne pola asteroid.",
+    "manufacturer": "Dział Badań i Rozwoju SolGovu",
 	"mapper": "Truncated-Cake",
     "commission_date": "May 19, 2264",
-    "strengths": ["Legal energy shields", "Energy weapons", "Compact and easy to repair", "Highly Manuverable", "Rapidly regenerating armor", "Smallest ship to ever mount a Thirring drive"],
-    "weaknesses": ["Fragile", "Extremely Power-hungry", "Higher crew requirements", "Rather small", "Single reactor must be pushed to see any real functionality" ],
+    "strengths": ["Legalne tarcze energetyczne", "Broń energetyczna", "Zwarty i łatwy w naprawie", "Bardzo zwrotny", "Szybko odnawiający się pancerz", "Najmniejszy statek z napędem Thirringa"],
+    "weaknesses": ["Kruchy", "Bardzo prądożerny", "Wymaga większej załogi", "Dość mały", "Jedyny reaktor trzeba mocno podkręcić, żeby cokolwiek działało" ],
 	"equipment": [
-		"SolGov shield generator",
-		"twin burst phaser MK2",
-		"Quad Laser Anti Missile System",
-		"Heavy Point Defense Laser Battery",
-		"Missile Array",
-		"2 light fighters",
-		"1 Suppport fighter",
-		"Advanced Gas Cooled Nuclear Reactor",
-		"Thirring Drive",
-		"Thermoelectric Generator"
-	]
+		"Generator tarczy SolGovu",
+		"Podwójny fazer seryjny MK2",
+		"Poczwórny laserowy system antyrakietowy",
+		"Ciężka bateria laserów obrony punktowej",
+		"Wyrzutnia rakiet",
+		"2 lekkie myśliwce",
+		"1 myśliwiec wsparcia",
+		"Zaawansowany reaktor jądrowy chłodzony gazem",
+		"Napęd Thirringa",
+		"Generator termoelektryczny"
+	],
+	"has_gulag": 1
 }

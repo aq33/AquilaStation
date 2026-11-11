@@ -202,7 +202,7 @@
 
 		if(reaction_rate > 5) //TEMP USE FUNCTIONS
 			reaction_energy_output = (reaction_rate + (min(nuc_in, reaction_injection_rate) / 2)) * (2 - (current_uptime / 20000)) //FUNCTIONS
-			radiation_pulse(src, reaction_energy_output)
+			radiation_pulse(src, max_range = 3, threshold = RAD_HEAVY_INSULATION, intensity = clamp(reaction_energy_output / 50, 0, 2), collector_power = reaction_energy_output) // AQ EDIT - promieniowanie z Bee#13442
 
 		else
 			reaction_energy_output = 0
@@ -377,7 +377,7 @@
 
 /obj/machinery/atmospherics/components/trinary/defence_screen_reactor/proc/handle_emission_buildup()
 	if(prob(50)) //Seizure warning
-		radiation_pulse(src, reaction_energy_output * 2)
+		radiation_pulse(src, max_range = 4, threshold = RAD_MEDIUM_INSULATION, intensity = clamp(reaction_energy_output / 25, 0, 5), collector_power = reaction_energy_output * 2) // AQ EDIT - promieniowanie z Bee#13442
 		for(var/mob/living/M in orange(12, src))
 			if(in_view_range(M, src))
 				to_chat(M, "<span class='warning'>Z [src] wydobywa się strumień cząstek!</span>")
@@ -391,7 +391,7 @@
 			DSR.overload()
 
 	var/emission_energy = max(10, reaction_energy_output) * (1 + (current_uptime / 1000))
-	radiation_pulse(src, emission_energy ** 2, 10, 1, 1)
+	radiation_pulse(src, max_range = 6, threshold = RAD_EXTREME_INSULATION, intensity = clamp(emission_energy, 5, 50), collector_power = emission_energy ** 2, collector_falloff = 10) // AQ EDIT - promieniowanie z Bee#13442
 
 	for(var/mob/living/M in OM.mobs_in_ship)
 		if(M.client)
@@ -552,7 +552,7 @@
 		return
 	detonating = TRUE
 	visible_message("<span class='boldwarning'>[src] gwałtownie się destabilizuje.</span>")
-	radiation_pulse(src, 5000)
+	radiation_pulse(src, max_range = 8, threshold = 0.3, intensity = 50) // AQ EDIT - promieniowanie z Bee#13442
 	explosion(get_turf(src), 5, 8, 0, 10, ignorecap = TRUE, flame_range = 10)
 	qdel(src)
 

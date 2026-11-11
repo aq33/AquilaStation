@@ -60,6 +60,8 @@
 	html = strip_auto_articles(html)
 	text = strip_auto_articles(text)
 	// AQ EDIT END
+	if(GLOB.antag_greeting_capture) // AQ EDIT - powitanie roli do okna roli (antag_info.dm)
+		GLOB.antag_greeting_capture.capture_greeting(target, html || text)
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type

@@ -490,16 +490,20 @@ em {
   color: hsl(57.9, 97.3%, 29.4%);
 }
 .secradio {
-  color: hsl(232, 65%, 40%);
+  color: hsl(137, 55%, 28%);
 }
 .medradio {
   color: hsl(195, 100%, 60%);
 }
 .engradio {
-  color: hsl(17.3, 96.7%, 52.9%);
+  color: hsl(358, 80%, 42%);
+}
+// AQUILA: kanał działu uzbrojenia (Artyleryjny, FREQ_MUNITIONS), pomarańczowy jak w starym interface/stylesheet.dm
+.muniradio {
+  color: hsl(30, 100%, 40%);
 }
 .suppradio {
-  color: hsl(34.6, 59.2%, 41.4%);
+  color: hsl(46, 100%, 32%);
 }
 .servradio {
   color: hsl(89, 59.5%, 30%);
@@ -1373,36 +1377,6 @@ h2.alert {
   visibility: hidden;
 }
 
-.examine_block {
-  background: hsl(202.5, 44.4%, 96.5%);
-  border: 1px solid hsl(215.5, 39.3%, 11%);
-  margin: 0.5em;
-  padding: 0.5em 0.75em;
-}
-
-// Provides a horizontal bar with text in the middle
-// I got this off stackoverflow
-.separator {
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.separator::before,
-.separator::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid #111a27;
-}
-
-.separator:not(:empty)::before {
-  margin-right: 0.25em;
-}
-
-.separator:not(:empty)::after {
-  margin-left: 0.25em;
-}
-
 // Used to display images besides text
 .img_by_text_container {
   display: flex;
@@ -1885,4 +1859,121 @@ $border-width-px: $border-width * 1px;
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed #000;
+}
+
+// AQUILA - ramki czatu z tgstation (boxed_message, fieldset_block, separator_hr w code/__DEFINES/chat.dm)
+.fieldset {
+  min-width: 0;
+}
+
+.fieldset_legend {
+  position: relative;
+  max-width: 95%;
+  font-size: 120%;
+  padding: 0.25em 0.5em;
+  margin-left: -0.25em;
+  border: 1px solid;
+  border-color: inherit;
+  border-radius: 0.25em;
+}
+
+.boxed_message {
+  border: 1px solid;
+  border-left: 4px solid;
+  margin: 0.5em 0;
+  padding: 0.5em 0.75em;
+  border-radius: 0.25em;
+
+  hr {
+    margin: 0.5em -0.75em;
+    border-color: inherit;
+  }
+}
+
+.examine_block {
+  border: 1px solid;
+  border-left: 4px solid;
+  margin: 0.5em 0;
+  padding: 0.5em 0.75em;
+  border-radius: 0.25em;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid hsl(215.5, 39.3%, 11%);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
+// Obrazek obok tekstu (portret w examine)
+.img_by_text_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img_by_text_container img {
+  width: 3em;
+  height: auto;
+  margin-right: 12px;
+  margin-top: 6px;
+}
+
+.examine_portrait {
+  width: 32px;
+  height: 32px;
+  margin: -0.5em 0;
+  vertical-align: middle;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+}
+
+.infoplain,
+.oocplain,
+.tooltip_subtle,
+.warningplain {
+}
+
+.fieldset_legend {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.boxed_message,
+.examine_block {
+  background: hsl(220, 100%, 97.5%);
+  border-color: hsla(220, 75%, 25%, 0.5);
+
+  &.red_box {
+    background: hsl(0, 100%, 97.5%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 100%, 97.5%);
+    border-color: hsla(120, 100%, 33%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 100%, 97.5%);
+    border-color: hsla(225, 100%, 50%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 100%, 97.5%);
+    border-color: hsla(260, 100%, 50%, 0.5);
+  }
 }

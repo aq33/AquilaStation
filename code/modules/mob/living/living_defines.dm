@@ -33,7 +33,7 @@
 
 	var/confused = 0	//Makes the mob move in random directions.
 
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
+	// AQ EDIT - var/hallucination usunięta: halucynacje to /datum/status_effect/hallucination (Bee#13095)
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
@@ -112,7 +112,6 @@
 	var/can_be_held = FALSE	//whether this can be picked up and held.
 	var/worn_slot_flags = NONE //if it can be held, can it be equipped to any slots? (think pAI's on head)
 
-	var/radiation = 0 //If the mob is irradiated.
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 	var/losebreath = 0
 

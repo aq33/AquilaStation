@@ -11,20 +11,6 @@
 	result = /obj/item/food/golabki
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/zurek
-	name = "Żurek"
-	reqs = list(
-		/datum/reagent/water = 10,
-		/datum/reagent/consumable/flour = 5,
-		/obj/item/food/boiledegg = 1,
-		/obj/item/food/meat/cutlet = 1,
-		/obj/item/food/grown/carrot = 1,
-		/obj/item/food/grown/onion = 1,
-		/obj/item/reagent_containers/glass/bowl = 1,
-	)
-	result = /obj/item/food/soup/zurek
-	subcategory = CAT_SOUP
-
 /datum/crafting_recipe/food/ptasie_mleczko
 	name = "Ptasie mleczko"
 	reqs = list(
@@ -34,3 +20,24 @@
 	)
 	result = /obj/item/food/ptasie_mleczko
 	subcategory = CAT_MISCFOOD
+
+// Przepisy z Polonium Station (polonium14/polonium-station): parówki i hot dogi.
+
+/datum/crafting_recipe/food/peto_parowek
+	name = "Pęto parówek"
+	reqs = list(
+		/obj/item/food/meat/slab = 1,
+		/obj/item/paper = 1,
+	)
+	result = /obj/item/food/peto_parowek
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/hotdog_parowka
+	name = "Hot dog z parówką"
+	reqs = list(
+		/datum/reagent/consumable/ketchup = 5,
+		/obj/item/food/bun = 1,
+		/obj/item/food/parowka = 1,
+	)
+	result = /obj/item/food/hotdog
+	subcategory = CAT_SANDWICH

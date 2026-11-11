@@ -48,10 +48,10 @@
 	M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
 	M.setCloneLoss(0, 0)
 	M.setOxyLoss(0, 0)
-	M.radiation = 0
+	qdel(M.GetComponent(/datum/component/irradiated)) // AQ EDIT - promieniowanie z Bee#13442
 	M.heal_bodypart_damage(5,5)
 	M.adjustToxLoss(-5, 0, TRUE)
-	M.hallucination = 0
+	M.remove_status_effect(/datum/status_effect/hallucination) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT, TRAIT_GENERIC))
 	M.set_blurriness(0)
 	M.set_blindness(0)
@@ -104,7 +104,7 @@
 	M.AdjustParalyzed(-20, FALSE)
 	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
 		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
-	M.hallucination = max(0, M.hallucination - 10)
+	M.adjust_hallucinations(-20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
 		. = 1
@@ -122,7 +122,7 @@
 		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	if(holder.has_reagent(/datum/reagent/toxin/histamine))
 		holder.remove_reagent(/datum/reagent/toxin/histamine, 5)
-	M.hallucination = max(0, M.hallucination - 10)
+	M.adjust_hallucinations(-20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
 		. = 1
@@ -478,6 +478,10 @@
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
+	// AQ EDIT START - promieniowanie z Bee#13442: 10% natężenia na tyknięcie
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	irradiated_component?.adjust_intensity(irradiated_component.intensity * -0.1)
+	// AQ EDIT END
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
@@ -494,7 +498,7 @@
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, (-3*REM))
-	M.hallucination = max(0, M.hallucination - 10)
+	M.adjust_hallucinations(-20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(prob(30) && C.has_trauma_type(BRAIN_TRAUMA_SPECIAL))
@@ -555,8 +559,13 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/potass_iodide/on_mob_life(mob/living/carbon/M)
-	if(M.radiation > 0)
-		M.radiation -= min(M.radiation, 8)
+	// AQ EDIT START - promieniowanie z Bee#13442: -1% natężenia i lekkie leczenie toksyn na tyknięcie
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		irradiated_component.adjust_intensity(-1)
+		M.adjustToxLoss(-1 * REM, 0)
+		. = TRUE
+	// AQ EDIT END
 	..()
 
 /datum/reagent/medicine/pen_acid
@@ -568,7 +577,8 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/pen_acid/on_mob_life(mob/living/carbon/M)
-	M.radiation -= max(M.radiation-RAD_MOB_SAFE, 0)/50
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated) // AQ EDIT - promieniowanie z Bee#13442
+	irradiated_component?.adjust_intensity(-2) // AQ EDIT - promieniowanie z Bee#13442
 	M.adjustToxLoss(-2*REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
@@ -1420,7 +1430,7 @@
 	. = 1
 
 /datum/reagent/medicine/earthsblood/overdose_process(mob/living/M)
-	M.hallucination = min(max(0, M.hallucination + 5), 60)
+	M.adjust_hallucinations_up_to(10 SECONDS, 120 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	M.adjustToxLoss(5 * REM, 0)
 	..()
 	. = 1
@@ -1439,8 +1449,8 @@
 	M.drowsyness += 2
 	if(M.jitteriness >= 3)
 		M.jitteriness -= 3
-	if (M.hallucination >= 5)
-		M.hallucination -= 5
+	if(M.get_hallucination_duration() >= 10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
+		M.adjust_hallucinations(-10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
 	M.adjustStaminaLoss(2.5*REM, 0)
@@ -1655,7 +1665,7 @@
 	. = 1
 
 /datum/reagent/medicine/psicodine/overdose_process(mob/living/M)
-	M.hallucination = min(max(0, M.hallucination + 5), 60)
+	M.adjust_hallucinations_up_to(10 SECONDS, 120 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 	M.adjustToxLoss(1, 0)
 	..()
 	. = 1

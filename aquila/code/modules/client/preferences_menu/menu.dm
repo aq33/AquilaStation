@@ -132,7 +132,7 @@
 			default_slot = new_slot
 			if(!new_character.from_db)
 				new_character.randomise()
-				new_character.real_name = new_character.pref_species.random_name(new_character.gender, TRUE)
+				new_character.real_name = new_character.aq_random_real_name(parent)
 				new_character.save(parent)
 			new_character.ensure_valid(parent)
 			save_preferences()
@@ -191,6 +191,9 @@
 			return TRUE
 		if("open_syndie_roles")
 			parent.select_syndie_role()
+			return FALSE
+		if("voice_pitch_test")
+			play_voice_pitch_test(usr)
 			return FALSE
 	for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]

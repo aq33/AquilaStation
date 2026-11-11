@@ -30,5 +30,5 @@
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "wallmount_assembly"
 	result_path = /obj/structure/wallmount_circuit
-	pixel_shift = 32
+	pixel_shift = -32 // ujemne: u nas attach() przesuwa w stronę kierunku od ściany do gracza, dodatnie wieszało urządzenie po drugiej stronie gracza
 	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 5, /datum/material/glass = MINERAL_MATERIAL_AMOUNT)

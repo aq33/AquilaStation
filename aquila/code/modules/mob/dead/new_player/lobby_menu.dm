@@ -1,4 +1,5 @@
 // Okno startowe w lobby w TGUI (zamiast HTML z new_player_panel() w code/modules/mob/dead/new_player/new_player.dm).
+// Domyślnie lobby to menu w stylu tg (lobby_hud.dm); to okno otwiera komenda „Menu lobby”, gdyby przyciski na ekranie nie działały.
 // Przyciski idą przez dawny Topic(), więc gotowość, obserwowanie, późne dołączanie i ankiety działają jak wcześniej.
 
 /mob/dead/new_player
@@ -16,7 +17,7 @@
 	lobby_check_polls()
 	if(QDELETED(src))
 		return
-	ui_interact(src)
+	show_lobby_hud() // menu w stylu tg (lobby_hud.dm); okno TGUI LobbyMenu zostaje pod komendą „Menu lobby”
 
 /// Zapytanie o ankiety jak w dawnym oknie: są w bazie i gracz jeszcze na nie nie odpowiedział
 /mob/dead/new_player/proc/lobby_check_polls()
@@ -76,7 +77,7 @@
 			var/new_ready = text2num(params["ready"])
 			if(!(new_ready in list(PLAYER_NOT_READY, PLAYER_READY_TO_PLAY, PLAYER_READY_TO_OBSERVE)))
 				return
-			Topic(null, list("ready" = new_ready))
+			Topic(null, list("ready" = "[new_ready]")) // tekst, bo Topic sprawdza if(href_list["ready"]), a PLAYER_NOT_READY to 0
 		if("manifest")
 			Topic(null, list("manifest" = 1))
 		if("late_join")
@@ -90,3 +91,11 @@
 /mob/dead/new_player/close_spawn_windows()
 	. = ..()
 	SStgui.close_uis(src)
+
+/// Zapasowe okno lobby, gdyby menu na ekranie się nie pokazało
+/mob/dead/new_player/verb/lobby_menu_window()
+	set name = "Menu lobby"
+	set category = "OOC"
+	if(client?.interviewee)
+		return
+	ui_interact(src)

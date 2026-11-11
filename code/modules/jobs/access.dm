@@ -144,20 +144,13 @@
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE)
 
 //NSV13 - Added ACCESS_MUNITIONS, ACCESS_MAA, ACCESS_MUNITIONS_STORAGE, ACCESS_COMBAT_PILOT, ACCESS_TRANSPORT_PILOT, ACCESS_MINING_ENGINEERING, ACCESS_MINING_BRIDGE, ACCESS_HANGAR
+// AQ EDIT START - dostępy stacji to suma grup działów SSdepartment (port BeeStation/BeeStation-Hornet#14139), nie statyczna lista
 /proc/get_all_accesses()
-	return list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_SEC_RECORDS, ACCESS_BRIG, ACCESS_BRIGPHYS, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT,
-	            ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_MORGUE, ACCESS_RD,
-	            ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS,
-	            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD,
-	            ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS,
-	            ACCESS_TECH_STORAGE, ACCESS_CHAPEL_OFFICE, ACCESS_ATMOSPHERICS, ACCESS_KITCHEN,
-	            ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_ROBOTICS, ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_AUX_BASE,
-	            ACCESS_HYDROPONICS, ACCESS_LIBRARY, ACCESS_LAWYER, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_QM, ACCESS_EXPLORATION, ACCESS_SURGERY,
-	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_WEAPONS,
-				ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
-	            ACCESS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, ACCESS_CE, ACCESS_HOP, ACCESS_HOS, ACCESS_RC_ANNOUNCE,
-	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_RD_SERVER,
-				ACCESS_MUNITIONS, ACCESS_MAA, ACCESS_MUNITIONS_STORAGE, ACCESS_COMBAT_PILOT, ACCESS_TRANSPORT_PILOT, ACCESS_MINING_ENGINEERING, ACCESS_MINING_BRIDGE, ACCESS_HANGAR, ACCESS_BIT_DEN, ACCESS_TCOMMS_ADMIN) // AQ EDIT - ACCESS_BIT_DEN, ACCESS_TCOMMS_ADMIN
+	var/list/access_list = list()
+	for(var/datum/department_group/dept_datum as anything in SSdepartment.get_department_by_bitflag(DEPARTMENT_BITFLAG_STATIONS))
+		access_list |= dept_datum.access_list
+	return access_list
+// AQ EDIT END
 
 /proc/get_all_centcom_access()
 	return list(ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_CENT_TELEPORTER, ACCESS_CENT_CAPTAIN, ACCESS_CENT_BAR)
@@ -182,47 +175,7 @@
 /proc/get_every_access()
 	return get_all_accesses() + get_all_centcom_access() + get_all_syndicate_access() + get_all_away_access() + ACCESS_BLOODCULT + ACCESS_CLOCKCULT
 
-/proc/get_region_accesses(code)
-	switch(code)
-		if(0)
-			return get_all_accesses()
-		if(1) //station general
-			return list(ACCESS_KITCHEN,ACCESS_BAR, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER)
-		if(2) //security
-			return list(ACCESS_SEC_DOORS, ACCESS_SEC_RECORDS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_BRIGPHYS, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
-		if(3) //medbay
-			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO)
-		if(4) //research
-			return list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_EXPLORATION, ACCESS_MECH_SCIENCE, ACCESS_MINISAT, ACCESS_RD, ACCESS_NETWORK, ACCESS_RD_SERVER)
-		if(5) //engineering and maintenance
-			return list(ACCESS_CONSTRUCTION, ACCESS_AUX_BASE, ACCESS_MAINT_TUNNELS, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_MECH_ENGINE, ACCESS_TCOMSAT, ACCESS_TCOMMS_ADMIN, ACCESS_MINISAT, ACCESS_CE) // AQ EDIT - ACCESS_TCOMMS_ADMIN
-		if(6) //supply
-			return list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_QM, ACCESS_VAULT, ACCESS_BIT_DEN) // AQ EDIT - ACCESS_BIT_DEN
-		if(7) //command
-			return list(ACCESS_HEADS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_VAULT)
-		if(8) //munitions - NSV13
-			return list(ACCESS_MUNITIONS, ACCESS_MUNITIONS_STORAGE, ACCESS_COMBAT_PILOT, ACCESS_TRANSPORT_PILOT, ACCESS_MAA, ACCESS_HANGAR)
-
-/proc/get_region_accesses_name(code)
-	switch(code)
-		if(0)
-			return "Wszystko"
-		if(1) //station general
-			return "Ogólne"
-		if(2) //security
-			return "Ochrona"
-		if(3) //medbay
-			return "Ambulatorium"
-		if(4) //research
-			return "Nauka"
-		if(5) //engineering and maintenance
-			return "Inżynieria"
-		if(6) //supply
-			return "Zaopatrzenie"
-		if(7) //command
-			return "Dowództwo"
-		if(8) //munitions - NSV13
-			return "Amunicja"
+// AQ EDIT - get_region_accesses() i get_region_accesses_name() usunięte: regiony to grupy działów SSdepartment (aquila/code/controllers/subsystem/department.dm, port BeeStation/BeeStation-Hornet#14139)
 
 /proc/get_access_desc(A)
 	switch(A)
@@ -365,11 +318,11 @@
 		if(ACCESS_MECH_ENGINE)
 			return "Dostęp do Mechów Inżynieryjnych"
 		if(ACCESS_MUNITIONS) //Nsv13 - munitions
-			return "Dostęp do Amunicji"
+			return "Dostęp do Uzbrojenia"
 		if(ACCESS_MAA) //NSV13 - Munitions
 			return "Biuro Mistrza Uzbrojenia"
 		if(ACCESS_MUNITIONS_STORAGE) // NSV13 - Munitions
-			return "Magazyn Amunicji"
+			return "Magazyn Uzbrojenia"
 		if(ACCESS_COMBAT_PILOT) //NSV13 - Munitions
 			return "Licencja Pilota Bojowego"
 		if(ACCESS_TRANSPORT_PILOT) //NSV13 - Munitions
@@ -382,6 +335,10 @@
 			return "Nora Bitrunnerów"
 		if(ACCESS_TCOMMS_ADMIN) // AQ EDIT - NTSL
 			return "Administracja Telekomunikacji"
+		if(ACCESS_MINING_ENGINEERING) // AQ EDIT - dostęp statku górniczego w grupie Zaopatrzenie (port BeeStation/BeeStation-Hornet#14139)
+			return "Inżynieria Statku Górniczego"
+		if(ACCESS_MINING_BRIDGE) // AQ EDIT - dostęp statku górniczego w grupie Zaopatrzenie (port BeeStation/BeeStation-Hornet#14139)
+			return "Mostek Statku Górniczego"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)

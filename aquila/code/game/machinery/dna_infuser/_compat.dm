@@ -86,6 +86,14 @@
 			// bez przenoszenia tożsamości - umysł zostaje w ciele
 			var/obj/item/organ/brain/old_brain = old_organ
 			old_brain.Remove(new_owner, TRUE, TRUE)
+			// tg (brain/before_organ_replacement): traumy i obrażenia przechodzą na nowy mózg, Insert wywoła ich on_gain
+			var/obj/item/organ/brain/new_brain = src
+			if(istype(new_brain))
+				for(var/datum/brain_trauma/trauma as anything in old_brain.traumas)
+					old_brain.traumas -= trauma
+					new_brain.traumas += trauma
+					trauma.brain = new_brain
+				new_brain.setOrganDamage(old_brain.damage)
 		else
 			old_organ.Remove(new_owner, TRUE)
 		qdel(old_organ)
@@ -106,8 +114,9 @@
 	return "[pick("zdeformowany", "pulsujący", "dziwny", "obślizgły", "pomarszczony", "odrażający", "ohydny", "lepki", "napuchnięty")] [pick("narząd", "organ", "gruczoł", "worek", "guz", "węzeł", "płat", "zwój")]"
 
 //-- TRAIT_SPACEWALK: ruch w próżni jak karp --//
-/mob/living/carbon/human/Process_Spacemove(movement_dir = 0)
-	if(movement_dir && HAS_TRAIT(src, TRAIT_SPACEWALK) && isturf(loc))
+// Tylko własny ruch (continuous_move = FALSE): w trakcie dryfu cecha go nie zatrzymuje, tak jak dawniej przy kierunku 0
+/mob/living/carbon/human/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+	if(movement_dir && !continuous_move && HAS_TRAIT(src, TRAIT_SPACEWALK) && isturf(loc))
 		return TRUE
 	return ..()
 

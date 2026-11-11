@@ -7,23 +7,26 @@
 ///Adjust the need to defecate of a mob
 /mob/living/proc/adjust_defecation(var/change)
 	defecation = max(0, defecation + change)
+	urination = clamp(urination, 0, defecation) // mocz to część tej samej potrzeby
+	return TRUE
 
 ///Force set the mob need to defecate
 /mob/living/proc/set_defecation(var/change)
 	defecation = max(0, change)
+	urination = clamp(urination, 0, defecation)
+	return TRUE
 
+/// Kał w spodnie (popuszczenie). Mocz oddaje release_urine() w urination.dm. Kamera tego nie zgłasza (mimowolne).
 /mob/living/proc/actually_shit_myself()
 	if(!CONFIG_GET(flag/shitting_enabled))
 		return FALSE
-	visible_message(
+	bodily_visible_message(
 		"<span class='warning'>[src] popuścił[gender == FEMALE ? "a" : ""] w spodnie!</span>",
 		"<span class='warning'>Popuścił[gender == FEMALE ? "aś" : "eś"] w spodnie!</span>")
 
-	// update disgust for viewers
-	for(var/mob/living/L in viewers(7, get_turf(src)))
-		L.adjust_disgust(DISGUST_LEVEL_VERYGROSS)
+	bodily_disgust(DISGUST_LEVEL_VERYGROSS, TRUE)
 
-	playsound(get_turf(src), 'aquila/sound/creatures/fart.ogg', 100, TRUE)
+	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
 	new /obj/effect/decal/cleanable/feces(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
@@ -70,22 +73,29 @@
 	finish_defecate_here(clothed)
 	return TRUE
 
-/// Skutek wypróżnienia poza ubikacją: w ubraniu jak popuszczenie (smród), nago kupa na podłodze bez utraty higieny
+/// Skutek wypróżnienia poza ubikacją: oddaje kał i mocz naraz. W ubraniu jak popuszczenie (smród), nago na podłogę bez utraty higieny.
 /mob/living/proc/finish_defecate_here(clothed)
+	var/urine_need = urination
+	var/feces_need = feces_need()
 	set_defecation(DEFECATION_NONE)
+	if(urine_need)
+		release_urine(urine_need, clothed, TRUE, !feces_need, !feces_need) // przy kale wystarczy jeden komunikat i jedno zgłoszenie kamery
 	if(clothed)
-		actually_shit_myself()
+		if(feces_need)
+			actually_shit_myself()
+			report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 		return
-	visible_message(
+	if(!feces_need)
+		return
+	bodily_visible_message(
 		"<span class='warning'>[src] załatwia się na podłogę!</span>",
 		"<span class='notice'><i>Ale ulga...</i></span>")
-	for(var/mob/living/L in viewers(7, get_turf(src)))
-		if(L != src)
-			L.adjust_disgust(DISGUST_LEVEL_GROSS)
-	playsound(get_turf(src), 'aquila/sound/creatures/fart.ogg', 100, TRUE)
+	bodily_disgust(DISGUST_LEVEL_GROSS, FALSE)
+	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
 	new /obj/effect/decal/cleanable/feces(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
+	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 
 /// Czy coś zakrywa krocze (wtedy wypróżnienie idzie w spodnie)
 /mob/living/proc/is_wearing_pants()
@@ -125,3 +135,12 @@
 	animate(src, time = 3, transform = rotation_matrix, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
 	animate(time = 2, flags = ANIMATION_RELATIVE)
 	animate(time = 1, transform = reset_matrix, flags = ANIMATION_RELATIVE)
+
+// Kamera nie zostaje w kontenerze, z którego postać wyszła zwykłym Move() (zgłoszenie: po wpadnięciu do zsypu
+// kamera stała na zsypie, a postacią dało się chodzić gdzie indziej; pomagało dopiero wyjście z gry).
+// Kamerę na postać przestawia tylko forceMove() (reset_perspective w /mob/living/forceMove), a BYOND pozwala
+// wyjść z obiektu ruchem: get_step() z wnętrza kontenera daje kafel obok niego i Move() tam po prostu przechodzi.
+/mob/living/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	. = ..()
+	if(client && OldLoc && !isturf(OldLoc) && isturf(loc) && client.eye == OldLoc)
+		reset_perspective()

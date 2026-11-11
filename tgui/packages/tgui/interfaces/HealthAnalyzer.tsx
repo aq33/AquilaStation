@@ -115,6 +115,7 @@ type Data = {
   blood_type?: string;
   blood_volume?: number;
   reagents?: ReagentEntry[];
+  stomach?: ReagentEntry[] | null;
 };
 
 const isActive = (injury: InjuryEntry) =>
@@ -384,6 +385,21 @@ export const HealthAnalyzer = (props) => {
                     }),
                   )}
                   {data.reagents.length === 0 && 'Brak'}
+                </div>
+              </Section>
+            )}
+            {!!data.stomach && (
+              <Section title="Zawartość żołądka">
+                <div className="injury_row">
+                  {data.stomach.map((reagent) =>
+                    MapInjury({
+                      name: reagent.name,
+                      damage: reagent.volume,
+                      heal_text: '',
+                      severity: InjurySeverity.None,
+                    }),
+                  )}
+                  {data.stomach.length === 0 && 'Brak'}
                 </div>
               </Section>
             )}

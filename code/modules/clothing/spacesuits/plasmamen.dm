@@ -244,8 +244,8 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
-	name = "policyjny hełm środowiskowy"
-	desc = "Hełm izolujący plazmamana zaprojektowany dla policjantów. Chroni ich przed spłonięciem żywcem i innymi nieprzyjemnościami."
+	name = "żandarmski hełm środowiskowy"
+	desc = "Hełm izolujący plazmamana zaprojektowany dla żandarmów. Chroni ich przed spłonięciem żywcem i innymi nieprzyjemnościami."
 	greyscale_colors = "#9F2A2E#2D2D2D#7D282D"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75, "stamina" = 10, "bleed" = 10)
 
@@ -460,8 +460,8 @@
 	visor_state = "mark2_visor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/security
-	name = "policyjny hełm środowiskowy Mk.II"
-	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla policjantów. Zachowuje całą dawną ochronę na nową erę kruchych stróżów prawa."
+	name = "żandarmski hełm środowiskowy Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla żandarmów. Zachowuje całą dawną ochronę na nową erę kruchych stróżów prawa."
 	greyscale_colors = "#9F2A2E#2D2D2D"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75, "stamina" = 10, "bleed" = 10)
 
@@ -661,8 +661,8 @@
 	visor_state = "protective_visor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security
-	name = "wzmocniony policyjny hełm środowiskowy"
-	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla policjantów."
+	name = "wzmocniony żandarmski hełm środowiskowy"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla żandarmów."
 	greyscale_colors = "#9F2A2E#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security/warden

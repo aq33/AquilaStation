@@ -265,7 +265,7 @@
 	new /obj/item/storage/box/deputy(src)
 
 /obj/structure/closet/secure_closet/security/solgov
-	name = "szafka Policjanta"
+	name = "szafka Żandarma"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "sec"
 

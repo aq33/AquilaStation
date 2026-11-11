@@ -37,15 +37,11 @@
 	venue_value = FOOD_PRICE_EXOTIC
 /obj/item/food/pie/berryclafoutis
 	venue_value = FOOD_PRICE_EXOTIC
-/obj/item/food/soup/bisque
-	venue_value = FOOD_PRICE_EXOTIC
 /obj/item/food/sashimi
 	venue_value = FOOD_PRICE_EXOTIC
 /obj/item/food/chawanmushi
 	venue_value = FOOD_PRICE_EXOTIC
 /obj/item/food/golabki
-	venue_value = FOOD_PRICE_EXOTIC
-/obj/item/food/soup/zurek
 	venue_value = FOOD_PRICE_EXOTIC
 /obj/item/food/pie/kremowka
 	venue_value = FOOD_PRICE_EXOTIC

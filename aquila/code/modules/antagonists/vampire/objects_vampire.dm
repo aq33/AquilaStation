@@ -142,6 +142,10 @@
 	new /obj/item/stack/rods(drop_turf, 4)
 	return ..()
 
+/// AQUILA: the generic drag buckle skipped the bolting check and the torture reset below, so the rack buckles only through MouseDrop_T
+/obj/structure/vampire/vassalrack/mouse_buckle_handling(mob/living/M, mob/living/user)
+	return FALSE
+
 /obj/structure/vampire/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
 	if(..())
 		return
@@ -157,7 +161,11 @@
 	if(issilicon(living_target))
 		to_chat(user, span_danger("Uświadamiasz sobie, że maszyny nie da się zmienić w wasala, więc przypinanie jej nie ma sensu."))
 		return
+	add_fingerprint(user)
 	if(vampire_do_after(user, 5 SECONDS, living_target))
+		// AQUILA: the rack is not tracked by the do_after, it could be unbolted or moved in the meantime
+		if(!anchored || !living_target.Adjacent(src) || !user.Adjacent(src) || has_buckled_mobs() || living_target.buckled)
+			return
 		density = FALSE // Temporarily set density to false so the target is actually on the rack
 		attach_victim(living_target, user)
 		density = TRUE
@@ -166,7 +174,7 @@
  * Attempts to buckle target into the Vassalization Rack
  */
 /obj/structure/vampire/vassalrack/proc/attach_victim(mob/living/target, mob/living/user)
-	if(!buckle_mob(target))
+	if(!buckle_mob(target, check_loc = FALSE)) // AQUILA: the victim stands on the next tile, buckle_mob moves it onto the rack
 		return
 	user.visible_message(
 		span_notice("[user] przypina [target] do stołu, unieruchamiając ofiarę."),
@@ -241,10 +249,20 @@
 			unbuckle_mob(buckled_carbons)
 		else
 			user_unbuckle_mob(buckled_carbons, user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN // AQUILA: right_click_attack_chain needs a SECONDARY_ATTACK_* result
 
 /obj/structure/vampire/vassalrack/attackby(obj/item/attacking_item, mob/living/user, list/modifiers)
 	if(IS_VAMPIRE(user) && has_buckled_mobs() && !user.combat_mode)
 		return try_to_torture(user, pick(buckled_mobs), attacking_item)
+	// AQUILA: a victim carried on the back goes through the same path as dragging (the generic buckle is disabled above)
+	if(istype(attacking_item, /obj/item/riding_offhand) && user.Adjacent(src))
+		var/obj/item/riding_offhand/riding_item = attacking_item
+		var/mob/living/carried_mob = riding_item.rider
+		if(carried_mob && carried_mob != user)
+			user.unbuckle_mob(carried_mob)
+			carried_mob.forceMove(get_turf(user))
+			MouseDrop_T(carried_mob, user)
+			return TRUE
 	return ..()
 
 /**

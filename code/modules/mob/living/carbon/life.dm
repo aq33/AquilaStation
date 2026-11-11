@@ -12,6 +12,7 @@
 
 		//Reagent processing needs to come before breathing, to prevent edge cases.
 		if(stat != DEAD)
+			handle_stomach_digestion() // AQ EDIT - organy z Bee: żołądek oddaje reagenty do krwi przed metabolizmem wątroby (stomach_contents.dm)
 			for(var/V in internal_organs)
 				var/obj/item/organ/O = V
 				O.on_life()
@@ -252,14 +253,9 @@
 	if(breath.get_moles(GAS_BZ))
 		var/bz_partialpressure = (breath.get_moles(GAS_BZ)/breath.total_moles())*breath_pressure
 		if(bz_partialpressure > 1)
-			hallucination += 10
+			adjust_hallucinations(20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 		else if(bz_partialpressure > 0.01)
-			hallucination += 5
-
-	//TRITIUM
-	if(breath.get_moles(GAS_TRITIUM))
-		var/tritium_partialpressure = (breath.get_moles(GAS_TRITIUM)/breath.total_moles())*breath_pressure
-		radiation += tritium_partialpressure/10
+			adjust_hallucinations(10 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	//NITRYL
 	if(breath.get_moles(GAS_NITRYL))
@@ -299,7 +295,7 @@
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
 	if(internal)
-		if(internal.loc != src && !(wear_mask?.clothing_flags & MASKEXTENDRANGE)) // If the mask has extended range, do not check for internal.loc
+		if(internal.loc != src && !(wear_mask?.clothing_flags & MASKEXTENDRANGE) && !aquila_internal_in_worn_hardsuit()) // If the mask has extended range, do not check for internal.loc // AQ EDIT - wbudowana butla hardsuitu leży w kombinezonie
 			internal = null
 			update_internals_hud_icon(0)
 		else if (!can_breathe_internals())
@@ -349,7 +345,7 @@
 		if(stat != DEAD || D.process_dead)
 			D.stage_act()
 
-/mob/living/carbon/handle_mutations_and_radiation()
+/mob/living/carbon/handle_mutations() // AQ EDIT - promieniowanie z Bee#13442: natężenie liczy /datum/component/irradiated
 	if(dna && dna.temporary_mutations.len)
 		for(var/mut in dna.temporary_mutations)
 			if(dna.temporary_mutations[mut] < world.time)
@@ -376,10 +372,6 @@
 		for(var/datum/mutation/HM as() in dna.mutations)
 			if(HM?.timed)
 				dna.remove_mutation(HM.type)
-
-	radiation -= min(radiation, RAD_LOSS_PER_TICK)
-	if(radiation > RAD_MOB_SAFE && !HAS_TRAIT(src, TRAIT_TOXIMMUNE)) // NSV13 don't deal toxin damage if they're immune
-		adjustToxLoss(log(radiation-RAD_MOB_SAFE)*RAD_TOX_COEFFICIENT)
 
 
 /*
@@ -487,9 +479,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Ej stary, co jeśli byśmy, eee, 
 
 	if(druggy)
 		adjust_drugginess(-1)
-
-	if(hallucination)
-		handle_hallucinations()
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)

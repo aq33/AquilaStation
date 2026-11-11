@@ -71,6 +71,7 @@
 		to_chat(usr, "<span class='warning'>Reset kampanii nie powiódł się: [result["error"]]. Serwer nie został zrestartowany, a kampania pozostała bez zmian.</span>")
 		return
 	SSstar_system.campaign_reset_pending = TRUE
+	ship_structure_wipe_all("new campaign by [key_name(usr)]") // nowa kampania = wszystkie statki prosto z mapy
 	log_admin("[key_name(usr)] used Hard Restart + New Campaign. Starmap [path] reset to [CAMPAIGN_DEFAULT_STARMAP]. Restarting.")
 	message_admins("[key_name_admin(usr)] używa Hard Restart + New Campaign. Mapa gwiezdna [path] zresetowana. Trwa restart.")
 	to_chat(world, "Restart świata – nowa kampania – [init_by]")

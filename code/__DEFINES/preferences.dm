@@ -78,6 +78,7 @@
 #define CHAT_LEGACY_INTENTS (1<<14) // AQ EDIT - port BeeStation #11899; stary tryb intencji zamiast combat mode, flaga włączająca, więc domyślnie combat mode
 #define CHAT_DISABLE_COMBATMODE_SOUND (1<<15) // AQ EDIT - port BeeStation #11899; flaga wyłączająca dźwięk przełączania combat mode
 #define CHAT_INVERTED_ROTATION (1<<16) // AQ EDIT - port BeeStation #14313; odwraca kierunek obracania Alt+klikiem
+#define CHAT_RDS_UNLIMITED (1<<17) // AQ EDIT - tgstation/tgstation#89865; Zaburzenia Dysocjacyjne bez limitu halucynacji
 
 //nsv13 for below: add chat_looc
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_LOOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_GHOSTLAWS)
@@ -206,6 +207,14 @@
 #define PREFERENCE_TAG_CLIENTFPS_MIGRATED	"31" // AQ EDIT - jednorazowa migracja starego domyślnego FPS 40
 #define PREFERENCE_TAG_QUICK_EMOTES	"32" // AQ EDIT - koło emotek: wybrane emotki (JSON)
 #define PREFERENCE_TAG_KEYBIND_MIGRATIONS	"33" // AQ EDIT - jednorazowe migracje keybindów (JSON, lista nazw)
+#define PREFERENCE_TAG_SOFT_LIGHTING	"34" // AQ EDIT - miękkie światło
+#define PREFERENCE_TAG_GLOW_LEVEL	"35" // AQ EDIT - poświata emisyjnych
+#define PREFERENCE_TAG_LIGHT_GLARE	"36" // AQ EDIT - promienie świateł
+#define PREFERENCE_TAG_GUN_CURSOR	"40" // AQ EDIT - kursor rozrzutu broni
+#define PREFERENCE_TAG_FACE_CURSOR	"41" // AQ EDIT - obracanie do kursora w combat mode
+#define PREFERENCE_TAG_RECOIL_CAMERA	"42" // AQ EDIT - siła kopnięcia kamery od odrzutu
+#define PREFERENCE_TAG_HIDE_BODILY_FUNCTIONS	"37" // AQ EDIT - cenzura wypróżniania i moczu
+#define PREFERENCE_TAG_SQUAD_TTS	"38" // AQ EDIT - głos rozkazów drużyny
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9

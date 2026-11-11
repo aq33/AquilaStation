@@ -9,6 +9,16 @@ export enum ShuttleState {
   OBJECTIVES = 'objectives',
 }
 
+// AQUILA: jukebox, który kapitan może puścić przez nagłośnienie statku
+export type PAJukebox = {
+  ref: string;
+  name: string;
+  area: string;
+  playing: BooleanLike;
+  title: string | null;
+  shipwide: BooleanLike;
+};
+
 export type Shuttle = {
   name: string;
   description: string;
@@ -52,6 +62,13 @@ export type CommsConsoleData = {
   canSendToSectors: BooleanLike;
   canSetAlertLevel: string | BooleanLike;
   canToggleEmergencyAccess: BooleanLike;
+  // AQUILA: kapitan wyłącza oświetlenie nocne
+  canToggleNightShift: BooleanLike;
+  nightShiftDisabled: BooleanLike;
+  // AQUILA: nagłośnienie statku (jukebox na cały statek)
+  canControlPA?: BooleanLike;
+  paOnShip?: BooleanLike;
+  paJukeboxes?: PAJukebox[];
   emagged: BooleanLike;
   emergencyAccess: BooleanLike;
   hasConnection: BooleanLike;
@@ -73,6 +90,7 @@ export type CommsConsoleData = {
   objectives: Record<string, Objective>;
   // AQUILA - wybór misji przez kapitana
   mission_choices?: MissionChoice[];
+  mission_choice_extension?: BooleanLike;
   can_choose_mission?: BooleanLike;
 
   // static_data

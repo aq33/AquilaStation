@@ -1,7 +1,8 @@
 // AQUILA - raport najbogatszych na koniec rundy i ranking między rundami (baza danych)
 //
-// Liczy się saldo konta z karty ID na koniec rundy, na tych samych zasadach co aquilosy:
+// Liczy się saldo osobistego konta postaci na koniec rundy, na tych samych zasadach co aquilosy:
 // tylko żywa postać, która się ewakuowała (patrz /client/proc/get_endround_bank_account).
+// Budżety działów i cudze konta podpięte pod kartę się nie liczą.
 
 /// Ile pozycji pokazuje raport rundy i ranking
 #define EARNINGS_REPORT_SIZE 5
@@ -27,7 +28,7 @@ GLOBAL_VAR_INIT(economy_leaderboard_loaded, FALSE)
 	var/mob/living/carbon/human/body = player_mind?.current
 	if(!ishuman(body))
 		return
-	var/datum/bank_account/account = body.get_bank_account() || find_bank_account_by_id(body.account_id)
+	var/datum/bank_account/account = claim_endround_bank_account(body.get_personal_bank_account(), ckey, FALSE)
 	if(!account)
 		return
 	for(var/list/result as anything in GLOB.economy_round_results)
@@ -191,15 +192,7 @@ GLOBAL_VAR_INIT(economy_leaderboard_loaded, FALSE)
 		parts += economy_leaderboard_lines()
 	return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 
-/// Ranking zarobków dostępny w każdej chwili z zakładki OOC
-/client/verb/economy_leaderboard()
-	set name = "Ranking zarobków"
-	set category = "OOC"
-	set desc = "Pokazuje graczy, którzy zarobili najwięcej we wszystkich rundach."
-
-	if(!GLOB.economy_leaderboard_loaded)
-		economy_load_leaderboard()
-	GLOB.economy_leaderboard_ui.ui_interact(mob)
+// Ranking zarobków jest zakładką okna „Statystyki” (aquila/code/modules/character_stats/character_stats.dm)
 
 #undef EARNINGS_REPORT_SIZE
 #undef EARNINGS_LEADERBOARD_SIZE

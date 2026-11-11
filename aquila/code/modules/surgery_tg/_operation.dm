@@ -444,6 +444,8 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	/// Flagi OPERATION_*
 	var/operation_flags = NONE
+	/// AQUILA - czy narzędzie-stos (nici, żel, taśma) traci sztukę po każdej próbie. FALSE, gdy sam stos jest wkładanym przedmiotem
+	var/consumes_stack_tool = TRUE
 	/// AQUILA - strefy, w których operację można zrobić na sobie bez OPERATION_SELF_OPERABLE (implant zęba w ustach)
 	var/list/self_operable_zones
 
@@ -879,9 +881,10 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 			if(patient)
 				update_surgery_mood(patient, SURGERY_STATE_SUCCESS)
 
-		if(isstack(tool))
+		if(consumes_stack_tool && isstack(tool))
 			var/obj/item/stack/tool_stack = tool
-			tool_stack.use(1)
+			if(!QDELETED(tool_stack))
+				tool_stack.use(1)
 
 	while((operation_flags & OPERATION_LOOPING) && can_loop(patient, operating_on, surgeon, tool, operation_args))
 
@@ -1095,6 +1098,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	if(operation_flags & OPERATION_NOTABLE)
 		SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
+		record_character_stat(surgeon, "surgeries") // statystyki postaci (character_stats.dm)
 
 	SEND_SIGNAL(surgeon, COMSIG_ATOM_SURGERY_SUCCESS, src, operating_on, tool)
 	play_operation_sound(operating_on, surgeon, tool, success_sound)

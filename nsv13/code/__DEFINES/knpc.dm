@@ -7,3 +7,7 @@
 //Knpc pathfinding timeout defines
 #define KNPC_TIMEOUT_BASE (3 SECONDS) //The base timeout applied if an knpc's pathfinding fails.
 #define KNPC_TIMEOUT_STACK_CAP 9 //Every consecutive pathfinding fail adds a stacks; Timeout applied uses them as multiplier up to a cap of this value.
+
+// AQ EDIT START - taktyka boarderów KNPC (aquila/code/modules/knpc/knpc_tactics.dm)
+#define KNPC_MAX_BACKUP_RESPONDERS 3 //How many of the closest KNPCs answer a single call for backup
+// AQ EDIT END

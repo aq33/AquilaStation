@@ -21,11 +21,22 @@
 /obj/item/gun
 	/// Czy przy strzale z lufy leci dymek
 	var/gun_smoke_particles = FALSE
+	/// Ile dymu (zanieczyszczenia) zostaje na kafelku po strzale; 0 = broń bez prochu
+	var/gun_smoke_pollution = 0
 
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	. = ..()
 	if(gun_smoke_particles)
 		spawn_gun_smoke(user, pbtarget)
+	if(gun_smoke_pollution)
+		pollute_gun_smoke()
+
+/// Dym prochowy zostaje w powietrzu jak dym z pożaru (aquila/code/modules/pollution/): seria w zamkniętym pomieszczeniu robi gęstą mgłę
+/obj/item/gun/proc/pollute_gun_smoke()
+	var/turf/open/gun_turf = get_turf(src)
+	if(!istype(gun_turf) || gun_turf.planetary_atmos)
+		return
+	gun_turf.pollute_turf(/datum/pollutant/smoke, gun_smoke_pollution, POLLUTION_PASSIVE_EMITTER_CAP)
 
 /obj/item/gun/proc/spawn_gun_smoke(mob/living/user, atom/target)
 	var/turf/gun_turf = get_turf(src)
@@ -76,3 +87,25 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy
 	gun_smoke_particles = FALSE
+
+// Dym prochowy: cała broń palna, mocniej strzelby i wyrzutnie. Broń na piankę i łuki nie dymią.
+/obj/item/gun/ballistic
+	gun_smoke_pollution = 3
+
+/obj/item/gun/ballistic/shotgun
+	gun_smoke_pollution = 5
+
+/obj/item/gun/ballistic/revolver/grenadelauncher
+	gun_smoke_pollution = 10
+
+/obj/item/gun/ballistic/rocketlauncher
+	gun_smoke_pollution = 15
+
+/obj/item/gun/ballistic/automatic/toy
+	gun_smoke_pollution = 0
+
+/obj/item/gun/ballistic/shotgun/toy
+	gun_smoke_pollution = 0
+
+/obj/item/gun/ballistic/bow
+	gun_smoke_pollution = 0

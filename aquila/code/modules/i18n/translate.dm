@@ -329,8 +329,10 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		return text
 	return i18n_en_html(text, with_templates)
 
-// Dymki: tworzone dla jednego widza, więc wystarczy przetłumaczyć tekst
+// Dymki: tworzone dla jednego widza, więc wystarczy przetłumaczyć tekst. Przedimek „the”, który BYOND dokleja przed
+// wstawionym obiektem („[src] klika.” -> „The protokinetyczny akcelerator klika.”), zdejmujemy jak w to_chat
 /atom/balloon_alert(mob/viewer, text, color = null, show_in_chat = TRUE, offset_x, offset_y)
+	text = strip_auto_articles(text)
 	return ..(viewer, i18n_for_client(viewer?.client, text), color, show_in_chat, offset_x, offset_y)
 
 // Dymki z opisem po najechaniu na przedmiot, akcję albo alert: okno tooltip jednego klienta

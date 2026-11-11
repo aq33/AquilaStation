@@ -94,6 +94,9 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 		return FALSE
 	if(length(occupying_levels) || reserved_z || role != NORMAL_OVERMAP)
 		return FALSE
+	// The last warship of a defence (boss) fleet fights to the end: its escape would take the whole fleet out of the system
+	if(fleet?.fleet_trait == FLEET_TRAIT_DEFENSE && !has_other_ai_warships())
+		return FALSE
 	return TRUE
 
 /obj/structure/overmap/proc/get_ai_fear_mult()
@@ -162,6 +165,8 @@ GLOBAL_VAR_INIT(ai_morale_enabled, TRUE)
 	// Fear comes fast and goes slowly
 	ai_fear += (target - ai_fear) * (target > ai_fear ? 0.7 : 0.1)
 	if(!can_ai_flee())
+		if(ai_fleeing) // The way out closed, e.g. it is the last warship of a defence fleet now
+			stop_ai_flight()
 		return
 	if(ai_fleeing)
 		if(ai_fear < AI_FEAR_CAUTIOUS) // Rallied

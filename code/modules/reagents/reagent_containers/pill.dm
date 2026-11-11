@@ -52,13 +52,18 @@
 
 	if(reagents.total_volume)
 		reagents.reaction(M, apply_type, affecting = affecting)
-		reagents.trans_to(M, reagents.total_volume, transfered_by = user)
+		if(apply_type == INGEST) // AQ EDIT START - organy z Bee: połknięta pigułka trafia do żołądka
+			reagents.trans_to_ingested(M, reagents.total_volume, transfered_by = user)
+		else // AQ EDIT END
+			reagents.trans_to(M, reagents.total_volume, transfered_by = user)
 	qdel(src)
 	return TRUE
 
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user , proximity)
 	. = ..()
+	if(QDELETED(src)) // AQ EDIT - taca hydroponiczna kompostuje pigułkę w sygnale z ..()
+		return
 	if(!proximity)
 		return
 	if(!dissolvable || !target.is_refillable())

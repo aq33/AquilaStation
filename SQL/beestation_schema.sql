@@ -575,6 +575,16 @@ CREATE TABLE IF NOT EXISTS `SS13_economy_earnings` (
   KEY `idx_round` (`round_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- AQUILA: statystyki postaci między rundami (aquila/code/modules/character_stats/character_stats.dm)
+DROP TABLE IF EXISTS `SS13_character_stats`;
+CREATE TABLE IF NOT EXISTS `SS13_character_stats` (
+  `ckey` varchar(32) NOT NULL,
+  `character_name` varchar(64) NOT NULL,
+  `stat` varchar(32) NOT NULL,
+  `value` bigint(20) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ckey`, `character_name`, `stat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- AQUILA: perki kupowane za aquilosy - bilety na pracę, ubezpieczenia, odznaki (aquila/code/modules/metacoin/perks.dm)
 DROP TABLE IF EXISTS `SS13_aquila_perks`;
 CREATE TABLE IF NOT EXISTS `SS13_aquila_perks` (

@@ -304,7 +304,7 @@ Infestation! If given a human, it makes them a changeling thrall. If given any o
 /datum/antagonist/bloodling/minion
 	name = "Sługa krwiaków"
 	component_type = /datum/component/bloodling/lesser
-	tips = 'html/antagtips/bloodling_thrall.html'
+	tips = "bloodling_thrall" // AQ EDIT - show_tips() sam składa ścieżkę html/antagtips/[nazwa].html
 
 /datum/antagonist/bloodling/minion/forge_objectives()
 	var/datum/objective/bloodling_serve/serve = new

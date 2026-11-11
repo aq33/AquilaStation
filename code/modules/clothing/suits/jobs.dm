@@ -126,8 +126,8 @@
 
 //Security
 /obj/item/clothing/suit/security/officer
-	name = "kurtka policyjna"
-	desc = "Kurtka na te szczególne okazje, kiedy policjant nie musi nosić pancerza."
+	name = "kurtka żandarmska"
+	desc = "Kurtka na te szczególne okazje, kiedy żandarm nie musi nosić pancerza."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
 	body_parts_covered = CHEST|ARMS

@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(critical_muni_items)
 
 /obj/item/pinpointer/munitions
-	name = "lokalizator amunicji"
-	desc = "Urządzenie do śledzenia kluczowych obiektów amunicyjnych."
+	name = "lokalizator uzbrojenia"
+	desc = "Urządzenie do śledzenia kluczowych obiektów uzbrojenia."
 	icon_state = "pinpointer_muni"
 	icon = 'nsv13/icons/obj/device.dmi'
 	resistance_flags = NONE
@@ -69,5 +69,5 @@ GLOBAL_LIST_EMPTY(critical_muni_items)
 		active = FALSE
 
 /obj/item/pinpointer/munitions/not_puce
-	desc = "Urządzenie do śledzenia kluczowych obiektów amunicyjnych. Chwila... Czy to...?"
+	desc = "Urządzenie do śledzenia kluczowych obiektów uzbrojenia. Chwila... Czy to...?"
 	icon_state = "pinpointer_not_puce"

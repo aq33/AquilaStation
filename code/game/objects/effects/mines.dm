@@ -315,7 +315,7 @@
 	to_chat(victim, "<span class='reallybig redtext'>ROZRYWAJ I ROZDZIERAJ</span>")
 
 	spawn(0)
-		new /datum/hallucination/delusion(victim, TRUE, "demon",duration,0)
+		victim.cause_hallucination(/datum/hallucination/delusion/preset/demon, "demon mine", duration = duration, affects_us = FALSE, affects_others = TRUE, skip_nearby = FALSE) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	chainsaw = new(victim.loc)
 	victim.log_message("entered a blood frenzy", LOG_ATTACK)

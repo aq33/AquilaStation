@@ -12,7 +12,7 @@
 // Kosmobagiety - kurtka Komendanta, te same statystyki co kurtka peacekeepera
 /obj/item/clothing/suit/ship/peacekeeper/jacket/police
 	name = "kurtka Komendanta"
-	desc = "Granatowa kurtka policyjna z insygniami Komendanta. Mimo ciężkiego opancerzenia nosi się ją niezwykle wygodnie."
+	desc = "Zielona kurtka żandarmska z insygniami Komendanta. Mimo ciężkiego opancerzenia nosi się ją niezwykle wygodnie."
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	icon_state = "hosbluejacket"

@@ -2,11 +2,11 @@
 	contraband = list(/obj/item/book/granter/spell/sexonbutton = 1)
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
-	name = "CargoDrobe"
-	desc = "Wysoce zaawansowana maszyna vendingowa, w której można zakupić stylowe ubrania Cargonii."
+	name = "\improper Mundurownia InPost"
+	desc = "Automat z odzieżą roboczą InPostu dla zaopatrzenia."
 	icon_state = "cargodrobe"
 	product_ads = "Ulepszony styl asystenta! Wybierz swój dziś!;Te szorty są wygodne i łatwe w noszeniu, załatw sobie takie!"
-	vend_reply = "Dziękujemy za użycie CargoDrobe!"
+	vend_reply = "Dziękujemy, paczka już w drodze!"
 	light_color = LIGHT_COLOR_YELLOW
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/cargo = 3,
 					/obj/item/clothing/under/rank/cargo/tech = 3,
@@ -19,7 +19,9 @@
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft/cargo = 3,
 					/obj/item/clothing/head/beret/supply = 3,
-					/obj/item/clothing/head/aquila/headband/orange = 3,
+					/obj/item/storage/backpack/inpost = 3,
+					/obj/item/storage/backpack/satchel/inpost = 3,
+					/obj/item/storage/backpack/duffelbag/inpost = 3,
 					/obj/item/radio/headset/headset_cargo = 3,
 					/obj/item/clothing/head/mailman = 2,
 					/obj/item/clothing/under/misc/mailman = 2,

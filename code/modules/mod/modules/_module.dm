@@ -20,7 +20,7 @@
 	/// ID used by their TGUI
 	var/tgui_id
 	/// Linked MODsuit
-	var/obj/item/mod/control/mod
+	var/obj/item/clothing/suit/space/hardsuit/mod
 	/// If we're an active module, what item are we?
 	var/obj/item/device
 	/// Overlay given to the user when the module is inactive
@@ -149,7 +149,7 @@
 		//specifically a to_chat because the user is phased out.
 		to_chat(mod.wearer, span_warning("Nie możesz teraz tego aktywować."))
 		return FALSE
-	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED) & MOD_ABORT_USE)
+	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED, mod.wearer) & MOD_ABORT_USE) // AQ EDIT - noszący dla /datum/component/jetpack (port BeeStation/BeeStation-Hornet#14864)
 		return FALSE
 	if(module_type == MODULE_ACTIVE)
 		if(mod.selected_module && !mod.selected_module.deactivate(display_message = FALSE))
@@ -189,7 +189,7 @@
 			UnregisterSignal(mod.wearer, used_signal)
 			used_signal = null
 	mod.wearer.update_clothing(mod.slot_flags)
-	SEND_SIGNAL(src, COMSIG_MODULE_DEACTIVATED)
+	SEND_SIGNAL(src, COMSIG_MODULE_DEACTIVATED, mod.wearer) // AQ EDIT - noszący dla /datum/component/jetpack (port BeeStation/BeeStation-Hornet#14864)
 	on_deactivation(display_message = display_message, deleting = deleting)
 	return TRUE
 
@@ -204,7 +204,7 @@
 		//specifically a to_chat because the user is phased out.
 		to_chat(mod.wearer, span_warning("Nie możesz teraz tego aktywować."))
 		return FALSE
-	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED) & MOD_ABORT_USE)
+	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED, mod.wearer) & MOD_ABORT_USE) // AQ EDIT - noszący dla /datum/component/jetpack (port BeeStation/BeeStation-Hornet#14864)
 		return FALSE
 	start_cooldown()
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/mob, update_clothing), mod.slot_flags), cooldown_time+1) //need to run it a bit after the cooldown starts to avoid conflicts
@@ -393,7 +393,7 @@
 		return
 
 	var/datum/action/item_action/mod/pinned_module/new_action = new(mod, src, user)
-	if(user == mod.wearer || user == mod.ai_assistant)
+	if(user == mod.wearer)
 		new_action.Grant(user)
 
 /// On drop key, concels a device item.

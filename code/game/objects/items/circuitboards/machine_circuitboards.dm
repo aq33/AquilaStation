@@ -549,12 +549,12 @@
 		/obj/machinery/vending/cigarette = "ShadyCigs Deluxe",
 		/obj/machinery/vending/games = "\improper Good Clean Fun",
 		/obj/machinery/vending/autodrobe = "AutoDrobe",
-		/obj/machinery/vending/wardrobe/sec_wardrobe = "Mundurownia Policyjna", //AQUILA EDIT
+		/obj/machinery/vending/wardrobe/sec_wardrobe = "Mundurownia Żandarmska", //AQUILA EDIT
 		/obj/machinery/vending/wardrobe/det_wardrobe = "DetDrobe",
 		/obj/machinery/vending/wardrobe/medi_wardrobe = "MediDrobe",
-		/obj/machinery/vending/wardrobe/engi_wardrobe = "EngiDrobe",
-		/obj/machinery/vending/wardrobe/atmos_wardrobe = "AtmosDrobe",
-		/obj/machinery/vending/wardrobe/cargo_wardrobe = "CargoDrobe",
+		/obj/machinery/vending/wardrobe/engi_wardrobe = "Mundurownia Orlenu", //AQUILA EDIT
+		/obj/machinery/vending/wardrobe/atmos_wardrobe = "Mundurownia Orlenu (atmosferyka)", //AQUILA EDIT
+		/obj/machinery/vending/wardrobe/cargo_wardrobe = "Mundurownia InPost", //AQUILA EDIT
 		/obj/machinery/vending/wardrobe/robo_wardrobe = "RoboDrobe",
 		/obj/machinery/vending/wardrobe/science_wardrobe = "SciDrobe",
 		/obj/machinery/vending/wardrobe/hydro_wardrobe = "HyDrobe",
@@ -581,7 +581,7 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
-		/obj/machinery/vending/security = "Zbrojownia Policyjna", //AQUILA EDIT
+		/obj/machinery/vending/security = "Zbrojownia Żandarmska", //AQUILA EDIT
 		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections",
 		/obj/machinery/vending/custom = "własny")
 

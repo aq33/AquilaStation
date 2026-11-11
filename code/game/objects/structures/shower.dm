@@ -355,15 +355,11 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 		SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "shower", /datum/mood_event/nice_shower) //NSV13 - handled mood separately due to clothes
 
+// AQ EDIT START - promieniowanie z Bee#13442: przedmiot traci skażenie, człowiek pod wodą ma wstrzymane skutki
 /obj/machinery/shower/proc/contamination_cleanse(atom/thing)
-	var/datum/component/radioactive/healthy_green_glow = thing.GetComponent(/datum/component/radioactive)
-	if(!healthy_green_glow || QDELETED(healthy_green_glow))
-		return
-	var/strength = healthy_green_glow.strength
-	if(strength <= RAD_BACKGROUND_RADIATION)
-		qdel(healthy_green_glow)
-		return
-	healthy_green_glow.strength -= max(0, healthy_green_glow.strength * 0.2) //NSV13 - Now removes rads towards 0, instead of towards (background radiation * 2).
+	var/datum/component/irradiated/irradiated_component = thing.GetComponent(/datum/component/irradiated)
+	irradiated_component?.on_radiation_clean()
+// AQ EDIT END
 // AQ EDIT START - plumbing port from tg
 /obj/machinery/shower/process(delta_time)
 	// the TIMED mode cutoff feature. User has to manually reactivate.

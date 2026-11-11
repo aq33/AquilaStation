@@ -433,7 +433,8 @@ const realignRun = (
   for (let i = start + 1; i <= end; i++) {
     combined += separators[i - start - 1] + captures[i];
   }
-  const runs = [...combined.matchAll(/\s+/g)].map((m) => [
+  // Array.from: Babel w trybie loose robi ze spreadu iteratora [].concat(it)
+  const runs = Array.from(combined.matchAll(/\s+/g)).map((m) => [
     m.index!,
     m.index! + m[0].length,
   ]);

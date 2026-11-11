@@ -23,7 +23,7 @@
 
 /obj/machinery/vending/wardrobe/muni_wardrobe //Missing so many icons
 	name = "AmuniSzafa"
-	desc = "Automat wydający mundury i sprzęt działu amunicji."
+	desc = "Automat wydający mundury i sprzęt działu uzbrojenia."
 	icon = 'nsv13/icons/obj/custom_vendors.dmi'
 	icon_state = "munidrobe"
 	product_ads = "Odblaskowo, a wciąż w stylowej czerni!;Pomarańcz to nowa puce!" //cringe, someone send help from marketing

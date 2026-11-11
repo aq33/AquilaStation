@@ -863,6 +863,15 @@
 /mob/living/simple_animal/pulse_demon/mob_negates_gravity()
 	return TRUE
 
+// Prąd nie odbija się od niczego: bez tego w nieważkości demon stawał bez oparcia, dryfował wzdłuż kabli
+// i wystrzeliwał kanistry, od których „odpychał się” (Process_Spacemove w mob_movement.dm)
+/mob/living/simple_animal/pulse_demon/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+	return TRUE
+
+// Nic nie przepycha: zablokowany ruch po kablu kończy się forceMove pod przeszkodę (Move), a kanister zostaje na miejscu
+/mob/living/simple_animal/pulse_demon/PushAM(atom/movable/AM, force = move_force)
+	return TRUE
+
 /mob/living/simple_animal/pulse_demon/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(amount > 0) // obrażenia
 		return ..()

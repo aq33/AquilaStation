@@ -34,6 +34,8 @@
 			/obj/machinery/plumbing/splitter = 5,
 			/obj/machinery/plumbing/sender = 20,
 			/obj/machinery/plumbing/output = 5,
+			/obj/machinery/plumbing/floor_pump/input = 20, // AQUILA - ciecze z Monke
+			/obj/machinery/plumbing/floor_pump/output = 20,
 		),
 		"Storage" = list(
 			/obj/machinery/plumbing/tank = 20,
@@ -54,7 +56,7 @@
 	. = ..()
 	. += "<span class='notice'>Schemat: <b>[initial(blueprint.name)]</b>. Warstwa: [GLOB.plumbing_layer_names["[current_layer]"]], kolor rur: [current_color].</span>"
 	. += "<span class='notice'>Użyj w dłoni (albo <b>Alt-klik</b>), żeby wybrać maszynę, warstwę i kolor rur.</span>"
-	. += "<span class='notice'><b>Prawy klik</b> na rurze kopiuje jej kolor i warstwę. Klik na odkręconej maszynie lub rurze ją rozbiera.</span>"
+	. += "<span class='notice'>Kliknięcie rury <b>[user.secondary_click_text()]</b> kopiuje jej kolor i warstwę. Klik na odkręconej maszynie lub rurze ją rozbiera.</span>"
 
 /// Cost of the given design, null when we can't build it
 /obj/item/construction/plumbing/proc/get_cost(design)

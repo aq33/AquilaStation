@@ -198,7 +198,7 @@
  */
 /obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	if(fired_from)
-		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_BEFORE_FIRE, src, original)
+		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle) // AQ EDIT - trafienie wysyła ON_HIT jak w tg (było BEFORE_FIRE), słucha go broń z układem
 	// i know that this is probably more with wands and gun mods in mind, but it's a bit silly that the projectile on_hit signal doesn't ping the projectile itself.
 	// maybe we care what the projectile thinks! See about combining these via args some time when it's not 5AM
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_SELF_ON_HIT, firer, target, Angle)
@@ -209,6 +209,10 @@
 	if(target == original)
 		hitx = target.pixel_x + p_x - 16
 		hity = target.pixel_y + p_y - 16
+	else if(movement_vector && isturf(target)) // AQ EDIT - ślad na ścianie kawałek za miejscem, gdzie kula w nią weszła (silnik tg: entry_x/y, feel.dm)
+		var/list/hole = get_wall_hole_offset(target)
+		hitx = hole[1]
+		hity = hole[2]
 	else
 		hitx = target.pixel_x + rand(-8, 8)
 		hity = target.pixel_y + rand(-8, 8)
@@ -342,12 +346,16 @@
  * Also, we select_target to find what to process_hit first.
  */
 /obj/item/projectile/proc/Impact(atom/A)
-	if(!trajectory)
+	// AQ EDIT START - silnik pocisku tg (aquila/code/modules/gunplay/projectile_engine.dm): wektor zamiast trajectory, pocisk po trafieniu dolatuje do celu
+	if(!movement_vector)
 		qdel(src)
+		return FALSE
+	if(deletion_queued)
 		return FALSE
 	if(LAZYACCESS(impacted, A))		// NEVER doublehit
 		return FALSE
-	var/datum/point/pcache = trajectory.copy_to()
+	var/datum/point/pcache = RETURN_PRECISE_POINT(src)
+	// AQ EDIT END
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
 		ricochets++
@@ -365,25 +373,9 @@
 		if(istype(A, /obj/structure/overmap))
 			var/obj/structure/overmap/ship_target = A
 			if(faction == ship_target.faction)
-				trajectory_ignore_forcemove = TRUE
-				var/turf/TT = trajectory.return_turf()
-				if(!istype(TT))
-					qdel(src)
-					return
-				if(TT != loc)
-					forceMove(get_step_towards(src, TT))
-				trajectory_ignore_forcemove = FALSE
-				return FALSE
+				return FALSE // AQ EDIT - silnik pocisku przelatuje przez to, czego nie trafia (process_movement())
 	if(firer && (A == firer) || (((A in firer?.buckled_mobs) || (istype(checking) && (A == checking.buckled))) && (A != original)) || (A == firer?.loc && (ismecha(A) || istype(A, /obj/structure/overmap)))) //cannot shoot yourself or your mech //nsv13 - or your ship
-		trajectory_ignore_forcemove = TRUE
-		var/turf/TT = trajectory.return_turf()
-		if(!istype(TT))
-			qdel(src)
-			return
-		if(TT != loc)
-			forceMove(get_step_towards(src, TT))
-		trajectory_ignore_forcemove = FALSE
-		return FALSE			//nsv13 end
+		return FALSE			//nsv13 end // AQ EDIT - przelot przez strzelca robi process_movement()
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
@@ -440,7 +432,7 @@
 			temporary_unstoppable_movement = TRUE
 			movement_type |= PHASING
 		return process_hit(T, select_target(T, target, bumped), bumped, TRUE)
-	qdel(src)
+	queue_impact_deletion() // AQ EDIT - pocisk dolatuje wizualnie do miejsca trafienia (silnik tg)
 	return hit_something
 
 /**
@@ -494,7 +486,7 @@
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
 /obj/item/projectile/proc/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
-	if(QDELETED(target) || LAZYACCESS(impacted, target)) // AQUILA - impacted jest leniwe, przed fire() bywa null
+	if(QDELETED(target) || LAZYACCESS(impacted, target) || deletion_queued) // AQUILA - impacted jest leniwe, przed fire() bywa null // AQ EDIT - trafiony pocisk już nic nie trafia
 		return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
@@ -642,7 +634,7 @@
 	var/turf/ending = return_predicted_turf_after_moves(moves, forced_angle)
 	return getline(current, ending)
 
-/obj/item/projectile/Process_Spacemove(movement_dir = 0)
+/obj/item/projectile/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return TRUE	//Bullets don't drift in space
 
 /obj/item/projectile/process()

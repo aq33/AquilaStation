@@ -200,7 +200,7 @@
 	radio_channel = FREQ_SERVICE
 
 /obj/structure/desk_bell/departmental/munitions
-	name = "dzwonek amunicji"
+	name = "dzwonek uzbrojenia"
 	radio_channel = FREQ_MUNITIONS
 
 /obj/structure/desk_bell/departmental/syndicate

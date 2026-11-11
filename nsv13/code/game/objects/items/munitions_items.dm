@@ -10,9 +10,9 @@
 ///////DEPARTMENT DOOR REMOTE//////
 
 /obj/item/door_remote/master_at_arms
-	name = "pilot drzwi działu amunicji"
+	name = "pilot drzwi działu uzbrojenia"
 	icon_state = "gangtool-red"
-	region_access = 8
+	department_bitflag = DEPARTMENT_BITFLAG_MUNITIONS // AQ EDIT - bitflaga działów (port BeeStation/BeeStation-Hornet#14139)
 
 ///////ENCRYPTION KEYS///////
 
@@ -42,7 +42,7 @@
 	independent = FALSE
 
 /obj/item/encryptionkey/munitions_tech
-	name = "klucz szyfrujący działu amunicji"
+	name = "klucz szyfrujący działu uzbrojenia"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_cypherkey"
 	channels = list(RADIO_CHANNEL_MUNITIONS = 1, RADIO_CHANNEL_SUPPLY = 1)
@@ -50,9 +50,9 @@
 ///////RADIO HEADSETS//////
 
 /obj/item/radio/headset/munitions
-	name = "słuchawki radiowe działu amunicji"
+	name = "słuchawki radiowe działu uzbrojenia"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
-	desc = "Podstawowy model wszystkich słuchawek działu amunicji, z ochroną słuchu w zestawie!"
+	desc = "Podstawowy model wszystkich słuchawek działu uzbrojenia, z ochroną słuchu w zestawie!"
 	icon_state = "mun_headset"
 	keyslot = new /obj/item/encryptionkey/munitions_tech
 	bang_protect = 1
@@ -90,23 +90,23 @@
 	icon_state = "mun_headset_alt"
 
 /obj/item/radio/headset/munitions/munitions_security_alt
-	name = "słuchawki nauszne ochrony działu amunicji"
-	desc = "Słuchawki twojego lokalnego ochroniarza z działu amunicji, ale z ochroną słuchu! Teraz nie ogłuchniesz!"
+	name = "słuchawki nauszne ochrony działu uzbrojenia"
+	desc = "Słuchawki twojego lokalnego ochroniarza z działu uzbrojenia, ale z ochroną słuchu! Teraz nie ogłuchniesz!"
 	icon_state = "munsec_headset_alt"
 	keyslot2 = new /obj/item/encryptionkey/headset_sec
 	bang_protect = 1
 
 /obj/item/radio/headset/munitions/munitions_security
-	name = "słuchawki radiowe ochrony działu amunicji"
-	desc = "Słuchawki twojego lokalnego ochroniarza z działu amunicji."
+	name = "słuchawki radiowe ochrony działu uzbrojenia"
+	desc = "Słuchawki twojego lokalnego ochroniarza z działu uzbrojenia."
 	icon_state = "munsec_headset"
 	keyslot2 = new /obj/item/encryptionkey/headset_sec
 
 ////////BACKPACKS////////
 
 /obj/item/storage/backpack/duffelbag/munitions
-	name = "torba podróżna działu amunicji"
-	desc = "Duża torba podróżna na dodatkowe zapasy działu amunicji."
+	name = "torba podróżna działu uzbrojenia"
+	desc = "Duża torba podróżna na dodatkowe zapasy działu uzbrojenia."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "duffel-mun"
 	item_state = "duffel-mun"
@@ -114,7 +114,7 @@
 	righthand_file = 'nsv13/icons/mob/inhands/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/munitions
-	name = "plecak działu amunicji"
+	name = "plecak działu uzbrojenia"
 	desc = "Wytrzymały, olejoodporny plecak do pracy w otoczeniu pełnym uzbrojenia."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "munitionspack"
@@ -123,7 +123,7 @@
 	righthand_file = 'nsv13/icons/mob/inhands/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/satchel/munitions
-	name = "torba na ramię działu amunicji"
+	name = "torba na ramię działu uzbrojenia"
 	desc = "Wytrzymała torba na ramię z dodatkowymi kieszeniami."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "satchel-mun"
@@ -135,7 +135,7 @@
 //armband for midshipmen or security
 
 /obj/item/clothing/accessory/armband/munitions
-	name = "opaska ochrony działu amunicji"
+	name = "opaska ochrony działu uzbrojenia"
 	desc = "Opaska noszona przez ochronę, by pokazać, do którego działu jest przydzielona. Ta jest czarno-pomarańczowa."
 	icon_state = "muniband"
 

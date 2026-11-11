@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Box, Button, Flex, Modal, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Flex,
+  Modal,
+  NoticeBox,
+  Section,
+  Table,
+} from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { AlertButton } from './AlertButton';
@@ -28,8 +36,10 @@ export function PageMain(props: Props) {
     canSendToSectors,
     canSetAlertLevel,
     canToggleEmergencyAccess,
+    canToggleNightShift,
     emagged,
     emergencyAccess,
+    nightShiftDisabled,
     importantActionReady,
     reinforcementActionReady,
     crewWakeActionReady,
@@ -282,6 +292,23 @@ export function PageMain(props: Props) {
             </Flex.Item>
           )}
 
+          {!!canToggleNightShift && (
+            <Flex.Item mt={0.3}>
+              <Button.Confirm
+                fluid
+                icon="moon"
+                confirmIcon="moon"
+                confirmContent="Na pewno?"
+                color={nightShiftDisabled ? 'bad' : undefined}
+                onClick={() => act('toggleNightShift')}
+              >
+                {nightShiftDisabled
+                  ? 'Przywróć automatyczne oświetlenie nocne'
+                  : 'Wyłącz oświetlenie nocne'}
+              </Button.Confirm>
+            </Flex.Item>
+          )}
+
           {!!canMessageAssociates && (
             <Flex.Item mt={0.3}>
               <Button
@@ -362,6 +389,7 @@ export function PageMain(props: Props) {
 
           {!canMakeAnnouncement &&
             !canToggleEmergencyAccess &&
+            !canToggleNightShift &&
             !canMessageAssociates &&
             !canRequestNuke &&
             !canRequestERT &&
@@ -382,7 +410,67 @@ export function PageMain(props: Props) {
         </Section>
       )}
 
+      <ShipPASection />
+
       {modalRoot ? createPortal(modals, modalRoot) : modals}
     </Box>
+  );
+}
+
+// AQUILA: nagłośnienie statku, wcześniej osobny program NtOS na konsolach dowodzenia
+function ShipPASection() {
+  const { act, data } = useBackend<CommsConsoleData>();
+  const { canControlPA, paOnShip, paJukeboxes = [] } = data;
+  if (!canControlPA) {
+    return null;
+  }
+  return (
+    <Section title="Nagłośnienie statku">
+      <Box color="label" mb={1}>
+        Nadający jukebox gra przez głośniki nagłośnienia na korytarzach; w
+        pomieszczeniach i maintach słychać je przez ściany, ciszej. Na raz może
+        nadawać tylko jeden. Kto jest bliżej innego grającego jukeboxa, słyszy
+        ten głośniejszy.
+      </Box>
+      {!paOnShip && (
+        <NoticeBox danger>Ta konsola nie jest na żadnym statku.</NoticeBox>
+      )}
+      {paJukeboxes.length === 0 ? (
+        <Box color="label">Brak jukeboxów na tym statku.</Box>
+      ) : (
+        <Table>
+          {paJukeboxes.map((jukebox) => (
+            <Table.Row key={jukebox.ref} className="candystripe">
+              <Table.Cell>
+                <Box bold>{jukebox.name}</Box>
+                <Box color="label">{jukebox.area}</Box>
+              </Table.Cell>
+              <Table.Cell>
+                {jukebox.playing ? (
+                  jukebox.title || 'Łączenie...'
+                ) : (
+                  <Box color="label">Cisza</Box>
+                )}
+              </Table.Cell>
+              <Table.Cell collapsing>
+                <Button
+                  icon={jukebox.shipwide ? 'volume-up' : 'volume-off'}
+                  selected={!!jukebox.shipwide}
+                  tooltip={
+                    jukebox.shipwide
+                      ? 'Wyłącz nadawanie na cały statek'
+                      : 'Puść ten jukebox na cały statek'
+                  }
+                  tooltipPosition="left"
+                  onClick={() => act('togglePA', { ref: jukebox.ref })}
+                >
+                  {jukebox.shipwide ? 'Nadaje' : 'Nadawaj'}
+                </Button>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table>
+      )}
+    </Section>
   );
 }

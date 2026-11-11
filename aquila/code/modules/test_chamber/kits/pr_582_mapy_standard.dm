@@ -1,0 +1,11 @@
+// Atlantis i Von Neumann dostały mechaniki Atlasa i Trawnika. Prawie wszystko sprawdza się na samych mapach, w komorze jest tylko łóżko stazy z monitorem.
+
+/datum/test_chamber_kit/pr_582
+	name = "PR 582: Atlantis i Von Neumann jak Atlas"
+	pr = "aq33/AquilaStation#582"
+	description = "1) Połóż człowieka na łóżku stazy i obejrzyj monitor obok → oczekiwane: odczyt funkcji życiowych pacjenta (jak na mapach, gdzie monitor wisi na ścianie przy łóżku). 	Poza komorą (admin zmienia mapę na Atlantis, potem na Von Neumann): 	2) Wejdź jako obserwator z lobby → oczekiwane: duch pojawia się na statku (Atlantis: CIC), bez komunikatu „Teleportowanie nie powiodło się”. 	3) Admin: misja abordażu KNPC → oczekiwane: abordażyści pojawiają się przy punktach patrolowych i chodzą po korytarzach obu pokładów Atlantis. 	4) Atlantis: biuro górników → drzwi na południe do pracowni bitrunnerów (netpod, serwer, byteforge), w biurze wyrzutnia i konsole exodronów, anteny za oknem w hangarze. Z wylotu hangaru kładka do klatki magnesu: konsola magnesu przy wylocie ściąga asteroidę do ramy, shipbreaking w hangarze. VN: pracownia bitrunnerów z ładowni cargo, klatka pod wylotem hangaru górniczego. 	5) Atlantis: z serwerowni telekomunikacji śluza do serwerowni SI (konsole w salce, rdzenie za szybą). Konsola rozdziału zasobów widzi szafę i rdzenie. VN: to samo we wnęce komory rdzenia SI. 	6) Atlantis: pracownia ksenoarcheologii w nauce (dawny Research Projects), circuity w robotyce, kuźnia za drzwiami Weapons Bay z baterii Gaussa, wirusologia z poczekalni sal chorych. VN: ksenoarcheologia i pracownia układów drzwiami z lobby nauki. 	7) MULE na Atlantis: wyślij go z cargo do Engineering → oczekiwane: jedzie windą dla botów na dolny pokład. 	8) Lista profesji na Atlantis: jest wirusolog, nie ma kuratora ani prawnika, 5 slotów pilota. 	9) Gułag: naczelnik wysyła więźnia promem obozu pracy (konsola obozu pracy w biurze ochrony, prom stoi przy śluzie „Dok promu obozu pracy”) albo teleporterem gułagu → oczekiwane: prom odlatuje do obozu i wraca, a więzień po odpracowaniu odbiera rzeczy z automatu. Atlantis: śluza w pokoju przyjęć więźniów. VN: śluza na końcu pasa z pokoju ochrony nad celami (drzwi z aresztu)."
+	items = list(
+		/obj/machinery/stasis = 1,
+		/obj/machinery/vitals_reader = 1,
+		/mob/living/carbon/human = 1,
+	)

@@ -76,10 +76,34 @@
 	/// world.time ostatniego otwarcia strony w tej rundzie.
 	var/opened_at
 
+// Tokeny graczy i polecenie nagrywania nie mogą być dostępne przez VV ani Advanced ProcCall:
+// token pozwala mówić za postać, a wywołanie start_recording() włączyłoby graczowi mikrofon bez wciśnięcia klawisza.
+GENERAL_PROTECT_DATUM(/datum/voice_chat_session)
+
 /datum/voice_chat_session/New(ckey, token, last_used)
 	src.ckey = ckey
 	src.token = token
 	src.last_used = isnull(last_used) ? world.realtime : last_used
+
+// Podsystem: bez Advanced ProcCall (start_recording, open_page), a w VV ukryte tylko zmienne z tokenami graczy.
+// Reszta (enabled, failed_syncs) zostaje widoczna, żeby admin mógł sprawdzić albo wyłączyć czat w trakcie rundy.
+/datum/controller/subsystem/voice_chat/CanProcCall(procname)
+	return FALSE
+
+/datum/controller/subsystem/voice_chat/can_vv_get(var_name)
+	if(var_name in voice_chat_secret_vars())
+		return FALSE
+	return ..()
+
+/datum/controller/subsystem/voice_chat/vv_edit_var(var_name, var_value)
+	if(var_name in voice_chat_secret_vars())
+		return FALSE
+	return ..()
+
+/// Zmienne podsystemu, w których są tokeny graczy (sesje, polecenia dla stron, trwające zapytanie)
+/proc/voice_chat_secret_vars()
+	var/static/list/secret_vars = list("sessions", "pending_cmds", "in_flight_cmds", "sync_request")
+	return secret_vars
 
 SUBSYSTEM_DEF(voice_chat)
 	name = "Czat głosowy"
@@ -202,6 +226,7 @@ SUBSYSTEM_DEF(voice_chat)
 		return
 	session.connected = connected
 	var/client/player = GLOB.directory[session.ckey]
+	player?.escape_menu?.send_voice_chat_state() // dymek przycisku w menu pod Esc
 	if(connected)
 		session.last_used = world.realtime
 		save_tokens()
@@ -211,7 +236,7 @@ SUBSYSTEM_DEF(voice_chat)
 	if(session.recording_seq)
 		cancel_recording(player, session)
 	if(player)
-		to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w zakładce OOC, żeby otworzyć stronę ponownie."))
+		to_chat(player, span_warning("Czat głosowy rozłączony. Kliknij „Czat głosowy” w menu pod Esc (albo w zakładce OOC), żeby otworzyć stronę ponownie."))
 
 /datum/controller/subsystem/voice_chat/proc/handle_result(list/result)
 	var/datum/voice_chat_session/session = session_by_token(result["token"])
@@ -402,6 +427,8 @@ SUBSYSTEM_DEF(voice_chat)
 	/// Kanał przekazywany do SSvoice_chat.start_recording()
 	var/voice_channel
 
+GENERAL_PROTECT_DATUM(/datum/keybinding/client/voice)
+
 /datum/keybinding/client/voice/can_use(client/user)
 	return SSvoice_chat.enabled
 
@@ -409,8 +436,28 @@ SUBSYSTEM_DEF(voice_chat)
 	. = ..()
 	if(.)
 		return
+	// Nagranie tylko przy fizycznie wciśniętym klawiszu (keyDown wpisuje go do keys_held przed bindami),
+	// nie z wywołania down() z innego miejsca
+	if(!key_is_held(user))
+		return
 	SSvoice_chat.start_recording(user, voice_channel)
 	return TRUE
+
+/// Któryś klawisz przypisany do tego bindu jest teraz wciśnięty przez gracza
+/datum/keybinding/client/voice/proc/key_is_held(client/user)
+	var/list/held = user.keys_held
+	for(var/bound_key in user.prefs?.key_bindings)
+		if(!(name in user.prefs.key_bindings[bound_key]))
+			continue
+		// „Shift-N”: w keys_held są osobno modyfikator i klawisz, oba muszą być wciśnięte
+		var/all_held = TRUE
+		for(var/part in splittext(bound_key, "-"))
+			if(!held?[part])
+				all_held = FALSE
+				break
+		if(all_held)
+			return TRUE
+	return FALSE
 
 /datum/keybinding/client/voice/up(client/user)
 	SSvoice_chat.stop_recording(user)
@@ -446,6 +493,26 @@ SUBSYSTEM_DEF(voice_chat)
 	offer_default_keybind("voice_say", "N")
 	offer_default_keybind("voice_radio", "U")
 	offer_default_keybind("voice_department", "J")
+
+// Menu pod Esc: przycisk „Czat głosowy”, gdy serwer ma go włączony (wzór: przełącznik języka w i18n/language_choice.dm)
+/datum/escape_menu/New(client/client)
+	. = ..()
+	send_voice_chat_state()
+
+/datum/escape_menu/proc/send_voice_chat_state()
+	if(!client || !window)
+		return
+	var/datum/voice_chat_session/session = SSvoice_chat.sessions[client.ckey]
+	send_update(list("voiceChat" = !!SSvoice_chat.enabled, "voiceChatConnected" = !!session?.connected))
+
+/datum/escape_menu/on_message(type, payload, href_list)
+	if(type == "action" && islist(payload) && client && payload["action"] == "voice_chat")
+		SSvoice_chat.open_page(client)
+		return TRUE
+	. = ..()
+	// Przy każdym otwarciu: menu powstaje raz na sesję, często zanim SSvoice_chat wczyta konfigurację (enabled)
+	if(type == "ready" || (type == "action" && islist(payload) && payload["action"] == "opened"))
+		send_voice_chat_state()
 
 #undef VOICE_CHANNEL_SAY
 #undef VOICE_CHANNEL_RADIO

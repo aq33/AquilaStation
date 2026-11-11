@@ -53,3 +53,12 @@
 #define COMSIG_LIVING_HUG_CARBON "living_hug_carbon"
 ///from obrazów przy oglądaniu: (atom/art)
 #define COMSIG_LIVING_APPRAISE_ART "living_appraise_art"
+// AQ EDIT START - sygnał przed mową (tłumacz obcokrajowca, aquila/code/modules/i18n/foreigner.dm)
+/// Wysyłany z /mob/living/say() po wyborze języka (hook w core, działa też bez modułu EN):
+/// (original_message, message, list/message_mods, language, bubble_type, list/spans, forced)
+#define COMSIG_LIVING_AQ_PRE_SAY "living_aq_pre_say"
+	/// Wiadomość przejęta, oryginał nie wychodzi
+	#define COMPONENT_AQ_SAY_INTERCEPTED (1<<0)
+	/// Mowa wychodzi we Wspólnym (tłumaczenie wraca do say())
+	#define COMPONENT_AQ_SAY_AS_COMMON (1<<1)
+// AQ EDIT END

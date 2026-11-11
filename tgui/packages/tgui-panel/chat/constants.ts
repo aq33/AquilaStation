@@ -65,8 +65,9 @@ export const MESSAGE_TYPES = [
     name: 'Radio',
     description: 'Wiadomości radiowe wszystkich działów',
     // AQUILA: our server does not add srt_* classes, so keep the old radio classes too
+    // (.chat_alert: announcement frames from CHAT_ALERT_SPAN)
     selector:
-      '.srt_radio, .alert, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .explradio, .entradio, .radio, .deptradio, .newscaster, .redteamradio, .blueteamradio, .sinister, .cult, .shadowling, .changeling',
+      '.srt_radio, .alert, .chat_alert, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .engradio, .muniradio, .medradio, .sciradio, .suppradio, .servradio, .explradio, .entradio, .radio, .deptradio, .newscaster, .redteamradio, .blueteamradio, .sinister, .cult, .shadowling, .changeling',
   },
   {
     type: MESSAGE_TYPE_INFO,

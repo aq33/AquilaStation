@@ -145,8 +145,9 @@
 /datum/reagent/inverse/pen_acid/on_mob_life(mob/living/carbon/M)
 	holder.remove_reagent(/datum/reagent/medicine/potass_iodide, 40 * REM, TRUE)
 	holder.remove_reagent(/datum/reagent/medicine/charcoal, 40 * REM, TRUE)
-	if(M.radiation > 0)
-		M.radiation += 5
+	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		irradiated_component.adjust_intensity(1)
 		M.Jitter(10)
 		M.adjust_disgust(5)
 		if(prob(5))
@@ -245,7 +246,7 @@
 				to_chat(M, "<span class='warning'>Głowa ci pęka, prawie nic nie widzisz!</span>")
 				M.blur_eyes(8)
 				M.confused = clamp(M.confused + 5, 0, 20)
-				M.hallucination += 10
+				M.adjust_hallucinations(20 SECONDS)
 			if(prob(10))
 				to_chat(M, "<span class='warning'>Coraz trudniej ci oddychać!</span>")
 				holder.add_reagent(/datum/reagent/toxin/histamine, 3.2)
@@ -256,7 +257,7 @@
 		to_chat(M, "<span class='warning'>Masz wrażenie, że głowa ci zaraz implodouje!</span>")
 		M.blur_eyes(8)
 		M.confused = clamp(M.confused + 10, 0, 20)
-		M.hallucination += 30
+		M.adjust_hallucinations(60 SECONDS)
 	if(prob(20))
 		to_chat(M, "<span class='warning'>Oddychasz słabo i chrapliwie, ledwo jesteś przytomny!</span>")
 		holder.add_reagent(/datum/reagent/toxin/histamine, 4.8)

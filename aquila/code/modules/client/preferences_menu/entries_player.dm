@@ -336,6 +336,34 @@
 	var/atom/movable/screen/plane_master/game_world/plane_master = locate() in C?.screen
 	plane_master?.backdrop(C.mob)
 
+/datum/preference/toggle/player/soft_lighting
+	db_key = "soft_lighting"
+	player_var = "soft_lighting"
+
+/datum/preference/toggle/player/soft_lighting/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	C?.aq_update_lighting_planes()
+
+/datum/preference/choiced/glow_level
+	db_key = "glow_level"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	player_var = "glow_level"
+
+/datum/preference/choiced/glow_level/init_possible_values()
+	return list(AQ_GLOW_OFF, AQ_GLOW_LOW, AQ_GLOW_MEDIUM, AQ_GLOW_HIGH)
+
+/datum/preference/choiced/glow_level/deserialize(input, datum/preferences/prefs)
+	return istext(input) ? text2num(input) : input
+
+/datum/preference/choiced/glow_level/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	C?.aq_update_lighting_planes()
+
+/datum/preference/toggle/player/light_glare
+	db_key = "light_glare"
+	player_var = "light_glare"
+
+/datum/preference/toggle/player/light_glare/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
+	C?.aq_update_lighting_planes()
+
 /datum/preference/toggle/player/auto_fit_viewport
 	db_key = "auto_fit_viewport"
 	toggle_var = "toggles2"
@@ -479,6 +507,12 @@
 	db_key = "inverted_rotation"
 	toggle_var = "chat_toggles"
 	toggle_bit = CHAT_INVERTED_ROTATION
+
+// tgstation/tgstation#89865: cecha Zaburzenia Dysocjacyjne bez limitu halucynacji (w tg preferencja postaci)
+/datum/preference/toggle/player/rds_unlimited
+	db_key = "rds_unlimited"
+	toggle_var = "chat_toggles"
+	toggle_bit = CHAT_RDS_UNLIMITED
 
 /datum/preference/toggle/player/screentips
 	db_key = "screentips"
@@ -626,9 +660,10 @@
 /datum/preference/choiced/preferred_map/get_display_names()
 	var/list/names = list()
 	for(var/map in get_choices())
-		names[map] = map
+		var/datum/map_config/map_config = config.maplist[map]
+		names[map] = map_config ? map_config.get_vote_label() : map
 	if(config.defaultmap)
-		names["Default"] = "Default ([config.defaultmap.map_name])"
+		names["Default"] = "Default ([config.defaultmap.get_vote_label()])"
 	return names
 
 // Admin

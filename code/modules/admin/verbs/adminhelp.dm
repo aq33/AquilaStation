@@ -781,6 +781,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!msg)
 		return
 
+	msg = aq_admin_msg_for(null, msg, FALSE) // AQ EDIT - adminhelp obcokrajowca z polskim tłumaczeniem dla adminów (aquila/code/__HELPERS/chat_translation.dm)
+
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
 		if(alert(usr, "Masz już otwarte zgłoszenie. Czy chodzi o tę samą sprawę?",,"Tak","Nie") != "Nie")

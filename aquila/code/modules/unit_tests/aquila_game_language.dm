@@ -23,6 +23,8 @@
 	TEST_ASSERT(i18n_en_exact("skrzynka narzędziowa") == "toolbox", "Server table lost a basic item name")
 	TEST_ASSERT(i18n_en_exact(" skrzynka narzędziowa.") == " toolbox.", "Trailing period or spaces are not kept")
 	TEST_ASSERT(isnull(i18n_en_exact("Zdanie, którego nie ma w słowniku.")), "Unknown text should not be translated")
+	// zły podział węzłów (opis czapki poczty przed <i>) dawał pusty tekst, oględziny pokazywały pustkę
+	TEST_ASSERT(isnull(i18n_en_exact("Nakrycie głowy poczty")), "A Polish phrase is translated to an empty text")
 	var/html = i18n_en_html("<b>skrzynka narzędziowa</b> i coś nieznanego")
 	TEST_ASSERT(html == "<b>toolbox</b> i coś nieznanego", "HTML text nodes are not translated one by one: [html]")
 
@@ -31,6 +33,12 @@
 	TEST_ASSERT(full == "toolbox is full!", "Server template with an embed failed: [full]")
 	var/mode = i18n_en_html("Jest ustawiony w tryb: piła.")
 	TEST_ASSERT(mode == "It's set to saw mode.", "Server template alternative picked the wrong branch: [mode]")
+	// Oryginały portów (en_original.json): ogólne słowa bez znaczenia z jednej mapy nazw albo z identyfikatora
+	TEST_ASSERT(i18n_en_exact("Brak") == "None", "Generic 'Brak' got a context-specific translation: [i18n_en_exact("Brak")]")
+	TEST_ASSERT(i18n_en_exact("wyłączony") == "off", "Generic 'wyłączony' has a broken casing: [i18n_en_exact("wyłączony")]")
+	// Angielski warunek oryginału z tym samym warunkiem co polski jest gałęzią szablonu (bez "from exit the")
+	var/mirror = i18n_en_html("Coś nie pozwala ci tu wyjść ze świata luster!")
+	TEST_ASSERT(mirror == "Something is blocking you from exiting the mirror's realm here!", "Original template with an English alternative failed: [mirror]")
 	var/mixed = i18n_en_html("zupełnie nieznane polskie zdanie jest pełny!")
 	TEST_ASSERT(mixed == "zupełnie nieznane polskie zdanie jest pełny!", "Template made a mixed-language text: [mixed]")
 	TEST_ASSERT(i18n_lowercase_letters("żółw Jan") == 4, "Polish lowercase first letters are not counted")
@@ -44,7 +52,7 @@
 	var/dried = i18n_en_html("krew (po zaschnięciu)")
 	TEST_ASSERT(dried == "dried blood", "Polish suffix in parentheses made a mixed name: [dried]")
 	// Opis sklejony z dwóch zdań ("[part.desc] [desc]" w MOD-ach): każde zdanie osobno, bez mieszanki
-	var/obj/item/mod/control/control = /obj/item/mod/control
+	var/obj/item/clothing/suit/space/hardsuit/control = /obj/item/clothing/suit/space/hardsuit
 	var/mod_desc = i18n_en_html("[initial(control.desc)] Skafander dla inżyniera, odporny na ciepło i prąd. Klasyk Nakamura Engineering.")
 	TEST_ASSERT(mod_desc == "[i18n_en_exact(initial(control.desc))] An engineer-fit suit with heat and shock resistance. Nakamura Engineering's classic.", "Joined MOD description is not translated sentence by sentence: [mod_desc]")
 	// Część MOD-a po nałożeniu motywu ("[part.name] (model [name])"), jak w mod_theme.dm
@@ -85,5 +93,11 @@
 	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', TRUE) == 'aquila/icons/hud/en/screen_midnight.dmi', "Midnight HUD style has no English copy")
 	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', FALSE) == 'icons/mob/screen_midnight.dmi', "English HUD icon does not go back to Polish")
 	TEST_ASSERT(i18n_hud_icon('icons/obj/storage.dmi', TRUE) == 'icons/obj/storage.dmi', "Icon without an English copy changed")
+
+	// Dymek "[src] klika." z pustej broni: BYOND dokleja "The" przed nazwą pospolitą, po polsku ma go nie być
+	var/obj/item/clicking = allocate(/obj/item)
+	clicking.name = "protokinetyczny akcelerator"
+	var/stripped = strip_auto_articles("[clicking] klika.")
+	TEST_ASSERT(stripped == "protokinetyczny akcelerator klika.", "BYOND article is left in a Polish balloon: [stripped]")
 
 #undef TEST_ASSERT

@@ -58,7 +58,7 @@
 			if(1)
 				to_chat(owner, "<i>...[lowertext(hypnotic_phrase)]...</i>")
 			if(2)
-				new /datum/hallucination/chat(owner, TRUE, FALSE, "<span class='hypnophrase'>[hypnotic_phrase]</span>")
+				owner.cause_hallucination(/datum/hallucination/chat, "hypnosis", force_radio = FALSE, specific_message = "<span class='hypnophrase'>[hypnotic_phrase]</span>") // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 /datum/brain_trauma/hypnosis/handle_hearing(datum/source, list/hearing_args)
 	hearing_args[HEARING_RAW_MESSAGE] = target_phrase.Replace(hearing_args[HEARING_RAW_MESSAGE], "<span class='hypnophrase'>$1</span>")

@@ -406,8 +406,8 @@
 	icon_state = "sop_med"
 
 /obj/item/book/manual/wiki/sop/munitions
-	name = "Standardowa procedura operacyjna: amunicja"
-	title = "Standardowa procedura operacyjna: amunicja"
+	name = "Standardowa procedura operacyjna: uzbrojenie"
+	title = "Standardowa procedura operacyjna: uzbrojenie"
 	page_link = "Department_Standard_Operating_Procedure:_Munitions"
 	icon_state = "sop_muni"
 

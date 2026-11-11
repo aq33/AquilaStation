@@ -266,7 +266,7 @@
 
 /obj/item/mod/module/disposal_connector/Initialize(mapload)
 	. = ..()
-	disposal_tag = pick(GLOB.TAGGERLOCATIONS)
+	disposal_tag = rand(1, length(GLOB.TAGGERLOCATIONS)) // AQ EDIT - numer celu, nie nazwa: zsyp porównuje liczby, a konfiguracja czyta TAGGERLOCATIONS[disposal_tag]
 
 /obj/item/mod/module/disposal_connector/on_part_activation()
 	RegisterSignal(mod.wearer, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))

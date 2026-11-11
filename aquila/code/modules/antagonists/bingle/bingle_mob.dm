@@ -150,7 +150,7 @@
 		new /obj/effect/temp_visual/heal(get_turf(src), COLOR_BLUE_LIGHT)
 
 /// Przy Dole bingle poruszają się w kosmosie jak po kratownicy
-/mob/living/simple_animal/hostile/bingle/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/bingle/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	if(locate(/obj/structure/bingle_pit_overlay) in range(1, get_turf(src)))
 		return TRUE
 	if(linked_pit && get_dist(src, linked_pit) <= 1)

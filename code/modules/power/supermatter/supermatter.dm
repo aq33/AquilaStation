@@ -400,7 +400,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			last_rads = power * max(0, power_transmission_bonus * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + (pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) + (bzcomp * BZ_RADIOACTIVITY_MODIFIER))) // Rad Modifiers BZ(500%), Tritium(300%), and Pluoxium(-200%)
-			radiation_pulse(src, last_rads)
+			emit_radiation_pulse(last_rads) // AQ EDIT - promieniowanie z Bee#13442: wzór Bee, kolektory dostają last_rads (aquila/.../supermatter_radiation.dm)
 		if(bzcomp >= 0.4 && prob(30 * bzcomp))
 			src.fire_nuclear_particle()		// Start to emit radballs at a maximum of 30% chance per tick
 
@@ -429,8 +429,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	for(var/mob/living/carbon/human/l in viewers(HALLUCINATION_RANGE(power), src)) // If they can see it without mesons on.  Bad on them.
 		if(!HAS_TRAIT(l.mind, TRAIT_MADNESS_IMMUNE) && !HAS_TRAIT(l, TRAIT_MADNESS_IMMUNE))
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
-			l.hallucination += power * config_hallucination_power * D
-			l.hallucination = CLAMP(0, 200, l.hallucination)
+			l.adjust_hallucinations_up_to((power * config_hallucination_power * D) * 2 SECONDS, 400 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
 
 	//Transitions between one function and another, one we use for the fast inital startup, the other is used to prevent errors with fusion temperatures.
 	//Use of the second function improves the power gain imparted by using co2
@@ -619,14 +618,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			user.visible_message("<span class='danger'>Rozlega się ohydny dźwięk, gdy [W] obraca się w popiół przy zetknięciu z [src]. To chyba nie był dobry pomysł...</span>")
 			playsound(src, 'sound/effects/supermatter.ogg', 150, 1)
 			Consume(W)
-			radiation_pulse(src, 150, 4)
+			radiation_pulse(src, max_range = 3, threshold = 0.1, intensity = 30, collector_power = 150, collector_falloff = 4) // AQ EDIT - promieniowanie z Bee#13442
 			return ..()
 		else
 			cig.light()
 			user.visible_message("<span class='danger'>Gdy [user] zapala [W] od [src], w pomieszczeniu zapada cisza...</span>",\
 				"<span class='danger'>Czas zdaje się zwalniać, gdy dotykasz [src] za pomocą [W].</span>\n<span class='notice'>[W] rozbłyska niesamowitą energią, gdy od niechcenia odsuwasz rękę od [src]. Kurczę.</span>")
 			playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
-			radiation_pulse(src, 50, 3)
+			radiation_pulse(src, max_range = 1, threshold = 0, intensity = 100, collector_power = 50, collector_falloff = 3) // AQ EDIT - promieniowanie z Bee#13442
 			return
 	if(istype(W, /obj/item/scalpel/supermatter))
 		var/obj/item/scalpel/supermatter/scalpel = W
@@ -649,7 +648,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		Consume(W)
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 
-		radiation_pulse(src, 150, 4)
+		radiation_pulse(src, max_range = 3, threshold = 0.1, intensity = 30, collector_power = 150, collector_falloff = 4) // AQ EDIT - promieniowanie z Bee#13442
 
 /obj/machinery/power/supermatter_crystal/wrench_act(mob/user, obj/item/tool)
 	if (moveable)
@@ -708,7 +707,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		matter_power += 200
 
 	//Some poor sod got eaten, go ahead and irradiate people nearby.
-	radiation_pulse(src, 3000, 2, TRUE)
+	radiation_pulse(src, max_range = 6, threshold = 0.3, intensity = 20, collector_power = 3000, collector_falloff = 2) // AQ EDIT - promieniowanie z Bee#13442 (jak pochłonięcie człowieka w Bee)
 	for(var/mob/living/L in range(10))
 		investigate_log("has irradiated [key_name(L)] after consuming [AM].", INVESTIGATE_ENGINES)
 		if(L in viewers(get_turf(src)))

@@ -164,7 +164,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/secbelt
-	name = "Pas policyjny"
+	name = "Pas żandarmski"
 	id = "secbelt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)

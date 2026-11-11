@@ -199,7 +199,7 @@
 
 
 /obj/item/flashlight/seclite
-	name = "latarka policyjna"
+	name = "latarka żandarmska"
 	desc = "Solidna latarka używana przez ochronę."
 	icon_state = "seclite"
 	item_state = "seclite"

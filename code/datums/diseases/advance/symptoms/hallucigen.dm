@@ -68,4 +68,4 @@ Bonus
 		else
 			if(prob(base_message_chance))
 				to_chat(M, "<span class='userdanger'>[pick("Och, twoja głowa...", "Łupie cię w głowie.", "Są wszędzie! Uciekaj!", "Coś w cieniu...")]</span>")
-			M.hallucination += (45 * power)
+			M.adjust_hallucinations(((45 * power)) * 2 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)

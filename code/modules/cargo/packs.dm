@@ -384,12 +384,12 @@
 	crate_name = "skrzynia z pancerzami"
 
 /datum/supply_pack/security/hardsuit
-	name = "Skrzynia z hardsuitami policyjnymi"
-	desc = "Zawiera dwa wytrzymałe hardsuity policyjne. Do otwarcia wymaga dostępu ochrony."
+	name = "Skrzynia z hardsuitami żandarmskimi"
+	desc = "Zawiera dwa wytrzymałe hardsuity żandarmskie. Do otwarcia wymaga dostępu ochrony."
 	cost = 2500
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security,
 					/obj/item/clothing/suit/space/hardsuit/security,)
-	crate_name = "skrzynia z hardsuitami policyjnymi"
+	crate_name = "skrzynia z hardsuitami żandarmskimi"
 
 /* /datum/supply_pack/security/disabler NOT AVAILABLE - NSV
 	name = "Disabler Crate"
@@ -476,8 +476,8 @@
 	crate_name = "skrzynia z barierami ochrony"
 
 /datum/supply_pack/security/securityclothes
-	name = "Skrzynia z odzieżą policyjną"
-	desc = "Zawiera odpowiednie stroje dla prywatnych sił ochrony stacji: dla Naczelnika, Komendanta i dwóch Policjantów. Każdy strój zawiera mundur, kurtkę i beret odpowiednie do stopnia. Do otwarcia wymaga dostępu ochrony."
+	name = "Skrzynia z odzieżą żandarmską"
+	desc = "Zawiera odpowiednie stroje dla prywatnych sił ochrony stacji: dla Naczelnika, Komendanta i dwóch Żandarmów. Każdy strój zawiera mundur, kurtkę i beret odpowiednie do stopnia. Do otwarcia wymaga dostępu ochrony."
 	cost = 1700
 	contains = list(/obj/item/clothing/under/rank/security/officer/formal,
 					/obj/item/clothing/under/rank/security/officer/formal,
@@ -491,7 +491,7 @@
 					/obj/item/clothing/under/rank/security/head_of_security/formal,
 					/obj/item/clothing/suit/security/hos,
 					/obj/item/clothing/head/beret/sec/navyhos)
-	crate_name = "skrzynia z odzieżą policyjną"
+	crate_name = "skrzynia z odzieżą żandarmską"
 
 /datum/supply_pack/security/stingpack
 	name = "Paczka granatów żądlących"
@@ -521,11 +521,11 @@
 	crate_name = "skrzynia z zaopatrzeniem ochrony"
 
 /datum/supply_pack/security/vending/security
-	name = "Skrzynia zaopatrzenia Zbrojowni Policyjnej" //AQUILA EDIT - SecTech
+	name = "Skrzynia zaopatrzenia Zbrojowni Żandarmskiej" //AQUILA EDIT - SecTech
 	desc = "Funkcjonariusz Paweł wykupił wszystkie kajdanki? Uzupełnij automat ochrony tą skrzynią."
 	cost = 1200
 	contains = list(/obj/item/vending_refill/security)
-	crate_name = "skrzynia zaopatrzenia Zbrojowni Policyjnej" //AQUILA EDIT - SecTech
+	crate_name = "skrzynia zaopatrzenia Zbrojowni Żandarmskiej" //AQUILA EDIT - SecTech
 
 /datum/supply_pack/security/firingpins
 	name = "Skrzynia standardowych iglic"
@@ -547,12 +547,12 @@
 
 /datum/supply_pack/security/justiceinbound
 	name = "Skrzynia ze standardowym Egzekutorem Sprawiedliwości"
-	desc = "To jest to. Najlepsze z najlepszych. Śmietanka. Wisienka na torcie. Najlepsze z najlepszych z najlepszych. Klejnot w koronie Nanotrasen. Alfa i omega policyjnych nakryć głowy. Gwarantuje strach w sercu każdego przestępcy na pokładzie stacji. W zestawie także maska gazowa ochrony. Do otwarcia wymaga dostępu ochrony."
+	desc = "To jest to. Najlepsze z najlepszych. Śmietanka. Wisienka na torcie. Najlepsze z najlepszych z najlepszych. Klejnot w koronie Nanotrasen. Alfa i omega żandarmskich nakryć głowy. Gwarantuje strach w sercu każdego przestępcy na pokładzie stacji. W zestawie także maska gazowa ochrony. Do otwarcia wymaga dostępu ochrony."
 	cost = 5700 //justice comes at a price. An expensive, noisy price.
 	contraband = TRUE
 	contains = list(/obj/item/clothing/head/helmet/justice,
 					/obj/item/clothing/mask/gas/sechailer)
-	crate_name = "skrzynia z odzieżą policyjną"
+	crate_name = "skrzynia z odzieżą żandarmską"
 
 /datum/supply_pack/security/baton
 	name = "Skrzynia pałek ogłuszających"
@@ -1819,7 +1819,7 @@
 
 /datum/supply_pack/science/mod_core
 	name = "Skrzynia rdzeni MOD"
-	desc = "Trzy rdzenie, idealne do budowy dowolnego MODsuita! Oczywiście ze zbiorów naturalnych™."
+	desc = "Trzy rdzenie zasilania do hardsuitów z modułami. Oczywiście ze zbiorów naturalnych™."
 	cost = 600
 	access = ACCESS_ROBOTICS
 	access_budget = ACCESS_ROBOTICS
@@ -2980,7 +2980,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/cargo
 	name = "Skrzynia uzupełnień garderoby zaopatrzenia"
-	desc = "Ta skrzynia zawiera wkład uzupełniający do CargoDrobe."
+	desc = "Ta skrzynia zawiera wkład uzupełniający do Mundurowni InPost."
 	cost = 800
 	access_budget = ACCESS_CARGO
 	contains = list(/obj/item/vending_refill/wardrobe/cargo_wardrobe)
@@ -2995,7 +2995,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Skrzynia uzupełnień garderoby inżynierii"
-	desc = "Ta skrzynia zawiera wkłady uzupełniające do EngiDrobe i AtmosDrobe."
+	desc = "Ta skrzynia zawiera wkłady uzupełniające do obu Mundurowni Orlenu."
 	cost = 800
 	access_budget = ACCESS_ENGINE
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
@@ -3042,14 +3042,14 @@
 	crate_name = "skrzynia uzupełnień garderoby działu naukowego"
 
 /datum/supply_pack/costumes_toys/wardrobes/security
-	name = "Skrzynia uzupełnień garderoby policyjnej"
-	desc = "Ta skrzynia zawiera wkłady uzupełniające do Mundurowni Policyjnej, DetDrobe i LawDrobe."
+	name = "Skrzynia uzupełnień garderoby żandarmskiej"
+	desc = "Ta skrzynia zawiera wkłady uzupełniające do Mundurowni Żandarmskiej, DetDrobe i LawDrobe."
 	cost = 1000
 	access_budget = ACCESS_SECURITY
 	contains = list(/obj/item/vending_refill/wardrobe/sec_wardrobe,
 					/obj/item/vending_refill/wardrobe/det_wardrobe,
 					/obj/item/vending_refill/wardrobe/law_wardrobe)
-	crate_name = "skrzynia zaopatrzenia policji"
+	crate_name = "skrzynia zaopatrzenia Żandarmerii"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Miscellaneous ///////////////////////////////////

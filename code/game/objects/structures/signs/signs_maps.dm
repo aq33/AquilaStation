@@ -87,8 +87,8 @@
 	icon_state = "minskydirection_hangar"
 
 /obj/structure/sign/directions/plaque/munitions
-	name = "dział amunicji"
-	desc = "Znak wskazujący drogę do działu amunicji."
+	name = "dział uzbrojenia"
+	desc = "Znak wskazujący drogę do działu uzbrojenia."
 	icon_state = "minskydirection_munitions"
 
 /obj/structure/sign/directions/plaque/atc

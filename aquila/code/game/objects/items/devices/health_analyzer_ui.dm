@@ -99,6 +99,7 @@
 	for(var/datum/reagent/reagent as anything in target.reagents?.reagent_list)
 		reagents += list(list("name" = reagent.name, "colour" = reagent.color, "volume" = round(reagent.volume, 0.1)))
 	data["reagents"] = reagents
+	data["stomach"] = target.stomach_ui_data() // port BeeStation/BeeStation-Hornet#14340: połknięte czeka w żołądku (stomach_contents.dm)
 	data["surgeries"] = advanced ? target.get_surgery_progress() : null
 
 	// Whole body
@@ -122,8 +123,13 @@
 		body += list(aq_injury("Niedotlenienie", "Tlen, salbutamol, deksalina", round(target.getOxyLoss(), 0.1)))
 	if(target.getCloneLoss())
 		body += list(aq_injury("Uszkodzenia komórkowe", "Kriokomora, syntetyczne ciało", round(target.getCloneLoss(), 0.1)))
-	if(advanced && target.radiation)
-		body += list(aq_injury("Napromieniowanie", "Kwas pentetowy, jodek potasu", target.radiation))
+	// Promieniowanie z Bee#13442: natężenie (%) z komponentu, uszkodzenia genetyczne z konsoli DNA
+	var/datum/component/irradiated/irradiated_component = target.GetComponent(/datum/component/irradiated)
+	if(irradiated_component)
+		body += list(aq_injury("Napromieniowanie", "Kwas pentetowy, jodek potasu", advanced ? round(irradiated_component.intensity) : null))
+	var/datum/status_effect/genetic_damage/genetic_damage = target.has_status_effect(/datum/status_effect/genetic_damage)
+	if(genetic_damage)
+		body += list(aq_injury(advanced ? "Uszkodzenia genetyczne" : genetic_damage.get_scan_text(FALSE), "Nieuleczalne zwykłymi metodami, z czasem mijają", advanced ? round(genetic_damage.total_damage / genetic_damage.minimum_before_tox_damage * 100, 0.1) : null, 1))
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		body += list(aq_injury("Wysuszone ciało (husk)", "Syntetyczne ciało, leczenie oparzeń"))
 	if(ishuman(target))
@@ -174,7 +180,7 @@
 			for(var/obj/item/bullet_fragment/fragment in limb)
 				part += list(aq_injury("Pocisk w ciele", "Operacja usuwania ciał obcych"))
 		for(var/obj/item/organ/organ as anything in target.internal_organs)
-			if(organ.zone != zone || !organ.damage)
+			if(check_zone(organ.zone) != zone || !organ.damage) // oczy, usta i pachwina należą do głowy i klatki
 				continue
 			var/failing = organ.organ_flags & ORGAN_FAILING
 			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", "Operacja, leki na narząd", advanced ? round(organ.damage) : null, failing ? 2 : 1))

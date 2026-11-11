@@ -32,7 +32,7 @@
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 
 // Pływa w kosmosie jak karp
-/mob/living/simple_animal/hostile/heretic_summon/fire_shark/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/heretic_summon/fire_shark/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/heretic_summon/fire_shark/on_melee_hit(mob/living/victim)

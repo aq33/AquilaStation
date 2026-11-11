@@ -242,7 +242,7 @@
 
 //Police Baton
 /obj/item/melee/classic_baton/police
-	name = "pałka policyjna"
+	name = "pałka żandarmska"
 	// NSV13 - added stun and knockdown, removed stamina, added silicon effects
 	stun_time_carbon = (3 SECONDS)
 	knockdown_time_carbon = (6 SECONDS)

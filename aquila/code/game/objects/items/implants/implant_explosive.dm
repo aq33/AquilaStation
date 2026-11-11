@@ -1,5 +1,7 @@
 /obj/item/implant/explosive/engineering
 	actions_types = list() // override to not let person explode it themselves
+	// Kara, nie wyrzucenie z rundy: głowa z mózgiem zostaje, więc CE można wskrzesić, przeszczepić albo wsadzić do MMI
+	gib_keeps_brain = TRUE
 
 /obj/item/implant/explosive/engineering/Initialize(mapload)
 	. = ..()

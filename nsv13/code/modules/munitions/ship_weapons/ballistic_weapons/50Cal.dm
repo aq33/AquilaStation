@@ -127,6 +127,8 @@
 
 /obj/machinery/computer/anti_air/examine(mob/user)
 	. = ..()
+	if(QDELETED(turret)) // AQ EDIT - konsola bez wieżyczki nie przerywa oględzin
+		return
 	. += "<span class ='notice'>Licznik amunicji pokazuje [turret.get_ammo()]/[turret.get_max_ammo()]. </span>"
 
 /obj/machinery/computer/anti_air/Initialize(mapload)
