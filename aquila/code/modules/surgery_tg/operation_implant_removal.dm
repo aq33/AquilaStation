@@ -156,7 +156,7 @@
 
 /datum/surgery_operation/limb/remove_embedded_objects/on_success(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
 	var/mob/living/carbon/patient = limb.owner
-	patient.cauterise_wounds()
+	patient.cauterise_wounds(zone = limb.body_zone)
 	var/objects = 0
 	for(var/obj/item/foreign_body as anything in get_foreign_bodies(limb))
 		objects++

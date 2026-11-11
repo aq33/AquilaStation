@@ -834,6 +834,7 @@
 #include "code\modules\mob\examine_layout.dm"
 #include "code\modules\mob\mob_stat.dm"
 #include "code\modules\mob\living\blood_effects.dm"
+#include "code\modules\mob\living\blood_limbs.dm"
 #include "code\modules\mob\living\blood_trails.dm"
 #include "code\modules\mob\living\carbon\alien\alien.dm"
 #include "code\modules\mob\living\carbon\bleed_overlays.dm"

@@ -210,7 +210,7 @@
 
 /datum/wound/blunt/compound/on_apply()
 	. = ..()
-	victim.add_bleeding(BLEED_SURFACE)
+	victim.add_bleeding(BLEED_SURFACE, limb.body_zone)
 
 /mob/living/carbon/help_shake_act(mob/living/carbon/M)
 	var/obj/item/bodypart/limb = get_bodypart(check_zone(M.zone_selected))
