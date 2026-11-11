@@ -128,8 +128,11 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/list/events
 	/// Wszystkie zakończone scenariusze
 	var/list/all_scenarios = list()
-	/// Scenariusz granatu: czy kolega rzucającego był choć raz ogłuszony
+	/// Scenariusz granatu: czy swój został ogłuszony przez granat (do 1,5 s po wybuchu) i czy w ogóle leżał
 	var/ally_stunned = FALSE
+	var/ally_down_logged = FALSE
+	/// Kiedy padł ostatni okrzyk „Granat!” (zapalnik KNPC to 3 s)
+	var/last_grenade_at = 0
 
 /datum/unit_test/aquila_knpc_sim/Run()
 	GLOB.knpc_sim = src
@@ -313,6 +316,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/static/list/heal_ally_lines = list("Trzymaj się!", "Medyk! Mam cię!", "Nie umieraj mi tu!")
 	if(message in grenade_lines)
 		track.grenades++
+		last_grenade_at = elapsed()
 	else if(message in heal_ally_lines)
 		track.heals_ally++
 	for(var/line in boarder.response_lines)
@@ -611,25 +615,42 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/mob/living/carbon/human/thrower = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 15, 8, "syndykat", "Rzucający")
 	var/mob/living/carbon/human/ally = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 14, 10, "syndykat", "Kolega")
 	ally_stunned = FALSE
+	ally_down_logged = FALSE
+	last_grenade_at = 0
 	var/time = run_until(30, CALLBACK(src, PROC_REF(grenade_thrown), thrower, ally))
-	sleep(5 SECONDS) // zapalnik i błysk
-	snapshot(TRUE)
-	check_ally_stun(ally)
+	for(var/i in 1 to 10) // zapalnik i błysk
+		sleep(KNPC_SIM_FRAME)
+		snapshot(i % 2 == 0)
+		check_ally_stun(ally)
+		check_ally_stun(thrower)
 	var/datum/knpc_sim_track/track = tracks[thrower]
-	finish(time ? "RZUCIŁ [track.grenades]" : "BEZ GRANATU", "kolega ogłuszony: [ally_stunned ? "TAK" : "nie"]")
+	var/datum/knpc_sim_track/ally_track = tracks[ally]
+	finish(time ? "RZUCIŁ [track.grenades + ally_track.grenades]" : "BEZ GRANATU", "swój ogłuszony granatem: [ally_stunned ? "TAK" : "nie"][ally_down_logged && !ally_stunned ? " (przewrócony z innego powodu, zob. log)" : ""]")
 	if(!time)
-		Fail("granat_w_grupe: boarder z granatem hukowym nie rzucił go w grupę trzech wrogów w 30 s")
+		Fail("granat_w_grupe: żaden z dwóch boarderów z granatem hukowym nie rzucił go w grupę trzech wrogów w 30 s")
 	if(ally_stunned)
-		Fail("granat_w_grupe: granat boardera ogłuszył kolegę z ochroną oczu i uszu")
+		Fail("granat_w_grupe: boarder Syndykatu (z ochroną oczu i uszu) został ogłuszony, szczegóły w knpc_sim_taktyka.log")
 
+/// Granat może rzucić którykolwiek z dwóch boarderów; ogłuszenie sprawdzamy u obu
 /datum/unit_test/aquila_knpc_sim/proc/grenade_thrown(mob/living/carbon/human/thrower, mob/living/carbon/human/ally)
 	check_ally_stun(ally)
+	check_ally_stun(thrower)
 	var/datum/knpc_sim_track/track = tracks[thrower]
-	return track.grenades > 0
+	var/datum/knpc_sim_track/ally_track = tracks[ally]
+	return track.grenades + ally_track.grenades > 0
 
 /datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
-	if(!QDELETED(ally) && (ally.IsParalyzed() || ally.IsKnockdown() || ally.IsStun()))
+	if(QDELETED(ally) || ally_down_logged || !(ally.IsParalyzed() || ally.IsKnockdown() || ally.IsStun()))
+		return
+	ally_down_logged = TRUE
+	// Ogłuszenie liczymy jako winę granatu tylko tuż po wybuchu; w symulacji boarder potrafił się też pośliznąć na kałuży obok postrzelonych
+	var/since_throw = elapsed() - last_grenade_at
+	if(last_grenade_at && since_throw <= 4.5)
 		ally_stunned = TRUE
+	var/list/nades = list()
+	for(var/obj/item/grenade/nade in range(7, ally))
+		nades += "[nade.name] [get_dist(ally, nade)] pól[nade.active ? " uzbrojony" : ""]"
+	sim_log("SWÓJ NA ZIEMI ([ally_stunned ? "po granacie" : "nie od granatu, [since_throw] s po rzucie"]): [label_of(ally)] paraliż [ally.AmountParalyzed()], powalenie [ally.AmountKnockdown()], ogłuszenie [ally.AmountStun()], ochrona oczu [ally.get_eye_protection()], uszu [ally.get_ear_protection()], granaty w pobliżu: [length(nades) ? nades.Join(", ") : "brak"]", "stall")
 
 /// Syndykat kontra ERT Nanotrasenu, opcjonalnie z osłonami na środku
 /datum/unit_test/aquila_knpc_sim/proc/scenario_fight(per_side, run, name, cover = FALSE)
