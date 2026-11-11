@@ -39,6 +39,10 @@
 	TEST_ASSERT(later > 0 && later < (GANG_DRUG_UNIT_LIMIT - GANG_DRUG_BONUS_UNITS) * 1.5, "Units after the bonus should be worth less than full price, got [later]")
 	TEST_ASSERT_EQUAL(G.sell_drug(/datum/reagent/drug/methamphetamine, 100), 0, "A drug past the limit should not be bought")
 	TEST_ASSERT_EQUAL(G.sell_drug(/datum/reagent/water, 100), 0, "Water is not a drug")
+	// Tuż przed limitem: jednostka warta mniej niż punkt nie jest zapisywana jako sprzedana
+	G.drug_units_sold[/datum/reagent/drug/space_drugs] = GANG_DRUG_UNIT_LIMIT - 1
+	TEST_ASSERT_EQUAL(G.sell_drug(/datum/reagent/drug/space_drugs, 1), 0, "The last unit before the limit is worth less than a point")
+	TEST_ASSERT_EQUAL(G.drug_units_left(/datum/reagent/drug/space_drugs), 1, "A sale worth no points must not use up the limit")
 
 	// Znak zajmuje teren i daje punkty za postawienie (pokój testowy udaje obszar stacji, który da się zająć)
 	var/area/test_area = get_area(corner)
@@ -59,6 +63,14 @@
 	var/obj/structure/gang_locker/locker = new(locker_turf, G)
 	TEST_ASSERT_EQUAL(G.locker, locker, "The gang should know its locker")
 	TEST_ASSERT(G.owns_turf(locker_turf), "The locker should claim territory")
+	// Gotówka ponad limit prania zostaje u gracza
+	locker.cash = GANG_LOCKER_CASH_CAP - 100
+	var/obj/item/holochip/too_much = new(gangster.loc, 500)
+	gangster.put_in_hands(too_much)
+	TEST_ASSERT(locker.sell(too_much, gangster), "The locker should answer a cash deposit")
+	TEST_ASSERT(!QDELETED(too_much) && too_much.loc == gangster, "Cash over the laundering cap should stay with the player")
+	TEST_ASSERT_EQUAL(locker.cash, GANG_LOCKER_CASH_CAP - 100, "Cash over the cap must not be accepted")
+	qdel(too_much)
 	locker.cash = 1000
 	var/score_before = G.total_score()
 	locker.process(3)

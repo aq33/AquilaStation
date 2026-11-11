@@ -160,7 +160,9 @@
 		var/accepted = min(R.volume, gang.drug_units_left(R.type))
 		if(accepted < R.volume)
 			kept_any = TRUE
-		if(accepted <= 0)
+		// Tuż przed limitem jednostka bywa warta mniej niż punkt: wtedy towar zostaje w pojemniku
+		if(accepted <= 0 || gang.sell_drug(R.type, accepted, dry_run = TRUE) <= 0)
+			kept_any = TRUE
 			continue
 		. += gang.sell_drug(R.type, accepted)
 		container.reagents.remove_reagent(R.type, accepted)

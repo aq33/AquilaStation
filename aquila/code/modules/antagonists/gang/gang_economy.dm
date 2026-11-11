@@ -111,8 +111,8 @@
 		return 0
 	return max(0, GANG_DRUG_UNIT_LIMIT - (drug_units_sold[reagent_type] || 0))
 
-/// Punkty za sprzedaż `units` jednostek narkotyku `reagent_type` (najwyżej do limitu); zapisuje sprzedaż w gangu
-/datum/team/gang/proc/sell_drug(reagent_type, units)
+/// Punkty za sprzedaż `units` jednostek narkotyku `reagent_type` (najwyżej do limitu); bez `dry_run` zapisuje sprzedaż w gangu
+/datum/team/gang/proc/sell_drug(reagent_type, units, dry_run = FALSE)
 	var/value = aq_gang_drug_values()[reagent_type]
 	units = min(units, drug_units_left(reagent_type))
 	if(!value || units <= 0)
@@ -125,8 +125,9 @@
 		. += portion * value * aq_gang_drug_multiplier(sold)
 		sold += portion
 		units -= portion
-	drug_units_sold[reagent_type] = sold
 	. = round(.)
+	if(!dry_run && . > 0)
+		drug_units_sold[reagent_type] = sold
 
 ///////////////////
 // Sklep: ceny w punktach, sklep sprzętu w szafce, narzędzia szefa w gangtoolu
