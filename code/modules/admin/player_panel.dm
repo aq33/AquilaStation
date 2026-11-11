@@ -56,7 +56,7 @@
 			if(iscyborg(M))
 				return JOB_NAME_CYBORG
 			return "Krzemowy"
-		if(isanimal(M)) //simple animals
+		if(isanimal_or_basicmob(M)) //simple animals // AQ EDIT - basic moby
 			if(iscorgi(M))
 				return "Corgi"
 			if(isslime(M))

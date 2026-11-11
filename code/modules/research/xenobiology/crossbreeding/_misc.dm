@@ -255,7 +255,7 @@ Slimecrossing Items
 		INVOKE_ASYNC(src, PROC_REF(offer_entry), M, user)
 		return
 	else
-		if(istype(M, /mob/living/simple_animal/hostile) && !("neutral" in M.faction))
+		if((istype(M, /mob/living/simple_animal/hostile) || isbasicmob(M)) && !("neutral" in M.faction)) // AQ EDIT - basic moby: jak w Bee, wrogie są te spoza frakcji neutralnej
 			to_chat(user, "<span class='warning'>To stworzenie jest zbyt agresywne, by je schwytać.</span>")
 			return
 	to_chat(user, "<span class='notice'>Umieszczasz [M] w urządzeniu do chwytania.</span>")

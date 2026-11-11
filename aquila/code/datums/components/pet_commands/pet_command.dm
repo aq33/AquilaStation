@@ -65,11 +65,18 @@
 
 	try_activate_command(commander = speaker, radial_command = FALSE)
 
-/// Returns true if we find any of our spoken commands in the text
+/**
+ * Returns true if we find any of our spoken commands in the text.
+ * AQUILA: whole words only (Bee looks for substrings): Polish words carry the triggers inside them ("raport" - aport,
+ * "sąsiad" - siad, "zostanie" - zostań, "przychodzi" - chodź), English ones too ("skill" - kill). Multi-word triggers
+ * ("za mną", "udawaj trupa") match the same words in a row.
+ */
 /datum/pet_command/proc/find_command_in_text(spoken_text)
-	spoken_text = lowertext(spoken_text) // AQUILA: speech triggers are lowercase, Polish and English
+	// Anything that is not a letter or a digit separates words
+	var/static/regex/word_separators = regex(@"[^a-z0-9ąćęłńóśźżäöüß]+", "g")
+	spoken_text = " [word_separators.Replace(lowertext(spoken_text), " ")] "
 	for (var/command as anything in speech_commands)
-		if (!findtext(spoken_text, command))
+		if (!findtext(spoken_text, " [command] "))
 			continue
 		return TRUE
 	return FALSE
@@ -125,20 +132,43 @@
 		var/manual_emote_text = generate_emote_command()
 		commander.manual_emote(manual_emote_text)
 		return
-	RegisterSignal(commander, COMSIG_MOB_CLICKON, PROC_REF(click_on_target))
-	if(commander.client) // AQUILA: no mouse_override_icon, the paw pointer is set directly
-		commander.client.mouse_pointer_icon = 'aquila/icons/effects/mouse_pointers/pet_paw.dmi'
+	RegisterSignal(commander, COMSIG_MOB_CLICKON, PROC_REF(click_on_target), override = TRUE)
+	// AQUILA: the paw pointer goes through mouse_override_icon, so update_mouse_pointer() (Shift, guns) keeps it
+	commander.mouse_override_icon = 'aquila/icons/effects/mouse_pointers/pet_paw.dmi'
+	commander.update_mouse_pointer()
+	// AQUILA: Bee waits for the click forever; the next click anywhere minutes later would still pick a target
+	addtimer(CALLBACK(src, PROC_REF(stop_targeting), commander), 15 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/pet_command/proc/click_on_target(mob/living/source, atom/target, list/modifiers)
 	SIGNAL_HANDLER
+	// AQUILA: Shift/Ctrl/Alt/middle clicks (examine, pull, menus) go through and do not pick a target
+	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK))
+		return
+	stop_targeting(source)
 	if(!can_see(source, target, 9))
 		return COMSIG_MOB_CANCEL_CLICKON
 	var/manual_emote_text = generate_emote_command(target)
 	if(on_target_set(source, target) && !isnull(manual_emote_text))
 		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, manual_emote), manual_emote_text)
-	UnregisterSignal(source, COMSIG_MOB_CLICKON)
-	source.update_mouse_pointer()
 	return COMSIG_MOB_CANCEL_CLICKON
+
+/// AQUILA: leaves the targeting mode (after a click or the timeout): no click hook and no paw pointer
+/datum/pet_command/proc/stop_targeting(mob/living/commander)
+	if(QDELETED(commander))
+		return
+	UnregisterSignal(commander, COMSIG_MOB_CLICKON)
+	if(commander.mouse_override_icon == 'aquila/icons/effects/mouse_pointers/pet_paw.dmi')
+		commander.mouse_override_icon = null
+	commander.update_mouse_pointer()
+
+/// AQUILA: a pointer that update_mouse_pointer() keeps over the default, Shift examine and gun cursors (tg mouse_override_icon)
+/mob/living
+	var/mouse_override_icon
+
+/mob/living/update_mouse_pointer()
+	. = ..()
+	if(client && mouse_override_icon)
+		client.mouse_pointer_icon = mouse_override_icon
 
 /datum/pet_command/proc/point_on_target(mob/living/friend, atom/potential_target)
 	SIGNAL_HANDLER

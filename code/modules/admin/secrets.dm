@@ -688,7 +688,9 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 				pełną immersję!")
 			log_admin("[key_name(usr)] has Un-Fully Immersed everyone.")
 		if("animalsentience")
-			for(var/mob/living/simple_animal/L in GLOB.alive_mob_list)
+			for(var/mob/living/L in GLOB.alive_mob_list)
+				if(!isanimal_or_basicmob(L)) // AQ EDIT - basic moby
+					continue
 				var/turf/T = get_turf(L)
 				if(!T || !is_station_level(T.z))
 					continue

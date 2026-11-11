@@ -260,7 +260,9 @@
 		switch(rand(1,10))
 			if(1,2,3)
 				var/list/candidates = list()
-				for(var/mob/living/simple_animal/M in GLOB.alive_mob_list)
+				for(var/mob/living/M in GLOB.alive_mob_list)
+					if(!isanimal_or_basicmob(M)) // AQ EDIT - basic moby: Ian, Runtime i reszta zwierząt statku
+						continue
 					var/turf/T = get_turf(M)
 					if(is_station_level(T.z)) // Ignore anything not on the main ship
 						candidates += M

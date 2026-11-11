@@ -23,9 +23,10 @@
 	return ..()
 
 /// Applies a bonus following the attack
-/datum/element/tiny_mob_hunter/proc/on_attacked_target(mob/living/hunter, atom/target)
+/datum/element/tiny_mob_hunter/proc/on_attacked_target(mob/living/hunter, atom/target, success)
 	SIGNAL_HANDLER
-	if (!isliving(target))
+	// AQUILA: only after a hit that landed (Bee adds the bonus to a missed or pacified attack too)
+	if (!success || !isliving(target))
 		return
 	var/mob/living/prey = target
 	if (prey.mob_size > target_size || prey.stat == DEAD)

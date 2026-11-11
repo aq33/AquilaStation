@@ -2052,6 +2052,7 @@
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
+#include "code\modules\unit_tests\aquila_basic_review_core.dm"
 #include "code\modules\unit_tests\aquila_ai_core.dm"
 #include "code\modules\unit_tests\aquila_basemats.dm"
 #include "code\modules\unit_tests\aquila_konsole_przejrzystosc.dm"

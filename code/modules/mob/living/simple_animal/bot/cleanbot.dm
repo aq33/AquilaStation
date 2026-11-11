@@ -127,7 +127,11 @@
 		target = scan(/mob/living/carbon)
 
 	if(!target && pests) //Search for pests to exterminate first.
-		target = scan(/mob/living/simple_animal)
+		// AQ EDIT START - basic moby: myszy i karaluchy to basic moby (scan(/mob/living) łapałby też leżących ludzi)
+		target = scan(/mob/living/basic)
+		if(!target)
+			target = scan(/mob/living/simple_animal)
+		// AQ EDIT END
 
 	if(!target) //Search for decals then.
 		target = scan(/obj/effect/decal/cleanable)
@@ -222,7 +226,7 @@
 		playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
 		A.acid_act(75, 10)
 	else if(istype(A, /mob/living/basic/cockroach) || istype(A, /mob/living/basic/mouse)) // AQ EDIT - basic moby
-		var/mob/living/simple_animal/M = target
+		var/mob/living/M = target // AQ EDIT - basic moby
 		if(!M.stat)
 			visible_message("<span class='danger'>[src] wali [target] mopem!</span>")
 			M.death()
@@ -340,7 +344,7 @@
 		playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
 		A.acid_act(75, 10)
 	else if(istype(A, /mob/living/basic/cockroach) || istype(A, /mob/living/basic/mouse)) // AQ EDIT - basic moby
-		var/mob/living/simple_animal/M = target
+		var/mob/living/M = target // AQ EDIT - basic moby
 		if(!M.stat)
 			visible_message("<span class='danger'>[src] wali [target] mopem!</span>")
 			M.death()

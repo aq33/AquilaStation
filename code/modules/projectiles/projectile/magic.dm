@@ -292,7 +292,7 @@
 	if(poly_msg)
 		to_chat(new_mob, poly_msg)
 
-	if((istype(new_mob, /mob/living/silicon/robot/modules/syndicate) || istype(new_mob, /mob/living/carbon/alien/humanoid) || istype(new_mob, /mob/living/simple_animal/hostile)))
+	if((istype(new_mob, /mob/living/silicon/robot/modules/syndicate) || istype(new_mob, /mob/living/carbon/alien/humanoid) || istype(new_mob, /mob/living/simple_animal/hostile) || is_hostile_basicmob(new_mob))) // AQ EDIT - basic moby
 		to_chat(new_mob, "<span class='userdanger'>Mimo że przybrałeś postać wrogiej istoty, masz ten sam umysł co przed przemianą. Twoje lojalności i interesy pozostają takie same. O ile nie zamieniono cię w cień albo nie byłeś wcześniej antagonistą, nie jest to przepustka do antagonizowania stacji.</span>")
 
 	M.transfer_observers_to(new_mob)

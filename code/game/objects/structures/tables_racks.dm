@@ -139,7 +139,7 @@
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
-	if(!isanimal(pushed_mob) || iscat(pushed_mob))
+	if(!isanimal_or_basicmob(pushed_mob) || iscat(pushed_mob)) // AQ EDIT - basic moby: na stole kładą się tylko koty spośród zwierząt, jak przed portem
 		pushed_mob.set_resting(TRUE, TRUE)
 	pushed_mob.visible_message("<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>", \
 								"<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>")
@@ -592,7 +592,7 @@
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
-	if(!isanimal(pushed_mob) || iscat(pushed_mob))
+	if(!isanimal_or_basicmob(pushed_mob) || iscat(pushed_mob)) // AQ EDIT - basic moby: na stole kładą się tylko koty spośród zwierząt, jak przed portem
 		pushed_mob.set_resting(TRUE, TRUE)
 	visible_message("<span class='notice'>[user] kładzie [pushed_mob] na [src].</span>")
 	get_patient()

@@ -15,7 +15,7 @@
 
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
-	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
+	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal, /mob/living/basic) // AQ EDIT - basic moby
 
 	var/autoeject = TRUE
 	var/volume = 100
@@ -139,7 +139,7 @@
 			else // Drone or other
 				occupant_overlay = image(CRYOMOBS, "aliend")
 
-		else if(ishuman(occupant) || islarva(occupant) || (isanimal_or_basicmob(occupant) && !ismegafauna(occupant))) // Mobs that are smaller than cryotube
+		else if(ishuman(occupant) || islarva(occupant) || (isanimal_or_basicmob(occupant) && !ismegafauna(occupant))) // Mobs that are smaller than cryotube // AQ EDIT - basic moby
 			occupant_overlay = image(occupant.icon, occupant.icon_state)
 			occupant_overlay.copy_overlays(occupant)
 

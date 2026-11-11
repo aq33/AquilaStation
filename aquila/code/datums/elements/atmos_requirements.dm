@@ -21,6 +21,8 @@
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	src.atmos_requirements = string_assoc_list(atmos_requirements)
+	// AQUILA: Bee never stored it, so the element did 0 damage (part of the bespoke id, id_arg_index = 2)
+	src.unsuitable_atmos_damage = unsuitable_atmos_damage
 	RegisterSignal(target, COMSIG_LIVING_HANDLE_BREATHING, PROC_REF(on_non_stasis_life))
 
 /datum/element/atmos_requirements/Detach(datum/target)

@@ -108,6 +108,8 @@
 	var/unsuitable_heat_damage = 1
 	/// AQUILA: research points for scanning this mob with a discovery scanner, as for our simple animals (0 = not discoverable)
 	var/discovery_points = 200
+	/// AQUILA: timer that gets an AI mob up after something put it to rest (table, laser pointer)
+	var/ai_rest_timer
 
 /mob/living/basic/Initialize(mapload)
 	. = ..()
@@ -150,6 +152,51 @@
 	. = ..()
 	if(staminaloss > 0)
 		adjustStaminaLoss(-stamina_recovery * SSMOBS_DT, forced = TRUE)
+
+/**
+ * AQUILA: /mob/living/update_mobility() sets `density = !lying` (Bee has no such line), which made small basic mobs
+ * (mice, chickens, butterflies) dense after any stun, forceMove or revival. Density only changes with posture here:
+ * lying down makes the mob passable, standing up restores its own density; otherwise the density it had stays
+ * (a sunk garden gnome, a dead mob that stays dense).
+ */
+/mob/living/basic/update_mobility()
+	var/old_density = density
+	var/was_lying = lying
+	. = ..()
+	if(lying == was_lying || (stat == DEAD && (basic_mob_flags & REMAIN_DENSE_WHILE_DEAD)))
+		density = old_density
+	else
+		density = lying ? FALSE : initial(density)
+
+/**
+ * AQUILA: a table or a laser pointer puts a basic mob to rest; our old simple animal cat stood up again in its Life(),
+ * basic mobs have nothing that does it, so an AI mob gets up after a while (a player mob gets up itself).
+ */
+/mob/living/basic/update_resting()
+	. = ..()
+	if(resting && !client && stat != DEAD)
+		ai_rest_timer = addtimer(CALLBACK(src, PROC_REF(ai_stop_resting)), rand(10 SECONDS, 30 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+
+/// Gets an AI basic mob back up after it was put to rest
+/mob/living/basic/proc/ai_stop_resting()
+	ai_rest_timer = null
+	if(!resting || client || stat == DEAD || QDELETED(src))
+		return
+	if(stat != CONSCIOUS)
+		ai_rest_timer = addtimer(CALLBACK(src, PROC_REF(ai_stop_resting)), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+		return
+	set_resting(FALSE)
+
+/**
+ * AQUILA: simple animals ignored fire (handle_fire() returned TRUE, IgniteMob() FALSE); basic mobs catch fire and,
+ * as in tg (on_fire_stack()), the fire heats the body, so the basic_body_temp_sensitive element burns them above
+ * their maximum temperature. Mobs without that element (heat damage 0) are as fireproof as their body.
+ */
+/mob/living/basic/handle_fire()
+	. = ..()
+	if(.)
+		return
+	adjust_bodytemperature((BODYTEMP_HEATING_MAX + (fire_stacks * 12)) * 0.5 * SSMOBS_DT)
 
 /// Body temperature follows the environment like for simple animals (Bee: base /mob/living/handle_environment()), damage is done by elements
 /mob/living/basic/handle_environment(datum/gas_mixture/environment)

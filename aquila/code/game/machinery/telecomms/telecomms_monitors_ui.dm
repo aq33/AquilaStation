@@ -47,7 +47,7 @@
 				race = "Sztuczne życie"
 			else if(isobj(mobtype))
 				race = "Maszyna"
-			else if(ispath(mobtype, /mob/living/simple_animal))
+			else if(ispath(mobtype, /mob/living/simple_animal) || ispath(mobtype, /mob/living/basic))
 				race = "Zwierzę domowe"
 			else
 				race = "Nieznana"

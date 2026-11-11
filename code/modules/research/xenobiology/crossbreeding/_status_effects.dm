@@ -817,12 +817,14 @@
 	return ..()
 
 /datum/status_effect/stabilized/pink/tick()
-	for(var/mob/living/simple_animal/M in view(7,get_turf(owner)))
+	for(var/mob/living/M in view(7,get_turf(owner)))
+		if(!isanimal_or_basicmob(M)) // AQ EDIT - basic moby
+			continue
 		if(!(M in mobs))
 			mobs += M
 			M.apply_status_effect(/datum/status_effect/pinkdamagetracker)
 			M.faction |= faction_name
-	for(var/mob/living/simple_animal/M in mobs)
+	for(var/mob/living/M in mobs) // AQ EDIT - basic moby
 		if(!(M in hearers(7,get_turf(owner))))
 			M.faction -= faction_name
 			M.remove_status_effect(/datum/status_effect/pinkdamagetracker)
@@ -845,7 +847,7 @@
 	return ..()
 
 /datum/status_effect/stabilized/pink/on_remove()
-	for(var/mob/living/simple_animal/M in mobs)
+	for(var/mob/living/M in mobs) // AQ EDIT - basic moby
 		M.faction -= faction_name
 		M.remove_status_effect(/datum/status_effect/pinkdamagetracker)
 	for(var/i in owner.faction)
@@ -924,14 +926,21 @@
 /datum/status_effect/stabilized/gold
 	id = "stabilizedgold"
 	colour = "gold"
-	var/mob/living/simple_animal/familiar
+	var/mob/living/familiar // AQ EDIT - basic moby
 
 /datum/status_effect/stabilized/gold/tick()
 	var/obj/item/slimecross/stabilized/gold/linked = linked_extract
 	if(QDELETED(familiar))
 		familiar = new linked.mob_type(get_turf(owner.loc))
 		familiar.name = linked.mob_name
-		familiar.del_on_death = TRUE
+		// AQ EDIT START - basic moby: chowaniec znika po śmierci (u basic mobów flaga DEL_ON_DEATH)
+		if(isbasicmob(familiar))
+			var/mob/living/basic/basic_familiar = familiar
+			basic_familiar.basic_mob_flags |= DEL_ON_DEATH
+		else if(isanimal(familiar))
+			var/mob/living/simple_animal/simple_familiar = familiar
+			simple_familiar.del_on_death = TRUE
+		// AQ EDIT END
 		familiar.copy_languages(owner, LANGUAGE_MASTER)
 		if(linked.saved_mind)
 			linked.saved_mind.transfer_to(familiar)

@@ -791,7 +791,9 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	if(..())
 		if(ishuman(user))
 			var/mobcheck = FALSE
-			for(var/mob/living/simple_animal/A in viewers(1, src))
+			for(var/mob/living/A in viewers(1, src))
+				if(!isanimal_or_basicmob(A)) // AQ EDIT - basic moby
+					continue
 				if(A.melee_damage > 5 || A.mob_size >= MOB_SIZE_LARGE || A.ckey || A.stat)
 					break
 				var/obj/structure/closet/stasis/S = new /obj/structure/closet/stasis(A)
@@ -799,7 +801,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 				mobcheck = TRUE
 				break
 			if(!mobcheck)
-				new /mob/living/basic/cockroach(get_step(src,dir)) //Just in case there aren't any animals on the station, this will leave you with a terrible option to possess if you feel like it
+				new /mob/living/basic/cockroach(get_step(src,dir)) // AQ EDIT - basic moby //Just in case there aren't any animals on the station, this will leave you with a terrible option to possess if you feel like it
 
 /obj/structure/closet/stasis
 	name = "pole zakrzywienia stazy splątania kwantowego"
@@ -808,7 +810,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
-	var/mob/living/simple_animal/holder_animal
+	var/mob/living/holder_animal // AQ EDIT - basic moby
 
 /obj/structure/closet/stasis/process()
 	if(holder_animal)
@@ -819,7 +821,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 
 /obj/structure/closet/stasis/Initialize(mapload)
 	. = ..()
-	if(isanimal(loc))
+	if(isanimal_or_basicmob(loc)) // AQ EDIT - basic moby
 		holder_animal = loc
 	START_PROCESSING(SSobj, src)
 
@@ -844,7 +846,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 		if(holder_animal)
 			holder_animal.mind.transfer_to(L)
 			L.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
-		if(kill || !isanimal(loc))
+		if(kill || !isanimal_or_basicmob(loc)) // AQ EDIT - basic moby
 			L.death(0)
 	..()
 

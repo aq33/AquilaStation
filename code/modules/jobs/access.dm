@@ -27,10 +27,12 @@
 		var/mob/living/simple_animal/A = M
 		if(check_access(A.get_active_held_item()) || check_access(A.access_card))
 			return TRUE
-	else if(isbasicmob(M)) // AQ EDIT - basic moby: sentient animals with an access card open doors as before
+	// AQ EDIT START - basic moby: sentient animals with an access card open doors as before
+	else if(isbasicmob(M))
 		var/mob/living/basic/basic_animal = M
 		if(check_access(basic_animal.get_active_held_item()) || check_access(basic_animal.access_card))
 			return TRUE
+	// AQ EDIT END
 	return FALSE
 
 /obj/item/proc/GetAccess()
