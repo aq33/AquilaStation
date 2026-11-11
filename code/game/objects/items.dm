@@ -654,7 +654,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			else
 				L.attackby(src, owner)
 				owner.visible_message("<span class='danger'>[L] rani się o [src] należący do [owner]!</span>")
-	owner.apply_damage(attackforce, STAMINA, blockhand, block_power)
+	owner.apply_damage(min(attackforce, 35), STAMINA, blockhand, block_power) // AQ EDIT - limit staminy za jeden blok z nowego Bee
 	if(owner.stamina?.loss_as_percent >= 45)//if you don't drop the item, you can't block for a few seconds // AQ EDIT - port Bee#14750: próg z puli (ręka już się nie wyłącza od staminy)
 		owner.blockbreak()
 	if(attackforce)

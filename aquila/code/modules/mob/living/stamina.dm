@@ -112,6 +112,41 @@
 // ---------------------------------------------------------------------------
 // Wyczerpanie i stamcrit
 
+/mob/living/carbon
+	/// Dyszenie, gdy postać jest wyczerpana (TRAIT_EXHAUSTED)
+	var/datum/looping_sound/exhaustion_panting/exhaustion_panting
+
+/mob/living/carbon/Destroy()
+	QDEL_NULL(exhaustion_panting)
+	return ..()
+
+/// Ciężki oddech co ~2,5 s. Głos z emotki gasp, według płci; cisza u nieprzytomnych i niemych
+/datum/looping_sound/exhaustion_panting
+	mid_sounds = list('aquila/sound/voice/human/gasp/gasp_m1.ogg', 'aquila/sound/voice/human/gasp/gasp_m2.ogg', 'aquila/sound/voice/human/gasp/gasp_m3.ogg',
+		'aquila/sound/voice/human/gasp/gasp_m4.ogg', 'aquila/sound/voice/human/gasp/gasp_m5.ogg', 'aquila/sound/voice/human/gasp/gasp_m6.ogg')
+	mid_length = 25
+	chance = 80
+	volume = 20
+	extra_range = -3
+	vary = TRUE
+	var/female_sounds = list('aquila/sound/voice/human/gasp/gasp_f1.ogg', 'aquila/sound/voice/human/gasp/gasp_f2.ogg', 'aquila/sound/voice/human/gasp/gasp_f3.ogg',
+		'aquila/sound/voice/human/gasp/gasp_f4.ogg', 'aquila/sound/voice/human/gasp/gasp_f5.ogg', 'aquila/sound/voice/human/gasp/gasp_f6.ogg')
+
+/datum/looping_sound/exhaustion_panting/get_sound(starttime, _mid_sounds)
+	var/mob/living/carbon/breather = parent
+	if(istype(breather) && breather.gender == FEMALE)
+		return ..(starttime, female_sounds)
+	return ..()
+
+/datum/looping_sound/exhaustion_panting/sound_loop(starttime)
+	var/mob/living/carbon/breather = parent
+	if(!istype(breather) || breather.stat == DEAD)
+		stop() // martwy już nie złapie oddechu, więc on_stamina_update może pętli nie zatrzymać
+		return
+	if(breather.stat >= UNCONSCIOUS || HAS_TRAIT(breather, TRAIT_MUTE))
+		return
+	return ..()
+
 /mob/living/carbon/on_stamina_update()
 	var/fraction = stamina.get_fraction()
 	var/exhausted = HAS_TRAIT_FROM(src, TRAIT_EXHAUSTED, STAMINA_TRAIT)
@@ -121,10 +156,15 @@
 		ADD_TRAIT(src, TRAIT_WHISPER_ONLY, STAMINA_TRAIT)
 		add_movespeed_modifier(MOVESPEED_ID_SPRINT_EXHAUSTION, TRUE, 0, override = TRUE, multiplicative_slowdown = STAMINA_EXHAUSTION_MOVESPEED_SLOWDOWN)
 		to_chat(src, "<span class='danger'>Jesteś wyczerpany. Nie możesz sprintować i możesz tylko szeptać, dopóki nie złapiesz oddechu.</span>")
+		if(has_human_emote_voice(src))
+			if(!exhaustion_panting)
+				exhaustion_panting = new(src)
+			exhaustion_panting.start()
 	else if(exhausted && (no_stamcrit || stat == DEAD || fraction > STAMINA_EXHAUSTION_RECOVERY_THRESHOLD_MODIFIER))
 		REMOVE_TRAIT(src, TRAIT_EXHAUSTED, STAMINA_TRAIT)
 		REMOVE_TRAIT(src, TRAIT_WHISPER_ONLY, STAMINA_TRAIT)
 		remove_movespeed_modifier(MOVESPEED_ID_SPRINT_EXHAUSTION)
+		exhaustion_panting?.stop()
 		if(stat != DEAD)
 			to_chat(src, "<span class='notice'>Łapiesz oddech.</span>")
 	update_stamina_hud()

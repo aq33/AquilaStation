@@ -1025,20 +1025,20 @@
 /turf/open/floor/monotile/dark,
 /area/science)
 "aQB" = (
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1846,10 +1846,10 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/nsv/weapons)
 "bwL" = (
-/obj/item/gun/ballistic/automatic/peacekeeper,
-/obj/item/gun/ballistic/automatic/peacekeeper,
-/obj/item/gun/ballistic/automatic/peacekeeper,
-/obj/item/gun/ballistic/automatic/peacekeeper,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /obj/structure/rack,
 /turf/open/floor/plasteel/grid/techfloor,
 /area/ai_monitored/security/armory)
@@ -2998,11 +2998,11 @@
 /area/nsv/weapons)
 "csS" = (
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/wt550m9/wtap,
-/obj/item/ammo_box/magazine/wt550m9/wtap,
-/obj/item/ammo_box/magazine/wt550m9/wtap,
-/obj/item/ammo_box/magazine/wt550m9/wtap,
-/obj/item/ammo_box/magazine/wt550m9/wtap,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
@@ -5959,10 +5959,10 @@
 /area/security/prison)
 "fbm" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /turf/open/floor/plasteel/grid/techfloor,
 /area/ai_monitored/security/armory)
 "fbA" = (
@@ -6668,11 +6668,11 @@
 /area/nsv/weapons/gauss)
 "fJh" = (
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/wt550m9/wtic,
-/obj/item/ammo_box/magazine/wt550m9/wtic,
-/obj/item/ammo_box/magazine/wt550m9/wtic,
-/obj/item/ammo_box/magazine/wt550m9/wtic,
-/obj/item/ammo_box/magazine/wt550m9/wtic,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "fJq" = (
@@ -13351,8 +13351,8 @@
 /area/hallway/secondary/exit)
 "ltE" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /obj/item/storage/lockbox/loyalty,
 /obj/item/reagent_containers/glass/bottle/morphine,
 /obj/effect/turf_decal/tile/ship/police{
@@ -13749,18 +13749,18 @@
 /area/science)
 "lHG" = (
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
@@ -15150,9 +15150,9 @@
 /area/nsv/weapons)
 "mSJ" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/laser,
-/obj/item/gun/ballistic/automatic/laser,
-/obj/item/gun/ballistic/automatic/laser,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "mTO" = (
@@ -21368,26 +21368,26 @@
 /area/security/detectives_office)
 "sdL" = (
 /obj/structure/closet,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
-/obj/item/ammo_box/magazine/peacekeeper,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /turf/open/floor/plasteel/grid/techfloor,
 /area/ai_monitored/security/armory)
 "seo" = (
@@ -22009,12 +22009,12 @@
 /area/maintenance/nsv/deck2/starboard/fore)
 "sEU" = (
 /obj/structure/guncase/shotgun{
-	gun_category = /obj/item/gun/ballistic/automatic/peacekeeper;
-	name = "assault rifle cabinet";
+	gun_category = /obj/item/gun/ballistic/automatic/marine_rifle;
+	name = "szafka na karabiny szturmowe";
 	req_one_access_txt = "2"
 	},
-/obj/item/gun/ballistic/automatic/peacekeeper,
-/obj/item/gun/ballistic/automatic/peacekeeper,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "sFK" = (
@@ -22922,18 +22922,18 @@
 /area/security/prison)
 "tuO" = (
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
-/obj/item/ammo_box/magazine/peacekeeper/lethal,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "tuQ" = (
@@ -26566,17 +26566,17 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
-/obj/item/ammo_box/magazine/recharge,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "wCd" = (
@@ -26606,12 +26606,12 @@
 /area/maintenance/department/engine/atmos)
 "wDr" = (
 /obj/structure/guncase/shotgun{
-	gun_category = /obj/item/gun/ballistic/automatic/peacekeeper;
-	name = "assault rifle cabinet";
+	gun_category = /obj/item/gun/ballistic/automatic/marine_rifle;
+	name = "szafka na karabiny szturmowe";
 	req_one_access_txt = "2"
 	},
-/obj/item/gun/ballistic/automatic/peacekeeper,
-/obj/item/gun/ballistic/automatic/peacekeeper,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
+/obj/item/gun/ballistic/automatic/marine_rifle/unrestricted,
 /obj/machinery/light/small{
 	dir = 4
 	},
