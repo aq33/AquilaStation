@@ -124,17 +124,7 @@
 /// AQUILA: mice are mobs, so look among the mobs in view instead of every atom in range(9), and look less often
 /datum/ai_behavior/find_hunt_target/hunt_mice
 	action_cooldown = 5 SECONDS
-
-/datum/ai_behavior/find_hunt_target/hunt_mice/perform(delta_time, datum/ai_controller/controller, hunting_target_key, types_to_hunt, hunt_range)
-	var/mob/living/living_mob = controller.pawn
-	for(var/mob/living/possible_dinner in hearers(hunt_range, living_mob))
-		if(!is_type_in_typecache(possible_dinner, types_to_hunt))
-			continue
-		if(!valid_dinner(living_mob, possible_dinner, hunt_range, controller, delta_time))
-			continue
-		controller.set_blackboard_key(hunting_target_key, possible_dinner)
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	hunts_mobs_only = TRUE
 
 /datum/ai_behavior/find_hunt_target/hunt_mice/valid_dinner(mob/living/source, mob/living/mouse, radius)
 	if(mouse.stat == DEAD || mouse.mind)

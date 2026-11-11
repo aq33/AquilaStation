@@ -73,6 +73,10 @@
 // AQ EDIT START - the udder component calls this with its volume (Bee); milking goes through the component
 /mob/living/simple_animal/hostile/asteroid/gutlunch/regenerate_icons(new_udder_volume, max_udder_volume)
 	cut_overlays()
+	if(isnull(new_udder_volume)) // ordinary redraw without the udder callback: read the udder itself
+		var/datum/component/udder/udder_component = GetComponent(/datum/component/udder)
+		new_udder_volume = udder_component?.udder?.reagents?.total_volume
+		max_udder_volume = udder_component?.udder?.reagents?.maximum_volume
 	if(new_udder_volume && new_udder_volume == max_udder_volume)
 		add_overlay("gl_full")
 	..()

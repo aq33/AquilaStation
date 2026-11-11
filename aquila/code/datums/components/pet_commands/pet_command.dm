@@ -74,7 +74,12 @@
 /datum/pet_command/proc/find_command_in_text(spoken_text)
 	// Anything that is not a letter or a digit separates words
 	var/static/regex/word_separators = regex(@"[^a-z0-9ąćęłńóśźżäöüß]+", "g")
-	spoken_text = " [word_separators.Replace(lowertext(spoken_text), " ")] "
+	// lowertext() may leave Polish capitals ("ZOSTAŃ"), so they are lowered by hand
+	var/static/list/polish_capitals = list("Ą" = "ą", "Ć" = "ć", "Ę" = "ę", "Ł" = "ł", "Ń" = "ń", "Ó" = "ó", "Ś" = "ś", "Ź" = "ź", "Ż" = "ż")
+	spoken_text = lowertext(spoken_text)
+	for(var/capital in polish_capitals)
+		spoken_text = replacetextEx(spoken_text, capital, polish_capitals[capital])
+	spoken_text = " [word_separators.Replace(spoken_text, " ")] "
 	for (var/command as anything in speech_commands)
 		if (!findtext(spoken_text, " [command] "))
 			continue

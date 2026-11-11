@@ -3,7 +3,7 @@
 
 // Dog versions of the pet commands: more Polish (and Bee's English and German) words
 /datum/pet_command/follow/dog
-	speech_commands = list("do nogi", "za mną", "za mna", "chodź", "chodz", "na spacer", "heel", "follow", "walkies", "come", "komm", "fuss")
+	speech_commands = list("do nogi", "do mnie", "za mną", "za mna", "chodź", "chodz", "chodźże", "na spacer", "heel", "follow", "walkies", "come", "komm", "fuss")
 
 /datum/pet_command/good_boy/dog
 	speech_commands = list("dobry pies", "dobry piesek", "grzeczny piesek", "dobra suczka", "good dog", "good boy", "brav")

@@ -53,8 +53,9 @@
 				if(isbasicmob(target))
 					var/mob/living/basic/basic_target = target
 					basic_target.befriend(user)
-					for(var/mob/living/old_friend as anything in old_friends)
-						basic_target.befriend(old_friend)
+					if(!malfunctioning) // a malfunctioning injector leaves the mob loyal to the reviver only
+						for(var/mob/living/old_friend as anything in old_friends)
+							basic_target.befriend(old_friend)
 					if(malfunctioning)
 						basic_target.faction |= list("lazarus", "[REF(user)]")
 						log_game("[key_name(user)] has revived mob [key_name(target)] with a malfunctioning lazarus injector")

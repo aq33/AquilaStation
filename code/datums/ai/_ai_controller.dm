@@ -193,6 +193,10 @@ multiple modular subtrees with behaviors
 /datum/ai_controller/proc/should_idle()
 	if(!can_idle)
 		return FALSE
+	// AQUILA: a controller in the middle of something (following its owner, chasing a target, a pet command) stays awake;
+	// Bee's grid cells cover a wider area than our interesting_dist, so it does not drop a chase or a walk at its edge
+	if(length(current_behaviors) || blackboard[BB_ACTIVE_PET_COMMAND])
+		return FALSE
 	var/turf/pawn_turf = get_turf(pawn)
 	if(isnull(pawn_turf))
 		return FALSE
@@ -409,6 +413,8 @@ multiple modular subtrees with behaviors
 	stop_previous_processing()
 	ai_status = new_ai_status
 	GLOB.ai_controllers_by_status[new_ai_status] += src
+	if(ai_status == AI_STATUS_ON) // AQUILA: a controller waking up (a player came near) looks for targets at the normal rate
+		clear_blackboard_key(BB_FIND_TARGETS_EMPTY_SCANS)
 	if(ai_status == AI_STATUS_OFF)
 		if(!(additional_flags & AI_PREVENT_CANCEL_ACTIONS))
 			CancelActions()
@@ -520,8 +526,10 @@ multiple modular subtrees with behaviors
 	var/guard_cooldown = started_at + max(behavior.get_cooldown(src), 1)
 	behavior_cooldowns[behavior] = guard_cooldown
 	var/process_flags = behavior.perform(arglist(arguments))
-	if(world.time != started_at)
-		stack_trace("AI behaviour [behavior.type] slept in perform() for [world.time - started_at] ds, run the sleeping part with INVOKE_ASYNC")
+	// A perform() that reached sleeping code (tool do_after through melee_attack_chain and the like) carries on here later;
+	// by then the controller, its pawn or the behaviour may be gone
+	if(world.time != started_at && (QDELETED(src) || isnull(pawn) || !(behavior in current_behaviors)))
+		return
 	if(process_flags & AI_BEHAVIOR_DELAY)
 		behavior_cooldowns[behavior] = world.time + behavior.get_cooldown(src)
 	else if(behavior_cooldowns[behavior] == guard_cooldown)

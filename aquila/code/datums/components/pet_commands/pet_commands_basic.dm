@@ -11,7 +11,7 @@
 	command_name = "Zostań"
 	command_desc = "Każ zwierzakowi zostać w miejscu."
 	radial_icon_state = "halt"
-	speech_commands = list("siad", "zostań", "zostan", "stój", "stoj", "sit", "stay", "stop", "halt")
+	speech_commands = list("siad", "siadaj", "siądź", "siadz", "zostań", "zostan", "stój", "stoj", "sit", "stay", "stop", "halt") // AQUILA: whole words, so common imperative forms are listed
 	command_feedback = "siada"
 
 /datum/pet_command/idle/execute_action(datum/ai_controller/controller)
@@ -46,7 +46,7 @@
 	command_name = "Za mną"
 	command_desc = "Każ zwierzakowi iść za tobą."
 	radial_icon_state = "follow"
-	speech_commands = list("do nogi", "za mną", "za mna", "chodź", "chodz", "heel", "follow")
+	speech_commands = list("do nogi", "do mnie", "za mną", "za mna", "chodź", "chodz", "chodźże", "heel", "follow")
 	///the behavior we use to follow
 	var/follow_behavior = /datum/ai_behavior/pet_follow_friend
 	///should we activate immediately if we're doing nothing else and gain a friend?

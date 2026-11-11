@@ -175,7 +175,7 @@
 ///AQUILA: empty target scans in a row of find_potential_targets, each doubles its cooldown
 #define BB_FIND_TARGETS_EMPTY_SCANS "BB_find_targets_empty_scans"
 ///AQUILA: longest wait between target scans that found nothing
-#define FIND_TARGETS_MAX_BACKOFF (30 SECONDS)
+#define FIND_TARGETS_MAX_BACKOFF (8 SECONDS)
 
 // --- AI subsystems (code/__DEFINES/MC.dm and subsystems.dm in Bee)
 #define AI_CONTROLLER_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/ai_controllers/##X);\

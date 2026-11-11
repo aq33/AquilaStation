@@ -46,11 +46,15 @@
 
 /// Finds a specific atom type to hunt.
 /datum/ai_behavior/find_hunt_target
+	/// AQUILA: TRUE when the hunted types are all mobs, so perform() scans hearers() instead of range()
+	var/hunts_mobs_only = FALSE
 
 /datum/ai_behavior/find_hunt_target/perform(delta_time, datum/ai_controller/controller, hunting_target_key, types_to_hunt, hunt_range)
 	var/mob/living/living_mob = controller.pawn
 
-	for(var/atom/possible_dinner as anything in typecache_filter_list(range(hunt_range, living_mob), types_to_hunt))
+	// AQUILA: prey that is only ever mobs is looked for among the mobs in view, not every atom in range()
+	var/list/candidates = hunts_mobs_only ? hearers(hunt_range, living_mob) : range(hunt_range, living_mob)
+	for(var/atom/possible_dinner as anything in typecache_filter_list(candidates, types_to_hunt))
 		if(!valid_dinner(living_mob, possible_dinner, hunt_range, controller, delta_time))
 			continue
 		controller.set_blackboard_key(hunting_target_key, possible_dinner)

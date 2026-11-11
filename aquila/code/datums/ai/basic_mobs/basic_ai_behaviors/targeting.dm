@@ -1,8 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/ai/basic_mobs/basic_ai_behaviors/targeting.dm (bee/master 0adf0fe9ae)
 // AQUILA: Bee waits for targets with an ai_target_tracking proximity field and also targets hostile machines
 // (hostile_machine element, turrets). Neither is ported: like the spatial grid (decision D4) the field is left for later,
-// so the behaviour polls with hearers(). AQUILA: every empty scan doubles the wait (2, 4, 8, 16, 30 s), a found target or
-// an attack on the mob resets it (/datum/ai_controller/basic_controller/proc/reset_target_search_backoff()).
+// so the behaviour polls with hearers(). AQUILA: every empty scan doubles the wait (2, 4, 8 s at most, so a player who walks
+// up is noticed within 8 s), a found target, an attack on the mob or the controller waking up resets it (/datum/ai_controller/basic_controller/proc/reset_target_search_backoff()).
 
 /datum/ai_behavior/find_potential_targets
 	action_cooldown = 2 SECONDS
