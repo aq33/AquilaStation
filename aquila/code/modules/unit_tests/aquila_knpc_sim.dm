@@ -136,6 +136,8 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/list/all_scenarios = list()
 	/// Czy któryś boarder Syndykatu dostał ogłuszenie od wybuchu hukowego (porównanie przed i po prime())
 	var/ally_stunned = FALSE
+	/// Kto dokładnie dostał ogłuszenie od wybuchu (do scenariusza kontrolnego)
+	var/list/grenade_stunned = list()
 	/// Kto z boarderów leży teraz (mob => TRUE): wpis w logu tylko przy przewróceniu, każdy osobno
 	var/list/allies_down = list()
 	/// Kiedy padł ostatni okrzyk „Granat!” (zapalnik KNPC to 3 s)
@@ -179,6 +181,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		scenario_medic()
 		scenario_backup()
 		scenario_grenade()
+		scenario_grenade_check()
 	if(!group || group == "walki1")
 		for(var/i in 1 to 3)
 			scenario_fight(1, i, "walka_1v1")
@@ -241,6 +244,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	tracks = list()
 	sim_objects = list()
 	allies_down = list()
+	grenade_stunned = list()
 	for(var/turf/T as anything in arena_turfs)
 		for(var/atom/movable/AM as anything in T.contents)
 			if(ismob(AM) || isobj(AM))
@@ -648,6 +652,30 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		Fail("granat_w_grupe: boarder Syndykatu (z ochroną oczu i uszu) został ogłuszony, szczegóły w knpc_sim_taktyka.log")
 
 /// Granat może rzucić którykolwiek z dwóch boarderów; ogłuszenie sprawdzamy u obu
+/// Kontrola pomiaru z check_grenade_stuns(): hukowy wybucha od razu między dwoma boarderami Syndykatu.
+/// Chroniony, powalony jeszcze przed wybuchem, nie może zostać policzony; ten bez ochrony oczu i uszu musi.
+/datum/unit_test/aquila_knpc_sim/proc/scenario_grenade_check()
+	begin("granat_kontrola_pomiaru")
+	var/mob/living/carbon/human/protected = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 13, 8, "syndykat", "Chroniony")
+	var/mob/living/carbon/human/exposed = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 17, 8, "syndykat", "Bez ochrony")
+	QDEL_NULL(exposed.glasses)
+	QDEL_NULL(exposed.ears)
+	QDEL_NULL(exposed.head)
+	protected.Knockdown(5 SECONDS) // „poślizg” przed wybuchem
+	var/protected_down = protected.IsKnockdown()
+	ally_stunned = FALSE
+	grenade_stunned = list()
+	var/obj/item/grenade/flashbang/bang = new(arena_turf(15, 8))
+	bang.prime()
+	var/protected_counted = (protected in grenade_stunned)
+	var/exposed_counted = (exposed in grenade_stunned)
+	finish(!protected_counted && exposed_counted ? "POMIAR POPRAWNY" : "POMIAR BŁĘDNY", "chroniony (leżał przed wybuchem: [protected_down ? "tak" : "nie"]) policzony: [protected_counted ? "TAK" : "nie"], bez ochrony policzony: [exposed_counted ? "tak" : "NIE"]")
+	if(protected_counted)
+		Fail("granat_kontrola_pomiaru: boarder z ochroną, powalony przed wybuchem, został policzony jako ogłuszony granatem")
+	if(!exposed_counted)
+		Fail("granat_kontrola_pomiaru: boarder bez ochrony obok wybuchu nie został policzony jako ogłuszony granatem")
+	ally_stunned = FALSE
+
 /datum/unit_test/aquila_knpc_sim/proc/grenade_thrown(mob/living/carbon/human/thrower, mob/living/carbon/human/ally)
 	check_ally_stun(ally)
 	check_ally_stun(thrower)
@@ -673,6 +701,7 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 		var/now = H.AmountParalyzed() + H.AmountKnockdown() + H.AmountStun()
 		if(now > before[H] + 1)
 			ally_stunned = TRUE
+			grenade_stunned |= H
 			sim_log("OGŁUSZONY WŁASNYM GRANATEM: [label_of(H)] (+[now - before[H]] ds, ochrona oczu [H.get_eye_protection()], uszu [H.get_ear_protection()])", "ff")
 
 /datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
