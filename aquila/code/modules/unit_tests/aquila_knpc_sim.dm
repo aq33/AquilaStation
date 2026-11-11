@@ -658,9 +658,14 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	begin("granat_kontrola_pomiaru")
 	var/mob/living/carbon/human/protected = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 13, 8, "syndykat", "Chroniony")
 	var/mob/living/carbon/human/exposed = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 17, 8, "syndykat", "Bez ochrony")
-	QDEL_NULL(exposed.glasses)
-	QDEL_NULL(exposed.ears)
-	QDEL_NULL(exposed.head)
+	// Już leży z paraliżem i powaleniem tuż poniżej tego, co nałoży wybuch z 2 pól (71,43 i 142,86 ds): przyrost poniżej 0,1 ds, który stary próg +1 ds pomijał
+	var/mob/living/carbon/human/already_down = add_mob(/mob/living/carbon/human/ai_boarder/syndicate/smg/knpc_sim, 15, 10, "syndykat", "Bez ochrony, leżący")
+	for(var/mob/living/carbon/human/H as anything in list(exposed, already_down))
+		QDEL_NULL(H.glasses)
+		QDEL_NULL(H.ears)
+		QDEL_NULL(H.head)
+	already_down.Paralyze(71.4)
+	already_down.Knockdown(142.8)
 	protected.Knockdown(5 SECONDS) // „poślizg” przed wybuchem
 	var/protected_down = protected.IsKnockdown()
 	ally_stunned = FALSE
@@ -669,11 +674,14 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	bang.prime()
 	var/protected_counted = (protected in grenade_stunned)
 	var/exposed_counted = (exposed in grenade_stunned)
-	finish(!protected_counted && exposed_counted ? "POMIAR POPRAWNY" : "POMIAR BŁĘDNY", "chroniony (leżał przed wybuchem: [protected_down ? "tak" : "nie"]) policzony: [protected_counted ? "TAK" : "nie"], bez ochrony policzony: [exposed_counted ? "tak" : "NIE"]")
+	var/already_down_counted = (already_down in grenade_stunned)
+	finish(!protected_counted && exposed_counted && already_down_counted ? "POMIAR POPRAWNY" : "POMIAR BŁĘDNY", "chroniony (leżał przed wybuchem: [protected_down ? "tak" : "nie"]) policzony: [protected_counted ? "TAK" : "nie"], bez ochrony policzony: [exposed_counted ? "tak" : "NIE"], bez ochrony już leżący policzony: [already_down_counted ? "tak" : "NIE"]")
 	if(protected_counted)
 		Fail("granat_kontrola_pomiaru: boarder z ochroną, powalony przed wybuchem, został policzony jako ogłuszony granatem")
 	if(!exposed_counted)
 		Fail("granat_kontrola_pomiaru: boarder bez ochrony obok wybuchu nie został policzony jako ogłuszony granatem")
+	if(!already_down_counted)
+		Fail("granat_kontrola_pomiaru: boarder bez ochrony, już leżący, któremu wybuch tylko przedłużył stan, nie został policzony")
 	ally_stunned = FALSE
 
 /datum/unit_test/aquila_knpc_sim/proc/grenade_thrown(mob/living/carbon/human/thrower, mob/living/carbon/human/ally)
@@ -683,13 +691,16 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	var/datum/knpc_sim_track/ally_track = tracks[ally]
 	return track.grenades + ally_track.grenades > 0
 
-/// Suma paraliżu, powalenia i ogłuszenia (w decysekundach) każdego żywego boardera Syndykatu
+/// Paraliż, powalenie i ogłuszenie (w decysekundach, osobno) każdego żywego boardera Syndykatu
 /datum/unit_test/aquila_knpc_sim/proc/syndicate_stun_levels()
 	. = list()
 	for(var/mob/living/carbon/human/H as anything in tracks)
 		var/datum/knpc_sim_track/track = tracks[H]
 		if(track.team == "syndykat" && !QDELETED(H) && H.stat != DEAD)
-			.[H] = H.AmountParalyzed() + H.AmountKnockdown() + H.AmountStun()
+			.[H] = stun_levels(H)
+
+/datum/unit_test/aquila_knpc_sim/proc/stun_levels(mob/living/H)
+	return list(H.AmountParalyzed(), H.AmountKnockdown(), H.AmountStun())
 
 /// Po wybuchu hukowego: komu z Syndykatu przybyło ogłuszenia (także temu, kto już leżał)
 /datum/unit_test/aquila_knpc_sim/proc/check_grenade_stuns(list/before)
@@ -698,11 +709,19 @@ GLOBAL_DATUM(knpc_sim, /datum/unit_test/aquila_knpc_sim)
 	for(var/mob/living/carbon/human/H as anything in before)
 		if(QDELETED(H))
 			continue
-		var/now = H.AmountParalyzed() + H.AmountKnockdown() + H.AmountStun()
-		if(now > before[H] + 1)
+		// prime() działa w jednym ticku, więc nic nie zdąży zaniknąć: każdy wzrost, nawet o ułamek decysekundy,
+		// to stan nałożony (albo odświeżony na dłużej) przez wybuch
+		var/list/now = stun_levels(H)
+		var/list/was = before[H]
+		var/list/raised = list()
+		var/static/list/names = list("paraliż", "powalenie", "ogłuszenie")
+		for(var/i in 1 to 3)
+			if(now[i] > was[i])
+				raised += "[names[i]] [was[i]] -> [now[i]] ds"
+		if(length(raised))
 			ally_stunned = TRUE
 			grenade_stunned |= H
-			sim_log("OGŁUSZONY WŁASNYM GRANATEM: [label_of(H)] (+[now - before[H]] ds, ochrona oczu [H.get_eye_protection()], uszu [H.get_ear_protection()])", "ff")
+			sim_log("OGŁUSZONY WŁASNYM GRANATEM: [label_of(H)] ([raised.Join(", ")], ochrona oczu [H.get_eye_protection()], uszu [H.get_ear_protection()])", "ff")
 
 /datum/unit_test/aquila_knpc_sim/proc/check_ally_stun(mob/living/carbon/human/ally)
 	if(QDELETED(ally))
