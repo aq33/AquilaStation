@@ -80,7 +80,7 @@
 		"szczerze mówiąc niewiele",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/hostile/lizard,
+		/mob/living/basic/lizard,
 	)
 	output_organs = list(
 		/obj/item/organ/infuser_feature/lizard_horns,

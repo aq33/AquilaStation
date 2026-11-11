@@ -11740,7 +11740,7 @@
 /obj/structure/window{
 	dir = 1
 	},
-/mob/living/simple_animal/turtle,
+/mob/living/basic/turtle,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "jon" = (

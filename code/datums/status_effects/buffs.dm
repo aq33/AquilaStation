@@ -474,9 +474,8 @@
 			deathTick += 1
 		else
 			owner.visible_message("Dusza [owner] zostaje wchłonięta przez laskę, zwalniając poprzedniego węża z obowiązku.")
-			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
 			var/list/chems = list(/datum/reagent/medicine/bicaridine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/antitoxin)
-			healSnake.poison_type = pick(chems)
+			var/mob/living/basic/snake/healSnake = new(owner.loc, pick(chems)) // AQ EDIT - basic moby (the venom is set when the snake is made)
 			healSnake.name = "Wąż Asklepiosa"
 			healSnake.real_name = "Wąż Asklepiosa"
 			healSnake.desc = "Mistyczny wąż, niegdyś uwięziony na Lasce Asklepiosa, teraz wolny od swojego brzemienia. W przeciwieństwie do zwykłego węża jego ukąszenia zawierają chemikalia o słabych właściwościach leczniczych."

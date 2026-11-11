@@ -886,7 +886,6 @@
 #include "code\modules\mob\living\simple_animal\constructs.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
-#include "code\modules\mob\living\simple_animal\friendly\snake.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\event.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin_act.dm"
@@ -1940,9 +1939,16 @@
 #include "code\modules\mob\living\basic\pets\hamster.dm"
 #include "code\modules\mob\living\basic\pets\penguin.dm"
 #include "code\modules\mob\living\basic\pets\sloth.dm"
+#include "code\datums\elements\venomous.dm"
+#include "code\modules\mob\living\basic\vermin\lizard.dm"
+#include "code\modules\mob\living\basic\vermin\crab.dm"
+#include "code\modules\mob\living\basic\vermin\butterfly.dm"
+#include "code\modules\mob\living\basic\space_fauna\snake.dm"
+#include "code\modules\mob\living\basic\space_fauna\turtle.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_farm.dm"
 #include "code\modules\unit_tests\aquila_basic_gondola_gnome.dm"

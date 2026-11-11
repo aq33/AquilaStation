@@ -717,7 +717,7 @@
 		return 1
 	if(ispath(MP, /mob/living/basic/pet/dog/corgi)) // AQ EDIT - basic moby
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/crab))
+	if(ispath(MP, /mob/living/basic/crab)) // AQ EDIT - basic moby
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
 		return 1

@@ -12252,7 +12252,7 @@
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/key/janitor,
 /obj/item/reagent_containers/spray/cleaner,
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	name = "Wags-His-Tail"
 	},
 /turf/open/floor/plating,

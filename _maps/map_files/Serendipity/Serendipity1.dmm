@@ -5098,7 +5098,7 @@
 /obj/structure/bed/dogbed{
 	name = "Wags-His-Tail's bed"
 	},
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	name = "Wags-His-Tail"
 	},
 /obj/machinery/requests_console{

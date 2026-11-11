@@ -411,7 +411,7 @@
 /turf/open/floor/carpet/blue,
 /area/virtual_domain/fullbright)
 "bi" = (
-/mob/living/simple_animal/crab,
+/mob/living/basic/crab,
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "bj" = (
@@ -567,7 +567,7 @@
 /area/virtual_domain/fullbright)
 "bD" = (
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/crab,
+/mob/living/basic/crab,
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "bE" = (
@@ -3457,7 +3457,7 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "iF" = (
-/mob/living/simple_animal/crab/kreb,
+/mob/living/basic/crab/kreb,
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "iG" = (
@@ -3607,7 +3607,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "iW" = (
-/mob/living/simple_animal/crab,
+/mob/living/basic/crab,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},

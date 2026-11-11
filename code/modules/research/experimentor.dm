@@ -627,7 +627,7 @@
 	to_chat(user, message)
 	var/animals = rand(1,25)
 	var/counter
-	var/list/valid_animals = list(/mob/living/simple_animal/parrot, /mob/living/simple_animal/butterfly, /mob/living/basic/pet/cat, /mob/living/basic/pet/dog/corgi, /mob/living/simple_animal/crab, /mob/living/basic/pet/fox, /mob/living/simple_animal/hostile/lizard, /mob/living/basic/mouse, /mob/living/basic/pet/dog/pug, /mob/living/simple_animal/hostile/bear, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/carp) // AQ EDIT - basic moby
+	var/list/valid_animals = list(/mob/living/simple_animal/parrot, /mob/living/basic/butterfly, /mob/living/basic/pet/cat, /mob/living/basic/pet/dog/corgi, /mob/living/basic/crab, /mob/living/basic/pet/fox, /mob/living/basic/lizard, /mob/living/basic/mouse, /mob/living/basic/pet/dog/pug, /mob/living/simple_animal/hostile/bear, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/carp) // AQ EDIT - basic moby
 	for(counter = 1; counter < animals; counter++)
 		var/mobType = pick(valid_animals)
 		new mobType(get_turf(src))

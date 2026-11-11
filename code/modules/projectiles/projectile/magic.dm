@@ -238,15 +238,15 @@
 							/mob/living/simple_animal/hostile/gorilla,
 							/mob/living/simple_animal/parrot,
 							/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
-							/mob/living/simple_animal/crab,
+							/mob/living/basic/crab, // AQ EDIT - basic moby
 							/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
 							/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 							/mob/living/basic/mouse, // AQ EDIT - basic moby
 							/mob/living/basic/chicken, // AQ EDIT - basic moby
 							/mob/living/basic/cow, // AQ EDIT - basic moby
-							/mob/living/simple_animal/hostile/lizard,
+							/mob/living/basic/lizard, // AQ EDIT - basic moby
 							/mob/living/basic/pet/fox, // AQ EDIT - basic moby
-							/mob/living/simple_animal/butterfly,
+							/mob/living/basic/butterfly, // AQ EDIT - basic moby
 							/mob/living/basic/pet/cat/cak, // AQ EDIT - basic moby
 							/mob/living/basic/chick) // AQ EDIT - basic moby
 			new_mob = new path(M.loc)

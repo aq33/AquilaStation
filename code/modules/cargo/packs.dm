@@ -2506,13 +2506,13 @@
 	desc = "Niezbyt groźne owady, ale dają lepsze wrażenie niż, dajmy na to, muchy czy karaluchy."//is that a motherfucking worm reference
 	contraband = TRUE
 	cost = 5000
-	contains = list(/mob/living/simple_animal/butterfly)
+	contains = list(/mob/living/basic/butterfly) // AQ EDIT - basic moby
 	crate_name = "skrzynia z okazami entomologicznymi"
 
 /datum/supply_pack/critter/butterfly/generate()
 	. = ..()
 	for(var/i in 1 to 49)
-		new /mob/living/simple_animal/butterfly(.)
+		new /mob/living/basic/butterfly(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/cat
 	name = "Skrzynia z kotem"
@@ -2586,14 +2586,14 @@
 	name = "Krabia rakieta"
 	desc = "KRAAAAAAABIA RAKIETA. KRABIA RAKIETA. KRABIA RAKIETA. KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB RAKIETA. ZRÓB. RAKIETĘ. KUP. ZRÓB RAKIETĘ. KRABIA RAKIEEETA. KRABIA RAKIEEEETA. KRAB KRAB KRAB KRAB KRAB KRAB KRAB KRAB RAKIEEEEEEEEEEEEEEEEEEEEEEEEE EEEEEEEEEEEEEEEEEEEEEEEEE EEEETTTTTTTTTTTTAAAAAAAAA AAAHHHHHHHHHHHHH. KRABIA RAKIETA. KRAAABIA RAKIEEEEEEEEEGGGGHHHHTA KRAB KRAB KRAABIARAKIETA KRABIA RAKIEEEETA."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
 	cost = 5000
-	contains = list(/mob/living/simple_animal/crab)
+	contains = list(/mob/living/basic/crab) // AQ EDIT - basic moby
 	crate_name = "patrz pan, darmowe kraby"
 	DropPodOnly = TRUE
 
 /datum/supply_pack/critter/crab/generate()
 	. = ..()
 	for(var/i in 1 to 49)
-		new /mob/living/simple_animal/crab(.)
+		new /mob/living/basic/crab(.) // AQ EDIT - basic moby
 
 /datum/supply_pack/critter/corgis/exotic
 	name = "Skrzynia z egzotycznym corgim"
@@ -2662,9 +2662,9 @@
 	desc = "Masz dość tych PIERDOLONYCH węży na tej PIERDOLONEJ stacji kosmicznej? To ta skrzynia nie jest dla ciebie. Zawiera trzy jadowite węże."
 	cost = 3000
 	access_budget = ACCESS_SECURITY
-	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
-					/mob/living/simple_animal/hostile/retaliate/poison/snake,
-					/mob/living/simple_animal/hostile/retaliate/poison/snake)
+	contains = list(/mob/living/basic/snake, // AQ EDIT - basic moby
+					/mob/living/basic/snake, // AQ EDIT - basic moby
+					/mob/living/basic/snake) // AQ EDIT - basic moby
 	crate_name = "skrzynia z wężami"
 
 //////////////////////////////////////////////////////////////////////////////

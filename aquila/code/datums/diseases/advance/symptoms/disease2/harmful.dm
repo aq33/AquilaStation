@@ -421,5 +421,5 @@
 		M.Jitter(rand(12, 16))
 	if(iscarbon(M) && prob(5))
 		M.visible_message("<span class='danger'>[M] wykrztusza motyle!</span>", "<span class='userdanger'>Wykrztuszasz motyle!</span>")
-		new /mob/living/simple_animal/butterfly(get_turf(M))
-		new /mob/living/simple_animal/butterfly(get_turf(M))
+		new /mob/living/basic/butterfly(get_turf(M))
+		new /mob/living/basic/butterfly(get_turf(M))

@@ -298,3 +298,5 @@
 #define BB_CLIMBED_TREE "BB_climbed_tree"
 /// From the climb_tree AI behaviour: (obj/structure/flora/tree/target)
 #define COMSIG_LIVING_CLIMB_TREE "living_climb_tree"
+///people the turtle headbutts!
+#define BB_TURTLE_HEADBUTT_VICTIM "turtle_headbutt_victim"

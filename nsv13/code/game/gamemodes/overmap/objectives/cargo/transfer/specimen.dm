@@ -12,7 +12,7 @@
 		/mob/living/simple_animal/hostile/carp,
 
 		// Benign specimens
-		/mob/living/simple_animal/hostile/lizard,
+		/mob/living/basic/lizard, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
 		/mob/living/basic/pet/cat, // AQ EDIT - basic moby
@@ -21,8 +21,8 @@
 		/mob/living/basic/pet/penguin/emperor, // AQ EDIT - basic moby
 		/mob/living/basic/chicken, // AQ EDIT - basic moby
 		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/butterfly,
-		/mob/living/simple_animal/crab,
+		/mob/living/basic/butterfly, // AQ EDIT - basic moby
+		/mob/living/basic/crab, // AQ EDIT - basic moby
 		/mob/living/basic/cow // AQ EDIT - basic moby
 	) )
 

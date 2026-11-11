@@ -594,9 +594,9 @@
 			if("pug")
 				M.change_mob_type( /mob/living/basic/pet/dog/pug , null, null, delmob ) // AQ EDIT - basic moby
 			if("crab")
-				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
+				M.change_mob_type( /mob/living/basic/crab , null, null, delmob ) // AQ EDIT - basic moby
 			if("coffee")
-				M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
+				M.change_mob_type( /mob/living/basic/crab/Coffee , null, null, delmob ) // AQ EDIT - basic moby
 			if("parrot")
 				M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 			if("polyparrot")

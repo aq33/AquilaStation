@@ -141,7 +141,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/mob/living/simple_animal/crab{
+/mob/living/basic/crab{
 	name = "Eddie"
 	},
 /turf/open/floor/plating/beach/sand,
@@ -481,7 +481,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "bz" = (
-/mob/living/simple_animal/crab{
+/mob/living/basic/crab{
 	name = "Jon"
 	},
 /turf/open/floor/plating/beach/sand,
@@ -830,7 +830,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "cC" = (
-/mob/living/simple_animal/crab{
+/mob/living/basic/crab{
 	name = "Jonny"
 	},
 /turf/open/floor/plating/beach/sand,
@@ -1281,7 +1281,7 @@
 /area/virtual_domain/fullbright)
 "dS" = (
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/crab{
+/mob/living/basic/crab{
 	name = "James"
 	},
 /turf/open/floor/plating/beach/sand,

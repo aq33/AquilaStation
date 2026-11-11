@@ -13507,7 +13507,7 @@
 	},
 /area/security/detectives_office)
 "lzZ" = (
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little brave spider. He wants to be a general too!";
 	health = 500;
 	icon = 'icons/effects/effects.dmi';

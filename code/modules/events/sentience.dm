@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/pet, // AQ EDIT - basic moby
 	/mob/living/simple_animal/pet,
 	/mob/living/simple_animal/parrot,
-	/mob/living/simple_animal/hostile/lizard,
+	/mob/living/basic/lizard, // AQ EDIT - basic moby
 	/mob/living/basic/sloth, // AQ EDIT - basic moby
 	/mob/living/basic/mouse/brown/tom, // AQ EDIT - basic moby
 	/mob/living/basic/goat, // AQ EDIT - basic moby
@@ -10,8 +10,8 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/retaliate/bat,
 	/mob/living/simple_animal/hostile/carp/cayenne,
-	/mob/living/simple_animal/butterfly,
-	/mob/living/simple_animal/hostile/retaliate/poison/snake,
+	/mob/living/basic/butterfly, // AQ EDIT - basic moby
+	/mob/living/basic/snake, // AQ EDIT - basic moby
 	/mob/living/simple_animal/bot/secbot/beepsky
 )))
 
