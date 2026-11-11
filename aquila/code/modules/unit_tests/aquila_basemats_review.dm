@@ -181,9 +181,13 @@
 		if(recipe.result_type == /obj/item/stack/tile/material)
 			tile_recipe = recipe
 	TEST_ASSERT(tile_recipe, "Gold sheets have no material tile recipe")
+	var/datum/tgui/stack_ui = new(builder, gold, "Stack")
+	stack_ui.status = UI_INTERACTIVE
 	usr = builder
-	gold.ui_act("make", list("ref" = REF(tile_recipe), "multiplier" = "1"))
+	gold.ui_act("make", list("ref" = REF(tile_recipe), "multiplier" = "1"), stack_ui)
 	usr = null
+	qdel(stack_ui)
+	TEST_ASSERT_EQUAL(gold.amount, 2 - tile_recipe.req_amount, "Crafting gold tiles did not use the gold sheet")
 	TEST_ASSERT_EQUAL(iron_tiles.amount, 10, "Crafted gold tiles merged into the iron tile pile")
 	TEST_ASSERT(iron_tiles.mats_per_unit[iron_ref], "The iron tile pile changed its material")
 	var/obj/item/stack/tile/material/gold_tiles
@@ -288,6 +292,64 @@
 	microwave.loop_finish()
 	TEST_ASSERT_EQUAL(microwave.broken, 0, "An iron item broke the microwave")
 	TEST_ASSERT_EQUAL(wrench.loc, start, "The microwave did not give the iron item back")
+
+/// N3: stos mięsa trzyma jeden komponent jedzenia z odczynnikami proporcjonalnymi do ilości, a młynek go mieli
+/datum/unit_test/aquila_basemats_meat_stack_reagents
+
+/datum/unit_test/aquila_basemats_meat_stack_reagents/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/item/stack/sheet/meat/meat = allocate(/obj/item/stack/sheet/meat, start, 5, FALSE)
+	var/datum/component/edible/edible = meat.GetComponent(/datum/component/edible)
+	TEST_ASSERT(edible, "A meat stack is not edible")
+	var/full_volume = meat.reagents.total_volume
+	TEST_ASSERT(full_volume, "A meat stack has no reagents")
+	meat.reagents.add_reagent(/datum/reagent/toxin, 5)
+	meat.use(2)
+	TEST_ASSERT(meat.GetComponent(/datum/component/edible) == edible, "Using sheets recreated the edible component")
+	TEST_ASSERT_EQUAL(round(meat.reagents.total_volume, 0.01), round((full_volume + 5) * 3 / 5, 0.01), "Meat reagents did not scale with the stack amount")
+	TEST_ASSERT(meat.reagents.has_reagent(/datum/reagent/toxin), "Using sheets wiped an injected reagent")
+	meat.add(2)
+	TEST_ASSERT_EQUAL(round(meat.reagents.total_volume, 0.01), round(full_volume + 5, 0.01), "Adding sheets refilled the reagents from scratch")
+
+	var/obj/item/reagent_containers/glass/beaker/large/beaker = allocate(/obj/item/reagent_containers/glass/beaker/large, start)
+	TEST_ASSERT(meat.grind(beaker.reagents), "Grinding a meat stack failed")
+	TEST_ASSERT(beaker.reagents.total_volume, "Grinding a meat stack gave nothing")
+	TEST_ASSERT(QDELETED(meat) || !meat.amount, "Grinding a meat stack did not use it up")
+
+/// N4: pies zjada mięsną podłogę do końca, a ona zostawia warstwę niżej zamiast qdel() turfa
+/datum/unit_test/aquila_basemats_meat_floor_eaten
+
+/datum/unit_test/aquila_basemats_meat_floor_eaten/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/east = locate(start.x + 1, start.y, start.z)
+	var/old_type = east.type
+	var/list/old_baseturfs = east.baseturfs
+	var/turf/open/floor/material/meat_floor = east.PlaceOnTop(/turf/open/floor/material)
+	meat_floor.set_custom_materials(list(/datum/material/meat = 500))
+	var/datum/component/edible/edible = meat_floor.GetComponent(/datum/component/edible)
+	var/mob/living/basic/pet/dog/corgi/dog = allocate(/mob/living/basic/pet/dog/corgi, start)
+	if(!edible)
+		east.ChangeTurf(old_type, old_baseturfs)
+		return Fail("A meat floor is not edible")
+	for(var/i in 1 to 5)
+		if(QDELETED(edible))
+			break
+		edible.use_by_animal(meat_floor, dog)
+	var/eaten_type = east.type
+	east.ChangeTurf(old_type, old_baseturfs)
+	TEST_ASSERT(!ispath(eaten_type, /turf/open/floor/material), "The dog did not eat the meat floor")
+	TEST_ASSERT(ispath(eaten_type, /turf/open/floor), "An eaten meat floor left [eaten_type] instead of the floor below")
+
+/// N6: kotlet, boczek i krab to część płata mięsa, nie cały płat (autolat dawał 12 arkuszy z jednego płata)
+/datum/unit_test/aquila_basemats_meat_cuts
+
+/datum/unit_test/aquila_basemats_meat_cuts/Run()
+	var/obj/item/food/meat/slab/slab = allocate(/obj/item/food/meat/slab)
+	var/slab_meat = aquila_test_material_amount(slab, /datum/material/meat)
+	TEST_ASSERT(slab_meat, "A meat slab has no meat material")
+	for(var/cut_type in list(/obj/item/food/meat/rawcutlet/plain, /obj/item/food/meat/cutlet/plain, /obj/item/food/meat/rawbacon, /obj/item/food/meat/bacon, /obj/item/food/meat/rawcrab, /obj/item/food/meat/crab))
+		var/obj/item/food/meat/cut = allocate(cut_type)
+		TEST_ASSERT(round(aquila_test_material_amount(cut, /datum/material/meat) * 3) <= slab_meat, "Three of [cut_type] hold more meat than the slab they are cut from")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

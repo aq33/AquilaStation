@@ -17,6 +17,16 @@
 
 /datum/material/meat/on_removed(atom/source, material_flags)
 	. = ..()
+	// Stos mięsa zmienia przy każdym use()/add() tylko ilość: komponent zostaje (z odczynnikami wstrzykniętymi graczom),
+	// a odczynniki skalują się z liczbą arkuszy. Nowy komponent co zmianę dawał pełne odczynniki od nowa (darmowa odżywka).
+	if(isstack(source))
+		var/obj/item/stack/meat_stack = source
+		var/new_meat = LAZYACCESS(meat_stack.mats_per_unit, src) * meat_stack.amount
+		var/old_meat = LAZYACCESS(source.custom_materials, src)
+		if(new_meat && source.GetComponent(/datum/component/edible))
+			if(old_meat && source.reagents && new_meat != old_meat)
+				source.reagents.multiply_reagents(new_meat / old_meat)
+			return
 	qdel(source.GetComponent(/datum/component/edible))
 
 /datum/material/meat/on_applied_obj(obj/O, amount, material_flags)
@@ -29,6 +39,9 @@
 	make_edible(T, amount, material_flags)
 
 /datum/material/meat/proc/make_edible(atom/source, amount, material_flags)
+	// Zostawiony przez on_removed() komponent stosu ma już odczynniki (AddComponent nie dodałby ich drugi raz, ale nie ma po co)
+	if(source.GetComponent(/datum/component/edible))
+		return
 	var/nutriment_count = 3 * (amount / MINERAL_MATERIAL_AMOUNT)
 	var/oil_count = 2 * (amount / MINERAL_MATERIAL_AMOUNT)
 	source.AddComponent(/datum/component/edible, \

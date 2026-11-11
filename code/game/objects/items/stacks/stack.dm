@@ -93,6 +93,12 @@
 	var/total_volume = 0
 	for(var/reagent in grind_results)
 		total_volume += grind_results[reagent]
+	// AQ EDIT START - stos bez grind_results (jadalny stos mięsa: pusta lista z komponentu edible) oddał już wszystko
+	// w reagents wyżej; bez tego dzielenie przez zero
+	if(!total_volume)
+		use(current_amount, check = FALSE)
+		return TRUE
+	// AQ EDIT END
 
 	//compute number of pieces(or sheets) from available_volume
 	var/available_amount = min(current_amount, round(available_volume / total_volume))
