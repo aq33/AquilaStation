@@ -5,7 +5,7 @@
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	if(defecation_factor && ishuman(M) && CONFIG_GET(flag/shitting_enabled))
 		var/mob/living/carbon/human/H = M
-		H.adjust_defecation(defecation_factor * H.physiology.defecation_mod * H.dna.species.shitmod)
+		H.adjust_defecation(defecation_factor * H.physiology.defecation_mod * H.dna.species.shitmod * H.stool_rate_mod())
 	return ..()
 
 // Coffee gets things moving
