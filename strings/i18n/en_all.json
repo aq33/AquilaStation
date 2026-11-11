@@ -43150,6 +43150,7 @@
 "Otwierasz piłą [FORMAT_LIMB_OWNER(limb)].": "You saw [FORMAT_LIMB_OWNER(limb)] open.",
 "Otwierasz piłą [patient].": "You saw [patient] open.",
 "Otwierasz połączenie ze światem duchów...": "You tear open a connection to the spirit realm...",
+"Otwierasz wrota [src] i wchodzisz do środka...": "You open the [src] doors and climb inside...",
 "Otwierasz właz [src] i wchodzisz do środka...": "You open the [src] hatch and climb inside...",
 "Otworzy się za [max((GLOB.ratvar_arrival_tick - world.time)/10, 0)] s.": "It will open in [max((GLOB.ratvar_arrival_tick - world.time)/10, 0)] seconds.",
 "Otworzyć ponownie wybór misji dla całego statku? Do wyboru kapitana cele misji będą wstrzymane.": "Reopen the mission choice for the whole ship? Until the captain chooses, the mission objectives will be paused.",
