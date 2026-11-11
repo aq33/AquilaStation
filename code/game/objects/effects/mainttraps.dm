@@ -226,7 +226,7 @@
 	spawned = /mob/living/basic/faithless // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/shitsec
-	spawned = /mob/living/simple_animal/hostile/nanotrasen/hugbox
+	spawned = /mob/living/basic/trooper/nanotrasen/hugbox // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/eldritch //currently unused. if used, note these guys are quite powerful with a whopping 35 melee
 	spawned = /mob/living/simple_animal/hostile/netherworld
@@ -256,10 +256,7 @@
 #undef PICK_STYLE_ALL
 
 
-/mob/living/simple_animal/hostile/nanotrasen/hugbox
-	loot = list(/obj/effect/gibspawner/human)//no gamer gear, sorry!
-	mobchatspan = "headofsecurity"
-	del_on_death = TRUE
+// AQ EDIT - basic moby: /mob/living/basic/trooper/nanotrasen/hugbox jest w aquila/code/modules/mob/living/basic/trooper/nanotrasen.dm
 
 // AQ EDIT - basic moby: the hugbox zombie is in aquila\code\modules\mob\living\basic\ruin_defender\zombie.dm
 

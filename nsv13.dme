@@ -2792,11 +2792,8 @@
 #include "code\modules\mob\living\simple_animal\hostile\mecha_pilot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mimic.dm"
 // AQ EDIT - chodzący grzyb jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\mushroom.dm)
-#include "code\modules\mob\living\simple_animal\hostile\nanotrasen.dm"
 #include "code\modules\mob\living\simple_animal\hostile\netherworld.dm"
-#include "code\modules\mob\living\simple_animal\hostile\pirate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\redgrub.dm"
-#include "code\modules\mob\living\simple_animal\hostile\russian.dm"
 // AQ EDIT - szkielety są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\skeleton.dm)
 #include "code\modules\mob\living\simple_animal\hostile\space_dragon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\statue.dm"
@@ -3870,8 +3867,6 @@
 #include "nsv13\code\modules\mob\living\simple_animal\bot\hugbot.dm"
 #include "nsv13\code\modules\mob\living\simple_animal\bot\secbot.dm"
 #include "nsv13\code\modules\mob\living\simple_animal\hostile\dioclown.dm"
-#include "nsv13\code\modules\mob\living\simple_animal\hostile\nanotrasen.dm"
-#include "nsv13\code\modules\mob\living\simple_animal\hostile\syndicate.dm"
 #include "nsv13\code\modules\modular_computer\wiki_uplink.dm"
 #include "nsv13\code\modules\munitions\muni_pointer.dm"
 #include "nsv13\code\modules\munitions\munitions_trolley.dm"

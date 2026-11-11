@@ -113,8 +113,8 @@
 
 /datum/modular_mob_segment/syndicate_elite
 	mobs = list(
-		/mob/living/simple_animal/hostile/syndicate/melee/sword/space/stormtrooper,
-		/mob/living/simple_animal/hostile/syndicate/ranged/space/stormtrooper,
+		/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+		/mob/living/basic/trooper/syndicate/ranged/space/stormtrooper,
 	)
 
 

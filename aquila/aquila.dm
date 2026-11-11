@@ -943,7 +943,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\spider\spiderlings.dm"
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\hivelord.dm"
-#include "code\modules\mob\living\simple_animal\hostile\nsv_syndicate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\regalrat.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\parrot.dm"
@@ -1138,6 +1137,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_mob_abilities_troop.dm"
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
 #include "code\modules\test_chamber\kits\pr_614_celowniki.dm"
@@ -2048,6 +2048,16 @@
 #include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\step_towards_turf.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
+// Żołnierze (Syndykat, NT, Rosjanie, piraci) jako basic moby, port tg trooper/
+#include "code\datums\ai\basic_mobs\basic_subtrees\call_reinforcements.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\travel_to_point.dm"
+#include "code\datums\components\plundering_attacks.dm"
+#include "code\modules\mob\living\basic\trooper\trooper.dm"
+#include "code\modules\mob\living\basic\trooper\trooper_ai.dm"
+#include "code\modules\mob\living\basic\trooper\syndicate.dm"
+#include "code\modules\mob\living\basic\trooper\nanotrasen.dm"
+#include "code\modules\mob\living\basic\trooper\russian.dm"
+#include "code\modules\mob\living\basic\trooper\pirate.dm"
 // Koniec bloku rdzenia SI i basic mobów
 // Tanie basic moby z tg sprzed drzew zachowań (tg 926bf40c5a, mobabilities cz. 2): sarna i moby bez zdolności
 #include "code\datums\ai\generic\find_and_set_turfs.dm"
@@ -2089,6 +2099,7 @@
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_mob_abilities.dm"
+#include "code\modules\unit_tests\aquila_basic_troopers.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"

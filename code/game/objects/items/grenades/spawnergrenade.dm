@@ -30,7 +30,7 @@
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "granat dostawczy z wiscerotorami"
-	spawner_type = /mob/living/simple_animal/hostile/viscerator
+	spawner_type = /mob/living/basic/viscerator // AQ EDIT - basic moby
 	deliveryamt = 10
 
 /obj/item/grenade/spawnergrenade/spesscarp

@@ -30,7 +30,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 	spawn_text = "przenika z"
-	mob_types = list(/mob/living/simple_animal/hostile/syndicate/ranged)
+	mob_types = list(/mob/living/basic/trooper/syndicate/ranged) // AQ EDIT - basic moby
 	faction = list(FACTION_SYNDICATE)
 
 /obj/structure/spawner/skeleton

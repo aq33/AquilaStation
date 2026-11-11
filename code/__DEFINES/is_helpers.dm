@@ -191,15 +191,12 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/cat_butcherer,
 	/mob/living/basic/faithless, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/nanotrasen,
-	/mob/living/simple_animal/hostile/pirate,
-	/mob/living/simple_animal/hostile/russian,
 	/mob/living/simple_animal/hostile/syndicate,
+	/mob/living/basic/trooper, // AQ EDIT - basic moby: żołnierze (Syndykat, NT, Rosjanie, piraci)
 	/mob/living/simple_animal/hostile/wizard,
 	/mob/living/basic/zombie, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/retaliate/clown,
 	/mob/living/basic/spaceman, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
 	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,
 	)))
