@@ -96,12 +96,15 @@
 
 /datum/antagonist/space_dragon/on_removal()
 	// AQ EDIT START - basic moby: owner znika w ..(), więc sprzątamy przed nim (runtime przy zdejmowaniu antaga)
-	rift_ability?.Remove(owner.current)
+	if(!QDELETED(rift_ability))
+		rift_ability.Remove(owner.current)
 	owner.current.faction -= "carp"
 	UnregisterSignal(owner.current, COMSIG_LIVING_LIFE)
 	UnregisterSignal(owner.current, COMSIG_MOB_DEATH)
-	deltimer(rift_warning_timer_id)
-	deltimer(rift_fail_timer_id)
+	if(rift_warning_timer_id != TIMER_ID_NULL)
+		deltimer(rift_warning_timer_id)
+	if(rift_fail_timer_id != TIMER_ID_NULL)
+		deltimer(rift_fail_timer_id)
 	rift_list = null
 	return ..()
 	// AQ EDIT END
