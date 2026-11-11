@@ -3695,6 +3695,14 @@ Oznaczenia w kolumnie uwag:
 | walking mushroom | chodzący grzyb | m; istniejące |
 | venus human trap | ludzka muchołówka | ż; nowe |
 | pine tree | sosna | ż; nowe |
+| mimic / crate mimic | mimik / skrzynia (mimik udaje skrzynię) | m; istniejące |
+| creature (Netherworld) / blank body | istota / puste ciało | ż / n; istniejące |
+| Uncanny Movement (creature teleport) | Niesamowity ruch | m; nowe |
+| Tangle (venus human trap) | Oplątanie | n; nowe |
+| Inflate (fugu) | Nadmij się | istniejące |
+| Rustle (clownana) | Szelest | m; nowe |
+| banana glutton | coś, co kiedyś było klaunem | n; istniejące (nasz mutant/blob) |
+| Space Dragon / Fire Breath / Wing Buffet | Kosmiczny smok / Ogniste tchnienie / Atak podmuchem | m / n / m; istniejące / nowe / istniejące |
 
 ## 9. Obszary i pomieszczenia (nazwy `/area`)
 
