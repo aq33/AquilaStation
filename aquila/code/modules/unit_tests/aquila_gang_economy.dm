@@ -63,6 +63,13 @@
 	var/obj/structure/gang_locker/locker = new(locker_turf, G)
 	TEST_ASSERT_EQUAL(G.locker, locker, "The gang should know its locker")
 	TEST_ASSERT(G.owns_turf(locker_turf), "The locker should claim territory")
+	// Pigułka z narkotykiem wartym mniej niż punkt (tuż przed limitem) zostaje razem z narkotykiem
+	var/obj/item/reagent_containers/pill/pill = new(locker_turf)
+	pill.reagents.add_reagent(/datum/reagent/drug/space_drugs, 1)
+	TEST_ASSERT_EQUAL(locker.sell_drugs_from(pill), 0, "A drug worth no points should give no points")
+	TEST_ASSERT(!QDELETED(pill), "The pill must stay when the sale is worth no points")
+	TEST_ASSERT_EQUAL(pill.reagents.get_reagent_amount(/datum/reagent/drug/space_drugs), 1, "The drug must stay in the pill")
+	qdel(pill)
 	// Gotówka ponad limit prania zostaje u gracza
 	locker.cash = GANG_LOCKER_CASH_CAP - 100
 	var/obj/item/holochip/too_much = new(gangster.loc, 500)
