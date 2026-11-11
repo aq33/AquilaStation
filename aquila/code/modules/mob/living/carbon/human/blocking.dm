@@ -100,3 +100,14 @@
 	block_flags = BLOCKING_ACTIVE | BLOCKING_UNBALANCE
 /obj/item/food/powercrepe
 	block_flags = BLOCKING_ACTIVE | BLOCKING_UNBLOCKABLE
+
+// Szabla jonowa (NSV13) to w kodzie podtyp pałki teleskopowej: nie blokowała wcale (block_level 0) i tylko rozłożona.
+// Broni się teraz jak szabla, także wyłączona, bo to dalej metalowe ostrze.
+/obj/item/melee/classic_baton/telescopic
+	/// Blokuje też złożona/wyłączona (hook w core hit_reaction)
+	var/blocks_when_off = FALSE
+
+/obj/item/melee/classic_baton/telescopic/stunsword
+	block_level = 1
+	block_flags = BLOCKING_ACTIVE | BLOCKING_COUNTERATTACK
+	blocks_when_off = TRUE

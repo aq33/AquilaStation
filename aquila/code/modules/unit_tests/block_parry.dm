@@ -61,5 +61,32 @@
 	parry.time_parried = world.time
 	TEST_ASSERT(!defender.check_shields(toolbox, 10, "cios", MELEE_ATTACK), "A dropped katana still parried")
 
+/// Regresja: szabla jonowa (podtyp pałki teleskopowej) nie blokowała wcale, także przy prawdziwym ciosie gaśnicą
+/datum/unit_test/aquila_ion_sabre_defends
+
+/datum/unit_test/aquila_ion_sabre_defends/Run()
+	var/mob/living/carbon/human/defender = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	var/obj/item/melee/classic_baton/telescopic/stunsword/ion_sabre = allocate(/obj/item/melee/classic_baton/telescopic/stunsword)
+	var/obj/item/extinguisher/extinguisher = allocate(/obj/item/extinguisher)
+	defender.put_in_active_hand(ion_sabre)
+	attacker.put_in_active_hand(extinguisher)
+	defender.set_combat_mode(TRUE)
+	attacker.set_combat_mode(TRUE)
+	defender.setDir(EAST)
+	attacker.setDir(WEST)
+	ion_sabre.on = FALSE // blok wyłączonej szabli to przypadek z gry
+
+	extinguisher.melee_attack_chain(attacker, defender)
+	TEST_ASSERT_EQUAL(defender.getBruteLoss(), 0, "A switched off ion sabre facing the attacker did not block an extinguisher")
+
+	defender.block_cooldown = 0
+	defender.set_combat_mode(FALSE)
+	defender.setDir(WEST)
+	attacker.changeNext_move(0)
+	TEST_ASSERT(defender.space_parry(), "Space with an ion sabre did not go to parrying")
+	extinguisher.melee_attack_chain(attacker, defender)
+	TEST_ASSERT_EQUAL(defender.getBruteLoss(), 0, "An ion sabre did not parry an extinguisher from behind")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
