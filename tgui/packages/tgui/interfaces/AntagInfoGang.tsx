@@ -162,7 +162,9 @@ export const AntagInfoGang = () => {
                     {territory}% stacji
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Twoje punkty">{points}</LabeledList.Item>
+                <LabeledList.Item label="Twoje punkty">
+                  {points}
+                </LabeledList.Item>
                 <LabeledList.Item label="Wynik gangu">{score}</LabeledList.Item>
                 <LabeledList.Item label="Szafka">
                   {has_locker ? 'Stoi' : 'Brak, postawi ją szef'}
