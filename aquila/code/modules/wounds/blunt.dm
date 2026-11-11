@@ -57,6 +57,7 @@
 		return FALSE
 	treated = TRUE
 	victim.update_wound_slowdown()
+	victim.update_wound_overlays() // splint (medical_overlays.dm)
 	user.visible_message("<span class='green'>[user] unieruchamia [limb.name] [victim].</span>", "<span class='green'>Unieruchamiasz [limb.name] [self ? "" : "[victim]"].</span>")
 	return TRUE
 

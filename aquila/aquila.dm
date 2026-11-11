@@ -838,6 +838,7 @@
 #include "code\modules\mob\living\blood_trails.dm"
 #include "code\modules\mob\living\carbon\alien\alien.dm"
 #include "code\modules\mob\living\carbon\bleed_overlays.dm"
+#include "code\modules\mob\living\carbon\medical_overlays.dm"
 #include "code\modules\mob\living\carbon\carbon.dm"
 #include "code\modules\mob\living\carbon\emote.dm"
 #include "code\modules\mob\living\carbon\sprint.dm"

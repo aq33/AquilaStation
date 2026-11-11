@@ -58,18 +58,24 @@
 			var/state = get_bleed_overlay_state(zone, zones[zone])
 			if(state)
 				states += state
-	var/key = jointext(states, ",")
+	var/list/medical_states = QDELING(src) ? list() : aq_medical_overlay_states() // medical_overlays.dm
+	var/key = "[jointext(states, ",")];[jointext(medical_states, ",")]"
 	if(key == aq_wound_overlay_key)
 		return
 	aq_wound_overlay_key = key
 	remove_overlay(WOUND_LAYER)
-	if(!length(states))
+	var/list/appearances = list()
+	if(length(states))
+		var/mutable_appearance/wound_overlay = mutable_appearance('aquila/icons/mob/effects/bleed_overlays.dmi', null, -AQ_WOUND_DRAW_LAYER, appearance_flags = KEEP_TOGETHER)
+		wound_overlay.color = get_blood_color()
+		for(var/state in states)
+			wound_overlay.add_overlay(state)
+		appearances += wound_overlay
+	if(length(medical_states))
+		appearances += aq_medical_overlays(medical_states, AQ_WOUND_DRAW_LAYER) // bandages and splints over the blood
+	if(!length(appearances))
 		return
-	var/mutable_appearance/wound_overlay = mutable_appearance('aquila/icons/mob/effects/bleed_overlays.dmi', null, -AQ_WOUND_DRAW_LAYER, appearance_flags = KEEP_TOGETHER)
-	wound_overlay.color = get_blood_color()
-	for(var/state in states)
-		wound_overlay.add_overlay(state)
-	overlays_standing[WOUND_LAYER] = wound_overlay
+	overlays_standing[WOUND_LAYER] = appearances
 	apply_overlay(WOUND_LAYER)
 
 /mob/living/carbon/human/regenerate_icons()
