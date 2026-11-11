@@ -423,10 +423,43 @@
 	alarm_area.firereset()
 	aquila_liquids_cleanup(T)
 
+	// Pociągnięcie, z którego nie poleciała woda (oczyszczacz wyłączony), nie zużywa odstępu obszaru
+	alarm_area.last_sprinkle = -INFINITY
+	scrubber.on = FALSE
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(QDELETED(T.liquids), "A switched off scrubber spilled water on a pull")
+	alarm_area.firereset()
+	scrubber.on = TRUE
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(!QDELETED(T.liquids), "A pull that spilled no water still started the area sprinkler cooldown")
+	alarm_area.firereset()
+
+	// Zwykłe zraszanie omija stojącą kałużę, ale płonącą polewa
+	var/before_volume = T.liquids.liquid_group.reagents.total_volume
+	alarm_area.last_sprinkle = -INFINITY
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(T.liquids.liquid_group.reagents.total_volume <= before_volume + 1, "A normal sprinkler poured water into a standing puddle")
+	alarm_area.firereset()
+	T.liquids.fire_state = LIQUID_FIRE_STATE_SMALL
+	before_volume = T.liquids.liquid_group.reagents.total_volume
+	alarm_area.last_sprinkle = -INFINITY
+	fire_alarm.last_alarm = -INFINITY
+	fire_alarm.last_sprinkle = -INFINITY
+	fire_alarm.alarm(puller)
+	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume > before_volume + 1, "A normal sprinkler skipped a burning puddle on the scrubber")
+	alarm_area.firereset()
+	aquila_liquids_cleanup(T)
+
+	// Zalanie z emaga ma własny odstęp: zwykłe zraszanie przed chwilą go nie blokuje
 	fire_alarm.obj_flags |= EMAGGED
 	fire_alarm.last_alarm = -INFINITY
 	fire_alarm.last_sprinkle = -INFINITY
-	alarm_area.last_sprinkle = -INFINITY
 	fire_alarm.alarm(puller)
 	TEST_ASSERT(!QDELETED(T.liquids) && T.liquids.liquid_group.reagents.total_volume >= 300, "An emagged fire alarm pulled by a player did not flood the scrubber")
 	aquila_liquids_cleanup(T)
@@ -456,6 +489,7 @@
 	var/turf/open/T = run_loc_floor_bottom_left
 	aquila_liquids_cleanup(T)
 	var/obj/effect/decal/cleanable/blood/stain = new(T)
+	stain.add_blood_DNA(list("WASHTEST" = "O-"))
 	var/obj/effect/decal/cleanable/oil/oil_stain = new(T)
 	var/oil_amount = oil_stain.reagents.total_volume
 	T.add_liquid(/datum/reagent/water, 100)
@@ -464,6 +498,8 @@
 	TEST_ASSERT(QDELETED(oil_stain), "The puddle did not wash away the oil stain under it")
 	var/datum/reagents/puddle = T.liquids.liquid_group.reagents
 	TEST_ASSERT(puddle.has_reagent(/datum/reagent/blood), "The washed blood stain added no blood to the puddle")
+	var/datum/reagent/blood/washed_blood = puddle.get_reagent(/datum/reagent/blood)
+	TEST_ASSERT(washed_blood?.data?["blood_DNA"] == "WASHTEST", "The washed blood lost the DNA of the stain ([washed_blood?.data?["blood_DNA"]])")
 	if(oil_amount)
 		TEST_ASSERT(puddle.has_reagent(/datum/reagent/oil), "The washed oil stain added no oil to the puddle")
 	// Samotny kafel kałuży nie jest kwadratem

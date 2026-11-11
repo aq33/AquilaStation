@@ -78,7 +78,7 @@
 	// Plamy wody i lodu pod kałużą zastępuje sama kałuża
 	SEND_SIGNAL(my_turf, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE) // tylko woda: siła 5 suszyła też stały lód (permafrost) lodowych podłóg
 
-	// Plamy i ślady na kaflu kałuża zmywa i wchłania (mapowe zostają)
+	// Plamy i ślady na kaflu kałuża zmywa i wchłania (także te z mapy; kałuża postawiona na mapie niczego nie zmywa)
 	if(!mapload)
 		wash_decals()
 
@@ -119,7 +119,8 @@
 
 /**
  * AQUILA - kałuża wchodząca na kafel zmywa z niego plamy i ślady (wszystko, co zmywa woda: is_cleanable()).
- * Reagenty plamy (popiół, olej, wnętrzności) trafiają do kałuży, a krwawe plamy i ślady oddają trochę krwi.
+ * Reagenty plamy (popiół, olej, wnętrzności) trafiają do kałuży, a krwawe plamy i ślady oddają trochę krwi
+ * z DNA i grupą krwi plamy oraz jej chorobami (komponent infective), żeby próbka z kałuży mówiła to samo co plama.
  * Tylko przy wejściu na kafel: krew w kałuży sama robi plamę pod sobą (reaction_turf), więc zbieranie każdej
  * nowej plamy pompowałoby krew w kałużę bez końca.
  * Bez process_group(): to się dzieje w Initialize kafla, a grupę i tak przeliczy SSliquids.
@@ -127,7 +128,6 @@
 /obj/effect/abstract/liquid_turf/proc/wash_decals()
 	if(QDELETED(liquid_group) || QDELETED(my_turf))
 		return
-	var/washed_blood = 0
 	var/anything_washed = FALSE
 	for(var/obj/effect/decal/cleanable/decal in my_turf)
 		if(QDELETED(decal) || !is_cleanable(decal))
@@ -135,15 +135,26 @@
 		if(decal.reagents?.total_volume)
 			liquid_copy_reagents(decal.reagents, liquid_group.reagents)
 		if(istype(decal, /obj/effect/decal/cleanable/blood) && decal.blood_state == BLOOD_STATE_HUMAN)
-			washed_blood += LIQUID_WASHED_BLOOD_PER_DECAL
+			liquid_group.reagents.add_reagent(/datum/reagent/blood, LIQUID_WASHED_BLOOD_PER_DECAL, washed_blood_data(decal), liquid_group.reagents.chem_temp, no_react = TRUE)
 		anything_washed = TRUE
 		qdel(decal)
 	if(!anything_washed)
 		return
-	if(washed_blood)
-		liquid_group.reagents.add_reagent(/datum/reagent/blood, washed_blood, reagtemp = liquid_group.reagents.chem_temp, no_react = TRUE)
 	liquid_group.update_volume_cache()
 	liquid_group.handle_visual_changes()
+
+/// Dane krwi ze zmywanej plamy: pierwsze DNA z plamy i jej choroby (kopie)
+/obj/effect/abstract/liquid_turf/proc/washed_blood_data(obj/effect/decal/cleanable/decal)
+	var/list/data = list("viruses" = list(), "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "mind" = null, "ckey" = null, "gender" = null, "real_name" = null, "cloneable" = null, "factions" = null, "quirks" = null)
+	var/list/dna = decal.return_blood_DNA()
+	if(length(dna))
+		var/dna_key = dna[1]
+		data["blood_DNA"] = dna_key
+		data["blood_type"] = dna[dna_key]
+	for(var/datum/component/infective/infection in decal.GetComponents(/datum/component/infective)) // bez "as anything": GetComponents zwraca list(null), gdy komponentu nie ma
+		for(var/datum/disease/disease as anything in infection.diseases)
+			data["viruses"] += disease.Copy()
+	return data
 
 /// Samotny kafel kałuży (bez sąsiednich kałuż) dostaje nieregularny kształt zamiast zaokrąglonego kwadratu
 /obj/effect/abstract/liquid_turf/bitmask_smoothed()

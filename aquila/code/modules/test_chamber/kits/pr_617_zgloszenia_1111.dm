@@ -6,9 +6,9 @@
 	description = "Wiadra mają po 70 j. wody. Zestaw stawia oczyszczacz powietrza, alarm przeciwpożarowy i manekina. \
 	1) Kształt kałuży: potnij manekina nożem, aż krwawi, i zostaw go na środku podłogi → kałuża krwi ma nieregularny kształt, nie kwadrat. \
 	2) Zmywanie: przeciągnij krwawiącego manekina kilka kafli (ślady krwi), wylej obok wiadro wody w combat mode, żeby woda wpłynęła na ślady → ślady i plamy pod wodą znikają, a examine kałuży pokazuje krew. \
-	3) Alarm: włącz alarm ręką → woda z oczyszczacza. Od razu kliknij alarm drugi raz → komunikat, że alarm jeszcze się przełącza. Po 3 s skasuj go i włącz znowu → tym razem bez wody (odstęp 3 minuty na pomieszczenie). Emag i EMP zalewają jak dotąd, EMP także w czasie odstępu. \
+	3) Alarm: włącz alarm ręką → woda z oczyszczacza. Od razu kliknij alarm drugi raz → komunikat, że alarm jeszcze się przełącza. Po 3 s skasuj go i włącz znowu → tym razem bez wody (odstęp 3 minuty na pomieszczenie). Zemaguj alarm i pociągnij → zalanie mimo odstępu zwykłego zraszania (zalanie ma własny odstęp 3 minuty). EMP zalewa jak dotąd, także w czasie odstępów. \
 	4) Radial celowania: weź pistolet i wskaż nim manekina (Shift+środkowy przycisk) → nad opcjami polskie podpisy (Ręce do góry, Rzuć broń, Strzelaj, Anuluj). Przejmij manekina (admin: Possess) → u niego Poddaj się i Ignoruj. \
-	5) Ctrl+Shift+klik z pistoletem w ręku na podłogę → nic, bez „Oferujesz”. Na manekina obok → oferta. Na stół → stół się przewraca jak dotąd. \
+	5) Ctrl+Shift+klik z pistoletem w ręku na podłogę → nic, bez „Oferujesz”. Na manekina obok → oferta tylko dla niego (drugi człowiek obok nie dostaje alertu). Na stół → stół się przewraca jak dotąd. \
 	6) Mysz: załóż celownik laserowy na pistolet i szybko machaj myszą, w combat mode i bez niego → brak przycięć, kursor rozrzutu i wiązka nadążają za myszą. Sprawdź też na starych intencjach."
 	items = list(
 		/obj/machinery/atmospherics/components/unary/vent_scrubber = 1,

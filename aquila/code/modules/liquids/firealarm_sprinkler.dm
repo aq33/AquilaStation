@@ -4,8 +4,9 @@
 // Zemagowany alarm pociągnięty ręcznie i alarm trafiony EMP zalewają całe pomieszczenie po kostki.
 // Alarm z czujnika temperatury (prawdziwy pożar) wody nie wylewa, żeby zwykły pożar nie zalewał statku.
 // Ochrona przed spamem: pociągnięcie przez gracza leje wodę najwyżej raz na SPRINKLER_AREA_COOLDOWN w całym obszarze
-// (wszystkie alarmy pomieszczenia razem), zwykłe zraszanie pomija oczyszczacze stojące już w kałuży,
-// a sam alarm da się przełączyć najwyżej raz na FIREALARM_TOGGLE_COOLDOWN (pożarowe drzwi nie trzaskają w kółko).
+// (wszystkie alarmy pomieszczenia razem; zwykłe zraszanie i zalanie z emaga liczą się osobno, a odstęp startuje dopiero,
+// gdy woda naprawdę poleciała). Zwykłe zraszanie pomija oczyszczacze stojące w niepłonącej kałuży.
+// Alarm da się przełączyć ręką najwyżej raz na FIREALARM_TOGGLE_COOLDOWN (pożarowe drzwi nie trzaskają w kółko).
 
 /// Ile wody na kafel pomieszczenia daje zwykłe zraszanie (ciecz rozlewa się, póki ma ponad LIQUID_HEIGHT_DIVISOR na kafel)
 #define SPRINKLER_WATER_PER_TILE_NORMAL 15
@@ -28,8 +29,10 @@
 #define FIREALARM_TOGGLE_COOLDOWN (3 SECONDS)
 
 /area
-	/// Kiedy w tym obszarze gracz ostatnio wylał wodę z zraszaczy (alarm pożarowy)
+	/// Kiedy w tym obszarze gracz ostatnio wylał wodę ze zraszaczy zwykłym alarmem pożarowym
 	var/last_sprinkle = -SPRINKLER_AREA_COOLDOWN
+	/// Kiedy w tym obszarze gracz ostatnio zalał pomieszczenie zemagowanym alarmem
+	var/last_sprinkler_flood = -SPRINKLER_AREA_COOLDOWN
 
 /datum/liquid_group
 	/// Szybkie parowanie nadał zwykły zraszacz (zalanie je cofa do stanu sprzed zraszacza)
@@ -47,8 +50,11 @@
 	if(buildstage == 2 && world.time < last_manual_toggle + FIREALARM_TOGGLE_COOLDOWN)
 		to_chat(user, "<span class='warning'>[src] jeszcze się przełącza!</span>")
 		return TRUE
+	var/area/alarm_area = get_area(src)
+	var/was_on_fire = alarm_area?.fire
 	. = ..()
-	if(buildstage == 2)
+	// Odstęp tylko po prawdziwym przełączeniu (bez zasilania albo w trakcie odstępu alarmu nic się nie zmienia)
+	if(buildstage == 2 && alarm_area && alarm_area.fire != was_on_fire)
 		last_manual_toggle = world.time
 
 /obj/machinery/firealarm/alarm(mob/user)
@@ -79,11 +85,9 @@
 	var/area/alarm_area = get_area(src)
 	if(!alarm_area)
 		return 0
-	if(user && world.time < alarm_area.last_sprinkle + SPRINKLER_AREA_COOLDOWN)
+	if(user && world.time < (flood ? alarm_area.last_sprinkler_flood : alarm_area.last_sprinkle) + SPRINKLER_AREA_COOLDOWN)
 		return 0
 	last_sprinkle = world.time
-	if(user)
-		alarm_area.last_sprinkle = world.time
 	var/list/scrubbers = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/scrubber in GLOB.machines)
 		if(scrubber.welded || !scrubber.on || (scrubber.machine_stat & (NOPOWER|BROKEN)) || get_area(scrubber) != alarm_area)
@@ -91,7 +95,8 @@
 		var/turf/open/scrubber_turf = get_turf(scrubber)
 		if(!isopenturf(scrubber_turf) || isgroundlessturf(scrubber_turf))
 			continue
-		if(!flood && !QDELETED(scrubber_turf.liquids)) // zwykłe zraszanie nie dolewa do stojącej wody
+		// Zwykłe zraszanie nie dolewa do stojącej kałuży, chyba że ta płonie (np. paliwo pod oczyszczaczem)
+		if(!flood && !QDELETED(scrubber_turf.liquids) && scrubber_turf.liquids.fire_state == LIQUID_FIRE_STATE_NONE)
 			continue
 		scrubbers += scrubber
 	if(!length(scrubbers))
@@ -129,6 +134,11 @@
 		scrubber.visible_message(flood ? "<span class='danger'>Z [scrubber] bucha strumień wody!</span>" : "<span class='warning'>Z [scrubber] tryska woda!</span>")
 		playsound(scrubber_turf, 'aquila/sound/effects/splash_loud.ogg', flood ? 60 : 35, TRUE)
 		.++
+	if(. && user)
+		if(flood)
+			alarm_area.last_sprinkler_flood = world.time
+		else
+			alarm_area.last_sprinkle = world.time
 	if(. && flood)
 		log_game("Fire alarm at [AREACOORD(src)] flooded [.] scrubbers with water[user ? " (triggered by [key_name(user)])" : " (EMP)"]")
 		message_admins("Alarm przeciwpożarowy w [ADMIN_VERBOSEJMP(src)] zalewa wodą [.] oczyszczaczy[user ? " ([ADMIN_LOOKUPFLW(user)])" : " (EMP)"].")
