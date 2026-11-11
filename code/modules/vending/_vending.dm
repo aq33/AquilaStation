@@ -661,6 +661,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/ui_static_data(mob/user)
 	. = list()
 	.["onstation"] = onstation
+	.["machine_name"] = format_text(name) // nazwa na szyldzie pikselowego okna, bez \improper
+	.["machine_color"] = window_color() // kolor ramy okna ze sprite'a automatu
 	.["all_products_free"] = !onstation
 	.["department"] = payment_department
 	.["displayed_currency_icon"] = "coins"
@@ -668,7 +670,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/list/categories = list()
 	.["product_records"] = collect_records_for_static_data(product_records, categories, list("name" = "Produkty", "icon" = "cart-shopping"))
 	.["coin_records"] = collect_records_for_static_data(coin_records, categories, list("name" = "Premium", "icon" = "coins"), premium = TRUE)
-	.["hidden_records"] = collect_records_for_static_data(hidden_records, categories, list("name" = "Kontrabanda", "icon" = "mask"), premium = TRUE)
+	// Kontrabanda nie jest premium: vend() bierze dla niej zwykłą cenę i zniżkę działu
+	.["hidden_records"] = collect_records_for_static_data(hidden_records, categories, list("name" = "Kontrabanda", "icon" = "mask"))
 	.["categories"] = categories
 
 /// Product records for the window, each product put in the given category
@@ -698,6 +701,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
 	.["user"] = null
+	.["needs_account"] = onstation && ishuman(user) // vend() pobiera opłatę tylko od ludzi; SI i cyborgi kupują bez karty
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/card/id/C = H.get_idcard(TRUE)
@@ -1073,6 +1077,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			desc = stripped_input(user,"Ustaw opis","Opis", desc, 60)
 			slogan_list += stripped_input(user,"Ustaw slogan","Slogan","Epic", 60)
 			last_slogan = world.time + rand(0, slogan_delay)
+			update_static_data(user) // AQ EDIT - nowa nazwa na szyldzie otwartego okna
 			return
 
 	return ..()
