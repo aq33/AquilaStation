@@ -144,5 +144,84 @@
 	var/datum/plant_trait/fruit/killer/friendly/walking/trait = /datum/plant_trait/fruit/killer/friendly/walking
 	TEST_ASSERT(ispath(initial(trait.awaken_mob), /mob/living/basic/mushroom), "The walking killer fruit trait does not wake up a basic walking mushroom")
 
+/// The Faithless hunts people, smashes lights it sees and drags away the people it knocked out
+/datum/unit_test/aquila_faithless_ai
+
+/datum/unit_test/aquila_faithless_ai/Run()
+	var/mob/living/basic/faithless/faithless = allocate(/mob/living/basic/faithless, run_loc_floor_bottom_left)
+	var/obj/machinery/light/light = allocate(/obj/machinery/light, get_step(run_loc_floor_bottom_left, NORTH))
+	var/datum/ai_controller/controller = faithless.ai_controller
+
+	// No one around: the light is next
+	var/datum/ai_behavior/find_lights = GET_AI_BEHAVIOR(/datum/ai_behavior/find_hunt_target/light_fixtures)
+	for(var/i in 1 to 10)
+		controller.SelectBehaviors(1)
+		if(controller.current_behaviors[find_lights])
+			break
+	TEST_ASSERT(controller.current_behaviors[find_lights], "The Faithless never looked for lights")
+	controller.ProcessBehavior(1, find_lights)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_LOW_PRIORITY_HUNTING_TARGET], light, "The Faithless did not pick the light next to it")
+	var/datum/ai_behavior/smash = GET_AI_BEHAVIOR(/datum/ai_behavior/hunt_target/interact_with_target/light_fixtures)
+	for(var/i in 1 to 10)
+		controller.SelectBehaviors(1)
+		if(controller.current_behaviors[smash])
+			break
+	TEST_ASSERT(controller.current_behaviors[smash], "The Faithless did not go to smash the light")
+	for(var/i in 1 to 5)
+		faithless.next_move = 0
+		faithless.next_click = 0
+		controller.ProcessBehavior(1, smash)
+		if(QDELETED(light) || light.status == LIGHT_BROKEN)
+			break
+	TEST_ASSERT(QDELETED(light) || light.status == LIGHT_BROKEN, "The Faithless did not smash the light")
+
+	// A knocked out human gets grabbed instead of hit
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	victim.Unconscious(20 SECONDS)
+	victim.set_stat(UNCONSCIOUS)
+	faithless.melee_attack(victim, ignore_cooldown = TRUE)
+	TEST_ASSERT_EQUAL(faithless.pulling, victim, "The Faithless did not drag the knocked out human")
+
+/// A player Faithless pries an airlock open outside combat mode and beats on it in combat mode, in both control modes
+/datum/unit_test/aquila_faithless_pries_doors
+
+/datum/unit_test/aquila_faithless_pries_doors/Run()
+	for(var/legacy in list(FALSE, TRUE))
+		var/mode = legacy ? "legacy intents" : "combat mode"
+		var/mob/living/basic/faithless/faithless = allocate(legacy ? /mob/living/basic/faithless/legacy_intents_test : /mob/living/basic/faithless, run_loc_floor_bottom_left)
+		faithless.ai_controller.set_ai_status(AI_STATUS_OFF)
+		var/obj/machinery/door/airlock/airlock = allocate(/obj/machinery/door/airlock, get_step(run_loc_floor_bottom_left, EAST))
+
+		if(legacy)
+			faithless.a_intent_change(INTENT_HARM)
+		else
+			faithless.set_combat_mode(TRUE)
+		faithless.next_click = 0
+		faithless.next_move = 0
+		var/integrity = airlock.obj_integrity
+		faithless.ClickOn(airlock, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(airlock.obj_integrity < integrity, "[mode]: the Faithless in combat did not beat on the airlock")
+		TEST_ASSERT(airlock.density, "[mode]: the Faithless in combat opened the airlock")
+
+		if(legacy)
+			faithless.a_intent_change(INTENT_HELP)
+		else
+			faithless.set_combat_mode(FALSE)
+		faithless.next_click = 0
+		faithless.next_move = 0
+		faithless.ClickOn(airlock, "icon-x=16;icon-y=16;left=1;button=left")
+		var/waited = 0
+		while(airlock.density && waited < 30)
+			sleep(1)
+			waited++
+		TEST_ASSERT(!airlock.density, "[mode]: the Faithless did not open the airlock outside combat")
+		qdel(airlock)
+		qdel(faithless)
+
+/mob/living/basic/faithless/legacy_intents_test
+
+/mob/living/basic/faithless/legacy_intents_test/uses_legacy_intents()
+	return TRUE
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

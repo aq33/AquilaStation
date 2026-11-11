@@ -93,7 +93,7 @@
 		visible_message("<span class='userdanger'>Szafa się otwiera!</span>")
 		visible_message("<span class='userdanger'><font size='5'>TA ISTOTA PROMIENIUJE CZYSTYM ZŁEM! LEPIEJ UCIEKAJ!!!</font></span>")
 		playsound(loc, 'sound/hallucinations/wail.ogg', 300, 1)
-		var/mob/living/simple_animal/hostile/faithless/F = new(loc)
+		var/mob/living/basic/faithless/F = new(loc) // AQ EDIT - basic moby
 		trapped = 0
 		QDEL_IN(F, 120)
 

@@ -223,7 +223,7 @@
 	spawned = /mob/living/simple_animal/hostile/cat_butcherer/hugbox
 
 /obj/effect/trap/nexus/trickyspawner/faithless
-	spawned = /mob/living/simple_animal/hostile/faithless
+	spawned = /mob/living/basic/faithless // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/shitsec
 	spawned = /mob/living/simple_animal/hostile/nanotrasen/hugbox

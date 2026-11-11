@@ -2054,6 +2054,10 @@
 #include "code\modules\mob\living\basic\space_fauna\spaceman.dm"
 #include "code\modules\mob\living\basic\space_fauna\kurwinoxy.dm"
 #include "code\modules\mob\living\basic\space_fauna\mushroom.dm"
+#include "code\datums\elements\door_pryer.dm"
+#include "code\datums\elements\mob_grabber.dm"
+#include "code\datums\ai\hunting_behavior\hunting_lights.dm"
+#include "code\modules\mob\living\basic\space_fauna\faithless.dm"
 // Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS
