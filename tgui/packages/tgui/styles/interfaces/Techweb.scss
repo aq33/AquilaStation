@@ -102,8 +102,13 @@ $tree-future: #666;
   }
 }
 
+// Obszar wypełnia rodzica przez pozycjonowanie, bo flex nie daje mu stałej wysokości (bez tego nie ma suwaka)
 .Techweb__CatArea {
-  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: auto;
   padding: var(--space-m);
   background-color: hsla(0, 0%, 0%, 0.3);

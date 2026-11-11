@@ -234,7 +234,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
 
   return (
     <Stack fill>
-      <Stack.Item width="20em">
+      <Stack.Item width="20em" shrink={0}>
         <Section fill scrollable title="Kategorie">
           <CategoryButton
             name="Wszystkie"
@@ -272,7 +272,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
           </Box>
         </Section>
       </Stack.Item>
-      <Stack.Item grow>
+      <Stack.Item grow basis={0} style={{ minWidth: 0 }}>
         <Stack vertical fill>
           <Stack.Item>
             <Stack align="center" className="Techweb__HeaderSectionTabs">
@@ -301,7 +301,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item grow basis={0} position="relative">
             <div className="Techweb__CatArea">
               {current ? (
                 renderBlock(current, false)
@@ -321,7 +321,7 @@ export function TechwebTree(props: { selectedNode?: string }) {
         </Stack>
       </Stack.Item>
       {!!selectedNode && (
-        <Stack.Item width="24em">
+        <Stack.Item width="24em" shrink={0}>
           <Section
             fill
             scrollable
