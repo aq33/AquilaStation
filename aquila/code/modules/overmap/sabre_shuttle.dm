@@ -83,12 +83,15 @@
 /obj/structure/overmap/small_craft/transport/sabre/shuttle
 	interior_mode = NO_INTERIOR
 	possible_interior_maps = list()
+	/// Kto właśnie wchodzi przez właz albo wrota (przytrzymany klawisz ruchu wchodzi we wrota co krok: jeden pasek naraz)
+	var/list/boarding_mobs
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/mining
 	icon = 'nsv13/icons/overmap/nanotrasen/carrier_mining.dmi'
 	req_one_access = list(ACCESS_CARGO, ACCESS_MINING, ACCESS_TRANSPORT_PILOT)
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/Destroy()
+	boarding_mobs = null
 	for(var/area/shuttle/sabre/A in linked_areas)
 		if(A.sabre == src)
 			A.sabre = null
@@ -135,15 +138,26 @@
 		if(!other_homes[port])
 			. += port
 
-/// Wejście przez właz: tak jak wejście do promu desantowego, tylko z hangaru
-/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/sabre_board(mob/living/user)
+/// Wejście przez właz albo wrota kokpitu (via_doors) ze skrzydła: tak jak wejście do promu desantowego, tylko z hangaru
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/sabre_board(mob/living/user, via_doors = FALSE)
 	if(!shuttle_docked_at)
+		if(via_doors)
+			to_chat(user, span_warning("Wrota są zablokowane w trakcie lotu."))
 		return FALSE
 	if(!allowed(user))
 		to_chat(user, span_warning("Odmowa dostępu."))
 		return FALSE
-	to_chat(user, span_notice("Otwierasz właz [src] i wchodzisz do środka..."))
-	if(!do_after(user, 2 SECONDS, target = user))
+	if(LAZYACCESS(boarding_mobs, user))
+		return FALSE
+	if(via_doors)
+		to_chat(user, span_notice("Otwierasz wrota [src] i wchodzisz do środka..."))
+	else
+		to_chat(user, span_notice("Otwierasz właz [src] i wchodzisz do środka..."))
+	LAZYSET(boarding_mobs, user, TRUE)
+	var/success = do_after(user, 2 SECONDS, target = user)
+	LAZYREMOVE(boarding_mobs, user)
+	// Przez te 2 sekundy Sabre mógł wystartować albo zostać zniszczony
+	if(!success || QDELETED(src) || !shuttle_docked_at || QDELETED(user))
 		return FALSE
 	enter(user)
 	return TRUE
@@ -195,6 +209,11 @@
 	var/area/shuttle/sabre/A = loc
 	if(!istype(A) || !A.sabre || !ismob(AM))
 		return
+	// Ze skrzydła wrota prowadzą do środka (jak kliknięcie), a nie wyrzucają na zewnątrz
+	if(istype(get_turf(AM), /turf/open/indestructible/dropship/sabre_wing))
+		if(isliving(AM))
+			INVOKE_ASYNC(A.sabre, TYPE_PROC_REF(/obj/structure/overmap/small_craft/transport/sabre/shuttle, sabre_board), AM, TRUE)
+		return
 	if(A.sabre.shuttle_docked_at)
 		if(!A.sabre.shuttle_leave(AM))
 			to_chat(AM, span_warning("Wyjście z [A.sabre] jest zablokowane."))
@@ -210,7 +229,7 @@
 	if(!istype(A) || !A.sabre || !isliving(user))
 		return
 	if(istype(get_turf(user), /turf/open/indestructible/dropship/sabre_wing))
-		return A.sabre.sabre_board(user)
+		return A.sabre.sabre_board(user, TRUE)
 	if(get_area(user) != A)
 		return
 	if(!A.sabre.shuttle_docked_at)
