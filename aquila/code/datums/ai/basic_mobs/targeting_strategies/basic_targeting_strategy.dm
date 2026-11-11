@@ -33,7 +33,8 @@
 	if (vision_range && get_dist(living_mob, the_target) > vision_range)
 		return FALSE
 
-	if(!ignore_sight && !can_see(living_mob, the_target, vision_range)) //Target has moved behind cover and we have lost line of sight to it
+	// AQUILA: our can_see() defaults to 5 tiles (Bee 7), less than the 9 targets are picked from, so mobs gave up on them
+	if(!ignore_sight && !can_see(living_mob, the_target, vision_range || BASIC_TARGETING_DEFAULT_VISION)) //Target has moved behind cover and we have lost line of sight to it
 		return FALSE
 
 	if(living_mob.see_invisible < the_target.invisibility) //Target's invisible to us, forget it

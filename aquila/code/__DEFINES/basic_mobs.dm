@@ -185,6 +185,8 @@
 #define BB_RESIST_STATE "BB_resist_state"
 #define AI_RESIST_RUNNING 1
 #define AI_RESIST_DONE 2
+///AQUILA: line of sight range of /datum/targeting_strategy/basic/can_attack() without a vision_range (the find_potential_targets range)
+#define BASIC_TARGETING_DEFAULT_VISION 9
 ///AQUILA: bits of /mob/living/var/last_incapacitated_for_ai above the stat (stat takes the low 2 bits)
 #define AI_INCAP_STATE_BASE (1<<2)
 #define AI_INCAP_STATE_RESTRAINED (1<<3)

@@ -120,6 +120,11 @@
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
+/// AQUILA: the target is used once, otherwise a monkey keeps pressing the same thing (or person) for the rest of the round
+/datum/ai_behavior/use_on_object/finish_action(datum/ai_controller/controller, succeeded, target_key)
+	. = ..()
+	controller.clear_blackboard_key(target_key)
+
 /datum/ai_behavior/give
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
@@ -326,6 +331,8 @@
 /datum/ai_behavior/find_nearby/perform(delta_time, datum/ai_controller/controller, target_key)
 	var/list/possible_targets = list()
 	for(var/atom/thing in view(2, controller.pawn))
+		if(thing == controller.pawn) // AQUILA: view() includes the pawn, which then beat itself up
+			continue
 		if(!thing.mouse_opacity)
 			continue
 		if(thing.IsObscured())

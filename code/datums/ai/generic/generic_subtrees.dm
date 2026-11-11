@@ -12,7 +12,11 @@
 	var/obj/item/instrument/song_player = controller.blackboard[BB_SONG_INSTRUMENT]
 
 	if(!song_player)
-		controller.queue_behavior(/datum/ai_behavior/find_and_set/in_hands, BB_SONG_INSTRUMENT, /obj/item/instrument)
+		// AQUILA: queue the search only with an instrument in hand; a failing search every plan kept idle monkeys planned
+		// (the find_and_set cooldown blocks planning), so they almost never walked or emoted
+		var/mob/living/living_pawn = controller.pawn
+		if(locate(/obj/item/instrument) in living_pawn.held_items)
+			controller.queue_behavior(/datum/ai_behavior/find_and_set/in_hands, BB_SONG_INSTRUMENT, /obj/item/instrument)
 		return //we can't play a song since we do not have an instrument
 
 	var/list/parsed_song_lines = splittext(controller.blackboard[BB_SONG_LINES], "\n")

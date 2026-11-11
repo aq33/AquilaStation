@@ -35,6 +35,10 @@ have ways of interacting with a specific mob and control it.
 /datum/targeting_strategy/basic/monkey/faction_check(datum/ai_controller/controller, mob/living/living_mob, mob/living/the_target)
 	if(controller.blackboard[BB_MONKEY_ENEMIES][the_target])
 		return FALSE
+	// AQUILA: monkeys and crew share the "neutral" faction, so an aggressive monkey (jungle fever, angry monkey) would
+	// pick a target and never attack it. monkey_set_combat_target already keeps aggressive monkeys off other monkeys
+	if(controller.blackboard[BB_MONKEY_AGGRESSIVE])
+		return FALSE
 	return ..()
 
 /datum/ai_controller/monkey/angry

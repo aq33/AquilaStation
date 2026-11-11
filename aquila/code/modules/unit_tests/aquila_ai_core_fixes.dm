@@ -82,6 +82,37 @@
 	qdel(monkey)
 	TEST_ASSERT(!(controller in GLOB.ai_controllers_by_zlevel[old_z]), "A deleted monkey's controller stayed in the z-level list")
 
+/// A2 + A6: an aggressive monkey attacks crew it shares the "neutral" faction with, and keeps a target 7 tiles away
+/datum/unit_test/aquila_ai_aggressive_monkey
+
+/datum/unit_test/aquila_ai_aggressive_monkey/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, left)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	var/datum/ai_controller/monkey/controller = monkey.ai_controller
+	var/datum/targeting_strategy/strategy = GET_TARGETING_STRATEGY(controller.blackboard[BB_TARGETING_STRATEGY])
+	TEST_ASSERT(!strategy.can_attack(monkey, victim, MONKEY_ENEMY_VISION), "A calm monkey wants to attack a crew member")
+
+	controller.set_blackboard_key(BB_MONKEY_AGGRESSIVE, TRUE)
+	TEST_ASSERT(strategy.can_attack(monkey, victim, MONKEY_ENEMY_VISION), "An aggressive monkey does not want to attack a crew member")
+	controller.set_blackboard_key(BB_MONKEY_CURRENT_ATTACK_TARGET, victim)
+	var/datum/ai_behavior/monkey_attack_mob/attack = GET_AI_BEHAVIOR(/datum/ai_behavior/monkey_attack_mob)
+	monkey.next_move = 0
+	var/flags = attack.perform(1, controller, BB_MONKEY_CURRENT_ATTACK_TARGET)
+	TEST_ASSERT(!(flags & AI_BEHAVIOR_SUCCEEDED), "The aggressive monkey gave up on its target instead of attacking")
+	TEST_ASSERT(monkey.next_move > world.time, "The aggressive monkey did not attack")
+
+	// A6: the target was picked from MONKEY_ENEMY_VISION, so the line of sight check must reach that far
+	var/turf/far_left = locate(left.x, run_loc_floor_top_right.y + 3, left.z)
+	var/turf/far_right = far_left && locate(left.x + 7, far_left.y, left.z)
+	TEST_ASSERT(far_right, "No row of turfs above the test room")
+	monkey.forceMove(far_left)
+	victim.forceMove(far_right)
+	TEST_ASSERT(strategy.can_attack(monkey, victim, MONKEY_ENEMY_VISION), "A monkey loses a target 7 tiles away in plain sight")
+	var/datum/targeting_strategy/basic/basic_strategy = GET_TARGETING_STRATEGY(/datum/targeting_strategy/basic)
+	var/mob/living/basic/bear/bear = allocate(/mob/living/basic/bear, far_left)
+	TEST_ASSERT(basic_strategy.can_attack(bear, victim), "can_attack() without a range does not see as far as targets are picked")
+
 /// A3 + E5: the AI of a stunned monkey that gets cuffed comes back when the stun ends (monkeys ignore cuffs), a cuffed
 /// monkey that dies turns its AI off, and mobs without an AI do not track any of it
 /datum/unit_test/aquila_ai_incapacitation_signal
@@ -103,6 +134,60 @@
 	var/mob/living/carbon/human/no_ai = allocate(/mob/living/carbon/human, get_step(left, EAST))
 	no_ai.Paralyze(1 SECONDS)
 	TEST_ASSERT(isnull(no_ai.last_incapacitated_for_ai), "A mob without an AI tracks the AI incapacitation state")
+
+/// A4: an idle monkey without an instrument does not queue an instrument search every plan, one with an instrument does
+/datum/unit_test/aquila_ai_monkey_instrument_search
+
+/datum/unit_test/aquila_ai_monkey_instrument_search/Run()
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, run_loc_floor_bottom_left)
+	var/datum/ai_controller/monkey/controller = monkey.ai_controller
+	controller.set_blackboard_key(BB_NEXT_HUNGRY, world.time + 10 MINUTES)
+	var/datum/ai_behavior/search = GET_AI_BEHAVIOR(/datum/ai_behavior/find_and_set/in_hands)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[search], "A monkey without an instrument searches its hands for one")
+
+	var/obj/item/instrument/violin/violin = allocate(/obj/item/instrument/violin, run_loc_floor_bottom_left)
+	monkey.put_in_hands(violin)
+	controller.CancelActions()
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[search], "A monkey with an instrument in hand does not pick it up to play")
+
+/// A5 + A7: the press target of a monkey is never itself and is cleared when the press is done or dropped from the plan
+/datum/unit_test/aquila_ai_monkey_press_target
+
+/datum/unit_test/aquila_ai_monkey_press_target/Run()
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, run_loc_floor_bottom_left)
+	var/datum/ai_controller/monkey/controller = monkey.ai_controller
+	var/datum/ai_behavior/find_nearby/find = GET_AI_BEHAVIOR(/datum/ai_behavior/find_nearby)
+	for(var/i in 1 to 200)
+		find.perform(1, controller, BB_MONKEY_CURRENT_PRESS_TARGET)
+		TEST_ASSERT(controller.blackboard[BB_MONKEY_CURRENT_PRESS_TARGET] != monkey, "The monkey picked itself to press")
+		controller.clear_blackboard_key(BB_MONKEY_CURRENT_PRESS_TARGET)
+
+	var/turf/target_turf = get_step(run_loc_floor_bottom_left, EAST)
+	controller.set_blackboard_key(BB_MONKEY_CURRENT_PRESS_TARGET, target_turf)
+	controller.queue_behavior(/datum/ai_behavior/use_on_object, BB_MONKEY_CURRENT_PRESS_TARGET)
+	var/datum/ai_behavior/use_on_object/use = GET_AI_BEHAVIOR(/datum/ai_behavior/use_on_object)
+	TEST_ASSERT(controller.current_behaviors[use], "The press was not queued")
+	// A plan without the press (A7: SelectBehaviors passes the stored arguments of the dropped behaviour)
+	var/list/old_subtrees = controller.planning_subtrees
+	controller.planning_subtrees = list()
+	controller.SelectBehaviors(1)
+	controller.planning_subtrees = old_subtrees
+	TEST_ASSERT(!controller.current_behaviors[use], "The dropped press is still running")
+	TEST_ASSERT(isnull(controller.blackboard[BB_MONKEY_CURRENT_PRESS_TARGET]), "The dropped press kept its target")
+
+/// A8: a human body run by an AI without a player is "not himself", even while its AI is off (stun, no clients)
+/datum/unit_test/aquila_ai_examine_not_catatonic
+
+/datum/unit_test/aquila_ai_examine_not_catatonic/Run()
+	var/mob/living/carbon/human/body = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/examiner = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	body.ai_controller = new /datum/ai_controller/monkey(body)
+	TEST_ASSERT(body.ai_controller.ai_status != AI_STATUS_ON, "The AI is on without clients, the test does not check the off case")
+	var/text = jointext(body.examine(examiner), "")
+	TEST_ASSERT(findtext(text, "Nie wydaje się być sobą"), "An AI body is not described as not being himself")
+	TEST_ASSERT(!findtext(text, "katatonii"), "An AI body with its AI off is described as catatonic")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
