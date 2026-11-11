@@ -111,6 +111,9 @@
 			to_chat(user, "<span class='warning'>[src] jest pełna gotówki. Poczekaj, aż się wypierze.</span>")
 			return TRUE
 		var/value = I.get_item_credit_value()
+		if(value > GANG_LOCKER_CASH_CAP - cash)
+			to_chat(user, "<span class='warning'>Tyle się nie zmieści. Do prania zmieści się jeszcze [GANG_LOCKER_CASH_CAP - cash] kr.</span>")
+			return TRUE
 		if(!value || !user.temporarilyRemoveItemFromInventory(I))
 			return TRUE
 		cash += value
@@ -150,13 +153,19 @@
 		return
 	var/list/values = aq_gang_drug_values()
 	var/sold_any = FALSE
+	var/kept_any = FALSE
 	for(var/datum/reagent/R as anything in container.reagents.reagent_list.Copy())
 		if(!values[R.type])
 			continue
-		. += gang.sell_drug(R.type, R.volume)
-		container.reagents.remove_reagent(R.type, R.volume)
+		var/accepted = min(R.volume, gang.drug_units_left(R.type))
+		if(accepted < R.volume)
+			kept_any = TRUE
+		if(accepted <= 0)
+			continue
+		. += gang.sell_drug(R.type, accepted)
+		container.reagents.remove_reagent(R.type, accepted)
 		sold_any = TRUE
-	if(sold_any && istype(container, /obj/item/reagent_containers/pill))
+	if(sold_any && !kept_any && istype(container, /obj/item/reagent_containers/pill))
 		qdel(container)
 
 /obj/structure/gang_locker/attack_hand(mob/living/user)
@@ -239,7 +248,7 @@
 	if(!target)
 		return
 	var/amount = tgui_input_number(user, "Ile punktów przelać ([target.name])?", "Przelew punktów", 0, gang.get_points(user.mind), 0)
-	if(!amount || !user.Adjacent(src) || !(target in gang.members))
+	if(!amount || !is_member(user) || !user.Adjacent(src) || !(target in gang.members))
 		return
 	amount = min(round(amount), gang.get_points(user.mind))
 	if(amount <= 0)
@@ -312,34 +321,30 @@
 
 /datum/action/innate/gang_locker/proc/place_locker(mob/living/carbon/human/user, datum/team/gang/G)
 	var/turf/T = get_turf(user)
-	var/area/A = get_area(T)
-	if(!isopenturf(T) || isspaceturf(T) || !is_station_level(T.z) || !(A.area_flags & VALID_TERRITORY))
-		to_chat(user, "<span class='warning'>Tutaj nie postawisz szafki.</span>")
-		return
-	for(var/obj/O in T)
-		if(O.density)
-			to_chat(user, "<span class='warning'>Tu nie ma miejsca na szafkę.</span>")
-			return
-	for(var/datum/team/gang/owner as anything in aq_gang_turf_gangs(T))
-		if(owner != G)
-			to_chat(user, "<span class='warning'>To teren gangu [owner]. Szafkę stawiasz na neutralnym albo własnym terenie.</span>")
-			return
-	if(G.locker && !G.owns_turf(T))
-		to_chat(user, "<span class='warning'>Szafkę przeniesiesz tylko w obrębie terenu gangu.</span>")
+	if(!can_place_locker(user, G, T))
 		return
 	if(!do_after(user, 5 SECONDS, T))
 		return
+	// W trakcie stawiania rywal mógł zająć kafelek, ktoś mógł coś postawić albo gangster mógł stracić stanowisko
+	if(get_turf(user) != T || !can_place_locker(user, G, T))
+		return
 	var/obj/structure/gang_locker/old = G.locker
 	var/old_cash = 0
+	var/old_carry = 0
+	var/datum/mind/old_depositor
 	var/old_hidden = FALSE
 	if(old)
 		old_cash = old.cash
+		old_carry = old.launder_carry
+		old_depositor = old.last_depositor
 		old_hidden = old.hidden
 		old.moving = TRUE
 		G.locker = null
 		qdel(old)
 	var/obj/structure/gang_locker/L = new(T, G)
 	L.cash = old_cash
+	L.launder_carry = old_carry
+	L.last_depositor = old_depositor
 	if(old_hidden)
 		L.toggle_hidden(user)
 	G.message_gang("[user.real_name] stawia szafkę gangu w: [get_area_name(L)].")
@@ -440,39 +445,6 @@
 		gang.identity_chosen = TRUE
 		INVOKE_ASYNC(gang, TYPE_PROC_REF(/datum/team/gang, choose_identity), owner)
 
-/// Szef wybiera nazwę gangu i mundur (zestawy z innych gangów, bez tych zajętych przez rywali)
-/datum/team/gang/proc/choose_identity(datum/mind/boss_mind)
-	var/mob/user = boss_mind?.current
-	if(!user?.client)
-		return
-	var/new_name = tgui_input_text(user, "Jak nazywa się twój gang? Bez zmiany zostaje „[name]”.", "Nazwa gangu", name, 24, encode = FALSE)
-	new_name = reject_bad_text(new_name, 24, ascii_only = FALSE)
-	if(new_name && new_name != name)
-		var/taken = FALSE
-		for(var/datum/team/gang/other as anything in GLOB.gangs)
-			if(other != src && lowertext(other.name) == lowertext(new_name))
-				taken = TRUE
-		if(taken)
-			to_chat(user, "<span class='warning'>Rywale już noszą tę nazwę. Zostajecie przy „[name]”.</span>")
-		else
-			name = new_name
-	var/list/choices = list()
-	for(var/datum/team/gang/preset as anything in subtypesof(/datum/team/gang))
-		var/obj/item/clothing/under/preset_outfit = initial(preset.outfit)
-		var/obj/item/clothing/head/preset_hat = initial(preset.hat)
-		if(!preset_outfit || !preset_hat || uniform_taken(preset_outfit))
-			continue
-		choices["[initial(preset_outfit.name)] i [initial(preset_hat.name)]"] = preset
-	var/choice = tgui_input_list(user, "Wybierz mundur gangu (kombinezon i nakrycie głowy). Pełny mundur na waszym terenie daje premie.", "Mundur gangu", choices)
-	var/datum/team/gang/picked = choices[choice]
-	if(picked && !uniform_taken(initial(picked.outfit)))
-		outfit = initial(picked.outfit)
-		hat = initial(picked.hat)
-		suit = initial(picked.suit)
-	var/obj/item/clothing/under/outfit_type = outfit
-	var/obj/item/clothing/head/hat_type = hat
-	message_gang("Gang nazywa się teraz <b>[name]</b>. Mundur: [initial(outfit_type.name)] i [initial(hat_type.name)].")
-
 /datum/team/gang/proc/uniform_taken(outfit_type)
 	for(var/datum/team/gang/other as anything in GLOB.gangs)
 		if(other != src && other.outfit == outfit_type)
@@ -482,3 +454,25 @@
 /proc/aq_gang_dir_text(direction)
 	var/static/list/directions = list("north" = "północ", "south" = "południe", "east" = "wschód", "west" = "zachód", "northeast" = "północny wschód", "southeast" = "południowy wschód", "northwest" = "północny zachód", "southwest" = "południowy zachód")
 	return directions[dir2text(direction)] || "tutaj"
+
+/// Czy `user` może postawić albo przenieść szafkę gangu `G` na `T` (szef, miejsce na stacji, nie teren wroga)
+/datum/action/innate/gang_locker/proc/can_place_locker(mob/living/carbon/human/user, datum/team/gang/G, turf/T)
+	var/datum/antagonist/gang/GA = user.mind?.has_antag_datum(/datum/antagonist/gang)
+	if(!istype(GA, /datum/antagonist/gang/boss) || GA.gang != G || user.incapacitated())
+		return FALSE
+	var/area/A = get_area(T)
+	if(!isopenturf(T) || isspaceturf(T) || !aq_gang_station_turf(T) || !(A.area_flags & VALID_TERRITORY))
+		to_chat(user, "<span class='warning'>Tutaj nie postawisz szafki.</span>")
+		return FALSE
+	for(var/obj/O in T)
+		if(O.density)
+			to_chat(user, "<span class='warning'>Tu nie ma miejsca na szafkę.</span>")
+			return FALSE
+	for(var/datum/team/gang/owner as anything in aq_gang_turf_gangs(T))
+		if(owner != G)
+			to_chat(user, "<span class='warning'>To teren gangu [owner]. Szafkę stawiasz na neutralnym albo własnym terenie.</span>")
+			return FALSE
+	if(G.locker && !G.owns_turf(T))
+		to_chat(user, "<span class='warning'>Szafkę przeniesiesz tylko w obrębie terenu gangu.</span>")
+		return FALSE
+	return TRUE

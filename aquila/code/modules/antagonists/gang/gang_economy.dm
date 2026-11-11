@@ -105,9 +105,16 @@
 		return 0
 	return 1 - (already_sold - GANG_DRUG_BONUS_UNITS) / (GANG_DRUG_UNIT_LIMIT - GANG_DRUG_BONUS_UNITS)
 
-/// Punkty za sprzedaż `units` jednostek narkotyku `reagent_type`; zapisuje sprzedaż w gangu
+/// Ile jednostek narkotyku gang jeszcze skupi (0 dla rzeczy, które nie są skupowanymi narkotykami)
+/datum/team/gang/proc/drug_units_left(reagent_type)
+	if(!aq_gang_drug_values()[reagent_type])
+		return 0
+	return max(0, GANG_DRUG_UNIT_LIMIT - (drug_units_sold[reagent_type] || 0))
+
+/// Punkty za sprzedaż `units` jednostek narkotyku `reagent_type` (najwyżej do limitu); zapisuje sprzedaż w gangu
 /datum/team/gang/proc/sell_drug(reagent_type, units)
 	var/value = aq_gang_drug_values()[reagent_type]
+	units = min(units, drug_units_left(reagent_type))
 	if(!value || units <= 0)
 		return 0
 	. = 0

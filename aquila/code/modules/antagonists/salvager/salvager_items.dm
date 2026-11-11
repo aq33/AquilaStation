@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(salvage_beacons)
 
 /obj/item/salvage_beacon/attack_self(mob/user)
 	var/turf/T = get_turf(user)
-	if(!T || !is_station_level(T.z) || isspaceturf(T))
+	if(!T || !aq_gang_station_turf(T) || isspaceturf(T))
 		to_chat(user, "<span class='warning'>Nadajnik trzeba rozstawić na pokładzie okrętu.</span>")
 		return
 	if(!do_after(user, 3 SECONDS, T))
@@ -140,10 +140,11 @@ GLOBAL_LIST_EMPTY(salvage_beacons)
 /// Przerzuca `user` i to, co ciągnie, na `destination`
 /proc/salvage_teleport(mob/living/user, turf/destination)
 	var/atom/movable/pulled = user.pulling
-	do_teleport(user, destination, channel = TELEPORT_CHANNEL_BLUESPACE)
-	if(pulled && !pulled.anchored)
-		do_teleport(pulled, destination, channel = TELEPORT_CHANNEL_BLUESPACE)
+	if(!do_teleport(user, destination, channel = TELEPORT_CHANNEL_BLUESPACE) || get_turf(user) != destination)
+		return FALSE
+	if(pulled && !pulled.anchored && do_teleport(pulled, destination, channel = TELEPORT_CHANNEL_BLUESPACE) && get_turf(pulled) == destination)
 		user.start_pulling(pulled)
+	return TRUE
 
 ///////////////////
 // Teleporter na statku

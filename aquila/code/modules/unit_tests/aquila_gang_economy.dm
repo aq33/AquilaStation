@@ -40,7 +40,11 @@
 	TEST_ASSERT_EQUAL(G.sell_drug(/datum/reagent/drug/methamphetamine, 100), 0, "A drug past the limit should not be bought")
 	TEST_ASSERT_EQUAL(G.sell_drug(/datum/reagent/water, 100), 0, "Water is not a drug")
 
-	// Znak zajmuje teren i daje punkty za postawienie
+	// Znak zajmuje teren i daje punkty za postawienie (pokój testowy udaje obszar stacji, który da się zająć)
+	var/area/test_area = get_area(corner)
+	var/old_area_flags = test_area.area_flags
+	test_area.area_flags |= VALID_TERRITORY
+	TEST_ASSERT(aq_gang_claimable_turf(corner), "The test room floor should be claimable once its area is valid territory")
 	points_before = G.get_points(boss.mind)
 	var/obj/effect/decal/gang/tag = new(corner, G, "graffiti", 0, gangster)
 	TEST_ASSERT(G.claimed_tiles > 0, "A gang tag should claim tiles around it")
@@ -79,6 +83,7 @@
 	TEST_ASSERT(boss.mind.has_antag_datum(/datum/antagonist/gang), "The old boss should stay in the gang")
 
 	qdel(locker)
+	test_area.area_flags = old_area_flags
 	boss.mind.remove_antag_datum(/datum/antagonist/gang)
 	gangster.mind.remove_antag_datum(/datum/antagonist/gang)
 	qdel(G)

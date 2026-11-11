@@ -28,7 +28,7 @@
 	possible_destinations = "salvagership_home;syndicate_n;syndicate_ne;syndicate_nw;syndicate_s;syndicate_se;syndicate_sw;syndicatecutter_n;syndicatecutter_ne;syndicatecutter_nw;syndicatecutter_s;syndicatecutter_se;syndicatecutter_sw"
 
 /obj/machinery/computer/shuttle_flight/pirate/salvager/ui_act(action, params)
-	if((action in list("launch", "dock", "gotoPort", "setTarget", "setTargetCoords")) && salvager_main_ship_jumping())
+	if((action in list("move", "launch", "dock", "gotoPort", "setTarget", "setTargetCoords")) && salvager_main_ship_jumping())
 		say("Okręt jest w skoku FTL. Trzymamy się jego śladu, start dopiero po wyjściu ze skoku.")
 		return TRUE
 	return ..()
@@ -52,7 +52,7 @@
 	var/value = 0
 	var/datum/export_report/ex = new
 	for(var/atom/movable/AM in get_turf(pad))
-		if(AM == pad || isliving(AM))
+		if(AM == pad || salvage_holds_living(AM))
 			continue
 		value += salvage_value(AM, TRUE)
 		export_item_and_contents(AM, EXPORT_CARGO | EXPORT_CONTRABAND, apply_elastic = FALSE, dry_run = TRUE, external_report = ex)
@@ -66,7 +66,7 @@
 	var/value = 0
 	var/datum/export_report/ex = new
 	for(var/atom/movable/AM in get_turf(pad))
-		if(AM == pad || isliving(AM))
+		if(AM == pad || salvage_holds_living(AM))
 			continue
 		value += salvage_value(AM, FALSE)
 		if(!QDELETED(AM))
@@ -86,7 +86,7 @@
 /// Wartość płytek i części maszyn (rzecz i to, co w niej leży); przy sprzedaży usuwa je z platformy
 /obj/machinery/computer/piratepad_control/salvage/proc/salvage_value(atom/movable/AM, dry_run)
 	. = 0
-	var/list/things = list(AM) + AM.GetAllContents()
+	var/list/things = AM.GetAllContents()
 	for(var/atom/movable/thing as anything in things)
 		var/price = salvage_price(thing)
 		if(!price)
@@ -94,6 +94,13 @@
 		. += price
 		if(!dry_run)
 			qdel(thing)
+
+/// Istota albo pojemnik z istotą w środku: ani wyceny, ani sprzedaży (także jej wyposażenia)
+/proc/salvage_holds_living(atom/movable/AM)
+	for(var/atom/movable/thing as anything in AM.GetAllContents())
+		if(isliving(thing))
+			return TRUE
+	return FALSE
 
 /proc/salvage_price(atom/movable/thing)
 	if(istype(thing, /obj/item/circuitboard/machine))

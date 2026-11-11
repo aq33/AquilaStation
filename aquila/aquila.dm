@@ -372,6 +372,7 @@
 #include "code\modules\antagonists\gang\gang_territory.dm"
 #include "code\modules\antagonists\gang\gang_status.dm"
 #include "code\modules\antagonists\gang\gang_locker.dm"
+#include "code\modules\antagonists\gang\gang_identity.dm"
 #include "code\modules\antagonists\gang\gang_drops.dm"
 #include "code\modules\antagonists\salvager\salvager.dm"
 #include "code\modules\antagonists\salvager\salvager_items.dm"

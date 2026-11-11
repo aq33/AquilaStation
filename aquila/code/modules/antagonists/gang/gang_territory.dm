@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 		return
 	var/list/claimed = list()
 	for(var/turf/open/T in RANGE_TURFS(radius, center))
-		if(isspaceturf(T) || get_dist_euclidian(T, center) > radius)
+		if(!aq_gang_claimable_turf(T) || get_dist_euclidian(T, center) > radius)
 			continue
 		var/list/sources = GLOB.gang_turf_sources[T]
 		if(!sources)
@@ -65,6 +65,22 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 	for(var/source in sources)
 		. |= sources[source]
 
+/// Kafelek, na którym gangi i złomiarze działają jak na stacji: poziom stacji, komora testowa albo pokój testów jednostkowych
+/proc/aq_gang_station_turf(turf/T)
+	if(!T)
+		return FALSE
+	if(is_station_level(T.z))
+		return TRUE
+	var/area/A = get_area(T)
+	return istype(A, /area/test_chamber) || istype(A, /area/testroom)
+
+/// Kafelek, który gang może zająć: otwarty, nie kosmos, na stacji, w obszarze z VALID_TERRITORY
+/proc/aq_gang_claimable_turf(turf/T)
+	if(!isopenturf(T) || isspaceturf(T) || !aq_gang_station_turf(T))
+		return FALSE
+	var/area/A = get_area(T)
+	return A && (A.area_flags & VALID_TERRITORY)
+
 /// Otwarte kafelki stacji, które da się zająć; liczone raz, bo stacja się nie powiększa
 /proc/aq_gang_station_tiles()
 	var/static/total = 0
@@ -74,7 +90,7 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 		if(!(A.area_flags & VALID_TERRITORY) || !is_station_level(A.z))
 			continue
 		for(var/turf/open/T in A)
-			if(!isspaceturf(T))
+			if(aq_gang_claimable_turf(T))
 				total++
 		CHECK_TICK
 	total = max(total, 1)
@@ -122,13 +138,17 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 /obj/item/toy/crayon/can_claim_for_gang(mob/user, atom/target, alert)
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(T)
-	if(!T || !A || isspaceturf(T) || !is_station_level(T.z) || !(A.area_flags & VALID_TERRITORY))
+	if(!T || !A || isspaceturf(T) || !aq_gang_station_turf(T) || !(A.area_flags & VALID_TERRITORY))
 		to_chat(user, "<span class='warning'>Tutaj nie da się oznaczyć terenu.</span>")
 		return FALSE
 	if(locate(/obj/machinery/power/apc) in T)
 		to_chat(user, "<span class='warning'>Nie możesz otagować APC.</span>")
 		return FALSE
-	var/datum/antagonist/gang/GA = user.mind.has_antag_datum(/datum/antagonist/gang)
+	var/datum/antagonist/gang/GA = user.mind?.has_antag_datum(/datum/antagonist/gang)
+	// Sprawdzane też po malowaniu: gangster mógł w tym czasie stracić rolę albo przejść do innego gangu
+	if(!GA?.gang || (istype(gang, /datum/team/gang) && gang != GA.gang))
+		to_chat(user, "<span class='warning'>Kolor tej puszki to nie kolor twojego gangu.</span>")
+		return FALSE
 	for(var/obj/effect/decal/gang/tag in T)
 		if(tag.gang == GA.gang)
 			to_chat(user, "<span class='warning'>Tu już jest znak twojego gangu.</span>")
@@ -155,7 +175,7 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 /proc/aq_gang_territory_tick()
 	var/list/people = list()
 	for(var/mob/living/carbon/human/H as anything in GLOB.alive_mob_list)
-		if(istype(H) && H.client && is_station_level(H.z))
+		if(istype(H) && H.client && aq_gang_station_turf(get_turf(H)))
 			people += H
 	var/max_heat = 0
 	var/list/all_tags = list()

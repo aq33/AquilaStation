@@ -206,7 +206,7 @@
 
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
 	var/turf/user_turf = get_turf(user)
-	if(!user_turf || isspaceturf(user_turf) || !is_station_level(user_turf.z))
+	if(!user_turf || isspaceturf(user_turf) || !aq_gang_station_turf(user_turf))
 		to_chat(user, "<span class='warning'>Dominator działa tylko na stacji!</span>")
 		return FALSE
 	for(var/obj/thing in user_turf)

@@ -147,10 +147,14 @@ GLOBAL_DATUM(gang_controller, /datum/gang_controller)
 			if(user)
 				to_chat(user, "<span class='warning'>Szafka obok nie należy do twojego gangu.</span>")
 			return FALSE
-		claimed = TRUE
 		locked = FALSE
+		if(!..())
+			locked = TRUE
+			return FALSE
+		claimed = TRUE
 		L.gang.add_income(GANG_CRATE_POINTS, GANG_SCORE_EVENT, user.mind)
 		L.gang.message_gang("[user.real_name] otwiera zrzut przy szafce: każdy z nas dostaje [GANG_CRATE_POINTS] pkt!")
+		return TRUE
 	return ..()
 
 ///////////////////

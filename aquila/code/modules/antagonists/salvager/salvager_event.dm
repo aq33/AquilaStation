@@ -11,9 +11,17 @@
 	gamemode_blacklist = list("nuclear")
 	cannot_spawn_after_shuttlecall = TRUE
 
+// Złomiarze to rola dla duchów, ale event nie dziedziczy po /datum/round_event/ghost_role, więc flagę sprawdzamy sami
+/datum/round_event_control/salvagers/canSpawnEvent(players_amt, gamemode)
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
+		return FALSE
+	return ..()
+
+// Nasze mapy nie mają pustej warstwy; tworzymy ją tak jak dla piratów (aquila/code/modules/weighted/spawn_fallbacks.dm)
 /datum/round_event_control/salvagers/preRunEvent()
 	if(!SSmapping.empty_space)
-		return EVENT_CANT_RUN
+		SSmapping.space_levels_so_far++
+		SSmapping.empty_space = SSmapping.add_new_zlevel("Empty Area [SSmapping.space_levels_so_far]", list(ZTRAIT_LINKAGE = SELFLOOPING), orbital_body_type = /datum/orbital_object/z_linked/beacon/weak)
 	return ..()
 
 /datum/round_event/salvagers/start()
