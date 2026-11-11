@@ -815,6 +815,11 @@
   - rscadd: 'Udany blok i parowanie widać: błysk na postaci i napis nad głową'
   - balance: Jeden blok kosztuje najwyżej 35 staminy, blok pałki ogłuszającej nic
       nie kosztuje
+  - bugfix: 'Alarm bojowy nie zostawia już całego statku w czerwonym świetle jak przy
+      pożarze: czerwone światła gasną po 45 sekundach (przy Zebrze po 30).'
+  - bugfix: Wejście we wrota Sabre ze skrzydła wprowadza do kokpitu, zamiast wyrzucać
+      do hangaru.
+  - bugfix: Condition Zebra znowu zamyka drzwi przeciwpożarowe.
   Nikita:
   - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
       strzał z jednej ręki, tak jak pojedyncze kule.
