@@ -2069,6 +2069,11 @@
 #include "code\modules\mob\living\basic\lavaland\goliath\goliath_actions.dm"
 #include "code\modules\mob\living\basic\lavaland\goliath\goliath_ai.dm"
 #include "code\modules\mob\living\basic\lavaland\goliath\tentacle.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\ranged_skirmish.dm"
+#include "code\modules\mob\living\basic\lavaland\watcher\watcher.dm"
+#include "code\modules\mob\living\basic\lavaland\watcher\watcher_gaze.dm"
+#include "code\modules\mob\living\basic\lavaland\watcher\watcher_projectiles.dm"
+#include "code\modules\mob\living\basic\lavaland\basilisk.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

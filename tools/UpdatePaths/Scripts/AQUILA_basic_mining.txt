@@ -3,3 +3,5 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord : /mob/living/basic/mining/hivelord{@OLD}
 /mob/living/simple_animal/hostile/asteroid/goliath/beast : /mob/living/basic/mining/goliath{@OLD}
 /mob/living/simple_animal/hostile/asteroid/goliath : /mob/living/basic/mining/goliath/ancient{@OLD}
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher : /mob/living/basic/mining/watcher{@OLD}
+/mob/living/simple_animal/hostile/asteroid/basilisk : /mob/living/basic/mining/basilisk{@OLD}

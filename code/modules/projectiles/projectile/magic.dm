@@ -228,7 +228,7 @@
 							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
 							/mob/living/simple_animal/hostile/carp/ranged,
 							/mob/living/simple_animal/hostile/carp/ranged/chaos,
-							/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+							/mob/living/basic/mining/watcher, // AQ EDIT - obserwator jest basic mobem
 							/mob/living/basic/mining/goliath, // AQ EDIT - goliat jest basic mobem
 							/mob/living/simple_animal/hostile/headcrab,
 							/mob/living/simple_animal/hostile/morph,

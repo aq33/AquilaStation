@@ -191,6 +191,85 @@
 	for(var/obj/effect/temp_visual/goliath_tentacle/tentacle in range(3, corner))
 		qdel(tentacle)
 
+/// The watcher shoots its frost blast at a target through the AI and the shot hits; after holding the target for a while
+/// it charges its gaze, which blinds and confuses someone looking at it
+/datum/unit_test/aquila_mining_watcher
+
+/datum/unit_test/aquila_mining_watcher/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/mining/watcher/watcher = allocate(/mob/living/basic/mining/watcher, corner)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, aquila_mining_test_turf(corner, run_loc_floor_top_right, 4))
+	var/datum/aquila_bullet_recorder/recorder = new
+	recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+	var/datum/ai_controller/controller = aquila_mining_find_target(watcher)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The watcher did not pick the human four tiles away")
+
+	var/datum/ai_behavior/shoot = GET_AI_BEHAVIOR(/datum/ai_behavior/ranged_skirmish)
+	var/datum/ai_behavior/gaze = GET_AI_BEHAVIOR(/datum/ai_behavior/use_mob_ability)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[gaze], "The watcher gazed before keeping its target for a while")
+	TEST_ASSERT(controller.current_behaviors[shoot], "The watcher with a target did not plan to shoot")
+	watcher.next_click = 0
+	controller.ProcessBehavior(1, shoot)
+	TEST_ASSERT(aquila_wait_for_hit(recorder), "The watcher's frost blast did not hit the target")
+	var/obj/item/projectile/hit_by = recorder.projectiles[1]
+	TEST_ASSERT(istype(hit_by, /obj/item/projectile/temp/basilisk), "The watcher shot something else than its frost blast")
+	controller.CancelActions()
+	qdel(recorder)
+
+	// The gaze, once the watcher has kept its target for a while
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.set_blackboard_key(BB_BASIC_MOB_HAS_TARGET_TIME, 6 SECONDS)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[gaze], "The watcher that kept its target did not plan to use its gaze")
+	victim.setDir(get_dir(victim, watcher))
+	controller.ProcessBehavior(1, gaze)
+	var/datum/action/cooldown/mob_cooldown/watcher_gaze/gaze_ability = controller.blackboard[BB_GENERIC_ACTION]
+	TEST_ASSERT(gaze_ability.stage_timer, "The gaze did not start charging")
+	TEST_ASSERT(aquila_mining_wait(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aquila_mining_confused), victim), 3 SECONDS), "The gaze did not confuse the human looking at the watcher")
+	TEST_ASSERT(watcher.IsStun(), "The watcher did not stop after its gaze")
+
+/// Is the mob confused
+/proc/aquila_mining_confused(mob/living/victim)
+	return victim.confused > 0
+
+/// The basilisk shoots from range and bites up close through the AI, and drops its two diamonds when it dies
+/datum/unit_test/aquila_mining_basilisk
+
+/datum/unit_test/aquila_mining_basilisk/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/mining/basilisk/basilisk = allocate(/mob/living/basic/mining/basilisk, corner)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, aquila_mining_test_turf(corner, run_loc_floor_top_right, 3))
+	var/datum/aquila_bullet_recorder/recorder = new
+	recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+	var/datum/ai_controller/controller = aquila_mining_find_target(basilisk)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The basilisk did not pick the human three tiles away")
+
+	var/datum/ai_behavior/shoot = GET_AI_BEHAVIOR(/datum/ai_behavior/ranged_skirmish)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[shoot], "The basilisk with a target did not plan to shoot")
+	basilisk.next_click = 0
+	controller.ProcessBehavior(1, shoot)
+	TEST_ASSERT(aquila_wait_for_hit(recorder), "The basilisk's frost blast did not hit the target")
+	controller.CancelActions()
+	qdel(recorder)
+
+	basilisk.forceMove(get_step(victim, WEST))
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.SelectBehaviors(1)
+	var/brute_before = victim.getBruteLoss()
+	aquila_mining_melee(basilisk)
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The basilisk did not bite its target in melee")
+	controller.CancelActions()
+
+	var/turf/death_turf = get_turf(basilisk)
+	basilisk.death()
+	var/diamonds = 0
+	for(var/obj/item/stack/ore/diamond/diamond in death_turf)
+		diamonds += diamond.amount
+		qdel(diamond)
+	TEST_ASSERT_EQUAL(diamonds, 2, "The dead basilisk did not drop its two diamonds")
+
 /// The legion holding this body, if any
 /proc/aquila_mining_holder_of(mob/living/victim)
 	return istype(victim.loc, /mob/living/basic/mining/legion) ? victim.loc : null

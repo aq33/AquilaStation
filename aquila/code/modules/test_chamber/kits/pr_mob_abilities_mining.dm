@@ -7,7 +7,9 @@
 		3) Karłowaty legion jest mniejszy i szybszy. \
 		4) Duch może przejąć władcę roju (klik duchem); w obu trybach sterowania klik w coś daleko wypuszcza pomiot, a przycisk zdolności celuje nim. \
 		5) Goliat po kilku sekundach z tym samym celem wbija pod niego macki (przed atakiem zmienia wygląd); macki chwytają i ogłuszają, a złapanego goliat bije wręcz. Uderzony z bliska wypuszcza macki dookoła siebie, uderzony z daleka sięga linią macek. Z każdym ciosem macki odnawiają się szybciej. Nakarmiony popielną florą (kilka prób) daje się oswoić, dostaje siodło i można na nim jeździć. Zabity kinetycznym miażdżycielem może zostawić trofeum (macka) przy rozbieraniu; zawsze ma skórę goliata. \
-		6) Pradawny goliat (stary wygląd) wypuszcza macki dookoła siebie bez przerwy."
+		6) Pradawny goliat (stary wygląd) wypuszcza macki dookoła siebie bez przerwy. \
+		7) Obserwator trzyma dystans 3-5 pól i strzela mroźnymi podmuchami; po kilku sekundach z tym samym celem jego oko świeci na czerwono, a po chwili oślepia i ogłupia każdego, kto na niego patrzy (odwróć się, żeby uniknąć). Ogniskrzydły podpala i powala, lodoskrzydły zamraża i odrzuca. Zabity daje diamenty i ścięgna przy rozbieraniu. \
+		8) Bazyliszek strzela z daleka, a z bliska gryzie; po śmierci zostawia dwa diamenty."
 	items = list(
 		/mob/living/basic/mining/hivelord = 1,
 		/mob/living/basic/mining/legion = 1,
@@ -15,4 +17,8 @@
 		/mob/living/basic/mining/goliath = 1,
 		/mob/living/basic/mining/goliath/ancient/immortal = 1,
 		/obj/item/food/grown/ash_flora/shavings = 5,
+		/mob/living/basic/mining/watcher = 1,
+		/mob/living/basic/mining/watcher/magmawing = 1,
+		/mob/living/basic/mining/watcher/icewing = 1,
+		/mob/living/basic/mining/basilisk = 1,
 	)

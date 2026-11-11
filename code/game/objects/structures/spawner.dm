@@ -65,7 +65,7 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
@@ -86,7 +86,7 @@
 /obj/structure/spawner/mining/basilisk
 	name = "legowisko bazyliszków"
 	desc = "Legowisko z gniazdem bazyliszków. Weź kurtkę."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
+	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/mining/wumborian
 	name = "legowisko wumboriańskich fugu"

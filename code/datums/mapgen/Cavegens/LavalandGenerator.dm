@@ -6,7 +6,7 @@
 
 	feature_spawn_list = list(/obj/structure/geyser/random = 1, /obj/item/xenoartifact = 2)
 	mob_spawn_list = list(/mob/living/basic/mining/goliath/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
-		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
+		/mob/living/basic/mining/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/basic/mining/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
 		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 	flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)

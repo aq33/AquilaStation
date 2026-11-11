@@ -67,7 +67,7 @@
 
 //Spawner types
 /obj/structure/spawner/lavaland/basilisk
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
+	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/lavaland/fugu
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
