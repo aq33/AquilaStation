@@ -2063,6 +2063,7 @@
 #include "code\modules\unit_tests\aquila_basic_cow.dm"
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
+#include "code\modules\unit_tests\aquila_mob_abilities.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"
