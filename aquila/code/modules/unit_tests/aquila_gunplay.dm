@@ -460,5 +460,31 @@
 	shotgun.chambered = null
 	TEST_ASSERT(aq_get_gun_cursor_icon(10, "pellets") != aq_get_gun_cursor_icon(10, "standard"), "Pellet and standard crosshairs share one cursor icon")
 
+/// Rozrzut broni losowany w ułamkach: rand(0, 0.9) dawało zawsze 0, a round() (podłoga) odchylało strzały w jedną stronę
+/datum/unit_test/aquila_gunplay_fractional_spread
+
+/datum/unit_test/aquila_gunplay_fractional_spread/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/far = locate(start.x, start.y + 3, start.z) // na północ: kąt 0
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, start)
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	shooter.put_in_hands(gun)
+	gun.set_firemode(AQ_FIREMODE_SEMI)
+	gun.spread = 0
+	gun.recoil_multiplier = 0
+	var/fractional_shots = 0
+	for(var/i in 1 to 6)
+		TEST_ASSERT(gun.chambered?.BB, "Pistol ran out of rounds on shot [i]")
+		gun.chambered.misfire_chance = 0
+		var/obj/item/projectile/bullet = gun.chambered.BB
+		gun.semicd = FALSE
+		shooter.aq_recoil = 0
+		gun.process_fire(far, shooter, FALSE, null, "", 0.9)
+		var/deviation = bullet.original_angle > 180 ? bullet.original_angle - 360 : bullet.original_angle
+		TEST_ASSERT(abs(deviation) <= 0.5, "Shot with 0.9° bonus spread flew [deviation]° off")
+		if(deviation != round(deviation))
+			fractional_shots++
+	TEST_ASSERT(fractional_shots > 0, "All shots with 0.9° bonus spread flew at whole degrees, fractional spread was lost")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
