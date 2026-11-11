@@ -314,38 +314,8 @@
 	var/mob/living/carbon/human/leader = allocate(/mob/living/carbon/human)
 	squad.add_member(leader)
 	squad.set_leader(leader)
-	// oznaczenia tylko ze smyczą: bez niej brak ikony nad postacią i brak widoku HUD-u drużyn
 	var/image/holder = leader.hud_list?[SQUAD_HUD]
-	var/datum/atom_hud/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	TEST_ASSERT(holder && !holder.icon, "Ikona funkcji nad postacią bez smyczy")
-	TEST_ASSERT(!squad_hud.hudusers[leader], "Członek bez smyczy widzi oznaczenia drużyn")
-	var/obj/item/clothing/neck/squad/lanyard = allocate(/obj/item/clothing/neck/squad, run_loc_floor_bottom_left, squad)
-	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
-	TEST_ASSERT(holder.icon && holder.icon_state == "frame", "Smycz własnej drużyny nie pokazuje ikony funkcji")
-	TEST_ASSERT(holder.appearance_flags & RESET_TRANSFORM, "Ikona funkcji w HUD-zie obraca się i skaluje z postacią")
-	TEST_ASSERT(squad_hud.hudusers[leader], "Osoba w smyczy nie widzi oznaczeń drużyn")
-	leader.dropItemToGround(lanyard)
-	TEST_ASSERT(!holder.icon && !squad_hud.hudusers[leader], "Po zdjęciu smyczy oznaczenia zostały")
-	var/mutable_appearance/worn_lanyard = lanyard.build_worn_icon(default_layer = NECK_LAYER)
-	TEST_ASSERT(worn_lanyard && !worn_lanyard.icon && !length(worn_lanyard.overlays), "Smycz na postaci rysuje drugi znaczek obok ramki HUD-u")
-	// osoba spoza drużyny w smyczy (np. kapitan) też ma ramkę w kolorze drużyny smyczy
-	var/mob/living/carbon/human/outsider = allocate(/mob/living/carbon/human)
-	var/obj/item/clothing/neck/squad/outsider_lanyard = allocate(/obj/item/clothing/neck/squad, run_loc_floor_bottom_left, squad)
-	outsider.equip_to_slot_or_del(outsider_lanyard, ITEM_SLOT_NECK)
-	var/image/outsider_holder = outsider.hud_list?[SQUAD_HUD]
-	TEST_ASSERT(!outsider.squad && outsider_holder?.icon_state == "frame" && outsider_holder.color == squad.colour, "Osoba spoza drużyny w smyczy nie ma ramki w kolorze drużyny")
-	var/old_colour = squad.colour
-	squad.aq_recolour(old_colour == "#123456" ? "#654321" : "#123456")
-	var/recoloured = outsider_holder.color == squad.colour
-	squad.aq_recolour(old_colour)
-	TEST_ASSERT(recoloured, "Ramka osoby spoza drużyny nie zmieniła koloru po przemalowaniu drużyny")
-	// HUD dodany z innego źródła zostaje po zdjęciu smyczy
-	squad_hud.add_hud_to(outsider)
-	outsider.dropItemToGround(outsider_lanyard)
-	TEST_ASSERT(squad_hud.hudusers[outsider], "Zdjęcie smyczy zabrało HUD drużyn dodany skądinąd")
-	squad_hud.remove_hud_from(outsider)
-	TEST_ASSERT(!squad_hud.hudusers[outsider], "HUD drużyn został po zdjęciu smyczy i zdjęciu drugiego źródła")
-	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
+	TEST_ASSERT(holder && (holder.appearance_flags & RESET_TRANSFORM), "Ikona funkcji w HUD-zie obraca się i skaluje z postacią")
 	var/list/centcom = SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 	if(length(centcom) && !(centcom[1] in squad.aq_active_levels()) && !(centcom[1] in SSmapping.levels_by_trait(ZTRAIT_STATION)) && centcom[1] != leader.z)
 		leader.aq_next_squad_marker = 0

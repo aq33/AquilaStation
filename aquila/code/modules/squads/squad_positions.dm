@@ -242,94 +242,21 @@
 	SIGNAL_HANDLER
 	aq_add_marker_images(source)
 
-/// Drużyna ze smyczy na szyi albo null; `removing` to smycz właśnie zdejmowana (dropped() idzie przed wyczyszczeniem slotu)
-/mob/living/carbon/human/proc/aq_worn_lanyard_squad(obj/item/removing)
-	var/obj/item/clothing/neck/squad/lanyard = wear_neck
-	if(!istype(lanyard) || lanyard == removing)
-		return null
-	return lanyard.squad
-
-// Ikona funkcji nad postacią u każdego, kto nosi smycz: kolor drużyny ze smyczy, funkcja, gdy jest w tej drużynie
-// (inaczej żołnierz). Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), w lewym górnym rogu.
-/mob/living/carbon/human/proc/aq_update_squad_hud(obj/item/removing)
+// Ikona funkcji w kolorze drużyny nad postacią (HUD drużyny widzą wszyscy członkowie drużyn).
+// Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), przeniesione do lewego górnego rogu.
+/mob/living/carbon/human/proc/aq_update_squad_hud()
 	var/image/holder = hud_list?[SQUAD_HUD]
 	if(!holder)
 		return
 	holder.cut_overlays()
-	var/datum/squad/badge_squad = aq_worn_lanyard_squad(removing)
-	if(!badge_squad)
+	if(!squad)
 		holder.icon = null
 		holder.icon_state = null
 		return
 	holder.icon = 'aquila/icons/squads/squad_hud.dmi'
 	holder.icon_state = "frame"
-	holder.color = badge_squad.colour
+	holder.color = squad.colour
 	holder.appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_APART
-	var/position = (squad == badge_squad) ? get_squad_position() : SQUAD_POSITION_SOLDIER
-	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[position]")
+	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[get_squad_position()]")
 	glyph.appearance_flags = RESET_COLOR
 	holder.add_overlay(glyph)
-
-/mob/living/carbon/human
-	/// HUD drużyn dodany przez noszoną smycz (własny licznik, żeby nie zdejmować HUD-u dodanego skądinąd)
-	var/aq_squad_hud_from_lanyard = FALSE
-
-/// Oznaczenia drużyn widzi tylko ktoś, kto sam nosi smycz drużyny (jak okulary HUD)
-/mob/living/carbon/human/proc/aq_update_squad_hud_view(obj/item/removing)
-	if(QDELETED(src))
-		return
-	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/should_see = !!aq_worn_lanyard_squad(removing)
-	if(should_see == aq_squad_hud_from_lanyard)
-		return
-	aq_squad_hud_from_lanyard = should_see
-	if(should_see)
-		hud.add_hud_to(src)
-	else
-		hud.remove_hud_from(src)
-
-// Pełne nadpisanie (LEGACY_OVERRIDES.md): NSV13 dawało HUD drużyn każdemu członkowi, u nas decyduje smycz na szyi.
-// Zostaje wskaźnik dowódcy na ekranie; HUD-u nie dodajemy, żeby nie wysyłać obrazów i nie odpalać cooldownu na darmo.
-/datum/squad/handle_hud(mob/living/carbon/human/H, add = TRUE)
-	var/datum/hud/human/hud_used = H.hud_used
-	if(hud_used?.squad_lead_finder)
-		if(add)
-			hud_used.squad_lead_finder.invisibility = FALSE
-			hud_used.squad_lead_finder.alpha = 255
-			hud_used.squad_lead_finder.set_squad(src, H)
-		else
-			hud_used.squad_lead_finder.invisibility = INVISIBILITY_ABSTRACT
-			hud_used.squad_lead_finder.alpha = 0
-	if(ishuman(H))
-		H.aq_update_squad_hud_view()
-
-/// Odświeża ramki osób w smyczy tej drużyny spoza drużyny (np. kapitana); członków odświeża aq_refresh_all()
-/datum/squad/proc/aq_refresh_lanyard_outsiders()
-	for(var/mob/living/carbon/human/wearer in GLOB.carbon_list)
-		if(wearer.squad != src && wearer.aq_worn_lanyard_squad() == src)
-			wearer.aq_update_squad_hud()
-
-/obj/item/clothing/neck/squad/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.aq_update_squad_hud()
-		H.aq_update_squad_hud_view()
-
-/obj/item/clothing/neck/squad/dropped(mob/user, silent = FALSE)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.aq_update_squad_hud(src)
-		H.aq_update_squad_hud_view(src)
-
-/// Funkcję pokazuje ramka HUD-u, więc smycz na postaci nie rysuje drugiego znaczka (w dłoniach widać ją normalnie)
-/obj/item/clothing/neck/squad/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
-	if(!isinhands)
-		var/mutable_appearance/blank = mutable_appearance(layer = -default_layer) // pusty wygląd: kod slotu czyta z niego przesunięcia
-		return blank
-	return ..()
-
-/obj/item/clothing/neck/squad/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Noszona na szyi pokazuje oznaczenia drużyn: funkcję nad osobami w smyczy drużyny.</span>"
