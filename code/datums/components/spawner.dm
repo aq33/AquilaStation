@@ -45,9 +45,23 @@
 		return 0
 	spawn_delay = world.time + spawn_time
 	var/chosen_mob_type = pick(mob_types)
-	var/mob/living/simple_animal/L = new chosen_mob_type(P.loc)
+	// AQ EDIT START - basic moby: spawner tworzy też basic moby (agenci Syndykatu), które nie mają `nest`
+	var/mob/living/L = new chosen_mob_type(P.loc)
 	L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1)
 	spawned_mobs += L
-	L.nest = src
+	if(isanimal(L))
+		var/mob/living/simple_animal/simple_mob = L
+		simple_mob.nest = src
+	else
+		RegisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(forget_spawned_mob))
+	// AQ EDIT END
 	L.faction = src.faction
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")
+
+// AQ EDIT START - basic moby: martwy lub usunięty basic mob zwalnia miejsce jak simple animal przez `nest`
+/datum/component/spawner/proc/forget_spawned_mob(mob/living/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+	if(spawned_mobs) // null after stop_spawning()
+		spawned_mobs -= source
+// AQ EDIT END

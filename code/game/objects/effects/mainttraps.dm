@@ -170,7 +170,7 @@
 	var/crossed = 0
 	var/mobs = 1
 	reusable = TRUE
-	var/mob/living/simple_animal/hostile/spawned = /mob/living/simple_animal/hostile/retaliate/spaceman
+	var/mob/living/spawned = /mob/living/simple_animal/hostile/retaliate/spaceman // AQ EDIT - basic moby: także basic
 
 /obj/effect/trap/nexus/trickyspawner/Initialize(mapload)
 	. = ..()
@@ -200,8 +200,14 @@
 	if(validturfs.len)
 		T = pick(validturfs)
 	if(mobs)
-		var/mob/living/simple_animal/hostile/spawninstance = new spawned(T)
-		spawninstance.target = AM
+		// AQ EDIT START - basic moby: pułapka tworzy też basic moby (ochroniarz NT), cel idzie na ich blackboard
+		var/mob/living/spawninstance = new spawned(T)
+		if(istype(spawninstance, /mob/living/simple_animal/hostile))
+			var/mob/living/simple_animal/hostile/simple_hostile = spawninstance
+			simple_hostile.target = AM
+		else
+			spawninstance.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, AM)
+		// AQ EDIT END
 		if(istype(spawninstance, /mob/living/simple_animal/hostile/retaliate))
 			var/mob/living/simple_animal/hostile/retaliate/R = spawninstance
 			R.enemies += AM
@@ -219,7 +225,7 @@
 	spawned = /mob/living/simple_animal/hostile/faithless
 
 /obj/effect/trap/nexus/trickyspawner/shitsec
-	spawned = /mob/living/simple_animal/hostile/nanotrasen/hugbox
+	spawned = /mob/living/basic/trooper/nanotrasen/hugbox // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/eldritch //currently unused. if used, note these guys are quite powerful with a whopping 35 melee
 	spawned = /mob/living/simple_animal/hostile/netherworld
@@ -249,10 +255,7 @@
 #undef PICK_STYLE_ALL
 
 
-/mob/living/simple_animal/hostile/nanotrasen/hugbox
-	loot = list(/obj/effect/gibspawner/human)//no gamer gear, sorry!
-	mobchatspan = "headofsecurity"
-	del_on_death = TRUE
+// AQ EDIT - basic moby: /mob/living/basic/trooper/nanotrasen/hugbox jest w aquila/code/modules/mob/living/basic/trooper/nanotrasen.dm
 
 /mob/living/simple_animal/hostile/zombie/hugbox
 	melee_damage = 12 //zombies have a base of 21, a bit much

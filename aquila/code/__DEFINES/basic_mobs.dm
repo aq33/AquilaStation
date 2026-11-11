@@ -316,3 +316,15 @@
 #define BB_TARGET_ONLY_WITH_TRAITS "BB_target_only_with_traits"
 /// Generic search range of find_and_set behaviours (food, items)
 #define BB_SEARCH_RANGE "BB_search_range"
+
+// --- troopers (tg 926bf40c5a ai_blackboard.dm): calling reinforcements and travelling to a point
+/// Something to say when calling reinforcements (takes precedence over BB_REINFORCEMENTS_EMOTE)
+#define BB_REINFORCEMENTS_SAY "BB_reinforcements_say"
+/// An emote to perform when calling reinforcements
+#define BB_REINFORCEMENTS_EMOTE "BB_reinforcements_emote"
+/// world.time when the mob can call reinforcements again
+#define BB_BASIC_MOB_REINFORCEMENTS_COOLDOWN "BB_basic_mob_reinforcements_cooldown"
+/// The mob that called us for help; the travel_to_point/reinforce subtree walks to it
+#define BB_BASIC_MOB_REINFORCEMENT_TARGET "BB_basic_mob_reinforcement_target"
+/// Generic destination of the travel_to_point subtree
+#define BB_TRAVEL_DESTINATION "BB_travel_destination"

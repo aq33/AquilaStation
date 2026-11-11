@@ -158,6 +158,7 @@
 		/mob/living/simple_animal/hostile/megafauna,
 		/mob/living/simple_animal/hostile/alien,
 		/mob/living/simple_animal/hostile/syndicate,
+		/mob/living/basic/trooper/syndicate, // AQ EDIT - basic moby
 	))
 
 /obj/item/mob_lasso/antag/debug

@@ -2050,6 +2050,16 @@
 #include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\step_towards_turf.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
+// Żołnierze (Syndykat, NT, Rosjanie, piraci) jako basic moby, port tg trooper/
+#include "code\datums\ai\basic_mobs\basic_subtrees\call_reinforcements.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\travel_to_point.dm"
+#include "code\datums\components\plundering_attacks.dm"
+#include "code\modules\mob\living\basic\trooper\trooper.dm"
+#include "code\modules\mob\living\basic\trooper\trooper_ai.dm"
+#include "code\modules\mob\living\basic\trooper\syndicate.dm"
+#include "code\modules\mob\living\basic\trooper\nanotrasen.dm"
+#include "code\modules\mob\living\basic\trooper\russian.dm"
+#include "code\modules\mob\living\basic\trooper\pirate.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
