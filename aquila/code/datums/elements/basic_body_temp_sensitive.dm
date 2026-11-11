@@ -20,7 +20,8 @@
 	if(!isbasicmob(target))
 		return ELEMENT_INCOMPATIBLE
 
-	if(min_body_temp)
+	// AQUILA: isnum(), Bee's `if(min_body_temp)` turned a minimum of 0 (bats, Sergeant Araneus, gondolas, penguins) into 250 K
+	if(isnum(min_body_temp))
 		src.min_body_temp = min_body_temp
 	if(max_body_temp)
 		src.max_body_temp = max_body_temp
