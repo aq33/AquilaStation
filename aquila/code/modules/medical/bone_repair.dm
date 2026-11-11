@@ -61,7 +61,7 @@
 	item_state = "bonesetter"
 	lefthand_file = 'aquila/icons/mob/inhands/equipment/medical_tg_lefthand.dmi'
 	righthand_file = 'aquila/icons/mob/inhands/equipment/medical_tg_righthand.dmi'
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500)
+	custom_materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500)
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("koryguje", "porządnie nastawia")

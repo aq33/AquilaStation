@@ -231,7 +231,7 @@
 	desc = "Przechowuje nagrane holopołączenia."
 	icon_state = "holodisk"
 	obj_flags = UNIQUE_RENAME
-	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
+	custom_materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
 	var/datum/holorecord/record
 	//Preset variables
 	var/preset_image_type
@@ -361,7 +361,7 @@
 	nonhuman_mobtype = /mob/living/simple_animal/hostile/gorilla
 
 /datum/preset_holoimage/corgi
-	nonhuman_mobtype = /mob/living/simple_animal/pet/dog/corgi
+	nonhuman_mobtype = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /datum/preset_holoimage/clown
 	outfit_type = /datum/outfit/job/clown

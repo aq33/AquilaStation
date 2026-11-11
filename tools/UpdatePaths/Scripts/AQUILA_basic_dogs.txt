@@ -1,0 +1,4 @@
+/mob/living/simple_animal/pet/dog/corgi/puppy/Ian : /mob/living/basic/pet/dog/corgi/puppy/ian{@OLD}
+/mob/living/simple_animal/pet/dog/corgi/Ian : /mob/living/basic/pet/dog/corgi/ian{@OLD}
+/mob/living/simple_animal/pet/dog/corgi/Lisa : /mob/living/basic/pet/dog/corgi/lisa{@OLD}
+/mob/living/simple_animal/pet/dog/@SUBTYPES : /mob/living/basic/pet/dog/@SUBTYPES{@OLD; emote_hear = @SKIP; emote_see = @SKIP; speak = @SKIP; speak_chance = @SKIP; turns_per_move = @SKIP}

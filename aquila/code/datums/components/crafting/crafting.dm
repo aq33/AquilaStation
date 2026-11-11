@@ -377,6 +377,7 @@
 			var/obj/item/stack/ST = locate(part) in Deletion
 			if(ST.amount > partlist[part])
 				ST.amount = partlist[part]
+				ST.update_custom_materials() // suma materiałów stosu po przycięciu ilości
 			. += ST
 			Deletion -= ST
 			continue

@@ -2996,7 +2996,7 @@
 	dir = 4
 	},
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/bullterrier{
+/mob/living/basic/pet/dog/bullterrier{
 	desc = "Like the shotgun";
 	name = "Bulldog"
 	},
@@ -6403,7 +6403,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/quartermaster/pvp)
 "gFd" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat{
 	name = "Evil Pete"
 	},
 /turf/open/floor/plasteel/freezer,
@@ -6868,7 +6868,7 @@
 /area/science/pvp)
 "hai" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/pet/cat/space{
+/mob/living/basic/pet/cat/space{
 	desc = "A syndicat, but in space.";
 	faction = list("Syndicate");
 	name = "Big MAC"
@@ -8802,7 +8802,7 @@
 	desc = "The little 'A' insignia indicates that this is part of a rare and valuable set created by Aether Collectables Co. Only fifty five of these coins were ever created.";
 	pixel_x = -4;
 	pixel_y = -3;
-	value = 660
+	value_override = 660
 	},
 /turf/open/floor/plating,
 /area/maintenance/pvp)
@@ -12252,7 +12252,7 @@
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/key/janitor,
 /obj/item/reagent_containers/spray/cleaner,
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	name = "Wags-His-Tail"
 	},
 /turf/open/floor/plating,

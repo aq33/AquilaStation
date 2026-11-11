@@ -6,7 +6,7 @@
 
 	var/list/possessible = list()
 
-	for(var/mob/living/simple_animal/mouse/M in GLOB.alive_mob_list)
+	for(var/mob/living/basic/mouse/M in GLOB.alive_mob_list)
 		if(M.stat != CONSCIOUS) continue
 		if(M.key) continue
 		if(M in GLOB.player_list) continue
@@ -19,12 +19,12 @@
 		to_chat(src, "<span class='warning'>Obecnie nie ma myszy, które można opętać!</span>")
 		return FALSE
 
-	var/mob/living/simple_animal/mouse/M = pick(possessible)
+	var/mob/living/basic/mouse/M = pick(possessible)
 
 	possess_mouse(M)
 
 
-/mob/dead/observer/proc/possess_mouse(mob/living/simple_animal/mouse/M)
+/mob/dead/observer/proc/possess_mouse(mob/living/basic/mouse/M)
 	if(!M)
 		return FALSE
 
@@ -47,10 +47,10 @@
 
 	M.key = key
 	M.faction = list("neutral")
-	M.chew_probability = 0 //so they cant pull off a big brain play by ghosting somewhere or idk
 	M.layer = BELOW_OPEN_DOOR_LAYER //ENGAGE ADVANCED HIDING BRAIN FUNCTIONS
 	M.language_holder = new /datum/language_holder/mouse(M)
 	M.pass_flags |= PASSDOOR
+	M.chews_cables = FALSE //so they cant pull off a big brain play by ghosting somewhere or idk
 	M.sentience_act()
 	M.maxHealth = 15
 	M.health = M.maxHealth

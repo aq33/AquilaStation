@@ -19,7 +19,7 @@
 	/// note %age conveted to actual charge in New
 	var/charge = 0
 	var/maxcharge = 1000
-	materials = list(/datum/material/iron=700, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=700, /datum/material/glass=50)
 	grind_results = list(/datum/reagent/lithium = 15, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	/// true if rigged to explode
 	var/rigged = FALSE
@@ -227,7 +227,7 @@
 	name = "\improper akumulatorek AA marki Nanotrasen"
 	desc = "Plazmowego szczytu nie przeskoczysz." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
-	materials = list(/datum/material/glass=40)
+	custom_materials = list(/datum/material/glass=40)
 
 /obj/item/stock_parts/cell/crap/empty/Initialize(mapload)
 	. = ..()
@@ -238,7 +238,7 @@
 	name = "ulepszone ogniwo zasilające"
 	desc = "Ogniwo zasilające o nieco większej pojemności niż zwykle!"
 	maxcharge = 2500
-	materials = list(/datum/material/glass=50)
+	custom_materials = list(/datum/material/glass=50)
 	chargerate = 1000
 
 /obj/item/stock_parts/cell/upgraded/plus
@@ -249,7 +249,7 @@
 /obj/item/stock_parts/cell/secborg
 	name = "akumulator D cyborga ochrony"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	materials = list(/datum/material/glass=40)
+	custom_materials = list(/datum/material/glass=40)
 
 /obj/item/stock_parts/cell/secborg/empty/Initialize(mapload)
 	. = ..()
@@ -273,14 +273,14 @@
 	name = "czarne ogniwo zasilające"
 	icon_state = "bscell"
 	maxcharge = 10000
-	materials = list(/datum/material/glass=60)
+	custom_materials = list(/datum/material/glass=60)
 	chargerate = 2000
 
 /obj/item/stock_parts/cell/high
 	name = "ogniwo dużej pojemności"
 	icon_state = "hcell"
 	maxcharge = 10000
-	materials = list(/datum/material/glass=60)
+	custom_materials = list(/datum/material/glass=60)
 	chargerate = 1500
 	rating = 1
 
@@ -300,7 +300,7 @@
 	name = "ogniwo bardzo dużej pojemności"
 	icon_state = "scell"
 	maxcharge = 20000
-	materials = list(/datum/material/glass=300)
+	custom_materials = list(/datum/material/glass=300)
 	chargerate = 2000
 	rating = 2
 
@@ -313,7 +313,7 @@
 	name = "ogniwo hiperpojemne"
 	icon_state = "hpcell"
 	maxcharge = 30000
-	materials = list(/datum/material/glass=400)
+	custom_materials = list(/datum/material/glass=400)
 	chargerate = 3000
 	rating = 3
 
@@ -327,7 +327,7 @@
 	desc = "Wielokrotnego ładowania ogniwo transwymiarowe."
 	icon_state = "bscell"
 	maxcharge = 40000
-	materials = list(/datum/material/glass=600)
+	custom_materials = list(/datum/material/glass=600)
 	chargerate = 4000
 	rating = 4
 
@@ -340,7 +340,7 @@
 	name = "ogniwo o nieskończonej pojemności!"
 	icon_state = "icell"
 	maxcharge = 30000
-	materials = list(/datum/material/glass=1000)
+	custom_materials = list(/datum/material/glass=1000)
 	rating = 100
 	chargerate = 30000
 
@@ -366,7 +366,7 @@
 	icon_state = "potato"
 	charge = 100
 	maxcharge = 300
-	materials = list()
+	custom_materials = null
 	grown_battery = TRUE //it has the overlays for wires
 
 /obj/item/stock_parts/cell/high/slime
@@ -374,7 +374,7 @@
 	desc = "Żółty rdzeń szlamu nasycony plazmą. Trzeszczy od energii."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
-	materials = list()
+	custom_materials = null
 	rating = 5 //self-recharge makes these desirable
 	self_recharge = TRUE // Infused slime cores self-recharge, over time
 	chargerate = 100
@@ -417,7 +417,7 @@
 	name = "miniaturowe ogniwo zasilające"
 	desc = "Malutkie ogniwo zasilające o bardzo małej pojemności. Montuje się je w oprawach oświetleniowych, by zasilały je podczas awarii."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
-	materials = list(/datum/material/glass = 20)
+	custom_materials = list(/datum/material/glass = 20)
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/stock_parts/cell/emergency_light/Initialize(mapload)

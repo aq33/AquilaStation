@@ -263,7 +263,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/pink/do_effect(mob/user)
 	user.visible_message("<span class='notice'>[src] pęka jak jajko, a ze środka wytacza się uroczy szczeniak!</span>")
-	new /mob/living/simple_animal/pet/dog/corgi/puppy/slime(get_turf(user))
+	new /mob/living/basic/pet/dog/corgi/puppy/slime(get_turf(user)) // AQ EDIT - basic moby
 	..()
 
 /obj/item/slimecross/chilling/gold

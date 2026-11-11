@@ -262,6 +262,7 @@
 	if(HAS_TRAIT(M, TRAIT_PACIFISM))
 		to_chat(M, "<span class='notice'>Nie chcesz nikogo skrzywdzić!</span>")
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, M) // AQ EDIT - basic moby: odwet i ucieczka (relay_attackers) widzą ataki zwierząt na żywych
 
 	if(M.attack_sound)
 		playsound(loc, M.attack_sound, 50, 1, 1)

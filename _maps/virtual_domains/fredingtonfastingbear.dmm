@@ -292,7 +292,7 @@
 /turf/open/indestructible/hotelwood,
 /area/virtual_domain/safehouse)
 "aR" = (
-/mob/living/simple_animal/hostile/bear/russian,
+/mob/living/basic/bear/russian,
 /turf/open/floor/wood,
 /area/virtual_domain)
 "aS" = (
@@ -340,7 +340,7 @@
 	icon_state = "tile_marquee";
 	color = "#B11111"
 	},
-/mob/living/simple_animal/hostile/bear/snow,
+/mob/living/basic/bear/snow,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "aW" = (
@@ -537,7 +537,7 @@
 	color = "#791500";
 	alpha = 130
 	},
-/mob/living/simple_animal/hostile/bear/snow,
+/mob/living/basic/bear/snow,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "bj" = (
@@ -608,7 +608,7 @@
 /turf/closed/indestructible/riveted,
 /area/virtual_domain)
 "bo" = (
-/mob/living/simple_animal/hostile/bear/russian,
+/mob/living/basic/bear/russian,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "bp" = (
@@ -673,7 +673,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "bC" = (
-/mob/living/simple_animal/hostile/bear/fightpit,
+/mob/living/basic/bear/fightpit,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "bD" = (
@@ -886,7 +886,7 @@
 /turf/closed/indestructible/riveted,
 /area/virtual_domain)
 "co" = (
-/mob/living/simple_animal/hostile/bear/butter,
+/mob/living/basic/bear/butter,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "cp" = (
@@ -902,7 +902,7 @@
 /area/virtual_domain)
 "cr" = (
 /obj/effect/decal/cleanable/oil,
-/mob/living/simple_animal/hostile/bear/fightpit,
+/mob/living/basic/bear/fightpit,
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "cs" = (
@@ -950,7 +950,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/virtual_domain)
 "cx" = (
-/mob/living/simple_animal/hostile/bear/fightpit,
+/mob/living/basic/bear/fightpit,
 /turf/open/floor/wood,
 /area/virtual_domain)
 "cy" = (

@@ -27,7 +27,8 @@
 	return ..()
 
 /datum/ai_controller/robot_customer/UnpossessPawn(destroy)
-	UnregisterSignal(pawn, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_ATTACK_HAND))
+	if(!isnull(pawn))
+		UnregisterSignal(pawn, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_ATTACK_HAND))
 	return ..()
 
 /datum/ai_controller/robot_customer/proc/on_attackby(datum/source, obj/item/I, mob/living/user)
@@ -88,23 +89,9 @@
 			return
 		if(3)
 			customer.customer_say(customer_data.self_defense_line)
-	var/old_target = blackboard[BB_CUSTOMER_CURRENT_TARGET]
-	if(old_target && old_target != greytider)
-		UnregisterSignal(old_target, COMSIG_PARENT_QDELETING)
-	blackboard[BB_CUSTOMER_CURRENT_TARGET] = greytider
-	// Blackboard trzyma moba wprost (break_spine z core tak go czyta), więc usunięty cel trzeba z niego zdjąć (harddel)
-	RegisterSignal(greytider, COMSIG_PARENT_QDELETING, PROC_REF(on_target_deleted), override = TRUE)
+	// set_blackboard_key śledzi qdel celu, więc usunięty mob sam znika z blackboardu (harddel)
+	set_blackboard_key(BB_CUSTOMER_CURRENT_TARGET, greytider)
 	CancelActions()
-
-/datum/ai_controller/robot_customer/proc/on_target_deleted(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	if(blackboard[BB_CUSTOMER_CURRENT_TARGET] != source)
-		return
-	CancelActions()
-	blackboard -= BB_CUSTOMER_CURRENT_TARGET
-	if(current_movement_target == source)
-		current_movement_target = null
 
 ///Cios ręką liczy się tylko w trybie walki. Dostęp do lokalu nie chroni: bicie gościa to bicie gościa
 /datum/ai_controller/robot_customer/proc/on_get_punched(datum/source, mob/living/living_hitter)
@@ -134,7 +121,7 @@
 	if(target)
 		// Robot daje spokój, gdy napastnik padnie albo ucieknie
 		if(QDELETED(target) || target.stat == DEAD || target.z != controller.pawn.z || get_dist(target, controller.pawn) > 9)
-			controller.blackboard -= BB_CUSTOMER_CURRENT_TARGET
+			controller.clear_blackboard_key(BB_CUSTOMER_CURRENT_TARGET)
 		else
 			controller.queue_behavior(/datum/ai_behavior/break_spine, BB_CUSTOMER_CURRENT_TARGET)
 			return SUBTREE_RETURN_FINISH_PLANNING
@@ -147,7 +134,7 @@
 		controller.queue_behavior(/datum/ai_behavior/find_seat)
 		return SUBTREE_RETURN_FINISH_PLANNING
 
-	controller.current_movement_target = seat_marker
+	controller.set_movement_target(type, seat_marker)
 
 	if(!controller.blackboard[BB_CUSTOMER_CURRENT_ORDER] && !controller.blackboard[BB_CUSTOMER_EATING])
 		controller.queue_behavior(/datum/ai_behavior/order_food)
@@ -162,7 +149,6 @@
 	action_cooldown = 8 SECONDS
 
 /datum/ai_behavior/find_seat/perform(delta_time, datum/ai_controller/controller)
-	. = ..()
 	var/mob/living/simple_animal/robot_customer/customer_pawn = controller.pawn
 	var/datum/customer_data/customer_data = controller.blackboard[BB_CUSTOMER_CUSTOMERINFO]
 	var/datum/venue/attending_venue = controller.blackboard[BB_CUSTOMER_ATTENDING_VENUE]
@@ -186,8 +172,7 @@
 		customer_pawn.customer_say(pick(customer_data.found_seat_lines))
 		controller.blackboard[BB_CUSTOMER_MY_SEAT] = WEAKREF(found_seat)
 		attending_venue.linked_seats[found_seat] = customer_pawn
-		finish_action(controller, TRUE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	// Mniej więcej 60% szans, że turysta ponarzeka co najmniej raz na minutę
 	if(!controller.blackboard[BB_CUSTOMER_SAID_CANT_FIND_SEAT_LINE] || DT_PROB(1.5, delta_time))
@@ -199,7 +184,7 @@
 	if(controller.blackboard[BB_CUSTOMER_PATIENCE] < 0)
 		give_up(controller)
 
-	finish_action(controller, FALSE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 /datum/ai_behavior/find_seat/proc/give_up(datum/ai_controller/controller)
 	var/mob/living/simple_animal/robot_customer/customer_pawn = controller.pawn
@@ -216,7 +201,6 @@
 	required_distance = 0
 
 /datum/ai_behavior/order_food/perform(delta_time, datum/ai_controller/controller)
-	. = ..()
 	var/mob/living/simple_animal/robot_customer/customer_pawn = controller.pawn
 	var/datum/customer_data/customer_data = controller.blackboard[BB_CUSTOMER_CUSTOMERINFO]
 
@@ -225,7 +209,7 @@
 	var/datum/venue/attending_venue = controller.blackboard[BB_CUSTOMER_ATTENDING_VENUE]
 	controller.blackboard[BB_CUSTOMER_CURRENT_ORDER] = attending_venue.order_food(customer_pawn, customer_data)
 
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 ///Robot na swoim miejscu obraca się do stołu, a jeśli go nie ma, tak jak krzesło
 /proc/robot_customer_sit_down(datum/ai_controller/controller)
@@ -251,15 +235,12 @@
 	required_distance = 0
 
 /datum/ai_behavior/wait_for_food/perform(delta_time, datum/ai_controller/controller)
-	. = ..()
 	if(controller.blackboard[BB_CUSTOMER_EATING])
-		finish_action(controller, TRUE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	controller.blackboard[BB_CUSTOMER_PATIENCE] -= delta_time * 10 // delta_time w sekundach, cierpliwość w decysekundach
 	if(controller.blackboard[BB_CUSTOMER_PATIENCE] < 0 || controller.blackboard[BB_CUSTOMER_LEAVING])
-		finish_action(controller, FALSE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	// Mniej więcej 40% szans na komentarz co minutę
 	if(DT_PROB(0.85, delta_time))
@@ -273,12 +254,13 @@
 	var/datum/venue/attending_venue = controller.blackboard[BB_CUSTOMER_ATTENDING_VENUE]
 	var/turf/infront_turf = get_step(controller.pawn, controller.pawn.dir)
 	if(!infront_turf)
-		return
+		return AI_BEHAVIOR_DELAY
 	for(var/obj/item/I in infront_turf.contents)
 		if(attending_venue.is_correct_order(I, controller.blackboard[BB_CUSTOMER_CURRENT_ORDER]))
 			var/datum/ai_controller/robot_customer/customer = controller
 			customer.eat_order(I, attending_venue)
 			break
+	return AI_BEHAVIOR_DELAY
 
 /datum/ai_behavior/wait_for_food/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
@@ -311,7 +293,7 @@
 	var/obj/machinery/restaurant_portal/exit_portal = robot_customer_exit_portal(controller)
 	if(!exit_portal)
 		return FALSE
-	controller.current_movement_target = exit_portal
+	set_movement_target(controller, exit_portal)
 
 ///Portal, którym robot wyjdzie: ten, którym przyszedł, a jeśli go nie ma, aktywny portal lokalu. Null, gdy żaden nie jest w zasięgu
 /proc/robot_customer_exit_portal(datum/ai_controller/controller)
@@ -325,9 +307,8 @@
 	return portal
 
 /datum/ai_behavior/leave_venue/perform(delta_time, datum/ai_controller/controller)
-	. = ..()
 	var/mob/living/pawn = controller.pawn
 	pawn.visible_message("<span class='notice'>[pawn] wchodzi do portalu i znika.</span>")
 	playsound(get_turf(pawn), 'sound/effects/phasein.ogg', 30, TRUE)
-	finish_action(controller, TRUE)
 	qdel(pawn)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

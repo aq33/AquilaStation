@@ -56,7 +56,7 @@
 	//No tauma to pass in
 	ignore += typesof(/mob/camera/imaginary_friend)
 	//No pod to gondola
-	ignore += typesof(/mob/living/simple_animal/pet/gondola/gondolapod)
+	ignore += typesof(/mob/living/basic/pet/gondola/gondolapod) // AQ EDIT - basic moby
 	//No linked console
 	ignore += typesof(/mob/camera/ai_eye/remote/base_construction)
 	//See above

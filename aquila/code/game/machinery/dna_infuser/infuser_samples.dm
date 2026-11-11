@@ -17,13 +17,13 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VALID_DNA_INFUSION, INNATE_TRAIT)
 
-/// Nasze karaluchy znikają po śmierci (del_on_death). Jak w tg: rozdeptany karaluch przepada,
+/// Nasze karaluchy znikają po śmierci (DEL_ON_DEATH). Jak w tg: rozdeptany karaluch przepada,
 /// ale zabity pestycydem zostawia ciało, które można włożyć do infusera.
 /datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, method = TOUCH, reac_volume)
-	var/mob/living/simple_animal/cockroach/roach = M
+	var/mob/living/basic/cockroach/roach = M
 	if(!istype(roach) || roach.stat == DEAD)
 		return ..()
-	roach.del_on_death = FALSE
+	roach.basic_mob_flags &= ~DEL_ON_DEATH
 	. = ..()
 	if(!QDELETED(roach) && roach.stat != DEAD)
-		roach.del_on_death = initial(roach.del_on_death)
+		roach.basic_mob_flags |= (initial(roach.basic_mob_flags) & DEL_ON_DEATH)

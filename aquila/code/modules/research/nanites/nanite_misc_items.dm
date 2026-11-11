@@ -9,7 +9,7 @@
 	force = 12
 	throwforce = 4 //4 + 2 (WEIGHT_CLASS_SMALL) * 4 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 12 damage on hit due to guaranteed embedding
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 100, "embedded_fall_chance" = 5)
-	materials = list()
+	custom_materials = null
 
 /obj/item/throwing_star/nanite/Initialize(mapload)
 	. = ..()

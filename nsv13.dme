@@ -48,7 +48,6 @@
 #include "code\__DEFINES\bot_defines.dm"
 #include "code\__DEFINES\callbacks.dm"
 #include "code\__DEFINES\cargo.dm"
-#include "code\__DEFINES\carp_command.dm"
 #include "code\__DEFINES\chat.dm"
 #include "code\__DEFINES\cinematics.dm"
 #include "code\__DEFINES\cleaning.dm"
@@ -209,6 +208,8 @@
 #include "aquila\code\__DEFINES\hallucination.dm" // AQ EDIT - halucynacje jako efekt statusu, makro potrzebne w core
 #include "aquila\code\__DEFINES\botany.dm"
 #include "aquila\code\__DEFINES\dcs\signals\signals_botany.dm"
+// AQ EDIT - rdzeń SI i basic moby z Bee: klucze blackboardu, sygnały i flagi potrzebne już w core (SI małp i psów)
+#include "aquila\code\__DEFINES\basic_mobs.dm"
 // AQ EDIT - kolejka verbów z tg, makra potrzebne w core (Click, say, SSinput)
 #include "aquila\code\__DEFINES\verb_manager.dm"
 // AQ EDIT - fermichem z tg (pH, czystosc, reakcje w czasie), stale potrzebne w core
@@ -508,11 +509,13 @@
 #include "code\datums\ai\_ai_controller.dm"
 #include "code\datums\ai\_ai_planning_subtree.dm"
 #include "code\datums\ai\_item_behaviors.dm"
-#include "code\datums\ai\generic_actions.dm"
-#include "code\datums\ai\telegraph_effects.dm"
 #include "code\datums\ai\dog\dog_behaviors.dm"
 #include "code\datums\ai\dog\dog_controller.dm"
 #include "code\datums\ai\dog\dog_subtrees.dm"
+#include "code\datums\ai\generic\find_and_set.dm"
+#include "code\datums\ai\generic\generic_behaviors.dm"
+#include "code\datums\ai\generic\generic_subtrees.dm"
+#include "code\datums\ai\telegraph_effects.dm"
 #include "code\datums\ai\monkey\monkey_behaviors.dm"
 #include "code\datums\ai\monkey\monkey_controller.dm"
 #include "code\datums\ai\monkey\monkey_subtrees.dm"
@@ -520,8 +523,6 @@
 #include "code\datums\ai\movement\ai_movement_basic_avoidance.dm"
 #include "code\datums\ai\movement\ai_movement_dumb.dm"
 #include "code\datums\ai\movement\ai_movement_jps.dm"
-#include "code\datums\ai\tamed\tamed_behaviour.dm"
-#include "code\datums\ai\tamed\tamed_controller.dm"
 #include "code\datums\announcers\_announcer.dm"
 #include "code\datums\announcers\baystation_announcer.dm"
 #include "code\datums\announcers\default_announcer.dm"
@@ -611,7 +612,6 @@
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stationloving.dm"
 #include "code\datums\components\swarming.dm"
-#include "code\datums\components\tamed_command.dm"
 #include "code\datums\components\team_monitor.dm"
 #include "code\datums\components\tether.dm"
 #include "code\datums\components\thermite.dm"
@@ -2006,7 +2006,6 @@
 #include "code\modules\cargo\export_scanner.dm"
 #include "code\modules\cargo\exports.dm"
 #include "code\modules\cargo\expressconsole.dm"
-#include "code\modules\cargo\gondolapod.dm"
 #include "code\modules\cargo\order.dm"
 #include "code\modules\cargo\orderconsole.dm"
 #include "code\modules\cargo\packs.dm"
@@ -2750,23 +2749,20 @@
 #include "code\modules\mob\living\simple_animal\bot\mulebot.dm"
 #include "code\modules\mob\living\simple_animal\bot\secbot.dm"
 #include "code\modules\mob\living\simple_animal\bot\SuperBeepsky.dm"
-#include "code\modules\mob\living\simple_animal\friendly\butterfly.dm"
-#include "code\modules\mob\living\simple_animal\friendly\cat.dm"
-#include "code\modules\mob\living\simple_animal\friendly\cockroach.dm"
-#include "code\modules\mob\living\simple_animal\friendly\crab.dm"
-#include "code\modules\mob\living\simple_animal\friendly\dog.dm"
-#include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
-#include "code\modules\mob\living\simple_animal\friendly\fox.dm"
-#include "code\modules\mob\living\simple_animal\friendly\gondola.dm"
-#include "code\modules\mob\living\simple_animal\friendly\hamster.dm"
-#include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
-#include "code\modules\mob\living\simple_animal\friendly\mothroach.dm"
-#include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
-#include "code\modules\mob\living\simple_animal\friendly\penguin.dm"
+// AQ EDIT - motyl jest basic mobem (aquila\code\modules\mob\living\basic\)
+// AQ EDIT - koty są basic mobami (aquila\code\modules\mob\living\basic\pets\cat\)
+// AQ EDIT - karaluch, ćmokaraluch i mysz są basic mobami (aquila\code\modules\mob\living\basic\vermin\)
+// AQ EDIT - kraby są basic mobami (aquila\code\modules\mob\living\basic\)
+// AQ EDIT - psy są basic mobami (aquila\code\modules\mob\living\basic\pets\dog\)
+// AQ EDIT - koza, owca, kura, pisklę i indyk są basic mobami (aquila\code\modules\mob\living\basic\farm_animals\)
+// AQ EDIT - lis jest basic mobem (aquila\code\modules\mob\living\basic\pets\fox.dm)
+// AQ EDIT - chomik jest basic mobem (aquila\code\modules\mob\living\basic\pets\hamster.dm)
+// AQ EDIT - jaszczurka jest basic mobem (aquila\code\modules\mob\living\basic\)
+// AQ EDIT - pingwiny są basic mobami (aquila\code\modules\mob\living\basic\pets\penguin.dm)
 #include "code\modules\mob\living\simple_animal\friendly\pet.dm"
-#include "code\modules\mob\living\simple_animal\friendly\sloth.dm"
-#include "code\modules\mob\living\simple_animal\friendly\snake.dm"
-#include "code\modules\mob\living\simple_animal\friendly\turtle.dm"
+// AQ EDIT - leniwce są basic mobami (aquila\code\modules\mob\living\basic\pets\sloth.dm)
+// AQ EDIT - wąż jest basic mobem (aquila\code\modules\mob\living\basic\)
+// AQ EDIT - żółw jest basic mobem (aquila\code\modules\mob\living\basic\)
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\drones_as_items.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\extra_drone_types.dm"
@@ -2777,7 +2773,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\drone\visuals_icons.dm"
 #include "code\modules\mob\living\simple_animal\hostile\alien.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ant.dm"
-#include "code\modules\mob\living\simple_animal\hostile\bear.dm"
+// AQ EDIT - niedźwiedzie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\bear.dm)
 #include "code\modules\mob\living\simple_animal\hostile\bees.dm"
 #include "code\modules\mob\living\simple_animal\hostile\bread.dm"
 #include "code\modules\mob\living\simple_animal\hostile\carp.dm"
@@ -2791,7 +2787,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\hivebot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\hostile.dm"
 #include "code\modules\mob\living\simple_animal\hostile\illusion.dm"
-#include "code\modules\mob\living\simple_animal\hostile\killertomato.dm"
+// AQ EDIT - pomidor zabójca jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mecha_pilot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mimic.dm"
@@ -2841,10 +2837,10 @@
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\herald.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\legionnaire.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\pandora.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\bat.dm"
+// AQ EDIT - nietoperze są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\frog.dm"
+// AQ EDIT - żaba jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\ghost.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\retaliate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\spaceman.dm"

@@ -6,7 +6,7 @@
 	icon_state = "bluespace_crystal"
 	singular_name = "kryształ bluespace"
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
 	points = 50
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 	refined_type = /obj/item/stack/ore/bluespace_crystal/refined
@@ -50,7 +50,7 @@
 /obj/item/stack/ore/bluespace_crystal/artificial
 	name = "sztuczny kryształ bluespace"
 	desc = "Sztucznie wytworzony kryształ bluespace. Wygląda na delikatny."
-	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*0.5)
+	mats_per_unit = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*0.5)
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try
 	refined_type = null

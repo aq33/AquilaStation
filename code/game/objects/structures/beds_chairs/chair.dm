@@ -45,8 +45,11 @@
 
 /obj/structure/chair/deconstruct()
 	// If we have materials, and don't have the NOCONSTRUCT flag
-	if(buildstacktype && (!(flags_1 & NODECONSTRUCT_1)))
-		new buildstacktype(loc,buildstackamount)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		if(buildstacktype)
+			new buildstacktype(loc,buildstackamount)
+		else
+			drop_material_sheets(loc) // AQ EDIT - bez materiałów bez arkusza (kamień) i z metalgenu
 	..()
 
 /obj/structure/chair/attack_paw(mob/user)
@@ -141,6 +144,14 @@
 
 /obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
 	M.pixel_y -= 5
+
+///Material chair
+/obj/structure/chair/greyscale
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+	material_name_gender = NEUTER
+	custom_materials = list(/datum/material/iron = 2000)
+	item_chair = /obj/item/chair/greyscale
+	buildstacktype = null //Custom mats handle this
 
 /obj/structure/chair/wood
 	icon_state = "wooden_chair"
@@ -387,7 +398,8 @@
 		if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 			return
 		usr.visible_message("<span class='notice'>[usr] łapie [src.name].</span>", "<span class='notice'>Łapiesz [src.name].</span>")
-		var/C = new item_chair(loc)
+		var/obj/item/C = new item_chair(loc)
+		transfer_materials_to(C) // AQ EDIT - tylko gdy krzesło ma materiał (Bee daje każdemu krzesłu żelazo), ze znacznikiem metalgenu
 		TransferComponents(C)
 		usr.put_in_hands(C)
 		qdel(src)

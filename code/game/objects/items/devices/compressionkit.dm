@@ -79,6 +79,6 @@
 		charges += 2
 		to_chat(user, "<span class='notice'>Wkładasz [I] do [src]. Ma teraz ładunków: [charges].</span>")
 		if(B.amount > 1)
-			B.amount -= 1
+			B.use(1) // AQ EDIT - use() przelicza custom_materials
 		else
 			qdel(I)
