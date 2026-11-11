@@ -403,7 +403,7 @@
 	TEST_ASSERT(shell.fire_casing(far, shooter, null, 0, TRUE, null, 60), "Buckshot did not fire")
 	var/datum/component/pellet_cloud/cloud = shell.GetComponent(/datum/component/pellet_cloud)
 	TEST_ASSERT(cloud && length(cloud.pellets), "Buckshot made no pellets")
-	// Śrut buckshot (variance 10, rozkład równy): przesunięcia od -4 do +5 wokół 60°
+	// Śrut buckshot (variance 10, rozkład równy): przesunięcia symetryczne, ±4,17° wokół 60°
 	var/lowest = INFINITY
 	var/highest = -INFINITY
 	for(var/obj/item/projectile/pellet as anything in cloud.pellets)
@@ -411,6 +411,7 @@
 		lowest = min(lowest, pellet.original_angle)
 		highest = max(highest, pellet.original_angle)
 	TEST_ASSERT(highest - lowest >= 5, "Pellets lost the shell's own spread (all within [lowest]-[highest]°)")
+	TEST_ASSERT(abs((lowest + highest) / 2 - 60) < 0.1, "Pellet cone is not centred on the aim ([lowest]-[highest]° around 60°)")
 
 	var/obj/item/ammo_casing/c9mm/single = allocate(/obj/item/ammo_casing/c9mm, start)
 	single.misfire_chance = 0
@@ -440,6 +441,22 @@
 	TEST_ASSERT(fading > 0 && fading < sprint, "Sprint penalty should fade over a second (got [fading] half a second after [sprint])")
 	shooter.aq_last_sprint_time = world.time - 2 SECONDS
 	TEST_ASSERT_EQUAL(shooter.get_move_spread_penalty(), 0, "Sprint penalty did not vanish after a second")
+
+	// Liczy się tylko własny krok: przesunięcie, ciągnięcie przez kogoś i taśmociąg nie dają kary
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/next = locate(start.x + 1, start.y, start.z)
+	shooter.forceMove(start)
+	shooter.last_move_time = 0
+	shooter.forceMove(next)
+	TEST_ASSERT_EQUAL(shooter.last_move_time, 0, "forceMove counted as the shooter's own step")
+	TEST_ASSERT(!shooter.is_own_step(TRUE), "Forced move counted as an own step")
+	var/mob/living/carbon/human/puller = allocate(/mob/living/carbon/human, locate(start.x, start.y + 2, start.z))
+	shooter.pulledby = puller
+	TEST_ASSERT(!shooter.is_own_step(FALSE), "Being pulled counted as an own step")
+	shooter.pulledby = null
+	TEST_ASSERT(shooter.is_own_step(FALSE), "NPC step without a client did not count")
+	shooter.Move(start, WEST)
+	TEST_ASSERT_EQUAL(shooter.last_move_time, world.time, "NPC step did not record the movement penalty time")
 
 /// Kształt celownika: z broni, nabój z własnym kształtem wygrywa, pusta broń zachowuje kształt ostatniego naboju
 /datum/unit_test/aquila_gunplay_cursor_shape
@@ -528,6 +545,26 @@
 	gun.chambered.misfire_chance = 0
 	gun.process_fire(victim, shooter, FALSE)
 	TEST_ASSERT(aq_wait_for_damage(victim), "Shot while peeking east did not get past the corner")
+
+/// Wychylenie pod C idzie po 4 px na krok i kończy się na krawędzi kafla
+/mob/living/carbon/human/aq_test_shifter
+
+/mob/living/carbon/human/aq_test_shifter/canface()
+	return TRUE // prawdziwe canface() czyta client.last_turn, a w teście nie ma klienta
+
+/datum/unit_test/aquila_gunplay_pixel_shift_step
+
+/datum/unit_test/aquila_gunplay_pixel_shift_step/Run()
+	var/mob/living/carbon/human/aq_test_shifter/shifter = allocate(/mob/living/carbon/human/aq_test_shifter, run_loc_floor_bottom_left)
+	var/start_x = shifter.pixel_x
+	shifter.pixel_shift(EAST)
+	TEST_ASSERT_EQUAL(shifter.pixel_x - start_x, 4, "One pixel shift step moved [shifter.pixel_x - start_x] px instead of 4")
+	for(var/i in 1 to 10)
+		shifter.pixel_shift(EAST)
+	var/list/peek = shifter.get_peek_offset()
+	TEST_ASSERT(peek && peek[1] == 16, "Full lean east should end at the tile edge (16 px), got [peek ? peek[1] : "none"]")
+	shifter.unpixel_shift()
+	TEST_ASSERT(!shifter.get_peek_offset(), "Moving back did not clear the lean")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

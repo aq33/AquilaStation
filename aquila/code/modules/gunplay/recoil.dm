@@ -60,9 +60,25 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	/// Czas ostatniego kroku sprintu
 	var/aq_last_sprint_time = -INFINITY
 
-/mob/living/Moved(atom/OldLoc, Dir)
+/mob
+	/// Tick, w którym klient tego moba wywołał ruch (strzałki); odróżnia własny krok od ciągnięcia czy taśmociągu
+	var/aq_client_move_time = -INFINITY
+
+/client/Move(n, direct)
+	mob?.aq_client_move_time = world.time
+	return ..()
+
+/// Czy ten ruch to własny krok (gracz klawiszem albo NPC sam), a nie ciągnięcie, taśmociąg, rzut czy przeniesienie
+/mob/living/proc/is_own_step(forced)
+	if(forced || buckled || pulledby || throwing)
+		return FALSE
+	if(client)
+		return aq_client_move_time == world.time
+	return TRUE
+
+/mob/living/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(!buckled && isturf(loc) && isturf(OldLoc) && loc != OldLoc)
+	if(isturf(loc) && isturf(OldLoc) && loc != OldLoc && is_own_step(Forced))
 		last_move_time = world.time // zmienna z rdzenia (atoms_movable.dm), wcześniej nieużywana
 		aq_last_move_walking = (m_intent == MOVE_INTENT_WALK)
 		if(committed_sprint_step())
@@ -134,6 +150,7 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	var/aq_attachment_accuracy = 0
 
 /obj/item/gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed = FALSE)
+	get_cursor_shape() // kształt naboju zapisany przed strzałem: bezłuskowy znika z komory już w fire_casing()
 	var/extra_spread = get_dynamic_spread(user)
 	var/base_spread = spread
 	if(aq_attachment_accuracy)
@@ -145,7 +162,6 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	spread = base_spread
 
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
-	get_cursor_shape() // zapamiętuje kształt wystrzelonego naboju także przy wyłączonym celowniku
 	. = ..()
 	if(!istype(user) || tk_firing(user))
 		return

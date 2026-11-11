@@ -98,9 +98,9 @@
 		shell.ready_proj(target, user, SUPPRESSED_VERY, zone_override, fired_from)
 		if(distro)
 			if(randomspread)
-				spread = aim_spread + round((rand() - 0.5) * distro) // AQ EDIT - rozrzut broni
+				spread = aim_spread + (rand() - 0.5) * distro // AQ EDIT - rozrzut broni, bez round() (w BYOND to podłoga)
 			else //Smart spread
-				spread = aim_spread + round((i / num_pellets - 0.5) * distro) // AQ EDIT - rozrzut broni
+				spread = aim_spread + ((i - 0.5) / num_pellets - 0.5) * distro // AQ EDIT - rozrzut broni, stożek symetryczny i bez round()
 
 		RegisterSignal(shell.BB, COMSIG_PROJECTILE_SELF_ON_HIT, PROC_REF(pellet_hit))
 		RegisterSignal(shell.BB, list(COMSIG_PROJECTILE_RANGE_OUT, COMSIG_PARENT_QDELETING), PROC_REF(pellet_range))

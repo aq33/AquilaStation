@@ -69,18 +69,30 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 /obj/item/ammo_casing/caseless/foam_dart/get_cursor_shape()
 	return AQ_CURSOR_TOY
 
-// Nowy nabój w komorze (przeładowanie, zmiana trybu) może zmienić kształt celownika
-/obj/item/gun/ballistic/chamber_round(keep_bullet = FALSE)
-	. = ..()
-	if(isliving(loc))
+/// Nowy nabój w komorze (przeładowanie, obrót bębna, zmiana trybu): odśwież celownik trzymającego, jeśli zmienił się kształt
+/obj/item/gun/proc/on_chamber_changed()
+	var/old_shape = aq_last_ammo_cursor_shape
+	get_cursor_shape()
+	if(old_shape != aq_last_ammo_cursor_shape && isliving(loc))
 		var/mob/living/holder = loc
 		holder.update_gun_cursor()
 
+/obj/item/gun/ballistic/chamber_round(keep_bullet = FALSE)
+	. = ..()
+	on_chamber_changed()
+
+// Rewolwer i łuk mają własne chamber_round() bez ..()
+/obj/item/gun/ballistic/revolver/chamber_round(spin_cylinder = TRUE)
+	. = ..()
+	on_chamber_changed()
+
+/obj/item/gun/ballistic/bow/chamber_round()
+	. = ..()
+	on_chamber_changed()
+
 /obj/item/gun/energy/select_fire(mob/living/user)
 	. = ..()
-	if(isliving(loc))
-		var/mob/living/holder = loc
-		holder.update_gun_cursor()
+	on_chamber_changed()
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
 	aq_cursor_shape = AQ_CURSOR_SCOPE
