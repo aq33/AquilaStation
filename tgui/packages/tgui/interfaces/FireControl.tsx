@@ -82,10 +82,11 @@ const FIRE = {
   ringText: '#a07a6a',
 };
 
-const SCOPE = 340;
+const SCOPE = 440;
 const CENTER = SCOPE / 2;
-const RADIUS = 160;
+const RADIUS = 208;
 const RANGES: [number, string][] = [
+  [50, '50 pól'],
   [100, '100 pól'],
   [200, '200 pól'],
   [255, 'cała mapa'],
@@ -1073,7 +1074,7 @@ export const FireControl = (props) => {
   const heading = ((turned % 360) + 360) % 360;
   const current = contacts.find((contact) => contact.id === selected);
   return (
-    <Window width={760} height={560}>
+    <Window width={900} height={620}>
       <Window.Content
         style={{
           background: COLOR.bg,
@@ -1089,7 +1090,7 @@ export const FireControl = (props) => {
           <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
             <Box
               style={{
-                width: '360px',
+                width: '460px',
                 padding: '10px',
                 display: 'flex',
                 flexDirection: 'column',
