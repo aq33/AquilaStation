@@ -786,3 +786,11 @@
   - bugfix: Ctrl+Shift+klik z przedmiotem w ręku nie spamuje już ofertami, oferuje
       tylko osobie, którą klikasz obok, i tylko jej.
   - bugfix: Mniej przycięć przy szybkim ruchu myszy z bronią w ręku.
+  - bugfix: 'Boarderzy KNPC zakuwają obezwładnionych zamiast stać nad nimi w kółko:
+      na czas zakuwania puszczają broń jedną ręką, nie wchodzą na pole leżącego i
+      nie dobijają go strzałami.'
+  - bugfix: Boarderzy hakujący i wyważający drzwi przebijają się też przez zaryglowane
+      i pozbawione zasilania śluzy.
+  - bugfix: Boarderzy KNPC nie podbiegają pod uzbrojony granat kolegi i nie rzucają
+      drugiego granatu w to samo miejsce.
+  - code_imp: Symulacja walk boarderów KNPC do testów lokalnych (-DKNPC_SIM).
