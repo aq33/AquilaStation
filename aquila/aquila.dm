@@ -2043,6 +2043,7 @@
 #include "code\modules\projectiles\mob_fire_projectile.dm"
 #include "code\datums\actions\mob_cooldown.dm"
 #include "code\datums\actions\mobs\projectile_attack.dm"
+#include "code\datums\components\ranged_attacks.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
