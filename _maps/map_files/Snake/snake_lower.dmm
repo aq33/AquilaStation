@@ -12902,8 +12902,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "Sc" = (
-/obj/structure/bed/dogbed/walter,
-/mob/living/basic/pet/dog/bullterrier/walter,
+/obj/structure/bed/dogbed/tyson,
+/mob/living/basic/pet/dog/bullterrier/tyson,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8

@@ -2,7 +2,7 @@
 // Tyson is a map spawner: at round start it turns into the security dog of the last shift (name, sex, breed, how many shifts
 // it served, from data/npc_saves/security_dog.json) or a new random one. A dog alive at round end keeps the posting.
 // Changes against Bee: Polish examine lines; no Cardigan corgi (we do not have it, its share goes to the corgi); the dog bed
-// is renamed by the component itself (our update_owner() only takes plain dog beds); not placed on our maps yet.
+// is renamed by the component itself (our update_owner() only takes plain dog beds); placed in security on every votable ship (instead of Walter on Padalec and Trawnik).
 #define SECURITY_DOG_MEMORY_FILE "data/npc_saves/security_dog.json"
 
 GLOBAL_LIST_INIT(security_dog_male_names, list(

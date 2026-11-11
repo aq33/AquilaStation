@@ -8168,6 +8168,11 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/security/brig)
+"haa" = (
+/obj/structure/bed/dogbed/tyson,
+/mob/living/basic/pet/dog/bullterrier/tyson,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hos)
 "haf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -67240,7 +67245,7 @@ kao
 xEw
 gwq
 eCH
-hHn
+haa
 gJR
 xUF
 kPt
