@@ -16,8 +16,8 @@
 	var/datum/antagonist/space_dragon/dragon = owner.mind?.has_antag_datum(/datum/antagonist/space_dragon)
 	if(!dragon)
 		return
-	var/mob/living/simple_animal/hostile/space_dragon/S = owner
-	if(S.using_special)
+	var/mob/living/basic/space_dragon/S = owner // AQ EDIT - basic moby
+	if(HAS_TRAIT(S, TRAIT_WING_BUFFET)) // AQ EDIT - basic moby
 		return
 	if(S.can_summon_rifts)
 		to_chat(S, "<span class='warning'>Przez twoją porażkę nie możesz przywoływać szczelin!</span>")
@@ -120,9 +120,9 @@
 
 /obj/structure/carp_rift/process(delta_time)
 	// Heal carp around us
-	for(var/mob/living/simple_animal/hostile/hostilehere in range(1))
-		if("carp" in hostilehere.faction)
-			hostilehere.adjustHealth(-10)
+	for(var/mob/living/hostilehere in range(1)) // AQ EDIT - basic moby: smok i karpie to nie tylko simple_animal/hostile
+		if(hostilehere.stat != DEAD && ("carp" in hostilehere.faction)) // AQ EDIT - basic moby
+			hostilehere.adjustBruteLoss(-10) // AQ EDIT - basic moby
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"
 

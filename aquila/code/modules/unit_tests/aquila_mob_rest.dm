@@ -321,6 +321,94 @@
 	vending_mimic.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
 	TEST_ASSERT(aquila_rest_run_behavior(vending_mimic.ai_controller, /datum/ai_behavior/perform_speech), "The vending machine mimic did not speak its line with a target")
 
+/// The space dragon with the legacy intents
+/mob/living/basic/space_dragon/aquila_legacy
+
+/mob/living/basic/space_dragon/aquila_legacy/uses_legacy_intents()
+	return TRUE
+
+/// Space dragon: the AI breathes fire at its target through the controller; a player breathes fire by clicking out of reach,
+/// uses the wing buffet with the secondary click (right click / disarm intent) in both control modes, tears walls, swallows
+/// corpses to heal and summons a carp rift as the antagonist
+/datum/unit_test/aquila_space_dragon
+
+/datum/unit_test/aquila_space_dragon/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/space_dragon/dragon = allocate(/mob/living/basic/space_dragon, corner)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(corner.x + 3, corner.y, corner.z))
+	var/datum/ai_controller/controller = dragon.ai_controller
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_TARGETED_ACTION], dragon.fire_breath, "The dragon's fire breath is not in its blackboard")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The AI dragon did not look for targets")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The AI dragon did not pick the human")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/targeted_mob_ability), "The AI dragon did not plan to breathe fire")
+	sleep(1 SECONDS) // the fire goes one tile a tick
+	TEST_ASSERT(victim.getFireLoss() > 0, "The AI dragon's fire breath did not burn the human")
+	controller.CancelActions()
+	qdel(dragon)
+
+	for(var/legacy in list(FALSE, TRUE))
+		var/mode = legacy ? "legacy intents" : "combat mode"
+		var/mob/living/basic/space_dragon/player = allocate(legacy ? /mob/living/basic/space_dragon/aquila_legacy : /mob/living/basic/space_dragon, corner)
+		player.ai_controller.set_ai_status(AI_STATUS_OFF)
+		TEST_ASSERT(player.combat_mode_indicator, "[mode]: the player dragon has no combat mode indicator")
+		victim.fully_heal(TRUE)
+		victim.forceMove(locate(corner.x + 3, corner.y + 1, corner.z))
+		aquila_rest_click(player, victim, harm = TRUE)
+		TEST_ASSERT(player.fire_breath.next_use_time > world.time, "[mode]: a click out of reach did not breathe fire")
+		sleep(1 SECONDS)
+		TEST_ASSERT(victim.getFireLoss() > 0, "[mode]: the player's fire breath did not burn the human")
+
+		aquila_rest_click(player, victim, right = TRUE)
+		TEST_ASSERT(HAS_TRAIT(player, TRAIT_WING_BUFFET), "[mode]: the secondary click out of reach did not start the wing buffet")
+		sleep(2 SECONDS) // windup and endlag
+		TEST_ASSERT(!HAS_TRAIT(player, TRAIT_WING_BUFFET), "[mode]: the wing buffet did not end")
+		TEST_ASSERT(victim.IsParalyzed(), "[mode]: the wing buffet did not knock the human down")
+		victim.SetParalyzed(0)
+		qdel(player)
+
+	// Swallowing a corpse heals the dragon, the corpse comes back out on death
+	var/mob/living/basic/space_dragon/eater = allocate(/mob/living/basic/space_dragon, corner)
+	eater.ai_controller.set_ai_status(AI_STATUS_OFF)
+	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human, get_step(corner, NORTH))
+	corpse.death()
+	eater.adjustBruteLoss(100)
+	var/hurt_health = eater.health
+	eater.eat(corpse)
+	TEST_ASSERT_EQUAL(corpse.loc, eater, "The dragon did not swallow the corpse")
+	TEST_ASSERT(eater.health > hurt_health, "Swallowing a corpse did not heal the dragon")
+
+	// Wall tearing (wall_tearer): a click on a wall starts tearing it
+	var/turf/wall_turf = locate(corner.x + 1, corner.y + 4, corner.z)
+	var/old_wall_type = wall_turf.type
+	wall_turf.ChangeTurf(/turf/closed/wall)
+	eater.forceMove(get_step(wall_turf, SOUTH))
+	eater.next_click = 0
+	eater.next_move = 0
+	eater.ClickOn(wall_turf, LEFT_CLICK)
+	sleep(4.5 SECONDS)
+	TEST_ASSERT(!iswallturf(wall_turf), "The dragon did not tear down the wall")
+	wall_turf.ChangeTurf(old_wall_type)
+
+	eater.death()
+	TEST_ASSERT(corpse.loc != eater, "The dead dragon kept the swallowed corpse")
+
+	// The antagonist summons a carp rift in an allowed area
+	var/mob/living/basic/space_dragon/antag_dragon = allocate(/mob/living/basic/space_dragon, corner)
+	antag_dragon.ai_controller.set_ai_status(AI_STATUS_OFF)
+	antag_dragon.mind_initialize()
+	var/datum/antagonist/space_dragon/dragon_datum = antag_dragon.mind.add_antag_datum(/datum/antagonist/space_dragon)
+	TEST_ASSERT(dragon_datum, "The dragon did not become the space dragon antagonist")
+	dragon_datum.chosen_rift_areas += get_area(antag_dragon)
+	var/datum/action/innate/summon_rift/rift_action = dragon_datum.rift_ability
+	TEST_ASSERT(rift_action, "The antagonist dragon has no rift summon action")
+	rift_action.Activate()
+	var/obj/structure/carp_rift/rift = locate() in get_turf(antag_dragon)
+	TEST_ASSERT(rift, "The antagonist dragon did not summon a carp rift")
+	TEST_ASSERT(rift in dragon_datum.rift_list, "The rift is not on the antagonist's rift list")
+	dragon_datum.objective_complete = TRUE // no rift failure effects while cleaning up
+	qdel(rift)
+	antag_dragon.mind.remove_antag_datum(/datum/antagonist/space_dragon)
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS

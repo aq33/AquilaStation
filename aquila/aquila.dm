@@ -2064,6 +2064,7 @@
 #include "code\datums\elements\damage_threshold.dm"
 #include "code\modules\mob\living\basic\clown\clown.dm"
 #include "code\modules\mob\living\basic\ruin_defender\mimic.dm"
+#include "code\modules\mob\living\basic\space_fauna\space_dragon.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

@@ -2798,7 +2798,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\redgrub.dm"
 #include "code\modules\mob\living\simple_animal\hostile\russian.dm"
 #include "code\modules\mob\living\simple_animal\hostile\skeleton.dm"
-#include "code\modules\mob\living\simple_animal\hostile\space_dragon.dm"
+// AQ EDIT - kosmiczny smok jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\space_dragon.dm)
 #include "code\modules\mob\living\simple_animal\hostile\statue.dm"
 #include "code\modules\mob\living\simple_animal\hostile\stickman.dm"
 #include "code\modules\mob\living\simple_animal\hostile\syndicate.dm"
