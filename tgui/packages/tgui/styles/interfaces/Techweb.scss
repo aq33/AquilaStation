@@ -64,3 +64,221 @@
   border-radius: 5px;
   background-color: hsla(0, 0%, 50%, 0.5);
 }
+
+// AQUILA: sieć badań w kategoriach (TechTree.tsx)
+$tree-researched: #4caf50;
+$tree-available: #4a9eff;
+$tree-future: #666;
+
+.Techweb__CatButton {
+  margin-bottom: var(--space-s);
+  padding: 4px 6px;
+  border: 1px solid hsla(0, 0%, 100%, 0.12);
+  border-left: 4px solid #888;
+  border-radius: 4px;
+  background-color: hsla(0, 0%, 100%, 0.04);
+  cursor: pointer;
+}
+
+.Techweb__CatButton:hover {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.Techweb__CatButton--active {
+  border-color: #ffd54f;
+  background-color: hsla(45, 100%, 65%, 0.12);
+}
+
+.Techweb__CatBar {
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 2px;
+  background-color: hsla(0, 0%, 100%, 0.12);
+
+  div {
+    height: 4px;
+    border-radius: 2px;
+    background-color: $tree-researched;
+  }
+}
+
+// Obszar wypełnia rodzica przez pozycjonowanie, bo flex nie daje mu stałej wysokości (bez tego nie ma suwaka)
+.Techweb__CatArea {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  padding: var(--space-m);
+  background-color: hsla(0, 0%, 0%, 0.3);
+  border: var(--border-thickness-tiny) solid var(--color-primary);
+}
+
+.Techweb__CatGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  align-items: flex-start;
+}
+
+.Techweb__CatBlock {
+  display: inline-block;
+}
+
+.Techweb__CatBlockTitle {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Techweb__CatCanvas {
+  position: relative;
+}
+
+.Techweb__CatLines {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.Techweb__CatLine {
+  fill: none;
+  stroke: hsla(0, 0%, 100%, 0.28);
+  stroke-width: 2;
+}
+
+.Techweb__CatLine--lit {
+  stroke: #ffd54f;
+  stroke-width: 3;
+}
+
+.Techweb__Card {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border: 1px solid $tree-future;
+  border-left-width: 5px;
+  border-radius: 5px;
+  background-color: #1d1d1d;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.Techweb__Card:hover {
+  filter: brightness(1.25);
+}
+
+.Techweb__Card--researched {
+  background-color: #1f3320;
+}
+
+.Techweb__Card--available {
+  border-top-color: $tree-available;
+  border-right-color: $tree-available;
+  border-bottom-color: $tree-available;
+  background-color: #1b2a40;
+}
+
+.Techweb__Card--future {
+  opacity: 0.6;
+}
+
+.Techweb__Card--ready {
+  outline: 2px solid $tree-available;
+  outline-offset: 1px;
+}
+
+.Techweb__Card--path {
+  outline: 2px solid hsla(45, 100%, 65%, 0.6);
+  opacity: 1;
+}
+
+.Techweb__Card--selected {
+  outline: 3px solid #ffd54f;
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+.Techweb__Card--dim {
+  opacity: 0.2;
+}
+
+.Techweb__CardIcon {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Techweb__Card--compact .Techweb__CardIcon {
+  transform: scale(0.8);
+}
+
+.Techweb__CardText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.Techweb__CardName {
+  font-weight: bold;
+  line-height: 1.15;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.Techweb__Card--compact .Techweb__CardName {
+  font-size: 11px;
+}
+
+.Techweb__CardMeta {
+  font-size: 10px;
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Techweb__CardChip {
+  margin-top: 1px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 9px;
+  color: #3a2a00;
+  background-color: #ffd54f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Techweb__CatLegend {
+  padding: 2px var(--space-m);
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.Techweb__CatLegend--researched,
+.Techweb__TreeLink--researched {
+  color: $tree-researched;
+}
+
+.Techweb__CatLegend--available,
+.Techweb__TreeLink--available {
+  color: $tree-available;
+}
+
+.Techweb__CatLegend--future,
+.Techweb__TreeLink--future {
+  color: #999;
+}

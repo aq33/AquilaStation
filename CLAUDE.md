@@ -121,3 +121,4 @@ Napisz:
 - `caller` to w 516 wbudowana zmienna: zmienna datumu o tej nazwie czytana bez `src.` zwraca wywołującą prockę (bez ostrzeżenia). Nie nazywaj tak zmiennych.
 - W 516 liczba z jednostką czasu (`5s`, `500ms`) w stringu `/client/script` i liczbowe klucze w literale `list()` to błędy kompilacji (użyj list pozycyjnych albo `alist()`).
 - `sort_list` sortuje listę asocjacyjną po kluczach. Sortowanie po wartościach: `sortTim(lista, cmp, associative = TRUE)`.
+- W TSX nie rozpakowuj `Set` ani `Map` przez `[...x]`: Babel w trybie luźnym robi z tego `[].concat(x)`, czyli tablicę z jednym obiektem `Set`. Używaj `Array.from(x)`. Objaw: okno TGUI pada z „Cannot read properties of undefined”.

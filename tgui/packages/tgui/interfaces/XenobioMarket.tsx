@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   DmIcon,
-  NoticeBox,
   ProgressBar,
   Section,
   Stack,
@@ -23,18 +22,6 @@ type Price = {
   ratio: number;
 };
 
-type Request = {
-  name: string;
-  ref: string;
-  icon: string;
-  icon_state: string;
-  amount: number;
-  amount_given: number;
-  payout: number;
-  points: number;
-  ready: boolean;
-};
-
 type ShopItem = {
   name: string;
   desc: string;
@@ -47,8 +34,6 @@ type ShopItem = {
 type Data = {
   points: number;
   prices: Price[];
-  requests: Request[];
-  has_request_pad: boolean;
   shop_items: ShopItem[];
 };
 
@@ -70,13 +55,6 @@ export const XenobioMarket = () => {
                 Ceny
               </Tabs.Tab>
               <Tabs.Tab
-                icon="clipboard-list"
-                selected={tab === 2}
-                onClick={() => setTab(2)}
-              >
-                Zamówienia ({data.requests.length})
-              </Tabs.Tab>
-              <Tabs.Tab
                 icon="store"
                 selected={tab === 3}
                 onClick={() => setTab(3)}
@@ -91,7 +69,6 @@ export const XenobioMarket = () => {
           <Stack.Item grow>
             <Section fill scrollable>
               {tab === 1 && <Prices />}
-              {tab === 2 && <Requests />}
               {tab === 3 && <Shop />}
             </Section>
           </Stack.Item>
@@ -137,58 +114,6 @@ const Prices = () => {
         </Table.Row>
       ))}
     </Table>
-  );
-};
-
-const Requests = () => {
-  const { data } = useBackend<Data>();
-
-  if (!data.has_request_pad) {
-    return (
-      <NoticeBox>
-        Brak połączonego padu zamówień. Połącz go multitoolem przy otwartym
-        panelu.
-      </NoticeBox>
-    );
-  }
-  if (!data.requests.length) {
-    return <NoticeBox info>Nikt nie zamówił ekstraktów.</NoticeBox>;
-  }
-  return (
-    <>
-      <NoticeBox info>
-        Zamówienie realizujesz, wkładając pasujący ekstrakt do padu rynku.
-      </NoticeBox>
-      <Table>
-        {data.requests.map((request) => (
-          <Table.Row key={request.ref} className="candystripe">
-            <Table.Cell collapsing>
-              <DmIcon
-                icon={request.icon}
-                icon_state={request.icon_state}
-                width="32px"
-                height="32px"
-              />
-            </Table.Cell>
-            <Table.Cell verticalAlign="middle">{request.name}</Table.Cell>
-            <Table.Cell collapsing verticalAlign="middle" pr={1}>
-              {request.payout} kr + {request.points} pkt
-            </Table.Cell>
-            <Table.Cell width="30%" verticalAlign="middle">
-              <ProgressBar
-                value={request.amount_given}
-                maxValue={request.amount}
-                color={request.ready ? 'good' : 'average'}
-              >
-                {request.ready
-                  ? 'Czeka na odbiór'
-                  : `${request.amount_given} / ${request.amount}`}
-              </ProgressBar>
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table>
-    </>
   );
 };
 

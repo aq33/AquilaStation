@@ -31,6 +31,7 @@
 		/obj/effect/landmark/asteroid_spawn,
 		/obj/machinery/computer/slime_market,
 		/obj/machinery/slime_extract_requestor,
+		/obj/machinery/smartfridge/genetics,
 		/obj/machinery/piratepad/civilian,
 		/obj/machinery/materials_market,
 		/obj/machinery/restaurant_portal,

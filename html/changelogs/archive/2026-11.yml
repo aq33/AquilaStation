@@ -741,3 +741,32 @@
         powstaje z CO2, tlenu i trytu w zimnie.
     - soundadd: Syrena burzy radiacyjnej z BeeStation (CC-BY 4.0).
     - imageadd: Ikona alertu napromieniowania z BeeStation.
+'2026-11-11':
+  Joker66613:
+  - tweak: Konsola zaopatrzenia ma dwa razy większe ikony paczek, większe nazwy i
+      ceny oraz szersze okno.
+  - tweak: Konsola R&D dzieli technologie na 8 kategorii tematycznych z ikonami technologii,
+      ścieżką wymagań i widokiem wszystkich kategorii naraz. Stare listy zbadanych,
+      dostępnych i przyszłych węzłów są usunięte.
+  - balance: 'Każda kategoria badań to osobne drzewko od podstaw: technologie nie
+      wymagają już badań z innych działów (poza kilkoma wyjątkami, np. Phazon wymaga
+      bluespace).'
+  - tweak: 'Pad zamówień ekstraktów zastąpił automat ekstraktów szlamu: xenobiolodzy
+      wystawiają ekstrakty i ustalają ceny, załoga kupuje je kartą i widzi przy każdym,
+      co robi. Na każdej mapie został jeden automat przed nauką.'
+  - rscadd: 'Gablota DNA dla genetyka: wystawia iniektory DNA i chromosomy, a przy
+      iniektorze pokazuje mutację, jej opis i niestabilność. Stoi w genetyce na każdej
+      mapie.'
+  - rscadd: 'Konsola zgłoszeń ma przycisk „Zlecenia na statku”: wszystkie zlecenia
+      (twoje, wspólne, CentComu i ogłoszenia z newscastera) w jednej liście z filtrem
+      po dziale.'
+  - tweak: Okno analizatora zdrowia pokazuje wszystko z trybu tekstowego (zmęczenie,
+      cechy, mózg, oczy i uszy, stabilność genetyczną, czas zgonu, wszczepy, zgodne
+      grupy krwi, °F), a rany widać na sylwetce.
+  - bugfix: Okno analizatora zdrowia nie zdradza już wampira z Maskaradą ani nosiciela
+      krwawych robaków prawdziwym poziomem krwi.
+  - tweak: Kategorie w konsoli zaopatrzenia są po polsku.
+  - bugfix: Krew z krwawienia zbiera się w kałużę pod ciałem zamiast od razu rozlewać
+      się na pół korytarza, a jedno ciało daje kilka kafelków krwi, nie kilkadziesiąt.
+  - server: CI ustawia publiczny DNS (a w ostateczności lustro archive.ubuntu.com),
+      gdy runner nie rozwiązuje lustra Ubuntu, i ponawia nieudaną instalację pakietów.

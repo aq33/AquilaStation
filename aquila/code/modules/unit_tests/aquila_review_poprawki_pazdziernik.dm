@@ -74,32 +74,5 @@
 	TEST_ASSERT(door.density, "A bolted door opened")
 	TEST_ASSERT(!length(door.aq_access_records), "A bolted door that stayed closed logged an opening")
 
-/// AQUILA - skasowana konsola rynku szlamów nie zostaje w zamówieniach, a multitool nie łączy rozebranego padu
-/datum/unit_test/aquila_slime_market_console_refs
-
-/datum/unit_test/aquila_slime_market_console_refs/Run()
-	var/obj/machinery/computer/slime_market/console = allocate(/obj/machinery/computer/slime_market)
-	var/obj/machinery/slime_extract_requestor/pad = allocate(/obj/machinery/slime_extract_requestor)
-	pad.link_console(console)
-	var/datum/extract_request_data/request = new
-	request.linked_console = console
-	request.source_pad = pad
-	request.extract_path = /obj/item/slime_extract/grey
-	pad.current_requests += request
-	qdel(console)
-	TEST_ASSERT(!request.linked_console, "A request kept the deleted console")
-	pad.current_requests -= request
-	qdel(request)
-
-	var/obj/machinery/computer/slime_market/new_console = allocate(/obj/machinery/computer/slime_market)
-	var/obj/machinery/slime_extract_requestor/gone_pad = allocate(/obj/machinery/slime_extract_requestor)
-	var/obj/item/multitool/tool = allocate(/obj/item/multitool)
-	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
-	tool.buffer = gone_pad
-	qdel(gone_pad)
-	new_console.multitool_act(user, tool)
-	TEST_ASSERT(!(gone_pad in new_console.request_pads), "The console linked a deleted pad")
-	TEST_ASSERT_EQUAL(tool.buffer, new_console, "The multitool did not store the console instead of the deleted pad")
-
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

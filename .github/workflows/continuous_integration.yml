@@ -72,10 +72,7 @@ jobs:
         if: steps.cache-byond.outputs.cache-hit != 'true'
         run: bash tools/ci/install_byond.sh
       - name: Install libcurl (needed by BYOND 516.1664+ on Linux)
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update -qq || true
-          sudo apt-get install -y --no-install-recommends libcurl4:i386
+        run: bash tools/ci/apt_install.sh libcurl4:i386
       - name: Compile All Maps
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
@@ -111,9 +108,7 @@ jobs:
           mysql -u root -proot bee_ci < SQL/beestation_schema.sql
       - name: Install rust-g
         run: |
-          sudo dpkg --add-architecture i386
-          sudo apt update || true
-          sudo apt install libssl3:i386 libcurl4:i386
+          bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
           bash tools/ci/install_rust_g.sh
       - name: Install auxmos
         run: |
