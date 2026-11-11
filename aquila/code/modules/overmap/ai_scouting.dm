@@ -8,7 +8,7 @@
 ///   (cel musi być przed nosem). Namierzanie to emisja: cel dostaje namiar na zwiadowcę;
 /// - okręt rakietowy strzela na przekazany namiar. Torpeda trzyma cel, dopóki trwa namierzanie; potem
 ///   leci prosto, chyba że jest już na tyle blisko, że łapie cel własną głowicą;
-/// - zwiad się kończy, gdy flota wchodzi w zasięg dział, zwiadowca zostanie wykryty, nie ma już komu
+/// - zwiad się kończy, gdy każdy okręt rakietowy widzi cel sam, cel zaczyna gonić zwiadowcę, nie ma już komu
 ///   celować albo minie czas służby. Wtedy myśliwiec wraca do zwykłych zadań, czyli do ataku.
 /// Na razie tylko myśliwce mają radar frontalny; duże okręty namierzają dookoła (radar operatora przyjdzie później).
 
@@ -26,8 +26,6 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 #define AI_SCOUT_CRANK 50
 /// Bliżej celu zwiad nie ma sensu: myśliwiec jest już w walce
 #define AI_SCOUT_MIN_RANGE 12
-/// Okręt floty tak blisko celu: czas na działa, zwiadowca dołącza do ataku
-#define AI_SCOUT_RELEASE_RANGE 25
 /// Jak daleko okręt rakietowy strzela na namiar ze zwiadu (pocisk sięga 250, ale tyle leci długo)
 #define AI_DATALINK_RANGE 120
 /// Bez namierzania torpeda trzyma cel tylko z tej odległości (własna głowica)
@@ -52,6 +50,12 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 /datum/fleet
 	/// AQUILA - lazy list myśliwców na zwiadzie
 	var/list/ai_scouts
+
+/// Zdarzenie do nagrania piaskownicy (ai_sandbox.dm); poza piaskownicą nic nie robi
+/proc/ai_scout_event(text)
+#ifdef AQ_AI_SANDBOX
+	GLOB.ai_sandbox?.event(text)
+#endif
 
 // ---------------------------------------------------------------- kto i na kogo
 
@@ -114,12 +118,15 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 // ---------------------------------------------------------------- zwiadowca
 
 /obj/structure/overmap/proc/start_ai_scout(obj/structure/overmap/target)
+	ai_scout_event("[src] idzie na zwiad nad [target]")
 	ai_scout_target = target
 	ai_scout_until = world.time + AI_SCOUT_DUTY
 	ai_scout_side = pick(1, -1)
 	LAZYOR(fleet.ai_scouts, src)
 
-/obj/structure/overmap/proc/stop_ai_scout()
+/obj/structure/overmap/proc/stop_ai_scout(reason)
+	if(reason)
+		ai_scout_event("[src] kończy zwiad: [reason]")
 	if(ai_scout_target && (ai_scout_target in target_painted))
 		dump_lock(ai_scout_target)
 	ai_scout_target = null
@@ -157,13 +164,24 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 		return "za blisko, walka"
 	if(!fleet?.ai_scout_slots())
 		return "nie ma dla kogo celować"
-	for(var/obj/structure/overmap/ship as anything in fleet.all_ships)
-		if(!QDELETED(ship) && ship != src && ship.mass > MASS_TINY && ship.z == z && overmap_dist(ship, target) <= AI_SCOUT_RELEASE_RANGE)
-			return "flota w zasięgu dział"
-	// Wykryty bez własnego namierzania: zwiad przestał być cichy
-	if(!(target in target_painted) && is_detected_by(target))
-		return "wykryty"
+	// Okręty rakietowe trzymają się z tyłu, więc zwiadowca jest im potrzebny także wtedy, gdy reszta floty
+	// już walczy z bliska. Kończymy dopiero, gdy każdy z nich widzi cel sam. (Pierwsza wersja kończyła zwiad,
+	// gdy jakikolwiek okręt floty był w zasięgu dział od celu: w piaskownicy 78% zwiadów trwało ok. 3 s.)
+	if(!needs_ai_datalink(target))
+		return "okręty rakietowe widzą cel same"
+	// Samo wykrycie nie przerywa zwiadu; dopiero gdy cel bierze zwiadowcę na cel
+	if(target.last_target == src)
+		return "ścigany przez cel"
 	return null
+
+/// Czy któryś okręt rakietowy floty w zasięgu łącza nie widzi celu sam i potrzebuje namiaru ze zwiadu
+/obj/structure/overmap/proc/needs_ai_datalink(obj/structure/overmap/target)
+	for(var/obj/structure/overmap/ship as anything in fleet?.all_ships)
+		if(QDELETED(ship) || ship == src || !ship.ai_controlled || ship.z != z || !ship.is_ai_missile_ship())
+			continue
+		if(overmap_dist(ship, target) <= AI_DATALINK_RANGE && !ship.get_contact_suite(target))
+			return TRUE
+	return FALSE
 
 /// Co tik AI myśliwca: zacząć, prowadzić albo skończyć zwiad
 /obj/structure/overmap/proc/update_ai_scout()
@@ -171,8 +189,9 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 		return
 	fleet.prune_ai_scouts()
 	if(ai_scout_target)
-		if(get_ai_scout_end_reason())
-			stop_ai_scout()
+		var/powod = get_ai_scout_end_reason()
+		if(powod)
+			stop_ai_scout(powod)
 			return
 		update_ai_scout_lock()
 		return
@@ -199,6 +218,7 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 		return
 	if(widzi && ai_lock_geometry_ok(target) && world.time >= ai_scout_lock_started + lockon_time + 1 SECONDS)
 		ai_scout_lock_started = world.time
+		ai_scout_event("[src] namierza [target] dla okrętów rakietowych")
 		start_lockon(target)
 		target.hear_radar_emission(src)
 
@@ -333,6 +353,5 @@ GLOBAL_VAR_INIT(ai_scouting_enabled, TRUE)
 #undef AI_SCOUT_LOCK_CONE
 #undef AI_SCOUT_CRANK
 #undef AI_SCOUT_MIN_RANGE
-#undef AI_SCOUT_RELEASE_RANGE
 #undef AI_DATALINK_RANGE
 #undef AI_SEEKER_RANGE

@@ -103,22 +103,39 @@
 	if(!ai_datalink_keeps_homing(null, enemy, 5))
 		return "Torpeda tuż przy celu zgubiła go po śmierci zwiadowcy"
 
-/// Zwiad się kończy, gdy flota wchodzi w zasięg dział albo mija czas służby
+/// Zwiad trwa, dopóki okręt rakietowy potrzebuje namiaru; kończy się, gdy widzi cel sam, gdy cel goni zwiadowcę
+/// albo po czasie służby. Zgłoszony przypadek: zwiad kończył się po ok. 3 s, bo ktoś z floty był blisko celu.
 /datum/unit_test/aquila_ai_scouting/proc/check_end()
+	var/z = run_loc_floor_bottom_left.z
 	scout.ai_scout_target = enemy
 	scout.ai_scout_until = world.time + 60 SECONDS
 	scout.ai_fleeing = FALSE
-	enemy.forceMove(locate(100, 90, run_loc_floor_bottom_left.z))
-	shooter.forceMove(locate(100, 20, run_loc_floor_bottom_left.z))
-	// Bez sprawdzania wykrycia (zależy od sygnatur myśliwca), tylko powody od floty i czasu
+	enemy.last_target = null
+	enemy.forceMove(locate(100, 90, z))
+	shooter.forceMove(locate(100, 20, z))
+	LAZYREMOVE(shooter.sensor_contact_suites, enemy)
 	var/powod = scout.get_ai_scout_end_reason()
-	if(powod && powod != "wykryty")
-		return "Zwiad skończył się bez powodu: [powod]"
-	shooter.forceMove(locate(100, 75, run_loc_floor_bottom_left.z)) // 15 pól od celu
+	if(powod)
+		return "Zwiad skończył się, choć okręt rakietowy potrzebował namiaru: [powod]"
+	// Inny okręt floty walczy blisko celu: to nie powód, okręt rakietowy dalej go nie widzi
+	var/obj/structure/overmap/small_craft/combat/light/bliski = allocate(/obj/structure/overmap/small_craft/combat/light)
+	bliski.mass = MASS_MEDIUM
+	bliski.forceMove(locate(100, 80, z))
+	flota.all_ships += bliski
 	powod = scout.get_ai_scout_end_reason()
-	shooter.forceMove(locate(100, 20, run_loc_floor_bottom_left.z))
-	if(powod != "flota w zasięgu dział")
-		return "Zwiad trwał, choć okręt floty był w zasięgu dział od celu (powód: [powod || "brak"])"
+	flota.all_ships -= bliski
+	if(powod)
+		return "Zwiad skończył się, bo inny okręt floty był blisko celu: [powod]"
+	LAZYSET(shooter.sensor_contact_suites, enemy, SENSOR_OPTICAL)
+	powod = scout.get_ai_scout_end_reason()
+	LAZYREMOVE(shooter.sensor_contact_suites, enemy)
+	if(powod != "okręty rakietowe widzą cel same")
+		return "Zwiad trwał, choć okręt rakietowy widział cel sam (powód: [powod || "brak"])"
+	enemy.last_target = scout
+	powod = scout.get_ai_scout_end_reason()
+	enemy.last_target = null
+	if(powod != "ścigany przez cel")
+		return "Zwiad trwał, choć cel gonił zwiadowcę (powód: [powod || "brak"])"
 	scout.ai_scout_until = world.time - 1
 	powod = scout.get_ai_scout_end_reason()
 	if(powod != "koniec służby")

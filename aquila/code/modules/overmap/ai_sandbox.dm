@@ -312,9 +312,15 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			)
 			// Zwiad: kogo śledzi i czy go namierza radarem (ai_scouting.dm)
 			if(OM.ai_scout_target)
-				dbg["sc"] = "\ref[OM.ai_scout_target]"
-				if(OM.ai_scout_target in OM.target_painted)
+				var/obj/structure/overmap/zwiad = OM.ai_scout_target
+				dbg["sc"] = "\ref[zwiad]"
+				if(zwiad in OM.target_painted)
 					dbg["lk"] = 1
+				// Diagnostyka namierzania: ktory warunek jest spelniony (bez skutkow ubocznych dla sensorow celu)
+				dbg["rd"] = OM.has_ai_datalink_shooter(zwiad) ? 1 : 0
+				dbg["gm"] = OM.ai_lock_geometry_ok(zwiad) ? 1 : 0
+				dbg["wd"] = zwiad.is_sensor_visible(OM) >= SENSOR_VISIBILITY_TARGETABLE ? 1 : 0
+				dbg["wk"] = (zwiad.ai_controlled && overmap_dist(OM, zwiad) <= zwiad.get_best_suite(OM)[2]) ? 1 : 0
 			if(OM.can_resupply)
 				dbg["zt"] = OM.ai_supply_torpedoes
 				dbg["zm"] = OM.ai_supply_missiles

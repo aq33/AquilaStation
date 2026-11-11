@@ -78,12 +78,20 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Zwiad po poprawce warunków końca",
+    opis: "Pierwsza wersja kończyła zwiad, gdy ktokolwiek z floty był 25 pól od celu: zwiady trwały ok. 3 s i nikt nie namierzał. " +
+          "Teraz zwiad trwa, dopóki okręt rakietowy nie widzi celu sam, i kończy się, gdy cel zaczyna gonić zwiadowcę. " +
+          "W zdarzeniach odtwarzacza widać, kto idzie na zwiad, kto namierza i dlaczego kończy.",
+    wynik: "Namierzeń w 4 bitwach: 13 przy zwykłym starcie, 34 przy dalekim. Torpedy na namiar od zwiadowcy: 4–6%. " +
+           "Torpedy dalej lecą średnio z ok. 25 pól: okręty rakietowe zwykle widzą cel same, bo walka toczy się blisko. Następny krok: działa jako ostateczność.",
+    warianty: [["W2_blisko_", "zwykły start"], ["W2_daleko_", "daleki start (120 pól)"]] },
   { tytul: "Zwiad myśliwców i łącze danych",
     opis: "Jeden myśliwiec na lotniskowiec krąży na granicy, z której widzi wroga, i nie strzela. Gdy okręt rakietowy floty może strzelić, " +
           "zwiadowca namierza cel radarem frontalnym (cel musi być przed nosem, namierzany słyszy to i dostaje namiar na myśliwca), " +
           "a okręt rakietowy strzela na ten namiar z odległości do 120 pól. Torpeda trzyma cel, dopóki trwa namierzanie. " +
           "Fioletowa linia „namierza” w odtwarzaczu to właśnie to.",
-    wynik: null,
+    wynik: "Pierwsza wersja: myśliwce szły na zwiad (116 razy w 4 bitwach), ale ani razu nie namierzyły celu. " +
+           "Zwiad kończył się po ok. 3 s, bo ktoś z floty był już blisko celu. Poprawione w serii wyżej.",
     warianty: [["V_zwiad_", "ze zwiadem"], ["V_bez_zwiadu_", "bez zwiadu"]] },
   { tytul: "Skończone zapasy rakiet i torped",
     opis: "Lotniskowiec dawał okrętowi w promieniu 15 pól pełny magazyn rakiet i torped co 5 s, czyli bez końca. " +
