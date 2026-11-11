@@ -16,9 +16,9 @@
 		/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/bullterrier, // AQ EDIT - basic moby
 		/mob/living/basic/pet/cat, // AQ EDIT - basic moby
-		/mob/living/simple_animal/pet/fox,
-		/mob/living/simple_animal/pet/hamster,
-		/mob/living/simple_animal/pet/penguin/emperor,
+		/mob/living/basic/pet/fox, // AQ EDIT - basic moby
+		/mob/living/basic/pet/hamster, // AQ EDIT - basic moby
+		/mob/living/basic/pet/penguin/emperor, // AQ EDIT - basic moby
 		/mob/living/basic/chicken, // AQ EDIT - basic moby
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/butterfly,

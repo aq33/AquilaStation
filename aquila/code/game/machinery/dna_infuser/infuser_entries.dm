@@ -37,7 +37,7 @@
 		"mam nadzieję, że było warto",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/fox,
+		/mob/living/basic/pet/fox,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/cat/fox,
@@ -119,7 +119,7 @@
 		"kołyszesz się, gdy chodzisz",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/pet/penguin,
+		/mob/living/basic/pet/penguin,
 	)
 	output_organs = list(
 		/obj/item/organ/ears/penguin,

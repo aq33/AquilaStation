@@ -10460,7 +10460,7 @@
 /turf/open/floor/circuit/green/anim,
 /area/engine/engineering/reactor_control)
 "ira" = (
-/mob/living/simple_animal/sloth/paperwork,
+/mob/living/basic/sloth/paperwork,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "irv" = (
@@ -22552,7 +22552,7 @@
 /area/hallway/upper/primary/starboard)
 "sDq" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /turf/open/floor/carpet/ship/blue{
 	color = "#9999DD";
 	name = "nanoweave carpet (bluer)"

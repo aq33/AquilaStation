@@ -12824,7 +12824,7 @@
 	name = "Dog Bed"
 	},
 /obj/item/bedsheet/captain,
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /turf/open/floor/monotile/steel,
 /area/crew_quarters/heads/captain)
 "Qf" = (

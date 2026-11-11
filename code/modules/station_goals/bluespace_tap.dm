@@ -128,7 +128,7 @@
 		/mob/living/basic/pet/dog/corgi/ = 5, // AQ EDIT - basic moby
 		/mob/living/basic/pet/cat = 5, // AQ EDIT - basic moby
 		/mob/living/basic/pet/dog/bullterrier = 5, // AQ EDIT - basic moby
-		/mob/living/simple_animal/pet/penguin = 5,
+		/mob/living/basic/pet/penguin = 5, // AQ EDIT - basic moby
 		/mob/living/simple_animal/parrot = 5,
 		/obj/item/slimepotion/slime/sentience = 5,
 		/obj/item/clothing/mask/cigarette/cigar/havana = 3,

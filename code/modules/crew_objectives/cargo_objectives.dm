@@ -15,7 +15,9 @@
 
 /datum/objective/crew/petsplosion/check_completion()
 	var/petcount = target_amount
-	for(var/mob/living/simple_animal/pet/P in GLOB.mob_list)
+	for(var/mob/living/P in GLOB.mob_list)
+		if(!istype(P, /mob/living/simple_animal/pet) && !istype(P, /mob/living/basic/pet)) // AQ EDIT - basic moby (pets are basic mobs now)
+			continue
 		if(!(P.stat == DEAD))
 			if((P.z in SSmapping.levels_by_trait(ZTRAIT_STATION)) || SSshuttle.emergency.shuttle_areas[get_area(P)])
 				petcount--

@@ -2607,7 +2607,7 @@
 	name = "Skrzynia z lisem"
 	desc = "A lis robi...? W zestawie obroża!"//what does the fox say
 	cost = 5000
-	contains = list(/mob/living/simple_animal/pet/fox,
+	contains = list(/mob/living/basic/pet/fox, // AQ EDIT - basic moby
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "skrzynia z lisem"
 

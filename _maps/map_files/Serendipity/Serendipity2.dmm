@@ -4574,7 +4574,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
 "wM" = (
-/mob/living/simple_animal/sloth/paperwork,
+/mob/living/basic/sloth/paperwork,
 /obj/structure/bed/dogbed,
 /obj/machinery/button/door{
 	id = "qm_office";

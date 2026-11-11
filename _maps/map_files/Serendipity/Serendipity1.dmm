@@ -6092,7 +6092,7 @@
 	name = "Vault turret control panel";
 	pixel_y = 26
 	},
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /obj/structure/bed/dogbed/renault,
 /turf/open/floor/carpet,
 /area/ai_monitored/nuke_storage)
@@ -11468,7 +11468,7 @@
 	pixel_x = -11
 	},
 /obj/structure/bed/dogbed/vector,
-/mob/living/simple_animal/pet/hamster/vector,
+/mob/living/basic/pet/hamster/vector,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/west,
 /obj/machinery/airalarm/directional/north,

@@ -1934,9 +1934,16 @@
 #include "code\modules\mob\living\basic\farm_animals\chicken.dm"
 #include "code\modules\mob\living\basic\farm_animals\turkey.dm"
 #include "code\modules\mob\living\basic\farm_animals\rabbit.dm"
+#include "code\datums\elements\tiny_mob_hunter.dm"
+#include "code\datums\components\tree_climber.dm"
+#include "code\modules\mob\living\basic\pets\fox.dm"
+#include "code\modules\mob\living\basic\pets\hamster.dm"
+#include "code\modules\mob\living\basic\pets\penguin.dm"
+#include "code\modules\mob\living\basic\pets\sloth.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_pets_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_farm.dm"
 #include "code\modules\unit_tests\aquila_basic_gondola_gnome.dm"
 #include "code\modules\unit_tests\aquila_basic_cow.dm"

@@ -372,7 +372,7 @@
 /obj/item/choice_beacon/pet/hamster
 	name = "nadajnik dostawy chomika"
 	default_name = "Doktor"
-	mob_choice = /mob/living/simple_animal/pet/hamster
+	mob_choice = /mob/living/basic/pet/hamster // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/pug
 	name = "nadajnik dostawy mopsa"
@@ -387,7 +387,7 @@
 /obj/item/choice_beacon/pet/pingu
 	name = "nadajnik dostawy pingwina"
 	default_name = "Pingu"
-	mob_choice = /mob/living/simple_animal/pet/penguin/baby
+	mob_choice = /mob/living/basic/pet/penguin/baby // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/clown
 	name = "nadajnik dostawy żywego lubrykantu"

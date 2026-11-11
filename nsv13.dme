@@ -2755,12 +2755,12 @@
 #include "code\modules\mob\living\simple_animal\friendly\crab.dm"
 // AQ EDIT - psy są basic mobami (aquila\code\modules\mob\living\basic\pets\dog\)
 // AQ EDIT - koza, owca, kura, pisklę i indyk są basic mobami (aquila\code\modules\mob\living\basic\farm_animals\)
-#include "code\modules\mob\living\simple_animal\friendly\fox.dm"
-#include "code\modules\mob\living\simple_animal\friendly\hamster.dm"
+// AQ EDIT - lis jest basic mobem (aquila\code\modules\mob\living\basic\pets\fox.dm)
+// AQ EDIT - chomik jest basic mobem (aquila\code\modules\mob\living\basic\pets\hamster.dm)
 #include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
-#include "code\modules\mob\living\simple_animal\friendly\penguin.dm"
+// AQ EDIT - pingwiny są basic mobami (aquila\code\modules\mob\living\basic\pets\penguin.dm)
 #include "code\modules\mob\living\simple_animal\friendly\pet.dm"
-#include "code\modules\mob\living\simple_animal\friendly\sloth.dm"
+// AQ EDIT - leniwce są basic mobami (aquila\code\modules\mob\living\basic\pets\sloth.dm)
 #include "code\modules\mob\living\simple_animal\friendly\snake.dm"
 #include "code\modules\mob\living\simple_animal\friendly\turtle.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"

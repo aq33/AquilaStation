@@ -245,7 +245,7 @@
 							/mob/living/basic/chicken, // AQ EDIT - basic moby
 							/mob/living/basic/cow, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/lizard,
-							/mob/living/simple_animal/pet/fox,
+							/mob/living/basic/pet/fox, // AQ EDIT - basic moby
 							/mob/living/simple_animal/butterfly,
 							/mob/living/basic/pet/cat/cak, // AQ EDIT - basic moby
 							/mob/living/basic/chick) // AQ EDIT - basic moby
