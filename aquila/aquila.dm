@@ -534,8 +534,6 @@
 #include "code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "code\modules\atmospherics\machinery\template_node_links.dm"
 #include "code\modules\atmospherics\machinery\portable\canister.dm"
-#include "code\modules\atmospherics\machinery\portable\canister_hud_layout.dm"
-#include "code\modules\atmospherics\machinery\portable\canister_hud.dm"
 #include "code\modules\bladder\bladder.dm"
 #include "code\modules\bladder\censor.dm"
 #include "code\modules\bladder\urination.dm"
