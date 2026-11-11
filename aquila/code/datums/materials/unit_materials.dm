@@ -5,13 +5,26 @@
 
 /**
  * Materiały, które oddaje jedna sztuka atomu (stos: jeden arkusz; reszta: cały atom).
+ * Materiały z przemiany metalgenem dają tylko wygląd i efekty, więc nic się z nich nie odzyskuje (null).
  * Zwracana lista bywa współdzielona (FindOrCreateMaterialCombo): nie zmieniaj jej.
  */
 /atom/proc/get_unit_materials()
+	if(HAS_TRAIT(src, TRAIT_MATERIALS_TRANSMUTED))
+		return null
 	return custom_materials
 
 /obj/item/stack/get_unit_materials()
+	if(HAS_TRAIT(src, TRAIT_MATERIALS_TRANSMUTED))
+		return null
 	return mats_per_unit
+
+/// Przenosi materiały na atom, który zastępuje ten (podniesione i postawione krzesło), razem ze znacznikiem metalgenu
+/atom/proc/transfer_materials_to(atom/target)
+	if(!length(custom_materials))
+		return
+	if(HAS_TRAIT(src, TRAIT_MATERIALS_TRANSMUTED))
+		ADD_TRAIT(target, TRAIT_MATERIALS_TRANSMUTED, METALGEN_TRAIT)
+	target.set_custom_materials(custom_materials)
 
 /**
  * Wysypuje arkusze materiałów atomu do odzysku (meble, ściany i podłogi z materiału).

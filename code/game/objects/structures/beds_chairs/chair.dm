@@ -49,9 +49,7 @@
 		if(buildstacktype)
 			new buildstacktype(loc,buildstackamount)
 		else
-			for(var/i in custom_materials)
-				var/datum/material/M = i
-				new M.sheet_type(loc, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+			drop_material_sheets(loc) // AQ EDIT - bez materiałów bez arkusza (kamień) i z metalgenu
 	..()
 
 /obj/structure/chair/attack_paw(mob/user)
@@ -401,8 +399,7 @@
 			return
 		usr.visible_message("<span class='notice'>[usr] łapie [src.name].</span>", "<span class='notice'>Łapiesz [src.name].</span>")
 		var/obj/item/C = new item_chair(loc)
-		if(length(custom_materials)) // AQ EDIT - tylko gdy krzesło ma materiał (Bee daje każdemu krzesłu żelazo)
-			C.set_custom_materials(custom_materials)
+		transfer_materials_to(C) // AQ EDIT - tylko gdy krzesło ma materiał (Bee daje każdemu krzesłu żelazo), ze znacznikiem metalgenu
 		TransferComponents(C)
 		usr.put_in_hands(C)
 		qdel(src)

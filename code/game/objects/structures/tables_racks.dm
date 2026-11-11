@@ -251,9 +251,7 @@
 		if(buildstack)
 			new buildstack(T, buildstackamount)
 		else
-			for(var/i in custom_materials)
-				var/datum/material/M = i
-				new M.sheet_type(T, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+			drop_material_sheets(T) // AQ EDIT - bez materiałów bez arkusza (kamień) i z metalgenu
 		if(!wrench_disassembly)
 			new frame(T)
 		else

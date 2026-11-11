@@ -43,8 +43,7 @@
 
 	user.visible_message("<span class='notice'>[user] stawia [src.name].</span>", "<span class='notice'>Stawiasz [name].</span>")
 	var/obj/structure/chair/C = new origin_type(get_turf(loc))
-	if(length(custom_materials)) // AQ EDIT - jak przy podnoszeniu krzesła
-		C.set_custom_materials(custom_materials)
+	transfer_materials_to(C) // AQ EDIT - jak przy podnoszeniu krzesła
 	TransferComponents(C)
 	C.setDir(dir)
 	qdel(src)

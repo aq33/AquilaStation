@@ -40,17 +40,14 @@
 
 // Bez ..(): zamiast żelaza ściana oddaje swój materiał. Hooki rozbiórki wraków (shipbreaking/hooks.dm) jej nie dotyczą,
 // bo w klatce magnesu nie ma ścian z materiału.
+// Arkusze przez drop_material_sheets(): kamień z gorgium nie ma arkusza, a materiał z metalgenu nic nie oddaje.
 /turf/closed/wall/material/break_wall()
-	for(var/i in custom_materials)
-		var/datum/material/M = i
-		new M.sheet_type(src, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+	drop_material_sheets(src)
 	if(girder_type)
 		return new girder_type(src)
 
 /turf/closed/wall/material/devastate_wall()
-	for(var/i in custom_materials)
-		var/datum/material/M = i
-		new M.sheet_type(src, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+	drop_material_sheets(src)
 
 /turf/closed/wall/material/mat_update_desc(datum/material/mat)
 	desc = "Ogromny blok materiału ([mat.get_polish_name()]) oddzielający pomieszczenia."

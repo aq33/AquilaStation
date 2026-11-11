@@ -6,8 +6,7 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 	/turf/open/indestructible,
 	/turf/open/space,
 	/obj/effect,
-	// Od BeeStation/BeeStation-Hornet#10135 recyklery, silos i eksport czytają custom_materials, więc metalgen na stosie
-	// albo monecie zmieniałby żelazo w diament
+	// Stosy łączą się z innymi stosami i dzielą (materiał przeszedłby na zwykłe arkusze), a moneta ma wartość z materiału
 	/obj/item/stack,
 	/obj/item/coin,
 )))
@@ -54,14 +53,19 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 		return
 	metal_transmute(target, metal_ref)
 
-/// Zmienia materiał obiektu lub tura, razem z kolorem, efektami i przymiotnikiem materiału w nazwie („złota kartka”).
-/// Stosy i monety są na czarnej liście, bo recyklery czytają custom_materials.
+/**
+ * Zmienia materiał obiektu lub tura, razem z kolorem, efektami i przymiotnikiem materiału w nazwie („złota kartka”).
+ * Przemieniony materiał to tylko wygląd: TRAIT_MATERIALS_TRANSMUTED sprawia, że get_unit_materials() nic nie zwraca,
+ * więc recykler, autolat, silos, analizator, eksport i rozbiórka mebli, ścian i podłóg go nie oddają.
+ * Przymiotnik dostaje tylko nazwa z typu (albo już z przymiotnikiem materiału); własna nazwa zostaje (jak przed portem).
+ */
 /proc/metal_transmute(atom/target, metal_type, default_material_amount = 100)
 	if(is_type_in_typecache(target, GLOB.blacklisted_metalgen_types))
 		return
 	var/datum/material/metal = getmaterialref(metal_type)
 	if(!metal)
 		return
+	var/material_named = metal_transmute_material_named(target)
 
 	var/metal_amount = 0
 	for(var/metal_key in target.custom_materials)
@@ -69,14 +73,32 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 	if(!metal_amount)
 		metal_amount = default_material_amount
 
-	// Najpierw zdejmujemy stare materiały, żeby efekty się nie kumulowały
+	// Najpierw zdejmujemy stare materiały, żeby efekty się nie kumulowały. Bez przymiotnika on_removed() nie cofa
+	// własnej nazwy do nazwy z typu.
+	if(!material_named)
+		target.material_flags &= ~MATERIAL_ADD_PREFIX
 	if(length(target.custom_materials))
 		var/old_flags = target.material_flags
 		target.set_custom_materials()
 		target.custom_materials = null
 		target.material_flags = old_flags
-	target.material_flags |= MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_ADD_PREFIX
+	target.material_flags |= MATERIAL_EFFECTS | MATERIAL_COLOR
+	if(material_named)
+		target.material_flags |= MATERIAL_ADD_PREFIX
+	ADD_TRAIT(target, TRAIT_MATERIALS_TRANSMUTED, METALGEN_TRAIT)
 	target.set_custom_materials(list((metal) = metal_amount))
+
+/// Czy nazwa celu to nazwa z typu, sama albo z przymiotnikiem lub dopiskiem materiału („złota kartka”, „kartka bluespace”)
+/proc/metal_transmute_material_named(atom/target)
+	var/initial_name = initial(target.name)
+	if(target.name == initial_name)
+		return TRUE
+	var/name_length = length(target.name)
+	var/suffix = " [initial_name]"
+	var/prefix = "[initial_name] "
+	if(name_length > length(suffix) && findtextEx(target.name, suffix, name_length - length(suffix) + 1))
+		return TRUE
+	return findtextEx(target.name, prefix, 1, length(prefix) + 1) == 1
 
 /// Zamienia w KAMIEŃ
 /datum/reagent/metalgen/gorgium
