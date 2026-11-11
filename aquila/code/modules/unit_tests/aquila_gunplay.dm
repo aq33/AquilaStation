@@ -414,5 +414,26 @@
 	TEST_ASSERT(single.fire_casing(far, shooter, null, 0, TRUE, null, 60), "9 mm round did not fire")
 	TEST_ASSERT(bullet.original_angle >= 54 && bullet.original_angle <= 66, "Single bullet with variance flew at [bullet.original_angle]° instead of the gun's 60° spread ± its variance")
 
+/// Kara za ruch zależy od tempa: chód < bieg < sprint, a po sprincie zanika w ciągu sekundy
+/datum/unit_test/aquila_gunplay_move_penalty
+
+/datum/unit_test/aquila_gunplay_move_penalty/Run()
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	TEST_ASSERT_EQUAL(shooter.get_move_spread_penalty(), 0, "Shooter who has not moved got a movement penalty")
+	shooter.last_move_time = world.time
+	shooter.aq_last_move_walking = TRUE
+	var/walk = shooter.get_move_spread_penalty()
+	shooter.aq_last_move_walking = FALSE
+	var/run_penalty = shooter.get_move_spread_penalty()
+	shooter.aq_last_sprint_time = world.time
+	var/sprint = shooter.get_move_spread_penalty()
+	TEST_ASSERT(walk > 0 && walk < run_penalty && run_penalty < sprint, "Movement penalty should grow walk < run < sprint (got [walk], [run_penalty], [sprint])")
+	shooter.last_move_time = world.time - 10 SECONDS
+	shooter.aq_last_sprint_time = world.time - 0.5 SECONDS
+	var/fading = shooter.get_move_spread_penalty()
+	TEST_ASSERT(fading > 0 && fading < sprint, "Sprint penalty should fade over a second (got [fading] half a second after [sprint])")
+	shooter.aq_last_sprint_time = world.time - 2 SECONDS
+	TEST_ASSERT_EQUAL(shooter.get_move_spread_penalty(), 0, "Sprint penalty did not vanish after a second")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
