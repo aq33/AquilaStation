@@ -55,6 +55,8 @@
 	return ..()
 
 /datum/component/knpc/process()
+	if(cuffing)
+		return // do_mob przerywa każdy krok boardera: wybór celu, trasa i patrol czekają, aż skończy zakuwać
 	. = ..()
 	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
 	if(!istype(current_goal, /datum/ai_goal/human/engage_targets))
@@ -118,6 +120,12 @@
 	var/mob/living/living_target = isliving(target) ? target : null
 	if(!istype(G) || !G.can_shoot() || living_target?.incapacitated())
 		cover_turf = null
+		if(living_target?.incapacitated() && get_dist(H, target) <= 1)
+			// Już stoimy przy leżącym. Trasa na jego pole kończyła się wejściem na nie, a potem nieudanym
+			// szukaniem drogi do własnego pola, karą czasową i losowym błądzeniem.
+			path = list()
+			dest = null
+			return
 		return pathfind_to(target)
 	if(try_take_cover(target)) // aquila/code/modules/knpc/knpc_cover_loot.dm
 		return
@@ -155,6 +163,9 @@
 	var/dist = get_dist(H, target)
 	if(dist < 3 || dist > 7 || H.incapacitated() || !isturf(H.loc) || !can_see(H, target, view_range))
 		return FALSE
+	var/mob/living/living_target = isliving(target) ? target : null
+	if(living_target?.incapacitated())
+		return FALSE // leżący już nie walczy: szkoda granatu
 	var/turf/target_turf = get_turf(target)
 	if(!throw_path_clear(target_turf))
 		return FALSE // granat zatrzymałby się po drodze, bliżej nas i kolegów
@@ -291,10 +302,21 @@
 		var/mob/living/carbon/human/ai_boarder/boarder = H
 		if(boarder.knpc_traits & (KNPC_IS_DOOR_BASHER | KNPC_IS_DOOR_HACKER))
 			if(!breach_card)
-				breach_card = new
+				breach_card = new /obj/item/card/id/knpc_breach
 				breach_card.access = get_all_accesses()
 			return breach_card
 	return H.wear_id
+
+/// Karta, którą planują trasę boarderzy wyłamujący drzwi (nigdy nie trafia do świata)
+/obj/item/card/id/knpc_breach
+	name = "karta wyłamania drzwi (KNPC)"
+
+// Zaryglowana albo pozbawiona zasilania śluza blokowała wyszukiwanie trasy nawet z kartą wszystkich dostępów,
+// więc haker i wyważacz omijali dokładnie te drzwi, które handle_blocking_door() umie otworzyć.
+/obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+	if(istype(ID, /obj/item/card/id/knpc_breach))
+		return TRUE
+	return ..()
 
 /datum/component/knpc/next_path_step()
 	if(handle_blocking_door())

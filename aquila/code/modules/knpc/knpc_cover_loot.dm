@@ -17,6 +17,8 @@
 #define KNPC_LOOT_RANGE 7
 /// Co ile boarder szuka sprzętu do zebrania
 #define KNPC_LOOT_SEARCH_DELAY (3 SECONDS)
+/// Po tylu nieudanych próbach zakucia z rzędu boarder na minutę zostawia jeńca
+#define KNPC_CUFF_MAX_FAILURES 3
 
 /datum/component/knpc
 	/// Pole osłony, które zajmujemy albo do którego idziemy (turfy nie są usuwane, więc zwykła referencja)
@@ -30,6 +32,8 @@
 	/// Wybrany jeniec (weakref) i kiedy szukać następnego
 	var/datum/weakref/prisoner_target
 	var/next_prisoner_search = 0
+	/// Nieudane próby zakucia z rzędu (jeniec wyrwał się, ktoś nas przesunął)
+	var/cuff_failures = 0
 
 /datum/component/knpc/Destroy(force, silent)
 	cover_turf = null
@@ -119,23 +123,47 @@
 
 // ---------- Kajdanki ----------
 
-/// Kajdanki lub opaski przy sobie albo w plecaku (bez tych, które sami mamy na rękach)
+/// Kajdanki lub opaski przy sobie, w plecaku albo w pudełku czy pasie, który nosimy (bez tych, które sami mamy na rękach)
 /datum/component/knpc/proc/find_cuffs()
 	var/mob/living/carbon/human/H = parent
-	for(var/obj/item/restraints/handcuffs/cuffs in carried_items())
+	var/list/items = carried_items()
+	for(var/obj/item/storage/S in items)
+		if(S != H.back)
+			items += S.contents // ERT ma kajdanki w pudełku w plecaku, ochrona w pasie
+	for(var/obj/item/restraints/handcuffs/cuffs in items)
 		if(cuffs != H.handcuffed)
 			return cuffs
+
+/// Broń (albo inny przedmiot) trzymana oburącz, którą można puścić jedną ręką. Broń palna chwyta się oburącz sama przy podniesieniu.
+/datum/component/knpc/proc/wielded_item()
+	var/mob/living/carbon/human/H = parent
+	for(var/obj/item/I in H.held_items)
+		var/datum/component/two_handed/TH = I.GetComponent(/datum/component/two_handed)
+		if(TH?.wielded && !TH.require_twohands)
+			return I
+
+/// Czy mamy czym i którą ręką zakuć target (bez sprawdzania odległości)
+/datum/component/knpc/proc/can_cuff(mob/living/carbon/target)
+	if(!iscarbon(target) || target.handcuffed || target.stat == DEAD)
+		return FALSE
+	if(target.get_num_arms(FALSE) < 2 && !target.get_arm_ignore())
+		return FALSE
+	if(WEAKREF(target) in unreachable_items)
+		return FALSE
+	if(!find_cuffs())
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	return length(H.get_empty_held_indexes()) || wielded_item()
+
+/// Obezwładniony wróg, którego zakujemy zamiast do niego strzelać i go kopać
+/datum/component/knpc/proc/wants_to_cuff(mob/living/target)
+	return isliving(target) && target.incapacitated() && can_cuff(target)
 
 /// Zakuwa obezwładnionego wroga, jeśli mamy czym. TRUE, gdy boarder się tym zajmuje (zamiast judo i dobijania).
 /datum/component/knpc/proc/try_cuff(mob/living/carbon/target)
 	if(cuffing)
 		return TRUE
-	if(!iscarbon(target) || target.handcuffed || target.stat == DEAD)
-		return FALSE
-	if(target.get_num_arms(FALSE) < 2 && !target.get_arm_ignore())
-		return FALSE
-	var/obj/item/restraints/handcuffs/cuffs = find_cuffs()
-	if(!cuffs)
+	if(!can_cuff(target))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
 	if(get_dist(H, target) > 1)
@@ -143,25 +171,58 @@
 		return pathfind_to(target) != KNPC_PATHFIND_FAIL
 	path = list() // inaczej next_path_step() wchodzi na pole leżącego i przerywa do_mob
 	dest = null
-	INVOKE_ASYNC(src, PROC_REF(do_cuff), cuffs, target)
+	INVOKE_ASYNC(src, PROC_REF(do_cuff), find_cuffs(), target)
 	return TRUE
 
 /datum/component/knpc/proc/do_cuff(obj/item/restraints/handcuffs/cuffs, mob/living/carbon/target)
 	cuffing = TRUE
 	var/mob/living/carbon/human/H = parent
+	var/obj/item/rewield = null
 	if(!H.is_holding(cuffs))
+		// Broń trzymana oburącz zajmuje drugą rękę: puszczamy ją jedną ręką na czas zakuwania
+		if(!length(H.get_empty_held_indexes()))
+			rewield = wielded_item()
+			var/datum/component/two_handed/TH = rewield?.GetComponent(/datum/component/two_handed)
+			TH?.unwield(FALSE)
 		if(isitem(cuffs.loc) && cuffs.loc != H)
 			SEND_SIGNAL(cuffs.loc, COMSIG_TRY_STORAGE_TAKE, cuffs, H.drop_location(), TRUE)
 		else
 			H.temporarilyRemoveItemFromInventory(cuffs)
 		if(!H.put_in_hands(cuffs))
-			cuffing = FALSE
+			// Dawniej opaski zostawały na podłodze, cel „Scavenge” je podnosił i boarder kręcił się w kółko
+			stow_item(cuffs)
+			finish_cuff(target, rewield)
 			return
 	H.say(pick("Leżeć! Ręce za plecy!", "Masz prawo zachować milczenie!", "Mam jeńca!"), forced = "knpc AI")
 	cuffs.attack(target, H)
-	if(!QDELETED(cuffs) && H.is_holding(cuffs) && H.back) // nie wyszło: kajdanki wracają do plecaka
-		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, cuffs, H, TRUE)
+	if(!QDELETED(cuffs) && H.is_holding(cuffs)) // nie wyszło: kajdanki wracają do plecaka
+		stow_item(cuffs)
+	finish_cuff(target, rewield)
+
+/// Koniec zakuwania: znowu chwytamy broń oburącz, a po KNPC_CUFF_MAX_FAILURES nieudanych próbach odpuszczamy jeńca na minutę
+/datum/component/knpc/proc/finish_cuff(mob/living/carbon/target, obj/item/rewield)
+	var/mob/living/carbon/human/H = parent
 	cuffing = FALSE
+	if(rewield && H.is_holding(rewield) && !QDELETED(H))
+		var/datum/component/two_handed/TH = rewield.GetComponent(/datum/component/two_handed)
+		TH?.wield(H)
+	if(QDELETED(target) || target.handcuffed)
+		cuff_failures = 0
+		return
+	if(++cuff_failures < KNPC_CUFF_MAX_FAILURES)
+		return
+	cuff_failures = 0
+	if(!unreachable_items)
+		unreachable_items_reset_at = world.time + 1 MINUTES
+	LAZYOR(unreachable_items, WEAKREF(target))
+	prisoner_target = null
+
+/// Chowa przedmiot do plecaka albo kieszeni
+/datum/component/knpc/proc/stow_item(obj/item/I)
+	var/mob/living/carbon/human/H = parent
+	if(H.back && SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, I, H, TRUE))
+		return TRUE
+	return H.equip_to_slot_if_possible(I, ITEM_SLOT_LPOCKET, disable_warning = TRUE) || H.equip_to_slot_if_possible(I, ITEM_SLOT_RPOCKET, disable_warning = TRUE)
 
 /// Zakuty wróg nie jest już zagrożeniem
 /datum/ai_goal/get_aggressors(datum/component/knpc/HA)
@@ -207,11 +268,9 @@
 	var/mob/living/carbon/human/H = HA.parent
 	if(QDELETED(victim) || victim == H || victim.stat == DEAD || victim.handcuffed || istype(victim, /mob/living/carbon/human/ai_boarder))
 		return FALSE
-	if(WEAKREF(victim) in HA.unreachable_items)
-		return FALSE
 	if(victim.stat == CONSCIOUS && !victim.incapacitated())
 		return FALSE
-	return !H.faction_check_mob(victim)
+	return !H.faction_check_mob(victim) && HA.can_cuff(victim) // nieosiągalny, bez rąk albo nie mamy wolnej ręki
 
 /datum/ai_goal/human/secure_prisoner/proc/find_prisoner(datum/component/knpc/HA)
 	var/mob/living/carbon/human/H = HA.parent
@@ -326,9 +385,7 @@
 		return FALSE
 	if(ismob(holder))
 		H.visible_message("<span class='notice'>[H] przeszukuje [holder] i zabiera [I].</span>")
-	if(H.back && SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, I, H, TRUE))
-		return TRUE
-	return H.equip_to_slot_if_possible(I, ITEM_SLOT_LPOCKET, disable_warning = TRUE) || H.equip_to_slot_if_possible(I, ITEM_SLOT_RPOCKET, disable_warning = TRUE)
+	return stow_item(I)
 
 /// Po walce boarder zbiera magazyny do swojej broni, medipen i kajdanki z podłogi i z ciał
 /datum/ai_goal/human/scavenge
@@ -384,3 +441,4 @@
 #undef KNPC_SPARE_MAGAZINES
 #undef KNPC_LOOT_RANGE
 #undef KNPC_LOOT_SEARCH_DELAY
+#undef KNPC_CUFF_MAX_FAILURES

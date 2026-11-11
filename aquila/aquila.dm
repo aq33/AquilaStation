@@ -1923,6 +1923,7 @@
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
 #include "code\modules\unit_tests\aquila_przyspieszenia.dm"
 #include "code\modules\unit_tests\aquila_knpc_tactics.dm"
+#include "code\modules\unit_tests\aquila_knpc_sim.dm"
 #include "code\modules\unit_tests\aquila_zbiorczy_0711.dm"
 #include "code\modules\unit_tests\aquila_random_rooms.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
