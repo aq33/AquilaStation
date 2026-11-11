@@ -8984,6 +8984,7 @@
 "<span class='notice'>Niwelujesz działanie runy kryształem bluespace!</span>": "<span class='notice'>You nullify the effects of the rune with the bluespace crystal!</span>",
 "<span class='notice'>Nosi przerażający pancerz złożony w całości z [upgrade_name] - jego pilot musi być doświadczonym łowcą potworów.</span>": "<span class='notice'>It's wearing a fearsome carapace entirely composed of [upgrade_name] - its pilot must be an experienced monster hunter.</span>",
 "<span class='notice'>Nosisz teraz [parent] w jednej ręce.</span>": "<span class='notice'>You are now carrying [parent] with one hand.</span>",
+"<span class='notice'>Noszona na szyi pokazuje oznaczenia drużyn: funkcję nad osobami w smyczy ich drużyny.</span>": "<span class='notice'>Worn around the neck, it shows squad markings: the role above people wearing their squad's lanyard.</span>",
 "<span class='notice'>Numer twojego konta został przypisany automatycznie.</span>": "<span class='notice'>Your account number has been automatically assigned.</span>",
 "<span class='notice'>Obchodzisz mechanizm uwierzytelniania.</span>": "<span class='notice'>You override the authentication mechanism.</span>",
 "<span class='notice'>Obchodzisz zabezpieczenia konsoli.</span>": "<span class='notice'>You bypass the console's security protocols.</span>",

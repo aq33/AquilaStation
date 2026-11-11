@@ -314,12 +314,19 @@
 	var/mob/living/carbon/human/leader = allocate(/mob/living/carbon/human)
 	squad.add_member(leader)
 	squad.set_leader(leader)
-	// funkcję pokazuje tylko smycz: HUD drużyny nie rysuje ikony, a założona smycz od razu ma znaczek dowódcy
+	// oznaczenia tylko ze smyczą: bez niej brak ikony nad postacią i brak widoku HUD-u drużyn
 	var/image/holder = leader.hud_list?[SQUAD_HUD]
-	TEST_ASSERT(holder && !holder.icon && !holder.icon_state, "HUD drużyny dalej rysuje ikonę funkcji nad postacią")
+	var/datum/atom_hud/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	TEST_ASSERT(holder && !holder.icon, "Ikona funkcji nad postacią bez smyczy")
+	TEST_ASSERT(!squad_hud.hudusers[leader], "Członek bez smyczy widzi oznaczenia drużyn")
 	var/obj/item/clothing/neck/squad/lanyard = allocate(/obj/item/clothing/neck/squad, run_loc_floor_bottom_left, squad)
 	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
-	TEST_ASSERT(lanyard.icon_state == "hudsquad_lead", "Smycz dowódcy nie pokazuje znaczka dowódcy ([lanyard.icon_state])")
+	TEST_ASSERT(holder.icon && holder.icon_state == "frame", "Smycz własnej drużyny nie pokazuje ikony funkcji")
+	TEST_ASSERT(holder.appearance_flags & RESET_TRANSFORM, "Ikona funkcji w HUD-zie obraca się i skaluje z postacią")
+	TEST_ASSERT(squad_hud.hudusers[leader], "Osoba w smyczy nie widzi oznaczeń drużyn")
+	leader.dropItemToGround(lanyard)
+	TEST_ASSERT(!holder.icon && !squad_hud.hudusers[leader], "Po zdjęciu smyczy oznaczenia zostały")
+	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
 	var/list/centcom = SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 	if(length(centcom) && !(centcom[1] in squad.aq_active_levels()) && !(centcom[1] in SSmapping.levels_by_trait(ZTRAIT_STATION)) && centcom[1] != leader.z)
 		leader.aq_next_squad_marker = 0
@@ -328,8 +335,6 @@
 	var/obj/machinery/squad_vendor/vendor = allocate(/obj/machinery/squad_vendor)
 	leader.squad_position = SQUAD_POSITION_MEDIC
 	squad.unset_leader(leader)
-	TEST_ASSERT(lanyard.icon_state == "hudsquad_medic", "Noszona smycz nie przemalowała się po utracie dowodzenia ([lanyard.icon_state])")
-	TEST_ASSERT(!leader.aq_refresh_squad_lanyard(), "Smycz przemalowuje się, choć nic się nie zmieniło")
 	TEST_ASSERT(vendor.aq_vend(leader), "Automat nie wydał zestawu medyka")
 	var/obj/item/storage/aq_squad_crate/crate = locate() in leader.held_items
 	var/obj/item/storage/firstaid/regular/issued_kit = locate() in crate

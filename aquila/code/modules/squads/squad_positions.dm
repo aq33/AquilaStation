@@ -158,7 +158,7 @@
 		return
 	UnregisterSignal(H, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGIN))
 	aq_remove_marker_images(H)
-	H.aq_refresh_squad_lanyard()
+	H.aq_update_squad_hud()
 	aq_refresh_all()
 
 /datum/squad/set_leader(mob/living/carbon/human/H)
@@ -169,13 +169,13 @@
 	var/mob/living/carbon/human/old_leader = leader
 	. = ..()
 	if(old_leader)
-		old_leader.aq_refresh_squad_lanyard()
+		old_leader.aq_update_squad_hud()
 	aq_refresh_all()
 
 /// Odświeża ikony HUD-u wszystkich członków (np. po zmianie dowódcy)
 /datum/squad/proc/aq_refresh_all()
 	for(var/mob/living/carbon/human/member in members)
-		member.aq_refresh_squad_lanyard()
+		member.aq_update_squad_hud()
 
 /// Zmiana funkcji w drużynie przez XO
 /datum/squad/proc/aq_set_position(mob/living/carbon/human/H, position)
@@ -184,7 +184,7 @@
 	if(H.squad_position == position)
 		return FALSE
 	H.squad_position = position
-	H.aq_refresh_squad_lanyard()
+	H.aq_update_squad_hud()
 	to_chat(H, "<span class='sciradio'>Twoja funkcja w drużynie [name]: [squad_position_pl(position)].</span>")
 	return TRUE
 
@@ -242,67 +242,63 @@
 	SIGNAL_HANDLER
 	aq_add_marker_images(source)
 
-// Funkcję w drużynie pokazuje tylko smycz na szyi (jej sprite), więc HUD drużyny nie ma własnej ikony nad postacią.
-// Po zmianie funkcji, dowódcy, nazwy albo koloru drużyny, a także po odejściu z drużyny, noszona smycz przemalowuje się od razu.
-/mob/living/carbon/human/proc/aq_refresh_squad_lanyard()
-	// domyślny obraz HUD-u ma ikonę z hud.dmi, więc czyścimy go, żeby nad postacią nic nie wisiało
+/// Drużyna ze smyczy na szyi albo null; `removing` to smycz właśnie zdejmowana (dropped() idzie przed wyczyszczeniem slotu)
+/mob/living/carbon/human/proc/aq_worn_lanyard_squad(obj/item/removing)
+	var/obj/item/clothing/neck/squad/lanyard = wear_neck
+	if(!istype(lanyard) || lanyard == removing)
+		return null
+	return lanyard.squad
+
+// Ikona funkcji w kolorze drużyny nad postacią, tylko u osoby w smyczy własnej drużyny.
+// Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), przeniesione do lewego górnego rogu.
+/mob/living/carbon/human/proc/aq_update_squad_hud(obj/item/removing)
 	var/image/holder = hud_list?[SQUAD_HUD]
-	if(holder?.icon)
+	if(!holder)
+		return
+	holder.cut_overlays()
+	if(!squad || aq_worn_lanyard_squad(removing) != squad)
 		holder.icon = null
 		holder.icon_state = null
-	var/obj/item/clothing/neck/squad/lanyard = wear_neck
-	if(istype(lanyard))
-		return lanyard.aq_refresh_for(src)
-	return FALSE
+		return
+	holder.icon = 'aquila/icons/squads/squad_hud.dmi'
+	holder.icon_state = "frame"
+	holder.color = squad.colour
+	holder.appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_APART
+	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[get_squad_position()]")
+	glyph.appearance_flags = RESET_COLOR
+	holder.add_overlay(glyph)
 
-/obj/item/clothing/neck/squad
-	/// Stan, kolor i nazwa drużyny, w których smycz jest pomalowana (malujemy tylko przy zmianie)
-	var/aq_paint_key
+/// Oznaczenia drużyn widzi tylko ktoś, kto sam nosi smycz drużyny (jak okulary HUD)
+/mob/living/carbon/human/proc/aq_update_squad_hud_view(obj/item/removing)
+	if(QDELETED(src))
+		return
+	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_SQUAD]
+	if(aq_worn_lanyard_squad(removing))
+		if(!hud.hudusers[src])
+			hud.add_hud_to(src)
+	else if(hud.hudusers[src])
+		hud.remove_hud_from(src, TRUE)
 
-/obj/item/clothing/neck/squad/Initialize(mapload, datum/squad/squad)
+// NSV13 dawało HUD drużyny każdemu członkowi; u nas decyduje smycz na szyi
+/datum/squad/handle_hud(mob/living/carbon/human/H, add = TRUE)
 	. = ..()
-	aq_paint_key = aq_current_paint_key(icon_state)
+	if(ishuman(H))
+		H.aq_update_squad_hud_view()
 
-/obj/item/clothing/neck/squad/proc/aq_current_paint_key(state)
-	return src.squad ? "[state]|[src.squad.colour]|[src.squad.name]" : null
-
-/// Stan ikony, jaki smycz powinna mieć na tej osobie
-/obj/item/clothing/neck/squad/proc/aq_wanted_icon_state(mob/living/carbon/human/H)
-	if(squad && ishuman(H) && squad.leader == H)
-		return "hudsquad_lead"
-	return aq_position_icon_state(H)
-
-/// Przemalowuje smycz noszoną przez H, tylko gdy zmienił się znaczek, kolor albo nazwa drużyny.
-/// Malowanie (generate_clothing_overlay) generuje ikonę i może usnąć (CHECK_TICK), więc idzie asynchronicznie:
-/// icon_state i nazwa zmieniają się od razu, sprite na postaci po namalowaniu.
-/obj/item/clothing/neck/squad/proc/aq_refresh_for(mob/living/carbon/human/H)
-	if(!squad || !ishuman(H) || H.wear_neck != src)
-		return FALSE
-	var/key = aq_current_paint_key(aq_wanted_icon_state(H))
-	if(key == aq_paint_key)
-		return FALSE
-	aq_paint_key = key
-	INVOKE_ASYNC(src, PROC_REF(aq_repaint), H)
-	return TRUE
-
-/obj/item/clothing/neck/squad/proc/aq_repaint(mob/living/carbon/human/H)
-	apply_squad(squad)
-	if(!QDELETED(src) && !QDELETED(H) && H.wear_neck == src)
-		H.update_inv_neck()
-
-/// Stan ikony smyczy (bez dowódcy, którego apply_squad() obsługuje wcześniej) według funkcji noszącego w tej drużynie.
-/// Stary warunek czytał rolę drużyny (user.squad.role) i dawał runtime u noszącego bez drużyny.
-/obj/item/clothing/neck/squad/proc/aq_position_icon_state(mob/living/carbon/human/user)
-	if(ishuman(user) && squad && user.squad == squad)
-		switch(user.get_squad_position())
-			if(SQUAD_POSITION_MEDIC)
-				return "hudsquad_medic"
-			if(SQUAD_POSITION_ENGINEER)
-				return "hudsquad_engineer"
-	return "hudsquad"
-
-/// Założona smycz od razu pokazuje aktualną funkcję noszącego (albo zwykły znaczek, gdy nie jest w tej drużynie)
 /obj/item/clothing/neck/squad/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_NECK)
-		aq_refresh_for(user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.aq_update_squad_hud()
+		H.aq_update_squad_hud_view()
+
+/obj/item/clothing/neck/squad/dropped(mob/user, silent = FALSE)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.aq_update_squad_hud(src)
+		H.aq_update_squad_hud_view(src)
+
+/obj/item/clothing/neck/squad/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Noszona na szyi pokazuje oznaczenia drużyn: funkcję nad osobami w smyczy ich drużyny.</span>"

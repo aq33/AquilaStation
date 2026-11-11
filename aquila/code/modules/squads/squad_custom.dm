@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 	for(var/mob/living/carbon/human/member as anything in squad.members.Copy())
 		squad.remove_member(member)
 		member.squad = null
-		member.aq_refresh_squad_lanyard()
+		member.aq_update_squad_hud()
 	for(var/marker_type in squad.aq_markers)
 		squad.aq_clear_marker(marker_type)
 	var/list/channels = GLOB.simple_teamchats[squad.aq_channel_key]
