@@ -2044,6 +2044,10 @@
 #include "code\datums\actions\mob_cooldown.dm"
 #include "code\datums\actions\mobs\projectile_attack.dm"
 #include "code\datums\components\ranged_attacks.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\use_mob_ability.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\targeted_mob_ability.dm"
+#include "code\datums\ai\basic_mobs\basic_ai_behaviors\targeted_mob_ability.dm"
+#include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
