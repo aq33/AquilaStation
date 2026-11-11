@@ -1380,6 +1380,8 @@
 #include "code\modules\wounds\tourniquet.dm"
 #include "code\modules\wounds\treatment.dm"
 #include "code\modules\wounds\wound_bonus.dm"
+#include "code\modules\pain\adrenaline.dm"
+#include "code\modules\pain\pain.dm"
 #include "code\modules\tgui\byondui.dm"
 #include "code\modules\tgui\layout.dm"
 #include "code\modules\tgui\states\book_state.dm"
