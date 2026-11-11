@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/mob/living/simple_animal/pet/gondola,
+/mob/living/basic/pet/gondola,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav)
 "b" = (

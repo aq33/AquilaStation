@@ -17,7 +17,7 @@
 /area/crew_quarters/bar/pvp)
 "ad" = (
 /obj/machinery/light/small,
-/mob/living/simple_animal/pet/cat/space{
+/mob/living/basic/pet/cat/space{
 	faction = list("Syndicate");
 	name = "Syndicat"
 	},
@@ -2656,7 +2656,7 @@
 	req_access = null;
 	req_one_access_txt = "150"
 	},
-/mob/living/simple_animal/pet/penguin/baby{
+/mob/living/basic/pet/penguin/baby{
 	faction = list("Syndicate")
 	},
 /turf/open/floor/carpet/red,

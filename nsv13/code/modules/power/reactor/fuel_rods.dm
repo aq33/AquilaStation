@@ -155,7 +155,7 @@
 			return
 		if(initial_amount < max_initial_amount)
 			var/adding = min((max_initial_amount - initial_amount), M.amount)
-			M.amount -= adding
+			M.use(adding, check = FALSE) // AQ EDIT - use() przelicza custom_materials
 			initial_amount += adding
 			if(adding == 1)
 				to_chat(user, "<span class='notice'>Wkładasz [adding] × [material_name_singular] do [src].</span>")

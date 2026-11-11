@@ -251,11 +251,11 @@
 			'sound/creatures/monkey/monkey_screech_7.ogg')
 	if(isalien(user))
 		return "hiss"
-	if(istype(user, /mob/living/simple_animal/pet/dog))
+	if(istype(user, /mob/living/basic/pet/dog))
 		return 'aquila/sound/voice/speech/dog1.ogg'
-	if(istype(user, /mob/living/simple_animal/pet/cat))
+	if(istype(user, /mob/living/basic/pet/cat))
 		return 'nsv13/sound/voice/felinid/scream_cat.ogg'
-	if(istype(user, /mob/living/simple_animal/cow))
+	if(istype(user, /mob/living/basic/cow))
 		return 'aquila/sound/creatures/cow.ogg'
 	if(issilicon(user))
 		return 'sound/machines/buzz-two.ogg'

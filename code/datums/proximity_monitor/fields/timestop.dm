@@ -199,6 +199,8 @@
 	if(isanimal(L))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(AI_OFF)
+	if(L.ai_controller) // AQ EDIT - basic moby i małpy (rdzeń SI z Bee)
+		ADD_TRAIT(L, TRAIT_AI_PAUSED, "timestop")
 	if(ishostile(L))
 		var/mob/living/simple_animal/hostile/H = L
 		H.LoseTarget()
@@ -209,6 +211,7 @@
 	if(isanimal(L))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(initial(S.AIStatus))
+	REMOVE_TRAIT(L, TRAIT_AI_PAUSED, "timestop") // AQ EDIT - basic moby i małpy (rdzeń SI z Bee)
 
 //you don't look quite right, is something the matter?
 /datum/proximity_monitor/advanced/timestop/proc/into_the_negative_zone(atom/A)

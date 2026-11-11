@@ -97,6 +97,9 @@
 	if (isanimal(user))
 		relevant_type = /mob/living/simple_animal
 		return TRUE
+	if (isbasicmob(user))
+		relevant_type = /mob/living/basic
+		return TRUE
 	return FALSE
 
 // ================================

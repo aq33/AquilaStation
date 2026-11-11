@@ -82,7 +82,7 @@
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "toxoplasmosis", /datum/mood_event/toxoplasmosis)
 
 /datum/symptom/toxoplasmosis/proc/Pounce(mob/living/cat, mob/living/carbon/human/H)
-	if(istype(cat, /mob/living/simple_animal/pet/cat))
+	if(istype(cat, /mob/living/basic/pet/cat)) // AQ EDIT - basic moby
 		H.throw_at(cat, get_dist(cat, H), 2)
 		if(get_dist(cat, H) > 1)
 			return
@@ -147,7 +147,7 @@
 	for(var/mob/living/L in oviewers(7, M))
 		if(L.stat)
 			continue
-		if(istype(L, /mob/living/simple_animal/pet/cat))
+		if(istype(L, /mob/living/basic/pet/cat)) // AQ EDIT - basic moby
 			return L
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L

@@ -150,7 +150,7 @@
 		/datum/reagent/blood = 50,
 		/datum/reagent/teslium = 1 //To shock the whole thing into life
 	)
-	result = /mob/living/simple_animal/hostile/bear/butter
+	result = /mob/living/basic/bear/butter // AQ EDIT - basic moby
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/crab_rangoon

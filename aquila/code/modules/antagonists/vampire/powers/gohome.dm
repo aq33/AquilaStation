@@ -23,8 +23,8 @@
 	var/teleporting_stage = GOHOME_START
 	/// The types of mobs that will drop post-teleportation.
 	var/static/list/spawning_mobs = list(
-		/mob/living/simple_animal/mouse = 3,
-		/mob/living/simple_animal/hostile/retaliate/bat = 1,
+		/mob/living/basic/mouse = 3,
+		/mob/living/basic/bat = 1,
 	)
 
 /datum/action/vampire/gohome/can_use()

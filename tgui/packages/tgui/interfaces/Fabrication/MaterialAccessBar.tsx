@@ -26,6 +26,9 @@ const MATERIAL_RARITY: Record<string, number> = {
   diamond: 9,
   'bluespace crystal': 10,
   bananium: 11,
+  adamantine: 12, // AQUILA: materials from BeeStation/BeeStation-Hornet#9386 and #10703
+  wood: 13,
+  meat: 14,
 };
 
 export type MaterialAccessBarProps = {

@@ -297,7 +297,7 @@
 					if (do_after(user, 2 SECONDS, target = src))
 						M.visible_message(span_notice("[user] uwalnia [M] z [src]!") , "[user] uwalnia cię z [src].")
 						unbuckle_mob(M)
-						if(istype(M, /mob/living/simple_animal))
+						if(isanimal_or_basicmob(M))
 							M.pixel_y = 0
 						if (blade)
 							blade.forceMove(loc)
@@ -636,7 +636,7 @@
 				if(R)
 					var/remaining = R.volume - R.reagents.total_volume
 					if(R && R.is_open_container())
-						if(istype(M, /mob/living/simple_animal/mouse))
+						if(istype(M, /mob/living/basic/mouse))
 							M.transfer_blood_to(R, min(remaining, 30))
 						else
 							M.transfer_blood_to(R, min(remaining, 60))

@@ -284,7 +284,7 @@
 /obj/structure/bed/dogbed{
 	name = "kitty bed"
 	},
-/mob/living/simple_animal/pet/cat/space,
+/mob/living/basic/pet/cat/space,
 /turf/open/floor/monotile,
 /area/ruin/powered)
 "aJ" = (

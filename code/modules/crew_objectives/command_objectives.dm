@@ -36,7 +36,7 @@
 
 /datum/objective/crew/ian/check_completion()
 	if(owner?.current)
-		for(var/mob/living/simple_animal/pet/dog/corgi/Ian/goodboy in GLOB.mob_list)
+		for(var/mob/living/basic/pet/dog/corgi/ian/goodboy in GLOB.mob_list) // AQ EDIT - basic moby
 			if(goodboy.stat != DEAD && SSshuttle.emergency.shuttle_areas[get_area(goodboy)])
 				return TRUE
 	return ..()

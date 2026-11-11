@@ -44,7 +44,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Cletus"
 	},
 /turf/open/floor/engine,
@@ -216,7 +216,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Bloodthirsty Peckins"
 	},
 /turf/open/floor/engine,
@@ -258,7 +258,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Kentucky Fried Terror"
 	},
 /turf/open/floor/engine,
@@ -329,7 +329,7 @@
 /area/template_noop)
 "L" = (
 /obj/structure/window/reinforced,
-/mob/living/simple_animal/chicken{
+/mob/living/basic/chicken{
 	name = "Killer Cluck"
 	},
 /turf/open/floor/engine,

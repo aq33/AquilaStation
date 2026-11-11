@@ -101,7 +101,7 @@
 					morph.throwatom = null
 				to_chat(morph, "<span class='danger'>Zaczynasz trawić [L]</span>")
 				if(do_mob(morph, morph, L.maxHealth))
-					if(ishuman(L) || ismonkey(L) || isalienadult(L) || istype(L, /mob/living/simple_animal/pet/dog) || istype(L, /mob/living/simple_animal/parrot))
+					if(ishuman(L) || ismonkey(L) || isalienadult(L) || istype(L, /mob/living/basic/pet/dog) || istype(L, /mob/living/simple_animal/parrot)) // AQ EDIT - basic moby
 						var/list/turfs_to_throw = view(2, morph)
 						for(var/obj/item/I in L.contents)
 							L.dropItemToGround(I, TRUE)

@@ -296,7 +296,7 @@
 				carbidate.adjustOrganLoss(organ, -organ_healing[organ] * seconds_per_tick)
 			if(wound_clotting)
 				carbidate.cauterise_wounds(wound_clotting * seconds_per_tick)
-		else if(isanimal(candidate))
+		else if(isanimal_or_basicmob(candidate))
 			candidate.adjustBruteLoss(-simple_heal * seconds_per_tick, updating_health = FALSE)
 
 		if(blood_heal && candidate.blood_volume < BLOOD_VOLUME_NORMAL)

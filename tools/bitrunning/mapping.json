@@ -162,12 +162,12 @@
     "/mob/living/basic/alien": "/mob/living/simple_animal/hostile/alien",
     "/mob/living/basic/alien/drone": "/mob/living/simple_animal/hostile/alien/drone",
     "/mob/living/basic/alien/queen/large": "/mob/living/simple_animal/hostile/alien/queen/large",
-    "/mob/living/basic/bear/butter": "/mob/living/simple_animal/hostile/bear/butter",
-    "/mob/living/basic/bear/fightpit": "/mob/living/simple_animal/hostile/bear/fightpit",
-    "/mob/living/basic/bear/russian": "/mob/living/simple_animal/hostile/bear/russian",
-    "/mob/living/basic/bear/snow": "/mob/living/simple_animal/hostile/bear/snow",
+    "/mob/living/basic/bear/butter": "/mob/living/basic/bear/butter",
+    "/mob/living/basic/bear/fightpit": "/mob/living/basic/bear/fightpit",
+    "/mob/living/basic/bear/russian": "/mob/living/basic/bear/russian",
+    "/mob/living/basic/bear/snow": "/mob/living/basic/bear/snow",
     "/mob/living/basic/bear/snow/ancient": {
-      "path": "/mob/living/simple_animal/hostile/bear/snow",
+      "path": "/mob/living/basic/bear/snow",
       "vars": {
         "name": "\"ancient polar bear\"",
         "maxHealth": "150",
@@ -182,14 +182,14 @@
         "auto_patrol": "1"
       }
     },
-    "/mob/living/basic/butterfly": "/mob/living/simple_animal/butterfly",
-    "/mob/living/basic/chicken": "/mob/living/simple_animal/chicken",
+    "/mob/living/basic/butterfly": "/mob/living/basic/butterfly",
+    "/mob/living/basic/chicken": "/mob/living/basic/chicken",
     "/mob/living/basic/clown": {
       "path": "/mob/living/simple_animal/hostile/retaliate/clown",
       "approx": "klaun tg (basic) -> nasz retaliate/clown (atakuje dopiero zaczepiony)"
     },
-    "/mob/living/basic/crab": "/mob/living/simple_animal/crab",
-    "/mob/living/basic/crab/kreb": "/mob/living/simple_animal/crab/kreb",
+    "/mob/living/basic/crab": "/mob/living/basic/crab",
+    "/mob/living/basic/crab/kreb": "/mob/living/basic/crab/kreb",
     "/mob/living/basic/fake_crewman/assistant": "/mob/living/carbon/human/ai_boarder/fake_crew/assistant",
     "/mob/living/basic/fake_crewman/assistant/alt": "/mob/living/carbon/human/ai_boarder/fake_crew/assistant",
     "/mob/living/basic/fake_crewman/boss/ce": "/mob/living/carbon/human/ai_boarder/fake_crew/boss/ce",
@@ -203,11 +203,11 @@
     "/mob/living/basic/hivebot/strong": "/mob/living/simple_animal/hostile/hivebot/strong",
     "/mob/living/basic/mimic/crate": "/mob/living/simple_animal/hostile/mimic/crate",
     "/mob/living/basic/parrot": "/mob/living/simple_animal/parrot",
-    "/mob/living/basic/pet/cat/_proc": "/mob/living/simple_animal/pet/cat/Proc",
-    "/mob/living/basic/pet/cat/space": "/mob/living/simple_animal/pet/cat/space",
-    "/mob/living/basic/pet/dog/corgi": "/mob/living/simple_animal/pet/dog/corgi",
-    "/mob/living/basic/pet/fox": "/mob/living/simple_animal/pet/fox",
-    "/mob/living/basic/pet/gondola/virtual_domain": "/mob/living/simple_animal/pet/gondola/virtual_domain",
+    "/mob/living/basic/pet/cat/_proc": "/mob/living/basic/pet/cat/_proc",
+    "/mob/living/basic/pet/cat/space": "/mob/living/basic/pet/cat/space",
+    "/mob/living/basic/pet/dog/corgi": "/mob/living/basic/pet/dog/corgi",
+    "/mob/living/basic/pet/fox": "/mob/living/basic/pet/fox",
+    "/mob/living/basic/pet/gondola/virtual_domain": "/mob/living/basic/pet/gondola/virtual_domain",
     "/mob/living/basic/trooper/pirate/melee": {
       "path": "/mob/living/carbon/human/ai_boarder/space_pirate/pistol",
       "approx": "pirat wręcz (basic) -> ai_boarder pirat z pistoletem"

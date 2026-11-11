@@ -72,8 +72,8 @@
 /obj/machinery/rnd/experimentor/Initialize(mapload)
 	. = ..()
 
-	trackedIan = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
-	trackedRuntime = locate(/mob/living/simple_animal/pet/cat/Runtime) in GLOB.mob_living_list
+	trackedIan = locate(/mob/living/basic/pet/dog/corgi/ian) in GLOB.mob_living_list // AQ EDIT - basic moby
+	trackedRuntime = locate(/mob/living/basic/pet/cat/runtime) in GLOB.mob_living_list // AQ EDIT - basic moby
 	SetTypeReactions()
 
 	critical_items_typecache = typecacheof(list(
@@ -442,8 +442,8 @@
 		visible_message("<span class='warning'>[exp_on] aktywuje mechanizm zgniatający i zostaje zniszczony!</span>")
 		if(linked_console.linked_lathe)
 			var/datum/component/material_container/linked_materials = linked_console.linked_lathe.GetComponent(/datum/component/material_container)
-			for(var/material in exp_on.materials)
-				linked_materials.insert_amount_mat( min((linked_materials.max_amount - linked_materials.total_amount), (exp_on.materials[material])), material)
+			for(var/material in exp_on.custom_materials)
+				linked_materials.insert_amount_mat( min((linked_materials.max_amount - linked_materials.total_amount), (exp_on.custom_materials[material])), material)
 		if(prob(EFFECT_PROB_LOW) && criticalReaction)
 			visible_message("<span class='warning'>Mechanizm zgniatający [src] powoli i płynnie opada, spłaszczając [exp_on]!</span>")
 			new /obj/item/stack/sheet/plasteel(get_turf(pick(oview(1,src))))
@@ -495,7 +495,7 @@
 				trackedIan.forceMove(loc)
 				investigate_log("Experimentor has stolen Ian!", INVESTIGATE_EXPERIMENTOR) //...if anyone ever fixes it...
 			else
-				new /mob/living/simple_animal/pet/dog/corgi(loc)
+				new /mob/living/basic/pet/dog/corgi(loc) // AQ EDIT - basic moby
 				investigate_log("Experimentor has spawned a new corgi.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 		if(globalMalf > 36 && globalMalf < 50)
@@ -512,7 +512,7 @@
 				trackedRuntime.forceMove(drop_location())
 				investigate_log("Experimentor has stolen Runtime!", INVESTIGATE_EXPERIMENTOR)
 			else
-				new /mob/living/simple_animal/pet/cat(loc)
+				new /mob/living/basic/pet/cat(loc) // AQ EDIT - basic moby
 				investigate_log("Experimentor failed to steal runtime, and instead spawned a new cat.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 		if(globalMalf > 76)
@@ -605,7 +605,7 @@
 
 /obj/item/relic/proc/corgicannon(mob/user)
 	playsound(src, "sparks", rand(25,50), 1)
-	var/mob/living/simple_animal/pet/dog/corgi/C = new/mob/living/simple_animal/pet/dog/corgi(get_turf(user))
+	var/mob/living/basic/pet/dog/corgi/C = new/mob/living/basic/pet/dog/corgi(get_turf(user)) // AQ EDIT - basic moby
 	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throwSmoke), C))
 	warn_admins(user, "Corgi Cannon", 0)
 
@@ -627,7 +627,7 @@
 	to_chat(user, message)
 	var/animals = rand(1,25)
 	var/counter
-	var/list/valid_animals = list(/mob/living/simple_animal/parrot, /mob/living/simple_animal/butterfly, /mob/living/simple_animal/pet/cat, /mob/living/simple_animal/pet/dog/corgi, /mob/living/simple_animal/crab, /mob/living/simple_animal/pet/fox, /mob/living/simple_animal/hostile/lizard, /mob/living/simple_animal/mouse, /mob/living/simple_animal/pet/dog/pug, /mob/living/simple_animal/hostile/bear, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/carp)
+	var/list/valid_animals = list(/mob/living/simple_animal/parrot, /mob/living/basic/butterfly, /mob/living/basic/pet/cat, /mob/living/basic/pet/dog/corgi, /mob/living/basic/crab, /mob/living/basic/pet/fox, /mob/living/basic/lizard, /mob/living/basic/mouse, /mob/living/basic/pet/dog/pug, /mob/living/basic/bear, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/carp) // AQ EDIT - basic moby
 	for(counter = 1; counter < animals; counter++)
 		var/mobType = pick(valid_animals)
 		new mobType(get_turf(src))

@@ -129,7 +129,7 @@
 	icon_living = "honkmon"
 	deathmessage = "znika, a wszyscy jego przyjaciele zostają uwolnieni z jego \
 		więzienia uścisków."
-	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
+	loot = list(/mob/living/basic/pet/cat/kitten{name = "Laughter"}) // AQ EDIT - basic moby
 
 	// Keep the people we hug!
 	var/list/consumed_mobs = list()

@@ -173,31 +173,31 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "kondensator"
 	desc = "Podstawowy kondensator używany do budowy wielu urządzeń."
 	icon_state = "capacitor"
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module
 	name = "moduł skanujący"
 	desc = "Kompaktowy moduł skanujący wysokiej rozdzielczości, używany do budowy niektórych urządzeń."
 	icon_state = "scan_module"
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator
 	name = "mikromanipulator"
 	desc = "Malutki manipulator używany do budowy niektórych urządzeń."
 	icon_state = "micro_mani"
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser
 	name = "mikrolaser"
 	desc = "Maleńki laser używany w niektórych urządzeniach."
 	icon_state = "micro_laser"
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin
 	name = "zasobnik materii"
 	desc = "Pojemnik na skompresowaną materię czekającą na odtworzenie."
 	icon_state = "matter_bin"
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 2
 
@@ -206,35 +206,35 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "Zaawansowany kondensator używany do budowy wielu urządzeń."
 	icon_state = "adv_capacitor"
 	rating = 2
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/adv
 	name = "zaawansowany moduł skanujący"
 	desc = "Kompaktowy moduł skanujący wysokiej rozdzielczości, używany do budowy niektórych urządzeń."
 	icon_state = "adv_scan_module"
 	rating = 2
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/nano
 	name = "nanomanipulator"
 	desc = "Malutki manipulator używany do budowy niektórych urządzeń."
 	icon_state = "nano_mani"
 	rating = 2
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/high
 	name = "mikrolaser dużej mocy"
 	desc = "Maleńki laser używany w niektórych urządzeniach."
 	icon_state = "high_micro_laser"
 	rating = 2
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/adv
 	name = "zaawansowany zasobnik materii"
 	desc = "Pojemnik na skompresowaną materię czekającą na odtworzenie."
 	icon_state = "advanced_matter_bin"
 	rating = 2
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 3
 
@@ -243,35 +243,35 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "Kondensator o bardzo dużej pojemności używany do budowy wielu urządzeń."
 	icon_state = "super_capacitor"
 	rating = 3
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/phasic
 	name = "fazowy moduł skanujący"
 	desc = "Kompaktowy fazowy moduł skanujący wysokiej rozdzielczości, używany do budowy niektórych urządzeń."
 	icon_state = "super_scan_module"
 	rating = 3
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/pico
 	name = "pikomanipulator"
 	desc = "Malutki manipulator używany do budowy niektórych urządzeń."
 	icon_state = "pico_mani"
 	rating = 3
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/ultra
 	name = "mikrolaser ultrawysokiej mocy"
 	icon_state = "ultra_high_micro_laser"
 	desc = "Maleńki laser używany w niektórych urządzeniach."
 	rating = 3
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/super
 	name = "superzasobnik materii"
 	desc = "Pojemnik na skompresowaną materię czekającą na odtworzenie."
 	icon_state = "super_matter_bin"
 	rating = 3
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 4
 
@@ -280,35 +280,35 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "Kondensator o ogromnej pojemności używany do budowy wielu urządzeń."
 	icon_state = "quadratic_capacitor"
 	rating = 4
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/triphasic
 	name = "trójfazowy moduł skanujący"
 	desc = "Kompaktowy trójfazowy moduł skanujący ultrawysokiej rozdzielczości, używany do budowy niektórych urządzeń."
 	icon_state = "triphasic_scan_module"
 	rating = 4
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/femto
 	name = "femtomanipulator"
 	desc = "Malutki manipulator używany do budowy niektórych urządzeń."
 	icon_state = "femto_mani"
 	rating = 4
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/quadultra
 	name = "mikrolaser quad-ultra"
 	icon_state = "quadultra_micro_laser"
 	desc = "Maleńki laser używany w niektórych urządzeniach."
 	rating = 4
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/bluespace
 	name = "zasobnik materii bluespace"
 	desc = "Pojemnik na skompresowaną materię czekającą na odtworzenie."
 	icon_state = "bluespace_matter_bin"
 	rating = 4
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 // Subspace stock parts
 
@@ -316,43 +316,43 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "ansibl podprzestrzenny"
 	icon_state = "subspace_ansible"
 	desc = "Kompaktowy moduł wyczuwający aktywność międzywymiarową."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/filter
 	name = "filtr hiperfal"
 	icon_state = "hyperwave_filter"
 	desc = "Maleńkie urządzenie, które filtruje i przetwarza bardzo silne fale radiowe."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/amplifier
 	name = "wzmacniacz podprzestrzenny"
 	icon_state = "subspace_amplifier"
 	desc = "Kompaktowa mikromaszyna, która wzmacnia słabe transmisje podprzestrzenne."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/treatment
 	name = "dysk obróbki podprzestrzennej"
 	icon_state = "treatment_disk"
 	desc = "Kompaktowa mikromaszyna, która rozciąga hiperskompresowane fale radiowe."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/analyzer
 	name = "analizator fal podprzestrzennych"
 	icon_state = "wavelength_analyzer"
 	desc = "Wyrafinowany analizator, który bada zagadkowe długości fal podprzestrzennych."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/crystal
 	name = "kryształ ansibla"
 	icon_state = "ansible_crystal"
 	desc = "Kryształ z czystego szkła, który przesyła laserowe pakiety danych do podprzestrzeni."
-	materials = list(/datum/material/glass=50)
+	custom_materials = list(/datum/material/glass=50)
 
 /obj/item/stock_parts/subspace/transmitter
 	name = "nadajnik podprzestrzenny"
 	icon_state = "subspace_transmitter"
 	desc = "Duże urządzenie, które otwiera okno do wymiaru podprzestrzeni."
-	materials = list(/datum/material/iron=50)
+	custom_materials = list(/datum/material/iron=50)
 
 /obj/item/research//Makes testing much less of a pain -Sieve
 	name = "badania"

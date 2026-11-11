@@ -171,7 +171,7 @@
 	desc = "Skrzynka z Wyznacznikiem Stref Promu oraz płytkami sterownika lotu, silników plazmowych i ich podgrzewaczy. Wystarczy dobudować ramy maszyn, a prom poleci na overmapę."
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 
 /obj/item/storage/toolbox/shuttle_kit/ComponentInitialize()
 	. = ..()

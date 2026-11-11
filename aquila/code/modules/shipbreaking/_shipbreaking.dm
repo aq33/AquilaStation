@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	singular_name = "płyta poszycia"
 	desc = "Sztywne płyty poszycia, z których buduje się okręty."
 	merge_type = /obj/item/stack/scrap/plating
-	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT)
 	scrap_value = 10
 
 /obj/item/stack/scrap/electronics
@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	desc = "Kupa elektronicznego złomu wyrwanego łomem z okrętu. Płytki od maszynki do mięsa w tym bałaganie nie widać."
 	icon_state = "scrap_electronics"
 	merge_type = /obj/item/stack/scrap/electronics
-	materials = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT, /datum/material/gold = MINERAL_MATERIAL_AMOUNT * 0.05)
+	mats_per_unit = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT, /datum/material/gold = MINERAL_MATERIAL_AMOUNT * 0.05)
 	scrap_value = 20
 
 /obj/item/stack/scrap/framing
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	desc = "Dwuteowniki ze stopu srebra i tytanu, z których składa się szkielet okrętu. Projektant musiał mieć własną planetę ze srebrem."
 	icon_state = "ship_framing"
 	merge_type = /obj/item/stack/scrap/framing
-	materials = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.05)
+	mats_per_unit = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.05)
 	scrap_value = 30
 
 /obj/item/stack/scrap/plasma
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	desc = "Paskudna grudka zastygłej plazmy wydłubana z wnętrzności okrętu. Ładnie się klei!"
 	icon_state = "congealed_plasma"
 	merge_type = /obj/item/stack/scrap/plasma
-	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT)
 	scrap_value = 50
 
 /obj/item/stack/scrap/core
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	desc = "Radioaktywny rdzeń jądrowego silnika manewrowego. Lepiej, żeby żaden asystent nie stał wtedy pod statkiem z piłą."
 	icon_state = "ship_core"
 	merge_type = /obj/item/stack/scrap/core
-	materials = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.05)
+	mats_per_unit = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.05)
 	scrap_value = 45
 
 /obj/item/stack/scrap/crystalline_matrix
@@ -127,5 +127,5 @@ GLOBAL_LIST_EMPTY(shipbreak_wreck_floors)
 	desc = "Krystaliczna matryca do ogromnych obliczeń przy nawigacji okrętu. AGI do 2520!"
 	icon_state = "crystalline_matrix"
 	merge_type = /obj/item/stack/scrap/crystalline_matrix
-	materials = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT, /datum/material/bluespace = MINERAL_MATERIAL_AMOUNT * 0.05)
+	mats_per_unit = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT, /datum/material/bluespace = MINERAL_MATERIAL_AMOUNT * 0.05)
 	scrap_value = 100

@@ -377,11 +377,7 @@ SCREENTIP_ATTACK_HAND(/obj/machinery/wish_granter, "Użyj")
 			else
 				context.add_left_click_action("Przytul")
 
-/// W Bee przez sygnał z kontrolera AI psa; u nas pies jest prostym mobem, więc bezpośrednio
-/mob/living/simple_animal/pet/dog/add_context_self(datum/screentip_context/context, mob/user)
-	if (!isnull(context.held_item) || !ishuman(user))
-		return
-	context.add_left_click_action(user.combat_mode ? "Uderz" : "Pogłaszcz")
+// Podpowiedź dla psów jest przy psach (aquila/code/modules/mob/living/basic/pets/dog/_dog.dm)
 
 // =====================================================
 // Elementy

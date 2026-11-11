@@ -1,0 +1,7 @@
+# Basic moby (BeeStation/BeeStation-Hornet#14771): jaszczurka, kraby, motyl, wąż, żółw.
+# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku.
+/mob/living/simple_animal/hostile/lizard : /mob/living/basic/lizard{@OLD}
+/mob/living/simple_animal/crab/@SUBTYPES : /mob/living/basic/crab/@SUBTYPES{@OLD}
+/mob/living/simple_animal/butterfly : /mob/living/basic/butterfly{@OLD}
+/mob/living/simple_animal/hostile/retaliate/poison/snake : /mob/living/basic/snake{@OLD}
+/mob/living/simple_animal/turtle : /mob/living/basic/turtle{@OLD}

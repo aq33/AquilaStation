@@ -1,0 +1,213 @@
+// AQUILA: port of BeeStation/BeeStation-Hornet code/datums/components/pet_commands/pet_command.dm (bee/master 0adf0fe9ae)
+/**
+ * # Pet Command
+ * Set some AI blackboard commands in response to receiving instructions
+ * This is abstract and should be extended for actual behaviour
+ */
+/datum/pet_command
+	/// Weak reference to who follows this command
+	var/datum/weakref/weak_parent
+	/// Unique name used for radial selection, should not be shared with other commands on one mob
+	var/command_name
+	/// Description to display in radial menu
+	var/command_desc
+	/// If true, command will not appear in radial menu and can only be accessed through speech
+	var/hidden = FALSE
+	/// Icon to display in radial menu
+	var/icon/radial_icon = 'aquila/icons/hud/radials/radial_pets.dmi'
+	/// Icon state to display in radial menu
+	var/radial_icon_state
+	/// Speech strings to listen out for
+	var/list/speech_commands = list()
+	/// Callout that triggers this command
+	var/callout_type
+	/// Shown above the mob's head when it hears you
+	var/command_feedback
+	/// How close a mob needs to be to a target to respond to a command
+	var/sense_radius = 7
+	/// does this pet command need a point to activate?
+	var/requires_pointing = FALSE
+	/// Blackboard key for targeting strategy, this is likely going to need it
+	var/targeting_strategy_key = BB_PET_TARGETING_STRATEGY
+	///our pointed reaction we play
+	var/pointed_reaction
+
+/datum/pet_command/New(mob/living/parent)
+	. = ..()
+	weak_parent = WEAKREF(parent)
+
+/// Register a new guy we want to listen to
+/datum/pet_command/proc/add_new_friend(mob/living/tamer)
+	RegisterSignal(tamer, COMSIG_MOB_SAY, PROC_REF(respond_to_command))
+	// AQUILA: no callouts (decision D10), pointing is COMSIG_MOB_POINTED here
+	if(requires_pointing)
+		RegisterSignal(tamer, COMSIG_MOB_POINTED, PROC_REF(point_on_target))
+
+/// Stop listening to a guy
+/datum/pet_command/proc/remove_friend(mob/living/unfriended)
+	UnregisterSignal(unfriended, list(
+		COMSIG_MOB_SAY,
+		COMSIG_MOB_POINTED,
+	))
+
+/// Respond to something that one of our friends has asked us to do
+/datum/pet_command/proc/respond_to_command(mob/living/speaker, speech_args)
+	SIGNAL_HANDLER
+	var/mob/living/parent = weak_parent.resolve()
+	if (!parent)
+		return
+	if (!can_see(parent, speaker, sense_radius)) // Basically the same rules as hearing
+		return
+
+	var/spoken_text = speech_args[SPEECH_MESSAGE]
+	if (!find_command_in_text(spoken_text))
+		return
+
+	try_activate_command(commander = speaker, radial_command = FALSE)
+
+/**
+ * Returns true if we find any of our spoken commands in the text.
+ * AQUILA: whole words only (Bee looks for substrings): Polish words carry the triggers inside them ("raport" - aport,
+ * "sąsiad" - siad, "zostanie" - zostań, "przychodzi" - chodź), English ones too ("skill" - kill). Multi-word triggers
+ * ("za mną", "udawaj trupa") match the same words in a row.
+ */
+/datum/pet_command/proc/find_command_in_text(spoken_text)
+	// Anything that is not a letter or a digit separates words
+	var/static/regex/word_separators = regex(@"[^a-z0-9ąćęłńóśźżäöüß]+", "g")
+	// lowertext() may leave Polish capitals ("ZOSTAŃ"), so they are lowered by hand
+	var/static/list/polish_capitals = list("Ą" = "ą", "Ć" = "ć", "Ę" = "ę", "Ł" = "ł", "Ń" = "ń", "Ó" = "ó", "Ś" = "ś", "Ź" = "ź", "Ż" = "ż")
+	spoken_text = lowertext(spoken_text)
+	for(var/capital in polish_capitals)
+		spoken_text = replacetextEx(spoken_text, capital, polish_capitals[capital])
+	spoken_text = " [word_separators.Replace(spoken_text, " ")] "
+	for (var/command as anything in speech_commands)
+		if (!findtext(spoken_text, " [command] "))
+			continue
+		return TRUE
+	return FALSE
+
+/datum/pet_command/proc/pet_able_to_respond()
+	var/mob/living/parent = weak_parent.resolve()
+	if(isnull(parent) || isnull(parent.ai_controller))
+		return FALSE
+	if(IS_DEAD_OR_INCAP(parent)) // Probably can't hear them if we're dead
+		return FALSE
+	return TRUE
+
+/// Apply a command state if conditions are right, return command if successful
+/datum/pet_command/proc/try_activate_command(mob/living/commander, radial_command)
+	if(!pet_able_to_respond())
+		return FALSE
+	var/mob/living/parent = weak_parent.resolve()
+	set_command_active(parent, commander, radial_command)
+	return TRUE
+
+/datum/pet_command/proc/generate_emote_command(atom/target)
+	var/mob/living/living_pet = weak_parent?.resolve()
+	return isnull(living_pet) ? null : retrieve_command_text(living_pet, target)
+
+/datum/pet_command/proc/retrieve_command_text(atom/living_pet, atom/target)
+	return "daje znak [living_pet], żeby ruszył do działania!"
+
+/// Target the pointed atom for actions
+/datum/pet_command/proc/look_for_target(mob/living/friend, atom/potential_target)
+	var/mob/living/parent = weak_parent.resolve()
+	if(!pet_able_to_respond())
+		return FALSE
+	if (parent.ai_controller.blackboard[BB_CURRENT_PET_TARGET] == potential_target) // That's already our target
+		return FALSE
+	if (!can_see(parent, potential_target, sense_radius))
+		return FALSE
+
+	parent.ai_controller.CancelActions()
+	set_command_target(parent, potential_target)
+	return TRUE
+
+/// Activate the command, extend to add visible messages and the like
+/datum/pet_command/proc/set_command_active(mob/living/parent, mob/living/commander, radial_command = FALSE)
+	parent.ai_controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
+
+	parent.ai_controller.CancelActions() // Stop whatever you're doing and do this instead
+	parent.ai_controller.set_blackboard_key(BB_ACTIVE_PET_COMMAND, src)
+	if (command_feedback)
+		parent.balloon_alert_to_viewers("[command_feedback]") // If we get a nicer runechat way to do this, refactor this
+	if(!radial_command)
+		return
+	if(!requires_pointing)
+		var/manual_emote_text = generate_emote_command()
+		commander.manual_emote(manual_emote_text)
+		return
+	RegisterSignal(commander, COMSIG_MOB_CLICKON, PROC_REF(click_on_target), override = TRUE)
+	// AQUILA: the paw pointer goes through mouse_override_icon, so update_mouse_pointer() (Shift, guns) keeps it
+	commander.mouse_override_icon = 'aquila/icons/effects/mouse_pointers/pet_paw.dmi'
+	commander.update_mouse_pointer()
+	// AQUILA: Bee waits for the click forever; the next click anywhere minutes later would still pick a target
+	addtimer(CALLBACK(src, PROC_REF(stop_targeting), commander), 15 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/pet_command/proc/click_on_target(mob/living/source, atom/target, list/modifiers)
+	SIGNAL_HANDLER
+	// AQUILA: Shift/Ctrl/Alt/middle clicks (examine, pull, menus) go through and do not pick a target
+	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK))
+		return
+	stop_targeting(source)
+	if(!can_see(source, target, 9))
+		return COMSIG_MOB_CANCEL_CLICKON
+	var/manual_emote_text = generate_emote_command(target)
+	if(on_target_set(source, target) && !isnull(manual_emote_text))
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, manual_emote), manual_emote_text)
+	return COMSIG_MOB_CANCEL_CLICKON
+
+/// AQUILA: leaves the targeting mode (after a click or the timeout): no click hook and no paw pointer
+/datum/pet_command/proc/stop_targeting(mob/living/commander)
+	if(QDELETED(commander))
+		return
+	UnregisterSignal(commander, COMSIG_MOB_CLICKON)
+	if(commander.mouse_override_icon == 'aquila/icons/effects/mouse_pointers/pet_paw.dmi')
+		commander.mouse_override_icon = null
+	commander.update_mouse_pointer()
+
+/// AQUILA: a pointer that update_mouse_pointer() keeps over the default, Shift examine and gun cursors (tg mouse_override_icon)
+/mob/living
+	var/mouse_override_icon
+
+/mob/living/update_mouse_pointer()
+	. = ..()
+	if(client && mouse_override_icon)
+		client.mouse_pointer_icon = mouse_override_icon
+
+/datum/pet_command/proc/point_on_target(mob/living/friend, atom/potential_target)
+	SIGNAL_HANDLER
+	on_target_set(friend, potential_target)
+
+/// Store the target for the AI blackboard
+/datum/pet_command/proc/set_command_target(mob/living/parent, atom/target)
+	parent.ai_controller.set_blackboard_key(BB_CURRENT_PET_TARGET, target)
+	return TRUE
+
+/// Provide information about how to display this command in a radial menu
+/datum/pet_command/proc/provide_radial_data()
+	if (hidden)
+		return
+	// AQUILA: our radial menu takes name -> image
+	return list("[command_name]" = image(icon = radial_icon, icon_state = radial_icon_state))
+
+/**
+ * Execute an AI action on the provided controller, what we should actually do when this command is active.
+ * This should basically always be called from a planning subtree which passes its own controller.
+ * Return SUBTREE_RETURN_FINISH_PLANNING to pass that instruction on to the controller, or don't if you don't want that.
+ */
+/datum/pet_command/proc/execute_action(datum/ai_controller/controller)
+	SHOULD_CALL_PARENT(FALSE)
+	CRASH("Pet command execute action not implemented.")
+
+/// Target the pointed atom for actions
+/datum/pet_command/proc/on_target_set(mob/living/friend, atom/potential_target)
+	var/mob/living/parent = weak_parent.resolve()
+	if (!parent)
+		return FALSE
+
+	parent.ai_controller.CancelActions()
+	if(!look_for_target(friend, potential_target) || !set_command_target(parent, potential_target))
+		return FALSE
+	parent.visible_message(span_warning("[parent] podąża za gestem [friend] w stronę [potential_target] [pointed_reaction]!"))
+	return TRUE

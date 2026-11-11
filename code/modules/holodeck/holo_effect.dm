@@ -106,10 +106,10 @@
 
 /obj/effect/holodeck_effect/mobspawner/pet
 	mobtype = list(
-		/mob/living/simple_animal/butterfly, /mob/living/simple_animal/chick/holo,
-		/mob/living/simple_animal/pet/cat, /mob/living/simple_animal/pet/cat/kitten,
-		/mob/living/simple_animal/pet/dog/corgi, /mob/living/simple_animal/pet/dog/corgi/puppy,
-		/mob/living/simple_animal/pet/dog/pug, /mob/living/simple_animal/pet/fox)
+		/mob/living/basic/butterfly, /mob/living/basic/chick/permanent, // AQ EDIT - basic moby
+		/mob/living/basic/pet/cat, /mob/living/basic/pet/cat/kitten, // AQ EDIT - basic moby
+		/mob/living/basic/pet/dog/corgi, /mob/living/basic/pet/dog/corgi/puppy, // AQ EDIT - basic moby
+		/mob/living/basic/pet/dog/pug, /mob/living/basic/pet/fox) // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/bee
 	mobtype = /mob/living/simple_animal/hostile/poison/bees/toxin
@@ -118,21 +118,21 @@
 	mobtype = /mob/living/simple_animal/holodeck_monkey
 
 /obj/effect/holodeck_effect/mobspawner/penguin
-	mobtype = /mob/living/simple_animal/pet/penguin/emperor
+	mobtype = /mob/living/basic/pet/penguin/emperor // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/penguin/Initialize(mapload)
 	if(prob(1))
-		mobtype = /mob/living/simple_animal/pet/penguin/emperor/shamebrero
+		mobtype = /mob/living/basic/pet/penguin/emperor/shamebrero // AQ EDIT - basic moby
 	return ..()
 
 /obj/effect/holodeck_effect/mobspawner/penguin_baby
-	mobtype = /mob/living/simple_animal/pet/penguin/baby
+	mobtype = /mob/living/basic/pet/penguin/baby/permanent // AQ EDIT - basic moby (holodeck penguin chicks do not grow up)
 
 /obj/effect/holodeck_effect/mobspawner/cat
-	mobtype = /mob/living/simple_animal/pet/cat
+	mobtype = /mob/living/basic/pet/cat // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/butterfly
-	mobtype = /mob/living/simple_animal/butterfly
+	mobtype = /mob/living/basic/butterfly // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/clown
 	mobtype = list (/mob/living/simple_animal/hostile/retaliate/clown = 10,

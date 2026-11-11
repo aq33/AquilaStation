@@ -178,9 +178,19 @@
 						qdel(src)
 					return
 
-		if(S.sheettype && S.sheettype != "runed")
+		// AQ EDIT START - Bee#10703: arkusz z materiałem bez własnej ściany daje ścianę z materiału; jak w Bee#11340 tylko z materiałem
+		// (płótno, karton), a stary text2path() zostaje dla arkuszy bez material_type (bambus, piaskowiec, obcy stop)
+		var/mineral_wall_type = S.walltype
+		if(!mineral_wall_type && S.sheettype)
+			mineral_wall_type = text2path("/turf/closed/wall/mineral/[S.sheettype]")
+		if(S.sheettype != "runed" && (mineral_wall_type || S.material_type))
 			var/M = S.sheettype
 			if(state == GIRDER_DISPLACED)
+				var/F = M ? text2path("/obj/structure/falsewall/[M]") : null
+				if(!F)
+					to_chat(user, "<span class='warning'>Z tego materiału nie zrobisz fałszywej ściany!</span>")
+					return
+				// AQ EDIT END
 				if(S.get_amount() < 2)
 					to_chat(user, "<span class='warning'>Do stworzenia fałszywej ściany potrzebujesz przynajmniej dwóch arkuszy!</span>")
 					return
@@ -189,7 +199,6 @@
 						return
 					S.use(2)
 					balloon_alert(user, "Tworzysz fałszywą ścianę.")
-					var/F = text2path("/obj/structure/falsewall/[M]")
 					var/obj/structure/FW = new F (loc)
 					transfer_fingerprints_to(FW)
 					qdel(src)
@@ -205,7 +214,15 @@
 					S.use(2)
 					balloon_alert(user, "Dodajesz poszycie.")
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(text2path("/turf/closed/wall/mineral/[M]"))
+					// AQ EDIT START - Bee#10703
+					if(mineral_wall_type)
+						T.PlaceOnTop(mineral_wall_type)
+					else
+						var/turf/newturf = T.PlaceOnTop(/turf/closed/wall/material)
+						var/list/material_list = list()
+						material_list[SSmaterials.GetMaterialRef(S.material_type)] = MINERAL_MATERIAL_AMOUNT * 2
+						newturf.set_custom_materials(material_list)
+					// AQ EDIT END
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return

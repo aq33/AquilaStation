@@ -171,7 +171,7 @@
 	merge_type = /obj/item/stack/ethernet_coil
 	novariants = TRUE
 	usesound = 'sound/items/deconstruct.ogg'
-	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
+	mats_per_unit = list(/datum/material/iron = 10, /datum/material/glass = 5)
 	grind_results = list(/datum/reagent/copper = 2)
 
 /obj/item/stack/ethernet_coil/Initialize(mapload, new_amount, merge = TRUE)
@@ -215,7 +215,7 @@
 
 /obj/item/stack/ethernet_coil/cyborg
 	is_cyborg = TRUE
-	materials = list()
+	mats_per_unit = null
 	cost = 1
 
 /obj/item/stack/ethernet_coil/five

@@ -107,6 +107,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/firebrand
 	name = "żagiew"
 	desc = "Niezapalona żagiew. Zastanawiasz się, czemu nikt nie nazywa tego po prostu patykiem."
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT)
 	smoketime = 40
 	grind_results = list(/datum/reagent/carbon = 2)
 

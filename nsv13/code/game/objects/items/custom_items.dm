@@ -14,7 +14,7 @@
 	on_stun_sound = 'nsv13/sound/effects/saberhit.ogg'
 	attack_verb = list("podpala", "ciacha")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(/datum/material/iron = 1000)
+	custom_materials = list(/datum/material/iron = 1000)
 	var/stuntime_on = (4 SECONDS)
 	var/stuntime_off = 0
 	var/stuntime = (4 SECONDS)

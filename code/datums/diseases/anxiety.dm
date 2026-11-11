@@ -36,6 +36,6 @@
 			if(prob(2))
 				affected_mob.visible_message("<span class='danger'>[affected_mob] wykasłuje motyle!</span>", \
 													"<span class='userdanger'>Wykasłujesz motyle!</span>")
-				new /mob/living/simple_animal/butterfly(affected_mob.loc)
-				new /mob/living/simple_animal/butterfly(affected_mob.loc)
+				new /mob/living/basic/butterfly(affected_mob.loc) // AQ EDIT - basic moby
+				new /mob/living/basic/butterfly(affected_mob.loc) // AQ EDIT - basic moby
 	return

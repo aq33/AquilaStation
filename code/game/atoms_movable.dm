@@ -374,6 +374,11 @@
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
+	// AQ EDIT START - Move() między z-levelami (schody, spadanie) też woła onTransitZ(), jak forceMove() i Moved() w Bee
+	if(isturf(oldloc) && isturf(newloc) && oldloc.z != newloc.z)
+		onTransitZ(oldloc.z, newloc.z)
+	// AQ EDIT END
+
 	Moved(oldloc, direction)
 
 ////////////////////////////////////////

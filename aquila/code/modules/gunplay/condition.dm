@@ -242,7 +242,7 @@
 	icon = 'aquila/icons/obj/gun_maintenance_kit.dmi'
 	icon_state = "kit"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(/datum/material/iron = 500, /datum/material/plastic = 500)
+	custom_materials = list(/datum/material/iron = 500, /datum/material/plastic = 500)
 	/// Ile razy jeszcze można go użyć
 	var/uses = 5
 	/// Ile zużycia zdejmuje jedno czyszczenie
