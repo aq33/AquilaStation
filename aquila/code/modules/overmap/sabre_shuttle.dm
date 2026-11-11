@@ -138,20 +138,26 @@
 		if(!other_homes[port])
 			. += port
 
-/// Wejście przez właz: tak jak wejście do promu desantowego, tylko z hangaru
-/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/sabre_board(mob/living/user)
+/// Wejście przez właz albo wrota kokpitu (via_doors) ze skrzydła: tak jak wejście do promu desantowego, tylko z hangaru
+/obj/structure/overmap/small_craft/transport/sabre/shuttle/proc/sabre_board(mob/living/user, via_doors = FALSE)
 	if(!shuttle_docked_at)
+		if(via_doors)
+			to_chat(user, span_warning("Wrota są zablokowane w trakcie lotu."))
 		return FALSE
 	if(!allowed(user))
 		to_chat(user, span_warning("Odmowa dostępu."))
 		return FALSE
 	if(LAZYACCESS(boarding_mobs, user))
 		return FALSE
-	to_chat(user, span_notice("Otwierasz właz [src] i wchodzisz do środka..."))
+	if(via_doors)
+		to_chat(user, span_notice("Otwierasz wrota [src] i wchodzisz do środka..."))
+	else
+		to_chat(user, span_notice("Otwierasz właz [src] i wchodzisz do środka..."))
 	LAZYSET(boarding_mobs, user, TRUE)
 	var/success = do_after(user, 2 SECONDS, target = user)
 	LAZYREMOVE(boarding_mobs, user)
-	if(!success)
+	// Przez te 2 sekundy Sabre mógł wystartować albo zostać zniszczony
+	if(!success || QDELETED(src) || !shuttle_docked_at || QDELETED(user))
 		return FALSE
 	enter(user)
 	return TRUE
@@ -206,7 +212,7 @@
 	// Ze skrzydła wrota prowadzą do środka (jak kliknięcie), a nie wyrzucają na zewnątrz
 	if(istype(get_turf(AM), /turf/open/indestructible/dropship/sabre_wing))
 		if(isliving(AM))
-			INVOKE_ASYNC(A.sabre, TYPE_PROC_REF(/obj/structure/overmap/small_craft/transport/sabre/shuttle, sabre_board), AM)
+			INVOKE_ASYNC(A.sabre, TYPE_PROC_REF(/obj/structure/overmap/small_craft/transport/sabre/shuttle, sabre_board), AM, TRUE)
 		return
 	if(A.sabre.shuttle_docked_at)
 		if(!A.sabre.shuttle_leave(AM))
@@ -223,7 +229,7 @@
 	if(!istype(A) || !A.sabre || !isliving(user))
 		return
 	if(istype(get_turf(user), /turf/open/indestructible/dropship/sabre_wing))
-		return A.sabre.sabre_board(user)
+		return A.sabre.sabre_board(user, TRUE)
 	if(get_area(user) != A)
 		return
 	if(!A.sabre.shuttle_docked_at)
