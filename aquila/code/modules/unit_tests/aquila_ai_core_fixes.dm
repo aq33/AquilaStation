@@ -189,5 +189,71 @@
 	TEST_ASSERT(findtext(text, "Nie wydaje się być sobą"), "An AI body is not described as not being himself")
 	TEST_ASSERT(!findtext(text, "katatonii"), "An AI body with its AI off is described as catatonic")
 
+/// C5/E3: a controller goes idle without living clients nearby and wakes up when one comes close
+/datum/unit_test/aquila_ai_idle_without_clients
+
+/datum/unit_test/aquila_ai_idle_without_clients/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, left)
+	var/datum/ai_controller/monkey/controller = monkey.ai_controller
+	var/turf/far_turf = locate(min(left.x + controller.interesting_dist + 5, world.maxx), left.y, left.z)
+	var/mob/living/carbon/human/fake_client = allocate(/mob/living/carbon/human, far_turf)
+	// No real clients in unit tests: put a mob in the client list of the z-level for the check, then take it out
+	SSmobs.clients_by_zlevel[left.z] += fake_client
+	var/far_distance = get_dist(far_turf, left)
+	var/idle_far = controller.should_idle()
+	var/status_far = controller.get_expected_ai_status()
+	fake_client.forceMove(get_step(left, EAST))
+	var/idle_near = controller.should_idle()
+	var/status_near = controller.get_expected_ai_status()
+	SSmobs.clients_by_zlevel[left.z] -= fake_client
+	var/idle_none = controller.should_idle()
+	controller.reset_ai_status()
+
+	TEST_ASSERT(far_distance > controller.interesting_dist, "The far turf is not far enough ([far_distance])")
+	TEST_ASSERT(idle_far, "A controller with the only client [far_distance] tiles away does not idle")
+	TEST_ASSERT_EQUAL(status_far, AI_STATUS_IDLE, "A controller far from clients is not expected to idle")
+	TEST_ASSERT(!idle_near, "A controller next to a client idles")
+	TEST_ASSERT_EQUAL(status_near, AI_STATUS_ON, "A controller next to a client is not expected to run")
+	TEST_ASSERT(idle_none, "A controller with no clients at all does not idle")
+
+/// E1 + E4: IsReachableBy() answers the common cases without CanReach(), and an empty target search backs off until the
+/// mob is attacked or finds a target
+/datum/unit_test/aquila_ai_reach_and_search_backoff
+
+/datum/unit_test/aquila_ai_reach_and_search_backoff/Run()
+	var/turf/left = run_loc_floor_bottom_left
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, left)
+	var/obj/item/wrench/held = allocate(/obj/item/wrench, left)
+	monkey.put_in_hands(held)
+	var/obj/item/wrench/adjacent = allocate(/obj/item/wrench, get_step(left, EAST))
+	var/obj/item/wrench/far = allocate(/obj/item/wrench, get_step(get_step(left, EAST), EAST))
+	var/obj/item/storage/box/box = allocate(/obj/item/storage/box, left)
+	monkey.put_in_hands(box)
+	var/obj/item/wrench/boxed = new(box)
+	TEST_ASSERT(held.IsReachableBy(monkey), "The monkey cannot reach what it holds")
+	TEST_ASSERT(adjacent.IsReachableBy(monkey), "The monkey cannot reach an item next to it")
+	TEST_ASSERT(!far.IsReachableBy(monkey), "The monkey reaches an item two tiles away")
+	TEST_ASSERT(far.IsReachableBy(monkey, 2), "A reach of 2 does not reach two tiles away")
+	TEST_ASSERT(boxed.IsReachableBy(monkey), "The monkey cannot reach into the box it holds")
+	qdel(monkey)
+
+	var/mob/living/basic/bear/bear = allocate(/mob/living/basic/bear, left)
+	var/datum/ai_controller/controller = bear.ai_controller
+	var/datum/ai_behavior/find_potential_targets/find = GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets)
+	for(var/i in 1 to 5)
+		find.perform(1, controller, BB_BASIC_MOB_CURRENT_TARGET, BB_TARGETING_STRATEGY, BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_FIND_TARGETS_EMPTY_SCANS], 5, "Empty target scans are not counted")
+	TEST_ASSERT_EQUAL(find.get_cooldown(controller), FIND_TARGETS_MAX_BACKOFF, "Five empty scans did not back off to the longest wait")
+	SEND_SIGNAL(bear, COMSIG_ATOM_WAS_ATTACKED, bear)
+	TEST_ASSERT_EQUAL(find.get_cooldown(controller), find.action_cooldown, "An attack did not reset the target search")
+
+	find.perform(1, controller, BB_BASIC_MOB_CURRENT_TARGET, BB_TARGETING_STRATEGY, BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_FIND_TARGETS_EMPTY_SCANS], 1, "The scan after the reset was not counted")
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(left, EAST))
+	find.perform(1, controller, BB_BASIC_MOB_CURRENT_TARGET, BB_TARGETING_STRATEGY, BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The bear did not find the human")
+	TEST_ASSERT(isnull(controller.blackboard[BB_FIND_TARGETS_EMPTY_SCANS]), "Finding a target did not reset the backoff")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

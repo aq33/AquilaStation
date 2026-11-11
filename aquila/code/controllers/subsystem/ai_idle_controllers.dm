@@ -1,7 +1,7 @@
 // AQUILA - port of BeeStation/BeeStation-Hornet code/controllers/subsystem/ai_idle_controllers.dm,
 // unplanned_controllers.dm and unplanned_ai_idle_controllers.dm (our MC style: flags, init_order).
-// Without SSspatial_grid nothing goes AI_STATUS_IDLE yet (see /datum/ai_controller/proc/should_idle()), so the idle
-// subsystems only run when that is added; the unplanned ON subsystem runs idle behaviours (random walks etc.).
+// Without SSspatial_grid a controller goes AI_STATUS_IDLE when no living client is within its interesting_dist (see
+// /datum/ai_controller/proc/should_idle()); the planning subsystems check that every AI_IDLE_CHECK_INTERVAL.
 
 /// Plans AI controllers in AI_STATUS_IDLE, rarely
 AI_CONTROLLER_SUBSYSTEM_DEF(ai_idle_controllers)
@@ -9,9 +9,11 @@ AI_CONTROLLER_SUBSYSTEM_DEF(ai_idle_controllers)
 	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND
 	priority = FIRE_PRIORITY_IDLE_NPC
 	init_order = INIT_ORDER_AI_CONTROLLERS
-	wait = 5 SECONDS
+	wait = 1 SECONDS // AQUILA: Bee plans every 5 s; we fire every second to wake controllers soon, but still plan every 5 s
 	runlevels = RUNLEVEL_GAME
 	planning_status = AI_STATUS_IDLE
+	planning_interval = 5 SECONDS
+	idle_check_interval = 1 SECONDS
 
 GLOBAL_LIST_EMPTY(unplanned_controller_subsystems)
 

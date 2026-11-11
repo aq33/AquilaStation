@@ -1,7 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/ai/basic_mobs/basic_ai_behaviors/targeting.dm (bee/master 0adf0fe9ae)
 // AQUILA: Bee waits for targets with an ai_target_tracking proximity field and also targets hostile machines
 // (hostile_machine element, turrets). Neither is ported: like the spatial grid (decision D4) the field is left for later,
-// so the behaviour polls with hearers() every action_cooldown.
+// so the behaviour polls with hearers(). AQUILA: every empty scan doubles the wait (2, 4, 8, 16, 30 s), a found target or
+// an attack on the mob resets it (/datum/ai_controller/basic_controller/proc/reset_target_search_backoff()).
 
 /datum/ai_behavior/find_potential_targets
 	action_cooldown = 2 SECONDS
@@ -10,6 +11,12 @@
 	var/vision_range = 9
 	/// Blackboard key for aggro range, uses vision range if not specified
 	var/aggro_range_key = BB_AGGRO_RANGE
+
+/datum/ai_behavior/find_potential_targets/get_cooldown(datum/ai_controller/cooldown_for)
+	var/empty_scans = cooldown_for.blackboard[BB_FIND_TARGETS_EMPTY_SCANS]
+	if(!empty_scans)
+		return action_cooldown
+	return min(action_cooldown * (2 ** min(empty_scans, 5)), FIND_TARGETS_MAX_BACKOFF)
 
 /datum/ai_behavior/find_potential_targets/perform(delta_time, datum/ai_controller/controller, target_key, targeting_strategy_key, hiding_location_key)
 	var/mob/living/living_mob = controller.pawn
@@ -29,6 +36,7 @@
 	var/list/potential_targets = hearers(aggro_range, get_turf(controller.pawn)) - living_mob //Remove self, so we don't suicide
 
 	if(!potential_targets.len)
+		controller.add_blackboard_key(BB_FIND_TARGETS_EMPTY_SCANS, 1)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	var/list/filtered_targets = list()
@@ -39,8 +47,10 @@
 			continue
 
 	if(!filtered_targets.len)
+		controller.add_blackboard_key(BB_FIND_TARGETS_EMPTY_SCANS, 1)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
+	controller.clear_blackboard_key(BB_FIND_TARGETS_EMPTY_SCANS)
 	var/atom/target = pick_final_target(controller, filtered_targets)
 	controller.set_blackboard_key(target_key, target)
 

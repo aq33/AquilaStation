@@ -33,6 +33,16 @@
 	if (vision_range && get_dist(living_mob, the_target) > vision_range)
 		return FALSE
 
+	// AQUILA: the cheap faction and stat checks go before the line of sight (can_see() walks the line tile by tile)
+	var/mob/living/living_target = isliving(the_target) ? the_target : null
+	if(living_target)
+		if(faction_check(our_controller, living_mob, living_target))
+			return FALSE
+		if(living_target.stat > our_controller.blackboard[minimum_stat_key])
+			return FALSE
+		if(target_wounded_key && our_controller.blackboard[target_wounded_key] && living_target.health == living_target.maxHealth)
+			return FALSE
+
 	// AQUILA: our can_see() defaults to 5 tiles (Bee 7), less than the 9 targets are picked from, so mobs gave up on them
 	if(!ignore_sight && !can_see(living_mob, the_target, vision_range || BASIC_TARGETING_DEFAULT_VISION)) //Target has moved behind cover and we have lost line of sight to it
 		return FALSE
@@ -45,14 +55,7 @@
 	if(isturf(the_target.loc) && living_mob.get_virtual_z_level() != the_target.get_virtual_z_level()) // z check will always fail if target is in a mech or pawn is shapeshifted or jaunting
 		return FALSE
 
-	if(isliving(the_target)) //Targeting vs living mobs
-		var/mob/living/living_target = the_target
-		if(faction_check(our_controller, living_mob, living_target))
-			return FALSE
-		if(living_target.stat > our_controller.blackboard[minimum_stat_key])
-			return FALSE
-		if(target_wounded_key && our_controller.blackboard[target_wounded_key] && living_target.health == living_target.maxHealth)
-			return FALSE
+	if(living_target) //Targeting vs living mobs, checked above
 		return TRUE
 
 	if(ismecha(the_target)) //Targeting vs mechas

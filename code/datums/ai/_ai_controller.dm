@@ -55,8 +55,12 @@ multiple modular subtrees with behaviors
 	// The variables below are fucking stupid and should be put into the blackboard at some point.
 	///AI paused time
 	var/paused_until = 0
-	///Can this AI idle? AQUILA: no spatial grid yet, so nothing idles (see should_idle())
+	///Can this AI idle?
 	var/can_idle = TRUE
+	///AQUILA: next world.time the planning subsystem checks whether we should go idle or wake up (see should_idle())
+	var/next_idle_check = 0
+	///AQUILA: next world.time a subsystem with a planning_interval (SSai_idle_controllers) plans us
+	var/next_planning = 0
 	///What distance should we be checking for interesting things when considering idling/deidling? Defaults to AI_DEFAULT_INTERESTING_DIST
 	var/interesting_dist = AI_DEFAULT_INTERESTING_DIST
 	/// TRUE if we're able to run, FALSE if we aren't
@@ -180,11 +184,23 @@ multiple modular subtrees with behaviors
 
 /**
  * Should this controller go idle (plan rarely, in SSai_idle_controllers)?
- * AQUILA: Bee idles a controller when no client is in the nearby spatial grid cells. We have no SSspatial_grid yet
- * (decision D4 of the basic mobs port), so controllers never idle and only turn off when their z-level has no clients.
+ * AQUILA: Bee idles a controller when no client is in the nearby spatial grid cells and wakes it when one enters them.
+ * We have no SSspatial_grid (decision D4 of the basic mobs port), so this looks for a living client mob of the same
+ * z-level (SSmobs.clients_by_zlevel) within interesting_dist. The planning subsystems call get_expected_ai_status()
+ * every AI_IDLE_CHECK_INTERVAL (/datum/controller/subsystem/ai_controllers/fire()), which puts the controller to sleep
+ * or wakes it up; a client entering the z-level wakes it in /mob/living/proc/update_z().
  */
 /datum/ai_controller/proc/should_idle()
-	return FALSE
+	if(!can_idle)
+		return FALSE
+	var/turf/pawn_turf = get_turf(pawn)
+	if(isnull(pawn_turf))
+		return FALSE
+	for(var/mob/living/client_mob as anything in SSmobs.clients_by_zlevel[pawn_turf.z])
+		var/turf/client_turf = get_turf(client_mob)
+		if(client_turf && get_dist(client_turf, pawn_turf) <= interesting_dist)
+			return FALSE
+	return TRUE
 
 /// Sets the AI on or off based on current conditions, call to reset after you've manually disabled it somewhere
 /datum/ai_controller/proc/reset_ai_status()

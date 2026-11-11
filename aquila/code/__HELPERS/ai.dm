@@ -47,13 +47,24 @@
 
 /**
  * Returns TRUE if a movable can "Reach" this atom (Bee /atom/proc/IsReachableBy).
- * AQUILA: our click code already has CanReach() with the same depth search, so this wraps it.
+ * AQUILA: the AI asks this every tick while it moves to a target, and our CanReach() builds lists (for living mobs
+ * GetAllContents()) on every call. Like Bee, atoms on a turf only need the adjacency check and atoms carried by the user
+ * walk up their loc chain; only atoms inside something else (bags, lockers) fall back to CanReach()'s storage checks.
  */
 /atom/proc/IsReachableBy(atom/movable/user, reacher_range = 1, depth = INFINITY)
 	if(isnull(user))
 		return FALSE
-	if(reacher_range > 1 && get_dist(user, src) <= reacher_range && isturf(loc))
+	if(src == user || loc == user || src == user.loc)
 		return TRUE
+	if(isturf(src) || isturf(loc))
+		if(user.Adjacent(src))
+			return TRUE
+		return reacher_range > 1 && isturf(loc) && get_dist(user, src) <= reacher_range
+	if(isnull(loc) || isarea(loc))
+		return FALSE
+	for(var/atom/holder = loc; holder && !isturf(holder); holder = holder.loc)
+		if(holder == user) // in the user's own inventory or a bag on them
+			return TRUE
 	return user.CanReach(src)
 
 /// Returns whether it is safe for an atom to move across this turf (lava, chasms, open space for walkers)

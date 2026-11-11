@@ -192,6 +192,12 @@
 #define AI_INCAP_STATE_RESTRAINED (1<<3)
 #define AI_INCAP_STATE_RESTRAINED_OR_GRABBED (1<<4)
 #define AI_INCAP_STATE_STASIS (1<<5)
+///AQUILA: how often an AI controller in SSai_controllers checks whether it should go idle (no clients nearby)
+#define AI_IDLE_CHECK_INTERVAL (2 SECONDS)
+///AQUILA: empty target scans in a row of find_potential_targets, each doubles its cooldown
+#define BB_FIND_TARGETS_EMPTY_SCANS "BB_find_targets_empty_scans"
+///AQUILA: longest wait between target scans that found nothing
+#define FIND_TARGETS_MAX_BACKOFF (30 SECONDS)
 
 // --- AI subsystems (code/__DEFINES/MC.dm and subsystems.dm in Bee)
 #define AI_CONTROLLER_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/ai_controllers/##X);\
