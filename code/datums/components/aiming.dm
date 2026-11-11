@@ -159,13 +159,14 @@ AIMING_DROP_WEAPON means they selected the "drop your weapon" command
 			possible_actions += DROP_TO_FLOOR
 			possible_actions += DROP_WEAPON
 	for(var/option in possible_actions)
-		options[option] = image(icon = 'icons/effects/aiming.dmi', icon_state = option)
+		options[aiming_choice_label(option)] = image(icon = 'icons/effects/aiming.dmi', icon_state = option) // AQ EDIT - polskie podpisy (aquila/code/modules/gunplay/aiming_labels.dm)
 	if(choice_menu)
 		choice_menu.change_choices(options)
 		return
 	choice_menu = show_radial_menu_persistent(user, user, options, select_proc = CALLBACK(src, PROC_REF(act)))
 
 /datum/component/aiming/proc/act(choice)
+	choice = aiming_choice_from_label(choice) // AQ EDIT - polskie podpisy (aquila/code/modules/gunplay/aiming_labels.dm)
 	if(QDELETED(user) || QDELETED(target)) // We lost our user or target somehow, abort aiming
 		stop_aiming()
 		return
@@ -235,10 +236,11 @@ AIMING_DROP_WEAPON means they selected the "drop your weapon" command
 		return
 	var/list/options = list()
 	for(var/option in list(SURRENDER, IGNORE))
-		options[option] = image(icon = 'icons/effects/aiming.dmi', icon_state = option)
+		options[aiming_choice_label(option)] = image(icon = 'icons/effects/aiming.dmi', icon_state = option) // AQ EDIT - polskie podpisy (aquila/code/modules/gunplay/aiming_labels.dm)
 	choice_menu_target = show_radial_menu_persistent(target, target, options, select_proc = CALLBACK(src, PROC_REF(aim_react_act)))
 
 /datum/component/aiming/proc/aim_react_act(choice)
+	choice = aiming_choice_from_label(choice) // AQ EDIT - polskie podpisy (aquila/code/modules/gunplay/aiming_labels.dm)
 	if(choice == SURRENDER)
 		target.emote(SURRENDER)
 	QDEL_NULL(choice_menu_target)

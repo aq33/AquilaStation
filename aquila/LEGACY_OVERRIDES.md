@@ -489,6 +489,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Komunikat o zjedzeniu do końca tylko dla rzeczy z materiału | `code/datums/components/food/edible.dm` (`on_consume()`) | Bee pisało go przy każdym jedzeniu |
 | `FOOTSTEP_MEAT` z `aquila/sound/blood_worm/meatslap.ogg` | `code/__DEFINES/footsteps.dm` | Mięsna podłoga |
 | Zmienna studni nanonaprawczej `material_modifier` → `repair_material_modifier` | `nsv13/code/modules/overmap/armour/nano_well.dm` | Bee dodało `material_modifier` do `/atom` |
+| `options[aiming_choice_label(option)]` in `show_ui()` and `aim_react()`, `choice = aiming_choice_from_label(choice)` at the top of `act()` and `aim_react_act()` | `code/datums/components/aiming.dm` | Gun aiming radial shows Polish labels instead of option ids (`raise_hands`, `drop_weapon`): the radial prints the choice key, so the key is the label and the hooks map it back. Entry: `aquila/code/modules/gunplay/aiming_labels.dm` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
