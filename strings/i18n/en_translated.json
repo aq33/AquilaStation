@@ -1793,7 +1793,7 @@
 "<span class='notice'>Dodajesz [T] do [src].\\\n": "<span class='notice'>You add [T] to [src].\\\n",
 "<span class='notice'>Dopisano do akt [owner_name]: [SQUAD_GEAR_CRIME].</span>": "<span class='notice'>Added to the record of [owner_name]: [SQUAD_GEAR_CRIME].</span>",
 "<span class='notice'>Dotykasz [O] i wysysasz z tego prąd!</span>": "<span class='notice'>You touch [O] and drain power from it!</span>",
-"<span class='notice'>Działa też jako znacznik IFF: kule członków tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego.</span>": "<span class='notice'>It also works as an IFF tag: bullets fired by this squad's members miss the wearer, unless someone aims right at them.</span>",
+"<span class='notice'>Działa też jako znacznik IFF: kule osób noszących smycz tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego. Bez smyczy na szyi IFF nie działa.</span>": "<span class='notice'>It also works as an IFF tag: bullets fired by people wearing this squad's lanyard miss the wearer, unless someone aims right at them. IFF does not work without the lanyard around your neck.</span>",
 "<span class='notice'>Dziękujemy za wypełnienie ankiety!</span>": "<span class='notice'>Thank you for completing the survey!</span>",
 "<span class='notice'>Dół jest pełny jak nigdy! Twoje ciało twardnieje w niebieski pancerz.</span>": "<span class='notice'>The Pit is fuller than ever! Your body hardens into blue armor.</span>",
 "<span class='notice'>Dźgasz się [src].</span>": "<span class='notice'>You stab yourself with \\the [src].</span>",

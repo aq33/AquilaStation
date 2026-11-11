@@ -423,6 +423,10 @@ GLOBAL_LIST_EMPTY(walk_mask_screens)
 
 /// Maska fragmentu ciała na ekranie klienta. Niewidoczna, rysuje się tylko do własnego bufora,
 /// z którego czytają filtry fragmentów wszystkich mobów idących w tym kierunku.
+/// Inicjalizacja od razu: maski powstają przy pierwszym kliencie, także w trakcie startu serwera, a obiektu
+/// w nullspace SSatoms potem nie inicjalizuje (bez render_target chód nie działał nikomu do końca rundy).
+INITIALIZE_IMMEDIATE(/atom/movable/screen/walk_mask)
+
 /atom/movable/screen/walk_mask
 	name = ""
 	icon = 'aquila/icons/mob/walk_masks.dmi'
