@@ -794,6 +794,27 @@
   - bugfix: Boarderzy KNPC nie podbiegają pod uzbrojony granat kolegi i nie rzucają
       drugiego granatu w to samo miejsce.
   - code_imp: Symulacja walk boarderów KNPC do testów lokalnych (-DKNPC_SIM).
+  - bugfix: Po końcu rundy albo restarcie przez admina gra sama łączy się z serwerem,
+      gdy ten wstanie, także po dłuższym starcie i po crashu
+  - rscadd: Hardsuit pomalowany sprayem zmienia kolor razem z hełmem, a nowy kolor
+      od razu widać na postaci
+  - soundadd: Szafa na skafandry ma dźwięki otwierania i zamykania oraz dezynfekcji
+  - soundadd: Ogłuszający wybuch zostawia pisk w uszach
+  - soundadd: Wyczerpana postać ciężko dyszy
+  - tweak: 'Atlantis: karabiny w zbrojowni to teraz Beryle, które strzelają zawsze'
+  - rscadd: Przyprawa Maggi oraz majonez Kielecki i Winiary w automacie z zastawą
+  - imageadd: Sprite'y przyprawy Maggi i dwóch majonezów
+  - rscdel: Tryb Zdrajcy i Bracia Krwi wypada z rotacji
+  - rscadd: W trybie zdrajcy dwóch zdrajców może zacząć rundę jako bracia krwi
+  - config: TRAITORBRO usunięty z WEIGHTED_POOL, PROBABILITY TRAITORBRO 0
+  - rscadd: 'Parowanie na czas: Spacja tuż przed ciosem, z bronią, która paruje, w
+      ręce, okno 1 s, idealne w pierwszej połowie. Parują tarcze, szable, katany,
+      miecze, topór strażacki, włócznie i inne'
+  - rscadd: 'Blok: 2 s przerwy między blokami, kontra i wytrącenie z równowagi wybranymi
+      broniami, ciosy nie do zablokowania zwykłą bronią'
+  - rscadd: 'Udany blok i parowanie widać: błysk na postaci i napis nad głową'
+  - balance: Jeden blok kosztuje najwyżej 35 staminy, blok pałki ogłuszającej nic
+      nie kosztuje
   Nikita:
   - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
       strzał z jednej ręki, tak jak pojedyncze kule.
