@@ -2182,6 +2182,7 @@
 #include "code\modules\unit_tests\aquila_gang_economy.dm"
 #include "code\modules\unit_tests\aquila_salvagers.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
+#include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
 #include "code\modules\unit_tests\aquila_survivalbox.dm"

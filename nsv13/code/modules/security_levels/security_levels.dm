@@ -21,7 +21,7 @@
 			return
 		addtimer(CALLBACK(src, PROC_REF(close)), 3 SECONDS) //Snap shut again if zebra's still active.
 
-/obj/machinery/door/firedoor/proc/on_alert_level_change(level)
+/obj/machinery/door/firedoor/proc/on_alert_level_change(datum/source, level) // AQ EDIT - sygnał przekazuje najpierw SSdcs, bez source Zebra nigdy nie zamykała drzwi
 	SIGNAL_HANDLER
 
 	if(!is_station_level(z))
