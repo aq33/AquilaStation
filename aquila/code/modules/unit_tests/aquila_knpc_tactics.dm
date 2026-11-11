@@ -260,6 +260,8 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
 	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
 	boarder.put_in_active_hand(gun)
+	var/obj/item/restraints/handcuffs/cable/zipties/ties = allocate(/obj/item/restraints/handcuffs/cable/zipties)
+	TEST_ASSERT(boarder.equip_to_slot_if_possible(ties, ITEM_SLOT_LPOCKET, disable_warning = TRUE), "Could not give the boarder zipties") // bez kajdanek boarder nie szuka jeńców
 	victim.SetUnconscious(20 SECONDS)
 	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
 	var/datum/ai_goal/human/secure_prisoner/secure = locate() in ai.ai_goals
@@ -271,6 +273,154 @@
 	ai.unreachable_items_reset_at = world.time - 1
 	ai.expire_unreachable()
 	TEST_ASSERT_EQUAL(secure.find_prisoner(ai), victim, "An armed boarder never forgets an unreachable prisoner")
+
+/// AQUILA - boarder z bronią trzymaną oburącz i opaskami w plecaku zakuwa ogłuszonego wroga.
+/// Zgłoszenie: boarderzy stali nad leżącym i nie zakuwali. Druga ręka była zajęta bronią, opaski lądowały na podłodze,
+/// cel „Scavenge” je podnosił i boarder kręcił się w kółko między zakuwaniem a zbieraniem.
+/datum/unit_test/aquila_knpc_cuffs_with_wielded_gun
+
+/datum/unit_test/aquila_knpc_cuffs_with_wielded_gun/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/datum/component/two_handed/two_handed = gun.GetComponent(/datum/component/two_handed)
+	TEST_ASSERT(two_handed?.wielded, "Test pistol was not grabbed with both hands on pickup, the test does not cover the reported case")
+	if(!boarder.back)
+		TEST_ASSERT(boarder.equip_to_slot_or_del(new /obj/item/storage/backpack(boarder), ITEM_SLOT_BACK), "Could not give the boarder a backpack")
+	var/obj/item/restraints/handcuffs/cable/zipties/ties = allocate(/obj/item/restraints/handcuffs/cable/zipties)
+	TEST_ASSERT(SEND_SIGNAL(boarder.back, COMSIG_TRY_STORAGE_INSERT, ties, null, TRUE, TRUE), "Could not put zipties in the boarder's backpack")
+	victim.Paralyze(20 SECONDS)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai.wants_to_cuff(victim), "Boarder with zipties and a wielded gun does not want to cuff a stunned enemy (it would shoot him instead)")
+	TEST_ASSERT(ai.try_cuff(victim), "Boarder did not start cuffing")
+	for(var/i in 1 to 80)
+		if(victim.handcuffed)
+			break
+		sleep(1)
+	TEST_ASSERT(victim.handcuffed, "Boarder holding a wielded gun failed to cuff a stunned enemy (zipties ended up in [ties.loc])")
+	TEST_ASSERT(!(locate(/obj/item/restraints/handcuffs) in get_turf(boarder)), "Zipties were left on the floor")
+	TEST_ASSERT(boarder.is_holding(gun) && two_handed.wielded, "Boarder did not grab its gun with both hands again after cuffing")
+	TEST_ASSERT(!ai.cuffing, "Cuffing flag stayed set")
+
+/// AQUILA - uzbrojony boarder staje obok obezwładnionego wroga, a nie na jego polu
+/// (stąd szukanie drogi do własnego pola, kara czasowa, losowe błądzenie i przerwane zakuwanie)
+/datum/unit_test/aquila_knpc_stays_next_to_downed
+
+/datum/unit_test/aquila_knpc_stays_next_to_downed/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(base.x + 2, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	victim.Paralyze(20 SECONDS)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	ai.next_move = 0
+	ai.tactical_move(victim)
+	TEST_ASSERT(!ai.dest && !length(ai.path), "Armed boarder next to a downed enemy plans a path onto his tile (dest [ai.dest])")
+	TEST_ASSERT(!ai.pathfind_timeout, "Boarder next to a downed enemy got a pathfinding timeout")
+
+/// AQUILA - haker i wyważacz planują trasę także przez zaryglowaną śluzę, którą umieją otworzyć
+/datum/unit_test/aquila_knpc_breach_path_bolted
+
+/datum/unit_test/aquila_knpc_breach_path_bolted/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/obj/machinery/door/airlock/door = allocate(/obj/machinery/door/airlock, locate(base.x + 2, base.y + 1, base.z))
+	door.bolt()
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A regular boarder plans a path through a bolted airlock")
+	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
+	TEST_ASSERT(door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker cannot plan a path through a bolted airlock it can hack open")
+	// Niezniszczalnej śluzy wyważacz nie uszkodzi; haker otworzy ją panelem, chyba że jest zaspawana
+	door.resistance_flags |= INDESTRUCTIBLE
+	TEST_ASSERT(door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker cannot plan a path through an indestructible bolted airlock")
+	boarder.knpc_traits = KNPC_IS_DOOR_BASHER
+	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door basher plans a path through an indestructible bolted airlock it can never break")
+	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
+	door.welded = TRUE
+	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker plans a path through an indestructible welded airlock")
+	door.welded = FALSE
+	door.resistance_flags &= ~INDESTRUCTIBLE
+
+/// AQUILA - przy tykającym granacie boarder nie biegnie do ogłuszonego wroga i nie rzuca tam drugiego granatu.
+/// W symulacji drugi hukowy ogłuszał kolegów, którzy po pierwszym podbiegli zakuwać (z bliska ochrona oczu i uszu nie pomaga).
+/datum/unit_test/aquila_knpc_waits_for_live_grenade
+
+/datum/unit_test/aquila_knpc_waits_for_live_grenade/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	var/mob/living/carbon/human/enemy = allocate(/mob/living/carbon/human, locate(base.x + 4, base.y + 1, base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/obj/item/grenade/flashbang/thrown = allocate(/obj/item/grenade/flashbang, locate(base.x + 4, base.y + 2, base.z))
+	thrown.active = TRUE // udajemy uzbrojony granat kolegi, bez prawdziwego wybuchu
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai.live_grenade_near(get_turf(enemy)), "Live grenade next to the enemy is not detected")
+	// Wszystkie inne warunki rzutu spełnione: ochrona oczu i uszu, granat w kieszeni (broń trzymana oburącz zajmuje obie ręce), dwóch wrogów w grupie
+	var/mob/living/carbon/human/enemy_two = allocate(/mob/living/carbon/human, locate(base.x + 4, base.y + 2, base.z))
+	var/list/enemies = list(enemy, enemy_two)
+	boarder.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/advanced(boarder), ITEM_SLOT_EYES)
+	var/obj/item/old_ears = boarder.ears
+	if(old_ears)
+		qdel(old_ears)
+	boarder.equip_to_slot_or_del(new /obj/item/radio/headset/syndicate/alt(boarder), ITEM_SLOT_EARS)
+	var/obj/item/grenade/flashbang/spare = allocate(/obj/item/grenade/flashbang)
+	TEST_ASSERT(boarder.equip_to_slot_if_possible(spare, ITEM_SLOT_LPOCKET, disable_warning = TRUE), "Could not put the spare flashbang in the boarder's pocket")
+	ai.next_grenade = 0
+	TEST_ASSERT(!ai.try_throw_grenade(enemy, enemies), "Boarder threw a second grenade next to a live one")
+	thrown.active = FALSE
+	ai.next_grenade = 0
+	TEST_ASSERT(ai.try_throw_grenade(enemy, enemies), "Control: boarder does not throw even without a live grenade, so the check above proves nothing")
+	qdel(spare) // uzbrojony przez rzut, nie wybucha w kolejnych testach
+	thrown.active = TRUE
+	enemy.Paralyze(20 SECONDS)
+	ai.next_move = 0
+	ai.tactical_move(enemy)
+	TEST_ASSERT(!ai.dest && !length(ai.path), "Boarder walks up to a downed enemy next to a live grenade")
+	thrown.active = FALSE
+	ai.tactical_move(enemy)
+	TEST_ASSERT_EQUAL(ai.dest, get_turf(enemy), "Boarder does not approach the downed enemy once the grenade is gone")
+	qdel(thrown)
+
+/// AQUILA - obezwładniony wróg za szybą bez przejścia nie blokuje ostrzału: po nieudanym szukaniu drogi boarder go odpuszcza
+/datum/unit_test/aquila_knpc_unreachable_downed_target
+
+/datum/unit_test/aquila_knpc_unreachable_downed_target/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, locate(base.x + 1, base.y + 1, base.z))
+	// Wróg w rogu pokoju, odcięty szybami od reszty
+	var/mob/living/carbon/human/enemy = allocate(/mob/living/carbon/human, locate(base.x + 4, base.y + 4, base.z))
+	for(var/list/offset in list(list(3, 4), list(3, 3), list(4, 3)))
+		allocate(/obj/structure/window/reinforced/fulltile, locate(base.x + offset[1], base.y + offset[2], base.z))
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	boarder.put_in_active_hand(gun)
+	var/obj/item/restraints/handcuffs/cable/zipties/ties = allocate(/obj/item/restraints/handcuffs/cable/zipties)
+	TEST_ASSERT(boarder.equip_to_slot_if_possible(ties, ITEM_SLOT_LPOCKET, disable_warning = TRUE), "Could not give the boarder zipties")
+	enemy.Paralyze(20 SECONDS)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai.wants_to_cuff(enemy), "Boarder with zipties does not want to cuff a stunned enemy at all")
+	ai.pathfind_timeout = 0
+	ai.tactical_move(enemy)
+	TEST_ASSERT(!ai.wants_to_cuff(enemy), "Boarder still holds fire on a downed enemy it cannot reach")
+
+/// AQUILA - flaga zakuwania nie zamraża boardera na zawsze, a kara za nieudaną trasę maleje także w trakcie zakuwania
+/datum/unit_test/aquila_knpc_cuffing_watchdog
+
+/datum/unit_test/aquila_knpc_cuffing_watchdog/Run()
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, run_loc_floor_bottom_left)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	ai.cuffing = TRUE
+	ai.cuffing_since = world.time
+	ai.pathfind_timeout = 10
+	ai.process()
+	TEST_ASSERT(ai.cuffing, "Cuffing flag was dropped while do_mob could still be running")
+	TEST_ASSERT(ai.pathfind_timeout < 10, "Pathfinding timeout does not count down while cuffing")
+	// do_cuff() przerwany runtime'em nie dotarł do finish_cuff()
+	ai.cuffing_since = world.time - 11 SECONDS
+	ai.process()
+	TEST_ASSERT(!ai.cuffing, "A cuffing flag left by an interrupted do_cuff() freezes the boarder forever")
 
 /// AQUILA - boarder bez kajdanek nie zdejmuje ich z rąk zakutych zwłok
 /datum/unit_test/aquila_knpc_no_cuffs_from_corpse
