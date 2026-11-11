@@ -1,6 +1,7 @@
 #include "code\__DEFINES\antagonists.dm"
 #include "code\__DEFINES\atom_hud.dm"
 #include "code\__DEFINES\attack_animations.dm"
+#include "code\__DEFINES\basic_mobs_fauna.dm"
 #include "code\__DEFINES\bitrunning.dm"
 #include "code\__DEFINES\bingle.dm"
 #include "code\__DEFINES\bladder.dm"
@@ -2039,9 +2040,18 @@
 #include "code\modules\mob\living\basic\space_fauna\bear.dm"
 #include "code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm"
 // Koniec bloku rdzenia SI i basic mobów
+// Tanie basic moby z tg sprzed drzew zachowań (tg 926bf40c5a, mobabilities cz. 2): sarna i moby bez zdolności
+#include "code\datums\ai\generic\find_and_set_turfs.dm"
+#include "code\datums\ai\movement\ai_movement_complete_stop.dm"
+#include "code\datums\ai\basic_mobs\basic_ai_behaviors\emote_with_target.dm"
+#include "code\datums\ai\basic_mobs\basic_ai_behaviors\stop_and_stare.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\stare_at_thing.dm"
+#include "code\modules\mob\living\basic\farm_animals\deer.dm"
+// Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
+#include "code\modules\unit_tests\aquila_basic_deer.dm"
 #include "code\modules\unit_tests\aquila_basic_cat_house.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"

@@ -203,7 +203,7 @@
 /datum/modular_mob_segment/deer
 	max = 1
 	mobs = list(
-		/mob/living/simple_animal/deer,
+		/mob/living/basic/deer,
 	)
 
 
