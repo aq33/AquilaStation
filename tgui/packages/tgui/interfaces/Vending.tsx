@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
@@ -29,7 +30,7 @@ type VendingData = {
   /** AQUILA: account department that gets regular products for free */
   department?: string;
   /** AQUILA: czy vend() pobierze od tego gracza opłatę (SI i cyborgi kupują bez karty) */
-  needs_account?: boolean;
+  needs_account?: BooleanLike;
 };
 
 type Category = {
@@ -202,7 +203,10 @@ export const Vending = (props) => {
   inventory = inventory.filter((item) => !!item);
 
   // SI, cyborgi i automaty spoza stacji nie sprawdzają karty ani salda
-  const payer = data.needs_account !== false && !all_products_free;
+  // DM wysyła 0/1, nie false/true; brak pola (stare dane) znaczy, że płaci
+  const payer =
+    (data.needs_account === undefined || !!data.needs_account) &&
+    !all_products_free;
 
   const searching = stockSearch.length >= 2;
   if (searching) {
