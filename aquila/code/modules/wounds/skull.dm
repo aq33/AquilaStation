@@ -16,13 +16,29 @@
 			return TRUE
 	return FALSE
 
-/// The head looks split open while a skull wound is on it
+/// The head looks split open while a skull wound is on it. The map is drawn for the front of the head, so it is shown
+/// only facing south: from the side or the back it would shear the profile, hair and headgear instead.
 /mob/living/carbon/proc/aq_update_skull_filter()
-	if(aq_has_skull_wound())
-		// the map stores offsets of whole pixels as 128 +- 127/9 per pixel, so size 9 moves them by exactly one
-		add_filter(AQ_SKULL_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/skull_crack.dmi', "displacement"), size = 9))
-	else
-		remove_filter(AQ_SKULL_FILTER)
+	if(!aq_has_skull_wound())
+		UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+		aq_show_skull_filter(FALSE)
+		return
+	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(aq_skull_dir_changed), override = TRUE)
+	aq_show_skull_filter(dir == SOUTH)
+
+/mob/living/carbon/proc/aq_skull_dir_changed(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	aq_show_skull_filter(new_dir == SOUTH)
+
+/mob/living/carbon/proc/aq_show_skull_filter(show)
+	if(!show)
+		if(get_filter(AQ_SKULL_FILTER))
+			remove_filter(AQ_SKULL_FILTER)
+		return
+	if(get_filter(AQ_SKULL_FILTER))
+		return
+	// the map stores offsets of whole pixels as 128 +- 127/9 per pixel, so size 9 moves them by exactly one
+	add_filter(AQ_SKULL_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/skull_crack.dmi', "displacement"), size = 9))
 
 /datum/wound/blunt
 	/// Head texts, used instead of the limb ones when the bone breaks on the head

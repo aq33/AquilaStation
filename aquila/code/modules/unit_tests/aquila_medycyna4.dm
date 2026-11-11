@@ -27,6 +27,15 @@
 	TEST_ASSERT(patient.is_bandaged(BODY_ZONE_R_ARM), "The arm is not bandaged")
 	TEST_ASSERT(patient.is_bleeding(BODY_ZONE_L_LEG), "A bandage on the arm stopped the leg")
 
+	// A bandage on a bruised but not bleeding limb heals it and does not touch the bleeding leg
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	chest.receive_damage(brute = 10)
+	var/leg_bleed = patient.aq_get_limb_bleed(BODY_ZONE_L_LEG)
+	medic.zone_selected = BODY_ZONE_CHEST
+	bandage.attack(patient, medic)
+	TEST_ASSERT(patient.aq_get_limb_bleed(BODY_ZONE_L_LEG) == leg_bleed, "A bandage on the chest changed the leg bleeding")
+	TEST_ASSERT(bandage.stop_bleeding, "The bandage lost its stop_bleeding")
+
 	// A tourniquet on the leg holds the leg; new bleeding on the arm gets through
 	var/obj/item/tourniquet/tourniquet = allocate(/obj/item/tourniquet)
 	tourniquet.attach(patient, BODY_ZONE_L_LEG)
@@ -73,6 +82,10 @@
 	crack.apply_wound(head, silent = TRUE)
 	TEST_ASSERT(crack.name == "Pęknięta czaszka", "A fracture on the head is called [crack.name]")
 	TEST_ASSERT(patient.get_filter("cranial_fissure_displacement"), "A cracked skull does not bend the head")
+	patient.setDir(EAST)
+	TEST_ASSERT(!patient.get_filter("cranial_fissure_displacement"), "The front-only crack shows from the side")
+	patient.setDir(SOUTH)
+	TEST_ASSERT(patient.get_filter("cranial_fissure_displacement"), "The crack did not come back facing south")
 	TEST_ASSERT(crack.skull_trauma, "A cracked skull gave no brain trauma")
 	TEST_ASSERT(istype(crack.skull_trauma, /datum/brain_trauma/mild), "A cracked skull gave [crack.skull_trauma?.type] instead of a mild trauma")
 	TEST_ASSERT(crack.skull_trauma in brain.traumas, "The skull trauma is not in the brain")
@@ -150,6 +163,17 @@
 	REMOVE_TRAIT(patient, TRAIT_PARALYSIS_L_LEG, TRAIT_GENERIC)
 	patient.update_disabled_bodyparts()
 
+	// A synthetic body feels no pain, even with damaged organs and a missing arm
+	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human)
+	ipc.set_species(/datum/species/ipc)
+	ipc.adjustOrganLoss(ORGAN_SLOT_HEART, 40)
+	var/obj/item/bodypart/ipc_arm = ipc.get_bodypart(BODY_ZONE_L_ARM)
+	ipc_arm.drop_limb()
+	qdel(ipc_arm)
+	ipc.aq_handle_pain()
+	TEST_ASSERT(ipc.aq_pain_raw == 0, "An IPC feels [ipc.aq_pain_raw] pain")
+	TEST_ASSERT(!ipc.reagents.has_reagent(/datum/reagent/medicine/adrenaline), "An IPC released adrenaline")
+
 	// A wound hurts more untreated
 	var/datum/wound/blunt/fracture/fracture = new()
 	fracture.apply_wound(patient.get_bodypart(BODY_ZONE_R_ARM), silent = TRUE)
@@ -188,6 +212,14 @@
 	patient.aq_adrenaline_tolerance = 1
 	TEST_ASSERT(patient.aq_adrenaline_strength() < fresh, "Tolerance does not weaken adrenaline")
 	patient.aq_adrenaline_tolerance = 0
+
+	// The glands' own 5u do not crash, an autoinjector's 10u do
+	patient.reagents.add_reagent(/datum/reagent/medicine/adrenaline, 5)
+	var/datum/reagent/medicine/adrenaline/small = patient.reagents.has_reagent(/datum/reagent/medicine/adrenaline)
+	small.on_mob_life(patient)
+	small.on_mob_end_metabolize(patient)
+	patient.reagents.del_reagent(/datum/reagent/medicine/adrenaline)
+	TEST_ASSERT(!patient.has_status_effect(/datum/status_effect/aq_adrenaline_crash), "A natural release of adrenaline crashed")
 
 	// A big rush ends with a crash
 	patient.reagents.add_reagent(/datum/reagent/medicine/adrenaline, 10)
@@ -291,7 +323,7 @@
 	var/datum/wound/blunt/fracture/fracture = new()
 	fracture.apply_wound(patient.get_bodypart(BODY_ZONE_R_LEG), silent = TRUE)
 	fracture.treated = TRUE
-	patient.update_wound_overlays()
+	patient.aq_medical_overlays_changed()
 	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "splint_r_leg") && findtext(patient.aq_wound_overlay_key, "splint_r_foot"), "A splinted leg shows no splint ([patient.aq_wound_overlay_key])")
 	qdel(fracture)
 	TEST_ASSERT(!findtext(patient.aq_wound_overlay_key, "splint_r_leg"), "The splint stayed after the bone healed")

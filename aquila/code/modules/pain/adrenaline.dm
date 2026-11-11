@@ -2,8 +2,8 @@
 // for every new wound, Shitmed (Polonium) has a disabled pain shock multiplier. Here the adrenal glands keep a reserve:
 // strong pain releases adrenaline into the blood until the reserve runs dry, and it refills slowly only while the pain
 // is small. An autoinjector (survival box, or mixed: epinephrine + sugar + salt) skips the reserve, but every dose
-// builds tolerance, so the next works weaker. Adrenaline numbs pain and speeds up stamina; when it wears off comes
-// the crash (stamina). Overdose strains the heart.
+// builds tolerance, so the next works weaker. Adrenaline numbs pain and speeds up stamina; when a big dose (an
+// autoinjector) wears off comes the crash (stamina). Overdose strains the heart.
 
 /// Computed pain at which the glands release adrenaline
 #define AQ_ADRENAL_PAIN_THRESHOLD 40
@@ -15,6 +15,8 @@
 #define AQ_ADRENAL_REGEN 0.5
 /// Pain adrenaline takes off at no tolerance
 #define AQ_ADRENALINE_PAIN_STRENGTH 45
+/// Adrenaline in the blood above which the rush ends with a crash (a natural release is 5u, an autoinjector 10u)
+#define AQ_ADRENALINE_CRASH_PEAK 8
 /// Tolerance gained per unit metabolised, and lost per Life
 #define AQ_ADRENALINE_TOLERANCE_GAIN 0.04
 #define AQ_ADRENALINE_TOLERANCE_DECAY 0.004
@@ -83,7 +85,8 @@
 
 /datum/reagent/medicine/adrenaline/on_mob_end_metabolize(mob/living/L)
 	L.stamina?.remove_regen_multiplier("aq_adrenaline")
-	if(peak >= 3 && L.stat != DEAD)
+	// Only a big rush (an autoinjector, 10u) crashes; the glands' own 5u releases do not
+	if(peak >= AQ_ADRENALINE_CRASH_PEAK && L.stat != DEAD)
 		L.apply_status_effect(/datum/status_effect/aq_adrenaline_crash)
 	peak = 0
 	..()
@@ -169,3 +172,4 @@
 #undef AQ_ADRENALINE_PAIN_STRENGTH
 #undef AQ_ADRENALINE_TOLERANCE_GAIN
 #undef AQ_ADRENALINE_TOLERANCE_DECAY
+#undef AQ_ADRENALINE_CRASH_PEAK

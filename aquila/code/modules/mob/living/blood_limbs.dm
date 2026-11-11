@@ -16,8 +16,10 @@
 	var/aq_last_hit_time = 0
 	/// Zone pressed by hand (hold_wounds)
 	var/aq_held_bleed_zone
-	/// Zone a medical stack is being put on, for suppress_bloodloss() called without a zone
+	/// Zone a medical stack is being put on, for suppress_bloodloss() called without a zone, and the tick it was set:
+	/// the core attack bandages before its do_mob, so the zone is good only in that same tick
 	var/aq_bandage_zone
+	var/aq_bandage_zone_time = -1
 
 /datum/status_effect/bleeding
 	/// Body zone -> bleed rate from that zone
@@ -265,7 +267,8 @@
 	var/datum/status_effect/bleeding/bleed = get_bleed_status()
 	if(!bleed)
 		return
-	zone = zone || aq_bandage_zone
+	if(!zone && aq_bandage_zone && aq_bandage_zone_time == world.time)
+		zone = aq_bandage_zone
 	if(zone)
 		bleed.bandage_limb(check_zone(zone), amount)
 	else
@@ -294,9 +297,10 @@
 
 /// Pressing a wound holds the selected limb, or the worst bleeding one
 /mob/living/carbon/hold_wounds()
+	var/was_holding = !!(locate(/obj/item/offhand/bleeding_suppress) in held_items)
 	. = ..()
-	if(!(locate(/obj/item/offhand/bleeding_suppress) in held_items))
-		return
+	if(was_holding || !(locate(/obj/item/offhand/bleeding_suppress) in held_items))
+		return // the core refused (already holding, busy hand, not bleeding)
 	var/zone = check_zone(zone_selected)
 	if(aq_get_limb_bleed(zone) <= 0)
 		var/datum/status_effect/bleeding/bleed = get_bleed_status()
@@ -318,12 +322,18 @@
 		to_chat(user, "<span class='warning'>Ta część ciała ([strefa_pl(zone)]) nie krwawi. Krwawi: [patient.aq_bleeding_zones_text()].</span>")
 		if(!limb?.brute_dam || !heal_brute)
 			return
+		// Only the bruises of this limb get treated: the core attack must not report a bleeding it did not touch
+		var/old_stop_bleeding = stop_bleeding
+		stop_bleeding = 0
+		. = ..()
+		stop_bleeding = old_stop_bleeding
+		return
 	if(!limb && patient.is_bleeding(zone))
 		bandage_stump(patient, user, zone)
 		return
 	patient.aq_bandage_zone = zone
+	patient.aq_bandage_zone_time = world.time
 	. = ..()
-	patient.aq_bandage_zone = null
 
 /obj/item/stack/medical/proc/bandage_stump(mob/living/carbon/patient, mob/user, zone)
 	if(patient in user.do_afters)
@@ -334,6 +344,10 @@
 		return
 	patient.suppress_bloodloss(stop_bleeding, zone)
 	user.visible_message("<span class='green'>[user] opatruje kikut ([strefa_pl(zone)]) [patient].</span>", "<span class='green'>Opatrujesz kikut ([strefa_pl(zone)]).</span>")
+
+/mob/living/carbon/stop_holding_wounds()
+	aq_held_bleed_zone = null
+	return ..()
 
 /// "lewa noga 1.2/s, klatka piersiowa 0.4/s" for the scanner and messages
 /mob/living/carbon/proc/aq_bleeding_zones_text(bandaged = FALSE)
@@ -365,6 +379,9 @@
 	var/list/parts = list()
 	for(var/zone in bleed.zones_by_bleeding())
 		parts += get_bodypart(zone) ? strefa_pl(zone) : "kikut ([strefa_pl(zone)])"
-	. += "<span class='warning'>Krew cieknie z: [jointext(parts, ", ")].</span>"
+	if(istype(bleed, /datum/status_effect/bleeding/robotic))
+		. += "<span class='warning'>Wycieka z: [jointext(parts, ", ")].</span>"
+	else
+		. += "<span class='warning'>Krew cieknie z: [jointext(parts, ", ")].</span>"
 
 #undef AQ_BLEED_HIT_MEMORY

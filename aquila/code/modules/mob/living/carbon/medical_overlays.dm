@@ -8,44 +8,67 @@
 
 #define AQ_MEDICAL_OVERLAY_ICON 'aquila/icons/mob/effects/medical_overlays.dmi'
 
-/// Overlay states for the medical overlays. A state starting with "!" is tinted with the blood colour.
-/mob/living/carbon/proc/aq_medical_overlay_states()
-	. = list()
-	if(!ishuman(src))
-		return
-	// Bandages: the more bleeding they hold, the more of the limb they cover
-	var/datum/status_effect/bleeding/bleed = get_bleed_status()
-	var/list/bandaged_zones = list()
-	if(bleed)
-		for(var/zone in bleed.limb_bandaged)
-			if(get_bodypart(zone))
-				bandaged_zones[zone] = bleed.limb_bandaged[zone] >= BLEED_CUT ? 3 : (bleed.limb_bandaged[zone] >= 1 ? 2 : 1)
+/mob/living/carbon
+	/// Splints, braces, wrapped wounds, stumps and the open skull: rebuilt only after aq_medical_overlays_changed()
+	var/list/aq_medical_static_states
+	/// Zones wrapped because of a treated wound (bandage stage 1 unless the bleeding asks for more)
+	var/list/aq_medical_wrapped_zones
+	var/aq_medical_states_dirty = TRUE
+
+/// Something the medical overlays show changed (wound, treatment, surgery, limb): rebuild them
+/mob/living/carbon/proc/aq_medical_overlays_changed()
+	aq_medical_states_dirty = TRUE
+	update_wound_overlays()
+
+/mob/living/carbon/proc/aq_rebuild_medical_static_states()
+	aq_medical_states_dirty = FALSE
+	aq_medical_static_states = list()
+	aq_medical_wrapped_zones = list()
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		var/zone = limb.body_zone
 		var/arm_or_leg = zone == BODY_ZONE_L_ARM || zone == BODY_ZONE_R_ARM || zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG
 		for(var/datum/wound/wound as anything in limb.wounds)
 			if(wound.wound_type == WOUND_BLUNT && wound.treated && wound.severity >= WOUND_SEVERITY_SEVERE)
 				if(arm_or_leg)
-					. += "splint_[zone]"
+					aq_medical_static_states += "splint_[zone]"
 					if(zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG)
-						. += "splint_[zone == BODY_ZONE_L_LEG ? "l" : "r"]_foot"
-				else if(!bandaged_zones[zone])
-					bandaged_zones[zone] = 1 // a splinted chest or head is wrapped
-			else if((wound.wound_type == WOUND_SLASH || wound.wound_type == WOUND_PIERCE || wound.wound_type == WOUND_BURN) && wound.treated && !bandaged_zones[zone])
-				bandaged_zones[zone] = 1
+						aq_medical_static_states += "splint_[zone == BODY_ZONE_L_LEG ? "l" : "r"]_foot"
+				else
+					aq_medical_wrapped_zones |= zone // a splinted chest or head is wrapped
+			else if((wound.wound_type == WOUND_SLASH || wound.wound_type == WOUND_PIERCE || wound.wound_type == WOUND_BURN) && wound.treated)
+				aq_medical_wrapped_zones |= zone
 			else if(istype(wound, /datum/wound/spinal/fracture))
 				var/datum/wound/spinal/fracture/spine = wound
 				if(spine.stabilized)
-					. += spine.cervical ? "brace_neck" : "brace_torso"
+					aq_medical_static_states += spine.cervical ? "brace_neck" : "brace_torso"
 		if(zone == BODY_ZONE_HEAD && LIMB_HAS_SURGERY_STATE(limb, SURGERY_BONE_SAWED))
-			. += "skull_open"
-	for(var/zone in bandaged_zones)
-		. += "bandage_[zone][bandaged_zones[zone]]"
+			aq_medical_static_states += "skull_open"
 	// Stumps of torn off limbs
 	for(var/zone in list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 		if(!get_bodypart(zone))
-			. += "!stump_[zone]_blood"
-			. += "stump_[zone]_bone"
+			aq_medical_static_states += "!stump_[zone]_blood"
+			aq_medical_static_states += "stump_[zone]_bone"
+
+/// Overlay states for the medical overlays. A state starting with "!" is tinted with the blood colour.
+/// Called on every bleeding tick, so only the bandages (their stage follows the bleeding they hold) are computed here.
+/mob/living/carbon/proc/aq_medical_overlay_states()
+	. = list()
+	if(!ishuman(src))
+		return
+	if(aq_medical_states_dirty)
+		aq_rebuild_medical_static_states()
+	. += aq_medical_static_states
+	// Bandages: the more bleeding they hold, the more of the limb they cover
+	var/list/bandaged_zones = list()
+	for(var/zone in aq_medical_wrapped_zones)
+		bandaged_zones[zone] = 1
+	var/datum/status_effect/bleeding/bleed = get_bleed_status()
+	if(bleed)
+		for(var/zone in bleed.limb_bandaged)
+			if(get_bodypart(zone))
+				bandaged_zones[zone] = bleed.limb_bandaged[zone] >= BLEED_CUT ? 3 : (bleed.limb_bandaged[zone] >= 1 ? 2 : 1)
+	for(var/zone in bandaged_zones)
+		. += "bandage_[zone][bandaged_zones[zone]]"
 
 /// Appearances for the medical overlays, plain and blood tinted
 /mob/living/carbon/proc/aq_medical_overlays(list/states, draw_layer)
@@ -69,21 +92,21 @@
 /// _wounds.dm, so a Destroy override here would run after the wound forgot its victim)
 /mob/living/carbon/update_wound_slowdown()
 	. = ..()
-	update_wound_overlays()
+	aq_medical_overlays_changed()
 
 /obj/item/bodypart/update_surgical_state(old_state, changed_states)
 	. = ..()
-	owner?.update_wound_overlays()
+	owner?.aq_medical_overlays_changed()
 
 /obj/item/bodypart/drop_limb(special)
 	var/mob/living/carbon/old_owner = owner
 	. = ..()
 	if(!QDELETED(old_owner))
-		old_owner.update_wound_overlays()
+		old_owner.aq_medical_overlays_changed()
 
 /obj/item/bodypart/attach_limb(mob/living/carbon/C, special, is_creating = FALSE)
 	. = ..()
 	if(!QDELETED(C))
-		C.update_wound_overlays()
+		C.aq_medical_overlays_changed()
 
 #undef AQ_MEDICAL_OVERLAY_ICON

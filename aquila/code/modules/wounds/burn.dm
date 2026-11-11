@@ -43,7 +43,7 @@
 	if(QDELETED(src) || treated || !dressing.use(1))
 		return FALSE
 	treated = TRUE
-	victim.update_wound_overlays() // dressing (medical_overlays.dm)
+	victim.aq_medical_overlays_changed() // dressing (medical_overlays.dm)
 	if(istype(dressing, /obj/item/stack/medical/mesh/advanced))
 		heal_time = max(heal_time, 2 MINUTES)
 	user.visible_message("<span class='green'>[user] opatruje oparzenie ([limb.name]) [victim].</span>", "<span class='green'>Opatrujesz oparzenie ([limb.name]).</span>")

@@ -75,6 +75,10 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 /mob/living/carbon/human/proc/aq_compute_pain()
 	if(stat == DEAD || HAS_TRAIT(src, TRAIT_ANALGESIA) || (status_flags & GODMODE))
 		return 0
+	// A synthetic body (IPC, full prosthetic torso) has no nerves to hurt and no adrenal glands
+	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !IS_ORGANIC_LIMB(chest))
+		return 0
 	. = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		. += aq_limb_pain(limb)
@@ -84,7 +88,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 			. += 15
 	. += getToxLoss() * 0.5 + getCloneLoss()
 	for(var/obj/item/organ/organ as anything in internal_organs)
-		if(organ.damage > 0 && organ.slot != ORGAN_SLOT_BRAIN)
+		if(organ.damage > 0 && organ.slot != ORGAN_SLOT_BRAIN && organ.status == ORGAN_ORGANIC)
 			. += organ.damage * 0.3
 	. += 5 * LAZYLEN(aq_tourniquets)
 

@@ -3133,6 +3133,7 @@
 "<span class='warning'>Wskazany obiekt nie jest mobem.</span>": "<span class='warning'>The specified object is not a mob.</span>",
 "<span class='warning'>Wskutek dziwnego promieniowania i/lub substancji chemicznych i/lub szczęśliwego trafu zyskałeś inteligencję na poziomie ludzkim oraz zdolność mówienia i rozumienia ludzkiego języka!</span>": "<span class='warning'>Due to freak radiation and/or chemicals and/or lucky chance, you have gained human level intelligence and the ability to speak and understand human language!</span>",
 "<span class='warning'>Wszystkie okienka TGUI zostały zamknięte.</span>": "<span class='warning'>All TGUI windows have been closed.</span>",
+"<span class='warning'>Wycieka z: [jointext(parts, \", \")].</span>": "<span class='warning'>Leaking from: [jointext(parts, \", \")].</span>",
 "<span class='warning'>Wyciskasz z siebie coś więcej niż bąka!</span>": "<span class='warning'>You squeeze out something more than a fart!</span>",
 "<span class='warning'>Wyczuwasz, że [owner] czyta twoje myśli.</span>": "<span class='warning'>You sense that [owner] is reading your thoughts.</span>",
 "<span class='warning'>Wyczuwasz, że ktoś wdziera się do twoich myśli...</span>": "<span class='warning'>You sense someone breaking into your thoughts...</span>",

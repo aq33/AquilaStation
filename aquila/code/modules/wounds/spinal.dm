@@ -124,7 +124,7 @@
 /// Surgery step one
 /datum/wound/spinal/fracture/proc/stabilize()
 	stabilized = TRUE
-	victim.update_wound_overlays() // brace (medical_overlays.dm)
+	victim.aq_medical_overlays_changed() // brace (medical_overlays.dm)
 	treat_text = "Kręgosłup ustabilizowany: zespól kręgi żelem kostnym albo taśmą chirurgiczną."
 
 /// Surgery step two: the nerves start regrowing

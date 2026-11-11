@@ -18025,6 +18025,7 @@
 "<span class='warning'>Wszystkie płatki odpadły z [name] od gwałtownego machania!</span>": "<span class='warning'>All the petals have fallen off the [name] from violent whacking!</span>",
 "<span class='warning'>Wszystkie ryby zdechły...</span>\\n": "<span class='warning'>All the fish are dead...</span>\\n",
 "<span class='warning'>Wszystkie zatoki rozszerzeń komputera są zajęte.</span>": "<span class='warning'>All of the computer's expansion bays are filled.</span>",
+"<span class='warning'>Wycieka z: [jointext(parts, \", \")].</span>": "<span class='warning'>Leaking from: [jointext(parts, \", \")].</span>",
 "<span class='warning'>Wycinasz [pin] z [src] za pomocą [I], topiąc przy tym część iglicy.</span>": "<span class='warning'>You spliced [pin] out of [src] with [I], melting part of the pin in the process.</span>",
 "<span class='warning'>Wyciskasz z siebie coś więcej niż bąka!</span>": "<span class='warning'>You squeeze out something more than a fart!</span>",
 "<span class='warning'>Wyciągasz zawleczkę z [src]. Przyczepiona jest do niej różowa wstążka z napisem \\\"<span class='clowntext'>HONK</span>\\\"</span>": "<span class='warning'>You pull the pin on [src]. Attached to it is a pink ribbon that says, \\\"<span class='clowntext'>HONK</span>\\\"</span>",
