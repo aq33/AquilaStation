@@ -52,7 +52,8 @@
 	TEST_ASSERT(isnull(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]), "The lightgeist picked a healthy human")
 
 	patient.adjustBruteLoss(20)
-	controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets))
+	controller.CancelActions()
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The lightgeist did not look for patients again")
 	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], patient, "The lightgeist did not pick the hurt human")
 	var/brute_before = patient.getBruteLoss()
 	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
