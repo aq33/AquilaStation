@@ -57,3 +57,44 @@
 	GLOB.ai_guns_last_resort_enabled = TRUE
 	if(wylaczone)
 		return "Zasada działała z wyłączonym przełącznikiem"
+
+/// Daleki ostrzał: cel dalej niż 50 pól tylko wtedy, gdy nasze sensory go widzą, i nie dalej niż 120 pól
+/datum/unit_test/aquila_ai_long_range_fire
+
+/datum/unit_test/aquila_ai_long_range_fire/Run()
+	var/z = run_loc_floor_bottom_left.z
+	var/obj/structure/overmap/small_craft/combat/light/ship = allocate(/obj/structure/overmap/small_craft/combat/light)
+	var/obj/structure/overmap/small_craft/combat/light/target = allocate(/obj/structure/overmap/small_craft/combat/light)
+	ship.ai_controlled = TRUE
+	ship.mass = MASS_MEDIUM // radar (lidar) mają okręty większe od myśliwca
+	target.mass = MASS_MEDIUM
+	target.faction = "syndicate"
+	ship.forceMove(locate(60, 60, z))
+	var/list/okrety = list(ship, target)
+	var/fail
+	// Radar w czasie impulsu: widzimy do max_tracking_range
+	ship.max_tracking_range = 100
+	ship.last_radar_pulse = world.time
+	target.forceMove(locate(60, 130, z)) // 70 pól
+	if(ship.get_ai_long_range_target(okrety) != target)
+		fail = "Okręt nie wybrał celu 70 pól dalej, choć jego radar go widział"
+	if(!fail)
+		target.forceMove(locate(60, 100, z)) // 40 pól: to robota zwykłego ai_fire()
+		if(ship.get_ai_long_range_target(okrety))
+			fail = "Daleki ostrzał wybrał cel w zwykłym zasięgu ognia"
+	if(!fail)
+		target.forceMove(locate(60, 195, z)) // 135 pól
+		if(ship.get_ai_long_range_target(okrety))
+			fail = "Daleki ostrzał wybrał cel dalej niż 120 pól"
+	if(!fail)
+		// Bez impulsu zimny cel 70 pól dalej jest niewidoczny
+		ship.last_radar_pulse = -INFINITY
+		target.thrust_heat = 0
+		target.inertial_dampeners = FALSE
+		target.last_weapon_fire = -INFINITY
+		target.forceMove(locate(60, 130, z))
+		if(ship.get_ai_long_range_target(okrety))
+			fail = "Okręt wybrał na daleki ostrzał cel, którego jego sensory nie widziały"
+	ship.ai_controlled = FALSE
+	if(fail)
+		return Fail(fail)
