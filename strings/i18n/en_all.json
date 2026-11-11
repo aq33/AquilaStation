@@ -8049,6 +8049,7 @@
 "<span class='notice'>Dystrybucja oprogramowania zakończona! Ulepszone kamery: pakiet wzmocnionej inwigilacji aktywny.</span>": "<span class='notice'>OTA firmware distribution complete! Cameras upgraded: Enhanced surveillance package online.</span>",
 "<span class='notice'>Dysza wskakuje z powrotem na zbiornik!</span>": "<span class='notice'>The nozzle snaps back onto the tank!</span>",
 "<span class='notice'>Działa też jako znacznik IFF: kule członków tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego.</span>": "<span class='notice'>It also works as an IFF tag: bullets fired by this squad's members miss the wearer, unless someone aims right at them.</span>",
+"<span class='notice'>Działa też jako znacznik IFF: kule osób noszących smycz tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego. Bez smyczy na szyi IFF nie działa.</span>": "<span class='notice'>It also works as an IFF tag: bullets fired by people wearing this squad's lanyard miss the wearer, unless someone aims right at them. IFF does not work without the lanyard around your neck.</span>",
 "<span class='notice'>Dzienniki skanera zostały wyczyszczone.</span>": "<span class='notice'>The scanner logs are cleared.</span>",
 "<span class='notice'>Dziwne mrowienie mija.</span>": "The strange tingling feeling fades.",
 "<span class='notice'>Dziwne uczucie mija.</span>": "<span class='notice'>The off sensation passes.</span>",
