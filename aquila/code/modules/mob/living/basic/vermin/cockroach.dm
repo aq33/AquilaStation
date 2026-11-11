@@ -45,7 +45,8 @@
 
 /mob/living/basic/cockroach/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/death_drops, list(/obj/effect/decal/cleanable/insectguts))
+	var/static/list/death_loot = list(/obj/effect/decal/cleanable/insectguts) // AQUILA: one list for every roach (bespoke element)
+	AddElement(/datum/element/death_drops, death_loot)
 	if(is_squashable)
 		AddComponent(/datum/component/squashable, squash_chance = 50, squash_damage = 1)
 

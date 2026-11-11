@@ -40,7 +40,15 @@
 /mob/living/basic/pet/dog/corgi/Initialize(mapload)
 	. = ..()
 	update_appearance()
-	AddElement(/datum/element/strippable, length(strippable_inventory_slots) ? create_strippable_list(strippable_inventory_slots) : GLOB.strippable_corgi_items)
+	// AQUILA: one strippable list per corgi type (bespoke element, a fresh list per puppy made a new element each)
+	var/static/list/strippable_lists_by_type = list()
+	var/list/strippable_items = GLOB.strippable_corgi_items
+	if(length(strippable_inventory_slots))
+		strippable_items = strippable_lists_by_type[type]
+		if(!strippable_items)
+			strippable_items = create_strippable_list(strippable_inventory_slots)
+			strippable_lists_by_type[type] = strippable_items
+	AddElement(/datum/element/strippable, strippable_items)
 	RegisterSignals(src, list(COMSIG_BASICMOB_LOOK_ALIVE, COMSIG_BASICMOB_LOOK_DEAD), PROC_REF(on_appearance_change))
 	if(can_breed)
 		add_breeding_component()

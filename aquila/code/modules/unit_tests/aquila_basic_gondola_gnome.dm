@@ -42,4 +42,56 @@
 	TEST_ASSERT(vandal in victim.ai_controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The hit gnome does not fight back")
 	TEST_ASSERT(vandal in friend.ai_controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The gnome next to it does not fight back")
 
+/// The gondola drops one hide, the gondola pod two, whichever of them spawned first (they shared one loot list before)
+/datum/unit_test/aquila_gondola_loot_per_type
+
+/datum/unit_test/aquila_gondola_loot_per_type/Run()
+	var/turf/pod_floor = run_loc_floor_bottom_left
+	var/turf/floor = get_step(pod_floor, EAST)
+	// The pod first: before the fix the gondola then dropped the pod's two hides
+	var/obj/structure/closet/supplypod/centcompod/pod = allocate(/obj/structure/closet/supplypod/centcompod, pod_floor)
+	var/mob/living/basic/pet/gondola/gondolapod/courier = allocate(/mob/living/basic/pet/gondola/gondolapod, pod_floor, pod)
+	var/mob/living/basic/pet/gondola/gondola = allocate(/mob/living/basic/pet/gondola, floor)
+	var/list/before = pod_floor.contents.Copy() + floor.contents.Copy()
+	courier.death()
+	gondola.death()
+	allocated += (pod_floor.contents + floor.contents) - before
+	TEST_ASSERT(count_hides(pod_floor) == 2, "The gondola pod dropped [count_hides(pod_floor)] hides instead of 2")
+	TEST_ASSERT(count_hides(floor) == 1, "The gondola dropped [count_hides(floor)] hides instead of 1")
+
+/datum/unit_test/aquila_gondola_loot_per_type/proc/count_hides(turf/floor)
+	. = 0
+	for(var/obj/item/stack/sheet/animalhide/gondola/hide in floor)
+		. += hide.amount
+
+/// A gnome sinks only once at a time, and an interrupted or deleted sink does not end up sunk or runtime
+/datum/unit_test/aquila_gnome_sinking_interrupted
+
+/datum/unit_test/aquila_gnome_sinking_interrupted/Run()
+	var/turf/floor = run_loc_floor_bottom_left
+	var/mob/living/basic/garden_gnome/gnome = allocate(/mob/living/basic/garden_gnome, floor)
+	var/datum/component/ground_sinking/sinking = gnome.GetComponent(/datum/component/ground_sinking)
+	TEST_ASSERT(sinking, "The gnome cannot sink into the ground")
+	sinking.sink_speed = 0.5 SECONDS
+
+	sinking.sinked = TRUE
+	sinking.start_sinking(gnome)
+	TEST_ASSERT(!sinking.is_sinking, "A sunk gnome started sinking again")
+	sinking.unsink()
+
+	sinking.start_sinking(gnome)
+	TEST_ASSERT(sinking.is_sinking, "The gnome did not start sinking")
+	sleep(0.2 SECONDS)
+	gnome.forceMove(get_step(floor, EAST))
+	sleep(2 SECONDS)
+	TEST_ASSERT(!sinking.sinked, "A gnome that moved while sinking ended up sunk")
+	TEST_ASSERT(!sinking.is_sinking, "A gnome that moved while sinking is still sinking")
+	TEST_ASSERT(gnome.density, "A gnome that moved while sinking is not dense")
+
+	sinking.start_sinking(gnome)
+	sleep(0.2 SECONDS)
+	qdel(gnome)
+	sleep(2 SECONDS)
+	TEST_ASSERT(QDELETED(sinking), "The sinking component outlived its gnome")
+
 #undef TEST_ASSERT

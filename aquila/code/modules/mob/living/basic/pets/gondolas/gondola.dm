@@ -29,20 +29,24 @@
 	basic_mob_flags = DEL_ON_DEATH
 	gold_core_spawnable = FRIENDLY_SPAWN // AQUILA: our gondolas come from gold cores
 
-	///List of loot drops on death, since it deletes itself on death (like trooper).
-	var/list/loot = list(
+/mob/living/basic/pet/gondola/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/pet_bonus, "uśmiecha się!")
+	AddElement(/datum/element/death_drops, get_death_loot())
+	create_gondola()
+
+/**
+ * Loot drops on death, since it deletes itself on death (like trooper).
+ * AQUILA: one static list per type. Bee's string_list() keys the cache by the paths alone, so the gondola and the
+ * gondola pod (same paths, other counts) shared whichever list was made first.
+ */
+/mob/living/basic/pet/gondola/proc/get_death_loot()
+	var/static/list/loot = list(
 		/obj/effect/decal/cleanable/blood/gibs = 1,
 		/obj/item/stack/sheet/animalhide/gondola = 1,
 		/obj/item/food/meat/slab/gondola = 1,
 	)
-
-/mob/living/basic/pet/gondola/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/pet_bonus, "uśmiecha się!")
-	if(LAZYLEN(loot))
-		loot = string_list(loot)
-		AddElement(/datum/element/death_drops, loot)
-	create_gondola()
+	return loot
 
 /mob/living/basic/pet/gondola/proc/create_gondola()
 	icon_state = null
