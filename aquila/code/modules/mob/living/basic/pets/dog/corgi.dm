@@ -40,7 +40,15 @@
 /mob/living/basic/pet/dog/corgi/Initialize(mapload)
 	. = ..()
 	update_appearance()
-	AddElement(/datum/element/strippable, length(strippable_inventory_slots) ? create_strippable_list(strippable_inventory_slots) : GLOB.strippable_corgi_items)
+	// AQUILA: one strippable list per corgi type (bespoke element, a fresh list per puppy made a new element each)
+	var/static/list/strippable_lists_by_type = list()
+	var/list/strippable_items = GLOB.strippable_corgi_items
+	if(length(strippable_inventory_slots))
+		strippable_items = strippable_lists_by_type[type]
+		if(!strippable_items)
+			strippable_items = create_strippable_list(strippable_inventory_slots)
+			strippable_lists_by_type[type] = strippable_items
+	AddElement(/datum/element/strippable, strippable_items)
 	RegisterSignals(src, list(COMSIG_BASICMOB_LOOK_ALIVE, COMSIG_BASICMOB_LOOK_DEAD), PROC_REF(on_appearance_change))
 	if(can_breed)
 		add_breeding_component()
@@ -340,10 +348,18 @@
 		var/json_file = file("data/npc_saves/Ian.json")
 		if(!fexists(json_file))
 			return
-		var/list/json = json_decode(rustg_file_read(json_file))
-		age = json["age"]
-		record_age = json["record_age"]
-		saved_head = json["saved_head"]
+		var/list/json
+		// AQUILA: a corrupt save is removed and Ian starts as a puppy, instead of a runtime in Initialize()
+		try
+			json = json_decode(rustg_file_read(json_file))
+		catch
+			json = null
+		if(!islist(json))
+			fdel(json_file)
+		else
+			age = json["age"]
+			record_age = json["record_age"]
+			saved_head = json["saved_head"]
 	if(isnull(age))
 		age = 0
 	if(isnull(record_age))

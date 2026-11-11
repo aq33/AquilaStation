@@ -1,4 +1,5 @@
 // AQUILA: synced with BeeStation/BeeStation-Hornet (bee/master 0adf0fe9ae), see "AI core sync" in aquila/LEGACY_OVERRIDES.md
+// No dog_harassment subtree: nothing gives TRAIT_HATED_BY_DOGS here, it only cost an oview(2) per dog.
 /datum/ai_controller/basic_controller/dog
 	blackboard = list(
 		BB_DOG_HARASS_HARM = TRUE,
@@ -10,7 +11,6 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/random_speech/dog,
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/dog_harassment,
 	)
 
 /**
@@ -29,7 +29,6 @@
 		/datum/ai_planning_subtree/random_speech/dog,
 		/datum/ai_planning_subtree/make_babies, // Ian WILL prioritise sex over following your instructions
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/dog_harassment,
 	)
 
 /datum/ai_controller/basic_controller/dog/corgi/get_access()
@@ -48,6 +47,5 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/random_speech/dog,
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/dog_harassment,
 		/datum/ai_planning_subtree/flee_target,
 	)

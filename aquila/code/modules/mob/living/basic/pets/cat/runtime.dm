@@ -67,7 +67,15 @@
 		var/json_file = file(RUNTIME_JSON_DATA)
 		if(!fexists(json_file))
 			return
-		var/list/json_list = json_decode(rustg_file_read(json_file))
+		var/list/json_list
+		// AQUILA: a corrupt save is removed and Runtime comes alone, instead of a runtime in Initialize()
+		try
+			json_list = json_decode(rustg_file_read(json_file))
+		catch
+			json_list = null
+		if(!islist(json_list))
+			fdel(json_file)
+			return
 		saved_family = json_list["family"]
 	family = list()
 	for(var/saved_type in saved_family)

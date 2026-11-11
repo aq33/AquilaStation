@@ -1,6 +1,7 @@
 // AQUILA: taming synced with BeeStation/BeeStation-Hornet code/game/objects/items/carp_lasso.dm (bee/master 0adf0fe9ae),
 // see "AI core sync" in aquila/LEGACY_OVERRIDES.md. A tamed mob gets the dog AI and pet commands (obeys_commands) instead of
-// our old tamed AI and its radial. Our names, whitelists, unlimited uses and riding component (riding/tamed) stay.
+// our old tamed AI and its radial. Our names, unlimited uses and riding component (riding/tamed) stay; the space lasso whitelist
+// is Bee's (root paths only: no magicarp, chaos carp, Cayenne, holocarp, moonicorn or wisdom cow).
 /obj/item/mob_lasso
 	name = "kosmiczne lasso"
 	desc = "Standardowe wyposażenie każdego kosmicznego kowboja.\nPozwala oswajać kosmiczne karpie."
@@ -38,9 +39,11 @@
 /obj/item/mob_lasso/proc/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
 		/mob/living/simple_animal/hostile/carp,
+		/mob/living/simple_animal/hostile/carp/megacarp,
+		/mob/living/simple_animal/hostile/carp/lia,
 		/mob/living/basic/cow, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/retaliate/dolphin,
-	))
+	), only_root_path = TRUE)
 
 /obj/item/mob_lasso/afterattack(atom/target, mob/living/user, proximity_flag, click_parameters)
 	. = ..()
@@ -76,7 +79,7 @@
 /// Bee: the tamed mob acts like a dog and takes pet commands (Alt+click or speech) from its friends
 /obj/item/mob_lasso/proc/tame_target(mob/living/C, mob/living/user)
 	C.transform = C.transform.Turn(-180)
-	set_target_ai(C, TRUE)
+	set_target_ai(C, TRUE, tamed = TRUE)
 	//Riding and Tamed
 	C.tamed(user)
 	C.setup_tamed_riding() // our riding/tamed component with the old offsets
@@ -84,7 +87,9 @@
 		QDEL_NULL(C.ai_controller)
 	C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
 	C.AddComponent(/datum/component/obeys_commands, pet_commands)
-	C.befriend(user)
+	// AQUILA: a mob tamed again is already a friend (faction), so befriend() stops early and the new controller had no friends
+	if(!C.befriend(user))
+		C.ai_controller.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, user)
 	//Faction - overwrites the faction code from befriend()
 	user.faction |= "carpboy_[user]"
 	C.faction = list(FACTION_NEUTRAL) //So the mob doesn't go back to mauling everyone
@@ -100,10 +105,15 @@
 		timer = null
 
 /// Lassoed mobs stop thinking until they are tamed or break free
-/obj/item/mob_lasso/proc/set_target_ai(mob/living/C, on)
+/obj/item/mob_lasso/proc/set_target_ai(mob/living/C, on, tamed = FALSE)
 	if(isanimal(C))
 		var/mob/living/simple_animal/simple_target = C
-		simple_target.toggle_ai(on ? AI_ON : AI_OFF)
+		// AQUILA: a tamed simple animal is driven by the dog controller only; its own wandering and hunting stay off for good
+		if(tamed)
+			simple_target.toggle_ai(AI_OFF)
+			simple_target.can_have_ai = FALSE
+		else
+			simple_target.toggle_ai(on ? AI_ON : AI_OFF)
 	if(on)
 		REMOVE_TRAIT(C, TRAIT_AI_PAUSED, REF(src))
 	else
@@ -125,6 +135,7 @@
 /obj/item/mob_lasso/proc/handle_hard_del()
 	SIGNAL_HANDLER
 	mob_target = null
+	deltimer(timer) // AQUILA: the old timer freed the next lassoed mob early
 	timer = null
 
 ///Primal version, allows lavaland goobers to tame goliaths

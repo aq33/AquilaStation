@@ -45,14 +45,56 @@
 	TEST_ASSERT(QDELETED(cheese), "Mouse AI did not eat the cheese")
 	TEST_ASSERT(mouse.full, "Mouse is not full after the cheese")
 
-	// Decision D8: the royal cheese still turns a mouse into a regal rat, now through its own signals
+	// Decision D8: the royal cheese still turns a mouse into a regal rat: put on the mouse
 	var/obj/item/food/royalcheese/crown = allocate(/obj/item/food/royalcheese, right)
 	crown.forceMove(bare)
 	TEST_ASSERT(QDELETED(mouse), "Mouse did not change after getting the royal cheese")
 	var/mob/living/simple_animal/hostile/regalrat/king = locate() in bare
 	TEST_ASSERT(king, "Royal cheese did not make a regal rat")
 	qdel(king)
+
+	// ...and lying next to an AI mouse: the mouse hunts it like cheese and gets crowned
+	var/mob/living/basic/mouse/subject = allocate(/mob/living/basic/mouse, bare)
+	var/obj/item/food/royalcheese/second_crown = allocate(/obj/item/food/royalcheese, right)
+	var/datum/ai_controller/subject_controller = subject.ai_controller
+	for(var/i in 1 to 100)
+		subject_controller.SelectBehaviors(1)
+		for(var/datum/ai_behavior/behavior as anything in subject_controller.current_behaviors)
+			subject_controller.ProcessBehavior(1, behavior)
+		if(QDELETED(subject))
+			break
+		sleep(1)
+	TEST_ASSERT(QDELETED(second_crown), "The AI mouse did not go for the royal cheese next to it")
+	TEST_ASSERT(QDELETED(subject), "The AI mouse that ate the royal cheese did not change")
+	var/mob/living/simple_animal/hostile/regalrat/second_king = locate() in (bare.contents + right.contents)
+	TEST_ASSERT(second_king, "The royal cheese hunted by the AI made no regal rat")
+	qdel(second_king)
 	bare.ChangeTurf(old_turf_type)
+
+/// The cheese buff of a player mouse lasts 3 minutes from when it was eaten; a mouse once possessed does not bite cables
+/datum/unit_test/aquila_mouse_cheese_buff_and_ghost_cables
+
+/datum/unit_test/aquila_mouse_cheese_buff_and_ghost_cables/Run()
+	var/mob/living/basic/mouse/mouse = allocate(/mob/living/basic/mouse, run_loc_floor_bottom_left)
+	mouse.cheese_up()
+	TEST_ASSERT(mouse.cheesed, "The cheese did nothing")
+	TEST_ASSERT(mouse.cheese_time >= world.time + 3 MINUTES - 1, "The cheese wears off at [mouse.cheese_time], before world.time + 3 minutes")
+	mouse.handle_stomach()
+	TEST_ASSERT(mouse.cheesed, "The cheese wore off right after eating it")
+	mouse.cheese_time = world.time - 1
+	mouse.handle_stomach()
+	TEST_ASSERT(!mouse.cheesed, "The cheese never wears off")
+
+	var/datum/ai_planning_subtree/find_and_hunt_target/look_for_cables/cable_subtree = new
+	var/datum/ai_behavior/find_hunt_target/mouse_cable/cable_finder = GET_AI_BEHAVIOR(/datum/ai_behavior/find_hunt_target/mouse_cable)
+	cable_subtree.hunt_chance = 100
+	mouse.chews_cables = FALSE
+	cable_subtree.SelectBehaviors(mouse.ai_controller, 1)
+	TEST_ASSERT(!mouse.ai_controller.current_behaviors[cable_finder], "A mouse once possessed by a ghost looks for cables to bite")
+	mouse.chews_cables = TRUE
+	cable_subtree.SelectBehaviors(mouse.ai_controller, 1)
+	TEST_ASSERT(mouse.ai_controller.current_behaviors[cable_finder], "An AI mouse does not look for cables at all")
+	qdel(cable_subtree)
 
 /// Walking over a cockroach can squash it; the strong one from xenoarchaeology cannot be squashed
 /datum/unit_test/aquila_cockroach_squash

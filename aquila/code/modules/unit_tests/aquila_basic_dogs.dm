@@ -81,6 +81,28 @@
 	lasso.set_target_ai(wild, TRUE)
 	TEST_ASSERT(!HAS_TRAIT(wild, TRAIT_AI_PAUSED), "A freed mob kept its AI paused")
 
+	// The tamed simple animal does not wander or hunt on its own beside the dog controller
+	TEST_ASSERT_EQUAL(carp.AIStatus, AI_OFF, "The tamed carp kept its own simple animal AI")
+	carp.toggle_ai(AI_ON)
+	TEST_ASSERT_EQUAL(carp.AIStatus, AI_OFF, "The tamed carp's own AI woke up again")
+
+	// Taming the same carp again (it is already a friend) leaves the cowboy on the new controller's friend list
+	lasso.tame_target(carp, cowboy)
+	TEST_ASSERT(cowboy in carp.ai_controller.blackboard[BB_FRIENDS_LIST], "A carp tamed again has no friends on its new controller")
+
+	// A lassoed mob deleted while flipped takes its release timer with it
+	lasso.mob_target = wild
+	var/release_timer = addtimer(CALLBACK(lasso, TYPE_PROC_REF(/obj/item/mob_lasso, fail_ally)), 6 SECONDS, TIMER_STOPPABLE)
+	lasso.timer = release_timer
+	lasso.handle_hard_del()
+	TEST_ASSERT(!SStimer.timer_id_dict[release_timer], "The release timer of a deleted lassoed mob is still running")
+
+	// Only the root types: no magicarp, Cayenne or wisdom cow
+	var/mob/living/simple_animal/hostile/carp/ranged/magicarp = allocate(/mob/living/simple_animal/hostile/carp/ranged, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	TEST_ASSERT(!lasso.check_allowed(magicarp), "The space lasso accepts a magicarp")
+	var/mob/living/basic/cow/wisdom/wise_cow = allocate(/mob/living/basic/cow/wisdom, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	TEST_ASSERT(!lasso.check_allowed(wise_cow), "The space lasso accepts the wisdom cow")
+
 #undef IAN_SAVE_PATH
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

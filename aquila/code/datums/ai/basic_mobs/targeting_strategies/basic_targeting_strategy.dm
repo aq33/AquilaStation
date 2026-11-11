@@ -73,6 +73,11 @@
 			return FALSE
 		return TRUE
 
+	// AQUILA: food picked by find_food (BB_BASIC_FOODS) can be attacked, which eats it. Without this the goat (vines,
+	// glowshrooms) and the snake (dead mice) chose food they could never attack and stood next to it forever.
+	if(is_type_in_typecache(the_target, our_controller.blackboard[BB_BASIC_FOODS]))
+		return TRUE
+
 	return FALSE
 
 /// Subtype more forgiving for items.

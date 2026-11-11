@@ -1,7 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/components/growth_and_differentiation.dm (BeeStation/BeeStation-Hornet#14771, tg port)
 // We have no COMSIG_TICKER_ROUND_STARTING: a mob mapped in before the round starts and given a growth_time waits for the round
 // through SSticker.OnRoundstart() instead. Bee also forgot to unregister the kill signals; the growth keeps the old mob's
-// name only when it was renamed (Bee always set the new type's name, which wiped e.g. a collar tag).
+// name only when it was renamed (Bee always set the new type's name, which wiped e.g. a collar tag) and always keeps its
+// faction (a var-edited faction from the map, e.g. the Syndicate penguin chick on Hammurabi2).
 /**
  * ### Growth and Differentiation Component: Used to randomly "grow" a creature into a new entity over its lifespan.
  *
@@ -148,4 +149,8 @@
 	if(!silent)
 		old_mob.visible_message(span_warning("[old_mob] dorasta!"))
 
-	return old_mob.change_mob_type(growth_path, old_mob.loc, new_name = new_mob_name, delete_old_mob = TRUE)
+	var/list/old_faction = old_mob.faction?.Copy()
+	var/mob/living/grown_mob = old_mob.change_mob_type(growth_path, old_mob.loc, new_name = new_mob_name, delete_old_mob = TRUE)
+	if(isliving(grown_mob) && old_faction)
+		grown_mob.faction = old_faction
+	return grown_mob

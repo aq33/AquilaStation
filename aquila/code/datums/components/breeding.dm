@@ -72,6 +72,10 @@
 
 	addtimer(CALLBACK(src, PROC_REF(toggle_status), source), breed_timer)
 	post_birth?.Invoke(baby, target)
+	// AQUILA: only the male starts breeding (make_babies), so the partner's callback has to run too or Runtime never counts her kittens
+	var/datum/component/breed/partner_breeding = target.GetComponent(/datum/component/breed)
+	if(partner_breeding && partner_breeding != src)
+		partner_breeding.post_birth?.Invoke(baby, source)
 	return COMPONENT_HOSTILE_NO_ATTACK
 
 /datum/component/breed/proc/toggle_status(mob/living/source)

@@ -90,4 +90,43 @@
 	if(old_save)
 		rustg_file_write(old_save, save_path)
 
+/// A corrupt security dog save gives a new dog and is removed; the test chamber Tyson neither reads nor writes the ship dog's save
+/datum/unit_test/aquila_security_dog_save_safety
+	/// Whatever save was there before the test, put back in Destroy()
+	var/old_save
+
+/datum/unit_test/aquila_security_dog_save_safety/Run()
+	var/save_path = "data/npc_saves/security_dog.json"
+	old_save = fexists(save_path) ? rustg_file_read(save_path) : null
+
+	fdel(save_path)
+	rustg_file_write("{\"name\": \"Rex\", broken", save_path)
+	var/list/on_duty = requisition_security_dog()
+	TEST_ASSERT(islist(on_duty) && on_duty["name"] && ispath(on_duty["breed"]), "A corrupt save gave no dog")
+	TEST_ASSERT(!fexists(save_path), "The corrupt save was kept")
+
+	// The ship dog's save stays as it was, whatever the test chamber dog does
+	var/ship_save = "{\"name\":\"Walter\",\"gender\":\"male\",\"breed\":\"/mob/living/basic/pet/dog/bullterrier\",\"tenure\":7}"
+	rustg_file_write(ship_save, save_path)
+	var/turf/kennel = run_loc_floor_bottom_left
+	var/list/before = kennel.contents.Copy()
+	new /mob/living/basic/pet/dog/bullterrier/tyson/test_chamber(kennel)
+	var/mob/living/basic/pet/dog/dog = locate() in (kennel.contents - before)
+	TEST_ASSERT(dog, "The test chamber Tyson did not report for duty")
+	allocated += dog
+	var/datum/component/security_dog/duty = dog.GetComponent(/datum/component/security_dog)
+	TEST_ASSERT(duty, "The test chamber dog has no security posting")
+	TEST_ASSERT(duty.tenure == 0, "The test chamber dog took the ship dog's tenure")
+	duty.check_survival()
+	TEST_ASSERT(rustg_file_read(save_path) == ship_save, "The test chamber dog overwrote the ship dog's save")
+	dog.death()
+	TEST_ASSERT(fexists(save_path), "The dead test chamber dog deleted the ship dog's save")
+
+/datum/unit_test/aquila_security_dog_save_safety/Destroy()
+	var/save_path = "data/npc_saves/security_dog.json"
+	fdel(save_path)
+	if(old_save)
+		rustg_file_write(old_save, save_path)
+	return ..()
+
 #undef TEST_ASSERT

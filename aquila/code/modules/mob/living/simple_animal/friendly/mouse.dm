@@ -31,6 +31,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		return .
 
 	if(!key)
+		var/obj/item/food/royalcheese/royal_cheese = locate() in loc
+		if(royal_cheese)
+			eat_royal_cheese(royal_cheese)
+			return .
 		eat_cheese()
 	else
 		if(!(locate(/obj/structure/table) in get_turf(src)))
@@ -117,7 +121,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/basic/mouse/proc/cheese_up()
 	if(cheesed)
-		cheese_time = cheese_time + 3 MINUTES
+		cheese_time = max(cheese_time, world.time) + 3 MINUTES
 		return
 	cheesed = TRUE
 	regen_health(15)
@@ -127,7 +131,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, "<span class='userdanger'>Zjadasz ser! Jesteś teraz silniejsza, większa i szybsza!</span>")
-	cheese_time = cheese_time + 3 MINUTES
+	cheese_time = max(cheese_time, world.time) + 3 MINUTES
 
 /mob/living/basic/mouse/proc/cheese_down()
 	cheesed = FALSE

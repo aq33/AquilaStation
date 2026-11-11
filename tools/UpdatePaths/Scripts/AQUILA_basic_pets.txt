@@ -1,5 +1,5 @@
 # Basic moby (BeeStation/BeeStation-Hornet#14771): lis, pingwiny, chomik, leniwce.
-# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku. Zmapowane pisklęta pingwinów nie dorastają (jak w Bee).
+# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku. Zmapowane pisklęta pingwinów dorastają (inaczej niż w Bee) i zachowują frakcję z mapy (pingwin Syndykatu na Hammurabi2).
 /mob/living/simple_animal/pet/fox/Renault : /mob/living/basic/pet/fox/renault{@OLD}
 /mob/living/simple_animal/pet/fox/@SUBTYPES : /mob/living/basic/pet/fox/@SUBTYPES{@OLD}
 /mob/living/simple_animal/pet/penguin/baby : /mob/living/basic/pet/penguin/baby{@OLD}

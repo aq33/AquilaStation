@@ -54,15 +54,34 @@
 	var/mob/living/basic/goat/goat = allocate(/mob/living/basic/goat, run_loc_floor_bottom_left)
 	TEST_ASSERT(goat.ai_controller.blackboard[BB_BASIC_FOODS][/obj/structure/spacevine], "The goat AI does not look for space vines")
 	var/obj/structure/glowshroom/shroom = allocate(/obj/structure/glowshroom, get_step(run_loc_floor_bottom_left, EAST))
-	// The AI attacks food; the goat bites plants instead of hitting them
-	goat.melee_attack(shroom, ignore_cooldown = TRUE)
-	TEST_ASSERT(QDELETED(shroom), "The goat did not eat the glowshroom it attacked")
+	// Through the AI: find_food picks the glowshroom and the melee attack bites it (it stood next to it forever before)
+	run_ai_until_deleted(goat, shroom)
+	TEST_ASSERT(QDELETED(shroom), "The goat AI did not eat the glowshroom next to it")
+
+	// The snake AI eats a dead mouse lying next to it the same way
+	var/mob/living/basic/snake/snake = allocate(/mob/living/basic/snake, get_step(run_loc_floor_bottom_left, NORTH))
+	var/obj/item/food/deadmouse/snack = allocate(/obj/item/food/deadmouse, get_step(snake, NORTH))
+	run_ai_until_deleted(snake, snack)
+	TEST_ASSERT(QDELETED(snack), "The snake AI did not eat the dead mouse next to it")
+
+/// Plans and runs the AI of the eater (off without clients) until the food is gone or 10 s pass
+/datum/unit_test/aquila_goat_eats_vines/proc/run_ai_until_deleted(mob/living/basic/eater, atom/food)
+	var/datum/ai_controller/controller = eater.ai_controller
+	for(var/i in 1 to 100)
+		controller.SelectBehaviors(1)
+		for(var/datum/ai_behavior/behavior as anything in controller.current_behaviors)
+			controller.ProcessBehavior(1, behavior)
+		if(QDELETED(food))
+			return
+		sleep(1)
 
 /// Fed chickens lay eggs, fertile eggs hatch into chicks, chicks grow into chickens, and max_chickens caps all of it
 /datum/unit_test/aquila_chicken_cycle
+	/// max_chickens before the test, put back in Destroy() also when an assertion fails halfway
+	var/old_cap
 
 /datum/unit_test/aquila_chicken_cycle/Run()
-	var/old_cap = CONFIG_GET(number/max_chickens)
+	old_cap = CONFIG_GET(number/max_chickens)
 	var/turf/floor = run_loc_floor_bottom_left
 	var/mob/living/carbon/human/farmer = allocate(/mob/living/carbon/human, floor)
 	var/mob/living/basic/chicken/hen = allocate(/mob/living/basic/chicken, get_step(floor, EAST))
@@ -135,7 +154,36 @@
 	// Dead chickens do not count
 	grown.death()
 	TEST_ASSERT_EQUAL(GLOB.total_chickens, chickens_before, "A dead chicken still counts")
-	CONFIG_SET(number/max_chickens, old_cap)
+
+/datum/unit_test/aquila_chicken_cycle/Destroy()
+	if(!isnull(old_cap))
+		CONFIG_SET(number/max_chickens, old_cap)
+	return ..()
+
+/// The gutlunch uses the udder component: eating gibs fills it, a beaker milks it
+/datum/unit_test/aquila_gutlunch_udder
+
+/datum/unit_test/aquila_gutlunch_udder/Run()
+	var/turf/floor = run_loc_floor_bottom_left
+	var/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/guthen = allocate(/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen, floor)
+	var/datum/component/udder/udder_component = guthen.GetComponent(/datum/component/udder)
+	TEST_ASSERT(udder_component, "The gutlunch has no udder component")
+	TEST_ASSERT_EQUAL(udder_component.udder.reagents.total_volume, 0, "The gutlunch udder does not start empty")
+	for(var/i in 1 to 20)
+		var/obj/effect/decal/cleanable/blood/gibs/gibs = new(get_step(floor, EAST))
+		guthen.target = gibs
+		guthen.AttackingTarget()
+		TEST_ASSERT(QDELETED(gibs), "The gutlunch did not eat the gibs")
+		if(udder_component.udder.reagents.total_volume)
+			break
+	TEST_ASSERT(udder_component.udder.reagents.total_volume > 0, "Eating gibs did not fill the gutlunch udder")
+
+	var/mob/living/carbon/human/farmer = allocate(/mob/living/carbon/human, get_step(floor, NORTH))
+	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
+	farmer.put_in_active_hand(beaker)
+	beaker.melee_attack_chain(farmer, guthen)
+	TEST_ASSERT(beaker.reagents.total_volume > 0, "Milking the gutlunch gave nothing")
+	TEST_ASSERT_EQUAL(guthen.health, guthen.maxHealth, "Milking the gutlunch also hit it")
 
 /// The mapped mascots and holodeck animals keep what the maps gave them through var edits before
 /datum/unit_test/aquila_basic_farm_mapped

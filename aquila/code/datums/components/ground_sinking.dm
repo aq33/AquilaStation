@@ -78,16 +78,24 @@
 
 /// Start processing health regeneration, and show animation if provided
 /datum/component/ground_sinking/proc/start_sinking(mob/living/basic/living_target)
-	if(!sinked || is_sinking)
-		is_sinking = TRUE
-		INVOKE_ASYNC(src, PROC_REF(sink_once), living_target)
+	// AQUILA: Bee's `!sinked || is_sinking` let a second sink start while one was running
+	if(sinked || is_sinking)
+		return
+	is_sinking = TRUE
+	INVOKE_ASYNC(src, PROC_REF(sink_once), living_target)
 
 /datum/component/ground_sinking/proc/sink_once(mob/living/basic/living_target)
 	living_target.visible_message(span_notice("[living_target] zaczyna zapadać się w ziemię!"))
 	for(var/i in 1 to 3)
-		if(do_after(living_target, sink_speed, target = living_target)) // AQUILA: our do_after takes needhand third
-			sink_count += 1
-			living_target.icon_state = "[target_icon_state]_burried_[sink_count]"
+		// AQUILA: an interrupted sink (moved, hit, died) or a deleted gnome stops here instead of ending up sunk (Bee kept going)
+		if(!do_after(living_target, sink_speed, target = living_target)) // AQUILA: our do_after takes needhand third
+			if(!QDELETED(src) && is_sinking)
+				unsink()
+			return
+		if(QDELETED(src) || QDELETED(living_target) || !is_sinking)
+			return
+		sink_count += 1
+		living_target.icon_state = "[target_icon_state]_burried_[sink_count]"
 	sink_count = 0
 	is_sinked(living_target)
 
@@ -107,6 +115,8 @@
 	living_target.damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	living_target.density = TRUE
 	sinked = FALSE
+	is_sinking = FALSE // AQUILA: an interrupted sink can start again
+	sink_count = 0
 
 /datum/component/ground_sinking/proc/start_regenerating()
 	var/mob/living/basic/living_parent = parent

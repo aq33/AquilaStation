@@ -117,6 +117,7 @@
 /mob/living/basic/chicken/proc/egg_laid(obj/item/egg)
 	if(!fertile || !chicken_cap_free() || !prob(25))
 		return
+	var/static/list/hatch_locations = typecacheof(list(/turf)) // AQUILA: one typecache for every egg
 	egg.AddComponent(\
 		/datum/component/fertile_egg, \
 		embryo_type = /mob/living/basic/chick, \
@@ -124,7 +125,7 @@
 		maximum_growth_rate = 2, \
 		total_growth_required = 200, \
 		current_growth = 0, \
-		location_allowlist = typecacheof(list(/turf)), \
+		location_allowlist = hatch_locations, \
 		spoilable = TRUE, \
 		can_hatch = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(chicken_cap_free)), \
 	)
@@ -212,7 +213,8 @@
 
 /// We don't grow into a chicken if we're not conscious.
 /mob/living/basic/chick/proc/ready_to_grow()
-	return (stat == CONSCIOUS) && !istype(loc, /obj/item/clothing/head/mob_holder)
+	// AQUILA: only on a turf: grown in a carrier or an explorer drone loot box the adult was stuck outside its occupants
+	return (stat == CONSCIOUS) && isturf(loc)
 
 /mob/living/basic/chick/proc/update_chicken_count(counted)
 	if(counted_chicken == counted)

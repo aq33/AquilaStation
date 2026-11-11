@@ -50,6 +50,7 @@
 	M.layer = BELOW_OPEN_DOOR_LAYER //ENGAGE ADVANCED HIDING BRAIN FUNCTIONS
 	M.language_holder = new /datum/language_holder/mouse(M)
 	M.pass_flags |= PASSDOOR
+	M.chews_cables = FALSE //so they cant pull off a big brain play by ghosting somewhere or idk
 	M.sentience_act()
 	M.maxHealth = 15
 	M.health = M.maxHealth

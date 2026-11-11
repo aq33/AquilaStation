@@ -2,16 +2,28 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// A penguin chick grows into an emperor penguin; holodeck and mapped penguin chicks do not grow
+/// A penguin chick grows into an emperor penguin (only on a turf, keeping its faction); holodeck penguin chicks do not grow
 /datum/unit_test/aquila_penguin_chick_grows
 
 /datum/unit_test/aquila_penguin_chick_grows/Run()
 	var/mob/living/basic/pet/penguin/baby/chick = allocate(/mob/living/basic/pet/penguin/baby, run_loc_floor_bottom_left)
 	var/datum/component/growth_and_differentiation/growth = chick.GetComponent(/datum/component/growth_and_differentiation)
 	TEST_ASSERT(growth, "The penguin chick cannot grow up")
+	// A mapped chick with a var-edited faction (Hammurabi2) keeps it when it grows
+	chick.faction = list("Syndicate")
+
+	// Not inside a container: the adult would be stuck outside the container's occupants (explorer drone loot box)
+	var/obj/structure/closet/crate/box = allocate(/obj/structure/closet/crate, get_step(run_loc_floor_bottom_left, NORTH))
+	chick.forceMove(box)
+	TEST_ASSERT(isnull(growth.grow(TRUE)), "The penguin chick grew up inside a crate")
+	TEST_ASSERT(!QDELETED(chick) && chick.loc == box, "The penguin chick left the crate when it tried to grow")
+	TEST_ASSERT(growth.ready_to_grow, "The penguin chick gave up growing instead of waiting for a turf")
+	chick.forceMove(run_loc_floor_bottom_left)
+
 	var/mob/living/basic/pet/penguin/emperor/adult = growth.grow(TRUE)
 	TEST_ASSERT(istype(adult), "The penguin chick grew into [adult?.type] instead of an emperor penguin")
 	allocated += adult
+	TEST_ASSERT("Syndicate" in adult.faction, "The grown penguin lost the faction of the chick")
 	TEST_ASSERT(adult.GetComponent(/datum/component/waddling), "The grown penguin does not waddle")
 	var/mob/living/basic/pet/penguin/baby/permanent/holo = allocate(/mob/living/basic/pet/penguin/baby/permanent, get_step(run_loc_floor_bottom_left, EAST))
 	TEST_ASSERT(!holo.GetComponent(/datum/component/growth_and_differentiation), "A permanent penguin chick grows up")

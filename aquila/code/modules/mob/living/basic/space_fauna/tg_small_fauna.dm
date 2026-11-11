@@ -66,8 +66,7 @@
 	health = 250
 	melee_damage = 15
 	response_help_continuous = "głaszcze"
-	unsuitable_atmos_damage = 1
-	minimum_survivable_temperature = 250
+	// AQUILA: no atmos or cold damage, like the bat it is (the old simple animal's oxygen and CO2 vars were never used)
 	gold_core_spawnable = NO_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/space_bat/araneus
 

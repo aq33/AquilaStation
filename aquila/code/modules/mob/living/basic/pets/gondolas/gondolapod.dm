@@ -12,12 +12,6 @@
 	layer = TABLE_LAYER //so that deliveries dont appear underneath it
 	gold_core_spawnable = NO_SPAWN
 
-	loot = list(
-		/obj/effect/decal/cleanable/blood/gibs = 1,
-		/obj/item/stack/sheet/animalhide/gondola = 2,
-		/obj/item/food/meat/slab/gondola = 2,
-	)
-
 	///Boolean on whether the pod is currently open, and should appear such.
 	var/opened = FALSE
 	///The supply pod attached to the gondola, that actually holds the contents of our delivery.
@@ -27,6 +21,14 @@
 	linked_pod = pod || new(src)
 	name = linked_pod.name
 	return ..()
+
+/mob/living/basic/pet/gondola/gondolapod/get_death_loot()
+	var/static/list/loot = list(
+		/obj/effect/decal/cleanable/blood/gibs = 1,
+		/obj/item/stack/sheet/animalhide/gondola = 2,
+		/obj/item/food/meat/slab/gondola = 2,
+	)
+	return loot
 
 /mob/living/basic/pet/gondola/gondolapod/death(gibbed)
 	QDEL_NULL(linked_pod) //Will cause the open() proc for the linked supplypod to be called with the "broken" parameter set to true, meaning that it will dump its contents on death
@@ -41,7 +43,7 @@
 		. += "[icon_state]_open"
 
 /mob/living/basic/pet/gondola/gondolapod/verb/deliver()
-	set name = "Release Contents"
+	set name = "Wypuść zawartość"
 	set category = "Gondola"
 	set desc = "Wypuść wszystko, co przechowujesz w swoim przepastnym brzuchu."
 	linked_pod.open_pod(src, forced = TRUE)
@@ -54,7 +56,7 @@
 		. += "<span class='notice'>Wygląda na to, że już dostarczył przesyłkę.</b></span>"
 
 /mob/living/basic/pet/gondola/gondolapod/verb/check()
-	set name = "Count Contents"
+	set name = "Policz zawartość"
 	set category = "Gondola"
 	set desc = "Zajrzyj głęboko w siebie i policz, co jest w środku."
 	var/total = contents.len

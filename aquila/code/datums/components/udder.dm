@@ -1,7 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/components/udder.dm (bee/master 0adf0fe9ae), decision D9.
 // We have no item_interaction chain, so milking goes through COMSIG_PARENT_ATTACKBY; our milk containers are reagent_containers/glass.
 // Cows, goats and sheep are basic mobs with this component (their udder items are next to them). The gutlunch stays a simple animal
-// and keeps its own /obj/item/udder through generateMilk()/milkAnimal() below (the old API, now wrappers).
+// with this component too (as in Bee); its udder is below and gets fed from the gutlunch's AttackingTarget() (our simple animals
+// send no COMSIG_HOSTILE_PRE_ATTACKINGTARGET).
 /**
  * Udder component; for farm animals to generate milk.
  *
@@ -103,7 +104,6 @@
  */
 /obj/item/udder/proc/initial_conditions()
 	reagents.add_reagent(reagent_produced_typepath, 20)
-	// AQUILA: udders of simple animals are filled from their Life() through generateMilk()
 	if(udder_mob)
 		START_PROCESSING(SSobj, src)
 
@@ -134,10 +134,36 @@
 	else
 		to_chat(user, span_danger("Wymię jest puste. Zaczekaj jeszcze trochę..."))
 
-/// Old udder API of our simple animal gutlunch: called from its Life()
-/obj/item/udder/proc/generateMilk()
-	generate()
+/**
+ * # gutlunch udder subtype (Bee)
+ *
+ * Starts empty, fills only when the gutlunch eats gibs and organs; a full guthen breeds and empties it.
+ */
+/obj/item/udder/gutlunch
+	name = "worek odżywczy"
 
-/// Old udder API of our simple animals: milking with a container
-/obj/item/udder/proc/milkAnimal(obj/O, mob/user)
-	milk(O, user)
+/obj/item/udder/gutlunch/initial_conditions()
+	if(!udder_mob)
+		return
+	if(udder_mob.gender == FEMALE)
+		START_PROCESSING(SSobj, src)
+
+/obj/item/udder/gutlunch/process(delta_time)
+	var/mob/living/simple_animal/hostile/asteroid/gutlunch/gutlunch = udder_mob
+	if(reagents.total_volume != reagents.maximum_volume)
+		return
+	if(gutlunch.make_babies())
+		reagents.clear_reagents()
+		//usually this would be a callback but this is a specifically gutlunch feature so fuck it, gutlunch specific proccall
+		gutlunch.regenerate_icons(reagents.total_volume, reagents.maximum_volume)
+
+/obj/item/udder/gutlunch/generate()
+	var/made_something = FALSE
+	if(prob(60))
+		reagents.add_reagent(/datum/reagent/consumable/cream, rand(2, 5))
+		made_something = TRUE
+	if(prob(45))
+		reagents.add_reagent(/datum/reagent/medicine/salglu_solution, rand(2,5))
+		made_something = TRUE
+	if(made_something && on_generate_callback)
+		on_generate_callback.Invoke(reagents.total_volume, reagents.maximum_volume)
