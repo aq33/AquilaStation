@@ -70,7 +70,7 @@
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
 
 /obj/structure/spawner/lavaland/fugu
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
 
 /obj/structure/spawner/lavaland/asteroid_goliath
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)

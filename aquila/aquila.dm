@@ -2058,6 +2058,8 @@
 #include "code\modules\mob\living\basic\space_fauna\netherworld.dm"
 #include "code\datums\elements\lifesteal.dm"
 #include "code\modules\mob\living\basic\jungle\venus_human_trap.dm"
+#include "code\datums\elements\wall_tearer.dm"
+#include "code\modules\mob\living\basic\space_fauna\wumborian_fugu.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

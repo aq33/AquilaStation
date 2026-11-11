@@ -65,7 +65,7 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
@@ -91,4 +91,4 @@
 /obj/structure/spawner/mining/wumborian
 	name = "legowisko wumboriańskich fugu"
 	desc = "Legowisko z gniazdem wumboriańskich fugu. Jak one się tam w ogóle mieszczą?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby

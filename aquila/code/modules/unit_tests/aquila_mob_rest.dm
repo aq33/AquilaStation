@@ -159,6 +159,41 @@
 		qdel(player)
 		qdel(prey)
 
+/// A wumborian fugu's AI inflates when it has a target (invulnerable, stronger, tears walls) and deflates when the effect ends;
+/// a fugu gland makes a basic mob bigger and stronger
+/datum/unit_test/aquila_wumborian_fugu
+
+/datum/unit_test/aquila_wumborian_fugu/Run()
+	var/mob/living/basic/wumborian_fugu/fugu = allocate(/mob/living/basic/wumborian_fugu, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	var/datum/ai_controller/controller = fugu.ai_controller
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The fugu did not look for targets")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The fugu did not pick the human")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/targeted_mob_ability), "The fugu's AI did not plan to inflate")
+	var/datum/status_effect/inflated/wumbo = fugu.has_status_effect(/datum/status_effect/inflated)
+	TEST_ASSERT(wumbo, "The fugu did not inflate")
+	TEST_ASSERT(fugu.status_flags & GODMODE, "The inflated fugu is not invulnerable")
+	TEST_ASSERT(fugu.melee_damage > 0, "The inflated fugu does no damage")
+	TEST_ASSERT(HAS_TRAIT(fugu, TRAIT_FUGU_GLANDED), "The inflated fugu has no glanded trait")
+	var/health_before = fugu.health
+	fugu.adjustBruteLoss(30)
+	TEST_ASSERT_EQUAL(fugu.health, health_before, "The inflated fugu took damage")
+	qdel(wumbo)
+	TEST_ASSERT(!(fugu.status_flags & GODMODE), "The deflated fugu stayed invulnerable")
+	TEST_ASSERT_EQUAL(fugu.melee_damage, 0, "The deflated fugu kept its damage")
+	TEST_ASSERT_EQUAL(fugu.icon_state, "Fugu0", "The deflated fugu kept the inflated sprite")
+	controller.CancelActions()
+
+	// The gland works on basic mobs
+	var/mob/living/basic/blankbody/blank = allocate(/mob/living/basic/blankbody, get_step(run_loc_floor_bottom_left, NORTH))
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	var/obj/item/fugu_gland/gland = allocate(/obj/item/fugu_gland, user.loc)
+	var/old_max = blank.maxHealth
+	gland.afterattack(blank, user, TRUE)
+	TEST_ASSERT(blank.maxHealth > old_max, "The fugu gland did not toughen a basic mob")
+	TEST_ASSERT(HAS_TRAIT(blank, TRAIT_FUGU_GLANDED), "The fugu gland did not mark the basic mob")
+	TEST_ASSERT(QDELETED(gland), "The fugu gland was not used up")
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS
