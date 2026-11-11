@@ -326,5 +326,22 @@
 	TEST_ASSERT(victim.stat == DEAD, "ciało samobójcy żyje")
 	victim_mind.remove_antag_datum(/datum/antagonist/cult)
 
+/// Martwy mob zachowuje tag z atom/New. Nowy tag w /mob/dead/Initialize() psuł weakrefy utworzone przed ..()
+/// (ekran powitalny new_player przy wejściu w trakcie startu serwera): verb_callback porzucał wtedy każdą akcję okna gracza.
+/datum/unit_test/aquila_dead_mob_keeps_tag
+
+/mob/dead/aq_test_early_weakref
+	/// Weakref utworzony przed ..() w Initialize(), jak przy ekranie powitalnym new_player
+	var/datum/weakref/early_ref
+
+/mob/dead/aq_test_early_weakref/Initialize(mapload)
+	early_ref = WEAKREF(src)
+	return ..()
+
+/datum/unit_test/aquila_dead_mob_keeps_tag/Run()
+	var/mob/dead/aq_test_early_weakref/ghost = allocate(/mob/dead/aq_test_early_weakref, run_loc_floor_bottom_left)
+	TEST_ASSERT(ghost.early_ref, "No weakref was created before ..()")
+	TEST_ASSERT_EQUAL(ghost.early_ref.resolve(), ghost, "Weakref made before /mob/dead/Initialize() does not resolve, the tag changed")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
