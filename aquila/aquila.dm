@@ -2116,6 +2116,7 @@
 #include "code\modules\unit_tests\foambox_fill_sprites.dm"
 #include "code\modules\unit_tests\perf_log_columns.dm"
 #include "code\modules\unit_tests\polish_content.dm"
+#include "code\modules\unit_tests\pr610_sounds_colours.dm"
 #include "code\modules\unit_tests\portal_storm_kurwinox.dm"
 #include "code\modules\unit_tests\recipe_surgery_lookup.dm"
 #include "code\modules\unit_tests\pulse_demon.dm"

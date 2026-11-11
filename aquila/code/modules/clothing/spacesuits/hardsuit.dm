@@ -186,8 +186,10 @@
 	return atom_colours[WASHABLE_COLOUR_PRIORITY]
 
 /obj/item/clothing/update_atom_colour()
+	var/old_color = color
 	. = ..()
-	update_slot_icon()
+	if(color != old_color)
+		update_slot_icon()
 
 /obj/item/clothing/suit/space/hardsuit/add_atom_colour(coloration, colour_priority)
 	. = ..()

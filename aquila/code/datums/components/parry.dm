@@ -109,7 +109,7 @@
 	if(!(attack_type in parryable_attack_types))
 		return NONE
 	var/time_since_parry = world.time - time_parried
-	if(time_since_parry > parry_time_out_time || !can_parry_now() || source.stat != CONSCIOUS)
+	if(time_since_parry > parry_time_out_time || !can_parry_now() || source.stat != CONSCIOUS || source.incapacitated())
 		return NONE
 	if(armour_penetration >= 100)
 		return NONE

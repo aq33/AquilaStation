@@ -9,6 +9,13 @@
 	// Tylko przedmioty w rękach. Ubrania (reaktywne pancerze, tarcze hardsuitów) działają jak dotąd
 	if(!istype(owner) || !(src in owner.held_items))
 		return ..()
+	// Przedmioty z komponentami reagującymi na trafienie (shielded, explodable, squeak) działają jak dotąd:
+	// przerwa bloku i ciosy nie do zablokowania dotyczą tylko zwykłego bloku bronią
+	if(LAZYACCESS(comp_lookup, COMSIG_ITEM_HIT_REACT))
+		. = ..()
+		if(.)
+			parry_feedback(owner, "blok!")
+		return
 	if(isitem(hitby))
 		var/obj/item/hitting_item = hitby
 		if((hitting_item.block_flags & BLOCKING_UNBLOCKABLE) && !(block_flags & BLOCKING_UNBLOCKABLE))

@@ -140,7 +140,10 @@
 
 /datum/looping_sound/exhaustion_panting/sound_loop(starttime)
 	var/mob/living/carbon/breather = parent
-	if(!istype(breather) || breather.stat >= UNCONSCIOUS || HAS_TRAIT(breather, TRAIT_MUTE))
+	if(!istype(breather) || breather.stat == DEAD)
+		stop() // martwy już nie złapie oddechu, więc on_stamina_update może pętli nie zatrzymać
+		return
+	if(breather.stat >= UNCONSCIOUS || HAS_TRAIT(breather, TRAIT_MUTE))
 		return
 	return ..()
 
