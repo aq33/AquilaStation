@@ -318,12 +318,33 @@
 	patient.blood_volume = BLOOD_VOLUME_NORMAL
 	patient.bleed(20)
 	TEST_ASSERT(QDELETED(T.liquids), "A single small bleed made a puddle")
-	for(var/i in 1 to 10)
+	for(var/i in 1 to 20)
 		if(!QDELETED(T.liquids))
 			break
 		patient.bleed(20)
-	TEST_ASSERT(!QDELETED(T.liquids), "Bleeding over 50 units onto one tile did not make a puddle")
+	TEST_ASSERT(!QDELETED(T.liquids), "Bleeding 400 units onto one tile did not make a puddle")
 	TEST_ASSERT(T.liquids.liquid_group.reagents.has_reagent(/datum/reagent/blood), "Puddle from bleeding has no blood")
+	// Kałuża krwi nie rozchodzi się od razu na sąsiednie kafelki (zgłoszenie: krzyż z 5 kafelków pod ciałem)
+	var/datum/liquid_group/blood_group = T.liquids.liquid_group
+	blood_group.update_volume_cache()
+	blood_group.check_edges(T)
+	blood_group.process_cached_edges()
+	TEST_ASSERT(length(blood_group.members) == 1, "A [round(blood_group.total_reagent_volume)] unit blood puddle spread onto [length(blood_group.members)] tiles")
+	aquila_liquids_cleanup(T)
+	// Woda nie jest gęsta, więc rozlewa się jak dotąd
+	T.add_liquid(/datum/reagent/water, 60)
+	TEST_ASSERT(!T.liquids.liquid_group.is_viscous(), "Water counts as a viscous liquid")
+	aquila_liquids_cleanup(T)
+	// Do kałuży trafia tylko część krwi: wykrwawienie się jednego ciała to kilka kafelków, nie kilkadziesiąt
+	patient.blood_volume = BLOOD_VOLUME_NORMAL
+	patient.unpooled_blood = 0
+	for(var/i in 1 to 500)
+		if(patient.blood_volume < 20)
+			break
+		patient.bleed(BLOOD_VOLUME_NORMAL)
+	TEST_ASSERT(patient.blood_volume < 20, "Test setup: the body did not bleed out ([round(patient.blood_volume)] units left)")
+	TEST_ASSERT(!QDELETED(T.liquids?.liquid_group), "A body that bled out left no puddle")
+	TEST_ASSERT(T.liquids.liquid_group.total_reagent_volume <= BLOOD_VOLUME_NORMAL * 0.3, "A body that bled out pooled [round(T.liquids.liquid_group.total_reagent_volume)] units of blood")
 	aquila_liquids_cleanup(T)
 
 /// AQUILA - zatkana toaleta: spłukanie przelewa wodę i zawartość muszli na podłogę

@@ -102,7 +102,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/emergency
-	group = "Emergency"
+	group = "Sytuacje awaryjne"
 
 /datum/supply_pack/emergency/vehicle
 	name = "Zestaw gangu motocyklowego" //TUNNEL SNAKES OWN THIS TOWN
@@ -366,7 +366,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/security
-	group = "Security"
+	group = "Ochrona"
 	access = ACCESS_SECURITY
 	access_budget = ACCESS_SECURITY
 	crate_type = /obj/structure/closet/crate/secure/gear
@@ -579,7 +579,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/security/armory
-	group = "Armory"
+	group = "Zbrojownia"
 	access = ACCESS_ARMORY
 	access_budget = ACCESS_ARMORY
 	crate_type = /obj/structure/closet/crate/secure/weapon
@@ -870,7 +870,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/engineering
-	group = "Engineering"
+	group = "Inżynieria"
 	crate_type = /obj/structure/closet/crate/engineering
 	access_budget = ACCESS_ENGINE
 
@@ -1161,7 +1161,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/engine
-	group = "Engine Construction"
+	group = "Budowa silnika"
 	access = ACCESS_ENGINE_EQUIP //NSV13 - Do your hecking jobs
 	crate_type = /obj/structure/closet/crate/engineering
 	access_budget = ACCESS_ENGINE
@@ -1335,7 +1335,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/materials
-	group = "Canisters & Materials"
+	group = "Kanistry i materiały"
 
 /datum/supply_pack/materials/cardboard50
 	name = "50 arkuszy tektury"
@@ -1521,7 +1521,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/medical
-	group = "Medical"
+	group = "Medycyna"
 	access_budget = ACCESS_MEDICAL
 	crate_type = /obj/structure/closet/crate/medical
 
@@ -1769,7 +1769,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/science
-	group = "Science"
+	group = "Nauka"
 	access_budget = ACCESS_RESEARCH
 	crate_type = /obj/structure/closet/crate/science
 
@@ -1908,7 +1908,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/service
-	group = "Service"
+	group = "Służba"
 
 /datum/supply_pack/service/cargo_supples
 	name = "Skrzynia zaopatrzenia magazynu"
@@ -2158,7 +2158,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/organic
-	group = "Food & Hydroponics"
+	group = "Żywność i hydroponika"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/hydroponics/beekeeping_suits
@@ -2484,7 +2484,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/critter
-	group = "Livestock"
+	group = "Zwierzęta"
 	crate_type = /obj/structure/closet/crate/critter
 
 /datum/supply_pack/critter/parrot
@@ -2672,7 +2672,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/costumes_toys
-	group = "Costumes & Toys"
+	group = "Kostiumy i zabawki"
 
 /datum/supply_pack/costumes_toys/randomised
 	name = "Skrzynia kolekcjonerskich kapeluszy"
@@ -3056,7 +3056,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/misc
-	group = "Miscellaneous Supplies"
+	group = "Różności"
 
 /datum/supply_pack/misc/artsupply
 	name = "Przybory plastyczne"

@@ -78,6 +78,8 @@
 
 /// Rozlanie poniżej tej ilości na kafelek robi zwykły rozprysk (plama, mokra podłoga), od niej powstaje kałuża
 #define LIQUID_SPILL_THRESHOLD 50
+/// Gęsta ciecz (krew) rozlewa się na sąsiedni kafelek dopiero, gdy na każdy kafelek kałuży wypada tyle jednostek
+#define LIQUID_VISCOUS_SPREAD_PER_TURF 50
 /// Po tym czasie bez nowego rozlania pamięć małych rozlań na kafelku przepada
 #define LIQUID_RESIDUE_DECAY_TIME (5 MINUTES)
 

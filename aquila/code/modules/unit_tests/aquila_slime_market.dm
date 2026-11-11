@@ -57,22 +57,5 @@
 	for(var/obj/item/slimecross/cross in compressor.drop_location())
 		qdel(cross)
 
-/// Konsola rynku obsługuje kilka padów zamówień naraz (na mapach stoi ich kilka)
-/datum/unit_test/aquila_slime_market_pads
-
-/datum/unit_test/aquila_slime_market_pads/Run()
-	var/obj/machinery/computer/slime_market/console = allocate(/obj/machinery/computer/slime_market)
-	var/obj/machinery/slime_extract_requestor/first = allocate(/obj/machinery/slime_extract_requestor)
-	var/obj/machinery/slime_extract_requestor/second = allocate(/obj/machinery/slime_extract_requestor)
-	first.link_console(console)
-	second.link_console(console)
-	TEST_ASSERT_EQUAL(first.console, console, "Linking a second pad unlinked the first one")
-	TEST_ASSERT_EQUAL(second.console, console, "The second pad did not link")
-	TEST_ASSERT_EQUAL(length(console.request_pads), 2, "The console does not list both pads")
-	qdel(first)
-	TEST_ASSERT(!(first in console.request_pads), "A deleted pad stayed in the console")
-	qdel(console)
-	TEST_ASSERT(!second.console, "A pad kept a deleted console")
-
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

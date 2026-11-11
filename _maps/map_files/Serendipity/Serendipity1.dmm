@@ -392,10 +392,6 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
-"aN" = (
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/grass/fairy/yellow,
-/area/crew_quarters/dorms/nsv/nature_deck)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3006,6 +3002,16 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/apothecary)
+"iI" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/genetics/cloning)
 "iJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3353,6 +3359,10 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
+"ka" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/ship,
+/area/medical/genetics/cloning)
 "kb" = (
 /obj/item/wrench/medical,
 /obj/structure/table/glass/plasma,
@@ -5554,6 +5564,30 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/carpet/ship,
 /area/medical/morgue)
+"rH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/light/floor,
+/obj/machinery/duct,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/nsv/trauma)
 "rK" = (
 /obj/structure/table/wood,
 /obj/structure/window/plasma/reinforced/spawner,
@@ -6231,10 +6265,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
-"tO" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/genetics/cloning)
 "tP" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/tiled/light,
@@ -7492,31 +7522,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
-"xZ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/light/floor,
-/obj/machinery/duct,
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/nsv/trauma)
 "ya" = (
 /obj/machinery/door/airlock/ship/security{
 	id_tag = "pw_fd_inner";
@@ -13100,6 +13105,13 @@
 /obj/item/circuitboard/aicore,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+"RC" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/structure/sign/departments/minsky/research/genetics{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/genetics/cloning)
 "RD" = (
 /obj/item/toy/plush/moth,
 /obj/structure/falsewall/durasteel{
@@ -15065,19 +15077,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
-"Yi" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz,
-/obj/structure/sign/departments/minsky/research/genetics{
-	pixel_x = -29
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/medical/genetics/cloning)
 "Yj" = (
 /obj/machinery/munitions_forge/arc_forge,
 /turf/open/floor/engine,
@@ -44714,7 +44713,7 @@ Ww
 ZS
 nv
 nv
-nv
+ka
 pB
 nv
 nv
@@ -44970,8 +44969,8 @@ Ia
 ZH
 YX
 nv
-tO
-Yi
+RC
+iI
 vr
 xr
 wA
@@ -45480,7 +45479,7 @@ AR
 rM
 FT
 RZ
-xZ
+rH
 cD
 cD
 UC
@@ -48069,7 +48068,7 @@ Kb
 Jz
 Jz
 DX
-aN
+gg
 oP
 MR
 Vr
