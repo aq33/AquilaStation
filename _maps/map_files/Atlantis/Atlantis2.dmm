@@ -998,6 +998,16 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/security)
+"aaa" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/monotile/steel,
+/area/medical/storage)
 "aZA" = (
 /obj/machinery/door/airlock/ship/station/mining{
 	name = "Cargo Bay";
@@ -3031,6 +3041,10 @@
 /obj/structure/railing/corner,
 /turf/open/openspace,
 /area/engine/engineering)
+"cPv" = (
+/obj/machinery/smartfridge/genetics,
+/turf/closed/wall/steel,
+/area/medical/genetics)
 "cPF" = (
 /obj/structure/chair/fancy/sofa/mono/left,
 /obj/machinery/duct,
@@ -3512,10 +3526,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/medical/storage)
-"drc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/genetics)
 "drB" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -11015,6 +11025,10 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"kPI" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
 "kQe" = (
 /obj/item/stack/ore/glass,
 /obj/item/stack/ore/copper,
@@ -15338,11 +15352,6 @@
 /obj/effect/spawner/lootdrop/maintenance/five,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port/aft)
-"pKY" = (
-/obj/structure/extinguisher_cabinet/north,
-/obj/machinery/slime_extract_requestor,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
 "pLh" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -51246,7 +51255,7 @@ fAR
 qyN
 fAR
 hcT
-pKY
+kPI
 sux
 sux
 sux
@@ -62849,7 +62858,7 @@ sUt
 sUt
 sUt
 fbE
-drc
+cPv
 vcI
 fbE
 cvE
@@ -66960,7 +66969,7 @@ dvl
 oPt
 jUa
 bXC
-gKn
+aaa
 dSv
 tMB
 uPf

@@ -13,6 +13,7 @@
 
 /// Pager trzymał komponent kanału, a ten przez akcję wracał do pagera: cykl referencji, cała trójka wisiała do hard delete
 /obj/item/squad_pager/Destroy()
+	GLOB.aq_squad_pagers -= src
 	squad_channel = null
 	squad = null
 	return ..()

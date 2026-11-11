@@ -14,11 +14,12 @@
 	if(!.)
 		return
 
+	// Promieniowanie z Bee#13442 (wersja z tego PR)
 	var/atom/atom_parent = component_parent.parent
-	radiation_pulse(atom_parent, component_parent.trait_strength * 3, can_contaminate = FALSE)
+	radiation_pulse(atom_parent, max_range = 4, threshold = RAD_FULL_INSULATION, intensity = component_parent.trait_strength * 0.25)
 
 	for(var/atom/target in focus)
-		target.rad_act(250)
+		SSradiation.irradiate(target, intensity = 25)
 
 	dump_targets()
 	clear_focus()

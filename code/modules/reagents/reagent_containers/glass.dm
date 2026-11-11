@@ -51,7 +51,7 @@
 				to_chat(user, "<span class='notice'>Wypijasz łyk z [src].</span>")
 			var/fraction = min(5/reagents.total_volume, 1)
 			reagents.reaction(M, INGEST, fraction)
-			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, 5), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to_ingested), M, 5), 5) // AQ EDIT - organy z Bee: łyk trafia do żołądka
 			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
@@ -91,7 +91,13 @@
 		if(user.combat_mode)
 			user.visible_message("<span class='danger'>[user] chlusta zawartością [src] na [target]!</span>", \
 								"<span class='notice'>Chlustasz zawartością [src] na [target].</span>")
-			reagents.reaction(target, TOUCH)
+			// AQ EDIT START - ciecze z Monke: chlust na podłogę przez spill_reagents (rozprysk albo kałuża)
+			if(isopenturf(target))
+				var/turf/open/splash_turf = target
+				splash_turf.spill_reagents(reagents)
+			else
+				reagents.reaction(target, TOUCH)
+			// AQ EDIT END
 			reagents.clear_reagents()
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)

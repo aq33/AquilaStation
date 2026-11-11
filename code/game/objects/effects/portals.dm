@@ -54,7 +54,7 @@
 /obj/effect/portal/Bumped(atom/movable/bumper)
 	teleport(bumper)
 
-/obj/effect/portal/newtonian_move(direction, instant = FALSE) // Prevents portals spawned by jaunter/handtele from floating into space when relocated to an adjacent tile.
+/obj/effect/portal/newtonian_move(direction, instant = FALSE, start_delay = 0) // Prevents portals spawned by jaunter/handtele from floating into space when relocated to an adjacent tile. (AQ EDIT - start_delay, port BeeStation/BeeStation-Hornet#14864)
 	return TRUE
 
 /obj/effect/portal/CanAllowThrough(atom/movable/mover, border_dir)

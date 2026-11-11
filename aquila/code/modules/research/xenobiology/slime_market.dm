@@ -1,7 +1,7 @@
 // Rynek ekstraktów szlamu (port SLIMECORE z Monkestation 2.0, Monkestation/Monkestation2.0#1442).
 // Zastępuje maszynę do plortów. Pad skupuje ekstrakty za xenobio points i daje punkty badań jak dawniej,
 // ale cena każdego koloru spada przy sprzedaży i rośnie, gdy sprzedaje się inne kolory.
-// Za punkty kupuje się rzeczy w sklepie konsoli rynku. Pad zamówień pozwala załodze zamawiać ekstrakty za kredyty.
+// Za punkty kupuje się rzeczy w sklepie konsoli rynku. Załodze ekstrakty sprzedaje automat ekstraktów (extract_requestor.dm).
 
 /// O ile procent spada cena sprzedanego ekstraktu (losowo między MIN a MAX)
 #define SLIME_SELL_MODIFIER_MIN -0.08
@@ -109,7 +109,7 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 		. += "<span class='notice'>Wyświetlacz stanu pokazuje: dane badawcze za <b>[research_point_multiplier * 100]%</b> wartości rdzeni.</span>"
 	if(panel_open)
 		. += "<span class='notice'>Panel jest <i>odkręcony</i>.</span>"
-	. += "<span class='notice'>Zamówienia załogi realizujesz, wkładając pasujący ekstrakt. Ceny i sklep są w konsoli rynku szlamów.</span>"
+	. += "<span class='notice'>Ceny i sklep są w konsoli rynku szlamów. Ekstrakty dla załogi wystawiasz w automacie ekstraktów.</span>"
 
 /obj/machinery/slime_market_pad/update_overlays()
 	. = ..()
@@ -128,8 +128,6 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 		return ..()
 
 	if(istype(W, /obj/item/slime_extract))
-		if(try_fill_request(W, user))
-			return
 		flick("[base_icon_state]_vend", src)
 		var/earned = sell_extract(W)
 		to_chat(user, "<span class='notice'>Sprzedajesz [W] za [earned] pkt xenobio.</span>")
@@ -159,86 +157,23 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 	linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, round(extract.plort_value * ratio * research_point_multiplier))
 	return GLOB.slime_market.sell(extract.type)
 
-/// Gdy któreś zamówienie czeka na taki ekstrakt, pyta, czy go sprzedać, czy oddać do zamówienia. TRUE = obsłużone.
-/obj/machinery/slime_market_pad/proc/try_fill_request(obj/item/slime_extract/extract, mob/user)
-	var/list/choices = list()
-	var/list/choice_to_request = list()
-	// Wszystkie pady zamówień, bo nie każdy musi być połączony z domyślną konsolą stacji
-	for(var/obj/machinery/slime_extract_requestor/request_pad in GLOB.machines)
-		for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
-			if(request.extract_path != extract.type || request.ready_for_pickup)
-				continue
-			// Numer z przodu, bo dwie osoby o tym samym imieniu mogą zamówić to samo
-			var/label = "[length(choices) + 1]. [request.request_name]"
-			choices[label] = image(icon = extract.icon, icon_state = extract.icon_state)
-			choice_to_request[label] = request
-	if(!length(choices))
-		return FALSE
-	choices["Sprzedaj"] = image(icon = 'icons/obj/economy.dmi', icon_state = "spacecash100")
-	var/choice = show_radial_menu(user, src, choices, require_near = TRUE, tooltips = TRUE)
-	if(!choice || QDELETED(extract) || !user.is_holding(extract))
-		return TRUE
-	if(choice == "Sprzedaj")
-		return FALSE
-	var/datum/extract_request_data/chosen = choice_to_request[choice]
-	if(QDELETED(chosen) || chosen.ready_for_pickup)
-		return TRUE
-	chosen.add_extract()
-	flick("[base_icon_state]_vend", src)
-	to_chat(user, "<span class='notice'>Oddajesz [extract] do zamówienia: [chosen.request_name].</span>")
-	qdel(extract)
-	return TRUE
-
-GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
-
 /obj/machinery/computer/slime_market
 	name = "konsola rynku szlamów"
-	desc = "Konsola rynku ekstraktów szlamu: aktualne ceny, zamówienia załogi i sklep za punkty xenobio."
+	desc = "Konsola rynku ekstraktów szlamu: aktualne ceny i sklep za punkty xenobio."
 	icon = 'aquila/icons/obj/xenobiology/slime_market.dmi'
 	icon_state = "market"
 	icon_screen = "market_screen"
 	icon_keyboard = null
 	light_color = LIGHT_COLOR_LAVENDER
 	circuit = /obj/item/circuitboard/computer/slime_market
-	/// Pady zamówień, z których załoga zamawia ekstrakty
-	var/list/obj/machinery/slime_extract_requestor/request_pads = list()
 	var/static/list/slime_shop_items
 
 /obj/machinery/computer/slime_market/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	if(!GLOB.default_slime_market && is_station_level(z))
-		GLOB.default_slime_market = src
 	if(!slime_shop_items)
 		slime_shop_items = list()
 		for(var/datum/slime_store_item/item_type as anything in subtypesof(/datum/slime_store_item))
 			slime_shop_items += new item_type
-
-/obj/machinery/computer/slime_market/Destroy()
-	if(GLOB.default_slime_market == src)
-		GLOB.default_slime_market = null
-	for(var/obj/machinery/slime_extract_requestor/pad as anything in request_pads)
-		pad.console = null
-	request_pads.Cut()
-	// Zamówienia pamiętają konsolę, z którą je złożono (pad mógł być potem połączony z inną): bez tego harddel,
-	// a anulowane zamówienie oddawałoby ekstrakty do skasowanej konsoli zamiast na pad
-	for(var/obj/machinery/slime_extract_requestor/pad in GLOB.machines)
-		for(var/datum/extract_request_data/request as anything in pad.current_requests)
-			if(request.linked_console == src)
-				request.linked_console = null
-	return ..()
-
-/obj/machinery/computer/slime_market/multitool_act(mob/living/user, obj/item/I)
-	var/obj/item/multitool/M = I
-	if(!istype(M))
-		return FALSE
-	if(!istype(M.buffer, /obj/machinery/slime_extract_requestor) || QDELETED(M.buffer)) // pad z bufora mógł zostać rozebrany
-		M.buffer = src
-		to_chat(user, "<span class='notice'>Zapisujesz [src] w buforze multitoola.</span>")
-		return TRUE
-	var/obj/machinery/slime_extract_requestor/pad = M.buffer
-	pad.link_console(src)
-	to_chat(user, "<span class='notice'>Łączysz [pad] z [src].</span>")
-	return TRUE
 
 /obj/machinery/computer/slime_market/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -274,22 +209,6 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 			"price" = GLOB.slime_market.get_price(core),
 			"ratio" = GLOB.slime_market.get_price_ratio(core),
 		))
-	data["requests"] = list()
-	for(var/obj/machinery/slime_extract_requestor/pad as anything in request_pads)
-		for(var/datum/extract_request_data/request as anything in pad.current_requests)
-			var/obj/item/request_item = request.extract_path
-			data["requests"] += list(list(
-				"name" = request.request_name,
-				"ref" = REF(request),
-				"icon" = initial(request_item.icon),
-				"icon_state" = initial(request_item.icon_state),
-				"amount" = request.extracts_needed,
-				"amount_given" = request.extracts_given,
-				"payout" = request.payout,
-				"points" = request.payout * SLIME_REQUEST_POINTS_PER_CREDIT,
-				"ready" = request.ready_for_pickup,
-			))
-	data["has_request_pad"] = !!length(request_pads)
 	return data
 
 /obj/machinery/computer/slime_market/ui_act(action, list/params)
@@ -308,11 +227,6 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 			new item.item_path(drop_location())
 			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 			return TRUE
-
-/// Oddaje ekstrakty z anulowanego zamówienia
-/obj/machinery/computer/slime_market/proc/return_extracts(extract_type, amount)
-	for(var/i in 1 to amount)
-		new extract_type(drop_location())
 
 /// Pozycja sklepu rynku szlamów
 /datum/slime_store_item

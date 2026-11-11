@@ -186,7 +186,7 @@
 
 	return master
 
-/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE, mob/transfered_by, remove_blacklisted = FALSE, method = null, show_message = TRUE, round_robin = FALSE)
+/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE, mob/transfered_by, remove_blacklisted = FALSE, method = null, show_message = TRUE, round_robin = FALSE, ignore_stomach = FALSE) // AQ EDIT - organy z Bee: ignore_stomach
 	//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
 	//if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
 	var/list/cached_reagents = reagent_list
@@ -205,6 +205,12 @@
 			return
 		R = target.reagents
 		target_atom = target
+		// AQ EDIT START - organy z Bee (BeeStation/BeeStation-Hornet#14340): połknięte trafia do żołądka, reakcja dalej z mobem (aquila/code/modules/surgery/organs/stomach_contents.dm)
+		if(method == INGEST && !ignore_stomach)
+			R = get_ingest_holder(target, amount)
+			if(!R)
+				return 0
+		// AQ EDIT END
 
 	if(transfered_by && target_atom)
 		target_atom.add_hiddenprint(transfered_by) //log prints so admins can figure out who touched it last.
@@ -344,7 +350,7 @@
 	R.handle_reactions()
 	return amount
 
-/datum/reagents/proc/metabolize(mob/living/carbon/C, can_overdose = FALSE, liverless = FALSE)
+/datum/reagents/proc/metabolize(mob/living/carbon/C, can_overdose = FALSE, liverless = FALSE, list/skip_reagents = null) // AQ EDIT - organy z Bee: skip_reagents (małe dawki toksyn bez efektu, liver_toxins.dm)
 	if(C?.dna?.species && (NOREAGENTS in C.dna.species.species_traits))
 		return 0
 	var/list/cached_reagents = reagent_list
@@ -355,6 +361,8 @@
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
 		if(QDELETED(R.holder))
+			continue
+		if(skip_reagents && (R in skip_reagents)) // AQ EDIT - organy z Bee
 			continue
 
 		if(!C)
@@ -705,7 +713,7 @@
 
 			if (isliving(my_atom))
 				mob_consumer = my_atom
-			else if (istype(my_atom, /obj/item/organ))
+			else if (istype(my_atom, /obj/item/organ) && !istype(my_atom, /obj/item/organ/stomach)) // AQ EDIT - organy z Bee: reagent w żołądku jeszcze nie działał na moba (on_mob_add go nie wołał)
 				var/obj/item/organ/organ = my_atom
 				mob_consumer = organ.owner
 

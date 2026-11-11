@@ -36,9 +36,9 @@
 		SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, user, M)
 
 
-/// Pager składu do ćwiczeń: zamiast kanału składu pokazuje rozkazy, które ustawia skrypt
+/// Pager drużyny do ćwiczeń: zamiast kanału drużyny pokazuje rozkazy, które ustawia skrypt
 /obj/item/squad_pager/tutorial
-	name = "pager składu (ćwiczenia)"
+	name = "pager drużyny (ćwiczenia)"
 	/// Wiadomości od dowódcy składu, od najstarszej
 	var/list/tutorial_messages = list()
 
@@ -46,7 +46,7 @@
 	if(!length(tutorial_messages))
 		to_chat(user, "<span class='notice'>Brak nowych wiadomości.</span>")
 	for(var/message in tutorial_messages)
-		to_chat(user, "<span class='sciradio'><b>\[Able\] Dowódca składu:</b> [message]</span>")
+		to_chat(user, "<span class='sciradio'><b>\[Alpha\] Dowódca drużyny:</b> [message]</span>")
 	SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, user)
 
 /// Nowa wiadomość na pagerze, z sygnałem dźwiękowym
@@ -57,35 +57,52 @@
 	if(istype(holder))
 		to_chat(holder, "<span class='notice'>[src] piszczy: nowa wiadomość.</span>")
 
-/// Vendor składu do ćwiczeń: wydaje zestawy bez przydziału do składu i bez wypożyczania
+/// Automat drużyny do ćwiczeń: wydaje zestaw żołnierza w skrzyni, bez przydziału do drużyny i bez wypożyczania
 /obj/machinery/squad_vendor/tutorial
 	req_one_access = null
 
+/obj/machinery/squad_vendor/tutorial/proc/tutorial_kit()
+	for(var/datum/squad_loadout/aquila/kit in loadouts)
+		if(kit.position == SQUAD_POSITION_SOLDIER)
+			return kit
+
 /obj/machinery/squad_vendor/tutorial/ui_data(mob/user)
 	var/list/data = list()
+	var/datum/squad/alpha = GLOB.squad_manager.get_squad("Alpha")
 	data["user_name"] = user ? user.name : "Ćwiczenia"
+	data["squad"] = alpha?.name
+	data["squad_colour"] = alpha?.colour
+	data["position"] = squad_position_pl(SQUAD_POSITION_SOLDIER)
+	data["weapons_clearance"] = TRUE
 	data["already_loaned"] = FALSE
-	var/list/kits = list()
-	for(var/datum/squad_loadout/loadout in loadouts)
-		if(loadout.leader_only)
-			continue
-		kits += list(list("name" = loadout.name, "desc" = loadout.desc, "id" = "\ref[loadout]"))
-	data["kits"] = kits
+	data["missing"] = list()
+	data["fine"] = 0
+	var/datum/squad_loadout/aquila/kit = tutorial_kit()
+	var/list/contents = list()
+	for(var/path in kit?.items)
+		var/obj/item/item_type = path
+		contents += initial(item_type.name)
+	data["kit"] = kit ? list("name" = kit.name, "desc" = kit.desc, "contents" = contents) : null
 	return data
 
 /obj/machinery/squad_vendor/tutorial/ui_act(action, params)
 	if(action != "vend")
 		return FALSE
-	var/datum/squad_loadout/loadout = locate(params["item_id"]) in loadouts
-	if(!loadout || !isliving(usr))
+	var/datum/squad_loadout/aquila/kit = tutorial_kit()
+	if(!kit || !isliving(usr))
 		return FALSE
-	var/obj/item/storage/box/squad_kit/box = new(get_turf(src))
-	for(var/path in loadout.items)
+	var/obj/item/storage/aq_squad_crate/crate = new(get_turf(src))
+	crate.assign(null, SQUAD_POSITION_SOLDIER, GLOB.squad_manager.get_squad("Alpha"))
+	for(var/path in kit.items)
 		if(ispath(path, /obj/item/clothing/under)) // mundur gracz już ma
 			continue
-		new path(box)
+		var/obj/item/gun/tutorial_gun = new path(crate)
+		// Nowa broń jest zabezpieczona (gunplay/firemodes.dm), a lekcja nie uczy bezpiecznika: strzelnica dostaje ją odbezpieczoną
+		if(istype(tutorial_gun) && tutorial_gun.aq_firemode == AQ_FIREMODE_SAFE)
+			tutorial_gun.toggle_safety()
+	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
-	SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, usr, box)
+	SEND_SIGNAL(src, COMSIG_TUTORIAL_ITEM_USED, usr, crate)
 	return TRUE
 
 /// Cel na strzelnicy: zatrzymuje pociski, nie rozpada się i daje znać skryptowi o trafieniu

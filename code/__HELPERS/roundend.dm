@@ -470,7 +470,6 @@
 	for(var/client/C in GLOB.clients)
 		show_roundend_report(C, FALSE)
 		give_show_report_button(C)
-		C?.show_round_survey() // AQUILA EDIT - ankieta po rundzie, otwierana po raporcie żeby była na wierzchu
 		CHECK_TICK
 
 /datum/controller/subsystem/ticker/proc/overmap_report() //NSV13

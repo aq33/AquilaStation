@@ -8,7 +8,7 @@ export function Techweb(props) {
     return null;
   }
   return (
-    <Window width={947} height={735}>
+    <Window width={1200} height={800}>
       <Window.Content>
         <TechwebStart />
       </Window.Content>

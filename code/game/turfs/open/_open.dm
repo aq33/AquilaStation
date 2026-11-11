@@ -217,6 +217,7 @@
 				slipper.accident(I)
 
 		var/olddir = slipper.dir
+		var/sprint_slide = slipper.is_sprinting() // AQ EDIT - poślizg w sprincie rzuca kafel dalej (aquila/code/modules/mob/living/carbon/sprint.dm)
 		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			slipper.Knockdown(knockdown_amount)
@@ -238,6 +239,8 @@
 			slipper.AddComponent(/datum/component/force_move, target, TRUE)
 		else if(lube&SLIDE_ICE)
 			slipper.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
+		else if(sprint_slide) // AQ EDIT - poślizg w sprincie rzuca kafel dalej
+			slipper.sprint_slip_slide(olddir) // AQ EDIT
 		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
@@ -252,10 +255,3 @@
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
 
-/turf/open/rad_act(pulse_strength)
-	. = ..()
-	if (air && air.get_moles(GAS_CO2) && air.get_moles(GAS_O2)) // turfs without an air mix (blocks_air, paused z-levels) still get radiation pulses
-		pulse_strength = min(pulse_strength,air.get_moles(GAS_CO2)*1000,air.get_moles(GAS_O2)*2000) //Ensures matter is conserved properly
-		air.set_moles(GAS_CO2, max(air.get_moles(GAS_CO2)-(pulse_strength/1000),0))
-		air.set_moles(GAS_O2, max(air.get_moles(GAS_O2)-(pulse_strength/2000),0))
-		air.adjust_moles(GAS_PLUOXIUM, pulse_strength/4000)

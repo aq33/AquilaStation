@@ -67,7 +67,7 @@
 	..()
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/carbon/C)
-	C.apply_effect(5,EFFECT_IRRADIATE,0)
+	SSradiation.irradiate_internal(C, 0.5) // AQ EDIT - promieniowanie z Bee#13442 (natężenie zamiast radów)
 	return ..()
 
 /datum/reagent/toxin/plasma
@@ -421,7 +421,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += 10
+	SSradiation.irradiate_internal(M, 3) // AQ EDIT - promieniowanie z Bee#13442
 	..()
 
 /datum/reagent/toxin/histamine

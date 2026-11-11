@@ -37,6 +37,8 @@ type Props = Partial<{
   title: string;
   width: number;
   override_bg: string;
+  // AQ EDIT - okno bez paska tytułu; treść sama obsługuje przeciąganie (dragStartHandler) i zamykanie (closeWindow)
+  noTitleBar: boolean;
 }> &
   PropsWithChildren;
 
@@ -50,6 +52,7 @@ export const Window = (props: Props) => {
     width,
     height,
     override_bg,
+    noTitleBar, // AQ EDIT - okno bez paska tytułu
   } = props;
 
   const { config, suspended } = useBackend();
@@ -84,8 +87,6 @@ export const Window = (props: Props) => {
     }
   }, [width, height]);
 
-  const dispatch = globalStore.dispatch;
-
   // Determine when to show dimmer
   const showDimmer =
     config.user &&
@@ -95,22 +96,50 @@ export const Window = (props: Props) => {
 
   return suspended ? null : (
     <Layout className="Window" theme={theme} backgroundColor={override_bg}>
-      <TitleBar
-        title={title || decodeHtmlEntities(config.title)}
-        status={config.status}
-        onDragStart={dragStartHandler}
-        onClose={() => {
-          logger.log('pressed close');
-          dispatch(backendSuspendStart());
-        }}
-        canClose={canClose}
+      {/* AQ EDIT START - okno bez paska tytułu (noTitleBar) */}
+      {!noTitleBar && (
+        <TitleBar
+          title={title || decodeHtmlEntities(config.title)}
+          status={config.status}
+          onDragStart={dragStartHandler}
+          onClose={closeWindow}
+          canClose={canClose}
+        >
+          {buttons}
+        </TitleBar>
+      )}
+      <div
+        className={classes(['Window__rest', debugLayout && 'debug-layout'])}
+        style={noTitleBar ? { top: 0 } : undefined}
       >
-        {buttons}
-      </TitleBar>
-      <div className={classes(['Window__rest', debugLayout && 'debug-layout'])}>
         {!suspended && children}
-        {showDimmer && <div className="Window__dimmer" />}
+        {showDimmer && (
+          <div
+            className="Window__dimmer"
+            // bez paska tytułu przyciemnienie przykrywa uchwyt treści, więc samo przesuwa okno
+            onMouseDown={noTitleBar ? dragStartHandler : undefined}
+          />
+        )}
+        {showDimmer && noTitleBar && !!canClose && (
+          <div
+            title="Zamknij"
+            onClick={closeWindow}
+            style={{
+              position: 'absolute',
+              top: '4px',
+              right: '4px',
+              padding: '2px 8px',
+              background: '#b3252a',
+              color: '#ffffff',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+            }}
+          >
+            ✕
+          </div>
+        )}
       </div>
+      {/* AQ EDIT END */}
       <div
         className="Window__resizeHandle__e"
         onMouseDown={resizeStartHandler(1, 0) as any}
@@ -126,6 +155,13 @@ export const Window = (props: Props) => {
     </Layout>
   );
 };
+
+// AQ EDIT START - zamknięcie okna, wspólne dla paska tytułu i okien z noTitleBar
+export function closeWindow() {
+  logger.log('pressed close');
+  globalStore.dispatch(backendSuspendStart());
+}
+// AQ EDIT END
 
 type ContentProps = Partial<{
   className: string;

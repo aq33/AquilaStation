@@ -122,7 +122,6 @@
 	var/protected_door = FALSE // Protects the door against any form of power outage, AI control, screwdrivers and welders.
 	var/door_animation_speed = 4 //nsv13 if you want a door that snaps open QUICKLY like on turbolifts
 
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/electrification_timing // Set to true while electrified_loop is running, to prevent multiple being started
@@ -1323,6 +1322,8 @@
 
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
 	ui_update()
+	var/turf/liquid_turf = get_turf(src) // AQ EDIT - ciecze z Monke: zamykana śluza wypycha ciecz
+	liquid_turf?.liquids_push_out_by_door() // AQ EDIT
 	operating = TRUE
 	update_icon(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER

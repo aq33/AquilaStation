@@ -126,7 +126,6 @@
 	strip_delay = 60
 	equip_delay_other = 60
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	rad_flags = RAD_PROTECT_CONTENTS
 
 /obj/item/clothing/suit/radiation
 	name = "kombinezon przeciwradiacyjny"
@@ -144,7 +143,6 @@
 	strip_delay = 60
 	equip_delay_other = 60
 	flags_inv = HIDEJUMPSUIT
-	rad_flags = RAD_PROTECT_CONTENTS
 
 /obj/item/clothing/suit/radiation/ComponentInitialize()
 	. = ..()

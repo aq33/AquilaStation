@@ -359,7 +359,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 
 /obj/machinery/gravity_generator/main/proc/pulse_radiation()
-	radiation_pulse(src, 200)
+	radiation_pulse(src, max_range = 2, threshold = RAD_LIGHT_INSULATION) // AQ EDIT - promieniowanie z Bee#13442
 
 // Shake everyone on the z level to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()

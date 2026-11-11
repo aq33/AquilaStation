@@ -1367,8 +1367,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(shitting_enabled && !HAS_TRAIT(H, TRAIT_NOSHITTING)) // AQ EDIT
 		if(H.defecation > DEFECATION_ACTUALLY_SHIT_YOURSELF)
-			H.actually_shit_myself()
-			H.set_defecation(DEFECATION_NONE)
+			H.accidental_release() // AQ EDIT - kał albo mocz, czego jest więcej (aquila/code/modules/bladder/urination.dm)
 		else if (H.defecation > DEFECATION_SHIT_YOURSELF)
 			if(prob(LERP(10, 20, ((H.defecation - DEFECATION_SHIT_YOURSELF)/DEFECATION_ACTUALLY_SHIT_YOURSELF))))
 				to_chat(H, "<span class='warning'><i>Pilnie potrzebuję do ubikacji...</i></span>")
@@ -1445,59 +1444,45 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
 
-/datum/species/proc/handle_mutations_and_radiation(mob/living/carbon/human/H)
-	. = FALSE
-	var/radiation = H.radiation
-
-	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
-		radiation = 0
-		return TRUE
-
-	if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
+// AQ EDIT START - promieniowanie z Bee#13442: skutki natężenia (%) wołane z /datum/component/irradiated, mutacje są w komponencie (Bee#14011)
+/datum/species/proc/handle_radiation(mob/living/carbon/human/H, intensity, delta_time)
+	if(intensity > RAD_MOB_KNOCKDOWN && DT_PROB(RAD_MOB_KNOCKDOWN_PROB, delta_time))
 		if(!H.IsParalyzed())
 			H.emote("collapse")
 		H.Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
 		to_chat(H, "<span class='danger'>Czujesz się słaby.</span>")
 
-	if(radiation > RAD_MOB_VOMIT && prob(RAD_MOB_VOMIT_PROB))
+	if(intensity > RAD_MOB_VOMIT && DT_PROB(RAD_MOB_VOMIT_PROB, delta_time))
 		var/obj/item/organ/stomach = H.getorganslot( ORGAN_SLOT_STOMACH )
 		if( !( H.getorgan( /obj/item/organ/stomach ) && stomach.organ_flags == ORGAN_SYNTHETIC ) ) // NSV13 synthetics do not vomit
 			H.vomit(10, TRUE)
 
-	if(!HAS_TRAIT( H, TRAIT_MUTATEIMMUNE ) && radiation > RAD_MOB_MUTATE)
-		if(prob(1))
-			to_chat(H, "<span class='danger'>Mutujesz!</span>")
-			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
-			H.emote("gasp")
-			H.domutcheck()
+	if( HAS_TRAIT( H, TRAIT_IPCRADBRAINDAMAGE ) && intensity > RAD_MOB_IPC_TRAUMA && DT_PROB(RAD_MOB_IPC_TRAUMA_PROB, delta_time) ) // NSV13 IPCs will gain brain damage instead of mutations when exposed to radiation
+		to_chat( H, "<span class='danger'>Twój system zgłasza błąd!</span>" )
+		var/trauma_type = pickweight( list(
+			BRAIN_TRAUMA_MILD = 65,
+			BRAIN_TRAUMA_SEVERE = 30,
+			BRAIN_TRAUMA_SPECIAL = 5
+		) )
+		var/resistance = pick(
+			95;TRAUMA_RESILIENCE_BASIC,
+			// 30;TRAUMA_RESILIENCE_SURGERY,
+			// 15;TRAUMA_RESILIENCE_LOBOTOMY,
+			5;TRAUMA_RESILIENCE_MAGIC
+		)
+		H.gain_trauma_type( trauma_type, resistance )
+		var/emote_type = pickweight( list(
+			"beep" = 34,
+			"buzz" = 34,
+			"buzz2" = 34,
+		) )
+		H.emote( emote_type )
 
-	if( HAS_TRAIT( H, TRAIT_IPCRADBRAINDAMAGE ) && radiation > RAD_MOB_MUTATE ) // NSV13 IPCs will gain brain damage instead of mutations when exposed to radiation
-		if ( prob( 1 ) )
-			to_chat( H, "<span class='danger'>Twój system zgłasza błąd!</span>" )
-			var/trauma_type = pickweight( list(
-				BRAIN_TRAUMA_MILD = 65,
-				BRAIN_TRAUMA_SEVERE = 30,
-				BRAIN_TRAUMA_SPECIAL = 5
-			) )
-			var/resistance = pick(
-				95;TRAUMA_RESILIENCE_BASIC,
-				// 30;TRAUMA_RESILIENCE_SURGERY,
-				// 15;TRAUMA_RESILIENCE_LOBOTOMY,
-				5;TRAUMA_RESILIENCE_MAGIC
-			)
-			H.gain_trauma_type( trauma_type, resistance )
-			var/emote_type = pickweight( list(
-				"beep" = 34,
-				"buzz" = 34,
-				"buzz2" = 34,
-			) )
-			H.emote( emote_type )
-
-	if(radiation > RAD_MOB_HAIRLOSS)
-		if(prob(15) && !(H.hair_style == "Bald") && (HAIR in species_traits))
+	if(intensity > RAD_MOB_HAIRLOSS && DT_PROB(RAD_MOB_HAIRLOSS_PROB, delta_time))
+		if(!(H.hair_style == "Bald") && (HAIR in species_traits))
 			to_chat(H, "<span class='danger'>Włosy zaczynają ci wypadać garściami.</span>")
 			addtimer(CALLBACK(src, PROC_REF(go_bald), H), 50)
-
+// AQ EDIT END
 
 /datum/species/proc/handle_blood(mob/living/carbon/human/H)
 	return FALSE

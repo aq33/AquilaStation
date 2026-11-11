@@ -97,6 +97,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/list/post_change_callbacks = list()
 	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, post_change_callbacks)
 
+	var/old_liquids = liquids_before_change(path) // AQ EDIT - ciecze z Monke: kałuża przechodzi na nowy turf albo znika
+
 	changing_turf = TRUE
 	qdel(src) //Just get the side effects and call Destroy
 	//We do this here so anything that doesn't want to persist can clear itself
@@ -128,6 +130,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	W.blueprint_data = old_bp
 	W.rcd_memory = old_rcd_memory
+	W.liquids_after_change(old_liquids) // AQ EDIT - ciecze z Monke
 
 	lighting_corner_NE = old_lighting_corner_NE
 	lighting_corner_SE = old_lighting_corner_SE

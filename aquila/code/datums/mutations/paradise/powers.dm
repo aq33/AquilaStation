@@ -88,7 +88,7 @@
 	if(M.fire_stacks > 0)
 		pain_condition -= 0.5
 		thoughts = "jest zaprzątnięty ogniem"
-	if(M.radiation)
+	if(HAS_TRAIT(M, TRAIT_IRRADIATED))
 		pain_condition -= 0.25
 
 	switch(pain_condition)

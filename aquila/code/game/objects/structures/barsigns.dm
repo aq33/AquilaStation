@@ -36,3 +36,10 @@
 	icon = "ranczo"
 	icon_file = 'aquila/icons/obj/barsigns.dmi'
 	desc = "Miejsce spotkań nagich kowbojów z dużymi i twardymi kogutami."
+
+// Szyld z Polonium Station (polonium14/polonium-station), CC-BY-SA-3.0.
+/datum/barsign/zabkacafe
+	name = "Żabka Cafe"
+	icon = "zabkacafe"
+	icon_file = 'aquila/icons/obj/barsigns.dmi'
+	desc = "Wiodąca korporacja spożywcza w galaktyce, skierowana do klasy robotniczej."

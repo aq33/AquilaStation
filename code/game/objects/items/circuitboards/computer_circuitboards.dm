@@ -30,19 +30,28 @@
 	name = "konsola zarządzania działem (płytka komputera)"
 	icon_state = "command"
 	build_path = /obj/machinery/computer/card/minor
-	var/target_dept = 1
-	var/list/dept_list = list("ogólny","ochrona","medyczny","nauka","inżynieria")
+	// AQ EDIT START - działy jako bitflagi, „ogólny” to Służba i Zaopatrzenie jak dawniej (port BeeStation/BeeStation-Hornet#14139)
+	var/counting = 1
+	var/list/dept_list = list(
+		DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO,
+		DEPARTMENT_BITFLAG_SECURITY,
+		DEPARTMENT_BITFLAG_MEDICAL,
+		DEPARTMENT_BITFLAG_SCIENCE,
+		DEPARTMENT_BITFLAG_ENGINEERING,
+	)
+	var/list/dept_list_name = list("ogólny","ochrona","medyczny","nauka","inżynieria")
+	// AQ EDIT END
 
 /obj/item/circuitboard/computer/card/minor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		target_dept = (target_dept == dept_list.len) ? 1 : (target_dept + 1)
-		to_chat(user, "<span class='notice'>Ustawiasz płytkę na \"[dept_list[target_dept]]\".</span>")
+		counting = (counting == dept_list.len) ? 1 : (counting + 1) // AQ EDIT - bitflagi działów
+		to_chat(user, "<span class='notice'>Ustawiasz płytkę na \"[dept_list_name[counting]]\".</span>") // AQ EDIT - bitflagi działów
 	else
 		return ..()
 
 /obj/item/circuitboard/computer/card/minor/examine(user)
 	. = ..()
-	. += "Obecnie ustawiona na \"[dept_list[target_dept]]\"."
+	. += "Obecnie ustawiona na \"[dept_list_name[counting]]\"." // AQ EDIT - nazwa działu, nie bitflaga (w BeeStation/BeeStation-Hornet#14139 examine pokazuje liczbę)
 
 /obj/item/circuitboard/computer/communications
 	name = "konsola komunikacyjna (płytka komputera)"

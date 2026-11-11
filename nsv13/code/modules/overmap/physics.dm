@@ -68,7 +68,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 	var/datum/component/physics2d/physics2d = null
 
 /// This makes us not drift like normal objects in space do
-/obj/structure/overmap/Process_Spacemove(movement_dir = 0)
+/obj/structure/overmap/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return 1
 
 /// Helper proc to get the actual center of the ship, if the ship's hitbox is placed in the bottom left corner like they usually are.
@@ -745,5 +745,5 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 		qdel(src)
 
 /// This makes us not drift like normal objects in space do
-/obj/structure/overmap/Process_Spacemove(movement_dir = 0)
+/obj/structure/overmap/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) // AQ EDIT - continuous_move (port BeeStation/BeeStation-Hornet#14864)
 	return 1

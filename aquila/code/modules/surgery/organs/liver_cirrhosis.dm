@@ -37,10 +37,24 @@
 /obj/item/organ/liver/proc/handle_alcohol_abuse(mob/living/carbon/drinker)
 	var/total_alcohol = 0
 	var/abuse_damage = 0
+	// Napój najpierw czeka w żołądku (stomach_contents.dm), więc alkohol liczymy w krwi i w żołądku razem:
+	// progi działają tak, jak gdy całość od razu szła do krwi
+	var/obj/item/organ/stomach/belly = drinker.getorganslot(ORGAN_SLOT_STOMACH)
+	var/list/booze_volumes = list()
+	var/list/booze_powers = list()
 	for(var/datum/reagent/consumable/ethanol/booze in drinker.reagents.reagent_list)
-		total_alcohol += booze.volume
-		if(booze.boozepwr >= CIRRHOSIS_STRONG_BOOZEPWR)
-			abuse_damage += 0.05 * ((booze.boozepwr - 55) / 10) * sqrt(booze.volume)
+		booze_volumes[booze.type] += booze.volume
+		booze_powers[booze.type] = booze.boozepwr
+	if(belly?.reagents)
+		for(var/datum/reagent/consumable/ethanol/booze in belly.reagents.reagent_list)
+			booze_volumes[booze.type] += booze.volume
+			booze_powers[booze.type] = booze.boozepwr
+	for(var/booze_type in booze_volumes)
+		var/volume = booze_volumes[booze_type]
+		var/boozepwr = booze_powers[booze_type]
+		total_alcohol += volume
+		if(boozepwr >= CIRRHOSIS_STRONG_BOOZEPWR)
+			abuse_damage += 0.05 * ((boozepwr - 55) / 10) * sqrt(volume)
 	if(total_alcohol > CIRRHOSIS_HEAVY_VOLUME)
 		abuse_damage += 0.01 * (total_alcohol - CIRRHOSIS_HEAVY_VOLUME)
 	if(abuse_damage <= 0)

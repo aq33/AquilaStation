@@ -11,20 +11,8 @@
 		log_combat(src, (O ? O : get_turf(src)), "slipped on the", null, ((lube & SLIDE) ? "(LUBE)" : null))
 	return loc.handle_slip(src, knockdown_amount, O, lube, paralyze, force_drop)
 
-/mob/living/carbon/Process_Spacemove(movement_dir = 0)
-	if(..())
-		return 1
-	if(!isturf(loc))
-		return 0
-
-	// Do we have a jetpack implant (and is it on)?
-	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
-	if(istype(T) && movement_dir && T.allow_thrust(0.01))
-		return 1
-
-	var/obj/item/tank/jetpack/J = get_jetpack()
-	if(istype(J) && (movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
-		return 1
+// AQ EDIT - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): /mob/living/carbon/Process_Spacemove() z plecakiem
+// i implantem dysz usunięte, plecaki, implant i moduł MOD odpowiadają na COMSIG_MOVABLE_SPACEMOVE w /datum/component/jetpack
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -35,7 +23,5 @@
 			adjust_nutrition(-(HUNGER_FACTOR/10))
 			if(m_intent == MOVE_INTENT_RUN)
 				adjust_nutrition(-(HUNGER_FACTOR/10))
-
-	var/obj/item/tank/jetpack/J = get_jetpack() //AQUILA EDIT
-	if(istype(J) && J.allow_thrust(0.01, src) && (!has_gravity(NewLoc)) && isopenturf(NewLoc))
-		playsound(src, 'aquila/sound/vehicles/jetpack.ogg', 60, 1)
+	// AQ EDIT - jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864): dźwięk dysz gra /datum/component/jetpack przy pchnięciu,
+	// tutaj drugie allow_thrust() zużywało paliwo jeszcze raz (także w grawitacji)

@@ -48,7 +48,7 @@
 	to_chat(user, "<span class='warning'>Nadpisujesz zabezpieczenia [src] i krzyżujesz przewody, by podwoić docelową grawitację.</span>")
 	charge_count = 0
 	set_state(0)
-	radiation_pulse(src, 1800) //You SHOULD wear protection when messing with this thing this badly.
+	radiation_pulse(src, max_range = 3, threshold = RAD_MEDIUM_INSULATION, intensity = 10) //You SHOULD wear protection when messing with this thing this badly. // AQ EDIT - promieniowanie z Bee#13442
 	obj_flags |= EMAGGED
 	change_setting(2) // :)
 	set_power(POWER_UP)

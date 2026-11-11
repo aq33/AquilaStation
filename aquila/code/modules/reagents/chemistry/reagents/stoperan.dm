@@ -75,17 +75,16 @@
 /// Zatkane stoperanem jelita w końcu puszczają. Wszystko naraz.
 /mob/living/proc/stoperan_burst()
 	var/turf/T = get_turf(src)
-	visible_message("<span class='danger'>Brzuch [src] pęka z donośnym odgłosem wypróżnienia, a wszystko dookoła pokrywa brązowa breja!</span>", 		"<span class='userdanger'>Twoje zatkane jelita w końcu puszczają. Naraz.</span>")
-	playsound(T, 'aquila/sound/creatures/fart.ogg', 100, TRUE, 5)
+	// Przez helpery cenzury (aquila/code/modules/bladder/censor.dm): cenzurujący nie dostają opisu, pierdnięcia ani obrzydzenia
+	bodily_visible_message("<span class='danger'>Brzuch [src] pęka z donośnym odgłosem wypróżnienia, a wszystko dookoła pokrywa brązowa breja!</span>", 		"<span class='userdanger'>Twoje zatkane jelita w końcu puszczają. Naraz.</span>")
+	bodily_playsound(T, 'aquila/sound/creatures/fart.ogg', 100)
 	playsound(T, 'sound/effects/splat.ogg', 100, TRUE)
 	if(T)
 		new /obj/effect/decal/cleanable/feces(T)
 		for(var/turf/open/near in orange(1, T))
 			if(prob(50))
 				new /obj/effect/decal/cleanable/feces(near)
-		for(var/mob/living/L in viewers(7, T))
-			if(L != src)
-				L.adjust_disgust(DISGUST_LEVEL_VERYGROSS)
+		bodily_disgust(DISGUST_LEVEL_VERYGROSS, FALSE)
 	log_game("[key_name(src)] was gibbed by stoperan at [AREACOORD(T)]")
 	// Odroczone: wołane z metabolizmu reagentów i ticku efektu, które dalej używają moba i jego reagentów
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, gib)), 0, TIMER_UNIQUE)

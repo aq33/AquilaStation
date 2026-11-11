@@ -75,7 +75,11 @@
 		O.adjustFireLoss(getFireLoss(), 0)
 		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
-		O.radiation = radiation
+		// AQ EDIT START - promieniowanie z Bee#13442
+		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
+			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
+		// AQ EDIT END
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -233,7 +237,11 @@
 		O.adjustFireLoss(getFireLoss(), 0)
 		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
-		O.radiation = radiation
+		// AQ EDIT START - promieniowanie z Bee#13442
+		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
+			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
+		// AQ EDIT END
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -390,7 +398,11 @@
 		O.adjustFireLoss(getFireLoss(), 0)
 		O.adjustOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
-		O.radiation = radiation
+		// AQ EDIT START - promieniowanie z Bee#13442
+		var/datum/component/irradiated/irradiated_component = GetComponent(/datum/component/irradiated)
+		if(irradiated_component && CAN_IRRADIATE(O)) // małpy u nas nie są ludźmi, więc nie da się ich napromieniować
+			O.AddComponent(/datum/component/irradiated, irradiated_component.intensity)
+		// AQ EDIT END
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
