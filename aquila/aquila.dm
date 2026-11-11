@@ -945,7 +945,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\nsv_syndicate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\regalrat.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"
 #include "code\modules\mob\living\simple_animal\parrot.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\slime\slime.dm"
@@ -2058,6 +2057,7 @@
 #include "code\datums\elements\mob_grabber.dm"
 #include "code\datums\ai\hunting_behavior\hunting_lights.dm"
 #include "code\modules\mob\living\basic\space_fauna\faithless.dm"
+#include "code\modules\mob\living\basic\space_fauna\dolphin.dm"
 // Koniec bloku tanich basic mobów
 
 #ifdef UNIT_TESTS

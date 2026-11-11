@@ -42,7 +42,7 @@
 		/mob/living/simple_animal/hostile/carp/megacarp,
 		/mob/living/simple_animal/hostile/carp/lia,
 		/mob/living/basic/cow, // AQ EDIT - basic moby
-		/mob/living/simple_animal/hostile/retaliate/dolphin,
+		/mob/living/basic/dolphin, // AQ EDIT - basic moby
 	), only_root_path = TRUE)
 
 /obj/item/mob_lasso/afterattack(atom/target, mob/living/user, proximity_flag, click_parameters)

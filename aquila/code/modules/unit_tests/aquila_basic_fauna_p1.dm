@@ -223,5 +223,55 @@
 /mob/living/basic/faithless/legacy_intents_test/uses_legacy_intents()
 	return TRUE
 
+/// The space dolphin bites back the one who hit it (tiring them out), the space lasso still catches it and a ghost
+/// playing it bites with a click in both control modes
+/datum/unit_test/aquila_dolphin
+
+/datum/unit_test/aquila_dolphin/Run()
+	var/mob/living/basic/dolphin/dolphin = allocate(/mob/living/basic/dolphin, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/puncher = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	var/datum/ai_controller/controller = dolphin.ai_controller
+	TEST_ASSERT(dolphin.playable, "Ghosts cannot take the dolphin over")
+	TEST_ASSERT(dolphin.spacewalk, "The space dolphin cannot swim through space")
+
+	var/datum/ai_behavior/from_list = GET_AI_BEHAVIOR(/datum/ai_behavior/target_from_retaliate_list)
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, from_list)
+	TEST_ASSERT(isnull(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]), "The dolphin attacks without being hit")
+	puncher.set_combat_mode(TRUE)
+	dolphin.attack_hand(puncher)
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, from_list)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], puncher, "The dolphin did not go for the one who hit it")
+	controller.SelectBehaviors(1)
+	aquila_ai_melee_once(controller)
+	TEST_ASSERT(puncher.getStaminaLoss() > 0, "The dolphin bite did not tire the human")
+
+	var/obj/item/mob_lasso/lasso = allocate(/obj/item/mob_lasso)
+	TEST_ASSERT(lasso.check_allowed(dolphin), "The space lasso does not catch the basic dolphin")
+
+	for(var/legacy in list(FALSE, TRUE))
+		var/mode = legacy ? "legacy intents" : "combat mode"
+		var/mob/living/basic/dolphin/player = allocate(legacy ? /mob/living/basic/dolphin/legacy_intents_test : /mob/living/basic/dolphin, get_step(run_loc_floor_bottom_left, NORTH))
+		player.ai_controller.set_ai_status(AI_STATUS_OFF)
+		var/mob/living/carbon/human/target = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, NORTHEAST))
+		TEST_ASSERT(player.combat_mode_indicator, "[mode]: the playable dolphin has no combat mode indicator")
+		var/health_before = target.health
+		if(legacy)
+			player.a_intent_change(INTENT_HARM)
+		else
+			player.set_combat_mode(TRUE)
+		player.next_click = 0
+		player.next_move = 0
+		player.ClickOn(target, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(target.health < health_before, "[mode]: the player dolphin did not bite")
+		qdel(player)
+		qdel(target)
+
+/mob/living/basic/dolphin/legacy_intents_test
+
+/mob/living/basic/dolphin/legacy_intents_test/uses_legacy_intents()
+	return TRUE
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
