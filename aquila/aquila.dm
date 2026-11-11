@@ -1374,6 +1374,7 @@
 #include "code\modules\wounds\cranial_fissure.dm"
 #include "code\modules\wounds\pierce.dm"
 #include "code\modules\wounds\scars.dm"
+#include "code\modules\wounds\skull.dm"
 #include "code\modules\wounds\slash.dm"
 #include "code\modules\wounds\tourniquet.dm"
 #include "code\modules\wounds\treatment.dm"
