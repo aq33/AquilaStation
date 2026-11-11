@@ -10,22 +10,128 @@
 /// Co ile pikseli zmienia się rozmiar kursora. Każdy rozmiar to osobny plik kursora, który klient pobiera i podmienia,
 /// więc kursor co piksel przy szybkim ruchu myszy dawał przycięcia
 #define AQ_GUN_CURSOR_SIZE_STEP 4
+/// Kształty celownika (pliki aquila/icons/effects/gun_cursor*.dmi, generator opisany w opisie PR-a)
+#define AQ_CURSOR_STANDARD "standard"
+#define AQ_CURSOR_SCOPE "scope"
+#define AQ_CURSOR_PELLETS "pellets"
+#define AQ_CURSOR_GRID "grid"
+#define AQ_CURSOR_RING "ring"
+#define AQ_CURSOR_DASHED "dashed"
+#define AQ_CURSOR_CLOUD "cloud"
+#define AQ_CURSOR_TOY "toy"
 
-/// Rozmiar -> ikona kursora z jednym stanem "" (BYOND bierze kursor ze stanu domyślnego)
+/// Kształt celownika -> plik z 41 stanami (polonium14/polonium-station#1231: kształt zależny od broni)
+GLOBAL_LIST_INIT(aq_gun_cursor_files, list(
+	AQ_CURSOR_STANDARD = 'aquila/icons/effects/gun_cursor.dmi',
+	AQ_CURSOR_SCOPE = 'aquila/icons/effects/gun_cursor_scope.dmi',
+	AQ_CURSOR_PELLETS = 'aquila/icons/effects/gun_cursor_pellets.dmi',
+	AQ_CURSOR_GRID = 'aquila/icons/effects/gun_cursor_grid.dmi',
+	AQ_CURSOR_RING = 'aquila/icons/effects/gun_cursor_ring.dmi',
+	AQ_CURSOR_DASHED = 'aquila/icons/effects/gun_cursor_dashed.dmi',
+	AQ_CURSOR_CLOUD = 'aquila/icons/effects/gun_cursor_cloud.dmi',
+	AQ_CURSOR_TOY = 'aquila/icons/effects/gun_cursor_toy.dmi',
+))
+
+/// "kształt-rozmiar" -> ikona kursora z jednym stanem "" (BYOND bierze kursor ze stanu domyślnego)
 GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 
-/proc/aq_get_gun_cursor_icon(size)
+/proc/aq_get_gun_cursor_icon(size, shape = AQ_CURSOR_STANDARD)
 	size = clamp(round(size), 0, AQ_GUN_CURSOR_STATES - 1)
-	var/icon/cached = GLOB.aq_gun_cursor_icons["[size]"]
+	if(!GLOB.aq_gun_cursor_files[shape])
+		shape = AQ_CURSOR_STANDARD
+	var/key = "[shape]-[size]"
+	var/icon/cached = GLOB.aq_gun_cursor_icons[key]
 	if(cached)
 		return cached
 	var/icon/result = new
-	result.Insert(icon('aquila/icons/effects/gun_cursor.dmi', "[size]"), "")
+	result.Insert(icon(GLOB.aq_gun_cursor_files[shape], "[size]"), "")
 	// Plik z cache zasobów: client.mouse_pointer_icon po przypisaniu /icon trzyma odnośnik do cache, więc porównanie
 	// z obiektem /icon w update_gun_cursor() nigdy nie wychodziło i kursor przestawał się zmieniać
 	var/cached_file = fcopy_rsc(result)
-	GLOB.aq_gun_cursor_icons["[size]"] = cached_file
+	GLOB.aq_gun_cursor_icons[key] = cached_file
 	return cached_file
+
+/obj/item/gun
+	/// Kształt celownika tej broni (AQ_CURSOR_*)
+	var/aq_cursor_shape = AQ_CURSOR_STANDARD
+	/// Kształt z ostatniego naboju w komorze ("" = nabój bez własnego); pusta broń go zachowuje
+	var/aq_last_ammo_cursor_shape
+
+/// Kształt celownika: nabój z własnym kształtem (śrut, piankowe strzałki) wygrywa z kształtem broni
+/obj/item/gun/proc/get_cursor_shape()
+	if(chambered)
+		aq_last_ammo_cursor_shape = chambered.get_cursor_shape() || ""
+	return aq_last_ammo_cursor_shape || aq_cursor_shape
+
+/// Własny kształt celownika naboju albo null
+/obj/item/ammo_casing/proc/get_cursor_shape()
+	if(pellets > 1)
+		return AQ_CURSOR_PELLETS
+	return null
+
+/obj/item/ammo_casing/caseless/foam_dart/get_cursor_shape()
+	return AQ_CURSOR_TOY
+
+/// Nowy nabój w komorze (przeładowanie, obrót bębna, zmiana trybu): odśwież celownik trzymającego, jeśli zmienił się kształt
+/obj/item/gun/proc/on_chamber_changed()
+	var/old_shape = aq_last_ammo_cursor_shape
+	get_cursor_shape()
+	if(old_shape != aq_last_ammo_cursor_shape && isliving(loc))
+		var/mob/living/holder = loc
+		holder.update_gun_cursor()
+
+/obj/item/gun/ballistic/chamber_round(keep_bullet = FALSE)
+	. = ..()
+	on_chamber_changed()
+
+// Rewolwer i łuk mają własne chamber_round() bez ..()
+/obj/item/gun/ballistic/revolver/chamber_round(spin_cylinder = TRUE)
+	. = ..()
+	on_chamber_changed()
+
+/obj/item/gun/ballistic/bow/chamber_round()
+	. = ..()
+	on_chamber_changed()
+
+/obj/item/gun/energy/select_fire(mob/living/user)
+	. = ..()
+	on_chamber_changed()
+
+/obj/item/gun/ballistic/automatic/sniper_rifle
+	aq_cursor_shape = AQ_CURSOR_SCOPE
+
+/obj/item/gun/grenadelauncher
+	aq_cursor_shape = AQ_CURSOR_GRID
+
+/obj/item/gun/ballistic/revolver/grenadelauncher
+	aq_cursor_shape = AQ_CURSOR_GRID
+
+/obj/item/gun/ballistic/rocketlauncher
+	aq_cursor_shape = AQ_CURSOR_GRID
+
+/obj/item/gun/blastcannon
+	aq_cursor_shape = AQ_CURSOR_GRID
+
+/obj/item/gun/syringe
+	aq_cursor_shape = AQ_CURSOR_GRID
+
+/obj/item/gun/ballistic/bow
+	aq_cursor_shape = AQ_CURSOR_RING
+
+/obj/item/gun/energy/kinetic_accelerator/crossbow
+	aq_cursor_shape = AQ_CURSOR_RING
+
+/obj/item/gun/chem
+	aq_cursor_shape = AQ_CURSOR_DASHED
+
+/obj/item/gun/magic
+	aq_cursor_shape = AQ_CURSOR_CLOUD
+
+/obj/item/gun/ballistic/automatic/toy
+	aq_cursor_shape = AQ_CURSOR_TOY
+
+/obj/item/gun/ballistic/shotgun/toy
+	aq_cursor_shape = AQ_CURSOR_TOY
 
 /client
 	/// Pokazujemy kursor rozrzutu (żeby nie nadpisać kursora czaru albo mecha)
@@ -185,10 +291,15 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	var/obj/item/gun/held_gun = get_active_held_item()
 	if(!istype(held_gun) || held_gun.aq_firemode == AQ_FIREMODE_SAFE)
 		return null
+	return aq_get_gun_cursor_icon(get_gun_cursor_size(held_gun), held_gun.get_cursor_shape())
+
+/// Stan ikony kursora = promień stożka rozrzutu w pikselach przy kursorze. Stan 0 ma już 4 px odstępu od środka,
+/// więc promień się do niego dodaje (odejmowanie 4 px chowało pojedyncze strzały i bieg, rósł tylko śrut)
+/mob/living/proc/get_gun_cursor_size(obj/item/gun/held_gun)
 	var/distance = aq_cursor_known ? sqrt(aq_cursor_dx ** 2 + aq_cursor_dy ** 2) : AQ_GUN_CURSOR_DEFAULT_DISTANCE
 	var/half_angle = min(held_gun.get_spread_cone(src), 60)
-	var/radius = tan(half_angle) * max(distance, world.icon_size)
-	return aq_get_gun_cursor_icon(round(radius - 4, AQ_GUN_CURSOR_SIZE_STEP))
+	// zaokrąglenie co AQ_GUN_CURSOR_SIZE_STEP px: mniej plików kursora do podmiany przy szybkim ruchu myszy
+	return round(tan(half_angle) * max(distance, world.icon_size), AQ_GUN_CURSOR_SIZE_STEP)
 
 
 /mob/living/proc/update_gun_cursor()
@@ -243,5 +354,13 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		holder.update_gun_cursor()
 
 #undef AQ_GUN_CURSOR_STATES
+#undef AQ_CURSOR_STANDARD
+#undef AQ_CURSOR_SCOPE
+#undef AQ_CURSOR_PELLETS
+#undef AQ_CURSOR_GRID
+#undef AQ_CURSOR_RING
+#undef AQ_CURSOR_DASHED
+#undef AQ_CURSOR_CLOUD
+#undef AQ_CURSOR_TOY
 #undef AQ_GUN_CURSOR_DEFAULT_DISTANCE
 #undef AQ_GUN_CURSOR_SIZE_STEP

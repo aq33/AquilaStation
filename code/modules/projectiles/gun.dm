@@ -338,9 +338,9 @@
 				to_chat(user, "<span class='notice'> [src] ma w komorze amunicję bojową! Nie chcesz ryzykować, że kogoś skrzywdzisz...</span>")
 				return
 		if(randomspread)
-			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
+			sprd = (rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread) // AQ EDIT - bez round(): w BYOND to podłoga, strzały uciekały średnio o 0,5° w jedną stronę
 		else //Smart spread
-			sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
+			sprd = (((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread) // AQ EDIT - bez round() (podłoga)
 		before_firing(target,user)
 		if(!chambered.fire_casing(target, user, params, ,suppressed, zone_override, sprd, spread_multiplier, src))
 			shoot_with_empty_chamber(user)
@@ -374,12 +374,12 @@
 	var/randomized_gun_spread = 0
 	var/rand_spr = rand()
 	if(spread)
-		randomized_gun_spread =	rand(0,spread)
+		randomized_gun_spread = rand() * spread // AQ EDIT - ułamki jak w celowniku (rand(0, x) losuje liczby całkowite)
 	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
 		bonus_spread += 25
 	if(!is_wielded && requires_wielding)
 		bonus_spread += spread_unwielded
-	var/randomized_bonus_spread = rand(0, bonus_spread)
+	var/randomized_bonus_spread = rand() * bonus_spread // AQ EDIT - ułamki: kara 0,5° po sprincie nie znika
 
 	if(burst_size > 1)
 		firing_burst = TRUE
@@ -391,7 +391,7 @@
 				if(chambered.harmful) // Is the bullet chambered harmful?
 					to_chat(user, "<span class='notice'> [src] ma w komorze amunicję bojową! Nie chcesz ryzykować, że kogoś skrzywdzisz...</span>")
 					return
-			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
+			sprd = (rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread) // AQ EDIT - bez round() (podłoga)
 			before_firing(target, user, aimed)
 			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, spread_multiplier, src))
 				shoot_with_empty_chamber(user)
