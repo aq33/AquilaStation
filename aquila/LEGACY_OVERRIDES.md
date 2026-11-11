@@ -511,6 +511,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `FOOTSTEP_MEAT` z `aquila/sound/blood_worm/meatslap.ogg` | `code/__DEFINES/footsteps.dm` | Mięsna podłoga |
 | Zmienna studni nanonaprawczej `material_modifier` → `repair_material_modifier` | `nsv13/code/modules/overmap/armour/nano_well.dm` | Bee dodało `material_modifier` do `/atom` |
 | `options[aiming_choice_label(option)]` in `show_ui()` and `aim_react()`, `choice = aiming_choice_from_label(choice)` at the top of `act()` and `aim_react_act()` | `code/datums/components/aiming.dm` | Gun aiming radial shows Polish labels instead of option ids (`raise_hands`, `drop_weapon`): the radial prints the choice key, so the key is the label and the hooks map it back. Entry: `aquila/code/modules/gunplay/aiming_labels.dm` |
+| `if(!tag)` przed nadaniem tagu w `/mob/dead/Initialize()` | `code/modules/mob/dead/dead.dm` | Tag z `atom/New` (`GenerateTag()`) zostaje. Nowy tag w `Initialize()` psuł weakrefy utworzone przed `..()` (ekran powitalny `new_player` przy wejściu w trakcie startu serwera), a `verb_callback` z takim weakrefem porzucał akcje okien TGUI gracza (wybór języka, wybór profesji). Test: `aquila_dead_mob_keeps_tag` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

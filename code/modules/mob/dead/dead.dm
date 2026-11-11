@@ -11,7 +11,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
-	tag = "mob_[next_mob_id++]"
+	if(!tag) // AQ EDIT - tag z atom/New zostaje: nowy psuł weakrefy sprzed ..() (ekran powitalny), a z nimi akcje okien gracza
+		tag = "mob_[next_mob_id++]"
 	add_to_mob_list()
 
 	prepare_huds()
