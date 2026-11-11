@@ -12,6 +12,11 @@
 /// Kiedy SI może znów ogłosić coś głosem (wspólne dla wszystkich SI, jak przy VOX)
 GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 
+/mob/living/silicon/ai/announcement_help()
+	if(!squad_tts_active())
+		return ..()
+	to_chat(src, "<span class='notice'>Syntezator mowy jest włączony: przycisk ogłoszenia przyjmuje dowolny tekst po polsku (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków, jedno ogłoszenie na [DisplayTimeText(AQ_AI_TTS_DELAY)]).</span>")
+
 /mob/living/silicon/ai/announcement()
 	if(!squad_tts_active())
 		return ..()
@@ -62,11 +67,6 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 			if(listener_turf?.get_virtual_z_level() != z_level)
 				continue
 		. += listener
-
-/mob/living/silicon/ai/announcement_help()
-	if(!squad_tts_active())
-		return ..()
-	to_chat(src, "<span class='notice'>Syntezator mowy jest włączony: przycisk ogłoszenia przyjmuje dowolny tekst po polsku (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków, jedno ogłoszenie na [DisplayTimeText(AQ_AI_TTS_DELAY)]).</span>")
 
 #undef AQ_AI_TTS_MAX_CHARS
 #undef AQ_AI_TTS_DELAY
