@@ -1,0 +1,2 @@
+decon-*.ogg z yogstation13/Yogstation (sound/machines/decon, commit ae2886be95), licencja CC-BY-SA 3.0.
+Użyte w szafie na skafandry (aquila/code/game/machinery/suit_storage_unit.dm): dezynfekcja UV, otwieranie i zamykanie drzwi.

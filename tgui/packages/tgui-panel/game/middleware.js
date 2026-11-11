@@ -8,6 +8,8 @@ import { pingSuccess } from '../ping/actions';
 import { connectionLost, connectionRestored, roundRestarted } from './actions';
 import {
   AUTO_RECONNECT_AFTER,
+  AUTO_RECONNECT_AFTER_LOST,
+  AUTO_RECONNECT_GIVE_UP,
   AUTO_RECONNECT_INTERVAL,
   CONNECTION_LOST_AFTER,
 } from './constants';
@@ -39,11 +41,17 @@ export const gameMiddleware = (store) => {
       store.dispatch(withTimestamp(connectionRestored()));
     }
     const now = Date.now();
+    // Liczone od restartu rundy, a bez komunikatu o nim od utraty połączenia
+    const lostSince = game.roundRestartedAt || game.connectionLostAt;
+    const reconnectAfter = game.roundRestartedAt
+      ? AUTO_RECONNECT_AFTER
+      : AUTO_RECONNECT_AFTER_LOST;
     if (
-      game.roundRestartedAt &&
+      lostSince &&
       game.connectionLostAt &&
       pingsAreFailing &&
-      now >= game.roundRestartedAt + AUTO_RECONNECT_AFTER &&
+      now >= lostSince + reconnectAfter &&
+      now < lostSince + AUTO_RECONNECT_GIVE_UP &&
       now >= lastReconnectAt + AUTO_RECONNECT_INTERVAL
     ) {
       lastReconnectAt = now;
