@@ -1,7 +1,7 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/modules/mob/living/basic/pets/penguin/penguin.dm and penguin_ai.dm
 // (BeeStation/BeeStation-Hornet#14771, tg port). Polish lines from our simple animal penguins. Changes against Bee:
 // - waddling through our /datum/component/waddling (decision D13: no waddling element swap), no pet cult (D10);
-// - penguin chicks grow into emperor penguins (one in six into the shamebrero one), mapped chicks do not (as in Bee);
+// - penguin chicks grow into emperor penguins (one in six into the shamebrero one), mapped chicks grow too (Bee maps permanent chicks; only the holodeck one stays a chick here);
 // - the old cold tolerance (minbodytemp 0) and butcher results stay; no new "honk" emote, petting shows a Polish line.
 /mob/living/basic/pet/penguin
 	icon = 'icons/mob/penguins.dmi'

@@ -24,8 +24,9 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt") - "")
 	)
 
 ///unlike normal cows, wisdom cows speak of wisdom and won't shut the fuck up
+// AQUILA: 3% per second (about every 30 s) instead of Bee's 15% (every ~7 s), so the cow does not flood the chat
 /datum/ai_planning_subtree/random_speech/cow/wisdom
-	speech_chance = 15
+	speech_chance = 3
 	emote_hear = null
 	emote_see = null
 

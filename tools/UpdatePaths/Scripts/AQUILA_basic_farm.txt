@@ -7,5 +7,5 @@
 /mob/living/simple_animal/chicken/rabbit/space : /mob/living/basic/rabbit/easter/space{@OLD}
 /mob/living/simple_animal/chicken/rabbit : /mob/living/basic/rabbit/easter{@OLD}
 /mob/living/simple_animal/chicken : /mob/living/basic/chicken{@OLD; atmos_requirements = @SKIP; minbodytemp = @SKIP; maxbodytemp = @SKIP}
-/mob/living/simple_animal/chick/@SUBTYPES : /mob/living/basic/chick/permanent{@OLD}
+/mob/living/simple_animal/chick/@SUBTYPES : /mob/living/basic/chick{@OLD}
 /mob/living/simple_animal/sheep : /mob/living/basic/sheep{@OLD}

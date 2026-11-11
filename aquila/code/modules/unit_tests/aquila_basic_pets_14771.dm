@@ -37,9 +37,18 @@
 			hunts = TRUE
 	TEST_ASSERT(hunts, "A common fox does not look for prey")
 
+	// Renault hunts vermin only: mice and cockroaches yes, Ian, Runtime and the hens no
 	var/mob/living/basic/pet/fox/renault/renault = allocate(/mob/living/basic/pet/fox/renault, get_step(run_loc_floor_bottom_left, SOUTHEAST))
-	for(var/datum/ai_planning_subtree/subtree as anything in renault.ai_controller.planning_subtrees)
-		TEST_ASSERT(!istype(subtree, /datum/ai_planning_subtree/simple_find_target), "Renault hunts the captain's other pets")
+	var/datum/targeting_strategy/renault_targeting = GET_TARGETING_STRATEGY(renault.ai_controller.blackboard[BB_TARGETING_STRATEGY])
+	var/mob/living/basic/cockroach/roach = allocate(/mob/living/basic/cockroach, get_step(run_loc_floor_bottom_left, NORTHWEST))
+	var/mob/living/basic/pet/dog/corgi/corgi = allocate(/mob/living/basic/pet/dog/corgi, get_step(run_loc_floor_bottom_left, WEST))
+	var/mob/living/basic/pet/cat/cat = allocate(/mob/living/basic/pet/cat, get_step(run_loc_floor_bottom_left, SOUTH))
+	TEST_ASSERT(renault_targeting.can_attack(renault, mouse), "Renault does not hunt mice")
+	TEST_ASSERT(renault_targeting.can_attack(renault, roach), "Renault does not hunt cockroaches")
+	TEST_ASSERT(!renault_targeting.can_attack(renault, corgi), "Renault hunts the corgi")
+	TEST_ASSERT(!renault_targeting.can_attack(renault, cat), "Renault hunts the cat")
+	TEST_ASSERT(!renault_targeting.can_attack(renault, hen), "Renault hunts chickens")
+	TEST_ASSERT(!renault_targeting.can_attack(renault, captain), "Renault hunts people")
 	TEST_ASSERT(renault.GetComponent(/datum/component/obeys_commands), "Renault does not obey commands")
 
 /// A sloth that "attacks" a tree climbs it, and comes down when it moves

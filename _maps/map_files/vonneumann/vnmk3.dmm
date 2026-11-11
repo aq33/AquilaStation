@@ -25413,7 +25413,7 @@
 	name = "Kentucky";
 	real_name = "Kentucky"
 	},
-/mob/living/basic/chick/permanent,
+/mob/living/basic/chick,
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/carpet/ship,
 /area/hydroponics)

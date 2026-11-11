@@ -1,8 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/modules/mob/living/basic/pets/fox.dm (BeeStation/BeeStation-Hornet#14771, tg port)
 // Polish lines from our simple animal fox. Changes against Bee:
 // - no pet cult (decision D10), no new "yap" emote: petting shows a Polish line;
-// - Renault, the captain's fox, uses the docile AI: a fox hunts small animals when nobody looks, and on our ships the captain's
-//   fox would otherwise go for Ian and Runtime at night. The path is lowercase as in Bee (/fox/renault).
+// - Renault, the captain's fox, hunts only vermin (mice and cockroaches): a fox hunts small animals when nobody looks, and on
+//   our ships the captain's fox would otherwise go for Ian and Runtime at night. The path is lowercase as in Bee (/fox/renault).
 /*
 * Foxes are cowardly creatures that will hunt any small animals, but only when no one is looking.
 */
@@ -97,6 +97,27 @@
 /mob/living/basic/pet/fox/docile
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile
 
+// AQUILA: the fox AI that hunts only vermin, so Renault keeps the ship clean of mice without eating the crew's pets
+/datum/ai_controller/basic_controller/fox/vermin_hunter
+	blackboard = list(
+		BB_ALWAYS_IGNORE_FACTION = TRUE,
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/vermin_only,
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+	)
+
+/// AQUILA: only living mice and cockroaches (not the pets of the crew, not player controlled vermin)
+/datum/targeting_strategy/basic/vermin_only
+	var/static/list/vermin_types = typecacheof(list(/mob/living/basic/mouse, /mob/living/basic/cockroach))
+
+/datum/targeting_strategy/basic/vermin_only/can_attack(mob/living/living_mob, atom/the_target, vision_range)
+	if(!is_type_in_typecache(the_target, vermin_types))
+		return FALSE
+	var/mob/living/vermin = the_target
+	if(vermin.client)
+		return FALSE
+	return ..()
+
 // The captain's fox, Renault
 /mob/living/basic/pet/fox/renault
 	name = "Renault"
@@ -104,4 +125,4 @@
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
-	ai_controller = /datum/ai_controller/basic_controller/fox/docile
+	ai_controller = /datum/ai_controller/basic_controller/fox/vermin_hunter

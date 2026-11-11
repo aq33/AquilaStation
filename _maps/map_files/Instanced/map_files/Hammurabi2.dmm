@@ -2656,7 +2656,7 @@
 	req_access = null;
 	req_one_access_txt = "150"
 	},
-/mob/living/basic/pet/penguin/baby/permanent{
+/mob/living/basic/pet/penguin/baby{
 	faction = list("Syndicate")
 	},
 /turf/open/floor/carpet/red,
