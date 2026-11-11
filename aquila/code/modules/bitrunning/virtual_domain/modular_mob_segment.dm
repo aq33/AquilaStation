@@ -170,9 +170,9 @@
 
 /datum/modular_mob_segment/lavaland_assorted
 	mobs = list(
-		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast,
-		/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+		/mob/living/basic/mining/watcher,
+		/mob/living/basic/mining/goliath,
+		/mob/living/basic/mining/legion,
 	)
 
 

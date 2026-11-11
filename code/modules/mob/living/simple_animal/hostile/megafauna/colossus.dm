@@ -564,7 +564,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 		if("lavaland")//Depressurizes the place... and free cult metal, I guess.
 			NewTerrainFloors = /turf/open/floor/grass/snow/basalt
 			NewTerrainWalls = /turf/closed/wall/mineral/cult
-			NewFlora = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
+			NewFlora = list(/mob/living/basic/mining/goldgrub) // AQ EDIT - złoty pędrak jest basic mobem
 			florachance = 1
 		if("winter") //Snow terrain is slow to move in and cold! Get the assistants to shovel your driveway.
 			NewTerrainFloors = /turf/open/floor/grass/snow

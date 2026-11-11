@@ -65,28 +65,29 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
+	mob_types = list(/mob/living/basic/mining/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
 	name = "legowisko złotych pędraków"
 	desc = "Legowisko z gniazdem złotych pędraków. Irytujące, ale chyba lepsze od wszystkiego innego, co znajdziesz w gnieździe."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
+	mob_types = list(/mob/living/basic/mining/goldgrub) // AQ EDIT - złoty pędrak jest basic mobem
 
 /obj/structure/spawner/mining/goliath
 	name = "legowisko goliatów"
 	desc = "Legowisko z gniazdem goliatów. O Boże, czemu?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
+	mob_types = list(/mob/living/basic/mining/goliath) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/mining/hivelord
 	name = "legowisko władców roju"
 	desc = "Legowisko z gniazdem władców roju."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
+	mob_types = list(/mob/living/basic/mining/hivelord) // AQ EDIT - władca roju jest basic mobem
 
 /obj/structure/spawner/mining/basilisk
 	name = "legowisko bazyliszków"
 	desc = "Legowisko z gniazdem bazyliszków. Weź kurtkę."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
+	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/mining/wumborian
 	name = "legowisko wumboriańskich fugu"

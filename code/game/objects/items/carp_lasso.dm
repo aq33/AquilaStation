@@ -148,8 +148,8 @@
 
 /obj/item/mob_lasso/primal/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
-		/mob/living/simple_animal/hostile/asteroid/goliath,
-		/mob/living/simple_animal/hostile/asteroid/goldgrub,
+		/mob/living/basic/mining/goliath, // AQ EDIT - goliat jest basic mobem
+		/mob/living/basic/mining/goldgrub, // AQ EDIT - złoty pędrak jest basic mobem
 	))
 
 /obj/item/mob_lasso/antag

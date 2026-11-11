@@ -67,19 +67,19 @@
 
 //Spawner types
 /obj/structure/spawner/lavaland/basilisk
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
+	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/lavaland/fugu
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
 
 /obj/structure/spawner/lavaland/asteroid_goliath
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
+	mob_types = list(/mob/living/basic/mining/goliath/ancient) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/lavaland/gutlunch
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/gutlunch)
+	mob_types = list(/mob/living/basic/mining/gutlunch) // AQ EDIT - żarłoczek jest basic mobem
 
 /obj/structure/spawner/lavaland/hivelord
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
+	mob_types = list(/mob/living/basic/mining/hivelord) // AQ EDIT - władca roju jest basic mobem
 
 /area/asteroid/generated
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT

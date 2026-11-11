@@ -3667,6 +3667,8 @@ Oznaczenia w kolumnie uwag:
 | watcher | obserwator | m; nowe |
 | magmawing / icewing watcher | ogniskrzydły / lodoskrzydły obserwator | m; nowe |
 | hivelord | władca roju | m; istniejące (mob, rdzeń regeneracyjny, holoparazyt); odrzucone: pan roju; legowisko: „legowisko władców roju” |
+| hivelord brood | pomiot władcy roju | m; istniejące; zdolność: „Wypuść pomiot” |
+| Launch Legion (ability) | Wystrzel legion | zdolność legionu; nowe |
 | basilisk | bazyliszek | m; nowe |
 | goldgrub | złoty pędrak | m; nowe |
 | gutlunch / gubbuck / guthen | żarłoczek / żarłoczek samiec / żarłoczka | m / m / ż; nowe |

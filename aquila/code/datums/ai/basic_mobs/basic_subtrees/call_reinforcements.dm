@@ -2,7 +2,7 @@
 // Changes against tg:
 // - our retaliate list is Bee's plain lazylist (insert_blackboard_key_lazylist), tg keeps an assoc list with the time;
 // - faction_check_mob() instead of tg's faction_check_atom();
-// - the mining variant (BB_MINING_MOB_REINFORCEMENTS_REQUESTS) comes with the mining mobs, not here.
+// - the mining variant (mining mobs) is the plain call with tg's mining range and cooldown (no target priority strategies).
 
 /// Calls all nearby mobs that share a faction to give backup in combat
 /datum/ai_planning_subtree/call_reinforcements
@@ -32,6 +32,9 @@
 /datum/ai_planning_subtree/call_reinforcements/proc/decide_to_call(datum/ai_controller/controller)
 	return controller.blackboard_key_exists(BB_BASIC_MOB_CURRENT_TARGET) && ismob(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET])
 
+/datum/ai_planning_subtree/call_reinforcements/mining
+	call_type = /datum/ai_behavior/call_reinforcements/mining
+
 /// Call out to all mobs in the specified range for help
 /datum/ai_behavior/call_reinforcements
 	/// How frequently can we call for reinforcements?
@@ -52,3 +55,8 @@
 
 	controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENTS_COOLDOWN, world.time + cooldown)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+
+/// Mining mobs call often and only the mobs close by (tg's range and cooldown)
+/datum/ai_behavior/call_reinforcements/mining
+	cooldown = 1 SECONDS
+	reinforcements_range = 7
