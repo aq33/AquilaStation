@@ -2050,6 +2050,9 @@
 #include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\step_towards_turf.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
+// Basic moby części 2, grupa „reszta”: mimiki, muchołówka, Netherworld, klauni, fugu, świetlik, kosmiczny smok (tg 926bf40c5a)
+#include "code\datums\components\healing_touch.dm"
+#include "code\modules\mob\living\basic\space_fauna\lightgeist.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
@@ -2064,6 +2067,7 @@
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_mob_abilities.dm"
+#include "code\modules\unit_tests\aquila_mob_rest.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"
