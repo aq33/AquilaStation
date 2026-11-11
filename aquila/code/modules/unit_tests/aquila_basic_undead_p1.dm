@@ -17,6 +17,7 @@
 	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
 	var/mob/living/pawn = controller.pawn
 	pawn.next_move = 0
+	pawn.next_click = 0 // ClickOn() takes one click per tick
 	controller.ProcessBehavior(1, attack)
 
 /// A zombie finds the human next to it and bites; when it dies the zombie human corpse drops in its place

@@ -273,5 +273,22 @@
 /mob/living/basic/dolphin/legacy_intents_test/uses_legacy_intents()
 	return TRUE
 
+/// The empty simple_animal/pet base is gone: the animal gibspawner takes its blood from a basic pet now
+/datum/unit_test/aquila_animal_gibs_without_simple_pet
+
+/datum/unit_test/aquila_animal_gibs_without_simple_pet/Run()
+	var/turf/spot = get_step(run_loc_floor_bottom_left, NORTHEAST)
+	var/list/before = list()
+	for(var/obj/effect/decal/cleanable/blood/gibs/gib in range(7, spot))
+		before += gib
+	new /obj/effect/gibspawner/generic/animal(spot)
+	var/list/gibs = list()
+	for(var/obj/effect/decal/cleanable/blood/gibs/gib in range(7, spot))
+		if(!(gib in before))
+			gibs += gib
+	TEST_ASSERT(length(gibs), "The animal gibspawner made no gibs")
+	for(var/obj/effect/decal/cleanable/gib as anything in gibs)
+		qdel(gib)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

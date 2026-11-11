@@ -2759,7 +2759,7 @@
 // AQ EDIT - chomik jest basic mobem (aquila\code\modules\mob\living\basic\pets\hamster.dm)
 // AQ EDIT - jaszczurka jest basic mobem (aquila\code\modules\mob\living\basic\)
 // AQ EDIT - pingwiny są basic mobami (aquila\code\modules\mob\living\basic\pets\penguin.dm)
-#include "code\modules\mob\living\simple_animal\friendly\pet.dm"
+// AQ EDIT - pusta baza simple_animal/pet usunięta, zwierzaki są basic mobami (aquila\code\modules\mob\living\basic\pets\pet.dm)
 // AQ EDIT - leniwce są basic mobami (aquila\code\modules\mob\living\basic\pets\sloth.dm)
 // AQ EDIT - wąż jest basic mobem (aquila\code\modules\mob\living\basic\)
 // AQ EDIT - żółw jest basic mobem (aquila\code\modules\mob\living\basic\)

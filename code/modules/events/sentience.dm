@@ -1,6 +1,5 @@
 GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
-	/mob/living/basic/pet, // AQ EDIT - basic moby
-	/mob/living/simple_animal/pet,
+	/mob/living/basic/pet, // AQ EDIT - basic moby (the empty simple_animal/pet base is gone)
 	/mob/living/simple_animal/parrot,
 	/mob/living/basic/lizard, // AQ EDIT - basic moby
 	/mob/living/basic/sloth, // AQ EDIT - basic moby
