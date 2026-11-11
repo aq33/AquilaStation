@@ -242,21 +242,34 @@
 	SIGNAL_HANDLER
 	aq_add_marker_images(source)
 
-// Ikona funkcji w kolorze drużyny nad postacią (HUD drużyny widzą wszyscy członkowie drużyn).
-// Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), przeniesione do lewego górnego rogu.
+// Funkcję w drużynie pokazuje tylko smycz na szyi (jej sprite), więc HUD drużyny nie ma własnej ikony nad postacią.
+// Po zmianie funkcji albo dowódcy noszona smycz tej drużyny przemalowuje się od razu.
 /mob/living/carbon/human/proc/aq_update_squad_hud()
 	var/image/holder = hud_list?[SQUAD_HUD]
-	if(!holder)
-		return
-	holder.cut_overlays()
-	if(!squad)
+	if(holder)
+		holder.cut_overlays()
 		holder.icon = null
 		holder.icon_state = null
-		return
-	holder.icon = 'aquila/icons/squads/squad_hud.dmi'
-	holder.icon_state = "frame"
-	holder.color = squad.colour
-	holder.appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_APART
-	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[get_squad_position()]")
-	glyph.appearance_flags = RESET_COLOR
-	holder.add_overlay(glyph)
+	var/obj/item/clothing/neck/squad/lanyard = wear_neck
+	if(istype(lanyard) && lanyard.squad && lanyard.squad == squad)
+		lanyard.apply_squad(squad)
+		update_inv_neck()
+
+/// Stan ikony smyczy (bez dowódcy, którego apply_squad() obsługuje wcześniej) według funkcji noszącego w tej drużynie.
+/// Stary warunek czytał rolę drużyny (user.squad.role) i dawał runtime u noszącego bez drużyny.
+/obj/item/clothing/neck/squad/proc/aq_position_icon_state(mob/living/carbon/human/user)
+	if(ishuman(user) && squad && user.squad == squad)
+		switch(user.get_squad_position())
+			if(SQUAD_POSITION_MEDIC)
+				return "hudsquad_medic"
+			if(SQUAD_POSITION_ENGINEER)
+				return "hudsquad_engineer"
+	return "hudsquad"
+
+/// Założona smycz własnej drużyny od razu pokazuje aktualną funkcję
+/obj/item/clothing/neck/squad/equipped(mob/user, slot)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(slot == ITEM_SLOT_NECK && ishuman(H) && squad && H.squad == squad)
+		apply_squad(squad)
+		H.update_inv_neck()

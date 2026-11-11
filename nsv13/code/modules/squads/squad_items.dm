@@ -290,11 +290,7 @@
 		return
 	name = "[initial(name)] drużyny [squad]"
 	icon_state = "hudsquad"
-	if ( user && ishuman( user ) )
-		if ( user.squad.role == MEDICAL_SQUAD )
-			icon_state = "hudsquad_medic"
-		else if ( user.squad.role == DC_SQUAD )
-			icon_state = "hudsquad_engineer"
+	icon_state = aq_position_icon_state(user) // AQ EDIT - ikona według funkcji noszącego, nie roli drużyny (aquila/code/modules/squads/squad_positions.dm)
 	generate_clothing_overlay(src, "[icon_state]_stripes", squad.colour)
 
 //If your squad hat doesnt get stripes, but merely gets recoloured.

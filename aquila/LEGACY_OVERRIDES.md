@@ -446,6 +446,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `computer.update_static_data()` po zalogowaniu i wylogowaniu; `PRG_assign` zdejmuje tylko `get_all_accesses()`; nazwy w logu z `get_department_access_desc()` | `code/modules/modular_computers/file_system/programs/card.dm` | Okno należy do komputera, nie do programu; stanowisko zmienia tylko dostępy stacji jak w konsoli ID |
 | Nazwy dostępów w logu z `get_department_access_desc()` | `code/game/machinery/computer/card.dm` (`Topic()`, `access`) | Konsola Centrali zmienia też dostępy Centrali i „Inne”, których `get_access_desc()` nie zna |
 | `rad_insulation = RAD_MEDIUM_INSULATION` reaktora; natężenie prętów `clamp(siła / 300, 1, 10)`; stormdrive `/ 500` (impuls co 2 s) | `nsv13/code/modules/power/reactor/rbmk.dm`, `reactor/fuel_rods.dm`, `power/stormdrive.dm` | Obudowa osłania pręty w środku; pręty jak w Bee (5% dla plutonowego); poprawki z przeglądu aq33/AquilaStation#600 |
+| `icon_state = aq_position_icon_state(user)` (funkcja noszącego w tej drużynie) zamiast warunku na roli drużyny w `/obj/item/clothing/neck/squad/proc/apply_squad()` | `nsv13/code/modules/squads/squad_items.dm` | Funkcję w drużynie pokazuje tylko smycz (HUD drużyny nie rysuje ikony, `aquila/code/modules/squads/squad_positions.dm`); stary warunek czytał `user.squad.role` i dawał runtime u noszącego bez drużyny |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
