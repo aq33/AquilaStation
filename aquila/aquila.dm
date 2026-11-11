@@ -945,7 +945,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\hivelord.dm"
 #include "code\modules\mob\living\simple_animal\hostile\nsv_syndicate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\regalrat.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\wojtek.dm"
 #include "code\modules\mob\living\simple_animal\hostile\skeleton.dm"
@@ -2060,6 +2059,10 @@
 #include "code\modules\mob\living\basic\jungle\venus_human_trap.dm"
 #include "code\datums\elements\wall_tearer.dm"
 #include "code\modules\mob\living\basic\space_fauna\wumborian_fugu.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\speech_blackboard.dm"
+#include "code\datums\elements\lube_walking.dm"
+#include "code\datums\elements\damage_threshold.dm"
+#include "code\modules\mob\living\basic\clown\clown.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

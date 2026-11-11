@@ -270,9 +270,9 @@
 	name = "funny teratoma spawner"
 	loot = list(
 		/mob/living/simple_animal/cluwne = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown/lube = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown/fleshclown = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown/mutant = 1,
+		/mob/living/basic/clown/lube = 1, // AQ EDIT - basic moby
+		/mob/living/basic/clown/fleshclown = 1, // AQ EDIT - basic moby
+		/mob/living/basic/clown/mutant = 1, // AQ EDIT - basic moby
 		/obj/item/clothing/mask/gas/clown_hat = 4,
 		/obj/item/clothing/shoes/clown_shoes = 3,
 		/obj/item/bikehorn = 5,
@@ -304,9 +304,9 @@
 		/mob/living/simple_animal/hostile/stickman = 2,
 		/mob/living/basic/blankbody = 2, // AQ EDIT - basic moby
 		/mob/living/simple_animal/cluwne = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus = 1,
-		/mob/living/simple_animal/hostile/retaliate/clown/longface = 1,
+		/mob/living/basic/clown = 1, // AQ EDIT - basic moby
+		/mob/living/basic/clown/clownhulk/honkmunculus = 1, // AQ EDIT - basic moby
+		/mob/living/basic/clown/longface = 1, // AQ EDIT - basic moby
 		/mob/living/basic/pet/gondola = 2, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/macrophage/aggro/vector = 2,
 		/mob/living/simple_animal/hostile/retaliate/spaceman = 2,

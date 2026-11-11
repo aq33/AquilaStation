@@ -194,6 +194,64 @@
 	TEST_ASSERT(HAS_TRAIT(blank, TRAIT_FUGU_GLANDED), "The fugu gland did not mark the basic mob")
 	TEST_ASSERT(QDELETED(gland), "The fugu gland was not used up")
 
+/// Clowns: an attacked clown and the clowns around it retaliate through the AI, the honkling's hit injects laughter;
+/// the living lube wets the floor it walks on, the clownana's AI drops peels (rustle), the glutton shrugs off weak hits
+/datum/unit_test/aquila_clowns
+
+/datum/unit_test/aquila_clowns/Run()
+	var/mob/living/basic/clown/honkling/clown = allocate(/mob/living/basic/clown/honkling, run_loc_floor_bottom_left)
+	var/mob/living/basic/clown/buddy = allocate(/mob/living/basic/clown, get_step(run_loc_floor_bottom_left, NORTH))
+	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+	var/datum/ai_controller/controller = clown.ai_controller
+	TEST_ASSERT(isclown(clown), "isclown() does not know basic clowns")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], "A clown picked a target before anyone hit it")
+
+	attacker.set_combat_mode(TRUE, silent = TRUE)
+	attacker.next_click = 0
+	attacker.next_move = 0
+	attacker.ClickOn(clown, LEFT_CLICK)
+	TEST_ASSERT(attacker in controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The punched clown does not remember its attacker")
+	sleep(1) // the retaliation callback runs asynchronously
+	TEST_ASSERT(attacker in buddy.ai_controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The other clown did not join the fight")
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/target_from_retaliate_list), "The clown did not pick a target from its retaliation list")
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], attacker, "The clown did not target its attacker")
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	clown.next_move = 0
+	clown.next_click = 0
+	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/basic_melee_attack), "The clown did not attack its attacker")
+	TEST_ASSERT(attacker.reagents.has_reagent(/datum/reagent/consumable/laughter), "The honkling's hit did not inject laughter")
+	controller.CancelActions()
+
+	// Living lube wets the floor it moves over
+	var/mob/living/basic/clown/lube/lube = allocate(/mob/living/basic/clown/lube, locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y + 3, run_loc_floor_bottom_left.z))
+	lube.ai_controller.set_ai_status(AI_STATUS_OFF)
+	var/turf/open/lubed = get_step(lube, NORTH)
+	lube.Move(lubed, NORTH)
+	TEST_ASSERT(lubed.GetComponent(/datum/component/wet_floor), "The living lube did not wet the floor it walked on")
+
+	// The clownana's AI drops peels with its rustle ability
+	var/mob/living/basic/clown/banana/banana = allocate(/mob/living/basic/clown/banana, locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y + 3, run_loc_floor_bottom_left.z))
+	TEST_ASSERT(aquila_rest_run_behavior(banana.ai_controller, /datum/ai_behavior/use_mob_ability), "The clownana's AI did not use rustle")
+	TEST_ASSERT(locate(/obj/item/grown/bananapeel) in range(1, banana), "The clownana did not drop banana peels")
+
+	// The glutton's fat stops weak hits but not strong ones
+	var/mob/living/basic/clown/mutant/glutton/glutton = allocate(/mob/living/basic/clown/mutant/glutton, locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	glutton.ai_controller.set_ai_status(AI_STATUS_OFF)
+	attacker.forceMove(get_step(glutton, WEST))
+	var/obj/item/kitchen/knife/knife = allocate(/obj/item/kitchen/knife, attacker.loc)
+	knife.force = 5
+	attacker.put_in_active_hand(knife)
+	attacker.next_click = 0
+	attacker.next_move = 0
+	attacker.ClickOn(glutton, LEFT_CLICK)
+	TEST_ASSERT_EQUAL(glutton.health, glutton.maxHealth, "A weak hit got through the glutton's fat")
+	knife.force = 20
+	attacker.next_click = 0
+	attacker.next_move = 0
+	attacker.ClickOn(glutton, LEFT_CLICK)
+	TEST_ASSERT(glutton.health < glutton.maxHealth, "A strong hit did not hurt the glutton")
+
 // --- end of the "rest" group tests
 #undef LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS

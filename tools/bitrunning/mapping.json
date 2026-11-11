@@ -184,10 +184,7 @@
     },
     "/mob/living/basic/butterfly": "/mob/living/basic/butterfly",
     "/mob/living/basic/chicken": "/mob/living/basic/chicken",
-    "/mob/living/basic/clown": {
-      "path": "/mob/living/simple_animal/hostile/retaliate/clown",
-      "approx": "klaun tg (basic) -> nasz retaliate/clown (atakuje dopiero zaczepiony)"
-    },
+    "/mob/living/basic/clown": "/mob/living/basic/clown",
     "/mob/living/basic/crab": "/mob/living/basic/crab",
     "/mob/living/basic/crab/kreb": "/mob/living/basic/crab/kreb",
     "/mob/living/basic/fake_crewman/assistant": "/mob/living/carbon/human/ai_boarder/fake_crew/assistant",
