@@ -276,5 +276,18 @@
 	var/obj/item/coin/arcade_token/token = allocate(/obj/item/coin/arcade_token, start)
 	TEST_ASSERT(token.color, "The arcade token lost its yellow colour")
 
+/// M8: mikrofalówka nie psuje się od przedmiotu z żelazem (przed portem to sprawdzenie nigdy nie działało)
+/datum/unit_test/aquila_basemats_microwave_iron
+
+/datum/unit_test/aquila_basemats_microwave_iron/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/machinery/microwave/microwave = allocate(/obj/machinery/microwave, start)
+	var/obj/item/wrench/wrench = allocate(/obj/item/wrench, microwave)
+	TEST_ASSERT(aquila_test_material_amount(wrench, /datum/material/iron), "The wrench has no iron, pick another item")
+	microwave.ingredients += wrench
+	microwave.loop_finish()
+	TEST_ASSERT_EQUAL(microwave.broken, 0, "An iron item broke the microwave")
+	TEST_ASSERT_EQUAL(wrench.loc, start, "The microwave did not give the iron item back")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
