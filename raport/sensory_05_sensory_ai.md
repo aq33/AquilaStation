@@ -122,7 +122,7 @@ Z nagrań wyszły dwie rzeczy, które psuły wrażenie walki:
 |---|---|---|
 | optyczny | panoramiczne kamery szerokokątne | dookoła, połowa dawnego zasięgu optycznego (najmniej 10 pól) |
 | teleskop | wąski obiektyw na przegubie, trzeba go wycelować | stożek 2×10°, dawny zasięg optyczny (30 × rozmiar celu); celuje w trzymany cel, potem w miejsce, gdzie cel powinien być, a bez celu wzdłuż kursu. Tylko okręty większe od myśliwca |
-| termiczny | panoramiczny IRST | dookoła poza klinem 2×30° za rufą, gdy własny napęd pracuje (`thrust_heat` ≥ 0,2); ciepło napędu celu zależy od kąta: od dysz ×2,25, z boku ×1,37, od dzioba ×0,49 (pożar, uszkodzenia i gorące działa świecą dookoła); zasięg rośnie z pierwiastkiem ciepła: 35 × √ciepło (pełny ciąg z boku ok. 43 pola, od dysz 54, od dzioba 28) |
+| termiczny | panoramiczny IRST | dookoła poza klinem 2×15° za rufą, gdy własny napęd pracuje (`thrust_heat` ≥ 0,2); ciepło napędu celu zależy od kąta: od dysz ×2,25, z boku ×1,37, od dzioba ×0,49 (pożar, uszkodzenia i gorące działa świecą dookoła); zasięg rośnie z pierwiastkiem ciepła: 35 × √ciepło (pełny ciąg z boku ok. 43 pola, od dysz 54, od dzioba 28) |
 | lidar (impuls) | obrotowy radar, emisja zdradza nadawcę | bez zmian |
 | nasłuch | pasywny, sam namiar | bez zmian |
 

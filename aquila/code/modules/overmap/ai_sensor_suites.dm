@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 #define TELESCOPE_RANGE_MULT 1
 #define TELESCOPE_HALF_ANGLE 10
 /// Infrared: the ship's own drive blinds a wedge behind it while the engines burn (an IRST looking into its own exhaust)
-#define INFRARED_BLIND_HALF_ANGLE 30
+#define INFRARED_BLIND_HALF_ANGLE 15
 /// Own engine heat (thrust_heat, 0..1) above which that wedge is blind
 #define INFRARED_BLIND_THRUST 0.2
 /// Engine heat is directional: seen from behind (into the nozzles) it is brightest, from the bow faintest.

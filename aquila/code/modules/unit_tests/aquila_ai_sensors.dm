@@ -123,6 +123,10 @@
 	observer.thrust_heat = 1
 	if(observer.get_suite_range(SENSOR_INFRARED, target) > 0)
 		return "Termika widziała cel za rufą mimo pracującego napędu"
+	observer.angle = do_celu + 180 + 25 // 25° od osi rufy: poza wąskim klinem dysz
+	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
+		return "Klin oślepienia za rufą jest szerszy niż 2×[INFRARED_BLIND_HALF_ANGLE]° (cel 25° od osi rufy niewidoczny)"
+	observer.angle = do_celu + 180
 	observer.thrust_heat = 0
 	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
 		return "Termika nie widziała gorącego celu za rufą przy wyłączonym napędzie"

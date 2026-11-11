@@ -492,7 +492,7 @@ function rysujStozki(lista, sel){
     if(c.irb){
       // Stala dlugosc: klin pokazuje kierunek martwego pola, a pelny zasieg termiki (do ~100 pol)
       // przy prawie kazdym okrecie zalewal mape
-      klin(x, y, (sh.angle || 0) + 180, STOZKI.ir_blind_half, 20 * skala());
+      klin(x, y, (sh.angle || 0) + 180, STOZKI.ir_blind_half, 12 * skala());
       ctx.fillStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .03 : .08; ctx.fill();
       ctx.setLineDash([3, 3]); ctx.strokeStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .12 : .45; ctx.stroke();
       ctx.setLineDash([]);
