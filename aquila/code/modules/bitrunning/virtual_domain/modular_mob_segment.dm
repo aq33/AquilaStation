@@ -156,15 +156,15 @@
 
 /datum/modular_mob_segment/hivebots
 	mobs = list(
-		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/hostile/hivebot/range,
+		/mob/living/basic/hivebot,
+		/mob/living/basic/hivebot/range,
 	)
 
 
 /datum/modular_mob_segment/hivebots_strong
 	mobs = list(
-		/mob/living/simple_animal/hostile/hivebot/strong,
-		/mob/living/simple_animal/hostile/hivebot/range,
+		/mob/living/basic/hivebot/strong,
+		/mob/living/basic/hivebot/range,
 	)
 
 

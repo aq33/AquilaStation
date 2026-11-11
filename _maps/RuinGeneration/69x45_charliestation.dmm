@@ -23,7 +23,7 @@
 /area/ruin/unpowered)
 "aG" = (
 /obj/effect/decal/cleanable/oil,
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "aZ" = (
@@ -645,7 +645,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "iN" = (
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "iP" = (
@@ -684,7 +684,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "ji" = (
@@ -737,7 +737,7 @@
 "jw" = (
 /obj/effect/decal/cleanable/oil,
 /obj/effect/decal/cleanable/robot_debris,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "jz" = (
@@ -783,7 +783,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "kj" = (
@@ -832,7 +832,7 @@
 "kW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "kY" = (
@@ -916,7 +916,7 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "lM" = (
@@ -955,7 +955,7 @@
 /area/ruin/unpowered)
 "my" = (
 /obj/effect/decal/cleanable/oil,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "mE" = (
@@ -968,7 +968,7 @@
 /area/ruin/unpowered)
 "mK" = (
 /obj/effect/decal/cleanable/oil,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "mO" = (
@@ -1112,7 +1112,7 @@
 	pixel_y = -26
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "nV" = (
@@ -1200,7 +1200,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "oS" = (
@@ -1219,7 +1219,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "pd" = (
@@ -1288,7 +1288,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "qc" = (
@@ -1495,11 +1495,11 @@
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "tU" = (
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "tZ" = (
@@ -1557,7 +1557,7 @@
 /obj/structure/cable/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "uw" = (
@@ -1689,7 +1689,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "wu" = (
@@ -1859,7 +1859,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "yM" = (
@@ -1915,7 +1915,7 @@
 "ze" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "zf" = (
@@ -1964,7 +1964,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "zB" = (
@@ -2025,7 +2025,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Al" = (
@@ -2035,7 +2035,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "An" = (
@@ -2423,7 +2423,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "EW" = (
@@ -2524,7 +2524,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "FS" = (
@@ -2656,14 +2656,14 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Hn" = (
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "Hr" = (
 /obj/structure/cable/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/range,
+/mob/living/basic/hivebot/range,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Hz" = (
@@ -2936,7 +2936,7 @@
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "KL" = (
@@ -3076,7 +3076,7 @@
 /obj/structure/cable/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Mw" = (
@@ -3248,7 +3248,7 @@
 /area/ruin/unpowered)
 "Ok" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "On" = (
@@ -3702,7 +3702,7 @@
 /area/ruin/unpowered)
 "Th" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Ti" = (
@@ -3797,7 +3797,7 @@
 /area/ruin/unpowered)
 "UR" = (
 /obj/effect/decal/cleanable/robot_debris,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "US" = (
@@ -4004,7 +4004,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "XR" = (
@@ -4161,7 +4161,7 @@
 "ZC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot,
+/mob/living/basic/hivebot,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "ZV" = (

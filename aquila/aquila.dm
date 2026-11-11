@@ -933,7 +933,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\carp.dm"
 #include "code\modules\mob\living\simple_animal\hostile\gorilla\gorilla.dm"
 #include "code\modules\mob\living\simple_animal\hostile\headcrab.dm"
-#include "code\modules\mob\living\simple_animal\hostile\hivebot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\poison.dm"
 #include "code\modules\mob\living\simple_animal\hostile\spider\spider.dm"
 #include "code\modules\mob\living\simple_animal\hostile\spider\spider_abilities.dm"
@@ -2050,6 +2049,8 @@
 #include "code\datums\ai\basic_mobs\pet_commands\pet_use_targeted_ability.dm"
 #include "code\datums\ai\basic_mobs\basic_ai_behaviors\step_towards_turf.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
+// Rodziny basic mobów części 2 (hiveboty, gęś, ksenomorfy, karpie), opis w LEGACY_OVERRIDES.md "Basic mob families of part 2"
+#include "code\modules\mob\living\basic\space_fauna\hivebot.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
@@ -2064,6 +2065,7 @@
 #include "code\modules\unit_tests\aquila_basic_cats.dm"
 #include "code\modules\unit_tests\aquila_basic_dogs.dm"
 #include "code\modules\unit_tests\aquila_mob_abilities.dm"
+#include "code\modules\unit_tests\aquila_mob_families.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"
