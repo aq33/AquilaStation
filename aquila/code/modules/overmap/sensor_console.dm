@@ -22,11 +22,14 @@
 /obj/structure/overmap/proc/get_contact_label(obj/structure/overmap/target, identified)
 	if(identified)
 		return target.name
-	var/number = LAZYACCESS(sensor_contact_numbers, target)
-	if(!number)
-		number = ++last_sensor_contact_number
-		LAZYSET(sensor_contact_numbers, target, number)
-	return "Kontakt [number]"
+	return "Kontakt [get_contact_number(target)]"
+
+/// Stable contact number of target on this ship's consoles ("K3" on the sensor console scope)
+/obj/structure/overmap/proc/get_contact_number(obj/structure/overmap/target)
+	. = LAZYACCESS(sensor_contact_numbers, target)
+	if(!.)
+		. = ++last_sensor_contact_number
+		LAZYSET(sensor_contact_numbers, target, .)
 
 /// Whether our sensors resolve target well enough to show its name and faction (same rule as the DRADIS base proc)
 /obj/structure/overmap/proc/is_contact_identified(obj/structure/overmap/target, range)
@@ -193,6 +196,7 @@
 			"painted" = !!LAZYFIND(linked.target_painted, OM),
 			"locked" = linked.target_lock == OM,
 			"designation" = blip["designation"],
+			"number" = linked.get_contact_number(OM),
 		))
 	data["contacts"] = contacts
 	// Heard pulses and fire from undetected ships, drawn on the scope but not designatable

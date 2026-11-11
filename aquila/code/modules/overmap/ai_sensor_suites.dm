@@ -137,6 +137,15 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 		return FALSE
 	return abs(closer_angle_difference(angle + 180, bearing)) <= INFRARED_BLIND_HALF_ANGLE
 
+/// How far the infrared would see target if our own drive did not blind it.
+/// Radiant intensity falls off with the square of distance, so detection range goes with its square root
+/obj/structure/overmap/proc/get_infrared_reach(obj/structure/overmap/target)
+	return INFRARED_BASE_RANGE * sqrt(max(target.get_signature_heat_toward(src), 0))
+
+/// How far the wide-angle camera sees a hull of signature size, all around
+/obj/structure/overmap/proc/get_optical_reach(size = 1)
+	return max(OPTICAL_BASE_RANGE * OPTICAL_WIDE_MULT * size, OPTICAL_WIDE_MIN_RANGE)
+
 /// TRUE when target sits inside the telescope's cone
 /obj/structure/overmap/proc/is_in_telescope_cone(obj/structure/overmap/target)
 	var/bearing = overmap_angle(src, target)
@@ -149,7 +158,7 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 	switch(suite)
 		if(SENSOR_OPTICAL)
 			if(GLOB.ai_sensor_cones_enabled)
-				return max(OPTICAL_BASE_RANGE * OPTICAL_WIDE_MULT * target.get_signature_size(), OPTICAL_WIDE_MIN_RANGE)
+				return get_optical_reach(target.get_signature_size())
 			return max(OPTICAL_BASE_RANGE * target.get_signature_size(), OPTICAL_MIN_RANGE)
 		if(SENSOR_TELESCOPE)
 			if(!GLOB.ai_sensor_cones_enabled || !is_in_telescope_cone(target))
@@ -160,8 +169,7 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 				return INFRARED_BASE_RANGE * target.get_signature_heat()
 			if(is_infrared_blinded_toward(target))
 				return 0
-			// Radiant intensity falls off with the square of distance, so detection range goes with its square root
-			return INFRARED_BASE_RANGE * sqrt(max(target.get_signature_heat_toward(src), 0))
+			return get_infrared_reach(target)
 		if(SENSOR_LIDAR)
 			// Only while our own pulse is up; radar_emission.dm doubles max_tracking_range for its duration
 			if(world.time >= last_radar_pulse + RADAR_VISIBILITY_PENALTY)
@@ -190,9 +198,14 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 /obj/structure/overmap/proc/get_contact_suite(obj/structure/overmap/target)
 	return LAZYACCESS(sensor_contact_suites, target)
 
-/// AI detection goes through the suites; players keep the single range from sensor_signature.dm
+/// Detection through the suites: AI ships, and player ships with a sensor console (player_sensors.dm).
+/// Other player ships keep the single range from sensor_signature.dm.
 /obj/structure/overmap/get_detection_range(obj/structure/overmap/observer)
-	if(!GLOB.ai_sensor_suites_enabled || !observer?.ai_controlled)
+	if(!GLOB.ai_sensor_suites_enabled || !observer?.uses_sensor_suites())
+		return ..()
+	// A player's active pulse still sees the whole map, as before (sensor_signature.dm)
+	if(!observer.ai_controlled && world.time < observer.last_radar_pulse + RADAR_VISIBILITY_PENALTY)
+		LAZYSET(observer.sensor_contact_suites, src, SENSOR_LIDAR)
 		return ..()
 	var/list/best = observer.get_best_suite(src)
 	var/range = best[2]
