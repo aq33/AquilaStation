@@ -102,14 +102,15 @@
 	TEST_ASSERT_EQUAL(snack.loc, cat, "The cat did not pick up its prey")
 
 	cat.held_food_since = world.time - CAT_KEEP_PREY_TIME
-	var/datum/ai_behavior/eat_held_prey/eat = GET_AI_BEHAVIOR(/datum/ai_behavior/eat_held_prey)
-	for(var/i in 1 to 20)
+	// Through the AI: haul_food_to_young finds the prey in the mouth, finds no kitten and eats it
+	for(var/i in 1 to 50)
 		controller.SelectBehaviors(1)
-		if(controller.current_behaviors[eat])
+		for(var/datum/ai_behavior/behavior as anything in controller.current_behaviors)
+			controller.ProcessBehavior(1, behavior)
+		if(QDELETED(snack))
 			break
-	TEST_ASSERT(controller.current_behaviors[eat], "The cat never planned to eat the prey it could not deliver")
-	controller.ProcessBehavior(1, eat)
-	TEST_ASSERT(QDELETED(snack), "The cat did not eat its prey")
+		sleep(1)
+	TEST_ASSERT(QDELETED(snack), "The cat AI did not eat the prey it could not deliver")
 	TEST_ASSERT(isnull(cat.held_food), "The cat still thinks it holds its prey")
 
 	// Feeding from the hand: dead mouse, fish, fish meat
