@@ -363,7 +363,7 @@
 	weight_class_on = WEIGHT_CLASS_BULKY
 
 /obj/item/melee/classic_baton/telescopic/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(on)
+	if(on || blocks_when_off) // AQ EDIT - szabla jonowa blokuje też wyłączona (aquila/code/modules/mob/living/carbon/human/blocking.dm)
 		return ..()
 	return 0
 
