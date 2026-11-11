@@ -78,6 +78,12 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Skończone zapasy rakiet i torped",
+    opis: "Lotniskowiec dawał okrętowi w promieniu 15 pól pełny magazyn rakiet i torped co 5 s, czyli bez końca. " +
+          "Teraz ma zapas na całą bitwę (20 torped, 40 rakiet) i oddaje po kilka sztuk. Okręt bez torped nie wraca po nie, " +
+          "gdy flocie się skończyły, tylko walczy dalej. Pierwszy krok przed zwiadem myśliwców i łączem danych.",
+    wynik: null,
+    warianty: [["U_zapasy_", "zapasy włączone"], ["U_bez_zapasow_", "pełny magazyn co 5 s (jak dotąd)"]] },
   { tytul: "Objazd przeszkód i liczniki uzbrojenia",
     opis: "Okręt zablokowany przez inny przed dziobem omija go łukiem (60° od kursu, w stałą stronę), zamiast drżeć w miejscu " +
           "na samym ciągu bocznym. To była główna przyczyna lotniskowców stojących przez całą bitwę. Pierwsze nagrania, " +

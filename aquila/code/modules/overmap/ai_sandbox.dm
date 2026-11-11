@@ -106,6 +106,9 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	if(text2num(world.params["ai_sandbox_no_forward_avoidance"]))
 		GLOB.ai_forward_avoidance_enabled = FALSE
 		event("Omijanie przeszkód dookoła, jak w bazowym NSV13")
+	if(text2num(world.params["ai_sandbox_no_finite_supply"]))
+		GLOB.ai_finite_supply_enabled = FALSE
+		event("Pełny magazyn rakiet i torped co 5 s przy lotniskowcu, jak w bazowym NSV13")
 	if(text2num(world.params["ai_sandbox_no_detour"]))
 		GLOB.ai_detour_enabled = FALSE
 		event("Bez objazdu łukiem: przeszkoda przed dziobem tylko ciągiem bocznym")
@@ -301,7 +304,12 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 				"dmp" = OM.inertial_dampeners ? 1 : 0,
 				"th" = round(OM.thrust_heat, 0.01),
 				"sp" = OM.ai_standoff_point ? round(overmap_dist(OM, OM.ai_standoff_point)) : null,
+				"tp" = OM.torpedoes,
+				"ms" = OM.missiles,
 			)
+			if(OM.can_resupply)
+				dbg["zt"] = OM.ai_supply_torpedoes
+				dbg["zm"] = OM.ai_supply_missiles
 		ships += list(wpis + list(
 			"dbg" = dbg,
 			"cones" = stozki,
