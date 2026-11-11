@@ -460,6 +460,17 @@
 	shotgun.chambered = null
 	TEST_ASSERT(aq_get_gun_cursor_icon(10, "pellets") != aq_get_gun_cursor_icon(10, "standard"), "Pellet and standard crosshairs share one cursor icon")
 
+	// Pojedynczy strzał z pistoletu i bieg mają rozsunąć celownik, nie tylko śrut
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	pistol.forceMove(shooter)
+	pistol.spread = 0
+	var/rest_size = shooter.get_gun_cursor_size(pistol)
+	shooter.aq_recoil = 2.4 // 9 mm z miejsca
+	TEST_ASSERT(shooter.get_gun_cursor_size(pistol) > rest_size, "One pistol shot did not widen the crosshair (size [shooter.get_gun_cursor_size(pistol)] vs [rest_size] at rest)")
+	shooter.aq_recoil = 0
+	shooter.last_move_time = world.time
+	TEST_ASSERT(shooter.get_gun_cursor_size(pistol) > rest_size, "Running did not widen the crosshair")
+
 /// Rozrzut broni losowany w ułamkach: rand(0, 0.9) dawało zawsze 0, a round() (podłoga) odchylało strzały w jedną stronę
 /datum/unit_test/aquila_gunplay_fractional_spread
 

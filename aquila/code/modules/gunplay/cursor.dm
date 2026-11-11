@@ -256,10 +256,14 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	var/obj/item/gun/held_gun = get_active_held_item()
 	if(!istype(held_gun) || held_gun.aq_firemode == AQ_FIREMODE_SAFE)
 		return null
+	return aq_get_gun_cursor_icon(get_gun_cursor_size(held_gun), held_gun.get_cursor_shape())
+
+/// Stan ikony kursora = promień stożka rozrzutu w pikselach przy kursorze. Stan 0 ma już 4 px odstępu od środka,
+/// więc promień się do niego dodaje (odejmowanie 4 px chowało pojedyncze strzały i bieg, rósł tylko śrut)
+/mob/living/proc/get_gun_cursor_size(obj/item/gun/held_gun)
 	var/distance = aq_cursor_known ? sqrt(aq_cursor_dx ** 2 + aq_cursor_dy ** 2) : AQ_GUN_CURSOR_DEFAULT_DISTANCE
 	var/half_angle = min(held_gun.get_spread_cone(src), 60)
-	var/radius = tan(half_angle) * max(distance, world.icon_size)
-	return aq_get_gun_cursor_icon(radius - 4, held_gun.get_cursor_shape())
+	return round(tan(half_angle) * max(distance, world.icon_size) + 0.5)
 
 
 /mob/living/proc/update_gun_cursor()
