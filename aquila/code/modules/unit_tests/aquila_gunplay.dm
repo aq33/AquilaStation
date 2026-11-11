@@ -435,5 +435,24 @@
 	shooter.aq_last_sprint_time = world.time - 2 SECONDS
 	TEST_ASSERT_EQUAL(shooter.get_move_spread_penalty(), 0, "Sprint penalty did not vanish after a second")
 
+/// Kształt celownika: z broni, nabój z własnym kształtem wygrywa, pusta broń zachowuje kształt ostatniego naboju
+/datum/unit_test/aquila_gunplay_cursor_shape
+
+/datum/unit_test/aquila_gunplay_cursor_shape/Run()
+	var/obj/item/gun/ballistic/automatic/pistol/pistol = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	TEST_ASSERT_EQUAL(pistol.get_cursor_shape(), "standard", "Pistol should use the standard crosshair")
+	var/obj/item/gun/ballistic/automatic/sniper_rifle/sniper = allocate(/obj/item/gun/ballistic/automatic/sniper_rifle)
+	TEST_ASSERT_EQUAL(sniper.get_cursor_shape(), "scope", "Sniper rifle should use the scope crosshair")
+
+	var/obj/item/gun/ballistic/shotgun/shotgun = allocate(/obj/item/gun/ballistic/shotgun)
+	shotgun.chambered = allocate(/obj/item/ammo_casing/shotgun/buckshot)
+	TEST_ASSERT_EQUAL(shotgun.get_cursor_shape(), "pellets", "Buckshot should switch the crosshair to pellet arcs")
+	shotgun.chambered = null
+	TEST_ASSERT_EQUAL(shotgun.get_cursor_shape(), "pellets", "Empty shotgun lost the last shell's crosshair")
+	shotgun.chambered = allocate(/obj/item/ammo_casing/shotgun)
+	TEST_ASSERT_EQUAL(shotgun.get_cursor_shape(), "standard", "Slug should bring back the gun's own crosshair")
+	shotgun.chambered = null
+	TEST_ASSERT(aq_get_gun_cursor_icon(10, "pellets") != aq_get_gun_cursor_icon(10, "standard"), "Pellet and standard crosshairs share one cursor icon")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
