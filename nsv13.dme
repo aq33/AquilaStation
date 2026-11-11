@@ -2776,9 +2776,9 @@
 // AQ EDIT - niedźwiedzie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\bear.dm)
 #include "code\modules\mob\living\simple_animal\hostile\bees.dm"
 #include "code\modules\mob\living\simple_animal\hostile\bread.dm"
-#include "code\modules\mob\living\simple_animal\hostile\carp.dm"
+// AQ EDIT - karpie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\carp\)
 #include "code\modules\mob\living\simple_animal\hostile\cat_butcher.dm"
-#include "code\modules\mob\living\simple_animal\hostile\eyeballs.dm"
+// AQ EDIT - gałka oczna na własnym typie simple_animal (aquila\code\modules\mob\living\simple_animal\hostile\eyeball.dm)
 #include "code\modules\mob\living\simple_animal\hostile\faithless.dm"
 #include "code\modules\mob\living\simple_animal\hostile\floor_cluwne.dm"
 // AQ EDIT - gęsi są basic mobami (aquila\code\modules\mob\living\basic\farm_animals\goose.dm)

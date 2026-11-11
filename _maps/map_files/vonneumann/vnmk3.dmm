@@ -7416,7 +7416,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /obj/structure/cable,
 /obj/machinery/requests_console{
 	announcementConsole = 1;

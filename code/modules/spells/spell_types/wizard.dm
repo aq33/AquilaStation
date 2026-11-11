@@ -186,7 +186,7 @@
 	invocation_type = "shout"
 	range = 1
 
-	summon_type = list(/mob/living/simple_animal/hostile/carp)
+	summon_type = list(/mob/living/basic/carp) // AQ EDIT - basic moby
 	cast_sound = 'sound/magic/summon_karp.ogg'
 
 

@@ -38,9 +38,9 @@
 
 /obj/item/mob_lasso/proc/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
-		/mob/living/simple_animal/hostile/carp,
-		/mob/living/simple_animal/hostile/carp/megacarp,
-		/mob/living/simple_animal/hostile/carp/lia,
+		/mob/living/basic/carp, // AQ EDIT - basic moby
+		/mob/living/basic/carp/mega, // AQ EDIT - basic moby
+		/mob/living/basic/carp/pet/lia, // AQ EDIT - basic moby
 		/mob/living/basic/cow, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/retaliate/dolphin,
 	), only_root_path = TRUE)
@@ -83,10 +83,13 @@
 	//Riding and Tamed
 	C.tamed(user)
 	C.setup_tamed_riding() // our riding/tamed component with the old offsets
-	if(C.ai_controller)
-		QDEL_NULL(C.ai_controller)
-	C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
-	C.AddComponent(/datum/component/obeys_commands, pet_commands)
+	// AQ EDIT START - basic moby: a basic carp keeps its own AI (fleeing, rifts) and takes the commands of its tamed() (decision D11)
+	if(!istype(C, /mob/living/basic/carp))
+		if(C.ai_controller)
+			QDEL_NULL(C.ai_controller)
+		C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
+		C.AddComponent(/datum/component/obeys_commands, pet_commands)
+	// AQ EDIT END
 	// AQUILA: a mob tamed again is already a friend (faction), so befriend() stops early and the new controller had no friends
 	if(!C.befriend(user))
 		C.ai_controller.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, user)

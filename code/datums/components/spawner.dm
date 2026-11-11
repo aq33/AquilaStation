@@ -1,5 +1,5 @@
 /datum/component/spawner
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/basic/carp) // AQ EDIT - basic moby
 	var/spawn_time = 300 //30 seconds default
 	var/list/spawned_mobs = list()
 	var/spawn_delay = 0
@@ -48,6 +48,7 @@
 	var/mob/living/simple_animal/L = new chosen_mob_type(P.loc)
 	L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1)
 	spawned_mobs += L
-	L.nest = src
+	if(isanimal(L)) // AQ EDIT - basic moby: basic mobs have no nest var
+		L.nest = src
 	L.faction = src.faction
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")

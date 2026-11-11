@@ -929,7 +929,7 @@
 #include "code\modules\mob\living\simple_animal\gremlin\event.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin.dm"
 #include "code\modules\mob\living\simple_animal\gremlin\gremlin_act.dm"
-#include "code\modules\mob\living\simple_animal\hostile\carp.dm"
+#include "code\modules\mob\living\simple_animal\hostile\eyeball.dm"
 #include "code\modules\mob\living\simple_animal\hostile\gorilla\gorilla.dm"
 #include "code\modules\mob\living\simple_animal\hostile\headcrab.dm"
 #include "code\modules\mob\living\simple_animal\hostile\poison.dm"
@@ -1139,6 +1139,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_mob_abilities_fam.dm"
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
 #include "code\modules\test_chamber\kits\pr_614_celowniki.dm"
@@ -2053,6 +2054,11 @@
 #include "code\datums\elements\content_barfer.dm"
 #include "code\modules\mob\living\basic\farm_animals\goose.dm"
 #include "code\modules\mob\living\basic\alien\alien.dm"
+#include "code\modules\mob\living\basic\space_fauna\carp\carp.dm"
+#include "code\modules\mob\living\basic\space_fauna\carp\carp_abilities.dm"
+#include "code\modules\mob\living\basic\space_fauna\carp\carp_ai.dm"
+#include "code\modules\mob\living\basic\space_fauna\carp\carp_controllers.dm"
+#include "code\modules\mob\living\basic\space_fauna\carp\magicarp.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

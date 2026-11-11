@@ -6576,7 +6576,7 @@
 /turf/closed/wall/ship,
 /area/medical/medbay/lobby)
 "ve" = (
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /obj/structure/bed/dogbed/cayenne,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/carpet/police,

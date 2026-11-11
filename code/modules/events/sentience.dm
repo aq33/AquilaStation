@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/chicken, // AQ EDIT - basic moby
 	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/basic/bat, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/carp/cayenne,
+	/mob/living/basic/carp/pet/cayenne, // AQ EDIT - basic moby
 	/mob/living/basic/butterfly, // AQ EDIT - basic moby
 	/mob/living/basic/snake, // AQ EDIT - basic moby
 	/mob/living/simple_animal/bot/secbot/beepsky

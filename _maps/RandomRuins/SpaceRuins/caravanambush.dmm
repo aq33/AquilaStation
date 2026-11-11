@@ -302,7 +302,7 @@
 	},
 /area/shuttle/caravan/freighter2)
 "bl" = (
-/mob/living/simple_animal/hostile/carp,
+/mob/living/basic/carp,
 /turf/template_noop,
 /area/template_noop)
 "br" = (

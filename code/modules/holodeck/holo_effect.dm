@@ -80,7 +80,7 @@
 	return to_spawn
 
 /obj/effect/holodeck_effect/mobspawner
-	var/mobtype = /mob/living/simple_animal/hostile/carp/holocarp
+	var/mobtype = /mob/living/basic/carp/holographic // AQ EDIT - basic moby
 	var/mob/our_mob = null
 
 /obj/effect/holodeck_effect/mobspawner/activate(var/obj/machinery/computer/holodeck/HC)

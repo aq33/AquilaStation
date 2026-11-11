@@ -150,7 +150,7 @@
 
 /datum/modular_mob_segment/carps
 	mobs = list(
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/basic/carp,
 	)
 
 

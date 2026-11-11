@@ -333,6 +333,255 @@
 	TEST_ASSERT_EQUAL(barmaid.health, barmaid_health, "The barmaid was hurt")
 	TEST_ASSERT(barmaid.access_card && (ACCESS_CENT_BAR in barmaid.access_card.access), "The barmaid has no bar access")
 
+/// Carp: the AI bites a human, a school picks the same prey, a hurt carp opens a rift away from its attacker and then flees,
+/// regenerates after a while without damage, rifts towards far prey, eats raw meat, follows a migration path,
+/// the dragon's rift heals basic carp and a player carp opens a rift with the secondary click in both control modes
+/datum/unit_test/aquila_carp_family
+
+/datum/unit_test/aquila_carp_family/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/datum/ai_behavior/find_target = GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets)
+	var/datum/ai_behavior/melee = GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)
+	var/datum/ai_behavior/rift_away = GET_AI_BEHAVIOR(/datum/ai_behavior/make_carp_rift/away)
+	var/datum/ai_behavior/rift_towards = GET_AI_BEHAVIOR(/datum/ai_behavior/make_carp_rift/towards/aggressive)
+	var/datum/ai_behavior/flee = GET_AI_BEHAVIOR(/datum/ai_behavior/run_away_from_target)
+
+	// A school: two carp go for the same human, the first bites it
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(corner.x + 1, corner.y + 1, corner.z))
+	var/mob/living/basic/carp/biter = allocate(/mob/living/basic/carp, corner)
+	var/mob/living/basic/carp/schoolmate = allocate(/mob/living/basic/carp, locate(corner.x + 2, corner.y + 1, corner.z))
+	TEST_ASSERT(biter.playable, "A space carp cannot be taken over by ghosts any more")
+	for(var/mob/living/basic/carp/fish as anything in list(biter, schoolmate))
+		fish.ai_controller.SelectBehaviors(1)
+		fish.ai_controller.ProcessBehavior(1, find_target)
+		TEST_ASSERT_EQUAL(fish.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "A carp of the school did not go for the human")
+	var/datum/ai_controller/controller = biter.ai_controller
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[melee], "The carp next to its prey did not plan to bite")
+	controller.ProcessBehavior(1, melee)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	biter.next_move = 0
+	biter.next_click = 0
+	var/brute_before = victim.getBruteLoss()
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The carp did not bite the human")
+	controller.CancelActions()
+	qdel(schoolmate)
+
+	// Hurt below half: a rift away from the attacker first, then running away
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	biter.adjustBruteLoss(biter.maxHealth * 0.6)
+	TEST_ASSERT(!controller.blackboard[BB_BASIC_MOB_STOP_FLEEING], "A badly hurt carp does not want to flee")
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[rift_away], "A hurt carp with its rift ready did not plan to rift away")
+	var/distance_before = get_dist(biter, victim)
+	controller.ProcessBehavior(1, rift_away)
+	TEST_ASSERT(get_dist(biter, victim) > distance_before, "The panic rift did not take the carp away from the human")
+	TEST_ASSERT(!biter.teleport.IsAvailable(), "The rift did not go on cooldown")
+	TEST_ASSERT(locate(/obj/effect/temp_visual/lesser_carp_rift/entrance) in range(1, locate(corner.x, corner.y, corner.z)), "The panic rift left no entrance behind")
+	controller.CancelActions()
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[flee] || get_dist(biter, victim) >= DEFAULT_BASIC_FLEE_DISTANCE, "The hurt carp with its rift on cooldown did not run away")
+	controller.CancelActions()
+
+	// Regeneration: nothing right after damage, then 2 health a second
+	var/health_hurt = biter.health
+	biter.Life()
+	TEST_ASSERT_EQUAL(biter.health, health_hurt, "The carp regenerated right after taking damage")
+	biter.regeneration_cooldown = world.time - 1
+	biter.Life()
+	TEST_ASSERT(biter.health > health_hurt, "The carp did not regenerate after a while without damage")
+	qdel(biter)
+
+	// Far prey: a rift towards it
+	var/mob/living/basic/carp/hunter = allocate(/mob/living/basic/carp, corner)
+	controller = hunter.ai_controller
+	var/mob/living/carbon/human/far_victim = allocate(/mob/living/carbon/human, locate(corner.x + 4, corner.y + 4, corner.z))
+	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, far_victim)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[rift_towards], "A carp with far prey did not plan a rift towards it")
+	distance_before = get_dist(hunter, far_victim)
+	controller.ProcessBehavior(1, rift_towards)
+	TEST_ASSERT(get_dist(hunter, far_victim) < distance_before, "The rift did not take the carp closer to its prey")
+	controller.CancelActions()
+	qdel(far_victim)
+	qdel(victim)
+
+	// Raw meat: found and eaten (the rifts are cleared first, the entrance left on the corner would teleport the carp away again)
+	for(var/obj/effect/temp_visual/lesser_carp_rift/rift in range(6, corner))
+		qdel(rift)
+	hunter.forceMove(corner)
+	var/obj/item/food/meat/slab/meat = allocate(/obj/item/food/meat/slab, get_step(corner, EAST))
+	controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+	controller.set_blackboard_key(BB_NEXT_FOOD_EAT, 0)
+	controller.SelectBehaviors(1)
+	var/datum/ai_behavior/find_food = GET_AI_BEHAVIOR(/datum/ai_behavior/find_and_set/in_list)
+	TEST_ASSERT(controller.current_behaviors[find_food], "A carp without prey did not look for food")
+	controller.ProcessBehavior(1, find_food)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], meat, "The carp did not go for the raw meat")
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, melee)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	hunter.next_move = 0
+	hunter.next_click = 0
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(QDELETED(meat), "The carp did not eat the raw meat")
+	controller.CancelActions()
+
+	// Migration: the next point of the path becomes the target and the carp steps towards it
+	var/turf/far_point = locate(corner.x + 4, corner.y + 4, corner.z)
+	hunter.migrate_to(list(far_point))
+	TEST_ASSERT(!controller.can_idle, "A migrating carp can still idle")
+	controller.SelectBehaviors(1)
+	var/datum/ai_behavior/next_step = GET_AI_BEHAVIOR(/datum/ai_behavior/find_next_carp_migration_step)
+	TEST_ASSERT(controller.current_behaviors[next_step], "A migrating carp did not plan its next point")
+	controller.ProcessBehavior(1, next_step)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_CARP_MIGRATION_TARGET], far_point, "The migration point did not become the target")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/step_towards_turf)], "The migrating carp does not swim towards its point")
+	controller.CancelActions()
+	qdel(hunter)
+
+	// The dragon's rift heals basic carp next to it
+	var/mob/living/basic/carp/advanced/rift_carp = allocate(/mob/living/basic/carp/advanced, corner)
+	rift_carp.ai_controller.set_ai_status(AI_STATUS_OFF)
+	var/obj/structure/carp_rift/dragon_rift = allocate(/obj/structure/carp_rift, get_step(corner, EAST))
+	rift_carp.adjustBruteLoss(20)
+	var/hurt = rift_carp.health
+	dragon_rift.process(1)
+	TEST_ASSERT(rift_carp.health > hurt, "The dragon's rift did not heal a basic carp next to it")
+	qdel(dragon_rift)
+
+	// A player carp opens a rift with the secondary click: right click, or the disarm intent in the legacy controls
+	for(var/legacy in list(FALSE, TRUE))
+		var/mob/living/basic/carp/player = allocate(legacy ? /mob/living/basic/carp/aquila_legacy_test : /mob/living/basic/carp, corner)
+		player.ai_controller.set_ai_status(AI_STATUS_OFF)
+		TEST_ASSERT(player.combat_mode_indicator, "A player carp has no combat mode indicator")
+		var/turf/aim = locate(corner.x + 3, corner.y, corner.z)
+		player.next_click = 0
+		player.next_move = 0
+		if(legacy)
+			player.a_intent_change(INTENT_DISARM)
+			player.ClickOn(aim, "icon-x=16;icon-y=16;left=1;button=left")
+		else
+			player.ClickOn(aim, "icon-x=16;icon-y=16;right=1;button=right")
+		TEST_ASSERT(get_dist(player, aim) <= 1, "[legacy ? "Legacy intents" : "Combat mode"]: the secondary click did not open a rift to the clicked spot")
+		TEST_ASSERT(!player.teleport.IsAvailable(), "[legacy ? "Legacy intents" : "Combat mode"]: the player rift did not go on cooldown")
+		qdel(player)
+	qdel(rift_carp)
+
+/// A carp played with the legacy intents
+/mob/living/basic/carp/aquila_legacy_test
+
+/mob/living/basic/carp/aquila_legacy_test/uses_legacy_intents()
+	return TRUE
+
+/// A magicarp played with the legacy intents
+/mob/living/basic/carp/magic/aquila_legacy_test
+
+/mob/living/basic/carp/magic/aquila_legacy_test/uses_legacy_intents()
+	return TRUE
+
+/// Magicarp: the AI finds a target for its bolt and fires it, the chaos magicarp picks from its list, a player shoots by clicking
+/// in combat mode (the harm intent in the legacy controls) and not outside it; the megacarp gets its random name and stats
+/datum/unit_test/aquila_magicarp_family
+
+/datum/unit_test/aquila_magicarp_family/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/datum/ai_behavior/find_spell_target = GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets/nearest/magicarp)
+	var/datum/ai_behavior/cast = GET_AI_BEHAVIOR(/datum/ai_behavior/targeted_mob_ability/and_clear_target)
+
+	for(var/carp_type in list(/mob/living/basic/carp/magic, /mob/living/basic/carp/magic/chaos))
+		var/mob/living/basic/carp/magic/magicarp = allocate(carp_type, corner)
+		var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(corner.x + 3, corner.y, corner.z))
+		var/datum/ai_controller/controller = magicarp.ai_controller
+		// A plain bolt for the test (the random spells transform, teleport or animate)
+		if(istype(magicarp.spell, /datum/action/cooldown/mob_cooldown/projectile_attack/magicarp_bolt/chaos))
+			var/datum/action/cooldown/mob_cooldown/projectile_attack/magicarp_bolt/chaos/chaos_bolt = magicarp.spell
+			chaos_bolt.permitted_projectiles = list(/obj/item/projectile/magic/arcane_barrage)
+		else
+			magicarp.spell.projectile_type = /obj/item/projectile/magic/arcane_barrage
+			controller.clear_blackboard_key(BB_MAGICARP_SPELL_SPECIAL_TARGETING)
+		TEST_ASSERT_EQUAL(controller.blackboard[BB_MAGICARP_SPELL], magicarp.spell, "[carp_type]: the spell is not in the AI's blackboard")
+		var/datum/aquila_bullet_recorder/recorder = new
+		recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+		controller.SelectBehaviors(1)
+		TEST_ASSERT(controller.current_behaviors[find_spell_target], "[carp_type] with its spell ready did not look for a spell target")
+		controller.ProcessBehavior(1, find_spell_target)
+		TEST_ASSERT_EQUAL(controller.blackboard[BB_MAGICARP_SPELL_TARGET], victim, "[carp_type] did not pick the human as its spell target")
+		controller.SelectBehaviors(1)
+		TEST_ASSERT(controller.current_behaviors[cast], "[carp_type] with a spell target did not plan to cast")
+		controller.ProcessBehavior(1, cast)
+		TEST_ASSERT(aquila_wait_for_hit(recorder), "[carp_type]: the bolt did not hit the human")
+		TEST_ASSERT(istype(recorder.projectiles[1], /obj/item/projectile/magic/arcane_barrage), "[carp_type] fired the wrong bolt")
+		TEST_ASSERT(!magicarp.spell.IsAvailable(), "[carp_type]: the spell did not go on cooldown")
+		TEST_ASSERT(isnull(controller.blackboard[BB_MAGICARP_SPELL_TARGET]), "[carp_type] kept its spell target")
+		controller.CancelActions()
+		qdel(recorder)
+		qdel(magicarp)
+		qdel(victim)
+
+	// A player magicarp: clicking far away shoots in combat mode only, in both control modes
+	for(var/legacy in list(FALSE, TRUE))
+		var/mode = legacy ? "legacy intents" : "combat mode"
+		var/mob/living/basic/carp/magic/player = allocate(legacy ? /mob/living/basic/carp/magic/aquila_legacy_test : /mob/living/basic/carp/magic, corner)
+		var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(corner.x + 3, corner.y, corner.z))
+		player.ai_controller.set_ai_status(AI_STATUS_OFF)
+		player.spell.projectile_type = /obj/item/projectile/magic/arcane_barrage
+		var/datum/aquila_bullet_recorder/recorder = new
+		recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
+		if(legacy)
+			player.a_intent_change(INTENT_HELP)
+		else
+			player.set_combat_mode(FALSE, silent = TRUE)
+		player.next_click = 0
+		player.next_move = 0
+		player.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(player.spell.IsAvailable(), "[mode]: the magicarp shot outside combat mode")
+		if(legacy)
+			player.a_intent_change(INTENT_HARM)
+		else
+			player.set_combat_mode(TRUE, silent = TRUE)
+		player.next_click = 0
+		player.next_move = 0
+		player.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(aquila_wait_for_hit(recorder), "[mode]: the magicarp did not shoot in combat mode")
+		qdel(recorder)
+		qdel(player)
+		qdel(victim)
+
+	// Megacarp: a random name, more damage and full health
+	var/mob/living/basic/carp/mega/mega = allocate(/mob/living/basic/carp/mega, corner)
+	TEST_ASSERT(mega.name != initial(mega.name), "The megacarp did not get a random name")
+	TEST_ASSERT(mega.melee_damage > initial(mega.melee_damage), "The megacarp did not get extra damage")
+	TEST_ASSERT(mega.maxHealth > initial(mega.maxHealth), "The megacarp did not get extra health")
+	TEST_ASSERT_EQUAL(mega.health, mega.maxHealth, "The megacarp did not start at full health")
+
+/// Cayenne: picks the nuclear disk up with a click, holds it in her mouth and puts it down on a floor she clicks
+/datum/unit_test/aquila_cayenne_disk
+
+/datum/unit_test/aquila_cayenne_disk/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/carp/pet/cayenne/cayenne = allocate(/mob/living/basic/carp/pet/cayenne, corner)
+	cayenne.ai_controller.set_ai_status(AI_STATUS_OFF)
+	TEST_ASSERT(HAS_TRAIT(cayenne, TRAIT_CAN_USE_NUKE), "Cayenne cannot use the nuke")
+	var/obj/item/disk/nuclear/fake/disk = allocate(/obj/item/disk/nuclear/fake, get_step(corner, EAST))
+	qdel(disk.GetComponent(/datum/component/stationloving)) // the test room is off the station, the disk would jump away
+	disk.forceMove(get_step(corner, EAST))
+	cayenne.next_click = 0
+	cayenne.next_move = 0
+	cayenne.ClickOn(disk, "icon-x=16;icon-y=16;left=1;button=left")
+	TEST_ASSERT_EQUAL(disk.loc, cayenne, "Cayenne did not pick the disk up")
+	TEST_ASSERT_EQUAL(cayenne.disky, disk, "Cayenne does not know she holds the disk")
+	var/turf/drop_turf = get_step(corner, NORTH)
+	cayenne.next_click = 0
+	cayenne.next_move = 0
+	cayenne.ClickOn(drop_turf, "icon-x=16;icon-y=16;left=1;button=left")
+	TEST_ASSERT_EQUAL(disk.loc, drop_turf, "Cayenne did not put the disk down on the clicked floor")
+	TEST_ASSERT(isnull(cayenne.disky), "Cayenne still thinks she holds the disk")
+
 #undef LEFT_CLICK
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
