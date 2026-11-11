@@ -313,11 +313,12 @@
 		return ..()
 	var/mob/living/carbon/patient = M
 	var/zone = check_zone(user.zone_selected)
+	var/obj/item/bodypart/limb = patient.get_bodypart(zone)
 	if(patient.is_bleeding() && !patient.is_bleeding(zone))
 		to_chat(user, "<span class='warning'>Ta część ciała ([strefa_pl(zone)]) nie krwawi. Krwawi: [patient.aq_bleeding_zones_text()].</span>")
-		if(!patient.get_bodypart(zone)?.brute_dam || !heal_brute)
+		if(!limb?.brute_dam || !heal_brute)
 			return
-	if(!patient.get_bodypart(zone) && patient.is_bleeding(zone))
+	if(!limb && patient.is_bleeding(zone))
 		bandage_stump(patient, user, zone)
 		return
 	patient.aq_bandage_zone = zone

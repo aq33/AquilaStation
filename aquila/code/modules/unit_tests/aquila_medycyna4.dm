@@ -164,7 +164,8 @@
 
 /datum/unit_test/aquila_adrenaline/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	patient.get_bodypart(BODY_ZONE_CHEST).receive_damage(brute = 60)
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	chest.receive_damage(brute = 60)
 
 	// Strong pain: the glands release adrenaline and use the reserve
 	patient.aq_handle_pain()
