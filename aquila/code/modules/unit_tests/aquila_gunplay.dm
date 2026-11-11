@@ -206,6 +206,7 @@
 	var/mob/living/carbon/human/bare_member = allocate(/mob/living/carbon/human, start)
 	squad.add_member(shooter)
 	squad.add_member(bare_member)
+	TEST_ASSERT(shooter.squad == squad && bare_member.squad == squad, "Could not add the test mobs to the squad")
 	TEST_ASSERT(bullet.can_hit_target(bare_member, FALSE, TRUE), "IFF bullet skipped a squad member without the lanyard")
 	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol, start)
 	var/obj/item/projectile/bullet/c9mm/shot = allocate(/obj/item/projectile/bullet/c9mm, start)
@@ -218,8 +219,21 @@
 	shot_iff.firer = shooter
 	gun.setup_fired_projectile(shot_iff)
 	TEST_ASSERT(shot_iff.iff_squad == squad, "Shooter wearing the squad lanyard did not fire an IFF bullet")
+	squad.aq_set_position(shooter, SQUAD_POSITION_MEDIC)
+	if(squad.leader == shooter)
+		squad.unset_leader(shooter)
+	TEST_ASSERT(shooter_lanyard.icon_state == "hudsquad_medic", "Worn lanyard did not switch to the medic badge ([shooter_lanyard.icon_state])")
 	squad.remove_member(shooter)
 	squad.remove_member(bare_member)
+
+	// osoba spoza drużyny w smyczy też strzela z IFF, a założenie cudzej smyczy nie daje runtime'u (stary warunek czytał user.squad.role)
+	TEST_ASSERT(!shooter.squad, "Shooter is still in a squad after remove_member")
+	TEST_ASSERT(shooter_lanyard.icon_state == "hudsquad", "Lanyard kept a position badge after its wearer left the squad ([shooter_lanyard.icon_state])")
+	shooter_lanyard.apply_squad(squad)
+	var/obj/item/projectile/bullet/c9mm/shot_outsider = allocate(/obj/item/projectile/bullet/c9mm, start)
+	shot_outsider.firer = shooter
+	gun.setup_fired_projectile(shot_outsider)
+	TEST_ASSERT(shot_outsider.iff_squad == squad, "Outsider wearing the squad lanyard did not fire an IFF bullet")
 
 /// Osłony: przewrócony stół zatrzymuje kulę od frontu, a sam stół obrywa
 /datum/unit_test/aquila_gunplay_cover

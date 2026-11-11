@@ -329,6 +329,7 @@
 	leader.squad_position = SQUAD_POSITION_MEDIC
 	squad.unset_leader(leader)
 	TEST_ASSERT(lanyard.icon_state == "hudsquad_medic", "Noszona smycz nie przemalowała się po utracie dowodzenia ([lanyard.icon_state])")
+	TEST_ASSERT(!leader.aq_refresh_squad_lanyard(), "Smycz przemalowuje się, choć nic się nie zmieniło")
 	TEST_ASSERT(vendor.aq_vend(leader), "Automat nie wydał zestawu medyka")
 	var/obj/item/storage/aq_squad_crate/crate = locate() in leader.held_items
 	var/obj/item/storage/firstaid/regular/issued_kit = locate() in crate

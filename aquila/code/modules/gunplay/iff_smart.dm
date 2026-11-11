@@ -16,10 +16,10 @@
 
 /obj/item/gun/setup_fired_projectile(obj/item/projectile/projectile)
 	. = ..()
-	projectile.iff_squad = worn_squad_lanyard(projectile.firer)
+	projectile.iff_squad = worn_lanyard_squad(projectile.firer)
 
 /// Drużyna ze smyczy noszonej na szyi albo null
-/proc/worn_squad_lanyard(mob/living/carbon/human/H)
+/proc/worn_lanyard_squad(mob/living/carbon/human/H)
 	if(!ishuman(H))
 		return null
 	var/obj/item/clothing/neck/squad/lanyard = H.wear_neck
@@ -27,7 +27,7 @@
 
 /// Czy ta osoba nosi smycz drużyny strzelca
 /obj/item/projectile/proc/is_iff_friend(atom/target)
-	return iff_squad && worn_squad_lanyard(target) == iff_squad
+	return iff_squad && worn_lanyard_squad(target) == iff_squad
 
 /obj/item/projectile/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
 	. = ..()

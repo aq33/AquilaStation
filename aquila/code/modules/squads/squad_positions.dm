@@ -158,7 +158,7 @@
 		return
 	UnregisterSignal(H, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGIN))
 	aq_remove_marker_images(H)
-	H.aq_update_squad_hud()
+	H.aq_refresh_squad_lanyard()
 	aq_refresh_all()
 
 /datum/squad/set_leader(mob/living/carbon/human/H)
@@ -169,13 +169,13 @@
 	var/mob/living/carbon/human/old_leader = leader
 	. = ..()
 	if(old_leader)
-		old_leader.aq_update_squad_hud()
+		old_leader.aq_refresh_squad_lanyard()
 	aq_refresh_all()
 
 /// Odświeża ikony HUD-u wszystkich członków (np. po zmianie dowódcy)
 /datum/squad/proc/aq_refresh_all()
 	for(var/mob/living/carbon/human/member in members)
-		member.aq_update_squad_hud()
+		member.aq_refresh_squad_lanyard()
 
 /// Zmiana funkcji w drużynie przez XO
 /datum/squad/proc/aq_set_position(mob/living/carbon/human/H, position)
@@ -184,7 +184,7 @@
 	if(H.squad_position == position)
 		return FALSE
 	H.squad_position = position
-	H.aq_update_squad_hud()
+	H.aq_refresh_squad_lanyard()
 	to_chat(H, "<span class='sciradio'>Twoja funkcja w drużynie [name]: [squad_position_pl(position)].</span>")
 	return TRUE
 
@@ -243,17 +243,52 @@
 	aq_add_marker_images(source)
 
 // Funkcję w drużynie pokazuje tylko smycz na szyi (jej sprite), więc HUD drużyny nie ma własnej ikony nad postacią.
-// Po zmianie funkcji albo dowódcy noszona smycz tej drużyny przemalowuje się od razu.
-/mob/living/carbon/human/proc/aq_update_squad_hud()
+// Po zmianie funkcji, dowódcy, nazwy albo koloru drużyny, a także po odejściu z drużyny, noszona smycz przemalowuje się od razu.
+/mob/living/carbon/human/proc/aq_refresh_squad_lanyard()
+	// domyślny obraz HUD-u ma ikonę z hud.dmi, więc czyścimy go, żeby nad postacią nic nie wisiało
 	var/image/holder = hud_list?[SQUAD_HUD]
-	if(holder)
-		holder.cut_overlays()
+	if(holder?.icon)
 		holder.icon = null
 		holder.icon_state = null
 	var/obj/item/clothing/neck/squad/lanyard = wear_neck
-	if(istype(lanyard) && lanyard.squad && lanyard.squad == squad)
-		lanyard.apply_squad(squad)
-		update_inv_neck()
+	if(istype(lanyard))
+		return lanyard.aq_refresh_for(src)
+	return FALSE
+
+/obj/item/clothing/neck/squad
+	/// Stan, kolor i nazwa drużyny, w których smycz jest pomalowana (malujemy tylko przy zmianie)
+	var/aq_paint_key
+
+/obj/item/clothing/neck/squad/Initialize(mapload, datum/squad/squad)
+	. = ..()
+	aq_paint_key = aq_current_paint_key(icon_state)
+
+/obj/item/clothing/neck/squad/proc/aq_current_paint_key(state)
+	return src.squad ? "[state]|[src.squad.colour]|[src.squad.name]" : null
+
+/// Stan ikony, jaki smycz powinna mieć na tej osobie
+/obj/item/clothing/neck/squad/proc/aq_wanted_icon_state(mob/living/carbon/human/H)
+	if(squad && ishuman(H) && squad.leader == H)
+		return "hudsquad_lead"
+	return aq_position_icon_state(H)
+
+/// Przemalowuje smycz noszoną przez H, tylko gdy zmienił się znaczek, kolor albo nazwa drużyny.
+/// Malowanie (generate_clothing_overlay) generuje ikonę i może usnąć (CHECK_TICK), więc idzie asynchronicznie:
+/// icon_state i nazwa zmieniają się od razu, sprite na postaci po namalowaniu.
+/obj/item/clothing/neck/squad/proc/aq_refresh_for(mob/living/carbon/human/H)
+	if(!squad || !ishuman(H) || H.wear_neck != src)
+		return FALSE
+	var/key = aq_current_paint_key(aq_wanted_icon_state(H))
+	if(key == aq_paint_key)
+		return FALSE
+	aq_paint_key = key
+	INVOKE_ASYNC(src, PROC_REF(aq_repaint), H)
+	return TRUE
+
+/obj/item/clothing/neck/squad/proc/aq_repaint(mob/living/carbon/human/H)
+	apply_squad(squad)
+	if(!QDELETED(src) && !QDELETED(H) && H.wear_neck == src)
+		H.update_inv_neck()
 
 /// Stan ikony smyczy (bez dowódcy, którego apply_squad() obsługuje wcześniej) według funkcji noszącego w tej drużynie.
 /// Stary warunek czytał rolę drużyny (user.squad.role) i dawał runtime u noszącego bez drużyny.
@@ -266,10 +301,8 @@
 				return "hudsquad_engineer"
 	return "hudsquad"
 
-/// Założona smycz własnej drużyny od razu pokazuje aktualną funkcję
+/// Założona smycz od razu pokazuje aktualną funkcję noszącego (albo zwykły znaczek, gdy nie jest w tej drużynie)
 /obj/item/clothing/neck/squad/equipped(mob/user, slot)
 	. = ..()
-	var/mob/living/carbon/human/H = user
-	if(slot == ITEM_SLOT_NECK && ishuman(H) && squad && H.squad == squad)
-		apply_squad(squad)
-		H.update_inv_neck()
+	if(slot == ITEM_SLOT_NECK)
+		aq_refresh_for(user)
