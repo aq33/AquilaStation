@@ -348,10 +348,18 @@
 		var/json_file = file("data/npc_saves/Ian.json")
 		if(!fexists(json_file))
 			return
-		var/list/json = json_decode(rustg_file_read(json_file))
-		age = json["age"]
-		record_age = json["record_age"]
-		saved_head = json["saved_head"]
+		var/list/json
+		// AQUILA: a corrupt save is removed and Ian starts as a puppy, instead of a runtime in Initialize()
+		try
+			json = json_decode(rustg_file_read(json_file))
+		catch
+			json = null
+		if(!islist(json))
+			fdel(json_file)
+		else
+			age = json["age"]
+			record_age = json["record_age"]
+			saved_head = json["saved_head"]
 	if(isnull(age))
 		age = 0
 	if(isnull(record_age))

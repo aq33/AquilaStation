@@ -56,12 +56,20 @@ GLOBAL_LIST_INIT(security_dog_breeds, list(
 
 /**
  * Attempt to steal last shifts dog. (This is shitty Ian code)
+ * AQUILA: read_save = FALSE gives a new random dog without looking at the save (test chamber dog).
  */
-/proc/requisition_security_dog()
+/proc/requisition_security_dog(read_save = TRUE)
 	var/json_file = file(SECURITY_DOG_MEMORY_FILE)
-	if(fexists(json_file))
-		var/list/save_data = json_decode(rustg_file_read(json_file))
-		if(islist(save_data) && save_data["name"])
+	if(read_save && fexists(json_file))
+		var/list/save_data
+		// AQUILA: a corrupt save gives a new dog and is removed, instead of a runtime and no dog in any round
+		try
+			save_data = json_decode(rustg_file_read(json_file))
+		catch
+			save_data = null
+		if(!islist(save_data))
+			fdel(json_file)
+		else if(save_data["name"])
 			//Sanity check the breed still exists
 			var/saved_breed = text2path(save_data["breed"])
 			if(saved_breed in GLOB.security_dog_breeds)
@@ -89,13 +97,16 @@ GLOBAL_LIST_INIT(security_dog_breeds, list(
 	var/datum/callback/survival_check
 	///Is your fate sealed?
 	var/memory_saved = FALSE
+	/// AQUILA: does this dog write the save of the ship's dog (FALSE for the test chamber dog)
+	var/persistent = TRUE
 
-/datum/component/security_dog/Initialize(dog_name, dog_gender, dog_tenure = 0)
+/datum/component/security_dog/Initialize(dog_name, dog_gender, dog_tenure = 0, persistent = TRUE)
 	. = ..()
 	if(!istype(parent, /mob/living/basic/pet/dog))
 		return COMPONENT_INCOMPATIBLE
 
 	tenure = dog_tenure
+	src.persistent = persistent
 	var/mob/living/basic/pet/dog/dog = parent
 	//Grab real_name before overwriting
 	breed = dog.real_name
@@ -163,7 +174,7 @@ GLOBAL_LIST_INIT(security_dog_breeds, list(
 ///Records this dog for next shift. A dead dog leaves no save behind, which is what makes the randomiser spin.
 /datum/component/security_dog/proc/write_memory(dead)
 	var/mob/living/dog = parent
-	if(memory_saved)
+	if(memory_saved || !persistent)
 		return
 	memory_saved = TRUE
 
@@ -196,6 +207,12 @@ GLOBAL_LIST_INIT(security_dog_breeds, list(
 	desc = "Krzepki bulterier o przyjaznym, ale czujnym usposobieniu."
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
+	/// AQUILA: does the dog on duty come from and go to the ship dog's save
+	var/persistent = TRUE
+
+/// AQUILA: the test chamber Tyson: a new random dog that never reads or writes the ship dog's save
+/mob/living/basic/pet/dog/bullterrier/tyson/test_chamber
+	persistent = FALSE
 
 /mob/living/basic/pet/dog/bullterrier/tyson/Initialize(mapload)
 	. = ..()
@@ -214,10 +231,10 @@ GLOBAL_LIST_INIT(security_dog_breeds, list(
 	var/turf/kennel = get_turf(src)
 	if(!kennel)
 		return
-	var/list/on_duty = requisition_security_dog()
+	var/list/on_duty = requisition_security_dog(persistent)
 	var/breed = on_duty["breed"]
 	var/mob/living/basic/pet/dog/dog = new breed(kennel)
-	dog.AddComponent(/datum/component/security_dog, on_duty["name"], on_duty["gender"], on_duty["tenure"])
+	dog.AddComponent(/datum/component/security_dog, on_duty["name"], on_duty["gender"], on_duty["tenure"], persistent)
 	return dog
 
 #undef SECURITY_DOG_MEMORY_FILE

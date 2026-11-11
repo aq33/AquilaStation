@@ -138,6 +138,28 @@
 	struggle.end_battle_chance = old_chance
 	TEST_ASSERT(result & AI_BEHAVIOR_DELAY, "The territorial struggle runs again on the next tick")
 
+/// A corrupt Runtime save is removed and Runtime comes without a family instead of a runtime in Initialize()
+/datum/unit_test/aquila_runtime_corrupt_save
+	/// Whatever save was there before the test, put back in Destroy()
+	var/old_save
+
+/datum/unit_test/aquila_runtime_corrupt_save/Run()
+	if(fexists(RUNTIME_SAVE_PATH))
+		old_save = rustg_file_read(RUNTIME_SAVE_PATH)
+	TEST_ASSERT(!fexists("data/npc_saves/Runtime.sav"), "A legacy Runtime.sav exists, the test would delete it")
+	fdel(RUNTIME_SAVE_PATH)
+	text2file("{\"family\": {broken", RUNTIME_SAVE_PATH)
+	var/mob/living/basic/pet/cat/runtime/runtime = allocate(/mob/living/basic/pet/cat/runtime, run_loc_floor_bottom_left)
+	runtime.cats_deployed = TRUE
+	TEST_ASSERT_EQUAL(length(runtime.family), 0, "Runtime read a family from a corrupt save")
+	TEST_ASSERT(!fexists(RUNTIME_SAVE_PATH), "The corrupt Runtime save was kept")
+
+/datum/unit_test/aquila_runtime_corrupt_save/Destroy()
+	fdel(RUNTIME_SAVE_PATH)
+	if(old_save)
+		text2file(old_save, RUNTIME_SAVE_PATH)
+	return ..()
+
 #undef RUNTIME_SAVE_PATH
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

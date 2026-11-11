@@ -97,7 +97,7 @@
 	new /mob/living/basic/pet/dog/corgi(center)
 	new /mob/living/basic/pet/dog/pug(center)
 	new /obj/structure/bed/dogbed/tyson(center)
-	new /mob/living/basic/pet/dog/bullterrier/tyson(center)
+	new /mob/living/basic/pet/dog/bullterrier/tyson/test_chamber(center) // nie czyta i nie nadpisuje zapisu psa statku
 	// Karma w zamkniętej skrzyni: leżąca na podłodze znika w pyskach zwierząt, zanim tester ją podniesie (krowa zjada pszenicę, pies kość)
 	var/obj/structure/closet/crate/food_crate = new(center)
 	food_crate.name = "skrzynia z karmą"

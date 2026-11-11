@@ -8,7 +8,6 @@
 #define BB_SIMPLE_CARRY_ITEM "BB_SIMPLE_CARRY_ITEM"
 #define BB_FETCH_IGNORE_LIST "BB_FETCH_IGNORE_LISTlist"
 #define BB_FETCH_DELIVER_TO "BB_FETCH_DELIVER_TO"
-#define BB_DOG_HARASS_TARGET "BB_DOG_HARASS_TARGET"
 #define BB_DOG_HARASS_HARM "BB_DOG_HARASS_HARM"
 #define BB_DOG_IS_SLOW "BB_DOG_IS_SLOW"
 
@@ -34,20 +33,6 @@
 ///the sequence of our trick
 #define BB_TRICK_SEQUENCE "trick_sequence"
 
-// Cultist pet keys
-///our ability to summon runes
-#define BB_RUNE_ABILITY "rune_ability"
-///the cult team we serve
-#define BB_CULT_TEAM "cult_team"
-///our dead cultist we revive
-#define BB_DEAD_CULTIST "dead_cultist"
-///nearby runes
-#define BB_NEARBY_RUNE "nearby_rune"
-///occupied runes
-#define BB_OCCUPIED_RUNE "occupied_rune"
-///friendly cultists we befriend
-#define BB_FRIENDLY_CULTIST "friendly_cultist"
-
 //cat AI keys
 /// key that holds the target we will battle over our turf
 #define BB_TRESSPASSER_TARGET "tresspasser_target"
@@ -69,8 +54,6 @@
 #define BB_HUNGRY_MEOW "hungry_meows"
 /// key that holds maximum distance food is to us so we can pursue it
 #define BB_MAX_DISTANCE_TO_FOOD "max_distance_to_food"
-/// key that holds the stove we must turn off
-#define BB_STOVE_TARGET "stove_target"
 /// key that holds the donut we will decorate
 #define BB_DONUT_TARGET "donut_target"
 /// key that holds our home...
@@ -123,13 +106,6 @@
 #define COMSIG_BASICMOB_LOOK_DEAD "basicmob_look_dead"
 /// Sent from /mob/living/basic/proc/look_alive() : ()
 #define COMSIG_BASICMOB_LOOK_ALIVE "basicmob_look_alive"
-
-///from the ranged_attacks component for basic mobs: (mob/living/basic/firer, atom/target, modifiers)
-#define COMSIG_BASICMOB_PRE_ATTACK_RANGED "basicmob_pre_attack_ranged"
-	#define COMPONENT_CANCEL_RANGED_ATTACK COMPONENT_CANCEL_ATTACK_CHAIN //! Cancel to prevent the attack from happening
-
-///from the ranged_attacks component for basic mobs: (mob/living/basic/firer, atom/target, modifiers)
-#define COMSIG_BASICMOB_POST_ATTACK_RANGED "basicmob_post_attack_ranged"
 
 // --- signals_mob.dm (Bee)
 /// Sent from /proc/do_after if someone starts a do_after action bar.
@@ -255,17 +231,14 @@
 /// Mob can breed (breed component)
 #define TRAIT_MOB_BREEDER "mob_breeder"
 
-// --- squashable component flags (code/__DEFINES/mobs.dm in Bee; both are 1<<0 there too)
+// --- squashable component flags (code/__DEFINES/mobs.dm in Bee; both are 1<<0 there, here GIBBED is its own bit)
 ///Squashing will not occur if the mob is not lying down (bodyposition is LYING_DOWN)
 #define SQUASHED_SHOULD_BE_DOWN (1<<0)
 ///If this flag is on, squashing will deal no damage but gib the mob instead
-#define SQUASHED_SHOULD_BE_GIBBED (1<<0)
+#define SQUASHED_SHOULD_BE_GIBBED (1<<1)
 
 /// Strip menu slot of a pet collar (wears_collar element), the TGUI strip menu already knows it
 #define STRIPPABLE_ITEM_PET_COLLAR "pet_collar"
-
-/// Dogs growl at and attack mobs with this trait (dog AI from BeeStation/BeeStation-Hornet). Bee gives it to felinids and mailman clothes; we give it to no one yet (our clothing has no clothing_traits).
-#define TRAIT_HATED_BY_DOGS "hated_by_dogs"
 
 // Garden gnome colours (code/__DEFINES/colors.dm in Bee)
 #define COLOR_GNOME_RED_ONE "#f10b0b"
