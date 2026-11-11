@@ -20,7 +20,7 @@
 /datum/mapGeneratorModule/splatterLayer/asteroidMonsters
 	spawnableTurfs = list()
 	spawnableAtoms = list(/mob/living/simple_animal/hostile/asteroid/basilisk = 10, \
-		/mob/living/simple_animal/hostile/asteroid/hivelord = 10, \
+		/mob/living/basic/mining/hivelord = 10, \
 		/mob/living/simple_animal/hostile/asteroid/goliath = 10)
 
 

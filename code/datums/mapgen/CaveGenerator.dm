@@ -13,7 +13,7 @@
 	///Weighted list of mobs that can spawn in the area.
 	var/list/mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
-		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
+		/mob/living/basic/mining/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
 		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 	///Weighted list of flora that can spawn in the area.
 	var/list/flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
@@ -137,12 +137,12 @@
 						picked_mob = pickweight(mob_spawn_list - SPAWN_MEGAFAUNA) //What if we used 100% of the brain...and did something (slightly) less shit than a while loop?
 
 				for(var/thing in urange(12, new_open_turf)) //prevents mob clumps
-					if(!ishostile(thing) && !istype(thing, /obj/structure/spawner))
+					if(!ishostile(thing) && !istype(thing, /mob/living/basic/mining) && !istype(thing, /obj/structure/spawner)) // AQ EDIT - moby górnicze są basic mobami
 						continue
 					if((ispath(picked_mob, /mob/living/simple_animal/hostile/megafauna) || ismegafauna(thing)) && get_dist(new_open_turf, thing) <= 7)
 						can_spawn = FALSE //if there's a megafauna within standard view don't spawn anything at all
 						break
-					if(ispath(picked_mob, /mob/living/simple_animal/hostile/asteroid) || istype(thing, /mob/living/simple_animal/hostile/asteroid))
+					if(ispath(picked_mob, /mob/living/simple_animal/hostile/asteroid) || istype(thing, /mob/living/simple_animal/hostile/asteroid) || ispath(picked_mob, /mob/living/basic/mining) || istype(thing, /mob/living/basic/mining)) // AQ EDIT - moby górnicze są basic mobami
 						can_spawn = FALSE //if the random is a standard mob, avoid spawning if there's another one within 12 tiles
 						break
 					if((ispath(picked_mob, /obj/structure/spawner/lavaland) || istype(thing, /obj/structure/spawner/lavaland)) && get_dist(new_open_turf, thing) <= 2)

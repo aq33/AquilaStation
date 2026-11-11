@@ -48,6 +48,11 @@
 	var/mob/living/simple_animal/L = new chosen_mob_type(P.loc)
 	L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1)
 	spawned_mobs += L
-	L.nest = src
+	// AQ EDIT START - basic mobs (mining mobs) have no nest: they leave the list when they die or are deleted
+	if(isanimal(L))
+		L.nest = src
+	else
+		RegisterSignals(L, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(on_spawned_gone))
+	// AQ EDIT END
 	L.faction = src.faction
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")

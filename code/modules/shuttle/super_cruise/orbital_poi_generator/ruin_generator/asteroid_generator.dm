@@ -79,7 +79,7 @@
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/gutlunch)
 
 /obj/structure/spawner/lavaland/hivelord
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
+	mob_types = list(/mob/living/basic/mining/hivelord) // AQ EDIT - władca roju jest basic mobem
 
 /area/asteroid/generated
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
