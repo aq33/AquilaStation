@@ -2,7 +2,8 @@
 // Każdy strzał dodaje odrzut zależny od kalibru naboju, a odrzut co 0,1 s spada: (odrzut - 0,5) × 0,85.
 // Odrzut powiększa rozrzut kolejnych strzałów, więc seria się rozjeżdża, a krótkie serie są celniejsze.
 // Kamera kopie w kierunku przeciwnym do strzału (tg recoil_camera()), siła zależy od kalibru i ustawienia gracza.
-// Kara za ruch z TGMC: w 0,5 s po kroku +2,5° rozrzutu przy broni w obu rękach, dwa razy tyle z jednej ręki.
+// Kara za ruch z TGMC, z tempem jak w Polonium (polonium14/polonium-station#1231): w 0,5 s po kroku +1,5° rozrzutu
+// po chodzie, +2,5° po biegu; sprint daje +5°, które znika w ciągu sekundy. Broń trzymana jedną ręką: dwa razy tyle.
 
 /// Kaliber -> przyrost odrzutu (stopnie) na strzał
 GLOBAL_LIST_INIT(aq_caliber_recoil, list(
@@ -43,18 +44,61 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 #define AQ_RECOIL_CAMERA_PER_DEGREE 0.012
 /// Kara za strzelanie w ruchu
 #define AQ_MOVE_PENALTY_TIME (0.5 SECONDS)
+#define AQ_MOVE_PENALTY_SPREAD_WALK 1.5
 #define AQ_MOVE_PENALTY_SPREAD 2.5
+#define AQ_MOVE_PENALTY_SPREAD_SPRINT 5
+/// W tym czasie po kroku sprintu kara spada od pełnej do zera
+#define AQ_SPRINT_PENALTY_TIME (1 SECONDS)
 
 /mob/living
 	/// Aktualny odrzut postaci w stopniach rozrzutu
 	var/aq_recoil = 0
 	/// Timer zaniku odrzutu
 	var/aq_recoil_timer
+	/// Czy ostatni krok był chodem (m_intent walk)
+	var/aq_last_move_walking = FALSE
+	/// Czas ostatniego kroku sprintu
+	var/aq_last_sprint_time = -INFINITY
 
-/mob/living/Moved(atom/OldLoc, Dir)
+/mob
+	/// Tick, w którym klient tego moba wywołał ruch (strzałki); odróżnia własny krok od ciągnięcia czy taśmociągu
+	var/aq_client_move_time = -INFINITY
+
+/client/Move(n, direct)
+	mob?.aq_client_move_time = world.time
+	return ..()
+
+/// Czy ten ruch to własny krok (gracz klawiszem albo NPC sam), a nie ciągnięcie, taśmociąg, rzut czy przeniesienie
+/mob/living/proc/is_own_step(forced)
+	if(forced || buckled || pulledby || throwing)
+		return FALSE
+	if(client)
+		return aq_client_move_time == world.time
+	return TRUE
+
+/mob/living/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(!buckled && isturf(loc) && isturf(OldLoc) && loc != OldLoc)
+	if(isturf(loc) && isturf(OldLoc) && loc != OldLoc && is_own_step(Forced))
 		last_move_time = world.time // zmienna z rdzenia (atoms_movable.dm), wcześniej nieużywana
+		aq_last_move_walking = (m_intent == MOVE_INTENT_WALK)
+		if(committed_sprint_step())
+			aq_last_sprint_time = world.time
+		if(client && istype(get_active_held_item(), /obj/item/gun))
+			refresh_move_cursor()
+
+/// Czy ten ruch był krokiem sprintu zatwierdzonym przez komponent (nie forceMove w sekundę po sprincie)
+/mob/living/proc/committed_sprint_step()
+	return FALSE
+
+/mob/living/carbon/committed_sprint_step()
+	var/datum/component/carbon_sprint/sprint = GetComponent(/datum/component/carbon_sprint)
+	return sprint?.sprinting && sprint.last_sprint_step == world.time
+
+/// Kursor rośnie po kroku i zwęża się, gdy kara za ruch mija, także przy nieruchomej myszy
+/mob/living/proc/refresh_move_cursor()
+	update_gun_cursor()
+	if(get_move_spread_penalty() > 0)
+		addtimer(CALLBACK(src, PROC_REF(refresh_move_cursor)), 0.2 SECONDS, TIMER_UNIQUE)
 
 /obj/item/ammo_casing
 	/// Przyrost odrzutu na strzał; null = z tabeli kalibrów
@@ -86,8 +130,19 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	if(!istype(user))
 		return 0
 	. = user.aq_recoil
-	if(world.time - user.last_move_time < AQ_MOVE_PENALTY_TIME)
-		. += (requires_wielding && !is_wielded) ? AQ_MOVE_PENALTY_SPREAD * 2 : AQ_MOVE_PENALTY_SPREAD
+	var/move_penalty = user.get_move_spread_penalty()
+	if(requires_wielding && !is_wielded)
+		move_penalty *= 2
+	. += move_penalty
+
+/// Kara za ruch w stopniach rozrzutu, zależna od tempa ostatnich kroków
+/mob/living/proc/get_move_spread_penalty()
+	. = 0
+	if(world.time - last_move_time < AQ_MOVE_PENALTY_TIME)
+		. = aq_last_move_walking ? AQ_MOVE_PENALTY_SPREAD_WALK : AQ_MOVE_PENALTY_SPREAD
+	var/since_sprint = world.time - aq_last_sprint_time
+	if(since_sprint < AQ_SPRINT_PENALTY_TIME)
+		. = max(., AQ_MOVE_PENALTY_SPREAD_SPRINT * (1 - since_sprint / AQ_SPRINT_PENALTY_TIME))
 
 /obj/item/gun
 	/// Celność z dodatków (celowniki, laser): zmniejsza rozrzut broni, a potem dodatkowy, nigdy poniżej zera.
@@ -95,6 +150,7 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	var/aq_attachment_accuracy = 0
 
 /obj/item/gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed = FALSE)
+	get_cursor_shape() // kształt naboju zapisany przed strzałem: bezłuskowy znika z komory już w fire_casing()
 	var/extra_spread = get_dynamic_spread(user)
 	var/base_spread = spread
 	if(aq_attachment_accuracy)
@@ -164,3 +220,6 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 #undef AQ_RECOIL_CAMERA_PER_DEGREE
 #undef AQ_MOVE_PENALTY_TIME
 #undef AQ_MOVE_PENALTY_SPREAD
+#undef AQ_MOVE_PENALTY_SPREAD_WALK
+#undef AQ_MOVE_PENALTY_SPREAD_SPRINT
+#undef AQ_SPRINT_PENALTY_TIME

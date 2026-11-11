@@ -1061,6 +1061,7 @@
 #include "code\modules\mob\living\carbon\human\give_click.dm"
 #include "code\modules\gunplay\attachments.dm"
 #include "code\modules\gunplay\iff_smart.dm"
+#include "code\modules\gunplay\peek.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
 #include "code\modules\projectiles\projectile\bullets\_incendiary.dm"
 #include "code\modules\projectiles\projectile\reusable\foam_dart.dm"
@@ -1140,6 +1141,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
+#include "code\modules\test_chamber\kits\pr_614_celowniki.dm"
 #include "code\modules\test_chamber\kits\pr_605_strzelanie.dm"
 #include "code\modules\test_chamber\kits\pr_607_tg_sprite.dm"
 #include "code\modules\test_chamber\kits\pr_607_polonium.dm"
@@ -1935,6 +1937,7 @@
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
 #include "code\modules\unit_tests\aquila_przyspieszenia.dm"
 #include "code\modules\unit_tests\aquila_knpc_tactics.dm"
+#include "code\modules\unit_tests\aquila_knpc_sim.dm"
 #include "code\modules\unit_tests\aquila_zbiorczy_0711.dm"
 #include "code\modules\unit_tests\aquila_random_rooms.dm"
 #include "code\modules\unit_tests\aquila_review_economy_urls.dm"
