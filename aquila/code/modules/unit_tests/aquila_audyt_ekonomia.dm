@@ -121,7 +121,7 @@
 	TEST_ASSERT(!air_during_b, "Atmos restarted while a domain was still loading")
 	TEST_ASSERT(air_after, "Two overlapping domain loads left atmos disabled for the rest of the round")
 
-/// AQUILA - pad zamówień ekstraktów nie przyjmuje nagrody z budżetu nauki, na który ta nagroda wraca
+/// AQUILA - automat ekstraktów nie przyjmuje zapłaty z budżetu nauki, na który ta zapłata wraca
 /datum/unit_test/aquila_extract_request_science_budget
 
 /datum/unit_test/aquila_extract_request_science_budget/Run()
