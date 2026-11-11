@@ -2051,6 +2051,8 @@
 #include "code\datums\ai\basic_mobs\basic_subtrees\run_emote.dm"
 // Rodziny basic mobów części 2 (hiveboty, gęś, ksenomorfy, karpie), opis w LEGACY_OVERRIDES.md "Basic mob families of part 2"
 #include "code\modules\mob\living\basic\space_fauna\hivebot.dm"
+#include "code\datums\elements\content_barfer.dm"
+#include "code\modules\mob\living\basic\farm_animals\goose.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS

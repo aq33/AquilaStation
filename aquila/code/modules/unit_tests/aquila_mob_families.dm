@@ -105,6 +105,98 @@
 	TEST_ASSERT(QDELETED(clawer), "A dead hivebot was not deleted")
 	TEST_ASSERT(locate(/obj/effect/decal/cleanable/robot_debris) in death_turf, "A dead hivebot left no robot debris")
 
+/// Goose: the AI finds food right next to it and gobbles it up (and ignores other junk), plastic chokes it to death,
+/// a player feeds it by hand; Birdboat keeps what it eats and throws it all up through its ability, used by the AI
+/datum/unit_test/aquila_goose_family
+
+/datum/unit_test/aquila_goose_family/Run()
+	var/turf/corner = run_loc_floor_bottom_left
+	var/mob/living/basic/goose/goose = allocate(/mob/living/basic/goose, corner)
+	var/datum/ai_controller/controller = goose.ai_controller
+	// Keep it calm: no random anger during the test
+	controller.set_blackboard_key(BB_RANDOM_AGGRO_CHANCE, 0.0001) // 0 falls back to the default
+	var/obj/item/wrench/junk = allocate(/obj/item/wrench, get_step(corner, NORTH))
+	var/obj/item/food/cookie/cookie = allocate(/obj/item/food/cookie, get_step(corner, EAST))
+	var/datum/ai_behavior/find_food = GET_AI_BEHAVIOR(/datum/ai_behavior/find_and_set/in_list/goose_food)
+	var/datum/ai_behavior/melee = GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)
+
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[find_food], "The goose did not plan to look for food")
+	controller.ProcessBehavior(1, find_food)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], cookie, "The goose did not go for the cookie next to it (or went for the wrench)")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[melee], "The goose with food in sight did not plan to peck at it")
+	controller.ProcessBehavior(1, melee) // the first run only sets the attack delay
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	goose.next_move = 0
+	goose.next_click = 0
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(QDELETED(cookie), "The goose did not eat the cookie")
+	TEST_ASSERT(!QDELETED(junk) && junk.loc == get_step(corner, NORTH), "The goose ate or moved the wrench")
+	controller.CancelActions()
+
+	// Plastic: the goose chokes on it and dies when the choking runs out
+	var/obj/item/stack/sheet/plastic/plastic = allocate(/obj/item/stack/sheet/plastic, get_step(corner, EAST))
+	TEST_ASSERT(goose_is_plastic(plastic), "A plastic sheet does not count as plastic")
+	controller.set_blackboard_key(BB_NEXT_FOOD_EAT, 0)
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, find_food)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], plastic, "The goose did not go for the plastic")
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, melee)
+	controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time - 1)
+	goose.next_move = 0
+	goose.next_click = 0
+	controller.ProcessBehavior(1, melee)
+	TEST_ASSERT(plastic.loc == goose, "The goose did not swallow the plastic")
+	var/datum/status_effect/goose_choking/choking = goose.has_status_effect(/datum/status_effect/goose_choking)
+	TEST_ASSERT(choking, "The goose is not choking on the plastic")
+	TEST_ASSERT(controller.blackboard[BB_GOOSE_PANICKED], "A choking goose does not panic")
+	controller.CancelActions()
+	controller.set_blackboard_key(BB_NEXT_FOOD_EAT, 0)
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[find_food], "A choking goose looks for more food")
+	choking.duration = world.time - 1
+	choking.process()
+	TEST_ASSERT_EQUAL(goose.stat, DEAD, "The goose did not die when the choking ran out")
+	TEST_ASSERT(plastic.loc != goose, "The dead goose kept the plastic inside")
+
+	// A player feeds Birdboat by hand (no combat mode); it keeps the food inside
+	var/mob/living/basic/goose/vomit/birdboat = allocate(/mob/living/basic/goose/vomit, locate(corner.x + 2, corner.y + 2, corner.z))
+	var/datum/ai_controller/boat_controller = birdboat.ai_controller
+	boat_controller.set_ai_status(AI_STATUS_OFF)
+	var/mob/living/carbon/human/feeder = allocate(/mob/living/carbon/human, get_step(birdboat, WEST))
+	feeder.set_combat_mode(FALSE, silent = TRUE)
+	for(var/i in 1 to 3)
+		var/obj/item/food/badrecipe/slop = allocate(/obj/item/food/badrecipe)
+		feeder.put_in_active_hand(slop)
+		feeder.next_click = 0
+		feeder.next_move = 0
+		feeder.ClickOn(birdboat, LEFT_CLICK)
+		TEST_ASSERT(slop.loc == birdboat, "Birdboat did not eat the slop a player fed it")
+	TEST_ASSERT_EQUAL(boat_controller.blackboard[BB_GOOSE_VOMIT_CHANCE], 9, "Gross food did not make Birdboat more likely to throw up")
+
+	// The AI throws up: the vomit ability is used and everything comes back out
+	boat_controller.set_ai_status(AI_STATUS_ON)
+	boat_controller.set_blackboard_key(BB_GOOSE_VOMIT_CHANCE, 100)
+	var/datum/action/cooldown/mob_cooldown/goose_vomit/vomit = birdboat.vomit_action
+	TEST_ASSERT(vomit.IsAvailable(), "Birdboat with a full stomach cannot throw up")
+	var/datum/ai_behavior/use_ability = GET_AI_BEHAVIOR(/datum/ai_behavior/use_mob_ability)
+	boat_controller.SelectBehaviors(1)
+	TEST_ASSERT(boat_controller.current_behaviors[use_ability], "Birdboat about to throw up did not plan to use its ability")
+	boat_controller.ProcessBehavior(1, use_ability)
+	TEST_ASSERT(vomit.next_use_time > world.time, "The vomit ability was not used")
+	var/wait_until = world.time + 10 SECONDS
+	while(world.time < wait_until && length(birdboat.contents))
+		sleep(1)
+	TEST_ASSERT(!length(birdboat.contents), "Birdboat did not throw everything up")
+	wait_until = world.time + 3 SECONDS // the status notices the empty stomach on its next tick
+	while(world.time < wait_until && birdboat.has_status_effect(/datum/status_effect/goose_vomit))
+		sleep(1)
+	TEST_ASSERT(!birdboat.has_status_effect(/datum/status_effect/goose_vomit), "Birdboat kept throwing up with an empty stomach")
+	TEST_ASSERT(!vomit.IsAvailable(), "The vomit ability is available with an empty stomach")
+	TEST_ASSERT(vomit.next_use_time <= world.time, "The vomit ability stayed on cooldown after throwing up")
+
 #undef LEFT_CLICK
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
