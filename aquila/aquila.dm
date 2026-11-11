@@ -1142,6 +1142,7 @@
 #include "code\modules\test_chamber\kits\pr_614_celowniki.dm"
 #include "code\modules\test_chamber\kits\pr_605_strzelanie.dm"
 #include "code\modules\test_chamber\kits\pr_613_basemats_basic_mobs.dm"
+#include "code\modules\test_chamber\kits\pr_mob_abilities_p1.dm"
 #include "code\modules\test_chamber\kits\pr_607_tg_sprite.dm"
 #include "code\modules\test_chamber\kits\pr_607_polonium.dm"
 #include "code\modules\test_chamber\kits\pr_602_druzyny.dm"
