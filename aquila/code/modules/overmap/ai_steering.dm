@@ -85,9 +85,14 @@ GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
 
 /// Hak w pętli omijania przeszkód bazowego move_toward() (ai-skynet.dm, AQ EDIT).
 /// TRUE: ten okręt może nam wejść w drogę, bo jest przed nami na kursie do celu.
-/obj/structure/overmap/proc/ai_should_avoid(obj/structure/overmap/other, atom/goal)
+/// path_turf: kafelek toru, przy którym bazowa pętla sprawdza okręt. Okręt dalej niż 5 pól od niego i myśliwiec
+/// i tak nie są przeszkodą (bazowy warunek), więc wtedy kończymy bez liczenia kątów. Bez tego hak liczył dwa
+/// namiary dla każdego okrętu w systemie przy każdym z 8 pól toru (profiler: 1,4 mln wywołań na bitwę).
+/obj/structure/overmap/proc/ai_should_avoid(obj/structure/overmap/other, atom/goal, turf/path_turf)
 	if(!GLOB.ai_forward_avoidance_enabled || !ai_controlled || !goal)
 		return TRUE
+	if(path_turf && (other.mass <= MASS_TINY || overmap_dist(get_turf(other), path_turf) > 5))
+		return TRUE // bazowy warunek i tak go pominie
 	var/course = overmap_angle(src, goal)
 	var/to_other = overmap_angle(src, other)
 	if(isnull(course) || isnull(to_other))
@@ -132,6 +137,10 @@ GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
 
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
 	if(ram_target || ignore_all_collisions || !current_system)
+		return ..()
+	// Objazd liczymy tylko wtedy, gdy bazowe omijanie w poprzednim tiku uznało drogę za zablokowaną (ciąg boczny)
+	// albo gdy właśnie objeżdżamy; inaczej to druga pełna pętla po torze przy każdym ruchu (profiler: 0,9 s na bitwę)
+	if(!(move_mode & (EAST|WEST)) && world.time >= ai_detour_until)
 		return ..()
 	var/turf/objazd = get_ai_detour_point(target, current_system.system_contents)
 	if(objazd)
