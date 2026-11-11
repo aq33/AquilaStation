@@ -14,6 +14,8 @@
 #define KNPC_GRENADE_FUSE (3 SECONDS)
 /// Tak daleko od uzbrojonego granatu boarder nie podchodzi do leżącego i nie rzuca drugiego (odłamki sięgają 4 pól)
 #define KNPC_GRENADE_DANGER_RANGE 4
+/// Zakuwanie (do_mob 4 s) trwające dłużej oznacza przerwaną procedurę: process() zdejmuje flagę sam
+#define KNPC_CUFF_TIMEOUT (10 SECONDS)
 /// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
 #define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
@@ -58,9 +60,16 @@
 
 /datum/component/knpc/process()
 	if(cuffing)
-		return // do_mob przerywa każdy krok boardera: wybór celu, trasa i patrol czekają, aż skończy zakuwać
+		if(world.time < cuffing_since + KNPC_CUFF_TIMEOUT)
+			// do_mob przerywa każdy krok boardera: wybór celu, trasa i patrol czekają, aż skończy zakuwać.
+			// Kara za nieudaną trasę i lista nieosiągalnych płyną dalej, jak w zwykłym process().
+			pathfind_timeout = max(0, pathfind_timeout - SSfastprocess.wait)
+			expire_unreachable()
+			return
+		cuffing = FALSE // do_cuff() nie dotarł do finish_cuff() (runtime): bez tego boarder stałby do końca rundy
 	. = ..()
 	aggressors_cache = null // nie trzymamy referencji do mobów między tickami
+	cuffs_cache = null
 	if(!istype(current_goal, /datum/ai_goal/human/engage_targets))
 		cover_turf = null // po walce nie trzymamy osłony dla siebie
 	expire_unreachable()
@@ -333,9 +342,17 @@
 // Zaryglowana albo pozbawiona zasilania śluza blokowała wyszukiwanie trasy nawet z kartą wszystkich dostępów,
 // więc haker i wyważacz omijali dokładnie te drzwi, które handle_blocking_door() umie otworzyć.
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
-	if(istype(ID, /obj/item/card/id/knpc_breach))
+	if(istype(ID, /obj/item/card/id/knpc_breach) && knpc_can_breach(caller))
 		return TRUE
 	return ..()
+
+/// Czy boarder otworzy te drzwi: wyważy każde zniszczalne, a haker otworzy też niezniszczalne, jeśli nie są zaspawane.
+/// Niezniszczalnej śluzy wyważacz nie uszkodzi, więc trasa przez nią kończyła się biciem w drzwi bez końca.
+/obj/machinery/door/airlock/proc/knpc_can_breach(atom/movable/breacher)
+	if(!(resistance_flags & INDESTRUCTIBLE))
+		return TRUE
+	var/mob/living/carbon/human/ai_boarder/boarder = breacher
+	return istype(boarder) && (boarder.knpc_traits & KNPC_IS_DOOR_HACKER) && !welded
 
 /datum/component/knpc/next_path_step()
 	if(handle_blocking_door())
@@ -547,6 +564,7 @@
 #undef KNPC_GRENADE_COOLDOWN
 #undef KNPC_GRENADE_FUSE
 #undef KNPC_GRENADE_DANGER_RANGE
+#undef KNPC_CUFF_TIMEOUT
 #undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY

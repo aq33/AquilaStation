@@ -333,6 +333,16 @@
 	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A regular boarder plans a path through a bolted airlock")
 	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
 	TEST_ASSERT(door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker cannot plan a path through a bolted airlock it can hack open")
+	// Niezniszczalnej śluzy wyważacz nie uszkodzi; haker otworzy ją panelem, chyba że jest zaspawana
+	door.resistance_flags |= INDESTRUCTIBLE
+	TEST_ASSERT(door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker cannot plan a path through an indestructible bolted airlock")
+	boarder.knpc_traits = KNPC_IS_DOOR_BASHER
+	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door basher plans a path through an indestructible bolted airlock it can never break")
+	boarder.knpc_traits = KNPC_IS_DOOR_HACKER
+	door.welded = TRUE
+	TEST_ASSERT(!door.CanAStarPass(ai.path_access_card(), EAST, boarder), "A door hacker plans a path through an indestructible welded airlock")
+	door.welded = FALSE
+	door.resistance_flags &= ~INDESTRUCTIBLE
 
 /// AQUILA - przy tykającym granacie boarder nie biegnie do ogłuszonego wroga i nie rzuca tam drugiego granatu.
 /// W symulacji drugi hukowy ogłuszał kolegów, którzy po pierwszym podbiegli zakuwać (z bliska ochrona oczu i uszu nie pomaga).
@@ -394,6 +404,23 @@
 	ai.pathfind_timeout = 0
 	ai.tactical_move(enemy)
 	TEST_ASSERT(!ai.wants_to_cuff(enemy), "Boarder still holds fire on a downed enemy it cannot reach")
+
+/// AQUILA - flaga zakuwania nie zamraża boardera na zawsze, a kara za nieudaną trasę maleje także w trakcie zakuwania
+/datum/unit_test/aquila_knpc_cuffing_watchdog
+
+/datum/unit_test/aquila_knpc_cuffing_watchdog/Run()
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, run_loc_floor_bottom_left)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	ai.cuffing = TRUE
+	ai.cuffing_since = world.time
+	ai.pathfind_timeout = 10
+	ai.process()
+	TEST_ASSERT(ai.cuffing, "Cuffing flag was dropped while do_mob could still be running")
+	TEST_ASSERT(ai.pathfind_timeout < 10, "Pathfinding timeout does not count down while cuffing")
+	// do_cuff() przerwany runtime'em nie dotarł do finish_cuff()
+	ai.cuffing_since = world.time - 11 SECONDS
+	ai.process()
+	TEST_ASSERT(!ai.cuffing, "A cuffing flag left by an interrupted do_cuff() freezes the boarder forever")
 
 /// AQUILA - boarder bez kajdanek nie zdejmuje ich z rąk zakutych zwłok
 /datum/unit_test/aquila_knpc_no_cuffs_from_corpse

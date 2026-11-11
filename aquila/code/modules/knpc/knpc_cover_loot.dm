@@ -34,11 +34,17 @@
 	var/next_prisoner_search = 0
 	/// Nieudane próby zakucia z rzędu (jeniec wyrwał się, ktoś nas przesunął)
 	var/cuff_failures = 0
+	/// Kiedy zaczęło się zakuwanie: po KNPC_CUFF_TIMEOUT process() zdejmuje flagę sam (runtime w do_cuff() zamrażał boardera)
+	var/cuffing_since = 0
+	/// find_cuffs() z bieżącego ticku (engage i try_cuff pytają kilka razy z rzędu); czyszczone w process()
+	var/obj/item/restraints/handcuffs/cuffs_cache
+	var/cuffs_cached_at = -1
 
 /datum/component/knpc/Destroy(force, silent)
 	cover_turf = null
 	loot_target = null
 	prisoner_target = null
+	cuffs_cache = null
 	return ..()
 
 // ---------- Osłony ----------
@@ -126,12 +132,17 @@
 /// Kajdanki lub opaski przy sobie, w plecaku albo w pudełku czy pasie, który nosimy (bez tych, które sami mamy na rękach)
 /datum/component/knpc/proc/find_cuffs()
 	var/mob/living/carbon/human/H = parent
+	if(cuffs_cached_at == world.time && (!cuffs_cache || (!QDELETED(cuffs_cache) && cuffs_cache != H.handcuffed)))
+		return cuffs_cache
+	cuffs_cache = null
+	cuffs_cached_at = world.time
 	var/list/items = carried_items()
 	for(var/obj/item/storage/S in items)
 		if(S != H.back)
 			items += S.contents // ERT ma kajdanki w pudełku w plecaku, ochrona w pasie
 	for(var/obj/item/restraints/handcuffs/cuffs in items)
 		if(cuffs != H.handcuffed)
+			cuffs_cache = cuffs
 			return cuffs
 
 /// Broń (albo inny przedmiot) trzymana oburącz, którą można puścić jedną ręką. Broń palna chwyta się oburącz sama przy podniesieniu.
@@ -187,6 +198,7 @@
 
 /datum/component/knpc/proc/do_cuff(obj/item/restraints/handcuffs/cuffs, mob/living/carbon/target)
 	cuffing = TRUE
+	cuffing_since = world.time
 	var/mob/living/carbon/human/H = parent
 	var/obj/item/rewield = null
 	if(!H.is_holding(cuffs))
@@ -218,7 +230,8 @@
 		return // boardera usunięto w trakcie do_mob
 	if(rewield && H.is_holding(rewield))
 		var/datum/component/two_handed/TH = rewield.GetComponent(/datum/component/two_handed)
-		TH?.wield(H)
+		// wield() bez swap_hands sprawdza nieaktywną rękę: gdy broń jest właśnie w niej, druga ręka to aktywna
+		TH?.wield(H, H.get_inactive_held_item() == rewield)
 	if(QDELETED(target) || target.handcuffed)
 		cuff_failures = 0
 		return
