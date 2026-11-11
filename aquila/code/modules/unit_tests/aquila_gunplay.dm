@@ -200,6 +200,35 @@
 	bullet.original = friend
 	TEST_ASSERT(bullet.can_hit_target(friend, TRUE, TRUE), "IFF bullet should hit a squadmate clicked directly")
 
+	// IFF daje tylko noszenie smyczy: członek drużyny bez smyczy ani nie strzela z IFF, ani nie jest omijany
+	bullet.original = stranger
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, start)
+	var/mob/living/carbon/human/bare_member = allocate(/mob/living/carbon/human, start)
+	squad.add_member(shooter)
+	squad.add_member(bare_member)
+	TEST_ASSERT(shooter.squad == squad && bare_member.squad == squad, "Could not add the test mobs to the squad")
+	TEST_ASSERT(bullet.can_hit_target(bare_member, FALSE, TRUE), "IFF bullet skipped a squad member without the lanyard")
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol, start)
+	var/obj/item/projectile/bullet/c9mm/shot = allocate(/obj/item/projectile/bullet/c9mm, start)
+	shot.firer = shooter
+	gun.setup_fired_projectile(shot)
+	TEST_ASSERT(!shot.iff_squad, "Squad member without the lanyard fired an IFF bullet")
+	var/obj/item/clothing/neck/squad/shooter_lanyard = allocate(/obj/item/clothing/neck/squad, start, squad)
+	shooter.equip_to_slot_or_del(shooter_lanyard, ITEM_SLOT_NECK)
+	var/obj/item/projectile/bullet/c9mm/shot_iff = allocate(/obj/item/projectile/bullet/c9mm, start)
+	shot_iff.firer = shooter
+	gun.setup_fired_projectile(shot_iff)
+	TEST_ASSERT(shot_iff.iff_squad == squad, "Shooter wearing the squad lanyard did not fire an IFF bullet")
+	squad.remove_member(shooter)
+	squad.remove_member(bare_member)
+
+	// osoba spoza drużyny w smyczy też strzela z IFF
+	TEST_ASSERT(!shooter.squad, "Shooter is still in a squad after remove_member")
+	var/obj/item/projectile/bullet/c9mm/shot_outsider = allocate(/obj/item/projectile/bullet/c9mm, start)
+	shot_outsider.firer = shooter
+	gun.setup_fired_projectile(shot_outsider)
+	TEST_ASSERT(shot_outsider.iff_squad == squad, "Outsider wearing the squad lanyard did not fire an IFF bullet")
+
 /// Osłony: przewrócony stół zatrzymuje kulę od frontu, a sam stół obrywa
 /datum/unit_test/aquila_gunplay_cover
 
