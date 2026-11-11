@@ -10,7 +10,7 @@
 	6) Osłony: Ctrl+Shift+klik na stół przewraca go w stronę od ciebie; kula od frontu zwykle wbija się w stół (stół traci wytrzymałość), z boku przelatuje; zza barierki i krzesła też czasem łapie. Strzelaj z krzesła biurowego → krzesło odjeżdża do tyłu. \
 	7) Stan broni: badaj broń → stan techniczny i statystyki (obrażenia, trafień do krytycznego, rozrzut, szybkostrzelność). Laser i CKM po długim ogniu: „przegrzana!”, broń nie strzela do ostygnięcia, bez rękawic parzy dłoń. Zestaw konserwacji na broń → 10 s czyszczenia. \
 	8) Dodatki: dodatek na broń (bez combat mode) → zakłada się; chwyt i laser widać pod lufą, celowników na broni nie widać; drugi celownik → odmowa (negatyw); śrubokręt zdejmuje. Zestaw konserwacji leży też w zbrojowni (regał z amunicją) i w skrzyni z automatu drużyny (gdy zestaw ma broń; wraca razem ze skrzynią). Celownik laserowy: akcja włącza wiązkę widoczną dla innych, idzie za kursorem. \
-	9) IFF: setup dopisuje cię do drużyny i daje dwie smycze; ktoś w smyczy twojej drużyny stoi między tobą a celem → kula go omija; kliknij prosto w niego → dostaje (negatyw dla IFF). \
+	9) IFF: setup dopisuje cię do drużyny i daje dwie smycze; załóż jedną (bez smyczy na szyi strzelasz bez IFF); ktoś w drugiej smyczy twojej drużyny stoi między tobą a celem → kula go omija; kliknij prosto w niego → dostaje (negatyw dla IFF). \
 	10) Amunicja inteligentna: P99 z magazynkiem inteligentnym, strzał w cel, który ucieka w bok → kula skręca za nim, dopóki go widzi. \
 	11) Niewypał: rzadki (0,3% fabrycznej amunicji) – „niewypał! przeładuj”, przeładowanie wyrzuca nabój. \
 	12) Broń statkowa (osobno, na okręcie): torpedy, PDC, railgun i MAC lecą i trafiają jak wcześniej."

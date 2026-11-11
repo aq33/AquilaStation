@@ -1,6 +1,7 @@
 // AQUILA - IFF drużyn i inteligentna amunicja.
-// IFF (wzór: TGMC iff_signal, CM bullet_trait_iff): kula wystrzelona przez członka drużyny przelatuje przez osoby,
-// które noszą smycz tej samej drużyny (/obj/item/clothing/neck/squad, wydawana z konsoli drużyn). Kliknięta bezpośrednio
+// IFF (wzór: TGMC iff_signal, CM bullet_trait_iff): kula wystrzelona przez osobę ze smyczą drużyny przelatuje przez osoby,
+// które noszą smycz tej samej drużyny (/obj/item/clothing/neck/squad, wydawana z konsoli drużyn). Samo członkostwo
+// w drużynie bez smyczy IFF nie daje, ani strzelcowi, ani celowi. Kliknięta bezpośrednio
 // osoba zostaje trafiona (odwrotnie niż w Novie, gdzie IFF przepuszcza nawet klikniętego sojusznika).
 // Inteligentna amunicja (wzór: /vg/ pociski śledzące, tg homing): kula namierza moba klikniętego przy strzale i skręca
 // do niego, dopóki go widzi. Badania: węzeł „Zaawansowana technologia rozwoju broni”.
@@ -15,18 +16,18 @@
 
 /obj/item/gun/setup_fired_projectile(obj/item/projectile/projectile)
 	. = ..()
-	if(ishuman(projectile.firer))
-		var/mob/living/carbon/human/shooter = projectile.firer
-		if(shooter.squad)
-			projectile.iff_squad = shooter.squad
+	projectile.iff_squad = worn_lanyard_squad(projectile.firer)
+
+/// Drużyna ze smyczy noszonej na szyi albo null
+/proc/worn_lanyard_squad(mob/living/carbon/human/H)
+	if(!ishuman(H))
+		return null
+	var/obj/item/clothing/neck/squad/lanyard = H.wear_neck
+	return istype(lanyard) ? lanyard.squad : null
 
 /// Czy ta osoba nosi smycz drużyny strzelca
 /obj/item/projectile/proc/is_iff_friend(atom/target)
-	if(!iff_squad || !ishuman(target))
-		return FALSE
-	var/mob/living/carbon/human/H = target
-	var/obj/item/clothing/neck/squad/lanyard = H.wear_neck
-	return istype(lanyard) && lanyard.squad == iff_squad
+	return iff_squad && worn_lanyard_squad(target) == iff_squad
 
 /obj/item/projectile/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
 	. = ..()
@@ -35,7 +36,7 @@
 
 /obj/item/clothing/neck/squad/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Działa też jako znacznik IFF: kule członków tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego.</span>"
+	. += "<span class='notice'>Działa też jako znacznik IFF: kule osób noszących smycz tej drużyny omijają noszącego, chyba że ktoś celuje prosto w niego. Bez smyczy na szyi IFF nie działa.</span>"
 
 // --- Inteligentna amunicja 9mm ---
 
