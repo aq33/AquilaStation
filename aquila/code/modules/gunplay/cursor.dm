@@ -69,6 +69,19 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 /obj/item/ammo_casing/caseless/foam_dart/get_cursor_shape()
 	return AQ_CURSOR_TOY
 
+// Nowy nabój w komorze (przeładowanie, zmiana trybu) może zmienić kształt celownika
+/obj/item/gun/ballistic/chamber_round(keep_bullet = FALSE)
+	. = ..()
+	if(isliving(loc))
+		var/mob/living/holder = loc
+		holder.update_gun_cursor()
+
+/obj/item/gun/energy/select_fire(mob/living/user)
+	. = ..()
+	if(isliving(loc))
+		var/mob/living/holder = loc
+		holder.update_gun_cursor()
+
 /obj/item/gun/ballistic/automatic/sniper_rifle
 	aq_cursor_shape = AQ_CURSOR_SCOPE
 

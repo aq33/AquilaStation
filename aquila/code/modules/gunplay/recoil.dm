@@ -65,8 +65,24 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	if(!buckled && isturf(loc) && isturf(OldLoc) && loc != OldLoc)
 		last_move_time = world.time // zmienna z rdzenia (atoms_movable.dm), wcześniej nieużywana
 		aq_last_move_walking = (m_intent == MOVE_INTENT_WALK)
-		if(is_sprinting())
+		if(committed_sprint_step())
 			aq_last_sprint_time = world.time
+		if(client && istype(get_active_held_item(), /obj/item/gun))
+			refresh_move_cursor()
+
+/// Czy ten ruch był krokiem sprintu zatwierdzonym przez komponent (nie forceMove w sekundę po sprincie)
+/mob/living/proc/committed_sprint_step()
+	return FALSE
+
+/mob/living/carbon/committed_sprint_step()
+	var/datum/component/carbon_sprint/sprint = GetComponent(/datum/component/carbon_sprint)
+	return sprint?.sprinting && sprint.last_sprint_step == world.time
+
+/// Kursor rośnie po kroku i zwęża się, gdy kara za ruch mija, także przy nieruchomej myszy
+/mob/living/proc/refresh_move_cursor()
+	update_gun_cursor()
+	if(get_move_spread_penalty() > 0)
+		addtimer(CALLBACK(src, PROC_REF(refresh_move_cursor)), 0.2 SECONDS, TIMER_UNIQUE)
 
 /obj/item/ammo_casing
 	/// Przyrost odrzutu na strzał; null = z tabeli kalibrów
@@ -129,6 +145,7 @@ GLOBAL_LIST_INIT(aq_caliber_recoil, list(
 	spread = base_spread
 
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
+	get_cursor_shape() // zapamiętuje kształt wystrzelonego naboju także przy wyłączonym celowniku
 	. = ..()
 	if(!istype(user) || tk_firing(user))
 		return

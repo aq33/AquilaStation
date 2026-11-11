@@ -403,8 +403,14 @@
 	TEST_ASSERT(shell.fire_casing(far, shooter, null, 0, TRUE, null, 60), "Buckshot did not fire")
 	var/datum/component/pellet_cloud/cloud = shell.GetComponent(/datum/component/pellet_cloud)
 	TEST_ASSERT(cloud && length(cloud.pellets), "Buckshot made no pellets")
+	// Śrut buckshot (variance 10, rozkład równy): przesunięcia od -4 do +5 wokół 60°
+	var/lowest = INFINITY
+	var/highest = -INFINITY
 	for(var/obj/item/projectile/pellet as anything in cloud.pellets)
-		TEST_ASSERT(pellet.original_angle >= 50 && pellet.original_angle <= 70, "Pellet flew at [pellet.original_angle]° instead of the gun's 60° spread ± half the shell's variance")
+		TEST_ASSERT(pellet.original_angle >= 55 && pellet.original_angle <= 65, "Pellet flew at [pellet.original_angle]° instead of the gun's 60° spread ± half the shell's variance")
+		lowest = min(lowest, pellet.original_angle)
+		highest = max(highest, pellet.original_angle)
+	TEST_ASSERT(highest - lowest >= 5, "Pellets lost the shell's own spread (all within [lowest]-[highest]°)")
 
 	var/obj/item/ammo_casing/c9mm/single = allocate(/obj/item/ammo_casing/c9mm, start)
 	single.misfire_chance = 0
