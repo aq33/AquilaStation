@@ -61,7 +61,7 @@
 	TEST_ASSERT(!patient.is_bleeding(BODY_ZONE_R_ARM), "A bandage on the stump did not stop it")
 	qdel(arm)
 
-/// AQUILA - a cracked or caved-in skull: head names, the head displacement from cranial_fissure.dmi and brain traumas
+/// AQUILA - a cracked or caved-in skull: head names, the head split by skull_crack.dmi and brain traumas
 /datum/unit_test/aquila_skull_wounds
 
 /datum/unit_test/aquila_skull_wounds/Run()
