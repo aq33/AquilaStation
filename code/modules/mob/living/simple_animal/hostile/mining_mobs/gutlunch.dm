@@ -40,11 +40,13 @@
 	childtype = list(/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch = 100)
 
 	wanted_objects = list(/obj/effect/decal/cleanable/xenoblood/xgibs, /obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ)
-	var/obj/item/udder/gutlunch/udder = null
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/Initialize(mapload)
-	udder = new()
 	. = ..()
+	// AQ EDIT START - the udder component, as in Bee (milking, generation and guthen breeding in aquila/code/datums/components/udder.dm)
+	if(length(wanted_objects))
+		AddComponent(/datum/component/udder, /obj/item/udder/gutlunch, CALLBACK(src, PROC_REF(regenerate_icons)), CALLBACK(src, PROC_REF(regenerate_icons)))
+	// AQ EDIT END
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/CanAttack(atom/the_target) // Gutlunch-specific version of CanAttack to handle stupid stat_exclusive = true crap so we don't have to do it for literally every single simple_animal/hostile except the two that spawn in lavaland
 	if(isturf(the_target) || !the_target || the_target.type == /atom/movable/lighting_object) // bail out on invalids
@@ -68,31 +70,21 @@
 
 	return FALSE
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/Destroy()
-	reagents = null
-	QDEL_NULL(udder)
-	return ..()
-
-/mob/living/simple_animal/hostile/asteroid/gutlunch/regenerate_icons()
+// AQ EDIT START - the udder component calls this with its volume (Bee); milking goes through the component
+/mob/living/simple_animal/hostile/asteroid/gutlunch/regenerate_icons(new_udder_volume, max_udder_volume)
 	cut_overlays()
-	if(udder.reagents.total_volume == udder.reagents.maximum_volume)
+	if(new_udder_volume && new_udder_volume == max_udder_volume)
 		add_overlay("gl_full")
 	..()
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/attackby(obj/item/O, mob/user, params)
-	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		udder.milkAnimal(O, user)
-		regenerate_icons()
-	else
-		..()
-
 /mob/living/simple_animal/hostile/asteroid/gutlunch/AttackingTarget()
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
-		udder.generateMilk()
-		regenerate_icons()
+		var/datum/component/udder/udder_component = GetComponent(/datum/component/udder)
+		udder_component?.udder.generate()
 		visible_message("<span class='notice'>[src] wsysa [target].</span>")
 		qdel(target)
 	return ..()
+// AQ EDIT END
 
 //Male gutlunch. They're smaller and more colorful!
 /mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck
@@ -110,16 +102,7 @@
 	name = "żarłoczka"
 	gender = FEMALE
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/Life()
-	..()
-	if(udder.reagents.total_volume == udder.reagents.maximum_volume && next_scan_time <= world.time) //Only breed when we're full.
-		make_babies()
-
-/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/make_babies()
-	. = ..()
-	if(.)
-		udder.reagents.clear_reagents()
-		regenerate_icons()
+// AQ EDIT - a full guthen breeds from its udder (aquila/code/datums/components/udder.dm), as in Bee
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch
 	name = "młody żarłoczek"
@@ -153,17 +136,4 @@
 	visible_message("<span class='notice'>[src] dorasta, stając się [L].</span>")
 	Destroy()
 
-//Gutlunch udder
-/obj/item/udder/gutlunch
-	name = "worek odżywczy"
-
-/obj/item/udder/gutlunch/Initialize(mapload)
-	. = ..()
-	reagents = new(50)
-	reagents.my_atom = src
-
-/obj/item/udder/gutlunch/generateMilk()
-	if(prob(60))
-		reagents.add_reagent(/datum/reagent/consumable/cream, rand(2, 5))
-	if(prob(45))
-		reagents.add_reagent(/datum/reagent/medicine/salglu_solution, rand(2,5))
+// AQ EDIT - the gutlunch udder (/obj/item/udder/gutlunch) is in aquila/code/datums/components/udder.dm

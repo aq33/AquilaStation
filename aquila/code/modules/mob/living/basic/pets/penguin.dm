@@ -82,7 +82,8 @@
 	)
 
 /mob/living/basic/pet/penguin/baby/proc/ready_to_grow()
-	return (stat == CONSCIOUS) && !istype(loc, /obj/item/clothing/head/mob_holder)
+	// AQUILA: only on a turf: grown in a carrier or an explorer drone loot box the adult was stuck outside its occupants
+	return (stat == CONSCIOUS) && isturf(loc)
 
 /mob/living/basic/pet/penguin/baby/permanent
 	can_grow_up = FALSE
