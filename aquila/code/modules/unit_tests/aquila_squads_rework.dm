@@ -334,6 +334,17 @@
 	outsider.equip_to_slot_or_del(outsider_lanyard, ITEM_SLOT_NECK)
 	var/image/outsider_holder = outsider.hud_list?[SQUAD_HUD]
 	TEST_ASSERT(!outsider.squad && outsider_holder?.icon_state == "frame" && outsider_holder.color == squad.colour, "Osoba spoza drużyny w smyczy nie ma ramki w kolorze drużyny")
+	var/old_colour = squad.colour
+	squad.aq_recolour(old_colour == "#123456" ? "#654321" : "#123456")
+	var/recoloured = outsider_holder.color == squad.colour
+	squad.aq_recolour(old_colour)
+	TEST_ASSERT(recoloured, "Ramka osoby spoza drużyny nie zmieniła koloru po przemalowaniu drużyny")
+	// HUD dodany z innego źródła zostaje po zdjęciu smyczy
+	squad_hud.add_hud_to(outsider)
+	outsider.dropItemToGround(outsider_lanyard)
+	TEST_ASSERT(squad_hud.hudusers[outsider], "Zdjęcie smyczy zabrało HUD drużyn dodany skądinąd")
+	squad_hud.remove_hud_from(outsider)
+	TEST_ASSERT(!squad_hud.hudusers[outsider], "HUD drużyn został po zdjęciu smyczy i zdjęciu drugiego źródła")
 	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
 	var/list/centcom = SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 	if(length(centcom) && !(centcom[1] in squad.aq_active_levels()) && !(centcom[1] in SSmapping.levels_by_trait(ZTRAIT_STATION)) && centcom[1] != leader.z)

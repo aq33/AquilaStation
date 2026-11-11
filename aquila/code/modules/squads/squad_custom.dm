@@ -176,6 +176,7 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 	colour = new_colour
 	log_game("[key_name(user)] changed the colour of squad [name] to [colour]")
 	aq_refresh_all()
+	aq_refresh_lanyard_outsiders()
 	return TRUE
 
 #undef SQUAD_MAX_TOTAL

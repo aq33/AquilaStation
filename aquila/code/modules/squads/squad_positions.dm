@@ -270,22 +270,44 @@
 	glyph.appearance_flags = RESET_COLOR
 	holder.add_overlay(glyph)
 
+/mob/living/carbon/human
+	/// HUD drużyn dodany przez noszoną smycz (własny licznik, żeby nie zdejmować HUD-u dodanego skądinąd)
+	var/aq_squad_hud_from_lanyard = FALSE
+
 /// Oznaczenia drużyn widzi tylko ktoś, kto sam nosi smycz drużyny (jak okulary HUD)
 /mob/living/carbon/human/proc/aq_update_squad_hud_view(obj/item/removing)
 	if(QDELETED(src))
 		return
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_SQUAD]
-	if(aq_worn_lanyard_squad(removing))
-		if(!hud.hudusers[src])
-			hud.add_hud_to(src)
-	else if(hud.hudusers[src])
-		hud.remove_hud_from(src, TRUE)
+	var/should_see = !!aq_worn_lanyard_squad(removing)
+	if(should_see == aq_squad_hud_from_lanyard)
+		return
+	aq_squad_hud_from_lanyard = should_see
+	if(should_see)
+		hud.add_hud_to(src)
+	else
+		hud.remove_hud_from(src)
 
-// NSV13 dawało HUD drużyny każdemu członkowi; u nas decyduje smycz na szyi
+// Pełne nadpisanie (LEGACY_OVERRIDES.md): NSV13 dawało HUD drużyn każdemu członkowi, u nas decyduje smycz na szyi.
+// Zostaje wskaźnik dowódcy na ekranie; HUD-u nie dodajemy, żeby nie wysyłać obrazów i nie odpalać cooldownu na darmo.
 /datum/squad/handle_hud(mob/living/carbon/human/H, add = TRUE)
-	. = ..()
+	var/datum/hud/human/hud_used = H.hud_used
+	if(hud_used?.squad_lead_finder)
+		if(add)
+			hud_used.squad_lead_finder.invisibility = FALSE
+			hud_used.squad_lead_finder.alpha = 255
+			hud_used.squad_lead_finder.set_squad(src, H)
+		else
+			hud_used.squad_lead_finder.invisibility = INVISIBILITY_ABSTRACT
+			hud_used.squad_lead_finder.alpha = 0
 	if(ishuman(H))
 		H.aq_update_squad_hud_view()
+
+/// Odświeża ramki osób w smyczy tej drużyny spoza drużyny (np. kapitana); członków odświeża aq_refresh_all()
+/datum/squad/proc/aq_refresh_lanyard_outsiders()
+	for(var/mob/living/carbon/human/wearer in GLOB.carbon_list)
+		if(wearer.squad != src && wearer.aq_worn_lanyard_squad() == src)
+			wearer.aq_update_squad_hud()
 
 /obj/item/clothing/neck/squad/equipped(mob/user, slot)
 	. = ..()
