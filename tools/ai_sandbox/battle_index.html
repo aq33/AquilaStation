@@ -78,6 +78,12 @@ code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;pad
 <script>
 // Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
 var SERIE = [
+  { tytul: "Poprawka namierzania i pomiar wydajności (profiler)",
+    opis: "Zwiadowca trzyma namierzenie przez przeładowanie i okno salwy floty, a strzał na namiar albo tor radaru nie czeka na okno salwy. " +
+          "Każda bitwa ma zapisany profil procedur; tryb legacy to te same bitwy z wyłączonymi wszystkimi zmianami AI z aquila/.",
+    wynik: "Strzały na tor radaru szpicy 0 → 56 w 6 bitwach, na namiar zwiadowcy 1 → 4, mediana trzymania namierzenia 0 → 6 s. " +
+           "Wydajność: world.cpu 12,4% (legacy) → 15,5% (wszystkie zmiany), przy dłużej żyjących okrętach (12,5 wobec 8,6 okrętu AI).",
+    warianty: [["F_pelne_", "wszystkie zmiany AI"], ["F_legacy_", "legacy (zmiany wyłączone)"], ["F_daleko_", "wszystkie zmiany, daleki start"]] },
   { tytul: "Daleki ostrzał: zwiad wysunięty i tor radaru szpicy",
     opis: "Torpedy i rakiety dalej niż 50 pól: z własnych sensorów, na namiar zwiadowcy albo na tor radaru okrętu floty w czasie impulsu. " +
           "Zwiadowca leci w stronę namiaru z nasłuchu, zanim ktokolwiek zobaczy wroga. W zdarzeniach odtwarzacza widać każdy daleki strzał i jego źródło.",
