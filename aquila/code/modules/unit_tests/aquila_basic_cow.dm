@@ -49,5 +49,23 @@
 	TEST_ASSERT(cow.GetComponent(/datum/component/riding), "The tamed cow cannot be ridden")
 	TEST_ASSERT(cow.can_buckle, "The tamed cow cannot be buckled to")
 
+/// The wisdom cow speaks Polish wisdoms from strings/wisdoms.txt and vanishes in smoke when petted
+/datum/unit_test/aquila_wisdom_cow
+
+/datum/unit_test/aquila_wisdom_cow/Run()
+	TEST_ASSERT_EQUAL(length(GLOB.wisdoms), 430, "strings/wisdoms.txt was not read line by line")
+	TEST_ASSERT("Czy jesteś żółwiem?" in GLOB.wisdoms, "The wisdoms are not the Polish translation")
+	var/mob/living/basic/cow/wisdom/cow = allocate(/mob/living/basic/cow/wisdom, get_step(run_loc_floor_bottom_left, EAST))
+	var/datum/ai_planning_subtree/random_speech/cow/wisdom/speech
+	for(var/datum/ai_planning_subtree/subtree as anything in cow.ai_controller.planning_subtrees)
+		if(istype(subtree, /datum/ai_planning_subtree/random_speech/cow/wisdom))
+			speech = subtree
+	TEST_ASSERT(speech, "The wisdom cow has no wisdom speech")
+	TEST_ASSERT_EQUAL(length(speech.speak), 430, "The wisdom cow does not know all the wisdoms")
+	TEST_ASSERT(!cow.GetComponent(/datum/component/tameable), "The wisdom cow can be tamed")
+	var/mob/living/carbon/human/listener = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	cow.attack_hand(listener, list())
+	TEST_ASSERT(QDELETED(cow), "The wisdom cow did not vanish after sharing its wisdom")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -1,6 +1,6 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/modules/mob/living/basic/farm_animals/cow/_cow.dm (bee/master 0adf0fe9ae)
 // Polish lines and tipping of our simple animal cow (no tippable component here: right click tips it, as before).
-// Riding after taming uses our old riding component (decision D6). No wisdom cow and no Tyson.
+// Riding after taming uses our old riding component (decision D6). The wisdom cow is in cow_wisdom.dm, Tyson in pets/dog/security_dog.dm.
 
 //cow
 /mob/living/basic/cow

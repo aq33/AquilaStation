@@ -1,5 +1,5 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/modules/mob/living/basic/pets/cat/cat_ai.dm (bee/master 0adf0fe9ae)
-// No cat house: the reside_in_home subtree is left out with the structure.
+// The cat house and its reside_in_home subtree are in cat_house.dm.
 /datum/ai_controller/basic_controller/cat
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
@@ -14,6 +14,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity/pacifist,
 		/datum/ai_planning_subtree/pet_planning,
+		/datum/ai_planning_subtree/reside_in_home,
 		/datum/ai_planning_subtree/flee_target/from_flee_key/cat_struggle,
 		/datum/ai_planning_subtree/find_and_hunt_target/hunt_mice,
 		/datum/ai_planning_subtree/find_and_hunt_target/find_cat_food,

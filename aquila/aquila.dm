@@ -1945,9 +1945,13 @@
 #include "code\modules\mob\living\basic\vermin\butterfly.dm"
 #include "code\modules\mob\living\basic\space_fauna\snake.dm"
 #include "code\modules\mob\living\basic\space_fauna\turtle.dm"
+#include "code\modules\mob\living\basic\pets\cat\cat_house.dm"
+#include "code\modules\mob\living\basic\pets\dog\security_dog.dm"
+#include "code\modules\mob\living\basic\farm_animals\cow\cow_wisdom.dm"
 // Koniec bloku rdzenia SI i basic mobów
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_basic_cat_house.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_pets_14771.dm"
 #include "code\modules\unit_tests\aquila_basic_farm.dm"

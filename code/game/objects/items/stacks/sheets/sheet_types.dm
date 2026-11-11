@@ -269,6 +269,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("regał na książki",								/obj/structure/bookcase, 4, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("suszarka",							/obj/machinery/smartfridge/drying_rack, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("legowisko dla psa",								/obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	//AQ EDIT - domek dla kota z Bee (basic moby, aquila/code/modules/mob/living/basic/pets/cat/cat_house.dm)
+	new/datum/stack_recipe("domek dla kota",								/obj/structure/cat_house, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("komoda",								/obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("ramka na zdjęcie",							/obj/item/wallframe/picture, 1, time = 10),\
 	new/datum/stack_recipe("rama na obraz",						/obj/item/wallframe/painting, 1, time = 10),\

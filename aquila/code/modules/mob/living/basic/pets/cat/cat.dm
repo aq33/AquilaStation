@@ -1,6 +1,6 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/modules/mob/living/basic/pets/cat/cat.dm (bee/master 0adf0fe9ae)
 // Polish names, lines and sounds of our simple animal cats. No pet cult (decision D10), no stove interaction
-// (commented out in Bee), no feral cat, Jerry or tabby.
+// (commented out in Bee). The feral cat, Jerry, the tabby and the cat house are in cat_house.dm.
 
 /mob/living/basic/pet/cat
 	name = "kot"
