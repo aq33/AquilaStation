@@ -13,7 +13,7 @@ import { Box, Button } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Designation = 'primary' | 'secondary' | null;
+export type Designation = 'primary' | 'secondary' | null;
 
 type SuiteReport = {
   suite: string;
@@ -21,7 +21,7 @@ type SuiteReport = {
   state: 'sees' | 'far' | 'cone' | 'blind' | 'off';
 };
 
-type Contact = {
+export type Contact = {
   id: string;
   name: string;
   number: number;
@@ -92,7 +92,7 @@ type Data = {
   objects: ScopeObject[];
 };
 
-type ScopeObject = {
+export type ScopeObject = {
   id: string;
   kind: 'asteroid' | 'wreck' | 'anomaly';
   name: string;
@@ -101,7 +101,7 @@ type ScopeObject = {
   dy: number;
 };
 
-const OBJECT_KIND = {
+export const OBJECT_KIND = {
   asteroid: 'asteroida',
   wreck: 'wrak',
   anomaly: 'anomalia',
@@ -109,15 +109,15 @@ const OBJECT_KIND = {
 
 // Fala impulsu dochodzi do granicy zasięgu w tyle sekund
 const PULSE_WAVE_SECONDS = 1.8;
-const LABEL_CHAR_PX = 6.6;
+export const LABEL_CHAR_PX = 6.6;
 
-const OBJECT_COLOR = {
+export const OBJECT_COLOR = {
   asteroid: '#8a8f98',
   wreck: '#a9b0ba',
   anomaly: '#eb9534',
 };
 
-const COLOR = {
+export const COLOR = {
   bg: '#0a0f16',
   panel: '#111924',
   panel2: '#16202e',
@@ -162,22 +162,22 @@ const SCOPE_RANGES = [50, 100, 200];
 const SCOPE = 440;
 const CENTER = SCOPE / 2;
 const RADIUS = 208;
-const MONO = 'Consolas, monospace';
+export const MONO = 'Consolas, monospace';
 
-type Side = 'hostile' | 'friend' | 'unknown';
+export type Side = 'hostile' | 'friend' | 'unknown';
 
-const distanceOf = (c: { dx: number; dy: number }) =>
+export const distanceOf = (c: { dx: number; dy: number }) =>
   Math.round(Math.sqrt(c.dx * c.dx + c.dy * c.dy));
-const bearingOf = (c: { dx: number; dy: number }) =>
+export const bearingOf = (c: { dx: number; dy: number }) =>
   (Math.round((Math.atan2(c.dx, c.dy) * 180) / Math.PI) + 360) % 360;
-const pad = (n: number) => ('00' + Math.round(n)).slice(-3);
-const sideOf = (c: Contact): Side =>
+export const pad = (n: number) => ('00' + Math.round(n)).slice(-3);
+export const sideOf = (c: Contact): Side =>
   !c.hostile ? 'friend' : c.identified ? 'hostile' : 'unknown';
-const shortOf = (c: Contact) => 'K' + c.number;
+export const shortOf = (c: Contact) => 'K' + c.number;
 const angleDiff = (a: number, b: number) =>
   Math.abs(((a - b + 540) % 360) - 180);
 
-const sectionTitle: CSSProperties = {
+export const sectionTitle: CSSProperties = {
   fontSize: '11px',
   letterSpacing: '0.09em',
   textTransform: 'uppercase',
@@ -187,11 +187,11 @@ const sectionTitle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
 };
-const card: CSSProperties = {
+export const card: CSSProperties = {
   borderBottom: '1px solid ' + COLOR.line,
   padding: '9px 11px',
 };
-const swatch = (colour: string): CSSProperties => ({
+export const swatch = (colour: string): CSSProperties => ({
   display: 'inline-block',
   width: '10px',
   height: '10px',
@@ -201,7 +201,7 @@ const swatch = (colour: string): CSSProperties => ({
   verticalAlign: '-1px',
 });
 
-const Symbol = (props: { side: Side; size?: number }) => {
+export const Symbol = (props: { side: Side; size?: number }) => {
   const { side, size = 11 } = props;
   const colour = COLOR[side];
   return (
@@ -244,7 +244,7 @@ const Symbol = (props: { side: Side; size?: number }) => {
   );
 };
 
-const Tag = (props: {
+export const Tag = (props: {
   colour: string;
   background: string;
   children: ReactNode;

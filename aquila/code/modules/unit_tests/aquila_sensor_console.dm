@@ -80,8 +80,9 @@
 		return "DRADIS switched the sensor mode although the operator runs the sensors"
 	station.sensor_range = world.maxx
 	var/list/data = display.ui_data()
-	if(display.sensor_range != world.maxx || !data["sensor_station"])
-		return "DRADIS did not follow the sensor console's pulse range"
+	// DRADIS mostka jest do latania: zostaje przy podstawowym zasięgu, impuls operatora go nie poszerza
+	if(display.sensor_range != display.base_sensor_range || !data["sensor_station"])
+		return "DRADIS took the reconnaissance station's pulse range ([display.sensor_range]) instead of its basic range"
 	station.sensor_range = station.base_sensor_range
 
 /datum/unit_test/aquila_sensor_console/proc/check_radar_process()

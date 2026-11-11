@@ -25,6 +25,8 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	var/telescope_mode = TELESCOPE_MODE_TARGET
 	/// AQUILA - namiar teleskopu w trybie ręcznym
 	var/telescope_manual_bearing = 0
+	/// AQUILA - TRUE na czas budowania obrazu DRADIS mostka: DRADIS widzi tylko podstawowym radarem (sensor_console.dm)
+	var/sensor_view_basic = FALSE
 	/// AQUILA - szerokość wiązki radaru w stopniach; 0 to radar dookólny
 	var/radar_beam_width = 0
 	/// AQUILA - wiązka ostatniego impulsu: szerokość i namiar w chwili wysłania (trzyma przez cały impuls)
@@ -56,6 +58,12 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	if(ai_controlled)
 		return TRUE
 	return GLOB.player_sensor_suites_enabled && !QDELETED(sensor_console)
+
+/// DRADIS mostka widzi podstawowo: bez teleskopu i radaru operatora
+/obj/structure/overmap/get_sensor_suites()
+	. = ..()
+	if(sensor_view_basic)
+		. -= list(SENSOR_TELESCOPE, SENSOR_LIDAR)
 
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
 	. = ..()

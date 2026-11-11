@@ -46,7 +46,7 @@
 		var/dist = overmap_dist(linked, OM)
 		if(dist <= max(sensor_range, OM.sensor_profile)) // Identified contacts are exact, same rule as the base proc
 			continue
-		var/radius = SENSOR_UNCERTAINTY_MIN + (SENSOR_UNCERTAINTY_MAX - SENSOR_UNCERTAINTY_MIN) * clamp(dist / OM.get_detection_range(linked), 0, 1.6) // poza zasięgiem (słaby sygnał) okrąg rośnie dalej
+		var/radius = linked.get_contact_uncertainty(OM)
 		var/list/offset = linked.get_sensor_offset(OM, radius)
 		blip["x"] += offset[1]
 		blip["y"] += offset[2]
@@ -119,6 +119,12 @@
 		target.dradis.visible_message(message)
 	if(target.pilot && !target.tactical)
 		to_chat(target.pilot, message)
+
+/// Promień niepewności pozycji target widzianego z tego okrętu: rośnie z odległością,
+/// a poza zasięgiem wykrycia (słaby sygnał) dalej
+/obj/structure/overmap/proc/get_contact_uncertainty(obj/structure/overmap/target)
+	var/dist = overmap_dist(src, target)
+	return SENSOR_UNCERTAINTY_MIN + (SENSOR_UNCERTAINTY_MAX - SENSOR_UNCERTAINTY_MIN) * clamp(dist / max(target.get_detection_range(src), 1), 0, 1.6)
 
 #undef SENSOR_OFFSET_STEP_TIME
 #undef SENSOR_UNCERTAINTY_MIN

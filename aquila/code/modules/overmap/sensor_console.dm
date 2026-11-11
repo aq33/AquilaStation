@@ -219,17 +219,17 @@
 	data["gunner"] = !!linked.gunner
 	data["turn"] = round(linked.angular_velocity, 0.1)
 	data["pulse_at"] = linked.last_radar_pulse
-	data["objects"] = get_scope_objects()
+	data["objects"] = linked.get_scope_objects(sensor_range)
 	data["near_range"] = SENSOR_THREAT_NEAR
 
 /// Asteroids, wrecks and anomalies for the operator's scope: not contacts (nothing to designate), only obstacles and things to look at.
 /// Asteroids and wrecks follow the same visibility as ships; anomalies show anywhere in the system, as on DRADIS.
-/obj/machinery/computer/ship/dradis/sensors/proc/get_scope_objects()
+/obj/structure/overmap/proc/get_scope_objects(display_range)
 	. = list()
-	if(!linked?.current_system)
+	if(!current_system)
 		return
-	for(var/atom/movable/thing as anything in linked.current_system.system_contents)
-		if(QDELETED(thing) || thing.z != linked.z)
+	for(var/atom/movable/thing as anything in current_system.system_contents)
+		if(QDELETED(thing) || thing.z != z)
 			continue
 		var/kind
 		var/name
@@ -241,7 +241,7 @@
 			detail = anomaly.scanned ? "zbadana" : "niezbadana"
 		else if(istype(thing, /obj/structure/overmap/asteroid))
 			var/obj/structure/overmap/asteroid/rock = thing
-			if(overmap_dist(linked, rock) > max(sensor_range * 2, rock.sensor_profile) || rock.is_sensor_visible(linked) < SENSOR_VISIBILITY_FAINT)
+			if(overmap_dist(src, rock) > max(display_range * 2, rock.sensor_profile) || rock.is_sensor_visible(src) < SENSOR_VISIBILITY_FAINT)
 				continue
 			kind = istype(rock, /obj/structure/overmap/asteroid/shipbreak_wreck) ? "wreck" : "asteroid"
 			name = rock.name
@@ -249,8 +249,8 @@
 				detail = "wydobycie: poziom [rock.required_tier]"
 		else
 			continue
-		var/dx = thing.x - linked.x
-		var/dy = thing.y - linked.y
+		var/dx = thing.x - x
+		var/dy = thing.y - y
 		if(abs(dx) > world.maxx / 2)
 			dx -= dx > 0 ? world.maxx : -world.maxx
 		if(abs(dy) > world.maxy / 2)
@@ -262,9 +262,12 @@
 	var/obj/machinery/computer/ship/dradis/sensors/station = linked?.sensor_console
 	var/follows_station = station && station != src
 	if(follows_station)
-		sensor_range = station.sensor_range // A pulse from the operator widens every display
+		sensor_range = base_sensor_range // DRADIS mostka jest do latania: widzi podstawowym radarem, bez impulsów operatora
 		sensor_mode = SENSOR_MODE_PASSIVE // Only the operator pulses
+		linked.sensor_view_basic = TRUE
 	. = ..()
+	if(linked)
+		linked.sensor_view_basic = FALSE
 	var/list/data = .
 	if(!linked)
 		return

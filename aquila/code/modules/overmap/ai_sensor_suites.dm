@@ -203,6 +203,9 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 /obj/structure/overmap/get_detection_range(obj/structure/overmap/observer)
 	if(!GLOB.ai_sensor_suites_enabled || !observer?.uses_sensor_suites())
 		return ..()
+	// DRADIS mostka (sensor_view_basic): tylko kamera i podczerwień dookoła; nie nadpisuje tego, czym operator trzyma kontakt
+	if(observer.sensor_view_basic)
+		return observer.get_best_suite(src)[2]
 	// A player's pulse from the reconnaissance station: 100 tiles all around, or further inside a narrow beam (player_sensors.dm)
 	if(!observer.ai_controlled)
 		var/lidar = observer.get_player_lidar_range(src)
