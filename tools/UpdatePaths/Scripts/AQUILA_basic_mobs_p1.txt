@@ -2,3 +2,7 @@
 # Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku.
 /mob/living/simple_animal/hostile/retaliate/wojtek : /mob/living/basic/bear/wojtek{@OLD}
 /mob/living/simple_animal/hostile/retaliate/ghost : /mob/living/basic/ghost{@OLD}
+/mob/living/simple_animal/hostile/skeleton/eskimo : /mob/living/basic/skeleton/eskimo{@OLD}
+# Zombie z whiteship_box: edycje „Rotting Carcass” to podtyp zombie/rotten (rotten/assistant, gdzie był zombiejob)
+/mob/living/simple_animal/hostile/zombie{zombiejob = "Assistant"} : /mob/living/basic/zombie/rotten/assistant
+/mob/living/simple_animal/hostile/zombie : /mob/living/basic/zombie/rotten
