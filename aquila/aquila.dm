@@ -2165,6 +2165,7 @@
 #include "code\modules\unit_tests\aquila_decentralized_ai.dm"
 #include "code\modules\unit_tests\aquila_defib_reasons.dm"
 #include "code\modules\unit_tests\aquila_ethanol_hydration.dm"
+#include "code\modules\unit_tests\aquila_latejoin_department_colors.dm"
 #include "code\modules\unit_tests\aquila_exodrone.dm"
 #include "code\modules\unit_tests\aquila_traitor_objectives.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_26_10.dm"
