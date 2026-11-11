@@ -826,6 +826,8 @@
       znowu reagują na kliknięcia.
   - bugfix: Animacja chodu działa także wtedy, gdy pierwszy gracz wszedł w trakcie
       startu serwera.
+  - bugfix: Okno „Wybierz profesję” pokazuje Ochronę, Inżynierię i Zaopatrzenie w
+      barwach Żandarmerii, Orlenu i InPostu.
   Nikita:
   - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
       strzał z jednej ręki, tak jak pojedyncze kule.
