@@ -5,9 +5,9 @@
 	if(pellets == 1)
 		if(distro) //We have to spread a pixel-precision bullet. throw_proj was called before so angles should exist by now...
 			if(randomspread)
-				spread = round((rand() - 0.5) * distro) * spread_mult
+				spread += round((rand() - 0.5) * distro) * spread_mult // AQ EDIT - variance naboju dodaje się do rozrzutu broni, zamiast go zastępować
 			else //Smart spread
-				spread = round(1 - 0.5) * distro * spread_mult
+				spread += round(1 - 0.5) * distro * spread_mult // AQ EDIT - jw.
 		if(!throw_proj(target, targloc, user, params, spread))
 			return FALSE
 	else

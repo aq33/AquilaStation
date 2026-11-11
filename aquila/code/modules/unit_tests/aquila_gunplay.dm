@@ -390,5 +390,29 @@
 	TEST_ASSERT(!hud.maptext, "Ballistic counter kept the energy percentage text")
 	qdel(hud)
 
+/// Rozrzut broni (odrzut, ruch) przesuwa śrut i naboje z variance, zamiast znikać (wcześniej pellet_cloud i fire_casing go nadpisywały)
+/datum/unit_test/aquila_gunplay_pellet_spread
+
+/datum/unit_test/aquila_gunplay_pellet_spread/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/far = locate(start.x, start.y + 3, start.z) // na północ: kąt 0
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, start)
+
+	var/obj/item/ammo_casing/shotgun/buckshot/shell = allocate(/obj/item/ammo_casing/shotgun/buckshot, start)
+	shell.misfire_chance = 0
+	TEST_ASSERT(shell.fire_casing(far, shooter, null, 0, TRUE, null, 60), "Buckshot did not fire")
+	var/datum/component/pellet_cloud/cloud = shell.GetComponent(/datum/component/pellet_cloud)
+	TEST_ASSERT(cloud && length(cloud.pellets), "Buckshot made no pellets")
+	for(var/obj/item/projectile/pellet as anything in cloud.pellets)
+		TEST_ASSERT(pellet.original_angle >= 50 && pellet.original_angle <= 70, "Pellet flew at [pellet.original_angle]° instead of the gun's 60° spread ± half the shell's variance")
+
+	var/obj/item/ammo_casing/c9mm/single = allocate(/obj/item/ammo_casing/c9mm, start)
+	single.misfire_chance = 0
+	single.variance = 10
+	single.randomspread = TRUE
+	var/obj/item/projectile/bullet = single.BB
+	TEST_ASSERT(single.fire_casing(far, shooter, null, 0, TRUE, null, 60), "9 mm round did not fire")
+	TEST_ASSERT(bullet.original_angle >= 54 && bullet.original_angle <= 66, "Single bullet with variance flew at [bullet.original_angle]° instead of the gun's 60° spread ± its variance")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

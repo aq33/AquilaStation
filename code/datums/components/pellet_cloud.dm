@@ -93,13 +93,14 @@
 	if(!zone_override)
 		zone_override = shooter.zone_selected
 
+	var/aim_spread = spread // AQ EDIT - rozrzut broni (odrzut, ruch) przesuwa cały stożek śrutu, zamiast znikać
 	for(var/i in 1 to num_pellets)
 		shell.ready_proj(target, user, SUPPRESSED_VERY, zone_override, fired_from)
 		if(distro)
 			if(randomspread)
-				spread = round((rand() - 0.5) * distro)
+				spread = aim_spread + round((rand() - 0.5) * distro) // AQ EDIT - rozrzut broni
 			else //Smart spread
-				spread = round((i / num_pellets - 0.5) * distro)
+				spread = aim_spread + round((i / num_pellets - 0.5) * distro) // AQ EDIT - rozrzut broni
 
 		RegisterSignal(shell.BB, COMSIG_PROJECTILE_SELF_ON_HIT, PROC_REF(pellet_hit))
 		RegisterSignal(shell.BB, list(COMSIG_PROJECTILE_RANGE_OUT, COMSIG_PARENT_QDELETING), PROC_REF(pellet_range))
