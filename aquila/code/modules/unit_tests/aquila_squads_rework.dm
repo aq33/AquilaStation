@@ -326,6 +326,14 @@
 	TEST_ASSERT(squad_hud.hudusers[leader], "Osoba w smyczy nie widzi oznaczeń drużyn")
 	leader.dropItemToGround(lanyard)
 	TEST_ASSERT(!holder.icon && !squad_hud.hudusers[leader], "Po zdjęciu smyczy oznaczenia zostały")
+	var/mutable_appearance/worn_lanyard = lanyard.build_worn_icon(default_layer = NECK_LAYER)
+	TEST_ASSERT(worn_lanyard && !worn_lanyard.icon && !length(worn_lanyard.overlays), "Smycz na postaci rysuje drugi znaczek obok ramki HUD-u")
+	// osoba spoza drużyny w smyczy (np. kapitan) też ma ramkę w kolorze drużyny smyczy
+	var/mob/living/carbon/human/outsider = allocate(/mob/living/carbon/human)
+	var/obj/item/clothing/neck/squad/outsider_lanyard = allocate(/obj/item/clothing/neck/squad, run_loc_floor_bottom_left, squad)
+	outsider.equip_to_slot_or_del(outsider_lanyard, ITEM_SLOT_NECK)
+	var/image/outsider_holder = outsider.hud_list?[SQUAD_HUD]
+	TEST_ASSERT(!outsider.squad && outsider_holder?.icon_state == "frame" && outsider_holder.color == squad.colour, "Osoba spoza drużyny w smyczy nie ma ramki w kolorze drużyny")
 	leader.equip_to_slot_or_del(lanyard, ITEM_SLOT_NECK)
 	var/list/centcom = SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 	if(length(centcom) && !(centcom[1] in squad.aq_active_levels()) && !(centcom[1] in SSmapping.levels_by_trait(ZTRAIT_STATION)) && centcom[1] != leader.z)

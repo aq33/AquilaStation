@@ -249,22 +249,24 @@
 		return null
 	return lanyard.squad
 
-// Ikona funkcji w kolorze drużyny nad postacią, tylko u osoby w smyczy własnej drużyny.
-// Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), przeniesione do lewego górnego rogu.
+// Ikona funkcji nad postacią u każdego, kto nosi smycz: kolor drużyny ze smyczy, funkcja, gdy jest w tej drużynie
+// (inaczej żołnierz). Sprite'y z CM-SS13 (icons/mob/hud/factions/marine.dmi, CC BY-SA 3.0), w lewym górnym rogu.
 /mob/living/carbon/human/proc/aq_update_squad_hud(obj/item/removing)
 	var/image/holder = hud_list?[SQUAD_HUD]
 	if(!holder)
 		return
 	holder.cut_overlays()
-	if(!squad || aq_worn_lanyard_squad(removing) != squad)
+	var/datum/squad/badge_squad = aq_worn_lanyard_squad(removing)
+	if(!badge_squad)
 		holder.icon = null
 		holder.icon_state = null
 		return
 	holder.icon = 'aquila/icons/squads/squad_hud.dmi'
 	holder.icon_state = "frame"
-	holder.color = squad.colour
+	holder.color = badge_squad.colour
 	holder.appearance_flags = RESET_COLOR | RESET_TRANSFORM | KEEP_APART
-	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[get_squad_position()]")
+	var/position = (squad == badge_squad) ? get_squad_position() : SQUAD_POSITION_SOLDIER
+	var/image/glyph = image('aquila/icons/squads/squad_hud.dmi', "pos_[position]")
 	glyph.appearance_flags = RESET_COLOR
 	holder.add_overlay(glyph)
 
@@ -299,6 +301,13 @@
 		H.aq_update_squad_hud(src)
 		H.aq_update_squad_hud_view(src)
 
+/// Funkcję pokazuje ramka HUD-u, więc smycz na postaci nie rysuje drugiego znaczka (w dłoniach widać ją normalnie)
+/obj/item/clothing/neck/squad/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
+	if(!isinhands)
+		var/mutable_appearance/blank = mutable_appearance(layer = -default_layer) // pusty wygląd: kod slotu czyta z niego przesunięcia
+		return blank
+	return ..()
+
 /obj/item/clothing/neck/squad/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Noszona na szyi pokazuje oznaczenia drużyn: funkcję nad osobami w smyczy ich drużyny.</span>"
+	. += "<span class='notice'>Noszona na szyi pokazuje oznaczenia drużyn: funkcję nad osobami w smyczy drużyny.</span>"
