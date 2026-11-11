@@ -1399,6 +1399,7 @@
 #include "code\modules\vending\cola.dm"
 #include "code\modules\vending\security.dm"
 #include "code\modules\vending\toys.dm"
+#include "code\modules\vending\window_color.dm"
 #include "code\modules\vending\wardrobes.dm"
 #include "code\modules\butt\butt_organ.dm"
 #include "code\modules\butt\butt_emotes.dm"

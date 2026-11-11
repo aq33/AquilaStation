@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Input } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
+import { dragStartHandler } from '../drag';
 import { Window } from '../layouts';
+import { closeWindow } from '../layouts/Window';
 import { shade } from './common/PixelArt';
 import { VENDING_BASE } from './common/vendingBase';
 
@@ -12,6 +13,8 @@ type VendingData = {
   onstation: boolean;
   /** AQUILA: nazwa automatu na szyldzie */
   machine_name?: string;
+  /** AQUILA: główny kolor sprite'a automatu, w nim rama okna */
+  machine_color?: string;
   displayed_currency_icon: string;
   displayed_currency_name: string;
   product_records: ProductRecord[];
@@ -182,6 +185,7 @@ export const Vending = (props) => {
   );
   const [stockSearch, setStockSearch] = useState('');
   const [page, setPage] = useState(0);
+  const [searchFocus, setSearchFocus] = useState(false);
 
   let inventory: Product[];
   let custom = false;
@@ -262,6 +266,8 @@ export const Vending = (props) => {
   const model = {
     slots,
     machineName: machine_name,
+    color: data.machine_color,
+    searching: searchFocus || !!stockSearch,
     user,
     free: !payer || !onstation,
     ownDepartment: !!department && user?.department === department,
@@ -422,13 +428,18 @@ export const Vending = (props) => {
     }
     const base = new Image();
     base.src = VENDING_BASE;
+    let painted: { color?: string; img: CanvasImageSource } | null = null;
     let raf = 0;
     const loop = (now: number) => {
       if (base.complete) {
+        const color = modelRef.current.color;
+        if (!painted || painted.color !== color) {
+          painted = { color, img: recolorBase(base, color) };
+        }
         hitsRef.current = drawMachine(
           g,
           p,
-          base,
+          painted.img,
           modelRef.current,
           view.current,
           now,
@@ -455,56 +466,166 @@ export const Vending = (props) => {
   };
 
   return (
-    <Window width={580} height={724}>
-      <Window.Content
-        style={{
-          padding: '8px 16px',
-          background: '#14161c',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        <canvas
-          ref={canvasRef}
-          style={{
-            width: `${NW * SCALE}px`,
-            maxWidth: '100%',
-            imageRendering: 'pixelated',
-            display: 'block',
-          }}
-          onMouseMove={(e) => {
-            const h = hitAt(e);
-            view.current.hover = h ? h.act : null;
-            e.currentTarget.style.cursor = h ? 'pointer' : 'default';
-            e.currentTarget.title = h ? h.tip : '';
-          }}
-          onMouseLeave={() => {
-            view.current.hover = null;
-          }}
-          onClick={(e) => {
-            const h = hitAt(e);
-            if (h) {
-              handle(h.act);
-            }
-          }}
-        />
-        <Input
-          fluid
-          expensive
-          style={{ width: `${NW * SCALE}px`, maxWidth: '100%' }}
-          placeholder="Szukaj towaru..."
-          value={stockSearch}
-          onChange={(value) => {
-            setStockSearch(value);
-            setPage(0);
-            resetSelection();
-          }}
-        />
+    <Window width={NW * SCALE} height={NH * SCALE} noTitleBar>
+      <Window.Content style={{ padding: 0, background: '#0a090d' }}>
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <canvas
+            ref={canvasRef}
+            style={{
+              width: '100%',
+              height: '100%',
+              imageRendering: 'pixelated',
+              display: 'block',
+            }}
+            onMouseMove={(e) => {
+              const h = hitAt(e);
+              view.current.hover = h ? h.act : null;
+              e.currentTarget.style.cursor =
+                h?.act === 'drag' ? 'move' : h ? 'pointer' : 'default';
+              e.currentTarget.title = h ? h.tip : '';
+            }}
+            onMouseLeave={() => {
+              view.current.hover = null;
+            }}
+            onMouseDown={(e) => {
+              // Szyld zastępuje pasek tytułu: za niego przeciąga się okno
+              if (hitAt(e)?.act === 'drag') {
+                dragStartHandler(e);
+              }
+            }}
+            onClick={(e) => {
+              const h = hitAt(e);
+              if (h?.act === 'close') {
+                closeWindow();
+              } else if (h && h.act !== 'drag') {
+                handle(h.act);
+              }
+            }}
+          />
+          {/* Wyszukiwarka w pasku pod wyświetlaczem; pusta i bez fokusu jest niewidoczna, a pasek pokazuje nazwę */}
+          <input
+            value={stockSearch}
+            placeholder="szukaj…"
+            title="Szukaj towaru"
+            spellCheck={false}
+            onFocus={() => setSearchFocus(true)}
+            onBlur={() => setSearchFocus(false)}
+            onChange={(e) => {
+              setStockSearch(e.target.value);
+              setPage(0);
+              resetSelection();
+            }}
+            style={{
+              position: 'absolute',
+              left: `${(108 / NW) * 100}%`,
+              top: `${(30 / NH) * 100}%`,
+              width: `${(26 / NW) * 100}%`,
+              height: `${(7 / NH) * 100}%`,
+              padding: '0 4px',
+              border: 'none',
+              outline: 'none',
+              background: 'transparent',
+              color: '#9bd143',
+              font: `bold ${(5 * SCALE) / 2}px Verdana, Geneva, sans-serif`,
+              opacity: searchFocus || stockSearch ? 1 : 0,
+              cursor: 'text',
+            }}
+          />
+        </div>
       </Window.Content>
     </Window>
   );
+};
+
+/** Obudowa przemalowana na kolor automatu: czerwone pasy dostają jego odcień, jasność zostaje */
+const recolorBase = (
+  img: HTMLImageElement,
+  color?: string,
+): CanvasImageSource => {
+  if (!color || !/^#[0-9a-f]{6}$/i.test(color)) {
+    return img;
+  }
+  const c = document.createElement('canvas');
+  c.width = NW;
+  c.height = NH;
+  const x = c.getContext('2d');
+  if (!x) {
+    return img;
+  }
+  x.drawImage(img, 0, 0);
+  const d = x.getImageData(0, 0, NW, NH);
+  const [th, ts] = rgbToHsl(
+    parseInt(color.slice(1, 3), 16),
+    parseInt(color.slice(3, 5), 16),
+    parseInt(color.slice(5, 7), 16),
+  );
+  for (let i = 0; i < d.data.length; i += 4) {
+    const r = d.data[i];
+    const g = d.data[i + 1];
+    const b = d.data[i + 2];
+    if (r > g + 40 && r > b + 40) {
+      const [, , l] = rgbToHsl(r, g, b);
+      const [nr, ng, nb] = hslToRgb(th, ts, l);
+      d.data[i] = nr;
+      d.data[i + 1] = ng;
+      d.data[i + 2] = nb;
+    }
+  }
+  x.putImageData(d, 0, 0);
+  return c;
+};
+
+const rgbToHsl = (
+  r: number,
+  g: number,
+  b: number,
+): [number, number, number] => {
+  const rr = r / 255;
+  const gg = g / 255;
+  const bb = b / 255;
+  const max = Math.max(rr, gg, bb);
+  const min = Math.min(rr, gg, bb);
+  const l = (max + min) / 2;
+  if (max === min) {
+    return [0, 0, l];
+  }
+  const d = max - min;
+  const sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h: number;
+  if (max === rr) {
+    h = (gg - bb) / d + (gg < bb ? 6 : 0);
+  } else if (max === gg) {
+    h = (bb - rr) / d + 2;
+  } else {
+    h = (rr - gg) / d + 4;
+  }
+  return [h / 6, sat, l];
+};
+
+const hslToRgb = (
+  h: number,
+  sat: number,
+  l: number,
+): [number, number, number] => {
+  if (!sat) {
+    const v = Math.round(l * 255);
+    return [v, v, v];
+  }
+  const q = l < 0.5 ? l * (1 + sat) : l + sat - l * sat;
+  const p = 2 * l - q;
+  const channel = (t: number) => {
+    const tt = (t + 1) % 1;
+    let v = p;
+    if (tt < 1 / 6) {
+      v = p + (q - p) * 6 * tt;
+    } else if (tt < 1 / 2) {
+      v = q;
+    } else if (tt < 2 / 3) {
+      v = p + (q - p) * (2 / 3 - tt) * 6;
+    }
+    return Math.round(v * 255);
+  };
+  return [channel(h + 1 / 3), channel(h), channel(h - 1 / 3)];
 };
 
 // --- sprite'y towarów: z .dmi, z base64 albo ze spritesheetu automatów ---
@@ -641,6 +762,8 @@ const fit = (sprite: Sprite) => {
 type Model = {
   slots: Slot[];
   machineName: string;
+  color?: string;
+  searching: boolean;
   user: UserData | null;
   free: boolean;
   ownDepartment: boolean;
@@ -679,7 +802,7 @@ type Ticker = { ticker: string; x: number; y: number; w: number; h: number };
 const drawMachine = (
   g: CanvasRenderingContext2D,
   p: CanvasRenderingContext2D,
-  base: HTMLImageElement,
+  base: CanvasImageSource,
   m: Model,
   v: ViewState,
   now: number,
@@ -785,11 +908,34 @@ const drawSign = (P: Painter, g: CanvasRenderingContext2D) => {
   if (P.v.anim && P.blink) {
     P.rect(71, 1, 35, 4, '#ffffff');
   }
-  const sign = P.m.machineName.toUpperCase();
+  // „automat Space Cola” -> „SPACE COLA”: słowo „automat” nic nie mówi na szyldzie automatu
+  const name = P.m.machineName.replace(/^automat\s+/i, '') || P.m.machineName;
+  const sign = name.toUpperCase();
   g.font = `bold ${(9 * K) / 2}px ${FONT}`;
   const text =
     g.measureText(sign).width > 33 * K * 1.6 ? sign.split(' ')[0] : sign;
-  P.T(88.5, 5.6, text, 9, '#610b0f', 'center', true, 33);
+  P.T(
+    88.5,
+    5.6,
+    text,
+    9,
+    P.m.color ? shade(P.m.color, -0.6) : '#610b0f',
+    'center',
+    true,
+    33,
+  );
+  // Szyld zastępuje pasek tytułu: przeciąganie okna i przycisk zamknięcia
+  P.hits.push({
+    x: 0,
+    y: 0,
+    w: NW,
+    h: 9,
+    act: 'drag',
+    tip: 'Przeciągnij, aby przesunąć okno',
+  });
+  bevelKey(P.p, 127, 1, 7, 6, '#b3252a', false, P.v.hover === 'close');
+  P.T(130.5, 6.1, '✕', 5, '#ffffff', 'center', true);
+  P.hits.push({ x: 126, y: 0, w: 10, h: 9, act: 'close', tip: 'Zamknij' });
 };
 
 /** Szyba: przegródki, spirale, towar z sylwetkami w głębi i spadający towar */
@@ -918,15 +1064,17 @@ const drawDisplay = (P: Painter) => {
   T(120.5, 25.2, l2, 5.5, denying ? '#fff3f0' : '#2f4a12', 'center', false, 22);
   rect(107, 29, 28, 9, '#0a090d');
   rect(108, 30, 26, 7, '#0f1a08');
-  P.texts.push({
-    ticker: sel
-      ? `${cap(sel.product.name)} · ${sel.remaining ? 'zostało ' + sel.remaining : 'wyprzedane'}`
-      : `${m.machineName} · płatność kartą ID`,
-    x: 108,
-    y: 30,
-    w: 26,
-    h: 7,
-  });
+  if (!m.searching) {
+    P.texts.push({
+      ticker: sel
+        ? `${cap(sel.product.name)} · ${sel.remaining ? 'zostało ' + sel.remaining : 'wyprzedane'}`
+        : `${m.machineName} · płatność kartą ID`,
+      x: 108,
+      y: 30,
+      w: 26,
+      h: 7,
+    });
+  }
 };
 
 const displayLines = (P: Painter, sel?: Slot): [string, string] => {

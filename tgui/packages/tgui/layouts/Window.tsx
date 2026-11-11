@@ -37,6 +37,8 @@ type Props = Partial<{
   title: string;
   width: number;
   override_bg: string;
+  /** AQUILA: okno bez paska tytułu; treść sama obsługuje przeciąganie (dragStartHandler) i zamykanie (closeWindow) */
+  noTitleBar: boolean;
 }> &
   PropsWithChildren;
 
@@ -50,6 +52,7 @@ export const Window = (props: Props) => {
     width,
     height,
     override_bg,
+    noTitleBar,
   } = props;
 
   const { config, suspended } = useBackend();
@@ -95,19 +98,24 @@ export const Window = (props: Props) => {
 
   return suspended ? null : (
     <Layout className="Window" theme={theme} backgroundColor={override_bg}>
-      <TitleBar
-        title={title || decodeHtmlEntities(config.title)}
-        status={config.status}
-        onDragStart={dragStartHandler}
-        onClose={() => {
-          logger.log('pressed close');
-          dispatch(backendSuspendStart());
-        }}
-        canClose={canClose}
+      {!noTitleBar && (
+        <TitleBar
+          title={title || decodeHtmlEntities(config.title)}
+          status={config.status}
+          onDragStart={dragStartHandler}
+          onClose={() => {
+            logger.log('pressed close');
+            dispatch(backendSuspendStart());
+          }}
+          canClose={canClose}
+        >
+          {buttons}
+        </TitleBar>
+      )}
+      <div
+        className={classes(['Window__rest', debugLayout && 'debug-layout'])}
+        style={noTitleBar ? { top: 0 } : undefined}
       >
-        {buttons}
-      </TitleBar>
-      <div className={classes(['Window__rest', debugLayout && 'debug-layout'])}>
         {!suspended && children}
         {showDimmer && <div className="Window__dimmer" />}
       </div>
@@ -125,6 +133,12 @@ export const Window = (props: Props) => {
       />
     </Layout>
   );
+};
+
+/** AQUILA: zamknięcie okna jak przyciskiem ✕ na pasku tytułu (dla okien z noTitleBar) */
+export const closeWindow = () => {
+  logger.log('pressed close');
+  globalStore.dispatch(backendSuspendStart());
 };
 
 type ContentProps = Partial<{

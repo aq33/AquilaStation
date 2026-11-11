@@ -662,6 +662,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = list()
 	.["onstation"] = onstation
 	.["machine_name"] = format_text(name) // nazwa na szyldzie pikselowego okna, bez \improper
+	.["machine_color"] = window_color() // kolor ramy okna ze sprite'a automatu
 	.["all_products_free"] = !onstation
 	.["department"] = payment_department
 	.["displayed_currency_icon"] = "coins"
