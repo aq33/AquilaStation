@@ -26,11 +26,17 @@
 /turf/open/floor/material/has_tile()
 	return LAZYLEN(custom_materials)
 
+// Płytka powstaje bez łączenia i łączy się dopiero z materiałem (inaczej złota płytka wpada do stosu żelaznych).
+// Podłoga z metalgenu oddaje płytkę z materiałem z typu (żelazo), nie z przemienionym.
 /turf/open/floor/material/spawn_tile()
-	. = ..()
-	if(.)
-		var/obj/item/stack/tile = .
-		tile.set_mats_per_unit(custom_materials, 1)
+	if(!has_tile())
+		return null
+	var/obj/item/stack/tile = new floor_tile(src, 1, FALSE)
+	var/list/tile_materials = get_unit_materials()
+	if(length(tile_materials))
+		tile.set_mats_per_unit(tile_materials, 1)
+	tile.merge_with_loc()
+	return tile
 
 /turf/closed/wall/material
 	name = "ściana"
@@ -40,17 +46,14 @@
 
 // Bez ..(): zamiast żelaza ściana oddaje swój materiał. Hooki rozbiórki wraków (shipbreaking/hooks.dm) jej nie dotyczą,
 // bo w klatce magnesu nie ma ścian z materiału.
+// Arkusze przez drop_material_sheets(): kamień z gorgium nie ma arkusza, a materiał z metalgenu nic nie oddaje.
 /turf/closed/wall/material/break_wall()
-	for(var/i in custom_materials)
-		var/datum/material/M = i
-		new M.sheet_type(src, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+	drop_material_sheets(src)
 	if(girder_type)
 		return new girder_type(src)
 
 /turf/closed/wall/material/devastate_wall()
-	for(var/i in custom_materials)
-		var/datum/material/M = i
-		new M.sheet_type(src, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
+	drop_material_sheets(src)
 
 /turf/closed/wall/material/mat_update_desc(datum/material/mat)
 	desc = "Ogromny blok materiału ([mat.get_polish_name()]) oddzielający pomieszczenia."

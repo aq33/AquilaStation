@@ -542,11 +542,16 @@ Behavior that's still missing from this component that original food items had t
 
 	if(!istype(parent, /obj/item/food)) // AQ EDIT - BeeStation/BeeStation-Hornet#10703 (jadalne rzeczy z mięsa); zwykłego jedzenia nie komentujemy
 		to_chat(feeder, "<span class='warning'>[parent] znika do ostatniego kęsa!</span>")
+	delete_parent() // AQ EDIT - zjedzony turf (mięsna ściana, podłoga) zostawia warstwę niżej
+
+/// AQ EDIT START - zjedzony do końca rodzic znika; turf nie może dostać qdel(), więc zdejmuje się jego warstwę
+/datum/component/edible/proc/delete_parent()
 	if(isturf(parent))
 		var/turf/T = parent
 		T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
 	else
 		qdel(parent)
+/// AQ EDIT END
 
 ///Ability to feed food to puppers
 /datum/component/edible/proc/use_by_animal(datum/source, mob/user)
@@ -564,7 +569,7 @@ Behavior that's still missing from this component that original food items had t
 	if(bitecount >= 5)
 		var/satisfaction_text = pick("beka z zadowolenia.", "ujada, prosząc o więcej!", "szczeka dwa razy.", "patrzy w miejsce, gdzie było [parent].")
 		L.manual_emote(satisfaction_text)
-		qdel(parent)
+		delete_parent() // AQ EDIT - pies zjadający mięsną podłogę robił qdel(turf)
 
 ///Ability to feed food to items? (aquila, xenoarch z Bee)
 /datum/component/edible/proc/feed_to_item(datum/source, atom/movable/eater)
@@ -577,7 +582,7 @@ Behavior that's still missing from this component that original food items had t
 	if(bitecount >= 5)
 		var/satisfaction_text = pick("beka z zadowolenia.", "spogląda w miejsce, gdzie było [parent].")
 		eater.visible_message("[eater] [satisfaction_text]", allow_inside_usr = TRUE)
-		qdel(parent)
+		delete_parent() // AQ EDIT
 
 ///Response to being used to customize something
 /datum/component/edible/proc/used_to_customize(datum/source, atom/customized)

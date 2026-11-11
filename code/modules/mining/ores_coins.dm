@@ -452,7 +452,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "żeton antagonisty"
 	desc = "Pamiątkowa moneta, dzięki której serce wie to, czego twarde dowody nie potrafią udowodnić."
 	icon_state = "coin_valid"
-	custom_materials = list(/datum/material/plastic = 400)
+	custom_materials = null // AQ EDIT - nagroda z automatu: bez materiału do odzysku (recykler dawałby plastik z niczego), jak przed portem
 	sideslist = list("valid", "salad")
 	material_flags = NONE
 	value_override = 0 // AQ EDIT - pamiątka, nie pieniądz
@@ -460,7 +460,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/coin/arcade_token
 	name = "żeton automatu"
-	custom_materials = list(/datum/material/bananium = 400)
+	custom_materials = null // AQ EDIT - nagroda z automatu: bez materiału do odzysku (400 bananium z recyklera to 200 kr z mennicy), jak przed portem
 	desc = "Moneta, za którą odbierzesz nagrodę z automatu do gier."
 	material_flags = NONE // AQ EDIT - bez poślizgu i piszczenia bananium
 	value_override = 0 // AQ EDIT - automaty wydają żetony, więc z bananium (200 kr) karta ID dawałaby darmowe pieniądze

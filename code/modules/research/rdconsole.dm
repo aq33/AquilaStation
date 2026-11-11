@@ -249,7 +249,7 @@ Nothing else in the console has ID requirements.
 		if(linked_destroy.loaded_item && (!QDELETED(linked_destroy.loaded_item)))
 			var/list/techyitems = techweb_item_boost_check(linked_destroy.loaded_item)
 			var/list/pointss = techweb_item_point_check(linked_destroy.loaded_item)
-			var/list/materials = linked_destroy.loaded_item.custom_materials
+			var/list/materials = linked_destroy.loaded_item.get_unit_materials() // AQ EDIT - analizator niszczy stos po jednym arkuszu
 			var/list/matstuff = list()
 
 			if(length(techyitems))
