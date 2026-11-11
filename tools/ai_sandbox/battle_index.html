@@ -55,12 +55,16 @@ a.btn.plain{background:var(--panel2);border-color:var(--line);color:var(--muted)
 .empty{color:var(--muted);padding:30px 0}
 footer{color:var(--muted);font-size:12.5px;padding:20px 0 40px}
 code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+nav.zakladki{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+nav.zakladki a{color:#c3c8d4;text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 12px;font-size:13px;background:var(--panel2)}
+nav.zakladki a.on{border-color:var(--nt);color:#cfe4ff}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <h1>Bitwy piaskownicy AI — Aquila</h1>
   <div class="sub" id="stan">wczytywanie…</div>
+  <nav class="zakladki"><a class="on" href="./">Bitwy</a><a href="statystyki.html">Statystyki dla nerdów</a></nav>
   <div class="bar">
     <button id="odswiez">Odśwież</button>
     <button id="auto" aria-pressed="true">Auto co 60 s</button>
