@@ -39,6 +39,8 @@
 	var/ai_help_eta = 0
 	/// AQUILA - this fleet is on its way to answer a call
 	var/ai_answering = FALSE
+	/// AQUILA - this fleet came in answer to a distress call; reinforcements never call reinforcements of their own
+	var/ai_is_reinforcement = FALSE
 	/// AQUILA - world.time the retreat jump happens (0 = not retreating)
 	var/ai_retreat_at = 0
 	/// AQUILA - the players already got the half reward for driving this fleet off
@@ -130,7 +132,7 @@
 	var/list/state = get_ai_fleet_state()
 	var/fear = state[2]
 	var/losses = state[3]
-	if(!ai_distress_sent && (losses >= FLEET_DISTRESS_LOSSES || fear >= FLEET_DISTRESS_FEAR) && is_near_players())
+	if(wants_ai_distress_call(losses, fear) && is_near_players())
 		ai_distress_sent = TRUE // One roll per fight
 		if(prob(GLOB.ai_distress_chance)) // ai_tuning.dm
 			send_ai_distress_call()
@@ -139,6 +141,10 @@
 	var/help_coming = ai_help_eta && world.time < ai_help_eta + FLEET_DISTRESS_GRACE
 	if(fleet_trait != FLEET_TRAIT_DEFENSE && !help_coming && (losses >= FLEET_RETREAT_LOSSES || fear >= FLEET_RETREAT_FEAR) && can_ai_fleet_retreat())
 		start_ai_retreat()
+
+/// Losing badly enough to call for help, once per fight, and not when we are the help ourselves
+/datum/fleet/proc/wants_ai_distress_call(losses, fear)
+	return !ai_distress_sent && !ai_is_reinforcement && (losses >= FLEET_DISTRESS_LOSSES || fear >= FLEET_DISTRESS_FEAR)
 
 /// Allied fleets within FLEET_DISTRESS_JUMPS that can answer, as fleet => jumps
 /datum/fleet/proc/find_ai_distress_responders()
@@ -233,6 +239,7 @@
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
 		note_ai_fleet_event("could not answer a distress call: interdicted")
 		return
+	ai_is_reinforcement = TRUE
 	move(target, force = TRUE)
 
 /// The fleet can fall back: no ship of it is crewed by players (it would be dragged along, crew and all) and there is somewhere to go
