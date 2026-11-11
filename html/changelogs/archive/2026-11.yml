@@ -572,6 +572,9 @@
   - bugfix: Generowanie opuszczonej stacji nie sypie już błędami rur i wczytywania
       map.
 '2026-11-10':
+  Aserovich:
+  - imageadd: 'Generator tarczy i jego rama budowy mają nowy, ciemny wygląd z animowaną
+      poświatą (resprite z Hullrot: Eclipsion).'
   Joker66613:
   - tweak: Raport końca zmiany, głosowanie o następną mapę i ankieta po rundzie są
       w jednym oknie.
@@ -588,6 +591,124 @@
   - rscadd: 'Statystyki postaci zapisywane między rundami (rundy, przeżycia, cele,
       misje, zarobki, operacje, ruda, aresztowania i inne). Podgląd: Esc → Statystyki,
       razem z rankingiem zarobków.'
+  - imageadd: 'Sprite''y z tg: gibber, condimaster, wózek z jedzeniem, jukebox, limbgrower,
+      mikrofalówka, jednoręki bandyta, boty, mechy, plecaki i torby, skrzynki narzędziowe,
+      wytłaczanka, pudełko pączków, RPD, wiadro, spryskiwacze, książki, rośliny doniczkowe
+      i napoje.'
+  - rscadd: 'Księga kapelana ma dwa nowe wyglądy: Guru Granth Sahib i Kojiki.'
+  - imageadd: Tablica ochrony z orłem Żandarmerii zamiast starej tablicy Policji.
+  - imageadd: Hardsuity inżynierii, atmosferyki i Głównego Inżyniera w barwach Orlenu,
+      czerwony hardsuit Ordynatora.
+  - rscadd: Hardsuit zespołu urazowego dla lekarzy, w nowej szafie w części medycznej
+      na każdej mapie.
+  - rscadd: 'Nowy wygląd rdzenia SI: Claude.'
+  - rscadd: Kapłan zaczyna w sutannie i birecie, oba są też w ChapDrobe.
+  - imageadd: Nowe ikony umiejętności odmieńca, zaklęć czarodzieja i mocy genetycznych;
+      butle i plecaki odrzutowe z tg.
+  - imageadd: 'Sprite''y z tg: sleeper, narzędzia chirurgiczne, frytkownica, ekspres
+      do kawy, granaty, lasery, granatnik, rewolwer detektywa, wyrzutnie strzykawek,
+      tarcze, gaśnice, GPS, pinpointery, wiertła, lampki, jedzenie i plony.'
+  - bugfix: Wkład w ekspresie do kawy jest widoczny; GPS, radio, monitor załogi i
+      wiertła widać w ręku i na pasku.
+  - bugfix: Gibber pokazuje lampki i krew, RPD i spryskiwacz są widoczne w ręku i
+      na pasku.
+  - tweak: Urządzenia na ścianach (włączniki, newscastery, interkomy, gaśnice, przyciski,
+      ekrany, tablice i inne) wiszą na ścianie zamiast nad podłogą; gaśnice, przyciski,
+      newscastery, szafki na topór i reszta mają obrócone wersje na ściany boczne.
+  - bugfix: Newscaster, monitor funkcji życiowych, skrzynka na układ i lustro wieszane
+      z ramki trafiają na ścianę przy graczu, a nie po drugiej stronie.
+  - imageadd: Pistolety ochrony i cywilne wyglądają jak polski VIS MPS, a karabin
+      snajperski jak Alexis-BOR (sprite'y z Polonium Station).
+  - rscadd: Kabanosy w automacie z przekąskami, parówki i pęto parówek, hot dog z
+      parówką, ćmoparówki i ćmodog.
+  - rscadd: 'Nowy szyld baru: Żabka Cafe.'
+  - rscadd: Boarderzy KNPC wybierają cel rozsądniej (najpierw ten, kto do nich strzela,
+      i ranni), z bronią palną trzymają dystans i robią uniki, a w cel, którego nie
+      widzą, nie strzelają.
+  - rscadd: Boarderzy Syndykatu i piraci mają granat hukowy (czasem też odłamkowy)
+      i rzucają je w grupy wrogów, nie raniąc swoich; ciężko ranni leczą się medipenem
+      w walce albo wycofują do kolegów, a koledzy z medipenem ich leczą.
+  - rscadd: Boarderzy KNPC chowają się za barykadami i murkami, zakuwają obezwładnionych
+      zamiast ich dobijać i po walce zbierają magazyny, medipeny i kajdanki z ciał.
+  - rscadd: Syndykat hakuje śluzy, do których nie ma dostępu, a piraci i zombie je
+      wyważają.
+  - balance: Na wezwanie wsparcia odpowiada najwyżej 3 najbliższych boarderów KNPC.
+  - code_imp: Mniej pracy przy szukaniu wrogów przez AI KNPC (jedno view() zamiast
+      dwóch).
+  - rscadd: Drużyny nazywają się Alpha, Bravo, Charlie i Delta. Do drużyn trafia cała
+      załoga według zawodu (medycy do medycznej, inżynierowie do kontroli uszkodzeń),
+      XO może to zmienić.
+  - rscadd: Funkcje w drużynie (żołnierz, medyk, inżynier, dowódca) z ikoną w kolorze
+      drużyny nad postacią. Po śmierci dowódcy dowodzenie przejmuje następny członek.
+  - rscadd: Automat drużyny wydaje jeden zestaw według funkcji w skrzyni sprzętu,
+      z pancerzem i skafandrem obcisłym. Skrzynię oddajesz do automatu, także ze sprzętem
+      luzem. Po skrzyni widać, czego w niej brakuje.
+  - rscadd: XO tworzy, rozwiązuje i przemianowuje drużyny (do 10), zmienia ich kolory
+      i wybiera, czy dostają lekki, czy ciężki pancerz.
+  - rscadd: 'Nowe wykroczenie w kosmicznym prawie: Przywłaszczenie sprzętu drużyny.
+      XO zgłasza je do akt ochrony z konsoli.'
+  - rscadd: 'Nowa konsola drużyn XO: cztery drużyny obok siebie, przydział załogi,
+      stan członków, kto nie oddał sprzętu, mapa taktyczna, rozkazy i kamera pancerza.'
+  - rscadd: 'Pager drużyny otwiera okno z członkami, zadaniem, wiadomościami i mapą
+      taktyczną: planem pokładu z siatką sektorów (A1, B2…), których używają rozkazy.'
+  - rscadd: Rozkazy dowódcy i XO pojawiają się na ekranie z portretem nadawcy. Znaczniki
+      rozkazów (tędy, atak, obrona, odwrót, zbiórka, cel) widać w świecie i na mapie.
+  - rscadd: Znaczniki drużyny spoza ekranu pokazują się przy jego krawędzi ze strzałką
+      i odległością.
+  - rscadd: Pager drużyny można schować w PDA.
+  - rscadd: Głos rozkazów drużyny przez ElevenLabs (preferencja „Głos rozkazów drużyny”).
+  - imageadd: Nowa skrzynia sprzętu drużyny. Ikony funkcji i blipy mapy z CM-SS13,
+      znaczniki rozkazów i ramka portretu z TGMC; znacznik „Tędy” i emblematy dorysowane
+      w ich stylu.
+  - config: Nowy plik config/squad_tts.txt (klucz ElevenLabs, model, głosy).
+  - rscadd: 'Nowy silnik lotu kul: płynny ruch, nadrabianie laga, kula dolatuje do
+      miejsca trafienia.'
+  - rscadd: Ogień ciągły strzela za kursorem w rytmie broni, a strzał pada już przy
+      wciśnięciu przycisku.
+  - rscadd: Wybierak trybu ognia z bezpiecznikiem i osobny klawisz bezpiecznika (do
+      przypisania); nowa broń jest zabezpieczona, odbezpieczona może wystrzelić przy
+      upadku albo rzucie.
+  - rscadd: Odrzut zależny od kalibru narasta przy serii i psuje celność, a ekran
+      kopie w stronę od celu. Kursor pokazuje aktualny rozrzut.
+  - rscadd: Licznik amunicji na HUD-zie, zużycie i przegrzanie broni, niewypały, zestaw
+      konserwacji broni.
+  - rscadd: Smugi za kulami, rykoszety, świst kul, dźwięki trafień zależne od materiału,
+      osłony i przewracanie stołów (Ctrl+Shift+klik).
+  - rscadd: Dodatki do broni (celowniki, chwyt, celownik laserowy z wiązką), IFF drużyn
+      po smyczy, amunicja inteligentna 9mm.
+  - rscadd: Postać w trybie walki patrzy na kursor (ustawienie), statystyki broni
+      w opisie.
+  - tweak: Kule z broni ręcznej lecą szybciej, a dziury i rykoszety działają na każdej
+      ścianie.
+  - soundadd: Dźwięki trafień kul w metal, drewno, szkło i kamień oraz rykoszetów
+      (Shiptest).
+  - imageadd: Kursor rozrzutu, smugi kul, licznik amunicji (Nova), dodatki do broni
+      (Yogstation), zestaw konserwacji (tg).
+  dwasint, Absolucy (Monkestation), joker:
+  - rscadd: 'Ciecze: rozlane reagenty od 50 jednostek tworzą kałuże, które się rozlewają,
+      parują, płoną, spływają piętro niżej, spowalniają i dotykają brodzących.'
+  - rscadd: Odpływy, bariera na ciecze, przenośna pompa cieczy i podłogowe pompy do
+      instalacji rurowej; nadajnik pompy u woźnego i skrzynie pomp i odpływów w cargo.
+  - rscadd: 'Eventy: przelewający się scrubber i anomalia płynów.'
+  - rscadd: Alarm przeciwpożarowy włączony ręcznie zrasza wodą z oczyszczaczy powietrza
+      całe pomieszczenie; zemagowany albo po EMP zalewa je po kostki.
+  - tweak: Alarm przeciwpożarowy jest głośniejszy i słychać go dalej.
+  - rscadd: Ciecz zamarza w zimnie, a głęboka zamienia się w bloki lodu, które zatykają
+      wyłomy i więżą postacie.
+  - rscadd: Pęcherz i mocz jako część potrzeby wypróżnienia, emotka *piss, pisuary,
+      kamery zgłaszają świadome oddawanie moczu i wypróżnianie się w miejscach publicznych,
+      klaun ma pęcherz z lubrykantem.
+  - rscadd: Ubikacje mogą się zatkać i przelać zawartość na podłogę; odtyka je przepychaczka.
+  - rscadd: Przełącznik „Cenzura wypróżniania” w ustawieniach gry.
+  - tweak: Poślizg w sprincie rzuca postać kafel dalej.
+  - rscadd: Palną kałużę można podpalić kliknięciem gorącym przedmiotem albo wchodząc
+      w nią z ogniem w ręce.
+  - rscadd: Krew z krwawienia sumuje się na kafelku i od 50 jednostek tworzy kałużę
+      krwi.
+  - tweak: Po gwałtownej dekompresji odessane pomieszczenie ma temperaturę kosmosu.
+  - admin: Verby Spawn Liquid, Remove Liquids i kolory grup cieczy.
+  - imageadd: Grafiki cieczy, odpływów, pompy, pęcherza i anomalii płynów z Monkestation.
+  - soundadd: Dźwięki brodzenia i plusku z Monkestation.
   ? rkz (Tsar-Salat), EvilDragonfiend, mrmanlikesbt, Rohesie, Fikou, ShizCalev, nemvar,
     ArcaneMusic, MrMelbert, Mothblocks, SyncIt21
   : - rscadd: 'Jetpack ma prawdziwe paliwo: każde pchnięcie zużywa gaz z butli, pełna

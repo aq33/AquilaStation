@@ -11401,6 +11401,28 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/security/brig)
+"Eq" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 8
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Armory";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/item/storage/box/breacherslug,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/ammo_box/magazine/smgm9mm,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/security/armory)
 "Er" = (
 /obj/machinery/light{
 	dir = 8
@@ -56100,7 +56122,7 @@ VI
 TY
 HC
 Fh
-OF
+Eq
 yF
 VI
 eY

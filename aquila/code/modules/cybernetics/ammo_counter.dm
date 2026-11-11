@@ -72,12 +72,7 @@
 /obj/item/organ/cyberimp/arm/ammo_counter/proc/shots_left()
 	if(istype(our_gun, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/ballistic_gun = our_gun
-		// Tylko ostre naboje: puste łuski zostają w bębnie rewolweru i w komorze strzelby do przeładowania
-		var/live_rounds = ballistic_gun.magazine ? ballistic_gun.magazine.ammo_count(FALSE) : 0
-		// Nabój w komorze rewolweru leży też w bębnie, więc liczymy go tylko w innych broniach
-		if(ballistic_gun.chambered?.BB && !istype(ballistic_gun, /obj/item/gun/ballistic/revolver))
-			live_rounds++
-		return live_rounds
+		return ballistic_gun.get_live_rounds() // gunplay/ammo_hud.dm: tylko ostre naboje, bez podwójnego naboju z bębna
 	var/obj/item/gun/energy/energy_gun = our_gun
 	if(!energy_gun.cell || !length(energy_gun.ammo_type))
 		return 0

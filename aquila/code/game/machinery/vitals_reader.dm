@@ -10,7 +10,7 @@
 	icon_state = "frame"
 	custom_materials = list(/datum/material/iron = 8000, /datum/material/glass = 4000, /datum/material/gold = 500)
 	result_path = /obj/machinery/vitals_reader
-	pixel_shift = 32
+	pixel_shift = -32 // ujemne: u nas attach() przesuwa w stronę kierunku od ściany do gracza, dodatnie wieszało urządzenie po drugiej stronie gracza
 
 /obj/item/wallframe/vitals/advanced
 	name = "rama zaawansowanego monitora funkcji życiowych"

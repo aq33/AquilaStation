@@ -34,6 +34,21 @@
 /obj/structure/grille/wall,
 /turf/open/space/basic,
 /area/space)
+"aai" = (
+/obj/item/radio/intercom/directional/north,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light_switch/north{
+	pixel_x = -12
+	},
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 1
+	},
+/obj/machinery/duct,
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -13125,6 +13140,14 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"kwd" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun_maintenance_kit,
+/turf/open/floor/carpet/police,
+/area/ai_monitored/security/armory)
 "kwy" = (
 /obj/structure/cable,
 /obj/item/beacon{
@@ -45151,7 +45174,7 @@ bxi
 bxi
 vNa
 vNa
-uQA
+aai
 aQj
 fsT
 feX
@@ -48992,7 +49015,7 @@ tid
 tid
 qlv
 tid
-cfD
+kwd
 eJl
 nos
 eFF

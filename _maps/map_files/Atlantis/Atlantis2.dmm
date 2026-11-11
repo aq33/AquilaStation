@@ -998,6 +998,16 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/security)
+"aaa" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/monotile/steel,
+/area/medical/storage)
 "aZA" = (
 /obj/machinery/door/airlock/ship/station/mining{
 	name = "Cargo Bay";
@@ -66960,7 +66970,7 @@ dvl
 oPt
 jUa
 bXC
-gKn
+aaa
 dSv
 tMB
 uPf

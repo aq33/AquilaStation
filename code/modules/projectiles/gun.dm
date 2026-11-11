@@ -198,8 +198,10 @@
 		playsound(src, fire_sound, fire_sound_volume, vary_fire_sound)
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
-	if(recoil && !tk_firing(user))
-		shake_camera(user, recoil + 1, recoil)
+	// AQ EDIT START - losowe trzęsienie od `recoil` zastępuje kierunkowe kopnięcie kamery (aquila/code/modules/gunplay/recoil.dm)
+	//if(recoil && !tk_firing(user))
+	//	shake_camera(user, recoil + 1, recoil)
+	// AQ EDIT END
 	fire_sounds()
 	if(!suppressed)
 		if(message)

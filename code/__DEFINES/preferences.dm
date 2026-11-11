@@ -210,6 +210,11 @@
 #define PREFERENCE_TAG_SOFT_LIGHTING	"34" // AQ EDIT - miękkie światło
 #define PREFERENCE_TAG_GLOW_LEVEL	"35" // AQ EDIT - poświata emisyjnych
 #define PREFERENCE_TAG_LIGHT_GLARE	"36" // AQ EDIT - promienie świateł
+#define PREFERENCE_TAG_GUN_CURSOR	"40" // AQ EDIT - kursor rozrzutu broni
+#define PREFERENCE_TAG_FACE_CURSOR	"41" // AQ EDIT - obracanie do kursora w combat mode
+#define PREFERENCE_TAG_RECOIL_CAMERA	"42" // AQ EDIT - siła kopnięcia kamery od odrzutu
+#define PREFERENCE_TAG_HIDE_BODILY_FUNCTIONS	"37" // AQ EDIT - cenzura wypróżniania i moczu
+#define PREFERENCE_TAG_SQUAD_TTS	"38" // AQ EDIT - głos rozkazów drużyny
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9

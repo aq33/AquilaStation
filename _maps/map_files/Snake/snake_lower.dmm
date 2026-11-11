@@ -344,6 +344,19 @@
 /obj/machinery/munitions_forge/assembly_bench,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
+"aN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -47213,7 +47226,7 @@ RB
 kf
 vy
 vd
-hK
+aN
 Vn
 eO
 KO

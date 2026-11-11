@@ -433,6 +433,17 @@
 "aQ" = (
 /turf/closed/wall/steel,
 /area/medical/genetics)
+"aR" = (
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "aS" = (
 /obj/effect/turf_decal/ship/delivery/yellow,
 /obj/machinery/door/firedoor/border_only,
@@ -50227,7 +50238,7 @@ qS
 nv
 uQ
 jO
-zR
+aR
 TH
 sP
 gP

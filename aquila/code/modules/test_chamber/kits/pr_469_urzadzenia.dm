@@ -30,6 +30,7 @@
 			continue
 		wall_spot.PlaceOnTop(/turf/closed/wall)
 		var/mount_type = mounts[i]
-		var/atom/movable/mount = new mount_type(floor_spot)
+		var/obj/mount = new mount_type(floor_spot)
 		if(!mount.pixel_y)
 			mount.pixel_y = 24
+			mount.paradise_wall_place() // jak z mapy: przesunięcie i kierunek dla ściany Paradise

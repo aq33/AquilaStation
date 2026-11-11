@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(mirror_maid_names, list(
 	icon_state = "mirror"
 	custom_materials = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 5, /datum/material/silver = MINERAL_MATERIAL_AMOUNT * 2)
 	result_path = /obj/structure/mirror
-	pixel_shift = 28
+	pixel_shift = -28 // ujemne: u nas attach() przesuwa w stronę kierunku od ściany do gracza, dodatnie wieszało urządzenie po drugiej stronie gracza
 
 /obj/item/wallframe/mirror/heretic
 	name = "miraculous mirror"
