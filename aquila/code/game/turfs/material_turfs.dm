@@ -26,11 +26,17 @@
 /turf/open/floor/material/has_tile()
 	return LAZYLEN(custom_materials)
 
+// Płytka powstaje bez łączenia i łączy się dopiero z materiałem (inaczej złota płytka wpada do stosu żelaznych).
+// Podłoga z metalgenu oddaje płytkę z materiałem z typu (żelazo), nie z przemienionym.
 /turf/open/floor/material/spawn_tile()
-	. = ..()
-	if(.)
-		var/obj/item/stack/tile = .
-		tile.set_mats_per_unit(custom_materials, 1)
+	if(!has_tile())
+		return null
+	var/obj/item/stack/tile = new floor_tile(src, 1, FALSE)
+	var/list/tile_materials = get_unit_materials()
+	if(length(tile_materials))
+		tile.set_mats_per_unit(tile_materials, 1)
+	tile.merge_with_loc()
+	return tile
 
 /turf/closed/wall/material
 	name = "ściana"

@@ -143,5 +143,85 @@
 	paper.name = "czarne okulary"
 	TEST_ASSERT_EQUAL(gold.get_prefixed_name(paper), "złote czarne okulary", "A plural adjective-first name got the wrong adjective")
 
+/// M3: moduł cyborga (stos bez materiałów) uzupełnia się zwykłym stosem z podłogi
+/datum/unit_test/aquila_basemats_cyborg_merge
+
+/datum/unit_test/aquila_basemats_cyborg_merge/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/east = locate(start.x + 1, start.y, start.z)
+
+	var/obj/item/stack/sheet/iron/cyborg/module_iron = allocate(/obj/item/stack/sheet/iron/cyborg, start, 1, FALSE)
+	var/datum/robot_energy_storage/storage = new
+	storage.energy = 0
+	module_iron.source = storage
+	var/obj/item/stack/sheet/iron/floor_iron = allocate(/obj/item/stack/sheet/iron, east, 3, FALSE)
+	TEST_ASSERT(floor_iron.merge_check(module_iron), "A floor iron stack does not merge into a cyborg iron module")
+	floor_iron.merge(module_iron)
+	TEST_ASSERT_EQUAL(storage.energy, 3 * module_iron.cost, "The cyborg module did not take the floor iron")
+	TEST_ASSERT(QDELETED(floor_iron), "The floor iron stack was not used up")
+	module_iron.source = null
+	qdel(storage)
+
+/// M6: nowy stos z materiałem łączy się dopiero po nadaniu materiału (złote płytki nie wpadają do stosu żelaznych)
+/datum/unit_test/aquila_basemats_material_tile_merge
+
+/datum/unit_test/aquila_basemats_material_tile_merge/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/east = locate(start.x + 1, start.y, start.z)
+	var/datum/material/gold_ref = SSmaterials.GetMaterialRef(/datum/material/gold)
+	var/datum/material/iron_ref = SSmaterials.GetMaterialRef(/datum/material/iron)
+
+	// Płytki ze złota z menu arkusza, gdy pod nogami leżą żelazne płytki z materiału
+	var/obj/item/stack/tile/material/iron_tiles = allocate(/obj/item/stack/tile/material, start, 10, FALSE)
+	var/mob/living/carbon/human/builder = allocate(/mob/living/carbon/human, start)
+	var/obj/item/stack/sheet/mineral/gold/gold = allocate(/obj/item/stack/sheet/mineral/gold, start, 2, FALSE)
+	builder.put_in_active_hand(gold)
+	var/datum/stack_recipe/tile_recipe
+	for(var/datum/stack_recipe/recipe in gold.recipes)
+		if(recipe.result_type == /obj/item/stack/tile/material)
+			tile_recipe = recipe
+	TEST_ASSERT(tile_recipe, "Gold sheets have no material tile recipe")
+	usr = builder
+	gold.ui_act("make", list("ref" = REF(tile_recipe), "multiplier" = "1"))
+	usr = null
+	TEST_ASSERT_EQUAL(iron_tiles.amount, 10, "Crafted gold tiles merged into the iron tile pile")
+	TEST_ASSERT(iron_tiles.mats_per_unit[iron_ref], "The iron tile pile changed its material")
+	var/obj/item/stack/tile/material/gold_tiles
+	for(var/obj/item/stack/tile/material/tiles in builder.held_items + start.contents)
+		if(tiles.mats_per_unit?[gold_ref])
+			gold_tiles = tiles
+	TEST_ASSERT(gold_tiles, "Crafting made no gold tiles")
+	TEST_ASSERT_EQUAL(gold_tiles.amount, tile_recipe.res_amount, "Crafting made the wrong number of gold tiles")
+	qdel(gold_tiles)
+
+	// Podważona złota podłoga daje złotą płytkę, nawet gdy na polu leżą żelazne
+	var/old_type = east.type
+	var/list/old_baseturfs = east.baseturfs
+	var/turf/open/floor/material/gold_floor = east.PlaceOnTop(/turf/open/floor/material)
+	gold_floor.set_custom_materials(list(/datum/material/gold = 500))
+	var/obj/item/stack/tile/material/more_iron = new(gold_floor, 5, FALSE)
+	gold_floor.remove_tile(silent = TRUE)
+	var/iron_amount = more_iron.amount
+	var/pried_gold = 0
+	for(var/obj/item/stack/tile/material/tiles in east)
+		if(tiles.mats_per_unit?[gold_ref])
+			pried_gold += tiles.amount
+	for(var/obj/item/stack/leftover in east)
+		qdel(leftover)
+	east.ChangeTurf(old_type, old_baseturfs)
+	TEST_ASSERT_EQUAL(iron_amount, 5, "A pried gold tile merged into the iron tile pile")
+	TEST_ASSERT_EQUAL(pried_gold, 1, "The pried gold floor gave no gold tile")
+
+/// M7: stos z protolatu ma materiał z typu i łączy się ze zwykłym stosem
+/datum/unit_test/aquila_basemats_printed_stack_merge
+
+/datum/unit_test/aquila_basemats_printed_stack_merge/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/obj/machinery/rnd/production/protolathe/lathe = allocate(/obj/machinery/rnd/production/protolathe, start)
+	TEST_ASSERT(!lathe.efficient_with(/obj/item/stack/rods), "Protolathe stacks are still cheaper than their type materials")
+	var/obj/item/stack/rods/rods = allocate(/obj/item/stack/rods, start, 5, FALSE)
+	lathe.do_print(/obj/item/stack/rods, 1, list(/datum/material/iron = 400), FALSE)
+	TEST_ASSERT_EQUAL(rods.amount, 5 + initial(rods.amount), "A printed rod stack did not merge with a normal one")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

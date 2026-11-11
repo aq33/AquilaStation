@@ -290,8 +290,9 @@
 					return
 
 			var/obj/O
+			var/apply_mats = R.applies_mats && LAZYLEN(mats_per_unit) // AQ EDIT - stos z materiałem łączy się dopiero po nadaniu materiału
 			if(R.max_res_amount > 1) //Is it a stack?
-				O = new R.result_type(usr.drop_location(), R.res_amount * multiplier)
+				O = new R.result_type(usr.drop_location(), R.res_amount * multiplier, !(apply_mats && ispath(R.result_type, /obj/item/stack))) // AQ EDIT
 			else if(ispath(R.result_type, /turf))
 				var/turf/T = usr.drop_location()
 				if(!isturf(T))
@@ -303,10 +304,11 @@
 				O.setDir(usr.dir)
 			use(R.req_amount * multiplier)
 
-			if(R.applies_mats && LAZYLEN(mats_per_unit))
+			if(apply_mats) // AQ EDIT
 				if(isstack(O))
 					var/obj/item/stack/crafted_stack = O
 					crafted_stack.set_mats_per_unit(mats_per_unit, R.req_amount / R.res_amount)
+					crafted_stack.merge_with_loc() // AQ EDIT
 				else
 					O.set_custom_materials(mats_per_unit, R.req_amount / R.res_amount)
 
@@ -530,7 +532,7 @@
 			return TRUE
 		else
 			var/obj/item/stack/ostack = O
-			if(istype(src,ostack.merge_type) && mats_per_unit == ostack.mats_per_unit) //Merge types have to go in both directions, so inheritance != stackable together; AQ EDIT - i ten sam materiał (Bee#10135 can_merge())
+			if(istype(src,ostack.merge_type) && (mats_per_unit == ostack.mats_per_unit || is_cyborg || ostack.is_cyborg)) //Merge types have to go in both directions, so inheritance != stackable together; AQ EDIT - i ten sam materiał (Bee#10135 can_merge()), poza stosem cyborga (nie ma materiałów, uzupełnia się z podłogi)
 				return TRUE
 	return FALSE
 
