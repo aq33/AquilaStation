@@ -820,6 +820,12 @@
   - bugfix: Wejście we wrota Sabre ze skrzydła wprowadza do kokpitu, zamiast wyrzucać
       do hangaru.
   - bugfix: Condition Zebra znowu zamyka drzwi przeciwpożarowe.
+  - balance: 'IFF drużyny działa tylko ze smyczą na szyi: bez niej twoje kule nie
+      omijają drużyny, a kule drużyny nie omijają ciebie.'
+  - bugfix: Po wejściu na serwer w trakcie jego startu okna (wybór języka, wybór profesji)
+      znowu reagują na kliknięcia.
+  - bugfix: Animacja chodu działa także wtedy, gdy pierwszy gracz wszedł w trakcie
+      startu serwera.
   Nikita:
   - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
       strzał z jednej ręki, tak jak pojedyncze kule.
