@@ -776,3 +776,90 @@
       A1–D3, wyświetlacz, klawiatura, czytnik karty i podajnik, do którego spada kupiony
       towar.'
   - tweak: Funkcje kabli widoczne z planami stacji są po polsku.
+  - rscadd: Kałuża zmywa plamy i ślady z kafli, na które wpływa, i wchłania ich zawartość
+      (krew, olej, popiół).
+  - imageadd: Pojedyncza kałuża (np. krwi) ma nieregularny kształt zamiast kwadratu.
+  - balance: Alarm pożarowy pociągnięty przez gracza leje wodę najwyżej raz na 3 minuty
+      w pomieszczeniu (zalanie z emaga osobno), zraszacz nie dolewa do stojącej, niepłonącej
+      kałuży, a alarm da się przełączać najwyżej co 3 sekundy.
+  - bugfix: Radial celowania z broni ma polskie podpisy zamiast raise_hands i drop_weapon.
+  - bugfix: Ctrl+Shift+klik z przedmiotem w ręku nie spamuje już ofertami, oferuje
+      tylko osobie, którą klikasz obok, i tylko jej.
+  - bugfix: Mniej przycięć przy szybkim ruchu myszy z bronią w ręku.
+  - bugfix: 'Boarderzy KNPC zakuwają obezwładnionych zamiast stać nad nimi w kółko:
+      na czas zakuwania puszczają broń jedną ręką, nie wchodzą na pole leżącego i
+      nie dobijają go strzałami.'
+  - bugfix: Boarderzy hakujący i wyważający drzwi przebijają się też przez zaryglowane
+      i pozbawione zasilania śluzy.
+  - bugfix: Boarderzy KNPC nie podbiegają pod uzbrojony granat kolegi i nie rzucają
+      drugiego granatu w to samo miejsce.
+  - code_imp: Symulacja walk boarderów KNPC do testów lokalnych (-DKNPC_SIM).
+  - bugfix: Po końcu rundy albo restarcie przez admina gra sama łączy się z serwerem,
+      gdy ten wstanie, także po dłuższym starcie i po crashu
+  - rscadd: Hardsuit pomalowany sprayem zmienia kolor razem z hełmem, a nowy kolor
+      od razu widać na postaci
+  - soundadd: Szafa na skafandry ma dźwięki otwierania i zamykania oraz dezynfekcji
+  - soundadd: Ogłuszający wybuch zostawia pisk w uszach
+  - soundadd: Wyczerpana postać ciężko dyszy
+  - tweak: 'Atlantis: karabiny w zbrojowni to teraz Beryle, które strzelają zawsze'
+  - rscadd: Przyprawa Maggi oraz majonez Kielecki i Winiary w automacie z zastawą
+  - imageadd: Sprite'y przyprawy Maggi i dwóch majonezów
+  - rscdel: Tryb Zdrajcy i Bracia Krwi wypada z rotacji
+  - rscadd: W trybie zdrajcy dwóch zdrajców może zacząć rundę jako bracia krwi
+  - config: TRAITORBRO usunięty z WEIGHTED_POOL, PROBABILITY TRAITORBRO 0
+  - rscadd: 'Parowanie na czas: Spacja tuż przed ciosem, z bronią, która paruje, w
+      ręce, okno 1 s, idealne w pierwszej połowie. Parują tarcze, szable, katany,
+      miecze, topór strażacki, włócznie i inne'
+  - rscadd: 'Blok: 2 s przerwy między blokami, kontra i wytrącenie z równowagi wybranymi
+      broniami, ciosy nie do zablokowania zwykłą bronią'
+  - rscadd: 'Udany blok i parowanie widać: błysk na postaci i napis nad głową'
+  - balance: Jeden blok kosztuje najwyżej 35 staminy, blok pałki ogłuszającej nic
+      nie kosztuje
+  - bugfix: 'Alarm bojowy nie zostawia już całego statku w czerwonym świetle jak przy
+      pożarze: czerwone światła gasną po 45 sekundach (przy Zebrze po 30).'
+  - bugfix: Wejście we wrota Sabre ze skrzydła wprowadza do kokpitu, zamiast wyrzucać
+      do hangaru.
+  - bugfix: Condition Zebra znowu zamyka drzwi przeciwpożarowe.
+  Nikita:
+  - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
+      strzał z jednej ręki, tak jak pojedyncze kule.
+  - balance: Rozrzut broni jest losowany dokładnie, a nie w pełnych stopniach, i strzały
+      nie uciekają już lekko w jedną stronę.
+  - balance: 'Kara do celności za ruch zależy od tempa: chód najmniejsza, bieg średnia,
+      sprint największa, a po sprincie znika w ciągu sekundy. Nie dostajesz jej, gdy
+      ktoś cię ciągnie albo wiezie taśmociąg.'
+  - rscadd: 'Celownik zmienia kształt zależnie od broni: T-krzyż dla snajperek, łuki
+      dla śrutu, siatka dla granatników, pierścień dla łuków, chmura dla różdżek,
+      pomarańczowy krzyż dla zabawek.'
+  - imageadd: Nowe kształty kursora celownika.
+  - rscadd: 'Wychylenie się pod C pozwala strzelać zza rogu: kula leci z miejsca,
+      w które się wychylasz.'
+  - tweak: Wychylanie się pod C jest 4 razy szybsze.
+  - bugfix: Celownik rozsuwa się też od pojedynczych strzałów i biegu, nie tylko od
+      śrutu.
+  - bugfix: Karabin Alexis-BOR w rękach wygląda poprawnie we wszystkich kierunkach.
+  Tsar-Salat, mrmanlikesbt, mystery3525:
+  - rscadd: Koty oswaja się martwą myszą albo rybą podaną z ręki.
+  - rscadd: Meble, płytki podłogowe i ściany z dowolnego materiału (złote krzesło,
+      plastikowa ściana, stół z ramy i arkusza), z polskimi przymiotnikami.
+  - rscadd: Monety są warte tyle, ile ich materiał; nowe monety tytanowe i plastikowe,
+      adamantyt jako materiał.
+  - rscadd: Materiały drewna i mięsa, arkusze mięsa i Arkuszomistrz 2000 z badań.
+      Mięsne ściany i podłogi da się zjeść.
+  - rscadd: 'Zwierzęta na nowym SI: koty polują na myszy, psy aportują, pupile dają
+      się oswoić i słuchają poleceń (Alt+klik albo Shift, komendy głosowe).'
+  - rscadd: 'Nowe zwierzęta: księżycorożec, krasnal ogrodowy, krowa mądrości, pies
+      ochrony Tyson, zdziczały kot, Jerry, pręgowany kot, domek dla kota, niedźwiedzie,
+      nietoperze, pomidor zabójca, żaba, indyk, króliki, kraby, wąż, żółw, motyl.'
+  - rscadd: Kury znoszą jajka, z zapłodnionych wykluwają się pisklęta, które dorastają.
+      Pisklęta pingwinów też dorastają.
+  - balance: Stosy plazmy wybuchają w ogniu i od ciosu, a bananium piszczy i przewraca,
+      jak w Bee.
+  - bugfix: Przedmioty ze szkłem nie są już półprzezroczyste ani osłabione, a rzeczy
+      z materiałów nie są przebarwione.
+  - bugfix: Lasso oswaja zwierzęta także w zwykłej wersji, a nie tylko w bluespace.
+  - bugfix: Efekt sera u myszy mija, owcę da się wydoić, jajka-niespodzianki mają
+      wygląd.
+  - imageadd: Monety, Arkuszomistrz, płytki z materiału, domek dla kota, księżycorożec,
+      krasnal (z BeeStation-Hornet, CC-BY-SA 3.0).
+  - refactor: Rdzeń SI zsynchronizowany z Bee; zwierzęta przeniesione na basic moby.

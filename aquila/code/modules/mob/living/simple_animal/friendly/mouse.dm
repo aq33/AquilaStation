@@ -1,3 +1,4 @@
+// AQUILA - szczury: myszy sterowane przez duchy (ser, migracja, jedzenie Ctrl+klikiem). Od portu basic mobów na /mob/living/basic/mouse
 GLOBAL_LIST_INIT(mouse_comestible, typecacheof(list(
 		/obj/effect/decal/cleanable/food,
 		/obj/effect/decal/cleanable/greenglow,
@@ -20,16 +21,20 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/proc/handle_stomach()
 	return
 
-/mob/living/simple_animal/mouse/handle_stomach()
+/mob/living/basic/mouse/handle_stomach()
 	if(cheesed && cheese_time < world.time)
 		cheese_down()
 
-/mob/living/simple_animal/mouse/Move()
+/mob/living/basic/mouse/Move()
 	. = ..()
 	if(stat != CONSCIOUS)
 		return .
 
 	if(!key)
+		var/obj/item/food/royalcheese/royal_cheese = locate() in loc
+		if(royal_cheese)
+			eat_royal_cheese(royal_cheese)
+			return .
 		eat_cheese()
 	else
 		if(!(locate(/obj/structure/table) in get_turf(src)))
@@ -38,8 +43,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			for(var/obj/item/reagent_containers/food/drinks/D in get_turf(src))
 				D.throw_at(get_turf(D), 0, 1, src)
 
-/mob/living/simple_animal/mouse/proc/eat_cheese()
-	var/obj/item/food/cheese/wedge/CW = locate(/obj/item/food/cheese/wedge) in loc
+/// AI mice eat cheese they walk over or hunt down (UnarmedAttack); a player mouse eats through CtrlClick
+/mob/living/basic/mouse/proc/eat_cheese(obj/item/food/cheese/CW)
+	if(isnull(CW))
+		CW = locate(/obj/item/food/cheese/wedge) in loc
 	if(!QDELETED(CW) && full == FALSE)
 		say("Bek!")
 		visible_message("<span class='warning'>[src] pożera [CW].</span>")
@@ -47,7 +54,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		full = TRUE
 		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
 
-/mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
+/mob/living/basic/mouse/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/food/cheese/wedge))
 		to_chat(user, "<span class='notice'>Karmisz [src], podając [O].</span>")
 		visible_message("[src] radośnie piszczy!")
@@ -55,15 +62,15 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	else
 		return ..()
 
-/mob/living/simple_animal/mouse/attack_ghost(mob/dead/observer/user)
+/mob/living/basic/mouse/attack_ghost(mob/dead/observer/user)
 	if(key)
 		return ..()
 	user.possess_mouse(src)
 
-/mob/living/simple_animal/mouse/start_pulling(atom/movable/AM, state, force, supress_message)
+/mob/living/basic/mouse/start_pulling(atom/movable/AM, state, force, supress_message)
 	return FALSE
 
-/mob/living/simple_animal/mouse/CtrlClickOn(atom/A)
+/mob/living/basic/mouse/CtrlClickOn(atom/A)
 	face_atom(A)
 	if(!isturf(loc))
 		return
@@ -90,7 +97,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	eating = FALSE
 	layer = BELOW_OPEN_DOOR_LAYER
 
-/mob/living/simple_animal/mouse/proc/can_eat(atom/A)
+/mob/living/basic/mouse/proc/can_eat(atom/A)
 	. = FALSE
 
 	if(eating)
@@ -100,9 +107,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if((istype(A, /obj/item/reagent_containers/food) || istype(A, /obj/item/food)) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
 
-/mob/living/simple_animal/mouse/proc/regen_health(amt = 5)
+/mob/living/basic/mouse/proc/regen_health(amt = 5)
 	var/overheal = max(health + amt - maxHealth, 0)
-	adjustHealth(-amt)
+	adjust_health(-amt)
 	GLOB.food_for_next_mouse += overheal
 	var/mice = FLOOR(GLOB.food_for_next_mouse / FOODPERMOUSE, 1)
 	if(!mice)
@@ -112,9 +119,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
 	SSminor_mapping.trigger_migration(mice)
 
-/mob/living/simple_animal/mouse/proc/cheese_up()
+/mob/living/basic/mouse/proc/cheese_up()
 	if(cheesed)
-		cheese_time = cheese_time + 3 MINUTES
+		cheese_time = max(cheese_time, world.time) + 3 MINUTES
 		return
 	cheesed = TRUE
 	regen_health(15)
@@ -124,9 +131,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, "<span class='userdanger'>Zjadasz ser! Jesteś teraz silniejsza, większa i szybsza!</span>")
-	cheese_time = cheese_time + 3 MINUTES
+	cheese_time = max(cheese_time, world.time) + 3 MINUTES
 
-/mob/living/simple_animal/mouse/proc/cheese_down()
+/mob/living/basic/mouse/proc/cheese_down()
 	cheesed = FALSE
 	maxHealth = 15
 	health = maxHealth
@@ -135,19 +142,19 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	remove_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE)
 	to_chat(src, "<span class='userdanger'>Ogarnia cię smutek, gdy działanie sera mija. Musisz. Zdobyć. Więcej.</span>")
 
-/atom/proc/mouse_eat(mob/living/simple_animal/mouse/M)
+/atom/proc/mouse_eat(mob/living/basic/mouse/M)
 	M.regen_health()
 	qdel(src)
 
-/obj/item/food/cheese/wedge/mouse_eat(mob/living/simple_animal/mouse/M)
+/obj/item/food/cheese/wedge/mouse_eat(mob/living/basic/mouse/M)
 	M.cheese_up()
 	qdel(src)
 
-/obj/item/food/cheese/wheel/mouse_eat(mob/living/simple_animal/mouse/M)
+/obj/item/food/cheese/wheel/mouse_eat(mob/living/basic/mouse/M)
 	M.cheese_up()
 	qdel(src)
 
-/obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
+/obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/basic/mouse/M)
 	var/teleport_radius = max(round(get_fruit_trait_power(src) * 2.5), 1)
 	var/turf/T = get_turf(M)
 	do_teleport(M, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)

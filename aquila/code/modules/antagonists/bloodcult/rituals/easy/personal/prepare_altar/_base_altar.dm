@@ -60,7 +60,7 @@
 		var/mob/M = altar.buckled_mobs[1]
 		if (ishuman(M))
 			found_humanoid = TRUE
-		if (ismonkey(M) || isanimal(M))
+		if (ismonkey(M) || isanimal_or_basicmob(M))
 			found_animal = TRUE
 	if (required_animal && !found_animal)
 		to_chat(user, span_cult("Musisz nadziać na niego zwierzę...") )

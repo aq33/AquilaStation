@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			else
 				minor_announce(CONFIG_GET(string/alert_red_downto), "Uwaga! Alarm bojowy!", color_override = "red") // AQ EDIT - kolor ramki
 			toggle_gq_lights(TRUE)
-			//addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(toggle_gq_lights), FALSE), 45 SECONDS) // AQ EDIT
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(toggle_gq_lights), FALSE), 45 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) // AQ EDIT - czerwone światła tylko na chwilę, nie przez cały alarm (wyglądały jak alarm pożarowy)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -74,7 +74,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			else
 				gq_announce(CONFIG_GET(string/alert_zebra_downto), sound='nsv13/sound/effects/ship/condition_zebra.ogg', color_override = "orange") // AQ EDIT - kolor ramki
 			toggle_gq_lights(TRUE)
-			//addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(toggle_gq_lights), FALSE), 30 SECONDS) // AQ EDIT
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(toggle_gq_lights), FALSE), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) // AQ EDIT - jak wyżej
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()

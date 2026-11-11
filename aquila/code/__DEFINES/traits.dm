@@ -10,3 +10,7 @@
 
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define HORROR_TRAIT "horror" // Eldritch Horror (Yogstation#13033)
+
+/// Materiały z przemiany metalgenem: wygląd i efekty materiału, ale nic do odzyskania (przegląd aq33/AquilaStation#613)
+#define TRAIT_MATERIALS_TRANSMUTED "materials_transmuted"
+#define METALGEN_TRAIT "metalgen"

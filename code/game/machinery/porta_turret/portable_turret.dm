@@ -418,7 +418,7 @@
 				continue
 
 			if(check_anomalies)//if it's set to check for simple animals
-				if(isanimal(A))
+				if(isanimal_or_basicmob(A)) // AQ EDIT - basic moby
 					var/mob/living/simple_animal/SA = A
 					if(SA.stat || in_faction(SA)) //don't target if dead or in faction
 						continue
@@ -1039,7 +1039,7 @@
 	desc = "Służy do budowy paneli sterowania wieżyczkami."
 	icon_state = "apc"
 	result_path = /obj/machinery/turretid
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/gun/proc/get_turret_properties()
 	. = list()

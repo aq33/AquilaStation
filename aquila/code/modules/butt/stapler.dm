@@ -13,7 +13,7 @@
 	throw_range = 7
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(/datum/material/iron = 100)
+	mats_per_unit = list(/datum/material/iron = 100)
 	max_amount = 10
 	merge_type = /obj/item/stack/staples
 	novariants = TRUE

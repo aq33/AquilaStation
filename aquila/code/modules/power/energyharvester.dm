@@ -11,7 +11,7 @@
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 1
-	materials = list(/datum/material/iron=750)
+	custom_materials = list(/datum/material/iron=750)
 	var/drain_rate = 100000000
 	var/power_drained = 0
 

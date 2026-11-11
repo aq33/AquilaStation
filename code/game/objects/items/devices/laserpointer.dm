@@ -8,7 +8,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(/datum/material/iron=500, /datum/material/glass=500)
+	custom_materials = list(/datum/material/iron=500, /datum/material/glass=500)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
 	var/energy = 5
@@ -154,7 +154,7 @@
 			else
 				M.visible_message("<span class='notice'>[M] wpatruje się w światełko</span>","<span class = 'warning'> Wpatrujesz się w światełko... </span>")
 		else if(iscat(M)) //cats!
-			var/mob/living/simple_animal/pet/cat/C = M
+			var/mob/living/basic/pet/cat/C = M // AQ EDIT - basic moby
 			if(prob(50))
 				C.visible_message("<span class='notice'>[C] rzuca się na światełko!</span>","<span class='warning'>LIGHT!</span>")
 				C.Move(targloc)

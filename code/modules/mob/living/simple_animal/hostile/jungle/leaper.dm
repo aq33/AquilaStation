@@ -48,6 +48,9 @@
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
 		L.adjustHealth(25)
+	else if(isbasicmob(target)) // AQ EDIT - basic moby
+		var/mob/living/basic/basic_target = target
+		basic_target.adjust_health(25)
 
 /obj/item/projectile/leaper/on_range()
 	var/turf/T = get_turf(src)
@@ -107,6 +110,9 @@
 			if(isanimal(L))
 				var/mob/living/simple_animal/A = L
 				A.adjustHealth(25)
+			else if(isbasicmob(L)) // AQ EDIT - basic moby
+				var/mob/living/basic/basic_victim = L
+				basic_victim.adjust_health(25)
 			qdel(src)
 
 /datum/reagent/toxin/leaper_venom

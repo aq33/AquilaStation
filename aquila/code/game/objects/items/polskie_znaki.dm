@@ -60,7 +60,7 @@
 //////////////////
 /obj/item/wallframe/kszysz
 	icon = 'aquila/icons/obj/kszysz.dmi'
-	materials = null // drewno, nie metal - bez tego dziedziczy 2 arkusze żelaza z wallframe
+	custom_materials = null // drewno, nie metal - bez tego dziedziczy 2 arkusze żelaza z wallframe
 	flags_1 = NONE
 	resistance_flags = FLAMMABLE
 	force = 0
@@ -90,7 +90,7 @@
 	name = "złoty krzyż"
 	desc = "Panie, zmiłuj się nad nami - ale ze stylem."
 	icon_state = "kszysz_zloty"
-	materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT)
 	result_path = /obj/structure/aquila_wall_decor/kszysz/zloty
 
 /obj/structure/aquila_wall_decor/kszysz/zloty
@@ -112,7 +112,7 @@
 //////////////////
 /obj/item/wallframe/godlo
 	icon = 'aquila/icons/obj/godla.dmi'
-	materials = null // drewno, nie metal - bez tego dziedziczy 2 arkusze żelaza z wallframe
+	custom_materials = null // drewno, nie metal - bez tego dziedziczy 2 arkusze żelaza z wallframe
 	flags_1 = NONE
 	resistance_flags = FLAMMABLE
 	force = 0

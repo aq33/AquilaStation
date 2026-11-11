@@ -1,0 +1,3 @@
+/mob/living/simple_animal/pet/cat/Runtime : /mob/living/basic/pet/cat/runtime{@OLD}
+/mob/living/simple_animal/pet/cat/Proc : /mob/living/basic/pet/cat/_proc{@OLD}
+/mob/living/simple_animal/pet/cat/@SUBTYPES : /mob/living/basic/pet/cat/@SUBTYPES{@OLD; emote_hear = @SKIP; emote_see = @SKIP; speak = @SKIP; speak_chance = @SKIP; turns_per_move = @SKIP; collar_type = @SKIP}

@@ -3567,7 +3567,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/west,
-/mob/living/simple_animal/hostile/lizard{
+/mob/living/basic/lizard{
 	desc = "A tiny little spider";
 	icon = 'icons/effects/effects.dmi';
 	icon_dead = "spiderling";
@@ -8639,7 +8639,7 @@
 /area/storage/tech)
 "Mv" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/turtle{
+/mob/living/basic/turtle{
 	name = "AEGIS II"
 	},
 /obj/structure/extinguisher_cabinet/west,

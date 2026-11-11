@@ -14,7 +14,7 @@
 	armour_penetration = 10
 	hitsound = 'sound/weapons/smash.ogg'
 	attack_verb = list("wali", "miażdży", "rozbija", "spłaszcza", "tłucze")
-	materials = list(/datum/material/iron = 6000)
+	custom_materials = list(/datum/material/iron = 6000)
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	/// Mnożnik obrażeń dla struktur i maszyn w strefie złomowania

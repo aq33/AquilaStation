@@ -46,14 +46,14 @@
 	var/datum/paper_input/rock_text = rock_paper.raw_text_inputs[1]
 	TEST_ASSERT(findtext(rock_text.raw_text, "Gorgium"), "Na kartce gorgium nie ma gorgium")
 	TEST_ASSERT(rock_paper.custom_materials?[getmaterialref(/datum/material/rock)], "Kartka gorgium nie jest z kamienia")
-	TEST_ASSERT(rock_paper.name == "rock paper", "Kartka gorgium nazywa się [rock_paper.name]")
+	TEST_ASSERT(rock_paper.name == "kamienna kartka", "Kartka gorgium nazywa się [rock_paper.name]")
 	var/obj/item/paper/secretrecipe/metalgen/uranium_paper = allocate(/obj/item/paper/secretrecipe/metalgen, start)
 	TEST_ASSERT(uranium_paper.custom_materials?[getmaterialref(/datum/material/uranium)], "Kartka metalgenu nie jest z uranu")
 
 	// Ponowna przemiana zdejmuje poprzedni materiał zamiast go kumulować
 	metal_transmute(rock_paper, /datum/material/gold)
 	TEST_ASSERT(length(rock_paper.custom_materials) == 1 && rock_paper.custom_materials[getmaterialref(/datum/material/gold)], "Przemiana nie zdjęła starego materiału")
-	TEST_ASSERT(rock_paper.name == "gold paper", "Druga przemiana dała nazwę [rock_paper.name]")
+	TEST_ASSERT(rock_paper.name == "złota kartka", "Druga przemiana dała nazwę [rock_paper.name]")
 
 	// Odcisk metalgenu: metalgen + ciemna materia + 40u złota
 	var/obj/item/reagent_containers/glass/beaker/large/beaker = allocate(/obj/item/reagent_containers/glass/beaker/large, start)

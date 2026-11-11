@@ -2843,7 +2843,7 @@
 "hf" = (
 /obj/structure/cable,
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /obj/machinery/light_switch/south,
 /obj/machinery/newscaster/security_unit/west,
 /turf/open/floor/wood,
@@ -12902,8 +12902,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "Sc" = (
-/obj/structure/bed/dogbed/walter,
-/mob/living/simple_animal/pet/dog/bullterrier/walter,
+/obj/structure/bed/dogbed/tyson,
+/mob/living/basic/pet/dog/bullterrier/tyson,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8
@@ -14922,7 +14922,7 @@
 /area/engine/gravity_generator)
 "ZM" = (
 /obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"

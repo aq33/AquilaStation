@@ -35,7 +35,7 @@
 /area/ruin/powered)
 "h" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/mob/living/simple_animal/butterfly,
+/mob/living/basic/butterfly,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "i" = (
@@ -74,7 +74,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered)
 "t" = (
-/mob/living/simple_animal/crab,
+/mob/living/basic/crab,
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered)
 "u" = (
@@ -127,7 +127,7 @@
 /turf/template_noop,
 /area/template_noop)
 "H" = (
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "I" = (
@@ -160,7 +160,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered)
 "S" = (
-/mob/living/simple_animal/hostile/bear,
+/mob/living/basic/bear,
 /turf/open/floor/grass/fakebasalt,
 /area/ruin/powered)
 "T" = (

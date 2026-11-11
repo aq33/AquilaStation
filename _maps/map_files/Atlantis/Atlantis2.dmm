@@ -6238,7 +6238,7 @@
 	dir = 8
 	},
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox/Renault,
+/mob/living/basic/pet/fox/renault,
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/heads/captain)
 "gdw" = (
@@ -9409,7 +9409,7 @@
 /area/medical/medbay/lobby)
 "jon" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
+/mob/living/basic/pet/cat/runtime,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "jps" = (
@@ -14259,7 +14259,7 @@
 /area/maintenance/nsv/deck1/starboard)
 "oCH" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/sloth/paperwork,
+/mob/living/basic/sloth/paperwork,
 /turf/open/floor/carpet/ship,
 /area/quartermaster/qm)
 "oCJ" = (
@@ -18381,7 +18381,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/mob/living/basic/pet/dog/corgi/ian,
 /obj/structure/bed/dogbed/ian,
 /obj/machinery/light{
 	dir = 4

@@ -23,7 +23,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("chłoszcze", "chłoszcze", "smaga", "dyscyplinuje")
 	hitsound = 'sound/weapons/chainhit.ogg'
-	materials = list(/datum/material/iron = 1000)
+	custom_materials = list(/datum/material/iron = 1000)
 
 /obj/item/melee/chainofcommand/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] dusi się [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
@@ -71,7 +71,7 @@
 	sharpness = IS_SHARP
 	attack_verb = list("ciacha", "tnie")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(/datum/material/iron = 1000)
+	custom_materials = list(/datum/material/iron = 1000)
 
 
 /obj/item/melee/sabre/Initialize(mapload)
@@ -363,7 +363,7 @@
 	weight_class_on = WEIGHT_CLASS_BULKY
 
 /obj/item/melee/classic_baton/telescopic/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(on)
+	if(on || blocks_when_off) // AQ EDIT - szabla jonowa blokuje też wyłączona (aquila/code/modules/mob/living/carbon/human/blocking.dm)
 		return ..()
 	return 0
 

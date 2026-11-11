@@ -217,12 +217,12 @@
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
 							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
-							/mob/living/simple_animal/hostile/bear,
+							/mob/living/basic/bear, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/mushroom,
 							/mob/living/simple_animal/hostile/statue,
-							/mob/living/simple_animal/hostile/retaliate/bat,
-							/mob/living/simple_animal/hostile/retaliate/goat,
-							/mob/living/simple_animal/hostile/killertomato,
+							/mob/living/basic/bat, // AQ EDIT - basic moby
+							/mob/living/basic/goat, // AQ EDIT - basic moby
+							/mob/living/basic/killer_tomato, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/spider/giant/guard,
 							/mob/living/simple_animal/hostile/spider/giant/hunter,
 							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
@@ -237,18 +237,18 @@
 							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
 							/mob/living/simple_animal/hostile/gorilla,
 							/mob/living/simple_animal/parrot,
-							/mob/living/simple_animal/pet/dog/corgi,
-							/mob/living/simple_animal/crab,
-							/mob/living/simple_animal/pet/dog/pug,
-							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
-							/mob/living/simple_animal/chicken,
-							/mob/living/simple_animal/cow,
-							/mob/living/simple_animal/hostile/lizard,
-							/mob/living/simple_animal/pet/fox,
-							/mob/living/simple_animal/butterfly,
-							/mob/living/simple_animal/pet/cat/cak,
-							/mob/living/simple_animal/chick)
+							/mob/living/basic/pet/dog/corgi, // AQ EDIT - basic moby
+							/mob/living/basic/crab, // AQ EDIT - basic moby
+							/mob/living/basic/pet/dog/pug, // AQ EDIT - basic moby
+							/mob/living/basic/pet/cat, // AQ EDIT - basic moby
+							/mob/living/basic/mouse, // AQ EDIT - basic moby
+							/mob/living/basic/chicken, // AQ EDIT - basic moby
+							/mob/living/basic/cow, // AQ EDIT - basic moby
+							/mob/living/basic/lizard, // AQ EDIT - basic moby
+							/mob/living/basic/pet/fox, // AQ EDIT - basic moby
+							/mob/living/basic/butterfly, // AQ EDIT - basic moby
+							/mob/living/basic/pet/cat/cak, // AQ EDIT - basic moby
+							/mob/living/basic/chick) // AQ EDIT - basic moby
 			new_mob = new path(M.loc)
 
 		if("humanoid")
@@ -292,7 +292,7 @@
 	if(poly_msg)
 		to_chat(new_mob, poly_msg)
 
-	if((istype(new_mob, /mob/living/silicon/robot/modules/syndicate) || istype(new_mob, /mob/living/carbon/alien/humanoid) || istype(new_mob, /mob/living/simple_animal/hostile)))
+	if((istype(new_mob, /mob/living/silicon/robot/modules/syndicate) || istype(new_mob, /mob/living/carbon/alien/humanoid) || istype(new_mob, /mob/living/simple_animal/hostile) || is_hostile_basicmob(new_mob))) // AQ EDIT - basic moby
 		to_chat(new_mob, "<span class='userdanger'>Mimo że przybrałeś postać wrogiej istoty, masz ten sam umysł co przed przemianą. Twoje lojalności i interesy pozostają takie same. O ile nie zamieniono cię w cień albo nie byłeś wcześniej antagonistą, nie jest to przepustka do antagonizowania stacji.</span>")
 
 	M.transfer_observers_to(new_mob)

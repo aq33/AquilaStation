@@ -13,6 +13,7 @@
 	desc = "Klasyczna kolba karabinu, która służy też za chwyt, z grubsza wystrugana z drewna."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "riflestock"
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 6)
 
 /obj/item/weaponcrafting/silkstring
 	name = "jedwabna cięciwa"

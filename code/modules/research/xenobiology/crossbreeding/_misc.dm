@@ -87,7 +87,7 @@ Slimecrossing Items
 	if(iscarbon(parent))
 		var/mob/living/carbon/C = parent
 		saved_bodyparts = C.save_bodyparts()
-	else if(isanimal(parent))
+	else if(isanimal_or_basicmob(parent)) // AQ EDIT - basic moby
 		var/mob/living/simple_animal/M = parent
 		brute_loss = M.bruteloss
 	else if(isobj(parent))
@@ -109,7 +109,7 @@ Slimecrossing Items
 		if(saved_bodyparts)
 			var/mob/living/carbon/C = parent
 			C.apply_saved_bodyparts(saved_bodyparts)
-	else if(isanimal(parent))
+	else if(isanimal_or_basicmob(parent)) // AQ EDIT - basic moby
 		var/mob/living/simple_animal/M = parent
 		M.bruteloss = brute_loss
 		M.updatehealth()
@@ -248,14 +248,14 @@ Slimecrossing Items
 	if(length(contents))
 		to_chat(user, "<span class='warning'>W urządzeniu już coś jest.</span>")
 		return
-	if(!isanimal(M))
+	if(!isanimal_or_basicmob(M)) // AQ EDIT - basic moby
 		to_chat(user, "<span class='warning'>Urządzenie do chwytania działa tylko na proste stworzenia.</span>")
 		return
 	if(M.mind)
 		INVOKE_ASYNC(src, PROC_REF(offer_entry), M, user)
 		return
 	else
-		if(istype(M, /mob/living/simple_animal/hostile) && !("neutral" in M.faction))
+		if((istype(M, /mob/living/simple_animal/hostile) || isbasicmob(M)) && !("neutral" in M.faction)) // AQ EDIT - basic moby: jak w Bee, wrogie są te spoza frakcji neutralnej
 			to_chat(user, "<span class='warning'>To stworzenie jest zbyt agresywne, by je schwytać.</span>")
 			return
 	to_chat(user, "<span class='notice'>Umieszczasz [M] w urządzeniu do chwytania.</span>")

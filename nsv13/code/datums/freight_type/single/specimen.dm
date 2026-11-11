@@ -1,8 +1,9 @@
+#define FREIGHT_SPECIMEN_TRAIT "freight_specimen" // AQ EDIT - basic moby: źródło TRAIT_AI_PAUSED okazu w skrzyni (objective_cargo.dm)
 /datum/freight_type/single/specimen
 	var/reveal_specimen = FALSE // WIP
 	approve_inner_contents = TRUE // Don't count equipment attached to mobs as trash
 
-/datum/freight_type/single/specimen/New( var/mob/living/simple_animal/object )
+/datum/freight_type/single/specimen/New( var/mob/living/object ) // AQ EDIT - basic moby
 	if ( object )
 		item_type = object
 
@@ -13,9 +14,15 @@
 
 /datum/freight_type/single/specimen/add_item_to_crate( var/obj/C )
 	// DuplicateObject on a mob producing runtimes
-	var/mob/living/simple_animal/M = new item_type( C )
+	var/mob/living/M = new item_type( C ) // AQ EDIT - basic moby
 	// specimen = M
-	M.AIStatus = AI_OFF
+	// AQ EDIT START - basic moby: SI okazu śpi w skrzyni (basic moby nie mają AIStatus)
+	if(isanimal(M))
+		var/mob/living/simple_animal/simple_specimen = M
+		simple_specimen.AIStatus = AI_OFF
+	else
+		ADD_TRAIT(M, TRAIT_AI_PAUSED, FREIGHT_SPECIMEN_TRAIT)
+	// AQ EDIT END
 	return M
 
 /datum/freight_type/single/specimen/get_item_targets( var/datum/freight_type_check/freight_type_check )

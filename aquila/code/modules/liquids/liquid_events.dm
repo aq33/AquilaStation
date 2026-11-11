@@ -99,8 +99,8 @@
 		var/dangerous = prob(danger_chance)
 		var/reagent_type = forced_reagent_type || get_overflowing_reagent(dangerous)
 		if(dangerous)
-			new /mob/living/simple_animal/cockroach(vent_turf)
-			new /mob/living/simple_animal/cockroach(vent_turf)
+			new /mob/living/basic/cockroach(vent_turf)
+			new /mob/living/basic/cockroach(vent_turf)
 		vent_turf.add_liquid(reagent_type, reagents_amount, no_react = TRUE)
 		if(vent_turf.liquids?.liquid_group)
 			vent_turf.liquids.liquid_group.always_evaporates = TRUE

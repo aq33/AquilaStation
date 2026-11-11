@@ -197,7 +197,7 @@
 	stage3	= list("<span class='danger'>Muszę... zjeść... czekoladę....</span>", "<span class='danger'>YAP</span>")
 	stage4	= list("<span class='danger'>Twój umysł nawiedzają wizje pralek!</span>")
 	stage5	= list("<span class='danger'>AUUUUUU!!!</span>")
-	new_form = /mob/living/simple_animal/pet/dog/corgi
+	new_form = /mob/living/basic/pet/dog/corgi // AQ EDIT - basic moby
 
 /datum/disease/transformation/corgi/stage_act()
 	..()
@@ -241,7 +241,7 @@
 	stage3	= list("<span class='danger'>Ogarnia cię okrutny spokój.</span>", "<span class='danger'>Nie czujesz rąk!</span>", "<span class='danger'>Porzucasz chęć krzywdzenia klaunów.</span>")
 	stage4	= list("<span class='danger'>Nie czujesz rąk. Już ci to nie przeszkadza.</span>", "<span class='danger'>Wybaczasz klaunowi, że cię skrzywdził.</span>")
 	stage5	= list("<span class='danger'>Stajesz się Gondolą.</span>")
-	new_form = /mob/living/simple_animal/pet/gondola
+	new_form = /mob/living/basic/pet/gondola // AQ EDIT - basic moby
 
 /datum/disease/transformation/gondola/stage_act()
 	..()

@@ -400,7 +400,7 @@ Adding tasks is easy! Just define a datum for it.
 
 	for(var/a in launcher.chambered.GetAllContents())
 		if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
-			if ( !istype( a, /mob/living/simple_animal ) ) // Allow the transfer of specimens specifically for cargo missions
+			if ( !isanimal_or_basicmob( a ) ) // Allow the transfer of specimens specifically for cargo missions // AQ EDIT - basic moby
 				to_chat(user, "<span class='warning'>Detektor form życia marki Cargo Shuttle w [launcher] wyświetla błąd: ze względów bezpieczeństwa nie może przewozić niebezpiecznych organizmów, ludzkich szczątków, tajnej broni jądrowej, nadajników naprowadzających ani maszyn zawierających jakąkolwiek formę sztucznej inteligencji.")
 				return FALSE
 

@@ -3,7 +3,7 @@
 	desc = "Pudełko ze wszystkimi częściami potrzebnymi do zrobienia naściennego fotela promu."
 	icon = 'nsv13/icons/obj/structures/shuttlecraft_seat.dmi'
 	icon_state = "install_package"
-	materials = list(/datum/material/iron = 10000)
+	custom_materials = list(/datum/material/iron = 10000)
 	w_class = WEIGHT_CLASS_BULKY
 	result_path = /obj/structure/chair/shuttlecraft_chair/shifted
 	pixel_shift = -10

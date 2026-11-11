@@ -1,0 +1,7 @@
+# Basic moby z tg sprzed drzew zachowań (tg 926bf40c5a): niedźwiedzie, nietoperze, pomidor zabójca, żaba.
+# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku.
+/mob/living/simple_animal/hostile/bear/Hudson : /mob/living/basic/bear/hudson{@OLD}
+/mob/living/simple_animal/hostile/bear/@SUBTYPES : /mob/living/basic/bear/@SUBTYPES{@OLD; atmos_requirements = @SKIP; minbodytemp = @SKIP; maxbodytemp = @SKIP; emote_taunt = @SKIP; taunt_chance = @SKIP}
+/mob/living/simple_animal/hostile/retaliate/bat/@SUBTYPES : /mob/living/basic/bat/@SUBTYPES{@OLD; max_co2 = @SKIP; min_oxy = @SKIP; max_tox = @SKIP; atmos_requirements = @SKIP; minbodytemp = @SKIP}
+/mob/living/simple_animal/hostile/killertomato : /mob/living/basic/killer_tomato{@OLD}
+/mob/living/simple_animal/hostile/retaliate/frog : /mob/living/basic/frog{@OLD; emote_hear = @SKIP; emote_taunt = @SKIP; jitteriness = @SKIP; speak = @SKIP; emote_see = @SKIP}

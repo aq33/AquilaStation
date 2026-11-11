@@ -8,7 +8,7 @@
 	desc = "Podstawowa konstrukcja kamer Nanotrasen-Zawsze-Cię-Obserwuje."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "cameracase"
-	materials = list(/datum/material/iron=400, /datum/material/glass=250)
+	custom_materials = list(/datum/material/iron=400, /datum/material/glass=250)
 	result_path = /obj/structure/camera_assembly
 
 /obj/structure/camera_assembly

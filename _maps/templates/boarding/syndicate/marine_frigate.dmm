@@ -1987,7 +1987,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "WE" = (
-/mob/living/simple_animal/pet/cat/breadcat{
+/mob/living/basic/pet/cat/breadcat{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/carpet/red,

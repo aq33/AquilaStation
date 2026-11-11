@@ -59,6 +59,12 @@ const MATERIAL_ICONS: Record<string, [number, string][]> = {
     [17, 'sheet-adamantine_2'],
     [34, 'sheet-adamantine_3'],
   ],
+  // AQUILA: meat sheets (BeeStation/BeeStation-Hornet#10703)
+  meat: [
+    [0, 'sheet-meat'],
+    [17, 'sheet-meat_2'],
+    [34, 'sheet-meat_3'],
+  ],
 };
 
 export const MaterialIcon = (props: {

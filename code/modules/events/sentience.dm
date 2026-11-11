@@ -1,16 +1,17 @@
 GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
+	/mob/living/basic/pet, // AQ EDIT - basic moby
 	/mob/living/simple_animal/pet,
 	/mob/living/simple_animal/parrot,
-	/mob/living/simple_animal/hostile/lizard,
-	/mob/living/simple_animal/sloth,
-	/mob/living/simple_animal/mouse/brown/Tom,
-	/mob/living/simple_animal/hostile/retaliate/goat,
-	/mob/living/simple_animal/chicken,
-	/mob/living/simple_animal/cow,
-	/mob/living/simple_animal/hostile/retaliate/bat,
+	/mob/living/basic/lizard, // AQ EDIT - basic moby
+	/mob/living/basic/sloth, // AQ EDIT - basic moby
+	/mob/living/basic/mouse/brown/tom, // AQ EDIT - basic moby
+	/mob/living/basic/goat, // AQ EDIT - basic moby
+	/mob/living/basic/chicken, // AQ EDIT - basic moby
+	/mob/living/basic/cow, // AQ EDIT - basic moby
+	/mob/living/basic/bat, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/carp/cayenne,
-	/mob/living/simple_animal/butterfly,
-	/mob/living/simple_animal/hostile/retaliate/poison/snake,
+	/mob/living/basic/butterfly, // AQ EDIT - basic moby
+	/mob/living/basic/snake, // AQ EDIT - basic moby
 	/mob/living/simple_animal/bot/secbot/beepsky
 )))
 
@@ -52,7 +53,9 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	var/list/hi_pri = list()
 	var/list/low_pri = list()
 
-	for(var/mob/living/simple_animal/L in GLOB.alive_mob_list)
+	for(var/mob/living/L in GLOB.alive_mob_list) // AQ EDIT - basic moby (Bee: osobna pętla dla /mob/living/basic)
+		if(!isanimal_or_basicmob(L)) // AQ EDIT - basic moby
+			continue
 		var/turf/T = get_turf(L)
 		if(!T || !is_station_level(T.z))
 			continue
@@ -88,7 +91,13 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 		SA.maxHealth = max(SA.maxHealth, 200)
 		SA.health = SA.maxHealth
-		SA.del_on_death = FALSE
+		// AQ EDIT START - basic moby
+		if(isbasicmob(SA))
+			var/mob/living/basic/basic_selected = SA
+			basic_selected.basic_mob_flags &= ~DEL_ON_DEATH
+		else
+			SA.del_on_death = FALSE
+		// AQ EDIT END
 
 		spawned_mobs += SA
 
