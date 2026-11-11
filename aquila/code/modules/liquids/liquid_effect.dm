@@ -155,9 +155,6 @@
 			return
 	icon_state = "puddle-[(my_turf.x + my_turf.y * 3) % LIQUID_LONE_PUDDLE_VARIANTS + 1]"
 
-#undef LIQUID_WASHED_BLOOD_PER_DECAL
-#undef LIQUID_LONE_PUDDLE_VARIANTS
-
 /obj/effect/abstract/liquid_turf/bitmask_connects_to(turf/T)
 	if(!T)
 		return FALSE
@@ -436,3 +433,6 @@
 
 /obj/effect/abstract/liquid_fire/big
 	icon_state = "fire_big"
+
+#undef LIQUID_WASHED_BLOOD_PER_DECAL
+#undef LIQUID_LONE_PUDDLE_VARIANTS
