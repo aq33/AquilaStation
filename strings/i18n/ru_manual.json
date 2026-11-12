@@ -6,5 +6,6 @@
 "emagged ? 'pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]' : 'do CentComu'": "emagged ? 'по адресу [НЕВЕРНЫЕ КООРДИНАТЫ МАРШРУТИЗАЦИИ]' : 'в ЦК'",
 "pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]": "по адресу [НЕВЕРНЫЕ КООРДИНАТЫ МАРШРУТИЗАЦИИ]",
 "[Drzwi są ${data.locked ? 'zaryglowane' : ''}${data.locked && data.welded ? ' i ' : ''}${data.welded ? 'zaspawane' : ''}!]": "[Двери ${data.locked ? 'заперты на засов' : ''}${data.locked && data.welded ? ' и ' : ''}${data.welded ? 'заварены' : ''}!]",
-"mechaniczna skrzynka narzędziowa": "механический ящик для инструментов"
+"mechaniczna skrzynka narzędziowa": "механический ящик для инструментов",
+"Możliwości:": "Возможности:"
 }
