@@ -1,3 +1,11 @@
+/// Nazwa zbrodni za seks na przycisk widziany przez kamerę (ta sama pozycja jest w config/space_law.json)
+#define PUBLIC_SEX_CRIME "Publiczne obcowanie płciowe"
+
+/datum/crime/capital/aq_public_sex
+	name = PUBLIC_SEX_CRIME
+	icon = "heart"
+	tooltip = "Uprawianie seksu w miejscu publicznym, zarejestrowane przez kamery okrętu."
+
 /obj/item/melee/touch_attack/sex
 	name = "wątpliwy dotyk"
 	desc = "O Boże, czemu."
@@ -51,6 +59,9 @@
 
 	to_chat(user, "<span class='notice'>Uprawiasz seks z [M].</span>")
 	to_chat(M, "<span class='notice'>Uprawiasz seks z [user].</span>")
+	// kamera w zasięgu: najcięższa zbrodnia dla obojga (wpis jak przy załatwianiu się, config/space_law.json)
+	user.report_public_bodily_function(PUBLIC_SEX_CRIME, "uprawiała seks")
+	M.report_public_bodily_function(PUBLIC_SEX_CRIME, "uprawiała seks")
 
 	addtimer(CALLBACK(src, PROC_REF(erpSay), user, FALSE), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(erpSay), M, FALSE), 2 SECONDS)
@@ -64,3 +75,5 @@
 	if (isipc(speaker))
 		picklist += ipc_exclusive
 	speaker.say(pick(picklist), forced = "spell")
+
+#undef PUBLIC_SEX_CRIME
