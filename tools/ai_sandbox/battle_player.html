@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+:root{
+  --bg:#0b0e14; --panel:#121722; --panel2:#171d2a; --ink:#e8ebf2; --muted:#8b93a7;
+  --line:#232b3b; --nt:#4f9dff; --syn:#ff5a5f; --neutral:#8b93a7;
+  --opt:#9ad2ff; --tel:#3fd6c4; --ir:#ffa24f; --lidar:#b48bff; --esm:#5ad18c; --memory:#e8c35a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
+.top{padding:12px 16px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:17px}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px;padding:14px 16px;align-items:start}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}}
+@media(max-width:600px){.layout{padding:10px}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.mapwrap{padding:10px;position:relative}
+.mapwrap canvas{display:block;margin:0 auto;background:#05070c;border-radius:7px;cursor:crosshair}
+.strip canvas{display:block;width:100%}
+.tip{position:absolute;pointer-events:none;background:rgba(10,13,20,.95);border:1px solid #33405a;
+  border-radius:7px;padding:6px 9px;font-size:12.5px;line-height:1.4;max-width:260px;display:none;z-index:3}
+.tip b{display:block;font-size:13px}
+.tip .m{color:var(--muted)}
+.hint{color:var(--muted);font-size:12px;margin-left:auto}
+@media(hover:none){.hint{display:none}}
+.mapwrap canvas{touch-action:none}
+.controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:10px;border-top:1px solid var(--line)}
+button{background:var(--panel2);color:var(--ink);border:1px solid var(--line);
+  border-radius:7px;padding:5px 11px;font-size:13px;cursor:pointer}
+button:hover{border-color:#39455e}
+button[aria-pressed="true"]{border-color:var(--nt);color:#cfe4ff;background:#16243b}
+input[type=range]{flex:1;min-width:140px;accent-color:#4f9dff}
+.time{font-variant-numeric:tabular-nums;color:var(--muted);min-width:78px}
+.overlays{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.overlays .lab{color:var(--muted);font-size:12px;align-self:center;margin-right:2px}
+.overlays button i{display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
+button.seg{padding:5px 8px;min-width:38px}
+details.legend{border-top:1px solid var(--line);padding:8px 12px 10px}
+details.legend summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+.legend .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:4px 18px;margin-top:8px}
+.legend h4{margin:8px 0 2px;font-size:12px;color:var(--ink);font-weight:600}
+.legend .it{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center;padding:1px 0}
+.legend .sw{flex:0 0 18px;height:3px;border-radius:2px}
+.legend .sw.dash{background:none !important;border-top:2px dashed}
+.grp{padding:6px 12px;font-size:11.5px;color:var(--muted);background:#0f141e;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.07em}
+.chip{display:inline-block;padding:0 6px;border-radius:9px;background:#1b2333;color:#c9d1e3}
+.strip{padding:8px 10px 12px;border-top:1px solid var(--line)}
+.strip canvas{height:52px;background:#0a0d14;cursor:pointer}
+h2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:0;
+  padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
+.side{max-height:78vh;overflow:auto}
+.ship{padding:7px 12px;border-bottom:1px solid #1a2130;cursor:pointer;font-size:13px}
+.ship:hover{background:var(--panel2)}
+.ship.sel{background:#16243b}
+.ship.dead{opacity:.35}
+.ship .nm{display:flex;justify-content:space-between;gap:8px}
+.ship .meta{color:var(--muted);font-size:11.5px;display:flex;gap:7px;flex-wrap:wrap;margin-top:1px}
+.bar{height:3px;border-radius:2px;background:#222b3d;margin-top:3px;overflow:hidden}
+.bar i{display:block;height:100%}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.det{padding:10px 12px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.det b{color:var(--ink);font-weight:600}
+.det .row{display:flex;justify-content:space-between;gap:10px;padding:1px 0}
+.ev{padding:5px 12px;border-bottom:1px solid #1a2130;font-size:12px;cursor:pointer}
+.ev:hover{background:var(--panel2)}
+.ev span{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:7px}
+.ev.now{background:#16243b;color:#cfe4ff}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>__TITLE__</h1>
+  <div class="sub" id="sub"></div>
+</div>
+
+<div class="layout">
+  <div class="panel">
+    <div class="mapwrap" id="mapwrap"><canvas id="mapa"></canvas><div class="tip" id="tip"></div></div>
+    <div class="controls">
+      <button id="play">Odtwarzaj</button>
+      <button class="seg" data-tempo="0.5">½×</button>
+      <button class="seg" data-tempo="1" aria-pressed="true">1×</button>
+      <button class="seg" data-tempo="2">2×</button>
+      <button class="seg" data-tempo="4">4×</button>
+      <button class="seg" data-tempo="8">8×</button>
+      <input type="range" id="scrub" min="0" value="0" step="1" aria-label="Chwila nagrania">
+      <span class="time" id="clock">0:00</span>
+    </div>
+    <div class="overlays">
+      <span class="lab">Warstwy:</span>
+      <button id="w-con" aria-pressed="true" title="Teleskop (wąski stożek, celowany) i klin za rufą, gdzie własny napęd oślepia termikę"><i style="background:var(--tel)"></i>Stożki sensorów</button>
+      <button id="w-cts" aria-pressed="true" title="Linia od okrętu do jego celu, w kolorze sensora, który ten cel trzyma"><i style="background:var(--ir)"></i>Cele i sensory</button>
+      <button id="w-tac" aria-pressed="true" title="Nazwy i taktyka przy okrętach"><i style="background:var(--ink)"></i>Nazwy i taktyka</button>
+      <button id="w-pls" aria-pressed="true" title="Impulsy radaru rozchodzące się od nadawcy"><i style="background:var(--lidar)"></i>Impulsy radaru</button>
+      <button id="w-rng" aria-pressed="false" title="Z jakiej odległości widać okręt termiką (kropla, dłuższa za rufą) i kamerą; przy zaznaczonym okręcie pełniej"><i style="background:var(--ir)"></i>Widoczność okrętów</button>
+      <button id="w-trk" aria-pressed="false" title="Ostatnie pozycje okrętów"><i style="background:var(--muted)"></i>Ślady toru</button>
+      <button id="dopasuj">Dopasuj widok</button>
+      <span class="hint">spacja: odtwarzaj · ←/→: 5 s · Esc: odznacz · kółko: zoom · przeciągnij: przesuń</span>
+    </div>
+    <div class="strip"><canvas id="pasek"></canvas></div>
+    <details class="legend">
+      <summary>Legenda</summary>
+      <div class="cols">
+        <div>
+          <h4>Okręty</h4>
+          <div class="it"><span class="sw" style="background:var(--nt)"></span>Nanotrasen</div>
+          <div class="it"><span class="sw" style="background:var(--syn)"></span>Syndykat</div>
+          <div class="it"><span class="sw" style="background:#0b0e14;border:1px solid var(--muted);height:8px"></span>pusty w środku: cichy bieg (silnik wyłączony)</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--memory)"></span>przerywane kółko: ucieka</div>
+          <div class="it"><span class="sw" style="background:var(--lidar)"></span>łuk przy okręcie: szpica floty (pulsuje za wszystkich)</div>
+          <div class="it"><span class="sw" style="background:#5ad18c"></span>pasek pod okrętem: kadłub</div>
+        </div>
+        <div>
+          <h4>Stożki sensorów</h4>
+          <div class="it"><span class="sw" style="background:var(--tel)"></span>teleskop: wąski stożek tam, gdzie celuje</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--ir)"></span>klin za rufą: termika oślepiona własnym napędem</div>
+          <h4>Cele i sensory</h4>
+          <div class="it"><span class="sw" style="background:var(--ir)"></span>termika</div>
+          <div class="it"><span class="sw" style="background:var(--opt)"></span>kamera szerokokątna</div>
+          <div class="it"><span class="sw" style="background:var(--tel)"></span>teleskop</div>
+          <div class="it"><span class="sw" style="background:var(--lidar)"></span>radar (w czasie impulsu)</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--memory)"></span>cel znany tylko z meldunku floty</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--lidar)"></span>myśliwiec na zwiadzie śledzi cel</div>
+          <div class="it"><span class="sw" style="background:var(--lidar)"></span>„namierza”: zwiadowca trzyma cel radarem dla okrętów rakietowych</div>
+        </div>
+        <div>
+          <h4>Widoczność okrętów</h4>
+          <div class="it"><span class="sw" style="background:var(--ir)"></span>kropla: stąd widać okręt termiką (dłuższa za rufą, tam są dysze)</div>
+          <div class="it"><span class="sw" style="background:var(--opt)"></span>koło: stąd widać go kamerą szerokokątną</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--tel)"></span>koło przerywane: stąd widać go teleskopem</div>
+          <div class="it"><span class="sw dash" style="border-color:var(--lidar)"></span>przy pulsującym: zasięg jego radaru</div>
+          <h4>Pasek czasu</h4>
+          <div class="it">kreski w górę: impulsy Nanotrasen, w dół: Syndykatu; kliknij, żeby przeskoczyć</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="panel side">
+    <h2>Wybrany okręt</h2>
+    <div class="det" id="det">Kliknij okręt na mapie albo na liście.</div>
+    <h2>Okręty w tej chwili</h2>
+    <div id="lista"></div>
+    <h2>Zdarzenia</h2>
+    <div id="zdarzenia"></div>
+  </div>
+</div>
+
+<script id="dane" type="application/json">__DATA__</script>
+<script>
+var D = JSON.parse(document.getElementById("dane").textContent);
+var FRAMES = D.frames || [], EVENTS = D.events || [], PULSES = D.pulses || [];
+var MAPW = (D.map && D.map[0]) || 255, MAPH = (D.map && D.map[1]) || 255;
+var KONIEC = FRAMES.length ? FRAMES[FRAMES.length - 1].t : 0;
+
+var SUITE_KOLOR = {
+  "optyczny": getCss("--opt"), "teleskop": getCss("--tel"), "termiczny": getCss("--ir"),
+  "lidar": getCss("--lidar"), "nasłuch": getCss("--esm"), "pamięć": getCss("--memory")
+};
+function getCss(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function frakcjaKolor(f){
+  if(!f) return getCss("--neutral");
+  if(/nanotrasen|solgov|nt/i.test(f)) return getCss("--nt");
+  if(/syndic|syndyk|pirate/i.test(f)) return getCss("--syn");
+  return getCss("--neutral");
+}
+function czas(s){
+  var m = Math.floor(s / 60), r = Math.floor(s % 60);
+  return m + ":" + (r < 10 ? "0" : "") + r;
+}
+
+var mapa = document.getElementById("mapa"), ctx = mapa.getContext("2d");
+var pasek = document.getElementById("pasek"), pctx = pasek.getContext("2d");
+var klatka = 0, gra = false, tempo = 1, wybrany = null, ostatniCzas = 0;
+var warstwy = { con: true, rng: false, cts: true, tac: true, pls: true, trk: false };
+
+// Plotno w pikselach ekranu (takze przy gestym ekranie). Wczesniej mialo stale 1000x1000 i bylo skalowane do
+// szerokosci panelu, wiec napis 10 px wychodzil na ekranie na ok. 5 px. Teraz rysujemy w jednostkach CSS.
+var SZER = 600, PW = 600, PH = 56;
+function dopasujPlotno(){
+  var dpr = window.devicePixelRatio || 1;
+  var wrap = document.getElementById("mapwrap");
+  var szer = wrap.clientWidth - 20;
+  var wys = window.innerHeight - 200;
+  SZER = Math.max(300, Math.floor(Math.min(szer, window.innerWidth > 1000 ? Math.max(wys, 420) : szer)));
+  mapa.style.width = SZER + "px"; mapa.style.height = SZER + "px";
+  mapa.width = Math.round(SZER * dpr); mapa.height = Math.round(SZER * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  PW = Math.max(200, pasek.clientWidth || SZER);
+  pasek.style.height = PH + "px";
+  pasek.width = Math.round(PW * dpr); pasek.height = Math.round(PH * dpr);
+  pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+// Nazwy z gry sa dlugie ("The fregata klasy Caracal"); na mapie i liscie wystarczy "fregata Caracal"
+function krotkaNazwa(n){
+  return (n || "?").replace(/^The /, "").replace(/ klasy /, " ");
+}
+// Napis z ciemna obwodka, czytelny na stozkach i liniach
+function napis(tekst, x, y, kolor, rozmiar, wyrownanie, gruby){
+  ctx.font = (gruby ? "600 " : "") + rozmiar + "px Segoe UI, system-ui, sans-serif";
+  ctx.textAlign = wyrownanie || "center";
+  ctx.lineJoin = "round"; ctx.lineWidth = 3; ctx.strokeStyle = "rgba(5,7,12,.9)";
+  ctx.strokeText(tekst, x, y);
+  ctx.fillStyle = kolor; ctx.fillText(tekst, x, y);
+}
+// Bazowe cele AI z ai-skynet.dm, po polsku
+var CELE_PL = {
+  "Maintain safe distance from enemies": "trzyma dystans od wroga (lotniskowiec)",
+  "Protect supply lines": "osłania lotniskowiec",
+  "Search and destroy": "szuka i niszczy",
+  "Patrol system": "patroluje system",
+  "Re-arm at supply ship": "uzbraja się przy lotniskowcu",
+  "Break off and escape by FTL": "ucieka przez FTL",
+  "Board target": "abordaż",
+  "Join a lance and subsequently search & swarm targets.": "grupa myśliwców (lance)",
+  "Ram Target at fullspeed like a fly bumping against a closed window.": "taranuje"
+};
+
+document.getElementById("sub").textContent =
+  (D.system ? "System " + D.system + " · " : "") + FRAMES.length + " klatek · " +
+  czas(KONIEC) + " · " + PULSES.length + " impulsów radaru";
+document.getElementById("scrub").max = Math.max(0, FRAMES.length - 1);
+
+// Widok dopasowany do pola bitwy. Liczony z percentyli pozycji, zeby pojedynczy uciekinier
+// na drugim koncu mapy nie oddalal obrazu calej bitwy. Kolko myszy przybliza, przeciaganie przesuwa.
+function policzWidok(){
+  var xs = [], ys = [];
+  for(var i = 0; i < FRAMES.length; i++){
+    var s = FRAMES[i].ships || [];
+    for(var k = 0; k < s.length; k++){ xs.push(s[k].x); ys.push(s[k].y); }
+  }
+  if(!xs.length) return { x: 0, y: 0, bok: MAPW };
+  xs.sort(function(a, b){ return a - b; });
+  ys.sort(function(a, b){ return a - b; });
+  function pct(a, p){ return a[Math.min(a.length - 1, Math.max(0, Math.floor(a.length * p)))]; }
+  var x0 = pct(xs, 0.04), x1 = pct(xs, 0.96), y0 = pct(ys, 0.04), y1 = pct(ys, 0.96);
+  var margines = 30; // miejsce na kola zasiegow sensorow
+  var bok = Math.max(x1 - x0, y1 - y0, 60) + margines * 2;
+  return { x: (x0 + x1) / 2 - bok / 2, y: (y0 + y1) / 2 - bok / 2, bok: bok };
+}
+var WIDOK_BAZA = policzWidok();
+var WIDOK = { x: WIDOK_BAZA.x, y: WIDOK_BAZA.y, bok: WIDOK_BAZA.bok };
+
+function skala(){ return SZER / WIDOK.bok; }
+function px(x){ return (x - WIDOK.x) * skala(); }
+function py(y){ return SZER - (y - WIDOK.y) * skala(); }
+
+function statki(i){ return (FRAMES[i] && FRAMES[i].ships) || []; }
+function znajdzW(lista, id){
+  for(var k = 0; k < lista.length; k++) if(lista[k].id === id) return lista[k];
+  return null;
+}
+function znajdz(i, id){ return znajdzW(statki(i), id); }
+
+// Zapis piaskownicy idzie co 2 s, a ekran odswieza sie 60 razy na sekunde. Bez tego okrety
+// przeskakuja co dwie sekundy; tu pozycja, kurs i kadlub sa doliczane miedzy klatkami.
+function lerp(a, b, u){ return a + (b - a) * u; }
+function lerpKat(a, b, u){
+  var d = ((b - a) % 360 + 540) % 360 - 180; // najkrotsza droga, zeby nie obracal sie dokola
+  return a + d * u;
+}
+var AKTUALNE = [];   // okrety w tej chwili, po interpolacji
+var AKTUALNY_T = 0;  // czas nagrania w tej chwili
+
+// Zapis idzie co 0,5 s, ale caly stan (kontakty, zasiegi, taktyka, nazwy) jest co czwarta klatka.
+// PELNA_DO[i] mowi, gdzie szukac tych danych dla klatki i.
+var PELNA_DO = (function () {
+  var out = new Array(FRAMES.length);
+  var ostatnia = 0;
+  for (var i = 0; i < FRAMES.length; i++) {
+    // DM zapisuje "full" jako liczbe 0/1, wiec sprawdzamy prawdziwosc, a nie !== false:
+    // 0 !== false jest w JS prawda, przez co kazda klatka uchodzila za pelna i lekkie
+    // klatki szukaly nazw same w sobie (okrety robily sie "undefined" po pierwszej sekundzie).
+    if (FRAMES[i].full) ostatnia = i;
+    out[i] = ostatnia;
+  }
+  return out;
+})();
+
+// PELNA_PO[i]: najblizsza pelna klatka od i w przod (kierunek teleskopu jest tylko w pelnych klatkach)
+var PELNA_PO = (function () {
+  var out = new Array(FRAMES.length);
+  var nastepna = FRAMES.length - 1;
+  for (var i = FRAMES.length - 1; i >= 0; i--) {
+    if (FRAMES[i].full) nastepna = i;
+    out[i] = nastepna;
+  }
+  return out;
+})();
+var STOZKI = D.cones || null; // polowy katow z nagrania; starsze nagrania ich nie maja
+
+// Stozki okretu w tej chwili: kierunek teleskopu doliczany miedzy pelnymi klatkami, zeby sie plynnie obracal
+function stozkiTeraz(id){
+  var i = Math.min(Math.floor(pozycja), FRAMES.length - 1);
+  var a = PELNA_DO[i];
+  var b = a + 1 < FRAMES.length ? PELNA_PO[a + 1] : a;
+  var sa = znajdzW(statki(a), id), sb = znajdzW(statki(b), id);
+  var ca = sa && sa.cones, cb = sb && sb.cones;
+  if(!ca) return null;
+  if(!cb || b === a || ca.tb == null || cb.tb == null) return ca;
+  var u = Math.min(1, Math.max(0, (pozycja - a) / (b - a)));
+  return { tb: lerpKat(ca.tb, cb.tb, u), irb: u < 0.5 ? ca.irb : cb.irb };
+}
+
+// Okret, ktory pojawil sie miedzy pelnymi klatkami (swiezo wypuszczony mysliwiec), nie ma jeszcze
+// zadnej pelnej klatki za soba. Jego stale dane bierzemy z pierwszej pelnej klatki, w ktorej wystepuje.
+var BAZA_ID = (function () {
+  var out = {};
+  for (var i = 0; i < FRAMES.length; i++) {
+    if (!FRAMES[i].full) continue;
+    var lista = statki(i);
+    for (var j = 0; j < lista.length; j++) {
+      if (out[lista[j].id] === undefined) out[lista[j].id] = lista[j];
+    }
+  }
+  return out;
+})();
+
+// Okret z klatki i, uzupelniony o pola z ostatniej pelnej klatki
+function pelnyStatek(i, lekki) {
+  if (lekki.name !== undefined) return lekki;
+  var baza = znajdzW(statki(PELNA_DO[i]), lekki.id) || BAZA_ID[lekki.id];
+  if (!baza) return lekki;
+  var out = {};
+  for (var k in baza) out[k] = baza[k];
+  for (var k2 in lekki) out[k2] = lekki[k2];
+  return out;
+}
+
+function przeliczChwile(){
+  var i = Math.floor(pozycja), u = pozycja - i;
+  if(i >= FRAMES.length - 1){ i = FRAMES.length - 1; u = 0; }
+  var i2 = Math.min(i + 1, FRAMES.length - 1);
+  var a = statki(i).map(function (sh) { return pelnyStatek(i, sh); });
+  var b = statki(i2).map(function (sh) { return pelnyStatek(i2, sh); });
+  AKTUALNY_T = FRAMES[i] ? lerp(FRAMES[i].t, (FRAMES[Math.min(i + 1, FRAMES.length - 1)] || FRAMES[i]).t, u) : 0;
+  if(!u){ AKTUALNE = a; return; }
+  var out = [];
+  for(var k = 0; k < a.length; k++){
+    var sa = a[k], sb = znajdzW(b, sa.id);
+    if(!sb){ out.push(sa); continue; } // zniszczony w tej klatce: zostaje na ostatniej pozycji
+    var kopia = {};
+    for(var key in sa) kopia[key] = sa[key];
+    kopia.x = lerp(sa.x, sb.x, u);
+    kopia.y = lerp(sa.y, sb.y, u);
+    kopia.angle = lerpKat(sa.angle || 0, sb.angle || 0, u);
+    kopia.hull = lerp(sa.hull, sb.hull, u);
+    kopia.fear = lerp(sa.fear, sb.fear, u);
+    out.push(kopia);
+  }
+  AKTUALNE = out;
+}
+
+function rysuj(){
+  przeliczChwile();
+  var s = AKTUALNE, t = AKTUALNY_T;
+  ctx.clearRect(0, 0, SZER, SZER);
+
+  // siatka
+  ctx.strokeStyle = "#121a28"; ctx.lineWidth = 1;
+  var krokSiatki = WIDOK.bok > 180 ? 50 : (WIDOK.bok > 90 ? 25 : 10);
+  for(var g = Math.ceil(WIDOK.x / krokSiatki) * krokSiatki; g <= WIDOK.x + WIDOK.bok; g += krokSiatki){
+    ctx.beginPath(); ctx.moveTo(px(g), 0); ctx.lineTo(px(g), SZER); ctx.stroke();
+  }
+  for(var h = Math.ceil(WIDOK.y / krokSiatki) * krokSiatki; h <= WIDOK.y + WIDOK.bok; h += krokSiatki){
+    ctx.beginPath(); ctx.moveTo(0, py(h)); ctx.lineTo(SZER, py(h)); ctx.stroke();
+  }
+
+  var sel = wybrany ? znajdzW(AKTUALNE, wybrany) : null;
+
+  if(warstwy.trk) rysujSlady();
+  if(warstwy.pls) rysujImpulsy(t);
+  if(warstwy.rng) rysujWidocznosc(s, sel);
+  if(warstwy.con) rysujStozki(s, sel);
+  if(warstwy.cts) rysujCeleWszystkich(s, sel);
+  if(warstwy.cts) rysujZwiad(s);
+  if(sel && warstwy.cts) rysujKontakty(sel);
+  if(sel && sel.sx) rysujPunktSzukania(sel);
+
+  for(var i = 0; i < s.length; i++) rysujStatek(s[i], s[i].id === wybrany);
+  if(warstwy.tac) rysujEtykiety(s, sel);
+  rysujPasek(t);
+  panelWybranego(sel);
+  podswietlZdarzenia(t);
+  document.getElementById("clock").textContent = czas(t) + " / " + czas(KONIEC);
+  document.getElementById("scrub").value = klatka;
+}
+
+// Nazwa i taktyka nad okretem; etykieta, ktora nachodzilaby na juz postawiona, jest pomijana
+// (pokazuje ja dymek po najechaniu). Pierwszenstwo: zaznaczony, okret glowny, potem wieksze okrety.
+function rysujEtykiety(lista, sel){
+  var kolejka = lista.filter(function(sh){ return !sh.tiny; }).sort(function(a, b){
+    var pa = (sel && a.id === sel.id ? 4 : 0) + (a.main ? 2 : 0) + (a.size || 0);
+    var pb = (sel && b.id === sel.id ? 4 : 0) + (b.main ? 2 : 0) + (b.size || 0);
+    return pb - pa;
+  });
+  var zajete = [];
+  function wolne(b){
+    for(var k = 0; k < zajete.length; k++){
+      var z = zajete[k];
+      if(b.x0 < z.x1 && b.x1 > z.x0 && b.y0 < z.y1 && b.y1 > z.y0) return false;
+    }
+    return true;
+  }
+  for(var i = 0; i < kolejka.length; i++){
+    var sh = kolejka[i], x = px(sh.x), y = py(sh.y);
+    if(x < -40 || y < -40 || x > SZER + 40 || y > SZER + 40) continue;
+    var nazwa = krotkaNazwa(sh.name), tak = sh.tactic || "";
+    ctx.font = "600 12px Segoe UI, system-ui, sans-serif";
+    var w = Math.max(ctx.measureText(nazwa).width, (ctx.font = "11px Segoe UI, system-ui, sans-serif", ctx.measureText(tak).width)) + 6;
+    var r = sh.main ? 11 : 7;
+    var gora = { x0: x - w / 2, x1: x + w / 2, y0: y - r - 30, y1: y - r - 4 };
+    var dol = { x0: x - w / 2, x1: x + w / 2, y0: y + r + 8, y1: y + r + 34 };
+    var b = wolne(gora) ? gora : (wolne(dol) ? dol : null);
+    if(!b && !(sel && sh.id === sel.id)) continue;
+    b = b || gora;
+    zajete.push(b);
+    var wyb = sel && sh.id === sel.id;
+    napis(nazwa, x, b.y0 + 12, wyb ? "#ffffff" : "rgba(232,235,242,.92)", 12, "center", true);
+    if(tak) napis(tak, x, b.y0 + 25, "rgba(160,170,190,.95)", 11, "center", false);
+  }
+}
+
+function rysujStatek(sh, wyb){
+  var x = px(sh.x), y = py(sh.y), kol = frakcjaKolor(sh.faction);
+  var r = sh.main ? 11 : (sh.tiny ? 4 : 7);
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((sh.angle || 0) * Math.PI / 180);
+  ctx.beginPath();
+  ctx.moveTo(0, -r); ctx.lineTo(r * 0.72, r * 0.8); ctx.lineTo(0, r * 0.4); ctx.lineTo(-r * 0.72, r * 0.8);
+  ctx.closePath();
+  ctx.fillStyle = sh.silent ? "#0b0e14" : kol;
+  ctx.strokeStyle = kol;
+  ctx.lineWidth = sh.silent ? 1.6 : 1;
+  ctx.fill(); ctx.stroke();
+  ctx.restore();
+
+  if(wyb){
+    ctx.beginPath(); ctx.arc(x, y, r + 7, 0, 6.2832);
+    ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 1.4; ctx.stroke();
+  }
+  if(sh.picket){
+    ctx.beginPath(); ctx.arc(x, y, r + 5.5, -0.9, 0.9);
+    ctx.strokeStyle = getCss("--lidar"); ctx.lineWidth = 2; ctx.stroke();
+  }
+  if(sh.fleeing){
+    ctx.beginPath(); ctx.arc(x, y, r + 3.5, 0, 6.2832);
+    ctx.strokeStyle = getCss("--memory"); ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+  // pasek kadluba
+  if(!sh.tiny){
+    var w = 22, h = 2.5;
+    ctx.fillStyle = "#222b3d";
+    ctx.fillRect(x - w / 2, y + r + 4, w, h);
+    ctx.fillStyle = sh.hull > 50 ? "#5ad18c" : (sh.hull > 20 ? "#ffb648" : "#ff5a5f");
+    ctx.fillRect(x - w / 2, y + r + 4, w * Math.max(0, sh.hull) / 100, h);
+  }
+}
+
+// Klin od (x, y): srodek w kierunku kat (0 = gora, zgodnie ze wskazowkami jak w grze), polowa rozwarcia pol, promien r w pikselach
+function klin(x, y, kat, pol, r){
+  var a1 = (kat - pol - 90) * Math.PI / 180, a2 = (kat + pol - 90) * Math.PI / 180;
+  ctx.beginPath(); ctx.moveTo(x, y); ctx.arc(x, y, r, a1, a2); ctx.closePath();
+}
+
+// Warstwa 0: stozki sensorow kazdego okretu AI. Teleskop: waski stozek tam, gdzie celuje.
+// Termika: klin za rufa, ktory oslepia wlasny naped, gdy okret ciagnie.
+function rysujStozki(lista, sel){
+  if(!STOZKI || !STOZKI.enabled) return;
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i];
+    var c = stozkiTeraz(sh.id);
+    if(!c) continue;
+    var x = px(sh.x), y = py(sh.y);
+    var przygaszony = sel && sel.id !== sh.id;
+    if(c.tb != null){
+      var zasT = (sh.rng && sh.rng.tel) || 45;
+      klin(x, y, c.tb, STOZKI.tel_half, zasT * skala());
+      ctx.fillStyle = getCss("--tel"); ctx.globalAlpha = przygaszony ? .03 : .09; ctx.fill();
+      ctx.strokeStyle = getCss("--tel"); ctx.globalAlpha = przygaszony ? .15 : .55; ctx.lineWidth = 1; ctx.stroke();
+    }
+    if(c.irb){
+      // Stala dlugosc: klin pokazuje kierunek martwego pola, a pelny zasieg termiki (do ~100 pol)
+      // przy prawie kazdym okrecie zalewal mape
+      klin(x, y, (sh.angle || 0) + 180, STOZKI.ir_blind_half, 12 * skala());
+      ctx.fillStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .03 : .08; ctx.fill();
+      ctx.setLineDash([3, 3]); ctx.strokeStyle = getCss("--ir"); ctx.globalAlpha = przygaszony ? .12 : .45; ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.globalAlpha = 1;
+  }
+}
+
+// Warstwa 1: zasiegi sensorow wybranego okretu wobec jego punktu odniesienia
+// Stale sensorow AI z ai_sensor_suites.dm. Nowsze nagrania niosa je w naglowku, starsze dostaja wartosci z kodu.
+var SENS = {
+  ir_base: (STOZKI && STOZKI.ir_base) || 35, aspect_mid: (STOZKI && STOZKI.aspect_mid) || 1.37,
+  aspect_swing: (STOZKI && STOZKI.aspect_swing) || 0.88, opt_base: 30, opt_wide: 0.5, opt_wide_min: 10, tel_mult: 1
+};
+
+// Z jakiej odleglosci termika widzi okret sh, gdy patrzy z kierunku kat (0 = gora, jak w grze).
+// Cieplo napedu (dbg.th) swieci do tylu: od dysz 2,25x, z boku 1,37x, od dziobu 0,49x; reszta ciepla dookola.
+function zasiegTermiki(sh, kat){
+  var cieplo = sh.heat || 0, naped = Math.min((sh.dbg && sh.dbg.th) || 0, cieplo);
+  var odDziobu = Math.abs(((kat - (sh.angle || 0)) % 360 + 540) % 360 - 180);
+  var c = cieplo - naped + naped * (SENS.aspect_mid - SENS.aspect_swing * Math.cos(odDziobu * Math.PI / 180));
+  return SENS.ir_base * Math.sqrt(Math.max(c, 0));
+}
+
+// Warstwa 1: widocznosc. Rysowana przy okrecie, KTORY SWIECI: kropla "stad widac go termika" (dluzsza za rufa,
+// bo tam sa dysze) i kola "stad widac go kamera / teleskopem". Wczesniej nagranie mialo zasieg obserwatora
+// wobec JEGO celu, rysowany jako kolo wokol obserwatora: rozgrzany cel wygladal, jakby to obserwator
+// dostal lepszy sensor. Radar to wlasciwosc nadawcy, wiec jego zasieg zostaje przy okrecie, ktory pulsuje.
+function rysujWidocznosc(lista, sel){
+  var maCieplo = false;
+  for(var i = 0; i < lista.length; i++) if(lista[i].dbg){ maCieplo = true; break; }
+  if(!maCieplo){ rysujZasiegiStare(sel); return; }
+  for(var j = 0; j < lista.length; j++){
+    var sh = lista[j];
+    if(sh.tiny || sh.heat == null) continue;
+    var wyb = sel && sel.id === sh.id;
+    var x = px(sh.x), y = py(sh.y);
+    ctx.beginPath();
+    for(var k = 0; k <= 48; k++){
+      var kat = k * 7.5, r = zasiegTermiki(sh, kat) * skala();
+      var qx = x + Math.sin(kat * Math.PI / 180) * r, qy = y - Math.cos(kat * Math.PI / 180) * r;
+      if(k) ctx.lineTo(qx, qy); else ctx.moveTo(qx, qy);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = SUITE_KOLOR["termiczny"];
+    ctx.globalAlpha = wyb ? .7 : (sel ? .1 : .22); ctx.lineWidth = wyb ? 1.4 : 1; ctx.stroke();
+    if(wyb){ ctx.fillStyle = SUITE_KOLOR["termiczny"]; ctx.globalAlpha = .06; ctx.fill(); }
+    ctx.globalAlpha = 1;
+    if(!wyb) continue;
+    var rozmiar = sh.size || 0.6;
+    var kola = [["teleskop", SENS.opt_base * SENS.tel_mult * rozmiar, [5, 4]],
+      ["optyczny", Math.max(SENS.opt_base * SENS.opt_wide * rozmiar, SENS.opt_wide_min), []]];
+    for(var m = 0; m < kola.length; m++){
+      ctx.beginPath(); ctx.arc(x, y, kola[m][1] * skala(), 0, 6.2832);
+      ctx.strokeStyle = SUITE_KOLOR[kola[m][0]]; ctx.globalAlpha = .55; ctx.lineWidth = 1.1;
+      ctx.setLineDash(kola[m][2]); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    }
+    var tyl = zasiegTermiki(sh, (sh.angle || 0) + 180);
+    napis("widać go termiką z " + Math.round(tyl) + " pól (od dysz)", x + 12, y + 30, SUITE_KOLOR["termiczny"], 11, "left");
+    // Radar: zasieg okretu, ktory wlasnie pulsuje
+    if(sh.rng && sh.rng.lid > 0){
+      ctx.beginPath(); ctx.arc(x, y, sh.rng.lid * skala(), 0, 6.2832);
+      ctx.strokeStyle = SUITE_KOLOR["lidar"]; ctx.globalAlpha = .45; ctx.setLineDash([6, 4]);
+      ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    }
+  }
+}
+
+// Starsze nagrania (bez ciepla napedu): te same liczby co dawniej, ale przy celu, ktorego dotycza.
+// rng.ir to odleglosc, z ktorej wybrany okret zobaczylby SWOJ cel termika, czyli widocznosc celu.
+function rysujZasiegiStare(sel){
+  if(!sel || !sel.rng) return;
+  var cel = znajdzW(AKTUALNE, sel.rng.id);
+  if(!cel) return;
+  var x = px(cel.x), y = py(cel.y);
+  var kola = [["termiczny", sel.rng.ir], ["optyczny", sel.rng.opt]];
+  for(var i = 0; i < kola.length; i++){
+    var zas = kola[i][1];
+    if(!zas || zas <= 0) continue;
+    ctx.beginPath(); ctx.arc(x, y, zas * skala(), 0, 6.2832);
+    ctx.strokeStyle = SUITE_KOLOR[kola[i][0]]; ctx.globalAlpha = .5; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.globalAlpha = 1;
+    napis(kola[i][0] + ": stąd go widać, " + Math.round(zas), x + 4, y - zas * skala() - 4, SUITE_KOLOR[kola[i][0]], 11, "left");
+  }
+}
+
+// Warstwa 2a: kazdy okret i jego cel, linia w kolorze sensora, ktory ten cel trzyma.
+// Bez tego sensory bierne byly widoczne dopiero po kliknieciu w okret, a impulsy radaru
+// rysowaly sie dla wszystkich, wiec na podgladzie wygladalo, jakby AI mialo tylko radar.
+function rysujCeleWszystkich(lista, sel){
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i];
+    if(sh.tiny || !sh.target || (sel && sh.id === sel.id)) continue;
+    var cel = znajdzW(lista, sh.target);
+    if(!cel) continue;
+    var suite = null, cts = sh.cts || [];
+    for(var j = 0; j < cts.length; j++) if(cts[j].id === sh.target){ suite = cts[j].s; break; }
+    // Brak celu wsrod wlasnych kontaktow: okret zna go tylko z meldunku floty
+    var kol = suite ? SUITE_KOLOR[suite] : getCss("--memory");
+    var x1 = px(sh.x), y1 = py(sh.y), x2 = px(cel.x), y2 = py(cel.y);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = kol; ctx.lineWidth = 1.1;
+    ctx.globalAlpha = sel ? .18 : .45;
+    ctx.setLineDash(suite ? [] : [3, 4]);
+    ctx.stroke(); ctx.setLineDash([]);
+    // Pierscien wokol okretu: tym widzi swoj cel
+    ctx.beginPath(); ctx.arc(x1, y1, 7.5, 0, 6.2832);
+    ctx.lineWidth = 2; ctx.globalAlpha = sel ? .3 : .9; ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+}
+
+// Zwiad mysliwcow (ai_scouting.dm): przerywana linia do sledzonego celu, pelna i podpisana przy namierzaniu radarem
+function rysujZwiad(lista){
+  for(var i = 0; i < lista.length; i++){
+    var sh = lista[i], d = sh.dbg;
+    if(!d || !d.sc) continue;
+    var cel = znajdzW(lista, d.sc);
+    if(!cel) continue;
+    var x1 = px(sh.x), y1 = py(sh.y), x2 = px(cel.x), y2 = py(cel.y);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = SUITE_KOLOR["lidar"];
+    ctx.lineWidth = d.lk ? 1.8 : 1; ctx.globalAlpha = d.lk ? .9 : .4;
+    ctx.setLineDash(d.lk ? [] : [2, 5]); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    if(d.lk) napis("namierza", (x1 + x2) / 2, (y1 + y2) / 2 - 5, SUITE_KOLOR["lidar"], 11, "center", true);
+  }
+}
+
+// Warstwa 2b: do kogo wybrany okret ma kontakt i czym go trzyma
+function rysujKontakty(sel){
+  var cts = sel.cts || [];
+  for(var i = 0; i < cts.length; i++){
+    var inny = znajdzW(AKTUALNE, cts[i].id);
+    if(!inny) continue;
+    var kol = SUITE_KOLOR[cts[i].s] || "#8b93a7";
+    ctx.beginPath();
+    ctx.moveTo(px(sel.x), py(sel.y));
+    ctx.lineTo(px(inny.x), py(inny.y));
+    ctx.strokeStyle = kol; ctx.globalAlpha = .55; ctx.lineWidth = 1;
+    ctx.stroke(); ctx.globalAlpha = 1;
+    napis(cts[i].s, (px(sel.x) + px(inny.x)) / 2, (py(sel.y) + py(inny.y)) / 2 - 4, kol, 11, "center");
+  }
+  // cel, ktorego nie widzimy: pogon w ciemno
+  if(sel.target){
+    var cel = znajdzW(AKTUALNE, sel.target), widzimy = false;
+    for(var k = 0; k < cts.length; k++) if(cts[k].id === sel.target) widzimy = true;
+    if(cel && !widzimy){
+      ctx.beginPath();
+      ctx.moveTo(px(sel.x), py(sel.y));
+      ctx.lineTo(px(cel.x), py(cel.y));
+      ctx.strokeStyle = SUITE_KOLOR["pamięć"]; ctx.globalAlpha = .4;
+      ctx.setLineDash([4, 5]); ctx.lineWidth = 1; ctx.stroke();
+      ctx.setLineDash([]); ctx.globalAlpha = 1;
+    }
+  }
+}
+
+function rysujPunktSzukania(sel){
+  var x = px(sel.sx), y = py(sel.sy);
+  ctx.strokeStyle = SUITE_KOLOR["pamięć"]; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(x - 6, y); ctx.lineTo(x + 6, y);
+  ctx.moveTo(x, y - 6); ctx.lineTo(x, y + 6); ctx.stroke();
+  ctx.beginPath(); ctx.arc(x, y, 9, 0, 6.2832);
+  ctx.globalAlpha = .6; ctx.stroke(); ctx.globalAlpha = 1;
+  napis("szuka tu", x, y + 22, SUITE_KOLOR["pamięć"], 11, "center");
+}
+
+// Warstwa 4: impuls rozchodzi sie po mapie przez 3 s od nadania
+function rysujImpulsy(t){
+  for(var i = 0; i < PULSES.length; i++){
+    var p = PULSES[i], wiek = t - p.t;
+    if(wiek < 0 || wiek > 3) continue;
+    var src = znajdzW(AKTUALNE, p.id);
+    if(!src) continue;
+    ctx.beginPath();
+    ctx.arc(px(src.x), py(src.y), p.range * wiek / 3 * skala(), 0, 6.2832);
+    ctx.strokeStyle = frakcjaKolor(p.faction);
+    ctx.globalAlpha = .55 * (1 - wiek / 3); ctx.lineWidth = 2;
+    ctx.stroke(); ctx.globalAlpha = 1;
+  }
+}
+
+function rysujSlady(){
+  var biez = Math.round(pozycja);
+  var od = Math.max(0, biez - 25);
+  ctx.lineWidth = 1;
+  for(var i = od; i < biez; i++){
+    var a = statki(i), alpha = .05 + .2 * (i - od) / Math.max(1, biez - od);
+    for(var k = 0; k < a.length; k++){
+      if(a[k].tiny) continue;
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = frakcjaKolor(a[k].faction);
+      ctx.fillRect(px(a[k].x) - 1, py(a[k].y) - 1, 2, 2);
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+
+// Pasek czasu z impulsami obu stron
+function rysujPasek(t){
+  var W = PW, H = PH;
+  pctx.clearRect(0, 0, W, H);
+  var sx = function(sec){ return KONIEC ? (sec / KONIEC) * (W - 2) + 1 : 1; };
+  pctx.strokeStyle = "#232b3b"; pctx.lineWidth = 1;
+  pctx.beginPath(); pctx.moveTo(0, H / 2); pctx.lineTo(W, H / 2); pctx.stroke();
+  pctx.fillStyle = "#8b93a7"; pctx.font = "11px Segoe UI, system-ui, sans-serif"; pctx.textAlign = "left";
+  pctx.fillText("impulsy Nanotrasen", 4, 12);
+  pctx.fillText("impulsy Syndykatu", 4, H - 4);
+  for(var i = 0; i < PULSES.length; i++){
+    var p = PULSES[i], gora = /nanotrasen|solgov|nt/i.test(p.faction || "");
+    var x = sx(p.t);
+    pctx.strokeStyle = frakcjaKolor(p.faction);
+    pctx.globalAlpha = (wybrany && p.id === wybrany) ? 1 : .6;
+    pctx.lineWidth = (wybrany && p.id === wybrany) ? 2 : 1;
+    pctx.beginPath();
+    pctx.moveTo(x, gora ? 16 : H - 16);
+    pctx.lineTo(x, H / 2);
+    pctx.stroke();
+    if(p.heard && p.heard.length){
+      pctx.globalAlpha = .35;
+      pctx.beginPath();
+      pctx.arc(x, gora ? 16 : H - 16, 2.5, 0, 6.2832);
+      pctx.fillStyle = frakcjaKolor(p.faction);
+      pctx.fill();
+    }
+    pctx.globalAlpha = 1;
+  }
+  pctx.strokeStyle = "#e8ebf2"; pctx.lineWidth = 1.5;
+  pctx.beginPath(); pctx.moveTo(sx(t), 0); pctx.lineTo(sx(t), H); pctx.stroke();
+}
+
+function panelWybranego(sel){
+  var d = document.getElementById("det");
+  if(!sel){
+    d.innerHTML = wybrany ? "Ten okręt już nie istnieje w tej chwili nagrania." :
+      "Kliknij okręt na mapie albo na liście.";
+    return;
+  }
+  var cts = (sel.cts || []).map(function(c){
+    var o = znajdzW(AKTUALNE, c.id);
+    return '<span style="color:' + (SUITE_KOLOR[c.s] || "#8b93a7") + '">' + c.s + "</span> → " + (o ? krotkaNazwa(o.name) : "?");
+  });
+  var cel = sel.target ? znajdzW(AKTUALNE, sel.target) : null;
+  var html = "<b>" + krotkaNazwa(sel.name) + "</b><div class='meta'>" + (sel.fleet || sel.faction || "") + "</div>";
+  html += wiersz("Taktyka", sel.tactic || "—");
+  if(sel.goal) html += wiersz("Cel AI", CELE_PL[sel.goal] || sel.goal);
+  html += wiersz("Cel", cel ? krotkaNazwa(cel.name) : "brak");
+  html += wiersz("Kadłub", Math.round(sel.hull) + "%");
+  html += wiersz("Strach", Math.round(sel.fear) + " (" + (sel.temperament || "zwykły") + ")");
+  html += wiersz("Sygnatura", (sel.sig != null ? sel.sig : "—") + " · ciepło " + (sel.heat != null ? sel.heat : "—") + " · rozmiar " + (sel.size != null ? sel.size : "—"));
+  if(sel.rng){
+    html += wiersz("Wykrywa " + krotkaNazwa(sel.rng.name) + " z (kamera / IR / radar)",
+      '<span style="color:' + SUITE_KOLOR["optyczny"] + '">' + Math.round(sel.rng.opt) + "</span> / " +
+      '<span style="color:' + SUITE_KOLOR["termiczny"] + '">' + Math.round(sel.rng.ir) + "</span> / " +
+      '<span style="color:' + SUITE_KOLOR["lidar"] + '">' + Math.round(sel.rng.lid) + "</span>");
+  }
+  html += wiersz("Kontakty", cts.length ? cts.join("<br>") : "żadnych");
+  if(sel.silent) html += wiersz("Silniki", "wyłączone, leci rozpędem");
+  if(sel.picket) html += wiersz("Rola", "szpica floty - to ona pulsuje radarem");
+  if(sel.wait) html += wiersz("Stan", "zasadzka: zimne silniki, radar wyłączony");
+  d.innerHTML = html;
+}
+function wiersz(k, v){ return '<div class="row"><span>' + k + "</span><b>" + v + "</b></div>"; }
+
+function listaStatkow(){
+  var wszystkie = (AKTUALNE.length ? AKTUALNE : statki(klatka)).slice();
+  var c = document.getElementById("lista");
+  c.innerHTML = "";
+  var strony = {};
+  wszystkie.forEach(function(sh){
+    var k = (!sh.fleet && !sh.goal && !sh.main) ? "Stacje i obiekty" :
+      (/nanotrasen|solgov|nt/i.test(sh.faction || "") ? "Nanotrasen" : (/syndic|syndyk|pirate/i.test(sh.faction || "") ? "Syndykat" : "Inne"));
+    (strony[k] = strony[k] || []).push(sh);
+  });
+  ["Nanotrasen", "Syndykat", "Inne", "Stacje i obiekty"].forEach(function(k){
+    var lista = strony[k];
+    if(!lista) return;
+    lista.sort(function(a, b){ return (a.tiny ? 1 : 0) - (b.tiny ? 1 : 0) || (b.size || 0) - (a.size || 0) || krotkaNazwa(a.name).localeCompare(krotkaNazwa(b.name)); });
+    var g = document.createElement("div");
+    g.className = "grp";
+    g.innerHTML = "<span>" + k + "</span><span>" + lista.filter(function(x){ return !x.tiny; }).length + " okrętów, " +
+      lista.filter(function(x){ return x.tiny; }).length + " myśliwców</span>";
+    c.appendChild(g);
+    lista.forEach(function(sh){
+      var d = document.createElement("div");
+      d.className = "ship" + (sh.id === wybrany ? " sel" : "");
+      d.innerHTML = '<div class="nm"><span><i class="dot" style="background:' + frakcjaKolor(sh.faction) +
+        '"></i>' + krotkaNazwa(sh.name) + "</span><span style='color:var(--muted)'>" + Math.round(sh.hull) + "%</span></div>" +
+        '<div class="meta">' + (sh.tactic ? '<span class="chip">' + sh.tactic + "</span>" : "") +
+        (sh.silent ? "<span>cichy bieg</span>" : "") +
+        (sh.picket ? "<span>szpica</span>" : "") +
+        (sh.fleeing ? "<span>ucieka</span>" : "") +
+        (sh.fear ? "<span>strach " + Math.round(sh.fear) + "</span>" : "") + "</div>" +
+        '<div class="bar"><i style="width:' + Math.max(0, sh.hull) + '%;background:' +
+        (sh.hull > 50 ? "#5ad18c" : (sh.hull > 20 ? "#ffb648" : "#ff5a5f")) + '"></i></div>';
+      d.onclick = function(){ wybrany = sh.id; rysuj(); listaStatkow(); };
+      c.appendChild(d);
+    });
+  });
+}
+
+function listaZdarzen(){
+  var c = document.getElementById("zdarzenia");
+  c.innerHTML = "";
+  EVENTS.forEach(function(e){
+    var d = document.createElement("div");
+    d.className = "ev";
+    d.dataset.t = e.t;
+    d.innerHTML = "<span>" + czas(e.t) + "</span>" + e.text;
+    d.onclick = function(){ skoczDoCzasu(e.t); };
+    c.appendChild(d);
+  });
+}
+function podswietlZdarzenia(t){
+  var el = document.getElementById("zdarzenia").children;
+  for(var i = 0; i < el.length; i++){
+    var et = parseFloat(el[i].dataset.t);
+    el[i].classList.toggle("now", et <= t && t - et < 4);
+  }
+}
+function skoczDoCzasu(t){
+  for(var i = 0; i < FRAMES.length; i++){
+    if(FRAMES[i].t >= t){ klatka = i; pozycja = i; break; }
+  }
+  rysuj(); listaStatkow();
+}
+
+mapa.onwheel = function(e){
+  e.preventDefault();
+  var r = mapa.getBoundingClientRect();
+  var mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
+  var swiatX = WIDOK.x + mx * WIDOK.bok, swiatY = WIDOK.y + (1 - my) * WIDOK.bok;
+  var k = e.deltaY > 0 ? 1.2 : 1 / 1.2;
+  WIDOK.bok = Math.max(25, Math.min(MAPW * 1.5, WIDOK.bok * k));
+  WIDOK.x = swiatX - mx * WIDOK.bok;
+  WIDOK.y = swiatY - (1 - my) * WIDOK.bok;
+  rysuj();
+};
+var ciagnie = null;
+mapa.onmousedown = function(e){ ciagnie = { x: e.clientX, y: e.clientY, wx: WIDOK.x, wy: WIDOK.y, ruch: false }; };
+window.addEventListener("mousemove", function(e){
+  if(!ciagnie) return;
+  var r = mapa.getBoundingClientRect();
+  var dx = (e.clientX - ciagnie.x) / r.width * WIDOK.bok;
+  var dy = (e.clientY - ciagnie.y) / r.height * WIDOK.bok;
+  if(Math.abs(e.clientX - ciagnie.x) + Math.abs(e.clientY - ciagnie.y) > 3) ciagnie.ruch = true;
+  WIDOK.x = ciagnie.wx - dx;
+  WIDOK.y = ciagnie.wy + dy;
+  rysuj();
+});
+window.addEventListener("mouseup", function(){ setTimeout(function(){ ciagnie = null; }, 0); });
+
+function najblizszy(e){
+  var r = mapa.getBoundingClientRect();
+  var mx = e.clientX - r.left, my = e.clientY - r.top, best = null, bestD = 16;
+  for(var i = 0; i < AKTUALNE.length; i++){
+    var dx = px(AKTUALNE[i].x) - mx, dy = py(AKTUALNE[i].y) - my, d = Math.sqrt(dx * dx + dy * dy);
+    if(d < bestD){ bestD = d; best = AKTUALNE[i]; }
+  }
+  return { sh: best, mx: mx, my: my };
+}
+mapa.addEventListener("mousemove", function(e){
+  var tip = document.getElementById("tip");
+  if(ciagnie && ciagnie.ruch){ tip.style.display = "none"; return; }
+  var n = najblizszy(e);
+  if(!n.sh){ tip.style.display = "none"; mapa.style.cursor = "crosshair"; return; }
+  mapa.style.cursor = "pointer";
+  var sh = n.sh, cel = sh.target ? znajdzW(AKTUALNE, sh.target) : null, sens = null;
+  (sh.cts || []).forEach(function(c){ if(c.id === sh.target) sens = c.s; });
+  tip.innerHTML = "<b style='color:" + frakcjaKolor(sh.faction) + "'>" + krotkaNazwa(sh.name) + "</b>" +
+    "<span class='m'>" + (sh.tactic || "") + (sh.goal ? " · " + (CELE_PL[sh.goal] || sh.goal) : "") + "</span><br>" +
+    "kadłub " + Math.round(sh.hull) + "%" + (sh.fear ? " · strach " + Math.round(sh.fear) : "") +
+    (cel ? "<br>cel: " + krotkaNazwa(cel.name) + (sens ? " <span class='m'>(" + sens + ")</span>" : " <span class='m'>(z meldunku)</span>") : "");
+  var wrap = document.getElementById("mapwrap");
+  var lx = mapa.offsetLeft + n.mx + 14, ly = mapa.offsetTop + n.my + 14;
+  tip.style.display = "block";
+  if(lx + tip.offsetWidth > wrap.clientWidth - 4) lx = mapa.offsetLeft + n.mx - tip.offsetWidth - 14;
+  tip.style.left = lx + "px"; tip.style.top = ly + "px";
+});
+mapa.addEventListener("mouseleave", function(){ document.getElementById("tip").style.display = "none"; });
+
+var dotyk = null;
+function punktyDotyku(e){
+  var r = mapa.getBoundingClientRect(), p = [];
+  for(var i = 0; i < e.touches.length; i++) p.push({ x: e.touches[i].clientX - r.left, y: e.touches[i].clientY - r.top });
+  return p;
+}
+mapa.addEventListener("touchstart", function(e){
+  var p = punktyDotyku(e);
+  dotyk = { p: p, wx: WIDOK.x, wy: WIDOK.y, bok: WIDOK.bok, ruch: false,
+    odl: p.length > 1 ? Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y) : 0 };
+  e.preventDefault();
+}, { passive: false });
+mapa.addEventListener("touchmove", function(e){
+  if(!dotyk) return;
+  var p = punktyDotyku(e);
+  if(p.length > 1 && dotyk.p.length > 1){
+    var odl = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+    var sx = (dotyk.p[0].x + dotyk.p[1].x) / 2, sy = (dotyk.p[0].y + dotyk.p[1].y) / 2;
+    var swiatX = dotyk.wx + sx / SZER * dotyk.bok, swiatY = dotyk.wy + (1 - sy / SZER) * dotyk.bok;
+    WIDOK.bok = Math.max(25, Math.min(MAPW * 1.5, dotyk.bok * dotyk.odl / Math.max(odl, 1)));
+    WIDOK.x = swiatX - sx / SZER * WIDOK.bok;
+    WIDOK.y = swiatY - (1 - sy / SZER) * WIDOK.bok;
+    dotyk.ruch = true;
+  } else if(p.length === 1 && dotyk.p.length === 1){
+    var dx = p[0].x - dotyk.p[0].x, dy = p[0].y - dotyk.p[0].y;
+    if(Math.abs(dx) + Math.abs(dy) > 6) dotyk.ruch = true;
+    WIDOK.x = dotyk.wx - dx / SZER * WIDOK.bok;
+    WIDOK.y = dotyk.wy + dy / SZER * WIDOK.bok;
+  }
+  rysuj();
+  e.preventDefault();
+}, { passive: false });
+mapa.addEventListener("touchend", function(e){
+  if(dotyk && !dotyk.ruch && dotyk.p.length === 1 && !e.touches.length){
+    var r = mapa.getBoundingClientRect();
+    var n = najblizszy({ clientX: dotyk.p[0].x + r.left, clientY: dotyk.p[0].y + r.top });
+    wybrany = n.sh ? n.sh.id : null;
+    rysuj(); listaStatkow();
+  }
+  if(!e.touches.length){ dotyk = null; return; }
+  // Zostal jeden palec po szczypaniu: dalej przesuwamy od tego miejsca, bez zaznaczania
+  var p = punktyDotyku(e);
+  dotyk = { p: p, wx: WIDOK.x, wy: WIDOK.y, bok: WIDOK.bok, ruch: true, odl: 0 };
+});
+
+mapa.onclick = function(e){
+  if(ciagnie && ciagnie.ruch) return;
+  var r = mapa.getBoundingClientRect();
+  var mx = e.clientX - r.left;
+  var my = e.clientY - r.top;
+  var s = AKTUALNE, best = null, bestD = 26;
+  for(var i = 0; i < s.length; i++){
+    var dx = px(s[i].x) - mx, dy = py(s[i].y) - my, d = Math.sqrt(dx * dx + dy * dy);
+    if(d < bestD){ bestD = d; best = s[i]; }
+  }
+  wybrany = best ? best.id : null;
+  rysuj(); listaStatkow();
+};
+pasek.onclick = function(e){
+  var r = pasek.getBoundingClientRect();
+  skoczDoCzasu((e.clientX - r.left) / r.width * KONIEC);
+};
+
+document.getElementById("play").onclick = function(){
+  gra = !gra;
+  this.textContent = gra ? "Pauza" : "Odtwarzaj";
+  this.setAttribute("aria-pressed", gra ? "true" : "false");
+  ostatniCzas = performance.now();
+  if(gra) requestAnimationFrame(tik);
+};
+document.getElementById("scrub").oninput = function(){
+  pozycja = klatka = parseInt(this.value, 10); rysuj(); listaStatkow();
+};
+Array.prototype.forEach.call(document.querySelectorAll("button.seg"), function(b){
+  b.onclick = function(){
+    tempo = parseFloat(b.dataset.tempo);
+    Array.prototype.forEach.call(document.querySelectorAll("button.seg"), function(x){
+      x.setAttribute("aria-pressed", x === b ? "true" : "false");
+    });
+  };
+});
+function przeskocz(o){
+  pozycja = Math.max(0, Math.min(FRAMES.length - 1, pozycja + o));
+  klatka = Math.round(pozycja); rysuj(); listaStatkow();
+}
+document.addEventListener("keydown", function(e){
+  if(e.target && /input|textarea|select/i.test(e.target.tagName) && e.target.type !== "range") return;
+  var krok = FRAMES.length > 1 ? (FRAMES[1].t - FRAMES[0].t) : 2;
+  if(e.code === "Space"){ e.preventDefault(); document.getElementById("play").click(); }
+  else if(e.key === "ArrowRight"){ e.preventDefault(); przeskocz(5 / krok); }
+  else if(e.key === "ArrowLeft"){ e.preventDefault(); przeskocz(-5 / krok); }
+  else if(e.key === "Escape"){ wybrany = null; rysuj(); listaStatkow(); }
+});
+window.addEventListener("resize", function(){ dopasujPlotno(); rysuj(); });
+["con", "rng", "cts", "tac", "pls", "trk"].forEach(function(k){
+  var b = document.getElementById("w-" + k);
+  b.onclick = function(){
+    warstwy[k] = !warstwy[k];
+    b.setAttribute("aria-pressed", warstwy[k] ? "true" : "false");
+    rysuj();
+  };
+});
+
+var pozycja = 0; // klatka jako liczba zmiennoprzecinkowa, zeby 1x nie staneło na zaokraglaniu
+function tik(now){
+  if(!gra) return;
+  var dt = Math.min(0.5, (now - ostatniCzas) / 1000);
+  ostatniCzas = now;
+  var krok = FRAMES.length > 1 ? (FRAMES[1].t - FRAMES[0].t) : 2;
+  pozycja += dt * tempo / krok;
+  if(pozycja >= FRAMES.length - 1){
+    pozycja = FRAMES.length - 1;
+    gra = false;
+    document.getElementById("play").textContent = "Odtwarzaj";
+    document.getElementById("play").setAttribute("aria-pressed", "false");
+  }
+  var nowa = Math.round(pozycja);
+  rysuj(); // co klatke ekranu, zeby ruch byl plynny
+  if(nowa !== klatka){
+    klatka = nowa;
+    listaStatkow(); // przebudowa listy jest droga, wystarczy co klatke zapisu
+  }
+  if(gra) requestAnimationFrame(tik);
+}
+
+document.getElementById("dopasuj").onclick = function(){
+  WIDOK = { x: WIDOK_BAZA.x, y: WIDOK_BAZA.y, bok: WIDOK_BAZA.bok };
+  rysuj();
+};
+
+dopasujPlotno();
+listaZdarzen();
+listaStatkow();
+rysuj();
+</script>
+</body>
+</html>

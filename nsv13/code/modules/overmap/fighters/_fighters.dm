@@ -580,7 +580,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 		if(alert("Co chcesz zrobić?",name,"Wyrzuć pasażerów","Tryb serwisowy") == "Wyrzuć pasażerów")
 			if(!Adjacent(user))
 				return TRUE
-			to_chat(user, "<span class='warning'>Wyrzucanie wszystkich obecnych osób z [src] i włączanie tłumików bezwładności...</span>")
+			to_chat(user, "<span class='warning'>Wyrzucanie wszystkich obecnych osób z [src] i włączanie wspomagania bezwładnościowego (IAS)...</span>")
 			force_eject()
 		else
 			if(!Adjacent(user))
@@ -767,7 +767,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
 			to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 			to_chat(user, "<span class='notice'>Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
-			to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
+			to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by włączać i wyłączać wspomaganie bezwładnościowe (IAS). Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
 			return TRUE
 
 /obj/structure/overmap/small_craft/proc/force_eject(force = FALSE)

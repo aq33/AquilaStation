@@ -70,13 +70,13 @@ GLOBAL_LIST_INIT(computer_beeps, list('nsv13/sound/effects/computer/beep.ogg','n
 		to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
 		to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 		to_chat(user, "<span class='notice'> Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
-		to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny.</span>")
+		to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by włączać i wyłączać wspomaganie bezwładnościowe (IAS). Naciśnij <b>Alt</b>, by przełączać hamulec ręczny.</span>")
 
 	else
 		to_chat(user, "<span class='notice'>Dużymi jednostkami steruje się strzałkami w górę i w dół (W i S w trybie skrótów), przyspieszając lub zwalniając. Strzałkami w lewo i w prawo (A i D) obraca się jednostkę. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
 		to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 		to_chat(user, "<span class='notice'> Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
-		to_chat(user, "<span class='notice'> Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>C</b>, by przełączać między sterowaniem myszą a klawiaturą. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>spację</b>, by przełączać dostępną broń. Naciśnij <b>F</b>, by wykonać akcję specjalną obecnej broni (jeśli jest dostępna).</span>")
+		to_chat(user, "<span class='notice'> Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>C</b>, by przełączać między sterowaniem myszą a klawiaturą. Naciśnij <b>X</b>, by włączać i wyłączać wspomaganie bezwładnościowe (IAS). Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>spację</b>, by przełączać dostępną broń. Naciśnij <b>F</b>, by wykonać akcję specjalną obecnej broni (jeśli jest dostępna).</span>")
 
 /obj/machinery/computer/ship/proc/on_user_stopped_piloting(mob/previous_user)
 	SIGNAL_HANDLER
