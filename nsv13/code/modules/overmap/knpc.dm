@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
-			if(get_turf(H) == path[1])
+			if(length(path) && get_turf(H) == path[1]) // AQ EDIT - ścieżka mogła się wyczerpać podczas wspinaczki
 				increment_path()
 				return TRUE
 		for(var/obj/structure/possible_barrier in this_turf)
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
-			if(get_turf(H) == path[1])
+			if(length(path) && get_turf(H) == path[1]) // AQ EDIT - ścieżka mogła się wyczerpać podczas wspinaczki
 				increment_path()
 				return TRUE
 		step_towards(H, path[1])
