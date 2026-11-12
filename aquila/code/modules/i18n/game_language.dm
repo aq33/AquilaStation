@@ -195,11 +195,25 @@ GLOBAL_LIST_INIT(game_language_deepl, list(
 #undef I18N_MAPTEXT_FONT_DEFAULT
 #undef I18N_MAPTEXT_FONT_CYRILLIC
 
+/// Napisy guzików skina (pasek nad panelem, guziki obok pola czatu) w języku gracza: element skin.dmf = polski napis
+GLOBAL_LIST_INIT(i18n_skin_buttons, list(
+	"changelog" = "Zmiany",
+	"rules" = "Zasady",
+	"report-issue" = "Zgłoś błąd",
+	"saybutton" = "Czat",
+))
+
+/client/proc/i18n_update_skin_buttons()
+	for(var/control in GLOB.i18n_skin_buttons)
+		var/text = GLOB.i18n_skin_buttons[control]
+		winset(src, control, list("text" = capitalize(i18n_for_client(src, text))))
+
 /// Wysyła panelowi język gracza (i słownik, gdy nie gra po polsku)
 /datum/tgui_panel/proc/send_game_language()
 	if(!client || !is_ready())
 		return
 	client.i18n_update_map_font()
+	client.i18n_update_skin_buttons()
 	var/datum/asset/dictionary = client.i18n_chat_asset()
 	if(dictionary && window.send_asset(dictionary))
 		// Klient i tak czeka na plik i ponawia pobieranie (tgui/i18n.ts), ale im wcześniej dojdzie, tym lepiej
