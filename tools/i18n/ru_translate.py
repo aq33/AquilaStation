@@ -76,7 +76,9 @@ def visible(text):
 
 
 # atrybuty z tekstem widocznym dla gracza (tłumaczone); pozostałe (href, class, style...) muszą zostać
-TEXT_ATTRIBUTES = {"value", "title", "placeholder", "alt"}
+TEXT_ATTRIBUTES = {"title", "placeholder", "alt"}
+# value to napis tylko na przycisku formularza; w polu ukrytym, tekstowym czy <option> to dane
+BUTTON_INPUT_TYPES = {"submit", "button", "reset"}
 ATTRIBUTE = re.compile(r"""([\w:-]+)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)""")
 
 
@@ -87,7 +89,11 @@ def tags(text):
         name = bcd.TAG_NAME.match(tag)
         if not name:
             continue
-        attributes = tuple(sorted((k.lower(), v) for k, v in ATTRIBUTE.findall(tag) if k.lower() not in TEXT_ATTRIBUTES))
+        found = [(k.lower(), v) for k, v in ATTRIBUTE.findall(tag)]
+        input_type = next((v.strip("'\"").lower() for k, v in found if k == "type"), "")
+        button = name.group(2).lower() == "input" and input_type in BUTTON_INPUT_TYPES
+        attributes = tuple(sorted((k, v) for k, v in found
+                                  if k not in TEXT_ATTRIBUTES and not (k == "value" and button)))
         out.append(name.groups() + (attributes,))
     return out
 
