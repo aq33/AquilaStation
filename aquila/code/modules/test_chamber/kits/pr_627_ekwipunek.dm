@@ -5,7 +5,7 @@
 	Pasem na naboje kliknij pudełko z nabojami (albo pudełkiem pas): po 1,5 s naboje przechodzą do pasa, aż się zapełni. Pas na granaty mieści tylko granaty, sakwa G8 trzy dowolne rzeczy. \
 	2) Czapka: załóż hardsuit, rozłóż hełm i kliknij go czapką (albo kliknij czapką kombinezon, gdy hełm jest schowany). Czapkę ma być widać na hełmie; Alt-klik na hełm ją zdejmuje. Schowaj hełm i rozłóż ponownie: czapka zostaje. \
 	3) Barykady: zestaw dopisuje cię do drużyny Alpha (jeśli nie masz drużyny); w automacie drużyny pobierz zestaw; w skrzyni są dwa granaty barierowe. Oddaj skrzynię bez nich: brak grzywny. \
-	4) Seks na przycisk: przeczytaj książkę i użyj zaklęcia na obiekcie testowym z kluczem w zasięgu kamery z zestawu (obie postacie muszą mieć akta w konsoli ochrony): oboje dostają w aktach zbrodnię „Publiczne obcowanie płciowe” i status do aresztowania. Poza kamerą: brak wpisu. \
+	4) Seks na przycisk: przeczytaj książkę i użyj zaklęcia na obiekcie testowym z kluczem w zasięgu kamery z zestawu (kamera stoi na środku areny i widzi do 7 pól, więc stańcie przy niej, nie w narożniku; obie postacie muszą mieć akta w konsoli ochrony): oboje dostają w aktach zbrodnię „Publiczne obcowanie płciowe” i status do aresztowania. Poza kamerą: brak wpisu. \
 	5) Odchody: *poop albo wypróżnienie na podłogę: zamiast plamy leżą brązowe grudki (7 wariantów)."
 	items = list(
 		/obj/machinery/camera = 1,
