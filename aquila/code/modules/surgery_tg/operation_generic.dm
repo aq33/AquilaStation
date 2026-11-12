@@ -72,7 +72,7 @@
 		span_notice("Wokół nacięcia ([strefa_pl(limb.body_zone)]) [patient] zbiera się krew."),
 	)
 	// AQUILA - tg: krwawienie liczone ze stanu SURGERY_VESSELS_UNCLAMPED. U nas krwawienie jak w starym kroku nacięcia.
-	patient.add_bleeding(BLEED_CUT)
+	patient.add_bleeding(BLEED_CUT, limb.body_zone)
 
 /// Grubsza skóra (obcy)
 /datum/surgery_operation/limb/incise_skin/thick
@@ -222,7 +222,7 @@
 				qdel(wound)
 	limb.remove_surgical_state(ALL_SURGERY_STATES_UNSET_ON_CLOSE)
 	// AQUILA - jak stary krok zamknięcia: koniec krwawienia
-	limb.owner?.cauterise_wounds()
+	limb.owner?.cauterise_wounds(zone = limb.body_zone)
 
 /datum/surgery_operation/limb/close_skin/abductor
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
@@ -270,7 +270,7 @@
 	limb.add_surgical_state(SURGERY_VESSELS_CLAMPED)
 	limb.remove_surgical_state(SURGERY_VESSELS_UNCLAMPED)
 	// AQUILA - tg zmniejsza krwawienie przez stan naczyń, u nas zdejmujemy krwawienie z nacięcia
-	limb.owner?.cauterise_wounds(BLEED_CUT)
+	limb.owner?.cauterise_wounds(BLEED_CUT, limb.body_zone)
 
 /datum/surgery_operation/limb/clamp_bleeders/abductor
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
