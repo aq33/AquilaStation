@@ -49,9 +49,60 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
+"aaj" = (
+/obj/structure/table/reinforced,
+/obj/item/forging_hammer{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/munitions_analyzer{
+	pixel_x = -6
+	},
+/obj/item/storage/box/munition_casts{
+	pixel_y = 8
+	},
+/obj/item/forging_hammer,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
+"aal" = (
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/obj/machinery/munitions_forge/anvil,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
+"aam" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/munitions_forge/assembly_bench,
+/obj/structure/sign/ship/nosmoking{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
+"aan" = (
+/obj/effect/turf_decal/solgov{
+	icon_state = "bottom-left-s"
+	},
+/obj/machinery/computer/ship/dradis/sensors{
+	dir = 8
+	},
+/turf/open/floor/carpet/ship/blue,
+/area/bridge/cic)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -2703,13 +2754,6 @@
 /obj/effect/spawner/structure/window/reinforced/ship,
 /turf/open/floor/plating,
 /area/bridge/cic)
-"cfD" = (
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/advtaser,
-/obj/item/gun/energy/e_gun/advtaser,
-/obj/item/gun/energy/e_gun/advtaser,
-/turf/open/floor/carpet/police,
-/area/ai_monitored/security/armory)
 "cfV" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/engine,
@@ -10411,13 +10455,6 @@
 	},
 /turf/open/floor/carpet/ship/blue,
 /area/crew_quarters/cryopods)
-"ioB" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "ipo" = (
 /obj/machinery/door/poddoor/ship{
 	dir = 1;
@@ -11530,15 +11567,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/lobby)
-"jgc" = (
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "jgk" = (
 /turf/closed/wall/r_wall/ship,
 /area/maintenance/starboard/aft)
@@ -16135,15 +16163,6 @@
 /obj/effect/turf_decal/guideline/guideline_mid_alt/purple,
 /turf/open/floor/carpet/ship,
 /area/hallway/upper/primary/starboard)
-"mUv" = (
-/obj/machinery/computer/card{
-	dir = 8
-	},
-/obj/effect/turf_decal/solgov{
-	icon_state = "bottom-left-s"
-	},
-/turf/open/floor/carpet/ship/blue,
-/area/bridge/cic)
 "mUV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -18130,10 +18149,6 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/crew_quarters/heads/maa)
-"oON" = (
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "oOQ" = (
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment,
@@ -18806,13 +18821,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"prw" = (
-/obj/machinery/munitions_forge/anvil,
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "prG" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 9
@@ -20091,24 +20099,6 @@
 	},
 /turf/open/floor/carpet/ship/blue,
 /area/crew_quarters/cryopods)
-"qsj" = (
-/obj/structure/table/reinforced,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/munitions_analyzer{
-	pixel_x = -6
-	},
-/obj/item/storage/box/munition_casts{
-	pixel_y = 8
-	},
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "qsp" = (
 /obj/structure/reagent_dispensers/foamtank/hull_repair_juice,
 /obj/item/extinguisher/advanced/hull_repair_juice,
@@ -21825,20 +21815,6 @@
 	},
 /turf/open/floor/carpet/police,
 /area/security/brig)
-"rYh" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/sign/ship/nosmoking{
-	pixel_y = 27
-	},
-/obj/machinery/munitions_forge/assembly_bench,
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "rYH" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
@@ -25170,20 +25146,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/security)
-"uQA" = (
-/obj/item/radio/intercom/directional/north,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/light_switch/north{
-	pixel_x = -12
-	},
-/obj/effect/turf_decal/tile/blue/flat_side/nfz{
-	dir = 1
-	},
-/obj/machinery/duct,
-/turf/open/floor/monotile/light,
-/area/medical/medbay)
 "uRm" = (
 /obj/machinery/netpod,
 /obj/effect/turf_decal/box,
@@ -59942,7 +59904,7 @@ qdJ
 vuM
 aCU
 mkr
-mUv
+aan
 qao
 vtw
 muH
@@ -61166,8 +61128,8 @@ lGb
 lGb
 lGb
 bwd
-rYh
-prw
+aam
+hUL
 ncr
 hUL
 bwd
@@ -61371,7 +61333,7 @@ bwd
 wQk
 iCz
 ncr
-jgc
+aal
 bwd
 oqd
 wEM
@@ -61573,7 +61535,7 @@ bwd
 urG
 hUL
 ncr
-hUL
+aaj
 bwd
 oqd
 wEM
@@ -61975,7 +61937,7 @@ lfF
 rle
 bwd
 qTb
-qsj
+hUL
 ifm
 bwd
 oqd

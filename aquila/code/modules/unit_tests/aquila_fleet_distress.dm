@@ -27,7 +27,7 @@
 	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
 	helper.all_ships += ship
 	caller_fleet.all_ships += ship
-	var/fail = check_responders() || check_retreat_system() || check_state(ship) || check_near_players() || check_blocked_retreat(ship)
+	var/fail = check_responders() || check_no_chain_calls() || check_retreat_system() || check_state(ship) || check_near_players() || check_blocked_retreat(ship)
 	next_door.fleets -= helper
 	helper.all_ships = list()
 	caller_fleet.all_ships = list()
@@ -52,6 +52,17 @@
 	helper.alignment = caller_fleet.alignment
 	if(responders[helper])
 		return "A fleet of another faction answered a distress call"
+
+/// Reinforcements that start losing do not call more reinforcements
+/datum/unit_test/aquila_fleet_distress/proc/check_no_chain_calls()
+	helper.ai_distress_sent = FALSE
+	if(!helper.wants_ai_distress_call(0.5, 0))
+		return "A fleet losing half its ships did not want to call for help"
+	helper.ai_is_reinforcement = TRUE
+	var/wants = helper.wants_ai_distress_call(0.5, 70)
+	helper.ai_is_reinforcement = FALSE
+	if(wants)
+		return "A fleet that came as reinforcements called for reinforcements of its own"
 
 /datum/unit_test/aquila_fleet_distress/proc/check_retreat_system()
 	var/datum/star_system/target = caller_fleet.pick_ai_retreat_system()
