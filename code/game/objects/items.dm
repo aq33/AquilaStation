@@ -651,6 +651,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(!S.hardattacks)
 					S.attackby(src, owner)
 					owner.visible_message("<span class='danger'>[S] rani się o [src] należący do [owner]!</span>")
+			// AQ EDIT START - basic moby: hardattacks jak u simple animali
+			else if(isbasicmob(L))
+				var/mob/living/basic/S = L
+				if(!S.hardattacks)
+					S.attackby(src, owner)
+					owner.visible_message("<span class='danger'>[S] rani się o [src] należący do [owner]!</span>")
+			// AQ EDIT END
 			else
 				L.attackby(src, owner)
 				owner.visible_message("<span class='danger'>[L] rani się o [src] należący do [owner]!</span>")

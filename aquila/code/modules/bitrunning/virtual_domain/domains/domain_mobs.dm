@@ -114,41 +114,7 @@
 	icon_state = "abductor_agent"
 
 
-/// Sarna z Polowania na Łąkach
-/mob/living/simple_animal/deer
-	name = "sarna"
-	desc = "Łagodne, spokojne zwierzę leśne. Jak to się znalazło w kosmosie?"
-	icon = 'aquila/icons/mob/bitrunning_mobs.dmi'
-	icon_state = "deer-doe"
-	icon_living = "deer-doe"
-	icon_dead = "deer-doe-dead"
-	gender = FEMALE
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak_emote = list("chrząka", "cicho chrząka")
-	emote_see = list("strzyże uszami.", "skubie trawę.", "rozgląda się czujnie.")
-	speak_chance = 1
-	turns_per_move = 3
-	butcher_results = list(/obj/item/food/meat/slab = 3)
-	response_help = "głaszcze"
-	response_disarm = "delikatnie odpycha"
-	response_harm = "kopie"
-	attacktext = "bodzie"
-	attack_sound = 'sound/weapons/punch1.ogg'
-	health = 75
-	maxHealth = 75
-	melee_damage = 5
-	gold_core_spawnable = FRIENDLY_SPAWN
-
-/mob/living/simple_animal/deer/Life()
-	. = ..()
-	if(stat != CONSCIOUS || buckled)
-		return
-	// płochliwa: ucieka od ludzi w pobliżu
-	for(var/mob/living/carbon/human/threat in oview(4, src))
-		if(threat.stat != CONSCIOUS)
-			continue
-		walk_away(src, threat, 7, 3)
-		return
+// Sarna z Polowania na Łąkach jest basic mobem: aquila/code/modules/mob/living/basic/farm_animals/deer.dm
 
 
 /// Gondole z Asteroidy Gondoli - pchają skrzynię z łupem

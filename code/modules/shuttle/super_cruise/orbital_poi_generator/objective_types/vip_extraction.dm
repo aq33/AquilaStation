@@ -36,8 +36,9 @@
 	created_human.set_playable(ROLE_EXPLORATION_VIP)
 	created_human.mind_initialize()
 	//Remove nearby dangers
-	for(var/mob/living/simple_animal/hostile/SA in range(10, created_human))
-		qdel(SA)
+	for(var/mob/living/SA in range(10, created_human)) // AQ EDIT - basic moby: ksenomorfy, mi-go i hiveboty z generatora też
+		if(ishostile(SA) || is_hostile_basicmob(SA)) // AQ EDIT
+			qdel(SA)
 	var/antag_elligable = FALSE
 	switch(pickweight(list("centcom_official" = 4, "greytide" = 3)))
 		if("centcom_official")
