@@ -121,9 +121,9 @@
 	var/czerwone = 0
 	var/list/where = list()
 	for(var/mob/living/M as anything in new_mobs)
-		if(M.type == /mob/living/simple_animal/hostile/kurwinoxy)
+		if(M.type == /mob/living/basic/kurwinoxy)
 			kurwinoxy++
-		else if(M.type == /mob/living/simple_animal/hostile/kurwinoxy/czerwony)
+		else if(M.type == /mob/living/basic/kurwinoxy/czerwony)
 			czerwone++
 		else
 			return "the storm spawned [M.type]"

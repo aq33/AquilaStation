@@ -33,7 +33,7 @@
 /area/template_noop)
 "ah" = (
 /obj/structure/lattice/catwalk,
-/mob/living/simple_animal/hostile/pirate/ranged/space{
+/mob/living/basic/trooper/pirate/ranged/space{
 	environment_smash = 0
 	},
 /turf/template_noop,
@@ -186,7 +186,7 @@
 /area/shuttle/caravan/freighter3)
 "aP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/mob/living/simple_animal/hostile/pirate/ranged/space{
+/mob/living/basic/trooper/pirate/ranged/space{
 	environment_smash = 0
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -302,7 +302,7 @@
 	},
 /area/shuttle/caravan/freighter2)
 "bl" = (
-/mob/living/simple_animal/hostile/carp,
+/mob/living/basic/carp,
 /turf/template_noop,
 /area/template_noop)
 "br" = (
@@ -485,7 +485,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter3)
 "gT" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter3)
@@ -633,7 +633,7 @@
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/stormtrooper,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter3)
 "hz" = (
@@ -914,7 +914,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter3)
@@ -1124,7 +1124,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/pirate/ranged/space{
+/mob/living/basic/trooper/pirate/ranged/space{
 	environment_smash = 0
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1137,7 +1137,7 @@
 /area/shuttle/caravan/freighter2)
 "jO" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/pirate/ranged/space{
+/mob/living/basic/trooper/pirate/ranged/space{
 	environment_smash = 0
 	},
 /turf/open/floor/plating/airless,

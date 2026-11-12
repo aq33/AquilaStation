@@ -11,7 +11,7 @@
 	},
 /area/ruin/powered)
 "d" = (
-/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+/mob/living/basic/mining/goliath,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface{
 	initial_gas_mix = "TEMP=2.7"
 	},

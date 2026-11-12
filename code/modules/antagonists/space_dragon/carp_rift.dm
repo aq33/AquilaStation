@@ -16,8 +16,8 @@
 	var/datum/antagonist/space_dragon/dragon = owner.mind?.has_antag_datum(/datum/antagonist/space_dragon)
 	if(!dragon)
 		return
-	var/mob/living/simple_animal/hostile/space_dragon/S = owner
-	if(S.using_special)
+	var/mob/living/basic/space_dragon/S = owner // AQ EDIT - basic moby
+	if(HAS_TRAIT(S, TRAIT_WING_BUFFET)) // AQ EDIT - basic moby
 		return
 	if(S.can_summon_rifts)
 		to_chat(S, "<span class='warning'>Przez twoją porażkę nie możesz przywoływać szczelin!</span>")
@@ -120,16 +120,16 @@
 
 /obj/structure/carp_rift/process(delta_time)
 	// Heal carp around us
-	for(var/mob/living/simple_animal/hostile/hostilehere in range(1))
-		if("carp" in hostilehere.faction)
-			hostilehere.adjustHealth(-10)
+	for(var/mob/living/hostilehere in range(1, src)) // AQ EDIT - basic moby: smok i karpie to nie tylko simple_animal/hostile
+		if(hostilehere.stat != DEAD && (isbasicmob(hostilehere) || ishostile(hostilehere)) && ("carp" in hostilehere.faction)) // AQ EDIT - basic moby: zwierzęta, nie załoga w kostiumie karpia
+			hostilehere.adjustBruteLoss(-10) // AQ EDIT - basic moby
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"
 
 	// If we're fully charged, just start mass spawning carp and move around.
 	if(charge_state == CHARGE_COMPLETED)
 		if(DT_PROB(1.25, delta_time))
-			new /mob/living/simple_animal/hostile/carp/advanced(loc)
+			new /mob/living/basic/carp/advanced(loc) // AQ EDIT - basic moby
 		if(DT_PROB(1.5, delta_time))
 			var/rand_dir = pick(GLOB.cardinals)
 			Move(get_step(src, rand_dir), rand_dir)
@@ -216,7 +216,7 @@
 	if(carp_stored <= 0)
 		to_chat(user, "<span class='warning'>Szczelina przywołała już dość karpi!</span>")
 		return FALSE
-	var/mob/living/simple_animal/hostile/carp/advanced/newcarp = new(loc)
+	var/mob/living/basic/carp/advanced/newcarp = new(loc) // AQ EDIT - basic moby
 	var/datum/action/innate/wavespeak/wave_action = new
 	wave_action.Grant(newcarp)
 	if(!is_listed)

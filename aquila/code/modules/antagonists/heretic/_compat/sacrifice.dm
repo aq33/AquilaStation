@@ -268,7 +268,7 @@
 	if(. == INITIALIZE_HINT_QDEL)
 		return
 	for (var/i in 1 to rand(2, 3))
-		new /mob/living/simple_animal/hostile/asteroid/hivelordbrood(loc)
+		new /mob/living/basic/hivelord_brood(loc)
 
 // ---------------------------------------------------------------------------
 // Latarka i stetoskop (tg: penlight_examine / hear_beat_noise / hear_breath_noise)
