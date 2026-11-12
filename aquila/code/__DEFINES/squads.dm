@@ -23,6 +23,8 @@
 #define SQUAD_MARKER_RETREAT "retreat"
 #define SQUAD_MARKER_RALLY "rally"
 #define SQUAD_MARKER_TARGET "target"
+/// Osobisty znacznik najbliższego automatu drużyny („Po sprzęt” z konsoli XO), poza listą SQUAD_MARKER_TYPES
+#define SQUAD_MARKER_GEAR "gear"
 
 #define SQUAD_MARKER_TYPES list(SQUAD_MARKER_MOVE, SQUAD_MARKER_ATTACK, SQUAD_MARKER_DEFEND, SQUAD_MARKER_RETREAT, SQUAD_MARKER_RALLY, SQUAD_MARKER_TARGET)
 

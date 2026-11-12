@@ -127,6 +127,10 @@
 			if(!message)
 				return FALSE
 			return squad.aq_issue_order(user, message, from_console = TRUE)
+		if("aq_gear_ping")
+			if(!squad)
+				return FALSE
+			return !isnull(squad.aq_ping_gear(user))
 		if("aq_toggle_access")
 			if(!squad)
 				return FALSE

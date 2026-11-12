@@ -229,6 +229,13 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
           >
             {squad.order_cooldown > 0 ? `${squad.order_cooldown} s` : 'Rozkaz'}
           </Button>
+          <Button
+            icon="box-open"
+            tooltip="Każdy członek drużyny dostaje własny znacznik przy najbliższym automacie drużyny"
+            onClick={() => act('aq_gear_ping', { squad_id: squad.id })}
+          >
+            Po sprzęt
+          </Button>
         </>
       }
     >
