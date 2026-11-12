@@ -21,7 +21,7 @@
 		"type": "auxtools",
 		"request": "launch",
 		"name": "Debug world (auxtools, DreamSeeker)",
-		"preLaunchTask": "Build All",
+		"preLaunchTask": "Build All (auxtools)",
 		"dmb": "${workspaceFolder}/nsv13.dmb",
 		"defines": ["CBT"]
 	},
@@ -29,7 +29,7 @@
 		"type": "auxtools",
 		"request": "launch",
 		"name": "Debug world (auxtools, DreamDaemon)",
-		"preLaunchTask": "Build All",
+		"preLaunchTask": "Build All (auxtools)",
 		"dmb": "${workspaceFolder}/nsv13.dmb",
 		"defines": ["CBT"],
 		"server": "dd"
