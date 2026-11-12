@@ -423,10 +423,10 @@
 		rendered = "<span class='big'>[rendered]</span>"
 	for(var/mob/S in GLOB.player_list)
 		if(!S.stat && ("carp" in S.faction))
-			to_chat(S, rendered)
+			aq_to_chat_speech(S, rendered, message, src) // AQ EDIT - tłumaczenie obcokrajowca (aquila/code/modules/i18n/foreigner.dm)
 		if(S in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(S, src)
-			to_chat(S, "[link] [rendered]")
+			aq_to_chat_speech(S, "[link] [rendered]", message, src) // AQ EDIT - tłumaczenie obcokrajowca
 
 /datum/action/cooldown/gust_attack
 	name = "Atak podmuchem"

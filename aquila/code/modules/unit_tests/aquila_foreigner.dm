@@ -48,6 +48,19 @@
 	TEST_ASSERT(!foreigner.aq_translated_say, "Translated say flag stayed on")
 	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATED_SPEECH), "Filter bypass trait stayed on after the translated say")
 
+	// Własny czasownik: przetłumaczony trafia do message_mods, a nie do treści
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "shouts", "krzyczy")
+	heard_raw = null
+	foreigner.say("shouts*Hello there")
+	TEST_ASSERT(heard_raw == "Cześć.", "Custom verb leaked into the translated speech: [heard_raw]")
+	TEST_ASSERT(heard_mods?[MODE_CUSTOM_SAY_EMOTE] == "krzyczy", "Translated custom verb was lost: [heard_mods?[MODE_CUSTOM_SAY_EMOTE]]")
+	// Gwiazdka w tłumaczeniu zostaje w treści i nie robi z niej czasownika
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star please", "Gwiazdka * proszę")
+	heard_raw = null
+	foreigner.say("Star please")
+	TEST_ASSERT(heard_raw == "Gwiazdka * proszę.", "Asterisk in the translation was changed: [heard_raw]")
+	TEST_ASSERT(!heard_mods?[MODE_CUSTOM_SAY_EMOTE], "Asterisk in the translation became a custom verb")
+
 	// Bez klucza API i bez pamięci: tekst przechodzi bez tłumaczenia, ale we Wspólnym
 	if(!CONFIG_GET(string/deepl_api_key))
 		heard_raw = null
@@ -65,12 +78,95 @@
 	// Spóźnione tłumaczenie po śmierci nie wychodzi (say() puściłby je na czat duchów)
 	heard_raw = null
 	foreigner.death()
-	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), list("Za późno"))
+	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), /datum/language/english, list("Za późno"))
 	TEST_ASSERT(isnull(heard_raw), "Dead foreigner still spoke the late translation: [heard_raw]")
 
 	UnregisterSignal(crew, COMSIG_MOVABLE_HEAR)
 	SSticker.minds -= foreigner.mind
 	SStranslation.cache = list()
+
+/// Języki antagonistów tłumaczą się bez tłumacza, a wbudowany tłumacz idzie z umysłem na nowe ciało (kult: konstrukt)
+/datum/unit_test/aquila_foreigner_antag_language
+	var/heard_language
+	var/heard_raw
+	var/list/heard_mods
+
+/datum/unit_test/aquila_foreigner_antag_language/proc/on_hear(datum/source, list/hearing_args)
+	SIGNAL_HANDLER
+	heard_language = hearing_args[3]
+	heard_raw = hearing_args[HEARING_RAW_MESSAGE]
+	heard_mods = hearing_args[7]
+
+/datum/unit_test/aquila_foreigner_antag_language/Run()
+	var/mob/living/carbon/human/foreigner = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/cultist = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	foreigner.mind_initialize()
+	cultist.mind_initialize()
+	foreigner.aq_make_foreigner()
+	foreigner.grant_language(/datum/language/narsie)
+	cultist.grant_language(/datum/language/narsie)
+	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Foreigner already has a translator")
+
+	// Obcokrajowiec-kultysta bez słuchawek: Polak słyszy tłumaczenie, dalej po Nar'Siańsku
+	RegisterSignal(cultist, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Blood for the Geometer", "Krew dla Geometry")
+	foreigner.say(",nBlood for the Geometer")
+	TEST_ASSERT(heard_language == /datum/language/narsie, "Translated cult speech changed language: [heard_language]")
+	TEST_ASSERT(heard_raw == "Krew dla Geometry.", "Cultist did not hear the translation: [heard_raw]")
+	TEST_ASSERT(!foreigner.aq_translated_say && !foreigner.aq_translated_say_mods, "Translated say state stayed on")
+	if(!CONFIG_GET(string/deepl_api_key))
+		heard_raw = null
+		foreigner.say(",nNobody translated this")
+		TEST_ASSERT(heard_language == /datum/language/narsie, "Untranslated cult speech changed language: [heard_language]")
+		TEST_ASSERT(heard_raw == "Nobody translated this.", "Untranslated cult speech changed: [heard_raw]")
+	// Angielski bez tłumacza dalej idzie bez tłumaczenia
+	heard_raw = null
+	foreigner.say("Blood for the Geometer")
+	TEST_ASSERT(heard_language == /datum/language/english && heard_raw == "Blood for the Geometer.", "English without a translator was translated: [heard_language] [heard_raw]")
+	UnregisterSignal(cultist, COMSIG_MOVABLE_HEAR)
+
+	// Polak-kultysta mówi po Nar'Siańsku: obcokrajowiec, który zna język, dostaje tłumaczenie bez tłumacza
+	TEST_ASSERT(foreigner.aq_hears_via_translator(/datum/language/narsie), "Foreigner does not get Nar'Sian translated")
+	TEST_ASSERT(!foreigner.aq_hears_via_translator(/datum/language/common), "Foreigner without a translator gets Common translated")
+	TEST_ASSERT(!foreigner.aq_hears_via_translator(/datum/language/draconic), "Foreigner gets a language he does not know translated")
+	TEST_ASSERT(!cultist.aq_hears_via_translator(/datum/language/narsie), "Polish cultist would get Nar'Sian translated")
+	RegisterSignal(foreigner, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
+	SStranslation.cache_set(DEEPL_LANG_PL, DEEPL_LANG_EN, "Krew dla Geometry.", "Blood for the Geometer.")
+	heard_raw = null
+	foreigner.aq_translate_heard("", cultist, /datum/language/narsie, "Krew dla Geometry.", null, list(), list())
+	TEST_ASSERT(heard_language == /datum/language/narsie, "Translated Nar'Sian was not kept in Nar'Sian: [heard_language]")
+	TEST_ASSERT(heard_raw == "Blood for the Geometer.", "Foreigner did not get the translation: [heard_raw]")
+	TEST_ASSERT(heard_mods?[MODE_AQ_TRANSLATED], "Translated speech is not marked, it would loop back to the translator")
+	UnregisterSignal(foreigner, COMSIG_MOVABLE_HEAR)
+
+	// Wbudowany tłumacz siedzi w umyśle: konstrukt dostaje go razem z umysłem, a stare ciało go traci
+	foreigner.aq_give_builtin_translator(foreigner)
+	TEST_ASSERT(HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Built-in translator gives no trait")
+	var/datum/mind/mind = foreigner.mind
+	var/mob/living/simple_animal/hostile/construct/armored/construct = allocate(/mob/living/simple_animal/hostile/construct/armored, run_loc_floor_bottom_left)
+	mind.transfer_to(construct)
+	TEST_ASSERT(construct.mind == mind && mind.aq_foreigner, "Construct did not get the foreign mind")
+	TEST_ASSERT(HAS_TRAIT(construct, TRAIT_AQ_TRANSLATOR), "Built-in translator did not move to the construct")
+	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Old body kept the built-in translator")
+	TEST_ASSERT(!construct.has_language(/datum/language/common), "Construct with a foreign mind understands Common")
+	TEST_ASSERT(construct.aq_hears_via_translator(/datum/language/common), "Construct with a foreign mind does not get Common translated")
+
+	SSticker.minds -= mind
+	SSticker.minds -= cultist.mind
+	SStranslation.cache = list()
+
+/// Formatowanie mowy (+b+ _u_ |i|) idzie do DeepL jako znaczniki HTML i wraca jako te same znaczniki (bez sieci)
+/datum/unit_test/aquila_translation_emphasis/Run()
+	var/original = "Hej +ty+, _patrz_ |tu| <3 & \"co\""
+	var/masked = aq_mask_emphasis(original)
+	TEST_ASSERT(findtext(masked, "<b>ty</b>") && findtext(masked, "<u>patrz</u>") && findtext(masked, "<i>tu</i>"), "Emphasis was not masked as HTML: [masked]")
+	TEST_ASSERT(!findtext(masked, "<3"), "Plain text was not HTML-encoded: [masked]")
+	TEST_ASSERT(aq_unmask_emphasis(masked) == original, "Masking is not reversible: [aq_unmask_emphasis(masked)]")
+	// Tak wraca odpowiedź DeepL: środek znaczników przetłumaczony, znaczniki zostają
+	var/answer = aq_unmask_emphasis("Hi <b>you</b>, <u>look</u> <i>here</i> &lt;3 &amp; &quot;co&quot;")
+	TEST_ASSERT(answer == "Hi +you+, _look_ |here| <3 & \"co\"", "DeepL answer was not unmasked: [answer]")
+	TEST_ASSERT(aq_has_emphasis(original), "Emphasis was not detected")
+	TEST_ASSERT(!aq_has_emphasis("Zwykłe zdanie, 2 + 2 i a_b"), "Plain sentence counted as emphasis")
 
 /// Czip tłumacza: własne gniazdo w słuchawkach (klucze zostają wolne), działa tylko na uszach, wychodzi multitoolem
 /datum/unit_test/aquila_translator_chip/Run()

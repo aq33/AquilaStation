@@ -39,6 +39,8 @@ SUBSYSTEM_DEF(translation)
 	var/datum/http_request/request
 	var/list/datum/callback/callbacks = list()
 	var/started
+	/// Teksty poszły jako HTML ze znacznikami formatowania (aq_mask_emphasis), odpowiedź trzeba z nich odpakować
+	var/html = FALSE
 
 /datum/controller/subsystem/translation/stat_entry(msg)
 	msg = "W toku: [length(pending)]"
@@ -90,11 +92,23 @@ SUBSYSTEM_DEF(translation)
 	job.target_lang = target_lang
 	job.callbacks += on_done
 	job.started = world.time
+	// Formatowanie mowy (+pogrubienie+, _podkreślenie_, |kursywa|) idzie jako znaczniki HTML, żeby DeepL go nie zjadł ani nie przetłumaczył
+	var/list/sent = job.texts
+	for(var/text in job.texts)
+		if(aq_has_emphasis(text))
+			job.html = TRUE
+			break
+	if(job.html)
+		sent = list()
+		for(var/text in job.texts)
+			sent += aq_mask_emphasis(text)
 	var/list/body = list(
-		"text" = job.texts,
+		"text" = sent,
 		"source_lang" = source_lang,
 		"target_lang" = target_lang == DEEPL_LANG_EN ? DEEPL_LANG_EN_TARGET : target_lang,
 	)
+	if(job.html)
+		body["tag_handling"] = "html"
 	job.request = new
 	job.request.prepare(RUSTG_HTTP_METHOD_POST, deepl_url(api_key), json_encode(body), list(
 		"Authorization" = "DeepL-Auth-Key [api_key]",
@@ -157,6 +171,8 @@ SUBSYSTEM_DEF(translation)
 		if(!istext(translated))
 			log_api_error("nieoczekiwana odpowiedź: [response.body]")
 			return null
+		if(job.html)
+			translated = aq_unmask_emphasis(translated)
 		. += translated
 		cache_set(job.source_lang, job.target_lang, job.texts[index], translated)
 		cache_set(job.target_lang, job.source_lang, translated, job.texts[index])
@@ -172,6 +188,34 @@ SUBSYSTEM_DEF(translation)
 	if(!(copytext(text, length(text)) in list("!", ".", "?", ":", "\"", "-", "~")))
 		text += "."
 	return capitalize(text)
+
+/// Tekst ma znaczniki formatowania mowy, które say_emphasis() zamienia na pogrubienie, podkreślenie i kursywę
+/proc/aq_has_emphasis(text)
+	return aq_mask_emphasis(text) != html_encode(text)
+
+/**
+ * Tekst dla DeepL z tag_handling=html: zakodowany HTML, a znaczniki +x+ _x_ |x| jako <b>, <u>, <i> (te same wzorce co say_emphasis()).
+ * DeepL tłumaczy środek znacznika i zostawia sam znacznik, a aq_unmask_emphasis() odwraca to po odpowiedzi.
+ */
+/proc/aq_mask_emphasis(text)
+	var/static/regex/italics = regex("(?<!\\\\)\\|(.+?)(?<!\\\\)\\|", "g")
+	var/static/regex/bold = regex("(?<!\\\\)\\+(.+?)(?<!\\\\)\\+", "g")
+	var/static/regex/underline = regex("(?<!\\\\)_(.+?)(?<!\\\\)_", "g")
+	text = html_encode(text)
+	text = italics.Replace_char(text, "<i>$1</i>")
+	text = bold.Replace_char(text, "<b>$1</b>")
+	text = underline.Replace_char(text, "<u>$1</u>")
+	return text
+
+/// Odpowiedź DeepL w HTML z powrotem jako zwykły tekst ze znacznikami formatowania mowy
+/proc/aq_unmask_emphasis(text)
+	var/static/regex/italics = regex("<i>(.*?)</i>", "gi")
+	var/static/regex/bold = regex("<b>(.*?)</b>", "gi")
+	var/static/regex/underline = regex("<u>(.*?)</u>", "gi")
+	text = italics.Replace_char(text, "|$1|")
+	text = bold.Replace_char(text, "+$1+")
+	text = underline.Replace_char(text, "_$1_")
+	return html_decode(text)
 
 /datum/controller/subsystem/translation/proc/log_api_error(text)
 	if(world.time < last_error_log + 1 MINUTES)
