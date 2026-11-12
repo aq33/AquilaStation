@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 import tomllib
 from collections import Counter, defaultdict
 
@@ -51,6 +52,8 @@ FORKS = {
     "infinitystation_Baystation12": ["up_Baystation12"],
     "TauCetiStation_TauCetiClassic": ["up_Baystation12", "up_nsv13"],
 }
+# domyślny katalog klonów i kandydatów (ten sam w tools/i18n/ru_translate.py)
+DEFAULT_CLONES = os.path.join(os.environ.get("TEMP") or tempfile.gettempdir(), "ru")
 CACHE = "ru_pairs_cache.json"
 CANDIDATES = "ru_candidates.json"
 
@@ -324,7 +327,7 @@ def apply(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("command", choices=["collect", "apply"])
-    ap.add_argument("--clones", default=os.path.join(os.environ.get("TEMP", "/tmp"), "ru"))
+    ap.add_argument("--clones", default=DEFAULT_CLONES)
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
     {"collect": collect, "apply": apply}[args.command](args)

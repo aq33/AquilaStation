@@ -23,11 +23,11 @@ import json
 import os
 import re
 import sys
-import tempfile
 
 sys.path.insert(0, os.path.dirname(__file__))
 import build_chat_dict as bcd  # noqa: E402
 import extract_pairs as ep  # noqa: E402
+import ru_sources  # noqa: E402
 
 TRANSLATED = "strings/i18n/ru_translated.json"
 SOURCES = [TRANSLATED, "strings/i18n/ru_manual.json"]
@@ -195,7 +195,7 @@ def main():
     ap.add_argument("command", choices=["batches", "merge"])
     ap.add_argument("dir")
     ap.add_argument("--size", type=int, default=400)
-    ap.add_argument("--candidates", default=os.path.join(os.environ.get("TEMP") or tempfile.gettempdir(), "ru", "ru_candidates.json"),
+    ap.add_argument("--candidates", default=os.path.join(ru_sources.DEFAULT_CLONES, ru_sources.CANDIDATES),
                     help="ru_candidates.json z tools/i18n/ru_sources.py apply (katalog --clones)")
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
