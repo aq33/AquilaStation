@@ -101,6 +101,8 @@
 
 /datum/aq_lobby_hud/proc/add_element(path, lobby_icon, left, top, can_collapse, anchor_x = "CENTER", height = LOBBY_CANVAS_HEIGHT)
 	var/atom/movable/screen/aq_lobby/element = new path(null, src)
+	// gracz połączony w trakcie startu serwera: Initialize przyjdzie dopiero z SSatoms i bez argumentów
+	element.lobby = src
 	element.icon = lobby_icon
 	var/list/view_size = getviewsize(client_ref.view)
 	element.screen_loc = aq_lobby_screen_loc(left, top, height, anchor_x, view_size)
@@ -224,7 +226,8 @@
 
 /atom/movable/screen/aq_lobby/Initialize(mapload, datum/aq_lobby_hud/new_lobby)
 	. = ..()
-	lobby = new_lobby
+	if(new_lobby)
+		lobby = new_lobby
 
 /atom/movable/screen/aq_lobby/Destroy()
 	lobby = null
