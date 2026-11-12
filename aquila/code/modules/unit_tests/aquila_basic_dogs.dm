@@ -52,7 +52,7 @@
 		text2file(old_save, IAN_SAVE_PATH)
 	return ..()
 
-/// A tamed lasso target takes pet commands and befriends the cowboy: a basic carp keeps its own AI (decision D11), a simple animal gets the dog one
+/// A tamed lasso target takes pet commands and befriends the cowboy: a basic carp keeps its own AI (decision D11), other mobs get the dog one
 /datum/unit_test/aquila_lasso_tames_with_pet_commands
 
 /datum/unit_test/aquila_lasso_tames_with_pet_commands/Run()
@@ -87,15 +87,13 @@
 	lasso.set_target_ai(wild, TRUE)
 	TEST_ASSERT(!HAS_TRAIT(wild, TRAIT_AI_PAUSED), "A freed mob kept its AI paused")
 
-	// A simple animal (the dolphin) gets the dog AI, and its own simple animal AI stays off
-	var/mob/living/simple_animal/hostile/retaliate/dolphin/dolphin = allocate(/mob/living/simple_animal/hostile/retaliate/dolphin, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	// Any other basic mob (the dolphin) swaps its AI for the dog one
+	var/mob/living/basic/dolphin/dolphin = allocate(/mob/living/basic/dolphin, get_step(run_loc_floor_bottom_left, NORTHEAST))
 	TEST_ASSERT(lasso.check_allowed(dolphin), "The space lasso does not accept a dolphin")
 	lasso.tame_target(dolphin, cowboy)
 	TEST_ASSERT(istype(dolphin.ai_controller, /datum/ai_controller/basic_controller/dog), "The tamed dolphin did not get the dog AI")
 	TEST_ASSERT(dolphin.GetComponent(/datum/component/obeys_commands), "The tamed dolphin does not take pet commands")
-	TEST_ASSERT_EQUAL(dolphin.AIStatus, AI_OFF, "The tamed dolphin kept its own simple animal AI")
-	dolphin.toggle_ai(AI_ON)
-	TEST_ASSERT_EQUAL(dolphin.AIStatus, AI_OFF, "The tamed dolphin's own AI woke up again")
+	TEST_ASSERT(!HAS_TRAIT(dolphin, TRAIT_AI_PAUSED), "The tamed dolphin's AI stayed paused")
 
 	// Taming the same dolphin again (it is already a friend) leaves the cowboy on the new controller's friend list
 	lasso.tame_target(dolphin, cowboy)

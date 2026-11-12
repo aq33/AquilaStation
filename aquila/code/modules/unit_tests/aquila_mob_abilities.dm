@@ -368,8 +368,11 @@
 	pet.befriend(owner)
 	TEST_ASSERT(owner in controller.blackboard[BB_FRIENDS_LIST], "befriend() did not make the owner a friend")
 
-	// Spoken: the command waits for a pointed target
+	// "Strzelaj" falls in ordinary combat talk, so it is not a command
 	owner.say("Strzelaj!")
+	TEST_ASSERT(!controller.blackboard[BB_ACTIVE_PET_COMMAND], "Saying \"Strzelaj\" gave the pet a command")
+	// Spoken: the command waits for a pointed target
+	owner.say("Użyj zdolności!")
 	TEST_ASSERT(istype(controller.blackboard[BB_ACTIVE_PET_COMMAND], /datum/pet_command/use_ability), "The pet did not take the spoken ability command")
 	controller.SelectBehaviors(1)
 	var/datum/ai_behavior/use_ability = GET_AI_BEHAVIOR(/datum/ai_behavior/pet_use_ability)
