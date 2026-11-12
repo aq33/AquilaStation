@@ -312,7 +312,7 @@
 		if("Postaw szafkę tutaj", "Przenieś szafkę tutaj")
 			place_locker(user, G)
 		if("Schowaj szafkę pod podłogę", "Wyciągnij szafkę spod podłogi")
-			if(L && get_dist(user, L) <= 1 && do_after(user, 2 SECONDS, L))
+			if(L && get_dist(user, L) <= 1 && do_after(user, 2 SECONDS, target = L))
 				L.toggle_hidden(user)
 		if("Gdzie jest szafka?")
 			if(L)
@@ -325,7 +325,7 @@
 	var/turf/T = get_turf(user)
 	if(!can_place_locker(user, G, T))
 		return
-	if(!do_after(user, 5 SECONDS, T))
+	if(!do_after(user, 5 SECONDS, target = T))
 		return
 	// W trakcie stawiania rywal mógł zająć kafelek, ktoś mógł coś postawić albo gangster mógł stracić stanowisko
 	if(get_turf(user) != T || !can_place_locker(user, G, T))

@@ -376,6 +376,7 @@
 #include "code\modules\antagonists\gang\gang_drops.dm"
 #include "code\modules\antagonists\salvager\salvager.dm"
 #include "code\modules\antagonists\salvager\salvager_items.dm"
+#include "code\modules\antagonists\salvager\salvager_magpie.dm"
 #include "code\modules\antagonists\salvager\salvager_ship.dm"
 #include "code\modules\antagonists\salvager\salvager_event.dm"
 #include "code\modules\antagonists\spider\spider.dm"

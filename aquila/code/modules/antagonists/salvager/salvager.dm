@@ -1,21 +1,26 @@
-// Złomiarze: wariant kosmicznych piratów wzorowany na salvagerach z Goonstation (kod pisany od nowa według opisu mechaniki).
-// Nie żądają okupu i nie porywają ludzi: rozbierają okręt reklamatorem i sprzedają złom przez platformę na swoim statku.
-// Statek pojawia się w pustej przestrzeni, dociera do okrętu promem albo teleporterem do własnego nadajnika.
+// Złomiarze: port mechaniki salvagerów z Goonstation (kod pisany od nowa według ich działania, sprite'y Goona
+// w aquila/icons/goonstation/ na CC BY-NC-SA 3.0). Nie żądają okupu i nie porywają ludzi: rozbierają okręt
+// reklamatorem i sprzedają złom w terminalu S.R.O.K.A. na swoim statku. Każdy złomiarz zbiera własne punkty
+// i wydaje je w tym samym terminalu na sprzęt. Na okręt lecą kapsułami desantowymi, wracają teleporterem ręcznym.
 
-/// Ile kredytów złomu musi zebrać załoga złomiarzy
-#define SALVAGER_TARGET_VALUE 15000
+/// Ile punktów złomu musi zebrać cała załoga złomiarzy
+#define SALVAGER_TARGET_POINTS 15000
 
 /datum/antagonist/pirate/salvager
 	name = "Złomiarz"
 	roundend_category = "złomiarze"
 	antagpanel_category = "Salvager"
+	/// Punkty do wydania w terminalu S.R.O.K.A.
+	var/salvager_points = 0
+	/// Wszystkie zarobione punkty (cel drużyny i podsumowanie rundy)
+	var/salvager_points_earned = 0
 
 /datum/antagonist/pirate/salvager/greet()
 	to_chat(owner, "<span class='boldannounce'>Jesteś złomiarzem!</span>")
-	to_chat(owner, "<B>Okręt w pobliżu jest pełen maszyn, które ktoś musi rozebrać. Postaw nadajnik na pokładzie, teleportuj się, rozbieraj maszyny reklamatorem i sprzedawaj złom na platformie statku. Nie jesteście mordercami: walczcie, gdy musicie, ale zysk jest w złomie.</B>")
+	to_chat(owner, "<B>Okręt w pobliżu jest pełen maszyn, które ktoś musi rozebrać. Wybierz miejsce lądowania w konsoli kapsuł desantowych, rozbieraj okręt reklamatorem i wracaj teleporterem ręcznym. Złom sprzedawaj w terminalu S.R.O.K.A. i kupuj w nim sprzęt. Nie jesteście mordercami: walczcie, gdy musicie, ale zysk jest w złomie.</B>")
 	owner.announce_objectives()
 	owner.current.client?.tgui_panel?.give_antagonist_popup("Złomiarz",
-		"Rozbieraj maszyny okrętu reklamatorem i sprzedawaj złom na platformie swojego statku.")
+		"Rozbieraj okręt reklamatorem, sprzedawaj złom w terminalu S.R.O.K.A. i kupuj w nim sprzęt.")
 
 /datum/antagonist/pirate/salvager/create_team(datum/team/pirate/salvager/new_team)
 	if(istype(new_team))
@@ -28,21 +33,36 @@
 	crew = new /datum/team/pirate/salvager
 	crew.forge_objectives()
 
+/// Dopisuje punkty za sprzedany złom
+/datum/antagonist/pirate/salvager/proc/add_salvage_points(amount)
+	if(amount <= 0)
+		return
+	salvager_points += amount
+	salvager_points_earned += amount
+
+/proc/get_salvager_datum(mob/user)
+	return user?.mind?.has_antag_datum(/datum/antagonist/pirate/salvager)
+
 /datum/team/pirate/salvager
 	name = "Załoga złomiarzy"
 
 /datum/team/pirate/salvager/forge_objectives()
-	var/datum/objective/loot/salvage/salvage = new
+	var/datum/objective/salvage_points/salvage = new
 	salvage.team = src
-	for(var/obj/machinery/computer/piratepad_control/salvage/P in GLOB.machines)
-		salvage.cargo_hold = P
-		break
 	salvage.update_explanation_text()
 	objectives += salvage
 	for(var/datum/mind/M in members)
 		var/datum/antagonist/pirate/P = M.has_antag_datum(/datum/antagonist/pirate)
 		if(P)
 			P.objectives |= objectives
+
+/// Wszystkie punkty zarobione przez załogę
+/datum/team/pirate/salvager/proc/total_points()
+	. = 0
+	for(var/datum/mind/M in members)
+		var/datum/antagonist/pirate/salvager/S = M.has_antag_datum(/datum/antagonist/pirate/salvager)
+		if(S)
+			. += S.salvager_points_earned
 
 /datum/team/pirate/salvager/roundend_report()
 	var/list/parts = list()
@@ -51,35 +71,39 @@
 	for(var/datum/mind/M in members)
 		if(considered_alive(M))
 			all_dead = FALSE
-	parts += printplayerlist(members)
-	var/datum/objective/loot/salvage/S = locate() in objectives
-	if(S)
-		parts += "Sprzedany złom: [S.get_loot_value()]/[S.target_value] kredytów"
-	if(S?.check_completion() && !all_dead)
+		var/datum/antagonist/pirate/salvager/S = M.has_antag_datum(/datum/antagonist/pirate/salvager)
+		parts += "[printplayer(M)]: złom za [S?.salvager_points_earned || 0] pkt"
+	var/datum/objective/salvage_points/goal = locate() in objectives
+	parts += "Razem: [total_points()]/[goal?.target_amount || SALVAGER_TARGET_POINTS] pkt"
+	if(goal?.check_completion() && !all_dead)
 		parts += "<span class='greentext big'>Złomiarze odnieśli sukces!</span>"
 	else
 		parts += "<span class='redtext big'>Złomiarze ponieśli porażkę.</span>"
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
-/datum/objective/loot/salvage
-	explanation_text = "Rozbierzcie maszyny okrętu i sprzedajcie złom."
-	target_value = SALVAGER_TARGET_VALUE
+/datum/objective/salvage_points
+	explanation_text = "Rozbierzcie okręt i sprzedajcie złom."
+	target_amount = SALVAGER_TARGET_POINTS
 
-/datum/objective/loot/salvage/update_explanation_text()
-	explanation_text = "Sprzedajcie na platformie swojego statku złom wart [target_value] kredytów."
+/datum/objective/salvage_points/update_explanation_text()
+	explanation_text = "Sprzedajcie w terminalu S.R.O.K.A. złom za [target_amount] punktów (razem cała załoga)."
+
+/datum/objective/salvage_points/check_completion()
+	var/datum/team/pirate/salvager/crew = team
+	return ..() || (istype(crew) && crew.total_points() >= target_amount)
 
 ///////////////////
-// Załoga
+// Załoga: losowy wygląd, ubranie pasażera na gapę i sprzęt złomiarza (jak w Goonie)
 ///////////////////
 
 /obj/effect/mob_spawn/human/pirate/salvager
-	name = "sleeper złomiarza"
+	name = "kriosleeper złomiarza"
 	desc = "Kriosleeper oklejony taśmą i zapachem smaru."
 	mob_name = "złomiarz"
 	mob_species = /datum/species/human
 	outfit = /datum/outfit/salvager
 	short_desc = "Jesteś złomiarzem."
-	flavour_text = "Wasz statek trzyma się kursu okrętu. Rozbierajcie jego maszyny i sprzedawajcie złom. Zabijanie załogi nie jest celem."
+	flavour_text = "Wasza S.R.O.K.A. trzyma się kursu okrętu. Rozbierajcie jego maszyny i sprzedawajcie złom. Zabijanie załogi nie jest celem."
 	assignedrole = "Salvager"
 	rank = "Złomiarz"
 
@@ -89,34 +113,35 @@
 
 /obj/effect/mob_spawn/human/pirate/salvager/captain
 	rank = "Brygadzista"
-	outfit = /datum/outfit/salvager/captain
 
 /datum/outfit/salvager
 	name = "Złomiarz"
-	uniform = /obj/item/clothing/under/rank/cargo/miner
-	shoes = /obj/item/clothing/shoes/workboots
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/jacket
+	mask = /obj/item/clothing/mask/gas
 	gloves = /obj/item/clothing/gloves/color/yellow
-	belt = /obj/item/storage/belt/utility/full
-	glasses = /obj/item/clothing/glasses/meson
+	glasses = /obj/item/clothing/glasses/salvager
+	shoes = /obj/item/clothing/shoes/magboots
 	ears = /obj/item/radio/headset/syndicate/alt
 	id = /obj/item/card/id/pirate
-	back = /obj/item/storage/backpack/industrial
-	r_pocket = /obj/item/salvage_beacon
+	back = /obj/item/storage/backpack/salvager
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
+	l_pocket = /obj/item/salvager_hand_tele
 	backpack_contents = list(
+		/obj/item/storage/box/salvager_frame_compartment = 1,
+		/obj/item/clothing/head/helmet/space/eva = 1,
+		/obj/item/clothing/suit/space/eva = 1,
 		/obj/item/salvage_reclaimer = 1,
-		/obj/item/storage/box/survival = 1,
+		/obj/item/storage/belt/utility/full = 1,
+		/obj/item/weldingtool = 1,
 	)
 
-/datum/outfit/salvager/captain
-	name = "Złomiarz - brygadzista"
-	ears = /obj/item/radio/headset/syndicate/alt/leader
-	backpack_contents = list(
-		/obj/item/salvage_reclaimer = 1,
-		/obj/item/storage/box/survival = 1,
-		/obj/item/salvage_beacon = 1,
-	)
+// Ubranie pasażera na gapę jest losowe, jak w Goonie
+/datum/outfit/salvager/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	uniform = pick(/obj/item/clothing/under/color/grey, /obj/item/clothing/under/color/brown, /obj/item/clothing/under/color/darkblue, /obj/item/clothing/under/rank/cargo/tech)
+	suit = pick(/obj/item/clothing/suit/jacket, /obj/item/clothing/suit/jacket/leather, /obj/item/clothing/suit/hazardvest)
 
-/datum/outfit/salvager/post_equip(mob/living/carbon/human/H)
+/datum/outfit/salvager/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.faction |= "pirate"
 
-#undef SALVAGER_TARGET_VALUE
+#undef SALVAGER_TARGET_POINTS

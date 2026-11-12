@@ -14,11 +14,6 @@
 		/obj/item/stack/spacecash/c1000 = 2,
 		/obj/item/gun/ballistic/automatic/pistol = 1,
 		/obj/item/storage/pill_bottle/zoom = 1,
-		/obj/item/salvage_reclaimer = 1,
-		/obj/item/salvage_beacon = 1,
-		/obj/machinery/recharger = 1,
-		/obj/machinery/piratepad = 1,
-		/obj/machinery/computer/piratepad_control/salvage = 1,
 		/obj/item/storage/backpack/duffelbag/gang_loot = 1,
 		/mob/living/carbon/human = 1,
 	)
@@ -37,6 +32,29 @@
 		dummy.mind.add_antag_datum(/datum/antagonist/gang, boss?.gang || G)
 	var/obj/structure/closet/crate/secure/weapon/gang_drop/crate = new(center)
 	crate.unlock_time = world.time
-	for(var/obj/machinery/computer/piratepad_control/salvage/console in spawned)
-		for(var/obj/machinery/piratepad/pad in spawned)
-			console.set_pad(pad)
+
+// aq33/AquilaStation#621 - złomiarze jak w Goonstation
+/datum/test_chamber_kit/pr_621_zlomiarze
+	name = "PR 621: złomiarze"
+	pr = "aq33/AquilaStation#621"
+	description = "Zestaw robi z ciebie złomiarza z 3000 pkt i stawia terminal S.R.O.K.A. oraz punkt powrotu teleportera. 	1) Reklamatorem (poza combat mode) rozbierz ładowarkę → złom i złom elektroniczny; czas krótszy o 25%, bo jesteś złomiarzem. Użyj reklamatora w ręce → korba ładuje ogniwo. 	2) Urządzeniem dwukonstrukcyjnym rozłóż drugą ładowarkę → paczka maszyny. Przełącz urządzenie (użyj w ręce) i uderz paczkę na podłodze → maszyna wraca. 	3) Uderz terminal S.R.O.K.A. paczką, złomem albo telekryształem → wycena i pytanie o sprzedaż; punkty rosną. Kliknij terminal → sklep jak w Goonie. 	4) Załóż gogle S.A.V. → nad przedmiotami w pobliżu wiszą ceny. 	5) Odejdź kilka kroków i użyj teleportera ręcznego → po 6 s wracasz na punkt powrotu, ładunek ubywa; telekryształ go dokłada (najwyżej 5)."
+	items = list(
+		/obj/machinery/recharger = 2,
+		/obj/item/salvage_reclaimer = 1,
+		/obj/item/salvage_dualconstructor = 1,
+		/obj/item/salvager_hand_tele = 1,
+		/obj/item/clothing/glasses/salvager = 1,
+		/obj/item/stack/telecrystal = 1,
+		/obj/item/stack/scrap/plating = 1,
+		/obj/machinery/salvager_trader = 1,
+	)
+
+/datum/test_chamber_kit/pr_621_zlomiarze/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	new /obj/effect/landmark/salvager_teleport(center)
+	if(!user?.mind)
+		return
+	var/datum/antagonist/pirate/salvager/S = get_salvager_datum(user)
+	if(!S)
+		S = user.mind.add_antag_datum(/datum/antagonist/pirate/salvager)
+	S?.add_salvage_points(3000)

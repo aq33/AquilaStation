@@ -95,7 +95,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/salvager)
 "al" = (
-/obj/machinery/salvage_teleporter,
+/obj/machinery/computer/salvager_pod_launcher,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -565,7 +565,7 @@
 "by" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/piratepad,
+/obj/effect/landmark/salvager_teleport,
 /turf/open/floor/pod/dark,
 /area/shuttle/salvager)
 "bA" = (
@@ -619,7 +619,7 @@
 /area/shuttle/salvager)
 "bI" = (
 /obj/machinery/light/small,
-/obj/machinery/computer/piratepad_control/salvage{
+/obj/machinery/salvager_trader{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
