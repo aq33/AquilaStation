@@ -188,7 +188,7 @@
 		to_chat(activator, span_notice("Wsuwasz [tool] do [target].") )
 		if (target.state == TOME_OPEN && ismob(target.loc))
 			var/mob/M = target.loc
-			M << browse(target.tome_text(), "window=arcanetome;size=537x375")
+			M << browse(i18n_browse_html(M, target.tome_text()), "window=arcanetome;size=537x375")
 	else
 		to_chat(activator, span_warning("Ta księga nie pomieści więcej talizmanów.") )
 	qdel(src)

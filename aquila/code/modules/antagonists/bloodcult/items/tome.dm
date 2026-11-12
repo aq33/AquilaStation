@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 		talismans.Remove(T)
 		usr.put_in_hands(T)
 
-	usr << browse(tome_text(), "window=arcanetome;size=900x600")
+	usr << browse(i18n_browse_html(usr, tome_text()), "window=arcanetome;size=900x600")
 
 /obj/item/tome/attack(mob/living/M, mob/living/user)
 	/*
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 /obj/item/tome/pickup(mob/user)
 	.=..()
 	if(IS_CULTIST(user) && state == TOME_OPEN)
-		usr << browse(tome_text(), "window=arcanetome;size=900x600")
+		usr << browse(i18n_browse_html(usr, tome_text()), "window=arcanetome;size=900x600")
 
 /obj/item/tome/dropped(mob/user)
 	.=..()
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 			flick("tome-flickopen", src)
 			playsound(user, "pageturn", 50, 1, -5)
 			state=TOME_OPEN
-			usr << browse(tome_text(), "window=arcanetome;size=900x600")
+			usr << browse(i18n_browse_html(usr, tome_text()), "window=arcanetome;size=900x600")
 		else
 			icon_state="tome"
 			flick("tome-flickclose", src)
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 				I.forceMove(src)
 				to_chat(user, span_notice("Wsuwasz [I] do [src].") )
 				if (state == TOME_OPEN)
-					usr << browse(tome_text(), "window=arcanetome;size=900x600")
+					usr << browse(i18n_browse_html(usr, tome_text()), "window=arcanetome;size=900x600")
 		else
 			to_chat(user, span_warning("Ta księga nie pomieści więcej talizmanów. Najpierw jakieś zużyj albo wyjmij.") )
 

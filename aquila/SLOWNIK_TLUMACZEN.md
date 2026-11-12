@@ -4092,6 +4092,18 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | supply drop / supply pod | zrzut zaopatrzenia / kapsuła zaopatrzeniowa | m / ż; istniejące „kapsuł zaopatrzeniowych” |
 | Galactic Conquest (mode) | Podbój Galaktyki | m; nowe |
 | combat (overmap) | starcie | n; nowe |
+| hypergate | hiperbrama | ż; istniejące („HIPERBRAMA” na mapie gwiezdnej) |
+| hyperlane | hiperlinia | ż; istniejące |
+| wormhole | tunel czasoprzestrzenny | m; istniejące (anomalia) |
+| wormgate | brama tunelowa | ż; nowe (opis Sol) |
+| Battlegroup | grupa bojowa | ż; nowe |
+| Gatewatchers | Strażnicy Bramy | mnoga; nowe (Rubicon) |
+| Rosetta Cluster | Gromada Rosetta | ż; istniejące (overmap_mode.dm, courier.dm) |
+| Delphic Expanse | Przestworze Delfickie | n; istniejące (The Badlands) |
+| Sol Sector | Sektor Sol | m; nowe |
+| O'Neill Cylinder | cylinder O'Neilla | m; nowe |
+| tidally locked (planeta) | w obrocie synchronicznym | nowe |
+| nazwy układów gwiezdnych | bez zmian (Medea, Rubicon, Outpost 45) | w opisach zamiast odmiany nazwy piszemy „układ Medea”, „do układu Karip” |
 
 ## 14. Marki, firmy, producenci
 
