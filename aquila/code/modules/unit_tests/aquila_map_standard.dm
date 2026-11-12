@@ -43,7 +43,7 @@
 		/obj/machinery/vitals_reader,
 		/obj/structure/desk_bell,
 		/obj/machinery/conquest_beacon,
-		/mob/living/simple_animal/hostile/retaliate/wojtek,
+		/mob/living/basic/bear/wojtek,
 		/obj/machinery/gulag_teleporter,
 		/obj/machinery/computer/prisoner/gulag_teleporter_computer,
 		/obj/machinery/gulag_item_reclaimer,

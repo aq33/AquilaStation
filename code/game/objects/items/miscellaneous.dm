@@ -392,7 +392,7 @@
 /obj/item/choice_beacon/pet/clown
 	name = "nadajnik dostawy żywego lubrykantu"
 	default_name = "Obraźliwy"
-	mob_choice = /mob/living/simple_animal/hostile/retaliate/clown/lube
+	mob_choice = /mob/living/basic/clown/lube // AQ EDIT - basic moby
 
 /obj/item/choice_beacon/pet/goat
 	name = "nadajnik dostawy kozy"

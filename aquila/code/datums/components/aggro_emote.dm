@@ -34,6 +34,7 @@
 	src.emote_chance = emote_chance
 	src.minimum_chance = minimum_chance
 	src.subtract_chance = subtract_chance
+	src.living_only = living_only // AQUILA: tg never stored it, so geese hissed at cookies and carp snapped at meat
 
 /datum/component/aggro_emote/RegisterWithParent()
 	. = ..()

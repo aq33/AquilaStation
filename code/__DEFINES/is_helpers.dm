@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define islarva(A) (istype(A, /mob/living/carbon/alien/larva))
 
-#define isalienadult(A) (istype(A, /mob/living/carbon/alien/humanoid) || istype(A, /mob/living/simple_animal/hostile/alien))
+#define isalienadult(A) (istype(A, /mob/living/carbon/alien/humanoid) || istype(A, /mob/living/basic/alien)) // AQ EDIT - basic moby
 
 #define isalienhunter(A) (istype(A, /mob/living/carbon/alien/humanoid/hunter))
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
+#define isclown(A) (istype(A, /mob/living/basic/clown)) // AQ EDIT - basic moby
 
 #define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
 
@@ -190,23 +190,20 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,
 	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/cat_butcherer,
-	/mob/living/simple_animal/hostile/faithless,
-	/mob/living/simple_animal/hostile/nanotrasen,
-	/mob/living/simple_animal/hostile/pirate,
-	/mob/living/simple_animal/hostile/russian,
+	/mob/living/basic/faithless, // AQ EDIT - basic moby
 	/mob/living/simple_animal/hostile/syndicate,
+	/mob/living/basic/trooper, // AQ EDIT - basic moby: żołnierze (Syndykat, NT, Rosjanie, piraci)
 	/mob/living/simple_animal/hostile/wizard,
-	/mob/living/simple_animal/hostile/zombie,
-	/mob/living/simple_animal/hostile/retaliate/clown,
-	/mob/living/simple_animal/hostile/retaliate/spaceman,
-	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
+	/mob/living/basic/zombie, // AQ EDIT - basic moby
+	/mob/living/basic/clown, // AQ EDIT - basic moby
+	/mob/living/basic/spaceman, // AQ EDIT - basic moby
 	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,
 	)))
 
 GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	/mob/living/carbon/alien/humanoid,
-	/mob/living/simple_animal/hostile/alien,
+	/mob/living/basic/alien, // AQ EDIT - basic moby
 	/mob/living/basic/pet/cat, // AQ EDIT - basic moby
 	/mob/living/basic/pet/dog, // AQ EDIT - basic moby
 	/mob/living/basic/pet/fox, // AQ EDIT - basic moby

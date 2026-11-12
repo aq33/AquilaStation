@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(traumas)
 	phobia_mobs = list("spiders"  = typecacheof(list(/mob/living/simple_animal/hostile/spider)),
 					   "security" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209)),
 					   "lizards"  = typecacheof(list(/mob/living/basic/lizard)), // AQ EDIT - basic moby
-					   "skeletons" = typecacheof(list(/mob/living/simple_animal/hostile/skeleton)),
+					   "skeletons" = typecacheof(list(/mob/living/basic/skeleton)), // AQ EDIT - basic moby
 					   "snakes"   = typecacheof(list(/mob/living/basic/snake)), // AQ EDIT - basic moby
 					   "robots"   = typecacheof(list(/mob/living/silicon/robot, /mob/living/silicon/ai,
 					   /mob/living/simple_animal/drone, /mob/living/simple_animal/bot, /mob/living/simple_animal/hostile/swarmer)),
