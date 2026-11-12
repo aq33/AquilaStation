@@ -63,7 +63,7 @@
 
 /datum/xenoartifact_trait/major/animalize/dangerous
 	label_name = "Bestialized Σ"
-	possible_animals = list(/mob/living/basic/bear, /mob/living/simple_animal/hostile/carp, /mob/living/basic/killer_tomato)
+	possible_animals = list(/mob/living/basic/bear, /mob/living/basic/carp, /mob/living/basic/killer_tomato)
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/animalize/dangerous/get_dictionary_hint()

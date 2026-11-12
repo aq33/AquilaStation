@@ -110,7 +110,7 @@
 			if("Pokój")
 				to_chat(user, "<B>Jakakolwiek obca świadomość zamieszkuje Spełniacza Życzeń, jest usatysfakcjonowana twoim życzeniem. Słychać odległe zawodzenie, gdy ostatni z Niewiernych zaczynają umierać, a potem cisza.</B>")
 				to_chat(user, "Czujesz, że właśnie ledwo uniknąłeś straszliwego losu...")
-				for(var/mob/living/simple_animal/hostile/faithless/F in GLOB.mob_living_list)
+				for(var/mob/living/basic/faithless/F in GLOB.mob_living_list) // AQ EDIT - basic moby
 					F.death()
 
 

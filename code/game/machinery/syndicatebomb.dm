@@ -351,7 +351,7 @@
 	qdel(src)
 
 /obj/item/bombcore/badmin/summon/clown
-	summon_path = /mob/living/simple_animal/hostile/retaliate/clown
+	summon_path = /mob/living/basic/clown // AQ EDIT - basic moby
 	amt_summon 	= 50
 
 /obj/item/bombcore/badmin/summon/clown/defuse()

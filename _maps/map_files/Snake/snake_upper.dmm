@@ -172,7 +172,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "aA" = (
-/mob/living/simple_animal/hostile/retaliate/wojtek,
+/mob/living/basic/bear/wojtek,
 /turf/open/floor/carpet/orange,
 /area/nsv/crew_quarters/heads/maa)
 "aB" = (

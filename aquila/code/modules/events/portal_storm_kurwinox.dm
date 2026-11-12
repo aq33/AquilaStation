@@ -13,8 +13,8 @@
 	cannot_spawn_after_shuttlecall = TRUE
 
 /datum/round_event/portal_storm/kurwinox
-	boss_types = list(/mob/living/simple_animal/hostile/kurwinoxy/czerwony = 2)
-	hostile_types = list(/mob/living/simple_animal/hostile/kurwinoxy = 8)
+	boss_types = list(/mob/living/basic/kurwinoxy/czerwony = 2)
+	hostile_types = list(/mob/living/basic/kurwinoxy = 8)
 	/// No safe turf for a portal was found: nothing spawns and the event ends silently
 	var/aborted = FALSE
 

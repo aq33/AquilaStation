@@ -803,6 +803,8 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	for(var/obj/effect/landmark/patrol_node/node in GLOB.landmarks_list)
 		if(!node.id)
 			continue
+		if(node.z != z && (is_boarding_interior_area(get_area(node)) || is_boarding_interior_area(get_area(src)))) // AQ EDIT - dwa wnętrza abordażu z tymi samymi id nie łączą tras
+			continue
 		if(next_id)
 			if(islist(next_id))
 				var/list/next_id_list = next_id

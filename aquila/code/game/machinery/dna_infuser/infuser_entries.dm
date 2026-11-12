@@ -169,11 +169,10 @@
 		"wieczna chęć podróży",
 	)
 	input_obj_or_mob = list(
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/basic/carp,
 	)
 	excluded_input = list(
-		/mob/living/simple_animal/hostile/carp/holocarp,
-		/mob/living/simple_animal/hostile/carp/eyeball,
+		/mob/living/basic/carp/holographic,
 	)
 	output_organs = list(
 		/obj/item/organ/brain/carp,

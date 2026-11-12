@@ -136,8 +136,6 @@
 	always_reset_target = TRUE
 	behavior_combat_mode = FALSE
 
-// AQUILA: use_ability_on_target needs mob abilities (mob_cooldown actions), not ported yet
-
 /datum/ai_behavior/hunt_target/latch_onto
 
 /datum/ai_behavior/hunt_target/latch_onto/setup(datum/ai_controller/controller, hunting_target_key, hunting_cooldown_key)
