@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(i18n_dictionaries)
 
 /// Słownik języka (wczytany przy pierwszym użyciu)
 /proc/i18n_dictionary(language = GAME_LANGUAGE_EN)
+	RETURN_TYPE(/datum/i18n_dictionary)
 	var/datum/i18n_dictionary/dictionary = GLOB.i18n_dictionaries[language]
 	if(!dictionary)
 		dictionary = new(language)
