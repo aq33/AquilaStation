@@ -100,6 +100,9 @@
 	var/obj/structure/overmap/ship = linked_overmap
 	if(!ship?.ai_controlled || !ship.fleet || ship.ai_temperament == AI_TEMPERAMENT_RECKLESS)
 		return
+	// Strzał na namiar zwiadowcy albo tor radaru sam jest koordynacją (ai_scouting.dm)
+	if(ship.ai_datalink_firing)
+		return
 	// can_fire() also runs while ai_fire() is only choosing a weapon; in gun range a gun usually wins and no torpedo goes out,
 	// so the salvo roll and its timers are only spent where torpedoes are what the ship actually fires
 	if(GLOB.overmap_scale_enabled && overmap_dist(ship, target) <= AI_SALVO_GUN_RANGE)

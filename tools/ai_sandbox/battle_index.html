@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitwy piaskownicy AI — Aquila</title>
+<style>
+:root{
+  --bg:#0b0e14; --panel:#121722; --panel2:#171d2a; --ink:#e8ebf2; --muted:#8b93a7;
+  --line:#232b3b; --nt:#4f9dff; --ok:#5ad18c; --warn:#ffb648;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(11,14,20,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+h1{margin:0;font-size:19px}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px}
+button{background:var(--panel2);color:var(--ink);border:1px solid var(--line);
+  border-radius:7px;padding:6px 12px;font-size:13px;cursor:pointer}
+button:hover{border-color:#39455e}
+button[aria-pressed="true"]{border-color:var(--nt);color:#cfe4ff}
+.seria{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:18px 0}
+.seria h2{margin:0;font-size:17px}
+.seria .kiedy{color:var(--muted);font-size:12.5px;margin-top:1px}
+.seria p{margin:8px 0 0;color:#c5cbd8;font-size:14px;max-width:78ch}
+.wynik{margin-top:10px;padding:8px 11px;border-left:3px solid var(--ok);background:#0f1a16;
+  border-radius:0 7px 7px 0;font-size:13.5px}
+.wynik.czeka{border-left-color:var(--muted);background:#121620;color:var(--muted)}
+.wariant{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.wariant .lab{min-width:260px;font-size:13.5px;color:var(--ink)}
+@media(max-width:640px){.wariant .lab{min-width:0;width:100%}}
+a.bitwa{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:34px;
+  text-decoration:none;color:#cfe4ff;background:#16243b;border:1px solid #27405f;border-radius:7px;font-weight:600}
+a.bitwa:hover{background:#1b2d49}
+a.bitwa.nowa::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;
+  background:var(--nt);box-shadow:0 0 0 2px var(--panel)}
+span.brak{display:inline-flex;align-items:center;justify-content:center;width:40px;height:34px;border-radius:7px;
+  border:1px dashed var(--line);color:#3a4356;font-weight:600}
+details.stare{margin:26px 0}
+details.stare>summary{cursor:pointer;color:var(--muted);font-size:14px;padding:6px 0}
+.grp{margin:14px 0}
+.grp h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px;font-weight:600}
+.rzad{display:flex;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid #1a2130;flex-wrap:wrap}
+.rzad img{width:96px;height:60px;object-fit:contain;background:#05070c;border-radius:5px}
+.rzad .t{flex:1;min-width:200px;font-size:14px}
+.rzad .t small{display:block;color:var(--muted);font-size:12px}
+a.btn{text-decoration:none;color:#cfe4ff;background:#16243b;border:1px solid #27405f;
+  border-radius:6px;padding:4px 9px;font-size:12.5px}
+a.btn.plain{background:var(--panel2);border-color:var(--line);color:var(--muted)}
+.tag{display:inline-block;font-size:11px;padding:0 7px;border-radius:20px;border:1px solid var(--line);color:var(--muted);margin-left:6px}
+.tag.new{border-color:#4f9dff;color:#cfe4ff}
+.empty{color:var(--muted);padding:30px 0}
+footer{color:var(--muted);font-size:12.5px;padding:20px 0 40px}
+code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+nav.zakladki{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+nav.zakladki a{color:#c3c8d4;text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 12px;font-size:13px;background:var(--panel2)}
+nav.zakladki a.on{border-color:var(--nt);color:#cfe4ff}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Bitwy piaskownicy AI — Aquila</h1>
+  <div class="sub" id="stan">wczytywanie…</div>
+  <nav class="zakladki"><a class="on" href="./">Bitwy</a><a href="statystyki.html">Statystyki dla nerdów</a></nav>
+  <div class="bar">
+    <button id="odswiez">Odśwież</button>
+    <button id="auto" aria-pressed="true">Auto co 60 s</button>
+    <button id="zapomnij">Oznacz wszystko jako obejrzane</button>
+  </div>
+</div></header>
+
+<main class="wrap" id="tresc"><div class="empty">wczytywanie…</div></main>
+<footer class="wrap">
+  Litera to jedna bitwa; niebieska kropka: nowa od ostatniego oznaczenia. W odtwarzaczu: spacja odtwarza,
+  strzałki przewijają o 5 s, kliknięcie albo stuknięcie zaznacza okręt. Nowe pliki wystarczy wrzucić do
+  <code>pliki/bitwy/</code>, strona sama je pokaże.
+</footer>
+
+<script>
+// Serie od najnowszej. Prefiksy plików jak w tools/ai_sandbox/render_battle.py (SERIE).
+var SERIE = [
+  { tytul: "Diagnostyka zamarzniętych okrętów",
+    opis: "Okręt, który chce lecieć, a od 10 s nie ruszył się z pola, zapisuje w zdarzeniach, co gęstego stoi w jego obrysie i wokół niego. " +
+          "Poprawione też ustawianie flot: przy krawędzi mapy kilka okrętów lądowało na jednym polu.",
+    wynik: "",
+    warianty: [["H_pelne_", "wszystkie zmiany AI"], ["H_legacy_", "legacy (zmiany wyłączone)"], ["H_daleko_", "wszystkie zmiany, daleki start"]] },
+  { tytul: "Poprawka namierzania i pomiar wydajności (profiler)",
+    opis: "Zwiadowca trzyma namierzenie przez przeładowanie i okno salwy floty, a strzał na namiar albo tor radaru nie czeka na okno salwy. " +
+          "Każda bitwa ma zapisany profil procedur; tryb legacy to te same bitwy z wyłączonymi wszystkimi zmianami AI z aquila/.",
+    wynik: "Strzały na tor radaru szpicy 0 → 56 w 6 bitwach, na namiar zwiadowcy 1 → 4, mediana trzymania namierzenia 0 → 6 s. " +
+           "Wydajność: world.cpu 12,4% (legacy) → 15,5% (wszystkie zmiany), przy dłużej żyjących okrętach (12,5 wobec 8,6 okrętu AI).",
+    warianty: [["F_pelne_", "wszystkie zmiany AI"], ["F_legacy_", "legacy (zmiany wyłączone)"], ["F_daleko_", "wszystkie zmiany, daleki start"]] },
+  { tytul: "Daleki ostrzał: zwiad wysunięty i tor radaru szpicy",
+    opis: "Torpedy i rakiety dalej niż 50 pól: z własnych sensorów, na namiar zwiadowcy albo na tor radaru okrętu floty w czasie impulsu. " +
+          "Zwiadowca leci w stronę namiaru z nasłuchu, zanim ktokolwiek zobaczy wroga. W zdarzeniach odtwarzacza widać każdy daleki strzał i jego źródło.",
+    wynik: "Strzały kierowane dalej niż 50 pól przy dalekim starcie: 2,7% → 6,1%, przy zwykłym 3,2% → 4,4%. Zwiad wysunięty łapie cel w 7 na 8 prób. " +
+           "Strzałów na tor radaru i na namiar zwiadowcy wciąż mało: okręty z torpedami zwykle widzą cel same, bo walka szybko schodzi na 20–40 pól.",
+    warianty: [["E_blisko_", "zwykły start"], ["E_daleko_", "daleki start (120 pól)"]] },
+  { tytul: "Działa jako ostateczność",
+    opis: "Okręt AI, który ma amunicję kierowaną pasującą do celu, strzela do niego dalej niż 12 pól tylko rakietami lub torpedami; " +
+          "gdy wyrzutnia się przeładowuje albo czeka na salwę floty, nie strzela wcale. Działa wracają z bliska, " +
+          "po wyczerpaniu amunicji kierowanej albo gdy cel do niej nie pasuje.",
+    wynik: "Okręty z pasującą amunicją kierowaną strzelają z dział z dystansu 200 → 0,5 razy na bitwę, torped i rakiet ok. 20% więcej. " +
+           "Ale 90% strzałów z dział oddają okręty, które nie mają czym strzelić kierowanie w ten cel: bez wyrzutni albo z rakietami, " +
+           "których w bazowej grze nie wolno użyć na cele większe niż MASS_SMALL. Okręty z torpedami stoją tylko w 3–4% klatek.",
+    warianty: [["X_doktryna_", "z doktryną"], ["X_bez_doktryny_", "bez doktryny"]] },
+  { tytul: "Zwiad po poprawce warunków końca",
+    opis: "Pierwsza wersja kończyła zwiad, gdy ktokolwiek z floty był 25 pól od celu: zwiady trwały ok. 3 s i nikt nie namierzał. " +
+          "Teraz zwiad trwa, dopóki okręt rakietowy nie widzi celu sam, i kończy się, gdy cel zaczyna gonić zwiadowcę. " +
+          "W zdarzeniach odtwarzacza widać, kto idzie na zwiad, kto namierza i dlaczego kończy.",
+    wynik: "Namierzeń w 4 bitwach: 13 przy zwykłym starcie, 34 przy dalekim. Torpedy na namiar od zwiadowcy: 4–6%. " +
+           "Torpedy dalej lecą średnio z ok. 25 pól: okręty rakietowe zwykle widzą cel same, bo walka toczy się blisko. Następny krok: działa jako ostateczność.",
+    warianty: [["W2_blisko_", "zwykły start"], ["W2_daleko_", "daleki start (120 pól)"]] },
+  { tytul: "Zwiad myśliwców i łącze danych",
+    opis: "Jeden myśliwiec na lotniskowiec krąży na granicy, z której widzi wroga, i nie strzela. Gdy okręt rakietowy floty może strzelić, " +
+          "zwiadowca namierza cel radarem frontalnym (cel musi być przed nosem, namierzany słyszy to i dostaje namiar na myśliwca), " +
+          "a okręt rakietowy strzela na ten namiar z odległości do 120 pól. Torpeda trzyma cel, dopóki trwa namierzanie. " +
+          "Fioletowa linia „namierza” w odtwarzaczu to właśnie to.",
+    wynik: "Pierwsza wersja: myśliwce szły na zwiad (116 razy w 4 bitwach), ale ani razu nie namierzyły celu. " +
+           "Zwiad kończył się po ok. 3 s, bo ktoś z floty był już blisko celu. Poprawione w serii wyżej.",
+    warianty: [["V_zwiad_", "ze zwiadem"], ["V_bez_zwiadu_", "bez zwiadu"]] },
+  { tytul: "Skończone zapasy rakiet i torped",
+    opis: "Lotniskowiec dawał okrętowi w promieniu 15 pól pełny magazyn rakiet i torped co 5 s, czyli bez końca. " +
+          "Teraz ma zapas na całą bitwę (20 torped, 40 rakiet) i oddaje po kilka sztuk. Okręt bez torped nie wraca po nie, " +
+          "gdy flocie się skończyły, tylko walczy dalej. Pierwszy krok przed zwiadem myśliwców i łączem danych.",
+    wynik: "Torpedy 143 → 91 na bitwę, rakiety bez zmian (ok. 110: rzadko trzeba je uzupełniać). Działa i obrona punktowa 3942 → 5078 strzałów: " +
+           "gdzie zabrakło torped, AI przeszło na działa. Zapasy schodzą nierówno: część lotniskowców kończy z pełnymi 20 torpedami, część z zerem.",
+    warianty: [["U_zapasy_", "zapasy włączone"], ["U_bez_zapasow_", "pełny magazyn co 5 s (jak dotąd)"]] },
+  { tytul: "Objazd przeszkód i liczniki uzbrojenia",
+    opis: "Okręt zablokowany przez inny przed dziobem omija go łukiem (60° od kursu, w stałą stronę), zamiast drżeć w miejscu " +
+          "na samym ciągu bocznym. To była główna przyczyna lotniskowców stojących przez całą bitwę. Pierwsze nagrania, " +
+          "które liczą też rakiety i działa.",
+    wynik: "Stanie 17,6% → 10,4%, lotniskowce 28,9% → 19,4%, okręty stojące całą bitwę 6 → 2. " +
+           "Uzbrojenie (z objazdem): działa i obrona punktowa 95% strzałów, średnio 15 pól; torpedy 125 na bitwę, średnio 23 pola; " +
+           "rakiety 76 na bitwę, średnio 25 pól. Ani jednego strzału do celu, którego strzelający sam nie widział.",
+    warianty: [["T_wszystko_", "z objazdem"], ["T_bez_objazdu_", "bez objazdu"]] },
+  { tytul: "Przepustnica, boost i skradanie",
+    opis: "AI przy prędkości maksymalnej dryfuje zamiast grzać silnikiem, boost odpala tylko w pościgu albo ucieczce, " +
+          "skrada się z budżetem ciepła (silnik tylko na tyle, żeby termika wroga go nie sięgnęła) i bez radaru. " +
+          "Termika sięga krócej: 35 zamiast 70 × pierwiastek ciepła. Wariant bez przepustnicy pokazuje, ile daje sama dyscyplina silnika.",
+    wynik: "Przepustnica i oszczędny boost (porównanie z wariantem bez nich, te same zasięgi): termika oślepiona za rufą 99% → 65% klatek, " +
+           "średnia prędkość 2,7 → 1,6 pola/s, pierwsze trafienie 14 s → 18 s, okręty zamarznięte na całą bitwę 10 → 4. " +
+           "Stanie 23,5% → 18,0%, ale rozrzut bez przepustnicy był duży (7–57%). Lotniskowce zablokowane przez sąsiada dalej stoją: do poprawki.",
+    warianty: [["S_wszystko_", "wszystko włączone"], ["S_bez_dyscypliny_", "bez przepustnicy i oszczędnego boostu"]] },
+  { tytul: "Poprawki ruchu",
+    opis: "Dwa bazowe błędy, przez które okręty AI stały: silnik działał tylko w co piątym kroku fizyki, " +
+          "a omijanie przeszkód hamowało okręty w tłoku (także przez własną eskortę za rufą). Porównaj, ile okręty stoją.",
+    wynik: "Stanie 29,4% → 14,3%. Mediana prędkości 0,85 → 1,82 pola/s, pierwsze trafienie 22 s → 12 s. " +
+           "Skutek uboczny: silnik grzał bez przerwy (poprawione w serii wyżej).",
+    warianty: [["R_poprawki_", "z poprawkami"], ["R_bez_", "bez poprawek"]] },
+  { tytul: "Pełne AI kontra odniesienie (przed poprawkami ruchu)",
+    opis: "Sensory AI, obraz floty, szpica, triangulacja i formacja kontra AI bez tych zachowań. " +
+          "Szpica i zasadzka to bitwy, które wymuszają jedno zachowanie.",
+    wynik: "Zniszczone okręty 13,7 → 18,2, impulsy radaru 153 → 28. Stanie bez zmian (ok. 28%), co doprowadziło do poprawek ruchu.",
+    warianty: [["fin_zwykla_", "pełne AI"], ["fin_odniesienie_", "odniesienie: AI bez nowych zachowań"],
+               ["fin_szpica_", "szpica floty"], ["fin_zasadzka_", "zasadzka"]] }
+];
+
+// Starsze nagrania, opisy jak dotąd
+var OPISY = {
+  sensory_ai_po: "Sensory AI — AI korzysta z sensorów (szukanie, cisza radiowa, ciche podejście)",
+  sensory_ai_przed: "Sensory AI — ten sam skład bez taktyk sensorowych",
+  sensory_ai_zwykla_1: "Bitwa zwykła 1 — pełne AI, 8 na 8",
+  sensory_ai_zwykla_2: "Bitwa zwykła 2 — pełne AI, 8 na 8",
+  sensory_ai_zwykla_3: "Bitwa zwykła 3 — pełne AI, 8 na 8",
+  sensory_ai_obraz_floty: "Forsuje obraz floty — meldunek niesie pozycję, nie namiar na żywo",
+  sensory_ai_szpica: "Forsuje szpicę — jeden okręt floty pulsuje za wszystkich",
+  sensory_ai_triangulacja: "Forsuje triangulację — flota znajduje cię nasłuchem",
+  sensory_ai_zasadzka: "Forsuje zasadzkę — flota obronna czeka zimna",
+  p1_before: "Scenariusz 1, PRZED — ciężka flota NT kontra flota inwazyjna Syndykatu",
+  p1_after: "Scenariusz 1, PO — ciężka flota NT kontra flota inwazyjna Syndykatu",
+  p2_before: "Scenariusz 2, PRZED — ciężka flota NT kontra wolfpack",
+  p2_after: "Scenariusz 2, PO — ciężka flota NT kontra wolfpack",
+  p3_before: "Scenariusz 3, PRZED — NT 5 kontra Syndykat 10",
+  p3_after: "Scenariusz 3, PO — NT 5 kontra Syndykat 10",
+  i_fair_1: "Uczciwa bitwa 8 na 8 — ciężka flota NT kontra flota inwazyjna",
+  j_fair_2: "Uczciwa bitwa 8 na 8 — druga próba, obie strony wzywają pomoc",
+  k_fair_nt_light: "Uczciwa bitwa — lekka flota NT kontra flota inwazyjna",
+  l_fair_wolfpack: "Uczciwa bitwa — ciężka flota NT kontra wolfpack",
+  v_control: "Bitwa 8 na 8 z okrętem głównym po stronie NT",
+  a_even_close: "Równe floty, start blisko", b_even_far: "Równe floty, start daleko",
+  c_syn_outnumbered: "Syndykat w mniejszości", d_syn_superior: "NT 5 kontra Syndykat 10, z okrętem głównym",
+  e_small: "Bitwa 6 na 6", f_big: "Bitwa 12 na 12", g_even_close_again: "Równe floty, start blisko — druga próba",
+  h_nt_outnumbered: "NT w mniejszości",
+  today_invasion: "Flota inwazyjna — konfiguracja #569", today_outnumbered: "NT w mniejszości — konfiguracja #569",
+  today_wolfpack: "Wolfpack — konfiguracja #569"
+};
+var GRUPY_STARE = [
+  ["Sensory AI (pierwsza wersja)", function (s) { return s.indexOf("sensory_ai") === 0; }],
+  ["Przed i po", function (s) { return /^p[123]_(before|after)$/.test(s); }],
+  ["Uczciwe bitwy", function (s) { return /fair/.test(s) || s === "v_control"; }],
+  ["Konfiguracja #569", function (s) { return s.indexOf("today_") === 0; }],
+  ["Pozostałe", function () { return true; }]
+];
+
+function listuj(dir) {
+  return fetch(dir + "?t=" + Date.now(), { headers: { Accept: "application/json" } })
+    .then(function (r) { if (!r.ok) throw new Error(dir + ": HTTP " + r.status); return r.json(); })
+    .then(function (j) {
+      if (!Array.isArray(j)) return [];
+      return j.map(function (e) { return { nazwa: e.name, czas: e.mod_time || "" }; });
+    });
+}
+function slugZPliku(n) {
+  return n.replace(/\.(gif|png|html|mp4|webm)$/i, "").replace(/^battle_/, "").replace(/_(start|fight|late)$/, "");
+}
+var widziane = {};
+try { widziane = JSON.parse(localStorage.getItem("widziane") || "{}"); } catch (e) { widziane = {}; }
+function dzien(czas) {
+  if (!czas) return "";
+  var d = new Date(czas);
+  return isNaN(d) ? "" : d.toLocaleString("pl-PL", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+}
+
+function wczytaj() {
+  var stan = document.getElementById("stan");
+  return Promise.all([listuj("pliki/bitwy/"), listuj("pliki/sensory_ai/")]).then(function (res) {
+    var bitwy = {};
+    function dodaj(slug) {
+      return bitwy[slug] = bitwy[slug] || { slug: slug, player: null, gif: null, mp4: null, stills: [], czas: "" };
+    }
+    res[0].forEach(function (f) {
+      if (!/\.html$/i.test(f.nazwa)) return;
+      var b = dodaj(slugZPliku(f.nazwa));
+      b.player = "pliki/bitwy/" + f.nazwa;
+      if (f.czas > b.czas) b.czas = f.czas;
+    });
+    var luzne = [];
+    res[1].forEach(function (f) {
+      if (/^dradis_/.test(f.nazwa)) { luzne.push(f); return; }
+      var b = dodaj(slugZPliku(f.nazwa)), src = "pliki/sensory_ai/" + f.nazwa;
+      if (/\.gif$/i.test(f.nazwa)) b.gif = src;
+      else if (/\.(mp4|webm)$/i.test(f.nazwa)) b.mp4 = src;
+      else if (/\.png$/i.test(f.nazwa)) b.stills.push(src);
+      if (f.czas > b.czas) b.czas = f.czas;
+    });
+    var nowe = 0, uzyte = {};
+    function nowa(s) { return widziane[s] !== bitwy[s].czas; }
+    Object.keys(bitwy).forEach(function (s) { if (nowa(s)) nowe++; });
+
+    var cel = document.getElementById("tresc");
+    cel.innerHTML = "";
+    SERIE.forEach(function (seria) {
+      var kiedy = "", ile = 0;
+      var html = "";
+      seria.warianty.forEach(function (w) {
+        var litery = Object.keys(bitwy).filter(function (s) { return s.indexOf(w[0]) === 0; })
+          .map(function (s) { return s.slice(w[0].length); }).filter(function (l) { return /^[a-z]$/.test(l); });
+        if (!litery.length) return;
+        var max = litery.sort()[litery.length - 1].charCodeAt(0);
+        html += '<div class="wariant"><span class="lab">' + w[1] + "</span>";
+        for (var c = 97; c <= max; c++) {
+          var l = String.fromCharCode(c), s = w[0] + l, b = bitwy[s];
+          if (b && b.player) {
+            uzyte[s] = true; ile++;
+            if (b.czas > kiedy) kiedy = b.czas;
+            html += '<a class="bitwa' + (nowa(s) ? " nowa" : "") + '" href="' + b.player +
+              '" target="_blank" rel="noopener" title="Bitwa ' + l.toUpperCase() + '">' + l.toUpperCase() + "</a>";
+          } else {
+            html += '<span class="brak" title="tej bitwy jeszcze nie ma">' + l.toUpperCase() + "</span>";
+          }
+        }
+        html += "</div>";
+      });
+      if (!ile) return;
+      var sec = document.createElement("section");
+      sec.className = "seria";
+      sec.innerHTML = "<h2>" + seria.tytul + "</h2><div class='kiedy'>" + ile + " bitew" + (kiedy ? " · ostatnia " + dzien(kiedy) : "") +
+        "</div><p>" + seria.opis + "</p>" +
+        (seria.wynik ? '<div class="wynik">' + seria.wynik + "</div>" : '<div class="wynik czeka">Wynik porównania jeszcze nie jest policzony.</div>') +
+        html;
+      cel.appendChild(sec);
+    });
+
+    var stare = Object.keys(bitwy).filter(function (s) { return !uzyte[s]; });
+    if (stare.length) {
+      var det = document.createElement("details");
+      det.className = "stare";
+      det.innerHTML = "<summary>Starsze nagrania (" + stare.length + ")</summary>";
+      var wziete = {};
+      GRUPY_STARE.forEach(function (g) {
+        var lista = stare.filter(function (s) { return !wziete[s] && g[1](s); }).sort();
+        if (!lista.length) return;
+        var grp = document.createElement("div");
+        grp.className = "grp";
+        grp.innerHTML = "<h3>" + g[0] + "</h3>";
+        lista.forEach(function (s) {
+          wziete[s] = true;
+          var b = bitwy[s], podglad = null;
+          for (var i = 0; i < b.stills.length; i++) if (/_fight\.png$/.test(b.stills[i])) podglad = b.stills[i];
+          podglad = podglad || b.stills[0] || null;
+          var d = document.createElement("div");
+          d.className = "rzad";
+          d.innerHTML = (podglad ? '<img loading="lazy" src="' + podglad + '" alt="">' : "") +
+            '<div class="t">' + (OPISY[s] || s.replace(/_/g, " ")) + (nowa(s) ? '<span class="tag new">nowe</span>' : "") +
+            "<small>" + dzien(b.czas) + "</small></div>" +
+            (b.player ? '<a class="btn" href="' + b.player + '" target="_blank" rel="noopener">Odtwarzacz</a>' : "") +
+            (b.mp4 ? '<a class="btn plain" href="' + b.mp4 + '" target="_blank" rel="noopener">MP4</a>' : "") +
+            (b.gif ? '<a class="btn plain" href="' + b.gif + '" target="_blank" rel="noopener">GIF</a>' : "");
+          grp.appendChild(d);
+        });
+        det.appendChild(grp);
+      });
+      if (luzne.length) {
+        var grp2 = document.createElement("div");
+        grp2.className = "grp";
+        grp2.innerHTML = "<h3>Zrzuty z gry</h3>";
+        luzne.forEach(function (f) {
+          var src = "pliki/sensory_ai/" + f.nazwa, d = document.createElement("div");
+          d.className = "rzad";
+          d.innerHTML = '<img loading="lazy" src="' + src + '" alt=""><div class="t">' + f.nazwa + '</div>' +
+            '<a class="btn plain" href="' + src + '" target="_blank" rel="noopener">Otwórz</a>';
+          grp2.appendChild(d);
+        });
+        det.appendChild(grp2);
+      }
+      cel.appendChild(det);
+    }
+    if (!cel.children.length) cel.innerHTML = '<div class="empty">Brak plików.</div>';
+    stan.textContent = Object.keys(bitwy).length + " nagrań, " + nowe + " nowych · odczyt " +
+      new Date().toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit" });
+  }).catch(function (e) {
+    stan.textContent = "nie udało się wczytać listy plików: " + e.message;
+  });
+}
+
+document.getElementById("odswiez").onclick = function () { wczytaj(); };
+document.getElementById("zapomnij").onclick = function () {
+  Promise.all([listuj("pliki/bitwy/"), listuj("pliki/sensory_ai/")]).then(function (res) {
+    widziane = {};
+    res[0].concat(res[1]).forEach(function (f) {
+      var s = slugZPliku(f.nazwa);
+      if (!widziane[s] || f.czas > widziane[s]) widziane[s] = f.czas;
+    });
+    try { localStorage.setItem("widziane", JSON.stringify(widziane)); } catch (e) {}
+    wczytaj();
+  });
+};
+var timer = setInterval(wczytaj, 60000);
+document.getElementById("auto").onclick = function (e) {
+  var b = e.currentTarget, wlaczone = b.getAttribute("aria-pressed") === "true";
+  b.setAttribute("aria-pressed", wlaczone ? "false" : "true");
+  clearInterval(timer);
+  if (!wlaczone) timer = setInterval(wczytaj, 60000);
+};
+wczytaj();
+</script>
+</body>
+</html>

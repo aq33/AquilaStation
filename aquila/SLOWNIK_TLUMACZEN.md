@@ -4022,7 +4022,8 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | landing | lądowanie | n; nowe |
 | eject / ejection | katapultować się / katapultowanie | czas. / n; istniejące |
 | handbrake / brakes | hamulec ręczny / hamulce | m; istniejące |
-| inertial dampeners | tłumiki bezwładności | mnoga; istniejące |
+| inertial dampeners (przełącznik lotu, klawisz X) | wspomaganie bezwładnościowe (IAS) | n; zmienione: „tłumiki” myliły się z tłumikiem broni |
+| inertial dampener (maszyna chroniąca załogę) | tłumik bezwładności | m; istniejące |
 | aircraft tug | holownik | m; nowe |
 | squadron | eskadra | ż; istniejące |
 | flight | klucz | m; nowe |
