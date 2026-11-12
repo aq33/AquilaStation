@@ -1,3 +1,4 @@
+// Sprite'y: grudki z Azure Peak (humpoo, horsepoo, cowpoo z icons/roguetown/items/natural.dmi, CC BY-SA 3.0), odbite i złożone w 7 wariantów
 /obj/effect/decal/cleanable/feces
 	name = "odchody"
 	desc = "Brązowe, śmierdzące i śliskie. Równie dobrze mogłoby to być danie kucharza."
