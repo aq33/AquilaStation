@@ -96,9 +96,9 @@
 	TEST_ASSERT(!victim.translate_legacy_intent_click(user, modifiers), "A combat mode player's click was translated")
 
 /// A simple animal whose player picked the legacy intent controls
-/mob/living/simple_animal/hostile/carp/legacy_intents_test
+/mob/living/simple_animal/hostile/eyeball/legacy_intents_test
 
-/mob/living/simple_animal/hostile/carp/legacy_intents_test/uses_legacy_intents()
+/mob/living/simple_animal/hostile/eyeball/legacy_intents_test/uses_legacy_intents()
 	return TRUE
 
 /// Remembers the params of the last click it intercepted
@@ -113,7 +113,7 @@
 /datum/unit_test/combat_mode_legacy_simple_animal
 
 /datum/unit_test/combat_mode_legacy_simple_animal/Run()
-	var/mob/living/simple_animal/hostile/carp/legacy_intents_test/animal = allocate(/mob/living/simple_animal/hostile/carp/legacy_intents_test)
+	var/mob/living/simple_animal/hostile/eyeball/legacy_intents_test/animal = allocate(/mob/living/simple_animal/hostile/eyeball/legacy_intents_test)
 	animal.set_combat_mode(FALSE)
 	TEST_ASSERT_EQUAL(length(animal.legacy_intent_choices()), 4, "A legacy simple animal does not get all four intents")
 
@@ -131,7 +131,7 @@
 	TEST_ASSERT(animal.is_secondary_click(list(RIGHT_CLICK = "1")), "A right click is not the secondary action")
 
 	// Players on the combat mode controls keep the mob's own intents
-	var/mob/living/simple_animal/hostile/carp/plain = allocate(/mob/living/simple_animal/hostile/carp)
+	var/mob/living/simple_animal/hostile/eyeball/plain = allocate(/mob/living/simple_animal/hostile/eyeball) // AQUILA: the carp became a basic mob, the eyeball stays a simple animal
 	TEST_ASSERT_EQUAL(plain.legacy_intent_choices(), plain.possible_a_intents, "A combat mode player got the legacy intents")
 	TEST_ASSERT(!plain.is_secondary_click(list(LEFT_CLICK = "1")), "A combat mode left click is the secondary action")
 

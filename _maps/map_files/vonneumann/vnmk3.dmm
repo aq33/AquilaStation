@@ -4650,7 +4650,7 @@
 /area/maintenance/fore/secondary)
 "dGs" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/hostile/retaliate/wojtek,
+/mob/living/basic/bear/wojtek,
 /turf/open/floor/carpet/ship/beige_carpet{
 	color = "#CC8899";
 	name = "nanoweave carpet (puce)"
@@ -7460,7 +7460,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /obj/structure/cable,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -24550,7 +24550,7 @@
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
 "umJ" = (
-/mob/living/simple_animal/hostile/retaliate/ghost,
+/mob/living/basic/ghost,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/cult,
 /area/maintenance/starboard/aft)
