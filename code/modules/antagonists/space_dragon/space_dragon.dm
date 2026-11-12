@@ -95,12 +95,19 @@
 	start_rift_timer()
 
 /datum/antagonist/space_dragon/on_removal()
-	. = ..()
-	rift_ability.Remove(owner.current)
+	// AQ EDIT START - basic moby: owner znika w ..(), więc sprzątamy przed nim (runtime przy zdejmowaniu antaga)
+	if(!QDELETED(rift_ability))
+		rift_ability.Remove(owner.current)
 	owner.current.faction -= "carp"
 	UnregisterSignal(owner.current, COMSIG_LIVING_LIFE)
 	UnregisterSignal(owner.current, COMSIG_MOB_DEATH)
+	if(rift_warning_timer_id != TIMER_ID_NULL)
+		deltimer(rift_warning_timer_id)
+	if(rift_fail_timer_id != TIMER_ID_NULL)
+		deltimer(rift_fail_timer_id)
 	rift_list = null
+	return ..()
+	// AQ EDIT END
 
 /datum/antagonist/space_dragon/Destroy()
 	rift_list = null
@@ -134,8 +141,8 @@
 /datum/antagonist/space_dragon/proc/start_rift_timer()
 	rift_warning_timer_id = addtimer(CALLBACK(src, PROC_REF(rift_warn_callback)), max_time_to_rift_fail - 1 MINUTES, TIMER_STOPPABLE)
 	rift_fail_timer_id = addtimer(CALLBACK(src, PROC_REF(rift_fail_callback)), max_time_to_rift_fail, TIMER_STOPPABLE)
-	if(istype(owner.current, /mob/living/simple_animal/hostile/space_dragon))
-		var/mob/living/simple_animal/hostile/space_dragon/S = owner.current
+	if(istype(owner.current, /mob/living/basic/space_dragon)) // AQ EDIT - basic moby
+		var/mob/living/basic/space_dragon/S = owner.current // AQ EDIT - basic moby
 		S.can_summon_rifts = FALSE
 
 /datum/antagonist/space_dragon/proc/stop_rift_timer()
@@ -143,8 +150,8 @@
 	rift_warning_timer_id = TIMER_ID_NULL
 	deltimer(rift_fail_timer_id)
 	rift_fail_timer_id = TIMER_ID_NULL
-	if(istype(owner.current, /mob/living/simple_animal/hostile/space_dragon))
-		var/mob/living/simple_animal/hostile/space_dragon/S = owner.current
+	if(istype(owner.current, /mob/living/basic/space_dragon)) // AQ EDIT - basic moby
+		var/mob/living/basic/space_dragon/S = owner.current // AQ EDIT - basic moby
 		S.can_summon_rifts = TRUE
 
 /datum/antagonist/space_dragon/proc/rift_warn_callback()
@@ -205,8 +212,8 @@
 	rifts_charged = 0
 	owner.current.add_movespeed_modifier(MOVESPEED_ID_DRAGON_DEPRESSION, multiplicative_slowdown = 5)
 	stop_rift_timer()
-	if(istype(owner.current, /mob/living/simple_animal/hostile/space_dragon))
-		var/mob/living/simple_animal/hostile/space_dragon/S = owner.current
+	if(istype(owner.current, /mob/living/basic/space_dragon)) // AQ EDIT - basic moby
+		var/mob/living/basic/space_dragon/S = owner.current // AQ EDIT - basic moby
 		S.tiredness_mult = 5
 	playsound(owner.current, 'sound/vehicles/rocketlaunch.ogg', 100, TRUE)
 	for(var/obj/structure/carp_rift/rift in rift_list)

@@ -4,6 +4,8 @@
 #define AB_CHECK_HANDS_BLOCKED (1<<4)
 /// Akcja wymaga możliwości ruchu
 #define AB_CHECK_IMMOBILE (1<<5)
+/// Akcja wymaga, żeby mob nie był ubezwłasnowolniony (incapacitated(); zdolności mobów /datum/action/cooldown/mob_cooldown)
+#define AB_CHECK_INCAPACITATED (1<<6)
 
 #define INVOCATION_NONE "none"
 
@@ -45,7 +47,7 @@
 /// Z umysłu: zapłać koszt (list/resource_costs)
 #define COMSIG_MIND_SPEND_ANTAG_RESOURCE "mind_spend_antag_resource"
 
-/// Z moba: zdolność zaczyna działać (datum/action/cooldown/spell)
+/// Z moba: zdolność zaczyna działać (datum/action/cooldown/spell; mob_cooldown dodaje atom/target)
 #define COMSIG_MOB_ABILITY_STARTED "mob_ability_base_started"
 	#define COMPONENT_BLOCK_ABILITY_START (1<<0)
 /// Z zaklęcia przed rzuceniem (atom/cast_on), może zwrócić flagi SPELL_*

@@ -558,7 +558,7 @@ This section is for the crystal portals
 	/// Time between spawns
 	var/spawn_time = 0
 	/// Mobs the portal can spawn
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/basic/carp)
 	/// Fluff text for each spawned mob
 	var/spawn_text = "wyłania się z"
 	/// Faction of the spawned mobs

@@ -60,10 +60,11 @@
 	if(!vendingMachines.len)	//if every machine is infected
 		for(var/obj/machinery/vending/upriser in infectedMachines)
 			if(prob(70) && !QDELETED(upriser))
-				var/mob/living/simple_animal/hostile/mimic/copy/M = new(upriser.loc, upriser, null, 1) // it will delete upriser on creation and override any machine checks
+				// AQ EDIT START - basic moby: mimik to basic mob, kwestie z tablicy SI
+				var/mob/living/basic/mimic/copy/M = new(upriser.loc, upriser, null, 1) // it will delete upriser on creation and override any machine checks
 				M.faction = list("profit")
-				M.speak = rampant_speeches.Copy()
-				M.speak_chance = 7
+				M.ai_controller?.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, list(BB_EMOTE_SAY = rampant_speeches.Copy(), BB_SPEAK_CHANCE = 7))
+				// AQ EDIT END
 			else
 				explosion(upriser.loc, -1, 1, 2, 4, 0)
 				qdel(upriser)
