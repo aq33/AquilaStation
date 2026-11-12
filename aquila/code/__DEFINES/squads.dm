@@ -28,7 +28,7 @@
 
 /// Jak długo znacznik wisi w świecie i na mapie
 #define SQUAD_MARKER_DURATION (90 SECONDS)
-/// Odstęp między rozkazami na ekranie jednego nadawcy
+/// Odstęp między rozkazami na ekranie jednej drużyny (wspólny dla dowódcy i XO)
 #define SQUAD_ORDER_COOLDOWN (30 SECONDS)
 /// Odstęp między znacznikami jednego nadawcy
 #define SQUAD_MARKER_COOLDOWN (3 SECONDS)

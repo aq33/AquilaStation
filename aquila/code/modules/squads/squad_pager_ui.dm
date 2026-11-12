@@ -33,6 +33,10 @@
 	if(!squad_channel && squad)
 		squad_channel = AddComponent(squad.squad_channel_type)
 		squad_channel.squad = squad
+	// Pager z autolatu nie ma drużyny, dopóki nie założy go ktoś z drużyny
+	if(!global_access && !aq_view_squad(user))
+		to_chat(user, "<span class='warning'>Pager nie jest przypisany do drużyny. Załóż go, będąc w drużynie.</span>")
+		return
 	ui_interact(user)
 
 /obj/item/squad_pager/ui_interact(mob/user, datum/tgui/ui)
@@ -64,8 +68,7 @@
 	data["log"] = view_squad ? view_squad.aq_message_log : list()
 	data["marker_types"] = aq_marker_types_data()
 	data["map"] = aq_squad_map_data(user, aq_map_z, view_squad?.aq_active_levels())
-	var/mob/living/living_user = user
-	data["order_cooldown"] = istype(living_user) ? round(max(0, living_user.aq_next_squad_order - world.time) / 10) : 0
+	data["order_cooldown"] = view_squad ? view_squad.aq_order_cooldown_left() : 0
 	data["tts"] = !!user.client?.prefs?.squad_tts
 	data["tts_available"] = !!squad_tts_active()
 	return data
@@ -92,7 +95,7 @@
 		return FALSE
 	switch(action)
 		if("order")
-			if(!user.aq_can_issue_order())
+			if(!view_squad.aq_can_issue_order(user))
 				return FALSE
 			var/message = tgui_input_text(user, "Rozkaz dla drużyny [view_squad] (do [SQUAD_ORDER_MAX_LEN] znaków):", "Rozkaz", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 			if(!message || view_squad.leader != user)

@@ -48,8 +48,6 @@
 	data["has_camera"] = has_camera
 	data["camera_target"] = bodycam?.target ? list("ref" = REF(bodycam.target), "name" = bodycam.target.real_name, "active" = bodycam.target.aq_has_squad_bodycam()) : null
 	data["map_ref"] = bodycam?.map_name
-	var/mob/living/living_user = user
-	data["order_cooldown"] = istype(living_user) ? round(max(0, living_user.aq_next_squad_order - world.time) / 10) : 0
 	return data
 
 /// Wspólna obsługa akcji; zwraca TRUE, gdy coś się zmieniło. state to lista stanu okna (wybrany poziom mapy, odstęp drukowania).
@@ -123,7 +121,7 @@
 					to_chat(squad_member, "<span class='sciradio'>Dodatkowy cel drużyny: [orders]</span>")
 			return TRUE
 		if("order")
-			if(!squad || !user.aq_can_issue_order())
+			if(!squad || !squad.aq_can_issue_order(user))
 				return FALSE
 			var/message = tgui_input_text(user, "Rozkaz dla drużyny [squad] (do [SQUAD_ORDER_MAX_LEN] znaków). Drużyna zobaczy go na ekranie z twoim portretem.", "Rozkaz z CIC", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 			if(!message)
