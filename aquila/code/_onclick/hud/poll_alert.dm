@@ -94,7 +94,6 @@
 /atom/movable/screen/alert/poll_alert/proc/handle_sign_up()
 	if(owner in poll.signed_up)
 		poll.remove_candidate(owner)
-	// Ankiety z ignore_category = FALSE (wybudzenie z kriostazy i inne) nie mają listy „nigdy”; indeks 0 rzucał runtime i nikt nie mógł się zgłosić
 	else if(!poll.config.ignore_category || !(owner.ckey in GLOB.poll_ignore[poll.config.ignore_category]))
 		poll.sign_up(owner)
 	// Sign-up may delete the poll in the case of overriden signup logic
