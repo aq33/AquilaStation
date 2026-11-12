@@ -1,7 +1,8 @@
 name: Crowdin - wysyłka tekstów
 
 # Po każdej zmianie na masterze wysyła do Crowdina teksty gry: angielskie oryginały jako
-# źródła i obecny polski tekst jako zatwierdzone tłumaczenie. Polskiego tekstu nie wysyłamy
+# źródła, obecny polski tekst jako zatwierdzone tłumaczenie i obecne tłumaczenie rosyjskie
+# (strings/i18n/ru_all.json) jako niezatwierdzone. Polskiego tekstu nie wysyłamy
 # dla napisów, które w Crowdinie mają już zatwierdzone tłumaczenie (to może być poprawka
 # gracza czekająca na PR z workflowu crowdin_download.yml).
 
@@ -55,12 +56,21 @@ jobs:
           crowdin download --language=pl --no-progress || echo "Brak tłumaczeń do pobrania."
           mkdir -p crowdin_out/pl
           mv crowdin_out/pl crowdin_existing
+          # wersja rosyjska: działa, gdy projekt w Crowdinie ma język rosyjski
+          rm -rf crowdin_out/ru
+          crowdin download --language=ru --no-progress || echo "Brak rosyjskich tłumaczeń do pobrania."
+          mkdir -p crowdin_out/ru
+          mv crowdin_out/ru crowdin_existing_ru
 
       - name: Teksty bez zatwierdzonego tłumaczenia
-        run: python tools/i18n/crowdin.py export --out crowdin_out --existing crowdin_existing
+        run: python tools/i18n/crowdin.py export --out crowdin_out --existing crowdin_existing --existing-ru crowdin_existing_ru
 
       - name: Wysyłka źródeł
         run: crowdin upload sources --no-progress
 
       - name: Wysyłka obecnego polskiego tekstu
         run: crowdin upload translations --language=pl --auto-approve-imported --import-eq-suggestions --no-progress
+
+      - name: Wysyłka obecnego tłumaczenia rosyjskiego
+        # bez zatwierdzania: tłumaczenie maszynowe, gracze je poprawiają i zatwierdzają
+        run: crowdin upload translations --language=ru --import-eq-suggestions --no-progress || echo "Projekt nie ma języka rosyjskiego."

@@ -39,17 +39,51 @@ const ENGLISH_LABELS: Record<string, string> = {
   Amun: 'Muni',
 };
 
-let english = false;
+/**
+ * Etykiety po rosyjsku: kanał (Say, Radio, Me) albo polska etykieta przedrostka radia.
+ * Krótkie jak polskie, bo przycisk jest wąski.
+ */
+const RUSSIAN_LABELS: Record<string, string> = {
+  Say: 'Речь',
+  Radio: 'Радио',
+  Me: 'Эмоция',
+  Rój: 'Рой',
+  Dow: 'Ком',
+  Upl: 'Загр',
+  Inż: 'Инж',
+  Holo: 'Голо',
+  Inter: 'Интер',
+  Lewo: 'Лево',
+  Med: 'Мед',
+  Nauk: 'Наук',
+  SI: 'ИИ',
+  Explo: 'Экспл',
+  Prawo: 'Право',
+  Żand: 'СБ',
+  Synd: 'Синд',
+  Zaop: 'Снаб',
+  Usł: 'Серв',
+  CCom: 'ЦК',
+  Uzbr: 'Воор',
+  Amun: 'Боеп',
+};
+
+let sayLanguage = 'pl';
 
 export const setSayLanguage = (language: string | undefined) => {
-  english = language === 'en';
+  sayLanguage = language || 'pl';
 };
 
 /** Napis na przycisku kanału w języku gracza */
-export const channelLabel = (content: string): string =>
-  english
-    ? ENGLISH_LABELS[content] || content
-    : CHANNEL_LABELS[content] || content;
+export const channelLabel = (content: string): string => {
+  if (sayLanguage === 'en') {
+    return ENGLISH_LABELS[content] || content;
+  }
+  if (sayLanguage === 'ru') {
+    return RUSSIAN_LABELS[content] || content;
+  }
+  return CHANNEL_LABELS[content] || content;
+};
 
 /** Window sizes in pixels */
 export enum WINDOW_SIZES {

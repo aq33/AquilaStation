@@ -47,33 +47,39 @@ GLOBAL_LIST_EMPTY(aq_chat_translation_failures)
 
 // Jedno tłumaczenie na całą wiadomość, przed pętlą rozsyłania, i tylko gdy ktoś, kto ją zobaczy, mówi innym językiem
 /client/aq_ooc_prepare(raw_msg)
-	var/from_english = wants_english()
+	var/from_language = game_language()
+	/// język odbiorcy -> odbiorcy
 	var/list/readers = list()
 	for(var/client/C as anything in GLOB.clients)
 		if(!C?.prefs || !(C.prefs.chat_toggles & CHAT_OOC))
 			continue
 		if(!holder && (key in C.prefs.ignoring))
 			continue
-		if(C.wants_english() != from_english)
-			readers += C
+		var/to_language = C.game_language()
+		if(to_language != from_language)
+			LAZYADD(readers[to_language], C)
 	if(!length(readers))
 		return null
-	var/translated = aq_translate_wait(html_decode(raw_msg), from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, from_english ? DEEPL_LANG_PL : DEEPL_LANG_EN)
-	if(!translated)
-		return null
-	translated = sanitize(translated)
 	. = list()
-	for(var/client/C as anything in readers)
-		.[C] = translated
+	// jedno tłumaczenie na język odbiorców
+	for(var/to_language in readers)
+		var/translated = aq_translate_wait(html_decode(raw_msg), GLOB.game_language_deepl[from_language], GLOB.game_language_deepl[to_language])
+		if(!translated)
+			continue
+		translated = sanitize(translated)
+		for(var/client/C as anything in readers[to_language])
+			.[C] = translated
+	if(!length(.))
+		return null
 
 /client/aq_admin_msg_for(client/recipient, msg, sanitized = TRUE, html = FALSE)
-	var/from_english = wants_english()
-	var/to_english = recipient ? recipient.wants_english() : FALSE
-	if(!msg || from_english == to_english)
+	var/from_language = game_language()
+	var/to_language = recipient ? recipient.game_language() : GAME_LANGUAGE_PL
+	if(!msg || from_language == to_language)
 		return msg
 	var/static/regex/html_tags = new(@"<[^>]*>", "g")
 	var/source = html ? html_decode(html_tags.Replace(msg, "")) : (sanitized ? html_decode(msg) : msg)
-	var/translated = aq_translate_wait(source, from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL)
+	var/translated = aq_translate_wait(source, GLOB.game_language_deepl[from_language], GLOB.game_language_deepl[to_language])
 	if(!translated)
 		return msg
 	return aq_admin_translation_text(msg, translated, sanitized || html)

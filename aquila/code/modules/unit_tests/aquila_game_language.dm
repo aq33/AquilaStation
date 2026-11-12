@@ -8,7 +8,7 @@
 	var/datum/preference/choiced/game_language/preference = GLOB.preference_entries[/datum/preference/choiced/game_language]
 	TEST_ASSERT(preference, "No game_language preference entry")
 	var/list/choices = preference.get_choices()
-	TEST_ASSERT(("pl" in choices) && ("en" in choices), "game_language should offer pl and en")
+	TEST_ASSERT(("pl" in choices) && ("en" in choices) && ("ru" in choices), "game_language should offer pl, en and ru")
 
 	// Zasób czytany z dysku przy starcie (file()), brak pliku wywaliłby rejestrację zasobu
 	TEST_ASSERT(fexists("strings/i18n/en_chat.json"), "strings/i18n/en_chat.json is missing, run tools/i18n/build_chat_dict.py")
@@ -81,18 +81,24 @@
 	TEST_ASSERT(!new_prefs.game_language_chosen, "A new player starts with a chosen language")
 	TEST_ASSERT(!new_prefs.choose_game_language("de") && !new_prefs.game_language_chosen, "An unknown language was accepted")
 	TEST_ASSERT(new_prefs.choose_game_language(GAME_LANGUAGE_EN) && new_prefs.game_language == GAME_LANGUAGE_EN && new_prefs.game_language_chosen, "Choosing English did not set the language")
+	TEST_ASSERT(new_prefs.choose_game_language(GAME_LANGUAGE_RU) && new_prefs.game_language == GAME_LANGUAGE_RU, "Choosing Russian did not set the language")
 	TEST_ASSERT(new_prefs.choose_game_language(GAME_LANGUAGE_PL) && new_prefs.game_language == GAME_LANGUAGE_PL, "Switching back to Polish failed")
 
-	// Ikony HUD-u: angielska kopia ma te same stany co polski plik (inaczej guzik znika)
-	for(var/polish_key in GLOB.i18n_hud_icons_en)
-		var/english = GLOB.i18n_hud_icons_en[polish_key]
-		var/polish = GLOB.i18n_hud_icons_pl["[english]"]
-		TEST_ASSERT("[polish]" == polish_key, "HUD icon [english] does not map back to [polish_key]")
-		var/list/missing = icon_states(polish) - icon_states(english)
-		TEST_ASSERT(!length(missing), "English HUD icon [english] lacks states: [jointext(missing, ", ")]; run tools/i18n/hud_en_icons.py")
-	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', TRUE) == 'aquila/icons/hud/en/screen_midnight.dmi', "Midnight HUD style has no English copy")
-	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', FALSE) == 'icons/mob/screen_midnight.dmi', "English HUD icon does not go back to Polish")
-	TEST_ASSERT(i18n_hud_icon('icons/obj/storage.dmi', TRUE) == 'icons/obj/storage.dmi', "Icon without an English copy changed")
+	// Ikony HUD-u: kopia w każdym języku ma te same stany co polski plik (inaczej guzik znika)
+	for(var/list/copies in list(GLOB.i18n_hud_icons_en, GLOB.i18n_hud_icons_ru))
+		for(var/polish_key in copies)
+			var/copy = copies[polish_key]
+			var/polish = GLOB.i18n_hud_icons_pl["[copy]"]
+			TEST_ASSERT("[polish]" == polish_key, "HUD icon [copy] does not map back to [polish_key]")
+			var/list/missing = icon_states(polish) - icon_states(copy)
+			TEST_ASSERT(!length(missing), "HUD icon copy [copy] lacks states: [jointext(missing, ", ")]; run tools/i18n/hud_en_icons.py")
+	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', GAME_LANGUAGE_EN) == 'aquila/icons/hud/en/screen_midnight.dmi', "Midnight HUD style has no English copy")
+	TEST_ASSERT(i18n_hud_icon('icons/mob/screen_midnight.dmi', GAME_LANGUAGE_RU) == 'aquila/icons/hud/ru/screen_midnight.dmi', "Midnight HUD style has no Russian copy")
+	// zmiana EN -> RU: guzik ma jeszcze angielską kopię
+	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', GAME_LANGUAGE_RU) == 'aquila/icons/hud/ru/screen_midnight.dmi', "English HUD icon does not switch to Russian")
+	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/en/screen_midnight.dmi', null) == 'icons/mob/screen_midnight.dmi', "English HUD icon does not go back to Polish")
+	TEST_ASSERT(i18n_hud_icon('aquila/icons/hud/ru/screen_midnight.dmi', null) == 'icons/mob/screen_midnight.dmi', "Russian HUD icon does not go back to Polish")
+	TEST_ASSERT(i18n_hud_icon('icons/obj/storage.dmi', GAME_LANGUAGE_RU) == 'icons/obj/storage.dmi', "Icon without a translated copy changed")
 
 	// Dymek "[src] klika." z pustej broni: BYOND dokleja "The" przed nazwą pospolitą, po polsku ma go nie być
 	var/obj/item/clicking = allocate(/obj/item)

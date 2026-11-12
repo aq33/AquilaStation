@@ -1,4 +1,4 @@
-"""Buduje słownik czatu PL -> EN dla panelu tgui z en_pairs.json.
+"""Buduje słownik czatu PL -> EN (albo inny język, --lang ru) dla panelu tgui z en_pairs.json.
 
 Literał DM z osadzeniami ("[user] uderza [target]!") staje się szablonem: stałe
 fragmenty do dopasowania w HTML wiadomości i numery osadzeń. Angielska strona
@@ -16,6 +16,11 @@ Ręczne pary dla pomocniczych procedur Aquili (strefa_pl, "Widzisz, jak ...") s�
 w strings/i18n/en_manual.json.
 
 Wynik: strings/i18n/en_chat.json (klient) i strings/i18n/en_dm.json (krótkie stałe dla serwera)
+
+Inny język (--lang ru): źródłem jest strings/i18n/ru_all.json, czyli scalone ru_original.json
+(teksty z rosyjskich serwerów, tools/i18n/ru_sources.py), ru_translated.json (tłumaczenia)
+i ru_manual.json. Tłumaczenie ma te same wstawki [...] / ${...} co polski literał.
+Wynik: strings/i18n/ru_chat.json, ru_dm.json i ru_windows.json.
 """
 
 import argparse
@@ -102,7 +107,8 @@ def parse_dm_literal(lit):
 
 # napis w wyrażeniu okna: ${on ? 'WŁ.' : 'WYŁ.'}
 QUOTED_IN_EXPR = re.compile(r"""(['"])((?:\\.|(?!\1).)*)\1""")
-# Słownik okien (tgui, menu Esc): mniejszy niż czatu, patrz koniec main()
+# Słownik okien (tgui, menu Esc): mniejszy niż czatu, patrz koniec main(); dla innego języka
+# <język>_windows.json
 WINDOWS_OUT = "strings/i18n/en_windows.json"
 # Linia DM, której tekst idzie tylko do czatu (wiadomość, dymek, examine, log): nie do okna
 CHAT_ONLY_LINE = re.compile(
@@ -324,20 +330,24 @@ def load_json(path):
 
 
 def load_sources(args):
-    """Scala źródła i zapisuje en_all.json.
+    """Scala źródła i zapisuje en_all.json (albo <język>_all.json).
 
     Świeże en_pairs.json (+ oryginały portów) zastępują bazę; bez nich (brak historii
     albo klonów innych serwerów) bazą jest en_all.json z repo. Na wierzch idą
     tłumaczenia agentów/ręczne (en_translated.json), oryginały portów, które je zastępują
     (en_original.json), a na sam koniec en_manual.json.
     """
-    if os.path.exists(args.pairs):
+    if args.lang != "en":
+        # inny język nie ma par z historii ani oryginałów z upstreamu: same pliki języka
+        merged = {}
+    elif os.path.exists(args.pairs):
         merged = dict(load_json(args.upstream))
         merged.update(load_json(args.pairs))
     else:
         merged = load_json(args.all)
-    # zdania z okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py)
-    merged.update(load_json(jsx_runs.OUT))
+    if args.lang == "en":
+        # zdania z okien przecięte wstawkami JSX (tools/i18n/jsx_runs.py)
+        merged.update(load_json(jsx_runs.OUT))
     merged.update(load_json(args.translated))
     # oryginały portów znalezione dla tłumaczeń zwrotnych i złych par (tools/i18n/match_originals.py)
     merged.update(load_json(args.original))
@@ -434,7 +444,9 @@ def polish_or_class_values(table, exact, manual, check_css):
 
 
 def main():
+    global WINDOWS_OUT
     ap = argparse.ArgumentParser()
+    ap.add_argument("--lang", default="en", help="język docelowy: en albo ru (pliki strings/i18n/<język>_*.json)")
     ap.add_argument("--pairs", default="strings/i18n/en_pairs.json")
     ap.add_argument("--upstream", default="strings/i18n/en_pairs_upstream.json")
     ap.add_argument("--translated", default="strings/i18n/en_translated.json")
@@ -447,9 +459,17 @@ def main():
     ap.add_argument("--manual", default="strings/i18n/en_manual.json")
     ap.add_argument("--original", default="strings/i18n/en_original.json")
     args = ap.parse_args()
+    if args.lang != "en":
+        # pliki języka zamiast angielskich (poza --slice)
+        for name in ("translated", "all", "manual", "original"):
+            setattr(args, name, f"strings/i18n/{args.lang}_{name}.json")
+        args.out = f"strings/i18n/{args.lang}_chat.json"
+        args.dm_out = f"strings/i18n/{args.lang}_dm.json"
+        WINDOWS_OUT = f"strings/i18n/{args.lang}_windows.json"
 
     pairs = load_sources(args)
-    ui_pairs = load_ui_pairs()
+    # pary z historii okien są angielskie
+    ui_pairs = load_ui_pairs() if args.lang == "en" else {}
     # strings/ (porady rundy, listy tekstów) daje tylko stałe: wiadomość składa je w DM
     # tgui: teksty z okien (stałe i literały `${...}`) dla tłumaczenia okien (tgui/i18nDom.ts)
     files = subprocess.run(["git", "ls-files", "-z", "*.dm", "strings/*.txt", "strings/*.json",
@@ -511,6 +531,7 @@ def main():
     # "Wróć" w menu Esc to "Back", a nie "Recall" z jakiegoś DM
     ui = {}
     for literal in english_literals:
+        # angielskie zdanie z kodu: szablon na siebie (inny język: tłumaczenie, jeśli jest)
         pairs.setdefault(literal, literal)
     wanted |= english_literals
     for pl in sorted(wanted | names | set(manual)):
@@ -620,18 +641,20 @@ def main():
         kept.append(t)
     templates = kept
 
-    # Pary z refaktoryzacji kodu wzięte za tłumaczenie ("Yes" -> "No", "insert" -> "eject",
-    # "volume" -> "select"): angielski tekst w oknie zamieniałby się w inne słowo
-    for table in (exact, ui):
-        for key in identifier_refactors(table, manual):
-            del table[key]
-            stats["pomijane: angielskie słowo na inne angielskie"] += 1
-    # Pary z historii, w których polski tekst zamieniono na inny polski albo na nazwę klasy koloru
-    # ("Odciski" -> "Wiek", "Martwe" -> "bad"); okna dostają wtedy tłumaczenie z ogólnego słownika
-    for table, check_css in ((exact, False), (ui, True)):
-        for key in polish_or_class_values(table, exact, manual, check_css):
-            del table[key]
-            stats["pomijane: polski tekst albo klasa zamiast tłumaczenia"] += 1
+    # Filtry złych par z historii kodu: dotyczą tylko angielskiego (inne języki nie mają par z historii)
+    if args.lang == "en":
+        # Pary z refaktoryzacji kodu wzięte za tłumaczenie ("Yes" -> "No", "insert" -> "eject",
+        # "volume" -> "select"): angielski tekst w oknie zamieniałby się w inne słowo
+        for table in (exact, ui):
+            for key in identifier_refactors(table, manual):
+                del table[key]
+                stats["pomijane: angielskie słowo na inne angielskie"] += 1
+        # Pary z historii, w których polski tekst zamieniono na inny polski albo na nazwę klasy koloru
+        # ("Odciski" -> "Wiek", "Martwe" -> "bad"); okna dostają wtedy tłumaczenie z ogólnego słownika
+        for table, check_css in ((exact, False), (ui, True)):
+            for key in polish_or_class_values(table, exact, manual, check_css):
+                del table[key]
+                stats["pomijane: polski tekst albo klasa zamiast tłumaczenia"] += 1
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     data = {

@@ -10,6 +10,10 @@ Użycie (z katalogu repo):
 Tryb --changed wypisuje ostrzeżenia GitHub Actions i nie przerywa CI. Angielski
 odpowiednik nowego tekstu dopisz do strings/i18n/en_translated.json i uruchom
 tools/i18n/build_chat_dict.py.
+
+--lang ru: to samo dla wersji rosyjskiej (ru_all.json, ru_translated.json, ru_manual.json);
+rosyjski odpowiednik dopisz do strings/i18n/ru_translated.json i uruchom
+tools/i18n/build_chat_dict.py --lang ru.
 """
 
 import argparse
@@ -33,6 +37,10 @@ SOURCES = [
     "strings/i18n/en_original.json",
     "strings/i18n/en_translated.json",
 ]
+LANGUAGE_SOURCES = {
+    "ru": ["strings/i18n/ru_all.json", "strings/i18n/ru_translated.json", "strings/i18n/ru_manual.json"],
+}
+LANGUAGE_NAMES = {"en": "angielskiego", "ru": "rosyjskiego"}
 
 
 PATHSPECS = ["*.dm", "tgui/packages/*.tsx", "tgui/packages/*.jsx", "tgui/packages/*.ts",
@@ -179,26 +187,28 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--changed", metavar="BASE", help="sprawdź tylko linie dodane względem BASE")
     ap.add_argument("--strict", action="store_true", help="z --changed: błąd (kod wyjścia 1), nie ostrzeżenie")
+    ap.add_argument("--lang", default="en", choices=["en", "ru"])
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
-    known = load_known(SOURCES)
+    known = load_known(LANGUAGE_SOURCES.get(args.lang, SOURCES))
+    name = LANGUAGE_NAMES[args.lang]
+    target = "strings/i18n/en_translated.json i uruchom tools/i18n/build_chat_dict.py" if args.lang == "en"         else f"strings/i18n/{args.lang}_translated.json i uruchom tools/i18n/build_chat_dict.py --lang {args.lang}"
     if args.changed:
         found = changed_missing(known, args.changed)
         for path, number, lit in found:
             # ostrzeżenie GitHub Actions: % i nowe linie muszą być zakodowane
             text = lit.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")[:150]
             level = "error" if args.strict else "warning"
-            print(f"::{level} file={path},line={number}::Tekst bez angielskiego odpowiednika: {text}")
-        print(f"nowych polskich tekstów bez angielskiego: {len(found)}"
-              + (" (dopisz je do strings/i18n/en_translated.json i uruchom tools/i18n/build_chat_dict.py)"
-                 if found else ""))
+            print(f"::{level} file={path},line={number}::Tekst bez {name} odpowiednika: {text}")
+        print(f"nowych polskich tekstów bez {name}: {len(found)}"
+              + (f" (dopisz je do {target})" if found else ""))
         if found and args.strict:
             sys.exit(1)
         return
 
     missing = missing_literals(known)
-    print(f"polskich tekstów bez angielskiego: {len(missing)}")
+    print(f"polskich tekstów bez {name}: {len(missing)}")
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:
             for item in sorted(missing.values(), key=lambda x: (x["file"], x["line"])):

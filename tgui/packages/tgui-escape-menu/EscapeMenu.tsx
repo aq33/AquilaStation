@@ -62,8 +62,10 @@ export type ServerState = {
   suicideIcon: string | null;
   /** Klawisze gracza do strony Pomoc, odświeżane przy otwarciu menu. */
   controls: ControlSection[];
-  /** AQUILA: język gry (moduł aquila/code/modules/i18n); bez niego nie ma przełącznika */
+  /** AQUILA: język gry (moduł aquila/code/modules/i18n); bez niego nie ma wyboru języka */
   gameLanguage?: string;
+  /** AQUILA: języki gry: kod -> nazwa w tym języku */
+  gameLanguages?: Record<string, string>;
   /** AQUILA: czat głosowy włączony na serwerze (aquila/code/modules/voice_chat) */
   voiceChat?: boolean;
   /** AQUILA: strona czatu głosowego gracza jest połączona */

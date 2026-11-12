@@ -1,0 +1,3 @@
+{
+"_komentarz": "Ręczne poprawki wersji rosyjskiej (klucz = polski literał z kodu); wygrywają z ru_original.json i ru_translated.json. Poprawki graczy z Crowdina dopisuje tools/i18n/crowdin.py apply-ru."
+}

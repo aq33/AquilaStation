@@ -65,7 +65,8 @@
 /datum/aq_lobby_hud/New(mob/dead/new_player/player)
 	owner = player
 	client_ref = player.client
-	var/lobby_icon = client_ref.wants_english() ? 'aquila/icons/hud/en/lobby.dmi' : 'aquila/icons/hud/lobby.dmi'
+	// rosyjska wersja nie ma jeszcze własnych napisów w lobby: dostaje angielski oryginał
+	var/lobby_icon = client_ref.translated_language() ? 'aquila/icons/hud/en/lobby.dmi' : 'aquila/icons/hud/lobby.dmi'
 	add_element(/atom/movable/screen/aq_lobby/background, lobby_icon, -61, 0, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/ready, lobby_icon, -65, 8, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/join, lobby_icon, -58, 13, TRUE)

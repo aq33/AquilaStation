@@ -20547,5 +20547,8 @@
 "∞ minut": "∞ minutes",
 "■ Dostępne": "■ Available",
 "■ Przyszłe": "■ Future",
-"■ Zbadane": "■ Researched"
+"■ Zbadane": "■ Researched",
+"Najpierw wybierz wersję językową. / Choose the game language first. / Сначала выберите язык игры.": "Choose the game language first.",
+"<span class='warning'>Najpierw wybierz wersję językową. / Choose the game language first. / Сначала выберите язык игры.</span>": "<span class='warning'>Choose the game language first.</span>",
+"i18n: wczytano [length(dictionary.table)] tekstów i [length(dictionary.templates)] szablonów [uppertext(dictionary.language)] w [(REALTIMEOFDAY - start) / 10] s": "i18n: loaded [length(dictionary.table)] texts and [length(dictionary.templates)] [uppertext(dictionary.language)] templates in [(REALTIMEOFDAY - start) / 10] s"
 }

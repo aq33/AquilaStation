@@ -1,17 +1,43 @@
 // Język gry wybierany w preferencjach.
-// Gracz z językiem EN dostaje słownik (strings/i18n/en_chat.json), a klient tłumaczy przy wyświetlaniu:
-// panel czatu (tgui/packages/tgui-panel/chat/renderer.jsx) i okna tgui (tgui/packages/tgui/i18nDom.ts).
-// Panel statystyk pokazuje wtedy oryginalne angielskie nazwy verbów i zakładek.
+// Gracz z językiem innym niż polski (EN, RU) dostaje słownik (strings/i18n/<język>_chat.json), a klient tłumaczy
+// przy wyświetlaniu: panel czatu (tgui/packages/tgui-panel/chat/renderer.jsx) i okna tgui (tgui/packages/tgui/i18nDom.ts).
+// Panel statystyk pokazuje wtedy nazwy verbów i zakładek w języku gracza (po angielsku: oryginały z DM).
 // To, co BYOND rysuje sam (dymki, runechat, screentipy), tłumaczy serwer: translate.dm.
 // Słowniki buduje tools/i18n/ (opis w build_chat_dict.py).
 // Moduł nie zmienia kodu gry: wszystko to nadpisania procedur z aquila/code/modules/i18n/ (dołączone
 // na końcu aquila/aquila.dm) i loader tgui (tgui/i18n-jsx.cjs). Odpięcie: usunąć ten blok include
 // i loader z tgui/webpack.config.js.
 
-GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
+GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN, GAME_LANGUAGE_RU))
+
+/// Nazwa języka w jego własnym języku (okno wyboru, preferencje, menu Esc)
+GLOBAL_LIST_INIT(game_language_names, list(
+	GAME_LANGUAGE_PL = "Polski",
+	GAME_LANGUAGE_EN = "English",
+	GAME_LANGUAGE_RU = "Русский",
+))
+
+/// Język -> słownik klienta dla panelu czatu
+GLOBAL_LIST_INIT(i18n_chat_assets, list(
+	GAME_LANGUAGE_EN = /datum/asset/simple/i18n_en_chat,
+	GAME_LANGUAGE_RU = /datum/asset/simple/i18n_ru_chat,
+))
+
+/// Język -> mniejszy słownik klienta dla okien tgui i menu Esc
+GLOBAL_LIST_INIT(i18n_window_assets, list(
+	GAME_LANGUAGE_EN = /datum/asset/simple/i18n_en_windows,
+	GAME_LANGUAGE_RU = /datum/asset/simple/i18n_ru_windows,
+))
+
+/// Kod języka DeepL dla tłumaczenia czatu między graczami (chat_translation.dm)
+GLOBAL_LIST_INIT(game_language_deepl, list(
+	GAME_LANGUAGE_PL = DEEPL_LANG_PL,
+	GAME_LANGUAGE_EN = DEEPL_LANG_EN,
+	GAME_LANGUAGE_RU = DEEPL_LANG_RU,
+))
 
 /datum/preferences
-	/// Język interfejsu gracza (GAME_LANGUAGE_PL / GAME_LANGUAGE_EN), zapisywany pod PREFERENCE_TAG_GAME_LANGUAGE
+	/// Język interfejsu gracza (GAME_LANGUAGE_*), zapisywany pod PREFERENCE_TAG_GAME_LANGUAGE
 	var/game_language = GAME_LANGUAGE_PL
 
 /datum/preference/choiced/game_language
@@ -23,7 +49,7 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	return GLOB.game_languages.Copy()
 
 /datum/preference/choiced/game_language/get_display_names()
-	return list(GAME_LANGUAGE_PL = "Polski", GAME_LANGUAGE_EN = "English")
+	return GLOB.game_language_names.Copy()
 
 // Zapis w tabeli preferencji osobnym zapytaniem, bez zmian w preferences2.dm
 /datum/preferences/load_from_database()
@@ -60,8 +86,8 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	if(!C)
 		return
 	// Okna otwarte przed zmianą nie dostały słownika w send_assets(), a język przyjdzie im z następną aktualizacją
-	if(C.wants_english())
-		var/datum/asset/dictionary = get_asset_datum(/datum/asset/simple/i18n_en_windows)
+	var/datum/asset/dictionary = C.i18n_window_asset()
+	if(dictionary)
 		var/flush_queue = FALSE
 		for(var/datum/tgui/ui as anything in C.mob?.tgui_open_uis)
 			if(ui.window)
@@ -75,11 +101,30 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	// napisy na guzikach HUD-u (aquila/code/modules/i18n/hud_icons.dm)
 	C.mob?.hud_used?.update_ui_style(ui_style2icon(C.prefs?.UI_style))
 
-/// Gracz wybrał angielski
+/// Język gry gracza (GAME_LANGUAGE_*)
+/client/proc/game_language()
+	return prefs?.game_language || GAME_LANGUAGE_PL
+
+/// Język, na który tłumaczymy teksty gry dla tego gracza, albo null, gdy gra po polsku
+/client/proc/translated_language()
+	var/language = prefs?.game_language
+	return (language && language != GAME_LANGUAGE_PL) ? language : null
+
+/// Gracz wybrał angielski (obcokrajowiec i rzeczy tylko dla wersji angielskiej)
 /client/proc/wants_english()
 	return prefs?.game_language == GAME_LANGUAGE_EN
 
-/// Słownik PL -> EN dla klienta. Wczytywany z dysku przy starcie, więc nowy słownik nie wymaga kompilacji.
+/// Słownik okien w języku gracza (zasób) albo null, gdy gra po polsku
+/client/proc/i18n_window_asset()
+	var/asset_type = GLOB.i18n_window_assets[translated_language() || ""]
+	return asset_type ? get_asset_datum(asset_type) : null
+
+/// Słownik czatu w języku gracza (zasób) albo null, gdy gra po polsku
+/client/proc/i18n_chat_asset()
+	var/asset_type = GLOB.i18n_chat_assets[translated_language() || ""]
+	return asset_type ? get_asset_datum(asset_type) : null
+
+/// Słowniki PL -> język dla klienta. Wczytywane z dysku przy starcie, więc nowy słownik nie wymaga kompilacji.
 /datum/asset/simple/i18n_en_chat
 	keep_local_name = TRUE
 	assets = list(
@@ -87,31 +132,69 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	)
 
 /// Mniejszy słownik dla okien tgui i menu Esc (bez tekstów tylko z czatu): każde okno to osobna
-/// przeglądarka, która parsuje go od nowa (tools/i18n/build_chat_dict.py, en_windows.json)
+/// przeglądarka, która parsuje go od nowa (tools/i18n/build_chat_dict.py, <język>_windows.json)
 /datum/asset/simple/i18n_en_windows
 	keep_local_name = TRUE
 	assets = list(
 		"i18n_en_windows.json" = file("strings/i18n/en_windows.json"),
 	)
 
-// Bez preloadu (ASSET_SIMPLE_PRELOAD wysyła wszystkie zasoby każdemu): słowniki dostają tylko gracze z EN
+/datum/asset/simple/i18n_ru_chat
+	keep_local_name = TRUE
+	assets = list(
+		"i18n_ru_chat.json" = file("strings/i18n/ru_chat.json"),
+	)
+
+/datum/asset/simple/i18n_ru_windows
+	keep_local_name = TRUE
+	assets = list(
+		"i18n_ru_windows.json" = file("strings/i18n/ru_windows.json"),
+	)
+
+// Bez preloadu (ASSET_SIMPLE_PRELOAD wysyła wszystkie zasoby każdemu): słowniki dostają tylko gracze z danym językiem
 /datum/asset_transport/Initialize(list/assets)
 	..()
-	preload -= "i18n_en_chat.json"
-	preload -= "i18n_en_windows.json"
+	for(var/language in GLOB.game_languages)
+		preload -= "i18n_[language]_chat.json"
+		preload -= "i18n_[language]_windows.json"
 
-/// Wysyła panelowi język gracza (i słownik, gdy angielski)
+/// Grand9K z cyrylicą. Font w zasobach (.rsc) klient BYOND ładuje sam, a font_family wpisuje plik do zasobów.
+/datum/font/grand9k_pixel_ru
+	name = "Grand9K Pixel RU"
+	font_family = 'aquila/interface/fonts/Grand9K_Pixel_RU.ttf'
+
+/// Font napisów na mapie (runechat, liczniki HUD-u: klasa .maptext ze skin.dmf) w języku gracza
+#define I18N_MAPTEXT_FONT_DEFAULT "font-family: 'Small Fonts'; font-size: 7px;"
+/// Small Fonts rysuje cyrylicę mikroskopijnym zamiennikiem: rosyjski gracz dostaje Grand9K z cyrylicą
+#define I18N_MAPTEXT_FONT_CYRILLIC "font-family: 'Grand9K Pixel RU'; font-size: 6pt;"
+
+/// Ustawia font klasy .maptext na mapie gracza (winset stylu mapy, bez zmian w skin.dmf)
+/client/proc/i18n_update_map_font()
+	set waitfor = FALSE
+	var/want = game_language() == GAME_LANGUAGE_RU ? I18N_MAPTEXT_FONT_CYRILLIC : I18N_MAPTEXT_FONT_DEFAULT
+	var/other = want == I18N_MAPTEXT_FONT_DEFAULT ? I18N_MAPTEXT_FONT_CYRILLIC : I18N_MAPTEXT_FONT_DEFAULT
+	var/style = winget(src, "mapwindow.map", "style")
+	if(QDELETED(src) || !istext(style) || !findtext(style, other))
+		return
+	winset(src, "mapwindow.map", list("style" = replacetext(style, other, want)))
+
+#undef I18N_MAPTEXT_FONT_DEFAULT
+#undef I18N_MAPTEXT_FONT_CYRILLIC
+
+/// Wysyła panelowi język gracza (i słownik, gdy nie gra po polsku)
 /datum/tgui_panel/proc/send_game_language()
 	if(!client || !is_ready())
 		return
-	if(client.wants_english() && window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_chat)))
+	client.i18n_update_map_font()
+	var/datum/asset/dictionary = client.i18n_chat_asset()
+	if(dictionary && window.send_asset(dictionary))
 		// Klient i tak czeka na plik i ponawia pobieranie (tgui/i18n.ts), ale im wcześniej dojdzie, tym lepiej
 		client.browse_queue_flush()
 		if(!client)
 			return
-	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
+	window.send_message("i18n/setLanguage", list("language" = client.game_language()))
 
-/// Menu pod Esc (aquila/code/modules/escape_menu, woła je New): język gracza i słownik, gdy angielski
+/// Menu pod Esc (aquila/code/modules/escape_menu, woła je New): język gracza i słownik, gdy nie gra po polsku
 /datum/escape_menu/New(client/client)
 	. = ..()
 	send_game_language()
@@ -119,16 +202,17 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 /datum/escape_menu/proc/send_game_language()
 	if(!client || !window)
 		return
-	if(client.wants_english())
-		window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows))
-	window.send_message("i18n/setLanguage", list("language" = client.prefs?.game_language || GAME_LANGUAGE_PL))
-	send_update(list("gameLanguage" = client.prefs?.game_language || GAME_LANGUAGE_PL)) // przełącznik w menu
+	var/datum/asset/dictionary = client.i18n_window_asset()
+	if(dictionary)
+		window.send_asset(dictionary)
+	window.send_message("i18n/setLanguage", list("language" = client.game_language()))
+	send_update(list("gameLanguage" = client.game_language(), "gameLanguages" = GLOB.game_language_names)) // wybór w menu
 
-/// Okno mówienia (tgui-say): etykiety kanałów po angielsku (tgui/packages/tgui-say/constants)
+/// Okno mówienia (tgui-say): etykiety kanałów w języku gracza (tgui/packages/tgui-say/constants)
 /datum/tgui_say/load()
 	. = ..()
 	if(. && window)
-		window.send_message("i18n/setLanguage", list("language" = client?.prefs?.game_language || GAME_LANGUAGE_PL))
+		window.send_message("i18n/setLanguage", list("language" = client?.game_language() || GAME_LANGUAGE_PL))
 
 /datum/tgui_panel/on_message(type, payload)
 	. = ..()
@@ -140,12 +224,13 @@ GLOBAL_LIST_INIT(game_languages, list(GAME_LANGUAGE_PL, GAME_LANGUAGE_EN))
 	. = ..()
 	var/list/payload = .
 	if(islist(payload) && islist(payload["config"]))
-		payload["config"]["language"] = user?.client?.prefs?.game_language || GAME_LANGUAGE_PL
+		payload["config"]["language"] = user?.client?.game_language() || GAME_LANGUAGE_PL
 
 /datum/tgui/send_assets()
 	..()
 	// send_assets śpi, więc klient mógł zniknąć
-	if(!user?.client?.wants_english() || !window)
+	var/datum/asset/dictionary = user?.client?.i18n_window_asset()
+	if(!dictionary || !window)
 		return
-	if(window.send_asset(get_asset_datum(/datum/asset/simple/i18n_en_windows)))
+	if(window.send_asset(dictionary))
 		user.client.browse_queue_flush()

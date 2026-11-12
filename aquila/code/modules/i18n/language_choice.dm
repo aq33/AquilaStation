@@ -42,13 +42,16 @@
 	UNTIL(QDELETED(src) || tgui_panel?.is_ready() || world.time > wait_until)
 	if(QDELETED(src))
 		return
-	var/message = "Wybierz wersję językową gry.\nChoose the game language."
-	var/title = "Język / Language"
+	var/message = "Wybierz wersję językową gry.\nChoose the game language.\nВыберите язык игры."
+	var/title = "Język / Language / Язык"
+	var/list/names = list()
+	for(var/language in GLOB.game_languages)
+		names += GLOB.game_language_names[language]
 	var/choice
 	var/opened = FALSE
 	// Własny modal zamiast tgui_alert(): wybór w menu pod Esc musi móc go zamknąć (close_game_language_window)
 	if(mob && (prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
-		game_language_modal = new(mob, message, title, list("Polski", "English"), 0, TRUE)
+		game_language_modal = new(mob, message, title, names, 0, TRUE)
 		game_language_modal.ui_interact(mob)
 		if(SStgui.get_open_ui(mob, game_language_modal))
 			opened = TRUE
@@ -59,13 +62,17 @@
 			return
 	// Bez TGUI (wyłączone w preferencjach albo okno się nie otworzyło) zwykłe okno BYOND, inaczej bramka pytałaby bez końca
 	if(!opened && mob && needs_game_language())
-		choice = alert(mob, message, title, "Polski", "English")
+		// alert() ma najwyżej trzy przyciski: tyle, ile języków
+		choice = alert(mob, message, title, GLOB.game_language_names[GAME_LANGUAGE_PL], GLOB.game_language_names[GAME_LANGUAGE_EN], GLOB.game_language_names[GAME_LANGUAGE_RU])
 		if(QDELETED(src))
 			return
 	asking_game_language = FALSE
 	if(!prefs || !choice)
 		return
-	prefs.choose_game_language(choice == "English" ? GAME_LANGUAGE_EN : GAME_LANGUAGE_PL)
+	for(var/language in GLOB.game_language_names)
+		if(GLOB.game_language_names[language] == choice)
+			prefs.choose_game_language(language)
+			return
 
 #undef GAME_LANGUAGE_CLIENT_WAIT
 
@@ -105,23 +112,24 @@
 
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src == usr && client?.needs_game_language() && i18n_lobby_href_joins(href_list))
-		to_chat(src, "<span class='warning'>Najpierw wybierz wersję językową. / Choose the game language first.</span>")
+		to_chat(src, "<span class='warning'>Najpierw wybierz wersję językową. / Choose the game language first. / Сначала выберите язык игры.</span>")
 		INVOKE_ASYNC(src, PROC_REF(language_gate)) // przez bramkę: po wyborze otwiera lobby
 		return FALSE
 	return ..()
 
-// Menu pod Esc: przełącznik języka (przycisk pokazuje się, gdy menu dostanie gameLanguage)
+// Menu pod Esc: wybór języka (przyciski pokazują się, gdy menu dostanie gameLanguage)
 /datum/escape_menu/on_message(type, payload, href_list)
 	if(type == "action" && !islist(payload))
 		return FALSE // bazowy handler czyta payload["action"]
-	if(type == "action" && client && payload["action"] == "toggle_language")
-		client.prefs?.choose_game_language(client.wants_english() ? GAME_LANGUAGE_PL : GAME_LANGUAGE_EN)
+	if(type == "action" && client && payload["action"] == "set_language")
+		if(!client.prefs?.choose_game_language(payload["language"]))
+			return TRUE
 		// język już wybrany: okno wyboru zamyka się, a bramka otwiera lobby
 		QDEL_NULL(client.game_language_modal)
 		return TRUE
 	. = ..()
 	if(type == "ready")
-		send_update(list("gameLanguage" = client?.prefs?.game_language || GAME_LANGUAGE_PL))
+		send_update(list("gameLanguage" = client?.game_language() || GAME_LANGUAGE_PL, "gameLanguages" = GLOB.game_language_names))
 
 // Samouczek proponujemy dopiero po wyborze języka (okno w wybranym języku, nie dwa okna naraz)
 /client/offer_tutorial()

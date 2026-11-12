@@ -191,9 +191,9 @@ export const chatMiddleware = (store: Store) => {
       const previous = getLanguage();
       // też panel statystyk, ustawienia i reszta panelu poza czatem
       setDomLanguage(payload.language);
-      if (getLanguage() === 'en') {
+      if (getLanguage() !== 'pl') {
         loadDictionary().then((ready) => ready && chatRenderer.rebuildChat());
-      } else if (previous === 'en') {
+      } else if (previous !== 'pl') {
         chatRenderer.rebuildChat();
       }
       return next(action);

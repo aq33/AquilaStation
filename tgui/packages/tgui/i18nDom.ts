@@ -254,7 +254,7 @@ const stopObserver = () => {
 };
 
 /**
- * Język okna: "en" włącza tłumaczenie (po wczytaniu słownika), inny przywraca
+ * Język okna: "en" albo "ru" włącza tłumaczenie (po wczytaniu słownika), "pl" przywraca
  * polskie teksty. Menu Esc (tgui-escape-menu) woła to wprost z wiadomości DM.
  */
 export const setDomLanguage = (
@@ -264,14 +264,19 @@ export const setDomLanguage = (
   if (!language || language === getLanguage()) {
     return;
   }
+  // zmiana języka: najpierw polskie oryginały (zmiana EN -> RU tłumaczy od nowa)
+  stopObserver();
   setLanguage(language);
-  if (getLanguage() !== 'en') {
-    stopObserver();
+  if (getLanguage() === 'pl') {
     return;
   }
+  const requested = getLanguage();
   loadDictionary().then((ready) => {
+    if (getLanguage() !== requested) {
+      return; // w międzyczasie przyszedł inny język
+    }
     if (!ready) {
-      // słownik nie doszedł: następna wiadomość z językiem EN spróbuje znowu
+      // słownik nie doszedł: następna wiadomość z tym językiem spróbuje znowu
       setLanguage('pl');
       return;
     }
