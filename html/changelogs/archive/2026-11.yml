@@ -872,6 +872,24 @@
       krasnal (z BeeStation-Hornet, CC-BY-SA 3.0).
   - refactor: Rdzeń SI zsynchronizowany z Bee; zwierzęta przeniesione na basic moby.
 '2026-11-12':
+  Jacquerel, Ben10Omintrix, mc-oofert, lizardqueenlexi, JohnFulpWillard, san7890, Comxy, jlsnow301, SMOSMOSMOSMOSMO, Rhials:
+  - rscadd: 'Moby mają zdolności: karpie otwierają szczeliny, magikarpie rzucają czary,
+      strażnik i królowa ksenomorfów plują neurotoksyną, goliat wypuszcza macki, obserwator
+      ładuje spojrzenie, smok zieje ogniem i bije skrzydłami.'
+  - rscadd: Zwierzę ze zdolnością wykona polecenie „Użyj zdolności” (z menu albo głosem).
+  - rscadd: Żołnierze Syndykatu, Nanotrasen, Rosjanie i piraci wzywają posiłki, piraci
+      rabują przy ataku.
+  - rscadd: 'Moby górnicze z tg: władca roju z pomiotami, legion przejmujący ciała,
+      goliat do ujeżdżenia, obserwator i bazyliszek, złoty pędrak zjadający rudę.'
+  - rscadd: Klauni oddają całą grupą, ludzka muchołówka oplata winoroślą, mimiki kopiują
+      przedmioty i maszyny, świetlik leczy dotykiem.
+  - balance: Na wrogich okrętach do abordażu jest mniej przeciwników, ale wszyscy
+      to KNPC.
+  - balance: Hiveboty i ksenomorfy strzelają w tempie z tg i nie trzymają już dystansu.
+  - bugfix: Sarna w bitrunningu przestaje uciekać po śmierci i gdy ktoś ją ciągnie.
+  - bugfix: Birdboat znowu je jedzenie.
+  - refactor: Karpie, hiveboty, gęsi, ksenomorfy, żołnierze, moby górnicze, klauni,
+      mimiki, smok i reszta prostych mobów przeniesione na basic moby.
   Joker66613:
   - rscadd: 'Pęknięta i wgnieciona czaszka: głowa wygina się jak przy rozłupanej czaszce,
       a rana co jakiś czas daje uraz mózgu, aż kość się zrośnie.'
