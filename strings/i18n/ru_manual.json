@@ -1,3 +1,10 @@
 {
-"_komentarz": "Ręczne poprawki wersji rosyjskiej (klucz = polski literał z kodu); wygrywają z ru_original.json i ru_translated.json. Poprawki graczy z Crowdina dopisuje tools/i18n/crowdin.py apply-ru."
+"_komentarz": "Ręczne poprawki wersji rosyjskiej (klucz = polski literał z kodu); wygrywają z ru_original.json i ru_translated.json. Poprawki graczy z Crowdina dopisuje tools/i18n/crowdin.py apply-ru.",
+"PŻ": "ОЗ",
+"${surgery.time} s${surgery.looping ? ', powtarza się' : ''} · ${formatTools(surgery.tools)}": "${surgery.time} с${surgery.looping ? ', повторяется' : ''} · ${formatTools(surgery.tools)}",
+"Wiadomość do przesłania ${emagged ? 'pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]' : 'do CentComu'} przez splątanie kwantowe": "Сообщение для передачи ${emagged ? 'по адресу [НЕВЕРНЫЕ КООРДИНАТЫ МАРШРУТИЗАЦИИ]' : 'в ЦК'} через квантовую запутанность",
+"emagged ? 'pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]' : 'do CentComu'": "emagged ? 'по адресу [НЕВЕРНЫЕ КООРДИНАТЫ МАРШРУТИЗАЦИИ]' : 'в ЦК'",
+"pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]": "по адресу [НЕВЕРНЫЕ КООРДИНАТЫ МАРШРУТИЗАЦИИ]",
+"[Drzwi są ${data.locked ? 'zaryglowane' : ''}${data.locked && data.welded ? ' i ' : ''}${data.welded ? 'zaspawane' : ''}!]": "[Двери ${data.locked ? 'заперты на засов' : ''}${data.locked && data.welded ? ' и ' : ''}${data.welded ? 'заварены' : ''}!]",
+"mechaniczna skrzynka narzędziowa": "механический ящик для инструментов"
 }
