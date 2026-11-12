@@ -642,8 +642,12 @@
 	TEST_ASSERT(!(locate(/obj/structure/foamedmetal) in cell(6, 8)) && isspaceturf(cell(7, 8)), "The tile next to a departed shuttle was sealed")
 	TEST_ASSERT(istype(cell(7, 9), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(7, 9)), "The broken hull wall next to a departed shuttle was not sealed")
 
-	// Start rundy: nic nowego do łatania, a lista pól z mapy idzie do kosza
-	TEST_ASSERT_EQUAL(structure.seal_hull(TRUE), 0, "The hull check sealed something twice")
+	// Drugie przejście przy wczytaniu nie łata niczego drugi raz
+	TEST_ASSERT_EQUAL(structure.seal_hull(), 0, "The hull check sealed something twice")
+	// Start rundy: dziura, która powstała po wczytaniu (ściana (4,9)), zostaje załatana, a lista pól z mapy idzie do kosza
+	change(4, 9, /turf/open/space)
+	TEST_ASSERT_EQUAL(structure.seal_hull(TRUE), 1, "The hull check at round start did not seal the new breach")
+	TEST_ASSERT(istype(cell(4, 9), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(4, 9)), "The breach made after loading was not sealed at round start")
 	TEST_ASSERT(isnull(structure.map_open), "The map snapshot of open tiles was kept after the round start")
 
 	for(var/turf/T as anything in block(bottom_left, cell(10, 10)))

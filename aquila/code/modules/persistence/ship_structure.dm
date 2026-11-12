@@ -1149,7 +1149,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		return TRUE
 	if(istype(T, /turf/open/openspace))
 		var/turf/below = SSmapping.get_turf_below(T)
-		if(!below || isspaceturf(below))
+		if(!below || (isspaceturf(below) && baseline[key_for(below)] != SHIP_STRUCTURE_SHUTTLE))
 			return TRUE
 	for(var/dir in GLOB.cardinals)
 		var/turf/neighbour = get_step(T, dir)
