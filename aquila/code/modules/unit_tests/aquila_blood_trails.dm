@@ -8,15 +8,15 @@
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 
 	// Bleeding attributed to the right arm shows on the right arm only
-	patient.add_bleeding(BLEED_DEEP_WOUND)
-	patient.aq_add_limb_bleed(BODY_ZONE_R_ARM, patient.aq_bleed_rate())
+	patient.add_bleeding(BLEED_DEEP_WOUND, BODY_ZONE_R_ARM)
 	TEST_ASSERT(patient.overlays_standing[WOUND_LAYER], "Bleeding made no wound overlay")
 	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "r_arm_2"), "A deep wound on the right arm shows [patient.aq_wound_overlay_key] instead of r_arm_2")
 	TEST_ASSERT(!findtext(patient.aq_wound_overlay_key, "chest"), "Bleeding from the arm shows on the chest too ([patient.aq_wound_overlay_key])")
 
-	// Bandaging takes the overlay off
+	// Bandaging takes the blood off and puts a bandage on (medical_overlays.dm)
 	patient.suppress_bloodloss(BLEED_CRITICAL * 2)
-	TEST_ASSERT(!patient.overlays_standing[WOUND_LAYER], "Bandaged bleeding still shows a wound overlay ([patient.aq_wound_overlay_key])")
+	TEST_ASSERT(!findtext(patient.aq_wound_overlay_key, "r_arm_"), "Bandaged bleeding still shows a wound overlay ([patient.aq_wound_overlay_key])")
+	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "bandage_r_arm"), "The bandaged arm shows no bandage ([patient.aq_wound_overlay_key])")
 
 	// Bleeding with no known zone shows on the chest
 	patient.cauterise_wounds()
@@ -26,12 +26,10 @@
 	TEST_ASSERT(!patient.overlays_standing[WOUND_LAYER], "Cauterised bleeding still shows a wound overlay")
 
 	// An old head wound does not keep bleeding from the head once the bleeding stopped
-	patient.add_bleeding(BLEED_CUT)
-	patient.aq_add_limb_bleed(BODY_ZONE_HEAD, patient.aq_bleed_rate())
+	patient.add_bleeding(BLEED_CUT, BODY_ZONE_HEAD)
 	patient.remove_status_effect(STATUS_EFFECT_BLEED)
-	TEST_ASSERT(!LAZYLEN(patient.aq_limb_bleed), "Stopped bleeding kept the limb shares")
-	patient.add_bleeding(BLEED_DEEP_WOUND)
-	patient.aq_add_limb_bleed(BODY_ZONE_CHEST, patient.aq_bleed_rate())
+	TEST_ASSERT(!length(patient.aq_get_limb_bleeds()), "Stopped bleeding kept the limb bleeding")
+	patient.add_bleeding(BLEED_DEEP_WOUND, BODY_ZONE_CHEST)
 	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "chest_2") && !findtext(patient.aq_wound_overlay_key, "head"), "A new chest bleed shows [patient.aq_wound_overlay_key]")
 
 	// A wound bleeds from its own limb

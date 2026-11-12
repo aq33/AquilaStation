@@ -2,8 +2,6 @@
 // already in hard crit splits the skull open: anyone can reach in and pull the eyes out, and slipping spills the brain.
 // Fixed only by the skull reconstruction surgery.
 
-#define CRANIAL_FISSURE_FILTER "cranial_fissure_displacement"
-
 /datum/wound/cranial_fissure
 	wound_type = WOUND_CRANIAL
 	name = "Pęknięcie czaszki"
@@ -17,13 +15,14 @@
 
 /datum/wound/cranial_fissure/on_apply()
 	playsound(victim, 'sound/effects/splat.ogg', 80, TRUE)
-	victim.add_filter(CRANIAL_FISSURE_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/cranial_fissure.dmi', "displacement"), size = 3))
+	victim.aq_update_skull_filter() // skull.dm
 	RegisterSignal(victim, COMSIG_PARENT_QDELETING, PROC_REF(on_victim_deleted))
 
 /datum/wound/cranial_fissure/Destroy()
-	if(victim)
-		victim.remove_filter(CRANIAL_FISSURE_FILTER)
-	return ..()
+	var/mob/living/carbon/old_victim = victim
+	. = ..()
+	if(!QDELETED(old_victim))
+		old_victim.aq_update_skull_filter()
 
 /datum/wound/cranial_fissure/proc/on_victim_deleted(datum/source)
 	SIGNAL_HANDLER

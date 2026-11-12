@@ -156,7 +156,7 @@
 		new_limb = handle_arbitrary_prosthetic(patient, surgeon, attached, target_zone)
 	if(isnull(new_limb))
 		return
-	patient.cauterise_wounds()
+	patient.cauterise_wounds(zone = target_zone)
 	// przygotowanie klatki obejmuje też nową kończynę, żeby dało się ją od razu dokręcić albo przymocować
 	var/datum/status_effect/surgery_prepped/prep = patient.has_status_effect(/datum/status_effect/surgery_prepped) || null // u nas FALSE, gdy brak statusu
 	prep?.track_surgery(new_limb.body_zone)
@@ -260,4 +260,4 @@
 		span_notice("[surgeon] kończy mocowanie!"),
 	)
 	display_pain(limb.owner, "Proteza trzyma się teraz pewnie!", !IS_ORGANIC_LIMB(limb))
-	limb.owner?.cauterise_wounds()
+	limb.owner?.cauterise_wounds(zone = limb.body_zone)

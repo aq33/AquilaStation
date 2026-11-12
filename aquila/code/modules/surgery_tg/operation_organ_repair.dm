@@ -259,7 +259,7 @@
 /datum/surgery_operation/organ/repair/coronary_bypass/on_failure(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
 	// AQUILA - tg: adjustBleedStacks(30), u nas krwawienie Bee jak w starym kroku
-	organ.owner?.add_bleeding(BLEED_CRITICAL)
+	organ.owner?.add_bleeding(BLEED_CRITICAL, BODY_ZONE_CHEST)
 	display_results(
 		surgeon,
 		organ.owner,
