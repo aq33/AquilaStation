@@ -81,19 +81,55 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return 0
 	if(is_ai_carrier())
 		return AI_CARRIER_STANDOFF
+	// Przewaga wroga: zanim zejdziemy na zasięg dział, czekamy na resztę floty (ai_formation.dm)
+	if(ai_waits_for_support(enemy))
+		return OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND * 2
 	// Torpedo launchers only fire at MASS_SMALL and up; once the torpedoes run out the ship closes in with its guns
 	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
-		// Stay inside our own tracking range of the target, or the torpedo ship loses it and wanders off.
-		// From the initial range: a radar pulse raises max_tracking_range for a while and the ship would move in and out every pulse
-		var/tracking_limit = initial(max_tracking_range) - AI_STANDOFF_BAND
-		return clamp(tracking_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
+		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off.
+		// From the base tracking range: our own radar pulses double it for 5 s and the ship would move in and out every pulse
+		// Z zestawami sensorów (ai_sensor_suites.dm) liczy się to, czym naprawdę go widzimy, bez radaru
+		var/sensor_limit
+		if(GLOB.ai_sensor_suites_enabled)
+			sensor_limit = max(get_ai_passive_reach(enemy), SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
+		else
+			var/tracking = base_tracking_range || max_tracking_range
+			sensor_limit = max(tracking * enemy.sensor_signature, SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
+		return clamp(sensor_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
 	return 0
 
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
+	// Engines off, coasting away from someone who cannot see us (ai_sensor_use.dm)
+	if(!ram_target && ai_coasting_silent(target))
+		move_mode = null // Dryf bez ciągu; inaczej ciąg w każdym kroku fizyki grzałby silnik (ai_steering.dm)
+		return
+	// Przekierowania poniżej podają bazowemu move_toward() kafelek zamiast okrętu, a ono przy
+	// omijaniu przeszkód czyta current_system.system_contents bez zabezpieczenia (ai-skynet.dm).
+	// Okręt poza systemem gwiezdnym zachowuje się więc jak dotąd.
+	if(!ram_target && current_system)
+		// Cold ambush: the fleet waits instead of flying around (ai_fleet_picture.dm)
+		if(is_ai_lying_in_wait())
+			move_mode = null
+			brakes = TRUE // na overmapie nie ma oporu: bez hamulca okręt dryfowałby z zasadzki przez całą mapę
+			return
+		// Przewaga wroga: wracamy do swoich zamiast lecieć w nich samemu (ai_formation.dm)
+		var/turf/regroup_point = get_ai_regroup_point()
+		if(regroup_point)
+			return ..(regroup_point, FALSE, ignore_all_collisions)
+		// We hold this target only through the fleet's report: fly at the reported picture, not at the real ship
+		var/turf/blind = get_ai_blind_point(target)
+		if(blind)
+			return ..(blind, FALSE, ignore_all_collisions)
 	var/standoff = ram_target ? 0 : get_ai_standoff_range(target)
 	if(!standoff)
 		return ..()
 	var/dist = overmap_dist(src, target)
+	// Okrąg dystansu: lecimy do punktu na nim, zamiast hamować tłumikami i wisieć (ai_formation.dm).
+	// Stary kod zatrzymywał okręt w miejscu - na nagraniach lotniskowce stały nawet 68% czasu.
+	if(dist <= standoff + AI_STANDOFF_BAND && current_system)
+		var/turf/spot = get_ai_standoff_point(target, standoff)
+		if(spot)
+			return ..(spot, FALSE, ignore_all_collisions)
 	if(dist < standoff - AI_STANDOFF_BAND)
 		move_away_from(target)
 		enable_dampeners()

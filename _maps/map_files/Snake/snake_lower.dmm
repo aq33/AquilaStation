@@ -388,6 +388,18 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"aR" = (
+/obj/machinery/computer/ship/dradis/sensors{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/bridge/cic)
 "aS" = (
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
@@ -12470,18 +12482,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"QH" = (
-/obj/structure/frame/computer{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/bridge/cic)
 "QI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer2{
 	dir = 10
@@ -60857,7 +60857,7 @@ Eh
 Us
 tc
 BP
-QH
+aR
 mn
 aJ
 aJ
