@@ -8,12 +8,6 @@
 #define BB_RANGED_SKIRMISH_MIN_DISTANCE "BB_ranged_skirmish_min_distance"
 /// Maximum distance a ranged mob keeps to its target (maintain_distance)
 #define BB_RANGED_SKIRMISH_MAX_DISTANCE "BB_ranged_skirmish_max_distance"
-/// When the mob may call reinforcements again (call_reinforcements)
-#define BB_BASIC_MOB_REINFORCEMENTS_COOLDOWN "BB_basic_mob_reinforcements_cooldown"
-/// Something said when calling reinforcements
-#define BB_REINFORCEMENTS_SAY "BB_reinforcements_say"
-/// An emote done when calling reinforcements
-#define BB_REINFORCEMENTS_EMOTE "BB_reinforcements_emote"
 
 // --- legion
 /// The mob that made this legion skull (it does not heal its creator's kind with its own skulls)

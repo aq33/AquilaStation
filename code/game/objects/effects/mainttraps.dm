@@ -229,7 +229,7 @@
 	spawned = /mob/living/basic/trooper/nanotrasen/hugbox // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/eldritch //currently unused. if used, note these guys are quite powerful with a whopping 35 melee
-	spawned = /mob/living/simple_animal/hostile/netherworld
+	spawned = /mob/living/basic/creature // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/spookyskeleton
 	spawned = /mob/living/basic/skeleton // AQ EDIT - basic moby
@@ -242,10 +242,10 @@
 
 /obj/effect/trap/nexus/trickyspawner/honkling
 	mobs = 5 //honklings are annoying, but nearly harmless.
-	spawned = /mob/living/simple_animal/hostile/retaliate/clown/honkling
+	spawned = /mob/living/basic/clown/honkling // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/clownmutant
-	spawned = /mob/living/simple_animal/hostile/retaliate/clown/mutant
+	spawned = /mob/living/basic/clown/mutant // AQ EDIT - basic moby
 
 /obj/effect/trap/nexus/trickyspawner/tree
 	spawned = /mob/living/basic/tree // AQ EDIT - basic moby
@@ -338,7 +338,7 @@
 /obj/effect/rune/cluwne/attack_animal(mob/living/simple_animal/M)
 	if(rune_in_use)
 		return
-	if(istype(M, /mob/living/simple_animal/cluwne) || istype(M, /mob/living/simple_animal/hostile/retaliate/clown))
+	if(istype(M, /mob/living/simple_animal/cluwne) || istype(M, /mob/living/basic/clown)) // AQ EDIT - basic moby
 		var/cluwne = FALSE
 		if(locate(/mob/living/simple_animal/hostile/floor_cluwne) in range(5, src))
 			cluwne = TRUE

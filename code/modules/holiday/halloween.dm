@@ -100,7 +100,7 @@
 	else if(trapped == INSANE_CLOWN)
 		visible_message("<span class='userdanger'><font size='5'>...</font></span>")
 		playsound(loc, 'sound/spookoween/scary_clown_appear.ogg', 300, 1)
-		spawn_atom_to_turf(/mob/living/simple_animal/hostile/retaliate/clown/insane, loc, 1, FALSE)
+		spawn_atom_to_turf(/mob/living/simple_animal/hostile/retaliate/insane_clown, loc, 1, FALSE) // AQ EDIT - basic moby (klauni są basic mobami, obłąkany klaun zostaje prosty)
 		trapped = 0
 
 //don't spawn in crates
@@ -175,7 +175,13 @@
 //Spookoween Insane Clown//
 ///////////////////////////
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane
+/mob/living/simple_animal/hostile/retaliate/insane_clown // AQ EDIT START - basic moby: własny typ zamiast podtypu klauna
+	icon = 'icons/mob/clown_mobs.dmi'
+	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	combat_mode = TRUE
+	mobchatspan = "clown"
+	attack_sound = 'sound/items/bikehorn.ogg'
+	// AQ EDIT END
 	name = "obłąkany klaun"
 	desc = "Niektórym klaunom nie udaje się zdobyć akceptacji i popadają w obłęd. To jeden z nich."
 	icon_state = "scary_clown"
@@ -189,25 +195,25 @@
 	unsuitable_atmos_damage = 0
 	var/timer
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Initialize(mapload)
+/mob/living/simple_animal/hostile/retaliate/insane_clown/Initialize(mapload)
 	. = ..()
 	timer = rand(5,15)
 	status_flags = (status_flags | GODMODE)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Retaliate()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/Retaliate()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/ex_act()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/ex_act()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Life()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/Life()
 	timer--
 	if(target)
 		stalk()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/proc/stalk()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/proc/stalk()
 	var/mob/living/M = target
 	if(M.stat == DEAD)
 		playsound(M.loc, 'sound/spookoween/insane_low_laugh.ogg', 300, 1)
@@ -218,18 +224,18 @@
 		spawn(12)
 			forceMove(M.loc)
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/MoveToTarget()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/MoveToTarget()
 	stalk(target)
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/AttackingTarget()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/retaliate/insane_clown/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = 0
 	if(prob(5))
 		playsound(loc, 'sound/spookoween/insane_low_laugh.ogg', 300, 1)
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/attackby(obj/item/O, mob/user)
+/mob/living/simple_animal/hostile/retaliate/insane_clown/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/nullrod))
 		if(prob(5))
 			visible_message("[src] w końcu znalazł zasłużony spokój. <i>Słyszysz honki niosące się w oddali.</i>")
@@ -240,7 +246,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/handle_temperature_damage()
+/mob/living/simple_animal/hostile/retaliate/insane_clown/handle_temperature_damage()
 	return
 
 /////////////////////////

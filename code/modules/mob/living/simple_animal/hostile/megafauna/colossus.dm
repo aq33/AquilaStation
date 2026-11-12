@@ -689,7 +689,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	if(ready_to_deploy)
 		var/be_helper = alert("Zostać Światłoduchem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
 		if(be_helper == "Tak" && !QDELETED(src) && isobserver(user))
-			var/mob/living/simple_animal/hostile/lightgeist/W = new /mob/living/simple_animal/hostile/lightgeist(get_turf(loc))
+			var/mob/living/basic/lightgeist/W = new /mob/living/basic/lightgeist(get_turf(loc)) // AQ EDIT - basic moby
 			W.key = user.key
 
 
@@ -699,67 +699,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 		if(istype(ghost))
 			attack_ghost(ghost)
 
-/mob/living/simple_animal/hostile/lightgeist
-	name = "świetlik"
-	desc = "To małe unoszące się stworzenie jest zupełnie nieznaną formą życia... Jego bliskość napełnia cię spokojem."
-	icon_state = "lightgeist"
-	icon_living = "lightgeist"
-	icon_dead = "butterfly_dead"
-	turns_per_move = 1
-	response_help = "odgania"
-	response_disarm = "odsuwa na bok"
-	response_harm = "zakłóca"
-	speak_emote = list("oscyluje")
-	maxHealth = 2
-	health = 2
-	friendly = "opatruje"
-	density = FALSE
-	movement_type = FLYING
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
-	ventcrawler = VENTCRAWLER_ALWAYS
-	mob_size = MOB_SIZE_TINY
-	gold_core_spawnable = HOSTILE_SPAWN
-	verb_say = "faluje"
-	verb_ask = "unosi się pytająco"
-	verb_exclaim = "iskrzy"
-	verb_yell = "huczy"
-	initial_language_holder = /datum/language_holder/lightbringer
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-	light_range = 4
-	faction = list("neutral")
-	del_on_death = TRUE
-	unsuitable_atmos_damage = 0
-	movement_type = FLYING
-	minbodytemp = 0
-	maxbodytemp = 1500
-	obj_damage = 0
-	environment_smash = ENVIRONMENT_SMASH_NONE
-	AIStatus = AI_OFF
-	stop_automated_movement = TRUE
-	var/heal_power = 5
-
-/mob/living/simple_animal/hostile/lightgeist/Initialize(mapload)
-	. = ..()
-	remove_verb(/mob/living/verb/pulled)
-	remove_verb(/mob/verb/me_verb)
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(src)
-
-/mob/living/simple_animal/hostile/lightgeist/AttackingTarget()
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			L.heal_overall_damage(heal_power, heal_power)
-			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-
-/mob/living/simple_animal/hostile/lightgeist/ghostize(can_reenter_corpse, sentience_retention)
-	. = ..()
-	if(.)
-		death()
-
-/mob/living/simple_animal/hostile/lightgeist/slime
-	name = "kryształowy świetlik"
+// AQ EDIT - świetlik jest basic mobem (aquila/code/modules/mob/living/basic/space_fauna/lightgeist.dm)
 
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.
 	observer_desc = "Ten kryształ \"odświeża\" przedmioty, na które działa, czyniąc je jak nowe."

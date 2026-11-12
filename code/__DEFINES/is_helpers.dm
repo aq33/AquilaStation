@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
+#define isclown(A) (istype(A, /mob/living/basic/clown)) // AQ EDIT - basic moby
 
 #define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
 
@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/basic/trooper, // AQ EDIT - basic moby: żołnierze (Syndykat, NT, Rosjanie, piraci)
 	/mob/living/simple_animal/hostile/wizard,
 	/mob/living/basic/zombie, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/retaliate/clown,
+	/mob/living/basic/clown, // AQ EDIT - basic moby
 	/mob/living/basic/spaceman, // AQ EDIT - basic moby
 	/mob/living/basic/goat, // AQ EDIT - basic moby
 	/mob/living/carbon/true_devil,

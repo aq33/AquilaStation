@@ -328,3 +328,30 @@
 #define BB_BASIC_MOB_REINFORCEMENT_TARGET "BB_basic_mob_reinforcement_target"
 /// Generic destination of the travel_to_point subtree
 #define BB_TRAVEL_DESTINATION "BB_travel_destination"
+// --- basic mobs part 2, "rest" group: mimics, venus human trap, Netherworld, clowns, fugu, lightgeist, space dragon (tg 926bf40c5a)
+/// healing_touch component: who the healer may heal (tg code/__DEFINES/mobs.dm)
+#define HEALING_TOUCH_ANYONE "healing_touch_anyone"
+#define HEALING_TOUCH_NOT_SELF "healing_touch_not_self"
+#define HEALING_TOUCH_SELF_ONLY "healing_touch_self_only"
+/// unobserved_actor component flags (tg code/__DEFINES/mobs.dm)
+#define NO_OBSERVED_MOVEMENT (1<<0)
+#define NO_OBSERVED_ACTIONS (1<<1)
+#define NO_OBSERVED_ATTACKS (1<<2)
+/// Lines a basic mob says and emotes (random_speech/blackboard): an assoc list with the BB_EMOTE_* keys below
+#define BB_BASIC_MOB_SPEAK_LINES "BB_speech_lines"
+#define BB_EMOTE_SAY "emote_say"
+#define BB_EMOTE_HEAR "emote_hear"
+#define BB_EMOTE_SEE "emote_see"
+#define BB_EMOTE_SOUND "emote_sound"
+#define BB_SPEAK_CHANCE "emote_chance"
+/// The gun of a gun mimic is empty, it goes for melee
+#define BB_GUNMIMIC_GUN_EMPTY "BB_gunmimic_gun_empty"
+/// The inflate ability of the wumborian fugu
+#define BB_FUGU_INFLATE "BB_fugu_inflate"
+/// A mob made large by a fugu gland or by inflating
+#define TRAIT_FUGU_GLANDED "fugu_glanded"
+/// The space dragon is using wing buffet / is tired after it
+#define TRAIT_WING_BUFFET "wing_buffet"
+#define TRAIT_WING_BUFFET_TIRED "wing_buffet_tired"
+/// Things a mob that ate them should not throw up (content_barfer)
+#define TRAIT_NOT_BARFABLE "not_barfable"

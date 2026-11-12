@@ -2790,20 +2790,20 @@
 // AQ EDIT - pomidor zabójca jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mecha_pilot.dm"
-#include "code\modules\mob\living\simple_animal\hostile\mimic.dm"
 // AQ EDIT - chodzący grzyb jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\mushroom.dm)
-#include "code\modules\mob\living\simple_animal\hostile\netherworld.dm"
 #include "code\modules\mob\living\simple_animal\hostile\redgrub.dm"
 // AQ EDIT - szkielety są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\skeleton.dm)
-#include "code\modules\mob\living\simple_animal\hostile\space_dragon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\statue.dm"
 #include "code\modules\mob\living\simple_animal\hostile\stickman.dm"
 #include "code\modules\mob\living\simple_animal\hostile\syndicate.dm"
 // AQ EDIT - sosna i słup Festivusa są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\tree.dm)
-#include "code\modules\mob\living\simple_animal\hostile\venus_human_trap.dm"
 #include "code\modules\mob\living\simple_animal\hostile\wizard.dm"
-#include "code\modules\mob\living\simple_animal\hostile\wumborian_fugu.dm"
 // AQ EDIT - zombie są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\zombie.dm)
+// AQ EDIT - mimiki są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\mimic.dm)
+// AQ EDIT - istoty z Netherworldu są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\netherworld.dm)
+// AQ EDIT - kosmiczny smok jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\space_dragon.dm)
+// AQ EDIT - muchołówka i pąk z kudzu są basic mobami (aquila\code\modules\mob\living\basic\jungle\venus_human_trap.dm)
+// AQ EDIT - wumboriańska fugu jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\wumborian_fugu.dm)
 #include "code\modules\mob\living\simple_animal\hostile\bosses\boss.dm"
 #include "code\modules\mob\living\simple_animal\hostile\bosses\paperwizard.dm"
 #include "code\modules\mob\living\simple_animal\hostile\gorilla\emotes.dm"
@@ -2835,8 +2835,8 @@
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\legionnaire.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\pandora.dm"
 // AQ EDIT - nietoperze są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 // AQ EDIT - kosmiczny delfin jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\dolphin.dm)
+// AQ EDIT - klauni są basic mobami (aquila\code\modules\mob\living\basic\clown\clown.dm)
 // AQ EDIT - żaba jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\tg_small_fauna.dm)
 // AQ EDIT - duch jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\ghost.dm)
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\retaliate.dm"

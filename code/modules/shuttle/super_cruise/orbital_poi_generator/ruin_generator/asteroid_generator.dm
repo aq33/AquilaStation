@@ -70,7 +70,7 @@
 	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/lavaland/fugu
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
 
 /obj/structure/spawner/lavaland/asteroid_goliath
 	mob_types = list(/mob/living/basic/mining/goliath/ancient) // AQ EDIT - goliat jest basic mobem

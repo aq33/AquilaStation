@@ -233,7 +233,7 @@
 			//Swarm of creatures
 			T.visible_message("<span class='userdanger'>Rój stworzeń otacza [user]!</span>")
 			for(var/direction in GLOB.alldirs)
-				new /mob/living/simple_animal/hostile/netherworld(get_step(get_turf(user),direction))
+				new /mob/living/basic/creature(get_step(get_turf(user),direction)) // AQ EDIT - basic moby
 		if(4)
 			//Destroy Equipment
 			T.visible_message("<span class='userdanger'>Wszystko, co [user] trzyma i nosi, znika!</span>")

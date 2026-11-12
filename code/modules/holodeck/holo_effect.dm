@@ -135,10 +135,10 @@
 	mobtype = /mob/living/basic/butterfly // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/clown
-	mobtype = list (/mob/living/simple_animal/hostile/retaliate/clown = 10,
-	/mob/living/simple_animal/hostile/retaliate/clown/banana = 6, /mob/living/simple_animal/hostile/retaliate/clown/honkling = 6,
-	/mob/living/simple_animal/hostile/retaliate/clown/fleshclown = 3, /mob/living/simple_animal/hostile/retaliate/clown/longface = 3,
-	/mob/living/simple_animal/hostile/retaliate/clown/mutant = 1, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob = 1)
+	mobtype = list (/mob/living/basic/clown = 10, // AQ EDIT - basic moby
+	/mob/living/basic/clown/banana = 6, /mob/living/basic/clown/honkling = 6, // AQ EDIT - basic moby
+	/mob/living/basic/clown/fleshclown = 3, /mob/living/basic/clown/longface = 3, // AQ EDIT - basic moby
+	/mob/living/basic/clown/mutant = 1, /mob/living/basic/clown/mutant/glutton = 1) // AQ EDIT - basic moby
 
 /obj/effect/holodeck_effect/mobspawner/psycho
 	mobtype = list (/mob/living/simple_animal/hostile/psycho/regular = 9,

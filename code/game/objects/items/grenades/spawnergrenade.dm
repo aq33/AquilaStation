@@ -54,7 +54,7 @@
 	desc = "Elegancki gadżet, który klauni często dostają na 10. urodziny do samoobrony. Ze środka dobiega ciche drapanie."
 	icon_state = "clown_ball"
 	item_state = "clown_ball"
-	spawner_type = list(/mob/living/simple_animal/hostile/retaliate/clown/fleshclown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk, /mob/living/simple_animal/hostile/retaliate/clown/longface, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob, /mob/living/simple_animal/hostile/retaliate/clown/banana, /mob/living/simple_animal/hostile/retaliate/clown/honkling, /mob/living/simple_animal/hostile/retaliate/clown/lube)
+	spawner_type = list(/mob/living/basic/clown/fleshclown, /mob/living/basic/clown/clownhulk, /mob/living/basic/clown/longface, /mob/living/basic/clown/clownhulk/chlown, /mob/living/basic/clown/clownhulk/honkmunculus, /mob/living/basic/clown/mutant/glutton, /mob/living/basic/clown/banana, /mob/living/basic/clown/honkling, /mob/living/basic/clown/lube) // AQ EDIT - basic moby
 	deliveryamt = 1
 
 /obj/item/grenade/spawnergrenade/clown_broken
@@ -62,5 +62,5 @@
 	desc = "Elegancki gadżet, który klauni często dostają na 10. urodziny do samoobrony. Zwykły C.L.U.W.N.E. mieści tylko jedno stworzenie, ale głupiutcy młodzi klauni czasem próbują wepchnąć ich więcej, często z katastrofalnym skutkiem."
 	icon_state = "clown_broken"
 	item_state = "clown_broken"
-	spawner_type = /mob/living/simple_animal/hostile/retaliate/clown/mutant
+	spawner_type = /mob/living/basic/clown/mutant // AQ EDIT - basic moby
 	deliveryamt = 5

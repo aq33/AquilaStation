@@ -21,6 +21,8 @@
 		// AQUILA: the mob's own HUD and ability objects are not "contents" (screen objects, actions live elsewhere)
 		if(!ismob(barfed_out) && !isobj(barfed_out))
 			continue
+		if(HAS_TRAIT(barfed_out, TRAIT_NOT_BARFABLE)) // the space dragon keeps what it must not drop
+			continue
 		if(isitem(barfed_out))
 			var/obj/item/barfed_item = barfed_out
 			if(barfed_item.item_flags & ABSTRACT)

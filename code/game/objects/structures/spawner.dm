@@ -53,7 +53,7 @@
 	max_integrity = 200
 	max_mobs = 15
 	spawn_time = 150
-	mob_types = list(/mob/living/simple_animal/hostile/retaliate/clown, /mob/living/simple_animal/hostile/retaliate/clown/fleshclown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk, /mob/living/simple_animal/hostile/retaliate/clown/longface, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob, /mob/living/simple_animal/hostile/retaliate/clown/banana, /mob/living/simple_animal/hostile/retaliate/clown/honkling, /mob/living/simple_animal/hostile/retaliate/clown/lube)
+	mob_types = list(/mob/living/basic/clown, /mob/living/basic/clown/fleshclown, /mob/living/basic/clown/clownhulk, /mob/living/basic/clown/longface, /mob/living/basic/clown/clownhulk/chlown, /mob/living/basic/clown/clownhulk/honkmunculus, /mob/living/basic/clown/mutant/glutton, /mob/living/basic/clown/banana, /mob/living/basic/clown/honkling, /mob/living/basic/clown/lube) // AQ EDIT - basic moby
 	spawn_text = "wychodzi z"
 	faction = list("clown")
 
@@ -66,7 +66,7 @@
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
 	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
-	mob_types = list(/mob/living/basic/mining/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/mining/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
@@ -92,4 +92,4 @@
 /obj/structure/spawner/mining/wumborian
 	name = "legowisko wumboriańskich fugu"
 	desc = "Legowisko z gniazdem wumboriańskich fugu. Jak one się tam w ogóle mieszczą?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
