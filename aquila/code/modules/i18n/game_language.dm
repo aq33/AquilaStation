@@ -100,6 +100,20 @@ GLOBAL_LIST_INIT(game_language_deepl, list(
 		C.tgui_say.load() // etykiety kanałów w oknie mówienia (niegotowe okno dostanie język przy starcie)
 	// napisy na guzikach HUD-u (aquila/code/modules/i18n/hud_icons.dm)
 	C.mob?.hud_used?.update_ui_style(ui_style2icon(C.prefs?.UI_style))
+	// lobby wybiera plik ikon przy tworzeniu: nowy HUD lobby w nowym języku
+	var/mob/dead/new_player/player = C.mob
+	if(istype(player) && player.lobby_hud)
+		QDEL_NULL(player.lobby_hud)
+		player.show_lobby_hud()
+
+/// Wiersze telewizorka w lobby w języku gracza (stan rundy: „Start za”, „Graczy” itd.)
+/datum/aq_lobby_hud/tv_lines()
+	. = ..()
+	if(!client_ref?.translated_language())
+		return
+	var/list/lines = .
+	for(var/i in 1 to length(lines))
+		lines[i] = i18n_for_client(client_ref, lines[i])
 
 /// Język gry gracza (GAME_LANGUAGE_*)
 /client/proc/game_language()

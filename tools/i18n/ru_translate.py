@@ -23,6 +23,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(__file__))
 import build_chat_dict as bcd  # noqa: E402
@@ -74,8 +75,21 @@ def visible(text):
     return bcd.TAG.sub(" ", text)
 
 
+# atrybuty z tekstem widocznym dla gracza (tłumaczone); pozostałe (href, class, style...) muszą zostać
+TEXT_ATTRIBUTES = {"value", "title", "placeholder", "alt"}
+ATTRIBUTE = re.compile(r"""([\w:-]+)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)""")
+
+
 def tags(text):
-    return [m.groups() for m in bcd.TAG_NAME.finditer("".join(re.findall(r"<[^>]*>", text)))]
+    """Znaczniki HTML: nazwa, zamknięcie i atrybuty poza tymi z tekstem dla gracza."""
+    out = []
+    for tag in re.findall(r"<[^>]*>", text):
+        name = bcd.TAG_NAME.match(tag)
+        if not name:
+            continue
+        attributes = tuple(sorted((k.lower(), v) for k, v in ATTRIBUTE.findall(tag) if k.lower() not in TEXT_ATTRIBUTES))
+        out.append(name.groups() + (attributes,))
+    return out
 
 
 def same_edges(pl, ru):
@@ -110,10 +124,13 @@ def batches(args):
     done = {}
     for path in SOURCES:
         done.update(load(path))
-    candidates = load(os.path.join(os.environ.get("TEMP", "/tmp"), "ru", "ru_candidates.json"))
+    candidates = load(args.candidates)
     todo = [(pl, en) for pl, en in sorted(en_all.items())
             if isinstance(en, str) and pl not in done and re.search(r"[^\W\d_]{2}", visible(pl))]
     os.makedirs(args.dir, exist_ok=True)
+    # stare wyniki z innym indeksem partii trafiłyby przy scalaniu pod złe klucze
+    if glob.glob(os.path.join(args.dir, "out_*.json")):
+        sys.exit(f"{args.dir} ma już wyniki out_*.json: scal je (merge) i użyj nowego katalogu")
     for old in glob.glob(os.path.join(args.dir, "batch_*.json")):
         os.remove(old)
     index = {}
@@ -137,7 +154,7 @@ def batches(args):
 
 def merge(args):
     index = load(os.path.join(args.dir, "index.json"))
-    candidates = load(os.path.join(os.environ.get("TEMP", "/tmp"), "ru", "ru_candidates.json"))
+    candidates = load(args.candidates)
     translated = load(TRANSLATED)
     rejected, stats = {}, collections.Counter()
     for path in sorted(glob.glob(os.path.join(args.dir, "out_*.json"))):
@@ -178,6 +195,8 @@ def main():
     ap.add_argument("command", choices=["batches", "merge"])
     ap.add_argument("dir")
     ap.add_argument("--size", type=int, default=400)
+    ap.add_argument("--candidates", default=os.path.join(os.environ.get("TEMP") or tempfile.gettempdir(), "ru", "ru_candidates.json"),
+                    help="ru_candidates.json z tools/i18n/ru_sources.py apply (katalog --clones)")
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
     {"batches": batches, "merge": merge}[args.command](args)

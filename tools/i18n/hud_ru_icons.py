@@ -24,7 +24,7 @@ OUT_DIR = "aquila/icons/hud/ru"
 LABELS = {
     "harm": "ВРЕД",
     "help": "ПОМОЩЬ",
-    "disarm": "ОБЕЗОР",
+    "disarm": "ОТНЯТЬ",
     "grab": "ЗАХВАТ",
     "pull": "ТЯНУТЬ",
     "act_resist": "ОТПОР",
@@ -286,6 +286,8 @@ def translate_state(state, original, english, report, where):
         frames.append(result[0])
         used = result[1]
     if not used:
+        # żadna klatka nie dała się przerobić: napis angielski, nie polski
+        fallback(state, english, report, where)
         return
     if None in frames:
         fallback(state, english, report, where)

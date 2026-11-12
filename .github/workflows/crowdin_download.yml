@@ -56,10 +56,24 @@ jobs:
         id: apply
         run: python tools/i18n/crowdin.py apply crowdin_out/pl --report "$RUNNER_TEMP/raport.md"
 
+      - name: Czy projekt ma język rosyjski
+        id: ru
+        # błąd samego Crowdina przerywa workflow; brak języka RU w projekcie tylko pomija kroki rosyjskie
+        run: |
+          languages=$(crowdin language list --plain --code=two_letters_code)
+          if printf '%s\n' "$languages" | grep -qx ru; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Projekt w Crowdinie nie ma języka rosyjskiego: kroki rosyjskie pominięte."
+          fi
+
       - name: Pobranie poprawek wersji rosyjskiej
         run: |
           rm -rf crowdin_out/ru
-          crowdin download --language=ru --no-progress || echo "Brak rosyjskich tłumaczeń do pobrania."
+          if [ "${{ steps.ru.outputs.enabled }}" = "true" ]; then
+            crowdin download --language=ru --no-progress
+          fi
           mkdir -p crowdin_out/ru
 
       - name: Rosyjskie poprawki do słownika
@@ -68,7 +82,8 @@ jobs:
 
       - name: Przebudowa słownika rosyjskiego
         # build_chat_dict.py czyta teksty okien z drzewa składni TSX (tgui/node_modules)
-        if: steps.apply_ru.outputs.changed == 'true'
+        # także po poprawce polskiej: zmieniony polski literał to nowy klucz słownika
+        if: steps.apply.outputs.changed == 'true' || steps.apply_ru.outputs.changed == 'true'
         run: |
           (cd tgui && node .yarn/releases/yarn-4.9.1.cjs install --immutable)
           python tools/i18n/build_chat_dict.py --lang ru

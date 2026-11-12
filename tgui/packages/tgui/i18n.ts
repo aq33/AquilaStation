@@ -132,6 +132,8 @@ export const setDictionary = (
   byTexts = new Map();
   regexCache.clear();
   textCache.clear();
+  // wyniki t() z poprzedniego słownika (innego języka) nie są już „naszym” tekstem
+  produced.clear();
   data?.templates.forEach(([anchors, texts], index) => {
     const key = texts.join(TEXTS_SEPARATOR);
     if (!byTexts.has(key)) {

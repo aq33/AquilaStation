@@ -49,6 +49,18 @@ jobs:
       - name: Teksty z kodu
         run: python tools/i18n/crowdin.py export --out crowdin_out
 
+      - name: Czy projekt ma język rosyjski
+        id: ru
+        # błąd samego Crowdina przerywa workflow; brak języka RU w projekcie tylko pomija kroki rosyjskie
+        run: |
+          languages=$(crowdin language list --plain --code=two_letters_code)
+          if printf '%s\n' "$languages" | grep -qx ru; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Projekt w Crowdinie nie ma języka rosyjskiego: kroki rosyjskie pominięte."
+          fi
+
       - name: Tłumaczenia już zatwierdzone w Crowdinie
         # przy pierwszym uruchomieniu projekt jest pusty i nie ma czego pobrać
         run: |
@@ -56,9 +68,11 @@ jobs:
           crowdin download --language=pl --no-progress || echo "Brak tłumaczeń do pobrania."
           mkdir -p crowdin_out/pl
           mv crowdin_out/pl crowdin_existing
-          # wersja rosyjska: działa, gdy projekt w Crowdinie ma język rosyjski
+          # wersja rosyjska: tylko gdy projekt w Crowdinie ma język rosyjski
           rm -rf crowdin_out/ru
-          crowdin download --language=ru --no-progress || echo "Brak rosyjskich tłumaczeń do pobrania."
+          if [ "${{ steps.ru.outputs.enabled }}" = "true" ]; then
+            crowdin download --language=ru --no-progress
+          fi
           mkdir -p crowdin_out/ru
           mv crowdin_out/ru crowdin_existing_ru
 
@@ -73,4 +87,5 @@ jobs:
 
       - name: Wysyłka obecnego tłumaczenia rosyjskiego
         # bez zatwierdzania: tłumaczenie maszynowe, gracze je poprawiają i zatwierdzają
-        run: crowdin upload translations --language=ru --import-eq-suggestions --no-progress || echo "Projekt nie ma języka rosyjskiego."
+        if: steps.ru.outputs.enabled == 'true'
+        run: crowdin upload translations --language=ru --import-eq-suggestions --no-progress
