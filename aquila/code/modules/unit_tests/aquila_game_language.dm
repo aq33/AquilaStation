@@ -106,4 +106,25 @@
 	var/stripped = strip_auto_articles("[clicking] klika.")
 	TEST_ASSERT(stripped == "protokinetyczny akcelerator klika.", "BYOND article is left in a Polish balloon: [stripped]")
 
+/// Wersja rosyjska: własne słowniki, osobna pamięć tłumaczeń i szablony bez angielskich przedimków
+/datum/unit_test/aquila_game_language_ru
+
+/datum/unit_test/aquila_game_language_ru/Run()
+	for(var/kind in list("chat", "windows", "dm"))
+		TEST_ASSERT(fexists("strings/i18n/ru_[kind].json"), "strings/i18n/ru_[kind].json is missing, run tools/i18n/build_chat_dict.py --lang ru")
+	var/static/regex/cyrillic = regex(@"[А-Яа-яЁё]")
+	var/russian = i18n_exact("skrzynka narzędziowa", GAME_LANGUAGE_RU)
+	TEST_ASSERT(istext(russian) && cyrillic.Find(russian), "Russian server table lost a basic item name: [russian]")
+	// ten sam tekst w dwóch językach: pamięć podręczna każdego języka osobno
+	TEST_ASSERT(i18n_html("skrzynka narzędziowa", FALSE, GAME_LANGUAGE_EN) == "toolbox", "English translation broke after adding Russian")
+	TEST_ASSERT(i18n_html("skrzynka narzędziowa", FALSE, GAME_LANGUAGE_RU) == russian, "Russian translation came from another language's cache")
+	// "\The [I]" z angielskiego oryginału: po rosyjsku bez przedimka, wstawka tłumaczona słownikiem rosyjskim
+	var/list/template = list("podnosi", list("", " podnosi ", "."), list(list(0), " поднимает ", list(1, "The"), "."))
+	var/rendered = i18n_render(template, list("Jan", "skrzynka narzędziowa"), GAME_LANGUAGE_RU)
+	TEST_ASSERT(rendered == "Jan поднимает [russian].", "Russian template kept an English article or skipped the value: [rendered]")
+	TEST_ASSERT(i18n_render(template, list("Jan", "skrzynka narzędziowa"), GAME_LANGUAGE_EN) == "Jan поднимает The toolbox.", "English template lost its article")
+	// BYOND dokleja "the" przed obiektem: po rosyjsku samo tłumaczenie nazwy
+	TEST_ASSERT(i18n_exact("the skrzynka narzędziowa", GAME_LANGUAGE_RU) == russian, "Russian translation kept BYOND's 'the'")
+	TEST_ASSERT(GLOB.game_language_deepl[GAME_LANGUAGE_RU] == DEEPL_LANG_RU, "Chat translation has no DeepL code for Russian")
+
 #undef TEST_ASSERT

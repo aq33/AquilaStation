@@ -33,7 +33,8 @@ SOURCES = [TRANSLATED, "strings/i18n/ru_manual.json"]
 CYR = re.compile(r"[А-Яа-яЁё]")
 PL_LETTERS = re.compile(r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]")
 LATIN_WORD = re.compile(r"[A-Za-z]{2,}")
-DM_EMBED = re.compile(r"\[(?:[^\[\]\"]|\"[^\"]*\")*\]")
+# \[tekst\] w DM to zwykły tekst w nawiasie (do tłumaczenia), nie wstawka
+DM_EMBED = re.compile(r"(?<!\\)\[(?:[^\[\]\"]|\"[^\"]*\")*(?<!\\)\]")
 JS_EMBED = re.compile(r"\$\{(?:[^{}]|\{[^{}]*\})*\}")
 
 
