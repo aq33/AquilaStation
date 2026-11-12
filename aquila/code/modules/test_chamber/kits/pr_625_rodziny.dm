@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_mob_fam
+/datum/test_chamber_kit/pr_625_fam
 	name = "Basic moby cz. 2: gęsi, karpie-pupile, barmanka"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: gęś, Birdboat, kosmiczna gęś, Lia, Cayenne, barmanka, kosmiczne lasso, fałszywy dysk atomowy, 2 płaty mięsa, 3 spalone breje, 2 ciastka, arkusz plastiku, łom. Sprawdzaj w obu trybach sterowania (combat mode i stare intencje). Nie zrzucaj razem z wrogimi mobami. \
 	1) Gęś zjada ciastko leżące obok niej, nie rusza łomu; arkusz plastiku położony obok → dławi się (drgawki, kaszel), po 30 s pada. Czasem bez powodu wpada w gniew, syczy i dziobie, po chwili się uspokaja. \
 	2) Bez combat mode / na intencji pomocy daj Birdboatowi spaloną breję z ręki → zjada ją i trzyma w środku. Po kilku breją albo przez przycisk „Zwymiotuj” wymiotuje: drży, chodzi losowo, plamy wymiocin i zjedzone rzeczy wylatują na boki. Pusty żołądek → przycisk nieaktywny. Oględziny: „Jakimś cudem wciąż wygląda na głodną.” \
@@ -25,15 +25,15 @@
 	)
 
 /// The fake disk would jump to the station (the chamber is off it), so it comes without its stationloving component
-/datum/test_chamber_kit/pr_mob_fam/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_625_fam/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/obj/item/disk/nuclear/fake/disk = new(center)
 	qdel(disk.GetComponent(/datum/component/stationloving))
 	disk.forceMove(center)
 
-/datum/test_chamber_kit/pr_mob_fam_wrogie
+/datum/test_chamber_kit/pr_625_fam_wrogie
 	name = "Basic moby cz. 2: hiveboty, ksenomorfy, karpie"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: hivebot, hivebot strzelający, szybkostrzelny i silny, łowca, dron, strażnik i królowa ksenomorfów, pokojówka, 2 kosmiczne karpie, zaawansowany karp, megakarp, magikarp, magikarp chaosu, holokarp, gałka oczna, odwodniony karp, 3 płaty mięsa. Uwaga: prawie wszystko atakuje od razu, zrzucaj w hardsuicie albo z bronią. Sprawdzaj w obu trybach sterowania. \
 	1) Hiveboty strzelające i silny strzelają z dystansu (nie trafiają w siebie nawzajem), zwykły drapie; zniszczone rozpadają się w iskrach na złom. Stojące obok siebie czasem „mówią” do siebie zerami i jedynkami. \
 	2) Strażnik i królowa plują neurotoksyną z dystansu, łowca i dron tną wręcz, dron i królowa sadzą obce chwasty, pokojówka tylko poleruje i sprząta krew. \

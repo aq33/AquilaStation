@@ -1,9 +1,9 @@
 // Basic moby, część 2: sarna z bitrunningu i tanie moby bez zdolności (tg 926bf40c5a)
 // Spokojne zwierzęta osobno od wrogich, żeby wrogie nie zabiły ich przed testem.
 
-/datum/test_chamber_kit/pr_mob_p1
+/datum/test_chamber_kit/pr_625_p1
 	name = "Basic moby: sarna i spokojne zwierzęta"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: 2 sarny, hulajnoga, Wojtek, 2 olbrzymie mrówki, kosmonauta, kosmiczny delfin, 3 chodzące grzyby, 2 grzyby w skrzyni, papierosy i piwo, a na skraju areny trochę trawy, woda i drzewo. Sprawdzaj w obu trybach sterowania (combat mode i stare intencje). Nie zrzucaj razem z wrogimi mobami. \
 	1) Sarna: podejdź → ucieka, gdy cię widzi, i przestaje, gdy zniknie ci z oczu; uderzona ucieka też od napastnika. Zabij ją → leży w miejscu, nie odjeżdża; ciągnij martwą i żywą (żywa nie wyrywa się sama), rzeźnik ją kroi. Sama skubie trawę, pije wodę, znakuje drzewo kopytami i odpoczywa przy nim, bawi się z drugą sarną. Hulajnoga obok → sarna zamiera i się gapi kilka sekund. W bitrunningu („Polowanie na Łąkach”) trzy martwe sarny odsłaniają skrzynię. \
 	2) Wojtek nie atakuje nikogo, dopóki ktoś go nie uderzy, a wtedy bije tylko tego kogoś (także z załogi). Papieros (+10 HP) i piwo (+20 HP) podane bez combat mode leczą go. \
@@ -21,7 +21,7 @@
 		/mob/living/basic/mushroom = 3,
 	)
 
-/datum/test_chamber_kit/pr_mob_p1/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_625_p1/setup(list/spawned, list/turfs, turf/center, mob/user)
 	// Na skraju areny trochę łąki: trzy kratki trawy, kratka wody i drzewo
 	var/list/meadow = list(/turf/open/floor/grass, /turf/open/floor/grass, /turf/open/floor/grass, /turf/open/water/air)
 	var/available = length(turfs)
@@ -37,9 +37,9 @@
 	for(var/i in 1 to 2)
 		new /obj/item/food/grown/mushroom/chanterelle(crate)
 
-/datum/test_chamber_kit/pr_mob_p1_hostile
+/datum/test_chamber_kit/pr_625_p1_hostile
 	name = "Basic moby: wrogie moby bez zdolności"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: duch, zombie, gnijące zombie, 2 szkielety, nieumarły Eskimos, templariusz, sosna, słup Festivusa, Niewierny, Kurwinox, czerwony Kurwinox, maupa, karton mleka, karton mleka sojowego, ogniwo energetyczne, łom. Wrogie moby: zrzucaj w osobnej komorze albo z bronią. \
 	1) Duch oddaje tylko uderzony, lata, po śmierci zostaje ektoplazma. \
 	2) Zombie gryzą (zgniłe nie rozbijają przeszkód), po śmierci zostają zwłoki zombie w ubraniu profesji. \

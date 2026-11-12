@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_mob_mining
+/datum/test_chamber_kit/pr_625_mining
 	name = "Moby górnicze (basic moby)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Wrogie moby górnicze jako basic moby z tg. Ustaw się kilka pól od nich (najlepiej z kinetycznym miażdżycielem albo laserem). \
 		1) Władca roju trzyma dystans i wypuszcza pomioty, które gryzą; uderzony wypuszcza pomiot od razu; po śmierci zostawia rdzeń regeneracyjny i trzy pomioty. \
 		2) Legion trzyma dystans 4-6 pól i wystrzeliwuje czaszki (znacznik celu na ziemi, czaszka spada z góry); czaszka leczy rannego sojusznika z frakcji górniczej, a człowieka nieprzytomnego zamienia w nowego legiona z ciałem w środku. Zabity legion wypuszcza ciało i rdzeń legionu; legion bez ciała zostawia zwłoki górnika. \
@@ -23,9 +23,9 @@
 		/mob/living/basic/mining/basilisk = 1,
 	)
 
-/datum/test_chamber_kit/pr_mob_mining_peaceful
+/datum/test_chamber_kit/pr_625_mining_peaceful
 	name = "Pokojowe moby górnicze (basic moby)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Pokojowe moby górnicze jako basic moby z tg, z rudą i flakami. 		1) Złoty pędrak zjada leżącą obok rudę złota i srebra, ucieka przed tobą i po 10 s pościgu zakopuje się na dobre; pociski się od niego odbijają, zabity wypluwa połkniętą rudę. 		2) Żarłoczki (samiec i samica) zjadają flaki; potem żarłoczkę można wydoić zlewką (śmietanka, sól fizjologiczna). Żarłoczka z pełnym workiem i samcem obok rodzi młodego żarłoczka, który po chwili dorasta."
 	items = list(
 		/mob/living/basic/mining/goldgrub = 1,

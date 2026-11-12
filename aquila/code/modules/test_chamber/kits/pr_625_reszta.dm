@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_mob_rest
+/datum/test_chamber_kit/pr_625_rest
 	name = "Basic moby: mimiki, muchołówka, Netherworld, fugu, smok (wrogie)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: skrzynia-mimik, ludzka muchołówka, pąk kwiatu z kudzu, istota, mi-go, puste ciało, wumboriańska fugu, kosmiczny smok, a do tego mimik-skrzynka z narzędziami i mimik-laser (z setup()). Wszystkie atakują same, nie zrzucaj razem ze spokojnymi. Sprawdzaj w obu trybach sterowania (combat mode i stare intencje). \
 	1) Skrzynia stoi bez ruchu; spróbuj ją otworzyć pustą ręką bez combat mode / na intencji pomocy → „zaczyna się ruszać”, gryzie i otwiera wieko. Po śmierci zostaje zwykła skrzynia z zawartością. \
 	2) Mimik-skrzynka goni i bije, bez celu powoli traci zdrowie; po śmierci zostaje skrzynka. Mimik-laser strzela z dystansu, po rozładowaniu baterii podchodzi i bije. \
@@ -20,13 +20,13 @@
 		/mob/living/basic/space_dragon = 1,
 	)
 
-/datum/test_chamber_kit/pr_mob_rest/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_625_rest/setup(list/spawned, list/turfs, turf/center, mob/user)
 	new /mob/living/basic/mimic/copy(center, new /obj/item/storage/toolbox/mechanical(center))
 	new /mob/living/basic/mimic/copy/ranged(center, new /obj/item/gun/energy/laser(center))
 
-/datum/test_chamber_kit/pr_mob_rest_spokojne
+/datum/test_chamber_kit/pr_625_rest_spokojne
 	name = "Basic moby: klauni i świetliki (spokojne)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: 2 świetliki, klaun, klaunan, honkuś, żywy smar, mięsoklaun, coś, co kiedyś było klaunem, gruczoł wumboriańskiej fugu, kij animacji, laser, nóż i człowiek bez gracza. Nie zrzucaj razem z wrogimi. Sprawdzaj w obu trybach sterowania (combat mode i stare intencje). \
 	1) Zrań człowieka nożem → świetlik podlatuje i leczy go dotykiem (zielony błysk). Przejmij świetlika (Possess): klik na rannego leczy w combat mode i bez, na każdej intencji. \
 	2) Klauni chodzą, trąbią i gadają po polsku, nikogo nie atakują. Uderz jednego → wszyscy klauni w pobliżu biją napastnika. Honkuś wstrzykuje śmiech. \

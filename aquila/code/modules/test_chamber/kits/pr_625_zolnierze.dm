@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_mob_troop
+/datum/test_chamber_kit/pr_625_troop
 	name = "Basic moby: żołnierze (wrodzy)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: agent Syndykatu z nożem, z pistoletem, z pistoletem maszynowym i ze strzelbą, szturmowiec z mieczem energetycznym, ochroniarz Nanotrasen (wręcz i z pistoletem), Rosjanin z rewolwerem i rosyjski oficer, pirat zabijaka i pirat strzelec, wypruwacz, granat z wypruwaczami i karta ID z kontem (100 kr). Wszystkie są wrogie, nie zrzucaj ich z pokojowymi. Sprawdzaj w obu trybach sterowania (combat mode i stare intencje). \
 	1) Podejdź → strzelcy strzelają z dystansu (pistolet co sekundę, pistolet maszynowy i strzelba seriami co 3 s), nie strzelają przez swoich; agenci z nożem i mieczem atakują wręcz, szturmowiec z mieczem świeci na czerwono i czasem blokuje pociski tarczą. \
 	2) Ochroniarz Nanotrasen i rosyjski oficer po zauważeniu cię krzyczą „Trwa 411, potrzebne wsparcie!” / „V BOJ!!”, a pozostali z tej samej frakcji schodzą się do nich. \
@@ -25,7 +25,7 @@
 		/obj/item/card/id = 1,
 	)
 
-/datum/test_chamber_kit/pr_mob_troop/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_625_troop/setup(list/spawned, list/turfs, turf/center, mob/user)
 	for(var/obj/item/card/id/card in spawned)
 		card.registered_name = "Tester"
 		var/datum/bank_account/account = new /datum/bank_account("Tester", SSjob.GetJobType(/datum/job/assistant))
@@ -33,9 +33,9 @@
 		card.registered_account = account
 		account.bank_cards += card
 
-/datum/test_chamber_kit/pr_mob_troop_peaceful
+/datum/test_chamber_kit/pr_625_troop_peaceful
 	name = "Basic moby: żołnierze (pokojowi)"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#625"
 	description = "Zestaw: dwóch pokojowych ochroniarzy Nanotrasen (wręcz i z pistoletem maszynowym). Nie zrzucaj razem z wrogimi żołnierzami. \
 	1) Podejdź i stań obok → nie atakują. \
 	2) Uderz jednego (combat mode albo intencja harm) → oddaje, krzyczy „Trwa 411, potrzebne wsparcie!”, drugi też rusza na ciebie. \
