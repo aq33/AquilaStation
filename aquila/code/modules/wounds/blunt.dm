@@ -57,6 +57,7 @@
 		return FALSE
 	treated = TRUE
 	victim.update_wound_slowdown()
+	victim.aq_medical_overlays_changed() // splint (medical_overlays.dm)
 	user.visible_message("<span class='green'>[user] unieruchamia [limb.name] [victim].</span>", "<span class='green'>Unieruchamiasz [limb.name] [self ? "" : "[victim]"].</span>")
 	return TRUE
 
@@ -210,7 +211,7 @@
 
 /datum/wound/blunt/compound/on_apply()
 	. = ..()
-	victim.add_bleeding(BLEED_SURFACE)
+	victim.add_bleeding(BLEED_SURFACE, limb.body_zone)
 
 /mob/living/carbon/help_shake_act(mob/living/carbon/M)
 	var/obj/item/bodypart/limb = get_bodypart(check_zone(M.zone_selected))

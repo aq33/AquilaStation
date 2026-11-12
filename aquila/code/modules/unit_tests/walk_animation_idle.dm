@@ -40,6 +40,14 @@
 			mask_found = TRUE
 			break
 	TEST_ASSERT(mask_found, "No shared mask renders to [leg_filter["render_source"]], so the leg fragment would stay empty")
+	// maska utworzona w trakcie startu serwera (pierwszy klient przed SSatoms) też musi się zainicjalizować
+	var/old_atoms_state = SSatoms.initialized
+	SSatoms.initialized = INITIALIZATION_INSSATOMS
+	var/atom/movable/screen/walk_mask/early_mask = new(null, "leg_a", NORTH)
+	SSatoms.initialized = old_atoms_state
+	var/early_target = early_mask.render_target
+	qdel(early_mask)
+	TEST_ASSERT(early_target == "*walk_mask_leg_a_[NORTH]", "Walk mask created during server startup was never initialized (render_target [early_target])")
 
 	animation.idle_after = 0
 	animation.check_idle()

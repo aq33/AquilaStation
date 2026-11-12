@@ -2,6 +2,8 @@
 
 #define WOUND_PIERCE "pierce"
 #define WOUND_CRANIAL "cranial"
+/// Spine wounds on the chest (aquila/code/modules/wounds/spinal.dm, medycyna 4)
+#define WOUND_SPINE "spine"
 
 /// Damage past this is ignored when rolling for a wound (tg), stronger weapons wound more through wound_bonus
 #define WOUND_MAX_CONSIDERED_DAMAGE 25
