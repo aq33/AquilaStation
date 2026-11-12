@@ -83,16 +83,16 @@
 			var/manual_cauterization = try_manual_cauterize(realtool)
 			if(manual_cauterization & (ITEM_INTERACT_SUCCESS|ITEM_INTERACT_BLOCKING))
 				return manual_cauterization
-		// tylko narzędzia chirurgiczne blokują atak
-		if(!realtool.is_surgical_tool())
-			return NONE
-		// kończyna nieprzygotowana do operacji, więc może to jednak atak
 		var/obj/item/bodypart/operating = null
 		if(isbodypart(operating_on))
 			operating = operating_on
 		else if(isliving(operating_on))
 			var/mob/living/patient = operating_on
 			operating = patient.get_bodypart(check_zone(operating_zone))
+		// tylko narzędzia chirurgiczne blokują atak (AQUILA: też narzędzia operacji mechanicznych na protezie i sama proteza)
+		if(!realtool.is_surgical_tool() && !realtool.is_mechanic_surgery_tool(operating))
+			return NONE
+		// kończyna nieprzygotowana do operacji, więc może to jednak atak
 		if(operating && !HAS_TRAIT(operating, TRAIT_READY_TO_OPERATE))
 			return NONE
 		// tu już raczej pomyłka, więc podpowiedź...
@@ -339,6 +339,14 @@
 /obj/item/proc/is_surgical_tool()
 	var/static/list/surgical_behaviours = list(TOOL_SCALPEL, TOOL_HEMOSTAT, TOOL_RETRACTOR, TOOL_CAUTERY, TOOL_SAW, TOOL_DRILL, TOOL_BONESET, TOOL_BLOODFILTER)
 	return (tool_behaviour in surgical_behaviours)
+
+/// AQUILA - narzędzie operacji mechanicznych na robotycznej kończynie albo proteza do augmentacji. Na przygotowanej strefie
+/// daje podpowiedź zamiast ataku, jak narzędzie chirurgiczne.
+/obj/item/proc/is_mechanic_surgery_tool(obj/item/bodypart/limb)
+	if(isbodypart(src))
+		return TRUE
+	var/static/list/mechanic_behaviours = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WRENCH, TOOL_MULTITOOL)
+	return limb && (limb.bodytype & BODYTYPE_ROBOTIC) && (tool_behaviour in mechanic_behaviours)
 
 /// tg: nazwa opcji w menu radialnym (u nas datum miał tylko obrazek i opis)
 /datum/radial_menu_choice
@@ -716,7 +724,15 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /datum/surgery_operation/proc/get_item_radial_image(obj/item/item_type)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
-	return image(icon = initial(item_type.icon), icon_state = initial(item_type.icon_state))
+	var/item_icon = initial(item_type.icon)
+	if(ispath(item_type, /obj/item/bodypart))
+		var/obj/item/bodypart/part_type = item_type
+		// organiczna kończyna rysuje się dopiero z ciała właściciela, typ nie ma stanu ikony
+		if(!initial(part_type.icon_state))
+			return get_generic_limb_radial_image(initial(part_type.body_zone))
+		// protezy mają icon = null i ikonę w static_icon
+		item_icon ||= initial(part_type.static_icon)
+	return image(icon = item_icon, icon_state = initial(item_type.icon_state))
 
 /**
  * Nakładki na obrazek w menu radialnym. Wejście: typ atomu, atom albo obrazek. Zwraca listę obrazków.

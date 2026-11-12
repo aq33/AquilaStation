@@ -2270,6 +2270,7 @@
 #include "code\modules\unit_tests\aquila_new_events.dm"
 #include "code\modules\unit_tests\aquila_rtg.dm"
 #include "code\modules\unit_tests\aquila_stationarybike.dm"
+#include "code\modules\unit_tests\aquila_surgery_augmentation.dm"
 #include "code\modules\unit_tests\aquila_surgery_radial.dm"
 #include "code\modules\unit_tests\aquila_surgery_tg.dm"
 #include "code\modules\unit_tests\aquila_surgery_tg_integration.dm"
