@@ -5,6 +5,7 @@
 
 /mob/living/basic/ant
 	name = "olbrzymia mrówka"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Wijąca się masa mrówek, sklejona w uroczego zwierzaka!"
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "ant"

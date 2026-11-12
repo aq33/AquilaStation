@@ -34,6 +34,8 @@
 	throw_blocked_message = "nieszkodliwie odbija się od"
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
 	discovery_points = 3000
+	playable = TRUE // AQUILA: ghosts take legions over, as they did through our simple hivelord
+	should_talk = FALSE
 	ai_controller = /datum/ai_controller/basic_controller/legion
 	/// What kind of mob do we spawn?
 	var/brood_type = /mob/living/basic/mining/legion_brood
@@ -41,6 +43,10 @@
 	var/corpse_type = /obj/effect/mob_spawn/human/corpse/damaged/legioninfested
 	/// Who is inside of us?
 	var/mob/living/stored_mob = null
+
+/mob/living/basic/mining/legion/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	give_to_ghost(user, TRUE)
 
 /mob/living/basic/mining/legion/Initialize(mapload)
 	. = ..()

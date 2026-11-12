@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 
 /mob/living/basic/mimic
 	name = "skrzynia"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Prostokątna stalowa skrzynia."
 	icon = 'icons/obj/crates.dmi'
 	icon_state = "crate"
@@ -142,6 +143,9 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	// Put loot in crate
 	for(var/obj/loot in src)
 		loot.forceMove(lootbox)
+	// AQUILA: bodies and small animals it swallowed fall out too (DEL_ON_DEATH would delete them)
+	for(var/mob/living/trapped in src)
+		trapped.forceMove(get_turf(src))
 	return ..()
 
 /mob/living/basic/mimic/crate/CanAllowThrough(atom/movable/mover, border_dir)
@@ -302,7 +306,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(!copied)
 		copied_ref = null
 		return
-	if(QDELETED(src) || stat == DEAD || gone != copied)
+	if(QDELETED(src) || stat == DEAD || notransform || gone != copied) // AQUILA: wabbajack drops the copy while polymorphing us
 		return
 	death()
 
@@ -334,7 +338,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if (overlay_googly_eyes)
 		add_overlay(googly_eyes)
 	if(isstructure(original) || ismachinery(original))
-		health = (original.anchored * 50) + 50
+		health = (anchored * 50) + 50 // AQUILA: the mimic's own anchored, as before (tg reads the original's)
 		if(original.density && original.anchored)
 			knockdown_people = TRUE
 			melee_damage *= 2
@@ -386,12 +390,21 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	var/obj/item/gun/gun = locate() in contents
 	if(!gun)
 		return
+	var/can_fire
 	if(istype(gun, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/ballistic = gun
-		if((!ballistic.chambered || !ballistic.chambered.BB) && !magazine_useless(ballistic))
-			ballistic.rack()
-			visible_message("<span class='danger'><b>[src]</b> sam się przeładowuje!</span>")
-	if(!gun_can_shoot())
+		if(!ballistic.chambered?.BB && !magazine_useless(ballistic))
+			// AQUILA: cycles the round itself, as rack() does; rack() refuses a pump shotgun that is not wielded
+			ballistic.process_chamber(!ballistic.chambered, FALSE)
+			if(ballistic.bolt_type == BOLT_TYPE_OPEN)
+				ballistic.bolt_locked = FALSE
+			if(ballistic.chambered?.BB)
+				playsound(ballistic, ballistic.rack_sound, ballistic.rack_sound_volume, ballistic.rack_sound_vary)
+				visible_message("<span class='danger'><b>[src]</b> sam się przeładowuje!</span>")
+		can_fire = !isnull(ballistic.chambered?.BB)
+	else
+		can_fire = gun.can_shoot()
+	if(!can_fire)
 		ai_controller?.set_blackboard_key(BB_GUNMIMIC_GUN_EMPTY, TRUE) //BANZAIIIIIIII
 		ai_controller?.CancelActions()
 		return

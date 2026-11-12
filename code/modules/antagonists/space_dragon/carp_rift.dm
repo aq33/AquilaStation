@@ -121,7 +121,7 @@
 /obj/structure/carp_rift/process(delta_time)
 	// Heal carp around us
 	for(var/mob/living/hostilehere in range(1, src)) // AQ EDIT - basic moby: smok i karpie to nie tylko simple_animal/hostile
-		if(hostilehere.stat != DEAD && ("carp" in hostilehere.faction)) // AQ EDIT - basic moby
+		if(hostilehere.stat != DEAD && (isbasicmob(hostilehere) || ishostile(hostilehere)) && ("carp" in hostilehere.faction)) // AQ EDIT - basic moby: zwierzęta, nie załoga w kostiumie karpia
 			hostilehere.adjustBruteLoss(-10) // AQ EDIT - basic moby
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"

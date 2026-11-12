@@ -58,7 +58,6 @@
 		heal_brute = melee_damage,\
 		heal_burn = melee_damage,\
 		heal_time = 0,\
-		valid_targets_typecache = typecacheof(list(/mob/living)),\
 		action_text = "%SOURCE% zaczyna opatrywać rany %TARGET%",\
 		complete_text = "Rany %TARGET% się zasklepiają.",\
 		after_healed = CALLBACK(src, PROC_REF(on_healed)),\

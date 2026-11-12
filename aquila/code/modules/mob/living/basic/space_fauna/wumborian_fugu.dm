@@ -17,6 +17,7 @@
  */
 /mob/living/basic/wumborian_fugu
 	name = "wumboriańska fugu"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Wumboriańska fugu gwałtownie zwiększa masę ciała, by odstraszyć ofiarę. W tym stanie trzeba jej starannie unikać, bo jest prawie niezniszczalna, ale nie może utrzymać tej postaci w nieskończoność."
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "Fugu0"
@@ -30,7 +31,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mob_size = MOB_SIZE_SMALL
-	speed = 0
+	speed = 3 // 2 (run) + 3 = the old AI chase of 5 ds per tile (6 when inflated)
 	maxHealth = 50
 	health = 50
 	combat_mode = TRUE

@@ -75,12 +75,12 @@
 	if(stat == CONSCIOUS) //Mushrooms slowly regenerate if conscious, for people who want to save them from being eaten
 		adjustBruteLoss(-2)
 
-/// Hit by anything: bruised (no levels for whoever eats it), and now and then it runs off for a moment
+/// Hit by anything but another mushroom: bruised (no levels for whoever eats it), and now and then it runs off for a moment
 /mob/living/basic/mushroom/proc/on_attacked(mob/living/source, atom/attacker)
 	SIGNAL_HANDLER
 	if(stat == DEAD || attacker == src)
 		return
-	if(!bruised)
+	if(!bruised && !istype(attacker, /mob/living/basic/mushroom)) // AQUILA: bites of the mushroom that eats it do not count
 		visible_message("[name] zostaje poobijany!")
 		bruised = TRUE
 	if(prob(33) && ai_controller?.blackboard[BB_BASIC_MOB_STOP_FLEEING])

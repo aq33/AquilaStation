@@ -20,6 +20,13 @@
 /datum/ai_planning_subtree/attack_obstacle_in_path/trooper
 	attack_behaviour = /datum/ai_behavior/attack_obstructions/trooper
 
+/// AQUILA: a trooper with environment_smash = 0 (map edits, as with our simple animals) leaves the obstacles alone
+/datum/ai_planning_subtree/attack_obstacle_in_path/trooper/SelectBehaviors(datum/ai_controller/controller, delta_time)
+	var/mob/living/basic/pawn = controller.pawn
+	if(!istype(pawn) || pawn.environment_smash == ENVIRONMENT_SMASH_NONE)
+		return
+	return ..()
+
 /datum/ai_behavior/attack_obstructions/trooper
 	action_cooldown = 1.2 SECONDS
 

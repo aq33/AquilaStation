@@ -16,6 +16,7 @@
 
 /mob/living/basic/hivebot
 	name = "hivebot"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Mały robot."
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "basic"

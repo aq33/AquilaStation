@@ -36,7 +36,10 @@
 	var/time_to_freeze_for = (rand(5, 10) SECONDS)
 	ai_controller.set_blackboard_key(BB_STATIONARY_SECONDS, time_to_freeze_for)
 	ai_controller.set_blackboard_key(BB_STATIONARY_COOLDOWN, (time_to_freeze_for * (rand(3, 5))))
-	ai_controller.set_blackboard_key(BB_STATIONARY_TARGETS, typecacheof(stationary_scary_things))
+	var/static/list/scary_typecache
+	if(isnull(scary_typecache))
+		scary_typecache = typecacheof(stationary_scary_things)
+	ai_controller.set_blackboard_key(BB_STATIONARY_TARGETS, scary_typecache)
 
 /datum/ai_controller/basic_controller/deer
 	blackboard = list(

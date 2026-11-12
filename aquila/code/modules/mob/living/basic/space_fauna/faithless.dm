@@ -5,6 +5,7 @@
 
 /mob/living/basic/faithless
 	name = "Niewierny"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Wiara Spełniacza Życzeń w ludzkość, wcielona."
 	icon_state = "faithless"
 	icon_living = "faithless"
@@ -14,7 +15,7 @@
 	response_help_continuous = "przenika przez"
 	response_disarm_continuous = "popycha"
 	response_harm_continuous = "uderza"
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	maxHealth = 80
 	health = 80
 	spacewalk = TRUE

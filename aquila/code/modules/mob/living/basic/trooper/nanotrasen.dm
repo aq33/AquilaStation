@@ -20,40 +20,45 @@
 /mob/living/basic/trooper/nanotrasen/assess_threat(judgment_criteria, lasercolor = "", datum/callback/weaponcheck = null)
 	return -10 // Respect our troops
 
-/// Lines of the hostile officers
+/// Lines of the hostile officers, shouted at the one they fight (the attack subtrees end planning, so it goes first)
 /datum/ai_planning_subtree/random_speech/nanotrasen
 	speech_chance = 3
 	speak = list("Przestań się stawiać!", "JA JESTEM PRAWEM!", "Poczuj gniew złotego bełtu!", "Przestań łamać prawo, dupku!")
+
+/datum/ai_planning_subtree/random_speech/nanotrasen/SelectBehaviors(datum/ai_controller/controller, delta_time)
+	if(!controller.blackboard_key_exists(BB_BASIC_MOB_CURRENT_TARGET))
+		return
+	return ..()
 
 /datum/ai_controller/basic_controller/trooper/calls_reinforcements/nanotrasen
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/random_speech/nanotrasen,
 		/datum/ai_planning_subtree/call_reinforcements,
 		/datum/ai_planning_subtree/attack_obstacle_in_path/trooper,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-		/datum/ai_planning_subtree/random_speech/nanotrasen,
 	)
 
 /datum/ai_controller/basic_controller/trooper/ranged/calls_reinforcements/nanotrasen
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/random_speech/nanotrasen,
 		/datum/ai_planning_subtree/call_reinforcements,
 		/datum/ai_planning_subtree/basic_ranged_attack_subtree/trooper,
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-		/datum/ai_planning_subtree/random_speech/nanotrasen,
 	)
 
 /datum/ai_controller/basic_controller/trooper/ranged/burst/calls_reinforcements/nanotrasen
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/random_speech/nanotrasen,
 		/datum/ai_planning_subtree/call_reinforcements,
 		/datum/ai_planning_subtree/basic_ranged_attack_subtree/trooper_burst,
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-		/datum/ai_planning_subtree/random_speech/nanotrasen,
 	)
 
 /mob/living/basic/trooper/nanotrasen/ranged
@@ -115,6 +120,9 @@
 /// Tells the officers around that someone attacked us
 /mob/living/basic/trooper/nanotrasen/proc/ai_retaliate_behaviour(mob/living/attacker)
 	if (!istype(attacker))
+		return
+	if (faction_check_mob(attacker)) // AQUILA: a stray shot of a fellow officer does not turn the squad on itself
+		ai_controller?.remove_thing_from_blackboard_key(BB_BASIC_MOB_RETALIATE_LIST, attacker)
 		return
 	for (var/mob/living/basic/trooper/nanotrasen/potential_trooper in oview(src, 7))
 		potential_trooper.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker)

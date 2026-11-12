@@ -40,7 +40,10 @@
 		return
 	var/static/list/gutlunch_foods = list(/obj/effect/decal/cleanable/xenoblood/xgibs, /obj/effect/decal/cleanable/blood/gibs, /obj/item/organ)
 	AddElement(/datum/element/basic_eating, food_types = gutlunch_foods)
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(gutlunch_foods))
+	var/static/list/food_typecache
+	if(isnull(food_typecache))
+		food_typecache = typecacheof(gutlunch_foods)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_typecache)
 	AddComponent(/datum/component/udder, /obj/item/udder/gutlunch, CALLBACK(src, PROC_REF(udder_changed)), CALLBACK(src, PROC_REF(udder_changed)))
 	RegisterSignal(src, COMSIG_MOB_ATE, PROC_REF(on_ate))
 

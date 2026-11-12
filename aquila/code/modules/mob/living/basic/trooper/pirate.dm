@@ -22,6 +22,7 @@
 
 /mob/living/basic/trooper/pirate/melee
 	name = "pirat zabijaka"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
 	icon_dead = "piratemelee_dead"

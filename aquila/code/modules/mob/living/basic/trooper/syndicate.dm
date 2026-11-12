@@ -34,6 +34,7 @@
 	health = 250
 
 /mob/living/basic/trooper/syndicate/melee //dude with a knife and no shields
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	icon_state = "syndicate_knife"
 	icon_living = "syndicate_knife"
 	melee_damage = 15

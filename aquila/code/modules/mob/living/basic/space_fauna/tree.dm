@@ -7,6 +7,7 @@
 
 /mob/living/basic/tree
 	name = "sosna"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Wkurzony obcy przypominający drzewo. Chyba irytują go świąteczne obchody..."
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"

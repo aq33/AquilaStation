@@ -77,6 +77,9 @@
 	for (var/turf/line_turf as anything in line)
 		if (length(line) && line.Find(line_turf) > max_range)
 			break
+		// tg's burrowed trail cannot move through walls, rock, windows or other dense objects, so the line ends there
+		if (isclosedturf(line_turf) || is_blocked_turf(line_turf, exclude_mobs = TRUE))
+			break
 		delay += spawn_interval
 		addtimer(CALLBACK(src, PROC_REF(spawn_tentacle), line_turf), delay)
 	if (isliving(target))

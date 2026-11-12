@@ -3,11 +3,13 @@
 // override in aquila/). Kept from ours: Polish lines, the per-subtype sprites of simple_human.dmi (tg builds a dynamic human
 // appearance we do not have), health, damage, speeds, loot, the eskimo (tg's settler) and the templar war cries.
 // From tg: milk heals them (50) and soy milk burns them (25), found by the AI too. Rattling is a random emote (1%/s)
-// instead of tg's run_emote (20%/s), which needs the ability framework. The jackhammer miner keeps environment_smash, but
-// like every basic mob its AI only attacks dense objects in the way, not walls.
+// instead of tg's run_emote (20%/s), because there is no "rattle" emote here. Unlike tg, the AI smashes dense objects in
+// its way (doors, tables, windows) as our simple skeletons did; no skeleton breaks walls, the jackhammer miner included
+// (its environment_smash is kept only for mechs and player control).
 
 /mob/living/basic/skeleton
 	name = "ożywiony szkielet"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Szkielet z krwi i kości, choć bez krwi. Nie wygląda na towarzyskiego."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "skeleton"
@@ -180,6 +182,7 @@
 		/datum/ai_planning_subtree/random_speech/skeleton,
 		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 	)
 
@@ -189,5 +192,6 @@
 		/datum/ai_planning_subtree/random_speech/skeleton/templar,
 		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 	)

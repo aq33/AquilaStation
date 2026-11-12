@@ -40,25 +40,9 @@
 			fishannounce(fish) //Prefer to announce the megacarps over the regular fishies
 		var/z_level_key = "[C.z]"
 		if(isnull(z_migration_paths[z_level_key]))
-			z_migration_paths[z_level_key] = pick_carp_migration_points(z_level_key)
+			z_migration_paths[z_level_key] = pick_carp_migration_points(C.z) // aquila/.../carp/carp.dm
 		fish.migrate_to(z_migration_paths[z_level_key])
 	fishannounce(fish)
-
-/// Two places for carp to swim to: a turf of the ship (station areas of that z level), then the space beyond it
-/datum/round_event/carp_migration/proc/pick_carp_migration_points(z_level_key)
-	var/list/valid_areas = list()
-	for(var/area/potential_area as anything in SSmapping.areas_in_z[z_level_key])
-		if(!is_type_in_list(potential_area, GLOB.the_station_areas))
-			continue
-		valid_areas += potential_area
-	if(!length(valid_areas))
-		return list()
-	var/list/station_turfs = get_safe_random_station_turfs(valid_areas)
-	var/turf/station_turf = length(station_turfs) ? station_turfs[1] : null
-	if(!station_turf)
-		return list()
-	var/turf/exit_turf = get_edge_target_turf(station_turf, pick(GLOB.alldirs))
-	return list(station_turf, exit_turf)
 // AQ EDIT END
 
 /datum/round_event/carp_migration/proc/fishannounce(atom/fish)

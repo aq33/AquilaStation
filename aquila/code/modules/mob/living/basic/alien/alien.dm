@@ -37,7 +37,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	unique_name = TRUE
 
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	obj_damage = 60
 	speak_emote = list("syczy")
 	speech_sound = "hiss"
@@ -56,7 +56,7 @@
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	unsuitable_cold_damage = 2
-	unsuitable_heat_damage = 20
+	unsuitable_heat_damage = 10 // per second: 20 a 2 s Life() tick, as our simple xenomorphs took
 
 	ai_controller = /datum/ai_controller/basic_controller/alien
 	/// Mapped xenomorphs can be told not to plant weeds
@@ -119,6 +119,7 @@
 	status_flags = NONE //can't shove the queen, kiddo.
 	unique_name = FALSE
 	gold_core_spawnable = NO_SPAWN
+	speed = 2 // the old queen chased at move_to_delay 4
 	ai_controller = /datum/ai_controller/basic_controller/alien/queen
 	///The type of projectile that fires from attacks.
 	var/projectiletype = /obj/item/projectile/neurotox

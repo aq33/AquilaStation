@@ -8,6 +8,7 @@
 // - the Netherworld link spawner (spawner/nether) moved here with the mobs, unchanged.
 /mob/living/basic/creature
 	name = "istota"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Niszczące umysł coś-innego z zaświatów."
 	icon_state = "otherthing"
 	icon_living = "otherthing"
@@ -65,12 +66,11 @@
 	return ..()
 
 /datum/action/cooldown/spell/jaunt/creature_teleport/before_cast(atom/cast_on)
-	. = ..()
-	if (. & SPELL_CANCEL_CAST)
-		return
+	// tg order: the 6 s channel first, then the parent (unobserved_actor) checks whether anyone sees the creature now
 	if (!owner || !do_after(owner, 6 SECONDS, target = owner.loc))
 		owner?.balloon_alert(owner, "przerwano!")
-		return . | SPELL_CANCEL_CAST
+		return SPELL_CANCEL_CAST
+	return ..()
 
 /datum/action/cooldown/spell/jaunt/creature_teleport/cast(atom/cast_on)
 	. = ..()
@@ -82,6 +82,7 @@
 
 /mob/living/basic/migo
 	name = "mi-go"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Różowawa, grzybopodobna istota przypominająca skorupiaka, z licznymi parami szponiastych odnóży i głową pokrytą falującymi czułkami."
 	icon_state = "mi-go"
 	icon_living = "mi-go"
@@ -90,7 +91,7 @@
 	maxHealth = 80
 	obj_damage = 100
 	melee_damage = 35
-	speed = -0.5
+	speed = 0.5 // our simple mi-go speed -0.5 plus the simple animal +1 config basic mobs skip
 	attack_verb_continuous = "rozszarpuje"
 	melee_attack_cooldown = 1 SECONDS
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -155,6 +156,7 @@
 
 /mob/living/basic/blankbody
 	name = "puste ciało"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Wygląda dość po ludzku, ale skóra ma popielatą fakturę, a twarz jest pozbawiona rysów, nie licząc upiornego uśmiechu."
 	icon_state = "blank-body"
 	icon_living = "blank-body"

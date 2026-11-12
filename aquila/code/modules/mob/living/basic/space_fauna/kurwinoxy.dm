@@ -28,6 +28,7 @@
 
 /mob/living/basic/clowiekmaupa
 	name = "maupa"
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Co to kurwa jest"
 	icon = 'aquila/icons/mob/animal.dmi'
 	icon_state = "bestia"
@@ -40,7 +41,7 @@
 	melee_damage = 40
 	ai_controller = /datum/ai_controller/basic_controller/kurwinoxy
 
-/// Szuka każdego spoza frakcji Kurwinoxów i bije wręcz
+/// Szuka każdego spoza frakcji Kurwinoxów i bije wręcz; drzwi, stoły i okna na drodze rozbija (jak stary simple animal)
 /datum/ai_controller/basic_controller/kurwinoxy
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
@@ -51,5 +52,6 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 	)

@@ -12,6 +12,7 @@
 //   (our footstep component, do_footstep).
 /mob/living/basic/clown
 	name = JOB_NAME_CLOWN
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	desc = "Mieszkaniec planety klaunów."
 	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "clown"
@@ -145,7 +146,7 @@
 	)
 	maxHealth = 120
 	health = 120
-	speed = -10
+	speed = -1
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/plant_seeds/preset/banana)
 	ai_controller = /datum/ai_controller/basic_controller/clown/banana
 
@@ -189,7 +190,7 @@
 	desc = "Boska istota zesłana przez Honkmatkę, by szerzyć radość. Nie jest groźna, ale bywa uciążliwa."
 	icon_state = "honkling"
 	icon_living = "honkling"
-	speed = -10
+	speed = -0.5
 	melee_damage = 1
 	attack_verb_continuous = "pociesza"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/plant_seeds/preset/bs_banana)
@@ -211,7 +212,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	maxHealth = 140
 	health = 140
-	speed = -5
+	speed = -0.5
 	melee_damage = 15
 	attack_verb_continuous = "bezwładnie klepie"
 	obj_damage = 5
@@ -235,7 +236,7 @@
 	health = 150
 	pixel_x = -16
 	base_pixel_x = -16
-	speed = 10
+	speed = 1.5
 	melee_damage = 5
 	attack_verb_continuous = "JA-HONKUJE na"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
@@ -258,7 +259,7 @@
 	health = 400
 	pixel_x = -16
 	base_pixel_x = -16
-	speed = 2
+	speed = 1.5
 	melee_damage = 17
 	attack_verb_continuous = "okłada pięściami"
 	obj_damage = 30
@@ -280,7 +281,7 @@
 	)
 	maxHealth = 500
 	health = 500
-	speed = -2
+	speed = 1.5
 	armour_penetration = 20
 	attack_verb_continuous = "kradnie dziewczynę"
 	attack_sound = 'sound/items/airhorn2.ogg'
@@ -300,7 +301,7 @@
 	)
 	maxHealth = 200
 	health = 200
-	speed = -5
+	speed = 1.5
 	melee_damage = 10
 	attack_verb_continuous = "zajadle szarpie"
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -321,7 +322,7 @@
 	)
 	maxHealth = 400
 	health = 400
-	speed = 5
+	speed = 1.5
 	melee_damage = 30
 	armour_penetration = 30
 	attack_verb_continuous = "wymierza boską zemstę"
@@ -348,7 +349,7 @@
 	health = 130
 	pixel_x = -16
 	base_pixel_x = -16
-	speed = -5
+	speed = 1.5
 	melee_damage = 15
 	attack_verb_continuous = "niezgrabnie macha na"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
@@ -366,7 +367,7 @@
 	)
 	health = 130
 	mob_size = MOB_SIZE_LARGE
-	speed = 20
+	speed = 1
 	attack_verb_continuous = "odbija się od"
 	waddles = FALSE
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)

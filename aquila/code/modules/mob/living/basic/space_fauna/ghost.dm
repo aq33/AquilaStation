@@ -17,8 +17,9 @@
 	response_harm_continuous = "uderza"
 	combat_mode = TRUE
 	healable = FALSE
+	faction = list("hostile") // as our retaliating simple ghost: zombies leave it alone and the petsplosion does not copy it
 	basic_mob_flags = DEL_ON_DEATH
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	maxHealth = 40
 	health = 40
 	melee_damage = 15

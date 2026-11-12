@@ -17,11 +17,12 @@
 	maxHealth = 100
 	health = 100
 	basic_mob_flags = DEL_ON_DEATH
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	melee_damage = 10
 	attack_verb_continuous = "uderza"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	melee_attack_cooldown = 1.2 SECONDS
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES // AQUILA: as our simple animals; maps switch it off with environment_smash = 0
 	combat_mode = TRUE
 	status_flags = CANPUSH
 	unsuitable_atmos_damage = 15

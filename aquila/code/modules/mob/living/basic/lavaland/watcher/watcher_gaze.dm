@@ -1,6 +1,6 @@
 // AQUILA: port of tgstation code/modules/mob/living/basic/lavaland/watcher/watcher_gaze.dm (tg 926bf40c5a). The AI uses it,
-// so Activate() does not sleep: tg waits in a do_after(), here a timer fires the gaze and the watcher holds still (tg breaks
-// the gaze when the watcher moves; here moving or being stunned in the meantime breaks it). We lack tg's eye overlay sprites
+// so Activate() does not sleep: tg waits in a do_after(), here a timer fires the gaze and TRAIT_IMMOBILIZED holds the watcher
+// still meanwhile (maintain_distance would walk it away); being moved or stunned in the meantime still breaks the gaze. We lack tg's eye overlay sprites
 // and its proximity monitor: the watcher glows red while charging and the victims are checked when the gaze fires.
 // tg's icewing stare only hit people resistant to cold (reversed check); here it skips them.
 
@@ -31,6 +31,7 @@
 	owner.visible_message(span_warning("Oko [owner] złowieszczo się żarzy!"))
 	animate(owner, color = "#FF6060", time = wait_delay * 0.5)
 	charge_turf = get_turf(owner)
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, REF(src))
 	stage_timer = addtimer(CALLBACK(src, PROC_REF(trigger_effect)), wait_delay, TIMER_STOPPABLE)
 	StartCooldown(360 SECONDS, 360 SECONDS)
 	return TRUE
@@ -38,12 +39,15 @@
 /datum/action/cooldown/mob_cooldown/watcher_gaze/Destroy()
 	deltimer(stage_timer)
 	stage_timer = null
+	if (owner)
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, REF(src))
 	return ..()
 
 /datum/action/cooldown/mob_cooldown/watcher_gaze/Remove(mob/removed_from)
 	deltimer(stage_timer)
 	stage_timer = null
 	if (removed_from)
+		REMOVE_TRAIT(removed_from, TRAIT_IMMOBILIZED, REF(src))
 		animate(removed_from, color = null, time = 0.2 SECONDS)
 	return ..()
 
@@ -52,6 +56,7 @@
 	stage_timer = null
 	if (QDELETED(owner))
 		return
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, REF(src))
 	animate(owner, color = null, time = 0.4 SECONDS)
 	StartCooldown()
 	var/mob/living/living_owner = owner

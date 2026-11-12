@@ -28,8 +28,6 @@
 #define BB_MAGICARP_SPELL_TARGET "BB_magicarp_spell_target"
 #define BB_MAGICARP_SPELL_SPECIAL_TARGETING "BB_magicarp_spell_special_targeting"
 #define MAGICARP_SPELL_CORPSES "magicarp_spell_corpses"
-#define MAGICARP_SPELL_WALLS "magicarp_spell_walls"
-#define MAGICARP_SPELL_OBJECTS "magicarp_spell_objects"
 
 /// Time without damage before a carp starts to regenerate
 #define CARP_REGENERATION_DELAY (6 SECONDS)
@@ -55,7 +53,7 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	health = 25
 	maxHealth = 25
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	pressure_resistance = 200
 	combat_mode = TRUE
 	obj_damage = 50
@@ -166,7 +164,10 @@
 /// Tell the elements and the blackboard what food we want to eat
 /mob/living/basic/carp/proc/setup_eating()
 	AddElement(/datum/element/basic_eating, food_types = desired_food)
-	ai_controller?.set_blackboard_key(BB_BASIC_FOODS, typecacheof(desired_food))
+	var/static/list/food_typecache
+	if(isnull(food_typecache))
+		food_typecache = typecacheof(desired_food)
+	ai_controller?.set_blackboard_key(BB_BASIC_FOODS, food_typecache)
 
 /**
  * Randomly assigns a color to a carp from either a common or rare color variant lists
@@ -209,6 +210,23 @@
 /// Teleport when you right click away from you (the disarm intent in the legacy controls)
 /mob/living/basic/carp/ranged_secondary_attack(atom/atom_target, modifiers)
 	teleport?.Trigger(target = atom_target)
+
+/**
+ * Two places for a school of migrating carp to swim to (carp migration event): a safe turf of the ship on the given z level
+ * (station areas span decks, so turfs of other z levels do not count), then the space beyond it. Empty list if there is none.
+ */
+/proc/pick_carp_migration_points(z_level)
+	var/list/candidates = list()
+	for(var/area/potential_area as anything in SSmapping.areas_in_z["[z_level]"])
+		if(!is_type_in_list(potential_area, GLOB.the_station_areas) || !(potential_area.area_flags & VALID_TERRITORY))
+			continue
+		candidates += get_area_turfs(potential_area, z_level)
+	while(length(candidates))
+		var/turf/station_turf = pick_n_take(candidates)
+		if(station_turf.density || isgroundlessturf(station_turf) || is_blocked_turf(station_turf, exclude_mobs = TRUE))
+			continue
+		return list(station_turf, get_edge_target_turf(station_turf, pick(GLOB.alldirs)))
+	return list()
 
 /// Gives the carp a list of turfs to try and travel between when it has nothing better to do
 /mob/living/basic/carp/proc/migrate_to(list/migration_points)

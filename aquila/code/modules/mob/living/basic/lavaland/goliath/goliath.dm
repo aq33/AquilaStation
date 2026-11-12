@@ -69,7 +69,10 @@
 
 	tentacles_ready()
 	RegisterSignal(src, COMSIG_MOB_ABILITY_FINISHED, PROC_REF(used_ability))
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(goliath_foods))
+	var/static/list/food_typecache
+	if(isnull(food_typecache))
+		food_typecache = typecacheof(goliath_foods)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_typecache)
 	ai_controller.set_blackboard_key(BB_GOLIATH_TENTACLES, tentacles)
 
 /mob/living/basic/mining/goliath/Destroy()
@@ -97,8 +100,10 @@
 	. = ..()
 	if (amount <= 0 || isnull(tentacles))
 		return
-	if (tentacles.cooldown_time > 1 SECONDS)
-		tentacles.cooldown_time -= 1 SECONDS
+	// AQUILA: the running cooldown gets 1 s shorter per hit, as our simple goliath (tg cut cooldown_time for good, which here
+	// would chain our 10 s tentacle stun in a tunnel)
+	if (tentacles.next_use_time > world.time)
+		tentacles.next_use_time = max(world.time, tentacles.next_use_time - 1 SECONDS)
 
 /// A tamed goliath carries its tamer like a tamed cow
 /mob/living/basic/mining/goliath/tamed(mob/living/tamer, atom/food)

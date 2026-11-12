@@ -5,7 +5,7 @@
 // - our hiss at a new victim (the simple animal taunt) stays through aggro_emote;
 // - Birdboat keeps our deadchat control: 50% of rounds, directions and "vomit" (plus tg's "honk" and "spin"), 2 s between
 //   inputs; our deadchat_control has no cardinal_movement subtype, so the directions are plain inputs as before;
-// - plastic is read from custom_materials (we have no has_material_type()), TRAIT_NOT_BARFABLE does not exist here;
+// - plastic is read from custom_materials (we have no has_material_type()), no TRAIT_NOT_BARFABLE (nothing here needs it);
 // - the AI of Birdboat finds its vomit ability in BB_GENERIC_ACTION (tg granted it without a key, so use_mob_ability never fired),
 //   and it throws up for 2.5 s plus the gross food bonus like our simple animal (tg counted seconds as deciseconds);
 // - fixes our Birdboat, which only ate /obj/item/reagent_containers/food and so, after the newfood port, nothing:
@@ -30,7 +30,7 @@
 	faction = list(FACTION_NEUTRAL)
 	maxHealth = 25
 	health = 25
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	melee_damage = 5
 	attack_verb_continuous = "dziobie"
 	attack_sound = "goose"
@@ -74,12 +74,21 @@
 			return TRUE
 	return FALSE
 
+/**
+ * AQUILA: can a goose eat this? Food or plastic, but never a brain or anything with someone inside: brains are edible here
+ * (ORGAN_EDIBLE) and eating one deleted the brainmob, so a player was gone for good.
+ */
+/proc/goose_can_eat(obj/item/thing)
+	if(istype(thing, /obj/item/organ/brain) || (locate(/mob) in thing))
+		return FALSE
+	return goose_is_plastic(thing) || IS_EDIBLE(thing)
+
 /// Called when we try to eat something
 /mob/living/basic/goose/proc/on_tried_gobbling(datum/source, obj/item/potential_food)
 	SIGNAL_HANDLER
 	if(ai_controller?.blackboard[BB_GOOSE_PANICKED])
 		return COMSIG_MOB_CANCEL_EAT
-	if(goose_is_plastic(potential_food) || IS_EDIBLE(potential_food))
+	if(goose_can_eat(potential_food))
 		return NONE // Geese only eat FOOD or PLASTIC
 	return COMSIG_MOB_CANCEL_EAT
 
@@ -176,6 +185,7 @@
 /// Lets deadchat steer Birdboat (our inputs, plus tg's honk and spin)
 /mob/living/basic/goose/vomit/proc/deadchat_plays_goose()
 	ai_controller?.idle_behavior = null // Stop wandering, keep eating so you can lead the goose to the plastic
+	ai_controller?.remove_from_unplanned_controllers() // AQUILA: the idle subsystem would call the idle behaviour we just removed
 	AddComponent(/datum/component/deadchat_control, ANARCHY_MODE, list(
 		"up" = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), src, NORTH),
 		"down" = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), src, SOUTH),
@@ -257,7 +267,7 @@
 		return
 	var/list/filtered = list()
 	for(var/obj/item/thing as anything in found)
-		if(IS_EDIBLE(thing) || goose_is_plastic(thing))
+		if(goose_can_eat(thing))
 			filtered += thing
 	if(length(filtered))
 		return pick(filtered)

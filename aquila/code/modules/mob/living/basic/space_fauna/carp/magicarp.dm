@@ -64,11 +64,11 @@
 	ai_controller?.set_blackboard_key(BB_MAGICARP_SPELL, spell)
 	assign_spell_ai(spell_type)
 
-/// If you have certain spells, use a different targeting strategy
+/// If you have certain spells, use a different targeting strategy. AQUILA: only the resurrection bolt; tg also aimed the door
+/// and animate bolts at the nearest wall or loose object every 5 s, idle or not (hull breaches, pens opened, mimics everywhere),
+/// so here they are shot at prey like our simple magicarp did.
 /mob/living/basic/carp/magic/proc/assign_spell_ai(spell_type)
 	var/static/list/spell_special_targeting = list(
-		/obj/item/projectile/magic/animate = MAGICARP_SPELL_OBJECTS,
-		/obj/item/projectile/magic/door = MAGICARP_SPELL_WALLS,
 		/obj/item/projectile/magic/resurrection = MAGICARP_SPELL_CORPSES,
 	)
 	ai_controller?.set_blackboard_key(BB_MAGICARP_SPELL_SPECIAL_TARGETING, spell_special_targeting[spell_type])
@@ -152,5 +152,6 @@
 	. = ..()
 	name = "[pick(GLOB.megacarp_first_names)] [pick(GLOB.megacarp_last_names)]"
 	melee_damage += rand(10, 20) //this is on initialize so even with rng the damage will be consistent
+	set_varspeed(rand(1, 5)) // 2 (run) + 1..5 = the old megacarp chase of 3..7 ds per tile
 	maxHealth += rand(30, 60)
 	health = maxHealth

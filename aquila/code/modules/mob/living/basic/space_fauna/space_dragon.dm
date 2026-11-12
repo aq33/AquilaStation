@@ -44,7 +44,7 @@
 	pressure_resistance = 200
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0.5, OXY = 1)
 	combat_mode = TRUE
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	attack_verb_continuous = "chrupie"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
@@ -231,12 +231,18 @@
 	eaten.forceMove(loc)
 	eaten.Paralyze(5 SECONDS)
 
-/// Fire breath on anything out of reach (any control mode)
+/// Fire breath on anything out of reach (any control mode), not while flapping the wings
 /mob/living/basic/space_dragon/RangedAttack(atom/target, params)
 	. = ..()
-	if(.)
+	if(. || HAS_TRAIT(src, TRAIT_WING_BUFFET))
 		return
 	fire_breath?.Trigger(target = target)
+
+/// The old dragon threw up what it ate when polymorphed (content_barfer only works on death here)
+/mob/living/basic/space_dragon/wabbajack_act(mob/living/new_mob)
+	for(var/mob/living/eaten in src)
+		eaten.forceMove(drop_location())
+	return ..()
 
 /// Wing buffet on the secondary click out of reach (right click, the disarm intent in the old controls)
 /mob/living/basic/space_dragon/ranged_secondary_attack(atom/target, modifiers)
@@ -254,6 +260,14 @@
 		/datum/ai_planning_subtree/targeted_mob_ability/continue_planning,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 	)
+
+/// AQUILA: a dragon with a player (the antagonist) waits for that player: no AI after a disconnect or ghosting, as the simple
+/// dragon with a ckey stood still (tg's dragon has no AI at all)
+/datum/ai_controller/basic_controller/space_dragon/get_expected_ai_status()
+	var/mob/living/dragon = pawn
+	if(ismob(dragon) && (dragon.ckey || dragon.mind))
+		return AI_STATUS_OFF
+	return ..()
 
 /// Breathe a line of flames towards the target (tg code/datums/actions/mobs/fire_breath.dm)
 /datum/action/cooldown/mob_cooldown/fire_breath
@@ -396,6 +410,7 @@
 	var/endlag_decay_per_second = DEFAULT_ACTIVATED_ENDLAG / 60
 	/// List of traits we apply while the ability is ongoing, stops us from moving around and such
 	var/static/list/applied_traits = list(
+		TRAIT_HANDS_BLOCKED, // AQUILA: no fire breath, bites or wall tearing mid-flap
 		TRAIT_IMMOBILIZED,
 		TRAIT_NO_FLOATING_ANIM,
 		TRAIT_WING_BUFFET,

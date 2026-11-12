@@ -15,9 +15,10 @@
 	response_disarm_continuous = "delikatnie odsuwa na bok"
 	response_harm_continuous = "uderza"
 	combat_mode = TRUE
+	faction = list("hostile") // as our retaliating simple spaceman
 	maxHealth = 100
 	health = 100
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	melee_damage = 10
 	attack_verb_continuous = "uderza"
 	attack_sound = 'sound/weapons/punch1.ogg'

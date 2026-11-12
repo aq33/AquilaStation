@@ -9,6 +9,7 @@
 
 ///prototype for mining mobs
 /mob/living/basic/mining
+	hardattacks = TRUE // nasty blocks (energy sword, chainsaw) do not hurt it, as our simple animal
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	combat_mode = TRUE
 	status_flags = NONE //don't inherit standard basicmob flags

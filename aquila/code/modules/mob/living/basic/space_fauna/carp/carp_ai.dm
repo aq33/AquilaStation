@@ -1,7 +1,7 @@
 // AQUILA: tg 926bf40c5a carp_ai_actions.dm, carp_ai_rift_actions.dm and carp_ai_migration.dm, with the magicarp spell target
-// finders of tg's find_and_set.dm (animatable, nearest_wall, friendly_corpses). No fisherman checks (no fishing here), the global
-// is_blocked_turf(), migration points are turfs (tg: weakrefs to turfs). Our animate spell has no blacklist list, so the
-// animatable search takes any loose item or unanchored structure.
+// finder friendly_corpses of tg's find_and_set.dm (the animatable and nearest_wall finders are not ported: our magicarp shoot
+// door and animate bolts at prey). No fisherman checks (no fishing here), the global is_blocked_turf(), migration points are
+// turfs (tg: weakrefs to turfs).
 
 #define MAGICARP_SPELL_TARGET_SEEK_RANGE 4
 /// How close you need to get to the destination in order to consider yourself there
@@ -54,12 +54,6 @@
 		if(MAGICARP_SPELL_CORPSES)
 			controller.queue_behavior(/datum/ai_behavior/find_and_set/friendly_corpses, BB_MAGICARP_SPELL_TARGET, null, MAGICARP_SPELL_TARGET_SEEK_RANGE)
 			return
-		if(MAGICARP_SPELL_OBJECTS)
-			controller.queue_behavior(/datum/ai_behavior/find_and_set/animatable, BB_MAGICARP_SPELL_TARGET, null, MAGICARP_SPELL_TARGET_SEEK_RANGE)
-			return
-		if(MAGICARP_SPELL_WALLS)
-			controller.queue_behavior(/datum/ai_behavior/find_and_set/nearest_wall, BB_MAGICARP_SPELL_TARGET, null, MAGICARP_SPELL_TARGET_SEEK_RANGE)
-			return
 
 /// This subtype only exists because if you queue multiple of the same action with different arguments it deletes their stored arguments
 /datum/ai_behavior/find_potential_targets/nearest/magicarp
@@ -69,36 +63,6 @@
 	ability_key = BB_MAGICARP_SPELL
 	target_key = BB_MAGICARP_SPELL_TARGET
 	use_ability_behaviour = /datum/ai_behavior/targeted_mob_ability/and_clear_target
-
-/// Variant of find and set which returns an object which can be animated with a staff of change
-/datum/ai_behavior/find_and_set/animatable
-
-/datum/ai_behavior/find_and_set/animatable/search_tactic(datum/ai_controller/controller, locate_path, search_range = SEARCH_TACTIC_DEFAULT_RANGE)
-	var/mob/living/living_pawn = controller.pawn
-	var/list/nearby_items = list()
-	for(var/obj/new_friend in oview(search_range, controller.pawn))
-		if(!isitem(new_friend) && !isstructure(new_friend))
-			continue
-		if(new_friend.anchored)
-			continue
-		if(living_pawn.see_invisible < new_friend.invisibility)
-			continue
-		nearby_items += new_friend
-	if(length(nearby_items))
-		return pick(nearby_items)
-
-/// Variant of find and set which returns the nearest wall which isn't invulnerable
-/datum/ai_behavior/find_and_set/nearest_wall
-
-/datum/ai_behavior/find_and_set/nearest_wall/search_tactic(datum/ai_controller/controller, locate_path, search_range = SEARCH_TACTIC_DEFAULT_RANGE)
-	var/mob/living/living_pawn = controller.pawn
-	var/list/nearby_walls = list()
-	for(var/turf/closed/new_wall in oview(search_range, controller.pawn))
-		if(isindestructiblewall(new_wall))
-			continue
-		nearby_walls += new_wall
-	if(length(nearby_walls))
-		return get_closest_atom(/turf/closed, nearby_walls, living_pawn)
 
 /// Variant of find and set which returns corpses who share your faction
 /datum/ai_behavior/find_and_set/friendly_corpses

@@ -16,7 +16,7 @@
 	response_help_continuous = "głaszcze"
 	response_disarm_continuous = "delikatnie odsuwa na bok"
 	response_harm_continuous = "uderza"
-	speed = 0
+	speed = 1 // basic mobs skip the simple animal +1 movespeed config: 2 (run) + 1 = the old 3 ds per tile
 	maxHealth = 25
 	health = 25
 	combat_mode = TRUE
