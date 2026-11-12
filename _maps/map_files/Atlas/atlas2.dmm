@@ -192,18 +192,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/directional/east,
-/obj/machinery/door/firedoor/border_only/directional/west,
-/obj/machinery/door/airlock/ship/public/glass{
-	name = "Medical Storage";
-	req_access_txt = "5";
-	dir = 4
-	},
-/obj/effect/landmark/zebra_interlock_point,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/monotile/light,
 /area/medical/storage)
 "av" = (
@@ -678,12 +671,19 @@
 /turf/closed/wall/steel,
 /area/library)
 "bp" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/effect/turf_decal/tile/ship/blue/nfz{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/medical/storage)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/duct,
+/obj/vehicle/ridden/wheelchair{
+	dir = 4
+	},
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "bq" = (
 /obj/effect/turf_decal/ship/letter,
 /turf/open/floor/engine/airless,
@@ -840,26 +840,6 @@
 	pixel_y = 4
 	},
 /obj/item/wallframe/defib_mount,
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 6
-	},
-/obj/item/clothing/neck/stethoscope{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/clothing/neck/stethoscope,
-/obj/item/roller{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/roller{
-	pixel_x = -4;
-	pixel_y = -5
-	},
 /obj/item/clothing/neck/stethoscope{
 	pixel_x = -4;
 	pixel_y = -4
@@ -947,6 +927,17 @@
 	},
 /turf/open/floor/durasteel/lino,
 /area/medical/genetics)
+"bN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "bO" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/item/radio/intercom/directional/east{
@@ -1082,7 +1073,27 @@
 /turf/open/floor/monotile/steel,
 /area/science/xenobiology)
 "cd" = (
-/obj/machinery/suit_storage_unit/medical/trauma,
+/obj/structure/table/glass,
+/obj/item/clothing/neck/stethoscope{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 6
+	},
+/obj/item/roller{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/item/roller{
+	pixel_x = -3;
+	pixel_y = 4
+	},
 /turf/open/floor/durasteel/lino,
 /area/space)
 "ce" = (
@@ -1093,6 +1104,20 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"cf" = (
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/airlock/ship/public/glass{
+	name = "Medical Storage";
+	req_access_txt = "5";
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/directional/east,
+/obj/machinery/door/firedoor/border_only/directional/west,
+/turf/open/floor/plating,
+/area/medical/storage)
 "cg" = (
 /obj/structure/hull_plate,
 /obj/effect/turf_decal/szachownica/middle_red192{
@@ -1255,6 +1280,20 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"cB" = (
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	location = "Medbay";
+	name = "navigation beacon (Medbay Delivery)"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
 "cC" = (
 /obj/structure/hull_plate,
 /obj/effect/turf_decal/szachownica/middle_red192{
@@ -2105,6 +2144,20 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"ep" = (
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/newscaster/directional/west,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/zebra_interlock_point,
+/obj/vehicle/ridden/wheelchair{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/medical/medbay)
 "eq" = (
 /obj/item/storage/bag/tray{
 	desc = "A metal tray to lay bits on.";
@@ -9685,20 +9738,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"FM" = (
-/obj/effect/landmark/zebra_interlock_point,
-/obj/machinery/door/firedoor/border_only/directional/north,
-/obj/machinery/door/firedoor/border_only/directional/south,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/newscaster/directional/west,
-/obj/vehicle/ridden/wheelchair{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/tech/grid,
-/area/medical/medbay)
 "FO" = (
 /obj/structure/window/reinforced/spawner/west{
 	dir = 2
@@ -12517,23 +12556,6 @@
 /obj/machinery/door/airlock/ship/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
-"OI" = (
-/obj/vehicle/ridden/wheelchair{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	location = "Medbay";
-	name = "navigation beacon (Medbay Delivery)"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay)
 "ON" = (
 /obj/machinery/door/airlock/ship/public/glass{
 	name = "Briefing Room"
@@ -13733,16 +13755,6 @@
 	},
 /turf/open/floor/noslip/white,
 /area/medical/virology)
-"TH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "TK" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -15155,17 +15167,6 @@
 	},
 /turf/open/floor/durasteel/lino,
 /area/medical/surgery)
-"Zc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/duct,
-/turf/open/floor/monotile/light,
-/area/medical/medbay)
 "Zd" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -50220,7 +50221,7 @@ nv
 uQ
 bn
 bc
-TH
+bN
 aR
 gP
 uQ
@@ -50476,7 +50477,7 @@ lQ
 ad
 uQ
 uQ
-bp
+cf
 au
 uQ
 uQ
@@ -50732,9 +50733,9 @@ QT
 Mo
 yZ
 NC
-FM
-OI
-Zc
+ep
+cB
+bp
 Xp
 tS
 Sq

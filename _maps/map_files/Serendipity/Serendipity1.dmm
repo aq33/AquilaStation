@@ -1692,7 +1692,6 @@
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
 "dA" = (
-/obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall/ship,
 /area/crew_quarters/heads/hor)
 "dB" = (
