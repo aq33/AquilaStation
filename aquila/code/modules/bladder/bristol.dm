@@ -213,13 +213,33 @@
 	if(current != 4 && length(reasons))
 		to_chat(src, "<span class='notice'>Możliwe przyczyny: [jointext(reasons, ", ")].</span>")
 
-/// Moodlety po wypróżnieniu: przy cenzurze funkcji fizjologicznych działają, ale bez opisu w nastroju
+/// Moodlety po wypróżnieniu: przy cenzurze funkcji fizjologicznych działają jak zwykle (także na ikonę nastroju),
+/// ale bez opisu w podglądzie nastroju. Opis przelicza się przy zmianie cenzury i przy wejściu do ciała.
+/// Nie używamy `hidden`: print_mood() go nie sprawdza, a update_mood() odejmuje takie moodlety od ikony.
 /datum/mood_event/bowel
 
 /datum/mood_event/bowel/add_effects(param)
 	var/datum/component/mood = owner // owner to w praktyce komponent nastroju (jak w /datum/mood_event/table)
-	var/mob/living/L = mood?.parent
-	hidden = istype(L) && L.censors_bodily_functions()
+	update_censored_description(mood?.parent)
+
+/// Pusty opis przy cenzurze, oryginalny bez niej
+/datum/mood_event/bowel/proc/update_censored_description(mob/viewer)
+	description = viewer?.censors_bodily_functions() ? "" : initial(description)
+
+/// Przelicza opis aktualnego moodletu wypróżnienia (po zmianie cenzury albo wejściu do ciała)
+/mob/living/proc/update_bowel_moodlet()
+	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
+	var/datum/mood_event/bowel/event = mood?.mood_events["bowel"]
+	if(istype(event))
+		event.update_censored_description(src)
+
+/mob/living/refresh_bodily_censor()
+	. = ..()
+	update_bowel_moodlet()
+
+/mob/living/Login()
+	. = ..()
+	update_bowel_moodlet()
 
 /datum/mood_event/bowel/constipated
 	description = "<span class='warning'>Wypróżnienie było męczarnią.</span>\n"
