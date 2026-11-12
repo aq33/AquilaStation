@@ -124,26 +124,6 @@
 	return SUBTREE_RETURN_FINISH_PLANNING
 
 /**
- * # Pet Command: Use ability
- * Use an an ability that does not require any targets
- * AQUILA: from tg 926bf40c5a; subtypes give the name, the radial icon, the speech triggers and the ability key
- */
-/datum/pet_command/untargeted_ability
-	///untargeted ability we will use
-	var/ability_key
-
-/datum/pet_command/untargeted_ability/execute_action(datum/ai_controller/controller)
-	var/datum/action/ability = controller.blackboard[ability_key]
-	if(!ability?.usable_by_ai() || !ability.IsAvailable())
-		return
-	controller.queue_behavior(/datum/ai_behavior/use_mob_ability, ability_key)
-	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
-	return SUBTREE_RETURN_FINISH_PLANNING
-
-/datum/pet_command/untargeted_ability/retrieve_command_text(atom/living_pet, atom/target)
-	return "daje znak [living_pet], żeby użył zdolności!"
-
-/**
  * # Pet Command: Targetted Ability
  * Tells a pet to use some kind of ability on the next thing you point at
  * AQUILA: from tg 926bf40c5a. The ability key defaults to BB_TARGETED_ACTION (tg: none, every pet sets its own), so a pet

@@ -2,7 +2,9 @@
 // Changes against tg:
 // - our retaliate list is Bee's plain lazylist (insert_blackboard_key_lazylist), tg keeps an assoc list with the time;
 // - faction_check_mob() instead of tg's faction_check_atom();
-// - the mining variant (mining mobs) is the plain call with tg's mining range and cooldown (no target priority strategies).
+// - the mining variant (mining mobs) is the plain call with tg's mining range and cooldown (no target priority strategies);
+//   it only fills the retaliate lists (nobody reads the reinforcement target of a mining mob) and never sends the pack after
+//   a fellow mining mob (a legion's target can be a hurt friend it wants to heal).
 
 /// Calls all nearby mobs that share a faction to give backup in combat
 /datum/ai_planning_subtree/call_reinforcements
@@ -60,3 +62,14 @@
 /datum/ai_behavior/call_reinforcements/mining
 	cooldown = 1 SECONDS
 	reinforcements_range = 7
+
+/datum/ai_behavior/call_reinforcements/mining/perform(delta_time, datum/ai_controller/controller)
+	var/mob/pawn_mob = controller.pawn
+	var/mob/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+	if(ismob(target) && !QDELETED(target) && !pawn_mob.faction_check_mob(target))
+		for(var/mob/other_mob in oview(reinforcements_range, pawn_mob))
+			if(other_mob == target || isnull(other_mob.ai_controller) || !pawn_mob.faction_check_mob(other_mob))
+				continue
+			other_mob.ai_controller.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, target)
+	controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENTS_COOLDOWN, world.time + cooldown)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

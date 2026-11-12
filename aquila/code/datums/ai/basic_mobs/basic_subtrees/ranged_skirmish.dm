@@ -50,6 +50,3 @@
 	// an adjacent target is hit in melee (ClickOn()), as in tg
 	controller.ai_interact(target = target, combat_mode = TRUE)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
-
-/datum/ai_planning_subtree/ranged_skirmish/no_minimum
-	min_range = 0

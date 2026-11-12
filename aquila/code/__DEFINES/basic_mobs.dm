@@ -353,5 +353,3 @@
 /// The space dragon is using wing buffet / is tired after it
 #define TRAIT_WING_BUFFET "wing_buffet"
 #define TRAIT_WING_BUFFET_TIRED "wing_buffet_tired"
-/// Things a mob that ate them should not throw up (content_barfer)
-#define TRAIT_NOT_BARFABLE "not_barfable"

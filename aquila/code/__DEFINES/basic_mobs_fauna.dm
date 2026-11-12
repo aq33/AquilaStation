@@ -12,6 +12,8 @@
 #define BB_STATIONARY_TARGETS "BB_stationary_targets"
 /// Cooldown between two stares
 #define BB_STATIONARY_COOLDOWN "BB_stationary_cooldown"
+/// world.time when the mob may stop and stare again
+#define BB_STATIONARY_NEXT_STARE "BB_stationary_next_stare"
 
 // Deer
 /// Water turf we want to drink from

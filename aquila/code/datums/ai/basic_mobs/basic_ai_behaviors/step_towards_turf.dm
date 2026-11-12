@@ -52,27 +52,3 @@
 // We actually only wanted the movement so if we've arrived we're done
 /datum/ai_behavior/step_towards_turf/perform(delta_time, datum/ai_controller/controller, turf_key)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
-
-/**
- * # Step towards turf in area
- * Moves a short distance towards a location in an area
- * Unlike step_towards_turf it will reacquire a new turf from the area if it loses its target
- */
-/datum/ai_behavior/step_towards_turf/in_area
-
-/datum/ai_behavior/step_towards_turf/in_area/setup(datum/ai_controller/controller, turf_key, area_key)
-	var/area/target_area = controller.blackboard[area_key]
-	if (!target_area)
-		return FALSE
-
-	return ..()
-
-// Return the first valid turf in the area to replace a lost target
-/datum/ai_behavior/step_towards_turf/in_area/find_destination_turf(datum/ai_controller/controller, turf_key, area_key)
-	var/area/target_area = controller.blackboard[area_key]
-	var/list/target_area_turfs = get_area_turfs(target_area.type)
-	for (var/turf/potential_target as anything in target_area_turfs)
-		if (is_blocked_turf(potential_target, exclude_mobs = TRUE))
-			continue
-		return potential_target
-	return null

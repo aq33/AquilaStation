@@ -1,7 +1,9 @@
 // AQUILA: port of tgstation/tgstation code/datums/ai/basic_mobs/basic_ai_behaviors/stop_and_stare.dm (tg 926bf40c5a)
 // Changes against tg: the mob stops staring at a thing it no longer sees (tg kept the key until the thing was deleted, so a
 // deer froze every minute for a vehicle that drove away long ago); the movement it had is stopped before the complete stop
-// and given back by a proc that checks the controller still exists (tg's timer called set_movement_target() on it blindly).
+// and given back by a proc that checks the controller still exists (tg's timer called set_movement_target() on it blindly);
+// one stare ends the behaviour (tg's never ended while the thing was in view, which stopped all planning: a deer that saw
+// a vehicle neither fled nor ate), and the stare_at_thing subtree waits for BB_STATIONARY_NEXT_STARE.
 
 /// Makes a mob simply stop and stare at a movable... yea...
 /datum/ai_behavior/stop_and_stare
@@ -30,7 +32,8 @@
 	set_movement_target(controller, pawn_turf, /datum/ai_movement/complete_stop)
 
 	addtimer(CALLBACK(src, PROC_REF(stop_staring), controller, target), (controller.blackboard[BB_STATIONARY_SECONDS] + 1 SECONDS))
-	return AI_BEHAVIOR_DELAY
+	controller.set_blackboard_key(BB_STATIONARY_NEXT_STARE, world.time + get_cooldown(controller))
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/stop_and_stare/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()

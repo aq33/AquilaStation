@@ -115,14 +115,9 @@
 	if(click_to_activate)
 		if(target) // automatyczne użycie z kodu
 			return InterceptClickOn(owner, null, target)
-		var/datum/action/cooldown/spell/already_set = owner.click_intercept
-		if(already_set == src)
+		if(owner.click_intercept == src)
 			return unset_click_ability(owner, refund_cooldown = TRUE)
-		if(istype(already_set))
-			already_set.unset_click_ability(owner, refund_cooldown = TRUE)
-		else if(istype(owner.click_intercept, /datum/action/cooldown/mob_cooldown)) // zdolność moba też chowamy
-			var/datum/action/cooldown/mob_cooldown/mob_ability = owner.click_intercept
-			mob_ability.unset_click_ability(owner, refund_cooldown = TRUE)
+		owner.unset_aimed_ability() // inne zaklęcie albo zdolność moba chowamy
 		return set_click_ability(owner)
 
 	return PreActivate(owner)
@@ -143,8 +138,8 @@
 /datum/action/cooldown/spell/proc/set_click_ability(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 	on_who.click_intercept = src
-	if(ranged_mousepointer && on_who.client)
-		on_who.client.mouse_pointer_icon = ranged_mousepointer
+	if(ranged_mousepointer)
+		on_who.set_ability_mouse_pointer(ranged_mousepointer) // celownik zostaje po Shifcie i zmianie broni
 	UpdateButtonIcon()
 	return TRUE
 
@@ -154,7 +149,7 @@
 	if(on_who.click_intercept == src)
 		on_who.click_intercept = null
 	if(ranged_mousepointer)
-		on_who.update_mouse_pointer()
+		on_who.set_ability_mouse_pointer(null, ranged_mousepointer)
 	UpdateButtonIcon()
 	return TRUE
 

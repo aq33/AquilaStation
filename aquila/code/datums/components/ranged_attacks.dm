@@ -90,3 +90,10 @@
 	casing.update_icon()
 	casing.fade_into_nothing(30 SECONDS)
 	SEND_SIGNAL(parent, COMSIG_BASICMOB_POST_ATTACK_RANGED, target, params)
+
+/// AQUILA: holds the next shot back by `duration` (watcher wing crusher trophy), counting from now if the gun is ready
+/datum/component/ranged_attacks/proc/delay_attack(duration)
+	if(COOLDOWN_FINISHED(src, fire_cooldown))
+		COOLDOWN_START(src, fire_cooldown, duration)
+	else
+		fire_cooldown += duration

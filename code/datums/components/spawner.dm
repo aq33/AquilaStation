@@ -55,5 +55,5 @@
 	else
 		RegisterSignals(L, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(on_basic_spawned_gone))
 	// AQ EDIT END
-	L.faction = src.faction
+	L.faction = src.faction.Copy() // AQ EDIT - basic moby: własna lista, befriend() dopisuje do niej w miejscu
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")

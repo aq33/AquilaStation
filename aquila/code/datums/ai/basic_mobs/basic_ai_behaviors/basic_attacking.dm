@@ -115,7 +115,10 @@
 	for(var/turf/possible_turf as anything in turfs_list)
 
 		for(var/mob/living/potential_friend in possible_turf)
-			if(!targeting_strategy.can_attack(source, potential_friend))
+			if(potential_friend == target)
+				continue
+			// AQUILA: a faction mate is a friend even while retaliating ignores factions (BB_TEMPORARILY_IGNORE_FACTION)
+			if(!targeting_strategy.can_attack(source, potential_friend) || source.faction_check_mob(potential_friend))
 				return TRUE
 
 	return FALSE

@@ -91,17 +91,11 @@
 	if(click_to_activate)
 		if(target)
 			return InterceptClickOn(owner, null, target)
-		var/datum/already_set = owner.click_intercept
-		if(already_set == src)
+		if(owner.click_intercept == src)
 			// Clicking the button again puts the ability away
 			return unset_click_ability(owner, refund_cooldown = TRUE)
 		// One mob, one click_intercept: put away another mob ability or spell first
-		if(istype(already_set, /datum/action/cooldown/mob_cooldown))
-			var/datum/action/cooldown/mob_cooldown/other_ability = already_set
-			other_ability.unset_click_ability(owner, refund_cooldown = TRUE)
-		else if(istype(already_set, /datum/action/cooldown/spell))
-			var/datum/action/cooldown/spell/other_spell = already_set
-			other_spell.unset_click_ability(owner, refund_cooldown = TRUE)
+		owner.unset_aimed_ability()
 		return set_click_ability(owner)
 
 	// Not a click ability: used on the user (often the owner)
@@ -109,6 +103,11 @@
 
 /// Intercepts client owner clicks to activate the ability. TRUE = the click was used up.
 /datum/action/cooldown/mob_cooldown/proc/InterceptClickOn(mob/living/clicker, params, atom/click_target)
+	// AQUILA: Shift/Ctrl/Alt/middle clicks (examine, pull, menus) go through, as with pet commands (the AI passes no params)
+	if(params)
+		var/list/modifiers = params2list(params)
+		if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK))
+			return FALSE
 	if(!IsAvailable(feedback = TRUE))
 		return FALSE
 	if(!click_target)
@@ -236,7 +235,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	on_who.click_intercept = src
 	if(ranged_mousepointer)
-		set_mouse_pointer(on_who, ranged_mousepointer)
+		on_who.set_ability_mouse_pointer(ranged_mousepointer)
 	UpdateButtonIcon(status_only = TRUE)
 	return TRUE
 
@@ -251,23 +250,37 @@
 	if(on_who.click_intercept == src)
 		on_who.click_intercept = null
 	if(ranged_mousepointer)
-		set_mouse_pointer(on_who, null)
+		on_who.set_ability_mouse_pointer(null, ranged_mousepointer)
 	UpdateButtonIcon(status_only = TRUE)
 	return TRUE
 
-/// The aiming pointer goes through mouse_override_icon of living mobs (like pet commands), so update_mouse_pointer() keeps it
-/datum/action/cooldown/mob_cooldown/proc/set_mouse_pointer(mob/on_who, pointer)
-	if(isliving(on_who))
-		var/mob/living/living_who = on_who
+/**
+ * AQUILA: the aiming pointer of a mob ability or spell. It goes through mouse_override_icon of living mobs (like pet
+ * commands), so update_mouse_pointer() (Shift, guns) keeps it. `pointer` = null puts back the normal pointer if
+ * `old_pointer` is still the one shown.
+ */
+/mob/proc/set_ability_mouse_pointer(pointer, old_pointer)
+	if(isliving(src))
+		var/mob/living/living_who = src
 		if(pointer)
 			living_who.mouse_override_icon = pointer
-		else if(living_who.mouse_override_icon == ranged_mousepointer)
+		else if(living_who.mouse_override_icon == old_pointer)
 			living_who.mouse_override_icon = null
-		living_who.update_mouse_pointer()
+		update_mouse_pointer()
 		return
-	if(pointer && on_who.client)
-		on_who.client.mouse_pointer_icon = pointer
+	if(pointer && client)
+		client.mouse_pointer_icon = pointer
 	else
-		on_who.update_mouse_pointer()
+		update_mouse_pointer()
+
+/// AQUILA: one mob has one click_intercept; puts away the aimed mob ability or spell (refunding it) before another one aims
+/mob/proc/unset_aimed_ability()
+	if(istype(click_intercept, /datum/action/cooldown/mob_cooldown))
+		var/datum/action/cooldown/mob_cooldown/ability = click_intercept
+		return ability.unset_click_ability(src, refund_cooldown = TRUE)
+	if(istype(click_intercept, /datum/action/cooldown/spell))
+		var/datum/action/cooldown/spell/spell = click_intercept
+		return spell.unset_click_ability(src, refund_cooldown = TRUE)
+	return FALSE
 
 #undef MOB_COOLDOWN_NO_DISPLAY_TIME

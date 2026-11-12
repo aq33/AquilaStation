@@ -18,5 +18,3 @@
 // --- goliath
 /// The goliath's ranged tentacle ability
 #define BB_GOLIATH_TENTACLES "BB_goliath_tentacles"
-/// A sand turf the goliath wants to dig
-#define BB_GOLIATH_HOLE_TARGET "BB_goliath_hole"

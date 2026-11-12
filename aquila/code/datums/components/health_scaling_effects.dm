@@ -28,8 +28,9 @@
 	var/min_health_slowdown
 	/// A callback which is sent the mob's current ratio between the max and min values, for updating mob-specific effects
 	var/datum/callback/additional_status_callback
-	/// AQUILA: the mob's own melee damage, the modifiers are added to it
-	var/base_melee_damage
+	/// AQUILA: the melee damage modifier applied right now; melee_damage changes by the difference, so changes made by
+	/// others (a fugu gland doubling the damage) stay
+	var/applied_melee_modifier = 0
 
 /datum/component/health_scaling_effects/Initialize(
 	max_health_threshold = 1,
@@ -54,8 +55,6 @@
 	src.max_health_slowdown = max_health_slowdown
 	src.min_health_slowdown = min_health_slowdown
 	src.additional_status_callback = additional_status_callback
-	var/mob/living/living_parent = parent
-	base_melee_damage = living_parent.melee_damage
 
 	RegisterSignal(parent, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_health_changed))
 
@@ -83,7 +82,9 @@
 	if (max_health_attack_modifier_lower || min_health_attack_modifier_lower || max_health_attack_modifier_upper || min_health_attack_modifier_upper)
 		var/lower_modifier = min_health_attack_modifier_lower + (max_health_attack_modifier_lower - min_health_attack_modifier_lower) * max_min_ratio
 		var/upper_modifier = min_health_attack_modifier_upper + (max_health_attack_modifier_upper - min_health_attack_modifier_upper) * max_min_ratio
-		source.melee_damage = base_melee_damage + round((lower_modifier + upper_modifier) / 2)
+		var/new_modifier = round((lower_modifier + upper_modifier) / 2)
+		source.melee_damage += new_modifier - applied_melee_modifier
+		applied_melee_modifier = new_modifier
 
 	if (max_health_slowdown || min_health_slowdown)
 		source.add_movespeed_modifier(MOVESPEED_ID_HEALTH_SCALING, override = TRUE, multiplicative_slowdown = min_health_slowdown + (max_health_slowdown - min_health_slowdown) * max_min_ratio)

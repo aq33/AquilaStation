@@ -56,6 +56,7 @@
 	var/datum/action/using_action = controller.blackboard[ability_key]
 	if (QDELETED(using_action) || !using_action.usable_by_ai())
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
-	if(using_action.Trigger())
+	// AQUILA: with the pawn as the target, so a click_to_activate ability is used on the pawn instead of being left aimed
+	if(using_action.ai_trigger_on(controller.pawn))
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED

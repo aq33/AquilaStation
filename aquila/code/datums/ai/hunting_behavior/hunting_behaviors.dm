@@ -136,22 +136,6 @@
 	always_reset_target = TRUE
 	behavior_combat_mode = FALSE
 
-/// AQUILA: from tg 926bf40c5a; uses the ability in `ability_key` on the hunted target (mob abilities and spells only)
-/datum/ai_behavior/hunt_target/use_ability_on_target
-	always_reset_target = TRUE
-	///the ability we will use
-	var/ability_key
-
-/datum/ai_behavior/hunt_target/use_ability_on_target/perform(delta_time, datum/ai_controller/controller, hunting_target_key, hunting_cooldown_key)
-	var/datum/action/cooldown/ability = controller.blackboard[ability_key]
-	if(!ability?.usable_by_ai() || !ability.IsAvailable())
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	return ..()
-
-/datum/ai_behavior/hunt_target/use_ability_on_target/target_caught(mob/living/hunter, atom/hunted)
-	var/datum/action/cooldown/mob_cooldown/ability = hunter.ai_controller.blackboard[ability_key]
-	ability.InterceptClickOn(hunter, null, hunted)
-
 /datum/ai_behavior/hunt_target/latch_onto
 
 /datum/ai_behavior/hunt_target/latch_onto/setup(datum/ai_controller/controller, hunting_target_key, hunting_cooldown_key)

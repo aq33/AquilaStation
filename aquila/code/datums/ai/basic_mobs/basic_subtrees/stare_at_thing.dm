@@ -12,4 +12,6 @@
 		controller.queue_behavior(/datum/ai_behavior/find_and_set/in_list, BB_STATIONARY_CAUSE, potential_scares)
 		return
 
+	if(controller.blackboard[BB_STATIONARY_NEXT_STARE] > world.time) // AQUILA: stared not long ago
+		return
 	controller.queue_behavior(/datum/ai_behavior/stop_and_stare, BB_STATIONARY_CAUSE)

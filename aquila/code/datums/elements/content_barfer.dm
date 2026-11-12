@@ -1,5 +1,6 @@
-// AQUILA: port of tgstation code/datums/elements/content_barfer.dm (tg 926bf40c5a) for the basic mining mobs (legion,
-// watcher). We have no wabbajack/shapeshift/change type signals, so it barfs on death only.
+// AQUILA: port of tgstation code/datums/elements/content_barfer.dm (tg 926bf40c5a) for the legion, the geese and the space
+// dragon. We have no wabbajack/shapeshift/change type signals, so it barfs on death only; the space dragon drops its
+// meals in wabbajack_act() itself.
 /**
  * Content Barfer; which expels the contents of a mob when it dies
  */
@@ -20,8 +21,6 @@
 	for(var/atom/movable/barfed_out as anything in target)
 		// AQUILA: the mob's own HUD and ability objects are not "contents" (screen objects, actions live elsewhere)
 		if(!ismob(barfed_out) && !isobj(barfed_out))
-			continue
-		if(HAS_TRAIT(barfed_out, TRAIT_NOT_BARFABLE)) // the space dragon keeps what it must not drop
 			continue
 		if(isitem(barfed_out))
 			var/obj/item/barfed_item = barfed_out
