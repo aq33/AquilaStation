@@ -888,3 +888,38 @@
       kręgosłup zamiast paraliżować na stałe.
   - imageadd: Na postaci widać bandaże, szyny, gorset i halo, kikuty i otwartą czaszkę
       przy operacji (sprite'y z tgstation i cmss13).
+  sh4dow321:
+  - rscadd: 'Stanowisko rozpoznania na mostku sześciu okrętów: operator steruje radarem,
+      teleskopem, podczerwienią i nasłuchem i przekazuje cele mostkowi.'
+  - rscadd: 'Radar dookólny (100 pól, słyszy go cały system) albo kierunkowy 30°/60°/90°
+      z własnym celowaniem: sięga dalej, a słyszą go tylko okręty w wiązce.'
+  - rscadd: 'Okręt ze stanowiskiem rozpoznania widzi przez kamerę, teleskop i podczerwień:
+      zimny okręt trzeba szukać teleskopem, a własny napęd oślepia podczerwień za
+      rufą.'
+  - rscadd: Ekran stanowiska rozpoznania z płynną falą impulsu, stożkiem teleskopu,
+      niepewnymi kontaktami, asteroidami, wrakami i anomaliami.
+  - rscadd: 'Konsola taktyczna dużych okrętów ma ekran kontroli ognia: obraz sensorów,
+      duży stan pancerza i kadłuba (własny i celu), namierzanie, celowanie i wywoływanie.'
+  - rscadd: 'Sygnatura okrętu: z jakiej odległości cię widać, zależy od ciągu, IAS,
+      strzałów, uszkodzeń i pożaru. Kontakt tuż poza zasięgiem widać jako słaby, nienamierzalny
+      sygnał.'
+  - rscadd: Impuls radaru słychać dalej, niż sięga, ale tylko jako namiar z przybliżoną
+      odległością.
+  - rscadd: Okręty AI patrzą przez kilka sensorów z polem widzenia, dzielą się meldunkami
+      o celu, wysyłają zwiadowców i strzelają torpedami na ich namiar.
+  - balance: Okręty AI z rakietami lub torpedami używają dział dopiero z bliska; lotniskowce
+      zaopatrzeniowe mają skończony zapas torped i rakiet.
+  - balance: Skradający się okręt AI nie używa radaru i pilnuje ciepła napędu; uciekający
+      wyłącza silniki poza zasięgiem wroga.
+  - tweak: 'DRADIS jest do latania: na okręcie ze stanowiskiem rozpoznania widzi w
+      wersji podstawowej, nie wyskakuje przy konsoli taktycznej, a podpisy kontaktów
+      nie nachodzą na siebie.'
+  - tweak: Okręty AI lecą płynnie, z przepustnicą, omijają tylko przeszkody przed
+      dziobem i krążą wokół celu zamiast stać w miejscu.
+  - tweak: Posiłki, które przyleciały na wezwanie, nie wzywają kolejnych posiłków.
+  - spellcheck: Tłumiki bezwładności (przełącznik lotu, klawisz X) to teraz wspomaganie
+      bezwładnościowe (IAS).
+  - bugfix: Okręt z wrakiem albo innym obiektem w środku obrysu nie stoi już w miejscu
+      do końca rundy.
+  - bugfix: Zasięg śledzenia radaru nie podwaja się na stałe przy dwóch impulsach
+      tuż po sobie.
