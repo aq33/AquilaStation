@@ -359,6 +359,32 @@
 			qdel(grown)
 	qdel(gubbuck)
 
+/// The hivelord played with the legacy intents (test-only subtype)
+/mob/living/basic/mining/hivelord/aquila_legacy_test
+
+/mob/living/basic/mining/hivelord/aquila_legacy_test/uses_legacy_intents()
+	return TRUE
+
+/// A player in a hivelord spawns brood by clicking something out of reach
+/// in both control modes (combat mode and the legacy intents)
+/datum/unit_test/aquila_mining_player_clicks
+
+/datum/unit_test/aquila_mining_player_clicks/Run()
+	for(var/legacy in list(FALSE, TRUE))
+		var/mode = legacy ? "legacy intents" : "combat mode"
+		var/mob/living/basic/mining/hivelord/hivelord = allocate(legacy ? /mob/living/basic/mining/hivelord/aquila_legacy_test : /mob/living/basic/mining/hivelord, run_loc_floor_bottom_left)
+		var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, aquila_mining_test_turf(run_loc_floor_bottom_left, run_loc_floor_top_right, 3))
+		hivelord.ai_controller.set_ai_status(AI_STATUS_OFF)
+		TEST_ASSERT(hivelord.combat_mode_indicator, "[mode]: the playable hivelord has no combat mode indicator")
+		TEST_ASSERT_EQUAL(hivelord.uses_legacy_intents(), legacy, "[mode]: wrong control mode of the test hivelord")
+		hivelord.next_click = 0
+		hivelord.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(hivelord.spawn_brood.next_use_time > world.time, "[mode]: a click on a far target did not spawn brood")
+		qdel(hivelord)
+		qdel(victim)
+		for(var/obj/effect/temp_visual/hivebrood_spawn/forecast in range(2, run_loc_floor_bottom_left))
+			qdel(forecast)
+
 /// The legion holding this body, if any
 /proc/aquila_mining_holder_of(mob/living/victim)
 	return istype(victim.loc, /mob/living/basic/mining/legion) ? victim.loc : null
