@@ -1,4 +1,4 @@
-// AQUILA - Mechanik: flatpacker, port tgstation/tgstation#80915 (code/game/machinery/flatpacker.dm) na nasze materiały i części.
+// AQUILA - Mechanik: flatpacker, port tgstation/tgstation#83836 (code/game/machinery/flatpacker.dm) na nasze materiały i części.
 // Różnice względem tg: paczkę robi z włożonej płytki albo ze schematu z bazy techwebu (wtedy sam drukuje płytkę),
 // tier części ogranicza manipulator (u nas zamiast serwomechanizmu), maszyny z czarnej listy tylko po emagu.
 

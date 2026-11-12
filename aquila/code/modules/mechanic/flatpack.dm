@@ -1,4 +1,4 @@
-// AQUILA - Mechanik: paczka z maszyną i wózek na paczki, port tgstation/tgstation#80915 (code/game/objects/items/flatpacks.dm).
+// AQUILA - Mechanik: paczka z maszyną i wózek na paczki, port tgstation/tgstation#83836 (code/game/objects/items/flatpacks.dm).
 // Różnica względem tg: paczka trzyma płytkę i prawdziwe części (z pakownicy, z ulepszeniami) albo typy części z flatpackera.
 
 /obj/item/flatpack
