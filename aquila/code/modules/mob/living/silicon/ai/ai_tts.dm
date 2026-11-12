@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 		to_chat(src, "<span class='notice'>Zaczekaj [DisplayTimeText(GLOB.aq_ai_tts_next_announcement - world.time)].</span>")
 		return
 
-	var/message = capped_input(src, "Wpisz tekst ogłoszenia (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków). Usłyszy je cała załoga statku. Nadużywanie ogłoszeń może skończyć się banem na rolę.", "Ogłoszenie", last_announcement, AQ_AI_TTS_MAX_CHARS)
+	var/message = capped_input(src, "Wpisz tekst ogłoszenia (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków). Usłyszy je cała załoga statku. Nadużywanie ogłoszeń może skończyć się banem na rolę.", "Ogłoszenie", last_announcement, AQ_AI_TTS_MAX_CHARS + 1) // trim() ucina przed max_length
 	if(!message)
 		return
 	last_announcement = message
@@ -37,6 +37,11 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 	if(CHAT_FILTER_CHECK(message))
 		to_chat(src, "<span class='warning'>Twoja wiadomość zawiera zakazane słowa.</span>")
 		return
+	// bez słuchaczy nie zużywamy wspólnego budżetu znaków ani odstępu
+	var/list/listeners = aq_announcement_listeners()
+	if(!length(listeners))
+		to_chat(src, "<span class='warning'>Nikt nie usłyszy ogłoszenia. Nie zostało wysłane.</span>")
+		return
 	if(!squad_tts_reserve_chars(message))
 		to_chat(src, "<span class='warning'>Syntezator mowy wyczerpał limit na tę zmianę. Ogłoszenie nie poszło.</span>")
 		return
@@ -45,10 +50,7 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 	log_game("[key_name(src)] made a TTS vocal announcement with the following message: [message].")
 	message_admins("[key_name(src)] wygłasza ogłoszenie głosowe o treści: [html_encode(message)].")
 	to_chat(src, "<span class='notice'>Ogłaszasz: \"[html_encode(message)]\"</span>")
-
-	var/list/listeners = aq_announcement_listeners()
-	if(length(listeners))
-		INVOKE_ASYNC(src, PROC_REF(aq_tts_announce), message, listeners)
+	INVOKE_ASYNC(src, PROC_REF(aq_tts_announce), message, listeners)
 
 /mob/living/silicon/ai/proc/aq_tts_announce(message, list/listeners)
 	if(!aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX) && !QDELETED(src))

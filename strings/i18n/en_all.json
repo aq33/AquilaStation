@@ -16807,6 +16807,7 @@
 "<span class='warning'>Nieznana siła na chwilę wyrywa cię z rzeczywistości i umieszcza obok [target]!</span>": "<span class='warning'>The unknown force snatches briefly you from reality, and deposits you next to [target]!</span>",
 "<span class='warning'>Nieznany gatunek</span>": "<span class='warning'>Unknown species</span>",
 "<span class='warning'>Nikt cię nie niesie!</span>": "<span class='warning'>Nobody is carrying you!</span>",
+"<span class='warning'>Nikt nie usłyszy ogłoszenia. Nie zostało wysłane.</span>": "<span class='warning'>Nobody would hear the announcement. It was not sent.</span>",
 "<span class='warning'>Noga się pod tobą ugina!</span>": "<span class='warning'>Your leg gives out!</span>",
 "<span class='warning'>Nogi zaczynają nas naprawdę boleć...</span>": "<span class='warning'>Our legs are really starting to hurt...</span>",
 "<span class='warning'>Nosisz już [held_item]!</span>": "<span class='warning'>You are already holding [held_item]!</span>",
