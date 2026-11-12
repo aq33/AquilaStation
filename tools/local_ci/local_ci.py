@@ -12,7 +12,6 @@ dreamchecker i jq są pobierane do tools/bootstrap/.cache w wersjach z dependenc
 
 import argparse
 import glob
-import json
 import os
 import re
 import shutil
@@ -256,26 +255,37 @@ def step_maps(r):
 
 
 def step_tests(r):
-	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, Dream Daemon, wynik z data/unit_tests.json."""
+	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, Dream Daemon, wynik z clean_run.lk i tests.log."""
 	code, base, out = r.compile_copy("tests", ["CIBUILDING"])
 	if code:
 		r.cleanup_copy(base)
 		return code, out
 	results = os.path.join(REPO, "data", "unit_tests.json")
-	if os.path.exists(results):
-		os.remove(results)
 	log_dir = "ci_local"
+	log_path = os.path.join(REPO, "data", "logs", log_dir)
+	# clean_run.lk jest dopisywany, więc stary „Success!” z poprzedniego przebiegu dawałby fałszywy wynik
+	for stale in (results, log_path):
+		if os.path.isdir(stale):
+			shutil.rmtree(stale, ignore_errors=True)
+		elif os.path.exists(stale):
+			os.remove(stale)
 	dd = os.path.join(r.byond, "bin", "dd.exe")
 	started = time.time()
 	proc = subprocess.Popen([dd, base + ".dmb", "-close", "-trusted", "-verbose", "-params", f"log-directory={log_dir}"], cwd=REPO, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-	clean_run = os.path.join(REPO, "data", "logs", log_dir, "clean_run.lk")
+	clean_run = os.path.join(log_path, "clean_run.lk")
+	runtime_log = os.path.join(log_path, "runtime.log")
+	shutdown_seen = None
 	try:
 		while proc.poll() is None:
 			if time.time() - started > r.args.limit_testow:
 				proc.kill()
 				return 1, f"Testy nie skończyły się w {r.args.limit_testow} s, Dream Daemon zabity."
-			# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh), więc nie czekamy na jego wyjście
-			if os.path.exists(results) and time.time() - os.path.getmtime(results) > 20:
+			# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 15 s i zabijamy
+			if shutdown_seen is None and os.path.exists(runtime_log):
+				with open(runtime_log, encoding="utf-8", errors="replace") as f:
+					if "Shutdown complete" in f.read():
+						shutdown_seen = time.time()
+			if shutdown_seen and time.time() - shutdown_seen > 15:
 				proc.kill()
 				break
 			time.sleep(2)
@@ -284,17 +294,30 @@ def step_tests(r):
 			proc.kill()
 		time.sleep(2)
 		r.cleanup_copy(base)
+
+	# Wynik jak w CI: clean_run.lk z „Success!” znaczy brak runtime'ów i nieudanych testów
+	entries = []
+	tests_log = os.path.join(log_path, "tests.log")
+	if os.path.exists(tests_log):
+		with open(tests_log, encoding="utf-8", errors="replace") as f:
+			for line in f:
+				m = re.search(r"\] (PASS|FAIL): (\S+)", line)
+				if m:
+					entries.append([m.group(1), m.group(2), ""])
+				elif entries and "REASON" in line:
+					entries[-1][2] += line.strip() + " "
+	failed = [e for e in entries if e[0] == "FAIL"]
+	success = os.path.exists(clean_run) and "Success" in open(clean_run, encoding="utf-8", errors="replace").read()
+	lines = [f"Testów: {len(entries)}, nieudanych: {len(failed)}, clean_run.lk: {'Success' if success else 'brak'} (logi: data/logs/{log_dir})"]
+	lines += [f"- {name}: {reason[:600]}" for _, name, reason in failed]
+	code = 0 if success and not failed else 1
+	# unit_tests.json zapisuje RunUnitTests() dopiero po ostatnim teście: bez niego przebieg urwał się w połowie,
+	# nawet gdy clean_run.lk mówi „Success!” (CI uznaje taki przebieg za udany)
 	if not os.path.exists(results):
-		return 1, "Brak data/unit_tests.json: świat nie doszedł do końca testów. Logi: data/logs/" + log_dir
-	with open(results, encoding="utf-8") as f:
-		data = json.load(f)
-	failed = {name: info for name, info in data.items() if info.get("status") == 1}  # UNIT_TEST_FAILED
-	lines = [f"Testów: {len(data)}, nieudanych: {len(failed)} (logi: data/logs/{log_dir})"]
-	for name, info in sorted(failed.items()):
-		lines.append(f"- {name}: {str(info.get('message', ''))[:600]}")
-	if not os.path.exists(clean_run):
-		lines.append("Uwaga: brak clean_run.lk (świat nie zamknął się czysto).")
-	return (1 if failed else 0), "\n".join(lines)
+		last = entries[-1][1] if entries else "żaden"
+		lines.append(f"Przebieg urwany: brak data/unit_tests.json, ostatni zakończony test: {last}. Kolejne testy się nie wykonały.")
+		code = 1
+	return code, "\n".join(lines)
 
 
 STEPS = [
