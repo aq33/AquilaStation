@@ -1,7 +1,8 @@
 name: Crowdin - wysyłka tekstów
 
 # Po każdej zmianie na masterze wysyła do Crowdina teksty gry: angielskie oryginały jako
-# źródła i obecny polski tekst jako zatwierdzone tłumaczenie. Polskiego tekstu nie wysyłamy
+# źródła, obecny polski tekst jako zatwierdzone tłumaczenie i obecne tłumaczenie rosyjskie
+# (strings/i18n/ru_all.json) jako niezatwierdzone. Polskiego tekstu nie wysyłamy
 # dla napisów, które w Crowdinie mają już zatwierdzone tłumaczenie (to może być poprawka
 # gracza czekająca na PR z workflowu crowdin_download.yml).
 
@@ -48,6 +49,18 @@ jobs:
       - name: Teksty z kodu
         run: python tools/i18n/crowdin.py export --out crowdin_out
 
+      - name: Czy projekt ma język rosyjski
+        id: ru
+        # błąd samego Crowdina przerywa workflow; brak języka RU w projekcie tylko pomija kroki rosyjskie
+        run: |
+          languages=$(crowdin language list --plain --code=two_letters_code)
+          if printf '%s\n' "$languages" | grep -qx ru; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Projekt w Crowdinie nie ma języka rosyjskiego: kroki rosyjskie pominięte."
+          fi
+
       - name: Tłumaczenia już zatwierdzone w Crowdinie
         # przy pierwszym uruchomieniu projekt jest pusty i nie ma czego pobrać
         run: |
@@ -55,12 +68,24 @@ jobs:
           crowdin download --language=pl --no-progress || echo "Brak tłumaczeń do pobrania."
           mkdir -p crowdin_out/pl
           mv crowdin_out/pl crowdin_existing
+          # wersja rosyjska: tylko gdy projekt w Crowdinie ma język rosyjski
+          rm -rf crowdin_out/ru
+          if [ "${{ steps.ru.outputs.enabled }}" = "true" ]; then
+            crowdin download --language=ru --no-progress
+          fi
+          mkdir -p crowdin_out/ru
+          mv crowdin_out/ru crowdin_existing_ru
 
       - name: Teksty bez zatwierdzonego tłumaczenia
-        run: python tools/i18n/crowdin.py export --out crowdin_out --existing crowdin_existing
+        run: python tools/i18n/crowdin.py export --out crowdin_out --existing crowdin_existing --existing-ru crowdin_existing_ru
 
       - name: Wysyłka źródeł
         run: crowdin upload sources --no-progress
 
       - name: Wysyłka obecnego polskiego tekstu
         run: crowdin upload translations --language=pl --auto-approve-imported --import-eq-suggestions --no-progress
+
+      - name: Wysyłka obecnego tłumaczenia rosyjskiego
+        # bez zatwierdzania: tłumaczenie maszynowe, gracze je poprawiają i zatwierdzają
+        if: steps.ru.outputs.enabled == 'true'
+        run: crowdin upload translations --language=ru --import-eq-suggestions --no-progress

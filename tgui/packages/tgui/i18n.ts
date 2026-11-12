@@ -1,8 +1,8 @@
 /**
- * AQUILA: angielska wersja językowa (czat w panelu i okna tgui).
+ * AQUILA: wersje językowe (angielska, rosyjska) czatu w panelu i okien tgui.
  *
- * Serwer wysyła teksty po polsku. Gracz z językiem EN dostaje słownik
- * i18n_en_chat.json (tools/i18n/build_chat_dict.py), a klient podmienia tekst
+ * Serwer wysyła teksty po polsku. Gracz z innym językiem dostaje słownik
+ * i18n_<język>_chat.json (tools/i18n/build_chat_dict.py), a klient podmienia tekst
  * przy wyświetlaniu: szablony z osadzeniami ("[user] uderza [target]!") i stałe
  * teksty. Czat robi to w rendererze (zapisana historia zostaje po polsku, więc
  * zmiana języka działa też wstecz), okna tgui w i18nDom.ts.
@@ -36,16 +36,19 @@ type Dictionary = {
   templates: Template[];
 };
 
+/** Języki z własnym słownikiem (polski to język kodu, bez słownika) */
+const TRANSLATED_LANGUAGES = ['en', 'ru'];
+
 /** Słownik czatu (panel); okna i menu Esc biorą mniejszy, patrz selectWindowDictionary */
-let dictionaryAsset = 'i18n_en_chat.json';
+let dictionaryKind = 'chat';
 
 /**
  * Okno tgui albo menu Esc: mniejszy słownik bez tekstów tylko z czatu i bez HTML
- * (strings/i18n/en_windows.json). Każde okno to osobna przeglądarka, która parsuje
+ * (strings/i18n/<język>_windows.json). Każde okno to osobna przeglądarka, która parsuje
  * słownik od nowa, więc pełny (11 MB) kosztował przy każdym otwarciu.
  */
 export const selectWindowDictionary = () => {
-  dictionaryAsset = 'i18n_en_windows.json';
+  dictionaryKind = 'windows';
 };
 // od dwóch liter: "ma", "na" bywają jedynym słowem szablonu (jak w build_chat_dict.py)
 const WORD = /[a-ząćęłńóśźż]{2,}/g;
@@ -53,7 +56,10 @@ const TEXT_NODE = />([^<>]+)</g;
 
 let language = 'pl';
 let dictionary: Dictionary | null = null;
+/** Język wczytanego słownika (zmiana języka wymienia słownik) */
+let dictionaryLanguage = 'pl';
 let loading: Promise<boolean> | null = null;
+let loadingLanguage = 'pl';
 let byAnchor = new Map<string, number[]>();
 /** Szablony po stałych tekstach (zdania okien owinięte przy budowie, tgui/i18n-jsx.cjs) */
 let byTexts = new Map<string, number>();
@@ -61,23 +67,37 @@ const regexCache = new Map<number, RegExp | null>();
 
 export const getLanguage = () => language;
 
-/** Czy panel ma teraz pokazywać angielski (wybrany EN i słownik wczytany) */
-export const isTranslating = () => language === 'en' && dictionary !== null;
+/** Czy teksty mają być tłumaczone (wybrany język inny niż polski i jego słownik wczytany) */
+export const isTranslating = () =>
+  language !== 'pl' && dictionary !== null && dictionaryLanguage === language;
+
+/** Język gracza ma słownik (nie jest polski) */
+export const isTranslatedLanguage = (lang: string | undefined) =>
+  !!lang && TRANSLATED_LANGUAGES.includes(lang);
 
 export const setLanguage = (lang: string) => {
-  language = lang === 'en' ? 'en' : 'pl';
+  language = isTranslatedLanguage(lang) ? lang : 'pl';
+  // słownik innego języka już się nie przyda (powrót na polski go zostawia)
+  if (dictionary && language !== 'pl' && dictionaryLanguage !== language) {
+    setDictionary(null);
+  }
 };
 
 /** Ile razy próbujemy pobrać słownik (łącznie około 2 minut) */
 const FETCH_ATTEMPTS = 30;
 const FETCH_MAX_DELAY = 5000;
 
-const fetchDictionary = async (): Promise<Dictionary | null> => {
+const fetchDictionary = async (lang: string): Promise<Dictionary | null> => {
   // Plik (~9 MB) dochodzi do cache klienta po mapowaniu, przy wolnym łączu nawet
   // kilkadziesiąt sekund, więc próbujemy długo i z rosnącą przerwą
   for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt++) {
+    if (lang !== language) {
+      return null; // gracz zmienił język w trakcie
+    }
     try {
-      const response = await fetch(resolveAsset(dictionaryAsset));
+      const response = await fetch(
+        resolveAsset(`i18n_${lang}_${dictionaryKind}.json`),
+      );
       if (response.ok) {
         return (await response.json()) as Dictionary;
       }
@@ -90,8 +110,14 @@ const fetchDictionary = async (): Promise<Dictionary | null> => {
   return null;
 };
 
-/** Ustawia słownik i indeks słów-kotwic (też w testach) */
-export const setDictionary = (data: Dictionary | null) => {
+/**
+ * Ustawia słownik języka i indeks słów-kotwic (też w testach). Bez języka: bieżący,
+ * a przy polskim angielski (słownik ustawiony przed wyborem języka).
+ */
+export const setDictionary = (
+  data: Dictionary | null,
+  lang = language === 'pl' ? 'en' : language,
+) => {
   // Bez prototypu: tekst "constructor" czy "toString" nie może trafić na funkcję Object
   if (data) {
     Object.setPrototypeOf(data.exact, null);
@@ -100,11 +126,14 @@ export const setDictionary = (data: Dictionary | null) => {
     }
   }
   dictionary = data;
+  dictionaryLanguage = data ? lang : 'pl';
   lowerExact = null;
   byAnchor = new Map();
   byTexts = new Map();
   regexCache.clear();
   textCache.clear();
+  // wyniki t() z poprzedniego słownika (innego języka) nie są już „naszym” tekstem
+  produced.clear();
   data?.templates.forEach(([anchors, texts], index) => {
     const key = texts.join(TEXTS_SEPARATOR);
     if (!byTexts.has(key)) {
@@ -121,18 +150,25 @@ export const setDictionary = (data: Dictionary | null) => {
   });
 };
 
-/** Wczytuje słownik (raz). Zwraca TRUE, gdy jest gotowy. */
+/** Wczytuje słownik bieżącego języka (raz). Zwraca TRUE, gdy jest gotowy. */
 export const loadDictionary = (): Promise<boolean> => {
-  if (dictionary) {
+  if (dictionary && dictionaryLanguage === language) {
     return Promise.resolve(true);
   }
-  if (!loading) {
-    loading = fetchDictionary().then((data) => {
-      loading = null;
-      if (!data) {
+  if (language === 'pl') {
+    return Promise.resolve(false);
+  }
+  if (!loading || loadingLanguage !== language) {
+    const lang = language;
+    loadingLanguage = lang;
+    loading = fetchDictionary(lang).then((data) => {
+      if (loadingLanguage === lang) {
+        loading = null;
+      }
+      if (!data || lang !== language) {
         return false;
       }
-      setDictionary(data);
+      setDictionary(data, lang);
       return true;
     });
   }
@@ -291,12 +327,12 @@ const lookupExact = (text: string): string | undefined => {
     return found;
   }
   // BYOND dokleja "the" przed wstawionym obiektem ("the dysk R.O.B.U.S.T."):
-  // tłumaczymy samą nazwę, przedimek zostaje
+  // tłumaczymy samą nazwę, przedimek zostaje tylko po angielsku
   const article = /^(the|The) (.+)$/.exec(text);
   if (article) {
     const name = lookupExact(article[2]);
     if (name !== undefined) {
-      return `${article[1]} ${name}`;
+      return dictionaryLanguage === 'en' ? `${article[1]} ${name}` : name;
     }
   }
   // etykiety w oknach dostają dwukropek w JSX ("Ciśnienie:"), słownik ma samo słowo
@@ -487,6 +523,10 @@ const realignRun = (
 };
 
 const withArticle = (value: string, article: string): string => {
+  // przedimki (\the, \a z angielskiego oryginału) tylko w słowniku angielskim
+  if (dictionaryLanguage !== 'en') {
+    return value;
+  }
   const first = value.trimStart().charAt(0);
   // nazwy własne i wstawki HTML bez przedimka
   if (!first || first === '<' || first !== first.toLowerCase()) {
@@ -536,6 +576,15 @@ const renderTemplate = (
  */
 /** Wypowiedź: <span class='message'>mówi, "TEKST"</span> (code/game/say.dm, say_quote) */
 const SPOKEN = /(<span class=['"]message['"]>[^"<]*")([\s\S]*?)("\s*<\/span>)/g;
+/** Początek wypowiedzi: znacznik, czasownik mowy ("mówi", "woła telepatycznie") i przecinek przed cytatem */
+const SPEECH_VERB = /^(<span class=['"]message['"]>)([^"<]*?)(,\s*")$/;
+
+/** Czasownik mowy przed cytatem: sam węzeł "mówi, \"…\"" nie pasuje do słownika ani szablonu */
+const translateSpeechVerb = (open: string): string => {
+  const parts = SPEECH_VERB.exec(open);
+  const verb = parts && lookupExact(parts[2].trim());
+  return parts && verb !== undefined ? parts[1] + verb + parts[3] : open;
+};
 
 /**
  * Tłumaczy HTML wiadomości. Treść wypowiedzi zostaje, jak ją napisał gracz:
@@ -552,7 +601,7 @@ export const translateHtml = (html: string, depth = 0): string => {
   const spoken: string[] = [];
   const masked = html.replace(SPOKEN, (_match, open, text, close) => {
     spoken.push(text);
-    return `${open}\u0003${spoken.length - 1}\u0004${close}`;
+    return `${translateSpeechVerb(open)}\u0003${spoken.length - 1}\u0004${close}`;
   });
   return translateMarkup(masked, depth).replace(
     /\u0003(\d+)\u0004/g,

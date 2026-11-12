@@ -7,7 +7,7 @@ import type { Page, ServerState } from '../EscapeMenu';
 type Props = {
   serverState: ServerState;
   onNavigate: (page: Page) => void;
-  onAction: (action: string) => void;
+  onAction: (action: string, payload?: Record<string, unknown>) => void;
   onClose: () => void;
   showResources: boolean;
   onToggleResources: () => void;
@@ -40,8 +40,10 @@ export function HomePage({
     }
   }, [showResources]);
 
-  const languageSwitchLabel =
-    serverState.gameLanguage === 'en' ? 'Polski' : 'English';
+  // AQUILA: pozostałe języki gry, każdy nazwany w nim samym
+  const otherLanguages = Object.entries(serverState.gameLanguages || {}).filter(
+    ([code]) => code !== serverState.gameLanguage,
+  );
 
   return (
     <>
@@ -70,12 +72,16 @@ export function HomePage({
           >
             Ustawienia
           </MenuButton>
-          {!!serverState.gameLanguage && (
-            <MenuButton onClick={() => onAction('toggle_language')}>
-              {/* AQUILA: nazwa drugiego języka w nim samym, bez tłumacza */}
-              <span className="i18n-skip">{languageSwitchLabel}</span>
-            </MenuButton>
-          )}
+          {!!serverState.gameLanguage &&
+            otherLanguages.map(([code, name]) => (
+              <MenuButton
+                key={code}
+                onClick={() => onAction('set_language', { language: code })}
+              >
+                {/* AQUILA: nazwa języka w nim samym, bez tłumacza */}
+                <span className="i18n-skip">{name}</span>
+              </MenuButton>
+            ))}
           {!!serverState.voiceChat && (
             <MenuButton
               onClick={() => {

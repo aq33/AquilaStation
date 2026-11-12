@@ -1,7 +1,8 @@
 name: Crowdin - poprawki graczy
 
 # Raz dziennie (albo ręcznie) pobiera z Crowdina zatwierdzone poprawki polskiego tekstu,
-# wprowadza je do kodu (tools/i18n/crowdin.py apply) i otwiera albo odświeża PR z gałęzi
+# wprowadza je do kodu (tools/i18n/crowdin.py apply), poprawki wersji rosyjskiej dopisuje do
+# strings/i18n/ru_manual.json (apply-ru) i otwiera albo odświeża PR z gałęzi
 # crowdin-poprawki. Gałąź budujemy za każdym razem od mastera, więc PR zawiera wszystkie
 # zatwierdzone poprawki, które jeszcze nie weszły do gry.
 
@@ -55,8 +56,40 @@ jobs:
         id: apply
         run: python tools/i18n/crowdin.py apply crowdin_out/pl --report "$RUNNER_TEMP/raport.md"
 
+      - name: Czy projekt ma język rosyjski
+        id: ru
+        # błąd samego Crowdina przerywa workflow; brak języka RU w projekcie tylko pomija kroki rosyjskie
+        run: |
+          languages=$(crowdin language list --plain --code=two_letters_code)
+          if printf '%s\n' "$languages" | grep -qx ru; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Projekt w Crowdinie nie ma języka rosyjskiego: kroki rosyjskie pominięte."
+          fi
+
+      - name: Pobranie poprawek wersji rosyjskiej
+        run: |
+          rm -rf crowdin_out/ru
+          if [ "${{ steps.ru.outputs.enabled }}" = "true" ]; then
+            crowdin download --language=ru --no-progress
+          fi
+          mkdir -p crowdin_out/ru
+
+      - name: Rosyjskie poprawki do słownika
+        id: apply_ru
+        run: python tools/i18n/crowdin.py apply-ru crowdin_out/ru --report "$RUNNER_TEMP/raport_ru.md"
+
+      - name: Przebudowa słownika rosyjskiego
+        # build_chat_dict.py czyta teksty okien z drzewa składni TSX (tgui/node_modules)
+        # także po poprawce polskiej: zmieniony polski literał to nowy klucz słownika
+        if: steps.apply.outputs.changed == 'true' || steps.apply_ru.outputs.changed == 'true'
+        run: |
+          (cd tgui && node .yarn/releases/yarn-4.9.1.cjs install --immutable)
+          python tools/i18n/build_chat_dict.py --lang ru
+
       - name: PR z poprawkami
-        if: steps.apply.outputs.changed == 'true'
+        if: steps.apply.outputs.changed == 'true' || steps.apply_ru.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -69,6 +102,8 @@ jobs:
             echo "Workflow \`crowdin_download.yml\` odświeża ten PR codziennie; ręczne zmiany na gałęzi zostaną nadpisane."
             echo
             cat "$RUNNER_TEMP/raport.md"
+            echo
+            cat "$RUNNER_TEMP/raport_ru.md"
           } > "$RUNNER_TEMP/body.md"
           # opis PR ma limit 65536 znaków
           head -c 60000 "$RUNNER_TEMP/body.md" > "$RUNNER_TEMP/body_cut.md"

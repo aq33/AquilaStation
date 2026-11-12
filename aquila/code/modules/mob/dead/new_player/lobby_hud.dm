@@ -65,7 +65,8 @@
 /datum/aq_lobby_hud/New(mob/dead/new_player/player)
 	owner = player
 	client_ref = player.client
-	var/lobby_icon = client_ref.wants_english() ? 'aquila/icons/hud/en/lobby.dmi' : 'aquila/icons/hud/lobby.dmi'
+	// rosyjska wersja nie ma jeszcze własnych napisów w lobby: dostaje angielski oryginał
+	var/lobby_icon = client_ref.translated_language() ? 'aquila/icons/hud/en/lobby.dmi' : 'aquila/icons/hud/lobby.dmi'
 	add_element(/atom/movable/screen/aq_lobby/background, lobby_icon, -61, 0, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/ready, lobby_icon, -65, 8, TRUE)
 	add_element(/atom/movable/screen/aq_lobby/button/join, lobby_icon, -58, 13, TRUE)
@@ -100,6 +101,8 @@
 
 /datum/aq_lobby_hud/proc/add_element(path, lobby_icon, left, top, can_collapse, anchor_x = "CENTER", height = LOBBY_CANVAS_HEIGHT)
 	var/atom/movable/screen/aq_lobby/element = new path(null, src)
+	// gracz połączony w trakcie startu serwera: Initialize przyjdzie dopiero z SSatoms i bez argumentów
+	element.lobby = src
 	element.icon = lobby_icon
 	var/list/view_size = getviewsize(client_ref.view)
 	element.screen_loc = aq_lobby_screen_loc(left, top, height, anchor_x, view_size)
@@ -223,7 +226,8 @@
 
 /atom/movable/screen/aq_lobby/Initialize(mapload, datum/aq_lobby_hud/new_lobby)
 	. = ..()
-	lobby = new_lobby
+	if(new_lobby)
+		lobby = new_lobby
 
 /atom/movable/screen/aq_lobby/Destroy()
 	lobby = null

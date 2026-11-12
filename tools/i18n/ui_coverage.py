@@ -7,8 +7,9 @@ przykładową wartość (pierwszą gałąź warunku z napisami albo liczbę). Po
 i zapisuje to, co zostało po polsku.
 
 Użycie (z katalogu repo):
-    python tools/i18n/ui_coverage.py
-Wynik: lista w data/i18n_ui_coverage.json (polskie resztki z plikiem i tekstem).
+    python tools/i18n/ui_coverage.py [--lang ru]
+Wynik: lista w data/i18n_ui_coverage.json (polskie resztki z plikiem i tekstem); dla innego
+języka niż angielski data/i18n_ui_coverage_<język>.json.
 """
 
 import json
@@ -90,6 +91,11 @@ def jsx_items():
 
 
 def main():
+    global OUTPUT, JSX_OUTPUT
+    lang = sys.argv[sys.argv.index("--lang") + 1] if "--lang" in sys.argv else "en"
+    if lang != "en":
+        OUTPUT = f"data/i18n_ui_coverage_{lang}.json"
+        JSX_OUTPUT = f"data/i18n_jsx_coverage_{lang}.json"
     yarn = next(f for f in os.listdir("tgui/.yarn/releases") if f.endswith(".cjs"))
     node = os.path.abspath("tools/bootstrap/node.bat" if os.name == "nt" else "tools/bootstrap/node")
     os.makedirs("data", exist_ok=True)  # świeży klon nie ma data/, a zrzut tam pisze
@@ -105,7 +111,7 @@ def main():
         json.dump([{"text": t, "file": p, "key": k} for t, (p, k) in sorted(texts.items())], f, ensure_ascii=False)
     print(f"tekstów do sprawdzenia: {len(texts)} -> {INPUT}")
     env = dict(os.environ, CI="true", I18N_COVERAGE=os.path.abspath(INPUT), I18N_COVERAGE_OUT=os.path.abspath(OUTPUT),
-               I18N_JSX=os.path.abspath(JSX_INPUT), I18N_JSX_OUT=os.path.abspath(JSX_OUTPUT))
+               I18N_JSX=os.path.abspath(JSX_INPUT), I18N_JSX_OUT=os.path.abspath(JSX_OUTPUT), I18N_LANG=lang)
     subprocess.run([node, f".yarn/releases/{yarn}", "jest", "packages/tgui/i18n.coverage"], cwd="tgui", env=env,
                    shell=os.name == "nt", check=True)
     if os.path.exists(OUTPUT):

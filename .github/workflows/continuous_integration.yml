@@ -51,13 +51,15 @@ jobs:
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker
-      # AQUILA - wersja angielska (moduł do odpięcia): nowe polskie teksty bez wpisu w słowniku EN jako
+      # AQUILA - wersje angielska i rosyjska (moduł do odpięcia): nowe polskie teksty bez wpisu w słowniku jako
       # ostrzeżenia, PR-a nie blokuje. Teksty okien z drzewa składni (tgui/i18n-jsx.cjs), więc po budowie tgui
-      - name: Teksty bez angielskiego
+      - name: Teksty bez angielskiego i rosyjskiego
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
+          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} --lang ru
+          python -m unittest tools/i18n/ru_translate_test.py
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:

@@ -8,3 +8,8 @@ Grand9K Pixel created by Jayvee Enaguas. Licensed under Creative Commons Attribu
 Pixellari created by Zacchary Dempsey-Plante. Website indicates free for commercial use.
 (https://www.dafont.com/pixellari.font?fpp=200)
 Taken from tgstation/tgstation (interface/fonts) for the escape menu.
+
+Grand9K Pixel RU (Grand9K_Pixel_RU.ttf): Grand9K Pixel by Jayvee Enaguas with Cyrillic glyphs by Aylong
+(made for SS220 BandaStation, ss220club/BandaStation interface/fonts/Grand9K_Pixel_Rus.ttf). The font's own
+license field says CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/). Family renamed to
+"Grand9K Pixel RU" so it does not clash with Grand9K_Pixel.ttf; used for map text of players with Russian.

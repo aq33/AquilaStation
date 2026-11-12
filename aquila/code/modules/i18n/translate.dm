@@ -1,18 +1,30 @@
 // Tłumaczenie po stronie serwera dla tekstów, które BYOND rysuje sam: dymki (balloon alerts),
 // runechat nad głowami i screentipy. Czat i okna tłumaczy klient (game_language.dm).
-// Słownik: strings/i18n/en_dm.json (krótkie stałe i szablony bez HTML, tools/i18n/build_chat_dict.py).
+// Słownik każdego języka: strings/i18n/<język>_dm.json (krótkie stałe i szablony bez HTML, tools/i18n/build_chat_dict.py).
 // Szablony działają tak jak w kliencie (tgui/packages/tgui/i18n.ts), w prostszej wersji:
 // cały tekst, bez dzielenia wielowyrazowych imion między sąsiednie wstawki.
 
-/// Stałe PL -> EN
-GLOBAL_LIST_EMPTY(i18n_en_table)
-/// Szablony: [kotwice, teksty PL, części EN, alternatywy?]
-GLOBAL_LIST_EMPTY(i18n_en_templates)
-/// Słowo-kotwica -> numery szablonów
-GLOBAL_LIST_EMPTY(i18n_en_anchors)
-/// Tekst -> tłumaczenie (albo ten sam tekst), dymki i runechat często się powtarzają
-GLOBAL_LIST_EMPTY(i18n_en_cache)
-GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
+/// Słownik serwera jednego języka docelowego
+/datum/i18n_dictionary
+	/// GAME_LANGUAGE_EN, GAME_LANGUAGE_RU...
+	var/language
+	var/loaded = FALSE
+	/// Stałe PL -> język
+	var/list/table = list()
+	/// Szablony: [kotwice, teksty PL, części w języku, alternatywy?]
+	var/list/templates = list()
+	/// Słowo-kotwica -> numery szablonów
+	var/list/anchors = list()
+	/// Tekst -> tłumaczenie (albo ten sam tekst), dymki i runechat często się powtarzają
+	var/list/cache = list()
+	/// Numer szablonu -> regex (albo FALSE)
+	var/list/regex_cache = list()
+
+/datum/i18n_dictionary/New(language)
+	src.language = language
+
+/// Język -> /datum/i18n_dictionary
+GLOBAL_LIST_EMPTY(i18n_dictionaries)
 
 /// Najwięcej zapamiętanych tłumaczeń, potem pamięć zaczyna się od nowa
 #define I18N_CACHE_SIZE 5000
@@ -20,11 +32,20 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 /// rozpoznanego. Jak MAX_UNKNOWN_RATIO w kliencie: lepiej nic nie tłumaczyć niż zrobić mieszankę.
 #define I18N_MAX_UNKNOWN_RATIO 1.5
 
-/proc/i18n_en_load()
-	if(GLOB.i18n_en_loaded)
-		return
-	GLOB.i18n_en_loaded = TRUE
-	var/path = "strings/i18n/en_dm.json"
+/// Słownik języka (wczytany przy pierwszym użyciu)
+/proc/i18n_dictionary(language = GAME_LANGUAGE_EN)
+	RETURN_TYPE(/datum/i18n_dictionary)
+	var/datum/i18n_dictionary/dictionary = GLOB.i18n_dictionaries[language]
+	if(!dictionary)
+		dictionary = new(language)
+		GLOB.i18n_dictionaries[language] = dictionary
+	if(!dictionary.loaded)
+		i18n_load(dictionary)
+	return dictionary
+
+/proc/i18n_load(datum/i18n_dictionary/dictionary)
+	dictionary.loaded = TRUE
+	var/path = "strings/i18n/[dictionary.language]_dm.json"
 	if(!fexists(path))
 		log_world("i18n: brak [path], teksty serwera zostaną po polsku")
 		return
@@ -32,62 +53,58 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	var/list/data = json_decode(file2text(path))
 	if(!islist(data))
 		return
-	GLOB.i18n_en_table = data["exact"] || list()
-	GLOB.i18n_en_templates = data["templates"] || list()
-	var/list/anchors = GLOB.i18n_en_anchors
-	for(var/index in 1 to length(GLOB.i18n_en_templates))
-		var/list/template = GLOB.i18n_en_templates[index]
+	dictionary.table = data["exact"] || list()
+	dictionary.templates = data["templates"] || list()
+	var/list/anchors = dictionary.anchors
+	for(var/index in 1 to length(dictionary.templates))
+		var/list/template = dictionary.templates[index]
 		var/list/keys = islist(template[1]) ? template[1] : list(template[1])
 		for(var/key in keys)
 			LAZYADD(anchors[key], index)
-	log_world("i18n: wczytano [length(GLOB.i18n_en_table)] tekstów i [length(GLOB.i18n_en_templates)] szablonów EN w [(REALTIMEOFDAY - start) / 10] s")
-
-/proc/i18n_en_table()
-	i18n_en_load()
-	return GLOB.i18n_en_table
+	log_world("i18n: wczytano [length(dictionary.table)] tekstów i [length(dictionary.templates)] szablonów [uppertext(dictionary.language)] w [(REALTIMEOFDAY - start) / 10] s")
 
 /**
- * Stały tekst po angielsku albo null. Kod często dokleja znak końca zdania sam
+ * Stały tekst w języku docelowym albo null. Kod często dokleja znak końca zdania sam
  * ("krzyczy" + "."), więc szukamy też bez niego. Spacje na brzegach zostają.
  */
-/proc/i18n_en_exact(text)
+/proc/i18n_exact(text, language = GAME_LANGUAGE_EN)
 	if(!istext(text))
 		return null
 	var/trimmed = trim(text)
 	if(!length(trimmed))
 		return null
-	var/list/table = i18n_en_table()
-	var/found = i18n_en_cased(table, trimmed)
-	// BYOND dokleja "the" przed wstawionym obiektem: tłumaczymy samą nazwę, przedimek zostaje
+	var/list/table = i18n_dictionary(language).table
+	var/found = i18n_cased(table, trimmed)
+	// BYOND dokleja "the" przed wstawionym obiektem: tłumaczymy samą nazwę; przedimek zostaje tylko po angielsku
 	if(isnull(found) && (copytext(trimmed, 1, 5) == "the " || copytext(trimmed, 1, 5) == "The "))
-		var/name = i18n_en_exact(copytext(trimmed, 5))
+		var/name = i18n_exact(copytext(trimmed, 5), language)
 		if(!isnull(name))
-			found = copytext(trimmed, 1, 5) + name
+			found = language == GAME_LANGUAGE_EN ? copytext(trimmed, 1, 5) + name : name
 	if(isnull(found))
 		// etykiety dostają w kodzie dwukropek ("<b>Siła:</b>"), słownik ma samo słowo
 		var/last = copytext(trimmed, -1)
 		if(last == "." || last == "!" || last == "?" || last == ":")
-			found = i18n_en_cased(table, copytext(trimmed, 1, -1))
+			found = i18n_cased(table, copytext(trimmed, 1, -1))
 			if(!isnull(found) && !(copytext(found, -1) in list(".", "!", "?", ":")))
 				found += last
 	if(isnull(found) && copytext(trimmed, -1) == ")")
 		// nazwa z dopiskiem w nawiasie: "alarm powietrza ([get_area_name(src)])", "APC (Mostek)"
 		var/open = findlasttext(trimmed, " (")
 		if(open > 1)
-			var/name = i18n_en_exact(copytext(trimmed, 1, open))
+			var/name = i18n_exact(copytext(trimmed, 1, open), language)
 			if(!isnull(name))
 				var/suffix = copytext(trimmed, open + 2, -1)
-				var/suffix_en = i18n_en_exact(suffix)
+				var/suffix_translated = i18n_exact(suffix, language)
 				// nieznany polski dopisek ("krew (po zaschnięciu)") dałby mieszankę: zostawiamy to szablonom
-				if(!isnull(suffix_en) || !i18n_lowercase_letters(suffix))
-					found = "[name] ([suffix_en || suffix])"
+				if(!isnull(suffix_translated) || !i18n_lowercase_letters(suffix))
+					found = "[name] ([suffix_translated || suffix])"
 	if(isnull(found))
 		return null
 	var/start = findtext(text, trimmed)
 	return copytext(text, 1, start) + found + copytext(text, start + length(trimmed))
 
 /// Stała z tolerancją wielkości pierwszej litery ("amoniak" z "Amoniak"); wynik dostaje wielkość litery tekstu
-/proc/i18n_en_cased(list/table, text)
+/proc/i18n_cased(list/table, text)
 	. = table[text]
 	if(!isnull(.) || !length(text))
 		return
@@ -109,12 +126,12 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	return space.Replace(text, "\\s+")
 
 /// Wyrażenie dla szablonu (cały tekst) albo FALSE, jeśli się nie da go zbudować
-/proc/i18n_en_template_regex(index)
-	var/static/list/cache = list()
+/proc/i18n_template_regex(datum/i18n_dictionary/dictionary, index)
+	var/list/cache = dictionary.regex_cache
 	var/key = "[index]"
 	if(!isnull(cache[key]))
 		return cache[key]
-	var/list/template = GLOB.i18n_en_templates[index]
+	var/list/template = dictionary.templates[index]
 	var/list/texts = template[2]
 	var/list/alts = length(template) >= 4 ? template[4] : null
 	var/source = "^\\s*"
@@ -153,8 +170,8 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	return count
 
 /// Wartość wstawiona w szablon: stała ze słownika albo bez zmian
-/proc/i18n_en_value(value)
-	var/found = i18n_en_exact(value)
+/proc/i18n_value(value, language = GAME_LANGUAGE_EN)
+	var/found = i18n_exact(value, language)
 	return isnull(found) ? value : found
 
 /// Przedimek przed nazwą pospolitą (\the, \a z angielskiego oryginału)
@@ -171,24 +188,24 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		word = capitalize(word)
 	return "[word] [value]"
 
-/// Tekst po angielsku według najlepszego szablonu albo null
-/proc/i18n_en_template(text)
-	i18n_en_load()
-	if(!length(GLOB.i18n_en_templates) || length(text) > 300)
+/// Tekst w języku docelowym według najlepszego szablonu albo null
+/proc/i18n_template(text, language = GAME_LANGUAGE_EN)
+	var/datum/i18n_dictionary/dictionary = i18n_dictionary(language)
+	if(!length(dictionary.templates) || length(text) > 300)
 		return null
 	var/list/candidates = list()
 	var/static/regex/separators = regex(@{"[\s.,!?;:()\[\]"'<>/\-]+"})
 	for(var/word in splittext(lowertext(text), separators))
-		var/list/found = GLOB.i18n_en_anchors[word]
+		var/list/found = dictionary.anchors[word]
 		if(found)
 			candidates |= found
 	var/best
 	var/best_score = -1
 	for(var/index in candidates)
-		var/regex/matcher = i18n_en_template_regex(index)
+		var/regex/matcher = i18n_template_regex(dictionary, index)
 		if(!matcher || !matcher.Find(text))
 			continue
-		var/list/template = GLOB.i18n_en_templates[index]
+		var/list/template = dictionary.templates[index]
 		var/list/alts = length(template) >= 4 ? template[4] : null
 		var/list/captures = matcher.group.Copy()
 		var/fixed = length(jointext(template[2], ""))
@@ -198,7 +215,7 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 			var/value = captures[i]
 			if(alts && alts["[i - 1]"])
 				known += length(value)
-			else if(!isnull(i18n_en_exact(value)))
+			else if(!isnull(i18n_exact(value, language)))
 				known += length(trim(value))
 			else
 				unknown += i18n_lowercase_letters(value)
@@ -207,7 +224,7 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		if(fixed + known <= best_score)
 			continue
 		best_score = fixed + known
-		best = i18n_en_render(template, captures)
+		best = i18n_render(template, captures, language)
 	if(isnull(best))
 		return null
 	// odstępy na brzegach jak w tekście wejściowym, nie jak w szablonie
@@ -215,8 +232,8 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 	var/start = findtext(text, trimmed)
 	return copytext(text, 1, start) + trim(best) + copytext(text, start + length(trimmed))
 
-/// Angielska strona szablonu z wartościami (numery wstawek w JSON liczone od zera)
-/proc/i18n_en_render(list/template, list/captures)
+/// Docelowa strona szablonu z wartościami (numery wstawek w JSON liczone od zera)
+/proc/i18n_render(list/template, list/captures, language = GAME_LANGUAGE_EN)
 	var/list/alts = length(template) >= 4 ? template[4] : null
 	. = ""
 	for(var/part in template[3])
@@ -231,32 +248,16 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 			var/branch = (options && trim(value) == trim(options[2])) ? 2 : 1
 			. += piece[3][branch]
 			continue
-		var/value = i18n_en_value(captures[piece[1] + 1] || "")
-		. += length(piece) > 1 ? i18n_with_article(value, piece[2]) : value
-
-/// Węzeł tekstowy HTML (dla regex.Replace): ">tekst<" po angielsku, jeśli jest w słowniku
-/proc/i18n_en_text_node(match, inner)
-	var/found = i18n_en_exact(inner)
-	return isnull(found) ? match : ">[found]<"
-
-/// Jak i18n_en_text_node, ale także szablony (okna HTML: "Losowo: [shuffle ? "wł." : "wył."]")
-/proc/i18n_en_text_node_full(match, inner)
-	var/trimmed = trim(inner)
-	var/static/regex/letters = regex(@"[^\W\d_]{2}")
-	if(!length(trimmed) || !letters.Find(trimmed))
-		return match
-	var/found = i18n_en_html(trimmed)
-	if(found == trimmed)
-		return match
-	var/start = findtext(inner, trimmed)
-	return ">[copytext(inner, 1, start)][found][copytext(inner, start + length(trimmed))]<"
+		var/value = i18n_value(captures[piece[1] + 1] || "", language)
+		// przedimek (\the, \a) tylko po angielsku
+		. += (length(piece) > 1 && language == GAME_LANGUAGE_EN) ? i18n_with_article(value, piece[2]) : value
 
 /**
- * Tekst albo HTML po angielsku: stała, szablon (zwykły tekst), a w HTML każdy węzeł tekstowy osobno.
+ * Tekst albo HTML w języku docelowym: stała, szablon (zwykły tekst), a w HTML każdy węzeł tekstowy osobno.
  * with_templates: węzły HTML także przez szablony (okna HTML i screentipy, gdzie zdania mają wstawki);
  * zwykły tekst węzła idzie przez pamięć podręczną, więc screentip przy ruchu myszy jest tani.
  */
-/proc/i18n_en_html(text, with_templates = FALSE)
+/proc/i18n_html(text, with_templates = FALSE, language = GAME_LANGUAGE_EN)
 	if(!istext(text) || !length(text))
 		return text
 	if(findtext(text, "<"))
@@ -274,34 +275,60 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 			var/out = ""
 			var/position = 1
 			for(var/list/block as anything in blocks)
-				out += i18n_en_html(copytext(text, position, block[1]), with_templates) + copytext(text, block[1], block[2])
+				out += i18n_html(copytext(text, position, block[1]), with_templates, language) + copytext(text, block[1], block[2])
 				position = block[2]
-			return out + i18n_en_html(copytext(text, position), with_templates)
+			return out + i18n_html(copytext(text, position), with_templates, language)
 		// HTML (screentipy) jest zmienny i tani: tylko stałe, węzeł po węźle, bez pamięci podręcznej całości
-		. = i18n_en_exact(text)
+		. = i18n_exact(text, language)
 		if(isnull(.))
-			var/static/regex/text_node = regex(@">([^<>]+)<", "g")
-			var/wrapped = text_node.Replace(">[text]<", with_templates ? /proc/i18n_en_text_node_full : /proc/i18n_en_text_node)
-			. = copytext(wrapped, 2, -1)
+			. = i18n_html_nodes(text, with_templates, language)
 		return
 	// zwykły tekst (dymki, runechat) się powtarza, a szablony kosztują: pamięć podręczna
-	var/list/cache = GLOB.i18n_en_cache
+	var/list/cache = i18n_dictionary(language).cache
 	var/cached = cache[text]
 	if(!isnull(cached))
 		return cached
-	. = i18n_en_exact(text)
+	. = i18n_exact(text, language)
 	if(isnull(.))
-		. = i18n_en_template(text) || i18n_en_sentences(text) || text
+		. = i18n_template(text, language) || i18n_sentences(text, language) || text
 	if(length(cache) >= I18N_CACHE_SIZE)
 		cache.Cut()
 	cache[text] = .
+
+/// Każdy węzeł tekstowy HTML (">tekst<") osobno: stała, a z with_templates także szablon
+/proc/i18n_html_nodes(text, with_templates, language)
+	var/static/regex/text_node = regex(@">([^<>]+)<")
+	var/static/regex/letters = regex(@"[^\W\d_]{2}")
+	var/wrapped = ">[text]<"
+	var/out = ""
+	var/position = 1
+	while(text_node.Find(wrapped, position))
+		var/node_start = text_node.index
+		var/node_end = node_start + length(text_node.match)
+		var/inner = text_node.group[1]
+		var/replacement = text_node.match
+		var/trimmed = trim(inner)
+		if(length(trimmed))
+			var/found = i18n_exact(inner, language)
+			// zwykły tekst bez "<", więc rekurencja nie rusza text_node
+			if(isnull(found) && with_templates && letters.Find(trimmed))
+				var/whole = i18n_html(trimmed, FALSE, language)
+				if(whole != trimmed)
+					var/start = findtext(inner, trimmed)
+					found = "[copytext(inner, 1, start)][whole][copytext(inner, start + length(trimmed))]"
+			if(!isnull(found))
+				replacement = ">[found]<"
+		out += copytext(wrapped, position, node_start) + replacement
+		position = node_end
+	out += copytext(wrapped, position)
+	return copytext(out, 2, -1)
 
 /**
  * Kilka zdań sklejonych w kodzie ("[part.desc] [desc]" w MOD-ach, opis z dopiskiem):
  * od lewej najdłuższy ciąg zdań, który jest w słowniku (opis bywa kluczem z kilku zdań).
  * Wynik tylko gdy przetłumaczyło się wszystko (bez mieszanki).
  */
-/proc/i18n_en_sentences(text)
+/proc/i18n_sentences(text, language = GAME_LANGUAGE_EN)
 	var/static/regex/boundary = regex(@"([.!?])\s+(?=\S)", "g")
 	var/list/sentences = splittext(boundary.Replace(text, "$1\n"), "\n")
 	var/count = length(sentences)
@@ -314,7 +341,7 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		var/stop
 		for(stop = (start == 1 ? count - 1 : count) to start step -1)
 			var/run = jointext(sentences.Copy(start, stop + 1), " ")
-			found = i18n_en_exact(run) || i18n_en_template(run)
+			found = i18n_exact(run, language) || i18n_template(run, language)
 			if(!isnull(found))
 				break
 		if(isnull(found))
@@ -323,11 +350,25 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		start = stop + 1
 	return jointext(out, " ")
 
-/// Tekst dla konkretnego gracza: po angielsku, jeśli wybrał angielski
+// Skróty dla angielskiego (testy i starsze wywołania): ten sam tłumacz z językiem EN
+/proc/i18n_en_table()
+	return i18n_dictionary(GAME_LANGUAGE_EN).table
+
+/proc/i18n_en_exact(text)
+	return i18n_exact(text, GAME_LANGUAGE_EN)
+
+/proc/i18n_en_template(text)
+	return i18n_template(text, GAME_LANGUAGE_EN)
+
+/proc/i18n_en_html(text, with_templates = FALSE)
+	return i18n_html(text, with_templates, GAME_LANGUAGE_EN)
+
+/// Tekst dla konkretnego gracza: w jego języku, jeśli nie gra po polsku
 /proc/i18n_for_client(client/C, text, with_templates = FALSE)
-	if(!C?.wants_english())
+	var/language = C?.translated_language()
+	if(!language)
 		return text
-	return i18n_en_html(text, with_templates)
+	return i18n_html(text, with_templates, language)
 
 // Dymki: tworzone dla jednego widza, więc wystarczy przetłumaczyć tekst. Przedimek „the”, który BYOND dokleja przed
 // wstawionym obiektem („[src] klika.” -> „The protokinetyczny akcelerator klika.”), zdejmujemy jak w to_chat
@@ -337,13 +378,14 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 
 // Dymki z opisem po najechaniu na przedmiot, akcję albo alert: okno tooltip jednego klienta
 /datum/tooltip/show(atom/movable/thing, params = null, title = null, content = null, theme = "default", special = "none")
-	if(owner?.wants_english())
+	var/language = owner?.translated_language()
+	if(language)
 		// bez makr \proper i \improper, których nie ma w kluczach słownika (core i tak je zdejmuje)
-		title = i18n_en_html(replacetext(replacetext(title, "\proper", ""), "\improper", ""))
-		content = i18n_en_html(content)
+		title = i18n_html(replacetext(replacetext(title, "\proper", ""), "\improper", ""), FALSE, language)
+		content = i18n_html(content, FALSE, language)
 	return ..(thing, params, title, content, theme, special)
 
-// Runechat: jedna wiadomość dla wielu słuchaczy. Gracze z językiem EN dostają osobną, przetłumaczoną.
+// Runechat: jedna wiadomość dla wielu słuchaczy. Gracze z innym językiem dostają osobną, przetłumaczoną (jedną na język).
 // Wartości domyślne jak w chatmessage.dm (CHAT_MESSAGE_LIFESPAN jest tam #undef, więc liczba wprost)
 /datum/chatmessage/New(text, atom/target, list/client/hearers, language_icon, list/extra_classes = list(), lifespan = 5.4 SECONDS)
 	// To, co powiedział gracz, zostaje, jak je napisał: tłumaczymy emotki i mowę maszyn/NPC (teksty z kodu)
@@ -352,15 +394,16 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 		var/mob/speaker = target
 		player_speech = !!speaker.ckey
 	if(type == /datum/chatmessage && istext(text) && length(hearers) && !player_speech)
-		var/list/english = list()
+		var/list/by_language = list()
 		for(var/client/C as anything in hearers)
-			if(C?.wants_english())
-				english += C
-		if(length(english))
-			var/translated = i18n_en_html(text)
+			var/language = C?.translated_language()
+			if(language)
+				LAZYADD(by_language[language], C)
+		for(var/language in by_language)
+			var/translated = i18n_html(text, FALSE, language)
 			if(translated != text)
-				hearers = hearers - english
-				new /datum/chatmessage(translated, target, english, language_icon, extra_classes?.Copy(), lifespan)
+				hearers = hearers - by_language[language]
+				new /datum/chatmessage(translated, target, by_language[language], language_icon, extra_classes?.Copy(), lifespan)
 	return ..(text, target, hearers, language_icon, extra_classes, lifespan)
 
 #undef I18N_CACHE_SIZE
@@ -369,5 +412,5 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 // Screentipy: ostatni krok każdego screentipa (aquila/code/_onclick/legacy_intents.dm)
 /mob/adapt_screentip_controls(text)
 	// z szablonami: akcje mają wstawki ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy"),
-	// a zwykły tekst węzła trafia do pamięci podręcznej i18n_en_html
+	// a zwykły tekst węzła trafia do pamięci podręcznej i18n_html
 	return i18n_for_client(client, ..(), TRUE)

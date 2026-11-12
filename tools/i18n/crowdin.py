@@ -3,6 +3,8 @@
 Gracze poprawiają w Crowdinie polskie tłumaczenie. Źródłem w Crowdinie jest angielski
 oryginał tekstu (z strings/i18n/en_all.json), a tłumaczeniem polskim obecny tekst z kodu.
 Zatwierdzona poprawka wraca do gry jako PR, który podmienia literał w kodzie.
+Tak samo rosyjska wersja językowa: tłumaczeniem rosyjskim jest obecny tekst z ru_all.json,
+a zatwierdzona poprawka trafia do strings/i18n/ru_manual.json (apply-ru), nie do kodu.
 
 Klucz napisu to skrót SHA-1 obecnego polskiego literału, więc po wprowadzeniu poprawki
 napis dostaje nowy klucz, a stary znika z Crowdina przy następnym wysłaniu źródeł.
@@ -14,6 +16,9 @@ Użycie (z katalogu repo):
         mają już zatwierdzone tłumaczenie, żeby nie nadpisać poprawek czekających na PR.
     python tools/i18n/crowdin.py apply <katalog pl> [--report raport.md]
         Wprowadza do kodu zatwierdzone tłumaczenia różne od obecnego tekstu.
+    python tools/i18n/crowdin.py apply-ru <katalog ru> [--report raport.md]
+        Dopisuje zatwierdzone rosyjskie poprawki do strings/i18n/ru_manual.json
+        (potem: python tools/i18n/build_chat_dict.py --lang ru).
 
 Format plików: Chrome JSON ({"klucz": {"message": ..., "description": ...}}).
 Teksty są w zapisie literału z kodu (z wstawkami [src], \\n, \\the).
@@ -40,6 +45,9 @@ SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_manual.json", "strings/i
 APPLY_PATHSPECS = lm.PATHSPECS + ["*.dmm"]
 SKIP_DIRS = {"code", "modules", "game", "packages", "objects", "interfaces"}
 LOCATIONS_IN_DESCRIPTION = 3
+# Rosyjska wersja językowa: obecne tłumaczenie i ręczne poprawki (build_chat_dict.py --lang ru)
+RU_ALL = "strings/i18n/ru_all.json"
+RU_MANUAL = "strings/i18n/ru_manual.json"
 
 DM_EMBED = re.compile(r"\[[^\[\]]*\]")
 JS_EMBED = re.compile(r"\$\{[^{}]*\}")
@@ -108,8 +116,11 @@ def export(args):
     known = lm.load_known(SOURCES)
     found = scan(known)
     existing = load_translations(args.existing) if args.existing else {}
+    existing_ru = load_translations(args.existing_ru) if args.existing_ru else {}
+    russian_all = load_json(RU_ALL)
 
     sources, polish = collections.defaultdict(dict), collections.defaultdict(dict)
+    russian = collections.defaultdict(dict)
     for lit, places in found.items():
         key = key_of(lit)
         path, number, code = places[0]
@@ -125,8 +136,10 @@ def export(args):
         sources[area][key] = {"message": en or lit, "description": description}
         if key not in existing:
             polish[area][key] = {"message": lit}
+        if russian_all.get(lit) and key not in existing_ru:
+            russian[area][key] = {"message": russian_all[lit]}
 
-    for lang, data in (("en", sources), ("pl", polish)):
+    for lang, data in (("en", sources), ("pl", polish), ("ru", russian)):
         folder = os.path.join(args.out, lang)
         os.makedirs(folder, exist_ok=True)
         for old in glob.glob(os.path.join(folder, "*.json")):
@@ -136,9 +149,19 @@ def export(args):
                 json.dump(entries, f, ensure_ascii=False, indent=1, sort_keys=True)
                 f.write("\n")
     total_pl = sum(len(v) for v in polish.values())
+    total_ru = sum(len(v) for v in russian.values())
     no_en = sum(1 for lit in found if lit not in known)
     print(f"napisów: {len(found)} w {len(sources)} plikach, bez angielskiego oryginału: {no_en}, "
-          f"polskich tłumaczeń do wysłania: {total_pl}")
+          f"polskich tłumaczeń do wysłania: {total_pl}, rosyjskich: {total_ru}")
+
+
+def load_json(path):
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    data.pop("_komentarz", None)
+    return data
 
 
 # ---------------------------------------------------------------- apply
@@ -274,6 +297,55 @@ def apply(args):
             f.write(f"changed={'true' if changed_files else 'false'}\n")
 
 
+def apply_ru(args):
+    """Zatwierdzone rosyjskie poprawki -> ru_manual.json (z kontrolą wstawek i znaczników)."""
+    import ru_translate  # noqa: E402 (ciągnie build_chat_dict, potrzebne tylko tutaj)
+
+    known = lm.load_known(SOURCES)
+    by_key = {key_of(lit): lit for lit in scan(known)}
+    current = load_json(RU_ALL)
+    manual = load_json(RU_MANUAL)
+    fixes, rejected, stale = {}, [], 0
+    for key, message in load_translations(args.folder).items():
+        lit = by_key.get(key)
+        if lit is None:
+            stale += 1
+            continue
+        new = ru_translate.same_edges(lit, message)
+        if new == current.get(lit) or new == manual.get(lit):
+            continue
+        reason = ru_translate.check(lit, new)
+        if reason:
+            rejected.append((lit, new, reason))
+            continue
+        fixes[lit] = new
+    if fixes:
+        manual.update(fixes)
+        with open(RU_MANUAL, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(dict(sorted(manual.items())), f, ensure_ascii=False, indent=0)
+            f.write("\n")
+    report = [f"Zatwierdzone poprawki wersji rosyjskiej z Crowdina: **{len(fixes)}**."]
+    if fixes:
+        report += ["", "| Tekst | Było | Jest |", "|---|---|---|"]
+        for lit, new in sorted(fixes.items()):
+            report.append(f"| {md(lit)} | {md(current.get(lit, ''))} | {md(new)} |")
+    if rejected:
+        report += ["", f"Odrzucone ({len(rejected)}), do poprawienia w Crowdinie:", "",
+                   "| Tekst | Propozycja | Powód |", "|---|---|---|"]
+        for lit, new, reason in rejected:
+            report.append(f"| {md(lit)} | {md(new)} | {reason} |")
+    if stale:
+        report += ["", f"Pominięte, bo tekstu nie ma już w kodzie: {stale}."]
+    text = "\n".join(report) + "\n"
+    if args.report:
+        with open(args.report, "w", encoding="utf-8") as f:
+            f.write(text)
+    sys.stdout.write(text)
+    if args.github_output:
+        with open(args.github_output, "a", encoding="utf-8") as f:
+            f.write(f"changed={'true' if fixes else 'false'}\n")
+
+
 def md(text):
     return "`" + text.replace("|", "\\|").replace("`", "'")[:300] + "`"
 
@@ -285,12 +357,14 @@ def main():
     e = sub.add_parser("export")
     e.add_argument("--out", default="crowdin_out")
     e.add_argument("--existing", help="katalog z pobranymi tłumaczeniami pl")
-    a = sub.add_parser("apply")
-    a.add_argument("folder")
-    a.add_argument("--report")
-    a.add_argument("--github-output", default=os.environ.get("GITHUB_OUTPUT"))
+    e.add_argument("--existing-ru", help="katalog z pobranymi tłumaczeniami ru")
+    for name in ("apply", "apply-ru"):
+        a = sub.add_parser(name)
+        a.add_argument("folder")
+        a.add_argument("--report")
+        a.add_argument("--github-output", default=os.environ.get("GITHUB_OUTPUT"))
     args = ap.parse_args()
-    (export if args.cmd == "export" else apply)(args)
+    {"export": export, "apply": apply, "apply-ru": apply_ru}[args.cmd](args)
 
 
 if __name__ == "__main__":

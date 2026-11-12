@@ -6,7 +6,7 @@
  * przy wyświetlaniu. Brak wpisu = oryginalna nazwa.
  */
 
-import { getLanguage } from 'tgui/i18n';
+import { getLanguage, translateUiText } from 'tgui/i18n';
 
 const TAB_NAMES = {
   Status: 'Status',
@@ -561,9 +561,23 @@ const VERB_NAMES = {
   Map: 'Mapa',
 };
 
-// AQUILA: przy języku EN zostają oryginalne angielskie nazwy z DM
-export const translateTab = (name) =>
-  getLanguage() === 'en' ? name : TAB_NAMES[name] || name;
+/**
+ * AQUILA: nazwa w języku gracza. Po angielsku zostają oryginały z DM, po polsku tabela wyżej,
+ * a w innym języku polska nazwa przez słownik (bez tłumaczenia: angielski oryginał, nie polski).
+ */
+const translateName = (table, name) => {
+  const language = getLanguage();
+  if (language === 'en') {
+    return name;
+  }
+  const polish = table[name] || name;
+  if (language === 'pl') {
+    return polish;
+  }
+  const translated = translateUiText(polish);
+  return translated !== polish ? translated : name;
+};
 
-export const translateVerb = (name) =>
-  getLanguage() === 'en' ? name : VERB_NAMES[name] || name;
+export const translateTab = (name) => translateName(TAB_NAMES, name);
+
+export const translateVerb = (name) => translateName(VERB_NAMES, name);
