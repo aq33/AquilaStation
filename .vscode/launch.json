@@ -16,6 +16,28 @@
 		"preLaunchTask": "Build All",
 		"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 		"dreamDaemon": true
-	  }
+	  },
+	{
+		"type": "auxtools",
+		"request": "launch",
+		"name": "Debug world (auxtools, DreamSeeker)",
+		"preLaunchTask": "Build All",
+		"dmb": "${workspaceFolder}/nsv13.dmb",
+		"defines": ["CBT"]
+	},
+	{
+		"type": "auxtools",
+		"request": "launch",
+		"name": "Debug world (auxtools, DreamDaemon)",
+		"preLaunchTask": "Build All",
+		"dmb": "${workspaceFolder}/nsv13.dmb",
+		"defines": ["CBT"],
+		"server": "dd"
+	},
+	{
+		"type": "auxtools",
+		"request": "attach",
+		"name": "Attach to world (auxtools)"
+	}
   ]
 }
