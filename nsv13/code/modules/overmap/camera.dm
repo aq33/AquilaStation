@@ -123,7 +123,7 @@
 	eyeobj.off_action.target = user
 	eyeobj.off_action.user = user
 	eyeobj.off_action.ship = src
-	if(!LAZYFIND(gauss_gunners, user)) // AQ EDIT - strzelec Gaussa ma własne „Kamera działa” i „Wyjdź z działa”
+	if(gives_observer_off_action(user)) // AQ EDIT - strzelec Gaussa ma własne „Kamera działa” i „Wyjdź z działa”, laser PD i działko plot. nie (aquila/code/modules/munitions/gauss_gunner_actions.dm)
 		eyeobj.off_action.Grant(user)
 	eyeobj.setLoc(eyeobj.loc)
 	eyeobj.RegisterSignal(src, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/camera/ai_eye/remote/overmap_observer, update))
