@@ -53,5 +53,19 @@
 	TEST_ASSERT(pooper.accident_threshold() < DEFECATION_ACTUALLY_SHIT_YOURSELF, "Diarrhea does not lower the accident threshold")
 	TEST_ASSERT(pooper.stool_rate_mod() > 1, "Diarrhea does not speed the need up")
 
+	// Popuszczenie: własna odraza z popuszczenia nie może podbić zapisanego typu (4 → 5)
+	var/mob/living/carbon/human/accident = allocate(/mob/living/carbon/human)
+	accident.set_hydration(HYDRATION_LEVEL_HYDRATED)
+	for(var/obj/effect/decal/cleanable/feces/old_stool in get_turf(accident))
+		qdel(old_stool)
+	var/old_shitting = CONFIG_GET(flag/shitting_enabled)
+	CONFIG_SET(flag/shitting_enabled, TRUE)
+	var/shat = accident.actually_shit_myself()
+	CONFIG_SET(flag/shitting_enabled, old_shitting)
+	TEST_ASSERT(shat, "The accident did not happen with shitting enabled")
+	var/obj/effect/decal/cleanable/feces/accident_stool = locate() in get_turf(accident)
+	TEST_ASSERT(accident_stool, "The accident left nothing on the floor")
+	TEST_ASSERT_EQUAL(accident_stool.stool_type, 4, "The accident's own disgust changed the recorded type")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

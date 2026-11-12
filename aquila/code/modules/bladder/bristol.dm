@@ -200,11 +200,11 @@
 /mob/living/proc/report_stool(current, list/reasons)
 	switch(current)
 		if(1, 2)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel_constipated)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel/constipated)
 		if(3, 4)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel_regular)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel/regular)
 		if(6, 7)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel_diarrhea)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "bowel", /datum/mood_event/bowel/diarrhea)
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "bowel")
 	if(censors_bodily_functions())
@@ -213,17 +213,25 @@
 	if(current != 4 && length(reasons))
 		to_chat(src, "<span class='notice'>Możliwe przyczyny: [jointext(reasons, ", ")].</span>")
 
-/datum/mood_event/bowel_constipated
+/// Moodlety po wypróżnieniu: przy cenzurze funkcji fizjologicznych działają, ale bez opisu w nastroju
+/datum/mood_event/bowel
+
+/datum/mood_event/bowel/add_effects(param)
+	var/datum/component/mood = owner // owner to w praktyce komponent nastroju (jak w /datum/mood_event/table)
+	var/mob/living/L = mood?.parent
+	hidden = istype(L) && L.censors_bodily_functions()
+
+/datum/mood_event/bowel/constipated
 	description = "<span class='warning'>Wypróżnienie było męczarnią.</span>\n"
 	mood_change = -2
 	timeout = 3 MINUTES
 
-/datum/mood_event/bowel_regular
+/datum/mood_event/bowel/regular
 	description = "<span class='nicegreen'>Wypróżnienie jak w zegarku.</span>\n"
 	mood_change = 2
 	timeout = 4 MINUTES
 
-/datum/mood_event/bowel_diarrhea
+/datum/mood_event/bowel/diarrhea
 	description = "<span class='warning'>Biegunka mnie wykańcza.</span>\n"
 	mood_change = -2
 	timeout = 3 MINUTES
