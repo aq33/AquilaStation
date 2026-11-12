@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(unplanned_controllers)
 		var/datum/ai_controller/unplanned = current_run[current_run.len]
 		current_run.len--
 		if(!QDELETED(unplanned))
-			unplanned.idle_behavior.perform_idle_behavior(wait * 0.1, unplanned)
+			unplanned.idle_behavior?.perform_idle_behavior(wait * 0.1, unplanned) // null when code took the idle behaviour away
 		if (MC_TICK_CHECK)
 			return
 

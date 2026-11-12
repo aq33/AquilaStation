@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/mob/living/simple_animal/hostile/pirate/melee/space,
+/mob/living/basic/trooper/pirate/melee/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "b" = (
-/mob/living/simple_animal/hostile/pirate/ranged/space,
+/mob/living/basic/trooper/pirate/ranged/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "c" = (
@@ -51,7 +51,7 @@
 /area/ruin/unpowered)
 "k" = (
 /obj/effect/turf_decal/stripes/asteroid/line,
-/mob/living/simple_animal/hostile/pirate/ranged/space,
+/mob/living/basic/trooper/pirate/ranged/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "l" = (
@@ -67,14 +67,14 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/pirate/melee/space,
+/mob/living/basic/trooper/pirate/melee/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "o" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/pirate/ranged/space,
+/mob/living/basic/trooper/pirate/ranged/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "p" = (
@@ -93,7 +93,7 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/pirate/ranged/space,
+/mob/living/basic/trooper/pirate/ranged/space,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "s" = (

@@ -359,7 +359,7 @@
 /obj/structure/chair/fancy/shuttle{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot{
+/mob/living/basic/trooper/syndicate/ranged/smg/pilot{
 	environment_smash = 0
 	},
 /turf/open/floor/plasteel/dark,

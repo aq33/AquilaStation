@@ -752,8 +752,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							say("IJOIJO! IJOIJO! Ochrona portu kosmicznego w drodze!")
 							playsound(src, 'sound/items/weeoo1.ogg', 100, FALSE)
 							for(var/i, i<=3, i++)
-								var/mob/living/simple_animal/hostile/syndicate/ranged/smg/orion/O = new/mob/living/simple_animal/hostile/syndicate/ranged/smg/orion(get_turf(src))
-								O.target = usr
+								// AQ EDIT START - basic moby: ochrona portu to /mob/living/basic/trooper/syndicate/ranged/smg/orion
+								var/mob/living/basic/trooper/syndicate/ranged/smg/orion/O = new(get_turf(src))
+								O.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, usr)
+								// AQ EDIT END
 
 
 				fuel += FU
@@ -1131,12 +1133,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	QDEL_NULL(Radio)
 	. = ..()
 
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/orion
-	name = "ochrona portu kosmicznego"
-	desc = "Elitarne korporacyjne siły ochrony wszystkich portów kosmicznych na Szlaku Oriona."
-	faction = list("orion")
-	loot = list()
-	del_on_death = TRUE
+// AQ EDIT - basic moby: /mob/living/basic/trooper/syndicate/ranged/smg/orion jest w aquila/code/modules/mob/living/basic/trooper/syndicate.dm
 
 /obj/item/orion_ship
 	name = "model statku osadników"

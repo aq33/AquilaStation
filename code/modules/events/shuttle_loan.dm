@@ -112,22 +112,22 @@
 				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/emergency/specialops]
 				pack.generate(pick_n_take(empty_shuttle_turfs))
 
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+				shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
+				shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 				if(prob(75))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+					shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 				if(prob(50))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+					shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 
 			if(RUSKY_PARTY)
 				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
 				pack.generate(pick_n_take(empty_shuttle_turfs))
 
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian)
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian/ranged)	//drops a mateba
+				shuttle_spawns.Add(/mob/living/basic/trooper/russian) // AQ EDIT - basic moby
+				shuttle_spawns.Add(/mob/living/basic/trooper/russian/ranged)	//drops a mateba // AQ EDIT - basic moby
 				shuttle_spawns.Add(/mob/living/basic/bear/russian) // AQ EDIT - basic moby
 				if(prob(75))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian)
+					shuttle_spawns.Add(/mob/living/basic/trooper/russian) // AQ EDIT - basic moby
 				if(prob(50))
 					shuttle_spawns.Add(/mob/living/basic/bear/russian) // AQ EDIT - basic moby
 
