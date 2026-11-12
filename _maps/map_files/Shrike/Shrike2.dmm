@@ -6973,6 +6973,12 @@
 /obj/item/stack/sheet/mineral/copper{
 	amount = 5
 	},
+/obj/item/storage/belt/utility{
+	pixel_y = 3
+	},
+/obj/item/storage/belt/utility{
+	pixel_y = -4
+	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics)

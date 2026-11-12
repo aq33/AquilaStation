@@ -17224,7 +17224,6 @@
 	dir = 8;
 	id = "garbage"
 	},
-/obj/machinery/recycler,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "nSO" = (
@@ -23467,6 +23466,7 @@
 	dir = 4;
 	id = "garbage"
 	},
+/obj/machinery/recycler,
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)

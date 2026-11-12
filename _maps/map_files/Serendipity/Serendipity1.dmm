@@ -1063,9 +1063,7 @@
 	dir = 9
 	},
 /obj/machinery/newscaster/directional/east,
-/obj/machinery/computer/rdconsole/experiment{
-	dir = 8
-	},
+/obj/effect/spawner/lootdrop/gizmo,
 /turf/open/floor/plasteel/tiled/light,
 /area/science/lab)
 "cf" = (
@@ -4102,6 +4100,12 @@
 /obj/item/borg/upgrade/rename{
 	pixel_x = -5;
 	pixel_y = 5
+	},
+/obj/item/storage/belt/utility{
+	pixel_y = 3
+	},
+/obj/item/storage/belt/utility{
+	pixel_y = -4
 	},
 /obj/structure/table/glass/plasma,
 /obj/machinery/newscaster/directional/south,
@@ -8076,13 +8080,6 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/virology)
-"AA" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/gizmo,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "AB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/landmark/event_spawn,
@@ -47872,7 +47869,7 @@ Hd
 sQ
 sq
 Us
-AA
+Ij
 nB
 Pu
 Te
