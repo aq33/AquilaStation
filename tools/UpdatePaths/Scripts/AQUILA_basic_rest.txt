@@ -1,0 +1,14 @@
+# Mimiki, ludzka muchołówka, istoty z Netherworldu, klauni, fugu, świetlik i kosmiczny smok jako basic moby (tg 926bf40c5a).
+# Zastosowane w mapach skryptem zamiany ścieżek z zachowaniem edycji zmiennych (name, desc, health, maxHealth); zapis dla
+# porządku i dla map z innych gałęzi. Obłąkany klaun z Halloween (retaliate/insane_clown) zostaje simple_animal.
+/mob/living/simple_animal/hostile/mimic/@SUBTYPES : /mob/living/basic/mimic/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/netherworld/migo : /mob/living/basic/migo{@OLD}
+/mob/living/simple_animal/hostile/netherworld/blankbody : /mob/living/basic/blankbody{@OLD}
+/mob/living/simple_animal/hostile/netherworld : /mob/living/basic/creature{@OLD}
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus : /mob/living/basic/clown/clownhulk/honkmunculus{@OLD}
+/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob : /mob/living/basic/clown/mutant/glutton{@OLD}
+/mob/living/simple_animal/hostile/retaliate/clown/@SUBTYPES : /mob/living/basic/clown/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/asteroid/fugu : /mob/living/basic/wumborian_fugu{@OLD}
+/mob/living/simple_animal/hostile/lightgeist/@SUBTYPES : /mob/living/basic/lightgeist/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/venus_human_trap : /mob/living/basic/venus_human_trap{@OLD}
+/mob/living/simple_animal/hostile/space_dragon : /mob/living/basic/space_dragon{@OLD}
