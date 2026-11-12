@@ -1070,6 +1070,7 @@
 // Rework strzelania: silnik pocisku tg, autofire, odrzut, stan broni
 #include "code\modules\gunplay\projectile_engine.dm"
 #include "code\modules\gunplay\firemodes.dm"
+#include "code\modules\gunplay\safety_altclick.dm"
 #include "code\modules\gunplay\aiming_labels.dm"
 #include "code\modules\gunplay\autofire.dm"
 #include "code\modules\gunplay\recoil.dm"
@@ -2209,6 +2210,7 @@
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
+#include "code\modules\unit_tests\aquila_gun_safety_altclick.dm"
 #include "code\modules\unit_tests\aquila_survivalbox.dm"
 #include "code\modules\unit_tests\aquila_suit_toggle_altclick.dm"
 #include "code\modules\unit_tests\aquila_heart_blood.dm"
