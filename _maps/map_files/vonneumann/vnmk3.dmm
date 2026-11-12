@@ -5179,7 +5179,11 @@
 /turf/open/floor/carpet/police,
 /area/security/brig)
 "dYQ" = (
-/obj/machinery/mineral/stacking_machine,
+/obj/machinery/mineral/stacking_machine{
+	input_dir = 8;
+	link_id = "vn_garbage";
+	output_dir = 2
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "dZC" = (
@@ -25627,7 +25631,7 @@
 "vkH" = (
 /obj/structure/cable,
 /obj/machinery/button/massdriver{
-	id = "disposalgun";
+	id = "dispo";
 	pixel_x = -20;
 	pixel_y = -1;
 	req_one_access_txt = "12"
@@ -28793,7 +28797,7 @@
 	dir = 4
 	},
 /obj/machinery/mineral/stacking_unit_console{
-	machinedir = 4;
+	link_id = "vn_garbage";
 	pixel_y = -40
 	},
 /obj/effect/spawner/hangover_spawn,
