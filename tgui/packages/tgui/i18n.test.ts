@@ -130,6 +130,23 @@ describe('translateHtml', () => {
     expect(translateHtml(html)).toBe(html);
   });
 
+  it('tłumaczy czasownik mowy przed cytatem', () => {
+    setDictionary({
+      ...DICTIONARY,
+      exact: {
+        ...DICTIONARY.exact,
+        'woła telepatycznie': 'telepathically yells',
+      },
+    } as any);
+    expect(
+      translateHtml(
+        "<span class='game say'><span class='name'>Jan</span> <span class='message'>woła telepatycznie, \"skrzynka narzędziowa!\"</span></span>",
+      ),
+    ).toBe(
+      "<span class='game say'><span class='name'>Jan</span> <span class='message'>telepathically yells, \"skrzynka narzędziowa!\"</span></span>",
+    );
+  });
+
   it('nie bierze kluczy z prototypu Object', () => {
     expect(translateHtml('constructor')).toBe('constructor');
     expect(translateHtml('<b>toString</b>')).toBe('<b>toString</b>');

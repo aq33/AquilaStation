@@ -576,6 +576,15 @@ const renderTemplate = (
  */
 /** Wypowiedź: <span class='message'>mówi, "TEKST"</span> (code/game/say.dm, say_quote) */
 const SPOKEN = /(<span class=['"]message['"]>[^"<]*")([\s\S]*?)("\s*<\/span>)/g;
+/** Początek wypowiedzi: znacznik, czasownik mowy ("mówi", "woła telepatycznie") i przecinek przed cytatem */
+const SPEECH_VERB = /^(<span class=['"]message['"]>)([^"<]*?)(,\s*")$/;
+
+/** Czasownik mowy przed cytatem: sam węzeł "mówi, \"…\"" nie pasuje do słownika ani szablonu */
+const translateSpeechVerb = (open: string): string => {
+  const parts = SPEECH_VERB.exec(open);
+  const verb = parts && lookupExact(parts[2].trim());
+  return parts && verb !== undefined ? parts[1] + verb + parts[3] : open;
+};
 
 /**
  * Tłumaczy HTML wiadomości. Treść wypowiedzi zostaje, jak ją napisał gracz:
@@ -592,7 +601,7 @@ export const translateHtml = (html: string, depth = 0): string => {
   const spoken: string[] = [];
   const masked = html.replace(SPOKEN, (_match, open, text, close) => {
     spoken.push(text);
-    return `${open}\u0003${spoken.length - 1}\u0004${close}`;
+    return `${translateSpeechVerb(open)}\u0003${spoken.length - 1}\u0004${close}`;
   });
   return translateMarkup(masked, depth).replace(
     /\u0003(\d+)\u0004/g,
