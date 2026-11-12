@@ -214,7 +214,7 @@
 	limb.remove_surgical_state(ALL_SURGERY_STATES_UNSET_ON_CLOSE)
 	if(iscarbon(src))
 		var/mob/living/carbon/carbon_self = src
-		carbon_self.cauterise_wounds()
+		carbon_self.cauterise_wounds(zone = limb.body_zone)
 	if(is_suture)
 		var/obj/item/stack/medical/suture/suture_tool = tool
 		suture_tool.use(1)

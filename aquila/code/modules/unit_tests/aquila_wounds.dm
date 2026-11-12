@@ -14,7 +14,7 @@
 	fracture.apply_wound(leg, silent = TRUE)
 	TEST_ASSERT(leg.get_wound(WOUND_BLUNT) == fracture, "The fracture is not on the leg")
 	TEST_ASSERT(LAZYACCESS(patient.movespeed_modification, "aq_wounds"), "A broken leg does not slow down")
-	TEST_ASSERT(length(patient.get_wound_scan_lines()) == 1, "The analyzer does not see the fracture")
+	TEST_ASSERT(findtext(jointext(patient.get_wound_scan_lines(), ""), fracture.name), "The analyzer does not see the fracture")
 
 	var/obj/item/stack/medical/bandage/bandage = allocate(/obj/item/stack/medical/bandage)
 	TEST_ASSERT(patient.get_treatable_wound(leg, bandage) == fracture, "A bandage cannot splint a fracture")

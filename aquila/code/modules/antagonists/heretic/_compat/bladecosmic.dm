@@ -118,14 +118,14 @@
 #define TRAIT_HERETIC_BLEED_RESISTANCE "heretic_bleed_resistance"
 
 // Odpowiednik ran z tg: TRAIT_NEVER_WOUNDED nie krwawi wcale, TRAIT_HARDLY_WOUNDED i odporność pojedynkowicza osłabiają krwawienie
-/mob/living/carbon/add_bleeding(bleed_level)
+/mob/living/carbon/add_bleeding(bleed_level, zone)
 	if(HAS_TRAIT(src, TRAIT_NEVER_WOUNDED))
 		return
 	if(HAS_TRAIT(src, TRAIT_HERETIC_BLEED_RESISTANCE))
 		bleed_level *= 0.6
 	if(HAS_TRAIT(src, TRAIT_HARDLY_WOUNDED))
 		bleed_level *= 0.5
-	return ..(bleed_level)
+	return ..(bleed_level, zone) // strefa krwawienia (blood_limbs.dm)
 
 // ---------------------------------------------------------------------------
 // Pola kosmiczne (tg: code/game/objects/effects/forcefields.dm)
