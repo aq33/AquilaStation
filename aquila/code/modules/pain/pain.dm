@@ -29,6 +29,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/consumable/ethanol/painkiller = 25,
 	/datum/reagent/medicine/sal_acid = 20,
 	/datum/reagent/medicine/epinephrine = 10,
+	/datum/reagent/consumable/capsaicin = 10, // ostre: endorfiny (moduł potrzeb, aquila/code/modules/needs/)
 ))
 
 /mob/living/carbon/human
