@@ -108,7 +108,7 @@
 		balloon_alert(user, "pas jest pełny!")
 		return 0
 	balloon_alert(user, "przekładasz naboje...")
-	if(!do_after(user, 1.5 SECONDS, source))
+	if(!do_after(user, 1.5 SECONDS, TRUE, source))
 		return 0
 	var/moved = 0
 	for(var/obj/item/ammo_casing/shotgun/shell as anything in shells)

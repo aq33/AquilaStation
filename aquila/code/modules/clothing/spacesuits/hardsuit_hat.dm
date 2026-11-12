@@ -100,6 +100,13 @@
 		return
 	return ..()
 
+// Alt-klik na kombinezon zdejmuje czapkę także ze schowanego hełmu
+/obj/item/clothing/suit/space/hardsuit/AltClick(mob/user)
+	if(helmet?.attached_hat && user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
+		helmet.detach_hat(user)
+		return
+	return ..()
+
 // Stabilizator czapki MOD: MOD-ów już nie ma, a w hardsuicie czapkę trzyma sam hełm, więc moduł nic nie robi
 /obj/item/mod/module/hat_stabilizer/on_part_activation()
 	return

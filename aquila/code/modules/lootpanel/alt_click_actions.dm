@@ -93,6 +93,9 @@
 /obj/item/clothing/suit/hooded/wintercoat
 	alt_click_loot = FALSE
 
+/obj/item/clothing/suit/space/hardsuit
+	alt_click_loot = FALSE
+
 /obj/item/clothing/suit/toggle
 	alt_click_loot = FALSE
 

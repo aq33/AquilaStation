@@ -51,6 +51,9 @@
 		to_chat(user, "<span class='notice'>Jesteś za daleko!</span>")
 		to_chat(M, "<span class='notice'>Jesteś za daleko!</span>")
 		return
+	// alert() czeka na odpowiedź partnera: przez ten czas proszący mógł stracić przytomność
+	if(user.stat != CONSCIOUS || M.stat != CONSCIOUS)
+		return
 
 	M.set_resting(TRUE)
 	M.forceMove(user.loc)
