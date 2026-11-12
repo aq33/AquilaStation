@@ -1948,7 +1948,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Diphenhydramine (`/medicine/diphenhydramine`) | Difenhydramina | ż; nowe |
 | Earthsblood (`/medicine/earthsblood`) | Krew ziemi | ż; nowe |
 | Ephedrine (`/medicine/ephedrine`) | Efedryna | ż; istniejące |
-| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące |
+| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące; to też adrenalina z bólu i nadnerczy, osobnego reagentu „Adrenalina” nie ma |
 | Godblood (`/medicine/omnizine/godblood`) | Krew boga | ż; nowe |
 | Haloperidol (`/medicine/haloperidol`) | Haloperidol | m; istniejące; bez zmian |
 | Hepanephrodaxon (`/medicine/hepanephrodaxon`) | Hepanefrodakson | m; nowe |

@@ -1,21 +1,22 @@
-// AQUILA - adrenaline (medycyna 4). Nobody we compared has adrenaline that runs out: tgstation gives "Determination"
+// AQUILA - adrenaline (medycyna 4). Adrenaline is epinephrine: one reagent, /datum/reagent/medicine/epinephrine, and
+// this file adds the pain side to it. Nobody we compared has adrenaline that runs out: tgstation gives "Determination"
 // for every new wound, Shitmed (Polonium) has a disabled pain shock multiplier. Here the adrenal glands keep a reserve:
-// strong pain releases adrenaline into the blood until the reserve runs dry, and it refills slowly only while the pain
-// is small. An autoinjector (survival box, or mixed: epinephrine + sugar + salt) skips the reserve, but every dose
-// builds tolerance, so the next works weaker. Adrenaline numbs pain and speeds up stamina; when a big dose (an
-// autoinjector) wears off comes the crash (stamina). Overdose strains the heart.
+// strong pain releases epinephrine into the blood until the reserve runs dry, and it refills slowly only while the pain
+// is small. An autoinjector (survival box) or any other epinephrine skips the reserve, but every dose builds tolerance,
+// so the next works weaker. It numbs pain and speeds up stamina; when a big dose (an autoinjector) wears off comes the
+// crash (stamina). Overdose also strains the heart.
 
 /// Computed pain at which the glands release adrenaline
 #define AQ_ADRENAL_PAIN_THRESHOLD 40
-/// One release: adrenaline added and reserve used
-#define AQ_ADRENAL_RELEASE_UNITS 5
+/// One release: epinephrine added and reserve used (epinephrine metabolises at 0.1u per Life, so 3u last about a minute)
+#define AQ_ADRENAL_RELEASE_UNITS 3
 #define AQ_ADRENAL_RELEASE_COST 20
 #define AQ_ADRENAL_RELEASE_COOLDOWN (30 SECONDS)
 /// Reserve regained per Life (2 s) while the pain is small: empty to full in about 7 minutes
 #define AQ_ADRENAL_REGEN 0.5
 /// Pain adrenaline takes off at no tolerance
 #define AQ_ADRENALINE_PAIN_STRENGTH 45
-/// Adrenaline in the blood above which the rush ends with a crash (a natural release is 5u, an autoinjector 10u)
+/// Epinephrine in the blood above which the rush ends with a crash (a natural release is 3u, an autoinjector 10u)
 #define AQ_ADRENALINE_CRASH_PEAK 8
 /// Tolerance gained per unit metabolised, and lost per Life
 #define AQ_ADRENALINE_TOLERANCE_GAIN 0.04
@@ -37,7 +38,7 @@
 	aq_adrenaline_tolerance = max(0, aq_adrenaline_tolerance - AQ_ADRENALINE_TOLERANCE_DECAY)
 	if(stat == DEAD || !reagents)
 		return
-	var/in_blood = reagents.get_reagent_amount(/datum/reagent/medicine/adrenaline)
+	var/in_blood = reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine)
 	if(aq_pain_raw < 20 && !in_blood)
 		aq_adrenal_reserve = min(100, aq_adrenal_reserve + AQ_ADRENAL_REGEN)
 		return
@@ -47,7 +48,7 @@
 		return
 	aq_next_adrenal_release = world.time + AQ_ADRENAL_RELEASE_COOLDOWN
 	aq_adrenal_reserve = max(0, aq_adrenal_reserve - AQ_ADRENAL_RELEASE_COST)
-	reagents.add_reagent(/datum/reagent/medicine/adrenaline, AQ_ADRENAL_RELEASE_UNITS)
+	reagents.add_reagent(/datum/reagent/medicine/epinephrine, AQ_ADRENAL_RELEASE_UNITS)
 	if(stat != CONSCIOUS)
 		return
 	if(aq_adrenal_reserve < AQ_ADRENAL_RELEASE_COST / 2)
@@ -55,26 +56,19 @@
 	else
 		to_chat(src, "<span class='notice'>Serce wali jak młot, adrenalina tłumi ból.</span>")
 
-// --- Reagent ---
+// --- Reagent: epinephrine (core medicine_reagents.dm) is the adrenaline ---
 
-/datum/reagent/medicine/adrenaline
-	name = "Adrenalina"
-	description = "Hormon walki lub ucieczki. Tłumi ból i przyspiesza odzyskiwanie sił, ale po wygaśnięciu przychodzi zmęczenie. Kolejne dawki w krótkim czasie działają coraz słabiej. Przedawkowanie obciąża serce."
-	reagent_state = LIQUID
-	color = "#F2E3C6"
-	chem_flags = CHEMICAL_RNG_GENERAL
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 30
-	taste_description = "metal"
-	/// Most adrenaline in the blood during this rush; a big rush ends with a crash
+/datum/reagent/medicine/epinephrine
+	description = "Epinefryna, czyli adrenalina: hormon walki lub ucieczki. Lekko zwiększa odporność na ogłuszenia, tłumi ból i przyspiesza odzyskiwanie sił. W stanie krytycznym powoli leczy obrażenia i reguluje utratę tlenu. Po dużej dawce przychodzi zmęczenie, a kolejne dawki w krótkim czasie tłumią ból coraz słabiej. Przedawkowanie powoduje osłabienie, obrażenia od toksyn i obciąża serce."
+	/// Most epinephrine in the blood during this rush; a big rush ends with a crash
 	var/peak = 0
 
-/datum/reagent/medicine/adrenaline/on_mob_metabolize(mob/living/L)
+/datum/reagent/medicine/epinephrine/on_mob_metabolize(mob/living/carbon/M)
 	..()
-	L.stamina?.add_regen_multiplier("aq_adrenaline", 1.5)
-	L.adjustStaminaLoss(-30)
+	M.stamina?.add_regen_multiplier("aq_adrenaline", 1.5)
+	M.adjustStaminaLoss(-30)
 
-/datum/reagent/medicine/adrenaline/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/epinephrine/on_mob_life(mob/living/carbon/M)
 	peak = max(peak, volume)
 	var/mob/living/carbon/human/human = M
 	if(istype(human))
@@ -83,26 +77,19 @@
 		M.Jitter(2)
 	return ..()
 
-/datum/reagent/medicine/adrenaline/on_mob_end_metabolize(mob/living/L)
-	L.stamina?.remove_regen_multiplier("aq_adrenaline")
-	// Only a big rush (an autoinjector, 10u) crashes; the glands' own 5u releases do not
-	if(peak >= AQ_ADRENALINE_CRASH_PEAK && L.stat != DEAD)
-		L.apply_status_effect(/datum/status_effect/aq_adrenaline_crash)
+/datum/reagent/medicine/epinephrine/on_mob_end_metabolize(mob/living/carbon/M)
+	M.stamina?.remove_regen_multiplier("aq_adrenaline")
+	// Only a big rush (an autoinjector, 10u) crashes; the glands' own 3u releases do not
+	if(peak >= AQ_ADRENALINE_CRASH_PEAK && M.stat != DEAD)
+		M.apply_status_effect(/datum/status_effect/aq_adrenaline_crash)
 	peak = 0
 	..()
 
-/datum/reagent/medicine/adrenaline/overdose_process(mob/living/M)
+/datum/reagent/medicine/epinephrine/overdose_process(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1 * REM)
-	M.Jitter(5)
-	M.Dizzy(2)
 	if(prob(10))
 		to_chat(M, "<span class='danger'>Serce łomocze nierówno, brakuje ci tchu!</span>")
-		M.losebreath++
-	..()
-	. = TRUE
-
-/datum/reagent/medicine/adrenaline // fermichem (aquila/code/modules/reagents/chemistry/fermi/)
-	ph = 6.5
+	return ..()
 
 /// After a rush: stamina drops and comes back slowly for a while (tgstation determination crash)
 /datum/status_effect/aq_adrenaline_crash
@@ -120,28 +107,15 @@
 /datum/status_effect/aq_adrenaline_crash/on_remove()
 	owner.stamina?.remove_regen_multiplier("aq_adrenaline_crash")
 
-// --- Recipe ---
-
-/datum/chemical_reaction/aq_adrenaline
-	name = "Adrenalina"
-	id = /datum/reagent/medicine/adrenaline
-	results = list(/datum/reagent/medicine/adrenaline = 2)
-	required_reagents = list(/datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/sodiumchloride = 1)
-	optimal_temp = 320
-	optimal_ph_min = 5
-	optimal_ph_max = 8
-	purity_min = 0.1
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_OTHER
-
 // --- Autoinjector ---
 
 /obj/item/reagent_containers/hypospray/medipen/aq_adrenaline
 	name = "autostrzykawka z adrenaliną"
-	desc = "Jednorazowa autostrzykawka z 10 jednostkami adrenaliny. Tłumi ból i daje chwilę sił, gdy własne nadnercza już nie nadążają. Potem przychodzi zmęczenie, a kolejne dawki działają słabiej."
+	desc = "Jednorazowa autostrzykawka z 10 jednostkami epinefryny, czyli adrenaliny. Tłumi ból i daje chwilę sił, gdy własne nadnercza już nie nadążają. Potem przychodzi zmęczenie, a kolejne dawki działają słabiej."
 	icon = 'aquila/icons/obj/medical/adrenaline_pen.dmi'
 	icon_state = "adrenalinepen"
 	item_state = "medipen"
-	list_reagents = list(/datum/reagent/medicine/adrenaline = 10)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 10)
 
 /// One adrenaline autoinjector in every crew survival box, before the bandages are added
 /obj/item/storage/box/survival/PopulateContents()
