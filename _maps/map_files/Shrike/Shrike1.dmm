@@ -6,6 +6,17 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"ab" = (
+/obj/machinery/computer/ship/dradis/sensors/console{
+	dir = 8
+	},
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/plasteel/ridged/steel,
+/area/bridge{
+	lighting_colour_bulb = "#c1e1ff";
+	lighting_colour_night = "#c1e1ff";
+	lighting_colour_tube = "#c1e1ff"
+	})
 "ad" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
@@ -3367,17 +3378,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"pk" = (
-/obj/machinery/computer/ship/dradis/console{
-	dir = 8
-	},
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/plasteel/ridged/steel,
-/area/bridge{
-	lighting_colour_bulb = "#c1e1ff";
-	lighting_colour_night = "#c1e1ff";
-	lighting_colour_tube = "#c1e1ff"
-	})
 "pm" = (
 /obj/structure/window/spawner/north,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -49670,7 +49670,7 @@ VE
 MJ
 Yq
 ob
-pk
+ab
 RN
 Ox
 LD

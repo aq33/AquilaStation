@@ -32,7 +32,8 @@
 		gunner = user
 	observe_ship(user)
 	increment_selected_weapon(user)
-	dradis?.attack_hand(user)
+	if(!skip_dradis_popup(position)) // AQ EDIT - strzelec ma konsolę kontroli ognia, DRADIS jest do latania (aquila/code/modules/overmap/fire_control.dm)
+		dradis?.attack_hand(user)
 	if(position & (OVERMAP_USER_ROLE_PILOT | OVERMAP_USER_ROLE_GUNNER))
 		user.add_verb(overmap_verbs) //Add the ship panel verbs
 	if(mass < MASS_MEDIUM)

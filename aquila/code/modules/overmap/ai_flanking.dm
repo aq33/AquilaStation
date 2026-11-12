@@ -69,6 +69,10 @@ GLOBAL_LIST_INIT(ai_flank_slots, list(list(90), list(-90, 90), list(-90, 90, 180
 /obj/structure/overmap/move_toward(atom/target, ram_target = FALSE, ignore_all_collisions = FALSE)
 	if(ram_target || !isovermap(target))
 		return ..()
+	// Cel znany tylko z meldunku floty: flankowanie liczyłoby miejsce od jego prawdziwej pozycji,
+	// więc lecimy do meldunku (overmap_scale.dm, get_ai_blind_point)
+	if(get_ai_blind_point(target))
+		return ..()
 	var/turf/slot = get_ai_flank_point(target)
 	if(!slot)
 		return ..()

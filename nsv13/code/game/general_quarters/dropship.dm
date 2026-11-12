@@ -177,7 +177,7 @@
 	to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
 	to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 	to_chat(user, "<span class='notice'>Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
-	to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
+	to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by włączać i wyłączać wspomaganie bezwładnościowe (IAS). Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
 
 /obj/machinery/computer/ship/helm/console/dropship/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

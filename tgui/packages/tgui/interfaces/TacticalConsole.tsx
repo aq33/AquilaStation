@@ -8,6 +8,7 @@ import {
   NumberInput,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../backend';
@@ -33,6 +34,17 @@ type Data = {
   quadrant_fs_armour_max: any;
   target_name: any;
   weapons: any;
+  // AQ EDIT - cele od operatora sensorów (aquila/code/modules/overmap/sensor_console.dm)
+  sensor_station: boolean;
+  designated_targets: {
+    id: string;
+    name: string;
+    designation: string;
+    distance: number;
+    bearing: number;
+    painted: boolean;
+    locked: boolean;
+  }[];
 };
 
 export const TacticalConsole = (props) => {
@@ -224,6 +236,58 @@ export const TacticalConsole = (props) => {
               })}
             </LabeledList>
           </Section>
+          {/* AQ EDIT START - cele od operatora sensorów (aquila/code/modules/overmap/sensor_console.dm) */}
+          {!!data.sensor_station && (
+            <Section title="Cele od operatora rozpoznania:">
+              {(data.designated_targets || []).length === 0 && (
+                <Box color="label">brak</Box>
+              )}
+              {(data.designated_targets || []).map((target) => (
+                <Stack key={target.id} align="center" mb={0.5}>
+                  <Stack.Item grow>
+                    <Box
+                      inline
+                      bold={target.designation === 'primary'}
+                      color={
+                        target.designation === 'primary' ? 'average' : undefined
+                      }
+                    >
+                      {target.name}
+                    </Box>
+                    {' · ' +
+                      (target.designation === 'primary'
+                        ? 'cel główny'
+                        : 'drugorzędny') +
+                      ' · ' +
+                      target.distance +
+                      ' pól · namiar ' +
+                      target.bearing +
+                      '°'}
+                  </Stack.Item>
+                  <Stack.Item>
+                    {target.locked ? (
+                      <Box color="bad">namierzony</Box>
+                    ) : (
+                      <Button
+                        icon="crosshairs"
+                        tooltip={
+                          target.painted
+                            ? 'Cel jest oznaczony, ustaw go jako cel ognia.'
+                            : 'Rozpocznij namierzanie celu.'
+                        }
+                        onClick={() =>
+                          act('lock_designated', { id: target.id })
+                        }
+                      >
+                        {target.painted ? 'Wybierz' : 'Namierz'}
+                      </Button>
+                    )}
+                  </Stack.Item>
+                </Stack>
+              ))}
+            </Section>
+          )}
+          {/* AQ EDIT END */}
           <Section title="Śledzenie:">
             {!data.no_gun_cam && (
               <Button
