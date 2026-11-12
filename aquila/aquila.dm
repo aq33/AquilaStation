@@ -665,6 +665,7 @@
 #include "code\modules\clothing\masks\hailer.dm"
 #include "code\modules\clothing\shoes\miscellaneous.dm"
 #include "code\modules\clothing\spacesuits\hardsuit.dm"
+#include "code\modules\clothing\spacesuits\hardsuit_hat.dm"
 #include "code\modules\clothing\spacesuits\hardsuit_trauma.dm"
 #include "code\modules\clothing\suits\jobs.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
