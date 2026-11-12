@@ -4,7 +4,7 @@
 
 /// Głos SI (identyfikator głosu ElevenLabs)
 /datum/config_entry/string/ai_tts_voice
-	config_entry_value = "21m00Tcm4TlvDq8ikWAM"
+	config_entry_value = "UYKDdrPfKp4rQUAZgOs5"
 
 #define AQ_AI_TTS_MAX_CHARS 300
 #define AQ_AI_TTS_DELAY (60 SECONDS)
