@@ -906,6 +906,11 @@
       kręgosłup zamiast paraliżować na stałe.
   - imageadd: Na postaci widać bandaże, szyny, gorset i halo, kikuty i otwartą czaszkę
       przy operacji (sprite'y z tgstation i cmss13).
+  - tweak: Adrenalina i epinefryna to teraz jeden reagent, Epinefryna. Nadnercza i
+      autostrzykawka z adrenaliną podają epinefrynę, a każda epinefryna tłumi ból,
+      przy dużej dawce kończy się zmęczeniem, a kolejne dawki działają słabiej.
+  - rscdel: Usunięto osobny reagent Adrenalina i jego recepturę (epinefryna + cukier
+      + sól).
   sh4dow321:
   - rscadd: 'Stanowisko rozpoznania na mostku sześciu okrętów: operator steruje radarem,
       teleskopem, podczerwienią i nasłuchem i przekazuje cele mostkowi.'
