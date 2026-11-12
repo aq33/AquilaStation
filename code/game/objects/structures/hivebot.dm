@@ -24,11 +24,11 @@
 		bot_amt--
 		switch(bot_type)
 			if("norm")
-				new /mob/living/simple_animal/hostile/hivebot(get_turf(src))
+				new /mob/living/basic/hivebot(get_turf(src)) // AQ EDIT - basic moby
 			if("range")
-				new /mob/living/simple_animal/hostile/hivebot/range(get_turf(src))
+				new /mob/living/basic/hivebot/range(get_turf(src)) // AQ EDIT - basic moby
 			if("rapid")
-				new /mob/living/simple_animal/hostile/hivebot/rapid(get_turf(src))
+				new /mob/living/basic/hivebot/rapid(get_turf(src)) // AQ EDIT - basic moby
 	sleep(100)
 	visible_message("<span class='boldannounce'>[src] się odteleportowuje!</span>")
 	playsound(src.loc, 'sound/effects/empulse.ogg', 25, 1)

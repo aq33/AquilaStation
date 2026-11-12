@@ -1948,7 +1948,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Diphenhydramine (`/medicine/diphenhydramine`) | Difenhydramina | ż; nowe |
 | Earthsblood (`/medicine/earthsblood`) | Krew ziemi | ż; nowe |
 | Ephedrine (`/medicine/ephedrine`) | Efedryna | ż; istniejące |
-| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące |
+| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące; to też adrenalina z bólu i nadnerczy, osobnego reagentu „Adrenalina” nie ma |
 | Godblood (`/medicine/omnizine/godblood`) | Krew boga | ż; nowe |
 | Haloperidol (`/medicine/haloperidol`) | Haloperidol | m; istniejące; bez zmian |
 | Hepanephrodaxon (`/medicine/hepanephrodaxon`) | Hepanefrodakson | m; nowe |
@@ -3667,6 +3667,8 @@ Oznaczenia w kolumnie uwag:
 | watcher | obserwator | m; nowe |
 | magmawing / icewing watcher | ogniskrzydły / lodoskrzydły obserwator | m; nowe |
 | hivelord | władca roju | m; istniejące (mob, rdzeń regeneracyjny, holoparazyt); odrzucone: pan roju; legowisko: „legowisko władców roju” |
+| hivelord brood | pomiot władcy roju | m; istniejące; zdolność: „Wypuść pomiot” |
+| Launch Legion (ability) | Wystrzel legion | zdolność legionu; nowe |
 | basilisk | bazyliszek | m; nowe |
 | goldgrub | złoty pędrak | m; nowe |
 | gutlunch / gubbuck / guthen | żarłoczek / żarłoczek samiec / żarłoczka | m / m / ż; nowe |
@@ -3695,6 +3697,14 @@ Oznaczenia w kolumnie uwag:
 | walking mushroom | chodzący grzyb | m; istniejące |
 | venus human trap | ludzka muchołówka | ż; nowe |
 | pine tree | sosna | ż; nowe |
+| mimic / crate mimic | mimik / skrzynia (mimik udaje skrzynię) | m; istniejące |
+| creature (Netherworld) / blank body | istota / puste ciało | ż / n; istniejące |
+| Uncanny Movement (creature teleport) | Niesamowity ruch | m; nowe |
+| Tangle (venus human trap) | Oplątanie | n; nowe |
+| Inflate (fugu) | Nadmij się | istniejące |
+| Rustle (clownana) | Szelest | m; nowe |
+| banana glutton | coś, co kiedyś było klaunem | n; istniejące (nasz mutant/blob) |
+| Space Dragon / Fire Breath / Wing Buffet | Kosmiczny smok / Ogniste tchnienie / Atak podmuchem | m / n / m; istniejące / nowe / istniejące |
 
 ## 9. Obszary i pomieszczenia (nazwy `/area`)
 

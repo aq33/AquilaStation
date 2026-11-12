@@ -90,6 +90,22 @@
 		// trust fall exercise
 		return TRUE
 
+/// AQUILA: from tg 926bf40c5a; only attacks targets with one of the traits in BB_TARGET_ONLY_WITH_TRAITS (no list: anyone)
+/datum/targeting_strategy/basic/require_traits
+
+/datum/targeting_strategy/basic/require_traits/can_attack(mob/living/living_mob, atom/the_target, vision_range)
+	. = ..()
+	if (!.)
+		return FALSE
+	var/list/required_traits = living_mob.ai_controller.blackboard[BB_TARGET_ONLY_WITH_TRAITS]
+	if (!length(required_traits))
+		return TRUE
+
+	for (var/trait in required_traits)
+		if (HAS_TRAIT(the_target, trait))
+			return TRUE
+	return FALSE
+
 /// Returns true if the mob and target share factions
 /datum/targeting_strategy/basic/proc/faction_check(datum/ai_controller/controller, mob/living/living_mob, mob/living/the_target)
 	if (controller.blackboard[BB_ALWAYS_IGNORE_FACTION] || controller.blackboard[BB_TEMPORARILY_IGNORE_FACTION])

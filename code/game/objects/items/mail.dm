@@ -59,7 +59,7 @@
 			/obj/item/gun/ballistic/rifle/boltaction,
 			/obj/item/construction/rcd/arcd,
 			/obj/item/reagent_containers/spray/waterflower/superlube,
-			/mob/living/simple_animal/hostile/retaliate/clown,
+			/mob/living/basic/clown, // AQ EDIT - basic moby
 			/obj/item/clothing/accessory/holster/detective,
 			/obj/item/reagent_containers/hypospray/medipen/pumpup,
 			/obj/item/firing_pin,

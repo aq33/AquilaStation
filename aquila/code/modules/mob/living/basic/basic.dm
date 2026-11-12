@@ -45,6 +45,8 @@
 
 	///What kind of objects this mob can smash.
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
+	/// AQUILA: unaffected by nasty blocks (BLOCKING_NASTY weapons hurt melee attackers), as the simple animal var
+	var/hardattacks = FALSE
 
 	/// 1 for full damage, 0 for none, -1 for 1:1 heal from that source.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
@@ -143,6 +145,18 @@
 
 	if(discovery_points)
 		AddComponent(/datum/component/discoverable, discovery_points)
+
+	if(resize != RESIZE_DEFAULT_SIZE) // AQUILA: mapped sizes (simple animals apply them in update_mobility())
+		update_transform()
+
+/// AQUILA: `resize` scales the mob, as for simple animals (/mob/proc/update_transform() does nothing)
+/mob/living/basic/update_transform()
+	var/matrix/ntransform = matrix(transform)
+	if(resize == RESIZE_DEFAULT_SIZE)
+		return
+	ntransform.Scale(resize)
+	resize = RESIZE_DEFAULT_SIZE
+	animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 /mob/living/basic/Destroy()
 	QDEL_NULL(access_card)

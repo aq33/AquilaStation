@@ -1,5 +1,5 @@
 /datum/component/spawner
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/basic/carp) // AQ EDIT - basic moby
 	var/spawn_time = 300 //30 seconds default
 	var/list/spawned_mobs = list()
 	var/spawn_delay = 0
@@ -45,9 +45,15 @@
 		return 0
 	spawn_delay = world.time + spawn_time
 	var/chosen_mob_type = pick(mob_types)
-	var/mob/living/simple_animal/L = new chosen_mob_type(P.loc)
+	var/mob/living/L = new chosen_mob_type(P.loc) // AQ EDIT - basic moby
 	L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1)
 	spawned_mobs += L
-	L.nest = src
-	L.faction = src.faction
+	// AQ EDIT START - basic moby: only simple animals have a nest, basic mobs leave the list through signals
+	if(isanimal(L))
+		var/mob/living/simple_animal/simple_spawned = L
+		simple_spawned.nest = src
+	else
+		RegisterSignals(L, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(on_basic_spawned_gone))
+	// AQ EDIT END
+	L.faction = src.faction.Copy() // AQ EDIT - basic moby: własna lista, befriend() dopisuje do niej w miejscu
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")

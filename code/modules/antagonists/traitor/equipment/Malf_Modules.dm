@@ -648,7 +648,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/ranged/override_machine/proc/animate_machine(obj/machinery/M)
 	if(M && !QDELETED(M))
-		new/mob/living/simple_animal/hostile/mimic/copy/machine(get_turf(M), M, owner, 1)
+		new/mob/living/basic/mimic/copy/machine(get_turf(M), M, owner, 1) // AQ EDIT - basic moby
 
 /obj/effect/proc_holder/ranged_ai/override_machine
 	active = FALSE

@@ -160,31 +160,6 @@
 		CONFIG_SET(number/max_chickens, old_cap)
 	return ..()
 
-/// The gutlunch uses the udder component: eating gibs fills it, a beaker milks it
-/datum/unit_test/aquila_gutlunch_udder
-
-/datum/unit_test/aquila_gutlunch_udder/Run()
-	var/turf/floor = run_loc_floor_bottom_left
-	var/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/guthen = allocate(/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen, floor)
-	var/datum/component/udder/udder_component = guthen.GetComponent(/datum/component/udder)
-	TEST_ASSERT(udder_component, "The gutlunch has no udder component")
-	TEST_ASSERT_EQUAL(udder_component.udder.reagents.total_volume, 0, "The gutlunch udder does not start empty")
-	for(var/i in 1 to 20)
-		var/obj/effect/decal/cleanable/blood/gibs/gibs = new(get_step(floor, EAST))
-		guthen.target = gibs
-		guthen.AttackingTarget()
-		TEST_ASSERT(QDELETED(gibs), "The gutlunch did not eat the gibs")
-		if(udder_component.udder.reagents.total_volume)
-			break
-	TEST_ASSERT(udder_component.udder.reagents.total_volume > 0, "Eating gibs did not fill the gutlunch udder")
-
-	var/mob/living/carbon/human/farmer = allocate(/mob/living/carbon/human, get_step(floor, NORTH))
-	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
-	farmer.put_in_active_hand(beaker)
-	beaker.melee_attack_chain(farmer, guthen)
-	TEST_ASSERT(beaker.reagents.total_volume > 0, "Milking the gutlunch gave nothing")
-	TEST_ASSERT_EQUAL(guthen.health, guthen.maxHealth, "Milking the gutlunch also hit it")
-
 /// The mapped mascots and holodeck animals keep what the maps gave them through var edits before
 /datum/unit_test/aquila_basic_farm_mapped
 

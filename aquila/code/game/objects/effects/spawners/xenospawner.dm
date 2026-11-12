@@ -21,7 +21,7 @@
 /obj/effect/spawner/infectious_zombie_delivery/Initialize(mapload)
 	..()
 	var/turf/T = get_turf(src)
-	var/mob/living/simple_animal/hostile/zombie/Z = new /mob/living/simple_animal/hostile/zombie(T)
+	var/mob/living/basic/zombie/Z = new /mob/living/basic/zombie(T)
 	Z.infection_chance = 60
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)

@@ -19,7 +19,7 @@
 		/obj/item/organ/regenerative_core = 1,
 		/obj/item/food/monkeycube = 3,
 		/obj/item/stack/tile/grass = 1,
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 1
+		/mob/living/basic/mining/goliath = 1
 	)
 
 /datum/test_chamber_kit/pr_450/setup(list/spawned, list/turfs, turf/center, mob/user)
