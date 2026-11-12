@@ -1,7 +1,6 @@
 // AQUILA - opaska uciskowa (tourniquet) na wzór tgstation#95041, na naszym systemie krwawienia i ran.
-// Krwawienie Bee jest jedną liczbą na całego moba, więc śledzimy w przybliżeniu, ile krwawienia przyszło z której kończyny
-// (trafienia, rany cięte, oderwanie kończyny). Jak w tg opaska odcina 90% tego udziału, spowalnia nogę albo rękę,
-// a na szyi dusi. Nasze: noszona za długo powoduje niedokrwienie i martwicę kończyny.
+// Krwawienie jest liczone osobno dla każdej kończyny (blood_limbs.dm). Jak w tg opaska odcina 90% krwawienia swojej
+// kończyny, także nowego, spowalnia nogę albo rękę, a na szyi dusi. Nasze: noszona za długo powoduje niedokrwienie i martwicę kończyny.
 
 /// Po tym czasie zaczyna się niedokrwienie: obrażenia kończyny i spowolnienie rosną z każdą minutą
 #define TOURNIQUET_ISCHEMIA_TIME (3 MINUTES)
@@ -17,11 +16,6 @@
 #define TOURNIQUET_ARM_ACTION_MOD 0.5
 #define TOURNIQUET_MAX_SLOWDOWN 1.5
 
-/// Strefa ciała (ręka/noga) -> przybliżone krwawienie z tej kończyny
-/mob/living/carbon/var/list/aq_limb_bleed
-/// Suma krwawienia przypisanego już kończynom przez aq_add_limb_bleed. Wrappery trafień ją odejmują,
-/// żeby krwawienie z rany (apply_wound) albo oderwania kończyny w trakcie ciosu nie liczyło się drugi raz.
-/mob/living/carbon/var/aq_bleed_attributed = 0
 /// Strefa ciała -> założona opaska
 /mob/living/carbon/var/list/aq_tourniquets
 
@@ -39,121 +33,49 @@
 			return "szyja"
 	return zone
 
-// --- Krwawienie z kończyn ---
+// --- Krwawienie z kończyn (blood_limbs.dm trzyma krwawienie każdej strefy osobno) ---
 
 /mob/living/carbon/proc/aq_bleed_rate()
 	var/datum/status_effect/bleeding/bleed = has_status_effect(STATUS_EFFECT_BLEED)
 	return bleed ? bleed.bleed_rate : 0
 
-/// Odcina część krwawienia. Zwraca, ile faktycznie odcięto.
-/mob/living/carbon/proc/aq_clamp_bleeding(amount)
+/// Nowe krwawienie w strefie pod opaską: opaska zatrzymuje 90%. Zwraca, ile przechodzi.
+/mob/living/carbon/proc/aq_tourniquet_absorb(zone, amount)
+	var/obj/item/tourniquet/tourniquet = LAZYACCESS(aq_tourniquets, zone)
+	if(!tourniquet || amount <= 0)
+		return amount
+	var/blocked = amount * TOURNIQUET_BLEED_BLOCK
+	tourniquet.held_bleed += blocked
+	return amount - blocked
+
+/// Odcina część krwawienia jednej strefy. Zwraca, ile faktycznie odcięto.
+/mob/living/carbon/proc/aq_clamp_limb_bleeding(zone, amount)
 	var/datum/status_effect/bleeding/bleed = has_status_effect(STATUS_EFFECT_BLEED)
 	if(!bleed || amount <= 0)
 		return 0
-	amount = min(amount, bleed.bleed_rate)
-	bleed.bleed_rate -= amount
+	amount = min(amount, bleed.limb_bleed[zone] || 0)
+	if(amount <= 0)
+		return 0
+	bleed.change_limb_bleeding(zone, -amount)
 	if(bleed.bleed_rate <= 0 && bleed.bandaged_bleeding <= 0)
 		remove_status_effect(STATUS_EFFECT_BLEED)
 	else
 		bleed.update_icon()
 	return amount
 
-// Opatrzenie albo przypalenie zmniejsza globalne krwawienie, więc udziały kończyn maleją w tej samej proporcji.
-/mob/living/carbon/cauterise_wounds(amount = INFINITY)
-	var/bleed_before = aq_bleed_rate()
-	. = ..()
-	aq_scale_limb_bleed(bleed_before)
-
-/mob/living/carbon/suppress_bloodloss(amount)
-	var/bleed_before = aq_bleed_rate()
-	. = ..()
-	aq_scale_limb_bleed(bleed_before)
-
-/mob/living/carbon/proc/aq_scale_limb_bleed(bleed_before)
-	var/bleed_after = aq_bleed_rate()
-	if(bleed_after <= 0 || bleed_before <= 0)
-		aq_limb_bleed = null
-		return
-	for(var/zone in aq_limb_bleed)
-		aq_limb_bleed[zone] *= min(1, bleed_after / bleed_before)
-	update_wound_overlays()
-
-/// Przywraca krwawienie zatrzymane wcześniej opaską (bez dźwięku i bez wzoru łączenia z add_bleeding)
-/mob/living/carbon/proc/aq_restore_bleeding(amount)
+/// Przywraca krwawienie strefy zatrzymane wcześniej opaską (bez dźwięku i bez wzoru łączenia z add_bleeding)
+/mob/living/carbon/proc/aq_restore_limb_bleeding(zone, amount)
 	if(amount <= 0 || HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		return
 	var/datum/status_effect/bleeding/bleed = has_status_effect(STATUS_EFFECT_BLEED)
-	if(bleed)
-		bleed.bleed_rate += amount
-		bleed.update_icon()
-	else
-		apply_status_effect(dna?.species?.bleed_effect || STATUS_EFFECT_BLEED, amount)
-
-/// Zapisuje nowe krwawienie jako pochodzące z kończyny. Pod opaską od razu je odcina.
-/mob/living/carbon/proc/aq_add_limb_bleed(zone, amount)
-	if(amount <= 0 || !(zone in GLOB.aq_bleed_zones))
-		return
-	var/obj/item/tourniquet/tourniquet = LAZYACCESS(aq_tourniquets, zone)
-	if(tourniquet)
-		var/blocked = aq_clamp_bleeding(amount * TOURNIQUET_BLEED_BLOCK)
-		tourniquet.held_bleed += blocked
-		amount -= blocked
-		if(amount <= 0)
+	if(!bleed)
+		bleed = apply_status_effect(dna?.species?.bleed_effect || STATUS_EFFECT_BLEED, 0, zone)
+		if(!bleed)
 			return
-	aq_bleed_attributed += amount
-	LAZYINITLIST(aq_limb_bleed)
-	aq_limb_bleed[zone] += amount
-	update_wound_overlays()
-
-/// Rozdziela przyrost krwawienia na kończyny, które dostały obrażenia od czasu snapshotu
-/mob/living/carbon/proc/aq_attribute_bleed(list/snapshot, bleed_before, attributed_before)
-	// Bez tego, co w trakcie trafienia przypisano już kończynom (rana, oderwanie)
-	var/delta = aq_bleed_rate() - bleed_before - (aq_bleed_attributed - attributed_before)
-	if(delta <= 0)
-		return
-	var/list/hit_zones = list()
-	var/total = 0
-	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		var/list/before = snapshot[limb]
-		if(!before || !(limb.body_zone in GLOB.aq_bleed_zones))
-			continue
-		var/taken = (limb.brute_dam - before[1]) + (limb.burn_dam - before[2])
-		if(taken > 0)
-			hit_zones[limb.body_zone] = taken
-			total += taken
-	for(var/zone in hit_zones)
-		aq_add_limb_bleed(zone, delta * hit_zones[zone] / total)
+	bleed.change_limb_bleeding(zone, amount)
+	bleed.update_icon()
 
 GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD))
-/// Strefy, z których śledzimy krwawienie (nakładki krwawienia na ciele); klatka nie ma opaski
-GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD, BODY_ZONE_CHEST))
-
-/mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
-	var/list/snapshot = aq_limb_damage_snapshot()
-	var/bleed_before = aq_bleed_rate()
-	var/attributed_before = aq_bleed_attributed
-	. = ..()
-	aq_attribute_bleed(snapshot, bleed_before, attributed_before)
-
-/mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
-	var/list/snapshot = aq_limb_damage_snapshot()
-	var/bleed_before = aq_bleed_rate()
-	var/attributed_before = aq_bleed_attributed
-	. = ..()
-	aq_attribute_bleed(snapshot, bleed_before, attributed_before)
-
-/obj/item/bodypart/dismember(dam_type = BRUTE)
-	var/mob/living/carbon/old_owner = owner
-	var/bleed_before = old_owner?.aq_bleed_rate()
-	. = ..()
-	if(. && old_owner)
-		old_owner.aq_add_limb_bleed(body_zone, old_owner.aq_bleed_rate() - bleed_before)
-
-// Ponowne otwarcie rany ciętej liczy się do kończyny, więc opaska zatrzymuje 90% tego krwawienia.
-/datum/wound/slash/wound_effects(delta_time)
-	var/bleed_before = victim.aq_bleed_rate()
-	. = ..()
-	victim.aq_add_limb_bleed(limb.body_zone, victim.aq_bleed_rate() - bleed_before)
 
 /mob/living/carbon/proc/update_tourniquet_slowdown()
 	var/slowdown = 0
@@ -174,7 +96,6 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 		. += "<span class='alert'>[capitalize(aq_tourniquet_zone_name(zone))]: <b>opaska uciskowa</b> od [DisplayTimeText(tourniquet.worn_time())][tourniquet.get_state_text()].</span>"
 
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
-	aq_limb_bleed = null
 	for(var/zone in aq_tourniquets?.Copy())
 		var/obj/item/tourniquet/tourniquet = aq_tourniquets[zone]
 		tourniquet.held_bleed = 0
@@ -234,7 +155,7 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 	var/self = user == patient
 	// Czasy z tg: 5 s, bez krwawiącej rany i na szyi dwa razy dłużej, na cudzej kończynie dwa razy krócej
 	var/apply_time = 5 SECONDS
-	if(limb && !LAZYACCESS(patient.aq_limb_bleed, target_zone) && !limb.get_wound(WOUND_SLASH))
+	if(limb && !patient.aq_get_limb_bleed(target_zone) && !limb.get_wound(WOUND_SLASH))
 		apply_time *= 2
 	if(target_zone == BODY_ZONE_HEAD)
 		apply_time *= 2
@@ -267,15 +188,7 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 	next_warning = world.time + TOURNIQUET_ISCHEMIA_TIME
 	forceMove(patient)
 	LAZYSET(patient.aq_tourniquets, zone, src)
-	var/share = LAZYACCESS(patient.aq_limb_bleed, zone)
-	if(!share)
-		share = guess_limb_bleed()
-	if(patient.aq_limb_bleed)
-		patient.aq_limb_bleed -= zone
-	held_bleed = patient.aq_clamp_bleeding(share * TOURNIQUET_BLEED_BLOCK)
-	if(share - held_bleed > 0)
-		LAZYINITLIST(patient.aq_limb_bleed)
-		patient.aq_limb_bleed[zone] = share - held_bleed
+	held_bleed = patient.aq_clamp_limb_bleeding(zone, patient.aq_get_limb_bleed(zone) * TOURNIQUET_BLEED_BLOCK)
 	if(zone == BODY_ZONE_L_ARM || zone == BODY_ZONE_R_ARM)
 		slows_actions = TRUE
 		patient.next_move_modifier += TOURNIQUET_ARM_ACTION_MOD
@@ -285,15 +198,6 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 	alert?.tourniquet = src
 	patient.update_tourniquet_slowdown()
 	START_PROCESSING(SSobj, src)
-
-/// Krwawienie z kończyny, której nie śledziliśmy (np. rana sprzed założenia opaski)
-/obj/item/tourniquet/proc/guess_limb_bleed()
-	var/obj/item/bodypart/limb = wearer.get_bodypart(zone)
-	if(!limb)
-		return BLEED_CRITICAL // kikut
-	. = 0
-	for(var/datum/wound/slash/cut in limb.wounds)
-		. += cut.initial_bleed
 
 /// Zdejmuje opaskę z pacjenta. Zwraca krwawienie, jeśli rana wciąż jest otwarta.
 /obj/item/tourniquet/proc/detach(silent = FALSE)
@@ -314,9 +218,7 @@ GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZON
 		var/obj/item/bodypart/limb = patient.get_bodypart(old_zone)
 		var/still_open = !limb || limb.get_wound(WOUND_SLASH)
 		if(held_bleed > 0 && (worn < TOURNIQUET_CLOT_TIME || still_open))
-			patient.aq_restore_bleeding(held_bleed)
-			LAZYINITLIST(patient.aq_limb_bleed)
-			patient.aq_limb_bleed[old_zone] += held_bleed
+			patient.aq_restore_limb_bleeding(old_zone, held_bleed)
 			if(!silent)
 				to_chat(patient, "<span class='danger'>Krew znów płynie z rany ([aq_tourniquet_zone_name(old_zone)])!</span>")
 		if(worn >= TOURNIQUET_NECROSIS_TIME && limb && old_zone != BODY_ZONE_HEAD && patient.stat != DEAD)

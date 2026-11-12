@@ -44,7 +44,7 @@
 
 /datum/surgery_operation/limb/add_dental_implant/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/reagent_containers/pill/tool, list/operation_args)
 	var/mob/living/carbon/patient = limb.owner
-	patient.cauterise_wounds()
+	patient.cauterise_wounds(zone = BODY_ZONE_HEAD)
 	if(!surgeon.transferItemToLoc(tool, patient, TRUE))
 		return
 

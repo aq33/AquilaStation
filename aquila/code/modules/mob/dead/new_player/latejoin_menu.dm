@@ -22,18 +22,19 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 	return list(get_asset_datum(/datum/asset/spritesheet/job_icons))
 
 /// Działy w kolejności wyświetlania: nazwa, kolor, lista ról
+/// Kolory Ochrony, Inżynierii i Zaopatrzenia to barwy Żandarmerii, Orlenu i InPostu (jak COLORS.department w tgui/constants.ts)
 /datum/latejoin_menu/proc/get_departments()
 	var/static/list/departments
 	if(departments)
 		return departments
 	departments = list(
 		list("name" = "Dowództwo", "color" = "#9db5ff", "jobs" = GLOB.command_positions),
-		list("name" = "Ochrona", "color" = "#7c8be6", "jobs" = GLOB.security_positions),
+		list("name" = "Ochrona", "color" = "#5fbf7a", "jobs" = GLOB.security_positions),
 		list("name" = "Uzbrojenie", "color" = "#ffa94d", "jobs" = GLOB.munitions_positions),
-		list("name" = "Inżynieria", "color" = "#f5c04a", "jobs" = GLOB.engineering_positions),
+		list("name" = "Inżynieria", "color" = "#e03a3e", "jobs" = GLOB.engineering_positions),
 		list("name" = "Medyczny", "color" = "#5fd1c4", "jobs" = GLOB.medical_positions),
 		list("name" = "Nauka", "color" = "#d48cff", "jobs" = GLOB.science_positions),
-		list("name" = "Zaopatrzenie", "color" = "#c9a173", "jobs" = GLOB.supply_positions),
+		list("name" = "Zaopatrzenie", "color" = "#ffcd00", "jobs" = GLOB.supply_positions),
 		list("name" = "Cywile", "color" = "#9ed672", "jobs" = GLOB.civilian_positions),
 		list("name" = "Specjalne", "color" = "#bbbbbb", "jobs" = GLOB.gimmick_positions),
 		list("name" = "Syntetyki", "color" = "#ff8fd0", "jobs" = GLOB.nonhuman_positions - JOB_NAME_PAI),

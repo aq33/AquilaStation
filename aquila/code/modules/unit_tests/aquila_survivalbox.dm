@@ -19,14 +19,19 @@
 	overlays_now = survivalbox_test_overlays(box)
 	TEST_ASSERT(!("overlay-survivalbox-helmet" in overlays_now), "Helmet overlay stayed after the helmet was taken out")
 
-	var/obj/item/reagent_containers/hypospray/medipen/pen = locate() in box
-	TEST_ASSERT(pen, "Survival kit has no medipen")
-	SEND_SIGNAL(box, COMSIG_TRY_STORAGE_TAKE, pen, run_loc_floor_bottom_left)
+	// The pouch holds the medipen and the adrenaline autoinjector: it opens when both are out
+	var/list/pens = list()
+	for(var/obj/item/reagent_containers/hypospray/medipen/pen in box)
+		pens += pen
+	TEST_ASSERT(length(pens), "Survival kit has no medipen")
+	for(var/obj/item/reagent_containers/hypospray/medipen/pen as anything in pens)
+		SEND_SIGNAL(box, COMSIG_TRY_STORAGE_TAKE, pen, run_loc_floor_bottom_left)
 	overlays_now = survivalbox_test_overlays(box)
 	TEST_ASSERT("overlay-survivalbox-first-pouch" in overlays_now, "Medipen pouch did not open after the medipen was taken out")
 	TEST_ASSERT(!("overlay-survivalbox-second-pouch" in overlays_now), "Mask pouch opened although the mask is still inside")
 
-	SEND_SIGNAL(box, COMSIG_TRY_STORAGE_INSERT, pen, null, TRUE, TRUE)
+	for(var/obj/item/reagent_containers/hypospray/medipen/pen as anything in pens)
+		SEND_SIGNAL(box, COMSIG_TRY_STORAGE_INSERT, pen, null, TRUE, TRUE)
 	SEND_SIGNAL(box, COMSIG_TRY_STORAGE_INSERT, helmet, null, TRUE, TRUE)
 	overlays_now = survivalbox_test_overlays(box)
 	TEST_ASSERT("overlay-survivalbox-helmet" in overlays_now, "Helmet overlay did not come back after putting the helmet back")

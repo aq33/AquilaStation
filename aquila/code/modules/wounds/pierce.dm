@@ -16,7 +16,7 @@
 	var/cauterized_into
 
 /datum/wound/pierce/on_apply()
-	victim.add_bleeding(initial_bleed)
+	victim.add_bleeding(initial_bleed, limb.body_zone)
 	if(wound_source_is_projectile)
 		name = replacetext(name, "kłuta", "postrzałowa")
 		examine_desc = replacetext(examine_desc, "kłut", "postrzałow")
@@ -51,7 +51,7 @@
 	victim.apply_damage(2 + severity, BURN, limb)
 	if(prob(30))
 		victim.emote("scream")
-	victim.suppress_bloodloss(initial_bleed)
+	victim.suppress_bloodloss(initial_bleed, limb.body_zone)
 	user.visible_message("<span class='green'>[user] przypala ranę ([limb.name]) [victim].</span>", "<span class='green'>Przypalasz ranę ([limb.name]).</span>")
 	replace_with(cauterized_into)
 	return TRUE

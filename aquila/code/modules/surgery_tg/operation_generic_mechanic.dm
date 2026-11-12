@@ -130,7 +130,7 @@
 	. = ..()
 	limb.remove_surgical_state(ALL_SURGERY_STATES_UNSET_ON_CLOSE)
 	// AQUILA - jak stary krok przykręcenia obudowy: koniec krwawienia
-	limb.owner?.cauterise_wounds()
+	limb.owner?.cauterise_wounds(zone = limb.body_zone)
 
 /// Przygotowanie elektroniki (odpowiednik nacięcia organów)
 /datum/surgery_operation/limb/prepare_electronics

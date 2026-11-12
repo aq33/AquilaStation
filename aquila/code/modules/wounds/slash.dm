@@ -13,7 +13,7 @@
 	var/sutured_into
 
 /datum/wound/slash/on_apply()
-	victim.add_bleeding(initial_bleed)
+	victim.add_bleeding(initial_bleed, limb.body_zone)
 
 /datum/wound/slash/wound_effects(delta_time)
 	reopen_progress += delta_time SECONDS
@@ -23,7 +23,7 @@
 	if(HAS_TRAIT(victim, TRAIT_BLEED_HELD))
 		return
 	to_chat(victim, "<span class='danger'>Rana ([limb.name]) znów się otwiera!</span>")
-	victim.add_bleeding(reopen_bleed)
+	victim.add_bleeding(reopen_bleed, limb.body_zone)
 
 /datum/wound/slash/can_treat_with(obj/item/item)
 	return istype(item, /obj/item/stack/medical/suture)
@@ -36,7 +36,7 @@
 	if(QDELETED(src) || !suture.use(1))
 		return FALSE
 	playsound(victim, 'aquila/sound/effects/suture.ogg', 50, TRUE)
-	victim.suppress_bloodloss(reopen_bleed)
+	victim.suppress_bloodloss(reopen_bleed, limb.body_zone)
 	user.visible_message("<span class='green'>[user] zszywa ranę ([limb.name]) [victim].</span>", "<span class='green'>Zszywasz ranę ([limb.name]).</span>")
 	replace_with(sutured_into)
 	return TRUE

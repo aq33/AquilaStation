@@ -80,9 +80,12 @@
 	if(!silent)
 		to_chat(victim, "<span class='userdanger'>[desc] ([limb.name])!</span>")
 		victim.visible_message("<span class='danger'>[victim] ma [examine_desc] ([limb.name])!</span>", ignored_mobs = victim)
-	var/bleed_before = victim.aq_bleed_rate()
+	// the wound bleeds from its limb (blood_limbs.dm)
+	var/mob/living/carbon/wounded = victim
+	var/old_context = wounded.aq_bleed_zone_context
+	wounded.aq_bleed_zone_context = limb.body_zone
 	on_apply()
-	victim.aq_add_limb_bleed(limb.body_zone, victim.aq_bleed_rate() - bleed_before) // the wound bleeds from its limb
+	wounded.aq_bleed_zone_context = old_context
 
 /// Effects that happen once, when the wound appears
 /datum/wound/proc/on_apply()
@@ -100,7 +103,11 @@
 			to_chat(victim, "<span class='green'>[name] ([limb.name]) się zagoiła.</span>")
 			qdel(src)
 			return
+	var/mob/living/carbon/wounded = victim
+	var/old_context = wounded.aq_bleed_zone_context
+	wounded.aq_bleed_zone_context = limb.body_zone // bleeding from the wound comes from its limb
 	wound_effects(delta_time)
+	wounded.aq_bleed_zone_context = old_context
 
 /// Effects every process, while the victim is alive
 /datum/wound/proc/wound_effects(delta_time)

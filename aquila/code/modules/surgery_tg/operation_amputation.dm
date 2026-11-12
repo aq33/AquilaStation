@@ -61,7 +61,7 @@
 	)
 	display_pain(patient, "Przestajesz czuć [strefa_pl(limb.body_zone, TRUE)]!")
 	limb.drop_limb()
-	patient?.cauterise_wounds()
+	patient?.cauterise_wounds(zone = limb.body_zone)
 
 /// Rozkręcenie protezy
 /datum/surgery_operation/limb/amputate/mechanic

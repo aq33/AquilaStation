@@ -66,7 +66,7 @@
 		span_warning("[surgeon] rozrywa część naczyń ([FORMAT_LIMB_OWNER(limb)])."),
 	)
 	limb.receive_damage(rand(4, 8))
-	limb.owner?.add_bleeding(BLEED_CUT)
+	limb.owner?.add_bleeding(BLEED_CUT, limb.body_zone)
 
 /// Krok 2: zamknięcie zestawionych naczyń
 /datum/surgery_operation/limb/seal_veins
@@ -124,7 +124,7 @@
 	if(isnull(pierce_wound))
 		return
 	// jak jedno przypalenie rany (pierce.dm treat()): krwawienie słabnie, rana schodzi o stopień
-	limb.owner?.suppress_bloodloss(pierce_wound.initial_bleed)
+	limb.owner?.suppress_bloodloss(pierce_wound.initial_bleed, limb.body_zone)
 	var/datum/wound/pierce/remaining = pierce_wound.replace_with(pierce_wound.cauterized_into)
 	if(isnull(remaining))
 		display_results(
