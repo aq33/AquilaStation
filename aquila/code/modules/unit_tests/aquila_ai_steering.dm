@@ -64,14 +64,14 @@
 
 /// Zgłoszony przypadek: między tikami AI okręt nie ciągnął wcale
 /datum/unit_test/aquila_ai_steering/proc/check_thrust()
-	var/z_poprawka = run_physics(4)
-	if(z_poprawka <= 0)
+	var/with_fix = run_physics(4)
+	if(with_fix <= 0)
 		return "Okręt AI z move_mode = NORTH nie przyspieszył przez 4 kroki fizyki bez tiku AI"
 	GLOB.ai_continuous_thrust_enabled = FALSE
-	var/bez_poprawki = run_physics(4)
+	var/without_fix_value = run_physics(4)
 	GLOB.ai_continuous_thrust_enabled = TRUE
-	if(bez_poprawki > 0)
-		return "Z wyłączonym przełącznikiem okręt przyspieszał bez tiku AI ([bez_poprawki]), test nic nie sprawdza"
+	if(without_fix_value > 0)
+		return "Z wyłączonym przełącznikiem okręt przyspieszał bez tiku AI ([without_fix_value]), test nic nie sprawdza"
 
 /// Hamulce i okręt gracza: brak ciągu z move_mode
 /datum/unit_test/aquila_ai_steering/proc/check_no_thrust()
@@ -94,17 +94,17 @@
 /datum/unit_test/aquila_ai_steering/proc/check_avoid()
 	var/z = run_loc_floor_bottom_left.z
 	ship.forceMove(locate(100, 60, z))
-	var/turf/cel = locate(140, 60, z) // lecimy na wschód
+	var/turf/prey = locate(140, 60, z) // lecimy na wschód
 	other.forceMove(locate(104, 60, z))
-	if(!ship.ai_should_avoid(other, cel))
+	if(!ship.ai_should_avoid(other, prey))
 		return "Okręt nie omijał okrętu przed dziobem na kursie"
 	other.forceMove(locate(96, 60, z))
-	if(ship.ai_should_avoid(other, cel))
+	if(ship.ai_should_avoid(other, prey))
 		return "Okręt omijał okręt za rufą"
 	GLOB.ai_forward_avoidance_enabled = FALSE
-	var/bazowo = ship.ai_should_avoid(other, cel)
+	var/baseline = ship.ai_should_avoid(other, prey)
 	GLOB.ai_forward_avoidance_enabled = TRUE
-	if(!bazowo)
+	if(!baseline)
 		return "Z wyłączonym przełącznikiem okręt za rufą przestał być przeszkodą"
 
 /// Przepustnica: przy prędkości maksymalnej wzdłuż dziobu okręt dryfuje, poniżej ciągnie
@@ -216,16 +216,16 @@
 	// Budżet rośnie z odległością i jest większy, gdy idziemy do wroga dziobem
 	other.forceMove(locate(130, 60, z))
 	ship.angle = overmap_angle(ship, other) // dziobem do wroga
-	var/dziobem = ship.get_ai_engine_heat_budget(other)
+	var/bow_on = ship.get_ai_engine_heat_budget(other)
 	ship.angle = overmap_angle(ship, other) + 180 // dyszami do wroga
-	var/dyszami = ship.get_ai_engine_heat_budget(other)
-	if(dziobem <= dyszami)
-		return "Budżet ciepła dziobem do wroga ([dziobem]) nie był większy niż dyszami ([dyszami])"
+	var/nozzles_on = ship.get_ai_engine_heat_budget(other)
+	if(bow_on <= nozzles_on)
+		return "Budżet ciepła dziobem do wroga ([bow_on]) nie był większy niż dyszami ([nozzles_on])"
 	ship.angle = overmap_angle(ship, other)
 	other.forceMove(locate(115, 60, z))
-	var/blizej = ship.get_ai_engine_heat_budget(other)
-	if(blizej >= dziobem)
-		return "Budżet ciepła nie zmalał, gdy wróg był bliżej ([blizej] i [dziobem])"
+	var/closer = ship.get_ai_engine_heat_budget(other)
+	if(closer >= bow_on)
+		return "Budżet ciepła nie zmalał, gdy wróg był bliżej ([closer] i [bow_on])"
 	ship.ai_running_silent = FALSE
 	ship.thrust_heat = 0
 	ship.user_thrust_dir = 0
@@ -236,38 +236,38 @@
 /datum/unit_test/aquila_ai_steering/proc/check_detour()
 	var/z = run_loc_floor_bottom_left.z
 	ship.forceMove(locate(100, 60, z))
-	var/turf/cel = locate(100, 100, z) // kurs na północ
-	var/list/okrety = list(ship, other)
-	var/masa = other.mass
+	var/turf/prey = locate(100, 100, z) // kurs na północ
+	var/list/ship_list = list(ship, other)
+	var/old_mass = other.mass
 	other.mass = MASS_MEDIUM // bazowe omijanie, tak jak nasze, pomija myśliwce
 	ship.ai_detour_side = 0
 	ship.ai_detour_until = 0
 	other.forceMove(locate(103, 66, z)) // przed dziobem, lekko po prawej
-	if(ship.find_ai_path_blocker(cel, okrety) != other)
+	if(ship.find_ai_path_blocker(prey, ship_list) != other)
 		return "Okręt przed dziobem na kursie nie został uznany za przeszkodę"
-	var/turf/objazd = ship.get_ai_detour_point(cel, okrety)
-	if(!objazd)
+	var/turf/detour = ship.get_ai_detour_point(prey, ship_list)
+	if(!detour)
 		return "Zablokowany okręt nie dostał punktu objazdu"
-	if(objazd.x >= ship.x)
-		return "Objazd przeszkody po prawej poszedł w prawo, prosto na nią ([objazd.x], [objazd.y])"
-	if(overmap_dist(ship, objazd) < 14)
-		return "Punkt objazdu wypadł w martwej strefie silników ([overmap_dist(ship, objazd)] pól)"
+	if(detour.x >= ship.x)
+		return "Objazd przeszkody po prawej poszedł w prawo, prosto na nią ([detour.x], [detour.y])"
+	if(overmap_dist(ship, detour) < 14)
+		return "Punkt objazdu wypadł w martwej strefie silników ([overmap_dist(ship, detour)] pól)"
 	// Strona trzyma się przez chwilę, nawet gdy przeszkoda przejdzie na drugą stronę kursu
 	other.forceMove(locate(97, 66, z))
-	var/turf/znowu = ship.get_ai_detour_point(cel, okrety)
-	if(!znowu || znowu.x >= ship.x)
+	var/turf/again = ship.get_ai_detour_point(prey, ship_list)
+	if(!again || again.x >= ship.x)
 		return "Okręt przeskoczył na drugą stronę objazdu zaraz po zmianie położenia przeszkody"
 	// Okręt za rufą nie blokuje, a z wyłączonym przełącznikiem nie ma objazdu
 	other.forceMove(locate(100, 54, z))
 	ship.ai_detour_until = 0
-	if(ship.get_ai_detour_point(cel, okrety))
+	if(ship.get_ai_detour_point(prey, ship_list))
 		return "Okręt za rufą wywołał objazd"
 	other.forceMove(locate(103, 66, z))
 	GLOB.ai_detour_enabled = FALSE
-	var/bez = ship.get_ai_detour_point(cel, okrety)
+	var/without_fix = ship.get_ai_detour_point(prey, ship_list)
 	GLOB.ai_detour_enabled = TRUE
-	if(bez)
+	if(without_fix)
 		return "Objazd działał z wyłączonym przełącznikiem"
 	ship.ai_detour_side = 0
 	ship.ai_detour_until = 0
-	other.mass = masa
+	other.mass = old_mass

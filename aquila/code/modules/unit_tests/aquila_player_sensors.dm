@@ -125,6 +125,11 @@
 	ship.radar_pulse_bearing = SIMPLIFY_DEGREES(to_enemy + 90)
 	if(ship.get_player_lidar_range(enemy))
 		return "Wiązka radaru widziała cel 90° obok swojego kierunku"
+	// Regresja: radar poza wiązką nie może wracać przez zwykłe zestawy sensorów (bazowy zasięg śledzenia działał dookoła)
+	if(ship.get_suite_range(SENSOR_LIDAR, enemy))
+		return "Radar gracza widział cel poza wiązką przez zestaw sensorów ([ship.get_suite_range(SENSOR_LIDAR, enemy)])"
+	if(ship.get_contact_suite(enemy) == SENSOR_LIDAR)
+		return "Cel poza wiązką był trzymany radarem"
 	LAZYREMOVE(enemy.radar_emissions, ship)
 	ship.broadcast_radar_emission(300, ship.radar_pulse_bearing, 30)
 	if(LAZYACCESS(enemy.radar_emissions, ship))

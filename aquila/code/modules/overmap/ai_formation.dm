@@ -72,7 +72,8 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 			continue
 		if(!is_ai_hostile(other) || istype(other, /obj/structure/overmap/asteroid))
 			continue
-		if(overmap_dist(src, other) <= range)
+		// Liczymy tylko wrogów, których widzimy: o niewykrytych dowódca nie wie
+		if(overmap_dist(src, other) <= range && other.is_sensor_visible(src) >= SENSOR_VISIBILITY_FAINT)
 			.++
 
 /// Najbliższy sojusznik godny tej nazwy (nie myśliwiec, nie asteroida), albo null
@@ -145,17 +146,17 @@ GLOBAL_VAR_INIT(ai_formation_enabled, TRUE)
 			ai_standoff_side = closer_angle_difference(bearing, ally_bearing) >= 0 ? 1 : -1
 	// Bierzemy pierwszy punkt na okręgu, do którego jest dość daleko, żeby silniki w ogóle ruszyły
 	// Coraz szersze łuki: bierzemy pierwszy, który wypada dość daleko
-	var/static/list/luki = list(60, 90, 120, 150)
-	var/turf/wybrany
-	for(var/arc in luki)
+	var/static/list/arcs = list(60, 90, 120, 150)
+	var/turf/chosen
+	for(var/arc in arcs)
 		var/new_bearing = (bearing + ai_standoff_side * arc + 360) % 360
-		var/turf/kandydat = locate(
+		var/turf/candidate_turf = locate(
 			clamp(round(target.x + sin(new_bearing) * standoff), 1, world.maxx),
 			clamp(round(target.y + cos(new_bearing) * standoff), 1, world.maxy), z)
-		wybrany = kandydat
-		if(overmap_dist(src, kandydat) >= AI_REPOSITION_MIN_HOP)
+		chosen = candidate_turf
+		if(overmap_dist(src, candidate_turf) >= AI_REPOSITION_MIN_HOP)
 			break
-	ai_standoff_point = wybrany
+	ai_standoff_point = chosen
 	ai_standoff_until = world.time + rand(AI_REPOSITION_MIN, AI_REPOSITION_MAX)
 	return ai_standoff_point
 

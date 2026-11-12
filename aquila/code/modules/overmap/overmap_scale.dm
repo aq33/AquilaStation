@@ -88,8 +88,13 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(enemy.mass >= MASS_SMALL && has_ai_torpedoes())
 		// Stay inside our own detection range of the target, or the torpedo ship loses it and wanders off.
 		// From the base tracking range: our own radar pulses double it for 5 s and the ship would move in and out every pulse
-		var/tracking = base_tracking_range || max_tracking_range
-		var/sensor_limit = max(tracking * enemy.sensor_signature, SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
+		// Z zestawami sensorów (ai_sensor_suites.dm) liczy się to, czym naprawdę go widzimy, bez radaru
+		var/sensor_limit
+		if(GLOB.ai_sensor_suites_enabled)
+			sensor_limit = max(get_ai_passive_reach(enemy), SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
+		else
+			var/tracking = base_tracking_range || max_tracking_range
+			sensor_limit = max(tracking * enemy.sensor_signature, SENSOR_MIN_DETECTION) - AI_STANDOFF_BAND
 		return clamp(sensor_limit, OVERMAP_AI_GUN_RANGE + AI_STANDOFF_BAND, AI_TORPEDO_STANDOFF)
 	return 0
 
@@ -105,11 +110,12 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		// Cold ambush: the fleet waits instead of flying around (ai_fleet_picture.dm)
 		if(is_ai_lying_in_wait())
 			move_mode = null
+			brakes = TRUE // na overmapie nie ma oporu: bez hamulca okręt dryfowałby z zasadzki przez całą mapę
 			return
 		// Przewaga wroga: wracamy do swoich zamiast lecieć w nich samemu (ai_formation.dm)
-		var/turf/zbiorka = get_ai_regroup_point()
-		if(zbiorka)
-			return ..(zbiorka, FALSE, ignore_all_collisions)
+		var/turf/regroup_point = get_ai_regroup_point()
+		if(regroup_point)
+			return ..(regroup_point, FALSE, ignore_all_collisions)
 		// We hold this target only through the fleet's report: fly at the reported picture, not at the real ship
 		var/turf/blind = get_ai_blind_point(target)
 		if(blind)

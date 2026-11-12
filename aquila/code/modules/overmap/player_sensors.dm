@@ -71,6 +71,9 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 		. -= list(SENSOR_TELESCOPE, SENSOR_LIDAR)
 
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
+	// Radar gracza widzi tylko w swojej wiązce; bazowa wersja (zasięg śledzenia AI) działała dookoła
+	if(!ai_controlled && suite == SENSOR_LIDAR)
+		return get_player_lidar_range(target)
 	. = ..()
 	if(!ai_controlled && suite != SENSOR_LIDAR)
 		. *= PLAYER_SUITE_RANGE_MULT
@@ -150,7 +153,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 			if(params["mode"] in list(TELESCOPE_MODE_TARGET, TELESCOPE_MODE_COURSE, TELESCOPE_MODE_MANUAL))
 				linked.telescope_mode = params["mode"]
 			var/bearing = text2num(params["bearing"])
-			if(isnum(bearing))
+			if(isnum_safe(bearing))
 				linked.telescope_manual_bearing = SIMPLIFY_DEGREES(round(bearing))
 				linked.telescope_mode = TELESCOPE_MODE_MANUAL
 			return TRUE
@@ -163,7 +166,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 			if(params["mode"] in list(TELESCOPE_MODE_TARGET, TELESCOPE_MODE_COURSE, TELESCOPE_MODE_MANUAL))
 				linked.radar_beam_mode = params["mode"]
 			var/bearing = text2num(params["bearing"])
-			if(isnum(bearing))
+			if(isnum_safe(bearing))
 				linked.radar_beam_manual_bearing = SIMPLIFY_DEGREES(round(bearing))
 				linked.radar_beam_mode = TELESCOPE_MODE_MANUAL
 			return TRUE
@@ -181,6 +184,12 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	var/reach = OM.get_radar_reach(OM.radar_pulse_width)
 	addtimer(VARSET_CALLBACK(src, sensor_range, base_sensor_range), RADAR_VISIBILITY_PENALTY)
 	sensor_range = reach
+	// Śledzenie namierzonego celu (physics.dm) liczy zasięg z DRADIS okrętu: na czas impulsu też go poszerzamy,
+	// inaczej namierzenie dalej niż 80 pól gasło po 3 s mimo impulsu operatora
+	var/obj/machinery/computer/ship/dradis/bridge = OM.dradis
+	if(bridge && bridge != src)
+		addtimer(VARSET_CALLBACK(bridge, sensor_range, bridge.base_sensor_range), RADAR_VISIBILITY_PENALTY)
+		bridge.sensor_range = max(bridge.sensor_range, reach)
 	if(OM.radar_pulse_width)
 		OM.broadcast_radar_emission(reach * PLAYER_RADAR_HEARING_MULT, OM.radar_pulse_bearing, OM.radar_pulse_width / 2)
 	else

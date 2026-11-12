@@ -8,6 +8,9 @@
 /obj/structure/overmap/small_craft/combat/light/doctrine_test/has_ai_guided_option(obj/structure/overmap/target)
 	return test_guided
 
+/obj/structure/overmap/small_craft/combat/light/doctrine_test/can_ai_guided_reach(obj/structure/overmap/target)
+	return test_guided
+
 /datum/unit_test/aquila_ai_weapon_doctrine
 
 /datum/unit_test/aquila_ai_weapon_doctrine/Run()
@@ -32,12 +35,13 @@
 	if(!ship.ai_holds_guns_for(target))
 		return "Okręt z amunicją kierowaną nie trzymał dział na cel 30 pól dalej"
 	// Zgłoszony przypadek: działa strzelały z dystansu, choć okręt miał torpedy
-	var/datum/overmap_ship_weapon/dzialo
+	var/datum/overmap_ship_weapon/gun_weapon
 	for(var/datum/overmap_ship_weapon/weapon as anything in ship.overmap_weapon_datums)
 		if(!weapon.is_guided_weapon())
-			dzialo = weapon
+			gun_weapon = weapon
 			break
-	if(dzialo && dzialo.can_fire(target))
+	ship.last_target = target // działa trzyma tylko wobec celu, z którym walczy
+	if(gun_weapon && gun_weapon.can_fire(target))
 		return "Broń niekierowana dostała zgodę na strzał z dystansu, choć okręt miał amunicję kierowaną"
 	target.forceMove(locate(100, 70, z)) // 10 pól
 	if(ship.ai_holds_guns_for(target))
@@ -48,14 +52,14 @@
 		return "Okręt bez amunicji kierowanej trzymał działa"
 	ship.test_guided = TRUE
 	ship.ai_controlled = FALSE
-	var/gracz = ship.ai_holds_guns_for(target)
+	var/player_ship = ship.ai_holds_guns_for(target)
 	ship.ai_controlled = TRUE
-	if(gracz)
+	if(player_ship)
 		return "Zasada działała na okręcie gracza"
 	GLOB.ai_guns_last_resort_enabled = FALSE
-	var/wylaczone = ship.ai_holds_guns_for(target)
+	var/disabled_result = ship.ai_holds_guns_for(target)
 	GLOB.ai_guns_last_resort_enabled = TRUE
-	if(wylaczone)
+	if(disabled_result)
 		return "Zasada działała z wyłączonym przełącznikiem"
 
 /// Daleki ostrzał: cel dalej niż 50 pól tylko wtedy, gdy nasze sensory go widzą, i nie dalej niż 120 pól
@@ -70,21 +74,21 @@
 	target.mass = MASS_MEDIUM
 	target.faction = "syndicate"
 	ship.forceMove(locate(60, 60, z))
-	var/list/okrety = list(ship, target)
+	var/list/ship_list = list(ship, target)
 	var/fail
 	// Radar w czasie impulsu: widzimy do max_tracking_range
 	ship.max_tracking_range = 100
 	ship.last_radar_pulse = world.time
 	target.forceMove(locate(60, 130, z)) // 70 pól
-	if(ship.get_ai_long_range_target(okrety) != target)
+	if(ship.get_ai_long_range_target(ship_list) != target)
 		fail = "Okręt nie wybrał celu 70 pól dalej, choć jego radar go widział"
 	if(!fail)
 		target.forceMove(locate(60, 100, z)) // 40 pól: to robota zwykłego ai_fire()
-		if(ship.get_ai_long_range_target(okrety))
+		if(ship.get_ai_long_range_target(ship_list))
 			fail = "Daleki ostrzał wybrał cel w zwykłym zasięgu ognia"
 	if(!fail)
 		target.forceMove(locate(60, 195, z)) // 135 pól
-		if(ship.get_ai_long_range_target(okrety))
+		if(ship.get_ai_long_range_target(ship_list))
 			fail = "Daleki ostrzał wybrał cel dalej niż 120 pól"
 	if(!fail)
 		// Bez impulsu zimny cel 70 pól dalej jest niewidoczny
@@ -93,7 +97,7 @@
 		target.inertial_dampeners = FALSE
 		target.last_weapon_fire = -INFINITY
 		target.forceMove(locate(60, 130, z))
-		if(ship.get_ai_long_range_target(okrety))
+		if(ship.get_ai_long_range_target(ship_list))
 			fail = "Okręt wybrał na daleki ostrzał cel, którego jego sensory nie widziały"
 	ship.ai_controlled = FALSE
 	if(fail)

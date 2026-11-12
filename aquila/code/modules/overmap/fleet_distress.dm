@@ -128,6 +128,7 @@
 			try_ai_retreat_jump()
 		return
 	if(!has_ai_fleet_enemies())
+		ai_is_reinforcement = FALSE // walka, na którą przylecieliśmy, się skończyła: w następnej wolno wezwać pomoc
 		return
 	var/list/state = get_ai_fleet_state()
 	var/fear = state[2]

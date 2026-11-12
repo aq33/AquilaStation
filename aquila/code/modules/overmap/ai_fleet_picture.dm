@@ -57,6 +57,17 @@ GLOBAL_VAR_INIT(ai_ambush_enabled, TRUE)
 		return null
 	return picture
 
+/// Zapomina okręt, który znika z gry: jako cel meldunków, jako zgłaszającego i jako szpicę.
+/// Woła to Destroy() (overmap.dm), bo flota w nieaktywnym systemie sama nie sprząta (prune_ai_picture z slowprocess).
+/datum/fleet/proc/forget_ai_contact(obj/structure/overmap/ship)
+	LAZYREMOVE(ai_contact_picture, ship)
+	for(var/obj/structure/overmap/target as anything in ai_contact_picture?.Copy())
+		var/list/picture = ai_contact_picture[target]
+		if(picture?[6] == ship)
+			picture[6] = null
+	if(ai_picket == ship)
+		ai_picket = null
+
 /// Throws out reports nobody refreshed, and with them the shared target, so every ship drops it the usual way
 /datum/fleet/proc/prune_ai_picture()
 	if(!GLOB.ai_fleet_picture_enabled || world.time < ai_picture_pruned)
@@ -81,7 +92,8 @@ GLOBAL_VAR_INIT(ai_ambush_enabled, TRUE)
 	if(!QDELETED(ai_picket) && world.time < ai_picket_until)
 		return ai_picket == ship
 	// The job is open: whoever asks first and is a sensible choice takes it
-	if(QDELETED(ship) || CHECK_BITFIELD(ship.ai_flags, AI_FLAG_SUPPLY) || ship.ai_fleeing)
+	// Myśliwce nie mają radaru (ai_sensor_suites.dm), więc szpicą nie zostają
+	if(QDELETED(ship) || CHECK_BITFIELD(ship.ai_flags, AI_FLAG_SUPPLY) || ship.ai_fleeing || ship.mass <= MASS_TINY)
 		return FALSE
 	ai_picket = ship
 	ai_picket_until = world.time + AI_PICKET_TIME

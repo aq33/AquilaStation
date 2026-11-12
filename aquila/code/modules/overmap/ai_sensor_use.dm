@@ -157,7 +157,7 @@ GLOBAL_VAR_INIT(ai_sensor_tactics_enabled, TRUE)
 /obj/structure/overmap/proc/is_detected_by(obj/structure/overmap/watcher)
 	if(QDELETED(watcher) || watcher.z != z)
 		return FALSE
-	return overmap_dist(src, watcher) <= get_detection_range(watcher)
+	return overmap_dist(src, watcher) <= get_detection_range(watcher, FALSE)
 
 /// Engines off and coasting: called from move_toward (overmap_scale.dm) to skip the burn.
 /// Only for a ship running away (C). A ship sneaking up (E) steers as usual and burns within its heat budget

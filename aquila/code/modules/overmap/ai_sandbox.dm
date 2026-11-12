@@ -145,26 +145,26 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.ai_engine_discipline_enabled = FALSE
 		event("Bez przepustnicy, boost co 15 s jak w bazowym NSV13")
 	// Pojedyncze zachowania floty (ai_fleet_picture.dm), żeby dało się pokazać każde osobno
-	var/static/list/przelaczniki = list(
+	var/static/list/switches = list(
 		"picture" = "ai_fleet_picture_enabled",
 		"picket" = "ai_picket_enabled",
 		"triangulation" = "ai_triangulation_enabled",
 		"ambush" = "ai_ambush_enabled",
 		"formation" = "ai_formation_enabled",
 	)
-	for(var/nazwa in przelaczniki)
-		if(text2num(world.params["ai_sandbox_no_[nazwa]"]))
-			GLOB.vars[przelaczniki[nazwa]] = FALSE
-			event("Wyłączone: [nazwa]")
-	var/tylko = world.params["ai_sandbox_only"]
-	if(tylko)
-		if(!przelaczniki[tylko])
-			event("Nieznana nazwa w ai_sandbox_only: [tylko]")
+	for(var/switch_name in switches)
+		if(text2num(world.params["ai_sandbox_no_[switch_name]"]))
+			GLOB.vars[switches[switch_name]] = FALSE
+			event("Wyłączone: [switch_name]")
+	var/only_switch = world.params["ai_sandbox_only"]
+	if(only_switch)
+		if(!switches[only_switch])
+			event("Nieznana nazwa w ai_sandbox_only: [only_switch]")
 		else
-			for(var/nazwa in przelaczniki)
-				if(nazwa != tylko)
-					GLOB.vars[przelaczniki[nazwa]] = FALSE
-			event("Z zachowań floty zostaje tylko: [tylko]")
+			for(var/switch_name in switches)
+				if(switch_name != only_switch)
+					GLOB.vars[switches[switch_name]] = FALSE
+			event("Z zachowań floty zostaje tylko: [only_switch]")
 	if(text2num(world.params["ai_sandbox_no_sensors"]))
 		GLOB.sensor_signature_enabled = FALSE
 		event("Sygnatury okrętów wyłączone")
@@ -340,7 +340,7 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			)
 		var/turf/search_at = (full && OM.ai_search_target) ? OM.patrol_target : null
 		// Lekka klatka: tylko to, co sie rusza. Reszte odtwarzacz bierze z ostatniej pelnej klatki.
-		var/list/wpis = list(
+		var/list/entry = list(
 			"id" = "\ref[OM]",
 			"x" = round(OM.x + OM.offset?.a, 0.1),
 			"y" = round(OM.y + OM.offset?.e, 0.1),
@@ -351,12 +351,12 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			"silent" = OM.ai_running_silent,
 		)
 		if(!full)
-			ships += list(wpis)
+			ships += list(entry)
 			continue
 		// Stożki sensorów (ai_sensor_suites.dm): gdzie patrzy teleskop i czy własny napęd oślepia termikę za rufą
-		var/list/stozki = null
+		var/list/cone_data = null
 		if(OM.ai_controlled && GLOB.ai_sensor_cones_enabled)
-			stozki = list(
+			cone_data = list(
 				"tb" = (SENSOR_TELESCOPE in OM.get_sensor_suites()) ? round(OM.get_telescope_bearing()) : null,
 				"irb" = OM.is_infrared_rear_blind() ? 1 : 0,
 			)
@@ -375,21 +375,21 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 			)
 			// Zwiad: kogo śledzi i czy go namierza radarem (ai_scouting.dm)
 			if(OM.ai_scout_target)
-				var/obj/structure/overmap/zwiad = OM.ai_scout_target
-				dbg["sc"] = "\ref[zwiad]"
-				if(zwiad in OM.target_painted)
+				var/obj/structure/overmap/scout_ship = OM.ai_scout_target
+				dbg["sc"] = "\ref[scout_ship]"
+				if(scout_ship in OM.target_painted)
 					dbg["lk"] = 1
 				// Diagnostyka namierzania: ktory warunek jest spelniony (bez skutkow ubocznych dla sensorow celu)
-				dbg["rd"] = OM.has_ai_datalink_shooter(zwiad) ? 1 : 0
-				dbg["gm"] = OM.ai_lock_geometry_ok(zwiad) ? 1 : 0
-				dbg["wd"] = zwiad.is_sensor_visible(OM) >= SENSOR_VISIBILITY_TARGETABLE ? 1 : 0
-				dbg["wk"] = (zwiad.ai_controlled && overmap_dist(OM, zwiad) <= zwiad.get_best_suite(OM)[2]) ? 1 : 0
+				dbg["rd"] = OM.has_ai_datalink_shooter(scout_ship) ? 1 : 0
+				dbg["gm"] = OM.ai_lock_geometry_ok(scout_ship) ? 1 : 0
+				dbg["wd"] = scout_ship.is_sensor_visible(OM) >= SENSOR_VISIBILITY_TARGETABLE ? 1 : 0
+				dbg["wk"] = (scout_ship.ai_controlled && overmap_dist(OM, scout_ship) <= scout_ship.get_best_suite(OM)[2]) ? 1 : 0
 			if(OM.can_resupply)
 				dbg["zt"] = OM.ai_supply_torpedoes
 				dbg["zm"] = OM.ai_supply_missiles
-		ships += list(wpis + list(
+		ships += list(entry + list(
 			"dbg" = dbg,
-			"cones" = stozki,
+			"cones" = cone_data,
 			"name" = "[OM]",
 			"faction" = OM.faction,
 			"fleet" = OM.fleet?.name,
@@ -413,11 +413,11 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 	record_pulses(present)
 	frames += list(list("t" = round((world.time - start_time) / 10, 0.1), "full" = full, "ships" = ships))
 	if(full)
-		var/ai_okretow = 0
+		var/ai_ship_count = 0
 		for(var/obj/structure/overmap/OM as anything in system?.system_contents)
 			if(istype(OM) && OM.ai_controlled)
-				ai_okretow++
-		cpu_samples += list(list(round((world.time - start_time) / 10, 0.1), round(world.cpu, 0.1), ai_okretow))
+				ai_ship_count++
+		cpu_samples += list(list(round((world.time - start_time) / 10, 0.1), round(world.cpu, 0.1), ai_ship_count))
 
 /datum/ai_sandbox/proc/finish()
 	event("Koniec nagrania")
@@ -461,21 +461,21 @@ GLOBAL_DATUM(ai_sandbox, /datum/ai_sandbox)
 		GLOB.ai_sandbox.torpedo_stats["fired"]++
 	if(!ai_controlled || src == GLOB.ai_sandbox.main)
 		return
-	var/list/licznik = GLOB.ai_sandbox.munitions[ai_sandbox_munition_kind(.)]
-	licznik["fired"]++
+	var/list/counter = GLOB.ai_sandbox.munitions[ai_sandbox_munition_kind(.)]
+	counter["fired"]++
 	if(target && target.z == z)
-		licznik["dist"] += overmap_dist(src, target)
+		counter["dist"] += overmap_dist(src, target)
 		if(ai_sandbox_munition_kind(.) != "niekierowane")
 			GLOB.ai_sandbox.guided_dist["[min(FLOOR(overmap_dist(src, target), 10), 100)]"]++
 	if(istype(target, /obj/structure/overmap) && !get_contact_suite(target))
-		licznik["blind"]++
+		counter["blind"]++
 	if(ai_sandbox_munition_kind(.) == "niekierowane" && istype(target, /obj/structure/overmap))
-		var/klucz = "okret_bez_kierowanej"
+		var/map_key = "okret_bez_kierowanej"
 		if(mass <= MASS_TINY)
-			klucz = "mysliwiec"
+			map_key = "mysliwiec"
 		else if(has_ai_guided_option(target))
-			klucz = overmap_dist(src, target) > 12 ? "okret_z_kierowana_daleko" : "okret_z_kierowana_blisko"
-		GLOB.ai_sandbox.gun_shooters[klucz]++
+			map_key = overmap_dist(src, target) > 12 ? "okret_z_kierowana_daleko" : "okret_z_kierowana_blisko"
+		GLOB.ai_sandbox.gun_shooters[map_key]++
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	if(GLOB.ai_sandbox && istype(P))

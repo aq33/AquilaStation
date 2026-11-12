@@ -40,13 +40,27 @@ GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
 /obj/structure/overmap/proc/apply_ai_thrust()
 	if(!GLOB.ai_continuous_thrust_enabled || !ai_controlled || !move_mode || brakes)
 		return
-	// Skradanie: silnik tylko w granicach budżetu ciepła (ai_sensor_use.dm)
-	if(ai_running_silent && !ai_sneak_burn_allowed())
+	// Zakłócenie (disruption) działa jak w bazowym ai_process(): z takim prawdopodobieństwem okręt nic nie robi
+	if(disruption && prob(min(99, disruption)))
 		return
-	// Przepustnica: przy prędkości maksymalnej ciąg nic nie daje, tylko grzeje
-	if(move_mode == NORTH && ai_at_cruise_speed())
+	if(ai_thrust_gated())
 		return
 	user_thrust_dir = move_mode
+
+/// TRUE, gdy AI nie powinno teraz ciągnąć, choć ma kurs: skradanie ponad budżet ciepła albo prędkość maksymalna
+/obj/structure/overmap/proc/ai_thrust_gated()
+	// Skradanie: silnik tylko w granicach budżetu ciepła (ai_sensor_use.dm)
+	if(ai_running_silent && !ai_sneak_burn_allowed())
+		return TRUE
+	// Przepustnica: przy prędkości maksymalnej ciąg nic nie daje, tylko grzeje
+	return move_mode == NORTH && ai_at_cruise_speed()
+
+/// Bazowe ai_process() samo ustawia user_thrust_dir = move_mode raz na tik AI, a ten krok fizyki pali pełnym ciągiem.
+/// Bez tego skradający się okręt co piąty krok fizyki i tak ciągnął, a termika tego nie widziała.
+/obj/structure/overmap/ai_process()
+	. = ..()
+	if(GLOB.ai_continuous_thrust_enabled && ai_controlled && move_mode && !brakes && ai_thrust_gated())
+		user_thrust_dir = 0
 
 /// TRUE, gdy okręt leci wzdłuż dziobu z prędkością maksymalną i dalszy ciąg byłby samym ciepłem.
 /// Bez przepustnicy AI ciągnęło non stop: w nagraniach termika była oślepiona za rufą w 94% klatek.
@@ -75,7 +89,8 @@ GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
 	return overmap_dist(src, target) > max_weapon_range
 
 /obj/structure/overmap/boost(direction)
-	if(ai_controlled && !ai_wants_boost())
+	// Tylko zryw naprzód; boost w bok to pomoc przy skręcie, a taran kamikaze leci pełną prędkością
+	if(ai_controlled && direction == NORTH && !istype(current_goal, /datum/ai_goal/kamikaze) && !ai_wants_boost())
 		return FALSE
 	return ..()
 
@@ -142,9 +157,13 @@ GLOBAL_VAR_INIT(ai_detour_enabled, TRUE)
 	// albo gdy właśnie objeżdżamy; inaczej to druga pełna pętla po torze przy każdym ruchu (profiler: 0,9 s na bitwę)
 	if(!(move_mode & (EAST|WEST)) && world.time >= ai_detour_until)
 		return ..()
-	var/turf/objazd = get_ai_detour_point(target, current_system.system_contents)
-	if(objazd)
-		return ..(objazd, FALSE, ignore_all_collisions)
+	// Okręt trzymający dystans leci do punktu na okręgu (ai_formation.dm), a nie w cel: objazd liczony
+	// względem celu zabrałby go z okręgu, więc tu zostaje bazowe omijanie
+	if(istype(target, /obj/structure/overmap) && get_ai_standoff_range(target))
+		return ..()
+	var/turf/detour = get_ai_detour_point(target, current_system.system_contents)
+	if(detour)
+		return ..(detour, FALSE, ignore_all_collisions)
 	return ..()
 
 /world/AVerbsDebug()

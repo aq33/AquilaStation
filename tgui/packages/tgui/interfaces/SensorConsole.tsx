@@ -1654,13 +1654,23 @@ export const SensorConsole = (props) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
   const [aimTarget, setAimTarget] = useState<AimTarget>('telescope');
+  // Wiązka bez trybu ręcznego (albo radar dookólny): przeciąganie wraca do teleskopu
+  const effectiveAim: AimTarget =
+    aimTarget === 'radar' &&
+    !(data.radar_beam && data.radar_beam_mode === 'recznie')
+      ? 'telescope'
+      : aimTarget;
   // Serwer przysyła dane mniej więcej co sekundę. Pewne kontakty (bez okręgu niepewności) mają kurs,
   // więc między aktualizacjami przesuwamy je sami, tak samo obrót własnego okrętu.
   const receivedAt = useRef(Date.now());
   const [, setFrame] = useState(0);
-  useEffect(() => {
+  // Czas przyjścia danych zapisujemy w tym samym renderze, w którym przyszły; efekt odpalał się po renderze
+  // i pierwszy obraz po aktualizacji przesuwał kontakty o cały poprzedni czas (drganie)
+  const lastData = useRef(data);
+  if (lastData.current !== data) {
+    lastData.current = data;
     receivedAt.current = Date.now();
-  }, [data]);
+  }
   useEffect(() => {
     const timer = setInterval(() => setFrame((frame) => frame + 1), 100);
     return () => clearInterval(timer);
@@ -1713,7 +1723,7 @@ export const SensorConsole = (props) => {
                   contacts={contacts}
                   heading={heading}
                   pulseAge={pulseAge}
-                  aimTarget={aimTarget}
+                  aimTarget={effectiveAim}
                   selected={selected}
                   onSelect={setSelected}
                 />

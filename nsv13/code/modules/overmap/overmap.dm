@@ -544,8 +544,23 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		LAZYREMOVE(OM.ai_attackers, src)
 		LAZYREMOVE(OM.designated_targets, src)
 		LAZYREMOVE(OM.sensor_contact_numbers, src)
+		LAZYREMOVE(OM.sensor_contact_suites, src)
+		LAZYREMOVE(OM.ai_last_contact, src)
+		if(OM.ai_search_target == src)
+			OM.ai_search_target = null
+		if(OM.ai_prev_target == src)
+			OM.ai_prev_target = null
+		if(OM.ai_scout_target == src)
+			OM.ai_scout_target = null
+		for(var/obj/item/projectile/shot as anything in OM.ai_datalink_shots?.Copy())
+			var/list/link = OM.ai_datalink_shots[shot]
+			if(link?[1] == src || link?[2] == src)
+				LAZYREMOVE(OM.ai_datalink_shots, shot)
+		if(OM.ai_datalink_burst && (OM.ai_datalink_burst[1] == src || OM.ai_datalink_burst[2] == src))
+			OM.ai_datalink_burst = null
 		if(OM.fleet)
 			LAZYREMOVE(OM.fleet.ai_salvos, src)
+			OM.fleet.forget_ai_contact(src)
 
 	STOP_PROCESSING(SSphysics_processing, src)
 	for(var/mob/living/M in operators)

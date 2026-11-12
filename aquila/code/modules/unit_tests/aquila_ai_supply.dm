@@ -63,30 +63,30 @@
 
 /// Okręt bez torped wraca po nie tylko wtedy, gdy lotniskowiec floty jeszcze je ma
 /datum/unit_test/aquila_ai_supply/proc/check_rearm()
-	var/datum/fleet/flota = new /datum/fleet()
-	flota.taskforces = list("fighters" = list(), "destroyers" = list(), "battleships" = list(), "supply" = list(carrier))
-	ship.fleet = flota
+	var/datum/fleet/test_fleet = new /datum/fleet()
+	test_fleet.taskforces = list("fighters" = list(), "destroyers" = list(), "battleships" = list(), "supply" = list(carrier))
+	ship.fleet = test_fleet
 	ship.obj_integrity = ship.max_integrity
 	ship.shots_left = ship.max_shots_left
 	ship.torpedoes = 0
-	var/datum/ai_goal/rearm/cel = new /datum/ai_goal/rearm()
-	var/wynik
+	var/datum/ai_goal/rearm/prey = new /datum/ai_goal/rearm()
+	var/outcome
 	carrier.ai_supply_torpedoes = 5
-	if(cel.check_score(ship) != AI_SCORE_PRIORITY)
-		wynik = "Okręt bez torped nie wracał po nie, choć lotniskowiec je miał"
-	if(!wynik)
+	if(prey.check_score(ship) != AI_SCORE_PRIORITY)
+		outcome = "Okręt bez torped nie wracał po nie, choć lotniskowiec je miał"
+	if(!outcome)
 		carrier.ai_supply_torpedoes = 0
-		if(cel.check_score(ship))
-			wynik = "Okręt bez torped wracał do lotniskowca, który nie miał już czego wydać"
-	if(!wynik)
+		if(prey.check_score(ship))
+			outcome = "Okręt bez torped wracał do lotniskowca, który nie miał już czego wydać"
+	if(!outcome)
 		// Brak amunicji do dział to dalej powód do powrotu
 		ship.shots_left = 0
-		if(ship.max_shots_left && cel.check_score(ship) != AI_SCORE_PRIORITY)
-			wynik = "Okręt bez amunicji do dział nie wracał, bo flocie skończyły się torpedy"
+		if(ship.max_shots_left && prey.check_score(ship) != AI_SCORE_PRIORITY)
+			outcome = "Okręt bez amunicji do dział nie wracał, bo flocie skończyły się torpedy"
 		ship.shots_left = ship.max_shots_left
 	ship.fleet = null
-	qdel(cel)
-	return wynik
+	qdel(prey)
+	return outcome
 
 /// Z wyłączonym przełącznikiem: bazowy pełny magazyn
 /datum/unit_test/aquila_ai_supply/proc/check_disabled()

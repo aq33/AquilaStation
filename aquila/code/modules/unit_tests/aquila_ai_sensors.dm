@@ -100,13 +100,13 @@
 	observer.last_target = null
 	observer.ai_search_target = null
 	observer.thrust_heat = 0
-	var/do_celu = overmap_angle(observer, target)
+	var/to_prey = overmap_angle(observer, target)
 
 	// Teleskop bez celu patrzy wzdłuż kursu
-	observer.angle = do_celu
+	observer.angle = to_prey
 	if(observer.get_suite_range(SENSOR_TELESCOPE, target) <= 0)
 		return "Teleskop nie widział okrętu, który był dokładnie na kursie"
-	observer.angle = do_celu + 90
+	observer.angle = to_prey + 90
 	if(observer.get_suite_range(SENSOR_TELESCOPE, target) > 0)
 		return "Teleskop widział okręt 90 stopni od kierunku, w który patrzył"
 	// Trzymany cel: teleskop celuje w niego niezależnie od kursu
@@ -119,18 +119,18 @@
 
 	// Termika: napęd okrętu oślepia klin za rufą
 	target.thrust_heat = 1
-	observer.angle = do_celu + 180 // cel za rufą
+	observer.angle = to_prey + 180 // cel za rufą
 	observer.thrust_heat = 1
 	if(observer.get_suite_range(SENSOR_INFRARED, target) > 0)
 		return "Termika widziała cel za rufą mimo pracującego napędu"
-	observer.angle = do_celu + 180 + 25 // 25° od osi rufy: poza wąskim klinem dysz
+	observer.angle = to_prey + 180 + 25 // 25° od osi rufy: poza wąskim klinem dysz
 	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
 		return "Klin oślepienia za rufą jest szerszy niż 2×[INFRARED_BLIND_HALF_ANGLE]° (cel 25° od osi rufy niewidoczny)"
-	observer.angle = do_celu + 180
+	observer.angle = to_prey + 180
 	observer.thrust_heat = 0
 	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
 		return "Termika nie widziała gorącego celu za rufą przy wyłączonym napędzie"
-	observer.angle = do_celu
+	observer.angle = to_prey
 	observer.thrust_heat = 1
 	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
 		return "Pracujący napęd oślepił termikę także do przodu"
@@ -138,15 +138,15 @@
 
 	// Dysze celu: od tyłu widać go dalej niż od dzioba
 	target.angle = overmap_angle(target, observer) + 180 // patrzymy mu w dysze
-	var/od_dysz = observer.get_suite_range(SENSOR_INFRARED, target)
+	var/from_nozzles = observer.get_suite_range(SENSOR_INFRARED, target)
 	target.angle = overmap_angle(target, observer) // patrzymy mu w dziób
-	var/od_dziobu = observer.get_suite_range(SENSOR_INFRARED, target)
-	if(od_dysz <= od_dziobu * 1.8)
-		return "Cel widziany od strony dysz nie był widoczny wyraźnie dalej niż od dzioba ([od_dysz] i [od_dziobu])"
+	var/from_bow = observer.get_suite_range(SENSOR_INFRARED, target)
+	if(from_nozzles <= from_bow * 1.8)
+		return "Cel widziany od strony dysz nie był widoczny wyraźnie dalej niż od dzioba ([from_nozzles] i [from_bow])"
 
 	// Wyłączone stożki: wszystko jak przed nimi
 	GLOB.ai_sensor_cones_enabled = FALSE
-	observer.angle = do_celu + 180
+	observer.angle = to_prey + 180
 	observer.thrust_heat = 1
 	if(observer.get_suite_range(SENSOR_INFRARED, target) <= 0)
 		return "Z wyłączonymi stożkami napęd dalej oślepiał termikę"
@@ -229,19 +229,19 @@
 
 /// The fleet shares a picture that ages, not the target's live position
 /datum/unit_test/aquila_ai_sensors/proc/check_fleet_picture()
-	var/datum/fleet/flota = new /datum/fleet()
+	var/datum/fleet/test_fleet = new /datum/fleet()
 	var/obj/structure/overmap/small_craft/mate = allocate(/obj/structure/overmap/small_craft/combat/light)
 	mate.ai_controlled = TRUE
-	observer.fleet = flota
-	mate.fleet = flota
-	flota.all_ships = list(observer, mate)
-	flota.shared_targets = list()
-	flota.shared_targets[target] = list(observer)
+	observer.fleet = test_fleet
+	mate.fleet = test_fleet
+	test_fleet.all_ships = list(observer, mate)
+	test_fleet.shared_targets = list()
+	test_fleet.shared_targets[target] = list(observer)
 	place(5)
 	target.velocity.a = 2
 	target.velocity.e = 0
 	observer.remember_ai_contact(target)
-	if(!flota.get_ai_contact(target))
+	if(!test_fleet.get_ai_contact(target))
 		return "A ship that saw the target did not report it to the fleet"
 	// The mate has never seen it, but can still steer at what the fleet reported
 	mate.forceMove(locate(40, 40, run_loc_floor_bottom_left.z))
@@ -249,7 +249,7 @@
 	if(!mate.get_ai_contact_guess(target))
 		return "A fleet mate got nothing out of the fleet picture"
 	// A fresh report is the real position, and rightly so; the point is what happens once it ages
-	var/list/picture = LAZYACCESS(flota.ai_contact_picture, target)
+	var/list/picture = LAZYACCESS(test_fleet.ai_contact_picture, target)
 	picture[5] = world.time - 10 SECONDS
 	var/turf/blind = mate.get_ai_blind_point(target)
 	if(!blind)
@@ -268,32 +268,36 @@
 		return "A ship that can see the target was still flying at a remembered point"
 	// The report ages out completely and the fleet stops passing the target around
 	picture[5] = world.time - 60 SECONDS
-	flota.ai_picture_pruned = 0
-	flota.prune_ai_picture()
-	if(flota.get_ai_contact(target) || flota.shared_targets[target])
+	test_fleet.ai_picture_pruned = 0
+	test_fleet.prune_ai_picture()
+	if(test_fleet.get_ai_contact(target) || test_fleet.shared_targets[target])
 		return "A report nobody refreshed stayed in the fleet picture"
 	// Nie qdel: /datum/fleet/Destroy() siega do current_system.fleets, a testowa flota nie ma systemu
 	observer.fleet = null
 	mate.fleet = null
-	flota.all_ships = null
+	test_fleet.all_ships = null
 
 /// Only one ship of a fleet runs its radar
 /datum/unit_test/aquila_ai_sensors/proc/check_picket()
-	var/datum/fleet/flota = new /datum/fleet()
+	var/datum/fleet/test_fleet = new /datum/fleet()
 	var/obj/structure/overmap/small_craft/mate = allocate(/obj/structure/overmap/small_craft/combat/light)
 	mate.ai_controlled = TRUE
-	observer.fleet = flota
-	mate.fleet = flota
-	flota.all_ships = list(observer, mate)
-	var/wynik
-	if(!flota.is_ai_picket(observer))
-		wynik = "The first ship to ask did not become the picket"
-	else if(flota.is_ai_picket(mate))
-		wynik = "A second ship became the picket while the job was taken"
-	else if(!flota.is_ai_picket(observer))
-		wynik = "The picket lost the job it had just taken"
+	mate.mass = MASS_MEDIUM // myśliwiec nie ma radaru i szpicą nie zostaje
+	var/observer_mass = observer.mass
+	observer.mass = MASS_MEDIUM
+	observer.fleet = test_fleet
+	mate.fleet = test_fleet
+	test_fleet.all_ships = list(observer, mate)
+	var/outcome
+	if(!test_fleet.is_ai_picket(observer))
+		outcome = "The first ship to ask did not become the picket"
+	else if(test_fleet.is_ai_picket(mate))
+		outcome = "A second ship became the picket while the job was taken"
+	else if(!test_fleet.is_ai_picket(observer))
+		outcome = "The picket lost the job it had just taken"
 	// Nie qdel: /datum/fleet/Destroy() siega do current_system.fleets, a testowa flota nie ma systemu
 	observer.fleet = null
 	mate.fleet = null
-	flota.all_ships = null
-	return wynik
+	test_fleet.all_ships = null
+	observer.mass = observer_mass
+	return outcome

@@ -53,6 +53,9 @@
 		var/friendly = OM.faction == faction
 		if(!painted && !friendly && OM.is_sensor_visible(src) < SENSOR_VISIBILITY_FAINT)
 			continue
+		// Bez sygnatur widoczność nie zależy od odległości: limit jak na DRADIS (dwa zasięgi sensorów)
+		if(!painted && !friendly && !GLOB.sensor_signature_enabled && overmap_dist(src, OM) > max(display_range * 2, OM.sensor_profile))
+			continue
 		var/identified = friendly || painted || is_contact_identified(OM, display_range)
 		var/dx = (OM.x + OM.offset.a) - (x + offset.a)
 		var/dy = (OM.y + OM.offset.e) - (y + offset.e)
@@ -62,10 +65,8 @@
 			var/list/error = get_sensor_offset(OM, uncertainty)
 			dx = OM.x + error[1] - x
 			dy = OM.y + error[2] - y
-		if(abs(dx) > world.maxx / 2)
-			dx -= dx > 0 ? world.maxx : -world.maxx
-		if(abs(dy) > world.maxy / 2)
-			dy -= dy > 0 ? world.maxy : -world.maxy
+		dx = overmap_wrap_delta(dx, world.maxx)
+		dy = overmap_wrap_delta(dy, world.maxy)
 		var/list/contact = list(
 			"id" = "\ref[OM]",
 			"name" = get_contact_label(OM, identified),
@@ -93,7 +94,7 @@
 	if(!uses_fire_control())
 		return
 	linked.prune_designations()
-	var/range = linked.sensor_console ? linked.sensor_console.base_sensor_range : SENSOR_RANGE_DEFAULT
+	var/range = linked.sensor_console ? linked.sensor_console.sensor_range : SENSOR_RANGE_DEFAULT
 	data["fire_control"] = TRUE
 	data["own_armour"] = linked.get_armour_report()
 	data["heading"] = round(linked.angle)

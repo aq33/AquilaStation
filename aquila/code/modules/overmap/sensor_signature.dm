@@ -92,10 +92,14 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	update_sensor_signature()
 	. = ..()
 	// After ai_process(), so the sensor tactics see this tick's contacts (ai_sensor_use.dm)
-	update_ai_sensor_use()
+	// Zakłócenie (disruption) wstrzymuje też zwiad, daleki ostrzał i radar, jak bazowe ai_process()
+	if(!(ai_controlled && disruption && prob(min(99, disruption))))
+		update_ai_sensor_use()
 
 /// How far away observer can passively detect this ship
-/obj/structure/overmap/proc/get_detection_range(obj/structure/overmap/observer)
+/// record: czy zapisać u obserwatora, którym sensorem trzyma kontakt (ai_sensor_suites.dm). FALSE dla pytań
+/// "czy oni mnie widzą", żeby cudze zapytanie nie zmieniało obrazu obserwatora.
+/obj/structure/overmap/proc/get_detection_range(obj/structure/overmap/observer, record = TRUE)
 	var/base_range
 	if(observer.ai_controlled)
 		base_range = observer.max_tracking_range // Doubled by the AI's own radar pulse
@@ -116,6 +120,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	. = ..()
 	if(!GLOB.sensor_signature_enabled || . <= SENSOR_VISIBILITY_GHOST || !istype(observer) || observer == src)
 		return
+	// Asteroidy i wraki nie mają sygnatury napędu: widać je jak dotąd (zasięg DRADIS), także górniczym DRADIS
+	if(istype(src, /obj/structure/overmap/asteroid))
+		return
 	// Allies broadcast IFF; a ship painting the observer is loud no matter what.
 	// A radar pulse no longer reveals the emitter outright: listeners get a bearing-only emission contact instead (radar_emission.dm)
 	if(observer.faction == faction || (observer in target_painted))
@@ -128,8 +135,9 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 		return
 	// Słaby sygnał: graczowi kontakt trochę poza zasięgiem wykrycia miga na DRADIS jako niepewny,
 	// ale nie da się go namierzyć (FAINT < TARGETABLE). AI dalej widzi tylko to, co naprawdę wykrywa.
+	// Nie podnosi widoczności: okręt zamaskowany (poniżej FAINT) zostaje niewidoczny także tutaj
 	if(!observer.ai_controlled && dist <= range * SENSOR_FAINT_BAND)
-		return SENSOR_VISIBILITY_FAINT
+		return min(., SENSOR_VISIBILITY_FAINT)
 	return SENSOR_VISIBILITY_GHOST
 
 /datum/overmap_ship_weapon/fire_proc_chain(atom/target, mob/living/firer, ai_aim = FALSE, list/inplace_report)

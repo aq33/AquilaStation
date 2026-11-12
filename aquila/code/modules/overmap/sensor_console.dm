@@ -31,14 +31,42 @@
 		. = ++last_sensor_contact_number
 		LAZYSET(sensor_contact_numbers, target, .)
 
+/// Różnica współrzędnych na overmapie po najkrótszej drodze przez szew mapy. Overmapa zawija się z okresem
+/// rozmiar - 2 × (TRANSITIONEDGE + 1), jak w overmap_dist(), a nie z okresem całego rozmiaru świata.
+/proc/overmap_wrap_delta(delta, world_size)
+	var/period = world_size - 2 * (TRANSITIONEDGE + 1)
+	if(period <= 0)
+		return delta
+	delta = delta % period
+	if(delta > period / 2)
+		delta -= period
+	else if(delta < -period / 2)
+		delta += period
+	return delta
+
 /// Whether our sensors resolve target well enough to show its name and faction (same rule as the DRADIS base proc)
 /obj/structure/overmap/proc/is_contact_identified(obj/structure/overmap/target, range)
-	return target.faction == faction || overmap_dist(src, target) <= max(range, target.sensor_profile) || (target in target_painted)
+	if(target.faction == faction || (target in target_painted))
+		return TRUE
+	var/dist = overmap_dist(src, target)
+	if(dist <= target.sensor_profile)
+		return TRUE
+	// W czasie impulsu gracza range konsoli to zasięg impulsu, a wiązka widzi tylko w swoim wycinku:
+	// poza nim kontakt rozpoznajemy jak bez impulsu (player_sensors.dm)
+	if(!ai_controlled && uses_sensor_suites() && world.time < last_radar_pulse + RADAR_VISIBILITY_PENALTY)
+		var/base = sensor_console ? sensor_console.base_sensor_range : SENSOR_RANGE_DEFAULT
+		return dist <= max(min(range, base), get_player_lidar_range(target))
+	return dist <= range
 
 /// Drops designations of targets that are gone or no longer in our system
 /obj/structure/overmap/proc/prune_designations()
 	for(var/obj/structure/overmap/target as anything in designated_targets)
 		if(QDELETED(target) || target.z != z)
+			LAZYREMOVE(designated_targets, target)
+			continue
+		// Kontakt, którego sensory już nie widzą, przestaje być celem: inaczej mostek dostawał jego dokładną
+		// odległość, a teleskop i wiązka dalej celowały w prawdziwy namiar
+		if(!(target in target_painted) && target.is_sensor_visible(src) < SENSOR_VISIBILITY_FAINT)
 			LAZYREMOVE(designated_targets, target)
 
 /obj/structure/overmap/proc/clear_designations()
@@ -118,7 +146,7 @@
 			return TRUE
 		if("set_radar_delay")
 			var/seconds = text2num(params["seconds"])
-			if(isnum(seconds))
+			if(isnum_safe(seconds))
 				radar_delay = clamp(round(seconds) SECONDS, MIN_RADAR_DELAY, MAX_RADAR_DELAY)
 			return TRUE
 		if("set_sensor_mode")
@@ -182,10 +210,8 @@
 		var/certain = !blip["uncertainty"]
 		var/dx = certain ? (OM.x + OM.offset.a) - (linked.x + linked.offset.a) : blip["x"] - linked.x
 		var/dy = certain ? (OM.y + OM.offset.e) - (linked.y + linked.offset.e) : blip["y"] - linked.y
-		if(abs(dx) > world.maxx / 2)
-			dx -= dx > 0 ? world.maxx : -world.maxx
-		if(abs(dy) > world.maxy / 2)
-			dy -= dy > 0 ? world.maxy : -world.maxy
+		dx = overmap_wrap_delta(dx, world.maxx)
+		dy = overmap_wrap_delta(dy, world.maxy)
 		contacts += list(list(
 			"vx" = certain ? round(OM.velocity.a - linked.velocity.a, 0.01) : 0,
 			"vy" = certain ? round(OM.velocity.e - linked.velocity.e, 0.01) : 0,
@@ -210,10 +236,8 @@
 			continue
 		var/dx = blip["x"] - linked.x
 		var/dy = blip["y"] - linked.y
-		if(abs(dx) > world.maxx / 2)
-			dx -= dx > 0 ? world.maxx : -world.maxx
-		if(abs(dy) > world.maxy / 2)
-			dy -= dy > 0 ? world.maxy : -world.maxy
+		dx = overmap_wrap_delta(dx, world.maxx)
+		dy = overmap_wrap_delta(dy, world.maxy)
 		markers += list(list("dx" = dx, "dy" = dy, "emission" = blip["emission"], "ghost" = !!blip["ghost"], "opacity" = blip["opacity"]))
 	data["markers"] = markers
 	data["gunner"] = !!linked.gunner
@@ -251,10 +275,8 @@
 			continue
 		var/dx = thing.x - x
 		var/dy = thing.y - y
-		if(abs(dx) > world.maxx / 2)
-			dx -= dx > 0 ? world.maxx : -world.maxx
-		if(abs(dy) > world.maxy / 2)
-			dy -= dy > 0 ? world.maxy : -world.maxy
+		dx = overmap_wrap_delta(dx, world.maxx)
+		dy = overmap_wrap_delta(dy, world.maxy)
 		. += list(list("id" = "\ref[thing]", "kind" = kind, "name" = name, "detail" = detail, "dx" = dx, "dy" = dy))
 
 /// Every DRADIS on a ship with a sensor console follows the operator: its range and its contact labels.

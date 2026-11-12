@@ -38,13 +38,16 @@
 	data["own_signature"] = round(linked.sensor_signature, 0.01)
 	data["seen_from"] = round(clamp(typical_range * linked.sensor_signature, SENSOR_MIN_DETECTION, SENSOR_MAX_DETECTION))
 	data["seen_from_pulse"] = round(clamp(typical_range * 2 * linked.sensor_signature, SENSOR_MIN_DETECTION, SENSOR_MAX_DETECTION))
+	// AI z zestawami sensorów widzi kamerą, teleskopem i podczerwienią, a w czasie swojego impulsu radarem (2 × zasięg śledzenia)
+	if(GLOB.ai_sensor_suites_enabled)
+		data["seen_from"] = round(linked.get_ai_seen_from())
+		data["seen_from_pulse"] = round(max(linked.get_ai_seen_from(), typical_range * 2))
 	var/list/blips = data["ships"]
 	for(var/list/blip as anything in blips)
 		var/obj/structure/overmap/OM = locate(blip["id"])
 		if(!istype(OM) || OM == linked || OM.faction == linked.faction || istype(OM, /obj/structure/overmap/asteroid) || (OM in linked.target_painted))
 			continue
-		var/dist = overmap_dist(linked, OM)
-		if(dist <= max(sensor_range, OM.sensor_profile)) // Identified contacts are exact, same rule as the base proc
+		if(linked.is_contact_identified(OM, sensor_range)) // Identified contacts are exact (wiązka radaru: tylko w wycinku)
 			continue
 		var/radius = linked.get_contact_uncertainty(OM)
 		var/list/offset = linked.get_sensor_offset(OM, radius)

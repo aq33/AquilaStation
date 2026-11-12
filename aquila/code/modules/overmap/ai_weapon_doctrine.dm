@@ -35,12 +35,39 @@ GLOBAL_VAR_INIT(ai_long_range_guided_enabled, TRUE)
 		return FALSE
 	if(target.z != z || overmap_dist(src, target) <= AI_GUNS_CLOSE_RANGE)
 		return FALSE
-	return has_ai_guided_option(target)
+	return has_ai_guided_option(target) && can_ai_guided_reach(target)
+
+/// Czy broń kierowana może w target strzelić z obecnego ustawienia: wyrzutnia dziobowa nie sięgnie celu z boku,
+/// a wtedy wstrzymane działa oznaczałyby, że okręt nie strzela wcale
+/obj/structure/overmap/proc/can_ai_guided_reach(obj/structure/overmap/target)
+	for(var/datum/overmap_ship_weapon/weapon as anything in overmap_weapon_datums)
+		if(!(weapon.weapon_control_flags & OSW_CONTROL_AI) || !weapon.is_guided_weapon() || !weapon.get_ammo())
+			continue
+		if(weapon.is_target_size_valid(target) && weapon.check_valid_fire_angle(target))
+			return TRUE
+	return FALSE
 
 /datum/overmap_ship_weapon/can_fire(atom/target, list/inplace_report)
-	if(linked_overmap?.ai_controlled && isovermap(target) && !is_guided_weapon() && linked_overmap.ai_holds_guns_for(target))
+	// Tylko na cel, z którym okręt walczy: flak i działa automatyczne dalej bronią przed innymi (np. myśliwcami)
+	if(linked_overmap?.ai_controlled && isovermap(target) && target == linked_overmap.last_target && !is_guided_weapon() && linked_overmap.ai_holds_guns_for(target))
 		return FALSE
 	return ..()
+
+/// add_enemy() bez zmiany celu walki: strzał z daleka albo na namiar ma tylko zaalarmować cel (i flotę gracza),
+/// a nie odciągnąć okręt od tego, z kim walczy
+/obj/structure/overmap/proc/ai_mark_enemy(obj/structure/overmap/target)
+	var/obj/structure/overmap/fighting = last_target
+	if(!istype(fighting) || QDELETED(fighting) || fighting == target)
+		add_enemy(target)
+		return
+	var/hold = ai_hold_fire_until
+	var/datum/weakref/hesitated = ai_hesitated_target
+	var/next_hesitation = ai_next_hesitation
+	add_enemy(target)
+	last_target = fighting
+	ai_hold_fire_until = hold
+	ai_hesitated_target = hesitated
+	ai_next_hesitation = next_hesitation
 
 /// Najbliższy wróg dalej niż bazowy zasięg ognia AI i nie dalej niż AI_GUIDED_MAX_RANGE, którego nasze sensory
 /// teraz widzą, albo null. contents podawane, żeby dało się testować bez systemu gwiezdnego.
@@ -75,7 +102,7 @@ GLOBAL_VAR_INIT(ai_long_range_guided_enabled, TRUE)
 	var/datum/overmap_ship_weapon/weapon = get_ai_guided_weapon(target)
 	if(!weapon)
 		return
-	add_enemy(target) // jak w bazowym ai_fire(): gracz dostaje alarm, że jest namierzany
+	ai_mark_enemy(target) // jak w bazowym ai_fire(): gracz dostaje alarm, że jest namierzany
 	ai_scout_event("[src] strzela z daleka ([overmap_dist(src, target)] pól, własne sensory: [get_contact_suite(target) || "?"]) w [target]")
 	fire_weapon(target, firing_weapon = weapon, ai_aim = TRUE)
 

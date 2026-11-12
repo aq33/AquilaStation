@@ -183,6 +183,35 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 		return list(SENSOR_OPTICAL, SENSOR_INFRARED)
 	return list(SENSOR_OPTICAL, SENSOR_TELESCOPE, SENSOR_INFRARED, SENSOR_LIDAR)
 
+/// Najdalszy zasięg, na jaki widzimy target sensorami pasywnymi (bez radaru), niezależnie od stożka teleskopu:
+/// tyle wolno trzymać dystansu, żeby nie zgubić celu przy celowaniu teleskopem
+/obj/structure/overmap/proc/get_ai_passive_reach(obj/structure/overmap/target)
+	. = 0
+	for(var/suite in get_sensor_suites())
+		var/reach
+		switch(suite)
+			if(SENSOR_TELESCOPE)
+				reach = GLOB.ai_sensor_cones_enabled ? get_telescope_reach(target) : 0
+			if(SENSOR_INFRARED)
+				reach = get_infrared_reach(target)
+			if(SENSOR_LIDAR)
+				reach = 0
+			else
+				reach = get_suite_range(suite, target)
+		. = max(., reach)
+
+/// Z jakiej odległości typowe AI widzi ten okręt sensorami pasywnymi, gdy kieruje na niego teleskop i patrzy z boku
+/// (pokazywane graczowi na DRADIS i stanowisku rozpoznania: "wróg wykrywa nas z ~X pól")
+/obj/structure/overmap/proc/get_ai_seen_from()
+	var/size = get_signature_size()
+	var/heat = get_signature_heat()
+	var/engine = clamp(thrust_heat, 0, heat)
+	var/abeam_heat = heat - engine + engine * INFRARED_ASPECT_MID
+	var/optical = max(OPTICAL_BASE_RANGE * OPTICAL_WIDE_MULT * size, OPTICAL_WIDE_MIN_RANGE)
+	var/telescope = OPTICAL_BASE_RANGE * TELESCOPE_RANGE_MULT * size
+	var/infrared = INFRARED_BASE_RANGE * sqrt(max(abeam_heat, 0))
+	return max(optical, telescope, infrared)
+
 /// The suite that sees target furthest, as list(suite, range); never null
 /obj/structure/overmap/proc/get_best_suite(obj/structure/overmap/target)
 	var/best_suite = SENSOR_OPTICAL
@@ -200,7 +229,7 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 
 /// Detection through the suites: AI ships, and player ships with a sensor console (player_sensors.dm).
 /// Other player ships keep the single range from sensor_signature.dm.
-/obj/structure/overmap/get_detection_range(obj/structure/overmap/observer)
+/obj/structure/overmap/get_detection_range(obj/structure/overmap/observer, record = TRUE)
 	if(!GLOB.ai_sensor_suites_enabled || !observer?.uses_sensor_suites())
 		return ..()
 	// DRADIS mostka (sensor_view_basic): tylko kamera i podczerwień dookoła; nie nadpisuje tego, czym operator trzyma kontakt
@@ -210,22 +239,36 @@ GLOBAL_VAR_INIT(ai_sensor_cones_enabled, TRUE)
 	if(!observer.ai_controlled)
 		var/lidar = observer.get_player_lidar_range(src)
 		if(lidar && overmap_dist(src, observer) <= lidar)
-			LAZYSET(observer.sensor_contact_suites, src, SENSOR_LIDAR)
+			if(record)
+				LAZYSET(observer.sensor_contact_suites, src, SENSOR_LIDAR)
 			return lidar
 	var/list/best = observer.get_best_suite(src)
 	var/range = best[2]
+	if(!record)
+		return range
 	if(overmap_dist(src, observer) <= range)
 		LAZYSET(observer.sensor_contact_suites, src, best[1])
 	else
 		LAZYREMOVE(observer.sensor_contact_suites, src)
 	return range
 
+/// Okręt, który nas namierza, jest widoczny zawsze (sensor_signature.dm): słyszymy jego radar kierowania ognia
+/obj/structure/overmap/is_sensor_visible(obj/structure/overmap/observer)
+	. = ..()
+	if(GLOB.sensor_signature_enabled && GLOB.ai_sensor_suites_enabled && istype(observer) && observer != src && observer.faction != faction && (observer in target_painted) && observer.uses_sensor_suites())
+		LAZYSET(observer.sensor_contact_suites, src, SENSOR_ESM)
+
 /// Drops deleted ships from the contact list. Called from prune_sensor_memory() in ai_sensor_use.dm,
 /// which holds the single override of that proc.
 /obj/structure/overmap/proc/prune_ai_suite_contacts()
-	for(var/datum/target as anything in sensor_contact_suites?.Copy())
-		if(QDELETED(target))
+	for(var/obj/structure/overmap/target as anything in sensor_contact_suites?.Copy())
+		if(QDELETED(target) || target.z != z)
 			LAZYREMOVE(sensor_contact_suites, target)
+			continue
+		// Wpis powstaje przy sprawdzaniu widoczności, a ta bywa pomijana (cel dalej niż zasięg śledzenia AI):
+		// liczymy go od nowa, żeby nie trzymać kontaktu, którego żaden sensor już nie widzi
+		if(!(src in target.target_painted))
+			target.get_detection_range(src)
 
 /world/AVerbsDebug()
 	. = ..()

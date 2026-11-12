@@ -43,13 +43,13 @@ GLOBAL_VAR_INIT(ai_finite_supply_enabled, TRUE)
 		return
 	stock_ai_supply()
 	if(target.max_torpedoes > 0)
-		var/torpedy = clamp(target.max_torpedoes - target.torpedoes, 0, min(AI_SUPPLY_TORPEDOES_PER_CYCLE, ai_supply_torpedoes))
-		target.torpedoes += torpedy
-		ai_supply_torpedoes -= torpedy
+		var/torpedo_stock = clamp(target.max_torpedoes - target.torpedoes, 0, min(AI_SUPPLY_TORPEDOES_PER_CYCLE, ai_supply_torpedoes))
+		target.torpedoes += torpedo_stock
+		ai_supply_torpedoes -= torpedo_stock
 	if(target.max_missiles > 0)
-		var/rakiety = clamp(target.max_missiles - target.missiles, 0, min(AI_SUPPLY_MISSILES_PER_CYCLE, ai_supply_missiles))
-		target.missiles += rakiety
-		ai_supply_missiles -= rakiety
+		var/missile_stock = clamp(target.max_missiles - target.missiles, 0, min(AI_SUPPLY_MISSILES_PER_CYCLE, ai_supply_missiles))
+		target.missiles += missile_stock
+		ai_supply_missiles -= missile_stock
 	target.shots_left = target.max_shots_left
 	target.try_repair(target.max_integrity * 0.1)
 

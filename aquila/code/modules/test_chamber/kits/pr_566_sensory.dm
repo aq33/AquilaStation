@@ -33,5 +33,5 @@
 		return
 	var/turf/spot = locate(clamp(main.x + 70, 10, world.maxx - 10), main.y, main.z)
 	var/obj/structure/overmap/enemy = new /obj/structure/overmap/syndicate/ai/gunboat/sensor_test(spot)
-	main.current_system.add_ship(enemy)
+	main.current_system.add_ship(enemy, spot)
 	message_admins("[key_name_admin(user)] przywołał nieuzbrojoną fregatę Syndykatu do testu sensorów: [ADMIN_VERBOSEJMP(enemy)].")

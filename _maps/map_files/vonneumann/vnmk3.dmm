@@ -49,11 +49,6 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
-"aaj" = (
-/obj/machinery/computer/ship/dradis/sensors,
-/obj/structure/cable,
-/turf/open/floor/circuit,
-/area/bridge/cic)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -60549,7 +60544,7 @@ wuv
 wuv
 skj
 bcI
-aaj
+skj
 pyK
 pyK
 bJV

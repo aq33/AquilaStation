@@ -1053,9 +1053,13 @@ export const FireControl = (props) => {
   // Jak na stanowisku rozpoznania: pewne kontakty i obrót okrętu płyną między aktualizacjami
   const receivedAt = useRef(Date.now());
   const [, setFrame] = useState(0);
-  useEffect(() => {
+  // Czas przyjścia danych zapisujemy w tym samym renderze, w którym przyszły; efekt odpalał się po renderze
+  // i pierwszy obraz po aktualizacji przesuwał kontakty o cały poprzedni czas (drganie)
+  const lastData = useRef(data);
+  if (lastData.current !== data) {
+    lastData.current = data;
     receivedAt.current = Date.now();
-  }, [data]);
+  }
   useEffect(() => {
     const timer = setInterval(() => setFrame((frame) => frame + 1), 100);
     return () => clearInterval(timer);

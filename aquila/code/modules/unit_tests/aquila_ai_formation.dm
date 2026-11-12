@@ -46,108 +46,108 @@
 	var/turf/spot = ship.get_ai_standoff_point(target, 40)
 	if(!spot)
 		return "Okręt na dystansie nie dostał żadnego punktu do lecenia"
-	var/promien = overmap_dist(target, spot)
-	if(promien < 30 || promien > 50)
-		return "Punkt nie leży na okręgu dystansu (odległość od celu [promien], miało być około 40)"
+	var/orbit_radius = overmap_dist(target, spot)
+	if(orbit_radius < 30 || orbit_radius > 50)
+		return "Punkt nie leży na okręgu dystansu (odległość od celu [orbit_radius], miało być około 40)"
 	if(spot == get_turf(ship))
 		return "Punktem okazało się miejsce, w którym okręt już stoi"
 	// Bazowe move_toward() odpala silniki dopiero powyżej 12 pól, więc bliższy punkt znaczyłby stanie
 	if(overmap_dist(ship, spot) < 13)
 		return "Punkt wypadł w martwej strefie silników ([overmap_dist(ship, spot)] pól)"
 	// Dopóki nie dolecimy i nie minie czas, trzymamy ten sam punkt, żeby nie zygzakować
-	var/turf/znowu = ship.get_ai_standoff_point(target, 40)
-	if(znowu != spot)
+	var/turf/again = ship.get_ai_standoff_point(target, 40)
+	if(again != spot)
 		return "Okręt zmienił punkt, zanim do niego doleciał"
 	// Po wygaśnięciu czasu wybiera nowy
 	ship.ai_standoff_until = world.time - 1
-	var/turf/kolejny = ship.get_ai_standoff_point(target, 40)
-	if(!kolejny)
+	var/turf/next_outcome = ship.get_ai_standoff_point(target, 40)
+	if(!next_outcome)
 		return "Po wygaśnięciu punktu okręt nie wybrał nowego"
-	var/promien2 = overmap_dist(target, kolejny)
-	if(promien2 < 30 || promien2 > 50)
-		return "Kolejny punkt spadł z okręgu dystansu ([promien2])"
+	var/orbit_radius_2 = overmap_dist(target, next_outcome)
+	if(orbit_radius_2 < 30 || orbit_radius_2 > 50)
+		return "Kolejny punkt spadł z okręgu dystansu ([orbit_radius_2])"
 
 /// Przewaga wroga każe poczekać na swoich, a brawurowy ma to gdzieś
 /datum/unit_test/aquila_ai_formation/proc/check_waiting()
-	var/datum/fleet/flota = new /datum/fleet()
-	ship.fleet = flota
+	var/datum/fleet/test_fleet = new /datum/fleet()
+	ship.fleet = test_fleet
 	ship.last_target = target
 	ship.ai_fleeing = FALSE
-	var/wynik
+	var/outcome
 	ship.ai_temperament = null
 	ship.test_threats = 1
 	ship.test_support = 0
 	if(ship.ai_waits_for_support(target))
-		wynik = "Okręt czekał na flotę przy jednym przeciwniku"
-	if(!wynik)
+		outcome = "Okręt czekał na flotę przy jednym przeciwniku"
+	if(!outcome)
 		ship.test_threats = 4
 		if(!ship.ai_waits_for_support(target))
-			wynik = "Samotny okręt ruszył na czterech wrogów"
-	if(!wynik)
+			outcome = "Samotny okręt ruszył na czterech wrogów"
+	if(!outcome)
 		ship.test_support = 4
 		if(ship.ai_waits_for_support(target))
-			wynik = "Okręt czekał, choć miał przy sobie czterech swoich"
-	if(!wynik)
+			outcome = "Okręt czekał, choć miał przy sobie czterech swoich"
+	if(!outcome)
 		ship.test_support = 0
 		ship.ai_temperament = "brawurowy"
 		if(ship.ai_waits_for_support(target))
-			wynik = "Brawurowy dowódca czekał na resztę floty"
-	if(!wynik)
+			outcome = "Brawurowy dowódca czekał na resztę floty"
+	if(!outcome)
 		ship.ai_temperament = "ostrożny"
 		ship.test_threats = 2
 		ship.test_support = 1
 		if(!ship.ai_waits_for_support(target))
-			wynik = "Ostrożny dowódca nie czekał przy przewadze wroga"
-	if(!wynik)
+			outcome = "Ostrożny dowódca nie czekał przy przewadze wroga"
+	if(!outcome)
 		// Uciekającego to nie dotyczy
 		ship.ai_temperament = null
 		ship.test_threats = 4
 		ship.test_support = 0
 		ship.ai_fleeing = TRUE
 		if(ship.ai_waits_for_support(target))
-			wynik = "Uciekający okręt zatrzymał się, żeby czekać na flotę"
+			outcome = "Uciekający okręt zatrzymał się, żeby czekać na flotę"
 	ship.ai_fleeing = FALSE
 	ship.last_target = null
 	ship.fleet = null
-	flota.all_ships = null
-	return wynik
+	test_fleet.all_ships = null
+	return outcome
 
 /// Eskorta przy osłanianym okręcie krąży zamiast parkować (nadpisanie guard() w ai_formation.dm)
 /datum/unit_test/aquila_ai_formation/proc/check_guard()
 	var/z = run_loc_floor_bottom_left.z
-	var/datum/ai_goal/cel = new /datum/ai_goal/defend()
-	var/obj/structure/overmap/small_craft/oslaniany = allocate(/obj/structure/overmap/small_craft/combat/light)
-	oslaniany.forceMove(locate(60, 60, z))
+	var/datum/ai_goal/prey = new /datum/ai_goal/defend()
+	var/obj/structure/overmap/small_craft/escorted = allocate(/obj/structure/overmap/small_craft/combat/light)
+	escorted.forceMove(locate(60, 60, z))
 	ship.forceMove(locate(66, 60, z)) // 6 pól, czyli w promieniu AI_PDC_RANGE
 	ship.brakes = TRUE
 	ship.move_mode = null
-	cel.guard(ship, oslaniany)
-	var/wynik
+	prey.guard(ship, escorted)
+	var/outcome
 	if(ship.brakes)
-		wynik = "Eskorta w promieniu osłony dalej ma zaciągnięte hamulce"
+		outcome = "Eskorta w promieniu osłony dalej ma zaciągnięte hamulce"
 	else if(!ship.move_mode)
-		wynik = "Eskorta w promieniu osłony nie ma ustawionego ciągu"
-	if(!wynik)
+		outcome = "Eskorta w promieniu osłony nie ma ustawionego ciągu"
+	if(!outcome)
 		// Z wyłączonym przełącznikiem wraca bazowe parkowanie
 		GLOB.ai_formation_enabled = FALSE
 		ship.brakes = FALSE
 		ship.move_mode = NORTH
-		cel.guard(ship, oslaniany)
+		prey.guard(ship, escorted)
 		if(!ship.brakes || ship.move_mode)
-			wynik = "Z wyłączonym przełącznikiem eskorta nie wróciła do bazowego parkowania"
+			outcome = "Z wyłączonym przełącznikiem eskorta nie wróciła do bazowego parkowania"
 		GLOB.ai_formation_enabled = TRUE
-	if(!wynik)
+	if(!outcome)
 		// Okręt osłaniający sam siebie nie ma wokół czego krążyć
 		ship.brakes = FALSE
 		ship.move_mode = NORTH
-		cel.guard(ship, ship)
+		prey.guard(ship, ship)
 		if(!ship.brakes || ship.move_mode)
-			wynik = "Okręt osłaniający sam siebie próbował krążyć wokół siebie"
+			outcome = "Okręt osłaniający sam siebie próbował krążyć wokół siebie"
 	// Gałąź "daleko od osłanianego" to bazowe move_toward(), przepisane bez zmian. Nie da się jej tu wywołać:
 	// bazowe omijanie przeszkód czyta current_system.system_contents (ai-skynet.dm), a okręt w teście
 	// nie jest w żadnym systemie gwiezdnym.
-	qdel(cel)
-	return wynik
+	qdel(prey)
+	return outcome
 
 /// Z wyłączonym przełącznikiem nie ma ani punktu, ani czekania
 /datum/unit_test/aquila_ai_formation/proc/check_disabled()
