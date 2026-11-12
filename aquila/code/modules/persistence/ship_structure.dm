@@ -430,6 +430,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	var/check_rooms = FALSE
 	/// TRUE = statek skończył rundę mocno zniszczony (remis albo brak głosów = nowy statek)
 	var/heavy_damage = FALSE
+	/// Klucze pól, które już na mapie przepuszczały powietrze do kosmosu (do zabezpieczenia kadłuba; null po starcie rundy)
+	var/list/map_open
 
 /datum/ship_structure/New(list/z_levels, list/bounds)
 	. = ..()
@@ -1133,6 +1135,90 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		new /obj/structure/foamedmetal(T)
 		. |= evict_contents(T)
 
+/// Klucze otwartych pól, które przepuszczają powietrze do kosmosu (zewnętrzne pomosty, hangary): zabezpieczenie ich nie łata
+/datum/ship_structure/proc/capture_open_to_space()
+	. = list()
+	for(var/turf/T as anything in get_turfs())
+		CHECK_TICK
+		if(!isspaceturf(T) && ship_structure_open_to_space(T))
+			.[key_for(T)] = TRUE
+
+/// Pole jest dziurą albo przepuszcza powietrze do kosmosu nie tylko przez miejsce, gdzie na mapie stał prom (ten mógł odlecieć)
+/datum/ship_structure/proc/leaks_past_shuttles(turf/T)
+	if(isspaceturf(T))
+		return TRUE
+	if(istype(T, /turf/open/openspace))
+		var/turf/below = SSmapping.get_turf_below(T)
+		if(!below || isspaceturf(below))
+			return TRUE
+	for(var/dir in GLOB.cardinals)
+		var/turf/neighbour = get_step(T, dir)
+		if(neighbour && isspaceturf(neighbour) && T.CanAtmosPass(neighbour) && baseline[key_for(neighbour)] != SHIP_STRUCTURE_SHUTTLE)
+			return TRUE
+	return FALSE
+
+/**
+ * Zabezpieczenie kadłuba po wczytaniu zapisu i jeszcze raz na starcie rundy: łata pianką każde pole statku, które na mapie
+ * było szczelne, a teraz jest dziurą albo przepuszcza powietrze do kosmosu, także gdy łatanie przy nakładaniu zapisu
+ * go nie objęło (pole spoza zapisu, pominięty rekord, zmiana po wczytaniu). Pole, które widzi kosmos tylko przez
+ * miejsce po promie, zostaje, bo prom mógł po prostu odlecieć. Każde załatane pole idzie do logu, żeby dało się znaleźć przyczynę.
+ * Zwraca liczbę załatanych pól.
+ */
+/datum/ship_structure/proc/seal_hull(at_round_start = FALSE)
+	if(!baseline || !map_open)
+		return 0
+	cache_shuttle_areas()
+	var/list/holes = list()
+	/// Otwarta przestrzeń z mapy: dziura dopiero wtedy, gdy po załataniu niższego pokładu dalej widać pod nią kosmos
+	var/list/openspace = list()
+	/// Pole -> opis do logu (stan przed łataniem)
+	var/list/found = list()
+	var/list/was_hole = list()
+	for(var/turf/T as anything in get_turfs())
+		CHECK_TICK
+		if(!ship_structure_open_to_space(T) || skip_turf(T))
+			continue
+		var/key = key_for(T)
+		var/list/entry = baseline[key]
+		if(map_open[key] || !islist(entry))
+			continue // otwarte już na mapie, kosmos z mapy albo prom
+		var/map_type = text2path(splittext(entry[1], ";")[1])
+		if(ispath(map_type, /turf/open/space) || !is_hull_turf(T))
+			continue
+		if(!leaks_past_shuttles(T))
+			continue
+		found[T] = "[T.x],[T.y],[T.z] [T.loc.type] [T.type] (map: [map_type])"
+		was_hole[T] = isspaceturf(T) || istype(T, /turf/open/openspace)
+		if(ispath(map_type, /turf/open/openspace))
+			openspace += T
+		else
+			holes += T
+	var/list/moved = patch_breaches(holes)
+	for(var/i in length(openspace) to 1 step -1)
+		if(!ship_structure_open_to_space(openspace[i]))
+			openspace.Cut(i, i + 1)
+	moved |= patch_breaches(openspace)
+	fix_wallmounts(moved, list())
+	if(at_round_start)
+		map_open = null
+	// Liczą się pola, które dostały podłogę albo ścianę z pianki, a nie ich sąsiedzi, którzy przestali widzieć kosmos
+	var/list/report = list()
+	var/sealed = 0
+	for(var/turf/T as anything in holes + openspace)
+		if(!was_hole[T] && !(locate(/obj/structure/foamedmetal) in T))
+			continue
+		sealed++
+		if(length(report) < 30)
+			report += found[T]
+	if(!sealed)
+		return 0
+	if(sealed > length(report))
+		report += "..."
+	log_game("Ship structure: hull check at [at_round_start ? "round start" : "load"] sealed [sealed] turfs the save did not patch: [jointext(report, "; ")]")
+	last_report += ", zabezpieczenie kadłuba: [sealed] pól"
+	message_admins("Trwała struktura statku: zabezpieczenie załatało pianką [sealed] pól kadłuba, których nie załatał zapis. Współrzędne są w game.log.")
+	return sealed
+
 /**
  * Rzeczy z mapy, które wylądowały w nowej ścianie, idą na sąsiednie otwarte pole. Zwraca pola, na które trafiły.
  * only_dense = TRUE: pole nie jest zamknięte, tylko zapis postawił na nim coś gęstego (maszynę), więc odchodzą
@@ -1288,6 +1374,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	keep_map_installations = map_hash && data["map_hash"] != map_hash
 	check_rooms = data["rooms"] ? TRUE : FALSE
 	load_errors = 0
+	map_open = capture_open_to_space()
 	var/list/result
 	try
 		result = apply(data["turfs"])
@@ -1302,6 +1389,7 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	if(source != save_path)
 		last_report += ", wczytano kopię zapasową"
 	log_game("Ship structure: loaded [source], [rounds] rounds, [result[1]] turfs applied, [result[2]] skipped, [load_errors] errors[keep_map_installations ? ", map file changed, pipes and cables kept from the map" : ""]")
+	seal_hull()
 	if(load_errors)
 		// Ten sam zapis dawałby te same błędy co rundę: odkładamy go, a następna runda zapisze statek od nowa
 		quarantine("[load_errors] errors while loading")
@@ -1450,6 +1538,8 @@ SUBSYSTEM_DEF(ship_structure)
 	structure.baseline = structure.capture()
 	var/captured = REALTIMEOFDAY
 	structure.load()
+	if(structure.map_open)
+		SSticker.OnRoundstart(CALLBACK(structure, TYPE_PROC_REF(/datum/ship_structure, seal_hull), TRUE))
 	log_game("Ship structure: map snapshot of [length(structure.baseline)] turfs took [(captured - started) / 10] s, loading the save [(REALTIMEOFDAY - captured) / 10] s")
 
 /datum/controller/subsystem/persistence/CollectData()

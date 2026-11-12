@@ -600,5 +600,56 @@
 			qdel(O)
 		T.ChangeTurf(/turf/open/space)
 
+/**
+ * AQUILA - Zabezpieczenie kadłuba: dziura, której łatanie zapisu nie objęło (pole spoza zapisu, zmiana po wczytaniu),
+ * dostaje piankę tak samo jak dziura z zapisu. Pole otwarte na kosmos już na mapie i miejsce po promie zostają.
+ */
+/datum/unit_test/ship_structure/safety/hull_check
+
+/datum/unit_test/ship_structure/safety/hull_check/Run()
+	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(11, 11)
+	TEST_ASSERT(reservation, "Could not reserve space")
+	bottom_left = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
+	floor_block()
+	// (9,5): ściana kadłuba, (5,5): środek pomieszczenia, (5,9) i (6,9): podłoga przy kosmosie, (6,8): pole przy promie
+	change(9, 5, /turf/closed/wall)
+	for(var/dx in 4 to 7)
+		change(dx, 9, /turf/closed/wall)
+	change(5, 9, /turf/open/floor/plasteel)
+	change(6, 9, /turf/open/floor/plasteel)
+	new /obj/machinery/door/airlock/external(cell(6, 9))
+	var/datum/ship_structure/structure = new_structure()
+	structure.baseline = structure.capture()
+	structure.baseline[structure.key_for(cell(7, 8))] = "shuttle" // SHIP_STRUCTURE_SHUTTLE (undef na końcu ship_structure.dm)
+	structure.map_open = structure.capture_open_to_space()
+	TEST_ASSERT(structure.map_open[structure.key_for(cell(1, 5))], "Test setup: the edge of the block is not open to space")
+	TEST_ASSERT(!structure.map_open[structure.key_for(cell(8, 5))], "Test setup: the tile behind the hull wall is open to space")
+
+	// Dziury, których nie ma w zapisie: zburzona ściana, wyrwana podłoga, wyrwana śluza, pole po odlatującym promie
+	// i zburzona ściana (7,9) między miejscem po promie a kosmosem
+	change(9, 5, /turf/open/space)
+	change(5, 5, /turf/open/space)
+	qdel(locate(/obj/machinery/door/airlock) in cell(6, 9))
+	change(7, 8, /turf/open/space)
+	change(7, 9, /turf/open/space)
+	TEST_ASSERT_EQUAL(structure.seal_hull(), 4, "The hull check did not seal exactly the four breaches")
+	TEST_ASSERT(istype(cell(9, 5), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(9, 5)), "The broken hull wall was not sealed with foam")
+	TEST_ASSERT(istype(cell(5, 5), /turf/open/floor/plating/foam), "The hole in the floor was not floored with foam")
+	TEST_ASSERT(!(locate(/obj/structure/foamedmetal) in cell(5, 5)), "The hole inside the room was walled with foamed metal")
+	TEST_ASSERT(locate(/obj/structure/foamedmetal) in cell(6, 9), "The tile of the torn out airlock was not sealed")
+	TEST_ASSERT(!istype(cell(8, 5), /turf/open/floor/plating/foam) && !(locate(/obj/structure/foamedmetal) in cell(8, 5)), "The tile behind the patched hull was changed")
+	TEST_ASSERT(!(locate(/obj/structure/foamedmetal) in cell(1, 5)), "A tile open to space on the map was sealed")
+	TEST_ASSERT(!(locate(/obj/structure/foamedmetal) in cell(6, 8)) && isspaceturf(cell(7, 8)), "The tile next to a departed shuttle was sealed")
+	TEST_ASSERT(istype(cell(7, 9), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(7, 9)), "The broken hull wall next to a departed shuttle was not sealed")
+
+	// Start rundy: nic nowego do łatania, a lista pól z mapy idzie do kosza
+	TEST_ASSERT_EQUAL(structure.seal_hull(TRUE), 0, "The hull check sealed something twice")
+	TEST_ASSERT(isnull(structure.map_open), "The map snapshot of open tiles was kept after the round start")
+
+	for(var/turf/T as anything in block(bottom_left, cell(10, 10)))
+		for(var/obj/O in T)
+			qdel(O)
+		T.ChangeTurf(/turf/open/space)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
