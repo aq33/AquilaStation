@@ -2791,6 +2791,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\macrophage.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mecha_pilot.dm"
 // AQ EDIT - chodzący grzyb jest basic mobem (aquila\code\modules\mob\living\basic\space_fauna\mushroom.dm)
+// AQ EDIT - żołnierze NT, piraci i Rosjanie są basic mobami (aquila\code\modules\mob\living\basic\trooper\)
 #include "code\modules\mob\living\simple_animal\hostile\redgrub.dm"
 // AQ EDIT - szkielety są basic mobami (aquila\code\modules\mob\living\basic\ruin_defender\skeleton.dm)
 #include "code\modules\mob\living\simple_animal\hostile\statue.dm"
@@ -3867,6 +3868,7 @@
 #include "nsv13\code\modules\mob\living\simple_animal\bot\hugbot.dm"
 #include "nsv13\code\modules\mob\living\simple_animal\bot\secbot.dm"
 #include "nsv13\code\modules\mob\living\simple_animal\hostile\dioclown.dm"
+// AQ EDIT - abordażyści /hostile/nsv usunięci, wnętrza abordażu mają KNPC (raport/mobabilities_05_abordaz.md)
 #include "nsv13\code\modules\modular_computer\wiki_uplink.dm"
 #include "nsv13\code\modules\munitions\muni_pointer.dm"
 #include "nsv13\code\modules\munitions\munitions_trolley.dm"
