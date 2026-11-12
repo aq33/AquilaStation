@@ -1166,6 +1166,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_634_mechanik.dm"
 #include "code\modules\test_chamber\kits\pr_619_medycyna4.dm"
 #include "code\modules\test_chamber\kits\pr_618_smycz.dm"
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
@@ -2187,6 +2188,7 @@
 #include "code\modules\unit_tests\aquila_soft_lighting.dm"
 #include "code\modules\unit_tests\aquila_spesstv.dm"
 #include "code\modules\unit_tests\aquila_munitions_forge.dm"
+#include "code\modules\unit_tests\aquila_mechanic.dm"
 #include "code\modules\unit_tests\aquila_spiders.dm"
 #include "code\modules\unit_tests\aquila_spy.dm"
 #include "code\modules\unit_tests\aquila_strip_search.dm"
