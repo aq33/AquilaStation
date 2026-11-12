@@ -85,13 +85,66 @@ def polish_detector(known):
     return detect
 
 
+def dm_embeds(text):
+    """Wstawki najwyższego poziomu w tekście DM ("a [x ? "b [y]" : "c"] d" -> x ? "b [y]" : "c")."""
+    depth, start, i = 0, 0, 0
+    while i < len(text):
+        char = text[i]
+        if char == "\\":
+            i += 2
+            continue
+        if char == "[":
+            if depth == 0:
+                start = i + 1
+            depth += 1
+        elif char == "]" and depth:
+            depth -= 1
+            if depth == 0:
+                yield text[start:i]
+        i += 1
+
+
+def embed_strings(expr):
+    """Napisy w wyrażeniu wstawki; napis może mieć własne wstawki z cudzysłowami w środku."""
+    i = 0
+    while i < len(expr):
+        if expr[i] == "\\":
+            i += 2  # \" poza napisem (tekst wieloliniowy {" "}) to nie początek napisu
+            continue
+        if expr[i] != '"':
+            i += 1
+            continue
+        depth, j = 0, i + 1
+        while j < len(expr):
+            char = expr[j]
+            if char == "\\":
+                j += 2
+                continue
+            if char == "[":
+                depth += 1
+            elif char == "]" and depth:
+                depth -= 1
+            elif char == '"' and depth == 0:
+                break
+            j += 1
+        yield expr[i + 1:j]
+        i = j + 1
+
+
+def nested_strings(text):
+    """Napisy ze wstawek tekstu, także zagnieżdżone ("wkrótce" z [t ? "za [czas]" : "wkrótce"])."""
+    for embed in dm_embeds(text):
+        for string in embed_strings(embed):
+            yield string
+            yield from nested_strings(string)
+
+
 def line_literals(path, line):
     """Literały linii i napisy wewnątrz ich wstawek ([on ? "włączony" : "wyłączony"])."""
     found = ep.literals(path, line)
     if path.endswith(".dm"):
         for lit in list(found):
-            for embed in re.findall(r"\[([^\[\]]*)\]", lit):
-                found += STRING_IN_EMBED.findall(embed)
+            found += [s for s in nested_strings(lit) if s not in found]
     return found
 
 

@@ -523,6 +523,11 @@ def main():
             (wanted if "${" in lit else names).add(lit)
 
     manual = load_json(args.manual)
+    if args.lang != "en":
+        # klucze ręcznych wpisów angielskich (szablony spoza literałów kodu, np. „To [name].” z oględzin)
+        # są potrzebne w każdym języku: z tłumaczeniem tego języka, jeśli jest
+        en_manual = load_json("strings/i18n/en_manual.json")
+        manual = {**{k: pairs[k] for k in en_manual if k in pairs and pairs[k] != k}, **manual}
     original = load_json(args.original)
 
     exact, templates, stats = {}, [], collections.Counter()

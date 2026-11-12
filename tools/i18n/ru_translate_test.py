@@ -41,5 +41,18 @@ class CheckTest(unittest.TestCase):
         self.assertIsNone(rt.check("<span class='danger'Możesz wrócić.</span>", "<span class='danger'Вы можете вернуться.</span>"))
 
 
+class LineLiteralsTest(unittest.TestCase):
+    def test_napisy_z_zagniezdzonych_wstawek(self):
+        import list_missing as lm
+        # "wkrótce" stoi obok napisu z własną wstawką: wcześniej brany był tylko najgłębszy nawias
+        line = 'to_chat(src, "Gra rozpocznie się [tl > 0 ? "za około [DisplayTimeText(tl)]" : "wkrótce"].")'
+        found = lm.line_literals("a.dm", line)
+        self.assertIn("wkrótce", found)
+        self.assertIn("za około [DisplayTimeText(tl)]", found)
+        # \" poza napisem (tekst wieloliniowy {" "}) nie zaczyna napisu
+        self.assertEqual(list(lm.embed_strings('ckey || \\"brak\\"')), [])
+        self.assertEqual(list(lm.nested_strings('a \\[b\\] [x ? "c [y ? "d" : "e"]" : "f"]')), ['c [y ? "d" : "e"]', "d", "e", "f"])
+
+
 if __name__ == "__main__":
     unittest.main()
