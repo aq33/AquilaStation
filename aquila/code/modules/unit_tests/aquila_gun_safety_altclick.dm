@@ -34,8 +34,8 @@
 	shooter.dropItemToGround(pistol)
 	var/obj/item/gun/ballistic/revolver/revolver = allocate(/obj/item/gun/ballistic/revolver)
 	shooter.put_in_active_hand(revolver)
-	var/revolver_mode = revolver.aq_firemode
-	revolver.AltClick(shooter)
-	TEST_ASSERT(revolver.aq_firemode == revolver_mode, "Alt-click on a revolver toggled the safety instead of spinning")
+	// Samego AltClick() nie wołamy: kręcenie bębenkiem to werb czytający usr, którego w teście nie ma
+	TEST_ASSERT(!revolver.aq_alt_click_is_safety(), "Alt-click on a revolver would toggle the safety instead of spinning")
+	TEST_ASSERT(!revolver.aq_alt_click_safety(shooter), "Alt-click on a revolver toggled the safety")
 
 #undef TEST_ASSERT
