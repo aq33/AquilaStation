@@ -316,6 +316,7 @@
 #include "code\game\objects\items\storage\toolbox.dm"
 #include "code\game\objects\items\storage\survivalbox.dm"
 #include "code\game\objects\items\storage\firstaid.dm"
+#include "code\game\objects\items\storage\belt_tgmc.dm"
 #include "code\game\objects\items\tanks\jetpack.dm"
 #include "code\game\objects\items\tanks\tank_types.dm"
 #include "code\game\objects\items\tg_sprites_narzedzia.dm"
