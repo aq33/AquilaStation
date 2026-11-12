@@ -2180,6 +2180,7 @@
 #include "code\modules\unit_tests\aquila_mob_families.dm"
 #include "code\modules\unit_tests\aquila_mining_mobs.dm"
 #include "code\modules\unit_tests\aquila_mob_rest.dm"
+#include "code\modules\unit_tests\aquila_mobabilities_review.dm"
 #include "code\modules\unit_tests\aquila_basic_vermin.dm"
 #include "code\modules\unit_tests\aquila_basic_mobs.dm"
 #include "code\modules\unit_tests\aquila_basic_review_core.dm"

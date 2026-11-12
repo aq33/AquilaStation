@@ -145,12 +145,18 @@
 	TEST_ASSERT(!controller.current_behaviors[use_ability], "The goliath used its tentacles before keeping its target for a while")
 	controller.CancelActions()
 	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
-	controller.set_blackboard_key(BB_BASIC_MOB_HAS_TARGET_TIME, 5 SECONDS)
+	var/datum/component/ai_target_timer/goliath_timer = goliath.GetComponent(/datum/component/ai_target_timer)
+	goliath_timer.process(5) // five seconds on the same target
+	TEST_ASSERT(controller.blackboard[BB_BASIC_MOB_HAS_TARGET_TIME] >= 5 SECONDS, "The target timer did not count the time on the target")
 	controller.SelectBehaviors(1)
 	TEST_ASSERT(controller.current_behaviors[use_ability], "The goliath that kept its target did not plan to use its tentacles")
 	var/brute_before = victim.getBruteLoss()
 	controller.ProcessBehavior(1, use_ability)
 	TEST_ASSERT(goliath.tentacles.next_use_time > world.time, "The tentacles did not start their cooldown")
+	var/next_tentacles = goliath.tentacles.next_use_time
+	goliath.adjustBruteLoss(5)
+	TEST_ASSERT_EQUAL(goliath.tentacles.next_use_time, next_tentacles - 1 SECONDS, "A hit did not bring the tentacles 1 s closer")
+	TEST_ASSERT_EQUAL(goliath.tentacles.cooldown_time, initial(goliath.tentacles.cooldown_time), "A hit shortened the tentacle cooldown for good")
 	TEST_ASSERT(locate(/obj/effect/temp_visual/goliath_tentacle) in get_turf(victim), "No tentacle came up under the target")
 	TEST_ASSERT(aquila_mining_wait(CALLBACK(victim, TYPE_PROC_REF(/mob/living, IsStun)), 2 SECONDS), "The tentacle did not grab the target")
 	TEST_ASSERT(victim.getBruteLoss() > brute_before, "The tentacle did not hurt the target")
@@ -176,6 +182,23 @@
 	for(var/obj/effect/temp_visual/goliath_tentacle/tentacle in range(1, goliath))
 		tentacles_around++
 	TEST_ASSERT(tentacles_around >= 3, "The tentacle burst made only [tentacles_around] tentacles")
+
+	// The tentacle line stops at a window (tg's burrowed trail cannot pass dense things); a second goliath without AI on the
+	// top row, away from the fight above
+	var/turf/line_start = locate(corner.x, run_loc_floor_top_right.y, corner.z)
+	var/mob/living/basic/mining/goliath/liner = allocate(/mob/living/basic/mining/goliath, line_start)
+	liner.ai_controller.set_ai_status(AI_STATUS_OFF)
+	var/obj/structure/window/fulltile/pane = allocate(/obj/structure/window/fulltile, aquila_mining_test_turf(line_start, run_loc_floor_top_right, 2))
+	var/turf/behind_pane = aquila_mining_test_turf(line_start, run_loc_floor_top_right, 4)
+	for(var/obj/effect/temp_visual/goliath_tentacle/old_tentacle in range(4, line_start))
+		qdel(old_tentacle)
+	liner.tentacle_line.Activate(behind_pane)
+	TEST_ASSERT(aquila_mining_wait(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aquila_mining_tentacle_at), get_step(line_start, EAST)), 1 SECONDS), "The tentacle line did not start towards the window ([aquila_mining_line_debug(line_start)])")
+	sleep(5) // the rest of the line would have come up by now
+	TEST_ASSERT(!(locate(/obj/effect/temp_visual/goliath_tentacle) in get_turf(pane)), "A tentacle came up inside the window")
+	TEST_ASSERT(!(locate(/obj/effect/temp_visual/goliath_tentacle) in behind_pane), "The tentacle line went through the window")
+	qdel(pane)
+	qdel(liner)
 
 	// Taming makes it rideable through our riding component
 	goliath.tamed(puncher)
@@ -219,15 +242,40 @@
 
 	// The gaze, once the watcher has kept its target for a while
 	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
-	controller.set_blackboard_key(BB_BASIC_MOB_HAS_TARGET_TIME, 6 SECONDS)
+	var/datum/component/ai_target_timer/watcher_timer = watcher.GetComponent(/datum/component/ai_target_timer)
+	watcher_timer.process(6) // six seconds on the same target
+	TEST_ASSERT(controller.blackboard[BB_BASIC_MOB_HAS_TARGET_TIME] >= 6 SECONDS, "The target timer did not count the time on the target")
 	controller.SelectBehaviors(1)
 	TEST_ASSERT(controller.current_behaviors[gaze], "The watcher that kept its target did not plan to use its gaze")
 	victim.setDir(get_dir(victim, watcher))
 	controller.ProcessBehavior(1, gaze)
 	var/datum/action/cooldown/mob_cooldown/watcher_gaze/gaze_ability = controller.blackboard[BB_GENERIC_ACTION]
 	TEST_ASSERT(gaze_ability.stage_timer, "The gaze did not start charging")
+	TEST_ASSERT(HAS_TRAIT(watcher, TRAIT_IMMOBILIZED), "The watcher can walk away while charging its gaze")
 	TEST_ASSERT(aquila_mining_wait(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aquila_mining_confused), victim), 3 SECONDS), "The gaze did not confuse the human looking at the watcher")
 	TEST_ASSERT(watcher.IsStun(), "The watcher did not stop after its gaze")
+	TEST_ASSERT(!HAS_TRAIT_FROM(watcher, TRAIT_IMMOBILIZED, REF(gaze_ability)), "The watcher stayed rooted after its gaze")
+
+	// A dead watcher stops counting the time on its target
+	watcher.death()
+	TEST_ASSERT(QDELETED(watcher_timer) || !(watcher_timer.datum_flags & DF_ISPROCESSING), "The dead watcher's target timer kept processing")
+
+/// What is on the first tiles east of a turf (diagnostics of the tentacle line test)
+/proc/aquila_mining_line_debug(turf/start)
+	var/list/out = list()
+	for(var/dx in 0 to 4)
+		var/turf/spot = locate(start.x + dx, start.y, start.z)
+		if(!spot)
+			continue
+		var/list/things = list()
+		for(var/atom/movable/thing in spot)
+			things += "[thing.type][thing.density ? "(dense)" : ""]"
+		out += "+[dx] [spot.type][is_blocked_turf(spot, TRUE) ? " BLOCKED" : ""]: [jointext(things, ", ")]"
+	return jointext(out, " | ")
+
+/// A goliath tentacle on the turf, if any
+/proc/aquila_mining_tentacle_at(turf/spot)
+	return locate(/obj/effect/temp_visual/goliath_tentacle) in spot
 
 /// Is the mob confused
 /proc/aquila_mining_confused(mob/living/victim)
@@ -365,8 +413,20 @@
 /mob/living/basic/mining/hivelord/aquila_legacy_test/uses_legacy_intents()
 	return TRUE
 
-/// A player in a hivelord spawns brood by clicking something out of reach
-/// in both control modes (combat mode and the legacy intents)
+/// The goliath played with the legacy intents (test-only subtype)
+/mob/living/basic/mining/goliath/aquila_legacy_test
+
+/mob/living/basic/mining/goliath/aquila_legacy_test/uses_legacy_intents()
+	return TRUE
+
+/// The legion played with the legacy intents (test-only subtype)
+/mob/living/basic/mining/legion/aquila_legacy_test
+
+/mob/living/basic/mining/legion/aquila_legacy_test/uses_legacy_intents()
+	return TRUE
+
+/// A player in a hivelord spawns brood and one in a legion launches skulls by clicking something out of reach; one in a
+/// goliath digs tentacles under it and sends a line at it with the secondary click; in both control modes
 /datum/unit_test/aquila_mining_player_clicks
 
 /datum/unit_test/aquila_mining_player_clicks/Run()
@@ -381,9 +441,38 @@
 		hivelord.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
 		TEST_ASSERT(hivelord.spawn_brood.next_use_time > world.time, "[mode]: a click on a far target did not spawn brood")
 		qdel(hivelord)
+
+		var/mob/living/basic/mining/legion/legion = allocate(legacy ? /mob/living/basic/mining/legion/aquila_legacy_test : /mob/living/basic/mining/legion, run_loc_floor_bottom_left)
+		legion.ai_controller.set_ai_status(AI_STATUS_OFF)
+		var/datum/action/cooldown/mob_cooldown/skull_launcher/skulls = locate() in legion.actions
+		legion.next_click = 0
+		legion.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(skulls.next_use_time > world.time, "[mode]: a click on a far target did not launch skulls")
+		qdel(legion)
+
+		var/mob/living/basic/mining/goliath/goliath = allocate(legacy ? /mob/living/basic/mining/goliath/aquila_legacy_test : /mob/living/basic/mining/goliath, run_loc_floor_bottom_left)
+		goliath.ai_controller.set_ai_status(AI_STATUS_OFF)
+		goliath.next_click = 0
+		goliath.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		TEST_ASSERT(goliath.tentacles.next_use_time > world.time, "[mode]: a click on a far target did not dig tentacles under it")
+		TEST_ASSERT(goliath.tentacle_line.IsAvailable(), "[mode]: a plain click sent the tentacle line")
+		goliath.next_click = 0
+		goliath.next_move = 0
+		if(legacy)
+			goliath.a_intent_change(INTENT_DISARM)
+			goliath.ClickOn(victim, "icon-x=16;icon-y=16;left=1;button=left")
+		else
+			goliath.ClickOn(victim, "icon-x=16;icon-y=16;right=1;button=right")
+		TEST_ASSERT(goliath.tentacle_line.next_use_time > world.time, "[mode]: the secondary click did not send the tentacle line")
+		qdel(goliath)
+
 		qdel(victim)
 		for(var/obj/effect/temp_visual/hivebrood_spawn/forecast in range(2, run_loc_floor_bottom_left))
 			qdel(forecast)
+		for(var/obj/effect/temp_visual/goliath_tentacle/tentacle in range(4, run_loc_floor_bottom_left))
+			qdel(tentacle)
+		for(var/mob/living/basic/mining/legion_brood/skull in range(4, run_loc_floor_bottom_left))
+			qdel(skull)
 
 /// The legion holding this body, if any
 /proc/aquila_mining_holder_of(mob/living/victim)

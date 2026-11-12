@@ -113,6 +113,18 @@
 	sleep(1)
 	TEST_ASSERT(blank.melee_damage > blank_damage, "A hurt blank body does not hit harder")
 
+	// A fugu gland doubles the damage for good: the scaling changes melee damage only by its own modifier
+	blank.adjustBruteLoss(-blank.maxHealth)
+	sleep(1)
+	TEST_ASSERT_EQUAL(blank.melee_damage, blank_damage, "A healed blank body kept the extra damage")
+	var/obj/item/fugu_gland/gland = allocate(/obj/item/fugu_gland)
+	gland.glandify_basic_mob(blank, victim)
+	var/glanded_damage = blank.melee_damage
+	TEST_ASSERT(glanded_damage >= blank_damage * 2, "The fugu gland did not double the blank body's damage")
+	blank.adjustBruteLoss(1)
+	sleep(1)
+	TEST_ASSERT(blank.melee_damage >= glanded_damage, "One hit took away the fugu gland's damage ([blank.melee_damage] < [glanded_damage])")
+
 /// The venus human trap with the legacy intents
 /mob/living/basic/venus_human_trap/aquila_legacy
 

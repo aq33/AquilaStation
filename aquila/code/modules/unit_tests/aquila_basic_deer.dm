@@ -79,6 +79,10 @@
 	TEST_ASSERT(controller.current_behaviors[stare], "The deer did not stop to stare at the scooter")
 	controller.ProcessBehavior(1, stare)
 	TEST_ASSERT(istype(controller.ai_movement, /datum/ai_movement/complete_stop), "The staring deer can still move")
+	// One stare ends the behaviour, so the deer keeps planning (fleeing, eating) while the scooter is still in view
+	TEST_ASSERT(!controller.current_behaviors[stare], "The stare never ended while the scooter stayed in view")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(!controller.current_behaviors[stare], "The deer stared again before its cooldown")
 	stare.stop_staring(controller, scooter)
 	TEST_ASSERT_EQUAL(controller.ai_movement, normal_movement, "The deer did not get its movement back after staring")
 

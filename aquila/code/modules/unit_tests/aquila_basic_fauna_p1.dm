@@ -104,6 +104,10 @@
 	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The mushroom did not go for the other mushroom")
 	TEST_ASSERT(bystander != controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], "The mushroom went for a human")
 
+	// The fight itself does not bruise the victim, or no mushroom would ever level up from a meal it beat up
+	eater.melee_attack(victim, ignore_cooldown = TRUE)
+	TEST_ASSERT(victim.health < victim.maxHealth, "The mushroom did not bite the other mushroom")
+	TEST_ASSERT(!victim.bruised, "A bite of another mushroom bruised the victim")
 	victim.death()
 	TEST_ASSERT_EQUAL(victim.stat, DEAD, "The victim mushroom did not faint")
 	var/level_before = eater.powerlevel
@@ -175,11 +179,17 @@
 			break
 	TEST_ASSERT(QDELETED(light) || light.status == LIGHT_BROKEN, "The Faithless did not smash the light")
 
-	// A knocked out human gets grabbed instead of hit
+	// A knocked out human gets picked by the AI and grabbed instead of hit
+	controller.CancelActions()
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
 	victim.Unconscious(20 SECONDS)
 	victim.set_stat(UNCONSCIOUS)
-	faithless.melee_attack(victim, ignore_cooldown = TRUE)
+	controller.SelectBehaviors(1)
+	controller.ProcessBehavior(1, GET_AI_BEHAVIOR(/datum/ai_behavior/find_potential_targets))
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The Faithless AI did not go for the knocked out human")
+	controller.SelectBehaviors(1)
+	TEST_ASSERT(controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)], "The Faithless AI did not plan to attack the knocked out human")
+	aquila_ai_melee_once(controller)
 	TEST_ASSERT_EQUAL(faithless.pulling, victim, "The Faithless did not drag the knocked out human")
 
 /// A player Faithless pries an airlock open outside combat mode and beats on it in combat mode, in both control modes
@@ -217,6 +227,41 @@
 		TEST_ASSERT(!airlock.density, "[mode]: the Faithless did not open the airlock outside combat")
 		qdel(airlock)
 		qdel(faithless)
+
+	// A powered airlock it has no access to gets pried open (and damaged) after a while; a bolted one stays shut
+	var/mob/living/basic/faithless/pryer = allocate(/mob/living/basic/faithless, run_loc_floor_bottom_left)
+	pryer.ai_controller.set_ai_status(AI_STATUS_OFF)
+	pryer.RemoveElement(/datum/element/door_pryer)
+	pryer.AddElement(/datum/element/door_pryer, 0.5 SECONDS)
+	pryer.set_combat_mode(FALSE)
+	var/obj/machinery/door/airlock/no_access = allocate(/obj/machinery/door/airlock, get_step(run_loc_floor_bottom_left, EAST))
+	no_access.protected_door = TRUE // powered, so neither the no power branch nor allowed() opens it
+	no_access.req_access = list(ACCESS_CAPTAIN)
+	TEST_ASSERT(!no_access.allowed(pryer), "The Faithless has access to the captain's airlock")
+	var/door_integrity = no_access.obj_integrity
+	pryer.next_click = 0
+	pryer.next_move = 0
+	pryer.ClickOn(no_access, "icon-x=16;icon-y=16;left=1;button=left")
+	var/pry_wait = 0
+	while((no_access.density || no_access.obj_integrity >= door_integrity) && pry_wait < 40)
+		sleep(1)
+		pry_wait++
+	TEST_ASSERT(!no_access.density, "The Faithless did not pry open an airlock it has no access to")
+	TEST_ASSERT(no_access.obj_integrity < door_integrity, "Prying the airlock open did not damage it")
+	qdel(no_access)
+
+	var/obj/machinery/door/airlock/bolted = allocate(/obj/machinery/door/airlock, get_step(run_loc_floor_bottom_left, EAST))
+	bolted.req_access = list(ACCESS_CAPTAIN)
+	bolted.bolt() // before protected_door: bolt() does nothing on a protected door
+	bolted.protected_door = TRUE
+	TEST_ASSERT(bolted.locked, "The test airlock did not bolt")
+	var/bolted_integrity = bolted.obj_integrity
+	pryer.next_click = 0
+	pryer.next_move = 0
+	pryer.ClickOn(bolted, "icon-x=16;icon-y=16;left=1;button=left")
+	sleep(20)
+	TEST_ASSERT(bolted.density, "The Faithless pried open a bolted airlock")
+	TEST_ASSERT_EQUAL(bolted.obj_integrity, bolted_integrity, "The Faithless pried at a bolted airlock")
 
 /mob/living/basic/faithless/legacy_intents_test
 

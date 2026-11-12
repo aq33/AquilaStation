@@ -216,5 +216,55 @@
 		var/list/unknown = counts["unknown"]
 		TEST_ASSERT(!length(unknown), "[map_name]: unknown mob types [jointext(unknown, ", ")]")
 
+/// Syndicate KNPC carry no microbomb; on a boarding interior a KNPC far from the patrol route guards its post (and walks back
+/// to it), one next to a patrol node patrols; with no player on the interior's z level the KNPC wait
+/datum/unit_test/aquila_boarding_knpc_posts
+	/// Turfs of the test room moved into the boarding interior area, with their own areas
+	var/list/moved_turfs = list()
+
+/datum/unit_test/aquila_boarding_knpc_posts/Run()
+	var/area/interior = GLOB.areas_by_type[/area/ruin/powered/nsv13/boarding_interior]
+	if(!interior)
+		interior = new /area/ruin/powered/nsv13/boarding_interior
+	for(var/turf/room_turf as anything in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
+		var/area/own_area = room_turf.loc
+		moved_turfs[room_turf] = own_area
+		interior.contents += room_turf
+		room_turf.change_area(own_area, interior)
+
+	var/turf/post = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/syndicate/pistol/guard = allocate(/mob/living/carbon/human/ai_boarder/syndicate/pistol, post)
+	TEST_ASSERT(!(locate(/obj/item/implant/explosive) in guard.implants), "A Syndicate KNPC still carries a microbomb")
+	var/obj/effect/landmark/patrol_node/node = allocate(/obj/effect/landmark/patrol_node, run_loc_floor_top_right)
+	TEST_ASSERT(get_dist(node, post) > 3, "The test room is too small for a post far from the patrol node")
+	var/mob/living/carbon/human/ai_boarder/syndicate/pistol/patroller = allocate(/mob/living/carbon/human/ai_boarder/syndicate/pistol, get_step(run_loc_floor_top_right, WEST))
+	var/datum/component/knpc/guard_brain = guard.GetComponent(/datum/component/knpc)
+	var/datum/component/knpc/patrol_brain = patroller.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(guard_brain.guard_the_post(), "A KNPC far from the patrol route does not guard its post")
+	TEST_ASSERT_EQUAL(guard_brain.guard_post, post, "The guard took the wrong post")
+	TEST_ASSERT(!patrol_brain.guard_the_post(), "A KNPC next to a patrol node does not patrol")
+
+	// After a chase the guard walks back to its post
+	guard.forceMove(get_step(post, NORTHEAST))
+	guard_brain.path = list()
+	guard_brain.dest = null
+	guard_brain.pathfind_timeout = 0
+	guard_brain.guard_the_post()
+	TEST_ASSERT(length(guard_brain.path) && guard_brain.dest == post, "The guard does not walk back to its post")
+
+	// No player on the interior's z level: the KNPC do nothing (the interior loads when the mission starts)
+	guard_brain.next_action = 0
+	guard_brain.process()
+	TEST_ASSERT_EQUAL(guard_brain.next_action, 0, "A KNPC on an interior without players still acts")
+
+/datum/unit_test/aquila_boarding_knpc_posts/Destroy()
+	for(var/turf/room_turf as anything in moved_turfs)
+		var/area/own_area = moved_turfs[room_turf]
+		var/area/interior = room_turf.loc
+		own_area.contents += room_turf
+		room_turf.change_area(interior, own_area)
+	moved_turfs = null
+	return ..()
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

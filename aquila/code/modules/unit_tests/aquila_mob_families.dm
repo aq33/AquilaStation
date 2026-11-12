@@ -444,6 +444,14 @@
 	controller.CancelActions()
 	qdel(hunter)
 
+	// The migration event picks a real path: a safe ship turf on the given z level, then space beyond it
+	var/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)[1]
+	var/list/event_path = pick_carp_migration_points(station_z)
+	TEST_ASSERT_EQUAL(length(event_path), 2, "The carp migration event found no path through the ship")
+	var/turf/ship_point = event_path[1]
+	TEST_ASSERT_EQUAL(ship_point.z, station_z, "The carp migration point is on another z level")
+	TEST_ASSERT(is_type_in_list(get_area(ship_point), GLOB.the_station_areas), "The carp migration point is not on the ship")
+
 	// The dragon's rift heals basic carp next to it
 	var/mob/living/basic/carp/advanced/rift_carp = allocate(/mob/living/basic/carp/advanced, corner)
 	rift_carp.ai_controller.set_ai_status(AI_STATUS_OFF)
@@ -452,6 +460,13 @@
 	var/hurt = rift_carp.health
 	dragon_rift.process(1)
 	TEST_ASSERT(rift_carp.health > hurt, "The dragon's rift did not heal a basic carp next to it")
+	// A crew member of the carp faction (carp costume, carp sect) is not a carp
+	var/mob/living/carbon/human/carp_fan = allocate(/mob/living/carbon/human, get_step(corner, NORTHEAST))
+	carp_fan.faction |= "carp"
+	carp_fan.adjustBruteLoss(20)
+	hurt = carp_fan.health
+	dragon_rift.process(1)
+	TEST_ASSERT_EQUAL(carp_fan.health, hurt, "The dragon's rift healed a human of the carp faction")
 	qdel(dragon_rift)
 
 	// A player carp opens a rift with the secondary click: right click, or the disarm intent in the legacy controls
@@ -522,6 +537,23 @@
 		qdel(recorder)
 		qdel(magicarp)
 		qdel(victim)
+
+	// The door and animate bolts are shot at prey: alone next to a wall and a loose item the magicarp picks no spell target
+	// (tg aimed them at the nearest wall or object every 5 s and opened the hull)
+	for(var/bolt_type in list(/obj/item/projectile/magic/door, /obj/item/projectile/magic/animate))
+		var/mob/living/basic/carp/magic/idle_carp = allocate(/mob/living/basic/carp/magic, corner)
+		var/obj/item/toy/crayon/loose_item = allocate(/obj/item/toy/crayon, get_step(corner, NORTH))
+		idle_carp.spell.projectile_type = bolt_type
+		idle_carp.assign_spell_ai(bolt_type)
+		var/datum/ai_controller/idle_controller = idle_carp.ai_controller
+		TEST_ASSERT(isnull(idle_controller.blackboard[BB_MAGICARP_SPELL_SPECIAL_TARGETING]), "[bolt_type]: the magicarp still aims at walls or objects")
+		idle_controller.SelectBehaviors(1)
+		if(idle_controller.current_behaviors[find_spell_target])
+			idle_controller.ProcessBehavior(1, find_spell_target)
+		TEST_ASSERT(isnull(idle_controller.blackboard[BB_MAGICARP_SPELL_TARGET]), "[bolt_type]: a magicarp without prey picked [idle_controller.blackboard[BB_MAGICARP_SPELL_TARGET]] as its spell target")
+		idle_controller.CancelActions()
+		qdel(loose_item)
+		qdel(idle_carp)
 
 	// A player magicarp: clicking far away shoots in combat mode only, in both control modes
 	for(var/legacy in list(FALSE, TRUE))
