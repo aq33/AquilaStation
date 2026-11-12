@@ -1,4 +1,71 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ab" = (
+/obj/structure/hull_plate,
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ac" = (
+/obj/structure/peacekeeper_barricade/metal,
+/mob/living/carbon/human/ai_boarder/syndicate/smg,
+/turf/open/floor/plating,
+/area/ruin/powered/nsv13/boarding_interior)
+"ad" = (
+/obj/structure/peacekeeper_barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/nsv13/boarding_interior)
+"ae" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"af" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	name = "captain's chair"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ag" = (
+/obj/machinery/holopad,
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ah" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	name = "bridge chair"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"ai" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	name = "bridge chair"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/mob/living/carbon/human/ai_boarder/syndicate/smg,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
 "al" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -15,14 +82,6 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"ax" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
-/mob/living/simple_animal/hostile/nsv/syndicate/space/sword,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "aF" = (
 /obj/machinery/door/airlock/ship{
@@ -53,11 +112,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"bm" = (
-/obj/structure/hull_plate,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/shotgun,
-/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "bq" = (
 /obj/item/food/donut,
@@ -349,10 +403,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"qK" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space,
-/turf/open/floor/engine/airless/light,
-/area/ruin/powered/nsv13/boarding_interior)
 "qZ" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/ancient,
@@ -530,13 +580,6 @@
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"yq" = (
-/obj/structure/peacekeeper_barricade/metal{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "yM" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium,
@@ -572,12 +615,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"AI" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged{
-	name = "Syndicate frigate captain"
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
 "AR" = (
 /obj/machinery/door/airlock/ship{
 	name = "Bridge frame";
@@ -605,16 +642,6 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "Cb" = (
 /turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
-"Cn" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	name = "bridge chair"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "CE" = (
 /obj/structure/grille,
@@ -644,14 +671,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
-"DL" = (
-/obj/machinery/holopad,
-/mob/living/simple_animal/hostile/nsv/syndicate/space/sword{
-	name = "Syndicate frigate HoS";
-	desc = "None to happy to see you."
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "DS" = (
 /obj/machinery/computer/ship/viewscreen,
@@ -695,10 +714,6 @@
 "Gv" = (
 /obj/structure/sign/poster/contraband/syndiemoth,
 /turf/closed/wall/r_wall,
-/area/ruin/powered/nsv13/boarding_interior)
-"GI" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space,
-/turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
 "Hb" = (
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -764,13 +779,6 @@
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/powered/nsv13/boarding_interior)
-"JO" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/carpet/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "JP" = (
 /obj/machinery/door/airlock/ship{
 	name = "Engineering Vault";
@@ -828,11 +836,6 @@
 /obj/item/book/manual/nuclear,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"Om" = (
-/obj/structure/peacekeeper_barricade/metal,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "Oo" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/gloves,
@@ -877,10 +880,6 @@
 "Rt" = (
 /obj/effect/landmark/iff_console_spawner,
 /turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"RU" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/shotgun,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Se" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
@@ -931,20 +930,6 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"Uf" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	name = "captain's chair"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged{
-	name = "Syndicate frigate captain"
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "UJ" = (
 /mob/living/basic/bear/hudson,
@@ -1014,10 +999,6 @@
 /obj/structure/fluff/empty_cryostasis_sleeper,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
-"WF" = (
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/carpet/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "Xu" = (
 /obj/structure/fighter_launcher,
 /turf/open/floor/mineral/plastitanium/red,
@@ -1045,10 +1026,6 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"YH" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged,
-/turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "YX" = (
 /obj/effect/landmark/iff_console_spawner{
@@ -30130,7 +30107,7 @@ fG
 HN
 wv
 fG
-qK
+oT
 oT
 fC
 fC
@@ -30380,7 +30357,7 @@ Jc
 Cb
 eF
 nc
-ax
+aa
 nc
 JP
 HN
@@ -31141,7 +31118,7 @@ lf
 fG
 DS
 sE
-WF
+sE
 hC
 Cb
 hS
@@ -32175,7 +32152,7 @@ Yu
 jW
 gY
 nc
-RU
+nc
 nc
 ox
 uP
@@ -32675,7 +32652,7 @@ dz
 fG
 uT
 oZ
-bm
+ab
 oZ
 oZ
 aU
@@ -32939,7 +32916,7 @@ Cb
 hS
 nq
 wf
-Om
+ac
 nc
 nc
 nc
@@ -33967,7 +33944,7 @@ fG
 fG
 Mf
 nc
-RU
+nc
 nc
 nc
 nc
@@ -34987,7 +34964,7 @@ Ge
 vt
 sE
 XV
-yq
+ad
 hC
 sZ
 Yu
@@ -35238,7 +35215,7 @@ Ca
 fG
 ZX
 Mf
-AI
+Mf
 ST
 vt
 sE
@@ -36257,7 +36234,7 @@ fC
 fC
 dz
 fG
-GI
+Cb
 Cb
 fG
 Mf
@@ -36518,7 +36495,7 @@ fG
 fG
 mn
 NH
-JO
+ae
 Wd
 Wd
 Wd
@@ -36778,7 +36755,7 @@ Wd
 Wd
 Wd
 Wd
-WF
+sE
 Mf
 hC
 oT
@@ -38062,7 +38039,7 @@ fG
 fG
 oT
 oT
-qK
+oT
 fC
 fC
 fC
@@ -38816,7 +38793,7 @@ fC
 fC
 fC
 fG
-YH
+Ca
 zG
 fG
 fG
@@ -39080,7 +39057,7 @@ fG
 fG
 lZ
 Qz
-Uf
+af
 al
 Cb
 fG
@@ -39592,7 +39569,7 @@ fG
 kQ
 CW
 nc
-DL
+ag
 nc
 FB
 fG
@@ -39847,9 +39824,9 @@ fC
 fG
 fG
 Hb
-Cn
+ah
 Ja
-Cn
+ai
 Pm
 fG
 oT

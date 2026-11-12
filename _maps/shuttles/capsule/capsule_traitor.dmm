@@ -201,7 +201,7 @@
 	dir = 1
 	},
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/hostile/carp/cayenne,
+/mob/living/basic/carp/pet/cayenne,
 /turf/open/floor/plating,
 /area/shuttle/pod_shuttle)
 "S" = (

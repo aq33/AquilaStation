@@ -41,11 +41,12 @@
 	name = "Ukryta Komnata"
 	icon_state = "awaycontent10"
 
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle
+// AQ EDIT - basic moby: oba typy niżej to basic trooper
+/mob/living/basic/trooper/syndicate/ranged/spacebattle
 	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 				/obj/item/gun/ballistic/automatic/c20r,
 				/obj/item/shield/energy)
 
-/mob/living/simple_animal/hostile/syndicate/melee/spacebattle
-	deathmessage = "wiotczeje, puszczając broń energetyczną i aktywując funkcję samozniszczenia!"
+/mob/living/basic/trooper/syndicate/melee/spacebattle
+	death_message = "wiotczeje, puszczając broń energetyczną i aktywując funkcję samozniszczenia!"
 	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)

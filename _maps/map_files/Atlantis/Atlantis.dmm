@@ -26376,7 +26376,7 @@
 /area/security/brig)
 "wtH" = (
 /obj/effect/turf_decal/caution,
-/mob/living/simple_animal/hostile/retaliate/wojtek,
+/mob/living/basic/bear/wojtek,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "wtQ" = (

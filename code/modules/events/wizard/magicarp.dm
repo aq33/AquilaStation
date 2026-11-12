@@ -18,56 +18,8 @@
 /datum/round_event/wizard/magicarp/start()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
 		if(prob(5))
-			new /mob/living/simple_animal/hostile/carp/ranged/chaos(C.loc)
+			new /mob/living/basic/carp/magic/chaos(C.loc) // AQ EDIT - basic moby
 		else
-			new /mob/living/simple_animal/hostile/carp/ranged(C.loc)
+			new /mob/living/basic/carp/magic(C.loc) // AQ EDIT - basic moby
 
-/mob/living/simple_animal/hostile/carp/ranged
-	name = "magikarp"
-	desc = "50% magii, 50% karpia, 100% okropieństwa."
-	icon_state = "magicarp"
-	icon_living = "magicarp"
-	icon_dead = "magicarp_dead"
-	icon_gib = "magicarp_gib"
-	ranged = 1
-	retreat_distance = 2
-	minimum_distance = 0 //Between shots they can and will close in to nash
-	projectiletype = /obj/item/projectile/magic
-	projectilesound = 'sound/weapons/emitter.ogg'
-	maxHealth = 50
-	health = 50
-	random_color = FALSE
-	gold_core_spawnable = NO_SPAWN
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
-	/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
-	discovery_points = 3000
-
-/mob/living/simple_animal/hostile/carp/ranged/Initialize(mapload)
-	projectiletype = pick(allowed_projectile_types)
-	. = ..()
-
-/mob/living/simple_animal/hostile/carp/ranged/chaos
-	name = "magikarp chaosu"
-	desc = "50% karpia, 100% magii, 150% okropieństwa."
-	color = "#00FFFF"
-	maxHealth = 75
-	health = 75
-	gold_core_spawnable = NO_SPAWN
-	discovery_points = 5000
-
-/mob/living/simple_animal/hostile/carp/ranged/chaos/Shoot()
-	projectiletype = pick(allowed_projectile_types)
-	..()
-
-/mob/living/simple_animal/hostile/carp/ranged/xenobio
-	desc = "45% magii, 50% karpia, 5% szlamu, 100% okropieństwa."
-	allowed_projectile_types = list( /obj/item/projectile/magic/animate, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
-	gold_core_spawnable = HOSTILE_SPAWN
-
-/mob/living/simple_animal/hostile/carp/ranged/chaos/xenobio
-	desc = "95% magii, 50% karpia, 5% szlamu, 150% okropieństwa."
-	allowed_projectile_types = list( /obj/item/projectile/magic/animate, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
-	gold_core_spawnable = HOSTILE_SPAWN
+// AQ EDIT - magikarpie są basic mobami (aquila\code\modules\mob\living\basic\space_fauna\carp\magicarp.dm)

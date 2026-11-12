@@ -1,10 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "g" = (
-/mob/living/simple_animal/hostile/retaliate/goose{
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
-	desc = "A normal goose, though capable of surviving in space. A true space vermin. Don't let it loose!";
-	name = "space goose"
-	},
+/mob/living/basic/goose/space,
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered)
 "s" = (
