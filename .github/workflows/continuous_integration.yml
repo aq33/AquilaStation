@@ -59,6 +59,7 @@ jobs:
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} --lang ru
+          python -m unittest tools/i18n/ru_translate_test.py
   compile_all_maps:
     runs-on: ubuntu-22.04
     steps:

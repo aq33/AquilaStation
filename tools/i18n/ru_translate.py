@@ -79,17 +79,21 @@ def visible(text):
 TEXT_ATTRIBUTES = {"title", "placeholder", "alt"}
 # value to napis tylko na przycisku formularza; w polu ukrytym, tekstowym czy <option> to dane
 BUTTON_INPUT_TYPES = {"submit", "button", "reset"}
-ATTRIBUTE = re.compile(r"""([\w:-]+)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)""")
+# atrybut z wartością albo logiczny (checked, disabled, selected) bez wartości
+ATTRIBUTE = re.compile(r"""([\w:-]+)(?:\s*=\s*("[^"]*"|'[^']*'|[^\s>]+))?""")
+# poprawnie zbudowany znacznik: "<" w wyrażeniu ([x < 5 ? ...]) ani zepsuty znacznik z tekstem w środku
+# (<span class='danger'Możesz ...) nie są znacznikami, porównują je wstawki i tekst
+WELL_FORMED_TAG = re.compile(r"""<\s*/?\s*[A-Za-z][\w:-]*(?:\s+[\w:-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>'"]+))?)*\s*/?>""")
 
 
 def tags(text):
     """Znaczniki HTML: nazwa, zamknięcie i atrybuty poza tymi z tekstem dla gracza."""
     out = []
-    for tag in re.findall(r"<[^>]*>", text):
+    for tag in WELL_FORMED_TAG.findall(text):
         name = bcd.TAG_NAME.match(tag)
         if not name:
             continue
-        found = [(k.lower(), v) for k, v in ATTRIBUTE.findall(tag)]
+        found = [(k.lower(), v) for k, v in ATTRIBUTE.findall(tag[name.end():].rstrip(">/"))]
         input_type = next((v.strip("'\"").lower() for k, v in found if k == "type"), "")
         button = name.group(2).lower() == "input" and input_type in BUTTON_INPUT_TYPES
         attributes = tuple(sorted((k, v) for k, v in found
