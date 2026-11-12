@@ -826,6 +826,8 @@
       znowu reagują na kliknięcia.
   - bugfix: Animacja chodu działa także wtedy, gdy pierwszy gracz wszedł w trakcie
       startu serwera.
+  - bugfix: Okno „Wybierz profesję” pokazuje Ochronę, Inżynierię i Zaopatrzenie w
+      barwach Żandarmerii, Orlenu i InPostu.
   Nikita:
   - bugfix: Śrut ze strzelb i naboje z rozrzutem uwzględniają teraz odrzut, ruch i
       strzał z jednej ręki, tak jak pojedyncze kule.
@@ -869,3 +871,20 @@
   - imageadd: Monety, Arkuszomistrz, płytki z materiału, domek dla kota, księżycorożec,
       krasnal (z BeeStation-Hornet, CC-BY-SA 3.0).
   - refactor: Rdzeń SI zsynchronizowany z Bee; zwierzęta przeniesione na basic moby.
+'2026-11-12':
+  Joker66613:
+  - rscadd: 'Pęknięta i wgnieciona czaszka: głowa wygina się jak przy rozłupanej czaszce,
+      a rana co jakiś czas daje uraz mózgu, aż kość się zrośnie.'
+  - rscadd: 'Krwawienie per kończyna: każda kończyna krwawi i jest opatrywana osobno,
+      kikut krwawi, a skaner i oględziny pokazują, skąd leci krew.'
+  - rscadd: 'Ból: komunikaty o bolącej kończynie, czerwona winieta, spowolnienie i
+      wolniejsza stamina. Leki przeciwbólowe i znieczulenie go zdejmują.'
+  - rscadd: 'Adrenalina: nadnercza same ją wyrzucają przy silnym bólu, aż rezerwa
+      się wyczerpie. Nowa autostrzykawka z adrenaliną w zestawie przetrwania, receptura:
+      epinefryna, cukier i sól.'
+  - rscadd: 'Złamania kręgosłupa: stłuczenie rdzenia i złamanie z paraliżem nóg (szyjne:
+      wszystkich kończyn), leczone operacją stabilizacji i zespolenia kręgów.'
+  - balance: Spowolnienie zależy od bólu, a nie od obrażeń. Przewrócony automat łamie
+      kręgosłup zamiast paraliżować na stałe.
+  - imageadd: Na postaci widać bandaże, szyny, gorset i halo, kikuty i otwartą czaszkę
+      przy operacji (sprite'y z tgstation i cmss13).

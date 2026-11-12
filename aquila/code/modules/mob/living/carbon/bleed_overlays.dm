@@ -1,8 +1,7 @@
 // AQUILA - bleeding overlays on the body from tgstation (/obj/item/bodypart/proc/update_part_wound_overlay(),
 // /mob/living/carbon/proc/update_wound_overlays(), the eye puncture overlay of /datum/wound/pierce/bleed/severe/eye).
 // Sprites: tgstation icons/mob/effects/bleed_overlays.dmi (CC-BY-SA 3.0), greyscale, tinted with the blood colour.
-// tg keeps the bleeding per limb. Ours is one status effect per mob, so the share of each limb comes from
-// aq_limb_bleed (tourniquet.dm: hits, slash wounds, dismemberment); the rest of the bleeding shows on the chest.
+// The bleeding of each limb comes from blood_limbs.dm; a stump bleeds on the chest.
 
 /// Drawn above the hands and body front overlays, below smell/halo/fire (tg WOUND_LAYER is just above BODY_FRONT_LAYER)
 #define AQ_WOUND_DRAW_LAYER (BODY_FRONT_LAYER - 0.5)
@@ -19,30 +18,10 @@
 /mob/living/carbon/proc/get_bleeding_zones()
 	var/list/zones = list()
 	. = zones
-	var/datum/status_effect/bleeding/bleed = has_status_effect(STATUS_EFFECT_BLEED)
-	if(!bleed || bleed.bleed_rate <= 0)
-		return
-	var/total = bleed.bleed_rate
-	var/attributed = 0
-	for(var/zone in aq_limb_bleed)
-		var/share = aq_limb_bleed[zone]
-		if(share <= 0)
-			continue
+	var/list/limb_bleeds = aq_get_limb_bleeds()
+	for(var/zone in limb_bleeds)
 		var/shown_zone = get_bodypart(zone) ? zone : BODY_ZONE_CHEST // a stump bleeds from the torso
-		zones[shown_zone] += share
-		attributed += share
-	// A pierced eye bleeds from the head even when nothing attributed it there (eye stabs)
-	var/datum/wound/pierce/eye/eye_wound = get_open_eye_wound()
-	if(eye_wound)
-		var/eye_share = max(0, eye_wound.initial_bleed - zones[BODY_ZONE_HEAD])
-		zones[BODY_ZONE_HEAD] += eye_share
-		attributed += eye_share
-	if(attributed > total)
-		// Shares are not scaled when the bleeding heals by itself
-		for(var/zone in zones)
-			zones[zone] *= total / attributed
-	else if(total - attributed > 0)
-		zones[BODY_ZONE_CHEST] += total - attributed
+		zones[shown_zone] += limb_bleeds[zone]
 
 /mob/living/carbon/proc/get_open_eye_wound()
 	var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
@@ -79,18 +58,24 @@
 			var/state = get_bleed_overlay_state(zone, zones[zone])
 			if(state)
 				states += state
-	var/key = jointext(states, ",")
+	var/list/medical_states = QDELING(src) ? list() : aq_medical_overlay_states() // medical_overlays.dm
+	var/key = "[jointext(states, ",")];[jointext(medical_states, ",")]"
 	if(key == aq_wound_overlay_key)
 		return
 	aq_wound_overlay_key = key
 	remove_overlay(WOUND_LAYER)
-	if(!length(states))
+	var/list/appearances = list()
+	if(length(states))
+		var/mutable_appearance/wound_overlay = mutable_appearance('aquila/icons/mob/effects/bleed_overlays.dmi', null, -AQ_WOUND_DRAW_LAYER, appearance_flags = KEEP_TOGETHER)
+		wound_overlay.color = get_blood_color()
+		for(var/state in states)
+			wound_overlay.add_overlay(state)
+		appearances += wound_overlay
+	if(length(medical_states))
+		appearances += aq_medical_overlays(medical_states, AQ_WOUND_DRAW_LAYER) // bandages and splints over the blood
+	if(!length(appearances))
 		return
-	var/mutable_appearance/wound_overlay = mutable_appearance('aquila/icons/mob/effects/bleed_overlays.dmi', null, -AQ_WOUND_DRAW_LAYER, appearance_flags = KEEP_TOGETHER)
-	wound_overlay.color = get_blood_color()
-	for(var/state in states)
-		wound_overlay.add_overlay(state)
-	overlays_standing[WOUND_LAYER] = wound_overlay
+	overlays_standing[WOUND_LAYER] = appearances
 	apply_overlay(WOUND_LAYER)
 
 /mob/living/carbon/human/regenerate_icons()
@@ -107,31 +92,10 @@
 	if(istype(carbon_owner))
 		carbon_owner.update_wound_overlays()
 
-/// Natural healing of the bleeding (tick) shrinks the limb shares with it; bandaging scales them in aq_scale_limb_bleed()
-/datum/status_effect/bleeding/tick()
-	. = ..()
-	var/mob/living/carbon/carbon_owner = owner
-	if(!QDELETED(src) && istype(carbon_owner))
-		carbon_owner.aq_trim_limb_bleed()
-
-/// Bleeding that heals by itself shrinks the limb shares too, so an old hit does not keep its overlay forever
-/mob/living/carbon/proc/aq_trim_limb_bleed()
-	if(!LAZYLEN(aq_limb_bleed))
-		return
-	var/total = aq_bleed_rate()
-	var/attributed = 0
-	for(var/zone in aq_limb_bleed)
-		attributed += max(0, aq_limb_bleed[zone])
-	if(attributed <= total || attributed <= 0)
-		return
-	for(var/zone in aq_limb_bleed)
-		aq_limb_bleed[zone] *= total / attributed
-
 /datum/status_effect/bleeding/on_remove()
 	var/mob/living/carbon/carbon_owner = owner
 	. = ..()
 	if(istype(carbon_owner))
-		carbon_owner.aq_limb_bleed = null // stopped bleeding: the next bleeding starts from scratch
 		carbon_owner.update_wound_overlays()
 
 /datum/status_effect/bleeding/on_creation(mob/living/new_owner, bleed_rate)

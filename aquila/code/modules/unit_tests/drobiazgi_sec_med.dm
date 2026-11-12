@@ -143,7 +143,7 @@
 	TEST_ASSERT(reopen_blocked > 0, "The tourniquet did not catch the reopened wound")
 	TEST_ASSERT(patient.aq_bleed_rate() - bleed_held <= reopen_blocked / 9 + 0.01, "More than 10% of the reopened wound got through")
 	bleed_held = patient.aq_bleed_rate()
-	TEST_ASSERT(length(patient.get_wound_scan_lines()) == 2, "The analyzer does not see the tourniquet")
+	TEST_ASSERT(findtext(jointext(patient.get_wound_scan_lines(), ""), "opaska uciskowa"), "The analyzer does not see the tourniquet")
 	TEST_ASSERT(findtext(jointext(patient.examine(patient), ""), "opaskę uciskową"), "Examine does not show the tourniquet")
 
 	tourniquet.applied_at = world.time - 4 MINUTES
@@ -163,10 +163,9 @@
 	TEST_ASSERT(!LAZYACCESS(patient.movespeed_modification, "aq_tourniquet"), "The slowdown stayed after removal")
 
 	patient.fully_heal()
-	patient.add_bleeding(BLEED_CRITICAL)
-	patient.aq_limb_bleed = list(BODY_ZONE_L_ARM = BLEED_CRITICAL)
-	patient.suppress_bloodloss(BLEED_CRITICAL / 2)
-	TEST_ASSERT(abs(LAZYACCESS(patient.aq_limb_bleed, BODY_ZONE_L_ARM) - BLEED_CRITICAL / 2) < 0.01, "Partial bandaging did not halve the limb bleeding share")
+	patient.add_bleeding(BLEED_CRITICAL, BODY_ZONE_L_ARM)
+	patient.suppress_bloodloss(BLEED_CRITICAL / 2, BODY_ZONE_L_ARM)
+	TEST_ASSERT(abs(patient.aq_get_limb_bleed(BODY_ZONE_L_ARM) - BLEED_CRITICAL / 2) < 0.01, "Partial bandaging did not halve the limb bleeding")
 
 	var/obj/item/tourniquet/neck_tourniquet = allocate(/obj/item/tourniquet)
 	neck_tourniquet.attach(patient, BODY_ZONE_HEAD)
