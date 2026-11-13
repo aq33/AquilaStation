@@ -27,4 +27,4 @@
 
 ## Głos ogłoszeń SI (przycisk ogłoszenia w HUD-zie SI czyta wtedy dowolny tekst zamiast słów VOX).
 ## Korzysta z tego samego klucza i limitu znaków co rozkazy drużyn.
-#AI_TTS_VOICE UYKDdrPfKp4rQUAZgOs5
+#AI_TTS_VOICE r43lnMEVUzxMWMYz9JXK
