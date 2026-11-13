@@ -1,5 +1,7 @@
 // AQUILA - Mechanik: skaner maszyn, czytnik schematów (jak Ruckingenur kit z Goona), flatpacker z tg i paczki z maszynami.
 // Kod napisany od nowa na wzór tgstation/tgstation#83836 (flatpacker) i opisu pętli z Goonstation (bez kodu Goona, licencja NC).
+// Sprite'y: flatpacker, paczka i wózek z tgstation (CC BY-SA 3.0); skaner (deviceana), czytnik (rkit) i pakownica
+// (deconstruction-saw) z Goonstation (CC BY-NC-SA 3.0, jak inne ikony z goon/ w repo).
 // Ten plik: czarna lista, schemat maszyny, liczenie kosztu części i baza schematów w techwebie.
 
 /// Maszyny, których zwykły skaner i pakownica nie biorą: uzbrojenie i amunicja okrętu, konsole statku, reaktory,
