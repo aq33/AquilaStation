@@ -37,6 +37,17 @@
 	for(var/datum/map_template/shipbreaker/template as anything in templates)
 		if(template.width > 30 || template.height > 30)
 			return "[template.mappath] is [template.width]x[template.height], too big for the 40x40 magnet cage with room for blasts"
+	// Ładowanie i cięcie każdego wraku trwało w CI ~6 min, więc robimy to na losowej próbce: kolejne przebiegi
+	// przechodzą przez całą pulę. -DAQUILA_FULL_MAP_TESTS sprawdza wszystkie wraki.
+	// Ponad próbkę doładowujemy wraki tylko do znalezienia zwykłej ściany, której potrzebuje test złomu niżej.
+	var/list/to_check = shuffle(templates.Copy())
+	var/checked = 0
+	for(var/datum/map_template/shipbreaker/template as anything in to_check)
+#ifndef AQUILA_FULL_MAP_TESTS
+		if(checked >= 3 && test_wall)
+			break
+#endif
+		checked++
 		// Bez Release(), patrz mining_asteroids
 		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width + 1, template.height + 1)
 		if(!reservation)
