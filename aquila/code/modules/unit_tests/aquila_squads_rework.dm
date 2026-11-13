@@ -64,11 +64,7 @@
 	TEST_ASSERT(locate(/obj/item/clothing/suit/ship/squad/space) in crate, "W skrzyni nie ma skafandra obcisłego (trudne warunki miały być w każdym zestawie)")
 	TEST_ASSERT(!(locate(/obj/item/gun) in crate), "Drużyna bez zezwolenia na broń dostała broń")
 	var/datum/squad_loan/loan = get_squad_loan(medic)
-	var/list/barriers = list()
-	for(var/obj/item/grenade/barrier/barrier in crate)
-		barriers += barrier
-	TEST_ASSERT(length(barriers) == 2, "W skrzyni jest [length(barriers)] granatów barierowych zamiast dwóch")
-	TEST_ASSERT(loan && length(loan.outstanding) == length(crate.contents) - length(barriers), "Rejestr wydań nie zgadza się z zawartością skrzyni (barykady są spoza rejestru)")
+	TEST_ASSERT(loan && length(loan.outstanding) == length(crate.contents), "Rejestr wydań nie zgadza się z zawartością skrzyni")
 	TEST_ASSERT(!vendor.aq_vend(medic), "Automat wydał drugi zestaw przed zwrotem pierwszego")
 
 	// Jedną rzecz wyjmujemy i oddajemy luzem, resztę w skrzyni

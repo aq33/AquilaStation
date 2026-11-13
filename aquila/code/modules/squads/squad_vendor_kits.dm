@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	// tylko rzeczy z automatu: prywatna apteczka tego samego typu z plecaka nie jest zwrotem
 	if(!thing.aq_squad_issued)
 		return FALSE
-	if(istype(thing, /obj/item/gun_maintenance_kit) || istype(thing, /obj/item/grenade/barrier)) // materiał zużywalny, nie wypożyczenie (zob. aq_vend())
+	if(istype(thing, /obj/item/gun_maintenance_kit)) // dodatek do broni, nie wypożyczenie (zob. aq_vend())
 		return TRUE
 	for(var/path in outstanding)
 		if(thing.type == path)
@@ -163,7 +163,6 @@ GLOBAL_LIST_EMPTY(squad_loans)
 			paths |= loadout.items
 			qdel(loadout)
 		paths |= /obj/item/clothing/suit/ship/squad/aq_heavy
-		paths |= /obj/item/grenade/barrier
 		kit_items = typecacheof(paths, only_root_path = TRUE)
 	storage.can_hold = kit_items
 
@@ -309,9 +308,6 @@ GLOBAL_LIST_EMPTY(squad_loans)
 		if("pay_fine")
 			return aq_pay_fine(H)
 
-/// Ile granatów barierowych (rozkładanych barykad) dostaje każda skrzynia zestawu
-#define SQUAD_KIT_BARRIERS 2
-
 /obj/machinery/squad_vendor/proc/aq_vend(mob/living/carbon/human/H)
 	if(get_squad_loan(H))
 		to_chat(H, "<span class='warning'>Najpierw zwróć pobrany zestaw.</span>")
@@ -332,10 +328,6 @@ GLOBAL_LIST_EMPTY(squad_loans)
 	if(locate(/obj/item/gun) in crate)
 		var/obj/item/gun_maintenance_kit/maintenance_kit = new(crate)
 		maintenance_kit.aq_squad_issued = TRUE
-	// Barykady do szybkiego umocnienia pozycji: tak jak zestaw konserwacji są spoza listy zwrotów
-	for(var/i in 1 to SQUAD_KIT_BARRIERS)
-		var/obj/item/grenade/barrier/barrier = new(crate)
-		barrier.aq_squad_issued = TRUE
 	crate.aq_filled()
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	H.put_in_hands(crate)
@@ -469,5 +461,3 @@ GLOBAL_LIST_EMPTY(squad_loans)
 		squad = user.squad
 	name = "[initial(name)] drużyny [squad]"
 	src.squad = squad
-
-#undef SQUAD_KIT_BARRIERS
