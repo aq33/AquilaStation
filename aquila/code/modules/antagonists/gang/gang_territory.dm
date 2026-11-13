@@ -12,6 +12,8 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 	var/claimed_tiles = 0
 	/// Znaki gangu (przynoszą dochód)
 	var/list/tags = list()
+	/// Kafelki, za które gang dostał już punkty za znak (zmycie i ponowne malowanie nie płaci drugi raz)
+	var/list/tag_reward_turfs = list()
 
 /obj/effect/decal/gang
 	/// Gorąco znaku: rośnie z ruchem ludzi w pobliżu, spada co cykl
@@ -117,7 +119,9 @@ GLOBAL_LIST_EMPTY(gang_turf_sources)
 		icon_state = gang.tag_icon
 	gang.tags += src
 	aq_gang_claim(src, gang, GANG_TAG_RADIUS)
-	if(user?.mind)
+	var/turf/T = get_turf(src)
+	if(user?.mind && !gang.tag_reward_turfs[T])
+		gang.tag_reward_turfs[T] = TRUE
 		gang.add_income(GANG_TAG_POINTS, GANG_SCORE_TURF, user.mind)
 
 /obj/effect/decal/gang/Destroy()

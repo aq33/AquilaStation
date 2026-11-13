@@ -19,6 +19,8 @@
 
 	TEST_ASSERT_EQUAL(G.get_points(boss.mind), GANG_START_POINTS, "Boss should start with the starting points")
 	TEST_ASSERT_EQUAL(G.get_points(gangster.mind), GANG_START_POINTS, "Gangster should start with the starting points")
+	// Regresja: szef bez klienta nie widział okna, a gang i tak uznawał nazwę i mundur za wybrane
+	TEST_ASSERT(!G.identity_chosen, "The identity counts as chosen only after the boss confirms it")
 
 	// Każdy członek dostaje przychód, a zarabiający 25% więcej
 	G.add_income(100, GANG_SCORE_GUN, gangster.mind)
@@ -57,6 +59,12 @@
 	qdel(tag)
 	TEST_ASSERT_EQUAL(G.claimed_tiles, 0, "Removing the only tag should free the territory")
 	TEST_ASSERT(!G.owns_turf(corner), "The turf should be free after the tag is gone")
+	// Regresja: zmycie i ponowne malowanie znaku w tym samym miejscu dawało punkty bez końca
+	points_before = G.get_points(boss.mind)
+	tag = new(corner, G, "graffiti", 0, gangster)
+	TEST_ASSERT_EQUAL(G.get_points(boss.mind), points_before, "Repainting a tag on the same turf must not pay again")
+	TEST_ASSERT(G.owns_turf(corner), "The repainted tag should still claim the turf")
+	qdel(tag)
 
 	// Szafka: pranie gotówki i skup broni
 	var/turf/open/locker_turf = locate(corner.x + 2, corner.y + 2, corner.z)
@@ -88,6 +96,14 @@
 	points_before = G.get_points(boss.mind)
 	TEST_ASSERT(locker.sell(gun, gangster), "The locker should buy guns")
 	TEST_ASSERT_EQUAL(G.get_points(boss.mind), points_before + GANG_GUN_POINTS, "A sold gun should give points to every member")
+	// Regresja: zabawki Donksoft z automatów szły po 300 pkt
+	var/obj/item/gun/ballistic/automatic/toy/pistol/toy = new(gangster.loc)
+	gangster.put_in_hands(toy)
+	points_before = G.get_points(boss.mind)
+	TEST_ASSERT(locker.sell(toy, gangster), "The locker should answer a toy gun")
+	TEST_ASSERT(!QDELETED(toy), "A toy gun must not be taken")
+	TEST_ASSERT_EQUAL(G.get_points(boss.mind), points_before, "A toy gun must not give points")
+	qdel(toy)
 
 	// Przejęcie: z szafką dopiero po 5 minutach od śmierci szefa
 	TEST_ASSERT(G.is_boss(boss.mind), "The boss should lead the gang")

@@ -21025,5 +21025,7 @@
 "Bez wartości dla kupca": "Worthless to the trader",
 "Weź przedmiot do aktywnej ręki albo uderz nim terminal, żeby go wycenić.": "Take an item in your active hand or hit the terminal with it to appraise it.",
 "${item.price} pkt": "${item.price} pts",
-"Złomiarze: nikt się nie zgłosił. Ankieta trafia tylko do duchów z włączoną preferencją roli „Złomiarz”.": "Salvagers: nobody volunteered. The poll only reaches ghosts with the \"Salvager\" role preference enabled."
+"Złomiarze: nikt się nie zgłosił. Ankieta trafia tylko do duchów z włączoną preferencją roli „Złomiarz”.": "Salvagers: nobody volunteered. The poll only reaches ghosts with the \"Salvager\" role preference enabled.",
+"<span class='warning'>To zabawka. Nikt jej od gangu nie kupi.</span>": "<span class='warning'>It's a toy. Nobody will buy it from the gang.</span>",
+"Wybierz nazwę i mundur gangu": "Choose the gang's name and uniform"
 }

@@ -122,6 +122,10 @@
 		to_chat(user, "<span class='notice'>Wrzucasz [value] kr. do prania.</span>")
 		return TRUE
 	if(istype(I, /obj/item/gun))
+		// Zabawki Donksoft są za darmo z automatów i nagród, gang ich nie upłynni
+		if(is_type_in_typecache(I, aq_gang_fake_guns()))
+			to_chat(user, "<span class='warning'>To zabawka. Nikt jej od gangu nie kupi.</span>")
+			return TRUE
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return TRUE
 		qdel(I)
@@ -301,6 +305,8 @@
 			options += "Przenieś szafkę tutaj"
 	if(G.takeover_available() && !G.is_boss(user.mind) && (!L || get_dist(user, L) <= 1))
 		options += "Przejmij dowodzenie gangiem"
+	if(!G.identity_chosen && G.is_boss(user.mind))
+		options += "Wybierz nazwę i mundur gangu"
 	if(!length(options))
 		to_chat(user, "<span class='warning'>Gang nie ma jeszcze szafki. Postawi ją szef.</span>")
 		return
@@ -320,6 +326,9 @@
 		if("Przejmij dowodzenie gangiem")
 			if(G.takeover_available() && !G.is_boss(user.mind))
 				G.take_over(user.mind)
+		if("Wybierz nazwę i mundur gangu")
+			if(!G.identity_chosen && G.is_boss(user.mind))
+				G.choose_identity(user.mind)
 
 /datum/action/innate/gang_locker/proc/place_locker(mob/living/carbon/human/user, datum/team/gang/G)
 	var/turf/T = get_turf(user)
@@ -441,10 +450,10 @@
 	message_gang("[claimant.name] przejmuje dowodzenie gangiem!")
 	return TRUE
 
+// Okno wyboru otwiera się samo; identity_chosen zapala dopiero zatwierdzenie, a do tego czasu szef ma opcję w akcji „Szafka gangu”
 /datum/antagonist/gang/boss/on_gain()
 	. = ..()
 	if(type == /datum/antagonist/gang/boss && gang && !gang.identity_chosen)
-		gang.identity_chosen = TRUE
 		INVOKE_ASYNC(gang, TYPE_PROC_REF(/datum/team/gang, choose_identity), owner)
 
 /datum/team/gang/proc/uniform_taken(outfit_type)
@@ -452,6 +461,14 @@
 		if(other != src && other.outfit == outfit_type)
 			return TRUE
 	return FALSE
+
+/// Broń-zabawki, których szafka nie skupuje
+/proc/aq_gang_fake_guns()
+	var/static/list/fake_guns = typecacheof(list(
+		/obj/item/gun/ballistic/automatic/toy,
+		/obj/item/gun/ballistic/shotgun/toy,
+	))
+	return fake_guns
 
 /proc/aq_gang_dir_text(direction)
 	var/static/list/directions = list("north" = "północ", "south" = "południe", "east" = "wschód", "west" = "zachód", "northeast" = "północny wschód", "southeast" = "południowy wschód", "northwest" = "północny zachód", "southwest" = "południowy zachód")

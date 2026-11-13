@@ -59,6 +59,12 @@
 		return UI_CLOSE
 	return ..()
 
+// Zamknięte okno bez wyboru: szef otworzy je jeszcze raz z akcji „Szafka gangu”
+/datum/gang_identity_picker/ui_close(mob/user, datum/tgui/tgui)
+	. = ..()
+	if(!QDELETED(src))
+		qdel(src)
+
 /datum/gang_identity_picker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -126,6 +132,7 @@
 	error = gang.apply_identity(params["name"], preset)
 	if(error)
 		return TRUE
+	gang.identity_chosen = TRUE
+	// Zamknięcie okna usuwa wybór (ui_close)
 	SStgui.close_uis(src)
-	qdel(src)
 	return TRUE
