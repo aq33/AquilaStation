@@ -35,4 +35,18 @@
 	TEST_ASSERT(!(machine.resistance_flags & ON_FIRE), "The burning machine was not extinguished by the drop")
 	TEST_ASSERT(!fire_survived, "The floor fire under the machine survived the drop")
 
+/// AQUILA - pożar podłogi nie pali przedmiotu w trakcie usuwania (zawartość niszczonego moba wysypuje się na płonący kafelek)
+/datum/unit_test/turf_fire_ignores_deleted_items
+
+/datum/unit_test/turf_fire_ignores_deleted_items/Run()
+	var/turf/open/floor = run_loc_floor_bottom_left
+	var/obj/effect/abstract/turf_fire/magical/fire = new(floor)
+	var/obj/item/stock_parts/cell/computer/cell = new(floor)
+	qdel(cell)
+	var/runtimes_before = GLOB.total_runtimes
+	fire.on_entered(floor, cell)
+	var/runtimes_after = GLOB.total_runtimes
+	qdel(fire)
+	TEST_ASSERT(runtimes_after == runtimes_before, "The floor fire damaged an item that was being deleted")
+
 #undef TEST_ASSERT
