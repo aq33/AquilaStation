@@ -1004,3 +1004,23 @@
       napojów gazowanych. Trzy stadia, widoczne w analizatorze zdrowia, leczone mlekiem,
       nowym lekiem Omeprazol albo gastrektomią.
   - balance: Kawa nawadnia słabiej niż woda i soki.
+  - rscadd: Skaner maszyn zapisuje schemat maszyny z tierem części, a czytnik schematów
+      wpisuje go do bazy sieci badań.
+  - rscadd: Flatpacker robi paczki z maszynami z płytki albo ze schematu z bazy; paczkę
+      rozkłada się multitoolem.
+  - rscadd: Pakownica maszyn składa działającą maszynę w paczkę razem z jej częściami.
+  - rscadd: Wózek na paczki mieści trzy paczki.
+  - rscadd: Nowy węzeł badań „Inżynieria wsteczna”.
+  - rscadd: W uplinku skaner i pakownica bez blokad, które biorą też uzbrojenie, konsole
+      okrętu i sprzęt ochrony.
+  - rscadd: Flatpacker, skaner, pakownica i czytnik schematów w paczce stoją w inżynierii
+      na mapach (poza Shrike).
+  - imageadd: Sprite'y flatpackera, paczki i wózka z tgstation oraz skanera, pakownicy
+      i czytnika z Goonstation.
+  - rscadd: Gdy serwer ma włączony syntezator mowy, przycisk ogłoszenia SI przyjmuje
+      dowolny tekst po polsku i czyta go głosem zamiast słów VOX.
+  - config: Nowe opcje AI_TTS_VOICE (głos ogłoszeń SI) i AI_TTS_FFMPEG (ffmpeg do
+      filtra brzmienia ogłoszeń) w squad_tts.txt; ogłoszenia SI zużywają wspólny z
+      drużynami limit znaków na rundę.
+  - bugfix: Przyciski HUD-u SI mieszczą się w widoku; po prawej stronie widoku SI
+      nie znikają już ściany i obiekty.
