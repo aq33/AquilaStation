@@ -72,14 +72,18 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 		to_chat(src, "<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone, możesz spróbować od razu.</span>")
 
 /// Przepuszcza MP3 z ElevenLabs przez filtr ogłoszeń. Zwraca ścieżkę gotowego OGG albo null (brak ffmpeg, błąd), wtedy gra się surowy plik.
-/// shell() wstrzymuje serwer na czas konwersji (ok. 0,3 s na kilkusekundowe ogłoszenie).
+/// shell() wstrzymuje serwer na czas konwersji (ok. 0,3 s na kilkusekundowe ogłoszenie). shell() nie da się przerwać, więc ffmpeg sam
+/// pilnuje limitów: -timelimit (czas procesora) i -t (długość nagrania; 300 znaków to ok. 25 s mowy).
 /proc/aq_tts_announcement_filter(file_name)
 	var/ffmpeg = CONFIG_GET(string/ai_tts_ffmpeg)
-	if(!length(ffmpeg) || !fexists(file_name) || !fexists(AQ_AI_TTS_IR))
+	if(!length(ffmpeg) || !fexists(file_name))
+		return null
+	if(!fexists(AQ_AI_TTS_IR))
+		log_runtime("ai_tts: brak pliku filtra [AQ_AI_TTS_IR], ogłoszenie gra bez filtra")
 		return null
 	var/out_file = "[copytext(file_name, 1, -4)]_filtr.ogg"
-	var/filter = "\[0:a\]apad=pad_dur=0.6\[s\];\[s\]\[1:a\]afir=gtype=-1:irnorm=-1,alimiter=limit=0.9:level=disabled"
-	var/list/result = world.shelleo("\"[ffmpeg]\" -nostdin -hide_banner -loglevel error -y -i \"[file_name]\" -i \"[AQ_AI_TTS_IR]\" -filter_complex \"[filter]\" -c:a libvorbis -q:a 5 \"[out_file]\"")
+	var/filter = "\[0:a\]apad=pad_dur=0.6\[s\];\[s\]\[1:a\]afir=irnorm=-1,alimiter=limit=0.9:level=disabled"
+	var/list/result = world.shelleo("\"[ffmpeg]\" -nostdin -hide_banner -loglevel error -timelimit 10 -y -i \"[file_name]\" -i \"[AQ_AI_TTS_IR]\" -filter_complex \"[filter]\" -t 60 -c:a libvorbis -q:a 5 \"[out_file]\"")
 	if(result[SHELLEO_ERRORLEVEL] || !fexists(out_file))
 		log_runtime("ai_tts: filtr ffmpeg nie zadziałał ([result[SHELLEO_ERRORLEVEL]]): [trim(result[SHELLEO_STDERR], 300)]")
 		if(fexists(out_file))

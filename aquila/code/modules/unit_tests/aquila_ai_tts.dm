@@ -58,6 +58,8 @@
 	var/old_ffmpeg = CONFIG_GET(string/ai_tts_ffmpeg)
 	var/file_name = "tmp/squad_tts/aquila_test_filtr.mp3"
 	rustg_file_write("to nie jest mp3", file_name)
+	// bez pliku wejściowego filtr kończy się przed wywołaniem ffmpeg i test nic by nie sprawdzał
+	TEST_ASSERT(fexists(file_name), "Nie udało się utworzyć pliku testowego [file_name]")
 	CONFIG_SET(string/ai_tts_ffmpeg, "aquila_brak_takiego_programu")
 	var/missing_program = aq_tts_announcement_filter(file_name)
 	CONFIG_SET(string/ai_tts_ffmpeg, "")
