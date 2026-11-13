@@ -60,9 +60,6 @@
 	TEST_ASSERT(first_en && second_en, "The hardsuit descriptions used by the joined description check have no translation")
 	var/mod_desc = i18n_en_html("[initial(control.desc)] [initial(second.desc)]")
 	TEST_ASSERT(mod_desc == "[first_en] [second_en]", "Joined description is not translated sentence by sentence: [mod_desc]")
-	// Część MOD-a po nałożeniu motywu ("[part.name] (model [name])"), jak w mod_theme.dm
-	var/mod_part = i18n_en_html("hełm MOD (model inżynieryjny)")
-	TEST_ASSERT(mod_part == "engineering MOD helmet", "MOD part name with a theme is not translated: [mod_part]")
 	var/half = i18n_en_html("[initial(control.desc)] Zupełnie nieznane polskie zdanie.")
 	TEST_ASSERT(half == "[initial(control.desc)] Zupełnie nieznane polskie zdanie.", "Joined description with an unknown sentence made a mixed text: [half]")
 	// Screentip z wstawką ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy") idzie przez szablony

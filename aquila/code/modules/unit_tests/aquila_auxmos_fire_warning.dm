@@ -13,8 +13,9 @@
 
 /datum/unit_test/aquila_auxmos_fire_warning/Run()
 	var/runtimes_before = GLOB.total_runtimes
-	stack_trace("Reacting\n\nCaused by:\n   0: calling rust side react in react_by_id\n   1: Gas has no fuel even though it passed fuel check!\n\nLocation:\n    src\\reaction\\citadel.rs:318:21")
-	stack_trace("Reacting\n\nCaused by:\n   1: Gas has no oxidizer even though it passed oxidizer check!")
+	// auxmos woła globalną /proc/stack_trace; samo stack_trace() w procce datumu trafiłoby w /datum/proc/stack_trace
+	call(GLOBAL_PROC_REF(stack_trace))("Reacting\n\nCaused by:\n   0: calling rust side react in react_by_id\n   1: Gas has no fuel even though it passed fuel check!\n\nLocation:\n    src\\reaction\\citadel.rs:318:21")
+	call(GLOBAL_PROC_REF(stack_trace))("Reacting\n\nCaused by:\n   1: Gas has no oxidizer even though it passed oxidizer check!")
 	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "The auxmos generic_fire error still counts as a runtime")
 
 #undef TEST_ASSERT_EQUAL
