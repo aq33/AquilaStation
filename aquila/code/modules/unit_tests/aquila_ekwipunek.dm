@@ -85,4 +85,75 @@
 	stool.make_diarrhea()
 	TEST_ASSERT(findtext(stool.icon_state, "diarrhea") == 1, "Biegunka nie zmieniła wyglądu: [stool.icon_state]")
 
+/// Barykady kierunkowe z zachowaniem z TGMC: pociski od frontu, drut, wzmacnianie podstawy, worki, składana metalowa, receptury
+/datum/unit_test/aquila_tgmc_barricades
+
+/datum/unit_test/aquila_tgmc_barricades/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/turf/spot = locate(base.x + 1, base.y + 1, base.z)
+	var/turf/front = get_step(spot, NORTH)
+	var/turf/behind = get_step(spot, SOUTH)
+	var/obj/structure/peacekeeper_barricade/metal/cade = allocate(/obj/structure/peacekeeper_barricade/metal, spot)
+	cade.setDir(NORTH)
+
+	// pociski: od frontu z szansą, zza barykady zawsze, strzelec tuż przy barykadzie strzela nad nią
+	var/obj/item/projectile/bullet = allocate(/obj/item/projectile, front)
+	cade.proj_pass_rate = 0
+	TEST_ASSERT(!cade.CanAllowThrough(bullet, front), "Pocisk od frontu przeleciał przy szansie 0%")
+	cade.proj_pass_rate = 100
+	TEST_ASSERT(cade.CanAllowThrough(bullet, front), "Pocisk od frontu nie przeleciał przy szansie 100%")
+	cade.proj_pass_rate = 0
+	TEST_ASSERT(cade.CanAllowThrough(bullet, behind), "Pocisk zza barykady został zatrzymany")
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, front)
+	bullet.firer = shooter
+	TEST_ASSERT(cade.CanAllowThrough(bullet, front), "Strzelec tuż przed barykadą nie strzela nad nią")
+	bullet.firer = null
+
+	// drut kolczasty: po rozłożeniu nie da się przeskoczyć
+	var/mob/living/carbon/human/builder = allocate(/mob/living/carbon/human, behind)
+	var/obj/item/stack/barbed_wire/wire = allocate(/obj/item/stack/barbed_wire/five, behind)
+	builder.put_in_hands(wire)
+	cade.attackby(wire, builder)
+	TEST_ASSERT(cade.is_wired && !cade.climbable, "Barykada z drutem nadal pozwala przeskoczyć")
+
+	// podstawa: poniżej 30% wzmacniają ją arkusze
+	cade.obj_integrity = 10
+	var/obj/item/stack/sheet/iron/five/sheets = allocate(/obj/item/stack/sheet/iron/five, behind)
+	builder.put_in_hands(sheets)
+	cade.attackby(sheets, builder)
+	TEST_ASSERT(cade.obj_integrity >= cade.max_integrity * 0.3, "Arkusze nie wzmocniły podstawy (wytrzymałość [cade.obj_integrity])")
+	TEST_ASSERT(sheets.get_amount() == 3, "Wzmocnienie podstawy zużyło [5 - sheets.get_amount()] arkuszy zamiast 2")
+
+	// worki z piaskiem: naprawa workiem
+	var/turf/sand_spot = locate(base.x + 3, base.y + 1, base.z)
+	var/obj/structure/peacekeeper_barricade/metal/sandbags/bags_cade = allocate(/obj/structure/peacekeeper_barricade/metal/sandbags, sand_spot)
+	bags_cade.obj_integrity = bags_cade.max_integrity / 2
+	var/before = bags_cade.obj_integrity
+	var/obj/item/stack/sheet/mineral/sandbags/bags = allocate(/obj/item/stack/sheet/mineral/sandbags, sand_spot)
+	builder.forceMove(sand_spot)
+	builder.put_in_hands(bags)
+	bags_cade.attackby(bags, builder)
+	TEST_ASSERT(bags_cade.obj_integrity > before, "Worek nie naprawił barykady z worków")
+
+	// składana metalowa: stoi po zbudowaniu, składa się ręką
+	var/turf/fold_spot = locate(base.x + 1, base.y + 3, base.z)
+	var/obj/structure/peacekeeper_barricade/metal/plasteel/folding_metal/folding = allocate(/obj/structure/peacekeeper_barricade/metal/plasteel/folding_metal, fold_spot)
+	TEST_ASSERT(folding.density && !folding.closed, "Składana metalowa barykada nie stoi po zbudowaniu")
+	builder.forceMove(fold_spot)
+	builder.drop_all_held_items()
+	folding.attack_hand(builder)
+	TEST_ASSERT(folding.closed && !folding.density, "Składana metalowa barykada nie złożyła się")
+
+	// receptury
+	var/found_sandbags = FALSE
+	for(var/datum/stack_recipe/recipe in GLOB.sandbag_recipes)
+		if(recipe.result_type == /obj/structure/peacekeeper_barricade/metal/sandbags)
+			found_sandbags = TRUE
+	TEST_ASSERT(found_sandbags, "Brak receptury kierunkowej barykady z worków")
+	var/found_folding = FALSE
+	for(var/datum/stack_recipe/recipe in GLOB.metal_recipes)
+		if(recipe.result_type == /obj/structure/peacekeeper_barricade/metal/plasteel/folding_metal)
+			found_folding = TRUE
+	TEST_ASSERT(found_folding, "Brak receptury składanej metalowej barykady")
+
 #undef TEST_ASSERT

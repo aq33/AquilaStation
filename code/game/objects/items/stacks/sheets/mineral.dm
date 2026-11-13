@@ -69,6 +69,8 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 
 GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	new/datum/stack_recipe("worki z piaskiem", /obj/structure/barricade/sandbags, 1, time = 25, one_per_turf = 1, on_floor = 1), \
+	// AQ EDIT - kierunkowa barykada z worków z TGMC
+	new/datum/stack_recipe("barykada z worków (kierunkowa)", /obj/structure/peacekeeper_barricade/metal/sandbags, 2, time = 25, one_per_turf = 1, on_floor = 1), \
 	))
 
 /obj/item/stack/sheet/mineral/sandbags/Initialize(mapload, new_amount, merge = TRUE)

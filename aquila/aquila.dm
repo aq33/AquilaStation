@@ -330,6 +330,7 @@
 #include "code\game\objects\items\tools\weldingtool.dm"
 #include "code\game\objects\items\tools\wirecutters.dm"
 #include "code\game\objects\items\tools\wrench.dm"
+#include "code\game\objects\structures\barricade_tgmc.dm"
 #include "code\game\objects\structures\barsigns.dm"
 #include "code\game\objects\structures\billboard.dm"
 #include "code\game\objects\structures\catwalk.dm"
