@@ -18,6 +18,15 @@
 	random_icon_states = list("diarrhea1", "diarrhea2")
 	icon_state = pick(random_icon_states)
 
+/// Kupa, która faktycznie leży na T: nowa zlewa się w Initialize z leżącą już kupą tego samego typu i znika
+/obj/effect/decal/cleanable/feces/proc/surviving_decal(turf/T)
+	if(!QDELETED(src))
+		return src
+	for(var/obj/effect/decal/cleanable/feces/existing in T)
+		if(existing.type == type && !QDELETED(existing))
+			return existing
+	return null
+
 /// Felinidzi robią fioletowe kopczyki
 /obj/effect/decal/cleanable/feces/felinid
 	icon_state = "felinid"

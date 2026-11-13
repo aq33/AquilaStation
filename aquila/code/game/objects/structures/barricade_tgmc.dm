@@ -23,6 +23,11 @@
 	max_integrity = 550
 	proj_pass_rate = 10
 	armor = list("melee" = 0, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 50, "stamina" = 0, "bleed" = 0)
+	barricade_hitsound = 'sound/effects/clang.ogg' // core ustawia tu osobno nieistniejący "sound/effects/metalhit.ogg"
+
+/obj/item/projectile
+	/// REF barykady kierunkowej -> czy ten pocisk nad nią przelatuje (jedno losowanie na barykadę, choć CanPass woła się kilka razy)
+	var/list/aq_barricade_rolls
 
 // Pocisk od frontu przelatuje z szansą proj_pass_rate, a strzelec stojący tuż przy barykadzie strzela nad nią
 // (jak /obj/structure/barricade w code/game/machinery/deployable.dm). Strzały zza barykady przepuszcza już on_exit.
@@ -31,8 +36,19 @@
 		var/obj/item/projectile/proj = mover
 		if(proj.firer && get_dist(proj.firer, src) <= 1)
 			return TRUE
-		return prob(proj_pass_rate)
+		var/key = REF(src)
+		LAZYINITLIST(proj.aq_barricade_rolls)
+		if(isnull(proj.aq_barricade_rolls[key]))
+			proj.aq_barricade_rolls[key] = prob(proj_pass_rate)
+		return proj.aq_barricade_rolls[key]
 	return ..()
+
+// Drut kolczasty zatrzymuje też abordażystów AI: zwykle planują trasę przez barykady, bo się po nich wspinają
+/obj/structure/peacekeeper_barricade/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+	. = ..()
+	// to_dir to kierunek (liczba), więc maska bitowa, nie `in` jak w core
+	if(. && is_wired && density && !closed && isknpc(caller) && (dir & to_dir))
+		return FALSE
 
 /obj/structure/peacekeeper_barricade/metal/attackby(obj/item/I, mob/user, params)
 	if(stack_type && istype(I, stack_type) && obj_integrity < max_integrity * AQ_BARRICADE_REPAIR_THRESHOLD)

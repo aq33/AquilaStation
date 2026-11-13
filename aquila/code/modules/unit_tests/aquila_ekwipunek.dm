@@ -63,6 +63,29 @@
 	TEST_ASSERT(runny_stool?.stool_type == 7, "Olej rycynowy nie dał typu 7 (typ [runny_stool?.stool_type])")
 	TEST_ASSERT(findtext(runny_stool.icon_state, "diarrhea") == 1, "Typ 7 nie zostawił rozbryzgu: [runny_stool.icon_state]")
 
+	// biegunka na polu z leżącą już kupą: nowa zlewa się ze starą, więc to stara ma pokazać rozbryzg
+	var/turf/dirty_spot = locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
+	var/obj/effect/decal/cleanable/feces/old_stool = allocate(/obj/effect/decal/cleanable/feces, dirty_spot)
+	var/mob/living/carbon/human/runny2 = allocate(/mob/living/carbon/human, dirty_spot)
+	runny2.reagents.add_reagent(/datum/reagent/consumable/castor_oil, 5)
+	runny2.set_defecation(DEFECATION_SHIT_YOURSELF)
+	runny2.finish_defecate_here(FALSE)
+	var/stools_here = 0
+	for(var/obj/effect/decal/cleanable/feces/F in dirty_spot)
+		stools_here++
+	TEST_ASSERT(stools_here == 1, "Kupa na polu z kupą się nie zlała ([stools_here] kupy)")
+	TEST_ASSERT(old_stool.stool_type == 7 && findtext(old_stool.icon_state, "diarrhea") == 1, "Biegunka na leżącej kupie zostawiła grudki: [old_stool.icon_state], typ [old_stool.stool_type]")
+
+/// Okno kafelka (Alt-klik) na hardsuit: bez czapki otwiera się jak zwykle, z czapką Alt-klik ją zdejmuje
+/datum/unit_test/aquila_hardsuit_hat_loot_panel
+
+/datum/unit_test/aquila_hardsuit_hat_loot_panel/Run()
+	var/obj/item/clothing/suit/space/hardsuit/engine/suit = allocate(/obj/item/clothing/suit/space/hardsuit/engine)
+	TEST_ASSERT(suit.opens_loot_panel() && suit.helmet.opens_loot_panel(), "Hardsuit bez czapki nie otwiera okna kafelka")
+	var/obj/item/clothing/head/beret/hat = allocate(/obj/item/clothing/head/beret)
+	suit.helmet.attach_hat(hat)
+	TEST_ASSERT(!suit.opens_loot_panel() && !suit.helmet.opens_loot_panel(), "Hardsuit z czapką otwiera okno kafelka zamiast zdjąć czapkę")
+
 /// Barykady kierunkowe z zachowaniem z TGMC: pociski od frontu, drut, wzmacnianie podstawy, worki, składana metalowa, receptury
 /datum/unit_test/aquila_tgmc_barricades
 
@@ -79,13 +102,21 @@
 	cade.proj_pass_rate = 0
 	TEST_ASSERT(!cade.CanAllowThrough(bullet, front), "Pocisk od frontu przeleciał przy szansie 0%")
 	cade.proj_pass_rate = 100
-	TEST_ASSERT(cade.CanAllowThrough(bullet, front), "Pocisk od frontu nie przeleciał przy szansie 100%")
+	var/obj/item/projectile/lucky = allocate(/obj/item/projectile, front) // wynik jest zapamiętany na pocisk, więc nowy pocisk
+	TEST_ASSERT(cade.CanAllowThrough(lucky, front), "Pocisk od frontu nie przeleciał przy szansie 100%")
 	cade.proj_pass_rate = 0
 	TEST_ASSERT(cade.CanAllowThrough(bullet, behind), "Pocisk zza barykady został zatrzymany")
 	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human, front)
 	bullet.firer = shooter
 	TEST_ASSERT(cade.CanAllowThrough(bullet, front), "Strzelec tuż przed barykadą nie strzela nad nią")
 	bullet.firer = null
+	// jedno losowanie na pocisk: kolejne sprawdzenia tego samego pocisku dają ten sam wynik
+	var/obj/item/projectile/rolled = allocate(/obj/item/projectile, front)
+	cade.proj_pass_rate = 50
+	var/first_roll = cade.CanAllowThrough(rolled, front)
+	for(var/i in 1 to 20)
+		TEST_ASSERT(cade.CanAllowThrough(rolled, front) == first_roll, "Przelot tego samego pocisku losowany od nowa")
+	cade.proj_pass_rate = 0
 
 	// drut kolczasty: po rozłożeniu nie da się przeskoczyć
 	var/mob/living/carbon/human/builder = allocate(/mob/living/carbon/human, behind)
@@ -133,5 +164,47 @@
 		if(recipe.result_type == /obj/structure/peacekeeper_barricade/metal/plasteel/folding_metal)
 			found_folding = TRUE
 	TEST_ASSERT(found_folding, "Brak receptury składanej metalowej barykady")
+
+/// Testowa barykada, której wspinanie czyści trasę boardera (jak walka albo odwrót w trakcie do_mob przy wspinaniu)
+/obj/structure/peacekeeper_barricade/metal/aquila_test_path_clear
+	var/datum/component/knpc/clears_path_of
+
+/obj/structure/peacekeeper_barricade/metal/aquila_test_path_clear/climb_structure(mob/living/user)
+	clears_path_of?.path = list()
+
+/// Abordażyści AI a barykady: drut zatrzymuje ich trasę i wspinanie, a trasa wyczyszczona przy wspinaniu nie daje runtime'u
+/datum/unit_test/aquila_knpc_barricades
+
+/datum/unit_test/aquila_knpc_barricades/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/turf/start = locate(base.x + 1, base.y + 1, base.z)
+	var/turf/cade_turf = locate(base.x + 2, base.y + 1, base.z)
+	var/turf/beyond = locate(base.x + 3, base.y + 1, base.z)
+	var/mob/living/carbon/human/ai_boarder/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/aquila_test, start)
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+
+	// regresja: trasa znika w trakcie wspinania (next_path_step czytało path[1] z pustej listy)
+	var/obj/structure/peacekeeper_barricade/metal/aquila_test_path_clear/clearing = allocate(/obj/structure/peacekeeper_barricade/metal/aquila_test_path_clear, cade_turf)
+	clearing.setDir(WEST)
+	clearing.clears_path_of = ai
+	ai.path = list(cade_turf, beyond)
+	ai.next_move = 0
+	ai.tries = 0
+	TEST_ASSERT(ai.next_path_step() == FALSE, "Boarder szedł dalej po wyczyszczeniu trasy przy wspinaniu")
+	qdel(clearing)
+
+	// drut: boarder nie wspina się na barykadę i nie planuje przez nią trasy
+	var/obj/structure/peacekeeper_barricade/metal/wired = allocate(/obj/structure/peacekeeper_barricade/metal, cade_turf)
+	wired.setDir(WEST)
+	TEST_ASSERT(wired.CanAStarPass(null, WEST, boarder), "Boarder bez drutu nie planuje trasy przez barykadę (wspina się na nie)")
+	wired.is_wired = TRUE
+	wired.climbable = FALSE
+	TEST_ASSERT(!wired.CanAStarPass(null, WEST, boarder), "Boarder planuje trasę przez barykadę z drutem")
+	TEST_ASSERT(wired.CanAStarPass(null, EAST, boarder), "Barykada z drutem blokuje trasę od tyłu")
+	ai.path = list(cade_turf, beyond)
+	ai.next_move = 0
+	ai.tries = 0
+	ai.next_path_step()
+	TEST_ASSERT(get_turf(boarder) == start, "Boarder przeszedł przez barykadę z drutem")
 
 #undef TEST_ASSERT

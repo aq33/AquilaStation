@@ -1,10 +1,5 @@
-/// Nazwa zbrodni za seks na przycisk widziany przez kamerę (ta sama pozycja jest w config/space_law.json)
+/// Nazwa zbrodni za seks na przycisk widziany przez kamerę: pozycja w config/space_law.json (Zbrodnie)
 #define PUBLIC_SEX_CRIME "Publiczne obcowanie płciowe"
-
-/datum/crime/capital/aq_public_sex
-	name = PUBLIC_SEX_CRIME
-	icon = "heart"
-	tooltip = "Uprawianie seksu w miejscu publicznym, zarejestrowane przez kamery okrętu."
 
 /obj/item/melee/touch_attack/sex
 	name = "wątpliwy dotyk"

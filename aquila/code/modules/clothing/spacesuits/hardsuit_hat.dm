@@ -107,6 +107,13 @@
 		return
 	return ..()
 
+// Bez czapki Alt-klik otwiera okno kafelka jak zwykle (alt_click_actions.dm wyłącza je tylko przez zdejmowanie czapki)
+/obj/item/clothing/head/helmet/space/hardsuit/opens_loot_panel()
+	return !attached_hat
+
+/obj/item/clothing/suit/space/hardsuit/opens_loot_panel()
+	return !helmet?.attached_hat
+
 // Stabilizator czapki MOD: MOD-ów już nie ma, a w hardsuicie czapkę trzyma sam hełm, więc moduł nic nie robi
 /obj/item/mod/module/hat_stabilizer/on_part_activation()
 	return

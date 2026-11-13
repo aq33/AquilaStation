@@ -81,11 +81,11 @@
 	playsound(T, 'sound/effects/splat.ogg', 100, TRUE)
 	if(T)
 		var/obj/effect/decal/cleanable/feces/burst = new(T)
-		burst.make_diarrhea()
+		burst.surviving_decal(T)?.make_diarrhea()
 		for(var/turf/open/near in orange(1, T))
 			if(prob(50))
 				var/obj/effect/decal/cleanable/feces/splash = new(near)
-				splash.make_diarrhea()
+				splash.surviving_decal(near)?.make_diarrhea()
 		bodily_disgust(DISGUST_LEVEL_VERYGROSS, FALSE)
 	log_game("[key_name(src)] was gibbed by stoperan at [AREACOORD(T)]")
 	// Odroczone: wołane z metabolizmu reagentów i ticku efektu, które dalej używają moba i jego reagentów
