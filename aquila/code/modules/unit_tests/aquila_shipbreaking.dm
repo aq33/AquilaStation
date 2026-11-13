@@ -109,6 +109,9 @@
 		return "Magnet refused to pull a wreck"
 	if(!magnet.load_wreck())
 		return "Magnet failed to load [magnet.current_wreck?.mappath]"
+	// Timer z pull_in_wreck() odpala load_wreck() po 10 s, gdy wrak już stoi: drugi szablon dublował kable (losowy runtime w CI)
+	if(magnet.load_wreck())
+		return "Magnet loaded a second wreck on top of the loaded one"
 	var/health = magnet.get_wreck_health()
 	if(!health)
 		return "Freshly loaded wreck reports [health]% health"
