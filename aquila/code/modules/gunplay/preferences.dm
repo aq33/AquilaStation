@@ -1,7 +1,7 @@
 // AQUILA - ustawienia graczy do reworku strzelania (okno: tgui/.../game_preferences/gunplay.tsx)
 
 /datum/preferences
-	/// Kursor pokazujący rozrzut trzymanej broni (domyślnie wyłączony: podejrzany o lag myszy, raport/perf_03_kursor_rozrzutu_lag.md)
+	/// Kursor pokazujący rozrzut trzymanej broni (domyślnie wyłączony: gracze zgłaszali lag przy ruchu myszy z bronią)
 	var/gun_cursor = FALSE
 	/// Postać w combat mode patrzy na kursor, także w ruchu (domyślnie wyłączone, jak wyżej)
 	var/face_cursor_combat = FALSE
