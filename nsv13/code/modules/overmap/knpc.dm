@@ -216,6 +216,8 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - wspinanie śpi (do_after), a w tym czasie ścieżka bywa wyczyszczona
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
@@ -231,9 +233,13 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - wspinanie śpi (do_after), a w tym czasie ścieżka bywa wyczyszczona
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
+		if(!length(path)) // AQ EDIT - ścieżka wyczyszczona w trakcie (wspinanie, otwieranie drzwi)
+			return FALSE
 		step_towards(H, path[1])
 		if(get_turf(H) == path[1]) //Successful move
 			increment_path()
