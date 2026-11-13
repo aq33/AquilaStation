@@ -24,13 +24,11 @@
 		"<span class='warning'>[src] popuścił[gender == FEMALE ? "a" : ""] w spodnie!</span>",
 		"<span class='warning'>Popuścił[gender == FEMALE ? "aś" : "eś"] w spodnie!</span>")
 
+	var/feces_path = feces_type()
+	finish_bowel_movement(TRUE, new feces_path(get_turf(src))) // typ przed własną odrazą z popuszczenia
 	bodily_disgust(DISGUST_LEVEL_VERYGROSS, TRUE)
 
 	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
-	var/feces_path = feces_type()
-	new feces_path(get_turf(src))
-	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
-	oil?.purge(src)
 	return TRUE
 
 /mob/living/carbon/human/actually_shit_myself()
@@ -57,7 +55,7 @@
 	var/obj/structure/toilet/toilet = locate() in get_turf(src)
 	if(toilet)
 		toilet_busy = TRUE
-		if(do_after(src, 3 SECONDS, target = toilet))
+		if(do_after(src, bowel_movement_time(), target = toilet))
 			toilet.shit(src)
 		toilet_busy = FALSE
 		return TRUE
@@ -67,7 +65,7 @@
 	else
 		to_chat(src, "<span class='notice'>Kucasz w miejscu...</span>")
 	toilet_busy = TRUE
-	var/success = do_after(src, 3 SECONDS, target = src)
+	var/success = do_after(src, bowel_movement_time(), target = src)
 	toilet_busy = FALSE
 	if(!success)
 		return FALSE
@@ -94,9 +92,7 @@
 	bodily_disgust(DISGUST_LEVEL_GROSS, FALSE)
 	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
 	var/feces_path = feces_type()
-	new feces_path(get_turf(src))
-	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
-	oil?.purge(src)
+	finish_bowel_movement(TRUE, new feces_path(get_turf(src)))
 	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
 
 /// Czy coś zakrywa krocze (wtedy wypróżnienie idzie w spodnie)

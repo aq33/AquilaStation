@@ -85,6 +85,16 @@
 	stool.make_diarrhea()
 	TEST_ASSERT(findtext(stool.icon_state, "diarrhea") == 1, "Biegunka nie zmieniła wyglądu: [stool.icon_state]")
 
+	// typ 7 w skali bristolskiej (olej rycynowy) zostawia rozbryzg
+	var/turf/runny_spot = locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
+	var/mob/living/carbon/human/runny = allocate(/mob/living/carbon/human, runny_spot)
+	runny.reagents.add_reagent(/datum/reagent/consumable/castor_oil, 5)
+	runny.set_defecation(DEFECATION_SHIT_YOURSELF)
+	runny.finish_defecate_here(FALSE)
+	var/obj/effect/decal/cleanable/feces/runny_stool = locate() in runny_spot
+	TEST_ASSERT(runny_stool?.stool_type == 7, "Olej rycynowy nie dał typu 7 (typ [runny_stool?.stool_type])")
+	TEST_ASSERT(findtext(runny_stool.icon_state, "diarrhea") == 1, "Typ 7 nie zostawił rozbryzgu: [runny_stool.icon_state]")
+
 /// Barykady kierunkowe z zachowaniem z TGMC: pociski od frontu, drut, wzmacnianie podstawy, worki, składana metalowa, receptury
 /datum/unit_test/aquila_tgmc_barricades
 
