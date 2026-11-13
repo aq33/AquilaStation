@@ -369,8 +369,20 @@
 #include "code\modules\antagonists\ert\ert.dm"
 #include "code\modules\antagonists\revolution\revolution_conversion.dm"
 #include "code\modules\antagonists\revolution\revolution_panel.dm"
+#include "code\modules\antagonists\gang\_gang_defines.dm"
 #include "code\game\gamemodes\gangs\dominator.dm"
 #include "code\modules\antagonists\gang\gang_war.dm"
+#include "code\modules\antagonists\gang\gang_economy.dm"
+#include "code\modules\antagonists\gang\gang_territory.dm"
+#include "code\modules\antagonists\gang\gang_status.dm"
+#include "code\modules\antagonists\gang\gang_locker.dm"
+#include "code\modules\antagonists\gang\gang_identity.dm"
+#include "code\modules\antagonists\gang\gang_drops.dm"
+#include "code\modules\antagonists\salvager\salvager.dm"
+#include "code\modules\antagonists\salvager\salvager_items.dm"
+#include "code\modules\antagonists\salvager\salvager_magpie.dm"
+#include "code\modules\antagonists\salvager\salvager_ship.dm"
+#include "code\modules\antagonists\salvager\salvager_event.dm"
 #include "code\modules\antagonists\spider\spider.dm"
 #include "code\modules\antagonists\spy\spy.dm"
 #include "code\modules\antagonists\spy\spy_bounty.dm"
@@ -1156,6 +1168,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_622_skala_bristolska.dm"
 #include "code\modules\test_chamber\kits\pr_622_potrzeby.dm"
+#include "code\modules\test_chamber\kits\pr_621_gangi_zlomiarze.dm"
 #include "code\modules\test_chamber\kits\pr_625_zolnierze.dm"
 #include "code\modules\test_chamber\kits\pr_625_rodziny.dm"
 #include "code\modules\test_chamber\kits\pr_625_gornicze.dm"
@@ -2168,6 +2181,9 @@
 #include "code\modules\mob\living\basic\space_fauna\dolphin.dm"
 // Koniec bloku tanich basic mobów
 
+// Podział testów między joby CI: poza blokiem UNIT_TESTS, bo RunUnitTests() kompiluje się też pod dreamcheckerem
+#include "code\modules\unit_tests\_unit_test_shards.dm"
+
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
 #include "code\modules\unit_tests\aquila_basic_deer.dm"
@@ -2310,6 +2326,8 @@
 #include "code\modules\unit_tests\aquila_traitor_objectives.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_26_10.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
+#include "code\modules\unit_tests\aquila_gang_economy.dm"
+#include "code\modules\unit_tests\aquila_salvagers.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
@@ -2405,6 +2423,7 @@
 #include "code\modules\unit_tests\extinguisher_fire.dm"
 #include "code\modules\unit_tests\turf_fire_deleted_items.dm"
 #include "code\modules\unit_tests\aquila_fleet_move_without_system.dm"
+#include "code\modules\unit_tests\aquila_unit_test_shards.dm"
 #include "code\modules\unit_tests\hev_spaceproof.dm"
 #include "code\modules\unit_tests\miasma.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"

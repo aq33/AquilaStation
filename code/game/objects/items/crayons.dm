@@ -349,9 +349,7 @@
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		wait_time *= 3
 	if(gang)
-		wait_time = 1 SECONDS
-		if (territory_claimed(get_area(target), user))
-			wait_time = 20 SECONDS
+		wait_time = gang_spray_time(user, target) // AQ EDIT - czas jak w Goonie (aquila/code/modules/antagonists/gang/gang_territory.dm)
 	if(!instant || paint_mode == PAINT_LARGE_HORIZONTAL)
 		to_chat(user, "<span class='notice'>Zaczynasz rysować na [target.name]: [temp]...</span>") // hippie -- removed a weird tab that had no reason to be here
 		if(!do_after(user, wait_time, target = target))
