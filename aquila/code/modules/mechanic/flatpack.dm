@@ -191,6 +191,13 @@
 	. = ..()
 	update_appearance()
 
+// Ciągnięty wózek obraca się rączką do ciągnącego, pchnięty zostaje tak, jak stał
+/obj/structure/flatpack_cart/Move(atom/newloc, direct, glide_size_override)
+	var/old_dir = dir
+	. = ..()
+	if(!pulledby && dir != old_dir)
+		setDir(old_dir)
+
 // Turkocze, gdy ktoś go ciągnie, tak jak wózek woźnego
 /obj/structure/flatpack_cart/Moved(atom/OldLoc, Dir, Forced)
 	. = ..()
