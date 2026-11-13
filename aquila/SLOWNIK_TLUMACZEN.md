@@ -2398,6 +2398,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Char (`/consumable/char`) | Przypalenizna | ż; nowe |
 | Cherry Jelly (`/consumable/cherryjelly`) | Galaretka wiśniowa | ż; istniejące |
 | Clown's Tears (`/consumable/clownstears`) | Łzy klauna | mnoga; nowe |
+| Clown's Tears, zupa (`/consumable/nutriment/soup/clown_tears`) | Zupa z łez klauna | ż; inna nazwa niż napój, bo dozownik szuka reagentów po nazwie (test `aquila_reagent_name_keys`) |
 | Cocoa Powder (`/consumable/cocoa`) | Kakao w proszku | n; nowe |
 | Condensed Capsaicin (`/consumable/condensedcapsaicin`) | Skondensowana kapsaicyna | ż; istniejące; cure_text |
 | Consumable (`/consumable`) | Produkt spożywczy | m; nowe; bazowy |

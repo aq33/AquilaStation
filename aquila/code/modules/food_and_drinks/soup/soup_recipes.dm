@@ -324,7 +324,7 @@
 // Clown Tear soup
 /datum/reagent/consumable/nutriment/soup/clown_tears
 	bowl_icon_state = "clownstears"
-	name = "Łzy klauna"
+	name = "Zupa z łez klauna"
 	description = "Smutek i melancholia tysiąca osieroconych klaunów, którym na zawsze odmówiono ich Honkmechów."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	ph = 9.2
