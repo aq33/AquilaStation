@@ -126,13 +126,16 @@ GLOBAL_LIST_EMPTY(aq_squad_vendors)
 	member.client.aq_queue_squad_alert(new /datum/aq_squad_alert(title, message, colour, sender, hold_time))
 
 /// XO wskazuje każdemu żywemu członkowi najbliższy automat drużyny. Zwraca, ilu dostało znacznik, albo null przy odstępie.
-/datum/squad/proc/aq_ping_gear(mob/living/sender, list/candidates = GLOB.aq_squad_vendors)
+/datum/squad/proc/aq_ping_gear(mob/sender, list/candidates = GLOB.aq_squad_vendors)
 	if(!sender)
 		return null
-	if(world.time < sender.aq_next_squad_marker)
-		to_chat(sender, "<span class='warning'>Za szybko. Odczekaj chwilę przed kolejnym znacznikiem.</span>")
-		return null
-	sender.aq_next_squad_marker = world.time + SQUAD_MARKER_COOLDOWN
+	// Konsolę może obsłużyć też admin-duch, który nie ma odstępu znaczników
+	var/mob/living/living_sender = sender
+	if(istype(living_sender))
+		if(world.time < living_sender.aq_next_squad_marker)
+			to_chat(sender, "<span class='warning'>Za szybko. Odczekaj chwilę przed kolejnym znacznikiem.</span>")
+			return null
+		living_sender.aq_next_squad_marker = world.time + SQUAD_MARKER_COOLDOWN
 	var/title = "[squad_marker_pl(SQUAD_MARKER_GEAR)] - [sender.real_name]"
 	var/span_style = squad_channel?.text_span_style || "sciradio"
 	var/list/recipients = aq_alert_recipients()

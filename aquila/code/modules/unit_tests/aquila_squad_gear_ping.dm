@@ -51,6 +51,10 @@
 	TEST_ASSERT(squad.aq_ping_gear(officer, list()) == 0, "Bez automatów ktoś dostał znacznik")
 	TEST_ASSERT(QDELETED(first_marker) && !squad.aq_gear_markers?[first], "Bez działającego automatu został stary znacznik")
 
+	// Admin-duch przy konsoli XO: bez odstępu znaczników i bez runtime
+	var/mob/dead/observer/ghost = allocate(/mob/dead/observer, run_loc_floor_bottom_left)
+	TEST_ASSERT(squad.aq_ping_gear(ghost, vendors) >= 1, "„Po sprzęt” od ducha nie dało znaczników")
+
 	// Wyjście z drużyny zdejmuje znacznik (najpierw świeży, bo poprzedni zniknął przy braku automatu)
 	officer.aq_next_squad_marker = 0
 	squad.aq_ping_gear(officer, vendors)

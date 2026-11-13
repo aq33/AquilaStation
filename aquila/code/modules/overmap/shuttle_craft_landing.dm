@@ -256,8 +256,10 @@
 	QDEL_LIST(landing_actions)
 	hull_images = null
 	exit_images = null
+	// Kamerę usunięto poza shuttle_manual_landing_end (np. admin): bez tego komputer dokowania zostałby zablokowany na stałe
 	if(craft?.shuttle_landing_eye == src)
-		craft.shuttle_landing_eye = null
+		craft.shuttle_manual_landing_end(src)
+		craft.shuttle_manual_landing_fallback(landing_target)
 	craft = null
 	landing_target = null
 	return ..()

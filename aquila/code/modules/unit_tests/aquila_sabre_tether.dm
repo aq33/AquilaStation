@@ -80,6 +80,14 @@
 	TEST_ASSERT(!sabre.shuttle_docked_at, "Taking the helm during the landing choice landed the Sabre")
 	TEST_ASSERT(!DC.docking_cooldown, "Taking the helm left the docking computer locked")
 	sabre.stop_piloting(new_pilot)
+	// Kamera usunięta z zewnątrz (np. przez admina) nie zostawia komputera dokowania zablokowanego na stałe
+	var/mob/camera/ai_eye/remote/shuttle_craft_landing/lost_eye = new(get_turf(port))
+	lost_eye.craft = sabre
+	sabre.shuttle_landing_eye = lost_eye
+	DC.docking_cooldown = TRUE
+	qdel(lost_eye)
+	TEST_ASSERT(!sabre.shuttle_landing_eye, "A deleted landing camera stayed on the Sabre")
+	TEST_ASSERT(!DC.docking_cooldown, "A deleted landing camera left the docking computer locked")
 	var/turf/spot = locate(bl[1] + 20, bl[2] + 20, bl[3])
 	var/list/rotated = sabre.shuttle_rotate_offsets(sabre.hull_offsets, EAST)
 	TEST_ASSERT_EQUAL(length(rotated), length(sabre.hull_offsets), "Rotating the hull outline lost tiles")
