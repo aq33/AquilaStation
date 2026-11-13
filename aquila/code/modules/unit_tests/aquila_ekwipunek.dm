@@ -33,33 +33,36 @@
 	TEST_ASSERT(!helmet.attached_hat && hat.loc != helmet, "Czapka została w hełmie po zdjęciu")
 	TEST_ASSERT(length(helmet.worn_overlays(null, FALSE)) < overlays_with_hat, "Nakładka czapki została po zdjęciu")
 
-/// Pasy z TGMC: co wchodzi do pasa amunicyjnego, przekładanie nabojów z pudełka
+/// Pas M276 z TGMC: co wchodzi do pasa, przekładanie nabojów z pudełka, magazynek nie jest opróżniany
 /datum/unit_test/aquila_tgmc_belts
 
 /datum/unit_test/aquila_tgmc_belts/Run()
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
-	var/obj/item/storage/belt/aq_tgmc/ammo/belt = allocate(/obj/item/storage/belt/aq_tgmc/ammo)
+	var/obj/item/storage/belt/aq_tgmc/belt = allocate(/obj/item/storage/belt/aq_tgmc)
 	var/datum/component/storage/STR = belt.GetComponent(/datum/component/storage)
 	var/obj/item/ammo_box/magazine/m556/mag = allocate(/obj/item/ammo_box/magazine/m556)
+	var/obj/item/grenade/barrier/grenade = allocate(/obj/item/grenade/barrier)
 	var/obj/item/storage/firstaid/regular/kit = allocate(/obj/item/storage/firstaid/regular)
 	var/obj/item/ammo_box/magazine/nsv/light_cannon/shell = allocate(/obj/item/ammo_box/magazine/nsv/light_cannon)
 	TEST_ASSERT(STR.can_be_inserted(mag, TRUE, user), "Magazynek nie wchodzi do pasa amunicyjnego")
+	TEST_ASSERT(STR.can_be_inserted(grenade, TRUE, user), "Granat nie wchodzi do pasa amunicyjnego")
 	TEST_ASSERT(!STR.can_be_inserted(kit, TRUE, user), "Apteczka weszła do pasa amunicyjnego")
 	TEST_ASSERT(!STR.can_be_inserted(shell, TRUE, user), "Pocisk działa okrętowego wszedł do pasa amunicyjnego")
+	TEST_ASSERT(!belt.is_shell_source(mag), "Magazynek jest traktowany jak pudełko nabojów do strzelby")
 
-	var/obj/item/storage/belt/aq_tgmc/shotgun/shotgun_belt = allocate(/obj/item/storage/belt/aq_tgmc/shotgun)
 	var/obj/item/storage/box/lethalshot/box = allocate(/obj/item/storage/box/lethalshot)
 	var/in_box = length(box.contents)
 	TEST_ASSERT(in_box > 0, "Pudełko z nabojami jest puste")
-	var/moved = shotgun_belt.refill_from(box, user)
+	TEST_ASSERT(belt.is_shell_source(box), "Pudełko z nabojami nie jest źródłem nabojów")
+	var/moved = belt.refill_from(box, user)
 	TEST_ASSERT(moved == in_box, "Przełożono [moved] z [in_box] nabojów")
-	TEST_ASSERT(!length(box.contents) && length(shotgun_belt.contents) == in_box, "Naboje nie są w pasie po przełożeniu")
-	// drugie pudełko: pas mieści 14, więc przechodzi tylko część
+	TEST_ASSERT(!length(box.contents) && length(belt.contents) == in_box, "Naboje nie są w pasie po przełożeniu")
+	// kolejne pudełka: pas ma 9 miejsc, więc przechodzi tylko część
 	var/obj/item/storage/box/lethalshot/box2 = allocate(/obj/item/storage/box/lethalshot)
 	var/obj/item/storage/box/lethalshot/box3 = allocate(/obj/item/storage/box/lethalshot)
-	shotgun_belt.refill_from(box2, user)
-	shotgun_belt.refill_from(box3, user)
-	TEST_ASSERT(length(shotgun_belt.contents) == 14, "Pas na naboje ma [length(shotgun_belt.contents)] zamiast 14 nabojów")
-	TEST_ASSERT(length(box3.contents) == in_box * 3 - 14, "Nadmiarowe naboje zniknęły z pudełka")
+	belt.refill_from(box2, user)
+	belt.refill_from(box3, user)
+	TEST_ASSERT(length(belt.contents) == 9, "Pas ma [length(belt.contents)] zamiast 9 nabojów")
+	TEST_ASSERT(length(box2.contents) + length(box3.contents) == in_box * 3 - 9, "Nadmiarowe naboje zniknęły z pudełek")
 
 #undef TEST_ASSERT

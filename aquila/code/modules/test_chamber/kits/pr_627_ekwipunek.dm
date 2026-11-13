@@ -1,8 +1,8 @@
 /datum/test_chamber_kit/pr_627
-	name = "Pasy TGMC, czapka na hardsuicie, barykady"
+	name = "Pas TGMC, czapka na hardsuicie, barykady"
 	pr = "aq33/AquilaStation#627"
-	description = "1) Pasy: załóż każdy z pasów (sprite na postaci we wszystkich kierunkach). Do M276 wchodzą magazynki, naboje, nóż bojowy, flara i granat, a nie wchodzi np. apteczka. \
-	Pasem na naboje kliknij pudełko z nabojami (albo pudełkiem pas): po 1,5 s naboje przechodzą do pasa, aż się zapełni. Pas na granaty mieści tylko granaty, sakwa G8 trzy dowolne rzeczy. \
+	description = "1) Pas M276: załóż go (sprite na postaci we wszystkich kierunkach). Wchodzą magazynki, naboje, granaty, nóż bojowy i flara, a nie wchodzi np. apteczka. \
+	Pasem kliknij pudełko z nabojami do strzelby (albo pudełkiem pas): po 1,5 s naboje przechodzą do pasa, aż się zapełni (9 miejsc). Magazynek kliknięty w pas trafia do środka zamiast się opróżniać. \
 	2) Czapka: załóż hardsuit, rozłóż hełm i kliknij go czapką (albo kliknij czapką kombinezon, gdy hełm jest schowany). Czapkę ma być widać na hełmie; Alt-klik na hełm ją zdejmuje. Schowaj hełm i rozłóż ponownie: czapka zostaje. \
 	3) Barykady: zestaw dopisuje cię do drużyny Alpha (jeśli nie masz drużyny); w automacie drużyny pobierz zestaw; w skrzyni są dwa granaty barierowe. Oddaj skrzynię bez nich: brak grzywny. \
 	4) Seks na przycisk: przeczytaj książkę i użyj zaklęcia na obiekcie testowym z kluczem w zasięgu kamery z zestawu (kamera stoi na środku areny i widzi do 7 pól, więc stańcie przy niej, nie w narożniku; obie postacie muszą mieć akta w konsoli ochrony): oboje dostają w aktach zbrodnię „Publiczne obcowanie płciowe” i status do aresztowania. Poza kamerą: brak wpisu. \
@@ -10,14 +10,7 @@
 	items = list(
 		/obj/machinery/camera = 1,
 		/obj/machinery/squad_vendor = 1,
-		/obj/item/storage/belt/aq_tgmc/ammo = 1,
-		/obj/item/storage/belt/aq_tgmc/ammo/upp = 1,
-		/obj/item/storage/belt/aq_tgmc/ammo/som = 1,
-		/obj/item/storage/belt/aq_tgmc/ammo/icc = 1,
-		/obj/item/storage/belt/aq_tgmc/shotgun = 1,
-		/obj/item/storage/belt/aq_tgmc/shotgun/icc = 1,
-		/obj/item/storage/belt/aq_tgmc/grenade = 1,
-		/obj/item/storage/belt/aq_tgmc/sparepouch = 1,
+		/obj/item/storage/belt/aq_tgmc = 1,
 		/obj/item/storage/box/lethalshot = 2,
 		/obj/item/ammo_box/magazine/m556 = 2,
 		/obj/item/kitchen/knife/combat = 1,
