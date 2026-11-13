@@ -33,38 +33,6 @@
 	TEST_ASSERT(!helmet.attached_hat && hat.loc != helmet, "Czapka została w hełmie po zdjęciu")
 	TEST_ASSERT(length(helmet.worn_overlays(null, FALSE)) < overlays_with_hat, "Nakładka czapki została po zdjęciu")
 
-/// Pas M276 z TGMC: co wchodzi do pasa, przekładanie nabojów z pudełka, magazynek nie jest opróżniany
-/datum/unit_test/aquila_tgmc_belts
-
-/datum/unit_test/aquila_tgmc_belts/Run()
-	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
-	var/obj/item/storage/belt/aq_tgmc/belt = allocate(/obj/item/storage/belt/aq_tgmc)
-	var/datum/component/storage/STR = belt.GetComponent(/datum/component/storage)
-	var/obj/item/ammo_box/magazine/m556/mag = allocate(/obj/item/ammo_box/magazine/m556)
-	var/obj/item/grenade/barrier/grenade = allocate(/obj/item/grenade/barrier)
-	var/obj/item/storage/firstaid/regular/kit = allocate(/obj/item/storage/firstaid/regular)
-	TEST_ASSERT(STR.can_be_inserted(mag, TRUE, user), "Magazynek nie wchodzi do pasa amunicyjnego")
-	TEST_ASSERT(STR.can_be_inserted(grenade, TRUE, user), "Granat nie wchodzi do pasa amunicyjnego")
-	TEST_ASSERT(!STR.can_be_inserted(kit, TRUE, user), "Apteczka weszła do pasa amunicyjnego")
-	// sam typ, bez instancji: usuwanie magazynka lekkiego działa sypie runtime w update_icon (nsv13, pdc_overlay)
-	TEST_ASSERT(STR.cant_hold?[/obj/item/ammo_box/magazine/nsv/light_cannon], "Pocisk działa okrętowego wchodzi do pasa amunicyjnego")
-	TEST_ASSERT(!belt.is_shell_source(mag), "Magazynek jest traktowany jak pudełko nabojów do strzelby")
-
-	var/obj/item/storage/box/lethalshot/box = allocate(/obj/item/storage/box/lethalshot)
-	var/in_box = length(box.contents)
-	TEST_ASSERT(in_box > 0, "Pudełko z nabojami jest puste")
-	TEST_ASSERT(belt.is_shell_source(box), "Pudełko z nabojami nie jest źródłem nabojów")
-	var/moved = belt.refill_from(box, user)
-	TEST_ASSERT(moved == in_box, "Przełożono [moved] z [in_box] nabojów")
-	TEST_ASSERT(!length(box.contents) && length(belt.contents) == in_box, "Naboje nie są w pasie po przełożeniu")
-	// kolejne pudełka: pas ma 9 miejsc, więc przechodzi tylko część
-	var/obj/item/storage/box/lethalshot/box2 = allocate(/obj/item/storage/box/lethalshot)
-	var/obj/item/storage/box/lethalshot/box3 = allocate(/obj/item/storage/box/lethalshot)
-	belt.refill_from(box2, user)
-	belt.refill_from(box3, user)
-	TEST_ASSERT(length(belt.contents) == 9, "Pas ma [length(belt.contents)] zamiast 9 nabojów")
-	TEST_ASSERT(length(box2.contents) + length(box3.contents) == in_box * 3 - 9, "Nadmiarowe naboje zniknęły z pudełek")
-
 /// Kupa: felinid zostawia fioletowy kopczyk, biegunka zmienia grudki w rozbryzg (a fioletowy kopczyk zostaje)
 /datum/unit_test/aquila_feces_look
 

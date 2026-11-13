@@ -130,17 +130,3 @@
 	contains = list(/obj/structure/toilet/unanchored, /obj/structure/toilet/unanchored, /obj/structure/toilet/unanchored)
 	crate_name = "skrzynia z toaletami"
 	crate_type = /obj/structure/closet/crate/large
-
-/datum/supply_pack/security/aq_ammo_belts
-	name = "Pasy amunicyjne"
-	desc = "Oporządzenie piechoty: sześć pasów amunicyjnych M276 na magazynki, naboje i granaty. Otwarcie wymaga dostępu ochrony."
-	cost = 2000
-	contains = list(
-		/obj/item/storage/belt/aq_tgmc,
-		/obj/item/storage/belt/aq_tgmc,
-		/obj/item/storage/belt/aq_tgmc,
-		/obj/item/storage/belt/aq_tgmc,
-		/obj/item/storage/belt/aq_tgmc,
-		/obj/item/storage/belt/aq_tgmc,
-	)
-	crate_name = "skrzynia z pasami amunicyjnymi"
