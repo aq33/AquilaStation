@@ -174,7 +174,7 @@
 	qdel(ipc_arm)
 	ipc.aq_handle_pain()
 	TEST_ASSERT(ipc.aq_pain_raw == 0, "An IPC feels [ipc.aq_pain_raw] pain")
-	TEST_ASSERT(!ipc.reagents.has_reagent(/datum/reagent/medicine/adrenaline), "An IPC released adrenaline")
+	TEST_ASSERT(!ipc.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "An IPC released adrenaline")
 
 	// A wound hurts more untreated
 	var/datum/wound/blunt/fracture/fracture = new()
@@ -184,8 +184,8 @@
 	TEST_ASSERT(fracture.get_pain() < untreated, "A splinted fracture hurts as much as an untreated one")
 	qdel(fracture)
 
-/// AQUILA - adrenaline (adrenaline.dm): the glands release it under pain until the reserve runs dry, doses build
-/// tolerance, the rush ends with a crash, the recipe and the autoinjector in the survival box
+/// AQUILA - adrenaline (adrenaline.dm), which is epinephrine: the glands release it under pain until the reserve runs
+/// dry, doses build tolerance, the rush ends with a crash, the autoinjector in the survival box
 /datum/unit_test/aquila_adrenaline
 
 /datum/unit_test/aquila_adrenaline/Run()
@@ -195,7 +195,7 @@
 
 	// Strong pain: the glands release adrenaline and use the reserve
 	patient.aq_handle_pain()
-	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/adrenaline), "Strong pain released no adrenaline")
+	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "Strong pain released no adrenaline")
 	TEST_ASSERT(patient.aq_adrenal_reserve < 100, "The release did not use the reserve")
 	TEST_ASSERT(patient.aq_pain_suppression(patient.aq_pain_raw) > 0, "Adrenaline does not numb the pain")
 
@@ -207,7 +207,7 @@
 	patient.reagents.clear_reagents()
 	patient.aq_next_adrenal_release = 0
 	patient.aq_handle_adrenal_glands()
-	TEST_ASSERT(!patient.reagents.has_reagent(/datum/reagent/medicine/adrenaline), "The glands still release adrenaline with [patient.aq_adrenal_reserve]% reserve")
+	TEST_ASSERT(!patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "The glands still release adrenaline with [patient.aq_adrenal_reserve]% reserve")
 
 	// Tolerance makes it weaker
 	var/fresh = patient.aq_adrenaline_strength()
@@ -215,39 +215,34 @@
 	TEST_ASSERT(patient.aq_adrenaline_strength() < fresh, "Tolerance does not weaken adrenaline")
 	patient.aq_adrenaline_tolerance = 0
 
-	// The glands' own 5u do not crash, an autoinjector's 10u do
-	patient.reagents.add_reagent(/datum/reagent/medicine/adrenaline, 5)
-	var/datum/reagent/medicine/adrenaline/small = patient.reagents.has_reagent(/datum/reagent/medicine/adrenaline)
+	// The glands' own 3u do not crash, an autoinjector's 10u do
+	patient.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 3)
+	var/datum/reagent/medicine/epinephrine/small = patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine)
 	small.on_mob_life(patient)
 	small.on_mob_end_metabolize(patient)
-	patient.reagents.del_reagent(/datum/reagent/medicine/adrenaline)
+	patient.reagents.del_reagent(/datum/reagent/medicine/epinephrine)
 	TEST_ASSERT(!patient.has_status_effect(/datum/status_effect/aq_adrenaline_crash), "A natural release of adrenaline crashed")
 
 	// A big rush ends with a crash
-	patient.reagents.add_reagent(/datum/reagent/medicine/adrenaline, 10)
-	var/datum/reagent/medicine/adrenaline/adrenaline = patient.reagents.has_reagent(/datum/reagent/medicine/adrenaline)
+	patient.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10)
+	var/datum/reagent/medicine/epinephrine/adrenaline = patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine)
 	adrenaline.on_mob_life(patient)
 	adrenaline.on_mob_end_metabolize(patient)
-	patient.reagents.del_reagent(/datum/reagent/medicine/adrenaline)
+	patient.reagents.del_reagent(/datum/reagent/medicine/epinephrine)
 	TEST_ASSERT(patient.has_status_effect(/datum/status_effect/aq_adrenaline_crash), "No crash after the rush")
 	patient.remove_status_effect(/datum/status_effect/aq_adrenaline_crash)
 
-	// Recipe: epinephrine + sugar + salt
-	var/obj/item/reagent_containers/glass/beaker/large/beaker = allocate(/obj/item/reagent_containers/glass/beaker/large)
-	beaker.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10, reagtemp = 320, no_react = TRUE)
-	beaker.reagents.add_reagent(/datum/reagent/consumable/sugar, 10, reagtemp = 320, no_react = TRUE)
-	beaker.reagents.add_reagent(/datum/reagent/consumable/sodiumchloride, 10, reagtemp = 320)
-	for(var/i in 1 to 60)
-		if(!beaker.reagents.is_reacting)
-			break
-		beaker.reagents.process(1)
-	TEST_ASSERT(beaker.reagents.get_reagent_amount(/datum/reagent/medicine/adrenaline) >= 15, "The recipe made [beaker.reagents.get_reagent_amount(/datum/reagent/medicine/adrenaline)]u of adrenaline from 10u of each")
+	// No separate adrenaline: epinephrine numbs pain by itself
+	TEST_ASSERT(!ispath(text2path("/datum/reagent/medicine/adrenaline")), "A separate adrenaline reagent exists next to epinephrine")
+	var/mob/living/carbon/human/injected = allocate(/mob/living/carbon/human)
+	injected.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10)
+	TEST_ASSERT(injected.aq_pain_suppression(60) > 0, "Epinephrine does not numb the pain")
 
 	// One autoinjector in the survival box
 	var/obj/item/storage/box/survival/box = allocate(/obj/item/storage/box/survival)
 	var/obj/item/reagent_containers/hypospray/medipen/aq_adrenaline/pen = locate() in box
 	TEST_ASSERT(pen, "No adrenaline autoinjector in the survival box")
-	TEST_ASSERT(pen.reagents.get_reagent_amount(/datum/reagent/medicine/adrenaline) == 10, "The autoinjector holds [pen.reagents.get_reagent_amount(/datum/reagent/medicine/adrenaline)]u instead of 10u")
+	TEST_ASSERT(pen.reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine) == 10, "The autoinjector holds [pen.reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine)]u instead of 10u")
 	TEST_ASSERT(locate(/obj/item/stack/medical/bandage) in box, "The autoinjector took the place of the bandages")
 
 /// AQUILA - spine (spinal.dm, operation_spine.dm): a bruise heals lying down, a fracture paralyses the legs until

@@ -29,6 +29,8 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 				ifflocs = list()
 				lazy_template_load_started() // AQ EDIT - wspólny licznik pauz SSair (aquila/code/modules/bitrunning/lazy_template.dm)
 				for(var/turf/T in boarding_interior.get_affected_turfs(locate(1, 1, boarding_reservation_z), FALSE)) //nuke
+					for(var/obj/effect/landmark/patrol_node/stale_node in T) // AQ EDIT - empty() zostawia landmarki, a stare punkty patrolu łączyły się z następnym wnętrzem
+						qdel(stale_node) // AQ EDIT
 					T.empty()
 					CHECK_TICK
 				lazy_template_load_finished() // AQ EDIT
@@ -39,6 +41,8 @@ Attempt to "board" an AI ship. You can only do this when they're low on health t
 			if(boarding_interior)
 				var/turf/target = locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3])
 				for(var/turf/T as () in boarding_interior.get_affected_turfs(target)) //nuke
+					for(var/obj/effect/landmark/patrol_node/stale_node in T) // AQ EDIT - jak wyżej
+						qdel(stale_node) // AQ EDIT
 					T.empty()
 					CHECK_TICK
 				for(var/entry as() in interior_entry_points)

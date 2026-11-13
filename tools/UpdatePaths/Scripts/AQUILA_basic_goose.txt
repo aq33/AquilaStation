@@ -1,0 +1,5 @@
+# Gęsi jako basic moby (tg 926bf40c5a). Zastosowane ręcznie: jedyne gęsi na mapach (Mining26) miały edycje atmos_requirements,
+# angielskiej nazwy i opisu, zastąpione podtypem /mob/living/basic/goose/space bez edycji.
+/mob/living/simple_animal/hostile/retaliate/goose{name="space goose"} : /mob/living/basic/goose/space
+/mob/living/simple_animal/hostile/retaliate/goose/vomit : /mob/living/basic/goose/vomit{@OLD}
+/mob/living/simple_animal/hostile/retaliate/goose : /mob/living/basic/goose{@OLD; atmos_requirements = @SKIP; emote_taunt = @SKIP; taunt_chance = @SKIP; speak_chance = @SKIP; turns_per_move = @SKIP}

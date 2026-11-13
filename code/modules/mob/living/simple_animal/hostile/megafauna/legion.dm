@@ -81,10 +81,12 @@ Difficulty: Medium
 		charge_target()
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/create_legion_skull()
-	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new(loc)
-	A.GiveTarget(target)
-	A.friends = friends
-	A.faction = faction
+	// AQ EDIT START - czaszka legionu jest basic mobem
+	var/mob/living/basic/mining/legion_brood/A = new(loc)
+	A.assign_creator(src)
+	if(target)
+		A.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+	// AQ EDIT END
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
 	visible_message("<span class='warning'><b>[src] szarżuje!</b></span>")
@@ -111,7 +113,7 @@ Difficulty: Medium
 	if(. && ishuman(target))
 		var/mob/living/L = target
 		if(L.stat == UNCONSCIOUS)
-			var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new(loc)
+			var/mob/living/basic/mining/legion_brood/A = new(loc) // AQ EDIT - czaszka legionu jest basic mobem
 			A.infest(L)
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/reset_charge()

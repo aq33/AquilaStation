@@ -52,17 +52,20 @@
 		text2file(old_save, IAN_SAVE_PATH)
 	return ..()
 
-/// A tamed lasso target takes pet commands: the lasso swaps its AI for the dog one and befriends the cowboy
+/// A tamed lasso target takes pet commands and befriends the cowboy: a basic carp keeps its own AI (decision D11), other mobs get the dog one
 /datum/unit_test/aquila_lasso_tames_with_pet_commands
 
 /datum/unit_test/aquila_lasso_tames_with_pet_commands/Run()
 	var/mob/living/carbon/human/cowboy = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	var/mob/living/simple_animal/hostile/carp/carp = allocate(/mob/living/simple_animal/hostile/carp, get_step(run_loc_floor_bottom_left, EAST))
+	var/mob/living/basic/carp/carp = allocate(/mob/living/basic/carp, get_step(run_loc_floor_bottom_left, EAST))
 	var/obj/item/mob_lasso/lasso = allocate(/obj/item/mob_lasso)
 	TEST_ASSERT(lasso.check_allowed(carp), "The space lasso does not accept a space carp")
 	TEST_ASSERT(!lasso.check_allowed(cowboy), "The space lasso accepts a human")
+	var/datum/ai_controller/carp_controller = carp.ai_controller
 	lasso.tame_target(carp, cowboy)
-	TEST_ASSERT(istype(carp.ai_controller, /datum/ai_controller/basic_controller/dog), "The tamed carp did not get the dog AI")
+	// A basic carp keeps its own AI (fleeing, rifts) and only takes pet commands (decision D11)
+	TEST_ASSERT_EQUAL(carp.ai_controller, carp_controller, "The lasso replaced the AI of the basic carp")
+	TEST_ASSERT(istype(carp.ai_controller, /datum/ai_controller/basic_controller/carp), "The tamed carp lost its carp AI")
 	TEST_ASSERT(carp.GetComponent(/datum/component/obeys_commands), "The tamed carp does not take pet commands")
 	TEST_ASSERT(cowboy in carp.ai_controller.blackboard[BB_FRIENDS_LIST], "The cowboy is not the tamed carp's friend")
 	TEST_ASSERT(carp.faction.Find(REF(cowboy)), "The tamed carp lost the befriend() faction")
@@ -73,22 +76,28 @@
 	cowboy.say("za mną")
 	TEST_ASSERT(istype(carp.ai_controller.blackboard[BB_ACTIVE_PET_COMMAND], /datum/pet_command/follow), "Saying the follow command did not make it active")
 	TEST_ASSERT_EQUAL(carp.ai_controller.blackboard[BB_CURRENT_PET_TARGET], cowboy, "The follow command does not target the cowboy")
+	// The carp AI plans the command first and does not go for its owner
+	carp.ai_controller.SelectBehaviors(1)
+	TEST_ASSERT(!carp.ai_controller.current_behaviors[GET_AI_BEHAVIOR(/datum/ai_behavior/basic_melee_attack)], "The tamed carp went to bite instead of following")
 
 	// Lassoed mobs stop thinking
-	var/mob/living/simple_animal/hostile/carp/wild = allocate(/mob/living/simple_animal/hostile/carp, get_step(run_loc_floor_bottom_left, NORTH))
+	var/mob/living/basic/carp/wild = allocate(/mob/living/basic/carp, get_step(run_loc_floor_bottom_left, NORTH))
 	lasso.set_target_ai(wild, FALSE)
 	TEST_ASSERT(HAS_TRAIT(wild, TRAIT_AI_PAUSED), "A lassoed mob kept its AI running")
 	lasso.set_target_ai(wild, TRUE)
 	TEST_ASSERT(!HAS_TRAIT(wild, TRAIT_AI_PAUSED), "A freed mob kept its AI paused")
 
-	// The tamed simple animal does not wander or hunt on its own beside the dog controller
-	TEST_ASSERT_EQUAL(carp.AIStatus, AI_OFF, "The tamed carp kept its own simple animal AI")
-	carp.toggle_ai(AI_ON)
-	TEST_ASSERT_EQUAL(carp.AIStatus, AI_OFF, "The tamed carp's own AI woke up again")
+	// Any other basic mob (the dolphin) swaps its AI for the dog one
+	var/mob/living/basic/dolphin/dolphin = allocate(/mob/living/basic/dolphin, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	TEST_ASSERT(lasso.check_allowed(dolphin), "The space lasso does not accept a dolphin")
+	lasso.tame_target(dolphin, cowboy)
+	TEST_ASSERT(istype(dolphin.ai_controller, /datum/ai_controller/basic_controller/dog), "The tamed dolphin did not get the dog AI")
+	TEST_ASSERT(dolphin.GetComponent(/datum/component/obeys_commands), "The tamed dolphin does not take pet commands")
+	TEST_ASSERT(!HAS_TRAIT(dolphin, TRAIT_AI_PAUSED), "The tamed dolphin's AI stayed paused")
 
-	// Taming the same carp again (it is already a friend) leaves the cowboy on the new controller's friend list
-	lasso.tame_target(carp, cowboy)
-	TEST_ASSERT(cowboy in carp.ai_controller.blackboard[BB_FRIENDS_LIST], "A carp tamed again has no friends on its new controller")
+	// Taming the same dolphin again (it is already a friend) leaves the cowboy on the new controller's friend list
+	lasso.tame_target(dolphin, cowboy)
+	TEST_ASSERT(cowboy in dolphin.ai_controller.blackboard[BB_FRIENDS_LIST], "A dolphin tamed again has no friends on its new controller")
 
 	// A lassoed mob deleted while flipped takes its release timer with it
 	lasso.mob_target = wild
@@ -98,8 +107,12 @@
 	TEST_ASSERT(!SStimer.timer_id_dict[release_timer], "The release timer of a deleted lassoed mob is still running")
 
 	// Only the root types: no magicarp, Cayenne or wisdom cow
-	var/mob/living/simple_animal/hostile/carp/ranged/magicarp = allocate(/mob/living/simple_animal/hostile/carp/ranged, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	var/mob/living/basic/carp/magic/magicarp = allocate(/mob/living/basic/carp/magic, get_step(run_loc_floor_bottom_left, NORTHEAST))
 	TEST_ASSERT(!lasso.check_allowed(magicarp), "The space lasso accepts a magicarp")
+	var/mob/living/basic/carp/pet/cayenne/cayenne = allocate(/mob/living/basic/carp/pet/cayenne, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	TEST_ASSERT(!lasso.check_allowed(cayenne), "The space lasso accepts Cayenne")
+	var/mob/living/basic/carp/mega/mega = allocate(/mob/living/basic/carp/mega, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	TEST_ASSERT(lasso.check_allowed(mega), "The space lasso does not accept a megacarp")
 	var/mob/living/basic/cow/wisdom/wise_cow = allocate(/mob/living/basic/cow/wisdom, get_step(run_loc_floor_bottom_left, NORTHEAST))
 	TEST_ASSERT(!lasso.check_allowed(wise_cow), "The space lasso accepts the wisdom cow")
 

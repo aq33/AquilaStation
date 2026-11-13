@@ -411,10 +411,7 @@
 
 /mob/living/basic/pet/dog/corgi/narsie/Life(seconds, times_fired)
 	. = ..()
-	//consume simple_animal pets
-	for(var/mob/living/simple_animal/pet/simple_pet in range(1, src))
-		if(simple_pet != src)
-			devour_pet(simple_pet)
+	//consume pets
 	for(var/mob/living/basic/pet/basic_pet in range(1, src))
 		if(basic_pet != src && !istype(basic_pet, /mob/living/basic/pet/dog/corgi/narsie))
 			devour_pet(basic_pet)

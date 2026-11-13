@@ -33,7 +33,7 @@
 	var/mob/dead/selected = pick(candidates)
 	var/key = selected.key
 
-	var/mob/living/simple_animal/hostile/space_dragon/dragon = new (pick(spawn_locs))
+	var/mob/living/basic/space_dragon/dragon = new (pick(spawn_locs)) // AQ EDIT - basic moby
 	dragon.key = key
 	dragon.mind.assigned_role = "Space Dragon"
 	dragon.mind.special_role = "Space Dragon"

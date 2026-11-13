@@ -1,0 +1,2 @@
+# Hiveboty jako basic moby (tg 926bf40c5a). Zastosowane w mapach skryptem zamiany ścieżek, mapy nie mają edycji zmiennych hivebotów.
+/mob/living/simple_animal/hostile/hivebot/@SUBTYPES : /mob/living/basic/hivebot/@SUBTYPES{@OLD}

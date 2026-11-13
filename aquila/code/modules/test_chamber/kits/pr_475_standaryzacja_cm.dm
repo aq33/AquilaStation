@@ -8,7 +8,7 @@
 		4) Na rozbrajaniu użyj przycisku akcji z paska (np. Plucie krwią) → oczekiwane: robi akcję dodatkową jak PPM. \
 		5) Cyborg na intencjach: kliknij PPM dispenser → oczekiwane: wysuwa zlewkę; Shift+PPM → oczekiwane: otwiera menu kontekstowe. W combat mode PPM też wysuwa zlewkę."
 	items = list(
-		/mob/living/simple_animal/hostile/carp/test_chamber_cm = 1,
+		/mob/living/basic/carp/test_chamber_cm = 1,
 		/mob/living/simple_animal/hostile/blood_worm/hatchling/test_chamber_cm = 1,
 		/mob/living/silicon/robot/test_chamber_cm = 1,
 		/obj/machinery/chem_dispenser = 1,
@@ -23,7 +23,7 @@
 	new /obj/machinery/door/airlock(far[1])
 
 /// Zwierzęta z komory do przejęcia przez duchy
-/mob/living/simple_animal/hostile/carp/test_chamber_cm/Initialize(mapload)
+/mob/living/basic/carp/test_chamber_cm/Initialize(mapload)
 	. = ..()
 	set_playable(ROLE_SENTIENCE)
 
