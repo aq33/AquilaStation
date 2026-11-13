@@ -1,0 +1,17 @@
+// Przykładowy scenariusz: człowiek na punkcie startowym dostaje obrażenia, leczy się i znika bez runtime'ów.
+// Ciało procki DM: zwróć "OK" albo TRUE przy sukcesie, a przy porażce tekst z opisem.
+// eval w auxtools nie obsługuje locate() ani new() bez typu: podawaj go jawnie.
+var/obj/effect/landmark/start/spawn_point = locate(/obj/effect/landmark/start) in GLOB.start_landmarks_list
+var/turf/T = get_turf(spawn_point)
+if(!T)
+	return "brak punktu startowego"
+var/mob/living/carbon/human/H = new /mob/living/carbon/human(T)
+H.adjustBruteLoss(30)
+if(H.getBruteLoss() < 30)
+	return "obrażenia nie weszły: [H.getBruteLoss()]"
+H.revive(full_heal = TRUE)
+if(H.getBruteLoss())
+	return "leczenie nie zadziałało: [H.getBruteLoss()]"
+qdel(H)
+sleep(1)
+return "OK"
