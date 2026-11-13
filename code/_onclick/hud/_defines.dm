@@ -143,9 +143,12 @@
 #define ui_ai_sensor "SOUTH:6,WEST+13"
 #define ui_ai_multicam "SOUTH:6,WEST+12"
 #define ui_ai_add_multicam "SOUTH:6,WEST+13"
-#define ui_ai_move_up "SOUTH:6,WEST+14"
-#define ui_ai_move_down "SOUTH:6,WEST+15"
-#define ui_ai_language_menu "CENTER+7:32,SOUTH+1:5"
+// AQ EDIT START - widok SI bywa 15x15: przycisk poza widokiem poszerza mapę, a w poszerzonym pasku SI widzi same podłogi
+#define ui_ai_move_up "SOUTH+1:6,WEST+14"
+#define ui_ai_move_down "SOUTH:6,WEST+14"
+#define ui_ai_dashboard "SOUTH+1:6,WEST+13"
+#define ui_ai_language_menu "WEST+12:16,SOUTH+1:5"
+// AQ EDIT END
 
 // pAI
 

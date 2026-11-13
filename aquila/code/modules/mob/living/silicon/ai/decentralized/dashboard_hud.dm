@@ -14,7 +14,7 @@
 /datum/hud/ai/New(mob/owner)
 	. = ..()
 	var/atom/movable/screen/using = new /atom/movable/screen/ai/dashboard()
-	using.screen_loc = "SOUTH:6,WEST+16"
+	using.screen_loc = ui_ai_dashboard
 	using.hud = src
 	static_inventory += using
 
