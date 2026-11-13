@@ -67,6 +67,25 @@
 	TEST_ASSERT_EQUAL(salvager_appraise(frame), 175, "Restricted access should add 75")
 	frame.salvager_part = TRUE
 	TEST_ASSERT_EQUAL(salvager_appraise(frame), 5, "Things bought in the shop should sell for 5")
+	// Regresja: paczka tworzyła przy złożeniu nową maszynę (pełny automat, naprawiona maszyna); teraz wraca ta sama
+	TEST_ASSERT_EQUAL(second.loc, frame, "The packed machine should travel inside the frame")
+	var/obj/machinery/deployed = frame.deploy(far, NORTH)
+	TEST_ASSERT_EQUAL(deployed, second, "Unpacking should bring back the same machine")
+	TEST_ASSERT_EQUAL(second.loc, far, "The machine should stand where the frame was")
+	TEST_ASSERT(QDELETED(frame), "The frame should be used up")
+	// Regresja: dostęp z mapy (req_access_txt) nie był liczony, bo listy powstają dopiero w gen_access()
+	var/obj/machinery/recharger/restricted = allocate(/obj/machinery/recharger, far)
+	restricted.req_access = null
+	restricted.req_access_txt = "[ACCESS_RESEARCH]"
+	var/obj/item/salvage_frame/restricted_frame = allocate(/obj/item/salvage_frame, far)
+	restricted_frame.pack(restricted)
+	TEST_ASSERT(restricted_frame.had_access, "Mapped access should count as restricted access")
+
+	// Regresja: magazyn energii jest tylko w sklepie, a zasada „rzeczy ze sklepu za 5” zjadała jego cenę
+	var/obj/item/powersink/salvager/sink = allocate(/obj/item/powersink/salvager)
+	sink.salvager_part = TRUE
+	sink.power_drained = sink.max_power
+	TEST_ASSERT_EQUAL(salvager_appraise(sink), 15000, "A full salvager power sink should be worth 15000")
 
 	// Teleporter ręczny: telekryształ dodaje ładunek, najwyżej 5
 	var/obj/item/salvager_hand_tele/tele = allocate(/obj/item/salvager_hand_tele)

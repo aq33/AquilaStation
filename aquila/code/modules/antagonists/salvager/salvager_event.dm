@@ -41,11 +41,17 @@
 	shuffle_inplace(candidates)
 	var/count = rand(1, min(length(candidates), 5))
 	var/datum/map_template/shuttle/pirate/salvager/ship = new
-	var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
-	var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
-	var/turf/T = locate(x, y, SSmapping.empty_space.z_value)
+	// Piraci ładują statek na tej samej pustej warstwie, więc szukamy miejsca, gdzie jest sam kosmos
+	var/turf/T
+	for(var/attempt in 1 to 20)
+		var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
+		var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
+		var/turf/candidate = locate(x, y, SSmapping.empty_space.z_value)
+		if(candidate && salvager_ship_spot_free(ship, candidate))
+			T = candidate
+			break
 	if(!T)
-		CRASH("Salvager event found no turf to load in")
+		CRASH("Salvager event found no free space to load in")
 	if(!ship.load(T))
 		CRASH("Loading the salvager ship failed!")
 	var/list/sleepers = list()
@@ -72,3 +78,10 @@
 		qdel(sleepers[i])
 	message_admins("Złomiarze: na statku budzi się [count] złomiarzy.")
 	priority_announce("Skanery wykryły statek złomiarzy, który trzyma się naszego kursu. Złomiarze rozbierają wszystko, co nie jest przykręcone, a często także to, co jest. Pilnujcie maszyn.", "Statek złomiarzy", SSstation.announcer.get_rand_alert_sound())
+
+/// Czy szablon statku zmieści się na `T` bez nachodzenia na inny statek (same kafelki kosmosu)
+/proc/salvager_ship_spot_free(datum/map_template/ship, turf/T)
+	for(var/turf/affected as anything in ship.get_affected_turfs(T))
+		if(!isspaceturf(affected) || !istype(affected.loc, /area/space))
+			return FALSE
+	return TRUE

@@ -41,6 +41,10 @@
 /proc/salvager_appraise(obj/item/I)
 	if(!istype(I))
 		return 0
+	// Magazyn energii jest tylko w sklepie, a płaci się za zebraną energię, więc idzie przed zasadą „rzeczy ze sklepu za 5”
+	if(istype(I, /obj/item/powersink/salvager))
+		var/obj/item/powersink/salvager/sink = I
+		return round(sink.power_drained / sink.max_power * 15000)
 	if(I.salvager_part)
 		return 5
 	. = 0
@@ -70,9 +74,6 @@
 		. = sheet.amount
 	else if(istype(I, /obj/item/bodypart) && findtext("[I.type]", "/robot"))
 		. = 25
-	else if(istype(I, /obj/item/powersink/salvager))
-		var/obj/item/powersink/salvager/sink = I
-		return round(sink.power_drained / sink.max_power * 15000)
 	// Nic nie jest warte więcej niż 80% ceny w sklepie
 	var/shop_price = salvager_shop_items()[I.type]
 	if(shop_price && . > shop_price * 0.8)

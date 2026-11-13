@@ -228,10 +228,9 @@ GLOBAL_LIST_EMPTY(salvager_teleport_points)
 	user.visible_message("<span class='warning'>[user] zaczyna rozkładać [M]!</span>", "<span class='notice'>Zaczynasz rozkładać [M] na paczkę.</span>")
 	if(!do_after(user, time, target = M) || QDELETED(M) || !salvage_packable(M))
 		return
+	log_game("[key_name(user)] packed [M] ([M.type]) into a salvage frame at [AREACOORD(M)]")
 	var/obj/item/salvage_frame/frame = new(get_turf(M))
 	frame.pack(M)
-	log_game("[key_name(user)] packed [M] ([M.type]) into a salvage frame at [AREACOORD(M)]")
-	qdel(M)
 
 /// Maszyna, którą da się spakować w paczkę i potem złożyć (ma płytkę albo jest zwykłym urządzeniem)
 /proc/salvage_packable(obj/machinery/M)
@@ -260,12 +259,31 @@ GLOBAL_LIST_EMPTY(salvager_teleport_points)
 	var/had_access = FALSE
 	/// Maszyna pochodzi z okrętu (Goon: towar spoza stacji jest wart mniej)
 	var/from_station = TRUE
+	/// Spakowana maszyna: jedzie w paczce razem z zawartością i stanem, więc złożenie nie daje nowej (pełny automat)
+	var/obj/machinery/packed
 
+/// Chowa maszynę w paczce
 /obj/item/salvage_frame/proc/pack(obj/machinery/M)
 	machine_type = M.type
+	// Dostęp z map jest w req_access_txt, a listy powstają dopiero w gen_access()
+	M.gen_access()
 	had_access = length(M.req_access) || length(M.req_one_access)
 	from_station = aq_gang_station_turf(get_turf(M))
 	name = "paczka maszyny ([M.name])"
+	packed = M
+	if(istype(M, /obj/machinery/power))
+		var/obj/machinery/power/P = M
+		P.disconnect_from_network()
+	M.forceMove(src)
+
+/obj/item/salvage_frame/Destroy()
+	QDEL_NULL(packed)
+	return ..()
+
+/obj/item/salvage_frame/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == packed)
+		packed = null
 
 /obj/item/salvage_frame/examine(mob/user)
 	. = ..()
@@ -293,10 +311,23 @@ GLOBAL_LIST_EMPTY(salvager_teleport_points)
 	user.visible_message("<span class='notice'>[user] składa [src].</span>", "<span class='notice'>Składasz [src].</span>")
 	if(!do_after(user, time, target = src) || !isturf(loc))
 		return
-	var/obj/machinery/M = new machine_type(T)
-	M.setDir(user.dir)
+	var/obj/machinery/M = deploy(get_turf(src), user.dir)
 	log_game("[key_name(user)] unpacked a salvage frame into [M] ([M.type]) at [AREACOORD(M)]")
+
+/// Stawia spakowaną maszynę na `T` (ta sama, z zawartością) i usuwa paczkę
+/obj/item/salvage_frame/proc/deploy(turf/T, new_dir)
+	var/obj/machinery/M = packed
+	if(M)
+		packed = null
+		M.forceMove(T)
+		if(istype(M, /obj/machinery/power))
+			var/obj/machinery/power/P = M
+			P.connect_to_network()
+	else
+		M = new machine_type(T)
+	M.setDir(new_dir)
 	qdel(src)
+	return M
 
 ///////////////////
 // Teleporter ręczny
