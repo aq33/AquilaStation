@@ -215,8 +215,24 @@ def step_mapmerge(r):
 	return r.run([r.python, "-m", "mapmerge2.dmm_test"], cwd=os.path.join(REPO, "tools"))
 
 
+def base_branch(explicit):
+	"""master z remote'u, który wskazuje na repo Aquili (u jednych aq33, u innych origin)."""
+	if explicit:
+		return explicit
+	remotes = subprocess.run(["git", "remote", "-v"], cwd=REPO, capture_output=True, text=True).stdout
+	for line in remotes.splitlines():
+		parts = line.split()
+		if len(parts) >= 2 and re.search(r"aq33/(AquilaStation|NSV13)(\.git)?$", parts[1], re.I):
+			return f"{parts[0]}/master"
+	return "origin/master"
+
+
 def step_i18n(r):
-	code, out = r.run([r.python, "tools/i18n/list_missing.py", "--changed", r.args.baza], env={"PYTHONUTF8": "1"})
+	base = base_branch(r.args.baza)
+	# brak bazy to błąd narzędzia, nie brakujące tłumaczenia: bez tego krok po cichu by nic nie sprawdzał
+	if subprocess.run(["git", "rev-parse", "--verify", "--quiet", base], cwd=REPO, capture_output=True).returncode:
+		raise RuntimeError(f"Nie ma gałęzi bazowej {base}; podaj --baza albo zrób git fetch")
+	code, out = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base], env={"PYTHONUTF8": "1"})
 	return code, out
 
 
@@ -254,24 +270,50 @@ def step_maps(r):
 	return code, out
 
 
+TEST_DEPLOY = os.path.join(CACHE, "ci_test")
+
+
+def deploy_tests(base):
+	"""Osobna kopia świata jak tools/deploy.sh w CI: własne config/ i data/, więc testy nie piszą do bazy
+	z config/dbconfig.txt ani do persistencji dewelopera (data/*.json). Bez SQL, jak lokalny serwer bez bazy."""
+	shutil.rmtree(TEST_DEPLOY, ignore_errors=True)
+	os.makedirs(TEST_DEPLOY)
+	for ext in (".dmb", ".rsc"):
+		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(TEST_DEPLOY, base + ext))
+	for folder in ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings",
+			"html/changelogs/archive", "tgui/public", "tgui/packages/tgfont/dist", "config"):
+		source = os.path.join(REPO, folder)
+		if os.path.isdir(source):
+			# z plikami .dm jak deploy.sh: testy czytają np. _maps/_basemap.dm
+			shutil.copytree(source, os.path.join(TEST_DEPLOY, folder))
+	for pattern in ("*.dll", "yt-dlp.exe"):
+		for path in glob.glob(os.path.join(REPO, pattern)):
+			shutil.copy2(path, TEST_DEPLOY)
+	# config.txt z CI, ale bez bazy: lokalnie nie ma bee_ci, a dbconfig.txt dewelopera wskazuje jego bazę
+	with open(os.path.join(REPO, "tools", "ci", "ci_config.txt"), encoding="utf-8") as f:
+		ci_config = [line for line in f if not re.match(r"\s*(SQL_ENABLED|ADDRESS|PORT|FEEDBACK_)", line)]
+	with open(os.path.join(TEST_DEPLOY, "config", "config.txt"), "w", encoding="utf-8") as f:
+		f.writelines(ci_config)
+	with open(os.path.join(TEST_DEPLOY, "config", "dbconfig.txt"), "w", encoding="utf-8") as f:
+		f.write("# local_ci: testy bez bazy danych\n")
+
+
 def step_tests(r):
-	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, Dream Daemon, wynik z clean_run.lk i tests.log."""
+	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, osobna kopia świata, wynik z clean_run.lk i tests.log."""
 	code, base, out = r.compile_copy("tests", ["CIBUILDING"])
 	if code:
 		r.cleanup_copy(base)
 		return code, out
-	results = os.path.join(REPO, "data", "unit_tests.json")
-	log_dir = "ci_local"
-	log_path = os.path.join(REPO, "data", "logs", log_dir)
-	# clean_run.lk jest dopisywany, więc stary „Success!” z poprzedniego przebiegu dawałby fałszywy wynik
-	for stale in (results, log_path):
-		if os.path.isdir(stale):
-			shutil.rmtree(stale, ignore_errors=True)
-		elif os.path.exists(stale):
-			os.remove(stale)
+	try:
+		deploy_tests(base)
+	finally:
+		r.cleanup_copy(base)
+	results = os.path.join(TEST_DEPLOY, "data", "unit_tests.json")
+	log_dir = "ci"
+	log_path = os.path.join(TEST_DEPLOY, "data", "logs", log_dir)
 	dd = os.path.join(r.byond, "bin", "dd.exe")
 	started = time.time()
-	proc = subprocess.Popen([dd, base + ".dmb", "-close", "-trusted", "-verbose", "-params", f"log-directory={log_dir}"], cwd=REPO, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+	proc = subprocess.Popen([dd, base + ".dmb", "-close", "-trusted", "-verbose", "-params", f"log-directory={log_dir}"], cwd=TEST_DEPLOY, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 	clean_run = os.path.join(log_path, "clean_run.lk")
 	runtime_log = os.path.join(log_path, "runtime.log")
 	shutdown_seen = None
@@ -293,7 +335,6 @@ def step_tests(r):
 		if proc.poll() is None:
 			proc.kill()
 		time.sleep(2)
-		r.cleanup_copy(base)
 
 	# Wynik jak w CI: clean_run.lk z „Success!” znaczy brak runtime'ów i nieudanych testów
 	entries = []
@@ -308,7 +349,7 @@ def step_tests(r):
 					entries[-1][2] += line.strip() + " "
 	failed = [e for e in entries if e[0] == "FAIL"]
 	success = os.path.exists(clean_run) and "Success" in open(clean_run, encoding="utf-8", errors="replace").read()
-	lines = [f"Testów: {len(entries)}, nieudanych: {len(failed)}, clean_run.lk: {'Success' if success else 'brak'} (logi: data/logs/{log_dir})"]
+	lines = [f"Testów: {len(entries)}, nieudanych: {len(failed)}, clean_run.lk: {'Success' if success else 'brak'} (logi: {os.path.relpath(log_path, REPO)})"]
 	lines += [f"- {name}: {reason[:600]}" for _, name, reason in failed]
 	code = 0 if success and not failed else 1
 	# unit_tests.json zapisuje RunUnitTests() dopiero po ostatnim teście: bez niego przebieg urwał się w połowie,
@@ -348,7 +389,7 @@ def main():
 	parser.add_argument("--tylko", help="tylko te kroki, po przecinku")
 	parser.add_argument("--pomin", help="pomiń te kroki, po przecinku")
 	parser.add_argument("--lista", action="store_true", help="pokaż kroki i wyjdź")
-	parser.add_argument("--baza", default="aq33/master", help="gałąź bazowa dla sprawdzenia tłumaczeń (domyślnie aq33/master)")
+	parser.add_argument("--baza", help="gałąź bazowa dla sprawdzenia tłumaczeń (domyślnie master z remote'u wskazującego na aq33/AquilaStation)")
 	parser.add_argument("--byond", help="folder BYOND (domyślnie wersja z dependencies.sh)")
 	parser.add_argument("--limit-testow", type=int, default=3600, help="limit czasu testów jednostkowych w sekundach")
 	args = parser.parse_args()
@@ -375,14 +416,16 @@ def main():
 			continue
 		print(f"== {title} ({key})", flush=True)
 		started = time.time()
+		crashed = False
 		try:
 			code, out = func(runner)
 		except subprocess.TimeoutExpired:
-			code, out = 1, "Przekroczony limit czasu."
+			code, out, crashed = 1, "Przekroczony limit czasu.", True
 		except (Exception, SystemExit) as exc:  # krok nie może przerwać reszty
-			code, out = 1, f"{type(exc).__name__}: {exc}"
+			code, out, crashed = 1, f"{type(exc).__name__}: {exc}", True
 		elapsed = time.time() - started
-		if code and key in WARN_ONLY:
+		# awaria samego kroku (brak narzędzia, gałęzi) to zawsze błąd, także w krokach tylko ostrzegających
+		if code and key in WARN_ONLY and not crashed:
 			status = "OSTRZEŻENIE"
 		elif code:
 			status = "BŁĄD"
