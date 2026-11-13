@@ -18,9 +18,9 @@
 	var/list/part_types = list()
 
 /obj/item/flatpack/Initialize(mapload, obj/item/circuitboard/new_board, list/new_part_types, list/obj/item/real_parts)
+	. = ..()
 	if(isnull(board) && isnull(new_board))
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 	if(!new_board)
 		// Paczka z mapy: płytka z typu i domyślne części płytki, jak w maszynie postawionej na mapie
 		new_board = new board(src)
@@ -119,7 +119,11 @@
 		machine.setDir(direction)
 		QDEL_LIST(parts)
 	else
-		machine = new leaving_board.build_path(location)
+		// Rury liczą kierunki połączeń przy tworzeniu, więc kierunek trzeba podać od razu (New(loc, process, setdir))
+		if(ispath(leaving_board.build_path, /obj/machinery/atmospherics))
+			machine = new leaving_board.build_path(location, TRUE, direction)
+		else
+			machine = new leaving_board.build_path(location)
 		if(machine.circuit && machine.circuit != leaving_board)
 			QDEL_NULL(machine.circuit)
 		machine.circuit = leaving_board

@@ -135,6 +135,20 @@
 	. = ..()
 	if(is_operational)
 		start_next()
+	else
+		pause_reading()
+
+/// Bez prądu bieżący skan wraca na początek kolejki i czeka na zasilanie
+/obj/machinery/schematic_reader/proc/pause_reading()
+	if(!current)
+		return
+	if(read_timer)
+		deltimer(read_timer)
+		read_timer = null
+	queue.Insert(1, current)
+	current = null
+	use_power = IDLE_POWER_USE
+	update_appearance()
 
 /obj/machinery/schematic_reader/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

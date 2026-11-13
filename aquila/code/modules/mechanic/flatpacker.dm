@@ -71,10 +71,8 @@
 /obj/machinery/flatpacker/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials?.retrieve_all()
-	var/turf/drop = drop_location()
-	inserted_board?.forceMove(drop)
-	for(var/obj/item/component as anything in flatpacked_components)
-		component.forceMove(drop)
+	inserted_board?.forceMove(drop_location())
+	drop_manual_parts()
 	return ..()
 
 /obj/machinery/flatpacker/RefreshParts()
@@ -221,7 +219,9 @@
 			return TRUE
 		if(!user.transferItemToLoc(I, src))
 			return TRUE
+		// Nowa płytka to nowa maszyna: części włożone pod poprzednią wypadają
 		inserted_board?.forceMove(drop_location())
+		drop_manual_parts()
 		inserted_board = I
 		recalculate()
 		update_appearance()
@@ -239,7 +239,7 @@
 	if(!busy && default_deconstruction_screwdriver(user, "[base_icon_state]_o", base_icon_state, I))
 		update_appearance()
 		return TRUE
-	if(default_deconstruction_crowbar(I))
+	if(!busy && default_deconstruction_crowbar(I))
 		return TRUE
 	return ..()
 
@@ -261,9 +261,7 @@
 	var/obj/item/circuitboard/board = inserted_board
 	board.forceMove(drop_location())
 	user?.put_in_hands(board)
-	var/turf/drop = drop_location()
-	for(var/obj/item/component as anything in flatpacked_components)
-		component.forceMove(drop)
+	drop_manual_parts()
 
 /obj/machinery/flatpacker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -378,6 +376,9 @@
 /obj/machinery/flatpacker/proc/start_build(mob/user)
 	if(busy || !is_operational)
 		return FALSE
+	if(panel_open)
+		say("Zamknij właz serwisowy.")
+		return FALSE
 	recalculate()
 	var/reason = disable_reason()
 	if(reason)
@@ -396,6 +397,8 @@
 	use_power = IDLE_POWER_USE
 	if(QDELETED(src))
 		return null
+	if(!is_operational)
+		return null
 	// disable_reason() sprawdza też materiały; wynik use_materials() nie mówi, czy się udało (zawsze 0)
 	if(disable_reason())
 		return null
@@ -405,9 +408,20 @@
 	var/obj/item/circuitboard/board = inserted_board
 	if(!board)
 		board = new source_board_type(null)
-	board.build_path = source_build_path
+	// Płytka automatu z wyborem marki przestawia też nazwę i kanister, którego wymaga rama
+	var/obj/item/circuitboard/machine/vendor/vendor_board = board
+	if(istype(vendor_board) && ispath(source_build_path, /obj/machinery/vending))
+		vendor_board.set_type(source_build_path)
+	else
+		board.build_path = source_build_path
 	var/list/parts = auto_parts.Copy()
-	var/list/manual = flatpacked_components.Copy()
+	// Do paczki idą tylko części, których ta maszyna wymaga; reszta zostaje we flatpackerze
+	var/list/manual = list()
+	var/list/still_needed = manual_parts.Copy()
+	for(var/obj/item/component as anything in flatpacked_components)
+		if(still_needed[component.type] > 0)
+			still_needed[component.type]--
+			manual += component
 	var/obj/item/flatpack/pack = new(drop_location(), board, parts, manual)
 	playsound(src, 'sound/machines/terminal_eject.ogg', 50, TRUE)
 	recalculate()

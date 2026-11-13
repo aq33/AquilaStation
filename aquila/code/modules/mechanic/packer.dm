@@ -17,7 +17,7 @@
 	var/ignores_blacklist = FALSE
 
 /obj/item/machine_packer/pre_attack(atom/A, mob/living/user, params)
-	if(!ismachinery(A))
+	if(!mechanic_tool_targets(A, user))
 		return ..()
 	try_pack(A, user)
 	return FALSE

@@ -104,9 +104,17 @@
 	TEST_ASSERT_EQUAL(packer.max_part_tier, 2, "Manipulator tier 2 nie podnosi limitu tieru")
 	TEST_ASSERT_EQUAL(packer.disable_reason(), "", "Flatpacker nie chce pakować schematu: [packer.disable_reason()]")
 
+	// Część włożona pod inną maszynę nie trafia do paczki
+	var/obj/item/vending_refill/coffee/stray_part = new(packer)
+	packer.flatpacked_components += stray_part
+
 	var/iron_before = materials.get_material_amount(/datum/material/iron)
 	var/obj/item/flatpack/pack = packer.finish_build()
 	TEST_ASSERT(istype(pack), "Flatpacker nie zrobił paczki")
+	TEST_ASSERT(!(stray_part in pack.contents), "Do paczki trafiła część, której maszyna nie wymaga")
+	TEST_ASSERT_EQUAL(stray_part.loc, packer, "Niepotrzebna część zniknęła z flatpackera")
+	packer.drop_manual_parts()
+	qdel(stray_part)
 	TEST_ASSERT(materials.get_material_amount(/datum/material/iron) < iron_before, "Flatpacker nie zużył żelaza")
 	TEST_ASSERT(istype(pack.board, /obj/item/circuitboard/machine/schematic_reader), "Paczka ze schematu ma złą płytkę")
 	pack.forceMove(get_step(run_loc_floor_bottom_left, NORTH))
@@ -129,6 +137,41 @@
 	qdel(security_pack)
 	packer.stored_research = SSresearch.science_tech
 	qdel(web)
+
+/// AQUILA - mechanik: poprawki z przeglądu (pusta paczka, kierunek rur, czarna lista, pauza czytnika)
+/datum/unit_test/mechanic_review_fixes
+
+/datum/unit_test/mechanic_review_fixes/Run()
+	// Paczka bez płytki usuwa się po pełnej inicjalizacji
+	var/obj/item/flatpack/empty_pack = new(run_loc_floor_bottom_left)
+	TEST_ASSERT(QDELETED(empty_pack), "Paczka bez płytki nie usunęła się")
+	TEST_ASSERT(empty_pack.flags_1 & INITIALIZED_1, "Paczka bez płytki nie wywołała Initialize rodzica")
+
+	// Zamrażarka rozłożona na północ łączy się na północ
+	var/turf/pack_turf = get_step(run_loc_floor_bottom_left, NORTH)
+	var/obj/machinery/atmospherics/components/unary/thermomachine/freezer/freezer = new(pack_turf)
+	freezer.panel_open = TRUE
+	var/obj/item/flatpack/freezer_pack = mechanic_pack_machine(freezer)
+	var/obj/machinery/atmospherics/components/unary/thermomachine/deployed_freezer = freezer_pack.deploy(NORTH)
+	TEST_ASSERT(istype(deployed_freezer), "Paczka nie rozłożyła się w zamrażarkę")
+	TEST_ASSERT_EQUAL(deployed_freezer.dir, NORTH, "Zamrażarka z paczki stoi w złą stronę")
+	TEST_ASSERT_EQUAL(deployed_freezer.initialize_directions, NORTH, "Zamrażarka z paczki łączy się w inną stronę, niż patrzy")
+	qdel(deployed_freezer)
+
+	// Konsole uzbrojenia i IFF są na czarnej liście
+	TEST_ASSERT(mechanic_is_blacklisted(/obj/machinery/computer/ams), "Konsola AMS nie jest na czarnej liście")
+	TEST_ASSERT(mechanic_is_blacklisted(/obj/machinery/computer/iff_console), "Konsola IFF nie jest na czarnej liście")
+
+	// Czytnik bez prądu oddaje bieżący skan do kolejki
+	var/obj/machinery/schematic_reader/reader = allocate(/obj/machinery/schematic_reader)
+	var/datum/machine_schematic/schematic = new
+	schematic.read_machine(reader)
+	reader.current = schematic
+	reader.read_timer = addtimer(CALLBACK(reader, TYPE_PROC_REF(/obj/machinery/schematic_reader, finish_reading)), 1 MINUTES, TIMER_STOPPABLE)
+	reader.pause_reading()
+	TEST_ASSERT(isnull(reader.current), "Czytnik bez prądu dalej czyta")
+	TEST_ASSERT(isnull(reader.read_timer), "Czytnik bez prądu nie zatrzymał odczytu")
+	TEST_ASSERT_EQUAL(reader.queue[1], schematic, "Przerwany skan nie wrócił na początek kolejki")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

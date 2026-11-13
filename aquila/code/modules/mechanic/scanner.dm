@@ -39,11 +39,18 @@
 	to_chat(user, "<span class='notice'>Czyścisz pamięć skanera.</span>")
 
 /obj/item/machine_scanner/pre_attack(atom/A, mob/living/user, params)
-	// Czytnik schematów sam bierze skany w attackby
-	if(!ismachinery(A) || istype(A, /obj/machinery/schematic_reader))
+	// Czytnik schematów sam bierze skany w attackby; maszyny bez płytki (np. kosz na śmieci) i walka idą zwykłą drogą
+	if(!mechanic_tool_targets(A, user) || istype(A, /obj/machinery/schematic_reader))
 		return ..()
 	scan_machine(A, user)
 	return FALSE
+
+/// TRUE, jeśli narzędzie mechanika ma obsłużyć kliknięcie: maszyna z płytką i gracz poza trybem walki
+/proc/mechanic_tool_targets(atom/target, mob/living/user)
+	if(!ismachinery(target) || user.combat_mode)
+		return FALSE
+	var/obj/machinery/machine = target
+	return istype(machine.circuit, /obj/item/circuitboard)
 
 /// Zwraca powód, dla którego maszyny nie da się zeskanować albo spakować, albo null, gdy się da
 /proc/mechanic_machine_problem(obj/machinery/machine, ignores_blacklist = FALSE)
