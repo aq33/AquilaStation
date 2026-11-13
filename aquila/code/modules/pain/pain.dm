@@ -28,7 +28,6 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/medicine/mine_salve = 40,
 	/datum/reagent/consumable/ethanol/painkiller = 25,
 	/datum/reagent/medicine/sal_acid = 20,
-	/datum/reagent/medicine/epinephrine = 10,
 	/datum/reagent/consumable/capsaicin = 10, // ostre: endorfiny (moduł potrzeb, aquila/code/modules/needs/)
 ))
 
@@ -99,7 +98,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	var/rest = 0
 	for(var/datum/reagent/reagent as anything in reagents?.reagent_list)
 		var/strength = GLOB.aq_painkillers[reagent.type]
-		if(istype(reagent, /datum/reagent/medicine/adrenaline))
+		if(istype(reagent, /datum/reagent/medicine/epinephrine))
 			strength = aq_adrenaline_strength()
 		if(!strength)
 			continue
