@@ -3,7 +3,8 @@
 	clientfps = -1
 	/// Stare domyślne FPS 40 zostało już raz zamienione na zalecane (zapisywane w bazie)
 	var/clientfps_migrated = FALSE
-	/// Nazwy jednorazowych migracji keybindów, które już przeszły (zapisywane w bazie, PREFERENCE_TAG_KEYBIND_MIGRATIONS)
+	/// Nazwy jednorazowych migracji, które już przeszły (zapisywane w bazie, PREFERENCE_TAG_KEYBIND_MIGRATIONS): keybindy
+	/// (storage_grid.dm) i opcje (gunplay/preferences.dm). Nie czyścić ani nie filtrować, bo migracje odpalą się ponownie.
 	var/list/keybind_migrations
 
 /// FPS, które faktycznie dostaje klient. Zalecane = odświeżanie monitora zmierzone przez panel czatu
