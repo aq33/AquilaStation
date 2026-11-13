@@ -79,7 +79,13 @@ jobs:
           python3 tools/ci/template_dm_generator.py
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   run_all_tests:
+    # AQUILA - testy w 3 rownoleglych czesciach (UNIT_TEST_SHARD, aquila/code/modules/unit_tests/_unit_test_shards.dm)
+    name: run_all_tests (${{ matrix.shard }}/3)
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     # AQUILA - wiszacy serwer przed "Shutdown complete" czekalby do domyslnych 6 godzin
     timeout-minutes: 90
     services:
@@ -114,6 +120,8 @@ jobs:
         run: |
           bash tools/ci/install_auxmos.sh
       - name: Compile and run tests
+        env:
+          UNIT_TEST_SHARD: ${{ matrix.shard }}/3
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci build -DCIBUILDING
@@ -123,7 +131,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: run_all_tests-logs
+          name: run_all_tests-logs-${{ matrix.shard }}
           path: |
             ci_test/data/logs/ci/
             ci_test/data/unit_tests.json

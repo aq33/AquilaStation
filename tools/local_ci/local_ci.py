@@ -271,73 +271,39 @@ def step_maps(r):
 	return code, out
 
 
-TEST_DEPLOY = os.path.join(CACHE, "ci_test")
+def test_deploy_dir(shard):
+	return os.path.join(CACHE, f"ci_test_{shard}")
 
 
-def deploy_tests(base):
+def deploy_tests(base, target):
 	"""Osobna kopia świata jak tools/deploy.sh w CI: własne config/ i data/, więc testy nie piszą do bazy
 	z config/dbconfig.txt ani do persistencji dewelopera (data/*.json). Bez SQL, jak lokalny serwer bez bazy."""
-	shutil.rmtree(TEST_DEPLOY, ignore_errors=True)
-	os.makedirs(TEST_DEPLOY)
+	shutil.rmtree(target, ignore_errors=True)
+	os.makedirs(target)
 	for ext in (".dmb", ".rsc"):
-		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(TEST_DEPLOY, base + ext))
+		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(target, base + ext))
 	for folder in ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings",
 			"html/changelogs/archive", "tgui/public", "tgui/packages/tgfont/dist", "config"):
 		source = os.path.join(REPO, folder)
 		if os.path.isdir(source):
 			# z plikami .dm jak deploy.sh: testy czytają np. _maps/_basemap.dm
-			shutil.copytree(source, os.path.join(TEST_DEPLOY, folder))
+			shutil.copytree(source, os.path.join(target, folder))
 	for pattern in ("*.dll", "yt-dlp.exe"):
 		for path in glob.glob(os.path.join(REPO, pattern)):
-			shutil.copy2(path, TEST_DEPLOY)
+			shutil.copy2(path, target)
 	# config.txt z CI, ale bez bazy: lokalnie nie ma bee_ci, a dbconfig.txt dewelopera wskazuje jego bazę
 	with open(os.path.join(REPO, "tools", "ci", "ci_config.txt"), encoding="utf-8") as f:
 		ci_config = [line for line in f if not re.match(r"\s*(SQL_ENABLED|ADDRESS|PORT|FEEDBACK_)", line)]
-	with open(os.path.join(TEST_DEPLOY, "config", "config.txt"), "w", encoding="utf-8") as f:
+	with open(os.path.join(target, "config", "config.txt"), "w", encoding="utf-8") as f:
 		f.writelines(ci_config)
-	with open(os.path.join(TEST_DEPLOY, "config", "dbconfig.txt"), "w", encoding="utf-8") as f:
+	with open(os.path.join(target, "config", "dbconfig.txt"), "w", encoding="utf-8") as f:
 		f.write("# local_ci: testy bez bazy danych\n")
 
 
-def step_tests(r):
-	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, osobna kopia świata, wynik z clean_run.lk i tests.log."""
-	code, base, out = r.compile_copy("tests", ["CIBUILDING"])
-	if code:
-		r.cleanup_copy(base)
-		return code, out
-	try:
-		deploy_tests(base)
-	finally:
-		r.cleanup_copy(base)
-	results = os.path.join(TEST_DEPLOY, "data", "unit_tests.json")
-	log_dir = "ci"
-	log_path = os.path.join(TEST_DEPLOY, "data", "logs", log_dir)
-	dd = os.path.join(r.byond, "bin", "dd.exe")
-	started = time.time()
-	proc = subprocess.Popen([dd, base + ".dmb", "-close", "-trusted", "-verbose", "-params", f"log-directory={log_dir}"], cwd=TEST_DEPLOY, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-	clean_run = os.path.join(log_path, "clean_run.lk")
-	runtime_log = os.path.join(log_path, "runtime.log")
-	shutdown_seen = None
-	try:
-		while proc.poll() is None:
-			if time.time() - started > r.args.limit_testow:
-				proc.kill()
-				return 1, f"Testy nie skończyły się w {r.args.limit_testow} s, Dream Daemon zabity."
-			# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 15 s i zabijamy
-			if shutdown_seen is None and os.path.exists(runtime_log):
-				with open(runtime_log, encoding="utf-8", errors="replace") as f:
-					if "Shutdown complete" in f.read():
-						shutdown_seen = time.time()
-			if shutdown_seen and time.time() - shutdown_seen > 15:
-				proc.kill()
-				break
-			time.sleep(2)
-	finally:
-		if proc.poll() is None:
-			proc.kill()
-		time.sleep(2)
-
-	# Wynik jak w CI: clean_run.lk z „Success!” znaczy brak runtime'ów i nieudanych testów
+def read_shard_result(target):
+	"""Wynik jednej części jak w CI: clean_run.lk z „Success!” znaczy brak runtime'ów i nieudanych testów,
+	a brak unit_tests.json (zapisywanego po ostatnim teście) znaczy urwany przebieg."""
+	log_path = os.path.join(target, "data", "logs", "ci")
 	entries = []
 	tests_log = os.path.join(log_path, "tests.log")
 	if os.path.exists(tests_log):
@@ -348,17 +314,75 @@ def step_tests(r):
 					entries.append([m.group(1), m.group(2), ""])
 				elif entries and "REASON" in line:
 					entries[-1][2] += line.strip() + " "
-	failed = [e for e in entries if e[0] == "FAIL"]
+	clean_run = os.path.join(log_path, "clean_run.lk")
 	success = os.path.exists(clean_run) and "Success" in open(clean_run, encoding="utf-8", errors="replace").read()
-	lines = [f"Testów: {len(entries)}, nieudanych: {len(failed)}, clean_run.lk: {'Success' if success else 'brak'} (logi: {os.path.relpath(log_path, REPO)})"]
-	lines += [f"- {name}: {reason[:600]}" for _, name, reason in failed]
-	code = 0 if success and not failed else 1
-	# unit_tests.json zapisuje RunUnitTests() dopiero po ostatnim teście: bez niego przebieg urwał się w połowie,
-	# nawet gdy clean_run.lk mówi „Success!” (CI uznaje taki przebieg za udany)
-	if not os.path.exists(results):
-		last = entries[-1][1] if entries else "żaden"
-		lines.append(f"Przebieg urwany: brak data/unit_tests.json, ostatni zakończony test: {last}. Kolejne testy się nie wykonały.")
-		code = 1
+	finished = os.path.exists(os.path.join(target, "data", "unit_tests.json"))
+	return entries, success, finished, log_path
+
+
+def step_tests(r):
+	"""Testy jednostkowe jak w run_all_tests: build z -DCIBUILDING, kopie świata, części równolegle (UNIT_TEST_SHARD)."""
+	shards = max(1, r.args.czesci)
+	code, base, out = r.compile_copy("tests", ["CIBUILDING"])
+	if code:
+		r.cleanup_copy(base)
+		return code, out
+	try:
+		for shard in range(1, shards + 1):
+			deploy_tests(base, test_deploy_dir(shard))
+	finally:
+		r.cleanup_copy(base)
+	dd = os.path.join(r.byond, "bin", "dd.exe")
+	started = time.time()
+	running = {}
+	for shard in range(1, shards + 1):
+		env = dict(os.environ)
+		if shards > 1:
+			env["UNIT_TEST_SHARD"] = f"{shard}/{shards}"
+		else:
+			env.pop("UNIT_TEST_SHARD", None)
+		running[shard] = subprocess.Popen([dd, base + ".dmb", "-close", "-trusted", "-verbose", "-params", "log-directory=ci"],
+			cwd=test_deploy_dir(shard), env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+	shutdown_seen = {}
+	try:
+		while any(proc.poll() is None for proc in running.values()):
+			if time.time() - started > r.args.limit_testow:
+				return 1, f"Testy nie skończyły się w {r.args.limit_testow} s, Dream Daemon zabity."
+			for shard, proc in running.items():
+				if proc.poll() is not None:
+					continue
+				# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 15 s i zabijamy
+				runtime_log = os.path.join(test_deploy_dir(shard), "data", "logs", "ci", "runtime.log")
+				if shard not in shutdown_seen and os.path.exists(runtime_log):
+					with open(runtime_log, encoding="utf-8", errors="replace") as f:
+						if "Shutdown complete" in f.read():
+							shutdown_seen[shard] = time.time()
+				if shard in shutdown_seen and time.time() - shutdown_seen[shard] > 15:
+					proc.kill()
+			time.sleep(2)
+	finally:
+		for proc in running.values():
+			if proc.poll() is None:
+				proc.kill()
+		time.sleep(2)
+
+	code = 0
+	total, total_failed = 0, 0
+	lines = []
+	for shard in range(1, shards + 1):
+		entries, success, finished, log_path = read_shard_result(test_deploy_dir(shard))
+		failed = [e for e in entries if e[0] == "FAIL"]
+		total += len(entries)
+		total_failed += len(failed)
+		lines.append(f"Część {shard}/{shards}: testów {len(entries)}, nieudanych {len(failed)}, clean_run.lk: {'Success' if success else 'brak'} (logi: {os.path.relpath(log_path, REPO)})")
+		lines += [f"- {name}: {reason[:600]}" for _, name, reason in failed]
+		if not success or failed:
+			code = 1
+		if not finished:
+			last = entries[-1][1] if entries else "żaden"
+			lines.append(f"  Przebieg urwany: brak data/unit_tests.json, ostatni zakończony test: {last}. Kolejne testy się nie wykonały.")
+			code = 1
+	lines.insert(0, f"Testów: {total}, nieudanych: {total_failed}, czas: {time.time() - started:.0f} s")
 	return code, "\n".join(lines)
 
 
@@ -392,6 +416,7 @@ def main():
 	parser.add_argument("--lista", action="store_true", help="pokaż kroki i wyjdź")
 	parser.add_argument("--baza", help="gałąź bazowa dla sprawdzenia tłumaczeń (domyślnie master z remote'u wskazującego na aq33/AquilaStation)")
 	parser.add_argument("--byond", help="folder BYOND (domyślnie wersja z dependencies.sh)")
+	parser.add_argument("--czesci", type=int, default=3, help="ile części testów uruchomić równolegle (jak joby CI; 1 = wszystkie w jednym świecie)")
 	parser.add_argument("--limit-testow", type=int, default=3600, help="limit czasu testów jednostkowych w sekundach")
 	args = parser.parse_args()
 
