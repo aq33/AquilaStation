@@ -78,7 +78,7 @@ jobs:
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
-  # AQUILA - kompilacja pod OpenDream (raport/opendream_01_proba_kompilacji.md). Tylko ostrzega:
+  # AQUILA - kompilacja pod OpenDream z unit testami (CIBUILDING; raport/opendream_01_proba_kompilacji.md). Tylko ostrzega:
   # kompilator to kroczące wydanie „latest”, więc błąd może przyjść z ich strony, nie z PR-a.
   compile_opendream:
     runs-on: ubuntu-22.04
@@ -97,7 +97,7 @@ jobs:
         run: |
           source dependencies.sh
           set +e
-          dotnet ~/opendream/DMCompiler_linux-x64/DMCompiler.dll --suppress-unimplemented --version=${BYOND_MAJOR}.${BYOND_MINOR} --define=CBT nsv13.dme | tee od_compile.log
+          dotnet ~/opendream/DMCompiler_linux-x64/DMCompiler.dll --suppress-unimplemented --version=${BYOND_MAJOR}.${BYOND_MINOR} --define=CBT --define=CIBUILDING nsv13.dme | tee od_compile.log
           status=${PIPESTATUS[0]}
           sed -nE 's/^Error (OD[0-9]+) at ([^:]+):([0-9]+):([0-9]+): (.*)$/::error file=\2,line=\3,col=\4::OpenDream \1: \5/p' od_compile.log
           exit $status
