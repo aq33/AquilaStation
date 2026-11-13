@@ -311,9 +311,16 @@
 	var/datum/aquila_bullet_recorder/recorder = new
 	recorder.RegisterSignal(victim, COMSIG_ATOM_BULLET_ACT, TYPE_PROC_REF(/datum/aquila_bullet_recorder, on_bullet_act))
 	var/datum/ai_controller/gun_controller = gun_mimic.ai_controller
-	gun_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
-	TEST_ASSERT(aquila_rest_run_behavior(gun_controller, /datum/ai_behavior/basic_ranged_attack/avoid_friendly_fire), "The gun copy did not plan to shoot")
-	TEST_ASSERT(aquila_wait_for_hit(recorder), "The gun copy's shot did not hit")
+	// Strzał z rozrzutem może chybić (CI pada co kilka przebiegów), więc kopia ma kilka prób
+	var/gun_hit = FALSE
+	for(var/attempt in 1 to 5)
+		gun_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)
+		TEST_ASSERT(aquila_rest_run_behavior(gun_controller, /datum/ai_behavior/basic_ranged_attack/avoid_friendly_fire), "The gun copy did not plan to shoot")
+		if(aquila_wait_for_hit(recorder))
+			gun_hit = TRUE
+			break
+		gun_controller.CancelActions()
+	TEST_ASSERT(gun_hit, "The gun copy's shot did not hit")
 	gun_controller.CancelActions()
 	laser.cell.use(laser.cell.charge)
 	gun_mimic.fire_gun(victim)
