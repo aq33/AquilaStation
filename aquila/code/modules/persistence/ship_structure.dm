@@ -39,6 +39,7 @@
 /// Sygnatura „pustego kosmosu”: takich pól nie trzymamy w zdjęciu
 #define SHIP_STRUCTURE_SPACE ""
 /// Znacznik pola zajętego przez prom: takie pole nie jest porównywane
+/// Bez #undef na końcu pliku: test zabezpieczenia kadłuba oznacza nim miejsce po promie
 #define SHIP_STRUCTURE_SHUTTLE "shuttle"
 /// Jak daleko (w polach) szukamy nowej ściany dla rzeczy wiszącej albo wolnego pola dla wypychanej rzeczy
 #define SHIP_STRUCTURE_MOUNT_RANGE 2
@@ -432,6 +433,8 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	var/heavy_damage = FALSE
 	/// Klucze pól, które już na mapie przepuszczały powietrze do kosmosu (do zabezpieczenia kadłuba; null po starcie rundy)
 	var/list/map_open
+	/// Ile pól zabezpieczenie kadłuba załatało przy wczytaniu (zgłaszane adminom na starcie rundy)
+	var/hull_sealed_at_load = 0
 
 /datum/ship_structure/New(list/z_levels, list/bounds)
 	. = ..()
@@ -1114,46 +1117,56 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
  * Łata pianką dziury w kadłubie na polach, które na mapie były szczelne (turfs = takie pola, które się zmieniły).
  * Najpierw podłoga z pianki na wszystkich dziurach (kosmos i otwarta przestrzeń nad kosmosem), potem ściana z pianki
  * tylko tam, gdzie pole dalej przepuszcza powietrze do kosmosu, więc wielopolowa dziura nie zarasta ścianami.
+ * Pole, które widzi kosmos tylko przez miejsce, gdzie na mapie stał prom, zostaje (prom mógł po prostu odlecieć).
  * Rzeczy z mapy spod ściany z pianki idą obok. Zwraca pola, na które coś odstawiono.
  */
 /datum/ship_structure/proc/patch_breaches(list/turfs)
 	. = list()
 	var/list/hull = list()
 	for(var/turf/T as anything in turfs)
-		if(!is_hull_turf(T))
+		if(!is_hull_turf(T) || !leaks_past_shuttles(T))
 			continue
-		if(isspaceturf(T))
+		if(isspaceturf(T) || open_over_space(T))
 			T = T.PlaceOnTop(/turf/open/floor/plating/foam)
-		else if(istype(T, /turf/open/openspace))
-			var/turf/below = SSmapping.get_turf_below(T)
-			if(!below || isspaceturf(below))
-				T = T.PlaceOnTop(/turf/open/floor/plating/foam)
 		hull += T
 	for(var/turf/T as anything in hull)
-		if(!isopenturf(T) || (locate(/obj/structure/foamedmetal) in T) || !ship_structure_open_to_space(T))
+		if(!isopenturf(T) || (locate(/obj/structure/foamedmetal) in T) || !leaks_past_shuttles(T))
 			continue
 		new /obj/structure/foamedmetal(T)
 		. |= evict_contents(T)
 
 /// Klucze otwartych pól, które przepuszczają powietrze do kosmosu (zewnętrzne pomosty, hangary): zabezpieczenie ich nie łata
+/// (Kosmos bez obiektów nie trafia do zdjęcia mapy, więc wystarczą pola ze zdjęcia.)
 /datum/ship_structure/proc/capture_open_to_space()
 	. = list()
-	for(var/turf/T as anything in get_turfs())
+	for(var/key in baseline)
 		CHECK_TICK
-		if(!isspaceturf(T) && ship_structure_open_to_space(T))
-			.[key_for(T)] = TRUE
+		if(!islist(baseline[key]))
+			continue
+		var/turf/T = turf_for(key)
+		if(T && !isspaceturf(T) && ship_structure_open_to_space(T))
+			.[key] = TRUE
+
+/// Na polu stał na mapie prom
+/datum/ship_structure/proc/is_shuttle_spot(turf/T)
+	return baseline && baseline[key_for(T)] == SHIP_STRUCTURE_SHUTTLE
+
+/// Otwarta przestrzeń, pod którą jest kosmos (a nie miejsce po promie)
+/datum/ship_structure/proc/open_over_space(turf/T)
+	if(!istype(T, /turf/open/openspace))
+		return FALSE
+	var/turf/below = SSmapping.get_turf_below(T)
+	return !below || (isspaceturf(below) && !is_shuttle_spot(below))
 
 /// Pole jest dziurą albo przepuszcza powietrze do kosmosu nie tylko przez miejsce, gdzie na mapie stał prom (ten mógł odlecieć)
 /datum/ship_structure/proc/leaks_past_shuttles(turf/T)
-	if(isspaceturf(T))
+	if(isspaceturf(T) || open_over_space(T))
 		return TRUE
-	if(istype(T, /turf/open/openspace))
-		var/turf/below = SSmapping.get_turf_below(T)
-		if(!below || (isspaceturf(below) && baseline[key_for(below)] != SHIP_STRUCTURE_SHUTTLE))
-			return TRUE
+	if(!isopenturf(T))
+		return FALSE
 	for(var/dir in GLOB.cardinals)
 		var/turf/neighbour = get_step(T, dir)
-		if(neighbour && isspaceturf(neighbour) && T.CanAtmosPass(neighbour) && baseline[key_for(neighbour)] != SHIP_STRUCTURE_SHUTTLE)
+		if(neighbour && isspaceturf(neighbour) && T.CanAtmosPass(neighbour) && !is_shuttle_spot(neighbour))
 			return TRUE
 	return FALSE
 
@@ -1174,18 +1187,17 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	/// Pole -> opis do logu (stan przed łataniem)
 	var/list/found = list()
 	var/list/was_hole = list()
-	for(var/turf/T as anything in get_turfs())
+	// Kandydat ma na mapie coś innego niż kosmos, więc wystarczą pola ze zdjęcia mapy
+	for(var/key in baseline)
 		CHECK_TICK
-		if(!ship_structure_open_to_space(T) || skip_turf(T))
-			continue
-		var/key = key_for(T)
 		var/list/entry = baseline[key]
-		if(map_open[key] || !islist(entry))
-			continue // otwarte już na mapie, kosmos z mapy albo prom
+		if(!islist(entry) || map_open[key])
+			continue // prom albo pole otwarte już na mapie
 		var/map_type = text2path(splittext(entry[1], ";")[1])
-		if(ispath(map_type, /turf/open/space) || !is_hull_turf(T))
+		if(ispath(map_type, /turf/open/space))
 			continue
-		if(!leaks_past_shuttles(T))
+		var/turf/T = turf_for(key)
+		if(!T || skip_turf(T) || !is_hull_turf(T) || !leaks_past_shuttles(T))
 			continue
 		found[T] = "[T.x],[T.y],[T.z] [T.loc.type] [T.type] (map: [map_type])"
 		was_hole[T] = isspaceturf(T) || istype(T, /turf/open/openspace)
@@ -1195,12 +1207,10 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 			holes += T
 	var/list/moved = patch_breaches(holes)
 	for(var/i in length(openspace) to 1 step -1)
-		if(!ship_structure_open_to_space(openspace[i]))
+		if(!leaks_past_shuttles(openspace[i]))
 			openspace.Cut(i, i + 1)
 	moved |= patch_breaches(openspace)
 	fix_wallmounts(moved, list())
-	if(at_round_start)
-		map_open = null
 	// Liczą się pola, które dostały podłogę albo ścianę z pianki, a nie ich sąsiedzi, którzy przestali widzieć kosmos
 	var/list/report = list()
 	var/sealed = 0
@@ -1210,13 +1220,18 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 		sealed++
 		if(length(report) < 30)
 			report += found[T]
-	if(!sealed)
-		return 0
-	if(sealed > length(report))
-		report += "..."
-	log_game("Ship structure: hull check at [at_round_start ? "round start" : "load"] sealed [sealed] turfs the save did not patch: [jointext(report, "; ")]")
-	last_report += ", zabezpieczenie kadłuba: [sealed] pól"
-	message_admins("Trwała struktura statku: zabezpieczenie załatało pianką [sealed] pól kadłuba, których nie załatał zapis. Współrzędne są w game.log.")
+	if(sealed)
+		if(sealed > length(report))
+			report += "..."
+		log_game("Ship structure: hull check at [at_round_start ? "round start" : "load"] sealed [sealed] turfs the save did not patch: [jointext(report, "; ")]")
+		last_report += ", zabezpieczenie kadłuba: [sealed] pól"
+	if(!at_round_start)
+		hull_sealed_at_load += sealed
+		return sealed
+	map_open = null
+	// Przy wczytaniu nie ma jeszcze adminów na serwerze, więc oba przejścia zgłaszamy dopiero na starcie rundy
+	if(hull_sealed_at_load || sealed)
+		message_admins("Trwała struktura statku: zabezpieczenie załatało pianką [hull_sealed_at_load + sealed] pól kadłuba, których nie załatał zapis (przy wczytaniu: [hull_sealed_at_load], na starcie rundy: [sealed]). Współrzędne są w game.log.")
 	return sealed
 
 /**
@@ -1583,6 +1598,5 @@ SUBSYSTEM_DEF(ship_structure)
 #undef SHIP_STRUCTURE_DIR
 #undef SHIP_STRUCTURE_VERSION
 #undef SHIP_STRUCTURE_SPACE
-#undef SHIP_STRUCTURE_SHUTTLE
 #undef SHIP_STRUCTURE_MOUNT_RANGE
 #undef SHIP_STRUCTURE_HEAVY_DAMAGE

@@ -620,7 +620,7 @@
 	new /obj/machinery/door/airlock/external(cell(6, 9))
 	var/datum/ship_structure/structure = new_structure()
 	structure.baseline = structure.capture()
-	structure.baseline[structure.key_for(cell(7, 8))] = "shuttle" // SHIP_STRUCTURE_SHUTTLE (undef na końcu ship_structure.dm)
+	structure.baseline[structure.key_for(cell(7, 8))] = SHIP_STRUCTURE_SHUTTLE
 	structure.map_open = structure.capture_open_to_space()
 	TEST_ASSERT(structure.map_open[structure.key_for(cell(1, 5))], "Test setup: the edge of the block is not open to space")
 	TEST_ASSERT(!structure.map_open[structure.key_for(cell(8, 5))], "Test setup: the tile behind the hull wall is open to space")
@@ -649,6 +649,27 @@
 	TEST_ASSERT_EQUAL(structure.seal_hull(TRUE), 1, "The hull check at round start did not seal the new breach")
 	TEST_ASSERT(istype(cell(4, 9), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(4, 9)), "The breach made after loading was not sealed at round start")
 	TEST_ASSERT(isnull(structure.map_open), "The map snapshot of open tiles was kept after the round start")
+	TEST_ASSERT_EQUAL(structure.hull_sealed_at_load, 4, "The tiles sealed at load were not kept for the round start report")
+
+	// Wczytanie zapisu: lista pól otwartych na mapie powstaje przed nałożeniem zapisu (dziura z zapisu jej nie zatruwa),
+	// a przejście przy wczytaniu łata dziurę, którą zapis zostawił
+	floor_block()
+	change(9, 5, /turf/closed/wall)
+	structure = new_structure()
+	structure.save_path = "data/ship_structure/unit_test_hull_check.json"
+	structure.baseline = structure.capture()
+	change(9, 5, /turf/open/space)
+	structure.save()
+	floor_block()
+	change(9, 5, /turf/closed/wall)
+	structure.baseline = structure.capture()
+	structure.load()
+	TEST_ASSERT(structure.map_open, "Loading a save did not take the snapshot of tiles open to space on the map")
+	TEST_ASSERT(!structure.map_open[structure.key_for(cell(8, 5))], "The snapshot of open tiles was taken after the save opened the hull")
+	TEST_ASSERT(istype(cell(9, 5), /turf/open/floor/plating/foam) && (locate(/obj/structure/foamedmetal) in cell(9, 5)), "The hull breach from the save was not sealed after loading")
+	for(var/path in list(structure.save_path, "[structure.save_path].bak"))
+		if(fexists(path))
+			fdel(path)
 
 	for(var/turf/T as anything in block(bottom_left, cell(10, 10)))
 		for(var/obj/O in T)
