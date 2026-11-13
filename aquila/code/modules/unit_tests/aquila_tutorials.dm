@@ -304,16 +304,22 @@
 	lesson.require_vendor()
 	STEP_ASSERT("vendor")
 	var/obj/machinery/squad_vendor/tutorial/vendor = lesson.tracking_atoms[/obj/machinery/squad_vendor/tutorial]
-	var/list/kits = vendor.ui_data(student)["kits"]
-	TEST_ASSERT(length(kits), "The tutorial squad vendor offers no kits")
+	// Po reworku drużyn (aq33/AquilaStation#602) automat ma jeden zestaw na funkcję ("kit") i wydaje go w skrzyni
+	var/list/offered = vendor.ui_data(student)["kit"]
+	TEST_ASSERT(length(offered?["contents"]), "The tutorial squad vendor offers no kit")
 	usr = student
-	vendor.ui_act("vend", list("item_id" = kits[1]["id"]))
+	vendor.ui_act("vend", list())
 	usr = null
 	STEP_ASSERT("equip")
-	var/obj/item/storage/box/squad_kit/kit = locate() in vendor.loc
-	TEST_ASSERT(kit, "The vendor did not drop a kit")
-	var/obj/item/clothing/suit/ship/squad/vest = locate() in kit
-	var/obj/item/clothing/head/helmet/ship/squad/helmet = locate() in kit
+	var/obj/item/storage/aq_squad_crate/kit = locate() in vendor.loc
+	TEST_ASSERT(kit, "The vendor did not drop a kit crate")
+	var/obj/item/clothing/suit/ship/squad/vest
+	var/obj/item/clothing/head/helmet/ship/squad/helmet
+	for(var/obj/item/thing in kit)
+		if(thing.type == /obj/item/clothing/suit/ship/squad)
+			vest = thing
+		else if(thing.type == /obj/item/clothing/head/helmet/ship/squad)
+			helmet = thing
 	TEST_ASSERT(vest && helmet && (locate(/obj/item/gun) in kit), "The kit is missing the vest, helmet or gun")
 	vest.forceMove(student.loc)
 	helmet.forceMove(student.loc)
