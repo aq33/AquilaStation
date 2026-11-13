@@ -51,7 +51,11 @@
 	TEST_ASSERT(squad.aq_ping_gear(officer, list()) == 0, "Bez automatów ktoś dostał znacznik")
 	TEST_ASSERT(QDELETED(first_marker) && !squad.aq_gear_markers?[first], "Bez działającego automatu został stary znacznik")
 
-	// Wyjście z drużyny zdejmuje znacznik
+	// Wyjście z drużyny zdejmuje znacznik (najpierw świeży, bo poprzedni zniknął przy braku automatu)
+	officer.aq_next_squad_marker = 0
+	squad.aq_ping_gear(officer, vendors)
+	first_marker = squad.aq_gear_markers?[first]
+	TEST_ASSERT(first_marker && !QDELETED(first_marker), "Ponowne „Po sprzęt” nie dało znacznika przed wyjściem z drużyny")
 	squad.remove_member(first)
 	squad.remove_member(second)
 	TEST_ASSERT(QDELETED(first_marker) && !squad.aq_gear_markers?[first], "Wyjście z drużyny nie zdjęło znacznika")
