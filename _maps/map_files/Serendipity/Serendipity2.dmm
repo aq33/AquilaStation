@@ -282,6 +282,14 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"aI" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/flatpacker,
+/turf/open/floor/monotile/steel,
+/area/engine/storage_shared)
 "aJ" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -298,6 +306,28 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"aL" = (
+/obj/structure/table,
+/obj/item/stack/sheet/iron/fifty{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/mineral/copper/five,
+/obj/item/radio/intercom/directional/south,
+/obj/item/machine_scanner{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/machine_packer{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/flatpack/schematic_reader,
+/turf/open/floor/monotile/steel,
+/area/engine/storage_shared)
 "aM" = (
 /obj/machinery/computer/monitor{
 	name = "Bridge Power Monitoring Console"
@@ -43964,7 +43994,7 @@ LJ
 Ri
 Ri
 fh
-dI
+aI
 Eo
 xS
 Ws
@@ -44221,7 +44251,7 @@ qK
 LW
 nk
 VV
-LF
+aL
 Eo
 gH
 mx

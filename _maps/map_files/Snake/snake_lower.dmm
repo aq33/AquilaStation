@@ -404,6 +404,10 @@
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"aT" = (
+/obj/machinery/flatpacker,
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engineering)
 "aU" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer2{
 	dir = 4
@@ -414,6 +418,26 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"aV" = (
+/obj/structure/table,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/rods/fifty,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/item/circuitboard/computer/apc_control,
+/obj/machinery/light,
+/obj/item/machine_scanner{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/machine_packer{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/flatpack/schematic_reader,
+/turf/open/floor/plasteel,
+/area/engine/storage)
 "aW" = (
 /obj/machinery/suit_storage_unit/rd,
 /obj/structure/cable,
@@ -34118,7 +34142,7 @@ Vt
 dm
 dm
 dz
-DN
+aT
 cr
 BV
 FY
@@ -34386,7 +34410,7 @@ Bi
 eU
 eU
 lN
-sS
+aV
 IM
 oe
 aJ

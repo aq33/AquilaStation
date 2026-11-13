@@ -39,6 +39,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
+"aae" = (
+/obj/machinery/flatpacker,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/engineering)
 "aaf" = (
 /obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
@@ -85,6 +89,23 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"aaj" = (
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/electrical,
+/obj/item/machine_scanner{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/machine_packer{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/flatpack/schematic_reader,
+/turf/open/floor/durasteel/alt,
+/area/engine/engineering)
 "aaR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -51844,7 +51865,7 @@ hYu
 ecD
 ckd
 lLP
-nJv
+aaj
 pIp
 ifD
 haW
@@ -52363,7 +52384,7 @@ ltH
 ltH
 ltH
 xSQ
-iKM
+aae
 rop
 rIw
 uwF
