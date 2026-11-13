@@ -20,6 +20,7 @@
 
 /// Kupa, która faktycznie leży na T: nowa zlewa się w Initialize z leżącą już kupą tego samego typu i znika
 /obj/effect/decal/cleanable/feces/proc/surviving_decal(turf/T)
+	RETURN_TYPE(/obj/effect/decal/cleanable/feces)
 	if(!QDELETED(src))
 		return src
 	for(var/obj/effect/decal/cleanable/feces/existing in T)
