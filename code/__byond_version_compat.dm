@@ -10,28 +10,12 @@
 #endif
 
 // Keep savefile compatibilty at minimum supported level
-#if DM_VERSION >= 515
-/savefile/byond_version = MIN_COMPILER_VERSION
-#endif
+/savefile/byond_version = MIN_COMPILER_VERSION // AQ EDIT - gałąź dla BYOND < 515 usunięta, master wymaga 516
 
-// 515 split call for external libraries into call_ext
-#if DM_VERSION < 515
-#define LIBCALL call
-#else
-#define LIBCALL call_ext
-#endif
+#define LIBCALL call_ext // AQ EDIT - gałąź dla BYOND < 515 usunięta, master wymaga 516
 
 // So we want to have compile time guarantees these procs exist on local type, unfortunately 515 killed the .proc/procname syntax so we have to use nameof()
-#if DM_VERSION < 515
-/// Call by name proc reference, checks if the proc exists on this type or as a global proc
-#define PROC_REF(X) (.proc/##X)
-/// Call by name proc reference, checks if the proc exists on given type or as a global proc
-#define TYPE_PROC_REF(TYPE, X) (##TYPE.proc/##X)
-/// Call by name verb reference, checks if the verb exists on given type or as a global verb
-#define TYPE_VERB_REF(TYPE, X) (##TYPE.verb/##X)
-/// Call by name proc reference, checks if the proc is existing global proc
-#define GLOBAL_PROC_REF(X) (/proc/##X)
-#else
+// AQ EDIT - gałąź dla BYOND < 515 usunięta, master wymaga 516
 /// Call by name proc reference, checks if the proc exists on this type or as a global proc
 #define PROC_REF(X) (nameof(.proc/##X))
 /// Call by name proc reference, checks if the proc exists on given type or as a global proc
@@ -40,4 +24,3 @@
 #define TYPE_VERB_REF(TYPE, X) (nameof(##TYPE.verb/##X))
 /// Call by name proc reference, checks if the proc is existing global proc
 #define GLOBAL_PROC_REF(X) (/proc/##X)
-#endif
