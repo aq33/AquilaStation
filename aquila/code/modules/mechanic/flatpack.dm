@@ -183,6 +183,20 @@
 	anchored = FALSE
 	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 8)
 
+/obj/structure/flatpack_cart/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/simple_rotation)
+
+/obj/structure/flatpack_cart/setDir(newdir)
+	. = ..()
+	update_appearance()
+
+// Turkocze, gdy ktoś go ciągnie, tak jak wózek woźnego
+/obj/structure/flatpack_cart/Moved(atom/OldLoc, Dir, Forced)
+	. = ..()
+	if(!Forced && isturf(loc) && has_gravity())
+		playsound(src, 'aquila/sound/effects/janicart_roll.ogg', 40, TRUE, -3)
+
 /obj/structure/flatpack_cart/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !isobserver(user))
@@ -199,6 +213,7 @@
 	var/offset = 0
 	for(var/obj/item/flatpack/pack in contents)
 		var/mutable_appearance/pack_overlay = mutable_appearance(icon, "flatcart_flat", layer + offset * 0.01)
+		pack_overlay.dir = dir
 		pack_overlay.pixel_y = offset
 		offset += 4
 		. += pack_overlay
