@@ -2394,6 +2394,7 @@
 #include "code\modules\unit_tests\ear_surgery.dm"
 #include "code\modules\unit_tests\extinguisher_fire.dm"
 #include "code\modules\unit_tests\turf_fire_deleted_items.dm"
+#include "code\modules\unit_tests\aquila_fleet_move_without_system.dm"
 #include "code\modules\unit_tests\hev_spaceproof.dm"
 #include "code\modules\unit_tests\miasma.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"
