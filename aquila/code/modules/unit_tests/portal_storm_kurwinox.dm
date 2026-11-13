@@ -116,7 +116,12 @@
 	if(storm in SSevents.running)
 		return "the storm did not end after [steps] process calls"
 
-	var/list/new_mobs = GLOB.mob_living_list - mobs_before
+	var/list/new_mobs = list()
+	// Tylko moby burzy: kurwinoxy i cokolwiek na polach spawnu. W tle świat tworzy własne moby (np. pilot statku
+	// floty AI), które test liczył jako spawn burzy i na koniec usuwał
+	for(var/mob/living/M as anything in GLOB.mob_living_list - mobs_before)
+		if(istype(M, /mob/living/basic/kurwinoxy) || (get_turf(M) in spawn_turfs))
+			new_mobs += M
 	var/kurwinoxy = 0
 	var/czerwone = 0
 	var/list/where = list()

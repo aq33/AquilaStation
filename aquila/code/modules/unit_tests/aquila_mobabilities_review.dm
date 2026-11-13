@@ -68,6 +68,8 @@
 	TEST_ASSERT(carp.health < carp.maxHealth, "A nasty block did not hurt a carp")
 
 	var/obj/mecha/working/ripley/mech = allocate(/obj/mecha/working/ripley, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	// Ripley odbija 15% ciosów (deflect_chance), więc bez tego test padał losowo mniej więcej co siódmy przebieg
+	mech.deflect_chance = 0
 	var/integrity_before = mech.obj_integrity
 	carp.next_move = 0
 	carp.melee_attack(mech, ignore_cooldown = TRUE)

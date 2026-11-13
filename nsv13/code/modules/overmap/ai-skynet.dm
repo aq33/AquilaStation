@@ -69,7 +69,7 @@ Adding tasks is easy! Just define a datum for it.
 	shared_targets = null
 	QDEL_LIST(lances)
 	QDEL_LIST(all_ships) //We're taking the ships with us
-	current_system.fleets -= src
+	current_system?.fleets -= src // AQ EDIT - flota poza układem nie ma current_system
 	. = ..()
 
 /datum/fleet/proc/start_reporting(target, reporter)
@@ -170,6 +170,8 @@ Adding tasks is easy! Just define a datum for it.
 			add_ship(member, "supply")
 
 /datum/fleet/proc/move(datum/star_system/target, force=FALSE)
+	if(!current_system) // AQ EDIT - flota poza układem (timer ruchu po jej usunięciu z mapy): adjacency_list z null to runtime
+		return FALSE
 	if(can_reinforce)
 		try_threat_elevation_reinforce()
 	var/course_picked_target = FALSE
