@@ -299,6 +299,13 @@
 			"colour": "grey",
 			"icon": "mask",
 			"sentence": 360000
+		},
+		{
+			"name": "Publiczne obcowanie płciowe",
+			"tooltip": "Uprawianie seksu w miejscu publicznym, zarejestrowane przez kamery okrętu.",
+			"colour": "grey",
+			"icon": "heart",
+			"sentence": 360000
 		}
 	]
 }

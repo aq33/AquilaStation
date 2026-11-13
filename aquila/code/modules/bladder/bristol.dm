@@ -179,8 +179,11 @@
 	if(had_feces)
 		var/list/reasons = list()
 		var/current = stool_type(reasons)
+		stool = stool?.surviving_decal(get_turf(src)) // nowa kupa mogła się zlać z leżącą już na polu
 		if(stool)
 			stool.stool_type = current
+			if(current >= 6) // biegunka: rozbryzg zamiast grudek
+				stool.make_diarrhea()
 		report_stool(current, reasons)
 		bowel_fiber = 0
 		bowel_junk = 0

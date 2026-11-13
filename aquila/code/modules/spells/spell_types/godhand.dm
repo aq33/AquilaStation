@@ -1,3 +1,6 @@
+/// Nazwa zbrodni za seks na przycisk widziany przez kamerę: pozycja w config/space_law.json (Zbrodnie)
+#define PUBLIC_SEX_CRIME "Publiczne obcowanie płciowe"
+
 /obj/item/melee/touch_attack/sex
 	name = "wątpliwy dotyk"
 	desc = "O Boże, czemu."
@@ -43,6 +46,9 @@
 		to_chat(user, "<span class='notice'>Jesteś za daleko!</span>")
 		to_chat(M, "<span class='notice'>Jesteś za daleko!</span>")
 		return
+	// alert() czeka na odpowiedź partnera: przez ten czas proszący mógł stracić przytomność
+	if(user.stat != CONSCIOUS || M.stat != CONSCIOUS)
+		return
 
 	M.set_resting(TRUE)
 	M.forceMove(user.loc)
@@ -51,6 +57,9 @@
 
 	to_chat(user, "<span class='notice'>Uprawiasz seks z [M].</span>")
 	to_chat(M, "<span class='notice'>Uprawiasz seks z [user].</span>")
+	// kamera w zasięgu: najcięższa zbrodnia dla obojga (wpis jak przy załatwianiu się, config/space_law.json)
+	user.report_public_bodily_function(PUBLIC_SEX_CRIME, "uprawiała seks")
+	M.report_public_bodily_function(PUBLIC_SEX_CRIME, "uprawiała seks")
 
 	addtimer(CALLBACK(src, PROC_REF(erpSay), user, FALSE), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(erpSay), M, FALSE), 2 SECONDS)
@@ -64,3 +73,5 @@
 	if (isipc(speaker))
 		picklist += ipc_exclusive
 	speaker.say(pick(picklist), forced = "spell")
+
+#undef PUBLIC_SEX_CRIME

@@ -206,9 +206,9 @@
 		"<span class='notice'>Rozkładasz [I] na [src].</span>")
 
 		if(!closed)
-			wired_overlay = image('nsv13/icons/obj/barricades.dmi', icon_state = "[barricade_type]_wire")
+			wired_overlay = image(icon, icon_state = "[barricade_type]_wire") // AQ EDIT - drut z ikony barykady (składana metalowa ma własny plik)
 		else
-			wired_overlay = image('nsv13/icons/obj/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
+			wired_overlay = image(icon, icon_state = "[barricade_type]_closed_wire") // AQ EDIT - drut z ikony barykady (składana metalowa ma własny plik)
 
 		B.use(1)
 		overlays += wired_overlay
@@ -381,9 +381,9 @@
 
 	overlays -= wired_overlay
 	if(!closed)
-		wired_overlay = image('nsv13/icons/obj/barricades.dmi', icon_state = "[src.barricade_type]_wire")
+		wired_overlay = image(icon, icon_state = "[src.barricade_type]_wire") // AQ EDIT - drut z ikony barykady (składana metalowa ma własny plik)
 	else
-		wired_overlay = image('nsv13/icons/obj/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
+		wired_overlay = image(icon, icon_state = "[src.barricade_type]_closed_wire") // AQ EDIT - drut z ikony barykady (składana metalowa ma własny plik)
 	overlays += wired_overlay
 
 /obj/structure/peacekeeper_barricade/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)

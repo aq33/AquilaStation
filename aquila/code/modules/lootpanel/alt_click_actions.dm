@@ -72,6 +72,9 @@
 /obj/item/clothing/head/helmet/riot
 	alt_click_loot = FALSE
 
+/obj/item/clothing/head/helmet/space/hardsuit
+	alt_click_loot = FALSE
+
 /obj/item/clothing/head/helmet/space/plasmaman
 	alt_click_loot = FALSE
 
@@ -88,6 +91,9 @@
 	alt_click_loot = FALSE
 
 /obj/item/clothing/suit/hooded/wintercoat
+	alt_click_loot = FALSE
+
+/obj/item/clothing/suit/space/hardsuit
 	alt_click_loot = FALSE
 
 /obj/item/clothing/suit/toggle
