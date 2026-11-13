@@ -25,6 +25,9 @@
 	TEST_ASSERT(pooper.bowel_movement_time() > 3 SECONDS, "Constipation does not make defecation longer")
 
 	// Wypróżnienie: kupa dostaje typ, licznik zaczyna od nowa
+	// Wcześniejsze testy (np. aquila_defecate_here) zostawiają kupę na tym samym kafelku: locate() złapałby starą
+	for(var/obj/effect/decal/cleanable/feces/old_stool in get_turf(pooper))
+		qdel(old_stool)
 	pooper.set_defecation(DEFECATION_SHIT_YOURSELF)
 	pooper.finish_defecate_here(FALSE)
 	var/obj/effect/decal/cleanable/feces/stool = locate() in get_turf(pooper)
