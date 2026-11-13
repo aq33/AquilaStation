@@ -66,9 +66,9 @@
 		to_chat(C, "<span class='notice'>Nie masz czego wysyłać w bluespace.</span>")
 		return
 	COOLDOWN_START(src, bluespace_dump_cooldown, 30 SECONDS)
+	var/had_feces = C.feces_need() > 0
 	C.set_defecation(DEFECATION_NONE)
-	var/datum/reagent/consumable/castor_oil/oil = C.reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
-	oil?.purge(C)
+	C.finish_bowel_movement(had_feces)
 	playsound(get_turf(C), 'sound/magic/blink.ogg', 30, TRUE)
 	C.visible_message("<span class='notice'>Coś cicho pyka w okolicach pośladków [C].</span>", \
 		"<span class='notice'><i>Ale ulga...</i> Zawartość jelit znika w bluespace.</span>")
