@@ -13,6 +13,8 @@
 #define AQ_SUGAR_RUSH_LOAD 5
 /// Ile „cukru” znika na tick
 #define AQ_SUGAR_DECAY 0.1
+/// Ile po końcu senności po obiedzie musi minąć, zanim przejedzenie znowu ją da
+#define AQ_FOOD_COMA_COOLDOWN (5 MINUTES)
 
 /mob/living/carbon/human
 	/// Ostatni mnożnik regeneracji staminy z potrzeb, żeby ruszać pulę tylko przy zmianie
@@ -21,6 +23,8 @@
 	var/aq_next_parched_blur = 0
 	/// Senność po obiedzie: do kiedy
 	var/aq_food_coma_until = 0
+	/// Kiedy przejedzenie może znowu dać senność
+	var/aq_next_food_coma = 0
 	/// Czy w poprzednim ticku postać była przejedzona (senność tylko przy przejściu progu)
 	var/aq_was_overfed = FALSE
 	/// Cukier wchłonięty niedawno
@@ -59,6 +63,8 @@
 
 /// Skutki potrzeb na ten tick
 /mob/living/carbon/human/proc/aq_handle_needs()
+	if(IsInStasis()) // w stazie ciało stoi, jak w core human/Life(): bez krwawienia wrzodu i bez soli czy tłuszczu oddających wodę i sytość
+		return
 	if(stat == DEAD)
 		aq_set_starving_tremor(FALSE)
 		aq_set_needs_regen(1)
@@ -99,8 +105,10 @@
 	if(HAS_TRAIT_FROM(src, TRAIT_FAT, OBESITY))
 		. *= 0.85 // zadyszka
 	var/overfed = nutrition > NUTRITION_LEVEL_FULL
-	if(overfed && !aq_was_overfed)
+	// Tylko po prawdziwym obżarstwie: przy podjadaniu na granicy progu senność nie odnawia się co kęs
+	if(overfed && !aq_was_overfed && world.time >= aq_next_food_coma)
 		aq_food_coma_until = world.time + 2 MINUTES
+		aq_next_food_coma = aq_food_coma_until + AQ_FOOD_COMA_COOLDOWN
 		to_chat(src, "<span class='notice'>Po takim posiłku robi ci się sennie.</span>")
 	aq_was_overfed = overfed
 	if(world.time < aq_food_coma_until)
@@ -116,7 +124,8 @@
 /// Krótkie skutki tego, co postać zjadła i wypiła: zastrzyk i spadek cukru, kofeina
 /mob/living/carbon/human/proc/aq_food_buff_effects()
 	. = 1
-	if(aq_sugar_load >= AQ_SUGAR_RUSH_LOAD && world.time >= aq_sugar_rush_until)
+	// Nowy zastrzyk dopiero po spadku: ciągłe picie coli daje cykl zastrzyk-spadek, a nie wieczny zastrzyk
+	if(aq_sugar_load >= AQ_SUGAR_RUSH_LOAD && world.time >= aq_sugar_crash_until)
 		aq_sugar_load = 0
 		aq_sugar_rush_until = world.time + 2 MINUTES
 		aq_sugar_crash_until = aq_sugar_rush_until + 2 MINUTES
@@ -186,6 +195,7 @@
 	aq_sugar_rush_until = 0
 	aq_sugar_crash_until = 0
 	aq_food_coma_until = 0
+	aq_next_food_coma = 0
 	aq_set_starving_tremor(FALSE)
 
 #undef AQ_SALT_THIRST_REFUND
@@ -193,3 +203,4 @@
 #undef AQ_STARVING_TREMOR_SPREAD
 #undef AQ_SUGAR_RUSH_LOAD
 #undef AQ_SUGAR_DECAY
+#undef AQ_FOOD_COMA_COOLDOWN

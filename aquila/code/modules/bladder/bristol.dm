@@ -32,7 +32,8 @@
 
 /mob/living/carbon/human/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(!Forced && !buckled && isturf(loc) && isturf(OldLoc))
+	// Własne kroki: bez ciągnięcia za kimś, wózka, pojazdu i dryfu w nieważkości
+	if(!Forced && !buckled && !pulledby && isturf(loc) && isturf(OldLoc) && has_gravity())
 		bowel_steps++
 
 /datum/reagent/consumable
@@ -50,15 +51,6 @@
 
 /datum/reagent/consumable/sugar
 	stool_diet = -1
-
-/datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
-	if(stool_diet > 0)
-		M.bowel_fiber += metabolization_rate
-	else if(stool_diet < 0)
-		M.bowel_junk += metabolization_rate
-	if(defecation_factor > 0 && !istype(src, /datum/reagent/consumable/castor_oil))
-		M.bowel_laxative += metabolization_rate
-	return ..()
 
 /**
  * Typ stolca (1-7) w tej chwili.
@@ -132,6 +124,8 @@
 
 /// Próg popuszczenia: przy biegunce niższy
 /mob/living/proc/accident_threshold()
+	if(defecation <= DEFECATION_ACTUALLY_SHIT_YOURSELF - 20) // niżej żaden typ nie zmienia wyniku porównania, nie liczymy typu co tick
+		return DEFECATION_ACTUALLY_SHIT_YOURSELF
 	switch(stool_type())
 		if(6)
 			return DEFECATION_ACTUALLY_SHIT_YOURSELF - 10

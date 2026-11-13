@@ -54,14 +54,30 @@
 	eater.set_nutrition(NUTRITION_LEVEL_FULL + 10)
 	eater.aq_handle_needs()
 	TEST_ASSERT(eater.aq_food_coma_until > world.time, "Overeating gives no food coma")
+	// Regresja: podjadanie na granicy przejedzenia nie odnawia senności co kęs
+	eater.set_nutrition(NUTRITION_LEVEL_FULL - 10)
+	eater.aq_handle_needs()
+	var/coma_until = eater.aq_food_coma_until
+	eater.set_nutrition(NUTRITION_LEVEL_FULL + 10)
+	eater.aq_handle_needs()
+	TEST_ASSERT_EQUAL(eater.aq_food_coma_until, coma_until, "Snacking at the overeating threshold renews the food coma every bite")
 	eater.set_nutrition(NUTRITION_LEVEL_FED + 10)
+	eater.aq_handle_needs()
 	eater.aq_food_coma_until = 0
+	eater.aq_next_food_coma = 0
 
 	// Cukier: zastrzyk, potem spadek
 	eater.aq_sugar_load = 5
 	TEST_ASSERT_EQUAL(eater.aq_food_buff_effects(), 1.25, "Sugar gives no rush")
 	eater.aq_sugar_rush_until = world.time - 1
 	TEST_ASSERT_EQUAL(eater.aq_food_buff_effects(), 0.9, "The sugar rush does not end with a crash")
+	// Regresja: cukier pity dalej w trakcie zastrzyku nie przeskakuje spadku
+	eater.aq_sugar_load = 10
+	TEST_ASSERT_EQUAL(eater.aq_food_buff_effects(), 0.9, "More sugar skips the crash and starts a new rush")
+	eater.aq_sugar_crash_until = world.time - 1
+	TEST_ASSERT_EQUAL(eater.aq_food_buff_effects(), 1.25, "Sugar after the crash gives no new rush")
+	eater.aq_sugar_load = 0
+	eater.aq_sugar_rush_until = 0
 	eater.aq_sugar_crash_until = 0
 
 	// Kawa: kofeina we krwi
@@ -163,6 +179,32 @@
 	milk.on_mob_life(eater)
 	TEST_ASSERT(belly.aq_acid < 50, "Milk does not lower stomach acid")
 	TEST_ASSERT(belly.aq_soothed_until > world.time, "Milk does not soothe the stomach")
+	eater.reagents.clear_reagents()
+
+	// Regresja: w stazie krwawiący wrzód nie postępuje i nie upuszcza krwi
+	belly.aq_ulcer = AQ_ULCER_STAGE_3 + 5
+	belly.aq_acid = 90
+	eater.blood_volume = BLOOD_VOLUME_NORMAL
+	eater.SetStasis(TRUE)
+	for(var/i in 1 to 50)
+		eater.aq_handle_needs()
+	TEST_ASSERT_EQUAL(belly.aq_ulcer, AQ_ULCER_STAGE_3 + 5, "An ulcer progresses in stasis")
+	TEST_ASSERT_EQUAL(eater.blood_volume, BLOOD_VOLUME_NORMAL, "A bleeding ulcer drains blood in stasis")
+	eater.SetStasis(FALSE)
+
+	// Regresja: syntetyczny tors nie czuje bólu wrzodu, jak w bazie
+	var/obj/item/bodypart/chest/chest = eater.get_bodypart(BODY_ZONE_CHEST)
+	chest.change_bodypart_status(BODYTYPE_ROBOTIC)
+	TEST_ASSERT_EQUAL(eater.aq_compute_pain(), 0, "A synthetic chest feels ulcer pain")
+
+	// Regresja: białko nie odbudowuje krwi bez bijącego serca
+	var/mob/living/carbon/human/heartless = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/heart/heart = heartless.getorganslot(ORGAN_SLOT_HEART)
+	heart.Remove(heartless)
+	qdel(heart)
+	heartless.blood_volume = BLOOD_VOLUME_SAFE
+	heartless.aq_protein_blood_regen()
+	TEST_ASSERT_EQUAL(heartless.blood_volume, BLOOD_VOLUME_SAFE, "Protein restores blood without a heart")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

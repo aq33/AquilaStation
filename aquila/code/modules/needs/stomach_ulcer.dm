@@ -45,15 +45,16 @@
 		return 1
 	return 0
 
-/// Ból od wrzodów, dokładany do bólu z ciała
+/// Ból od wrzodów, dokładany do bólu z ciała. Uszkodzenie żołądka od wrzodu boli osobno w bazie (damage * 0,3),
+/// więc razem wychodzi ok. 5 / 12 / 20.
 /obj/item/organ/stomach/proc/aq_ulcer_pain()
 	switch(aq_ulcer_stage())
 		if(1)
 			. = 5
 		if(2)
-			. = 12
+			. = 9
 		if(3)
-			. = 20
+			. = 15
 	if(. && world.time < aq_irritated_until)
 		. += 10
 
@@ -153,6 +154,10 @@
 /mob/living/carbon/human/aq_compute_pain()
 	. = ..()
 	if(stat == DEAD || HAS_TRAIT(src, TRAIT_ANALGESIA) || (status_flags & GODMODE))
+		return
+	// Syntetyczny tors nie ma nerwów, jak w bazie
+	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !IS_ORGANIC_LIMB(chest))
 		return
 	var/obj/item/organ/stomach/belly = aq_get_ulcer_stomach()
 	if(belly)

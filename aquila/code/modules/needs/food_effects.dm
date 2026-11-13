@@ -130,9 +130,19 @@
 /datum/reagent/consumable/nutriment/protein/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.blood_volume < BLOOD_VOLUME_NORMAL && !(NOBLOOD in H.dna.species.species_traits) && !HAS_TRAIT(H, TRAIT_NO_BLOOD))
-			H.blood_volume = min(H.blood_volume + 0.5, BLOOD_VOLUME_NORMAL)
+		H.aq_protein_blood_regen()
 	return ..()
+
+/// Białko dokłada do odnowy krwi z handle_blood() połowę jej podstawowego tempa, na tych samych warunkach:
+/// bije serce, nic nie krwawi, organizm odnawia krew (nie wampir, nie kriostaza, nie zwłoki-husk)
+/mob/living/carbon/human/proc/aq_protein_blood_regen()
+	if(blood_volume >= BLOOD_VOLUME_NORMAL || (NOBLOOD in dna.species.species_traits) || HAS_TRAIT(src, TRAIT_NO_BLOOD) || HAS_TRAIT(src, TRAIT_HUSK))
+		return
+	if(bodytemperature < TCRYO || is_bleeding() || mind?.has_antag_datum(/datum/antagonist/vampire))
+		return
+	var/heart_blood_multiplier = get_heart_blood_regeneration_multiplier()
+	if(heart_blood_multiplier)
+		blood_volume = min(blood_volume + 0.25 * heart_blood_multiplier, BLOOD_VOLUME_NORMAL)
 
 /datum/reagent/consumable/nutriment/fat/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))

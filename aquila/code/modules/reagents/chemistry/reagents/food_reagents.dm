@@ -3,9 +3,17 @@
 	var/defecation_factor = 0
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
+	// Skala bristolska (aquila/code/modules/bladder/bristol.dm): co zjedzone i wypite od ostatniego wypróżnienia
+	if(stool_diet > 0)
+		M.bowel_fiber += metabolization_rate
+	else if(stool_diet < 0)
+		M.bowel_junk += metabolization_rate
+	if(defecation_factor > 0 && !istype(src, /datum/reagent/consumable/castor_oil))
+		M.bowel_laxative += metabolization_rate
+	// Przeczyszczające działają same z siebie: typ stolca już je uwzględnia, więc bez mnożnika stool_rate_mod()
 	if(defecation_factor && ishuman(M) && CONFIG_GET(flag/shitting_enabled))
 		var/mob/living/carbon/human/H = M
-		H.adjust_defecation(defecation_factor * H.physiology.defecation_mod * H.dna.species.shitmod * H.stool_rate_mod())
+		H.adjust_defecation(defecation_factor * H.physiology.defecation_mod * H.dna.species.shitmod)
 	return ..()
 
 // Coffee gets things moving

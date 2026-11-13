@@ -50,7 +50,9 @@
 	TEST_ASSERT(pooper.stool_type() >= 6, "A lot of coffee does not loosen the stool")
 	pooper.reagents.add_reagent(/datum/reagent/consumable/castor_oil, 10)
 	TEST_ASSERT_EQUAL(pooper.stool_type(), 7, "Castor oil is not type 7")
+	pooper.defecation = DEFECATION_ACTUALLY_SHIT_YOURSELF - 5
 	TEST_ASSERT(pooper.accident_threshold() < DEFECATION_ACTUALLY_SHIT_YOURSELF, "Diarrhea does not lower the accident threshold")
+	pooper.defecation = DEFECATION_NONE
 	TEST_ASSERT(pooper.stool_rate_mod() > 1, "Diarrhea does not speed the need up")
 
 	// Popuszczenie: własna odraza z popuszczenia nie może podbić zapisanego typu (4 → 5)
