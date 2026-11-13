@@ -18,7 +18,7 @@
 	var/list/parts = splittext(setting, "/")
 	var/index = length(parts) == 2 ? text2num(parts[1]) : null
 	var/count = length(parts) == 2 ? text2num(parts[2]) : null
-	if(!index || !count || index < 1 || index > count)
+	if(!index || !count || index < 1 || index > count || index != round(index) || count != round(count))
 		log_world("UNIT_TEST_SHARD=[setting] nie ma postaci numer/liczba, wykonuję wszystkie testy")
 		return tests
 	var/first = round((index - 1) * length(tests) / count) + 1

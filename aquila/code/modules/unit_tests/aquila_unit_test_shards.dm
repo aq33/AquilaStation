@@ -17,5 +17,6 @@
 	TEST_ASSERT(second.Join(",") == "c,d", "Part 2/3 is [second.Join(",")], expected c,d")
 	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "4/3")) == length(tests), "A part number above the count did not run every test")
 	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "abc")) == length(tests), "A malformed setting did not run every test")
+	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "1.5/3")) == length(tests), "A fractional part number did not run every test")
 
 #undef TEST_ASSERT

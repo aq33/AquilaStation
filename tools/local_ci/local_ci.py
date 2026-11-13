@@ -271,6 +271,15 @@ def step_maps(r):
 	return code, out
 
 
+def link_or_copy(source, destination):
+	"""Twarde dowiązanie (ten sam dysk), a gdy się nie da, zwykła kopia."""
+	try:
+		os.link(source, destination)
+	except OSError:
+		shutil.copy2(source, destination)
+	return destination
+
+
 def test_deploy_dir(shard):
 	return os.path.join(CACHE, f"ci_test_{shard}")
 
@@ -282,12 +291,14 @@ def deploy_tests(base, target):
 	os.makedirs(target)
 	for ext in (".dmb", ".rsc"):
 		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(target, base + ext))
-	for folder in ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings",
-			"html/changelogs/archive", "tgui/public", "tgui/packages/tgfont/dist", "config"):
+	# Zasoby, których świat nie zapisuje, przez twarde dowiązania (ok. 250 MB na część bez kopiowania).
+	# config/ i html/ są zwykłymi kopiami: serwer je zapisuje, a zapis przez dowiązanie zmieniłby pliki w repo
+	read_only = ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings", "tgui/public", "tgui/packages/tgfont/dist")
+	for folder in read_only + ("html/changelogs/archive", "config"):
 		source = os.path.join(REPO, folder)
 		if os.path.isdir(source):
 			# z plikami .dm jak deploy.sh: testy czytają np. _maps/_basemap.dm
-			shutil.copytree(source, os.path.join(target, folder))
+			shutil.copytree(source, os.path.join(target, folder), copy_function=link_or_copy if folder in read_only else shutil.copy2)
 	for pattern in ("*.dll", "yt-dlp.exe"):
 		for path in glob.glob(os.path.join(REPO, pattern)):
 			shutil.copy2(path, target)

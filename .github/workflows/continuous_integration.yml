@@ -79,8 +79,9 @@ jobs:
           python3 tools/ci/template_dm_generator.py
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   run_all_tests:
-    # AQUILA - testy w 3 rownoleglych czesciach (UNIT_TEST_SHARD, aquila/code/modules/unit_tests/_unit_test_shards.dm)
-    name: run_all_tests (${{ matrix.shard }}/3)
+    # AQUILA - testy w rownoleglych czesciach (UNIT_TEST_SHARD, aquila/code/modules/unit_tests/_unit_test_shards.dm).
+    # Liczba czesci to tylko lista matrix.shard; nazwa i zmienna biora ja ze strategy.job-total
+    name: run_all_tests (${{ matrix.shard }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
@@ -121,7 +122,7 @@ jobs:
           bash tools/ci/install_auxmos.sh
       - name: Compile and run tests
         env:
-          UNIT_TEST_SHARD: ${{ matrix.shard }}/3
+          UNIT_TEST_SHARD: ${{ matrix.shard }}/${{ strategy.job-total }}
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci build -DCIBUILDING
