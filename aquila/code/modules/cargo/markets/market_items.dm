@@ -177,15 +177,6 @@
 	stock_max = 2
 	availability_prob = 30
 
-/datum/market_item/misc/hat_stabilizer
-	name = "Stabilizator kapelusza do MOD"
-	desc = "Nie poświęcaj stylu dla wygody. Kapelusz nie jest w zestawie."
-	item = /obj/item/mod/module/hat_stabilizer
-	price_min = MARKET_CRATE_VALUE * 2
-	price_max = MARKET_CRATE_VALUE * 3
-	stock_max = 2
-	availability_prob = 35
-
 // Tools
 
 /datum/market_item/tool

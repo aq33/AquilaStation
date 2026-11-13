@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 			blocking_firelock.open()	//Open one firelock per tile per try.
 			break
 		for(var/obj/structure/possible_barrier in next_turf) //If we're stuck
-			if(!climbable[possible_barrier.type])
+			if(!climbable[possible_barrier.type] || !possible_barrier.climbable) // AQ EDIT - barykada z drutem kolczastym nie jest do przeskoczenia
 				continue
 			if(possible_barrier.dir == reverse_dir || istype(possible_barrier, /obj/structure/table))
 				var/obj/item/dropped_it
@@ -216,11 +216,13 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - wspinanie śpi (do_after), a w tym czasie ścieżka bywa wyczyszczona
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
 		for(var/obj/structure/possible_barrier in this_turf)
-			if(!climbable[possible_barrier.type])
+			if(!climbable[possible_barrier.type] || !possible_barrier.climbable) // AQ EDIT - barykada z drutem kolczastym nie jest do przeskoczenia
 				continue
 			if(possible_barrier.dir == move_dir || istype(possible_barrier, /obj/structure/table))
 				var/obj/item/dropped_it
@@ -231,9 +233,13 @@ GLOBAL_LIST_EMPTY(knpcs)
 					H.put_in_hands(dropped_it, forced=TRUE)
 			else
 				continue
+			if(!length(path)) // AQ EDIT - wspinanie śpi (do_after), a w tym czasie ścieżka bywa wyczyszczona
+				return FALSE
 			if(get_turf(H) == path[1])
 				increment_path()
 				return TRUE
+		if(!length(path)) // AQ EDIT - ścieżka wyczyszczona w trakcie (wspinanie, otwieranie drzwi)
+			return FALSE
 		step_towards(H, path[1])
 		if(get_turf(H) == path[1]) //Successful move
 			increment_path()

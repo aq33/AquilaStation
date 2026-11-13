@@ -866,6 +866,8 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | vault | skarbiec | m; istniejące |
 | barricade | barykada | ż; istniejące |
 | sandbags | worki z piaskiem | mn; nowe |
+| folding barricade | składana barykada | ż; nowe |
+| sandbag barricade | barykada z worków z piaskiem | ż; nowe |
 | fence | ogrodzenie | n; istniejące |
 | bonfire | ognisko | n; nowe |
 | fireplace | kominek | m; nowe |
