@@ -109,6 +109,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(QDELETED(T))
 		return
+	// AQUILA - kafelek z cieczą z innej grupy (merge_group) ma stan i nakładki tamtej grupy, np. płytką kałużę krwi bez fali
+	var/from_other_group = !QDELETED(T.liquids) && T.liquids.liquid_group != src
 	if(QDELETED(T.liquids))
 		T.liquids = new(T, src)
 		if(QDELETED(T.liquids)) // bariera zablokowała ciecz na tym kafelku
@@ -128,6 +130,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		T.liquids.color = group_color
 	T.liquids.set_frozen(frozen) // AQUILA - w obie strony: kafle wchłoniętego lodu topnieją razem z grupą
 	process_group()
+	// process_group() odświeża członków tylko przy zmianie stanu grupy: wchłonięty kafelek dostaje go od razu (głębokość, fala)
+	if(from_other_group && !QDELETED(T.liquids) && members?[T])
+		T.liquids.set_new_liquid_state(group_overlay_state)
+		T.liquid_height = expected_turf_height + T.turf_height
 
 /datum/liquid_group/proc/remove_from_group(turf/T, should_reprocess = TRUE)
 	if(isnull(T))

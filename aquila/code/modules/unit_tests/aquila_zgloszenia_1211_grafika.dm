@@ -42,6 +42,33 @@
 	TEST_ASSERT(aquila_test_depth_overlay_count(T.liquids), "Ankle deep water lost its depth overlays")
 	aquila_liquids_cleanup(T)
 
+/// AQUILA - a blood tile merged into deep water kept the blood group's state and overlays: the group stays full tile,
+/// so process_group() does not refresh its members
+/datum/unit_test/aquila_merged_blood_tile_gets_depth_overlays
+
+/datum/unit_test/aquila_merged_blood_tile_gets_depth_overlays/Run()
+	var/turf/open/blood_turf = run_loc_floor_bottom_left
+	var/turf/open/water_turf = get_step(blood_turf, EAST)
+	aquila_liquids_cleanup(blood_turf)
+	aquila_liquids_cleanup(water_turf)
+	blood_turf.pool_liquid(/datum/reagent/blood, 90, T20C, list("blood_DNA" = "AQUILATEST", "blood_type" = "O-"))
+	water_turf.add_liquid(/datum/reagent/water, 1000)
+	TEST_ASSERT(!QDELETED(blood_turf.liquids) && !QDELETED(water_turf.liquids), "Setup: the puddles were not made")
+	var/datum/liquid_group/blood_group = blood_turf.liquids.liquid_group
+	var/datum/liquid_group/water_group = water_turf.liquids.liquid_group
+	TEST_ASSERT(blood_group != water_group, "Setup: the puddles merged on their own")
+	TEST_ASSERT(!aquila_test_depth_overlay_count(blood_turf.liquids), "Setup: the blood puddle has depth overlays")
+	TEST_ASSERT(blood_turf.liquids.liquid_state == LIQUID_STATE_ANKLES, "Setup: the blood is not ankle deep (state [blood_turf.liquids.liquid_state])")
+	TEST_ASSERT(water_turf.liquids.liquid_state == LIQUID_STATE_FULLTILE, "Setup: the water is not full tile (state [water_turf.liquids.liquid_state])")
+	water_group.merge_group(blood_group)
+	TEST_ASSERT(blood_turf.liquids?.liquid_group == water_group, "Setup: the blood tile did not join the water group")
+	TEST_ASSERT(!water_group.is_viscous(), "Setup: the merged group is viscous")
+	TEST_ASSERT(water_group.group_overlay_state == LIQUID_STATE_FULLTILE, "Setup: the merged group is not full tile (state [water_group.group_overlay_state])")
+	TEST_ASSERT(blood_turf.liquids.liquid_state == LIQUID_STATE_FULLTILE, "The blood tile merged into deep water kept the state [blood_turf.liquids.liquid_state]")
+	TEST_ASSERT(aquila_test_depth_overlay_count(blood_turf.liquids), "The blood tile merged into water kept no depth overlays")
+	aquila_liquids_cleanup(blood_turf)
+	aquila_liquids_cleanup(water_turf)
+
 /// AQUILA - every brute/burn hit sets damageoverlaytemp = 20, which alone pulsed the red pain vignette after a 1 point scratch
 /datum/unit_test/aquila_pain_vignette_small_hit
 
