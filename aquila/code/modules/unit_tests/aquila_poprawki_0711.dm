@@ -133,6 +133,9 @@
 /// Konsola łączności poza poziomem ze znacznikiem stacji: działa na statku załogi (górniczy, główny), nie na obcym
 /datum/unit_test/aquila_comms_console_on_crew_ship
 	var/datum/turf_reservation/comms_reservation
+	/// Statek testu; Destroy() przywraca mu zwykłą rolę, bo usunięcie statku z rolą MAIN_OVERMAP kończy rundę
+	/// (overmap.dm: „statek zniszczony”), a wtedy CI nie uruchamia już żadnego z dalszych testów
+	var/obj/structure/overmap/probe_ship
 
 /obj/machinery/computer/communications/aquila_probe
 	/// Statek, który zwraca get_overmap() w teście
@@ -157,6 +160,7 @@
 	TEST_ASSERT(!is_station_level(off_station.z), "The reserved block is on a station level, the test checks nothing")
 	var/obj/machinery/computer/communications/aquila_probe/console = allocate(/obj/machinery/computer/communications/aquila_probe, off_station)
 	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/aquila_comms_probe)
+	probe_ship = ship
 	console.probe_ship = ship
 	ship.role = NORMAL_OVERMAP
 	TEST_ASSERT(!console.has_communication(), "A console on a foreign ship off the station level has communication")
@@ -167,6 +171,10 @@
 	console.probe_ship = null
 
 /datum/unit_test/aquila_comms_console_on_crew_ship/Destroy()
+	// Także gdy asercja przerwała Run() przy roli MAIN_OVERMAP: allocate() usuwa statek w ..()
+	if(probe_ship)
+		probe_ship.role = NORMAL_OVERMAP
+		probe_ship = null
 	QDEL_NULL(comms_reservation)
 	return ..()
 

@@ -44,4 +44,12 @@ wait $DD_PID || EXIT_CODE=$?
 wait $TAIL_PID 2>/dev/null || true
 
 cd ..
+# AQUILA - RunUnitTests() zapisuje unit_tests.json dopiero po ostatnim tescie. Gdy runda skonczy sie w trakcie
+# (np. test usunal statek z rola MAIN_OVERMAP), swiat sie restartuje, reszta testow sie nie wykonuje,
+# a clean_run.lk i tak dostaje "Success!". Bez tego pliku przebieg jest urwany.
+if [ ! -f ci_test/data/unit_tests.json ]; then
+	echo "Przebieg testow urwany: brak data/unit_tests.json. Ostatnie zakonczone testy:"
+	grep -E "PASS:|FAIL:" ci_test/data/logs/ci/tests.log | tail -n 3 || true
+	exit 1
+fi
 cat ci_test/data/logs/ci/clean_run.lk

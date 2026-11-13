@@ -75,6 +75,19 @@
 	TEST_ASSERT(result["success"], "A reset with no saved starmap failed")
 	TEST_ASSERT_EQUAL(rustg_file_read(TEST_STARMAP), clean, "A fresh reset didn't write the default")
 
+	// A reboot before the starmap loaded (no map config, subsystem not initialized) must not runtime or overwrite the campaign
+	rustg_file_write(campaign, TEST_STARMAP)
+	var/datum/map_config/map_config = SSmapping.config
+	SSmapping.config = null
+	var/early_save = SSstar_system.save()
+	SSmapping.config = map_config
+	TEST_ASSERT_EQUAL(early_save, 1, "save() without a map config didn't report the skipped save")
+	SSstar_system.initialized = FALSE
+	early_save = SSstar_system.save(TEST_STARMAP)
+	SSstar_system.initialized = TRUE
+	TEST_ASSERT_EQUAL(early_save, 1, "save() before the subsystem initialized didn't report the skipped save")
+	TEST_ASSERT_EQUAL(rustg_file_read(TEST_STARMAP), campaign, "An early save overwrote the campaign")
+
 	// Only starmap test files were created, and the database was never touched
 	cleanup()
 	TEST_ASSERT_EQUAL(length(flist("config/starmap/")), length(starmap_files), "The reset left files in config/starmap/")
