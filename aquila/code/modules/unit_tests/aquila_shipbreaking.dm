@@ -203,25 +203,36 @@
 		qdel(welder)
 		return
 
-	// Silnik postawiony na miejscu (nie z wraku) rozbiera się po staremu, bez rdzenia
+	// Silnik postawiony na miejscu (nie z wraku) rozbiera się po staremu, bez rdzenia.
+	// Liczymy przyrost złomu, nie samą obecność: na polu losowego wraku złom już bywa, a stosy się łączą
 	var/obj/structure/shuttle/engine/heater/built_engine = new(stand)
+	var/core_before = scrap_amount(stand, /obj/item/stack/scrap/core)
 	welder.cut_down(breaker, built_engine)
 	if(!QDELETED(built_engine))
 		return "Rayne welder did not cut a built shuttle engine apart"
-	if(locate(/obj/item/stack/scrap/core) in stand)
+	if(scrap_amount(stand, /obj/item/stack/scrap/core) > core_before)
 		return "A shuttle engine built in the shipbreaking area dropped a ship core"
 	// Dźwigar postawiony na miejscu daje żelazo, nie srebrny szkielet
 	var/obj/structure/girder/built_girder = new(stand)
+	var/framing_before = scrap_amount(stand, /obj/item/stack/scrap/framing)
 	built_girder.deconstruct(TRUE)
-	if(locate(/obj/item/stack/scrap/framing) in stand)
+	if(scrap_amount(stand, /obj/item/stack/scrap/framing) > framing_before)
 		return "A girder built in the shipbreaking area dropped framing scrap"
 
 	var/obj/structure/shuttle/engine/heater/engine = new(stand)
 	ADD_TRAIT(engine, TRAIT_SHIPBREAK_WRECK, SHIPBREAK_WRECK_TRAIT) // jak silnik, który przyleciał z wrakiem
+	core_before = scrap_amount(stand, /obj/item/stack/scrap/core)
 	welder.cut_down(breaker, engine)
 	if(!QDELETED(engine))
 		return "Rayne welder did not cut a shuttle engine apart"
-	if(!(locate(/obj/item/stack/scrap/core) in stand))
+	if(scrap_amount(stand, /obj/item/stack/scrap/core) <= core_before)
 		return "Cutting an engine did not drop a ship core"
+
+/// Łączna ilość złomu danego typu na polu (stosy się łączą, więc liczymy amount, nie obiekty)
+/datum/unit_test/shipbreaking/proc/scrap_amount(turf/T, scrap_type)
+	. = 0
+	for(var/obj/item/stack/scrap/pile in T)
+		if(istype(pile, scrap_type))
+			. += pile.amount
 
 #undef TEST_ASSERT

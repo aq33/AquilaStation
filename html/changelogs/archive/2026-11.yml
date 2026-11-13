@@ -957,3 +957,29 @@
   - bugfix: 'Trwała struktura statku: po wczytaniu zapisu i na starcie rundy gra łata
       pianką każdą dziurę w kadłubie, której nie było na mapie, także taką, której
       nie objął sam zapis. Załatane pola trafiają do logu dla adminów.'
+  - rscadd: 'Gangi: osobiste punkty zamiast wpływów, przychód dla każdego członka
+      (+25% dla zarabiającego).'
+  - rscadd: 'Gangi: teren z kafelków wokół znaku, dochód co 15 s zależny od ruchu
+      ludzi w pobliżu.'
+  - rscadd: 'Gangi: szafka gangu (sklep, skup gotówki, broni i narkotyków, darmowe
+      mundury, przelewy, chowanie pod podłogę).'
+  - rscadd: 'Gangi: pełny mundur na własnym terenie daje więcej zdrowia i staminy,
+      bez munduru na terenie wroga traci się staminę.'
+  - rscadd: 'Gangi: zrzuty skrzyń z bronią ogłaszane gangom i torby z łupem.'
+  - rscadd: 'Gangi: szef wybiera nazwę i mundur gangu, po jego śmierci członek może
+      przejąć dowodzenie.'
+  - rscadd: 'Gangi: nowa broń biała w sklepie (nóż do rzucania, tasak, kij bejsbolowy,
+      tania katana).'
+  - rscdel: 'Gangi: ze sklepu znikają C4, Uzi, laser i granaty EMP.'
+  - balance: 'Gangi: Dominator kosztuje 20000 pkt, bez przejęcia wygrywa gang z najwyższym
+      wynikiem.'
+  - bugfix: 'Gangi: wpływy nie podwajają się już przy każdym raporcie.'
+  - bugfix: 'Gangi: implant nie przerabia członka własnego gangu, posiłki trafiają
+      do właściwego gangu i liczą się do limitu.'
+  - rscadd: 'Złomiarze: nowy event i antagonista średniej wagi wzorowany na Goonstation;
+      rozbierają okręt reklamatorem, pakują maszyny i sprzedają złom w terminalu S.R.O.K.A.'
+  - rscadd: 'Złomiarze: kapsuły desantowe na okręt, teleporter ręczny, gogle z cenami,
+      spawarka łukowa i sklep sprzętu za punkty złomu.'
+  - imageadd: Sprite'y sprzętu złomiarzy z Goonstation.
+  - rscadd: 'Złomiarze: okna terminalu S.R.O.K.A., konsoli kapsuł i roli złomiarza
+      oraz osobna preferencja roli „Złomiarz”.'
