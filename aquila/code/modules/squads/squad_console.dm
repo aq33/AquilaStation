@@ -156,6 +156,14 @@
 			new /obj/item/clothing/neck/squad(get_turf(source), squad)
 			playsound(source, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
 			return TRUE
+		if("aq_print_pager")
+			if(!squad || !source || world.time < state["next_print"])
+				return FALSE
+			state["next_print"] = world.time + 5 SECONDS
+			new /obj/item/squad_pager(get_turf(source), squad)
+			log_game("[key_name(user)] printed a squad pager for squad [squad]")
+			playsound(source, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
+			return TRUE
 		if("aq_create_squad")
 			if(!source)
 				return FALSE

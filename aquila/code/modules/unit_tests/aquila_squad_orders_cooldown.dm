@@ -41,6 +41,16 @@
 	pager.attack_self(user)
 	TEST_ASSERT(!pager.squad, "Użycie pagera bez drużyny przypisało drużynę")
 
+	// Konsola XO drukuje pager przypisany do drużyny, z odstępem jak przy smyczy
+	var/datum/squad/squad = GLOB.squad_manager.squads[1]
+	var/obj/machinery/computer/squad_manager/console = allocate(/obj/machinery/computer/squad_manager, run_loc_floor_top_right)
+	var/list/state = list()
+	TEST_ASSERT(aq_squad_console_act("aq_print_pager", list("squad_id" = REF(squad)), user, console, null, state), "Konsola nie wydrukowała pagera")
+	var/obj/item/squad_pager/printed = locate() in get_turf(console)
+	TEST_ASSERT(printed?.squad == squad, "Wydrukowany pager nie jest przypisany do drużyny [squad]")
+	TEST_ASSERT(!aq_squad_console_act("aq_print_pager", list("squad_id" = REF(squad)), user, console, null, state), "Drugi pager wydrukował się bez odstępu")
+	qdel(printed)
+
 /// Szafka XO (także wersja z NSV bez ..()) ma globalny pager drużyn, dokładnie jeden
 /datum/unit_test/aquila_squad_pager_xo_closet
 

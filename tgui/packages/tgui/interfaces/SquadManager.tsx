@@ -308,6 +308,15 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             Smycz
           </Button>
         </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="pager"
+            tooltip="Pager przypisany do tej drużyny"
+            onClick={() => act('aq_print_pager', { squad_id: squad.id })}
+          >
+            Pager
+          </Button>
+        </Stack.Item>
       </Stack>
       {!squad.members.length && <Box color="label">Brak członków.</Box>}
       {squad.members.map((member) => (
