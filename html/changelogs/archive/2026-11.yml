@@ -946,3 +946,14 @@
       do końca rundy.
   - bugfix: Zasięg śledzenia radaru nie podwaja się na stałe przy dwóch impulsach
       tuż po sobie.
+'2026-11-13':
+  Joker66613:
+  - bugfix: Restart serwera przed załadowaniem mapy nie zapisuje już pustej mapy gwiazd
+      i nie sypie błędem.
+  - bugfix: Magnes złomowy nie ładuje drugiego wraku na już przyciągnięty.
+  - bugfix: Pożar podłogi nie wywołuje błędu przy przedmiotach wypadających z usuwanego
+      ciała.
+  - spellcheck: Zupa z łez klauna ma inną nazwę niż napój Łzy klauna.
+  - bugfix: 'Trwała struktura statku: po wczytaniu zapisu i na starcie rundy gra łata
+      pianką każdą dziurę w kadłubie, której nie było na mapie, także taką, której
+      nie objął sam zapis. Załatane pola trafiają do logu dla adminów.'
