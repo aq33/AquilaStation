@@ -14,6 +14,7 @@
 	var/salvager_points = 0
 	/// Wszystkie zarobione punkty (cel drużyny i podsumowanie rundy)
 	var/salvager_points_earned = 0
+	ui_name = "AntagInfoSalvager"
 
 /datum/antagonist/pirate/salvager/greet()
 	to_chat(owner, "<span class='boldannounce'>Jesteś złomiarzem!</span>")
@@ -40,8 +41,42 @@
 	salvager_points += amount
 	salvager_points_earned += amount
 
+// Okno roli: punkty zmieniają się w trakcie rundy, więc są w ui_data z autoodświeżaniem (jak w oknie gangu)
+/datum/antagonist/pirate/salvager/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, ui_name, name)
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/datum/antagonist/pirate/salvager/ui_data(mob/user)
+	var/list/data = list()
+	data["points"] = salvager_points
+	data["earned"] = salvager_points_earned
+	var/datum/team/pirate/salvager/team = crew
+	var/datum/objective/salvage_points/goal = istype(team) ? (locate() in team.objectives) : null
+	data["crew_points"] = istype(team) ? team.total_points() : salvager_points_earned
+	data["goal"] = goal?.target_amount || SALVAGER_TARGET_POINTS
+	var/list/members = list()
+	if(istype(team))
+		for(var/datum/mind/M in team.members)
+			var/datum/antagonist/pirate/salvager/S = M.has_antag_datum(/datum/antagonist/pirate/salvager)
+			members += list(list(
+				"name" = M.name,
+				"earned" = S?.salvager_points_earned || 0,
+				"alive" = considered_alive(M),
+				"you" = M == owner,
+			))
+	data["crew"] = members
+	return data
+
 /proc/get_salvager_datum(mob/user)
 	return user?.mind?.has_antag_datum(/datum/antagonist/pirate/salvager)
+
+/// Własna preferencja roli: antagoniści są u nas opt-in, a złomiarze nie powinni wymagać włączonych piratów
+/datum/role_preference/midround_ghost/salvager
+	name = "Złomiarz"
+	antag_datum = /datum/antagonist/pirate/salvager
 
 /datum/team/pirate/salvager
 	name = "Załoga złomiarzy"

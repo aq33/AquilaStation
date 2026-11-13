@@ -31,6 +31,23 @@
 	var/obj/machinery/atmospherics/pipe/simple/pipe = allocate(/obj/machinery/atmospherics/pipe/simple, far)
 	TEST_ASSERT_EQUAL(reclaimer.salvage_time(pipe), 0, "Pipes must not be salvaged")
 
+	// Regresja: kliknięcie maszyny reklamatorem poza trybem walki rozbiera ją, a nie uderza (pusty akumulator kończy bez czekania)
+	salvager.set_combat_mode(FALSE)
+	reclaimer.charge = 0
+	reclaimer.melee_attack_chain(salvager, recharger)
+	TEST_ASSERT_EQUAL(recharger.obj_integrity, recharger.max_integrity, "The reclaimer should not hit what it salvages outside combat mode")
+	reclaimer.charge = reclaimer.max_charge
+
+	// To samo dla urządzenia dwukonstrukcyjnego przy maszynie, której nie da się spakować
+	var/obj/item/salvage_dualconstructor/dualconstructor = allocate(/obj/item/salvage_dualconstructor)
+	recharger.flags_1 |= NODECONSTRUCT_1
+	dualconstructor.melee_attack_chain(salvager, recharger)
+	TEST_ASSERT_EQUAL(recharger.obj_integrity, recharger.max_integrity, "The dualconstruction device should not hit machines outside combat mode")
+	recharger.flags_1 &= ~NODECONSTRUCT_1
+
+	// Złomiarze mają własną preferencję roli (antagoniści są opt-in, a ankieta nie może wymagać piratów)
+	TEST_ASSERT(GLOB.role_preference_entries[/datum/role_preference/midround_ghost/salvager], "Salvagers should have their own role preference")
+
 	// Rozbiórka reklamatorem daje złom
 	reclaimer.salvage(recharger)
 	TEST_ASSERT(QDELETED(recharger), "The salvaged machine should be gone")

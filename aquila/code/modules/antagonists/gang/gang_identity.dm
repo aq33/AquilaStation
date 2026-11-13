@@ -65,6 +65,18 @@
 		ui = new(user, src, "GangIdentity", "Tożsamość gangu")
 		ui.open()
 
+/// Ikona typu przedmiotu dla okien TGUI (base64 PNG). Kombinezony mają w .dmi tylko szary szablon,
+/// więc kolor bierzemy z greyscale_colors albo z color, tak jak przedmiot w grze.
+/proc/aq_item_type_icon(obj/item/item_type)
+	var/config = initial(item_type.greyscale_config)
+	var/colors = initial(item_type.greyscale_colors)
+	var/icon/source = (config && colors) ? SSgreyscale.GetColoredIconByType(config, colors) : initial(item_type.icon)
+	var/icon/result = icon(source, initial(item_type.icon_state), SOUTH, 1)
+	var/tint = initial(item_type.color)
+	if(istext(tint))
+		result.Blend(tint, ICON_MULTIPLY)
+	return icon2base64(result)
+
 /// Ikony zestawów liczone raz na rundę (base64 PNG kombinezonu i nakrycia głowy)
 /proc/aq_gang_uniform_sets()
 	var/static/list/sets
@@ -81,8 +93,8 @@
 			"outfit" = "[preset_outfit]",
 			"uniform_name" = initial(preset_outfit.name),
 			"hat_name" = initial(preset_hat.name),
-			"uniform_icon" = icon2base64(icon(initial(preset_outfit.icon), initial(preset_outfit.icon_state), SOUTH, 1)),
-			"hat_icon" = icon2base64(icon(initial(preset_hat.icon), initial(preset_hat.icon_state), SOUTH, 1)),
+			"uniform_icon" = aq_item_type_icon(preset_outfit),
+			"hat_icon" = aq_item_type_icon(preset_hat),
 		))
 	return sets
 

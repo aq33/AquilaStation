@@ -108,61 +108,120 @@
 		say(prob(95) ? "Obecna wartość rynkowa wynosi 0." : "Brak w bazie kupca na [I].")
 		return TRUE
 	say(prob(90) ? "Obecna wartość rynkowa wynosi [value]." : "[value] to najlepsze, co mogę dać.")
-	var/datum/antagonist/pirate/salvager/S = get_salvager_datum(user)
-	if(!S)
-		return TRUE
-	if(tgui_alert(user, "Sprzedać [I] za [value] pkt?", "S.R.O.K.A.", list("Sprzedaj", "Zostaw")) != "Sprzedaj")
-		return TRUE
-	if(QDELETED(I) || !user.Adjacent(src) || salvager_appraise(I) != value || !user.temporarilyRemoveItemFromInventory(I))
-		return TRUE
-	qdel(I)
-	S.add_salvage_points(value)
-	say(pick("Dziękuję za interes, organiczny.", "Dopisuję cię do bazy dobrych klientów."))
-	playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
+	// Sprzedaż jest w oknie terminalu: pokazuje przedmiot z ręki i jego cenę
+	if(get_salvager_datum(user))
+		ui_interact(user)
 	return TRUE
 
 /obj/machinery/salvager_trader/ui_interact(mob/user, datum/tgui/ui)
-	var/datum/antagonist/pirate/salvager/S = get_salvager_datum(user)
-	if(!S)
+	if(!get_salvager_datum(user))
 		say("Nie można przetworzyć żądania.")
 		return
-	var/list/dat = list()
-	dat += "<b>Witaj w sklepie. Wybierz sprzęt.</b><br>Twoje punkty złomu: <b>[S.salvager_points]</b> (zarobione: [S.salvager_points_earned])<br><hr>"
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SalvagerTrader", "S.R.O.K.A.")
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/obj/machinery/salvager_trader/ui_static_data(mob/user)
+	var/list/data = list()
 	var/list/shop = salvager_shop_items()
+	var/list/categories = list()
+	var/list/items = list()
 	for(var/path in shop)
 		var/obj/item/item_type = path
-		var/price = shop[path]
-		var/label = "[initial(item_type.name)] ([price] pkt)"
-		if(S.salvager_points >= price)
-			label = "<a href='byond://?src=[REF(src)];buy=[path]'>[label]</a>"
-		dat += "[label]<br>"
-	var/datum/browser/popup = new(user, "salvager_trader", "S.R.O.K.A.", 420, 620)
-	popup.set_content(dat.Join())
-	popup.open()
+		var/category = salvager_shop_category(path)
+		categories |= category
+		items += list(list(
+			"path" = "[path]",
+			"name" = initial(item_type.name),
+			"desc" = initial(item_type.desc),
+			"price" = shop[path],
+			"category" = category,
+			"icon" = salvager_type_icon(path),
+		))
+	data["categories"] = categories
+	data["shop"] = items
+	return data
 
-/obj/machinery/salvager_trader/Topic(href, href_list)
+/obj/machinery/salvager_trader/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/antagonist/pirate/salvager/S = get_salvager_datum(user)
+	data["points"] = S?.salvager_points || 0
+	data["earned"] = S?.salvager_points_earned || 0
+	var/datum/team/pirate/salvager/crew = S?.crew
+	var/datum/objective/salvage_points/goal = istype(crew) ? (locate() in crew.objectives) : null
+	data["crew_points"] = istype(crew) ? crew.total_points() : 0
+	data["goal"] = goal?.target_amount || 0
+	var/obj/item/held = user.get_active_held_item()
+	if(held)
+		data["held"] = list(
+			"name" = held.name,
+			"value" = salvager_appraise(held),
+			"icon" = salvager_type_icon(held.type),
+		)
+	return data
+
+/obj/machinery/salvager_trader/ui_act(action, list/params)
 	. = ..()
+	if(.)
+		return
 	var/mob/living/user = usr
 	if(!istype(user) || !user.Adjacent(src) || user.incapacitated())
 		return
 	var/datum/antagonist/pirate/salvager/S = get_salvager_datum(user)
-	if(!S || !href_list["buy"])
+	if(!S)
 		return
-	var/path = text2path(href_list["buy"])
-	var/price = salvager_shop_items()[path]
-	if(!price || S.salvager_points < price)
-		say("Przykro mi, nie masz wystarczających środków.")
-		return
-	S.salvager_points -= price
-	var/obj/item/bought = new path(get_turf(src))
-	bought.salvager_part = TRUE
-	if(istype(bought, /obj/item/stack/barbed_wire))
-		var/obj/item/stack/barbed_wire/wire = bought
-		wire.amount = 3
-		wire.update_icon()
-	user.put_in_hands(bought)
-	say(pick("Dziękuję za zakupy.", "Czekam na kolejne transakcje."))
-	ui_interact(user)
+	switch(action)
+		if("sell")
+			var/obj/item/I = user.get_active_held_item()
+			var/value = salvager_appraise(I)
+			if(!value)
+				say("Obecna wartość rynkowa wynosi 0.")
+				return TRUE
+			if(!user.temporarilyRemoveItemFromInventory(I))
+				return TRUE
+			qdel(I)
+			S.add_salvage_points(value)
+			say(pick("Dziękuję za interes, organiczny.", "Dopisuję cię do bazy dobrych klientów."))
+			playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
+			return TRUE
+		if("buy")
+			var/path = text2path(params["path"])
+			var/price = salvager_shop_items()[path]
+			if(!price)
+				return
+			if(S.salvager_points < price)
+				say("Przykro mi, nie masz wystarczających środków.")
+				return TRUE
+			S.salvager_points -= price
+			var/obj/item/bought = new path(get_turf(src))
+			bought.salvager_part = TRUE
+			if(istype(bought, /obj/item/stack/barbed_wire))
+				var/obj/item/stack/barbed_wire/wire = bought
+				wire.amount = 3
+				wire.update_icon()
+			user.put_in_hands(bought)
+			say(pick("Dziękuję za zakupy.", "Czekam na kolejne transakcje."))
+			playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
+			return TRUE
+
+/// Dział sklepu S.R.O.K.A. dla przedmiotu
+/proc/salvager_shop_category(path)
+	if(ispath(path, /obj/item/gun) || ispath(path, /obj/item/ammo_box) || ispath(path, /obj/item/storage/box/lethalshot) || ispath(path, /obj/item/fireaxe) || ispath(path, /obj/item/melee) || ispath(path, /obj/item/grenade))
+		return "Broń"
+	if(ispath(path, /obj/item/clothing/head/helmet) || ispath(path, /obj/item/clothing/suit/armor) || ispath(path, /obj/item/shield) || ispath(path, /obj/item/stack/barbed_wire) || ispath(path, /obj/item/jammer))
+		return "Ochrona"
+	if(ispath(path, /obj/item/storage/box) || ispath(path, /obj/item/storage/pill_bottle))
+		return "Zaopatrzenie"
+	return "Narzędzia"
+
+/// Ikona typu przedmiotu dla okien TGUI (raz na typ)
+/proc/salvager_type_icon(path)
+	var/static/list/cache = list()
+	if(!cache[path])
+		cache[path] = aq_item_type_icon(path)
+	return cache[path]
 
 ///////////////////
 // Konsola kapsuł desantowych
@@ -187,52 +246,74 @@
 	/// Do kiedy konsola się przeładowuje
 	var/next_launch = 0
 	var/launching = FALSE
+	/// Pierwszy etap startu w oknie konsoli (Goon pytał dwa razy)
+	var/armed = FALSE
 	var/announced_once = FALSE
 
 /obj/machinery/computer/salvager_pod_launcher/ui_interact(mob/user, datum/tgui/ui)
 	if(!get_salvager_datum(user))
 		to_chat(user, "<span class='warning'>Ta konsola nie ma dla ciebie sensu.</span>")
 		return
-	if(launching)
-		to_chat(user, "<span class='warning'>Kapsuły już startują!</span>")
-		return
-	if(!landing_area)
-		choose_area(user)
-		return
-	var/choice = tgui_alert(user, "Obszar lądowania: [landing_area.name]. Co robisz?", name, list("Start", "Zmień obszar", "Anuluj"))
-	if(choice == "Zmień obszar")
-		choose_area(user)
-	else if(choice == "Start")
-		try_launch(user)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SalvagerPodLauncher", name)
+		ui.set_autoupdate(TRUE)
+		ui.open()
 
-/obj/machinery/computer/salvager_pod_launcher/proc/choose_area(mob/user)
-	var/list/areas = list()
+/obj/machinery/computer/salvager_pod_launcher/ui_static_data(mob/user)
+	var/list/names = list()
+	for(var/area_name in landing_areas())
+		names += area_name
+	return list("areas" = names)
+
+/obj/machinery/computer/salvager_pod_launcher/ui_data(mob/user)
+	var/list/data = list()
+	data["area"] = landing_area?.name
+	var/list/crew = list()
+	for(var/mob/living/carbon/C as anything in launch_crew())
+		crew += "[C]"
+	data["crew"] = crew
+	data["reload"] = max(0, round((next_launch - world.time) / 10))
+	data["launching"] = launching
+	data["armed"] = armed
+	return data
+
+/obj/machinery/computer/salvager_pod_launcher/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!get_salvager_datum(usr) || launching)
+		return
+	switch(action)
+		if("set_area")
+			var/list/areas = landing_areas()
+			var/area/picked = areas[params["area"]]
+			if(picked)
+				landing_area = picked
+				armed = FALSE
+			return TRUE
+		if("arm")
+			armed = !armed && landing_area && world.time >= next_launch
+			return TRUE
+		if("launch")
+			if(!armed || !landing_area || world.time < next_launch)
+				return TRUE
+			armed = FALSE
+			INVOKE_ASYNC(src, PROC_REF(launch), usr)
+			return TRUE
+
+/// Obszary okrętu, na które da się lądować: nazwa -> obszar
+/obj/machinery/computer/salvager_pod_launcher/proc/landing_areas()
+	. = list()
 	for(var/area/A as anything in GLOB.sortedAreas)
-		if(!(A.area_flags & VALID_TERRITORY) || !is_station_level(A.z) || areas[A.name])
+		if(!(A.area_flags & VALID_TERRITORY) || !is_station_level(A.z) || .[A.name])
 			continue
-		areas[A.name] = A
-	var/picked = tgui_input_list(user, "Gdzie lądujemy?", name, areas)
-	if(picked && areas[picked])
-		landing_area = areas[picked]
-		to_chat(user, "<span class='notice'>Obszar lądowania: [landing_area.name].</span>")
+		.[A.name] = A
 
 /obj/machinery/computer/salvager_pod_launcher/proc/launch_crew()
 	. = list()
 	for(var/mob/living/carbon/C in range(2, src))
 		. += C
-
-/obj/machinery/computer/salvager_pod_launcher/proc/try_launch(mob/user)
-	if(world.time < next_launch)
-		to_chat(user, "<span class='warning'>Kapsuły się przeładowują. Gotowe za [DisplayTimeText(next_launch - world.time)].</span>")
-		return
-	var/list/crew = launch_crew()
-	if(tgui_alert(user, "Na pewno startujecie? [length(crew) <= 1 ? "Jesteś sam!" : "Leci [length(crew)] osób."]", name, list("Tak", "Nie")) != "Tak")
-		return
-	if(tgui_alert(user, "NAPRAWDĘ na pewno? Nie ma powrotu!", name, list("Tak", "Nie")) != "Tak")
-		return
-	if(launching || world.time < next_launch || !user.Adjacent(src))
-		return
-	INVOKE_ASYNC(src, PROC_REF(launch), user)
 
 /obj/machinery/computer/salvager_pod_launcher/proc/launch(mob/user)
 	launching = TRUE

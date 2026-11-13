@@ -37,7 +37,7 @@
 /datum/test_chamber_kit/pr_621_zlomiarze
 	name = "PR 621: złomiarze"
 	pr = "aq33/AquilaStation#621"
-	description = "Zestaw robi z ciebie złomiarza z 3000 pkt i stawia terminal S.R.O.K.A. oraz punkt powrotu teleportera. 	1) Reklamatorem (poza combat mode) rozbierz ładowarkę → złom i złom elektroniczny; czas krótszy o 25%, bo jesteś złomiarzem. Użyj reklamatora w ręce → korba ładuje ogniwo. 	2) Urządzeniem dwukonstrukcyjnym rozłóż drugą ładowarkę → paczka maszyny. Przełącz urządzenie (użyj w ręce) i uderz paczkę na podłodze → maszyna wraca. 	3) Uderz terminal S.R.O.K.A. paczką, złomem albo telekryształem → wycena i pytanie o sprzedaż; punkty rosną. Kliknij terminal → sklep jak w Goonie. 	4) Załóż gogle S.A.V. → nad przedmiotami w pobliżu wiszą ceny. 	5) Odejdź kilka kroków i użyj teleportera ręcznego → po 6 s wracasz na punkt powrotu, ładunek ubywa; telekryształ go dokłada (najwyżej 5)."
+	description = "Zestaw robi z ciebie złomiarza z 3000 pkt i stawia terminal S.R.O.K.A. oraz punkt powrotu teleportera. 	1) Reklamatorem (poza combat mode) rozbierz ładowarkę → złom i złom elektroniczny; czas krótszy o 25%, bo jesteś złomiarzem. Użyj reklamatora w ręce → korba ładuje ogniwo. 	2) Urządzeniem dwukonstrukcyjnym rozłóż drugą ładowarkę → paczka maszyny. Przełącz urządzenie (użyj w ręce) i uderz paczkę na podłodze → maszyna wraca. 	3) Uderz terminal S.R.O.K.A. paczką, złomem albo telekryształem → terminal podaje cenę i otwiera okno z przedmiotem z ręki; „Sprzedaj” dodaje punkty. W tym samym oknie jest cel załogi i sklep w działach (Narzędzia, Broń, Ochrona, Zaopatrzenie). 	4) Załóż gogle S.A.V. → nad przedmiotami w pobliżu wiszą ceny. 	5) Odejdź kilka kroków i użyj teleportera ręcznego → po 6 s wracasz na punkt powrotu, ładunek ubywa; telekryształ go dokłada (najwyżej 5). 	6) Kliknij konsolę kapsuł desantowych → wybierz obszar okrętu, „Uzbrój start”, potem „START” → po 10–15 s lądujesz w kapsule na okręcie. 	7) Przycisk roli (lewy górny róg) → okno złomiarza z punktami i wynikami załogi."
 	items = list(
 		/obj/machinery/recharger = 2,
 		/obj/item/salvage_reclaimer = 1,
@@ -47,6 +47,7 @@
 		/obj/item/stack/telecrystal = 1,
 		/obj/item/stack/scrap/plating = 1,
 		/obj/machinery/salvager_trader = 1,
+		/obj/machinery/computer/salvager_pod_launcher = 1,
 	)
 
 /datum/test_chamber_kit/pr_621_zlomiarze/setup(list/spawned, list/turfs, turf/center, mob/user)

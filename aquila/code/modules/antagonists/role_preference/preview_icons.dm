@@ -18,6 +18,7 @@
 		/datum/antagonist/heretic = /datum/outfit/heretic,
 		/datum/antagonist/wizard = /datum/outfit/wizard,
 		/datum/antagonist/ninja = /datum/outfit/ninja_preview,
+		/datum/antagonist/pirate/salvager = /datum/outfit/salvager,
 		/datum/antagonist/pirate = /datum/outfit/pirate/space,
 		/datum/antagonist/infiltrator = /datum/outfit/aquila_preview/infiltrator,
 		/datum/antagonist/chrono_legionnaire = /datum/outfit/chrono_legionnaire,

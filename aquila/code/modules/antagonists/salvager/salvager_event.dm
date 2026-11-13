@@ -34,9 +34,9 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(spawn_salvagers))
 
 /proc/spawn_salvagers()
-	var/list/candidates = pollGhostCandidates("Czy chcesz dołączyć do załogi złomiarzy?", ROLE_SPACE_PIRATE, /datum/role_preference/midround_ghost/space_pirate, 15 SECONDS)
+	var/list/candidates = pollGhostCandidates("Czy chcesz dołączyć do załogi złomiarzy?", ROLE_SPACE_PIRATE, /datum/role_preference/midround_ghost/salvager, 15 SECONDS)
 	if(!length(candidates))
-		message_admins("Złomiarze: nikt się nie zgłosił.")
+		message_admins("Złomiarze: nikt się nie zgłosił. Ankieta trafia tylko do duchów z włączoną preferencją roli „Złomiarz”.")
 		return
 	shuffle_inplace(candidates)
 	var/count = rand(1, min(length(candidates), 5))
