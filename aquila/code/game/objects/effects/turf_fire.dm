@@ -177,6 +177,9 @@
 	SIGNAL_HANDLER
 	if(arrived == src || open_turf.active_hotspot) //If we have an active hotspot, let it do the damage instead
 		return
+	// Przedmioty wysypywane z usuwanego moba wchodzą na kafelek już w trakcie qdel: take_damage() na nich to runtime
+	if(QDELETED(arrived))
+		return
 	arrived.fire_act(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
 
 /obj/effect/abstract/turf_fire/extinguish()

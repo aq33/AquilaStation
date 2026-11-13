@@ -1,6 +1,13 @@
 
 /// gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
+	// AQ EDIT START - auxmos (generic_fire w citadel.rs) zwraca błąd, gdy gaz przeszedł próg reakcji, ale ma znikome paliwo
+	// albo utleniacz: reakcja się nie odbywa i nic więcej się nie dzieje. Przez FFI przychodzi jako pusty runtime, który
+	// w testach losowo psuje clean_run.lk i testy liczące runtime'y. Zostaje w logu jako ostrzeżenie.
+	if(istext(msg) && (findtext(msg, "Gas has no fuel even though it passed fuel check!") || findtext(msg, "Gas has no oxidizer even though it passed oxidizer check!")))
+		warning("auxmos: [replacetext(msg, "\n", " ")]")
+		return
+	// AQ EDIT END
 	CRASH(msg)
 
 /datum/proc/stack_trace(msg)

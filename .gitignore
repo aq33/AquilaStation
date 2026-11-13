@@ -22,6 +22,10 @@ beestation_unit_test_focus_file.dm
 *.rsc
 *.m.dme
 *.test.dme
+# AQUILA - kopie .dme lokalnego CI (tools/local_ci)
+ci_local_*.dme
+# AQUILA - log launchera debuggera auxtools (tools/scenario)
+*.auxtools.log
 *.lk
 *.int
 *.backup
