@@ -133,7 +133,11 @@ GLOBAL_VAR_INIT(i18n_en_loaded, FALSE)
 			fixed = trim_right(fixed)
 		source += i18n_regex_escape(fixed)
 	source += "\\s*$"
-	var/regex/built = regex(source)
+	var/regex/built
+	try // szablon z wieloma wstawkami przekracza limit grup BYOND (Regex fail: too many ())
+		built = regex(source)
+	catch
+		built = null
 	cache[key] = built || FALSE
 	return cache[key]
 

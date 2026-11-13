@@ -2300,6 +2300,7 @@
 #include "code\modules\unit_tests\aquila_traitor_objectives.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_26_10.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
+#include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"

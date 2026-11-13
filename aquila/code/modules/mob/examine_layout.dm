@@ -4,6 +4,8 @@
 
 /// HTML wyniku examine dla tego moba
 /mob/proc/aq_examine_html(atom/examined, list/result)
+	if(!islist(result))
+		result = list(result)
 	if(!length(result))
 		return ""
 	result = aq_order_examine_sections(result)

@@ -173,7 +173,9 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 
 /mob/living/carbon/proc/get_bleed_rate()
 	var/datum/status_effect/bleeding/bleed = has_status_effect(STATUS_EFFECT_BLEED)
-	return bleed?.bleed_rate
+	if(!bleed) // AQ EDIT - has_status_effect() bywa 0
+		return 0
+	return bleed.bleed_rate
 
 /// Can we heal bleeding using a welding tool?
 /mob/living/carbon/proc/has_mechanical_bleeding()

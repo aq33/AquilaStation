@@ -1028,7 +1028,9 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 				else
 					L.adjust_disgust(10)
 		M.throw_at(throw_target, 4, 3)
-		M.Knockdown(2 SECONDS)
+		if(isliving(M)) // AQ EDIT - duchy nie mają Knockdown()
+			var/mob/living/knocked = M
+			knocked.Knockdown(2 SECONDS)
 
 /obj/structure/overmap/proc/can_change_safeties()
 	// Safeties can be toggled on the overmap or on small dockable maps like ruins and asteroids
