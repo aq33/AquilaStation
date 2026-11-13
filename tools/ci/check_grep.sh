@@ -9,7 +9,8 @@ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 	repo_files() {
 		local pattern
 		for pattern in "$@"; do
-			git ls-files -co --exclude-standard -- ":(glob)$pattern"
+			# quotePath=false: bez tego ścieżki z polskimi literami przychodzą jako "\303\263..." i [ -f ] je odrzuca
+			git -c core.quotePath=false ls-files -co --exclude-standard -- ":(glob)$pattern"
 		done | sort -u | while IFS= read -r f; do [ -f "$f" ] && printf '%s\n' "$f"; done
 	}
 else
