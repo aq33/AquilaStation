@@ -7,7 +7,12 @@
 	/// AQUILA - TRUE once the starmap file was reset for a new campaign; stops Shutdown() saving the old campaign over it
 	var/campaign_reset_pending = FALSE
 
-/datum/controller/subsystem/star_system/save(_destination_path = SSmapping.config.starmap_path)
+/datum/controller/subsystem/star_system/save(_destination_path = SSmapping.config?.starmap_path)
+	// A reboot before the map loaded has no map config, and before this subsystem initialized it has no systems:
+	// saving then would write an empty starmap over the campaign
+	if(!_destination_path || !initialized)
+		log_game("Starmap save skipped: the starmap isn't loaded yet.")
+		return 1
 	if(campaign_reset_pending)
 		log_game("Starmap save to [_destination_path] skipped: the campaign was reset for the next round.")
 		return 1

@@ -51,13 +51,15 @@
 	// Nieznany polski dopisek w nawiasie: bez mieszanki "Blood (po zaschnięciu)", szablon "[name] (po zaschnięciu)" wygrywa
 	var/dried = i18n_en_html("krew (po zaschnięciu)")
 	TEST_ASSERT(dried == "dried blood", "Polish suffix in parentheses made a mixed name: [dried]")
-	// Opis sklejony z dwóch zdań ("[part.desc] [desc]" w MOD-ach): każde zdanie osobno, bez mieszanki
+	// Opis sklejony z dwóch kilkuzdaniowych opisów ("[part.desc] [desc]"): każdy kawałek osobno, bez mieszanki.
+	// Dwa istniejące opisy hardsuitów: opisy motywów MOD zniknęły z kodu razem z MOD-ami (aq33/AquilaStation#583)
 	var/obj/item/clothing/suit/space/hardsuit/control = /obj/item/clothing/suit/space/hardsuit
-	var/mod_desc = i18n_en_html("[initial(control.desc)] Skafander dla inżyniera, odporny na ciepło i prąd. Klasyk Nakamura Engineering.")
-	TEST_ASSERT(mod_desc == "[i18n_en_exact(initial(control.desc))] An engineer-fit suit with heat and shock resistance. Nakamura Engineering's classic.", "Joined MOD description is not translated sentence by sentence: [mod_desc]")
-	// Część MOD-a po nałożeniu motywu ("[part.name] (model [name])"), jak w mod_theme.dm
-	var/mod_part = i18n_en_html("hełm MOD (model inżynieryjny)")
-	TEST_ASSERT(mod_part == "engineering MOD helmet", "MOD part name with a theme is not translated: [mod_part]")
+	var/obj/item/clothing/suit/space/hardsuit/syndi/second = /obj/item/clothing/suit/space/hardsuit/syndi
+	var/first_en = i18n_en_exact(initial(control.desc))
+	var/second_en = i18n_en_exact(initial(second.desc))
+	TEST_ASSERT(first_en && second_en, "The hardsuit descriptions used by the joined description check have no translation")
+	var/mod_desc = i18n_en_html("[initial(control.desc)] [initial(second.desc)]")
+	TEST_ASSERT(mod_desc == "[first_en] [second_en]", "Joined description is not translated sentence by sentence: [mod_desc]")
 	var/half = i18n_en_html("[initial(control.desc)] Zupełnie nieznane polskie zdanie.")
 	TEST_ASSERT(half == "[initial(control.desc)] Zupełnie nieznane polskie zdanie.", "Joined description with an unknown sentence made a mixed text: [half]")
 	// Screentip z wstawką ("[panel_open ? "Zamknij" : "Otwórz"] panel serwisowy") idzie przez szablony

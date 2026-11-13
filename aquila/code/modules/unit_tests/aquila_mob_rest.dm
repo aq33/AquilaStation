@@ -305,6 +305,9 @@
 
 	// A gun copy shoots through its AI
 	var/obj/item/gun/energy/laser/laser = allocate(/obj/item/gun/energy/laser, run_loc_floor_bottom_left)
+	// Kopia nie trzyma broni oburącz, więc process_fire() losuje rozrzut do spread_unwielded (60°) i strzał na 3 pola czasem chybiał
+	laser.spread = 0
+	laser.spread_unwielded = 0
 	var/mob/living/basic/mimic/copy/ranged/gun_mimic = allocate(/mob/living/basic/mimic/copy/ranged, run_loc_floor_bottom_left, laser)
 	victim.forceMove(locate(run_loc_floor_bottom_left.x + 3, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
 	creator.forceMove(locate(run_loc_floor_bottom_left.x, run_loc_floor_bottom_left.y + 4, run_loc_floor_bottom_left.z))
