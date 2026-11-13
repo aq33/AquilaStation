@@ -46,15 +46,22 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 		to_chat(src, "<span class='warning'>Syntezator mowy wyczerpał limit na tę zmianę. Ogłoszenie nie poszło.</span>")
 		return
 
-	GLOB.aq_ai_tts_next_announcement = world.time + AQ_AI_TTS_DELAY
+	var/next_announcement = world.time + AQ_AI_TTS_DELAY
+	GLOB.aq_ai_tts_next_announcement = next_announcement
 	log_game("[key_name(src)] made a TTS vocal announcement with the following message: [message].")
 	message_admins("[key_name(src)] wygłasza ogłoszenie głosowe o treści: [html_encode(message)].")
 	to_chat(src, "<span class='notice'>Ogłaszasz: \"[html_encode(message)]\"</span>")
-	INVOKE_ASYNC(src, PROC_REF(aq_tts_announce), message, listeners)
+	INVOKE_ASYNC(src, PROC_REF(aq_tts_announce), message, listeners, next_announcement)
 
-/mob/living/silicon/ai/proc/aq_tts_announce(message, list/listeners)
-	if(!aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX) && !QDELETED(src))
-		to_chat(src, "<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone.</span>")
+/// Nieudane zapytanie oddaje znaki do limitu rundy i zdejmuje swój odstęp (chyba że ktoś zdążył ogłosić później)
+/mob/living/silicon/ai/proc/aq_tts_announce(message, list/listeners, next_announcement)
+	if(aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX))
+		return
+	squad_tts_release_chars(message)
+	if(GLOB.aq_ai_tts_next_announcement == next_announcement)
+		GLOB.aq_ai_tts_next_announcement = world.time
+	if(!QDELETED(src))
+		to_chat(src, "<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone, możesz spróbować od razu.</span>")
 
 /// Ci sami słuchacze co w play_vox_word: cały statek SI albo jej poziom Z, z włączonymi ogłoszeniami dźwiękowymi
 /mob/living/silicon/ai/proc/aq_announcement_listeners()

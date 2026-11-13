@@ -1,3 +1,6 @@
+/// Nad przyciskiem w dół, obok przycisku w górę: w widoku 15x15 nie może wyjść za prawą krawędź
+#define ui_ai_dashboard "SOUTH+1:6,WEST+13"
+
 /atom/movable/screen/ai/dashboard
 	name = "Panel przetwarzania"
 	icon = 'aquila/icons/mob/ai_servers_ui.dmi'
@@ -17,6 +20,8 @@
 	using.screen_loc = ui_ai_dashboard
 	using.hud = src
 	static_inventory += using
+
+#undef ui_ai_dashboard
 
 /mob/living/silicon/ai/verb/open_ai_dashboard()
 	set category = "AI Commands"

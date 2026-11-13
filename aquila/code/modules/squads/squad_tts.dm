@@ -75,11 +75,16 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 
 /// Wspólny budżet rundy (drużyny i SI): cooldown na nadawcę nie ogranicza sumy płatnych zapytań
 /proc/squad_tts_reserve_chars(message)
+	var/chars = length_char(message)
 	var/char_limit = CONFIG_GET(number/squad_tts_round_char_limit)
-	if(char_limit && GLOB.squad_tts_chars_used + length_char(message) > char_limit)
+	if(char_limit && GLOB.squad_tts_chars_used + chars > char_limit)
 		return FALSE
-	GLOB.squad_tts_chars_used += length_char(message)
+	GLOB.squad_tts_chars_used += chars
 	return TRUE
+
+/// Zwraca znaki zarezerwowane na zapytanie, które nie dało dźwięku
+/proc/squad_tts_release_chars(message)
+	GLOB.squad_tts_chars_used = max(0, GLOB.squad_tts_chars_used - length_char(message))
 
 /// channel: gdy podany, dźwięk idzie bez pozycji na tym kanale (jak VOX), inaczej przez playsound_local
 /proc/aq_squad_tts_request(voice, message, list/listeners, channel)
