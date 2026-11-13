@@ -7,7 +7,7 @@
 	if (world.system_type == UNIX)
 		return __auxmos = "libauxmos"
 	else
-		return __auxmos = "auxmos"
+		return __auxmos = "auxmos.dll" // AQ EDIT - OpenDream nie dopisuje rozszerzenia
 
 #define AUXMOS (__auxmos || __detect_auxmos())
 

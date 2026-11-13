@@ -64,7 +64,7 @@
 	user.log_message(msg, LOG_EMOTE)
 
 	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" //NSV13 - RADIO EMOTES I THINK
-	var/end = copytext(msg, length(message))
+	var/end = copytext(msg, length(msg)) // AQ EDIT - było length(message), czyli długość innego tekstu
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		msg += "."
 

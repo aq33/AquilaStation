@@ -251,8 +251,15 @@
 
 /mob/camera/blob/verb/expand_blob_power()
 	set category = "Blob"
+// AQ EDIT START - kompilator OpenDream nie przyjmuje wstawek w set name/desc; liczby = BLOB_SPREAD_COST i BLOB_ATTACK_REFUND
+#ifdef OPENDREAM
+	set name = "Rozrost/Atak (4)"
+	set desc = "Grzyb spróbuje rozrosnąć się w tym kierunku. Jeżeli kafelek jest zablokowany, zostanie zaatakowany, zadając obrażenia obiektom oraz przeciwników, zwracając 2 zasobów."
+#else
 	set name = "Rozrost/Atak ([BLOB_SPREAD_COST])"
 	set desc = "Grzyb spróbuje rozrosnąć się w tym kierunku. Jeżeli kafelek jest zablokowany, zostanie zaatakowany, zadając obrażenia obiektom oraz przeciwników, zwracając [BLOB_ATTACK_REFUND] zasobów."
+#endif
+// AQ EDIT END
 	var/turf/T = get_turf(src)
 	expand_blob(T)
 
