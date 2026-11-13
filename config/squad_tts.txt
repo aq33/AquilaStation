@@ -28,3 +28,7 @@
 ## Głos ogłoszeń SI (przycisk ogłoszenia w HUD-zie SI czyta wtedy dowolny tekst zamiast słów VOX).
 ## Korzysta z tego samego klucza i limitu znaków co rozkazy drużyn.
 #AI_TTS_VOICE r43lnMEVUzxMWMYz9JXK
+
+## Filtr ogłoszeń SI: brzmienie jak ogłoszenia statku (sound/ai/default). Ścieżka do ffmpeg 6.1 lub nowszego,
+## domyślnie "ffmpeg" z PATH. Bez ffmpeg ogłoszenie gra się bez filtra. Pusta wartość wyłącza filtr.
+#AI_TTS_FFMPEG ffmpeg

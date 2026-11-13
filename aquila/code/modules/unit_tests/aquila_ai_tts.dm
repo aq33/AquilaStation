@@ -51,4 +51,22 @@
 	TEST_ASSERT(used_after == 0, "Nieudane ogłoszenie zostawiło [used_after] zużytych znaków")
 	TEST_ASSERT(next_after <= world.time, "Nieudane ogłoszenie dalej blokuje następne")
 
+/// Bez działającego ffmpeg filtr ogłoszeń nic nie zwraca (gra się surowe nagranie) i nie zostawia plików
+/datum/unit_test/aquila_ai_tts_filter_fallback
+
+/datum/unit_test/aquila_ai_tts_filter_fallback/Run()
+	var/old_ffmpeg = CONFIG_GET(string/ai_tts_ffmpeg)
+	var/file_name = "tmp/squad_tts/aquila_test_filtr.mp3"
+	rustg_file_write("to nie jest mp3", file_name)
+	CONFIG_SET(string/ai_tts_ffmpeg, "aquila_brak_takiego_programu")
+	var/missing_program = aq_tts_announcement_filter(file_name)
+	CONFIG_SET(string/ai_tts_ffmpeg, "")
+	var/disabled = aq_tts_announcement_filter(file_name)
+	CONFIG_SET(string/ai_tts_ffmpeg, old_ffmpeg)
+	var/leftover = fexists("tmp/squad_tts/aquila_test_filtr_filtr.ogg")
+	fdel(file_name)
+	TEST_ASSERT(isnull(missing_program), "Filtr bez ffmpeg zwrócił plik [missing_program]")
+	TEST_ASSERT(isnull(disabled), "Wyłączony filtr zwrócił plik [disabled]")
+	TEST_ASSERT(!leftover, "Nieudany filtr zostawił plik wyjściowy")
+
 #undef TEST_ASSERT

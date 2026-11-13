@@ -6,6 +6,14 @@
 /datum/config_entry/string/ai_tts_voice
 	config_entry_value = "r43lnMEVUzxMWMYz9JXK"
 
+/// ffmpeg do filtra ogłoszeń (brzmienie jak sound/ai/default); pusty = bez filtra. Ścieżka do programu, więc bez zmian z panelu admina.
+/datum/config_entry/string/ai_tts_ffmpeg
+	config_entry_value = "ffmpeg"
+	protection = CONFIG_ENTRY_LOCKED
+
+/// Odpowiedź impulsowa filtra: dolne cięcie 300 Hz, +7 dB przy 1,5 kHz, krótki pogłos (tools/tts/make_ai_announcement_ir.py)
+#define AQ_AI_TTS_IR "aquila/sound/ai/ai_tts_ir.wav"
+
 #define AQ_AI_TTS_MAX_CHARS 300
 #define AQ_AI_TTS_DELAY (60 SECONDS)
 
@@ -55,13 +63,29 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 
 /// Nieudane zapytanie oddaje znaki do limitu rundy i zdejmuje swój odstęp (chyba że ktoś zdążył ogłosić później)
 /mob/living/silicon/ai/proc/aq_tts_announce(message, list/listeners, next_announcement)
-	if(aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX))
+	if(aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX, TRUE))
 		return
 	squad_tts_release_chars(message)
 	if(GLOB.aq_ai_tts_next_announcement == next_announcement)
 		GLOB.aq_ai_tts_next_announcement = world.time
 	if(!QDELETED(src))
 		to_chat(src, "<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone, możesz spróbować od razu.</span>")
+
+/// Przepuszcza MP3 z ElevenLabs przez filtr ogłoszeń. Zwraca ścieżkę gotowego OGG albo null (brak ffmpeg, błąd), wtedy gra się surowy plik.
+/// shell() wstrzymuje serwer na czas konwersji (ok. 0,3 s na kilkusekundowe ogłoszenie).
+/proc/aq_tts_announcement_filter(file_name)
+	var/ffmpeg = CONFIG_GET(string/ai_tts_ffmpeg)
+	if(!length(ffmpeg) || !fexists(file_name) || !fexists(AQ_AI_TTS_IR))
+		return null
+	var/out_file = "[copytext(file_name, 1, -4)]_filtr.ogg"
+	var/filter = "\[0:a\]apad=pad_dur=0.6\[s\];\[s\]\[1:a\]afir=gtype=-1:irnorm=-1,alimiter=limit=0.9:level=disabled"
+	var/list/result = world.shelleo("\"[ffmpeg]\" -nostdin -hide_banner -loglevel error -y -i \"[file_name]\" -i \"[AQ_AI_TTS_IR]\" -filter_complex \"[filter]\" -c:a libvorbis -q:a 5 \"[out_file]\"")
+	if(result[SHELLEO_ERRORLEVEL] || !fexists(out_file))
+		log_runtime("ai_tts: filtr ffmpeg nie zadziałał ([result[SHELLEO_ERRORLEVEL]]): [trim(result[SHELLEO_STDERR], 300)]")
+		if(fexists(out_file))
+			fdel(out_file)
+		return null
+	return out_file
 
 /// Ci sami słuchacze co w play_vox_word: cały statek SI albo jej poziom Z, z włączonymi ogłoszeniami dźwiękowymi
 /mob/living/silicon/ai/proc/aq_announcement_listeners()
@@ -79,3 +103,4 @@ GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
 
 #undef AQ_AI_TTS_MAX_CHARS
 #undef AQ_AI_TTS_DELAY
+#undef AQ_AI_TTS_IR

@@ -86,8 +86,9 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 /proc/squad_tts_release_chars(message)
 	GLOB.squad_tts_chars_used = max(0, GLOB.squad_tts_chars_used - length_char(message))
 
-/// channel: gdy podany, dźwięk idzie bez pozycji na tym kanale (jak VOX), inaczej przez playsound_local
-/proc/aq_squad_tts_request(voice, message, list/listeners, channel)
+/// channel: gdy podany, dźwięk idzie bez pozycji na tym kanale (jak VOX), inaczej przez playsound_local.
+/// announcement_filter: przepuszcza nagranie przez filtr ogłoszeń SI (aq_tts_announcement_filter), przy błędzie gra surowe.
+/proc/aq_squad_tts_request(voice, message, list/listeners, channel, announcement_filter = FALSE)
 	// rust_g zapisuje odpowiedź tylko do istniejącego folderu
 	if(!fexists("tmp/squad_tts/.keep"))
 		rustg_file_write("", "tmp/squad_tts/.keep")
@@ -116,7 +117,13 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 		if(fexists(file_name))
 			fdel(file_name)
 		return FALSE
-	var/voice_file = file(file_name)
+	var/play_file = file_name
+	if(announcement_filter)
+		var/filtered_file = aq_tts_announcement_filter(file_name)
+		if(filtered_file)
+			play_file = filtered_file
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_cleanup), filtered_file), 2 MINUTES)
+	var/voice_file = file(play_file)
 	for(var/mob/listener as anything in listeners)
 		if(QDELETED(listener) || !listener.client)
 			continue
