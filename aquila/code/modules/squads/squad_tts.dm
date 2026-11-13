@@ -68,15 +68,27 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 			wanting += listener
 	if(!length(wanting))
 		return FALSE
-	// wspólny budżet rundy: cooldown na nadawcę nie ogranicza sumy płatnych zapytań
-	var/char_limit = CONFIG_GET(number/squad_tts_round_char_limit)
-	if(char_limit && GLOB.squad_tts_chars_used + length_char(message) > char_limit)
+	if(!squad_tts_reserve_chars(message))
 		return FALSE
-	GLOB.squad_tts_chars_used += length_char(message)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_request), squad_tts_voice_for(speaker), message, wanting)
 	return TRUE
 
-/proc/aq_squad_tts_request(voice, message, list/listeners)
+/// Wspólny budżet rundy (drużyny i SI): cooldown na nadawcę nie ogranicza sumy płatnych zapytań
+/proc/squad_tts_reserve_chars(message)
+	var/chars = length_char(message)
+	var/char_limit = CONFIG_GET(number/squad_tts_round_char_limit)
+	if(char_limit && GLOB.squad_tts_chars_used + chars > char_limit)
+		return FALSE
+	GLOB.squad_tts_chars_used += chars
+	return TRUE
+
+/// Zwraca znaki zarezerwowane na zapytanie, które nie dało dźwięku
+/proc/squad_tts_release_chars(message)
+	GLOB.squad_tts_chars_used = max(0, GLOB.squad_tts_chars_used - length_char(message))
+
+/// channel: gdy podany, dźwięk idzie bez pozycji na tym kanale (jak VOX), inaczej przez playsound_local.
+/// announcement_filter: przepuszcza nagranie przez filtr ogłoszeń SI (aq_tts_announcement_filter), przy błędzie gra surowe.
+/proc/aq_squad_tts_request(voice, message, list/listeners, channel, announcement_filter = FALSE)
 	// rust_g zapisuje odpowiedź tylko do istniejącego folderu
 	if(!fexists("tmp/squad_tts/.keep"))
 		rustg_file_write("", "tmp/squad_tts/.keep")
@@ -105,9 +117,20 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 		if(fexists(file_name))
 			fdel(file_name)
 		return FALSE
-	var/voice_file = file(file_name)
+	var/play_file = file_name
+	if(announcement_filter)
+		var/filtered_file = aq_tts_announcement_filter(file_name)
+		if(filtered_file)
+			play_file = filtered_file
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_cleanup), filtered_file), 2 MINUTES)
+	var/voice_file = file(play_file)
 	for(var/mob/listener as anything in listeners)
 		if(QDELETED(listener) || !listener.client)
+			continue
+		if(channel)
+			// ogłoszenie: słuchacz mógł ogłuchnąć albo wyłączyć ogłoszenia w trakcie syntezy
+			if(listener.can_hear() && (listener.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS))
+				SEND_SOUND(listener, sound(voice_file, channel = channel))
 			continue
 		listener.playsound_local(get_turf(listener), null, 80, FALSE, S = sound(voice_file))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_cleanup), file_name), 2 MINUTES)
