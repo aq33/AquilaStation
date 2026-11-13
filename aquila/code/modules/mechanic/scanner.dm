@@ -84,6 +84,14 @@
 	if(!do_after(user, 1 SECONDS, target = machine))
 		qdel(schematic)
 		return FALSE
+	// W trakcie skanowania mógł skończyć się inny skan: limit i duplikaty sprawdzamy jeszcze raz
+	if(QDELETED(src) || length(scans) >= max_scans)
+		qdel(schematic)
+		return FALSE
+	for(var/datum/machine_schematic/known as anything in scans)
+		if(known.get_key() == schematic.get_key())
+			qdel(schematic)
+			return FALSE
 	scans += schematic
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	to_chat(user, "<span class='notice'>Zapisano schemat: [schematic.display_name()].</span>")

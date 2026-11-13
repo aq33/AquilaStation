@@ -397,7 +397,8 @@
 	use_power = IDLE_POWER_USE
 	if(QDELETED(src))
 		return null
-	if(!is_operational)
+	// Bazowe power_change() ustawia NOPOWER wprost w machine_stat, więc is_operational bywa nieaktualne
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
 		return null
 	// disable_reason() sprawdza też materiały; wynik use_materials() nie mówi, czy się udało (zawsze 0)
 	if(disable_reason())

@@ -107,7 +107,7 @@
 	return round((8 SECONDS + 4 SECONDS * schematic.tier) / max(scan_rating, 1))
 
 /obj/machinery/schematic_reader/proc/start_next()
-	if(current || !length(queue) || !is_operational)
+	if(current || !length(queue) || !has_power_and_works())
 		return
 	current = queue[1]
 	queue.Cut(1, 2)
@@ -131,9 +131,13 @@
 	update_appearance()
 	start_next()
 
+/// Bazowe power_change() ustawia NOPOWER wprost w machine_stat, więc is_operational bywa nieaktualne
+/obj/machinery/schematic_reader/proc/has_power_and_works()
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+
 /obj/machinery/schematic_reader/power_change()
 	. = ..()
-	if(is_operational)
+	if(has_power_and_works())
 		start_next()
 	else
 		pause_reading()
