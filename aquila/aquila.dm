@@ -2358,6 +2358,7 @@
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
+#include "code\modules\unit_tests\aquila_gun_cursor_prefs.dm"
 #include "code\modules\unit_tests\aquila_gun_safety_altclick.dm"
 #include "code\modules\unit_tests\aquila_survivalbox.dm"
 #include "code\modules\unit_tests\aquila_suit_toggle_altclick.dm"

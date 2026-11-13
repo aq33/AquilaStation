@@ -30,3 +30,25 @@
 	minimum = 0
 	maximum = 100
 	step = 10
+
+/// Jednorazowe wyłączenie kursora rozrzutu i patrzenia na kursor także graczom z zapisanymi preferencjami.
+/// Nazwa migracji trafia do keybind_migrations (lista jednorazowych migracji zapisywana w bazie), więc
+/// gracz, który potem sam włączy opcje, zostaje przy swoim wyborze.
+#define AQ_GUN_CURSOR_OFF_MIGRATION "gun_cursor_off_2026_11"
+
+/datum/preferences/load_from_database()
+	. = ..()
+	aq_migrate_gun_cursor_off()
+
+/// TRUE, gdy migracja właśnie przeszła (opcje wyłączone)
+/datum/preferences/proc/aq_migrate_gun_cursor_off()
+	if(!islist(keybind_migrations))
+		keybind_migrations = list()
+	if(AQ_GUN_CURSOR_OFF_MIGRATION in keybind_migrations)
+		return FALSE
+	keybind_migrations += AQ_GUN_CURSOR_OFF_MIGRATION
+	gun_cursor = FALSE
+	face_cursor_combat = FALSE
+	return TRUE
+
+#undef AQ_GUN_CURSOR_OFF_MIGRATION
