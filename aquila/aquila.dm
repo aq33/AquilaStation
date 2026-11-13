@@ -2160,6 +2160,9 @@
 #include "code\modules\mob\living\basic\space_fauna\dolphin.dm"
 // Koniec bloku tanich basic mobów
 
+// Podział testów między joby CI: poza blokiem UNIT_TESTS, bo RunUnitTests() kompiluje się też pod dreamcheckerem
+#include "code\modules\unit_tests\_unit_test_shards.dm"
+
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
 #include "code\modules\unit_tests\aquila_basic_deer.dm"
@@ -2395,6 +2398,7 @@
 #include "code\modules\unit_tests\extinguisher_fire.dm"
 #include "code\modules\unit_tests\turf_fire_deleted_items.dm"
 #include "code\modules\unit_tests\aquila_fleet_move_without_system.dm"
+#include "code\modules\unit_tests\aquila_unit_test_shards.dm"
 #include "code\modules\unit_tests\hev_spaceproof.dm"
 #include "code\modules\unit_tests\miasma.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"
