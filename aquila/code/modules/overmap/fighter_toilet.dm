@@ -54,10 +54,10 @@
 		return
 	in_use = TRUE
 	to_chat(user, "<span class='notice'>Podpinasz się do pokładowego systemu odprowadzania nieczystości...</span>")
-	if(do_after(user, 3 SECONDS, target = user))
+	if(do_after(user, user.bowel_movement_time(), target = user))
+		var/had_feces = user.feces_need() > 0
 		user.set_defecation(DEFECATION_NONE)
 		playsound(get_turf(user), 'aquila/sound/misc/toilet_flush.ogg', 50, vary = FALSE)
 		to_chat(user, "<span class='notice'><i>Ale ulga...</i> Nieczystości zostają wystrzelone w przestrzeń kosmiczną.</span>")
-		var/datum/reagent/consumable/castor_oil/oil = user.reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
-		oil?.purge(user)
+		user.finish_bowel_movement(had_feces)
 	in_use = FALSE
