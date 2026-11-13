@@ -61,8 +61,10 @@
 			dat += "To urządzenie nie ma uprawnień do awansowania.<br>"
 	else
 		dat += "Rejestracja: <B>szef gangu [gang.name]</B><br>"
-		dat += "Wielkość organizacji: <B>[gang.members.len]</B> | Kontrola stacji: <B>terenów pod kontrolą: [gang.territories.len].</B> | Wpływy: <B>[gang.influence]</B><br>"
-		dat += "Czas do wzrostu wpływów: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
+		// AQ EDIT START - punkty i teren jak w Goonie (aquila/code/modules/antagonists/gang/)
+		dat += "Wielkość organizacji: <B>[gang.members.len]</B> | Teren: <B>[gang.territory_percent()]% stacji</B> | Wynik gangu: <B>[gang.total_score()]</B><br>"
+		dat += "Twoje punkty: <B>[gang.get_points(user.mind)]</B> | Następny raport za: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
+		// AQ EDIT END
 		dat += "<a href='byond://?src=[REF(src)];commute=1'>Wyślij wiadomość do gangu</a><br>"
 		dat += "<a href='byond://?src=[REF(src)];recall=1'>Odwołaj prom</a><br>"
 		dat += "<hr>"
