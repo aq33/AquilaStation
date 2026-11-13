@@ -331,7 +331,7 @@
 
 	var/datum/antagonist/gang/alignment = user.has_antag_datum(/datum/antagonist/gang,TRUE)
 	if(alignment)
-		M.mind.add_antag_datum(/datum/antagonist/gang, alignment)
+		M.mind.add_antag_datum(/datum/antagonist/gang, alignment.gang) // AQ EDIT - przekazywano datum gangstera zamiast drużyny
 		M.equip_to_slot_or_del(new alignment.gang.outfit(M),ITEM_SLOT_ICLOTHING)
 		M.equip_to_slot_or_del(new alignment.gang.suit(M),ITEM_SLOT_OCLOTHING)
 		M.equip_to_slot_or_del(new alignment.gang.hat(M),ITEM_SLOT_HEAD)
