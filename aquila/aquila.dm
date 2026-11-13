@@ -2321,6 +2321,7 @@
 #include "code\modules\unit_tests\voidwalker.dm"
 #include "code\modules\unit_tests\walk_animation_idle.dm"
 #include "code\modules\unit_tests\walk_animation_wings.dm"
+#include "code\modules\unit_tests\aquila_auxmos_fire_warning.dm"
 #include "code\modules\unit_tests\weapon_cycle_stage.dm"
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\unit_tests\window_singularity_pull.dm"
