@@ -123,6 +123,7 @@ GLOBAL_VAR(test_log)
 		tests_to_run = focused_tests
 
 	tests_to_run = sortTim(tests_to_run, GLOBAL_PROC_REF(cmp_unit_test_priority))
+	tests_to_run = aquila_unit_test_shard(tests_to_run) // AQ EDIT - część testów dla równoległego joba CI (UNIT_TEST_SHARD)
 
 	var/list/test_results = list()
 

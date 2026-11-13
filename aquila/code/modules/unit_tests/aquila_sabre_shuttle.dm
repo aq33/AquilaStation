@@ -161,9 +161,13 @@
 	// Start i powrót do tego samego portu nie obracają kadłuba drugi raz
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The rotated Sabre didn't launch")
+	var/turf/parked_helm = get_turf(helm)
+	var/parking_where = sabre.shuttle_parking ? "[sabre.shuttle_parking.x],[sabre.shuttle_parking.y],[sabre.shuttle_parking.z]" : "none"
 	TEST_ASSERT(sabre.shuttle_land(host, port), "The rotated Sabre didn't land back at its port")
-	TEST_ASSERT_EQUAL(helm.x, port.x + 6, "The cockpit moved after flying out and back")
-	TEST_ASSERT_EQUAL(helm.y, port.y - 3, "The cockpit moved after flying out and back")
+	// Losowo (raz na kilka przebiegów CI) ster bywał po locie poza mapą: szczegóły pozwolą znaleźć przyczynę
+	var/where = "helm at [helm.x],[helm.y],[helm.z] (loc [helm.loc], deleted [QDELETED(helm)]), in flight at [parked_helm ? "[parked_helm.x],[parked_helm.y],[parked_helm.z]" : "nowhere"], parking [parking_where], port [port.x],[port.y],[port.z] docked [port.docked], interior at [shuttle_port.x],[shuttle_port.y],[shuttle_port.z]"
+	TEST_ASSERT_EQUAL(helm.x, port.x + 6, "The cockpit moved after flying out and back: [where]")
+	TEST_ASSERT_EQUAL(helm.y, port.y - 3, "The cockpit moved after flying out and back: [where]")
 	hull = get_step(helm, EAST)
 	turned = hull.transform
 	TEST_ASSERT(abs(turned.a) < 0.01 && abs(turned.b - 1) < 0.01, "The hull art turned again after flying out and back")
