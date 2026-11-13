@@ -3,8 +3,30 @@ set -euo pipefail
 
 #nb: must be bash to support shopt globstar
 shopt -s globstar
-# AQ EDIT - mapy Aquili (aquila/_maps) przechodzą przez te same lintery
-MAPS=(_maps/**/*.dmm aquila/_maps/**/*.dmm)
+# AQ EDIT START - listy plików z gita (śledzone i nowe, bez ignorowanych) zamiast rozwijania **:
+# w Git Bash na Windows każde rozwinięcie code/**/*.dm trwa ponad minutę (tools/local_ci). Bez gita zostaje globstar.
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+	repo_files() {
+		local pattern
+		for pattern in "$@"; do
+			# quotePath=false: bez tego ścieżki z polskimi literami przychodzą jako "\303\263..." i [ -f ] je odrzuca
+			git -c core.quotePath=false ls-files -co --exclude-standard -- ":(glob)$pattern"
+		done | sort -u | while IFS= read -r f; do [ -f "$f" ] && printf '%s\n' "$f"; done
+	}
+else
+	repo_files() {
+		local pattern f
+		for pattern in "$@"; do
+			for f in $pattern; do [ -f "$f" ] && printf '%s\n' "$f"; done
+		done
+	}
+fi
+# mapy Aquili (aquila/_maps) przechodzą przez te same lintery
+mapfile -t MAPS < <(repo_files '_maps/**/*.dmm' 'aquila/_maps/**/*.dmm')
+mapfile -t CODE_DM < <(repo_files 'code/**/*.dm')
+mapfile -t ALL_DM < <(repo_files 'code/**/*.dm' 'nsv13/**/*.dm' 'aquila/**/*.dm')
+mapfile -t MAPS_DM < <(repo_files '_maps/**/*.dm')
+# AQ EDIT END
 
 #ANSI Escape Codes for colors to increase contrast of errors
 RED="\033[0;31m"
@@ -115,37 +137,37 @@ if grep -P '\W\/turf\s*[,\){]' "${MAPS[@]}"; then
     echo -e "${RED}ERROR: Base /turf path use detected in maps, please replace a with proper turf path.${NC}"
     st=1
 fi;
-if grep -n -P '^/*var/' code/**/*.dm; then
+if grep -n -P '^/*var/' "${CODE_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
     st=1
 fi;
-if grep -n -i 'centcomm' code/**/*.dm; then
+if grep -n -i 'centcomm' "${CODE_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: Misspelling(s) of CentCom detected in code, please remove the extra M(s).${NC}"
     st=1
 fi;
-if grep -n -i 'centcomm' _maps/**/*.dm; then
+if grep -n -i 'centcomm' "${MAPS_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: Misspelling(s) of CentCom detected in maps, please remove the extra M(s).${NC}"
     st=1
 fi;
-if grep -n -P 'set name\s*=\s*"[\S\s]*![\S\s]*"' code/**/*.dm; then
+if grep -n -P 'set name\s*=\s*"[\S\s]*![\S\s]*"' "${CODE_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: Verb with name containing an exclamation point found. These verbs are not compatible with TGUI chat's statpanel or chat box.${NC}"
     st=1
 fi;
-if grep -n -P '(?i)(href|action)\s*=[\s='"'"'"\\\\]*\?' code/**/*.dm nsv13/**/*.dm aquila/**/*.dm; then
+if grep -n -P '(?i)(href|action)\s*=[\s='"'"'"\\\\]*\?' "${ALL_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: BYOND 516 requires internal href links to begin with \"byond://\".${NC}"
     st=1
 fi;
-if grep -n -P '^\s*var/([\w/]*/)?caller\b' code/**/*.dm nsv13/**/*.dm aquila/**/*.dm; then
+if grep -n -P '^\s*var/([\w/]*/)?caller\b' "${ALL_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: 'caller' is a BYOND 516 built-in: a var with that name reads as the calling proc inside procs. Rename it.${NC}"
     st=1
 fi;
-if grep -n -P '^\s*TEST_FOCUS\(' code/**/*.dm nsv13/**/*.dm aquila/**/*.dm; then
+if grep -n -P '^\s*TEST_FOCUS\(' "${ALL_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: TEST_FOCUS left in code: CI would run only the focused unit tests. Remove it before pushing.${NC}"
     st=1
@@ -197,11 +219,12 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
 fi;
 for json in _maps/*.json
 do
-    filepath="_maps/$(jq -r '.map_path' $json)"
-    filenames=$(jq -r '.map_file' $json)
+    # AQ EDIT - tr: jq na Windows kończy linie CRLF, a \r w nazwie pliku daje fałszywe „invalid file reference”
+    filepath="_maps/$(jq -r '.map_path' $json | tr -d '\r')"
+    filenames=$(jq -r '.map_file' $json | tr -d '\r')
     if [[ "$filenames" =~ ^\[ ]] # If it starts with brackets it's a list
     then
-        echo "$filenames" | jq -c '.[]' | while read filename
+        echo "$filenames" | jq -c '.[]' | tr -d '\r' | while read filename
         do
             #Remove quotes
             filename="${filename%\"}"
@@ -223,7 +246,7 @@ do
 done
 
 # Check for old .proc/ syntax (use the proc reference helpers)
-if grep -n -P --exclude='__byond_version_compat.dm' '\.proc/' code/**/*.dm; then
+if grep -n -P --exclude='__byond_version_compat.dm' '\.proc/' "${CODE_DM[@]}" /dev/null; then
     echo
     echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
     st=1
@@ -233,13 +256,30 @@ echo -e "${BLUE}Checking for missing newlines...${NC}"
 nl='
 '
 nl=$'\n'
+# AQ EDIT START - pliki z gita i jeden grep/gawk na wszystkie zamiast trzech procesów na plik
+# (na Windows ~55 tys. procesów, prawie godzina) i bez ignorowanych plików (cache, node_modules)
+text_files() {
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+		repo_files '**' | tr '\n' '\0' | xargs -0 -r grep -Il . --
+	else
+		find . -type f -not \( -path "./.git/*" -prune \) -exec grep -Iq . {} \; -print
+	fi
+}
+if command -v gawk >/dev/null 2>&1; then
+	while IFS= read -r f; do
+		echo -e "${RED}ERROR: file $f is missing a trailing newline${NC}"
+		st=1
+	done < <(text_files | tr '\n' '\0' | xargs -0 -r gawk 'ENDFILE { if (FNR > 0 && RT == "") print FILENAME }')
+else
 while read f; do
     t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
     if [[ ! ${t%x} =~ $r1 ]]; then
         echo -e "${RED}ERROR: file $f is missing a trailing newline${NC}"
         st=1
     fi;
-done < <(find . -type f -not \( -path "./.git/*" -prune \) -exec grep -Iq . {} \; -print)
+done < <(text_files)
+fi
+# AQ EDIT END
 
 if [ $st = 0 ]; then
     echo
