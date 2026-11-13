@@ -62,6 +62,19 @@
 	if(!QDELETED(eye))
 		qdel(eye)
 
+/// Ktoś siada za sterem w trakcie wyboru miejsca: wybór się kończy bez lądowania, bo prom może zaraz odlecieć albo skoczyć
+/obj/structure/overmap/small_craft/transport/start_piloting(mob/living/carbon/user, position)
+	. = ..()
+	if(!. || !shuttle_landing_eye || pilot != user)
+		return
+	var/mob/camera/ai_eye/remote/shuttle_craft_landing/eye = shuttle_landing_eye
+	if(eye.eye_user)
+		to_chat(eye.eye_user, span_warning("[user] przejmuje ster: wybór miejsca lądowania przerwany."))
+	shuttle_manual_landing_end(eye)
+	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(DC)
+		DC.docking_cooldown = FALSE
+
 /// Wybór przerwany: cel zniknął, więc komputer dokowania znów jest wolny, albo ląduje automat
 /obj/structure/overmap/small_craft/transport/proc/shuttle_manual_landing_fallback(obj/structure/overmap/OM)
 	if(QDELETED(src) || shuttle_docked_at)

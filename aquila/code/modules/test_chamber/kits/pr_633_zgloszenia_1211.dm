@@ -23,6 +23,13 @@
 	)
 
 /datum/test_chamber_kit/pr_633/setup(list/spawned, list/turfs, turf/center, mob/user)
+	// Oba automaty lądują na jednej kratce: drugi idzie na najdalszą wolną, żeby „Po sprzęt” miało z czego wybrać bliższy
+	var/list/vendors = list()
+	for(var/obj/machinery/squad_vendor/vendor in spawned)
+		vendors += vendor
+	if(length(vendors) > 1 && length(turfs) > 1)
+		var/obj/machinery/squad_vendor/far_vendor = vendors[2]
+		far_vendor.forceMove(turfs[length(turfs)])
 	var/mob/living/carbon/human/H = user
 	var/datum/squad/alpha = GLOB.squad_manager.get_squad("Alpha")
 	if(!istype(H) || !alpha)

@@ -65,6 +65,21 @@
 
 	// Ręcznie wybrane miejsce obrócone na wschód: wnętrze staje dokładnie w obrysie, który pokazywała kamera
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch again")
+
+	// Ktoś siada za sterem w trakcie wyboru miejsca lądowania: kamera i timer znikają, prom nie ląduje przy starym celu
+	var/mob/camera/ai_eye/remote/shuttle_craft_landing/eye = new(get_turf(port))
+	eye.craft = sabre
+	eye.landing_target = host
+	sabre.shuttle_landing_eye = eye
+	sabre.shuttle_landing_timer = addtimer(CALLBACK(sabre, TYPE_PROC_REF(/obj/structure/overmap/small_craft/transport, shuttle_manual_landing_timeout), eye), 60 SECONDS, TIMER_STOPPABLE)
+	DC.docking_cooldown = TRUE
+	var/mob/living/carbon/human/new_pilot = allocate(/mob/living/carbon/human)
+	sabre.start_piloting(new_pilot, OVERMAP_USER_ROLE_PILOT)
+	TEST_ASSERT(!sabre.shuttle_landing_eye && QDELETED(eye), "Taking the helm didn't close the landing camera")
+	TEST_ASSERT(!sabre.shuttle_landing_timer, "Taking the helm left the landing timeout running")
+	TEST_ASSERT(!sabre.shuttle_docked_at, "Taking the helm during the landing choice landed the Sabre")
+	TEST_ASSERT(!DC.docking_cooldown, "Taking the helm left the docking computer locked")
+	sabre.stop_piloting(new_pilot)
 	var/turf/spot = locate(bl[1] + 20, bl[2] + 20, bl[3])
 	var/list/rotated = sabre.shuttle_rotate_offsets(sabre.hull_offsets, EAST)
 	TEST_ASSERT_EQUAL(length(rotated), length(sabre.hull_offsets), "Rotating the hull outline lost tiles")

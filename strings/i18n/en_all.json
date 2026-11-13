@@ -71404,6 +71404,7 @@
 "[user] przecina osłonę [src].": "[user] cuts through [src]'s shielding.",
 "[user] przecina pętlę.": "[user] cuts the noose.",
 "[user] przecina zewnętrzną kratę [src].": "[user] cut through [src]'s outer grille.",
+"[user] przejmuje ster: wybór miejsca lądowania przerwany.": "[user] takes the helm: landing spot selection aborted.",
 "[user] przez chwilę grzebie przy [src].": "[user] messes with \\the [src] for a bit.",
 "[user] przez kilka chwil wpatruje się w pusty ekran z twarzą zastygłą w strachu. Gdy w końcu się z tego budzi, wygląda na znacznie starszego.": "[user] stares at the blank screen for a few moments, [user.p_their()] expression frozen in fear. When [user.p_they()] finally awaken[user.p_s()] from it, [user.p_they()] look[user.p_s()] a lot older.",
 "[user] przygląda się komuś ([target]), czytając jakąś księgę.": "[user] studies someone ([target]) while reading some book.",

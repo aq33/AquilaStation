@@ -289,11 +289,11 @@
 		message_mods[MODE_CUSTOM_SAY_EMOTE] = sanitize(texts[2])
 	message_mods[MODE_AQ_TRANSLATED] = TRUE
 	var/datum/language/shown_language = message_language == /datum/language/common ? /datum/language/english : message_language
+	// Flaga trwa także w create_chat_message(), które sprawdza dymek drugi raz (inaczej znany język antagonisty go blokuje)
 	aq_hearing_translation = TRUE
-	var/show_bubble = should_show_chat_message(speaker, shown_language, FALSE, is_heard = TRUE)
-	aq_hearing_translation = FALSE
-	if(show_bubble)
+	if(should_show_chat_message(speaker, shown_language, FALSE, is_heard = TRUE))
 		create_chat_message(speaker, shown_language, list(src), message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] ? message_mods[MODE_CUSTOM_SAY_EMOTE] : heard, spans, message_mods)
+	aq_hearing_translation = FALSE
 	Hear(message, speaker, shown_language, heard, radio_freq, spans, message_mods)
 
 // Dymek z oryginałem nie wychodzi, bo zaraz przyjdzie przetłumaczony (aq_hear_translated)

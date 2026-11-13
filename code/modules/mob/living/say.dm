@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
-	if(is_muted(original_message, ignore_spam, forced) || check_emote(original_message, forced))
+	if(is_muted(original_message, ignore_spam, forced) || (!aq_translated && check_emote(original_message, forced))) // AQ EDIT - powtórka tłumacza: gwiazdka w treści to nie emotka
 		return
 
 	if(in_critical) //There are cheaper ways to do this, but they're less flexible, and this isn't ran all that often

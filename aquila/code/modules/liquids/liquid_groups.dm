@@ -64,6 +64,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/slippery = TRUE
 	/// AQUILA - cała grupa zamarzła (nie rozlewa się, nie paruje, nie spowalnia, ślizga jak lód)
 	var/frozen = FALSE
+	/// AQUILA - lepkość (is_viscous), przy której członkowie dostali nakładki głębokości: zmiana dominującego reagenta je odświeża
+	var/viscous_overlays = FALSE
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -232,7 +234,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(LIQUID_FULLTILE_LEVEL_HEIGHT to INFINITY)
 			group_overlay_state = LIQUID_STATE_FULLTILE
 
-	if(old_overlay != group_overlay_state)
+	var/viscous = is_viscous()
+	if(old_overlay != group_overlay_state || viscous != viscous_overlays)
+		viscous_overlays = viscous
 		for(var/turf/member in members)
 			if(QDELETED(member.liquids))
 				remove_from_group(member)

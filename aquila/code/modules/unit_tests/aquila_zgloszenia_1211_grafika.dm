@@ -26,6 +26,14 @@
 	TEST_ASSERT(T.liquids.liquid_group.is_viscous(), "Setup: a pool of blood is not viscous")
 	var/blood_overlays = aquila_test_depth_overlay_count(T.liquids)
 	TEST_ASSERT(!blood_overlays, "A pool of blood got [blood_overlays] depth overlays (the red square)")
+	// Krew zastąpiona wodą przy tej samej głębokości: nakładki wracają bez zmiany stanu głębokości
+	var/datum/liquid_group/group = T.liquids.liquid_group
+	group.reagents.remove_reagent(/datum/reagent/blood, 60)
+	group.reagents.add_reagent(/datum/reagent/water, 60)
+	group.process_group(TRUE)
+	TEST_ASSERT(!group.is_viscous(), "Setup: the pool is still viscous after swapping blood for water")
+	TEST_ASSERT(T.liquids.liquid_state == LIQUID_STATE_ANKLES, "Setup: swapping blood for water changed the depth (state [T.liquids.liquid_state])")
+	TEST_ASSERT(aquila_test_depth_overlay_count(T.liquids), "Swapping blood for water at the same depth kept the pool without depth overlays")
 	aquila_liquids_cleanup(T)
 
 	T.add_liquid(/datum/reagent/water, 90)

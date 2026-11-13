@@ -149,6 +149,10 @@ GLOBAL_LIST_EMPTY(aq_squad_vendors)
 			text = "Po sprzęt: [aq_gear_location_text(member, vendor)]."
 			pinged++
 		else
+			// Stary znacznik wskazywałby automat, który już nie działa
+			var/datum/aq_squad_marker/gear/stale_marker = aq_gear_markers?[member]
+			if(stale_marker)
+				qdel(stale_marker)
 			text = "Na okręcie nie ma działającego automatu drużyny."
 		to_chat(member, "<span class='[span_style]'><b>\[[name]\] [title]:</b> [text]</span>")
 		if(member in recipients)

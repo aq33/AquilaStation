@@ -60,6 +60,11 @@
 	foreigner.say("Star please")
 	TEST_ASSERT(heard_raw == "Gwiazdka * proszę.", "Asterisk in the translation was changed: [heard_raw]")
 	TEST_ASSERT(!heard_mods?[MODE_CUSTOM_SAY_EMOTE], "Asterisk in the translation became a custom verb")
+	// Tłumaczenie zaczynające się od gwiazdki zostaje mową, a nie emotką
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star first", "*macha*")
+	heard_raw = null
+	foreigner.say("Star first")
+	TEST_ASSERT(findtext("[heard_raw]", "macha"), "Translation starting with an asterisk became an emote: [heard_raw]")
 
 	// Bez klucza API i bez pamięci: tekst przechodzi bez tłumaczenia, ale we Wspólnym
 	if(!CONFIG_GET(string/deepl_api_key))

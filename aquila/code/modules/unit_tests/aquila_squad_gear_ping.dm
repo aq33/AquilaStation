@@ -49,6 +49,7 @@
 	// Bez automatu: komunikat zamiast znacznika, bez runtime
 	officer.aq_next_squad_marker = 0
 	TEST_ASSERT(squad.aq_ping_gear(officer, list()) == 0, "Bez automatów ktoś dostał znacznik")
+	TEST_ASSERT(QDELETED(first_marker) && !squad.aq_gear_markers?[first], "Bez działającego automatu został stary znacznik")
 
 	// Wyjście z drużyny zdejmuje znacznik
 	squad.remove_member(first)
